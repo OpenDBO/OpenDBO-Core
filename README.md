@@ -39,7 +39,7 @@ DBO Client, Server and Tools software.
     - The downloaded RAR file should contain a folder named DragonBall; copy and paste its contents into the specified path.
     - This RAR file is from the "Client" link provided above.
 
-9. **Go to folder:** `source\repos\OpenDBO-Core\DboClient" and open "DboClient.sln"`
+9. **Go to folder:** `source\repos\OpenDBO-Core\DboClient` and open "DboClient.sln"
 
 10. **In Solution Explorer, go to DBO\Client.vcxproj and repeat step 7.**
 
@@ -116,11 +116,17 @@ DBO Client, Server and Tools software.
 
 9. **Run the server executables:**
     - Go to "OpenDBO-Core/DboServer/ExecutionEnv."
-    - Run "start_master_server.bat," "start_query_server.bat," "start_char_server_0.bat," "start_auth_server.bat," "start_channel_0.bat," "start_chat_server.bat," etc., waiting for each to finish.
+    - Run `start_master_server.bat`
+    - Run `start_query_server.bat` and wait until its done.
+    - Run `start_char_server_0.bat`
+    - Run `start_auth_server.bat`
+    - Run `start_channel_0.bat` and wait until it finished (can take a lot of time, might need to press ENTER). Then close it.
+    - Run `start_chat_server.bat` and wait until its done.
+    - Run `start_channel_0.bat` again, `start_channel_1.bat` (if you need 2 channels) and `start_channel_9.bat`
 
 10. **Download and extract the DBO Client Files:**
     - Development Client/Server Access
-    - In the main folder, locate "Configoptions.xml," change the IP to "127.0.0.1" on each line, and save.
+    - In the main folder, locate "ConfigOptions.xml," change the IP to "127.0.0.1" on each line, and save.
     - Run the client, enter your username and password, and you’re ready to go.
 
 </details>
