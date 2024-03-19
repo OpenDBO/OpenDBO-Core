@@ -117,7 +117,7 @@ DBO Client, Server and Tools software.
 9. **Run the server executables:**
     - Go to "OpenDBO-Core/DboServer/ExecutionEnv."
     - Run `start_master_server.bat`
-    - Run `start_query_server.bat` and wait until its done.
+    - Run `start_query_server.bat` and wait until its done (if you get missing `MSVCP120.dll` error you can fix it by installing Microsoft Visual C++ Redistributable 2013).
     - Run `start_char_server_0.bat`
     - Run `start_auth_server.bat`
     - Run `start_channel_0.bat` and wait until it finished (can take a lot of time, might need to press ENTER). Then close it.
