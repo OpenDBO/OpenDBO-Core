@@ -99,7 +99,7 @@ DBO Client, Server and Tools software.
     - In the XAMPP Control Panel, start "Apache" and "MySQL."
     - Ensure your antivirus accepts XAMPP.
 
-7. **Open your browser** and type: "localhost:8080/phpmyadmin/"
+7. **Open your browser and type: "localhost:8080/phpmyadmin/"**
     - Click "New" in the left column.
     - Add a database named "dbo_acc" and click "make."
     - Click "import" at the top, choose file, and select "dbo_acc.sql" from "OpenDBO-Core/DboServer/Database."
@@ -109,7 +109,7 @@ DBO Client, Server and Tools software.
     - Generate an MD5 Hash for the password using [MD5 Hash Generator](https://www.md5hashgenerator.com), paste it next to "Password_hash," and click "Start" at the bottom.
     - If you want GM permissions make sure to set `admin` and `isgm` to `10` in the `accounts` table and `gamemaster` to `10` in the `characters` tabel from the `dbo_char` database.
 
-8. **Change the server *ini files:**
+8. **Change the server .ini files:**
     - Navigate to "OpenDBO-Core/DboServer/ExecutionEnv/Config."
     - Open "AuthServer.ini," "CharServer.ini," etc., with Notepad.
     - Ensure all IP addresses are "127.0.0.1" and change the password to "test."
