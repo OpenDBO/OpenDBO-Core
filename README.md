@@ -1,7 +1,7 @@
 # OpenDBO
 DBO Client, Server and Tools software.
 
-# Setting everything up
+## Setting everything up
 <details>
  <summary>Compiling the Client</summary>
 
@@ -125,3 +125,6 @@ DBO Client, Server and Tools software.
 
 </details>
 Alternatively there's a video showcasing this process: https://www.youtube.com/watch?v=lWDffP81ACw
+
+## Acknowledgements
+Copyright belongs to their respective owners, this is just non-profit fan project aiming for game preservation. Thanks to DBOG for providing the base of this source code.
