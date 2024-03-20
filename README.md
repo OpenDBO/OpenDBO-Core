@@ -120,7 +120,7 @@ DBO Client, Server and Tools software.
     - Run `start_query_server.bat` and wait until its done (if you get missing `MSVCP120.dll` error you can fix it by installing Microsoft Visual C++ Redistributable 2013).
     - Run `start_char_server_0.bat`
     - Run `start_auth_server.bat`
-    - Run `start_channel_0.bat` and wait until it finished (can take a lot of time, might need to press ENTER). Then close it.
+    - Run `start_channel_0.bat` and wait until it's finished (can take a lot of time, might need to press ENTER). Then close it.
     - Run `start_chat_server.bat` and wait until its done.
     - Run `start_channel_0.bat` again, `start_channel_1.bat` (if you need 2 channels) and `start_channel_9.bat`
 
@@ -133,4 +133,4 @@ DBO Client, Server and Tools software.
 Alternatively there's a video showcasing this process: https://www.youtube.com/watch?v=lWDffP81ACw
 
 ## Acknowledgements
-Copyright belongs to their respective owners, this is just non-profit fan project aiming for game preservation. Thanks to DBOG for providing the base of this source code.
+All and any copyrighted material belongs to their respective owners, this is just a non-profit fan project aiming for game preservation. Thanks to DBOG for providing the base for this source code.
