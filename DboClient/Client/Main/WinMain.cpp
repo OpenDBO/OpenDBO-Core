@@ -42,7 +42,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 	{
 		if(!IsMultiOpen("DragonBall"))
 		{
-			::MessageBox(NULL, "DragonBallOnline Global is already opened !!!", "DragonBallOnline Global", MB_OK);
+			::MessageBox(NULL, "OpenDBO is already opened !!!", "OpenDBO", MB_OK);
 			return 1;
 		}
 	}
@@ -52,7 +52,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,
 
 	if(!IsLimitDirectory())
 	{
-		::MessageBox(NULL, "A directory name length must not exceed 200 letters", "DragonBallOnline Global", MB_OK);
+		::MessageBox(NULL, "A directory name length must not exceed 200 letters", "OpenDBO", MB_OK);
 		return 1;
 	}
 
