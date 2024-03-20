@@ -1,4 +1,4 @@
-#include "precomp_ntlsimulation.h"
+Ôªø#include "precomp_ntlsimulation.h"
 #include "NtlBehaviorCharAirMove.h"
 
 // shared 
@@ -36,13 +36,13 @@ CNtlBehaviorCharAirMove::~CNtlBehaviorCharAirMove()
 
 void CNtlBehaviorCharAirMove::Enter(void)
 {
-	CNtlBeCharData *pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData());
-	SMoveStuff *pMoveStuff = pBeData->GetMoveStuff();
+	CNtlBeCharData* pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData());
+	SMoveStuff* pMoveStuff = pBeData->GetMoveStuff();
 	memcpy(&m_MoveStuff, pMoveStuff, sizeof(SMoveStuff));
 
 	SetAnim(pMoveStuff->byMoveFlags);
 
-	// ≥™¡ﬂø° base class enter∏¶ »£√‚«—¥Ÿ.
+	// ÎÇòÏ§ëÏóê base class enterÎ•º Ìò∏Ï∂úÌïúÎã§.
 	CNtlBehaviorBase::Enter();
 }
 
@@ -50,12 +50,12 @@ void CNtlBehaviorCharAirMove::Exit(void)
 {
 	DestroyAirEffect();
 
-	CNtlSobCharProxy *pSobProxy = reinterpret_cast<CNtlSobCharProxy*>(m_pActor->GetSobProxy());
+	CNtlSobCharProxy* pSobProxy = reinterpret_cast<CNtlSobCharProxy*>(m_pActor->GetSobProxy());
 
-	CNtlPLCharacter *pPLCharacter = reinterpret_cast<CNtlPLCharacter*>(pSobProxy->GetPLMainEntity());
+	CNtlPLCharacter* pPLCharacter = reinterpret_cast<CNtlPLCharacter*>(pSobProxy->GetPLMainEntity());
 	pPLCharacter->SetBlend(BLEND_TWEEN);
 
-	// ≥™¡ﬂø° base class enter∏¶ »£√‚«—¥Ÿ.
+	// ÎÇòÏ§ëÏóê base class enterÎ•º Ìò∏Ï∂úÌïúÎã§.
 	CNtlBehaviorBase::Exit();
 }
 
@@ -64,8 +64,8 @@ void CNtlBehaviorCharAirMove::Update(RwReal fElapsed)
 	// Avoid sudden splashes when the frame is low
 	fElapsed = min(fElapsed, 0.2f);
 
-	CNtlBeCharData *pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData());
-	SMoveStuff *pMoveStuff = pBeData->GetMoveStuff();
+	CNtlBeCharData* pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData());
+	SMoveStuff* pMoveStuff = pBeData->GetMoveStuff();
 
 	RwBool bFinish = FALSE;
 
@@ -120,7 +120,7 @@ void CNtlBehaviorCharAirMove::UpdateAirEffect(RwV3d& vDir)
 	RwV3dAssignMacro(&mat.up, &CNtlPLGlobal::m_vYAxisV3);
 	RwMatrixUpdate(&mat);
 
-	CNtlMath::MathRwV3dAssign(&m_vEffectOffset, vDir.x*0.6f, 0.5f, vDir.z*0.5f);
+	CNtlMath::MathRwV3dAssign(&m_vEffectOffset, vDir.x * 0.6f, 0.5f, vDir.z * 0.5f);
 
 	RwV3dAdd(&vPos, &vPos, &m_vEffectOffset);
 	RwMatrixTranslate(&mat, &vPos, rwCOMBINEPOSTCONCAT);
@@ -129,7 +129,7 @@ void CNtlBehaviorCharAirMove::UpdateAirEffect(RwV3d& vDir)
 		m_pPLAirEffect->SetMatrix(mat);
 }
 
-RwUInt32 CNtlBehaviorCharAirMove::HandleEvents(RWS::CMsg &pMsg)
+RwUInt32 CNtlBehaviorCharAirMove::HandleEvents(RWS::CMsg& pMsg)
 {
 	NTL_FUNCTION("CNtlBehaviorCharAirMove::HandleEvents");
 
@@ -140,8 +140,8 @@ RwUInt32 CNtlBehaviorCharAirMove::HandleEvents(RWS::CMsg &pMsg)
 
 void CNtlBehaviorCharAirMove::UpdateData(void)
 {
-	CNtlBeCharData *pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData());
-	SMoveStuff *pMoveStuff = pBeData->GetMoveStuff();
+	CNtlBeCharData* pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData());
+	SMoveStuff* pMoveStuff = pBeData->GetMoveStuff();
 	memcpy(&m_MoveStuff, pMoveStuff, sizeof(SMoveStuff));
 
 	SetAnim(pMoveStuff->byMoveFlags);
@@ -150,7 +150,7 @@ void CNtlBehaviorCharAirMove::UpdateData(void)
 
 void CNtlBehaviorCharAirMove::SetAnim(RwUInt8 byMoveFlags)
 {
-	CNtlSobCharProxy *pSobProxy = reinterpret_cast<CNtlSobCharProxy*>(m_pActor->GetSobProxy());
+	CNtlSobCharProxy* pSobProxy = reinterpret_cast<CNtlSobCharProxy*>(m_pActor->GetSobProxy());
 
 	RwUInt32 uiCurrAnimKey = pSobProxy->GetBaseAnimationKey();
 	RwUInt32 uiNextAnimKey = 0;
@@ -204,7 +204,7 @@ void CNtlBehaviorCharAirMove::SetAnim(RwUInt8 byMoveFlags)
 		}
 		else if (m_MoveStuff.byFormFlag == NTL_MOVE_FLAG_FLY_ACCEL)
 		{
-			CreateAirEffect(NTL_VID_DASH_ACTIVE_02);
+			CreateAirEffect("max_fly_effect_01");
 			UpdateAirEffect(m_MoveStuff.vDir);
 
 			uiNextAnimKey = FLYING_POSE_1;
@@ -228,7 +228,7 @@ void CNtlBehaviorCharAirMove::SetAnim(RwUInt8 byMoveFlags)
 
 	if (uiCurrAnimKey != uiNextAnimKey)
 	{
-		CNtlPLCharacter *pPLCharacter = reinterpret_cast<CNtlPLCharacter*>(pSobProxy->GetPLMainEntity());
+		CNtlPLCharacter* pPLCharacter = reinterpret_cast<CNtlPLCharacter*>(pSobProxy->GetPLMainEntity());
 		pPLCharacter->SetBlend(BLEND_TWEEN, 0.0f, 0.20f);
 
 		pSobProxy->SetBaseAnimation(uiNextAnimKey);
@@ -244,9 +244,17 @@ void CNtlBehaviorCharAirMove::CreateAirEffect(const RwChar* effectName)
 	DestroyAirEffect();
 
 	CNtlPLAttach* pPLChar = (CNtlPLAttach*)m_pActor->GetSobProxy()->GetPLMainEntity();
-
 	m_pPLAirEffect = GetSceneManager()->CreateEntity(PLENTITY_EFFECT, effectName);
-	pPLChar->Attach((CNtlPLAttach*)m_pPLAirEffect);
+
+	if (m_MoveStuff.byFormFlag == NTL_MOVE_FLAG_FLY_ACCEL)
+	{
+		RwV3d offset = {0.0f, 0.0f, 0.0f};
+		Helper_AttachBone(m_pActor->GetSobProxy()->GetPLMainEntity(), m_pPLAirEffect, "Bip01", offset);
+	}
+	else
+	{
+		pPLChar->Attach((CNtlPLAttach*)m_pPLAirEffect);
+	}
 }
 
 
@@ -263,15 +271,15 @@ void CNtlBehaviorCharAirMove::DestroyAirEffect(void)
 
 
 
-RwBool CNtlBehaviorCharAirMove::UpdatePositionMove(SMoveStuff * pMoveStuff, OUT RwV3d & vPos, RwBool bIncHeight, RwReal fElapsed, RwReal fSpeed)
+RwBool CNtlBehaviorCharAirMove::UpdatePositionMove(SMoveStuff* pMoveStuff, OUT RwV3d& vPos, RwBool bIncHeight, RwReal fElapsed, RwReal fSpeed)
 {
 	if (pMoveStuff->byMoveFlags != NTL_MOVE_NONE)
 	{
 		RwV3d vDir = m_pActor->GetDirection();
 
 		CNtlVector vHeading, vDest;
-	//	DBO_WARNING_MESSAGE("pMoveStuff->byMoveFlags: " << (int)pMoveStuff->byMoveFlags);
-		NtlGetDestination_Keyboard(vDir.x, vDir.y, vDir.z, fSpeed, vPos.x, vPos.y, vPos.z, pMoveStuff->byMoveFlags, (DWORD)(fElapsed*1000.f), 1.0f, &vHeading, &vDest);
+		//	DBO_WARNING_MESSAGE("pMoveStuff->byMoveFlags: " << (int)pMoveStuff->byMoveFlags);
+		NtlGetDestination_Keyboard(vDir.x, vDir.y, vDir.z, fSpeed, vPos.x, vPos.y, vPos.z, pMoveStuff->byMoveFlags, (DWORD)(fElapsed * 1000.f), 1.0f, &vHeading, &vDest);
 
 		RwV3d vNewDir;
 		CNtlMath::MathRwV3dAssign(&vNewDir, vHeading.x, vHeading.y, vHeading.z);
@@ -315,7 +323,7 @@ RwBool CNtlBehaviorCharAirMove::UpdatePositionMove(SMoveStuff * pMoveStuff, OUT 
 	return FALSE;
 }
 
-RwBool CNtlBehaviorCharAirMove::UpdateAirStart(SMoveStuff * pMoveStuff, RwReal fElapsed)
+RwBool CNtlBehaviorCharAirMove::UpdateAirStart(SMoveStuff* pMoveStuff, RwReal fElapsed)
 {
 	RwV3d vPos = m_pActor->GetPosition();
 	RwReal fMoveSpeed = Logic_GetFlyDashSpeed(m_pActor);
@@ -328,7 +336,7 @@ RwBool CNtlBehaviorCharAirMove::UpdateAirStart(SMoveStuff * pMoveStuff, RwReal f
 
 		if (vPos.y >= m_sHStuff.fWorldHeight) //check if we on height limit
 		{
-		//	vPos.y = m_sHStuff.fWorldHeight;
+			//	vPos.y = m_sHStuff.fWorldHeight;
 		}
 	}
 
@@ -337,7 +345,7 @@ RwBool CNtlBehaviorCharAirMove::UpdateAirStart(SMoveStuff * pMoveStuff, RwReal f
 	return bFinish;
 }
 
-RwBool CNtlBehaviorCharAirMove::UpdateAirFly(SMoveStuff * pMoveStuff, RwReal fElapsed)
+RwBool CNtlBehaviorCharAirMove::UpdateAirFly(SMoveStuff* pMoveStuff, RwReal fElapsed)
 {
 	RwV3d vPos = m_pActor->GetPosition();
 	RwReal fSpeed = Logic_GetFrontFlySpeed(m_pActor);
@@ -353,7 +361,7 @@ RwBool CNtlBehaviorCharAirMove::UpdateAirFly(SMoveStuff * pMoveStuff, RwReal fEl
 			DBO_WARNING_MESSAGE("UF vPos.y: " << vPos.y << ", height: " << m_sHStuff.fFinialHeight << ", WATER-height: " << m_sHStuff.fWaterHeight);
 			vPos.y = m_sHStuff.fFinialHeight;
 
-		//	if (m_pActor->GetClassID() == SLCLASS_AVATAR) // if we do this check, then when avatar fly on ground, he will keep flying (for other players)
+			//	if (m_pActor->GetClassID() == SLCLASS_AVATAR) // if we do this check, then when avatar fly on ground, he will keep flying (for other players)
 			{
 				SetFalling();
 				bFinish = TRUE;
@@ -366,7 +374,7 @@ RwBool CNtlBehaviorCharAirMove::UpdateAirFly(SMoveStuff * pMoveStuff, RwReal fEl
 	return bFinish;
 }
 
-RwBool CNtlBehaviorCharAirMove::UpdateAirDash(SMoveStuff * pMoveStuff, RwReal fElapsed)
+RwBool CNtlBehaviorCharAirMove::UpdateAirDash(SMoveStuff* pMoveStuff, RwReal fElapsed)
 {
 	RwV3d vPos = m_pActor->GetPosition();
 	RwReal fSpeed = Logic_GetFlyDashSpeed(m_pActor);
@@ -381,7 +389,7 @@ RwBool CNtlBehaviorCharAirMove::UpdateAirDash(SMoveStuff * pMoveStuff, RwReal fE
 		{
 			vPos.y = m_sHStuff.fFinialHeight;
 
-		//	if (m_pActor->GetClassID() == SLCLASS_AVATAR)
+			//	if (m_pActor->GetClassID() == SLCLASS_AVATAR)
 			{
 				SetFalling();
 				bFinish = TRUE;
@@ -394,7 +402,7 @@ RwBool CNtlBehaviorCharAirMove::UpdateAirDash(SMoveStuff * pMoveStuff, RwReal fE
 	return bFinish;
 }
 
-RwBool CNtlBehaviorCharAirMove::UpdateAirAccel(SMoveStuff * pMoveStuff, RwReal fElapsed)
+RwBool CNtlBehaviorCharAirMove::UpdateAirAccel(SMoveStuff* pMoveStuff, RwReal fElapsed)
 {
 	RwV3d vPos = m_pActor->GetPosition();
 	RwReal fSpeed = Logic_GetFlyAccelSpeed(m_pActor);
@@ -409,7 +417,7 @@ RwBool CNtlBehaviorCharAirMove::UpdateAirAccel(SMoveStuff * pMoveStuff, RwReal f
 		{
 			vPos.y = m_sHStuff.fFinialHeight;
 
-		//	if (m_pActor->GetClassID() == SLCLASS_AVATAR)
+			//	if (m_pActor->GetClassID() == SLCLASS_AVATAR)
 			{
 				SetFalling();
 				bFinish = TRUE;
@@ -427,7 +435,7 @@ RwBool CNtlBehaviorCharAirMove::UpdateMoveSync(RwV3d vPos, RwReal fElapsedTime)
 	if (m_pActor->GetClassID() != SLCLASS_PLAYER)
 		return FALSE;
 
-	CNtlBeCharData *pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData());
+	CNtlBeCharData* pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData());
 	SMoveSyncStuff* pMoveSyncStuff = pBeData->GetMoveSyncStuff();
 
 	if (pMoveSyncStuff->m_pMoveSyncCurr == NULL)
@@ -458,12 +466,12 @@ RwBool CNtlBehaviorCharAirMove::UpdateMoveSync(RwV3d vPos, RwReal fElapsedTime)
 
 void CNtlBehaviorCharAirMove::SetFalling()
 {
-	CNtlBeCharData *pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData());
+	CNtlBeCharData* pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData());
 
-	SMoveStuff *pMoveStuff = pBeData->GetMoveStuff();
+	SMoveStuff* pMoveStuff = pBeData->GetMoveStuff();
 	pMoveStuff->byMoveResult |= NTL_MOVE_RESULT_FALLING;
 
-	SCtrlStuff *pCtrlStuff = pBeData->GetCtrlStuff();
+	SCtrlStuff* pCtrlStuff = pBeData->GetCtrlStuff();
 
 	pCtrlStuff->uExtra.sFalling.vFallingDir = m_pActor->GetDirection();
 
