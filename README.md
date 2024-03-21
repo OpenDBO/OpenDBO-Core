@@ -80,7 +80,7 @@ DBO Client, Server and Tools software.
     - Extract the ZIP file to the main folder named "OpenDBO-Core."
 
 4. **Download and install/extract additional programs:**
-    - DirectX9 SDK: [DirectX9 SDK](https://www.microsoft.com/en-us/download/details.aspx?id=6812)
+    - DirectX9 SDK: [DirectX9 SDK](https://www.microsoft.com/en-us/download/details.aspx?id=6812) (Make sure to close any Visual Studio instance before installing it, otherwise the `$(DXSDK_DIR)` won't be properly set).
     - GFx SDK: GFx SDK 3.3 -> Extract the "GFx SDK" folder into "OpenDBO-Core/DboClient/Lib/NtlFlasher"
     - Xtreme ToolkitPro: Xtreme ToolkitPro v15.2.1 -> Extract the folder into "OpenDBO-Core/3rdParty"
 
