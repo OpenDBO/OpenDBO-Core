@@ -5,6 +5,7 @@
 #include "NtlResultCode.h"
 #include "ObjectTable.h"
 #include "ItemTable.h"
+#include "UseItemTable.h"
 #include "QuestItemTable.h"
 #include "ItemOptionTable.h"
 #include "MobTable.h"
@@ -17,6 +18,7 @@
 #include "NtlBattle.h"
 #include "ScriptLinkTable.h"
 #include "DojoTable.h"
+#include "SystemEffectTable.h"
 
 // core
 #include "NtlDebug.h"
@@ -59,6 +61,8 @@
 #include "InputHandler.h"
 #include "NtlFSMDef.h"
 #include "NtlSobStatusAnimSyncManager.h"
+#include "NtlSobBuff.h"
+#include "NtlSobBuffAttr.h"
 
 // Simulation Storage
 #include "NtlStorageDefine.h"
@@ -2135,7 +2139,39 @@ bool Logic_IsAirPossible()
 	CNtlSobAvatar *pSobAvatar = GetNtlSLGlobal()->GetSobAvatar();
 	CNtlAvatarSkillContainer *pSkillContainer = reinterpret_cast<CNtlAvatarSkillContainer*>(pSobAvatar->GetSkillContainer());
 
-	return pSkillContainer->CanAir();
+	if (pSkillContainer->CanAir())
+		return true;
+
+	// If player doesn't have the flying skill, check if they have flying buff active.
+	CNtlSobBuff* pSobBuff;
+	CNtlSobBuffAttr* pSobBuffAttr;
+	CNtlBuffContainer::ListBuff::iterator it;
+	CNtlBuffContainer* pBuffContainer = pSobAvatar->GetBuffContainer();
+	CUseItemTable* pUseItemTbl = API_GetTableContainer()->GetUseItemTable();
+
+	for (it = pBuffContainer->GetBeginBuff(); it != pBuffContainer->GetEndBuff(); ++it)
+	{
+		pSobBuff = (*it);
+		pSobBuffAttr = reinterpret_cast<CNtlSobBuffAttr*>(pSobBuff->GetSobAttr());
+		if (pSobBuffAttr->GetBuffType() == DBO_OBJECT_SOURCE_ITEM)
+		{
+			sITEM_TBLDAT* pItemTbl = pSobBuffAttr->GetItemTbl();
+			if (pItemTbl) 
+			{
+				sUSE_ITEM_TBLDAT* pUseItemTblData = reinterpret_cast<sUSE_ITEM_TBLDAT*>(pUseItemTbl->FindData(pItemTbl->Use_Item_Tblidx));
+				if (pUseItemTblData)
+				{
+					for (int i = 0; i < NTL_MAX_EFFECT_IN_ITEM; ++i)
+					{
+						eSYSTEM_EFFECT_CODE effectcode = API_GetTableContainer()->GetSystemEffectTable()->GetEffectCodeWithTblidx(pUseItemTblData->aSystem_Effect[i]);
+						if (Dbo_IsSystemEffectForFly(effectcode))
+							return true;
+					}
+				}
+			}
+		}
+	}
+	return false;
 }
 
 RwBool Logic_IsAirDashPossible(void)
