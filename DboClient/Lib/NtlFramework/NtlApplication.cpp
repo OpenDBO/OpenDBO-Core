@@ -978,46 +978,49 @@ RwBool CNtlApplication::Update(RwReal fTime, RwReal fElapsedTime)
 int CNtlApplication::MessagePump()
 {
 	int result = 0;
-      
-    while (!m_bQuit)
-    {
-        MSG message;
-        
-        if (PeekMessage(&message, 0, 0U, 0U, PM_REMOVE | PM_NOYIELD) )
-        {
-			if (message.message == WM_QUIT )
+	LARGE_INTEGER frequency;
+	LARGE_INTEGER start;
+	LARGE_INTEGER end;
+
+	QueryPerformanceFrequency(&frequency);
+
+	while (!m_bQuit)
+	{
+		MSG message;
+
+		if (PeekMessage(&message, 0, 0U, 0U, PM_REMOVE | PM_NOYIELD))
+		{
+			if (message.message == WM_QUIT)
 			{
 				SetQuit();
 				result = (int)message.wParam;
 			}
 			else
 			{
-				 if( m_hAccel == NULL || TranslateAccelerator( m_hWnd, m_hAccel, &message ) == 0)
-				 {
-					 TranslateMessage(&message);
-					 DispatchMessage(&message);
-				 }
+				if (m_hAccel == NULL || TranslateAccelerator(m_hWnd, m_hAccel, &message) == 0)
+				{
+					TranslateMessage(&message);
+					DispatchMessage(&message);
+				}
 			}
-        }
-        else
-        {
-			RwUInt32 uiStartTime = GetTickCount();
-			RwUInt32 uiRateTime = (1000 / m_uiFrameRate);
+		}
+		else
+		{
+			QueryPerformanceCounter(&start);
+			RwUInt32 uiRateTime = (1000000 / m_uiFrameRate); // in microseconds
 
 			Update();
 
-			RwUInt32 uiLocalTime = GetTickCount() - uiStartTime;
-			if (uiLocalTime < uiRateTime)
-			{
-				Sleep(uiRateTime - uiLocalTime);
-			}
-        }
+			do {
+				QueryPerformanceCounter(&end);
+			} while ((end.QuadPart - start.QuadPart) * 1000000.0 / frequency.QuadPart < uiRateTime);
+		}
 	}
 
-	if( m_hAccel != NULL )
+	if (m_hAccel != NULL)
 	{
-        DestroyAcceleratorTable( m_hAccel );
-		m_hAccel = NULL; 
+		DestroyAcceleratorTable(m_hAccel);
+		m_hAccel = NULL;
 	}
 
 	return (result);
