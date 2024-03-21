@@ -800,6 +800,9 @@ void CHpGui::CheckAir()
 		bIsWorldAirPossible = true;
 	}
 
+	m_ppnlAirPoint->Show(Logic_IsAirPossible());
+	m_ppnlAirPoint->SetPriority(0);
+
 	m_surMidAir.Show(bIsWorldAirPossible);
 
 	if (m_bIsWorldAirPossible != bIsWorldAirPossible)
