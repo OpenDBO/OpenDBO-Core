@@ -343,6 +343,7 @@
     <ClCompile Include="Gui\WareHouseGui.cpp" />
     <ClCompile Include="Gui\Windowby3.cpp" />
     <ClCompile Include="Gui\WorldMap.cpp" />
+    <ClCompile Include="Gui\MascotGui.cpp" />
     <ClCompile Include="HLShopBuyConfirmGui.cpp" />
     <ClCompile Include="HLShopBuyGui.cpp" />
     <ClCompile Include="HLShopGiftConfirmGui.cpp" />
@@ -681,6 +682,7 @@
     <ClInclude Include="Gui\WareHouseGui.h" />
     <ClInclude Include="Gui\Windowby3.h" />
     <ClInclude Include="Gui\WorldMap.h" />
+    <ClInclude Include="Gui\MascotGui.h" />
     <ClInclude Include="HLShopGui.h" />
     <ClInclude Include="HLSSideIconGui.h" />
     <ClInclude Include="HLSSideView.h" />

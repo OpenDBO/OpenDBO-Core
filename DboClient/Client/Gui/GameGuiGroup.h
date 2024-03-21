@@ -68,6 +68,7 @@ class CFlashNotifyGui;
 class CFriendListGui;
 class CInterfaceShakeGui;
 class CRankBoardGui;
+class CMascotGui;
 class CCommuTargetGui;
 class CTimeNotifyGui;
 class CSideDialogControlGui;
@@ -180,6 +181,7 @@ private:
     CFriendListGui*             m_pFriendListGui;
 	CInterfaceShakeGui*			m_pInterfaceShakeGui;
 	CRankBoardGui*				m_pRankBoardGui;
+	CMascotGui*                 m_pMascotGui;
     CCommuTargetGui*            m_pCommuTargetGui;
 	CTimeNotifyGui*				m_pTimeNotifyGui;
 	CSideDialogControlGui*		m_pSideDialogControl;

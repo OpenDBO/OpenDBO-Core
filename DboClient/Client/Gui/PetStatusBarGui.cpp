@@ -217,13 +217,13 @@ void CPetStatusBarGui::UpdateBeforeCamera( RwReal fElapsed )
 		return;
 
 	// TODO: 일러스트로 대체
-	//if(m_uiPetID)
-	//{
-	//	CNtlSobPet* pSobPet = reinterpret_cast<CNtlSobPet*>(GetNtlSobManager()->GetSobObject(m_uiPetID));		
-	//	CNtlSobCharProxy *pCharProxy = reinterpret_cast<CNtlSobCharProxy*>(pSobPet->GetSobProxy());
-	//	m_texCharacter.Load(pCharProxy->UIPcStatusBarRender());
-	//	m_surCharacter.SetTexture( &m_texCharacter );
-	//}
+	if (m_uiPetID)
+	{
+		CNtlSobPet* pSobPet = reinterpret_cast<CNtlSobPet*>(GetNtlSobManager()->GetSobObject(m_uiPetID));		
+		CNtlSobCharProxy* pCharProxy = reinterpret_cast<CNtlSobCharProxy*>(pSobPet->GetSobProxy());
+		m_texCharacter.Load(pCharProxy->UIPcStatusBarRender());
+		m_surCharacter.SetTexture( &m_texCharacter );
+	}
 }
 
 RwInt32 CPetStatusBarGui::SwitchDialog( bool bOpen )

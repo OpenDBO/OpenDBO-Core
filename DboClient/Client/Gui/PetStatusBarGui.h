@@ -87,8 +87,8 @@ protected:
     gui::CStaticBox*    m_pSttInfoPD;           // 타격 방어력    
     gui::CStaticBox*    m_pSttInfoED;           // 기공 방어력
 
-	/*CFilteredSurfaceGui m_surCharacter;
-	gui::CTexture		m_texCharacter;*/
+	//CFilteredSurfaceGui m_surCharacter;
+	gui::CTexture		m_texCharacter;
 	CSurfaceGui			m_surCharacter;			///< Pet Illust -by Kell
 
 	gui::CSlot			m_slotMove;

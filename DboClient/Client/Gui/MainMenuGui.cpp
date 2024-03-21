@@ -358,7 +358,21 @@ VOID CMainMenuGui::OnClickedRankBoard( gui::CComponent* pComponent )
 
 VOID CMainMenuGui::OnClickedMascot(gui::CComponent * pComponent)
 {
-	return VOID();
+	if (GetDialogManager()->IsOpenDialog(DIALOG_MASCOT))
+	{
+		if (!Logic_CanMouseInput_in_Tutorial(ETL_MOUSE_INPUT_TYPE_MAINMENU_MASCOT_CLOSE))
+			return;
+		GetDialogManager()->CloseDialog(DIALOG_MASCOT);
+	}
+	else
+	{
+		if (!Logic_CanMouseInput_in_Tutorial(ETL_MOUSE_INPUT_TYPE_MAINMENU_MASCOT_OPEN))
+			return;
+		GetDialogManager()->OpenDialog(DIALOG_MASCOT);
+	}
+
+	if (Logic_CanMouseInput_in_Tutorial(ETL_MOUSE_INPUT_TYPE_MAINMENU_CLOSE))
+		GetDialogManager()->CloseDialog(DIALOG_MAINMENU, FALSE);
 }
 
 VOID CMainMenuGui::OnClickedFriendList( gui::CComponent* pComponent )

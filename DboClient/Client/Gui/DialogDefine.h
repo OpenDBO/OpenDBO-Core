@@ -137,6 +137,7 @@ enum eDialogType
 	DIALOG_SKILL_RPBONUS_AUTO,
 
 	DIALOG_RANKBOARD,						///< Ranking Board
+	DIALOG_MASCOT,
 	DIALOG_BUDOKAI_NEWS,					///< 천하제일 무도회 소식지
 	DIALOG_BUDOKAI_REQUEST,					///< 천하제일 무도회 신청서
 	DIALOG_BUDOKAI_TOURNAMENT,

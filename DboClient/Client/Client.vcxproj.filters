@@ -923,6 +923,9 @@
     <ClCompile Include="Gui\TeleportProposalManager.cpp">
       <Filter>Gui\Etc</Filter>
     </ClCompile>
+    <ClCompile Include="Gui\MascotGui.cpp">
+      <Filter>Gui\Component\Game\Mascot</Filter>
+    </ClCompile>
     <ClCompile Include="Main\DboApplication.cpp">
       <Filter>Main</Filter>
     </ClCompile>
@@ -1845,6 +1848,9 @@
     </ClInclude>
     <ClInclude Include="Gui\TeleportProposalManager.h">
       <Filter>Gui\Etc</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\MascotGui.h">
+      <Filter>Gui\Component\Game\Mascot</Filter>
     </ClInclude>
     <ClInclude Include="Main\DboApplication.h">
       <Filter>Main</Filter>

@@ -106,6 +106,7 @@ VOID CDialogManager::RegisteEntireFocusingDialog()
 	m_mapEntireFocuing[DIALOG_TMQBOARD]					= dEFDA_BACKBOARD;
 	m_mapEntireFocuing[DIALOG_TMQ_REWARD]				= dEFDA_BACKBOARD;
 	m_mapEntireFocuing[DIALOG_RANKBOARD]				= dEFDA_BACKBOARD;
+	m_mapEntireFocuing[DIALOG_MASCOT]                   = dEFDA_BACKBOARD;
 	m_mapEntireFocuing[DIALOG_TBGAMBLERESULT]			= dEFDA_BACKBOARD;
 	m_mapEntireFocuing[DIALOG_DURATION_EXTEND_CONFIRM]	= dEFDA_BACKBOARD;
 
@@ -420,6 +421,12 @@ VOID CDialogManager::ProcessESC()
 					if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_ESC_RANKBOARD_CLOSE ) )
 						return;
 
+					CloseDialog(iDialog);
+				}
+				else if (DIALOG_MASCOT == iDialog)
+				{
+					if (!Logic_CanMouseInput_in_Tutorial(ETL_MOUSE_INPUT_TYPE_MAINMENU_MASCOT_CLOSE))
+						return;
 					CloseDialog(iDialog);
 				}
 				else if( DIALOG_OPTIONWND == iDialog )
@@ -863,7 +870,15 @@ int	CDialogManager::HandleDialogAction(unsigned int iAction)
 			SwitchDialog( DIALOG_RANKBOARD );
 			break;
 		}
-
+	case ACTION_WINDOW_MASCOT:
+		{
+			if (!Logic_CanMouseInput_in_Tutorial(ETL_MOUSE_INPUT_TYPE_MAINMENU_MASCOT_OPEN))
+				NTL_RETURN(1);
+			if (IsOpenDialog(DIALOG_WORLDMAP))
+				NTL_RETURN(1);
+			SwitchDialog(DIALOG_MASCOT);
+			break;
+		}
 	case ACTION_WINDOW_HELP:	// µµ¿ò¸»
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_HELP ) )
