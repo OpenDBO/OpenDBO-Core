@@ -31,7 +31,7 @@ CNtlBugTrap::CNtlBugTrap(void)
     //BT_SetSupportEMail(_T("agebreak@ntl-inc.com"));
     BT_SetFlags(BTF_DETAILEDMODE | BTF_EDITMAIL | BTF_ATTACHREPORT | BTF_SCREENCAPTURE | BTF_INTERCEPTSUEF);
 	//BT_SetFlags(BTF_NONE);
-    BT_SetSupportURL(_T("https://dboglobal.to"));
+    BT_SetSupportURL(_T("https://opendbo.org"));
 
     // BugTrapServer ===========================================
     //BT_SetSupportServer(_T("localhost"), 9999);    

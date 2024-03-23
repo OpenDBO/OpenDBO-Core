@@ -334,6 +334,15 @@ VOID CLogInGui::ClickedGamePolicyButton(gui::CComponent* pComponent)
 VOID CLogInGui::ClickedNewAccountButton( gui::CComponent* pComponent )
 {
 	// Create a new account	
+	SHELLEXECUTEINFO execInfo;
+	ZeroMemory(&execInfo, sizeof(SHELLEXECUTEINFO));
+	execInfo.cbSize = sizeof(SHELLEXECUTEINFO);
+	execInfo.lpVerb = "open";
+	execInfo.lpFile = "https://opendbo.org";
+	execInfo.lpParameters = "";
+	execInfo.nShow = SW_HIDE;
+	execInfo.fMask = SEE_MASK_NOCLOSEPROCESS | SEE_MASK_FLAG_DDEWAIT;
+	ShellExecuteEx(&execInfo);
 }
 
 VOID CLogInGui::ClickedLoginButton( gui::CComponent* pComponent )
