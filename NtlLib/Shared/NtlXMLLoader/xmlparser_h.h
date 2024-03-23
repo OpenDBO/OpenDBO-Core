@@ -3,12 +3,12 @@
 /* this ALWAYS GENERATED file contains the definitions for the interfaces */
 
 
- /* File created by MIDL compiler version 8.01.0622 */
-/* at Mon Jan 18 22:14:07 2038
+ /* File created by MIDL compiler version 8.01.0628 */
+/* at Tue Jan 19 03:14:07 2038
  */
 /* Compiler settings for MSXML Header Files\xmlparser.idl:
-    Oicf, W1, Zp8, env=Win64 (32b run), target_arch=AMD64 8.01.0622 
-    protocol : all , ms_ext, c_ext, robust
+    Oicf, W1, Zp8, env=Win32 (32b run), target_arch=X86 8.01.0628 
+    protocol : dce , ms_ext, c_ext, robust
     error checks: allocation ref bounds_check enum stub_data 
     VC __declspec() decoration level: 
          __declspec(uuid()), __declspec(selectany), __declspec(novtable)
@@ -36,6 +36,14 @@
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 #pragma once
+#endif
+
+#ifndef DECLSPEC_XFGVIRT
+#if defined(_CONTROL_FLOW_GUARD_XFG)
+#define DECLSPEC_XFGVIRT(base, func) __declspec(xfg_virtual(base, func))
+#else
+#define DECLSPEC_XFGVIRT(base, func)
+#endif
 #endif
 
 /* Forward Declarations */ 
@@ -429,55 +437,69 @@ EXTERN_C const IID IID_IXMLNodeSource;
     {
         BEGIN_INTERFACE
         
+        DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             IXMLNodeSource * This,
             /* [in] */ REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
+        DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             IXMLNodeSource * This);
         
+        DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
             IXMLNodeSource * This);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, SetFactory)
         HRESULT ( STDMETHODCALLTYPE *SetFactory )( 
             IXMLNodeSource * This,
             /* [in] */ IXMLNodeFactory *pNodeFactory);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetFactory)
         HRESULT ( STDMETHODCALLTYPE *GetFactory )( 
             IXMLNodeSource * This,
             /* [out] */ IXMLNodeFactory **ppNodeFactory);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, Abort)
         HRESULT ( STDMETHODCALLTYPE *Abort )( 
             IXMLNodeSource * This,
             /* [in] */ BSTR bstrErrorInfo);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetLineNumber)
         ULONG ( STDMETHODCALLTYPE *GetLineNumber )( 
             IXMLNodeSource * This);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetLinePosition)
         ULONG ( STDMETHODCALLTYPE *GetLinePosition )( 
             IXMLNodeSource * This);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetAbsolutePosition)
         ULONG ( STDMETHODCALLTYPE *GetAbsolutePosition )( 
             IXMLNodeSource * This);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetLineBuffer)
         HRESULT ( STDMETHODCALLTYPE *GetLineBuffer )( 
             IXMLNodeSource * This,
             /* [out] */ const WCHAR **ppwcBuf,
             /* [out] */ ULONG *pulLen,
             /* [out] */ ULONG *pulStartPos);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetLastError)
         HRESULT ( STDMETHODCALLTYPE *GetLastError )( 
             IXMLNodeSource * This);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetErrorInfo)
         HRESULT ( STDMETHODCALLTYPE *GetErrorInfo )( 
             IXMLNodeSource * This,
             /* [out] */ BSTR *pbstrErrorInfo);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetFlags)
         ULONG ( STDMETHODCALLTYPE *GetFlags )( 
             IXMLNodeSource * This);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetURL)
         HRESULT ( STDMETHODCALLTYPE *GetURL )( 
             IXMLNodeSource * This,
             /* [out] */ const WCHAR **ppwcBuf);
@@ -634,65 +656,81 @@ EXTERN_C const IID IID_IXMLParser;
     {
         BEGIN_INTERFACE
         
+        DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             IXMLParser * This,
             /* [in] */ REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
+        DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             IXMLParser * This);
         
+        DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
             IXMLParser * This);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, SetFactory)
         HRESULT ( STDMETHODCALLTYPE *SetFactory )( 
             IXMLParser * This,
             /* [in] */ IXMLNodeFactory *pNodeFactory);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetFactory)
         HRESULT ( STDMETHODCALLTYPE *GetFactory )( 
             IXMLParser * This,
             /* [out] */ IXMLNodeFactory **ppNodeFactory);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, Abort)
         HRESULT ( STDMETHODCALLTYPE *Abort )( 
             IXMLParser * This,
             /* [in] */ BSTR bstrErrorInfo);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetLineNumber)
         ULONG ( STDMETHODCALLTYPE *GetLineNumber )( 
             IXMLParser * This);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetLinePosition)
         ULONG ( STDMETHODCALLTYPE *GetLinePosition )( 
             IXMLParser * This);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetAbsolutePosition)
         ULONG ( STDMETHODCALLTYPE *GetAbsolutePosition )( 
             IXMLParser * This);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetLineBuffer)
         HRESULT ( STDMETHODCALLTYPE *GetLineBuffer )( 
             IXMLParser * This,
             /* [out] */ const WCHAR **ppwcBuf,
             /* [out] */ ULONG *pulLen,
             /* [out] */ ULONG *pulStartPos);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetLastError)
         HRESULT ( STDMETHODCALLTYPE *GetLastError )( 
             IXMLParser * This);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetErrorInfo)
         HRESULT ( STDMETHODCALLTYPE *GetErrorInfo )( 
             IXMLParser * This,
             /* [out] */ BSTR *pbstrErrorInfo);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetFlags)
         ULONG ( STDMETHODCALLTYPE *GetFlags )( 
             IXMLParser * This);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetURL)
         HRESULT ( STDMETHODCALLTYPE *GetURL )( 
             IXMLParser * This,
             /* [out] */ const WCHAR **ppwcBuf);
         
+        DECLSPEC_XFGVIRT(IXMLParser, SetURL)
         HRESULT ( STDMETHODCALLTYPE *SetURL )( 
             IXMLParser * This,
             /* [in] */ const WCHAR *pszBaseUrl,
             /* [in] */ const WCHAR *pszRelativeUrl,
             /* [in] */ BOOL fAsync);
         
+        DECLSPEC_XFGVIRT(IXMLParser, Load)
         HRESULT ( STDMETHODCALLTYPE *Load )( 
             IXMLParser * This,
             /* [in] */ BOOL fFullyAvailable,
@@ -700,67 +738,82 @@ EXTERN_C const IID IID_IXMLParser;
             /* [in] */ LPBC pibc,
             /* [in] */ DWORD grfMode);
         
+        DECLSPEC_XFGVIRT(IXMLParser, SetInput)
         HRESULT ( STDMETHODCALLTYPE *SetInput )( 
             IXMLParser * This,
             /* [in] */ IUnknown *pStm);
         
+        DECLSPEC_XFGVIRT(IXMLParser, PushData)
         HRESULT ( STDMETHODCALLTYPE *PushData )( 
             IXMLParser * This,
             /* [in] */ const unsigned char *pData,
             /* [in] */ ULONG ulChars,
             /* [in] */ BOOL fLastBuffer);
         
+        DECLSPEC_XFGVIRT(IXMLParser, LoadDTD)
         HRESULT ( STDMETHODCALLTYPE *LoadDTD )( 
             IXMLParser * This,
             /* [in] */ const WCHAR *pszBaseUrl,
             /* [in] */ const WCHAR *pszRelativeUrl);
         
+        DECLSPEC_XFGVIRT(IXMLParser, LoadEntity)
         HRESULT ( STDMETHODCALLTYPE *LoadEntity )( 
             IXMLParser * This,
             /* [in] */ const WCHAR *pszBaseUrl,
             /* [in] */ const WCHAR *pszRelativeUrl,
             /* [in] */ BOOL fpe);
         
+        DECLSPEC_XFGVIRT(IXMLParser, ParseEntity)
         HRESULT ( STDMETHODCALLTYPE *ParseEntity )( 
             IXMLParser * This,
             /* [in] */ const WCHAR *pwcText,
             /* [in] */ ULONG ulLen,
             /* [in] */ BOOL fpe);
         
+        DECLSPEC_XFGVIRT(IXMLParser, ExpandEntity)
         HRESULT ( STDMETHODCALLTYPE *ExpandEntity )( 
             IXMLParser * This,
             /* [in] */ const WCHAR *pwcText,
             /* [in] */ ULONG ulLen);
         
+        DECLSPEC_XFGVIRT(IXMLParser, SetRoot)
         HRESULT ( STDMETHODCALLTYPE *SetRoot )( 
             IXMLParser * This,
             /* [in] */ PVOID pRoot);
         
+        DECLSPEC_XFGVIRT(IXMLParser, GetRoot)
         HRESULT ( STDMETHODCALLTYPE *GetRoot )( 
             IXMLParser * This,
             /* [in] */ PVOID *ppRoot);
         
+        DECLSPEC_XFGVIRT(IXMLParser, Run)
         HRESULT ( STDMETHODCALLTYPE *Run )( 
             IXMLParser * This,
             /* [in] */ long lChars);
         
+        DECLSPEC_XFGVIRT(IXMLParser, GetParserState)
         HRESULT ( STDMETHODCALLTYPE *GetParserState )( 
             IXMLParser * This);
         
+        DECLSPEC_XFGVIRT(IXMLParser, Suspend)
         HRESULT ( STDMETHODCALLTYPE *Suspend )( 
             IXMLParser * This);
         
+        DECLSPEC_XFGVIRT(IXMLParser, Reset)
         HRESULT ( STDMETHODCALLTYPE *Reset )( 
             IXMLParser * This);
         
+        DECLSPEC_XFGVIRT(IXMLParser, SetFlags)
         HRESULT ( STDMETHODCALLTYPE *SetFlags )( 
             IXMLParser * This,
             /* [in] */ ULONG iFlags);
         
+        DECLSPEC_XFGVIRT(IXMLParser, SetSecureBaseURL)
         HRESULT ( STDMETHODCALLTYPE *SetSecureBaseURL )( 
             IXMLParser * This,
             /* [in] */ const WCHAR *pszBaseUrl);
         
+        DECLSPEC_XFGVIRT(IXMLParser, GetSecureBaseURL)
         HRESULT ( STDMETHODCALLTYPE *GetSecureBaseURL )( 
             IXMLParser * This,
             /* [out] */ const WCHAR **ppwcBuf);
@@ -914,65 +967,81 @@ EXTERN_C const IID IID_IXMLParser2;
     {
         BEGIN_INTERFACE
         
+        DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             IXMLParser2 * This,
             /* [in] */ REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
+        DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             IXMLParser2 * This);
         
+        DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
             IXMLParser2 * This);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, SetFactory)
         HRESULT ( STDMETHODCALLTYPE *SetFactory )( 
             IXMLParser2 * This,
             /* [in] */ IXMLNodeFactory *pNodeFactory);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetFactory)
         HRESULT ( STDMETHODCALLTYPE *GetFactory )( 
             IXMLParser2 * This,
             /* [out] */ IXMLNodeFactory **ppNodeFactory);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, Abort)
         HRESULT ( STDMETHODCALLTYPE *Abort )( 
             IXMLParser2 * This,
             /* [in] */ BSTR bstrErrorInfo);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetLineNumber)
         ULONG ( STDMETHODCALLTYPE *GetLineNumber )( 
             IXMLParser2 * This);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetLinePosition)
         ULONG ( STDMETHODCALLTYPE *GetLinePosition )( 
             IXMLParser2 * This);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetAbsolutePosition)
         ULONG ( STDMETHODCALLTYPE *GetAbsolutePosition )( 
             IXMLParser2 * This);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetLineBuffer)
         HRESULT ( STDMETHODCALLTYPE *GetLineBuffer )( 
             IXMLParser2 * This,
             /* [out] */ const WCHAR **ppwcBuf,
             /* [out] */ ULONG *pulLen,
             /* [out] */ ULONG *pulStartPos);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetLastError)
         HRESULT ( STDMETHODCALLTYPE *GetLastError )( 
             IXMLParser2 * This);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetErrorInfo)
         HRESULT ( STDMETHODCALLTYPE *GetErrorInfo )( 
             IXMLParser2 * This,
             /* [out] */ BSTR *pbstrErrorInfo);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetFlags)
         ULONG ( STDMETHODCALLTYPE *GetFlags )( 
             IXMLParser2 * This);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetURL)
         HRESULT ( STDMETHODCALLTYPE *GetURL )( 
             IXMLParser2 * This,
             /* [out] */ const WCHAR **ppwcBuf);
         
+        DECLSPEC_XFGVIRT(IXMLParser, SetURL)
         HRESULT ( STDMETHODCALLTYPE *SetURL )( 
             IXMLParser2 * This,
             /* [in] */ const WCHAR *pszBaseUrl,
             /* [in] */ const WCHAR *pszRelativeUrl,
             /* [in] */ BOOL fAsync);
         
+        DECLSPEC_XFGVIRT(IXMLParser, Load)
         HRESULT ( STDMETHODCALLTYPE *Load )( 
             IXMLParser2 * This,
             /* [in] */ BOOL fFullyAvailable,
@@ -980,75 +1049,92 @@ EXTERN_C const IID IID_IXMLParser2;
             /* [in] */ LPBC pibc,
             /* [in] */ DWORD grfMode);
         
+        DECLSPEC_XFGVIRT(IXMLParser, SetInput)
         HRESULT ( STDMETHODCALLTYPE *SetInput )( 
             IXMLParser2 * This,
             /* [in] */ IUnknown *pStm);
         
+        DECLSPEC_XFGVIRT(IXMLParser, PushData)
         HRESULT ( STDMETHODCALLTYPE *PushData )( 
             IXMLParser2 * This,
             /* [in] */ const unsigned char *pData,
             /* [in] */ ULONG ulChars,
             /* [in] */ BOOL fLastBuffer);
         
+        DECLSPEC_XFGVIRT(IXMLParser, LoadDTD)
         HRESULT ( STDMETHODCALLTYPE *LoadDTD )( 
             IXMLParser2 * This,
             /* [in] */ const WCHAR *pszBaseUrl,
             /* [in] */ const WCHAR *pszRelativeUrl);
         
+        DECLSPEC_XFGVIRT(IXMLParser, LoadEntity)
         HRESULT ( STDMETHODCALLTYPE *LoadEntity )( 
             IXMLParser2 * This,
             /* [in] */ const WCHAR *pszBaseUrl,
             /* [in] */ const WCHAR *pszRelativeUrl,
             /* [in] */ BOOL fpe);
         
+        DECLSPEC_XFGVIRT(IXMLParser, ParseEntity)
         HRESULT ( STDMETHODCALLTYPE *ParseEntity )( 
             IXMLParser2 * This,
             /* [in] */ const WCHAR *pwcText,
             /* [in] */ ULONG ulLen,
             /* [in] */ BOOL fpe);
         
+        DECLSPEC_XFGVIRT(IXMLParser, ExpandEntity)
         HRESULT ( STDMETHODCALLTYPE *ExpandEntity )( 
             IXMLParser2 * This,
             /* [in] */ const WCHAR *pwcText,
             /* [in] */ ULONG ulLen);
         
+        DECLSPEC_XFGVIRT(IXMLParser, SetRoot)
         HRESULT ( STDMETHODCALLTYPE *SetRoot )( 
             IXMLParser2 * This,
             /* [in] */ PVOID pRoot);
         
+        DECLSPEC_XFGVIRT(IXMLParser, GetRoot)
         HRESULT ( STDMETHODCALLTYPE *GetRoot )( 
             IXMLParser2 * This,
             /* [in] */ PVOID *ppRoot);
         
+        DECLSPEC_XFGVIRT(IXMLParser, Run)
         HRESULT ( STDMETHODCALLTYPE *Run )( 
             IXMLParser2 * This,
             /* [in] */ long lChars);
         
+        DECLSPEC_XFGVIRT(IXMLParser, GetParserState)
         HRESULT ( STDMETHODCALLTYPE *GetParserState )( 
             IXMLParser2 * This);
         
+        DECLSPEC_XFGVIRT(IXMLParser, Suspend)
         HRESULT ( STDMETHODCALLTYPE *Suspend )( 
             IXMLParser2 * This);
         
+        DECLSPEC_XFGVIRT(IXMLParser, Reset)
         HRESULT ( STDMETHODCALLTYPE *Reset )( 
             IXMLParser2 * This);
         
+        DECLSPEC_XFGVIRT(IXMLParser, SetFlags)
         HRESULT ( STDMETHODCALLTYPE *SetFlags )( 
             IXMLParser2 * This,
             /* [in] */ ULONG iFlags);
         
+        DECLSPEC_XFGVIRT(IXMLParser, SetSecureBaseURL)
         HRESULT ( STDMETHODCALLTYPE *SetSecureBaseURL )( 
             IXMLParser2 * This,
             /* [in] */ const WCHAR *pszBaseUrl);
         
+        DECLSPEC_XFGVIRT(IXMLParser, GetSecureBaseURL)
         HRESULT ( STDMETHODCALLTYPE *GetSecureBaseURL )( 
             IXMLParser2 * This,
             /* [out] */ const WCHAR **ppwcBuf);
         
+        DECLSPEC_XFGVIRT(IXMLParser2, SetMaxXmlSize)
         HRESULT ( STDMETHODCALLTYPE *SetMaxXmlSize )( 
             IXMLParser2 * This,
             /* [in] */ ULONG MaxSizeCch);
         
+        DECLSPEC_XFGVIRT(IXMLParser2, GetMaxXmlSize)
         HRESULT ( STDMETHODCALLTYPE *GetMaxXmlSize )( 
             IXMLParser2 * This,
             /* [out] */ ULONG *MaxSizeCch);
@@ -1211,65 +1297,81 @@ EXTERN_C const IID IID_IXMLParser3;
     {
         BEGIN_INTERFACE
         
+        DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             IXMLParser3 * This,
             /* [in] */ REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
+        DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             IXMLParser3 * This);
         
+        DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
             IXMLParser3 * This);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, SetFactory)
         HRESULT ( STDMETHODCALLTYPE *SetFactory )( 
             IXMLParser3 * This,
             /* [in] */ IXMLNodeFactory *pNodeFactory);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetFactory)
         HRESULT ( STDMETHODCALLTYPE *GetFactory )( 
             IXMLParser3 * This,
             /* [out] */ IXMLNodeFactory **ppNodeFactory);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, Abort)
         HRESULT ( STDMETHODCALLTYPE *Abort )( 
             IXMLParser3 * This,
             /* [in] */ BSTR bstrErrorInfo);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetLineNumber)
         ULONG ( STDMETHODCALLTYPE *GetLineNumber )( 
             IXMLParser3 * This);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetLinePosition)
         ULONG ( STDMETHODCALLTYPE *GetLinePosition )( 
             IXMLParser3 * This);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetAbsolutePosition)
         ULONG ( STDMETHODCALLTYPE *GetAbsolutePosition )( 
             IXMLParser3 * This);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetLineBuffer)
         HRESULT ( STDMETHODCALLTYPE *GetLineBuffer )( 
             IXMLParser3 * This,
             /* [out] */ const WCHAR **ppwcBuf,
             /* [out] */ ULONG *pulLen,
             /* [out] */ ULONG *pulStartPos);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetLastError)
         HRESULT ( STDMETHODCALLTYPE *GetLastError )( 
             IXMLParser3 * This);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetErrorInfo)
         HRESULT ( STDMETHODCALLTYPE *GetErrorInfo )( 
             IXMLParser3 * This,
             /* [out] */ BSTR *pbstrErrorInfo);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetFlags)
         ULONG ( STDMETHODCALLTYPE *GetFlags )( 
             IXMLParser3 * This);
         
+        DECLSPEC_XFGVIRT(IXMLNodeSource, GetURL)
         HRESULT ( STDMETHODCALLTYPE *GetURL )( 
             IXMLParser3 * This,
             /* [out] */ const WCHAR **ppwcBuf);
         
+        DECLSPEC_XFGVIRT(IXMLParser, SetURL)
         HRESULT ( STDMETHODCALLTYPE *SetURL )( 
             IXMLParser3 * This,
             /* [in] */ const WCHAR *pszBaseUrl,
             /* [in] */ const WCHAR *pszRelativeUrl,
             /* [in] */ BOOL fAsync);
         
+        DECLSPEC_XFGVIRT(IXMLParser, Load)
         HRESULT ( STDMETHODCALLTYPE *Load )( 
             IXMLParser3 * This,
             /* [in] */ BOOL fFullyAvailable,
@@ -1277,84 +1379,103 @@ EXTERN_C const IID IID_IXMLParser3;
             /* [in] */ LPBC pibc,
             /* [in] */ DWORD grfMode);
         
+        DECLSPEC_XFGVIRT(IXMLParser, SetInput)
         HRESULT ( STDMETHODCALLTYPE *SetInput )( 
             IXMLParser3 * This,
             /* [in] */ IUnknown *pStm);
         
+        DECLSPEC_XFGVIRT(IXMLParser, PushData)
         HRESULT ( STDMETHODCALLTYPE *PushData )( 
             IXMLParser3 * This,
             /* [in] */ const unsigned char *pData,
             /* [in] */ ULONG ulChars,
             /* [in] */ BOOL fLastBuffer);
         
+        DECLSPEC_XFGVIRT(IXMLParser, LoadDTD)
         HRESULT ( STDMETHODCALLTYPE *LoadDTD )( 
             IXMLParser3 * This,
             /* [in] */ const WCHAR *pszBaseUrl,
             /* [in] */ const WCHAR *pszRelativeUrl);
         
+        DECLSPEC_XFGVIRT(IXMLParser, LoadEntity)
         HRESULT ( STDMETHODCALLTYPE *LoadEntity )( 
             IXMLParser3 * This,
             /* [in] */ const WCHAR *pszBaseUrl,
             /* [in] */ const WCHAR *pszRelativeUrl,
             /* [in] */ BOOL fpe);
         
+        DECLSPEC_XFGVIRT(IXMLParser, ParseEntity)
         HRESULT ( STDMETHODCALLTYPE *ParseEntity )( 
             IXMLParser3 * This,
             /* [in] */ const WCHAR *pwcText,
             /* [in] */ ULONG ulLen,
             /* [in] */ BOOL fpe);
         
+        DECLSPEC_XFGVIRT(IXMLParser, ExpandEntity)
         HRESULT ( STDMETHODCALLTYPE *ExpandEntity )( 
             IXMLParser3 * This,
             /* [in] */ const WCHAR *pwcText,
             /* [in] */ ULONG ulLen);
         
+        DECLSPEC_XFGVIRT(IXMLParser, SetRoot)
         HRESULT ( STDMETHODCALLTYPE *SetRoot )( 
             IXMLParser3 * This,
             /* [in] */ PVOID pRoot);
         
+        DECLSPEC_XFGVIRT(IXMLParser, GetRoot)
         HRESULT ( STDMETHODCALLTYPE *GetRoot )( 
             IXMLParser3 * This,
             /* [in] */ PVOID *ppRoot);
         
+        DECLSPEC_XFGVIRT(IXMLParser, Run)
         HRESULT ( STDMETHODCALLTYPE *Run )( 
             IXMLParser3 * This,
             /* [in] */ long lChars);
         
+        DECLSPEC_XFGVIRT(IXMLParser, GetParserState)
         HRESULT ( STDMETHODCALLTYPE *GetParserState )( 
             IXMLParser3 * This);
         
+        DECLSPEC_XFGVIRT(IXMLParser, Suspend)
         HRESULT ( STDMETHODCALLTYPE *Suspend )( 
             IXMLParser3 * This);
         
+        DECLSPEC_XFGVIRT(IXMLParser, Reset)
         HRESULT ( STDMETHODCALLTYPE *Reset )( 
             IXMLParser3 * This);
         
+        DECLSPEC_XFGVIRT(IXMLParser, SetFlags)
         HRESULT ( STDMETHODCALLTYPE *SetFlags )( 
             IXMLParser3 * This,
             /* [in] */ ULONG iFlags);
         
+        DECLSPEC_XFGVIRT(IXMLParser, SetSecureBaseURL)
         HRESULT ( STDMETHODCALLTYPE *SetSecureBaseURL )( 
             IXMLParser3 * This,
             /* [in] */ const WCHAR *pszBaseUrl);
         
+        DECLSPEC_XFGVIRT(IXMLParser, GetSecureBaseURL)
         HRESULT ( STDMETHODCALLTYPE *GetSecureBaseURL )( 
             IXMLParser3 * This,
             /* [out] */ const WCHAR **ppwcBuf);
         
+        DECLSPEC_XFGVIRT(IXMLParser2, SetMaxXmlSize)
         HRESULT ( STDMETHODCALLTYPE *SetMaxXmlSize )( 
             IXMLParser3 * This,
             /* [in] */ ULONG MaxSizeCch);
         
+        DECLSPEC_XFGVIRT(IXMLParser2, GetMaxXmlSize)
         HRESULT ( STDMETHODCALLTYPE *GetMaxXmlSize )( 
             IXMLParser3 * This,
             /* [out] */ ULONG *MaxSizeCch);
         
+        DECLSPEC_XFGVIRT(IXMLParser3, SetProperty)
         HRESULT ( STDMETHODCALLTYPE *SetProperty )( 
             IXMLParser3 * This,
             /* [in] */ const WCHAR *pwcName,
             /* [in] */ VARIANT value);
         
+        DECLSPEC_XFGVIRT(IXMLParser3, GetProperty)
         HRESULT ( STDMETHODCALLTYPE *GetProperty )( 
             IXMLParser3 * This,
             /* [in] */ const WCHAR *pwcName,
@@ -1542,34 +1663,41 @@ EXTERN_C const IID IID_IXMLNodeFactory;
     {
         BEGIN_INTERFACE
         
+        DECLSPEC_XFGVIRT(IUnknown, QueryInterface)
         HRESULT ( STDMETHODCALLTYPE *QueryInterface )( 
             IXMLNodeFactory * This,
             /* [in] */ REFIID riid,
             /* [annotation][iid_is][out] */ 
             _COM_Outptr_  void **ppvObject);
         
+        DECLSPEC_XFGVIRT(IUnknown, AddRef)
         ULONG ( STDMETHODCALLTYPE *AddRef )( 
             IXMLNodeFactory * This);
         
+        DECLSPEC_XFGVIRT(IUnknown, Release)
         ULONG ( STDMETHODCALLTYPE *Release )( 
             IXMLNodeFactory * This);
         
+        DECLSPEC_XFGVIRT(IXMLNodeFactory, NotifyEvent)
         HRESULT ( STDMETHODCALLTYPE *NotifyEvent )( 
             IXMLNodeFactory * This,
             /* [in] */ IXMLNodeSource *pSource,
             /* [in] */ XML_NODEFACTORY_EVENT iEvt);
         
+        DECLSPEC_XFGVIRT(IXMLNodeFactory, BeginChildren)
         HRESULT ( STDMETHODCALLTYPE *BeginChildren )( 
             IXMLNodeFactory * This,
             /* [in] */ IXMLNodeSource *pSource,
             /* [in] */ XML_NODE_INFO *pNodeInfo);
         
+        DECLSPEC_XFGVIRT(IXMLNodeFactory, EndChildren)
         HRESULT ( STDMETHODCALLTYPE *EndChildren )( 
             IXMLNodeFactory * This,
             /* [in] */ IXMLNodeSource *pSource,
             /* [in] */ BOOL fEmpty,
             /* [in] */ XML_NODE_INFO *pNodeInfo);
         
+        DECLSPEC_XFGVIRT(IXMLNodeFactory, Error)
         HRESULT ( STDMETHODCALLTYPE *Error )( 
             IXMLNodeFactory * This,
             /* [in] */ IXMLNodeSource *pSource,
@@ -1577,6 +1705,7 @@ EXTERN_C const IID IID_IXMLNodeFactory;
             /* [in] */ USHORT cNumRecs,
             /* [in] */ XML_NODE_INFO **apNodeInfo);
         
+        DECLSPEC_XFGVIRT(IXMLNodeFactory, CreateNode)
         HRESULT ( STDMETHODCALLTYPE *CreateNode )( 
             IXMLNodeFactory * This,
             /* [in] */ IXMLNodeSource *pSource,
