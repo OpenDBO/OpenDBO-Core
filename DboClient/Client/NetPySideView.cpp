@@ -15,6 +15,8 @@
 #include "DialogDefine.h"
 
 
+#include "DboGlobal.h"
+
 #define NOTIFY_SHOWTIME_MAX     5.0f                        ///< Notify 정보를 보여줄 시간 (초)
 
 
@@ -23,7 +25,8 @@ CNetPySideViewGui::CNetPySideViewGui(const RwChar* pName)
 {
     ZeroMemory(&m_UpdateNetPyInfo, sizeof(m_UpdateNetPyInfo));
     m_dwUpdateNetPyPoint = 0;
-    m_fRemainTime = 0.0f;
+    m_fRemainTime = m_UpdateNetPyInfo.timeNextGainTime = NETPY_POINTS_TIME_REWARD * 60;
+    m_UpdateNetPyInfo.dwAccumlationNetPy = 0;
     //m_type = E_NETPY_INFO;
     m_type = E_NETPY_NOTIFY;
     m_fNotifyShowTime = 0.0f;
@@ -153,18 +156,23 @@ VOID CNetPySideViewGui::OnSideViewLocate( const CRectangle& rectSideIcon )
 
 VOID CNetPySideViewGui::HandleEvents( RWS::CMsg &msg ) 
 {
-    if(msg.Id == g_EventUpdateNetPy)
+    if (msg.Id == g_EventUpdateNetPy)
     {
-        SDboEventUpdateNetPy* pData = (SDboEventUpdateNetPy*)msg.pData;        
-        memcpy_s(&m_UpdateNetPyInfo, sizeof(SDboEventUpdateNetPy), pData, sizeof(SDboEventUpdateNetPy));        
-        m_fRemainTime = (RwReal)m_UpdateNetPyInfo.timeNextGainTime; // 단위 초
-        
-        // NetPy 획득이면
-        if(pData->netPy > Logic_GetNetPy())
+        DWORD LastAcumulation = m_UpdateNetPyInfo.dwAccumlationNetPy;
+        SDboEventUpdateNetPy* pData = (SDboEventUpdateNetPy*)msg.pData;
+        memcpy_s(&m_UpdateNetPyInfo, sizeof(SDboEventUpdateNetPy), pData, sizeof(SDboEventUpdateNetPy));
+        m_fRemainTime = (RwReal)m_UpdateNetPyInfo.timeNextGainTime;
+
+        m_UpdateNetPyInfo.dwAccumlationNetPy += LastAcumulation;
+        if (LastAcumulation < m_UpdateNetPyInfo.dwAccumlationNetPy)
         {
             m_dwUpdateNetPyPoint = pData->netPy - Logic_GetNetPy();
             SetState(E_NETPY_NOTIFY);
+            m_bIsPCBang = FALSE;
             Show(true);
+        }
+        else {
+            m_UpdateNetPyInfo.timeNextGainTime = (DWORD)m_fRemainTime;
         }
     }
     else if(msg.Id == g_EventNetMarbleMemberShipNfy)
@@ -289,6 +297,13 @@ VOID CNetPySideViewGui::Update( RwReal fElapsed )
         m_fRemainTime = max(0.0f, m_fRemainTime);
 
         m_UpdateNetPyInfo.timeNextGainTime = (DWORD)m_fRemainTime;
+
+        if (m_UpdateNetPyInfo.timeNextGainTime == 0.0f)
+        {
+            GetDboGlobal()->GetGamePacketGenerator()->SendNetPyAddPointsByTime();
+            m_UpdateNetPyInfo.timeNextGainTime = m_fRemainTime = NETPY_POINTS_TIME_REWARD * 60;
+
+        }
 
         if(m_pstbCurrentData->IsVisible())  // Info 정보 표시중이면 갱신한다.
         {

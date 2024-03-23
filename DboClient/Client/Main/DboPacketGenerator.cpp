@@ -3335,6 +3335,13 @@ bool CGamePacketGenerator::SendShopNetPyItemEndReq()
 	return m_pNetSender->SendPacket( sizeof( sPacket ), &sPacket );
 }
 
+bool CGamePacketGenerator::SendNetPyAddPointsByTime()
+{
+	sUG_ADD_NETPY_POINTS_TIME_REQ sPacket;
+	sPacket.wOpCode = UG_ADD_NETPY_POINTS_TIME_REQ;
+	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
+}
+
 bool CGamePacketGenerator::SendDurationItemBuyReq( RwUInt32 uiMerchantTblidx, BYTE bySlotPos )
 {
 	if( API_GetSLPacketLockManager()->IsLock( GU_DURATION_ITEM_BUY_RES ) )

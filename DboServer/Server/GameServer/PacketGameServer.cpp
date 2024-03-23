@@ -8145,12 +8145,56 @@ void CClientSession::RecvCharAirAccel(CNtlPacket* pPacket)
 //--------------------------------------------------------------------------------------//
 void CClientSession::RecvNetPyStartReq(CNtlPacket * pPacket)
 {
+	if (!cPlayer || !cPlayer->IsInitialized())
+		return;
+
+	CNtlPacket packet(sizeof(sGU_SHOP_NETPYITEM_START_RES));
+	sGU_SHOP_NETPYITEM_START_RES* res = (sGU_SHOP_NETPYITEM_START_RES*)packet.GetPacketData();
+	res->wOpCode = GU_SHOP_NETPYITEM_START_RES;
+	res->wResultCode = GAME_SUCCESS;
+	res->byType = 1;
+	packet.SetPacketLen(sizeof(sGU_SHOP_NETPYITEM_START_RES));
+	g_pApp->Send(GetHandle(), &packet);
 }
 //--------------------------------------------------------------------------------------//
 //	NetPY Shop end
 //--------------------------------------------------------------------------------------//
 void CClientSession::RecvNetPyEndReq(CNtlPacket * pPacket)
 {
+	if (!cPlayer || !cPlayer->IsInitialized())
+		return;
+
+	CNtlPacket packet(sizeof(sGU_SHOP_NETPYITEM_END_RES));
+	sGU_SHOP_NETPYITEM_END_RES* res = (sGU_SHOP_NETPYITEM_END_RES*)packet.GetPacketData();
+	res->wOpCode = GU_SHOP_NETPYITEM_END_RES;
+	res->wResultCode = GAME_SUCCESS;
+	packet.SetPacketLen(sizeof(sGU_SHOP_NETPYITEM_END_RES));
+	g_pApp->Send(GetHandle(), &packet);
+}
+
+//--------------------------------------------------------------------------------------//
+//	NetPY Shop add points by time
+//--------------------------------------------------------------------------------------//
+void CClientSession::RecvNetPyPointsAddByTime(CNtlPacket* pPacket)
+{
+	if (!cPlayer || !cPlayer->IsInitialized())
+		return;
+
+	if (cPlayer->GetNetPy() + NETPY_POINTS_REWARD > NETPY_MAX_SHOPPOINTS)
+		return;
+
+	CGameServer* app = (CGameServer*)g_pApp;
+
+	if (cPlayer->GetLastNetpyRewardTime() > 0)
+		if (((int)app->GetTime() - (int)cPlayer->GetLastNetpyRewardTime()) < (NETPY_POINTS_TIME_REWARD - 1) * 60) {
+			printf("FAIL TIME: %i GETTIME: %i , CURRENTTICK: %i", (int)(app->GetTime() - cPlayer->GetLastNetpyRewardTime()), (int)app->GetTime());
+			return;
+		}
+
+
+	cPlayer->SetLastNetpyRewardTime(app->GetTime());
+
+	cPlayer->UpdateNetPy(cPlayer->GetNetPy() + NETPY_POINTS_REWARD, NETPY_POINTS_REWARD, true);
 }
 
 //--------------------------------------------------------------------------------------//
@@ -12494,6 +12538,103 @@ void CClientSession::RecvNetPyBuyReq(CNtlPacket * pPacket)
 		return;
 
 	sUG_SHOP_NETPYITEM_BUY_REQ * req = (sUG_SHOP_NETPYITEM_BUY_REQ *)pPacket->GetPacketData();
+
+	CMerchantTable* pMerchantItemTable = g_pTableContainer->GetMerchantTable();
+	CItemTable* itemTbl = g_pTableContainer->GetItemTable();
+	TBLIDX	amerchant_Tblidx[6] = { 1001, 1002, 1003, 1004, INVALID_TBLIDX, INVALID_TBLIDX };
+	WORD buy_item_result = GAME_SUCCESS;
+
+	if (req->byBuyCount == 0 || req->byBuyCount > NTL_MAX_BUY_SHOPPING_CART)
+		buy_item_result = GAME_FAIL;
+	else if (cPlayer->GetPlayerItemContainer()->CountEmptyInventory() < req->byBuyCount)
+		buy_item_result = GAME_ITEM_INVEN_FULL;
+	else
+	{
+		DWORD price = 0;
+		BYTE byBuyCount = 0;
+
+		for (int ii = 0; ii < req->byBuyCount; ii++)
+		{
+			sMERCHANT_TBLDAT* pMerchantData = (sMERCHANT_TBLDAT*)pMerchantItemTable->FindData(amerchant_Tblidx[req->sBuyData[ii].byMerchantTab]);
+			if (pMerchantData)
+			{
+				if (req->sBuyData[ii].byItemPos >= NTL_MAX_MERCHANT_COUNT)
+					return;
+
+				if (pMerchantData->bySell_Type == MERCHANT_SELL_TYPE_NETPY)
+				{
+					sITEM_TBLDAT* pItemData = (sITEM_TBLDAT*)itemTbl->FindData(pMerchantData->aitem_Tblidx[req->sBuyData[ii].byItemPos]);
+					if (pItemData)
+					{
+						if (req->sBuyData[ii].byStack > 0)
+						{
+							++byBuyCount;
+							price += pItemData->CommonPoint * req->sBuyData[ii].byStack;
+						}
+						else
+						{
+							buy_item_result = GAME_ITEM_STACK_FAIL;
+							break;
+						}
+					}
+					else
+					{
+						buy_item_result = GAME_FAIL;
+						break;
+					}
+				}
+				else
+				{
+					buy_item_result = GAME_FAIL;
+					break;
+				}
+			}
+			else
+			{
+				buy_item_result = GAME_FAIL;
+				break;
+			}
+		}
+
+		if (buy_item_result == GAME_SUCCESS)
+		{
+			//printf("price %d \n", price);
+			if (cPlayer->GetNetPy() < price)
+				buy_item_result = eRESULTCODE::GAME_NETPY_NOT_ENOUGH;
+
+			if (cPlayer->GetPlayerItemContainer()->CountEmptyInventory() < byBuyCount)
+				buy_item_result = GAME_ITEM_INVEN_FULL;
+		}
+
+		if (buy_item_result == GAME_SUCCESS)
+		{
+			for (int ii = 0; ii < req->byBuyCount; ii++)
+			{
+				sMERCHANT_TBLDAT* pMerchantData = (sMERCHANT_TBLDAT*)pMerchantItemTable->FindData(amerchant_Tblidx[req->sBuyData[ii].byMerchantTab]);
+				if (pMerchantData)
+				{
+					if (pMerchantData->bySell_Type == MERCHANT_SELL_TYPE_NETPY)
+					{
+						sITEM_TBLDAT* pItemTbldat = (sITEM_TBLDAT*)itemTbl->FindData(pMerchantData->aitem_Tblidx[req->sBuyData[ii].byItemPos]);
+						if (pItemTbldat)
+						{
+							g_pItemManager->CreateItem(cPlayer, pItemTbldat->tblidx, req->sBuyData[ii].byStack, INVALID_BYTE, INVALID_BYTE, pItemTbldat->Item_Option_Tblidx == INVALID_TBLIDX);
+
+						}
+					}
+				}
+			}
+			cPlayer->UpdateNetPy(cPlayer->GetNetPy() - price, 0, true); // we add token reward increment
+
+		}
+	}
+
+	CNtlPacket packet(sizeof(sGU_SHOP_NETPYITEM_BUY_RES));
+	sGU_SHOP_NETPYITEM_BUY_RES* res = (sGU_SHOP_NETPYITEM_BUY_RES*)packet.GetPacketData();
+	res->wOpCode = GU_SHOP_NETPYITEM_BUY_RES;
+	res->wResultCode = buy_item_result;
+	packet.SetPacketLen(sizeof(sGU_SHOP_NETPYITEM_BUY_RES));
+	g_pApp->Send(GetHandle(), &packet);
 }
 
 //--------------------------------------------------------------------------------------//

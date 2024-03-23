@@ -59,6 +59,8 @@ class CSCSSideViewGui;
 class CHLSSideIconGui;
 class CHLSSideViewGui;
 
+class CNetPySideIconGui;
+class CNetPySideViewGui;
 
 /**
 * \ingroup client
@@ -163,6 +165,9 @@ protected:
 
 	CHLSSideIconGui*			m_pHLSSideIconGui;
 	CHLSSideViewGui*			m_pHLSSideViewGui;
+
+	CNetPySideIconGui*			m_pNetPySideIconGui;
+	CNetPySideViewGui*			m_pNetPySideViewGui;
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -164,6 +164,9 @@ public:
 	DWORD						GetMudusaPoints() { return m_sPcData.dwMudosaPoint; }
 	void						SetMudusaPoints(DWORD dwPoints);
 
+	DWORD						GetNetPy() { return m_sPcData.dwNetPy; }
+	void						SetNetPy(DWORD dwNetPy);
+
 	DWORD						GetReputation() { return m_sPcData.dwReputation; }
 
 	void						SetJoinID(JOINID joinid) { m_sPcData.wJoinID = joinid; }

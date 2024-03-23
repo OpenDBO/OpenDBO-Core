@@ -180,6 +180,7 @@ void CPlayer::LoadData(sPC_PROFILE* pcdata, sPC_TBLDAT* pTbldat)
 			SetExp(pcdata->dwCurExp);
 			player_data.dwMaxExpInThisLevel = pcdata->dwMaxExpInThisLevel;
 			player_data.dwMudosaPoint = pcdata->dwMudosaPoint;
+			player_data.dwNetPy = pcdata->dwNetPy;
 			player_data.dwReputation = pcdata->dwReputation;
 			player_data.dwSpPoint = pcdata->dwSpPoint;
 			player_data.dwTutorialHint = pcdata->dwTutorialHint;
@@ -522,6 +523,7 @@ void CPlayer::Initialize()
 	player_data.dwMapInfoIndex = INVALID_TBLIDX;
 	player_data.dwMaxExpInThisLevel = 0;
 	player_data.dwMudosaPoint = 0;
+	player_data.dwNetPy = 0;
 	player_data.dwReputation = 0;
 	player_data.dwSpPoint = 0;
 	player_data.dwTutorialHint = INVALID_DWORD;
@@ -1071,6 +1073,7 @@ void CPlayer::RecvLoadPcDataRes(sPC_DATA * pPcData, sDBO_SERVER_CHANGE_INFO * ps
 	res->sPcProfile.dwTutorialHint = pPcData->dwTutorialHint;
 	res->sPcProfile.dwReputation = pPcData->dwReputation;
 	res->sPcProfile.dwMudosaPoint = pPcData->dwMudosaPoint;
+	res->sPcProfile.dwNetPy = pPcData->dwNetPy;
 	res->sPcProfile.dwSpPoint = pPcData->dwSpPoint;
 
 	res->sPcProfile.charTitle = pPcData->charTitle;
@@ -2135,6 +2138,38 @@ void CPlayer::UpdateMudosaPoints(DWORD dwAmount, bool bQuery/* = true*/)
 		app->SendTo(app->GetQueryServerSession(), &pQry);
 	}
 }
+
+//--------------------------------------------------------------------------------------//
+//		UPDATE NETPY
+//--------------------------------------------------------------------------------------//
+void CPlayer::UpdateNetPy(DWORD dwNetPy, DWORD SessionPoint, bool bQuery/* = true*/)
+{
+	CGameServer* app = (CGameServer*)g_pApp;
+
+	CNtlPacket packet(sizeof(sGU_UPDATE_CHAR_NETP));
+	sGU_UPDATE_CHAR_NETP* res = (sGU_UPDATE_CHAR_NETP*)packet.GetPacketData();
+	res->wOpCode = GU_UPDATE_CHAR_NETP;
+	res->netP = dwNetPy;
+	res->dwAccumulationNetP = SessionPoint;
+	res->timeNextGainTime = (NETPY_POINTS_TIME_REWARD * 60);
+	packet.SetPacketLen(sizeof(sGU_UPDATE_CHAR_NETP));
+	app->Send(GetClientSessionID(), &packet);
+
+	SetNetPy(dwNetPy);
+
+	if (bQuery) {
+		CNtlPacket pQry(sizeof(sGQ_UPDATE_CHAR_NETPY_REQ));
+		sGQ_UPDATE_CHAR_NETPY_REQ* qRes = (sGQ_UPDATE_CHAR_NETPY_REQ*)pQry.GetPacketData();
+		qRes->wOpCode = GQ_UPDATE_CHAR_NETPY_REQ;
+		qRes->handle = GetID();
+		qRes->charId = GetCharID();
+		qRes->dwPoints = res->netP;
+		pQry.SetPacketLen(sizeof(sGQ_UPDATE_CHAR_NETPY_REQ));
+		app->SendTo(app->GetQueryServerSession(), &pQry);
+	}
+
+}
+
 //--------------------------------------------------------------------------------------//
 //		UPDATE WAGU WAGO POINTS
 //--------------------------------------------------------------------------------------//
