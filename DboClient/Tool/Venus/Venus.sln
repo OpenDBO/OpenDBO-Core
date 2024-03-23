@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.34601.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Venus", "Venus.vcxproj", "{767AEC44-F8ED-475A-96EE-E95808EDD620}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Debug4ClientLocalizeCJIKor|x86 = Debug4ClientLocalizeCJIKor|x86
+		Debug4ClientLocalizeDev|x86 = Debug4ClientLocalizeDev|x86
+		Release|x86 = Release|x86
+		Release4Client|x86 = Release4Client|x86
+		Release4ClientLocalizeCJIKor|x86 = Release4ClientLocalizeCJIKor|x86
+		Release4ClientLocalizeDev|x86 = Release4ClientLocalizeDev|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{767AEC44-F8ED-475A-96EE-E95808EDD620}.Debug|x86.ActiveCfg = Debug|Win32
+		{767AEC44-F8ED-475A-96EE-E95808EDD620}.Debug|x86.Build.0 = Debug|Win32
+		{767AEC44-F8ED-475A-96EE-E95808EDD620}.Debug4ClientLocalizeCJIKor|x86.ActiveCfg = Debug4ClientLocalizeCJIKor|Win32
+		{767AEC44-F8ED-475A-96EE-E95808EDD620}.Debug4ClientLocalizeCJIKor|x86.Build.0 = Debug4ClientLocalizeCJIKor|Win32
+		{767AEC44-F8ED-475A-96EE-E95808EDD620}.Debug4ClientLocalizeDev|x86.ActiveCfg = Debug4ClientLocalizeDev|Win32
+		{767AEC44-F8ED-475A-96EE-E95808EDD620}.Debug4ClientLocalizeDev|x86.Build.0 = Debug4ClientLocalizeDev|Win32
+		{767AEC44-F8ED-475A-96EE-E95808EDD620}.Release|x86.ActiveCfg = Release|Win32
+		{767AEC44-F8ED-475A-96EE-E95808EDD620}.Release|x86.Build.0 = Release|Win32
+		{767AEC44-F8ED-475A-96EE-E95808EDD620}.Release4Client|x86.ActiveCfg = Release4Client|Win32
+		{767AEC44-F8ED-475A-96EE-E95808EDD620}.Release4Client|x86.Build.0 = Release4Client|Win32
+		{767AEC44-F8ED-475A-96EE-E95808EDD620}.Release4ClientLocalizeCJIKor|x86.ActiveCfg = Release4ClientLocalizeCJIKor|Win32
+		{767AEC44-F8ED-475A-96EE-E95808EDD620}.Release4ClientLocalizeCJIKor|x86.Build.0 = Release4ClientLocalizeCJIKor|Win32
+		{767AEC44-F8ED-475A-96EE-E95808EDD620}.Release4ClientLocalizeDev|x86.ActiveCfg = Release4ClientLocalizeDev|Win32
+		{767AEC44-F8ED-475A-96EE-E95808EDD620}.Release4ClientLocalizeDev|x86.Build.0 = Release4ClientLocalizeDev|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {51DEE050-B39A-4BEA-A000-67217D8141B1}
+	EndGlobalSection
+EndGlobal

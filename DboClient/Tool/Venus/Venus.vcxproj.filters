@@ -5,7 +5,7 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
     </Filter>
     <Filter Include="Main Files\Gfl">
-      <UniqueIdentifier>{05540664-896e-4248-a548-3121c813a288}</UniqueIdentifier>
+      <UniqueIdentifier>{12da7ad7-dbea-40d9-b9b1-7cad40cf4b60}</UniqueIdentifier>
     </Filter>
     <Filter Include="Main Files\Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
@@ -15,55 +15,55 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
     </Filter>
     <Filter Include="Control Files\Mac Control">
-      <UniqueIdentifier>{3c1ad91d-c999-4962-83af-57b29fc5511e}</UniqueIdentifier>
+      <UniqueIdentifier>{8ed6eb39-dd96-4238-a840-570ca64d2749}</UniqueIdentifier>
     </Filter>
     <Filter Include="Control Files\Rollup Control">
-      <UniqueIdentifier>{3de5dda2-8ed9-4ff4-a73c-0f434325b5af}</UniqueIdentifier>
+      <UniqueIdentifier>{cd1d0f84-5a4f-4e7f-ab28-b3b653763eee}</UniqueIdentifier>
     </Filter>
     <Filter Include="Control Files\Property Files">
-      <UniqueIdentifier>{aa3d8093-3b13-467b-aac9-d9dfbe4dfa86}</UniqueIdentifier>
+      <UniqueIdentifier>{f1b766d2-2d98-4ee0-a65a-316228ceaf52}</UniqueIdentifier>
     </Filter>
     <Filter Include="Layer Files">
-      <UniqueIdentifier>{51c0776f-e5e1-4dd7-b750-c56d1d466cad}</UniqueIdentifier>
+      <UniqueIdentifier>{9789959b-e00d-4b8c-8b2e-1153ed18ae32}</UniqueIdentifier>
     </Filter>
     <Filter Include="Layer Files\Effect Edit Layer">
-      <UniqueIdentifier>{d66a1ed0-9aae-4358-9ff4-a68acdf9ca87}</UniqueIdentifier>
+      <UniqueIdentifier>{78cd6bc7-dd9b-4d84-affa-085555e1e1ef}</UniqueIdentifier>
     </Filter>
     <Filter Include="Layer Files\Effect Edit Layer\XMLList">
-      <UniqueIdentifier>{cc418eda-9cb9-4484-b357-7b1c0a7d7bb3}</UniqueIdentifier>
+      <UniqueIdentifier>{996c8c80-a791-4787-8db6-a849d087ecb1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Layer Files\Texture Layer">
-      <UniqueIdentifier>{e2272f66-1d34-4317-9fd2-18bba98923bc}</UniqueIdentifier>
+      <UniqueIdentifier>{f9fa504f-32c9-48e2-a2ec-55dd5e21b319}</UniqueIdentifier>
     </Filter>
     <Filter Include="Layer Files\Mesh Layer">
-      <UniqueIdentifier>{ad371b4d-45e3-4860-9cf9-8d1d9483d4ff}</UniqueIdentifier>
+      <UniqueIdentifier>{8913d94f-44a4-4a8c-81e4-643e645dfe00}</UniqueIdentifier>
     </Filter>
     <Filter Include="Layer Files\Path Layer">
-      <UniqueIdentifier>{db4cc734-6fbc-412d-978c-db01e09f8f5e}</UniqueIdentifier>
+      <UniqueIdentifier>{c4c16dc0-8dfd-4aad-b1db-423e91797b03}</UniqueIdentifier>
     </Filter>
     <Filter Include="Layer Files\Event Layer">
-      <UniqueIdentifier>{bdf9fbb9-308e-4be5-8163-b96a0dc849a2}</UniqueIdentifier>
+      <UniqueIdentifier>{f08ae2f4-5bd1-4362-bae8-8f3bcc8c2aa4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Dialog Files">
-      <UniqueIdentifier>{aff24f79-8513-42e0-ab41-4741332f155d}</UniqueIdentifier>
+      <UniqueIdentifier>{9811665c-5a7d-404c-a6de-dcef2c24e4f2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Property Container">
-      <UniqueIdentifier>{ddd6686e-211a-4057-9eac-464aed3f0f93}</UniqueIdentifier>
+      <UniqueIdentifier>{a8c10766-0e67-4bc3-8405-bfad7131d7f6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Framework Files">
-      <UniqueIdentifier>{e6febce2-11e8-4c95-9cb4-fb7c2e110699}</UniqueIdentifier>
+      <UniqueIdentifier>{68b5b54b-771b-4ce3-afe2-759db861972b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core Files">
-      <UniqueIdentifier>{4f7fb861-c656-4458-894a-233bfc76e45d}</UniqueIdentifier>
+      <UniqueIdentifier>{1362bd9b-f63d-4253-a83a-78c9514f297a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Delete Files">
-      <UniqueIdentifier>{1f12fbd5-3970-4e41-8a17-4f5297f84668}</UniqueIdentifier>
+      <UniqueIdentifier>{c163c9f2-13ef-4f56-b17d-8839597e16c9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Lighting Files">
-      <UniqueIdentifier>{0e802030-f810-478b-bbfa-facf75f3bf7b}</UniqueIdentifier>
+      <UniqueIdentifier>{cdfd0b69-9197-4c33-be62-cc91e137ce85}</UniqueIdentifier>
     </Filter>
     <Filter Include="Character Event Files">
-      <UniqueIdentifier>{539576d6-f273-4930-8f0d-7fa348363db4}</UniqueIdentifier>
+      <UniqueIdentifier>{974de5eb-5255-43f6-8ae8-6ef6d3130dd9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
