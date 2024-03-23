@@ -385,7 +385,7 @@ void CPrivateShop::EnterShop(CPlayer* visitor)
 		m_pkPC->GetClientSession()->SendResultcode(GAME_CHAR_IS_WRONG_STATE);
 		resultcode = GAME_FAIL;
 	}
-	else if (IsInBattleArena(m_pkPC->GetWorldTblidx(), m_pkPC->GetCurLoc()) || m_pkPC->IsPvpZone())
+	else if (IsInBattleArena(m_pkPC->GetWorldTblidx(), m_pkPC->GetCurLoc(), false) || m_pkPC->IsPvpZone())
 	{
 		m_pkPC->GetClientSession()->SendResultcode(GAME_PRIVATESHOP_PRIVATESHOP_NOT_CREATE_PLACE);
 		resultcode = GAME_FAIL;

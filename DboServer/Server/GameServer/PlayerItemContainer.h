@@ -82,7 +82,7 @@ public:
 	void						CopyItemAttributesTo(CCharacterAtt* pCharAtt);
 
 	bool						WearGenderRequiredItem(BYTE byNewGender);
-
+	CItem*						WearGenderRequiredItem2(BYTE byNewGender);
 //Bank
 public:
 
@@ -109,7 +109,9 @@ private:
 
 private:
 
-	std::unordered_map<HOBJECT, CItem*>			m_map_CharItems;							//store player items except bank
+	typedef boost::unordered_map<HOBJECT, CItem*>	TItemsMap;
+
+	TItemsMap									m_map_CharItems;							//store player items except bank
 	CItem*										m_arr_ActiveBags[NTL_MAX_BAGSLOT_COUNT];	//store only bags which are on bag-slot <POS,OBJECT> (POS + 1 = Place inside Bag)
 
 	std::vector<std::pair<BYTE, BYTE>>			m_vecReservedInventory;
@@ -120,10 +122,10 @@ private:
 	std::map<HOBJECT, CItem*>					m_mapItemsWithDuration;
 
 
-	std::unordered_map<HOBJECT, CItem*>			m_map_BankItems;							//store player items from bank
+	TItemsMap									m_map_BankItems;							//store player items from bank
 
 	bool										m_bIsUsingGuildBank;
 	DWORD										m_dwGuildZeni;
-	std::unordered_map<HOBJECT, CItem*>			m_map_GuildBankItems;						//store player items from Guild bank
+	TItemsMap									m_map_GuildBankItems;						//store player items from Guild bank
 
 };

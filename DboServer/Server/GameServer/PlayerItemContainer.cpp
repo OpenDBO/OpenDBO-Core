@@ -32,7 +32,7 @@ CPlayerItemContainer::CPlayerItemContainer()
 
 CPlayerItemContainer::~CPlayerItemContainer()
 {
-	for (auto it = m_map_CharItems.begin(); it != m_map_CharItems.end(); it++)
+	for (TItemsMap::iterator it = m_map_CharItems.begin(); it != m_map_CharItems.end(); it++)
 	{
 		CItem* pItem = it->second;
 		if (pItem)
@@ -47,7 +47,7 @@ CPlayerItemContainer::~CPlayerItemContainer()
 	}
 	m_map_CharItems.clear();
 
-	for (auto it = m_map_BankItems.begin(); it != m_map_BankItems.end(); it++)
+	for (TItemsMap::iterator it = m_map_BankItems.begin(); it != m_map_BankItems.end(); it++)
 	{
 		CItem* pItem = it->second;
 		if (pItem)
@@ -198,7 +198,7 @@ CItem * CPlayerItemContainer::GetItem(BYTE byPlace, BYTE byPos)
 {
 	if (IsBagContainer(byPlace) || IsInvenContainer(byPlace) || IsEquipContainer(byPlace)) //check if place is from bag/inventory. Search char items
 	{
-		for (auto it = m_map_CharItems.begin(); it != m_map_CharItems.end(); it++)
+		for (TItemsMap::iterator it = m_map_CharItems.begin(); it != m_map_CharItems.end(); it++)
 		{
 			CItem* itemdata = it->second;
 			if (itemdata->GetPlace() == byPlace && itemdata->GetPos() == byPos)
@@ -210,7 +210,7 @@ CItem * CPlayerItemContainer::GetItem(BYTE byPlace, BYTE byPos)
 
 	else if (IsBankContainer(byPlace))	//check if place is from bank. Search bank items
 	{
-		for (auto it = m_map_BankItems.begin(); it != m_map_BankItems.end(); it++)
+		for (TItemsMap::iterator it = m_map_BankItems.begin(); it != m_map_BankItems.end(); it++)
 		{
 			CItem* itemdata = it->second;
 			if (itemdata->GetPlace() == byPlace && itemdata->GetPos() == byPos)
@@ -222,7 +222,7 @@ CItem * CPlayerItemContainer::GetItem(BYTE byPlace, BYTE byPos)
 
 	else if (IsGuildContainer(byPlace))
 	{
-		for (auto it = m_map_GuildBankItems.begin(); it != m_map_GuildBankItems.end(); it++)
+		for (TItemsMap::iterator it = m_map_GuildBankItems.begin(); it != m_map_GuildBankItems.end(); it++)
 		{
 			CItem* itemdata = it->second;
 			if (itemdata->GetPlace() == byPlace && itemdata->GetPos() == byPos)
@@ -268,7 +268,7 @@ void CPlayerItemContainer::InsertItem(HOBJECT hHandle, CItem * item)
 
 CItem * CPlayerItemContainer::GetItem(HOBJECT hHandle)
 {
-	auto it = m_map_CharItems.find(hHandle);
+	TItemsMap::iterator it = m_map_CharItems.find(hHandle);
 
 	if (m_map_CharItems.end() == it)
 	{
@@ -280,7 +280,7 @@ CItem * CPlayerItemContainer::GetItem(HOBJECT hHandle)
 
 CItem * CPlayerItemContainer::GetItemByIdx(TBLIDX itemTblidx)
 {
-	for (auto it = m_map_CharItems.begin(); it != m_map_CharItems.end(); it++)
+	for (TItemsMap::iterator it = m_map_CharItems.begin(); it != m_map_CharItems.end(); it++)
 	{
 		CItem* itemdata = it->second;
 		if (itemdata->GetTblidx() == itemTblidx)
@@ -292,7 +292,7 @@ CItem * CPlayerItemContainer::GetItemByIdx(TBLIDX itemTblidx)
 
 CItem * CPlayerItemContainer::GetItem(ITEMID itemId)
 {
-	for (auto it = m_map_CharItems.begin(); it != m_map_CharItems.end(); it++)
+	for (TItemsMap::iterator it = m_map_CharItems.begin(); it != m_map_CharItems.end(); it++)
 	{
 		CItem* itemdata = it->second;
 		if (itemdata->GetItemID() == itemId)
@@ -304,7 +304,7 @@ CItem * CPlayerItemContainer::GetItem(ITEMID itemId)
 
 CItem * CPlayerItemContainer::CheckStackItem(TBLIDX itemidx, BYTE byCount, BYTE byMaxStack, BYTE byRestrictState)
 {
-	for (auto it = m_map_CharItems.begin(); it != m_map_CharItems.end(); it++)
+	for (TItemsMap::iterator it = m_map_CharItems.begin(); it != m_map_CharItems.end(); it++)
 	{
 		CItem* itemdata = it->second;
 
@@ -319,7 +319,7 @@ void CPlayerItemContainer::DeleteAllItems()
 {
 	int nInfiniteLoop = 0;
 
-	for (auto it = m_map_CharItems.begin(); it != m_map_CharItems.end(); )
+	for (TItemsMap::iterator it = m_map_CharItems.begin(); it != m_map_CharItems.end(); )
 	{
 		++nInfiniteLoop;
 		if (nInfiniteLoop > 1000)
@@ -433,7 +433,7 @@ bool CPlayerItemContainer::IsBagEmpty(BYTE byBagPos)
 
 	if (pBag->GetPlace() == 0 && pBag->GetPos() == byBagPos)
 	{
-		for (auto it = m_map_CharItems.begin(); it != m_map_CharItems.end(); it++)
+		for (TItemsMap::iterator it = m_map_CharItems.begin(); it != m_map_CharItems.end(); it++)
 		{
 			CItem* pItem = it->second;
 			if (pItem->GetPlace() == byBagPos + 1)
@@ -456,7 +456,7 @@ bool CPlayerItemContainer::HasRequiredItem(TBLIDX itemTblidx, BYTE byCount, int 
 {
 	int nCount = 0;
 	int nLoop = 0;
-	for (auto it = m_map_CharItems.begin(); it != m_map_CharItems.end(); it++)
+	for (TItemsMap::iterator it = m_map_CharItems.begin(); it != m_map_CharItems.end(); it++)
 	{
 		CItem* item = it->second;
 
@@ -479,7 +479,7 @@ bool CPlayerItemContainer::HasRequiredItem(TBLIDX itemTblidx, BYTE byCount, int 
 bool CPlayerItemContainer::RemoveRequiredItem(TBLIDX itemTblidx, BYTE byCount, BYTE& rbyUpdateCount, BYTE& rbyDeleteCount, sITEM_BASIC_DATA* apUpdate, sITEM_DELETE_DATA* apDelete)
 {
 	BYTE count = byCount;
-	auto it = m_map_CharItems.begin();
+	TItemsMap::iterator it = m_map_CharItems.begin();
 
 	int nloopCount = 0;
 
@@ -598,7 +598,7 @@ void CPlayerItemContainer::SortInventory(BYTE byInventoryType, HOBJECT hNpcHandl
 	//printf("sGU_INVENTORY_SORT_RES size = %I64u, %I64u, %I64u \n", sizeof(sGU_INVENTORY_SORT_RES), sizeof(res->moveItem), sizeof(res->delItem));
 	//if (byInventoryType == 0)
 	//{
-	//	for (auto it = m_map_CharItems.begin(); it != m_map_CharItems.end(); it++)
+	//	for (TItemsMap::iterator it = m_map_CharItems.begin(); it != m_map_CharItems.end(); it++)
 	//	{
 	//		CItem* item = it->second;
 	//		if (item->GetPlace() == CONTAINER_TYPE_BAG1)
@@ -622,7 +622,7 @@ void CPlayerItemContainer::SortInventory(BYTE byInventoryType, HOBJECT hNpcHandl
 	//}
 	//else if (byInventoryType == 2)
 	//{
-	//	for (auto it = m_map_BankItems.begin(); it != m_map_BankItems.end(); it++)
+	//	for (TItemsMap::iterator it = m_map_BankItems.begin(); it != m_map_BankItems.end(); it++)
 	//	{
 	//		CItem* item = it->second;
 
@@ -729,7 +729,7 @@ void CPlayerItemContainer::CopyItemBrief(sITEM_BRIEF * pBrief)
 
 void CPlayerItemContainer::OnDecreaseEquipmentDurability(BYTE* pbyDur, BYTE& rbyApplyCount)
 {
-	for (auto it = m_map_CharItems.begin(); it != m_map_CharItems.end(); it++)
+	for (TItemsMap::iterator it = m_map_CharItems.begin(); it != m_map_CharItems.end(); it++)
 	{
 		CItem* item = it->second;
 		if (item->GetPlace() == CONTAINER_TYPE_EQUIP && item->GetDurability() > 0)
@@ -767,23 +767,23 @@ void CPlayerItemContainer::CopyBaseItemAttributesTo(sAVATAR_ATTRIBUTE & avt)
 				if (item->GetPos() == EQUIP_SLOT_TYPE_HAND)
 				{
 					if (pItemTbldat->wPhysical_Offence != INVALID_WORD)
-						avt.wPhysicalOffence += Dbo_GetFinalOffence(pItemTbldat->wPhysical_Offence, item->GetGrade());
+						avt.wLastPhysicalOffense += Dbo_GetFinalOffence(pItemTbldat->wPhysical_Offence, item->GetGrade());
 
 					if (pItemTbldat->wEnergy_Offence != INVALID_WORD)
-						avt.wEnergyOffence += Dbo_GetFinalOffence(pItemTbldat->wEnergy_Offence, item->GetGrade());
+						avt.wLastEnergyOffense += Dbo_GetFinalOffence(pItemTbldat->wEnergy_Offence, item->GetGrade());
 				}
 
 				if (pItemTbldat->wAttack_Speed_Rate != INVALID_WORD)
-					avt.wAttackSpeedRate = pItemTbldat->wAttack_Speed_Rate;
+					avt.wLastAttackSpeedRate = pItemTbldat->wAttack_Speed_Rate;
 
 				if (pItemTbldat->wPhysical_Defence != INVALID_WORD)
-					avt.wPhysicalDefence += Dbo_GetFinalDefence(pItemTbldat->wPhysical_Defence, item->GetGrade());
+					avt.wLastPhysicalDefense += Dbo_GetFinalDefence(pItemTbldat->wPhysical_Defence, item->GetGrade());
 
 				if (pItemTbldat->wEnergy_Defence != INVALID_WORD)
-					avt.wEnergyDefence += Dbo_GetFinalDefence(pItemTbldat->wEnergy_Defence, item->GetGrade());
+					avt.wLastEnergyDefense += Dbo_GetFinalDefence(pItemTbldat->wEnergy_Defence, item->GetGrade());
 
 				if (pItemTbldat->fAttack_Range_Bonus != INVALID_FLOAT)
-					avt.fAttackRange += pItemTbldat->fAttack_Range_Bonus;
+					avt.fLastAttackRange += pItemTbldat->fAttack_Range_Bonus;
 			}
 		}
 	}
@@ -802,7 +802,7 @@ void CPlayerItemContainer::CopyItemAttributesTo(CCharacterAtt* pCharAtt)
 	sITEM_TBLDAT* setRingIdx[NTL_SET_ITEM_SEMI_COUNT]; //semi because we can only have max 2
 	memset(setRingIdx, NULL, sizeof(setRingIdx));
 
-//	for (auto it = m_map_CharItems.begin(); it != m_map_CharItems.end(); it++)
+//	for (TItemsMap::iterator it = m_map_CharItems.begin(); it != m_map_CharItems.end(); it++)
 	for(BYTE a = 0; a < EQUIP_SLOT_TYPE_COUNT; a++)
 	{
 		CItem* item = GetItem(CONTAINER_TYPE_EQUIP, a);
@@ -825,6 +825,8 @@ void CPlayerItemContainer::CopyItemAttributesTo(CCharacterAtt* pCharAtt)
 				}
 				else if (item->GetPos() == EQUIP_SLOT_TYPE_JACKET)
 				{
+					m_pOwner->GetCharAtt()->SetBattleAttributeDefence(item->GetBattleAttribute());
+
 					if (pinvitemdata->set_Item_Tblidx != INVALID_TBLIDX)
 						vecSetArmor.push_back(pinvitemdata->set_Item_Tblidx);
 				}
@@ -1056,7 +1058,31 @@ bool CPlayerItemContainer::WearGenderRequiredItem(BYTE byNewGender)
 
 	return false;
 }
+CItem* CPlayerItemContainer::WearGenderRequiredItem2(BYTE byNewGender)
+{
+	for (BYTE a = 0; a < 32; a++)
+	{
+		for (BYTE b = 0; b < 5; b++)
+		{
+			CItem* item = GetItem(b, a);
+			if (item && item->GetPlace() == b)
+			{
+				sITEM_TBLDAT* pItemData = item->GetTbldat();
+				if (pItemData)
+				{
+					if (pItemData->dwNeed_Gender_Bit_Flag > 0 && BIT_FLAG_TEST(MAKE_BIT_FLAG(byNewGender), pItemData->dwNeed_Gender_Bit_Flag) == false)
+					{						
+						item->SetLocked(true);
+						return item;
+					}
+					
+				}
+			}
+		}
+	}
 
+	return NULL;
+}
 void CPlayerItemContainer::InsertBankItem(HOBJECT hHandle, CItem * item)
 {
 	m_map_BankItems.insert(std::make_pair(hHandle, item));
@@ -1064,7 +1090,7 @@ void CPlayerItemContainer::InsertBankItem(HOBJECT hHandle, CItem * item)
 
 CItem * CPlayerItemContainer::GetBankItem(HOBJECT hHandle)
 {
-	auto it = m_map_BankItems.find(hHandle);
+	TItemsMap::iterator it = m_map_BankItems.find(hHandle);
 	if (it != m_map_BankItems.end())
 		return it->second;
 
@@ -1075,7 +1101,7 @@ void CPlayerItemContainer::FreeGuildBank()
 {
 	m_dwGuildZeni = 0;
 
-	for (auto it = m_map_GuildBankItems.begin(); it != m_map_GuildBankItems.end(); it++)
+	for (TItemsMap::iterator it = m_map_GuildBankItems.begin(); it != m_map_GuildBankItems.end(); it++)
 	{
 		CItem* pItem = it->second;
 		pItem->SetOwner(NULL);

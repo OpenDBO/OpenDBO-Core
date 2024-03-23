@@ -101,11 +101,11 @@ void CPlayer::LoadFromDBProc(QueryResultVector & results, ACCOUNTID accountID)
 				m_sPcData[m_byCharCount].byRace = f[3].GetBYTE();
 				m_sPcData[m_byCharCount].byClass = f[4].GetBYTE();
 				m_sPcData[m_byCharCount].byGender = f[5].GetBYTE();
-				m_sPcData[m_byCharCount].byFace = f[6].GetBYTE();
+				m_sPcData[m_byCharCount].sPcShape.byFace = f[6].GetBYTE();
 				m_sPcData[m_byCharCount].bIsAdult = f[7].GetBool();
-				m_sPcData[m_byCharCount].byHair = f[8].GetBYTE();
-				m_sPcData[m_byCharCount].byHairColor = f[9].GetBYTE();
-				m_sPcData[m_byCharCount].bySkinColor = f[10].GetBYTE();
+				m_sPcData[m_byCharCount].sPcShape.byHair = f[8].GetBYTE();
+				m_sPcData[m_byCharCount].sPcShape.byHairColor = f[9].GetBYTE();
+				m_sPcData[m_byCharCount].sPcShape.bySkinColor = f[10].GetBYTE();
 				m_sPcData[m_byCharCount].fPositionX = f[11].GetFloat();
 				m_sPcData[m_byCharCount].fPositionY = f[12].GetFloat();
 				m_sPcData[m_byCharCount].fPositionZ = f[13].GetFloat();
@@ -145,7 +145,7 @@ void CPlayer::LoadFromDBProc(QueryResultVector & results, ACCOUNTID accountID)
 
 		for (BYTE i = 0; i < m_byCharCount; i++)
 		{
-			q->AddQuery("SELECT tblidx,pos,`rank`,grade,BattleAttribute FROM items WHERE owner_id=%u AND place=6", m_sPcData[i].charId);
+			q->AddQuery("SELECT tblidx,pos,`rank`,grade,BattleAttribute FROM items WHERE owner_id=%u AND place=7", m_sPcData[i].charId);
 		}
 
 		for (BYTE i = 0; i < m_byCharCount; i++)
@@ -288,7 +288,7 @@ void CPlayer::LoadFromDBProcEnd(QueryResultVector & results, ACCOUNTID accountID
 		m_bIsCharLoaded = true;
 	}
 
-	DisableLoadCharInfo(true);
+	DisableLoadCharInfo(false);
 
 	ERR_LOG(LOG_USER, "Account: %u Finish loading characters", GetAccountID());
 }

@@ -63,6 +63,15 @@ void CPlayer::TickProcessCombatMode(DWORD dwTickDiff)
 			UpdateBattleCombatMode(false);
 		}
 	}
+	if (ResetBuffReduction > 0)
+	{
+		ResetBuffReduction = UnsignedSafeDecrease<DWORD>(ResetBuffReduction, dwTickDiff);
+
+		if (ResetBuffReduction == 0)
+		{			
+			ClearCrowdControlReduction();
+		}
+	}
 }
 
 
@@ -129,6 +138,7 @@ bool	CPlayer::StartTeleportProposal(CPlayer* pSummoner, WORD wTime, BYTE byTelep
 	res->byTeleportType = byTeleportType;
 	res->byInfoIndex = byTeleportIndex;
 	res->wWaitTime = wTime;
+	res->bySummonerNameLength = 0;
 	packet.SetPacketLen(sizeof(sGU_TELEPORT_PROPOSAL_NFY));
 	SendPacket(&packet);
 

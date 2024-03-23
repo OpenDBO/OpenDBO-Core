@@ -84,7 +84,7 @@ int CWpsScriptAlgoCondition_CCBD_pattern::Update(DWORD dwTickDiff, float fMultip
 	if (m_bPacketSent == false)
 	{
 		m_bPacketSent = true;
-	//	NTL_PRINT(PRINT_APP, "CWpsScriptAlgoCondition_CCBD_pattern::Update() %u, m_titleIdx %u, m_byIndex %u\n", GetOwner()->GetCCBDStage(), m_titleIdx, m_byIndex);
+		NTL_PRINT(PRINT_APP, "CWpsScriptAlgoCondition_CCBD_pattern::Update() %u, m_titleIdx %u, m_byIndex %u\n", GetOwner()->GetCCBDStage(), m_titleIdx, m_byIndex);
 		CNtlPacket packet(sizeof(sGU_BATTLE_DUNGEON_STATE_UPATE_NFY));
 		sGU_BATTLE_DUNGEON_STATE_UPATE_NFY* res = (sGU_BATTLE_DUNGEON_STATE_UPATE_NFY *)packet.GetPacketData();
 		res->wOpCode = GU_BATTLE_DUNGEON_STATE_UPATE_NFY;

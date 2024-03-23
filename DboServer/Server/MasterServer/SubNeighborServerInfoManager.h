@@ -3,7 +3,7 @@
 
 #include "NtlSingleton.h"
 #include <set>
-#include <unordered_map>
+#include <boost/unordered_map.hpp>
 
 #include "NeighborServerInfoManager.h"
 #include "EventableObject.h"
@@ -50,8 +50,8 @@ public:
 // PLAYER
 private:
 
-	std::unordered_map<ACCOUNTID, SERVERINDEX> m_map_CharServerPlayers;
-	std::unordered_map<ACCOUNTID, _SERVER_PAIR_ID> m_map_GameServerPlayers; //for gameservers
+	boost::unordered_map<ACCOUNTID, SERVERINDEX> m_map_CharServerPlayers;
+	boost::unordered_map<ACCOUNTID, _SERVER_PAIR_ID> m_map_GameServerPlayers; //for gameservers
 
 public:
 

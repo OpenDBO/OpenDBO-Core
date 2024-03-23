@@ -239,6 +239,7 @@ public:
 
 	//DWC
 	void						RecvDwcWorldCountInfoReq(CNtlPacket * pPacket);
+	void						DwcWorldDirection(CNtlPacket * pPacket);
 	void						RecvDwcWorldEnterReq(CNtlPacket * pPacket);
 	void						RecvDwcWorldEnterConfirmReq(CNtlPacket * pPacket);
 	void						RecvDwcScenarioInfoReq(CNtlPacket * pPacket);
@@ -246,6 +247,7 @@ public:
 
 
 	void						RecvItemUpgradeReq(CNtlPacket * pPacket);
+	void						RecvItemUpgradeReqKr(CNtlPacket* pPacket);
 	void						RecvItemDisassembleReq(CNtlPacket * pPacket);
 
 	//MISC
@@ -273,7 +275,6 @@ public:
 	void						RecvNetPyStartReq(CNtlPacket * pPacket);
 	void						RecvNetPyEndReq(CNtlPacket * pPacket);
 	void						RecvNetPyBuyReq(CNtlPacket * pPacket);
-	void						RecvNetPyPointsAddByTime(CNtlPacket* pPacket);
 	void						RecvCashItemMoveReq(CNtlPacket * pPacket);
 	void						RecvCashItemUseReq(CNtlPacket * pPacket);
 	void						RecvCashItemHlsStartReq(CNtlPacket * pPacket);
@@ -385,6 +386,8 @@ public:
 	void						RecvEndVehicleReq(CNtlPacket * pPacket);
 	void						RecvVehicleFuelRemoveNfy(CNtlPacket * pPacket);
 	void						RecvVehicleFuelInsertReq(CNtlPacket * pPacket);
+	void						RecvVehicleEngineOn(CNtlPacket* pPacket);
+	void						RecvVehicleEngineOff(CNtlPacket* pPacket);
 
 	//DOJO
 	void						RecvDojoCreateReq(CNtlPacket * pPacket);

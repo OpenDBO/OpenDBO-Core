@@ -40,28 +40,29 @@ int CWpsScriptAlgoAction_CCBD_reward::OnUpdate(DWORD dwTickDiff, float fMultiple
 
 	CPlayer* pPlayer = NULL;
 
-	//if (m_bLastStage)
-	//{
-	//	CNtlPacket pChat(sizeof(sGT_BROADCASTING_SYSTEM_NFY));
-	//	sGT_BROADCASTING_SYSTEM_NFY * rChat = (sGT_BROADCASTING_SYSTEM_NFY *)pChat.GetPacketData();
-	//	rChat->wOpCode = GT_BROADCASTING_SYSTEM_NFY;
-	//	rChat->byMsgType = DBO_BROADCASTING_MSG_TYPE_CCBD;
-	//	rChat->sData.sCCBD.byStage = 150;
+	if (m_bLastStage)
+	{
+		CNtlPacket pChat(sizeof(sGT_BROADCASTING_SYSTEM_NFY));
+		sGT_BROADCASTING_SYSTEM_NFY * rChat = (sGT_BROADCASTING_SYSTEM_NFY *)pChat.GetPacketData();
+		rChat->wOpCode = GT_BROADCASTING_SYSTEM_NFY;
+		rChat->byMsgType = DBO_BROADCASTING_MSG_TYPE_CCBD;
+		//rChat->sData.sCCBD.byStage = 150;
 
-	//	pPlayer = GetOwner()->GetPlayersFirst();
-	//	while (pPlayer)
-	//	{
-	//		if (pPlayer->GetWorldID() == GetOwner()->GetWorld()->GetID())
-	//		{
-	//			wcscpy_s(rChat->sData.sCCBD.awszMember[rChat->sData.sCCBD.byMemberCount++], NTL_MAX_SIZE_CHAR_NAME + 1, pPlayer->GetCharName());
-	//		}
+		pPlayer = GetOwner()->GetPlayersFirst();
+		while (pPlayer)
+		{
+			if (pPlayer->GetWorldID() == GetOwner()->GetWorld()->GetID())
+			{
+				wcscpy_s(rChat->sData.sCCBD.awszMember[rChat->sData.sCCBD.byMemberCount++], NTL_MAX_SIZE_CHAR_NAME + 1, pPlayer->GetCharName());
+				rChat->sData.sCCBD.byStage++;
+			}
 
-	//		pPlayer = GetOwner()->GetPlayersNext();
-	//	}
+			pPlayer = GetOwner()->GetPlayersNext();
+		}
 
-	//	pChat.SetPacketLen(sizeof(sGT_BROADCASTING_SYSTEM_NFY));
-	//	app->SendTo(app->GetChatServerSession(), &pChat);
-	//}
+		pChat.SetPacketLen(sizeof(sGT_BROADCASTING_SYSTEM_NFY));
+		app->SendTo(app->GetChatServerSession(), &pChat);
+	}
 
 
 	pPlayer = GetOwner()->GetPlayersFirst();

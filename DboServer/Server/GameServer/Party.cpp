@@ -517,6 +517,10 @@ void CParty::LeaveParty(CPlayer* player)
 	//SET MEMBER INFO
 	for (int e = 0; e < m_byMemberInfoCount; e++)
 	{
+		if (m_memberInfo[e].hHandle == NULL)
+		{
+			printf("PartyID NUll \n");
+		}
 		if (player->GetID() == m_memberInfo[e].hHandle)
 		{
 			SetMemberInfo(NULL, e); //set member info to null
@@ -538,7 +542,7 @@ void CParty::LeaveParty(CPlayer* player)
 						memset(&m_memberInfo[ee + 1], NULL, sizeof(sPARTY_MEMBER_INFO));
 						m_memberInfo[ee + 1].hHandle = INVALID_HOBJECT;
 					}
-				}
+				}				
 			}
 
 			break;
@@ -602,7 +606,10 @@ void CParty::LeaveParty(CPlayer* player)
 	res->hMember = player->GetID();
 	packet.SetPacketLen(sizeof(sGU_PARTY_MEMBER_LEFT_NFY));
 	SendMsgToParty(&packet);
-
+	if (player->GetID() == NULL)
+	{
+		printf("PartyID NUll 2\n");
+	}
 	if (player->GetID() == this->GetPartyLeaderID()) //if party leader leave party then update leader
 	{
 		UpdatePartyLeader(m_memberInfo[0].hHandle);
@@ -1725,10 +1732,50 @@ void CParty::PartyMemberSelect(HOBJECT hPlayer, BYTE bySelectState)
 	res->bySelectState = bySelectState;
 	packet.SetPacketLen(sizeof(sGU_PARTY_SELECT_STATE_NFY));
 	SendMsgToPartyExceptOne(&packet, hPlayer);
+
+	if (m_bLastStage && bySelectState == NTL_PARTY_SELECT_TYPE_CCBD_REWARD)
+	{
+		//CGameServer* app = (CGameServer*)g_pApp;
+		CNtlPacket packet(sizeof(sGU_BATTLE_DUNGEON_REWARD_FINISH_NFY));
+		sGU_BATTLE_DUNGEON_REWARD_FINISH_NFY* res = (sGU_BATTLE_DUNGEON_REWARD_FINISH_NFY*)packet.GetPacketData();
+		res->wOpCode = GU_BATTLE_DUNGEON_REWARD_FINISH_NFY;
+		packet.SetPacketLen(sizeof(sGU_BATTLE_DUNGEON_REWARD_FINISH_NFY));
+
+		CPlayer* pPlayer = g_pObjectManager->GetPC(hPlayer);
+		if (pPlayer && pPlayer->IsInitialized() && pPlayer->GetCCBD())
+		{
+			pPlayer->SendPacket(&packet);
+
+			std::map<HOBJECT, BYTE>::iterator it = m_mapRewardSelectState.find(pPlayer->GetID());
+			BYTE bySelectState = NTL_PARTY_SELECT_TYPE_CCBD_REWARD;
+
+			if (it != m_mapRewardSelectState.end())
+				bySelectState = it->second;
+
+			if (m_bLastStage && bySelectState == NTL_PARTY_SELECT_TYPE_CCBD_REWARD)
+			{
+				CWorld* pWorld = pPlayer->GetCurWorld();
+				if (pWorld)
+				{
+
+					CNtlVector destLoc(pWorld->GetTbldat()->outWorldLoc);
+					WORLDID destWorldID = pWorld->GetTbldat()->outWorldTblidx;
+
+					g_pItemManager->CreateItem(pPlayer, m_rewardItemIdx, 1);
+					pPlayer->StartTeleport(destLoc, pPlayer->GetCurDir(), destWorldID, TELEPORT_TYPE_WORLD_MOVE);
+
+				}
+			}
+		}	
+
+		m_mapRewardSelectState.clear();
+	}
+
 }
 
 void CParty::DecidePartySelect()
 {
+	CGameServer* app = (CGameServer*)g_pApp;
 	CNtlPacket packet(sizeof(sGU_BATTLE_DUNGEON_REWARD_FINISH_NFY));
 	sGU_BATTLE_DUNGEON_REWARD_FINISH_NFY* res = (sGU_BATTLE_DUNGEON_REWARD_FINISH_NFY *)packet.GetPacketData();
 	res->wOpCode = GU_BATTLE_DUNGEON_REWARD_FINISH_NFY;
@@ -1751,12 +1798,14 @@ void CParty::DecidePartySelect()
 			{
 				CWorld* pWorld = pPlayer->GetCurWorld();
 				if (pWorld)
-				{
+				{						
+
 					CNtlVector destLoc(pWorld->GetTbldat()->outWorldLoc);
 					WORLDID destWorldID = pWorld->GetTbldat()->outWorldTblidx;
 
 					g_pItemManager->CreateItem(pPlayer, m_rewardItemIdx, 1);
 					pPlayer->StartTeleport(destLoc, pPlayer->GetCurDir(), destWorldID, TELEPORT_TYPE_WORLD_MOVE);
+
 				}
 			}
 			else
@@ -1965,7 +2014,7 @@ void CParty::LeaveDice(HOBJECT hId)
 
 void CParty::DecideDice(sPARTY_ITEM & partyItem)
 {
-	//printf("DecideDice \n");
+	printf("DecideDice \n");
 	CItemDrop* pDrop = g_pItemManager->FindDrop(partyItem.hHandle);
 	if (pDrop && pDrop->IsInitialized() && pDrop->GetCurWorld())
 	{

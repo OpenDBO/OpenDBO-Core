@@ -41,6 +41,7 @@ private:
 	DWORD						m_dwEventMachineCoins;
 
 	DWORD						m_dwWaguWaguPoints;
+	DWORD						m_dwNetPyPoints;
 
 	BYTE*						m_pbyChatServerAuthKey;
 
@@ -142,6 +143,9 @@ public:
 
 	inline void								SetWaguWaguPoints(DWORD cash) { m_dwWaguWaguPoints = cash; }
 	inline DWORD							GetWaguWaguPoints() { return m_dwWaguWaguPoints; }
+
+	inline void								SetNetPyPoints(DWORD cash) { m_dwNetPyPoints = cash; }
+	inline DWORD							GetNetPyPoints() { return m_dwNetPyPoints; }
 
 	inline void								SetMuteDuration(DWORD dwDuration) { m_dwMuteDurationInMilliseconds = dwDuration; }
 	inline DWORD							GetMuteDuration() { return m_dwMuteDurationInMilliseconds; }

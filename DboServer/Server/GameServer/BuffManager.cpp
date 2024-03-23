@@ -196,13 +196,13 @@ bool CBuffManager::RegisterBuff(DWORD& rdwKeepTime, eSYSTEM_EFFECT_CODE * effect
 	{
 	case BUFF_TYPE_BLESS:
 	{
-		if (m_blessBuffList.GetSize() >= NTL_MAX_BLESS_BUFF_CHARACTER_HAS)
+		if (m_blessBuffList.GetSize() > NTL_MAX_BLESS_BUFF_CHARACTER_HAS)
 			return false;
 	}
 	break;
 	case BUFF_TYPE_CURSE:
 	{
-		if (m_curseBuffList.GetSize() >= NTL_MAX_CURSE_BUFF_CHARACTER_HAS)
+		if (m_curseBuffList.GetSize() > NTL_MAX_CURSE_BUFF_CHARACTER_HAS)
 			return false;
 	}
 	break;
@@ -213,7 +213,7 @@ bool CBuffManager::RegisterBuff(DWORD& rdwKeepTime, eSYSTEM_EFFECT_CODE * effect
 	TBLIDX basicSkillTblidx = g_pTableContainer->GetSkillTable()->FindBasicSkillTblidx(pSkillTbldat->tblidx);
 
 	//anti cc spam
-	if (Dbo_IsCcReduction(effectCode[0]) || Dbo_IsCcReduction(effectCode[1]))
+	if (Dbo_IsCcReduction(effectCode[0]) || Dbo_IsCcReduction(effectCode[1]) || Dbo_IsCcReduction(effectCode[3]))
 	{
 		rdwKeepTime -= DWORD((float)rdwKeepTime * m_pOwnerRef->GetCrowdControlReduction(hCaster, basicSkillTblidx) / 100.0f);
 	}
@@ -1152,9 +1152,9 @@ void CBuffManager::CopyBuffAttributesTo(CCharacterAtt* pCharAtt)
 								if (commonConfig)
 								{
 									pCharAtt->CalculateAttackSpeedRate((float)commonConfig->adwValue[0], SYSTEM_EFFECT_APPLY_TYPE_PERCENT, false);
-									rAvatarAttribute.wPhysicalOffence += WORD((float)rAvatarAttribute.wPhysicalOffence * ((float)commonConfig->adwValue[1]) / 100.f);
-									rAvatarAttribute.fRunSpeed += rAvatarAttribute.fRunSpeed * ((float)commonConfig->adwValue[2]) / 100.f;
-									rAvatarAttribute.fMindCurseImmunity += 100.f;
+									rAvatarAttribute.wLastPhysicalOffense += WORD((float)rAvatarAttribute.wLastPhysicalOffense * ((float)commonConfig->adwValue[1]) / 100.f);
+									rAvatarAttribute.fLastRunSpeed += rAvatarAttribute.fLastRunSpeed * ((float)commonConfig->adwValue[2]) / 100.f;
+									rAvatarAttribute.fLastMindCurseImmunity += 100.f;
 									break;
 								}
 							}
@@ -1164,8 +1164,8 @@ void CBuffManager::CopyBuffAttributesTo(CCharacterAtt* pCharAtt)
 								if (commonConfig)
 								{
 									pCharAtt->CalculateAttackSpeedRate((float)commonConfig->adwValue[0], SYSTEM_EFFECT_APPLY_TYPE_PERCENT, true);
-									rAvatarAttribute.fSkillAnimationSpeedModifier -= rAvatarAttribute.fSkillAnimationSpeedModifier * ((float)commonConfig->adwValue[1]) / 100.f;
-									rAvatarAttribute.wDodgeRate += WORD((float)rAvatarAttribute.wDodgeRate * ((float)commonConfig->adwValue[2]) / 100.f);
+									rAvatarAttribute.fLastSkillAnimationSpeed -= rAvatarAttribute.fLastSkillAnimationSpeed * ((float)commonConfig->adwValue[1]) / 100.f;
+									rAvatarAttribute.wLastDodgeRate += WORD((float)rAvatarAttribute.wLastDodgeRate * ((float)commonConfig->adwValue[2]) / 100.f);
 
 									break;
 								}
@@ -1176,7 +1176,7 @@ void CBuffManager::CopyBuffAttributesTo(CCharacterAtt* pCharAtt)
 								if (commonConfig)
 								{
 									pCharAtt->CalculateAttackSpeedRate((float)commonConfig->adwValue[0], SYSTEM_EFFECT_APPLY_TYPE_PERCENT, false);
-									rAvatarAttribute.fRunSpeed += rAvatarAttribute.fRunSpeed * ((float)commonConfig->adwValue[1]) / 100;
+									rAvatarAttribute.fLastRunSpeed += rAvatarAttribute.fLastRunSpeed * ((float)commonConfig->adwValue[1]) / 100;
 									break;
 								}
 							}
@@ -1185,8 +1185,8 @@ void CBuffManager::CopyBuffAttributesTo(CCharacterAtt* pCharAtt)
 								sCOMMONCONFIG_VALUE_DATA* commonConfig = g_pTableContainer->GetCommonConfigTable()->FindCommonConfig(buffinfo->aBuffParameter[j].buffParameter.commonConfigTblidx);
 								if (commonConfig)
 								{
-									rAvatarAttribute.wPhysicalDefence += WORD((float)rAvatarAttribute.wPhysicalDefence * ((float)commonConfig->adwValue[0]) / 100.f);
-									rAvatarAttribute.wEnergyDefence += WORD((float)rAvatarAttribute.wEnergyDefence * ((float)commonConfig->adwValue[0]) / 100.f);
+									rAvatarAttribute.wLastPhysicalDefense += WORD((float)rAvatarAttribute.wLastPhysicalDefense * ((float)commonConfig->adwValue[0]) / 100.f);
+									rAvatarAttribute.wLastEnergyDefense += WORD((float)rAvatarAttribute.wLastEnergyDefense * ((float)commonConfig->adwValue[0]) / 100.f);
 									break;
 								}
 							}

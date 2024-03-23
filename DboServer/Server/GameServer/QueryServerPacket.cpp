@@ -1842,9 +1842,9 @@ void CQueryServerSession::RecvHoipoiItemMakeRes(CNtlPacket* pPacket)
 	if (req->bIsNew)
 		pOwner->GetPlayerItemContainer()->RemoveReservedInventory(req->sCreateData.byPlace, req->sCreateData.byPosition);
 
-	CNtlPacket packet(sizeof(sGU_HOIPOIMIX_ITEM_CREATE_RES));
-	sGU_HOIPOIMIX_ITEM_CREATE_RES * res = (sGU_HOIPOIMIX_ITEM_CREATE_RES *)packet.GetPacketData();
-	res->wOpCode = GU_HOIPOIMIX_ITEM_CREATE_RES;
+	CNtlPacket packet(sizeof(sGU_HOIPOIMIX_ITEM_MAKE_EX_RES));
+	sGU_HOIPOIMIX_ITEM_MAKE_EX_RES* res = (sGU_HOIPOIMIX_ITEM_MAKE_EX_RES*)packet.GetPacketData();
+	res->wOpCode = GU_HOIPOIMIX_ITEM_MAKE_EX_RES;
 	res->objHandle = req->objHandle;
 	res->recipeTblidx = req->recipeTblidx;
 	res->wResultCode = req->wResultCode;
@@ -1874,17 +1874,18 @@ void CQueryServerSession::RecvHoipoiItemMakeRes(CNtlPacket* pPacket)
 		}
 
 		/*Update exp and level*/
-		CNtlPacket packet2(sizeof(sGU_HOIPOIMIX_ITEM_CREATE_EXP_NFY));
-		sGU_HOIPOIMIX_ITEM_CREATE_EXP_NFY * res2 = (sGU_HOIPOIMIX_ITEM_CREATE_EXP_NFY *)packet2.GetPacketData();
-		res2->wOpCode = GU_HOIPOIMIX_ITEM_CREATE_EXP_NFY;
+		CNtlPacket packet2(sizeof(sGU_HOIPOIMIX_ITEM_MAKE_EXP_NFY));
+		sGU_HOIPOIMIX_ITEM_MAKE_EXP_NFY* res2 = (sGU_HOIPOIMIX_ITEM_MAKE_EXP_NFY*)packet2.GetPacketData();
+		res2->wOpCode = GU_HOIPOIMIX_ITEM_MAKE_EXP_NFY;
+		res2->wResultCode = GAME_SUCCESS;
 		res2->dwExpGained = req->dwExpGained;
 		res2->dwCurExp = req->dwMixExp;
 		res2->byCurLevel = req->byMixLevel;
-		packet2.SetPacketLen(sizeof(sGU_HOIPOIMIX_ITEM_CREATE_EXP_NFY));
+		packet2.SetPacketLen(sizeof(sGU_HOIPOIMIX_ITEM_MAKE_EXP_NFY));
 		pOwner->SendPacket(&packet2);
 	}
 
-	packet.SetPacketLen(sizeof(sGU_HOIPOIMIX_ITEM_CREATE_RES));
+	packet.SetPacketLen(sizeof(sGU_HOIPOIMIX_ITEM_MAKE_EX_RES));
 	pOwner->SendPacket(&packet);
 }
 
@@ -2057,7 +2058,7 @@ void CQueryServerSession::RecvPcDataLoadRes(CNtlPacket * pPacket)
 		return;
 	}
 
-	pOwner->RecvLoadPcDataRes(&req->sPcData, &req->serverChangeInfo, req->bTutorialFlag, &req->sWarFogInfo, &req->sMailBrief, &req->sRankBattleScore, req->TitleIndexFlag, req->wWaguCoins);
+	pOwner->RecvLoadPcDataRes(&req->sPcData, &req->serverChangeInfo, req->bTutorialFlag, &req->sWarFogInfo, &req->sMailBrief, &req->sRankBattleScore, req->TitleIndexFlag, req->wWaguCoins, req->wEventCoins);
 }
 
 void CQueryServerSession::RecvPcItemLoadRes(CNtlPacket * pPacket)
@@ -2469,7 +2470,7 @@ void CQueryServerSession::RecvCashItemMoveRes(CNtlPacket * pPacket)
 		pItem->SetID(g_pObjectManager->CreateUID());
 		pItem->SetItemData(&req->sData, req->itemId);
 		pItem->AddToCharacter(pOwner);
-
+		pItem->SetRestrictState(ITEM_RESTRICT_STATE_TYPE_SEAL);
 		g_pItemManager->AddItem(pItem);
 
 		CNtlPacket packet3(sizeof(sGU_ITEM_CREATE));
@@ -2484,7 +2485,14 @@ void CQueryServerSession::RecvCashItemMoveRes(CNtlPacket * pPacket)
 		pOwner->GetPlayerItemContainer()->RemoveReservedInventory(req->sData.byPlace, req->sData.byPos);
 
 		//del item from cash shop
-		pOwner->DelCashShopItem(req->qwProductId);
+		pOwner->DelCashShopItem(req->qwProductId);		
+
+		CNtlPacket packet2(sizeof(sGU_CASHITEM_DEL_NFY));
+		sGU_CASHITEM_DEL_NFY* res = (sGU_CASHITEM_DEL_NFY*)packet2.GetPacketData();
+		res->wOpCode = GU_CASHITEM_DEL_NFY;
+		res->qwProductId = req->qwProductId;
+		packet2.SetPacketLen(sizeof(sGU_CASHITEM_DEL_NFY));
+		pOwner->SendPacket(&packet2);
 	}
 
 	CNtlPacket packet(sizeof(sGU_CASHITEM_MOVE_RES));
@@ -2564,10 +2572,10 @@ void CQueryServerSession::RecvCashitemSendGiftRes(CNtlPacket* pPacket)
 void CQueryServerSession::RecvPcMascotLoadRes(CNtlPacket * pPacket)
 {
 	sQG_PC_MASCOT_LOAD_RES * req = (sQG_PC_MASCOT_LOAD_RES*)pPacket->GetPacketData();
-
+	
 	CPlayer* pOwner = g_pObjectManager->FindByChar(req->charID);
 	if (pOwner == NULL)
-	{
+	{		
 		return;
 	}
 
@@ -2590,12 +2598,7 @@ void CQueryServerSession::RecvMaterialDisassembleRes(CNtlPacket* pPacket)
 	CNtlPacket packet(sizeof(sGU_ITEM_DISASSEMBLE_RES));
 	sGU_ITEM_DISASSEMBLE_RES* res = (sGU_ITEM_DISASSEMBLE_RES*)packet.GetPacketData();
 	res->wOpCode = GU_ITEM_DISASSEMBLE_RES;
-	res->wResultCode = req->wResultCode;
-	res->byDeleteItemPlace = req->sDeleteItem.byPlace;
-	res->byDeleteItemPos = req->sDeleteItem.byPos;
-	res->hDeleteItem = req->sDeleteItem.hItem;
-	packet.SetPacketLen(sizeof(sGU_ITEM_DISASSEMBLE_RES));
-	pOwner->SendPacket(&packet);
+	res->wResultCode = req->wResultCode;	
 
 	if (req->wResultCode == GAME_SUCCESS)
 	{
@@ -2612,6 +2615,7 @@ void CQueryServerSession::RecvMaterialDisassembleRes(CNtlPacket* pPacket)
 				item->SetID(g_pObjectManager->CreateUID());
 				item->SetLocked(false);
 				item->SetItemData(&req->asCreateItem[i]);
+				
 				item->AddToCharacter(pOwner);
 
 				g_pItemManager->AddItem(item);
@@ -2625,16 +2629,16 @@ void CQueryServerSession::RecvMaterialDisassembleRes(CNtlPacket* pPacket)
 				packet2.SetPacketLen(sizeof(sGU_ITEM_CREATE));
 				pOwner->SendPacket(&packet2);
 
-		//		res->ItemResultId[i] = item->GetID();
+				res->ItemResultId[i] = item->GetID();			
 			}
-			//else
-			//{
-			//	if (CItem* pItem = pOwner->GetPlayerItemContainer()->GetItem(req->asCreateItem[i].itemId))
-			//	{
-			//		res->ItemResultId[i] = pItem->GetID();
-			//	}
-			//	else res->ItemResultId[i] = INVALID_HOBJECT;
-			//}
+			else
+			{
+				if (CItem* pItem = pOwner->GetPlayerItemContainer()->GetItem(req->asCreateItem[i].itemId))
+				{
+					res->ItemResultId[i] = pItem->GetID();
+				}
+				else res->ItemResultId[i] = INVALID_HOBJECT;
+			}
 		}
 	}
 	else
@@ -2644,6 +2648,8 @@ void CQueryServerSession::RecvMaterialDisassembleRes(CNtlPacket* pPacket)
 			pOwner->GetPlayerItemContainer()->RemoveReservedInventory(req->asCreateItem[i].byPlace, req->asCreateItem[i].byPosition);
 		}
 	}
+	packet.SetPacketLen(sizeof(sGU_ITEM_DISASSEMBLE_RES));
+	pOwner->SendPacket(&packet);
 }
 
 

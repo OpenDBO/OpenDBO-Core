@@ -60,8 +60,8 @@ int CWpsAlgoAction_AddMobGroup::OnUpdate(DWORD dwTickDiff, float fMultiple)
 	DWORD spawnCount = g_pTableContainer->GetMobSpawnTable(GetOwner()->GetWorld()->GetIdx())->GetSpawnGroupCount(m_spawnGroupId);
 	sSPAWN_TBLDAT* spawnTbldat = g_pTableContainer->GetMobSpawnTable(GetOwner()->GetWorld()->GetIdx())->GetSpawnGroupFirst(m_spawnGroupId);
 
-	//NTL_PRINT(PRINT_APP, "spawnCount: %u, CCBD-STAGE %u, m_spawnGroupId %u, m_mapBindMob.size %I64u, m_nBindMobList", 
-	//	spawnCount, GetOwner()->GetCCBDStage(), m_spawnGroupId, m_mapBindMob.size(), m_nBindMobList);
+	/*NTL_PRINT(PRINT_APP, "spawnCount: %u, CCBD-STAGE %u, m_spawnGroupId %u, m_mapBindMob.size %I64u, m_nBindMobList", 
+		spawnCount, GetOwner()->GetCCBDStage(), m_spawnGroupId, m_mapBindMob.size(), m_nBindMobList);*/
 
 	if (m_nBindMobList == 0)
 	{

@@ -17,7 +17,7 @@ struct sHLS_SLOT_ITEM
 	BYTE							byRank; //top 10
 	float							fPercent;
 	sHLS_ITEM_TBLDAT*				pHlsItem;
-	sHLS_SLOT_MACHINE_ITEM_TBLDAT*	pSlotItem;
+	//sHLS_SLOT_MACHINE_ITEM_TBLDAT*	pSlotItem;
 };
 
 struct sHLS_SLOT_WINNER_INFO
@@ -72,8 +72,8 @@ private:
 
 	SLOTMACHINEGROUP							m_slotMachineGroup;
 
-	QWORD										m_aWinnerIndex[2];
-	std::list<sHLS_SLOT_WINNER_INFO*>			m_slotWinnerInfo[2]; // 2 = amount of machines
+	QWORD										m_aWinnerIndex[8];
+	std::list<sHLS_SLOT_WINNER_INFO*>			m_slotWinnerInfo[8]; // 2 = amount of machines
 
 	std::map<TBLIDX, sSLOT_MACHINE*>			m_mapSlotMachine;
 };

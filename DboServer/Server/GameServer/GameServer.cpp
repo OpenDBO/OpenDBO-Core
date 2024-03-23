@@ -37,7 +37,7 @@
 #include "BusSystem.h"
 #include "scsManager.h"
 #include "HoneyBeeEvent.h"
-
+#include "Fairy Event.h"
 
 
 CGameServer::CGameServer()
@@ -177,6 +177,9 @@ int CGameServer::OnInitApp()
 	CHoneyBeeEvent* pHoneyBee = new CHoneyBeeEvent;
 	UNREFERENCED_PARAMETER(pScs);
 
+	NTL_PRINT(PRINT_APP, "Fairy System");
+	CFairyEvent* FairyEven = new CFairyEvent;
+	UNREFERENCED_PARAMETER(pScs);
 	if (!m_pGameMain->PrepareWorldAndObject())
 	{
 		NTL_PRINT(PRINT_APP, "m_pGameMain->PrepareWorldAndObject() == FALSE");
@@ -272,7 +275,7 @@ void CGameServer::Run()
 
 		float fDur = ((float)(rEnd.QuadPart - rStart.QuadPart)) * 1000.f / ((float)m_freq.QuadPart);
 
-		if (fDur > 200.f)
+		/*if (fDur > 200.f)
 		{
 			NTL_PRINT(PRINT_APP, "dwLastLoop %u - m_dwCurTickCount %u = %u > 200.", m_dwCurTickCount, dwLastLoop, dwLastLoop - m_dwCurTickCount);
 			ERR_LOG(LOG_SYSTEM, "MainLoop: Total %f, LoadReport %f, MemoryUsage %f, GameProcess %f",
@@ -281,7 +284,7 @@ void CGameServer::Run()
 				((float)(rMemoryUsage.QuadPart - rLoadReport.QuadPart)) * 1000.f / ((float)m_freq.QuadPart),
 				((float)(rEnd.QuadPart - rMemoryUsage.QuadPart)) * 1000.f / ((float)m_freq.QuadPart)
 			);
-		}
+		}*/
 
 		Wait(1);
 	}
@@ -579,7 +582,16 @@ BOOL CGameServer::OnCommandInput(std::string& sCmd)
 		g_pHoneyBeeEvent->EndEvent();
 		NTL_PRINT(PRINT_APP, "HoneybeeEvent Stopped");
 	}
-
+	else if (sCmd == "startfairy")
+	{
+		g_pFairyEvent->StartEvent();
+		NTL_PRINT(PRINT_APP, "Fairy Event Started");
+	}
+	else if (sCmd == "stopfairy")
+	{
+		g_pFairyEvent->EndEvent();
+		NTL_PRINT(PRINT_APP, "Fairy Event Stopped");
+	}
 	return TRUE;
 }
 
@@ -668,7 +680,7 @@ int main(int argc, _TCHAR* argv[])
 		return rc;
 
 	CNtlString consolename;
-	consolename.Format("DBOG Game Server - Server %d Channel %d", app.GetGsServerId(), app.GetGsChannel());
+	consolename.Format("DBO Reborn Game Server - Server %d Channel %d", app.GetGsServerId(), app.GetGsChannel());
 
 	SetConsoleTitle(consolename.c_str());
 

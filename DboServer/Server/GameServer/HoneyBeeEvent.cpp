@@ -47,7 +47,7 @@ void CHoneyBeeEvent::StartEvent(BYTE byHours/* = 3*/)
 	CNtlPacket packet(sizeof(sGU_SYSTEM_DISPLAY_TEXT));
 	sGU_SYSTEM_DISPLAY_TEXT * res = (sGU_SYSTEM_DISPLAY_TEXT*)packet.GetPacketData();
 	res->wOpCode = GU_SYSTEM_DISPLAY_TEXT;
-	res->wMessageLengthInUnicode = (WORD)msg.Format(L"HoneyBee Event Started. Kill Monsters to summon Bees. You have %u hours time to farm", byHours);
+	res->wMessageLengthInUnicode = (WORD)msg.Format(L"HoneyBee Event Started. Kill Monsters to summon Bees. You have %u hours to farm", byHours);
 	res->byDisplayType = SERVER_TEXT_EMERGENCY;
 	NTL_SAFE_WCSCPY(res->awchMessage, msg.c_str());
 	packet.SetPacketLen(sizeof(sGU_SYSTEM_DISPLAY_TEXT));
@@ -84,7 +84,7 @@ void CHoneyBeeEvent::Update(CMonster * pMob, CCharacter * pPlayer)
 
 	if (pMob->GetTblidx() == 2741101)
 	{
-		CItemDrop* pDrop = g_pItemManager->CreateSingleDrop(70.f, 11160033);
+		CItemDrop* pDrop = g_pItemManager->CreateSingleDrop(90.f, 11160033);
 		if (pDrop)
 		{
 			sVECTOR3 pos;
@@ -102,7 +102,7 @@ void CHoneyBeeEvent::Update(CMonster * pMob, CCharacter * pPlayer)
 	}
 	else if (pMob->GetTblidx() == 2741102)
 	{
-		CItemDrop* pDrop = g_pItemManager->CreateSingleDrop(70.f, 11160034);
+		CItemDrop* pDrop = g_pItemManager->CreateSingleDrop(90.f, 11160034);
 		if (pDrop)
 		{
 			sVECTOR3 pos;
@@ -120,7 +120,7 @@ void CHoneyBeeEvent::Update(CMonster * pMob, CCharacter * pPlayer)
 	}
 	else if (pMob->GetTblidx() == 7441101)
 	{
-		CItemDrop* pDrop = g_pItemManager->CreateSingleDrop(70.f, 11160035);
+		CItemDrop* pDrop = g_pItemManager->CreateSingleDrop(90.f, 11160035);
 		if (pDrop)
 		{
 			sVECTOR3 pos;

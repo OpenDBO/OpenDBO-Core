@@ -110,7 +110,7 @@ bool CBuffPc::OnRemoved(CBuff::BUFF_REMOVAL_REASON nReason)
 		res->hHandle = m_pOwnerRef->GetID();
 		res->buffIndex = GetBuffIndex();
 		res->bySourceType = GetSourceType();
-
+		res->tblidx = GetSourceTblidx();
 		if (nReason == BUFF_REMOVAL_REASON_REPLACED)
 			res->bIsByReplacing = true;
 		else

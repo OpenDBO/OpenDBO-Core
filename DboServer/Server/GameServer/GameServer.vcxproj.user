@@ -5,11 +5,14 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <RemoteDebuggerWorkingDirectory>C:\Users\Administrator\Desktop\DBOG</RemoteDebuggerWorkingDirectory>
-    <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <RemoteDebuggerCommandArguments>
     </RemoteDebuggerCommandArguments>
     <RemoteDebuggerServerName>78.46.46.169</RemoteDebuggerServerName>
     <RemoteDebuggerAttach>true</RemoteDebuggerAttach>
     <RemoteDebuggerCommand>C:\Users\Administrator\Desktop\DBOG</RemoteDebuggerCommand>
+    <RemoteDebuggerConnection>RemoteWithoutAuthentication</RemoteDebuggerConnection>
+    <LocalDebuggerCommandArguments>.\\config\\GameServer1.ini</LocalDebuggerCommandArguments>
+    <LocalDebuggerWorkingDirectory>C:\Users\Marco Rafael\Desktop\DBOGLOBAL\DboServer\ExecutionEnv</LocalDebuggerWorkingDirectory>
   </PropertyGroup>
 </Project>

@@ -21,9 +21,9 @@ int CClientSession::OnAccept()
 	m_byChatServerAuthKey = NULL;
 
 	//start handshake (with client)
-	/*unsigned char buf[] = { 0x03, 0x00, 0xac, 0x86, 0xf5, 0x74 };
+	unsigned char buf[] = { 0x03, 0x00, 0xac, 0x86, 0xf5, 0x74 };
 	CNtlPacket packet(buf, 0x06);
-	app->Send(GetHandle(), &packet);*/
+	app->Send(GetHandle(), &packet);
 	
 	return CNtlSession::OnAccept();
 }
@@ -62,10 +62,34 @@ void CClientSession::OnClose()
 int CClientSession::OnDispatch(CNtlPacket * pPacket)
 {
 	sNTLPACKETHEADER * pHeader = (sNTLPACKETHEADER *)pPacket->GetPacketData();
-
+	if(pHeader->wOpCode == 4)
+	{
+		unsigned char buf[] = { 0x10, 0x00, 0x84, 0xfb, 0x48, 0xf4, 0x8e, 0x5a, 0xb6, 0x67, 0xe2, 0x3d,
+			0x6e, 0x14, 0xb4, 0xa3, 0xc3, 0x24, 0x9e, 0x5f, 0xe3, 0xd1, 0xd5, 0x88, 0x10, 0x0d, 0x68,
+			0x4f, 0x3b, 0xa5, 0xed, 0x37, 0xed, 0x4a };
+		CNtlPacket packet(buf, 0x22);
+		g_pApp->Send(GetHandle(), &packet);		
+	}
 	if (pHeader->wOpCode > 1 && cPlayer && cPlayer->IsGameMaster()) 
 		NTL_PRINT(PRINT_APP, "%u | received opcode %u [%s]", GetHandle(), pHeader->wOpCode, NtlGetPacketName(pHeader->wOpCode));
-
+	
+	if (cPlayer)
+	{
+		if (pHeader->wOpCode == 1)
+		{
+			cPlayer->SessionPingCount += 1;			
+		}
+		if (pHeader->wOpCode == 4334)
+		{
+			if (cPlayer->SessionPingCount <= 17)
+			{
+				char* username = Ntl_WC2MB(cPlayer->GetCharName());
+				NTL_PRINT(PRINT_APP, "Player %s Recived SessionCount %u And GET DISCONECTED BY SPEED HACK", username, cPlayer->SessionPingCount);
+				this->Disconnect(false);
+			}
+			cPlayer->SessionPingCount = 0;
+		}
+	}
 	if (cPlayer == NULL)
 	{
 		//Finish handshake

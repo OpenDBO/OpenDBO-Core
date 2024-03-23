@@ -91,7 +91,7 @@ void CBattleDungeon::JoinDungeon(CPlayer* pPlayer)
 
 void CBattleDungeon::LeaveDungeon(HOBJECT hPlayer)
 {
-	auto it = m_setPlayers.find(hPlayer);
+	std::set<HOBJECT>::iterator it = m_setPlayers.find(hPlayer);
 
 	if (it == m_setPlayers.end())
 	{

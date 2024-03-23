@@ -866,7 +866,7 @@ void CClientSession::RecvBudokaiTournamentIndividualListReq(CNtlPacket * pPacket
 	}
 
 	sUT_BUDOKAI_TOURNAMENT_INDIVIDUAL_LIST_REQ* req = (sUT_BUDOKAI_TOURNAMENT_INDIVIDUAL_LIST_REQ*)pPacket->GetPacketData();
-
+	
 	CNtlPacket packet(sizeof(sTG_BUDOKAI_TOURNAMENT_INDIVIDUAL_LIST_REQ));
 	sTG_BUDOKAI_TOURNAMENT_INDIVIDUAL_LIST_REQ* res = (sTG_BUDOKAI_TOURNAMENT_INDIVIDUAL_LIST_REQ*)packet.GetPacketData();
 	res->wOpCode = TG_BUDOKAI_TOURNAMENT_INDIVIDUAL_LIST_REQ;
@@ -1459,7 +1459,7 @@ void CClientSession::RecvHlsSlotMachineInfoReq(CNtlPacket * pPacket)
 
 	sUT_HLS_SLOT_MACHINE_INFO_REQ* req = (sUT_HLS_SLOT_MACHINE_INFO_REQ*)pPacket->GetPacketData();
 
-	return;
+	//return;
 	g_pHlsSlotMachine->LoadSlotMachines(cPlayer, req->byType);
 }
 
@@ -1477,7 +1477,7 @@ void CClientSession::RecvHlsSlotMachineExtractReq(CNtlPacket * pPacket)
 	{
 		return;
 	}
-	return;
+	//return;
 
 	CNtlPacket packet(sizeof(sTU_HLS_SLOT_MACHINE_EXTRACT_RES));
 	sTU_HLS_SLOT_MACHINE_EXTRACT_RES* res = (sTU_HLS_SLOT_MACHINE_EXTRACT_RES*)packet.GetPacketData();
@@ -1488,7 +1488,7 @@ void CClientSession::RecvHlsSlotMachineExtractReq(CNtlPacket * pPacket)
 	sSLOT_MACHINE* pSlotMachine = (sSLOT_MACHINE*)g_pHlsSlotMachine->GetSlotMachine((TBLIDX)req->wMachineIndex);
 	if (pSlotMachine)
 	{
-		if (pSlotMachine->pTbldat->byType == HLS_MACHINE_TYPE_WAGUWAGU)
+		if (pSlotMachine->pTbldat->byType == eHLS_MACHINE_TYPE::HLS_MACHINE_TYPE_WAGUWAGU)
 		{
 			if (req->byExtractCount <= DBO_MAX_HLS_SLOT_MACHINES_MAX_ITEMS)
 			{
@@ -1525,9 +1525,9 @@ void CClientSession::RecvHlsSlotMachineExtractReq(CNtlPacket * pPacket)
 									res2->abySetCount[i] = 1;
 									res2->byRanking[i] = pSlotItem->byRank;
 
-									if (pSlotItem->byRank > 0) // congratulation.. Won top 10 item
+									if (pSlotItem->byRank == 1) // congratulation.. Won top 10 item
 									{
-										bHasTop1 = pSlotItem->byRank == 1;
+										bHasTop1 = pSlotItem->byRank = 1;
 
 										g_pHlsSlotMachine->AddWinner(req->wMachineIndex, pSlotItem->pHlsItem->tblidx, cPlayer);
 									}
@@ -1545,7 +1545,82 @@ void CClientSession::RecvHlsSlotMachineExtractReq(CNtlPacket * pPacket)
 
 							pSlotMachine->wCurrentCapsule -= res2->byExtractCount;
 
-							if (pSlotMachine->wCurrentCapsule == 0 || bHasTop1)
+							if (pSlotMachine->wCurrentCapsule == 0 /*|| bHasTop1*/)
+							{
+								g_pHlsSlotMachine->Init();
+							}
+
+							packet2.SetPacketLen(sizeof(sTQ_HLS_SLOT_MACHINE_EXTRACT_REQ));
+							app->SendTo(app->GetQueryServerSession(), &packet2);
+
+							return;
+						}
+						else res->wResultCode = WAGUWAGUMACHINE_FAIL;
+					}
+					else res->wResultCode = WAGUWAGUMACHINE_NOT_ENOUGH_COIN;
+				}
+				else res->wResultCode = WAGUWAGUMACHINE_NOT_EXIST_QNTT;
+			}
+			else res->wResultCode = WAGUWAGUMACHINE_NOT_EXIST_QNTT;
+		}
+		if (pSlotMachine->pTbldat->byType == eHLS_MACHINE_TYPE::HLS_MACHINE_TYPE_EVENT)
+		{
+			if (req->byExtractCount <= DBO_MAX_HLS_SLOT_MACHINES_MAX_ITEMS)
+			{
+				if (pSlotMachine->wCurrentCapsule >= req->byExtractCount)
+				{
+					if (cPlayer->GetEventMachineCoin() >= DWORD(pSlotMachine->pTbldat->byCoin * req->byExtractCount)) //check if enough coins
+					{
+						std::vector<sHLS_SLOT_ITEM*> vecSlotItems;
+						g_pHlsSlotMachine->GetSlotItems(pSlotMachine->pTbldat->tblidx, &vecSlotItems);
+
+						if (vecSlotItems.size() > 0)
+						{
+							cPlayer->IncreaseSlotMachineCount();
+
+							bool bHasTop1 = false;
+
+							CNtlPacket packet2(sizeof(sTQ_HLS_SLOT_MACHINE_EXTRACT_REQ));
+							sTQ_HLS_SLOT_MACHINE_EXTRACT_REQ* res2 = (sTQ_HLS_SLOT_MACHINE_EXTRACT_REQ*)packet2.GetPacketData();
+							res2->wOpCode = TQ_HLS_SLOT_MACHINE_EXTRACT_REQ;
+							res2->accountId = cPlayer->GetAccountID();
+							res2->charId = cPlayer->GetCharID();
+							res2->machineIndex = req->wMachineIndex;
+							res2->byHlsMachineType = HLS_MACHINE_TYPE_EVENT;
+							NTL_SAFE_WCSCPY(res2->wszWinnerName, cPlayer->GetCharName());
+
+							for (BYTE i = 0; i < req->byExtractCount; i++)
+							{
+								if (vecSlotItems.size() > 0)
+								{
+									sHLS_SLOT_ITEM* pSlotItem = vecSlotItems[RandomRange(0, (int)vecSlotItems.size() - 1)];
+
+									res2->aItemTblidx[i] = pSlotItem->pHlsItem->tblidx;
+									res2->abyStackCount[i] = pSlotItem->pHlsItem->byStackCount;
+									res2->abySetCount[i] = 1;
+									res2->byRanking[i] = pSlotItem->byRank;
+
+									if (pSlotItem->byRank == 1) // congratulation.. Won top 10 item
+									{
+										bHasTop1 = pSlotItem->byRank = 1;
+
+										g_pHlsSlotMachine->AddWinner(req->wMachineIndex, pSlotItem->pHlsItem->tblidx, cPlayer);
+									}
+
+									pSlotItem->wCountLeft -= 1;
+
+									vecSlotItems.clear();
+									g_pHlsSlotMachine->GetSlotItems(pSlotMachine->pTbldat->tblidx, &vecSlotItems);
+
+									res2->byExtractCount++;
+								}
+							}
+
+							res2->wCoin = WORD(pSlotMachine->pTbldat->byCoin * res2->byExtractCount);
+
+							pSlotMachine->wCurrentCapsule -= res2->byExtractCount;
+
+							if (pSlotMachine->wCurrentCapsule == 0 /*|| bHasTop1*/)
 							{
 								g_pHlsSlotMachine->Init();
 							}
@@ -1566,7 +1641,7 @@ void CClientSession::RecvHlsSlotMachineExtractReq(CNtlPacket * pPacket)
 		else res->wResultCode = WAGUWAGUMACHINE_NOT_EXIST_MACHINE;
 	}
 	else res->wResultCode = WAGUWAGUMACHINE_NOT_EXIST_MACHINE;
-
+	//printf("resultcode %d \n", res->wResultCode);
 	res->wNewWaguWaguPoints = 0;
 	res->byReallyExtractCount = 0;
 	packet.SetPacketLen(sizeof(sTU_HLS_SLOT_MACHINE_EXTRACT_RES));
@@ -1588,5 +1663,5 @@ void CClientSession::RecvHlsSlotMachineWinnerInfoReq(CNtlPacket * pPacket)
 
 	sUT_HLS_SLOT_MACHINE_WINNER_INFO_REQ* req = (sUT_HLS_SLOT_MACHINE_WINNER_INFO_REQ*)pPacket->GetPacketData();
 
-	//g_pHlsSlotMachine->GetWinnerInfo(req->wMachineIndex, cPlayer);
+	g_pHlsSlotMachine->GetWinnerInfo(req->wMachineIndex, cPlayer);
 }

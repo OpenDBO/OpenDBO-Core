@@ -166,8 +166,22 @@ void Dbo_SetAvatarAttributeValue(CCharacterAtt * pCharAtt, eSYSTEM_EFFECT_CODE e
 
 		case ACTIVE_PHYSICAL_CRITICAL_DEFENSE_UP:	pCharAtt->CalculatePhysicalCriticalDefenceRate(effectvalue, byApplyType, true); break;
 		case ACTIVE_ENERGY_CRITICAL_DEFENSE_UP:		pCharAtt->CalculateEnergyCriticalDefenceRate(effectvalue, byApplyType, true); break;
+		
+		case ACTIVE_BATTLE_ATTRIBUTE_UP:			pCharAtt->CalculateBattleAttribute(effectvalue, byApplyType, true); break;
+		case ACTIVE_BATTLE_ATTRIBUTE_DOWN:			pCharAtt->CalculateBattleAttribute(effectvalue, byApplyType, false); break;
 
-		default: /*printf("code %u missing effect %f \n", effectcode, effectvalue); */break;
+		case ACTIVE_HONEST_OFFENCE_UP:				pCharAtt->CalculateHonestOffence(effectvalue, SYSTEM_EFFECT_APPLY_TYPE_VALUE, true); break;
+		case ACTIVE_STRANGE_OFFENCE_UP:				pCharAtt->CalculateStrangeOffence(effectvalue, SYSTEM_EFFECT_APPLY_TYPE_VALUE, true); break;
+		case ACTIVE_WILD_OFFENCE_UP:				pCharAtt->CalculateWildOffence(effectvalue, SYSTEM_EFFECT_APPLY_TYPE_VALUE, true); break;
+		case ACTIVE_ELEGANCE_OFFENCE_UP:			pCharAtt->CalculateEleganceOffence(effectvalue, SYSTEM_EFFECT_APPLY_TYPE_VALUE, true); break;
+		case ACTIVE_FUNNY_OFFENCE_UP:				pCharAtt->CalculateFunnyOffence(effectvalue, SYSTEM_EFFECT_APPLY_TYPE_VALUE, true); break;
+		
+		case ACTIVE_HONEST_DEFENCE_UP:				pCharAtt->CalculateHonestDefence(effectvalue, SYSTEM_EFFECT_APPLY_TYPE_VALUE, true); break;
+		case ACTIVE_STRANGE_DEFENCE_UP:				pCharAtt->CalculateStrangeDefence(effectvalue, SYSTEM_EFFECT_APPLY_TYPE_VALUE, true); break;
+		case ACTIVE_WILD_DEFENCE_UP:				pCharAtt->CalculateWildDefence(effectvalue, SYSTEM_EFFECT_APPLY_TYPE_VALUE, true); break;
+		case ACTIVE_ELEGANCE_DEFENCE_UP:			pCharAtt->CalculateEleganceDefence(effectvalue, SYSTEM_EFFECT_APPLY_TYPE_VALUE, true); break;
+		case ACTIVE_FUNNY_DEFENCE_UP:				pCharAtt->CalculateFunnyDefence(effectvalue, SYSTEM_EFFECT_APPLY_TYPE_VALUE, true); break;
+		default: /*printf("code %u missing effect %f \n", effectcode, effectvalue);*/ break;
 	}
 }
 
@@ -249,7 +263,20 @@ void Dbo_SetRandomOptionValues(CCharacterAtt* pCharAtt, eSYSTEM_EFFECT_CODE effe
 
 		case ACTIVE_PHYSICAL_CRITICAL_DEFENSE_UP:	pCharAtt->CalculatePhysicalCriticalDefenceRate(effectvalue, SYSTEM_EFFECT_APPLY_TYPE_VALUE, true); break;
 		case ACTIVE_ENERGY_CRITICAL_DEFENSE_UP:		pCharAtt->CalculateEnergyCriticalDefenceRate(effectvalue, SYSTEM_EFFECT_APPLY_TYPE_VALUE, true); break;
-
+		
+		case ACTIVE_BATTLE_ATTRIBUTE_UP:			pCharAtt->CalculateBattleAttribute(effectvalue, SYSTEM_EFFECT_APPLY_TYPE_VALUE, true); break;
+		
+		case ACTIVE_HONEST_OFFENCE_UP:				pCharAtt->CalculateHonestOffence(effectvalue, SYSTEM_EFFECT_APPLY_TYPE_VALUE, true); break;
+		case ACTIVE_STRANGE_OFFENCE_UP:				pCharAtt->CalculateStrangeOffence(effectvalue, SYSTEM_EFFECT_APPLY_TYPE_VALUE, true); break;
+		case ACTIVE_WILD_OFFENCE_UP:				pCharAtt->CalculateWildOffence(effectvalue, SYSTEM_EFFECT_APPLY_TYPE_VALUE, true); break;
+		case ACTIVE_ELEGANCE_OFFENCE_UP:			pCharAtt->CalculateEleganceOffence(effectvalue, SYSTEM_EFFECT_APPLY_TYPE_VALUE, true); break;
+		case ACTIVE_FUNNY_OFFENCE_UP:				pCharAtt->CalculateFunnyOffence(effectvalue, SYSTEM_EFFECT_APPLY_TYPE_VALUE, true); break;
+		
+		case ACTIVE_HONEST_DEFENCE_UP:				pCharAtt->CalculateHonestDefence(effectvalue, SYSTEM_EFFECT_APPLY_TYPE_VALUE, true); break;
+		case ACTIVE_STRANGE_DEFENCE_UP:				pCharAtt->CalculateStrangeDefence(effectvalue, SYSTEM_EFFECT_APPLY_TYPE_VALUE, true); break;
+		case ACTIVE_WILD_DEFENCE_UP:				pCharAtt->CalculateWildDefence(effectvalue, SYSTEM_EFFECT_APPLY_TYPE_VALUE, true); break;
+		case ACTIVE_ELEGANCE_DEFENCE_UP:			pCharAtt->CalculateEleganceDefence(effectvalue, SYSTEM_EFFECT_APPLY_TYPE_VALUE, true); break;
+		case ACTIVE_FUNNY_DEFENCE_UP:				pCharAtt->CalculateFunnyDefence(effectvalue, SYSTEM_EFFECT_APPLY_TYPE_VALUE, true); break;
 		default: ERR_LOG(LOG_GENERAL, "Dbo_SetRandomOptionValues: effectcode %u not set yet \n", effectcode); break;
 	}
 }

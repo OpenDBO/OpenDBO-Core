@@ -120,6 +120,16 @@ int CBotAiAction_SkillUse::OnUpdate(DWORD dwTickDiff, float fMultiple)
 				}
 				else bChase = false;
 			}
+			if (pTarget)
+			{
+				//printf("Send Skill \n");
+				if (GetBot()->IsInRange(pTarget->GetCurLoc(), 2.0f))
+				{
+					//printf("Send Skill 2\n");
+					bChase = false;
+				}
+				else bChase = true;
+			}
 			else bChase = true;
 		}
 	}

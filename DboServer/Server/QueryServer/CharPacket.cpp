@@ -52,10 +52,10 @@ void CCharServerSession::RecvCreateCharReq(CNtlPacket * pPacket, CQueryServer* a
 		res->sPcDataSummary.byClass = req->byClass;
 		res->sPcDataSummary.bIsAdult = false;
 		res->sPcDataSummary.byGender = req->byGender;
-		res->sPcDataSummary.byFace = req->byFace;
-		res->sPcDataSummary.byHair = req->byHair;
-		res->sPcDataSummary.byHairColor = req->byHairColor;
-		res->sPcDataSummary.bySkinColor = req->bySkinColor;
+		res->sPcDataSummary.sPcShape.byFace = req->byFace;
+		res->sPcDataSummary.sPcShape.byHair = req->byHair;
+		res->sPcDataSummary.sPcShape.byHairColor = req->byHairColor;
+		res->sPcDataSummary.sPcShape.bySkinColor = req->bySkinColor;
 		res->sPcDataSummary.byLevel = 1;
 		res->sPcDataSummary.worldTblidx = req->bindWorldId;
 		res->sPcDataSummary.worldId = req->bindWorldId;
@@ -94,6 +94,8 @@ void CCharServerSession::RecvCreateCharReq(CNtlPacket * pPacket, CQueryServer* a
 		GetCharDB.Execute("INSERT INTO bind (CharID,WorldID,LocX,LocY,LocZ,DirX,DirY,DirZ) VALUES (%u,%u,%f,%f,%f,%f,%f,%f)", 
 			newCharId, req->bindWorldId, req->vBind_Loc.x, req->vBind_Loc.y, req->vBind_Loc.z, req->vBind_Dir.x, req->vBind_Dir.y, req->vBind_Dir.z);
 
+		
+
 		res->sPcDataSummary.dwMapInfoIndex = (DWORD)req->mapNameTblidx;
 		res->sPcDataSummary.bTutorialFlag = false; //must change to false when tutorial works
 		res->sPcDataSummary.bNeedNameChange = false;
@@ -111,10 +113,10 @@ void CCharServerSession::RecvCreateCharReq(CNtlPacket * pPacket, CQueryServer* a
 		res->sPcDataSummary.sMark.byMarkOutColor = INVALID_BYTE;
 		res->sPcDataSummary.sMark.byMarkOutLine = INVALID_BYTE;
 
-		g_pCharacterManager->CreateCharacter(req->accountId, res->sPcDataSummary, req->serverId); //create the char in database
+		g_pCharacterManager->CreateCharacter(req->accountId, res->sPcDataSummary, req->serverId, req->IsGameMaster); //create the char in database
 
 		packet.SetPacketLen(sizeof(sQC_CHARACTER_ADD_RES));
-		app->Send(GetHandle(), &packet);
+		app->Send(GetHandle(), &packet);		
 	}
 }
 

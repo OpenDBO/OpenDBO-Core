@@ -16,7 +16,7 @@ public:
 	CClientSession()
 		:CNtlSession( SESSION_CLIENT )
 	{
-		SetControlFlag( CONTROL_FLAG_CHECK_ALIVE );
+		//SetControlFlag( CONTROL_FLAG_CHECK_ALIVE );
 
 		SetControlFlag(CONTROL_FLAG_LIMITED_RECV_SIZE);
 	}

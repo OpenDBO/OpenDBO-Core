@@ -2720,9 +2720,27 @@ WORD CQuest::ProgressTsEntity(CNtlTSEntity* pEntity, NTL_TS_T_ID tId, CQuestProg
 			if (pQuestProgress)
 				pQuestProgress->SetFailOnDeath(pAct->GetStart() == 1);
 
+		}break;
+		case DBO_ACT_TYPE_ID_ACT_SKYDGN:
+		{
+			CDboTSActSkyDgn* pTLQ = (CDboTSActSkyDgn*)pEntity;
+			if (pTLQ)
+			{
+				if (pTLQ->GetSkyDungeonType() == eTLQ_DUNGEON_TYPE_ENTER)
+				{
+					sDUNGEON_TBLDAT* pDungeon = (sDUNGEON_TBLDAT*)g_pTableContainer->GetDungeonTable()->FindData(pTLQ->GetSkyDungeonTblIdx());
+					if (pDungeon == NULL)
+					{
+						printf("Could not find dungeon tblidx %u \n", pTLQ->GetSkyDungeonTblIdx());
+						return GAME_FAIL;
+					}		
+					return GAME_FAIL;
+					/*WORLDID ID = pDungeon->linkWorld;
+					m_pkOwner->TeleportSky(ID);	*/				
+				}				
+			}
 		}
 		break;
-		
 
 		default:
 		{

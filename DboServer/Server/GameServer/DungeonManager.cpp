@@ -82,7 +82,7 @@ WORD CDungeonManager::CreateTimeQuest(CPlayer* player, TBLIDX id, BYTE byDifficu
 				{
 					if (pMember->GetLevel() < pTimeQuestTbldat->sTimeQuestDataset[byDifficulty].byMinMemberLevel) //check min level
 						return GAME_TOO_LOW_MEMBER_LEVEL;
-					else if (pMember->GetLevel() > pTimeQuestTbldat->sTimeQuestDataset[byDifficulty].byMaxMemberLevel) //check max level
+					else if (pMember->GetLevel() > 100) //check max level
 						return GAME_TOO_HIGHT_MEMBER_LEVEL;
 				}
 			}

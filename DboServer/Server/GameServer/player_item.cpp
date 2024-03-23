@@ -160,6 +160,7 @@ bool CPlayer::StartVehicle(TBLIDX vehicleIdx, HOBJECT hVehicleId)
 		pRes2->aspectState.sAspectStateBase.byAspectStateId = ASPECTSTATE_VEHICLE;
 		pRes2->aspectState.sAspectStateDetail.sVehicle.idVehicleTblidx = vehicleIdx;
 		pRes2->aspectState.sAspectStateDetail.sVehicle.idVehicleItemHandle = hVehicleId;
+		pRes2->aspectState.sAspectStateDetail.sVehicle.bIsEngineOn = GetVehicleEngine();
 		Broadcast(&pPacket2);
 
 		GetStateManager()->CopyAspectFrom(&pRes2->aspectState);
@@ -216,6 +217,7 @@ void CPlayer::EndVehicle(WORD wReasonCode)
 	res4->sCharState.sCharStateBase.aspectState.sAspectStateBase.byAspectStateId = ASPECTSTATE_VEHICLE;
 	res4->sCharState.sCharStateBase.aspectState.sAspectStateDetail.sVehicle.idVehicleTblidx = INVALID_TBLIDX;
 	res4->sCharState.sCharStateBase.aspectState.sAspectStateDetail.sVehicle.idVehicleItemHandle = INVALID_HOBJECT;
+	res4->sCharState.sCharStateBase.aspectState.sAspectStateDetail.sVehicle.bIsEngineOn = GetVehicleEngine();
 	packet4.SetPacketLen(sizeof(sGU_UPDATE_CHAR_STATE));
 	Broadcast(&packet4);
 	
@@ -258,15 +260,15 @@ void CPlayer::UpdateVehicleFuel(bool bInsert, BYTE byItemPlace/* = INVALID_BYTE*
 					}
 
 					res->wResultCode = GAME_SUCCESS;
-					res->hItem = item->GetID();
+					res->byPlace = item->GetPlace();
+					res->byPos = item->GetPos();
 
 					SetVehicleFuelId(item->GetID());
 					item->SetLocked(true);
 				}
 				else res->wResultCode = GAME_VEHICLE_INVALID_FUEL_ITEM;
 			}
-		}
-
+		}		
 		packet.SetPacketLen(sizeof(sGU_VEHICLE_FUEL_INSERT_RES));
 		SendPacket(&packet);
 

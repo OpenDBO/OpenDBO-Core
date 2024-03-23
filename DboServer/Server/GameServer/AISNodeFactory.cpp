@@ -22,11 +22,11 @@
 #include "AISNodeCondition_RecvEventFromWPS.h"
 #include "AISNodeCondition_Scan.h"
 
-#include <unordered_map>
+#include <boost/unordered_map.hpp>
 
 
-std::unordered_map<std::string, CControlScriptNodeAction*(*)(const char*)> s_actionMap_0;
-std::unordered_map<std::string, CControlScriptNodeCondition*(*)(const char*)> s_conditionMap_0;
+boost::unordered_map<std::string, CControlScriptNodeAction*(*)(const char*)> s_actionMap_0;
+boost::unordered_map<std::string, CControlScriptNodeCondition*(*)(const char*)> s_conditionMap_0;
 
 bool s_bInitailize_0 = false;
 
@@ -164,7 +164,7 @@ CControlScriptNodeAction* CAISNodeFactory::CreateControlNodeAction(const char* l
 		s_bInitailize_0 = true;
 	}
 
-	auto it = s_actionMap_0.find(lpszNodeName);
+	boost::unordered_map<std::string, CControlScriptNodeAction*(*)(const char*)>::iterator it = s_actionMap_0.find(lpszNodeName);
 	if (it == s_actionMap_0.end())
 	{
 		printf("CAISNodeFactory::CreateControlNodeAction: %s not found \n", lpszNodeName);
@@ -182,7 +182,7 @@ CControlScriptNodeCondition* CAISNodeFactory::CreateControlNodeCondition(const c
 		s_bInitailize_0 = true;
 	}
 
-	auto it = s_conditionMap_0.find(lpszNodeName);
+	boost::unordered_map<std::string, CControlScriptNodeCondition*(*)(const char*)>::iterator it = s_conditionMap_0.find(lpszNodeName);
 	if (it == s_conditionMap_0.end())
 	{
 		printf("CAISNodeFactory::CreateControlNodeCondition: %s not found \n", lpszNodeName);

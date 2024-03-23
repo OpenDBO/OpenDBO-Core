@@ -84,7 +84,7 @@ int CChatServer::OnInitApp()
 	NTL_PRINT(PRINT_APP, "Init Player Manager");
 	CPlayerManager* player_manager = new CPlayerManager;
 	g_pPlayerManager->Init();
-
+	 
 
 	return NTL_SUCCESS;
 }
@@ -156,11 +156,7 @@ BOOL CChatServer::OnCommandInput(std::string& sCmd)
 {
 	if (sCmd == "help")
 	{
-		std::cout << "playercount - return amount of players online" << std::endl;
-
-		std::cout << "\n" << std::endl;
-
-		std::cout << "\n" << std::endl;
+		printf("playercount - return amount of players online \n\n");
 	}
 	else if (sCmd == "playercount")
 	{

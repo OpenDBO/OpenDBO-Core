@@ -1988,7 +1988,6 @@ void CServerPassiveSession::RecvBroadcastingSystemNfy(CNtlPacket * pPacket)
 		case DBO_BROADCASTING_MSG_TYPE_ITEMMIX: memcpy(&res->sData.sItemMix, &req->sData.sItemMix, sizeof(req->sData.sItemMix));	break;
 		case DBO_BROADCASTING_MSG_TYPE_TMQ: memcpy(&res->sData.sTmqRecord, &req->sData.sTmqRecord, sizeof(req->sData.sTmqRecord));	break;
 		case DBO_BROADCASTING_MSG_TYPE_BUDOKAI: memcpy(&res->sData.sBudokaiRecord, &req->sData.sBudokaiRecord, sizeof(req->sData.sBudokaiRecord));	break;
-		case DBO_BROADCASTING_MSG_TYPE_WAGUWAGU_1ST: memcpy(&res->sData.sWaguWagu1st, &req->sData.sWaguWagu1st, sizeof(req->sData.sWaguWagu1st));	break;
 		case DBO_BROADCASTING_MSG_TYPE_CCBD: memcpy(&res->sData.sCCBD, &req->sData.sCCBD, sizeof(req->sData.sCCBD));	break;
 	}
 

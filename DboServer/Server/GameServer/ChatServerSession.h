@@ -70,6 +70,7 @@ public:
 	void						RecAuctionHousePeriodEndRes(CNtlPacket * pPacket);
 
 	void						RecvWaguCoinDecreaseNfy(CNtlPacket * pPacket);
+	void						RecvEventCoinDecreaseNfy(CNtlPacket* pPacket);
 	void						RecvWaguWaguMachineUpdateCashitemInfo(CNtlPacket * pPacket);
 
 	void						RecvDojoCreateRes(CNtlPacket * pPacket);

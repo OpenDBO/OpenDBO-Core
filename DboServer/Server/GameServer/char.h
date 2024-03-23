@@ -352,7 +352,6 @@ public:
 	virtual void			StartTeleport(CNtlVector& destLoc, CNtlVector& destDir, WORLDID worldid, BYTE byTeleType, TBLIDX directPlayIdx = INVALID_TBLIDX, bool bSyncDirectPlay = false, bool bTeleportAnotherServer = false);
 
 
-
 /////////////////////////////////////////////////////////////////
 //	Script
 public:

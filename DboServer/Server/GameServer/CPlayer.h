@@ -132,6 +132,7 @@ private:
 	bool					m_bIsReviving;
 
 	DWORD					m_dwCombatModeTickCount;
+	DWORD					ResetBuffReduction;
 
 	bool					m_bReceiveExpDisabled;
 
@@ -143,7 +144,7 @@ private:
 
 	DWORD					m_dwCameraMoveCount; // how often camera has been moved (received from client because the server cant't track this)
 	DWORD					m_dwCameraMoveDifference;
-
+	bool					DiePowerTournament = false;
 private:
 
 	void				Initialize();
@@ -173,7 +174,7 @@ public:
 	/* Player loading and savings*/
 	//new
 	void			SendLoadPcDataReq();
-	void			RecvLoadPcDataRes(sPC_DATA* pPcData, sDBO_SERVER_CHANGE_INFO* pserverChangeInfo, bool bTutorialFlag, sCHAR_WAR_FOG_FLAG* pWarFogInfo, sMAIL_NEW_BREIF* pMailBrief, sRANKBATTLE_SCORE_INFO* pRankBattleScore, BYTE* pbyTitleIndexFlag, WORD wWaguCoin);
+	void			RecvLoadPcDataRes(sPC_DATA* pPcData, sDBO_SERVER_CHANGE_INFO* pserverChangeInfo, bool bTutorialFlag, sCHAR_WAR_FOG_FLAG* pWarFogInfo, sMAIL_NEW_BREIF* pMailBrief, sRANKBATTLE_SCORE_INFO* pRankBattleScore, BYTE* pbyTitleIndexFlag, WORD wWaguCoin, WORD wEventCoin);
 
 	void			RecvPcItemLoadRes(sITEM_DATA* pData, BYTE byCount, WORD wCurPacketCount);
 	void			RecvPcSkillLoadRes(sSKILL_DATA* pData, BYTE byCount);
@@ -193,6 +194,7 @@ public:
 	void			SendTitleInfo(BYTE* pbyTitleIndexFlag);
 	void			SendRankBattleScoreInfo(const sRANKBATTLE_SCORE_INFO* pRankBattleScore);
 	void			SendWaguCoinInfo(WORD wWaguCoin);
+	void			SendEventCoinInfo(WORD wEventCoin);
 
 	void			SendAvatarInfoEnd();
 	void			SendQueryTutorialUpdate(bool bFlag);
@@ -286,13 +288,13 @@ public:
 	inline void			SetMudosaPoints(DWORD dwPoints) { player_data.dwMudosaPoint = dwPoints; }
 	void				UpdateMudosaPoints(DWORD dwAmount, bool bQuery = true);
 
-	inline DWORD		GetNetPy() const { return player_data.dwNetPy; }
-	inline void			SetNetPy(DWORD dwNetPy) { player_data.dwNetPy = dwNetPy; }
-	void				UpdateNetPy(DWORD dwNetPy, DWORD SessionPoint, bool bQuery/* = true*/);
-
 	inline 	DWORD		GetWaguPoints()  { return player_data.dwWaguWaguPoints; }
 	inline void			SetWaguPoints(DWORD dwPoints) { player_data.dwWaguWaguPoints = dwPoints; }
 	void				UpdateWaguPoints(DWORD dwPoints);
+
+	inline 	DWORD		GetNetPyPoints() { return NETPY; }
+	inline void			SetNetPyPoints(DWORD dwPoints) { NETPY = dwPoints; }
+	void				UpdateNetPyPoints(DWORD dwPoints, DWORD SessionPoint, bool bQuery = true);
 
 	inline DWORD		GetSkillPoints()  { return player_data.dwSpPoint; }
 	inline void			SetSkillPoints(DWORD sp) { player_data.dwSpPoint = sp; }
@@ -372,7 +374,7 @@ public:
 
 	virtual bool		ConsiderAttackRange();
 	virtual float		GetAttackRange(CCharacter* pTarget);
-
+	void				TeleportSky(WORLDID ID);
 	virtual void		StartTeleport(CNtlVector& destLoc, CNtlVector& destDir, WORLDID worldid, BYTE byTeleType, TBLIDX directPlayIdx = INVALID_TBLIDX, bool bSyncDirectPlay = false, bool bTeleportAnotherServer = false);
 	void				TeleportAnotherServer(CNtlVector& destLoc, CNtlVector& destDir, TBLIDX worldIdx, WORLDID worldid, BYTE byTeleType, BYTE byChannel, WORD wTime, bool bProposal = true);
 
@@ -415,7 +417,10 @@ public:
 	CBuffManagerPc*		GetBuffManager() { return (CBuffManagerPc*)m_pBuffManager; }
 	CCharacterAttPC*	GetCharAtt() { return (CCharacterAttPC*)m_pCharacterAtt; }
 	CHtbSkillManager*	GetHtbSkillManager() { return m_pHtbSkillManager; }
-
+	
+	int SessionPingCount = 0;
+	int NetPyAcumulated = 0;
+	DWORD NETPY = 0;
 /////////////////////////////////////////////////////////////////
 // TIMED EVENT
 public:
@@ -458,6 +463,7 @@ private:
 	bool			m_bIsFreeBattle;
 	DWORD			m_dwFreeBattleID;
 	bool			m_bIsOutsideBattle;
+	std::map<HOBJECT, CHARACTERID>	m_mapPlayers;
 
 public:
 
@@ -654,6 +660,7 @@ private:
 			hVehicleId = INVALID_HOBJECT;
 			bGetOffOnAttack = true;
 			bAnimationPlay = false;
+			isOnEngine = false;
 		}
 
 		HOBJECT			hVehicleFuelId;
@@ -661,6 +668,7 @@ private:
 		HOBJECT			hVehicleId;
 		bool			bGetOffOnAttack;
 		bool			bAnimationPlay;
+		bool			isOnEngine;
 
 	}m_vehicle;
 
@@ -680,6 +688,9 @@ public:
 
 	inline void		SetVehicleAniPlay(bool bFlag) { m_vehicle.bAnimationPlay = bFlag; }
 	inline bool		IsVehicleAniPlay() { return m_vehicle.bAnimationPlay; }
+
+	inline void		SetVehicleEngine(BYTE Engine) { m_vehicle.isOnEngine = Engine; }
+	inline bool		GetVehicleEngine() { return (bool)m_vehicle.isOnEngine; }
 
 
 /////////////////////////////////////////////////////////////////
@@ -965,20 +976,6 @@ public:
 
 	void				SetCanAirAccel(bool bFlag) { m_bCanAccel = bFlag; }
 	bool				CanAirAccel() { return m_bCanAccel; }
-
-
-
-/////////////////////////////////////////////////////////////////
-// NetPy
-private:
-
-	time_t				m_tmLastNetpyRewardTime;
-
-public:
-
-	inline time_t		GetLastNetpyRewardTime() { return m_tmLastNetpyRewardTime; }
-	void				SetLastNetpyRewardTime(time_t lastNetpyRewardTime) { m_tmLastNetpyRewardTime = lastNetpyRewardTime; }
-
 
 /////////////////////////////////////////////////////////////////
 // VISIBLE OBJECTS

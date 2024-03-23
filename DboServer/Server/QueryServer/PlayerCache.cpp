@@ -507,6 +507,7 @@ void CPlayerCache::SendPcDataLoadRes()
 	memcpy(&res->sRankBattleScore, &m_sRankBattleScore, sizeof(sRANKBATTLE_SCORE_INFO));
 	memcpy(res->TitleIndexFlag, m_abyTitleIndexFlag, sizeof(m_abyTitleIndexFlag));
 	res->wWaguCoins = (WORD)m_pAccountCache->GetWaguCoin();
+	res->wEventCoins = (WORD)m_pAccountCache->GetEventCoin();
 
 	packet.SetPacketLen(sizeof(sQG_PC_DATA_LOAD_RES));
 	app->Send(GetSession(), &packet);
@@ -622,7 +623,7 @@ void CPlayerCache::SendItemLoadRes()
 		{
 			const sITEM_DATA* pItem = *it;
 
-			if (pItem->byPlace > CONTAINER_TYPE_INVEN_LAST) //dont load bank items.
+			if (pItem->byPlace > CONTAINER_TYPE_INVEN_LAST + 1) //dont load bank items. // +1 Scouter
 			{
 				if (res->byItemCount > 0)
 				{
@@ -637,14 +638,14 @@ void CPlayerCache::SendItemLoadRes()
 
 			res->wCurPacketCount++;
 
-			if (res->byItemCount == DBO_ITEM_IN_BAG_COUNT_PER_PACKET || res->wCurPacketCount == res->wTotalCount)
+			if (res->byItemCount == DBO_ITEM_MAX_FOR_QUERY_PACKET || res->wCurPacketCount == res->wTotalCount)
 			{
 				res->wTotalPacketCount++;
 
 				packet.SetPacketLen(sizeof(sQG_PC_ITEM_LOAD_RES));
 				app->Send(GetSession(), &packet);
 
-				::ZeroMemory(res->asItemData, sizeof(sITEM_DATA) * DBO_ITEM_IN_BAG_COUNT_PER_PACKET);
+				::ZeroMemory(res->asItemData, sizeof(sITEM_DATA) * DBO_ITEM_MAX_FOR_QUERY_PACKET);
 				res->byItemCount = 0;
 			}
 		}
@@ -937,8 +938,7 @@ void CPlayerCache::OnLoadPcData(QueryResultVector & results)
 		m_sPcData.sMixData.byLevel = f[44].GetBYTE();
 		m_sPcData.sMixData.dwExp = f[45].GetDWORD();
 
-		m_sPcData.dwNetPy = f[49].GetDWORD();
-
+		m_sPcData.NetPyPoit = f[49].GetDWORD();
 		m_sPcData.dwWaguWaguPoints = f[50].GetDWORD();
 
 		m_sPcData.byRankBattleRemainCount = 0;
@@ -1534,12 +1534,10 @@ void CPlayerCache::SetMudusaPoints(DWORD dwPoints)
 	m_sPcData.dwMudosaPoint = dwPoints;
 }
 
-
-void CPlayerCache::SetNetPy(DWORD dwNetPy)
+void CPlayerCache::SetNetPyPoints(DWORD dwPoints)
 {
-	m_sPcData.dwNetPy = dwNetPy;
+	m_sPcData.NetPyPoit = dwPoints;
 }
-
 
 void CPlayerCache::StoreRunTimeData(DWORD dwExp, TBLIDX worldIdx, WORLDID worldId, sVECTOR3 & rLoc, sVECTOR3 & rDir)
 {
@@ -2812,14 +2810,14 @@ void CPlayerCacheManager::Init()
 
 void CPlayerCacheManager::Destroy()
 {
-	for (auto it = m_mapAccounts.begin(); it != m_mapAccounts.end(); )
+	for (boost::unordered_map<ACCOUNTID, CAccountCache*>::iterator it = m_mapAccounts.begin(); it != m_mapAccounts.end(); )
 	{
 		delete it->second;
 
 		it = m_mapAccounts.erase(it);
 	}
 
-	for (auto it = m_mapCharacters.begin(); it != m_mapCharacters.end(); )
+	for (boost::unordered_map<CHARACTERID, CPlayerCache*>::iterator it = m_mapCharacters.begin(); it != m_mapCharacters.end(); )
 	{
 		delete it->second;
 
@@ -2829,7 +2827,7 @@ void CPlayerCacheManager::Destroy()
 
 CAccountCache * CPlayerCacheManager::GetAccount(ACCOUNTID accountID)
 {
-	auto it = m_mapAccounts.find(accountID);
+	boost::unordered_map<ACCOUNTID, CAccountCache*>::iterator it = m_mapAccounts.find(accountID);
 	if (it != m_mapAccounts.end())
 	{
 		return it->second;
@@ -2840,7 +2838,7 @@ CAccountCache * CPlayerCacheManager::GetAccount(ACCOUNTID accountID)
 
 CPlayerCache * CPlayerCacheManager::GetCharacter(CHARACTERID charID)
 {
-	auto it = m_mapCharacters.find(charID);
+	boost::unordered_map<CHARACTERID, CPlayerCache*>::iterator it = m_mapCharacters.find(charID);
 	if (it != m_mapCharacters.end())
 	{
 		return it->second;

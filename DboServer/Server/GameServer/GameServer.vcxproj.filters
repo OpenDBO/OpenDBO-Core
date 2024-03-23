@@ -610,6 +610,9 @@
     <Filter Include="BUS SYSTEM">
       <UniqueIdentifier>{bbe5dce7-73d1-43c1-96cd-e7eb2151c11f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="In-Game Event System\Fairy Event">
+      <UniqueIdentifier>{91757e60-54fe-4dde-9a8d-4b7e90f8b608}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClientSession.cpp">
@@ -2594,6 +2597,9 @@
     </ClCompile>
     <ClCompile Include="HoneyBeeEvent.cpp">
       <Filter>In-Game Event System\HoneyBee</Filter>
+    </ClCompile>
+    <ClCompile Include="Fairy Event.cpp">
+      <Filter>In-Game Event System\Fairy Event</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -4624,6 +4630,9 @@
     </ClInclude>
     <ClInclude Include="HoneyBeeEvent.h">
       <Filter>In-Game Event System\HoneyBee</Filter>
+    </ClInclude>
+    <ClInclude Include="Fairy Event.h">
+      <Filter>In-Game Event System\Fairy Event</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

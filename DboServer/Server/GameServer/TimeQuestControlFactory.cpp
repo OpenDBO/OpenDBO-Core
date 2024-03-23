@@ -2,7 +2,7 @@
 #include "TimeQuestControlFactory.h"
 #include "ScriptAlgoDefine.h"
 
-#include <unordered_map>
+#include <boost/unordered_map.hpp>
 
 
 #include "TqsAlgoAction_AddMob.h"
@@ -37,7 +37,7 @@
 #include "TqsAlgoCondition_RecvTsEvent.h"
 
 
-std::unordered_map<int, CControlState*(*)(CTqsAlgoObject* pOwner)> s_controlStateMap_tqs;
+boost::unordered_map<int, CControlState*(*)(CTqsAlgoObject* pOwner)> s_controlStateMap_tqs;
 bool _bInitailize_tqs = false;
 
 

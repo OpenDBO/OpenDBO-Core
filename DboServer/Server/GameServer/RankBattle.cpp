@@ -581,11 +581,13 @@ void CRankbattleBattle::SendTeamInfo()
 			}
 			else
 			{
+				printf("Character id does not match %u != %u \n", pPlayer->GetCharID(), it->second);
 				ERR_LOG(LOG_RANKBATTLE, "Character id does not match %u != %u", pPlayer->GetCharID(), it->second);
 			}
 		}
 		else
 		{
+			printf("Cant send team info from player %u because he is offline \n");
 			ERR_LOG(LOG_RANKBATTLE, "Cant send team info from player %u because he is offline", it->second);
 		}
 	}
@@ -847,7 +849,7 @@ void CRankbattleBattle::CheckArena()
 					continue;
 
 				pRankData->eState = RANKBATTLE_MEMBER_STATE_OUTOFAREA;
-
+				pPlayer->GetBuffManager()->RemoveAllBuff();
 				CNtlPacket packet(sizeof(sGU_RANKBATTLE_BATTLE_PLAYER_STATE_NFY));
 				sGU_RANKBATTLE_BATTLE_PLAYER_STATE_NFY * res = (sGU_RANKBATTLE_BATTLE_PLAYER_STATE_NFY *)packet.GetPacketData();
 				res->wOpCode = GU_RANKBATTLE_BATTLE_PLAYER_STATE_NFY;
@@ -1491,7 +1493,7 @@ void CRankbattleRoom::LeaveQueue(CPlayer * pPlayer)
 {
 	if (GetBattleMode() == RANKBATTLE_MODE_INDIVIDUAL)
 	{
-		auto it = m_mapSoloQueue.find(pPlayer->GetID());
+		boost::unordered_map<HOBJECT, CHARACTERID>::iterator it = m_mapSoloQueue.find(pPlayer->GetID());
 		if(it != m_mapSoloQueue.end())
 		{
 			if (pPlayer->GetCharID() == it->second)
@@ -1509,7 +1511,7 @@ void CRankbattleRoom::LeaveQueue(CPlayer * pPlayer)
 	}
 	else
 	{
-		for (auto it = m_mapPartyQueue.begin(); it != m_mapPartyQueue.end(); it++)
+		for (boost::unordered_map<HOBJECT, CParty*>::iterator it = m_mapPartyQueue.begin(); it != m_mapPartyQueue.end(); it++)
 		{
 			CParty* pParty = it->second;
 
@@ -1529,7 +1531,7 @@ void CRankbattleRoom::LeaveQueue(CPlayer * pPlayer)
 
 void CRankbattleRoom::LeaveQueue(PARTYID partyId)
 {
-	for (auto it = m_mapPartyQueue.begin(); it != m_mapPartyQueue.end(); it++)
+	for (boost::unordered_map<HOBJECT, CParty*>::iterator it = m_mapPartyQueue.begin(); it != m_mapPartyQueue.end(); it++)
 	{
 		CParty* pParty = it->second;
 		if (partyId == pParty->GetPartyID())
@@ -1554,11 +1556,11 @@ void CRankbattleRoom::UpdateMatchmakingQueue()
 			return;
 
 		std::vector<sRANK_SOLO> vecTemp;
-		std::unordered_map<HOBJECT, CHARACTERID> vecTmpQueue(m_mapSoloQueue);
+		boost::unordered_map<HOBJECT, CHARACTERID> vecTmpQueue(m_mapSoloQueue);
 
 		bool bFound = false;
 
-		for (auto fit = vecTmpQueue.begin(); fit != vecTmpQueue.end(); )
+		for (boost::unordered_map<HOBJECT, CHARACTERID>::iterator fit = vecTmpQueue.begin(); fit != vecTmpQueue.end(); )
 		{
 			bFound = false;
 
@@ -1568,7 +1570,7 @@ void CRankbattleRoom::UpdateMatchmakingQueue()
 				sRANK_SOLO rank;
 				rank.pOwner = pFirst;
 
-				for (auto sit = m_mapSoloQueue.begin(); sit != m_mapSoloQueue.end(); sit++) //find a matching partner
+				for (boost::unordered_map<HOBJECT, CHARACTERID>::iterator sit = m_mapSoloQueue.begin(); sit != m_mapSoloQueue.end(); sit++) //find a matching partner
 				{
 					CPlayer* pSecond = g_pObjectManager->GetPC(sit->first);
 					if (pSecond && pSecond->IsInitialized() && pSecond->GetCharID() == sit->second)
@@ -1641,9 +1643,9 @@ void CRankbattleRoom::UpdateMatchmakingQueue()
 		bool bFound = false;
 
 		std::vector<sRANK_PARTY> vecTemp;
-		std::unordered_map<HOBJECT, CParty*> vecTmpQueue(m_mapPartyQueue);
+		boost::unordered_map<HOBJECT, CParty*> vecTmpQueue(m_mapPartyQueue);
 
-		for (auto fit = vecTmpQueue.begin(); fit != vecTmpQueue.end(); )
+		for (boost::unordered_map<HOBJECT, CParty*>::iterator fit = vecTmpQueue.begin(); fit != vecTmpQueue.end(); )
 		{
 			bFound = false;
 
@@ -1655,7 +1657,7 @@ void CRankbattleRoom::UpdateMatchmakingQueue()
 				sRANK_PARTY rank;
 				rank.pOwner = pFirst;
 
-				for (auto sit = m_mapPartyQueue.begin(); sit != m_mapPartyQueue.end(); sit++) //find matching partner
+				for (boost::unordered_map<HOBJECT, CParty*>::iterator sit = m_mapPartyQueue.begin(); sit != m_mapPartyQueue.end(); sit++) //find matching partner
 				{
 					CParty* pSecond = sit->second;
 					if (pSecond && pFirst->GetPartyID() != pSecond->GetPartyID() && pSecond->GetPartyLeaderID() == sit->first && pSecond->GetPartyMemberCount() >= 2)
@@ -1847,19 +1849,20 @@ void CRankbattle::LoadRankBattleInfo(CPlayer* pPlayer, BYTE byBattleMode)
 	sGU_RANKBATTLE_INFO_RES * res = (sGU_RANKBATTLE_INFO_RES *)packet.GetPacketData();
 	res->wOpCode = GU_RANKBATTLE_INFO_RES;
 	res->wResultCode =	GAME_SUCCESS;
-	res->byBattleMode = byBattleMode;
+	//res->byBattleMode = byBattleMode;
 	res->dwRemainTime = m_dwMatchMakingCycle / 1000;
 
 	for(std::map<ROOMID, CRankbattleRoom*>::iterator it = m_mapRankBattleRoom.begin(); it != m_mapRankBattleRoom.end(); it++)
 	{
 		CRankbattleRoom* room = it->second;
-
-		if (room->GetBattleMode() == byBattleMode)
+		
+		if (room->GetBattleMode() == byBattleMode && room->GetRuleType() == eGAMERULE_TYPE::GAMERULE_RANKBATTLE)
 		{
+			//printf("room->GetTblidx() %d \n", room->GetTblidx());
 			res->asArenaInfo[i].rankBattleTblidx = room->GetTblidx();
 			res->asArenaInfo[i].wRegisterCount = room->GetRegisterCount();
 			i++;
-			break;
+			//break;
 		}
 	}
 
@@ -1892,8 +1895,8 @@ void CRankbattle::JoinRoom(CPlayer * pPlayer, TBLIDX roomTblidx, HOBJECT hBoardO
 			{
 				if (pPlayer->GetRankBattleRoomTblidx() != INVALID_TBLIDX)
 					wResultcode = GAME_RANKBATTLE_MEMBER_ALREADY_JOINED_RANKBATTLE;
-				else if (app->GetGsChannel() != 0)
-					wResultcode = GAME_FAIL;
+				/*else if (app->GetGsChannel() != 0)
+					wResultcode = GAME_FAIL;*/
 				else if (pPlayer->GetRankBattleRoomId() != INVALID_ROOMID)
 					wResultcode = GAME_ROOM_ENTER_FAIL;
 				else if (pPlayer->GetLevel() < pRoom->GetRequiredMinLevel())
@@ -1907,8 +1910,8 @@ void CRankbattle::JoinRoom(CPlayer * pPlayer, TBLIDX roomTblidx, HOBJECT hBoardO
 			{
 				if (pPlayer->GetParty() == NULL)
 					wResultcode = GAME_COMMON_YOU_ARE_NOT_IN_A_PARTY;
-				else if (app->GetGsChannel() != 0)
-					wResultcode = GAME_FAIL;
+				/*else if (app->GetGsChannel() != 0)
+					wResultcode = GAME_FAIL;*/
 				else if (pPlayer->GetParty()->GetPartyLeaderID() != pPlayer->GetID())
 					wResultcode = GAME_PARTY_ONLY_ALLOWED_TO_PARTY_LEADER;
 				else if (pPlayer->GetParty()->GetMemberCanEnterRankbattleQueueCount(pRoom->GetRequiredMinLevel(), pRoom->GetRequiredMaxLevel()) < 2)
@@ -1954,13 +1957,13 @@ void CRankbattle::JoinRoom(CPlayer * pPlayer, TBLIDX roomTblidx, HOBJECT hBoardO
 	{
 		CRankbattleRoom* pRoom = it->second;
 
-		if (pRoom->GetBattleMode() == byBattleMode)
+		if (pRoom->GetBattleMode() == byBattleMode && pRoom->GetRuleType() == eGAMERULE_TYPE::GAMERULE_RANKBATTLE)
 		{
 			res->asArenaInfo[i].rankBattleTblidx = pRoom->GetTblidx();
 			res->asArenaInfo[i].wRegisterCount = pRoom->GetRegisterCount();
 			i++;
 
-			break; //only show 1 for now..
+			//break; //only show 1 for now..
 		}
 	}
 	

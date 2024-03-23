@@ -3,9 +3,10 @@
 
 
 #include "NtlSingleton.h"
+#include "NtlPacketGT.h"
 #include "EventableObject.h"
 
-struct sGT_TENKAICHIDAISIJYOU_LIST_REQ;
+#include <boost/unordered_map.hpp>
 
 class CAutionhouse : public EventableObject, public CNtlSingleton<CAutionhouse>
 {
@@ -39,7 +40,8 @@ public:
 
 private:
 
-	std::unordered_map<ITEMID, sTENKAICHIDAISIJYOU_DATA*>	m_mapAuctionhouse;
+	typedef boost::unordered_map<ITEMID, sTENKAICHIDAISIJYOU_DATA*>	TMapAuctionHouse;
+	TMapAuctionHouse	m_mapAuctionhouse;
 
 };
 

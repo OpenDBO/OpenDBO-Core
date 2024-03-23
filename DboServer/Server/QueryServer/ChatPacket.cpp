@@ -1045,7 +1045,7 @@ void CChatServerSession::RecvAuctionHouseSellCancelReq(CNtlPacket * pPacket, CQu
 			GetLocalTime(&ti);
 
 			//enter email to database
-			GetCharDB.Execute("INSERT INTO mail (CharID, SenderType, MailType, TextSize, Text, itemId, FromName, CreateTime, EndTime, RemainDay,year,month,day,hour,minute,second) VALUES (%u,%u,%u,%u,\"%ls\",%I64u,'[DBOG]System',%I64u,%I64u,%u,%u,%u,%u,%u,%u,%u)",
+			GetCharDB.Execute("INSERT INTO mail (CharID, SenderType, MailType, TextSize, Text, itemId, FromName, CreateTime, EndTime, RemainDay,year,month,day,hour,minute,second) VALUES (%u,%u,%u,%u,\"%ls\",%I64u,'[DBOR]System',%I64u,%I64u,%u,%u,%u,%u,%u,%u,%u)",
 				req->charId, eMAIL_SENDER_TYPE_SYSTEM, eMAIL_TYPE_ITEM, mailtextsize, req->wchText, pData->itemId, createtime, endtime, 10, ti.wYear, ti.wMonth, ti.wDay, ti.wHour, ti.wMinute, ti.wSecond);
 
 			//delete & remove from AH & DB
@@ -1094,11 +1094,11 @@ void CChatServerSession::RecvAuctionHouseBuyReq(CNtlPacket * pPacket, CQueryServ
 				int sellTextSize = (int)wcslen(req->wchSellText);
 
 				//enter email to database <buyer>
-				GetCharDB.Execute("INSERT INTO mail (CharID, SenderType, MailType, TextSize, Text, itemId, FromName, CreateTime, EndTime, RemainDay,year,month,day,hour,minute,second) VALUES (%u,%u,%u,%u,\"%ls\",%I64u,'[DBOG]System',%I64u,%I64u,%u,%u,%u,%u,%u,%u,%u)",
+				GetCharDB.Execute("INSERT INTO mail (CharID, SenderType, MailType, TextSize, Text, itemId, FromName, CreateTime, EndTime, RemainDay,year,month,day,hour,minute,second) VALUES (%u,%u,%u,%u,\"%ls\",%I64u,'[DBOR]System',%I64u,%I64u,%u,%u,%u,%u,%u,%u,%u)",
 					req->charId, eMAIL_SENDER_TYPE_SYSTEM, eMAIL_TYPE_ITEM, buyTextSize, req->wchBuyText, pData->itemId, createtime, endtime, 10, ti.wYear, ti.wMonth, ti.wDay, ti.wHour, ti.wMinute, ti.wSecond);
 
 				//enter email to database <seller>
-				GetCharDB.Execute("INSERT INTO mail (CharID, SenderType, MailType, TextSize, Text, Zenny, FromName, CreateTime, EndTime, RemainDay,year,month,day,hour,minute,second) VALUES (%u,%u,%u,%u,\"%ls\",%u,'[DBOG]System',%I64u,%I64u,%u,%u,%u,%u,%u,%u,%u)",
+				GetCharDB.Execute("INSERT INTO mail (CharID, SenderType, MailType, TextSize, Text, Zenny, FromName, CreateTime, EndTime, RemainDay,year,month,day,hour,minute,second) VALUES (%u,%u,%u,%u,\"%ls\",%u,'[DBOR]System',%I64u,%I64u,%u,%u,%u,%u,%u,%u,%u)",
 					req->sellcharId, eMAIL_SENDER_TYPE_SYSTEM, eMAIL_TYPE_ZENNY, sellTextSize, req->wchSellText, req->dwMoney, createtime, endtime, 10, ti.wYear, ti.wMonth, ti.wDay, ti.wHour, ti.wMinute, ti.wSecond);
 
 				//delete & remove from AH & DB
@@ -1125,6 +1125,7 @@ void CChatServerSession::RecvAuctionHouseBuyReq(CNtlPacket * pPacket, CQueryServ
 void CChatServerSession::RecvAuctionHouseServerDataReq(CNtlPacket * pPacket, CQueryServer * app)
 {
 	sTQ_TENKAICHIDAISIJYOU_SERVERDATA_REQ * req = (sTQ_TENKAICHIDAISIJYOU_SERVERDATA_REQ*)pPacket->GetPacketData();
+
 	UNREFERENCED_PARAMETER(req);
 
 	int nCount = 0;
@@ -1136,7 +1137,7 @@ void CChatServerSession::RecvAuctionHouseServerDataReq(CNtlPacket * pPacket, CQu
 	res->byCurPacketCount = 0;
 	res->bEndList = false;
 
-	for (auto it = g_pAH->GetBegin(); it != g_pAH->GetEnd(); it++)
+	for (CAutionhouse::TMapAuctionHouse::iterator it = g_pAH->GetBegin(); it != g_pAH->GetEnd(); it++)
 	{
 		nCount++;
 		memcpy(&res->sData[res->byCurPacketCount++], it->second, sizeof(sTENKAICHIDAISIJYOU_DATA));
@@ -1183,7 +1184,7 @@ void CChatServerSession::RecvAuctionHousePeriodEndReq(CNtlPacket * pPacket, CQue
 		GetLocalTime(&ti);
 
 		//enter email to database
-		GetCharDB.Execute("INSERT INTO mail (CharID, SenderType, MailType, TextSize, Text, itemId, FromName, CreateTime, EndTime, RemainDay,year,month,day,hour,minute,second) VALUES (%u,%u,%u,%u,\"%ls\",%I64u,'[DBOG]System',%I64u,%I64u,%u,%u,%u,%u,%u,%u,%u)",
+		GetCharDB.Execute("INSERT INTO mail (CharID, SenderType, MailType, TextSize, Text, itemId, FromName, CreateTime, EndTime, RemainDay,year,month,day,hour,minute,second) VALUES (%u,%u,%u,%u,\"%ls\",%I64u,'[DBOR]System',%I64u,%I64u,%u,%u,%u,%u,%u,%u,%u)",
 			pData->charId, eMAIL_SENDER_TYPE_SYSTEM, eMAIL_TYPE_ITEM, (int)wcslen(req->wchText), req->wchText, pData->itemId, createtime, endtime, 10, ti.wYear, ti.wMonth, ti.wDay, ti.wHour, ti.wMinute, ti.wSecond);
 
 
@@ -1266,46 +1267,90 @@ void CChatServerSession::RecvHlsSlotMachineExtractReq(CNtlPacket * pPacket, CQue
 	{
 		CPlayerCache* pCharCache = g_pPlayerCache->GetCharacter(req->charId);
 		if (pCharCache)
-		{
-			if (pCache->GetWaguCoin() >= (DWORD)req->wCoin)
+		{			
+			if (req->byHlsMachineType == 1)
 			{
-				SYSTEMTIME ti;
-				GetLocalTime(&ti);
-
-				for (BYTE i = 0; i < req->byExtractCount; i++)
+				if (pCache->GetEventCoin() >= (DWORD)req->wCoin)
 				{
-					res->ItemTblidx[i] = req->aItemTblidx[i];
-					res->byStackCount[i] = req->abyStackCount[i];
-					res->bySetCount[i] = req->abySetCount[i];
-					res->byRanking[i] = req->byRanking[i];
+					SYSTEMTIME ti;
+					GetLocalTime(&ti);
 
-					res->aProductId[i] = g_pCashshopManager->AcquireProductId();
+					for (BYTE i = 0; i < req->byExtractCount; i++)
+					{
+						res->ItemTblidx[i] = req->aItemTblidx[i];
+						res->byStackCount[i] = req->abyStackCount[i];
+						res->bySetCount[i] = req->abySetCount[i];
+						res->byRanking[i] = req->byRanking[i];
 
-					//create & add item to cache
-					sCASHITEM_BRIEF* pBrief = new sCASHITEM_BRIEF;
-					pBrief->byStackCount = req->abyStackCount[i];
-					pBrief->HLSitemTblidx = req->aItemTblidx[i];
-					pBrief->qwProductId = res->aProductId[i];
-					pBrief->tRegTime.day = (BYTE)ti.wDay;
-					pBrief->tRegTime.hour = (BYTE)ti.wHour;
-					pBrief->tRegTime.minute = (BYTE)ti.wMinute;
-					pBrief->tRegTime.month = (BYTE)ti.wMonth;
-					pBrief->tRegTime.second = (BYTE)ti.wSecond;
-					pBrief->tRegTime.year = ti.wYear;
-					pCache->InsertCashItem(pBrief);
+						res->aProductId[i] = g_pCashshopManager->AcquireProductId();
 
-					GetAccDB.Execute("INSERT INTO cashshop_storage (ProductId,AccountID,HLSitemTblidx,StackCount,year,month,day,hour,minute,second,millisecond,Buyer,price)VALUES(%I64u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u)",
-						res->aProductId[i], req->accountId, pBrief->HLSitemTblidx, pBrief->byStackCount, ti.wYear, ti.wMonth, ti.wDay, ti.wHour, ti.wMinute, ti.wSecond, ti.wMilliseconds, req->accountId, 1);
+						//create & add item to cache
+						sCASHITEM_BRIEF* pBrief = new sCASHITEM_BRIEF;
+						pBrief->byStackCount = req->abyStackCount[i];
+						pBrief->HLSitemTblidx = req->aItemTblidx[i];
+						pBrief->qwProductId = res->aProductId[i];
+						pBrief->tRegTime.day = (BYTE)ti.wDay;
+						pBrief->tRegTime.hour = (BYTE)ti.wHour;
+						pBrief->tRegTime.minute = (BYTE)ti.wMinute;
+						pBrief->tRegTime.month = (BYTE)ti.wMonth;
+						pBrief->tRegTime.second = (BYTE)ti.wSecond;
+						pBrief->tRegTime.year = ti.wYear;
+						pCache->InsertCashItem(pBrief);
+
+						GetAccDB.Execute("INSERT INTO cashshop_storage (ProductId,AccountID,HLSitemTblidx,StackCount,year,month,day,hour,minute,second,millisecond,Buyer,price)VALUES(%I64u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u)",
+							res->aProductId[i], req->accountId, pBrief->HLSitemTblidx, pBrief->byStackCount, ti.wYear, ti.wMonth, ti.wDay, ti.wHour, ti.wMinute, ti.wSecond, ti.wMilliseconds, req->accountId, 1);
+					}
+
+					GetLogDB.Execute("INSERT INTO slot_machine_log (accountid,charid,extractCount,type,coin,currentPoints,newPoints,ProductId1,ProductId2,ProductId3,ProductId4,ProductId5,ProductId6,ProductId7,ProductId8,ProductId9,ProductId10)VALUES(%u,%u,%u,%u,%u,%u,%u,%I64u,%I64u,%I64u,%I64u,%I64u,%I64u,%I64u,%I64u,%I64u,%I64u)",
+						req->accountId, req->charId, req->byExtractCount, req->byHlsMachineType, req->wCoin, pCache->GetEventCoin(), pCache->GetEventCoin() - (DWORD)req->wCoin, res->aProductId[0], res->aProductId[1], res->aProductId[2], res->aProductId[3], res->aProductId[4], res->aProductId[5], res->aProductId[6], res->aProductId[7], res->aProductId[8], res->aProductId[9]);
+
+					pCache->SetEventCoin(pCache->GetEventCoin() - (DWORD)req->wCoin);
+					GetAccDB.WaitExecute("UPDATE accounts SET EventCoins=%u WHERE AccountID=%u", pCache->GetEventCoin(), req->accountId); //if player bought cash and did not update his cash in game.. This is why we do like this
+
 				}
+			}			
+			else
+			{
+				if (pCache->GetWaguCoin() >= (DWORD)req->wCoin)
+				{
+					SYSTEMTIME ti;
+					GetLocalTime(&ti);
 
-				GetLogDB.Execute("INSERT INTO slot_machine_log (accountid,charid,extractCount,type,coin,currentPoints,newPoints,ProductId1,ProductId2,ProductId3,ProductId4,ProductId5,ProductId6,ProductId7,ProductId8,ProductId9,ProductId10)VALUES(%u,%u,%u,%u,%u,%u,%u,%I64u,%I64u,%I64u,%I64u,%I64u,%I64u,%I64u,%I64u,%I64u,%I64u)",
-					req->accountId, req->charId, req->byExtractCount, req->byHlsMachineType, req->wCoin, pCache->GetWaguCoin(), pCache->GetWaguCoin() - (DWORD)req->wCoin, res->aProductId[0], res->aProductId[1], res->aProductId[2], res->aProductId[3], res->aProductId[4], res->aProductId[5], res->aProductId[6], res->aProductId[7], res->aProductId[8], res->aProductId[9]);
+					for (BYTE i = 0; i < req->byExtractCount; i++)
+					{
+						res->ItemTblidx[i] = req->aItemTblidx[i];
+						res->byStackCount[i] = req->abyStackCount[i];
+						res->bySetCount[i] = req->abySetCount[i];
+						res->byRanking[i] = req->byRanking[i];
 
-				pCache->SetWaguCoin(pCache->GetWaguCoin() - (DWORD)req->wCoin);
-				GetAccDB.WaitExecute("UPDATE accounts SET WaguCoins=%u WHERE AccountID=%u", pCache->GetWaguCoin(), req->accountId); //if player bought cash and did not update his cash in game.. This is why we do like this
-				
+						res->aProductId[i] = g_pCashshopManager->AcquireProductId();
+
+						//create & add item to cache
+						sCASHITEM_BRIEF* pBrief = new sCASHITEM_BRIEF;
+						pBrief->byStackCount = req->abyStackCount[i];
+						pBrief->HLSitemTblidx = req->aItemTblidx[i];
+						pBrief->qwProductId = res->aProductId[i];
+						pBrief->tRegTime.day = (BYTE)ti.wDay;
+						pBrief->tRegTime.hour = (BYTE)ti.wHour;
+						pBrief->tRegTime.minute = (BYTE)ti.wMinute;
+						pBrief->tRegTime.month = (BYTE)ti.wMonth;
+						pBrief->tRegTime.second = (BYTE)ti.wSecond;
+						pBrief->tRegTime.year = ti.wYear;
+						pCache->InsertCashItem(pBrief);
+
+						GetAccDB.Execute("INSERT INTO cashshop_storage (ProductId,AccountID,HLSitemTblidx,StackCount,year,month,day,hour,minute,second,millisecond,Buyer,price)VALUES(%I64u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u,%u)",
+							res->aProductId[i], req->accountId, pBrief->HLSitemTblidx, pBrief->byStackCount, ti.wYear, ti.wMonth, ti.wDay, ti.wHour, ti.wMinute, ti.wSecond, ti.wMilliseconds, req->accountId, 1);
+					}
+
+					GetLogDB.Execute("INSERT INTO slot_machine_log (accountid,charid,extractCount,type,coin,currentPoints,newPoints,ProductId1,ProductId2,ProductId3,ProductId4,ProductId5,ProductId6,ProductId7,ProductId8,ProductId9,ProductId10)VALUES(%u,%u,%u,%u,%u,%u,%u,%I64u,%I64u,%I64u,%I64u,%I64u,%I64u,%I64u,%I64u,%I64u,%I64u)",
+						req->accountId, req->charId, req->byExtractCount, req->byHlsMachineType, req->wCoin, pCache->GetWaguCoin(), pCache->GetWaguCoin() - (DWORD)req->wCoin, res->aProductId[0], res->aProductId[1], res->aProductId[2], res->aProductId[3], res->aProductId[4], res->aProductId[5], res->aProductId[6], res->aProductId[7], res->aProductId[8], res->aProductId[9]);
+
+					pCache->SetWaguCoin(pCache->GetWaguCoin() - (DWORD)req->wCoin);
+					GetAccDB.WaitExecute("UPDATE accounts SET WaguCoins=%u WHERE AccountID=%u", pCache->GetWaguCoin(), req->accountId); //if player bought cash and did not update his cash in game.. This is why we do like this
+
+				}				
 			}
-			else res->wResultCode = QUERY_FAIL;
+
 		}
 		else res->wResultCode = QUERY_FAIL;
 	}

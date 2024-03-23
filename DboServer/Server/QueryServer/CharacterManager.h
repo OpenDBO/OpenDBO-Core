@@ -19,7 +19,7 @@ private:
 
 public:
 
-	void						CreateCharacter(ACCOUNTID accountId, sPC_SUMMARY& sSum, SERVERFARMID serverFarmId);
+	void						CreateCharacter(ACCOUNTID accountId, sPC_SUMMARY& sSum, SERVERFARMID serverFarmId,bool IsGM);
 
 	CHARACTERID					AcquireCharID() { return ++m_uiLastCharacterId; }
 

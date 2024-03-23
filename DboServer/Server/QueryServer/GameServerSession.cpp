@@ -4,7 +4,7 @@
 #include "NtlPacketGQ.h"
 #include "NtlPacketQG.h"
 #include "BudokaiManager.h"
-
+#include "NtlPacketUtil.h"
 
 int CGameServerSession::OnAccept()
 {
@@ -50,6 +50,9 @@ int CGameServerSession::OnDispatch(CNtlPacket * pPacket)
 	sNTLPACKETHEADER * pHeader = (sNTLPACKETHEADER *)pPacket->GetPacketData();
 
 	//ERR_LOG(LOG_GENERAL, "Receive packet %u", pHeader->wOpCode);
+	//if (pHeader->wOpCode > 1)// && cPlayer && cPlayer->IsGameMaster()) 
+		//NTL_PRINT(PRINT_APP, "%u | received opcode %u [%s]", GetHandle(), pHeader->wOpCode, NtlGetPacketName(pHeader->wOpCode));
+	
 
 	this->ResetAliveTime();
 

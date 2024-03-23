@@ -248,12 +248,13 @@ int main(int argc, _TCHAR* argv[])
 	GetLocalTime( &ti );
 
 	// CHECK INI FILE AND START PROGRAM
-	int rc = app.Create(argc, argv, argv[1]);
+	//int rc = app.Create(argc, argv, argv[1]);
+	int rc = app.Create(argc, argv, ".\\config\\CharServer.ini");
 	if (NTL_SUCCESS != rc)
 		return rc;
 
 	CNtlString consolename;
-	consolename.Format("DBOG Character Server - Server Index %u", app.GetServerIndex());
+	consolename.Format("DBO Reborn Character Server - Server Index %u", app.GetServerIndex());
 	SetConsoleTitle(consolename.c_str());
 
 

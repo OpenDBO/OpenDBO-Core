@@ -391,7 +391,10 @@ void CSkill::CastSkill(HOBJECT hAppointTargetHandle, BYTE byApplyTargetCount, HO
 							bCantargetGetKnockedDown = false;
 						}
 					}
-
+					if (bCantargetGetKnockedDown && (BIT_FLAG_TEST(m_pSkillDataRef->dwFunction_Bit_Flag, MAKE_BIT_FLAG(SKILL_FUNCTION_FORCED_KNOCKDOWN))))
+					{
+						printf("Forced Knockdown Bug Skill ID %d \n", m_pSkillDataRef->tblidx);
+					}
 					if (bCantargetGetKnockedDown && (BIT_FLAG_TEST(m_pSkillDataRef->dwFunction_Bit_Flag, MAKE_BIT_FLAG(SKILL_FUNCTION_FORCED_KNOCKDOWN)) || m_byUseRpBonusType == DBO_RP_BONUS_TYPE_KNOCKDOWN))
 					{
 						if (pTarget->GetCharStateID() == CHARSTATE_GUARD)
@@ -404,9 +407,15 @@ void CSkill::CastSkill(HOBJECT hAppointTargetHandle, BYTE byApplyTargetCount, HO
 								goto RESULT2;
 							}
 						}
-
-						if (pTarget->GetStateManager()->IsCharCondition(CHARCOND_NULLIFIED_DAMAGE) == false)
-							res->aSkillResult[i].byAttackResult = BATTLE_ATTACK_RESULT_KNOCKDOWN;
+						if (m_pSkillDataRef->tblidx == 2438 || m_pSkillDataRef->tblidx == 2086)
+						{
+							printf("Forced Knockdown HardCode Fix SkillID %d \n", m_pSkillDataRef->tblidx);
+						}
+						else
+						{
+							if (pTarget->GetStateManager()->IsCharCondition(CHARCOND_NULLIFIED_DAMAGE) == false)
+								res->aSkillResult[i].byAttackResult = BATTLE_ATTACK_RESULT_KNOCKDOWN;
+						}
 					}
 					else if (m_byUseRpBonusType == DBO_RP_BONUS_TYPE_GUARD_CRASH) //check if using guard crash rp effect
 					{
@@ -665,7 +674,7 @@ void CSkill::CastSkill(HOBJECT hAppointTargetHandle, BYTE byApplyTargetCount, HO
 								}
 
 								fDOTDMG = (fDOTDMG * (float)m_pSkillDataRef->aSkill_Effect_Value[e] / 100.f) + fAttBonus;
-
+								fDOTDMG /= 2;
 								//crit
 								//check if crit success and add damage
 								if (res->aSkillResult[i].byAttackResult == BATTLE_ATTACK_RESULT_CRITICAL_HIT)
@@ -1333,7 +1342,7 @@ void CSkill::CastSkill(HOBJECT hAppointTargetHandle, BYTE byApplyTargetCount, HO
 							{
 								pTarget->SetCurLoc(m_vFinalSubjectLoc);
 							}
-
+							//dwKeepTime = 1000;
 							pTarget->GetCurLoc().CopyTo(res->aSkillResult[i].vFinalSubjectLoc);
 						}
 						break;
@@ -1478,6 +1487,7 @@ void CSkill::CastSkill(HOBJECT hAppointTargetHandle, BYTE byApplyTargetCount, HO
 
 						case ACTIVE_STUN:
 						{
+							m_pOwnerRef->SendCharStateStanding(true);
 							if (Dbo_CheckProbabilityF(pTarget->GetCharAtt()->GetBodyCurseImmunity()))
 							{
 								res->aSkillResult[i].byAttackResult = BATTLE_ATTACK_RESULT_IMMUNE;
@@ -1772,7 +1782,7 @@ void CSkill::CastSkill(HOBJECT hAppointTargetHandle, BYTE byApplyTargetCount, HO
 			res->wResultCode = GAME_SKILL_NO_TARGET_APPOINTED;
 
 		// set final location. Do at bottom because we might fix the location
-		NtlLocationCompress(&res->vFinalLoc, m_vFinalLoc.x, m_vFinalLoc.y, m_vFinalLoc.z);
+		//NtlLocationCompress(&res->vFinalLoc, m_vFinalLoc.x, m_vFinalLoc.y, m_vFinalLoc.z);
 		
 		if (res->wResultCode == GAME_SUCCESS)
 		{
@@ -1932,7 +1942,13 @@ void CSkill::OnAffected()
 				vShift.y = 0.0f;
 				vShift.SafeNormalize();
 				vShift.CopyTo(m_actionSkill.aSkillResult[i].vShift);
-				pTarget->SendCharStateKnockdown(m_actionSkill.aSkillResult[i].vShift);
+				pTarget->SendCharStateKnockdown(m_actionSkill.aSkillResult[i].vShift);				
+				/*CNtlVector* pvNewCurDir;
+				pvNewCurDir->x = pTarget->GetCurDir().x;
+				pvNewCurDir->y = pTarget->GetCurDir().y;
+				pvNewCurDir->z = pTarget->GetCurDir().z;
+				pTarget->GetCurLoc() = pTarget->GetCurLoc() + RotateVector180Degree(pvNewCurDir) * 6;*/
+				
 			}
 
 			bool bIsTargetFaint = false;
@@ -2065,7 +2081,7 @@ void CSkill::OnAffected()
 			case ACTIVE_THROUGH_ATTACK:
 			case ACTIVE_WARP_STUN:
 			{
-				m_pOwnerRef->SetCurLoc(m_vFinalLoc);
+				m_pOwnerRef->SetCurLoc(m_vFinalSubjectLoc);
 
 				m_pOwnerRef->GetStateManager()->RemoveConditionState(CHARCOND_NULLIFIED_DAMAGE, NULL, false);
 			}

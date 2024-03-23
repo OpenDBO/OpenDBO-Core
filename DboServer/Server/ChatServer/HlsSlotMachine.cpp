@@ -39,7 +39,7 @@ void CHlsSlotMachine::Init()
 	}
 
 
-	CHlsSlotMachineItemTable* pItemTable = g_pTableContainer->GetSlotMachineItemTable();
+	/*CHlsSlotMachineItemTable* pItemTable = g_pTableContainer->GetSlotMachineItemTable();
 	for (CTable::TABLEIT it = pItemTable->Begin(); it != pItemTable->End(); it++)
 	{
 		sHLS_SLOT_MACHINE_ITEM_TBLDAT* pHlsSlotItem = (sHLS_SLOT_MACHINE_ITEM_TBLDAT*)it->second;
@@ -56,11 +56,11 @@ void CHlsSlotMachine::Init()
 			pSlot->byRank = 0;
 			pSlot->fPercent = (float)pHlsSlotItem->byPercent;
 			pSlot->pHlsItem = pHlsItem;
-			pSlot->pSlotItem = pHlsSlotItem;
+			//pSlot->pSlotItem = pHlsSlotItem;
 
 			m_slotMachineGroup.insert(SLOTMACHINEGROUP_VAL(pHlsSlotItem->slotMachineTblidx, pSlot));
 		}
-	}
+	}*/
 
 	//loop the slots to get the top 10 items
 	CSlotMachineTable* pSlotTable = g_pTableContainer->GetSlotMachineTable();
@@ -85,20 +85,20 @@ void CHlsSlotMachine::Init()
 			sHLS_ITEM_TBLDAT* pHlsItem = (sHLS_ITEM_TBLDAT*)g_pTableContainer->GetHLSItemTable()->FindData(pHlsMachineTbldat->aItemTblidx[i]);
 			if (pHlsItem)
 			{
-				sHLS_SLOT_MACHINE_ITEM_TBLDAT* pHlsSlotItem = (sHLS_SLOT_MACHINE_ITEM_TBLDAT*)g_pTableContainer->GetSlotMachineItemTable()->FindData(pHlsMachineTbldat->aItemTblidx[i]);
-				if (pHlsSlotItem)
-				{
+				//sHLS_SLOT_MACHINE_ITEM_TBLDAT* pHlsSlotItem = (sHLS_SLOT_MACHINE_ITEM_TBLDAT*)g_pTableContainer->GetSlotMachineItemTable()->FindData(pHlsMachineTbldat->aItemTblidx[i]);
+				//if (pHlsSlotItem)
+				//{
 					sHLS_SLOT_ITEM* pSlot = new sHLS_SLOT_ITEM;
 
-					pSlot->wCountLeft = 1;
+					pSlot->wCountLeft = pHlsMachineTbldat->wQuantity[i];
 					pSlot->byRank = i + 1;
-					pSlot->fPercent = 0.0f;
+					pSlot->fPercent = pHlsMachineTbldat->wQuantity[i];
 					pSlot->pHlsItem = pHlsItem;
-					pSlot->pSlotItem = pHlsSlotItem;
+					//pSlot->pSlotItem = pHlsSlotItem;
 
-					m_slotMachineGroup.insert(SLOTMACHINEGROUP_VAL(pHlsSlotItem->slotMachineTblidx, pSlot));
-				}
-				else printf("pHlsMachineTbldat->aItemTblidx[i] %u not found in  table_slot_machine_item_data", pHlsMachineTbldat->aItemTblidx[i]);
+					m_slotMachineGroup.insert(SLOTMACHINEGROUP_VAL(pHlsMachineTbldat->tblidx, pSlot));
+				//}
+				//else printf("pHlsMachineTbldat->aItemTblidx[i] %u not found in  table_slot_machine_item_data", pHlsMachineTbldat->aItemTblidx[i]);
 			}
 		}
 	}
@@ -120,7 +120,7 @@ void CHlsSlotMachine::GetSlotItems(TBLIDX slotIdx, std::vector<sHLS_SLOT_ITEM*>*
 
 		if (pTbldat->wCountLeft > 0)
 		{
-			if (pTbldat->byRank == 0)
+			if (pTbldat->byRank > 0 && pTbldat->byRank < 10)
 			{
 				if (Dbo_CheckProbabilityF(pTbldat->fPercent))
 					pVec->push_back(pTbldat);
@@ -158,7 +158,7 @@ void CHlsSlotMachine::AddWinner(TBLIDX slotId, TBLIDX itemTblidx, CPlayer * pPla
 
 void CHlsSlotMachine::GetWinnerInfo(WORD wSlot, CPlayer * pPlayer)
 {
-	if (wSlot > 1)
+	if (wSlot > 8)
 		return;
 
 	CNtlPacket packet(sizeof(sTU_HLS_SLOT_MACHINE_WINNER_INFO_RES));

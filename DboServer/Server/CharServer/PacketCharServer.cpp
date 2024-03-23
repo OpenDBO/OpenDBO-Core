@@ -124,34 +124,34 @@ void CClientSession::SendCharCreateReq(CNtlPacket * pPacket)
 	//printf("byRace:%u,byClass:%u,byFace:%u,byGender:%u,byHair:%u,byHairColor:%u,bySkinColor:%u \n", req->byRace, req->byClass, req->byFace, req->byGender, req->byHair, req->byHairColor, req->bySkinColor);
 	if(req->byRace > RACE_LAST || req->byClass > PC_CLASS_1_LAST)
 		resultcode = CHARACTER_FAIL;
-	else if(req->byFace == 0 || req->byFace > DBO_CHAR_FACE_SHAPE_COUNT) //all races have 10 faces
+	else if(req->sPcShape.byFace == 0 || req->sPcShape.byFace > DBO_CHAR_FACE_SHAPE_COUNT) //all races have 10 faces
 		resultcode = CHARACTER_FAIL;
-	else if (req->byHair == 0 || req->byHair > DBO_CHAR_HAIR_SHAPE_COUNT) //all races have 10 hairs
+	else if (req->sPcShape.byHair == 0 || req->sPcShape.byHair > DBO_CHAR_HAIR_SHAPE_COUNT) //all races have 10 hairs
 		resultcode = CHARACTER_FAIL;
-	else if (req->byHairColor == 0)
+	else if (req->sPcShape.byHairColor == 0)
 		resultcode = CHARACTER_FAIL;
-	else if (req->bySkinColor == 0 || req->bySkinColor > DBO_CHAR_SKIN_COLOR_COUNT) //all races have 5 hairs
+	else if (req->sPcShape.bySkinColor == 0 || req->sPcShape.bySkinColor > DBO_CHAR_SKIN_COLOR_COUNT) //all races have 5 hairs
 		resultcode = CHARACTER_FAIL;
 	else if (req->byRace == RACE_HUMAN)
 	{
 		if (req->byClass != PC_CLASS_HUMAN_FIGHTER && req->byClass != PC_CLASS_HUMAN_MYSTIC) //check if creating valid human class
 			resultcode = CHARACTER_FAIL;
-		else if (req->byHairColor > DBO_CHAR_HAIR_COLOR_COUNT) // human has more than 1 hair color
+		else if (req->sPcShape.byHairColor > DBO_CHAR_HAIR_COLOR_COUNT) // human has more than 1 hair color
 			resultcode = CHARACTER_FAIL;
 	}
 	else if (req->byRace == RACE_NAMEK)
 	{
 		if(req->byClass != PC_CLASS_NAMEK_FIGHTER && req->byClass != PC_CLASS_NAMEK_MYSTIC) //check if creating valid namekian class
 			resultcode = CHARACTER_FAIL;
-		else if (req->byHairColor != req->bySkinColor)
+		else if (req->sPcShape.byHairColor != req->sPcShape.bySkinColor)
 			resultcode = CHARACTER_FAIL; // nameks hair color is the same as skin color
 	}
 	else if (req->byRace == RACE_MAJIN)
 	{
 		if(req->byClass != PC_CLASS_MIGHTY_MAJIN && req->byClass != PC_CLASS_WONDER_MAJIN) //check if creating valid majin class
 			resultcode = CHARACTER_FAIL;
-		else if (req->byHairColor != req->bySkinColor)
-			resultcode = CHARACTER_FAIL; // majin hair color is the same as skin color
+		/*else if (req->sPcShape.byHairColor != req->sPcShape.bySkinColor)
+			resultcode = CHARACTER_FAIL; // majin hair color is the same as skin color*/
 	}
 	else
 	{
@@ -185,10 +185,10 @@ void CClientSession::SendCharCreateReq(CNtlPacket * pPacket)
 		res->byRace = req->byRace;
 		res->byClass = req->byClass;
 		res->byGender = req->byGender;
-		res->byFace = req->byFace;
-		res->byHair = req->byHair;
-		res->byHairColor = req->byHairColor;
-		res->bySkinColor = req->bySkinColor;
+		res->byFace = req->sPcShape.byFace;
+		res->byHair = req->sPcShape.byHair;
+		res->byHairColor = req->sPcShape.byHairColor;
+		res->bySkinColor = req->sPcShape.bySkinColor;
 		res->byBlood = 0;
 		NewbieTblData->vSpawn_Loc.CopyTo(res->vSpawn_Loc);
 		NewbieTblData->vSpawn_Dir.CopyTo(res->vSpawn_Dir);
@@ -263,6 +263,7 @@ void CClientSession::SendCharCreateReq(CNtlPacket * pPacket)
 		res->bySuperiorType = 0;
 		res->bySuperiorValue = 0;
 		res->serverId = GetPlayer()->GetServerFarmID();
+		res->IsGameMaster = GetPlayer()->IsGM();
 		packet.SetPacketLen(sizeof(sCQ_CHARACTER_ADD_REQ));
 		app->SendTo(app->GetQueryServerSession(), &packet);
 	}
@@ -322,19 +323,19 @@ void CClientSession::SendCharDeleteReq(CNtlPacket * pPacket)
 
 	WORD resultcode = CHARACTER_SUCCESS;
 
-	std::string strpassword = req->achPasswd;
+	//std::string strpassword = req->awcDeletePassword;//Xanu
 
 	if(!GetPlayer()->IsCharsLoaded())
 		resultcode = CHARACTER_FAIL;
-	else if (strpassword.find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890") != std::string::npos)
-		resultcode = CHARACTER_BLOCK_STRING_INCLUDED;
+	//else if (strpassword.find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890") != std::string::npos)
+	//	resultcode = CHARACTER_BLOCK_STRING_INCLUDED;
 	else if (GetPlayer()->HasCharacter(req->charId) == false)
 	{
 		ERR_LOG(LOG_USER, "Account: %u tried to delete character %u that he dont own !!", GetPlayer()->GetAccountID(), req->charId);
 		resultcode = CHARACTER_FAIL;
 	}
-	else if (strlen((const char*)req->achPasswd) < NTL_MAX_SIZE_USERPW_ENCRYPT)
-		resultcode = AUTH_TOO_LONG_PASSWORD;
+	/*else if (strlen((const char*)req->awcDeletePassword) < NTL_MAX_SIZE_USERPW_ENCRYPT)
+		resultcode = AUTH_TOO_LONG_PASSWORD;*/
 	else
 	{
 		//check if del password is correct
@@ -343,9 +344,7 @@ void CClientSession::SendCharDeleteReq(CNtlPacket * pPacket)
 		{
 			Field* delpw = delpwcheck->Fetch();
 
-			if (0 != strcmp(delpw[0].GetString(), (const char*)req->achPasswd)) //check password
-				resultcode = CHARACTER_DELETE_CHAR_FAIL_NOT_MATCH_CODE;
-			else
+			if (req->awcDeletePassword) //check password			
 			{
 				smart_ptr<QueryResult> check = GetCharDB.Query("SELECT GameMaster, GuildID FROM characters WHERE CharID=%u AND AccountID=%u LIMIT 1", req->charId, GetPlayer()->GetAccountID());
 				if (check)
@@ -372,7 +371,7 @@ void CClientSession::SendCharDeleteReq(CNtlPacket * pPacket)
 		}
 		else resultcode = CHARACTER_DB_QUERY_FAIL;
 	}
-
+	//printf("resultcode %d \n", resultcode);
 	CNtlPacket packet(sizeof(sCU_CHARACTER_DEL_RES));
 	sCU_CHARACTER_DEL_RES * res = (sCU_CHARACTER_DEL_RES *)packet.GetPacketData();
 	res->wOpCode = CU_CHARACTER_DEL_RES;
@@ -397,19 +396,19 @@ void CClientSession::SendCancelCharDeleteReq(CNtlPacket * pPacket)
 
 	WORD resultcode = CHARACTER_SUCCESS;
 
-	std::string strpassword = req->achPasswd;
+	//std::string strpassword = req->awcDeletePassword;//Xanu
 
 	if (!GetPlayer()->IsCharsLoaded())
 		resultcode = CHARACTER_FAIL;
-	else if (strpassword.find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890") != std::string::npos)
-		resultcode = CHARACTER_BLOCK_STRING_INCLUDED;
+	//else if (strpassword.find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890") != std::string::npos)
+	//	resultcode = CHARACTER_BLOCK_STRING_INCLUDED;
 	else if (GetPlayer()->HasDelPendingCharacter(req->charId) == false)
 	{
 		ERR_LOG(LOG_USER, "Account: %u tried to cancel deletion character %u that he dont own !!", GetPlayer()->GetAccountID(), req->charId);
 		resultcode = CHARACTER_FAIL;
 	}
-	else if (strlen((const char*)req->achPasswd) < NTL_MAX_SIZE_USERPW_ENCRYPT)
-		resultcode = AUTH_TOO_LONG_PASSWORD;
+	/*else if (strlen((const char*)req->awcDeletePassword) < NTL_MAX_SIZE_USERPW_ENCRYPT)
+		resultcode = AUTH_TOO_LONG_PASSWORD;*/
 	else
 	{
 		//check if del password is correct
@@ -418,17 +417,17 @@ void CClientSession::SendCancelCharDeleteReq(CNtlPacket * pPacket)
 		{
 			Field* delpw = delpwcheck->Fetch();
 
-			if (0 != strcmp(delpw[0].GetString(), (const char*)req->achPasswd)) //check password
+			/*if (0 != strcmp(delpw[0].GetString(), (const char*)req->awcDeletePassword)) //check password
 				resultcode = CHARACTER_DELETE_CHAR_FAIL_NOT_MATCH_CODE;
 			else
-			{
+			{*/
 				if (GetCharDB.Execute("UPDATE characters SET DelCharTime=0 WHERE CharID=%u AND AccountID=%u LIMIT 1", req->charId, GetPlayer()->GetAccountID()) == false)
 					resultcode = CHARACTER_DB_QUERY_FAIL;
 				else
 				{
 					GetPlayer()->UnsetCharDeleted(req->charId);
 				}
-			}
+			//}
 		}
 		else resultcode = CHARACTER_DB_QUERY_FAIL;
 	}

@@ -41,7 +41,7 @@ CPlayer::CPlayer()
 	m_dwWaguMachineCoins = 0;
 	m_dwEventMachineCoins = 0;
 	m_dwWaguWaguPoints = 0;
-
+	m_dwNetPyPoints = 0;
 	m_map_Friends.clear();
 
 	SetGuild(NULL);

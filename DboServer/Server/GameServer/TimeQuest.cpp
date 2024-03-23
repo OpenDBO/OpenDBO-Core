@@ -7,13 +7,15 @@
 #include "ScriptAlgoObjectManager.h"
 #include "TqsAlgoObject.h"
 #include "NtlPacketGU.h"
+#include "NtlPacketGT.h"
 #include "NtlResultCode.h"
 #include "NtlDirection.h"
-
+#include "ItemManager.h"
+#include "ItemDrop.h"
 
 CTimeQuest::CTimeQuest(PARTYID partyid, sTIMEQUEST_TBLDAT* pTimeQuestTbldat, BYTE byDifficulty, BYTE byMode)
 {
-	Initalize();
+	Initalize();	
 
 	m_partyId = partyid;
 
@@ -30,8 +32,10 @@ CTimeQuest::CTimeQuest(PARTYID partyid, sTIMEQUEST_TBLDAT* pTimeQuestTbldat, BYT
 
 	m_ruleInfo.sTimeQuestState.sTimeQuestStage.byStageNumber = 0;
 	m_ruleInfo.bCountDown = false;
+
 	m_ruleInfo.byStartHour = 0;
 	m_ruleInfo.byStartMin = 0;
+	dwDayRecord = 0;
 
 	m_dwWaitTime = 0;
 	m_wTmqPoints = 0;
@@ -77,7 +81,11 @@ bool CTimeQuest::TickProcess(DWORD dwTickDiff)
 
 		m_ruleInfo.sTimeQuestState.byGameState = TIMEQUEST_GAME_STATE_CLOSE;
 	}
-
+	if (m_mapPlayers.size() > 0)
+	{
+		if (GetTQS())
+			dwDayRecord++;
+	}
 	switch (m_ruleInfo.sTimeQuestState.byGameState)
 	{
 		case TIMEQUEST_GAME_STATE_WAIT:
@@ -260,6 +268,56 @@ bool CTimeQuest::TickProcess(DWORD dwTickDiff)
 	return false;
 }
 
+void CTimeQuest::SendNewTMQRecord()
+{
+	/*if (BestDayRecord == INVALID_TBLIDX)
+		BestDayRecord = 0;*/
+
+	CGameServer* app = (CGameServer*)g_pApp;
+	CNtlPacket pChat(sizeof(sGT_BROADCASTING_SYSTEM_NFY));
+	sGT_BROADCASTING_SYSTEM_NFY* rChat = (sGT_BROADCASTING_SYSTEM_NFY*)pChat.GetPacketData();
+	rChat->wOpCode = GT_BROADCASTING_SYSTEM_NFY;
+	rChat->byMsgType = DBO_BROADCASTING_MSG_TYPE_TMQ;
+	rChat->sData.sTmqRecord.tblidx = m_ruleInfo.timeQuestTblidx;
+	rChat->sData.sTmqRecord.byDifficulty = m_ruleInfo.byDifficulty;
+	rChat->sData.sTmqRecord.dwClearTime = dwDayRecord * 100;
+	rChat->sData.sTmqRecord.bIsBestRecord = true;	
+
+	/*if (rChat->sData.sTmqRecord.dwClearTime < BestDayRecord || BestDayRecord == 0)
+	{
+		BestDayRecord = rChat->sData.sTmqRecord.dwClearTime;
+	}
+	else
+	{
+		printf("There is Alardy a Best Record %d \n", BestDayRecord);
+		return;
+	}*/
+
+	for (std::map<HOBJECT, CPlayer*>::iterator it = m_mapPlayers.begin(); it != m_mapPlayers.end(); it++)
+	{
+		CPlayer* pPlayer = it->second;
+		if (pPlayer && pPlayer->IsInitialized())
+		{
+			wcscpy_s(rChat->sData.sTmqRecord.awszMember[rChat->sData.sTmqRecord.byMemberCount++], NTL_MAX_SIZE_CHAR_NAME + 1, pPlayer->GetCharName());
+			DWORD LuckyItem = 11100015 + rand() % 4;
+			CItemDrop* pDrop = g_pItemManager->CreateSingleDrop(100.f, LuckyItem);
+			if (pDrop)
+			{
+				sVECTOR3 pos;
+				pos.x = pPlayer->GetCurLoc().x + RandomRangeF(-2.0f, 2.0f);
+				pos.y = pPlayer->GetCurLoc().y;
+				pos.z = pPlayer->GetCurLoc().z + RandomRangeF(-2.0f, 2.0f);
+
+				pDrop->SetNeedToIdentify(false);
+				pDrop->SetOwnership(pPlayer->GetID(), INVALID_PARTYID);
+				pDrop->StartDestroyEvent();
+				pDrop->AddToGround(pPlayer->GetWorldID(), pos);
+			}
+		}
+	}
+	pChat.SetPacketLen(sizeof(sGT_BROADCASTING_SYSTEM_NFY));
+	app->SendTo(app->GetChatServerSession(), &pChat);
+}
 
 bool CTimeQuest::Create(CPlayer* pPlayer)
 {

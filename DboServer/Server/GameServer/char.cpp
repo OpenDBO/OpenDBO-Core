@@ -1325,8 +1325,9 @@ void CCharacter::SendCharStateKnockdown(sVECTOR3& rShift)
 	res->sCharState.sCharStateDetail.sCharStateKnockdown.vShift.x = rShift.x;
 	res->sCharState.sCharStateDetail.sCharStateKnockdown.vShift.y = rShift.y;
 	res->sCharState.sCharStateDetail.sCharStateKnockdown.vShift.z = rShift.z;
-	packet.SetPacketLen(sizeof(sGU_UPDATE_CHAR_STATE));
 
+	packet.SetPacketLen(sizeof(sGU_UPDATE_CHAR_STATE));
+	
 	if (GetStateManager()->CopyFrom(&res->sCharState))	//if change state success then broadcast
 	{
 		Broadcast(&packet);

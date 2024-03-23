@@ -377,6 +377,8 @@ bool CItem::ChangeOption(WORD wOptionIndex, sITEM_TBLDAT* pTbldat, BYTE byRank, 
 		{
 			g_pTableContainer->GetItemEnchantTable()->ProcessRandomOption(pTbldat, byRank, i == 0, i == NTL_MAX_SYSTEM_EFFECT_COUNT - 1, &flag, &fRemainingWorth, sOptionSet->aRandomOption[i]);
 		}
+		if (sOptionSet->aRandomOption[0].optionValue == 0)
+			return false;
 	}
 
 	return true;
@@ -888,30 +890,35 @@ void CItem::Cast()
 						
 				}
 				break;
-
+				
+				
 				case ACTIVE_SUPER_SAIYAN:
 				case ACTIVE_PURE_MAJIN:
 				case ACTIVE_GREAT_NAMEK:
-				{
-					if (m_pOwner->CanTransform(effectCode[e], (TBLIDX)m_pUseItemTbldat->aSystem_Effect_Value[e], false))
+				{					
+					if (m_pOwner->IsGameMaster())
 					{
-						buffInfo.aBuffParameter[e].byBuffParameterType = DBO_BUFF_PARAMETER_TYPE_DEFAULT;
-						buffInfo.aBuffParameter[e].buffParameter.fParameter = (float)m_pUseItemTbldat->aSystem_Effect_Value[e];
+						if (m_pOwner->CanTransform(effectCode[e], (TBLIDX)m_pUseItemTbldat->aSystem_Effect_Value[e], false))
+						{
+							buffInfo.aBuffParameter[e].byBuffParameterType = DBO_BUFF_PARAMETER_TYPE_DEFAULT;
+							buffInfo.aBuffParameter[e].buffParameter.fParameter = (float)m_pUseItemTbldat->aSystem_Effect_Value[e];
 
-						int nOldMaxLP = m_pOwner->GetMaxLP();
-						WORD wOldMaxEP = m_pOwner->GetMaxEP();
+							int nOldMaxLP = m_pOwner->GetMaxLP();
+							WORD wOldMaxEP = m_pOwner->GetMaxEP();
 
-						m_pOwner->GetBuffManager()->RegisterSubBuff(&buffInfo, effectCode, m_pOwner->GetID(), m_pUseItemTbldat->byBuff_Group, res->wResultCode, m_pUseItemTbldat->abySystem_Effect_Type);
+							m_pOwner->GetBuffManager()->RegisterSubBuff(&buffInfo, effectCode, m_pOwner->GetID(), m_pUseItemTbldat->byBuff_Group, res->wResultCode, m_pUseItemTbldat->abySystem_Effect_Type);
 
-						if (m_pOwner->GetMaxLP() - nOldMaxLP > 0)
-							m_pOwner->UpdateCurLP(m_pOwner->GetMaxLP() - nOldMaxLP, true, false);
+							if (m_pOwner->GetMaxLP() - nOldMaxLP > 0)
+								m_pOwner->UpdateCurLP(m_pOwner->GetMaxLP() - nOldMaxLP, true, false);
 
-						if (m_pOwner->GetMaxEP() - wOldMaxEP > 0)
-							m_pOwner->UpdateCurEP(m_pOwner->GetMaxEP() - wOldMaxEP, true, false);
-						
-						res->aSkillResult[bySkillResultCount].effectResult[e].fResultValue = buffInfo.aBuffParameter[e].buffParameter.fParameter;
+							if (m_pOwner->GetMaxEP() - wOldMaxEP > 0)
+								m_pOwner->UpdateCurEP(m_pOwner->GetMaxEP() - wOldMaxEP, true, false);
+
+							res->aSkillResult[bySkillResultCount].effectResult[e].fResultValue = buffInfo.aBuffParameter[e].buffParameter.fParameter;
+						}
+						else res->wResultCode = GAME_SKILL_ALREADY_TRANSFORMED;
 					}
-					else res->wResultCode = GAME_SKILL_ALREADY_TRANSFORMED;
+					else res->wResultCode = eRESULTCODE::GAME_GM_LEVEL_NOT_FOUND;
 				}
 				break;
 
@@ -1115,7 +1122,7 @@ void CItem::Cast()
 
 								if (ii == 0 && qProbTbl->byCount > 0)
 								{
-									printf("repeat loop x1041 \n");
+									//printf("repeat loop x1041 \n");
 									goto REPEAT_PROBABILITY_USE_TYPE_GAMBLE_ITEM;
 								}
 
@@ -1408,7 +1415,8 @@ void CItem::Cast()
 					if (m_pOwner->GetGender() != GENDER_ONE_SEX) //only male and female
 					{
 						BYTE byNewGender = (m_pOwner->GetGender() == GENDER_FEMALE) ? GENDER_MALE : GENDER_FEMALE;
-
+						CItem* Item = NULL;					
+						Item = m_pOwner->GetPlayerItemContainer()->WearGenderRequiredItem2(byNewGender);
 						if (m_pOwner->GetPlayerItemContainer()->WearGenderRequiredItem(byNewGender) == false)
 						{
 							CNtlPacket packetQry(sizeof(sGQ_CHAR_CONVERT_GENDER_NFY));
@@ -1417,7 +1425,15 @@ void CItem::Cast()
 							resQry->charId = m_pOwner->GetCharID();
 							resQry->byGender = byNewGender;
 							packetQry.SetPacketLen(sizeof(sGQ_CHAR_CONVERT_GENDER_NFY));
-							app->SendTo(app->GetQueryServerSession(), &packetQry);
+							app->SendTo(app->GetQueryServerSession(), &packetQry);	
+							
+							CNtlPacket packet(sizeof(sGU_CHARACTER_RENAME_RES));
+							sGU_CHARACTER_RENAME_RES* res = (sGU_CHARACTER_RENAME_RES*)packet.GetPacketData();
+							res->wOpCode = GU_CHARACTER_RENAME_RES;
+							res->wResultCode = GAME_SUCCESS;
+							packet.SetPacketLen(sizeof(sGU_CHARACTER_RENAME_RES));							
+							m_pOwner->SendPacket(&packet);
+							
 						}
 						else res->wResultCode = GAME_ITEM_GENDER_DOESNT_MATCH;
 					}
@@ -1646,7 +1662,9 @@ void CItem::Cast()
 	}
 
 	if (BIT_FLAG_TEST(m_pUseItemTbldat->wFunction_Bit_Flag, MAKE_BIT_FLAG(USE_ITEM_FUNCTION_NON_CONSUMABLE)) == false && res->bySkillResultCount > 0)
+	{		
 		SetCount(GetCount() - 1, false, true);
+	}
 }
 
 

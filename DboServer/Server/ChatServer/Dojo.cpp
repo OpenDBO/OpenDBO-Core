@@ -1,4 +1,4 @@
-#include "..\QueryServer\Dojo.h"
+//#include "..\QueryServer\Dojo.h"
 #include "Stdafx.h"
 #include "DojoManager.h"
 #include "ChatServer.h"
@@ -170,7 +170,7 @@ void CDojo::WarRequestReponse(bool& rbIsAccept, WORD& rwResultcode, bool& rbIsRe
 
 void CDojo::BeginWarPreparation()
 {
-	m_lastDojoWar = std::time(nullptr);
+	m_lastDojoWar = std::time(NULL);
 	m_byRejectCount = 0;
 	m_bHasWarRequest = false;
 

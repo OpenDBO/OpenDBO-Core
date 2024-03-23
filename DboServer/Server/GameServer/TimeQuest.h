@@ -51,6 +51,8 @@ public:
 
 	void						UpdateCoupon();
 
+	void						SendNewTMQRecord();
+
 public:
 
 	void						CopyRuleInfoTo(sTIMEQUEST_RULE_INFO* pRuleInfo);
@@ -90,5 +92,9 @@ private:
 
 	DWORD						m_dwLeaveTickCount;
 	DWORD						m_dwExitTickCount;
+
+	DWORD						dwDayRecord;
+
+	DWORD						BestDayRecord;
 
 };

@@ -410,7 +410,7 @@ void CBudokaiManager::SendTournamentIndividualListToChat(CHARACTERID charId, BYT
 	{
 		if (byReceivedListCount == INVALID_BYTE)
 		{
-			for (auto it = m_mapIndividualTournament.begin(); it != m_mapIndividualTournament.end(); it++)
+			for (std::map<JOINID, sBUDOKAI_TOURNAMENT_INDIVIDUAL_ENTRY_DATA*>::iterator it = m_mapIndividualTournament.begin(); it != m_mapIndividualTournament.end(); it++)
 			{
 				res->aEntryTeam[it->second->byMinorMatch_MatchIndex].wJoinId = it->first;
 				res->aEntryTeam[it->second->byMinorMatch_MatchIndex].bDojoRecommender = it->second->bDojoRecommender;
@@ -425,7 +425,7 @@ void CBudokaiManager::SendTournamentIndividualListToChat(CHARACTERID charId, BYT
 		{
 			for (BYTE i = MAX_BUDOKAI_MATCH_DEPTH_INDIVIDUAL; i != INVALID_BUDOKAI_MATCH_DEPTH; i--)
 			{
-				for (auto it = m_aTournamentMatch[i].m_mapTournament.begin(); it != m_aTournamentMatch[i].m_mapTournament.end(); it++)
+				for (std::map<BYTE, sTOURNAMENT_MATCH*>::iterator it = m_aTournamentMatch[i].m_mapTournament.begin(); it != m_aTournamentMatch[i].m_mapTournament.end(); it++)
 				{
 					sTOURNAMENT_MATCH* pMatch = it->second;
 					memcpy(&res->aMatchData[res->byMatchDataCount], &pMatch->data, sizeof(pMatch->data));
@@ -454,13 +454,13 @@ void CBudokaiManager::SendTournamentIndividualInfoToChat(CHARACTERID charId, WOR
 
 	if (IsBudokaiOpen(m_stateInfo.byState))
 	{
-		auto it = m_mapIndividualTournament.find(awJoinId[MATCH_TEAM_TYPE_TEAM1]);
+		std::map<JOINID, sBUDOKAI_TOURNAMENT_INDIVIDUAL_ENTRY_DATA*>::iterator it = m_mapIndividualTournament.find(awJoinId[MATCH_TEAM_TYPE_TEAM1]);
 		if (it != m_mapIndividualTournament.end())
 		{
 			memcpy(&res->asEntryData[MATCH_TEAM_TYPE_TEAM1], it->second, sizeof(sBUDOKAI_TOURNAMENT_INDIVIDUAL_ENTRY_DATA));
 		}
 
-		auto it2 = m_mapIndividualTournament.find(awJoinId[MATCH_TEAM_TYPE_TEAM2]);
+		std::map<JOINID, sBUDOKAI_TOURNAMENT_INDIVIDUAL_ENTRY_DATA*>::iterator it2 = m_mapIndividualTournament.find(awJoinId[MATCH_TEAM_TYPE_TEAM2]);
 		if (it2 != m_mapIndividualTournament.end())
 		{
 			memcpy(&res->asEntryData[MATCH_TEAM_TYPE_TEAM2], it2->second, sizeof(sBUDOKAI_TOURNAMENT_INDIVIDUAL_ENTRY_DATA));
@@ -493,7 +493,7 @@ void CBudokaiManager::SendTournamentTeamListToChat(CHARACTERID charId, BYTE byRe
 	{
 		if (byReceivedListCount == INVALID_BYTE)
 		{
-			for (auto it = m_mapTeamTournament.begin(); it != m_mapTeamTournament.end(); it++)
+			for (std::map<JOINID, sBUDOKAI_TOURNAMENT_TEAM_ENTRY_DATA*>::iterator it = m_mapTeamTournament.begin(); it != m_mapTeamTournament.end(); it++)
 			{
 				res->aEntryTeam[it->second->byMinorMatch_MatchIndex].wJoinId = it->first;
 				res->aEntryTeam[it->second->byMinorMatch_MatchIndex].bDojoRecommender = false;
@@ -508,7 +508,7 @@ void CBudokaiManager::SendTournamentTeamListToChat(CHARACTERID charId, BYTE byRe
 		{
 			for (BYTE i = MAX_BUDOKAI_MATCH_DEPTH_TEAM; i != INVALID_BUDOKAI_MATCH_DEPTH; i--)
 			{
-				for (auto it = m_aTournamentMatch[i].m_mapTournament.begin(); it != m_aTournamentMatch[i].m_mapTournament.end(); it++)
+				for (std::map<BYTE, sTOURNAMENT_MATCH*>::iterator it = m_aTournamentMatch[i].m_mapTournament.begin(); it != m_aTournamentMatch[i].m_mapTournament.end(); it++)
 				{
 					sTOURNAMENT_MATCH* pMatch = it->second;
 					memcpy(&res->aMatchData[res->byMatchDataCount], &pMatch->data, sizeof(pMatch->data));
@@ -537,13 +537,13 @@ void CBudokaiManager::SendTournamentTeamInfoToChat(CHARACTERID charId, WORD * aw
 
 	if (IsBudokaiOpen(m_stateInfo.byState))
 	{
-		auto it = m_mapTeamTournament.find(awJoinId[MATCH_TEAM_TYPE_TEAM1]);
+		std::map<JOINID, sBUDOKAI_TOURNAMENT_TEAM_ENTRY_DATA*>::iterator it = m_mapTeamTournament.find(awJoinId[MATCH_TEAM_TYPE_TEAM1]);
 		if (it != m_mapTeamTournament.end())
 		{
 			memcpy(&res->asEntryData[MATCH_TEAM_TYPE_TEAM1], it->second, sizeof(sBUDOKAI_TOURNAMENT_TEAM_ENTRY_DATA));
 		}
 
-		auto it2 = m_mapTeamTournament.find(awJoinId[MATCH_TEAM_TYPE_TEAM2]);
+		std::map<JOINID, sBUDOKAI_TOURNAMENT_TEAM_ENTRY_DATA*>::iterator it2 = m_mapTeamTournament.find(awJoinId[MATCH_TEAM_TYPE_TEAM2]);
 		if (it2 != m_mapTeamTournament.end())
 		{
 			memcpy(&res->asEntryData[MATCH_TEAM_TYPE_TEAM2], it2->second, sizeof(sBUDOKAI_TOURNAMENT_TEAM_ENTRY_DATA));
@@ -567,7 +567,7 @@ void CBudokaiManager::CreateBudokai(eBUDOKAI_TYPE type, eBUDOKAI_MATCH_TYPE matc
 	else
 		m_stateInfo.byState = BUDOKAI_STATE_OPEN_NOTICE;
 
-	m_stateInfo.tmNextStepTime = curTime + pTblInfo->dwOpenNoticeTime;
+	m_stateInfo.tmNextStepTime = curTime + 2;
 	m_stateInfo.tmRemainTime = pTblInfo->dwOpenNoticeTime;
 
 	m_matchStateInfo[m_matchType].byState = INVALID_BUDOKAI_MATCHSTATE;
@@ -601,7 +601,7 @@ void CBudokaiManager::CloseBudokai()
 
 	for (int i = 0; i < BUDOKAI_MATCH_DEPTH_COUNT; i++)
 	{
-		for (auto it = m_aTournamentMatch[i].m_mapTournament.begin(); it != m_aTournamentMatch[i].m_mapTournament.end(); )
+		for (std::map<BYTE, sTOURNAMENT_MATCH*>::iterator it = m_aTournamentMatch[i].m_mapTournament.begin(); it != m_aTournamentMatch[i].m_mapTournament.end(); )
 		{
 			sTOURNAMENT_MATCH* match = it->second;
 			delete match;
@@ -609,7 +609,7 @@ void CBudokaiManager::CloseBudokai()
 		}
 	}
 
-	for (auto it = m_mapIndividualTournament.begin(); it != m_mapIndividualTournament.end(); )
+	for (std::map<JOINID, sBUDOKAI_TOURNAMENT_INDIVIDUAL_ENTRY_DATA*>::iterator it = m_mapIndividualTournament.begin(); it != m_mapIndividualTournament.end(); )
 	{
 		sBUDOKAI_TOURNAMENT_INDIVIDUAL_ENTRY_DATA* entry = it->second;
 		delete entry;
@@ -617,7 +617,7 @@ void CBudokaiManager::CloseBudokai()
 	}
 	m_mapIndividualTournament.clear();
 
-	for (auto it = m_mapTeamTournament.begin(); it != m_mapTeamTournament.end(); )
+	for (std::map<JOINID, sBUDOKAI_TOURNAMENT_TEAM_ENTRY_DATA*>::iterator it = m_mapTeamTournament.begin(); it != m_mapTeamTournament.end(); )
 	{
 		sBUDOKAI_TOURNAMENT_TEAM_ENTRY_DATA* entry = it->second;
 		delete entry;
@@ -629,7 +629,7 @@ void CBudokaiManager::CloseBudokai()
 
 	m_eMatchDepth = INVALID_BUDOKAI_MATCH_DEPTH;
 
-	for (auto it = m_mapPrelims.begin(); it != m_mapPrelims.end(); )
+	for (std::map<BYTE, sPRELIM_HEAD*>::iterator it = m_mapPrelims.begin(); it != m_mapPrelims.end(); )
 	{
 		sPRELIM_HEAD* prelim = it->second;
 		delete prelim;
@@ -641,7 +641,7 @@ void CBudokaiManager::CloseBudokai()
 	m_mapJoinInfo.clear();
 
 
-	for (auto it = m_mapIndividual.begin(); it != m_mapIndividual.end(); it++)
+	for (boost::unordered_map<JOINID, sBUDOKAI_REGISTER_INDIVIDUAL_DATA>::iterator it = m_mapIndividual.begin(); it != m_mapIndividual.end(); it++)
 	{
 		CPlayer* pPlayer = g_pObjectManager->FindByChar(it->second.charId);
 		if (pPlayer)
@@ -649,7 +649,7 @@ void CBudokaiManager::CloseBudokai()
 	}
 	m_mapIndividual.clear();
 
-	for (auto it = m_mapTeam.begin(); it != m_mapTeam.end(); it++)
+	for (boost::unordered_map<JOINID, sBUDOKAI_REGISTER_TEAM_DATA>::iterator it = m_mapTeam.begin(); it != m_mapTeam.end(); it++)
 	{
 		for (BYTE i = 0; i < NTL_MAX_MEMBER_IN_PARTY; i++)
 		{
@@ -1198,7 +1198,7 @@ void CBudokaiManager::StartPrelim()
 		memset(res->aTeleportData, 0, sizeof(res->aTeleportData));
 
 		// --- 1. LOOP -> ALL DOJO RECOMMENDERS
-		for (auto it = m_mapIndividual.begin(); it != m_mapIndividual.end(); it++)
+		for (boost::unordered_map<JOINID, sBUDOKAI_REGISTER_INDIVIDUAL_DATA>::iterator it = m_mapIndividual.begin(); it != m_mapIndividual.end(); it++)
 		{
 			if (it->second.bDojoRecommender)
 			{
@@ -1243,12 +1243,12 @@ void CBudokaiManager::StartPrelim()
 		std::sort(elems.begin(), elems.end(), sprelim_sorting());
 
 		// --- 2. LOOP -> ALL NON-DOJO RECOMMENDERS
-		for (auto it = elems.begin(); it != elems.end(); it++)
+		for (std::vector<std::pair<JOINID, sBUDOKAI_REGISTER_INDIVIDUAL_DATA>>::iterator it = elems.begin(); it != elems.end(); it++)
 		{
 		//	printf("it->first: %u, charId:%u, fPoint %f \n", it->first, it->second.charId, it->second.fPoint);
 			if (it->second.bDojoRecommender == false)
 			{
-				auto realIt = m_mapIndividual.find(it->first);
+				boost::unordered_map<JOINID, sBUDOKAI_REGISTER_INDIVIDUAL_DATA>::iterator realIt = m_mapIndividual.find(it->first);
 				if (realIt != m_mapIndividual.end())
 				{
 					res->aTeleportData[byNonDojoIndex].worldTblidx = m_pTableInfo->sIndividualWorldTblidx.minorMatch;
@@ -1280,7 +1280,7 @@ void CBudokaiManager::StartPrelim()
 					}
 					else
 					{
-						auto itPrelim = m_mapPrelims.find(byNonDojoIndex);
+						std::map<BYTE, sPRELIM_HEAD*>::iterator itPrelim = m_mapPrelims.find(byNonDojoIndex);
 						if (itPrelim != m_mapPrelims.end())
 						{
 							itPrelim->second->m_byTotalCount += 1;
@@ -1334,7 +1334,7 @@ void CBudokaiManager::StartPrelim()
 		BYTE byNonDojoIndex = byIndex;
 
 		// --- 1. LOOP
-		for (auto it = m_mapTeam.begin(); it != m_mapTeam.end(); it++)
+		for (boost::unordered_map<JOINID, sBUDOKAI_REGISTER_TEAM_DATA>::iterator it = m_mapTeam.begin(); it != m_mapTeam.end(); it++)
 		{
 			res->aTeleportData[byNonDojoIndex].worldTblidx = m_pTableInfo->sTeamWorldTblidx.minorMatch;
 
@@ -1372,7 +1372,7 @@ void CBudokaiManager::StartPrelim()
 			}
 			else
 			{
-				auto itPrelim = m_mapPrelims.find(byNonDojoIndex);
+				std::map<BYTE, sPRELIM_HEAD*>::iterator itPrelim = m_mapPrelims.find(byNonDojoIndex);
 				if (itPrelim != m_mapPrelims.end())
 				{
 					itPrelim->second->m_byTotalCount += 5;
@@ -1433,7 +1433,7 @@ void CBudokaiManager::EndPrelim()
 
 				if (depth == MAX_BUDOKAI_MATCH_DEPTH_INDIVIDUAL) //add prelim winners
 				{
-					for (auto it = m_mapPrelimWinners.begin(); it != m_mapPrelimWinners.end(); )
+					for (std::map<BYTE, std::pair<JOINID, CHARACTERID>>::iterator it = m_mapPrelimWinners.begin(); it != m_mapPrelimWinners.end(); )
 					{
 						if (BYTE(it->first / 2) == i) //set player into the 32th slot same as prelim index. Do prelim index / 2. Because 0 and 1 = match index 0. 2 and 3 = match index 1...
 						{
@@ -1503,7 +1503,7 @@ void CBudokaiManager::EndPrelim()
 
 				if (depth == MAX_BUDOKAI_MATCH_DEPTH_TEAM) // add prelim winners
 				{
-					for (auto it = m_mapPrelimWinners.begin(); it != m_mapPrelimWinners.end(); )
+					for (std::map<BYTE, std::pair<JOINID, CHARACTERID>>::iterator it = m_mapPrelimWinners.begin(); it != m_mapPrelimWinners.end(); )
 					{
 						if (BYTE(it->first / 2) == i) //set party into the 16th slot same as prelim index. Do prelim index / 2. Because 0 and 1 = match index 0. 2 and 3 = match index 1...
 						{
@@ -1558,7 +1558,7 @@ void CBudokaiManager::EndPrelim()
 
 void CBudokaiManager::TickProcessPrelim(DWORD dwTickDif, BUDOKAITIME curTime)
 {
-	for (auto it = m_mapPrelims.begin(); it != m_mapPrelims.end(); )
+	for (std::map<BYTE, sPRELIM_HEAD*>::iterator it = m_mapPrelims.begin(); it != m_mapPrelims.end(); )
 	{
 		sPRELIM_HEAD* prelim = it->second;
 
@@ -1817,12 +1817,12 @@ void CBudokaiManager::SendMinorMatchTeamInfo(BYTE byMatchIndex, sPRELIM_HEAD* pr
 	{
 		sMATCH_MINORMATCH_TEAM_INFO_VAR info[BUDOKAI_MAX_TOURNAMENT_TEAM_MATCH_COUNT];
 
-		for (auto it = prelim->m_mapIndividualPrelim.begin(); it != prelim->m_mapIndividualPrelim.end(); it++)
+		for (std::map<HOBJECT, sPLAYER_INFO>::iterator it = prelim->m_mapIndividualPrelim.begin(); it != prelim->m_mapIndividualPrelim.end(); it++)
 		{
 			CPlayer* pPlayer = g_pObjectManager->GetPC(it->first);
 			if (pPlayer && pPlayer->GetMatchIndex() == byMatchIndex)
 			{
-				auto it2 = m_mapIndividual.find(pPlayer->GetJoinID());
+				boost::unordered_map<JOINID, sBUDOKAI_REGISTER_INDIVIDUAL_DATA>::iterator it2 = m_mapIndividual.find(pPlayer->GetJoinID());
 				if (it2 != m_mapIndividual.end())
 				{
 					info[i].wTeamType = (WORD) MAX_MATCH_TEAM_TYPE_COUNT + i;
@@ -2287,7 +2287,7 @@ void CBudokaiManager::MinorMatchMatchFinish(sPRELIM_HEAD* prelim, BYTE byMatchIn
 
 	if (m_matchType == BUDOKAI_MATCH_TYPE_INDIVIDIAUL)
 	{
-		auto it2 = m_mapIndividual.find(prelim->wPrelimWinner);
+		boost::unordered_map<JOINID, sBUDOKAI_REGISTER_INDIVIDUAL_DATA>::iterator it2 = m_mapIndividual.find(prelim->wPrelimWinner);
 		if (it2 != m_mapIndividual.end())
 		{
 			CPlayer* pPlayer = g_pObjectManager->FindByChar(it2->second.charId);
@@ -2329,7 +2329,7 @@ void CBudokaiManager::MinorMatchMatchFinish(sPRELIM_HEAD* prelim, BYTE byMatchIn
 	}
 	else if (m_matchType == BUDOKAI_MATCH_TYPE_TEAM)
 	{
-		auto it2 = m_mapTeam.find(prelim->wPrelimWinner);
+		boost::unordered_map<JOINID, sBUDOKAI_REGISTER_TEAM_DATA>::iterator it2 = m_mapTeam.find(prelim->wPrelimWinner);
 		if (it2 != m_mapTeam.end())
 		{
 			sBUDOKAI_JOIN_INFO* pJoinInfo = &m_mapJoinInfo.find(prelim->wPrelimWinner)->second;
@@ -3089,7 +3089,7 @@ void CBudokaiManager::SendMajorMatchTeamInfo(BYTE byMatchIndex, sTOURNAMENT_MATC
 			CPlayer* pPlayer = g_pObjectManager->GetPC(it->first);
 			if (pPlayer && pPlayer->GetMatchIndex() == byMatchIndex)
 			{
-				auto it2 = m_mapIndividual.find(pPlayer->GetJoinID());
+				boost::unordered_map<JOINID, sBUDOKAI_REGISTER_INDIVIDUAL_DATA>::iterator it2 = m_mapIndividual.find(pPlayer->GetJoinID());
 				if (it2 != m_mapIndividual.end())
 				{
 					info[i].wTeamType = GetIndividualTeamType(it2->second.charId);
@@ -4489,7 +4489,7 @@ void CBudokaiManager::SendFinalMatchTeamInfo(BYTE byMatchIndex, sTOURNAMENT_MATC
 			CPlayer* pPlayer = g_pObjectManager->GetPC(it->first);
 			if (pPlayer && pPlayer->GetMatchIndex() == byMatchIndex)
 			{
-				auto it2 = m_mapIndividual.find(pPlayer->GetJoinID());
+				boost::unordered_map<JOINID, sBUDOKAI_REGISTER_INDIVIDUAL_DATA>::iterator it2 = m_mapIndividual.find(pPlayer->GetJoinID());
 				if (it2 != m_mapIndividual.end())
 				{
 					info[i].wTeamType = GetIndividualTeamType(it2->second.charId);
@@ -4985,8 +4985,6 @@ void CBudokaiManager::FinalMatchMatchFinish(sTOURNAMENT_MATCH * match, BYTE byMa
 		}
 	}
 }
-
-
 void CBudokaiManager::ResetPlayerFinalMatch(sTOURNAMENT_MATCH * match, BYTE byMatchIndex, bool bSpawn)
 {
 	match->m_byTeam1UnavailablePlayerCount = 0;
@@ -6073,7 +6071,7 @@ void CBudokaiManager::LoadBudokaiStateInfo(CPlayer * pPlayer)
 	{
 		if (m_matchStateInfo[m_matchType].byState == BUDOKAI_MATCHSTATE_MINOR_MATCH)
 		{
-			auto it3 = m_mapIndividual.find(pPlayer->GetJoinID());
+			boost::unordered_map<JOINID, sBUDOKAI_REGISTER_INDIVIDUAL_DATA>::iterator it3 = m_mapIndividual.find(pPlayer->GetJoinID());
 			if (it3 != m_mapIndividual.end())
 			{
 				std::map<BYTE, sPRELIM_HEAD*>::iterator it4 = m_mapPrelims.find(it3->second.byMinorMatch_MatchIndex);
@@ -6168,7 +6166,7 @@ void CBudokaiManager::LoadBudokaiStateInfo(CPlayer * pPlayer)
 	{
 		if (m_matchStateInfo[m_matchType].byState == BUDOKAI_MATCHSTATE_MINOR_MATCH)
 		{
-			auto it3 = m_mapTeam.find(pPlayer->GetJoinID());
+			boost::unordered_map<JOINID, sBUDOKAI_REGISTER_TEAM_DATA>::iterator it3 = m_mapTeam.find(pPlayer->GetJoinID());
 			if (it3 != m_mapTeam.end())
 			{
 				std::map<BYTE, sPRELIM_HEAD*>::iterator it4 = m_mapPrelims.find(it3->second.byMinorMatch_MatchIndex);
@@ -6445,7 +6443,7 @@ void CBudokaiManager::LeaveTeamReq(CPlayer * pPlayer)
 
 	if (wResultcode == GAME_SUCCESS)
 	{
-		auto it = m_mapTeam.find(pPlayer->GetJoinID());
+		boost::unordered_map<JOINID, sBUDOKAI_REGISTER_TEAM_DATA>::iterator it = m_mapTeam.find(pPlayer->GetJoinID());
 		if (it != m_mapTeam.end())
 		{
 			if(it->second.aMembers[0] != pPlayer->GetCharID())
@@ -6501,7 +6499,7 @@ void CBudokaiManager::JoinIndividual(CHARACTERID charId, float fPoint, JOINID wJ
 
 void CBudokaiManager::LeaveIndividual(JOINID joinid)
 {
-	auto it = m_mapIndividual.find(joinid);
+	boost::unordered_map<JOINID, sBUDOKAI_REGISTER_INDIVIDUAL_DATA>::iterator it = m_mapIndividual.find(joinid);
 	if (it != m_mapIndividual.end())
 	{
 		if (it->second.bDojoRecommender)
@@ -6536,7 +6534,7 @@ void CBudokaiManager::JoinTeam(CHARACTERID charId, WCHAR * wszTeamName, BYTE byM
 
 void CBudokaiManager::LeaveTeam(JOINID joinid)
 {
-	auto it = m_mapTeam.find(joinid);
+	boost::unordered_map<JOINID, sBUDOKAI_REGISTER_TEAM_DATA>::iterator it = m_mapTeam.find(joinid);
 	if (it != m_mapTeam.end())
 	{
 		m_mapJoinInfo.erase(joinid);
@@ -6571,7 +6569,7 @@ void CBudokaiManager::TeleportPrelimReq(CHARACTERID charId, HOBJECT handle, BYTE
 				res->byTeleportType = TELEPORT_TYPE_MINORMATCH;
 				res->worldTblidx = m_pTableInfo->sIndividualWorldTblidx.minorMatch;
 
-				auto it = m_mapIndividual.find(joinId);
+				boost::unordered_map<JOINID, sBUDOKAI_REGISTER_INDIVIDUAL_DATA>::iterator it = m_mapIndividual.find(joinId);
 				if (it != m_mapIndividual.end())
 				{
 					std::map<BYTE, sPRELIM_HEAD*>::iterator it2 = m_mapPrelims.find(it->second.byMinorMatch_MatchIndex);
@@ -6673,7 +6671,7 @@ void CBudokaiManager::TeleportPrelimReq(CHARACTERID charId, HOBJECT handle, BYTE
 				res->byTeleportType = TELEPORT_TYPE_MINORMATCH;
 				res->worldTblidx = m_pTableInfo->sTeamWorldTblidx.minorMatch;
 
-				auto it = m_mapTeam.find(joinId);
+				boost::unordered_map<JOINID, sBUDOKAI_REGISTER_TEAM_DATA>::iterator it = m_mapTeam.find(joinId);
 				if (it != m_mapTeam.end())
 				{
 					std::map<BYTE, sPRELIM_HEAD*>::iterator it2 = m_mapPrelims.find(it->second.byMinorMatch_MatchIndex);

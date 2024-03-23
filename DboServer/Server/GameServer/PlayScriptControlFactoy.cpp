@@ -39,9 +39,9 @@
 #include "BotAiCondition_BSFlow.h"
 #include "BotAiCondition_BSCheckLp.h"
 
-#include <unordered_map>
+#include <boost/unordered_map.hpp>
 
-std::unordered_map<int, CControlState*(*)(CNpc* pBot)> s_controlStateMap_sps;
+boost::unordered_map<int, CControlState*(*)(CNpc* pBot)> s_controlStateMap_sps;
 bool s_bInitailize_sps = false;
 
 CControlState* ControlStateCreator_CBotAiAction_Wait(CNpc *pBot)

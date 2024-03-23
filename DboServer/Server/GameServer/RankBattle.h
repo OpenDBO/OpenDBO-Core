@@ -5,7 +5,7 @@
 #include "NtlSingleton.h"
 #include "RankBattleTable.h"
 
-#include <unordered_map>
+#include "boost/unordered_map.hpp"
 
 class CPlayer;
 class CWorld;
@@ -166,6 +166,7 @@ public:
 
 	TBLIDX					GetTblidx() { return m_pRankTblData->tblidx; }
 	BYTE					GetBattleMode() {	return m_pRankTblData->byBattleMode;	}
+	BYTE					GetRuleType() { return m_pRankTblData->byRuleType; }
 	BYTE					GetRequiredMinLevel() { return 29;/* m_pRankTblData->byMinLevel;*/ }
 	BYTE					GetRequiredMaxLevel() { return m_pRankTblData->byMaxLevel; }
 
@@ -182,9 +183,9 @@ private:
 
 	std::map<ROOMID, CRankbattleBattle*>	m_mapRankBattleBattle;
 
-	std::unordered_map<HOBJECT, CHARACTERID>	m_mapSoloQueue;
+	boost::unordered_map<HOBJECT, CHARACTERID>	m_mapSoloQueue;
 
-	std::unordered_map<HOBJECT, CParty*>	m_mapPartyQueue; //hobject = party leader
+	boost::unordered_map<HOBJECT, CParty*>	m_mapPartyQueue; //hobject = party leader
 
 };
 

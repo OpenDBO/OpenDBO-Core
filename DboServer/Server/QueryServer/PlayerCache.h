@@ -3,7 +3,7 @@
 
 #include "NtlSingleton.h"
 #include <set>
-#include <unordered_map>
+#include <boost/unordered_map.hpp>
 
 #include "CallBack.h"
 
@@ -164,8 +164,8 @@ public:
 	DWORD						GetMudusaPoints() { return m_sPcData.dwMudosaPoint; }
 	void						SetMudusaPoints(DWORD dwPoints);
 
-	DWORD						GetNetPy() { return m_sPcData.dwNetPy; }
-	void						SetNetPy(DWORD dwNetPy);
+	DWORD						GetNetPyPoints() { return m_sPcData.NetPyPoit; }
+	void						SetNetPyPoints(DWORD dwPoints);
 
 	DWORD						GetReputation() { return m_sPcData.dwReputation; }
 
@@ -373,8 +373,8 @@ public:
 
 private:
 
-	std::unordered_map<ACCOUNTID, CAccountCache*>	m_mapAccounts;
-	std::unordered_map<CHARACTERID, CPlayerCache*>	m_mapCharacters;
+	boost::unordered_map<ACCOUNTID, CAccountCache*>	m_mapAccounts;
+	boost::unordered_map<CHARACTERID, CPlayerCache*>	m_mapCharacters;
 
 };
 

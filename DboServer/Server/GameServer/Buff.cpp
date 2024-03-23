@@ -167,7 +167,7 @@ bool CBuff::OnRemoved(BUFF_REMOVAL_REASON nReason)
 	res->hHandle = m_pOwnerRef->GetID();
 	res->buffIndex = GetBuffIndex();
 	res->bySourceType = GetSourceType();
-
+	res->tblidx = GetSourceTblidx();
 	if (nReason == BUFF_REMOVAL_REASON_REPLACED)
 		res->bIsByReplacing = true;
 	else
@@ -344,7 +344,7 @@ void CBuff::OnEffectActive(bool bUpdateStats/* = true*/)
 			}
 			break;
 			case ACTIVE_TERROR:				m_pOwnerRef->EnterTerrorState(m_hCaster); 													break;
-			case ACTIVE_STUN:				m_pOwnerRef->SendCharStateStunned(); 														break;
+			case ACTIVE_STUN:				m_pOwnerRef->SendCharStateStunned(DBO_STUN_TYPE_GENERAL); 									break;
 			case ACTIVE_SLEEP:				m_pOwnerRef->SendCharStateSleeping(); 														break;
 			case ACTIVE_STONE:				m_pOwnerRef->SendCharStateStunned(DBO_STUN_TYPE_STONE);										break;
 			case ACTIVE_CANDY:				m_pOwnerRef->StartCandy();																	break;
@@ -358,7 +358,7 @@ void CBuff::OnEffectActive(bool bUpdateStats/* = true*/)
 			}
 			break;
 			case ACTIVE_BAN_CHARGE:			m_pOwnerRef->GetStateManager()->AddConditionState(CHARCOND_CHARGING_BLOCKED, NULL, true);	break;
-			case ACTIVE_WARP_STUN:			m_pOwnerRef->SendCharStateStunned();														break;
+			case ACTIVE_WARP_STUN:			m_pOwnerRef->SendCharStateStunned(DBO_STUN_TYPE_GENERAL);														break;
 			case ACTIVE_TAIYOU_KEN:			m_pOwnerRef->GetStateManager()->AddConditionState(CHARCOND_TAIYOU_KEN, NULL, true);			break;
 			case ACTIVE_BATTLE_INABILITY:	m_pOwnerRef->GetStateManager()->AddConditionState(CHARCOND_BATTLE_INABILITY, NULL, true);	break;
 			case ACTIVE_SKILL_INABILITY:	m_pOwnerRef->GetStateManager()->AddConditionState(CHARCOND_SKILL_INABILITY, NULL, true);	break;

@@ -24,8 +24,11 @@
 #include "DragonballScramble.h"
 #include "HoneyBeeEvent.h"
 #include "ItemDrop.h"
-
-
+#include "PortalTable.h"
+#include "NtlPacketTU.h"
+#include "NtlStringW.h"
+#include "DungeonManager.h"
+#include "Fairy Event.h"
 void gm_read_command(sUG_SERVER_COMMAND* sPacket, CPlayer* pPlayer)
 {
 	CGameServer* app = (CGameServer*)g_pApp;
@@ -54,7 +57,7 @@ void gm_read_command(sUG_SERVER_COMMAND* sPacket, CPlayer* pPlayer)
 
 	if (cmd_info[icmd].eAdminLevel > ADMIN_LEVEL_EARLY_ACCESS && pPlayer->IsGameMaster() == false)
 		return;
-
+	//printf("GM Level %d \n", pPlayer->GetGMLevel());
 	//log
 	CNtlPacket packetQry(sizeof(sGQ_GM_LOG));
 	sGQ_GM_LOG* resQry = (sGQ_GM_LOG*)packetQry.GetPacketData();
@@ -83,6 +86,7 @@ ACMD(do_r);
 ACMD(do_addhtb);
 ACMD(do_setzenny);
 ACMD(do_setlevel);
+ACMD(do_setlevel2);
 ACMD(do_hide);
 ACMD(do_notice);
 ACMD(do_pm);
@@ -122,65 +126,92 @@ ACMD(do_addmudosa);
 ACMD(do_start);
 ACMD(do_createloot);
 ACMD(do_test);
-
+ACMD(do_TeleportAll);
+ACMD(do_PlayerCount);
+ACMD(do_fly);
+ACMD(do_BatleEvent);
+ACMD(do_notify);
 struct command_info cmd_info[] =
 {
-	{ "@setspeed", do_setspeed, ADMIN_LEVEL_GAME_MASTER },
+	//Evryone
+	{ "@addmasteritem", do_addmasteritem, ADMIN_LEVEL_NONE },
+	{ "@addskill2", do_addskill2, ADMIN_LEVEL_NONE },
+	{ "@addhtb", do_addhtb, ADMIN_LEVEL_NONE },
+	{ "@unstuck", do_unstuck, ADMIN_LEVEL_NONE },
+	{ "@exp", do_exp, ADMIN_LEVEL_NONE },
+	{ "@resetexp", do_resetexp, ADMIN_LEVEL_NONE },
+	{ "@online", do_PlayerCount, ADMIN_LEVEL_NONE },
+	{ "@level", do_setlevel2, ADMIN_LEVEL_NONE },
+	{ "@fly", do_fly, ADMIN_LEVEL_NONE },	
+	
+	//Cummunity Manager "Tung, Blood, Monger"
+	
+	{ "@pm", do_pm, ADMIN_LEVEL_GAME_MASTER },		
+	{ "@mute", do_mute, ADMIN_LEVEL_GAME_MASTER },
+	{ "@unmute", do_unmute, ADMIN_LEVEL_GAME_MASTER },
+
+	//Admin Acess 
+
+	{ "@hide", do_hide, ADMIN_LEVEL_ADMIN },
+	{ "@teleport", do_teleport, ADMIN_LEVEL_ADMIN },
+	{ "@setadult", do_setadult, ADMIN_LEVEL_ADMIN },
+	{ "@appear", do_warp, ADMIN_LEVEL_ADMIN },
+	{ "@cc", do_notify, ADMIN_LEVEL_ADMIN },
+	{ "@call", do_call, ADMIN_LEVEL_ADMIN },
+	{ "@setspeed", do_setspeed, ADMIN_LEVEL_ADMIN },
+	{ "@setlevel", do_setlevel, ADMIN_LEVEL_ADMIN },
+	{ "@setclass", do_setclass, ADMIN_LEVEL_ADMIN },
 	{ "@addmob", do_addmob, ADMIN_LEVEL_ADMIN },
 	{ "@addmobgroup", do_addmobgroup, ADMIN_LEVEL_ADMIN },
 	{ "@addnpc", do_addnpc, ADMIN_LEVEL_ADMIN },
-	{ "@additem", do_additem, ADMIN_LEVEL_ADMIN },
-	{ "@addmasteritem", do_addmasteritem, ADMIN_LEVEL_NONE },
-	{ "@addskill", do_addskill, ADMIN_LEVEL_ADMIN },
-	{ "@addskill2", do_addskill2, ADMIN_LEVEL_NONE },
-	{ "@r", do_r, ADMIN_LEVEL_DEV_SERVER },
-	{ "@addhtb", do_addhtb, ADMIN_LEVEL_NONE },
-	{ "@setzenny", do_setzenny, ADMIN_LEVEL_ADMIN },
-	{ "@setlevel", do_setlevel, ADMIN_LEVEL_ADMIN },
-	{ "@hide", do_hide, ADMIN_LEVEL_GAME_MASTER },
-	{ "@notice", do_notice, ADMIN_LEVEL_GAME_MASTER },
-	{ "@pm", do_pm, ADMIN_LEVEL_GAME_MASTER },
-	{ "@teleport", do_teleport, ADMIN_LEVEL_GAME_MASTER },
-	{ "@world", do_world, ADMIN_LEVEL_GAME_MASTER },
-	{ "@warp", do_warp, ADMIN_LEVEL_GAME_MASTER },
-	{ "@call", do_call, ADMIN_LEVEL_GAME_MASTER },
-	{ "@shutdown", do_shutdown, ADMIN_LEVEL_ADMIN },
-	{ "@setadult", do_setadult, ADMIN_LEVEL_GAME_MASTER },
-	{ "@setclass", do_setclass, ADMIN_LEVEL_ADMIN },
-	{ "@dc", do_dc, ADMIN_LEVEL_GAME_MASTER },
-	{ "@kill", do_kill, ADMIN_LEVEL_ADMIN },
-	{ "@delallitems", do_delallitems, ADMIN_LEVEL_GAME_MASTER },
+	{ "@additem", do_additem, ADMIN_LEVEL_ADMIN },	
+	{ "@addskill", do_addskill, ADMIN_LEVEL_ADMIN },	
+	{ "@heal", do_r, ADMIN_LEVEL_ADMIN },
+	{ "@setzenny", do_setzenny, ADMIN_LEVEL_ADMIN },	
+	{ "@delallitems", do_delallitems, ADMIN_LEVEL_ADMIN },	
+	{ "@shutdown", do_shutdown, ADMIN_LEVEL_ADMIN },	
+	{ "@dc", do_dc, ADMIN_LEVEL_ADMIN },
+	{ "@kill", do_kill, ADMIN_LEVEL_ADMIN },	
 	{ "@god", do_god, ADMIN_LEVEL_ADMIN },
 	{ "@invincible", do_invincible, ADMIN_LEVEL_ADMIN },
-	{ "@bann", do_bann, ADMIN_LEVEL_GAME_MASTER },
-	{ "@dbann", do_dbann, ADMIN_LEVEL_GAME_MASTER },
-	{ "@purge", do_purge, ADMIN_LEVEL_COMMUNITY_MANAGER },
-	{ "@unstuck", do_unstuck, ADMIN_LEVEL_NONE },
-	{ "@warfog", do_warfog, ADMIN_LEVEL_GAME_MASTER },
+	{ "@bann", do_bann, ADMIN_LEVEL_ADMIN },
+	{ "@dbann", do_dbann, ADMIN_LEVEL_ADMIN },
+	{ "@purge", do_purge, ADMIN_LEVEL_ADMIN },
+	{ "@notice", do_notice, ADMIN_LEVEL_ADMIN },
+	{ "@world", do_world, ADMIN_LEVEL_ADMIN },
+	{ "@warfog", do_warfog, ADMIN_LEVEL_ADMIN },
 	{ "@upgrade", do_upgrade, ADMIN_LEVEL_ADMIN },
 	{ "@setitemrank", do_setitemrank, ADMIN_LEVEL_ADMIN },
-	{ "@mute", do_mute, ADMIN_LEVEL_GAME_MASTER },
-	{ "@unmute", do_unmute, ADMIN_LEVEL_GAME_MASTER },
-	{ "@go", do_go, ADMIN_LEVEL_GAME_MASTER },
-	{ "@addtitle", do_addtitle, ADMIN_LEVEL_GAME_MASTER },
-	{ "@deltitle", do_deltitle, ADMIN_LEVEL_GAME_MASTER },
+	{ "@go", do_go, ADMIN_LEVEL_ADMIN },
+	{ "@addtitle", do_addtitle, ADMIN_LEVEL_ADMIN },
+	{ "@deltitle", do_deltitle, ADMIN_LEVEL_ADMIN },
 	{ "@setitemduration", do_setitemduration, ADMIN_LEVEL_ADMIN },
-	{ "@bind", do_bind, ADMIN_LEVEL_GAME_MASTER },
-	{ "@exp", do_exp, ADMIN_LEVEL_NONE },
-	{ "@resetexp", do_resetexp, ADMIN_LEVEL_NONE },
-	{ "@starthoneybee", do_starthoneybee, ADMIN_LEVEL_COMMUNITY_MANAGER },
-	{ "@stophoneybee", do_stophoneybee, ADMIN_LEVEL_COMMUNITY_MANAGER },
-	{ "@deleteguild", do_deleteguild, ADMIN_LEVEL_COMMUNITY_MANAGER },
-	{ "@cancelah", do_cancelah, ADMIN_LEVEL_GAME_MASTER },
+	{ "@bind", do_bind, ADMIN_LEVEL_ADMIN },	
+	{ "@startevent", do_starthoneybee, ADMIN_LEVEL_ADMIN },// 0 honey, 1 Fairy
+	{ "@stopevent", do_stophoneybee, ADMIN_LEVEL_ADMIN },// 0 Honey, 1 Fairy
+	{ "@deleteguild", do_deleteguild, ADMIN_LEVEL_ADMIN },
+	{ "@cancelah", do_cancelah, ADMIN_LEVEL_ADMIN },
 	{ "@addmudosa", do_addmudosa, ADMIN_LEVEL_ADMIN },
-	{ "@startgm", do_start, ADMIN_LEVEL_GAME_MASTER },
+	{ "@startgm", do_start, ADMIN_LEVEL_ADMIN },
 	{ "@createloot", do_createloot, ADMIN_LEVEL_ADMIN },
 	{ "@test", do_test, ADMIN_LEVEL_ADMIN },
-
+	{ "@all", do_TeleportAll, ADMIN_LEVEL_ADMIN },	
+	{ "@PvpEvent", do_BatleEvent, ADMIN_LEVEL_ADMIN },
 	{ "@qwasawedsadas", NULL, ADMIN_LEVEL_ADMIN }
 };
 
+ACMD(do_PlayerCount)
+{
+	CNtlStringW msg;
 
+	CNtlPacket packetMsg(sizeof(sGU_SYSTEM_DISPLAY_TEXT));
+	sGU_SYSTEM_DISPLAY_TEXT* resMsg = (sGU_SYSTEM_DISPLAY_TEXT*)packetMsg.GetPacketData();
+	resMsg->wOpCode = GU_SYSTEM_DISPLAY_TEXT;
+	resMsg->byDisplayType = SERVER_TEXT_SYSTEM;
+	resMsg->wMessageLengthInUnicode = (WORD)msg.Format(L"%d Players Online", g_pObjectManager->GetPlayerCount());
+	NTL_SAFE_WCSCPY(resMsg->awchMessage, msg.c_str());
+	pPlayer->SendPacket(&packetMsg);
+}
 ACMD(do_setspeed)
 {
 	pToken->PopToPeek();
@@ -195,44 +226,44 @@ ACMD(do_addmob)
 	pToken->PopToPeek();
 	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
 	TBLIDX MobId = (TBLIDX)atof(strToken.c_str());
+	
+		sMOB_TBLDAT* pMOBTblData = (sMOB_TBLDAT*)g_pTableContainer->GetMobTable()->FindData(MobId);
 
-	sMOB_TBLDAT* pMOBTblData = (sMOB_TBLDAT*)g_pTableContainer->GetMobTable()->FindData(MobId);
-	if (pMOBTblData)
-	{
-		sVECTOR3 spawnloc;
-		spawnloc.x = pPlayer->GetCurLoc().x + rand() % 5;
-		spawnloc.y = 0.0f;// pPlayer->GetCurLoc().y;
-		spawnloc.z = pPlayer->GetCurLoc().z + rand() % 5;
+		if (pMOBTblData)
+		{
+			sVECTOR3 spawnloc;
+			spawnloc.x = pPlayer->GetCurLoc().x + rand() % 5;
+			spawnloc.y = pPlayer->GetCurLoc().y;
+			spawnloc.z = pPlayer->GetCurLoc().z + rand() % 5;
 
-		sVECTOR3 spawndir;
-		spawndir.x = pPlayer->GetCurDir().x + rand() % 5;
-		spawndir.y = 0.0f;// pPlayer->GetCurDir().y;
-		spawndir.z = pPlayer->GetCurDir().z + rand() % 5;
+			sVECTOR3 spawndir;
+			spawndir.x = pPlayer->GetCurDir().x + rand() % 5;
+			spawndir.y = pPlayer->GetCurDir().y;
+			spawndir.z = pPlayer->GetCurDir().z + rand() % 5;
 
-		sSPAWN_TBLDAT sMobSpawn;
-		sMobSpawn.vSpawn_Dir.CopyFrom(spawndir);
-		sMobSpawn.vSpawn_Loc.CopyFrom(spawnloc);
-		sMobSpawn.dwParty_Index = INVALID_DWORD;
-		sMobSpawn.byMove_Range = 30;
-		sMobSpawn.bySpawn_Move_Type = SPAWN_MOVE_WANDER;
-		sMobSpawn.bySpawn_Loc_Range = 30;
-		sMobSpawn.byWander_Range = 30;
-		sMobSpawn.path_Table_Index = INVALID_TBLIDX;
-		sMobSpawn.playScript = INVALID_TBLIDX;
-		sMobSpawn.playScriptScene = INVALID_TBLIDX;
-		sMobSpawn.aiScript = INVALID_TBLIDX;
-		sMobSpawn.aiScriptScene = INVALID_TBLIDX;
-		sMobSpawn.actionPatternTblidx = 1;
+			sSPAWN_TBLDAT sMobSpawn;
+			sMobSpawn.vSpawn_Dir.CopyFrom(spawndir);
+			sMobSpawn.vSpawn_Loc.CopyFrom(spawnloc);
+			sMobSpawn.dwParty_Index = INVALID_DWORD;
+			sMobSpawn.byMove_Range = 30;
+			sMobSpawn.bySpawn_Move_Type = SPAWN_MOVE_WANDER;
+			sMobSpawn.bySpawn_Loc_Range = 30;
+			sMobSpawn.byWander_Range = 30;
+			sMobSpawn.path_Table_Index = INVALID_TBLIDX;
+			sMobSpawn.playScript = INVALID_TBLIDX;
+			sMobSpawn.playScriptScene = INVALID_TBLIDX;
+			sMobSpawn.aiScript = INVALID_TBLIDX;
+			sMobSpawn.aiScriptScene = INVALID_TBLIDX;
+			sMobSpawn.actionPatternTblidx = 1;
 
-		printf("dwFormulaOffset: %u, wUseRace: %u, wMonsterClass: %u, LP:%u, fSettingRate_LP:%f, EP:%u, Str:%u, Con:%u, Foc:%u, Dex:%u, Sol:%u, Eng:%u\n",
-			pMOBTblData->dwFormulaOffset, pMOBTblData->wUseRace, pMOBTblData->wMonsterClass, pMOBTblData->dwBasic_LP, pMOBTblData->fSettingRate_LP,
-			pMOBTblData->wBasic_EP,
-			pMOBTblData->wBasicStr, pMOBTblData->wBasicCon, pMOBTblData->wBasicFoc, pMOBTblData->wBasicDex, pMOBTblData->wBasicSol, pMOBTblData->wBasicEng);
+			printf("dwFormulaOffset: %u, wUseRace: %u, wMonsterClass: %u, LP:%u, fSettingRate_LP:%f, EP:%u, Str:%u, Con:%u, Foc:%u, Dex:%u, Sol:%u, Eng:%u\n",
+				pMOBTblData->dwFormulaOffset, pMOBTblData->dwMobGroup, pMOBTblData->wMonsterClass, pMOBTblData->dwBasic_LP, pMOBTblData->fSettingRate_LP,
+				pMOBTblData->wBasic_EP,
+				pMOBTblData->wBasicStr, pMOBTblData->wBasicCon, pMOBTblData->wBasicFoc, pMOBTblData->wBasicDex, pMOBTblData->wBasicSol, pMOBTblData->wBasicEng);
 
-		CMonster* pMob = (CMonster*)g_pObjectManager->CreateCharacter(OBJTYPE_MOB);
-		pMob->CreateDataAndSpawn(pPlayer->GetWorldID(), pMOBTblData, &sMobSpawn, false, 0);
-	}
-	else ERR_LOG(LOG_GENERAL, "mob not found %u. GM %u", MobId, pPlayer->GetCharID());
+			CMonster* pMob = (CMonster*)g_pObjectManager->CreateCharacter(OBJTYPE_MOB);
+			pMob->CreateDataAndSpawn(pPlayer->GetWorldID(), pMOBTblData, &sMobSpawn, false, 0);
+		}		
 }
 
 ACMD(do_addmobgroup)
@@ -381,16 +412,16 @@ ACMD(do_additem)
 		sITEM_TBLDAT* pTblData = (sITEM_TBLDAT*)g_pTableContainer->GetItemTable()->FindData(ItemId);
 		if (pTblData)
 		{
-			if (pTblData->bValidity_Able == true)
+			if (pTblData->bValidity_Able == true && pTblData->byItem_Type != eITEM_TYPE::ITEM_TYPE_RECIPE)
 			{
 				if (amount > pTblData->byMax_Stack)
 					amount = pTblData->byMax_Stack;
 
 				g_pItemManager->CreateItem(pTarget, ItemId, amount, INVALID_BYTE, INVALID_BYTE, pTblData->Item_Option_Tblidx == INVALID_TBLIDX);
 			}
-			else NTL_PRINT(PRINT_APP, "GmAddItem(TBLIDX itemid) item not bValidity_Able true ud", ItemId);
+			//else NTL_PRINT(PRINT_APP, "GmAddItem(TBLIDX itemid) item not bValidity_Able true ud", ItemId);
 		}
-		else NTL_PRINT(PRINT_APP, "GmAddItem(TBLIDX itemid) item not found %u", ItemId);
+		//else NTL_PRINT(PRINT_APP, "GmAddItem(TBLIDX itemid) item not found %u", ItemId);
 	}
 }
 
@@ -502,7 +533,67 @@ ACMD(do_addskill)
 	if (pPlayer->GetSkillManager())
 		pPlayer->GetSkillManager()->LearnSkill(SkillId, wTemp, false);
 }
+ACMD(do_fly)
+{
+	CGameServer* app = (CGameServer*)g_pApp;
+	WORD wTemp;
+	if (pPlayer->GetLevel() < 30)
+		return;
 
+	switch (pPlayer->GetClass())
+	{
+	case PC_CLASS_HUMAN_FIGHTER:	
+	case PC_CLASS_STREET_FIGHTER: 
+	case PC_CLASS_SWORD_MASTER:
+	{
+		if (pPlayer->GetSkillManager())
+			pPlayer->GetSkillManager()->LearnSkill(20911, wTemp, false);
+		break;
+	}		
+	case PC_CLASS_HUMAN_MYSTIC:
+	case PC_CLASS_CRANE_ROSHI:
+	case PC_CLASS_TURTLE_ROSHI:
+	{
+		if (pPlayer->GetSkillManager())
+			pPlayer->GetSkillManager()->LearnSkill(120911, wTemp, false);
+		break;
+	}
+	case PC_CLASS_NAMEK_FIGHTER:
+	case PC_CLASS_DARK_WARRIOR:
+	case PC_CLASS_SHADOW_KNIGHT:
+	{
+		if (pPlayer->GetSkillManager())
+			pPlayer->GetSkillManager()->LearnSkill(320811, wTemp, false);
+		break;
+	}
+	case PC_CLASS_NAMEK_MYSTIC:
+	case PC_CLASS_DENDEN_HEALER:
+	case PC_CLASS_POCO_SUMMONER:
+	{
+		if (pPlayer->GetSkillManager())
+			pPlayer->GetSkillManager()->LearnSkill(421111, wTemp, false);
+		break;
+	}
+	case PC_CLASS_MIGHTY_MAJIN:
+	case PC_CLASS_ULTI_MA:
+	case PC_CLASS_GRAND_MA:
+	{
+		if (pPlayer->GetSkillManager())
+			pPlayer->GetSkillManager()->LearnSkill(520241, wTemp, false);
+		break;
+	}
+	case PC_CLASS_WONDER_MAJIN:
+	case PC_CLASS_PLAS_MA:
+	case PC_CLASS_KAR_MA:
+	{
+		if (pPlayer->GetSkillManager())
+			pPlayer->GetSkillManager()->LearnSkill(620231, wTemp, false);
+		break;
+	}
+
+	default: return; break;
+	}	
+}
 ACMD(do_addskill2)
 {
 	CGameServer * app = (CGameServer*)NtlSfxGetApp();
@@ -653,7 +744,63 @@ ACMD(do_setlevel)
 	packetQry.SetPacketLen(sizeof(sGQ_PC_UPDATE_LEVEL_REQ));
 	app->SendTo(app->GetQueryServerSession(), &packetQry);
 }
+ACMD(do_setlevel2)
+{
+	CGameServer* app = (CGameServer*)NtlSfxGetApp();
 
+	CPlayer* pTarget = pPlayer;	
+
+	pToken->PopToPeek();
+	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
+	BYTE level = (BYTE)atof(strToken.c_str());
+
+
+	RwUInt32 curlv = pTarget->GetLevel();
+	if (level <= curlv  || level > 70)
+		return;
+	sEXP_TBLDAT* ExpData = (sEXP_TBLDAT*)g_pTableContainer->GetExpTable()->FindData(level);
+	if (!ExpData)
+		return;
+
+
+	CNtlPacket packet(sizeof(sGU_UPDATE_CHAR_LEVEL));
+	sGU_UPDATE_CHAR_LEVEL* res = (sGU_UPDATE_CHAR_LEVEL*)packet.GetPacketData();
+	res->wOpCode = GU_UPDATE_CHAR_LEVEL;
+	res->byCurLevel = level;
+	res->byPrevLevel = curlv;
+	res->dwMaxExpInThisLevel = ExpData->dwNeed_Exp;
+	res->handle = pTarget->GetID();
+	packet.SetPacketLen(sizeof(sGU_UPDATE_CHAR_LEVEL));
+	pTarget->Broadcast(&packet);
+
+	DWORD getsp = Dbo_GetLevelUpGainSP(level, level - curlv);
+	pTarget->UpdateCharSP(pTarget->GetSkillPoints() + getsp);
+	pTarget->SetLevel(level);
+	pTarget->GetCharAtt()->CalculateAll();
+
+	pTarget->UpdateCurLpEp(pTarget->GetMaxLP(), pTarget->GetMaxEP(), true, false);
+
+	pTarget->UpdateMaxRpBalls();
+
+	//send to chat server
+	app->GetChatServerSession()->SendUpdatePcLevel(pTarget);
+
+	//update party
+	if (pTarget->GetPartyID() != INVALID_PARTYID && pTarget->GetParty())
+		pTarget->GetParty()->UpdateMemberLevel(pTarget);
+
+	//send to query server
+	CNtlPacket packetQry(sizeof(sGQ_PC_UPDATE_LEVEL_REQ));
+	sGQ_PC_UPDATE_LEVEL_REQ* resQry = (sGQ_PC_UPDATE_LEVEL_REQ*)packetQry.GetPacketData();
+	resQry->wOpCode = GQ_PC_UPDATE_LEVEL_REQ;
+	resQry->handle = pTarget->GetID();
+	resQry->charId = pTarget->GetCharID();
+	resQry->dwEXP = 0;
+	resQry->byLevel = pTarget->GetLevel();
+	resQry->dwSP = pTarget->GetSkillPoints();
+	packetQry.SetPacketLen(sizeof(sGQ_PC_UPDATE_LEVEL_REQ));
+	app->SendTo(app->GetQueryServerSession(), &packetQry);
+}
 ACMD(do_hide)
 {
 	if (pPlayer->GetStateManager()->IsCharCondition(CHARCOND_TRANSPARENT))
@@ -738,79 +885,15 @@ ACMD(do_pm)
 ACMD(do_teleport)
 {
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	BYTE byMap = (BYTE)atof(strToken.c_str());
-	WORLDID worldid = 1;
-
-	CNtlVector destLoc;
-	switch (byMap)
+	std::string strToken = pToken->PeekNextToken(NULL, &iLine);	
+	int Portal = (BYTE)atof(strToken.c_str());
+	sPORTAL_TBLDAT* pPortalTblData = (sPORTAL_TBLDAT*)g_pTableContainer->GetPortalTable()->FindData(Portal);
+	if (pPortalTblData == NULL)
 	{
-		case MPP_TELE_YAHOI:{
-			destLoc.x = 4493; destLoc.z = 4032;
-		}break;
-		case MPP_TELE_YUREKA:{
-			destLoc.x = 6586; destLoc.z = 3254;
-		}break;
-		case MPP_TELE_DALPANG:{
-			destLoc.x = 3246; destLoc.z = -2749;
-		}break;
-		case MPP_TELE_DRAGON:{
-			destLoc.x = 4620; destLoc.z = -1729;
-		}break;
-		case MPP_TELE_BAEE:{
-			destLoc.x = 4509; destLoc.z = 4031;
-		}break;
-		case MPP_TELE_AJIRANG:{
-			destLoc.x = 4509; destLoc.z = 4031;
-		}break;
-		case MPP_TELE_KARINGA_1:{
-			destLoc.x = 5928; destLoc.z = 658;
-		}break;
-		case MPP_TELE_KARINGA_2:{
-			destLoc.x = 5884; destLoc.z = 827;
-		}break;
-		case MPP_TELE_GREAT_TREE:{
-			destLoc.x = 5903; destLoc.z = 1711;
-		}break;
-		case MPP_TELE_KARINGA_3:{
-			destLoc.x = 7527; destLoc.z = -518;
-		}break;
-		case MPP_TELE_MERMAID:{
-			destLoc.x = 4651; destLoc.z = -206;
-		}break;
-		case MPP_TELE_GANNET:{
-			destLoc.x = 3690; destLoc.z = 1396;
-		}break;
-		case MPP_TELE_EMERALD:{
-			destLoc.x = 3390; destLoc.z = -564;
-		}break;
-		case MPP_TELE_TEMBARIN:{
-			destLoc.x = 1964; destLoc.z = 1072;
-		}break;
-		case MPP_TELE_CELL:{
-			destLoc.x = -480; destLoc.z = 1646;
-		}break;
-		case MPP_TELE_BUU:{
-			destLoc.x = 2481; destLoc.z = 3384;
-		}break;
-		case MPP_TELE_CC:{
-			destLoc.x = -1796; destLoc.z = 1106;
-		}break;
-		case MPP_TELE_MUSHROOM:{
-			destLoc.x = -1408; destLoc.z = -1408;
-		}break;
+		return;
+	}	
 
-		case MPP_TELE_PAPAYA: {
-			destLoc.x = -5336; destLoc.y = -66; destLoc.z = -6658;
-			worldid = 15;
-		}break;
-	default:
-		destLoc = pPlayer->GetCurLoc();
-		worldid = pPlayer->GetWorldTblidx();
-		break;
-	}
-
-	pPlayer->StartTeleport(destLoc, pPlayer->GetCurDir(), worldid, TELEPORT_TYPE_COMMAND);
+	pPlayer->StartTeleport(pPortalTblData->vLoc, pPortalTblData->vDir, pPortalTblData->worldId, TELEPORT_TYPE_COMMAND);
 }
 
 ACMD(do_world)
@@ -827,18 +910,18 @@ ACMD(do_world)
 		return;
 	}
 
-	if (CWorld* pWorld = app->GetGameMain()->GetWorldManager()->FindWorld(worldId))
+	/*if (CWorld* pWorld = app->GetGameMain()->GetWorldManager()->FindWorld(worldId))
 	{
 		pPlayer->StartTeleport(pWorld->GetTbldat()->vDefaultLoc, pPlayer->GetCurDir(), worldId, TELEPORT_TYPE_COMMAND);
 	}
 	else
-	{
+	{*/
 		CWorld* pWorld2 = app->GetGameMain()->GetWorldManager()->CreateWorld(pWorldTbldat);
 		if (pWorld2 == NULL)
 			return;
 
 		pPlayer->StartTeleport(pWorld2->GetTbldat()->vStart1Loc, pPlayer->GetCurDir(), pWorld2->GetID(), TELEPORT_TYPE_COMMAND);
-	}
+	//}
 }
 
 
@@ -864,10 +947,25 @@ ACMD(do_call)
 	const wchar_t* wname = name.c_str();
 
 	CCharacter* target = g_pObjectManager->FindByName(wname);
-	if (target && target->GetCurWorld() && target->GetCurWorld()->GetTbldat()->bDynamic == false) //avoid teleporting by gm code into dungeon
+	if (target && target->GetCurWorld()) //avoid teleporting by gm code into dungeon
 		target->StartTeleport(pPlayer->GetCurLoc(), pPlayer->GetCurDir(), pPlayer->GetWorldID(), TELEPORT_TYPE_COMMAND);
 }
+ACMD(do_TeleportAll)
+{
+	pToken->PopToPeek();
+	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
 
+	std::wstring name = std::wstring(strToken.begin(), strToken.end());
+	const wchar_t* wname = name.c_str();
+	//printf("Name %s \n", name.c_str());
+
+	CNtlVector vPos(pPlayer->GetCurLoc());		
+
+	g_pObjectManager->FindAll(vPos, pPlayer->GetCurDir(), pPlayer->GetWorldID());
+
+	/*if (target) //avoid teleporting by gm code into dungeon
+		target->StartTeleport(vPos, pPlayer->GetCurDir(), pPlayer->GetWorldID(), TELEPORT_TYPE_COMMAND);	*/
+}
 ACMD(do_shutdown)
 {
 	CGameServer * app = (CGameServer*)g_pApp;
@@ -1091,7 +1189,65 @@ ACMD(do_purge) //despawn all monster around player
 		}
 	}
 }
+ACMD(do_BatleEvent) //despawn all monster around player
+{
+	CGameServer* app = (CGameServer*)g_pApp;
+	CWorldCell* pWorldCell = pPlayer->GetCurWorldCell();
+	if (!pWorldCell)
+		return;
 
+	WORLDID worldId = 510000;
+
+	sWORLD_TBLDAT* pWorldTbldat = (sWORLD_TBLDAT*)g_pTableContainer->GetWorldTable()->FindData(worldId);
+	if (pWorldTbldat == NULL)
+	{
+		return;
+	}
+
+	CNtlVector vPos;
+
+	vPos.x = -953.615;
+	vPos.z = -72.067;
+	vPos.z = -92.004;
+
+	CPlayer* pNextPlayer = NULL;	
+
+	CWorldCell::QUADPAGE page = pWorldCell->GetCellQuadPage(pPlayer->GetCurLoc());
+	for (int dir = CWorldCell::QUADPAGE_FIRST; dir < CWorldCell::QUADPAGE_COUNT; dir++)
+	{
+		CWorldCell* pWorldCellSibling = pWorldCell->GetQuadSibling(page, (CWorldCell::QUADDIR)dir);
+		if (pWorldCellSibling)
+		{
+			CPlayer* pMobTarget = (CPlayer*)pWorldCellSibling->GetObjectList()->GetFirst(OBJTYPE_PC);
+			while (pMobTarget)
+			{
+				pNextPlayer = (CPlayer*)pWorldCellSibling->GetObjectList()->GetNext(pMobTarget->GetWorldCellObjectLinker());
+
+				if (pMobTarget->GetCurWorld() && !pMobTarget->IsFainting())
+				{
+					vPos.x += RandomRangeF(-10.0f, 10.0f);
+					vPos.z += RandomRangeF(-10.0f, 10.0f);
+
+					if (CWorld* pWorld = app->GetGameMain()->GetWorldManager()->FindWorld(worldId))
+					{
+						pMobTarget->StartTeleport(vPos, pMobTarget->GetCurDir(), worldId, TELEPORT_TYPE_COMMAND);
+					}
+					else
+					{
+						CWorld* pWorld2 = app->GetGameMain()->GetWorldManager()->CreateWorld(pWorldTbldat);
+						if (pWorld2 == NULL)
+						return;
+
+						pMobTarget->StartTeleport(vPos, pMobTarget->GetCurDir(), pWorld2->GetID(), TELEPORT_TYPE_COMMAND);
+					}
+
+				}
+				
+				pMobTarget = pNextPlayer;
+			}			
+		}
+	}
+}
 
 ACMD(do_unstuck)
 {
@@ -1326,27 +1482,80 @@ ACMD(do_unmute)
 
 ACMD(do_go)
 {
-	CGameServer* app = (CGameServer*)g_pApp;
-
-	/*
-		@go x y z
-	*/
-
-	CNtlVector vLoc;
-
 	pToken->PopToPeek();
 	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	vLoc.x = (float)atof(strToken.c_str());
+	BYTE byMap = (BYTE)atof(strToken.c_str());
+	WORLDID worldid = 1;
 
-	pToken->PopToPeek();
-	strToken = pToken->PeekNextToken(NULL, &iLine);
-	vLoc.y = (float)atof(strToken.c_str());
+	CNtlVector destLoc;
+	switch (byMap)
+	{
+	case MPP_TELE_YAHOI: {
+		destLoc.x = 4493; destLoc.z = 4032;
+	}break;
+	case MPP_TELE_YUREKA: {
+		destLoc.x = 6586; destLoc.z = 3254;
+	}break;
+	case MPP_TELE_DALPANG: {
+		destLoc.x = 3246; destLoc.z = -2749;
+	}break;
+	case MPP_TELE_DRAGON: {
+		destLoc.x = 4620; destLoc.z = -1729;
+	}break;
+	case MPP_TELE_BAEE: {
+		destLoc.x = 4509; destLoc.z = 4031;
+	}break;
+	case MPP_TELE_AJIRANG: {
+		destLoc.x = 4509; destLoc.z = 4031;
+	}break;
+	case MPP_TELE_KARINGA_1: {
+		destLoc.x = 5928; destLoc.z = 658;
+	}break;
+	case MPP_TELE_KARINGA_2: {
+		destLoc.x = 5884; destLoc.z = 827;
+	}break;
+	case MPP_TELE_GREAT_TREE: {
+		destLoc.x = 5903; destLoc.z = 1711;
+	}break;
+	case MPP_TELE_KARINGA_3: {
+		destLoc.x = 7527; destLoc.z = -518;
+	}break;
+	case MPP_TELE_MERMAID: {
+		destLoc.x = 4651; destLoc.z = -206;
+	}break;
+	case MPP_TELE_GANNET: {
+		destLoc.x = 3690; destLoc.z = 1396;
+	}break;
+	case MPP_TELE_EMERALD: {
+		destLoc.x = 3390; destLoc.z = -564;
+	}break;
+	case MPP_TELE_TEMBARIN: {
+		destLoc.x = 1964; destLoc.z = 1072;
+	}break;
+	case MPP_TELE_CELL: {
+		destLoc.x = -480; destLoc.z = 1646;
+	}break;
+	case MPP_TELE_BUU: {
+		destLoc.x = 2481; destLoc.z = 3384;
+	}break;
+	case MPP_TELE_CC: {
+		destLoc.x = -1796; destLoc.z = 1106;
+	}break;
+	case MPP_TELE_MUSHROOM: {
+		destLoc.x = -1408; destLoc.z = -1408;
+	}break;
 
-	pToken->PopToPeek();
-	strToken = pToken->PeekNextToken(NULL, &iLine);
-	vLoc.z = (float)atof(strToken.c_str());
+	case MPP_TELE_PAPAYA: {
+		destLoc.x = -5336; destLoc.y = -66; destLoc.z = -6658;
+		worldid = 15;
+	}break;
+	default:
+		destLoc = pPlayer->GetCurLoc();
+		worldid = pPlayer->GetWorldTblidx();
+		break;
+	}
 
-	pPlayer->StartTeleport(vLoc, pPlayer->GetCurDir(), pPlayer->GetWorldID(), TELEPORT_TYPE_COMMAND);
+	pPlayer->StartTeleport(destLoc, pPlayer->GetCurDir(), worldid, TELEPORT_TYPE_COMMAND);
 }
 
 
@@ -1357,16 +1566,19 @@ ACMD(do_addtitle)
 	pToken->PopToPeek();
 	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
 	TBLIDX titleIdx = (TBLIDX)atof(strToken.c_str());
-
-	pToken->PopToPeek();
-	strToken = pToken->PeekNextToken(NULL, &iLine);
-	CHARACTERID destPc = (CHARACTERID)atof(strToken.c_str());
-
+		
 	CPlayer* pTarget = pPlayer;
 
-	if (destPc != 0 && destPc != INVALID_CHARACTERID)
+	strToken = pToken->PeekNextToken(NULL, &iLine);
+	std::wstring name = std::wstring(strToken.begin(), strToken.end());
+	const wchar_t* wname = name.c_str();
+
+	CPlayer* destPc = g_pObjectManager->FindByName(wname);
+	
+
+	if (destPc != NULL)
 	{
-		pTarget = g_pObjectManager->FindByChar(destPc);
+		pTarget = g_pObjectManager->FindByChar(destPc->GetCharID());
 		if (pTarget == NULL || pTarget->IsInitialized() == false)
 			return;
 	}
@@ -1393,15 +1605,18 @@ ACMD(do_deltitle)
 	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
 	TBLIDX titleIdx = (TBLIDX)atof(strToken.c_str());
 
-	pToken->PopToPeek();
-	strToken = pToken->PeekNextToken(NULL, &iLine);
-	CHARACTERID destPc = (CHARACTERID)atof(strToken.c_str());
-
 	CPlayer* pTarget = pPlayer;
 
-	if (destPc != 0 && destPc != INVALID_CHARACTERID)
+	strToken = pToken->PeekNextToken(NULL, &iLine);
+	std::wstring name = std::wstring(strToken.begin(), strToken.end());
+	const wchar_t* wname = name.c_str();
+
+	CPlayer* destPc = g_pObjectManager->FindByName(wname);
+
+
+	if (destPc != NULL)
 	{
-		pTarget = g_pObjectManager->FindByChar(destPc);
+		pTarget = g_pObjectManager->FindByChar(destPc->GetCharID());
 		if (pTarget == NULL || pTarget->IsInitialized() == false)
 			return;
 	}
@@ -1547,17 +1762,19 @@ ACMD(do_starthoneybee)
 
 	pToken->PopToPeek();
 	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	BYTE byHours = (BYTE)atof(strToken.c_str());
+	BYTE Type = (BYTE)atof(strToken.c_str());
 
-	if (byHours > 12)
-		byHours = 12;
-
-	/*
-		@starthoneybee HOURS
-	*/
-
-	g_pHoneyBeeEvent->StartEvent(byHours);
-	NTL_PRINT(PRINT_APP, "HoneybeeEvent Started");
+	if (Type == 0)
+	{
+		g_pHoneyBeeEvent->StartEvent(3);
+		NTL_PRINT(PRINT_APP, "Honey Bee Event Started");
+	}
+	if (Type == 1)
+	{
+		g_pFairyEvent->StartEvent(3);
+		NTL_PRINT(PRINT_APP, "Fairy Event Started");
+	}
+	
 }
 
 ACMD(do_stophoneybee)
@@ -1566,14 +1783,18 @@ ACMD(do_stophoneybee)
 
 	pToken->PopToPeek();
 	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	BYTE byHours = (BYTE)atof(strToken.c_str());
+	BYTE Type = (BYTE)atof(strToken.c_str());
 
-	/*
-	@stophoneybee
-	*/
-
-	g_pHoneyBeeEvent->EndEvent();
-	NTL_PRINT(PRINT_APP, "HoneybeeEvent Stopped");
+	if (Type == 0)
+	{
+		g_pHoneyBeeEvent->EndEvent();
+		NTL_PRINT(PRINT_APP, "Honey Bee Event End");
+	}
+	if (Type == 1)
+	{
+		g_pFairyEvent->EndEvent();
+		NTL_PRINT(PRINT_APP, "Fairy Event End");
+	}
 }
 
 ACMD(do_deleteguild)
@@ -1841,8 +2062,8 @@ ACMD(do_createloot)
 		sVECTOR3 vec;
 		vPos.CopyTo(vec.x, vec.y, vec.z);
 
-		vec.x += RandomRangeF(-100.0f, 100.0f);
-		vec.z += RandomRangeF(-100.0f, 100.0f);
+		vec.x += RandomRangeF(-10.0f, 10.0f);
+		vec.z += RandomRangeF(-10.0f, 10.0f);
 
 		CItemDrop * pBall = g_pItemManager->CreateSingleDrop(100.f, ItemId);
 		if (pBall)
@@ -1854,5 +2075,60 @@ ACMD(do_createloot)
 
 ACMD(do_test)
 {
-	pPlayer->SendCharStateFalling(NTL_MOVE_NONE);
+	CGameServer* app = (CGameServer*)g_pApp;
+
+	pToken->PopToPeek();
+	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
+	int charid = (int)atof(strToken.c_str());
+	WORD wResultcode = GAME_SUCCESS;
+	if (pPlayer->GetParty() && pPlayer->GetPartyID() != INVALID_PARTYID)
+	{
+		if (pPlayer->GetParty()->GetPartyLeaderID() == pPlayer->GetID())
+		{
+			if (pPlayer->GetParty()->IsEveryoneInLeaderRange(pPlayer, NTL_MAX_RADIUS_OF_VISIBLE_AREA))
+			{
+				BYTE byBeginStage = charid;
+				CItem* pItem = NULL;
+
+				CBattleDungeon* pDungeon = g_pDungeonManager->CreateBattleDungeon(pPlayer, wResultcode, byBeginStage);
+				if (pDungeon == NULL)
+					wResultcode = GAME_PARTY_DUNGEON_IS_NOT_CREATED;
+				else
+				{
+					if (pItem && byBeginStage > 1)
+						pItem->SetCount(pItem->GetCount() - 1, false, true);
+				}
+			}
+			else wResultcode = GAME_PARTY_MEMBER_IS_TOO_FAR;
+		}
+		else wResultcode = GAME_COMMON_YOU_ARE_NOT_A_PARTY_LEADER;
+	}
+}
+ACMD(do_notify)
+{
+	CGameServer* app = (CGameServer*)g_pApp;
+	/*CNtlPacket pChat(sizeof(sGU_EVENT_SCHEDULING_START));
+	sGU_EVENT_SCHEDULING_START* rChat = (sGU_EVENT_SCHEDULING_START*)pChat.GetPacketData();
+	rChat->wOpCode = GU_EVENT_SCHEDULING_START;
+	rChat->dwTest1[0] = 1;
+	pChat.SetPacketLen(sizeof(sGU_EVENT_SCHEDULING_START));
+	pPlayer->SendPacket(&pChat);*/
+	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
+	DWORD Zenny = (DWORD)atof(strToken.c_str());
+
+	CNtlPacket cPacket(sizeof(sGT_GUILD_GIVE_ZENNY_REQ));
+	sGT_GUILD_GIVE_ZENNY_REQ* cRes = (sGT_GUILD_GIVE_ZENNY_REQ*)cPacket.GetPacketData();
+	cRes->wOpCode = GT_GUILD_GIVE_ZENNY_REQ;
+	cRes->charId = pPlayer->GetCharID();
+	cRes->dwZenny = Zenny;
+	cPacket.SetPacketLen(sizeof(sGT_GUILD_GIVE_ZENNY_REQ));
+	app->SendTo(app->GetChatServerSession(), &cPacket); //Send to chat server
+
+	CNtlPacket packet(sizeof(sGU_GUILD_GIVE_ZENNY_RES));
+	sGU_GUILD_GIVE_ZENNY_RES* res = (sGU_GUILD_GIVE_ZENNY_RES*)packet.GetPacketData();
+	res->wOpCode = GU_GUILD_GIVE_ZENNY_RES;
+	res->wResultCode = 500;
+	packet.SetPacketLen(sizeof(sGU_GUILD_GIVE_ZENNY_RES));
+	//app->Send(pPlayer->GetHandle(), &packet);
+	pPlayer->SendPacket(&packet);
 }

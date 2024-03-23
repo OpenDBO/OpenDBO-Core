@@ -4,7 +4,7 @@
 #include "NtlSingleton.h"
 #include "NtlPacket.h"
 #include "NtlObject.h"
-#include <unordered_map>
+#include "boost\unordered_map.hpp"
 
 
 class CPlayer;
@@ -56,7 +56,7 @@ public:
 	CPlayer*							FindByChar(CHARACTERID uiCharId);
 	CPlayer*							FindByName(WCHAR* wszCharName);
 	CPlayer*							FindByName(const WCHAR* wszCharName);
-
+	CPlayer*							FindAll(CNtlVector vPos, CNtlVector vDir, WORLDID WorldID);
 	void								DestroyCharacter(CGameObject* ch);
 
 	DWORD								AcquireLpEpEventID() { m_dwLpEpEventId = UnsignedSafeIncrease<DWORD>(m_dwLpEpEventId, 1); return m_dwLpEpEventId; }
@@ -77,12 +77,13 @@ public:
 
 private:
 
-	std::unordered_map<HOBJECT, CGameObject*>	m_map_CharByUID;
+	typedef boost::unordered_map<HOBJECT, CGameObject*> OBJECTMAP;
+	OBJECTMAP									m_map_CharByUID;
 
-	std::unordered_map<CHARACTERID, CPlayer*>	m_map_pkChrByPID; // only players in this map
+	boost::unordered_map<CHARACTERID, CPlayer*>	m_map_pkChrByPID; // only players in this map
 	
-	std::unordered_map<CGameObject*, DWORD>		m_map_DelayDelete; //DWORD = gCurTime
-	std::unordered_map<CNpc*, DWORD>				m_map_Respawn; //DWORD = m_dwCurTickCount
+	boost::unordered_map<CGameObject*, DWORD>	m_map_DelayDelete; //DWORD = gCurTime
+	boost::unordered_map<CNpc*, DWORD>			m_map_Respawn; //DWORD = m_dwCurTickCount
 
 	CGameObject*						m_objectArray[MAX_GAME_OBJECT]; // used to get objects very fast without iterating a map
 };

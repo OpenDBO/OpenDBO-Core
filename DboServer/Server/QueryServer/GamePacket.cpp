@@ -57,15 +57,16 @@ void CGameServerSession::OnLoadPcCheck(QueryResultVector & results, CHARACTERID 
 			CPlayerCache* pPlayerCache = g_pPlayerCache->GetCharacter(charId);
 			if (pPlayerCache)
 			{
-				//	NTL_PRINT(PRINT_APP, "RecvPcDataLoadReq: load %u from cache..", req->charId);
+				NTL_PRINT(PRINT_APP, "RecvPcDataLoadReq: load %u from cache..", charId);
+				GetCharDB.Execute("UPDATE characters SET IsOnline=%u WHERE CharID=%u", true, charId);
 				pPlayerCache->SetSession(GetHandle());
 
 				pPlayerCache->SendPcDataLoadRes();
+				pPlayerCache->SendItemLoadRes();
 				pPlayerCache->SendMascotLoadRes();
 				pPlayerCache->SendSkillLoadRes();
 				pPlayerCache->SendBuffLoadRes();
-				pPlayerCache->SendHtbSkillLoadRes();
-				pPlayerCache->SendItemLoadRes();
+				pPlayerCache->SendHtbSkillLoadRes();				
 				pPlayerCache->SendQuestItemLoadRes();
 				pPlayerCache->SendQuestCompleteLoadRes();
 				pPlayerCache->SendQuestProgressLoadRes();
@@ -79,7 +80,8 @@ void CGameServerSession::OnLoadPcCheck(QueryResultVector & results, CHARACTERID 
 			}
 			else
 			{
-				//NTL_PRINT(PRINT_APP, "RecvPcDataLoadReq: load %u from db..", charId);
+				NTL_PRINT(PRINT_APP, "RecvPcDataLoadReq: load %u from db..", charId);
+				GetCharDB.Execute("UPDATE characters SET IsOnline=%u WHERE CharID=%u", true, charId);
 				CPlayerCache* pPlayerCache = new CPlayerCache(accountId, pAccountCache);
 				pPlayerCache->SetSession(GetHandle());
 
@@ -97,7 +99,7 @@ void CGameServerSession::OnLoadPcCheck(QueryResultVector & results, CHARACTERID 
 
 				SQLCallbackBase* pCallBack2 = new SQLClassCallbackP0<CPlayerCache>(pPlayerCache, &CPlayerCache::OnLoadPcData2);
 				AsyncQuery * q2 = new AsyncQuery(pCallBack2);
-				q2->AddQuery("SELECT * FROM items WHERE owner_id=%u AND place < 7 LIMIT 166", charId); // NTL_MAX_BAGSLOT_COUNT + NTL_MAX_ITEM_SLOT + (NTL_MAX_BAG_ITEM_SLOT * 4) + EQUIP_SLOT_TYPE_COUNT | 7 = CONTAINER_TYPE_BANKSLOT
+				q2->AddQuery("SELECT * FROM items WHERE owner_id=%u AND place < 9 LIMIT 166", charId); // NTL_MAX_BAGSLOT_COUNT + NTL_MAX_ITEM_SLOT + (NTL_MAX_BAG_ITEM_SLOT * 4) + EQUIP_SLOT_TYPE_COUNT | 9 = CONTAINER_TYPE_BANKSLOT
 				q2->AddQuery("SELECT * FROM skills WHERE owner_id=%u LIMIT 60", charId);
 				q2->AddQuery("SELECT * FROM htb_skills WHERE owner_id=%u LIMIT 2", charId); // limit NTL_HTB_MAX_PC_HAVE_HTB_SKILL
 				q2->AddQuery("SELECT * FROM buffs WHERE CharID=%u LIMIT 49", charId);
@@ -585,7 +587,7 @@ void CGameServerSession::RecvSavePcDataReq(CNtlPacket * pPacket, CQueryServer * 
 	{
 		pCache->SavePcData(req->sPcData);
 		pCache->SaveServerChangeInfo(req->serverChangeInfo);
-
+		GetCharDB.Execute("UPDATE characters SET IsOnline=%u WHERE CharID=%u", false, req->sPcData.charId);
 		GetCharDB.Execute("UPDATE characters SET Exp=%u,CurLocX=%f,CurLocY=%f,CurLocZ=%f,CurDirX=%f,CurDirZ=%f,WorldID=%u,WorldTable=%u,MapInfoIndex=%u,TutorialHint=%u,CurLP=%u,CurEP=%u,CurRP=%u,CurAP=%u,Title=%u,Mascot=%u,RpBall=%u,IP=\"%s\",AirState=%u,PlayTime=PlayTime+%u WHERE CharID=%u",
 			req->sPcData.dwEXP, req->sPcData.fPositionX, req->sPcData.fPositionY, req->sPcData.fPositionZ, req->sPcData.fDirX, req->sPcData.fDirZ, req->sPcData.worldId, req->sPcData.worldTblidx, req->sPcData.dwMapInfoIndex,
 			req->sPcData.dwTutorialHint, req->sPcData.charLp, req->sPcData.wEP, req->sPcData.wRP, req->sPcData.charAP,
@@ -758,7 +760,7 @@ void CGameServerSession::RecvLoadBankDataReq(CNtlPacket* pPacket, CQueryServer* 
 			{
 				SQLCallbackBase* pCallBack = new SQLClassCallbackP4<CPlayerCache, CAccountCache*, bool, HOBJECT, HOBJECT>(pCache, &CPlayerCache::OnLoadBank, pAccount, false, req->handle, req->npchandle);
 				AsyncQuery * q = new AsyncQuery(pCallBack);
-				q->AddQuery("SELECT * FROM items WHERE owner_id=%u AND (place >= 7 AND place <=10) ORDER BY place ASC LIMIT 68", req->charId); // 7 = CONTAINER_TYPE_BANKSLOT
+				q->AddQuery("SELECT * FROM items WHERE owner_id=%u AND (place >= 9 AND place <=13) ORDER BY place ASC LIMIT 68", req->charId); // 7 = CONTAINER_TYPE_BANKSLOT
 				q->AddQuery("SELECT * FROM items WHERE AccountID=%u ORDER BY place ASC LIMIT 68", req->accountId);
 				GetCharDB.QueueAsyncQuery(q);
 
@@ -768,7 +770,7 @@ void CGameServerSession::RecvLoadBankDataReq(CNtlPacket* pPacket, CQueryServer* 
 			{
 				SQLCallbackBase* pCallBack = new SQLClassCallbackP4<CPlayerCache, CAccountCache*, bool, HOBJECT, HOBJECT>(pCache, &CPlayerCache::OnLoadBank, pAccount, true, req->handle, req->npchandle);
 				AsyncQuery * q = new AsyncQuery(pCallBack);
-				q->AddQuery("SELECT * FROM items WHERE owner_id=%u AND (place >= 7 AND place <=10) ORDER BY place ASC LIMIT 68", req->charId);
+				q->AddQuery("SELECT * FROM items WHERE owner_id=%u AND (place >= 9 AND place <=13) ORDER BY place ASC LIMIT 68", req->charId);
 				GetCharDB.QueueAsyncQuery(q);
 
 				return;
@@ -1670,13 +1672,12 @@ void CGameServerSession::RecvUpdateCharZennyReq(CNtlPacket * pPacket, CQueryServ
 void CGameServerSession::RecvUpdateCharNetpyReq(CNtlPacket * pPacket, CQueryServer * app)
 {
 	UNREFERENCED_PARAMETER(app);
-
 	sGQ_UPDATE_CHAR_NETPY_REQ* req = (sGQ_UPDATE_CHAR_NETPY_REQ*)pPacket->GetPacketData();
 
 	CPlayerCache* pPlayerCache = g_pPlayerCache->GetCharacter(req->charId);
 	if (pPlayerCache)
 	{
-		pPlayerCache->SetNetPy(req->dwPoints);
+		pPlayerCache->SetNetPyPoints(req->dwPoints);
 		GetCharDB.Execute("UPDATE characters SET Netpy=%u WHERE CharID=%u", req->dwPoints, req->charId);
 	}
 }

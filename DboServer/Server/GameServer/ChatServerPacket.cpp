@@ -652,11 +652,11 @@ void	CChatServerSession::RecAuctionHousePriceInfoRes(CNtlPacket * pPacket)
 			res->charId = player->GetCharID();
 			res->nItem = req->nItem;
 			res->dwMoney = req->dwPrice;
-			wcscpy_s(res->awchSystem, NTL_MAX_SIZE_CHAR_NAME + 1, L"[DBOG]System");
+			wcscpy_s(res->awchSystem, NTL_MAX_SIZE_CHAR_NAME + 1, L"[DBOR]System");
 			wcscpy_s(res->awchBuyText, NTL_MAX_LENGTH_OF_MAIL_MESSAGE + 1, L"You have bought an Item");
 			wcscpy_s(res->awchSellText, NTL_MAX_LENGTH_OF_MAIL_MESSAGE + 1, L"You have sold an Item");
 			packet.SetPacketLen(sizeof(sGT_TENKAICHIDAISIJYOU_BUY_REQ));
-			g_pApp->Send(GetHandle(), &packet);
+			g_pApp->Send(GetHandle(), &packet);			
 		}
 		else
 		{
@@ -683,6 +683,7 @@ void	CChatServerSession::RecAuctionHouseBuyRes(CNtlPacket * pPacket)
 	{
 		if (req->wResultCode == GAME_SUCCESS)
 		{
+			player->UpdateZeni(ZENNY_CHANGE_TYPE_TMP_BUY, req->dwMoney, false, false);
 			player->SetZeni(req->dwMoney);
 
 			player->ReloadMailsStatistic(false);
@@ -762,7 +763,16 @@ void CChatServerSession::RecvWaguCoinDecreaseNfy(CNtlPacket * pPacket)
 		player->SetWaguMachineCoin((DWORD)req->wWaguWaguCoin);
 	}
 }
+void CChatServerSession::RecvEventCoinDecreaseNfy(CNtlPacket* pPacket)
+{
+	sTG_EVENTCOIN_DECREASE_NFY* req = (sTG_EVENTCOIN_DECREASE_NFY*)pPacket->GetPacketData();
 
+	CPlayer* player = g_pObjectManager->FindByChar(req->charId);
+	if (player && player->IsInitialized())
+	{
+		player->SetEventMachineCoin((DWORD)req->wEventCoin);
+	}
+}
 void CChatServerSession::RecvWaguWaguMachineUpdateCashitemInfo(CNtlPacket * pPacket)
 {
 	sTG_WAGUWAGUMACHINE_UPDATE_CASHITEM_INFO * req = (sTG_WAGUWAGUMACHINE_UPDATE_CASHITEM_INFO*)pPacket->GetPacketData();

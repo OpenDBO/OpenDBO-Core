@@ -17,7 +17,7 @@
 #include "SystemEffectTable.h"
 #include "SummonPet.h"
 #include "HoneyBeeEvent.h"
-
+#include "Fairy Event.h"
 #include <queue>
 
 
@@ -352,7 +352,7 @@ void CMonster::Spawn(bool bSpawnOnServerStart)
 			if (m_byKillerLevel <= GetLevel() + DBO_DRAGONBALL_EVENT_DROP_LEVEL_DIFF
 				&& m_byKillerLevel >= GetLevel() - DBO_DRAGONBALL_EVENT_DROP_LEVEL_DIFF) //check lvl difference with killer.. So people cant keep killing low levels until a mob with db spawns
 			{
-				if (Dbo_CheckProbability(20))
+				if (Dbo_CheckProbability(25))//Dragon Ball Rates
 				{
 					m_byBallType = DRAGON_BALL_TYPE_EVENT;
 					m_bHasDragonball = true;
@@ -480,7 +480,14 @@ bool CMonster::Faint(CCharacterObject* pkKiller, eFAINT_REASON byReason)
 			CreateKillReward(GetCurWorld()->GetRuleType() != GAMERULE_CCBATTLEDUNGEON);
 			g_pDynamicFieldSystemEvent->Update(this, pKiller);
 			g_pHoneyBeeEvent->Update(this, pKiller);
-
+			g_pFairyEvent->Update(this, pKiller);
+			int l_LevelGap = abs(pKiller->GetLevel() - GetLevel());
+			//printf("l_LevelGap %d \n", l_LevelGap);
+			if (l_LevelGap <= 10)
+			{
+				int killBonus = 0 + rand() % 10;
+				pKiller->UpdateNetPyPoints(pKiller->GetNetPyPoints() + killBonus, killBonus, true);
+			}			
 			FaintBuffReward(pKiller);
 
 			if (pKiller->GetTMQ())
@@ -537,6 +544,8 @@ DWORD CalcExp(CMonster* victim, CPlayer* player, DWORD dw_Exp)
 		dw_Exp = DWORD((float)dw_Exp*0.5f);
 	}
 	//////////////////////////////////////////////////////////////////////////
+	if (victim->GetTblidx() >= 13211201 && victim->GetTblidx() <= 13211207)
+		dw_Exp = 1000;
 
 	if (dw_Exp == 0) dw_Exp = 1;
 

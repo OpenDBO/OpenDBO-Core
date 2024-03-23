@@ -3,7 +3,7 @@
 
 
 #include "NtlSingleton.h"
-#include <unordered_map>
+#include <boost/unordered_map.hpp>
 #include "NtlItem.h"
 
 
@@ -14,6 +14,8 @@ public:
 
 	CAutionhouse();
 	virtual ~CAutionhouse();
+
+	typedef boost::unordered_map<ITEMID, sTENKAICHIDAISIJYOU_DATA*>	TMapAuctionHouse;
 
 private:
 
@@ -29,15 +31,15 @@ public:
 	void						EraseItem(ITEMID nItem);
 	sTENKAICHIDAISIJYOU_DATA*	GetItem(ITEMID nItem);
 	
-	auto						GetBegin() { return m_mapAuctionhouse.begin(); }
-	auto						GetEnd() { return m_mapAuctionhouse.end(); }
+	TMapAuctionHouse::iterator	GetBegin() { return m_mapAuctionhouse.begin(); }
+	TMapAuctionHouse::iterator	GetEnd() { return m_mapAuctionhouse.end(); }
 	int							GetCount() { return (int)m_mapAuctionhouse.size(); }
 
 private:
 
 	ITEMID						ullHighestAuctionID;
 
-	std::unordered_map<ITEMID, sTENKAICHIDAISIJYOU_DATA*>			m_mapAuctionhouse;
+	TMapAuctionHouse			m_mapAuctionhouse;
 
 };
 

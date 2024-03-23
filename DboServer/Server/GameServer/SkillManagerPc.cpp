@@ -189,7 +189,7 @@ void CSkillManagerPc::StartSkillCoolDown(BYTE skillIndex)
 			res->wOpCode = GU_SKILL_COOL_TIME_STARTED_NFY;
 			res->hSubject = m_pPlayerRef->GetID();
 			res->skillTblidx = pSkill->GetSkillId();
-			res->byRpBonus = pSkill->GetUsedRpBonus();
+			//res->byRpBonus = pSkill->GetUsedRpBonus();
 			packet.SetPacketLen(sizeof(sGU_SKILL_COOL_TIME_STARTED_NFY));
 			m_pPlayerRef->SendPacket(&packet);
 

@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "ChatServer.h"
 #include "AuctionHouse.h"
-#include "NtlPacketGT.h"
 #include "NtlPacketTG.h"
 #include "NtlPacketTQ.h"
 #include "NtlMail.h"
@@ -108,7 +107,7 @@ void CAutionhouse::Update()
 	DBOTIME curTime = time(NULL);
 	std::vector<sTENKAICHIDAISIJYOU_DATA*> vecDelData;
 
-	for (auto it = m_mapAuctionhouse.begin(); it != m_mapAuctionhouse.end(); )
+	for (TMapAuctionHouse::iterator it = m_mapAuctionhouse.begin(); it != m_mapAuctionhouse.end(); )
 	{
 		sTENKAICHIDAISIJYOU_DATA* pData = it->second;
 
@@ -158,7 +157,7 @@ void CAutionhouse::AddItem(sTENKAICHIDAISIJYOU_DATA& rData)
 
 void CAutionhouse::DelItem(ITEMID nItem)
 {
-	auto it = m_mapAuctionhouse.find(nItem);
+	TMapAuctionHouse::iterator it = m_mapAuctionhouse.find(nItem);
 	if (it != m_mapAuctionhouse.end())
 	{
 		delete it->second;
@@ -175,17 +174,17 @@ void CAutionhouse::LoadAuctionHouseData(CPlayer* pPlayer, sGT_TENKAICHIDAISIJYOU
 	std::vector<sTENKAICHIDAISIJYOU_DATA*> temp;
 
 	//printf("byPage: %i, byTabType: %u, uiPage: %u, bySortType: %u, byClass:%u, byItemType:%u, byRank:%u, byMinLevel:%u,byMaxLevel:%u \n",
-	//	req->byPage, req->byTabType, req->uiPage, req->bySortType, req->byClass, req->byItemType, req->byRank, req->byMinLevel, req->byMaxLevel);
+		//req->byPage, req->byTabType, req->uiPage, req->bySortType, req->byClass, req->byItemType, req->byRank, req->byMinLevel, req->byMaxLevel);
 
 	HSESSION gameServerSession = g_pServerInfoManager->GetGsSession(pPlayer->GetChannel());
 	//ERR_LOG(LOG_USER, "Account %u load auction house. Channel %u, Channel-Session %u", req->accountId, pPlayer->GetChannel(), gameServerSession);
 
-	for (auto it = m_mapAuctionhouse.begin(); it != m_mapAuctionhouse.end(); it++)
+	for (TMapAuctionHouse::iterator it = m_mapAuctionhouse.begin(); it != m_mapAuctionhouse.end(); it++)
 	{
-		sTENKAICHIDAISIJYOU_DATA* data = it->second;
-		
-		if (req->byPage == eAUCTION_TAB_TYPE_BUY)
+		sTENKAICHIDAISIJYOU_DATA* data = it->second;		
+		if (req->charId == -1)
 		{
+			//printf("charID %d", req->charId);
 			if (req->bySortType == eAUCTION_SORT_TYPE_NONE)
 				temp.push_back(it->second);
 			else
@@ -213,7 +212,7 @@ void CAutionhouse::LoadAuctionHouseData(CPlayer* pPlayer, sGT_TENKAICHIDAISIJYOU
 				}
 			}
 		}
-		else if (req->byPage == eAUCTION_TAB_TYPE_SELL)
+		else
 		{
 			if (data->charId == pPlayer->GetCharID())
 			{
@@ -240,7 +239,7 @@ void CAutionhouse::LoadAuctionHouseData(CPlayer* pPlayer, sGT_TENKAICHIDAISIJYOU
 			CNtlPacket packet(sizeof(sTG_TENKAICHIDAISIJYOU_LIST_DATA));
 			sTG_TENKAICHIDAISIJYOU_LIST_DATA * res = (sTG_TENKAICHIDAISIJYOU_LIST_DATA *)packet.GetPacketData();
 			res->wOpCode = TG_TENKAICHIDAISIJYOU_LIST_DATA;
-			res->charId = req->charId;
+			res->charId = pPlayer->GetCharID();
 			res->sData.nItem = data->nItem;
 			res->sData.byTabType = data->byTabType;
 			res->sData.byItemType = data->byItemType;
@@ -256,6 +255,7 @@ void CAutionhouse::LoadAuctionHouseData(CPlayer* pPlayer, sGT_TENKAICHIDAISIJYOU
 			res->sData.byGrade = data->byGrade;
 			res->sData.byCurrentDurability = data->byCurrentDurability;
 			res->sData.byBattleAttribute = data->byBattleAttribute;
+			wcscpy(res->sData.awcItemName, data->awchItemName);
 			wcscpy(res->sData.awchMaker, data->awchMaker);
 			memcpy(&res->sData.sOptionSet, &data->sOptionSet, sizeof(sITEM_OPTION_SET));
 			res->sData.nUseEndTime = data->nUseEndTime;
@@ -283,7 +283,7 @@ void CAutionhouse::LoadAuctionHouseData(CPlayer* pPlayer, sGT_TENKAICHIDAISIJYOU
 	res2->wOpCode = TG_TENKAICHIDAISIJYOU_LIST_RES;
 	res2->byPage = req->byPage;
 	res2->byListNum = byListNum; 
-	res2->charId = req->charId;
+	res2->charId = pPlayer->GetCharID();
 	res2->uiMaxPage = uiMaxPage;
 	res2->uiPage = req->uiPage;
 	res2->wResultCode = GAME_SUCCESS;
@@ -293,7 +293,7 @@ void CAutionhouse::LoadAuctionHouseData(CPlayer* pPlayer, sGT_TENKAICHIDAISIJYOU
 
 DWORD CAutionhouse::ReturnPrice(ITEMID nItem)
 {
-	auto it = m_mapAuctionhouse.find(nItem);
+	TMapAuctionHouse::iterator it = m_mapAuctionhouse.find(nItem);
 	if (it != m_mapAuctionhouse.end())
 		return it->second->dwPrice;
 
@@ -302,7 +302,7 @@ DWORD CAutionhouse::ReturnPrice(ITEMID nItem)
 
 sTENKAICHIDAISIJYOU_DATA* CAutionhouse::GetItem(ITEMID nitem)
 {
-	auto it = m_mapAuctionhouse.find(nitem);
+	TMapAuctionHouse::iterator it = m_mapAuctionhouse.find(nitem);
 	if (it != m_mapAuctionhouse.end())
 	{
 		return it->second;

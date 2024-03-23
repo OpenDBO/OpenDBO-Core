@@ -49,7 +49,7 @@ void CMasterServerSession::RecvPlayerOnlineCheck(CNtlPacket * pPacket, CAuthServ
 			NTL_SAFE_WCSCPY(res->awchUserId, req->awchUserId);
 
 			memcpy(res->abyAuthKey, req->abyAuthKey, sizeof(res->abyAuthKey));
-			res->dwAllowedFunctionForDeveloper = req->dwAllowedFunctionForDeveloper;
+			//res->dwAllowedFunctionForDeveloper = req->dwAllowedFunctionForDeveloper;
 			res->accountId = req->accountId;
 			if (srvinfo)
 			{
@@ -74,12 +74,24 @@ void CMasterServerSession::RecvPlayerOnlineCheck(CNtlPacket * pPacket, CAuthServ
 
 			res->wResultCode = resultcode;
 			res->lastServerFarmId = req->lastServerFarmId;
-			res->bIsGM = req->bIsGM;
-
+			res->lastChannelId = 7;
+			if(req->bIsGM >= 1)
+			res->dwAllowedFunctionForDeveloper = 0xFFFFFFFF;
+			else
+				res->dwAllowedFunctionForDeveloper = 0;
 			if (resultcode == AUTH_SUCCESS)
 			{
 				packet.SetPacketLen(sizeof(sAU_LOGIN_RES));
 				app->SendTo(session, &packet);
+
+				CNtlPacket packet3(sizeof(sAU_COMMERCIAL_SETTING_NFY));
+				sAU_COMMERCIAL_SETTING_NFY* res3 = (sAU_COMMERCIAL_SETTING_NFY*)packet3.GetPacketData();
+				res3->wOpCode = AU_COMMERCIAL_SETTING_NFY;
+				res3->abySetting[0] = 0x7F;
+				res3->abySetting[1] = 0xEF;
+				res3->abySetting[2] = 0x03;
+				packet3.SetPacketLen(sizeof(sAU_COMMERCIAL_SETTING_NFY));
+				app->SendTo(session, &packet3);
 
 				GetAccDB.Execute("UPDATE accounts SET last_login=CURRENT_TIMESTAMP, last_ip='%s' WHERE AccountID = %u LIMIT 1", session->GetRemoteIP(), req->accountId);
 				GetLogDB.Execute("INSERT INTO auth_login_log(AccountID, IP) VALUES (%u, '%s')", req->accountId, session->GetRemoteIP());
@@ -97,6 +109,8 @@ void CMasterServerSession::RecvPlayerOnlineCheck(CNtlPacket * pPacket, CAuthServ
 		res2->wResultCode = resultcode;
 		packet2.SetPacketLen(sizeof(sAU_LOGIN_RES));
 		app->SendTo(session, &packet2);
+		
+		
 
 		app->DelPlayer(req->accountId);
 	}

@@ -66,8 +66,8 @@ void CObjectManager::SpawnNpcAndMob()
 					sNPC_SERVER_TBLDAT* pNpcSrv = (sNPC_SERVER_TBLDAT*)g_pTableContainer->GetNpcServerTable()->FindData(pNPCTblData->tblidx);
 					if (pNpcSrv)
 					{
-						if (pNPCTblData->bValidity_Able == true && pNpcSrv->bValidity_Able == true)
-						{
+						//if (pNPCTblData->bValidity_Able == true && pNpcSrv->bValidity_Able == true)
+						//{
 							CNpc* pNpc = (CNpc*)CreateCharacter(OBJTYPE_NPC);
 							if (pNpc)
 							{
@@ -79,7 +79,7 @@ void CObjectManager::SpawnNpcAndMob()
 									delete pNpc;
 								}
 							}
-						}
+						//}
 					}
 				}
 			}
@@ -141,7 +141,7 @@ bool CObjectManager::Create()
 
 void CObjectManager::Destroy()
 {
-	for (auto it = m_map_CharByUID.begin(); it != m_map_CharByUID.end(); it++)
+	for (OBJECTMAP::iterator it = m_map_CharByUID.begin(); it != m_map_CharByUID.end(); it++)
 		SAFE_DELETE(it->second);
 
 	m_map_CharByUID.clear();
@@ -156,7 +156,7 @@ void CObjectManager::Destroy()
 //--------------------------------------------------------------------------------------//
 void CObjectManager::TickProcess(DWORD dwTickDiff, float fMultiple)
 {
-	for (auto it = m_map_CharByUID.begin(); it != m_map_CharByUID.end(); it++)
+	for (OBJECTMAP::iterator it = m_map_CharByUID.begin(); it != m_map_CharByUID.end(); it++)
 	{
 		CGameObject* pGameObject = it->second;
 		if (pGameObject)
@@ -325,7 +325,7 @@ CSummonPet * CObjectManager::GetSummonPet(HOBJECT hHandle)
 
 CPlayer* CObjectManager::FindByAccount(ACCOUNTID uiAccId)
 {
-	for (auto it = m_map_pkChrByPID.begin(); it != m_map_pkChrByPID.end(); it++)
+	for (boost::unordered_map<CHARACTERID, CPlayer*>::iterator it = m_map_pkChrByPID.begin(); it != m_map_pkChrByPID.end(); it++)
 	{
 		CPlayer* found = it->second;
 		if(found)
@@ -340,7 +340,7 @@ CPlayer* CObjectManager::FindByAccount(ACCOUNTID uiAccId)
 
 CPlayer* CObjectManager::FindByChar(CHARACTERID uiCharId)
 {
-	auto it = m_map_pkChrByPID.find(uiCharId);
+	boost::unordered_map<CHARACTERID, CPlayer*>::iterator it = m_map_pkChrByPID.find(uiCharId);
 
 	if (m_map_pkChrByPID.end() == it)
 		return NULL;
@@ -350,7 +350,7 @@ CPlayer* CObjectManager::FindByChar(CHARACTERID uiCharId)
 
 CPlayer* CObjectManager::FindByName(WCHAR* wszCharName)
 {
-	for (auto it = m_map_pkChrByPID.begin(); it != m_map_pkChrByPID.end(); it++)
+	for (boost::unordered_map<CHARACTERID, CPlayer*>::iterator it = m_map_pkChrByPID.begin(); it != m_map_pkChrByPID.end(); it++)
 	{
 		CPlayer* found = it->second;
 		if(found)
@@ -363,9 +363,29 @@ CPlayer* CObjectManager::FindByName(WCHAR* wszCharName)
 	}
 	return NULL;
 }
+CPlayer* CObjectManager::FindAll(CNtlVector vPos, CNtlVector vDir, WORLDID WorldID)
+{
+	for (boost::unordered_map<CHARACTERID, CPlayer*>::iterator it = m_map_pkChrByPID.begin(); it != m_map_pkChrByPID.end(); it++)
+	{
+		CPlayer* found = it->second;
+		if (found)
+		{
+			if (found->GetClientSession())
+			{
+				vPos.x += RandomRangeF(-10.0f, 10.0f);
+				vPos.z += RandomRangeF(-10.0f, 10.0f);
+				found->StartTeleport(vPos, vDir, WorldID, TELEPORT_TYPE_COMMAND);
+				//return found;
+			}
+		}
+		if (m_map_pkChrByPID.end() == it)
+			return NULL;
+	}
+	return NULL;
+}
 CPlayer* CObjectManager::FindByName(const WCHAR* wszCharName)
 {
-	for (auto it = m_map_pkChrByPID.begin(); it != m_map_pkChrByPID.end(); it++)
+	for (boost::unordered_map<CHARACTERID, CPlayer*>::iterator it = m_map_pkChrByPID.begin(); it != m_map_pkChrByPID.end(); it++)
 	{
 		CPlayer* found = it->second;
 		if(found && found->IsInitialized())
@@ -401,7 +421,7 @@ void CObjectManager::AddRespawn(CNpc* pBot)
 
 void CObjectManager::RemoveSpawn(HOBJECT hHandle)
 {
-	for (auto it = m_map_Respawn.begin(); it != m_map_Respawn.end(); it++)
+	for (boost::unordered_map<CNpc*, DWORD>::iterator it = m_map_Respawn.begin(); it != m_map_Respawn.end(); it++)
 	{
 		CNpc* pBot = it->first;
 		if (pBot)
@@ -424,12 +444,12 @@ void CObjectManager::ProcessRespawn()
 	if (m_map_Respawn.size() > 0)
 	{
 		DWORD dwCurTick = GetTickCount();
-		for (auto it = m_map_Respawn.begin(); it != m_map_Respawn.end(); )
+		for (boost::unordered_map<CNpc*, DWORD>::iterator it = m_map_Respawn.begin(); it != m_map_Respawn.end(); )
 		{
 			CNpc* pBot = it->first;
 			if (pBot)
 			{
-				if (dwCurTick > it->second + (pBot->GetSpawnTime() * 1000))
+				if (dwCurTick > it->second + (40 * 1000))
 				{
 					if (BIT_FLAG_TEST(pBot->GetSpawnFuncFlag(), SPAWN_FUNC_FLAG_RESPAWN)) //Check if can spawn
 						pBot->Spawn(false);
@@ -461,7 +481,7 @@ void CObjectManager::ProcessDelayDeleteMap()
 	if (m_map_DelayDelete.size() > 0)
 	{
 		DWORD dwCurTick = GetTickCount();
-		for (auto it = m_map_DelayDelete.begin(); it != m_map_DelayDelete.end(); )
+		for (boost::unordered_map<CGameObject*, DWORD>::iterator it = m_map_DelayDelete.begin(); it != m_map_DelayDelete.end(); )
 		{
 			if (dwCurTick > it->second + TIME_DELETE_DELAY)
 			{
@@ -505,7 +525,7 @@ void CObjectManager::ProcessDelayDeleteMap()
 //--------------------------------------------------------------------------------------//
 void CObjectManager::SendPacketToAll(CNtlPacket * pPacket)
 {
-	for (auto it = m_map_pkChrByPID.begin(); it != m_map_pkChrByPID.end(); it++)
+	for (boost::unordered_map<CHARACTERID, CPlayer*>::iterator it = m_map_pkChrByPID.begin(); it != m_map_pkChrByPID.end(); it++)
 	{
 		CPlayer* ch = it->second;
 		if (ch && ch->IsInitialized())
@@ -519,7 +539,7 @@ void CObjectManager::SendPacketToAll(CNtlPacket * pPacket)
 bool CObjectManager::DisconnectAll()
 {
 	CPlayer* ch = NULL;
-	for (auto it = m_map_pkChrByPID.begin(); it != m_map_pkChrByPID.end(); it++)
+	for (boost::unordered_map<CHARACTERID, CPlayer*>::iterator it = m_map_pkChrByPID.begin(); it != m_map_pkChrByPID.end(); it++)
 	{
 		ch = it->second;
 		if (ch->GetClientSession())
@@ -534,7 +554,7 @@ bool CObjectManager::DisconnectAll()
 //--------------------------------------------------------------------------------------//
 void CObjectManager::SendToAllInZone(ZONEID zoneId, CNtlPacket * pPacket)
 {
-	for (auto it = m_map_pkChrByPID.begin(); it != m_map_pkChrByPID.end(); it++)
+	for (boost::unordered_map<CHARACTERID, CPlayer*>::iterator it = m_map_pkChrByPID.begin(); it != m_map_pkChrByPID.end(); it++)
 	{
 		CPlayer* ch = it->second;
 		if(ch && ch->IsInitialized())

@@ -9,7 +9,7 @@
 
 #include "DatabaseEnv.h"
 
-#include <unordered_map>
+#include <boost/unordered_map.hpp>
 
 
 struct sSERVERCONFIG
@@ -149,7 +149,7 @@ public:
 
 private:
 
-	std::unordered_map<ACCOUNTID, CClientSession*> m_map_Players;
+	boost::unordered_map<ACCOUNTID, CClientSession*> m_map_Players;
 
 public:
 
