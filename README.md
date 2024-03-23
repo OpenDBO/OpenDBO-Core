@@ -2,23 +2,22 @@
 DBO Client, Server and Tools software.
 
 ## Setting everything up
+All required third party tools can be obtained from [our 3rd party repository](https://github.com/OpenDBO/OpenDBO-3rdParty/releases).
 <details>
  <summary>Compiling the Client</summary>
 
-1. **Download the necessary files:**
-    - DirectX9: [Download Link](https://www.microsoft.com/en-us/download/details.aspx?id=6812)
+1. **Download / Install the necessary files:**
+    - DirectX9.
         - In case of encountering error S1023, execute the following commands as administrator:
             ```
             MsiExec.exe /passive /X{F0C3E5D1-1ADE-321E-8167-68EF0DE699A5}
             MsiExec.exe /passive /X{1D8E6291-B0D5-35EC-8441-6616F567A0F7}
             ```
-    - Tools: [Google Drive Link](https://drive.google.com/drive/folders/1eITPtDifloOwp1q63H2HEeau6UqGNdfD?usp=sharing)
-    - Client: [Google Drive Link](https://drive.google.com/drive/folders/1eITPtDifloOwp1q63H2HEeau6UqGNdfD?usp=sharing)
-    - Download v142 build tools (C++ MFC) via Visual Studio Installer
+    - 3rd party tools that you downloaded from [our 3rd party repository](https://github.com/OpenDBO/OpenDBO-3rdParty/releases).
+    - Client files: Download them from the [Assets repository](https://github.com/OpenDBO/OpenDBO-Assets). First get the Base Client from the Releases section and then replace all needed files with the updated ones on the repo itself.
+    - Download v142 build tools (C++ MFC) via Visual Studio Installer.
 
-2. **Navigate to the following path:** `source\repos\OpenDBO-Core` and extract the Tools there.
-    - The RAR file should contain a folder named "3rd party."
-    - Extract the RAR files inside "3rd Party" and keep the Xtreme Toolkit within it.
+2. **Navigate to the following path:** `source\repos\OpenDBO-Core` and create a folder named `3rdParty`. Move the Xtreme Toolkit folder there.
 
 3. **Move the GFx SDK 3.3 folder into:** `source\repos\OpenDBO-Core\DBOClient\Lib\NtlFlasher`
 
@@ -79,10 +78,7 @@ DBO Client, Server and Tools software.
     - [OpenDBO-Core Repository](https://github.com/OpenDBO/OpenDBO-Core). Click "Code" -> Download ZIP.
     - Extract the ZIP file to the main folder named "OpenDBO-Core."
 
-4. **Download and install/extract additional programs:**
-    - DirectX9 SDK: [DirectX9 SDK](https://www.microsoft.com/en-us/download/details.aspx?id=6812) (Make sure to close any Visual Studio instance before installing it, otherwise the `$(DXSDK_DIR)` won't be properly set).
-    - GFx SDK: GFx SDK 3.3 -> Extract the "GFx SDK" folder into "OpenDBO-Core/DboClient/Lib/NtlFlasher"
-    - Xtreme ToolkitPro: Xtreme ToolkitPro v15.2.1 -> Extract the folder into "OpenDBO-Core/3rdParty"
+4. **Download and install/extract additional programs: it's recommended to set up the Client repository now. Otherwise perform steps 1 and 2 from the Client guide (if you already did it you can skip this step)**
 
 5. **Compile the private server using Visual Studio 2019:**
     - Navigate to the "OpenDBO-Core" main folder, then to the "Dboserver" subfolder.
