@@ -113,7 +113,7 @@ void CDiscord::UpdatePresence()
 		}
 
 		discordPresence.largeImageKey = "1stardb";
-		discordPresence.largeImageText = "https://dboglobal.to";
+		discordPresence.largeImageText = "https://opendbo.org";
 		
 
 		/*discordPresence.startTimestamp = StartTime;
