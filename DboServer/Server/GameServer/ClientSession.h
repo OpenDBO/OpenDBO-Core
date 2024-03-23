@@ -273,6 +273,7 @@ public:
 	void						RecvNetPyStartReq(CNtlPacket * pPacket);
 	void						RecvNetPyEndReq(CNtlPacket * pPacket);
 	void						RecvNetPyBuyReq(CNtlPacket * pPacket);
+	void						RecvNetPyPointsAddByTime(CNtlPacket* pPacket);
 	void						RecvCashItemMoveReq(CNtlPacket * pPacket);
 	void						RecvCashItemUseReq(CNtlPacket * pPacket);
 	void						RecvCashItemHlsStartReq(CNtlPacket * pPacket);

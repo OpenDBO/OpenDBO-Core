@@ -87,6 +87,7 @@ void CNtlSobAvatarAttr::HandleEvents(RWS::CMsg &pMsg)
 		m_uiZenny = pAvatarInfo->sCharPf.dwZenny;
 		m_uiSp = pAvatarInfo->sCharPf.dwSpPoint;
 		m_uiMudosaPoint = pAvatarInfo->sCharPf.dwMudosaPoint;
+		m_dwNetPy = pAvatarInfo->sCharPf.dwNetPy;
 
 		m_bCanChangeClass = pAvatarInfo->sCharPf.bChangeClass;
 				

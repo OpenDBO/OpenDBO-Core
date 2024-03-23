@@ -340,6 +340,7 @@ public:
 	bool SendShopNetPyItemStartReq();
 	bool SendShopNetPyItemBuyReq( RwUInt8 byBuyCount, sSHOP_BUY_CART* pBuyData );
 	bool SendShopNetPyItemEndReq();
+	bool SendNetPyAddPointsByTime();
 
 	// CommercialExtend (Duration Item)
 	bool SendDurationItemBuyReq( RwUInt32 uiMerchantTblidx, BYTE bySlotPos );

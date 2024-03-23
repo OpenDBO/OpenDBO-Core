@@ -375,17 +375,23 @@ VOID CLogInGui::ClickedLoginButton( gui::CComponent* pComponent )
 
 	if( pMacAddress )
 	{
+		// TODO:  Below check doesn't work, the entire Contract version handling seems wrong as only 0 or 1 is being saved
+		//  to the CONTRACT env variable instead of the actual version. Below code seems to work 50% of the time for some
+		//  reason. I'm commenting it out for now.
+		
 		// Check if terms are already accepted.
-		if (GetDboGlobal()->IsAcceptGameContract())
-		{
-			GetDboGlobal()->GetLoginPacketGenerator()->SendLonInReq(pID, pPW, CLIENT_LVER, CLIENT_RVER, pMacAddress);
-			GetLogInStageState()->ChangeState(LOGIN_STATE_LOGINREQ);
-		}
-		else
-		{
-			GetLogInStageState()->ChangeState(LOGIN_STATE_CONTRACT);
-			CDboEventGenerator::LoginEvent(LOGIN_EVENT_SHOW_CONTRACT_PAGE);
-		}
+		//if (GetDboGlobal()->IsAcceptGameContract())
+		//{
+		//	GetDboGlobal()->GetLoginPacketGenerator()->SendLonInReq(pID, pPW, CLIENT_LVER, CLIENT_RVER, pMacAddress);
+		//	GetLogInStageState()->ChangeState(LOGIN_STATE_LOGINREQ);
+		//}
+		//else
+		//{
+		//	GetLogInStageState()->ChangeState(LOGIN_STATE_CONTRACT);
+		//	CDboEventGenerator::LoginEvent(LOGIN_EVENT_SHOW_CONTRACT_PAGE);
+		//}
+		GetDboGlobal()->GetLoginPacketGenerator()->SendLonInReq(pID, pPW, CLIENT_LVER, CLIENT_RVER, pMacAddress);
+		GetLogInStageState()->ChangeState(LOGIN_STATE_LOGINREQ);
 	}
 	else
 	{		

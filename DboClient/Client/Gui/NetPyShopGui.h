@@ -42,7 +42,7 @@ class CNtlSobActor;
 class CNetPyShopGui : public CNtlPLGui, public RWS::CEventHandler
 {
 #define dFIRST_PAGE			0
-#define dMAX_PAGE			4			///< 한 탭 당 등록 수 있는 최대 페이지
+#define dMAX_PAGE			5			///< 한 탭 당 등록 수 있는 최대 페이지
 #define dMAX_ITEM_PANEL		6			///< Shop의 아이템 패널 갯수
 #define dNETPYSHOP_TAB_NUMS 4
 

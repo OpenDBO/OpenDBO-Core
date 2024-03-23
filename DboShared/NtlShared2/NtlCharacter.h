@@ -867,8 +867,8 @@ struct sPC_DATA
 
 	DWORD			dwReputation;
 	DWORD			dwMudosaPoint;
+	DWORD			dwNetPy;
 	DWORD			dwSpPoint;
-
 	TBLIDX			charTitle; //new
 
 	sHOIPOIMIX_DATA sMixData;
@@ -993,7 +993,7 @@ struct sPC_PROFILE
 	DWORD				dwReputation;
 	DWORD				dwMudosaPoint;
 	DWORD				dwSpPoint;
-
+	DWORD				dwNetPy;
 	TBLIDX				charTitle;
 	bool				bInvisibleTitle;
 
@@ -1353,7 +1353,7 @@ struct sPLAYER_DATA
 	DWORD					dwMudosaPoint;
 	DWORD					dwSpPoint;
 	DWORD					dwWaguWaguPoints;	//points used for the wagu wagu shop. Max 2000
-
+	DWORD					dwNetPy;
 	DWORD					dwZeniBank;
 	bool					bIsMailAway;
 
