@@ -44,7 +44,6 @@
 #include <string>
 #include <algorithm>
 #include <set>
-#include <d3d9.h>
 
 
 #ifndef _AFX_NO_OLE_SUPPORT
@@ -74,6 +73,8 @@
 #include <rpid.h>
 #include "NtlAtomic.h"
 #include "NtlPlMaterialExtWrapper.h"
+
+#include <d3d9.h>
 
 
 
