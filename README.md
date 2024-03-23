@@ -13,7 +13,7 @@ All required third party tools can be obtained from [our 3rd party repository](h
             MsiExec.exe /passive /X{F0C3E5D1-1ADE-321E-8167-68EF0DE699A5}
             MsiExec.exe /passive /X{1D8E6291-B0D5-35EC-8441-6616F567A0F7}
             ```
-    - 3rd party tools.
+    - 3rd party tools that you downloaded from [our 3rd party repository](https://github.com/OpenDBO/OpenDBO-3rdParty/releases).
     - Client files: Download them from the [Assets repository](https://github.com/OpenDBO/OpenDBO-Assets). First get the Base Client from the Releases section and then replace all needed files with the updated ones on the repo itself.
     - Download v142 build tools (C++ MFC) via Visual Studio Installer.
 
