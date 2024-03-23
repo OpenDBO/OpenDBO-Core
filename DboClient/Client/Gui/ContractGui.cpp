@@ -40,7 +40,7 @@ RwBool CContractGui::Create()
 	CNtlPLGui::CreateComponents(CNtlPLGuiManager::GetInstance()->GetGuiManager());
 
 	m_pThis = (gui::CDialog*)GetComponent("dlgMain");
-	m_pThis->SetPriority( dDIALOGPRIORITY_QUICKSLOT );
+	m_pThis->SetPriority( dDIALOGPRIORITY_MAINMENU );
 
 	CRectangle rect;
 

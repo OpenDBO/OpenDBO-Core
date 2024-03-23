@@ -375,8 +375,8 @@ VOID CLogInGui::ClickedLoginButton( gui::CComponent* pComponent )
 
 	if( pMacAddress )
 	{
-		if (GetDboGlobal()->IsAcceptGameContract() // check if terms already accepted
-			|| GetDboGlobal()->GetContractVerstion() == (RwUInt32)GetNtlStorageManager()->GetIntData(dSTORAGE_SYSTEM_ETC_CONTRACT))
+		// Check if terms are already accepted.
+		if (GetDboGlobal()->IsAcceptGameContract())
 		{
 			GetDboGlobal()->GetLoginPacketGenerator()->SendLonInReq(pID, pPW, CLIENT_LVER, CLIENT_RVER, pMacAddress);
 			GetLogInStageState()->ChangeState(LOGIN_STATE_LOGINREQ);
@@ -384,6 +384,7 @@ VOID CLogInGui::ClickedLoginButton( gui::CComponent* pComponent )
 		else
 		{
 			GetLogInStageState()->ChangeState(LOGIN_STATE_CONTRACT);
+			CDboEventGenerator::LoginEvent(LOGIN_EVENT_SHOW_CONTRACT_PAGE);
 		}
 	}
 	else
