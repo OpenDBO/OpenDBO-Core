@@ -1670,6 +1670,15 @@ void CGameServerSession::RecvUpdateCharZennyReq(CNtlPacket * pPacket, CQueryServ
 void CGameServerSession::RecvUpdateCharNetpyReq(CNtlPacket * pPacket, CQueryServer * app)
 {
 	UNREFERENCED_PARAMETER(app);
+
+	sGQ_UPDATE_CHAR_NETPY_REQ* req = (sGQ_UPDATE_CHAR_NETPY_REQ*)pPacket->GetPacketData();
+
+	CPlayerCache* pPlayerCache = g_pPlayerCache->GetCharacter(req->charId);
+	if (pPlayerCache)
+	{
+		pPlayerCache->SetNetPy(req->dwPoints);
+		GetCharDB.Execute("UPDATE characters SET Netpy=%u WHERE CharID=%u", req->dwPoints, req->charId);
+	}
 }
 
 void CGameServerSession::RecvQuestItemCreateReq(CNtlPacket * pPacket, CQueryServer * app)

@@ -89,7 +89,7 @@ RwBool CNetPyShopGui::Create()
 	//if( m_eShopType == SHOP_TYPE_NETPY )
 	//{
 
-	if(!CNtlPLGui::Create("", "gui\\NetPyShopGui.srf", "gui\\NetPyShopGui.frm"))
+	if(!CNtlPLGui::Create("gui\\NetPyShopGui.rsr", "gui\\NetPyShopGui.srf", "gui\\NetPyShopGui.frm"))
 		NTL_RETURN(FALSE);
 
 	sprintf_s(acSurfaceName, 64, "gui\\NetPyShopGui.srf");
@@ -287,7 +287,7 @@ VOID CNetPyShopGui::OpenShop()
 	CTextTable* pItemTextTable = API_GetTableContainer()->GetTextAllTable()->GetItemTbl();
 
 	// 상점 이름
-	m_pShopTitle->SetText( GetDisplayStringManager()->GetString(" DST_NETPYSHOP" ) );
+	m_pShopTitle->SetText( GetDisplayStringManager()->GetString("DST_NETPYSHOP" ) );
 
 	// NetPy Shop 에서 정의된 Index 4가지의 탭을 불러온다.
 	ShopItem shopItem;
@@ -711,7 +711,7 @@ VOID CNetPyShopGui::OnMouseUp( const CKey& key )
 				// 최대 스택 갯수를 산다(1개 혹은 20개)
 				CDboEventGenerator::NetPyShopEvent(eNETPYSHOP_EVENT_REG_ITEM_MAX,
 					m_aShopItem[m_iCurTab][iItemIndex].hItem,
-					m_aShopItem[m_iCurTab][iItemIndex].uiPrice,
+					m_aShopItem[m_iCurTab][iItemIndex].pITEM_DATA->CommonPoint,
 					(wchar_t*)m_aShopItem[m_iCurTab][iItemIndex].wstrItemName.c_str(),
 					m_iCurTab, iItemIndex, m_aShopItem[m_iCurTab][iItemIndex].pITEM_DATA->byMax_Stack);
 			}
@@ -719,7 +719,7 @@ VOID CNetPyShopGui::OnMouseUp( const CKey& key )
 			{				
 				CDboEventGenerator::NetPyShopEvent(eNETPYSHOP_EVENT_REG_ITEM,
 					m_aShopItem[m_iCurTab][iItemIndex].hItem,
-					m_aShopItem[m_iCurTab][iItemIndex].uiPrice,
+					m_aShopItem[m_iCurTab][iItemIndex].pITEM_DATA->CommonPoint,
 					(wchar_t*)m_aShopItem[m_iCurTab][iItemIndex].wstrItemName.c_str(),
 					m_iCurTab, iItemIndex, 1);
 			}

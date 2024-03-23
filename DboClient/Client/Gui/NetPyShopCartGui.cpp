@@ -80,7 +80,7 @@ RwBool CNetPyShopCartGui::Create()
 
 	char acSurfaceName[64];
 
-	if(!CNtlPLGui::Create("", "gui\\NetPyShopCartGui.srf", "gui\\NetPyShopCartGui.frm"))
+	if(!CNtlPLGui::Create("gui\\NetPyShopGui.rsr", "gui\\NetPyShopCartGui.srf", "gui\\NetPyShopCartGui.frm"))
 		NTL_RETURN(FALSE);
 
 	sprintf_s(acSurfaceName, 64, "NetPyShopCartGui.srf");
@@ -355,7 +355,7 @@ VOID CNetPyShopCartGui::CalcTotalBuyPrice()
 		if( m_BuySlotInfo[i].slot.GetSerial() != INVALID_SERIAL_ID )
 		{
 			sITEM_TBLDAT* pITEM_DATA = m_BuySlotInfo[i].slot.GetItemTable();
-			iTotalPrice += pITEM_DATA->dwCost * m_BuySlotInfo[i].NPCShopBuyInfo.byStack;
+			iTotalPrice += pITEM_DATA->CommonPoint * m_BuySlotInfo[i].NPCShopBuyInfo.byStack;
 		}
 	}		
 

@@ -42,6 +42,9 @@
 
 #include "SCSSideIconGui.h"
 
+#include "NetPySideIconGui.h"
+#include "NetPySideView.h"
+
 // SideIcon을 생성하고 SideIconGui에 등록하는 매크로
 #define RegisterSideIcon( pSideIcon, ClassName, szName, id ) \
 	{ \
@@ -125,6 +128,8 @@ CSideIconGui::CSideIconGui(const RwChar* pName) : CNtlPLGui(pName), m_pPresentIc
 ,m_pDojoSideViewGui(NULL)
 ,m_pHLSSideIconGui(NULL)
 ,m_pHLSSideViewGui(NULL)
+, m_pNetPySideIconGui(NULL)
+, m_pNetPySideViewGui(NULL)
 {
 	m_nPresentViewType = INVALID_SIDEVIEW;
 	s_pSideIconGui = this;
@@ -196,6 +201,9 @@ RwBool CSideIconGui::Create()
 	RegisterSideIcon(m_pHLSSideIconGui, CHLSSideIconGui, "CHLSSideIconGui", SIDEICON_HLS);
 	RegisterSideView(m_pHLSSideViewGui, CHLSSideViewGui, "CHLSSideViewGui", SIDEVIEW_HLS);
 
+	//Token Shop - NetPy
+	RegisterSideIcon(m_pNetPySideIconGui, CNetPySideIconGui, "CNetPySideIconGui", SIDEICON_NETPY);
+	RegisterSideView(m_pNetPySideViewGui, CNetPySideViewGui, "CNetPySideViewGui", SIDEVIEW_NETPY);
 
 	SAvatarInfo* pAvatarInfo = GetNtlSLGlobal()->GetAvatarInfo();
 	if( pAvatarInfo->sCharPf.bIsGameMaster )
@@ -248,8 +256,10 @@ void CSideIconGui::Destroy()
 	UnRegisterSideView( m_pGMSideViewGui, SIDEVIEW_GM );
 	UnRegisterSideIcon( m_pDojoSideIconGui, SIDEICON_DOJO );
 	UnRegisterSideView( m_pDojoSideViewGui, SIDEVIEW_DOJO );
-	UnRegisterSideIcon(m_pHLSSideIconGui, SIDEICON_HLS);
-	UnRegisterSideView(m_pHLSSideViewGui, SIDEVIEW_HLS);
+	UnRegisterSideIcon( m_pHLSSideIconGui, SIDEICON_HLS);
+	UnRegisterSideView( m_pHLSSideViewGui, SIDEVIEW_HLS);
+	UnRegisterSideIcon( m_pNetPySideIconGui, SIDEICON_NETPY);
+	UnRegisterSideView( m_pNetPySideViewGui, SIDEVIEW_NETPY);
 
 	if (m_pThis)
 	{
