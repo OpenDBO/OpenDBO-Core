@@ -937,6 +937,8 @@ void CPlayerCache::OnLoadPcData(QueryResultVector & results)
 		m_sPcData.sMixData.byLevel = f[44].GetBYTE();
 		m_sPcData.sMixData.dwExp = f[45].GetDWORD();
 
+		m_sPcData.dwNetPy = f[49].GetDWORD();
+
 		m_sPcData.dwWaguWaguPoints = f[50].GetDWORD();
 
 		m_sPcData.byRankBattleRemainCount = 0;
@@ -1530,6 +1532,12 @@ void CPlayerCache::SetZeni(DWORD dwZeni)
 void CPlayerCache::SetMudusaPoints(DWORD dwPoints)
 {
 	m_sPcData.dwMudosaPoint = dwPoints;
+}
+
+
+void CPlayerCache::SetNetPy(DWORD dwNetPy)
+{
+	m_sPcData.dwNetPy = dwNetPy;
 }
 
 

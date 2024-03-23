@@ -286,6 +286,10 @@ public:
 	inline void			SetMudosaPoints(DWORD dwPoints) { player_data.dwMudosaPoint = dwPoints; }
 	void				UpdateMudosaPoints(DWORD dwAmount, bool bQuery = true);
 
+	inline DWORD		GetNetPy() const { return player_data.dwNetPy; }
+	inline void			SetNetPy(DWORD dwNetPy) { player_data.dwNetPy = dwNetPy; }
+	void				UpdateNetPy(DWORD dwNetPy, DWORD SessionPoint, bool bQuery/* = true*/);
+
 	inline 	DWORD		GetWaguPoints()  { return player_data.dwWaguWaguPoints; }
 	inline void			SetWaguPoints(DWORD dwPoints) { player_data.dwWaguWaguPoints = dwPoints; }
 	void				UpdateWaguPoints(DWORD dwPoints);
@@ -961,6 +965,20 @@ public:
 
 	void				SetCanAirAccel(bool bFlag) { m_bCanAccel = bFlag; }
 	bool				CanAirAccel() { return m_bCanAccel; }
+
+
+
+/////////////////////////////////////////////////////////////////
+// NetPy
+private:
+
+	time_t				m_tmLastNetpyRewardTime;
+
+public:
+
+	inline time_t		GetLastNetpyRewardTime() { return m_tmLastNetpyRewardTime; }
+	void				SetLastNetpyRewardTime(time_t lastNetpyRewardTime) { m_tmLastNetpyRewardTime = lastNetpyRewardTime; }
+
 
 /////////////////////////////////////////////////////////////////
 // VISIBLE OBJECTS

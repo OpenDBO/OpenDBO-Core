@@ -43,7 +43,7 @@ RwBool CNetPySideIconGui::Create()
     LinkMsg(g_EventUpdateNetPy);
     LinkMsg(g_EventNetMarbleMemberShipNfy);
 
-    Show(FALSE);
+    Show(TRUE);
 
     NTL_RETURN(TRUE);
 }
@@ -62,8 +62,13 @@ VOID CNetPySideIconGui::HandleEvents( RWS::CMsg &msg )
 {
     if(msg.Id == g_EventUpdateNetPy)
     {
-        Show(TRUE);
-        CSideIconGui::GetInstance()->OpenSideView(this, SIDEVIEW_NETPY, (VOID*)E_NETPY_NOTIFY);
+        SDboEventUpdateNetPy m_UpdateNetPyInfo;
+        SDboEventUpdateNetPy* pData = (SDboEventUpdateNetPy*)msg.pData;
+        memcpy_s(&m_UpdateNetPyInfo, sizeof(SDboEventUpdateNetPy), pData, sizeof(SDboEventUpdateNetPy));
+        if (m_UpdateNetPyInfo.dwAccumlationNetPy > 0) {
+            Show(TRUE);
+            CSideIconGui::GetInstance()->OpenSideView(this, SIDEVIEW_NETPY, (VOID*)E_NETPY_NOTIFY);
+        }
     }
     else if(msg.Id == g_EventNetMarbleMemberShipNfy)
     {
@@ -80,10 +85,10 @@ VOID CNetPySideIconGui::OnIconButtonClicked( gui::CComponent* pComponent )
 
 	// 기획팀에서 요청하기 전까지 활성화 시키지 않는다.
 	// 09. 08. 17 월요일 기획팀 김종완씨의 요청으로 클라이언트팀 조해성 작업함
-	/*if( !GetDialogManager()->IsOpenDialog( DIALOG_NETPYSHOP ) )
-		GetDboGlobal()->GetGamePacketGenerator()->SendShopNetPyItemStartReq();
-	else
-		GetDboGlobal()->GetGamePacketGenerator()->SendShopNetPyItemEndReq();*/
+    if (!GetDialogManager()->IsOpenDialog(DIALOG_NETPYSHOP))
+        GetDboGlobal()->GetGamePacketGenerator()->SendShopNetPyItemStartReq();
+    else
+        GetDboGlobal()->GetGamePacketGenerator()->SendShopNetPyItemEndReq();
 }
 
 VOID CNetPySideIconGui::OnSideViewClosed() 
@@ -93,7 +98,7 @@ VOID CNetPySideIconGui::OnSideViewClosed()
 
 void CNetPySideIconGui::OnMouseEnter(gui::CComponent* pComponent)
 {
-    CSideIconGui::GetInstance()->OpenSideView(this, SIDEVIEW_NETPY, (VOID*)E_NETPY_INFO);
+    CDboEventGenerator::NetMarbleMemberShipNfy();
 }
 
 void CNetPySideIconGui::OnMouseLeave(gui::CComponent* pComponent)
@@ -104,7 +109,7 @@ void CNetPySideIconGui::OnMouseLeave(gui::CComponent* pComponent)
 void CNetPySideIconGui::Show( bool bShow ) 
 {
     // 현재 NetPy가 0이면 Side Icon을 보이지 않는다.
-    if(!m_bNetmarbleMemberShip && Logic_GetNetPy() <= 0)
+    if(!m_bNetmarbleMemberShip && Logic_GetNetPy() < 0)
     {
         __super::Show(FALSE);
         return;

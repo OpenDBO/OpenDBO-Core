@@ -235,6 +235,7 @@ enum eOPCODE_UG
 	UG_SHOP_NETPYITEM_START_REQ,
 	UG_SHOP_NETPYITEM_BUY_REQ,
 	UG_SHOP_NETPYITEM_END_REQ,
+	UG_ADD_NETPY_POINTS_TIME_REQ,
 	UG_WORLD_MAP_STATUS,
 	UG_DOJO_NPC_INFO_REQ,
 	UG_SKILL_CASTING_CANCELED_NFY,
@@ -1383,6 +1384,9 @@ BEGIN_PROTOCOL(UG_SHOP_NETPYITEM_BUY_REQ)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_SHOP_NETPYITEM_END_REQ)
+END_PROTOCOL()
+//------------------------------------------------------------------
+BEGIN_PROTOCOL(UG_ADD_NETPY_POINTS_TIME_REQ)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_WORLD_MAP_STATUS)
