@@ -57,13 +57,6 @@ RwBool CNtlPLSky::Create(const SPLEntityCreateParam* pParam)
 {
 	NTL_FUNCTION("CNtlPLSky::Create");
 
-	LinkMsg(NPEI_IS_ANOTHER_FIELD_CHANGED, 0);
-	LinkMsg(NPEI_IS_ANOTHER_BLOCK_CHANGED, 0);
-	LinkMsg(NPEI_IS_ANOTHER_OBJECT_CHANGED, 0);
-	LinkMsg(NPEI_IS_ANOTHER_FIELD_CHANGED_WITHOUT_DELAY, 0);
-	LinkMsg(NPEI_IS_ANOTHER_BLOCK_CHANGED_WITHOUT_DELAY, 0);
-	LinkMsg(NPEI_IS_ANOTHER_OBJECT_CHANGED_WITHOUT_DELAY, 0);
-	// Dummy sky atomic
 	m_pDummySkyLayer			= NTL_NEW sSKY_LAYER;
 	m_pDummySkyLayer->_pAtom	= API_PL_LoadAtomic("world\\mesh\\sky_dummy.dff", ".\\texture\\ntlwe\\sky\\");
 	m_pDummySkyLayer->_pRender	= TRUE;
@@ -76,24 +69,8 @@ RwBool CNtlPLSky::Create(const SPLEntityCreateParam* pParam)
 	m_pBaseSkyLayer[0]->_pAtom		= API_PL_LoadAtomic("world\\mesh\\sky_diffuse.dff", ".\\texture\\ntlwe\\Sky\\");
 	m_pBaseSkyLayer[0]->_pRender	= TRUE;
 	DBO_ASSERT(m_pBaseSkyLayer[0]->_pAtom, "Resource load failed.");
+	API_PL_AtomicSetGeoFlags(m_pBaseSkyLayer[0]->_pAtom, rpGEOMETRYPOSITIONS | rpGEOMETRYPRELIT | rpGEOMETRYMODULATEMATERIALCOLOR | rpGEOMETRYTEXTURED);
 
-	API_PL_AtomicSetGeoFlags(m_pBaseSkyLayer[0]->_pAtom, rpGEOMETRYPOSITIONS | rpGEOMETRYPRELIT | rpGEOMETRYMODULATEMATERIALCOLOR);
-
-	RwRGBA	RGBATmp[3];
-	RGBATmp[0].red		= 255;
-	RGBATmp[0].green	= 255;
-	RGBATmp[0].blue		= 255;
-
-	RGBATmp[1].red		= 255;
-	RGBATmp[1].green	= 255;
-	RGBATmp[1].blue		= 255;
-
-	RGBATmp[2].red		= 255;
-	RGBATmp[2].green	= 255;
-	RGBATmp[2].blue		= 255;
-	SetColorOfDiffuseSkyAtomic(RGBATmp);
-
-	// Base sky atomic
 	m_pBaseSkyLayer[1]				= NTL_NEW sSKY_LAYER;
 	m_pBaseSkyLayer[1]->_pAtom		= API_PL_LoadAtomic("world\\mesh\\sky_base.dff", ".\\texture\\ntlwe\\sky\\");
 	m_pBaseSkyLayer[1]->_pRender	= FALSE;
@@ -135,6 +112,28 @@ RwBool CNtlPLSky::Create(const SPLEntityCreateParam* pParam)
 
 	API_PL_AtomicSetGeoFlags(m_pBlendedSkyLayer[1]->_pAtom, rpGEOMETRYPOSITIONS | rpGEOMETRYPRELIT | rpGEOMETRYMODULATEMATERIALCOLOR | rpGEOMETRYTEXTURED);
 	strcpy_s(API_PL_AtomicGetTexture(m_pBlendedSkyLayer[1]->_pAtom)->name, rwTEXTUREBASENAMELENGTH, "null");
+
+	// 初始化天空的背景颜色
+	RwRGBA	RGBATmp[3];
+	RGBATmp[0].red = 255;
+	RGBATmp[0].green = 255;
+	RGBATmp[0].blue = 255;
+
+	RGBATmp[1].red = 255;
+	RGBATmp[1].green = 255;
+	RGBATmp[1].blue = 255;
+
+	RGBATmp[2].red = 255;
+	RGBATmp[2].green = 255;
+	RGBATmp[2].blue = 255;
+	SetColorOfDiffuseSkyAtomic(RGBATmp);
+
+	LinkMsg(NPEI_IS_ANOTHER_FIELD_CHANGED, 0);
+	LinkMsg(NPEI_IS_ANOTHER_BLOCK_CHANGED, 0);
+	LinkMsg(NPEI_IS_ANOTHER_OBJECT_CHANGED, 0);
+	LinkMsg(NPEI_IS_ANOTHER_FIELD_CHANGED_WITHOUT_DELAY, 0);
+	LinkMsg(NPEI_IS_ANOTHER_BLOCK_CHANGED_WITHOUT_DELAY, 0);
+	LinkMsg(NPEI_IS_ANOTHER_OBJECT_CHANGED_WITHOUT_DELAY, 0);
 
 	NTL_RETURN(TRUE);
 }
@@ -429,7 +428,7 @@ void CNtlPLSky::RunableVariation(sNTL_FIELD_PROP* pNtlFieldProp, RwBool NoVariat
 			DBO_ASSERT(pTexture, "Texture load failed.");
 
 			API_PL_AtomicSetTexture(m_pBlendedTmpLayer[0]->_pAtom, pTexture);
-			API_PL_AtomicSetMaterialSetAlpha(m_pBlendedTmpLayer[0]->_pAtom, 0);
+			API_PL_AtomicSetMaterialSetAlpha(m_pBlendedTmpLayer[0]->_pAtom, 255);
 			RwTextureSetFilterMode(pTexture, rwFILTERLINEARMIPLINEAR);
 			CNtlPLResourceManager::GetInstance()->UnLoadTexture(pTexture);
 
@@ -512,7 +511,7 @@ void CNtlPLSky::RunableVariation(sNTL_FIELD_PROP* pNtlFieldProp, RwBool NoVariat
 			DBO_ASSERT(pTexture, "Texture load failed.");
 
 			API_PL_AtomicSetTexture(m_pBlendedTmpLayer[1]->_pAtom, pTexture);
-			API_PL_AtomicSetMaterialSetAlpha(m_pBlendedTmpLayer[1]->_pAtom, 0);
+			API_PL_AtomicSetMaterialSetAlpha(m_pBlendedTmpLayer[1]->_pAtom, 255);
 			RwTextureSetFilterMode(pTexture, rwFILTERLINEARMIPLINEAR);
 			CNtlPLResourceManager::GetInstance()->UnLoadTexture(pTexture);
 
@@ -792,7 +791,7 @@ RwBool CNtlPLSky::Update(RwReal fElapsed)
 
 	UpdateFieldVariation(fElapsed);
 
-	//API_PL_TranslationAtomic(m_pDummySkyLayer->_pAtom, m_WorldDatumPos, rwCOMBINEREPLACE);
+	API_PL_TranslationAtomic(m_pDummySkyLayer->_pAtom, m_WorldDatumPos, rwCOMBINEREPLACE);
 
 	m_pBaseSkyLayer[1]->Rotate(m_pBaseSkyLayer[1]->_RotSpeedMPS);
 	m_pBlendedSkyLayer[0]->Rotate(m_pBlendedSkyLayer[0]->_RotSpeedMPS);
@@ -889,7 +888,7 @@ RwBool CNtlPLSky::Render(void)
 		{
 			CNtlPLRenderGroup::MapEntity::iterator the;
 			CNtlPLRenderGroup::MapEntity *pmapEntity = pSunGroup->GetEntities();
-			for(the = pmapEntity->begin(); the != pmapEntity->end(); ++the)
+			for(auto the = pmapEntity->begin(); the != pmapEntity->end(); ++the)
 			{
 				CNtlPLSun* pSun = static_cast<CNtlPLSun*>((*the).second);
 				if(pSun && pSun->GetVisibility())
@@ -897,11 +896,11 @@ RwBool CNtlPLSky::Render(void)
 			}
 		}
 
-		SkyLayerRender(m_pBlendedSkyLayer[0], TFactor);
-		SkyLayerRender(m_pBlendedSkyLayer[1], TFactor);
-
 		SkyLayerRender(m_pBlendedTmpLayer[0], TFactor);
 		SkyLayerRender(m_pBlendedTmpLayer[1], TFactor);
+
+		SkyLayerRender(m_pBlendedSkyLayer[0], TFactor);
+		SkyLayerRender(m_pBlendedSkyLayer[1], TFactor);
 	}
 	EndBaseSkyRenderState();
 
