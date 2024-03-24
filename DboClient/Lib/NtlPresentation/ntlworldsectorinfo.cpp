@@ -2142,6 +2142,7 @@ CNtlPLObject* CNtlWorldSectorInfo::ObjectLoadFromFile(FILE* pFile, EActiveWorldT
 	RwV3d			avSRT[3];
 	RwUInt32		uiObjectType = EPL_OBJECT_TYPE_OUTDOOR_OBJECT;
 	
+	if (dNTL_WORLD_VERSION_COMPARE(dGET_WORLD_PARAM()->WorldLoadVer, dNTL_WORLD_VERSION))
 	{
 		RwUInt32 uiLength = 0;
 
@@ -5743,7 +5744,16 @@ CNtlPLDojo* CNtlWorldSectorInfo::DojoLoadFromFile(FILE* pFile)
 	fread(&sCreateParam.fFadeInTime, sizeof(RwReal), 1, pFile);
 	fread(&sCreateParam.fFadeOutTime, sizeof(RwReal), 1, pFile);
 
-	if (dNTL_WORLD_VERSION_COMPARE(dGET_WORLD_PARAM()->WorldLoadVer, dNTL_WORLD_VERSION))
+	if (dNTL_WORLD_VERSION_COMPARE(dGET_WORLD_PARAM()->WorldLoadVer, dNTL_WORLD_VERSION_OLD))
+	{
+		for (int i = 0; i < dPL_DOJO_MAX_LEVEL; ++i)
+		{
+			fread(sCreateParam.acObjectName[i], sizeof(RwChar) * dPL_DOJO_RES_NAME_LEN, 1, pFile);
+			fread(sCreateParam.acEffectNameUp[i], sizeof(RwChar) * dPL_DOJO_RES_NAME_LEN, 1, pFile);
+			fread(sCreateParam.acEffectNameDown[i], sizeof(RwChar) * dPL_DOJO_RES_NAME_LEN, 1, pFile);
+		}
+	}
+	else if (dNTL_WORLD_VERSION_COMPARE(dGET_WORLD_PARAM()->WorldLoadVer, dNTL_WORLD_VERSION))
 	{
 		for (int i = 0; i < dPL_DOJO_MAX_LEVEL; ++i)
 		{
