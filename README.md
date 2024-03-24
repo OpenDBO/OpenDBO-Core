@@ -17,12 +17,19 @@ All required third party tools can be obtained from [our 3rd party repository](h
     - Client files: Download them from the [Assets repository](https://github.com/OpenDBO/OpenDBO-Assets). First get the Base Client from the Releases section and then replace all needed files with the updated ones on the repo itself.
     - Download v142 build tools (C++ MFC) via Visual Studio Installer.
 
-2. **Navigate to the following path:** `source\repos\OpenDBO-Core` and create a folder named `3rdParty`. Move the Xtreme Toolkit folder there.
+2. **Extract Xtreme Toolkitpro and GFx SDK 3.3 somehwere**
 
-3. **Move the GFx SDK 3.3 folder into:** `source\repos\OpenDBO-Core\DBOClient\Lib\NtlFlasher`
+3. **Set up environment variables:**
+   - Open the Control Panel, go into System and Security, and click on System
+   - In the search bar, type in "System Environment Variables" and open "Edit the system environment variables"
+   - In the System Properties window that opened, click "Environment Variables..."
+   - In the "System Variables" section, click on "New..."
+     - In "Variable name:", write "GFXSDK_DIR"
+     - Click "Browse Directory..." and locate where you extracted the GFx SDK 3.3 folder.
+     - Do the same for Xtreme Toolkitpro except in "Variable name:" write "XtremeToolkitPro_Dir" 
 
 4. **Access the GFx SDK 3.3 folder you just moved:**
-    - Navigate to `source\repos\OpenDBO-Core\DBOClient\Lib\NtlFlasher\GFx SDK 3.3\3rdParty\jpeg-6b\gfx_projects\Win32`
+    - Navigate to `GFx SDK 3.3\3rdParty\jpeg-6b\gfx_projects\Win32`
     - Rename the folder named "Msvc80" to "Msvc142."
 
 5. **Enter the Msvc142 folder and open the project:** "libjpeg.sln"
@@ -45,13 +52,13 @@ All required third party tools can be obtained from [our 3rd party repository](h
 11. **In Solution Explorer, navigate to Tools\2DParticleEditor, right-click, and unload it.**
 
 12. **Right-click on Client.vcxproj -> Build**
-    - You should encounter only one error after compiling: 'libjpeg.lob'
+    - You should encounter only one error after compiling: 'libjpeg.lib'
 
 13. **Right-click on Client.vcxproj then go to properties:**
     - Navigate to Linker -> General -> Additional Library Directories.
     - Update the paths to match your system: 
-        - `$(SolutionDir)Lib\NtlFlasher\GFx SDK 3.3\Lib\$(PlatformName)\Msvc80\Release`
-        - `$(SolutionDir)Lib\NTlFlasher\GFx SDK 3.3\3rdParty\jpeg-6b\lib\$(PlatformName)\Msvc142\Release`
+        - `$(GFXSDK_DIR)\Lib\$(PlatformName)\Msvc80\Release`
+        - `$(GFXSDK_DIR)\3rdParty\jpeg-6b\lib\$(PlatformName)\Msvc142\Release`
 
 14. **Right-click on Client.vcxproj -> Rebuild**
 
