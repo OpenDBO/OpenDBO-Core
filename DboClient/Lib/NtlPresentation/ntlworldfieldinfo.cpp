@@ -167,11 +167,12 @@ BYTE* CNtlWorldFieldInfo::FieldFogSkipToFileMem(BYTE* pFileMem)
 RwBool CNtlWorldFieldInfo::FieldSkyLoadFromFile(FILE* pFile, sNTL_FIELD_PROP* pNtlFieldProp)
 {
 	fread(&pNtlFieldProp->_BaseSkyMode, sizeof(RwInt32), 1, pFile);
+
+	fread(&pNtlFieldProp->_NewSkyValue, sizeof(RwReal), 1, pFile);
+
 	fread(&pNtlFieldProp->_RGBSkyColor[0], sizeof(RwRGBA), 1, pFile);
 	fread(&pNtlFieldProp->_RGBSkyColor[1], sizeof(RwRGBA), 1, pFile);
 	fread(&pNtlFieldProp->_RGBSkyColor[2], sizeof(RwRGBA), 1, pFile);
-
-	fread(&pNtlFieldProp->_NewSkyValue, sizeof(RwReal), 1, pFile);
 
 	fread(pNtlFieldProp->_BaseSkyTexName, sizeof(RwChar) * 10, 1, pFile);
 	fread(&pNtlFieldProp->_BaseSkySpeed, sizeof(RwReal), 1, pFile);
@@ -186,11 +187,12 @@ RwBool CNtlWorldFieldInfo::FieldSkyLoadFromFile(FILE* pFile, sNTL_FIELD_PROP* pN
 RwBool CNtlWorldFieldInfo::FieldSkySaveIntoFile(FILE* pFile, sNTL_FIELD_PROP* pNtlFieldProp)
 {
 	fwrite(&pNtlFieldProp->_BaseSkyMode, sizeof(RwInt32), 1, pFile);
+
+	fwrite(&pNtlFieldProp->_NewSkyValue, sizeof(RwReal), 1, pFile);
+
 	fwrite(&pNtlFieldProp->_RGBSkyColor[0], sizeof(RwRGBA), 1, pFile);
 	fwrite(&pNtlFieldProp->_RGBSkyColor[1], sizeof(RwRGBA), 1, pFile);
 	fwrite(&pNtlFieldProp->_RGBSkyColor[2], sizeof(RwRGBA), 1, pFile);
-
-	fwrite(&pNtlFieldProp->_NewSkyValue, sizeof(RwReal), 1, pFile);
 
 	fwrite(pNtlFieldProp->_BaseSkyTexName, sizeof(RwChar) * 10, 1, pFile);
 	fwrite(&pNtlFieldProp->_BaseSkySpeed, sizeof(RwReal), 1, pFile);
