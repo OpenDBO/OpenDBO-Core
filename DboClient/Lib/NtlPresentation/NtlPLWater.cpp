@@ -413,7 +413,26 @@ RwBool CNtlPLWater::OnRender(CNtlWorldSector* pNtlWorldSector, RxD3D9InstanceDat
 			}
 			else
 			{
-				NTL_RPROFILE(FALSE)
+				//NTL_RPROFILE(FALSE)
+
+				// Hackfix?
+				// For some reason pSectorWaterAttr->_IdxSequence sometimes is like normal Idx + 1000,
+				// Probably for some feature added between 1.1 and 1.4 map version.
+				// TODO: Check if water is correct everywhere
+				// TODO: Find out why Idx is +1000, maybe we need to render some special effects?
+				iter = m_mapWater.find(WATER_MAP::key_type(pSectorWaterAttr->_IdxSequence % 1000));
+
+				if (iter != m_mapWater.end())
+				{
+					pWater = iter->second;
+				}
+				else
+				{
+					char buffer[1024];
+					sprintf_s(buffer, sizeof buffer, "Invalid pSectorWaterAttr->_IdxSequence: %u\n", pSectorWaterAttr->_IdxSequence);
+					NtlLogFilePrint(buffer);
+					NTL_RPROFILE(FALSE)
+				}
 			}
 
 			RwRenderStateSet(rwRENDERSTATESRCBLEND, (void*)pNtlWorldSector->m_pWater->_RenderstateSrc);
