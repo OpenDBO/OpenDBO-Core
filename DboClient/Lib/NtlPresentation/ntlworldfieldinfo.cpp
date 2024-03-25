@@ -207,11 +207,12 @@ RwBool CNtlWorldFieldInfo::FieldSkySaveIntoFile(FILE* pFile, sNTL_FIELD_PROP* pN
 RwInt32 CNtlWorldFieldInfo::FieldSkySkipToFile(FILE* pFile)
 {
 	fseek(pFile, sizeof(RwInt32), SEEK_CUR);
-	fseek(pFile, sizeof(RwRGBA), SEEK_CUR);
-	fseek(pFile, sizeof(RwRGBA), SEEK_CUR);
-	fseek(pFile, sizeof(RwRGBA), SEEK_CUR);
 
 	fseek(pFile, sizeof(RwReal), SEEK_CUR);
+
+	fseek(pFile, sizeof(RwRGBA), SEEK_CUR);
+	fseek(pFile, sizeof(RwRGBA), SEEK_CUR);
+	fseek(pFile, sizeof(RwRGBA), SEEK_CUR);
 
 	fseek(pFile, sizeof(RwChar) * 10, SEEK_CUR);
 	fseek(pFile, sizeof(RwReal), SEEK_CUR);
@@ -226,8 +227,8 @@ RwInt32 CNtlWorldFieldInfo::FieldSkySkipToFile(FILE* pFile)
 BYTE* CNtlWorldFieldInfo::FieldSkySaveIntoFileFromFileMem(FILE* pFile, BYTE* pFileMem)
 {
 	RwInt32 SizMemBlock =	sizeof(RwInt32)	+			// base sky mode
-		(sizeof(RwRGBA) * 3) +		// rgb sky color
 		sizeof(RwReal) +			// unknown new sky value
+		(sizeof(RwRGBA) * 3) +		// rgb sky color
 		(sizeof(RwChar) * 10) +		// base sky texture name
 		sizeof(RwReal) +			// base sky speed
 		(sizeof(RwChar) * 10 * 2) +	// blended tex name
@@ -242,8 +243,8 @@ BYTE* CNtlWorldFieldInfo::FieldSkySaveIntoFileFromFileMem(FILE* pFile, BYTE* pFi
 BYTE* CNtlWorldFieldInfo::FieldSkySkipToFileMem(BYTE* pFileMem)
 {
 	RwInt32 SizMemBlock =	sizeof(RwInt32)	+			// base sky mode
-		(sizeof(RwRGBA) * 3) +		// rgb sky color
 		sizeof(RwReal) +			// unknown new sky value
+		(sizeof(RwRGBA) * 3) +		// rgb sky color
 		(sizeof(RwChar) * 10) +		// base sky texture name
 		sizeof(RwReal) +			// base sky speed
 		(sizeof(RwChar) * 10 * 2) +	// blended tex name
