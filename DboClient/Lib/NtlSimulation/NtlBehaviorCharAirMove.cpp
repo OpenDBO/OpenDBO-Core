@@ -273,6 +273,8 @@ void CNtlBehaviorCharAirMove::DestroyAirEffect(void)
 
 RwBool CNtlBehaviorCharAirMove::UpdatePositionMove(SMoveStuff* pMoveStuff, OUT RwV3d& vPos, RwBool bIncHeight, RwReal fElapsed, RwReal fSpeed)
 {
+	RwBool pStopFlying = FALSE;
+
 	if (pMoveStuff->byMoveFlags != NTL_MOVE_NONE)
 	{
 		RwV3d vDir = m_pActor->GetDirection();
@@ -300,27 +302,39 @@ RwBool CNtlBehaviorCharAirMove::UpdatePositionMove(SMoveStuff* pMoveStuff, OUT R
 		//	return FALSE; // return, we dont need collision check on player
 		//}
 
+		// Prevent flying above the defined height.
+		Logic_GetWorldHeight(m_pActor, &vPos, m_sHStuff);
+		if (vPos.y >=  MAX_ALLOWED_FLY_HEIGHT)
+		{
+			vPos.y = MAX_ALLOWED_FLY_HEIGHT;
+		}
+
 		// Collision check.
 		if (m_pActor->GetFlags() & SLFLAG_OBJECT_COLLISION)
 		{
 			RwReal fCurrHeight = vPos.y;
 			RwBool bCollMoveImPossible;
 			RwUInt8 byColliResult = Logic_CharacterCollisionEx(m_pActor, &vPos, fSpeed, vPos, bCollMoveImPossible, fElapsed, FALSE);
-
 			vPos.y = fCurrHeight;
 
-			if (byColliResult != NTL_CHARACTER_COLLI_NONE)
-			{
-				if (bCollMoveImPossible)
-				{
-					SetFalling();
-					return TRUE;
-				}
-			}
+			pStopFlying = byColliResult != NTL_CHARACTER_COLLI_NONE && bCollMoveImPossible;
+		}
+
+		if (vPos.y <= m_sHStuff.fFinialHeight) {
+			vPos.y = m_sHStuff.fFinialHeight;
+			pStopFlying = TRUE;
+		}
+
+		if (pStopFlying)
+		{
+			vPos.y = m_sHStuff.fFinialHeight;
+			// TODO: Setting character as falling looks like a hackfix to me. Maybe related to https://github.com/OpenDBO/OpenDBO-Core/issues/13 ?
+			SetFalling();
 		}
 	}
 
-	return FALSE;
+	m_pActor->SetPosition(&vPos);
+	return pStopFlying;
 }
 
 RwBool CNtlBehaviorCharAirMove::UpdateAirStart(SMoveStuff* pMoveStuff, RwReal fElapsed)
@@ -328,21 +342,7 @@ RwBool CNtlBehaviorCharAirMove::UpdateAirStart(SMoveStuff* pMoveStuff, RwReal fE
 	RwV3d vPos = m_pActor->GetPosition();
 	RwReal fMoveSpeed = Logic_GetFlyDashSpeed(m_pActor);
 
-	RwBool bFinish = UpdatePositionMove(pMoveStuff, vPos, TRUE, fElapsed, fMoveSpeed);
-
-	if (!bFinish)
-	{
-		Logic_GetWorldHeight(m_pActor, &vPos, m_sHStuff);
-
-		if (vPos.y >= m_sHStuff.fWorldHeight) //check if we on height limit
-		{
-			//	vPos.y = m_sHStuff.fWorldHeight;
-		}
-	}
-
-	m_pActor->SetPosition(&vPos);
-
-	return bFinish;
+	return UpdatePositionMove(pMoveStuff, vPos, TRUE, fElapsed, fMoveSpeed);
 }
 
 RwBool CNtlBehaviorCharAirMove::UpdateAirFly(SMoveStuff* pMoveStuff, RwReal fElapsed)
@@ -350,28 +350,7 @@ RwBool CNtlBehaviorCharAirMove::UpdateAirFly(SMoveStuff* pMoveStuff, RwReal fEla
 	RwV3d vPos = m_pActor->GetPosition();
 	RwReal fSpeed = Logic_GetFrontFlySpeed(m_pActor);
 
-	RwBool bFinish = UpdatePositionMove(pMoveStuff, vPos, TRUE, fElapsed, fSpeed);
-
-	if (!bFinish)
-	{
-		Logic_GetWorldHeight(m_pActor, &vPos, m_sHStuff);
-
-		if (vPos.y <= m_sHStuff.fFinialHeight) //check if we land on ground
-		{
-			DBO_WARNING_MESSAGE("UF vPos.y: " << vPos.y << ", height: " << m_sHStuff.fFinialHeight << ", WATER-height: " << m_sHStuff.fWaterHeight);
-			vPos.y = m_sHStuff.fFinialHeight;
-
-			//	if (m_pActor->GetClassID() == SLCLASS_AVATAR) // if we do this check, then when avatar fly on ground, he will keep flying (for other players)
-			{
-				SetFalling();
-				bFinish = TRUE;
-			}
-		}
-	}
-
-	m_pActor->SetPosition(&vPos);
-
-	return bFinish;
+	return UpdatePositionMove(pMoveStuff, vPos, TRUE, fElapsed, fSpeed);
 }
 
 RwBool CNtlBehaviorCharAirMove::UpdateAirDash(SMoveStuff* pMoveStuff, RwReal fElapsed)
@@ -379,27 +358,7 @@ RwBool CNtlBehaviorCharAirMove::UpdateAirDash(SMoveStuff* pMoveStuff, RwReal fEl
 	RwV3d vPos = m_pActor->GetPosition();
 	RwReal fSpeed = Logic_GetFlyDashSpeed(m_pActor);
 
-	RwBool bFinish = UpdatePositionMove(pMoveStuff, vPos, TRUE, fElapsed, fSpeed);
-
-	if (!bFinish)
-	{
-		Logic_GetWorldHeight(m_pActor, &vPos, m_sHStuff);
-
-		if (vPos.y <= m_sHStuff.fFinialHeight) //check if we land on ground
-		{
-			vPos.y = m_sHStuff.fFinialHeight;
-
-			//	if (m_pActor->GetClassID() == SLCLASS_AVATAR)
-			{
-				SetFalling();
-				bFinish = TRUE;
-			}
-		}
-	}
-
-	m_pActor->SetPosition(&vPos);
-
-	return bFinish;
+	return UpdatePositionMove(pMoveStuff, vPos, TRUE, fElapsed, fSpeed);
 }
 
 RwBool CNtlBehaviorCharAirMove::UpdateAirAccel(SMoveStuff* pMoveStuff, RwReal fElapsed)
@@ -407,27 +366,7 @@ RwBool CNtlBehaviorCharAirMove::UpdateAirAccel(SMoveStuff* pMoveStuff, RwReal fE
 	RwV3d vPos = m_pActor->GetPosition();
 	RwReal fSpeed = Logic_GetFlyAccelSpeed(m_pActor);
 
-	RwBool bFinish = UpdatePositionMove(pMoveStuff, vPos, TRUE, fElapsed, fSpeed);
-
-	if (!bFinish)
-	{
-		Logic_GetWorldHeight(m_pActor, &vPos, m_sHStuff);
-
-		if (vPos.y <= m_sHStuff.fFinialHeight) //check if we land on ground
-		{
-			vPos.y = m_sHStuff.fFinialHeight;
-
-			//	if (m_pActor->GetClassID() == SLCLASS_AVATAR)
-			{
-				SetFalling();
-				bFinish = TRUE;
-			}
-		}
-	}
-
-	m_pActor->SetPosition(&vPos);
-
-	return bFinish;
+	return UpdatePositionMove(pMoveStuff, vPos, TRUE, fElapsed, fSpeed);
 }
 
 RwBool CNtlBehaviorCharAirMove::UpdateMoveSync(RwV3d vPos, RwReal fElapsedTime)
@@ -479,4 +418,3 @@ void CNtlBehaviorCharAirMove::SetFalling()
 	pCtrlStuff->uExtra.sFalling.fSpeed = DBO_FALLING_SPEED;
 	pCtrlStuff->uExtra.sFalling.fSearchHeight = m_sHStuff.fFinialHeight;
 }
-

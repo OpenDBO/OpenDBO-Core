@@ -2,6 +2,10 @@
 
 #include "NtlBehaviorCharMove.h"
 
+
+// This is a guess based on TW client observation.
+#define MAX_ALLOWED_FLY_HEIGHT 200
+
 class CNtlBehaviorCharAirMove : public CNtlBehaviorCharMove
 {
 	DECLEAR_MEMORY_POOL(CNtlBehaviorCharAirMove, NTL_DEFAULT_MEMORY_POOL)
