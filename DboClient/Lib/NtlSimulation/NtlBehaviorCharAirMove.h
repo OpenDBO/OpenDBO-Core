@@ -3,8 +3,8 @@
 #include "NtlBehaviorCharMove.h"
 
 
-// This is a guess based on TW client observation.
-#define MAX_ALLOWED_FLY_HEIGHT 200
+// Based on TW client observations, looks correct.
+#define MAX_ALLOWED_FLY_HEIGHT 160
 
 class CNtlBehaviorCharAirMove : public CNtlBehaviorCharMove
 {

@@ -317,16 +317,18 @@ RwBool CNtlBehaviorCharAirMove::UpdatePositionMove(SMoveStuff* pMoveStuff, OUT R
 			RwUInt8 byColliResult = Logic_CharacterCollisionEx(m_pActor, &vPos, fSpeed, vPos, bCollMoveImPossible, fElapsed, FALSE);
 			vPos.y = fCurrHeight;
 
-			pStopFlying = byColliResult != NTL_CHARACTER_COLLI_NONE && bCollMoveImPossible;
+			// Uncommenting this will make the player fall when colliding with an obstacle (like invisible walls).
+			// TW client doesn't have this behavior so I leave it commented out.
+			//pStopFlying = byColliResult != NTL_CHARACTER_COLLI_NONE && bCollMoveImPossible;
 		}
 
 		if (vPos.y <= m_sHStuff.fFinialHeight) {
+			vPos.y = m_sHStuff.fFinialHeight;
 			pStopFlying = TRUE;
 		}
 
 		if (pStopFlying)
 		{
-			vPos.y = m_sHStuff.fFinialHeight;
 			// TODO: Setting character as falling looks like a hackfix to me. Maybe related to https://github.com/OpenDBO/OpenDBO-Core/issues/13 ?
 			SetFalling();
 		}

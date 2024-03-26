@@ -375,7 +375,7 @@ VOID CLogInGui::ClickedLoginButton( gui::CComponent* pComponent )
 
 	if( pMacAddress )
 	{
-		// Check if terms are accepted on this session or if the version of the contract previously accepted is the current version
+		// Check if terms are accepted on this session or if the version of the contract previously accepted is the current version.
 		if (GetDboGlobal()->IsAcceptGameContract() || GetDboGlobal()->GetContractVersion() == (RwUInt32)GetNtlStorageManager()->GetIntData(dSTORAGE_SYSTEM_ETC_CONTRACT))
 		{
 			GetDboGlobal()->GetLoginPacketGenerator()->SendLonInReq(pID, pPW, CLIENT_LVER, CLIENT_RVER, pMacAddress);
