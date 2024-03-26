@@ -433,7 +433,7 @@ RwBool CDboGlobal::IsAcceptGameContract()
 	return m_pContractInfo->bAcceptGameContract;
 }
 
-RwUInt32 CDboGlobal::GetContractVerstion()
+RwUInt32 CDboGlobal::GetContractVersion()
 {
 	if( !m_pContractInfo )
 		return 0;

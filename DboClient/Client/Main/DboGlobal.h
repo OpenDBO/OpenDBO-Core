@@ -309,7 +309,7 @@ public:
 
 	void			SetGameContract(RwBool bAccept);
 	RwBool			IsAcceptGameContract();
-	RwUInt32		GetContractVerstion();
+	RwUInt32		GetContractVersion();
 	WCHAR*			GetContract();
 
 	RwBool			HaveFunction(eDBO_ALLOWED_FUNC_FOR_DEV eAllowFunc);
