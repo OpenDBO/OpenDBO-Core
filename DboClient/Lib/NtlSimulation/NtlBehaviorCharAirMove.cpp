@@ -321,7 +321,6 @@ RwBool CNtlBehaviorCharAirMove::UpdatePositionMove(SMoveStuff* pMoveStuff, OUT R
 		}
 
 		if (vPos.y <= m_sHStuff.fFinialHeight) {
-			vPos.y = m_sHStuff.fFinialHeight;
 			pStopFlying = TRUE;
 		}
 
