@@ -216,7 +216,9 @@ VOID CContractGui::HandleEvents( RWS::CMsg &msg )
 		}
 		else if( LOGIN_EVENT_SHOW_CONTRACT_PAGE == pEvent->byMessage )
 		{
-			if( GetDboGlobal()->IsAcceptGameContract() )
+			// Check if terms are accepted on this session or if the version of the contract previously accepted is the current version 
+			// in order to show or hide the Accept/Reject or the Ok buttons.
+			if( GetDboGlobal()->IsAcceptGameContract() || GetDboGlobal()->GetContractVersion() == (RwUInt32)GetNtlStorageManager()->GetIntData(dSTORAGE_SYSTEM_ETC_CONTRACT))
 			{
 				m_pOKButton->Show(true);
 
