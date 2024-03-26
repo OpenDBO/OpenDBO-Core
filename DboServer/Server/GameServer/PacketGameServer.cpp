@@ -9388,7 +9388,7 @@ void CClientSession::RecvEquipRepairReq(CNtlPacket * pPacket)
 					for (int j = 0; j < EQUIP_SLOT_TYPE_COUNT; j++)
 					{
 						CItem* pItem = cPlayer->GetPlayerItemContainer()->GetItem(CONTAINER_TYPE_EQUIP, j);
-						if (pItem && pItem->IsLocked(false))
+						if (pItem && !pItem->IsLocked(false))
 						{
 							sITEM_TBLDAT* pItemData = pItem->GetTbldat();
 							if (pItem->GetDurability() < pItemData->byDurability)
