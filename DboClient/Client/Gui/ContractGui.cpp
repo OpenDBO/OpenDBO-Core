@@ -132,7 +132,7 @@ VOID CContractGui::LocateComponent(RwInt32 iWidth, RwInt32 iHeight)
 
 VOID CContractGui::OnClicked_AgreementButton(gui::CComponent* pComponent)
 {
-	GetNtlStorageManager()->SetData(dSTORAGE_SYSTEM_ETC_CONTRACT, (RwInt32)GetDboGlobal()->GetContractVerstion() );
+	GetNtlStorageManager()->SetData(dSTORAGE_SYSTEM_ETC_CONTRACT, (RwInt32)GetDboGlobal()->GetContractVersion() );
 	GetDboGlobal()->SetGameContract(true);
 	Logic_SaveSystemOption();
 
