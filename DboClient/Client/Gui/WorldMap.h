@@ -253,6 +253,7 @@ protected:
 	RwBool			LoadingMapSurface(RwUInt8 byMapMode);
 	VOID			LoadingWorldFocus();
 	VOID			LoadingLandMark();
+	VOID			LoadSearchQuest();
 
 	RwBool			UpdateChangeZoneMap(RwReal fElapsed);
 	VOID			UpdateWarfogEffect(RwReal fElapsed);

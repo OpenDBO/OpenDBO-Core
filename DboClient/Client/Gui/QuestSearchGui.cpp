@@ -31,7 +31,7 @@
 #include "AlarmManager.h"
 #include "DialogDefine.h"
 
-#define dQUEST_MARK			"scouter_radar_scanpoint.swf"
+#define dQUEST_MARK			"scouter_radar_scanpoint3.swf"
 
 #define dADJUST_AREA_LEFT			8
 #define dADJUST_AREA_RIGHT			8
@@ -50,7 +50,7 @@ CQuestSearchGui::~CQuestSearchGui()
 
 }
 
-RwBool CQuestSearchGui::Create(RwReal fMapScale)
+RwBool CQuestSearchGui::Create(RwReal fMapScale, gui::CComponent* parentComponent)
 {
 	NTL_FUNCTION( "CQuestSearchGui::Create" );
 
@@ -61,6 +61,9 @@ RwBool CQuestSearchGui::Create(RwReal fMapScale)
 
 	m_pThis = (gui::CDialog*)GetComponent("dlgMain");
 	m_pThis->SetPriority(dDIALOGPRIORITY_WORLDMAP_QUEST_SEARCH);
+
+	//set parentComponent
+	m_pThis->SetParent(parentComponent, true);
 
 	CRectangle rect;
 	RwReal fReducedScale = fMapScale/dMAP_DEFAULT_REDUCED_SCALE;
