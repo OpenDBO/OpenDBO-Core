@@ -193,22 +193,26 @@ RwBool CWorldMapGui::Create()
 	}
 
 	m_pcbbSearchWorld = (gui::CComboBox*)GetComponent("cbbSearchWorld");
+	m_pcbbSearchWorld->SetPriority(dDIALOGPRIORITY_WORLDMAP_QUEST_SEARCH + 1);
 	//m_srfcbbListboxTop.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("WorldMap.srf", "srfcbbListboxTop"));
 	//m_srfcbbListboxTop.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("WorldMap.srf", "srfcbbListboxMid"));
 	//m_srfcbbListboxTop.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("WorldMap.srf", "srfcbbListboxButtom"));
 	
 	m_pcbbSearchZone = (gui::CComboBox*)GetComponent("cbbSearchZone");
+	m_pcbbSearchZone->SetPriority(dDIALOGPRIORITY_WORLDMAP_QUEST_SEARCH + 1);
 	//m_srfcbbListboxTop.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("WorldMap.srf", "srfcbbListboxTop"));
 	//m_srfcbbListboxTop.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("WorldMap.srf", "srfcbbListboxMid"));
 	//m_srfcbbListboxTop.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("WorldMap.srf", "srfcbbListboxButtom"));
 
 	m_pcbbSearchCity = (gui::CComboBox*)GetComponent("cbbSearchCity");
+	m_pcbbSearchCity->SetPriority(dDIALOGPRIORITY_WORLDMAP_QUEST_SEARCH + 1);
 	//m_srfcbbListboxTop.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("WorldMap.srf", "srfcbbListboxTop"));
 	//m_srfcbbListboxTop.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("WorldMap.srf", "srfcbbListboxMid"));
 	//m_srfcbbListboxTop.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("WorldMap.srf", "srfcbbListboxButtom"));
 
 	m_pcbbSearchNpc = (gui::CComboBox*)GetComponent("cbbSearchNpc");
 	m_pcbbSearchNpc->AddItem(GetDisplayStringManager()->GetString("DST_WORLDMAP_SEARCH_NPC_TITLE"), 0);
+	m_pcbbSearchNpc->SetPriority(dDIALOGPRIORITY_WORLDMAP_QUEST_SEARCH + 1);
 	// TO DO: while loop.. I think to add npc search entry
 	{
 
@@ -219,6 +223,7 @@ RwBool CWorldMapGui::Create()
 
 	// 
 	m_pAlphaScrollbar = (gui::CScrollBar*)GetComponent( "scbAlphaScroll" );
+	m_pAlphaScrollbar->SetPriority(dDIALOGPRIORITY_WORLDMAP_QUEST_SEARCH + 1);
 
 	// Exit Button
 	m_pExitButton = (gui::CButton*)GetComponent( "ExitButton" );
@@ -426,13 +431,12 @@ RwBool CWorldMapGui::Create()
 	//
 	m_pstbQuestInfo = (gui::CStaticBox*)GetComponent("stbQuestInfo");
 	m_pstbQuestInfo->SetText(GetDisplayStringManager()->GetString("DST_QUESTINFOMATION"));
-	m_pstbQuestInfo->Show(false);
+
 	//
 	m_pbtnQuestInfoOnOff = (gui::CButton*)GetComponent("btnQuestInfoOnOff");
 	m_pbtnQuestInfoOnOff->SetToggleMode(true);
 	m_pbtnQuestInfoOnOff->SetToolTip(GetDisplayStringManager()->GetString("DST_WORLDMAP_QUEST_SEARCH_TOOLTIP"));
 	m_slotQuestInfoToggle = m_pbtnQuestInfoOnOff->SigToggled().Connect(this, &CWorldMapGui::OnToggle_QuestInfoButton);
-	m_pbtnQuestInfoOnOff->Show(false);
 
 	//
 	m_pstbPopoStone = (gui::CStaticBox*)GetComponent("stbPopoStone");
@@ -539,9 +543,53 @@ VOID CWorldMapGui::OnClicked_CloseButton(gui::CComponent* pComponent)
 	GetDialogManager()->CloseDialog(DIALOG_WORLDMAP);
 }
 
+
+VOID CWorldMapGui::LoadSearchQuest()
+{
+	if (!m_pQuestSearch) {
+		NTL_RETURNVOID();
+	}
+
+	CRectangle rtMapArea;
+	RwInt32 iOutputX, iOutputY;
+
+	GetAvatarMarkPosition(iOutputX, iOutputY, GetNtlSLGlobal()->GetSobAvatar());
+
+	rtMapArea.SetRectWH(m_iMapStartX, m_iMapStartY, dMAP_WIDTH, dMAP_HEIGHT - 15);
+	m_pQuestSearch->SetArea(rtMapArea, m_fMapScale, m_v2MapPos, iOutputX, iOutputY);
+	m_pQuestSearch->GetDialog()->SetAlpha(m_srfMap.GetSurface()->m_SnapShot.uAlpha);
+}
+
 VOID CWorldMapGui::OnToggle_QuestInfoButton(gui::CComponent * pComponent, bool bToggled)
 {
-	return VOID();
+	if (bToggled)
+	{
+		if (m_byMapMode == WORLDMAP_TYPE_WORLD) {
+			m_pbtnQuestInfoOnOff->SetDown(false);
+			NTL_RETURNVOID();
+		}
+
+		RwInt32 x, y;
+		GetAvatarMarkPosition(x, y, GetNtlSLGlobal()->GetSobAvatar());
+		if (IsinMap(x, y)) {
+			if (!m_pQuestSearch) {
+				m_pQuestSearch = NTL_NEW CQuestSearchGui("QuestSearchGui");
+				if (!m_pQuestSearch->Create(m_fMapScale, m_pThis))
+				{
+					UnloadQuestSearch();
+					NTL_RETURNVOID();
+				}
+			}
+			LoadSearchQuest();
+		}
+	}
+	else {
+		UnloadQuestSearch();
+	}
+
+	if (m_pQuestSearch) {
+		m_pQuestSearch->Show(bToggled);
+	}
 }
 
 VOID CWorldMapGui::OnToggle_PopoStoneButton(gui::CComponent * pComponent, bool bToggled)
@@ -556,7 +604,8 @@ VOID CWorldMapGui::OnToggle_PortalButton(gui::CComponent * pComponent, bool bTog
 
 VOID CWorldMapGui::OnToggle_BusRouteButton(gui::CComponent* pComponent, bool bToggled)
 {
-
+	m_pBusRouteButton->SetDown(bToggled);
+	m_srfBusRoute.Show(bToggled);
 }
 
 VOID CWorldMapGui::OnToggle_VisibleOurGuildMemberButton(gui::CComponent* pComponent, bool bToggled)
@@ -2635,6 +2684,7 @@ VOID CWorldMapGui::UnloadQuestSearch()
 {
 	if( m_pQuestSearch )
 	{
+		m_pbtnQuestInfoOnOff->SetDown(false);
 		m_pQuestSearch->Destroy();
 		NTL_DELETE(m_pQuestSearch);
 	}

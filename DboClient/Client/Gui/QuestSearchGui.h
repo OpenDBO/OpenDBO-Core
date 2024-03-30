@@ -34,7 +34,7 @@ public:
 	CQuestSearchGui(const RwChar* pName);
 	virtual ~CQuestSearchGui();
 
-	RwBool		Create(RwReal fMapScale);
+	RwBool		Create(RwReal fMapScale, gui::CComponent* parentComponent);
 	VOID		Update(RwReal fElapsed);
 	VOID		Destroy();
 	
