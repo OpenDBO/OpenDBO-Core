@@ -50,6 +50,7 @@ const WCHAR * CDisplayStringManager::GetString(std::string key, RwUInt32 eType)
 			return it->second.c_str();
 	}
 
+	DBO_WARNING_MESSAGE("Missing string with key: " << key);
 	static WCHAR awcBuffer[] = L"String not found";
 
 	return awcBuffer;
