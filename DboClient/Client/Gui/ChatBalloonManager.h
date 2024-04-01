@@ -297,7 +297,7 @@ public:
 	//! Operation
 	VOID AddAvatarBalloon( const WCHAR* pMessage, RwBool bPartyMsg = FALSE);
 	VOID AddPlayerBalloon( CNtlSob* pSobObject, const WCHAR* pMessage, RwBool bPartyMsg = FALSE);
-	VOID AddNPCBalloon( CNtlSob* pSobObject, const WCHAR* pMessage, RwReal fLifeTime, RwBool bServer = FALSE, RwBool bTimeProc = TRUE, RwUInt8 byBalloonType = 6 );
+	VOID AddNPCBalloon( CNtlSob* pSobObject, const WCHAR* pMessage, RwReal fLifeTime, RwBool bServer = FALSE, RwBool bTimeProc = TRUE, RwUInt8 byBalloonType = 7 );
 	VOID AddPrivateShopBalloon( CNtlSob* pSobObject, const WCHAR* pMessage, RwBool bReady );
 	VOID AddQuestBalloon( CNtlSob* pSobObject, std::wstring& wstrHtmlData, RwUInt32 uiID, RwBool bTimeProc = TRUE );
 	VOID AddMarkBalloon( CNtlSob* pSobObject, std::wstring& wstrHtmlData );

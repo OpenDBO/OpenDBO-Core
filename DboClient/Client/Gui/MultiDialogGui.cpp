@@ -230,7 +230,7 @@ RwInt32 CMultiDialogGui::SwitchDialog( bool bOpen )
 			{
 				if( pTargetObject )
 				{
-					GetBalloonManager()->AddNPCBalloon( pTargetObject, m_stMultiDialogData.wstrText.c_str(), BALLOON_NPC_DISPTIME, FALSE, m_stMultiDialogData.bTimeProc, 3 );					
+					GetBalloonManager()->AddNPCBalloon( pTargetObject, m_stMultiDialogData.wstrText.c_str(), BALLOON_NPC_DISPTIME, FALSE, m_stMultiDialogData.bTimeProc, 4 );					
 				}
 				else
 				{
@@ -254,7 +254,7 @@ RwInt32 CMultiDialogGui::SwitchDialog( bool bOpen )
 			{
 				if( pTargetObject )
 				{
-					GetBalloonManager()->AddNPCBalloon( pTargetObject, m_stMultiDialogData.wstrText.c_str(), BALLOON_NPC_DISPTIME, FALSE, m_stMultiDialogData.bTimeProc, 3 );
+					GetBalloonManager()->AddNPCBalloon( pTargetObject, m_stMultiDialogData.wstrText.c_str(), BALLOON_NPC_DISPTIME, FALSE, m_stMultiDialogData.bTimeProc, 4 );
 					//GetDialogManager()->CloseDialog( DIALOG_MULTIDIALOG, FALSE );					
 				}				
 				m_stMultiDialogData.Clear();

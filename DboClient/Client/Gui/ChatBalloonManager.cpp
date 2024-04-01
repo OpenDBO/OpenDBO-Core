@@ -350,12 +350,12 @@ CNPCBalloonGui::CNPCBalloonGui(CNtlSob* pOwnerObject, CPos& posOffsetDelta, cons
 
 	if( nWidth > 72 || nLineCount > 2 )
 	{
-		sprintf_s( buf, 256, "textBalloon_0%u_R.swf", byBalloonType + 1 );
+		sprintf_s( buf, 256, "textBalloon_0%u_R.swf", byBalloonType );
 		m_bStandardSize = TRUE;
 	}
 	else
 	{
-		sprintf_s( buf, 256, "textBalloon_0%u_R_s.swf", byBalloonType + 1 );
+		sprintf_s( buf, 256, "textBalloon_0%u_R_s.swf", byBalloonType );
 		m_bStandardSize = FALSE;
 	}
 
@@ -408,7 +408,7 @@ VOID CNPCBalloonGui::SetMessage( const WCHAR* pMessage, RwBool bTimeProc )
 		else
 		{
 			bNeedToReCreate = TRUE;
-			sprintf_s( buf, 256, "textBalloon_0%u_R.swf", m_byBalloonType + 1 );
+			sprintf_s( buf, 256, "textBalloon_0%u_R.swf", m_byBalloonType );
 			m_bStandardSize = TRUE;
 		}
 	}
@@ -417,7 +417,7 @@ VOID CNPCBalloonGui::SetMessage( const WCHAR* pMessage, RwBool bTimeProc )
 		if( m_bStandardSize )
 		{
 			bNeedToReCreate = TRUE;
-			sprintf_s( buf, 256, "textBalloon_0%u_R_s.swf", m_byBalloonType + 1 );
+			sprintf_s( buf, 256, "textBalloon_0%u_R_s.swf", m_byBalloonType );
 			m_bStandardSize = FALSE;
 		}
 		else
@@ -1682,7 +1682,7 @@ VOID CBalloonManager::AddPlayerBalloon( CNtlSob* pSobObject, const WCHAR* pMessa
 	}
 }
 
-VOID CBalloonManager::AddNPCBalloon( CNtlSob* pSobObject, const WCHAR* pMessage, RwReal fLifeTime, RwBool bServer /* = FALSE */, RwBool bTimeProc /* = TRUE */, RwUInt8 byBalloonType /* = 6  */)
+VOID CBalloonManager::AddNPCBalloon( CNtlSob* pSobObject, const WCHAR* pMessage, RwReal fLifeTime, RwBool bServer /* = FALSE */, RwBool bTimeProc /* = TRUE */, RwUInt8 byBalloonType /* = 7  */)
 {
 	if( !pSobObject->IsVisible() )
 		return;
@@ -2360,7 +2360,7 @@ VOID CBalloonManager::HandleEvents( RWS::CMsg& msg )
 			if( pDialog->wTextLen <= 0 )
 				return;
 
-			AddNPCBalloon( pObject, pDialog->pTextData, BALLOON_NPC_DISPTIME, TRUE, TRUE, 3 );
+			AddNPCBalloon( pObject, pDialog->pTextData, BALLOON_NPC_DISPTIME, TRUE, TRUE, 4 );
 		}
 		else
 		{
@@ -2368,7 +2368,7 @@ VOID CBalloonManager::HandleEvents( RWS::CMsg& msg )
 			{
 				CTextTable* pTextTable = API_GetTableContainer()->GetTextAllTable()->GetNPCTbl();
 
-				AddNPCBalloon( pObject, pTextTable->GetText( pDialog->uiTextTblIdx ).c_str(), BALLOON_NPC_DISPTIME, TRUE, TRUE, 3 );
+				AddNPCBalloon( pObject, pTextTable->GetText( pDialog->uiTextTblIdx ).c_str(), BALLOON_NPC_DISPTIME, TRUE, TRUE, 4 );
 			}
 			else if( pObject->GetClassID() == SLCLASS_MONSTER )
 			{
@@ -2384,14 +2384,14 @@ VOID CBalloonManager::HandleEvents( RWS::CMsg& msg )
 					{		
 						WCHAR wBuf[256];
 						swprintf_s( wBuf, 256, L"%u SpeechTableIndex Error", pDialog->uiTextTblIdx );
-						AddNPCBalloon( pObject, wBuf, BALLOON_NPC_DISPTIME, TRUE, TRUE, 0 );
+						AddNPCBalloon( pObject, wBuf, BALLOON_NPC_DISPTIME, TRUE, TRUE, 1 );
 					}
 				}
 				else
 				{
 					CTextTable* pTextTable = API_GetTableContainer()->GetTextAllTable()->GetMobTbl();
 
-					AddNPCBalloon( pObject, pTextTable->GetText( pDialog->uiTextTblIdx ).c_str(), BALLOON_NPC_DISPTIME, TRUE, TRUE, 3 );
+					AddNPCBalloon( pObject, pTextTable->GetText( pDialog->uiTextTblIdx ).c_str(), BALLOON_NPC_DISPTIME, TRUE, TRUE, 4 );
 				}
 			}			
 		}
@@ -2447,7 +2447,7 @@ VOID CBalloonManager::HandleEvents( RWS::CMsg& msg )
 		CNtlSobTriggerObject* pSobObj = reinterpret_cast<CNtlSobTriggerObject*>( GetNtlSobManager()->GetSobObject( hSerial ) );
 
 		if( pSobObj )
-			AddNPCBalloon( pSobObj, GetDisplayStringManager()->GetString( "DST_POPOSTONE_RESURRECT_SAY" ), BALLOON_NPC_DISPTIME, FALSE, TRUE, 1 );
+			AddNPCBalloon( pSobObj, GetDisplayStringManager()->GetString( "DST_POPOSTONE_RESURRECT_SAY" ), BALLOON_NPC_DISPTIME, FALSE, TRUE, 2 );
 	}
 	else if( msg.Id == g_EventTSPCDialog_Nfy )
 	{

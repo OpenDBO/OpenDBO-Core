@@ -61,12 +61,12 @@ CSpectatorBalloonGui::CSpectatorBalloonGui( RwV3d& vPos, const WCHAR* pMessage, 
 
 	if( nWidth > 72 || nLineCount > 2 )
 	{
-		sprintf_s( buf, 256, "textBalloon_0%d_R.swf", byBalloonType + 1 );
+		sprintf_s( buf, 256, "textBalloon_0%d_R.swf", byBalloonType );
 		m_bStandardSize = TRUE;
 	}
 	else
 	{
-		sprintf_s( buf, 256, "textBalloon_0%d_R_s.swf", byBalloonType + 1 );
+		sprintf_s( buf, 256, "textBalloon_0%d_R_s.swf", byBalloonType );
 		m_bStandardSize = FALSE;
 	}
 
