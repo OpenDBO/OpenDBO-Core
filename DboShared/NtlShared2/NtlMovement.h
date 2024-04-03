@@ -177,7 +177,7 @@ void RotateVector(CNtlVector &rResult, CNtlVector* pVector, float fAngleInRadian
 bool NtlGetDestination(float fCurrentHeadingVectorX, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 						float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 						float fDestinationX, float fDestinationY, float fDestinationZ,
-						BYTE byMoveDirection, float dwDeltaTimeInMillisecs,
+						BYTE byMoveDirection, float fDeltaTimeInMillisecs,
 						float fAttackDistance,
 						float* pfNewHeadingVectorX, float* pfNewHeadingVectorZ,
 						float* pfDestinationX, float* pfDestinationY, float* pfDestinationZ,
@@ -187,218 +187,218 @@ bool NtlGetDestination(float fCurrentHeadingVectorX, float fCurrentHeadingVector
 // by YOSHIKI(2006-07-06)
 void NtlGetDestination_Keyboard(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 								float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-								BYTE byMoveDirection, float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+								BYTE byMoveDirection, float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 								CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Keyboard_NONE(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 										float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-										float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+										float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 										CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Keyboard_F(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 									float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-									float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+									float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 									CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Keyboard_B(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 									float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-									float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+									float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 									CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Keyboard_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 									float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-									float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+									float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 									CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Keyboard_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 									float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-									float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+									float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 									CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 
 void NtlGetDestination_Keyboard_HEIGHT_UP(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 									float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-									float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+									float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 									CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Keyboard_HEIGHT_UP_F(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 									float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-									float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+									float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 									CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Keyboard_HEIGHT_UP_B(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 									float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-									float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+									float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 									CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Keyboard_HEIGHT_UP_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 									float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-									float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+									float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 									CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Keyboard_HEIGHT_UP_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 									float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-									float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+									float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 									CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Keyboard_HEIGHT_DOWN(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 									float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-									float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+									float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 									CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 
 void NtlGetDestination_Keyboard_F_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 									float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-									float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+									float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 									CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Keyboard_F_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 									float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-									float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+									float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 									CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Keyboard_B_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 									float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-									float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+									float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 									CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Keyboard_B_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 									float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-									float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+									float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 									CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Keyboard_TURN_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 										float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-										float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+										float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 										CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Keyboard_TURN_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 										float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-										float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+										float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 										CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Keyboard_F_TURN_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 											float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-											float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+											float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 											CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Keyboard_F_TURN_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 											float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-											float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+											float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 											CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Keyboard_B_TURN_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 											float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-											float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+											float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 											CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Keyboard_B_TURN_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 											float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-											float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+											float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 											CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 
 void NtlGetDestination_Keyboard_L_TURN_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 											float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-											float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+											float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 											CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Keyboard_L_TURN_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 											float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-											float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+											float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 											CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Keyboard_R_TURN_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 											float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-											float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+											float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 											CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Keyboard_R_TURN_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 											float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-											float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+											float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 											CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 
 
 void NtlGetDestination_Jump(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 							float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 							float fJumpDirectionX, float fJumpDirectionZ,
-							BYTE byMoveDirection, float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+							BYTE byMoveDirection, float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 							CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Jump_NONE(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 									float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 									float fJumpDirectionX, float fJumpDirectionZ,
-									float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+									float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 									CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Jump_F(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 								float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 								float fJumpDirectionX, float fJumpDirectionZ,
-								float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+								float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 								CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Jump_B(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 								float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 								float fJumpDirectionX, float fJumpDirectionZ,
-								float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+								float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 								CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Jump_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 								float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 								float fJumpDirectionX, float fJumpDirectionZ,
-								float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+								float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 								CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Jump_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 								float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 								float fJumpDirectionX, float fJumpDirectionZ,
-								float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+								float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 								CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Jump_TURN_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 									float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 									float fJumpDirectionX, float fJumpDirectionZ,
-									float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+									float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 									CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Jump_TURN_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 									float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 									float fJumpDirectionX, float fJumpDirectionZ,
-									float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+									float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 									CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Jump_F_TURN_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 										float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 										float fJumpDirectionX, float fJumpDirectionZ,
-										float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+										float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 										CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Jump_F_TURN_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 										float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 										float fJumpDirectionX, float fJumpDirectionZ,
-										float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+										float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 										CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Jump_B_TURN_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 										float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 										float fJumpDirectionX, float fJumpDirectionZ,
-										float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+										float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 										CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Jump_B_TURN_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 										float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 										float fJumpDirectionX, float fJumpDirectionZ,
-										float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+										float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 										CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 
 void NtlGetDestination_Jump_L_TURN_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 										float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 										float fJumpDirectionX, float fJumpDirectionZ,
-										float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+										float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 										CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Jump_L_TURN_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 										float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 										float fJumpDirectionX, float fJumpDirectionZ,
-										float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+										float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 										CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Jump_R_TURN_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 										float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 										float fJumpDirectionX, float fJumpDirectionZ,
-										float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+										float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 										CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 void NtlGetDestination_Jump_R_TURN_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 										float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 										float fJumpDirectionX, float fJumpDirectionZ,
-										float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+										float fDeltaTimeInMillisecs, float fTurningSpeedRatio,
 										CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 
 void NtlGetDestination_Mouse(float fCurrentHeadingVectorX, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 								float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 								float fDestinationX, float fDestinationY, float fDestinationZ,
-								float dwDeltaTimeInMillisecs,
+								float fDeltaTimeInMillisecs,
 								CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 
 void NtlGetDestination_Follow(float fCurrentHeadingVectorX, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 								float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 								float fDestinationX, float fDestinationY, float fDestinationZ,
-								float dwDeltaTimeInMillisecs,
+								float fDeltaTimeInMillisecs,
 								float fTargetDistance,
 								CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 
 void NtlGetDestination_Dash(float fCurrentMoveVectorX, float fCurrentMoveVectorZ, float fSpeedInSecs,
 							float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 							float fDestinationX, float fDestinationY, float fDestinationZ,
-							float dwDeltaTimeInMillisecs,
+							float fDeltaTimeInMillisecs,
 							CNtlVector* pDestination);
 
 void NtlGetDestination_AirFollow(CNtlVector& svCurrentHeadingVector, float fSpeedInSecs,
 							float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 							float fDestinationX, float fDestinationY, float fDestinationZ,
-							float dwDeltaTimeInMillisecs,
+							float fDeltaTimeInMillisecs,
 							float fTargetDistance,
 							CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 

@@ -1097,7 +1097,7 @@ void CAvatarController::UpdateAutoRun(RwReal fElapsed)
 		if ( !Logic_IsVehicleDriver(pSobAvatar) )
 		{
 			CNtlVector vHeading, vDest;
-			NtlGetDestination_Keyboard(vDir.x, vDir.y, vDir.z, fSpeed, vPos.x, vPos.y, vPos.z, m_uiCurMoveFlags, (DWORD)(fElapsed*1000.f), 1.0f, &vHeading, &vDest);
+			NtlGetDestination_Keyboard(vDir.x, vDir.y, vDir.z, fSpeed, vPos.x, vPos.y, vPos.z, m_uiCurMoveFlags, fElapsed * 1000.f, 1.0f, &vHeading, &vDest);
 
 			RwV3d vNewDir;
 			CNtlMath::MathRwV3dAssign(&vNewDir, vHeading.x, vHeading.y, vHeading.z);
@@ -1139,7 +1139,7 @@ void CAvatarController::UpdateAutoRun(RwReal fElapsed)
 				}
 
 				CNtlVector vHeading, vDest;
-				NtlGetDestination_Keyboard(vDir.x, vDir.z, vDir.y, fSpeed, vPos.x, vPos.y, vPos.z, byMoveFlags, (DWORD)(fElapsed*1000.f), 0.8f, &vHeading, &vDest);
+				NtlGetDestination_Keyboard(vDir.x, vDir.z, vDir.y, fSpeed, vPos.x, vPos.y, vPos.z, byMoveFlags, fElapsed * 1000.f, 0.8f, &vHeading, &vDest);
 
 				RwV3d vNewDir;
 				CNtlMath::MathRwV3dAssign(&vNewDir, vHeading.x, vHeading.y, vHeading.z);

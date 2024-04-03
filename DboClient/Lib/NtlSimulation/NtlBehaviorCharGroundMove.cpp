@@ -1030,7 +1030,7 @@ RwBool CNtlBehaviorCharGroundMove::UpdateDirectionMove(RwReal fElapsed)
         CNtlVector vHeading, vDest;        
 
         //Handles keyboard movement
-        NtlGetDestination_Keyboard(vDir.x, vDir.y, vDir.z, fSpeed, vPos.x, vPos.y, vPos.z, m_MoveStuff.byMoveFlags, (DWORD)(fElapsed*1000.f), 1.0f, &vHeading, &vDest);
+        NtlGetDestination_Keyboard(vDir.x, vDir.y, vDir.z, fSpeed, vPos.x, vPos.y, vPos.z, m_MoveStuff.byMoveFlags, fElapsed * 1000.f, 1.0f, &vHeading, &vDest);
 
         CNtlMath::MathRwV3dAssign(&vNewPos, vDest.x, vPos.y, vDest.z); 
         CNtlMath::MathRwV3dAssign(&vNewDir, vHeading.x, 0.0f, vHeading.z); 
@@ -1857,7 +1857,7 @@ RwBool CNtlBehaviorCharGroundMove::UpdateMoveSync(RwReal fElapsedTime, OUT RwV3d
 
     //keyboard 이동을 처리한다	
     CNtlVector vHeading, vDest;
-    NtlGetDestination_Keyboard(vMoveDir.x, vMoveDir.y, vMoveDir.z, fSpeed, vPos.x, vPos.y, vPos.z, byMoveFlags, (DWORD)(fElapsedTime * 1000.f), 1.0f, &vHeading, &vDest);
+    NtlGetDestination_Keyboard(vMoveDir.x, vMoveDir.y, vMoveDir.z, fSpeed, vPos.x, vPos.y, vPos.z, byMoveFlags, fElapsedTime * 1000.f, 1.0f, &vHeading, &vDest);
     CNtlMath::MathRwV3dAssign(&vDestPos, vDest.x, vDest.y, vDest.z);      
     CNtlMath::MathRwV3dAssign(&vDestDir, vHeading.x, 0.0f, vHeading.z);
 

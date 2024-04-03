@@ -274,7 +274,7 @@ RwBool CNtlBehaviorCharSwimmingMove::UpdateDirectionMove(RwReal fElapsed)
 
     //keyboard 이동을 처리한다
     CNtlVector vHeading, vDest;
-    NtlGetDestination_Keyboard(vDir.x, vDir.y, vDir.z, fSpeed, vPos.x, vPos.y, vPos.z, m_MoveStuff.byMoveFlags, (DWORD)(fElapsed*1000.f), 0.5f, &vHeading, &vDest);
+    NtlGetDestination_Keyboard(vDir.x, vDir.y, vDir.z, fSpeed, vPos.x, vPos.y, vPos.z, m_MoveStuff.byMoveFlags, fElapsed * 1000.f, 0.5f, &vHeading, &vDest);
 
     RwV3d vNewPos, vNewDir;
     CNtlMath::MathRwV3dAssign(&vNewPos, vDest.x, vPos.y, vDest.z); 

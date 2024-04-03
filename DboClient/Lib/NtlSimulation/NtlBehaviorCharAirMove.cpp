@@ -273,15 +273,13 @@ void CNtlBehaviorCharAirMove::DestroyAirEffect(void)
 
 RwBool CNtlBehaviorCharAirMove::UpdatePositionMove(SMoveStuff* pMoveStuff, OUT RwV3d& vPos, RwBool bIncHeight, RwReal fElapsed, RwReal fSpeed)
 {
-	RwBool pStopFlying = FALSE;
-
 	if (pMoveStuff->byMoveFlags != NTL_MOVE_NONE)
 	{
 		RwV3d vDir = m_pActor->GetDirection();
 
 		CNtlVector vHeading, vDest;
 		//	DBO_WARNING_MESSAGE("pMoveStuff->byMoveFlags: " << (int)pMoveStuff->byMoveFlags);
-		NtlGetDestination_Keyboard(vDir.x, vDir.y, vDir.z, fSpeed, vPos.x, vPos.y, vPos.z, pMoveStuff->byMoveFlags, (DWORD)(fElapsed * 1000.f), 1.0f, &vHeading, &vDest);
+		NtlGetDestination_Keyboard(vDir.x, vDir.y, vDir.z, fSpeed, vPos.x, vPos.y, vPos.z, pMoveStuff->byMoveFlags, fElapsed * 1000.f, 1.0f, &vHeading, &vDest);
 
 		RwV3d vNewDir;
 		CNtlMath::MathRwV3dAssign(&vNewDir, vHeading.x, vHeading.y, vHeading.z);
@@ -319,23 +317,22 @@ RwBool CNtlBehaviorCharAirMove::UpdatePositionMove(SMoveStuff* pMoveStuff, OUT R
 
 			// Uncommenting this will make the player fall when colliding with an obstacle (like invisible walls).
 			// TW client doesn't have this behavior so I leave it commented out.
-			//pStopFlying = byColliResult != NTL_CHARACTER_COLLI_NONE && bCollMoveImPossible;
+			//if (byColliResult != NTL_CHARACTER_COLLI_NONE && bCollMoveImPossible)
+			//{
+			//	SetFalling();
+			//	return TRUE;
+			//}
 		}
 
-		if (vPos.y <= m_sHStuff.fFinialHeight) {
+		if (vPos.y <= m_sHStuff.fFinialHeight + 0.25f) {
 			vPos.y = m_sHStuff.fFinialHeight;
-			pStopFlying = TRUE;
-		}
-
-		if (pStopFlying)
-		{
-			// TODO: Setting character as falling looks like a hackfix to me. Maybe related to https://github.com/OpenDBO/OpenDBO-Core/issues/13 ?
 			SetFalling();
+			return TRUE;
 		}
 	}
 
 	m_pActor->SetPosition(&vPos);
-	return pStopFlying;
+	return FALSE;
 }
 
 RwBool CNtlBehaviorCharAirMove::UpdateAirStart(SMoveStuff* pMoveStuff, RwReal fElapsed)

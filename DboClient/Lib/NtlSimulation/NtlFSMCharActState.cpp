@@ -1623,7 +1623,7 @@ RwUInt32 CNtlFSMCharActJumpState::HandleEvents(RWS::CMsg &pMsg)
 		{
 			m_pActor->SetDeltaAngleY(pChangeHeading->fDeltaAngleY);
 
-			if(pChangeHeading->bSetAngleX)
+			if (pChangeHeading->bSetAngleX)
 				m_pActor->SetDeltaAngleX(pChangeHeading->fDeltaAngleX);
 
 			NTL_RETURN(NTL_FSM_EVENTRES_BLOCK);
@@ -1810,9 +1810,6 @@ RwUInt32 CNtlFSMCharActFallingState::HandleEvents(RWS::CMsg &pMsg)
 		if(!pChangeHeading->bSoothing)
 		{
 			m_pActor->SetDeltaAngleY(pChangeHeading->fDeltaAngleY);
-
-			if (pChangeHeading->bSetAngleX)
-				m_pActor->SetDeltaAngleX(pChangeHeading->fDeltaAngleX);
 		}
 
 		NTL_RETURN(NTL_FSM_EVENTRES_BLOCK);

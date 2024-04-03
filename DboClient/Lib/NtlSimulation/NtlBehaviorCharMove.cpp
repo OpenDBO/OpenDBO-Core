@@ -289,8 +289,17 @@ void CNtlBehaviorCharFalling::Exit(void)
 
 void CNtlBehaviorCharFalling::Update(RwReal fElapsed)
 {
-    if(m_byFallingState == FALIINGSTATE_END)
+    if (m_byFallingState == FALIINGSTATE_END)
+    {
+        auto pSobProxy{ m_pActor->GetSobProxy() };
+
+        if (pSobProxy->GetBaseAnimationKey() != JUMP_LANDING_SHORT)
+        {
+            Finish();
+        }
+
         return;
+    }
 
     m_fFallingSpeed = m_fFallingSpeed - (JUMP_GRAVITY_SPEED * fElapsed);
 
@@ -384,23 +393,17 @@ void CNtlBehaviorCharFalling::SetAnimWaterLanding(void)
 
 RwBool CNtlBehaviorCharFalling::LandingCheck(RwV3d& vPos)
 {
-    RwBool bLandSuccess = FALSE;
+    RwBool bLandSuccess{ FALSE };
 
-    if(m_fFallingHeight + FALLING_CHECK_LEN / 2.0f < m_sHStuff.fFinialHeight)
-    {
-        if(vPos.y <= m_sHStuff.fFinialHeight + 0.25f)
-            bLandSuccess = TRUE;
-    }
-    else
-    {
-        if(vPos.y < m_fFallingHeight + FALLING_CHECK_LEN / 2.0f && vPos.y <= m_sHStuff.fFinialHeight + 0.25f)
-            bLandSuccess = TRUE;
-    }
+    if (vPos.y <= m_sHStuff.fFinialHeight + 0.25f)
+        bLandSuccess = TRUE;
 
-    if(bLandSuccess)
+    if (bLandSuccess)
     {
-        if(Logic_IsSwimming(m_pActor, &vPos, m_sHStuff.fWorldHeight, m_sHStuff.fWaterHeight))
+        if (Logic_IsSwimming(m_pActor, &vPos, m_sHStuff.fWorldHeight, m_sHStuff.fWaterHeight))
+        {
             ChangeFallingState(FALIINGSTATE_WATER_LADNDING);
+        }
         else
             ChangeFallingState(FALIINGSTATE_MOVE_LADNDING);
 
