@@ -325,12 +325,12 @@ void RotateVector(CNtlVector &rResult, CNtlVector* pVector, float fAngleInRadian
 
 void NtlGetDestination_Keyboard(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 								float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-								BYTE byMoveDirection, DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+								BYTE byMoveDirection, float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 								CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	typedef void(*MOVEMENT_KEYBOARD_FUNC)(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 											float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-											DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+											float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 											CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 
 	static bool bIsInitialized = false;
@@ -391,7 +391,7 @@ void NtlGetDestination_Keyboard(float fCurrentHeadingVectorX, float fCurrentHead
 
 void NtlGetDestination_Keyboard_NONE(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 										float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-										DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+										float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 										CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	UNREFERENCED_PARAMETER( dwDeltaTimeInMillisecs );
@@ -409,7 +409,7 @@ void NtlGetDestination_Keyboard_NONE(float fCurrentHeadingVectorX, float fCurren
 
 void NtlGetDestination_Keyboard_F(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 									float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-									DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+									float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 									CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	UNREFERENCED_PARAMETER( fTurningSpeedRatio );
@@ -429,7 +429,7 @@ void NtlGetDestination_Keyboard_F(float fCurrentHeadingVectorX, float fCurrentHe
 
 void NtlGetDestination_Keyboard_B(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 									float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-									DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+									float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 									CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	UNREFERENCED_PARAMETER( fTurningSpeedRatio );
@@ -449,7 +449,7 @@ void NtlGetDestination_Keyboard_B(float fCurrentHeadingVectorX, float fCurrentHe
 
 void NtlGetDestination_Keyboard_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 									float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-									DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+									float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 									CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	UNREFERENCED_PARAMETER( fTurningSpeedRatio );
@@ -469,7 +469,7 @@ void NtlGetDestination_Keyboard_L(float fCurrentHeadingVectorX, float fCurrentHe
 
 void NtlGetDestination_Keyboard_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 									float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-									DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+									float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 									CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	UNREFERENCED_PARAMETER( fTurningSpeedRatio );
@@ -489,7 +489,7 @@ void NtlGetDestination_Keyboard_R(float fCurrentHeadingVectorX, float fCurrentHe
 
 void NtlGetDestination_Keyboard_HEIGHT_UP(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 	float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-	DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+	float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 	CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	UNREFERENCED_PARAMETER(fTurningSpeedRatio);
@@ -510,7 +510,7 @@ void NtlGetDestination_Keyboard_HEIGHT_UP(float fCurrentHeadingVectorX, float fC
 
 void NtlGetDestination_Keyboard_HEIGHT_UP_F(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 	float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-	DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+	float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 	CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	UNREFERENCED_PARAMETER(fTurningSpeedRatio);
@@ -534,7 +534,7 @@ void NtlGetDestination_Keyboard_HEIGHT_UP_F(float fCurrentHeadingVectorX, float 
 
 void NtlGetDestination_Keyboard_HEIGHT_UP_B(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 	float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-	DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+	float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 	CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	UNREFERENCED_PARAMETER(fTurningSpeedRatio);
@@ -561,7 +561,7 @@ void NtlGetDestination_Keyboard_HEIGHT_UP_B(float fCurrentHeadingVectorX, float 
 
 void NtlGetDestination_Keyboard_HEIGHT_UP_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 	float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-	DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+	float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 	CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	UNREFERENCED_PARAMETER(fTurningSpeedRatio);
@@ -588,7 +588,7 @@ void NtlGetDestination_Keyboard_HEIGHT_UP_L(float fCurrentHeadingVectorX, float 
 
 void NtlGetDestination_Keyboard_HEIGHT_UP_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 	float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-	DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+	float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 	CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	UNREFERENCED_PARAMETER(fTurningSpeedRatio);
@@ -615,7 +615,7 @@ void NtlGetDestination_Keyboard_HEIGHT_UP_R(float fCurrentHeadingVectorX, float 
 
 void NtlGetDestination_Keyboard_HEIGHT_DOWN(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 	float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-	DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+	float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 	CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	UNREFERENCED_PARAMETER(fTurningSpeedRatio);
@@ -636,7 +636,7 @@ void NtlGetDestination_Keyboard_HEIGHT_DOWN(float fCurrentHeadingVectorX, float 
 
 void NtlGetDestination_Keyboard_F_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 									float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-									DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+									float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 									CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	UNREFERENCED_PARAMETER( fTurningSpeedRatio );
@@ -656,7 +656,7 @@ void NtlGetDestination_Keyboard_F_L(float fCurrentHeadingVectorX, float fCurrent
 
 void NtlGetDestination_Keyboard_F_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 									float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-									DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+									float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 									CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	UNREFERENCED_PARAMETER( fTurningSpeedRatio );
@@ -676,7 +676,7 @@ void NtlGetDestination_Keyboard_F_R(float fCurrentHeadingVectorX, float fCurrent
 
 void NtlGetDestination_Keyboard_B_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 									float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-									DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+									float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 									CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	UNREFERENCED_PARAMETER( fTurningSpeedRatio );
@@ -696,7 +696,7 @@ void NtlGetDestination_Keyboard_B_L(float fCurrentHeadingVectorX, float fCurrent
 
 void NtlGetDestination_Keyboard_B_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 									float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-									DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+									float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 									CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	UNREFERENCED_PARAMETER( fTurningSpeedRatio );
@@ -716,7 +716,7 @@ void NtlGetDestination_Keyboard_B_R(float fCurrentHeadingVectorX, float fCurrent
 
 void NtlGetDestination_Keyboard_TURN_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 										float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-										DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+										float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 										CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	UNREFERENCED_PARAMETER( fSpeedInSecs );
@@ -737,7 +737,7 @@ void NtlGetDestination_Keyboard_TURN_L(float fCurrentHeadingVectorX, float fCurr
 
 void NtlGetDestination_Keyboard_TURN_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 										float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-										DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+										float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 										CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	UNREFERENCED_PARAMETER( fSpeedInSecs );
@@ -758,7 +758,7 @@ void NtlGetDestination_Keyboard_TURN_R(float fCurrentHeadingVectorX, float fCurr
 
 void NtlGetDestination_Keyboard_F_TURN_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 											float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-											DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+											float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 											CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	pNewHeadingVector->x = fCurrentHeadingVectorX;
@@ -789,7 +789,7 @@ void NtlGetDestination_Keyboard_F_TURN_L(float fCurrentHeadingVectorX, float fCu
 
 void NtlGetDestination_Keyboard_F_TURN_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 											float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-											DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+											float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 											CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	pNewHeadingVector->x = fCurrentHeadingVectorX;
@@ -820,7 +820,7 @@ void NtlGetDestination_Keyboard_F_TURN_R(float fCurrentHeadingVectorX, float fCu
 
 void NtlGetDestination_Keyboard_B_TURN_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 											float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-											DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+											float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 											CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	pNewHeadingVector->x = fCurrentHeadingVectorX;
@@ -851,7 +851,7 @@ void NtlGetDestination_Keyboard_B_TURN_L(float fCurrentHeadingVectorX, float fCu
 
 void NtlGetDestination_Keyboard_B_TURN_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 											float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-											DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+											float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 											CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	pNewHeadingVector->x = fCurrentHeadingVectorX;
@@ -882,7 +882,7 @@ void NtlGetDestination_Keyboard_B_TURN_R(float fCurrentHeadingVectorX, float fCu
 
 void NtlGetDestination_Keyboard_L_TURN_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 	float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-	DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+	float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 	CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	pNewHeadingVector->x = fCurrentHeadingVectorX;
@@ -914,7 +914,7 @@ void NtlGetDestination_Keyboard_L_TURN_L(float fCurrentHeadingVectorX, float fCu
 
 void NtlGetDestination_Keyboard_L_TURN_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 	float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-	DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+	float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 	CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	pNewHeadingVector->x = fCurrentHeadingVectorX;
@@ -946,7 +946,7 @@ void NtlGetDestination_Keyboard_L_TURN_R(float fCurrentHeadingVectorX, float fCu
 
 void NtlGetDestination_Keyboard_R_TURN_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 	float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-	DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+	float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 	CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	pNewHeadingVector->x = fCurrentHeadingVectorX;
@@ -977,7 +977,7 @@ void NtlGetDestination_Keyboard_R_TURN_L(float fCurrentHeadingVectorX, float fCu
 
 void NtlGetDestination_Keyboard_R_TURN_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 	float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
-	DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+	float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 	CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	pNewHeadingVector->x = fCurrentHeadingVectorX;
@@ -1009,13 +1009,13 @@ void NtlGetDestination_Keyboard_R_TURN_R(float fCurrentHeadingVectorX, float fCu
 void NtlGetDestination_Jump(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 								float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 								float fJumpDirectionX, float fJumpDirectionZ,
-								BYTE byMoveDirection, DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+								BYTE byMoveDirection, float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 								CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	typedef void(*MOVEMENT_JUMP_FUNC)(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 										float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 										float fJumpDirectionX, float fJumpDirectionZ,
-										DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+										float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 										CNtlVector* pNewHeadingVector, CNtlVector* pDestination);
 
 	static bool bIsInitialized = false;
@@ -1063,7 +1063,7 @@ void NtlGetDestination_Jump(float fCurrentHeadingVectorX, float fCurrentHeadingV
 void NtlGetDestination_Jump_NONE(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 									float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 									float fInitialHeadingVectorX, float fInitialHeadingVectorZ,
-									DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+									float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 									CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	UNREFERENCED_PARAMETER( dwDeltaTimeInMillisecs );
@@ -1084,7 +1084,7 @@ void NtlGetDestination_Jump_NONE(float fCurrentHeadingVectorX, float fCurrentHea
 void NtlGetDestination_Jump_F(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 								float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 								float fInitialHeadingVectorX, float fInitialHeadingVectorZ,
-								DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+								float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 								CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	UNREFERENCED_PARAMETER( fTurningSpeedRatio );
@@ -1107,7 +1107,7 @@ void NtlGetDestination_Jump_F(float fCurrentHeadingVectorX, float fCurrentHeadin
 void NtlGetDestination_Jump_B(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 								float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 								float fInitialHeadingVectorX, float fInitialHeadingVectorZ,
-								DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+								float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 								CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	UNREFERENCED_PARAMETER( fTurningSpeedRatio );
@@ -1130,7 +1130,7 @@ void NtlGetDestination_Jump_B(float fCurrentHeadingVectorX, float fCurrentHeadin
 void NtlGetDestination_Jump_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 								float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 								float fInitialHeadingVectorX, float fInitialHeadingVectorZ,
-								DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+								float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 								CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	UNREFERENCED_PARAMETER( fTurningSpeedRatio );
@@ -1153,7 +1153,7 @@ void NtlGetDestination_Jump_L(float fCurrentHeadingVectorX, float fCurrentHeadin
 void NtlGetDestination_Jump_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 								float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 								float fInitialHeadingVectorX, float fInitialHeadingVectorZ,
-								DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+								float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 								CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	UNREFERENCED_PARAMETER( fTurningSpeedRatio );
@@ -1176,7 +1176,7 @@ void NtlGetDestination_Jump_R(float fCurrentHeadingVectorX, float fCurrentHeadin
 void NtlGetDestination_Jump_TURN_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 									float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 									float fInitialHeadingVectorX, float fInitialHeadingVectorZ,
-									DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+									float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 									CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	UNREFERENCED_PARAMETER( fSpeedInSecs );
@@ -1200,7 +1200,7 @@ void NtlGetDestination_Jump_TURN_L(float fCurrentHeadingVectorX, float fCurrentH
 void NtlGetDestination_Jump_TURN_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 									float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 									float fInitialHeadingVectorX, float fInitialHeadingVectorZ,
-									DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+									float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 									CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	UNREFERENCED_PARAMETER( fSpeedInSecs );
@@ -1224,7 +1224,7 @@ void NtlGetDestination_Jump_TURN_R(float fCurrentHeadingVectorX, float fCurrentH
 void NtlGetDestination_Jump_F_TURN_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 										float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 										float fInitialHeadingVectorX, float fInitialHeadingVectorZ,
-										DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+										float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 										CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	pNewHeadingVector->x = fCurrentHeadingVectorX;
@@ -1250,7 +1250,7 @@ void NtlGetDestination_Jump_F_TURN_L(float fCurrentHeadingVectorX, float fCurren
 void NtlGetDestination_Jump_F_TURN_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 										float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 										float fInitialHeadingVectorX, float fInitialHeadingVectorZ,
-										DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+										float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 										CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	pNewHeadingVector->x = fCurrentHeadingVectorX;
@@ -1276,7 +1276,7 @@ void NtlGetDestination_Jump_F_TURN_R(float fCurrentHeadingVectorX, float fCurren
 void NtlGetDestination_Jump_B_TURN_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 										float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 										float fInitialHeadingVectorX, float fInitialHeadingVectorZ,
-										DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+										float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 										CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	pNewHeadingVector->x = fCurrentHeadingVectorX;
@@ -1302,7 +1302,7 @@ void NtlGetDestination_Jump_B_TURN_L(float fCurrentHeadingVectorX, float fCurren
 void NtlGetDestination_Jump_B_TURN_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 										float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 										float fInitialHeadingVectorX, float fInitialHeadingVectorZ,
-										DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+										float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 										CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	pNewHeadingVector->x = fCurrentHeadingVectorX;
@@ -1328,7 +1328,7 @@ void NtlGetDestination_Jump_B_TURN_R(float fCurrentHeadingVectorX, float fCurren
 void NtlGetDestination_Jump_L_TURN_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 	float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 	float fInitialHeadingVectorX, float fInitialHeadingVectorZ,
-	DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+	float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 	CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	pNewHeadingVector->x = fCurrentHeadingVectorX;
@@ -1354,7 +1354,7 @@ void NtlGetDestination_Jump_L_TURN_L(float fCurrentHeadingVectorX, float fCurren
 void NtlGetDestination_Jump_L_TURN_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 	float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 	float fInitialHeadingVectorX, float fInitialHeadingVectorZ,
-	DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+	float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 	CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	pNewHeadingVector->x = fCurrentHeadingVectorX;
@@ -1380,7 +1380,7 @@ void NtlGetDestination_Jump_L_TURN_R(float fCurrentHeadingVectorX, float fCurren
 void NtlGetDestination_Jump_R_TURN_L(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 	float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 	float fInitialHeadingVectorX, float fInitialHeadingVectorZ,
-	DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+	float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 	CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	pNewHeadingVector->x = fCurrentHeadingVectorX;
@@ -1406,7 +1406,7 @@ void NtlGetDestination_Jump_R_TURN_L(float fCurrentHeadingVectorX, float fCurren
 void NtlGetDestination_Jump_R_TURN_R(float fCurrentHeadingVectorX, float fCurrentHeadingVectorY, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 	float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 	float fInitialHeadingVectorX, float fInitialHeadingVectorZ,
-	DWORD dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
+	float dwDeltaTimeInMillisecs, float fTurningSpeedRatio,
 	CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	pNewHeadingVector->x = fCurrentHeadingVectorX;
@@ -1433,7 +1433,7 @@ void NtlGetDestination_Jump_R_TURN_R(float fCurrentHeadingVectorX, float fCurren
 void NtlGetDestination_Mouse(float fCurrentHeadingVectorX, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 								float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 								float fDestinationX, float fDestinationY, float fDestinationZ,
-								DWORD dwDeltaTimeInMillisecs,
+								float dwDeltaTimeInMillisecs,
 								CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
 	float fDeltaX = fDestinationX - fCurrentPositionX;
@@ -1483,7 +1483,7 @@ void NtlGetDestination_Mouse(float fCurrentHeadingVectorX, float fCurrentHeading
 void NtlGetDestination_Follow(float fCurrentHeadingVectorX, float fCurrentHeadingVectorZ, float fSpeedInSecs,
 								float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 								float fDestinationX, float fDestinationY, float fDestinationZ,
-								DWORD dwDeltaTimeInMillisecs,
+								float dwDeltaTimeInMillisecs,
 								float fTargetDistance,
 								CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
@@ -1542,7 +1542,7 @@ void NtlGetDestination_Follow(float fCurrentHeadingVectorX, float fCurrentHeadin
 void NtlGetDestination_Dash(float fCurrentMoveVectorX, float fCurrentMoveVectorZ, float fSpeedInSecs,
 							float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 							float fDestinationX, float fDestinationY, float fDestinationZ,
-							DWORD dwDeltaTimeInMillisecs,
+							float dwDeltaTimeInMillisecs,
 							CNtlVector* pDestination)
 {
 	float fDeltaX = fDestinationX - fCurrentPositionX;
@@ -1580,7 +1580,7 @@ void NtlGetDestination_Dash(float fCurrentMoveVectorX, float fCurrentMoveVectorZ
 void NtlGetDestination_AirFollow(CNtlVector& svCurrentHeadingVector, float fSpeedInSecs,
 	float fCurrentPositionX, float fCurrentPositionY, float fCurrentPositionZ,
 	float fDestinationX, float fDestinationY, float fDestinationZ,
-	DWORD dwDeltaTimeInMillisecs,
+	float dwDeltaTimeInMillisecs,
 	float fTargetDistance,
 	CNtlVector* pNewHeadingVector, CNtlVector* pDestination)
 {
