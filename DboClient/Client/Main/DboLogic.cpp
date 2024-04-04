@@ -1594,8 +1594,10 @@ RwBool Logic_FindInventoryItemByItemType(eITEM_TYPE eType, BYTE * byPlace, BYTE 
 				if (pItem)
 				{
 					CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>(pItem->GetSobAttr());
-					sITEM_TBLDAT* pITEM_TBLDAT = pItemAttr->GetItemTbl();
+					if (pItemAttr->IsNeedToIdentify())
+						continue;
 
+					sITEM_TBLDAT* pITEM_TBLDAT = pItemAttr->GetItemTbl();
 					if (pITEM_TBLDAT->byItem_Type == eType)
 					{
 						*byPlace = i;
