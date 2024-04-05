@@ -217,12 +217,12 @@
 #define NTL_ANI_QUEST_ACCEPT_REWARD			1503
 
 // visual sound
-#define SOUND_HIT1							"GENERAL_HIT_PHYSICAL_1.wav"
-#define SOUND_HIT2							"GENERAL_HIT_PHYSICAL_2.wav"
-#define SOUND_HIT_POWER						"GENERAL_HIT_PHYSICAL_HEAVY.wav"
-#define SOUND_JUMP_KICK						"GENERAL_JUMP_KICK.wav"
-#define SOUND_JUMP_LANDING					"GENERAL_JUMP_LANDING.wav"
-#define SOUND_CAUTION                       "GENERAL_F_ATT.wav"
+#define SOUND_HIT1							"skill/GENERAL_HIT_PHYSICAL_1.wav"
+#define SOUND_HIT2							"skill/GENERAL_HIT_PHYSICAL_2.wav"
+#define SOUND_HIT_POWER						"skill/GENERAL_HIT_PHYSICAL_HEAVY.wav"
+#define SOUND_JUMP_KICK						"skill/GENERAL_JUMP_KICK.wav"
+#define SOUND_JUMP_LANDING					"skill/GENERAL_JUMP_LANDING.wav"
+#define SOUND_CAUTION                       "effect/GENERAL_F_ATT.wav"
 
 // foot step
 #define SOUND_FOOTSTEP_1					"GENERAL_FOOTSTEP_WATER1.wav"

@@ -76,30 +76,32 @@ void CNtlFadeInOut::Update()
 			if( fade.eResourceType == SRT_CHANNEL )
 			{
 				sNtlVolume* pNtlVolume = &(fade.u1_pSound->m_tVolume);
+				float pRealFadeVolume = Logic_GetFMODValidVolume(pNtlVolume->fFadeVolume + fade.fAdjustVolume);
 
-				if( fade.eFadeType == FADE_IN && fade.fDestVolume <= pNtlVolume->fFadeVolume )
+				if( fade.eFadeType == FADE_IN && fade.fDestVolume <= pRealFadeVolume)
 				{
 					fade.bFinish = true;
 				}
-				else if( fade.eFadeType == FADE_OUT && fade.fDestVolume >= pNtlVolume->fFadeVolume )
+				else if( fade.eFadeType == FADE_OUT && fade.fDestVolume >= pRealFadeVolume)
 				{
 					fade.bFinish = true;
 				}
 
 				fade.ulApplyTime			= ulCurTime;
 
-				pNtlVolume->fFadeVolume = Logic_GetFMODValidVolume(pNtlVolume->fFadeVolume + fade.fAdjustVolume);
+				pNtlVolume->fFadeVolume = Logic_GetFMODValidVolume(pRealFadeVolume);
 				fade.u1_pSound->m_pFMODChannel->setVolume( Logic_CalcPlayVolume(pNtlVolume) );
 			}
 			else if( fade.eResourceType == SRT_CHANNEL_GROUP )
 			{
 				sNtlVolume* pNtlVolume = fade.u2_pChannelGroup->GetNtlVolume();
+				float pRealFadeVolume = Logic_GetFMODValidVolume(pNtlVolume->fFadeVolume + fade.fAdjustVolume);
  
-				if( fade.eFadeType == FADE_IN && fade.fDestVolume <= pNtlVolume->fFadeVolume )
+				if( fade.eFadeType == FADE_IN && fade.fDestVolume <= pRealFadeVolume)
 				{
 					fade.bFinish = true;
 				}
-				else if( fade.eFadeType == FADE_OUT && fade.fDestVolume >= pNtlVolume->fFadeVolume )
+				else if( fade.eFadeType == FADE_OUT && fade.fDestVolume >= pRealFadeVolume)
 				{
 					fade.bFinish = true;
 				}
@@ -107,7 +109,7 @@ void CNtlFadeInOut::Update()
 				fade.ulApplyTime			= ulCurTime;
 
 				FMOD::ChannelGroup* pFMODChannelGroup = fade.u2_pChannelGroup->GetFMODChannelGroup();
-				pNtlVolume->fFadeVolume = Logic_GetFMODValidVolume(pNtlVolume->fFadeVolume + fade.fAdjustVolume);
+				pNtlVolume->fFadeVolume = Logic_GetFMODValidVolume(pRealFadeVolume);
 				pFMODChannelGroup->setVolume( Logic_CalcPlayVolume(pNtlVolume) );
 			}
 			else
