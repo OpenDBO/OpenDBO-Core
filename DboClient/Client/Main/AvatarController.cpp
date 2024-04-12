@@ -532,7 +532,18 @@ void CAvatarController::PickPLObject(SWorldPickInfo& sPickInfo, int someEnum, Rw
 						CNtlSLEventGenerator::KeyboardMoveStop();
 					}
 
-					CNtlSLEventGenerator::SobAttackSelect(hTarget);
+					// If player is flying simply target the enemy as normal but don't try to attack.
+					if (pSobAvatar->IsAirMode())
+					{
+						if (Logic_SobTarget(hTarget, INVALID_BYTE) && pSobAvatar->GetOtherParam()->IsScouterOn())
+						{
+							CNtlSLEventGenerator::ScouterEvent(SCOUTER_EVENT_MEASURE_POWER_START, hTarget);
+						}
+					}
+					else
+					{
+						CNtlSLEventGenerator::SobAttackSelect(hTarget);
+					}
 				}
 			}
 		}
@@ -1270,27 +1281,29 @@ int	CAvatarController::MouseDownHandler(unsigned int uiMouseData)
 						m_sPickInfo.bTerrainExclusion = FALSE;
 						m_sPickInfo.bCharacterExclusion = FALSE;
 						RwBool bPick = GetSceneManager()->PickWorld(pData->iPosX, pData->iPosY, m_sPickInfo, PICK_TERRAIN_LIMIT, PICK_OBJECT_LIMIT);
-						if (bPick)
+						// Do air dash regardless of pick status so right clicking on far terrain, sky and so on also make player dash in the air.
+						if (pAvatar->IsAirMode())
 						{
-							ENtlPLEntityType ePLType = m_sPickInfo.pPLEntity->GetClassType();
-
-							if (ePLType == PLENTITY_WORLD || (ePLType == PLENTITY_OBJECT && m_sPickInfo.pPLEntity->GetSerialID() == INVALID_SERIAL_ID)) // the invalid checks if its something like a statue..
+							if (Logic_IsAirDashPossible())
 							{
-								if (pAvatar->IsAirMode())
-								{
-									if (Logic_IsAirDashPossible())
-									{
-										SetAutoRun(FALSE);
-										DeleteMoveMark();
+								SetAutoRun(FALSE);
+								DeleteMoveMark();
 
-										CNtlSLEventGenerator::AirDashMove(TRUE, &m_sPickInfo.vPickPos, NTL_MOVE_F);
+								CNtlSLEventGenerator::AirDashMove(TRUE, &m_sPickInfo.vPickPos, NTL_MOVE_F);
 
-										SERIAL_HANDLE hTargetSerialId = Logic_GetAvatarTargetHandle();
-										if (hTargetSerialId != INVALID_SERIAL_ID)
-											CNtlSLEventGenerator::SobAttackMarkRelease(hTargetSerialId);
-									}
-								}
-								else if (Logic_IsPassiveDashUsePossible())
+								SERIAL_HANDLE hTargetSerialId = Logic_GetAvatarTargetHandle();
+								if (hTargetSerialId != INVALID_SERIAL_ID)
+									CNtlSLEventGenerator::SobAttackMarkRelease(hTargetSerialId);
+							}
+						}
+						else if (bPick)
+						{
+							// the invalid checks if its something like a statue...
+							// TODO: Grender: Why not for all objects or even all objects and characters?
+							ENtlPLEntityType ePLType = m_sPickInfo.pPLEntity->GetClassType();
+							if (ePLType == PLENTITY_WORLD || (ePLType == PLENTITY_OBJECT && m_sPickInfo.pPLEntity->GetSerialID() == INVALID_SERIAL_ID))
+							{
+								if (Logic_IsPassiveDashUsePossible())
 								{
 									SetAutoRun(FALSE);
 									DeleteMoveMark();
@@ -1300,23 +1313,6 @@ int	CAvatarController::MouseDownHandler(unsigned int uiMouseData)
 									{
 										CNtlSLEventGenerator::MouseDashMove(m_sPickInfo.vPickPos, MOUSE_DASH_LIMIT);
 									}
-
-									SERIAL_HANDLE hTargetSerialId = Logic_GetAvatarTargetHandle();
-									if (hTargetSerialId != INVALID_SERIAL_ID)
-										CNtlSLEventGenerator::SobAttackMarkRelease(hTargetSerialId);
-								}
-							}
-						}
-						else
-						{
-							if (Logic_IsAirMode())
-							{
-								if (Logic_IsAirDashPossible())
-								{
-									SetAutoRun(FALSE);
-									DeleteMoveMark();
-
-									CNtlSLEventGenerator::AirDashMove(TRUE, &m_sPickInfo.vPickPos, NTL_MOVE_F);
 
 									SERIAL_HANDLE hTargetSerialId = Logic_GetAvatarTargetHandle();
 									if (hTargetSerialId != INVALID_SERIAL_ID)
