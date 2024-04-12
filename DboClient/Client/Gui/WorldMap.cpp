@@ -473,6 +473,7 @@ RwBool CWorldMapGui::Create()
 	// default value
 	// Show bus routes from the beginning
 	m_pBusRouteButton->SetDown(true);
+	m_pbtnPopoStone->SetDown(true);
 
 	ShowScrambleCampComponent(false);
 
@@ -594,7 +595,16 @@ VOID CWorldMapGui::OnToggle_QuestInfoButton(gui::CComponent * pComponent, bool b
 
 VOID CWorldMapGui::OnToggle_PopoStoneButton(gui::CComponent * pComponent, bool bToggled)
 {
-	return VOID();
+	m_surBindMark.Show(bToggled);
+
+	LANDMARK_ITER it = m_listLandMark.begin();
+	for (; it != m_listLandMark.end(); ++it)
+	{
+		if (it->pLAND_MARK_TBLDAT->byLandmarkType)
+		{
+			it->bShowLandMark = bToggled;
+		}
+	}
 }
 
 VOID CWorldMapGui::OnToggle_PortalButton(gui::CComponent * pComponent, bool bToggled)
@@ -1575,7 +1585,7 @@ VOID CWorldMapGui::LoadingLandMark()
 		byBitFlag = MAKE_BIT_FLAG(pLAND_MARK_TBLDAT->byLandmarkDisplayBitFlag);
 		if( BIT_FLAG_TEST(byBitFlag, (LDBF_ICON | LDBF_NAMEICON ) ) )
 		{
-			landMark.bShowLandMark = TRUE;
+			landMark.bShowLandMark = m_pbtnPopoStone->IsDown();
 			landMark.pTexture = Logic_CreateTexture(acFileName, TEXTYPE_LANDMARK);
 			landMark.pFocusingTexture = Logic_CreateTexture(acFocusFileName, TEXTYPE_LANDMARK);
 		}		
@@ -2922,7 +2932,6 @@ RwInt32 CWorldMapGui::SwitchDialog(bool bOpen)
 
 		CNtlSLEventGenerator::BusMove(BUS_MOVE_RESET, INVALID_SERIAL_ID, INVALID_TBLIDX, NULL, NULL);
 	}
-
 	GetDboGlobal()->GetGamePacketGenerator()->SendBusWorldMapStatus(bOpen);
 	Show(bOpen);
 	return 1;
