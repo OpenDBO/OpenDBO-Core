@@ -2352,6 +2352,9 @@ int CAvatarController::ActionAutoAttack(void)
 	if (Logic_IsDirectMode(pAvatar))
 		return TRUE;
 
+	if (pAvatar->IsAirMode())
+		return TRUE;
+
 	SERIAL_HANDLE hTargetSerialId = Logic_GetAvatarTargetHandle();
 	if (hTargetSerialId != INVALID_SERIAL_ID)
 	{
