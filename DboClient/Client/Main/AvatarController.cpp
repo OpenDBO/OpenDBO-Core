@@ -535,10 +535,7 @@ void CAvatarController::PickPLObject(SWorldPickInfo& sPickInfo, int someEnum, Rw
 					// If player is flying simply target the enemy as normal but don't try to attack.
 					if (pSobAvatar->IsAirMode())
 					{
-						if (Logic_SobTarget(hTarget, INVALID_BYTE) && pSobAvatar->GetOtherParam()->IsScouterOn())
-						{
-							CNtlSLEventGenerator::ScouterEvent(SCOUTER_EVENT_MEASURE_POWER_START, hTarget);
-						}
+						Logic_SobTarget(hTarget, INVALID_BYTE);
 					}
 					else
 					{
