@@ -111,8 +111,6 @@ protected:
 
 	VOID		EndDisplayImmediately();
 
-	VOID		TargetEdgeEffect(bool bActive);
-
 	VOID		OnPaint();
 
 protected:

@@ -46,17 +46,6 @@
 #include "DboEventGenerator.h"
 
 
-
-// Edge effect
-#define dTARGET_EDGE_THICKNESS_ORIGINAL			1.f
-#define dTARGET_EDGE_THICKNESS_EFFECT			1.f
-#define dTARGET_EDGE_THICKNESS_ORIGINAL_RED		0
-#define dTARGET_EDGE_THICKNESS_ORIGINAL_GREEN	0
-#define dTARGET_EDGE_THICKNESS_ORIGINAL_BLUE	0
-#define dTARGET_EDGE_THICKNESS_EFFECT_RED		50
-#define dTARGET_EDGE_THICKNESS_EFFECT_GREEN		50
-#define dTARGET_EDGE_THICKNESS_EFFECT_BLUE		255
-
 // time schudle
 #define dTIME_DISPLAY_POWER				4.f
 
@@ -339,9 +328,6 @@ RwBool CScouterMeasureDlgGui::MeasurePower_Init()
 
 VOID CScouterMeasureDlgGui::MeasurePower_Destroy()
 {
-	// Hide the edge
-	TargetEdgeEffect(FALSE);
-
 	m_scouterData.hTarget = INVALID_SERIAL_ID;
 	m_scouterData.pSobTarget = NULL;
 	m_scouterData.dwDisplayFlag = 0;
@@ -469,20 +455,6 @@ VOID CScouterMeasureDlgGui::MeasurePower_AskPowertoServer()
 VOID CScouterMeasureDlgGui::EndDisplayImmediately()
 {
 	GetDialogManager()->CloseDialog(DIALOG_SCOUTER_MEASURE);
-}
-
-VOID CScouterMeasureDlgGui::TargetEdgeEffect(bool bActive)
-{
-	if (GetNtlSobManager()->GetSobObject(m_scouterData.hTarget) == NULL)
-		return;
-
-	CNtlSobProxy* pSobProxy = m_scouterData.pSobTarget->GetSobProxy();
-	NTL_ASSERT(pSobProxy, "CScouterMeasureDlgGui::TargetEdgeEffect, Not exist sob proxy of handle : " << m_scouterData.pSobTarget->GetSerialID());
-
-	pSobProxy->SetInkColor(dTARGET_EDGE_THICKNESS_ORIGINAL_RED,
-		dTARGET_EDGE_THICKNESS_ORIGINAL_GREEN,
-		dTARGET_EDGE_THICKNESS_ORIGINAL_BLUE);
-	pSobProxy->SetInkThicknessWeight(dTARGET_EDGE_THICKNESS_ORIGINAL);
 }
 
 VOID CScouterMeasureDlgGui::OnPaint()
@@ -697,8 +669,6 @@ VOID CScouterMeasureDlgGui::HandleEvents(RWS::CMsg& msg)
 						Logic_SendTutorialCondition(ETL_CONDITION_TYPE_SCOUTER_POWERLEVEL);
 
 						MeasurePower_Display(pEvent->iUserData2, pEvent->iUserData3, pEvent->iUserData4, pEvent->iUserData5, pEvent->iUserData6, pEvent->iUserData7, pEvent->iUserData8);
-
-						TargetEdgeEffect(true);
 					}
 					else
 					{
