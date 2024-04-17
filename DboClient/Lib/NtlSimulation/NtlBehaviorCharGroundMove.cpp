@@ -1180,7 +1180,7 @@ RwBool CNtlBehaviorCharGroundMove::UpdateLocationMove(RwReal fElapsed)
 
         // object 충돌 처리.
         RwUInt8 byColliResult = NTL_CHARACTER_COLLI_NONE;
-        if(ObjectCollision(vPos, fOldActorHeight, fSpeed, fElapsed, &byColliResult))
+        if (ObjectCollision(vPos, fOldActorHeight, fSpeed, fElapsed, &byColliResult))
 		{
 			if (byColliResult != NTL_CHARACTER_COLLI_NONE)
 			{
@@ -1976,8 +1976,14 @@ RwBool CNtlBehaviorCharGroundMove::ObjectCollision(OUT RwV3d &vPos, RwReal fOldA
     }
 
     // falling state check
-    //if(CheckFalling(fOldActorHeight, m_sHStuff.fFinialHeight, fSpeed, m_MoveStuff.byMoveFlags, &vPos))
-     //   return TRUE;
+    if (CheckFalling(fOldActorHeight, m_sHStuff.fFinialHeight, fSpeed, m_MoveStuff.byMoveFlags, &vPos))
+    {
+        // If falling, reset height to the old one but update X and Z to account for delta sync offsets.
+        vPos.y = fOldActorHeight;
+        m_pActor->SetPosition(&vPos);
+
+        return TRUE;
+    }
 
     return FALSE;
 }
