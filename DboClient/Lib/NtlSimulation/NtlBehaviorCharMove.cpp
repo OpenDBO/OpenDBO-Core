@@ -247,7 +247,7 @@ DEFINITION_MEMORY_POOL(CNtlBehaviorCharFalling)
 
 CNtlBehaviorCharFalling::CNtlBehaviorCharFalling()
 {
-    m_byFallingState	= FALIINGSTATE_WALK;
+    m_byFallingState	= FALLINGSTATE_WALK;
     m_fFallingSpeed		= 0.0f;
 }
 
@@ -270,7 +270,7 @@ void CNtlBehaviorCharFalling::Enter(void)
 
 	if (m_byMoveDirection == NTL_MOVE_NONE)
 	{
-		ChangeFallingState(FALIINGSTATE_FALLING);
+		ChangeFallingState(FALLINGSTATE_FALLING);
 	}
 
     // 나중에 base class enter를 호출한다.
@@ -289,7 +289,7 @@ void CNtlBehaviorCharFalling::Exit(void)
 
 void CNtlBehaviorCharFalling::Update(RwReal fElapsed)
 {
-    if (m_byFallingState == FALIINGSTATE_END)
+    if (m_byFallingState == FALLINGSTATE_END)
     {
         auto pSobProxy{ m_pActor->GetSobProxy() };
 
@@ -308,33 +308,14 @@ void CNtlBehaviorCharFalling::Update(RwReal fElapsed)
 
     UpdatePositionMove(vPos, fElapsed);
 
-    if(m_byFallingState == FALIINGSTATE_WALK)
+    if(m_byFallingState == FALLINGSTATE_WALK)
         UpdateWalking(vPos, fElapsed);
-    else if(m_byFallingState == FALIINGSTATE_FALLING)
+    else if(m_byFallingState == FALLINGSTATE_FALLING)
         UpdateFalling(vPos, fElapsed);
-    else if(m_byFallingState == FALIINGSTATE_MOVE_LADNDING)
+    else if(m_byFallingState == FALLINGSTATE_MOVE_LANDING)
         UpdateMoveLanding(vPos, fElapsed);
-    else if(m_byFallingState == FALIINGSTATE_WATER_LADNDING)
-        UPdateWaterLanding(vPos, fElapsed);
-
-    RwBool bLandSuccess = FALSE;
-
-    if(m_fFallingHeight + FALLING_CHECK_LEN / 2.0f < m_sHStuff.fFinialHeight)
-    {
-        if(vPos.y <= m_sHStuff.fFinialHeight)
-            bLandSuccess = TRUE;
-    }
-    else
-    {
-        if(vPos.y < m_fFallingHeight + FALLING_CHECK_LEN / 2.0f && vPos.y < m_sHStuff.fFinialHeight)
-            bLandSuccess = TRUE;
-    }
-
-    if(bLandSuccess)
-    {
-        vPos.y = m_sHStuff.fFinialHeight;
-        ChangeFallingState(FALIINGSTATE_END);
-    }
+    else if(m_byFallingState == FALLINGSTATE_WATER_LANDING)
+        UpdateWaterLanding(vPos, fElapsed);
 
     CNtlVector vHeading, vDest;
     NtlGetDestination_Jump(vDir.x, vDir.y, vDir.z, m_fFallingSpeed, vPos.x, vPos.y, vPos.z, m_vFallingDir.x, m_vFallingDir.z, m_byMoveDirection, (DWORD)(fElapsed*1000.f), 1.0f, &vHeading, &vDest);
@@ -402,10 +383,10 @@ RwBool CNtlBehaviorCharFalling::LandingCheck(RwV3d& vPos)
     {
         if (Logic_IsSwimming(m_pActor, &vPos, m_sHStuff.fWorldHeight, m_sHStuff.fWaterHeight))
         {
-            ChangeFallingState(FALIINGSTATE_WATER_LADNDING);
+            ChangeFallingState(FALLINGSTATE_WATER_LANDING);
         }
         else
-            ChangeFallingState(FALIINGSTATE_MOVE_LADNDING);
+            ChangeFallingState(FALLINGSTATE_MOVE_LANDING);
 
         return TRUE;
     }
@@ -459,7 +440,7 @@ void CNtlBehaviorCharFalling::UpdateWalking(RwV3d& vPos, RwReal fElapsed)
 
     if(fWalkLen > FALLING_WALK_LEN)
     {
-        ChangeFallingState(FALIINGSTATE_FALLING);
+        ChangeFallingState(FALLINGSTATE_FALLING);
     }
 
     LandingCheck(vPos);
@@ -474,10 +455,27 @@ void CNtlBehaviorCharFalling::UpdateFalling(RwV3d& vPos, RwReal fElapsed)
 
 void CNtlBehaviorCharFalling::UpdateMoveLanding(RwV3d& vPos, RwReal fElapsed)
 {
+    RwBool bLandSuccess{ FALSE };
 
+    if (m_fFallingHeight + FALLING_CHECK_LEN / 2.0f < m_sHStuff.fFinialHeight)
+    {
+        if (vPos.y <= m_sHStuff.fFinialHeight)
+            bLandSuccess = TRUE;
+    }
+    else
+    {
+        if (vPos.y < m_fFallingHeight + FALLING_CHECK_LEN / 2.0f && vPos.y < m_sHStuff.fFinialHeight)
+            bLandSuccess = TRUE;
+    }
+
+    if (bLandSuccess)
+    {
+        vPos.y = m_sHStuff.fFinialHeight;
+        ChangeFallingState(FALLINGSTATE_END);
+    }
 }
 
-void CNtlBehaviorCharFalling::UPdateWaterLanding(RwV3d& vPos, RwReal fElapsed)
+void CNtlBehaviorCharFalling::UpdateWaterLanding(RwV3d& vPos, RwReal fElapsed)
 {
 }
 
@@ -485,19 +483,19 @@ void CNtlBehaviorCharFalling::ChangeFallingState(RwUInt8 byFallingState)
 {
     switch(byFallingState)
     {
-    case FALIINGSTATE_WALK:
+    case FALLINGSTATE_WALK:
         break;
-    case FALIINGSTATE_FALLING:
+    case FALLINGSTATE_FALLING:
         SetAnimFalling();
         break;
-    case FALIINGSTATE_MOVE_LADNDING:
+    case FALLINGSTATE_MOVE_LANDING:
         SetAnimMoveLanding();
         break;
-    case FALIINGSTATE_WATER_LADNDING:
+    case FALLINGSTATE_WATER_LANDING:
         SetAnimWaterLanding();
         break;
-    case FALIINGSTATE_END:
-        if(m_byFallingState == FALIINGSTATE_WATER_LADNDING)
+    case FALLINGSTATE_END:
+        if(m_byFallingState == FALLINGSTATE_WATER_LANDING)
         {
             Finish();
         }

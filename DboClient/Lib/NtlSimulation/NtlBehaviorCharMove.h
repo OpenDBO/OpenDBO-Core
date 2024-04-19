@@ -120,11 +120,11 @@ private:
 
 	enum EFallingState
 	{
-		FALIINGSTATE_WALK,
-		FALIINGSTATE_FALLING,
-		FALIINGSTATE_MOVE_LADNDING,
-		FALIINGSTATE_WATER_LADNDING,
-		FALIINGSTATE_END
+		FALLINGSTATE_WALK,
+		FALLINGSTATE_FALLING,
+		FALLINGSTATE_MOVE_LANDING,
+		FALLINGSTATE_WATER_LANDING,
+		FALLINGSTATE_END
 	};
 
 	RwUInt8				m_byFallingState;
@@ -149,7 +149,7 @@ private:
 	void		UpdateWalking(RwV3d& vPos, RwReal fElapsed);
 	void		UpdateFalling(RwV3d& vPos, RwReal fElapsed);
 	void		UpdateMoveLanding(RwV3d& vPos, RwReal fElapsed);
-	void		UPdateWaterLanding(RwV3d& vPos, RwReal fElapsed);
+	void		UpdateWaterLanding(RwV3d& vPos, RwReal fElapsed);
 		
 	void		ChangeFallingState(RwUInt8 byFallingState);
 
