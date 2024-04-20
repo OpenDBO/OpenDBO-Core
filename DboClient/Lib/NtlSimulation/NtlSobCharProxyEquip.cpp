@@ -1402,8 +1402,15 @@ void CNtlSobCharEquipProxy::AttachConvertClassEquipItem(CNtlPLCharacter *pPLChar
 				}
 				else
 				{
-					if(m_arrSlotItem[i].bCharacterAdd)
+					if (m_arrSlotItem[i].bCharacterAdd)
+					{
 						m_pPLCharacter->SetChangeEquipItem(m_arrSlotItem[i].pPLItem);
+					}
+					else if (Logic_IsMoveableSubWeapon(pItemTblData))
+					{
+						m_pSubWeaponController->SetData((CNtlSobActor*)m_pSobObj, m_pPLCharacter, m_arrSlotItem[i].pPLItem, m_bResLoadComplete);
+						m_pSubWeaponController->SetChangeItem();
+					}
 				}
 			}
 		}
