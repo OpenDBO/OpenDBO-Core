@@ -253,9 +253,8 @@ int main(int argc, _TCHAR* argv[])
 		return rc;
 
 	CNtlString consolename;
-	consolename.Format("DBOG Character Server - Server Index %u", app.GetServerIndex());
+	consolename.Format("OpenDBO Character Server - Server Index %u", app.GetServerIndex());
 	SetConsoleTitle(consolename.c_str());
-
 
 	// LOG FILE
 	char m_LogFile[256];

@@ -191,8 +191,7 @@ int main(int argc, _TCHAR* argv[])
 	SYSTEMTIME ti;
 	GetLocalTime(&ti);
 
-	SetConsoleTitle(TEXT("QueryServer"));
-
+	SetConsoleTitle(TEXT("OpenDBO Query Server"));
 
 	// CHECK INI FILE AND START PROGRAM
 
