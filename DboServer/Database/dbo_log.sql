@@ -134,7 +134,7 @@ CREATE TABLE `guild_name_change_log` (
   `NewName` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`key`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for item_upgrade_log
@@ -241,7 +241,7 @@ CREATE TABLE `privateshoplogs` (
   `IssueReason` varchar(512) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`key`)
-) ENGINE=InnoDB AUTO_INCREMENT=163 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for slot_machine_log
@@ -303,4 +303,4 @@ CREATE TABLE `tradelogs` (
   `ItemTblidx_12` int(15) unsigned DEFAULT NULL,
   `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`key`)
-) ENGINE=InnoDB AUTO_INCREMENT=32837 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

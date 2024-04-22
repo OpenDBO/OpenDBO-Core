@@ -361,7 +361,7 @@ CREATE TABLE `mail` (
   UNIQUE KEY `id` (`id`,`CharID`) USING BTREE,
   UNIQUE KEY `id_2` (`id`) USING BTREE,
   KEY `CharID` (`CharID`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5937 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Table structure for mascots
