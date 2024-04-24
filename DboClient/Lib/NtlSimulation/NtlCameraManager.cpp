@@ -1,4 +1,4 @@
-#include "precomp_ntlsimulation.h"
+ï»¿#include "precomp_ntlsimulation.h"
 #include "NtlCameraManager.h"
 
 // presentation
@@ -25,8 +25,9 @@
 #include "NtlSobManager.h"
 
 #define CAMERA_DEFAULT_PITCH		10.0f
-#define CAMERA_DERAULT_DIST			10.0f
-#define CAMERA_MAX_DIST				20.0f
+#define CAMERA_DERAULT_DIST			15.0f // Old 10.0f
+#define CAMERA_MIN_DIST				3.5f
+#define CAMERA_MAX_DIST				30.0f // Old 20.0f
 
 CNtlGameCameraManager* CNtlGameCameraManager::m_pInstance = NULL;
 
@@ -212,7 +213,7 @@ CNtlGameCameraManager::CNtlGameCameraManager()
 
 	m_pCamera	= NULL;
 
-	m_fMinDist	= 3.5f;    
+	m_fMinDist	= CAMERA_MIN_DIST;    
 	m_fMaxDist	= CAMERA_MAX_DIST;
 	m_fDist		= CAMERA_DERAULT_DIST;
 	
@@ -434,7 +435,7 @@ RwBool CNtlGameCameraManager::WorldHeight(RwV3d& vCamPos, RwV3d& vLookAt)
 		return FALSE;
 	}
 
-	// camera ³ôÀÌ ±¸ÇÏ±â.
+	// camera ë†’ì´ êµ¬í•˜ê¸°.
 	RwV3d vTempPos;
 	RwV3dAssignMacro(&vTempPos, &vCamPos);
 	RwV3d vActorPos = m_pActor->GetPosition();
@@ -468,7 +469,7 @@ RwBool CNtlGameCameraManager::UpdateCameraForWorld(RwV3d& vCamPos, RwV3d& vLookA
 		vCamPos = sPickInfo.vPickPos;
 	}
 
-	// Boundary ray ±¸¼º
+	// Boundary ray êµ¬ì„±
 	RwV3d vRight;
 	RwV3dCrossProduct( &vRight, &CNtlPLGlobal::m_vYAxisV3, &vCenterDir );
 	if ( RwV3dNormalize( &vRight, &vRight ) < 0.0001f )
@@ -536,7 +537,7 @@ void CNtlGameCameraManager::CollisionActor(RwV3d& vCamPos, RwV3d& vLookAt)
 
     CNtlPLCharacter* pPLChar = (CNtlPLCharacter*)m_pActor->GetSobProxy()->GetPLMainEntity();    
 
-    // Ä³¸¯ÅÍ¿Í Ä«¸Ş¶ó°¡ °¡±îÀÌ ÀÖÀ» ¶§ Ä³¸¯ÅÍ¿¡ ¾ËÆÄ¸¦ ÁØ´Ù.	    
+    // ìºë¦­í„°ì™€ ì¹´ë©”ë¼ê°€ ê°€ê¹Œì´ ìˆì„ ë•Œ ìºë¦­í„°ì— ì•ŒíŒŒë¥¼ ì¤€ë‹¤.	    
 	if(CNtlMath::GetLength(vLookAt, vCamPos) < pPLChar->GetAlphaDistance())
 	{
 		if(!m_bActorAlpha)
@@ -549,7 +550,7 @@ void CNtlGameCameraManager::CollisionActor(RwV3d& vCamPos, RwV3d& vLookAt)
 	}
 	else
 	{
-		// Ä³¸¯ÅÍ°¡ ¾ËÆÄ°¡ µé¾î ÀÖÀ» °æ¿ì.
+		// ìºë¦­í„°ê°€ ì•ŒíŒŒê°€ ë“¤ì–´ ìˆì„ ê²½ìš°.
 		if(m_bActorAlpha)
 		{
 			m_pActor->EnableInput(TRUE);
@@ -561,7 +562,7 @@ void CNtlGameCameraManager::CollisionActor(RwV3d& vCamPos, RwV3d& vLookAt)
 }
 
 /**
- * ¾Æ¹ÙÅ¸ÀÌ¿Ü¿¡ Ä«¸Ş¶ó°¡ °¡±î¿öÁö¸é ¾ËÆÄ Ã³¸®ÇÏ´Â °´Ã¼µéÀ» Ã³¸®ÇÑ´Ù.
+ * ì•„ë°”íƒ€ì´ì™¸ì— ì¹´ë©”ë¼ê°€ ê°€ê¹Œì›Œì§€ë©´ ì•ŒíŒŒ ì²˜ë¦¬í•˜ëŠ” ê°ì²´ë“¤ì„ ì²˜ë¦¬í•œë‹¤.
  */
 void CNtlGameCameraManager::CollisionObj() 
 {
@@ -673,7 +674,7 @@ void CNtlGameCameraManager::Update(RwReal fElapsed)
 
 	RwBool bDelete = FALSE;
 
-	// ±âº» camera control
+	// ê¸°ë³¸ camera control
 	if(m_pBaseController)
 	{
 		m_pBaseController->Update(fElapsed);
@@ -682,7 +683,7 @@ void CNtlGameCameraManager::Update(RwReal fElapsed)
     RwBool bCollisionCheck = m_pBaseController ? m_pBaseController->IsCollisionCheck() : TRUE;
 	RwBool bInterpCheck = TRUE;
 
-	// È®Àå camera control 
+	// í™•ì¥ camera control 
 	CNtlCameraController *pController;
 	ListCameraController::iterator it;
 	for(it = m_listController.begin(); it != m_listController.end(); )
@@ -738,19 +739,19 @@ void CNtlGameCameraManager::Update(RwReal fElapsed)
 
 		//////////////////////////////////////////////////////////////////////////
 		//
-		//	Ä«¸Ş¶ó Ãæµ¹
+		//	ì¹´ë©”ë¼ ì¶©ëŒ
 		//
 		//////////////////////////////////////////////////////////////////////////
 
 		UpdateCameraForWorld( vCamPos, vLookAt, fRadius );
 
-		// Camera¿Í ÁöÇü Áö¹°°úÀÇ Ãæµ¹ Ã³¸®¿¡ µû¸¥ À§Ä¡ º¸Á¤
+		// Cameraì™€ ì§€í˜• ì§€ë¬¼ê³¼ì˜ ì¶©ëŒ ì²˜ë¦¬ì— ë”°ë¥¸ ìœ„ì¹˜ ë³´ì •
 		RwV3d vNewPos;
 		RwBool bCollision = GetSceneManager()->GetCameraCollision( &vCamPos, &vLookAt, fRadius, vNewPos );
 
 		//////////////////////////////////////////////////////////////////////////
 		//
-		//	Ä«¸Ş¶ó º¸°£
+		//	ì¹´ë©”ë¼ ë³´ê°„
 		//
 		//////////////////////////////////////////////////////////////////////////
 
@@ -787,7 +788,7 @@ void CNtlGameCameraManager::Update(RwReal fElapsed)
 		}
 	}
 
-    // SobObjµéÀÇ Ä«¸Ş¶ó °Å¸® Ã³¸®    
+    // SobObjë“¤ì˜ ì¹´ë©”ë¼ ê±°ë¦¬ ì²˜ë¦¬    
     m_fCollisionObjCheckTime += fElapsed;
     if(m_fCollisionObjCheckTime > 0.2f)
     {
@@ -817,7 +818,7 @@ void CNtlGameCameraManager::HandleEvents(RWS::CMsg &pMsg)
 	}
 	else if(pMsg.Id == g_EventCameraDash)
 	{
-        // ³Ë´Ù¿î Ä«¸Ş¶ó°¡ ÀÖÀ¸¸é ÇØÁ¦ÇÑ´Ù.
+        // ë„‰ë‹¤ìš´ ì¹´ë©”ë¼ê°€ ìˆìœ¼ë©´ í•´ì œí•œë‹¤.
         if(FindController(CAMERA_CONTROL_KNOCKDOWN_MATRIX))
         {
             RemoveController(CAMERA_CONTROL_KNOCKDOWN_MATRIX);
@@ -890,16 +891,16 @@ void CNtlGameCameraManager::HandleEvents(RWS::CMsg &pMsg)
 	{
 		SNtlEventCameraExplosion* pExplosionCamera = reinterpret_cast<SNtlEventCameraExplosion*>( pMsg.pData );
 
-		// ±âÁ¸¿¡ ExplosionÀÌ µ¿ÀÛ Áß¿¡ ÀÖÀ¸¸é ÇØ´ç ÀÌº¥Æ®´Â µ¿ÀÛ½ÃÅ°Áö ¾Ê´Â´Ù
+		// ê¸°ì¡´ì— Explosionì´ ë™ì‘ ì¤‘ì— ìˆìœ¼ë©´ í•´ë‹¹ ì´ë²¤íŠ¸ëŠ” ë™ì‘ì‹œí‚¤ì§€ ì•ŠëŠ”ë‹¤
 		if(FindController(CAMERA_CONTROL_EXPLOSION))
 			return;
 
-		// Explosion °´Ã¼ »ı¼º ¹× µî·Ï
+		// Explosion ê°ì²´ ìƒì„± ë° ë“±ë¡
 		CNtlSobCameraExplosion* pExplosionController = NTL_NEW CNtlSobCameraExplosion;
 		pExplosionController->SetActiveActor(reinterpret_cast<CNtlSobActor*>(pExplosionCamera->pObject));
 		AddController(pExplosionController);
 
-		// Explosion lua script¸¦ ½ÇÇàÇÑ´Ù
+		// Explosion lua scriptë¥¼ ì‹¤í–‰í•œë‹¤
 		LuaExec_ExplosionCamera( pExplosionCamera->uiExplosionId );
 
 		CheckNormalControlPause();
@@ -971,7 +972,7 @@ void CNtlGameCameraManager::HandleEvents(RWS::CMsg &pMsg)
 			CheckNormalControlPause();
 		}
 	}
-    else if(pMsg.Id == g_EventDBCScatter)       // µå·¡°ïº¼ Èğ¾îÁö´Â Ä«¸Ş¶ó ¿¬ÃâÀ» À§ÇÑ ÀÌº¥Æ®
+    else if(pMsg.Id == g_EventDBCScatter)       // ë“œë˜ê³¤ë³¼ í©ì–´ì§€ëŠ” ì¹´ë©”ë¼ ì—°ì¶œì„ ìœ„í•œ ì´ë²¤íŠ¸
     {
         CNtlCameraDragonBallController *pDBController = reinterpret_cast<CNtlCameraDragonBallController*>( FindController(CAMERA_CONTROL_DRAGONBALL) );
         if(!pDBController)
@@ -994,7 +995,7 @@ void CNtlGameCameraManager::HandleEvents(RWS::CMsg &pMsg)
 			CheckNormalControlPause();
 		}
 	}
-    else if(pMsg.Id == g_EventCameraFPS)            // 1ÀÎÄª Ä«¸Ş¶ó
+    else if(pMsg.Id == g_EventCameraFPS)            // 1ì¸ì¹­ ì¹´ë©”ë¼
     {
         if(FindController(CAMERA_CONTROL_FPS))
             return;
@@ -1164,8 +1165,8 @@ void CNtlGameCameraManager::UserCameraControlEnable(RwBool bEnable)
 }
 
 /**
- * Folder°¡ ¾øÀ»½Ã Folder »ı¼ºÀ» À§ÇØ¼­ Ç×»ó CreateDirectoty()¸¦ È£ÃâÀ» ÇÑ´Ù.
- * png·Î ÀúÀå ÇÒ °æ¿ì Edge°¡ Èò»öÀ¸·Î ÀúÀåµÇ°í ÀúÀå½Ã ½Ã°£ÀÌ Á¶±İ °É¸°´Ù.
+ * Folderê°€ ì—†ì„ì‹œ Folder ìƒì„±ì„ ìœ„í•´ì„œ í•­ìƒ CreateDirectoty()ë¥¼ í˜¸ì¶œì„ í•œë‹¤.
+ * pngë¡œ ì €ì¥ í•  ê²½ìš° Edgeê°€ í°ìƒ‰ìœ¼ë¡œ ì €ì¥ë˜ê³  ì €ì¥ì‹œ ì‹œê°„ì´ ì¡°ê¸ˆ ê±¸ë¦°ë‹¤.
  * (by HoDong 2006. 8. 5)
  */
 void CNtlGameCameraManager::SetCaptureScreenShot()
@@ -1221,7 +1222,7 @@ void CNtlGameCameraManager::SetYaw(RwReal fYaw)
 
 	m_fYaw = fYaw;
 
-	// Ä«¸Ş¶ó °¢µµ´Â 0 ~ 360 À» »ç¿ëÇÑ´Ù. 
+	// ì¹´ë©”ë¼ ê°ë„ëŠ” 0 ~ 360 ì„ ì‚¬ìš©í•œë‹¤. 
 	if(m_fYaw >= 360.0f)
 		m_fYaw -= 360.0f;
 
@@ -1271,7 +1272,7 @@ void CNtlGameCameraManager::AddYaw(RwReal fDeltaYaw)
 
 	m_fYaw += fDeltaYaw;
 		
-	// Ä«¸Ş¶ó °¢µµ´Â 0 ~ 360 À» »ç¿ëÇÑ´Ù. 
+	// ì¹´ë©”ë¼ ê°ë„ëŠ” 0 ~ 360 ì„ ì‚¬ìš©í•œë‹¤. 
 	if(m_fYaw >= 360.0f)
 		m_fYaw -= 360.0f;
 
@@ -1347,7 +1348,7 @@ void CNtlGameCameraManager::ResetCamera(void)
 		m_pBaseController->ResetCamera();
 	}
 
-	// È®Àå camera control 
+	// í™•ì¥ camera control 
 	CNtlCameraController *pController;
 	ListCameraController::iterator it;
 	for ( it = m_listController.begin(); it != m_listController.end(); ++it )
