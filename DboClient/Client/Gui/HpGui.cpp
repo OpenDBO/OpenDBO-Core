@@ -902,7 +902,6 @@ void CHpGui::CalculateAirHeight()
 	{
 		m_psttAirHeight->SetText("AP");
 	}
-	m_psttAirHeight->SetRenderTop(true);
 }
 
 VOID CHpGui::OnPaint(VOID)
@@ -964,6 +963,7 @@ VOID CHpGui::OnPaintPost()
 	{
 		m_rRoundAir.Render();
 		m_surMidAir.Render();
+		m_psttAirHeight->Paint();
 	}
 }
 
