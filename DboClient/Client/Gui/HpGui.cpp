@@ -1,4 +1,4 @@
-#include "precomp_dboclient.h"
+ï»¿#include "precomp_dboclient.h"
 #include "HpGui.h"
 
 // core
@@ -143,12 +143,12 @@ RwBool CHpGui::Create(void)
 	m_slotAvatarFocused = m_pbtnAvatar->SigFocused().Connect(this, &CHpGui::OnAvatarFocused);
 	m_slotAvatarClick = m_pbtnAvatar->SigClicked().Connect(this, &CHpGui::OnAvatarClick);
 
-		// AvatarBtnÀº ¹öÆ°ÀÌ ¾Æ´Ñ°ÍÃ³·³. »ç¿îµå ¾ø¾Ö±â
+		// AvatarBtnì€ ë²„íŠ¼ì´ ì•„ë‹Œê²ƒì²˜ëŸ¼. ì‚¬ìš´ë“œ ì—†ì• ê¸°
 	m_pbtnAvatar->SetClickSound( NULL );
 	m_pbtnAvatar->SetDisableSound( NULL );
 	m_pbtnAvatar->SetFocusSound( NULL );
 
-	// RP´Â 0À¸·Î ¼¼ÆÃ
+	// RPëŠ” 0ìœ¼ë¡œ ì„¸íŒ…
 	m_ppgbRp->SetRange( 0, 100 );
 	m_ppgbRp->SetPos( 0 );
 
@@ -394,14 +394,14 @@ void CHpGui::HandleEvents(RWS::CMsg &pMsg)
 			m_pBuff->SetBuffAll(pSobAvatar->GetSerialID() );
 		}				
 
-		// Avatar°¡ ÃÊ±â »ý¼ºµÈ ÈÄ GUI¿¡ µ¥ÀÌÅÍ ÀÔ·ÂÇÏ¶ó´Â ÃÖÃÊ ´ÜÀÏÀÇ ½Ã±×³ÎÀÌ EVENT_AIUT_SKILL.
+		// Avatarê°€ ì´ˆê¸° ìƒì„±ëœ í›„ GUIì— ë°ì´í„° ìž…ë ¥í•˜ë¼ëŠ” ìµœì´ˆ ë‹¨ì¼ì˜ ì‹œê·¸ë„ì´ EVENT_AIUT_SKILL.
 		if( pUpdate->uiUpdateType & EVENT_AIUT_SKILL )
 		{
 			SAvatarInfo* pAvatarInfo = GetNtlSLGlobal()->GetAvatarInfo();
 			SetMaxRPBall(pAvatarInfo->byMaxRpStock);
 		}
 
-		// ½Ç½Å »óÅÂ ÀÏ¶§´Â ¸ðµç RP, RPBallÀº ¼öµ¿À¸·Î ¸®¼ÂÇÑ´Ù.
+		// ì‹¤ì‹  ìƒíƒœ ì¼ë•ŒëŠ” ëª¨ë“  RP, RPBallì€ ìˆ˜ë™ìœ¼ë¡œ ë¦¬ì…‹í•œë‹¤.
 		if( pUpdate->uiUpdateType & EVENT_AIUT_DIE )
 		{
 			SetRPValue( 0, m_nMaxValue );
@@ -563,7 +563,7 @@ void CHpGui::HandleEvents(RWS::CMsg &pMsg)
 
 		if( pData->nRpStock < uiMaxRpStock)
 		{
-			// RP GaugeÀÌ¹ÌÁö º¯°æ
+			// RP Gaugeì´ë¯¸ì§€ ë³€ê²½
 			RwChar buf[256];
 			sprintf_s( buf, 256, "srfNewRPGauge%d", pData->nRpStock );
 			m_ppgbRp->ClearSurface();
@@ -573,7 +573,7 @@ void CHpGui::HandleEvents(RWS::CMsg &pMsg)
 
 		m_ppgbRpBall->SetPos( pData->nRpStock );
 
-		// RpBall Max °¹¼ö°¡ ¹Ù²î¸é Àû¿ë.
+		// RpBall Max ê°¯ìˆ˜ê°€ ë°”ë€Œë©´ ì ìš©.
 		if( pData->nMaxRpStock != uiMaxRpStock)
 		{
 			SetMaxRPBall( pData->nMaxRpStock );				
