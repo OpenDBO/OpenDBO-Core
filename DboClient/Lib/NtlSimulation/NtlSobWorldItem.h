@@ -71,6 +71,7 @@ protected:
 	CNtlDistTimeSequence* m_pSeq;
 	RwInt32	m_eState;
 	RwBool	m_bLootSend;
+	SERIAL_HANDLE hSerialIdDropItem;
 
 	VOID	(CNtlSobWorldItem::*StateUpdate)();
 };

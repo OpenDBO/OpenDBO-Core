@@ -188,6 +188,8 @@ public:
 
 	static void* SobWorldItemCreate(RwUInt32 uiClassId, SERIAL_HANDLE hSerialId, RwV3d vLoc, RwInt32 eObjType, void* pBrief, void* pState, void* pItemOptionSet);
 
+	static void* SobDropItemInfoCreate(SERIAL_HANDLE hSerialId);
+
 	static void* SobStatusCreate(RwUInt32 uiClassId, RwUInt32 uiCurrHp, RwUInt32 uiDamage, RwUInt32 uiFillHp, RwUInt32 uiFillMp, RwUInt32 uiFillCp, RwBool bDamage);
 
 	static void* SobTriggerObject(RwUInt32 uiClassId, SERIAL_HANDLE hSerialId, RwUInt32 uiTblId, RwV3d vLoc, void *pPLEntity);

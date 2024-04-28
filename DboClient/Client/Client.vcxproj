@@ -116,6 +116,7 @@
     <ClCompile Include="CCBDNotifyGui.cpp" />
     <ClCompile Include="CCBDRewardGui.cpp" />
     <ClCompile Include="CCBDStatusGui.cpp" />
+    <ClCompile Include="DropItemInfoGuiList.cpp" />
     <ClCompile Include="Gui\ActionNotifyGui.cpp" />
     <ClCompile Include="Gui\AlarmManager.cpp" />
     <ClCompile Include="Gui\AltarGui.cpp">
@@ -437,6 +438,7 @@
     <ClInclude Include="CCBDNotifyGui.h" />
     <ClInclude Include="CCBDRewardGui.h" />
     <ClInclude Include="CCBDStatusGui.h" />
+    <ClInclude Include="DropItemInfoGuiList.h" />
     <ClInclude Include="Gui\ActionNotifyGui.h" />
     <ClInclude Include="Gui\AlarmManager.h" />
     <ClInclude Include="Gui\AltarGui.h" />

@@ -216,10 +216,13 @@ protected:
 	gui::CButton*		m_pDojoOff;
 	gui::CButton*		m_pScouterOn;
 	gui::CButton*		m_pScouterOff;
+	gui::CButton*		m_pItemDropOn;
+	gui::CButton*		m_pItemDropOff;
 
 	SOnOff				m_onoffGuild;
 	SOnOff				m_onoffDojo;
 	SOnOff				m_onoffScouter;
+	SOnOff				m_onoffItemDrop;
 
 public:
 	COptionInfo();
@@ -241,6 +244,8 @@ private: // system setting
 	RwBool				GetDojoMarkOnOff();
 	void				SetScouterModelOnOff(RwBool bOnOff);
 	RwBool				GetScouterModelOnOff();
+	void				SetItemDropOnOff(RwBool bOnOff);
+	RwBool				GetItemDropOnOff();
 };
 
 class COptionETC : public COptionBase

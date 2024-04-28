@@ -58,6 +58,7 @@
 #include "WorldMap.h"
 #include "OptionWindowGui.h"
 #include "HelpWindowGui.h"
+#include "DropItemInfoGuiList.h"
 #include "DropItemInfoGui.h"
 #include "SideIconGui.h"
 #include "AltarGui.h"
@@ -251,6 +252,7 @@ CGameGuiGroup::CGameGuiGroup()
 , m_pWorldMap(NULL)
 , m_pOptionWindowGui(NULL)
 , m_pHelpWindowGui(NULL)
+, m_pDropItemInfoGuiList(NULL)
 , m_pDropItemInfoGui(NULL)
 , m_pSideIconGui(NULL)
 , m_pPrivateShopGui(NULL)
@@ -364,6 +366,16 @@ RwBool CGameGuiGroup::Create(void)
 	// Dice Manager
 	CDiceManager::CreateInstance();
 
+	// DropItemInfoGuiList
+	m_pDropItemInfoGuiList = NTL_NEW CDropItemInfoGuiList("DropItemInfoGuiList");
+	if (!m_pDropItemInfoGuiList->Create())
+	{
+		m_pDropItemInfoGuiList->Destroy();
+		NTL_DELETE(m_pDropItemInfoGuiList);
+		NTL_RETURN(FALSE);
+	}
+	CNtlPLGuiManager::GetInstance()->AddGui(m_pDropItemInfoGuiList);
+
 	// DropItemInfo
 	m_pDropItemInfoGui = NTL_NEW CDropItemInfoGui( "DropItemInfoGui" );
 	if( !m_pDropItemInfoGui->Create() )
@@ -373,7 +385,6 @@ RwBool CGameGuiGroup::Create(void)
 		NTL_RETURN( FALSE );
 	}
 	CNtlPLGuiManager::GetInstance()->AddGui( m_pDropItemInfoGui );
-	GetDialogManager()->RegistDialog( DIALOG_DROPITEM_INFO, m_pDropItemInfoGui, &CDropItemInfoGui::SwitchDialog );
 
 	AddDialog(m_pScouterMeasureDlg, CScouterMeasureDlgGui, "ScouterMeasure", DIALOG_SCOUTER_MEASURE);
 
@@ -835,6 +846,7 @@ void CGameGuiGroup::Destroy(void)
 
 	CGuildWarehouseBar::DestroyInstance();
 
+	RemoveDialog(m_pDropItemInfoGuiList);
     RemoveDialog(m_pDropItemInfoGui);
     RemoveDialog(m_pSubGauge);
     RemoveDialog(m_pHp);

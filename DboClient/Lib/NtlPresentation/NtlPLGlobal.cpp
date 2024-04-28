@@ -41,7 +41,8 @@ RwUInt32					CNtlPLGlobal::m_uiMinimapLayer = NTL_PLEFLAG_MINIMAP_LAYER_NONE;
 RwBool						CNtlPLGlobal::m_bObjectRender = TRUE;              ///< Object Render 유무 플래그
 RwBool						CNtlPLGlobal::m_bRenderScouter = TRUE;
 RwBool          		    CNtlPLGlobal::m_bEntityNotCulling = FALSE;
-						
+RwBool						CNtlPLGlobal::m_bItemDropDisplay = TRUE;
+
 RwReal						CNtlPLGlobal::m_fIndoorPlaneHeight = 0.0f;
 
 D3DMATRIX					CNtlPLGlobal::m_mD3D9IdentityMatrix = {	0.0f, 0.0f, 0.0f, 0.0f,

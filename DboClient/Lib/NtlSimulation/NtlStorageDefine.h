@@ -164,7 +164,7 @@ typedef struct _SMemoryQuestData
 #define dSTORAGE_GAMEINFO_GUILD_EMBLEM			5000	// 유파 엠블렘
 #define dSTORAGE_GAMEINFO_DOJO_MARK				5001	// 도장 마크
 #define dSTORAGE_GAMEINFO_SCOUTER_VISIBLE		5002	// 스카우터 표시
-
+#define dSTORAGE_GAMEINFO_ITEM_DROP				5003	// show item drop
 // Etc
 #define dSTORAGE_ETC_FRIEND_NOTIFY				6000	// 친구 접속 알림
 #define dSTORAGE_ETC_GUILD_MEMBER_NOTIFY		6001	// 문하생 접속 알림
