@@ -38,6 +38,7 @@ All required third party tools can be obtained from [our 3rd party repository](h
 
 7. **Configure the libjpeg project settings:**
     - Right-click on libjpeg, go to Properties, and under Windows SDK Version, set it to the latest (10.0).
+    - Change both Output Directory and Intermediate Directory's Msvc80 to Msvc142.
     - Change the Platform Toolset to (v142).
     - Right-click on libjpeg -> Build.
 
