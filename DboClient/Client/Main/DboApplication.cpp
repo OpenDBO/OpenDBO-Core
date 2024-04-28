@@ -1,4 +1,4 @@
-#include "precomp_dboclient.h"
+ï»¿#include "precomp_dboclient.h"
 #include "resource.h"
 
 //#include "toonmultiTex.h"
@@ -87,7 +87,7 @@
 #include "DumpCommand.h"
 #include "CursorManager.h"
 #include "DboLogic.h"
-#include "Msjexhnd.h"
+// #include "Msjexhnd.h"
 #include "DboExceptionHandler.h"
 #include "SayFilter.h"
 #include "NtlBugTrap.h"
@@ -109,11 +109,11 @@
 #include "Discord.h"
 #endif
 
-// lleo52 - ÃßÈÄ »èÁ¦ ÇÊ¿ä
+// lleo52 - ì¶”í›„ ì‚­ì œ í•„ìš”
 #include "NtlMovieManager.h"
 #include <fstream>
 
-// lleo52 - ÃßÈÄ »èÁ¦ ÇÊ¿ä
+// lleo52 - ì¶”í›„ ì‚­ì œ í•„ìš”
 std::vector< NTL_MOVIE_HANDLE > g_vecdefMovieList;
 
 
@@ -162,12 +162,13 @@ void CDboApplication::SetErrorReport()
 	char szVer[32] = {0,};
 	sprintf_s(szVer, "%d.%d", CLIENT_LVER, CLIENT_RVER);
 
-    BT_SetAppName(_T(m_DboGlobal.GetConfigData()->strBugTrapFolder.c_str()));         
-	BT_SetAppVersion(szVer);    
-	BT_SetFlags(BTF_DETAILEDMODE | BTF_SCREENCAPTURE);
-	//BT_SetFlags(BTF_NONE);
-    BT_SetSupportServer(GetDboGlobal()->GetConfigData()->strBugTrapServerIP.c_str(), (SHORT)GetDboGlobal()->GetConfigData()->dwBugTrapServerPort);	
-	
+    BT_SetAppName(_T(m_DboGlobal.GetConfigData()->strBugTrapFolder.c_str()));
+	BT_SetAppVersion(szVer);
+	BT_SetFlags(BTF_DETAILEDMODE | BTF_EDITMAIL | BTF_ATTACHREPORT | BTF_SCREENCAPTURE | BTF_INTERCEPTSUEF);
+	BT_SetSupportURL(_T("https://opendbo.org"));
+    BT_SetSupportServer(GetDboGlobal()->GetConfigData()->strBugTrapServerIP.c_str(), (SHORT)GetDboGlobal()->GetConfigData()->dwBugTrapServerPort);
+	BT_InstallSehFilter();
+
 	char buf[NTL_MAX_DIR_PATH] = {0,};
     ::GetCurrentDirectory(NTL_MAX_DIR_PATH, buf);
 
@@ -175,11 +176,11 @@ void CDboApplication::SetErrorReport()
 	std::string strAddLogFile = buf;
 	strAddLogFile += "\\";
 	strAddLogFile += ERROR_REPORT_FILE_NAME;
-	BT_AddLogFile(strAddLogFile.c_str());    
+	BT_AddLogFile(strAddLogFile.c_str());
 
     // DBO Log
 	strAddLogFile = buf;
-	strAddLogFile += "\\dbolog.txt";		
+	strAddLogFile += "\\dbolog.txt";
 	BT_AddLogFile(strAddLogFile.c_str());
 
     // DX information file
@@ -195,7 +196,7 @@ RwBool CDboApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, RwBoo
 	 // Load keyboard accelerators
     m_hAccel = LoadAccelerators( NULL, MAKEINTRESOURCE(IDR_MAIN_ACCEL) );
 
-	// dev master Á¤º¸¸¦ ÀĞ´Â´Ù.
+	// dev master ì •ë³´ë¥¼ ì½ëŠ”ë‹¤.
 	RwUInt8 byMasterRes = API_LoadSLDevMasterInformation();
 	RwBool bDevUser = Logic_IsDevUser();
 	SDevMasterInfo *pDevMasterInfo = API_GetSLDevMasterInformation();
@@ -326,7 +327,7 @@ RwBool CDboApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, RwBoo
 
 	CPetitionManager::CreateInstance();
 
-	// property container »ı¼º ¹× load ÇÑ´Ù.
+	// property container ìƒì„± ë° load í•œë‹¤.
 
 	RwBool bLoadPropertyContainer;
 
@@ -383,7 +384,7 @@ RwBool CDboApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, RwBoo
 		}
 	}
 
-	// active renderware camera setting ÇÑ´Ù.
+	// active renderware camera setting í•œë‹¤.
 	CNtlPLGlobal::SetActiveCamera(m_pCamera->GetCamera()); 
 
 	// character set
@@ -399,7 +400,7 @@ RwBool CDboApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, RwBoo
 	{
 		NTL_RETURN(FALSE);
 	}
-	// active scene manager¸¦ setting ÇÑ´Ù.
+	// active scene managerë¥¼ setting í•œë‹¤.
 	CNtlPLSceneManagerFactory::ActiveSceneManager(m_pVisualManager);
 
 	// gui setup
@@ -411,15 +412,15 @@ RwBool CDboApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, RwBoo
 		NTL_RETURN(FALSE);
 	}
 
-	// Particle Surface ·Îµå
+	// Particle Surface ë¡œë“œ
 
-	// GlobalGui »ı¼º_ ÇØÁ¦´Â ¿ª¼øÀ¸·Î.
+	// GlobalGui ìƒì„±_ í•´ì œëŠ” ì—­ìˆœìœ¼ë¡œ.
 	gui::CGlobalComponent::GetInstance()->CreateComponent( "gui\\GlobalGui.rsr", "gui\\GlobalGui.srf", "gui\\GlobalGui.frm", 
 		GetNtlGuiManager()->GetReourceManager(), GetNtlGuiManager()->GetSurfaceManager(),
 		GetNtlGuiManager()->GetComponentManager(), GetNtlGuiManager()->GetGuiManager() );
 	gui::CGlobalComponent::GetInstance()->SetToolTip( "tooltipcomponent" );
 
-	// sound »ı¼º
+	// sound ìƒì„±
 	GetSoundManager()->Init(".\\sound\\", 1.0f, 1.0f, 1.0f, 0.5f);
 
 	//----------------------------------------------------------------------
@@ -485,10 +486,10 @@ RwBool CDboApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, RwBoo
 		}
 	}
 
-	// Ntl Storage¿¡ Apply ÇÔ¼ö¸¦ ÁöÁ¤ÇÏ°í Scouter¿Í Quest¿¡ ÀúÀåÀ» ÇÏ´Â ÇÔ¼ö¸¦ ÁöÁ¤ÇÑ´Ù.
+	// Ntl Storageì— Apply í•¨ìˆ˜ë¥¼ ì§€ì •í•˜ê³  Scouterì™€ Questì— ì €ì¥ì„ í•˜ëŠ” í•¨ìˆ˜ë¥¼ ì§€ì •í•œë‹¤.
 	
 
-	// º¼·ıÀÌ ³Ê¹« Å« »ç¿îµå ±×·ìÀÇ ÃÖ´ë º¼·ı Á¶Á¤
+	// ë³¼ë¥¨ì´ ë„ˆë¬´ í° ì‚¬ìš´ë“œ ê·¸ë£¹ì˜ ìµœëŒ€ ë³¼ë¥¨ ì¡°ì •
 	float fDefaultVolume = GetNtlStorageManager()->GetFloatData( dSTORAGE_SOUND_BACK_VOLUME );
 	GetSoundManager()->SetGroupVolume(CHANNEL_GROUP_JINGLE_MUSIC,	fDefaultVolume);
 	GetSoundManager()->SetGroupVolume(CHANNEL_GROUP_FLASH_MUSIC,	fDefaultVolume);
@@ -532,7 +533,7 @@ RwBool CDboApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, RwBoo
 	GetCursorManager()->InitLobbyCursor();
 
 	// Connect Exception Handler
-	g_MSJExceptionHandler.SetApplicationFilter( DboExceptionHandler );
+	// g_MSJExceptionHandler.SetApplicationFilter( DboExceptionHandler );
 
 	// gui html doc callback function
 	gui::CHtmlDoc::LinkUserTag(Logic_CallbackHtmlUserTag);
@@ -542,7 +543,7 @@ RwBool CDboApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, RwBoo
 	GetDboGlobal()->LoadingContractInfo();
 	CDboEventGenerator::StageCreate(LOGIN_STAGE_NAME);
 
-	// ÇÊÅÍ¸µ Å×ÀÌºí°ú ÅØ½ºÆ® ¿Ã Å×ÀÌºí¿¡¼­ µ¥ÀÌÅÍ¸¦ ÀĞ¿©µé¿© Ã¤ÆÃ ¸Ş½ÃÁö ÇÊÅÍ¸µ µ¥ÀÌÅÍ¸¦ »ı¼º
+	// í•„í„°ë§ í…Œì´ë¸”ê³¼ í…ìŠ¤íŠ¸ ì˜¬ í…Œì´ë¸”ì—ì„œ ë°ì´í„°ë¥¼ ì½ì—¬ë“¤ì—¬ ì±„íŒ… ë©”ì‹œì§€ í•„í„°ë§ ë°ì´í„°ë¥¼ ìƒì„±
 	GetChattingFilter()->Create();
 
 	if(bDevUser)
@@ -565,7 +566,7 @@ RwBool CDboApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, RwBoo
 
 	CPacketTracer::CreateInstance();			/// woosungs_test 20090804
 
-	// lleo52 - ÃßÈÄ Á¦°Å ÇÊ¿ä
+	// lleo52 - ì¶”í›„ ì œê±° í•„ìš”
 	CNtlMovieManager::CreateInstance( CDboApplication::GetInstance()->GetHWnd() );
 
 #ifdef USE_DISCORD
@@ -708,13 +709,13 @@ LRESULT CDboApplication::PreTranslateMessage(HWND window, UINT message, WPARAM w
 	if(pDboGlobal == NULL)
 		return 0;
 
-	// avooo's comment : (08. 10.21) ´Ù¸¥ ¹æ¹ıÀ¸·Î ÀÎÇ²ÀÌ Á¦¾îµÇ°í ÀÖ´Ù. ÀÌ ºÎºĞÀº
-	// ÇÊ¿ä°¡ ¾øÀ» °Í °°¾Æ ÇÑµ¿¾È ÁÖ¼®À¸·Î Ã³¸®ÇÏ°í °á°ú¸¦ ÁöÄÑº»´Ù
-	// inputÀÌ active ¾ÈµÇ¾î ÀÖÀ¸¸é.
+	// avooo's comment : (08. 10.21) ë‹¤ë¥¸ ë°©ë²•ìœ¼ë¡œ ì¸í’‹ì´ ì œì–´ë˜ê³  ìˆë‹¤. ì´ ë¶€ë¶„ì€
+	// í•„ìš”ê°€ ì—†ì„ ê²ƒ ê°™ì•„ í•œë™ì•ˆ ì£¼ì„ìœ¼ë¡œ ì²˜ë¦¬í•˜ê³  ê²°ê³¼ë¥¼ ì§€ì¼œë³¸ë‹¤
+	// inputì´ active ì•ˆë˜ì–´ ìˆìœ¼ë©´.
 	//if(!pDboGlobal->GetGameData()->bInputActive)
 	//	return 0;
 
-	// window command message Á¶»ç.
+	// window command message ì¡°ì‚¬.
 	switch(message)
 	{
 		case WM_DROPFILES:
@@ -724,20 +725,20 @@ LRESULT CDboApplication::PreTranslateMessage(HWND window, UINT message, WPARAM w
 			//	POINT pt;
 			//	char buffer[_MAX_PATH] = {0,};
 
-			//	// ¾î´À À§Ä¡¿¡ µå·ÓµÇ¾ú´ÂÁö ±× Ç×¸ñÀ» ¾Ë¾Æ³½´Ù.
+			//	// ì–´ëŠ ìœ„ì¹˜ì— ë“œë¡­ë˜ì—ˆëŠ”ì§€ ê·¸ í•­ëª©ì„ ì•Œì•„ë‚¸ë‹¤.
 			//	if (DragQueryPoint((HDROP)wParam, &pt)) 
 			//	{
 			//		UINT i = 0;
-			//		// ¸ğµÎ ¸î °³ÀÇ ÆÄÀÏÀÌ µå·ÓµÇ¾ú´ÂÁö ¾Ë¾Æ³½´Ù.
-			//		// ¸¸ÀÏ Æú´õ°¡ µå·ÓµÇ¾ú´Ù¸é Æú´õÀÇ ÀÌ¸§¸¸ ³Ñ¾î¿Â´Ù.
+			//		// ëª¨ë‘ ëª‡ ê°œì˜ íŒŒì¼ì´ ë“œë¡­ë˜ì—ˆëŠ”ì§€ ì•Œì•„ë‚¸ë‹¤.
+			//		// ë§Œì¼ í´ë”ê°€ ë“œë¡­ë˜ì—ˆë‹¤ë©´ í´ë”ì˜ ì´ë¦„ë§Œ ë„˜ì–´ì˜¨ë‹¤.
 			//		UINT uCount = DragQueryFile((HDROP)wParam, 0xFFFFFFFF, NULL ,0);
 
 			//		for(i = 0;i < uCount;i++)
 			//		{
-			//			// µå·ÓµÈ ÆÄÀÏÀÇ ÀÌ¸§À» ¾Ë¾Æ¿Â´Ù.
+			//			// ë“œë¡­ëœ íŒŒì¼ì˜ ì´ë¦„ì„ ì•Œì•„ì˜¨ë‹¤.
 			//			DragQueryFile((HDROP)wParam, i, buffer ,_MAX_PATH);
 
-			//			// µå·ÓµÈ ÆÄÀÏ ÀÌ¸§À» Ãâ·ÂÇØº»´Ù.
+			//			// ë“œë¡­ëœ íŒŒì¼ ì´ë¦„ì„ ì¶œë ¥í•´ë³¸ë‹¤.
 			//			//MessageBox(m_hWnd, buffer, "File Name", MB_OK);
 
 			//			string	strCmp		= buffer;
@@ -746,12 +747,12 @@ LRESULT CDboApplication::PreTranslateMessage(HWND window, UINT message, WPARAM w
 
 			//			if(!stricmp("LinkItemTrasformList.xml", strCmp.c_str()))
 			//			{
-			//				CDboEventGenerator::NotifyMessage(SDboEventNotify::ACTION, L"Link Mesh Transform ScriptÀÌ °»½ÅµÇ¾ú½À´Ï´Ù.");
+			//				CDboEventGenerator::NotifyMessage(SDboEventNotify::ACTION, L"Link Mesh Transform Scriptì´ ê°±ì‹ ë˜ì—ˆìŠµë‹ˆë‹¤.");
 			//				CLinkItemTrasformList::GetInstance().Refresh();
 			//			}
 			//		}
 			//	}
-			//	// drag and drop ÀÛ¾÷À» ³¡³½´Ù.
+			//	// drag and drop ì‘ì—…ì„ ëë‚¸ë‹¤.
 			//	DragFinish((HDROP)wParam);
 			//	break;
 			//}
@@ -817,12 +818,12 @@ LRESULT CDboApplication::PreTranslateMessage(HWND window, UINT message, WPARAM w
 			}
 	}
 
-	// chatting mode °Ë»ç. 
+	// chatting mode ê²€ì‚¬. 
 	RwBool bChatMode = FALSE;
 	SGameData *pGameData = pDboGlobal->GetGameData();
 	bChatMode = pGameData->bChatMode;
 
-	// gui window message Ã³¸®.
+	// gui window message ì²˜ë¦¬.
 	LRESULT ret = 0;
 	gui::CGUIManager *pGuiMgr = CNtlPLGuiManager::GetInstance()->GetGuiManager();
 	if( pGuiMgr && !m_bMouseBackgroundCapture )
@@ -831,10 +832,10 @@ LRESULT CDboApplication::PreTranslateMessage(HWND window, UINT message, WPARAM w
 	using namespace gui;
 #define GET_KEY_REPEAT(lParam)	(lParam & 0x0000ffff)
 
-	// window focus¸¦ ºüÁ®³ª°¬À» ¶§.
+	// window focusë¥¼ ë¹ ì ¸ë‚˜ê°”ì„ ë•Œ.
 	if(message == WM_ACTIVATE)
 	{
-		// Minimize ¶Ç´Â Active ºñÈ°¼ºÈ­
+		// Minimize ë˜ëŠ” Active ë¹„í™œì„±í™”
 		if(LOWORD(wParam) == WA_INACTIVE || ::IsIconic(window))
 		{
 			if(GetInputActionMap())
@@ -843,7 +844,7 @@ LRESULT CDboApplication::PreTranslateMessage(HWND window, UINT message, WPARAM w
 			if( m_pGamma )
 				m_pGamma->RestoreBackGroundGamma();
 		}
-		// È°¼ºÈ­
+		// í™œì„±í™”
 		else if( LOWORD(wParam) == WA_ACTIVE )
 		{
 			if( m_pGamma )
@@ -858,8 +859,8 @@ LRESULT CDboApplication::PreTranslateMessage(HWND window, UINT message, WPARAM w
 		{
 		case WM_SYSKEYDOWN:
 		case WM_KEYDOWN:
-			// ÇÑ±Û ÀÔ·Â ¸ğµå¶ó¸é VK_PROCESSKEY °¡ Àü´Ş µÈ´Ù. ½ÇÁ¦ ´­·¯Áø °¡»óÅ°´Â ImmGetVirtualKey() ÇÔ¼ö¸¦ ÀÌ¿ëÇÏ¿© ÇÑ±Û/¿µ¹® ÀÔ·Â ¸ğµå¿¡ »ó°ü¾øÀÌ 
-			// ´­·¯Áø °¡»ó Å° ÄÚµå¸¦ Á¶»çÇÒ ¼ö ÀÖ´Ù.
+			// í•œê¸€ ì…ë ¥ ëª¨ë“œë¼ë©´ VK_PROCESSKEY ê°€ ì „ë‹¬ ëœë‹¤. ì‹¤ì œ ëˆŒëŸ¬ì§„ ê°€ìƒí‚¤ëŠ” ImmGetVirtualKey() í•¨ìˆ˜ë¥¼ ì´ìš©í•˜ì—¬ í•œê¸€/ì˜ë¬¸ ì…ë ¥ ëª¨ë“œì— ìƒê´€ì—†ì´ 
+			// ëˆŒëŸ¬ì§„ ê°€ìƒ í‚¤ ì½”ë“œë¥¼ ì¡°ì‚¬í•  ìˆ˜ ìˆë‹¤.
 			if( VK_PROCESSKEY == wParam )
 			{
 				unsigned int uiKey = MapVirtualKey( LOBYTE(HIWORD( lParam ) ), 1 );
@@ -919,8 +920,8 @@ LRESULT CDboApplication::PreTranslateMessage(HWND window, UINT message, WPARAM w
 		{
 		case WM_SYSKEYDOWN:
 		case WM_KEYDOWN:
-			// ÇÑ±Û ÀÔ·Â ¸ğµå¶ó¸é VK_PROCESSKEY °¡ Àü´Ş µÈ´Ù. ½ÇÁ¦ ´­·¯Áø °¡»óÅ°´Â ImmGetVirtualKey() ÇÔ¼ö¸¦ ÀÌ¿ëÇÏ¿© ÇÑ±Û/¿µ¹® ÀÔ·Â ¸ğµå¿¡ »ó°ü¾øÀÌ 
-			// ´­·¯Áø °¡»ó Å° ÄÚµå¸¦ Á¶»çÇÒ ¼ö ÀÖ´Ù.
+			// í•œê¸€ ì…ë ¥ ëª¨ë“œë¼ë©´ VK_PROCESSKEY ê°€ ì „ë‹¬ ëœë‹¤. ì‹¤ì œ ëˆŒëŸ¬ì§„ ê°€ìƒí‚¤ëŠ” ImmGetVirtualKey() í•¨ìˆ˜ë¥¼ ì´ìš©í•˜ì—¬ í•œê¸€/ì˜ë¬¸ ì…ë ¥ ëª¨ë“œì— ìƒê´€ì—†ì´ 
+			// ëˆŒëŸ¬ì§„ ê°€ìƒ í‚¤ ì½”ë“œë¥¼ ì¡°ì‚¬í•  ìˆ˜ ìˆë‹¤.
 			if( VK_PROCESSKEY == wParam )
 			{
 				unsigned int uiKey = MapVirtualKey( LOBYTE(HIWORD( lParam ) ), 1 );
@@ -933,8 +934,8 @@ LRESULT CDboApplication::PreTranslateMessage(HWND window, UINT message, WPARAM w
 			break;
 		case WM_SYSKEYUP:
 		case WM_KEYUP:
-			// ÇÑ±Û ÀÔ·Â ¸ğµå¶ó¸é VK_PROCESSKEY °¡ Àü´Ş µÈ´Ù. ½ÇÁ¦ ´­·¯Áø °¡»óÅ°´Â ImmGetVirtualKey() ÇÔ¼ö¸¦ ÀÌ¿ëÇÏ¿© ÇÑ±Û/¿µ¹® ÀÔ·Â ¸ğµå¿¡ »ó°ü¾øÀÌ 
-			// ´­·¯Áø °¡»ó Å° ÄÚµå¸¦ Á¶»çÇÒ ¼ö ÀÖ´Ù.
+			// í•œê¸€ ì…ë ¥ ëª¨ë“œë¼ë©´ VK_PROCESSKEY ê°€ ì „ë‹¬ ëœë‹¤. ì‹¤ì œ ëˆŒëŸ¬ì§„ ê°€ìƒí‚¤ëŠ” ImmGetVirtualKey() í•¨ìˆ˜ë¥¼ ì´ìš©í•˜ì—¬ í•œê¸€/ì˜ë¬¸ ì…ë ¥ ëª¨ë“œì— ìƒê´€ì—†ì´ 
+			// ëˆŒëŸ¬ì§„ ê°€ìƒ í‚¤ ì½”ë“œë¥¼ ì¡°ì‚¬í•  ìˆ˜ ìˆë‹¤.
 			if( VK_PROCESSKEY == wParam )
 			{
 				unsigned int uiKey = MapVirtualKey( LOBYTE(HIWORD( lParam ) ), 1 );
@@ -987,14 +988,14 @@ LRESULT CDboApplication::PreTranslateMessage(HWND window, UINT message, WPARAM w
 		}
 	}
 
-	// chatting mode °Ë»ç.
+	// chatting mode ê²€ì‚¬.
 	if(!bChatMode && pGameData->bChatMode)
 	{
 		if(GetInputActionMap())
 			GetInputActionMap()->Reset();
 	}
 
-	// lleo52 - ÃßÈÄ »èÁ¦ ÇÊ¿ä
+	// lleo52 - ì¶”í›„ ì‚­ì œ í•„ìš”
 	{
 		struct sMovieInfo
 		{
@@ -1165,7 +1166,7 @@ RwBool CDboApplication::Update(RwReal fTime, RwReal fElapsedTime)
 				m_pCamera->MainCameraEndUpdate();
 			}
 
-			// lleo52 - ÃßÈÄ Á¦°Å ÇÊ¿ä
+			// lleo52 - ì¶”í›„ ì œê±° í•„ìš”
 			std::vector< NTL_MOVIE_HANDLE >::iterator it = g_vecdefMovieList.begin();
 			for ( ; it != g_vecdefMovieList.end(); ++it )
 			{
@@ -1183,7 +1184,7 @@ RwBool CDboApplication::Update(RwReal fTime, RwReal fElapsedTime)
 
 	CNtlLoadingController::GetInstance()->Unlock();
 
-	//ÇÁ·ÎÆÄÀÏ
+	//í”„ë¡œíŒŒì¼
 	//CProfileIterator* pThe = CProfileManager::Get_Iterator();
 	//CProfileManager::Release_Iterator(pThe);
 
@@ -1225,7 +1226,7 @@ void CDboApplication::Destroy()
 {
 	NTL_FUNCTION("CDboApplication::Destroy" );	
 
-	// lleo52 - ÃßÈÄ Á¦°Å ÇÊ¿ä
+	// lleo52 - ì¶”í›„ ì œê±° í•„ìš”
 	CNtlMovieManager::DeleteInstance();
 
 	gui::CStringLocalConverter::DestroyInstance();
@@ -1319,7 +1320,7 @@ void CDboApplication::Destroy()
 		m_pCamera = NULL;
 	}
 
-	// property¸¦ destroy ÇÑ´Ù.
+	// propertyë¥¼ destroy í•œë‹¤.
 	CNtlPLPropertyContainer::GetInstance()->Destroy();
 
 	// API_PLInit
@@ -1346,7 +1347,7 @@ void CDboApplication::Destroy()
 	// gui
 	gui::CSetupGUI::Deinit();
 
-	// sound ÇØÁ¦
+	// sound í•´ì œ
 	GetSoundManager()->Release();
 
 	// Gamma Controller
@@ -1457,7 +1458,7 @@ void CDboApplication::DisplayFps()
 	RsCharsetPrint(m_pCharset, caption, -22, 0, rsPRINTPOSTOPRIGHT);
 }
 
-// ¾ÆÀÌÄÜ »ç¿ë ¶§¹®¿¡ ¿À¹ö¶óÀÌµù ÇÑ´Ù. (by agebreak)
+// ì•„ì´ì½˜ ì‚¬ìš© ë•Œë¬¸ì— ì˜¤ë²„ë¼ì´ë”© í•œë‹¤. (by agebreak)
 bool CDboApplication::RegisterMainWindowClass( HANDLE processInstance ) 
 {
 	WNDCLASS windowClass;
@@ -1489,14 +1490,14 @@ void CDboApplication::SetGammaRamp( RwReal fGamma )
 RwBool CDboApplication::CanExitApp( void )
 {
 	// Work thread
-	// - loading thread °¡ Á¸ÀçÇÏ¸é ¾ÆÁ÷ Thread°¡ µ¥ÀÌÅÍ¸¦ ·ÎµùÁßÀÌ¹Ç·Î ·ÎµùÀ»
-	//   ¿Ï·áÈÄ Á¾·á ½ÃÅ²´Ù
+	// - loading thread ê°€ ì¡´ì¬í•˜ë©´ ì•„ì§ Threadê°€ ë°ì´í„°ë¥¼ ë¡œë”©ì¤‘ì´ë¯€ë¡œ ë¡œë”©ì„
+	//   ì™„ë£Œí›„ ì¢…ë£Œ ì‹œí‚¨ë‹¤
 	return g_clWorkThreadMgr.GetThreadCnt() == 0 ? TRUE : FALSE;
 }
 
 RwBool CDboApplication::Create( HINSTANCE hInstance, RwInt32 posX, RwInt32 posY, RwInt32 sizeX, RwInt32 sizeY, RwBool bFullScreen )
 {
-	// ApplicationÀ» ¼¼ÆÃÇÏ±â À§ÇÏ¿© SystemÀÇ OptionÀ» ÀĞ¾îµéÀÎ´Ù.
+	// Applicationì„ ì„¸íŒ…í•˜ê¸° ìœ„í•˜ì—¬ Systemì˜ Optionì„ ì½ì–´ë“¤ì¸ë‹¤.
 	Logic_LoadSystemOption();
 
 	// Debug mode creates a window by referring to the bFullScreen variable that calls this function in WinMain.
@@ -1521,7 +1522,7 @@ RwBool CDboApplication::Create( HINSTANCE hInstance, RwInt32 posX, RwInt32 posY,
 	RwInt32 nScreenHeight = GetNtlStorageManager()->GetIntData( dSTORAGE_GRAPHIC_SELECT_VIDEOHEIGHT );
 	RwInt32 nScreenDepth = GetNtlStorageManager()->GetIntData( dSTORAGE_GRAPHIC_SELECT_VIDEODEPTH );
 
-	// Ã¢ ¸ğµå¶ó¸é È­¸éÀ» Áß°£À¸·Î ¼¼ÆÃÇÑ´Ù.
+	// ì°½ ëª¨ë“œë¼ë©´ í™”ë©´ì„ ì¤‘ê°„ìœ¼ë¡œ ì„¸íŒ…í•œë‹¤.
 	RwInt32 nPosX = 0;
 	RwInt32 nPosY = 0;
 	if( bUserScreen )
