@@ -363,39 +363,6 @@ int	CGameServer::OnConfiguration(const char * lpszConfigFile)
 		return NTL_ERR_SYS_CONFIG_FILE_READ_FAIL;
 	}
 
-	//DATABASE
-	if (!file.Read("DATABASE_CHARACTER", "Host", m_config.DatabaseHost))
-	{
-		return NTL_ERR_DBC_HANDLE_ALREADY_ALLOCATED;
-	}
-	if (!file.Read("DATABASE_CHARACTER", "User", m_config.DatabaseUser))
-	{
-		return NTL_ERR_SYS_MEMORY_ALLOC_FAIL;
-	}
-	if (!file.Read("DATABASE_CHARACTER", "Password", m_config.DatabasePassword))
-	{
-		return NTL_ERR_SYS_LOG_SYSTEM_INITIALIZE_FAIL;
-	}
-	if (!file.Read("DATABASE_CHARACTER", "Db", m_config.Database))
-	{
-		return NTL_ERR_DBC_CONNECTION_CONNECT_FAIL;
-	}
-	if (!file.Read("DATABASE_ACCOUNT", "Host", m_config.AccDatabaseHost))
-	{
-		return NTL_ERR_DBC_HANDLE_ALREADY_ALLOCATED;
-	}
-	if (!file.Read("DATABASE_ACCOUNT", "User", m_config.AccDatabaseUser))
-	{
-		return NTL_ERR_SYS_MEMORY_ALLOC_FAIL;
-	}
-	if (!file.Read("DATABASE_ACCOUNT", "Password", m_config.AccDatabasePassword))
-	{
-		return NTL_ERR_SYS_LOG_SYSTEM_INITIALIZE_FAIL;
-	}
-	if (!file.Read("DATABASE_ACCOUNT", "Db", m_config.AccDatabase))
-	{
-		return NTL_ERR_DBC_CONNECTION_CONNECT_FAIL;
-	}
 	// CONFIG
 	if (!file.Read("CONFIG", "MaxConnection", m_config.nMaxConnection))
 	{

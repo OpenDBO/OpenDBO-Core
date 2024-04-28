@@ -1,4 +1,4 @@
-//-----------------------------------------------------------------------------------
+﻿//-----------------------------------------------------------------------------------
 //		Auth Server
 //-----------------------------------------------------------------------------------
 
@@ -279,20 +279,24 @@ int main(int argc, _TCHAR* argv[])
 	// CONNECT TO MYSQL DATABASE
 	NTL_PRINT(PRINT_APP, "CONNECTING TO DATABASE");
 	
+	// CONNECT TO ACCOUNT DATABASE
 	db_acc = Database::CreateDatabaseInterface(1);
-	if (!GetAccDB.Initialize(app.GetDatabaseHost(), 3306, app.GetDatabaseUser(),
-		app.GetDatabasePassword(), app.GetDatabaseName(), 5))
+	// Initialize it
+	if (!GetAccDB.Initialize(app.GetAccDatabaseHost(), app.GetAccDatabasePort(), app.GetAccDatabaseUser(),
+		app.GetAccDatabasePassword(), app.GetAccDatabaseName(), 5))
 	{
-		NTL_PRINT(PRINT_APP, "sql : dbo_acc database initialization failed. Exiting.");
+		NTL_PRINT(PRINT_APP, "sql : account database initialization failed. Exiting.");
 		Sleep(5000);
 		return 0;
 	}
 
+	// CONNECT TO LOG DATABASE
 	db_log = Database::CreateDatabaseInterface(1);
-	if (!GetLogDB.Initialize(app.GetDatabaseHost(), 3306, app.GetDatabaseUser(),
-		app.GetDatabasePassword(), "dbo_log", 5))
+	// Initialize it
+	if (!GetLogDB.Initialize(app.GetLogDatabaseHost(), app.GetLogDatabasePort(), app.GetLogDatabaseUser(),
+		app.GetLogDatabasePassword(), app.GetLogDatabaseName(), 5))
 	{
-		NTL_PRINT(PRINT_APP, "sql : dbo_log database initialization failed. Exiting.");
+		NTL_PRINT(PRINT_APP, "sql : log database initialization failed. Exiting.");
 		Sleep(5000);
 		return 0;
 	}

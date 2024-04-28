@@ -1,4 +1,4 @@
-//-----------------------------------------------------------------------------------
+﻿//-----------------------------------------------------------------------------------
 //		Char Server
 //-----------------------------------------------------------------------------------
 
@@ -271,21 +271,21 @@ int main(int argc, _TCHAR* argv[])
 	// CONNECT TO MYSQL DATABASE
 	NTL_PRINT(PRINT_APP, "CONNECTING TO DATABASE");
 
+	// CONNECT TO CHARACTER DATABASE
 	db_char = Database::CreateDatabaseInterface(1);
-
 	// Initialize it
-	if (!GetCharDB.Initialize(app.GetDatabaseHost(), 3306, app.GetDatabaseUser(),
-		app.GetDatabasePassword(), app.GetDatabaseName(), 5))
+	if (!GetCharDB.Initialize(app.GetCharDatabaseHost(), app.GetCharDatabasePort(), app.GetCharDatabaseUser(),
+		app.GetCharDatabasePassword(), app.GetCharDatabaseName(), 5))
 	{
 		NTL_PRINT(PRINT_APP, "sql : character database initialization failed. Exiting.");
 		Sleep(5000);
 		return 0;
 	}
 
+	// CONNECT TO ACCOUNT DATABASE
 	db_acc = Database::CreateDatabaseInterface(1);
-
 	// Initialize it
-	if (!GetAccDB.Initialize(app.GetAccDatabaseHost(), 3306, app.GetAccDatabaseUser(),
+	if (!GetAccDB.Initialize(app.GetAccDatabaseHost(), app.GetAccDatabasePort(), app.GetAccDatabaseUser(),
 		app.GetAccDatabasePassword(), app.GetAccDatabaseName(), 5))
 	{
 		NTL_PRINT(PRINT_APP, "sql : account database initialization failed. Exiting.");
