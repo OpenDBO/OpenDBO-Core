@@ -50,6 +50,7 @@ class CGroupNotifyGui;
 class CWorldMapGui;
 class COptionWindowGui;
 class CHelpWindowGui;
+class CDropItemInfoGuiList;
 class CDropItemInfoGui;
 class CSideIconGui;
 class CPrivateShopGui;
@@ -163,6 +164,7 @@ private:
 	CWorldMapGui*				m_pWorldMap;
 	COptionWindowGui*			m_pOptionWindowGui;
 	CHelpWindowGui*				m_pHelpWindowGui;
+	CDropItemInfoGuiList*		m_pDropItemInfoGuiList;
 	CDropItemInfoGui*			m_pDropItemInfoGui;
 	CSideIconGui*				m_pSideIconGui;
 	CPrivateShopGui*			m_pPrivateShopGui;

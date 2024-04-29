@@ -87,6 +87,7 @@ public:
 	// Test PVS Multi Layer
 	static RwInt32					m_iCurrentPVSLayer;
 
+	static RwBool					m_bItemDropDisplay;
    
 public:
 

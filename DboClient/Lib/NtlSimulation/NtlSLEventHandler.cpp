@@ -598,6 +598,9 @@ RwBool CNtlSLEventHandler::Create(void)
 	RegisterMsg(g_EventBroadMsgBegNfy, "g_EventBroadMsgBegNfy", "SNtlEventBroadMsgBegNfy" );
 	RegisterMsg(g_EventBroadMsgEndNfy, "g_EventBroadMsgEndNfy", "SNtlEventBroadMsgEndNfy" );
 
+	//Drop item
+	RegisterMsg(g_EventSobCreateDropItemInfo, "g_EventSobCreateDropItemInfo", "SNtlEventSobDropItemInfoCreate");
+
 	// Naming
 	RegisterMsg(g_EventChangeCharName, "g_EventChangeCharName", "SNtlEventChangeCharName");
 	RegisterMsg(g_EventChangeNickName, "g_EventChangeNickName", "SNtlEventChangeNickName" );
@@ -1178,6 +1181,9 @@ void CNtlSLEventHandler::Destroy(void)
 	// Broad message
 	UnRegisterMsg(g_EventBroadMsgBegNfy);
 	UnRegisterMsg(g_EventBroadMsgEndNfy);
+
+	// Drop item
+	UnRegisterMsg(g_EventSobCreateDropItemInfo);
 
 	// Naming
 	UnRegisterMsg(g_EventChangeCharName);

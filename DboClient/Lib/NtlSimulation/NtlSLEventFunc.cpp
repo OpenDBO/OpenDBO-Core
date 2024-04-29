@@ -807,7 +807,6 @@ void* CNtlSLEventGenerator::SobWorldItemCreate(RwUInt32 uiClassId, SERIAL_HANDLE
 	sWorldItemCreate.pBrief = pBrief;
 	sWorldItemCreate.pState = pState;
 	sWorldItemCreate.pItemOptionSet = pItemOptionSet;
-
 	sWorldItemCreate.pSobObj = 0;
 
 	RWS::CMsg msg;
@@ -816,6 +815,21 @@ void* CNtlSLEventGenerator::SobWorldItemCreate(RwUInt32 uiClassId, SERIAL_HANDLE
 	_SendMsg( msg );
 
 	return sWorldItemCreate.pSobObj;
+}
+
+void* CNtlSLEventGenerator::SobDropItemInfoCreate(SERIAL_HANDLE hSerialId)
+{
+	SNtlEventSobDropItemInfoCreate sDropItemInfoCreate;
+	sDropItemInfoCreate.hSerialId = hSerialId;
+
+	sDropItemInfoCreate.pSobObj = 0;
+
+	RWS::CMsg msg;
+	msg.Id = g_EventSobCreateDropItemInfo;
+	msg.pData = reinterpret_cast<void*>(&sDropItemInfoCreate);
+	_SendMsg(msg);
+
+	return sDropItemInfoCreate.pSobObj;
 }
 
 void* CNtlSLEventGenerator::SobSlotItemCreate(void *pParentSobItem, RwUInt32 uiClassId, SERIAL_HANDLE hSerialId, 

@@ -92,6 +92,8 @@ RWS::CEventId g_EventUpdateExp;				// Exp 증가 이벤트.
 
 RWS::CEventId g_EventCharObjDelete;			// 캐릭터 소멸 이벤트.
 
+RWS::CEventId g_EventSobCreateDropItemInfo;
+
 RWS::CEventId g_EventItemUpgradeResult;		// 아이템 업그레이드 결과
 
 RWS::CEventId g_EventItemChangeOptionConfirmation;

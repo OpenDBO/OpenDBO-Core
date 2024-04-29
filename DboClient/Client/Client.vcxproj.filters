@@ -1214,6 +1214,9 @@
     <ClCompile Include="ScouterMeasureDlgGui.cpp">
       <Filter>Gui\Component\Game\Scouter</Filter>
     </ClCompile>
+    <ClCompile Include="DropItemInfoGuiList.cpp">
+      <Filter>Gui\Component\Game\InfoWnd</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gui\ContractGui.h">
@@ -2124,6 +2127,9 @@
     </ClInclude>
     <ClInclude Include="ScouterMeasureDlgGui.h">
       <Filter>Gui\Component\Game\Scouter</Filter>
+    </ClInclude>
+    <ClInclude Include="DropItemInfoGuiList.h">
+      <Filter>Gui\Component\Game\InfoWnd</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -242,6 +242,8 @@ bool Logic_ApplyNtlStorageUnit( CNtlStorageUnit* pUnit, unsigned int uiFlags )
 			{
 				// Scouter
 				CNtlPLGlobal::m_bRenderScouter = pUnit->GetBoolData( dSTORAGE_GAMEINFO_SCOUTER_VISIBLE );
+				// ItemDrop
+				CNtlPLGlobal::m_bItemDropDisplay = pUnit->GetBoolData(dSTORAGE_GAMEINFO_ITEM_DROP);
 			}
 		}
 		break;
