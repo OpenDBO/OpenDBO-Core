@@ -1,9 +1,9 @@
-/*****************************************************************************
+ï»¿/*****************************************************************************
 * File			: DboPackethandler_Lobby.cpp
 * Author		: Hong sungbock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 1. 16
-* Abstract		: °ÔÀÓ¿¡ Á¢¼ÓÇÏ¿© ½ÇÁ¦ ¿ùµå ÁøÀÔ±îÁöÀÇ ÆĞÅ¶ ÇÚµéÀ» ¸ğÀº´Ù
+* Abstract		: ê²Œì„ì— ì ‘ì†í•˜ì—¬ ì‹¤ì œ ì›”ë“œ ì§„ì…ê¹Œì§€ì˜ íŒ¨í‚· í•¸ë“¤ì„ ëª¨ì€ë‹¤
 *****************************************************************************
 * Desc         : 
 *****************************************************************************/
@@ -53,7 +53,7 @@
 
 void PacketHandler_LSLoginRes(void *pPacket)
 {
-	// event ¹ß»ı(login)
+	// event ë°œìƒ(login)
 	CDboEventGenerator::LoginGuiEnable();
 
 	sAU_LOGIN_RES *pLoginRes = (sAU_LOGIN_RES*)pPacket;
@@ -68,7 +68,7 @@ void PacketHandler_LSLoginRes(void *pPacket)
 		pConData->uiAccountId = pLoginRes->accountId;
 		pConData->byLastServerFarmID = pLoginRes->lastServerFarmId;		
 
-		// character server ip Á¤º¸.
+		// character server ip ì •ë³´.
 		pConData->ResetCharacterServer();
 
 		for(RwInt32 i = 0; i < (RwInt32)pLoginRes->byServerInfoCount; i++)
@@ -79,7 +79,7 @@ void PacketHandler_LSLoginRes(void *pPacket)
 		}
 
 
-		// login server ²÷±â.
+		// login server ëŠê¸°.
 		CLoginPacketGenerator *pLoginPacketGenerator = GetDboGlobal()->GetLoginPacketGenerator(); 
 		pLoginPacketGenerator->SendLogOutReq(pLoginRes->awchUserId, true); 
 
@@ -116,7 +116,7 @@ void PacketHandler_LSLoginDisconnectRes(void *pPacket)
 // character server packet hander class
 
 //////////////////////////////////////////////////////////////////////////
-// Ä³¸¯ÅÍ ¼­¹ö¿¡ ·Î±×ÀÎÇÏ¿´´Ù
+// ìºë¦­í„° ì„œë²„ì— ë¡œê·¸ì¸í•˜ì˜€ë‹¤
 void PacketHandler_CSLoginRes(void *pPacket)
 {	
 	sCU_LOGIN_RES *pLoginRes = (sCU_LOGIN_RES*)pPacket;
@@ -140,8 +140,8 @@ void PacketHandler_CSLoginRes(void *pPacket)
 		return;
 	}
 
-	// ¹°¸®Àû ¼­¹ö°¡ ´Ş¶ó¼­ ¸¶Áö¸·À¸·Î Á¢¼ÓÇÑ ¼­¹öÁ¤º¸°¡ Æ²¸± ¼ö ÀÖ´Ù.
-	// Á¤º¸¸¦ ÇÑ ¹ø ´õ °»½ÅÇÑ´Ù
+	// ë¬¼ë¦¬ì  ì„œë²„ê°€ ë‹¬ë¼ì„œ ë§ˆì§€ë§‰ìœ¼ë¡œ ì ‘ì†í•œ ì„œë²„ì •ë³´ê°€ í‹€ë¦´ ìˆ˜ ìˆë‹¤.
+	// ì •ë³´ë¥¼ í•œ ë²ˆ ë” ê°±ì‹ í•œë‹¤
 
 	SConnectData *pConData = GetDboGlobal()->GetConnectData();
 	pConData->byLastServerFarmID = pLoginRes->lastServerFarmId;
@@ -152,7 +152,7 @@ void PacketHandler_CSLoginRes(void *pPacket)
 }
 
 //////////////////////////////////////////////////////////////////////////
-// ½ÇÁ¦ ¼­¹ö Á¤º¸¸¦ ¹Ş´Â´Ù
+// ì‹¤ì œ ì„œë²„ ì •ë³´ë¥¼ ë°›ëŠ”ë‹¤
 void PacketHandler_CSCharServerFarmInfo(void *pPacket)
 {	
 	sCU_SERVER_FARM_INFO* pResult = (sCU_SERVER_FARM_INFO*)pPacket;
@@ -161,7 +161,7 @@ void PacketHandler_CSCharServerFarmInfo(void *pPacket)
 }
 
 //////////////////////////////////////////////////////////////////////////
-// ¼­¹ö ¸®½ºÆ®¸¦ ¸ğµÎ ¹Ş¾Ò´Ù
+// ì„œë²„ ë¦¬ìŠ¤íŠ¸ë¥¼ ëª¨ë‘ ë°›ì•˜ë‹¤
 void PacketHandler_CSCharServerListRes(void *pPacket)
 {	
 	sCU_CHARACTER_SERVERLIST_RES* pResult = (sCU_CHARACTER_SERVERLIST_RES*)pPacket;
@@ -194,13 +194,13 @@ void PacketHandler_CSCharServerListRes(void *pPacket)
 		GetCharStageState()->ChangeState(CHAR_STATE_SERVER_ENTER);
 	}
 
-	// ¼­¹ö ¸®½ºÆ® ÀüºÎ¸¦ ¹Ş¾Ò´Ù
-	// ¼­¹ö ¾÷µ¥ÀÌÆ® ÀÌº¥Æ®¸¦ º¸³½´Ù
+	// ì„œë²„ ë¦¬ìŠ¤íŠ¸ ì „ë¶€ë¥¼ ë°›ì•˜ë‹¤
+	// ì„œë²„ ì—…ë°ì´íŠ¸ ì´ë²¤íŠ¸ë¥¼ ë³´ë‚¸ë‹¤
 	CDboEventGenerator::LobbyEvent(LMT_UPDATE_SERVER);
 }
 
 //////////////////////////////////////////////////////////////////////////
-// ¼­¹ö Á¤º¸ ÇÏ³ª¸¸ ¹Ş¾Ò´Ù
+// ì„œë²„ ì •ë³´ í•˜ë‚˜ë§Œ ë°›ì•˜ë‹¤
 void PacketHandler_CSCharServerListOneRes(void * pPacket)
 {	
 	sCU_CHARACTER_SERVERLIST_ONE_RES* pResult = (sCU_CHARACTER_SERVERLIST_ONE_RES*)pPacket;
@@ -226,7 +226,7 @@ void PacketHandler_CSCharServerListOneRes(void * pPacket)
 }
 
 //////////////////////////////////////////////////////////////////////////
-// Ä³¸¯ÅÍ ¼­¹öÀÇ Ã¤³Î(°ÔÀÓ ¼­¹ö)Á¤º¸¸¦ ¹Ş´Â´Ù
+// ìºë¦­í„° ì„œë²„ì˜ ì±„ë„(ê²Œì„ ì„œë²„)ì •ë³´ë¥¼ ë°›ëŠ”ë‹¤
 void PacketHandler_CSCharServerChannelInfo(void *pPacket)
 {
 	sCU_SERVER_CHANNEL_INFO* pResult = (sCU_SERVER_CHANNEL_INFO*)pPacket;
@@ -244,7 +244,7 @@ void PacketHandler_CSCharServerChannelInfo(void *pPacket)
 
 
 //////////////////////////////////////////////////////////////////////////
-// Çö Ä³¸¯ÅÍ ¼­¹öÀÇ ½ÇÁ¦ Ä³¸¯ÅÍ Á¤º¸¸¦ ¹Ş´Â´Ù
+// í˜„ ìºë¦­í„° ì„œë²„ì˜ ì‹¤ì œ ìºë¦­í„° ì •ë³´ë¥¼ ë°›ëŠ”ë‹¤
 void PacketHandler_CSCharInfo(void *pPacket)
 {
 	sCU_CHARACTER_INFO* pResult = (sCU_CHARACTER_INFO*)pPacket;
@@ -263,7 +263,7 @@ void PacketHandler_CSCharInfo(void *pPacket)
 }
 
 //////////////////////////////////////////////////////////////////////////
-// Çö Ä³¸¯ÅÍ ¼­¹öÀÇ ¸ğµç Ä³¸¯ÅÍ Á¤º¸¸¦ ¹Ş¾Ò´Ù
+// í˜„ ìºë¦­í„° ì„œë²„ì˜ ëª¨ë“  ìºë¦­í„° ì •ë³´ë¥¼ ë°›ì•˜ë‹¤
 void PacketHandler_CSCharLoadRes(void *pPacket)
 {
 	GetMsgBoxManager()->DeleteNetConnectBox();
@@ -285,10 +285,10 @@ void PacketHandler_CSCharLoadRes(void *pPacket)
 		}
 	}	
 
-	// Ã¤³Î ¾÷µ¥ÀÌÆ®
+	// ì±„ë„ ì—…ë°ì´íŠ¸
 	CDboEventGenerator::LobbyEvent(LMT_UPDATE_CHANNEL);
 
-	// Ä³¸¯ÅÍ ³»¿ë UI °»½Å
+	// ìºë¦­í„° ë‚´ìš© UI ê°±ì‹ 
 	CDboEventGenerator::LobbyEvent(LMT_UPDATE_CHARACTER_LIST);
 
 	//if( GetLobbyManager()->GetCharacterCount_inSelectedServer() > 0 )
@@ -320,7 +320,7 @@ void PacketHandler_CSCharAddRes(void *pPacket)
 	listNewCharID.push_back(pCharAddRes->sPcDataSummary.charId);
 #endif
 
-	// »õ·Î ¸¸µç Ä³¸¯ÅÍ Á¤º¸ ÀúÀå
+	// ìƒˆë¡œ ë§Œë“  ìºë¦­í„° ì •ë³´ ì €ì¥
 	SERVER_HANDLE	hServer	= GetLobbyManager()->GetSelectedServerHandle();
 	CLobby*			pLobby	= GetLobbyManager()->GetLobby(hServer);
 	if( !pLobby )
@@ -331,10 +331,10 @@ void PacketHandler_CSCharAddRes(void *pPacket)
 
 	pLobby->AddCharacter(&pCharAddRes->sPcDataSummary);
 
-	// »õ·Î ¸¸µç Ä³¸¯ÅÍ¸¦ ¼±ÅÃÇÑ´Ù
+	// ìƒˆë¡œ ë§Œë“  ìºë¦­í„°ë¥¼ ì„ íƒí•œë‹¤
 	pLobby->SetSelectedCharacterIndex( pLobby->GetCharacterCount() - 1 );
 
-	// Ä³¸¯ÅÍ ³»¿ë UI °»½Å
+	// ìºë¦­í„° ë‚´ìš© UI ê°±ì‹ 
 	CDboEventGenerator::LobbyEvent(LMT_UPDATE_CHARACTER_LIST);	
 
 	GetCharStageState()->ChangeState(CHAR_STATE_MAKE_EXIT);
@@ -352,8 +352,8 @@ void PacketHandler_CSCharDelRes(void *pPacket)
 		return;
 	}
 
-	// Ä³¸¯ÅÍ »èÁ¦ ´ë±â
-	// »õ·Î ¸¸µç Ä³¸¯ÅÍ¸¦ ¼±ÅÃÇÑ´Ù
+	// ìºë¦­í„° ì‚­ì œ ëŒ€ê¸°
+	// ìƒˆë¡œ ë§Œë“  ìºë¦­í„°ë¥¼ ì„ íƒí•œë‹¤
 	SERVER_HANDLE	hServer	= GetLobbyManager()->GetSelectedServerHandle();
 	CLobby*			pLobby	= GetLobbyManager()->GetLobby(hServer);
 	if( !pLobby )
@@ -364,7 +364,7 @@ void PacketHandler_CSCharDelRes(void *pPacket)
 
 	pLobby->SetReserveDeleteCharacter(pCharDelRes->charId, ((RwReal)pCharDelRes->dwRemainTick)/1000.f);
 
-	// Ä³¸¯ÅÍ°¡ ³²¾ÆÀÖ´Ù¸é Ã³À½ Ä³¸¯ÅÍ¸¦ ¼±ÅÃÇÑ´Ù
+	// ìºë¦­í„°ê°€ ë‚¨ì•„ìˆë‹¤ë©´ ì²˜ìŒ ìºë¦­í„°ë¥¼ ì„ íƒí•œë‹¤
 	if( pLobby->GetCharacterCount() > 0 )
 	{
 		pLobby->SetSelectedCharacterIndex( 0 );
@@ -376,7 +376,7 @@ void PacketHandler_CSCharDelRes(void *pPacket)
 		CDboEventGenerator::LobbyEvent(LMT_SELECT_CHARACTER, INVALID_BYTE);
 	}
 
-	// Ä³¸¯ÅÍ ³»¿ë UI °»½Å
+	// ìºë¦­í„° ë‚´ìš© UI ê°±ì‹ 
 	CDboEventGenerator::LobbyEvent(LMT_UPDATE_CHARACTER_LIST);	
 }
 
@@ -484,7 +484,7 @@ void PacketHandler_CSCharSelectRes(void *pPacket)
 		pConnectData->sGameCon.wServerPort = pResult->wGameServerPortForClient;
 
 
-		// game server Á¢¼Ó.
+		// game server ì ‘ì†.
 		CNtlClientNet *pNet = GetDboGlobal()->GetNetwork(); 
 
 		CGamePacketGenerator *pGamePacketGenerator = GetDboGlobal()->GetGamePacketGenerator(); 
@@ -507,22 +507,22 @@ void PacketHandler_CSCharSelectRes(void *pPacket)
 			// socket connect state
 			pConnectData->sGameCon.byConnState = SConnectAtomic::SOCKET_STATE_CONNECT;
 
-			// game packet generator ÀÇ CNtlNetSender data setting.
+			// game packet generator ì˜ CNtlNetSender data setting.
 			pGameNetSender->SetData(pConnectData->sGameCon.hSocket, pNet); 
 
-			// simulation packet generatorÀÇ CNtlNetSender data setting
+			// simulation packet generatorì˜ CNtlNetSender data setting
 			pSLNetSender->SetData(pConnectData->sGameCon.hSocket, pNet);
 
 
 			if( GetDboGlobal()->IsEnterTutorial() )
 			{
-				// Æ©Åä¸®¾ó ÁøÀÔ
+				// íŠœí† ë¦¬ì–¼ ì§„ì…
 				GetCharStageState()->ReservateState(CHAR_STATE_READY_ENTER_TUTORIAL);
 				GetCharStageState()->ChangeState(CHAR_STATE_SELECT_EXIT);
 			}
 			else
 			{
-				// °ÔÀÓ ÁøÀÔ
+				// ê²Œì„ ì§„ì…
 				GetCharStageState()->ReservateState(CHAR_STATE_SUCCESS_ENTER_GAME);
 				GetCharStageState()->ChangeState(CHAR_STATE_SELECT_EXIT);
 			}
@@ -752,8 +752,8 @@ void PacketHandler_GSGameEnterRes(void *pPacket)
 	sGU_GAME_ENTER_RES *pGameEnterRes = (sGU_GAME_ENTER_RES*)pPacket;
 	if(pGameEnterRes->wResultCode != GAME_SUCCESS)
 	{
-		// string ¹®ÀÚ¿­À» Âï´Â´Ù.
-		// network data reading pause ½ÃÅ²´Ù. 
+		// string ë¬¸ìì—´ì„ ì°ëŠ”ë‹¤.
+		// network data reading pause ì‹œí‚¨ë‹¤. 
 		GetAlarmManager()->AlarmMessage(Logic_GetResultCodeString(pGameEnterRes->wResultCode, "GU_GAME_ENTER_RES"), TRUE );
 		return;
 	}
@@ -763,7 +763,7 @@ void PacketHandler_GSGameEnterRes(void *pPacket)
 	if( pConnectData->bChangingGameServer == FALSE)
 	{
 		// Terminate character server connection
-		GetDboGlobal()->GetLobbyPacketGenerator()->SendCharDisconnectReq(true);
+		GetDboGlobal()->GetLobbyPacketGenerator()->SendCharDisconnectReq(2);
 
 		// Clears the lobby's avatar information
 		CDboEventGenerator::LobbyEvent(LMT_DESTORY_LOBBY_AVATAR);
@@ -831,7 +831,7 @@ void PacketHandler_GSGameEnterRes(void *pPacket)
 			// socket connect state
 			pConnectData->sChatCon.byConnState = SConnectAtomic::SOCKET_STATE_CONNECT;
 
-			// chatting packet generator ÀÇ CNtlNetSender data setting.
+			// chatting packet generator ì˜ CNtlNetSender data setting.
 			pChatNetSender->SetData(pConnectData->sChatCon.hSocket, pNet);			
 		}
 		else
@@ -932,7 +932,7 @@ void PacketHandler_GSAvatarWorldInfo(void *pPacket)
 
 	GetNtlWorldConcept()->DeleteGradeWorldPlayConcept(WORLD_CONCEPT_FIRST_GRADE);
 
-	// world Á¤º¸ ÀÔ·Â.
+	// world ì •ë³´ ì…ë ¥.
 	RwBool bWorldChange = FALSE;
 
 	SAvatarInfo *pAvatarInfo = GetNtlSLGlobal()->GetAvatarInfo(); 
@@ -994,14 +994,14 @@ void PacketHandler_GSAvatarWorldInfo(void *pPacket)
 	RwUInt8 byRuleType = pWorldInfo->worldInfo.sRuleInfo.byRuleType;
 	CWorldTable* pWorldTable = API_GetTableContainer()->GetWorldTable();
 
-	// world concept Á¤º¸ ÀÔ·Â.
+	// world concept ì •ë³´ ì…ë ¥.
 	if(byRuleType != GAMERULE_NORMAL)
 	{
 		if(byRuleType == GAMERULE_TUTORIAL)
 		{
 			GetNtlWorldConcept()->AddWorldPlayConcept(WORLD_PLAY_TUTORIAL);
 
-			// ÀÓ½Ã
+			// ì„ì‹œ
 			CNtlWorldConceptTutorial* pConcept = reinterpret_cast<CNtlWorldConceptTutorial*>(GetNtlWorldConcept()->GetWorldConceptController(WORLD_PLAY_TUTORIAL));
 			pConcept->SetTMQState(TIMEQUEST_GAME_STATE_BEGIN);
 		}
@@ -1029,7 +1029,7 @@ void PacketHandler_GSAvatarWorldInfo(void *pPacket)
 		}
 		else if(byRuleType == GAMERULE_TIMEQUEST)
 		{
-			CNtlSLEventGenerator::CameraControlDelete(CAMERA_CONTROL_TIMEMACHINE); // Å¸ÀÓ¸Ó½Å ¿¬Ãâ Ä«¸Ş¶ó¸¦ Á¦°ÅÇÑ´Ù.
+			CNtlSLEventGenerator::CameraControlDelete(CAMERA_CONTROL_TIMEMACHINE); // íƒ€ì„ë¨¸ì‹  ì—°ì¶œ ì¹´ë©”ë¼ë¥¼ ì œê±°í•œë‹¤.
 
 			GetNtlWorldConcept()->AddWorldPlayConcept(WORLD_PLAY_TIME_MACHINE);
 
@@ -1065,7 +1065,7 @@ void PacketHandler_GSAvatarWorldInfo(void *pPacket)
 	}	
 	else
 	{
-		// ÀÏ¹İ ¿ùµå·Î ³ª°¡´Â ½ÃÁ¡¿¡¼­ Å¸ÀÌ¸Ó½Å Ä«¸Ş¶ó°¡ Á¸ÀçÇÏ´Â °æ¿ì´Â »èÁ¦ÇÑ´Ù
+		// ì¼ë°˜ ì›”ë“œë¡œ ë‚˜ê°€ëŠ” ì‹œì ì—ì„œ íƒ€ì´ë¨¸ì‹  ì¹´ë©”ë¼ê°€ ì¡´ì¬í•˜ëŠ” ê²½ìš°ëŠ” ì‚­ì œí•œë‹¤
 		CNtlSLEventGenerator::CameraControlDelete(CAMERA_CONTROL_TIMEMACHINE);
 	}
 
@@ -1114,7 +1114,7 @@ void PacketHandler_GSAvatarWorldInfo(void *pPacket)
 
 void Packethandler_GSAvatarWorldZoneInfo( void* pPacket )
 {
-	// Night È¿°ú ÀÌº¥Æ®¸¦ ³¯¸°´Ù.
+	// Night íš¨ê³¼ ì´ë²¤íŠ¸ë¥¼ ë‚ ë¦°ë‹¤.
 	sGU_AVATAR_ZONE_INFO* pZoneInfo = reinterpret_cast<sGU_AVATAR_ZONE_INFO*>(pPacket);
 	if(pZoneInfo)
 	{
@@ -1208,7 +1208,7 @@ void PacketHandler_GSAuthKeyCommunityServerRes(void *pPacket)
 
 void PacketHandler_GSAvatarPetitionInfo(void *pPacket)
 {
-	// À¯ÀúÀÇ °èÁ¤À¸·Î ÁøÁ¤À» ³Ö¾ú´ø Á¤º¸
+	// ìœ ì €ì˜ ê³„ì •ìœ¼ë¡œ ì§„ì •ì„ ë„£ì—ˆë˜ ì •ë³´
 	sGU_AVATAR_PETITION_INFO* pPetitionInfo = (sGU_AVATAR_PETITION_INFO*)pPacket;
 
 	GetPetitionManager()->SetPetitionID(pPetitionInfo->petitionID);
@@ -1217,7 +1217,7 @@ void PacketHandler_GSAvatarPetitionInfo(void *pPacket)
 
 void PacketHandler_GSWarFog_UpdataRes(void *pPacket)
 {
-	// ³ª¸ŞÅ© »çÀÌÄ­À» Å¬¸¯ÇÏ¿© ¿öÆ÷±×¸¦ ¹àÈù´Ù
+	// ë‚˜ë©”í¬ ì‚¬ì´ì¹¸ì„ í´ë¦­í•˜ì—¬ ì›Œí¬ê·¸ë¥¼ ë°íŒë‹¤
 	API_GetSLPacketLockManager()->Unlock( GU_WAR_FOG_UPDATE_RES );
 
 	sGU_WAR_FOG_UPDATE_RES* pResult = (sGU_WAR_FOG_UPDATE_RES*)pPacket;
@@ -1238,7 +1238,7 @@ void PacketHandler_GSCharServerExitRes(void *pPacket)
 
 	sGU_CHAR_EXIT_RES *pCharServerRes = (sGU_CHAR_EXIT_RES*)pPacket;
 
-	// login server ²÷±â.
+	// login server ëŠê¸°.
 	CNtlClientNet *pNet = GetDboGlobal()->GetNetwork(); 
 	SConnectData *pConnectData = GetDboGlobal()->GetConnectData();
 
@@ -1269,7 +1269,7 @@ void PacketHandler_GSCharServerExitRes(void *pPacket)
 		// auth key
 		memcpy(pConnectData->sCharCon.chAuthKey, pCharServerRes->achAuthKey, NTL_MAX_SIZE_AUTH_KEY);
 
-		// character server ip Á¤º¸.
+		// character server ip ì •ë³´.
 		for(RwInt32 i = 0; i < (RwInt32)pCharServerRes->byServerInfoCount; i++)
 		{
 			pConnectData->AddCharacterServer(pCharServerRes->aServerInfo[i].szCharacterServerIP, 
@@ -1328,10 +1328,10 @@ void PacketHandler_GSGameServerChangeRes(void *pPacket)
 			pConnectData->bChangingGameServer	= TRUE;
 			pConnectData->sGameCon.byConnState	= SConnectAtomic::SOCKET_STATE_CONNECT;
 
-			// game packet generator ÀÇ CNtlNetSender data setting.
+			// game packet generator ì˜ CNtlNetSender data setting.
 			pGameNetSender->SetData(pConnectData->sGameCon.hSocket, pNet); 
 
-			// simulation packet generatorÀÇ CNtlNetSender data setting
+			// simulation packet generatorì˜ CNtlNetSender data setting
 			pSLNetSender->SetData(pConnectData->sGameCon.hSocket, pNet);
 
 
@@ -1423,10 +1423,10 @@ void PacketHandler_GSGameChannelChangeRes(void *pPacket)
 		pConnectData->bChangingGameServer	= TRUE;
 		pConnectData->sGameCon.byConnState	= SConnectAtomic::SOCKET_STATE_CONNECT;
 
-		// game packet generator ÀÇ CNtlNetSender data setting.
+		// game packet generator ì˜ CNtlNetSender data setting.
 		pGameNetSender->SetData(pConnectData->sGameCon.hSocket, pNet); 
 
-		// simulation packet generatorÀÇ CNtlNetSender data setting
+		// simulation packet generatorì˜ CNtlNetSender data setting
 		pSLNetSender->SetData(pConnectData->sGameCon.hSocket, pNet);
 
 
