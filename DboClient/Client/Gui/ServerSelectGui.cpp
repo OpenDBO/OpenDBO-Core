@@ -656,7 +656,7 @@ VOID CServerSelectGui::OnClickedCancleButton(gui::CComponent* pComponent)
 	// 게임 시작시 바로 서버 셀렉트 화면으로 왔다면 로그인으로 돌아간다
 	if( GetLobbyManager()->GetSelectedServerHandle() == INVALID_SERVERFARMID )
 	{
-		GetDboGlobal()->GetLobbyPacketGenerator()->SendCharDisconnectReq(false);
+		GetDboGlobal()->GetLobbyPacketGenerator()->SendCharDisconnectReq(0);
 		GetCharStageState()->ReservateState(CHAR_STATE_RETURN_LOGIN);
 	}
 

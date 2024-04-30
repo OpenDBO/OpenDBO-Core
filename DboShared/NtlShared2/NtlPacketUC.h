@@ -73,7 +73,7 @@ BEGIN_PROTOCOL(UC_CHARACTER_SELECT_REQ)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UC_CHARACTER_EXIT_REQ)
-	BYTE			byMoveType;
+	BYTE			byMoveType; // 0 = leave game 2 = enter game server 
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UC_CHARACTER_LOAD_REQ)

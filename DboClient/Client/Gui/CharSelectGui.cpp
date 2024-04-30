@@ -297,7 +297,7 @@ VOID CCharSelectGui::OnClickedGameStartButton(gui::CComponent* pComponent)
 VOID CCharSelectGui::OnClickedExitButton(gui::CComponent* pComponent)
 {
 	// I go back to the lobby.
-	GetDboGlobal()->GetLobbyPacketGenerator()->SendCharDisconnectReq(false);
+	GetDboGlobal()->GetLobbyPacketGenerator()->SendCharDisconnectReq(0);
 	GetCharStageState()->ReservateState(CHAR_STATE_RETURN_LOGIN);
 	GetCharStageState()->ChangeState(CHAR_STATE_SELECT_EXIT);
 }
