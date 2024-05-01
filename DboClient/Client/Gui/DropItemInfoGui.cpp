@@ -271,14 +271,14 @@ VOID CDropItemInfoGui::PositionUpdate(VOID)
 
 	RwV3d vDropItemPos = m_pDropItem->GetPosition();
 
-	if (!GetGuiFuntor()->Calc3DPosTo2D(vDropItemPos, 1.0f, &posOffset, &posRes) && !m_pDropItemShow)
+	if (!GetGuiFuntor()->Calc3DPosTo2D(vDropItemPos, 1.0f, &posOffset, &posRes))
 	{
 		Show(false);
 		return;
 	}
 
 	SetPosition(posRes.x, posRes.y);
-	Show(true);
+	Show(!m_pDropItemShow || (m_pDropItemShow && CNtlPLGlobal::m_bItemDropDisplay));
 }
 
 VOID CDropItemInfoGui::FadeEffect(VOID)

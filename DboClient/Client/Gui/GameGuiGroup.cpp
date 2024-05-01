@@ -376,15 +376,6 @@ RwBool CGameGuiGroup::Create(void)
 	}
 	CNtlPLGuiManager::GetInstance()->AddGui(m_pDropItemInfoGuiList);
 
-	// DropItemInfo
-	m_pDropItemInfoGui = NTL_NEW CDropItemInfoGui( "DropItemInfoGui" );
-	if( !m_pDropItemInfoGui->Create() )
-	{
-		m_pDropItemInfoGui->Destroy();
-		NTL_DELETE( m_pDropItemInfoGui );
-		NTL_RETURN( FALSE );
-	}
-	CNtlPLGuiManager::GetInstance()->AddGui( m_pDropItemInfoGui );
 
 	AddDialog(m_pScouterMeasureDlg, CScouterMeasureDlgGui, "ScouterMeasure", DIALOG_SCOUTER_MEASURE);
 
