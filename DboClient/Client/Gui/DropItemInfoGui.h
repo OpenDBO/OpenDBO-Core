@@ -73,7 +73,7 @@ private:
 
 	RwBool		m_bDirectToShowWaitFade;
 
-	RwReal		m_pDropItemShow;
+	RwBool		m_pDropItemShow;
 };
 
 #endif//__DROP_ITEM_INFO_GUI_H__

@@ -75,38 +75,36 @@ VOID CDropItemInfoGuiList::HandleEvents(RWS::CMsg& msg) {
 
 	bool isOptionsShowAllItemsEnabled = CNtlPLGlobal::m_bItemDropDisplay;
 
-	if (isOptionsShowAllItemsEnabled) {
-		if (msg.Id == g_EventSobCreateDropItemInfo) {
-		SNtlEventSobDropItemInfoCreate* pData = reinterpret_cast<SNtlEventSobDropItemInfoCreate*>(msg.pData);
-			CDropItemInfoGui* m_pDropItemInfoGui = NTL_NEW CDropItemInfoGui(pData->hSerialId, "DropItemInfoGui");
+	if (msg.Id == g_EventSobCreateDropItemInfo) {
+	SNtlEventSobDropItemInfoCreate* pData = reinterpret_cast<SNtlEventSobDropItemInfoCreate*>(msg.pData);
+		CDropItemInfoGui* m_pDropItemInfoGui = NTL_NEW CDropItemInfoGui(pData->hSerialId, "DropItemInfoGui");
 
-			if (!m_pDropItemInfoGui->Create())
-			{
-				m_pDropItemInfoGui->Destroy();
-				NTL_DELETE(m_pDropItemInfoGui);
-			}
-
-			m_ListDropItemGui.emplace(m_pDropItemInfoGui);
+		if (!m_pDropItemInfoGui->Create())
+		{
+			m_pDropItemInfoGui->Destroy();
+			NTL_DELETE(m_pDropItemInfoGui);
 		}
-		else if (msg.Id == g_EventCharObjDelete) {
-			SNtlEventSobDelete* pData = reinterpret_cast<SNtlEventSobDelete*>(msg.pData);
 
-			if (pData->hSerialId == INVALID_SERIAL_ID)
-				return;
+		m_ListDropItemGui.emplace(m_pDropItemInfoGui);
+	}
+	else if (msg.Id == g_EventCharObjDelete) {
+		SNtlEventSobDelete* pData = reinterpret_cast<SNtlEventSobDelete*>(msg.pData);
 
-			for (auto elem : m_ListDropItemGui) {
+		if (pData->hSerialId == INVALID_SERIAL_ID)
+			return;
 
-				if (elem->m_uiDropItemSerial == pData->hSerialId) {
+		for (auto elem : m_ListDropItemGui) {
 
-					//remove from list
-					m_ListDropItemGui.erase(elem);
-					elem->HandleEvents(msg);
+			if (elem->m_uiDropItemSerial == pData->hSerialId) {
 
-					//then destroy
-					elem->Destroy();
-					NTL_DELETE(elem);
-					break;
-				}
+				//remove from list
+				m_ListDropItemGui.erase(elem);
+				elem->HandleEvents(msg);
+
+				//then destroy
+				elem->Destroy();
+				NTL_DELETE(elem);
+				break;
 			}
 		}
 	}

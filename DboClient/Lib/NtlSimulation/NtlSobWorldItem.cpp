@@ -204,6 +204,8 @@ VOID CNtlSobWorldItem::SwitchState( RwInt32 eState )
 			m_fDestTime = 1.50f; // by daneos: for some reason, drop is invisible if we instantly call m_pSobProxy->SetBaseAnimation(ITEM_IDLE, TRUE);
 			StateUpdate = &CNtlSobWorldItem::State_NoCreateUpdate;
 			GetNtlSobManager()->AddUpdate(this);
+			if (hSerialIdDropItem != INVALID_SERIAL_ID)
+				CNtlSLEventGenerator::SobDropItemInfoCreate(hSerialIdDropItem);
 		}
 		break;
 	}
