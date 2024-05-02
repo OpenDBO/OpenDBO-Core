@@ -1,10 +1,10 @@
-//***********************************************************************************
+ï»¿//***********************************************************************************
 //
 //	File		:	NtlServer.h
 //
 //	Begin		:	2008-05-13
 //
-//	Copyright	:	¨Ï NTL-Inc Co., Ltd
+//	Copyright	:	â“’ NTL-Inc Co., Ltd
 //
 //	Author		:	
 //
@@ -21,15 +21,6 @@ struct sGAME_SERVERCONFIG
 	CNtlString		strClientAcceptAddr;
 	CNtlString		strPublicClientAcceptAddr;
 	WORD			wClientAcceptPort;
-
-	CNtlString		DatabaseHost;
-	CNtlString		DatabaseUser;
-	CNtlString		DatabasePassword;
-	CNtlString		Database;
-	CNtlString		AccDatabaseHost;
-	CNtlString		AccDatabaseUser;
-	CNtlString		AccDatabasePassword;
-	CNtlString		AccDatabase;
 
 	BYTE			byServerID;
 	BYTE			byChannel;
@@ -101,14 +92,23 @@ struct sCHAT_SERVERCONFIG
 	CNtlString		strQueryServerIP;
 	WORD			wQueryServerPort;
 
-	CNtlString		DatabaseHost;
-	CNtlString		DatabaseUser;
-	CNtlString		DatabasePassword;
-	CNtlString		Database;
+	CNtlString		CharDatabaseHost;
+	UINT			CharDatabasePort;
+	CNtlString		CharDatabaseUser;
+	CNtlString		CharDatabasePassword;
+	CNtlString		CharDatabaseName;
+
 	CNtlString		AccDatabaseHost;
+	UINT			AccDatabasePort;
 	CNtlString		AccDatabaseUser;
 	CNtlString		AccDatabasePassword;
-	CNtlString		AccDatabase;
+	CNtlString		AccDatabaseName;
+
+	CNtlString		LogDatabaseHost;
+	UINT			LogDatabasePort;
+	CNtlString		LogDatabaseUser;
+	CNtlString		LogDatabasePassword;
+	CNtlString		LogDatabaseName;
 
 	int				nMaxConnection;
 
@@ -123,15 +123,17 @@ struct sCHAR_SERVERCONFIG
 	WORD			wClientAcceptPort;
 	BYTE			byServerID;
 
-	CNtlString		DatabaseHost;
-	CNtlString		DatabaseUser;
-	CNtlString		DatabasePassword;
-	CNtlString		Database;
+	CNtlString		CharDatabaseHost;
+	UINT			CharDatabasePort;
+	CNtlString		CharDatabaseUser;
+	CNtlString		CharDatabasePassword;
+	CNtlString		CharDatabaseName;
 
 	CNtlString		AccDatabaseHost;
+	UINT			AccDatabasePort;
 	CNtlString		AccDatabaseUser;
 	CNtlString		AccDatabasePassword;
-	CNtlString		AccDatabase;
+	CNtlString		AccDatabaseName;
 
 	CNtlString		strQueryServerIP;
 	WORD			wQueryServerPort;

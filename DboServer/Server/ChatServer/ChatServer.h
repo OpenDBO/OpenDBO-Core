@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "NtlSfx.h"
 #include "NtlServer.h"
@@ -24,14 +24,23 @@ public:
 	CChatServer();
 	virtual ~CChatServer();
 
-	CNtlString		GetDatabaseHost()	{ return m_config.DatabaseHost; }
-	CNtlString		GetDatabaseUser()	{ return m_config.DatabaseUser; }
-	CNtlString		GetDatabasePassword()	{ return m_config.DatabasePassword; }
-	CNtlString		GetDatabaseDatabase()	{ return m_config.Database; }
-	CNtlString		GetAccDbHost()	{ return m_config.AccDatabaseHost; }
-	CNtlString		GetAccDbUser()	{ return m_config.AccDatabaseUser; }
-	CNtlString		GetAccDbPass()	{ return m_config.AccDatabasePassword; }
-	CNtlString		GetAccDbDatabase() { return m_config.AccDatabase; }
+	CNtlString		GetCharDatabaseHost()		{ return m_config.CharDatabaseHost; }
+	UINT			GetCharDatabasePort()		{ return m_config.CharDatabasePort; }
+	CNtlString		GetCharDatabaseUser()		{ return m_config.CharDatabaseUser; }
+	CNtlString		GetCharDatabasePassword()	{ return m_config.CharDatabasePassword; }
+	CNtlString		GetCharDatabaseName()		{ return m_config.CharDatabaseName; }
+
+	CNtlString		GetAccDatabaseHost()		{ return m_config.AccDatabaseHost; }
+	UINT			GetAccDatabasePort()		{ return m_config.AccDatabasePort; }
+	CNtlString		GetAccDatabaseUser()		{ return m_config.AccDatabaseUser; }
+	CNtlString		GetAccDatabasePassword()	{ return m_config.AccDatabasePassword; }
+	CNtlString		GetAccDatabaseName()		{ return m_config.AccDatabaseName; }
+
+	CNtlString		GetLogDatabaseHost()		{ return m_config.LogDatabaseHost; }
+	UINT			GetLogDatabasePort()		{ return m_config.LogDatabasePort; }
+	CNtlString		GetLogDatabaseUser()		{ return m_config.LogDatabaseUser; }
+	CNtlString		GetLogDatabasePassword()	{ return m_config.LogDatabasePassword; }
+	CNtlString		GetLogDatabaseName()		{ return m_config.LogDatabaseName; }
 
 	virtual int				OnInitApp();
 	virtual int				OnAppStart();
@@ -93,38 +102,70 @@ public:
 			return NTL_ERR_SYS_CONFIG_FILE_READ_FAIL;
 		}
 
-		//DATABASE
-		if (!file.Read("DATABASE_CHARACTER", "Host", m_config.DatabaseHost))
+		// DATABASE_CHARACTER
+		if (!file.Read("DATABASE_CHARACTER", "Host", m_config.CharDatabaseHost))
 		{
-			return NTL_ERR_DBC_HANDLE_ALREADY_ALLOCATED;
+			return NTL_ERR_SYS_CONFIG_FILE_READ_FAIL;
 		}
-		if (!file.Read("DATABASE_CHARACTER", "User", m_config.DatabaseUser))
+		if (!file.Read("DATABASE_CHARACTER", "Port", m_config.CharDatabasePort))
 		{
-			return NTL_ERR_SYS_MEMORY_ALLOC_FAIL;
+			return NTL_ERR_SYS_CONFIG_FILE_READ_FAIL;
 		}
-		if (!file.Read("DATABASE_CHARACTER", "Password", m_config.DatabasePassword))
+		if (!file.Read("DATABASE_CHARACTER", "User", m_config.CharDatabaseUser))
 		{
-			return NTL_ERR_SYS_LOG_SYSTEM_INITIALIZE_FAIL;
+			return NTL_ERR_SYS_CONFIG_FILE_READ_FAIL;
 		}
-		if (!file.Read("DATABASE_CHARACTER", "Db", m_config.Database))
+		if (!file.Read("DATABASE_CHARACTER", "Password", m_config.CharDatabasePassword))
 		{
-			return NTL_ERR_DBC_CONNECTION_CONNECT_FAIL;
+			return NTL_ERR_SYS_CONFIG_FILE_READ_FAIL;
 		}
+		if (!file.Read("DATABASE_CHARACTER", "DbName", m_config.CharDatabaseName))
+		{
+			return NTL_ERR_SYS_CONFIG_FILE_READ_FAIL;
+		}
+
+		// DATABASE_ACCOUNT
 		if (!file.Read("DATABASE_ACCOUNT", "Host", m_config.AccDatabaseHost))
 		{
-			return NTL_ERR_DBC_HANDLE_ALREADY_ALLOCATED;
+			return NTL_ERR_SYS_CONFIG_FILE_READ_FAIL;
+		}
+		if (!file.Read("DATABASE_ACCOUNT", "Port", m_config.AccDatabasePort))
+		{
+			return NTL_ERR_SYS_CONFIG_FILE_READ_FAIL;
 		}
 		if (!file.Read("DATABASE_ACCOUNT", "User", m_config.AccDatabaseUser))
 		{
-			return NTL_ERR_SYS_MEMORY_ALLOC_FAIL;
+			return NTL_ERR_SYS_CONFIG_FILE_READ_FAIL;
 		}
 		if (!file.Read("DATABASE_ACCOUNT", "Password", m_config.AccDatabasePassword))
 		{
-			return NTL_ERR_SYS_LOG_SYSTEM_INITIALIZE_FAIL;
+			return NTL_ERR_SYS_CONFIG_FILE_READ_FAIL;
 		}
-		if (!file.Read("DATABASE_ACCOUNT", "Db", m_config.AccDatabase))
+		if (!file.Read("DATABASE_ACCOUNT", "DbName", m_config.AccDatabaseName))
 		{
-			return NTL_ERR_DBC_CONNECTION_CONNECT_FAIL;
+			return NTL_ERR_SYS_CONFIG_FILE_READ_FAIL;
+		}
+
+		// DATABASE_LOG
+		if (!file.Read("DATABASE_LOG", "Host", m_config.LogDatabaseHost))
+		{
+			return NTL_ERR_SYS_CONFIG_FILE_READ_FAIL;
+		}
+		if (!file.Read("DATABASE_LOG", "Port", m_config.LogDatabasePort))
+		{
+			return NTL_ERR_SYS_CONFIG_FILE_READ_FAIL;
+		}
+		if (!file.Read("DATABASE_LOG", "User", m_config.LogDatabaseUser))
+		{
+			return NTL_ERR_SYS_CONFIG_FILE_READ_FAIL;
+		}
+		if (!file.Read("DATABASE_LOG", "Password", m_config.LogDatabasePassword))
+		{
+			return NTL_ERR_SYS_CONFIG_FILE_READ_FAIL;
+		}
+		if (!file.Read("DATABASE_LOG", "DbName", m_config.LogDatabaseName))
+		{
+			return NTL_ERR_SYS_CONFIG_FILE_READ_FAIL;
 		}
 
 		// PERFORMANCE

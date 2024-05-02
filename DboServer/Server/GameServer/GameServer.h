@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "NtlSfx.h"
 #include "NtlSharedDef.h"
@@ -82,15 +82,6 @@ public:
 	int				GetZeniPartyBonusRate() { return m_config.ZeniPartyBonusRate; }
 	int				GetQuestMoneyRate()		{ return m_config.QuestMoneyRate; }
 	int				GetQuestExpRate()		{ return m_config.QuestExpRate; }
-
-	CNtlString		GetDatabaseHost()	{	return m_config.DatabaseHost;	}
-	CNtlString		GetDatabaseUser()	{	return m_config.DatabaseUser;	}
-	CNtlString		GetDatabasePassword()	{	return m_config.DatabasePassword;	}
-	CNtlString		GetDatabaseDatabase()	{	return m_config.Database;	}
-	CNtlString		GetAccDbHost()	{ return m_config.AccDatabaseHost; }
-	CNtlString		GetAccDbUser()	{ return m_config.AccDatabaseUser; }
-	CNtlString		GetAccDbPass()	{ return m_config.AccDatabasePassword; }
-	CNtlString		GetAccDbDatabase() { return m_config.AccDatabase; }
 
 	inline bool		IsDojoChannel() { return m_config.byChannel == DOJO_CHANNEL_INDEX; }
 
