@@ -759,6 +759,12 @@ VOID CHpGui::SetMaxRPBall( RwInt32 nMaxRPBall )
 	m_ppnlRpBallBack->AddSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "StatusBar.srf", buf ) );
 }
 
+void CHpGui::SetAirGuiPosition()
+{
+	m_surMidAir.SetPosition(m_psttAirPoint->GetScreenRect().left + 8.5, (m_psttAirPoint->GetScreenRect().bottom / 2) - 7);
+	m_rRoundAir.SetPosition(m_ppnlAirPoint->GetScreenRect().left + 3, m_ppnlAirPoint->GetScreenRect().top + 4);
+}
+
 void CHpGui::UpdateAir()
 {
 	CNtlSobAvatar* pSobAvatar = GetNtlSLGlobal()->GetSobAvatar();
@@ -773,8 +779,7 @@ void CHpGui::UpdateAir()
 		m_rRoundAir.Update(pSobAvatarAttr->GetAp());
 	}
 
-	m_surMidAir.SetPosition(m_psttAirPoint->GetScreenRect().left + 8.5, (m_psttAirPoint->GetScreenRect().bottom / 2) - 7);
-	m_rRoundAir.SetPosition(m_ppnlAirPoint->GetScreenRect().left + 3, m_ppnlAirPoint->GetScreenRect().top + 4);
+	SetAirGuiPosition();
 
 	if (m_bIsWorldAirPossible)
 	{
@@ -856,6 +861,7 @@ void CHpGui::SetAP(int nAP, int nMaxAP)
 			m_surMidAir.UnsetTexture();
 			m_surMidAir.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("AirPoint.srf", "srfTimeMiddleRed"));
 			m_rRoundAir.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("AirPoint.srf", "srfTimeRoundRed"));
+			SetAirGuiPosition();
 			m_eAirColor = TYPE_RED;
 		}
 	}
@@ -866,6 +872,7 @@ void CHpGui::SetAP(int nAP, int nMaxAP)
 			m_surMidAir.UnsetTexture();
 			m_surMidAir.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("AirPoint.srf", "srfTimeMiddleYellow"));
 			m_rRoundAir.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("AirPoint.srf", "srfTimeRoundYellow"));
+			SetAirGuiPosition();
 			m_eAirColor = TYPE_YELLOW;
 		}
 	}
@@ -876,6 +883,7 @@ void CHpGui::SetAP(int nAP, int nMaxAP)
 			m_surMidAir.UnsetTexture();
 			m_surMidAir.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("AirPoint.srf", "srfTimeMiddleBlue"));
 			m_rRoundAir.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("AirPoint.srf", "srfTimeRoundBlue"));
+			SetAirGuiPosition();
 			m_eAirColor = TYPE_BLUE;
 		}
 	}
