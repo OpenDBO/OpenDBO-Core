@@ -3826,30 +3826,32 @@ VOID CInfoWindowGui::SetQuestSearch( QUEST_SEARCH_LIST* pQuestInfo )
 	m_pmdBox->DrawItem();
 }
 
-VOID CInfoWindowGui::SetBattleAttrInfo_Weapon( stINFOWND_BATTLEATTR* pAttr )
+/**
+* \brief 현재 속성의 공격 효율 정보를 출력한다.
+* \param pAttr	(stINFOWND_BATTLEATTR*) 전투 속성 정보
+*/
+VOID CInfoWindowGui::SetBattleAttrInfo_Weapon(stINFOWND_BATTLEATTR* pAttr)
 {
-	WCHAR awcBuffer[512];
+	WCHAR awcBuffer[256];
 	CHAR acLine[32];
-	WCHAR awcPropName[32];
 
-	if( pAttr->bySourceWeaponAttr == BATTLE_ATTRIBUTE_UNKNOWN)
+	// Target Weapon Attribute 의 값이 INVALID 라면 대상이 없는 것임
+	if (pAttr->bySourceWeaponAttr == INVALID_BYTE)
 		return;
 
-	for(BYTE i = BATTLE_ATTRIBUTE_HONEST; i < BATTLE_ATTRIBUTE_COUNT; ++i )
+	for (RwUInt8 i = BATTLE_ATTRIBUTE_NONE; i < BATTLE_ATTRIBUTE_COUNT; ++i)
 	{
-		sprintf_s( acLine, 32, "Info%d", i );
-		swprintf_s(awcPropName, 32, L"%ls: ", Logic_GetBattleAttributeName(i));
-		m_pmdBox->SetItem(awcPropName, acLine, FONT_TEXT, COMP_TEXT_LEFT, Logic_GetBattleAttributeColor( i ));
+		sprintf_s(acLine, 32, "Info%d", i);
+		m_pmdBox->SetItem(Logic_GetBattleAttributeName(i), acLine, FONT_TEXT, COMP_TEXT_LEFT, Logic_GetBattleAttributeColor(i));
 
-		sSYSTEM_EFFECT_TBLDAT* pSystemEffectTbldat = API_GetTableContainer()->GetSystemEffectTable()->FindDataWithEffectCode(GetBattleAttributeEffectCode(i));
-		std::wstring wstrStatName = API_GetTableContainer()->GetTextAllTable()->GetSystemEffectTbl()->GetText(pSystemEffectTbldat->Effect_Info_Text);
+		// 현재 속성에게의 공격력 + 보너스 공격력을 표시한다.
+		RwReal fRate = GetBattleAttributeEffectApplyValue(i) + pAttr->afSourceOffenceBonus[pAttr->bySourceWeaponAttr];
+		swprintf_s(awcBuffer, 256, GetDisplayStringManager()->GetString("DST_BATTLEATTR_ATTACK_RATE_TARGET"), fRate);
 
-		int nRate = (int)GetBattleAttributeEffectApplyValue( i );
-		swprintf_s( awcBuffer, 512, wstrStatName.c_str(), nRate);
-		
-		sprintf_s( acLine, 32, "Info%d", i+BATTLE_ATTRIBUTE_COUNT );
-		m_pmdBox->SetItem( awcBuffer, acLine, FONT_TEXT, COMP_TEXT_LEFT, INFOCOLOR_0, 0, TRUE );
+		sprintf_s(acLine, 32, "Info%d", i + BATTLE_ATTRIBUTE_COUNT);
+		m_pmdBox->SetItem(awcBuffer, acLine, FONT_TEXT, COMP_TEXT_LEFT, INFOCOLOR_0, 0, TRUE);
 	}
+
 }
 
 /**
