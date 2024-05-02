@@ -1,8 +1,8 @@
-/*****************************************************************************
+Ôªø/*****************************************************************************
  *
  * File			: HpGui.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 9. 20	
  * Abstract		: DBO HP/MP/CP gui.
  *****************************************************************************
@@ -125,6 +125,7 @@ private:
 	VOID	SetRPValue( RwInt32 nValue, RwInt32 nMaxValue );
 	VOID	SetMaxRPBall( RwInt32 nMaxRPBall );
 
+	void	SetAirGuiPosition();
 	void	UpdateAir();
 	void	CheckAir();
 	void	EnableAir(bool bFlag);
