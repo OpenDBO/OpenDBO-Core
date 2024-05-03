@@ -762,7 +762,6 @@ VOID CHpGui::SetMaxRPBall( RwInt32 nMaxRPBall )
 void CHpGui::SetAirGuiPosition()
 {
 	m_surMidAir.SetPosition(m_psttAirPoint->GetScreenRect().left + 8.5, (m_psttAirPoint->GetScreenRect().bottom / 2) - 7);
-	m_rRoundAir.SetPosition(m_ppnlAirPoint->GetScreenRect().left + 3, m_ppnlAirPoint->GetScreenRect().top + 4);
 }
 
 void CHpGui::UpdateAir()
@@ -780,6 +779,7 @@ void CHpGui::UpdateAir()
 	}
 
 	SetAirGuiPosition();
+	m_rRoundAir.SetPosition(m_ppnlAirPoint->GetScreenRect().left + 3, m_ppnlAirPoint->GetScreenRect().top + 4);
 
 	if (m_bIsWorldAirPossible)
 	{
