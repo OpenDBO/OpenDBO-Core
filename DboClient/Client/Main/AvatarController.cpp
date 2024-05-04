@@ -1097,8 +1097,6 @@ void CAvatarController::UpdateAutoRun(RwReal fElapsed)
 		if(!bMoveState)
 		{
 			SetAutoRun(FALSE);
-
-			m_bMouseAutoRun = true;
 			return;
 		}
 
@@ -1566,6 +1564,11 @@ void CAvatarController::UpdateMouse(RwReal fElapsed)
 	POINT pos;
 	GetCursorPos(&pos);
 
+	if (!m_bMouseAutoRun && m_bLButtonDownFlag && m_bRButtonDownFlag) {
+		m_bMouseAutoRun = true;
+		ActionAutoRun();
+	}
+	
 	if (m_bRButtonDownFlag)
 	{
 		MouseMoveRBtnHandler(pos.x, pos.y);
@@ -1935,7 +1938,7 @@ int CAvatarController::ActionAutoRun()
         return TRUE;
 
 	RwUInt32 actorStateId = Logic_GetActorStateId(pSobAvatar);
-	if (actorStateId == NTL_FSMSID_FAINTING || actorStateId == NTL_FSMSID_DIE || actorStateId == NTL_FSMSID_TELEPORT || actorStateId == NTL_FSMSID_SLIDING || actorStateId == NTL_FSMSID_SKILL_ACTION || actorStateId == NTL_FSMSID_DIRECTION)
+	if (actorStateId == NTL_FSMSID_DASH || actorStateId ==  NTL_FSMSID_FAINTING || actorStateId == NTL_FSMSID_DIE || actorStateId == NTL_FSMSID_TELEPORT || actorStateId == NTL_FSMSID_SLIDING || actorStateId == NTL_FSMSID_SKILL_ACTION || actorStateId == NTL_FSMSID_DIRECTION)
 		return TRUE;
 
 	RwReal fYaw = GetNtlGameCameraManager()->GetYaw();
@@ -1995,7 +1998,8 @@ int CAvatarController::ActionMapKeyboardDashMove(unsigned int uiMoveFlags)
 		if (hTargetSerialId != INVALID_SERIAL_ID)
 			Logic_SobTarget(hTargetSerialId, INVALID_BYTE);
 
-		SetAutoRun(FALSE);
+		if (!m_bMouseAutoRun)
+			SetAutoRun(FALSE);
 	}
 
 	return TRUE;
