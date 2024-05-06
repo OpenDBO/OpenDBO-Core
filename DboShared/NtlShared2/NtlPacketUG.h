@@ -1447,6 +1447,7 @@ TBLIDX				dwIdxHlsTable;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_CASHITEM_SEND_GIFT_REQ)
+BYTE				byUnknown1;
 WCHAR				wchName[NTL_MAX_SIZE_CHAR_NAME + 1];
 TBLIDX				dwIdxHlsTable;
 END_PROTOCOL()
