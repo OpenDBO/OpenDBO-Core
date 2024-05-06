@@ -1,9 +1,9 @@
-/******************************************************************************
+Ôªø/******************************************************************************
 * File			: CWorldMapGui.h
 * Author		: Hong Sungbock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2007. 2. 1
-* Update		: 2007. 12. 6 by Hong Sungbock(øˆ∆˜±◊ √ﬂ∞°)
+* Update		: 2007. 12. 6 by Hong Sungbock(ÏõåÌè¨Í∑∏ Ï∂îÍ∞Ä)
 * Abstract		: 
 *****************************************************************************
 * Desc			: CWorldMapGui
@@ -154,7 +154,7 @@ public:
 		WCHAR*				pwcName;
 	};
 
-	struct sCAMP_PEOPLE				///< ¡¯øµ¿ª ≥™¥©æÓ ªÁ∂˜µÈ≥¢∏Æ ΩŒøÏ∞‘ µ«¥¬ ∞ÊøÏ
+	struct sCAMP_PEOPLE				///< ÏßÑÏòÅÏùÑ ÎÇòÎàÑÏñ¥ ÏÇ¨ÎûåÎì§ÎÅºÎ¶¨ Ïã∏Ïö∞Í≤å ÎêòÎäî Í≤ΩÏö∞
 	{
 		CPos				v2Pos;
 		eCampPeopleType		ePeopleType;
@@ -240,7 +240,7 @@ public:
 	VOID		Update(RwReal fElapsed);
 	VOID		Destroy();
 	
-	RwInt32		SwitchDialog(bool bOpen);		///< DialogManagerø°º≠¿« Open/Close
+	RwInt32		SwitchDialog(bool bOpen);		///< DialogManagerÏóêÏÑúÏùò Open/Close
 
 protected:
 	CWorldMapGui() {};
@@ -271,12 +271,12 @@ protected:
 	sWORLD_MAP_TBLDAT*	GetWorldMapTable(RwUInt32 uiWorldID, RwUInt32 uiZoneID);
 	VOID			GetAvatarMarkPosition(RwInt32& iOutputX, RwInt32& iOutputY, CNtlSobAvatar* pAvatar);
 
-	// ø˘µÂªÛ ¡¬«•∏¶ ¿‘∑¬«œø© ø˘µÂ∏  ∏µÂø° µ˚∏• 2D¡¬«•∏¶ µπ∑¡¡ÿ¥Ÿ
+	// ÏõîÎìúÏÉÅ Ï¢åÌëúÎ•º ÏûÖÎ†•ÌïòÏó¨ ÏõîÎìúÎßµ Î™®ÎìúÏóê Îî∞Î•∏ 2DÏ¢åÌëúÎ•º ÎèåÎ†§Ï§ÄÎã§
 	VOID			GetMapPos_from_RealPos(RwReal fX, RwReal fZ, RwInt32& iX, RwInt32& iY);
 
 	VOID			LocateComponent();
 	VOID			CheckInfoWindow();
-	RwReal			GetAngle(RwV3d v3Dir);			///< 12Ω√ πÊ«‚¿ª ±‚¡ÿ¿∏∑Œ Ω√∞ËπÊ«‚ ∞¢µµ
+	RwReal			GetAngle(RwV3d v3Dir);			///< 12Ïãú Î∞©Ìñ•ÏùÑ Í∏∞Ï§ÄÏúºÎ°ú ÏãúÍ≥ÑÎ∞©Ìñ• Í∞ÅÎèÑ
 
 	VOID			UnLoadWorldFocus();
 	VOID			UnloadLandMark();
@@ -354,37 +354,37 @@ protected:
 
 	gui::CComboBox*		m_pcbbSearchNpc;
 
-	gui::CStaticBox*	m_pBusRoute;			/// "πˆΩ∫ ≥Îº±µµ"
-	gui::CStaticBox*	m_pOurGuild;			/// "øÏ∏Æ ¿Ø∆ƒ"
-	gui::CStaticBox*	m_pOtherGuild;			/// "ªÛ¥Î ¿Ø∆ƒ"
-	gui::CStaticBox*	m_pTransparency;		/// "≈ı∏Ìµµ"
+	gui::CStaticBox*	m_pBusRoute;			/// "Î≤ÑÏä§ ÎÖ∏ÏÑ†ÎèÑ"
+	gui::CStaticBox*	m_pOurGuild;			/// "Ïö∞Î¶¨ Ïú†Ìåå"
+	gui::CStaticBox*	m_pOtherGuild;			/// "ÏÉÅÎåÄ Ïú†Ìåå"
+	gui::CStaticBox*	m_pTransparency;		/// "Ìà¨Î™ÖÎèÑ"
 
 	gui::CScrollBar*	m_pAlphaScrollbar;
 
-	gui::CButton*		m_pExitButton;			///< √¢¥›±‚ πˆ∆∞
+	gui::CButton*		m_pExitButton;			///< Ï∞ΩÎã´Í∏∞ Î≤ÑÌäº
 	gui::CButton*		m_pBusRouteButton;
 	gui::CButton*		m_pVisibleOurGuildMemberButton;
 	gui::CButton*		m_pVisibleOurGuildMemberMiniMapButton;
 	gui::CButton*		m_pVisibleOtherGuildMemberButton;	
 	gui::CButton*		m_pVisibleOtherGuildMemberMiniMapButton;
 
-	CWindowby3			m_MapFrameUp;			///< ø˘µÂ∏ ¿« ∆≤ ªÛ¥‹
-	CSurfaceGui			m_MapFrameLC;			///< ø˘µÂ∏ ¿« ∆≤ ¡¬¡ﬂ¥‹
-	CSurfaceGui			m_MapFrameRC;			///< ø˘µÂ∏ ¿« ∆≤ øÏ¡ﬂ¥‹
-	CWindowby3			m_MapFrameDown;			///< ø˘µÂ∏ ¿« ∆≤ «œ¥‹
+	CWindowby3			m_MapFrameUp;			///< ÏõîÎìúÎßµÏùò ÌãÄ ÏÉÅÎã®
+	CSurfaceGui			m_MapFrameLC;			///< ÏõîÎìúÎßµÏùò ÌãÄ Ï¢åÏ§ëÎã®
+	CSurfaceGui			m_MapFrameRC;			///< ÏõîÎìúÎßµÏùò ÌãÄ Ïö∞Ï§ëÎã®
+	CWindowby3			m_MapFrameDown;			///< ÏõîÎìúÎßµÏùò ÌãÄ ÌïòÎã®
 
-	CSurfaceGui			m_surBack;				///< πË∞Ê º≠∆‰¿ÃΩ∫
-	CSurfaceGui			m_srfMap;				///< ∏  º≠∆‰¿ÃΩ∫
-	CSurfaceGui			m_srfBusRoute;			///< πˆΩ∫ ≥Îº± º≠∆‰¿ÃΩ∫
-	CSurfaceGui			m_surMarkBus[NUM_BUS_SHAPE_TYPE][NUM_BUS_MARK][NUM_BUS_DIRECTION];	///< πˆΩ∫ ∏∂≈©
-	CSurfaceGui			m_surMarkAvatar;		///< æ∆πŸ≈∏ ∏∂≈©
-	CSurfaceGui			m_surMarkPartryMember;	///< ∆ƒ∆ºø¯ ∏∂≈©
-	CSurfaceGui			m_surLandMark[NUM_LMT];	///< ∑£µÂ ∏∂≈©
-	CSurfaceGui			m_surNextQuestMark[NUM_eQMI_TARGET_TYPE];///< ¥Ÿ¿Ω ¡¯«‡ ƒ˘Ω∫∆Æ ∏∂≈©
-	CSurfaceGui			m_surBindMark;			///< πŸ¿Œµ˘ ∏∂≈©
-	CSurfaceGui			m_surDboRate[NUM_MAP_DBO];	///< DBO ¡ˆµµ∞£ ∫Ò¿≤
-	CSurfaceGui			m_surCamp[NUM_CAMP_PEOPLE];///< (««æ∆±∏∫–)∆¿¿ª ≥™¥©æÓº≠ ΩŒøÏ¥¬ ∞ÊøÏ¿« ªÁ∂˜µÈ
-	CSurfaceGui			m_surScrambleSeal[NUM_DBO_TEAM];	///< µµ¿Â¿¸ ¿Œ¿Â
+	CSurfaceGui			m_surBack;				///< Î∞∞Í≤Ω ÏÑúÌéòÏù¥Ïä§
+	CSurfaceGui			m_srfMap;				///< Îßµ ÏÑúÌéòÏù¥Ïä§
+	CSurfaceGui			m_srfBusRoute;			///< Î≤ÑÏä§ ÎÖ∏ÏÑ† ÏÑúÌéòÏù¥Ïä§
+	CSurfaceGui			m_surMarkBus[NUM_BUS_SHAPE_TYPE][NUM_BUS_MARK][NUM_BUS_DIRECTION];	///< Î≤ÑÏä§ ÎßàÌÅ¨
+	CSurfaceGui			m_surMarkAvatar;		///< ÏïÑÎ∞îÌÉÄ ÎßàÌÅ¨
+	CSurfaceGui			m_surMarkPartryMember;	///< ÌååÌã∞Ïõê ÎßàÌÅ¨
+	CSurfaceGui			m_surLandMark[NUM_LMT];	///< ÎûúÎìú ÎßàÌÅ¨
+	CSurfaceGui			m_surNextQuestMark[NUM_eQMI_TARGET_TYPE];///< Îã§Ïùå ÏßÑÌñâ ÌÄòÏä§Ìä∏ ÎßàÌÅ¨
+	CSurfaceGui			m_surBindMark;			///< Î∞îÏù∏Îî© ÎßàÌÅ¨
+	CSurfaceGui			m_surDboRate[NUM_MAP_DBO];	///< DBO ÏßÄÎèÑÍ∞Ñ ÎπÑÏú®
+	CSurfaceGui			m_surCamp[NUM_CAMP_PEOPLE];///< (ÌîºÏïÑÍµ¨Î∂Ñ)ÌåÄÏùÑ ÎÇòÎàÑÏñ¥ÏÑú Ïã∏Ïö∞Îäî Í≤ΩÏö∞Ïùò ÏÇ¨ÎûåÎì§
+	CSurfaceGui			m_surScrambleSeal[NUM_DBO_TEAM];	///< ÎèÑÏû•Ï†Ñ Ïù∏Ïû•
 
 	CSurfaceGui			m_srfQTSlotIcon[10];
 	CSurfaceGui			m_srfQTSlotIconWorld;
@@ -408,44 +408,44 @@ protected:
 
 	gui::CComponent*	m_pDummy;				///< for Post render
 
-	RwUInt8				m_byFocusArea;			///< ∆˜ƒøΩÃ µ«∞Ì ¿÷¥¬ ø˘µÂ∏  ∆˜ƒøΩ∫ ¿ÃπÃ¡ˆ ¿Œµ¶Ω∫(Ω«¡¶ ¡∏ ¿Œµ¶Ω∫øÕ ªÛ∞¸æ¯¥Ÿ)
+	RwUInt8				m_byFocusArea;			///< Ìè¨Ïª§Ïã± ÎêòÍ≥† ÏûàÎäî ÏõîÎìúÎßµ Ìè¨Ïª§Ïä§ Ïù¥ÎØ∏ÏßÄ Ïù∏Îç±Ïä§(Ïã§Ï†ú Ï°¥ Ïù∏Îç±Ïä§ÏôÄ ÏÉÅÍ¥ÄÏóÜÎã§)
 	ZONEID				m_FocusZoneID;			///< Zone index being focused
 	TBLIDX				m_FocusMapID;			///< World map index being focused
-	sWorldMapFocusRect	m_aMainWorldFocus[NUM_MWFT];///< ∏ﬁ¿Œø˘µÂ¿« ∆˜ƒøΩ∫
+	sWorldMapFocusRect	m_aMainWorldFocus[NUM_MWFT];///< Î©îÏù∏ÏõîÎìúÏùò Ìè¨Ïª§Ïä§
 
-	RwUInt8				m_byMapMode;			///< ∏  ∏µÂ
-	RwReal				m_fElapsedTime;			///< æ˜µ•¿Ã∆Æ ≈∏¿”
-	RwReal				m_fElapsedTestChangeZone;///< ¡∏¿Ã πŸ≤Ó¥¬¡ˆ ∞ÀªÁ«œ¥¬ Ω√∞£
-	RwReal				m_fMapScale;			///< ∏  Ω∫ƒ…¿œ
-	RwUInt8				m_byDboRateType;		///< Ω« √‡√¥¿Ã æ∆¥— ¡ˆµµ∞£ ∫Ò¿≤
+	RwUInt8				m_byMapMode;			///< Îßµ Î™®Îìú
+	RwReal				m_fElapsedTime;			///< ÏóÖÎç∞Ïù¥Ìä∏ ÌÉÄÏûÑ
+	RwReal				m_fElapsedTestChangeZone;///< Ï°¥Ïù¥ Î∞îÎÄåÎäîÏßÄ Í≤ÄÏÇ¨ÌïòÎäî ÏãúÍ∞Ñ
+	RwReal				m_fMapScale;			///< Îßµ Ïä§ÏºÄÏùº
+	RwUInt8				m_byDboRateType;		///< Ïã§ Ï∂ïÏ≤ôÏù¥ ÏïÑÎãå ÏßÄÎèÑÍ∞Ñ ÎπÑÏú®
 
-	RwUInt32			m_uiFocusLandMarkIndex;	///< ∆˜ƒøΩÃµ«∞Ì ¿÷¥¬ ∑£µÂ∏∂≈© ¿Œµ¶Ω∫
+	RwUInt32			m_uiFocusLandMarkIndex;	///< Ìè¨Ïª§Ïã±ÎêòÍ≥† ÏûàÎäî ÎûúÎìúÎßàÌÅ¨ Ïù∏Îç±Ïä§
 	ZONEID				m_uiPressedZoneIndex;	///< ZONE Index of mouse down zone
 	TBLIDX				m_uiPressedMapIndex;	///< World Index of mouse down zone
-	RwBool				m_bRightMouse;			///< ∏∂øÏΩ∫ ø¿∏•¬ 
-	RwBool				m_bChangedMap_by_User;	///< ¿Ø¿˙∞° √≥¿Ωø° ø≠∏∞ ∏ ø°º≠ ¥Ÿ∏• ∏ ¿∏∑Œ πŸ≤ŸæÓ ∫ª¥Ÿ
+	RwBool				m_bRightMouse;			///< ÎßàÏö∞Ïä§ Ïò§Î•∏Ï™Ω
+	RwBool				m_bChangedMap_by_User;	///< Ïú†Ï†ÄÍ∞Ä Ï≤òÏùåÏóê Ïó¥Î¶∞ ÎßµÏóêÏÑú Îã§Î•∏ ÎßµÏúºÎ°ú Î∞îÍæ∏Ïñ¥ Î≥∏Îã§
 	
-	RwInt32				m_iMapStartX, m_iMapStartY; ///< Ω«¡¶ ∏  øµø™
+	RwInt32				m_iMapStartX, m_iMapStartY; ///< Ïã§Ï†ú Îßµ ÏòÅÏó≠
 
 	TBLIDX				m_uiRenderingWorldID;	///< The world ID of the area being drawn on the screen
-	ZONEID				m_uiRenderingZoneID;	///< »≠∏Èø° ±◊∑¡¡ˆ∞Ì ¿÷¥¬ ¡ˆø™¿« ¡∏ æ∆¿Ãµ
+	ZONEID				m_uiRenderingZoneID;	///< ÌôîÎ©¥Ïóê Í∑∏Î†§ÏßÄÍ≥† ÏûàÎäî ÏßÄÏó≠Ïùò Ï°¥ ÏïÑÏù¥Îîî
 
 	TBLIDX				m_uiActiveWorldID;		///< World ID where the avatar is located
-	ZONEID				m_uiActiveZoneID;		///< æ∆πŸ≈∏∞° ¿ßƒ°«— ¡∏ ID
+	ZONEID				m_uiActiveZoneID;		///< ÏïÑÎ∞îÌÉÄÍ∞Ä ÏúÑÏπòÌïú Ï°¥ ID
 
-	RwV2d				m_v2MapPos;				///< ±‚¡ÿ¡°¿Ã µ«¥¬ ∏ ¿« ¡¬ªÛ¥‹ ¿ßƒ°
-	sPARTYMEMBER		m_aPartyMember[NTL_MAX_MEMBER_IN_PARTY - 1]; ///< ∆ƒ∆ºø¯ ¿ßƒ°
+	RwV2d				m_v2MapPos;				///< Í∏∞Ï§ÄÏ†êÏù¥ ÎêòÎäî ÎßµÏùò Ï¢åÏÉÅÎã® ÏúÑÏπò
+	sPARTYMEMBER		m_aPartyMember[NTL_MAX_MEMBER_IN_PARTY - 1]; ///< ÌååÌã∞Ïõê ÏúÑÏπò
 
-	sWarFogDisappearEvent m_WarFogDisappearEvent;	///< øˆ∆˜±◊ µ•¿Ã≈Õ∏¶ πﬁæ∆º≠ ªÁ∂Û¡ˆ¥¬ ¿Ã∫•∆Æ µ•¿Ã≈Õ
+	sWarFogDisappearEvent m_WarFogDisappearEvent;	///< ÏõåÌè¨Í∑∏ Îç∞Ïù¥ÌÑ∞Î•º Î∞õÏïÑÏÑú ÏÇ¨ÎùºÏßÄÎäî Ïù¥Î≤§Ìä∏ Îç∞Ïù¥ÌÑ∞
 	sSCRAMBLE_VISIBLE	m_tScrambleVisible;
 
 
 	BUS_POS_MAP			m_mapBusPos;
-	LIST_CAMP			m_listCamp;				///< (««æ∆±∏∫–)∆¿¿ª ≥™¥©æÓº≠ ΩŒøÏ¥¬ ∞ÊøÏ¿« ªÁ∂˜µÈ
+	LIST_CAMP			m_listCamp;				///< (ÌîºÏïÑÍµ¨Î∂Ñ)ÌåÄÏùÑ ÎÇòÎàÑÏñ¥ÏÑú Ïã∏Ïö∞Îäî Í≤ΩÏö∞Ïùò ÏÇ¨ÎûåÎì§
 	NEXTQUEST_LIST		m_listNextQuest;
-	LANDMARK_LIST		m_listLandMark;			///< ∑£µÂ∏∂≈© ¿ßƒ°
-	sBindMarkInfo		m_BindInfo;				///< πŸ¿Œµ ¿ßƒ° ¡§∫∏
-	sWarFog				m_WarFog[DBO_WORLD_MAP_TABLE_COUNT_WORLD_WARFOG];///< øˆ ∆˜±◊ ¡§∫∏
-	CQuestSearchGui*	m_pQuestSearch;			///< ƒ˘Ω∫∆Æ º≠ƒ° gui
+	LANDMARK_LIST		m_listLandMark;			///< ÎûúÎìúÎßàÌÅ¨ ÏúÑÏπò
+	sBindMarkInfo		m_BindInfo;				///< Î∞îÏù∏Îîî ÏúÑÏπò Ï†ïÎ≥¥
+	sWarFog				m_WarFog[DBO_WORLD_MAP_TABLE_COUNT_WORLD_WARFOG];///< Ïõå Ìè¨Í∑∏ Ï†ïÎ≥¥
+	CQuestSearchGui*	m_pQuestSearch;			///< ÌÄòÏä§Ìä∏ ÏÑúÏπò gui
 	MAP_SCRAMBLE_SEAL_MARK	m_mapScrambleSealMark;
 };
