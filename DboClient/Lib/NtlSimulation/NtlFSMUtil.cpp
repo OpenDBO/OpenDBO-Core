@@ -64,7 +64,7 @@ RwBool FSMUtil_IsMove(CNtlFSMStateBase *pStateBase)
 	RwUInt32 uiStateId = pStateBase->GetStateId();
 
 	if(uiStateId == NTL_FSMSID_MOVE || uiStateId == NTL_FSMSID_SWIMMING ||
-		uiStateId == NTL_FSMSID_JUMP || uiStateId == NTL_FSMSID_AIR_JUMP)
+		uiStateId == NTL_FSMSID_JUMP || uiStateId == NTL_FSMSID_AIR_JUMP || uiStateId == NTL_FSMSID_DASH)
 		return TRUE;
 
 	return FALSE;
