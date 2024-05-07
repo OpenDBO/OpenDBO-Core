@@ -1,4 +1,4 @@
-#include "precomp_dboclient.h"
+ï»¿#include "precomp_dboclient.h"
 #include "WorldMap.h"
 
 // core
@@ -77,9 +77,9 @@
 #define dLANDMARK_SIZE_4		128
 
 // Warfog
-#define dWARFOG_SCHEDULE_WAIT_OPEN_DIALOG	3.f		///< ¿öÆ÷±×°¡ ¹àÇôÁö±âÀü ¿ùµå¸ÊÀÌ ¶ß±â±îÁöÀÇ ½Ã°£
-#define dWARFOG_SCHEDULE_DELAY				.5f		///< ¿ùµå¸ÊÀÌ ¶ß°í ¿öÆ÷±×°¡ »ç¶óÁö±â ÀüÀÇ Áö¿¬½Ã°£
-#define dWARFOG_SCHEDULE_DISSAPEAR			3.f		///< ¿öÆ÷±×°¡ ¹à¾ÆÁö´Â ½Ã°£
+#define dWARFOG_SCHEDULE_WAIT_OPEN_DIALOG	3.f		///< ì›Œí¬ê·¸ê°€ ë°í˜€ì§€ê¸°ì „ ì›”ë“œë§µì´ ëœ¨ê¸°ê¹Œì§€ì˜ ì‹œê°„
+#define dWARFOG_SCHEDULE_DELAY				.5f		///< ì›”ë“œë§µì´ ëœ¨ê³  ì›Œí¬ê·¸ê°€ ì‚¬ë¼ì§€ê¸° ì „ì˜ ì§€ì—°ì‹œê°„
+#define dWARFOG_SCHEDULE_DISSAPEAR			3.f		///< ì›Œí¬ê·¸ê°€ ë°ì•„ì§€ëŠ” ì‹œê°„
 
 #define dWARFOG_SCHEDULE_TIME_BY_DISSAPEAR	(dWARFOG_SCHEDULE_WAIT_OPEN_DIALOG + dWARFOG_SCHEDULE_DELAY)
 #define dWARFOR_SCHEDULE_TOTAL_TIME			(dWARFOG_SCHEDULE_WAIT_OPEN_DIALOG + dWARFOG_SCHEDULE_DELAY + dWARFOG_SCHEDULE_DISSAPEAR)
@@ -231,7 +231,7 @@ RwBool CWorldMapGui::Create()
 
 	std::wstring wstrText;
 
-	// "¿ì¸® À¯ÆÄ º¸±â ¹öÆ°"
+	// "ìš°ë¦¬ ìœ íŒŒ ë³´ê¸° ë²„íŠ¼"
 	wstrText = GetDisplayStringManager()->GetString("DST_WORLDMAP_SHOW_OUR_GUILD");
 	m_pVisibleOurGuildMemberButton = (gui::CButton*)GetComponent( "btnVisibleOurGuildMember" );
 	m_pVisibleOurGuildMemberButton->SetToolTip(wstrText);
@@ -239,7 +239,7 @@ RwBool CWorldMapGui::Create()
 	m_pVisibleOurGuildMemberButton->SetDown(true);
 	m_slotVisibleOurGuildMemberButton = m_pVisibleOurGuildMemberButton->SigToggled().Connect(this, &CWorldMapGui::OnToggle_VisibleOurGuildMemberButton);
 
-	// "¿ì¸® À¯ÆÄ ¹Ì´Ï¸Ê¿¡ º¸±â ¹öÆ°"
+	// "ìš°ë¦¬ ìœ íŒŒ ë¯¸ë‹ˆë§µì— ë³´ê¸° ë²„íŠ¼"
 	wstrText = GetDisplayStringManager()->GetString("DST_WORLDMAP_SHOW_OUR_GUILD_IN_MINIMAP");
 	m_pVisibleOurGuildMemberMiniMapButton = (gui::CButton*)GetComponent( "btnVisibleOurGuildMemberMiniMap" );
 	m_pVisibleOurGuildMemberMiniMapButton->SetToolTip(wstrText);
@@ -247,12 +247,12 @@ RwBool CWorldMapGui::Create()
 	m_pVisibleOurGuildMemberMiniMapButton->SetDown(true);
 	m_slotVisibleOurGuildMemberMiniMapButton = m_pVisibleOurGuildMemberMiniMapButton->SigToggled().Connect(this, &CWorldMapGui::OnToggle_VisibleOurGuildMemberMiniMapButton);
 
-	// "¿ì¸® À¯ÆÄ"
+	// "ìš°ë¦¬ ìœ íŒŒ"
 	m_pOurGuild = (gui::CStaticBox*)GetComponent( "stbOurGuild" );;
 	m_pOurGuild->SetText( GetDisplayStringManager()->GetString("DST_WORLDMAP_SHOW_OUR_GUILD_MEMBER") );
 
 
-	// "»ó´ë À¯ÆÄ º¸±â ¹öÆ°"
+	// "ìƒëŒ€ ìœ íŒŒ ë³´ê¸° ë²„íŠ¼"
 	wstrText = GetDisplayStringManager()->GetString("DST_WORLDMAP_SHOW_OTHER_GUILD");
 	m_pVisibleOtherGuildMemberButton = (gui::CButton*)GetComponent( "btnVisibleOtherGuildMember" );
 	m_pVisibleOtherGuildMemberButton->SetToolTip(wstrText);
@@ -260,7 +260,7 @@ RwBool CWorldMapGui::Create()
 	m_pVisibleOtherGuildMemberButton->SetDown(true);
 	m_slotVisibleOtherGuildMemberButton = m_pVisibleOtherGuildMemberButton->SigToggled().Connect(this, &CWorldMapGui::OnToggle_VisibleOtherGuildMemberButton);
 
-	// "»ó´ë À¯ÆÄ ¹Ì´Ï¸Ê¿¡ º¸±â ¹öÆ°"
+	// "ìƒëŒ€ ìœ íŒŒ ë¯¸ë‹ˆë§µì— ë³´ê¸° ë²„íŠ¼"
 	wstrText = GetDisplayStringManager()->GetString("DST_WORLDMAP_SHOW_OTHER_GUILD_IN_MINIMAP");
 	m_pVisibleOtherGuildMemberMiniMapButton = (gui::CButton*)GetComponent( "btnVisibleOtherGuildMemberMiniMap" );
 	m_pVisibleOtherGuildMemberMiniMapButton->SetToolTip(wstrText);
@@ -268,17 +268,17 @@ RwBool CWorldMapGui::Create()
 	m_pVisibleOtherGuildMemberMiniMapButton->SetDown(true);
 	m_slotVisibleOtherGuildMemberMiniMapButton = m_pVisibleOtherGuildMemberMiniMapButton->SigToggled().Connect(this, &CWorldMapGui::OnToggle_VisibleOtherGuildMemberMiniMapButton);
 
-	// "»ó´ë À¯ÆÄ"
+	// "ìƒëŒ€ ìœ íŒŒ"
 	m_pOtherGuild = (gui::CStaticBox*)GetComponent( "stbOtherGuild" );
 	m_pOtherGuild->SetText( GetDisplayStringManager()->GetString("DST_WORLDMAP_SHOW_OTHER_GUILD_MEMBER") );	
 
 
 
-	// "Åõ¸íµµ"
+	// "íˆ¬ëª…ë„"
 	m_pTransparency = (gui::CStaticBox*)GetComponent( "stbTransparency" );
 	m_pTransparency->SetText( GetDisplayStringManager()->GetString("DST_WORLDMAP_TRANSPARENCY") );	
 
-	// ¿ùµå¸ÊÀÇ Æ²
+	// ì›”ë“œë§µì˜ í‹€
 	m_MapFrameUp.SetSurface(0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfFrameUL" ) );	
 	m_MapFrameUp.SetSurface(1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfFrameUC" ) );	
 	m_MapFrameUp.SetSurface(2, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfFrameUR" ) );		
@@ -290,19 +290,19 @@ RwBool CWorldMapGui::Create()
 	m_MapFrameDown.SetSurface(1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfFrameBC" ) );	
 	m_MapFrameDown.SetSurface(2, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfFrameBR" ) );	
 
-	// DBO Áöµµ°£ ºñÀ²
+	// DBO ì§€ë„ê°„ ë¹„ìœ¨
 	/*m_surDboRate[MAP_DBO_1].SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfMapRate1" ) );
 	m_surDboRate[MAP_DBO_1_25].SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfMapRate125" ) );
 	m_surDboRate[MAP_DBO_1_5].SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfMapRate15" ) );
 	m_surDboRate[MAP_DBO_2].SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfMapRate2" ) );
 	m_surDboRate[MAP_DBO_4].SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("WorldMap.srf", "srfMapRate2"));*/
 
-	// (ÇÇ¾Æ±¸ºĞ)ÆÀÀ» ³ª´©¾î¼­ ½Î¿ì´Â °æ¿ìÀÇ »ç¶÷µé
+	// (í”¼ì•„êµ¬ë¶„)íŒ€ì„ ë‚˜ëˆ„ì–´ì„œ ì‹¸ìš°ëŠ” ê²½ìš°ì˜ ì‚¬ëŒë“¤
 	m_surCamp[CAMP_PEOPLE_MY_PARTY]		.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfCampParty" ) );
 	m_surCamp[CAMP_PEOPLE_MY_TEAM]		.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfCampMyTeam" ) );
 	m_surCamp[CAMP_PEOPLE_EMENY_TEAM]	.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfCampEnemy" ) );
 
-	// µµÀåÀü ÀÎÀå
+	// ë„ì¥ì „ ì¸ì¥
 	m_surScrambleSeal[DBO_TEAM_MY_TEAM]		.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfSeal_MyTeam" ) );
 	m_surScrambleSeal[DBO_TEAM_ENEMY]		.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfSeal_Enemy" ) );
 	m_surScrambleSeal[DBO_TEAM_NEUTRAILITY]	.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfSeal_NoTeam" ) );
@@ -673,7 +673,7 @@ VOID CWorldMapGui::Update(RwReal fElapsed)
 	// by daneos: remove the if from UpdateChangeZoneMap, to fix avatar mark, quest marks, etc.
 	UpdateChangeZoneMap(fElapsed);
 
-	// ¿¬»ê·®À» ÁÙÀÌ±â À§ÇØ ÀÏÁ¤½Ã°£¸¶´Ù Update
+	// ì—°ì‚°ëŸ‰ì„ ì¤„ì´ê¸° ìœ„í•´ ì¼ì •ì‹œê°„ë§ˆë‹¤ Update
 	if( m_fElapsedTime < WORLDMAP_UPDATETIME )
 	{
 		m_fElapsedTime += fElapsed;
@@ -720,8 +720,8 @@ RwBool CWorldMapGui::UpdateChangeZoneMap(RwReal fElapsed)
 
 	if( idxAreaInfoIndex == 0xffffffff )
 	{
-		// avooo's commnet : ¾Æ¸¶µµ ¸Ê³×ÀÓÀÎµ¦½º°¡ ÁöÁ¤µÇÁö ¾ÊÀº °÷ÀÏ °ÍÀÌ´Ù.
-		// ¿ùµå ¸ğµå·Î ¿­¾îÁÖÀÚ
+		// avooo's commnet : ì•„ë§ˆë„ ë§µë„¤ì„ì¸ë±ìŠ¤ê°€ ì§€ì •ë˜ì§€ ì•Šì€ ê³³ì¼ ê²ƒì´ë‹¤.
+		// ì›”ë“œ ëª¨ë“œë¡œ ì—´ì–´ì£¼ì
 		idxAreaInfoIndex	= 200100000;
 		byTempMapMode		= WORLDMAP_TYPE_WORLD;
 
@@ -762,9 +762,9 @@ VOID CWorldMapGui::UpdateWarfogEffect(RwReal fElapsed)
 		if( m_WarFogDisappearEvent.fElapsed < dWARFOG_SCHEDULE_WAIT_OPEN_DIALOG ||
 			m_WarFogDisappearEvent.bActiveEffect )
 		{
-			// ¿ùµå¸ÊÀÌ ¿­¸± ¶§ Áöµµ, ¿öÆ÷±×, ·£µå¸¶Å© µîÀÇ ÅØ½ºÃ³¸¦ µğ½ºÅ©¿¡¼­ ÀĞ±â¿¡ ´À¸®´Ù.
-			// SwitchDialog¿¡¼­ ÅØ½ºÃ³¸¦ ¸ğµÎ ·ÎµùÇÑ ÈÄ m_WarFogDisappearEvent.bActiveEffectÀÌ true°¡ µÈ´Ù
-			// µû¶ó¼­, ÅØ½ºÃ³ ·Îµù Áß °ø¿¬È÷ ¿öÆ÷±× ÀÌº¥Æ® ¾÷µ¥ÀÌÆ® ½Ã°£ÀÌ Èå¸£Áö ¾Ê´Â´Ù
+			// ì›”ë“œë§µì´ ì—´ë¦´ ë•Œ ì§€ë„, ì›Œí¬ê·¸, ëœë“œë§ˆí¬ ë“±ì˜ í…ìŠ¤ì²˜ë¥¼ ë””ìŠ¤í¬ì—ì„œ ì½ê¸°ì— ëŠë¦¬ë‹¤.
+			// SwitchDialogì—ì„œ í…ìŠ¤ì²˜ë¥¼ ëª¨ë‘ ë¡œë”©í•œ í›„ m_WarFogDisappearEvent.bActiveEffectì´ trueê°€ ëœë‹¤
+			// ë”°ë¼ì„œ, í…ìŠ¤ì²˜ ë¡œë”© ì¤‘ ê³µì—°íˆ ì›Œí¬ê·¸ ì´ë²¤íŠ¸ ì—…ë°ì´íŠ¸ ì‹œê°„ì´ íë¥´ì§€ ì•ŠëŠ”ë‹¤
 			m_WarFogDisappearEvent.fElapsed += fElapsed;
 		}
 
@@ -775,14 +775,14 @@ VOID CWorldMapGui::UpdateWarfogEffect(RwReal fElapsed)
 
 		if( m_WarFogDisappearEvent.fElapsed >= dWARFOG_SCHEDULE_WAIT_OPEN_DIALOG )
 		{
-			// ÀÏÁ¤ ½Ã°£ÀÌ Áö³ª¸é ÀÚµ¿À¸·Î ¿­¸°´Ù
+			// ì¼ì • ì‹œê°„ì´ ì§€ë‚˜ë©´ ìë™ìœ¼ë¡œ ì—´ë¦°ë‹¤
 			if( GetDialogManager()->IsOpenDialog(DIALOG_WORLDMAP) == FALSE )
 				GetDialogManager()->OpenDialog(DIALOG_WORLDMAP);
 		}
 
 		if( m_WarFogDisappearEvent.fElapsed >= dWARFOG_SCHEDULE_TIME_BY_DISSAPEAR )
 		{
-			// Áö¿¬ ½Ã°£ÀÌ Áö³ª°í ¿öÆ÷±×°¡ »ç¶óÁø´Ù
+			// ì§€ì—° ì‹œê°„ì´ ì§€ë‚˜ê³  ì›Œí¬ê·¸ê°€ ì‚¬ë¼ì§„ë‹¤
 			for(RwUInt8 i = 0 ; i < DBO_WORLD_MAP_TABLE_COUNT_WORLD_WARFOG ; ++i)
 			{
 				if( m_WarFog[i].bShow &&
@@ -799,7 +799,7 @@ VOID CWorldMapGui::UpdateWarfogEffect(RwReal fElapsed)
 			}
 		}
 
-		// ¿öÆ÷±× »ç¶óÁö±â ÀÌº¥Æ® Á¾·á
+		// ì›Œí¬ê·¸ ì‚¬ë¼ì§€ê¸° ì´ë²¤íŠ¸ ì¢…ë£Œ
 		if( m_WarFogDisappearEvent.fElapsed == m_WarFogDisappearEvent.fRemainTime )
 		{
 			for(RwUInt8 i = 0 ; i < DBO_WORLD_MAP_TABLE_COUNT_WORLD_WARFOG ; ++i)
@@ -952,7 +952,7 @@ VOID CWorldMapGui::UpdateBusPosition()
 
 	CNtlOtherParam* pOtherParam = GetNtlSLGlobal()->GetSobAvatar()->GetOtherParam();
 
-	// ¾Æ¹ÙÅ¸ ÁÖÀ§ÀÇ Sob °´Ã¼Áß ¹ö½º NPC ¾÷µ¥ÀÌÆ®
+	// ì•„ë°”íƒ€ ì£¼ìœ„ì˜ Sob ê°ì²´ì¤‘ ë²„ìŠ¤ NPC ì—…ë°ì´íŠ¸
 	CNtlSobGroup::MapObject::iterator it_sobGroup;
 	CNtlSobGroup* pSobGroup = GetNtlSobManager()->GetSobGroup( SLCLASS_NPC );
 	if( pSobGroup )
@@ -990,13 +990,13 @@ VOID CWorldMapGui::UpdateBusPosition()
 	}
 
 
-	// ¾Æ¹ÙÅ¸ ÁÖÀ§¿¡ ¾ø´Â Sob °´Ã¼Áß ¹ö½º NPC ¾÷µ¥ÀÌÆ®	
+	// ì•„ë°”íƒ€ ì£¼ìœ„ì— ì—†ëŠ” Sob ê°ì²´ì¤‘ ë²„ìŠ¤ NPC ì—…ë°ì´íŠ¸	
 	for( MAP_BUS_ROUTE_ITER it = pOtherParam->GetBusRouteBegin() ; it != pOtherParam->GetBusRouteEnd(); ++it )
 	{
 		sBusPosition busPosition;
 		sBusRoute& rBusRoute = it->second;
 
-		// ¾Æ¹ÙÅ¸ ÁÖÀ§(Å¬¶óÀÌ¾ğÆ® ³»ºÎ Á¤º¸)¿¡ ÀÖ´Â Á¤º¸¸¦ °¡Áö°í ÀÌ¹Ì À§Ä¡¸¦ ¾÷µ¥ÀÌÆ® Çß´Ù
+		// ì•„ë°”íƒ€ ì£¼ìœ„(í´ë¼ì´ì–¸íŠ¸ ë‚´ë¶€ ì •ë³´)ì— ìˆëŠ” ì •ë³´ë¥¼ ê°€ì§€ê³  ì´ë¯¸ ìœ„ì¹˜ë¥¼ ì—…ë°ì´íŠ¸ í–ˆë‹¤
 		BUS_POS_ITER it_BusPos = m_mapBusPos.find(rBusRoute.hBus);
 		if( it_BusPos != m_mapBusPos.end() )
 			continue;
@@ -1108,7 +1108,7 @@ VOID CWorldMapGui::UpdateWarFog()
 {
 	UnloadWarFogTexture();	
 
-	// Á¸¸ğµå¿¡¼­¸¸ ¿öÆ÷±×°¡ ³ª¿Â´Ù
+	// ì¡´ëª¨ë“œì—ì„œë§Œ ì›Œí¬ê·¸ê°€ ë‚˜ì˜¨ë‹¤
 	if( m_byMapMode != WORLDMAP_TYPE_ZONE && m_byMapMode != WORLDMAP_TYPE_ZONE2)
 		return;
 
@@ -1141,7 +1141,7 @@ VOID CWorldMapGui::UpdateWarFog()
 				{
 					if( Logic_IsUIDevInfoVisible() )
 					{
-						// Å×ÀÌºí »óÀÇ ¿öÆ÷±×ÀÇ ÅØ½ºÃ³ ¸®¼Ò½º°¡ Á¸ÀçÇÏÁö ¾Ê´Â´Ù
+						// í…Œì´ë¸” ìƒì˜ ì›Œí¬ê·¸ì˜ í…ìŠ¤ì²˜ ë¦¬ì†ŒìŠ¤ê°€ ì¡´ì¬í•˜ì§€ ì•ŠëŠ”ë‹¤
 						WCHAR awcBuffer[128] = L"";
 						wprintf(awcBuffer, 128, L"Not exist warfog file : fog_%05d.dds", pWORLD_MAP_TBLDAT->wWarfog[i]);
 						GetAlarmManager()->AlarmMessage(awcBuffer, CAlarmManager::ALARM_TYPE_CHAT_WARN);
@@ -1223,7 +1223,7 @@ RwBool CWorldMapGui::LoadingMapSurface(RwUInt8 byMapMode)
 	{
 		case WORLDMAP_TYPE_WORLD:
 		{
-			// ¿ùµå ÀÌ¸§
+			// ì›”ë“œ ì´ë¦„
 			sWORLD_MAP_TBLDAT* pWORLD_MAP_TBLDAT = GetWorldMapTable(m_uiRenderingWorldID, m_uiRenderingZoneID);
 
 			if ( NULL == pWORLD_MAP_TBLDAT )
@@ -1235,21 +1235,21 @@ RwBool CWorldMapGui::LoadingMapSurface(RwUInt8 byMapMode)
 
 			m_pstbRecommendedLevel->Clear();
 
-			// ¸ÊÀÇ ÁÂ»ó´Ü(¸®ÅÍÄªµÈ ÁÂ»ó´Ü)
+			// ë§µì˜ ì¢Œìƒë‹¨(ë¦¬í„°ì¹­ëœ ì¢Œìƒë‹¨)
 			m_v2MapPos.x = pWORLD_MAP_TBLDAT->vStandardLoc.x;
 			m_v2MapPos.y = pWORLD_MAP_TBLDAT->vStandardLoc.z;
 
-			// ÅØ½ºÃ³ ÀÌ¸§
+			// í…ìŠ¤ì²˜ ì´ë¦„
 			sprintf_s(acFileName, 128, "world");
 
-			// ¸Ê ½ºÄÉÀÏ
+			// ë§µ ìŠ¤ì¼€ì¼
 			m_fMapScale = (RwReal)pWORLD_MAP_TBLDAT->fWorldmapScale;
 		}
 		break;
 		case WORLDMAP_TYPE_ZONE:
 		case WORLDMAP_TYPE_ZONE2:
 		{
-			// Á¸ ÀÌ¸§
+			// ì¡´ ì´ë¦„
 			sWORLD_MAP_TBLDAT* pWORLD_MAP_TBLDAT = GetWorldMapTable(m_uiRenderingWorldID, m_uiRenderingZoneID);
 
 			if ( NULL == pWORLD_MAP_TBLDAT )
@@ -1261,20 +1261,20 @@ RwBool CWorldMapGui::LoadingMapSurface(RwUInt8 byMapMode)
 
 			m_pstbRecommendedLevel->Format(GetDisplayStringManager()->GetString("DST_WORLDMAP_RECOMMENDED_LEVEL"), pWORLD_MAP_TBLDAT->byRecomm_Min_Level, pWORLD_MAP_TBLDAT->byRecomm_Max_Level);
 
-			// ¸ÊÀÇ ½ÃÀÛÁ¡(ÁÂ»ó´Ü)
+			// ë§µì˜ ì‹œì‘ì (ì¢Œìƒë‹¨)
 			m_v2MapPos.x = pWORLD_MAP_TBLDAT->vStandardLoc.x;
 			m_v2MapPos.y = pWORLD_MAP_TBLDAT->vStandardLoc.z;
 
-			// ÅØ½ºÃ³ ÀÌ¸§
+			// í…ìŠ¤ì²˜ ì´ë¦„
 			sprintf_s(acFileName, 128, "%02d", m_uiRenderingZoneID);
 
-			// ¸Ê ½ºÄÉÀÏ
+			// ë§µ ìŠ¤ì¼€ì¼
 			m_fMapScale = (RwReal)pWORLD_MAP_TBLDAT->fWorldmapScale;
 		}
 		break;
 		case WORLDMAP_TYPE_CITY:
 		{
-			// ¼½¼Ç ÀÌ¸§
+			// ì„¹ì…˜ ì´ë¦„
 			sWORLD_MAP_TBLDAT* pWORLD_MAP_TBLDAT = GetWorldMapTable(m_uiRenderingWorldID, m_uiRenderingZoneID);
 
 			if ( NULL == pWORLD_MAP_TBLDAT )
@@ -1286,20 +1286,20 @@ RwBool CWorldMapGui::LoadingMapSurface(RwUInt8 byMapMode)
 
 			m_pstbRecommendedLevel->Clear();
 
-			// ¸ÊÀÇ ½ÃÀÛÁ¡(ÁÂ»ó´Ü)
+			// ë§µì˜ ì‹œì‘ì (ì¢Œìƒë‹¨)
 			m_v2MapPos.x = pWORLD_MAP_TBLDAT->vStandardLoc.x;
 			m_v2MapPos.y = pWORLD_MAP_TBLDAT->vStandardLoc.z;
 
-			// ÅØ½ºÃ³ ÀÌ¸§
+			// í…ìŠ¤ì²˜ ì´ë¦„
 			sprintf_s(acFileName, 128, "%02d", m_uiRenderingZoneID);
 
-			// ¸Ê ½ºÄÉÀÏ
+			// ë§µ ìŠ¤ì¼€ì¼
 			m_fMapScale = (RwReal)pWORLD_MAP_TBLDAT->fWorldmapScale;
 		}
 		break;
 		case WORLDMAP_TYPE_INSTANCE_MAP:
 		{
-			// Á¸ ÀÌ¸§
+			// ì¡´ ì´ë¦„
 			sWORLD_MAP_TBLDAT* pWORLD_MAP_TBLDAT = GetWorldMapTable(m_uiRenderingWorldID, m_uiRenderingZoneID);
 
 			if ( NULL == pWORLD_MAP_TBLDAT )
@@ -1321,14 +1321,14 @@ RwBool CWorldMapGui::LoadingMapSurface(RwUInt8 byMapMode)
 				}
 			}
 
-			// ¸ÊÀÇ ½ÃÀÛÁ¡(ÁÂ»ó´Ü)
+			// ë§µì˜ ì‹œì‘ì (ì¢Œìƒë‹¨)
 			m_v2MapPos.x = pWORLD_MAP_TBLDAT->vStandardLoc.x;
 			m_v2MapPos.y = pWORLD_MAP_TBLDAT->vStandardLoc.z;
 
-			// ÅØ½ºÃ³ ÀÌ¸§
+			// í…ìŠ¤ì²˜ ì´ë¦„
 			sprintf_s(acFileName, 128, "%02d", m_uiRenderingZoneID);
 
-			// ¸Ê ½ºÄÉÀÏ
+			// ë§µ ìŠ¤ì¼€ì¼
 			m_fMapScale = (RwReal)pWORLD_MAP_TBLDAT->fWorldmapScale;
 		}
 		break;
@@ -1636,7 +1636,7 @@ VOID CWorldMapGui::LoadingLandMark()
 			m_pLandMarkName[byIndex]->SetText(wstr.c_str());
 			m_pLandMarkName[byIndex]->Show(true);
 
-			// ·£µå¸¶Å© ÀÌ¸§ À§Ä¡
+			// ëœë“œë§ˆí¬ ì´ë¦„ ìœ„ì¹˜
 			if( landMark.pLAND_MARK_TBLDAT->byIconSize == 0 )
 			{
 				SetLandMarkNamePosition(m_pLandMarkName[byIndex], landMark.iPosX , landMark.iPosY, dLANDMARK_SIZE_1);
@@ -1665,7 +1665,7 @@ VOID CWorldMapGui::SetLandMarkNamePosition(gui::CStaticBox* pStatic, RwInt32 iX,
 	RwInt32 iLandMarkNameHalfHeight = pStatic->GetHeight()/2;
 
 
-	// ·£µå¸¶Å© ÀÌ¸§ÀÌ ÁöµµÀÇ ÇÏ´Ü°æ°è¸¦ ¹ş¾î³ª¸é ·£µå¸¶Å©ÀÇ ¿À¸¥ÂÊ È¤Àº ¿ŞÂÊ¿¡ ÀÌ¸§À» À§Ä¡½ÃÅ²´Ù
+	// ëœë“œë§ˆí¬ ì´ë¦„ì´ ì§€ë„ì˜ í•˜ë‹¨ê²½ê³„ë¥¼ ë²—ì–´ë‚˜ë©´ ëœë“œë§ˆí¬ì˜ ì˜¤ë¥¸ìª½ í˜¹ì€ ì™¼ìª½ì— ì´ë¦„ì„ ìœ„ì¹˜ì‹œí‚¨ë‹¤
 	if( m_iMapStartY + 600 - dMAPADJUST_INMAP < iY + iLandMarkNameHalfHeight )
 	{
 		if( iX >= 512 )
@@ -1679,7 +1679,7 @@ VOID CWorldMapGui::SetLandMarkNamePosition(gui::CStaticBox* pStatic, RwInt32 iX,
 
 	RwInt32 iCompare, iCompare2;
 
-	// ·£µå¸¶Å© ÀÌ¸§ÀÌ ÁöµµÀÇ ¿ŞÂÊ°æ°è¸¦ ¹ş¾î³ª¸é
+	// ëœë“œë§ˆí¬ ì´ë¦„ì´ ì§€ë„ì˜ ì™¼ìª½ê²½ê³„ë¥¼ ë²—ì–´ë‚˜ë©´
 	iCompare = m_iMapStartX + dMAPADJUST_INMAP;
 	iCompare2 = iX - iLandMarkNameHalfWidth;
 	if( iCompare > iCompare2 )
@@ -1746,7 +1746,7 @@ VOID CWorldMapGui::LocateComponent()
 
 	m_surBack.SetRectWH(0, 0, rtScreen.GetWidth(), rtScreen.GetHeight());
 
-	// ¿ùµå¸Ê ÇÁ·¹ÀÓ
+	// ì›”ë“œë§µ í”„ë ˆì„
 	m_MapFrameUp	.SetPosition(m_iMapStartX, m_iMapStartY);
 	m_MapFrameLC	.SetPosition(m_iMapStartX, m_iMapStartY + m_MapFrameUp.GetHeight());
 	m_MapFrameRC	.SetPosition(m_iMapStartX + dMAP_WIDTH - m_MapFrameRC.GetWidth() - 1, m_iMapStartY + m_MapFrameUp.GetHeight());
@@ -1765,7 +1765,7 @@ VOID CWorldMapGui::LocateComponent()
 	m_pExitButton		->SetPosition(m_iMapStartX + 785, m_iMapStartY + 5);
 
 
-	// À¯ÆÄÀïÅ»Àü Ã¼Å© ¹öÆ°
+	// ìœ íŒŒìŸíƒˆì „ ì²´í¬ ë²„íŠ¼
 	RwInt32 iCheckButtonWidth = m_pVisibleOtherGuildMemberButton->GetWidth();	
 	RwInt32 iCheckPosX = m_iMapStartX + 763;
 	RwInt32 iCheckPosY = m_iMapStartY + 551;
@@ -1923,7 +1923,7 @@ VOID CWorldMapGui::OnMouseDown( const CKey& key )
 		//	}
 		//}
 
-		// Á¸ Å¬¸¯
+		// ì¡´ í´ë¦­
 		m_uiPressedZoneIndex = m_FocusZoneID;
 		m_uiPressedMapIndex = m_FocusMapID;
 	//	DBO_WARNING_MESSAGE("m_uiPressedZoneIndex: " << m_uiPressedZoneIndex << ", m_uiPressedMapIndex: " << m_uiPressedMapIndex);
@@ -1967,15 +1967,14 @@ VOID CWorldMapGui::OnMouseUp( const CKey& key )
 					m_bChangedMap_by_User	= TRUE;
 					AnalysisAreaInfo();
 				}
-				/*else if( m_byMapMode == WORLDMAP_TYPE_ZONE )
+				else if( m_byMapMode == WORLDMAP_TYPE_ZONE )
 				{
-					m_byMapMode = WORLDMAP_TYPE_ZONE2;
+					m_byMapMode = WORLDMAP_TYPE_CITY;
 					m_uiRenderingZoneID = m_uiPressedZoneIndex;
 					m_uiRenderingWorldID = m_uiPressedMapIndex;
-
 					m_bChangedMap_by_User = TRUE;
 					AnalysisAreaInfo();
-				}*/
+				}
 			}
 		}
 		else
@@ -2044,7 +2043,7 @@ VOID CWorldMapGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 
 	if( m_tScrambleVisible.bShowOurTeam || m_tScrambleVisible.bShowOtherTeam )
 	{
-		// (ÇÇ¾Æ±¸ºĞ)ÆÀÀ» ³ª´©¾î¼­ ½Î¿ì´Â °æ¿ìÀÇ »ç¶÷µé
+		// (í”¼ì•„êµ¬ë¶„)íŒ€ì„ ë‚˜ëˆ„ì–´ì„œ ì‹¸ìš°ëŠ” ê²½ìš°ì˜ ì‚¬ëŒë“¤
 		LIST_CAMP::iterator it_Camp = m_listCamp.begin();
 		for( ; it_Camp != m_listCamp.end() ; ++it_Camp )
 		{
@@ -2077,7 +2076,7 @@ VOID CWorldMapGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 
 	if( !m_tScrambleVisible.bScramble )
 	{
-		// ÆÄÆ¼¿ø
+		// íŒŒí‹°ì›
 		for(RwInt8 i = 0 ; i < (NTL_MAX_MEMBER_IN_PARTY - 1) ; ++i )
 		{
 			if( !m_aPartyMember[i].bShow )
@@ -2101,7 +2100,7 @@ VOID CWorldMapGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 		}	
 	}	
 
-	// ·£µå¸¶Å©
+	// ëœë“œë§ˆí¬
 	RwBool bFocusLandMark = FALSE;
 
 	LANDMARK_ITER it_landmark = m_listLandMark.begin();
@@ -2131,12 +2130,12 @@ VOID CWorldMapGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 				}
 			}
 
-			// ·£µå¸¶Å© Æ÷Ä¿½Ì
+			// ëœë“œë§ˆí¬ í¬ì»¤ì‹±
 			bFocusLandMark = TRUE;
 			m_uiFocusLandMarkIndex = iIndex;
 			
 
-			// ÅøÆÁ
+			// íˆ´íŒ
 			if( landMark.pLAND_MARK_TBLDAT->Note != INVALID_INDEX )
 			{
 				sMINIMAPINFO info;
@@ -2165,7 +2164,7 @@ VOID CWorldMapGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 	if( !bFocusLandMark )
 		m_uiFocusLandMarkIndex = INVALID_INDEX;
 
-	// ´ÙÀ½ ÁøÇà Äù½ºÆ®
+	// ë‹¤ìŒ ì§„í–‰ í€˜ìŠ¤íŠ¸
 	NEXTQUEST_ITER it_nextQuest = m_listNextQuest.begin();
 	for( ; it_nextQuest != m_listNextQuest.end() ; ++it_nextQuest )
 	{
@@ -2185,7 +2184,7 @@ VOID CWorldMapGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 
 				info.iType = MMIT_QUEST;
 
-				// ex) [metatag =5]Àç¹è¸Ç ==> Àç¹è¸Ç
+				// ex) [metatag =5]ì¬ë°°ë§¨ ==> ì¬ë°°ë§¨
 				const WCHAR* pwcText = wcschr(nextQuest.pwcText, L']');
 				if( pwcText )
 				{
@@ -2254,7 +2253,7 @@ VOID CWorldMapGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 		}
 	}
 
-	// µµÀåÀü ÀÎÀå
+	// ë„ì¥ì „ ì¸ì¥
 	if( m_tScrambleVisible.bScramble )
 	{
 		MAP_SCRAMBLE_SEAL_MARK::iterator it_ScrambleSealMark = m_mapScrambleSealMark.begin();
@@ -2332,15 +2331,51 @@ VOID CWorldMapGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 		m_FocusZoneID = INVALID_ZONEID;
 		m_FocusMapID = INVALID_TBLIDX;
 	}
-	else
+	else if (m_byMapMode == WORLDMAP_TYPE_ZONE)
 	{
-		if (bFocusLandMark == FALSE)
+		if (bFocusLandMark)
 		{
-			m_byFocusArea = MWFT_NONE;
-			m_FocusZoneID = INVALID_ZONEID;
-			m_FocusMapID = INVALID_TBLIDX;
+			LANDMARK_ITER it_landmark = m_listLandMark.begin();
+			std::advance(it_landmark, m_uiFocusLandMarkIndex);
+			LandMarkInfo& landMark = *it_landmark;
+			TBLIDX LinkMapIdx = landMark.pLAND_MARK_TBLDAT->LinkMapIdx;
+			if (LinkMapIdx != INVALID_TBLIDX)
+			{
+				int iTemp1 = LinkMapIdx / 1000;
+				int iTempLength = 0;
+				for (; iTemp1 > 0; iTempLength++)
+					iTemp1 /= 10;
+				ZONEID landMapID = LinkMapIdx / 1000 % (int)std::pow(10, iTempLength - 1);
+
+				int iTemp2 = LinkMapIdx / 10;
+				int iTemp3 = iTemp2 / 100 * 100;
+				TBLIDX landMarkZoneID = iTemp2 - iTemp3;
+
+				if (m_FocusZoneID != landMarkZoneID)
+				{
+					sWORLD_MAP_TBLDAT* pWORLD_MAP_TBLDAT = GetWorldMapTable(landMapID, landMarkZoneID);
+					CMapNameTextTable* pMapNameTable = API_GetTableContainer()->GetTextAllTable()->GetMapNameTbl();
+					std::wstring wsAreaName = pMapNameTable->GetSectorName(pWORLD_MAP_TBLDAT->Worldmap_Name);
+					m_pRegionName->SetText(wsAreaName.c_str());
+					m_pstbRecommendedLevel->Clear();
+				}
+				m_FocusMapID = landMapID;
+				m_FocusZoneID = landMarkZoneID;
+				return;
+			}
+		}
+		if (m_FocusZoneID != INVALID_ZONEID)
+		{
+			sWORLD_MAP_TBLDAT* pWORLD_MAP_TBLDAT = GetWorldMapTable(m_uiRenderingWorldID, m_uiRenderingZoneID);
+			CMapNameTextTable* pMapNameTable = API_GetTableContainer()->GetTextAllTable()->GetMapNameTbl();
+			std::wstring wsZoneName = pMapNameTable->GetZoneName(pWORLD_MAP_TBLDAT->Worldmap_Name);
+			m_pRegionName->SetText(wsZoneName.c_str());
+			m_pstbRecommendedLevel->Format(GetDisplayStringManager()->GetString("DST_WORLDMAP_RECOMMENDED_LEVEL"), pWORLD_MAP_TBLDAT->byRecomm_Min_Level, pWORLD_MAP_TBLDAT->byRecomm_Max_Level);
 		}
 	}
+	m_byFocusArea = MWFT_NONE;
+	m_FocusZoneID = INVALID_ZONEID;
+	m_FocusMapID = INVALID_TBLIDX;
 }
 
 VOID CWorldMapGui::OnMouseLeave(gui::CComponent* pComponent)
@@ -2367,20 +2402,20 @@ VOID CWorldMapGui::OnPaint()
 {
 	m_surBack.Render();
 
-	// Áöµµ
+	// ì§€ë„
 	m_srfMap.Render();
 
-	// ¿ùµå¸Ê»óÀÇ Á¸ Æ÷Ä¿½º
+	// ì›”ë“œë§µìƒì˜ ì¡´ í¬ì»¤ìŠ¤
 	if( m_byFocusArea != MWFT_NONE  && m_byFocusArea <= NUM_MWFT)
 		m_aMainWorldFocus[m_byFocusArea].surface.Render();
 
 
-	// ¹ö½º ³ë¼±
+	// ë²„ìŠ¤ ë…¸ì„ 
 	if( CanRenderBusRoute() )
 		m_srfBusRoute.Render();
 
 
-	// ·£µå¸¶Å©
+	// ëœë“œë§ˆí¬
 	RwUInt32 uiIndex = 0;
 	LANDMARK_ITER it_landmark = m_listLandMark.begin();
 	for( ; it_landmark != m_listLandMark.end() ; ++it_landmark, ++uiIndex )
@@ -2469,7 +2504,7 @@ VOID CWorldMapGui::OnPaint()
 			m_WarFog[i].srfWarFog.Render();
 	}	
 
-	// ÁöµµÆ²
+	// ì§€ë„í‹€
 	m_MapFrameUp.Render();
 	m_MapFrameLC.Render();
 	m_MapFrameRC.Render();
@@ -2486,11 +2521,11 @@ VOID CWorldMapGui::OnPostPaint()
 	SCtrlStuff *pCtrlStuff = pBeData->GetCtrlStuff();
 	SERIAL_HANDLE hBus_with_Avatar = pCtrlStuff->sRide.hTargetSerialId;
 
-	// ¹ÙÀÎµå Æ÷ÀÎÆ®
+	// ë°”ì¸ë“œ í¬ì¸íŠ¸
 	if( m_BindInfo.bShow )
 		m_surBindMark.Render();
 
-	// µµÀåÀü ÀÎÀå
+	// ë„ì¥ì „ ì¸ì¥
 	if( m_tScrambleVisible.bScramble )
 	{
 		MAP_SCRAMBLE_SEAL_MARK::iterator it_ScrambleSealMark = m_mapScrambleSealMark.begin();
@@ -2510,7 +2545,7 @@ VOID CWorldMapGui::OnPostPaint()
 		}
 	}	
 
-	// ´ÙÀ½ ÁøÇà Äù½ºÆ®
+	// ë‹¤ìŒ ì§„í–‰ í€˜ìŠ¤íŠ¸
 	NEXTQUEST_ITER it_nextQuest = m_listNextQuest.begin();
 	for( ; it_nextQuest != m_listNextQuest.end() ; ++it_nextQuest )
 	{
@@ -2523,7 +2558,7 @@ VOID CWorldMapGui::OnPostPaint()
 		m_surNextQuestMark[nextQuest.eTargetType].Render();
 	}
 
-	// ÆÄÆ¼¿ø
+	// íŒŒí‹°ì›
 	if( !m_tScrambleVisible.bScramble )
 	{
 		for( RwInt8 i = 0 ; i < (NTL_MAX_MEMBER_IN_PARTY - 1) ; ++i )
@@ -2531,7 +2566,7 @@ VOID CWorldMapGui::OnPostPaint()
 			if( !m_aPartyMember[i].bShow )
 				continue;
 
-			// Áöµµ ¿µ¿ª ¾È¿¡ ÀÖ´ÂÁö °Ë»çÇØ¾ß ÇÑ´Ù
+			// ì§€ë„ ì˜ì—­ ì•ˆì— ìˆëŠ”ì§€ ê²€ì‚¬í•´ì•¼ í•œë‹¤
 			if( IsinMap((RwInt32)m_aPartyMember[i].v2Pos.x, (RwInt32)m_aPartyMember[i].v2Pos.y) )
 			{
 				m_surMarkPartryMember.SetCenterPosition((RwInt32)m_aPartyMember[i].v2Pos.x + m_iMapStartX,
@@ -2542,7 +2577,7 @@ VOID CWorldMapGui::OnPostPaint()
 		}	
 	}	
 
-	// (ÇÇ¾Æ±¸ºĞ)ÆÀÀ» ³ª´©¾î¼­ ½Î¿ì´Â °æ¿ìÀÇ »ç¶÷µé
+	// (í”¼ì•„êµ¬ë¶„)íŒ€ì„ ë‚˜ëˆ„ì–´ì„œ ì‹¸ìš°ëŠ” ê²½ìš°ì˜ ì‚¬ëŒë“¤
 	LIST_CAMP::iterator it_Camp = m_listCamp.begin();
 	for( ; it_Camp != m_listCamp.end() ; ++it_Camp )
 	{
@@ -2551,7 +2586,7 @@ VOID CWorldMapGui::OnPostPaint()
 		if( tCAMP_PEOPLE.ePeopleType >= NUM_CAMP_PEOPLE )
 			continue;
 
-		// Áöµµ ¿µ¿ª ¾È¿¡ ÀÖ´ÂÁö °Ë»çÇØ¾ß ÇÑ´Ù
+		// ì§€ë„ ì˜ì—­ ì•ˆì— ìˆëŠ”ì§€ ê²€ì‚¬í•´ì•¼ í•œë‹¤
 		if( IsinMap((RwInt32)tCAMP_PEOPLE.v2Pos.x, (RwInt32)tCAMP_PEOPLE.v2Pos.y) )
 		{
 			m_surCamp[tCAMP_PEOPLE.ePeopleType].SetCenterPosition((RwInt32)tCAMP_PEOPLE.v2Pos.x, (RwInt32)tCAMP_PEOPLE.v2Pos.y);
@@ -2559,7 +2594,7 @@ VOID CWorldMapGui::OnPostPaint()
 		}
 	}
 
-	// ¾Æ¹ÙÅ¸
+	// ì•„ë°”íƒ€
 	if( INVALID_SERIAL_ID == hBus_with_Avatar ||
 		FALSE == CanRenderBusRoute() )
 	{
@@ -2912,13 +2947,13 @@ RwInt32 CWorldMapGui::SwitchDialog(bool bOpen)
 		CheckInfoWindow();
 		ShowScrambleCampComponent(false);
 
-		// ¿öÆ÷±×°¡ »ç¶óÁö´Â ÀÌº¥Æ®´Â Ã¢ÀÌ ´İÈ÷¸é ¹Ù·Î Á¾·áÇÑ´Ù
+		// ì›Œí¬ê·¸ê°€ ì‚¬ë¼ì§€ëŠ” ì´ë²¤íŠ¸ëŠ” ì°½ì´ ë‹«íˆë©´ ë°”ë¡œ ì¢…ë£Œí•œë‹¤
 		m_WarFogDisappearEvent.bActiveEffect = FALSE;
 		m_WarFogDisappearEvent.uiWarfogIndex = INVALID_SERIAL_ID;
 		m_WarFogDisappearEvent.fRemainTime	= 0.f;
 		m_WarFogDisappearEvent.fElapsed		= 0.f;		
 
-		// ¿ùµå¸ÊÀ» ±×¸®Áö ¾ÊÀ¸¸é º°µµÀÇ ÅØ½ºÃ³·Î ºĞ¸®µÇ¾î ÀÖ´Â ¸®¼Ò½º´Â ÀüºÎ ÇØÁ¦ÇÑ´Ù
+		// ì›”ë“œë§µì„ ê·¸ë¦¬ì§€ ì•Šìœ¼ë©´ ë³„ë„ì˜ í…ìŠ¤ì²˜ë¡œ ë¶„ë¦¬ë˜ì–´ ìˆëŠ” ë¦¬ì†ŒìŠ¤ëŠ” ì „ë¶€ í•´ì œí•œë‹¤
 		UnLoadWorldFocus();
 		UnloadLandMark();
 		UnloadWarFogTexture();
@@ -2963,7 +2998,7 @@ VOID CWorldMapGui::HandleEvents( RWS::CMsg &msg )
 			NTL_RETURNVOID();
 		}
 
-		// avooo's commnet : ¹ÙÀÎµå ÇÒ ¼ö ÀÖ´Â Áö¿ªÀÌ¶ó¸é ¹«Á¶°Ç ¿ùµå ID¿Í ¿ùµåÅ×ÀÌºí Index°¡ µ¿ÀÏÇÏ´Ù
+		// avooo's commnet : ë°”ì¸ë“œ í•  ìˆ˜ ìˆëŠ” ì§€ì—­ì´ë¼ë©´ ë¬´ì¡°ê±´ ì›”ë“œ IDì™€ ì›”ë“œí…Œì´ë¸” Indexê°€ ë™ì¼í•˜ë‹¤
 
 		m_BindInfo.byBindType		= pBindInfo->byBindType;
 		m_BindInfo.WorldID			= pBindInfo->BindedWorldID;
@@ -3012,10 +3047,10 @@ VOID CWorldMapGui::HandleEvents( RWS::CMsg &msg )
 			}			
 
 
-			// ¿öÆ÷±× µ¥ÀÌÅÍ ÀúÀå
+			// ì›Œí¬ê·¸ ë°ì´í„° ì €ì¥
 			pOtherParam->SetWarFolgValue(pOBJECT_TBLDAT->contentsTblidx);
 
-			// ¿ùµå»ó ³ª¸ŞÄ­ »çÀÎ¿¡ ÀÌÆåÆ®¸¦ ¿¬ÃâÇÑ´Ù
+			// ì›”ë“œìƒ ë‚˜ë©”ì¹¸ ì‚¬ì¸ì— ì´í™íŠ¸ë¥¼ ì—°ì¶œí•œë‹¤
 			CNtlPLEntity *pPLEntity = GetSceneManager()->CreateEntity(PLENTITY_EFFECT, dWARFOG_NAMEKSIGN_EFFECT);
 			if( pPLEntity )
 			{
@@ -3027,13 +3062,13 @@ VOID CWorldMapGui::HandleEvents( RWS::CMsg &msg )
 				DBO_FAIL("Not exist effect of name : " << dWARFOG_NAMEKSIGN_EFFECT);
 			}			
 
-			// ¿ùµå¸Ê¿¡¼­ ¿öÆ÷±×°¡ »ç¶óÁö´Â ÀÌÆåÆ®
+			// ì›”ë“œë§µì—ì„œ ì›Œí¬ê·¸ê°€ ì‚¬ë¼ì§€ëŠ” ì´í™íŠ¸
 			m_WarFogDisappearEvent.bActiveEffect = FALSE;
 			m_WarFogDisappearEvent.uiWarfogIndex = pOBJECT_TBLDAT->contentsTblidx;
 			m_WarFogDisappearEvent.fRemainTime	= dWARFOR_SCHEDULE_TOTAL_TIME;
 			m_WarFogDisappearEvent.fElapsed		= 0.f;
 
-			// Á¸ ¸ğµå¿¡¼­¸¸ º¸¿©ÁØ´Ù
+			// ì¡´ ëª¨ë“œì—ì„œë§Œ ë³´ì—¬ì¤€ë‹¤
 			m_byMapMode = WORLDMAP_TYPE_ZONE;
 		}
 	}
@@ -3043,7 +3078,7 @@ VOID CWorldMapGui::HandleEvents( RWS::CMsg &msg )
 
 	//	if( pEvent->iType == SCOUTER_EVENT_QUEST_SEARCH )
 	//	{
-	//		// ÀÌ¹Ì Äù½ºÆ® ¼­Ä¡Áß
+	//		// ì´ë¯¸ í€˜ìŠ¤íŠ¸ ì„œì¹˜ì¤‘
 	//		if( m_pQuestSearch )
 	//			NTL_RETURNVOID();
 
@@ -3187,7 +3222,7 @@ VOID CWorldMapGui::HandleEvents( RWS::CMsg &msg )
 		}
 		else if( DOJO_EVENT_SCRAMBLE_CHANGE_SEAL_OWNER == pEvent->byDojoEvent )
 		{
-			// ÀÎÀåÀÇ »óÅÂ°¡ º¯°æµÇ¾úÀ½À» ÆÇ´ÜÇÑ´Ù
+			// ì¸ì¥ì˜ ìƒíƒœê°€ ë³€ê²½ë˜ì—ˆìŒì„ íŒë‹¨í•œë‹¤
 			TBLIDX		dojoTblidx		= pEvent->uiParam;
 			TBLIDX		idxObject		= *(TBLIDX*)pEvent->pExData;
 
