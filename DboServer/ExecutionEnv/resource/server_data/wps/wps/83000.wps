@@ -12807,8 +12807,271 @@ GameStage( 0 )
 		Param( "stage", 150 )
 		Param( "direct play", "false" )
 
+		Action( "add mobgroup" )
+ 		--[
+ 			Param( "group", 8046 )
+ 			Param( "no spawn wait", "true" )
+ 		--]
+ 		End()
+		Action( "add mobgroup" )
+ 		--[
+ 			Param( "group", 8051 )
+ 			Param( "no spawn wait", "true" )
+ 		--]
+ 		End()
+		
 		-------
-		-- Summon Boss
+		-- Summon first boss. 
+		-------
+
+ 		Action( "add mobgroup" )
+ 		--[
+ 			Param( "group", 8045 )
+ 			Param( "no spawn wait", "true" )
+ 		--]
+ 		End()
+		
+		Action( "function" )
+		--[
+			Condition( "child" )
+			--[
+				Action( "wait" )
+				--[
+					Condition( "check battle" )
+					--[
+						Param( "type", "mob" )
+						Param( "group", 8045 )
+						Param( "is battle", "true" )
+					--]
+					End()
+				--]
+				End()
+				
+					-- 50% Front Wolfs
+				Action( "wait" )
+				--[
+					Condition( "check lp" )
+					--[
+						Param( "type", "mob" )
+						Param( "group", 8045 )
+						Param( "lp" , 50 )
+					--]
+					End()
+		
+					
+				--]
+				End()
+
+				Action( "add mobgroup")
+				--[
+					Param( "group", 8047 )
+					Param( "respawn", "false" )
+					Param( "no spawn wait", "true" )
+				--]
+				End()
+	
+				-- 20% rear wolfs
+				Action( "wait" )
+				--[
+					Condition( "check lp" )
+					--[
+						Param( "type", "mob" )
+						Param( "group", 8045 )
+						Param( "lp" , 20 )
+					--]
+					End()
+	
+				--]
+				End()
+
+				Action( "add mobgroup" )
+				--[
+					Param( "group", 8049 )
+					Param( "respawn", "false" )
+					Param( "no spawn wait", "true")
+				--]
+				End()
+			--]
+			End()-- child end
+			
+			-------
+			-- Summon Control Device. 
+			-------
+			Action( "wait" )
+			--[
+				Condition( "check mobgroup" )
+				--[
+					Param( "group", 8045 )
+					Param( "count", 0 )
+				--]
+				End()
+			--]
+			End()
+			
+			Action( "add mobgroup" )
+			--[
+				Param( "group", 8048 )
+				Param( "no spawn wait", "true" )
+			--]
+			End()
+			
+		--]
+		End()
+		
+		-------
+		-- Kill the control device
+		-------
+		Action( "function" )
+		--[
+			Condition( "child" )
+			--[
+				Action( "wait" )
+				--[
+					Condition( "check battle" )
+					--[
+						Param( "type", "mob" )
+						Param( "group", 8048 )
+						Param( "is battle", "true" )
+					--]
+					End()
+				--]
+				End()
+			--]
+			End()-- child end
+			
+			-------
+			-- Summon Control Device. 
+			-------
+			Action( "wait" )
+			--[
+				Condition( "check mobgroup" )
+				--[
+					Param( "group", 8048 )
+					Param( "count", 0 )
+				--]
+				End()
+			--]
+			End()
+			Action( "remove mobgroup" )
+			--[
+				Param( "group", 8046 )
+				Param( "type", "clear" )
+			--]
+			End()
+			Action( "add mobgroup" )
+			--[
+				Param( "group", 8050 )
+				Param( "no spawn wait", "true" )
+			--]
+			End()
+			
+		--]
+		End()
+
+
+		-------
+		-- Kill the Second control device
+		-------
+		Action( "function" )
+		--[
+			Condition( "child" )
+			--[
+				Action( "wait" )
+				--[
+					Condition( "check battle" )
+					--[
+						Param( "type", "mob" )
+						Param( "group", 8050 )
+						Param( "is battle", "true" )
+					--]
+					End()
+				--]
+				End()
+			--]
+			End()-- child end
+			
+			-------
+			-- Summon Control Device. 
+			-------
+			Action( "wait" )
+			--[
+				Condition( "check mobgroup" )
+				--[
+					Param( "group", 8050 )
+					Param( "count", 0 )
+				--]
+				End()
+			--]
+			End()
+			Action( "remove mobgroup" )
+			--[
+				Param( "group", 8051 )
+				Param( "type", "clear" )
+			--]
+			End()
+			Action( "add mobgroup" )
+			--[
+				Param( "group", 8052 )
+				Param( "no spawn wait", "true" )
+			--]
+			End()
+			
+		--]
+		End()
+		
+		
+		-------
+		-- Kill the Last control device
+		-------
+		Action( "function" )
+		--[
+			Condition( "child" )
+			--[
+				Action( "wait" )
+				--[
+					Condition( "check battle" )
+					--[
+						Param( "type", "mob" )
+						Param( "group", 8052 )
+						Param( "is battle", "true" )
+					--]
+					End()
+				--]
+				End()
+				Action( "add mobgroup" )
+				--[
+				Param( "group", 8053 )
+				Param( "no spawn wait", "true" )
+				--]
+				End()
+			--]
+			End()-- child end
+			
+
+			
+			-------
+			-- Summon Control Device. 
+			-------
+			Action( "wait" )
+			--[
+				Condition( "check mobgroup" )
+				--[
+					Param( "group", 8052 )
+					Param( "count", 0 )
+				--]
+				End()
+			--]
+			End()
+			Action( "remove mobgroup" )
+			--[
+				Param( "group", 8053 )
+				Param( "type", "clear" )
+			--]
+			End()	
+		--]
+		End()
+		-------
+		-- Summon final boss. 
 		-------
 
  		Action( "add mobgroup" )
@@ -12833,8 +13096,311 @@ GameStage( 0 )
 					End()
 				--]
 				End()
+			-------
+			-- Check for 90% lp
+			-------
+			
+			Action( "wait" )
+			--[
+				Condition( "check lp" )
+				--[
+					Param( "type", "mob" )
+					Param( "group", 8054 )
+					Param( "lp" , 90 )
+				--]
+				End()
+			--]
+			End()
+			
+			Action( "register buff" )
+				--[
+					Param( "target type", "mob" )
+					Param( "target index", 12132201 )
+					Param( "buff index", 2385 )
+				--]
+				End()
+			Action( "add mobgroup" )
+				--[
+					Param( "group", 8055 )
+					Param( "no spawn wait", "true" )
+				--]
+				End()
+				
+			-------
+			-- Check for dead mummy
+			-------
+			
+			Action( "wait" )
+			--[
+				Condition( "check mobgroup" )
+				--[
+					Param( "group", 8055 )
+					Param( "count", 0 )
+				--]
+				End()
+			--]
+			End()
+			Action( "unregister buff" )
+			--[
+				Param( "target type", "mob" )
+				Param( "target index", 12132201 )
+				Param( "buff index", 2385 )
+			--]
+			End()
+			
+			-------
+			-- Check for 70% lp
+			-------
+ 
+			
+			Action( "wait" )
+			--[
+				Condition( "check lp" )
+				--[
+					Param( "type", "mob" )
+					Param( "group", 8054 )
+					Param( "lp" , 70 )
+				--]
+				End()
+			--]
+			End()
+			Action( "add mobgroup" )
+			--[
+				Param( "group", 8056 )
+				Param( "no spawn wait", "true" )
+			--]
+			End()
+			
+			-------
+			-- Check for 60% lp
+			-------
+ 
+			
+			Action( "wait" )
+			--[
+				Condition( "check lp" )
+				--[
+					Param( "type", "mob" )
+					Param( "group", 8054 )
+					Param( "lp" , 60 )
+				--]
+				End()
+			--]
+			End()			
+			
+				Action( "register buff" )
+				--[
+					Param( "target type", "mob" )
+					Param( "target index", 12132201 )
+					Param( "buff index", 2385 )
+				--]
+				End()
+				Action( "add mobgroup" )
+				--[
+					Param( "group", 8059 )
+					Param( "no spawn wait", "true" )
+				--]
+				End()
+				Action( "wait" )
+				--[
+					Condition( "check time" )
+					--[
+						Param( "time", 15 )
+					--]
+					End()
+				--]
+				End()			
+				
+				Action( "add mobgroup" )
+				--[
+					Param( "group", 8056 )
+					Param( "no spawn wait", "true" )
+				--]
+				End()
+				
+				Action( "wait" )
+				--[
+					Condition( "check time" )
+						--[
+							Param( "time", 15 )
+						--]
+						End()
+						Action( "add mobgroup" )
+						--[
+							Param( "group", 8057 )
+							Param( "no spawn wait", "true" )
+						--]
+						End()
+				--]
+				End()
+			-------
+			-- Check for dead mummy
+			-------
+			
+			Action( "wait" )
+			--[
+				Condition( "check mobgroup" )
+				--[
+					Param( "group", 8059 )
+					Param( "count", 0 )
+				--]
+				End()
+				
+				
+			--]
+			End()
+			
+				Action( "unregister buff" )
+				--[
+					Param( "target type", "mob" )
+					Param( "target index", 12132201 )
+					Param( "buff index", 2385 )
+				--]
+				End()
+			-------
+			-- Check for 50% lp
+			-------
+ 
+			
+			Action( "wait" )
+			--[
+				Condition( "check lp" )
+				--[
+					Param( "type", "mob" )
+					Param( "group", 8054 )
+					Param( "lp" , 50 )
+				--]
+				End()
+			--]
+			End()
+			Action( "add mobgroup" )
+			--[
+				Param( "group", 8058 )
+				Param( "no spawn wait", "true" )
+			--]
+			End()
+			
+			
+			-------
+			-- Check for 40% lp
+			-------
+ 
+			
+			Action( "wait" )
+			--[
+				Condition( "check lp" )
+				--[
+					Param( "type", "mob" )
+					Param( "group", 8054 )
+					Param( "lp" , 40 )
+				--]
+				End()
+			--]
+			End()
+			Action( "add mobgroup" )
+			--[
+				Param( "group", 8056 )
+				Param( "no spawn wait", "true" )
+			--]
+			End()
+			
+			
+			-------
+			-- Check for 30% lp
+			-------
+ 
+			
+			Action( "wait" )
+			--[
+				Condition( "check lp" )
+				--[
+					Param( "type", "mob" )
+					Param( "group", 8054 )
+					Param( "lp" , 30 )
+				--]
+				End()
+			--]
+			End()
+			Action( "add mobgroup" )
+			--[
+				Param( "group", 8057 )
+				Param( "no spawn wait", "true" )
+			--]
+			End()
+			
+			
+			-------
+			-- Check for 20% lp
+			-------
+ 
+			
+			Action( "wait" )
+			--[
+				Condition( "check lp" )
+				--[
+					Param( "type", "mob" )
+					Param( "group", 8054 )
+					Param( "lp" , 20 )
+				--]
+				End()
+			--]
+			End()
+			
+			Action( "register buff" )
+			--[
+				Param( "target type", "mob" )
+				Param( "target index", 12132201 )
+				Param( "buff index", 2385 )
+			--]
+			End()
+				
+			Action( "add mobgroup" )
+			--[
+				Param( "group", 8060 )
+				Param( "no spawn wait", "true" )
+			--]
+			End()
+			
+			
+			
+			-------
+			-- Check for dead mummy
+			-------
+			
+			Action( "wait" )
+			--[
+				Condition( "check mobgroup" )
+				--[
+					Param( "group", 8060 )
+					Param( "count", 0 )
+				--]
+				End()
+			--]
+			End()
+				Action( "unregister buff" )
+				--[
+					Param( "target type", "mob" )
+					Param( "target index", 12132201 )
+					Param( "buff index", 2385 )
+				--]
+				End()
+				
+			Action( "add mobgroup" )
+			--[
+				Param( "group", 8061 )
+				Param( "no spawn wait", "true" )
+			--]
+			End()
+			
+			
 			--]
 			End()-- child end
+			
+			
+			
+			------
+			-- Check spacecat Dead
+			------
  
 			Action( "wait" )
 			--[
