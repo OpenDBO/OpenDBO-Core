@@ -74,12 +74,12 @@ bool CLogInStage::Create(void)
 	}
 
 	// avooo's commnet: The logo is visible only when the application is first run.
-	// When I get back to the login screen during the game, I see the logo again.
+	// It's awkward to see the logo again when you return to the login screen during the game.
 	static RwBool bFirstRunLogo = TRUE;
 	if( bFirstRunLogo )
 	{
 		GetLogInStageState()->ChangeState(LOGIN_STATE_SERVER_CONNECT);
-		//GetLogInStageState()->ChangeState(LOGIN_STATE_LOGO);
+		GetLogInStageState()->ChangeState(LOGIN_STATE_LOGO);
 
 #ifndef NDEBUG
 		RwBool bWindowMode = GetNtlStorageManager()->GetBoolData( dSTORAGE_GRAPHIC_WINDOW_MODE );
