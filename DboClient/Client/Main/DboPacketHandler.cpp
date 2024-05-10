@@ -235,6 +235,8 @@ void PacketHandler_GSObjectCreate(void *pPacket)
 		void* pOptionSet = reinterpret_cast<void*>(&pObjCreate->sObjectInfo.itemOptionSet);
 
 		CNtlSLEventGenerator::SobWorldItemCreate( SLCLASS_WORLD_ITEM, pObjCreate->handle, vLoc, OBJTYPE_DROPITEM, pBrief, pState, pOptionSet);
+		
+		sITEM_TBLDAT* pItemTbldat = (sITEM_TBLDAT*)API_GetTableContainer()->GetItemTable()->FindData(pObjCreate->sObjectInfo.itemBrief.tblidx);
 
 		if (pObjCreate->sObjectInfo.itemBrief.tblidx == DBO_BLANK_DRAGON_BALL_IDX)
 			Logic_PlayGUISound(GSD_SYSTEM_DROP_DBALL);
