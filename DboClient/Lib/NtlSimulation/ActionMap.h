@@ -1,13 +1,13 @@
-/*****************************************************************************
+ï»¿/*****************************************************************************
 * File			: ActionMap.h
 * Author		: Haesung, Cho
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 9. 20
 * Abstract		: Action Map
 *****************************************************************************
-* Desc			: ¾×¼Ç¸ÊÀÇ ÀÚ·á±¸Á¶¸¦ Á¤ÀÇÇÏ°í ¾×¼Ç¸ÊÀÇ ¸Å´ÏÀú¸¦ ÀÛ¼ºÇÑ´Ù.
+* Desc			: ì•¡ì…˜ë§µì˜ ìë£Œêµ¬ì¡°ë¥¼ ì •ì˜í•˜ê³  ì•¡ì…˜ë§µì˜ ë§¤ë‹ˆì €ë¥¼ ì‘ì„±í•œë‹¤.
 * History  -----
-* 2008.  2. 22	: ¸®ÆÑÅä¸µ, ±âÁ¸ÀÇ ¾×¼Ç¸Ê ¹æ½Ä¿¡¼­ ÀÚ·á±¸Á¶¿Í ¸Å´ÏÀú¸¦ ºĞ¸®( ¼Ó¼º Ãß°¡ )
+* 2008.  2. 22	: ë¦¬íŒ©í† ë§, ê¸°ì¡´ì˜ ì•¡ì…˜ë§µ ë°©ì‹ì—ì„œ ìë£Œêµ¬ì¡°ì™€ ë§¤ë‹ˆì €ë¥¼ ë¶„ë¦¬( ì†ì„± ì¶”ê°€ )
 *****************************************************************************/
 
 #ifndef __ACTION_MAP_H__
@@ -28,25 +28,25 @@ class CActionMapManager;
 
 /**
 * \ingroup simulation
-* \brief NTL ActionMapÀÇ ÀÚ·á±¸Á¶
+* \brief NTL ActionMapì˜ ìë£Œêµ¬ì¡°
 */
 class CActionMap
 {
 public:
-	// »ı¼ºÀÚ & ¼Ò¸êÀÚ
+	// ìƒì„±ì & ì†Œë©¸ì
 	CActionMap(void);
 	CActionMap( CActionMapManager* pManager );
 	CActionMap(const CActionMap& rhs);
 	~CActionMap(void);
 
-	WORD	FindAction( WORD wKey );			// Key °ªÀ¸·Î ActionÀ» Ã£´Â´Ù.
-	WORD	FindKey( WORD wAction );			// Action À¸·Î Key¸¦ Ã£´Â´Ù.
+	WORD	FindAction( WORD wKey );			// Key ê°’ìœ¼ë¡œ Actionì„ ì°¾ëŠ”ë‹¤.
+	WORD	FindKey( WORD wAction );			// Action ìœ¼ë¡œ Keyë¥¼ ì°¾ëŠ”ë‹¤.
 
-	BYTE			SetAction( WORD wKey, WORD wAction );	// Å°¸¦ ÁöÁ¤
+	BYTE			SetAction( WORD wKey, WORD wAction );	// í‚¤ë¥¼ ì§€ì •
 	VOID			SetLastReleaseAction( WORD wOldAction );
 	WORD			GetLastReleaseAction();
 
-	VOID			Clear();									// ActionMapÀ» ÃÊ±âÈ­ÇÑ´Ù.
+	VOID			Clear();									// ActionMapì„ ì´ˆê¸°í™”í•œë‹¤.
 	VOID			ClearReleaseAction();
 
 	VOID			CaptureMap( CActionMap* pCaptureMap );
@@ -56,18 +56,18 @@ public:
 	ACTIONMAP&		GetActionMap()							{	return m_mapAction;	}
 	ACTIONMAP&		GetKeyMap()							{	return m_mapKey;	}
 
-	CActionMap& operator=(const CActionMap& rhs);				// ¿¬»êÀÚ ¿À¹ö·Îµù
+	CActionMap& operator=(const CActionMap& rhs);				// ì—°ì‚°ì ì˜¤ë²„ë¡œë”©
 
 protected:
-	ACTIONMAP		m_mapKey;				// ÀÚ·á±¸Á¶ < ACTION , KEY >
-	ACTIONMAP		m_mapAction;			// ÀÚ·á±¸Á¶ < KEY, ACTION >
-	ACTIONVEC		m_vecReleaseAction;		// ÇØÁ¦µÈ ¾×¼ÇÀ» ±â¾ïÇÏ±â À§ÇÑ ÀÚ·á±¸Á¶
+	ACTIONMAP		m_mapKey;				// ìë£Œêµ¬ì¡° < ACTION , KEY >
+	ACTIONMAP		m_mapAction;			// ìë£Œêµ¬ì¡° < KEY, ACTION >
+	ACTIONVEC		m_vecReleaseAction;		// í•´ì œëœ ì•¡ì…˜ì„ ê¸°ì–µí•˜ê¸° ìœ„í•œ ìë£Œêµ¬ì¡°
 	CActionMapManager*	m_pManager;	
 };
 
 /**
 * \ingroup simulation
-* \brief NTL ActionMapÀÇ Manager
+* \brief NTL ActionMapì˜ Manager
 */
 class CActionMapManager
 {
@@ -145,20 +145,20 @@ protected:
 	TYPEMAP		m_mapActionType;
 
 	typedef std::map< unsigned short, unsigned int > mapdef_InputAction;
-	mapdef_InputAction	m_mapInputAction;							///< ÇöÀç InputHandlerDownÀ¸·Î °ËÃâµÈ ActionµéÀÇ ÂüÁ¶ ¸®½ºÆ®
+	mapdef_InputAction	m_mapInputAction;							///< í˜„ì¬ InputHandlerDownìœ¼ë¡œ ê²€ì¶œëœ Actionë“¤ì˜ ì°¸ì¡° ë¦¬ìŠ¤íŠ¸
 
 	RESULTVEC	m_vecResult;
 
-	WORD		m_wInputAction;										///< Å° ÀÔ·ÂÀ» ¹ŞÀ» ¶§´Â ACTION_INVALID ÀÌ¿ÜÀÇ °ªÀ» °¡Áö°í ÀÖ´Â´Ù.
+	WORD		m_wInputAction;										///< í‚¤ ì…ë ¥ì„ ë°›ì„ ë•ŒëŠ” ACTION_INVALID ì´ì™¸ì˜ ê°’ì„ ê°€ì§€ê³  ìˆëŠ”ë‹¤.
 	
-	CActionMap*		m_pActionMap;									///< Å¬¶óÀÌ¾ğÆ®¿¡¼­ »ç¿ëµÇ´Â ActionMap
-	CActionMap*		m_pCaptureMap;									///< ¼­¹ö¿¡ ÀúÀåµÈ °ÍÀ» °¡Áö°í ÀÖ´Â´Ù.
-	CActionMap*		m_pDefaultMap;									///< °¡Àå ±âº»ÀûÀ¸·Î ÁöÁ¤µÇ´Â ActionMap
+	CActionMap*		m_pActionMap;									///< í´ë¼ì´ì–¸íŠ¸ì—ì„œ ì‚¬ìš©ë˜ëŠ” ActionMap
+	CActionMap*		m_pCaptureMap;									///< ì„œë²„ì— ì €ì¥ëœ ê²ƒì„ ê°€ì§€ê³  ìˆëŠ”ë‹¤.
+	CActionMap*		m_pDefaultMap;									///< ê°€ì¥ ê¸°ë³¸ì ìœ¼ë¡œ ì§€ì •ë˜ëŠ” ActionMap
 
-	sSHORTCUT_UPDATE_DATA	m_asUpdateData[NTL_SHORTCUT_MAX_COUNT];	///< º¯°æµÈ »çÇ×À» ÀúÀåÇÏ´Â ¹è¿­
-	BYTE					m_byUpdateCount;						///< Å°ÀÇ º¯°æ»çÇ×ÀÌ ÀÖÀ»¶§	
+	sSHORTCUT_UPDATE_DATA	m_asUpdateData[NTL_SHORTCUT_MAX_COUNT];	///< ë³€ê²½ëœ ì‚¬í•­ì„ ì €ì¥í•˜ëŠ” ë°°ì—´
+	BYTE					m_byUpdateCount;						///< í‚¤ì˜ ë³€ê²½ì‚¬í•­ì´ ìˆì„ë•Œ	
 
-	BYTE					m_byActionMapMode;						///< ACTIONMAPÀÇ »ç¿ë ¸ğµå
+	BYTE					m_byActionMapMode;						///< ACTIONMAPì˜ ì‚¬ìš© ëª¨ë“œ
 	
 };
 
