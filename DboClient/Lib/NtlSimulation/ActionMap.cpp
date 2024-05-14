@@ -1,4 +1,4 @@
-#include "precomp_ntlsimulation.h"
+ï»¿#include "precomp_ntlsimulation.h"
 #include "ActionMap.h"
 
 // framework
@@ -46,9 +46,9 @@ CActionMap::~CActionMap( void )
 }
 
 /**
-* \breif Key°ªÀ¸·Î ActionÀ» Ã£¾Æ¼­ ¸®ÅÏÇÑ´Ù.
-* \param wKey (WORD) ¸¸µé¾îÁø NTL Key
-* \return Ã£Àº ACTIONÀÇ ID ( Key°¡ ¾ø´Ù¸é ACTION_INVALID )
+* \breif Keyê°’ìœ¼ë¡œ Actionì„ ì°¾ì•„ì„œ ë¦¬í„´í•œë‹¤.
+* \param wKey (WORD) ë§Œë“¤ì–´ì§„ NTL Key
+* \return ì°¾ì€ ACTIONì˜ ID ( Keyê°€ ì—†ë‹¤ë©´ ACTION_INVALID )
 */
 WORD CActionMap::FindAction( WORD wKey ) 
 {
@@ -60,7 +60,7 @@ WORD CActionMap::FindAction( WORD wKey )
 }
 
 /**
-* \brief Action°ªÀ¸·Î Key¸¦ Ã£¾Æ¼­ ¸®ÅÏÇÑ´Ù.
+* \brief Actionê°’ìœ¼ë¡œ Keyë¥¼ ì°¾ì•„ì„œ ë¦¬í„´í•œë‹¤.
 * \param wAction (WORD) ACTION ID
 * \return (WORD) KEY DATA
 */
@@ -74,23 +74,23 @@ WORD CActionMap::FindKey( WORD wAction )
 }
 
 /**
-* \brief ¾×¼ÇÀ» ÀÚ·á±¸Á¶¿¡ ¼³Á¤ÇÑ´Ù.
-* \param wKey		(WORD) ¸¸µé¾îÁø NTL key
+* \brief ì•¡ì…˜ì„ ìë£Œêµ¬ì¡°ì— ì„¤ì •í•œë‹¤.
+* \param wKey		(WORD) ë§Œë“¤ì–´ì§„ NTL key
 * \param wAction	(WORD) ACTION ID
 */
 BYTE CActionMap::SetAction( WORD wKey, WORD wAction ) 
 {
-	// ¾×¼ÇÀÌ µî·ÏµÇ¾î ÀÖ´ÂÁö È®ÀÎÇÑ´Ù.
+	// ì•¡ì…˜ì´ ë“±ë¡ë˜ì–´ ìˆëŠ”ì§€ í™•ì¸í•œë‹¤.
 	uNtlKey uUseKey; 
 	uUseKey.key = FindKey( wAction );
 
-	// ADD : ±âÁ¸¿¡ ÀÚ·á±¸Á¶¿¡ ¾øÀ» °æ¿ì
+	// ADD : ê¸°ì¡´ì— ìë£Œêµ¬ì¡°ì— ì—†ì„ ê²½ìš°
 	if( uUseKey.key == dNTL_KEY_INVALID )
 	{
-		// ÇöÀçÀÇ Å°°¡ »ç¿ëµÇ°í ÀÖ´ÂÁö È®ÀÎÇÑ´Ù.
+		// í˜„ì¬ì˜ í‚¤ê°€ ì‚¬ìš©ë˜ê³  ìˆëŠ”ì§€ í™•ì¸í•œë‹¤.
 		ACTIONMAP::iterator itActionMap = m_mapAction.find( wKey );
 
-		// ÇöÀçÀÇ Å°°¡ »ç¿ëµÇÁö ¾Ê´Â´Ù¸é Ãß°¡¸¦ ÇÑ´Ù.
+		// í˜„ì¬ì˜ í‚¤ê°€ ì‚¬ìš©ë˜ì§€ ì•ŠëŠ”ë‹¤ë©´ ì¶”ê°€ë¥¼ í•œë‹¤.
 		if( itActionMap == m_mapAction.end() )
 		{
 			m_mapKey[wAction] = wKey;
@@ -99,36 +99,36 @@ BYTE CActionMap::SetAction( WORD wKey, WORD wAction )
 			return SET_RESULT_OK;
 		}
 
-		// ÇöÀçÀÇ Å°°¡ »ç¿ëµÇ°í ÀÖ´Ù¸é ±âÁ¸¿¡ µî·ÏµÇ¾î ÀÖ´ø ActionÀ» ÀúÀåÇÏ°í Áö¿î´Ù.
+		// í˜„ì¬ì˜ í‚¤ê°€ ì‚¬ìš©ë˜ê³  ìˆë‹¤ë©´ ê¸°ì¡´ì— ë“±ë¡ë˜ì–´ ìˆë˜ Actionì„ ì €ì¥í•˜ê³  ì§€ìš´ë‹¤.
 		WORD wOldAction = (*itActionMap).second;
 		m_mapAction.erase( itActionMap );
 
-		// KeyMap¿¡¼­ ÇØ´çÇÏ´Â ¾×¼ÇÀÇ Key¸¦ NoneÀ¸·Î ¼³Á¤ÇÑ´Ù.
+		// KeyMapì—ì„œ í•´ë‹¹í•˜ëŠ” ì•¡ì…˜ì˜ Keyë¥¼ Noneìœ¼ë¡œ ì„¤ì •í•œë‹¤.
 		ACTIONMAP::iterator itKeyMap = m_mapKey.find( wOldAction );
 		(*itKeyMap).second = dNTL_KEY_EMPTY;
 
-		// Å°¸¦ ÀÒ¾î¹ö¸° ¾×¼ÇÀ» º¤ÅÍ¿¡ º¸°üÇÑ´Ù.
+		// í‚¤ë¥¼ ìƒì–´ë²„ë¦° ì•¡ì…˜ì„ ë²¡í„°ì— ë³´ê´€í•œë‹¤.
 		SetLastReleaseAction( wOldAction );
 
-		// Å°¿Í ¾×¼ÇÀ» µî·ÏÇÑ´Ù.
+		// í‚¤ì™€ ì•¡ì…˜ì„ ë“±ë¡í•œë‹¤.
 		m_mapKey[wAction] = wKey;
 		m_mapAction[wKey] = wAction;
 		
 		return SET_RESULT_ALREADY_KEY;
 	}
-	// UPDATE : ¾×¼ÇÀº µî·ÏµÇ¾î ÀÖ´Âµ¥ Å°°¡ ¾ø´Â °æ¿ì
+	// UPDATE : ì•¡ì…˜ì€ ë“±ë¡ë˜ì–´ ìˆëŠ”ë° í‚¤ê°€ ì—†ëŠ” ê²½ìš°
 	else if( uUseKey.key == dNTL_KEY_EMPTY )
 	{
-		// ÇöÀçÀÇ Å°°¡ »ç¿ëµÇ°í ÀÖ´ÂÁö È®ÀÎÇÑ´Ù.
+		// í˜„ì¬ì˜ í‚¤ê°€ ì‚¬ìš©ë˜ê³  ìˆëŠ”ì§€ í™•ì¸í•œë‹¤.
 		ACTIONMAP::iterator itActionMap = m_mapAction.find( wKey );
 		
-		// ÇöÀçÀÇ Å°°¡ »ç¿ëµÇÁö ¾Ê´Â´Ù¸é ÇöÀçÀÇ ¾×¼Ç¿¡ ¹Ù·Î º¯°æÀ» ÇØÁØ´Ù.
+		// í˜„ì¬ì˜ í‚¤ê°€ ì‚¬ìš©ë˜ì§€ ì•ŠëŠ”ë‹¤ë©´ í˜„ì¬ì˜ ì•¡ì…˜ì— ë°”ë¡œ ë³€ê²½ì„ í•´ì¤€ë‹¤.
 		if( itActionMap == m_mapAction.end() )
 		{
-			// Å°¸¦ µî·Ï
+			// í‚¤ë¥¼ ë“±ë¡
 			m_mapAction[wKey] = wAction;
 
-			// ¾×¼ÇÀ» µî·Ï
+			// ì•¡ì…˜ì„ ë“±ë¡
 			ACTIONMAP::iterator itKeyMap = m_mapKey.find( wAction );
 			if( itKeyMap != m_mapKey.end() )
 				(*itKeyMap).second = wKey;
@@ -136,81 +136,81 @@ BYTE CActionMap::SetAction( WORD wKey, WORD wAction )
 			return SET_RESULT_OK;
 		}
 		
-		// ÇöÀçÀÇ Å°°¡ »ç¿ëµÇ°í ÀÖ´Ù¸é ±âÁ¸¿¡ µî·ÏµÇ¾î ÀÖ´ø ActionÀ» ÀúÀåÇÏ°í Áö¿î´Ù.
+		// í˜„ì¬ì˜ í‚¤ê°€ ì‚¬ìš©ë˜ê³  ìˆë‹¤ë©´ ê¸°ì¡´ì— ë“±ë¡ë˜ì–´ ìˆë˜ Actionì„ ì €ì¥í•˜ê³  ì§€ìš´ë‹¤.
 		WORD wOldAction = (*itActionMap).second;
 		m_mapAction.erase( itActionMap );
 
-		// KeyMap¿¡¼­ ÇØ´çÇÏ´Â ¾×¼ÇÀÇ Key¸¦ NoneÀ¸·Î ¼³Á¤ÇÑ´Ù.
+		// KeyMapì—ì„œ í•´ë‹¹í•˜ëŠ” ì•¡ì…˜ì˜ Keyë¥¼ Noneìœ¼ë¡œ ì„¤ì •í•œë‹¤.
 		ACTIONMAP::iterator itKeyMap = m_mapKey.find( wOldAction );
 		(*itKeyMap).second = dNTL_KEY_EMPTY;
 
-		// Å°¸¦ ÀÒ¾î¹ö¸° ¾×¼ÇÀ» º¤ÅÍ¿¡ º¸°üÇÑ´Ù.
+		// í‚¤ë¥¼ ìƒì–´ë²„ë¦° ì•¡ì…˜ì„ ë²¡í„°ì— ë³´ê´€í•œë‹¤.
 		SetLastReleaseAction( wOldAction );
 
-		// ¾×¼Ç¿¡ ÀÖ´Â °ªÀ» º¯°æÇØÁØ´Ù.
+		// ì•¡ì…˜ì— ìˆëŠ” ê°’ì„ ë³€ê²½í•´ì¤€ë‹¤.
 		itKeyMap = m_mapKey.find( wAction );
 		if( itKeyMap != m_mapKey.end() )
 			(*itKeyMap).second = wKey;
 
-		// Å°¸¦ µî·ÏÇÑ´Ù.
+		// í‚¤ë¥¼ ë“±ë¡í•œë‹¤.
 		m_mapAction[wKey] = wAction;
 
 		return SET_RESULT_ALREADY_KEY;
 	}
-	// UPDATE : ¾×¼Çµµ µî·ÏµÇ¾î ÀÖ°í ¾×¼Ç¿¡ KEYµµ Á¸ÀçÇÏ´Â °æ¿ì
-	// ±×¸®°í ±× KEY°¡ ´Ù¸¥ ¾×¼Ç¿¡ Á¸ÀçÇÏ°Å³ª ÇÏÁö ¾Ê´Â °æ¿ì
+	// UPDATE : ì•¡ì…˜ë„ ë“±ë¡ë˜ì–´ ìˆê³  ì•¡ì…˜ì— KEYë„ ì¡´ì¬í•˜ëŠ” ê²½ìš°
+	// ê·¸ë¦¬ê³  ê·¸ KEYê°€ ë‹¤ë¥¸ ì•¡ì…˜ì— ì¡´ì¬í•˜ê±°ë‚˜ í•˜ì§€ ì•ŠëŠ” ê²½ìš°
 	else
 	{
-		// ±âÁ¸¿¡ µî·ÏµÇ¾î ÀÖ´ø Å°ÀÇ ActionÀ» ÀúÀåÇÏ°í Áö¿î´Ù.
+		// ê¸°ì¡´ì— ë“±ë¡ë˜ì–´ ìˆë˜ í‚¤ì˜ Actionì„ ì €ì¥í•˜ê³  ì§€ìš´ë‹¤.
 		ACTIONMAP::iterator itActionMap = m_mapAction.find( wKey );
 
-		// Å°°¡ ´Ù¸¥ ¾×¼Ç¿¡ Á¸ÀçÇÏ´Â °æ¿ì
+		// í‚¤ê°€ ë‹¤ë¥¸ ì•¡ì…˜ì— ì¡´ì¬í•˜ëŠ” ê²½ìš°
 		if( itActionMap != m_mapAction.end() )
 		{
 			WORD wOldAction = (*itActionMap).second;
 
-			// ¸¸¾à ±âÁ¸¿¡ Å°¿Í ¾×¼ÇÀÌ ¶È°°´Ù¸é
+			// ë§Œì•½ ê¸°ì¡´ì— í‚¤ì™€ ì•¡ì…˜ì´ ë˜‘ê°™ë‹¤ë©´
 			if( wOldAction == wAction && (*itActionMap).first == wKey)
 				return SET_RESULT_SAME_KEY;
 
 			m_mapAction.erase( itActionMap );
 
-			// KeyMap¿¡¼­ ÇØ´çÇÏ´Â ¾×¼ÇÀÇ Key¸¦ NoneÀ¸·Î ¼³Á¤ÇÑ´Ù.
+			// KeyMapì—ì„œ í•´ë‹¹í•˜ëŠ” ì•¡ì…˜ì˜ Keyë¥¼ Noneìœ¼ë¡œ ì„¤ì •í•œë‹¤.
 			ACTIONMAP::iterator itKeyMap = m_mapKey.find( wOldAction );
 			(*itKeyMap).second = dNTL_KEY_EMPTY;
 
-			// Å°¸¦ ÀÒ¾î¹ö¸° ¾×¼ÇÀ» º¤ÅÍ¿¡ º¸°üÇÑ´Ù.
+			// í‚¤ë¥¼ ìƒì–´ë²„ë¦° ì•¡ì…˜ì„ ë²¡í„°ì— ë³´ê´€í•œë‹¤.
 			SetLastReleaseAction( wOldAction );
 
-			// »õ·Î µî·ÏÇÒ ACTION¿¡ ÀÖ´Â ¿¹ÀüÀÇ KEY¸¦ ÀúÀåÇÏ°í º¯°æµÈ Å°¸¦ ³Ö´Â´Ù.
+			// ìƒˆë¡œ ë“±ë¡í•  ACTIONì— ìˆëŠ” ì˜ˆì „ì˜ KEYë¥¼ ì €ì¥í•˜ê³  ë³€ê²½ëœ í‚¤ë¥¼ ë„£ëŠ”ë‹¤.
 			ACTIONMAP::iterator itNewKey = m_mapKey.find( wAction );
 			WORD wOldKey = (*itNewKey).second;
 
 			(*itNewKey).second = wKey;
 
-			// ±âÁ¸¿¡ ÀÖ´ø ActionMapÀ» »èÁ¦ÇØÁØ´Ù.
+			// ê¸°ì¡´ì— ìˆë˜ ActionMapì„ ì‚­ì œí•´ì¤€ë‹¤.
 			itActionMap = m_mapAction.find( wOldKey );
 			if( itActionMap != m_mapAction.end() )
 				m_mapAction.erase( itActionMap );
 
-			// »õ·Î µî·ÏÇÑ´Ù.
+			// ìƒˆë¡œ ë“±ë¡í•œë‹¤.
 			m_mapAction[wKey] = wAction;
 
 			return SET_RESULT_ALREADY_KEY;
 		}
 
-		// ÇöÀç µî·ÏÇÏ·Á´Â Å°°¡ ´Ù¸¥ ¾×¼Ç¿¡ Á¸ÀçÇÏÁö ¾Ê´Â °æ¿ì ( Á¤»óÀûÀÎ Ã³¸® )
+		// í˜„ì¬ ë“±ë¡í•˜ë ¤ëŠ” í‚¤ê°€ ë‹¤ë¥¸ ì•¡ì…˜ì— ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ê²½ìš° ( ì •ìƒì ì¸ ì²˜ë¦¬ )
 		ACTIONMAP::iterator itNewKey = m_mapKey.find( wAction );
 		WORD wOldKey = (*itNewKey).second;
 
 		(*itNewKey).second = wKey;
 
-		// ±âÁ¸¿¡ ÀÖ´ø ActionMapÀ» »èÁ¦ÇØÁØ´Ù.
+		// ê¸°ì¡´ì— ìˆë˜ ActionMapì„ ì‚­ì œí•´ì¤€ë‹¤.
 		itActionMap = m_mapAction.find( wOldKey );
 		if( itActionMap != m_mapAction.end() )
 			m_mapAction.erase( itActionMap );
 
-		// »õ·Î µî·ÏÇÑ´Ù.
+		// ìƒˆë¡œ ë“±ë¡í•œë‹¤.
 		m_mapAction[wKey] = wAction;
 
 		return SET_RESULT_OK;
@@ -226,7 +226,7 @@ VOID CActionMap::SetLastReleaseAction( WORD wOldAction )
 }
 
 /**
-* \brief ¸¶Áö¸·À¸·Î Å°°¡ ÇØÁ¦µÈ ActionÀ» ¸®ÅÏÇÑ´Ù.
+* \brief ë§ˆì§€ë§‰ìœ¼ë¡œ í‚¤ê°€ í•´ì œëœ Actionì„ ë¦¬í„´í•œë‹¤.
 */
 WORD CActionMap::GetLastReleaseAction() 
 {
@@ -240,7 +240,7 @@ WORD CActionMap::GetLastReleaseAction()
 }
 
 /**
-* \brief ÀÚ·á±¸Á¶¸¦ ÃÊ±âÈ­ÇÑ´Ù.
+* \brief ìë£Œêµ¬ì¡°ë¥¼ ì´ˆê¸°í™”í•œë‹¤.
 */
 VOID CActionMap::Clear() 
 {
@@ -250,7 +250,7 @@ VOID CActionMap::Clear()
 }
 
 /**
-* \brief ÇØÁ¦µÈ ¾×¼ÇÀ» ÀúÀåÇÏ´Â ÀÚ·á±¸Á¶¸¦ ÃÊ±âÈ­
+* \brief í•´ì œëœ ì•¡ì…˜ì„ ì €ì¥í•˜ëŠ” ìë£Œêµ¬ì¡°ë¥¼ ì´ˆê¸°í™”
 */
 VOID CActionMap::ClearReleaseAction() 
 {
@@ -258,7 +258,7 @@ VOID CActionMap::ClearReleaseAction()
 }
 
 /**
-* \brief µé¾î¿Â µ¥ÀÌÅÍ¿¡ ÇöÀç µ¥ÀÌÅÍ¸¦ ÀúÀåÇÑ´Ù.
+* \brief ë“¤ì–´ì˜¨ ë°ì´í„°ì— í˜„ì¬ ë°ì´í„°ë¥¼ ì €ì¥í•œë‹¤.
 */
 VOID CActionMap::CaptureMap( CActionMap* pCaptureMap ) 
 {
@@ -267,7 +267,7 @@ VOID CActionMap::CaptureMap( CActionMap* pCaptureMap )
 }
 
 /**
-* \brief µé¾î¿Â µ¥ÀÌÅÍ·Î ÇöÀç µ¥ÀÌÅÍ¸¦ ±¸¼ºÇÑ´Ù.
+* \brief ë“¤ì–´ì˜¨ ë°ì´í„°ë¡œ í˜„ì¬ ë°ì´í„°ë¥¼ êµ¬ì„±í•œë‹¤.
 */
 VOID CActionMap::RestoreMap( CActionMap* pCaptureMap ) 
 {
@@ -276,7 +276,7 @@ VOID CActionMap::RestoreMap( CActionMap* pCaptureMap )
 }
 
 /**
-* \brief = ¿¬»êÀÚ ¿À¹ö·Îµù: rhs Ç×ÀÇ ÀÚ·á¸¦ this Ç×À¸·Î º¹»çÇÑ´Ù.
+* \brief = ì—°ì‚°ì ì˜¤ë²„ë¡œë”©: rhs í•­ì˜ ìë£Œë¥¼ this í•­ìœ¼ë¡œ ë³µì‚¬í•œë‹¤.
 */
 CActionMap& CActionMap::operator=(const CActionMap& rhs)
 {
@@ -287,49 +287,49 @@ CActionMap& CActionMap::operator=(const CActionMap& rhs)
 }
 
 /**
-* \brief ÇöÀçÀÇ ¸Ê°ú º¯µ¿»çÇ×ÀÌ ÀÖ´Â °ÍÀ» Ã¼Å©ÇÑ´Ù.
+* \brief í˜„ì¬ì˜ ë§µê³¼ ë³€ë™ì‚¬í•­ì´ ìˆëŠ” ê²ƒì„ ì²´í¬í•œë‹¤.
 */
 BOOL CActionMap::CheckMap( ACTIONMAP& mapCapture ) 
 {
-	// m_mapAction°ú m_mapCapture°¡ °°´Ù¸é º¯°æµÈ Á¡ÀÌ ¾ø´Â °Í.
+	// m_mapActionê³¼ m_mapCaptureê°€ ê°™ë‹¤ë©´ ë³€ê²½ëœ ì ì´ ì—†ëŠ” ê²ƒ.
 	if( m_mapKey == mapCapture )
 		return FALSE;
 
 	ACTIONMAP::iterator itOriginal;
 	ACTIONMAP::iterator itCapture;
 
-	// 1. ¾×¼Ç¸ÊÀ» ¿øº»À¸·Î ÇÏ¿© °Ë»ç
+	// 1. ì•¡ì…˜ë§µì„ ì›ë³¸ìœ¼ë¡œ í•˜ì—¬ ê²€ì‚¬
 	for(itOriginal = m_mapKey.begin(); itOriginal != m_mapKey.end(); ++itOriginal)
 	{
 		itCapture = mapCapture.find( itOriginal->first );
 
-		// ¿À¸®Áö³¯¿£ ÀÖ°í Capture¿£ ¾ø´Â °æ¿ì
+		// ì˜¤ë¦¬ì§€ë‚ ì—” ìˆê³  Captureì—” ì—†ëŠ” ê²½ìš°
 		if( itCapture == mapCapture.end() )
 		{
-			// µî·Ï
+			// ë“±ë¡
 			m_pManager->AddUpdateData( eSHORTCUT_CHANGE_TYPE_ADD, itOriginal->first, itOriginal->second );
 		}
-		// µÑ´Ù ÀÖ´Â °æ¿ì
+		// ë‘˜ë‹¤ ìˆëŠ” ê²½ìš°
 		else
 		{
-			// Å°°¡ ´Ù¸¦ °æ¿ì
+			// í‚¤ê°€ ë‹¤ë¥¼ ê²½ìš°
 			if( itOriginal->second != itCapture->second )
 			{
-				// º¯°æ
+				// ë³€ê²½
 				m_pManager->AddUpdateData( eSHORTCUT_CHANGE_TYPE_UPDATE, itOriginal->first, itOriginal->second );
 			}
 		}
 	}
 
-	// 2. Ä¸ÃÄ¸ÊÀ» ¿øº»À¸·Î ÇÏ¿© °Ë»ç
+	// 2. ìº¡ì³ë§µì„ ì›ë³¸ìœ¼ë¡œ í•˜ì—¬ ê²€ì‚¬
 	for( itCapture = mapCapture.begin(); itCapture != mapCapture.end(); ++itCapture )
 	{
 		itOriginal = m_mapKey.find( itCapture->first );
 
-		// Ä¸ÃÄ¿¡´Â ÀÖ´Âµ¥ ¿À¸®Áö³¯¿£ ¾ø´Â °æ¿ì
+		// ìº¡ì³ì—ëŠ” ìˆëŠ”ë° ì˜¤ë¦¬ì§€ë‚ ì—” ì—†ëŠ” ê²½ìš°
 		if( itOriginal == m_mapKey.end() )
 		{
-			// »èÁ¦
+			// ì‚­ì œ
 			m_pManager->AddUpdateData( eSHORTCUT_CHANGE_TYPE_DEL, itCapture->first, itCapture->second );
 		}
 	}
@@ -394,13 +394,13 @@ VOID CActionMapManager::Destroy( VOID )
 }
 
 /**
-* \brief ±âº»ÀûÀ¸·Î »ç¿ëµÇ´Â ¾×¼Ç¸ÊÀ» Á¤ÀÇÇÑ´Ù.
+* \brief ê¸°ë³¸ì ìœ¼ë¡œ ì‚¬ìš©ë˜ëŠ” ì•¡ì…˜ë§µì„ ì •ì˜í•œë‹¤.
 */
 VOID CActionMapManager::InitDefaultActionMap() 
 {
 	m_pActionMap->Clear();
 
-	// Avatar Çàµ¿
+	// Avatar í–‰ë™
 	SetSingleKey( 'W', ACTION_AVATAR_FORWARD );
 	SetSingleKey( 'S', ACTION_AVATAR_BACKWARD );
 	SetSingleKey( 'A', ACTION_AVATAR_LEFTTURN );
@@ -415,7 +415,7 @@ VOID CActionMapManager::InitDefaultActionMap()
 	SetSingleKey( 'V', ACTION_AVATAR_LOOTING );
 	SetSingleKey( 'R', ACTION_AVATAR_BLOCKING );
 
-	// Target ¼±ÅÃ ¹× ´ÜÃàÅ° ¼³Á¤
+	// Target ì„ íƒ ë° ë‹¨ì¶•í‚¤ ì„¤ì •
 	SetSingleKey(NTL_KEY_WAVE, ACTION_TARGET_SELF);
 	SetCombineKey(NTL_ALT_BIT | NTL_KEY_NUMPAD1, ACTION_TARGET_1STPARTY);
 	SetCombineKey(NTL_ALT_BIT | NTL_KEY_NUMPAD2, ACTION_TARGET_2NDPARTY);
@@ -439,7 +439,7 @@ VOID CActionMapManager::InitDefaultActionMap()
 	SetCombineKey(NTL_CTRL_BIT | NTL_KEY_F5, ACTION_TARGET_SELECTING_5 );
 	SetCombineKey(NTL_CTRL_BIT | NTL_KEY_TAB, ACTION_TARGET_AUTOTARGET_PARTY );
 
-	// Quick Slot ´ÜÃàÅ° ¼³Á¤
+	// Quick Slot ë‹¨ì¶•í‚¤ ì„¤ì •
 	SetSingleKey('1', ACTION_QUICK_1);
 	SetSingleKey('2', ACTION_QUICK_2);
 	SetSingleKey('3', ACTION_QUICK_3);
@@ -486,7 +486,7 @@ VOID CActionMapManager::InitDefaultActionMap()
 //	SetSingleKey('', ACTION_QUICK_SUMMON2);
 
 
-	// Window ´ÜÃàÅ° ¼³Á¤
+	// Window ë‹¨ì¶•í‚¤ ì„¤ì •
 	SetSingleKey('C', ACTION_WINDOW_PROFILE);
 	SetSingleKey('K', ACTION_WINDOW_SKILL);
 	SetSingleKey('J', ACTION_WINDOW_QUEST);
@@ -514,7 +514,7 @@ VOID CActionMapManager::InitDefaultActionMap()
 	SetSingleKey(NTL_KEY_SNAPSHOT, ACTION_GLOBAL_SNAPSHOT);
 	SetSingleKey(NTL_KEY_RETURN, ACTION_GLOBAL_CHAT);
 
-	// Default MapÀ» ¸¸µé¾î³õ´Â´Ù.
+	// Default Mapì„ ë§Œë“¤ì–´ë†“ëŠ”ë‹¤.
 	m_pActionMap->CaptureMap( m_pDefaultMap );
 }
 
@@ -559,7 +559,7 @@ WORD CActionMapManager::FindAction( WORD wKey )
 }
 
 /**
-* \brief ¾×¼ÇÀ¸·Î Å°¸¦ Ã£´Â´Ù.
+* \brief ì•¡ì…˜ìœ¼ë¡œ í‚¤ë¥¼ ì°¾ëŠ”ë‹¤.
 * \param wAction (WORD) ACTION ID
 * \return KEY DATA
 */
@@ -589,12 +589,12 @@ BOOL CActionMapManager::SetInputAction( WORD wAction )
 }
 
 /**
-* \brief ¸¶Áö¸· ¼¼ÆÃ °á°ú¸¦ ±â·ÏÇÑ´Ù.
+* \brief ë§ˆì§€ë§‰ ì„¸íŒ… ê²°ê³¼ë¥¼ ê¸°ë¡í•œë‹¤.
 * \param byResult (BYTE) eACTIONMAP_SET_RESULT
 */
 VOID CActionMapManager::SetLastResult( BYTE byResult ) 
 {
-	// È¤½Ã³ª ¸ğ¸¥ ¹æ¾î ÄÚµå.
+	// í˜¹ì‹œë‚˜ ëª¨ë¥¸ ë°©ì–´ ì½”ë“œ.
 	if( (int)m_vecResult.size() > 10 )
 		m_vecResult.clear();
 
@@ -602,7 +602,7 @@ VOID CActionMapManager::SetLastResult( BYTE byResult )
 }
 
 /**
-* \brief ¸¶Áö¸· ¼¼ÆÃ °á°ú¸¦ ÀĞ´Â´Ù.
+* \brief ë§ˆì§€ë§‰ ì„¸íŒ… ê²°ê³¼ë¥¼ ì½ëŠ”ë‹¤.
 * \return eACTIONMAP_SET_RESULT
 */
 BYTE CActionMapManager::GetLastResult() 
@@ -617,7 +617,7 @@ BYTE CActionMapManager::GetLastResult()
 }
 
 /**
-* \brief ¿¡·¯ ÄÚµå¸¦ Å¬¸®¾îÇÑ´Ù.
+* \brief ì—ëŸ¬ ì½”ë“œë¥¼ í´ë¦¬ì–´í•œë‹¤.
 */
 VOID CActionMapManager::ClearResult() 
 {
@@ -625,16 +625,16 @@ VOID CActionMapManager::ClearResult()
 }
 
 /**
-* \brief ¾×¼Ç ID·Î Å°ÀÇ ÀÌ¸§À» Ã£¾Æ¿Â´Ù.
+* \brief ì•¡ì…˜ IDë¡œ í‚¤ì˜ ì´ë¦„ì„ ì°¾ì•„ì˜¨ë‹¤.
 * \param usAction
-* \return Å°ÀÇ ÀÌ¸§(À¯´ÏÄÚµå)
+* \return í‚¤ì˜ ì´ë¦„(ìœ ë‹ˆì½”ë“œ)
 */
 std::wstring CActionMapManager::GetKeyName( WORD wAction ) 
 {
 	uNtlKey uKey;
 	memset( &uKey, 0, sizeof(uNtlKey) );
 
-	// Default ÀÏ °æ¿ì
+	// Default ì¼ ê²½ìš°
 	if( m_byActionMapMode == ACTIONMAP_MODE_USERSETTING )
 	{
 		uKey.key = m_pActionMap->FindKey( wAction );
@@ -646,11 +646,11 @@ std::wstring CActionMapManager::GetKeyName( WORD wAction )
 
 	std::wstring wstrKeyName;
 
-	// Å°°¡ Á¤ÀÇ°¡ ¾ÈµÇ¾î ÀÖÀ¸¸é °ø¹éÀ» ¸®ÅÏ
+	// í‚¤ê°€ ì •ì˜ê°€ ì•ˆë˜ì–´ ìˆìœ¼ë©´ ê³µë°±ì„ ë¦¬í„´
 	if( uKey.key == dNTL_KEY_EMPTY )
 		return wstrKeyName;
 
-	// Á¶ÇÕÅ°°¡ µé¾î °¡ÀÖ´Ù¸é Á¶ÇÕÅ°ÀÇ ÀÌ¸§À» ³Ö¾îÁØ´Ù.
+	// ì¡°í•©í‚¤ê°€ ë“¤ì–´ ê°€ìˆë‹¤ë©´ ì¡°í•©í‚¤ì˜ ì´ë¦„ì„ ë„£ì–´ì¤€ë‹¤.
 	if( uKey.BIT.bit8 == 0x1 )	// ALT
 	{
 		wstrKeyName += L"@";
@@ -660,7 +660,7 @@ std::wstring CActionMapManager::GetKeyName( WORD wAction )
 		wstrKeyName += L"^";
 	}
 
-	// Å°°¡ ÀÖ´Ù¸é Å°ÀÇ ÀÌ¸§À» ´õÇÏ°í ¾Æ´Ï¶ó¸é µî·ÏµÇÁö ¾ÊÀº Å° ÀÌ¸§ÀÌ´Ù.
+	// í‚¤ê°€ ìˆë‹¤ë©´ í‚¤ì˜ ì´ë¦„ì„ ë”í•˜ê³  ì•„ë‹ˆë¼ë©´ ë“±ë¡ë˜ì§€ ì•Šì€ í‚¤ ì´ë¦„ì´ë‹¤.
 	if( m_mapKeyName.end() != m_mapKeyName.find( uKey.BIT.ori ) )
 	{
 		wstrKeyName += m_mapKeyName[uKey.BIT.ori];
@@ -681,20 +681,20 @@ std::wstring CActionMapManager::GetKeyName( WORD wAction )
 */
 WORD CActionMapManager::InputHandlerDown( BYTE byKey ) 
 {
-	// ¾×¼Ç¸ÊÀÇ ¸Å´ÏÀú°¡ Input Mode¶ó¸é ¾×¼Ç¿¡ Å°¸¦ ´ëÀÔÇÑ´Ù.
+	// ì•¡ì…˜ë§µì˜ ë§¤ë‹ˆì €ê°€ Input Modeë¼ë©´ ì•¡ì…˜ì— í‚¤ë¥¼ ëŒ€ì…í•œë‹¤.
 	if( m_wInputAction != ACTION_INVALID )
 	{
-		//// ¾×¼Ç¸Ê ¸Å´ÏÀú°¡ bInputÀÌ TRUEÀÏ¶§¸¸ Å°¸¦ ´ëÀÔ
+		//// ì•¡ì…˜ë§µ ë§¤ë‹ˆì €ê°€ bInputì´ TRUEì¼ë•Œë§Œ í‚¤ë¥¼ ëŒ€ì…
 		//if( bInput )
 		//{
-		//	// Á¶ÇÕÅ°¶ó¸é ±×³É ¸®ÅÏ
+		//	// ì¡°í•©í‚¤ë¼ë©´ ê·¸ëƒ¥ ë¦¬í„´
 		//	if( IsCombineKey( byKey ) )
 		//		return ACTION_INVALID;
 
-		//	// ÁÖ¾îÁø Å°·Î WORDÇüÀÇ NTL Key Data¸¦ ¸¸µé°í.
+		//	// ì£¼ì–´ì§„ í‚¤ë¡œ WORDí˜•ì˜ NTL Key Dataë¥¼ ë§Œë“¤ê³ .
 		//	WORD wMakeKey = MakeKey( byKey );
 
-		//	// Å°°¡ °íÁ¤µÇ¾î ÀÖ´Ù¸é ¿¡·¯ ÄÚµå¸¦ ±â·ÏÇÏ°í ¸®ÅÏ
+		//	// í‚¤ê°€ ê³ ì •ë˜ì–´ ìˆë‹¤ë©´ ì—ëŸ¬ ì½”ë“œë¥¼ ê¸°ë¡í•˜ê³  ë¦¬í„´
 		//	if( IsFixedKey( wMakeKey ) )
 		//	{
 		//		SetLastResult( SET_RESULT_FIXED_KEY );
@@ -702,7 +702,7 @@ WORD CActionMapManager::InputHandlerDown( BYTE byKey )
 		//		return ACTION_INVALID;
 		//	}
 
-		//	// Á¶ÇÕÅ°¸¦ »ç¿ëÇÏÁö ¸øÇÏ´Â ¾×¼ÇÀÎµ¥ Á¶ÇÕÅ°·Î ¼ÂÆÃÇÏ·Á°í Çß´Ù¸é
+		//	// ì¡°í•©í‚¤ë¥¼ ì‚¬ìš©í•˜ì§€ ëª»í•˜ëŠ” ì•¡ì…˜ì¸ë° ì¡°í•©í‚¤ë¡œ ì…‹íŒ…í•˜ë ¤ê³  í–ˆë‹¤ë©´
 		//	if( IsExclusiveAction( m_wInputAction ) && wMakeKey > 0x00FF )
 		//	{
 		//		SetLastResult( SET_RESULT_NOT_COMBINE_ACTION );
@@ -719,10 +719,10 @@ WORD CActionMapManager::InputHandlerDown( BYTE byKey )
 		return ACTION_INVALID;
 	}
 
-	// NTLÀÇ Key¸¦ ¸¸µç´Ù.
+	// NTLì˜ Keyë¥¼ ë§Œë“ ë‹¤.
 	WORD wMakeKey = MakeKey( byKey );
 
-	// ÇöÀçÀÇ Key ÁßÀÇ OriginalÀ» ÃßÃâ
+	// í˜„ì¬ì˜ Key ì¤‘ì˜ Originalì„ ì¶”ì¶œ
 	WORD wReturnAction = ACTION_INVALID;
 	WORD wFindOriginalKeyAction = FindAction( wMakeKey & 0x00FF );	
 	if( IsExclusiveAction( wFindOriginalKeyAction ) )
@@ -736,23 +736,23 @@ WORD CActionMapManager::InputHandlerDown( BYTE byKey )
 
 	InputActionDown( wReturnAction );
 
-	// ¾Æ´Ï¶ó¸é Á¶ÇÕµÈ Å°ÀÇ ¾×¼ÇÀ» Ã£¾Æ¼­ ¸®ÅÏÇØÁØ´Ù.
+	// ì•„ë‹ˆë¼ë©´ ì¡°í•©ëœ í‚¤ì˜ ì•¡ì…˜ì„ ì°¾ì•„ì„œ ë¦¬í„´í•´ì¤€ë‹¤.
 	return wReturnAction;
 }
 
 WORD CActionMapManager::InputHandlerUp( BYTE byKey, std::list< WORD >& listUpAction )
 {
-	// ¾×¼Ç¸ÊÀÇ ¸Å´ÏÀú°¡ Input Mode¶ó¸é ¾×¼Ç¿¡ Å°¸¦ ´ëÀÔÇÑ´Ù.
+	// ì•¡ì…˜ë§µì˜ ë§¤ë‹ˆì €ê°€ Input Modeë¼ë©´ ì•¡ì…˜ì— í‚¤ë¥¼ ëŒ€ì…í•œë‹¤.
 	if( m_wInputAction != ACTION_INVALID )
 	{
-		// Á¶ÇÕÅ°¶ó¸é ±×³É ¸®ÅÏ
+		// ì¡°í•©í‚¤ë¼ë©´ ê·¸ëƒ¥ ë¦¬í„´
 		if( IsCombineKey( byKey ) )
 			return ACTION_INVALID;
 
-		// ÁÖ¾îÁø Å°·Î WORDÇüÀÇ NTL Key Data¸¦ ¸¸µé°í.
+		// ì£¼ì–´ì§„ í‚¤ë¡œ WORDí˜•ì˜ NTL Key Dataë¥¼ ë§Œë“¤ê³ .
 		WORD wMakeKey = MakeKey( byKey );
 
-		// Å°°¡ °íÁ¤µÇ¾î ÀÖ´Ù¸é ¿¡·¯ ÄÚµå¸¦ ±â·ÏÇÏ°í ¸®ÅÏ
+		// í‚¤ê°€ ê³ ì •ë˜ì–´ ìˆë‹¤ë©´ ì—ëŸ¬ ì½”ë“œë¥¼ ê¸°ë¡í•˜ê³  ë¦¬í„´
 		if( IsFixedKey( wMakeKey ) )
 		{
 			SetLastResult( SET_RESULT_FIXED_KEY );
@@ -760,7 +760,7 @@ WORD CActionMapManager::InputHandlerUp( BYTE byKey, std::list< WORD >& listUpAct
 			return ACTION_INVALID;
 		}
 
-		// Á¶ÇÕÅ°¸¦ »ç¿ëÇÏÁö ¸øÇÏ´Â ¾×¼ÇÀÎµ¥ Á¶ÇÕÅ°·Î ¼ÂÆÃÇÏ·Á°í Çß´Ù¸é
+		// ì¡°í•©í‚¤ë¥¼ ì‚¬ìš©í•˜ì§€ ëª»í•˜ëŠ” ì•¡ì…˜ì¸ë° ì¡°í•©í‚¤ë¡œ ì…‹íŒ…í•˜ë ¤ê³  í–ˆë‹¤ë©´
 		if( IsExclusiveAction( m_wInputAction ) && wMakeKey > 0x00FF )
 		{
 			SetLastResult( SET_RESULT_NOT_COMBINE_ACTION );
@@ -786,10 +786,10 @@ WORD CActionMapManager::InputHandlerUp( BYTE byKey, std::list< WORD >& listUpAct
 	}
 	else
 	{
-		// NTLÀÇ Key¸¦ ¸¸µç´Ù.
+		// NTLì˜ Keyë¥¼ ë§Œë“ ë‹¤.
 		WORD wMakeKey = MakeKey( byKey );
 
-		// ÇöÀçÀÇ Key ÁßÀÇ OriginalÀ» ÃßÃâ
+		// í˜„ì¬ì˜ Key ì¤‘ì˜ Originalì„ ì¶”ì¶œ
 		WORD wReturnAction = ACTION_INVALID;
 		WORD wFindOriginalKeyAction = FindAction( wMakeKey & 0x00FF );	
 		if( IsExclusiveAction( wFindOriginalKeyAction ) )
@@ -815,7 +815,7 @@ void CActionMapManager::InputActionDown( WORD wAction )
 
 	mapdef_InputAction::iterator it = m_mapInputAction.find( wAction );
 
-	// ¸øÃ£À½
+	// ëª»ì°¾ìŒ
 	if( it == m_mapInputAction.end() )
 	{
 		m_mapInputAction[wAction] = 1;
@@ -833,7 +833,7 @@ void CActionMapManager::InputActionUp( WORD wAction )
 
 	mapdef_InputAction::iterator it = m_mapInputAction.find( wAction );
 
-	// ¸øÃ£À½
+	// ëª»ì°¾ìŒ
 	if( it != m_mapInputAction.end() )
 	{
 		(*it).second--;
@@ -866,7 +866,7 @@ void CActionMapManager::CheckDownActionWithCombineKey( BYTE byKey, std::list< WO
 }
 
 /**
-* \brief ¾×¼Ç¸ÊÀÇ º¹»çº»À» ¸¸µé¾î ³õ´Â´Ù.
+* \brief ì•¡ì…˜ë§µì˜ ë³µì‚¬ë³¸ì„ ë§Œë“¤ì–´ ë†“ëŠ”ë‹¤.
 */
 VOID CActionMapManager::CaptureActionMap() 
 {
@@ -874,7 +874,7 @@ VOID CActionMapManager::CaptureActionMap()
 }
 
 /**
-* \brief ¸¸µé¾îµĞ º¹»çº»À¸·Î ´Ù½Ã µ¹¸°´Ù.
+* \brief ë§Œë“¤ì–´ë‘” ë³µì‚¬ë³¸ìœ¼ë¡œ ë‹¤ì‹œ ëŒë¦°ë‹¤.
 */
 VOID CActionMapManager::RestoreActionMap() 
 {
@@ -882,7 +882,7 @@ VOID CActionMapManager::RestoreActionMap()
 }
 
 /**
-* \brief UpdateData¸¦ Ãß°¡ÇÑ´Ù.
+* \brief UpdateDataë¥¼ ì¶”ê°€í•œë‹¤.
 * \param byType		(BYTE) 0: ADD, 1: DEL, 2: UPDATE
 * \param wActionID	(WORD) ACTION ID
 * \param wKey		(WORD) KEY DATA
@@ -897,7 +897,7 @@ void CActionMapManager::AddUpdateData( BYTE byType, WORD wActionID, WORD wKey )
 }
 
 /**
-* \breif UpdateData¸¦ °¡Á®¿Â´Ù.
+* \breif UpdateDataë¥¼ ê°€ì ¸ì˜¨ë‹¤.
 * \param pData		(sSHORTCUT_UPDATE_DATA*)
 * \param byCount	(BYTE&)
 * \return
@@ -918,7 +918,7 @@ RwBool CActionMapManager::GetUpdateData( sSHORTCUT_UPDATE_DATA* pData , BYTE& by
 }
 
 /**
-* \brief Å°¸¦ NTL¿¡¼­ »ç¿ëµÇ´Â Çü½ÄÀ¸·Î ¸¸µç´Ù.
+* \brief í‚¤ë¥¼ NTLì—ì„œ ì‚¬ìš©ë˜ëŠ” í˜•ì‹ìœ¼ë¡œ ë§Œë“ ë‹¤.
 * \param byKey	(BYTE) KEY DATA
 * \return NTL KEY
 */
@@ -927,22 +927,22 @@ WORD CActionMapManager::MakeKey( BYTE byKey )
 	uNtlKey uMakeKey;
 	memset( &uMakeKey, 0, sizeof( uNtlKey ) );
 
-	// ÇöÀçÀÇ Á¶ÇÕÅ°¸¦ ¼ÂÆÃ
+	// í˜„ì¬ì˜ ì¡°í•©í‚¤ë¥¼ ì…‹íŒ…
 	MakeComposition( uMakeKey );
 
-	// Å°¸¦ ¼ÂÆÃ
+	// í‚¤ë¥¼ ì…‹íŒ…
 	uMakeKey.BIT.ori = byKey;
 
 	return uMakeKey.key;
 }
 
 /**
-* \brief Á¶ÇÕÅ°¸¦ ¼³Á¤ÇÑ´Ù.
-* \param uMakeKey	(uNtlKey&) NtlActionMapDef.h¿¡ ¼±¾ğµÈ °ø¿ëÃ¼
+* \brief ì¡°í•©í‚¤ë¥¼ ì„¤ì •í•œë‹¤.
+* \param uMakeKey	(uNtlKey&) NtlActionMapDef.hì— ì„ ì–¸ëœ ê³µìš©ì²´
 */
 void CActionMapManager::MakeComposition( uNtlKey& uMakeKey ) 
 {
-	// Á¶ÇÕÅ°¸¦ È®ÀÎ
+	// ì¡°í•©í‚¤ë¥¼ í™•ì¸
 	if( ( GetKeyState( VK_LMENU ) & 0x80 ) || ( GetKeyState( VK_RMENU ) & 0x80 ) )
 		uMakeKey.BIT.bit8 = 0x1;
 
@@ -951,7 +951,7 @@ void CActionMapManager::MakeComposition( uNtlKey& uMakeKey )
 }
 
 /**
-* \brief °¢Á¾ Å°ÀÇ ÀÌ¸§À» ÇÏµå ÄÚµù ÇØ³õ´Â´Ù.
+* \brief ê°ì¢… í‚¤ì˜ ì´ë¦„ì„ í•˜ë“œ ì½”ë”© í•´ë†“ëŠ”ë‹¤.
 */
 VOID CActionMapManager::RegisterKeyName( VOID ) 
 {
@@ -1001,10 +1001,10 @@ VOID CActionMapManager::RegisterKeyName( VOID )
 	m_mapKeyName[NTL_KEY_INSERT] = L"INS";
 	m_mapKeyName[NTL_KEY_DELETE] = L"DEL";	
 
-	m_mapKeyName[NTL_KEY_LEFT] = L"¢¸";
-	m_mapKeyName[NTL_KEY_UP] = L"¡ã";
-	m_mapKeyName[NTL_KEY_RIGHT] = L"¢º";
-	m_mapKeyName[NTL_KEY_DOWN] = L"¡å";
+	m_mapKeyName[NTL_KEY_LEFT] = L"â—€";
+	m_mapKeyName[NTL_KEY_UP] = L"â–²";
+	m_mapKeyName[NTL_KEY_RIGHT] = L"â–¶";
+	m_mapKeyName[NTL_KEY_DOWN] = L"â–¼";
 
 	m_mapKeyName[NTL_KEY_SELECT] = L"SELECT";
 	m_mapKeyName[NTL_KEY_PRINT] = L"PRINT";
@@ -1029,7 +1029,7 @@ VOID CActionMapManager::RegisterKeyName( VOID )
 	m_mapKeyName[NTL_KEY_COMMA] = L",";
 	m_mapKeyName[NTL_KEY_OEM_2] = L"/";
 
-	// ÀÏ¹İÅ° A~Z , 0 ~ 9
+	// ì¼ë°˜í‚¤ A~Z , 0 ~ 9
 	WCHAR awcBuffer[32] = {0,};
 	for( unsigned short uiChar = 0x41 ; uiChar <= 0x5A; ++uiChar)
 	{
@@ -1043,13 +1043,13 @@ VOID CActionMapManager::RegisterKeyName( VOID )
 		m_mapKeyName[uiChar] = awcBuffer;
 	}
 
-	// ÁöÁ¤¾ÈµÊ
+	// ì§€ì •ì•ˆë¨
 	m_mapKeyName[NTL_KEY_EMPTY] = L" ";	
 	
 }
 
 /**
-* \brief Å°ÀÇ ¼Ó¼ºÀ» Á¤ÀÇÇÑ´Ù.
+* \brief í‚¤ì˜ ì†ì„±ì„ ì •ì˜í•œë‹¤.
 */
 VOID CActionMapManager::RegisterKeyType( VOID ) 
 {
@@ -1066,7 +1066,7 @@ VOID CActionMapManager::RegisterKeyType( VOID )
 }
 
 /**
-* \brief ¾×¼ÇÀÇ ¼Ó¼ºÀ» Á¤ÀÇÇÑ´Ù.
+* \brief ì•¡ì…˜ì˜ ì†ì„±ì„ ì •ì˜í•œë‹¤.
 */
 VOID CActionMapManager::RegisterActionType( VOID ) 
 {
@@ -1078,7 +1078,7 @@ VOID CActionMapManager::RegisterActionType( VOID )
 	m_mapActionType[ACTION_GLOBAL_SNAPSHOT]		= TYPE_FIXED;
 	m_mapActionType[ACTION_GLOBAL_CHAT]			= TYPE_FIXED;
 
-	// ÀÌµ¿ °ü·Ã ¾×¼ÇÀº ´Ù¸¥ ¾×¼Çµé°ú ¹èÁ¦µÇ¾î¾ß 
+	// ì´ë™ ê´€ë ¨ ì•¡ì…˜ì€ ë‹¤ë¥¸ ì•¡ì…˜ë“¤ê³¼ ë°°ì œë˜ì–´ì•¼ 
 	m_mapActionType[ACTION_AVATAR_FORWARD]		= TYPE_EXCLUSIVE;
 	m_mapActionType[ACTION_AVATAR_BACKWARD]		= TYPE_EXCLUSIVE;
 	m_mapActionType[ACTION_AVATAR_LEFTTURN]		= TYPE_EXCLUSIVE;
@@ -1086,16 +1086,16 @@ VOID CActionMapManager::RegisterActionType( VOID )
 	m_mapActionType[ACTION_AVATAR_LEFTSIDE]		= TYPE_EXCLUSIVE;
 	m_mapActionType[ACTION_AVATAR_RIGHTSIDE]	= TYPE_EXCLUSIVE;
 
-	// ±â ¸ğÀ¸±â ¾×¼Ç ¿ª½Ã ´Ù¸¥ ¾×¼Çµé°úÀÇ ¹èÁ¦
+	// ê¸° ëª¨ìœ¼ê¸° ì•¡ì…˜ ì—­ì‹œ ë‹¤ë¥¸ ì•¡ì…˜ë“¤ê³¼ì˜ ë°°ì œ
 	m_mapActionType[ACTION_AVATAR_CHARGE]		= TYPE_EXCLUSIVE;
 }
 
 /**
-* \brief ÁöÁ¤µÈ ¸Ê¿¡¼­ ¼Ó¼ºÀÌ Á¤ÀÇµÇ¾î ÀÖ´ÂÁö È®ÀÎÇÑ´Ù.
-* \param nType		(int) NtlActionMapDef.h¿¡ Á¤ÀÇµÈ ¼Ó¼º
-* \param wKeyType	(WORD) ¾×¼ÇÀÎÁö Å°ÀÎÁö ¸Ê¿¡ Á¤ÀÇµÈ Key Type
-* \param mapType	(TYPEMAP&) ¸ÊÀ» ³Ñ°ÜÁØ´Ù.
-* \return (BOOL) Á¤ÀÇµÇ¾î ÀÖ´ÂÁöÀÇ ¿©ºÎ
+* \brief ì§€ì •ëœ ë§µì—ì„œ ì†ì„±ì´ ì •ì˜ë˜ì–´ ìˆëŠ”ì§€ í™•ì¸í•œë‹¤.
+* \param nType		(int) NtlActionMapDef.hì— ì •ì˜ëœ ì†ì„±
+* \param wKeyType	(WORD) ì•¡ì…˜ì¸ì§€ í‚¤ì¸ì§€ ë§µì— ì •ì˜ëœ Key Type
+* \param mapType	(TYPEMAP&) ë§µì„ ë„˜ê²¨ì¤€ë‹¤.
+* \return (BOOL) ì •ì˜ë˜ì–´ ìˆëŠ”ì§€ì˜ ì—¬ë¶€
 */
 BOOL CActionMapManager::IsMapType( int nType, WORD wKeyType, TYPEMAP& mapType ) 
 {
@@ -1116,7 +1116,7 @@ VOID CActionMapManager::ClearActionMap()
 }
 
 /**
-* \brief ActionMapÀÌ »ç¿ëµÇ´Â Mode¸¦ ÁöÁ¤ÇÑ´Ù.
+* \brief ActionMapì´ ì‚¬ìš©ë˜ëŠ” Modeë¥¼ ì§€ì •í•œë‹¤.
 */
 VOID CActionMapManager::SetActionMapMode( BYTE byActionMapMode )
 {
