@@ -73,7 +73,7 @@ RwBool CDropItemInfoGui::Create()
 
 	m_pThis = (gui::CDialog*)GetComponent("dlgMain");
 
-	m_pThis->SetPriority(dDIALOGPRIORITY_DEFAULT);
+	m_pThis->SetPriority(dDIALOGPRIORITY_DROP_ITEM_INFO);
 
 	m_slotMouseDown = m_pThis->SigMouseDown().Connect(this, &CDropItemInfoGui::OnMouseDown);
 	m_slotMouseEnter = m_pThis->SigMouseEnter().Connect(this, &CDropItemInfoGui::OnMouseEnter);
@@ -170,7 +170,7 @@ VOID CDropItemInfoGui::HandleEvents(RWS::CMsg& msg)
 
 	if (msg.Id == g_EventSobGotFocus) {
 
-		m_pThis->SetPriority(dDIALOGPRIORITY_DEFAULT + 1);
+		m_pThis->SetPriority(dDIALOGPRIORITY_DROP_ITEM_INFO + 1);
 
 		if (!m_pDropItemShow) {
 			SNtlEventSobGotFocus* pData = reinterpret_cast<SNtlEventSobGotFocus*>(msg.pData);
@@ -205,7 +205,7 @@ VOID CDropItemInfoGui::HandleEvents(RWS::CMsg& msg)
 	}
 	else if (msg.Id == g_EventSobLostFocus)
 	{
-		m_pThis->SetPriority(dDIALOGPRIORITY_DEFAULT);
+		m_pThis->SetPriority(dDIALOGPRIORITY_DROP_ITEM_INFO);
 
 		if (!m_pDropItemShow) {
 
