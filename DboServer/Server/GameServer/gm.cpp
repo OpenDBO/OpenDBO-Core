@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "gm.h"
 #include "GameServer.h"
 #include "CPlayer.h"
@@ -121,6 +121,7 @@ ACMD(do_cancelah);
 ACMD(do_addmudosa);
 ACMD(do_start);
 ACMD(do_createloot);
+ACMD(do_removeskillscd);
 ACMD(do_test);
 
 struct command_info cmd_info[] =
@@ -175,6 +176,7 @@ struct command_info cmd_info[] =
 	{ "@addmudosa", do_addmudosa, ADMIN_LEVEL_ADMIN },
 	{ "@startgm", do_start, ADMIN_LEVEL_GAME_MASTER },
 	{ "@createloot", do_createloot, ADMIN_LEVEL_ADMIN },
+	{ "@removeskillscd", do_removeskillscd, ADMIN_LEVEL_ADMIN },
 	{ "@test", do_test, ADMIN_LEVEL_ADMIN },
 
 	{ "@qwasawedsadas", NULL, ADMIN_LEVEL_ADMIN }
@@ -1849,6 +1851,19 @@ ACMD(do_createloot)
 		{
 			pBall->AddToGround(pPlayer->GetWorldID(), vec);
 		}
+	}
+}
+
+ACMD(do_removeskillscd)
+{
+	CSkillManagerPc* pSkillManagerPc = pPlayer->GetSkillManager();
+	if (!pSkillManagerPc)return;
+	DWORD dwPlayerNumberOfSkill = pSkillManagerPc->GetNumberOfSkill();
+	for (size_t i = 0; i < dwPlayerNumberOfSkill; i++)
+	{
+		CSkill* pCurrSkill = pSkillManagerPc->GetSkillWithSkillIndex(i);
+		DWORD dwSkillCoolTimeRemaining = pCurrSkill->GetCoolTimeRemaining();
+		if (dwSkillCoolTimeRemaining > 0)pCurrSkill->SetCoolTimeRemaining(0);
 	}
 }
 
