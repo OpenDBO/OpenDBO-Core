@@ -317,6 +317,25 @@ void CNtlBehaviorCharFalling::Update(RwReal fElapsed)
     else if(m_byFallingState == FALLINGSTATE_WATER_LANDING)
         UpdateWaterLanding(vPos, fElapsed);
 
+    RwBool bLandSuccess{ FALSE };
+
+    if (m_fFallingHeight + FALLING_CHECK_LEN / 2.0f < m_sHStuff.fFinialHeight)
+    {
+        if (vPos.y <= m_sHStuff.fFinialHeight)
+            bLandSuccess = TRUE;
+    }
+    else
+    {
+        if (vPos.y < m_fFallingHeight + FALLING_CHECK_LEN / 2.0f && vPos.y < m_sHStuff.fFinialHeight)
+            bLandSuccess = TRUE;
+    }
+
+    if (bLandSuccess)
+    {
+        vPos.y = m_sHStuff.fFinialHeight;
+        ChangeFallingState(FALLINGSTATE_END);
+    }
+
     CNtlVector vHeading, vDest;
     NtlGetDestination_Jump(vDir.x, vDir.y, vDir.z, m_fFallingSpeed, vPos.x, vPos.y, vPos.z, m_vFallingDir.x, m_vFallingDir.z, m_byMoveDirection, (DWORD)(fElapsed*1000.f), 1.0f, &vHeading, &vDest);
 
@@ -455,24 +474,6 @@ void CNtlBehaviorCharFalling::UpdateFalling(RwV3d& vPos, RwReal fElapsed)
 
 void CNtlBehaviorCharFalling::UpdateMoveLanding(RwV3d& vPos, RwReal fElapsed)
 {
-    RwBool bLandSuccess{ FALSE };
-
-    if (m_fFallingHeight + FALLING_CHECK_LEN / 2.0f < m_sHStuff.fFinialHeight)
-    {
-        if (vPos.y <= m_sHStuff.fFinialHeight)
-            bLandSuccess = TRUE;
-    }
-    else
-    {
-        if (vPos.y < m_fFallingHeight + FALLING_CHECK_LEN / 2.0f && vPos.y < m_sHStuff.fFinialHeight)
-            bLandSuccess = TRUE;
-    }
-
-    if (bLandSuccess)
-    {
-        vPos.y = m_sHStuff.fFinialHeight;
-        ChangeFallingState(FALLINGSTATE_END);
-    }
 }
 
 void CNtlBehaviorCharFalling::UpdateWaterLanding(RwV3d& vPos, RwReal fElapsed)
