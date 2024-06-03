@@ -13,8 +13,6 @@
 
 #include "NtlSoundDefines.h"
 
-class CNtlSoundDSP;
-
 class CNtlSound
 {
 public:
@@ -29,6 +27,7 @@ public:
 	void			FreeMemoryData();
 
 	void			SetVolume_FadeInit();
+	void			SetFadeVolume(float volume);
 
 	void			SetMinMax(float fMin, float fMax);
 
@@ -50,6 +49,5 @@ public:
 	float				m_fMaxDistance;
 	FMOD::Sound*		m_pFMODSound;				///< Information about sound sources
 	FMOD::Channel*		m_pFMODChannel;				///< It has the current Play information of the sound source.
-	CNtlSoundDSP*		m_pDSP;						///< FMOD effect container
 	char*				pMemoryData;				///< Pointer to sound file loaded into memory
 };

@@ -12,7 +12,7 @@ class CNtlSoundDSP;
 
 
 // 거리 ////////////////////////////////////////////////////////////////////////////
-#define MIN_DISTANCE_BETWEEN_MINMAX		0.0001f	///< 사운드 연주 최대 거리가 최소 거리보다 기본적으로 더 커야하는 기본수치
+#define MIN_DISTANCE_BETWEEN_MINMAX		1.f	///< 사운드 연주 최대 거리가 최소 거리보다 기본적으로 더 커야하는 기본수치
 
 
 // 시간 ////////////////////////////////////////////////////////////////////////////
@@ -110,6 +110,7 @@ enum eBGMType
 	BGM_TYPE_THEME_BGM,							///< THEME BGM
 	BGM_TYPE_SERVER_PLAYED,						///< 서버쪽 요청으로 Play하는 BGM
 	BGM_TYPE_CINEMATIC,							///< 시네마틱 BGM	
+	BGM_TYPE_WAIT,
 
 	NUM_BGM_TYPE,
 

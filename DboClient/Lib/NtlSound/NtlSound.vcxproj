@@ -49,6 +49,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release4Tools|Win32'">
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
+    <ExternalIncludePath>C:\DBO-N 2.0\DirectX9\Include;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>C:\DBO-N 2.0\DirectX9\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -100,7 +102,6 @@
     <ClInclude Include="NtlObjectGroup.h" />
     <ClInclude Include="NtlSound.h" />
     <ClInclude Include="NtlSoundDefines.h" />
-    <ClInclude Include="NtlSoundDSP.h" />
     <ClInclude Include="NtlSoundEvent.h" />
     <ClInclude Include="NtlSoundEventGenerator.h" />
     <ClInclude Include="NtlSoundEventHandler.h" />
@@ -123,7 +124,6 @@
     <ClCompile Include="NtlMusicGroup.cpp" />
     <ClCompile Include="NtlObjectGroup.cpp" />
     <ClCompile Include="NtlSound.cpp" />
-    <ClCompile Include="NtlSoundDSP.cpp" />
     <ClCompile Include="NtlSoundEvent.cpp" />
     <ClCompile Include="NtlSoundEventGenerator.cpp" />
     <ClCompile Include="NtlSoundEventHandler.cpp" />

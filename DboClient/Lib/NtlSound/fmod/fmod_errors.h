@@ -1,13 +1,13 @@
-/*$ preserve start $*/
-
-/* ================================================================================================== */
-/* FMOD Studio - Error string header file. Copyright (c), Firelight Technologies Pty, Ltd. 2004-2018. */
-/*                                                                                                    */
-/* Use this header if you want to store or display a string version / english explanation of          */
-/* the FMOD error codes.                                                                              */
-/*                                                                                                    */
-/* ================================================================================================== */
-
+/* ==============================================================================================  */
+/* FMOD Core / Studio API - Error string header file.                                              */
+/* Copyright (c), Firelight Technologies Pty, Ltd. 2004-2024.                                      */
+/*                                                                                                 */
+/* Use this header if you want to store or display a string version / english explanation          */
+/* of the FMOD error codes.                                                                        */
+/*                                                                                                 */
+/* For more detail visit:                                                                          */
+/* https://fmod.com/docs/2.02/api/core-api-common.html#fmod_result                                 */
+/* =============================================================================================== */
 #ifndef _FMOD_ERRORS_H
 #define _FMOD_ERRORS_H
 
@@ -21,7 +21,6 @@ static const char *FMOD_ErrorString(FMOD_RESULT errcode)
 {
     switch (errcode)
     {
-/*$ preserve end $*/
         case FMOD_OK:                            return "No errors.";
         case FMOD_ERR_BADCOMMAND:                return "Tried to call a function on a data type that does not allow this type of functionality (ie calling Sound::lock on a streaming sound).";
         case FMOD_ERR_CHANNEL_ALLOC:             return "Error trying to allocate a channel.";
@@ -50,7 +49,7 @@ static const char *FMOD_ErrorString(FMOD_RESULT errcode)
         case FMOD_ERR_HTTP_TIMEOUT:              return "The HTTP request timed out.";
         case FMOD_ERR_INITIALIZATION:            return "FMOD was not initialized correctly to support this function.";
         case FMOD_ERR_INITIALIZED:               return "Cannot call this command after System::init.";
-        case FMOD_ERR_INTERNAL:                  return "An error occurred that wasn't supposed to.  Contact support.";
+        case FMOD_ERR_INTERNAL:                  return "An error occured in the FMOD system. Use the logging version of FMOD for more information.";
         case FMOD_ERR_INVALID_FLOAT:             return "Value passed in was a NaN, Inf or denormalized float.";
         case FMOD_ERR_INVALID_HANDLE:            return "An invalid object handle was used.";
         case FMOD_ERR_INVALID_PARAM:             return "An invalid parameter was passed to this function.";
@@ -77,7 +76,7 @@ static const char *FMOD_ErrorString(FMOD_RESULT errcode)
         case FMOD_ERR_OUTPUT_NODRIVERS:          return "The output device has no drivers installed.  If pre-init, FMOD_OUTPUT_NOSOUND is selected as the output mode.  If post-init, the function just fails.";
         case FMOD_ERR_PLUGIN:                    return "An unspecified error has been returned from a plugin.";
         case FMOD_ERR_PLUGIN_MISSING:            return "A requested output, dsp unit type or codec was not available.";
-        case FMOD_ERR_PLUGIN_RESOURCE:           return "A resource that the plugin requires cannot be found. (ie the DLS file for MIDI playback)";
+        case FMOD_ERR_PLUGIN_RESOURCE:           return "A resource that the plugin requires cannot be allocated or found. (ie the DLS file for MIDI playback)";
         case FMOD_ERR_PLUGIN_VERSION:            return "A plugin was built with an unsupported SDK version.";
         case FMOD_ERR_RECORD:                    return "An error occurred trying to initialize the recording device.";
         case FMOD_ERR_REVERB_CHANNELGROUP:       return "Reverb properties cannot be set on this channel because a parent channelgroup owns the reverb connection.";
@@ -88,7 +87,7 @@ static const char *FMOD_ErrorString(FMOD_RESULT errcode)
         case FMOD_ERR_TAGNOTFOUND:               return "The specified tag could not be found or there are no tags.";
         case FMOD_ERR_TOOMANYCHANNELS:           return "The sound created exceeds the allowable input channel count.  This can be increased using the 'maxinputchannels' parameter in System::setSoftwareFormat.";
         case FMOD_ERR_TRUNCATED:                 return "The retrieved string is too long to fit in the supplied buffer and has been truncated.";
-        case FMOD_ERR_UNIMPLEMENTED:             return "Something in FMOD hasn't been implemented when it should be! contact support!";
+        case FMOD_ERR_UNIMPLEMENTED:             return "Something in FMOD hasn't been implemented when it should be. Contact support.";
         case FMOD_ERR_UNINITIALIZED:             return "This command failed because System::init or System::setDriver was not called.";
         case FMOD_ERR_UNSUPPORTED:               return "A command issued was not supported by this object.  Possibly a plugin without certain callbacks specified.";
         case FMOD_ERR_VERSION:                   return "The version number of this file format is not supported.";
@@ -96,7 +95,7 @@ static const char *FMOD_ErrorString(FMOD_RESULT errcode)
         case FMOD_ERR_EVENT_LIVEUPDATE_BUSY:     return "The live update connection failed due to the game already being connected.";
         case FMOD_ERR_EVENT_LIVEUPDATE_MISMATCH: return "The live update connection failed due to the game data being out of sync with the tool.";
         case FMOD_ERR_EVENT_LIVEUPDATE_TIMEOUT:  return "The live update connection timed out.";
-        case FMOD_ERR_EVENT_NOTFOUND:            return "The requested event, bus or vca could not be found.";
+        case FMOD_ERR_EVENT_NOTFOUND:            return "The requested event, parameter, bus or vca could not be found.";
         case FMOD_ERR_STUDIO_UNINITIALIZED:      return "The Studio::System object is not yet initialized.";
         case FMOD_ERR_STUDIO_NOT_LOADED:         return "The specified resource is not loaded, so it can't be unloaded.";
         case FMOD_ERR_INVALID_STRING:            return "An invalid string was passed to this function.";
@@ -105,9 +104,7 @@ static const char *FMOD_ErrorString(FMOD_RESULT errcode)
         case FMOD_ERR_RECORD_DISCONNECTED:       return "The specified recording driver has been disconnected.";
         case FMOD_ERR_TOOMANYSAMPLES:            return "The length provided exceeds the allowable limit.";
         default :                                return "Unknown error.";
-/*$ preserve start $*/
     };
 }
 
 #endif
-/*$ preserve end $*/

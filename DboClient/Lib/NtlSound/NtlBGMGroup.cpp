@@ -312,21 +312,19 @@ VOID CNtlBGMGroup::HandleEvents( RWS::CMsg &msg )
 {
 	NTL_FUNCTION("CNtlBGMGroup::HandleEvents");
 
-	if( msg.Id == g_EventSoundFinishFade )
+	if (msg.Id == g_EventSoundFinishFade)
 	{
-		sFadeInOut* pFade = reinterpret_cast<sFadeInOut*>( msg.pData );
+		CNtlSound* pSound = reinterpret_cast<CNtlSound*>(msg.pData);
 
-		if( pFade->eResourceType == SRT_CHANNEL )
+		if (pSound)
 		{
 			SOUND_ITER it = m_mapGroup.begin();
-			for( ; it != m_mapGroup.end() ; ++it )
+			for (; it != m_mapGroup.end(); ++it)
 			{
-				if( pFade->u1_hHandle == (*it->second).m_hHandle )
+				if (pSound->m_hHandle == (*it->second).m_hHandle)
 				{
-					if( pFade->eFadeType == FADE_OUT )
-					{
+					if (pSound->m_eState == SPS_PLAY_FADE_OUT)
 						CNtlChannelGroup::Stop(it->first);
-					}
 
 					break;
 				}
@@ -387,6 +385,22 @@ VOID CNtlBGMGroup::HandleEvents( RWS::CMsg &msg )
 				if( BGM_TYPE_PVP == m_tPlaySound.eType )
 					Stop(m_tPlaySound.hHandle);
 
+				break;
+			}
+		case EVENT_MUSIC_WAIT_PVP_BGM:
+			{
+				sNtlSoundPlayParameta tSoundParam;
+				tSoundParam.iChannelGroup = CHANNEL_GROUP_BGM;
+				tSoundParam.pcFileName = GSD_SYSTEM_NOTICE;
+				tSoundParam.bLoop = true;
+				tSoundParam.eBGM_Type = BGM_TYPE_WAIT;
+				GetSoundManager()->Play(&tSoundParam);
+				break;
+			}
+		case EVENT_MUSIC_END_WAIT:
+			{
+				if (BGM_TYPE_WAIT == m_tPlaySound.eType)
+					Stop(m_tPlaySound.hHandle);
 				break;
 			}
 		case EVENT_MUSIC_START_PRIVATE_RANKBATTLE_BGM:

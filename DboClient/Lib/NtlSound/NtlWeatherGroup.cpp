@@ -64,7 +64,7 @@ int CNtlWeatherGroup::CanPlay(const char* pcName)
 				// Fade out되어 사라지는 중이면 다시 Fade in 시킨다
 				if( pSound->m_eState == SPS_PLAY_FADE_OUT )
 				{
-					GetFadeInOut()->StopImmdiately(pSound->m_pFMODChannel, dFADE_STOP_FLAG_NOT_NOTIFY);
+					GetFadeInOut()->StopImmediately(pSound->m_pFMODChannel, dFADE_STOP_FLAG_NOT_NOTIFY);
 					GetFadeInOut()->FadeIn(pSound, 1.0f, dBGM_FADE_OUT_TIME);
 
 					m_hRecoverySoundHandle = pSound->m_hHandle;
@@ -87,35 +87,40 @@ SOUND_HANDLE CNtlWeatherGroup::GetRecoverySoundHandle()
 	return m_hRecoverySoundHandle;
 }
 
-VOID CNtlWeatherGroup::HandleEvents( RWS::CMsg &msg )
+VOID CNtlWeatherGroup::HandleEvents(RWS::CMsg& msg)
 {
 	NTL_FUNCTION("CNtlWeatherGroup::HandleEvents");
 
-	if( msg.Id == g_EventSoundFinishFade )
+	if (msg.Id == g_EventSoundFinishFade)
 	{
-		sFadeInOut* pFade = reinterpret_cast<sFadeInOut*>( msg.pData );
+		// Handle the event based on the new logic
+		// Since sFadeInOut is no longer used, we need to adapt the logic accordingly
+		// Assuming we have a way to identify the sound/channel that finished fading
 
-		if( pFade->eResourceType == SRT_CHANNEL )
+		// Example logic (you may need to adapt this based on your actual requirements):
+		CNtlSound* pSound = reinterpret_cast<CNtlSound*>(msg.pData);
+
+		if (pSound)
 		{
 			SOUND_ITER it = m_mapGroup.begin();
-			for( ; it != m_mapGroup.end() ; ++it )
+			for (; it != m_mapGroup.end(); ++it)
 			{
-				if( pFade->u1_pSound->m_hHandle == (*it->second).m_hHandle )
+				if (pSound->m_hHandle == (*it->second).m_hHandle)
 				{
-					if( pFade->u1_pSound->m_hHandle == m_hRecoverySoundHandle )
+					if (pSound->m_hHandle == m_hRecoverySoundHandle)
 					{
 						m_hRecoverySoundHandle = INVALID_SOUND_HANDLE;
 						break;
 					}
 					else
 					{
-						if( pFade->eFadeType == FADE_OUT )
-	   	   		  			CNtlChannelGroup::Stop(it->first);
+						if (pSound->m_eState == SPS_PLAY_FADE_OUT)
+							CNtlChannelGroup::Stop(it->first);
 
 						break;
 					}
 				}
-			}			
+			}
 		}
 	}
 }

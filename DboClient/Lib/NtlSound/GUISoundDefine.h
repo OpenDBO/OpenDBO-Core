@@ -1,11 +1,11 @@
-ï»¿/******************************************************************************
+/******************************************************************************
 * File			: GUISoundDefine.h
 * Author		: Hong SungBock
-* Copyright		: (ì£¼)NTL
+* Copyright		: (ÁÖ)NTL
 * Date			: 2007. 2. 21
 * Abstract		: 
 *****************************************************************************
-* Desc			: Systemì—ì„œ ì“°ì´ëŠ” ì‚¬ìš´ë“œ íŒŒì¼ì˜ ì´ë¦„ì„ ì •ì˜
+* Desc			: System¿¡¼­ ¾²ÀÌ´Â »ç¿îµå ÆÄÀÏÀÇ ÀÌ¸§À» Á¤ÀÇ
 *****************************************************************************/
 
 #pragma once
@@ -20,167 +20,169 @@
 ///< The sound when I picked Icon.
 
 #define GSD_SYSTEM_ICON_WASTE				"System\\SYSTEM_ICON_WASTE.wav"	
-///< Iconë¥¼ Quick Slotë¡œë¶€í„° ë²„ë ¸ì„ ë•Œì˜ ì†Œë¦¬.ã€Œì¹´ì‚­ã€.(ì¢…ì´ë¥¼ ì“°ë ˆê¸°í†µì— ë„£ì—ˆì„ ë•Œì˜ ì´ë¯¸ì§€ë¡œ.)
+///< Icon¸¦ Quick Slot·ÎºÎÅÍ ¹ö·ÈÀ» ¶§ÀÇ ¼Ò¸®.¡¸Ä«»è¡¹.(Á¾ÀÌ¸¦ ¾²·¹±âÅë¿¡ ³Ö¾úÀ» ¶§ÀÇ ÀÌ¹ÌÁö·Î.)
 
 #define GSD_SYSTEM_BUTTON_CLICK				"System\\SYSTEM_BUTTON_CLICK.wav"
-///< Buttonë¥¼ ëˆŒë €ì„ ë•Œì˜ ClickìŒ.ã€Œì¹´ì¹˜ã€.
+///< Button¸¦ ´­·¶À» ¶§ÀÇ ClickÀ½.¡¸Ä«Ä¡¡¹.
 
 #define GSD_SYSTEM_BUTTON_CANCEL			"System\\SYSTEM_BUTTON_CANCEL.wav"
-///< Cancelë¥¼ ëˆŒë €ì„ ë•Œì˜ ì†Œë¦¬.ã€ŒíŠ¸ã€.
+///< Cancel¸¦ ´­·¶À» ¶§ÀÇ ¼Ò¸®.¡¸Æ®¡¹.
 
 #define GSD_SYSTEM_BUTTON_FOCUS				"System\\SYSTEM_Button_Focus.wav"
-///< ë²„íŠ¼ Focus ë˜ì—ˆì„ ë•Œì˜ ì†Œë¦¬.
+///< ¹öÆ° Focus µÇ¾úÀ» ¶§ÀÇ ¼Ò¸®.
 
 #define GSD_SYSTEM_BUTTON_DISABLE			"System\\SYSTEM_Button_Disable_Alarm.wav"
-///< Disable ë²„íŠ¼ Click ë˜ì—ˆì„ ë•Œì˜ ì†Œë¦¬.
+///< Disable ¹öÆ° Click µÇ¾úÀ» ¶§ÀÇ ¼Ò¸®.
 
 #define GSD_SYSTEM_WINDOW_OPEN				"System\\SYSTEM_WINDOW_OPEN.wav"
-///< Windowê°€ ì—´ë¦´ ë•Œì˜ ì†Œë¦¬.ã€ŒìŠ¨ã€.
+///< Window°¡ ¿­¸± ¶§ÀÇ ¼Ò¸®.¡¸½¼¡¹.
 
 #define GSD_SYSTEM_WINDOW_CLOSE				"System\\SYSTEM_WINDOW_CLOSE.wav"
-///< Windowê°€ ë‹«ì„ ë•Œì˜ ì†Œë¦¬.ã€Œì‚­ã€.
+///< Window°¡ ´İÀ» ¶§ÀÇ ¼Ò¸®.¡¸»è¡¹.
 
 #define GSD_SYSTEM_ITEM_REPAIR				"System\\SYSTEM_ITEM_REPAIR.wav"
-///< Item ìˆ˜ë¦¬ ë•Œì˜ ì†Œë¦¬.ã€Œìº”ã€.(ëŒ€ì¥ê°„ì˜ ì´ë¯¸ì§€ë¡œ.)
+///< Item ¼ö¸® ¶§ÀÇ ¼Ò¸®.¡¸Äµ¡¹.(´ëÀå°£ÀÇ ÀÌ¹ÌÁö·Î.)
 
 #define GSD_SYSTEM_WINDOW_ALERT				"System\\SYSTEM_WINDOW_ALART.wav"
-///< ê²½ê³  Windowê°€ ë‚˜ì˜¬ ë•Œì˜ ì†Œë¦¬.ã€Œê³¤ã€.
+///< °æ°í Window°¡ ³ª¿Ã ¶§ÀÇ ¼Ò¸®.¡¸°ï¡¹.
 
 #define GSD_SYSTEM_NOTICE					"System\\SYSTEM_NOTICE.wav"
-///< í™”ë©´ì— ì¢‹ì€ ê²ƒì„ ì•Œë¦¬ëŠ” Messageê°€ ë‚˜ì™”ì„ ë•Œì˜ ì†Œë¦¬.ã€Œí•€!ã€.
+///< È­¸é¿¡ ÁÁÀº °ÍÀ» ¾Ë¸®´Â Message°¡ ³ª¿ÔÀ» ¶§ÀÇ ¼Ò¸®.¡¸ÇÉ!¡¹.
 
 #define GSD_SYSTEM_ITEM_SPEND				"System\\SYSTEM_ITEM_SPEND.wav"
-///< ì†Œë¹„ Itemë¥¼ ì‚¬ìš©ì„ ê²°ì •í–ˆì„ ë•Œì˜ ì†Œë¦¬.ã€Œí¬ì›ã€.
+///< ¼Òºñ Item¸¦ »ç¿ëÀ» °áÁ¤ÇßÀ» ¶§ÀÇ ¼Ò¸®.¡¸Æ÷¿ø¡¹.
 
 #define GSD_SYSTEM_ITEM_EQUIP				"System\\SYSTEM_ITEM_EQUIP.wav"
-///< ì¥ë¹„ Itemë¥¼ ì¥ë¹„í–ˆì„ ë•Œì˜ ì†Œë¦¬.ã€Œì‚¬ì‚­ã€.(ì˜·ì— ì†Œë§¤ë¥¼ í†µí•˜ëŠ” ì´ë¯¸ì§€.)
+///< Àåºñ Item¸¦ ÀåºñÇßÀ» ¶§ÀÇ ¼Ò¸®.¡¸»ç»è¡¹.(¿Ê¿¡ ¼Ò¸Å¸¦ ÅëÇÏ´Â ÀÌ¹ÌÁö.)
 
 #define GSD_SYSTEM_ITEM_TAKEOFF				"System\\SYSTEM_ITEM_TAKEOFF.wav"
-///< ì¥ë¹„ Itemë¥¼ í•´ì œí–ˆì„ ë•Œì˜ ì†Œë¦¬.ã€Œì‚­ã€.(ì˜·ì— ì†Œë§¤ë¥¼ í†µí•˜ëŠ” ì´ë¯¸ì§€.)
+///< Àåºñ Item¸¦ ÇØÁ¦ÇßÀ» ¶§ÀÇ ¼Ò¸®.¡¸»è¡¹.(¿Ê¿¡ ¼Ò¸Å¸¦ ÅëÇÏ´Â ÀÌ¹ÌÁö.)
 
 #define GSD_SYSTEM_TAB_CLICK				"System\\SYSTEM_TAB_CLICK.wav"
-///< Tabë¥¼ ì„ íƒí–ˆì„ ë•Œì˜ Sound.ã€Œì‚­ã€.(ì¢…ì´ë¥¼ ê°ˆì•„ë„£ì€ ì´ë¯¸ì§€.)
+///< Tab¸¦ ¼±ÅÃÇßÀ» ¶§ÀÇ Sound.¡¸»è¡¹.(Á¾ÀÌ¸¦ °¥¾Æ³ÖÀº ÀÌ¹ÌÁö.)
 
-//******************************************ëŒ€í™”ê°€ í•„ìš”í•œ.....?
+//******************************************´ëÈ­°¡ ÇÊ¿äÇÑ.....?
 #define GSD_SYSTEM_POPUPWINDOW_OPEN			"System\\SYSTEM_POPWIN_OPEN.wav"
-///< PopWindow ì—´ë¦´ ë•Œì˜ ì†Œë¦¬
+///< PopWindow ¿­¸± ¶§ÀÇ ¼Ò¸®
 
 #define GSD_SYSTEM_POPUPWINDOW_CLOSE		"System\\SYSTEM_POPWIN_CLOSE.wav"
-///< PopWindow ë‹«ì„ ë•Œì˜ ì†Œë¦¬
+///< PopWindow ´İÀ» ¶§ÀÇ ¼Ò¸®
 
 #define GSD_SYSTEM_TAB_FOCUS				"System\\SYSTEM_TAB_FOCUS.wav"
-//< Tab ë§ˆìš°ìŠ¤ê°€ ì˜¬ë¼ê°”ì„ë•Œ ì†Œë¦¬
+//< Tab ¸¶¿ì½º°¡ ¿Ã¶ó°¬À»¶§ ¼Ò¸®
 
 #define GSD_SYSTEM_TREE_OPEN				"System\\SYSTEM_TREE_OPEN.wav"
-//< íŠ¸ë¦¬ê°€ í¼ì³ì§ˆë•Œ
+//< Æ®¸®°¡ ÆîÃÄÁú¶§
 
 #define GSD_SYSTEM_TREE_CLOSE				"System\\SYSTEM_TREE_CLOSE.wav"
-//< íŠ¸ë¦¬ê°€ ë‹«í˜€ì§ˆë•Œ
+//< Æ®¸®°¡ ´İÇôÁú¶§
 
 #define GSD_SYSTEM_TUTORIAL_MSGBOX			"System\\TUTORIAL_MSGBOX.wav"
 //< tutorial msgbox 
 
-#define GSD_SYSTEM_CHECKBOX					"System\\GENERAL_CHKBOX.wav"
-//< ì²´í¬ë°•ìŠ¤ ì²´í¬ë ë•Œ
+#define GSD_SYSTEM_TUTORIAL_OK				"System\\TUTORIAL_OK.wav"
 
-//******************************************ì™„ë£Œ
+#define GSD_SYSTEM_CHECKBOX					"System\\GENERAL_CHKBOX.wav"
+//< Ã¼Å©¹Ú½º Ã¼Å©µÉ¶§
+
+//******************************************¿Ï·á
 
 #define GSD_SYSTEM_MESSAGEBOX				"System\\SYSTEM_MSGBOX.wav"
 //#define GSD_SYSTEM_MESSAGEBOX				""
-/////< MES Box ë‚˜ì˜¬ë•Œì˜ ì†Œë¦¬.
+/////< MES Box ³ª¿Ã¶§ÀÇ ¼Ò¸®.
 //
 #define GSD_SYSTEM_ENEMY_SELECT				"System\\SYSTEM_ENEMY_FOCUS.wav"	
-////<ì ì„ì„ íƒí–ˆì„ë•Œ
+////<ÀûÀ»¼±ÅÃÇßÀ»¶§
 //
 #define GSD_SYSTEM_ENEMY_FOUSE				"System\\SYSTEM_ENEMY_SELECT.wav"	
-////<ì ì— ë§ˆìš°ìŠ¤ë¥¼ ì˜¬ë ¤ ë†“ì•˜ì„ë•Œ
+////<Àû¿¡ ¸¶¿ì½º¸¦ ¿Ã·Á ³õ¾ÒÀ»¶§
 //
 #define GSD_SYSTEM_CHARACTER_ROTATE			"System\\SYSTEM_CHAR_ROTATE.wav"
-/////< Character  íšŒì „
+/////< Character  È¸Àü
 //
 #define GSD_SYSTEM_PARTS_EQUIP				"System\\SYSTEM_EQUIP.wav"	
-////< ìŠ¤ì¹´ìš°íŠ¸ íŒŒì¸  ì¥ì°©í• ë•Œ
+////< ½ºÄ«¿ìÆ® ÆÄÃ÷ ÀåÂøÇÒ¶§
 //
 #define GSD_SYSTEM_ABILITY_UI_OPEN			"System\\SYSTEM_SKILL_OPEN.wav"
-////< ìŠ¤í‚¬ ì–´ë¹Œë¦¬í‹° UIë‚˜íƒ€ë‚ ë•Œ
+////< ½ºÅ³ ¾îºô¸®Æ¼ UI³ªÅ¸³¯¶§
 //
 #define GSD_SYSTEM_GUARD_GAGE				"System\\SYSTEM_GUARD_GAGEDOWN.wav"
-////< ê°€ë“œ ê²Œì´ì§€ê°€ ì¤„ì–´ë“¤ë•Œ
+////< °¡µå °ÔÀÌÁö°¡ ÁÙ¾îµé¶§
 //
 #define GSD_SYSTEM_GUARD_GAGE_END			"System\\SYSTEM_GUARD_GAGEDOWN_END.wav"
-////< ê°€ë“œ ê²Œì´ì§€ê°€ ì¤„ì–´ë“¤ë•Œ
+////< °¡µå °ÔÀÌÁö°¡ ÁÙ¾îµé¶§
 //
 
 #define GSD_SYSTEM_PUBLIC_NOTIFY			"System\\SYSTEM_NOTICE.wav"	
-///< ê³µì§€ê°€ ëœ°ë•Œ ì•ŒëŒìŒ
+///< °øÁö°¡ ¶ã¶§ ¾Ë¶÷À½
 
 #define GSD_SYSTEM_ACTION_NOTIFY			"System\\SYSTEM_NOTICE_ACTION.wav"
-/////< ì–´ë–¤ í–‰ë™ì˜ ê²°ê³¼ì— ë”°ë¼ ë‚˜ì˜¤ëŠ” ì•Œë¦¼ìŒ
+/////< ¾î¶² Çàµ¿ÀÇ °á°ú¿¡ µû¶ó ³ª¿À´Â ¾Ë¸²À½
 //
 #define GSD_SYSTEM_WARNING_NOTIFY			"System\\SYSTEM_NOTICE_WARNING.wav"
-/////< í•´ì„œëŠ” ì•ˆë˜ëŠ” í–‰ë™ì„ í–ˆì„ ë•Œì˜ ì•Œë¦¼ìŒ				ps. Class ëŠ” CCautionNotifyGui ì„
+/////< ÇØ¼­´Â ¾ÈµÇ´Â Çàµ¿À» ÇßÀ» ¶§ÀÇ ¾Ë¸²À½				ps. Class ´Â CCautionNotifyGui ÀÓ
 //
 #define GSD_SYSTEM_PARTY_NOTIFY				"System\\SYSTEM_NOTICE_PARTY.wav"
-/////< íŒŒí‹°ë˜ëŠ” ê¸¸ë“œì—ì„œ ìœ ì €ë¥¼ ë¶€ë¥¼ ë•Œì˜ ì•Œë¦¼ìŒ
+/////< ÆÄÆ¼¶Ç´Â ±æµå¿¡¼­ À¯Àú¸¦ ºÎ¸¦ ¶§ÀÇ ¾Ë¸²À½
 //
 #define GSD_SYSTEM_TERRAIN_NOTIFY			"System\\SYSTEM_NOTICE_TERRAIN.wav"	
 
-/////< ìƒˆë¡œìš´ ì§€í˜•ì— ê°”ì„ë•Œ ì§€í˜•ì´ë¦„ì„ ì•Œë ¤ì£¼ëŠ” ì•Œë¦¼ìŒ
+/////< »õ·Î¿î ÁöÇü¿¡ °¬À»¶§ ÁöÇüÀÌ¸§À» ¾Ë·ÁÁÖ´Â ¾Ë¸²À½
 //
 #define GSD_SYSTEM_ITEM_LIGHT_ON			"System\\SYSTEM_ITEM_UPGRADE.wav"
 
-////< ì†ì„±ì— ë§ëŠ” ìƒ‰ìœ¼ë¡œ ë³€í• ë•Œ ( ì—…ê·¸ë ˆì´ë“œ ê°€ëŠ¥í•œ ê³µê°„ìœ¼ë¡œ ì´ë™ì‹œ )
+////< ¼Ó¼º¿¡ ¸Â´Â »öÀ¸·Î º¯ÇÒ¶§ ( ¾÷±×·¹ÀÌµå °¡´ÉÇÑ °ø°£À¸·Î ÀÌµ¿½Ã )
 
 #define GSD_SYSTEM_KEY_DOWN					"System\\GENERAL_TEXTINPUT.wav"
-//< íƒ€ì ì¹˜ëŠ” ì†Œë¦¬
+//< Å¸ÀÚ Ä¡´Â ¼Ò¸®
 
 //
 #define GSD_SYSTEM_DRAGOBALL_UI_OPEN		"System\\SYSTEM_DB_OPEN.wav"	
 
-////< ë“œë˜ê³¤ë³¼ ì œë‹¨ ì—´ë¦´ë•Œ
+////< µå·¡°ïº¼ Á¦´Ü ¿­¸±¶§
 //
 #define GSD_SYSTEM_DRAGOBALL_UI_CLOSE		"System\\SYSTEM_DB_CLOSE.wav"	
 	
-////< ë“œë˜ê³¤ë³¼ ì œë‹¨ ë‹«íë•Œ
+////< µå·¡°ïº¼ Á¦´Ü ´İÈú¶§
 //
 #define GSD_SYSTEM_POTAL_ICON_MOUSE_OVER	"System\\SYSTEM_PORTAL_MOUSE_OVER.wav"
 
 #define GSD_SYSTEM_MOUSE_CLICK_HV			"System\\SYSTEM_MOUSE_CLICK_HV.wav"
 
-////< í¬íƒˆ íƒˆìˆ˜ ìˆëŠ” ìœ„ì¹˜ì˜ ì•„ì´ì½˜ì— ë§ˆìš°ìŠ¤ë¥¼ ì˜¬ë ¤ ë†“ì•˜ì„ ë•Œ
+////< Æ÷Å» Å»¼ö ÀÖ´Â À§Ä¡ÀÇ ¾ÆÀÌÄÜ¿¡ ¸¶¿ì½º¸¦ ¿Ã·Á ³õ¾ÒÀ» ¶§
 //
 
 #define GSD_SYSTEM_DRAGOBALL_REGISTRATION	"System\\SYSTEM_DB_REG.wav"	
-//< ë“œë˜ê³¤ë³¼ì´ ëŒì— ë°•íë•Œ
+//< µå·¡°ïº¼ÀÌ µ¹¿¡ ¹ÚÈú¶§
 
 #define GSD_SYSTEM_DRAGOBALL_UI_LIGHT		"System\\SYSTEM_DB_LIGHT.wav"	
 
-////< ë“œë˜ê³¤ë³¼ ì œë‹¨ì— ë¶ˆì´ ì¼œì§ˆë•Œ
+////< µå·¡°ïº¼ Á¦´Ü¿¡ ºÒÀÌ ÄÑÁú¶§
 //
 //
 #define GSD_SYSTEM_NEW_MAIL_ALRAM			"System\\SYSTEM_NEW_MAIL.wav"	
 
-////< ìƒˆë¡œìš´ í¸ì§€ê°€ ë„ì°©í–ˆì„ë•Œ
+////< »õ·Î¿î ÆíÁö°¡ µµÂøÇßÀ»¶§
 //
 #define GSD_SYSTEM_MAIL_SEND				"System\\SYSTEM_SEND_MAIL.wav"	
 
-////< ë©”ì¼ì„ ë³´ë‚¼ë•Œ
+////< ¸ŞÀÏÀ» º¸³¾¶§
 //
 #define GSD_SYSTEM_SCOUTER_LOOP				"System\\GENERAL_Scouter_Loop.wav"
-//< ìŠ¤ì¹´ìš°íŠ¸ ì¸¡ì •ì¦
+//< ½ºÄ«¿ìÆ® ÃøÁ¤Áõ
 
 #define GSD_SYSTEM_SCOUTER_SCAN				"System\\GENERAL_Scouter_Scan.wav"
-//< ìŠ¤ì¹´ìš°íŠ¸ íƒ€ê²Ÿ ì„¤ì •ì‹œ
-//******************************************ì™„ë£Œ
+//< ½ºÄ«¿ìÆ® Å¸°Ù ¼³Á¤½Ã
+//******************************************¿Ï·á
 
 #define GSD_SYSTEM_USE_MONEY				"System\\SYSTEM_USE_MONEY.wav"
-///< Moneyë¥¼ ì‚¬ìš©í–ˆì„ ë•Œì˜ Sound.ê¸°ë¶„ ì¢‹ì€ ì†Œë¦¬ë¡œ, ã€Œì°¨ ì¸ã€.
+///< Money¸¦ »ç¿ëÇßÀ» ¶§ÀÇ Sound.±âºĞ ÁÁÀº ¼Ò¸®·Î, ¡¸Â÷ ÀÎ¡¹.
 
 #define GSD_SYSTEM_DROP_NORMAL				"System\\SYSTEM_DROP_NORMAL.wav"
-///< Item Drop - Mobê°€ ì‚¬ë¼ì ¸ Capsuleì™€ Zennyê°€ ë–¨ì–´ì§€ëŠ” Sound.ë³„ë¡œ ê·€ì— ê±°ìŠ¬ë¦¬ëŠ” ì†Œë¦¬ê°€ ë˜ì§€ ì•ŠëŠ” ì†Œë¦¬ë¡œ, ã€Œë³¸ã€.
+///< Item Drop - Mob°¡ »ç¶óÁ® Capsule¿Í Zenny°¡ ¶³¾îÁö´Â Sound.º°·Î ±Í¿¡ °Å½½¸®´Â ¼Ò¸®°¡ µÇÁö ¾Ê´Â ¼Ò¸®·Î, ¡¸º»¡¹.
 
 #define GSD_SYSTEM_DROP_LUCKY				"System\\SYSTEM_DROP_LUCKY.wav"
-///< Item Drop - Lucky!! ìš´ì´ ì¢‹ì•„ì„œ í‰ì†Œë³´ë‹¤ ì¢‹ì€ Capsuleì™€ ë§ì€ Zennyê°€ ë–¨ì–´ì§€ëŠ” Sound.ë³„ë¡œ ê·€ì— ê±°ìŠ¬ë¦¬ëŠ” ì†Œë¦¬ê°€ ë˜ì§€ ì•ŠëŠ” ì†Œë¦¬ë¡œ, ã€Œë³´ìš˜ã€.
+///< Item Drop - Lucky!! ¿îÀÌ ÁÁ¾Æ¼­ Æò¼Òº¸´Ù ÁÁÀº Capsule¿Í ¸¹Àº Zenny°¡ ¶³¾îÁö´Â Sound.º°·Î ±Í¿¡ °Å½½¸®´Â ¼Ò¸®°¡ µÇÁö ¾Ê´Â ¼Ò¸®·Î, ¡¸º¸¿æ¡¹.
 
 #define GSD_SYSTEM_DROP_DBALL				"System\\SYSTEM_DROP_DBALL.wav"
 ///< Item Drop - Sound effect for dropping the dragon ball.
@@ -189,25 +191,27 @@
 ///< Item Drop - Sound effect for dropping the stone.
 
 #define GSD_SYSTEM_ITEM_GET					"System\\SYSTEM_ITEM_GET.wav"
-///< Item Drop - Dropê°€ ëœ Itemë¥¼ ì–»ì—ˆì„ ë•Œì˜ Sound.ã€ŒìŠ¨ã€.
+///< Item Drop - Drop°¡ µÈ Item¸¦ ¾ò¾úÀ» ¶§ÀÇ Sound.¡¸½¼¡¹.
 
-#define GSD_SYSTEM_SKILL_LEARN				"System\\SYSTEM_SKILL_LEARN.wav"
-///< Skillë¥¼ ë°°ì› ì„ ë•Œì˜ Sound.êµíšŒì˜ ì¢…ê³¼ ê°™ì€ ì†Œë¦¬ë¡œ, ã€Œê³¤ã€.
+#define GSD_SYSTEM_SKILL_LEARN				"BGM\\JINGLE_SKILL_GET.ogg"
+///< Skill¸¦ ¹è¿üÀ» ¶§ÀÇ Sound.±³È¸ÀÇ Á¾°ú °°Àº ¼Ò¸®·Î, ¡¸°ï¡¹.
+
+#define GSD_SYSTEM_SKILL_RESETONE			"System\\SYSTEM_CANCEL_HV.wav"
 
 #define GSD_SYSTEM_SKILL_DISABLE			"System\\SYSTEM_SKILL_DISABLE.wav"
-///< Skillë‚˜ Itemë¥¼ ì‚¬ìš©í•  ìˆ˜ ì—†ì„ ë•Œì˜ Sound.ê·€ì— ê±°ìŠ¬ë¦¬ëŠ” ì†Œë¦¬ê°€ ë˜ì§€ ì•ŠëŠ” ì†Œí”„íŠ¸ì¸ ë‚®ì€ ì†Œë¦¬ë¡œ, ã€Œê³¤ã€.
+///< Skill³ª Item¸¦ »ç¿ëÇÒ ¼ö ¾øÀ» ¶§ÀÇ Sound.±Í¿¡ °Å½½¸®´Â ¼Ò¸®°¡ µÇÁö ¾Ê´Â ¼ÒÇÁÆ®ÀÎ ³·Àº ¼Ò¸®·Î, ¡¸°ï¡¹.
 
 #define GSD_SYSTEM_QUEST_GIVE_UP			"System\\SYSTEM_QUEST_GIVE_UP.wav"
-///< Questë¥¼ Give up í•  ë•Œì˜ Sound.ìœ ê°ìŠ¤ëŸ¬ìš´ ì†Œë¦¬ë¡œ, ã€Œì›ŒÂ·Â·Â·ã€.
+///< Quest¸¦ Give up ÇÒ ¶§ÀÇ Sound.À¯°¨½º·¯¿î ¼Ò¸®·Î, ¡¸¿ö¡¤¡¤¡¤¡¹.
 
 #define GSD_SYSTEM_TRIGGER_OBJECT_CLICK		"System\\GENERAL_Click_01.wav"
-///< Trigger objectë¥¼ í´ë¦­ í–ˆì„ ë•Œ ë‚˜ëŠ” ì†Œë¦¬
+///< Trigger object¸¦ Å¬¸¯ ÇßÀ» ¶§ ³ª´Â ¼Ò¸®
 
 #define GSD_JINGLE_QUEST_START				"BGM\\JINGLE_QUEST_START.ogg"
-///< Questë¥¼ ì‹œì‘í•  ë•Œ ì˜ì§€ë¥¼ ë‹´ì€ ëŠë‚Œì„ ì£¼ëŠ” ìš©ê°í•œ ëŠë‚Œ.
+///< Quest¸¦ ½ÃÀÛÇÒ ¶§ ÀÇÁö¸¦ ´ãÀº ´À³¦À» ÁÖ´Â ¿ë°¨ÇÑ ´À³¦.
 
 #define GSD_JINGLE_QUEST_FINISH				"BGM\\JINGLE_QUEST_FINISH.ogg"
-///< Questë¥¼ ëëƒˆì„ë•Œ ì¹­ì†¡í•˜ëŠ”ê²ƒ ê°™ì€ ì¶•ë³µì˜ ìŒì•…
+///< Quest¸¦ ³¡³ÂÀ»¶§ Äª¼ÛÇÏ´Â°Í °°Àº Ãàº¹ÀÇ À½¾Ç
 
 #define GSD_JINGLE_LEVEL_UP					"BGM\\JINGLE_LEVEL_UP.ogg"
 ///< LevelUp
@@ -227,24 +231,30 @@
 #define GSD_RP_FULL							"System\\GENERAL_RP_Full.wav"
 ///< RP Full
 
+#define GSD_DB_SCRAMBLE_START				"System\\SYSTEM_RB_Fight.wav"
 
+#define GSD_SCOUTER_OPEN					"System\\GENERAL_Scouter_On.wav"
 
-#define GSD_HEART_BEAT						"Syatem\\GENERAL_Radar.wav"	// ì„ì‹œ
-///< HeartBeat HPì €í•˜ì‹œ ë°˜ë³µ
+#define GSD_SCOUTER_CLOSE					"System\\GENERAL_Scouter_Off_s.wav"
 
-/// ìš©ì‹  ë“±ì¥ì‹œì˜ ë°°ê²½ìŒì•…
+#define GSD_HEART_BEAT						"Syatem\\GENERAL_Radar.wav"	// ÀÓ½Ã
+///< HeartBeat HPÀúÇÏ½Ã ¹İº¹
+
+/// ¿ë½Å µîÀå½ÃÀÇ ¹è°æÀ½¾Ç
 #define GSD_JINGLE_DRAGON                   "BGM\\JINGLE_SHENRON.ogg"
 
-///< ì£¼ì˜ê°€ í•„ìš”í•˜ì—¬ ì‚¬ìš©ìì—ê²Œ ì•Œë¦¼ì„± íš¨ê³¼ìŒ
-#define GSD_SYSTEM_WINDOW_ALREAT					"System\\SYSTEM_WINDOW_ALART.wav"
+///< ÁÖÀÇ°¡ ÇÊ¿äÇÏ¿© »ç¿ëÀÚ¿¡°Ô ¾Ë¸²¼º È¿°úÀ½
+#define GSD_SYSTEM_WINDOW_ALREAT			"System\\SYSTEM_WINDOW_ALART.wav"
 
-///< ì§¤ê¹ì§¤ê¹
-#define GSD_GENERAL_CLOCK_SECOND					"System\\GENERAL_Clock_Second.wav"
+///< Â©±ïÂ©±ï
+#define GSD_GENERAL_CLOCK_SECOND			"System\\GENERAL_Clock_Second.wav"
 
 ///< Music when you catch a HERO BOSS in a dungeon
-#define GSD_FINISH_HERO_MOB							"BGM\\JINGLE_BOSS_DOWN.ogg"
+#define GSD_FINISH_HERO_MOB					"BGM\\JINGLE_BOSS_DOWN.ogg"
 
+#define GSD_WAGU_DRAW						"System\\System_WaguCacpsule.wav"
 
+#define GSD_WAGU_FIRST_PRIZE				"System\\General_Fanfare_3.wav"
 
 //////////////////////////////////////////////////////////////////////////
 //						Background Mugic								//
@@ -260,7 +270,7 @@
 
 
 //////////////////////////////////////////////////////////////////////////
-//						ì²œí•˜ì œì¼ ë¬´ë„íšŒ									//
+//						ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸									//
 //////////////////////////////////////////////////////////////////////////
 
 #define GSD_BGM_TB_STANDBY					"BGM\\BGM_TB_STANDBY.ogg"
@@ -273,7 +283,7 @@
 
 
 //////////////////////////////////////////////////////////////////////////
-//						ë„ì¥ ìŸíƒˆì „										//
+//						µµÀå ÀïÅ»Àü										//
 //////////////////////////////////////////////////////////////////////////
 
 #define GSD_BGM_DOJO_SCRAMBLE_READY			"BGM\\BGM_PROLOGE_B.ogg"

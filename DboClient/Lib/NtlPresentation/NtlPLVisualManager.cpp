@@ -250,12 +250,12 @@ void CNtlPLVisualManager::UpdateSound(RwReal fElapsed)
 		// by daneos: disabled at and up to fix issue with sound when moving away from spawn
 
         RwV3d* pvPos = RwMatrixGetPos(&m_pSoundListener->GetMatrix());
-        /*RwV3d* pvAt  = RwMatrixGetAt(&m_pSoundListener->GetMatrix());
-        RwV3d* pvUp  = RwMatrixGetUp(&m_pSoundListener->GetMatrix());*/
+        RwV3d* pvAt  = RwMatrixGetAt(&m_pSoundListener->GetMatrix());
+        RwV3d* pvUp  = RwMatrixGetUp(&m_pSoundListener->GetMatrix());
 
-		GetSoundManager()->SetListenerPosition(pvPos->x, pvPos->y, pvPos->z/*,
+		GetSoundManager()->SetListenerPosition(pvPos->x, pvPos->y, pvPos->z,
 			pvAt->x, pvAt->y, pvAt->z,
-			pvUp->x, pvUp->y, pvUp->z*/);
+			pvUp->x, pvUp->y, pvUp->z);
     }
 	else
 	{
