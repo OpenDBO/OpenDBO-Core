@@ -1,7 +1,6 @@
 #include "precomp_ntlsound.h"
 #include "NtlSound.h"
 
-#include "NtlSoundDSP.h"
 #include "NtlSoundEventGenerator.h"
 #include "NtlSoundGlobal.h"
 
@@ -31,8 +30,6 @@ CNtlSound::CNtlSound(SOUND_HANDLE hHandle, char* pcFileName)
 #endif
 	//DBO_WARNING_MESSAGE("Create Music: " << pcFileName << ", Handle: " << hHandle);
 	m_strName = pcFileName;
-
-	m_pDSP = NTL_NEW CNtlSoundDSP;
 }
 
 
@@ -41,12 +38,6 @@ CNtlSound::~CNtlSound()
 #ifndef NDEBUG
 	mapDebugSoundName.erase(m_hHandle);
 #endif
-
-	if(m_pDSP)
-	{
-		m_pDSP->Destroy();
-		NTL_DELETE(m_pDSP);
-	}
 }
 
 void* CNtlSound::operator new(size_t size)
@@ -109,6 +100,10 @@ void CNtlSound::SetVolume_FadeInit()
 
 	if( m_pFMODChannel )
 		m_pFMODChannel->setVolume( Logic_CalcPlayVolume(&m_tVolume) );
+}
+
+void CNtlSound::SetFadeVolume(float volume) {
+	m_tVolume.fFadeVolume = Logic_GetFMODValidVolume(volume);
 }
 
 void CNtlSound::SetMinMax(float fMin, float fMax)

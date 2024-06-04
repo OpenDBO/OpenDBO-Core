@@ -88,6 +88,7 @@ public:
 
 	void		Update(float fElapsed);			///< °¢ ChannelGroup Update¿Í FMOD::System->update()
 
+	typedef void (F_CALL* FMOD_DEBUG_CALLBACK)(FMOD_DEBUG_FLAGS flags, const char* file, int line, const char* function, const char* message);
 
 
 	//////////////////////////////////////////////////////////////////////////
@@ -188,6 +189,10 @@ protected:
 	CNtlSoundDSP*			m_pMasterDSP;
 	
 	CNtlSoundSubSystem*		m_pSubSystem;
+
+private: 
+	std::map<FMOD_DSP_TYPE, FMOD::DSP*> m_mapMasterDSP;
+	std::map<int, std::map<FMOD_DSP_TYPE, FMOD::DSP*>> m_mapGroupDSP;
 
 #ifdef _DEBUG
 	int						m_iDebugFlag;				///< crtdbg¿ë

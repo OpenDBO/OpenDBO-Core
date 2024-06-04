@@ -88,7 +88,7 @@ bool CNtlObjectGroup::ReleaseLowRankChannel()
 
 	if(pSound->m_pFMODSound)
 	{
-		GetFadeInOut()->StopImmdiately(pSound->m_pFMODChannel, dFADE_STOP_FLAG_NOT_NOTIFY);
+		GetFadeInOut()->StopImmediately(pSound->m_pFMODChannel, dFADE_STOP_FLAG_NOT_NOTIFY);
 
 		// 강제종료되는 Sound의 정보저장
 		StoreReleasedSound(pSound);
@@ -122,7 +122,6 @@ bool CNtlObjectGroup::IsExistSound(SOUND_HANDLE hHandle)
 
 	return false;
 }
-
 void CNtlObjectGroup::PostUpdate(float fXPos, float fYPos, float fZPos)
 {
 	float fLength, fMinDistance, fMaxDistance;
@@ -176,7 +175,7 @@ void CNtlObjectGroup::PostUpdate(float fXPos, float fYPos, float fZPos)
 	{
 		CNtlSound* pSound = it_del->second;
 
-		GetFadeInOut()->StopImmdiately(pSound->m_pFMODChannel, dFADE_STOP_FLAG_NOT_NOTIFY);
+		GetFadeInOut()->StopImmediately(pSound->m_pFMODChannel, dFADE_STOP_FLAG_NOT_NOTIFY);
 		
 		pSound->m_pFMODChannel->stop();
 		pSound->m_pFMODChannel = NULL;

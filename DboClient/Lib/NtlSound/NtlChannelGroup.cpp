@@ -7,13 +7,11 @@
 #include "NtlSoundGlobal.h"
 #include "NtlSoundEvent.h"
 #include "NtlSound.h"
-#include "NtlSoundDSP.h"
 
 CNtlChannelGroup::CNtlChannelGroup(eChannelGroupType eGroup)
 :m_eGroup(eGroup)
 ,m_uiSoundDuplication(0)
 ,m_bProhibition(FALSE)
-,m_pDSP(NULL)
 ,m_fValidRange(50.0f)
 ,m_pMasterLayer(NULL)
 {
@@ -33,8 +31,6 @@ bool CNtlChannelGroup::Create(FMOD::ChannelGroup* pChannelGroup, unsigned int ui
 	m_pMasterLayer = pChannelGroup;
 	m_uiSoundDuplication = uiSoundDuplication;
 
-	m_pDSP = NTL_NEW CNtlSoundDSP;
-
 	NTL_RETURN(TRUE);
 }
 
@@ -51,12 +47,6 @@ void CNtlChannelGroup::Update(float fElapsed)
 void CNtlChannelGroup::Destory()
 {
 	NTL_FUNCTION( "CNtlChannelGroup::Destory" );
-
-	if(m_pDSP)
-	{
-		m_pDSP->Destroy();
-		NTL_DELETE(m_pDSP);
-	}
 
 	MAP_DSP_ITER dsp_it = m_mapDSP.begin();
 	for( ; dsp_it != m_mapDSP.end() ; ++dsp_it )
@@ -306,6 +296,10 @@ void CNtlChannelGroup::SetVolume_FadeInit()
 		m_pMasterLayer->setVolume( Logic_CalcPlayVolume(&m_tVolume) );
 }
 
+void CNtlChannelGroup::SetFadeVolume(float volume) {
+	m_tVolume.fFadeVolume = Logic_GetFMODValidVolume(volume);
+}
+
 float CNtlChannelGroup::GetGroupVolume()
 {
 	return m_tVolume.fMainVolume;
@@ -337,11 +331,6 @@ void CNtlChannelGroup::SetPitch_InitSlowMotionRate()
 float CNtlChannelGroup::GetGroupPitch()
 {
 	return m_tPitch.fMainPitch;
-}
-
-CNtlSoundDSP* CNtlChannelGroup::GetDSP()
-{
-	return m_pDSP;
 }
 
 eChannelGroupType CNtlChannelGroup::GetGroupType()

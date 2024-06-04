@@ -71,6 +71,7 @@ public:
 	virtual void			SetGroupVolume(float fVolume);
 	virtual bool			SetChannelVolume(SOUND_HANDLE hHandle, float fVolume);
 	virtual void			SetVolume_FadeInit();
+	virtual void			SetFadeVolume(float volume);
 	virtual float			GetGroupVolume();
 	virtual sNtlVolume*		GetNtlVolume();
 

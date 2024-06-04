@@ -68,6 +68,12 @@ CNtlBGMPlayList::CNtlBGMPlayList()
 	m_atBGM_INFO[BGM_TYPE_CINEMATIC].fReplayRestTime	= 5.f;
 	++byCount;
 
+	m_atBGM_INFO[BGM_TYPE_WAIT].hHandle					= INVALID_SOUND_HANDLE;
+	m_atBGM_INFO[BGM_TYPE_WAIT].bLoop					= FALSE;
+	m_atBGM_INFO[BGM_TYPE_WAIT].bClearLock				= FALSE;
+	m_atBGM_INFO[BGM_TYPE_WAIT].fReplayRestTime			= 1.f;
+	++byCount;
+
 	DBO_ASSERT(NUM_BGM_TYPE == byCount, "Not defined loop of some BGM type");
 }
 

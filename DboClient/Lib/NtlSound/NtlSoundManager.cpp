@@ -1,4 +1,4 @@
-#include "precomp_ntlsound.h"
+ï»¿#include "precomp_ntlsound.h"
 #include "NtlSoundManager.h"
 
 #include <crtdbg.h>
@@ -12,7 +12,6 @@
 #include "NtlJingleGroup.h"
 #include "NtlWeatherGroup.h"
 #include "NtlFadeInOut.h"
-#include "NtlSoundDSP.h"
 #include "NtlSound.h"
 #include "NtlSoundSubSystem.h"
 #include "NtlFMODSoundPool.h"
@@ -72,7 +71,7 @@ void CNtlSoundManager::Init(const char* pcPath, float fMasterVolume /* = 1.0 */,
 	m_iDebugFlag =_CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 #endif
 
-	// »ç¿îµå ÆÄÀÏÀÇ °æ·Î ÁöÁ¤
+	// Â»Ã§Â¿Ã®ÂµÃ¥ Ã†Ã„Ã€ÃÃ€Ã‡ Â°Ã¦Â·ÃŽ ÃÃ¶ÃÂ¤
 	CNtlSoundGlobal::m_strFilePath = pcPath;
 
 
@@ -126,7 +125,7 @@ void CNtlSoundManager::Init(const char* pcPath, float fMasterVolume /* = 1.0 */,
 
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// FMOD::SystemÀ¸·Î ºÎÅÍ MasterChannelGroup ¾ò¾î¿À±â
+	// FMOD::SystemÃ€Â¸Â·ÃŽ ÂºÃŽÃ…Ã MasterChannelGroup Â¾Ã²Â¾Ã®Â¿Ã€Â±Ã¢
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	result = CNtlSoundGlobal::m_pFMODSystem->getMasterChannelGroup(&m_pMasterChannelGroup);
 	if( result != FMOD_OK )
@@ -155,8 +154,6 @@ void CNtlSoundManager::Init(const char* pcPath, float fMasterVolume /* = 1.0 */,
 	// Channel Group Creation
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	CreateChannelGroups();
-
-	m_pMasterDSP = NTL_NEW CNtlSoundDSP;
 }
 
 void CNtlSoundManager::CreateChannelGroups()
@@ -164,15 +161,15 @@ void CNtlSoundManager::CreateChannelGroups()
 	FMOD::ChannelGroup *m_pFMODChannelGroup;
 
 	// so that changing the order of eChannelGroupType in NtlSoundDefines.h will not affect
-	// create a class against each index
+	// create a class against each index Ã•Ã«Â¶Ã”ÃƒÂ¿Â¸Ã¶Ã‹Ã·Ã’Ã½Â´Â´Â½Â¨Ã’Â»Â¸Ã¶Ã€Ã 
 	for( RwUInt8 i = CHANNEL_GROUP_FIRST ; i < NUM_CHANNEL_GROUP ; ++i )
 	{
 		if( i == CHANNEL_GROUP_UI_SOUND )
 		{
 			m_apChannelGroup[i] = NTL_NEW CNtlChannelGroup(CHANNEL_GROUP_UI_SOUND);
-			CNtlSoundGlobal::m_pFMODSystem->createChannelGroup("CHANNEL_GROUP_UI_SOUND", &m_pFMODChannelGroup);	// »õ·Î¿î FMOD::ChannelGroup À» »ý¼ºÇÑ´Ù
-			m_pMasterChannelGroup->addGroup(m_pFMODChannelGroup);				// MasterChannelÀÇ subGroupÀ¸·Î µî·Ï
-			m_apChannelGroup[i]->Create(m_pFMODChannelGroup, 0);				// CNtlChannelGroup ÃÊ±âÈ­
+			CNtlSoundGlobal::m_pFMODSystem->createChannelGroup("CHANNEL_GROUP_UI_SOUND", &m_pFMODChannelGroup);	// Â»ÃµÂ·ÃŽÂ¿Ã® FMOD::ChannelGroup Ã€Â» Â»Ã½Â¼ÂºÃ‡Ã‘Â´Ã™
+			m_pMasterChannelGroup->addGroup(m_pFMODChannelGroup);				// MasterChannelÃ€Ã‡ subGroupÃ€Â¸Â·ÃŽ ÂµÃ®Â·Ã
+			m_apChannelGroup[i]->Create(m_pFMODChannelGroup, 0);				// CNtlChannelGroup ÃƒÃŠÂ±Ã¢ÃˆÂ­
 		}
 		else if( i == CHANNEL_GROUP_JINGLE_MUSIC )
 		{
@@ -267,7 +264,6 @@ void CNtlSoundManager::Release()
 
 	if( m_pMasterDSP )
 	{
-		m_pMasterDSP->Destroy();
 		NTL_DELETE(m_pMasterDSP);
 	}
 
@@ -322,6 +318,12 @@ void CNtlSoundManager::SetListenerPosition(float fXPos, float fYPos, float fZPos
 	CNtlSoundGlobal::m_pFMODSystem->set3DListenerAttributes(0, &listenerPos, 0, 0, 0);
 }
 
+FMOD_VECTOR NormalizeVector(const FMOD_VECTOR& vec) {
+	float length = sqrt(vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
+	FMOD_VECTOR normalizedVec = { vec.x / length, vec.y / length, vec.z / length };
+	return normalizedVec;
+}
+
 void CNtlSoundManager::SetListenerPosition(float fXPos, float fYPos, float fZPos, 
 										   float fXFoward, float fYFoward, float fZFoward, 
 										   float fXUp, float fYUp, float fZUp)
@@ -332,6 +334,10 @@ void CNtlSoundManager::SetListenerPosition(float fXPos, float fYPos, float fZPos
 	FMOD_VECTOR listenerPos		= { dCONVERT_COORDINATE_X(fXPos), fYPos, fZPos };
 	FMOD_VECTOR listenerFoward	= { dCONVERT_COORDINATE_X(fXFoward), fYFoward, fZFoward };
 	FMOD_VECTOR listenerUp		= { dCONVERT_COORDINATE_X(fXUp), fYUp, fZUp };
+
+	// Normalize the forward and up vectors
+	listenerFoward = NormalizeVector(listenerFoward);
+	listenerUp = NormalizeVector(listenerUp);
 
 	CNtlSoundGlobal::m_pFMODSystem->set3DListenerAttributes(0, &listenerPos, 0, &listenerFoward, &listenerUp);
 }
@@ -380,7 +386,7 @@ int CNtlSoundManager::Play(sNtlSoundPlayParameta* pParameta)
 
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////
-	// Sound µ¥ÀÌÅÍ ÃÊ±âÈ­
+	// Sound ÂµÂ¥Ã€ÃŒÃ…Ã ÃƒÃŠÂ±Ã¢ÃˆÂ­
 	///////////////////////////////////////////////////////////////////////////////////////////////////////
 	CNtlSound* pSound = NTL_NEW CNtlSound(Logic_GetNewSoundHandle(), pParameta->pcFileName );
 	pSound->m_iChannelGroup				= pParameta->iChannelGroup;
@@ -556,7 +562,7 @@ int CNtlSoundManager::ReplayEnvironmentSound(CNtlSound* pSound)
 	if( !CNtlSoundGlobal::m_pFMODSystem )
 		return SOUNDRESULT_OK;
 	/*
-	// ÇÃ·¹ÀÌ À§Ä¡ ·Î±×¸¦ ÂïÀ» ¶§
+	// Ã‡ÃƒÂ·Â¹Ã€ÃŒ Ã€Â§Ã„Â¡ Â·ÃŽÂ±Ã—Â¸Â¦ Ã‚Ã¯Ã€Â» Â¶Â§
 	char pcResult[256] = "";
 	sprintf_s(pcResult, "Group : %s, File : %s, X : %f, Y : %f, Z : %f, Volmue : %f, mix : %f, max : %f\n",
 	GetChannelGroupName(iChannelGroup), pcName, fXPos, fYPos, fZPos, fVolume, fMinDistance, fMaxDistance);
@@ -565,7 +571,7 @@ int CNtlSoundManager::ReplayEnvironmentSound(CNtlSound* pSound)
 
 	FMOD_RESULT		result;
 
-	// »õ·Î¿î »ç¿îµå¸¦ ÇÃ·¹ÀÌ ÇÒ ¼ö ÀÖ´Â »óÈ²ÀÎÁö Ã¼Å©
+	// Â»ÃµÂ·ÃŽÂ¿Ã® Â»Ã§Â¿Ã®ÂµÃ¥Â¸Â¦ Ã‡ÃƒÂ·Â¹Ã€ÃŒ Ã‡Ã’ Â¼Ã¶ Ã€Ã–Â´Ã‚ Â»Ã³ÃˆÂ²Ã€ÃŽÃÃ¶ ÃƒÂ¼Ã…Â©
 	int iResult = CanPlay(CHANNEL_GROUP_OBJECT_MUSIC, pSound->m_strName.c_str(), pSound->m_fXPos, pSound->m_fYPos, pSound->m_fZPos);
 	if( iResult != SOUNDRESULT_OK )
 	{
@@ -576,21 +582,20 @@ int CNtlSoundManager::ReplayEnvironmentSound(CNtlSound* pSound)
 
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////
-	// Sound¸¦ ºÒ·¯µéÀÎ´Ù
+	// SoundÂ¸Â¦ ÂºÃ’Â·Â¯ÂµÃ©Ã€ÃŽÂ´Ã™
 	///////////////////////////////////////////////////////////////////////////////////////////////////////
 	CNtlObjectGroup* pEnvironmentGroup = reinterpret_cast<CNtlObjectGroup*>(m_apChannelGroup[CHANNEL_GROUP_OBJECT_MUSIC]);
-	if( LengthFromListenerToSound(pSound->m_fXPos, pSound->m_fYPos, pSound->m_fZPos) > pSound->m_fMaxDistance )
+	if (LengthFromListenerToSound(pSound->m_fXPos, pSound->m_fYPos, pSound->m_fZPos) > pSound->m_fMaxDistance)
 		return SOUNDRESULT_OK;
 
 
 	FMOD_MODE mode = d3D_SOUND_MODE;
 
-	///< Sound ¹Ýº¹ ¿¬ÁÖ
+	///< Sound Â¹ÃÂºÂ¹ Â¿Â¬ÃÃ–
 	if( pSound->m_bLoop )				
 		mode |= FMOD_LOOP_NORMAL;
 
-	// by daneos: this seem to crash the game sometimes
-	/*if( g_fnCallback_LoadSound_from_Memory )
+	if( g_fnCallback_LoadSound_from_Memory )
 	{
 		void* pData = NULL;
 		FMOD_CREATESOUNDEXINFO exinfo;
@@ -609,7 +614,7 @@ int CNtlSoundManager::ReplayEnvironmentSound(CNtlSound* pSound)
 			result = FMOD_ERR_MEMORY_CANTPOINT;
 		}
 	}
-	else*/
+	else
 	{
 		result = CNtlSoundGlobal::m_pFMODSystem->createStream(fullName.c_str(), mode, 0, &(pSound->m_pFMODSound) );
 	}
@@ -623,9 +628,9 @@ int CNtlSoundManager::ReplayEnvironmentSound(CNtlSound* pSound)
 	}
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////
-	// Sound¸¦ ¿¬ÁÖÇÑ´Ù
+	// SoundÂ¸Â¦ Â¿Â¬ÃÃ–Ã‡Ã‘Â´Ã™
 	///////////////////////////////////////////////////////////////////////////////////////////////////////
-	// 3¹øÂ° ÀÎÀÚ¸¦ true¸¦ ÁÖ¾î ¸ðµç »ç¿îµåÀÇ ¼¼ÆÃÀÌ ³¡³¯ ¶§ ±îÁö »ç¿îµå ÇÃ·¹ÀÌ¸¦ ÇÏÁö ¾Ê´Â´Ù.
+	// 3Â¹Ã¸Ã‚Â° Ã€ÃŽÃ€ÃšÂ¸Â¦ trueÂ¸Â¦ ÃÃ–Â¾Ã® Â¸Ã°ÂµÃ§ Â»Ã§Â¿Ã®ÂµÃ¥Ã€Ã‡ Â¼Â¼Ã†ÃƒÃ€ÃŒ Â³Â¡Â³Â¯ Â¶Â§ Â±Ã®ÃÃ¶ Â»Ã§Â¿Ã®ÂµÃ¥ Ã‡ÃƒÂ·Â¹Ã€ÃŒÂ¸Â¦ Ã‡ÃÃÃ¶ Â¾ÃŠÂ´Ã‚Â´Ã™.
 	result = CNtlSoundGlobal::m_pFMODSystem->playSound(pSound->m_pFMODSound, 0, true, &(pSound->m_pFMODChannel) );
 	if( result != FMOD_OK )
 	{
@@ -642,22 +647,22 @@ int CNtlSoundManager::ReplayEnvironmentSound(CNtlSound* pSound)
 	pSound->SetMinMax(pSound->m_fMinDistance, pSound->m_fMaxDistance);
 
 
-	// ½ÇÁ¦·Î »ç¿îµå¸¦ ÇÃ·¹ÀÌ ÇÑ´Ù.
+	// Â½Ã‡ÃÂ¦Â·ÃŽ Â»Ã§Â¿Ã®ÂµÃ¥Â¸Â¦ Ã‡ÃƒÂ·Â¹Ã€ÃŒ Ã‡Ã‘Â´Ã™.
 	pSound->m_pFMODChannel->setPaused(false);
 
 
-	// soundInfo¿¡ ºÎ°¡Á¤º¸ ÀÔ·Â
+	// soundInfoÂ¿Â¡ ÂºÃŽÂ°Â¡ÃÂ¤ÂºÂ¸ Ã€Ã”Â·Ã‚
 	pSound->m_iChannelGroup = CHANNEL_GROUP_OBJECT_MUSIC;
 	pSound->m_strName = pSound->m_strName;
 
 
-	// Channel Group¿¡ ¿¬ÁÖÁ¤º¸¸¦ ÀúÀåÇÑ´Ù
+	// Channel GroupÂ¿Â¡ Â¿Â¬ÃÃ–ÃÂ¤ÂºÂ¸Â¸Â¦ Ã€ÃºÃ€Ã¥Ã‡Ã‘Â´Ã™
 	eStoreResult EStoreResult = m_apChannelGroup[CHANNEL_GROUP_OBJECT_MUSIC]->StoreSound(pSound, NULL);
 	switch( EStoreResult )
 	{
 		case STORE_READY_TO_PLAY:
 		{
-			// ½ÇÁ¦·Î »ç¿îµå¸¦ ÇÃ·¹ÀÌ ÇÑ´Ù.
+			// Â½Ã‡ÃÂ¦Â·ÃŽ Â»Ã§Â¿Ã®ÂµÃ¥Â¸Â¦ Ã‡ÃƒÂ·Â¹Ã€ÃŒ Ã‡Ã‘Â´Ã™.
 			pSound->m_pFMODChannel->setPaused(false);
 			break;
 		}
@@ -724,9 +729,9 @@ void CNtlSoundManager::Stop(SOUND_HANDLE& rHandle)
 			break;
 	}
 
-	// »ç¿îµå ÇÚµéÀÌ °¡Áö°í ÀÖ´Â sNtlSoundÀÇ µ¥ÀÌÅÍÀÇ ¹«°á¼ºÀº º¸ÀåÇÏÁö ¾Ê´Â´Ù.
-	// °¡Áö°í ÀÖ´Â »ç¿îµå ÇÚµé¿¡ ÇØ´çÇÏ´Â sNtlSoundÀÇ ÇÃ·¹ÀÌ°¡ ³¡³ª¼­ µ¥ÀÌÅÍ°¡ Á¸ÀçÇÏÁö ¾ÊÀ» ¼öµµ ÀÖ´Ù.
-	// ¾îÂ¶µç StopÀ» È£ÃâÇÏ¸é INVALID_SOUND_HANDLEÀ» ³Ö¾îÁÖÀÚ
+	// Â»Ã§Â¿Ã®ÂµÃ¥ Ã‡ÃšÂµÃ©Ã€ÃŒ Â°Â¡ÃÃ¶Â°Ã­ Ã€Ã–Â´Ã‚ sNtlSoundÃ€Ã‡ ÂµÂ¥Ã€ÃŒÃ…ÃÃ€Ã‡ Â¹Â«Â°Ã¡Â¼ÂºÃ€Âº ÂºÂ¸Ã€Ã¥Ã‡ÃÃÃ¶ Â¾ÃŠÂ´Ã‚Â´Ã™.
+	// Â°Â¡ÃÃ¶Â°Ã­ Ã€Ã–Â´Ã‚ Â»Ã§Â¿Ã®ÂµÃ¥ Ã‡ÃšÂµÃ©Â¿Â¡ Ã‡Ã˜Â´Ã§Ã‡ÃÂ´Ã‚ sNtlSoundÃ€Ã‡ Ã‡ÃƒÂ·Â¹Ã€ÃŒÂ°Â¡ Â³Â¡Â³ÂªÂ¼Â­ ÂµÂ¥Ã€ÃŒÃ…ÃÂ°Â¡ ÃÂ¸Ã€Ã§Ã‡ÃÃÃ¶ Â¾ÃŠÃ€Â» Â¼Ã¶ÂµÂµ Ã€Ã–Â´Ã™.
+	// Â¾Ã®Ã‚Â¶ÂµÃ§ StopÃ€Â» ÃˆÂ£ÃƒÃ¢Ã‡ÃÂ¸Ã© INVALID_SOUND_HANDLEÃ€Â» Â³Ã–Â¾Ã®ÃÃ–Ã€Ãš
 	rHandle = INVALID_SOUND_HANDLE;
 }
 
@@ -810,11 +815,15 @@ void CNtlSoundManager::Update(float fElapsed)
 {
 	if( !CNtlSoundGlobal::m_pFMODSystem )
 		return;
+
+	// Inside the update of channel, things like 3D sound,
+// virtual channel updates, and emulated voice updates are executed.
+	CNtlSoundGlobal::m_pFMODSystem->update();
 	
 	int iBeforeChannelCount = 0, iAfterChannelCount = 0;
 	CNtlSoundGlobal::m_pFMODSystem->getChannelsPlaying(&iBeforeChannelCount);
 
-	// °¢ Ã¤³Î Update
+	// Â°Â¢ ÃƒÂ¤Â³ÃŽ Update
 	for( int i = CHANNEL_GROUP_FIRST ; i < NUM_CHANNEL_GROUP ; ++i )
 	{
 		m_apChannelGroup[i]->Update(fElapsed);
@@ -855,11 +864,7 @@ void CNtlSoundManager::Update(float fElapsed)
 	pEnvironmentGroup->PostUpdate(listenerPos.x, listenerPos.y, listenerPos.z);
 
 	//Fade In/Out Update
-	GetFadeInOut()->Update();
-
-	// Inside the update of channel, things like 3D sound,
-	// virtual channel updates, and emulated voice updates are executed.
-	CNtlSoundGlobal::m_pFMODSystem->update();
+	//GetFadeInOut()->Update();
 }
 
 void CNtlSoundManager::SetValidGroupRange(int iChannelGroup, float fRange)
@@ -885,7 +890,7 @@ const char* CNtlSoundManager::GetSoundName(SOUND_HANDLE hHandle)
 
 	for( int i = CHANNEL_GROUP_FIRST ; i < NUM_CHANNEL_GROUP ; ++i )
 	{
-		// ¾îÂ÷ÇÇ ¾î¶² Ã¤³Î ±×·ìÀÎÁö¸¦ ¾Ë¾Æ¾ß ÇÏ±â¿¡ °¢°¢ÀÇ Ã¤³Î ±×·ìÀ» °Ë»öÇØ¾ß ÇÑ´Ù
+		// Â¾Ã®Ã‚Ã·Ã‡Ã‡ Â¾Ã®Â¶Â² ÃƒÂ¤Â³ÃŽ Â±Ã—Â·Ã¬Ã€ÃŽÃÃ¶Â¸Â¦ Â¾Ã‹Â¾Ã†Â¾ÃŸ Ã‡ÃÂ±Ã¢Â¿Â¡ Â°Â¢Â°Â¢Ã€Ã‡ ÃƒÂ¤Â³ÃŽ Â±Ã—Â·Ã¬Ã€Â» Â°Ã‹Â»Ã¶Ã‡Ã˜Â¾ÃŸ Ã‡Ã‘Â´Ã™
 		CNtlSound* pSound = m_apChannelGroup[i]->GetSound(hHandle);
 		if(pSound)
 		{
@@ -921,20 +926,33 @@ float CNtlSoundManager::GetMasterVolume()
 
 void CNtlSoundManager::SetMasterEffect(FMOD_DSP_TYPE eType)
 {
-	if( !CNtlSoundGlobal::m_pFMODSystem )
+	if (!CNtlSoundGlobal::m_pFMODSystem)
 		return;
 
-	FMOD::DSP* pDSP = m_pMasterDSP->CreateDSP(eType);
-	if(pDSP)
+	if (m_mapMasterDSP.find(eType) != m_mapMasterDSP.end())
+		return;
+
+	FMOD::DSP* pDSP = nullptr;
+	FMOD_RESULT result = CNtlSoundGlobal::m_pFMODSystem->createDSPByType(eType, &pDSP);
+	if (result == FMOD_OK && pDSP)
+	{
 		m_pMasterChannelGroup->addDSP(0, pDSP);
+		pDSP->setActive(true);
+		m_mapMasterDSP[eType] = pDSP;
+	}
 }
 
 void CNtlSoundManager::ReleaseMasterEffect(FMOD_DSP_TYPE eType)
 {
-	if( !CNtlSoundGlobal::m_pFMODSystem )
-		return;
-
-	m_pMasterDSP->ReleaseDSP(eType);
+	auto it = m_mapMasterDSP.find(eType);
+	if (it != m_mapMasterDSP.end())
+	{
+		FMOD::DSP* pDSP = it->second;
+		pDSP->setActive(false);
+		m_pMasterChannelGroup->removeDSP(pDSP);
+		pDSP->release();
+		m_mapMasterDSP.erase(it);
+	}
 }
 
 void CNtlSoundManager::SetGroupVolume(int iChannelGroup, float fVolume)
@@ -955,22 +973,33 @@ float CNtlSoundManager::GetGroupVolume(int iChannelGroup)
 
 void CNtlSoundManager::SetGroupEffect(int iChannelGroup, FMOD_DSP_TYPE eType)
 {
-	if( !CNtlSoundGlobal::m_pFMODSystem )
+	if (!CNtlSoundGlobal::m_pFMODSystem)
 		return;
 
-	CNtlSoundDSP* pDSP = m_apChannelGroup[iChannelGroup]->GetDSP();
-	FMOD::DSP* pNewDSP = pDSP->CreateDSP(eType);
-	if(pNewDSP)
-		m_apChannelGroup[iChannelGroup]->GetFMODChannelGroup()->addDSP(iChannelGroup, pNewDSP);
+	if (m_mapGroupDSP[iChannelGroup].find(eType) != m_mapGroupDSP[iChannelGroup].end())
+		return;
+
+	FMOD::DSP* pDSP = nullptr;
+	FMOD_RESULT result = CNtlSoundGlobal::m_pFMODSystem->createDSPByType(eType, &pDSP);
+	if (result == FMOD_OK && pDSP)
+	{
+		m_apChannelGroup[iChannelGroup]->GetFMODChannelGroup()->addDSP(0, pDSP);
+		pDSP->setActive(true);
+		m_mapGroupDSP[iChannelGroup][eType] = pDSP;
+	}
 }
 
 void CNtlSoundManager::ReleaseGroupEffect(int iChannelGroup, FMOD_DSP_TYPE eType)
 {
-	if( !CNtlSoundGlobal::m_pFMODSystem )
-		return;
-
-	CNtlSoundDSP* pDSP = m_apChannelGroup[iChannelGroup]->GetDSP();
-	pDSP->ReleaseDSP(eType);
+	auto it = m_mapGroupDSP[iChannelGroup].find(eType);
+	if (it != m_mapGroupDSP[iChannelGroup].end())
+	{
+		FMOD::DSP* pDSP = it->second;
+		pDSP->setActive(false);
+		m_apChannelGroup[iChannelGroup]->GetFMODChannelGroup()->removeDSP(pDSP);
+		pDSP->release();
+		m_mapGroupDSP[iChannelGroup].erase(it);
+	}
 }
 
 void CNtlSoundManager::SetChannelVolume(SOUND_HANDLE hHandle, float fVolume)
@@ -999,29 +1028,50 @@ float CNtlSoundManager::GetChannelVolume(SOUND_HANDLE hHandle)
 
 void CNtlSoundManager::SetChannelEffect(SOUND_HANDLE hHandle, FMOD_DSP_TYPE eType)
 {
-	if( !CNtlSoundGlobal::m_pFMODSystem )
+	if (!CNtlSoundGlobal::m_pFMODSystem)
 		return;
 
 	CNtlSound* pSound = GetSound(hHandle);
-	if(pSound && pSound->m_pFMODChannel)
+	if (pSound && pSound->m_pFMODChannel)
 	{
-		FMOD::DSP* pDSP = pSound->m_pDSP->CreateDSP(eType);
-		if(pDSP)
+		FMOD::DSP* pDSP = nullptr;
+		FMOD_RESULT result = CNtlSoundGlobal::m_pFMODSystem->createDSPByType(eType, &pDSP);
+		if (result == FMOD_OK && pDSP)
 		{
-			pSound->m_pFMODChannel->addDSP(pSound->m_iChannelGroup, pDSP);
+			pSound->m_pFMODChannel->addDSP(0, pDSP);
+			pDSP->setActive(true);
 		}
 	}
 }
 
 void CNtlSoundManager::ReleaseChannelEffect(SOUND_HANDLE hHandle, FMOD_DSP_TYPE eType)
 {
-	if( !CNtlSoundGlobal::m_pFMODSystem )
+	if (!CNtlSoundGlobal::m_pFMODSystem)
 		return;
 
 	CNtlSound* pSound = GetSound(hHandle);
-	if(pSound)
+	if (pSound && pSound->m_pFMODChannel)
 	{
-		pSound->m_pDSP->ReleaseDSP(eType);
+		int numDSPs = 0;
+		pSound->m_pFMODChannel->getNumDSPs(&numDSPs);
+
+		for (int i = 0; i < numDSPs; ++i)
+		{
+			FMOD::DSP* pDSP = nullptr;
+			pSound->m_pFMODChannel->getDSP(i, &pDSP);
+			if (pDSP)
+			{
+				FMOD_DSP_TYPE type;
+				pDSP->getType(&type);
+				if (type == eType)
+				{
+					pDSP->setActive(false);
+					pSound->m_pFMODChannel->removeDSP(pDSP);
+					pDSP->release();
+					break;
+				}
+			}
+		}
 	}
 }
 
@@ -1053,7 +1103,7 @@ int CNtlSoundManager::CanPlay(sNtlSoundPlayParameta* pParameta)
 
 	int iResult;
 
-	// °¢ channelGroup ´Ü¿¡¼­ÀÇ Play °¡´É ¿©ºÎ ÆÇ´Ü
+	// Â°Â¢ channelGroup Â´ÃœÂ¿Â¡Â¼Â­Ã€Ã‡ Play Â°Â¡Â´Ã‰ Â¿Â©ÂºÃŽ Ã†Ã‡Â´Ãœ
 	iResult = m_apChannelGroup[pParameta->iChannelGroup]->CanPlay(pParameta->pcFileName);
 	if( iResult != SOUNDRESULT_OK )
 		return iResult;
@@ -1066,9 +1116,9 @@ int CNtlSoundManager::CanPlay(sNtlSoundPlayParameta* pParameta)
 	CNtlSoundGlobal::m_pFMODSystem->getChannelsPlaying(&iChannelCount);
 
 	if( iChannelCount  >= MAX_DBO_CHANNELS )
-	{	// Á¦ÇÑµÈ ÃÖ´ë Ã¤³Î °¹¼ö¸¦ ³Ñ¾ú´Ù. ¿ì¼± ¼øÀ§°¡ ³·Àº Ã¤³ÎÀ» Á¦¿Ü½ÃÅ²´Ù.
+	{	// ÃÂ¦Ã‡Ã‘ÂµÃˆ ÃƒÃ–Â´Ã« ÃƒÂ¤Â³ÃŽ Â°Â¹Â¼Ã¶Â¸Â¦ Â³Ã‘Â¾ÃºÂ´Ã™. Â¿Ã¬Â¼Â± Â¼Ã¸Ã€Â§Â°Â¡ Â³Â·Ã€Âº ÃƒÂ¤Â³ÃŽÃ€Â» ÃÂ¦Â¿ÃœÂ½ÃƒÃ…Â²Â´Ã™.
 		int iLowRankChannelGroup = NUM_CHANNEL_GROUP - 1;
-		unsigned int uiCurChannelCount; // Ã¤³Î ±×·ì¿¡ ¼ÓÇÑ ÇÃ·¹ÀÌÁßÀÎ Ã¤³Î
+		unsigned int uiCurChannelCount; // ÃƒÂ¤Â³ÃŽ Â±Ã—Â·Ã¬Â¿Â¡ Â¼Ã“Ã‡Ã‘ Ã‡ÃƒÂ·Â¹Ã€ÃŒÃÃŸÃ€ÃŽ ÃƒÂ¤Â³ÃŽ
 
 		for( ; iLowRankChannelGroup > pParameta->iChannelGroup &&
 			iLowRankChannelGroup > CHANNEL_GROUP_AMBIENT_MUSIC ; --iLowRankChannelGroup )
@@ -1076,7 +1126,7 @@ int CNtlSoundManager::CanPlay(sNtlSoundPlayParameta* pParameta)
 			uiCurChannelCount = m_apChannelGroup[iLowRankChannelGroup]->GetPlayingChannels();
 
 			if( uiCurChannelCount > 0 )
-			{	// ÇÏÀ§ ±×·ì¿¡ ÇÃ·¹ÀÌÁßÀÎ Ã¤³ÎÀÌ ÀÖ´Ù¸é °­Á¦ Release ½ÃÅ²´Ù.
+			{	// Ã‡ÃÃ€Â§ Â±Ã—Â·Ã¬Â¿Â¡ Ã‡ÃƒÂ·Â¹Ã€ÃŒÃÃŸÃ€ÃŽ ÃƒÂ¤Â³ÃŽÃ€ÃŒ Ã€Ã–Â´Ã™Â¸Ã© Â°Â­ÃÂ¦ Release Â½ÃƒÃ…Â²Â´Ã™.
 				if( m_apChannelGroup[iLowRankChannelGroup]->ReleaseLowRankChannel() )
 					return SOUNDRESULT_OK;
 			}
@@ -1103,7 +1153,7 @@ int CNtlSoundManager::CanPlay(int iChannelGroups, const char* pcName, float fPos
 		return SOUNDRESULT_EMPTY_FILENAME;
 	}
 
-	// °¢ Ã¤³Î±×·ìº° ¿¬ÁÖ °¡´ÉÇÑ Áö¿ª ¹üÀ§ÀÇ »ç¿îµåÀÎÁö °Ë»ç
+	// Â°Â¢ ÃƒÂ¤Â³ÃŽÂ±Ã—Â·Ã¬ÂºÂ° Â¿Â¬ÃÃ– Â°Â¡Â´Ã‰Ã‡Ã‘ ÃÃ¶Â¿Âª Â¹Ã¼Ã€Â§Ã€Ã‡ Â»Ã§Â¿Ã®ÂµÃ¥Ã€ÃŽÃÃ¶ Â°Ã‹Â»Ã§
 	if( !IsValidGroupRange(iChannelGroups, fPosX, fPosY, fPosZ) )
 	{
 #ifdef SOUND_DEBUG_LOG
@@ -1114,22 +1164,22 @@ int CNtlSoundManager::CanPlay(int iChannelGroups, const char* pcName, float fPos
 
 	int iResult;
 
-	// °¢ channelGroup ´Ü¿¡¼­ÀÇ Play °¡´É ¿©ºÎ ÆÇ´Ü
+	// Â°Â¢ channelGroup Â´ÃœÂ¿Â¡Â¼Â­Ã€Ã‡ Play Â°Â¡Â´Ã‰ Â¿Â©ÂºÃŽ Ã†Ã‡Â´Ãœ
 	iResult = m_apChannelGroup[iChannelGroups]->CanPlay(pcName);
 	if( iResult != SOUNDRESULT_OK )
 		return iResult;
 
-	// ´õ ÀÌ»ó ¿©ºÐÀÇ Ã¤³ÎÀÌ ¾øÀ» ½Ã
-	// °¡Àå ÇÏÀ§ Ã¤³Î ±×·ìÀÇ ÀÓÀÇÀÇ Ã¤³ÎÀ» Áß´Ü½ÃÅ°°í »õ·Î¿î »ç¿îµå¸¦ ÇÃ·¹ÀÌ
-	// ÇÑ´Ù. »õ·Î ÇÃ·¹ÀÌÇÏ·Á´Â »ç¿îµå°¡ ÃÖÇÏÀ§ ±×·ìÀÌ¶ó¸é ÇÃ·¹ÀÌµÇÁö ¾Ê´Â´Ù.
-	// ¶ÇÇÑ Jingle Music, BGM ±×·ìÀº ¿ì¼±¼øÀ§¿¡ ¿µÇâÀ» ¹Þ¾Æ Áß´ÜµÇÁö ¾Ê´Â´Ù.
+	// Â´Ãµ Ã€ÃŒÂ»Ã³ Â¿Â©ÂºÃÃ€Ã‡ ÃƒÂ¤Â³ÃŽÃ€ÃŒ Â¾Ã¸Ã€Â» Â½Ãƒ
+	// Â°Â¡Ã€Ã¥ Ã‡ÃÃ€Â§ ÃƒÂ¤Â³ÃŽ Â±Ã—Â·Ã¬Ã€Ã‡ Ã€Ã“Ã€Ã‡Ã€Ã‡ ÃƒÂ¤Â³ÃŽÃ€Â» ÃÃŸÂ´ÃœÂ½ÃƒÃ…Â°Â°Ã­ Â»ÃµÂ·ÃŽÂ¿Ã® Â»Ã§Â¿Ã®ÂµÃ¥Â¸Â¦ Ã‡ÃƒÂ·Â¹Ã€ÃŒ
+	// Ã‡Ã‘Â´Ã™. Â»ÃµÂ·ÃŽ Ã‡ÃƒÂ·Â¹Ã€ÃŒÃ‡ÃÂ·ÃÂ´Ã‚ Â»Ã§Â¿Ã®ÂµÃ¥Â°Â¡ ÃƒÃ–Ã‡ÃÃ€Â§ Â±Ã—Â·Ã¬Ã€ÃŒÂ¶Ã³Â¸Ã© Ã‡ÃƒÂ·Â¹Ã€ÃŒÂµÃ‡ÃÃ¶ Â¾ÃŠÂ´Ã‚Â´Ã™.
+	// Â¶Ã‡Ã‡Ã‘ Jingle Music, BGM Â±Ã—Â·Ã¬Ã€Âº Â¿Ã¬Â¼Â±Â¼Ã¸Ã€Â§Â¿Â¡ Â¿ÂµÃ‡Ã¢Ã€Â» Â¹ÃžÂ¾Ã† ÃÃŸÂ´ÃœÂµÃ‡ÃÃ¶ Â¾ÃŠÂ´Ã‚Â´Ã™.
 	int iChannelCount = 0;
 	CNtlSoundGlobal::m_pFMODSystem->getChannelsPlaying(&iChannelCount);
 
 	if( iChannelCount  >= MAX_DBO_CHANNELS )
-	{	// Á¦ÇÑµÈ ÃÖ´ë Ã¤³Î °¹¼ö¸¦ ³Ñ¾ú´Ù. ¿ì¼± ¼øÀ§°¡ ³·Àº Ã¤³ÎÀ» Á¦¿Ü½ÃÅ²´Ù.
+	{	// ÃÂ¦Ã‡Ã‘ÂµÃˆ ÃƒÃ–Â´Ã« ÃƒÂ¤Â³ÃŽ Â°Â¹Â¼Ã¶Â¸Â¦ Â³Ã‘Â¾ÃºÂ´Ã™. Â¿Ã¬Â¼Â± Â¼Ã¸Ã€Â§Â°Â¡ Â³Â·Ã€Âº ÃƒÂ¤Â³ÃŽÃ€Â» ÃÂ¦Â¿ÃœÂ½ÃƒÃ…Â²Â´Ã™.
 		int iLowRankChannelGroup = NUM_CHANNEL_GROUP - 1;
-		unsigned int uiCurChannelCount; // Ã¤³Î ±×·ì¿¡ ¼ÓÇÑ ÇÃ·¹ÀÌÁßÀÎ Ã¤³Î
+		unsigned int uiCurChannelCount; // ÃƒÂ¤Â³ÃŽ Â±Ã—Â·Ã¬Â¿Â¡ Â¼Ã“Ã‡Ã‘ Ã‡ÃƒÂ·Â¹Ã€ÃŒÃÃŸÃ€ÃŽ ÃƒÂ¤Â³ÃŽ
 
 		for( ; iLowRankChannelGroup > iChannelGroups &&
 			iLowRankChannelGroup > CHANNEL_GROUP_AMBIENT_MUSIC ; --iLowRankChannelGroup )
@@ -1137,7 +1187,7 @@ int CNtlSoundManager::CanPlay(int iChannelGroups, const char* pcName, float fPos
 			uiCurChannelCount = m_apChannelGroup[iLowRankChannelGroup]->GetPlayingChannels();
 
 			if( uiCurChannelCount > 0 )
-			{	// ÇÏÀ§ ±×·ì¿¡ ÇÃ·¹ÀÌÁßÀÎ Ã¤³ÎÀÌ ÀÖ´Ù¸é °­Á¦ Release ½ÃÅ²´Ù.
+			{	// Ã‡ÃÃ€Â§ Â±Ã—Â·Ã¬Â¿Â¡ Ã‡ÃƒÂ·Â¹Ã€ÃŒÃÃŸÃ€ÃŽ ÃƒÂ¤Â³ÃŽÃ€ÃŒ Ã€Ã–Â´Ã™Â¸Ã© Â°Â­ÃÂ¦ Release Â½ÃƒÃ…Â²Â´Ã™.
 				if( m_apChannelGroup[iLowRankChannelGroup]->ReleaseLowRankChannel() )
 					return SOUNDRESULT_OK;
 			}

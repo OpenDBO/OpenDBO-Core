@@ -70,9 +70,6 @@
     <ClInclude Include="NtlFadeInOut.h">
       <Filter>Effect</Filter>
     </ClInclude>
-    <ClInclude Include="NtlSoundDSP.h">
-      <Filter>Effect</Filter>
-    </ClInclude>
     <ClInclude Include="NtlFMODSoundPool.h">
       <Filter>Main</Filter>
     </ClInclude>
@@ -149,9 +146,6 @@
       <Filter>Define</Filter>
     </ClCompile>
     <ClCompile Include="NtlFadeInOut.cpp">
-      <Filter>Effect</Filter>
-    </ClCompile>
-    <ClCompile Include="NtlSoundDSP.cpp">
       <Filter>Effect</Filter>
     </ClCompile>
     <ClCompile Include="NtlFMODSoundPool.cpp">

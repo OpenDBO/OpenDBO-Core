@@ -194,22 +194,22 @@ void CNtlMusicGroup::ReleaseFinishedSound(float fElapsed)
 	}
 }
 
-VOID CNtlMusicGroup::HandleEvents( RWS::CMsg &msg )
+VOID CNtlMusicGroup::HandleEvents(RWS::CMsg& msg)
 {
 	NTL_FUNCTION("CNtlMusicGroup::HandleEvents");
 
-	if( msg.Id == g_EventSoundFinishFade )
+	if (msg.Id == g_EventSoundFinishFade)
 	{
-		sFadeInOut* pFade = reinterpret_cast<sFadeInOut*>( msg.pData );
+		CNtlSound* pSound = reinterpret_cast<CNtlSound*>(msg.pData);
 
-		if( pFade->eResourceType == SRT_CHANNEL )
+		if (pSound)
 		{
 			SOUND_ITER it = m_mapGroup.begin();
-			for( ; it != m_mapGroup.end() ; ++it )
+			for (; it != m_mapGroup.end(); ++it)
 			{
-				if( pFade->u1_hHandle == (*it->second).m_hHandle )
+				if (pSound->m_hHandle == (*it->second).m_hHandle)
 				{
-					if( pFade->eFadeType == FADE_OUT )
+					if (pSound->m_eState == SPS_PLAY_FADE_OUT)
 						CNtlChannelGroup::Stop(it->first);
 
 					break;
@@ -217,11 +217,11 @@ VOID CNtlMusicGroup::HandleEvents( RWS::CMsg &msg )
 			}
 		}
 	}
-	else if( msg.Id == g_EventSoundRestTime )
+	else if (msg.Id == g_EventSoundRestTime)
 	{
-		SNtlEventMusicRestTime* pEvent = reinterpret_cast<SNtlEventMusicRestTime*>( msg.pData );
+		SNtlEventMusicRestTime* pEvent = reinterpret_cast<SNtlEventMusicRestTime*>(msg.pData);
 
-		if( (eChannelGroupType)pEvent->byChannelGroup == m_eGroup )
+		if ((eChannelGroupType)pEvent->byChannelGroup == m_eGroup)
 		{
 			m_fDelayReplayTime = pEvent->fRestTime;
 		}
