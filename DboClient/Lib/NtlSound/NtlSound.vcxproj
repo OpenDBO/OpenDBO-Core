@@ -49,8 +49,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release4Tools|Win32'">
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
-    <ExternalIncludePath>C:\DBO-N 2.0\DirectX9\Include;$(ExternalIncludePath)</ExternalIncludePath>
-    <LibraryPath>C:\DBO-N 2.0\DirectX9\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
