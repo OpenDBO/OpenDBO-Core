@@ -6,10 +6,17 @@ Up to 9 channels.
 Channel 0-8 = normal channels
 Channel 9 = event channel where budokai etc is hosted.
 
+Make sure to update the ./Config/*.ini files to reflect the proper IP's and database.
+
+
 How to start the server:
 1. run start_master_server.bat
 2. run start_query_server.bat and wait until its done.
-3. run start_char_server_0.bat
-4. run start_channel_0.bat and wait until it finished. Then close it.
-5. run start_chat_server.bat and wait until its done.
-6. run start_channel_0, start_channel_1.bat (if you need 2 channels) and start_channel_9.bat
+3. run start_auth_server.bat
+4. run start_char_server_0.bat
+5. run start_channel_0.bat and wait until it finished. Then close it.
+6. run start_chat_server.bat and wait until its done.
+7. run start_channel_0, start_channel_1.bat (if you need 2 channels) and start_channel_9.bat
+
+OR
+1. run start_all_servers.bat
