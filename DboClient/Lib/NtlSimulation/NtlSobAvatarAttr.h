@@ -3,10 +3,10 @@
  * File			: NtlSobAvatarAtt.h
  * Author		: HyungSuk, Jang
  * Copyright	: (주)NTL
- * Date			: 2005. 11. 30	
+ * Date			: 2005. 11. 30
  * Abstract		: Simulation object avatar attribute base class
  *****************************************************************************
- * Desc         : 
+ * Desc         :
  *
  *****************************************************************************/
 
@@ -19,7 +19,7 @@
 class CNtlSobAvatarAttr : public CNtlSobPlayerAttr
 {
 	DECLEAR_MEMORY_POOL(CNtlSobAvatarAttr, NTL_DEFAULT_MEMORY_POOL)
-	
+
 public:
 
 	RwUInt32	m_uiExp;		// 현재 level에서의 current exp	
@@ -29,7 +29,11 @@ public:
 
 	RwUInt16	m_wApRegen;
 	RwUInt16	m_wApSitdownRegen;
-	RwUInt16	m_wApDegen;
+	RwUInt16	m_wApBattleRegen;
+	RwUInt16	m_wApDegen; // Just hang in air
+	RwUInt16	m_wApDegenFly; // When flying
+	RwUInt16	m_wApDegenDash; // When dash flying
+	RwUInt16	m_wApDegenAccel; // When accel flying
 
 	RwUInt16	m_wRpRegen;			// RP 증가 속도.(/second)
 	RwUInt16	m_wRpDimimutionRate;	// RP 감소 속도.(/second)
@@ -41,7 +45,7 @@ public:
 
 	//////////////////////////////////////////////////////////////////////////
 
-	RwUInt32 m_uiZenny;	
+	RwUInt32 m_uiZenny;
 
 	RwUInt32 m_uiSp;
 
@@ -51,9 +55,9 @@ public:
 	RwBool	 m_bCanChangeClass;			///< 전직 가능 여부
 
 
-    //////////////////////////////////////////////////////////////////////////
-    // PC room related
-    DWORD    m_dwNetPy;                 ///<
+	//////////////////////////////////////////////////////////////////////////
+	// PC room related
+	DWORD    m_dwNetPy;                 ///<
 	DWORD    m_dwHlsCash;                 ///<
 
 	//////////////////////////////////////////////////////////////////////////
@@ -63,7 +67,7 @@ public:
 
 public:
 
-	CNtlSobAvatarAttr(); 
+	CNtlSobAvatarAttr();
 
 	virtual ~CNtlSobAvatarAttr() {}
 
@@ -71,9 +75,7 @@ public:
 
 	virtual void Destroy(void) {}
 
-	virtual void HandleEvents(RWS::CMsg &pMsg);
-
-public:
+	virtual void HandleEvents(RWS::CMsg& pMsg);
 
 	RwUInt32		GetAP(void);
 };

@@ -1,4 +1,4 @@
-#include "precomp_dboclient.h"
+Ôªø#include "precomp_dboclient.h"
 
 // shared
 #include "NtlItem.h"
@@ -81,11 +81,11 @@ CStatusAvatarTab::CStatusAvatarTab(VOID)
 	m_nLSelectedSlotIdx = -1;
 	m_nRSelectedSlotIdx = -1;
 	m_nMouseOnIndex = -1;
-	m_nPushDownIndex = -1;	
+	m_nPushDownIndex = -1;
 	m_nDragRotX = 0;
 
-	memset( m_arrFocusEffect, 0, sizeof( m_arrFocusEffect ) );
-	
+	memset(m_arrFocusEffect, 0, sizeof(m_arrFocusEffect));
+
 	m_sBattleAttr.eBattleAttrInfoType = stINFOWND_BATTLEATTR::TYPE_ATTR_INVALID;
 	m_sBattleAttr.bySourceWeaponAttr = INVALID_BYTE;
 	m_sBattleAttr.byTargetWeaponAttr = INVALID_BYTE;
@@ -101,114 +101,118 @@ CStatusAvatarTab::~CStatusAvatarTab(VOID)
 // ! Operation
 RwBool CStatusAvatarTab::IsShow(VOID)
 {
-	if( !m_pSelf->IsVisible() )
+	if (!m_pSelf->IsVisible())
 		return FALSE;
 
-	if( !m_pSelf->GetParent()->IsVisible() )
+	if (!m_pSelf->GetParent()->IsVisible())
 		return FALSE;
 
 	return TRUE;
 }
 
 
-RwBool CStatusAvatarTab::Create( CNtlPLGui* pParent )
+RwBool CStatusAvatarTab::Create(CNtlPLGui* pParent)
 {
-	m_pSelf = reinterpret_cast<gui::CDialog*>( pParent->GetComponent( "dlgAvatar" ) );
+	m_pSelf = reinterpret_cast<gui::CDialog*>(pParent->GetComponent("dlgAvatar"));
 
-	m_pstbBattleAttrTitle = reinterpret_cast<gui::CStaticBox*>( pParent->GetComponent( "sttAttrTitle" ) );
+	m_pstbBattleAttrTitle = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent("sttAttrTitle"));
 
-	for( RwInt32 i = 0 ; i < NUM_BASIC_STAT ; ++i )
+	for (RwInt32 i = 0; i < NUM_BASIC_STAT; ++i)
 	{
 		const char* szFilename[] = { "sttSTR", "sttDEX", "sttCON", "sttENG", "sttSOL", "sttFOC" };
-		char buf[256]; 
+		char buf[256];
 
-		sprintf_s( buf, 256, "%s%s", szFilename[i], "Title" );
-		
-		m_pstbBasicStat[i] = reinterpret_cast<gui::CStaticBox*>( pParent->GetComponent( szFilename[i] ) );
-		m_pstbBasicStatTitle[i] = reinterpret_cast<gui::CStaticBox*>( pParent->GetComponent( buf ) );
+		sprintf_s(buf, 256, "%s%s", szFilename[i], "Title");
+
+		m_pstbBasicStat[i] = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent(szFilename[i]));
+		m_pstbBasicStatTitle[i] = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent(buf));
 	}
 
-	for( RwInt32 i = 0 ; i < NUM_PCINFO ; ++i )
+	for (RwInt32 i = 0; i < NUM_PCINFO; ++i)
 	{
 		const char* szFilename[] = { "sttName", "sttClass", "sttLevel", "sttAP" };
-		char buf[256]; 
+		char buf[256];
 
-		sprintf_s( buf, 256, "%s%s", szFilename[i], "Title" );
+		sprintf_s(buf, 256, "%s%s", szFilename[i], "Title");
 
-		m_pstbPCInfo[i] = reinterpret_cast<gui::CStaticBox*>( pParent->GetComponent( szFilename[i] ) );
-		m_pstbPCInfoTitle[i] = reinterpret_cast<gui::CStaticBox*>( pParent->GetComponent( buf ) );
+		m_pstbPCInfo[i] = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent(szFilename[i]));
+		m_pstbPCInfoTitle[i] = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent(buf));
 	}
 
-	for( RwInt32 i = 0 ; i < NUM_STAT ; ++i )
+	for (RwInt32 i = 0; i < NUM_STAT; ++i)
 	{
 		const char* szFilename[] = { "sttLP", "sttEP", "sttEXP_Cur", "sttEXP_Max" };
-		
-		m_pstbStat[i] = reinterpret_cast<gui::CStaticBox*>( pParent->GetComponent( szFilename[i] ) );
+
+		m_pstbStat[i] = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent(szFilename[i]));
 	}
 
-	for( RwInt32 i = 0 ; i < NUM_COMBAT_STAT ; ++i ) 
+	for (RwInt32 i = 0; i < NUM_COMBAT_STAT; ++i)
 	{
 		const char* szFilename[] = { "stt%sAttack", "stt%sDefence", "stt%sCritical" };
-		char buf[256]; 
+		char buf[256];
 		char buftitle[256];
 
-		sprintf_s( buf, 256, szFilename[i], "Physical" );
-		sprintf_s( buftitle, 256, "%s%s", buf, "Title" );
+		sprintf_s(buf, 256, szFilename[i], "Physical");
+		sprintf_s(buftitle, 256, "%s%s", buf, "Title");
 
-		m_pstbPhysicalCombatStat[i] = reinterpret_cast<gui::CStaticBox*>( pParent->GetComponent( buf ) );
-		m_pstbPhysicalCombatStatTitle[i] = reinterpret_cast<gui::CStaticBox*>( pParent->GetComponent( buftitle ) );
+		m_pstbPhysicalCombatStat[i] = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent(buf));
+		m_pstbPhysicalCombatStatTitle[i] = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent(buftitle));
 
-		sprintf_s( buf, 256, szFilename[i], "Energy" );
-		sprintf_s( buftitle, 256, "%s%s", buf, "Title" );
+		sprintf_s(buf, 256, szFilename[i], "Energy");
+		sprintf_s(buftitle, 256, "%s%s", buf, "Title");
 
-		m_pstbEnergyCombatStat[i] = reinterpret_cast<gui::CStaticBox*>( pParent->GetComponent( buf ) );
-		m_pstbEnergyCombatStatTitle[i] = reinterpret_cast<gui::CStaticBox*>( pParent->GetComponent( buftitle ) );
+		m_pstbEnergyCombatStat[i] = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent(buf));
+		m_pstbEnergyCombatStatTitle[i] = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent(buftitle));
 	}
 
-	for( RwInt32 i = 0 ; i < NUM_ETC_STAT ; ++i )
+	for (RwInt32 i = 0; i < NUM_ETC_STAT; ++i)
 	{
 		const char* szFilename[] = { "sttAttackRate", "sttDodgeRate" };
 		char buf[256];
 
-		sprintf_s( buf, 256, "%s%s", szFilename[i], "Title" );
+		sprintf_s(buf, 256, "%s%s", szFilename[i], "Title");
 
-		m_pstbETCStat[i] = reinterpret_cast<gui::CStaticBox*>( pParent->GetComponent( szFilename[i] ) );
-		m_pstbETCStatTitle[i] = reinterpret_cast<gui::CStaticBox*>( pParent->GetComponent( buf ) );
+		m_pstbETCStat[i] = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent(szFilename[i]));
+		m_pstbETCStatTitle[i] = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent(buf));
 	}
 
 
 	m_pstbPCCharacterTitle = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent("sttCharTitle"));
 	m_pstbPCActiveCharacterTitle = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent("sttCharActiveTitle"));
 
-	m_pbtnLeftRot = reinterpret_cast<gui::CButton*>( pParent->GetComponent( "btnLeftSpin" ) );
-	m_pbtnRightRot = reinterpret_cast<gui::CButton*>( pParent->GetComponent( "btnRightSpin" ) );
-	m_pbtnDragRot = reinterpret_cast<gui::CButton*>( pParent->GetComponent( "btnCharDrag" ) );
+	m_pbtnLeftRot = reinterpret_cast<gui::CButton*>(pParent->GetComponent("btnLeftSpin"));
+	m_pbtnRightRot = reinterpret_cast<gui::CButton*>(pParent->GetComponent("btnRightSpin"));
+	m_pbtnDragRot = reinterpret_cast<gui::CButton*>(pParent->GetComponent("btnCharDrag"));
+
+	m_ppnlBattleAttribute[TYPE_ARMOR] = reinterpret_cast<gui::CPanel*>(pParent->GetComponent("pnlDefenceAttr"));
+	m_ppnlBattleAttribute[TYPE_WEAPON] = reinterpret_cast<gui::CPanel*>(pParent->GetComponent("pnlOffenceAttr"));
+
 
 	m_btnCharTitle = reinterpret_cast<gui::CButton*>(pParent->GetComponent("btnCharTitle"));
 	m_btnCharTitle->SetText(GetDisplayStringManager()->GetString("DST_CHAR_TITLE"));
 	m_slotCharTitleButton = m_btnCharTitle->SigClicked().Connect(this, &CStatusAvatarTab::OnCharTitleBtnClicked);
 
-	m_pnlBattleAttribute = reinterpret_cast<gui::CPanel*>( pParent->GetComponent( "pnlBattleAttr" ) );
-	
-	m_slotMouseDown = m_pSelf->SigMouseDown().Connect( this, &CStatusAvatarTab::OnMouseDown );
-	m_slotMouseUp = m_pSelf->SigMouseUp().Connect( this, &CStatusAvatarTab::OnMouseUp );
-	m_slotMouseMove = m_pSelf->SigMouseMove().Connect( this, &CStatusAvatarTab::OnMouseMove );
-	m_slotMove = m_pSelf->SigMove().Connect( this, &CStatusAvatarTab::OnMove );
-	m_slotMouseLeave = m_pSelf->SigMouseLeave().Connect( this, &CStatusAvatarTab::OnMouseLeave );
-	m_slotPaint = m_pSelf->SigPaint().Connect( this, &CStatusAvatarTab::OnPaint );
-	m_slotSlotPaint = m_pstbBattleAttrTitle->SigPaint().Connect( this, &CStatusAvatarTab::OnSlotPaint );
+	m_slotMouseDown = m_pSelf->SigMouseDown().Connect(this, &CStatusAvatarTab::OnMouseDown);
+	m_slotMouseUp = m_pSelf->SigMouseUp().Connect(this, &CStatusAvatarTab::OnMouseUp);
+	m_slotMouseMove = m_pSelf->SigMouseMove().Connect(this, &CStatusAvatarTab::OnMouseMove);
+	m_slotMove = m_pSelf->SigMove().Connect(this, &CStatusAvatarTab::OnMove);
+	m_slotMouseLeave = m_pSelf->SigMouseLeave().Connect(this, &CStatusAvatarTab::OnMouseLeave);
+	m_slotPaint = m_pSelf->SigPaint().Connect(this, &CStatusAvatarTab::OnPaint);
+	m_slotSlotPaint = m_pstbBattleAttrTitle->SigPaint().Connect(this, &CStatusAvatarTab::OnSlotPaint);
 
-	m_slotLeftRotBtnPress = m_pbtnLeftRot->SigPressed().Connect( this, &CStatusAvatarTab::OnLeftRotBtnPress );
-	m_slotLeftRotBtnRelease = m_pbtnLeftRot->SigReleased().Connect( this, &CStatusAvatarTab::OnLeftRotBtnRelease );
-	m_slotRightRotBtnPress = m_pbtnRightRot->SigPressed().Connect( this, &CStatusAvatarTab::OnRightRotBtnPress );
-	m_slotRightRotBtnRelease = m_pbtnRightRot->SigReleased().Connect( this, &CStatusAvatarTab::OnRightRotBtnRelease );
-	m_slotDragRotBtnPress = m_pbtnDragRot->SigPressed().Connect( this, &CStatusAvatarTab::OnDragRotBtnPress );
-	m_slotDragRotBtnRelease = m_pbtnDragRot->SigReleased().Connect( this, &CStatusAvatarTab::OnDragRotBtnRelease );
-	m_slotDragRotMouseMove = m_pbtnDragRot->SigMouseMove().Connect( this, &CStatusAvatarTab::OnDragRotMouseMove );
+	m_slotLeftRotBtnPress = m_pbtnLeftRot->SigPressed().Connect(this, &CStatusAvatarTab::OnLeftRotBtnPress);
+	m_slotLeftRotBtnRelease = m_pbtnLeftRot->SigReleased().Connect(this, &CStatusAvatarTab::OnLeftRotBtnRelease);
+	m_slotRightRotBtnPress = m_pbtnRightRot->SigPressed().Connect(this, &CStatusAvatarTab::OnRightRotBtnPress);
+	m_slotRightRotBtnRelease = m_pbtnRightRot->SigReleased().Connect(this, &CStatusAvatarTab::OnRightRotBtnRelease);
+	m_slotDragRotBtnPress = m_pbtnDragRot->SigPressed().Connect(this, &CStatusAvatarTab::OnDragRotBtnPress);
+	m_slotDragRotBtnRelease = m_pbtnDragRot->SigReleased().Connect(this, &CStatusAvatarTab::OnDragRotBtnRelease);
+	m_slotDragRotMouseMove = m_pbtnDragRot->SigMouseMove().Connect(this, &CStatusAvatarTab::OnDragRotMouseMove);
 
-	m_slotWeaponMouseEnter = m_pnlBattleAttribute->SigMouseEnter().Connect( this, &CStatusAvatarTab::OnMouseBattleAttrEnter);
-	m_slotWeaponMouseLeave = m_pnlBattleAttribute->SigMouseLeave().Connect( this, &CStatusAvatarTab::OnMouseBattleAttrLeave);
-	
+	m_slotWeaponMouseEnter = m_ppnlBattleAttribute[TYPE_WEAPON]->SigMouseEnter().Connect(this, &CStatusAvatarTab::OnMouseWeaponAttrEnter);
+	m_slotWeaponMouseLeave = m_ppnlBattleAttribute[TYPE_WEAPON]->SigMouseLeave().Connect(this, &CStatusAvatarTab::OnMouseWeaponAttrLeave);
+	m_slotArmorMouseEnter = m_ppnlBattleAttribute[TYPE_ARMOR]->SigMouseEnter().Connect(this, &CStatusAvatarTab::OnMouseArmorAttrEnter);
+	m_slotArmorMouseLeave = m_ppnlBattleAttribute[TYPE_ARMOR]->SigMouseLeave().Connect(this, &CStatusAvatarTab::OnMouseArmorAttrLeave);
+
 
 	// Equip Slot CoordSet
 	SetSlotRectHardCode();
@@ -228,79 +232,103 @@ VOID CStatusAvatarTab::Destroy(VOID)
 
 }
 
-VOID CStatusAvatarTab::UpdateBeforeCamera( RwReal fElapsed )
+VOID CStatusAvatarTab::UpdateBeforeCamera(RwReal fElapsed)
 {
-	if( !IsShow() )
+	if (!IsShow())
 		return;
 
-	CNtlSobCharProxy* pCharProxy = reinterpret_cast<CNtlSobCharProxy*>( GetNtlSLGlobal()->GetSobAvatar()->GetSobProxy() );
+	CNtlSobCharProxy* pCharProxy = reinterpret_cast<CNtlSobCharProxy*>(GetNtlSLGlobal()->GetSobAvatar()->GetSobProxy());
 
-	m_texCharacter.Load( pCharProxy->UIPcStatusWndRender() );
-	m_surCharacter.SetTexture( &m_texCharacter );
+	m_texCharacter.Load(pCharProxy->UIPcStatusWndRender());
+	m_surCharacter.SetTexture(&m_texCharacter);
 }
 
-VOID CStatusAvatarTab::HandleEvents( RWS::CMsg& msg )
+VOID CStatusAvatarTab::HandleEvents(RWS::CMsg& msg)
 {
-	// Equip ¡§∫∏
-	if( msg.Id == g_EventSobInfoUpdate )
+	// Equip Ï†ïÎ≥¥
+	if (msg.Id == g_EventSobInfoUpdate)
 	{
-		if( !IsShow() )
+		if (!IsShow())
 			return;
 
-		SNtlEventSobInfoUpdate* pUpdate = reinterpret_cast<SNtlEventSobInfoUpdate*>( msg.pData );
+		SNtlEventSobInfoUpdate* pUpdate = reinterpret_cast<SNtlEventSobInfoUpdate*>(msg.pData);
 
-		if( pUpdate->hSerialId != GetNtlSLGlobal()->GetSobAvatar()->GetSerialID() )
+		if (pUpdate->hSerialId != GetNtlSLGlobal()->GetSobAvatar()->GetSerialID())
 			return;
-				
-		if( pUpdate->uiUpdateType & EVENT_AIUT_ITEM )
+
+		if (pUpdate->uiUpdateType & EVENT_AIUT_ITEM)
 		{
 			UpdateEquipData();
 		}
-		if( pUpdate->uiUpdateType & EVENT_AIUT_ATTR )
+		if (pUpdate->uiUpdateType & EVENT_AIUT_ATTR)
 		{
 			UpdateStatData();
-			
-			// æ∆πŸ≈∏¿« Attribute ( Battle Attribute bonus ) ∞° æ˜µ•¿Ã∆Æ µ«∏È ¥ŸΩ√ ∞ËªÍ«ÿ¡ÿ¥Ÿ.
+
+			// ÏïÑÎ∞îÌÉÄÏùò Attribute ( Battle Attribute bonus ) Í∞Ä ÏóÖÎç∞Ïù¥Ìä∏ ÎêòÎ©¥ Îã§Ïãú Í≥ÑÏÇ∞Ìï¥Ï§ÄÎã§.
 			CalcBattleAttribute();
 			OnBattleAttributeRefresh();
 		}
 	}
-	else if( msg.Id == g_EventSobConvertClass )
-	{// ≈¨∑°Ω∫ ∫Ø∞Ê¿∫ ¿Ã∞Õπ€ø° æ»≥Ø∂Ûø¬¥Ÿ.
-		SNtlEventSobConvertClass* pData = reinterpret_cast<SNtlEventSobConvertClass*>( msg.pData );
+	else if (msg.Id == g_EventSobConvertClass)
+	{// ÌÅ¥ÎûòÏä§ Î≥ÄÍ≤ΩÏùÄ Ïù¥Í≤ÉÎ∞ñÏóê ÏïàÎÇ†ÎùºÏò®Îã§.
+		SNtlEventSobConvertClass* pData = reinterpret_cast<SNtlEventSobConvertClass*>(msg.pData);
 
-		if( pData->hSerialId == GetNtlSLGlobal()->GetSobAvatar()->GetSerialID() )
+		if (pData->hSerialId == GetNtlSLGlobal()->GetSobAvatar()->GetSerialID())
 		{
-			m_pstbPCInfo[CLASS]->SetText( Logic_GetClassName( pData->byClass ) );
+			m_pstbPCInfo[CLASS]->SetText(Logic_GetClassName(pData->byClass));
 		}
 	}
-	else if( msg.Id == g_EventIconMoveClick )
+	else if (msg.Id == g_EventIconMoveClick)
 	{
 		ShowIconDestination();
 	}
-	else if( msg.Id == g_EventPickedUpHide )
+	else if (msg.Id == g_EventPickedUpHide)
 	{
 		RwInt32 nSlotIdx = (RwInt32)msg.pData;
-		if( nSlotIdx != PLACE_EQUIP )
+		if (nSlotIdx != PLACE_EQUIP)
 			return;
 
-		ShowPickedUp( FALSE );
+		ShowPickedUp(FALSE);
 	}
-	else if( msg.Id == g_EventEnableItemIcon )
+	else if (msg.Id == g_EventEnableItemIcon)
 	{
-		SDboEventEnableItemIcon* pData = reinterpret_cast<SDboEventEnableItemIcon*>( msg.pData );
+		SDboEventEnableItemIcon* pData = reinterpret_cast<SDboEventEnableItemIcon*>(msg.pData);
 
-		if( pData->ePlace == PLACE_EQUIP )
-			ShowDisableSlot( !pData->bEnable, pData->uiSlotIdx );
-		else if( pData->ePlace == PLACE_SCOUTER_SLOT )
-			ShowDisableSlot( !pData->bEnable, EQUIP_SLOT_TYPE_SCOUTER );
+		if (pData->ePlace == PLACE_EQUIP)
+			ShowDisableSlot(!pData->bEnable, pData->uiSlotIdx);
+		else if (pData->ePlace == PLACE_SCOUTER_SLOT)
+			ShowDisableSlot(!pData->bEnable, EQUIP_SLOT_TYPE_SCOUTER);
 	}
-	else if(msg.Id == g_EventSobEquipChange )
+	else if (msg.Id == g_EventSubWeaponActive)
 	{
-		SNtlEventSobEquipChange* pEquipChange = reinterpret_cast<SNtlEventSobEquipChange*>( msg.pData );
+		SNtlEventSubWeaponActive* pActiveData = reinterpret_cast<SNtlEventSubWeaponActive*>(msg.pData);
 
-		if( GetNtlSLGlobal()->GetSobAvatar()->GetSerialID() == pEquipChange->hSerialId ||
-			Logic_GetAvatarTargetHandle() == pEquipChange->hSerialId )
+		if (GetNtlSLGlobal()->GetSobAvatar()->GetSerialID() == pActiveData->uiSerialId ||
+			//GetDboGlobal()->GetTargetSerial() == pActiveData->uiSerialId)
+			Logic_GetAvatarTargetHandle() == pActiveData->uiSerialId)
+		{
+			CalcBattleAttribute();
+			OnBattleAttributeRefresh();
+		}
+	}
+	else if (msg.Id == g_EventSubWeaponDeActive)
+	{
+		SNtlEventSubWeaponDeActive* pActiveData = reinterpret_cast<SNtlEventSubWeaponDeActive*>(msg.pData);
+
+		if (GetNtlSLGlobal()->GetSobAvatar()->GetSerialID() == pActiveData->uiSerialId ||
+			//GetDboGlobal()->GetTargetSerial() == pActiveData->uiSerialId)
+			Logic_GetAvatarTargetHandle() == pActiveData->uiSerialId)
+		{
+			CalcBattleAttribute();
+			OnBattleAttributeRefresh();
+		}
+	}
+	else if (msg.Id == g_EventSobEquipChange)
+	{
+		SNtlEventSobEquipChange* pEquipChange = reinterpret_cast<SNtlEventSobEquipChange*>(msg.pData);
+
+		if (GetNtlSLGlobal()->GetSobAvatar()->GetSerialID() == pEquipChange->hSerialId ||
+			Logic_GetAvatarTargetHandle() == pEquipChange->hSerialId)
 		{
 			CalcBattleAttribute();
 			OnBattleAttributeRefresh();
@@ -311,22 +339,23 @@ VOID CStatusAvatarTab::HandleEvents( RWS::CMsg& msg )
 ////////////////////////////////////////////////////////////////////////////////
 // ! Implements
 
+
 VOID CStatusAvatarTab::UpdateEquipData(VOID)
 {
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
 
-	if( !pAvatar )
-		return;				// √ ±‚ æ∆πŸ≈∏ ª˝º∫¿¸ø° µÈæÓø¿¥¬ ∞ÊøÏ.
+	if (!pAvatar)
+		return;				// Ï¥àÍ∏∞ ÏïÑÎ∞îÌÉÄ ÏÉùÏÑ±Ï†ÑÏóê Îì§Ïñ¥Ïò§Îäî Í≤ΩÏö∞.
 
 	CNtlInventory* pInventory = pAvatar->GetInventory();
 
-	for( RwInt32 i = 0 ; i < NTL_MAX_EQUIP_ITEM_SLOT ; ++i )
+	for (RwInt32 i = 0; i < NTL_MAX_EQUIP_ITEM_SLOT; ++i)
 	{
-		SERIAL_HANDLE hEquipSerial = pInventory->GetEquipItem( i );
+		SERIAL_HANDLE hEquipSerial = pInventory->GetEquipItem(i);
 
-		if( hEquipSerial == INVALID_SERIAL_ID )
+		if (hEquipSerial == INVALID_SERIAL_ID)
 		{
-			if( i == EQUIP_SLOT_TYPE_SCOUTER )
+			if (i == EQUIP_SLOT_TYPE_SCOUTER)
 			{
 				if (m_surIcon[i].GetTexture())
 				{
@@ -335,13 +364,13 @@ VOID CStatusAvatarTab::UpdateEquipData(VOID)
 				}
 			}
 
-			ShowDisableSlot( FALSE, i );
-			m_surIcon[i].SetTexture( (gui::CTexture*)NULL );
-			FritzEffect( FRITZ_NONE, i );			
+			ShowDisableSlot(FALSE, i);
+			m_surIcon[i].SetTexture((gui::CTexture*)NULL);
+			FritzEffect(FRITZ_NONE, i);
 		}
 		else
 		{
-			if( i == EQUIP_SLOT_TYPE_SCOUTER )
+			if (i == EQUIP_SLOT_TYPE_SCOUTER)
 			{
 				if (!m_surIcon[i].GetTexture())
 				{
@@ -350,32 +379,32 @@ VOID CStatusAvatarTab::UpdateEquipData(VOID)
 				}
 			}
 
-			CNtlSobItem* pItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( hEquipSerial ) );
-			CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>( pItem->GetSobAttr() );
-			
-			m_surIcon[i].SetTexture( (gui::CTexture*)pItem->GetIcon()->GetImage() );
+			CNtlSobItem* pItem = reinterpret_cast<CNtlSobItem*>(GetNtlSobManager()->GetSobObject(hEquipSerial));
+			CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>(pItem->GetSobAttr());
 
-			if( pItemAttr->IsExpired() || pItemAttr->GetDur() == 0 )
-				FritzEffect( FRITZ_ABSOLUTE, i );
-			else if( (RwReal)pItemAttr->GetDur() / (RwReal)pItemAttr->GetMaxDur() <= ITEM_DURATION_WARNING )
-				FritzEffect( FRITZ_HALF, i );
+			m_surIcon[i].SetTexture((gui::CTexture*)pItem->GetIcon()->GetImage());
+
+			if (pItemAttr->IsExpired() || pItemAttr->GetDur() == 0)
+				FritzEffect(FRITZ_ABSOLUTE, i);
+			else if ((RwReal)pItemAttr->GetDur() / (RwReal)pItemAttr->GetMaxDur() <= ITEM_DURATION_WARNING)
+				FritzEffect(FRITZ_HALF, i);
 			else
-				FritzEffect( FRITZ_NONE, i );			
+				FritzEffect(FRITZ_NONE, i);
 		}
 	}
 
-	if( m_nMouseOnIndex >= 0 && GetInfoWndManager()->GetRequestGui() == DIALOG_STATUS )
+	if (m_nMouseOnIndex >= 0 && GetInfoWndManager()->GetRequestGui() == DIALOG_STATUS)
 	{
-		CRectangle rtScreen = m_pSelf->GetScreenRect();		
+		CRectangle rtScreen = m_pSelf->GetScreenRect();
 
-		if( pInventory->GetEquipItem( m_nMouseOnIndex ) == INVALID_SERIAL_ID )
+		if (pInventory->GetEquipItem(m_nMouseOnIndex) == INVALID_SERIAL_ID)
 		{
-			GetInfoWndManager()->ShowInfoWindow( TRUE, CInfoWndManager::INFOWND_JUST_WTEXT, m_rtEquipSlot[m_nMouseOnIndex].left + rtScreen.left, m_rtEquipSlot[m_nMouseOnIndex].top + rtScreen.top, (VOID*)GetEquipSlotText( m_nMouseOnIndex ), DIALOG_STATUS );						
+			GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_JUST_WTEXT, m_rtEquipSlot[m_nMouseOnIndex].left + rtScreen.left, m_rtEquipSlot[m_nMouseOnIndex].top + rtScreen.top, (VOID*)GetEquipSlotText(m_nMouseOnIndex), DIALOG_STATUS);
 		}
 		else
 		{
-			CNtlSobItem* pItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( pInventory->GetEquipItem( m_nMouseOnIndex ) ) );
-			GetInfoWndManager()->ShowInfoWindow( TRUE, CInfoWndManager::INFOWND_ITEM, m_rtEquipSlot[m_nMouseOnIndex].left + rtScreen.left, m_rtEquipSlot[m_nMouseOnIndex].top + rtScreen.top, pItem, DIALOG_STATUS );
+			CNtlSobItem* pItem = reinterpret_cast<CNtlSobItem*>(GetNtlSobManager()->GetSobObject(pInventory->GetEquipItem(m_nMouseOnIndex)));
+			GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_ITEM, m_rtEquipSlot[m_nMouseOnIndex].left + rtScreen.left, m_rtEquipSlot[m_nMouseOnIndex].top + rtScreen.top, pItem, DIALOG_STATUS);
 		}
 	}
 }
@@ -384,175 +413,175 @@ VOID CStatusAvatarTab::UpdateStatData(VOID)
 {
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
 
-	if( !pAvatar )
-		return;				// √ ±‚ æ∆πŸ≈∏ ª˝º∫¿¸ø° µÈæÓø¿¥¬ ∞ÊøÏ.
+	if (!pAvatar)
+		return;				// √É√ä¬±√¢ ¬æ√Ü¬π√ô√Ö¬∏ ¬ª√Ω¬º¬∫√Ä√º¬ø¬° ¬µ√©¬æ√Æ¬ø√Ä¬¥√Ç ¬∞√¶¬ø√¨.
 
-	CNtlSobAvatarAttr* pAvatarAttr = reinterpret_cast<CNtlSobAvatarAttr*>( pAvatar->GetSobAttr() );
+	CNtlSobAvatarAttr* pAvatarAttr = reinterpret_cast<CNtlSobAvatarAttr*>(pAvatar->GetSobAttr());
 	RwUInt32 uiColor;
 
 	// BasicStat
 	uiColor = BASIC_STAT_COLOR;// GetGuiFuntor()->ColorDecision(pAvatarAttr->m_baseStr, pAvatarAttr->m_lastStr);
-	m_pstbBasicStat[STR]->SetTextColor( uiColor );
-	m_pstbBasicStat[STR]->SetText( pAvatarAttr->m_Str );
-	m_pstbBasicStat[DEX]->SetTextColor( uiColor );
-	m_pstbBasicStat[DEX]->SetText( pAvatarAttr->m_Dex );
-	m_pstbBasicStat[CON]->SetTextColor( uiColor );
-	m_pstbBasicStat[CON]->SetText( pAvatarAttr->m_Con );
-	m_pstbBasicStat[ENG]->SetTextColor( uiColor );
-	m_pstbBasicStat[ENG]->SetText( pAvatarAttr->m_Eng );
-	m_pstbBasicStat[SOL]->SetTextColor( uiColor );
-	m_pstbBasicStat[SOL]->SetText( pAvatarAttr->m_Sol );
-	m_pstbBasicStat[FOC]->SetTextColor( uiColor );
-	m_pstbBasicStat[FOC]->SetText( pAvatarAttr->m_Foc );
-	
+	m_pstbBasicStat[STR]->SetTextColor(uiColor);
+	m_pstbBasicStat[STR]->SetText(pAvatarAttr->m_Str);
+	m_pstbBasicStat[DEX]->SetTextColor(uiColor);
+	m_pstbBasicStat[DEX]->SetText(pAvatarAttr->m_Dex);
+	m_pstbBasicStat[CON]->SetTextColor(uiColor);
+	m_pstbBasicStat[CON]->SetText(pAvatarAttr->m_Con);
+	m_pstbBasicStat[ENG]->SetTextColor(uiColor);
+	m_pstbBasicStat[ENG]->SetText(pAvatarAttr->m_Eng);
+	m_pstbBasicStat[SOL]->SetTextColor(uiColor);
+	m_pstbBasicStat[SOL]->SetText(pAvatarAttr->m_Sol);
+	m_pstbBasicStat[FOC]->SetTextColor(uiColor);
+	m_pstbBasicStat[FOC]->SetText(pAvatarAttr->m_Foc);
+
 	// Physical Stat
-	m_pstbPhysicalCombatStat[OFFENCE]->SetTextColor( uiColor );
-	m_pstbPhysicalCombatStat[OFFENCE]->SetText( pAvatarAttr->m_wPhysicalOffence );
-	m_pstbPhysicalCombatStat[DEFENCE]->SetTextColor( uiColor );
-	m_pstbPhysicalCombatStat[DEFENCE]->SetText( pAvatarAttr->m_wPhysicalDefence );
-	m_pstbPhysicalCombatStat[CRITICAL]->SetTextColor( uiColor );
-	m_pstbPhysicalCombatStat[CRITICAL]->SetText( pAvatarAttr->m_wPhysicalCriticalRate );
-	
+	m_pstbPhysicalCombatStat[OFFENCE]->SetTextColor(uiColor);
+	m_pstbPhysicalCombatStat[OFFENCE]->SetText(pAvatarAttr->m_wPhysicalOffence);
+	m_pstbPhysicalCombatStat[DEFENCE]->SetTextColor(uiColor);
+	m_pstbPhysicalCombatStat[DEFENCE]->SetText(pAvatarAttr->m_wPhysicalDefence);
+	m_pstbPhysicalCombatStat[CRITICAL]->SetTextColor(uiColor);
+	m_pstbPhysicalCombatStat[CRITICAL]->SetText(pAvatarAttr->m_wPhysicalCriticalRate);
+
 	// Energy Stat
-	m_pstbEnergyCombatStat[OFFENCE]->SetTextColor( uiColor );
-	m_pstbEnergyCombatStat[OFFENCE]->SetText( pAvatarAttr->m_wEnergyOffence );
-	m_pstbEnergyCombatStat[DEFENCE]->SetTextColor( uiColor );
-	m_pstbEnergyCombatStat[DEFENCE]->SetText( pAvatarAttr->m_wEnergyDefence );
-	m_pstbEnergyCombatStat[CRITICAL]->SetTextColor( uiColor );
-	m_pstbEnergyCombatStat[CRITICAL]->SetText( pAvatarAttr->m_wEnergyCriticalRate );
-	
+	m_pstbEnergyCombatStat[OFFENCE]->SetTextColor(uiColor);
+	m_pstbEnergyCombatStat[OFFENCE]->SetText(pAvatarAttr->m_wEnergyOffence);
+	m_pstbEnergyCombatStat[DEFENCE]->SetTextColor(uiColor);
+	m_pstbEnergyCombatStat[DEFENCE]->SetText(pAvatarAttr->m_wEnergyDefence);
+	m_pstbEnergyCombatStat[CRITICAL]->SetTextColor(uiColor);
+	m_pstbEnergyCombatStat[CRITICAL]->SetText(pAvatarAttr->m_wEnergyCriticalRate);
+
 	// Etc Stat
-	m_pstbETCStat[ATTACKRATE]->SetTextColor( uiColor );
-	m_pstbETCStat[ATTACKRATE]->SetText( pAvatarAttr->m_wAttackRate );
-	m_pstbETCStat[DODGE]->SetTextColor( uiColor );
-	m_pstbETCStat[DODGE]->SetText( pAvatarAttr->m_wDodgeRate );
-	
+	m_pstbETCStat[ATTACKRATE]->SetTextColor(uiColor);
+	m_pstbETCStat[ATTACKRATE]->SetText(pAvatarAttr->m_wAttackRate);
+	m_pstbETCStat[DODGE]->SetTextColor(uiColor);
+	m_pstbETCStat[DODGE]->SetText(pAvatarAttr->m_wDodgeRate);
+
 	// Name
-	m_pstbPCInfo[NAME]->SetText( pAvatarAttr->GetName() );
-	m_pstbPCInfo[LEVEL]->SetText( pAvatarAttr->GetLevel() );
-	m_pstbPCInfo[CLASS]->SetText( Logic_GetClassName( pAvatarAttr->GetClass() ) );
-	m_pstbPCInfo[AP]->SetText( pAvatarAttr->GetAP() );
+	m_pstbPCInfo[NAME]->SetText(pAvatarAttr->GetName());
+	m_pstbPCInfo[LEVEL]->SetText(pAvatarAttr->GetLevel());
+	m_pstbPCInfo[CLASS]->SetText(Logic_GetClassName(pAvatarAttr->GetClass()));
+	m_pstbPCInfo[AP]->SetText(pAvatarAttr->GetAP());
 
-	m_pstbStat[LP]->Format( "%d / %d", pAvatarAttr->GetLp(), pAvatarAttr->GetMaxLp() );
-	m_pstbStat[EP]->Format( "%d / %d", pAvatarAttr->GetEp(), pAvatarAttr->GetMaxEp() );
-	
-	if( pAvatarAttr->m_uiMaxExp )
+	m_pstbStat[LP]->Format("%d / %d", pAvatarAttr->GetLp(), pAvatarAttr->GetMaxLp());
+	m_pstbStat[EP]->Format("%d / %d", pAvatarAttr->GetEp(), pAvatarAttr->GetMaxEp());
+
+	if (pAvatarAttr->m_uiMaxExp)
 	{
-		m_pstbStat[EXP_CUR]->Format( L"%s : %d", GetDisplayStringManager()->GetString( "DST_STATUS_CURRENT_EXP" ), pAvatarAttr->m_uiExp );
-		m_pstbStat[EXP_MAX]->Format( L"%s : %d", GetDisplayStringManager()->GetString( "DST_STATUS_GOAL_EXP" ), pAvatarAttr->m_uiMaxExp );
+		m_pstbStat[EXP_CUR]->Format(L"%s : %d", GetDisplayStringManager()->GetString("DST_STATUS_CURRENT_EXP"), pAvatarAttr->m_uiExp);
+		m_pstbStat[EXP_MAX]->Format(L"%s : %d", GetDisplayStringManager()->GetString("DST_STATUS_GOAL_EXP"), pAvatarAttr->m_uiMaxExp);
 
-		if( m_pstbStat[EXP_CUR]->GetFitWidthToString() > m_pstbStat[EXP_CUR]->GetWidth() )
-			m_pstbStat[EXP_CUR]->SetText( pAvatarAttr->m_uiExp );
-		if( m_pstbStat[EXP_MAX]->GetFitWidthToString() > m_pstbStat[EXP_MAX]->GetWidth() )
-			m_pstbStat[EXP_MAX]->SetText( pAvatarAttr->m_uiMaxExp );
-	}	
+		if (m_pstbStat[EXP_CUR]->GetFitWidthToString() > m_pstbStat[EXP_CUR]->GetWidth())
+			m_pstbStat[EXP_CUR]->SetText(pAvatarAttr->m_uiExp);
+		if (m_pstbStat[EXP_MAX]->GetFitWidthToString() > m_pstbStat[EXP_MAX]->GetWidth())
+			m_pstbStat[EXP_MAX]->SetText(pAvatarAttr->m_uiMaxExp);
+	}
 	else
 	{
-		m_pstbStat[EXP_CUR]->SetText( "MAX EXP" );
+		m_pstbStat[EXP_CUR]->SetText("MAX EXP");
 		m_pstbStat[EXP_MAX]->Clear();
 	}
 }
 
-RwInt32 CStatusAvatarTab::GetEquipSlotIdx( RwInt32 nX, RwInt32 nY )
+RwInt32 CStatusAvatarTab::GetEquipSlotIdx(RwInt32 nX, RwInt32 nY)
 {
-	for( RwInt32 i = 0 ; i < NTL_MAX_EQUIP_ITEM_SLOT ; ++i )
+	for (RwInt32 i = 0; i < NTL_MAX_EQUIP_ITEM_SLOT; ++i)
 	{
-		if( m_rtEquipSlot[i].PtInRect( CPos( nX, nY ) ) )
+		if (m_rtEquipSlot[i].PtInRect(CPos(nX, nY)))
 			return i;
 	}
 
 	return -1;
 }
 
-CRectangle CStatusAvatarTab::GetEquipSlotRect( RwInt32 nSlotIdx )
+CRectangle CStatusAvatarTab::GetEquipSlotRect(RwInt32 nSlotIdx)
 {
-	if( nSlotIdx < 0 || nSlotIdx >= NTL_MAX_EQUIP_ITEM_SLOT )
-		return CRectangle( 0, 0, 0, 0 );
+	if (nSlotIdx < 0 || nSlotIdx >= NTL_MAX_EQUIP_ITEM_SLOT)
+		return CRectangle(0, 0, 0, 0);
 
 	return m_rtEquipSlot[nSlotIdx];
 }
 
-const WCHAR* CStatusAvatarTab::GetEquipSlotText( RwInt32 nSlotIdx )
+const WCHAR* CStatusAvatarTab::GetEquipSlotText(RwInt32 nSlotIdx)
 {
-	if( nSlotIdx < EQUIP_SLOT_TYPE_FIRST || nSlotIdx > EQUIP_SLOT_TYPE_LAST )
+	if (nSlotIdx < EQUIP_SLOT_TYPE_FIRST || nSlotIdx > EQUIP_SLOT_TYPE_LAST)
 		return NULL;
 
 
-	switch( nSlotIdx )
+	switch (nSlotIdx)
 	{
-		case EQUIP_SLOT_TYPE_HAND: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_HAND"); break;
-		case EQUIP_SLOT_TYPE_SUB_WEAPON: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_SUB_WEAPON"); break;
-		case EQUIP_SLOT_TYPE_JACKET: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_JACKET"); break;
-		case EQUIP_SLOT_TYPE_PANTS: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_PANTS"); break;
-		case EQUIP_SLOT_TYPE_BOOTS: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_BOOTS"); break;
-		case EQUIP_SLOT_TYPE_SCOUTER: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_SCOUTER"); break;
-		case EQUIP_SLOT_TYPE_QUEST: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_QUEST"); break;
-		case EQUIP_SLOT_TYPE_NECKLACE: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_NECKLACE"); break;
-		case EQUIP_SLOT_TYPE_EARRING_1: 
-		case EQUIP_SLOT_TYPE_EARRING_2: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_EARRING"); break;
-		case EQUIP_SLOT_TYPE_RING_1:  
-		case EQUIP_SLOT_TYPE_RING_2: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_RING"); break;
-		case EQUIP_SLOT_TYPE_COSTUME_SET: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_DOGI"); break;
-		case EQUIP_SLOT_TYPE_COSTUME_HAIR_STYLE: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_HAIR"); break;
-		case EQUIP_SLOT_TYPE_COSTUME_MASK: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_ACCESSORY1"); break;
-		case EQUIP_SLOT_TYPE_COSTUME_HAIR_ACCESSORY: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_ACCESSORY2"); break;
-		case EQUIP_SLOT_TYPE_COSTUME_BACK_ACCESSORY: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_ACCESSORY3"); break;
+	case EQUIP_SLOT_TYPE_HAND: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_HAND"); break;
+	case EQUIP_SLOT_TYPE_SUB_WEAPON: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_SUB_WEAPON"); break;
+	case EQUIP_SLOT_TYPE_JACKET: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_JACKET"); break;
+	case EQUIP_SLOT_TYPE_PANTS: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_PANTS"); break;
+	case EQUIP_SLOT_TYPE_BOOTS: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_BOOTS"); break;
+	case EQUIP_SLOT_TYPE_SCOUTER: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_SCOUTER"); break;
+	case EQUIP_SLOT_TYPE_QUEST: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_QUEST"); break;
+	case EQUIP_SLOT_TYPE_NECKLACE: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_NECKLACE"); break;
+	case EQUIP_SLOT_TYPE_EARRING_1:
+	case EQUIP_SLOT_TYPE_EARRING_2: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_EARRING"); break;
+	case EQUIP_SLOT_TYPE_RING_1:
+	case EQUIP_SLOT_TYPE_RING_2: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_RING"); break;
+	case EQUIP_SLOT_TYPE_COSTUME_SET: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_DOGI"); break;
+	case EQUIP_SLOT_TYPE_COSTUME_HAIR_STYLE: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_HAIR"); break;
+	case EQUIP_SLOT_TYPE_COSTUME_MASK: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_ACCESSORY1"); break;
+	case EQUIP_SLOT_TYPE_COSTUME_HAIR_ACCESSORY: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_ACCESSORY2"); break;
+	case EQUIP_SLOT_TYPE_COSTUME_BACK_ACCESSORY: return GetDisplayStringManager()->GetString("DST_EQUIP_SLOT_TYPE_ACCESSORY3"); break;
 	}
 
 	static WCHAR* text = L"Equip slot not";
 	return text;
 }
 
-RwBool CStatusAvatarTab::IsEnableEquipPickUp( RwInt32 nSlotIdx )
+RwBool CStatusAvatarTab::IsEnableEquipPickUp(RwInt32 nSlotIdx)
 {
-	if( nSlotIdx < 0 )
+	if (nSlotIdx < 0)
 		return FALSE;
 
-	if( IsDisableSlot( nSlotIdx ) )
+	if (IsDisableSlot(nSlotIdx))
 		return FALSE;
 
-	if( !GetIconMoveManager()->IsEnable() )
+	if (!GetIconMoveManager()->IsEnable())
 		return FALSE;
 
 	CNtlInventory* pInventory = GetNtlSLGlobal()->GetSobAvatar()->GetInventory();
-	SERIAL_HANDLE hSlotSerial = pInventory->GetEquipItem( nSlotIdx );
-	CNtlSobItem* pSobItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( hSlotSerial ) );
+	SERIAL_HANDLE hSlotSerial = pInventory->GetEquipItem(nSlotIdx);
+	CNtlSobItem* pSobItem = reinterpret_cast<CNtlSobItem*>(GetNtlSobManager()->GetSobObject(hSlotSerial));
 
-	if( !pSobItem )
+	if (!pSobItem)
 		return FALSE;
 
 	CNtlSobIcon* pIcon = pSobItem->GetIcon();
-	if( !pIcon->IsDragAndDropPossible() )
+	if (!pIcon->IsDragAndDropPossible())
 		return FALSE;
 
 	return TRUE;
 }
 
-RwBool CStatusAvatarTab::IsEnableEquipPutDown( RwInt32 nSlotIdx )
+RwBool CStatusAvatarTab::IsEnableEquipPutDown(RwInt32 nSlotIdx)
 {
-	if( nSlotIdx < 0 )
+	if (nSlotIdx < 0)
 		return FALSE;
 
-	if( IsDisableSlot( nSlotIdx ) )
+	if (IsDisableSlot(nSlotIdx))
 		return FALSE;
 
-	// ≥™∏”¡ˆ ∫Ò±≥¥¬ Logicø° ∏√±‰¥Ÿ. 
+	// ÎÇòÎ®∏ÏßÄ ÎπÑÍµêÎäî LogicÏóê Îß°Í∏¥Îã§. 
 
 	return TRUE;
 }
 
-RwBool CStatusAvatarTab::IsEnableUnequipItem( RwInt32 nSlotIdx )
+RwBool CStatusAvatarTab::IsEnableUnequipItem(RwInt32 nSlotIdx)
 {
-	if( nSlotIdx < 0 )
+	if (nSlotIdx < 0)
 		return FALSE;
 
-	if( IsDisableSlot( nSlotIdx ) )
+	if (IsDisableSlot(nSlotIdx))
 		return FALSE;
 
 	CNtlInventory* pInventory = GetNtlSLGlobal()->GetSobAvatar()->GetInventory();
-	if( pInventory->GetEquipItem( nSlotIdx ) == INVALID_SERIAL_ID )
+	if (pInventory->GetEquipItem(nSlotIdx) == INVALID_SERIAL_ID)
 		return FALSE;
-	
+
 	return TRUE;
 }
 
@@ -572,24 +601,24 @@ RwBool CStatusAvatarTab::IsEnableUnequipItem( RwInt32 nSlotIdx )
 
 VOID CStatusAvatarTab::ShowIconDestination(VOID)
 {
-	if( GetIconMoveManager()->IsActive() )
+	if (GetIconMoveManager()->IsActive())
 	{
-		if( GetIconMoveManager()->GetSrcPlace() != PLACE_BAG )
+		if (GetIconMoveManager()->GetSrcPlace() != PLACE_BAG)
 			return;
 
-		CNtlSobItem* pSobItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( GetIconMoveManager()->GetSrcSerial() ) );
-		if( !pSobItem )
+		CNtlSobItem* pSobItem = reinterpret_cast<CNtlSobItem*>(GetNtlSobManager()->GetSobObject(GetIconMoveManager()->GetSrcSerial()));
+		if (!pSobItem)
 			return;
 
-		CNtlSobItemAttr* pSobAttr = reinterpret_cast<CNtlSobItemAttr*>( pSobItem->GetSobAttr() );
+		CNtlSobItemAttr* pSobAttr = reinterpret_cast<CNtlSobItemAttr*>(pSobItem->GetSobAttr());
 
-		if( !pSobItem->IsEquipItem() )
+		if (!pSobItem->IsEquipItem())
 			return;
 
 
-		for( RwUInt8 i = 0 ; i < NTL_MAX_EQUIP_ITEM_SLOT ; ++i )
+		for (RwUInt8 i = 0; i < NTL_MAX_EQUIP_ITEM_SLOT; ++i)
 		{
-			if( Logic_ConvertEquipSlotIdxToFlag( i ) & pSobAttr->GetItemTbl()->dwEquip_Slot_Type_Bit_Flag )
+			if (Logic_ConvertEquipSlotIdxToFlag(i) & pSobAttr->GetItemTbl()->dwEquip_Slot_Type_Bit_Flag)
 			{
 				m_arrFocusEffect[i] = m_arrFocusEffect[i] | SLOT_FOCUS_CAN_MOVE;
 			}
@@ -601,7 +630,7 @@ VOID CStatusAvatarTab::ShowIconDestination(VOID)
 	}
 	else
 	{
-		for( RwInt32 i = 0 ; i < NTL_MAX_EQUIP_ITEM_SLOT ; ++i )
+		for (RwInt32 i = 0; i < NTL_MAX_EQUIP_ITEM_SLOT; ++i)
 		{
 			m_arrFocusEffect[i] = m_arrFocusEffect[i] & ~SLOT_FOCUS_CAN_MOVE;
 		}
@@ -612,18 +641,18 @@ VOID CStatusAvatarTab::SetSlotRectHardCode(VOID)
 {
 	CRectangle rtScreen = m_pSelf->GetScreenRect();
 
-	m_rtEquipSlot[EQUIP_SLOT_TYPE_HAND].SetRectWH( 165, 231, NTL_ITEM_ICON_SIZE , NTL_ITEM_ICON_SIZE );
-	m_rtEquipSlot[EQUIP_SLOT_TYPE_SUB_WEAPON].SetRectWH( 165, 273, NTL_ITEM_ICON_SIZE , NTL_ITEM_ICON_SIZE );
-	m_rtEquipSlot[EQUIP_SLOT_TYPE_JACKET].SetRectWH( 165, 105, NTL_ITEM_ICON_SIZE , NTL_ITEM_ICON_SIZE );
-	m_rtEquipSlot[EQUIP_SLOT_TYPE_PANTS].SetRectWH( 165, 147, NTL_ITEM_ICON_SIZE , NTL_ITEM_ICON_SIZE );
-	m_rtEquipSlot[EQUIP_SLOT_TYPE_BOOTS].SetRectWH( 165, 189, NTL_ITEM_ICON_SIZE , NTL_ITEM_ICON_SIZE );
-	m_rtEquipSlot[EQUIP_SLOT_TYPE_SCOUTER].SetRectWH( 66, 273, NTL_ITEM_ICON_SIZE , NTL_ITEM_ICON_SIZE );
-	m_rtEquipSlot[EQUIP_SLOT_TYPE_QUEST].SetRectWH( 118, 273, NTL_ITEM_ICON_SIZE, NTL_ITEM_ICON_SIZE );
-	m_rtEquipSlot[EQUIP_SLOT_TYPE_NECKLACE].SetRectWH( 20, 105, NTL_ITEM_ICON_SIZE , NTL_ITEM_ICON_SIZE );
-	m_rtEquipSlot[EQUIP_SLOT_TYPE_EARRING_1].SetRectWH( 20, 147, NTL_ITEM_ICON_SIZE , NTL_ITEM_ICON_SIZE );
-	m_rtEquipSlot[EQUIP_SLOT_TYPE_EARRING_2].SetRectWH( 20, 189, NTL_ITEM_ICON_SIZE , NTL_ITEM_ICON_SIZE );
-	m_rtEquipSlot[EQUIP_SLOT_TYPE_RING_1].SetRectWH( 20, 231, NTL_ITEM_ICON_SIZE , NTL_ITEM_ICON_SIZE );
-	m_rtEquipSlot[EQUIP_SLOT_TYPE_RING_2].SetRectWH( 20, 273, NTL_ITEM_ICON_SIZE , NTL_ITEM_ICON_SIZE );
+	m_rtEquipSlot[EQUIP_SLOT_TYPE_HAND].SetRectWH(165, 231, NTL_ITEM_ICON_SIZE, NTL_ITEM_ICON_SIZE);
+	m_rtEquipSlot[EQUIP_SLOT_TYPE_SUB_WEAPON].SetRectWH(165, 273, NTL_ITEM_ICON_SIZE, NTL_ITEM_ICON_SIZE);
+	m_rtEquipSlot[EQUIP_SLOT_TYPE_JACKET].SetRectWH(165, 105, NTL_ITEM_ICON_SIZE, NTL_ITEM_ICON_SIZE);
+	m_rtEquipSlot[EQUIP_SLOT_TYPE_PANTS].SetRectWH(165, 147, NTL_ITEM_ICON_SIZE, NTL_ITEM_ICON_SIZE);
+	m_rtEquipSlot[EQUIP_SLOT_TYPE_BOOTS].SetRectWH(165, 189, NTL_ITEM_ICON_SIZE, NTL_ITEM_ICON_SIZE);
+	m_rtEquipSlot[EQUIP_SLOT_TYPE_SCOUTER].SetRectWH(66, 273, NTL_ITEM_ICON_SIZE, NTL_ITEM_ICON_SIZE);
+	m_rtEquipSlot[EQUIP_SLOT_TYPE_QUEST].SetRectWH(118, 273, NTL_ITEM_ICON_SIZE, NTL_ITEM_ICON_SIZE);
+	m_rtEquipSlot[EQUIP_SLOT_TYPE_NECKLACE].SetRectWH(20, 105, NTL_ITEM_ICON_SIZE, NTL_ITEM_ICON_SIZE);
+	m_rtEquipSlot[EQUIP_SLOT_TYPE_EARRING_1].SetRectWH(20, 147, NTL_ITEM_ICON_SIZE, NTL_ITEM_ICON_SIZE);
+	m_rtEquipSlot[EQUIP_SLOT_TYPE_EARRING_2].SetRectWH(20, 189, NTL_ITEM_ICON_SIZE, NTL_ITEM_ICON_SIZE);
+	m_rtEquipSlot[EQUIP_SLOT_TYPE_RING_1].SetRectWH(20, 231, NTL_ITEM_ICON_SIZE, NTL_ITEM_ICON_SIZE);
+	m_rtEquipSlot[EQUIP_SLOT_TYPE_RING_2].SetRectWH(20, 273, NTL_ITEM_ICON_SIZE, NTL_ITEM_ICON_SIZE);
 
 	// set dogi inventory slot
 	m_rtEquipSlot[EQUIP_SLOT_TYPE_COSTUME_SET].SetRectWH(207, 105, NTL_ITEM_ICON_SIZE, NTL_ITEM_ICON_SIZE);
@@ -632,26 +661,26 @@ VOID CStatusAvatarTab::SetSlotRectHardCode(VOID)
 	m_rtEquipSlot[EQUIP_SLOT_TYPE_COSTUME_HAIR_ACCESSORY].SetRectWH(207, 231, NTL_ITEM_ICON_SIZE, NTL_ITEM_ICON_SIZE);
 	m_rtEquipSlot[EQUIP_SLOT_TYPE_COSTUME_BACK_ACCESSORY].SetRectWH(207, 273, NTL_ITEM_ICON_SIZE, NTL_ITEM_ICON_SIZE);
 
-	for( RwInt32 i = 0 ; i < NTL_MAX_EQUIP_ITEM_SLOT ; ++i )
+	for (RwInt32 i = 0; i < NTL_MAX_EQUIP_ITEM_SLOT; ++i)
 	{
-		m_surIcon[i].SetRect( rtScreen.left + m_rtEquipSlot[i].left, rtScreen.top + m_rtEquipSlot[i].top,
-							  rtScreen.left + m_rtEquipSlot[i].right, rtScreen.top + m_rtEquipSlot[i].bottom );
-		m_surFocusSlot[i].SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", "srfSlotFocusEffect" ) );
-		m_surFocusSlot[i].SetRect( rtScreen.left + m_rtEquipSlot[i].left, rtScreen.top + m_rtEquipSlot[i].top,
-								   rtScreen.left + m_rtEquipSlot[i].right, rtScreen.top + m_rtEquipSlot[i].bottom );
+		m_surIcon[i].SetRect(rtScreen.left + m_rtEquipSlot[i].left, rtScreen.top + m_rtEquipSlot[i].top,
+			rtScreen.left + m_rtEquipSlot[i].right, rtScreen.top + m_rtEquipSlot[i].bottom);
+		m_surFocusSlot[i].SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfSlotFocusEffect"));
+		m_surFocusSlot[i].SetRect(rtScreen.left + m_rtEquipSlot[i].left, rtScreen.top + m_rtEquipSlot[i].top,
+			rtScreen.left + m_rtEquipSlot[i].right, rtScreen.top + m_rtEquipSlot[i].bottom);
 
-		m_surDisableSlot[i].SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", "srfSlotDisableEffect" ) );
-		m_surDisableSlot[i].SetRect( rtScreen.left + m_rtEquipSlot[i].left, rtScreen.top + m_rtEquipSlot[i].top,
-									 rtScreen.left + m_rtEquipSlot[i].right, rtScreen.top + m_rtEquipSlot[i].bottom );
-		m_surDisableSlot[i].Show( false );
-		
+		m_surDisableSlot[i].SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfSlotDisableEffect"));
+		m_surDisableSlot[i].SetRect(rtScreen.left + m_rtEquipSlot[i].left, rtScreen.top + m_rtEquipSlot[i].top,
+			rtScreen.left + m_rtEquipSlot[i].right, rtScreen.top + m_rtEquipSlot[i].bottom);
+		m_surDisableSlot[i].Show(false);
+
 		// Default
-		m_surFritzSlot[i].Show( false );
+		m_surFritzSlot[i].Show(false);
 	}
 
-	m_surPickedUp.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", "srfSlotGrayedEffect" ) );
+	m_surPickedUp.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfSlotGrayedEffect"));
 
-	m_surCharacter.SetRectWH( rtScreen.left + 43, rtScreen.top + 96, 132, 176 );
+	m_surCharacter.SetRectWH(rtScreen.left + 43, rtScreen.top + 96, 132, 176);
 }
 
 VOID CStatusAvatarTab::SetTextHardCode(VOID)
@@ -662,24 +691,24 @@ VOID CStatusAvatarTab::SetTextHardCode(VOID)
 	m_pstbBasicStatTitle[3]->SetText(GetDisplayStringManager()->GetString("DST_STATUS_STAT_ENG"));
 	m_pstbBasicStatTitle[4]->SetText(GetDisplayStringManager()->GetString("DST_STATUS_STAT_SOL"));
 	m_pstbBasicStatTitle[5]->SetText(GetDisplayStringManager()->GetString("DST_STATUS_STAT_FOC"));
-	
-	m_pstbPhysicalCombatStatTitle[0]->SetText( GetDisplayStringManager()->GetString("DST_STATUS_PHYSICAL_ATTACK") );
+
+	m_pstbPhysicalCombatStatTitle[0]->SetText(GetDisplayStringManager()->GetString("DST_STATUS_PHYSICAL_ATTACK"));
 	m_pstbPhysicalCombatStatTitle[1]->SetText(GetDisplayStringManager()->GetString("DST_STATUS_PHYSICAL_DEFENCE"));
 	m_pstbPhysicalCombatStatTitle[2]->SetText(GetDisplayStringManager()->GetString("DST_STATUS_PHYSICAL_CRITICAL"));
 
-	m_pstbEnergyCombatStatTitle[0]->SetText( GetDisplayStringManager()->GetString("DST_STATUS_ENERGY_ATTACK") );
+	m_pstbEnergyCombatStatTitle[0]->SetText(GetDisplayStringManager()->GetString("DST_STATUS_ENERGY_ATTACK"));
 	m_pstbEnergyCombatStatTitle[1]->SetText(GetDisplayStringManager()->GetString("DST_STATUS_ENERGY_DEFENCE"));
 	m_pstbEnergyCombatStatTitle[2]->SetText(GetDisplayStringManager()->GetString("DST_STATUS_ENERGY_CRITICAL"));
 
-	m_pstbETCStatTitle[0]->SetText( GetDisplayStringManager()->GetString("DST_STATUS_ATTACK_RATE") );
+	m_pstbETCStatTitle[0]->SetText(GetDisplayStringManager()->GetString("DST_STATUS_ATTACK_RATE"));
 	m_pstbETCStatTitle[1]->SetText(GetDisplayStringManager()->GetString("DST_STATUS_DODGE"));
 
-	m_pstbPCInfoTitle[NAME]->SetText( GetDisplayStringManager()->GetString( "DST_STATUS_NAME" ) );
+	m_pstbPCInfoTitle[NAME]->SetText(GetDisplayStringManager()->GetString("DST_STATUS_NAME"));
 	m_pstbPCInfoTitle[CLASS]->SetText(GetDisplayStringManager()->GetString("DST_STATUS_JOB"));
 	m_pstbPCInfoTitle[LEVEL]->SetText(GetDisplayStringManager()->GetString("DST_STATUS_LEVEL"));
 	m_pstbPCInfoTitle[AP]->SetText(GetDisplayStringManager()->GetString("DST_STATUS_AP"));
 
-	m_pstbBattleAttrTitle->SetText( GetDisplayStringManager()->GetString("DST_STATUS_ATTR"));	
+	m_pstbBattleAttrTitle->SetText(GetDisplayStringManager()->GetString("DST_STATUS_ATTR"));
 
 	m_pstbPCCharacterTitle->SetText(GetDisplayStringManager()->GetString("DST_CHAR_TITLE"));
 }
@@ -687,80 +716,98 @@ VOID CStatusAvatarTab::SetTextHardCode(VOID)
 VOID CStatusAvatarTab::CalcBattleAttribute(VOID)
 {
 	CNtlSobAvatar* pSobAvatar = GetNtlSLGlobal()->GetSobAvatar();
-	if( pSobAvatar == NULL )
+	if (pSobAvatar == NULL)
 		return;
 
-	CNtlSobAvatarAttr* pSobAvatarAttr = reinterpret_cast<CNtlSobAvatarAttr*>( pSobAvatar->GetSobAttr() );
-	CNtlSobCharProxy* pAvatarProxy = reinterpret_cast<CNtlSobCharProxy*>( pSobAvatar->GetSobProxy() );
+	CNtlSobAvatarAttr* pSobAvatarAttr = reinterpret_cast<CNtlSobAvatarAttr*>(pSobAvatar->GetSobAttr());
+	CNtlSobCharProxy* pAvatarProxy = reinterpret_cast<CNtlSobCharProxy*>(pSobAvatar->GetSobProxy());
 
-	SetBattleAttribute(pSobAvatarAttr->GetMainBattleAttr());
-	SetSourceAttr(pSobAvatarAttr->GetMainBattleAttr());
-	
+	RwUInt8 byWeaponAttr = INVALID_BYTE;
+	if (pAvatarProxy->GetActiveSubWeapon())
+	{
+		byWeaponAttr = pSobAvatarAttr->GetSubWeaponAttr();
+		SetBattleAttribute(TYPE_WEAPON, pSobAvatarAttr->GetSubWeaponAttr());
+	}
+	else
+	{
+		byWeaponAttr = pSobAvatarAttr->GetMainWeaponAttr();
+		SetBattleAttribute(TYPE_WEAPON, pSobAvatarAttr->GetMainWeaponAttr());
+	}
 
-	m_sBattleAttr.afSourceOffenceBonus[BATTLE_ATTRIBUTE_HONEST] = pSobAvatarAttr->m_fCriticalBlockSuccessRate;
-	m_sBattleAttr.afSourceOffenceBonus[BATTLE_ATTRIBUTE_STRANGE] = pSobAvatarAttr->m_fEnergyCriticalDefenceRate;
-	m_sBattleAttr.afSourceOffenceBonus[BATTLE_ATTRIBUTE_WILD] = pSobAvatarAttr->m_fPhysicalArmorPenRate;
-	m_sBattleAttr.afSourceOffenceBonus[BATTLE_ATTRIBUTE_ELEGANCE] = pSobAvatarAttr->m_fEnergyArmorPenRate;
-	m_sBattleAttr.afSourceOffenceBonus[BATTLE_ATTRIBUTE_FUNNY] = pSobAvatarAttr->m_fPhysicalCriticalDefenceRate;
+	SetBattleAttribute(TYPE_ARMOR, pSobAvatarAttr->GetArmorWeaponAttr());
+	SetSourceAttr(byWeaponAttr, pSobAvatarAttr->GetArmorWeaponAttr());
+
+	// SourceÔøΩÔøΩ BonusÔøΩÔøΩ ÔøΩÔøΩÔøΩ‚º≠ ÔøΩÔøΩÔøΩÔøΩ. TargetÔøΩÔøΩ BonusÔøΩÔøΩ ÔøΩÔøΩ≈∂ÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩÔøΩ—¥ÔøΩ.
+	m_sBattleAttr.afSourceOffenceBonus[BATTLE_ATTRIBUTE_HONEST] = pSobAvatarAttr->fHonestOffense;
+	m_sBattleAttr.afSourceOffenceBonus[BATTLE_ATTRIBUTE_STRANGE] = pSobAvatarAttr->fStrangeOffense;
+	m_sBattleAttr.afSourceOffenceBonus[BATTLE_ATTRIBUTE_WILD] = pSobAvatarAttr->fWildOffense;
+	m_sBattleAttr.afSourceOffenceBonus[BATTLE_ATTRIBUTE_ELEGANCE] = pSobAvatarAttr->fStrangeOffense;
+	m_sBattleAttr.afSourceOffenceBonus[BATTLE_ATTRIBUTE_FUNNY] = pSobAvatarAttr->fFunnyOffense;
+
+	m_sBattleAttr.afSourceDefenceBonus[BATTLE_ATTRIBUTE_HONEST] = pSobAvatarAttr->fHonestDefense;
+	m_sBattleAttr.afSourceDefenceBonus[BATTLE_ATTRIBUTE_STRANGE] = pSobAvatarAttr->fStrangeDefense;
+	m_sBattleAttr.afSourceDefenceBonus[BATTLE_ATTRIBUTE_WILD] = pSobAvatarAttr->fWildDefense;
+	m_sBattleAttr.afSourceDefenceBonus[BATTLE_ATTRIBUTE_ELEGANCE] = pSobAvatarAttr->fStrangeDefense;
+	m_sBattleAttr.afSourceDefenceBonus[BATTLE_ATTRIBUTE_FUNNY] = pSobAvatarAttr->fFunnyDefense;
 }
 
-VOID CStatusAvatarTab::SetBattleAttribute( RwUInt8 byBattleAttribute )
+VOID CStatusAvatarTab::SetBattleAttribute(eTYPE_BATTLEATTR eType, RwUInt8 byBattleAttribute)
 {
-	Logic_SetBattleAttributeMark( m_pnlBattleAttribute, byBattleAttribute, FALSE );	
+	Logic_SetBattleAttributeMark(m_ppnlBattleAttribute[eType], byBattleAttribute, FALSE);
 }
 
-VOID CStatusAvatarTab::ClickEffect( RwBool bPush, RwInt32 nSlotIdx /* = -1  */ )
+VOID CStatusAvatarTab::ClickEffect(RwBool bPush, RwInt32 nSlotIdx /* = -1  */)
 {
 	CRectangle rtScreen = m_pSelf->GetScreenRect();
 
-	if( bPush )
+	if (bPush)
 	{
-		m_surIcon[nSlotIdx].SetRect( rtScreen.left + m_rtEquipSlot[nSlotIdx].left + ICONPUSH_SIZEDIFF, rtScreen.top + m_rtEquipSlot[nSlotIdx].top + ICONPUSH_SIZEDIFF,
-									 rtScreen.left + m_rtEquipSlot[nSlotIdx].right - ICONPUSH_SIZEDIFF, rtScreen.top + m_rtEquipSlot[nSlotIdx].bottom - ICONPUSH_SIZEDIFF );
+		m_surIcon[nSlotIdx].SetRect(rtScreen.left + m_rtEquipSlot[nSlotIdx].left + ICONPUSH_SIZEDIFF, rtScreen.top + m_rtEquipSlot[nSlotIdx].top + ICONPUSH_SIZEDIFF,
+			rtScreen.left + m_rtEquipSlot[nSlotIdx].right - ICONPUSH_SIZEDIFF, rtScreen.top + m_rtEquipSlot[nSlotIdx].bottom - ICONPUSH_SIZEDIFF);
 	}
-	else if( m_nPushDownIndex >= 0 )
+	else if (m_nPushDownIndex >= 0)
 	{
-		m_surIcon[m_nPushDownIndex].SetRect( rtScreen.left + m_rtEquipSlot[m_nPushDownIndex].left, rtScreen.top + m_rtEquipSlot[m_nPushDownIndex].top,
-											 rtScreen.left + m_rtEquipSlot[m_nPushDownIndex].right, rtScreen.top + m_rtEquipSlot[m_nPushDownIndex].bottom );
-	}	
+		m_surIcon[m_nPushDownIndex].SetRect(rtScreen.left + m_rtEquipSlot[m_nPushDownIndex].left, rtScreen.top + m_rtEquipSlot[m_nPushDownIndex].top,
+			rtScreen.left + m_rtEquipSlot[m_nPushDownIndex].right, rtScreen.top + m_rtEquipSlot[m_nPushDownIndex].bottom);
+	}
 
 	m_nPushDownIndex = nSlotIdx;
 }
 
-VOID CStatusAvatarTab::FritzEffect( eFRITZEFFECT eFritzState, RwInt32 nSlotIdx )
+VOID CStatusAvatarTab::FritzEffect(eFRITZEFFECT eFritzState, RwInt32 nSlotIdx)
 {
-	if( nSlotIdx < 0 || nSlotIdx >= NTL_MAX_EQUIP_ITEM_SLOT )
+	if (nSlotIdx < 0 || nSlotIdx >= NTL_MAX_EQUIP_ITEM_SLOT)
 		return;
 
-	switch( eFritzState )
+	switch (eFritzState)
 	{
 	case FRITZ_NONE:
-		m_surFritzSlot[nSlotIdx].Show( FALSE );
+		m_surFritzSlot[nSlotIdx].Show(FALSE);
 		return;
 	case FRITZ_HALF:
-		m_surFritzSlot[nSlotIdx].SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", "srfHalfFritzSlotEffect" ) );
+		m_surFritzSlot[nSlotIdx].SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfHalfFritzSlotEffect"));
 		break;
 	case FRITZ_ABSOLUTE:
-		m_surFritzSlot[nSlotIdx].SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", "srfFritzSlotEffect" ) );
+		m_surFritzSlot[nSlotIdx].SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfFritzSlotEffect"));
 		break;
 	}
 
 	CRectangle rtScreen = m_pSelf->GetScreenRect();
 
-	m_surFritzSlot[nSlotIdx].SetRect( rtScreen.left + m_rtEquipSlot[nSlotIdx].left, rtScreen.top + m_rtEquipSlot[nSlotIdx].top,
-									  rtScreen.left + m_rtEquipSlot[nSlotIdx].right, rtScreen.top + m_rtEquipSlot[nSlotIdx].bottom );
+	m_surFritzSlot[nSlotIdx].SetRect(rtScreen.left + m_rtEquipSlot[nSlotIdx].left, rtScreen.top + m_rtEquipSlot[nSlotIdx].top,
+		rtScreen.left + m_rtEquipSlot[nSlotIdx].right, rtScreen.top + m_rtEquipSlot[nSlotIdx].bottom);
 
-	m_surFritzSlot[nSlotIdx].Show( TRUE );
+	m_surFritzSlot[nSlotIdx].Show(TRUE);
 }
 
-VOID CStatusAvatarTab::ShowPickedUp( RwBool bShow, RwInt32 nSlotIdx /* = 0  */ )
+VOID CStatusAvatarTab::ShowPickedUp(RwBool bShow, RwInt32 nSlotIdx /* = 0  */)
 {
-	if( bShow )
+	if (bShow)
 	{
 		CRectangle rtScreen = m_pSelf->GetScreenRect();
 
 		m_nShowPickedUp = nSlotIdx;
-		m_surPickedUp.SetPosition( m_rtEquipSlot[nSlotIdx].left + rtScreen.left, m_rtEquipSlot[nSlotIdx].top + rtScreen.top );
+		m_surPickedUp.SetPosition(m_rtEquipSlot[nSlotIdx].left + rtScreen.left, m_rtEquipSlot[nSlotIdx].top + rtScreen.top);
 	}
 	else
 	{
@@ -768,14 +815,14 @@ VOID CStatusAvatarTab::ShowPickedUp( RwBool bShow, RwInt32 nSlotIdx /* = 0  */ )
 	}
 }
 
-VOID CStatusAvatarTab::ShowDisableSlot( RwBool bShow, RwInt32 nSlotIdx )
+VOID CStatusAvatarTab::ShowDisableSlot(RwBool bShow, RwInt32 nSlotIdx)
 {
-	m_surDisableSlot[nSlotIdx].Show( bShow );
+	m_surDisableSlot[nSlotIdx].Show(bShow);
 }
 
-RwBool CStatusAvatarTab::IsDisableSlot( RwInt32 nSlotIdx )
+RwBool CStatusAvatarTab::IsDisableSlot(RwInt32 nSlotIdx)
 {
-	if( nSlotIdx < 0 && nSlotIdx >= NTL_MAX_EQUIP_ITEM_SLOT )
+	if (nSlotIdx < 0 && nSlotIdx >= NTL_MAX_EQUIP_ITEM_SLOT)
 		return TRUE;
 
 	return m_surDisableSlot[nSlotIdx].IsShow() ? TRUE : FALSE;
@@ -784,31 +831,31 @@ RwBool CStatusAvatarTab::IsDisableSlot( RwInt32 nSlotIdx )
 ////////////////////////////////////////////////////////////////////////////////
 // ! Callback
 
-VOID CStatusAvatarTab::OnMouseDown( const CKey& key )
+VOID CStatusAvatarTab::OnMouseDown(const CKey& key)
 {
-	RwInt32 nClickIdx = GetEquipSlotIdx( (RwInt32)key.m_fX, (RwInt32)key.m_fY );
+	RwInt32 nClickIdx = GetEquipSlotIdx((RwInt32)key.m_fX, (RwInt32)key.m_fY);
 
-	if( EQUIP_SLOT_TYPE_SCOUTER == nClickIdx )
+	if (EQUIP_SLOT_TYPE_SCOUTER == nClickIdx)
 	{
-		if( !Logic_CanMouseInput_in_Tutorial( ETL_MOUSE_INPUT_TYPE_STATUS_WND_SCOUTER_SLOT ) )
+		if (!Logic_CanMouseInput_in_Tutorial(ETL_MOUSE_INPUT_TYPE_STATUS_WND_SCOUTER_SLOT))
 		{
 			m_nLSelectedSlotIdx = -1;
 			m_nRSelectedSlotIdx = -1;
-			ClickEffect( FALSE );
+			ClickEffect(FALSE);
 			m_pSelf->ReleaseMouse();
 			return;
 		}
-	}	
+	}
 
-	if( nClickIdx >= 0 && !GetIconMoveManager()->IsActive() )
-		ClickEffect( TRUE, nClickIdx );
+	if (nClickIdx >= 0 && !GetIconMoveManager()->IsActive())
+		ClickEffect(TRUE, nClickIdx);
 
-	if( key.m_nID == UD_LEFT_BUTTON )
+	if (key.m_nID == UD_LEFT_BUTTON)
 	{
-		// 1. Srcº±≈√¿Œ∞° Destº±≈√¿Œ∞°.
-		if( GetIconMoveManager()->IsActive() )
+		// 1. SrcÏÑ†ÌÉùÏù∏Í∞Ä DestÏÑ†ÌÉùÏù∏Í∞Ä.
+		if (GetIconMoveManager()->IsActive())
 		{
-			if( IsEnableEquipPutDown( nClickIdx ) )
+			if (IsEnableEquipPutDown(nClickIdx))
 			{
 				m_nLSelectedSlotIdx = nClickIdx;
 			}
@@ -817,33 +864,33 @@ VOID CStatusAvatarTab::OnMouseDown( const CKey& key )
 		{
 			eDialogMode eMode = GetDialogManager()->GetMode();
 
-			if( eMode == DIALOGMODE_ITEM_REPAIR ||
+			if (eMode == DIALOGMODE_ITEM_REPAIR ||
 				eMode == DIALOGMODE_ITEM_IDENTIFICATION ||
-				eMode == DIALOGMODE_NPCSHOP_ITEM_IDENTIFICATION )
+				eMode == DIALOGMODE_NPCSHOP_ITEM_IDENTIFICATION)
 			{
 				m_nLSelectedSlotIdx = nClickIdx;
 			}
-			// 2. DragDrop¿Ã ∞°¥…«— ªÛ»≤¿Œ∞°.
-			else if( IsEnableEquipPickUp( nClickIdx ) )
+			// 2. DragDropÏù¥ Í∞ÄÎä•Ìïú ÏÉÅÌô©Ïù∏Í∞Ä.
+			else if (IsEnableEquipPickUp(nClickIdx))
 			{
 				m_nLSelectedSlotIdx = nClickIdx;
-			}			
-		}		
+			}
+		}
 	}
-	else if( key.m_nID == UD_RIGHT_BUTTON )
+	else if (key.m_nID == UD_RIGHT_BUTTON)
 	{
-		if( GetDialogManager()->GetMode() == DIALOGMODE_UNKNOWN )
+		if (GetDialogManager()->GetMode() == DIALOGMODE_UNKNOWN)
 		{
-			if( !GetIconMoveManager()->IsActive() )
+			if (!GetIconMoveManager()->IsActive())
 			{
-				if( IsEnableUnequipItem( nClickIdx ) )
+				if (IsEnableUnequipItem(nClickIdx))
 				{
 					m_nRSelectedSlotIdx = nClickIdx;
 				}
-			}			
+			}
 		}
-		
-		// 1. æ∆¿Ãƒ‹ ¿Ø»øº∫ ∞ÀªÁ
+
+		// 1. ÏïÑÏù¥ÏΩò Ïú†Ìö®ÏÑ± Í≤ÄÏÇ¨
 		//if( IsEnableEquipPopup( nClickIdx ) )
 		//{
 		//	m_nRSelectedSlotIdx = nClickIdx;
@@ -852,62 +899,62 @@ VOID CStatusAvatarTab::OnMouseDown( const CKey& key )
 
 	m_pSelf->CaptureMouse();
 
-	if( m_nLSelectedSlotIdx >= 0 && m_nRSelectedSlotIdx >= 0 )
+	if (m_nLSelectedSlotIdx >= 0 && m_nRSelectedSlotIdx >= 0)
 	{
 		m_nLSelectedSlotIdx = -1;
 		m_nRSelectedSlotIdx = -1;
-		ClickEffect( FALSE );
+		ClickEffect(FALSE);
 		m_pSelf->ReleaseMouse();
 	}
 }
 
-VOID CStatusAvatarTab::OnMouseUp( const CKey& key )
+VOID CStatusAvatarTab::OnMouseUp(const CKey& key)
 {
-	// 1. Leftπˆ∆∞¿Œ∞° Rightπˆ∆∞¿Œ∞°
-	// 2. Srcº±≈√¿Œ∞° Destº±≈√¿Œ∞°.
+	// 1. LeftÎ≤ÑÌäºÏù∏Í∞Ä RightÎ≤ÑÌäºÏù∏Í∞Ä
+	// 2. SrcÏÑ†ÌÉùÏù∏Í∞Ä DestÏÑ†ÌÉùÏù∏Í∞Ä.
 
-	RwInt32 nSlotIdx = GetEquipSlotIdx( (RwInt32)key.m_fX, (RwInt32)key.m_fY );
-	ClickEffect( FALSE );
+	RwInt32 nSlotIdx = GetEquipSlotIdx((RwInt32)key.m_fX, (RwInt32)key.m_fY);
+	ClickEffect(FALSE);
 	m_pSelf->ReleaseMouse();
 
-	if( nSlotIdx < 0 || !m_pSelf->IsVisibleTruly() )
+	if (nSlotIdx < 0 || !m_pSelf->IsVisibleTruly())
 	{
 		m_nLSelectedSlotIdx = -1;
 		m_nRSelectedSlotIdx = -1;
 		return;
 	}
 
-	if( key.m_nID == UD_LEFT_BUTTON )
+	if (key.m_nID == UD_LEFT_BUTTON)
 	{
-		if( nSlotIdx == m_nLSelectedSlotIdx )
+		if (nSlotIdx == m_nLSelectedSlotIdx)
 		{
-			if( GetIconMoveManager()->IsActive() )
+			if (GetIconMoveManager()->IsActive())
 			{
-				if( GetDialogManager()->GetMode() == DIALOGMODE_UNKNOWN )
+				if (GetDialogManager()->GetMode() == DIALOGMODE_UNKNOWN)
 				{
-					GetIconMoveManager()->IconMovePutDown( PLACE_EQUIP, INVALID_SERIAL_ID, nSlotIdx );
-				}				
+					GetIconMoveManager()->IconMovePutDown(PLACE_EQUIP, INVALID_SERIAL_ID, nSlotIdx);
+				}
 			}
 			else
 			{
-				if( GetDialogManager()->IsMode( DIALOGMODE_ITEM_REPAIR ) )
+				if (GetDialogManager()->IsMode(DIALOGMODE_ITEM_REPAIR))
 				{
-					Logic_ItemRepairProc( CONTAINER_TYPE_EQUIP, (RwUInt8)nSlotIdx );					
+					Logic_ItemRepairProc(CONTAINER_TYPE_EQUIP, (RwUInt8)nSlotIdx);
 				}
 				else
 				{
-					if( GetDialogManager()->GetMode() == DIALOGMODE_UNKNOWN )
+					if (GetDialogManager()->GetMode() == DIALOGMODE_UNKNOWN)
 					{
 						CNtlInventory* pInventory = GetNtlSLGlobal()->GetSobAvatar()->GetInventory();
-						SERIAL_HANDLE hSrcSerial = pInventory->GetEquipItem( nSlotIdx );
-						CNtlSobItem* pItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( hSrcSerial ) );
-						if( pItem )
+						SERIAL_HANDLE hSrcSerial = pInventory->GetEquipItem(nSlotIdx);
+						CNtlSobItem* pItem = reinterpret_cast<CNtlSobItem*>(GetNtlSobManager()->GetSobObject(hSrcSerial));
+						if (pItem)
 						{
-							CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>( pItem->GetSobAttr() );
-							if( GetIconMoveManager()->IconMovePickUp( hSrcSerial, PLACE_EQUIP, nSlotIdx, pItemAttr->GetStackNum(), pItem->GetIcon()->GetImage() ) )
-								ShowPickedUp( TRUE, nSlotIdx );
+							CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>(pItem->GetSobAttr());
+							if (GetIconMoveManager()->IconMovePickUp(hSrcSerial, PLACE_EQUIP, nSlotIdx, pItemAttr->GetStackNum(), pItem->GetIcon()->GetImage()))
+								ShowPickedUp(TRUE, nSlotIdx);
 						}
-					}					
+					}
 				}
 			}
 
@@ -915,64 +962,64 @@ VOID CStatusAvatarTab::OnMouseUp( const CKey& key )
 
 		m_nLSelectedSlotIdx = -1;
 	}
-	else if( key.m_nID == UD_RIGHT_BUTTON )
+	else if (key.m_nID == UD_RIGHT_BUTTON)
 	{
-		if( GetDialogManager()->GetMode() == DIALOGMODE_UNKNOWN )
+		if (GetDialogManager()->GetMode() == DIALOGMODE_UNKNOWN)
 		{
-			if( nSlotIdx == m_nRSelectedSlotIdx )
+			if (nSlotIdx == m_nRSelectedSlotIdx)
 			{
 				RwInt32 nDestBagSlotIdx = 0, nDestSlotIdx = 0;
-				if( Logic_FindEmptyItemSlot( &nDestBagSlotIdx, &nDestSlotIdx ) )
+				if (Logic_FindEmptyItemSlot(&nDestBagSlotIdx, &nDestSlotIdx))
 				{
 					CNtlInventory* pInventory = GetNtlSLGlobal()->GetSobAvatar()->GetInventory();
-					SERIAL_HANDLE hSrcSerial = pInventory->GetEquipItem( nSlotIdx );
-					CNtlSobItem* pItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( hSrcSerial ) );
-					if( pItem )
+					SERIAL_HANDLE hSrcSerial = pInventory->GetEquipItem(nSlotIdx);
+					CNtlSobItem* pItem = reinterpret_cast<CNtlSobItem*>(GetNtlSobManager()->GetSobObject(hSrcSerial));
+					if (pItem)
 					{
-						CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>( pItem->GetSobAttr() );
-						Logic_ItemMoveProc( hSrcSerial, PLACE_EQUIP, (RwUInt8)nSlotIdx, PLACE_BAG, pInventory->GetBagItem( nDestBagSlotIdx ), (RwUInt8)nDestSlotIdx, pItemAttr->GetStackNum() );
-					}					
+						CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>(pItem->GetSobAttr());
+						Logic_ItemMoveProc(hSrcSerial, PLACE_EQUIP, (RwUInt8)nSlotIdx, PLACE_BAG, pInventory->GetBagItem(nDestBagSlotIdx), (RwUInt8)nDestSlotIdx, pItemAttr->GetStackNum());
+					}
 				}
 				else
 				{
-					GetAlarmManager()->AlarmMessage( "DST_ITEM_CAN_NOT_UNEQUIP_BAG_FULL" );
-				}	
+					GetAlarmManager()->AlarmMessage("DST_ITEM_CAN_NOT_UNEQUIP_BAG_FULL");
+				}
 			}
 		}
-		
+
 		m_nRSelectedSlotIdx = -1;
 	}
 }
 
-VOID CStatusAvatarTab::OnMouseMove( RwInt32 nFlags, RwInt32 nX, RwInt32 nY )
+VOID CStatusAvatarTab::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 {
 	RwBool bFlag = FALSE;
 
-	for( RwInt32 i = 0 ; i < NTL_MAX_EQUIP_ITEM_SLOT ; ++i )
+	for (RwInt32 i = 0; i < NTL_MAX_EQUIP_ITEM_SLOT; ++i)
 	{
-		if( m_rtEquipSlot[i].PtInRect( nX, nY ) )
+		if (m_rtEquipSlot[i].PtInRect(nX, nY))
 		{
 			m_arrFocusEffect[i] = m_arrFocusEffect[i] | SLOT_FOCUS;
 
-			if( m_nMouseOnIndex != i )
+			if (m_nMouseOnIndex != i)
 			{
-				SERIAL_HANDLE hSerial = GetNtlSLGlobal()->GetSobAvatar()->GetInventory()->GetEquipItem( i );
-				CNtlSobItem* pItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( hSerial ) );
+				SERIAL_HANDLE hSerial = GetNtlSLGlobal()->GetSobAvatar()->GetInventory()->GetEquipItem(i);
+				CNtlSobItem* pItem = reinterpret_cast<CNtlSobItem*>(GetNtlSobManager()->GetSobObject(hSerial));
 				CRectangle rtScreen = m_pSelf->GetScreenRect();
 
-				if( pItem )
+				if (pItem)
 				{
-					GetInfoWndManager()->ShowInfoWindow( TRUE, CInfoWndManager::INFOWND_ITEM, m_rtEquipSlot[i].left + rtScreen.left, m_rtEquipSlot[i].top + rtScreen.top, pItem, DIALOG_STATUS );					
+					GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_ITEM, m_rtEquipSlot[i].left + rtScreen.left, m_rtEquipSlot[i].top + rtScreen.top, pItem, DIALOG_STATUS);
 				}
 				else
 				{
-					GetInfoWndManager()->ShowInfoWindow( TRUE, CInfoWndManager::INFOWND_JUST_WTEXT, m_rtEquipSlot[i].left + rtScreen.left, m_rtEquipSlot[i].top + rtScreen.top, (VOID*)GetEquipSlotText( i ), DIALOG_STATUS );										
+					GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_JUST_WTEXT, m_rtEquipSlot[i].left + rtScreen.left, m_rtEquipSlot[i].top + rtScreen.top, (VOID*)GetEquipSlotText(i), DIALOG_STATUS);
 				}
 
-				if( i == m_nPushDownIndex )
-					ClickEffect( TRUE, i );
-				else if( m_nPushDownIndex >= 0 )
-					ClickEffect( FALSE, m_nPushDownIndex );
+				if (i == m_nPushDownIndex)
+					ClickEffect(TRUE, i);
+				else if (m_nPushDownIndex >= 0)
+					ClickEffect(FALSE, m_nPushDownIndex);
 
 				m_nMouseOnIndex = i;
 			}
@@ -985,28 +1032,28 @@ VOID CStatusAvatarTab::OnMouseMove( RwInt32 nFlags, RwInt32 nX, RwInt32 nY )
 		}
 	}
 
-	if( !bFlag && m_nMouseOnIndex != -1 )
+	if (!bFlag && m_nMouseOnIndex != -1)
 	{
-		GetInfoWndManager()->ShowInfoWindow( FALSE );
-		if( m_nPushDownIndex >= 0 )
-			ClickEffect( FALSE, m_nPushDownIndex );
+		GetInfoWndManager()->ShowInfoWindow(FALSE);
+		if (m_nPushDownIndex >= 0)
+			ClickEffect(FALSE, m_nPushDownIndex);
 		m_nMouseOnIndex = -1;
 	}
 }
 
-VOID CStatusAvatarTab::OnMouseLeave( gui::CComponent* pComponent )
+VOID CStatusAvatarTab::OnMouseLeave(gui::CComponent* pComponent)
 {
-	if( m_nMouseOnIndex != -1 )
+	if (m_nMouseOnIndex != -1)
 	{
 		m_arrFocusEffect[m_nMouseOnIndex] = m_arrFocusEffect[m_nMouseOnIndex] & ~SLOT_FOCUS;
-		GetInfoWndManager()->ShowInfoWindow( FALSE );
-		if( m_nPushDownIndex >= 0 )
-			ClickEffect( FALSE, m_nPushDownIndex );
+		GetInfoWndManager()->ShowInfoWindow(FALSE);
+		if (m_nPushDownIndex >= 0)
+			ClickEffect(FALSE, m_nPushDownIndex);
 		m_nMouseOnIndex = -1;
 	}
 }
 
-VOID CStatusAvatarTab::OnCharTitleBtnClicked(gui::CComponent * pComponent)
+VOID CStatusAvatarTab::OnCharTitleBtnClicked(gui::CComponent* pComponent)
 {
 	if (GetDialogManager()->IsOpenDialog(DIALOG_PLAYER_TITLE))
 		GetDialogManager()->CloseDialog(DIALOG_PLAYER_TITLE);
@@ -1016,150 +1063,185 @@ VOID CStatusAvatarTab::OnCharTitleBtnClicked(gui::CComponent * pComponent)
 
 VOID CStatusAvatarTab::OnPaint(VOID)
 {
-	// Avatar√‚∑¬
+	// AvatarÏ∂úÎ†•
 	m_surCharacter.Render();
 }
 
 VOID CStatusAvatarTab::OnSlotPaint(VOID)
 {
-	// Icon √‚∑¬
-	for( RwInt32 i = 0 ; i < NTL_MAX_EQUIP_ITEM_SLOT ; ++i )
+	// Icon Ï∂úÎ†•
+	for (RwInt32 i = 0; i < NTL_MAX_EQUIP_ITEM_SLOT; ++i)
 	{
-		if( m_surIcon[i].GetTexture() )
+		if (m_surIcon[i].GetTexture())
 			m_surIcon[i].Render();
 	}
 
-	if( m_nShowPickedUp >= 0 )
+	if (m_nShowPickedUp >= 0)
 		m_surPickedUp.Render();
 
-	for( RwInt32 i = 0 ; i < NTL_MAX_EQUIP_ITEM_SLOT ; ++i )
+	for (RwInt32 i = 0; i < NTL_MAX_EQUIP_ITEM_SLOT; ++i)
 	{
 		m_surFritzSlot[i].Render();
 		m_surDisableSlot[i].Render();
 
-		if( m_arrFocusEffect[i] )
+		if (m_arrFocusEffect[i])
 			m_surFocusSlot[i].Render();
 	}
 }
 
-VOID CStatusAvatarTab::OnMove( RwInt32 nX, RwInt32 nY )
+VOID CStatusAvatarTab::OnMove(RwInt32 nX, RwInt32 nY)
 {
 	CRectangle rtScreen = m_pSelf->GetScreenRect();
 
-	for( RwInt32 i = 0 ; i < NTL_MAX_EQUIP_ITEM_SLOT ; ++i )
+	for (RwInt32 i = 0; i < NTL_MAX_EQUIP_ITEM_SLOT; ++i)
 	{
-		m_surIcon[i].SetPosition( rtScreen.left + m_rtEquipSlot[i].left, rtScreen.top + m_rtEquipSlot[i].top );
-		m_surFocusSlot[i].SetPosition( rtScreen.left + m_rtEquipSlot[i].left, rtScreen.top + m_rtEquipSlot[i].top );
-		m_surFritzSlot[i].SetPosition( rtScreen.left + m_rtEquipSlot[i].left, rtScreen.top + m_rtEquipSlot[i].top );
-		m_surDisableSlot[i].SetPosition( rtScreen.left + m_rtEquipSlot[i].left, rtScreen.top + m_rtEquipSlot[i].top );
+		m_surIcon[i].SetPosition(rtScreen.left + m_rtEquipSlot[i].left, rtScreen.top + m_rtEquipSlot[i].top);
+		m_surFocusSlot[i].SetPosition(rtScreen.left + m_rtEquipSlot[i].left, rtScreen.top + m_rtEquipSlot[i].top);
+		m_surFritzSlot[i].SetPosition(rtScreen.left + m_rtEquipSlot[i].left, rtScreen.top + m_rtEquipSlot[i].top);
+		m_surDisableSlot[i].SetPosition(rtScreen.left + m_rtEquipSlot[i].left, rtScreen.top + m_rtEquipSlot[i].top);
 	}
 
-	if( m_nShowPickedUp >= 0 )
-		m_surPickedUp.SetPosition( rtScreen.left + m_rtEquipSlot[m_nShowPickedUp].left, rtScreen.top + m_rtEquipSlot[m_nShowPickedUp].top );
+	if (m_nShowPickedUp >= 0)
+		m_surPickedUp.SetPosition(rtScreen.left + m_rtEquipSlot[m_nShowPickedUp].left, rtScreen.top + m_rtEquipSlot[m_nShowPickedUp].top);
 
-	m_surCharacter.SetPosition( rtScreen.left + 46, rtScreen.top + 96 );
+	m_surCharacter.SetPosition(rtScreen.left + 46, rtScreen.top + 96);
 }
 
-VOID CStatusAvatarTab::OnLeftRotBtnPress( gui::CComponent* pComponent )
+VOID CStatusAvatarTab::OnLeftRotBtnPress(gui::CComponent* pComponent)
 {
-	CNtlSobCharProxy* pCharProxy = reinterpret_cast<CNtlSobCharProxy*>( GetNtlSLGlobal()->GetSobAvatar()->GetSobProxy() );
-	if( pCharProxy )
+	CNtlSobCharProxy* pCharProxy = reinterpret_cast<CNtlSobCharProxy*>(GetNtlSLGlobal()->GetSobAvatar()->GetSobProxy());
+	if (pCharProxy)
 		pCharProxy->PcStatusRotateLeft();
 }
 
-VOID CStatusAvatarTab::OnLeftRotBtnRelease( gui::CComponent* pComponent )
+VOID CStatusAvatarTab::OnLeftRotBtnRelease(gui::CComponent* pComponent)
 {
-	CNtlSobCharProxy* pCharProxy = reinterpret_cast<CNtlSobCharProxy*>( GetNtlSLGlobal()->GetSobAvatar()->GetSobProxy() );
-	if( pCharProxy )
+	CNtlSobCharProxy* pCharProxy = reinterpret_cast<CNtlSobCharProxy*>(GetNtlSLGlobal()->GetSobAvatar()->GetSobProxy());
+	if (pCharProxy)
 		pCharProxy->PcStatusRotateStop();
 }
 
-VOID CStatusAvatarTab::OnRightRotBtnPress( gui::CComponent* pComponent )
+VOID CStatusAvatarTab::OnRightRotBtnPress(gui::CComponent* pComponent)
 {
-	CNtlSobCharProxy* pCharProxy = reinterpret_cast<CNtlSobCharProxy*>( GetNtlSLGlobal()->GetSobAvatar()->GetSobProxy() );
-	if( pCharProxy )
+	CNtlSobCharProxy* pCharProxy = reinterpret_cast<CNtlSobCharProxy*>(GetNtlSLGlobal()->GetSobAvatar()->GetSobProxy());
+	if (pCharProxy)
 		pCharProxy->PcStatusRotateRight();
 }
 
-VOID CStatusAvatarTab::OnRightRotBtnRelease( gui::CComponent* pComponent )
+VOID CStatusAvatarTab::OnRightRotBtnRelease(gui::CComponent* pComponent)
 {
-	CNtlSobCharProxy* pCharProxy = reinterpret_cast<CNtlSobCharProxy*>( GetNtlSLGlobal()->GetSobAvatar()->GetSobProxy() );
-	if( pCharProxy )
-		pCharProxy->PcStatusRotateStop();	
+	CNtlSobCharProxy* pCharProxy = reinterpret_cast<CNtlSobCharProxy*>(GetNtlSLGlobal()->GetSobAvatar()->GetSobProxy());
+	if (pCharProxy)
+		pCharProxy->PcStatusRotateStop();
 }
 
-VOID CStatusAvatarTab::OnDragRotBtnPress( gui::CComponent* pComponent )
+VOID CStatusAvatarTab::OnDragRotBtnPress(gui::CComponent* pComponent)
 {
 	CRectangle rtScreen = pComponent->GetScreenRect();
 	m_nDragRotX = CMouse::GetX() - rtScreen.left;
 }
 
-VOID CStatusAvatarTab::OnDragRotBtnRelease( gui::CComponent* pComponent )
+VOID CStatusAvatarTab::OnDragRotBtnRelease(gui::CComponent* pComponent)
 {
 
 }
 
-VOID CStatusAvatarTab::OnDragRotMouseMove( RwInt32 nFlags, RwInt32 nX, RwInt32 nY )
+VOID CStatusAvatarTab::OnDragRotMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 {
-	if( nFlags & UD_MK_LBUTTON )
+	if (nFlags & UD_MK_LBUTTON)
 	{
-		CNtlSobCharProxy* pCharProxy = reinterpret_cast<CNtlSobCharProxy*>( GetNtlSLGlobal()->GetSobAvatar()->GetSobProxy() );
+		CNtlSobCharProxy* pCharProxy = reinterpret_cast<CNtlSobCharProxy*>(GetNtlSLGlobal()->GetSobAvatar()->GetSobProxy());
 
-		RwReal fDeltaAngle = (RwReal)( nX - m_nDragRotX ) * 1.5f;
-		pCharProxy->PcStatusRotate( fDeltaAngle );
+		RwReal fDeltaAngle = (RwReal)(nX - m_nDragRotX) * 1.5f;
+		pCharProxy->PcStatusRotate(fDeltaAngle);
 
 		m_nDragRotX = nX;
 	}
 }
 
-VOID CStatusAvatarTab::OnMouseBattleAttrEnter( gui::CComponent* pComponent )
+VOID CStatusAvatarTab::OnMouseWeaponAttrEnter(gui::CComponent* pComponent)
 {
 	CRectangle rtScreen = pComponent->GetScreenRect();
 
 	m_sBattleAttr.eBattleAttrInfoType = stINFOWND_BATTLEATTR::TYPE_ATTR_WEAPON_INFO;
 
-	GetInfoWndManager()->ShowInfoWindow( TRUE, CInfoWndManager::INFOWND_BATTLEATTRIBUTE,
+	GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_BATTLEATTRIBUTE,
 		rtScreen.left, rtScreen.top,
-		reinterpret_cast<void*>( &m_sBattleAttr ),
-		DIALOG_STATUS );
+		reinterpret_cast<void*>(&m_sBattleAttr),
+		DIALOG_STATUS);
 }
 
-VOID CStatusAvatarTab::OnMouseBattleAttrLeave( gui::CComponent* pComponent )
+VOID CStatusAvatarTab::OnMouseWeaponAttrLeave(gui::CComponent* pComponent)
 {
-	if( DIALOG_STATUS == GetInfoWndManager()->GetRequestGui() &&
-		CInfoWndManager::INFOWND_BATTLEATTRIBUTE == GetInfoWndManager()->GetInfoWndState() )
-		GetInfoWndManager()->ShowInfoWindow( FALSE );
+	if (DIALOG_STATUS == GetInfoWndManager()->GetRequestGui() &&
+		CInfoWndManager::INFOWND_BATTLEATTRIBUTE == GetInfoWndManager()->GetInfoWndState())
+		GetInfoWndManager()->ShowInfoWindow(FALSE);
 }
 
-VOID CStatusAvatarTab::SetSourceAttr( RwUInt8 bySourceWeaponAttr)
+VOID CStatusAvatarTab::OnMouseArmorAttrEnter(gui::CComponent* pComponent)
+{
+	CRectangle rtScreen = pComponent->GetScreenRect();
+
+	m_sBattleAttr.eBattleAttrInfoType = stINFOWND_BATTLEATTR::TYPE_ATTR_ARMOR_INFO;
+
+	GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_BATTLEATTRIBUTE,
+		rtScreen.left, rtScreen.top,
+		reinterpret_cast<void*>(&m_sBattleAttr),
+		DIALOG_STATUS);
+}
+
+VOID CStatusAvatarTab::OnMouseArmorAttrLeave(gui::CComponent* pComponent)
+{
+	if (DIALOG_STATUS == GetInfoWndManager()->GetRequestGui() &&
+		CInfoWndManager::INFOWND_BATTLEATTRIBUTE == GetInfoWndManager()->GetInfoWndState())
+		GetInfoWndManager()->ShowInfoWindow(FALSE);
+}
+
+VOID CStatusAvatarTab::SetSourceAttr(RwUInt8 bySourceWeaponAttr, RwUInt8 bySourceArmorAttr)
 {
 	m_sBattleAttr.bySourceWeaponAttr = bySourceWeaponAttr;
+	m_sBattleAttr.bySourceArmorAttr = bySourceArmorAttr;
 }
 
-VOID CStatusAvatarTab::SetTargetAttr( RwUInt8 byTargetWeaponAttr)
+VOID CStatusAvatarTab::SetTargetAttr(RwUInt8 byTargetWeaponAttr, RwUInt8 byTargetArmorAttr)
 {
 	m_sBattleAttr.byTargetWeaponAttr = byTargetWeaponAttr;
+	m_sBattleAttr.byTargetArmorAttr = byTargetArmorAttr;
 }
 
 VOID CStatusAvatarTab::OnBattleAttributeRefresh()
 {
-	if( m_pnlBattleAttribute->GetScreenRect().PtInRect( CMouse::GetX(), CMouse::GetY() ) )
-		m_sBattleAttr.eBattleAttrInfoType = stINFOWND_BATTLEATTR::TYPE_ATTR_WEAPON_INFO;
-
-	if( DIALOG_STATUS == GetInfoWndManager()->GetRequestGui() &&
-		CInfoWndManager::INFOWND_BATTLEATTRIBUTE == GetInfoWndManager()->GetInfoWndState() )
+	// ÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩÏΩ∫ÔøΩÔøΩ ÔøΩÔøΩƒ°ÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ ÔøΩ”ºÔøΩ ÔøΩ–≥ŒøÔøΩ ÔøΩ÷¥ÔøΩÔøΩÔøΩ ÔøΩÔøΩÓ±∏ ÔøΩÔøΩÔøΩÔøΩ ÔøΩ”ºÔøΩ ÔøΩ–≥ŒøÔøΩ ÔøΩ÷¥ÔøΩÔøΩÔøΩ ÔøΩ«¥ÔøΩ
+	eTYPE_BATTLEATTR eType = TYPECOUNT;
+	for (RwInt32 i = 0; i < TYPECOUNT; ++i)
 	{
-		GetInfoWndManager()->ShowInfoWindow( FALSE );
+		if (m_ppnlBattleAttribute[i]->GetScreenRect().PtInRect(CMouse::GetX(), CMouse::GetY()))
+			eType = (eTYPE_BATTLEATTR)i;
+	}
 
-		CRectangle rtScreen = m_pnlBattleAttribute->GetScreenRect();
+	// ÔøΩÔøΩÔøΩÏΩ∫ÔøΩÔøΩ ÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ ÔøΩ–≥ÔøΩÔøΩÔøΩ ÔøΩ∆¥œ∂ÔøΩÔøΩ InfoWindowÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ ÔøΩ ø‰∞° ÔøΩÔøΩÔøΩÔøΩ.
+	if (eType == TYPECOUNT)
+		return;
+	else if (eType == TYPE_WEAPON)
+		m_sBattleAttr.eBattleAttrInfoType = stINFOWND_BATTLEATTR::TYPE_ATTR_WEAPON_INFO;
+	else
+		m_sBattleAttr.eBattleAttrInfoType = stINFOWND_BATTLEATTR::TYPE_ATTR_ARMOR_INFO;
 
-		GetInfoWndManager()->ShowInfoWindow( TRUE, CInfoWndManager::INFOWND_BATTLEATTRIBUTE,
+	// ÔøΩÔøΩÔøΩÔøΩ HpGuiÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩ√ªÔøΩÔøΩ InfoWindowÔøΩÔøΩÔøΩÔøΩ »ÆÔøΩÔøΩÔøΩœ∞ÔøΩ ÔøΩÔøΩÔøΩÔøΩ ÔøΩ”ºÔøΩ ÔøΩÔøΩÔøΩÔøΩ InfoWindowÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ ÔøΩÕ±ÔøΩÔøΩÔøΩ »ÆÔøΩÔøΩ
+	// ÔøΩœøÔøΩ ÔøΩ¬¥Ÿ∏ÔøΩ ÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩÔøΩ InfoWindowÔøΩÔøΩ ÔøΩ›∞ÔøΩ ÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩÿ¥ÔøΩ.
+	if (DIALOG_STATUS == GetInfoWndManager()->GetRequestGui() &&
+		CInfoWndManager::INFOWND_BATTLEATTRIBUTE == GetInfoWndManager()->GetInfoWndState())
+	{
+		GetInfoWndManager()->ShowInfoWindow(FALSE);
+
+		CRectangle rtScreen = m_ppnlBattleAttribute[eType]->GetScreenRect();
+
+		GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_BATTLEATTRIBUTE,
 			rtScreen.left, rtScreen.top,
-			reinterpret_cast<void*>( &m_sBattleAttr ),
-			DIALOG_STATUS );
+			reinterpret_cast<void*>(&m_sBattleAttr),
+			DIALOG_STATUS);
 	}
 }
-
 
 void CStatusAvatarTab::SetCharTitleText()
 {
@@ -1180,7 +1262,7 @@ void CStatusAvatarTab::SetCharTitleText()
 void CStatusAvatarTab::SelectCharTitle(TBLIDX uiIndex)
 {
 	CNtlSobActor* pActor = Logic_GetAvatarActor();
-	CNtlSobPlayer *pSobPlayer = reinterpret_cast<CNtlSobPlayer*>(pActor);
+	CNtlSobPlayer* pSobPlayer = reinterpret_cast<CNtlSobPlayer*>(pActor);
 
 	SAvatarInfo* pAvatarInfo = GetNtlSLGlobal()->GetAvatarInfo();
 
@@ -1188,7 +1270,8 @@ void CStatusAvatarTab::SelectCharTitle(TBLIDX uiIndex)
 
 	SetCharTitleText();
 
-	pSobPlayer->SetCharTitle(pAvatarInfo->sCharPf.bInvisibleTitle, uiIndex);
+	//pSobPlayer->SetCharTitle(pAvatarInfo->sCharPf.bInvisibleTitle, uiIndex);
+	pSobPlayer->SetCharTitle(false, uiIndex);
 
 	Logic_SetHeadNameColor(pSobPlayer);
 }
@@ -1219,27 +1302,27 @@ void CStatusAvatarTab::UpdateCharTitle(TBLIDX uiIndex, bool bDelete)
 	}
 }
 
-VOID CStatusAvatarTab::SetAttributeToolTip( VOID )
+VOID CStatusAvatarTab::SetAttributeToolTip(VOID)
 {
-	m_pstbBattleAttrTitle->SetToolTip( GetDisplayStringManager()->GetString( "DST_STATUS_TOOLTIP_ATTR" ) );
-	
-	m_pstbBasicStatTitle[STR]->SetToolTip( GetDisplayStringManager()->GetString( "DST_STATUS_TOOLTIP_STR" ) );
-	m_pstbBasicStatTitle[DEX]->SetToolTip( GetDisplayStringManager()->GetString( "DST_STATUS_TOOLTIP_DEX" ) );
-	m_pstbBasicStatTitle[CON]->SetToolTip( GetDisplayStringManager()->GetString( "DST_STATUS_TOOLTIP_CON" ) );
-	m_pstbBasicStatTitle[ENG]->SetToolTip( GetDisplayStringManager()->GetString( "DST_STATUS_TOOLTIP_ENG" ) );
-	m_pstbBasicStatTitle[SOL]->SetToolTip( GetDisplayStringManager()->GetString( "DST_STATUS_TOOLTIP_SOL" ) );
-	m_pstbBasicStatTitle[FOC]->SetToolTip( GetDisplayStringManager()->GetString( "DST_STATUS_TOOLTIP_FOC" ) );
+	m_pstbBattleAttrTitle->SetToolTip(GetDisplayStringManager()->GetString("DST_STATUS_TOOLTIP_ATTR"));
 
-	m_pstbPhysicalCombatStatTitle[OFFENCE]->SetToolTip( GetDisplayStringManager()->GetString( "DST_STATUS_TOOLTIP_PHYSICAL_ATTACK" ) );
-	m_pstbPhysicalCombatStatTitle[DEFENCE]->SetToolTip( GetDisplayStringManager()->GetString( "DST_STATUS_TOOLTIP_PHYSICAL_DEFENCE" ) );
-	m_pstbPhysicalCombatStatTitle[CRITICAL]->SetToolTip( GetDisplayStringManager()->GetString( "DST_STATUS_TOOLTIP_PHYSICAL_CRITICAL" ) );
+	m_pstbBasicStatTitle[STR]->SetToolTip(GetDisplayStringManager()->GetString("DST_STATUS_TOOLTIP_STR"));
+	m_pstbBasicStatTitle[DEX]->SetToolTip(GetDisplayStringManager()->GetString("DST_STATUS_TOOLTIP_DEX"));
+	m_pstbBasicStatTitle[CON]->SetToolTip(GetDisplayStringManager()->GetString("DST_STATUS_TOOLTIP_CON"));
+	m_pstbBasicStatTitle[ENG]->SetToolTip(GetDisplayStringManager()->GetString("DST_STATUS_TOOLTIP_ENG"));
+	m_pstbBasicStatTitle[SOL]->SetToolTip(GetDisplayStringManager()->GetString("DST_STATUS_TOOLTIP_SOL"));
+	m_pstbBasicStatTitle[FOC]->SetToolTip(GetDisplayStringManager()->GetString("DST_STATUS_TOOLTIP_FOC"));
 
-	m_pstbEnergyCombatStatTitle[OFFENCE]->SetToolTip( GetDisplayStringManager()->GetString( "DST_STATUS_TOOLTIP_ENERGY_ATTACK" ) );
-	m_pstbEnergyCombatStatTitle[DEFENCE]->SetToolTip( GetDisplayStringManager()->GetString( "DST_STATUS_TOOLTIP_ENERGY_DEFENCE" ) );
-	m_pstbEnergyCombatStatTitle[CRITICAL]->SetToolTip( GetDisplayStringManager()->GetString( "DST_STATUS_TOOLTIP_ENERGY_CRITICAL" ) );
+	m_pstbPhysicalCombatStatTitle[OFFENCE]->SetToolTip(GetDisplayStringManager()->GetString("DST_STATUS_TOOLTIP_PHYSICAL_ATTACK"));
+	m_pstbPhysicalCombatStatTitle[DEFENCE]->SetToolTip(GetDisplayStringManager()->GetString("DST_STATUS_TOOLTIP_PHYSICAL_DEFENCE"));
+	m_pstbPhysicalCombatStatTitle[CRITICAL]->SetToolTip(GetDisplayStringManager()->GetString("DST_STATUS_TOOLTIP_PHYSICAL_CRITICAL"));
 
-	m_pstbETCStatTitle[ATTACKRATE]->SetToolTip( GetDisplayStringManager()->GetString( "DST_STATUS_TOOLTIP_ATTACK_RATING" ) );
-	m_pstbETCStatTitle[DODGE]->SetToolTip( GetDisplayStringManager()->GetString( "DST_STATUS_TOOLTIP_DODGE_RATING" ) );
+	m_pstbEnergyCombatStatTitle[OFFENCE]->SetToolTip(GetDisplayStringManager()->GetString("DST_STATUS_TOOLTIP_ENERGY_ATTACK"));
+	m_pstbEnergyCombatStatTitle[DEFENCE]->SetToolTip(GetDisplayStringManager()->GetString("DST_STATUS_TOOLTIP_ENERGY_DEFENCE"));
+	m_pstbEnergyCombatStatTitle[CRITICAL]->SetToolTip(GetDisplayStringManager()->GetString("DST_STATUS_TOOLTIP_ENERGY_CRITICAL"));
+
+	m_pstbETCStatTitle[ATTACKRATE]->SetToolTip(GetDisplayStringManager()->GetString("DST_STATUS_TOOLTIP_ATTACK_RATING"));
+	m_pstbETCStatTitle[DODGE]->SetToolTip(GetDisplayStringManager()->GetString("DST_STATUS_TOOLTIP_DODGE_RATING"));
 }
 //VOID CStatusWindowGui::SetStackNum( RwInt32 nSlot, RwInt32 nStackNum )
 //{
@@ -1305,21 +1388,21 @@ VOID CStatusAvatarTab::SetAttributeToolTip( VOID )
 //void CStatusHonorList::CreateTree()
 //{
 //
-//	// ∏Ìøπ ¡°ºˆ ƒ´≈◊∞Ì∏Æ
+//	// Î™ÖÏòà Ï†êÏàò Ïπ¥ÌÖåÍ≥†Î¶¨
 //	CGuiLineTreeNode* pNode = NTL_NEW CStatusHonorCategoryNode(this,
-//		L"∏Ìøπ¡°ºˆ", -2 );
+//		L"Î™ÖÏòàÏ†êÏàò", -2 );
 //	CGuiLineTree::AddNode( pNode, GUILINETREE_ROOTNODE_ID );
 //	pNode->Expand( true );
 //
-//	pNode = NTL_NEW CStatusHonorContent( this, L"∏Ìøπ¡°ºˆ : 9999999999", 10 );
+//	pNode = NTL_NEW CStatusHonorContent( this, L"Î™ÖÏòàÏ†êÏàò : 9999999999", 10 );
 //	CGuiLineTree::AddNode( pNode, -2 );
 //
 //	pNode = NTL_NEW CStatusHonorCategoryNode( this,
-//		L"∑©≈©πË∆≤", -3 );
+//		L"Îû≠ÌÅ¨Î∞∞ÌãÄ", -3 );
 //	CGuiLineTree::AddNode( pNode, GUILINETREE_ROOTNODE_ID );
 //	pNode->Expand( true );
 //
-//	pNode = NTL_NEW CStatusHonorContent( this, L"∑©≈©∆˜¿Œ∆Æ : 99999999", 11 );
+//	pNode = NTL_NEW CStatusHonorContent( this, L"Îû≠ÌÅ¨Ìè¨Ïù∏Ìä∏ : 99999999", 11 );
 //	CGuiLineTree::AddNode( pNode, -3 );
 //
 //}
@@ -1340,14 +1423,14 @@ VOID CStatusAvatarTab::SetAttributeToolTip( VOID )
 //	m_pBtnExpand->AddSurfaceDown(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("QuestList.srf", "srfExpandBtnDown"));
 //	m_pBtnExpand->SetText( strTitle.c_str() );
 //
-//	// -πˆ∆∞
+//	// -Î≤ÑÌäº
 //	m_pBtnReduce = NTL_NEW gui::CButton(rect, std::string(),pMgr->GetParentGui(), GetNtlGuiManager()->GetSurfaceManager());
 //	m_pBtnReduce->AddSurfaceUp(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("QuestList.srf", "srfReduceBtnUp"));
 //	m_pBtnReduce->AddSurfaceFocus(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("QuestList.srf", "srfReduceBtnFoc"));
 //	m_pBtnReduce->AddSurfaceDown(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("QuestList.srf", "srfReduceBtnDown"));
 //	m_pBtnReduce->SetText( strTitle.c_str() );
 //
-//	// Button¿« Signal ø¨∞·
+//	// ButtonÏùò Signal Ïó∞Í≤∞
 //	m_slotClickedBtnExpand = m_pBtnExpand->SigClicked().Connect(this, &CStatusHonorCategoryNode::OnClickBtnExpand);
 //	m_slotClickedBtnReduce = m_pBtnReduce->SigClicked().Connect(this, &CStatusHonorCategoryNode::OnClickBtnReduce);
 //}
@@ -1373,7 +1456,7 @@ VOID CStatusAvatarTab::SetAttributeToolTip( VOID )
 //		m_pBtnReduce->Show(false);		
 //	}
 //
-//	// ƒ´≈◊∞Ì∏Æ ≥ÎµÂµÈ¿« ¿ßƒ°∏¶ ¿Á ∞ËªÍ
+//	// Ïπ¥ÌÖåÍ≥†Î¶¨ ÎÖ∏ÎìúÎì§Ïùò ÏúÑÏπòÎ•º Ïû¨ Í≥ÑÏÇ∞
 //	m_pBtnExpand->SetPosition(m_nPosX + dSTATUSWINDOW_CATEGORY_BUTTON_X, m_nPosY + dSTATUSWINDOW_CATEGORY_BUTTON_Y);
 //	m_pBtnReduce->SetPosition(m_nPosX + dSTATUSWINDOW_CATEGORY_BUTTON_X, m_nPosY + dSTATUSWINDOW_CATEGORY_BUTTON_Y);
 //}
@@ -1442,15 +1525,15 @@ CStatusHonorTab::CStatusHonorTab()
 
 CStatusHonorTab::~CStatusHonorTab()
 {
-	
+
 }
 
-RwBool CStatusHonorTab::IsShow( VOID )
+RwBool CStatusHonorTab::IsShow(VOID)
 {
-	if( !m_pSelf->IsVisible() )
+	if (!m_pSelf->IsVisible())
 		return FALSE;
 
-	if( !m_pSelf->GetParent()->IsVisible() )
+	if (!m_pSelf->GetParent()->IsVisible())
 		return FALSE;
 
 	return TRUE;
@@ -1462,13 +1545,13 @@ VOID CStatusHonorTab::Init()
 	m_bExpandRankBattle = FALSE;
 }
 
-RwBool CStatusHonorTab::Create( CNtlPLGui* pParent )
+RwBool CStatusHonorTab::Create(CNtlPLGui* pParent)
 {
-	NTL_FUNCTION( "CStatusHonorTab::Create" );
+	NTL_FUNCTION("CStatusHonorTab::Create");
 
 	Init();
 
-	m_pSelf = reinterpret_cast<gui::CDialog*>( pParent->GetComponent( "dlgHonor" ) );
+	m_pSelf = reinterpret_cast<gui::CDialog*>(pParent->GetComponent("dlgHonor"));
 
 	m_pBtnExpandHonor = (gui::CButton*)pParent->GetComponent("btnHonorExpand");
 	m_pBtnReduceHonor = (gui::CButton*)pParent->GetComponent("btnHonorReduce");
@@ -1478,23 +1561,23 @@ RwBool CStatusHonorTab::Create( CNtlPLGui* pParent )
 	m_pHtmlHonor = (gui::CHtmlBox*)pParent->GetComponent("htmlHonor");
 	m_pHtmlRankBattle = (gui::CHtmlBox*)pParent->GetComponent("htmlRankBattle");
 
-	m_slotClickedBtnExpandHonor = m_pBtnExpandHonor->SigClicked().Connect( this, &CStatusHonorTab::OnClickedBtnExpandHonor );
-	m_slotClickedBtnReduceHonor = m_pBtnReduceHonor->SigClicked().Connect( this, &CStatusHonorTab::OnClickedBtnReduceHonor );
-	m_slotClickedBtnExpandRankBattle = m_pBtnExpandRankBattle->SigClicked().Connect( this, &CStatusHonorTab::OnClickedBtnExpandRankBattle );
-	m_slotClickedBtnReduceRankBattle = m_pBtnReduceRankBattle->SigClicked().Connect( this, &CStatusHonorTab::OnClickedBtnReduceRankBattle );
+	m_slotClickedBtnExpandHonor = m_pBtnExpandHonor->SigClicked().Connect(this, &CStatusHonorTab::OnClickedBtnExpandHonor);
+	m_slotClickedBtnReduceHonor = m_pBtnReduceHonor->SigClicked().Connect(this, &CStatusHonorTab::OnClickedBtnReduceHonor);
+	m_slotClickedBtnExpandRankBattle = m_pBtnExpandRankBattle->SigClicked().Connect(this, &CStatusHonorTab::OnClickedBtnExpandRankBattle);
+	m_slotClickedBtnReduceRankBattle = m_pBtnReduceRankBattle->SigClicked().Connect(this, &CStatusHonorTab::OnClickedBtnReduceRankBattle);
 
-	m_pBtnExpandHonor->SetText( GetDisplayStringManager()->GetString( "DST_STATUS_HONOR_TITLE_HONOR" ) );
-	m_pBtnReduceHonor->SetText( GetDisplayStringManager()->GetString( "DST_STATUS_HONOR_TITLE_HONOR" ) );
-	m_pBtnExpandRankBattle->SetText( GetDisplayStringManager()->GetString( "DST_STATUS_HONOR_TITLE_RANKBATTLE" ) );
-	m_pBtnReduceRankBattle->SetText( GetDisplayStringManager()->GetString( "DST_STATUS_HONOR_TITLE_RANKBATTLE" ) );
+	m_pBtnExpandHonor->SetText(GetDisplayStringManager()->GetString("DST_STATUS_HONOR_TITLE_HONOR"));
+	m_pBtnReduceHonor->SetText(GetDisplayStringManager()->GetString("DST_STATUS_HONOR_TITLE_HONOR"));
+	m_pBtnExpandRankBattle->SetText(GetDisplayStringManager()->GetString("DST_STATUS_HONOR_TITLE_RANKBATTLE"));
+	m_pBtnReduceRankBattle->SetText(GetDisplayStringManager()->GetString("DST_STATUS_HONOR_TITLE_RANKBATTLE"));
 
 	UpdateUI();
 	Refresh();
 
-	NTL_RETURN( TRUE );
+	NTL_RETURN(TRUE);
 }
 
-VOID CStatusHonorTab::Destroy( VOID )
+VOID CStatusHonorTab::Destroy(VOID)
 {
 	NTL_FUNCTION("CStatusHonorTab::Destroy");
 
@@ -1503,32 +1586,32 @@ VOID CStatusHonorTab::Destroy( VOID )
 
 VOID CStatusHonorTab::UpdateUI()
 {
-	m_pBtnExpandRankBattle->Show( !m_bExpandRankBattle );
-	m_pBtnReduceRankBattle->Show( B2b(m_bExpandRankBattle) );
+	m_pBtnExpandRankBattle->Show(!m_bExpandRankBattle);
+	m_pBtnReduceRankBattle->Show(B2b(m_bExpandRankBattle));
 
-	m_pBtnExpandRankBattle->SetPosition( 20, m_pBtnExpandHonor->GetPosition().top ); 
-	m_pBtnReduceRankBattle->SetPosition( 20, m_pBtnExpandHonor->GetPosition().top ); 
+	m_pBtnExpandRankBattle->SetPosition(20, m_pBtnExpandHonor->GetPosition().top);
+	m_pBtnReduceRankBattle->SetPosition(20, m_pBtnExpandHonor->GetPosition().top);
 
-	if( m_bExpandRankBattle )
+	if (m_bExpandRankBattle)
 	{
-		m_pHtmlRankBattle->SetPosition( 50, m_pBtnExpandRankBattle->GetPosition().bottom + 5 );
-		m_pHtmlRankBattle->Show( true );
+		m_pHtmlRankBattle->SetPosition(50, m_pBtnExpandRankBattle->GetPosition().bottom + 5);
+		m_pHtmlRankBattle->Show(true);
 	}
 	else
 	{
-		m_pHtmlRankBattle->Show( false );
+		m_pHtmlRankBattle->Show(false);
 	}
 }
 
-VOID CStatusHonorTab::Refresh( VOID )
+VOID CStatusHonorTab::Refresh(VOID)
 {
 	CNtlSobAvatar* pSobAvatar = GetNtlSLGlobal()->GetSobAvatar();
 
-	if( pSobAvatar )
+	if (pSobAvatar)
 	{
 		CNtlRankBattle* pRankBattle = pSobAvatar->GetRankBattle();
 
-		if( pRankBattle )
+		if (pRankBattle)
 		{
 			sRANKBATTLE_SCORE_INFO* pScore = pRankBattle->GetRankBattleScore();
 
@@ -1536,114 +1619,114 @@ VOID CStatusHonorTab::Refresh( VOID )
 				+ pScore->dwDraw + pScore->dwLose;
 
 			WCHAR awcData[256];
-			swprintf_s( awcData, 256, GetDisplayStringManager()->GetString( "DST_STATUS_HONOR_PRIVATE_SCORE" ),
-				uiTotal, 
+			swprintf_s(awcData, 256, GetDisplayStringManager()->GetString("DST_STATUS_HONOR_PRIVATE_SCORE"),
+				uiTotal,
 				pScore->dwWin,
-				pScore->dwLose );
+				pScore->dwLose);
 
 			WCHAR awcRankPoint[256];
-			swprintf_s( awcRankPoint, 256,
-				GetDisplayStringManager()->GetString( "DST_STATUS_HONOR_RANK_SCORE" ),
-				(RwInt32)pScore->fPoint );
+			swprintf_s(awcRankPoint, 256,
+				GetDisplayStringManager()->GetString("DST_STATUS_HONOR_RANK_SCORE"),
+				(RwInt32)pScore->fPoint);
 
 			WCHAR awcMudosaPoint[256];
-			swprintf_s( awcMudosaPoint, 
-				256, 
-				GetDisplayStringManager()->GetString( "DST_STATUS_HONOR_MUDOSA_SCORE" ),
-				Logic_GetMudosaPoint() );
+			swprintf_s(awcMudosaPoint,
+				256,
+				GetDisplayStringManager()->GetString("DST_STATUS_HONOR_MUDOSA_SCORE"),
+				Logic_GetMudosaPoint());
 
 			WCHAR awcRankBattle[1024];
-			swprintf_s( awcRankBattle, 1024, 
-				GetDisplayStringManager()->GetString( "DST_STATUS_HONOR_HTMLTAG_RANKBATTLE" ), 
-				awcData, 
-				awcRankPoint, 
-				awcMudosaPoint );
+			swprintf_s(awcRankBattle, 1024,
+				GetDisplayStringManager()->GetString("DST_STATUS_HONOR_HTMLTAG_RANKBATTLE"),
+				awcData,
+				awcRankPoint,
+				awcMudosaPoint);
 
-			m_pHtmlRankBattle->SetHtmlFromMemory( awcRankBattle, 1024*sizeof(WCHAR) );
+			m_pHtmlRankBattle->SetHtmlFromMemory(awcRankBattle, 1024 * sizeof(WCHAR));
 		}
 	}
 	else
 	{
 		SAvatarInfo* pInfo = GetNtlSLGlobal()->GetAvatarInfo();
 
-		if( pInfo )
+		if (pInfo)
 		{
 			RwUInt32 uiTotal = pInfo->sRankBattleScoreInfo.dwWin
 				+ pInfo->sRankBattleScoreInfo.dwDraw + pInfo->sRankBattleScoreInfo.dwLose;
 
 			WCHAR awcData[256];
-			swprintf_s( awcData, 256, GetDisplayStringManager()->GetString( "DST_STATUS_HONOR_PRIVATE_SCORE" ),
-				uiTotal, 
+			swprintf_s(awcData, 256, GetDisplayStringManager()->GetString("DST_STATUS_HONOR_PRIVATE_SCORE"),
+				uiTotal,
 				pInfo->sRankBattleScoreInfo.dwWin,
-				pInfo->sRankBattleScoreInfo.dwLose );
+				pInfo->sRankBattleScoreInfo.dwLose);
 
 			WCHAR awcRankPoint[256];
-			swprintf_s( awcRankPoint, 256,
-				GetDisplayStringManager()->GetString( "DST_STATUS_HONOR_RANK_SCORE" ),
-				(RwInt32)pInfo->sRankBattleScoreInfo.fPoint );
+			swprintf_s(awcRankPoint, 256,
+				GetDisplayStringManager()->GetString("DST_STATUS_HONOR_RANK_SCORE"),
+				(RwInt32)pInfo->sRankBattleScoreInfo.fPoint);
 
 			WCHAR awcMudosaPoint[256];
-			swprintf_s( awcMudosaPoint, 
-				256, 
-				GetDisplayStringManager()->GetString( "DST_STATUS_HONOR_MUDOSA_SCORE" ),
-				Logic_GetMudosaPoint() );
+			swprintf_s(awcMudosaPoint,
+				256,
+				GetDisplayStringManager()->GetString("DST_STATUS_HONOR_MUDOSA_SCORE"),
+				Logic_GetMudosaPoint());
 
 			WCHAR awcRankBattle[1024];
-			swprintf_s( awcRankBattle, 1024, 
-				GetDisplayStringManager()->GetString( "DST_STATUS_HONOR_HTMLTAG_RANKBATTLE" ), 
-				awcData, 
-				awcRankPoint, 
-				awcMudosaPoint );
+			swprintf_s(awcRankBattle, 1024,
+				GetDisplayStringManager()->GetString("DST_STATUS_HONOR_HTMLTAG_RANKBATTLE"),
+				awcData,
+				awcRankPoint,
+				awcMudosaPoint);
 
-			m_pHtmlRankBattle->SetHtmlFromMemory( awcRankBattle, 1024*sizeof(WCHAR) );
+			m_pHtmlRankBattle->SetHtmlFromMemory(awcRankBattle, 1024 * sizeof(WCHAR));
 		}
 	}
 }
 
-VOID CStatusHonorTab::HandleEvents( RWS::CMsg& msg )
+VOID CStatusHonorTab::HandleEvents(RWS::CMsg& msg)
 {
-	if( msg.Id == g_EventRBTotalScoreUpdate ||
-		msg.Id == g_EventCharRankPointResetNfy )
+	if (msg.Id == g_EventRBTotalScoreUpdate ||
+		msg.Id == g_EventCharRankPointResetNfy)
 	{
 		Refresh();
 	}
-	else if( msg.Id == g_EventSobInfoUpdate )
+	else if (msg.Id == g_EventSobInfoUpdate)
 	{
-		if( !IsShow() )
+		if (!IsShow())
 			return;
 
-		SNtlEventSobInfoUpdate* pUpdate = reinterpret_cast<SNtlEventSobInfoUpdate*>( msg.pData );
+		SNtlEventSobInfoUpdate* pUpdate = reinterpret_cast<SNtlEventSobInfoUpdate*>(msg.pData);
 
-		if( pUpdate->hSerialId != GetNtlSLGlobal()->GetSobAvatar()->GetSerialID() )
+		if (pUpdate->hSerialId != GetNtlSLGlobal()->GetSobAvatar()->GetSerialID())
 			return;
 
-		if( pUpdate->uiUpdateType & EVENT_AIUT_POINT_MUDOSA ||
-			pUpdate->uiUpdateType & EVENT_AIUT_POINT_HONOR )
+		if (pUpdate->uiUpdateType & EVENT_AIUT_POINT_MUDOSA ||
+			pUpdate->uiUpdateType & EVENT_AIUT_POINT_HONOR)
 		{
 			Refresh();
 		}
 	}
 }
 
-VOID CStatusHonorTab::OnClickedBtnExpandHonor( gui::CComponent* pComponent )
+VOID CStatusHonorTab::OnClickedBtnExpandHonor(gui::CComponent* pComponent)
 {
 	m_bExpandHonor = TRUE;
 	UpdateUI();
 }
 
-VOID CStatusHonorTab::OnClickedBtnReduceHonor( gui::CComponent* pComponent )
+VOID CStatusHonorTab::OnClickedBtnReduceHonor(gui::CComponent* pComponent)
 {
 	m_bExpandHonor = FALSE;
 	UpdateUI();
 }
 
-VOID CStatusHonorTab::OnClickedBtnExpandRankBattle( gui::CComponent* pComponent )
+VOID CStatusHonorTab::OnClickedBtnExpandRankBattle(gui::CComponent* pComponent)
 {
 	m_bExpandRankBattle = TRUE;
 	UpdateUI();
 }
 
-VOID CStatusHonorTab::OnClickedBtnReduceRankBattle( gui::CComponent* pComponent )
+VOID CStatusHonorTab::OnClickedBtnReduceRankBattle(gui::CComponent* pComponent)
 {
 	m_bExpandRankBattle = FALSE;
 	UpdateUI();
@@ -1663,7 +1746,7 @@ CStatusTechnicTab::~CStatusTechnicTab()
 
 }
 
-RwBool CStatusTechnicTab::IsShow( VOID )
+RwBool CStatusTechnicTab::IsShow(VOID)
 {
 	return m_pSelf->IsVisible();
 }
@@ -1673,46 +1756,46 @@ VOID CStatusTechnicTab::Init()
 	m_bHoipoiMixExpand = true;
 }
 
-RwBool CStatusTechnicTab::Create( CNtlPLGui* pParent )
+RwBool CStatusTechnicTab::Create(CNtlPLGui* pParent)
 {
 	Init();
 
-	m_pSelf = reinterpret_cast<gui::CDialog*>( pParent->GetComponent( "dlgTechnic" ) );
+	m_pSelf = reinterpret_cast<gui::CDialog*>(pParent->GetComponent("dlgTechnic"));
 
-	m_pBtnExpandHoipoiMix = reinterpret_cast<gui::CButton*>( pParent->GetComponent( "btnHoipoiExpand") );
-	m_pBtnExpandHoipoiMix->SetText( GetDisplayStringManager()->GetString( "DST_STATUS_TECHNIC_HOIPOIMIX_TITLE" ) );
-	m_pBtnReduceHoipoiMix = reinterpret_cast<gui::CButton*>( pParent->GetComponent( "btnHoipoiReduce") );
-	m_pBtnReduceHoipoiMix->SetText( GetDisplayStringManager()->GetString( "DST_STATUS_TECHNIC_HOIPOIMIX_TITLE" ) );
+	m_pBtnExpandHoipoiMix = reinterpret_cast<gui::CButton*>(pParent->GetComponent("btnHoipoiExpand"));
+	m_pBtnExpandHoipoiMix->SetText(GetDisplayStringManager()->GetString("DST_STATUS_TECHNIC_HOIPOIMIX_TITLE"));
+	m_pBtnReduceHoipoiMix = reinterpret_cast<gui::CButton*>(pParent->GetComponent("btnHoipoiReduce"));
+	m_pBtnReduceHoipoiMix->SetText(GetDisplayStringManager()->GetString("DST_STATUS_TECHNIC_HOIPOIMIX_TITLE"));
 
-	m_slotClickedBtnExpandHoipoiMix = m_pBtnExpandHoipoiMix->SigClicked().Connect( this, &CStatusTechnicTab::OnClickedBtnExpandHoipoiMix );
-	m_slotClickedBtnReduceHoipoiMix = m_pBtnReduceHoipoiMix->SigClicked().Connect( this, &CStatusTechnicTab::OnClickedBtnReduceHoipoiMix );
+	m_slotClickedBtnExpandHoipoiMix = m_pBtnExpandHoipoiMix->SigClicked().Connect(this, &CStatusTechnicTab::OnClickedBtnExpandHoipoiMix);
+	m_slotClickedBtnReduceHoipoiMix = m_pBtnReduceHoipoiMix->SigClicked().Connect(this, &CStatusTechnicTab::OnClickedBtnReduceHoipoiMix);
 
-	m_pHoipoiMixDlg = reinterpret_cast<gui::CDialog*>( pParent->GetComponent( "dlgHoipoiMix" ) );
-	
-	m_pStbMixLevel = reinterpret_cast<gui::CStaticBox*>( pParent->GetComponent( "stbMixlevel" ) );
-	m_pStbMixLevel->SetText( GetDisplayStringManager()->GetString( "DST_STATUS_TECHNIC_HOIPOIMIX_MIXLEVEL" ) );
-	m_pStbMixLevelData = reinterpret_cast<gui::CStaticBox*>( pParent->GetComponent( "stbMixLevelData" ) );
-	m_pStbMixExp = reinterpret_cast<gui::CStaticBox*>( pParent->GetComponent( "stbMixExp" ) );
-	m_pStbMixExp->SetText( GetDisplayStringManager()->GetString( "DST_STATUS_TECHNIC_HOIPOIMIX_MIXEXPDATA" ) );
-	m_pStbMixExpData = reinterpret_cast<gui::CStaticBox*>( pParent->GetComponent( "stbMixExpData" ) );
-	m_pPgbExpData = reinterpret_cast<gui::CProgressBar*>( pParent->GetComponent( "pgbMixExpData" ) );
-	m_pPgbExpData->SetRange( 0, 100 );
+	m_pHoipoiMixDlg = reinterpret_cast<gui::CDialog*>(pParent->GetComponent("dlgHoipoiMix"));
 
-	m_pStbNormalMix = reinterpret_cast<gui::CStaticBox*>( pParent->GetComponent( "stbNormalMix" ) );
-	m_pStbNormalMix->SetText( GetDisplayStringManager()->GetString( "DST_STATUS_TECHNIC_HOIPOIMIX_INFO" ) );
-	m_pStbNormalRequireGuide = reinterpret_cast<gui::CStaticBox*>( pParent->GetComponent( "stbNormalRequireGuide" ) );
-	m_pStbNormalRequireGuide->SetText( GetDisplayStringManager()->GetString( "DST_STATUS_TECHNIC_HOIPOIMIX_INFO_GUIDE" ) );
-	m_pHtmlNormalGuide = reinterpret_cast<gui::CHtmlBox*>( pParent->GetComponent( "htmlNormalGuide" ) );
-	m_pHtmlNormalGuide->SetHtmlFromMemory( GetDisplayStringManager()->GetString( "DST_STATUS_TECHNIC_HOIPOIMIX_INFO_GUIDE_HTML" ),
-		wcslen( GetDisplayStringManager()->GetString( "DST_STATUS_TECHNIC_HOIPOIMIX_INFO_GUIDE_HTML" ) ) );
+	m_pStbMixLevel = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent("stbMixlevel"));
+	m_pStbMixLevel->SetText(GetDisplayStringManager()->GetString("DST_STATUS_TECHNIC_HOIPOIMIX_MIXLEVEL"));
+	m_pStbMixLevelData = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent("stbMixLevelData"));
+	m_pStbMixExp = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent("stbMixExp"));
+	m_pStbMixExp->SetText(GetDisplayStringManager()->GetString("DST_STATUS_TECHNIC_HOIPOIMIX_MIXEXPDATA"));
+	m_pStbMixExpData = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent("stbMixExpData"));
+	m_pPgbExpData = reinterpret_cast<gui::CProgressBar*>(pParent->GetComponent("pgbMixExpData"));
+	m_pPgbExpData->SetRange(0, 100);
 
-	m_pStbSpecialMix = reinterpret_cast<gui::CStaticBox*>( pParent->GetComponent( "stbSpecialMix" ) );
-	m_pStbSpecialMix->SetText( GetDisplayStringManager()->GetString( "DST_STATUS_TECHNIC_HOIPOIMIX_SPECIAL_SKILL" ) );
-	m_pStbSpecialRequireGuide = reinterpret_cast<gui::CStaticBox*>( pParent->GetComponent( "stbSpecialRequireGuide" ) );
-	m_pStbSpecialRequireGuide->SetText( GetDisplayStringManager()->GetString( "DST_STATUS_TECHNIC_HOIPOIMIX_SPECIAL_SKILL_GUIDE" ) );
-	m_pHtmlSpecialGuide = reinterpret_cast<gui::CHtmlBox*>( pParent->GetComponent( "htmlSpecialGuide" ) );
-	m_pHtmlSpecialGuide->SetHtmlFromMemory( GetDisplayStringManager()->GetString( "DST_STATUS_TECHNIC_HOIPOIMIX_SPECIAL_SKILL_GUIDE_HTML" ),
-		wcslen( GetDisplayStringManager()->GetString( "DST_STATUS_TECHNIC_HOIPOIMIX_SPECIAL_SKILL_GUIDE_HTML" ) ) );
+	m_pStbNormalMix = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent("stbNormalMix"));
+	m_pStbNormalMix->SetText(GetDisplayStringManager()->GetString("DST_STATUS_TECHNIC_HOIPOIMIX_INFO"));
+	m_pStbNormalRequireGuide = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent("stbNormalRequireGuide"));
+	m_pStbNormalRequireGuide->SetText(GetDisplayStringManager()->GetString("DST_STATUS_TECHNIC_HOIPOIMIX_INFO_GUIDE"));
+	m_pHtmlNormalGuide = reinterpret_cast<gui::CHtmlBox*>(pParent->GetComponent("htmlNormalGuide"));
+	m_pHtmlNormalGuide->SetHtmlFromMemory(GetDisplayStringManager()->GetString("DST_STATUS_TECHNIC_HOIPOIMIX_INFO_GUIDE_HTML"),
+		wcslen(GetDisplayStringManager()->GetString("DST_STATUS_TECHNIC_HOIPOIMIX_INFO_GUIDE_HTML")));
+
+	m_pStbSpecialMix = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent("stbSpecialMix"));
+	m_pStbSpecialMix->SetText(GetDisplayStringManager()->GetString("DST_STATUS_TECHNIC_HOIPOIMIX_SPECIAL_SKILL"));
+	m_pStbSpecialRequireGuide = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent("stbSpecialRequireGuide"));
+	m_pStbSpecialRequireGuide->SetText(GetDisplayStringManager()->GetString("DST_STATUS_TECHNIC_HOIPOIMIX_SPECIAL_SKILL_GUIDE"));
+	m_pHtmlSpecialGuide = reinterpret_cast<gui::CHtmlBox*>(pParent->GetComponent("htmlSpecialGuide"));
+	m_pHtmlSpecialGuide->SetHtmlFromMemory(GetDisplayStringManager()->GetString("DST_STATUS_TECHNIC_HOIPOIMIX_SPECIAL_SKILL_GUIDE_HTML"),
+		wcslen(GetDisplayStringManager()->GetString("DST_STATUS_TECHNIC_HOIPOIMIX_SPECIAL_SKILL_GUIDE_HTML")));
 
 	m_pStbSpecialMix->Show(false);
 	m_pStbSpecialRequireGuide->Show(false);
@@ -1725,33 +1808,33 @@ RwBool CStatusTechnicTab::Create( CNtlPLGui* pParent )
 	return TRUE;
 }
 
-VOID CStatusTechnicTab::Destroy( VOID )
+VOID CStatusTechnicTab::Destroy(VOID)
 {
 
 }
 
-VOID CStatusTechnicTab::HandleEvents( RWS::CMsg& msg )
+VOID CStatusTechnicTab::HandleEvents(RWS::CMsg& msg)
 {
-	if( msg.Id == g_EventHoipoiMixItemMakeExpNfy)
+	if (msg.Id == g_EventHoipoiMixItemMakeExpNfy)
 	{
 		Refresh(msg.pData);
 	}
 }
 
-VOID CStatusTechnicTab::UpdateUI( VOID )
+VOID CStatusTechnicTab::UpdateUI(VOID)
 {
-	m_pBtnExpandHoipoiMix->Show( !m_bHoipoiMixExpand );
-	m_pBtnReduceHoipoiMix->Show( m_bHoipoiMixExpand );
-	m_pHoipoiMixDlg->Show( m_bHoipoiMixExpand );
+	m_pBtnExpandHoipoiMix->Show(!m_bHoipoiMixExpand);
+	m_pBtnReduceHoipoiMix->Show(m_bHoipoiMixExpand);
+	m_pHoipoiMixDlg->Show(m_bHoipoiMixExpand);
 }
 
 VOID CStatusTechnicTab::Refresh(void* pNotify)
 {
-	CNtlSobAvatar* pSobAvatar =  GetNtlSLGlobal()->GetSobAvatar();
-	if( pSobAvatar )
+	CNtlSobAvatar* pSobAvatar = GetNtlSLGlobal()->GetSobAvatar();
+	if (pSobAvatar)
 	{
 		CNtlSLHoipoiMix* pHoipoiMix = pSobAvatar->GetHoipoiMix();
-		if( pHoipoiMix )
+		if (pHoipoiMix)
 		{
 			RwUInt8 byLevel = pHoipoiMix->GetMixLevel();
 
@@ -1763,22 +1846,22 @@ VOID CStatusTechnicTab::Refresh(void* pNotify)
 			}
 
 			// set level
-			m_pStbMixLevelData->SetText( byLevel );
+			m_pStbMixLevelData->SetText(byLevel);
 
 			// set exp
 			RwUInt32 uiExp = pHoipoiMix->GetMixExp();
 			RwUInt32 uiMaxExp = pTblDat->dwNeedEXP;
 
 			WCHAR awcBuffer[128];
-			swprintf_s( awcBuffer, 128, L"%u / %u", uiExp, uiMaxExp );
+			swprintf_s(awcBuffer, 128, L"%u / %u", uiExp, uiMaxExp);
 
-			m_pStbMixExpData->SetText( awcBuffer );
+			m_pStbMixExpData->SetText(awcBuffer);
 			RwInt32 nPercent = 0;
 
-			if( uiExp != 0 )
+			if (uiExp != 0)
 			{
-				nPercent = (RwInt32)(( (RwReal)uiExp / (RwReal)uiMaxExp ) * 100.f );
-				if( nPercent > 100 )
+				nPercent = (RwInt32)(((RwReal)uiExp / (RwReal)uiMaxExp) * 100.f);
+				if (nPercent > 100)
 					nPercent = 100;
 			}
 
@@ -1794,25 +1877,25 @@ VOID CStatusTechnicTab::Refresh(void* pNotify)
 						GetAlarmManager()->AlarmMessage("DST_NOTIFY_GAIN_MIX_EXP_MAX");
 				}
 			}
-		
-			m_pPgbExpData->SetPos( nPercent );
 
-			m_pHtmlNormalGuide->SetHtmlFromMemory( GetDisplayStringManager()->GetString( "DST_STATUS_TECHNIC_HOIPOIMIX_NORMAL_SKILL_GUIDE_HTML" ),
-					wcslen( GetDisplayStringManager()->GetString( "DST_STATUS_TECHNIC_HOIPOIMIX_NORMAL_SKILL_GUIDE_HTML" ) ) );
+			m_pPgbExpData->SetPos(nPercent);
 
-			m_pHtmlSpecialGuide->SetHtmlFromMemory( GetDisplayStringManager()->GetString( "DST_STATUS_TECHNIC_HOIPOIMIX_NORMAL_SKILL_GUIDE_HTML" ),
-				wcslen( GetDisplayStringManager()->GetString( "DST_STATUS_TECHNIC_HOIPOIMIX_NORMAL_SKILL_GUIDE_HTML" ) ) );
+			m_pHtmlNormalGuide->SetHtmlFromMemory(GetDisplayStringManager()->GetString("DST_STATUS_TECHNIC_HOIPOIMIX_NORMAL_SKILL_GUIDE_HTML"),
+				wcslen(GetDisplayStringManager()->GetString("DST_STATUS_TECHNIC_HOIPOIMIX_NORMAL_SKILL_GUIDE_HTML")));
+
+			m_pHtmlSpecialGuide->SetHtmlFromMemory(GetDisplayStringManager()->GetString("DST_STATUS_TECHNIC_HOIPOIMIX_NORMAL_SKILL_GUIDE_HTML"),
+				wcslen(GetDisplayStringManager()->GetString("DST_STATUS_TECHNIC_HOIPOIMIX_NORMAL_SKILL_GUIDE_HTML")));
 		}
 	}
 }
 
-VOID CStatusTechnicTab::OnClickedBtnExpandHoipoiMix( gui::CComponent* pComponent )
+VOID CStatusTechnicTab::OnClickedBtnExpandHoipoiMix(gui::CComponent* pComponent)
 {
 	m_bHoipoiMixExpand = true;
 	UpdateUI();
 }
 
-VOID CStatusTechnicTab::OnClickedBtnReduceHoipoiMix( gui::CComponent* pComponent )
+VOID CStatusTechnicTab::OnClickedBtnReduceHoipoiMix(gui::CComponent* pComponent)
 {
 	m_bHoipoiMixExpand = false;
 	UpdateUI();
@@ -1853,12 +1936,12 @@ RwBool CStatusStatsTab::Create(CNtlPLGui* pParent)
 
 	m_pOutDisplayStatsName = reinterpret_cast<gui::COutputBox*>(pParent->GetComponent("outputDisplayStatsName"));
 	m_pOutDisplayStatsName->SetLineSpace(3);
-	m_pOutDisplayStatsName->SetMaxLine(ATTRIBUTE_TO_UPDATE_COUNT);
+	m_pOutDisplayStatsName->SetMaxLine(157);
 	m_pOutDisplayStatsName->ShowScrollBar(false);
 
 	m_pOutDisplayStatsValue = reinterpret_cast<gui::COutputBox*>(pParent->GetComponent("outputDisplayStatsValue"));
 	m_pOutDisplayStatsValue->SetLineSpace(3);
-	m_pOutDisplayStatsValue->SetMaxLine(ATTRIBUTE_TO_UPDATE_COUNT);
+	m_pOutDisplayStatsValue->SetMaxLine(157);
 
 	m_pOutDisplayStatsName->Clear(); // if we dont do this, then it will crash after ~80 lines
 
@@ -1952,7 +2035,7 @@ RwBool CStatusStatsTab::Create(CNtlPLGui* pParent)
 	m_pOutDisplayStatsName->AddText("EXP Boost %:");
 	m_pOutDisplayStatsName->AddText("Quest Drop Rate %:");
 
-	m_slotWheelMoveStats = GetNtlGuiManager()->GetGuiManager()->SigCaptureWheelMove().Connect(this, &CStatusStatsTab::OnCaptureWheelMove); 
+	m_slotWheelMoveStats = GetNtlGuiManager()->GetGuiManager()->SigCaptureWheelMove().Connect(this, &CStatusStatsTab::OnCaptureWheelMove);
 	m_slotSliderValueChanged = m_pOutDisplayStatsValue->GetVerticalScrollBar()->SigValueChanged().Connect(this, &CStatusStatsTab::OnScrollChanged);
 	m_slotSliderMoved = m_pOutDisplayStatsValue->GetVerticalScrollBar()->SigSliderMoved().Connect(this, &CStatusStatsTab::OnScrollChanged);
 
@@ -1966,7 +2049,7 @@ VOID CStatusStatsTab::Destroy(VOID)
 
 VOID CStatusStatsTab::HandleEvents(RWS::CMsg& msg)
 {
-	
+
 }
 
 VOID CStatusStatsTab::Refresh(VOID)
@@ -1988,12 +2071,18 @@ VOID CStatusStatsTab::UpdateStatData(VOID)
 
 	m_pOutDisplayStatsValue->Clear();
 
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_Str);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_Con);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_Foc);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_Dex);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_Sol);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_Eng);
+	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->wBaseStr);
+	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->wLastStr);
+	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->wBaseCon);
+	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->wLastCon);
+	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->wBaseFoc);
+	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->wLastFoc);
+	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->wBaseSol);
+	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->wLastSol);
+	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->wBaseEng);
+	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->wLastEng);
+
+	/* TODO: Uncomment those stats
 	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wLpRegen);
 	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wLpSitdownRegen);
 	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wLpBattleRegen);
@@ -2074,9 +2163,11 @@ VOID CStatusStatsTab::UpdateStatData(VOID)
 	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fCurseBlockModeSuccessRate);
 	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fKnockdownBlockModeSuccessRate);
 	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fHtbBlockModeSuccessRate);
+
 	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fItemUpgradeBonusRate);
 	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_byExpBooster);
 	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_byQuestDropRate);
+	*/
 }
 
 VOID CStatusStatsTab::OnCaptureWheelMove(RwInt32 nFlag, RwInt16 sDelta, CPos& pos)
@@ -2128,8 +2219,8 @@ CStatusWindowGui::CStatusWindowGui(VOID)
 	m_pTechnicTab = NULL;
 }
 
-CStatusWindowGui::CStatusWindowGui( const RwChar* pName )
-: CNtlPLGui( pName )
+CStatusWindowGui::CStatusWindowGui(const RwChar* pName)
+	: CNtlPLGui(pName)
 {
 	m_pstbTitle = NULL;
 	m_ptabStatus = NULL;
@@ -2150,57 +2241,57 @@ CStatusWindowGui::~CStatusWindowGui(VOID)
 // ! Operation
 RwBool CStatusWindowGui::Create(VOID)
 {
-	NTL_FUNCTION( "CStatusWindowGui::Create" );
+	NTL_FUNCTION("CStatusWindowGui::Create");
 
-	if( !CNtlPLGui::Create( "", "gui\\StatusWnd.srf", "gui\\StatusWnd.frm" ) )
-		NTL_RETURN( FALSE );
+	if (!CNtlPLGui::Create("", "gui\\StatusWnd.srf", "gui\\StatusWnd.frm"))
+		NTL_RETURN(FALSE);
 
-	CNtlPLGui::CreateComponents( GetNtlGuiManager()->GetGuiManager() );
+	CNtlPLGui::CreateComponents(GetNtlGuiManager()->GetGuiManager());
 
-	m_pThis = (gui::CDialog*)GetComponent( "dlgMain" );
-	
-	m_pstbTitle = reinterpret_cast<gui::CStaticBox*>( GetComponent( "stbTitle" ) );
-	m_ptabStatus = reinterpret_cast<gui::CTabButton*>( GetComponent( "tabStatus" ) );
-	m_pbtnExit = reinterpret_cast<gui::CButton*>( GetComponent( "btnClose" ) );
-	m_pBtnHelp = reinterpret_cast<gui::CButton*>( GetComponent( "btnHelp" ) );
+	m_pThis = (gui::CDialog*)GetComponent("dlgMain");
 
-	m_slotHelp = m_pBtnHelp->SigClicked().Connect( this, &CStatusWindowGui::OnClickedHelp );
+	m_pstbTitle = reinterpret_cast<gui::CStaticBox*>(GetComponent("stbTitle"));
+	m_ptabStatus = reinterpret_cast<gui::CTabButton*>(GetComponent("tabStatus"));
+	m_pbtnExit = reinterpret_cast<gui::CButton*>(GetComponent("btnClose"));
+	m_pBtnHelp = reinterpret_cast<gui::CButton*>(GetComponent("btnHelp"));
 
-	m_slotSelectTab = m_ptabStatus->SigSelectChanged().Connect( this, &CStatusWindowGui::OnSelectedTab );
-	m_slotExit = m_pbtnExit->SigClicked().Connect( this, &CStatusWindowGui::OnClickedExit );
-	m_slotCaptureMouseDown = GetNtlGuiManager()->GetGuiManager()->SigCaptureMouseDown().Connect( this, &CStatusWindowGui::OnAbsolulteClick );
-	
+	m_slotHelp = m_pBtnHelp->SigClicked().Connect(this, &CStatusWindowGui::OnClickedHelp);
+
+	m_slotSelectTab = m_ptabStatus->SigSelectChanged().Connect(this, &CStatusWindowGui::OnSelectedTab);
+	m_slotExit = m_pbtnExit->SigClicked().Connect(this, &CStatusWindowGui::OnClickedExit);
+	m_slotCaptureMouseDown = GetNtlGuiManager()->GetGuiManager()->SigCaptureMouseDown().Connect(this, &CStatusWindowGui::OnAbsolulteClick);
+
 	m_pAvatarTab = NTL_NEW CStatusAvatarTab;
-	NTL_ASSERT( m_pAvatarTab, "CStatusWindowGui::Create() : Alloc Fail" );
-	if( !m_pAvatarTab->Create( this ) )
+	NTL_ASSERT(m_pAvatarTab, "CStatusWindowGui::Create() : Alloc Fail");
+	if (!m_pAvatarTab->Create(this))
 	{
 		m_pAvatarTab->Destroy();
 
-		NTL_DELETE( m_pAvatarTab );
+		NTL_DELETE(m_pAvatarTab);
 
-		NTL_RETURN( FALSE );
+		NTL_RETURN(FALSE);
 	}
 
 	m_pHonorTab = NTL_NEW CStatusHonorTab;
-	NTL_ASSERT( m_pHonorTab, "CStatusWindowGui::Create() : Alloc Failed" );
-	if( !m_pHonorTab->Create( this ) )
+	NTL_ASSERT(m_pHonorTab, "CStatusWindowGui::Create() : Alloc Failed");
+	if (!m_pHonorTab->Create(this))
 	{
 		m_pHonorTab->Destroy();
 
-		NTL_DELETE( m_pHonorTab );
+		NTL_DELETE(m_pHonorTab);
 
-		NTL_RETURN( FALSE );
+		NTL_RETURN(FALSE);
 	}
 
 	m_pTechnicTab = NTL_NEW CStatusTechnicTab;
-	NTL_ASSERT( m_pTechnicTab, "CStatusWindowGui::Create() : Alloc Failed" );
-	if( !m_pTechnicTab->Create( this ) )
+	NTL_ASSERT(m_pTechnicTab, "CStatusWindowGui::Create() : Alloc Failed");
+	if (!m_pTechnicTab->Create(this))
 	{
 		m_pTechnicTab->Destroy();
 
-		NTL_DELETE( m_pTechnicTab );
+		NTL_DELETE(m_pTechnicTab);
 
-		NTL_RETURN( FALSE );
+		NTL_RETURN(FALSE);
 	}
 
 	m_pStatsTab = NTL_NEW CStatusStatsTab;
@@ -2216,19 +2307,21 @@ RwBool CStatusWindowGui::Create(VOID)
 
 	// Initial Setting
 	SetBasicUISetting();
-	m_pThis->Show( false );
+	m_pThis->Show(false);
 
 	// serialize setting
 	EnableSerialize(TRUE);
 
-	// Update ø¨∞·
-	GetNtlGuiManager()->AddUpdateBeforeFunc( this );
-	
+	// Update Ïó∞Í≤∞
+	GetNtlGuiManager()->AddUpdateBeforeFunc(this);
+
 	// Event Link
-	LinkMsg( g_EventSobInfoUpdate, 0 );
-	LinkMsg( g_EventIconMoveClick, 0 );
-	LinkMsg( g_EventPickedUpHide, 0 );
-	LinkMsg( g_EventEnableItemIcon, 0 );
+	LinkMsg(g_EventSobInfoUpdate, 0);
+	LinkMsg(g_EventIconMoveClick, 0);
+	LinkMsg(g_EventPickedUpHide, 0);
+	LinkMsg(g_EventEnableItemIcon, 0);
+	LinkMsg(g_EventSubWeaponActive, (const char*)0, 0x7000);
+	LinkMsg(g_EventSubWeaponDeActive, (const char*)0, 0x7000);
 	LinkMsg(g_EventSobEquipChange, (const char*)0, 0x7000);
 	LinkMsg(g_EventTLNotifyLockUnlock, 0);
 	LinkMsg(g_EventChangeWorldConceptState, 0);
@@ -2240,18 +2333,20 @@ RwBool CStatusWindowGui::Create(VOID)
 	LinkMsg(g_EventCharTitleSelectRes);
 	LinkMsg(g_EventCharTitleUpdate);
 
-	NTL_RETURN( TRUE );
+	NTL_RETURN(TRUE);
 }
 
 VOID CStatusWindowGui::Destroy(VOID)
 {
-	NTL_FUNCTION( "CStatusWindowGui::Destroy" );
+	NTL_FUNCTION("CStatusWindowGui::Destroy");
 
 	// Event Unlink
-	UnLinkMsg( g_EventIconMoveClick );
-	UnLinkMsg( g_EventSobInfoUpdate );
-	UnLinkMsg( g_EventPickedUpHide );
-	UnLinkMsg( g_EventEnableItemIcon );
+	UnLinkMsg(g_EventIconMoveClick);
+	UnLinkMsg(g_EventSobInfoUpdate);
+	UnLinkMsg(g_EventPickedUpHide);
+	UnLinkMsg(g_EventEnableItemIcon);
+	UnLinkMsg(g_EventSubWeaponActive);
+	UnLinkMsg(g_EventSubWeaponDeActive);
 	UnLinkMsg(g_EventSobEquipChange);
 	UnLinkMsg(g_EventTLNotifyLockUnlock);
 	UnLinkMsg(g_EventChangeWorldConceptState);
@@ -2266,8 +2361,8 @@ VOID CStatusWindowGui::Destroy(VOID)
 	CNtlPLGui::DestroyComponents();
 	CNtlPLGui::Destroy();
 
-	// Update «ÿ¡¶
-	GetNtlGuiManager()->RemoveUpdateBeforeFunc( this );
+	// Update Ìï¥Ï†ú
+	GetNtlGuiManager()->RemoveUpdateBeforeFunc(this);
 
 	NTL_DELETE(m_pAvatarTab);
 	NTL_DELETE(m_pHonorTab);
@@ -2279,54 +2374,54 @@ VOID CStatusWindowGui::Destroy(VOID)
 
 VOID CStatusWindowGui::UpdateBeforeCamera(RwReal fElapsed)
 {
-	if( m_nCurrentTab == TAB_AVATAR )
-		m_pAvatarTab->UpdateBeforeCamera( fElapsed );	
+	if (m_nCurrentTab == TAB_AVATAR)
+		m_pAvatarTab->UpdateBeforeCamera(fElapsed);
 }
 
-VOID CStatusWindowGui::HandleEvents( RWS::CMsg& msg )
+VOID CStatusWindowGui::HandleEvents(RWS::CMsg& msg)
 {
-	if( m_nCurrentTab == TAB_AVATAR )
-		m_pAvatarTab->HandleEvents( msg );
-	else if( m_nCurrentTab == TAB_HONOR )
-		m_pHonorTab->HandleEvents( msg );
-	else if( m_nCurrentTab == TAB_TECHNIC )
-		m_pTechnicTab->HandleEvents( msg );
+	if (m_nCurrentTab == TAB_AVATAR)
+		m_pAvatarTab->HandleEvents(msg);
+	else if (m_nCurrentTab == TAB_HONOR)
+		m_pHonorTab->HandleEvents(msg);
+	else if (m_nCurrentTab == TAB_TECHNIC)
+		m_pTechnicTab->HandleEvents(msg);
 	else if (m_nCurrentTab == TAB_STATS)
 		m_pStatsTab->HandleEvents(msg);
 
-	if( msg.Id == g_EventTLNotifyLockUnlock )
+	if (msg.Id == g_EventTLNotifyLockUnlock)
 	{
-		SNtlEventTLLockUnlcok* pEvent = reinterpret_cast<SNtlEventTLLockUnlcok*>( msg.pData );
+		SNtlEventTLLockUnlcok* pEvent = reinterpret_cast<SNtlEventTLLockUnlcok*>(msg.pData);
 
-		if( pEvent->byLockType != TLLOCK_MOUSE )
+		if (pEvent->byLockType != TLLOCK_MOUSE)
 			return;
 
-		if( pEvent->byIndex != ETL_MOUSE_INPUT_TYPE_STATUS_WND_TAB && 
-			pEvent->byIndex != ETL_MOUSE_INPUT_TYPE_ALL )
+		if (pEvent->byIndex != ETL_MOUSE_INPUT_TYPE_STATUS_WND_TAB &&
+			pEvent->byIndex != ETL_MOUSE_INPUT_TYPE_ALL)
 			return;
 
-		for( RwUInt8 i = 0 ; i < m_ptabStatus->GetButtonCount() ; ++i )
+		for (RwUInt8 i = 0; i < m_ptabStatus->GetButtonCount(); ++i)
 			m_ptabStatus->EnableTab(i, !pEvent->bLock);
 	}
-	else if( msg.Id == g_EventChangeWorldConceptState )
+	else if (msg.Id == g_EventChangeWorldConceptState)
 	{
-		SNtlEventWorldConceptState* pEvent = reinterpret_cast<SNtlEventWorldConceptState*>( msg.pData );
+		SNtlEventWorldConceptState* pEvent = reinterpret_cast<SNtlEventWorldConceptState*>(msg.pData);
 
-		if( pEvent->eWorldConcept == WORLD_PLAY_TUTORIAL )
+		if (pEvent->eWorldConcept == WORLD_PLAY_TUTORIAL)
 		{
-			if( pEvent->uiState == WORLD_STATE_EXIT )
+			if (pEvent->uiState == WORLD_STATE_EXIT)
 			{
-				for( RwUInt8 i = 0 ; i < m_ptabStatus->GetButtonCount() ; ++i )
+				for (RwUInt8 i = 0; i < m_ptabStatus->GetButtonCount(); ++i)
 					m_ptabStatus->EnableTab(i, true);
 			}
 		}
 	}
-	else if( msg.Id == g_EventChangeClassAuthorityChangedNfy )
+	else if (msg.Id == g_EventChangeClassAuthorityChangedNfy)
 	{
-		SNtlEventChangeClassAuthorityChanged* pData = reinterpret_cast<SNtlEventChangeClassAuthorityChanged*>( msg.pData );
+		SNtlEventChangeClassAuthorityChanged* pData = reinterpret_cast<SNtlEventChangeClassAuthorityChanged*>(msg.pData);
 
-		if( pData->bCanChangeClass )
-			GetAlarmManager()->AlarmMessage( "DST_CHAR_CAN_CHANGE_CLASS" );
+		if (pData->bCanChangeClass)
+			GetAlarmManager()->AlarmMessage("DST_CHAR_CAN_CHANGE_CLASS");
 	}
 	else if (msg.Id == g_EventCharTitleSelectRes)
 	{
@@ -2342,22 +2437,22 @@ VOID CStatusWindowGui::HandleEvents( RWS::CMsg& msg )
 	}
 }
 
-RwInt32 CStatusWindowGui::SwitchDialog( bool bOpen )
+RwInt32 CStatusWindowGui::SwitchDialog(bool bOpen)
 {
-	if( bOpen )
+	if (bOpen)
 	{
 		RaiseTop();
-		Show( true );
-		m_ptabStatus->SelectTab( (RwInt32)TAB_AVATAR );
-		SelectTab( TAB_AVATAR );
+		Show(true);
+		m_ptabStatus->SelectTab((RwInt32)TAB_AVATAR);
+		SelectTab(TAB_AVATAR);
 		Logic_SendTutorialCondition(ETL_CONDITION_TYPE_STATUS_OPEN);
 	}
 	else
 	{
-		if( GetInfoWndManager()->GetRequestGui() == DIALOG_STATUS )
-			GetInfoWndManager()->ShowInfoWindow( FALSE );
+		if (GetInfoWndManager()->GetRequestGui() == DIALOG_STATUS)
+			GetInfoWndManager()->ShowInfoWindow(FALSE);
 
-		Show( false );		
+		Show(false);
 		Logic_SendTutorialCondition(ETL_CONDITION_TYPE_STATUS_CLOSE);
 	}
 
@@ -2369,41 +2464,41 @@ RwInt32 CStatusWindowGui::SwitchDialog( bool bOpen )
 
 VOID CStatusWindowGui::SetBasicUISetting(VOID)
 {
-	m_pstbTitle->SetText( GetDisplayStringManager()->GetString( "DST_STATUS_WINDOW_TITLE" ) );
+	m_pstbTitle->SetText(GetDisplayStringManager()->GetString("DST_STATUS_WINDOW_TITLE"));
 
-	m_ptabStatus->AddTab( std::wstring( GetDisplayStringManager()->GetString( "DST_STATUS_TAB_AVATAR" ) ) );
-	m_ptabStatus->AddTab( std::wstring( GetDisplayStringManager()->GetString( "DST_STATUS_TAB_FAMILY" ) ) );
-	m_ptabStatus->AddTab( std::wstring( GetDisplayStringManager()->GetString( "DST_STATUS_TECHNIC_TITLE" ) ) );
+	m_ptabStatus->AddTab(std::wstring(GetDisplayStringManager()->GetString("DST_STATUS_TAB_AVATAR")));
+	m_ptabStatus->AddTab(std::wstring(GetDisplayStringManager()->GetString("DST_STATUS_TAB_FAMILY")));
+	m_ptabStatus->AddTab(std::wstring(GetDisplayStringManager()->GetString("DST_STATUS_TECHNIC_TITLE")));
 
 	// temporary
 	std::wstring wstrStatsTitle = L"Stats";
 	m_ptabStatus->AddTab(wstrStatsTitle);
 
-	m_ptabStatus->SelectTab( (RwInt32)TAB_AVATAR );		
-	SelectTab( TAB_AVATAR );
+	m_ptabStatus->SelectTab((RwInt32)TAB_AVATAR);
+	SelectTab(TAB_AVATAR);
 }
 
-VOID CStatusWindowGui::SelectTab( RwInt32 nIndex )
+VOID CStatusWindowGui::SelectTab(RwInt32 nIndex)
 {
-	switch( nIndex )
+	switch (nIndex)
 	{
 	case TAB_AVATAR:
 		m_pAvatarTab->Show(true);
 		m_pAvatarTab->Refresh();
 		m_pHonorTab->Show(false);
-		m_pTechnicTab->Show( false );
+		m_pTechnicTab->Show(false);
 		m_pStatsTab->Show(false);
 		break;
 	case TAB_HONOR:
-		m_pAvatarTab->Show( false );
+		m_pAvatarTab->Show(false);
 		m_pHonorTab->Show(true);
 		m_pHonorTab->Refresh();
-		m_pTechnicTab->Show( false );
+		m_pTechnicTab->Show(false);
 		m_pStatsTab->Show(false);
 		break;
 	case TAB_TECHNIC:
-		m_pAvatarTab->Show( false );
-		m_pHonorTab->Show( false );
+		m_pAvatarTab->Show(false);
+		m_pHonorTab->Show(false);
 		m_pTechnicTab->Show(true);
 		m_pTechnicTab->Refresh(NULL);
 		m_pStatsTab->Show(false);
@@ -2422,26 +2517,26 @@ VOID CStatusWindowGui::SelectTab( RwInt32 nIndex )
 
 ////////////////////////////////////////////////////////////////////////////////
 // ! Callbacks
-VOID CStatusWindowGui::OnClickedExit( gui::CComponent* pComponent )
+VOID CStatusWindowGui::OnClickedExit(gui::CComponent* pComponent)
 {
-	if( !Logic_CanMouseInput_in_Tutorial( ETL_MOUSE_INPUT_TYPE_STATUS_WND_CLOSE_BTN ) )
+	if (!Logic_CanMouseInput_in_Tutorial(ETL_MOUSE_INPUT_TYPE_STATUS_WND_CLOSE_BTN))
 		return;
 
-	GetDialogManager()->SwitchDialog( DIALOG_STATUS );
+	GetDialogManager()->SwitchDialog(DIALOG_STATUS);
 }
 
-VOID CStatusWindowGui::OnSelectedTab( RwInt32 nSelectIndex, RwInt32 nPreviousIndex )
+VOID CStatusWindowGui::OnSelectedTab(RwInt32 nSelectIndex, RwInt32 nPreviousIndex)
 {
-	SelectTab( nSelectIndex );
+	SelectTab(nSelectIndex);
 }
 
-VOID CStatusWindowGui::OnAbsolulteClick( const CKey& key )
+VOID CStatusWindowGui::OnAbsolulteClick(const CKey& key)
 {
-	CAPTURE_MOUSEDOWN_RAISE( DIALOG_STATUS, key.m_fX, key.m_fY );
+	CAPTURE_MOUSEDOWN_RAISE(DIALOG_STATUS, key.m_fX, key.m_fY);
 }
 
-VOID CStatusWindowGui::OnClickedHelp( gui::CComponent* pComponent )
+VOID CStatusWindowGui::OnClickedHelp(gui::CComponent* pComponent)
 {
-	CDboEventGenerator::OpenHelpContent( DIALOG_STATUS );
+	CDboEventGenerator::OpenHelpContent(DIALOG_STATUS);
 }
 

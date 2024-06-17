@@ -3744,18 +3744,34 @@ VOID CInfoWindowGui::SetBattleAttributeDisplay( stINFOWND_BATTLEATTR* pBattleAtt
 	{
 		case stINFOWND_BATTLEATTR::TYPE_ATTR_WEAPON_INFO:
 		{
-			if( pBattleAttr->bySourceWeaponAttr == INVALID_BYTE )
+			if (pBattleAttr->bySourceWeaponAttr == INVALID_BYTE)
 				return;
 
-			m_pmdBox->SetItem( GetDisplayStringManager()->GetString( "DST_BATTLEATTR_WEAPON" ), "Title", FONT_TITLE, COMP_TEXT_LEFT, INFOCOLOR_7 );
-			m_pmdBox->SetItem( Logic_GetBattleAttributeName( pBattleAttr->bySourceWeaponAttr ), "Title2", FONT_TITLE, COMP_TEXT_LEFT,
-				Logic_GetBattleAttributeColor( pBattleAttr->bySourceWeaponAttr ) , 0, TRUE );
+			m_pmdBox->SetItem(GetDisplayStringManager()->GetString("DST_BATTLEATTR_WEAPON"), "Title", FONT_TITLE, COMP_TEXT_LEFT, INFOCOLOR_7);
+			m_pmdBox->SetItem(Logic_GetBattleAttributeName(pBattleAttr->bySourceWeaponAttr), "Title2", FONT_TITLE, COMP_TEXT_LEFT,
+				Logic_GetBattleAttributeColor(pBattleAttr->bySourceWeaponAttr), 0, TRUE);
 
-			m_pmdBox->SetBlankLine( INFOWND_BLANKLINE_HEIGHT );
+			m_pmdBox->SetBlankLine(INFOWND_BLANKLINE_HEIGHT);
 
-			SetBattleAttrInfo_Weapon( pBattleAttr );
+			SetBattleAttrInfo_Weapon(pBattleAttr);
+
+			break;
 		}
-		break;
+		case stINFOWND_BATTLEATTR::TYPE_ATTR_ARMOR_INFO:
+		{
+			if (pBattleAttr->bySourceArmorAttr == INVALID_BYTE)
+				return;
+
+			m_pmdBox->SetItem(GetDisplayStringManager()->GetString("DST_BATTLEATTR_ARMOR"), "Title", FONT_TITLE, COMP_TEXT_LEFT, INFOCOLOR_7);
+			m_pmdBox->SetItem(Logic_GetBattleAttributeName(pBattleAttr->bySourceArmorAttr), "Title2", FONT_TITLE, COMP_TEXT_LEFT,
+				Logic_GetBattleAttributeColor(pBattleAttr->bySourceArmorAttr), 0, TRUE);
+
+			m_pmdBox->SetBlankLine(INFOWND_BLANKLINE_HEIGHT);
+
+			SetBattleAttrInfo_Armor(pBattleAttr);
+
+			break;
+		}
 		case stINFOWND_BATTLEATTR::TYPE_ATTR_UPGRADE:
 		{
 			if( pBattleAttr->bySourceWeaponAttr == INVALID_BYTE )
@@ -3858,28 +3874,28 @@ VOID CInfoWindowGui::SetBattleAttrInfo_Weapon(stINFOWND_BATTLEATTR* pAttr)
 * \brief 현재 속성의 방어 효율 정보를 출력한다.
 * \param pAttr	(stINFOWND_BATTLEATTR*) 전투 속성 정보
 */
-//VOID CInfoWindowGui::SetBattleAttrInfo_Armor( stINFOWND_BATTLEATTR* pAttr )
-//{
-//	WCHAR awcBuffer[256];
-//	CHAR acLine[32];
-//	DBO_WARNING_MESSAGE("B");
-//	// Target Weapon Attribute 의 값이 INVALID 라면 대상이 없는 것임
-//	if( pAttr->bySourceArmorAttr == INVALID_BYTE )
-//		return;
-//	
-//	for(RwUInt8 i = BATTLE_ATTRIBUTE_NONE; i < BATTLE_ATTRIBUTE_COUNT; ++i )
-//	{
-//		sprintf_s( acLine, 32, "Info%d", i );
-//		m_pmdBox->SetItem( Logic_GetBattleAttributeName( i ), acLine, FONT_TEXT, COMP_TEXT_LEFT, Logic_GetBattleAttributeColor( i ) );
-//		
-//		// 현재 속성에게의 방어력 + 보너스 방어력을 표시한다.
-//		RwReal fRate = GetBattleAttributeEffectApplyValue( i ) + pAttr->afSourceDefenceBonus[pAttr->bySourceArmorAttr];
-//		swprintf_s( awcBuffer, 256, GetDisplayStringManager()->GetString( "DST_BATTLEATTR_DEFENCE_RATE_TARGET" ), fRate );
-//		
-//		sprintf_s( acLine, 32, "Info%d", i+BATTLE_ATTRIBUTE_COUNT );
-//		m_pmdBox->SetItem( awcBuffer, acLine, FONT_TEXT, COMP_TEXT_LEFT, INFOCOLOR_0, 0, TRUE );
-//	}
-//}
+VOID CInfoWindowGui::SetBattleAttrInfo_Armor( stINFOWND_BATTLEATTR* pAttr )
+{
+	WCHAR awcBuffer[256];
+	CHAR acLine[32];
+	DBO_WARNING_MESSAGE("B");
+	// Target Weapon Attribute 의 값이 INVALID 라면 대상이 없는 것임
+	if( pAttr->bySourceArmorAttr == INVALID_BYTE )
+		return;
+	
+	for(RwUInt8 i = BATTLE_ATTRIBUTE_NONE; i < BATTLE_ATTRIBUTE_COUNT; ++i )
+	{
+		sprintf_s( acLine, 32, "Info%d", i );
+		m_pmdBox->SetItem( Logic_GetBattleAttributeName( i ), acLine, FONT_TEXT, COMP_TEXT_LEFT, Logic_GetBattleAttributeColor( i ) );
+		
+		// 현재 속성에게의 방어력 + 보너스 방어력을 표시한다.
+		RwReal fRate = GetBattleAttributeEffectApplyValue( i ) + pAttr->afSourceDefenceBonus[pAttr->bySourceArmorAttr];
+		swprintf_s( awcBuffer, 256, GetDisplayStringManager()->GetString( "DST_BATTLEATTR_DEFENCE_RATE_TARGET" ), fRate );
+		
+		sprintf_s( acLine, 32, "Info%d", i+BATTLE_ATTRIBUTE_COUNT );
+		m_pmdBox->SetItem( awcBuffer, acLine, FONT_TEXT, COMP_TEXT_LEFT, INFOCOLOR_0, 0, TRUE );
+	}
+}
 
 //VOID CInfoWindowGui::SetBattleAttrInfo_Attack_Rate( stINFOWND_BATTLEATTR* pAttr )
 //{

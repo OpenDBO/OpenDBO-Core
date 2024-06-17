@@ -29,14 +29,14 @@ struct stINFOWND_UPGRADE
 
 	stINFOWND_UPGRADE::stINFOWND_UPGRADE(VOID)
 	{
-		for( RwInt32 i = 0 ; i < MAXLINECOUNT ; ++i )
+		for (RwInt32 i = 0; i < MAXLINECOUNT; ++i)
 		{
 			wszText[i] = NULL;
-			uiColor[i] = RGB( 255, 255, 255 );
+			uiColor[i] = RGB(255, 255, 255);
 		}
 	}
 
-	WCHAR*		wszText[MAXLINECOUNT];
+	WCHAR* wszText[MAXLINECOUNT];
 	RwUInt32	uiColor[MAXLINECOUNT];
 };
 
@@ -45,9 +45,13 @@ struct stINFOWND_UPGRADE
 */
 struct stINFOWND_BATTLEATTR
 {
-	enum eTYPE 
-	{ 
+	enum eTYPE
+	{
 		TYPE_ATTR_WEAPON_INFO = 0,			///< 무기 속성이 가지는 상성 관계
+		TYPE_ATTR_ARMOR_INFO,				///< 방어구 속성이 가지는 상성 관계
+		TYPE_ATTR_TARGET_ATTACK_RATE,		///< 현재 대상에게 공격효율
+		TYPE_ATTR_TARGET_DEFENCE_RATE,		///< 현재 대상에게 방어효율
+		TYPE_ATTR_TARGET_ALL_RATE,			///< 현재 대상에게 공격, 방어 효율
 		TYPE_ATTR_UPGRADE,					///< 업그레이드시 상성 관계
 		TYPE_ATTR_NUM,						///< 전투속성 툴팁의 타입 갯수
 		TYPE_ATTR_INVALID = TYPE_ATTR_NUM
@@ -55,20 +59,28 @@ struct stINFOWND_BATTLEATTR
 
 	eTYPE	eBattleAttrInfoType;
 	RwUInt8 bySourceWeaponAttr;
+	RwUInt8 bySourceArmorAttr;
 	RwUInt8 byTargetWeaponAttr;
+	RwUInt8 byTargetArmorAttr;
 	RwReal	afSourceOffenceBonus[BATTLE_ATTRIBUTE_COUNT];
+	RwReal	afSourceDefenceBonus[BATTLE_ATTRIBUTE_COUNT];
 	RwReal	afTargetOffenceBonus[BATTLE_ATTRIBUTE_COUNT];
+	RwReal	afTargetDefenceBonus[BATTLE_ATTRIBUTE_COUNT];
 
 	stINFOWND_BATTLEATTR::stINFOWND_BATTLEATTR(VOID)
 	{
 		eBattleAttrInfoType = TYPE_ATTR_INVALID;
 		bySourceWeaponAttr = INVALID_BYTE;
+		bySourceArmorAttr = INVALID_BYTE;
 		byTargetWeaponAttr = INVALID_BYTE;
+		byTargetArmorAttr = INVALID_BYTE;
 
-		for(int i=0; i <BATTLE_ATTRIBUTE_COUNT; ++i ) 
+		for (int i = 0; i < BATTLE_ATTRIBUTE_COUNT; ++i)
 		{
 			afSourceOffenceBonus[i] = 0.0f;
+			afSourceDefenceBonus[i] = 0.0f;
 			afTargetOffenceBonus[i] = 0.0f;
+			afTargetDefenceBonus[i] = 0.0f;
 		}
 	}
 };
@@ -96,7 +108,7 @@ public:
 		INFOWND_JUST_ITEM_NAME,					// Output only item names
 		INFOWND_UNIDENTIFIED_ITEM,
 		INFOWND_SKILL,
-		INFOWND_NOTLEARN_SKILL, 
+		INFOWND_NOTLEARN_SKILL,
 		INFOWND_SKILLRQ,
 		INFOWND_BUFF,
 		INFOWND_HTBSKILL,
@@ -108,8 +120,8 @@ public:
 		INFOWND_REWARD,
 		INFOWND_FAKEBUFF,						//! 파티 버프
 		INFOWND_MINIMAP,
-        INFOWND_PORTAL,                         ///< NPC를 이용한 포탈시 사용되는 맵의 툴팁
-        INFOWND_FRIEND_LIST,                    ///< 친구리스트에서 세부 정보를 표시하는 툴팁
+		INFOWND_PORTAL,                         ///< NPC를 이용한 포탈시 사용되는 맵의 툴팁
+		INFOWND_FRIEND_LIST,                    ///< 친구리스트에서 세부 정보를 표시하는 툴팁
 		INFOWND_UPGRADE,						// 업그레이드 아이템 장착시 호이포이스톤.
 		INFOWND_BATTLEATTRIBUTE,				///< Battle Attribute의 계산된 속성을 표시하는 툴팁
 		INFOWND_QUEST_SEARCH,
@@ -126,7 +138,7 @@ public:
 
 	static CInfoWndManager* GetInstance(VOID);
 
-	VOID ShowInfoWindow( RwBool bShow, RwInt32 eState = INFOWND_NOTSHOW, RwInt32 nXPos = 0, RwInt32 nYPos = 0, VOID* pInstance = NULL, RwInt32 eRequestGui = DIALOG_UNKNOWN );
+	VOID ShowInfoWindow(RwBool bShow, RwInt32 eState = INFOWND_NOTSHOW, RwInt32 nXPos = 0, RwInt32 nYPos = 0, VOID* pInstance = NULL, RwInt32 eRequestGui = DIALOG_UNKNOWN);
 	eINFOWNDSTATE GetInfoWndState(VOID) { return m_eWndState; }
 	RwInt32 GetRequestGui(VOID) { return m_eRequestGui; }
 
@@ -136,12 +148,12 @@ private:
 	VOID UnLinkEvent(VOID);
 
 	//! Event
-	VOID HandleEvents( RWS::CMsg &msg );
+	VOID HandleEvents(RWS::CMsg& msg);
 
 	//! CallBack
 
 	//! Variable
-	CInfoWindowGui*	m_pInfoWnd;
+	CInfoWindowGui* m_pInfoWnd;
 
 	eINFOWNDSTATE	m_eWndState;
 	RwInt32			m_eRequestGui;;

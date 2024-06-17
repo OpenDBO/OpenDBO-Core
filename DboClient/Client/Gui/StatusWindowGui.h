@@ -36,9 +36,9 @@ class CStatusAvatarTab
 {
 public:
 	//! Enumeration
+	enum	eTYPE_BATTLEATTR { TYPE_WEAPON, TYPE_ARMOR, TYPECOUNT };
 	enum	eFOCUSEFFECT { SLOT_FOCUS_NONE = 0x00, SLOT_FOCUS_CAN_MOVE = 0x01, SLOT_FOCUS = 0x02 };
 	enum	eFRITZEFFECT { FRITZ_NONE, FRITZ_HALF, FRITZ_ABSOLUTE };
-
 	enum	ePCINFO { NAME, CLASS, LEVEL, AP, NUM_PCINFO };
 	enum	eSTAT { LP, EP, EXP_CUR, EXP_MAX, NUM_STAT };
 	enum	eBASICSTAT { STR, DEX, CON, ENG, SOL, FOC, NUM_BASIC_STAT };
@@ -81,7 +81,7 @@ public:
 	VOID	SetSlotRectHardCode(VOID);
 	VOID	SetTextHardCode(VOID);
 	VOID	CalcBattleAttribute(VOID);
-	VOID	SetBattleAttribute( RwUInt8 byBattleAttribute );
+	VOID	SetBattleAttribute(eTYPE_BATTLEATTR eType, RwUInt8 byBattleAttribute);
 
 	VOID	ClickEffect( RwBool bPush, RwInt32 nSlotIdx = -1 );
 	VOID	FritzEffect( eFRITZEFFECT eFritzState, RwInt32 nSlotIdx );
@@ -95,6 +95,7 @@ public:
 	VOID	SetEXPInfoWnd(VOID);
 
 	VOID	SetAttributeToolTip(VOID);
+	VOID	OnBattleAttributeRefresh();
 
 protected:
 	VOID	OnMouseDown( const CKey& key );
@@ -115,13 +116,14 @@ protected:
 	VOID	OnDragRotBtnRelease( gui::CComponent* pComponent );
 	VOID	OnDragRotMouseMove( RwInt32 nFlags, RwInt32 nX, RwInt32 nY );
 
-	VOID	OnMouseBattleAttrEnter(gui::CComponent* pComponent);
-	VOID	OnMouseBattleAttrLeave(gui::CComponent* pComponent);
+	VOID	OnMouseWeaponAttrEnter(gui::CComponent* pComponent);
+	VOID	OnMouseWeaponAttrLeave(gui::CComponent* pComponent);
+	VOID	OnMouseArmorAttrEnter(gui::CComponent* pComponent);
+	VOID	OnMouseArmorAttrLeave(gui::CComponent* pComponent);
 
-	VOID	SetSourceAttr(RwUInt8 bySourceWeaponAttr);
-	VOID	SetTargetAttr(RwUInt8 byTargetWeaponAttr);
+	VOID	SetSourceAttr(RwUInt8 bySourceWeaponAttr, RwUInt8 bySourceArmorAttr);
+	VOID	SetTargetAttr(RwUInt8 byTargetWeaponAttr, RwUInt8 byTargetArmorAttr);
 
-	VOID	OnBattleAttributeRefresh();
 	
 	gui::CSlot  m_slotMouseDown;
 	gui::CSlot	m_slotMouseUp;
@@ -190,7 +192,9 @@ protected:
 	gui::CSlot			m_slotCharTitleButton;
 	
 	gui::CStaticBox*	m_pstbBattleAttrTitle;
-	gui::CPanel*		m_pnlBattleAttribute;	
+	gui::CPanel*		m_ppnlBattleAttribute[TYPECOUNT];	
+
+
 
 	gui::CDialog*		m_pSelf;
 
