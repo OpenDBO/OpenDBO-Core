@@ -241,6 +241,18 @@ public:
 class CNtlSobBattleAttr : public CNtlSobMoveableAttr
 {
 public:
+	WORD wBaseStr;
+	WORD wLastStr;
+	WORD wBaseCon;
+	WORD wLastCon;
+	WORD wBaseFoc;
+	WORD wLastFoc;
+	WORD wBaseDex;
+	WORD wLastDex;
+	WORD wBaseSol;
+	WORD wLastSol;
+	WORD wBaseEng;
+	WORD wLastEng;
 
 	RwInt32		m_Str;		// 근력
 	RwInt32		m_Con;		// 건강
@@ -248,6 +260,17 @@ public:
 	RwInt32		m_Dex;		// 민첩
 	RwInt32		m_Sol;		// 종족과 클래스에 따른 생성시의 정신을 기입
 	RwInt32		m_Eng;		// 종족과 클래스에 따른 생성시의 원기를 기입
+
+	FLOAT fHonestOffense;
+	FLOAT fHonestDefense;
+	FLOAT fStrangeOffense;
+	FLOAT fStrangeDefense;
+	FLOAT fWildOffense;
+	FLOAT fWildDefense;
+	FLOAT fEleganceOffense;
+	FLOAT fEleganceDefense;
+	FLOAT fFunnyOffense;
+	FLOAT fFunnyDefense;
 
 	RwUInt16	m_wLpRegen;
 	RwUInt16	m_wLpSitdownRegen;

@@ -3,10 +3,10 @@
  * File			: NtlSobPlayerAtt.h
  * Author		: HyungSuk, Jang
  * Copyright	: (аж)NTL
- * Date			: 2005. 11. 30	
+ * Date			: 2005. 11. 30
  * Abstract		: Simulation object player attribute base class
  *****************************************************************************
- * Desc         : 
+ * Desc         :
  *
  *****************************************************************************/
 
@@ -24,7 +24,7 @@ class CNtlSobPlayerAttr : public CNtlSobSocialAttr
 
 public:
 
-	CNtlSobPlayerAttr(); 
+	CNtlSobPlayerAttr();
 
 	virtual ~CNtlSobPlayerAttr() {}
 
@@ -32,14 +32,20 @@ public:
 
 	virtual void Destroy(void) {}
 
-	virtual void HandleEvents(RWS::CMsg &pMsg);    
+	virtual void HandleEvents(RWS::CMsg& pMsg);
+
 
 public:
 
-	void		SetMainBattleAttr(RwUInt8 bAttr) { m_ucBattleAttr = bAttr; }
-	RwUInt8		GetMainBattleAttr(void) { return m_ucBattleAttr; }
+	void		SetMainWeaponAttr(RwUInt8 bAttr) { m_ucMainWeaponBattleAttr = bAttr; }
+	void		SetSubWeaponAttr(RwUInt8 bAttr) { m_ucSubWeaponBattleAttr = bAttr; }
+	void		SetArmorWeaponAttr(RwUInt8 bAttr) { m_ucArmorBattleAttr = bAttr; }
 
-	void		SetPcTbl(const sPC_TBLDAT *pPcTbl);
+	RwUInt8		GetMainWeaponAttr(void) { return m_ucMainWeaponBattleAttr; }
+	RwUInt8		GetSubWeaponAttr(void) { return m_ucSubWeaponBattleAttr; }
+	RwUInt8		GetArmorWeaponAttr(void) { return m_ucArmorBattleAttr; }
+
+	void		SetPcTbl(const sPC_TBLDAT* pPcTbl);
 	sPC_TBLDAT* GetPcTbl(void) const;
 
 
@@ -47,16 +53,18 @@ public:
 	bool						GetInvisibleTitleNameFlag();
 
 	void						SetTitleName(const WCHAR* pwcTitleName);
-	const WCHAR*				GetTitleName();
+	const WCHAR* GetTitleName();
 
 	void						SetIsInFreePvpZone(bool bFlag);
 	bool						GetIsInFreePvpZone();
-    
+
 public:
 
-    sPC_TBLDAT *m_pPcTbl;	/** pc table data pointer */
+	sPC_TBLDAT* m_pPcTbl;	/** pc table data pointer */
 
-    RwUInt8		m_ucBattleAttr;
+	RwUInt8		m_ucMainWeaponBattleAttr;
+	RwUInt8		m_ucSubWeaponBattleAttr;
+	RwUInt8		m_ucArmorBattleAttr;
 
 	//////////////////////////////////////////////////////////////////////////
 
@@ -66,7 +74,7 @@ public:
 	bool			m_bIsInFreePvpZone;
 };
 
-inline void CNtlSobPlayerAttr::SetPcTbl(const sPC_TBLDAT *pPcTbl)
+inline void CNtlSobPlayerAttr::SetPcTbl(const sPC_TBLDAT* pPcTbl)
 {
 	m_pPcTbl = const_cast<sPC_TBLDAT*>(pPcTbl);
 }
@@ -86,7 +94,7 @@ inline bool CNtlSobPlayerAttr::GetInvisibleTitleNameFlag()
 	return m_bInvisibleTitleNameFlag;
 }
 
-inline const WCHAR * CNtlSobPlayerAttr::GetTitleName()
+inline const WCHAR* CNtlSobPlayerAttr::GetTitleName()
 {
 	if (m_wszTitleName.length() == 0)
 		return NULL;
