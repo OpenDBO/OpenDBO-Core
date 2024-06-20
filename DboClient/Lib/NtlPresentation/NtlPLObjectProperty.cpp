@@ -20,12 +20,12 @@ CNtlPLObjectProperty::CNtlPLObjectProperty()
 
     m_bShadow = TRUE;
     m_fUvAnimSpeed = 1.0f;    
-    m_fCullingDistance = 300;
+    m_fCullingDistance = 1024;
     m_bCollision = FALSE;  
     m_eObjectType = E_OBJECT_NORMAL;
     m_bApplyPVS = TRUE;
 
-    m_SoundProp.bLoop = TRUE;       // ±âº» »ç¿îµå´Â Ç×»ó LoopÀÌ´Ù.
+    m_SoundProp.bLoop = TRUE;       // ï¿½âº» ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×»ï¿½ Loopï¿½Ì´ï¿½.
 }
 
 
