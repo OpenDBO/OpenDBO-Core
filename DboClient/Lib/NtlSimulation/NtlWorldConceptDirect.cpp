@@ -14,9 +14,9 @@
 #include "InputActionMap.h"
 #include "NtlStorageManager.h"
 
-// World Concept Direct¿¡¼­ Àû¿ëÇÒ ÁöÇü ¹× »ç¹° ½Ã¾ß°Å¸®
-#define dDIRECT_TERRAIN_FAR		(512.f)
-#define dDIRECT_OBJECT_FAR		(512.f)
+// World Concept Directï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ç¹° ï¿½Ã¾ß°Å¸ï¿½
+#define dDIRECT_TERRAIN_FAR		(1024.f)
+#define dDIRECT_OBJECT_FAR		(1024.f)
 
 CNtlWorldConceptDirect::CNtlWorldConceptDirect(void)
 {
@@ -58,15 +58,15 @@ void CNtlWorldConceptDirect::ChangeState(RwInt32 iState)
 			GetInputActionMap()->Reset();
 			CNtlSLEventGenerator::ActionMapHalt();
 
-            // Entity CullingÀ» ²ö´Ù (by agebreak)
+            // Entity Cullingï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (by agebreak)
             CNtlPLGlobal::m_bEntityNotCulling = TRUE;
 
-			// ÁöÇü ½Ã¾ß °Å¸®, »ç¹° ½Ã¾ß °Å¸® ¿É¼ÇÀ» ÃÖ´ë·Î ¼³Á¤ÇÑ´Ù.
-			// ÁöÇü ½Ã¾ß°Å¸® ( 1lv : 200, 2lv : 300, 3lv : 400, 4lv : 512 )
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¾ï¿½ ï¿½Å¸ï¿½, ï¿½ç¹° ï¿½Ã¾ï¿½ ï¿½Å¸ï¿½ ï¿½É¼ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¾ß°Å¸ï¿½ ( 1lv : 200, 2lv : 300, 3lv : 400, 4lv : 512 )
 			if( GetNtlPLOptionManager()->GetTerrainFar() != dDIRECT_TERRAIN_FAR )
 				GetNtlPLOptionManager()->SetTerrainFar( dDIRECT_TERRAIN_FAR );
 			
-			// »ç¹° ½Ã¾ß°Å¸® : 200, 300, 400, 512 )
+			// ï¿½ç¹° ï¿½Ã¾ß°Å¸ï¿½ : 200, 300, 400, 512 )
 			if( GetNtlPLOptionManager()->GetObjectFar() != dDIRECT_OBJECT_FAR )
 				GetNtlPLOptionManager()->SetObjectFar( dDIRECT_OBJECT_FAR );
 
@@ -76,8 +76,8 @@ void CNtlWorldConceptDirect::ChangeState(RwInt32 iState)
 		{
 			CNtlWorldConceptController::ChangeState(WORLD_PLAY_NONE);
 
-			// ¿É¼Ç º¹¿ø
-			// ÁöÇü ½Ã¾ß°Å¸® ( 1lv : 200, 2lv : 300, 3lv : 400, 4lv : 512 )
+			// ï¿½É¼ï¿½ ï¿½ï¿½ï¿½ï¿½
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¾ß°Å¸ï¿½ ( 1lv : 200, 2lv : 300, 3lv : 400, 4lv : 512 )
 			RwInt32 nTerrainRangeLevel = GetNtlStorageManager()->GetIntData( dSTORAGE_GRAPHIC_TERRAIN_RANGE );
 			RwReal fTerranRange = 512.f;
 			switch( nTerrainRangeLevel )
@@ -91,7 +91,7 @@ void CNtlWorldConceptDirect::ChangeState(RwInt32 iState)
 			if( GetNtlPLOptionManager()->GetTerrainFar() != fTerranRange )
 				GetNtlPLOptionManager()->SetTerrainFar( fTerranRange );
 
-			// »ç¹° ½Ã¾ß°Å¸® : 200, 300, 400, 512 )
+			// ï¿½ç¹° ï¿½Ã¾ß°Å¸ï¿½ : 200, 300, 400, 512 )
 			RwInt32 nObjectRangeLevel = GetNtlStorageManager()->GetIntData( dSTORAGE_GRAPHIC_OBJECT_RANGE );
 			RwReal fObjectRange = 512.f;
 			switch( nObjectRangeLevel )
