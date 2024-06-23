@@ -152,6 +152,8 @@ enum eOPCODE_GU
 	GU_PARTY_ZENNY_LOOTING_METHOD_UNLOCKED_NFY,
 	GU_PARTY_ITEM_LOOTING_METHOD_UNLOCKED_NFY,
 	GU_PARTY_ZENNY_UPDATED_NFY,
+	GU_PARTY_INVENTORY_ITEM_ADDED_NFY,
+	GU_PARTY_INVENTORY_ITEM_REMOVED_NFY,
 	GU_PARTY_MEMBER_GAINED_ITEM_NFY,
 	GU_PARTY_CHANGE_ZENNY_LOOTING_METHOD_RES,
 	GU_PARTY_ZENNY_LOOTING_METHOD_CHANGED_NFY,
@@ -177,6 +179,7 @@ enum eOPCODE_GU
 	GU_SYSTEM_DISPLAY_TEXT,
 	GU_SYSTEM_DISPLAY_SCRIPT_TEXT,
 	GU_SYSTEM_DISPLAY_RESULTCODE,
+	GU_SHOP_SKILL_BUY_RES,
 	GU_SHOP_SELL_RES,
 	GU_SHOP_START_RES,
 	GU_SHOP_BUY_RES,
@@ -185,6 +188,7 @@ enum eOPCODE_GU
 	GU_PARTY_CREATE_RES,
 	GU_PARTY_DISBAND_RES,
 	GU_PARTY_RESPONSE_INVITATION_RES,
+	GU_PARTY_OPENED_CHARM_INVENTORY_INFO,
 	GU_PARTY_KICK_OUT_RES,
 	GU_PARTY_MEMBER_KICKED_OUT_NFY,
 	GU_PARTY_CHANGE_LEADER_RES,
@@ -214,7 +218,9 @@ enum eOPCODE_GU
 	GU_QUEST_FORCED_COMPLETION_NFY,
 	GU_SOCIAL_ACTION,
 	GU_SCOUTER_INDICATOR_RES,
+	GU_SCOUTER_PREDICT_RES,
 	GU_SCOUTER_EQUIP_CHECK_RES,
+	GU_SCOUTER_CHIP_REMOVE_ALL_RES,
 	GU_BANK_START_RES,
 	GU_BANK_MOVE_RES,
 	GU_BANK_MOVE_STACK_RES,
@@ -322,6 +328,18 @@ enum eOPCODE_GU
 	GU_PRIVATESHOP_OPEN_NFY,
 	GU_PRIVATESHOP_CLOSE_RES,
 	GU_PRIVATESHOP_CLOSE_NFY,
+	GU_PRIVATESHOP_BUSINESS_REQUEST_RES,
+	GU_PRIVATESHOP_BUSINESS_REQUEST_NFY,
+	GU_PRIVATESHOP_BUSINESS_CONSENT_REQ,
+	GU_PRIVATESHOP_BUSINESS_CONSENT_NFY,
+	GU_PRIVATESHOP_BUSINESS_WAITTIMEOUT_NFY,
+	GU_PRIVATESHOP_BUSINESS_PRICEFLUCTUATIONS_RES,
+	GU_PRIVATESHOP_BUSINESS_PRICEFLUCTUATIONS_NFY,
+	GU_PRIVATESHOP_BUSINESS_IMMEDIATE_ITEM_BUYING_RES,
+	GU_PRIVATESHOP_BUSINESS_IMMEDIATE_ITEM_BUYING_NFY,
+	GU_PRIVATESHOP_BUSINESS_WINDOWCLOSE_NFY,
+	GU_PRIVATESHOP_BUSINESS_CANCEL_RES,
+	GU_PRIVATESHOP_BUSINESS_CANCEL_NFY,
 	GU_PRIVATESHOP_ITEM_INSERT_RES,
 	GU_PRIVATESHOP_ITEM_UPDATE_RES,
 	GU_PRIVATESHOP_ITEM_DELETE_RES,
@@ -400,6 +418,10 @@ enum eOPCODE_GU
 	GU_BUDOKAI_GM_MATCH_ARENA_LEAVE_RES,
 	GU_DISCONNECTED_NFY,
 	GU_BOT_BOTCAUTION_HELPME_NFY,
+	GU_SCOUTER_TURN_ON_NFY,
+	GU_SCOUTER_TURN_OFF_NFY,
+	GU_SCOUTER_BROKEN_NFY,
+	GU_SCOUTER_ITEM_SELL_RES,
 	GU_SHOP_EVENTITEM_START_RES,
 	GU_SHOP_EVENTITEM_BUY_RES,
 	GU_SHOP_EVENTITEM_END_RES,
@@ -421,14 +443,20 @@ enum eOPCODE_GU
 	GU_CHAR_GUARD_CRASHED_NFY,
 	GU_UPDATE_CHAR_RP_BALL,
 	GU_UPDATE_CHAR_RP_BALL_MAX,
+	GU_HOIPOIMIX_JOB_SET_RES,
+	GU_HOIPOIMIX_JOB_RESET_RES,
 	GU_AVATAR_RP_INCREASE_START_NFY,
 	GU_AVATAR_RP_DECREASE_START_NFY,
 	GU_AVATAR_RP_INCREASE_STOP_NFY,
 	GU_HOIPOIMIX_RECIPE_REG_NFY,
+	GU_HOIPOIMIX_ITEM_CHECK_RES,
+	GU_HOIPOIMIX_ITEM_MAKE_RES,
+	GU_HOIPOIMIX_ITEM_MAKE_EP_RES,
 	GU_HOIPOIMIX_ITEM_RECIPE_INFO,
 	GU_DYNAMIC_OBJECT_UPDATE_STATE,
-	GU_HOIPOIMIX_ITEM_CREATE_EXP_NFY,
-	GU_HOIPOIMIX_ITEM_CREATE_RES,
+	GU_HOIPOIMIX_ITEM_MACHINE_DEL_RES,
+	GU_HOIPOIMIX_ITEM_MAKE_EXP_NFY,
+	GU_HOIPOIMIX_ITEM_MAKE_EX_RES,
 	GU_ITEM_DISASSEMBLE_RES,
 	GU_HTB_LAST_STEP_CHANGED_NFY,
 	GU_CHAR_CHARGE_CANCELED_NFY,
@@ -437,13 +465,20 @@ enum eOPCODE_GU
 	GU_DOJO_CREATE_RES,
 	GU_DOJO_DELETE_RES,
 	GU_DOJO_FUNCTION_ADD_RES,
+	GU_DOJO_BANK_HISTORY_RES,
 	GU_DOGI_CREATE_RES,
 	GU_DOGI_CHANGE_RES,
 	GU_DOGI_UPDATE_NFY,
 	GU_GUILD_DOGI_CREATE_RES,
 	GU_GUILD_DOGI_CHANGE_RES,
 	GU_VEHICLE_START_NFY,
+	GU_VEHICLE_ENGINE_START_RES,
+	GU_VEHICLE_ENGINE_START_NFY,
+	GU_VEHICLE_ENGINE_STOP_RES,
+	GU_VEHICLE_ENGINE_STOP_NFY,
+	GU_VEHICLE_FUEL_UPDATE_NFY,
 	GU_VEHICLE_END_RES,
+	GU_VEHICLE_END_NFY,
 	GU_VEHICLE_STUNT_NFY,
 	GU_SKILL_PASSIVE_EFFECT_APPLIED_NFY,
 	GU_AVATAR_UPDATED_SKILL_DATA_INFO,
@@ -473,6 +508,7 @@ enum eOPCODE_GU
 	GU_CHAR_RANKBATTLE_ALLOW_NFY,
 	GU_CHAR_RANKPOINT_RESET_NFY,
 	GU_DOJO_NPC_INFO_RES,
+	GU_GAMEGUARD_AUTH_ANSWER_REQ,
 	GU_DOJO_SEAL_ATTACK_BEGIN_NFY,
 	GU_DOJO_SEAL_ATTACK_END_NFY,
 	GU_DOJO_SEAL_CURRENT_STATE_NFY,
@@ -481,14 +517,16 @@ enum eOPCODE_GU
 	GU_UPDATE_CHAR_LP_STATUS_NFY,
 	GU_DURATION_ITEM_BUY_RES,
 	GU_DURATION_RENEW_RES,
-	GU_CASHITEM_HLSHOP_START_RES,
-	GU_CASHITEM_HLSHOP_END_RES,
-	GU_CASHITEM_HLSHOP_REFRESH_RES,
+	GU_CASHITEM_START_RES,
 	GU_CASHITEM_INFO_RES,
+	GU_CASHITEM_END_RES,
 	GU_CASHITEM_MOVE_RES,
 	GU_CASHITEM_USE_RES,
 	GU_CASHITEM_ADD_NFY,
 	GU_CASHITEM_DEL_NFY,
+	GU_CASHITEM_HLSHOP_START_RES,
+	GU_CASHITEM_HLSHOP_END_RES,
+	GU_CASHITEM_HLSHOP_REFRESH_RES,
 	GU_CASHITEM_BUY_RES,
 	GU_CASHITEM_SEND_GIFT_RES,
 	GU_CASHITEM_RECV_GIFT_NFY,
@@ -652,10 +690,13 @@ enum eOPCODE_GU
 	GU_SERVERSCRIPT_EVENTSTATUS_UPDATE_NFY,
 	GU_SERVERSCRIPT_EVENTSTATUS_SELECT_NFY,
 	GU_SERVERSCRIPT_EVENTSTATUS_CLEAR_NFY,
+	GU_ITEM_UPGRADE_WORK_RES,
+	GU_ITEM_UPGRADE_PROBABLEITEM_RES,
 	GU_FORMULA_RESULT_EACH_TICK_NFY,
 	GU_GAME_DATA_UPGRADED_ITEM_ABILITY,
 	GU_ACHIEVEMENT_COMPLETE_NFY,
 	GU_CHARTITLE_SELECT_NFY,
+	GU_CHAR_HISTORY_DATA_RES,
 	GU_ACHIEVEMENTS_COMPLETE_INFO,
 	GU_CASHITEM_INFO,
 	GU_TRIGGER_SYSTEM_ENABLED_NFY,
@@ -664,6 +705,7 @@ enum eOPCODE_GU
 	GU_EVENT_REWARD_LOAD_RES,
 	GU_EVENT_REWARD_SELECT_RES,
 	GU_ITEM_BULK_CREATE_INFO,
+	GU_DROPITEM_INFO_RES,
 	GU_EVENTMACHINE_COIN_INFO,
 	GU_ITEM_UPGRADE_BY_COUPON_RES,
 	GU_AUTO_RECOVER_NFY,
@@ -706,7 +748,10 @@ enum eOPCODE_GU
 	GU_UPDATE_CHAR_AP,
 	GU_AIR_FAIL_INFO,
 	GU_CHAR_SKY_DUNGEON_LIMIT_COUNT_NFY,
+	GU_CAN_ACCEL_NFY,
 	GU_RANKBATTLE_BATTLE_ORDER_INFO_NFY,
+	GU_CHAR_AIR_POSE_RES,
+	GU_CHAR_AIR_POSE_NFY,
 	GU_MASCOT_FUSION_RES,
 	GU_MASCOT_SKILL_ADD_RES,
 	GU_MASCOT_SKILL_UPDATE_RES,
@@ -721,7 +766,8 @@ enum eOPCODE_GU
 	GU_MASCOT_SKILLCOOLTIME_SET,
 	GU_EVENT_SCHEDULING_START,
 	GU_EVENT_SCHEDULING_END,
-
+	GU_SCOUTER_ACTIVATION_RES,
+	GU_PORTAL_START_RES,
 
 	GU_OPCODE_END_DUMMY,
 	GU_OPCODE_END = GU_OPCODE_END_DUMMY - 1,
@@ -779,6 +825,13 @@ BEGIN_PROTOCOL(GU_AVATAR_CHAR_INFO)
 	sPC_PROFILE		sPcProfile;
 	WORD			wCharStateSize;
 	sCHARSTATE		sCharState;
+END_PROTOCOL()
+//------------------------------------------------------------------
+BEGIN_PROTOCOL(GU_DROPITEM_INFO_RES) // TODO: Unused
+HOBJECT				hItemHandle;
+
+sITEM_OPTION_SET	sOptionSet;
+DWORD				dwDialogID;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_AVATAR_ITEM_INFO)
@@ -877,6 +930,8 @@ BEGIN_PROTOCOL(GU_CHAR_MOVE_COLLISION)
 HOBJECT					handle;
 _compressedLocation		vCurLoc;
 _compressedDirection	vCurDir;
+_compressedDirection	vDirForced;		// Relocation vector
+FLOAT					fForcedSpeed;	// Relocation speed (can't be higher than movement speed)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_CHAR_MOVE_COLLISION_END)
@@ -891,13 +946,14 @@ BEGIN_PROTOCOL(GU_CHAR_CHANGE_JUMP_DIRECTION)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_CHAR_CHANGE_DIRECTION_ON_FLOATING)
-HOBJECT					hSubject;
-BYTE					byMoveDirection;
+	HOBJECT					hSubject;
+	_compressedDirection	vDir;
+	BYTE					byMoveDirection;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_CHAR_FOLLOW_MOVE)
-	DWORD			dwTimeStamp;
 	HOBJECT			handle;
+	DWORD			dwTimeStamp;	
 	HOBJECT			hTarget;
 	float			fDistance;
 	BYTE			byMovementReason;
@@ -911,6 +967,7 @@ HOBJECT					handle;
 _compressedDirection	vCurrentHeading;
 _compressedDirection	vJumpDir;
 BYTE					byMoveDirection;
+_compressedLocation		vPos;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_CHAR_JUMP_END)
@@ -929,6 +986,7 @@ TBLIDX					sourceTblidx;
 BYTE					byAttackResult;
 int						attackResultValue;
 _compressedLocation		vDestLoc;
+sDBO_LP_EP_RECOVERED	sLP_EP_Recovered;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_CHAR_FIGHTMODE)
@@ -1032,7 +1090,7 @@ TBLIDX					skillId;
 BYTE					byRpBonusType;		// eDBO_RP_BONUS_TYPE
 HOBJECT					hAppointedTarget;
 bool					bIsSkillHarmful;
-_compressedLocation		vFinalLoc;
+//_compressedLocation		vFinalLoc;
 BYTE					bySkillResultCount;
 sSKILL_RESULT			aSkillResult[NTL_MAX_NUMBER_OF_SKILL_TARGET];
 END_PROTOCOL()
@@ -1187,7 +1245,7 @@ END_PROTOCOL()
 BEGIN_PROTOCOL(GU_SKILL_COOL_TIME_STARTED_NFY)
 	HOBJECT			hSubject;
 	TBLIDX			skillTblidx;
-	BYTE			byRpBonus;
+	//BYTE			byRpBonus;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_BUFF_REGISTERED)
@@ -1200,6 +1258,7 @@ BEGIN_PROTOCOL(GU_BUFF_DROPPED)
 	HOBJECT			hHandle;
 	BYTE			buffIndex; //new
 	BYTE			bySourceType;		// eDBO_OBJECT_SOURCE
+	TBLIDX			tblidx;
 	bool			bIsByReplacing; //new
 END_PROTOCOL()
 //------------------------------------------------------------------
@@ -1365,6 +1424,19 @@ BYTE			byCorePlace;
 BYTE			byCorePos;
 BYTE			byCoreStack;
 END_PROTOCOL()
+BEGIN_PROTOCOL(GU_ITEM_UPGRADE_WORK_RES)
+WORD			wResultCode;
+WORD			wResultMessageCode;
+BYTE			byItemPlace;		// 업그레이드 할 아이템의 컨테이너 위치
+BYTE			byItemPos;			// 업그레이드 할 아이템의 위치
+BYTE			byItemGrade;
+BYTE			byStonePlace;		// 호이포이스톤 컨테이너 위치
+BYTE			byStonePos;			// 호이포이스톤 위치
+BYTE			byStoneStack;			// 업그레이드 창의 조합위치: (아이템의 슬롯번호 * 10 + 호이포이스톤슬롯번호) 
+BYTE			byCorePlace;
+BYTE			byCorePos;
+BYTE			byCoreStack;
+END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_ITEM_IDENTIFY_RES)
 	HOBJECT			hItemHandle;
@@ -1462,6 +1534,7 @@ BEGIN_PROTOCOL(GU_UPDATE_CHAR_EP)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_UPDATE_CHAR_RP)
+	HOBJECT			handle;
 	WORD			wCurRP;
 	WORD			wMaxRP;
 	bool			bHitDelay;
@@ -1558,16 +1631,18 @@ BEGIN_PROTOCOL(GU_PARTY_MEMBER_JOINED_NFY)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_PARTY_INFO)
-	WCHAR					awchPartyName[NTL_MAX_SIZE_PARTY_NAME + 1];
-	PARTYID					partyID;//new
-	HOBJECT					hLeader;
-	BYTE					byItemLootingMethod;
-	BYTE					byZennyLootingMethod;
-	sSHARETARGET_INFO		sharetargetInfo[NTL_MAX_SHARETARGET_COUNT];// 공유타겟데이타 [3/28/2008 SGpro]
-	ePARTY_DUNGEON_STATE	eDiff;
-	BYTE					byItemRank;			// 파티인벤에 넣을 아이템의 eITEM_RANK 추가
-	BYTE					byMemberInfoCount;
-	sPARTY_MEMBER_INFO		memberInfo[NTL_MAX_MEMBER_IN_PARTY - 1];	
+WCHAR					awchPartyName[NTL_MAX_SIZE_PARTY_NAME + 1];
+PARTYID					partyID;
+HOBJECT					hLeader;
+BYTE					byItemLootingMethod;
+BYTE					byZennyLootingMethod;
+TBLIDX					atbxRegisteredCharm[2];
+TBLIDX					adwRemainingTime[2];
+sSHARETARGET_INFO		sharetargetInfo[NTL_MAX_SHARETARGET_COUNT];
+ePARTY_DUNGEON_STATE	eDiff;
+BYTE					byItemRank;
+BYTE					byMemberInfoCount;
+sPARTY_MEMBER_INFO		memberInfo[NTL_MAX_MEMBER_IN_PARTY - 1];
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_PARTY_INVITATION_DECLINED_NFY)
@@ -1745,6 +1820,20 @@ BEGIN_PROTOCOL(GU_SCOUTER_INDICATOR_RES)
 	WORD			wEnergyDefence;
 	WORD			wDodgeRate;
 	WORD			wAttackRate;
+END_PROTOCOL()
+BEGIN_PROTOCOL(GU_SCOUTER_ACTIVATION_RES)//100%
+HOBJECT			hTarget;
+WORD			wResultCode;
+DWORD            Unk; //TODO Whats is that Value??? come 0 from Global
+WORD             Unk2[2];//TODO Whats is that Value??? Looks 2x WORD Maybe Skill UI???
+DWORD            dwRetValue;//Get power Level of Target
+WORD			 wPhysicalOffence;//Get attack of Target
+WORD			 wEnergyOffence;//Get attack of Target
+WORD			 wPhysicalDefence;//Get Defese of Target
+WORD			 wEnergyDefence;//Get Defese of Target
+DWORD            Unk3;//TODO Whats is that Value??? come 0 from Global
+DWORD            wDodgeRate;//Get Dogge Rate of Target
+DWORD            wAttackRate;//Get Hit rate of Target
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_SCOUTER_EQUIP_CHECK_RES)
@@ -2200,7 +2289,7 @@ END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_RANKBATTLE_INFO_RES )
 WORD					wResultCode;
-BYTE					byBattleMode;
+//BYTE					byBattleMode;
 DWORD					dwRemainTime;		// Time remaining (In seconds)
 BYTE					byArenaCount;
 sRANKBATTLE_ARENA_INFO	asArenaInfo[DBO_RANKBATTLE_MAX_ROOM_COUNT_PER_PAGE];
@@ -2995,6 +3084,7 @@ END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_SHOP_EVENTITEM_START_RES)
 HOBJECT			handle;
+BYTE			byType; //	0: 기본  1:한정수량 판매 이벤트 NPC 
 WORD			wResultCode;
 END_PROTOCOL()
 //------------------------------------------------------------------
@@ -3067,7 +3157,7 @@ BEGIN_PROTOCOL(GU_TELEPORT_PROPOSAL_NFY)
 		DWORD			dwReserve; //INVALID_DWORD
 		BYTE			byBudokaiMatchDepth;	// 천하제일무도회 XX강
 	};
-
+	BYTE				bySummonerNameLength;
 	WCHAR				wszSummonnerName[NTL_MAX_SIZE_CHAR_NAME + 1];	// 가변
 END_PROTOCOL()
 //------------------------------------------------------------------
@@ -3104,13 +3194,14 @@ BEGIN_PROTOCOL(GU_DYNAMIC_OBJECT_UPDATE_STATE)
 	sDYNAMIC_OBJECT_STATE		dynamicObjState;
 END_PROTOCOL()
 //------------------------------------------------------------------
-BEGIN_PROTOCOL(GU_HOIPOIMIX_ITEM_CREATE_EXP_NFY)
+BEGIN_PROTOCOL(GU_HOIPOIMIX_ITEM_MAKE_EXP_NFY)
+WORD				wResultCode; // NOTE: Why result code?
 DWORD				dwExpGained;
 DWORD				dwCurExp;
 BYTE				byCurLevel;
 END_PROTOCOL()
 //------------------------------------------------------------------
-BEGIN_PROTOCOL(GU_HOIPOIMIX_ITEM_CREATE_RES)//
+BEGIN_PROTOCOL(GU_HOIPOIMIX_ITEM_MAKE_EX_RES)//
 WORD				wResultCode;
 HOBJECT				itemHandle;
 TBLIDX				itemTblidx;
@@ -3119,7 +3210,7 @@ TBLIDX				recipeTblidx;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_CHAR_TARGET_LOST_NFY)
-	HOBJECT						hSubject;
+HOBJECT						hSubject;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_CHAR_GUARD_CRASHED_NFY)
@@ -3127,11 +3218,13 @@ BEGIN_PROTOCOL(GU_CHAR_GUARD_CRASHED_NFY)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_UPDATE_CHAR_RP_BALL)
+	HOBJECT			handle;
 	BYTE			byCurRPBall;
 	bool			bDropByTime;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_UPDATE_CHAR_RP_BALL_MAX)
+	HOBJECT			hHandle;
 	BYTE			byMaxRPBall;
 END_PROTOCOL()
 //------------------------------------------------------------------
@@ -3175,7 +3268,26 @@ END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_VEHICLE_FUEL_INSERT_RES )
 WORD				wResultCode;
-HOBJECT				hItem;
+BYTE				byPlace;
+BYTE				byPos;
+//HOBJECT				hItem;
+END_PROTOCOL()
+//------------------------------------------------------------------
+BEGIN_PROTOCOL(GU_VEHICLE_ENGINE_START_RES)
+WORD				wResultCode;
+END_PROTOCOL()
+//------------------------------------------------------------------
+BEGIN_PROTOCOL(GU_VEHICLE_ENGINE_START_NFY)
+HOBJECT				hDriverHandle;
+END_PROTOCOL()
+//------------------------------------------------------------------
+BEGIN_PROTOCOL(GU_VEHICLE_ENGINE_STOP_RES)
+WORD				wResultCode;
+END_PROTOCOL()
+//------------------------------------------------------------------
+BEGIN_PROTOCOL(GU_VEHICLE_ENGINE_STOP_NFY)
+HOBJECT				hDriverHandle;
+DWORD				dwFuelRemain;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_SKILL_PASSIVE_EFFECT_APPLIED_NFY )
@@ -3894,15 +4006,115 @@ BEGIN_PROTOCOL(GU_CHAR_TARGET_CHANGED)
 	END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_SERVER_CONTENTS_ONOFF)
-//BYTE				abyContentsBitFlag[7];
-//BYTE				abyQuestOnOffBitFlag[3];
-//BYTE				byNotSpawnNpcCount;
-//TBLIDX				atblNotSpawnNpcIndex[15];
-//BYTE				byNotLoadingHelpCount;
-//TBLIDX				atblNotLoadingHelpIndex[12];
-//BYTE				unkn[144];
-//DWORD				dwCCBDUse;
-BYTE by[268];
+//BYTE      abyContentsBitFlag[3]; // eCONTENTSONOFF_INDEX ? - Possible even [8] or more
+// Didnt tested flags 
+BYTE    WestCityPortal : 1;
+	BYTE    Zone21_30 : 1;
+	BYTE    Zone31_50 : 1;
+	BYTE    Zone51_55 : 1;
+	BYTE    Zone56_60 : 1;
+	BYTE	Zone61_70 : 1;
+	BYTE    UD1_Trigger : 1;
+	BYTE    UD2_Trigger : 1;
+	BYTE    UD3_Trigger : 1;
+	BYTE    UD4_Trigger : 1;
+	BYTE    UD5_Trigger : 1;
+	BYTE    UD6_Trigger : 1;
+	BYTE    TMQ1_1_NPC : 1;
+	BYTE    TMQ1_2_NPC : 1;
+	BYTE    TMQ1_3_NPC : 1;
+	BYTE    TMQ1_4_NPC : 1;
+	BYTE    TMQ2_1_NPC : 1;
+	BYTE    TMQ2_2_NPC : 1;
+	BYTE    TMQ2_3_NPC : 1;
+	BYTE	Use_TMP : 1;
+	BYTE	FreeBattle : 1;
+	BYTE	RankBattle : 1;
+	BYTE	Dojo : 1;
+	BYTE	Use_Mascot : 1;
+
+
+	BYTE	bDisableHoiPoiOld : 1; // 1 = old, 2 = new  //100% OK
+	BYTE	bDisableHoiPoiNew : 1; // 1 = old, 2 = new  //100% OK
+	BYTE	Dungeon001_World : 1;
+	BYTE	bDisableUpgrade : 1;  //100% OK
+	BYTE	bDisableWeirdDissassemble : 1; // Strange window  //100% OK
+
+										   // 0x02 = Old system, 0x01 New system, 0x00 - none
+										   // 00 - block both, 01 - block old, 02 - block new
+	BYTE	bDisableOldScouter : 1;  //100% OK
+	BYTE	bDisableNewScouter : 1;  //100% OK
+	BYTE	Dungeon004_Trigger : 1; // Use_CostumeShop?
+
+
+	BYTE	Dungeon006_Trigger : 1;
+	BYTE	Dungeon007_Trigger : 1;
+	BYTE	WZone001_NPC : 1;
+	BYTE	BDungeon001_Trigger : 1;
+	BYTE	MainWorld02_NPC : 1;
+	BYTE	Block_QuestType_BitFlag : 1;
+	BYTE	IDK2 : 1;
+	BYTE	IDK3 : 1;
+
+	BYTE      byteUnknown4_1 : 1;
+	BYTE      bDisableDWC : 1; //100% OK
+	BYTE      byteUnknown4_3 : 1;
+	BYTE      byteUnknown4_4 : 1;
+	BYTE      byteUnknown4_5 : 1;
+	BYTE      byteUnknown4_6 : 1;
+	BYTE      byteUnknown4_7 : 1;
+	BYTE      byteUnknown4_8 : 1;
+	BYTE      byteUnknown5;
+	BYTE      byteUnknown6;
+	BYTE      byteUnknown7;
+
+
+	BYTE	QUESTONOFF_YAHHOI_WEST : 1;
+	BYTE	QUESTONOFF_PORUNGA_ROCKS_NORTH : 1;
+	BYTE	QUESTONOFF_FRAFRAN_DESERT_NORTH : 1;
+	BYTE	QUESTONOFF_KARIN_FOREST : 1;
+	BYTE	QUESTONOFF_WEST_LAND : 1;
+	BYTE	QUESTONOFF_YAHHOI_EAST : 1;
+	BYTE	QUESTONOFF_MUSHROOM_ROCKS_NORTH : 1;
+	BYTE	QUESTONOFF_MUSHROOM_ROCKS_SOUTH : 1;
+	BYTE	QUESTONOFF_OSORO_SHIMA : 1;
+	BYTE	QUESTONOFF_UD01 : 1;
+	BYTE	QUESTONOFF_UD02 : 1;
+	BYTE	QUESTONOFF_UD03 : 1;
+	BYTE	QUESTONOFF_UD04 : 1;
+	BYTE	QUESTONOFF_UD05 : 1;
+	BYTE	QUESTONOFF_MARKET : 1;
+	BYTE	QUESTONOFF_FREEBATTLE : 1;
+	BYTE	QUESTONOFF_RANKBATTLE : 1;
+	BYTE	QUESTONOFF_MASCOT : 1;
+	BYTE	QUESTONOFF_HOIPOI_MIX : 1;
+	BYTE	QUESTONOFF_CONVERT_CLASS : 1;
+	BYTE	QUESTONOFF_DWC : 1;
+	BYTE	QUESTONOFF_CCBD_MAIL : 1;
+	BYTE	QUESTONOFF_PORUNGA_ROCKS_SOUTH : 1;
+	BYTE	QUESTONOFF_SKD01 : 1;
+	BYTE	QUESTONOFF_PAPAYA01 : 1;
+	BYTE	QUESTONOFF_BID3 : 1;
+	BYTE	QUESTONOFF_BID2 : 1;
+	BYTE	QUESTONOFF_BID4 : 1;
+
+	BYTE bySkyUD_TriggersCount;
+	TBLIDX tbxObjectSkyUD[6]; // SkyUD1 Ship, SkyUD1 Portal, SkyUD2 Ship ...... SkyUD3 Portal
+
+
+	BYTE byUnknown2[6];
+
+
+	BYTE byUnknown3[40]; // Zero
+	BYTE      byNotSpawnNpcCount;
+	unsigned int atblNotSpawnNpcIndex[15];
+	char byNotLoadingHelpCount;
+	unsigned int atblNotLoadingHelpIndex[12];
+
+	BYTE byUnknown[66];
+
+	DWORD dwCCBD_LastFloor; // 100 or 150, Probably good
+	DWORD PetSystemOldNew; // 1 Old 2 New
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_DWC_WORLDCOUNT_INFO_RES)
@@ -3984,6 +4196,7 @@ BEGIN_PROTOCOL(GU_CHARTITLE_SELECT_RES)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_CHARTITLE_ADD)
+	WORD		ResultCode;
 	TBLIDX				tblIndex;
 END_PROTOCOL()
 //------------------------------------------------------------------
@@ -4090,8 +4303,10 @@ BEGIN_PROTOCOL(GU_BATTLE_DUNGEON_LEAVE_RES)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_BATTLE_DUNGEON_STATE_UPATE_NFY)
+BYTE			byState; // TODO: Use or remove
 BYTE			byStage;	// current stage
 TBLIDX			titleTblidx;	// title text index
+BYTE			byPatternIndex; // TODO: Use or remove
 TBLIDX			subTitleTblidx; // sub title text index
 DWORD			dwLimitTime;	// count down (if we have one)
 END_PROTOCOL()
@@ -4264,6 +4479,9 @@ END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_CHAR_IS_BATTLECOMBATING)
 bool			bIsBattle;
+BYTE			a;
+BYTE			b;
+BYTE			c;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_GAMEGUARD3_AUTH_ANSWER_REQ)
@@ -4467,7 +4685,8 @@ END_PROTOCOL()
 BEGIN_PROTOCOL(GU_UPDATE_CHAR_AP)
 	HOBJECT		handle;
 	int			curAP;
-	int			maxAP;
+	int			BasemaxAP;
+	int			LastmaxAP;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_AIR_FAIL_INFO)
@@ -4479,6 +4698,7 @@ BEGIN_PROTOCOL(GU_CHAR_AIR_MOVE_SYNC)
 HOBJECT					handle;
 _compressedLocation		vCurLoc;
 _compressedDirection	vCurDir;
+BYTE					byMoveDirection;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_MASCOT_FUSION_RES)
@@ -4558,13 +4778,19 @@ END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_CHAR_FOLLOW_MOVE_SYNC)
 HOBJECT					handle;
+HOBJECT					hTarget;
+_compressedLocation		vCurLoc;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_ITEM_DISASSEMBLE_RES)
 WORD				wResultCode;
-BYTE				byDeleteItemPlace;
-BYTE				byDeleteItemPos;
-HOBJECT				hDeleteItem;
+DWORD				ItemResultId[3];
 END_PROTOCOL()
-
+BEGIN_PROTOCOL(GU_EVENT_SCHEDULING_START)
+BYTE dwTest1[20];
+END_PROTOCOL()
+//------------------------------------------------------------------
+BEGIN_PROTOCOL(GU_EVENT_SCHEDULING_END)
+// ??? TODO: Probably nothing?
+END_PROTOCOL()
 #pragma pack(pop)

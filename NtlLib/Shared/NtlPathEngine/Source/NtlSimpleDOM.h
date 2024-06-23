@@ -16,7 +16,6 @@
 #include <string>
 #include <map>
 #include <vector>
-#include <istream>
 
 class CNtlSimpleDOM
 {

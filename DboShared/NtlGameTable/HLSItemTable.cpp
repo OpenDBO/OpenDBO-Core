@@ -212,7 +212,7 @@ bool CHLSItemTable::LoadFromBinary(CNtlSerializer& serializer, bool bReload, boo
 			break;
 		}
 
-	//	printf("pTableData->tblidx %u  %u  %u  %u  %u  %u  %u \n", pTableData->tblidx, pTableData->itemTblidx, pTableData->byCategory, pTableData->bOnSale, pTableData->dwCash, pTableData->byStackCount, pTableData->wDisplayBitFlag);
+		//printf("pTableData->tblidx %u  %u \n", pTableData->tblidx, pTableData->dwCash);
 		if( false == AddTable(pTableData, bReload, bUpdate) )
 		{
 			delete pTableData;

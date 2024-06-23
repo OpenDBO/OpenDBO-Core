@@ -1,6 +1,7 @@
 #pragma once
 
 #include "NtlPacketCommon.h"
+#include "NtlCharacter.h"
 
 
 enum eOPCODE_UC
@@ -15,12 +16,13 @@ enum eOPCODE_UC
 	UC_CHARACTER_SELECT_REQ,
 	UC_CHARACTER_EXIT_REQ,
 	UC_CHARACTER_LOAD_REQ,
-	UC_CHARACTER_DEL_CANCEL_REQ,					// 이름이 중복 되어 변경
-
+	UC_CHARACTER_DEL_CANCEL_REQ,
 	UC_CONNECT_WAIT_CHECK_REQ,
-	UC_CONNECT_WAIT_CANCEL_REQ,						// 대기 취소
-	
+	UC_CONNECT_WAIT_CANCEL_REQ,
 	UC_CHARACTER_RENAME_REQ,
+	UC_CASHITEM_HLSHOP_REFRESH_REQ,
+	UC_CASHITEM_BUY_REQ,
+	UC_CHAR_SERVERLIST_REQ,
 
 	UC_OPCODE_DUMMY,
 	UC_OPCODE_END = UC_OPCODE_DUMMY - 1
@@ -32,6 +34,9 @@ enum eOPCODE_UC
 //------------------------------------------------------------------
 const char * NtlGetPacketName_UC(WORD wOpCode);
 //------------------------------------------------------------------
+
+#pragma warning( push )
+#pragma warning( disable : 26495 ) // Variable 'x' is uninitialized.Always initialize a member variable(type.6)
 
 
 #pragma pack(1)
@@ -54,17 +59,14 @@ BEGIN_PROTOCOL(UC_CHARACTER_ADD_REQ)
 	BYTE			byRace;
 	BYTE			byClass;
 	BYTE			byGender;
-	BYTE			byFace;
-	BYTE			byHair;
-	BYTE			byHairColor;
-	BYTE			bySkinColor;
+	sPC_SHAPE		sPcShape;
 	BYTE			byBlood;// to be removed
 	TBLIDX			superiorID;// to be removed
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UC_CHARACTER_DEL_REQ)
-CHARACTERID		charId;
-char			achPasswd[NTL_MAX_SIZE_USERPW_ENCRYPT + 1];
+	CHARACTERID		charId;
+	WCHAR			awcDeletePassword[NTL_MAX_SIZE_USERPW + 1];
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UC_CHARACTER_SELECT_REQ)
@@ -82,8 +84,8 @@ BEGIN_PROTOCOL(UC_CHARACTER_LOAD_REQ)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UC_CHARACTER_DEL_CANCEL_REQ)
-CHARACTERID		charId;
-char			achPasswd[NTL_MAX_SIZE_USERPW_ENCRYPT + 1];
+	CHARACTERID		charId;
+	WCHAR			awcDeletePassword[NTL_MAX_SIZE_USERPW + 1];
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( UC_CONNECT_WAIT_CHECK_REQ )
@@ -96,7 +98,10 @@ END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( UC_CHARACTER_RENAME_REQ )
 	CHARACTERID		charId;
+	//DWORD			dwCodePage;
 	WCHAR			awchCharName[NTL_MAX_SIZE_CHAR_NAME + 1];
 END_PROTOCOL()
 //------------------------------------------------------------------
 #pragma pack()
+
+#pragma warning( pop ) // (26495) Variable 'x' is uninitialized.Always initialize a member variable(type.6)

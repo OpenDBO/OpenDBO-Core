@@ -31,18 +31,18 @@ enum eRACE
 	RACE_MAJIN,
 
 	RACE_COUNT,
-	RACE_UNKNOWN	= 0xFF,
+	RACE_UNKNOWN = 0xFF,
 
-	RACE_FIRST		= RACE_HUMAN,
-	RACE_LAST		= RACE_MAJIN,
+	RACE_FIRST = RACE_HUMAN,
+	RACE_LAST = RACE_MAJIN,
 };
 
 
 enum eRACE_FLAG
 {
-	RACE_HUMAN_FLAG = MAKE_BIT_FLAG( RACE_HUMAN ),
-	RACE_NAMEK_FLAG	= MAKE_BIT_FLAG( RACE_NAMEK ),
-	RACE_MAJIN_FLAG	= MAKE_BIT_FLAG( RACE_MAJIN ),
+	RACE_HUMAN_FLAG = MAKE_BIT_FLAG(RACE_HUMAN),
+	RACE_NAMEK_FLAG = MAKE_BIT_FLAG(RACE_NAMEK),
+	RACE_MAJIN_FLAG = MAKE_BIT_FLAG(RACE_MAJIN),
 };
 
 enum eGENDER
@@ -52,10 +52,10 @@ enum eGENDER
 	GENDER_ONE_SEX,
 
 	GENDER_COUNT,
-	GENDER_UNKNOWN	= 0xFF,
+	GENDER_UNKNOWN = 0xFF,
 
-	GENDER_FIRST	= GENDER_MALE,
-	GENDER_LAST		= GENDER_ONE_SEX,
+	GENDER_FIRST = GENDER_MALE,
+	GENDER_LAST = GENDER_ONE_SEX,
 };
 
 enum eGENDER_FLAG
@@ -68,7 +68,7 @@ enum eGENDER_FLAG
 
 enum eZENNY_CHANGE_TYPE
 {
-	ZENNY_CHANGE_TYPE_ITEM_BUY	=	0,
+	ZENNY_CHANGE_TYPE_ITEM_BUY = 0,
 	ZENNY_CHANGE_TYPE_ITEM_SELL,
 	ZENNY_CHANGE_TYPE_PICK,
 	ZENNY_CHANGE_TYPE_TRADE,
@@ -171,41 +171,41 @@ enum ePC_CLASS
 	PC_CLASS_KAR_MA,         //(카르마)
 
 	PC_CLASS_COUNT,
-	PC_CLASS_UNKNOWN				= 0xFF,
-	
+	PC_CLASS_UNKNOWN = 0xFF,
+
 	PC_CLASS_1_FIRST = PC_CLASS_HUMAN_FIGHTER,
-	PC_CLASS_1_LAST  = PC_CLASS_WONDER_MAJIN,
+	PC_CLASS_1_LAST = PC_CLASS_WONDER_MAJIN,
 	PC_CLASS_2_FIRST = PC_CLASS_STREET_FIGHTER,
-	PC_CLASS_2_LAST  = PC_CLASS_KAR_MA,
+	PC_CLASS_2_LAST = PC_CLASS_KAR_MA,
 
 	PC_CLASS_FIRST = PC_CLASS_HUMAN_FIGHTER,
-	PC_CLASS_LAST  = PC_CLASS_COUNT - 1,
+	PC_CLASS_LAST = PC_CLASS_COUNT - 1,
 };
 
 // Class 검사용 비트 플래그
 enum ePC_CLASS_FLAG
 {
-	PC_CLASS_FLAG_HUMAN_FIGHTER  = (0x01 << PC_CLASS_HUMAN_FIGHTER),
-	PC_CLASS_FLAG_HUMAN_MYSTIC   = (0x01 << PC_CLASS_HUMAN_MYSTIC),	
+	PC_CLASS_FLAG_HUMAN_FIGHTER = (0x01 << PC_CLASS_HUMAN_FIGHTER),
+	PC_CLASS_FLAG_HUMAN_MYSTIC = (0x01 << PC_CLASS_HUMAN_MYSTIC),
 	PC_CLASS_FLAG_HUMAN_ENGINEER = (0x01 << PC_CLASS_HUMAN_ENGINEER),								//(엔지니어)->(건매니아,메카메니아)
-	PC_CLASS_FLAG_NAMEK_FIGHTER  = (0x01 << PC_CLASS_NAMEK_FIGHTER),								//(전사)->(마계전사,마도전사)
-	PC_CLASS_FLAG_NAMEK_MYSTIC   = (0x01 << PC_CLASS_NAMEK_MYSTIC),									//(용족)->(덴덴도사,포코도사)
-	PC_CLASS_FLAG_MIGHTY_MAJIN   = (0x01 << PC_CLASS_MIGHTY_MAJIN),									//(대마인)->(그랜마,얼티마)
-	PC_CLASS_FLAG_WONDER_MAJIN   = (0x01 << PC_CLASS_WONDER_MAJIN),									//(의마인)->(플라즈마,카르마)
+	PC_CLASS_FLAG_NAMEK_FIGHTER = (0x01 << PC_CLASS_NAMEK_FIGHTER),								//(전사)->(마계전사,마도전사)
+	PC_CLASS_FLAG_NAMEK_MYSTIC = (0x01 << PC_CLASS_NAMEK_MYSTIC),									//(용족)->(덴덴도사,포코도사)
+	PC_CLASS_FLAG_MIGHTY_MAJIN = (0x01 << PC_CLASS_MIGHTY_MAJIN),									//(대마인)->(그랜마,얼티마)
+	PC_CLASS_FLAG_WONDER_MAJIN = (0x01 << PC_CLASS_WONDER_MAJIN),									//(의마인)->(플라즈마,카르마)
 	PC_CLASS_FLAG_STREET_FIGHTER = (0x01 << PC_CLASS_STREET_FIGHTER) | PC_CLASS_FLAG_HUMAN_FIGHTER,	//(격투가)
-	PC_CLASS_FLAG_SWORD_MASTER   = (0x01 << PC_CLASS_SWORD_MASTER)   | PC_CLASS_FLAG_HUMAN_FIGHTER,	//(검술가)
-	PC_CLASS_FLAG_CRANE_ROSHI    = (0x01 << PC_CLASS_CRANE_ROSHI)    | PC_CLASS_FLAG_HUMAN_MYSTIC,	//(학선사)
-	PC_CLASS_FLAG_TURTLE_ROSHI   = (0x01 << PC_CLASS_TURTLE_ROSHI)   | PC_CLASS_FLAG_HUMAN_MYSTIC,	//(거북선사)
-	PC_CLASS_FLAG_GUN_MANIA      = (0x01 << PC_CLASS_GUN_MANIA)      | PC_CLASS_FLAG_HUMAN_ENGINEER,//(건매니아)
-	PC_CLASS_FLAG_MECH_MANIA     = (0x01 << PC_CLASS_MECH_MANIA)     | PC_CLASS_FLAG_HUMAN_ENGINEER,//(메카매니아)
-	PC_CLASS_FLAG_DARK_WARRIOR   = (0x01 << PC_CLASS_DARK_WARRIOR)   | PC_CLASS_FLAG_NAMEK_FIGHTER,	//(마계전사)
-	PC_CLASS_FLAG_SHADOW_KNIGHT  = (0x01 << PC_CLASS_SHADOW_KNIGHT)  | PC_CLASS_FLAG_NAMEK_FIGHTER,	//(마도전사)
-	PC_CLASS_FLAG_DENDEN_HEALER  = (0x01 << PC_CLASS_DENDEN_HEALER)  | PC_CLASS_FLAG_NAMEK_MYSTIC,	//(덴덴도사)
-	PC_CLASS_FLAG_POCO_SUMMONER  = (0x01 << PC_CLASS_POCO_SUMMONER)  | PC_CLASS_FLAG_NAMEK_MYSTIC,	//(포코도사)
-	PC_CLASS_FLAG_GRAND_MA       = (0x01 << PC_CLASS_GRAND_MA)       | PC_CLASS_FLAG_MIGHTY_MAJIN,	//(그랜마)
-	PC_CLASS_FLAG_ULTI_MA        = (0x01 << PC_CLASS_ULTI_MA)        | PC_CLASS_FLAG_MIGHTY_MAJIN,	//(얼티마)
-	PC_CLASS_FLAG_PLAS_MA        = (0x01 << PC_CLASS_PLAS_MA)        | PC_CLASS_FLAG_WONDER_MAJIN,	//(플라즈마)
-	PC_CLASS_FLAG_KAR_MA         = (0x01 << PC_CLASS_KAR_MA)         | PC_CLASS_FLAG_WONDER_MAJIN,	//(카르마)
+	PC_CLASS_FLAG_SWORD_MASTER = (0x01 << PC_CLASS_SWORD_MASTER) | PC_CLASS_FLAG_HUMAN_FIGHTER,	//(검술가)
+	PC_CLASS_FLAG_CRANE_ROSHI = (0x01 << PC_CLASS_CRANE_ROSHI) | PC_CLASS_FLAG_HUMAN_MYSTIC,	//(학선사)
+	PC_CLASS_FLAG_TURTLE_ROSHI = (0x01 << PC_CLASS_TURTLE_ROSHI) | PC_CLASS_FLAG_HUMAN_MYSTIC,	//(거북선사)
+	PC_CLASS_FLAG_GUN_MANIA = (0x01 << PC_CLASS_GUN_MANIA) | PC_CLASS_FLAG_HUMAN_ENGINEER,//(건매니아)
+	PC_CLASS_FLAG_MECH_MANIA = (0x01 << PC_CLASS_MECH_MANIA) | PC_CLASS_FLAG_HUMAN_ENGINEER,//(메카매니아)
+	PC_CLASS_FLAG_DARK_WARRIOR = (0x01 << PC_CLASS_DARK_WARRIOR) | PC_CLASS_FLAG_NAMEK_FIGHTER,	//(마계전사)
+	PC_CLASS_FLAG_SHADOW_KNIGHT = (0x01 << PC_CLASS_SHADOW_KNIGHT) | PC_CLASS_FLAG_NAMEK_FIGHTER,	//(마도전사)
+	PC_CLASS_FLAG_DENDEN_HEALER = (0x01 << PC_CLASS_DENDEN_HEALER) | PC_CLASS_FLAG_NAMEK_MYSTIC,	//(덴덴도사)
+	PC_CLASS_FLAG_POCO_SUMMONER = (0x01 << PC_CLASS_POCO_SUMMONER) | PC_CLASS_FLAG_NAMEK_MYSTIC,	//(포코도사)
+	PC_CLASS_FLAG_GRAND_MA = (0x01 << PC_CLASS_GRAND_MA) | PC_CLASS_FLAG_MIGHTY_MAJIN,	//(그랜마)
+	PC_CLASS_FLAG_ULTI_MA = (0x01 << PC_CLASS_ULTI_MA) | PC_CLASS_FLAG_MIGHTY_MAJIN,	//(얼티마)
+	PC_CLASS_FLAG_PLAS_MA = (0x01 << PC_CLASS_PLAS_MA) | PC_CLASS_FLAG_WONDER_MAJIN,	//(플라즈마)
+	PC_CLASS_FLAG_KAR_MA = (0x01 << PC_CLASS_KAR_MA) | PC_CLASS_FLAG_WONDER_MAJIN,	//(카르마)
 };
 
 
@@ -255,10 +255,10 @@ enum eMOB_GRADE
 	MOB_GRADE_BOSS,  // (보쓰)
 	MOB_GRADE_HERO,  // (히어로)
 
-	MOB_GRADE_UNKNOWN	= 0xFF,
+	MOB_GRADE_UNKNOWN = 0xFF,
 
-	MOB_GRADE_FIRST		= MOB_GRADE_NORMAL,
-	MOB_GRADE_LAST		= MOB_GRADE_HERO,
+	MOB_GRADE_FIRST = MOB_GRADE_NORMAL,
+	MOB_GRADE_LAST = MOB_GRADE_HERO,
 
 	MOB_GRADE_MAX_COUNT,
 };
@@ -285,9 +285,9 @@ enum eMOB_TYPE
 	MOB_TYPE_ITEM_BOX,
 
 	MOB_TYPE_COUNT,
-	MOB_TYPE_UNKNOWN	= 0xFF,
+	MOB_TYPE_UNKNOWN = 0xFF,
 
-	MOB_TYPE_FIRST		= MOB_TYPE_ANIMAL,
+	MOB_TYPE_FIRST = MOB_TYPE_ANIMAL,
 	MOB_TYPE_LAST = MOB_TYPE_COUNT - 1,
 };
 
@@ -370,26 +370,26 @@ enum eAI_FUNCTION
 
 enum eAI_FUNCTION_FLAG
 {
-	AI_FUNC_FLAG_DEFENSIVE			= 0x01 << AI_FUNC_DEFENSIVE,
-	AI_FUNC_FLAG_TIMID				= 0x01 << AI_FUNC_TIMID,// [3/12/2008]
-	AI_FUNC_FLAG_OFFENSIVE			= 0x01 << AI_FUNC_OFFENSIVE,
-	AI_FUNC_FLAG_SMART_OFFENSIVE	= 0x01 << AI_FUNC_SMART_OFFENSIVE, // [3/11/2008]
-	AI_FUNC_FLAG_ONLYSKILL			= 0x01 << AI_FUNC_ONLYSKILL, // [11/10/2008]
+	AI_FUNC_FLAG_DEFENSIVE = 0x01 << AI_FUNC_DEFENSIVE,
+	AI_FUNC_FLAG_TIMID = 0x01 << AI_FUNC_TIMID,// [3/12/2008]
+	AI_FUNC_FLAG_OFFENSIVE = 0x01 << AI_FUNC_OFFENSIVE,
+	AI_FUNC_FLAG_SMART_OFFENSIVE = 0x01 << AI_FUNC_SMART_OFFENSIVE, // [3/11/2008]
+	AI_FUNC_FLAG_ONLYSKILL = 0x01 << AI_FUNC_ONLYSKILL, // [11/10/2008]
 
-	AI_FUNC_FLAG_DESPERATION		= 0x01 << AI_FUNC_DESPERATION,
-	AI_FUNC_FLAG_FLEE				= 0x01 << AI_FUNC_FLEE,
-	AI_FUNC_FLAG_RETREAT			= 0x01 << AI_FUNC_RETREAT,// [3/12/2008]
+	AI_FUNC_FLAG_DESPERATION = 0x01 << AI_FUNC_DESPERATION,
+	AI_FUNC_FLAG_FLEE = 0x01 << AI_FUNC_FLEE,
+	AI_FUNC_FLAG_RETREAT = 0x01 << AI_FUNC_RETREAT,// [3/12/2008]
 
-	AI_FUNC_FLAG_REVENGE			= 0x01 << AI_FUNC_REVENGE,
-	AI_FUNC_FLAG_FOCUS				= 0x01 << AI_FUNC_FOCUS,
-	AI_FUNC_FLAG_MEAN				= 0x01 << AI_FUNC_MEAN,
-	AI_FUNC_FLAG_BRAVE				= 0x01 << AI_FUNC_BRAVE,
+	AI_FUNC_FLAG_REVENGE = 0x01 << AI_FUNC_REVENGE,
+	AI_FUNC_FLAG_FOCUS = 0x01 << AI_FUNC_FOCUS,
+	AI_FUNC_FLAG_MEAN = 0x01 << AI_FUNC_MEAN,
+	AI_FUNC_FLAG_BRAVE = 0x01 << AI_FUNC_BRAVE,
 
-	AI_FUNC_FLAG_ALLIANCE_HELP		= 0x01 << AI_FUNC_ALLIANCE_HELP,// [3/11/2008]
-	AI_FUNC_FLAG_DEFEND				= 0x01 << AI_FUNC_DEFEND,// 경비 [3/12/2008]
+	AI_FUNC_FLAG_ALLIANCE_HELP = 0x01 << AI_FUNC_ALLIANCE_HELP,// [3/11/2008]
+	AI_FUNC_FLAG_DEFEND = 0x01 << AI_FUNC_DEFEND,// 경비 [3/12/2008]
 
-	AI_FUNC_FLAG_NOT_CHASE			= 0x01 << AI_FUNC_NOT_CHASE, // [11/10/2008]
-	AI_FUNC_FLAG_NOT_MOVE			= 0x01 << AI_FUNC_NOT_MOVE, // [11/10/2008]
+	AI_FUNC_FLAG_NOT_CHASE = 0x01 << AI_FUNC_NOT_CHASE, // [11/10/2008]
+	AI_FUNC_FLAG_NOT_MOVE = 0x01 << AI_FUNC_NOT_MOVE, // [11/10/2008]
 };
 
 
@@ -463,7 +463,7 @@ enum eNPC_JOB
 	NPC_JOB_AIR_GAMBLE_MERCHANT,		//air capsule machine gamble using mudosa points
 
 	NPC_JOB_COUNT,
-	NPC_JOB_UNKNOWN	= 0xFF,
+	NPC_JOB_UNKNOWN = 0xFF,
 
 	NPC_JOB_FIRST = NPC_JOB_WEAPON_MERCHANT,
 	NPC_JOB_LAST = NPC_JOB_COUNT - 1
@@ -517,46 +517,46 @@ enum eNPC_FUNCTION
 // NPC Function Flag
 enum eNPC_FUNCTION_FLAG
 {
-	NPC_FUNC_FLAG_MERCHANT			= MAKE_BIT_FLAG( NPC_FUNC_MERCHANT ),
-	NPC_FUNC_FLAG_GUARD				= MAKE_BIT_FLAG( NPC_FUNC_GUARD ),			
-	NPC_FUNC_FLAG_SKILL_TRAINER		= MAKE_BIT_FLAG( NPC_FUNC_SKILL_TRAINER ),	
-	NPC_FUNC_FLAG_BANKER			= MAKE_BIT_FLAG( NPC_FUNC_BANKER ),			
-	NPC_FUNC_FLAG_TALKER			= MAKE_BIT_FLAG( NPC_FUNC_TALKER ),			
-	NPC_FUNC_FLAG_QUEST_GRANTER		= MAKE_BIT_FLAG( NPC_FUNC_QUEST_GRANTER ),	
-	NPC_FUNC_FLAG_GUILD_MANAGER		= MAKE_BIT_FLAG( NPC_FUNC_GUILD_MANAGER ),
-	NPC_FUNC_FLAG_SUMMON_PET		= MAKE_BIT_FLAG( NPC_FUNC_SUMMON_PET ),
-	NPC_FUNC_FLAG_GATE_KEEPER		= MAKE_BIT_FLAG( NPC_FUNC_GATE_KEEPER ),
-	NPC_FUNC_FLAG_TIME_QUEST		= MAKE_BIT_FLAG( NPC_FUNC_TIME_QUEST ),
-	NPC_FUNC_FLAG_PORTAL			= MAKE_BIT_FLAG( NPC_FUNC_PORTAL ),
-	NPC_FUNC_FLAG_SCAN_BY_MOB		= MAKE_BIT_FLAG( NPC_FUNC_SCAN_BY_MOB ),
-	NPC_FUNC_FLAG_BUS				= MAKE_BIT_FLAG( NPC_FUNC_BUS ),
-	NPC_FUNC_FLAG_RECEPTION			= MAKE_BIT_FLAG( NPC_FUNC_RECEPTION ),
-	NPC_FUNC_FLAG_BUDOHSI_MERCHANT	= MAKE_BIT_FLAG( NPC_FUNC_BUDOHSI_MERCHANT ),
-	NPC_FUNC_FLAG_REFEREE			= MAKE_BIT_FLAG( NPC_FUNC_REFEREE ),
-	NPC_FUNC_FLAG_BUILDING			= MAKE_BIT_FLAG( NPC_FUNC_BUILDING ),
-	NPC_FUNC_FLAG_FACING			= MAKE_BIT_FLAG( NPC_FUNC_FACING ),	// 수정 ( NPC_FUNC_FLAG_FACING = NPC_FUNC_FLAG_MERCHANT | NPC_FUNC_FLAG_QUEST_GRANTER, // 이동중에 메뉴를 띄우게 되는 NPC 모음 ) [5/19/2008]	
+	NPC_FUNC_FLAG_MERCHANT = MAKE_BIT_FLAG(NPC_FUNC_MERCHANT),
+	NPC_FUNC_FLAG_GUARD = MAKE_BIT_FLAG(NPC_FUNC_GUARD),
+	NPC_FUNC_FLAG_SKILL_TRAINER = MAKE_BIT_FLAG(NPC_FUNC_SKILL_TRAINER),
+	NPC_FUNC_FLAG_BANKER = MAKE_BIT_FLAG(NPC_FUNC_BANKER),
+	NPC_FUNC_FLAG_TALKER = MAKE_BIT_FLAG(NPC_FUNC_TALKER),
+	NPC_FUNC_FLAG_QUEST_GRANTER = MAKE_BIT_FLAG(NPC_FUNC_QUEST_GRANTER),
+	NPC_FUNC_FLAG_GUILD_MANAGER = MAKE_BIT_FLAG(NPC_FUNC_GUILD_MANAGER),
+	NPC_FUNC_FLAG_SUMMON_PET = MAKE_BIT_FLAG(NPC_FUNC_SUMMON_PET),
+	NPC_FUNC_FLAG_GATE_KEEPER = MAKE_BIT_FLAG(NPC_FUNC_GATE_KEEPER),
+	NPC_FUNC_FLAG_TIME_QUEST = MAKE_BIT_FLAG(NPC_FUNC_TIME_QUEST),
+	NPC_FUNC_FLAG_PORTAL = MAKE_BIT_FLAG(NPC_FUNC_PORTAL),
+	NPC_FUNC_FLAG_SCAN_BY_MOB = MAKE_BIT_FLAG(NPC_FUNC_SCAN_BY_MOB),
+	NPC_FUNC_FLAG_BUS = MAKE_BIT_FLAG(NPC_FUNC_BUS),
+	NPC_FUNC_FLAG_RECEPTION = MAKE_BIT_FLAG(NPC_FUNC_RECEPTION),
+	NPC_FUNC_FLAG_BUDOHSI_MERCHANT = MAKE_BIT_FLAG(NPC_FUNC_BUDOHSI_MERCHANT),
+	NPC_FUNC_FLAG_REFEREE = MAKE_BIT_FLAG(NPC_FUNC_REFEREE),
+	NPC_FUNC_FLAG_BUILDING = MAKE_BIT_FLAG(NPC_FUNC_BUILDING),
+	NPC_FUNC_FLAG_FACING = MAKE_BIT_FLAG(NPC_FUNC_FACING),	// 수정 ( NPC_FUNC_FLAG_FACING = NPC_FUNC_FLAG_MERCHANT | NPC_FUNC_FLAG_QUEST_GRANTER, // 이동중에 메뉴를 띄우게 되는 NPC 모음 ) [5/19/2008]	
 																		// 이렇게하면 문제되는 것이 하나 있는데, 같은 NPC를 다른 곳에서 썼을 때 그곳에서는 말을 걸면 멈추지 말아야 될때에는 NPC를 새로 만들어야 한다
-	NPC_FUNC_FLAG_TURN_OFF			= MAKE_BIT_FLAG( NPC_FUNC_TURN_OFF ), // [6/2/2008]
-	NPC_FUNC_FLAG_DISCLOSE_LP		= MAKE_BIT_FLAG( NPC_FUNC_DISCLOSE_LP ), // [8/21/2008 Peessi]
-	NPC_FUNC_FLAG_GAMBLE_MERCHANT	= MAKE_BIT_FLAG( NPC_FUNC_GAMBLE_MERCHANT ),// [7/21/2008]
-	NPC_FUNC_FLAG_MOVING_NPC		= MAKE_BIT_FLAG( NPC_FUNC_MOVING_NPC ), // [8/27/2008]
-	NPC_FUNC_FLAG_SPAWN_NPC			= MAKE_BIT_FLAG( NPC_FUNC_SPAWN_NPC ),
-	NPC_FUNC_FLAG_DOJO_MANAGER		= MAKE_BIT_FLAG( NPC_FUNC_DOJO_MANAGER ),
-	NPC_FUNC_FLAG_DOJO_MERCHANT		= MAKE_BIT_FLAG( NPC_FUNC_DOJO_MERCHANT ),
-	NPC_FUNC_FLAG_DOJO_SEAL		    = MAKE_BIT_FLAG( NPC_FUNC_DOJO_SEAL ),
-	NPC_FUNC_FLAG_DOJO_BANKER		= MAKE_BIT_FLAG( NPC_FUNC_DOJO_BANKER ),
+																		NPC_FUNC_FLAG_TURN_OFF = MAKE_BIT_FLAG(NPC_FUNC_TURN_OFF), // [6/2/2008]
+																		NPC_FUNC_FLAG_DISCLOSE_LP = MAKE_BIT_FLAG(NPC_FUNC_DISCLOSE_LP), // [8/21/2008 Peessi]
+																		NPC_FUNC_FLAG_GAMBLE_MERCHANT = MAKE_BIT_FLAG(NPC_FUNC_GAMBLE_MERCHANT),// [7/21/2008]
+																		NPC_FUNC_FLAG_MOVING_NPC = MAKE_BIT_FLAG(NPC_FUNC_MOVING_NPC), // [8/27/2008]
+																		NPC_FUNC_FLAG_SPAWN_NPC = MAKE_BIT_FLAG(NPC_FUNC_SPAWN_NPC),
+																		NPC_FUNC_FLAG_DOJO_MANAGER = MAKE_BIT_FLAG(NPC_FUNC_DOJO_MANAGER),
+																		NPC_FUNC_FLAG_DOJO_MERCHANT = MAKE_BIT_FLAG(NPC_FUNC_DOJO_MERCHANT),
+																		NPC_FUNC_FLAG_DOJO_SEAL = MAKE_BIT_FLAG(NPC_FUNC_DOJO_SEAL),
+																		NPC_FUNC_FLAG_DOJO_BANKER = MAKE_BIT_FLAG(NPC_FUNC_DOJO_BANKER),
 
-	NPC_FUNC_FLAG_DWC_TELEPORT				= MAKE_BIT_FLAG( NPC_FUNC_DWC_TELEPORT ),
-	NPC_FUNC_FLAG_BATTLE_DUNGEON_MANAGER	= MAKE_BIT_FLAG( NPC_FUNC_BATTLE_DUNGEON_MANAGER ),
-	NPC_FUNC_FLAG_ITEM_UPGRADE				= MAKE_BIT_FLAG( NPC_FUNC_ITEM_UPGRADE ),
-	NPC_FUNC_FLAG_EVENT_NPC					= MAKE_BIT_FLAG64( NPC_FUNC_EVENT_NPC ),
-	NPC_FUNC_FLAG_ITEM_EXCHANGE				= MAKE_BIT_FLAG64( NPC_FUNC_ITEM_EXCHANGE ),
+																		NPC_FUNC_FLAG_DWC_TELEPORT = MAKE_BIT_FLAG(NPC_FUNC_DWC_TELEPORT),
+																		NPC_FUNC_FLAG_BATTLE_DUNGEON_MANAGER = MAKE_BIT_FLAG(NPC_FUNC_BATTLE_DUNGEON_MANAGER),
+																		NPC_FUNC_FLAG_ITEM_UPGRADE = MAKE_BIT_FLAG(NPC_FUNC_ITEM_UPGRADE),
+																		NPC_FUNC_FLAG_EVENT_NPC = MAKE_BIT_FLAG64(NPC_FUNC_EVENT_NPC),
+																		NPC_FUNC_FLAG_ITEM_EXCHANGE = MAKE_BIT_FLAG64(NPC_FUNC_ITEM_EXCHANGE),
 };
 
 enum eNPC_SHOP_TYPE
 {
 	NPC_SHOP_TYPE_DEFAULT,
-	NPC_SHOP_TYPE_EXCHANGE,
+	NPC_SHOP_TYPE_EXCHANGE = 9,
 	NPC_SHOP_TYPE_TENKAICHI, // like exchange
 
 	NPC_SHOP_TYPE_COUNT,
@@ -565,13 +565,13 @@ enum eNPC_SHOP_TYPE
 
 enum eNPC_ATTRIBUTE
 {
-  NPC_ATTRIBUTE_DEFY = 1,
-  NPC_ATTRIBUTE_NOT_PUSH,
+	NPC_ATTRIBUTE_DEFY = 1,
+	NPC_ATTRIBUTE_NOT_PUSH,
 
-  NPC_ATTRIBUTE_COUNT,
+	NPC_ATTRIBUTE_COUNT,
 
-  NPC_ATTRIBUTE_FIRST = NPC_ATTRIBUTE_DEFY,
-  NPC_ATTRIBUTE_LAST = NPC_ATTRIBUTE_COUNT - 1,
+	NPC_ATTRIBUTE_FIRST = NPC_ATTRIBUTE_DEFY,
+	NPC_ATTRIBUTE_LAST = NPC_ATTRIBUTE_COUNT - 1,
 };
 
 enum eNPC_ATTRIBUTE_FLAG
@@ -598,7 +598,7 @@ enum eMERCHANT_SELL_TYPE
 
 	MERCHANT_SELL_TYPE_COUNT,
 	MERCHANT_SELL_TYPE_FIRST = MERCHANT_SELL_TYPE_ITEM,
-	MERCHANT_SELL_TYPE_LAST  = MERCHANT_SELL_TYPE_NETPY,
+	MERCHANT_SELL_TYPE_LAST = MERCHANT_SELL_TYPE_NETPY,
 };
 
 // QuickSlotType Define
@@ -611,78 +611,96 @@ enum eQUICK_SLOT_TYPE
 
 	QUICK_SLOT_TYPE_COUNT,
 	QUICK_SLOT_TYPE_FIRST = QUICK_SLOT_TYPE_ITEM,
-	QUICK_SLOT_TYPE_LAST  = QUICK_SLOT_TYPE_SOCIALACTION,
+	QUICK_SLOT_TYPE_LAST = QUICK_SLOT_TYPE_SOCIALACTION,
 };
 
+enum eLocalizeType : BYTE {
+	//LOCALIZE_TYPE_NONE = 0x0,
+	LOCALIZE_TYPE_DEV = 0x00,
+	LOCALIZE_TYPE_KOREA = 0x01,
+	LOCALIZE_TYPE_JAPAN = 0x02,
+	LOCALIZE_TYPE_TAIWAN = 0x03,
+	LOCALIZE_TYPE_HONGKONG = 0x04,
+	LOCALIZE_TYPE_CHINA = 0x05,
 
+	LOCALIZE_TYPE_TEST = 0x0A,
+
+	LOCALIZE_TYPE_COUNT,
+
+	LOCALIZE_TYPE_FIRST = LOCALIZE_TYPE_KOREA,
+	LOCALIZE_TYPE_LAST = LOCALIZE_TYPE_COUNT - 1,
+	INVALID_LOCALIZE_TYPE = 0xFF,
+};
 
 //-----------------------------------------------------------------------------------
 // 캐릭터 관련 상수 정의 : [4/25/2006 zeroera] : 수정필요 : lua로 옮길 것
 //-----------------------------------------------------------------------------------
-const DWORD			NTL_CHAR_RP_REGEN_WAIT_TIME					= 15000; // Start decreasing after 15 seconds
+const DWORD			NTL_CHAR_RP_REGEN_WAIT_TIME = 15000; // Start decreasing after 15 seconds
 
-const DWORD			NTL_CHAR_RP_BALL_UPDATE_INTERVAL			= 30000; // 경과 후 RP 구슬 감소 시작 (30)
+const DWORD			NTL_CHAR_RP_BALL_UPDATE_INTERVAL = 30000; // 경과 후 RP 구슬 감소 시작 (30)
 
-const BYTE			NTL_CHAR_RP_BALL_MAX						= 7; // Max 7 rp balls
+const BYTE			NTL_CHAR_RP_BALL_MAX = 7; // Max 7 rp balls
 
-const int			NTL_CHAR_RP_BALL_INCREASE_LEVEL				= 10; // RP ball increases every 10 level
-const int			NTL_CHAR_BP_INCREASE_CHAR_LEVEL_UP			= 300; //new
-const int			NTL_CHAR_BP_INCREASE_ARMOR_LEVEL_UP			= 200;//new
-const DWORD			NTL_CHAR_BP_RESCUE_RECOVER_RATE_OF_BP		= INVALID_DWORD;
-const DWORD			NTL_CHAR_BP_YOU_KILL_RECOVER_RATE_OF_BP		= INVALID_DWORD;
+const int			NTL_CHAR_RP_BALL_INCREASE_LEVEL = 10; // RP ball increases every 10 level
+const int			NTL_CHAR_BP_INCREASE_CHAR_LEVEL_UP = 300; //new
+const int			NTL_CHAR_BP_INCREASE_ARMOR_LEVEL_UP = 200;//new
+const DWORD			NTL_CHAR_BP_RESCUE_RECOVER_RATE_OF_BP = INVALID_DWORD;
+const DWORD			NTL_CHAR_BP_YOU_KILL_RECOVER_RATE_OF_BP = INVALID_DWORD;
 
 const int			DBO_CHAR_DEFAULT_AP = 450000;
 
-const int			DBO_CHAR_FACE_SHAPE_COUNT			= 10;
+const int			DBO_CHAR_FACE_SHAPE_COUNT = 10;
 
-const int			DBO_CHAR_HAIR_SHAPE_COUNT			= 10;
+const int			DBO_CHAR_HAIR_SHAPE_COUNT = 10;
 
-const int			DBO_CHAR_HAIR_COLOR_COUNT			= 13;
+const int			DBO_CHAR_HAIR_COLOR_COUNT = 13;
 
-const int			DBO_CHAR_SKIN_COLOR_COUNT			= 5;
+const int			DBO_CHAR_SKIN_COLOR_COUNT = 5;
 
-const int			NTL_CHAR_CONVERT1_NEED_LEVEL        = 30;	// 1Required level in order ex
+const int			NTL_CHAR_CONVERT1_NEED_LEVEL = 30;	// 1Required level in order ex
 
-const int           NTL_CHAR_QUICK_SLOT_MAX_COUNT	    = 48;   // 12 * 4 칸
+const int           NTL_CHAR_QUICK_SLOT_MAX_COUNT = 48;   // 12 * 4 칸
 
-const int           NTL_GM_USE_LEVEL_NONE				= 0; 
+const int           NTL_GM_USE_LEVEL_NONE = 0;
 
-const int           NTL_GM_USE_LEVEL1					= 1;   
+const int           NTL_GM_USE_LEVEL1 = 1;
 
-const int           NTL_GM_USE_LEVEL2					= 2;   
+const int           NTL_GM_USE_LEVEL2 = 2;
 
-extern const char*	DBO_PURE_MAJIN_MODEL_RESOURCE_NAME;
+extern const char* DBO_PURE_MAJIN_MODEL_RESOURCE_NAME;
 
-const float			DBO_GREAT_NAMEK_ATTACK_RANGE		= 4.0f;
+const float			DBO_GREAT_NAMEK_ATTACK_RANGE = 4.0f;
 
 const float			DBO_DEFAULT_SKILL_ANIMATION_SPEED_MODIFIER = 100.0f;
 
-const BYTE			DBO_DEFAULT_CHARACTER_SIZE_RATE		= 10;
+const BYTE			DBO_DEFAULT_CHARACTER_SIZE_RATE = 10;
 
-const DWORD			DBO_NPC_MAX_PARTY_NUMBER			= 100000;
+const DWORD			DBO_NPC_MAX_PARTY_NUMBER = 100000;
 
-const DWORD			DBO_MAX_PLAY_TIME_TERM				= 300000;	// Real-time position and play time up to save cycle time to save time
+const DWORD			DBO_MAX_PLAY_TIME_TERM = 300000;	// Real-time position and play time up to save cycle time to save time
 
-const DWORD			NTL_CHAR_MAX_SAVE_ZENNY				= 4000000000;
+const DWORD			NTL_CHAR_MAX_SAVE_ZENNY = 4000000000;
 
-const DWORD			NTL_CHAR_MAX_BANK_SAVE_ZENNY		= 2000000000;
+const DWORD			NTL_CHAR_MAX_BANK_SAVE_ZENNY = 2000000000;
 
-const DWORD			NTL_MAX_USE_ZENI					= 1000000000; //max amount of zeni player can use to trade/sell etc
+const DWORD			NTL_MAX_USE_ZENI = 1000000000; //max amount of zeni player can use to trade/sell etc
 
-const int			NTL_MAX_NEWBIE_QUICKSLOT_COUNT		= 5;  // 생성시 부여가능 퀵슬롯 
+const int			NTL_MAX_NEWBIE_QUICKSLOT_COUNT = 5;  // 생성시 부여가능 퀵슬롯 
 
-const DWORD			NTL_DELETE_CHAR_CHECK_TICK			= 1000; //Check Delete waiting time
+const DWORD			NTL_DELETE_CHAR_CHECK_TICK = 1000; //Check Delete waiting time
 
-const DWORD			NTL_MAX_WAGU_WAGU_SHOPPOINTS		= 2000; //maximal wagu shop points
+const DWORD			NTL_MAX_WAGU_WAGU_SHOPPOINTS = 2000; //maximal wagu shop points
 
-const DWORD			NTL_INVINCIBLE_EVENT_TIME			= 5000;
+const DWORD			NTL_MAX_NETPY_SHOPPOINTS = 50000; //maximal NetPy shop points
+
+const DWORD			NTL_INVINCIBLE_EVENT_TIME = 5000;
 
 //-----------------------------------------------------------------------------------
-const BYTE			GMT_MAX_EFFECT_LIST_SIZE			= 5;		// GMT 적용 효과의 최대 갯수
-const BYTE			GMT_MAX_TIME_SLOT_SIZE				= 3;		// GMT 효과의 시간 설정 갯수
+const BYTE			GMT_MAX_EFFECT_LIST_SIZE = 5;		// GMT 적용 효과의 최대 갯수
+const BYTE			GMT_MAX_TIME_SLOT_SIZE = 3;		// GMT 효과의 시간 설정 갯수
 
 //new
-const int 			NTL_MAX_CHAR_HISTORY_DATA_REQUEST	= 20;
+const int 			NTL_MAX_CHAR_HISTORY_DATA_REQUEST = 20;
 const DWORD 		NTL_ACHIEVEMENTS_BINARY_BLOCK_MAX_ACHIVEMENS_COUNT = 1600;
 
 const DWORD			CHAR_POINT_MAX_NUM = 255;
@@ -695,9 +713,9 @@ const DWORD			ZENI_GAMBLE_FEE = 10000; //ZENI FEE TO USE GAMBLE NPC
 // NewbieQuickData
 struct sNEWBIE_QUICKSLOT_DATA
 {
-	TBLIDX			tbilidx; 
-	BYTE			byType;	
-	BYTE			byQuickSlot; 
+	TBLIDX			tbilidx;
+	BYTE			byType;
+	BYTE			byQuickSlot;
 };
 
 struct sDELETE_WAIT_CHARACTER
@@ -717,7 +735,7 @@ struct sMARKING
 	unsigned long int byCode;			// eMARKING_TYPE (BYTE)
 
 };//end of sMARKING
-	
+
 // 캐릭터 생김새
 struct sPC_SHAPE
 {
@@ -757,7 +775,9 @@ struct sCHARSTATE_BASE
 	DWORD			dwStateTime;
 	QWORD			dwConditionFlag;
 	sASPECTSTATE	aspectState;
-	BOOL			bFightMode : 1;
+
+	BOOLEAN			bFightMode;	
+
 	sVECTOR3		vCurLoc;
 	sVECTOR3		vCurDir;
 	BYTE			eAirState; //eAIR_STATE
@@ -766,7 +786,7 @@ struct sCHARSTATE_BASE
 
 // Structure according to state
 union sCHARSTATE_DETAIL
-{ 
+{
 	sCHARSTATE_SPAWNING				sCharStateSpawning;
 	sCHARSTATE_DESPAWNING			sCharStateDespawning;
 	sCHARSTATE_STANDING				sCharStateStanding;
@@ -847,11 +867,11 @@ struct sPC_DATA
 	WORLDID			worldId;
 	DWORD			dwEXP;
 	BYTE			byLevel;
-	int				charLp;
+	DWORD			charLp;
 	WORD			wEP;
 	WORD			wRP;
 	BYTE			byCurRPBall;
-	int				charAP;
+	DWORD			charAP;
 	BYTE			byFace;
 	BYTE			byHair;
 	BYTE			byHairColor;
@@ -867,8 +887,8 @@ struct sPC_DATA
 
 	DWORD			dwReputation;
 	DWORD			dwMudosaPoint;
-	DWORD			dwNetPy;
 	DWORD			dwSpPoint;
+
 	TBLIDX			charTitle; //new
 
 	sHOIPOIMIX_DATA sMixData;
@@ -890,6 +910,7 @@ struct sPC_DATA
 	BYTE			byAdminLevel;
 	bool			bIsMailAway;
 	JOINID			wJoinID; // budokai join id
+	DWORD			NetPyPoit;
 };
 
 // Character Updated 30.11.2014
@@ -901,10 +922,7 @@ struct sPC_SUMMARY
 	BYTE			byClass;
 	bool			bIsAdult;
 	BYTE			byGender;
-	BYTE			byFace;
-	BYTE			byHair;
-	BYTE			byHairColor;
-	BYTE			bySkinColor;
+	sPC_SHAPE		sPcShape;
 	BYTE			byLevel;
 	TBLIDX			worldTblidx;
 	WORLDID			worldId;
@@ -940,11 +958,18 @@ struct sPC_BRIEF
 	WORD			wCurEP;
 	WORD			wMaxEP;
 
+	DWORD			dwCurAP; // NOTE: Not really needed here
+	DWORD			dwMaxAP; // NOTE: Not really needed here
 	BYTE			byLevel;
-	float			fLastRunSpeed;
-	float			fLastFlySpeed;
-	float			fLastFlyDashSpeed;
-	float			fLastFlyAccelSpeed;
+
+	FLOAT			fBaseRunSpeed;
+	FLOAT			fLastRunSpeed;
+	FLOAT			fBaseAirSpeed;
+	FLOAT			fLastAirSpeed;
+	FLOAT			fBaseAirDashSpeed;
+	FLOAT			fLastAirDashSpeed;
+	FLOAT			fBaseAirDashBoostSpeed;
+	FLOAT			fLastAirDashBoostSpeed;
 
 	sITEM_BRIEF		sItemBrief[EQUIP_SLOT_TYPE_COUNT]; // 장착 아이템 정보
 
@@ -954,17 +979,47 @@ struct sPC_BRIEF
 	sDBO_GUILD_MARK	sMark;
 
 	TBLIDX			charTitle;
+	
 	sDBO_DOGI_DATA	sDogi;
 
 	bool			bEmergency;
 	bool			bIsInFreePvpZone;
 	bool			bIsScrambleJoinFlag;
 	BYTE			byHasBattleDragonBallBitFlag;
+
 	TBLIDX			mascotTblidx;
+
+	//WCHAR	awcMascotName[16 + 1];
+
 	BYTE			bySizeRate;
 	PARTYID			partyId;
 	bool			bInvisibleCostume;
-	bool			bInvisibleTitle;
+	//bool			bInvisibleTitle; // NOTE: Temporary disabled because latest TW not support it ~Nady
+};
+
+
+struct sPcProfileLocalize {
+	eLocalizeType eLocalizeType;
+
+	union {
+		struct sPC_PROFILE_LOCALIZE_DEV { /* Nothing :( */ } sDev;
+
+		struct sPC_PROFILE_LOCALIZE_CJIKOR {
+			DWORD dwNeptyPoints;
+			DWORD dwRecvGiftCount;
+		} sCJIKOR;
+
+		struct sPC_PROFILE_LOCALIZE_CT {
+			DWORD dwNeptyPoints;
+			DWORD dwRecvGiftCount;
+		} sCT;
+
+		struct sPC_PROFILE_LOCALIZE_SD_CH {
+			DWORD dwNeptyPoints;
+			DWORD dwRecvGiftCount;
+			BYTE byPlayRestrict;
+		} sSD_CH;
+	};
 };
 
 // PC Characters Full information (used for loading avatar or character lookup)
@@ -975,27 +1030,35 @@ struct sPC_PROFILE
 	bool				bChangeClass;		// Whether or not have rights to change class
 	CHARACTERID			charId;		// PC 캐릭터의 고유 ID(DB index)
 	WCHAR				awchName[NTL_MAX_SIZE_CHAR_NAME + 1];
+
 	sPC_SHAPE			sPcShape; // pc 외양 ( 얼굴/머리/머리색 )
+
 	sAVATAR_ATTRIBUTE	avatarAttribute;
-	int					curLp;
+
+	DWORD				curLp;
 	WORD				wCurEP;
 	WORD				wCurRP;
 	BYTE				byCurRPBall;
-	int					curAP;
+	DWORD				curAP;
+
 	BYTE				byLevel;
 	DWORD				dwCurExp;
 	DWORD				dwMaxExpInThisLevel;
+
 	DWORD				dwZenny;
 	DWORD				dwTutorialHint;
+
 	BYTE				byBindType;
 	WORLDID				bindWorldId;
 	TBLIDX				bindObjectTblidx;
+
 	DWORD				dwReputation;
 	DWORD				dwMudosaPoint;
 	DWORD				dwSpPoint;
-	DWORD				dwNetPy;
+
 	TBLIDX				charTitle;
-	bool				bInvisibleTitle;
+
+	//bool				bInvisibleTitle; // TODO: Uncomment it?
 
 	sHOIPOIMIX_DATA		sMixData;
 
@@ -1003,13 +1066,24 @@ struct sPC_PROFILE
 
 	GUILDID				guildId;
 
+	sPcProfileLocalize	sPcProfileLocalize; // NOTE: To keep compatibility with latest client ~Nady
+
+	 // NOTE: 3x To keep compatibility with latest client ~Nady
+	BYTE				bySuperiorEffect;
+	BYTE				bySuperiorType;
+	BYTE				bySuperiorValue;
+
+
 	BYTE				byRankBattleRemainCount;
 	bool				bIsInFreePvpZone;
+
 	bool				bIsScrambleJoinFlag;
 	bool				bIsScrambleRewardedFlag;
+
 	BYTE				byHasBattleDragonBallBitFlag;
 
 	TBLIDX				mascotTblidx;
+	BYTE				byMascotIdx; // NOTE: To keep compatibility with latest client ~Nady
 
 	DWORD				dwWaguWaguPoints;
 	bool				bInvisibleCostume;
@@ -1353,7 +1427,7 @@ struct sPLAYER_DATA
 	DWORD					dwMudosaPoint;
 	DWORD					dwSpPoint;
 	DWORD					dwWaguWaguPoints;	//points used for the wagu wagu shop. Max 2000
-	DWORD					dwNetPy;
+
 	DWORD					dwZeniBank;
 	bool					bIsMailAway;
 
@@ -1384,8 +1458,8 @@ enum eACCEPT_RES_TYPE
 {
 	ACCEPT_RES_TYPE_DENY = 0,
 	ACCEPT_RES_TYPE_OK,
-	ACCEPT_RES_TYPE_CANCEL, 
-};	
+	ACCEPT_RES_TYPE_CANCEL,
+};
 
 
 //-----------------------------------------------------------------------------------
@@ -1394,13 +1468,13 @@ enum eACCEPT_RES_TYPE
 struct sSHORTCUT_UPDATE_DATA
 {
 	BYTE    byType;		// eSHORTCUT_CHANGE_TYPE 
-	WORD	wActionID;	
+	WORD	wActionID;
 	WORD	wKey;
 };
 
 struct sSHORTCUT_DATA
 {
-	WORD	wActionID;	
+	WORD	wActionID;
 	WORD	wKey;
 };
 
@@ -1408,10 +1482,10 @@ enum eSHORTCUT_CHANGE_TYPE
 {
 	eSHORTCUT_CHANGE_TYPE_ADD = 0,
 	eSHORTCUT_CHANGE_TYPE_DEL,
-	eSHORTCUT_CHANGE_TYPE_UPDATE, 
-};	
+	eSHORTCUT_CHANGE_TYPE_UPDATE,
+};
 
-const int		 NTL_SHORTCUT_MAX_COUNT	= 100;   
+const int		 NTL_SHORTCUT_MAX_COUNT = 100;
 //-----------------------------------------------------------------------------------
 // WARFOG
 //-----------------------------------------------------------------------------------
@@ -1504,36 +1578,36 @@ enum eTIMID_TYPE
 //-----------------------------------------------------------------------------------
 // Initialize function for union data
 //-----------------------------------------------------------------------------------
-void InitBotData(sBOT_DATA & rsBotData);
+void InitBotData(sBOT_DATA& rsBotData);
 
-void InitNpcData(sNPC_DATA & rsNpcData);
+void InitNpcData(sNPC_DATA& rsNpcData);
 
-void InitMobData(sMOB_DATA & rsMobData);
+void InitMobData(sMOB_DATA& rsMobData);
 
 //-----------------------------------------------------------------------------------
 // Copy character state data
 //-----------------------------------------------------------------------------------
 
-void CopyCharState( sCHARSTATE* pDest, const sCHARSTATE* pSrc );
+void CopyCharState(sCHARSTATE* pDest, const sCHARSTATE* pSrc);
 
 //-----------------------------------------------------------------------------------
 // Scouter
 //-----------------------------------------------------------------------------------
 DWORD Dbo_CalculatePowerLevel(
-		WORD wLastPhysicalOffence, WORD wLastPhysicalDefence, WORD wLastEnergyOffence, WORD wLastEnergyDefence,
-		WORD wLastAttackRate, WORD wLastDodgeRate, WORD wLastCurseSuccessRate, WORD wLastCurseTolerance,
-		WORD wLastPhysicalCriticalRate, WORD wLastEnergyCriticalRate,
-		WORD wAttackSpeedRate,
-		WORD wLastMaxLp, WORD wLastMaxEp,
-		BYTE byLevel, BYTE byMobGrade);
+	WORD wLastPhysicalOffence, WORD wLastPhysicalDefence, WORD wLastEnergyOffence, WORD wLastEnergyDefence,
+	WORD wLastAttackRate, WORD wLastDodgeRate, WORD wLastCurseSuccessRate, WORD wLastCurseTolerance,
+	WORD wLastPhysicalCriticalRate, WORD wLastEnergyCriticalRate,
+	WORD wAttackSpeedRate,
+	WORD wLastMaxLp, WORD wLastMaxEp,
+	BYTE byLevel, BYTE byMobGrade);
 
 float Dbo_ConvertToAgentRadius(float fObjectRadius);
 
 float Dbo_GetTransformScale(eASPECTSTATE eAspect, BYTE byGrade);            ///< 변신시에 변경 비율을 반환한다.
 
-const BYTE CalculateRPBallMaxByLevel( const BYTE byLevel );
+const BYTE CalculateRPBallMaxByLevel(const BYTE byLevel);
 
-DWORD GetSafeRetAdd( DWORD dwMax, DWORD dwCur, DWORD dwAdd );
+DWORD GetSafeRetAdd(DWORD dwMax, DWORD dwCur, DWORD dwAdd);
 
 int Dbo_IncreaseDboLp(int oldLp, int diff, int maxLP);
 int Dbo_DecreaseDboLp(int oldLp, int diff, int maxLP);

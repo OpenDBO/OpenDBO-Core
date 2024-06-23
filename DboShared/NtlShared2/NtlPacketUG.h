@@ -63,6 +63,7 @@ enum eOPCODE_UG
 	UG_ENTER_WORLD,
 	UG_LOADING_COMPLETE_NFY,
 	UG_SERVER_COMMAND,
+	UG_PING,
 	UG_SKILL_TARGET_LIST,
 	UG_SKILL_LEARN_REQ,
 	UG_SKILL_LEARN_BY_ITEM_REQ,
@@ -87,6 +88,7 @@ enum eOPCODE_UG
 	UG_SHOP_BUY_REQ,
 	UG_SHOP_SELL_REQ,
 	UG_SHOP_END_REQ,
+	UG_SHOP_SKILL_BUY_REQ,
 	UG_PARTY_CREATE_REQ,
 	UG_PARTY_DISBAND_REQ,
 	UG_PARTY_INVITE_REQ,
@@ -106,7 +108,10 @@ enum eOPCODE_UG
 	UG_BANK_BUY_REQ,
 	UG_BANK_ITEM_DELETE_REQ,
 	UG_SCOUTER_INDICATOR_REQ,
+	UG_SCOUTER_PREDICT_REQ,
 	UG_SCOUTER_EQUIP_CHECK_REQ,
+	UG_SCOUTER_CHIP_REMOVE_ALL_REQ,
+	UG_SCOUTER_ACTIVATION_REQ,
 	UG_SOCIAL_ACTION,
 	UG_TS_CONFIRM_STEP_REQ,
 	UG_TS_CONFIRM_STEP_FOR_USE_ITEM_REQ,
@@ -147,11 +152,18 @@ enum eOPCODE_UG
 	UG_PRIVATESHOP_CLOSE_REQ,
 	UG_PRIVATESHOP_ITEM_UPDATE_REQ,
 	UG_PRIVATESHOP_ITEM_INSERT_REQ,
+	UG_PRIVATESHOP_ITEM_GET_REQ,
 	UG_PRIVATESHOP_ITEM_DELETE_REQ,
 	UG_PRIVATESHOP_ITEM_BUYING_REQ,
 	UG_PRIVATESHOP_ENTER_REQ,
 	UG_PRIVATESHOP_LEAVE_REQ,
 	UG_PRIVATESHOP_ITEM_SELECT_REQ,
+	UG_PRIVATESHOP_BUSINESS_REQUEST_REQ,
+	UG_PRIVATESHOP_BUSINESS_CONSENT_RES,
+	UG_PRIVATESHOP_BUSINESS_WAITTIMEOUT_NFY,
+	UG_PRIVATESHOP_BUSINESS_PRICEFLUCTUATIONS_REQ,
+	UG_PRIVATESHOP_BUSINESS_IMMEDIATE_ITEM_BUYING_REQ,
+	UG_PRIVATESHOP_BUSINESS_CANCEL_REQ,
 	UG_MAIL_START_REQ,
 	UG_MAIL_SEND_REQ,
 	UG_MAIL_READ_REQ,
@@ -199,6 +211,9 @@ enum eOPCODE_UG
 	UG_BUDOKAI_LEAVE_TEAM_MEMBER_REQ,
 	UG_BUDOKAI_JOIN_INDIVIDUAL_REQ,
 	UG_BUDOKAI_LEAVE_INDIVIDUAL_REQ,
+	UG_SCOUTER_TURN_ON,
+	UG_SCOUTER_TURN_OFF,
+	UG_SCOUTER_ITEM_SELL_REQ,
 	UG_SHOP_EVENTITEM_START_REQ,
 	UG_SHOP_EVENTITEM_BUY_REQ,
 	UG_SHOP_EVENTITEM_END_REQ,
@@ -206,13 +221,21 @@ enum eOPCODE_UG
 	UG_PARTY_DIFF_CHANGE_REQ,
 	UG_PARTY_DUNGEON_INIT_REQ,
 	UG_VEHICLE_DIRECT_PLAY_CANCEL_NFY,
+	UG_VEHICLE_ENGINE_START_REQ,
+	UG_VEHICLE_ENGINE_STOP_REQ,
 	UG_VEHICLE_END_REQ,
 	UG_VEHICLE_STUNT_NFY,
 	UG_VEHICLE_FUEL_REMOVE_NFY,
 	UG_SKILL_INIT_REQ,
 	UG_SKILL_RESET_PLUS_REQ,
 	UG_TELEPORT_CONFIRM_REQ,
-	UG_HOIPOIMIX_ITEM_CREATE_REQ,
+	UG_HOIPOIMIX_ITEM_CHECK_REQ,
+	UG_HOIPOIMIX_ITEM_MAKE_REQ,
+	UG_HOIPOIMIX_ITEM_MAKE_EP_REQ,
+	UG_HOIPOIMIX_ITEM_MACHINE_DEL_REQ,
+	UG_HOIPOIMIX_JOB_SET_REQ,
+	UG_HOIPOIMIX_JOB_RESET_REQ,
+	UG_HOIPOIMIX_ITEM_CREATE_EX_REQ,
 	UG_ITEM_DISASSEMBLE_REQ,
 	UG_CASHITEM_START_REQ,
 	UG_CASHITEM_END_REQ,
@@ -226,6 +249,7 @@ enum eOPCODE_UG
 	UG_DOJO_CREATE_REQ,
 	UG_DOJO_DELETE_REQ,
 	UG_DOJO_FUNCTION_ADD_REQ,
+	UG_DOJO_BANK_HISTORY_REQ,
 	UG_DOGI_CREATE_REQ,
 	UG_DOGI_CHANGE_REQ,
 	UG_GUILD_DOGI_CREATE_REQ,
@@ -235,9 +259,10 @@ enum eOPCODE_UG
 	UG_SHOP_NETPYITEM_START_REQ,
 	UG_SHOP_NETPYITEM_BUY_REQ,
 	UG_SHOP_NETPYITEM_END_REQ,
-	UG_ADD_NETPY_POINTS_TIME_REQ,
 	UG_WORLD_MAP_STATUS,
 	UG_DOJO_NPC_INFO_REQ,
+	UG_GAMEGUARD_AUTH_ANSWER_RES,
+	UG_GAMEGUARD_HACK_INFO_NFY,
 	UG_SKILL_CASTING_CANCELED_NFY,
 	UG_PET_ATTACK_TARGET_NFY,
 	UG_DURATION_ITEM_BUY_REQ,
@@ -257,6 +282,10 @@ enum eOPCODE_UG
 	UG_QUICK_TELEPORT_USE_REQ,
 	UG_CHAR_CRESCENT_POPO_REVIVAL_REQ,
 	UG_CHARACTER_RENAME_REQ,
+	UG_CASHITEM_UPDATE_DURATION_REQ,
+	UG_CHAR_DEST_MOVE_SYNC,
+	UG_CHAR_NPCSERVER_MOVE_SYNC,
+	UG_HOIPOIMIX_ITEM_CREATE_REQ,
 	UG_CHAR_EXIT_REQ,
 	UG_GAME_EXIT_REQ,
 	UG_CHAR_AWAY_REQ,
@@ -273,6 +302,9 @@ enum eOPCODE_UG
 	UG_TENKAICHIDAISIJYOU_SELL_CANCEL_REQ,
 	UG_TENKAICHIDAISIJYOU_BUY_REQ,
 	UG_TENKAICHIDAISIJYOU_LIST_REQ,
+	UG_MASCOT_SUMMON_REQ,
+	UG_MASCOT_UNSUMMON_REQ,
+	UG_MASCOT_DELETE_REQ,
 	UG_MASCOT_RING_ACTION_REQ,
 	UG_MASCOT_RING_REMOVE_ALL_REQ,
 	UG_MASCOT_SUMMON_REQ_EX,
@@ -288,6 +320,7 @@ enum eOPCODE_UG
 	UG_WORLD_LAVA_ENTERED_NFY,
 	UG_WORLD_LAVA_LEFT_NFY,
 	UG_SKILL_ONE_RESET_REQ,
+	UG_CASHITEM_INFO_REQ,
 	UG_ULTIMATE_DUNGEON_ENTER_REQ,
 	UG_PARTY_MATCHING_REGISTER_REQ,
 	UG_PARTY_MATCHING_JOIN_REQ,
@@ -307,14 +340,21 @@ enum eOPCODE_UG
 	UG_PARTY_SELECT_STATE_REQ,
 	UG_BATTLE_DUNGEON_ENTER_REQ,
 	UG_BATTLE_DUNGEON_LEAVE_REQ,
+	UG_ITEM_UPGRADE_WORK_REQ,
+	UG_ITEM_UPGRADE_PROBABLEITEM_REQ,
+	UG_REQUEST_CHAR_HISTORY_DATA_REQ,
 	UG_EVENT_REWARD_LOAD_REQ,
 	UG_EVENT_REWARD_SELECT_REQ,
+	UG_DROPITEM_INFO_REQ,
 	UG_ITEM_UPGRADE_BY_COUPON_REQ,
 	UG_VEHICLE_FUEL_INSERT_REQ,
 	UG_ITEM_EXCHANGE_REQ,
+	UG_GAMEGUARD3_AUTH_ANSWER_RES,
 	UG_ITEM_UPGRADED_EXCHANGE_REQ,
 	UG_ITEM_SEAL_REQ,
 	UG_ITEM_SEAL_EXTRACT_REQ,
+	UG_PERFORMANCE_DATA_NFY,
+	UG_PERFORMANCE_DATA_2_NFY,
 	UG_PARTY_CHANGE_ITEM_LOOTING_RANK_METHOD_REQ,
 	UG_ITEM_DICE_REQ,
 	UG_GIFT_SHOP_START_REQ,
@@ -329,10 +369,11 @@ enum eOPCODE_UG
 	UG_CHAR_AIR_MOVE,
 	UG_CHAR_AIR_JUMP,
 	UG_CHAR_AIR_DASH,
-	UG_CHAR_AIR_ACCEL,
 	UG_CHAR_AIR_FALLING,
 	UG_CHAR_AIR_END,
 	UG_CHAR_AIR_FOLLOW_MOVE,
+	UG_CHAR_AIR_ACCEL,
+	UG_CHAR_AIR_POSE_REQ,
 	UG_PET_ATTACK_TOGGLE_NFY,
 	UG_PET_SKILL_TOGGLE_NFY,
 	UG_PET_RECALL_NFY,
@@ -345,7 +386,9 @@ enum eOPCODE_UG
 	UG_MASCOT_REMOTE_SHOP_SELL_REQ,
 	UG_MASCOT_SEAL_SET_REQ,
 	UG_MASCOT_SEAL_CLEAR_REQ,
-	UG_CLIENT_INFO_NFY,
+	UG_PORTAL_START_REQ,
+
+	UG_CLIENT_INFO_NFY, // TODO: To remove, DBOG's shit ~Nady
 
 	UG_OPCODE_DUMMY,
 	UG_OPCODE_END = UG_OPCODE_DUMMY - 1
@@ -400,20 +443,24 @@ BYTE					byAvatarType;		// eDBO_AVATAR_TYPE
 _compressedLocation		vCurLoc;
 _compressedDirection	vCurDir;
 BYTE					byMoveDirection;
-DWORD					dwTimeStamp;
+//DWORD					dwTimeStamp;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_CHAR_DEST_MOVE)
 BYTE					byAvatarType;		// eDBO_AVATAR_TYPE
 _compressedLocation		vCurLoc;
 _compressedLocation		vDestLoc;
-DWORD					dwTimeStamp;
+//DWORD					dwTimeStamp;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_CHAR_CHANGE_HEADING)
 _compressedDirection	vCurrentHeading;
 END_PROTOCOL()
-
+//------------------------------------------------------------------
+BEGIN_PROTOCOL(UG_DROPITEM_INFO_REQ) // TODO: Unused
+HOBJECT		hItem;
+DWORD		dwDialogID;
+END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_CHAR_MOVE_COLLISION)
 _compressedLocation		vCurLoc;
@@ -449,7 +496,6 @@ BEGIN_PROTOCOL(UG_CHAR_DASH_KEYBOARD)
 _compressedLocation		vCurLoc;
 _compressedDirection	vCurDir;
 BYTE					byMoveDirection;
-DWORD					dwTimeStamp;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_CHAR_DASH_MOUSE)
@@ -460,11 +506,10 @@ BEGIN_PROTOCOL(UG_CHAR_JUMP)
 _compressedLocation		vCurLoc;
 _compressedDirection	vCurDir;
 BYTE					byMoveDirection;
-DWORD					dwTimeStamp;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_CHAR_JUMP_END)
-DWORD					dwTimeStamp;
+//DWORD					dwTimeStamp;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_CHAR_FALLING)
@@ -475,7 +520,8 @@ BEGIN_PROTOCOL(UG_CHAR_FALLING)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_CHAR_TOGG_SITDOWN)
-	bool				bSitDown;
+	bool					bSitDown;
+	_compressedLocation		vCurLoc;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_CHAR_TOGG_FIGHTING)
@@ -509,10 +555,12 @@ END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_CHAR_CHARGE)
 	bool				bCharge; // ON/OFF
+	_compressedLocation			vCurLoc;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_CHAR_BLOCK_MODE)
 	bool				bIsOn;		// On/Off
+	_compressedLocation			vCurLoc;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_CHAR_TELEPORT_REQ)
@@ -564,7 +612,7 @@ BYTE					byRpBonusType;		// eDBO_RP_BONUS_TYPE
 HOBJECT					hTarget;
 _compressedLocation		vCurLoc;
 _compressedDirection	vCurDir;
-_compressedLocation		vFinalLoc;
+//_compressedLocation		vFinalLoc;
 _compressedLocation		vFinalSubjectLoc;
 // If skill effect should be applied on a target character, too, the target character must be included in both byApplyTargetCount and ahApplyTarget.
 BYTE					byApplyTargetCount;
@@ -676,6 +724,17 @@ BYTE				byItemPlace;		// Container location of the item to be upgraded
 BYTE				byItemPos;			// Position of the item to be upgraded
 BYTE				byStonePlace;		// Hoi Poi Stone Container Location
 BYTE				byStonePos;			// Hoi Poi stone location
+BYTE				byCorePlace;
+BYTE				byCorePos;
+END_PROTOCOL()
+//------------------------------------------------------------------
+BEGIN_PROTOCOL(UG_ITEM_UPGRADE_WORK_REQ) // TODO: Unused
+HOBJECT				handle;				// NpcHandle
+BYTE				byItemPlace;		// 업그레이드 할 아이템의 컨테이너 위치
+BYTE				byItemPos;			// 업그레이드 할 아이템의 위치
+BYTE				byStonePlace;		// 호이포이스톤 컨테이너 위치
+BYTE				byStonePos;			// 호이포이스톤 위치
+BYTE				byCardIndex;
 BYTE				byCorePlace;
 BYTE				byCorePos;
 END_PROTOCOL()
@@ -815,6 +874,9 @@ END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_SCOUTER_EQUIP_CHECK_REQ)  
 	HOBJECT				hTarget;
+END_PROTOCOL()
+BEGIN_PROTOCOL(UG_SCOUTER_ACTIVATION_REQ)
+HOBJECT				handle;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_SOCIAL_ACTION)
@@ -1276,6 +1338,7 @@ END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_SHOP_EVENTITEM_START_REQ)
 	HOBJECT				handle;
+	BYTE Type;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_SHOP_EVENTITEM_BUY_REQ)
@@ -1307,7 +1370,7 @@ BEGIN_PROTOCOL(UG_TELEPORT_CONFIRM_REQ)
 	BYTE				byTeleportIndex;
 END_PROTOCOL()
 //------------------------------------------------------------------
-BEGIN_PROTOCOL(UG_HOIPOIMIX_ITEM_CREATE_REQ)
+BEGIN_PROTOCOL(UG_HOIPOIMIX_ITEM_CREATE_EX_REQ)
 HOBJECT			objHandle;
 TBLIDX			recipeTblidx;
 BYTE			byMaterialCount;
@@ -1329,6 +1392,13 @@ BEGIN_PROTOCOL( UG_VEHICLE_FUEL_INSERT_REQ )
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( UG_VEHICLE_FUEL_REMOVE_NFY )
+END_PROTOCOL()
+//------------------------------------------------------------------
+BEGIN_PROTOCOL(UG_VEHICLE_ENGINE_START_REQ)
+TBLIDX				idFuelItemTblidx;
+END_PROTOCOL()
+//------------------------------------------------------------------
+BEGIN_PROTOCOL(UG_VEHICLE_ENGINE_STOP_REQ)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( UG_DOJO_CREATE_REQ )
@@ -1384,9 +1454,6 @@ BEGIN_PROTOCOL(UG_SHOP_NETPYITEM_BUY_REQ)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_SHOP_NETPYITEM_END_REQ)
-END_PROTOCOL()
-//------------------------------------------------------------------
-BEGIN_PROTOCOL(UG_ADD_NETPY_POINTS_TIME_REQ)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_WORLD_MAP_STATUS)
@@ -1447,7 +1514,6 @@ TBLIDX				dwIdxHlsTable;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_CASHITEM_SEND_GIFT_REQ)
-BYTE				byUnknown1;
 WCHAR				wchName[NTL_MAX_SIZE_CHAR_NAME + 1];
 TBLIDX				dwIdxHlsTable;
 END_PROTOCOL()
@@ -1499,17 +1565,20 @@ BYTE		byPos;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_QUICK_TELEPORT_UPDATE_REQ)
-HOBJECT		hHandle;
+BYTE		byPlace;
+BYTE		byPos;
 BYTE		bySlot;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_QUICK_TELEPORT_DEL_REQ)
-HOBJECT		hHandle;
+BYTE		byPlace;
+BYTE		byPos;
 BYTE		bySlot;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_QUICK_TELEPORT_USE_REQ)
-HOBJECT		hHandle;
+BYTE		byPlace;
+BYTE		byPos;
 BYTE		bySlot;
 END_PROTOCOL()
 //------------------------------------------------------------------
@@ -1564,7 +1633,7 @@ END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_TENKAICHIDAISIJYOU_LIST_REQ)
 	CHARACTERID		charId;
-	WCHAR			awchItemName[DBO_MAX_LENGTH_ITEM_NAME_TEXT + 1];
+	WCHAR			awchItemName[NTL_MAX_LENGTH_ITEM_NAME_TEXT + 1];
 	BYTE			byClassType;
 	BYTE			byTabType;
 	BYTE			byItemType;
@@ -1843,41 +1912,49 @@ BEGIN_PROTOCOL(UG_DYNAMIC_FIELD_SYSTEM_BOSS_POSITION_REQ)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_CHAR_AIR_MOVE)
+BYTE				byAvatarType;		// eDBO_AVATAR_TYPE
 _compressedLocation		vCurLoc;
 _compressedDirection	vCurDir;
 BYTE					byMoveDirection;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_CHAR_AIR_JUMP)
+BYTE					byAvatarType;		// eDBO_AVATAR_TYPE
 _compressedLocation		vCurLoc;
 _compressedDirection	vCurDir;
 BYTE					byMoveDirection;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_CHAR_AIR_DASH)
+BYTE				byAvatarType;		// eDBO_AVATAR_TYPE
 _compressedLocation		vCurLoc;
 _compressedDirection	vCurDir;
 BYTE		byMoveDirection;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_CHAR_AIR_ACCEL)
+BYTE				byAvatarType;		// eDBO_AVATAR_TYPE
 _compressedLocation		vCurLoc;
 _compressedDirection	vCurDir;
 BYTE		byMoveDirection;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_CHAR_AIR_FALLING)
+BYTE				byAvatarType;		// eDBO_AVATAR_TYPE
 _compressedLocation		vCurLoc;
 _compressedDirection	vCurDir;
 BYTE					byMoveDirection;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_CHAR_AIR_END)
+BYTE				byAvatarType;		// eDBO_AVATAR_TYPE
 _compressedLocation		vCurLoc;
 _compressedDirection	vCurDir;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_CHAR_AIR_FOLLOW_MOVE)
+DWORD		dwTimeStamp;
+BYTE		byAvatarType;
 HOBJECT		hTarget;
 float		fDistance;
 BYTE		byMovementReason;
@@ -1952,6 +2029,7 @@ BEGIN_PROTOCOL(UG_CHAR_AIR_MOVE_SYNC)
 BYTE					byAvatarType;
 _compressedLocation		vCurLoc;
 _compressedDirection	vCurDir;
+BYTE					byMoveDirection;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_CHAR_FOLLOW_MOVE_SYNC)
@@ -1959,6 +2037,7 @@ HOBJECT					hSubject;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_ITEM_DISASSEMBLE_REQ)
+DWORD				Handle;
 BYTE				byPlace;
 BYTE				byPos;
 END_PROTOCOL()

@@ -5,14 +5,13 @@
 #include "AsyncQuery.h"
 
 #include "NtlLog.h"
-#include <functional>
 
 std::list<Database*> Database::s_listDatabase;
 volatile bool Database::s_IsQuit = false;
-std::thread* Database::s_pThread = nullptr;
+boost::thread* Database::s_pThread = NULL;
 volatile long Database::s_qcount = 0;
-std::mutex Database::s_mutex;
-std::condition_variable_any Database::s_cond;
+boost::mutex Database::s_mutex;
+boost::condition Database::s_cond;
 
 
 SQLCallbackBase::~SQLCallbackBase()
@@ -28,7 +27,6 @@ Database::Database()
 	ConnectionSync = NULL;
 	ConnectionAsync = NULL;
 	mConnectionCount = -1;   // Not connected.
-	mPort = 0;
 }
 
 Database::~Database()
@@ -93,7 +91,7 @@ QueryResult * Database::FQuery(const char * QueryString, DatabaseConnection * co
 	// Send the query
 	QueryResult * qResult = NULL;
 
-	std::scoped_lock lock(m_mutex);
+	boost::mutex::scoped_lock lock(m_mutex);
 
 	if (_SendQuery(con, QueryString, false))
 		qResult = _StoreQueryResult(con);
@@ -104,7 +102,7 @@ QueryResult * Database::FQuery(const char * QueryString, DatabaseConnection * co
 void Database::FWaitExecute(const char * QueryString, DatabaseConnection * con)
 {
 	// Send the query
-	std::scoped_lock lock(m_mutex);
+	boost::mutex::scoped_lock lock(m_mutex);
 	_SendQuery(con, QueryString, false);
 }
 
@@ -123,11 +121,11 @@ bool Database::ExecuteNA(const char* QueryString)
 {
 	char * pBuffer = _strdup(QueryString);
 	{
-		std::scoped_lock lock(m_mutexBP);
+		boost::mutex::scoped_lock lock(m_mutexBP);
 		m_queueQueryBeforeProc.push((AsyncQuery*)pBuffer);
 	}
 
-	std::scoped_lock lock(s_mutex);
+	boost::mutex::scoped_lock lock(s_mutex);
 	++s_qcount;
 	s_cond.notify_one();
 
@@ -179,7 +177,7 @@ bool Database::WaitExecuteNA(const char* QueryString)
 {
 	DatabaseConnection * con = GetFreeConnection();
 
-	std::scoped_lock lock(m_mutex);
+	boost::mutex::scoped_lock lock(m_mutex);
 
 	return _SendQuery(con, QueryString, false);
 }
@@ -188,11 +186,11 @@ void Database::QueueAsyncQuery(AsyncQuery * query)
 {
 	query->db = this;
 	{
-		std::scoped_lock lock(m_mutexBP);
+		boost::mutex::scoped_lock lock(m_mutexBP);
 		m_queueQueryBeforeProc.push(query);
 	}
 
-	std::scoped_lock lock(s_mutex);
+	boost::mutex::scoped_lock lock(s_mutex);
 	++s_qcount;
 	s_cond.notify_one();
 }
@@ -201,7 +199,7 @@ void Database::QueryTaskRun()
 {
 	std::queue<AsyncQuery*> q;
 	{
-		std::scoped_lock lock(m_mutexAP);
+		boost::mutex::scoped_lock lock(m_mutexAP);
 
 		if (!m_queueQueryAfterProc.empty())
 			std::swap(q, m_queueQueryAfterProc);
@@ -220,7 +218,7 @@ void Database::QueryThreadRun()
 {
 	std::queue<AsyncQuery*> q;
 	{
-		std::scoped_lock sl(m_mutexBP);
+		boost::mutex::scoped_lock sl(m_mutexBP);
 
 		if (!m_queueQueryBeforeProc.empty())
 			std::swap(q, m_queueQueryBeforeProc);
@@ -229,7 +227,7 @@ void Database::QueryThreadRun()
 	}
 
 	{
-		std::scoped_lock lock(s_mutex);
+		boost::mutex::scoped_lock lock(s_mutex);
 		s_qcount -= (long)q.size();
 	}
 
@@ -242,7 +240,7 @@ void Database::QueryThreadRun()
 		{
 			if (p->Perform())
 			{
-				std::scoped_lock sl(m_mutexAP);
+				boost::mutex::scoped_lock sl(m_mutexAP);
 				m_queueQueryAfterProc.push(p);
 			}
 			else 
@@ -283,7 +281,7 @@ void Database::StartThread()
 	if (!s_pThread)
 	{
 		s_IsQuit = false;
-		s_pThread = new std::thread(&Database::DatabaseThreadRun);
+		s_pThread = new boost::thread(&Database::DatabaseThreadRun);
 	}
 }
 
@@ -294,16 +292,18 @@ void Database::DatabaseThreadRun()
 	while (!s_IsQuit)
 	{
 		{
-			std::unique_lock lock(s_mutex);
+			boost::mutex::scoped_lock lock(s_mutex);
 			if (!s_qcount)
 			{
-				auto now = std::chrono::system_clock::now();
-				if (s_cond.wait_until(lock, now + std::chrono::milliseconds(10)) == std::cv_status::timeout)
+				boost::xtime xt;
+				boost::xtime_get(&xt, boost::TIME_UTC_);
+				xt.nsec += 10000000;
+				if (!s_cond.timed_wait(lock, xt))
 					continue;
 			}
 		}
 
-		std::for_each(s_listDatabase.begin(), s_listDatabase.end(), std::mem_fn(&Database::QueryThreadRun));
+		std::for_each(s_listDatabase.begin(), s_listDatabase.end(), std::mem_fun(&Database::QueryThreadRun));
 	}
 
 	mysql_thread_end();

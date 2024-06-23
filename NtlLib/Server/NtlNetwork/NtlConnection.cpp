@@ -501,7 +501,7 @@ int CNtlConnection::AddToSendBuffer(CNtlPacket * pPacket)
 {
 	if (CPacketBlock* pBlock = m_queSending.GetPacketBlock(pPacket->GetUsedSize()))
 	{
-		pPacket->GetPacketHeader()->packetSequence = WORD(m_dwPacketSendCount & PACKET_MAX_SEQUENCE);
+		//pPacket->GetPacketHeader()->packetSequence = WORD(m_dwPacketSendCount & PACKET_MAX_SEQUENCE);
 
 		pBlock->Push(pPacket->GetPacketBuffer(), pPacket->GetUsedSize());
 

@@ -167,6 +167,7 @@ struct sPARTY_MEMBER_INFO
 	TBLIDX worldTblidx;
 	WORLDID worldId;
 	sVECTOR3 vCurLoc;
+	BYTE	bySuperiorEffect; // TODO: Remove
 };
 
 struct sDBO_ZENNY_DATA

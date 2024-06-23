@@ -144,51 +144,51 @@ BYTE NtlGetBattleChainAttackSequence(BYTE byCharLevel)
 ////		Purpose	:
 ////		Return	:
 ////-----------------------------------------------------------------------------------
-//float NtlGetBattleAttributeBonusRate(BYTE bySubjectAtt, BYTE byTargetAtt)
-//{
-//	static float afBattleAttributeBonusRate[BATTLE_ATTRIBUTE_COUNT][BATTLE_ATTRIBUTE_COUNT] = 
-//	{
-//		// BATTLE_ATTRIBUTE_NONE
-//		{ 0.0f, -5.0f, -5.0f, -5.0f, -5.0f, -5.0f },
-//
-//		// BATTLE_ATTRIBUTE_HONEST
-//		{ 5.0f, 0.0f, 5.0f, 10.0f, -10.0f, -5.0f },
-//
-//		// BATTLE_ATTRIBUTE_STRANGE
-//		{ 5.0f, -5.0f, 0.0f, 5.0f, 10.0f, -10.0f },
-//
-//		// BATTLE_ATTRIBUTE_WILD
-//		{ 5.0f, -10.0f, -5.0f, 0.0f, 5.0f, 10.0f },
-//
-//		// BATTLE_ATTRIBUTE_ELEGANCE
-//		{ 5.0f, 10.0f, -10.0f, -5.0f, 0.0f, 5.0f },
-//
-//		// BATTLE_ATTRIBUTE_FUNNY
-//		{ 5.0f, 5.0f, 10.0f, -10.0f, -5.0f, 0.0f },
-//
-//	};
-//
-//
-//	if( bySubjectAtt >= BATTLE_ATTRIBUTE_COUNT || byTargetAtt >= BATTLE_ATTRIBUTE_COUNT )
-//	{
-//		_ASSERT( 0 );
-//		return 0.0f;
-//	}
-//
-//
-//	return afBattleAttributeBonusRate[ bySubjectAtt ][byTargetAtt ];
-//}
+float NtlGetBattleAttributeBonusRate(BYTE bySubjectAtt, BYTE byTargetAtt)
+{
+	static float afBattleAttributeBonusRate[BATTLE_ATTRIBUTE_COUNT][BATTLE_ATTRIBUTE_COUNT] = 
+	{
+		// BATTLE_ATTRIBUTE_NONE
+		{ 0.0f, -5.0f, -5.0f, -5.0f, -5.0f, -5.0f },
+
+		// BATTLE_ATTRIBUTE_HONEST
+		{ 5.0f, 0.0f, 5.0f, 10.0f, -10.0f, -5.0f },
+
+		// BATTLE_ATTRIBUTE_STRANGE
+		{ 5.0f, -5.0f, 0.0f, 5.0f, 10.0f, -10.0f },
+
+		// BATTLE_ATTRIBUTE_WILD
+		{ 5.0f, -10.0f, -5.0f, 0.0f, 5.0f, 10.0f },
+
+		// BATTLE_ATTRIBUTE_ELEGANCE
+		{ 5.0f, 10.0f, -10.0f, -5.0f, 0.0f, 5.0f },
+
+		// BATTLE_ATTRIBUTE_FUNNY
+		{ 5.0f, 5.0f, 10.0f, -10.0f, -5.0f, 0.0f },
+
+	};
+
+
+	if( bySubjectAtt >= BATTLE_ATTRIBUTE_COUNT || byTargetAtt >= BATTLE_ATTRIBUTE_COUNT )
+	{
+		_ASSERT( 0 );
+		return 0.0f;
+	}
+
+
+	return afBattleAttributeBonusRate[ bySubjectAtt ][byTargetAtt ];
+}
 
 
 //-----------------------------------------------------------------------------------
 //		Purpose	:
 //		Return	:
 //-----------------------------------------------------------------------------------
-eSYSTEM_EFFECT_CODE GetBattleAttributeEffectCode(BYTE byAtt)
+eSYSTEM_EFFECT_CODE GetBattleAttributeEffectCodeOfence(BYTE byAtt)
 {
 	static eSYSTEM_EFFECT_CODE awBattleAttribute[BATTLE_ATTRIBUTE_COUNT] =
 	{
-		INVALID_SYSTEM_EFFECT_CODE, ACTIVE_CRITICAL_BLOCK_UP, ACTIVE_ENERGY_CRITICAL_DEFENSE_UP, ACTIVE_PHYSICAL_ARMOR_PEN_UP, ACTIVE_ENERGY_ARMOR_PEN_UP, ACTIVE_PHYSICAL_CRITICAL_DEFENSE_UP
+		INVALID_SYSTEM_EFFECT_CODE, ACTIVE_HONEST_OFFENCE_UP, ACTIVE_STRANGE_OFFENCE_UP, ACTIVE_WILD_OFFENCE_UP, ACTIVE_ELEGANCE_OFFENCE_UP, ACTIVE_FUNNY_OFFENCE_UP
 	};
 
 	if (byAtt >= BATTLE_ATTRIBUTE_COUNT)
@@ -198,7 +198,20 @@ eSYSTEM_EFFECT_CODE GetBattleAttributeEffectCode(BYTE byAtt)
 
 	return awBattleAttribute[byAtt];
 }
+eSYSTEM_EFFECT_CODE GetBattleAttributeEffectCodeDefence(BYTE byAtt)
+{
+	static eSYSTEM_EFFECT_CODE awBattleAttribute[BATTLE_ATTRIBUTE_COUNT] =
+	{
+		INVALID_SYSTEM_EFFECT_CODE, ACTIVE_HONEST_DEFENCE_UP, ACTIVE_STRANGE_DEFENCE_UP, ACTIVE_WILD_DEFENCE_UP, ACTIVE_ELEGANCE_DEFENCE_UP, ACTIVE_FUNNY_DEFENCE_UP
+	};
 
+	if (byAtt >= BATTLE_ATTRIBUTE_COUNT)
+	{
+		return INVALID_SYSTEM_EFFECT_CODE;
+	}
+
+	return awBattleAttribute[byAtt];
+}
 //-----------------------------------------------------------------------------------
 //		Purpose	:
 //		Return	:
@@ -238,9 +251,11 @@ float GetBattleAttributeEffectApplyValue(BYTE byAtt)
 //		Purpose	: check if player is in korin arena. This function is no longer required. Use DBO_WORLD_ATTR_BASIC_FREE_PVP_ZONE
 //		Return	:
 //-----------------------------------------------------------------------------------
-bool IsInBattleArena(TBLIDX worldTblidx, CNtlVector& vCurLoc)
+bool IsInBattleArena(TBLIDX worldTblidx, CNtlVector& vCurLoc, bool isPowerTournament)
 {
 	if (worldTblidx == 1 /*&& vCurLoc.y >= -97.268f*/ && (vCurLoc.x < 5792 && vCurLoc.z < 788 && vCurLoc.x > 5752 && vCurLoc.z > 748))
+		return true;
+	else if (worldTblidx == 510000 && isPowerTournament == false)
 		return true;
 
 	return false;

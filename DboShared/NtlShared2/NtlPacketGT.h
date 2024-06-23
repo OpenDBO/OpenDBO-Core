@@ -580,7 +580,7 @@ BYTE					byTabType;
 BYTE					byItemType;
 BYTE					byItemLevel;
 WCHAR					awchSeller[NTL_MAX_SIZE_CHAR_NAME+1];
-WCHAR					awchItemName[DBO_MAX_LENGTH_ITEM_NAME_TEXT + 1];
+WCHAR					awchItemName[NTL_MAX_LENGTH_ITEM_NAME_TEXT + 1];
 DWORD					dwTime;
 DWORD					dwClassBitFlag;
 DWORD					dwFee;
@@ -609,7 +609,7 @@ END_PROTOCOL()
 BEGIN_PROTOCOL(GT_TENKAICHIDAISIJYOU_LIST_REQ)
 ACCOUNTID				accountId;
 CHARACTERID				charId;
-WCHAR					awchItemName[DBO_MAX_LENGTH_ITEM_NAME_TEXT + 1];
+WCHAR					awchItemName[NTL_MAX_LENGTH_ITEM_NAME_TEXT + 1];
 BYTE					byTabType;
 BYTE					byItemType;
 BYTE					byMinLevel;

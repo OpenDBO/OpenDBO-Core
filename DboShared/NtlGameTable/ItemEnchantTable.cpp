@@ -334,7 +334,49 @@ bool CItemEnchantTable::ProcessRandomOption(sITEM_TBLDAT* itemtbl, BYTE byItemRa
 	}
 	else
 	{
-		pFinalEnchantTableData = (sITEM_ENCHANT_TBLDAT*)FindData(randomOption.wOptionIndex);
+
+		DWORD dwTotalFrequency = 0;
+
+		for (std::vector<sITEM_ENCHANT_TBLDAT*>::iterator it = m_vecByRank[byItemRank].begin(); it != m_vecByRank[byItemRank].end(); it++)
+		{
+			sITEM_ENCHANT_TBLDAT* pItemEnchantTableData = *it;
+
+			if (IsProperItemOption(pItemEnchantTableData, -1, dwItemCategoryFlag, itemtbl->byNeed_Min_Level, *pfRemainingWorth, flagmgr))
+			{
+				vecTableData.push_back(pItemEnchantTableData);
+				dwTotalFrequency += (DWORD)pItemEnchantTableData->byFrequency;
+			}
+		}
+		//	printf("vecTableData.size() %u \n", vecTableData.size());
+		if (vecTableData.size() == 0)
+			return bFirst == false || bLast == false;
+
+		DWORD dwRandomValue = RandomRangeU(1, dwTotalFrequency);
+
+		for (std::vector<sITEM_ENCHANT_TBLDAT*>::iterator it = vecTableData.begin(); it != vecTableData.end(); it++)
+		{
+			sITEM_ENCHANT_TBLDAT* pItemEnchantTableData = *it;
+
+			if (pItemEnchantTableData->tblidx == randomOption.wOptionIndex)
+			{
+				pFinalEnchantTableData = pItemEnchantTableData;
+				break;
+			}
+
+			dwRandomValue -= (DWORD)pItemEnchantTableData->byFrequency;
+		}
+
+		if (pFinalEnchantTableData == NULL)
+		{
+			printf("(NULL == pFinalEnchantTableData), itemtbl->tblidx = %u, dwTotalFrequency = %u, dwRandomValue = %u \n", itemtbl->tblidx, dwTotalFrequency, dwRandomValue);
+			return false;
+		}
+		//printf("dwItemCategoryFlag %u, tblidx %u, byExclIdx %u, byKind %u \n", dwItemCategoryFlag, pFinalEnchantTableData->tblidx, pFinalEnchantTableData->byExclIdx, pFinalEnchantTableData->byKind);
+		//randomOption.wOptionIndex = (WORD)pFinalEnchantTableData->tblidx;
+		//printf("TBLIDX %d %d \n", pFinalEnchantTableData->tblidx, randomOption.wOptionIndex);
+
+
+		//pFinalEnchantTableData = (sITEM_ENCHANT_TBLDAT*)FindData(randomOption.wOptionIndex);
 		if (pFinalEnchantTableData == NULL)
 		{
 			printf("(NULL == pFinalEnchantTableData), itemtbl->tblidx = %u \n", itemtbl->tblidx);
@@ -349,10 +391,10 @@ bool CItemEnchantTable::ProcessRandomOption(sITEM_TBLDAT* itemtbl, BYTE byItemRa
 
 		int maxOptionValue = (int)floor(*pfRemainingWorth) / (int)pFinalEnchantTableData->wEnchant_Value;
 
-		randomOption.optionValue = maxOptionValue; // RandomRange(1, maxOptionValue);
+		randomOption.optionValue = RandomRange(1, maxOptionValue);
 
-		//if (!IsProperItemOption(pFinalEnchantTableData, randomOption.optionValue, dwItemCategoryFlag, itemtbl->byNeed_Min_Level, *pfRemainingWorth, flagmgr))
-		//	return false;
+		/*if (!IsProperItemOption(pFinalEnchantTableData, randomOption.optionValue, dwItemCategoryFlag, itemtbl->byNeed_Min_Level, *pfRemainingWorth, flagmgr))
+			return false;*/
 	}
 
 	*pfRemainingWorth -= (float)((int)pFinalEnchantTableData->wEnchant_Value * randomOption.optionValue);

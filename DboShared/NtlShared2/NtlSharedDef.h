@@ -63,7 +63,7 @@
 #define NTL_MAX_SIZE_CHAR_NAME						(16)
 
 #define NTL_MIN_SIZE_PARTY_NAME						(2)
-#define NTL_MAX_SIZE_PARTY_NAME						(8)
+#define NTL_MAX_SIZE_PARTY_NAME						(16)
 
 #define NTL_MIN_SIZE_GUILD_NAME						(2)
 #define NTL_MAX_SIZE_GUILD_NAME						(16)

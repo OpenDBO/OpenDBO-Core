@@ -214,11 +214,11 @@ int CNtlSession::ProcessPacket()
 		}
 		else
 		{
-			if (packet.GetPacketHeader()->packetSequence != WORD(GetPacketRecvCount() & PACKET_MAX_SEQUENCE))
+			/*if (packet.GetPacketHeader()->packetSequence != WORD(GetPacketRecvCount() & PACKET_MAX_SEQUENCE))
 			{
 				ERR_LOG(LOG_NETWORK, "Session[%X] Sequence Error PacketSEQ[%u] CurrentSEQ[%u]", this, packet.GetPacketHeader()->packetSequence, (GetPacketRecvCount() & PACKET_MAX_SEQUENCE));
 				return NTL_ERR_NET_PACKET_SEQUENCE_FAIL;
-			}
+			}*/
 
 			IncreasePacketRecv();
 

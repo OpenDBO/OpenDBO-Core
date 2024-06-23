@@ -40,7 +40,7 @@ enum eITEM_TYPE
 
 	ITEM_TYPE_SCOUTER,
 	ITEM_TYPE_SCOUTER_PART,
-	
+
 	ITEM_TYPE_COSTUME,
 	ITEM_TYPE_BAG,
 	ITEM_TYPE_QUEST,
@@ -58,7 +58,7 @@ enum eITEM_TYPE
 	ITEM_TYPE_DRAGONBALL,
 	ITEM_TYPE_GAMBLE,
 	ITEM_TYPE_MATERIAL,			// Á¶ÇÕÀç·á
-	ITEM_TYPE_RECIPE,			
+	ITEM_TYPE_RECIPE,
 	ITEM_TYPE_HOIPOIROCK,
 	ITEM_TYPE_DOGI,
 	ITEM_TYPE_PURE_STONE,
@@ -119,17 +119,17 @@ enum eITEM_TYPE
 	ITEM_TYPE_EVENT_SEAL = 100,
 
 	ITEM_TYPE_COUNT,
-	ITEM_TYPE_UNKNOWN    = 0xFF,
+	ITEM_TYPE_UNKNOWN = 0xFF,
 
 	ITEM_TYPE_WEAPON_FIRST = ITEM_TYPE_GLOVE,
-	ITEM_TYPE_WEAPON_LAST  = ITEM_TYPE_MASK,
+	ITEM_TYPE_WEAPON_LAST = ITEM_TYPE_MASK,
 
 	ITEM_TYPE_ARMOR_FIRST = ITEM_TYPE_JACKET,
-	ITEM_TYPE_ARMOR_LAST  = ITEM_TYPE_BOOTS,
+	ITEM_TYPE_ARMOR_LAST = ITEM_TYPE_BOOTS,
 
 	ITEM_TYPE_GROUP_WEAPON = 0,
-	ITEM_TYPE_GROUP_ARMOR  = 1,
-	ITEM_TYPE_GROUP_ETC	   = 2,
+	ITEM_TYPE_GROUP_ARMOR = 1,
+	ITEM_TYPE_GROUP_ETC = 2,
 
 	ITEM_TYPE_FIRST = ITEM_TYPE_GLOVE,
 	ITEM_TYPE_LAST = ITEM_TYPE_COUNT - 1,
@@ -149,7 +149,7 @@ enum eEQUIP_TYPE
 	EQUIP_TYPE_COSTUME,
 
 	EQUIP_TYPE_COUNT,
-	EQUIP_TYPE_UNKNOWN				= 0xFF,
+	EQUIP_TYPE_UNKNOWN = 0xFF,
 
 	EQUIP_TYPE_FIRST = EQUIP_TYPE_MAIN_WEAPON,
 	EQUIP_TYPE_LAST = EQUIP_TYPE_COUNT - 1,
@@ -184,10 +184,10 @@ enum eITEM_MODEL_TYPE
 	ITEM_MODEL_TYPE_RACE_GENDER_SKIN,
 
 	ITEM_MODEL_TYPE_COUNT,
-	ITEM_MODEL_TYPE_UNKNOWN				= 0xFF,
+	ITEM_MODEL_TYPE_UNKNOWN = 0xFF,
 
 	ITEM_MODEL_TYPE_FIRST = ITEM_MODEL_TYPE_NONE,
-	ITEM_MODEL_TYPE_LAST  = ITEM_MODEL_TYPE_COUNT - 1,
+	ITEM_MODEL_TYPE_LAST = ITEM_MODEL_TYPE_COUNT - 1,
 };
 
 //-----------------------------------------------------------------------------------
@@ -195,15 +195,15 @@ enum eITEM_MODEL_TYPE
 //-----------------------------------------------------------------------------------
 enum eITEM_BAG_SIZE
 {
-	ITEM_BAG_SIZE_4_BY_1			= 4,
-	ITEM_BAG_SIZE_4_BY_2			= 8,
-	ITEM_BAG_SIZE_4_BY_3			= 12,
-	ITEM_BAG_SIZE_4_BY_4			= 16,
-	ITEM_BAG_SIZE_4_BY_5			= 20,
-	ITEM_BAG_SIZE_4_BY_6			= 24,
-	ITEM_BAG_SIZE_4_BY_7			= 28,
-	ITEM_BAG_SIZE_4_BY_8			= 32,
-	ITEM_BAG_SIZE_MAX				= 32,
+	ITEM_BAG_SIZE_4_BY_1 = 4,
+	ITEM_BAG_SIZE_4_BY_2 = 8,
+	ITEM_BAG_SIZE_4_BY_3 = 12,
+	ITEM_BAG_SIZE_4_BY_4 = 16,
+	ITEM_BAG_SIZE_4_BY_5 = 20,
+	ITEM_BAG_SIZE_4_BY_6 = 24,
+	ITEM_BAG_SIZE_4_BY_7 = 28,
+	ITEM_BAG_SIZE_4_BY_8 = 32,
+	ITEM_BAG_SIZE_MAX = 32,
 };
 
 //-----------------------------------------------------------------------------------
@@ -211,13 +211,13 @@ enum eITEM_BAG_SIZE
 //-----------------------------------------------------------------------------------
 enum eITEM_GRADE_LEVEL
 {
-	ITEM_GRADE_LEVEL_0 = 0,		
-	ITEM_GRADE_LEVEL_1,			
-	ITEM_GRADE_LEVEL_2,			
-	ITEM_GRADE_LEVEL_3,			
-	ITEM_GRADE_LEVEL_4,			
+	ITEM_GRADE_LEVEL_0 = 0,
+	ITEM_GRADE_LEVEL_1,
+	ITEM_GRADE_LEVEL_2,
+	ITEM_GRADE_LEVEL_3,
+	ITEM_GRADE_LEVEL_4,
 
-	ITEM_GRADE_LEVEL_INVALID	= 0xFF
+	ITEM_GRADE_LEVEL_INVALID = 0xFF
 };
 //-----------------------------------------------------------------------------------
 // ÄÁÅ×ÀÌ³Ê Å¸ÀÔ
@@ -232,7 +232,10 @@ enum eCONTAINER_TYPE
 	CONTAINER_TYPE_BAG4,
 	CONTAINER_TYPE_BAG5,
 
+	CONTAINER_TYPE_NETPYSTORE,
+
 	CONTAINER_TYPE_EQUIP,
+	CONTAINER_TYPE_SCOUT,
 
 	//DB Table(Bank)
 	CONTAINER_TYPE_BANKSLOT,
@@ -246,6 +249,8 @@ enum eCONTAINER_TYPE
 	CONTAINER_TYPE_GUILD2,
 	CONTAINER_TYPE_GUILD3,
 
+	CONTAINER_TYPE_MASCOT_BAG,
+	CONTAINER_TYPE_MASCOT_RING,
 
 	CONTAINER_TYPE_COUNT,
 	CONTAINER_TYPE_NONE = 0xFF,
@@ -255,12 +260,12 @@ enum eCONTAINER_TYPE
 
 	CONTAINER_TYPE_INVEN_FIRST = CONTAINER_TYPE_BAGSLOT,
 	CONTAINER_TYPE_INVEN_LAST = CONTAINER_TYPE_EQUIP,
-	
+
 	CONTAINER_TYPE_BANK_FIRST = CONTAINER_TYPE_BANKSLOT,
-	CONTAINER_TYPE_BANK_LAST  = CONTAINER_TYPE_BANK4,
+	CONTAINER_TYPE_BANK_LAST = CONTAINER_TYPE_BANK4,
 
 	CONTAINER_TYPE_GUILD_FIRST = CONTAINER_TYPE_GUILD1,
-	CONTAINER_TYPE_GUILD_LAST  = CONTAINER_TYPE_GUILD3,
+	CONTAINER_TYPE_GUILD_LAST = CONTAINER_TYPE_GUILD3,
 
 	CONTAINER_TYPE_FIRST = CONTAINER_TYPE_BAGSLOT,
 	CONTAINER_TYPE_LAST = CONTAINER_TYPE_BANK4,
@@ -287,7 +292,7 @@ enum eBAGSLOT_POSITION
 //-----------------------------------------------------------------------------------
 enum eEQUIP_SLOT_TYPE
 {
-	EQUIP_SLOT_TYPE_HAND, 
+	EQUIP_SLOT_TYPE_HAND,
 	EQUIP_SLOT_TYPE_SUB_WEAPON,
 	EQUIP_SLOT_TYPE_JACKET,
 	EQUIP_SLOT_TYPE_PANTS,
@@ -306,10 +311,10 @@ enum eEQUIP_SLOT_TYPE
 	EQUIP_SLOT_TYPE_COSTUME_BACK_ACCESSORY,
 
 	EQUIP_SLOT_TYPE_COUNT,
-	EQUIP_SLOT_TYPE_UNKNOWN	= 0xFF,
+	EQUIP_SLOT_TYPE_UNKNOWN = 0xFF,
 
-	EQUIP_SLOT_TYPE_FIRST	= EQUIP_SLOT_TYPE_HAND,
-	EQUIP_SLOT_TYPE_LAST	= EQUIP_SLOT_TYPE_COUNT - 1,
+	EQUIP_SLOT_TYPE_FIRST = EQUIP_SLOT_TYPE_HAND,
+	EQUIP_SLOT_TYPE_LAST = EQUIP_SLOT_TYPE_COUNT - 1,
 };
 
 enum eEQUIP_SLOT_FLAG
@@ -356,14 +361,14 @@ enum eCOSTUME_BITFLAG_SLOT_TYPE
 
 enum eCOSTUME_BITFLAG_SLOT_TYPE_SHIFT
 {
-	eCBSTS_JACKET			= 0x01 << eCBST_JACKET,
-	eCBSTS_PANTS			= 0x01 << eCBST_PANTS,
-	eCBSTS_BOOTS			= 0x01 << eCBST_BOOTS,
-	eCBSTS_TWO_HAND			= 0x01 << eCBST_TWO_HAND,
-	eCBSTS_SUB_WEAPON_BACK	= 0x01 << eCBST_SUB_WEAPON_BACK,
-	eCBSTS_HEAD				= 0x01 << eCBST_HEAD,
-	eCBSTS_FACE				= 0x01 << eCBST_FACE,
-	eCBSTS_SCOUTER_AT_EYE	= 0x01 << eCBST_SCOUTER_AT_EYE,
+	eCBSTS_JACKET = 0x01 << eCBST_JACKET,
+	eCBSTS_PANTS = 0x01 << eCBST_PANTS,
+	eCBSTS_BOOTS = 0x01 << eCBST_BOOTS,
+	eCBSTS_TWO_HAND = 0x01 << eCBST_TWO_HAND,
+	eCBSTS_SUB_WEAPON_BACK = 0x01 << eCBST_SUB_WEAPON_BACK,
+	eCBSTS_HEAD = 0x01 << eCBST_HEAD,
+	eCBSTS_FACE = 0x01 << eCBST_FACE,
+	eCBSTS_SCOUTER_AT_EYE = 0x01 << eCBST_SCOUTER_AT_EYE,
 };
 
 //-----------------------------------------------------------------------------------
@@ -410,10 +415,10 @@ enum eOPTION_QUALITY
 	OPTION_QUALITY_SET,
 
 	OPTION_QUALITY_COUNT,
-	OPTION_QUALITY_UNKNOWN	= 0xFF,
+	OPTION_QUALITY_UNKNOWN = 0xFF,
 
-	OPTION_QUALITY_FIRST	= OPTION_QUALITY_SUPERIOR,
-	OPTION_QUALITY_LAST  	= OPTION_QUALITY_COUNT - 1,
+	OPTION_QUALITY_FIRST = OPTION_QUALITY_SUPERIOR,
+	OPTION_QUALITY_LAST = OPTION_QUALITY_COUNT - 1,
 };
 //-----------------------------------------------------------------------------------
 // Function item type
@@ -490,13 +495,13 @@ enum eITEM_COOL_TIME_GROUP
 
 enum eITEM_PROCESS_TYPE
 {
-	 ITEM_PROCESS_USEITEM = 0, // Item Use¿¡ ÀÇÇØ »ç¿ë ReplaceµÊ [7/23/2008 SGpro]
-	 ITEM_PROCESS_DISASSEMBLE,
+	ITEM_PROCESS_USEITEM = 0, // Item Use¿¡ ÀÇÇØ »ç¿ë ReplaceµÊ [7/23/2008 SGpro]
+	ITEM_PROCESS_DISASSEMBLE,
 
-	 ITEM_PROCESS_TYPE_COUNT,
+	ITEM_PROCESS_TYPE_COUNT,
 
-	 ITEM_PROCESS_TYPE_FIRST = ITEM_PROCESS_USEITEM,
-	 ITEM_PROCESS_TYPE_LAST = ITEM_PROCESS_TYPE_COUNT - 1,
+	ITEM_PROCESS_TYPE_FIRST = ITEM_PROCESS_USEITEM,
+	ITEM_PROCESS_TYPE_LAST = ITEM_PROCESS_TYPE_COUNT - 1,
 };
 
 //-----------------------------------------------------------------------------------
@@ -540,8 +545,8 @@ enum eITEM_NEED_FUNCTION
 	ITEM_NEED_FUNCTION_BUYING_VEHICLE,			// Å»°Í±¸¸Å	
 	ITEM_NEED_FUNCTION_BUYING_MANUAL,			// ±³º»±¸¸Å
 
-	ITEM_NEED_FUNCTION_FIRST = ITEM_NEED_FUNCTION_FOUNDATION ,
-	ITEM_NEED_FUNCTION_LAST  = ITEM_NEED_FUNCTION_BUYING_MANUAL
+	ITEM_NEED_FUNCTION_FIRST = ITEM_NEED_FUNCTION_FOUNDATION,
+	ITEM_NEED_FUNCTION_LAST = ITEM_NEED_FUNCTION_BUYING_MANUAL
 };
 
 enum eCOMMON_POINT_TYPE
@@ -759,17 +764,17 @@ struct sITEM_OPTION_SET
 	}
 
 	TBLIDX						aOptionTblidx[NTL_MAX_OPTION_IN_ITEM];
-	sITEM_RANDOM_OPTION			aRandomOption[NTL_MAX_RANDOM_OPTION_IN_ITEM]; 
+	sITEM_RANDOM_OPTION			aRandomOption[NTL_MAX_RANDOM_OPTION_IN_ITEM];
 };
 struct sITEM_RANDOM_OPTION_CHECK_DATA
 {
-  BYTE		byItemSearchTableType;
-  BYTE		byRank;
-  TBLIDX	itemId;
-  CHARACTERID charId;
-  MAILID	mailId;
-  TBLIDX	tblidx;
-  sITEM_RANDOM_OPTION_SET sItemRandomOptionSet;
+	BYTE		byItemSearchTableType;
+	BYTE		byRank;
+	TBLIDX	itemId;
+	CHARACTERID charId;
+	MAILID	mailId;
+	TBLIDX	tblidx;
+	sITEM_RANDOM_OPTION_SET sItemRandomOptionSet;
 };
 struct sITEM_DB_RANDOM_OPTION
 {
@@ -791,7 +796,7 @@ struct sTENKAICHIDAISIJYOU_DATA
 	BYTE				byTabType;
 	BYTE				byItemType;
 	BYTE				byItemLevel;
-	WCHAR				awchItemName[DBO_MAX_LENGTH_ITEM_NAME_TEXT + 1];
+	WCHAR				awchItemName[NTL_MAX_LENGTH_ITEM_NAME_TEXT + 1];
 	WCHAR				awchSeller[NTL_MAX_SIZE_CHAR_NAME + 1];
 	DWORD				dwPrice;
 	DBOTIME				nStartSellTime;
@@ -813,15 +818,19 @@ struct sTENKAICHIDAISIJYOU_DATA
 // marketplace 
 struct sTENKAICHIDAISIJYOU_DATA_CLIENT // data for packet
 {
+	CHARACTERID			idCharID; // TODO: Not used
 	QWORD				nItem;
 	BYTE				byTabType;
 	BYTE				byItemType;
 	BYTE				byItemLevel;
+	WCHAR				awcItemName[NTL_MAX_LENGTH_ITEM_NAME_TEXT + 1]; // TODO: Not used
 	WCHAR				awchSeller[NTL_MAX_SIZE_CHAR_NAME + 1];
 	DWORD				dwPrice;
 	DBOTIME				nStartSellTime;
 	DBOTIME				nEndSellTime;
+	ITEMID				idItemID; // TODO: Not used
 	TBLIDX				itemNo;
+
 	BYTE				byCount;
 	DWORD				dwNeed_Class_Bit_Flag;
 	BYTE				byRank;
@@ -946,61 +955,68 @@ struct sITEM_MOVE_INFO
 //-----------------------------------------------------------------------------------
 // ÀÎº¥Åä¸® °ü·Ã Á¤ÀÇ
 //-----------------------------------------------------------------------------------
-const int			NTL_MAX_BAGSLOT_COUNT		= 5; // °¡¹æ ½½·ÔÀÇ °³¼ö
+const int			NTL_MAX_BAGSLOT_COUNT = 5; // °¡¹æ ½½·ÔÀÇ °³¼ö
 
-const int			NTL_MAX_BANKSLOT_COUNT		= 4; // Ã¢°í ½½·ÔÀÇ °³¼ö
+const int			NTL_MAX_BANKSLOT_COUNT = 4; // Ã¢°í ½½·ÔÀÇ °³¼ö
 
-const int			NTL_MAX_GUILD_BANK_COUNT	= 3; // ±æµå Ã¢°í °³¼ö
+const int			NTL_MAX_GUILD_BANK_COUNT = 3; // ±æµå Ã¢°í °³¼ö
 
-const int			NTL_MAX_EQUIP_ITEM_SLOT		= EQUIP_SLOT_TYPE_COUNT;
+const int			NTL_MAX_EQUIP_ITEM_SLOT = EQUIP_SLOT_TYPE_COUNT;
 
-const int			NTL_MAX_ITEM_SLOT			= 16; // ½½·ÔÀÇ ÃÖ´ë Å©±â
+const int			NTL_MAX_ITEM_SLOT = 16; // ½½·ÔÀÇ ÃÖ´ë Å©±â
 
-const int			NTL_MAX_BAG_ITEM_SLOT		= 32; // °¡¹æÀÇ ÃÖ´ë Å©±â old 16 / new 32
+const int			NTL_MAX_BAG_ITEM_SLOT = 32; // °¡¹æÀÇ ÃÖ´ë Å©±â old 16 / new 32
 
-const int			DBO_ITEM_IN_BAG_COUNT_PER_PACKET = 25; //new
+const int			DBO_ITEM_IN_BAG_COUNT_PER_PACKET = 32;
 
-const int			NTL_MAX_SCOUTER_ITEM_SLOT	= 16; // ½ºÄ«¿ìÅÍ °¡¹æÀÇ ÃÖ´ë Å©±â
+const int			DBO_ITEM_MAX_FOR_QUERY_PACKET = 25; //Xanu (test) - query server exceeds packet max size with 32
 
-const int			NTL_MAX_BANK_ITEM_SLOT		= 16; // ÀºÇàÀÇ ÃÖ´ë Å©±â
+const int			NTL_MAX_SCOUTER_ITEM_SLOT = 16; // ½ºÄ«¿ìÅÍ °¡¹æÀÇ ÃÖ´ë Å©±â
 
-const int			NTL_MAX_GUILD_ITEM_SLOT		= 32; // ±æµå Ã¢°íÀÇ ÀÎº¥ ÃÖ´ë Å©±â old 16 / new 32
+const int			NTL_MAX_BANK_ITEM_SLOT = 16; // ÀºÇàÀÇ ÃÖ´ë Å©±â
+
+const int			NTL_MAX_GUILD_ITEM_SLOT = 32; // ±æµå Ã¢°íÀÇ ÀÎº¥ ÃÖ´ë Å©±â old 16 / new 32
 
 const int			NTL_MAX_NETPYSTORE_ITEM_SLOT = 16; //Netpy StoreÀÇ ÀÎº¥ ÃÖ´ë Å©±â
 
-const int			NTL_MAX_COUNT_GUILD_HAVE_TOTAL_ITEM	= NTL_MAX_GUILD_BANK_COUNT * NTL_MAX_GUILD_ITEM_SLOT; // ±æµå Ã¢°íÀÇ ÃÖ´ë Å©±â
+const int			NTL_MAX_COUNT_GUILD_HAVE_TOTAL_ITEM = NTL_MAX_GUILD_BANK_COUNT * NTL_MAX_GUILD_ITEM_SLOT; // ±æµå Ã¢°íÀÇ ÃÖ´ë Å©±â
 
-const int			NTL_MAX_BUY_SHOPPING_CART	= 12;  // ¼îÇÎÄ«Æ®ÀÇ »ì¼öÀÖ´Â ÃÖ´ë Å©±â
+const int			NTL_MAX_BUY_SHOPPING_CART = 12;  // ¼îÇÎÄ«Æ®ÀÇ »ì¼öÀÖ´Â ÃÖ´ë Å©±â
 
-const int			NTL_MAX_SELL_SHOPPING_CART	= 12;  // ¼îÇÎÄ«Æ®ÀÇ ÆÈ¼öÀÖ´Â ÃÖ´ë Å©±â old 12 new 24
+const int			NTL_MAX_SELL_SHOPPING_CART = 12;  // ¼îÇÎÄ«Æ®ÀÇ ÆÈ¼öÀÖ´Â ÃÖ´ë Å©±â old 12 new 24
 
-const int			NTL_MAX_SHOPPING_CART		= ( (NTL_MAX_BUY_SHOPPING_CART * sizeof(sSHOP_BUY_CART) ) + (NTL_MAX_SELL_SHOPPING_CART * sizeof(sSHOP_SELL_CART) ) );  // ¼îÇÎÄ«Æ®ÀÇ ÃÖ´ë Å©±â
+const int			NTL_MAX_SHOPPING_CART = ((NTL_MAX_BUY_SHOPPING_CART * sizeof(sSHOP_BUY_CART)) + (NTL_MAX_SELL_SHOPPING_CART * sizeof(sSHOP_SELL_CART)));  // ¼îÇÎÄ«Æ®ÀÇ ÃÖ´ë Å©±â
 
-const int			NTL_MAX_NEWBIE_ITEM			= 10;  // »ý¼º½Ã ºÎ¿©°¡´É ÃÖ´ë ¾ÆÀÌÅÛ old = 8 / new = 10
+const int			NTL_MAX_NEWBIE_ITEM = 10;  // »ý¼º½Ã ºÎ¿©°¡´É ÃÖ´ë ¾ÆÀÌÅÛ old = 8 / new = 10
 
-const int			NTL_MAX_NEWBIE_SKILL		= 7;  // »ý¼º½Ã ºÎ¿©°¡´É ÃÖ´ë ½ºÅ³ old = 3 / new = 7
+const int			NTL_MAX_NEWBIE_SKILL = 7;  // »ý¼º½Ã ºÎ¿©°¡´É ÃÖ´ë ½ºÅ³ old = 3 / new = 7
 
-const int			NTL_MAX_SCOUTER_WATT		= 1000;
+const int			NTL_MAX_SCOUTER_WATT = 1000;
 
-const int			NTL_MAX_SET_ITEM_COUNT		= 3;  // jacket pants boots
+const int			NTL_MAX_SET_ITEM_COUNT = 3;  // jacket pants boots
 
-const int			NTL_SET_ITEM_SOLO_COUNT		= 1;  // solo count
+const int			NTL_SET_ITEM_SOLO_COUNT = 1;  // solo count
 
-const int			NTL_SET_ITEM_SEMI_COUNT		= 2;  // semi count
+const int			NTL_SET_ITEM_SEMI_COUNT = 2;  // semi count
 
-const int			NTL_SET_ITEM_FULL_COUNT		= 3;  // full count
+const int			NTL_SET_ITEM_FULL_COUNT = 3;  // full count
 
-const int			NTL_MAX_BUY_HLSSHOP_CART	= 10;  // full count
+const int			NTL_MAX_BUY_HLSSHOP_CART = 10;  // full count
 
-const int			NTL_MAX_ITEM_COOL_DOWN		= 22;
+const int			NTL_MAX_ITEM_COOL_DOWN = 22;
 
 const int			NTL_AUCTIONHOUSE_REQUIRED_LV = 29;
 
-
+#pragma pack(1)
 
 // Hoi Poi mix level data
 struct sHOIPOIMIX_DATA
 {
+	// NOTE: Added those 3 to keep compatibility with latest client ~Nady
+	BOOLEAN			bNormalStart;
+	BOOLEAN			bSpecialStart;	// 스페샬 믹스 등록여부
+	BYTE			bySpecialType;	// eRECIPE_TYPE
+
 	BYTE			byLevel;	// level
 	DWORD			dwExp;		// current exp
 };
@@ -1009,7 +1025,7 @@ struct sHOIPOIMIX_DATA
 struct sRECIPE_DATA
 {
 	TBLIDX		recipeTblidx;
-	BYTE		byRecipeType;		//eRECIPE_TYPE
+	DWORD		byRecipeType;		//eRECIPE_TYPE
 };
 
 struct sITEM_BASIC_DATA
@@ -1017,7 +1033,7 @@ struct sITEM_BASIC_DATA
 	ITEMID	nItemID;		// DB¿¡¼­µµ ¾²±â¿¡ intÇüÀ¸·Î
 	BYTE	byPlace;
 	BYTE	byPos;
-	BYTE	byStack;		
+	BYTE	byStack;
 };
 
 
@@ -1031,6 +1047,8 @@ struct sITEM_REPAIR
 	BYTE byPosition;
 	BYTE byDur;			// ¿Ã¸± ¸Æ½º ³»±¸·Â
 };
+
+#pragma pack()
 
 //-----------------------------------------------------------------------------------
 // ÀÎº¥Åä¸® °Ë»ç Å¸ÀÔ (¼­¹ö ³»ºÎ¿ë)
@@ -1156,6 +1174,8 @@ struct sITEM_DATA
 		byDurationType = 0;
 		nUseStartTime = 0;
 		nUseEndTime = 0;
+
+		dwUnknown = 0;
 	}
 
 	ITEMID			itemId;					// Serial Number
@@ -1178,6 +1198,8 @@ struct sITEM_DATA
 	BYTE			byDurationType; //eDURATIONTYPE
 	DBOTIME			nUseStartTime;// ÀÎº¥Åä¸®¿¡ µé¾î¿Â ³¯Â¥
 	DBOTIME			nUseEndTime;// »ç¿ë¸¸·á ±â°£
+
+	DWORD			dwUnknown; // For latest client compatibility
 };
 
 //-----------------------------------------------------------------------------------
@@ -1196,14 +1218,14 @@ struct sITEM_DURATION
 struct sITEM_BRIEF
 {
 	TBLIDX			tblidx; // item table index
-	BYTE            byGrade; // item effect
 	BYTE			byRank;
+	BYTE            byGrade; // item effect	
 	BYTE			byBattleAttribute;
 };
 
 struct sITEM_SUMMARY
 {
-	sITEM_SUMMARY():
+	sITEM_SUMMARY() :
 		tblidx(INVALID_TBLIDX)
 	{
 	}
@@ -1254,7 +1276,7 @@ struct sITEM_PROFILE
 	BYTE			byDurationType; //eDURATIONTYPE
 	DBOTIME			nUseStartTime;// ÀÎº¥Åä¸®¿¡ µé¾î¿Â ³¯Â¥
 	DBOTIME			nUseEndTime;// »ç¿ë¸¸·á ±â°£
-	
+
 };
 
 
@@ -1283,12 +1305,12 @@ struct sITEM_DELETE_DATA
 	TBLIDX			tblidx;     // ¾ÆÀÌÅÛ tblidx		
 
 public:
-	sITEM_DELETE_DATA( void )
-		: byPlace( INVALID_BYTE )
-		, byPos( INVALID_BYTE )
-		, hItem( INVALID_HOBJECT )
-		, itemId( INVALID_ITEMID )
-		, tblidx( INVALID_TBLIDX )
+	sITEM_DELETE_DATA(void)
+		: byPlace(INVALID_BYTE)
+		, byPos(INVALID_BYTE)
+		, hItem(INVALID_HOBJECT)
+		, itemId(INVALID_ITEMID)
+		, tblidx(INVALID_TBLIDX)
 	{
 	}
 
@@ -1310,7 +1332,7 @@ struct sTRADE_INVEN
 const int	TRADE_INVEN_MAX_COUNT = 12;
 const DWORD NTL_TRADE_UPDATE_INTERVAL = 5000;	//5 Second
 const DWORD NTL_TRADE_REPLY_WAIT_TIME = 30000;	// If no response after 30 seconds of time waiting transaction automatically canceled upon request
-const float	DBO_TRADE_REQUEST_RANGE	= 10.0f; // Trade range
+const float	DBO_TRADE_REQUEST_RANGE = 10.0f; // Trade range
 
 //-----------------------------------------------------------------------
 //-----------------------------------------------------------------------
@@ -1417,10 +1439,10 @@ struct sITEM_AUTO_EQUIP_ROLLBACK_DATA
 WORD Dbo_GetFinalOffence(WORD wBase, BYTE byGrade);
 WORD Dbo_GetFinalDefence(WORD wBase, BYTE byGrade);
 
-const BYTE			NTL_MAX_PRIVATESHOP_INVENTORY			= 36;	// °³ÀÎ »óÁ¡¿¡ ÃÖ´ë Å©±â (ÁÖÀÇ : sizeof(BYTE)º¸´Ù Å©¸é ¾ÈµÈ´Ù) (°³ÀÎ»óÁ¡ GUIÀÇ ½½·Ô °³¼öÀÇ ¹è¼ö·Î ¿Ã¶ó°¡´øÁö ³»·Á°¡¾ß ÇÑ´Ù)
-const int			NTL_MAX_PRIVATESHOP_BUY_SHOPPING_CART	= 12;	// ¼îÇÎÄ«Æ®ÀÇ »ì¼öÀÖ´Â ÃÖ´ë Å©±â
-const BYTE			PRIVATESHOP_ITEMPOS_INVALID				= 0xFF;
-const DWORD			NTL_PRIVATESHOP_ITEM_BUY_ZENNY_DEFAULT	= 1;	//°³ÀÎ»óÁ¡ ÆÈ¶§ ±âº» Á¦´Ï°ª
+const BYTE			NTL_MAX_PRIVATESHOP_INVENTORY = 36;	// °³ÀÎ »óÁ¡¿¡ ÃÖ´ë Å©±â (ÁÖÀÇ : sizeof(BYTE)º¸´Ù Å©¸é ¾ÈµÈ´Ù) (°³ÀÎ»óÁ¡ GUIÀÇ ½½·Ô °³¼öÀÇ ¹è¼ö·Î ¿Ã¶ó°¡´øÁö ³»·Á°¡¾ß ÇÑ´Ù)
+const int			NTL_MAX_PRIVATESHOP_BUY_SHOPPING_CART = 12;	// ¼îÇÎÄ«Æ®ÀÇ »ì¼öÀÖ´Â ÃÖ´ë Å©±â
+const BYTE			PRIVATESHOP_ITEMPOS_INVALID = 0xFF;
+const DWORD			NTL_PRIVATESHOP_ITEM_BUY_ZENNY_DEFAULT = 1;	//°³ÀÎ»óÁ¡ ÆÈ¶§ ±âº» Á¦´Ï°ª
 
 //-- SGpro --------------------------------------------------------------------------
 //  Purpose : Game Srv¿Í Query Srv »çÀÌ¿¡¼­ »ç¿ë[7/2/2007 SGpro]
@@ -1449,11 +1471,11 @@ struct sINVEN_ITEM_POS_DATA
 //-----------------------------------------------------------------------------------
 enum ePRIVATESHOP_STATE
 {
-	 PRIVATESHOP_STATE_CLOSE			= 0 //¿ÀÇÂÀü
-	,PRIVATESHOP_STATE_OPEN					//¿ÀÇÂÈÄ
-	,PRIVATESHOP_STATE_NONE					//°³ÀÎ»óÁ¡ »óÅÂ°¡ ¾Æ´Ï´Ù
-	,PRIVATESHOP_STATE_NULL					//°³ÀÎ»óÁ¡ÀÌ ÇÑ¹øµµ »ý¼ºµÇÁö ¾ÊÀº »óÅÂ
-	,PRIVATESHOP_STATE_DATALOADING			//Query Srv¿¡¼­ µ¥ÀÌÅ¸°¡ ¿À±â¸¦ ±â´Ù¸®´Â »óÅÂ
+	PRIVATESHOP_STATE_CLOSE = 0 //¿ÀÇÂÀü
+	, PRIVATESHOP_STATE_OPEN					//¿ÀÇÂÈÄ
+	, PRIVATESHOP_STATE_NONE					//°³ÀÎ»óÁ¡ »óÅÂ°¡ ¾Æ´Ï´Ù
+	, PRIVATESHOP_STATE_NULL					//°³ÀÎ»óÁ¡ÀÌ ÇÑ¹øµµ »ý¼ºµÇÁö ¾ÊÀº »óÅÂ
+	, PRIVATESHOP_STATE_DATALOADING			//Query Srv¿¡¼­ µ¥ÀÌÅ¸°¡ ¿À±â¸¦ ±â´Ù¸®´Â »óÅÂ
 };
 
 // »ý¼ºÀÚ¸¦ ¸¸µéÁö ¸¶¼¼¿ä. 
@@ -1472,19 +1494,19 @@ struct sPRIVATESHOP_SHOP_DATA
 	HOBJECT hOwner;								// »óÁ¡ ÁÖÀÎ CharacterID	
 	PSHOP_WAITTIME waittimeCashShopStart;		// À¯·á ¼¥ÀÌ µÈ ³¯Â¥
 	PSHOP_WAITTIME waittimeCashShopEnd;			// À¯·á ¼¥ ¸¸·áÀÏ
-	sSUMMARY_PRIVATESHOP_SHOP_DATA sSummaryPrivateShopData;	
+	sSUMMARY_PRIVATESHOP_SHOP_DATA sSummaryPrivateShopData;
 	WCHAR wcNotice[NTL_MAX_PRIVATESHOP_NOTICE_IN_UNICODE + 1];
 
-public: 
+public:
 	sPRIVATESHOP_SHOP_DATA()
-		: hOwner ( INVALID_HOBJECT )
-		, waittimeCashShopStart ( 0 )
-		, waittimeCashShopEnd ( 0 )
+		: hOwner(INVALID_HOBJECT)
+		, waittimeCashShopStart(0)
+		, waittimeCashShopEnd(0)
 	{
 		sSummaryPrivateShopData.bIsOwnerEmpty = false;
 		sSummaryPrivateShopData.byShopState = PRIVATESHOP_STATE_NULL;
-		ZeroMemory( sSummaryPrivateShopData.wcPrivateShopName,	sizeof(WCHAR) * ( NTL_MAX_PRIVATESHOP_NAME_IN_UNICODE + 1 ) );
-		ZeroMemory( wcNotice,			sizeof(WCHAR) * ( NTL_MAX_PRIVATESHOP_NOTICE_IN_UNICODE + 1 ) );
+		ZeroMemory(sSummaryPrivateShopData.wcPrivateShopName, sizeof(WCHAR) * (NTL_MAX_PRIVATESHOP_NAME_IN_UNICODE + 1));
+		ZeroMemory(wcNotice, sizeof(WCHAR) * (NTL_MAX_PRIVATESHOP_NOTICE_IN_UNICODE + 1));
 	}
 };//end of struct sPRIVATESHOP_SHOP_DATA
 
@@ -1498,21 +1520,21 @@ struct sPACKET_PRIVATESHOP_SHOP_DATA
 	HOBJECT hOwner;// »óÁ¡ ÁÖÀÎ CharacterID	
 	PSHOP_WAITTIME waittimeCashShopStart; // À¯·á ¼¥ÀÌ µÈ ³¯Â¥
 	PSHOP_WAITTIME waittimeCashShopEnd; // À¯·á ¼¥ ¸¸·áÀÏ
-	sSUMMARY_PRIVATESHOP_SHOP_DATA sSummaryPrivateShopData;	
+	sSUMMARY_PRIVATESHOP_SHOP_DATA sSummaryPrivateShopData;
 	BYTE byNoticeSize;
 	WCHAR wcNotice[NTL_MAX_PRIVATESHOP_NOTICE_IN_UNICODE + 1];
 
-public: 
+public:
 	sPACKET_PRIVATESHOP_SHOP_DATA()
-		: hOwner ( INVALID_HOBJECT )
-		, waittimeCashShopStart ( 0 )
-		, waittimeCashShopEnd ( 0 )
-		, byNoticeSize ( 0 )
+		: hOwner(INVALID_HOBJECT)
+		, waittimeCashShopStart(0)
+		, waittimeCashShopEnd(0)
+		, byNoticeSize(0)
 	{
 		sSummaryPrivateShopData.bIsOwnerEmpty = false;
 		sSummaryPrivateShopData.byShopState = PRIVATESHOP_STATE_NONE;
-		ZeroMemory( sSummaryPrivateShopData.wcPrivateShopName,	sizeof(WCHAR) * ( NTL_MAX_PRIVATESHOP_NAME_IN_UNICODE + 1 ) );
-		ZeroMemory( wcNotice,			sizeof(WCHAR) * ( NTL_MAX_PRIVATESHOP_NOTICE_IN_UNICODE + 1 ) );
+		ZeroMemory(sSummaryPrivateShopData.wcPrivateShopName, sizeof(WCHAR) * (NTL_MAX_PRIVATESHOP_NAME_IN_UNICODE + 1));
+		ZeroMemory(wcNotice, sizeof(WCHAR) * (NTL_MAX_PRIVATESHOP_NOTICE_IN_UNICODE + 1));
 	}
 };// end of struct sPRIVATESHOP_SHOP_DATA
 
@@ -1524,10 +1546,11 @@ struct sPRIVATESHOP_ITEM_DATA
 {
 	enum eITEMSTATE
 	{
-		PRIVATESHOP_GENERAL					= 0,	// General
+		PRIVATESHOP_GENERAL = 0,	// General
+		PRIVATESHOP_BUSINESS_ITEM, // Being bargained item (jjimhan items can not be bargained)
 		PRIVATESHOP_VISITOR_SELECT_ITEM,			// Steamed item
 		PRIVATESHOP_VISITOR_UNSELECT_ITEM,			// Unpacking steamed items
-		PRIVATESHOP_INVALID					= 0xFF,
+		PRIVATESHOP_INVALID = 0xFF,
 	};
 
 	HOBJECT							hItem;
@@ -1538,13 +1561,13 @@ struct sPRIVATESHOP_ITEM_DATA
 	BYTE							byItemState; // eITEMSTATE
 
 	sPRIVATESHOP_ITEM_DATA()
-		: hItem ( INVALID_HOBJECT )
-		, byPrivateShopInventorySlotPos ( PRIVATESHOP_ITEMPOS_INVALID )
-		, dwZenny ( NTL_PRIVATESHOP_ITEM_BUY_ZENNY_DEFAULT )
-		, byItemState ( PRIVATESHOP_INVALID )
-		, bIsSaveItem ( false )
+		: hItem(INVALID_HOBJECT)
+		, byPrivateShopInventorySlotPos(PRIVATESHOP_ITEMPOS_INVALID)
+		, dwZenny(NTL_PRIVATESHOP_ITEM_BUY_ZENNY_DEFAULT)
+		, byItemState(PRIVATESHOP_INVALID)
+		, bIsSaveItem(false)
 	{
-		ZeroMemory( &sItem, sizeof( sItem ));
+		ZeroMemory(&sItem, sizeof(sItem));
 	}
 };
 
@@ -1553,8 +1576,8 @@ struct sPRIVATESHOP_ITEM_DATA
 //new
 struct sDBO_UPGRADED_ITEM_ABILITY
 {
-  float afAdditionalAbilityWeapon[NTL_ITEM_MAX_GRADE];
-  float afAdditionalAbilityArmor[NTL_ITEM_MAX_GRADE];
+	float afAdditionalAbilityWeapon[NTL_ITEM_MAX_GRADE];
+	float afAdditionalAbilityArmor[NTL_ITEM_MAX_GRADE];
 };
 
 //-----------------------------------------------------------------------------------
@@ -1563,11 +1586,11 @@ struct sDBO_UPGRADED_ITEM_ABILITY
 enum eITEM_UPGRADE_RATE
 {
 	ITEM_UPGRADE_RATE_0 = 0,//-10.0f,	
-	ITEM_UPGRADE_RATE_1 ,//-5.0f,			
-	ITEM_UPGRADE_RATE_2 ,// 0.0f,			
-	ITEM_UPGRADE_RATE_3 ,// 5.0f,			
-	ITEM_UPGRADE_RATE_4 ,// 10.0f,			
-	ITEM_UPGRADE_RATE_5 ,// 20.0f,	
+	ITEM_UPGRADE_RATE_1,//-5.0f,			
+	ITEM_UPGRADE_RATE_2,// 0.0f,			
+	ITEM_UPGRADE_RATE_3,// 5.0f,			
+	ITEM_UPGRADE_RATE_4,// 10.0f,			
+	ITEM_UPGRADE_RATE_5,// 20.0f,	
 };
 
 enum eITEM_UPGRADE_RESULT
@@ -1580,34 +1603,35 @@ enum eITEM_UPGRADE_RESULT
 
 
 // Obtain the probability of complying with the attribute.
-BYTE Dbo_GetHoipoiStoneCount( const BYTE byStoneType, const BYTE byItemType, BYTE byGrade );
+BYTE Dbo_GetHoipoiStoneCount(const BYTE byStoneType, const BYTE byItemType, BYTE byGrade);
 // ¾ÆÀÌÅÛ Å¸ÀÔ°ú µî±Þ¿¡ µû¸¥ ¼Ò¿ä È£ÀÌÆ÷ÀÌ °¹¼ö °¡Á®¿À±â
-DWORD Dbo_GetRepairPay( DWORD dwCost, BYTE byDur, BYTE byCurDur);
+DWORD Dbo_GetRepairPay(DWORD dwCost, BYTE byDur, BYTE byCurDur);
 // ¾ÆÀÌÅÛ ¹Í½º EXP
 DWORD Dbo_GetHoipoiMixEXP(bool bIsSuccess, BYTE byMadeLevel, BYTE byNeedMixLevel);
 
 
 // Item Copy
-bool Dbo_SetItemData( sITEM_DATA* const pItemData, ITEMID itemId, TBLIDX itemNo, CHARACTERID charId, BYTE byPlace, BYTE byPosition, BYTE byStackcount, BYTE byRank, BYTE byCurrentDurability, bool bNeedToIdentify, BYTE byGrade, BYTE byBattleAttribute, BYTE byRestrictType, const WCHAR* const awchMaker, TBLIDX* const aOptionTblidx, BYTE byDurationType, DBOTIME nUseStartTime, DBOTIME nUseEndTime );
-bool Dbo_SetItemData_CheckNeedToIdentify( sITEM_DATA* const pItemData, ITEMID itemId, TBLIDX itemNo, CHARACTERID charId, BYTE byPlace, BYTE byPosition, BYTE byStackcount, BYTE byRank, BYTE byCurrentDurability, bool bNeedToIdentify, BYTE byGrade, BYTE byBattleAttribute, BYTE byRestrictType, WCHAR* const awchMaker, TBLIDX* const aOptionTblidx, BYTE byDurationType, DBOTIME nUseStartTime, DBOTIME nUseEndTime );
+bool Dbo_SetItemData(sITEM_DATA* const pItemData, ITEMID itemId, TBLIDX itemNo, CHARACTERID charId, BYTE byPlace, BYTE byPosition, BYTE byStackcount, BYTE byRank, BYTE byCurrentDurability, bool bNeedToIdentify, BYTE byGrade, BYTE byBattleAttribute, BYTE byRestrictType, const WCHAR* const awchMaker, TBLIDX* const aOptionTblidx, BYTE byDurationType, DBOTIME nUseStartTime, DBOTIME nUseEndTime);
+bool Dbo_SetItemData_CheckNeedToIdentify(sITEM_DATA* const pItemData, ITEMID itemId, TBLIDX itemNo, CHARACTERID charId, BYTE byPlace, BYTE byPosition, BYTE byStackcount, BYTE byRank, BYTE byCurrentDurability, bool bNeedToIdentify, BYTE byGrade, BYTE byBattleAttribute, BYTE byRestrictType, WCHAR* const awchMaker, TBLIDX* const aOptionTblidx, BYTE byDurationType, DBOTIME nUseStartTime, DBOTIME nUseEndTime);
 // Item Profile
-bool Dbo_SetItemProfile( sITEM_PROFILE* const pItemProfile, HOBJECT handle, TBLIDX tblidx, BYTE byPlace, BYTE byPos, BYTE byStackcount, BYTE byRank, BYTE byCurDur, bool bNeedToIdentify, BYTE byGrade, BYTE byBattleAttribute, BYTE byRestrictType, WCHAR* const awchMaker, TBLIDX* const aOptionTblidx, BYTE byDurationType, DBOTIME nUseStartTime, DBOTIME nUseEndTime );
+bool Dbo_SetItemProfile(sITEM_PROFILE* const pItemProfile, HOBJECT handle, TBLIDX tblidx, BYTE byPlace, BYTE byPos, BYTE byStackcount, BYTE byRank, BYTE byCurDur, bool bNeedToIdentify, BYTE byGrade, BYTE byBattleAttribute, BYTE byRestrictType, WCHAR* const awchMaker, TBLIDX* const aOptionTblidx, BYTE byDurationType, DBOTIME nUseStartTime, DBOTIME nUseEndTime);
 // Bank Item Profile
 //bool Dbo_SetBankItemProfile( sBANK_PROFILE* const pItemProfile, HOBJECT handle, TBLIDX tblidx, BYTE byPos, BYTE byStackcount, BYTE byRank, BYTE byCurDur, bool bNeedToIdentify, BYTE byGrade, BYTE byBattleAttribute, BYTE byRestrictType, WCHAR* const awchMaker, TBLIDX* const aOptionTblidx, BYTE byDurationType, DBOTIME nUseStartTime, DBOTIME nUseEndTime );
 
 
 ///////////NEW
-bool	Dbo_CheckClass( const BYTE byClass, const DWORD dwNeedClassBitFlag );
+bool	Dbo_CheckClass(const BYTE byClass, const DWORD dwNeedClassBitFlag);
 DWORD	Dbo_GetAuctionHouseSellFee(DWORD dwCost);
 
 
 DWORD	Dbo_GetItemRestrictFlagType(BYTE byItemRestrictType, BYTE byItemRestrictState); //byte 1 = restrict type from table. byte 2 = current restrict from item(DB)
 
-float	Dbo_GetRandomOptionSystemEffectRate(BYTE byRvType, WORD wMaxValue, BYTE byValue, float fAttack_Physical_Revision, float fAttack_Energy_Revision, float fDefence_Physical_Revision, float fDefence_Energy_Revision );
+float	Dbo_GetRandomOptionSystemEffectRate(BYTE byRvType, WORD wMaxValue, BYTE byValue, float fAttack_Physical_Revision, float fAttack_Energy_Revision, float fDefence_Physical_Revision, float fDefence_Energy_Revision);
 
 bool	IsBagContainer(BYTE byContainr);
 bool	IsInvenContainer(BYTE byContainr);
 bool	IsEquipContainer(BYTE byContainr);
+bool	IsScouterContainer(BYTE byContainr);
 bool	IsBankContainer(BYTE byContainr);
 bool	IsGuildContainer(BYTE byContainr);
 BYTE	GetBagSlotPositionByContainerType(eCONTAINER_TYPE container);
@@ -1624,7 +1648,7 @@ BYTE	GetRequiredSealItemNum(BYTE byRank, BYTE byGrade);
 //DboGetPowderItemCount
 DWORD	Dbo_GetChargeItemBattleAttributeChange(BYTE byRank, BYTE byItemLv);
 float	Dbo_GetChangeItemBattleAttributeSuccessRate(BYTE byAttributePosNum);
-void	Dbo_GetChangeItemBattleAttributeEachRate(BYTE byAdditionalAttribute, int *panEachRate);
+void	Dbo_GetChangeItemBattleAttributeEachRate(BYTE byAdditionalAttribute, int* panEachRate);
 
 bool	IsSealItem(BYTE byRestrictState);
 bool	IsSealing(BYTE byRestrictType, BYTE byRestrictState, BYTE byEquipType);
@@ -1665,40 +1689,40 @@ struct sITEM_BULK_CREATE_SUB_DATA
 //NEW
 enum eITEM_MATERIAL_TYPE
 {
-  ITEM_MATERIAL_TYPE_ETC = 0,
-  ITEM_MATERIAL_TYPE_STONE,
-  ITEM_MATERIAL_TYPE_WOOD,
-  ITEM_MATERIAL_TYPE_FABRIC,
-  ITEM_MATERIAL_TYPE_SKIN,
-  ITEM_MATERIAL_TYPE_MATAL,
+	ITEM_MATERIAL_TYPE_ETC = 0,
+	ITEM_MATERIAL_TYPE_STONE,
+	ITEM_MATERIAL_TYPE_WOOD,
+	ITEM_MATERIAL_TYPE_FABRIC,
+	ITEM_MATERIAL_TYPE_SKIN,
+	ITEM_MATERIAL_TYPE_MATAL,
 
-  ITEM_MATERIAL_TYPE_COUNT,
-  ITEM_MATERIAL_TYPE_FIRST = ITEM_MATERIAL_TYPE_ETC,
-  ITEM_MATERIAL_TYPE_LAST = ITEM_MATERIAL_TYPE_MATAL,
+	ITEM_MATERIAL_TYPE_COUNT,
+	ITEM_MATERIAL_TYPE_FIRST = ITEM_MATERIAL_TYPE_ETC,
+	ITEM_MATERIAL_TYPE_LAST = ITEM_MATERIAL_TYPE_MATAL,
 };
 
 enum eITEM_MATERIAL_TYPE_BIT_FLAG
 {
-  ITEM_MATERIAL_TYPE_BIT_FLAG_NOTHING = MAKE_BIT_FLAG( ITEM_MATERIAL_TYPE_ETC ),
-  ITEM_MATERIAL_TYPE_BIT_FLAG_STONE = MAKE_BIT_FLAG( ITEM_MATERIAL_TYPE_STONE ),
-  ITEM_MATERIAL_TYPE_BIT_FLAG_WOOD = MAKE_BIT_FLAG( ITEM_MATERIAL_TYPE_WOOD ),
-  ITEM_MATERIAL_TYPE_BIT_FLAG_FABRIC = MAKE_BIT_FLAG( ITEM_MATERIAL_TYPE_FABRIC ),
-  ITEM_MATERIAL_TYPE_BIT_FLAG_SKIN = MAKE_BIT_FLAG( ITEM_MATERIAL_TYPE_SKIN ),
-  ITEM_MATERIAL_TYPE_BIT_FLAG_MATAL = MAKE_BIT_FLAG( ITEM_MATERIAL_TYPE_MATAL ),
+	ITEM_MATERIAL_TYPE_BIT_FLAG_NOTHING = MAKE_BIT_FLAG(ITEM_MATERIAL_TYPE_ETC),
+	ITEM_MATERIAL_TYPE_BIT_FLAG_STONE = MAKE_BIT_FLAG(ITEM_MATERIAL_TYPE_STONE),
+	ITEM_MATERIAL_TYPE_BIT_FLAG_WOOD = MAKE_BIT_FLAG(ITEM_MATERIAL_TYPE_WOOD),
+	ITEM_MATERIAL_TYPE_BIT_FLAG_FABRIC = MAKE_BIT_FLAG(ITEM_MATERIAL_TYPE_FABRIC),
+	ITEM_MATERIAL_TYPE_BIT_FLAG_SKIN = MAKE_BIT_FLAG(ITEM_MATERIAL_TYPE_SKIN),
+	ITEM_MATERIAL_TYPE_BIT_FLAG_MATAL = MAKE_BIT_FLAG(ITEM_MATERIAL_TYPE_MATAL),
 
-  ITEM_MATERIAL_TYPE_BIT_FLAG_START = ITEM_MATERIAL_TYPE_BIT_FLAG_STONE,
-  ITEM_MATERIAL_TYPE_BIT_FLAG_LAST = ITEM_MATERIAL_TYPE_BIT_FLAG_MATAL,
+	ITEM_MATERIAL_TYPE_BIT_FLAG_START = ITEM_MATERIAL_TYPE_BIT_FLAG_STONE,
+	ITEM_MATERIAL_TYPE_BIT_FLAG_LAST = ITEM_MATERIAL_TYPE_BIT_FLAG_MATAL,
 };
 
 enum eITEM_RANDOM_OPTION_TYPE
 {
-  eITEM_RANDOM_OPTION_TYPE_NORMAL = 0,
-  eITEM_RANDOM_OPTION_TYPE_BEAD01 = 6,
-  eITEM_RANDOM_OPTION_TYPE_BEAD02 = 7,
-  eITEM_RANDOM_OPTION_TYPE_COUNT,
+	eITEM_RANDOM_OPTION_TYPE_NORMAL = 0,
+	eITEM_RANDOM_OPTION_TYPE_BEAD01 = 6,
+	eITEM_RANDOM_OPTION_TYPE_BEAD02 = 7,
+	eITEM_RANDOM_OPTION_TYPE_COUNT,
 
-  eITEM_RANDOM_OPTION_TYPE_INVALID = 0xFF,
-  eITEM_RANDOM_OPTION_TYPE_MAX_BEAD = 0x2,
+	eITEM_RANDOM_OPTION_TYPE_INVALID = 0xFF,
+	eITEM_RANDOM_OPTION_TYPE_MAX_BEAD = 0x2,
 };
 
 enum eITEM_CREATE_TYPE

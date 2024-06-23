@@ -25,8 +25,8 @@ typedef struct STHeaderBase
 {
 	WORD		wPacketLen:15;
 	WORD		bEncrypt:1; // specify packet header encryption
-	WORD		packetSequence;
-	QWORD		checksumm;
+	//WORD		packetSequence;
+	//QWORD		checksumm;
 
 } STHeaderBase, *LPSTHeaderBase;
 

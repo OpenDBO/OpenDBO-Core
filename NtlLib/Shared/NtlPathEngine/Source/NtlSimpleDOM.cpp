@@ -3,25 +3,30 @@
 
 #pragma warning(disable : 4786)
 
-//#include <stdlib.h>
+#include <stdlib.h>
 
 #include "NtlPathEngineLog.h"
 
-void CNtlSimpleDOM::clear()
+using std::string;
+
+void
+CNtlSimpleDOM::clear()
 {
 	_name = "";
 	_attributes.clear();
 	_children.clear();
 }
 
-bool CNtlSimpleDOM::hasAttribute(const std::string& attribute) const
+bool
+CNtlSimpleDOM::hasAttribute(const std::string& attribute) const
 {
 	return _attributes.find(attribute) != _attributes.end();
 }
 
-std::string CNtlSimpleDOM::getAttribute(const std::string& attribute) const
+std::string
+CNtlSimpleDOM::getAttribute(const std::string& attribute) const
 {
-	auto i = _attributes.find(attribute);
+	std::map<std::string, std::string>::const_iterator i = _attributes.find(attribute);
 	if(i == _attributes.end())
 	{
 		return "";
@@ -29,22 +34,24 @@ std::string CNtlSimpleDOM::getAttribute(const std::string& attribute) const
 	return i->second;
 }
 
-long CNtlSimpleDOM::attributeAsLong(const std::string& attribute) const
+long
+CNtlSimpleDOM::attributeAsLong(const std::string& attribute) const
 {
-	std::string value = getAttribute(attribute);
+	string value = getAttribute(attribute);
 	//assertD(!value.empty());
 	char* ptr;
 	long result = strtol(value.c_str(), &ptr, 10);
 	/*assertD(*ptr == 0);*/
 	return result;
 }
-long CNtlSimpleDOM::attributeAsLongWithDefault(const std::string& attribute, long defaultValue) const
+long
+CNtlSimpleDOM::attributeAsLongWithDefault(const std::string& attribute, long defaultValue) const
 {
 	if(!hasAttribute(attribute))
 	{
 		return defaultValue;
 	}
-	std::string value = getAttribute(attribute);
+	string value = getAttribute(attribute);
 	/*assertD(!value.empty());*/
 	char* ptr;
 	long result = strtol(value.c_str(), &ptr, 10);
@@ -54,7 +61,7 @@ long CNtlSimpleDOM::attributeAsLongWithDefault(const std::string& attribute, lon
 float
 CNtlSimpleDOM::attributeAsFloat(const std::string& attribute) const
 {
-	std::string value = getAttribute(attribute);
+	string value = getAttribute(attribute);
 	/*assertD(!value.empty());*/
 	char* ptr;
 	float result = static_cast<float>(strtod(value.c_str(), &ptr));
@@ -68,7 +75,7 @@ CNtlSimpleDOM::attributeAsFloatWithDefault(const std::string& attribute, float d
 	{
 		return defaultValue;
 	}
-	std::string value = getAttribute(attribute);
+	string value = getAttribute(attribute);
 	/*assertD(!value.empty());*/
 	char* ptr;
 	float result = static_cast<float>(strtod(value.c_str(), &ptr));
@@ -78,7 +85,7 @@ CNtlSimpleDOM::attributeAsFloatWithDefault(const std::string& attribute, float d
 bool
 CNtlSimpleDOM::attributeAsBool(const std::string& attribute) const
 {
-	std::string value = getAttribute(attribute);
+	string value = getAttribute(attribute);
 	if(value == "true")
 	{
 		return true;
@@ -155,7 +162,7 @@ void CNtlSimpleDOM::LoadElement( const std::string& element, std::istream& is, C
 		result._name = element.c_str() + 1;
 	while(1)
 	{
-		std::string token;
+		string token;
 		ReadToken(is, token);
 		/*assertR(token.size() >= 1)*/
 			if(token[0] == '<')
@@ -182,8 +189,8 @@ void CNtlSimpleDOM::LoadElement( const std::string& element, std::istream& is, C
 			{
 			/*	assertR(token[0] == '.');
 				assertR(token.size() > 1)*/
-				std::string attribute = token.c_str() + 1;
-				std::string value;
+					string attribute = token.c_str() + 1;
+				string value;
 				ReadToken(is, value);
 				/*assertR(!value.empty());*/
 				if(value[value.size() - 1] == '<')
@@ -202,7 +209,7 @@ void CNtlSimpleDOM::LoadElement( const std::string& element, std::istream& is, C
 void CNtlSimpleDOM::LoadWhiteSpaceDelimited( std::istream& is, CNtlSimpleDOM& result )
 {
 	result.clear();
-	std::string token;
+	string token;
 	ReadToken(is, token);
 	/*assertR(token.size() > 1);
 	assertR(token[0] == '>');*/

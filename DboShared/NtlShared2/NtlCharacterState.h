@@ -145,42 +145,42 @@ enum eCHARCONDITION
 
 enum eCHARCONDITION_FLAG
 {
-	CHARCOND_FLAG_INVISIBLE				= (0x01 << CHARCOND_INVISIBLE),
-	CHARCOND_FLAG_HIDING_KI				= (0x01 << CHARCOND_HIDING_KI),
-	CHARCOND_FLAG_INVINCIBLE			= (0x01 << CHARCOND_INVINCIBLE),
-	CHARCOND_FLAG_TAUNT					= (0x01 << CHARCOND_TAUNT),
-	CHARCOND_FLAG_ATTACK_DISALLOW		= (0x01 << CHARCOND_ATTACK_DISALLOW),
-	CHARCOND_FLAG_TRANSPARENT			= (0x01 << CHARCOND_TRANSPARENT),
-	CHARCOND_FLAG_CANT_BE_TARGETTED		= (0x01 << CHARCOND_CANT_BE_TARGETTED),
-	CHARCOND_FLAG_DIRECT_PLAY			= (0x01 << CHARCOND_DIRECT_PLAY),
+	CHARCOND_FLAG_INVISIBLE = (0x01 << CHARCOND_INVISIBLE),
+	CHARCOND_FLAG_HIDING_KI = (0x01 << CHARCOND_HIDING_KI),
+	CHARCOND_FLAG_INVINCIBLE = (0x01 << CHARCOND_INVINCIBLE),
+	CHARCOND_FLAG_TAUNT = (0x01 << CHARCOND_TAUNT),
+	CHARCOND_FLAG_ATTACK_DISALLOW = (0x01 << CHARCOND_ATTACK_DISALLOW),
+	CHARCOND_FLAG_TRANSPARENT = (0x01 << CHARCOND_TRANSPARENT),
+	CHARCOND_FLAG_CANT_BE_TARGETTED = (0x01 << CHARCOND_CANT_BE_TARGETTED),
+	CHARCOND_FLAG_DIRECT_PLAY = (0x01 << CHARCOND_DIRECT_PLAY),
 
-	CHARCOND_FLAG_BLEEDING				= (0x01 << CHARCOND_BLEEDING),
-	CHARCOND_FLAG_POISON				= (0x01 << CHARCOND_POISON),
-	CHARCOND_FLAG_STOMACHACHE			= (0x01 << CHARCOND_STOMACHACHE),
-	CHARCOND_FLAG_BURN					= (0x01 << CHARCOND_BURN),
-	CHARCOND_FLAG_CONFUSED				= (0x01 << CHARCOND_CONFUSED),
-	CHARCOND_FLAG_TERROR				= (0x01 << CHARCOND_TERROR),
-	CHARCOND_FLAG_BARRIER				= (0x01 << CHARCOND_BARRIER),
-	CHARCOND_FLAG_DAMAGE_REFLECTION		= (0x01 << CHARCOND_DAMAGE_REFLECTION),
+	CHARCOND_FLAG_BLEEDING = (0x01 << CHARCOND_BLEEDING),
+	CHARCOND_FLAG_POISON = (0x01 << CHARCOND_POISON),
+	CHARCOND_FLAG_STOMACHACHE = (0x01 << CHARCOND_STOMACHACHE),
+	CHARCOND_FLAG_BURN = (0x01 << CHARCOND_BURN),
+	CHARCOND_FLAG_CONFUSED = (0x01 << CHARCOND_CONFUSED),
+	CHARCOND_FLAG_TERROR = (0x01 << CHARCOND_TERROR),
+	CHARCOND_FLAG_BARRIER = (0x01 << CHARCOND_BARRIER),
+	CHARCOND_FLAG_DAMAGE_REFLECTION = (0x01 << CHARCOND_DAMAGE_REFLECTION),
 
-	CHARCOND_FLAG_AFTEREFFECT			= (0x01 << CHARCOND_AFTEREFFECT),
-	CHARCOND_FLAG_CHARGING_BLOCKED		= (0x01 << CHARCOND_CHARGING_BLOCKED),
-	CHARCOND_FLAG_FAKE_DEATH			= (0x01 << CHARCOND_FAKE_DEATH),
-	CHARCOND_FLAG_NULLIFIED_DAMAGE		= (0x01 << CHARCOND_NULLIFIED_DAMAGE),
+	CHARCOND_FLAG_AFTEREFFECT = (0x01 << CHARCOND_AFTEREFFECT),
+	CHARCOND_FLAG_CHARGING_BLOCKED = (0x01 << CHARCOND_CHARGING_BLOCKED),
+	CHARCOND_FLAG_FAKE_DEATH = (0x01 << CHARCOND_FAKE_DEATH),
+	CHARCOND_FLAG_NULLIFIED_DAMAGE = (0x01 << CHARCOND_NULLIFIED_DAMAGE),
 
-	CHARCOND_FLAG_CLICK_DISABLE			= (0x01 << CHARCOND_CLICK_DISABLE),
-	CHARCOND_FLAG_CLIENT_UI_DISABLE		= (0x01 << CHARCOND_CLIENT_UI_DISABLE),
+	CHARCOND_FLAG_CLICK_DISABLE = (0x01 << CHARCOND_CLICK_DISABLE),
+	CHARCOND_FLAG_CLIENT_UI_DISABLE = (0x01 << CHARCOND_CLIENT_UI_DISABLE),
 
-	CHARCOND_FLAG_TAIYOU_KEN			= (0x01 << CHARCOND_TAIYOU_KEN),
-	CHARCOND_FLAG_BATTLE_INABILITY		= (0x01 << CHARCOND_BATTLE_INABILITY),
-	CHARCOND_FLAG_SKILL_INABILITY		= (0x01 << CHARCOND_SKILL_INABILITY),
-	CHARCOND_FLAG_REVIVAL_AFTEREFFECT	= (0x01 << CHARCOND_REVIVAL_AFTEREFFECT),
-	CHARCOND_FLAG_LP_AUTO_RECOVER		= (0x01 << CHARCOND_LP_AUTO_RECOVER),
-	CHARCOND_FLAG_EP_AUTO_RECOVER		= (0x01 << CHARCOND_EP_AUTO_RECOVER),
-	CHARCOND_FLAG_RABIES				= (0x01 << CHARCOND_RABIES),
-	CHARCOND_FLAG_DRUNK					= (0x01 << CHARCOND_DRUNK),
-	CHARCOND_FLAG_EXCITATION_MALE		= (0x01 << CHARCOND_EXCITATION_MALE),
-	CHARCOND_FLAG_EXCITATION_FEMALE		= (0x01 << CHARCOND_EXCITATION_FEMALE),
+	CHARCOND_FLAG_TAIYOU_KEN = (0x01 << CHARCOND_TAIYOU_KEN),
+	CHARCOND_FLAG_BATTLE_INABILITY = (0x01 << CHARCOND_BATTLE_INABILITY),
+	CHARCOND_FLAG_SKILL_INABILITY = (0x01 << CHARCOND_SKILL_INABILITY),
+	CHARCOND_FLAG_REVIVAL_AFTEREFFECT = (0x01 << CHARCOND_REVIVAL_AFTEREFFECT),
+	CHARCOND_FLAG_LP_AUTO_RECOVER = (0x01 << CHARCOND_LP_AUTO_RECOVER),
+	CHARCOND_FLAG_EP_AUTO_RECOVER = (0x01 << CHARCOND_EP_AUTO_RECOVER),
+	CHARCOND_FLAG_RABIES = (0x01 << CHARCOND_RABIES),
+	CHARCOND_FLAG_DRUNK = (0x01 << CHARCOND_DRUNK),
+	CHARCOND_FLAG_EXCITATION_MALE = (0x01 << CHARCOND_EXCITATION_MALE),
+	CHARCOND_FLAG_EXCITATION_FEMALE = (0x01 << CHARCOND_EXCITATION_FEMALE),
 
 };
 
@@ -213,11 +213,11 @@ enum eAIR_STATE
 //-----------------------------------------------------------------------------------
 // status related functions
 //-----------------------------------------------------------------------------------
-const char *				NtlGetCharStateString(BYTE byStateID);
+const char* NtlGetCharStateString(BYTE byStateID);
 
-const char *				NtlGetAspectStateString(BYTE byStateID);
+const char* NtlGetAspectStateString(BYTE byStateID);
 
-const char *				NtlGetConditionStateString(BYTE byStateID);
+const char* NtlGetConditionStateString(BYTE byStateID);
 
 //-----------------------------------------------------------------------------------
 // 상태 관련 구조체
@@ -262,12 +262,15 @@ struct sCHARSTATE_LEAVING
 //-----------------------------------------------------------------------------------
 struct sCHARSTATE_MOVING
 {
+	DWORD			dwTimeStamp; // Probably deprecated, but need be here for compatibility ~Nady
 	BYTE			byMoveFlag;
 	BYTE			byMoveDirection;
+	BYTE			eMoveStatus; // TODO: Make use of it
 };
 //-----------------------------------------------------------------------------------
 struct sCHARSTATE_DESTMOVE
 {
+	DWORD			dwTimeStamp; // Probably deprecated, but need be here for compatibility ~Nady
 	BYTE			byMoveFlag;
 	bool			bHaveSecondDestLoc;
 	sVECTOR3		vSecondDestLoc;	// Move destination when the destination following coordinates
@@ -278,10 +281,12 @@ struct sCHARSTATE_DESTMOVE
 //-----------------------------------------------------------------------------------
 struct sCHARSTATE_FOLLOWING
 {
+	DWORD			dwTimeStamp; // Probably deprecated, but need be here for compatibility ~Nady
+	BYTE			byMoveFlag; // TODO: Verify if correct place (previously it was placed where byMovementStatus) ~Nady
 	HOBJECT			hTarget; // 타겟 따라가기일때 따라갈 타겟 핸들
 	float			fDistance; // 타겟 앞에서 멈출 거리
 	BYTE			byMovementReason; // 공격 or 스킬사용 등의 FOLLOW의 이유를 설정
-	BYTE			byMoveFlag;//new
+	BYTE			byMoveStatus;//new // eMovementStatus
 	sVECTOR3		vDestLoc;//new
 };
 //-----------------------------------------------------------------------------------
@@ -293,7 +298,9 @@ struct sCHARSTATE_FALLING
 //-----------------------------------------------------------------------------------
 struct sCHARSTATE_DASH_PASSIVE
 {
+	DWORD			dwTimeStamp; // Probably deprecated, but need be here for compatibility ~Nady
 	BYTE			byMoveDirection;		// NTL_MOVE_DASH_F, NTL_MOVE_DASH_B and so on
+	BYTE			eMoveFlag; // TODO: Make use of it
 	sVECTOR3		vDestLoc;
 };
 //-----------------------------------------------------------------------------------
@@ -369,7 +376,7 @@ struct sCHARSTATE_HTB
 //-----------------------------------------------------------------------------------
 struct sCHARSTATE_SANDBAG
 {
-	
+
 };
 //-----------------------------------------------------------------------------------
 struct sCHARSTATE_CHARGING
@@ -412,13 +419,15 @@ struct sCHARSTATE_TURNING
 //-----------------------------------------------------------------------------------
 struct sCHARSTATE_AIRJUMPING
 {
-	BYTE				byMoveDirection;
+	DWORD			dwTimeStamp; // Probably deprecated, but need be here for compatibility ~Nady
+	BYTE			byMoveFlag; // TODO: Make use of it
+	BYTE			byMoveDirection;
 };
 //-----------------------------------------------------------------------------------
 struct sCHARSTATE_AIRACCEL
 {
-	BYTE			byMoveFlag;
 	BYTE			byMoveDirection;
+	BYTE			byMoveFlag;	
 };
 //-----------------------------------------------------------------------------------
 
@@ -451,7 +460,7 @@ struct sASPECTSTATE_VEHICLE
 {
 	TBLIDX		idVehicleTblidx;
 	HOBJECT		idVehicleItemHandle;
-//	bool		bIsEngineOn; // engine disabled by daneos
+	bool		bIsEngineOn; // TODO: Make use of it
 };
 //-----------------------------------------------------------------------------------
 struct sASPECTSTATE_ROLLING_ATTACK

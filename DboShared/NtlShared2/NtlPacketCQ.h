@@ -93,6 +93,7 @@ BEGIN_PROTOCOL(CQ_CHARACTER_ADD_REQ)
 	BYTE			bySuperiorType;
 	BYTE			bySuperiorValue;
 	SERVERFARMID	serverId;
+	bool			IsGameMaster;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(CQ_CHARACTER_DEL_REQ)

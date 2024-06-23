@@ -85,6 +85,7 @@ enum EMPPTeleport
     MPP_TELE_CC,                // CC ¿ª»ç ¹Ú¹°°ü
     MPP_TELE_MUSHROOM,          // ¹ö¼¸ÃÌ
 	MPP_TELE_PAPAYA,
+    MPP_TELE_KAMI_SAMA,
 };
 
 /// ´ýÇÁ Å¸°Ù

@@ -209,20 +209,20 @@ enum eRESULTCODE
 	GAME_INPUT_PARAMETER_WRONG,		// Invalid input.
 
 	GAME_TARGET_IS_WRONG_STATE,		// Target is not in proper state.
-	GAME_TARGET_NOT_FOUND,			// 대상을 찾을 수 없습니다.
-	GAME_TARGET_TOO_FAR,			// 대상과의 거리가 너무 멉니다.
-	GAME_TARGET_TOO_CLOSE,			// 대상과의 거리가 너무 가깝습니다.
-	GAME_TARGET_HAS_NOT_FUNCTION,	// 대상은 해당 기능을 지원하지 않습니다.
+	GAME_TARGET_NOT_FOUND,			// couldent Find Target
+	GAME_TARGET_TOO_FAR,			// You are too far way from the target
+	GAME_TARGET_TOO_CLOSE,			// You are too close to the Target
+	GAME_TARGET_HAS_NOT_FUNCTION,	// This Isn큧 Suported
 
-	GAME_DISCONNECTED_FORCEDLY,							// 제재로 인해 강제로 접속이 종료되었습니다.
-	GAME_DISCONNECTED_TEMPORARILY,						// 운영자에 의하여 일시적으로 로그아웃 처리가 되었습니다.
+	GAME_DISCONNECTED_FORCEDLY,							// Forced Disconected.
+	GAME_DISCONNECTED_TEMPORARILY,						// Disconected.
 
-	GAME_COMMON_YOU_ARE_NOT_IN_A_PARTY,					// 파티에 속해 있지 않습니다.
-	GAME_COMMON_YOU_ARE_NOT_A_PARTY_LEADER,				// 파티 리더가 아닙니다.
-	GAME_COMMON_ZENNY_CANT_BE_USED_RIGHT_NOW,			// 일시적으로 제니를 사용할 수 없는 상황입니다. 잠시 후 다시 시도하세요.
-	GAME_COMMON_TEMPORARY_,
-	GAME_COMMON_CANT_DO_THAT_FOR_SOME_REASON,			// 시스템 문제로 작업을 처리할 수 없습니다.
-	GAME_COMMON_NON_EXISTING_PET_SPECIFIED,				// 존재하지 않는 펫을 지정하였습니다.
+	GAME_COMMON_YOU_ARE_NOT_IN_A_PARTY,					// You Are Not In Party.
+	GAME_COMMON_YOU_ARE_NOT_A_PARTY_LEADER,				// You Are Not Party Leader.
+	GAME_COMMON_ZENNY_CANT_BE_USED_RIGHT_NOW,			// zenny cant be used right now.
+	//GAME_COMMON_TEMPORARY_,								
+	GAME_COMMON_CANT_DO_THAT_FOR_SOME_REASON,			//Cant Do That in That Moment
+	GAME_COMMON_NON_EXISTING_PET_SPECIFIED,				// Pet wast Found.
 
 	GAME_COMMON_CANT_DO_THAT_IN_SPAWNING_STATE,				// 월드 진입 도중에는 사용할 수 없는 명령입니다.
 	GAME_COMMON_CANT_DO_THAT_IN_STANDING_STATE,				// 서 있을 때에는 사용할 수 없는 명령입니다.
@@ -312,6 +312,10 @@ enum eRESULTCODE
 
 	GAME_GMT_NOT_ENOUGH_RESET_POINT,					// GMT 재설정 포인트가 부족합니다.
 
+	GAME_UNABLE_TUTURIAL,
+	GAME_CANNOT_DO_IT_IN_BATTLE,
+	GAME_YOU_HAVE_BEEN_BLOCKLISTED,
+
 	//-----------------------------------------------------------------
 	GAME_SKILL_NOT_ACTIVE_TYPE,		// Active 타입의 스킬이 아닙니다.
 	GAME_SKILL_YOU_DONT_HAVE_THE_SKILL,		// 가지고 있지 않은 스킬입니다.
@@ -392,11 +396,11 @@ enum eRESULTCODE
 
 
 	//-----------------------------------------------------------------
-	GAME_CHAR_ONLY_ADULT_CAN_CHANGE_CLASS,				// 어른 상태에서만 전직을 할 수 있습니다.
+	GAME_CHAR_ONLY_ADULT_CAN_CHANGE_CLASS = 700,				// 어른 상태에서만 전직을 할 수 있습니다.
 	GAME_CHAR_NO_AUTHORITY_FOR_CHANGING_CLASS,					// 전직할 수 있는 자격을 갖추고 있지 않습니다.
 	GAME_GM_CANT_DO_THAT_WHEN_YOU_ARE_HIDING,					// 702 // 투명 상태에서는 쓸 수 없는 명령입니다.
 	//-----------------------------------------------------------------
-	GAME_ITEM_NUM_NULL,
+	GAME_ITEM_NUM_NULL = 800,
 	GAME_ITEM_POSITION_FAIL,
 	GAME_ITEM_OWNER_NOT_SAME,
 	GAME_ITEM_NOT_SAME,
@@ -503,7 +507,34 @@ enum eRESULTCODE
 	GAME_ITEM_HOIPOIMIX_FARE_RATE_FAIL,	// 호이포이머신사용료가 범위가 초과 되었습니다.
 	GAME_ITEM_CANNOT_BUY_NOW,			// 구매할 수 있는 아이템이 아닙니다.
 	GAME_TRADE_ONLY_PARTY,
-	GAME_SKILL_SLOT_FAIL,	
+
+	GAME_GM_TOOL_SUCCESS = 900,
+	GAME_GM_TOOL_FAIL,
+	GAME_GM_TOOL_LOGIN_PASS_FAIL,
+	GAME_GM_TOOL_ACCOUNT_EXIST,
+	GAME_GM_TOOL_PASS_NULL,
+	GAME_GM_TOOL_GROUP_NOT_FOUND,
+	GAME_GM_TOOL_GROUP_ALREADY_EXIST,
+	GAME_GM_TOOL_GROUP_NEED_ADMIN,
+	GAME_GM_TOOL_USER_NOT_FOUND,
+	GAME_GM_TOOL_LOGIN_DUPLICATE,
+	GAME_GM_TOOL_CHARACTER_IS_NOT_KICK,
+	GAME_GM_TOOL_CHARACTER_EXIST,
+	GAME_GM_TOOL_INVALID_TOOL_VERSION,
+	GAME_GM_TOOL_INVALID_IP_ADDRESS,
+	GAME_GM_TOOL_NOTICE_OVER,
+	GAME_GM_TOOL_GUILD_NOT_FOUND,
+	GAME_GM_TOOL_CHARACTER_NOT_EXIST,
+	GAME_GM_TOOL_SERVER_CANT_BE_TURNED_ON_BY_GM_TOOL,
+	GAME_GM_TOOL_SERVER_CANT_BE_TURNED_OFF_BY_GM_TOOL,
+	GAME_GM_TOOL_WRONG_SERVER_TO_TURN_ON,
+	GAME_GM_TOOL_WRONG_SERVER_TO_TURN_OFF,
+	GAME_GM_TOOL_SERVERFARMID_INVALID,
+	GAME_GM_TOOL_AGENTSERVER_NORUN,
+	GAME_GM_TOOL_RANK_BATTLE_POINT_NOT_FOUND,
+	GAME_GM_TOOL_ACCOUNT_NOT_EXIST,
+
+	GAME_SKILL_SLOT_FAIL = 1000,
 	GAME_SKILL_ID_NULL,
 	GAME_SKILL_OWNER_NULL,
 	GAME_SKILL_SAME_EXIST,
@@ -519,15 +550,18 @@ enum eRESULTCODE
 	GAME_ITEM_CHANGE_BATTLE_ATTRIBUTE_WRONG_SUB_ITEM_TYPE,
 	GAME_ITEM_CHANGE_BATTLE_ATTRIBUTE_WRONG_RANK,
 	GAME_ITEM_CHANGE_BATTLE_ATTRIBUTE_WRONG_LV,
-	GAME_SHOP_NOT_FOUND,
+
+	GAME_SHOP_NOT_FOUND = 1100,
 	GAME_SHOP_SO_FAR,
 	GAME_SHOP_NOT_CLOSED,					// 상점이 열린상태입니다.
 	GAME_SHOP_ITEM_INVALID,					// 팔수 없는 아이템 입니다.
-	GAME_MOVE_CANT_GO_THERE,		// 갈 수 없는 위치입니다
+
+	GAME_MOVE_CANT_GO_THERE = 1200,		// 갈 수 없는 위치입니다
 	GAME_WORLD_NOT_EXIST,				// 존재하지 않는 월드 입니다.
 	GAME_MOVE_CANT_ALLOWED_ENTER,		// 진입이 허용되지 않습니다.
 	GAME_WORLD_CANT_MOVE_AGAIN,								// 월드에 재진입 할 수 없는 상태입니다.
-	GAME_PARTY_ALREADY_IN_PARTY,						// 이미 파티에 속해 있습니다.
+
+	GAME_PARTY_ALREADY_IN_PARTY = 1300,						// 이미 파티에 속해 있습니다.
 	GAME_PARTY_ANOTHER_PLAYER_IS_INVITING_YOU,				// 다른 플레이어가 이미 당신을 초대하고 있습니다.
 	GAME_PARTY_ANOTHER_PARTY_IS_INVITING_YOU,				// 다른 파티가 이미 당신을 초대하고 있습니다.
 	GAME_PARTY_NOT_PROPER_PARTY_NAME_LENGTH,				// 파티 이름 길이가 적절하지 않습니다.
@@ -626,7 +660,8 @@ enum eRESULTCODE
 	GAME_PARTY_MEMBER_ZENNY_IS_LOCK,						// 파티 멤버중 제니가 잠긴 상태가 있습니다.
 	GAME_PARTY_INVEN_LOCK_FIRST,							// 파티인벤이 열려있습니다. 먼저 닫아주십시요.
 	GAME_PARTY_INVEN_UNDER_INVEST,							// 파티인벤에 투자된 최대금액 보다 높아야합니다.
-	GAME_HTB_NO_HTB_RESULT,							// 진행할 HTB가 없습니다
+
+	GAME_HTB_NO_HTB_RESULT = 1400,							// 진행할 HTB가 없습니다
 	GAME_HTB_CANT_FORWARD_ANYMORE,							// 더이상 진행할 HTB단계가 없습니다.
 	GAME_HTB_NOT_ENOUGH_RP_BALL,							// RP 구슬이 충분하지 않습니다.
 	GAME_HTB_YOU_ALREADY_USED_RP_BALL,						// 이미 RP 구슬을 사용한 상태입니다.
@@ -667,7 +702,7 @@ enum eRESULTCODE
 	//
 	//////////////////////////////////////////////////////////////////////////
 
-	GAME_TS_WARNING_NOT_SATISFY_REWARD_CONDITIONS ,	// 보상 받을 수 있는 조건을 만족하지 못합니다.
+	GAME_TS_WARNING_NOT_SATISFY_REWARD_CONDITIONS = 1500,	// 보상 받을 수 있는 조건을 만족하지 못합니다.
 	GAME_TS_WARNING_MUST_SELECT_ONE_SEL_REWARD,		// 선택 보상이 존재합니다. 반드시 하나의 선택보상을 선택해야 합니다.
 	GAME_TS_WARNING_PROCESSING_PRE_CONFIRM_REQ,		// 이전 진행 요청이 처리중입니다. (진행)
 	GAME_TS_WARNING_NOW_TIME_WAIT,					// 이전 진행 요청이 처리중입니다. (시간)
@@ -706,7 +741,7 @@ enum eRESULTCODE
 	GAME_TS_WARNING_NOT_YET_PROCESSED,
 
 	//-----------------------------------------------------------------
-	GAME_PARTYMATCHING_ROLEPLAY_CANCEL,
+	GAME_PARTYMATCHING_ROLEPLAY_CANCEL = 1600,
 	GAME_PARTYMATCHING_ROLEPLAY_HAVE_NO_CHOICE,
 	GAME_PARTYMATCHING_ROLEPLAY_INVALD,
 	GAME_PARTYMATCHING_INVITE_FAIL,
@@ -720,7 +755,7 @@ enum eRESULTCODE
 
 	//-----------------------------------------------------------------
 
-	GAME_TS_ERROR_RUN_ERROR,						// 트리거 진행 에러
+	GAME_TS_ERROR_RUN_ERROR = 1700,						// 트리거 진행 에러
 	GAME_TS_ERROR_CS_SCRIPT_MISSMATCH,				// 다음에 진행해야할 컨테이너 타입이 CS 간에 일치하지 않습니다.
 	GAME_TS_ERROR_NO_IMP_CONT_TYPE,					// 구현되지 않은 컨테이너 타입이 사용되었습니다.
 	GAME_TS_ERROR_CANNOT_CREATE_TS_OBJECT,			// 트리거 오브젝트 생성 실패.
@@ -743,12 +778,12 @@ enum eRESULTCODE
 	GAME_TS_ERROR_TRIGGER_OBJECT_INVALID_FUNCFLAG,	// 기능이 올바르지 않은 트리거 오브젝트입니다.
 
 	//-----------------------------------------------------------------
-	GAME_PET_CANT_MAKE_MORE_SUMMON_PET,			// 더 이상 소환펫을 부를 수 없습니다.
+	GAME_PET_CANT_MAKE_MORE_SUMMON_PET = 2000,			// 더 이상 소환펫을 부를 수 없습니다.
 	GAME_PET_CANT_MAKE_MORE_ITEM_PET,					 // 더 이상 아이템 펫을 부를 수 없습니다.
 	GAME_PET_COULDNT_BE_DONE_FOR_SOME_REASON,			// 시스템 문제로 요청을 처리할 수 없습니다.
 	GAME_PET_TARGET_IS_NOT_SPAWNED,						// 대상이 소환되어 있지 않습니다.
 	//-----------------------------------------------------------------
-	GAME_GUILD_NO_GUILD_MANAGER_NPC_FOUND,			// 길드 매니저 NPC를 찾을 수 없습니다.
+	GAME_GUILD_NO_GUILD_MANAGER_NPC_FOUND = 2100,			// 길드 매니저 NPC를 찾을 수 없습니다.
 	GAME_GUILD_NOT_GUILD_MANAGER_NPC,						// 길드 매니저 NPC가 아닙니다.
 	GAME_GUILD_GUILD_MANAGER_IS_TOO_FAR,					// 선택한 길드 매니저가 너무 멀어 대화를 할 수 없습니다.
 	GAME_GUILD_NEED_MORE_ZENNY_FOR_NEW_GUILD,				// 길드 생성을 위해서는 제니가 더 필요합니다.
@@ -818,7 +853,7 @@ enum eRESULTCODE
 	GAME_GUILD_DOJO_SCRAMBLE_CHALLENGER_CANT_DO,
 
 	//-----------------------------------------------------------------
-	GAME_ROOM_ENTER_EXCEED_MAX_MEMBER_COUNT,			// 방에 인원이 가득 찼습니다.
+	GAME_ROOM_ENTER_EXCEED_MAX_MEMBER_COUNT = 2200,			// 방에 인원이 가득 찼습니다.
 	GAME_ROOM_ENTER_EXCEED_MAX_ROOM_COUNT,					// 더이상 방을 만들 수 없습니다.
 	GAME_ROOM_ENTER_NEED_MORE_MEMBER,						// 방에 인원이 더 필요 합니다.
 	GAME_ROOM_ENTER_TOO_LOW_LEVEL,							// 방에 진입하기에는 레벨이 너무 낮습니다
@@ -853,7 +888,7 @@ enum eRESULTCODE
 
 	
 	//-----------------------------------------------------------------
-	GAME_TIMEQUEST_WORLD_NOT_FOUND,					// 타임머신 퀘스트에 해당하는 월드를 찾을 수 없습니다
+	GAME_TIMEQUEST_WORLD_NOT_FOUND = 2300,					// 타임머신 퀘스트에 해당하는 월드를 찾을 수 없습니다
 	GAME_TIMEQUEST_ROOM_NOT_FOUND,							// 타임머신 퀘스트 대기방을 찾을 수 없습니다
 	GAME_TIMEQUEST_ALREADY_JOINED,							// 타임머신 퀘스트 대기실에 이미 참여하고 있습니다
 	GAME_TIMEQUEST_HAVE_NO_JOIN_ROOM,						// 타임머신 퀘스트 대기실에 참여하고 있지 않습니다
@@ -882,13 +917,13 @@ enum eRESULTCODE
 	GAME_TIMEQUEST_MEMBER_LIMIT_PLUS_COUNT_IS_OVER,
 
 	//-----------------------------------------------------------------
-	GAME_TUTORIAL_CHAR_ALREADY_TUTORIAL_ACCOMPLISHED, // 캐릭터가 이미 튜토리얼을 수행했습니다
+	GAME_TUTORIAL_CHAR_ALREADY_TUTORIAL_ACCOMPLISHED = 2350, // 캐릭터가 이미 튜토리얼을 수행했습니다
 	GAME_TUTORIAL_CANT_FIND_TUTORIAL_WAIT_ROOM,				// 튜토리얼 대기룸이 존재 하지 않습니다
 	GAME_TUTORIAL_CANT_ENTER_TUTORIAL_WAIT_ROOM,			// 튜토리얼 대기룸에 진입할 수 없습니다
 	GAME_TUTORIAL_YOU_HAVE_NO_JOIN_ROOM,					// 튜토리얼 대기를 하고 있지 않습니다.
 
 	//-----------------------------------------------------------------
-	GAME_PRIVATESHOP_NOTAUTH,												// 권한이 없습니다
+	GAME_PRIVATESHOP_NOTAUTH = 2400,												// 권한이 없습니다
 	GAME_PRIVATESHOP_NOTRUNSTATE,											// 지금 상태에서는 실행 할 수 없습니다
 	GAME_PRIVATESHOP_PRIVATESHOP_NOT_CREATE_PLACE,							// 개인 상점을 열수 없는 장소 입니다
 	GAME_PRIVATESHOP_PRIVATESHOP_ANOTHER_PRIVATESHOP,						// 근처에 다른 개인상점이 있어서 개인상점을 열 수 없습니다
@@ -924,7 +959,7 @@ enum eRESULTCODE
 	GAME_PRIVATESHOP_PRIVATESHOP_ANOTHER_NPC,								// 근처에 NPC가 있어서 개인상점을 열 수 없습니다
 
 	//-----------------------------------------------------------------
-	GAME_MAIL_TARGET_AWAY_STATE,						// 메일 받는 사람은 부재중이라 수신불가능합니다.
+	GAME_MAIL_TARGET_AWAY_STATE = 2500,						// 메일 받는 사람은 부재중이라 수신불가능합니다.
 	GAME_MAIL_NOT_FOUND,									// 메일 찾지 못했습니다.
 	GAME_MAIL_ALREADY_READ,									// 메일을 이미 읽은 상태입니다.
 	GAME_MAIL_INVALID_DEL,									// 해당메일은 지울 수 없습니다.
@@ -940,14 +975,14 @@ enum eRESULTCODE
 	//new
 	GAME_MAIL_INVALID_CHAR_DEL,
 	//-----------------------------------------------------------------
-	GAME_PORTAL_ARLEADY_ADDED,						// 이미등록된 포탈입니다.
+	GAME_PORTAL_ARLEADY_ADDED = 2600,						// 이미등록된 포탈입니다.
 	GAME_PORTAL_NOT_EXIST,									// 미등록 포탈입니다. 
 
-	GAME_WARFOG_ARLEADY_ADDED,						// 이미등록된 워포그입니다.
+	GAME_WARFOG_ARLEADY_ADDED = 2610,						// 이미등록된 워포그입니다.
 	//-----------------------------------------------------------------
-	GAME_PROCESSING_DB,						// 디비처리중입니다.
+	GAME_PROCESSING_DB = 2620,						// 디비처리중입니다.
 	//-----------------------------------------------------------------
-	GAME_RIDE_ON_STATE,						// 현재 타 있는 상태 입니다.
+	GAME_RIDE_ON_STATE = 2630,						// 현재 타 있는 상태 입니다.
 	GAME_VEHICLE_CANNOT_WHILE_DRIVING,						// 운전 중엔 할 수 없습니다.
 	GAME_VEHICLE_ENGINE_ALREADY_STARTED,					// 이미 시동이 켜져 있습니다.
 	GAME_VEHICLE_ENGINE_ALREADY_STOPED,						// 이미 시동이 꺼져 있습니다.
@@ -966,7 +1001,7 @@ enum eRESULTCODE
 	GAME_VEHICLE_WILL_GET_OFF_SOON,
 
 	//-----------------------------------------------------------------
-	GAME_PETITION_NOTAUTH,							//권한이 없습니다
+	GAME_PETITION_NOTAUTH = 2700,							//권한이 없습니다
 	GAME_PETITION_TOO_LONG_NAME,							//캐릭터명의 길이가 초과되었습니다.
 	GAME_PETITION_TOO_SHORT_NAME,							//캐릭터명의 길이가 너무 짧습니다.
 	GAME_PETITION_TOO_LONG_QUESTION_CONTENT,				//진정 내용의 길이가 초과되었습니다.
@@ -989,7 +1024,7 @@ enum eRESULTCODE
 	GAME_PETITION_ALREADYFINISH,							//이미 완료된 진정입니다.
 
 	//-----------------------------------------------------------------
-	GAME_BUDOKAI_INVALID_TEAM_NAME,					// 팀의 이름이 올바르지 않습니다.
+	GAME_BUDOKAI_INVALID_TEAM_NAME = 2800,					// 팀의 이름이 올바르지 않습니다.
 	GAME_BUDOKAI_TOO_LONG_TEAM_NAME,						// 팀의 이름이 너무 깁니다.
 	GAME_BUDOKAI_TOO_SHORT_TEAM_NAME,						// 팀의 이름이 너무 짧습니다.
 	GAME_BUDOKAI_NEED_MORE_MEMBER,							// 팀원이 너무 적습니다.
@@ -1031,7 +1066,7 @@ enum eRESULTCODE
 	//-----------------------------------------------------------------
 	// Game, Item 관련. 800번대에서 이어짐. ( 3000 ~ )
 	//-----------------------------------------------------------------
-	GAME_ITEM_UPGRADE_ITEM_IS_ZERO_GRADE,			// 블랙 호이포이 스톤을 사용할 수 없습니다.
+	GAME_ITEM_UPGRADE_ITEM_IS_ZERO_GRADE = 3000,			// 블랙 호이포이 스톤을 사용할 수 없습니다.
 	GAME_DRAGONBALL_NOT_SAME_EXIST,							// 다른 종류의 드래곤볼 입니다.
 	GAME_ITEM_DURATIONTIME_ZERO,							// 사용 기간이 끝났습니다.
 	GAME_ITEM_RECIPE_CANNOT_RESET_NORMAL_TYPE,				// 기본 제조 기술은 포기할 수 없습니다.
@@ -1113,7 +1148,7 @@ enum eRESULTCODE
 	GAME_ITEM_INSERT_BEAD_FAIL_AND_DEL,
 	
 	//-----------------------------------------------------------------
-	CASHITEM_FAIL,
+	CASHITEM_FAIL = 3100,
 	CASHITEM_FAIL_NOT_DEFINED_SYSTEM,
 	CASHITEM_FAIL_NOT_READY_SERVICE,
 	CASHITEM_FAIL_NETWORK_ERROR,
@@ -1131,12 +1166,13 @@ enum eRESULTCODE
 
 
 	//-----------------------------------------------------------------
-	REPORT_FAIL,											// 리포팅 실패
+	REPORT_SUCCESS = 6000,
+	REPORT_FAIL,
 
 	//-----------------------------------------------------------------
 	// Petition System ( 10000 ~ )
 	//-----------------------------------------------------------------
-	PETITION_FAIL,											// Petition 실패
+	PETITION_FAIL = 10000,											// Petition 실패
 
 	PETITION_NOT_STARTED_CLEINT_GM_CHAT,					// 클라이언트의 GM 채팅이 시작되지 않았습니다
 	PETITION_DIFFERENT_CHAATING_GM_ID,						// 클라이언트가 채팅중인 GM의 ID와 다른 GM ID이다.

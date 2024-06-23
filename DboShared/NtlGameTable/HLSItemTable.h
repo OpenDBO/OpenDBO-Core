@@ -5,20 +5,45 @@
 
 #include "NtlHlsItem.h"
 
-
+struct sSUB_ITEM
+{
+	TBLIDX	itemTblidx;
+	BYTE	byStackCount;
+	
+};
 #pragma pack(push, 4)
 struct sHLS_ITEM_TBLDAT : public sTBLDAT
 {
 
 public:
 
-	TBLIDX			itemTblidx;
-	BYTE			byCategory;
-	bool			bOnSale;
-	DWORD			dwCash;
-	BYTE			byStackCount;
-	WORD			wDisplayBitFlag;
+	WCHAR           wszName[32 + 1];
+	WCHAR           wszCJIProductID[128 + 1];
+	WCHAR           szIcon_Name[32 + 1];
 
+	WORD            wHLSItemType;
+	BYTE            byHLSDurationType;
+	
+	DWORD           dwHLSDurationTime;
+
+	TBLIDX          idxNameText;
+	TBLIDX          idxNoteText;
+	TBLIDX          itemTblidx;
+
+	bool            bOnSale;
+	BYTE            bySellType;
+	
+	DWORD           dwCash;
+	BYTE            byDiscount;
+	BYTE            byStackCount;
+	WORD            wDisplayBitFlag;        //eHLS_DISPLAY_ITEM_FUNC_BIT_FLAG
+	sSUB_ITEM       asSubItem[DBO_MAX_COUNT_HLSITEM_SUB_ITEM];
+	BYTE            byQuickLink;
+	
+	DWORD           dwPriority;
+	BYTE            byDisplayConsumeType;
+	BYTE            byYadratType;
+	
 
 public:
 

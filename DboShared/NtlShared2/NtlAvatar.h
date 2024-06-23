@@ -2,362 +2,589 @@
 
 enum eATTRIBUTE_TO_UPDATE
 {
-	ATTRIBUTE_TO_UPDATE_STR_LAST,
-	ATTRIBUTE_TO_UPDATE_CON_LAST,
-	ATTRIBUTE_TO_UPDATE_FOC_LAST,
-	ATTRIBUTE_TO_UPDATE_DEX_LAST,
-	ATTRIBUTE_TO_UPDATE_SOL_LAST,
-	ATTRIBUTE_TO_UPDATE_ENG_LAST,
+	AVATAR_ATTRIBUTE_wBaseStr,
+	AVATAR_ATTRIBUTE_wLastStr,
+	AVATAR_ATTRIBUTE_wBaseCon,
+	AVATAR_ATTRIBUTE_wLastCon,
+	AVATAR_ATTRIBUTE_wBaseFoc,
+	AVATAR_ATTRIBUTE_wLastFoc,
+	AVATAR_ATTRIBUTE_wBaseDex,
+	AVATAR_ATTRIBUTE_wLastDex,
+	AVATAR_ATTRIBUTE_wBaseSol,
+	AVATAR_ATTRIBUTE_wLastSol,
+	AVATAR_ATTRIBUTE_wBaseEng,
+	AVATAR_ATTRIBUTE_wLastEng,
 
-	ATTRIBUTE_TO_UPDATE_MAX_LP_LAST,
-	ATTRIBUTE_TO_UPDATE_MAX_EP_LAST,
-	ATTRIBUTE_TO_UPDATE_MAX_AP_LAST,//new
-	ATTRIBUTE_TO_UPDATE_MAX_RP_LAST,
+	AVATAR_ATTRIBUTE_dwBaseMaxLP,
+	AVATAR_ATTRIBUTE_dwLastMaxLP,
+	AVATAR_ATTRIBUTE_wBaseMaxEP,
+	AVATAR_ATTRIBUTE_wLastMaxEP,
+	AVATAR_ATTRIBUTE_dwBaseMaxAp,
+	AVATAR_ATTRIBUTE_dwLastMaxAp,
+	AVATAR_ATTRIBUTE_wBaseMaxRP,
+	AVATAR_ATTRIBUTE_wLastMaxRP,
 
-	ATTRIBUTE_TO_UPDATE_LP_REGENERATION_LAST,
-	ATTRIBUTE_TO_UPDATE_LP_SITDOWN_REGENERATION_LAST,
-	ATTRIBUTE_TO_UPDATE_LP_BATTLE_REGENERATION_LAST,
+	AVATAR_ATTRIBUTE_wBaseLpRegen,
+	AVATAR_ATTRIBUTE_wLastLpRegen,
+	AVATAR_ATTRIBUTE_wBaseLpSitdownRegen,
+	AVATAR_ATTRIBUTE_wLastLpSitdownRegen,
+	AVATAR_ATTRIBUTE_wBaseLpBattleRegen,
+	AVATAR_ATTRIBUTE_wLastLpBattleRegen,
 
-	ATTRIBUTE_TO_UPDATE_EP_REGENERATION_LAST,
-	ATTRIBUTE_TO_UPDATE_EP_SITDOWN_REGENERATION_LAST,
-	ATTRIBUTE_TO_UPDATE_EP_BATTLE_REGENERATION_LAST,
+	AVATAR_ATTRIBUTE_wBaseEpRegen,
+	AVATAR_ATTRIBUTE_wLastEpRegen,
+	AVATAR_ATTRIBUTE_wBaseEpSitdownRegen,
+	AVATAR_ATTRIBUTE_wLastEpSitdownRegen,
+	AVATAR_ATTRIBUTE_wBaseEpBattleRegen,
+	AVATAR_ATTRIBUTE_wLastEpBattleRegen,
 
-	ATTRIBUTE_TO_UPDATE_AP_REGENERATION_LAST,
-	ATTRIBUTE_TO_UPDATE_AP_SITDOWN_REGENERATION_LAST,
-	ATTRIBUTE_TO_UPDATE_AP_DEGEN,
+	AVATAR_ATTRIBUTE_wBaseApRegen,
+	AVATAR_ATTRIBUTE_wLastApRegen,
+	AVATAR_ATTRIBUTE_wBaseApSitdownRegen,
+	AVATAR_ATTRIBUTE_wLastApSitdownRegen,
+	AVATAR_ATTRIBUTE_wBaseApBattleRegen,
+	AVATAR_ATTRIBUTE_wLastApBattleRegen,
 
-	ATTRIBUTE_TO_UPDATE_RP_CHARGE_SPEED_LAST,
-	ATTRIBUTE_TO_UPDATE_RP_DIMIMUTION,
+	AVATAR_ATTRIBUTE_wAirAPDegen,
+	AVATAR_ATTRIBUTE_wAirAPFlyDegen, // This one shows as AP degen in devmaster
+	AVATAR_ATTRIBUTE_wAirAPFLyDashDegen,
+	AVATAR_ATTRIBUTE_wAirAPFlyDashBoostDegen,
 
-	ATTRIBUTE_TO_UPDATE_PHYSICAL_OFFENCE_LAST,
-	ATTRIBUTE_TO_UPDATE_PHYSICAL_DEFENCE_LAST,
+	AVATAR_ATTRIBUTE_wBaseRpRegen,
+	AVATAR_ATTRIBUTE_wLastRpRegen,
+	AVATAR_ATTRIBUTE_wLastRpDiminutionRate,
 
-	ATTRIBUTE_TO_UPDATE_ENERGY_OFFENCE_LAST,
-	ATTRIBUTE_TO_UPDATE_ENERGY_DEFENCE_LAST,
+	AVATAR_ATTRIBUTE_wBasePhysicalOffense,
+	AVATAR_ATTRIBUTE_wLastPhysicalOffense,
+	AVATAR_ATTRIBUTE_wBasePhysicalDefense,
+	AVATAR_ATTRIBUTE_wLastPhysicalDefense,
 
-	ATTRIBUTE_TO_UPDATE_ATTACK_RATE_LAST,
-	ATTRIBUTE_TO_UPDATE_DODGE_RATE_LAST,
+	AVATAR_ATTRIBUTE_wBaseEnergyOffense,
+	AVATAR_ATTRIBUTE_wLastEnergyOffense,
+	AVATAR_ATTRIBUTE_wBaseEnergyDefense,
+	AVATAR_ATTRIBUTE_wLastEnergyDefense,
 
-	ATTRIBUTE_TO_UPDATE_BLOCK_RATE_LAST,
-	ATTRIBUTE_TO_UPDATE_BLOCK_DAMAGE_RATE_LAST,//new
+	AVATAR_ATTRIBUTE_wBaseHitRate,
+	AVATAR_ATTRIBUTE_wLastHitRate,
+	AVATAR_ATTRIBUTE_wBaseDodgeRate,
+	AVATAR_ATTRIBUTE_wLastDodgeRate,
+	AVATAR_ATTRIBUTE_wBaseBlockRate,
+	AVATAR_ATTRIBUTE_wLastBlockRate,
 
-	ATTRIBUTE_TO_UPDATE_CURSE_SUCCESS_LAST,
-	ATTRIBUTE_TO_UPDATE_CURSE_TOLERANCE_LAST,
+	AVATAR_ATTRIBUTE_wBaseBlockDMG,
+	AVATAR_ATTRIBUTE_wLastBlockDMG,
 
-	ATTRIBUTE_TO_UPDATE_PHYSICAL_CRITICAL_LAST,
-	ATTRIBUTE_TO_UPDATE_ENERGY_CRITICAL_LAST,
+	AVATAR_ATTRIBUTE_wBaseCurseSuccessRate,
+	AVATAR_ATTRIBUTE_wLastCurseSuccessRate,
+	AVATAR_ATTRIBUTE_wBaseCurseToleranceRate,
+	AVATAR_ATTRIBUTE_wLastCurseToleranceRate,
 
-	ATTRIBUTE_TO_UPDATE_PHYSICAL_CRITICAL_DAMAGE_RATE_LAST,//new
-	ATTRIBUTE_TO_UPDATE_ENERGY_CRITICAL_DAMAGE_RATE_LAST, //new
+	AVATAR_ATTRIBUTE_wBasePhysicalCriticalRate,
+	AVATAR_ATTRIBUTE_wLastPhysicalCriticalRate,
+	AVATAR_ATTRIBUTE_wBaseEnergyCriticalRate,
+	AVATAR_ATTRIBUTE_wLastEnergyCriticalRate,
 
-	ATTRIBUTE_TO_UPDATE_RUN_SPEED_LAST,//new
-	ATTRIBUTE_TO_UPDATE_FLY_SPEED_LAST,//new
-	ATTRIBUTE_TO_UPDATE_FLY_DASH_SPEED_LAST,//new
-	ATTRIBUTE_TO_UPDATE_FLY_ACCEL_SPEED_LAST,//new
+	AVATAR_ATTRIBUTE_fBasePhysicalCritDmgRate,
+	AVATAR_ATTRIBUTE_fLastPhysicalCritDmgRate,
+	AVATAR_ATTRIBUTE_fBaseEnergyCritDmgRate,
+	AVATAR_ATTRIBUTE_fLastEnergyCritDmgRate,
 
-	ATTRIBUTE_TO_UPDATE_ATTACK_SPEED_RATE_LAST,
-	ATTRIBUTE_TO_UPDATE_ATTACK_RANGE_LAST,
+	AVATAR_ATTRIBUTE_fBaseRunSpeed,
+	AVATAR_ATTRIBUTE_fLastRunSpeed,
+	AVATAR_ATTRIBUTE_fBaseAirSpeed,
+	AVATAR_ATTRIBUTE_fLastAirSpeed,
+	AVATAR_ATTRIBUTE_fBaseAirDashSpeed,
+	AVATAR_ATTRIBUTE_fLastAirDashSpeed,
+	AVATAR_ATTRIBUTE_fBaseAirDashAccelSpeed,
+	AVATAR_ATTRIBUTE_fLastAirDashAccelSpeed,
 
-	ATTRIBUTE_TO_UPDATE_CASTING_TIME_CHANGE_PERCENT,
-	ATTRIBUTE_TO_UPDATE_COOL_TIME_CHANGE_PERCENT,
-	ATTRIBUTE_TO_UPDATE_KEEP_TIME_CHANGE_PERCENT,
-	ATTRIBUTE_TO_UPDATE_DOT_TIME_CHANGE_ABSOLUTE,
-	ATTRIBUTE_TO_UPDATE_REQUIRED_EP_CHANGE_PERCENT,
+	AVATAR_ATTRIBUTE_wBaseAttackSpeedRate,
+	AVATAR_ATTRIBUTE_wLastAttackSpeedRate,
+	AVATAR_ATTRIBUTE_fBaseAttackRange,
+	AVATAR_ATTRIBUTE_fLastAttackRange,
 
-	ATTRIBUTE_TO_UPDATE_PHYSICAL_REFLECTION,//new
-	ATTRIBUTE_TO_UPDATE_ENERGY_REFLECTION,
+	AVATAR_ATTRIBUTE_fCastingTimeChangePercent,
+	AVATAR_ATTRIBUTE_fCoolTimeChangePercent,
+	AVATAR_ATTRIBUTE_fKeepTimeChangePercent,
+	AVATAR_ATTRIBUTE_fDotKeepTimeChangeInSeconds,
+	AVATAR_ATTRIBUTE_fRequiredEpChangePercent,
 
-	ATTRIBUTE_TO_UPDATE_PARALYZE_TOLERANCE_RATE,
-	ATTRIBUTE_TO_UPDATE_TERROR_TOLERANCE_RATE,
-	ATTRIBUTE_TO_UPDATE_CONFUSE_TOLERANCE_RATE,
-	ATTRIBUTE_TO_UPDATE_STONE_TOLERANCE_RATE,
-	ATTRIBUTE_TO_UPDATE_CANDY_TOLERANCE_RATE,
+	AVATAR_ATTRIBUTE_fHonestOffense,
+	AVATAR_ATTRIBUTE_fHonestDefense,
+	AVATAR_ATTRIBUTE_fStrangeOffense,
+	AVATAR_ATTRIBUTE_fStrangeDefense,
+	AVATAR_ATTRIBUTE_fWildOffense,
+	AVATAR_ATTRIBUTE_fWildDefense,
+	AVATAR_ATTRIBUTE_fEleganceOffense,
+	AVATAR_ATTRIBUTE_fEleganceDefense,
+	AVATAR_ATTRIBUTE_fFunnyOffense,
+	AVATAR_ATTRIBUTE_fFunnyDefense,
 
-	ATTRIBUTE_TO_UPDATE_PARALYZE_KEEP_TIME_DOWN,
-	ATTRIBUTE_TO_UPDATE_TERROR_KEEP_TIME_DOWN,
-	ATTRIBUTE_TO_UPDATE_CONFUSE_KEEP_TIME_DOWN,
-	ATTRIBUTE_TO_UPDATE_STONE_KEEP_TIME_DOWN,
-	ATTRIBUTE_TO_UPDATE_CANDY_KEEP_TIME_DOWN,
-	ATTRIBUTE_TO_UPDATE_BLEEDING_KEEP_TIME_DOWN,
-	ATTRIBUTE_TO_UPDATE_POISON_KEEP_TIME_DOWN,
-	ATTRIBUTE_TO_UPDATE_STOMACHACHE_KEEP_TIME_DOWN,
+	AVATAR_ATTRIBUTE_fPhysicalReflect,
+	AVATAR_ATTRIBUTE_fEnergyReflect,
 
-	ATTRIBUTE_TO_UPDATE_CRITICAL_BLOCK_SUCCESS_RATE,
+	AVATAR_ATTRIBUTE_wParalyzeToleranceRate,
+	AVATAR_ATTRIBUTE_wTerrorToleranceRate,
+	AVATAR_ATTRIBUTE_wConfuseToleranceRate,
+	AVATAR_ATTRIBUTE_wStoneToleranceRate,
+	AVATAR_ATTRIBUTE_wCandyToleranceRate,
 
-	ATTRIBUTE_TO_UPDATE_LP_RECOVERY_WHEN_HIT,//new
-	ATTRIBUTE_TO_UPDATE_LP_RECOVERY_WHEN_HIT_IN_PERCENT,//new
-	ATTRIBUTE_TO_UPDATE_EP_RECOVERY_WHEN_HIT,//new
-	ATTRIBUTE_TO_UPDATE_EP_RECOVERY_WHEN_HIT_IN_PERCENT,//new
+	AVATAR_ATTRIBUTE_fParalyzeKeepTimeDown,
+	AVATAR_ATTRIBUTE_fTerrorKeepTimeDown,
+	AVATAR_ATTRIBUTE_fConfuseKeepTimeDown,
+	AVATAR_ATTRIBUTE_fStoneKeepTimeDown,
+	AVATAR_ATTRIBUTE_fCandyKeepTimeDown,
+	AVATAR_ATTRIBUTE_fBleedingKeepTimeDown,
+	AVATAR_ATTRIBUTE_fPoisonKeepTimeDown,
+	AVATAR_ATTRIBUTE_fStomachacheKeepTimeDown,
 
-	ATTRIBUTE_TO_UPDATE_STOMACHACHE_DEFENCE_LAST,//new
-	ATTRIBUTE_TO_UPDATE_POISON_DEFENCE_LAST,//new
-	ATTRIBUTE_TO_UPDATE_BLEED_DEFENCE_LAST,//new
-	ATTRIBUTE_TO_UPDATE_BURN_DEFENCE_LAST,//new
-	ATTRIBUTE_TO_UPDATE_MIND_CURSE_IMMUNITY_LAST,//new
-	ATTRIBUTE_TO_UPDATE_BODY_CURSE_IMMUNITY_LAST,//new
-	ATTRIBUTE_TO_UPDATE_CHANGE_CURSE_IMMUNITY_LAST,//new
-	ATTRIBUTE_TO_UPDATE_SKILL_ANIMATION_SPEED_MODIFIER_LAST,//new
-	ATTRIBUTE_TO_UPDATE_WEIGHT_LIMIT_LAST,//new
-	ATTRIBUTE_TO_UPDATE_SKILL_AGGRO_BONUS,//new
-	ATTRIBUTE_TO_UPDATE_SKILL_AGGRO_BONUS_IN_PERCENT,//new
+	AVATAR_ATTRIBUTE_fCriticalBlockSuccessRate,
 
-	ATTRIBUTE_TO_UPDATE_DIRECT_HEAL_POWER_BONUS,//new
-	ATTRIBUTE_TO_UPDATE_DIRECT_HEAL_POWER_BONUS_IN_PERCENT,//new
-	ATTRIBUTE_TO_UPDATE_HOT_POWER_BONUS,//new
-	ATTRIBUTE_TO_UPDATE_HOT_POWER_BONUS_IN_PERCENT,//new
-	ATTRIBUTE_TO_UPDATE_DOT_VALUE_CHANGE_PERCENT,//new
-	ATTRIBUTE_TO_UPDATE_PHYSICAL_CRITICAL_DEFENCE_RATE,//new
-	ATTRIBUTE_TO_UPDATE_ENERGY_CRITICAL_DEFENCE_RATE,//new
+	AVATAR_ATTRIBUTE_dwLpRecoveryWhenHit,
+	AVATAR_ATTRIBUTE_fLpRecoveryWhenHitInPercent,
+	AVATAR_ATTRIBUTE_dwEpRecoveryWhenHit,
+	AVATAR_ATTRIBUTE_fEpRecoveryWhenHitInPercent,
 
-	ATTRIBUTE_TO_UPDATE_GUARD_RATE_LAST,//new
+	AVATAR_ATTRIBUTE_wBaseAbdominalPainDefense,
+	AVATAR_ATTRIBUTE_wLastAbdominalPainDefense,
+	AVATAR_ATTRIBUTE_wBasePoisonDefense,
+	AVATAR_ATTRIBUTE_wLastPoisonDefense,
+	AVATAR_ATTRIBUTE_wBaseBleedingDefense,
+	AVATAR_ATTRIBUTE_wLastBleedingDefense,
+	AVATAR_ATTRIBUTE_wBaseBurnDefense,
+	AVATAR_ATTRIBUTE_wLastBurnDefense,
 
-	ATTRIBUTE_TO_UPDATE_SKILL_DAMAGE_BLOCK_MODE_SUCCESS_RATE_LAST,
-	ATTRIBUTE_TO_UPDATE_CURSE_BLOCK_MODE_SUCCESS_RATE_LAST,
-	ATTRIBUTE_TO_UPDATE_KNOCKDOWN_BLOCK_MODE_SUCCESS_RATE_LAST,
-	ATTRIBUTE_TO_UPDATE_HTB_BLOCK_MODE_SUCCESS_RATE_LAST,
+	AVATAR_ATTRIBUTE_fBaseMindCurseImmunity,
+	AVATAR_ATTRIBUTE_fLastMindCurseImmunity,
+	AVATAR_ATTRIBUTE_fBaseBodyCurseImmunity,
+	AVATAR_ATTRIBUTE_fLastBodyCurseImmunity,
+	AVATAR_ATTRIBUTE_fBaseChangeCurseImmunity,
+	AVATAR_ATTRIBUTE_fLastChangeCurseImmunity,
+	AVATAR_ATTRIBUTE_fBaseSkillAnimationSpeed,
+	AVATAR_ATTRIBUTE_fLastSkillAnimationSpeed,
+	AVATAR_ATTRIBUTE_dwBaseWeightMax,
+	AVATAR_ATTRIBUTE_dwLastWeightMax,
 
-	ATTRIBUTE_TO_UPDATE_ITEM_UPGRADE_RATE_UP,
-	ATTRIBUTE_TO_UPDATE_EXP_BOOSTER,
-	ATTRIBUTE_TO_UPDATE_QUEST_DROP_UP,
+	AVATAR_ATTRIBUTE_fSkillAggroBonus,
+	AVATAR_ATTRIBUTE_fSkillAggroBonusInPercent,
+	AVATAR_ATTRIBUTE_fDirectHealPowerBonus,
+	AVATAR_ATTRIBUTE_fDirectHealPowerBonusInPercent,
+	AVATAR_ATTRIBUTE_fHotPowerBonus,
+	AVATAR_ATTRIBUTE_fHotPowerBonusInPercent,
+	AVATAR_ATTRIBUTE_fDotValueChangePercent,
 
-	ATTRIBUTE_TO_UPDATE_PHYSICAL_ARMOR_PEN_RATE,
-	ATTRIBUTE_TO_UPDATE_ENERGY_ARMOR_PEN_RATE,
+	AVATAR_ATTRIBUTE_fPhysicalCriticalDefenseRate,
+	AVATAR_ATTRIBUTE_fEnergyCriticalDefenseRate,
 
-	ATTRIBUTE_TO_UPDATE_COUNT,
-	ATTRIBUTE_TO_UPDATE_UNKNOWN	= 0xFF,
+	AVATAR_ATTRIBUTE_wGuardRateBase,
+	AVATAR_ATTRIBUTE_wGuardRateLast,
 
-	ATTRIBUTE_TO_UPDATE_FIRST = ATTRIBUTE_TO_UPDATE_STR_LAST,
-	ATTRIBUTE_TO_UPDATE_LAST = ATTRIBUTE_TO_UPDATE_COUNT - 1,
+	AVATAR_ATTRIBUTE_fSkillDamageBlockModeSuccessRate,
+	AVATAR_ATTRIBUTE_fCurseBlockModeSuccessRate,
+	AVATAR_ATTRIBUTE_fKnockdownBlockModeSuccessRate,
+	AVATAR_ATTRIBUTE_fHtbBlockModeSuccessRate,
+	AVATAR_ATTRIBUTE_fItemUpgradeBonusRate,
+	AVATAR_ATTRIBUTE_fItemUpgradeBreakBonusRate,
+
+
+	AVATAR_ATTRIBUTE_byExpBooster,
+	AVATAR_ATTRIBUTE_byQuestDropRate,
+
+	//AVATAR_ATTRIBUTE_byunkTest,
+
+	AVATAR_ATTRIBUTE_COUNT,
+	ATTRIBUTE_TO_UPDATE_UNKNOWN = 0xFF,
+
+	ATTRIBUTE_TO_UPDATE_FIRST = AVATAR_ATTRIBUTE_wBaseStr,
+	ATTRIBUTE_TO_UPDATE_LAST = AVATAR_ATTRIBUTE_COUNT - 1,
 };
 
 #pragma pack(push, 1)
 
 struct sAVATAR_ATTRIBUTE
 {
-	WORD Str; //absolute
-	WORD Con; //absolute
-	WORD Foc; //absolute
-	WORD Dex; //absolute
-	WORD Sol; //absolute
-	WORD Eng; //absolute
+	WORD wBaseStr;
+	WORD wLastStr;
+	WORD wBaseCon;
+	WORD wLastCon;
+	WORD wBaseFoc;
+	WORD wLastFoc;
+	WORD wBaseDex;
+	WORD wLastDex;
+	WORD wBaseSol;
+	WORD wLastSol;
+	WORD wBaseEng;
+	WORD wLastEng;
 
-	int MaxLp; //absolute
-	WORD wMaxEP; //absolute
-	int MaxAp; //absolute
-	WORD wMaxRP; //absolute
+	DWORD dwBaseMaxLP;
+	DWORD dwLastMaxLP;
+	WORD wBaseMaxEP;
+	WORD wLastMaxEP;
+	DWORD dwBaseMaxAp;
+	DWORD dwLastMaxAp;
+	WORD wBaseMaxRP;
+	WORD wLastMaxRP;
 
-	WORD wLpRegen; //absolute
-	WORD wLpSitdownRegen; //absolute
-	WORD wLpBattleRegen; //absolute
+	WORD wBaseLpRegen;
+	WORD wLastLpRegen;
+	WORD wBaseLpSitdownRegen;
+	WORD wLastLpSitdownRegen;
+	WORD wBaseLpBattleRegen;
+	WORD wLastLpBattleRegen;
 
-	WORD wEpRegen; //absolute
-	WORD wEpSitdownRegen; //absolute
-	WORD wEpBattleRegen; //absolute
+	WORD wBaseEpRegen;
+	WORD wLastEpRegen;
+	WORD wBaseEpSitdownRegen;
+	WORD wLastEpSitdownRegen;
+	WORD wBaseEpBattleRegen;
+	WORD wLastEpBattleRegen;
 
-	WORD wApRegen; //absolute
-	WORD wApSitdownRegen; //absolute
-	WORD wApDegen; //absolute
+	WORD wBaseApRegen;
+	WORD wLastApRegen;
+	WORD wBaseApSitdownRegen;
+	WORD wLastApSitdownRegen;
+	WORD wBaseApBattleRegen;
+	WORD wLastApBattleRegen;
 
-	WORD wRpRegen; //absolute		RP rate increase. (/ Second)
-	WORD wRpDimimutionRate;			//RP 감소 속도.(/second)
+	WORD wAirAP_Degen;
+	WORD wAirAP_DegenFly; // This one shows as AP degen in devmaster
+	WORD wAirAP_DegenDash;
+	WORD wAirAP_DegenAccel;
 
-	WORD wPhysicalOffence; //absolute
-	WORD wPhysicalDefence; //absolute
+	WORD wBaseRpRegen;
+	WORD wLastRpRegen; // "/second"
+	WORD wLastRpDiminutionRate; // "/second"
 
-	WORD wEnergyOffence; //absolute
-	WORD wEnergyDefence; //absolute
+	WORD wBasePhysicalOffense;
+	WORD wLastPhysicalOffense;
+	WORD wBasePhysicalDefense;
+	WORD wLastPhysicalDefense;
 
-	WORD wAttackRate; //percent
-	WORD wDodgeRate; //percent
+	WORD wBaseEnergyOffense;
+	WORD wLastEnergyOffense;
+	WORD wBaseEnergyDefense;
+	WORD wLastEnergyDefense;
 
-	WORD wBlockRate; //percent
-	WORD wBlockDamageRate; //percent
+	WORD wBaseHitRate;
+	WORD wLastHitRate;
+	WORD wBaseDodgeRate;
+	WORD wLastDodgeRate;
+	WORD wBaseBlockRate;
+	WORD wLastBlockRate;
+	WORD wBaseBlockDMG;
+	WORD wLastBlockDMG;
 
-	WORD wCurseSuccessRate; //percent
-	WORD wCurseToleranceRate; //percent
+	WORD wBaseCurseSuccessRate;
+	WORD wLastCurseSuccessRate;
+	WORD wBaseCurseToleranceRate;
+	WORD wLastCurseToleranceRate;
 
-	WORD wPhysicalCriticalRate; //percent
-	WORD wEnergyCriticalRate; //percent
+	WORD wBasePhysicalCriticalRate;
+	WORD wLastPhysicalCriticalRate;
+	WORD wBaseEnergyCriticalRate;
+	WORD wLastEnergyCriticalRate;
 
-	float fPhysicalCriticalDamageRate; //percent
-	float fEnergyCriticalDamageRate; //percent
+	FLOAT fBasePhysicalCritDmgRate;
+	FLOAT fLastPhysicalCritDmgRate;
+	FLOAT fBaseEnergyCritDmgRate;
+	FLOAT fLastEnergyCritDmgRate;
 
-	float fRunSpeed; //absolute
-	float fFlySpeed; //absolute
-	float fFlyDashSpeed; //absolute
-	float fFlyAccelSpeed; //absolute
+	FLOAT fBaseRunSpeed;
+	FLOAT fLastRunSpeed;
+	FLOAT fBaseAirSpeed;
+	FLOAT fLastAirSpeed;
+	FLOAT fBaseAirDashSpeed;
+	FLOAT fLastAirDashSpeed;
+	FLOAT fBaseAirDashAccelSpeed;
+	FLOAT fLastAirDashAccelSpeed;
 
-	WORD wAttackSpeedRate; //absolute
-	float fAttackRange; //absolute
+	WORD wBaseAttackSpeedRate;
+	WORD wLastAttackSpeedRate;
+	FLOAT fBaseAttackRange;
+	FLOAT fLastAttackRange;
 
-	float fCastingTimeChangePercent; //percent
-	float fCoolTimeChangePercent; //percent
-	float fKeepTimeChangePercent; //percent
-	float fDotTimeChangeAbsolute; //absolute
-	float fRequiredEpChangePercent; //percent
-	float fPhysicalReflection; //absolute
-	float fEnergyReflection; //absolute
+	FLOAT fCastingTimeChangePercent; // 0 = no change, 10 = cast time longer by 10% (110% total)
+	FLOAT fCoolTimeChangePercent; // 0 = no change, 10 = cooldown longer by 10% (110% total), to make cooldow shorter need negative
+	FLOAT fKeepTimeChangePercent; // 0 = no change, 10 = duration longer by 10% (110% total)
+	FLOAT fDotKeepTimeChangeInSeconds;
+	FLOAT fRequiredEpChangePercent; // 0 = No change, 10 = cost EP +10% (110% total)
 
-	WORD wParalyzeToleranceRate;	//percent
-	WORD wTerrorToleranceRate;	//percent
-	WORD wConfuseToleranceRate;	//percent
-	WORD wStoneToleranceRate;	//percent
-	WORD wCandyToleranceRate;	//percent
-	float fParalyzeKeepTimeDown;	//percent
-	float fTerrorKeepTimeDown;	//percent
-	float fConfuseKeepTimeDown;	//percent
-	float fStoneKeepTimeDown;	//percent
-	float fCandyKeepTimeDown;	//percent
-	float fBleedingKeepTimeDown;	//percent
-	float fPoisonKeepTimeDown;	//percent
-	float fStomachacheKeepTimeDown;	//percent
-	float fCriticalBlockSuccessRate;	//percent
-	DWORD dwLpRecoveryWhenHit; //absolute
-	float fLpRecoveryWhenHitInPercent;	//percent
-	DWORD dwEpRecoveryWhenHit; //absolute
-	float fEpRecoveryWhenHitInPercent;	//percent
-	WORD wStomachacheDefence;
-	WORD wPoisonDefence;
-	WORD wBleedDefence;
-	WORD wBurnDefence;
-	float fMindCurseImmunity;
-	float fBodyCurseImmunity;
-	float fChangeCurseImmunity;
-	float fSkillAnimationSpeedModifier;
-	DWORD dwWeightLimit;
-	float fSkillAggroBonus;
-	float fSkillAggroBonusInPercent;
-	float fDirectHealPowerBonus;
-	float fDirectHealPowerBonusInPercent;
-	float fHotPowerBonus;
-	float fHotPowerBonusInPercent;
-	float fDotValueChangePercent;
-	float fPhysicalCriticalDefenceRate; // decreases critical dmg bonus
-	float fEnergyCriticalDefenceRate;	// decreases critical dmg bonus
-	WORD wGuardRate;
-	float fSkillDamageBlockModeSuccessRate;
-	float fCurseBlockModeSuccessRate;
-	float fKnockdownBlockModeSuccessRate;
-	float fHtbBlockModeSuccessRate;
-	float fItemUpgradeBonusRate;
+	FLOAT fHonestOffense;
+	FLOAT fHonestDefense;
+	FLOAT fStrangeOffense;
+	FLOAT fStrangeDefense;
+	FLOAT fWildOffense;
+	FLOAT fWildDefense;
+	FLOAT fEleganceOffense;
+	FLOAT fEleganceDefense;
+	FLOAT fFunnyOffense;
+	FLOAT fFunnyDefense;
+
+	FLOAT fPhysicalReflect;
+	FLOAT fEnergyReflect;
+
+	WORD wParalyzeToleranceRate;
+	WORD wTerrorToleranceRate;
+	WORD wConfuseToleranceRate;
+	WORD wStoneToleranceRate;
+	WORD wCandyToleranceRate;
+
+	FLOAT fParalyzeKeepTimeDown;
+	FLOAT fTerrorKeepTimeDown;
+	FLOAT fConfuseKeepTimeDown;
+	FLOAT fStoneKeepTimeDown;
+	FLOAT fCandyKeepTimeDown;
+	FLOAT fBleedingKeepTimeDown;
+	FLOAT fPoisonKeepTimeDown;
+	FLOAT fStomachacheKeepTimeDown;
+
+	FLOAT fCriticalBlockSuccessRate;
+
+	DWORD dwLpRecoveryWhenHit;
+	FLOAT fLpRecoveryWhenHitInPercent;
+	DWORD dwEpRecoveryWhenHit;
+	FLOAT fEpRecoveryWhenHitInPercent;
+
+	WORD wBaseAbdominalPainDefense;
+	WORD wLastAbdominalPainDefense;
+	WORD wBasePoisonDefense;
+	WORD wLastPoisonDefense;
+	WORD wBaseBleedingDefense;
+	WORD wLastBleedingDefense;
+	WORD wBaseBurnDefense;
+	WORD wLastBurnDefense;
+
+	FLOAT fBaseMindCurseImmunity;
+	FLOAT fLastMindCurseImmunity;
+	FLOAT fBaseBodyCurseImmunity;
+	FLOAT fLastBodyCurseImmunity;
+	FLOAT fBaseChangeCurseImmunity;
+	FLOAT fLastChangeCurseImmunity;
+
+	FLOAT fBaseSkillAnimationSpeed;
+	FLOAT fLastSkillAnimationSpeed;
+	DWORD dwBaseWeightMax;
+	DWORD dwLastWeightMax;
+
+	FLOAT fSkillAggroBonus;
+	FLOAT fSkillAggroBonusInPercent;
+	FLOAT fDirectHealPowerBonus;
+	FLOAT fDirectHealPowerBonusInPercent;
+	FLOAT fHotPowerBonus;
+	FLOAT fHotPowerBonusInPercent;
+	FLOAT fDotValueChangePercent;
+
+	FLOAT fPhysicalCriticalDefenseRate;
+	FLOAT fEnergyCriticalDefenseRate;
+
+	WORD wGuardRateBase;
+	WORD wGuardRateLast;
+
+	FLOAT fSkillDamageBlockModeSuccessRate;
+	FLOAT fCurseBlockModeSuccessRate;
+	FLOAT fKnockdownBlockModeSuccessRate;
+	FLOAT fHtbBlockModeSuccessRate;
+
+	FLOAT fItemUpgradeBonusRate;
+	FLOAT fItemUpgradeBreakBonusRate;
+
 	BYTE byExpBooster;
 	BYTE byQuestDropRate;
-	float fPhysicalArmorPenRate; // Decreases x% of target physical def. Note: stat should never be below 0
-	float fEnergyArmorPenRate; //  Decreases x% of target energy def. Note: stat should never be below 0
+
+	//BYTE unkTest; // In latest KR, need remove it. TODO:
 };
 
 struct sAVATAR_ATTRIBUTE_LINK
 {
-	WORD *pStr;
-	WORD *pCon;
-	WORD *pFoc;
-	WORD *pDex;
-	WORD *pSol;
-	WORD *pEng;
+	WORD* pwBaseStr;
+	WORD* pwLastStr;
+	WORD* pwBaseCon;
+	WORD* pwLastCon;
+	WORD* pwBaseFoc;
+	WORD* pwLastFoc;
+	WORD* pwBaseDex;
+	WORD* pwLastDex;
+	WORD* pwBaseSol;
+	WORD* pwLastSol;
+	WORD* pwBaseEng;
+	WORD* pwLastEng;
 
-	int *pMaxLp;
-	WORD *pwMaxEP;
-	int *pMaxAp;
-	WORD *pwMaxRP;
+	DWORD* pdwBaseMaxLP;
+	DWORD* pdwLastMaxLP;
+	WORD* pwBaseMaxEP;
+	WORD* pwLastMaxEP;
+	DWORD* pdwBaseMaxAp;
+	DWORD* pdwLastMaxAp;
+	WORD* pwBaseMaxRP;
+	WORD* pwLastMaxRP;
 
-	WORD *pwLpRegen;
-	WORD *pwLpSitdownRegen;
-	WORD *pwLpBattleRegen;
+	WORD* pwBaseLpRegen;
+	WORD* pwLastLpRegen;
+	WORD* pwBaseLpSitdownRegen;
+	WORD* pwLastLpSitdownRegen;
+	WORD* pwBaseLpBattleRegen;
+	WORD* pwLastLpBattleRegen;
 
-	WORD *pwEpRegen;
-	WORD *pwEpSitdownRegen;
-	WORD *pwEpBattleRegen;
+	WORD* pwBaseEpRegen;
+	WORD* pwLastEpRegen;
+	WORD* pwBaseEpSitdownRegen;
+	WORD* pwLastEpSitdownRegen;
+	WORD* pwBaseEpBattleRegen;
+	WORD* pwLastEpBattleRegen;
 
-	WORD *pwApRegen;
-	WORD *pwApSitdownRegen;
-	WORD *pwApDegen;
+	WORD* pwBaseApRegen;
+	WORD* pwLastApRegen;
+	WORD* pwBaseApSitdownRegen;
+	WORD* pwLastApSitdownRegen;
+	WORD* pwBaseApBattleRegen;
+	WORD* pwLastApBattleRegen;
 
-	WORD *pwRpRegen;
-	WORD *pwRpDimimutionRate;
+	WORD* pwAirAPDegen;
+	WORD* pwAirAPFlyDegen; // This one shows as AP degen in devmaster
+	WORD* pwAirAPFLyDashDegen;
+	WORD* pwAirAPFlyDashBoostDegen;
 
-	WORD *pwPhysicalOffence;
-	WORD *pwPhysicalDefence;
+	WORD* pwBaseRpRegen;
+	WORD* pwLastRpRegen; // "/second"
+	WORD* pwLastRpDiminutionRate; // "/second"
 
-	WORD *pwEnergyOffence;
-	WORD *pwEnergyDefence;
+	WORD* pwBasePhysicalOffense;
+	WORD* pwLastPhysicalOffense;
+	WORD* pwBasePhysicalDefense;
+	WORD* pwLastPhysicalDefense;
 
-	WORD *pwAttackRate;
-	WORD *pwDodgeRate;
+	WORD* pwBaseEnergyOffense;
+	WORD* pwLastEnergyOffense;
+	WORD* pwBaseEnergyDefense;
+	WORD* pwLastEnergyDefense;
 
-	WORD *pwBlockRate;
-	WORD *pwBlockDamageRate;
+	WORD* pwBaseHitRate;
+	WORD* pwLastHitRate;
+	WORD* pwBaseDodgeRate;
+	WORD* pwLastDodgeRate;
+	WORD* pwBaseBlockRate;
+	WORD* pwLastBlockRate;
+	WORD* pwBaseBlockDMG;
+	WORD* pwLastBlockDMG;
 
-	WORD *pwCurseSuccessRate;
-	WORD *pwCurseToleranceRate;
+	WORD* pwBaseCurseSuccessRate;
+	WORD* pwLastCurseSuccessRate;
+	WORD* pwBaseCurseToleranceRate;
+	WORD* pwLastCurseToleranceRate;
 
-	WORD *pwPhysicalCriticalRate;
-	WORD *pwEnergyCriticalRate;
+	WORD* pwBasePhysicalCriticalRate;
+	WORD* pwLastPhysicalCriticalRate;
+	WORD* pwBaseEnergyCriticalRate;
+	WORD* pwLastEnergyCriticalRate;
 
-	float *pfPhysicalCriticalDamageRate;
-	float *pfEnergyCriticalDamageRate;
+	FLOAT* pfBasePhysicalCritDmgRate;
+	FLOAT* pfLastPhysicalCritDmgRate;
+	FLOAT* pfBaseEnergyCritDmgRate;
+	FLOAT* pfLastEnergyCritDmgRate;
 
-	float *pfRunSpeed;
-	float *pfFlySpeed;
-	float *pfFlyDashSpeed;
-	float *pfFlyAccelSpeed;
+	FLOAT* pfBaseRunSpeed;
+	FLOAT* pfLastRunSpeed;
+	FLOAT* pfBaseAirSpeed;
+	FLOAT* pfLastAirSpeed;
+	FLOAT* pfBaseAirDashSpeed;
+	FLOAT* pfLastAirDashSpeed;
+	FLOAT* pfBaseAirDashAccelSpeed;
+	FLOAT* pfLastAirDashAccelSpeed;
 
-	WORD *pwAttackSpeedRate;
-	float *pfAttackRange;
+	WORD* pwBaseAttackSpeedRate;
+	WORD* pwLastAttackSpeedRate;
+	FLOAT* pfBaseAttackRange;
+	FLOAT* pfLastAttackRange;
 
-	float *pfCastingTimeChangePercent;
-	float *pfCoolTimeChangePercent;
-	float *pfKeepTimeChangePercent;
-	float *pfDotTimeChangeAbsolute;
-	float *pfRequiredEpChangePercent;
-	float *pfPhysicalReflection;
-	float *pfEnergyReflection;
+	FLOAT* pfCastingTimeChangePercent; // 0 = no change, 10 = cast time longer by 10% (110% total)
+	FLOAT* pfCoolTimeChangePercent; // 0 = no change, 10 = cooldown longer by 10% (110% total), to make cooldow shorter need negative
+	FLOAT* pfKeepTimeChangePercent; // 0 = no change, 10 = duration longer by 10% (110% total)
+	FLOAT* pfDotKeepTimeChangeInSeconds;
+	FLOAT* pfRequiredEpChangePercent; // 0 = No change, 10 = cost EP +10% (110% total)
 
-	WORD *pwParalyzeToleranceRate;
-	WORD *pwTerrorToleranceRate;
-	WORD *pwConfuseToleranceRate;
-	WORD *pwStoneToleranceRate;
-	WORD *pwCandyToleranceRate;
-	float *pfParalyzeKeepTimeDown;
-	float *pfTerrorKeepTimeDown;
-	float *pfConfuseKeepTimeDown;
-	float *pfStoneKeepTimeDown;
-	float *pfCandyKeepTimeDown;
-	float *pfBleedingKeepTimeDown;
-	float *pfPoisonKeepTimeDown;
-	float *pfStomachacheKeepTimeDown;
-	float *pfCriticalBlockSuccessRate;
-	DWORD *pdwLpRecoveryWhenHit;
-	float *pfLpRecoveryWhenHitInPercent;
-	DWORD *pdwEpRecoveryWhenHit;
-	float *pfEpRecoveryWhenHitInPercent;
-	WORD *pwStomachacheDefence;
-	WORD *pwPoisonDefence;
-	WORD *pwBleedDefence;
-	WORD *pwBurnDefence;
-	float *pfMindCurseImmunity;
-	float *pfBodyCurseImmunity;
-	float *pfChangeCurseImmunity;
-	float *pfSkillAnimationSpeedModifier;
-	DWORD *pdwWeightLimit;
-	float *pfSkillAggroBonus;
-	float *pfSkillAggroBonusInPercent;
-	float *pfDirectHealPowerBonus;
-	float *pfDirectHealPowerBonusInPercent;
-	float *pfHotPowerBonus;
-	float *pfHotPowerBonusInPercent;
-	float *pfDotValueChangePercent;
-	float *pfPhysicalCriticalDefenceRate;
-	float *pfEnergyCriticalDefenceRate;
-	WORD *pwGuardRate;
-	float *pfSkillDamageBlockModeSuccessRate;
-	float *pfCurseBlockModeSuccessRate;
-	float *pfKnockdownBlockModeSuccessRate;
-	float *pfHtbBlockModeSuccessRate;
-	float *pfItemUpgradeBonusRate;
-	BYTE *pbyExpBooster;
-	BYTE *pbyQuestDropRate;
-	float *pfPhysicalArmorPenRate;
-	float *pfEnergyArmorPenRate;
+	FLOAT* pfHonestOffense;
+	FLOAT* pfHonestDefense;
+	FLOAT* pfStrangeOffense;
+	FLOAT* pfStrangeDefense;
+	FLOAT* pfWildOffense;
+	FLOAT* pfWildDefense;
+	FLOAT* pfEleganceOffense;
+	FLOAT* pfEleganceDefense;
+	FLOAT* pfFunnyOffense;
+	FLOAT* pfFunnyDefense;
+
+	FLOAT* pfPhysicalReflect;
+	FLOAT* pfEnergyReflect;
+
+	WORD* pwParalyzeToleranceRate;
+	WORD* pwTerrorToleranceRate;
+	WORD* pwConfuseToleranceRate;
+	WORD* pwStoneToleranceRate;
+	WORD* pwCandyToleranceRate;
+
+	FLOAT* pfParalyzeKeepTimeDown;
+	FLOAT* pfTerrorKeepTimeDown;
+	FLOAT* pfConfuseKeepTimeDown;
+	FLOAT* pfStoneKeepTimeDown;
+	FLOAT* pfCandyKeepTimeDown;
+	FLOAT* pfBleedingKeepTimeDown;
+	FLOAT* pfPoisonKeepTimeDown;
+	FLOAT* pfStomachacheKeepTimeDown;
+
+	FLOAT* pfCriticalBlockSuccessRate;
+
+	DWORD* pdwLpRecoveryWhenHit;
+	FLOAT* pfLpRecoveryWhenHitInPercent;
+	DWORD* pdwEpRecoveryWhenHit;
+	FLOAT* pfEpRecoveryWhenHitInPercent;
+
+	WORD* pwBaseAbdominalPainDefense;
+	WORD* pwLastAbdominalPainDefense;
+	WORD* pwBasePoisonDefense;
+	WORD* pwLastPoisonDefense;
+	WORD* pwBaseBleedingDefense;
+	WORD* pwLastBleedingDefense;
+	WORD* pwBaseBurnDefense;
+	WORD* pwLastBurnDefense;
+
+	FLOAT* pfBaseMindCurseImmunity;
+	FLOAT* pfLastMindCurseImmunity;
+	FLOAT* pfBaseBodyCurseImmunity;
+	FLOAT* pfLastBodyCurseImmunity;
+	FLOAT* pfBaseChangeCurseImmunity;
+	FLOAT* pfLastChangeCurseImmunity;
+
+	FLOAT* pfBaseSkillAnimationSpeed;
+	FLOAT* pfLastSkillAnimationSpeed;
+	DWORD* pdwBaseWeightMax;
+	DWORD* pdwLastWeightMax;
+
+	FLOAT* pfSkillAggroBonus;
+	FLOAT* pfSkillAggroBonusInPercent;
+	FLOAT* pfDirectHealPowerBonus;
+	FLOAT* pfDirectHealPowerBonusInPercent;
+	FLOAT* pfHotPowerBonus;
+	FLOAT* pfHotPowerBonusInPercent;
+	FLOAT* pfDotValueChangePercent;
+
+	FLOAT* pfPhysicalCriticalDefenseRate;
+	FLOAT* pfEnergyCriticalDefenseRate;
+
+	WORD* pwGuardRateBase;
+	WORD* pwGuardRateLast;
+
+	FLOAT* pfSkillDamageBlockModeSuccessRate;
+	FLOAT* pfCurseBlockModeSuccessRate;
+	FLOAT* pfKnockdownBlockModeSuccessRate;
+	FLOAT* pfHtbBlockModeSuccessRate;
+
+	FLOAT* pfItemUpgradeBonusRate;
+	FLOAT* pfItemUpgradeBreakBonusRate;
+
+	BYTE* pbyExpBooster;
+	BYTE* pbyQuestDropRate;
+
+	//BYTE *punkTest; // In latest KR, need remove it. TODO:
 };
 
 #pragma pack(pop)
@@ -370,7 +597,7 @@ public:
 	struct sATTRIBUTE_LOGIC
 	{
 		DWORD dwFieldOffset;
-		DWORD (*pCopyAttributeFunction)(void* pvBuffer, void* pvValue);
+		DWORD(*pCopyAttributeFunction)(void* pvBuffer, void* pvValue);
 	};
 
 protected:
@@ -409,20 +636,22 @@ public:
 	static sAVATAR_ATTRIBUTE_LINK ConvertAVATAR_ATTRIBUTE(sAVATAR_ATTRIBUTE* avt);
 
 public:
-	static sATTRIBUTE_LOGIC m_attributeLogic[ATTRIBUTE_TO_UPDATE_COUNT];
+	static sATTRIBUTE_LOGIC m_attributeLogic[AVATAR_ATTRIBUTE_COUNT];
 
 	// needed to convert from sAVATAR_ATTRIBUTE to sAVATAR_ATTRIBUTE_LINK
-	static sATTRIBUTE_LOGIC m_attributeLogicNew[ATTRIBUTE_TO_UPDATE_COUNT];
+	static sATTRIBUTE_LOGIC m_attributeLogicNew[AVATAR_ATTRIBUTE_COUNT];
 
 	static DWORD CopyValueByType_BYTE(void* pvValue, void* pvBuffer);
 	static DWORD CopyValueByType_WORD(void* pvValue, void* pvBuffer);
 	static DWORD CopyValueByType_float(void* pvValue, void* pvBuffer);
+	static DWORD CopyValueByType_FLOAT(void* pvValue, void* pvBuffer);
 	static DWORD CopyValueByType_DWORD(void* pvValue, void* pvBuffer);
 	static DWORD CopyValueByType_int(void* pvValue, void* pvBuffer);
 
 	static DWORD CopyValueByTypeNew_BYTE(void* pvValue, void* pvBuffer);
 	static DWORD CopyValueByTypeNew_WORD(void* pvValue, void* pvBuffer);
 	static DWORD CopyValueByTypeNew_float(void* pvValue, void* pvBuffer);
+	static DWORD CopyValueByTypeNew_FLOAT(void* pvValue, void* pvBuffer);
 	static DWORD CopyValueByTypeNew_DWORD(void* pvValue, void* pvBuffer);
 	static DWORD CopyValueByTypeNew_int(void* pvValue, void* pvBuffer);
 };

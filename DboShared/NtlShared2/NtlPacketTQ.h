@@ -410,7 +410,7 @@ BYTE				byTabType;
 BYTE				byItemType;
 BYTE				byItemLevel;
 WCHAR				awchSeller[NTL_MAX_SIZE_CHAR_NAME + 1];
-WCHAR				awchItemName[DBO_MAX_LENGTH_ITEM_NAME_TEXT + 1];
+WCHAR				awchItemName[NTL_MAX_LENGTH_ITEM_NAME_TEXT + 1];
 DBOTIME				nStartSellTime;
 DBOTIME				nEndSellTime;
 BYTE				byPlace;

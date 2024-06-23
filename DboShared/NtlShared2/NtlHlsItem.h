@@ -40,6 +40,7 @@ struct sCASHITEM_BRIEF
 	QWORD			qwProductId;
 	TBLIDX			HLSitemTblidx; // cash item table index
 	BYTE			byStackCount;
+	BYTE			test[9];
 	sDBO_TIME		tRegTime;
 	WCHAR			wchSenderName[NTL_MAX_SIZE_CHAR_NAME + 1];
 };

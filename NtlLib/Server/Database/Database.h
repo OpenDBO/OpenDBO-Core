@@ -7,10 +7,9 @@
 #include <queue>
 #include <list>
 
-#include <thread>
-#include <mutex>
-#include <condition_variable>
-#include <chrono>
+#include <boost\thread.hpp>
+#include <boost\thread\condition.hpp>
+
 
 
 struct DatabaseConnection
@@ -68,7 +67,7 @@ public:
 	void PerformQueryBuffer(QueryBuffer * b);
 
 	static Database * CreateDatabaseInterface(UINT32 uType);
-	std::mutex & GetMutex() { return m_mutex; }
+	boost::mutex & GetMutex() { return m_mutex; }
 
 	virtual bool SupportsReplaceInto() = 0;
 	virtual bool SupportsTableLocking() = 0;
@@ -105,11 +104,11 @@ protected:
 public:
 
 	static std::list<Database*> s_listDatabase;
-	static std::mutex s_mutex;
-	static std::condition_variable_any s_cond;
+	static boost::mutex s_mutex;
+	static boost::condition s_cond;
 	static volatile long s_qcount;
 	static volatile bool s_IsQuit;
-	static std::thread* s_pThread;
+	static boost::thread* s_pThread;
 	static void StartThread();
 	static void DatabaseThreadRun();
 
@@ -119,9 +118,9 @@ public:
 
 protected:
 	void QueryThreadRun();
-	std::mutex m_mutexBP;
-	std::mutex m_mutexAP;
-	std::mutex m_mutex;
+	boost::mutex m_mutexBP;
+	boost::mutex m_mutexAP;
+	boost::mutex m_mutex;
 	std::queue<AsyncQuery*> m_queueQueryBeforeProc;
 	std::queue<AsyncQuery*> m_queueQueryAfterProc;
 
@@ -150,7 +149,7 @@ Database::PAsyncQuery(Class *object, void (Class::*method)(QueryResultVector&, P
 
 
 // for security reason - gui
-class scoped_sql_transaction_proc
+class scoped_sql_transaction_proc : public boost::noncopyable
 {
 public:
 	scoped_sql_transaction_proc(Database* p1) : m_success(false)
@@ -175,18 +174,16 @@ public:
 	{
 		if (m_success)
 		{
-			for (auto it = m_list_db.begin(); it != m_list_db.end(); ++it)
-			{
+			for (std::list<Database*>::iterator it = m_list_db.begin(); it != m_list_db.end(); ++it)
 				(*it)->EndTransaction((*it)->GetFreeConnection());
-			}
 		}
 		else
 		{
-			for (auto it = m_list_db.begin(); it != m_list_db.end(); ++it)
-			{
+			for (std::list<Database*>::iterator it = m_list_db.begin(); it != m_list_db.end(); ++it)
 				(*it)->RollbackTransaction((*it)->GetFreeConnection());
-			}
 		}
+		for (std::list<boost::mutex::scoped_lock*>::iterator it = m_list_lock.begin(); it != m_list_lock.end(); ++it)
+			delete *it;
 	}
 	void success()
 	{
@@ -196,15 +193,17 @@ public:
 private:
 	void start()
 	{
-		for (auto it = m_list_db.begin(); it != m_list_db.end(); ++it)
+		for (std::list<Database*>::iterator it = m_list_db.begin(); it != m_list_db.end(); ++it)
 		{
 			Database* db = *it;
-			std::scoped_lock lock(db->GetMutex());
+			boost::mutex::scoped_lock* lock = new boost::mutex::scoped_lock(db->GetMutex());
 			db->BeginTransaction(db->GetFreeConnection());
+			m_list_lock.push_back(lock);
 		}
 	}
 	bool m_success;
 	std::list<Database*> m_list_db;
+	std::list<boost::mutex::scoped_lock*> m_list_lock;
 };
 
 

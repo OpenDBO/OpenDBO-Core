@@ -360,15 +360,16 @@ const char * DboGetFreeBattleResultString(BYTE byBattleResult);
 //-----------------------------------------------------------------------------------
 BYTE				NtlGetBattleChainAttackSequence(BYTE byCharLevel); // 레벨당 최대 CHAIN ATTACK 수 
 
-//float				NtlGetBattleAttributeBonusRate(BYTE bySubjectAtt, BYTE byTargetAtt); // get battle attribute bonus // old
+float				NtlGetBattleAttributeBonusRate(BYTE bySubjectAtt, BYTE byTargetAtt); // get battle attribute bonus // old
 
-eSYSTEM_EFFECT_CODE	GetBattleAttributeEffectCode(BYTE byAtt);
+eSYSTEM_EFFECT_CODE	GetBattleAttributeEffectCodeOfence(BYTE byAtt);
+eSYSTEM_EFFECT_CODE	GetBattleAttributeEffectCodeDefence(BYTE byAtt);
 BYTE				GetBattleAttributeEffectApplyType(BYTE byAtt);
 float				GetBattleAttributeEffectApplyValue(BYTE byAtt);
 
 float				NtlGetBattleChainAttackBounsRate(BYTE byAttackSequence); // 체인 어택에 따른 보너스 공격률
 
-bool				IsInBattleArena(TBLIDX worldTblidx, CNtlVector& vCurLoc);
+bool				IsInBattleArena(TBLIDX worldTblidx, CNtlVector& vCurLoc, bool isPowerTournament);
 
 
 struct sBOT_AGGROPOINT

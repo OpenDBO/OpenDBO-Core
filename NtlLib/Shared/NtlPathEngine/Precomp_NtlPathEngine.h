@@ -14,6 +14,7 @@
 #include <vector>
 #include <map>
 #include <string>
+#include <hash_map>
 #include <algorithm>
 
 #include "./PathEngine/i_pathengine.h"

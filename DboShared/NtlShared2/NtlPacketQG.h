@@ -2036,6 +2036,7 @@ BEGIN_PROTOCOL(QG_PC_DATA_LOAD_RES)
 	sRANKBATTLE_SCORE_INFO		sRankBattleScore;
 	BYTE						TitleIndexFlag[NTL_MAX_CHAR_TITLE_COUNT_IN_FLAG];
 	WORD						wWaguCoins;
+	WORD						wEventCoins;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(QG_PC_ITEM_LOAD_RES)
@@ -2046,7 +2047,7 @@ BEGIN_PROTOCOL(QG_PC_ITEM_LOAD_RES)
 	WORD					wCurPacketCount;
 	bool					bHaveNetPosition;
 	BYTE					byItemCount;
-	sITEM_DATA				asItemData[DBO_ITEM_IN_BAG_COUNT_PER_PACKET]; // Max = NTL_MAX_COUNT_USER_HAVE_INVEN_ITEM
+	sITEM_DATA				asItemData[DBO_ITEM_MAX_FOR_QUERY_PACKET]; // Max = NTL_MAX_COUNT_USER_HAVE_INVEN_ITEM
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(QG_PC_SKILL_LOAD_RES)
