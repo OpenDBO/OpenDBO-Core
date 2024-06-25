@@ -45,6 +45,7 @@ public:
 
 	VOID		Show(bool bShow);
 	VOID		SetPosition(RwInt32 iXPos, RwInt32 iYPos);
+	CBuffDispGui* GetBuffsDispGui() { return m_pBuff; }; //EXPORT BUFF DISP GUI
 
 protected:
 	VOID		HandleEvents(RWS::CMsg &pMsg);	
@@ -73,6 +74,7 @@ public:
 	RwBool		Create(SERIAL_HANDLE hSerial, WCHAR* pcText, RwUInt8 byClass);
 	VOID		Update(RwReal fElapsed);
 	VOID		Destroy();
+	CPartyMemberBuffGui* GetBuffsGui() { return m_pBuff; }; //Export BUFF GUI
 
 	SERIAL_HANDLE GetHandle();						///< 맴버의 핸들 반환
 
