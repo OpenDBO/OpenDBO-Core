@@ -208,8 +208,8 @@ RpWorld* RpNtlWorldCreate()
 	RtWorldImportParameters WorldImportParams;
 	sNtlWorldPlugInParam NtlWorldPlugInParam;
 
-	RwBBox NtlWorldBBox = {	{(RwReal)dGET_WORLD_PARAM()->WorldValueMax, 512.0f, (RwReal)dGET_WORLD_PARAM()->WorldValueMax},
-							{(RwReal)dGET_WORLD_PARAM()->WorldValueMin, -512.0f, (RwReal)dGET_WORLD_PARAM()->WorldValueMin}};
+	RwBBox NtlWorldBBox = {	{(RwReal)dGET_WORLD_PARAM()->WorldValueMax, 1024.0f, (RwReal)dGET_WORLD_PARAM()->WorldValueMax},
+							{(RwReal)dGET_WORLD_PARAM()->WorldValueMin, -1024.0f, (RwReal)dGET_WORLD_PARAM()->WorldValueMin}};
 
 	/* initialize rtworldimport toolkit */
 	pWorldImport = RtWorldImportCreate();

@@ -21,7 +21,7 @@
 //////////////////////////////////////////////////////////////////////////
 #ifdef dNTL_WORLD_FILE
 
-#define dSM_GETRULEOUTDOODAD_OFFSET_UPPER	512.0f
+#define dSM_GETRULEOUTDOODAD_OFFSET_UPPER	1024.0f
 #define dSM_GETRULEOUTDOODAD_OFFSET_LOWER	0.0f
 
 CSM_GetRuleOutDoodad_RetContainer::CSM_GetRuleOutDoodad_RetContainer()
@@ -142,7 +142,7 @@ RwBool CSM_GetRuleOutDoodad::CheckSector(BYTE* _pFileMemPos)
 		RwV3d	vTranslation;
 
 		//////////////////////////////////////////////////////////////////////////
-		// ÇÊ¿äÇÑ Á¤º¸¸¦ º¹»çÇØµÎ°í ÆÄÀÏÆ÷ÀÎÅÍ¸¦ ½ºÅµÇØµÐ´Ù.
+		// ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ØµÎ°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½Åµï¿½ØµÐ´ï¿½.
 		//////////////////////////////////////////////////////////////////////////
 		// Use : Name
 		if (dNTL_WORLD_VERSION_COMPARE(dGET_WORLD_PARAM()->WorldVer, dNTL_WORLD_VERSION_OLD))
@@ -229,7 +229,7 @@ RwBool CSM_GetRuleOutDoodad::CheckSector(BYTE* _pFileMemPos)
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		// ½ÇÁúÀûÀÎ °Ë»ç¸¦ ÇÑ´Ù.
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ç¸¦ ï¿½Ñ´ï¿½.
 		//////////////////////////////////////////////////////////////////////////
 		// Doodad Check
 		{
@@ -525,7 +525,7 @@ RwBool CSM_GetRuleOutDoodad::Report()
 		RwInt32 nSecond = (RwInt32)systemTime.wSecond;
 		RwInt32 nMinute = (RwInt32)systemTime.wMinute;
 		RwReal fMilliseconds = (RwReal)systemTime.wMilliseconds / 1000.f;
-		sprintf_s(szBuffer, "%d³â %d¿ù %dÀÏ %d½Ã %dºÐ %dÃÊ", nYear, nMonth, nDay, nHour, nMinute, nSecond);
+		sprintf_s(szBuffer, "%dï¿½ï¿½ %dï¿½ï¿½ %dï¿½ï¿½ %dï¿½ï¿½ %dï¿½ï¿½ %dï¿½ï¿½", nYear, nMonth, nDay, nHour, nMinute, nSecond);
 
 		fprintf(pFile, "========== %s ==========\n", szBuffer);
 
@@ -688,7 +688,7 @@ RwBool CSM_GetRuleOutDoodad::CheckSector(BYTE* _pFileMemPos)
 		RwV3d	vTranslation;
 
 		//////////////////////////////////////////////////////////////////////////
-		// ÇÊ¿äÇÑ Á¤º¸¸¦ º¹»çÇØµÎ°í ÆÄÀÏÆ÷ÀÎÅÍ¸¦ ½ºÅµÇØµÐ´Ù.
+		// ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ØµÎ°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½Åµï¿½ØµÐ´ï¿½.
 		//////////////////////////////////////////////////////////////////////////
 		// Use : Name
 		CopyMemory(acName, _pFileMemPos, sizeof(RwChar) * 128);
@@ -789,7 +789,7 @@ RwBool CSM_GetRuleOutDoodad::CheckSector(BYTE* _pFileMemPos)
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		// ½ÇÁúÀûÀÎ °Ë»ç¸¦ ÇÑ´Ù.
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ç¸¦ ï¿½Ñ´ï¿½.
 		//////////////////////////////////////////////////////////////////////////
 		// Doodad Check
 		{
@@ -1084,7 +1084,7 @@ RwBool CSM_GetRuleOutDoodad::Report()
 		RwInt32 nSecond = (RwInt32)systemTime.wSecond;
 		RwInt32 nMinute = (RwInt32)systemTime.wMinute;
 		RwReal fMilliseconds = (RwReal)systemTime.wMilliseconds / 1000.f;
-		sprintf_s(szBuffer, "%d³â %d¿ù %dÀÏ %d½Ã %dºÐ %dÃÊ", nYear, nMonth, nDay, nHour, nMinute, nSecond);
+		sprintf_s(szBuffer, "%dï¿½ï¿½ %dï¿½ï¿½ %dï¿½ï¿½ %dï¿½ï¿½ %dï¿½ï¿½ %dï¿½ï¿½", nYear, nMonth, nDay, nHour, nMinute, nSecond);
 
 		fprintf(pFile, "========== %s ==========\n", szBuffer);
 

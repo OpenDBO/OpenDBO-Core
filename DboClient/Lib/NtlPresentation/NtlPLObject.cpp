@@ -154,15 +154,15 @@ RwBool CNtlPLObject::CreateThreadSafe(void)
 	NTL_SPROFILE("CNtlPLObject::CreateThreadSafe");
 
 	Helper_SetClumpAllAtomics(GetClump(), &m_vecAtomicList);		
-	Helper_GetBoneList(GetClump(), &m_mapFrame);            // Bone List¸¦ ÀúÀåÇØ µÐ´Ù.
+	Helper_GetBoneList(GetClump(), &m_mapFrame);            // Bone Listï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð´ï¿½.
 
-	// AnimÀ» Àû¿ëÇÑ´Ù
+	// Animï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
 	if(m_pProperty->m_strAnimFileName.size() > 0)
 	{
 		SetAnimation(m_pProperty->m_strAnimFileName.c_str());
 	}
 
-	// Æ®¸®°Å ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ Àû¿ëµÈ°Ô ÀÖÀ¸¸é Àû¿ëÇÑ´Ù.
+	// Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	m_sScheduleInfo.bLoadComplete = TRUE;
 	if(m_sScheduleInfo.uiAnimKey > 0)
 	{
@@ -170,7 +170,7 @@ RwBool CNtlPLObject::CreateThreadSafe(void)
 	}
 
 
-	// UVAnimÀ» Clump¿¡ Àû¿ëÇÑ´Ù.
+	// UVAnimï¿½ï¿½ Clumpï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	if(m_pUVAnim)
 	{
 		m_pUVAnim->SetClump(GetClump());
@@ -193,7 +193,7 @@ RwBool CNtlPLObject::CreateThreadSafe(void)
 		SetFlags(GetFlags() | NTL_PLEFLAG_SHADOW);
 	}
 
-	// clump¿¡ ´ëÇÑ atomic
+	// clumpï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ atomic
 	if( GetClump() != NULL )
 	{
 		// Toon
@@ -206,11 +206,11 @@ RwBool CNtlPLObject::CreateThreadSafe(void)
 			RpAtomicSetRenderCallBack(pAtomic, CNtlPLObject::RenderCallBack);            			
 			RpNtlAtomicSetData(pAtomic, this);
 
-			// ÆøÆ÷Ã³·³ UV¾Ö´Ï¸¸ ¾²´Â ¿ÀºêÁ§Æ®µµ FXÆÄÀÌÇÁ¶óÀÎ, È¯°æ¸ÊÀ» °¡Áö°í ÀÖ¾îµµ FXÆÄÀÌÇÁ¶óÀÎÀ» °¡Áö°í ÀÖÀ¸¸ç
-			// ¹Ø¿¡ if(!RpMaterialUVAnimExists(pMaterial))¿¡¼­ ¶ÇÇÑ¹ø Ã¼Å©ÇÏ¹Ç·Î ´ÙÀ½ ¹®ÀåÀ» ÁÖ¼®Ã³¸®ÇÕ´Ï´Ù.
-			// È¯°æ¸Ê, UV¾Ö´ÏµîÀ» °¡Áø ¿ÀºêÁ§Æ®°¡ ¹®Á¦°¡ »ý±ä´Ù¸é ÀÌºÎºÐÀÌ ´Ù½Ã ÇÑ¹ø °í·Á°¡ µÇ¾ß ÇÕ´Ï´Ù.
-			// ÁÖ¼®À» Ç®°Ô µÇ¸é UV¿Í È¯°æ¸ÊÀ» °¡Áø ¿ÀºêÁ§Æ®¸¦ ¼±ÅÃÇÒ½Ã ÆÄÀÌÇÁ¶óÀÎÀÌ Æ²¸®¹Ç·Î addcolorµÇÁö ¾Ê½À´Ï´Ù.
-			// - ¿ìÅÃ
+			// ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ UVï¿½Ö´Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ FXï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, È¯ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾îµµ FXï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			// ï¿½Ø¿ï¿½ if(!RpMaterialUVAnimExists(pMaterial))ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ¹ï¿½ Ã¼Å©ï¿½Ï¹Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½Ã³ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
+			// È¯ï¿½ï¿½ï¿½, UVï¿½Ö´Ïµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ù¸ï¿½ ï¿½ÌºÎºï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½Ñ¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ ï¿½Õ´Ï´ï¿½.
+			// ï¿½Ö¼ï¿½ï¿½ï¿½ Ç®ï¿½ï¿½ ï¿½Ç¸ï¿½ UVï¿½ï¿½ È¯ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Æ²ï¿½ï¿½ï¿½Ç·ï¿½ addcolorï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.
+			// - ï¿½ï¿½ï¿½ï¿½
 			//if(pAtomic->pipeline == NULL && m_pUVAnim == NULL)
 			if(pAtomic->pipeline == NULL)
 			{
@@ -254,10 +254,10 @@ RwBool CNtlPLObject::CreateThreadSafe(void)
 		AttachLightObject();
 	}
 
-	// ºí·»µå °´Ã¼¸¦ »ý¼ºÇÏ°í ¸®½ºÆ®¿¡ Ãß°¡ÇÑ´Ù.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ñ´ï¿½.
 	m_pFadeBlend = GetAlphaBlendController()->AddAlpha(1.0f);
 
-	// Link Effect¸¦ ¼³Á¤ÇÑ´Ù.
+	// Link Effectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	for(UINT i = 0; i < m_pProperty->m_vLinkEffect.size(); ++i)
 	{
 		SEventLinkEffect* pEventLinkEffect = m_pProperty->m_vLinkEffect[i];        
@@ -265,10 +265,10 @@ RwBool CNtlPLObject::CreateThreadSafe(void)
 	}
 	if(!m_pProperty->m_vLinkEffect.empty())
 	{
-		Update(0.0f);       // ¸µÅ©ÀÌÆåÆ®°¡ ÀÖÀ¸¸é ÃÖÃÊ¿¡ ¾÷µ¥ÀÌÆ®¸¦ ÇÑ¹ø ÇØÁà¾ß ÇÑ´Ù. (Effect°¡ Objectº¸´Ù UpdateÈ£ÃâÀÌ ºü¸£±â ¶§¹®)
+		Update(0.0f);       // ï¿½ï¿½Å©ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ñ¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½. (Effectï¿½ï¿½ Objectï¿½ï¿½ï¿½ï¿½ UpdateÈ£ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 	}
 
-	// Sound¸¦ Àç»ýÇÑ´Ù.
+	// Soundï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	if(strlen(m_pProperty->GetSoundProp()->chSoundName) > 0)
 	{
 		sNtlSoundPlayParameta tSoundParam;
@@ -288,7 +288,7 @@ RwBool CNtlPLObject::CreateThreadSafe(void)
 		AddLoopSound(tSoundParam.hHandle);
 	}
 
-	// Ã³À½ ¸Ê¿¡ ÁøÀÔ½Ã¿¡ ³ªÅ¸³ª´Â ¿ÀºêÁ§Æ®µéÀº Fade È¿°ú¸¦ Àû¿ëÇÏÁö ¾Ê´Â´Ù.    
+	// Ã³ï¿½ï¿½ ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½Ô½Ã¿ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ Fade È¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.    
 	if(m_bLoadMap || (!GetSceneManager()->GetDistanceFilterEnable()))
 	{
 		m_eFadeState = FADE_VISIBLE;	        
@@ -313,14 +313,14 @@ RwBool CNtlPLObject::CreateThreadSafe(void)
 RwBool CNtlPLObject::CreateOccluderProxy()
 {
 #ifdef dNTL_WORLD_CULLING_NEW
-	// +1 == Bounding Sphere Check¸¦ À§ÇØ¼­ »ç¿ëÇÑ´Ù.
+	// +1 == Bounding Sphere Checkï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	return COccluderProxy::CreateOccluderProxy(0.5f, m_vecAtomicList.size() + 1);
 #else
 	if (m_bHaveAnim)
 	{
 		return COccluderProxy::CreateOccluderProxy(0.5f, m_vecAtomicList.size());
 	}
-	else // Animetion À» °¡Áö°í ¾ÊÀ» °æ¿ì´Â Entity Bounding Sphere·Î Ã³¸®ÇÑ´Ù.
+	else // Animetion ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Entity Bounding Sphereï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ñ´ï¿½.
 	{
 		return COccluderProxy::CreateOccluderProxy(0.5f, 1);
 	}
@@ -902,7 +902,7 @@ void CNtlPLObject::Destroy(void)
 		RemoveWorld();		
 	}
 
-	// ¿©±â¼­´Â m_pClumpResourceÀÇ null pointer¸¦ °Ë»çÇÏÁö ¾Ê´Â´Ù(Çü¼®)
+	// ï¿½ï¿½ï¿½â¼­ï¿½ï¿½ m_pClumpResourceï¿½ï¿½ null pointerï¿½ï¿½ ï¿½Ë»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½(ï¿½ï¿½ï¿½ï¿½)
 	CNtlPLResourceManager::GetInstance()->UnLoadScheduling(this, m_pClumpResource );
 	m_pClumpResource = NULL;
 
@@ -999,7 +999,7 @@ RwBool CNtlPLObject::Update( RwReal fElapsed )
 		m_pObjectType->Update(fElapsed);
 	}
 
-	// Æ®¸®°Å ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ ¼¼ÆÃµÇ¸é, »ý¼ºµÉ¶§±îÁö TimeÀº ÁøÇà½ÃÅ²´Ù.
+	// Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÃµÇ¸ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½É¶ï¿½ï¿½ï¿½ï¿½ï¿½ Timeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Å²ï¿½ï¿½.
 	if(!IsSchedulingLoadingComplete())
 	{
 		if(m_sScheduleInfo.uiAnimKey > 0)
@@ -1077,7 +1077,7 @@ RwBool CNtlPLObject::SetThreadSafeProperty(const CNtlPLProperty *pData)
 			SetFlags(GetFlags() & ~NTL_PLEFLAG_NOTUPDATE);
 	}
 
-	//  Æ®¸®°Å ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ ÀÖÀ¸¸é Update Flag¸¦ ÄÒ´Ù
+	//  Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Update Flagï¿½ï¿½ ï¿½Ò´ï¿½
 	if(m_pProperty->GetAnimTable()->GetTypeAnimMap()->size() > 0)
 	{
 		m_bHaveAnim = TRUE;
@@ -1148,7 +1148,7 @@ void CNtlPLObject::CallSchedulingResource(CNtlPLResource *pResource)
 	SetTransform();
 	SetAlpha(m_sColor.alpha);
 
-	// ·ÎµùÀÌ ¿Ï·áµÇ¾úÀ½À» ÀÌº¥Æ®·Î ½ð´Ù.
+	// ï¿½Îµï¿½ï¿½ï¿½ ï¿½Ï·ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½.
 	CNtlPLEventGenerator::CreateEventThreadLoading(GetSerialID());
 
 	NTL_RETURNVOID();
@@ -1440,7 +1440,7 @@ void CNtlPLObject::SetMatrix( RwMatrix & matWorld )
 
 	RwMatrixCopy( RwFrameGetMatrix( pFrame ), &matWorld );
 
-	// À§Ä¡°ªÀ» ÀúÀåÇÑ´Ù.
+	// ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	m_vWorldPosition = *RwMatrixGetPos(&matWorld);
 
 	RwFrameUpdateObjects( pFrame );
@@ -1474,14 +1474,14 @@ RwBool CNtlPLObject::SetUVAnim( const RwChar* szUVAnimFileName )
 		m_pUVAnim = NTL_NEW CNtlPLUVAnim();
 	}
 
-	// NOTE: UVAnimÀº Clump°¡ Load µÇ±âÀü¿¡ È£ÃâµÇ¾î¾ß¸¸ Àû¿ëµÈ´Ù.
+	// NOTE: UVAnimï¿½ï¿½ Clumpï¿½ï¿½ Load ï¿½Ç±ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½Ç¾ï¿½ß¸ï¿½ ï¿½ï¿½ï¿½ï¿½È´ï¿½.
 	return m_pUVAnim->Create(szUVAnimFileName);    
 }
 
 /**
-* ¾Ö´Ï¸ÞÀÌ¼Ç ¸®¼Ò½º¹× °´Ã¼¸¦ »ý¼ºÇÏ°í, ¿ÀºêÁ§Æ®¿¡ Àû¿ëÇÑ´Ù.
-* \param szAnimFileName Àû¿ëÇÒ AnimFileName (*.anm)
-* return ¼º°ø À¯¹«
+* ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½Ò½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+* \param szAnimFileName ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ AnimFileName (*.anm)
+* return ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 */
 RwBool CNtlPLObject::SetAnimation( const RwChar* szAnimFileName ) 
 {
@@ -1497,7 +1497,7 @@ RwBool CNtlPLObject::SetAnimation( const RwChar* szAnimFileName )
 	}
 	else
 	{
-		// ·ÎµùµÈ AnimÀ» ¸Þ¸ð¸®¿¡¼­ Á¦°ÅÇÑ´Ù.
+		// ï¿½Îµï¿½ï¿½ï¿½ Animï¿½ï¿½ ï¿½Þ¸ð¸®¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 		CNtlPLResourceManager::GetInstance()->UnLoad(m_pAnimResource);
 		m_pAnimResource = NULL;
 	}
@@ -1552,12 +1552,12 @@ RwBool CNtlPLObject::SetTriggerAnimation(RwUInt32 uiAnimKey, RwReal fStartTime /
 		NTL_RETURN(FALSE);
 	}
 
-	// Instance Anim Table »ý¼º
+	// Instance Anim Table ï¿½ï¿½ï¿½ï¿½
 	if(!m_pAnimLayer)
 	{
 		CreateAnim();
 
-		// AnimLayer °´Ã¼¸¦ ¸¸µé±â À§ÇØ¼­´Â ¿ì¼± ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ Àû¿ëµÇ¾î ÀÖ¾î¾ß ÇÑ´Ù.
+		// AnimLayer ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ ï¿½ì¼± ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½Ö¾ï¿½ï¿½ ï¿½Ñ´ï¿½.
 		RpHAnimHierarchySetCurrentAnim(m_pBaseHierarchy, pInstanceAnimData->pResource->GetAnimation());
 		RpHAnimUpdateHierarchyMatrices(m_pBaseHierarchy);
 
@@ -1574,7 +1574,7 @@ RwBool CNtlPLObject::SetTriggerAnimation(RwUInt32 uiAnimKey, RwReal fStartTime /
 	ClearLoopSound();
 	
 
-	// Play timeÀ» 0 ~ 1 »çÀÌ °ªÀ¸·Î Á¶Á¤ÇÑ´Ù
+	// Play timeï¿½ï¿½ 0 ~ 1 ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
 	RwReal fPlayTime = fStartTime;
 	fPlayTime = (FLT_MAX == fPlayTime ? 0.f : fPlayTime);
 	fPlayTime = fabs(fPlayTime);
@@ -1631,8 +1631,8 @@ void CNtlPLObject::CalcBoundingSphere()
 	m_BSphere.center = m_BSphere.center - GetPosition();
 }
 
-// GetPositionÀ¸·Î ¾÷µ¥ÀÌÆ®°¡ Èûµç ¹®Á¦Á¡À¸·Î º¯°æÇÔ.
-// ¹®Á¦°¡ µÉ °æ¿ì ´Ù½Ã º¹¿øÇÑ´Ù.
+// GetPositionï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 // RwSphere* CNtlPLObject::GetBoundingSphere()
 // {
 // 	return &m_BSphere;
@@ -1894,7 +1894,7 @@ RwBBox CNtlPLObject::GetTriggerAABBInfo( const RwV3d& vPos, const RwV3d& vRotate
 	if(!pBBox)
 		return bboxOut;
 
-	// ÇÁ·ÎÆÛÆ¼¿¡ ¼³Á¤µÈ ¹Ù¿îµù ¹Ú½º°¡ ¾øÀ¸¸é °è»êÇØ¼­ ¼³Á¤ÇÑ´Ù.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¿ï¿½ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	if(RwV3dLength(&(pBBox->sup)) == 0)
 	{
 		m_pProperty->SetBBox(CreateDefaultAABB());        
@@ -1980,7 +1980,7 @@ RwBool CNtlPLObject::UpdateFadeSystem()
 
 	if(m_eFadeState == FADE_NOT_VISIBLE || m_eFadeState == FADE_VISIBLE)
 	{
-		// Ä«¸Þ¶ó¿ÍÀÇ °Å¸®¸¦ Ã¼Å©ÇÑ´Ù. (³ôÀÌ´Â Ã¼Å©ÇÏÁö ¾Ê´Â´Ù)
+		// Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ñ´ï¿½. (ï¿½ï¿½ï¿½Ì´ï¿½ Ã¼Å©ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½)
 		RwFrame* pFrame = RwCameraGetFrame(CNtlPLGlobal::m_RwCamera);
 		RwV3d vPosCamera = *RwMatrixGetPos(RwFrameGetMatrix(pFrame));
 		RwV3d vPosObject = GetPosition();
@@ -1991,7 +1991,7 @@ RwBool CNtlPLObject::UpdateFadeSystem()
 		// Fade Out         
 		if( m_eFadeState == FADE_VISIBLE && fDistCamera >= GetVisibleCullingDistance())
 		{
-			m_eFadeState = FADE_OUT_OBJECT;            // »ç¶óÁú¶§´Â objectºÎÅÍ »ç¶óÁø´Ù (ÀÌÆåÆ®´Â ³²¾ÆÀÖ´Ù)
+			m_eFadeState = FADE_OUT_OBJECT;            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ objectï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½)
 			m_fFadeTime = 0.0f;
 
 			for(RwUInt32 i = 0; i < m_vecAtomicList.size(); i++)
@@ -2002,7 +2002,7 @@ RwBool CNtlPLObject::UpdateFadeSystem()
 
 			AddSceneUpdate();
 
-			// 	 		if(!m_bAnimPlay)            // ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ Àû¿ë¾ÈµÈ ¿ÀºêÁ§Æ®´Â update°¡ È£ÃâµÇÁö ¾Ê±â¶§¹®¿¡ Update¸¦ È£ÃâÇÒ¼öÀÖµµ·Ï Ãß°¡ÇÑ´Ù.
+			// 	 		if(!m_bAnimPlay)            // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Èµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ updateï¿½ï¿½ È£ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±â¶§ï¿½ï¿½ï¿½ï¿½ Updateï¿½ï¿½ È£ï¿½ï¿½ï¿½Ò¼ï¿½ï¿½Öµï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ñ´ï¿½.
 			//   			{
 			//   				GetSceneManager()->AddUpdate(this);
 			// 	  		}
@@ -2010,8 +2010,8 @@ RwBool CNtlPLObject::UpdateFadeSystem()
 		// Fade In
 		else if(m_eFadeState == FADE_NOT_VISIBLE && fDistCamera <= GetVisibleCullingDistance())
 		{
-			//m_eFadeState = FADE_IN_EFFECT;             // ³ªÅ¸³¯¶§´Â EffectºÎÅÍ ³ªÅ¸³­´Ù (¿ÀºêÁ§Æ®´Â Â÷ÈÄ¿¡ ³ªÅ¸³­´Ù)            
-			/// -- Fade In µÉ¶§´Â ¿ÀºêÁ§Æ®¿Í ÀÌÆåÆ®°¡ °°ÀÌ ³ªÅ¸³­´Ù (2007.7.31 by agebreak - ¹Î¼®¾¾ ¿ä±¸»çÇ×)
+			//m_eFadeState = FADE_IN_EFFECT;             // ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Effectï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½Ä¿ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½)            
+			/// -- Fade In ï¿½É¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ (2007.7.31 by agebreak - ï¿½Î¼ï¿½ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½ï¿½ï¿½)
 			m_eFadeState = FADE_IN_OBJECT;
 			m_fFadeTime = 0.0f;
 
@@ -2073,7 +2073,7 @@ RwBool CNtlPLObject::UpdateFading(RwReal fElapsedTime)
 		}
 		else
 		{
-			// Alpha¸¦ 0%->100%·Î º¯È­½ÃÅ²´Ù. 
+			// Alphaï¿½ï¿½ 0%->100%ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½Å²ï¿½ï¿½. 
 			m_pFadeBlend->SetWeight(m_fFadeTime / CNtlPLGlobal::m_fDistFiterObjFrequency);            
 		}
 		break;
@@ -2101,7 +2101,7 @@ RwBool CNtlPLObject::UpdateFading(RwReal fElapsedTime)
 		}            
 		else
 		{
-			// Alpha¸¦ 100%->0%·Î º¯È¯½ÃÄ­´Ù.           
+			// Alphaï¿½ï¿½ 100%->0%ï¿½ï¿½ ï¿½ï¿½È¯ï¿½ï¿½Ä­ï¿½ï¿½.           
 			m_pFadeBlend->SetWeight((CNtlPLGlobal::m_fDistFiterObjFrequency - m_fFadeTime) / CNtlPLGlobal::m_fDistFiterObjFrequency);            
 		}   
 		break;
@@ -2164,23 +2164,23 @@ RpAtomic *CNtlPLObject::RenderCallBack(RpAtomic *pAtomic)
 						nMatCount = RENDER_MAX_COLOR_TEMP;
 				}
 
-				// Atomic¿¡ ¼³Á¤µÈ Alpha °ª°úÀÇ º¸Á¤                
+				// Atomicï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Alpha ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½                
 				sColorRatioReal.alpha *= RpNtlAtomicGetAlpha(pAtomic) / 255.0f;
 
-				// Fade¸¦ À§ÇÑ Weight Alpha°ª°úÀÇ º¸Á¤
-#ifdef dNTL_WORLD_TOOL_MODE	// Åø¿¡¼­´Â ¹«Á¶°Ç Fade Alpha Àû¿ë
+				// Fadeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Weight Alphaï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+#ifdef dNTL_WORLD_TOOL_MODE	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Fade Alpha ï¿½ï¿½ï¿½ï¿½
 				sColorRatioReal.alpha *= pEntity->GetWeightAlpha();
 #else
-				if(!(pEntity->GetFlags() & NTL_PLEFLAG_OBJECT_FORCE_VISIBLE)) // ÇÃ·¡±×°¡ ÄÑÁ®ÀÖ´Ù¸é, Fade alpha¸¦ Àû¿ëÇÏÁö ¾Ê´Â´Ù.
+				if(!(pEntity->GetFlags() & NTL_PLEFLAG_OBJECT_FORCE_VISIBLE)) // ï¿½Ã·ï¿½ï¿½×°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´Ù¸ï¿½, Fade alphaï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 				{
 					sColorRatioReal.alpha *= pEntity->GetWeightAlpha();
 				}
 #endif                
 
-				if(sColorRatioReal.alpha == 0.0f)       // ¾ËÆÄ°¡ 0.0ÀÌ¸é ·»´õ¸µÇÏÁö ¾Ê´Â´Ù.
+				if(sColorRatioReal.alpha == 0.0f)       // ï¿½ï¿½ï¿½Ä°ï¿½ 0.0ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 					NTL_RPROFILE(pAtomic);
 
-				// Alpha Test ATomicÀÇ Alpha º¸°£ º¸Á¤( Alpha TestÀÏ °æ¿ì 208 ÀÌ»óÀÎ °æ¿ì Åë°úÀÎ °ü°è·Î)
+				// Alpha Test ATomicï¿½ï¿½ Alpha ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½( Alpha Testï¿½ï¿½ ï¿½ï¿½ï¿½ 208 ï¿½Ì»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½)
 				if( RpNtlAtomicGetFlag(pAtomic) & NTL_ALPHATEST &&
 					RpNtlAtomicGetFlag(pAtomic) & NTL_RUNTIME_ALPHA)
 				{
@@ -2194,7 +2194,7 @@ RpAtomic *CNtlPLObject::RenderCallBack(RpAtomic *pAtomic)
 					// get through the proper renderpipe
 					if(pObjEntity->GetToonData())
 					{
-						// ToonÀÌ Àû¿ëµÇ¾î ÀÖ´Â °æ¿ì¿¡¸¸ Material Render CallBackÀ» µû¸¥´Ù. ¾ÈµÇ¾îÀÖÀ¸¸é ¾È³ª¿Â´Ù. (by agebreak)
+						// Toonï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½ Material Render CallBackï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. ï¿½ÈµÇ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½È³ï¿½ï¿½Â´ï¿½. (by agebreak)
 						RpNtlMaterialSetRenderCB(pMaterial, CNtlPLCharacter::fpRenderCB);
 					}
 
@@ -2278,8 +2278,8 @@ RpClump * CNtlPLObject::GetClump( void ) const
 }
 
 /**
-* Fade È¿°ú À¯¹Â¸¦ Àû¿ëÇÑ´Ù.
-* \param bEnable Fade È¿°ú À¯¹«
+* Fade È¿ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+* \param bEnable Fade È¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 * return 
 */
 void CNtlPLObject::SetFadeEnable(RwBool bEnable)
@@ -2311,14 +2311,14 @@ void CNtlPLObject::SetFadeEnable(RwBool bEnable)
 	{
 		SetFlags(uiFlags & (~NTL_PLEFLAG_FADE));
 
-		// Visual ManagerÀÇ Update List¿¡ Æ÷ÇÔµÇ¾î ÀÖÀ¸¸é Á¦°ÅÇÑ´Ù
+		// Visual Managerï¿½ï¿½ Update Listï¿½ï¿½ ï¿½ï¿½ï¿½ÔµÇ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
 		if(m_eFadeState != FADE_VISIBLE && m_eFadeState != FADE_NOT_VISIBLE && !m_bHaveAnim)
 		{
 			RemoveSceneUpdate();
 			//GetSceneManager()->RemoveUpdate(this);
 		}
 
-		// ¿ÀºêÁ§Æ®¸¦ È­¸é¿¡ Ç¥½ÃÇÑ´Ù.
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ È­ï¿½é¿¡ Ç¥ï¿½ï¿½ï¿½Ñ´ï¿½.
 		m_eFadeState = FADE_VISIBLE;        
 		m_pFadeBlend->SetWeight(1.0f);    
 		SetWeightAlpha(1.0f);
@@ -2378,16 +2378,16 @@ void CNtlPLObject::OnEventAnimEnd( SEventAnimEnd* pEventAnimEnd )
 
 void CNtlPLObject::OnEventVisualSound( SEventSound* pEventSound ) 
 {
-	// Sound¸¦ PlayÇÑ´Ù.    
+	// Soundï¿½ï¿½ Playï¿½Ñ´ï¿½.    
 
 	if(strlen(pEventSound->chSoundName) <= 1)
 		return ;
 
-	// LoopSoundÀÌ°í ÀÌ¹Ì ±âÁ¸¿¡ PlayµÇ°í ÀÖ´Ù¸é PlayÇÏÁö ¾Ê´Â´Ù.
+	// LoopSoundï¿½Ì°ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Playï¿½Ç°ï¿½ ï¿½Ö´Ù¸ï¿½ Playï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 	if(pEventSound->bLoop && IsExistLoopSound(pEventSound->chSoundName))
 		return ;
 
-	// ÆÄÀÏÀÌ ¿©·¯°³ ¼¼ÆÃµÇ¾î ÀÖ´Â°æ¿ì¿¡´Â ·£´ýÀ¸·Î ÇÃ·¹ÀÌµÈ´Ù.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÃµÇ¾ï¿½ ï¿½Ö´Â°ï¿½ì¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ÌµÈ´ï¿½.
 	std::string soundFileName;
 	int nMax = 1;
 	if(strlen(pEventSound->chSoundName4) > 0)
@@ -2421,7 +2421,7 @@ void CNtlPLObject::OnEventVisualSound( SEventSound* pEventSound )
 		soundFileName = pEventSound->chSoundName;
 	}
 
-	// ÇÇÄ¡¸¦ ·£´ýÀ¸·Î ¼±ÅÃÇÑ´Ù
+	// ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
 	RwReal fSoundPitch = NtlRandomNumber(pEventSound->fSoundPitchMin, pEventSound->fSoundPitchMax);
 
 	sNtlSoundPlayParameta tSoundParam;
@@ -2438,7 +2438,7 @@ void CNtlPLObject::OnEventVisualSound( SEventSound* pEventSound )
 
 	int iRet = GetSoundManager()->Play(&tSoundParam);
 
-	// Loop Sound¸é ¸®½ºÆ®¿¡ Ãß°¡ÇÑ´Ù.
+	// Loop Soundï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ñ´ï¿½.
 	if(iRet == SOUNDRESULT_OK && pEventSound->bLoop && tSoundParam.hHandle != INVALID_SOUND_HANDLE)
 	{
 		AddLoopSound(tSoundParam.hHandle);
@@ -2447,14 +2447,14 @@ void CNtlPLObject::OnEventVisualSound( SEventSound* pEventSound )
 
 void CNtlPLObject::OnEventVisualEffect( SEventVisualEffect* pEventVisualEffect ) 
 {
-	//Effect NameÀÌ ¾ø´Â °æ¿ì´Â ¹«Á¶°Ç ReturnÀ» ÇÑ´Ù.
+	//Effect Nameï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Returnï¿½ï¿½ ï¿½Ñ´ï¿½.
 	if( strlen(pEventVisualEffect->chEffectName) <= 0)
 		return;
 
 	if( strlen(pEventVisualEffect->chBoneName) <= 0 && pEventVisualEffect->bAttachBone)
 		return;
 
-	// ¸¸¾à LoopEffect ¸®½ºÆ®¿¡ °°Àº ÀÌ¸§,BoneÀÌ ÀÖÀ¸¸é »õ·Î »ý¼ºÇÏÁö ¾Ê´Â´Ù.
+	// ï¿½ï¿½ï¿½ï¿½ LoopEffect ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½,Boneï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 	if (IsExistLoopEffect(pEventVisualEffect->chEffectName, pEventVisualEffect->chBoneName))
 	{
 		return;
@@ -2470,7 +2470,7 @@ void CNtlPLObject::OnEventVisualEffect( SEventVisualEffect* pEventVisualEffect )
 
 	CNtlInstanceEffect *pInstanceEffect = (CNtlInstanceEffect *)pPLEntity;
 
-	// AutoDelete°¡ ¾Æ´Ï¸é LoopEffect¶ó°í °£ÁÖÇÏ°í ¸®½ºÆ®¿¡ Ãß°¡ÇÑ´Ù   
+	// AutoDeleteï¿½ï¿½ ï¿½Æ´Ï¸ï¿½ LoopEffectï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ñ´ï¿½   
 	if(!pPLEntity->IsAutoDelete())
 	{
 		SLoopEffect* pLoopEffect = NTL_NEW SLoopEffect();
@@ -2500,7 +2500,7 @@ void CNtlPLObject::OnEventVisualEffect( SEventVisualEffect* pEventVisualEffect )
 
 void CNtlPLObject::OnEventAlphaFade( SEventAlpha* pEventAlpha ) 
 {
-	// Atomic Alpha¿¡ °üÇØ¼­¸¸ PL´Ü¿¡¼­ Ã³¸®ÇÑ´Ù.
+	// Atomic Alphaï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ PLï¿½Ü¿ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ñ´ï¿½.
 	if(pEventAlpha->eAlphaEventType != SEventAlpha::E_ALPHA_EVENT_ATOMIC)
 	{
 		CNtlPLEventGenerator::AnimEventAlpha(GetSerialID(), (void*)pEventAlpha);
@@ -2576,7 +2576,7 @@ RwBool CNtlPLObject::IsExistLoopSound( RwChar* szSoundName )
 
 RwReal CNtlPLObject::GetAnimPlayTime( RwUInt32 uiAnimKey ) 
 {
-	// AnimTableÀÌ ¾ÆÁ÷ »ý¼ºµÇ¾î ÀÖÁö ¾Ê´Ù¸é »ý¼ºÇØÁØ´Ù. 
+	// AnimTableï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½. 
 	if(!m_pInstanceAnimTable)
 	{
 		m_pInstanceAnimTable = NTL_NEW CNtlInstanceAnimTable();
@@ -2765,7 +2765,7 @@ RwBool CNtlPLObject::CullingTest(RwCamera* pRwCamera, RwUInt16 uiRenderFrame)
 
 				if (IsCullingTestAllAtomic())
 				{
-					// [m_vecAtomicList.size()]¹ø Occluder Proxy´Â Bounding Sphere´Ù.
+					// [m_vecAtomicList.size()]ï¿½ï¿½ Occluder Proxyï¿½ï¿½ Bounding Sphereï¿½ï¿½.
 					for (RwInt32 i = 0; i < iNumAtomic; ++i)
 					{
 #ifdef _DEBUG
@@ -2823,8 +2823,8 @@ RwBool CNtlPLObject::CullingTest(RwCamera* pRwCamera, RwUInt16 uiRenderFrame)
 			}
 			else if (iFrustumCheck + iOccluderCheck >= iNumAtomic) 
 			{
-				// Frustum + Occluder °¹¼ö°¡ Atomic °¹¼öº¸´Ù ¸¹´Ù¸é
-				// OCCLUDER Flag¸¦ ¼ÂÆÃ ÇÑ´Ù. ´Ü OccluderCheck °¹¼ö°¡ Á¸ÀçÇØ¾ß ÇÏ¹Ç·Î, iFrustumCheck >= iNumAtomic¸¦ Åë°úÇØ¾ß¸¸ °¡´ÉÇÏ´Ù.
+				// Frustum + Occluder ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Atomic ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½
+				// OCCLUDER Flagï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½. ï¿½ï¿½ OccluderCheck ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Ï¹Ç·ï¿½, iFrustumCheck >= iNumAtomicï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ø¾ß¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
 				m_uiCullFlags |= NTL_PLEFLAG_CULLED_OCCLUDER;
 			}
 		}
@@ -2892,8 +2892,8 @@ RwBool CNtlPLObject::CullingTest(RwCamera* pRwCamera)
 				}
 				else if (iFrustumCheck + iOccluderCheck >= iNumAtomic) 
 				{
-					// Frustum + Occluder °¹¼ö°¡ Atomic °¹¼öº¸´Ù ¸¹´Ù¸é
-					// OCCLUDER Flag¸¦ ¼ÂÆÃ ÇÑ´Ù. ´Ü OccluderCheck °¹¼ö°¡ Á¸ÀçÇØ¾ß ÇÏ¹Ç·Î, iFrustumCheck >= iNumAtomic¸¦ Åë°úÇØ¾ß¸¸ °¡´ÉÇÏ´Ù.
+					// Frustum + Occluder ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Atomic ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½
+					// OCCLUDER Flagï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½. ï¿½ï¿½ OccluderCheck ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Ï¹Ç·ï¿½, iFrustumCheck >= iNumAtomicï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ø¾ß¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
 					m_uiCullFlags |= NTL_PLEFLAG_CULLED_OCCLUDER;
 				}
 			}
@@ -2937,7 +2937,7 @@ RwReal CNtlPLObject::GetVisibleCullingDistance()
 #ifdef dNTL_WORLD_TOOL_MODE
 	return m_fVisibleCullingDistance;
 #else
-	if (m_fVisibleCullingDistance > 512 || m_fVisibleCullingDistance < GetNtlPLOptionManager()->GetObjectFar())
+	if (m_fVisibleCullingDistance > 1024 || m_fVisibleCullingDistance < GetNtlPLOptionManager()->GetObjectFar())
 	{
 		return m_fVisibleCullingDistance;
 	}
@@ -3064,7 +3064,7 @@ RpWorldSector* NtlRpWorldSectorIntersectionOBB(RpIntersection * pIntersection, R
 	SNtlRpWorldSectorIntersectionOBB*	pNtlRpWorldSectorIntersectionOBB = (SNtlRpWorldSectorIntersectionOBB*)pData;
 	const RwBBox*						pBBoxRpWorldSector = RpWorldSectorGetBBox(pRpWorldSector);
 
-	//³»ºÎ ¿¬»êÀ»ÁÙÀÌ±â À§ÇØ Á÷Á¢ ÀÔ·Â.
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½.
 	OBBRpWorldSector.fAxisLen[0] = (pBBoxRpWorldSector->sup.x - pBBoxRpWorldSector->inf.x) * 0.5f;
 	OBBRpWorldSector.fAxisLen[1] = (pBBoxRpWorldSector->sup.y - pBBoxRpWorldSector->inf.y) * 0.5f;
 	OBBRpWorldSector.fAxisLen[2] = (pBBoxRpWorldSector->sup.z - pBBoxRpWorldSector->inf.z) * 0.5f;
@@ -3158,9 +3158,9 @@ void CNtlPLObject::SetObjectType(RwUInt32 uiObjectType)
 
 void CNtlPLObject::AddSceneUpdate()
 {
-	// AnimationÀÌ ¾ø°Å³ª ObjectTypeÀÌ MINI_INDOOR_CLOSE ¶Ç´Â EPL_OBJECT_TYPE_MINI_INDOOR_OPENÀÌ¸é
-	// UpdateList¿¡ Æ÷ÇÔÇÑ´Ù. AnimationÀ» °¡Áö°í ÀÖ´Â Object´Â SetProperty¿¡¼­ Update Flag¸¦ Á¦°Å ÇÏ±â ¶§¹®¿¡
-	// ¿©±â¼­´Â °ü¿©ÇØ¼­´Â ¾ÈµÈ´Ù.
+	// Animationï¿½ï¿½ ï¿½ï¿½ï¿½Å³ï¿½ ObjectTypeï¿½ï¿½ MINI_INDOOR_CLOSE ï¿½Ç´ï¿½ EPL_OBJECT_TYPE_MINI_INDOOR_OPENï¿½Ì¸ï¿½
+	// UpdateListï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. Animationï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ Objectï¿½ï¿½ SetPropertyï¿½ï¿½ï¿½ï¿½ Update Flagï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	// ï¿½ï¿½ï¿½â¼­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ ï¿½ÈµÈ´ï¿½.
 	if (GetObjectType() == EPL_OBJECT_TYPE_MINI_INDOOR_CLOSE || 
 		GetObjectType() == EPL_OBJECT_TYPE_MINI_INDOOR_OPEN ||
 		!m_bHaveAnim)
@@ -3171,9 +3171,9 @@ void CNtlPLObject::AddSceneUpdate()
 
 void CNtlPLObject::RemoveSceneUpdate()
 {
-	// AnimationÀÌ ¾ø°Å³ª ObjectTypeÀÌ MINI_INDOOR_CLOSE ¶Ç´Â EPL_OBJECT_TYPE_MINI_INDOOR_OPENÀÌ¸é
-	// UpdateList¿¡ Æ÷ÇÔÇÑ´Ù. AnimationÀ» °¡Áö°í ÀÖ´Â Object´Â SetProperty¿¡¼­ Update Flag¸¦ Á¦°Å ÇÏ±â ¶§¹®¿¡
-	// ¿©±â¼­´Â °ü¿©ÇØ¼­´Â ¾ÈµÈ´Ù.
+	// Animationï¿½ï¿½ ï¿½ï¿½ï¿½Å³ï¿½ ObjectTypeï¿½ï¿½ MINI_INDOOR_CLOSE ï¿½Ç´ï¿½ EPL_OBJECT_TYPE_MINI_INDOOR_OPENï¿½Ì¸ï¿½
+	// UpdateListï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. Animationï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ Objectï¿½ï¿½ SetPropertyï¿½ï¿½ï¿½ï¿½ Update Flagï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	// ï¿½ï¿½ï¿½â¼­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ ï¿½ÈµÈ´ï¿½.
 	if (GetObjectType() != EPL_OBJECT_TYPE_MINI_INDOOR_CLOSE && 
 		GetObjectType() != EPL_OBJECT_TYPE_MINI_INDOOR_OPEN &&
 		!m_bHaveAnim)
@@ -3350,7 +3350,7 @@ void CNtlPLObject::LoadSwapFile(RwReal x, RwReal y, RwReal z)
 
 RwBool CNtlPLObject::IsCullingTestAllAtomic() 
 {
-	if(m_uiCurAnimKey != INVALID_DWORD)  // ÀÌ Å°°ªÀº Æ®¸®°Å ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ Àû¿ëµÉ¶§¸¸ À¯È¿ÇÏ´Ù.
+	if(m_uiCurAnimKey != INVALID_DWORD)  // ï¿½ï¿½ Å°ï¿½ï¿½ï¿½ï¿½ Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½É¶ï¿½ï¿½ï¿½ ï¿½ï¿½È¿ï¿½Ï´ï¿½.
 	{
 		STypeAnimData *pTypeAnimData = m_pProperty->GetAnimTable()->Get(m_uiCurAnimKey);
 		if(!pTypeAnimData)
@@ -4341,9 +4341,9 @@ RwBool CNtlPLObject::SavePSMap(FILE* pFile)
 // 			}
 // 			else if (dNTL_WORLD_VERSION_COMPARE(dGET_WORLD_PARAM()->WorldSaveVer, dNTL_WORLD_VERSION))
 // 			{
-// 				// Save µÉ ¶§ ¼½ÅÍÀÇ ±×¸²ÀÚ »ö»óÀ» ÀúÀåÇÑ´Ù. ÀÌ ÈÄ ·Îµå ¶§ PSMap »ö»óÀÌ º¯ÇÒ ¼ö ÀÖ´Ù.
-// 				// Load ½Ã ÇÏ±â À§ÇØ¼­´Â Shadow Á¤º¸°¡ Objectº¸´Ù ¸ÕÀú LoadµÇ¾ß ÇÏÁö¸¸ ÇöÀç Shadow´Â Objectº¸´Ù ³ªÁß¿¡ ÀÐ±â ¶§¹®¿¡
-// 				// Áö±ÝÀº ÀÌ·¸°Ô ÇØ°áÇÑ´Ù. ³ªÁß¿¡ ¼ø¼­¸¦ ¹Ù²Ù¾î ÀúÀåÇÏ´Â ¹æ¹ýÀ» °ËÅäÇØ º»´Ù.
+// 				// Save ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. ï¿½ï¿½ ï¿½ï¿½ ï¿½Îµï¿½ ï¿½ï¿½ PSMap ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½.
+// 				// Load ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ Shadow ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Objectï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Loadï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Shadowï¿½ï¿½ Objectï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½Ð±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// 				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½Ø°ï¿½ï¿½Ñ´ï¿½. ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Ù¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 // 
 // 				CNtlWorldFieldManager* pMgr = GetSceneManager()->GetWorld()->GetWorldFieldMgr();
 // 
@@ -4729,15 +4729,15 @@ RwBool CNtlPLObject::CreateThreadSafe(void)
 	NTL_SPROFILE("CNtlPLObject::CreateThreadSafe");
 
 	Helper_SetClumpAllAtomics(GetClump(), &m_vecAtomicList);		
-	Helper_GetBoneList(GetClump(), &m_mapFrame);            // Bone List¸¦ ÀúÀåÇØ µÐ´Ù.
+	Helper_GetBoneList(GetClump(), &m_mapFrame);            // Bone Listï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð´ï¿½.
 
-	// AnimÀ» Àû¿ëÇÑ´Ù
+	// Animï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
 	if(m_pProperty->m_strAnimFileName.size() > 0)
 	{
 		SetAnimation(m_pProperty->m_strAnimFileName.c_str());
 	}
 
-    // Æ®¸®°Å ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ Àû¿ëµÈ°Ô ÀÖÀ¸¸é Àû¿ëÇÑ´Ù.
+    // Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
     m_sScheduleInfo.bLoadComplete = TRUE;
     if(m_sScheduleInfo.uiAnimKey > 0)
     {
@@ -4745,7 +4745,7 @@ RwBool CNtlPLObject::CreateThreadSafe(void)
     }
     
 
-	// UVAnimÀ» Clump¿¡ Àû¿ëÇÑ´Ù.
+	// UVAnimï¿½ï¿½ Clumpï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	if(m_pUVAnim)
 	{
 		m_pUVAnim->SetClump(GetClump());
@@ -4768,7 +4768,7 @@ RwBool CNtlPLObject::CreateThreadSafe(void)
 		SetFlags(GetFlags() | NTL_PLEFLAG_SHADOW);
 	}
 
-	// clump¿¡ ´ëÇÑ atomic
+	// clumpï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ atomic
 	if( GetClump() != NULL )
 	{
 		// Toon
@@ -4781,11 +4781,11 @@ RwBool CNtlPLObject::CreateThreadSafe(void)
 			RpAtomicSetRenderCallBack(pAtomic, CNtlPLObject::RenderCallBack);            			
 			RpNtlAtomicSetData(pAtomic, this);
 
-			// ÆøÆ÷Ã³·³ UV¾Ö´Ï¸¸ ¾²´Â ¿ÀºêÁ§Æ®µµ FXÆÄÀÌÇÁ¶óÀÎ, È¯°æ¸ÊÀ» °¡Áö°í ÀÖ¾îµµ FXÆÄÀÌÇÁ¶óÀÎÀ» °¡Áö°í ÀÖÀ¸¸ç
-			// ¹Ø¿¡ if(!RpMaterialUVAnimExists(pMaterial))¿¡¼­ ¶ÇÇÑ¹ø Ã¼Å©ÇÏ¹Ç·Î ´ÙÀ½ ¹®ÀåÀ» ÁÖ¼®Ã³¸®ÇÕ´Ï´Ù.
-			// È¯°æ¸Ê, UV¾Ö´ÏµîÀ» °¡Áø ¿ÀºêÁ§Æ®°¡ ¹®Á¦°¡ »ý±ä´Ù¸é ÀÌºÎºÐÀÌ ´Ù½Ã ÇÑ¹ø °í·Á°¡ µÇ¾ß ÇÕ´Ï´Ù.
-			// ÁÖ¼®À» Ç®°Ô µÇ¸é UV¿Í È¯°æ¸ÊÀ» °¡Áø ¿ÀºêÁ§Æ®¸¦ ¼±ÅÃÇÒ½Ã ÆÄÀÌÇÁ¶óÀÎÀÌ Æ²¸®¹Ç·Î addcolorµÇÁö ¾Ê½À´Ï´Ù.
-			// - ¿ìÅÃ
+			// ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ UVï¿½Ö´Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ FXï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, È¯ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾îµµ FXï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			// ï¿½Ø¿ï¿½ if(!RpMaterialUVAnimExists(pMaterial))ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ¹ï¿½ Ã¼Å©ï¿½Ï¹Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½Ã³ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
+			// È¯ï¿½ï¿½ï¿½, UVï¿½Ö´Ïµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ù¸ï¿½ ï¿½ÌºÎºï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½Ñ¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ ï¿½Õ´Ï´ï¿½.
+			// ï¿½Ö¼ï¿½ï¿½ï¿½ Ç®ï¿½ï¿½ ï¿½Ç¸ï¿½ UVï¿½ï¿½ È¯ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Æ²ï¿½ï¿½ï¿½Ç·ï¿½ addcolorï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.
+			// - ï¿½ï¿½ï¿½ï¿½
 			//if(pAtomic->pipeline == NULL && m_pUVAnim == NULL)
 			if(pAtomic->pipeline == NULL)
 			{
@@ -4829,10 +4829,10 @@ RwBool CNtlPLObject::CreateThreadSafe(void)
 		AttachLightObject();
 	}
 
-	// ºí·»µå °´Ã¼¸¦ »ý¼ºÇÏ°í ¸®½ºÆ®¿¡ Ãß°¡ÇÑ´Ù.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ñ´ï¿½.
 	m_pFadeBlend = GetAlphaBlendController()->AddAlpha(1.0f);
 
-	// Link Effect¸¦ ¼³Á¤ÇÑ´Ù.
+	// Link Effectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	for(UINT i = 0; i < m_pProperty->m_vLinkEffect.size(); ++i)
 	{
 		SEventLinkEffect* pEventLinkEffect = m_pProperty->m_vLinkEffect[i];        
@@ -4840,10 +4840,10 @@ RwBool CNtlPLObject::CreateThreadSafe(void)
 	}
 	if(!m_pProperty->m_vLinkEffect.empty())
 	{
-		Update(0.0f);       // ¸µÅ©ÀÌÆåÆ®°¡ ÀÖÀ¸¸é ÃÖÃÊ¿¡ ¾÷µ¥ÀÌÆ®¸¦ ÇÑ¹ø ÇØÁà¾ß ÇÑ´Ù. (Effect°¡ Objectº¸´Ù UpdateÈ£ÃâÀÌ ºü¸£±â ¶§¹®)
+		Update(0.0f);       // ï¿½ï¿½Å©ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ñ¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½. (Effectï¿½ï¿½ Objectï¿½ï¿½ï¿½ï¿½ UpdateÈ£ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 	}
 
-	// Sound¸¦ Àç»ýÇÑ´Ù.
+	// Soundï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	if(strlen(m_pProperty->GetSoundProp()->chSoundName) > 0)
 	{
 		sNtlSoundPlayParameta tSoundParam;
@@ -4863,7 +4863,7 @@ RwBool CNtlPLObject::CreateThreadSafe(void)
 		AddLoopSound(tSoundParam.hHandle);
 	}
 
-	// Ã³À½ ¸Ê¿¡ ÁøÀÔ½Ã¿¡ ³ªÅ¸³ª´Â ¿ÀºêÁ§Æ®µéÀº Fade È¿°ú¸¦ Àû¿ëÇÏÁö ¾Ê´Â´Ù.    
+	// Ã³ï¿½ï¿½ ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½Ô½Ã¿ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ Fade È¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.    
 	if(m_bLoadMap || (!GetSceneManager()->GetDistanceFilterEnable()))
 	{
 		m_eFadeState = FADE_VISIBLE;	        
@@ -4888,14 +4888,14 @@ RwBool CNtlPLObject::CreateThreadSafe(void)
 RwBool CNtlPLObject::CreateOccluderProxy()
 {
 #ifdef dNTL_WORLD_CULLING_NEW
-	// +1 == Bounding Sphere Check¸¦ À§ÇØ¼­ »ç¿ëÇÑ´Ù.
+	// +1 == Bounding Sphere Checkï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	return COccluderProxy::CreateOccluderProxy(0.5f, m_vecAtomicList.size() + 1);
 #else
 	if (m_bHaveAnim)
 	{
 		return COccluderProxy::CreateOccluderProxy(0.5f, m_vecAtomicList.size());
 	}
-	else // Animetion À» °¡Áö°í ¾ÊÀ» °æ¿ì´Â Entity Bounding Sphere·Î Ã³¸®ÇÑ´Ù.
+	else // Animetion ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Entity Bounding Sphereï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ñ´ï¿½.
 	{
 		return COccluderProxy::CreateOccluderProxy(0.5f, 1);
 	}
@@ -5381,7 +5381,7 @@ void CNtlPLObject::Destroy(void)
 		RemoveWorld();		
 	}
 
-	// ¿©±â¼­´Â m_pClumpResourceÀÇ null pointer¸¦ °Ë»çÇÏÁö ¾Ê´Â´Ù(Çü¼®)
+	// ï¿½ï¿½ï¿½â¼­ï¿½ï¿½ m_pClumpResourceï¿½ï¿½ null pointerï¿½ï¿½ ï¿½Ë»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½(ï¿½ï¿½ï¿½ï¿½)
 	CNtlPLResourceManager::GetInstance()->UnLoadScheduling(this, m_pClumpResource );
 	m_pClumpResource = NULL;
 
@@ -5478,7 +5478,7 @@ RwBool CNtlPLObject::Update( RwReal fElapsed )
 		m_pObjectType->Update(fElapsed);
 	}
 
-	// Æ®¸®°Å ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ ¼¼ÆÃµÇ¸é, »ý¼ºµÉ¶§±îÁö TimeÀº ÁøÇà½ÃÅ²´Ù.
+	// Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÃµÇ¸ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½É¶ï¿½ï¿½ï¿½ï¿½ï¿½ Timeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Å²ï¿½ï¿½.
     if(!IsSchedulingLoadingComplete())
     {
         if(m_sScheduleInfo.uiAnimKey > 0)
@@ -5556,7 +5556,7 @@ RwBool CNtlPLObject::SetThreadSafeProperty(const CNtlPLProperty *pData)
 			SetFlags(GetFlags() & ~NTL_PLEFLAG_NOTUPDATE);
 	}
 
-	//  Æ®¸®°Å ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ ÀÖÀ¸¸é Update Flag¸¦ ÄÒ´Ù
+	//  Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Update Flagï¿½ï¿½ ï¿½Ò´ï¿½
 	if(m_pProperty->GetAnimTable()->GetTypeAnimMap()->size() > 0)
 	{
 		m_bHaveAnim = TRUE;
@@ -5607,7 +5607,7 @@ void CNtlPLObject::RemoveWorld(void)
 
 void CNtlPLObject::CallPreSchedulingResource(void)
 {
-	// ¼³Á¤µÈ UVAnimÀÌ ÀÖÀ¸¸é Àû¿ëÇÑ´Ù.(Clump°¡ LoadµÇ±âÀü¿¡ Load µÇ¾î¾ß ÇÑ´Ù)
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ UVAnimï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.(Clumpï¿½ï¿½ Loadï¿½Ç±ï¿½ï¿½ï¿½ï¿½ï¿½ Load ï¿½Ç¾ï¿½ï¿½ ï¿½Ñ´ï¿½)
 	if(m_pProperty->m_strUVAnimFileName.size())
 		SetUVAnim(m_pProperty->m_strUVAnimFileName.c_str());
 }
@@ -5627,7 +5627,7 @@ void CNtlPLObject::CallSchedulingResource(CNtlPLResource *pResource)
 	SetTransform();
 	SetAlpha(m_sColor.alpha);
 
-	// ·ÎµùÀÌ ¿Ï·áµÇ¾úÀ½À» ÀÌº¥Æ®·Î ½ð´Ù.
+	// ï¿½Îµï¿½ï¿½ï¿½ ï¿½Ï·ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½.
 	CNtlPLEventGenerator::CreateEventThreadLoading(GetSerialID());
 
 	NTL_RETURNVOID();
@@ -5987,7 +5987,7 @@ void CNtlPLObject::SetMatrix( RwMatrix & matWorld )
 
 	RwMatrixCopy( RwFrameGetMatrix( pFrame ), &matWorld );
 
-	// À§Ä¡°ªÀ» ÀúÀåÇÑ´Ù.
+	// ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	m_vWorldPosition = *RwMatrixGetPos(&matWorld);
 
 	RwFrameUpdateObjects( pFrame );
@@ -6021,14 +6021,14 @@ RwBool CNtlPLObject::SetUVAnim( const RwChar* szUVAnimFileName )
 		m_pUVAnim = NTL_NEW CNtlPLUVAnim();
 	}
 
-	// NOTE: UVAnimÀº Clump°¡ Load µÇ±âÀü¿¡ È£ÃâµÇ¾î¾ß¸¸ Àû¿ëµÈ´Ù.
+	// NOTE: UVAnimï¿½ï¿½ Clumpï¿½ï¿½ Load ï¿½Ç±ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½Ç¾ï¿½ß¸ï¿½ ï¿½ï¿½ï¿½ï¿½È´ï¿½.
 	return m_pUVAnim->Create(szUVAnimFileName);    
 }
 
 /**
-* ¾Ö´Ï¸ÞÀÌ¼Ç ¸®¼Ò½º¹× °´Ã¼¸¦ »ý¼ºÇÏ°í, ¿ÀºêÁ§Æ®¿¡ Àû¿ëÇÑ´Ù.
-* \param szAnimFileName Àû¿ëÇÒ AnimFileName (*.anm)
-* return ¼º°ø À¯¹«
+* ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½Ò½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+* \param szAnimFileName ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ AnimFileName (*.anm)
+* return ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 */
 RwBool CNtlPLObject::SetAnimation( const RwChar* szAnimFileName ) 
 {
@@ -6044,7 +6044,7 @@ RwBool CNtlPLObject::SetAnimation( const RwChar* szAnimFileName )
 	}
 	else
 	{
-		// ·ÎµùµÈ AnimÀ» ¸Þ¸ð¸®¿¡¼­ Á¦°ÅÇÑ´Ù.
+		// ï¿½Îµï¿½ï¿½ï¿½ Animï¿½ï¿½ ï¿½Þ¸ð¸®¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 		CNtlPLResourceManager::GetInstance()->UnLoad(m_pAnimResource);
 		m_pAnimResource = NULL;
 	}
@@ -6079,7 +6079,7 @@ RwBool CNtlPLObject::SetTriggerAnimation(RwUInt32 uiAnimKey, RwReal fStartTime /
         return FALSE;
     }
 
-	// AnimTableÀÌ ¾ÆÁ÷ »ý¼ºµÇ¾î ÀÖÁö ¾Ê´Ù¸é »ý¼ºÇØÁØ´Ù. 
+	// AnimTableï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½. 
 	if(!m_pInstanceAnimTable)
 	{
 		m_pInstanceAnimTable = NTL_NEW CNtlInstanceAnimTable();
@@ -6090,12 +6090,12 @@ RwBool CNtlPLObject::SetTriggerAnimation(RwUInt32 uiAnimKey, RwReal fStartTime /
 	if(!pInstanceAnimData)
 		NTL_RETURN(FALSE);
 
-	// Instance Anim Table »ý¼º
+	// Instance Anim Table ï¿½ï¿½ï¿½ï¿½
 	if(!m_pAnimLayer)
 	{
 		CreateAnim();
 
-		// AnimLayer °´Ã¼¸¦ ¸¸µé±â À§ÇØ¼­´Â ¿ì¼± ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ Àû¿ëµÇ¾î ÀÖ¾î¾ß ÇÑ´Ù.
+		// AnimLayer ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ ï¿½ì¼± ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½Ö¾ï¿½ï¿½ ï¿½Ñ´ï¿½.
 		RpHAnimHierarchySetCurrentAnim(m_pBaseHierarchy, pInstanceAnimData->pResource->GetAnimation());
 		RpHAnimUpdateHierarchyMatrices(m_pBaseHierarchy);
 
@@ -6113,7 +6113,7 @@ RwBool CNtlPLObject::SetTriggerAnimation(RwUInt32 uiAnimKey, RwReal fStartTime /
 
 	m_uiCurAnimKey = uiAnimKey;
 
-	// Play timeÀ» 0 ~ 1 »çÀÌ °ªÀ¸·Î Á¶Á¤ÇÑ´Ù
+	// Play timeï¿½ï¿½ 0 ~ 1 ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
 	RwReal fPlayTime = fStartTime;
 	fPlayTime = (FLT_MAX == fPlayTime ? 0.f : fPlayTime);
 	fPlayTime = fabs(fPlayTime);
@@ -6170,8 +6170,8 @@ void CNtlPLObject::CalcBoundingSphere()
 	m_BSphere.center = m_BSphere.center - GetPosition();
 }
 
-// GetPositionÀ¸·Î ¾÷µ¥ÀÌÆ®°¡ Èûµç ¹®Á¦Á¡À¸·Î º¯°æÇÔ.
-// ¹®Á¦°¡ µÉ °æ¿ì ´Ù½Ã º¹¿øÇÑ´Ù.
+// GetPositionï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 // RwSphere* CNtlPLObject::GetBoundingSphere()
 // {
 // 	return &m_BSphere;
@@ -6433,7 +6433,7 @@ RwBBox CNtlPLObject::GetTriggerAABBInfo( const RwV3d& vPos, const RwV3d& vRotate
 	if(!pBBox)
 		return bboxOut;
 
-	// ÇÁ·ÎÆÛÆ¼¿¡ ¼³Á¤µÈ ¹Ù¿îµù ¹Ú½º°¡ ¾øÀ¸¸é °è»êÇØ¼­ ¼³Á¤ÇÑ´Ù.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¿ï¿½ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	if(RwV3dLength(&(pBBox->sup)) == 0)
 	{
 		m_pProperty->SetBBox(CreateDefaultAABB());        
@@ -6519,7 +6519,7 @@ RwBool CNtlPLObject::UpdateFadeSystem()
 
 	if(m_eFadeState == FADE_NOT_VISIBLE || m_eFadeState == FADE_VISIBLE)
 	{
-		// Ä«¸Þ¶ó¿ÍÀÇ °Å¸®¸¦ Ã¼Å©ÇÑ´Ù. (³ôÀÌ´Â Ã¼Å©ÇÏÁö ¾Ê´Â´Ù)
+		// Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ñ´ï¿½. (ï¿½ï¿½ï¿½Ì´ï¿½ Ã¼Å©ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½)
 		RwFrame* pFrame = RwCameraGetFrame(CNtlPLGlobal::m_RwCamera);
 		RwV3d vPosCamera = *RwMatrixGetPos(RwFrameGetMatrix(pFrame));
 		RwV3d vPosObject = GetPosition();
@@ -6530,7 +6530,7 @@ RwBool CNtlPLObject::UpdateFadeSystem()
 		// Fade Out         
 		if( m_eFadeState == FADE_VISIBLE && fDistCamera >= GetVisibleCullingDistance())
 		{
-			m_eFadeState = FADE_OUT_OBJECT;            // »ç¶óÁú¶§´Â objectºÎÅÍ »ç¶óÁø´Ù (ÀÌÆåÆ®´Â ³²¾ÆÀÖ´Ù)
+			m_eFadeState = FADE_OUT_OBJECT;            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ objectï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½)
 			m_fFadeTime = 0.0f;
 
 			for(RwUInt32 i = 0; i < m_vecAtomicList.size(); i++)
@@ -6541,7 +6541,7 @@ RwBool CNtlPLObject::UpdateFadeSystem()
 
 			AddSceneUpdate();
 
-// 	 		if(!m_bAnimPlay)            // ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ Àû¿ë¾ÈµÈ ¿ÀºêÁ§Æ®´Â update°¡ È£ÃâµÇÁö ¾Ê±â¶§¹®¿¡ Update¸¦ È£ÃâÇÒ¼öÀÖµµ·Ï Ãß°¡ÇÑ´Ù.
+// 	 		if(!m_bAnimPlay)            // ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Èµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ updateï¿½ï¿½ È£ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±â¶§ï¿½ï¿½ï¿½ï¿½ Updateï¿½ï¿½ È£ï¿½ï¿½ï¿½Ò¼ï¿½ï¿½Öµï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ñ´ï¿½.
 //   			{
 //   				GetSceneManager()->AddUpdate(this);
 // 	  		}
@@ -6549,8 +6549,8 @@ RwBool CNtlPLObject::UpdateFadeSystem()
 		// Fade In
 		else if(m_eFadeState == FADE_NOT_VISIBLE && fDistCamera <= GetVisibleCullingDistance())
 		{
-			//m_eFadeState = FADE_IN_EFFECT;             // ³ªÅ¸³¯¶§´Â EffectºÎÅÍ ³ªÅ¸³­´Ù (¿ÀºêÁ§Æ®´Â Â÷ÈÄ¿¡ ³ªÅ¸³­´Ù)            
-			/// -- Fade In µÉ¶§´Â ¿ÀºêÁ§Æ®¿Í ÀÌÆåÆ®°¡ °°ÀÌ ³ªÅ¸³­´Ù (2007.7.31 by agebreak - ¹Î¼®¾¾ ¿ä±¸»çÇ×)
+			//m_eFadeState = FADE_IN_EFFECT;             // ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Effectï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½Ä¿ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½)            
+			/// -- Fade In ï¿½É¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ (2007.7.31 by agebreak - ï¿½Î¼ï¿½ï¿½ï¿½ ï¿½ä±¸ï¿½ï¿½ï¿½ï¿½)
 			m_eFadeState = FADE_IN_OBJECT;
 			m_fFadeTime = 0.0f;
 
@@ -6612,7 +6612,7 @@ RwBool CNtlPLObject::UpdateFading(RwReal fElapsedTime)
 		}
 		else
 		{
-			// Alpha¸¦ 0%->100%·Î º¯È­½ÃÅ²´Ù. 
+			// Alphaï¿½ï¿½ 0%->100%ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½Å²ï¿½ï¿½. 
 			m_pFadeBlend->SetWeight(m_fFadeTime / CNtlPLGlobal::m_fDistFiterObjFrequency);            
 		}
 		break;
@@ -6640,7 +6640,7 @@ RwBool CNtlPLObject::UpdateFading(RwReal fElapsedTime)
 		}            
 		else
 		{
-			// Alpha¸¦ 100%->0%·Î º¯È¯½ÃÄ­´Ù.           
+			// Alphaï¿½ï¿½ 100%->0%ï¿½ï¿½ ï¿½ï¿½È¯ï¿½ï¿½Ä­ï¿½ï¿½.           
 			m_pFadeBlend->SetWeight((CNtlPLGlobal::m_fDistFiterObjFrequency - m_fFadeTime) / CNtlPLGlobal::m_fDistFiterObjFrequency);            
 		}   
 		break;
@@ -6703,23 +6703,23 @@ RpAtomic *CNtlPLObject::RenderCallBack(RpAtomic *pAtomic)
 					nMatCount = RENDER_MAX_COLOR_TEMP;
 				}
 
-				// Atomic¿¡ ¼³Á¤µÈ Alpha °ª°úÀÇ º¸Á¤                
+				// Atomicï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Alpha ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½                
 				sColorRatioReal.alpha *= RpNtlAtomicGetAlpha(pAtomic) / 255.0f;
 
-				// Fade¸¦ À§ÇÑ Weight Alpha°ª°úÀÇ º¸Á¤
-#ifdef dNTL_WORLD_TOOL_MODE	// Åø¿¡¼­´Â ¹«Á¶°Ç Fade Alpha Àû¿ë
+				// Fadeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Weight Alphaï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+#ifdef dNTL_WORLD_TOOL_MODE	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Fade Alpha ï¿½ï¿½ï¿½ï¿½
 				sColorRatioReal.alpha *= pEntity->GetWeightAlpha();
 #else
-				if(!(pEntity->GetFlags() & NTL_PLEFLAG_OBJECT_FORCE_VISIBLE)) // ÇÃ·¡±×°¡ ÄÑÁ®ÀÖ´Ù¸é, Fade alpha¸¦ Àû¿ëÇÏÁö ¾Ê´Â´Ù.
+				if(!(pEntity->GetFlags() & NTL_PLEFLAG_OBJECT_FORCE_VISIBLE)) // ï¿½Ã·ï¿½ï¿½×°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´Ù¸ï¿½, Fade alphaï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 				{
 					sColorRatioReal.alpha *= pEntity->GetWeightAlpha();
 				}
 #endif                
 
-				if(sColorRatioReal.alpha == 0.0f)       // ¾ËÆÄ°¡ 0.0ÀÌ¸é ·»´õ¸µÇÏÁö ¾Ê´Â´Ù.
+				if(sColorRatioReal.alpha == 0.0f)       // ï¿½ï¿½ï¿½Ä°ï¿½ 0.0ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 					NTL_RPROFILE(pAtomic);
 
-				// Alpha Test ATomicÀÇ Alpha º¸°£ º¸Á¤( Alpha TestÀÏ °æ¿ì 208 ÀÌ»óÀÎ °æ¿ì Åë°úÀÎ °ü°è·Î)
+				// Alpha Test ATomicï¿½ï¿½ Alpha ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½( Alpha Testï¿½ï¿½ ï¿½ï¿½ï¿½ 208 ï¿½Ì»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½)
 				if( RpNtlAtomicGetFlag(pAtomic) & NTL_ALPHATEST &&
 					RpNtlAtomicGetFlag(pAtomic) & NTL_RUNTIME_ALPHA)
 				{
@@ -6733,7 +6733,7 @@ RpAtomic *CNtlPLObject::RenderCallBack(RpAtomic *pAtomic)
 					// get through the proper renderpipe
 					if(pObjEntity->GetToonData())
 					{
-						// ToonÀÌ Àû¿ëµÇ¾î ÀÖ´Â °æ¿ì¿¡¸¸ Material Render CallBackÀ» µû¸¥´Ù. ¾ÈµÇ¾îÀÖÀ¸¸é ¾È³ª¿Â´Ù. (by agebreak)
+						// Toonï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½ Material Render CallBackï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. ï¿½ÈµÇ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½È³ï¿½ï¿½Â´ï¿½. (by agebreak)
 						RpNtlMaterialSetRenderCB(pMaterial, CNtlPLCharacter::fpRenderCB);
 					}
 
@@ -6817,8 +6817,8 @@ RpClump * CNtlPLObject::GetClump( void ) const
 }
 
 /**
-* Fade È¿°ú À¯¹Â¸¦ Àû¿ëÇÑ´Ù.
-* \param bEnable Fade È¿°ú À¯¹«
+* Fade È¿ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+* \param bEnable Fade È¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 * return 
 */
 void CNtlPLObject::SetFadeEnable(RwBool bEnable)
@@ -6850,14 +6850,14 @@ void CNtlPLObject::SetFadeEnable(RwBool bEnable)
 	{
 		SetFlags(uiFlags & (~NTL_PLEFLAG_FADE));
 
-		// Visual ManagerÀÇ Update List¿¡ Æ÷ÇÔµÇ¾î ÀÖÀ¸¸é Á¦°ÅÇÑ´Ù
+		// Visual Managerï¿½ï¿½ Update Listï¿½ï¿½ ï¿½ï¿½ï¿½ÔµÇ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
  		if(m_eFadeState != FADE_VISIBLE && m_eFadeState != FADE_NOT_VISIBLE && !m_bHaveAnim)
  		{
 			RemoveSceneUpdate();
  			//GetSceneManager()->RemoveUpdate(this);
  		}
 
-		// ¿ÀºêÁ§Æ®¸¦ È­¸é¿¡ Ç¥½ÃÇÑ´Ù.
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ È­ï¿½é¿¡ Ç¥ï¿½ï¿½ï¿½Ñ´ï¿½.
 		m_eFadeState = FADE_VISIBLE;        
 		m_pFadeBlend->SetWeight(1.0f);    
 		SetWeightAlpha(1.0f);
@@ -6917,16 +6917,16 @@ void CNtlPLObject::OnEventAnimEnd( SEventAnimEnd* pEventAnimEnd )
 
 void CNtlPLObject::OnEventVisualSound( SEventSound* pEventSound ) 
 {
-	// Sound¸¦ PlayÇÑ´Ù.    
+	// Soundï¿½ï¿½ Playï¿½Ñ´ï¿½.    
 
 	if(strlen(pEventSound->chSoundName) <= 1)
 		return ;
 
-	// LoopSoundÀÌ°í ÀÌ¹Ì ±âÁ¸¿¡ PlayµÇ°í ÀÖ´Ù¸é PlayÇÏÁö ¾Ê´Â´Ù.
+	// LoopSoundï¿½Ì°ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Playï¿½Ç°ï¿½ ï¿½Ö´Ù¸ï¿½ Playï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 	if(pEventSound->bLoop && IsExistLoopSound(pEventSound->chSoundName))
 		return ;
 
-	// ÆÄÀÏÀÌ ¿©·¯°³ ¼¼ÆÃµÇ¾î ÀÖ´Â°æ¿ì¿¡´Â ·£´ýÀ¸·Î ÇÃ·¹ÀÌµÈ´Ù.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÃµÇ¾ï¿½ ï¿½Ö´Â°ï¿½ì¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ÌµÈ´ï¿½.
 	std::string soundFileName;
 	int nMax = 1;
 	if(strlen(pEventSound->chSoundName4) > 0)
@@ -6960,7 +6960,7 @@ void CNtlPLObject::OnEventVisualSound( SEventSound* pEventSound )
 		soundFileName = pEventSound->chSoundName;
 	}
 
-	// ÇÇÄ¡¸¦ ·£´ýÀ¸·Î ¼±ÅÃÇÑ´Ù
+	// ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
 	RwReal fSoundPitch = NtlRandomNumber(pEventSound->fSoundPitchMin, pEventSound->fSoundPitchMax);
 
 	sNtlSoundPlayParameta tSoundParam;
@@ -6977,7 +6977,7 @@ void CNtlPLObject::OnEventVisualSound( SEventSound* pEventSound )
 
 	int iRet = GetSoundManager()->Play(&tSoundParam);
 
-	// Loop Sound¸é ¸®½ºÆ®¿¡ Ãß°¡ÇÑ´Ù.
+	// Loop Soundï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ñ´ï¿½.
 	if(iRet == SOUNDRESULT_OK && pEventSound->bLoop && tSoundParam.hHandle != INVALID_SOUND_HANDLE)
 	{
 		AddLoopSound(tSoundParam.hHandle);
@@ -6986,7 +6986,7 @@ void CNtlPLObject::OnEventVisualSound( SEventSound* pEventSound )
 
 void CNtlPLObject::OnEventVisualEffect( SEventVisualEffect* pEventVisualEffect ) 
 {
-	//Effect NameÀÌ ¾ø´Â °æ¿ì´Â ¹«Á¶°Ç ReturnÀ» ÇÑ´Ù.
+	//Effect Nameï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Returnï¿½ï¿½ ï¿½Ñ´ï¿½.
 	if( strlen(pEventVisualEffect->chEffectName) <= 0)
 		return;
 
@@ -6994,7 +6994,7 @@ void CNtlPLObject::OnEventVisualEffect( SEventVisualEffect* pEventVisualEffect )
 		pEventVisualEffect->bAttachBone)
 		return;
 
-	// ¸¸¾à LoopEffect ¸®½ºÆ®¿¡ °°Àº ÀÌ¸§,BoneÀÌ ÀÖÀ¸¸é »õ·Î »ý¼ºÇÏÁö ¾Ê´Â´Ù.
+	// ï¿½ï¿½ï¿½ï¿½ LoopEffect ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½,Boneï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 	if(IsExistLoopEffect(pEventVisualEffect->chEffectName, pEventVisualEffect->chBoneName))
 		return;
 
@@ -7003,14 +7003,14 @@ void CNtlPLObject::OnEventVisualEffect( SEventVisualEffect* pEventVisualEffect )
 	if(pPLEntity == NULL)
 		return;
 
-	//Effect¿¡ ObjectÀÇ Serial ID¸¦ ³Ö´Â´Ù.(Client¿¡¼­ »ç¿ëÀ» ÇÏ±â À§ÇØ¼­)
+	//Effectï¿½ï¿½ Objectï¿½ï¿½ Serial IDï¿½ï¿½ ï¿½Ö´Â´ï¿½.(Clientï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½)
 	pPLEntity->SetSerialID(GetSerialID());
 
 	pPLEntity->SetVisible(IsVisible(0));
 
 	CNtlInstanceEffect *pInstanceEffect = (CNtlInstanceEffect *)pPLEntity;
 
-	// AutoDelete°¡ ¾Æ´Ï¸é LoopEffect¶ó°í °£ÁÖÇÏ°í ¸®½ºÆ®¿¡ Ãß°¡ÇÑ´Ù              
+	// AutoDeleteï¿½ï¿½ ï¿½Æ´Ï¸ï¿½ LoopEffectï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ñ´ï¿½              
 	if(!pPLEntity->IsAutoDelete())
 	{
 		SLoopEffect* pLoopEffect = NTL_NEW SLoopEffect();
@@ -7040,7 +7040,7 @@ void CNtlPLObject::OnEventVisualEffect( SEventVisualEffect* pEventVisualEffect )
 
 void CNtlPLObject::OnEventAlphaFade( SEventAlpha* pEventAlpha ) 
 {
-	// Atomic Alpha¿¡ °üÇØ¼­¸¸ PL´Ü¿¡¼­ Ã³¸®ÇÑ´Ù.
+	// Atomic Alphaï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ PLï¿½Ü¿ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ñ´ï¿½.
 	if(pEventAlpha->eAlphaEventType != SEventAlpha::E_ALPHA_EVENT_ATOMIC)
 	{
 		CNtlPLEventGenerator::AnimEventAlpha(GetSerialID(), (void*)pEventAlpha);
@@ -7116,7 +7116,7 @@ RwBool CNtlPLObject::IsExistLoopSound( RwChar* szSoundName )
 
 RwReal CNtlPLObject::GetAnimPlayTime( RwUInt32 uiAnimKey ) 
 {
-	// AnimTableÀÌ ¾ÆÁ÷ »ý¼ºµÇ¾î ÀÖÁö ¾Ê´Ù¸é »ý¼ºÇØÁØ´Ù. 
+	// AnimTableï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½. 
 	if(!m_pInstanceAnimTable)
 	{
 		m_pInstanceAnimTable = NTL_NEW CNtlInstanceAnimTable();
@@ -7263,7 +7263,7 @@ void CNtlPLObject::CheckToonData()
 	if(!pToonGeo || !pAtomic)
 		return;
 
-	// Toon Àû¿ë (Å×½ºÆ®)
+	// Toon ï¿½ï¿½ï¿½ï¿½ (ï¿½×½ï¿½Æ®)
 	m_pToonData = NTL_NEW SToonData();
 	m_pToonData->pTexture = CNtlPLResourceManager::GetInstance()->LoadTexture("smooth.png", "texture/toon/");
 	DBO_ASSERT(m_pToonData->pTexture, "Texture load failed.");
@@ -7305,7 +7305,7 @@ RwBool CNtlPLObject::CullingTest(RwCamera* pRwCamera, RwUInt16 uiRenderFrame)
 
 				if (IsCullingTestAllAtomic())
 				{
-					// [m_vecAtomicList.size()]¹ø Occluder Proxy´Â Bounding Sphere´Ù.
+					// [m_vecAtomicList.size()]ï¿½ï¿½ Occluder Proxyï¿½ï¿½ Bounding Sphereï¿½ï¿½.
 					for (RwInt32 i = 0; i < iNumAtomic; ++i)
 					{
 #ifdef _DEBUG
@@ -7363,8 +7363,8 @@ RwBool CNtlPLObject::CullingTest(RwCamera* pRwCamera, RwUInt16 uiRenderFrame)
 			}
 			else if (iFrustumCheck + iOccluderCheck >= iNumAtomic) 
 			{
-				// Frustum + Occluder °¹¼ö°¡ Atomic °¹¼öº¸´Ù ¸¹´Ù¸é
-				// OCCLUDER Flag¸¦ ¼ÂÆÃ ÇÑ´Ù. ´Ü OccluderCheck °¹¼ö°¡ Á¸ÀçÇØ¾ß ÇÏ¹Ç·Î, iFrustumCheck >= iNumAtomic¸¦ Åë°úÇØ¾ß¸¸ °¡´ÉÇÏ´Ù.
+				// Frustum + Occluder ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Atomic ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½
+				// OCCLUDER Flagï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½. ï¿½ï¿½ OccluderCheck ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Ï¹Ç·ï¿½, iFrustumCheck >= iNumAtomicï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ø¾ß¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
 				m_uiCullFlags |= NTL_PLEFLAG_CULLED_OCCLUDER;
 			}
 		}
@@ -7432,8 +7432,8 @@ RwBool CNtlPLObject::CullingTest(RwCamera* pRwCamera)
 				}
 				else if (iFrustumCheck + iOccluderCheck >= iNumAtomic) 
 				{
-					// Frustum + Occluder °¹¼ö°¡ Atomic °¹¼öº¸´Ù ¸¹´Ù¸é
-					// OCCLUDER Flag¸¦ ¼ÂÆÃ ÇÑ´Ù. ´Ü OccluderCheck °¹¼ö°¡ Á¸ÀçÇØ¾ß ÇÏ¹Ç·Î, iFrustumCheck >= iNumAtomic¸¦ Åë°úÇØ¾ß¸¸ °¡´ÉÇÏ´Ù.
+					// Frustum + Occluder ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Atomic ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½
+					// OCCLUDER Flagï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½. ï¿½ï¿½ OccluderCheck ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Ï¹Ç·ï¿½, iFrustumCheck >= iNumAtomicï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ø¾ß¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
 					m_uiCullFlags |= NTL_PLEFLAG_CULLED_OCCLUDER;
 				}
 			}
@@ -7604,7 +7604,7 @@ RpWorldSector* NtlRpWorldSectorIntersectionOBB(RpIntersection * pIntersection, R
 	SNtlRpWorldSectorIntersectionOBB*	pNtlRpWorldSectorIntersectionOBB = (SNtlRpWorldSectorIntersectionOBB*)pData;
 	const RwBBox*						pBBoxRpWorldSector = RpWorldSectorGetBBox(pRpWorldSector);
 	
-	//³»ºÎ ¿¬»êÀ»ÁÙÀÌ±â À§ÇØ Á÷Á¢ ÀÔ·Â.
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½.
 	OBBRpWorldSector.fAxisLen[0] = (pBBoxRpWorldSector->sup.x - pBBoxRpWorldSector->inf.x) * 0.5f;
 	OBBRpWorldSector.fAxisLen[1] = (pBBoxRpWorldSector->sup.y - pBBoxRpWorldSector->inf.y) * 0.5f;
 	OBBRpWorldSector.fAxisLen[2] = (pBBoxRpWorldSector->sup.z - pBBoxRpWorldSector->inf.z) * 0.5f;
@@ -7698,9 +7698,9 @@ void CNtlPLObject::SetObjectType(RwUInt32 uiObjectType)
 
 void CNtlPLObject::AddSceneUpdate()
 {
-	// AnimationÀÌ ¾ø°Å³ª ObjectTypeÀÌ MINI_INDOOR_CLOSE ¶Ç´Â EPL_OBJECT_TYPE_MINI_INDOOR_OPENÀÌ¸é
-	// UpdateList¿¡ Æ÷ÇÔÇÑ´Ù. AnimationÀ» °¡Áö°í ÀÖ´Â Object´Â SetProperty¿¡¼­ Update Flag¸¦ Á¦°Å ÇÏ±â ¶§¹®¿¡
-	// ¿©±â¼­´Â °ü¿©ÇØ¼­´Â ¾ÈµÈ´Ù.
+	// Animationï¿½ï¿½ ï¿½ï¿½ï¿½Å³ï¿½ ObjectTypeï¿½ï¿½ MINI_INDOOR_CLOSE ï¿½Ç´ï¿½ EPL_OBJECT_TYPE_MINI_INDOOR_OPENï¿½Ì¸ï¿½
+	// UpdateListï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. Animationï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ Objectï¿½ï¿½ SetPropertyï¿½ï¿½ï¿½ï¿½ Update Flagï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	// ï¿½ï¿½ï¿½â¼­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ ï¿½ÈµÈ´ï¿½.
 	if (GetObjectType() == EPL_OBJECT_TYPE_MINI_INDOOR_CLOSE || 
 		GetObjectType() == EPL_OBJECT_TYPE_MINI_INDOOR_OPEN ||
 		!m_bHaveAnim)
@@ -7711,9 +7711,9 @@ void CNtlPLObject::AddSceneUpdate()
 
 void CNtlPLObject::RemoveSceneUpdate()
 {
-	// AnimationÀÌ ¾ø°Å³ª ObjectTypeÀÌ MINI_INDOOR_CLOSE ¶Ç´Â EPL_OBJECT_TYPE_MINI_INDOOR_OPENÀÌ¸é
-	// UpdateList¿¡ Æ÷ÇÔÇÑ´Ù. AnimationÀ» °¡Áö°í ÀÖ´Â Object´Â SetProperty¿¡¼­ Update Flag¸¦ Á¦°Å ÇÏ±â ¶§¹®¿¡
-	// ¿©±â¼­´Â °ü¿©ÇØ¼­´Â ¾ÈµÈ´Ù.
+	// Animationï¿½ï¿½ ï¿½ï¿½ï¿½Å³ï¿½ ObjectTypeï¿½ï¿½ MINI_INDOOR_CLOSE ï¿½Ç´ï¿½ EPL_OBJECT_TYPE_MINI_INDOOR_OPENï¿½Ì¸ï¿½
+	// UpdateListï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. Animationï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ Objectï¿½ï¿½ SetPropertyï¿½ï¿½ï¿½ï¿½ Update Flagï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	// ï¿½ï¿½ï¿½â¼­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ ï¿½ÈµÈ´ï¿½.
 	if (GetObjectType() != EPL_OBJECT_TYPE_MINI_INDOOR_CLOSE && 
 		GetObjectType() != EPL_OBJECT_TYPE_MINI_INDOOR_OPEN &&
 		!m_bHaveAnim)
@@ -7890,7 +7890,7 @@ void CNtlPLObject::LoadSwapFile(RwReal x, RwReal y, RwReal z)
 
 RwBool CNtlPLObject::IsCullingTestAllAtomic() 
 {
-    if(m_uiCurAnimKey != INVALID_DWORD)  // ÀÌ Å°°ªÀº Æ®¸®°Å ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ Àû¿ëµÉ¶§¸¸ À¯È¿ÇÏ´Ù.
+    if(m_uiCurAnimKey != INVALID_DWORD)  // ï¿½ï¿½ Å°ï¿½ï¿½ï¿½ï¿½ Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½É¶ï¿½ï¿½ï¿½ ï¿½ï¿½È¿ï¿½Ï´ï¿½.
     {
         STypeAnimData *pTypeAnimData = m_pProperty->GetAnimTable()->Get(m_uiCurAnimKey);
         if(!pTypeAnimData)

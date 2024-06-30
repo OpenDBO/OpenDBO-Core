@@ -69,7 +69,7 @@ class CDboTSEntityFastFinder
 {
 // Declarations
 public:
-	#define SECTOR_SIZE			(512.f)
+	#define SECTOR_SIZE			(1024.f)
 
 	typedef std::map< TBLIDX, CDboTSWorldMng* > mapdef_WorldList;
 

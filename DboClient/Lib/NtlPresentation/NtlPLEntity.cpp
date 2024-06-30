@@ -30,7 +30,7 @@ CNtlPLEntity::CNtlPLEntity()
 
 	m_fWeightAlpha				= 1.0f;
 	m_fWeightElapsedTime		= 1.0f;
-	m_fVisibleCullingDistance	= 500.0f;
+	m_fVisibleCullingDistance	= 1000.0f;
 	m_pElapController			= NULL;
 	m_pBlendController			= NULL;
 }
@@ -81,12 +81,12 @@ RwBool CNtlPLEntity::CullingTest(RwCamera* pRwCamera, RwUInt16 uiRenderFrame)
 	++CNtlPLGlobal::m_uiCullTestCnt;
 #endif
 
-	// Culiing Test¸¦ ½Ãµµ ÇÑ´Ù¸é CullingÀ» »ç¿ëÇÏ°Ú´Ù´Â ÀÇ¹Ì´Ù. ÃÊ±â°ªÀ» º¯°æÇÑ´Ù.
+	// Culiing Testï¿½ï¿½ ï¿½Ãµï¿½ ï¿½Ñ´Ù¸ï¿½ Cullingï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï°Ú´Ù´ï¿½ ï¿½Ç¹Ì´ï¿½. ï¿½Ê±â°ªï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	if (m_uiRenderFrame != uiRenderFrame)
 	{
 		m_uiRenderFrame= uiRenderFrame;
-		// PVS Flag´Â ±âÁ¸ÀÇ ³»¿ëÀ» À¯Áö ÇØ¾ß ÇÑ´Ù.
-		// ÇÑ Frame¿¡¼­ ÇÑ¹ø¸¸ ½Ãµµ µÇ¾î¾ß ÇÏ¸ç, ÇÑ¹ø¸¸ ³»¿ëÀÌ Àû¿ë µÇ¾î¾ß ÇÑ´Ù.
+		// PVS Flagï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ ï¿½Ñ´ï¿½.
+		// ï¿½ï¿½ Frameï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½Ãµï¿½ ï¿½Ç¾ï¿½ï¿½ ï¿½Ï¸ï¿½, ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ ï¿½Ñ´ï¿½.
 		m_uiCullFlags &= NTL_PLEFLAG_CULLED_PVS;
 	}
 

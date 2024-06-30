@@ -9,7 +9,7 @@
 #include "NtlPLRenderState.h"
 
 
-// Çü¼®
+// ï¿½ï¿½ï¿½ï¿½
 typedef void (*fnRenderState)(void);
 
 fnRenderState g_BeginRS[PLENTITY_LAYER_MAX] = {	NULL,
@@ -371,7 +371,7 @@ void BegBaseSkyRenderState(void)
 	RwRenderStateSet(rwRENDERSTATEZTESTENABLE, (void*)FALSE);
 	RwRenderStateSet(rwRENDERSTATEZWRITEENABLE, (void*)FALSE);
 	
-	static RwReal fDistMax = 512.0f;
+	static RwReal fDistMax = 1024.0f;
 	RpNtlActiveCameraSetFarDistance(fDistMax);
 
 	return;
@@ -399,7 +399,7 @@ void BegDummySkyRenderState(void)
 	RwRenderStateSet(rwRENDERSTATEZTESTENABLE, (void*)FALSE);
 	RwRenderStateSet(rwRENDERSTATEZWRITEENABLE, (void*)FALSE);
 
-	static RwReal fDistMax = 512.0f;
+	static RwReal fDistMax = 1024.0f;
 	RpNtlActiveCameraSetFarDistance(fDistMax);
 
 	return;
@@ -799,7 +799,7 @@ void SetWaterRenderStateBegin(/*DWORD SrcAlpha, DWORD DstAlpha, RwBool IsDepthMa
 	RwD3D9SetTextureStageState(3, D3DTSS_COLORARG1, D3DTA_CURRENT); 
 	RwD3D9SetTextureStageState(3, D3DTSS_COLORARG2, D3DTA_TFACTOR);
 	
-	// CNtlPLWater::OnRender ¾È¿¡¼­ °áÁ¤
+	// CNtlPLWater::OnRender ï¿½È¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	//RwD3D9SetTextureStageState(3, D3DTSS_ALPHAOP, D3DTOP_SELECTARG1);
 	//RwD3D9SetTextureStageState(3, D3DTSS_ALPHAARG1, D3DTA_TEXTURE);
 	//RwD3D9SetTextureStageState(3, D3DTSS_ALPHAARG2, D3DTA_CURRENT);

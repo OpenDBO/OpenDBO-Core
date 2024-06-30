@@ -50,21 +50,21 @@ RwBool COptionGraphic::Create( COptionWindowGui* pOptionWindow )
 	int nScrollRange = rtScroll.bottom - rtThis.bottom;
 	m_pThisScrollBar->SetRange(0, nScrollRange );
 
-	m_pStbResolutionTitle = (gui::CStaticBox*)GetComponent("stbResoulutionTitle");	///< ÇØ»óµµ ¼³Á¤
+	m_pStbResolutionTitle = (gui::CStaticBox*)GetComponent("stbResoulutionTitle");	///< ï¿½Ø»ï¿½ ï¿½ï¿½ï¿½ï¿½
 	m_pStbResolutionTitle->SetText( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_RESOLUTION_TITLE" ) );
-	m_pStbResolution = (gui::CStaticBox*)GetComponent("stbResoulution");		///< ÇØ»óµµ
+	m_pStbResolution = (gui::CStaticBox*)GetComponent("stbResoulution");		///< ï¿½Ø»ï¿½
 	m_pStbResolution->SetText( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_RESOLUTION"  ) );
 	m_pStbResolution->SetToolTip( GetDisplayStringManager()->GetString( "DST_OPTION_TOOLTIP_RESOLUTION" ) );
-	m_pCbbResolution = (gui::CComboBox*)GetComponent("cbbGraphicResolution");		///< ÇØ»óµµ ¼³Á¤ ÄÞº¸¹Ú½º
+	m_pCbbResolution = (gui::CComboBox*)GetComponent("cbbGraphicResolution");		///< ï¿½Ø»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þºï¿½ï¿½Ú½ï¿½
 	m_pCbbResolution->GetButton()->SetClippingMode( TRUE );
 	m_pCbbResolution->GetStaticBox()->SetClippingMode( TRUE );
 	m_pCbbResolution->GetListBox()->SetClippingMode( TRUE );
 	m_slotListToggled = m_pCbbResolution->SigListToggled().Connect( this, &COptionGraphic::OnListToggled );
 
-	m_pStbGamma = (gui::CStaticBox*)GetComponent("stbGammaTitle");			///< ¹à±â
+	m_pStbGamma = (gui::CStaticBox*)GetComponent("stbGammaTitle");			///< ï¿½ï¿½ï¿½
 	m_pStbGamma->SetText( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_GAMMA" ) );
 	m_pStbGamma->SetToolTip( GetDisplayStringManager()->GetString( "DST_OPTION_TOOLTIP_GAMMA" ) );
-	m_pScbGamma = (gui::CScrollBar*)GetComponent("scbGraphicGamma");		///< ¹à±â ¼³Á¤ ½ºÅ©·Ñ¹Ù
+	m_pScbGamma = (gui::CScrollBar*)GetComponent("scbGraphicGamma");		///< ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½Ñ¹ï¿½
 	m_pScbGamma->GetIncreaseButton()->SetClippingMode( TRUE );
 	m_pScbGamma->GetDecreaseButton()->SetClippingMode( TRUE );
 	m_pScbGamma->SetRange( 0, 100 );
@@ -86,26 +86,26 @@ RwBool COptionGraphic::Create( COptionWindowGui* pOptionWindow )
 	m_slotFpsSliderMoved = m_pScbFps->SigSliderMoved().Connect(this, &COptionGraphic::OnFpsSliderMoved);
 	m_slotFpsValueChanged = m_pScbFps->SigValueChanged().Connect(this, &COptionGraphic::OnFpsSliderMoved);
 
-	m_pBtnWindowMode = (gui::CButton*)GetComponent("btnWindowMode");		///< À©µµ¿ì ¸ðµå Åä±Û
+	m_pBtnWindowMode = (gui::CButton*)GetComponent("btnWindowMode");		///< ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	m_pBtnWindowMode->SetText( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_WINDOWMODE" ) );
 	m_pBtnWindowMode->SetToolTip( GetDisplayStringManager()->GetString( "DST_OPTION_TOOLTIP_WINDOWMODE" ) );
 	m_pBtnWindowMode->SetTextStyle( COMP_TEXT_LEFT );
 	m_pBtnWindowMode->SetTextCoord( 17, 0 );
 
-	m_pStbEffectTitle = (gui::CStaticBox*)GetComponent("stbEffectTitle");		///< È¿°ú Å¸ÀÌÆ²
+	m_pStbEffectTitle = (gui::CStaticBox*)GetComponent("stbEffectTitle");		///< È¿ï¿½ï¿½ Å¸ï¿½ï¿½Æ²
 	m_pStbEffectTitle->SetText( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_TITLE" ) );
-	m_pStbGraphicQuality = (gui::CStaticBox*)GetComponent("stbGrahpicQualityText");	///< ÀüÃ¼ ±×·¡ÇÈ Ç°Áú
+	m_pStbGraphicQuality = (gui::CStaticBox*)GetComponent("stbGrahpicQualityText");	///< ï¿½ï¿½Ã¼ ï¿½×·ï¿½ï¿½ï¿½ Ç°ï¿½ï¿½
 	m_pStbGraphicQuality->SetText( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_QUALITY_TOTAL" ) );
 	m_pStbGraphicQuality->SetToolTip( GetDisplayStringManager()->GetString( "DST_OPTION_TOOLTIP_GRAPHIC_QUALITY" ) );
-	m_pStbGraphicQualityLow = (gui::CStaticBox*)GetComponent("stbGrahpicQualityLow");	///< ³·À½
+	m_pStbGraphicQualityLow = (gui::CStaticBox*)GetComponent("stbGrahpicQualityLow");	///< ï¿½ï¿½ï¿½ï¿½
 	m_pStbGraphicQualityLow->SetText( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_QUALITY_LOW" ) );
-	m_pStbGraphicQualityMiddle = (gui::CStaticBox*)GetComponent("stbGrahpicQualityMiddle");	///< º¸Åë
+	m_pStbGraphicQualityMiddle = (gui::CStaticBox*)GetComponent("stbGrahpicQualityMiddle");	///< ï¿½ï¿½ï¿½ï¿½
 	m_pStbGraphicQualityMiddle->SetText( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_QUALITY_MIDDLE" ) );
-	m_pStbGraphicQualityHigh = (gui::CStaticBox*)GetComponent("stbGrahpicQualityHigh");	///< ³ôÀ½
+	m_pStbGraphicQualityHigh = (gui::CStaticBox*)GetComponent("stbGrahpicQualityHigh");	///< ï¿½ï¿½ï¿½ï¿½
 	m_pStbGraphicQualityHigh->SetText( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_QUALITY_HIGH" ) );
-	m_pStbGraphicQualityUser = (gui::CStaticBox*)GetComponent("stbGrahpicQualityUser");	///< »ç¿ëÀÚ ¼³Á¤
+	m_pStbGraphicQualityUser = (gui::CStaticBox*)GetComponent("stbGrahpicQualityUser");	///< ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	m_pStbGraphicQualityUser->SetText( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_QUALITY_USER" ) );
-	m_pScbGraphicQuality = (gui::CScrollBar*)GetComponent("scbGraphicQuality");		///< ±×·¡ÇÈ Ç°Áú ¼³Á¤ ½ºÅ©·Ñ¹Ù
+	m_pScbGraphicQuality = (gui::CScrollBar*)GetComponent("scbGraphicQuality");		///< ï¿½×·ï¿½ï¿½ï¿½ Ç°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½Ñ¹ï¿½
 	m_pScbGraphicQuality->GetIncreaseButton()->SetClippingMode( TRUE );
 	m_pScbGraphicQuality->GetDecreaseButton()->SetClippingMode( TRUE );
 	m_pScbGraphicQuality->SetRange( 0, 3 );
@@ -113,52 +113,52 @@ RwBool COptionGraphic::Create( COptionWindowGui* pOptionWindow )
 	m_slotQualitySliderMoved = m_pScbGraphicQuality->SigSliderMoved().Connect( this, &COptionGraphic::SetPreset );
 	m_slotQualityValueChanged = m_pScbGraphicQuality->SigValueChanged().Connect( this, &COptionGraphic::SetPreset );
 
-	m_pStbTerrainDist = (gui::CStaticBox*)GetComponent("stbTerrainDist");		///< ÁöÇü ½Ã¾ß°Å¸®
+	m_pStbTerrainDist = (gui::CStaticBox*)GetComponent("stbTerrainDist");		///< ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¾ß°Å¸ï¿½
 	m_pStbTerrainDist->SetText( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_QUALITY_TERRAIN_RANGE" ) );
 	m_pStbTerrainDist->SetToolTip( GetDisplayStringManager()->GetString( "DST_OPTION_TOOLTIP_TERRAIN_DISTANCE" ) );
-	m_pScbTerrainDist = (gui::CScrollBar*)GetComponent("scbTerrainDist");		///< ÁöÇü ½Ã¾ß°Å¸® ¼³Á¤ ½ºÅ©·Ñ ¹Ù
+	m_pScbTerrainDist = (gui::CScrollBar*)GetComponent("scbTerrainDist");		///< ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¾ß°Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½
 	m_pScbTerrainDist->GetIncreaseButton()->SetClippingMode( TRUE );
 	m_pScbTerrainDist->GetDecreaseButton()->SetClippingMode( TRUE );
-	m_pScbTerrainDist->SetRange( 0, 3 );
+	m_pScbTerrainDist->SetRange( 0, 4 );
 	m_slotTerrainSliderMoved = m_pScbTerrainDist->SigSliderMoved().Connect( this, &COptionGraphic::OnOtherDataChanged );
 	m_slotTerrainValueChanged = m_pScbTerrainDist->SigValueChanged().Connect( this, &COptionGraphic::OnOtherDataChanged );
 
-	m_pStbObjectDist = (gui::CStaticBox*)GetComponent("stbObjectDist");		///< »ç¹° ½Ã¾ß°Å¸®
+	m_pStbObjectDist = (gui::CStaticBox*)GetComponent("stbObjectDist");		///< ï¿½ç¹° ï¿½Ã¾ß°Å¸ï¿½
 	m_pStbObjectDist->SetText( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_QUALITY_OBJECT_RANGE" ) );
 	m_pStbObjectDist->SetToolTip( GetDisplayStringManager()->GetString( "DST_OPTION_TOOLTIP_OBJECT_DISTANCE" ) );
-	m_pScbObjectDist = (gui::CScrollBar*)GetComponent("scbObjectDist");		///< »ç¹° ½Ã¾ß°Å¸® ¼³Á¤ ½ºÅ©·Ñ ¹Ù
+	m_pScbObjectDist = (gui::CScrollBar*)GetComponent("scbObjectDist");		///< ï¿½ç¹° ï¿½Ã¾ß°Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½
 	m_pScbObjectDist->GetIncreaseButton()->SetClippingMode( TRUE );
 	m_pScbObjectDist->GetDecreaseButton()->SetClippingMode( TRUE );
-	m_pScbObjectDist->SetRange( 0, 3 );
+	m_pScbObjectDist->SetRange( 0, 4 );
 	m_slotObjectSliderMoved = m_pScbObjectDist->SigSliderMoved().Connect( this, &COptionGraphic::OnOtherDataChanged );
 	m_slotObjectValueChanged = m_pScbObjectDist->SigValueChanged().Connect( this, &COptionGraphic::OnOtherDataChanged );
 
-	m_pBtnTerrainShadow = (gui::CButton*)GetComponent("btnTerrainShadow");	///< ÁöÇü ±×¸²ÀÚ
+	m_pBtnTerrainShadow = (gui::CButton*)GetComponent("btnTerrainShadow");	///< ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½
 	m_pBtnTerrainShadow->SetText( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_TERRAIN_SHADOW" ) );
 	m_pBtnTerrainShadow->SetToolTip( GetDisplayStringManager()->GetString( "DST_OPTION_TOOLTIP_TERRAIN_SHADOW" ) );
 	m_pBtnTerrainShadow->SetTextStyle( COMP_TEXT_LEFT );
 	m_pBtnTerrainShadow->SetTextCoord( 17, 0 );
 	m_slotTerrainShadowToggled = m_pBtnTerrainShadow->SigToggled().Connect( this, &COptionGraphic::OnOtherDataToggled );
 
-	m_pBtnWaterEffect = (gui::CButton*)GetComponent("btnWaterEffect");		///< ¹° È¿°ú
+	m_pBtnWaterEffect = (gui::CButton*)GetComponent("btnWaterEffect");		///< ï¿½ï¿½ È¿ï¿½ï¿½
 	m_pBtnWaterEffect->SetText( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_WATER_EFFECT" ) );
 	m_pBtnWaterEffect->SetToolTip( GetDisplayStringManager()->GetString( "DST_OPTION_TOOLTIP_WATER_EFFECT" ) );
 	m_pBtnWaterEffect->SetTextStyle( COMP_TEXT_LEFT );
 	m_pBtnWaterEffect->SetTextCoord( 17, 0 );
 	m_slotWaterEffectToggled = m_pBtnWaterEffect->SigToggled().Connect( this, &COptionGraphic::OnOtherDataToggled );
 
-	//m_pStbCharacterDist = (gui::CStaticBox*)GetComponent("stbCharacterDist");	///< Ä³¸¯ÅÍ ½Ã¾ß°Å¸®
+	//m_pStbCharacterDist = (gui::CStaticBox*)GetComponent("stbCharacterDist");	///< Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¾ß°Å¸ï¿½
 	//
-	//// Disable Ã³¸®¸¦ À§ÇÏ¿© È¸»öÀ¸·Î ÇÑ´Ù.
+	//// Disable Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
 	//m_pStbCharacterDist->SetTextColor( RGB( 128, 128, 128 ) );
 	//m_pStbCharacterDist->SetText( GetDisplayStringManager()->GetString( DST_OPTION_GRAPHIC_CHARACTER_RANGE ) );
 	//m_pStbCharacterDist->SetToolTip( GetDisplayStringManager()->GetString( DST_OPTION_TOOLTIP_CHARACTER_DISTANCE ) );
-	//m_pScbCharacterDist = (gui::CScrollBar*)GetComponent("scbCharacterDist");	///< Ä³¸¯ÅÍ ½Ã¾ß°Å¸® ¼³Á¤ ½ºÅ©·Ñ ¹Ù
+	//m_pScbCharacterDist = (gui::CScrollBar*)GetComponent("scbCharacterDist");	///< Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¾ß°Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½
 	//m_pScbCharacterDist->GetIncreaseButton()->SetClippingMode( TRUE );
 	//m_pScbCharacterDist->GetDecreaseButton()->SetClippingMode( TRUE );
 	//m_pScbCharacterDist->SetRange( 0, 3 );
 	//
-	//// Ä³¸¯ÅÍ ½Ã¾ß°Å¸®´Â Disable ½ÃÄÑ³õ´Â´Ù.
+	//// Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¾ß°Å¸ï¿½ï¿½ï¿½ Disable ï¿½ï¿½ï¿½Ñ³ï¿½ï¿½Â´ï¿½.
 	//m_pScbCharacterDist->Enable( false );
 	//m_pScbCharacterDist->GetDecreaseButton()->ClickEnable( FALSE );
 	//m_pScbCharacterDist->GetIncreaseButton()->ClickEnable( FALSE );
@@ -173,31 +173,31 @@ RwBool COptionGraphic::Create( COptionWindowGui* pOptionWindow )
 	m_pBtnCharacterShadow->SetTextCoord( 17, 0 );
 	m_slotCharacterShadowToggled = m_pBtnCharacterShadow->SigToggled().Connect( this, &COptionGraphic::OnOtherDataToggled );
 
-	m_pStbMagicEffect = (gui::CStaticBox*)GetComponent("stbMagicEffect");		///< ¸¶¹ý ¼¼ºÎÈ¿°ú
+	m_pStbMagicEffect = (gui::CStaticBox*)GetComponent("stbMagicEffect");		///< ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È¿ï¿½ï¿½
 	m_pStbMagicEffect->SetText( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_MAGIC_EFFECT" ) );
 	m_pStbMagicEffect->SetToolTip( GetDisplayStringManager()->GetString( "DST_OPTION_TOOLTIP_MAGIC_DETAIL" ) );
-	m_pScbMagicEffect = (gui::CScrollBar*)GetComponent("scbMagicEffect");		///< ¸¶¹ý ¼¼ºÎÈ¿°ú ¼³Á¤ ½ºÅ©·Ñ ¹Ù
+	m_pScbMagicEffect = (gui::CScrollBar*)GetComponent("scbMagicEffect");		///< ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½
 	m_pScbMagicEffect->GetIncreaseButton()->SetClippingMode( TRUE );
 	m_pScbMagicEffect->GetDecreaseButton()->SetClippingMode( TRUE );
 	m_pScbMagicEffect->SetRange( 0, 3 );
 	m_slotMagicEffectSliderMoved = m_pScbMagicEffect->SigSliderMoved().Connect( this, &COptionGraphic::OnOtherDataChanged );
 	m_slotMagicEffectValueChanged = m_pScbMagicEffect->SigValueChanged().Connect( this, &COptionGraphic::OnOtherDataChanged );
 
-	m_pStbWeatherEffect = (gui::CStaticBox*)GetComponent("stbWeatherEffect");	///< ³¯¾¾ È¿°ú
+	m_pStbWeatherEffect = (gui::CStaticBox*)GetComponent("stbWeatherEffect");	///< ï¿½ï¿½ï¿½ï¿½ È¿ï¿½ï¿½
 	m_pStbWeatherEffect->SetText( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_WEATHER_EFFECT" ) );
 	m_pStbWeatherEffect->SetToolTip( GetDisplayStringManager()->GetString( "DST_OPTION_TOOLTIP_WEATHER_EFFECT" ) );
-	m_pScbWeatherEffect = (gui::CScrollBar*)GetComponent("scbWeatherEffect");	///< ³¯¾¾ È¿°ú ¼³Á¤ ½ºÅ©·Ñ ¹Ù
+	m_pScbWeatherEffect = (gui::CScrollBar*)GetComponent("scbWeatherEffect");	///< ï¿½ï¿½ï¿½ï¿½ È¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½
 	m_pScbWeatherEffect->GetIncreaseButton()->SetClippingMode( TRUE );
 	m_pScbWeatherEffect->GetDecreaseButton()->SetClippingMode( TRUE );
 	m_pScbWeatherEffect->SetRange( 0, 1 );
 	m_slotWeatherEffectSliderMoved = m_pScbWeatherEffect->SigSliderMoved().Connect( this, &COptionGraphic::OnOtherDataChanged );
 	m_slotWeatherEffectValueChanged = m_pScbWeatherEffect->SigValueChanged().Connect( this, &COptionGraphic::OnOtherDataChanged );
 
-	m_pStbTextureQuality = (gui::CStaticBox*)GetComponent("stbTextureQuality");	///< ÅØ½ºÃÄ ÇØ»óµµ
+	m_pStbTextureQuality = (gui::CStaticBox*)GetComponent("stbTextureQuality");	///< ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½Ø»ï¿½
 	/*m_pStbTextureQuality->SetTextColor( RGB( 128, 128, 128 ) );*/
 	m_pStbTextureQuality->SetText( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_TEXTURE_QUALITY" ) );
 	m_pStbTextureQuality->SetToolTip( GetDisplayStringManager()->GetString( "DST_OPTION_TOOLTIP_TEXTURE_LEVEL" ) );
-	m_pScbTextureQuality = (gui::CScrollBar*)GetComponent("scbTextureQuality");	///< ÅØ½ºÃÄ ÇØ»óµµ ¼³Á¤ ½ºÅ©·Ñ ¹Ù
+	m_pScbTextureQuality = (gui::CScrollBar*)GetComponent("scbTextureQuality");	///< ï¿½Ø½ï¿½ï¿½ï¿½ ï¿½Ø»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½
 	m_pScbTextureQuality->SetRange( 0, 2 );
 
 	//m_pScbTextureQuality->Enable( false );
@@ -206,15 +206,15 @@ RwBool COptionGraphic::Create( COptionWindowGui* pOptionWindow )
 	m_slotTextureQualitySliderMoved = m_pScbTextureQuality->SigSliderMoved().Connect( this, &COptionGraphic::OnOtherDataChanged );
 	m_slotTextureQualityValueChanged = m_pScbTextureQuality->SigValueChanged().Connect( this, &COptionGraphic::OnOtherDataChanged );
 
-	m_pStbCharacterEffectTitle = (gui::CStaticBox*)GetComponent("stbCharacterEffectTitle");	///< Ä³¸¯ÅÍ È¿°ú Å¸ÀÌÆ²
+	m_pStbCharacterEffectTitle = (gui::CStaticBox*)GetComponent("stbCharacterEffectTitle");	///< Ä³ï¿½ï¿½ï¿½ï¿½ È¿ï¿½ï¿½ Å¸ï¿½ï¿½Æ²
 	m_pStbCharacterEffectTitle->SetText( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_CHARACTER_EFFECT" ) );
-	m_pBtnCartoonEdge = (gui::CButton*)GetComponent("btnCartoonEdge");			///< Ä«Å÷½Ä ¿Ü°û¼±
+	m_pBtnCartoonEdge = (gui::CButton*)GetComponent("btnCartoonEdge");			///< Ä«ï¿½ï¿½ï¿½ï¿½ ï¿½Ü°ï¿½ï¿½ï¿½
 	m_pBtnCartoonEdge->SetText( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_CARTOON_EDGE" ) );
 	m_pBtnCartoonEdge->SetToolTip( GetDisplayStringManager()->GetString( "DST_OPTION_TOOLTIP_CARTOON_EDGE" ) );
 	m_pBtnCartoonEdge->SetTextStyle( COMP_TEXT_LEFT );
 	m_pBtnCartoonEdge->SetTextCoord( 17, 0 );
 
-	//m_pBtnUpgradeEffect = (gui::CButton*)GetComponent("btnUpgradeEffect");		///< ¾÷±×·¹ÀÌµå È¿°ú
+	//m_pBtnUpgradeEffect = (gui::CButton*)GetComponent("btnUpgradeEffect");		///< ï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½ È¿ï¿½ï¿½
 	//m_pBtnUpgradeEffect->SetText( GetDisplayStringManager()->GetString( DST_OPTION_GRAPHIC_UPGRADE_EFFECT ) );
 	//m_pBtnUpgradeEffect->SetToolTip( GetDisplayStringManager()->GetString( DST_OPTION_TOOLTIP_UPGRADE_EFFECT ) );
 	//m_pBtnUpgradeEffect->SetTextStyle( COMP_TEXT_LEFT );
@@ -226,7 +226,7 @@ RwBool COptionGraphic::Create( COptionWindowGui* pOptionWindow )
 	
 	m_pStbEtcTitle = (gui::CStaticBox*)GetComponent("stbEtcTitle");
 	m_pStbEtcTitle->SetText( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_ETC_TITLE" ) );
-	m_pBtnHdrEffect = (gui::CButton*)GetComponent("btnHdrEffect");			///< HDR È¿°ú
+	m_pBtnHdrEffect = (gui::CButton*)GetComponent("btnHdrEffect");			///< HDR È¿ï¿½ï¿½
 	m_pBtnHdrEffect->SetText( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_HDR_EFFECT" ) );
 	m_pBtnHdrEffect->SetToolTip( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_HDR_EFFECT" ) );
 	m_pBtnHdrEffect->SetTextStyle( COMP_TEXT_LEFT );
@@ -254,7 +254,7 @@ void COptionGraphic::Destroy()
 
 void COptionGraphic::Show()
 {
-	// COptionBaseÀÇ ScrollBar¸¦ »ç¿ëÇÏÁö ¾Ê´Â´Ù.
+	// COptionBaseï¿½ï¿½ ScrollBarï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 	m_pScrollBar->Show(false);
 
 	m_pThis->Show( true );
@@ -264,7 +264,7 @@ void COptionGraphic::Show()
 
 void COptionGraphic::Hide()
 {
-	// º¹±¸
+	// ï¿½ï¿½ï¿½ï¿½
 	m_pScrollBar->Show(true);
 
 	m_pThis->Show( false );
@@ -280,7 +280,7 @@ void COptionGraphic::OnInit()
 	m_iGamma = GetGammaValue();
 	m_pScbGamma->SetValue( m_iGamma );
 
-	// FullScreenÀÌ ¾Æ´Ò °æ¿ì »ç¿ëÇÏÁö ¸øÇÏ°Ô ÇÑ´Ù.
+	// FullScreenï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ñ´ï¿½.
 	if( !CNtlApplication::GetInstance()->IsFullScreen() )
 	{
 		m_pStbGamma->SetTextColor( RGB(128, 128, 128), TRUE );
@@ -317,7 +317,7 @@ void COptionGraphic::OnInit()
 	SetFpsToolTip(m_pScbFps->GetValue());
 	CNtlApplication::m_uiFrameRate = m_pScbFps->GetValue();*/
 
-	// Àá½Ã ÀÓ½Ã °ªÀ¸·Î ¼¼ÆÃÇÑ´Ù.
+	// ï¿½ï¿½ï¿½ ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	/*m_pScbTextureQuality->SetValue( 3 );*/
 	//m_pScbCharacterDist->SetValue( 3 );
 	/*m_pBtnUpgradeEffect->SetDown( true );*/
@@ -355,7 +355,7 @@ void COptionGraphic::OnOk()
 	// Preset
 	GetNtlStorageManager()->SetData( dSTORAGE_GRAPHIC_PRESET, m_pScbGraphicQuality->GetValue() );
 
-	// ÇÏÀ§ ¿É¼Ç ÀúÀå
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½É¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 	GetNtlStorageManager()->SetData( dSTORAGE_GRAPHIC_TERRAIN_RANGE, m_pScbTerrainDist->GetValue() );
 	GetNtlStorageManager()->SetData( dSTORAGE_GRAPHIC_OBJECT_RANGE, m_pScbObjectDist->GetValue() );
 	GetNtlStorageManager()->SetData( dSTORAGE_GRAPHIC_TERRAIN_SHADOW, m_pBtnTerrainShadow->IsDown() );
@@ -369,7 +369,7 @@ void COptionGraphic::OnOk()
 	GetNtlStorageManager()->SetData( dSTORAGE_GRAPHIC_WEATHER_EFFECT, m_pScbWeatherEffect->GetValue() );
 	GetNtlStorageManager()->SetData( dSTORAGE_GRAPHIC_TEXTURE_LEVEL, m_pScbTextureQuality->GetValue() );
 
-	// Àû¿ë
+	// ï¿½ï¿½ï¿½ï¿½
 	GetNtlStorageManager()->ApplyStorageType( eNTL_STORAGE_GRAPHIC, eNTL_STORAGE_APPLY_ALL );
 }
 
@@ -406,7 +406,7 @@ void COptionGraphic::OnHandleEvents( RWS::CMsg &pMsg )
 
 void COptionGraphic::OnScrollBarChanged( RwInt32 nParam )
 {
-	// Offset Àº °¹¼öÀÌ±â ¶§¹®¿¡ DialogÀÇ Å©±â¸¸Å­ OffsetÀ» ÁØ´Ù.
+	// Offset ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Dialogï¿½ï¿½ Å©ï¿½â¸¸Å­ Offsetï¿½ï¿½ ï¿½Ø´ï¿½.
 	/*CRectangle rtPos = m_pOptionWindow->GetPosition();*/
 	m_pScrollDialog->SetPosition( 0 , -nParam );
 }
