@@ -90,6 +90,7 @@ CNtlSobCharDecorationProxy::~CNtlSobCharDecorationProxy()
     DeleteTenkaichiMark();
     DeleteTargetMarkingMark();
 	DeletePLPlayerTitle();
+	DeleteRpChargeEffect(); //FIX: RP Charge bug, player leave game.
 	DeleteGuardEffect();
 
     NTL_DELETE(m_pShareTargetMark);

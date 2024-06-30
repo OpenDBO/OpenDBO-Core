@@ -30,6 +30,11 @@
 #include "SideDialogManager.h"
 #include "PopupManager.h"
 
+//party
+#include "PartyMemberGui.h"
+#include "BuffDispObject.h"
+#include "PartyMemberGui.h"
+
 namespace
 {
 	#define dMENU_GAP					26
@@ -247,12 +252,25 @@ VOID CPartyMenu::DelMember(SERIAL_HANDLE hSerial)
 		}
 	}
 
-	// 삭제된 맴버ui 밑의 ui를 한단계씩 위로 올린다.
+	// elevate a member to a higher level gui and update buffs.
+	/*
+	This block ensures that after removing a member from the party,
+	the remaining members are correctly repositioned and their buffs are updated to avoid visual issues.
+	*/
 	for( ; it != m_listPartyMember.end() ; ++it )
 	{
 		pPartyMemberGui = *it;
 		CRectangle rect = pPartyMemberGui->GetPosition();
 		pPartyMemberGui->SetPosition(dDIALOG_CLEINT_EDGE_GAP, rect.top - pPartyMemberGui->GetHeight() - 40);
+		
+		// Get party of player
+		CNtlParty* pParty = GetNtlSLGlobal()->GetSobAvatar()->GetParty();
+
+		// Get the party member using the member's GUI handle (Serial ID)
+		sPartyMember* pMember = reinterpret_cast<sPartyMember*>(pParty->GetMemberbyKey(pPartyMemberGui->GetHandle()));
+		if (pMember) { // If the member exists, update their buffs
+			pPartyMemberGui->GetBuffsGui()->GetBuffsDispGui()->SetBuffAll(pMember->pFakeBuffContainer);
+		}
 	}
 }
 
