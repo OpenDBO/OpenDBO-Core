@@ -158,7 +158,7 @@ SEND_PACKET:
 	res->byAttackResult = byAttackResult;
 	res->attackResultValue = (int)fDmg;
 	res->byAttackSequence = m_byChainSequence;
-	res->fReflectedDamage = fReflectedDamage; //when this is enabled then the client crashes
+	res->fReflectedDamage = (int)fReflectedDamage;
 	res->byBlockedAction = byBlockedAction;
 	vShift.CopyTo(res->vShift);
 
