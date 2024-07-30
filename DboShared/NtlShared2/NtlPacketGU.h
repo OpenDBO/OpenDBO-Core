@@ -1076,6 +1076,7 @@ BEGIN_PROTOCOL(GU_CHAR_ACTION_ATTACK)
 	BYTE					byAttackResult:7; // Action Result ( eBATTLE_ATTACK_RESULT )
 	int						attackResultValue; // Result of the action (damage) //updated
 	BYTE					byAttackSequence; // Attack sequence number (chain attack)
+	// TODO: Not 100% sure if int below is correct, but at least prevents the game from crashing (it was crashing if we send a float).
 	int					    fReflectedDamage; // Damage and is reflected from the target.
 	BYTE					byBlockedAction;		// eDBO_GUARD_TYPE
 	sVECTOR3				vShift;
