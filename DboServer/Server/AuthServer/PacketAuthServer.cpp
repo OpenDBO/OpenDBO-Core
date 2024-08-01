@@ -5,6 +5,8 @@
 #include "NtlService.h"
 #include "NtlAdmin.h"
 
+#include "md5.h"
+
 
 //--------------------------------------------------------------------------------------//
 //		Get the account ID and log in to Char Server									//
@@ -14,28 +16,33 @@ void CClientSession::SendCharLogInReq(CNtlPacket * pPacket, CAuthServer * app)
 	sUA_LOGIN_TW_REQ* req = (sUA_LOGIN_TW_REQ*)pPacket->GetPacketData();
 
 	char* username = Ntl_WC2MB(req->awcUserID);
+	char* password = Ntl_WC2MB(req->awcPasswd);
+	char* hashedPassword = new char[NTL_MAX_SIZE_USERPW_ENCRYPT + 1];
 
 	WORD resultcode = AUTH_SUCCESS;
 	sDBO_SERVER_INFO* pCharServer = NULL;
 
-	//if (req->wLVersion == CLIENT_LVER && (int)req->wRVersion == CLIENT_RVER)
-	//{
+	MD5 md;
+	strcpy_s(hashedPassword, NTL_MAX_SIZE_USERPW_ENCRYPT + 1, md.digestString(password)); // hash password
+
+	if (req->wLVersion == CLIENT_LVER && (int)req->wRVersion == CLIENT_RVER)
+	{
 		pCharServer = g_pServerInfoManager->GetIdlestServerInfo(NTL_SERVER_TYPE_CHARACTER, 0, 0);
 		if (pCharServer == NULL)
 			resultcode = AUTH_NO_AVAILABLE_CHARACTER_SERVER;
 		else if (!pCharServer->bIsOn)
 			resultcode = AUTH_NO_AVAILABLE_CHARACTER_SERVER;
-		else if (strlen(username) >= NTL_MAX_SIZE_USERID || strlen(username) < 3)
+		else if (strlen(username) > NTL_MAX_SIZE_USERID || strlen(username) < 3)
 			resultcode = AUTH_TOO_LONG_ACCOUNT;
-		//else if (strlen(req->awcPasswd) < NTL_MAX_SIZE_USERPW_ENCRYPT)//Xanu
-		//	resultcode = AUTH_TOO_LONG_PASSWORD;
+		else if (strlen(password) > NTL_MAX_SIZE_USERPW || strlen(hashedPassword) != NTL_MAX_SIZE_USERPW_ENCRYPT)
+			resultcode = AUTH_TOO_LONG_PASSWORD;
 		else if (app->IsAccountTempBlocked(username))
 			resultcode = AUTH_USER_TEMPORARY_BLOCK;
-	//}
-	/*else
+	}
+	else
 	{
 		resultcode = AUTH_VERSION_FAIL;
-	}*/
+	}
 
 	if (resultcode == AUTH_SUCCESS)
 	{
@@ -49,11 +56,7 @@ void CClientSession::SendCharLogInReq(CNtlPacket * pPacket, CAuthServer * app)
 		if (result)
 		{
 			Field* fields = result->Fetch();
-
-			std::wstring ws(req->awcPasswd);
-			std::string passtring(ws.begin(), ws.end());
-
-			if (0 != strcmp(fields[1].GetString(), passtring.c_str())) //check password
+			if (0 != strcmp(fields[1].GetString(), hashedPassword)) //check password
 				resultcode = AUTH_WRONG_PASSWORD;
 			else
 			{
@@ -136,6 +139,7 @@ void CClientSession::SendCharLogInReq(CNtlPacket * pPacket, CAuthServer * app)
 
 	// free memory
 	Ntl_CleanUpHeapString(username);
+	Ntl_CleanUpHeapString(password);
 }
 
 //--------------------------------------------------------------------------------------//

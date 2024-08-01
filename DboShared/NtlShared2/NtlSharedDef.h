@@ -6,7 +6,7 @@
 // client version
 
 #define	CLIENT_LVER		1
-#define CLIENT_RVER		20
+#define CLIENT_RVER		69
 
 
 // Entire Server Connection Structure
@@ -23,8 +23,8 @@
 
 
 // User AccountID and Password
-#define NTL_MAX_SIZE_USERID								(16)
-#define NTL_MAX_SIZE_USERPW								(16)
+#define NTL_MAX_SIZE_USERID								(16) // Client seems to actually limit this to 14?
+#define NTL_MAX_SIZE_USERPW								(16) // Client seems to actually limit this to 14?
 #define NTL_MAX_SIZE_USERPW_ENCRYPT						(32)
 
 
