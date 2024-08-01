@@ -43,7 +43,7 @@ CREATE TABLE `accounts` (
   PRIMARY KEY (`AccountID`,`Username`),
   UNIQUE KEY `AccountID` (`AccountID`) USING BTREE,
   UNIQUE KEY `Username` (`Username`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=812872 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Table structure for accounts_banned
@@ -58,7 +58,7 @@ CREATE TABLE `accounts_banned` (
   `Duration` tinyint(3) unsigned NOT NULL DEFAULT '1' COMMENT 'Value in days. 255 = permanent',
   `Active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1 = true, 0 = false',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Table structure for cashshop_storage
@@ -86,7 +86,7 @@ CREATE TABLE `cashshop_storage` (
   PRIMARY KEY (`ProductId`),
   UNIQUE KEY `ProductId` (`ProductId`,`AccountID`) USING BTREE,
   KEY `AccountID` (`AccountID`,`isMoved`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=463999 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Table structure for event_reward
