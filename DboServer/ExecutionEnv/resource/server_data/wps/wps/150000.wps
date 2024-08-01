@@ -32,7 +32,7 @@ GameStage(0)
 			Action( "system message" )
 			--[
 				Param( "notify", "sysnotice" )
-				Param( "text", "Do not share your account. People are getting scammed daily from friends. Sharing accounts is against our rules" )
+				Param( "text", "Do not share your account. You will be responsible for anything that happens if you choose to do so." )
 			--]
 			End()
 			
@@ -54,7 +54,7 @@ GameStage(0)
 			Action( "system message" )
 			--[
 				Param( "notify", "sysnotice" )
-				Param( "text", "Do not use any system for automatic farm/level. Accounts will be permanently banned." )
+				Param( "text", "Do not use any system for automatic farming/leveling. Accounts will be permanently banned." )
 			--]
 			End()
 
@@ -75,7 +75,7 @@ GameStage(0)
 			Action( "system message" )
 			--[
 				Param( "notify", "sysnotice" )
-				Param( "text", "Do not use any cheat/hack or third party software. Accounts will be permanently banned." )
+				Param( "text", "Do not use any cheats, hacks, or third-party software. Accounts will be permanently banned." )
 			--]
 			End()
 
@@ -96,7 +96,7 @@ GameStage(0)
 			Action( "system message" )
 			--[
 				Param( "notify", "sysnotice" )
-				Param( "text", "Shenron takes 1 Dragonball if you do not make a wish within time. Be careful!" )
+				Param( "text", "Shenron will take one Dragon Ball if you do not make a wish in time. Be careful!" )
 			--]
 			End()
 
@@ -117,7 +117,7 @@ GameStage(0)
 			Action( "system message" )
 			--[
 				Param( "notify", "sysnotice" )
-				Param( "text", "Trading accounts is against our terms of service. Accounts will be permanently suspended" )
+				Param( "text", "Trading accounts is against our terms of service. Involved accounts will be permanently suspended." )
 			--]
 			End()
 
@@ -138,7 +138,7 @@ GameStage(0)
 			Action( "system message" )
 			--[
 				Param( "notify", "sysnotice" )
-				Param( "text", "Are you stuck? Use the @unstack chat command to get free" )
+				Param( "text", "Are you stuck? Use the @unstuck chat command to get free." )
 			--]
 			End()
 
@@ -159,7 +159,7 @@ GameStage(0)
 			Action( "system message" )
 			--[
 				Param( "notify", "sysnotice" )
-				Param( "text", "Buying/selling Zeni. Doing so will result in a permanent ban." )
+				Param( "text", "Buying or selling Zeni is against the rules. Doing so will result in a permanent ban." )
 			--]
 			End()
 
