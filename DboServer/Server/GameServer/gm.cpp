@@ -133,24 +133,17 @@ ACMD(do_BatleEvent);
 ACMD(do_notify);
 struct command_info cmd_info[] =
 {
-	//Evryone
-	{ "@addmasteritem", do_addmasteritem, ADMIN_LEVEL_NONE },
-	{ "@addskill2", do_addskill2, ADMIN_LEVEL_NONE },
-	{ "@addhtb", do_addhtb, ADMIN_LEVEL_NONE },
+	// Everyone
 	{ "@unstuck", do_unstuck, ADMIN_LEVEL_NONE },
-	{ "@exp", do_exp, ADMIN_LEVEL_NONE },
-	{ "@resetexp", do_resetexp, ADMIN_LEVEL_NONE },
 	{ "@online", do_PlayerCount, ADMIN_LEVEL_NONE },
-	{ "@level", do_setlevel2, ADMIN_LEVEL_NONE },
-	{ "@fly", do_fly, ADMIN_LEVEL_NONE },	
 	
-	//Cummunity Manager "Tung, Blood, Monger"
+	// Game Master
 	
 	{ "@pm", do_pm, ADMIN_LEVEL_GAME_MASTER },		
 	{ "@mute", do_mute, ADMIN_LEVEL_GAME_MASTER },
 	{ "@unmute", do_unmute, ADMIN_LEVEL_GAME_MASTER },
 
-	//Admin Acess 
+	// Admin
 
 	{ "@hide", do_hide, ADMIN_LEVEL_ADMIN },
 	{ "@teleport", do_teleport, ADMIN_LEVEL_ADMIN },
@@ -187,8 +180,8 @@ struct command_info cmd_info[] =
 	{ "@deltitle", do_deltitle, ADMIN_LEVEL_ADMIN },
 	{ "@setitemduration", do_setitemduration, ADMIN_LEVEL_ADMIN },
 	{ "@bind", do_bind, ADMIN_LEVEL_ADMIN },	
-	{ "@startevent", do_starthoneybee, ADMIN_LEVEL_ADMIN },// 0 honey, 1 Fairy
-	{ "@stopevent", do_stophoneybee, ADMIN_LEVEL_ADMIN },// 0 Honey, 1 Fairy
+	{ "@startevent", do_starthoneybee, ADMIN_LEVEL_ADMIN }, // 0 honey, 1 Fairy
+	{ "@stopevent", do_stophoneybee, ADMIN_LEVEL_ADMIN }, // 0 Honey, 1 Fairy
 	{ "@deleteguild", do_deleteguild, ADMIN_LEVEL_ADMIN },
 	{ "@cancelah", do_cancelah, ADMIN_LEVEL_ADMIN },
 	{ "@addmudosa", do_addmudosa, ADMIN_LEVEL_ADMIN },
@@ -197,6 +190,14 @@ struct command_info cmd_info[] =
 	{ "@test", do_test, ADMIN_LEVEL_ADMIN },
 	{ "@all", do_TeleportAll, ADMIN_LEVEL_ADMIN },	
 	{ "@PvpEvent", do_BatleEvent, ADMIN_LEVEL_ADMIN },
+	{ "@addmasteritem", do_addmasteritem, ADMIN_LEVEL_ADMIN },
+	{ "@addskill2", do_addskill2, ADMIN_LEVEL_ADMIN },
+	{ "@addhtb", do_addhtb, ADMIN_LEVEL_ADMIN },
+	{ "@exp", do_exp, ADMIN_LEVEL_ADMIN },
+	{ "@resetexp", do_resetexp, ADMIN_LEVEL_ADMIN },
+	{ "@level", do_setlevel2, ADMIN_LEVEL_ADMIN },
+	{ "@fly", do_fly, ADMIN_LEVEL_ADMIN },
+
 	{ "@qwasawedsadas", NULL, ADMIN_LEVEL_ADMIN }
 };
 
