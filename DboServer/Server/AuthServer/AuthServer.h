@@ -19,6 +19,7 @@ struct sSERVERCONFIG
 	SERVERINDEX		byServerId;
 
 	CNtlString		DatabaseHost;
+	WORD		    DatabasePort;
 	CNtlString		DatabaseUser;
 	CNtlString		DatabasePassword;
 	CNtlString		Database;
@@ -44,6 +45,7 @@ public:
 public:
 
 	CNtlString		GetDatabaseHost()	{	return m_config.DatabaseHost;	}
+	WORD		    GetDatabasePort() { return m_config.DatabasePort; }
 	CNtlString		GetDatabaseUser()	{	return m_config.DatabaseUser;	}
 	CNtlString		GetDatabasePassword()	{	return m_config.DatabasePassword;	}
 	CNtlString		GetDatabaseName()	{	return m_config.Database;	}
@@ -80,6 +82,10 @@ public:
 
 		//Connect database
 		if( !file.Read("DATABASE_ACCOUNT", "Host",  m_config.DatabaseHost) )
+		{
+			return NTL_ERR_DBC_HANDLE_ALREADY_ALLOCATED;
+		}
+		if (!file.Read("DATABASE_ACCOUNT", "Port", m_config.DatabasePort))
 		{
 			return NTL_ERR_DBC_HANDLE_ALREADY_ALLOCATED;
 		}

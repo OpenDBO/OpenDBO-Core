@@ -219,7 +219,7 @@ int main(int argc, _TCHAR* argv[])
 	// CONNECT TO CHARACTER DATABASE
 	db_char = Database::CreateDatabaseInterface(1);
 	// Initialize it
-	if (!GetCharDB.Initialize(app.GetDatabaseHost(), 3306, app.GetDatabaseUser(),
+	if (!GetCharDB.Initialize(app.GetDatabaseHost(), app.GetDatabasePort(), app.GetDatabaseUser(),
 		app.GetDatabasePassword(), app.GetDatabase(), 5))
 	{
 		NTL_PRINT(PRINT_APP, "sql : char database initialization failed. Exiting.");
@@ -231,7 +231,7 @@ int main(int argc, _TCHAR* argv[])
 	// CONNECT TO ACCOUNT DATABASE
 	db_acc = Database::CreateDatabaseInterface(1);
 	// Initialize it
-	if (!GetAccDB.Initialize(app.GetAccDbHost(), 3306, app.GetAccDbUser(),
+	if (!GetAccDB.Initialize(app.GetAccDbHost(), app.GetAccDatabasePort(), app.GetAccDbUser(),
 		app.GetAccDbPass(), app.GetAccDbDatabase(), 2))
 	{
 		NTL_PRINT(PRINT_APP, "sql : account database initialization failed. Exiting.");
@@ -243,7 +243,7 @@ int main(int argc, _TCHAR* argv[])
 	// CONNECT TO LOG DATABASE
 	db_log = Database::CreateDatabaseInterface(1);
 	// Initialize it
-	if (!GetLogDB.Initialize(app.GetAccDbHost(), 3306, app.GetAccDbUser(),
+	if (!GetLogDB.Initialize(app.GetAccDbHost(), app.GetDatabasePort(), app.GetAccDbUser(),
 		app.GetAccDbPass(), "dbo_log", 2))
 	{
 		NTL_PRINT(PRINT_APP, "sql : log database initialization failed. Exiting.");

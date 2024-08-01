@@ -25,10 +25,12 @@ public:
 	virtual ~CChatServer();
 
 	CNtlString		GetDatabaseHost()	{ return m_config.DatabaseHost; }
+	WORD		    GetDatabasePort() { return m_config.DatabasePort; }
 	CNtlString		GetDatabaseUser()	{ return m_config.DatabaseUser; }
 	CNtlString		GetDatabasePassword()	{ return m_config.DatabasePassword; }
 	CNtlString		GetDatabaseDatabase()	{ return m_config.Database; }
 	CNtlString		GetAccDbHost()	{ return m_config.AccDatabaseHost; }
+	WORD		    GetAccDatabasePort() { return m_config.AccDatabasePort; }
 	CNtlString		GetAccDbUser()	{ return m_config.AccDatabaseUser; }
 	CNtlString		GetAccDbPass()	{ return m_config.AccDatabasePassword; }
 	CNtlString		GetAccDbDatabase() { return m_config.AccDatabase; }
@@ -98,6 +100,10 @@ public:
 		{
 			return NTL_ERR_DBC_HANDLE_ALREADY_ALLOCATED;
 		}
+		if (!file.Read("DATABASE_CHARACTER", "Port", m_config.DatabasePort))
+		{
+			return NTL_ERR_DBC_HANDLE_ALREADY_ALLOCATED;
+		}
 		if (!file.Read("DATABASE_CHARACTER", "User", m_config.DatabaseUser))
 		{
 			return NTL_ERR_SYS_MEMORY_ALLOC_FAIL;
@@ -111,6 +117,10 @@ public:
 			return NTL_ERR_DBC_CONNECTION_CONNECT_FAIL;
 		}
 		if (!file.Read("DATABASE_ACCOUNT", "Host", m_config.AccDatabaseHost))
+		{
+			return NTL_ERR_DBC_HANDLE_ALREADY_ALLOCATED;
+		}
+		if (!file.Read("DATABASE_ACCOUNT", "Port", m_config.AccDatabasePort))
 		{
 			return NTL_ERR_DBC_HANDLE_ALREADY_ALLOCATED;
 		}

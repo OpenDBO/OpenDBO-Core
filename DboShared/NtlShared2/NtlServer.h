@@ -23,10 +23,12 @@ struct sGAME_SERVERCONFIG
 	WORD			wClientAcceptPort;
 
 	CNtlString		DatabaseHost;
+	WORD            DatabasePort;
 	CNtlString		DatabaseUser;
 	CNtlString		DatabasePassword;
 	CNtlString		Database;
 	CNtlString		AccDatabaseHost;
+	WORD            AccDatabasePort;
 	CNtlString		AccDatabaseUser;
 	CNtlString		AccDatabasePassword;
 	CNtlString		AccDatabase;
@@ -102,10 +104,12 @@ struct sCHAT_SERVERCONFIG
 	WORD			wQueryServerPort;
 
 	CNtlString		DatabaseHost;
+	WORD            DatabasePort;
 	CNtlString		DatabaseUser;
 	CNtlString		DatabasePassword;
 	CNtlString		Database;
 	CNtlString		AccDatabaseHost;
+	WORD            AccDatabasePort;
 	CNtlString		AccDatabaseUser;
 	CNtlString		AccDatabasePassword;
 	CNtlString		AccDatabase;
@@ -124,11 +128,13 @@ struct sCHAR_SERVERCONFIG
 	BYTE			byServerID;
 
 	CNtlString		DatabaseHost;
+	WORD            DatabasePort;
 	CNtlString		DatabaseUser;
 	CNtlString		DatabasePassword;
 	CNtlString		Database;
 
 	CNtlString		AccDatabaseHost;
+	WORD            AccDatabasePort;
 	CNtlString		AccDatabaseUser;
 	CNtlString		AccDatabasePassword;
 	CNtlString		AccDatabase;

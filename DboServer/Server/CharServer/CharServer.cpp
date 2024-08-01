@@ -276,7 +276,7 @@ int main(int argc, _TCHAR* argv[])
 	db_char = Database::CreateDatabaseInterface(1);
 
 	// Initialize it
-	if (!GetCharDB.Initialize(app.GetDatabaseHost(), 3306, app.GetDatabaseUser(),
+	if (!GetCharDB.Initialize(app.GetDatabaseHost(), app.GetDatabasePort(), app.GetDatabaseUser(),
 		app.GetDatabasePassword(), app.GetDatabaseName(), 5))
 	{
 		NTL_PRINT(PRINT_APP, "sql : character database initialization failed. Exiting.");
@@ -287,7 +287,7 @@ int main(int argc, _TCHAR* argv[])
 	db_acc = Database::CreateDatabaseInterface(1);
 
 	// Initialize it
-	if (!GetAccDB.Initialize(app.GetAccDatabaseHost(), 3306, app.GetAccDatabaseUser(),
+	if (!GetAccDB.Initialize(app.GetAccDatabaseHost(), app.GetAccDatabasePort(), app.GetAccDatabaseUser(),
 		app.GetAccDatabasePassword(), app.GetAccDatabaseName(), 5))
 	{
 		NTL_PRINT(PRINT_APP, "sql : account database initialization failed. Exiting.");

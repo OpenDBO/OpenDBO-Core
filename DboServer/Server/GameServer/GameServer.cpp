@@ -371,6 +371,10 @@ int	CGameServer::OnConfiguration(const char * lpszConfigFile)
 	{
 		return NTL_ERR_DBC_HANDLE_ALREADY_ALLOCATED;
 	}
+	if (!file.Read("DATABASE_CHARACTER", "Port", m_config.DatabasePort))
+	{
+		return NTL_ERR_DBC_HANDLE_ALREADY_ALLOCATED;
+	}
 	if (!file.Read("DATABASE_CHARACTER", "User", m_config.DatabaseUser))
 	{
 		return NTL_ERR_SYS_MEMORY_ALLOC_FAIL;
@@ -384,6 +388,10 @@ int	CGameServer::OnConfiguration(const char * lpszConfigFile)
 		return NTL_ERR_DBC_CONNECTION_CONNECT_FAIL;
 	}
 	if (!file.Read("DATABASE_ACCOUNT", "Host", m_config.AccDatabaseHost))
+	{
+		return NTL_ERR_DBC_HANDLE_ALREADY_ALLOCATED;
+	}
+	if (!file.Read("DATABASE_ACCOUNT", "Port", m_config.AccDatabasePort))
 	{
 		return NTL_ERR_DBC_HANDLE_ALREADY_ALLOCATED;
 	}

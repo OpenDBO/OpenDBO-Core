@@ -280,7 +280,7 @@ int main(int argc, _TCHAR* argv[])
 	NTL_PRINT(PRINT_APP, "CONNECTING TO DATABASE");
 	
 	db_acc = Database::CreateDatabaseInterface(1);
-	if (!GetAccDB.Initialize(app.GetDatabaseHost(), 3306, app.GetDatabaseUser(),
+	if (!GetAccDB.Initialize(app.GetDatabaseHost(), app.GetDatabasePort(), app.GetDatabaseUser(),
 		app.GetDatabasePassword(), app.GetDatabaseName(), 5))
 	{
 		NTL_PRINT(PRINT_APP, "sql : dbo_acc database initialization failed. Exiting.");
@@ -289,7 +289,7 @@ int main(int argc, _TCHAR* argv[])
 	}
 
 	db_log = Database::CreateDatabaseInterface(1);
-	if (!GetLogDB.Initialize(app.GetDatabaseHost(), 3306, app.GetDatabaseUser(),
+	if (!GetLogDB.Initialize(app.GetDatabaseHost(), app.GetDatabasePort(), app.GetDatabaseUser(),
 		app.GetDatabasePassword(), "dbo_log", 5))
 	{
 		NTL_PRINT(PRINT_APP, "sql : dbo_log database initialization failed. Exiting.");

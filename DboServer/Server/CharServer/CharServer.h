@@ -27,11 +27,13 @@ public:
 
 
 	CNtlString		GetDatabaseHost()	{ return m_config.DatabaseHost; }
+	WORD		    GetDatabasePort() { return m_config.DatabasePort; }
 	CNtlString		GetDatabaseUser()	{ return m_config.DatabaseUser; }
 	CNtlString		GetDatabasePassword()	{ return m_config.DatabasePassword; }
 	CNtlString		GetDatabaseName()	{ return m_config.Database; }
 
 	CNtlString		GetAccDatabaseHost()	{ return m_config.AccDatabaseHost; }
+	WORD		    GetAccDatabasePort() { return m_config.AccDatabasePort; }
 	CNtlString		GetAccDatabaseUser()	{ return m_config.AccDatabaseUser; }
 	CNtlString		GetAccDatabasePassword()	{ return m_config.AccDatabasePassword; }
 	CNtlString		GetAccDatabaseName()	{ return m_config.AccDatabase; }
@@ -94,6 +96,8 @@ public:
 		//DATABASE
 		if( !file.Read("DATABASE_CHARACTER", "Host", m_config.DatabaseHost) )
 			return NTL_ERR_SYS_CONFIG_FILE_READ_FAIL;
+		if (!file.Read("DATABASE_CHARACTER", "Port", m_config.DatabasePort))
+			return NTL_ERR_SYS_CONFIG_FILE_READ_FAIL;
 		if( !file.Read("DATABASE_CHARACTER", "User",  m_config.DatabaseUser) )
 			return NTL_ERR_SYS_CONFIG_FILE_READ_FAIL;
 		if (!file.Read("DATABASE_CHARACTER", "Password", m_config.DatabasePassword))
@@ -102,6 +106,8 @@ public:
 			return NTL_ERR_SYS_CONFIG_FILE_READ_FAIL;
 
 		if (!file.Read("DATABASE_ACCOUNT", "Host", m_config.AccDatabaseHost))
+			return NTL_ERR_SYS_CONFIG_FILE_READ_FAIL;
+		if (!file.Read("DATABASE_ACCOUNT", "Port", m_config.AccDatabasePort))
 			return NTL_ERR_SYS_CONFIG_FILE_READ_FAIL;
 		if (!file.Read("DATABASE_ACCOUNT", "User", m_config.AccDatabaseUser))
 			return NTL_ERR_SYS_CONFIG_FILE_READ_FAIL;
