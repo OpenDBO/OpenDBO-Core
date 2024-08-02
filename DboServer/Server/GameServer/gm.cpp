@@ -134,8 +134,13 @@ ACMD(do_notify);
 struct command_info cmd_info[] =
 {
 	// Everyone
-	{ "@unstuck", do_unstuck, ADMIN_LEVEL_NONE },
-	{ "@online", do_PlayerCount, ADMIN_LEVEL_NONE },
+	{ "@unstuck", do_unstuck, ADMIN_LEVEL_NONE }, // This command is used to teleport you back to your Popo Stone if you are stuck.
+	{ "@online", do_PlayerCount, ADMIN_LEVEL_NONE }, // Shows amount of online players.
+	{ "@exp", do_exp, ADMIN_LEVEL_NONE }, // (on/off) This command toggles whether or not your character continues to gain experience. It is used to continue to farm without gaining any more levels, to gather gear for kid budokai.
+	{ "@resetexp", do_resetexp, ADMIN_LEVEL_NONE }, // This command resets your experience to 0.
+	{ "@addmasteritem", do_addmasteritem, ADMIN_LEVEL_NONE }, // This command adds the item used to complete the master quest for your class, in case you lose it by accident. Can only be used after you accept it from Korin.
+	{ "@addskill2", do_addskill2, ADMIN_LEVEL_NONE }, // This command unlocks the master class passive skill, in case a bug causes you to lose it. Can only be used after you have unlocked your master class.
+	{ "@addhtb", do_addhtb, ADMIN_LEVEL_NONE }, // This command unlocks the main htb and master class htb, if you have already learned them. This is meant to be used after a skill reset. Can only be used after you have unlocked your master class.
 	
 	// Game Master
 	
@@ -190,11 +195,6 @@ struct command_info cmd_info[] =
 	{ "@test", do_test, ADMIN_LEVEL_ADMIN },
 	{ "@all", do_TeleportAll, ADMIN_LEVEL_ADMIN },	
 	{ "@PvpEvent", do_BatleEvent, ADMIN_LEVEL_ADMIN },
-	{ "@addmasteritem", do_addmasteritem, ADMIN_LEVEL_ADMIN },
-	{ "@addskill2", do_addskill2, ADMIN_LEVEL_ADMIN },
-	{ "@addhtb", do_addhtb, ADMIN_LEVEL_ADMIN },
-	{ "@exp", do_exp, ADMIN_LEVEL_ADMIN },
-	{ "@resetexp", do_resetexp, ADMIN_LEVEL_ADMIN },
 	{ "@level", do_setlevel2, ADMIN_LEVEL_ADMIN },
 	{ "@fly", do_fly, ADMIN_LEVEL_ADMIN },
 
