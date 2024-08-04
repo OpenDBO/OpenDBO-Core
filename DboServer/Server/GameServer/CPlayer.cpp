@@ -3162,31 +3162,26 @@ void CPlayer::FusionMascot(BYTE byItemPlace, BYTE byItemPos, BYTE byMascotLevelU
 	CItem* item = NULL;
 	CItemPet* mainMascot = NULL;
 	CItemPet* offeringMascot = NULL;
+		
+	mainMascot = GetMascot(byMascotLevelUpSlot);
+	offeringMascot = GetMascot(byMascotOfferingSlot);
 
-	if (IsInvenContainer(byItemPlace))
+	if (GetCurrentMascot()) // not allowed to have summoned pet while fusion
+		resultcode = MASCOT_FAIL;
+	else if (mainMascot == NULL || offeringMascot == NULL) // check if main mascot exist
+		resultcode = MASCOT_NOT_EXIST;
+	else if (mainMascot->GetExp() < mainMascot->GetNeedExp()) // check mascot exp
+		resultcode = MASCOT_FAIL;
+	else if (mainMascot->CanLevelUp() == false) // check if already max level
+		resultcode = MASCOT_FAIL;
+	else if (IsInvenContainer(byItemPlace)) // if no item is used game will send 0xFF and 0xFF for byItemPlace and byItemPos
 	{
 		item = GetPlayerItemContainer()->GetItem(byItemPlace, byItemPos);
-		mainMascot = GetMascot(byMascotLevelUpSlot);
-		offeringMascot = GetMascot(byMascotOfferingSlot);
-
-		if (GetCurrentMascot()) //not allowed to have summoned pet while fusion
-			resultcode = MASCOT_FAIL;
-		else if (mainMascot == NULL || offeringMascot == NULL) //check if main mascot exist
-			resultcode = MASCOT_NOT_EXIST;
-		else if (mainMascot->GetExp() < mainMascot->GetNeedExp()) //check mascot exp
-			resultcode = MASCOT_FAIL;
-		else if (mainMascot->CanLevelUp() == false) //check if already max level
-			resultcode = MASCOT_FAIL;
-		else if (item)
-		{
-			if (item->GetTbldat()->byItem_Type == ITEM_TYPE_EVENT_MASCOT_LEVELUP && item->GetCount() > 0)
-				nPercent = 100;
-			else
-				resultcode = MASCOT_ITEM_INVALID;
-		}
+		if (item && item->GetTbldat()->byItem_Type == ITEM_TYPE_EVENT_MASCOT_LEVELUP && item->GetCount() > 0)
+			nPercent = 100;
+		else
+			resultcode = MASCOT_ITEM_INVALID;
 	}
-	else resultcode = GAME_FAIL;
-
 
 	CNtlPacket packet(sizeof(sGU_MASCOT_FUSION_RES));
 	sGU_MASCOT_FUSION_RES * res = (sGU_MASCOT_FUSION_RES *)packet.GetPacketData();
