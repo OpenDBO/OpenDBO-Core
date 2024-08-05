@@ -361,6 +361,7 @@ public:
 	virtual void		OnTargetChanged(HOBJECT hOldTarget);
 
 	virtual BYTE		GetMaxChainAttack() { return NtlGetBattleChainAttackSequence(GetLevel()); }
+	virtual BYTE		GetStartChainIndex() { return NTL_BATTLE_CHAIN_ATTACK_START_PLAYER; }
 
 	virtual bool		AttackProgress(DWORD dwTickDiff, float fMultiple);
 	virtual bool		OnAttackAction(CCharacter* pAttacker, int nDmg, BYTE byAttackResult, eFAINT_REASON eReason = FAINT_REASON_HIT);

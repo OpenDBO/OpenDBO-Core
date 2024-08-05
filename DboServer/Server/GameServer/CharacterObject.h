@@ -221,7 +221,8 @@ public:
 	bool				NeedToIgnoreDistance() { return m_bNeedToIgnoreDistance; }
 	void				SetNeedToIgnoreDistance(bool bFlag) { m_bNeedToIgnoreDistance = bFlag; }
 
-	virtual BYTE		GetMaxChainAttack() { return NTL_BATTLE_CHAIN_ATTACK_START; }
+	virtual BYTE		GetMaxChainAttack() { return NTL_BATTLE_MAX_CHAIN_ATTACK_COUNT_PLAYER; }
+	virtual BYTE		GetStartChainIndex() { return NTL_BATTLE_CHAIN_ATTACK_START_PLAYER; }
 
 	void				SetLastAttackTime(DWORD dwTime) { m_dwNextAttackTime = dwTime; }
 
@@ -283,6 +284,7 @@ protected:
 	DWORD			m_dwNextAttackTime;
 	DWORD			m_dwSkillBlockTime; //time until when skill usage is blocked (GetTickCount() + skill animation time)
 	BYTE			m_byChainSequence;
+	BYTE			m_byStartAnimationIndex;
 
 	float			m_fScale;
 

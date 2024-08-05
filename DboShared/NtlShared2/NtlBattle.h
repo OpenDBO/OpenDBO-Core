@@ -298,12 +298,14 @@ const float			NTL_BATTLE_PUSH_DISTANCE					= 1.0f; // PUSH 거리
 const float			NTL_BATTLE_KNOCKDOWN_DISTANCE				= 5.6f;	// KNOCKDOWN 거리.
 const float			NTL_BATTLE_SLIDING_DISTANCE					= 4.0f; // SLIDING 거리
 
-const int			NTL_BATTLE_CHAIN_ATTACK_START				= 1; // chain attack start id 
+const int			NTL_BATTLE_CHAIN_ATTACK_START_NPC			= 0; // chain attack start id for npcs
+const int			NTL_BATTLE_CHAIN_ATTACK_START_PLAYER		= 1; // chain attack start id for players
 
-const int			NTL_BATTLE_MAX_CHAIN_ATTACK_COUNT			= 6; // The maximum value chain attack
+const int			NTL_BATTLE_MAX_CHAIN_ATTACK_COUNT_NPC		= 2; // NPC attacks (currently 2 types)
+const int			NTL_BATTLE_MAX_CHAIN_ATTACK_COUNT_PLAYER	= 6; // The maximum value chain attack for players
 
 const float			NTL_BATTLE_BLOCK_DAMAGE_REDUCE_RATE			= 0.3f;
-const float			DBO_BATTLE_OFFENCE_CHANGE_RATE_BY_BLOCK			= 0.3f;
+const float			DBO_BATTLE_OFFENCE_CHANGE_RATE_BY_BLOCK		= 0.3f;
 const float			NTL_BATTLE_CRITICAL_DAMAGE_INCREASE_RATE	= 1.5f;	//1.5
 const float			DBO_BATTLE_OFFENCE_BONUS_RATE_BY_CRITICAL	= 75.0f;		// in percent. Default 100
 
@@ -320,8 +322,6 @@ const DWORD			NTL_BATTLE_KNOCKDOWN_MAX_WAKEUP_TIME		= 6000; // MAX KNOCKDOWN TIM
 const DWORD			NTL_BATTLE_KNOCKDOWN_WAKEUP_TIME_DIFF		= NTL_BATTLE_KNOCKDOWN_MAX_WAKEUP_TIME - NTL_BATTLE_KNOCKDOWN_MIN_WAKEUP_TIME;
 const DWORD			NTL_BATTLE_SLIDING_END_TIME					= 1200; // 슬라이딩 끝나는 타임
 const DWORD			NTL_BATTLE_HTB_SANDBAG_END_TIME				= 10000; // HTB시 SANDBAG 끝나는 타임
-
-const int			NTL_BATTLE_MAX_NPC_ATTACK_TYPE				= 2; // NPC attacks (currently 2 types)
 
 const int			DBO_BATTLE_ANGLE_IN_DEGREE_PC = 120;
 
