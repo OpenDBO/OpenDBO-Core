@@ -319,7 +319,8 @@ public:
 
 	sNPC_SPEECH_GROUP*	GetSpeechGroup() { return m_pSpeechGroup; }
 
-	virtual BYTE		GetMaxChainAttack() { return NTL_BATTLE_MAX_NPC_ATTACK_TYPE; }
+	virtual BYTE		GetStartChainIndex() { return NTL_BATTLE_CHAIN_ATTACK_START_NPC; }
+	virtual BYTE		GetMaxChainAttack() { return NTL_BATTLE_MAX_CHAIN_ATTACK_COUNT_NPC; }
 
 	virtual bool		AttackProgress(DWORD dwTickDiff, float fMultiple);
 	virtual bool		OnAttackAction(CCharacter* pAttacker, int nDmg, BYTE byAttackResult, eFAINT_REASON eReason = FAINT_REASON_HIT);

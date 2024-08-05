@@ -84,7 +84,7 @@ void CCharacterObject::Init()
 
 	m_hTarget = INVALID_HOBJECT;
 
-	m_byChainSequence = NTL_BATTLE_CHAIN_ATTACK_START;
+	m_byChainSequence = GetStartChainIndex();
 
 	m_fWalkSpeedBeforeBlock = 0.0f;
 	m_fRunSpeedBeforeBlock = 0.0f;
@@ -630,7 +630,7 @@ bool CCharacterObject::SetFightMode(bool bFlag)
 {
 	if (m_bFightMode != bFlag)
 	{
-		m_byChainSequence = NTL_BATTLE_CHAIN_ATTACK_START; //reset chain attack
+		m_byChainSequence = GetStartChainIndex(); //reset chain attack
 
 		m_bFightMode = bFlag;
 		return true;

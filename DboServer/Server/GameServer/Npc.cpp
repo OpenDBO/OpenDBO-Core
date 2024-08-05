@@ -1505,7 +1505,7 @@ bool CNpc::AttackProgress(DWORD dwTickDiff, float fMultiple)
 		if (!pVictim || !pVictim->IsInitialized())
 			return false;
 
-		AttackAction(pVictim, true);
+		AttackAction(pVictim);
 
 		float fAnimationTime = (float)GetAniTbldat()->GetNpcAttackDurationTime(GetAttackType());
 		float fAttackAnimationSpeed = (GetAttackSpeedRate() == 0) ? 1.0f : 1000.0f / (float)GetAttackSpeedRate();

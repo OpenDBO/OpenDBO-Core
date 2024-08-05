@@ -1014,11 +1014,11 @@ BEGIN_PROTOCOL(GU_CHAR_ACTION_ATTACK)
 	HOBJECT					hSubject; // Action principal characters handle
 	HOBJECT					hTarget; // Action target character handles
 	DWORD					dwLpEpEventId;
-	bool					bChainAttack:1; // Whether chain attack
+	bool					bChainAttack:1; // Whether chain attack or not (monsters should have this set to 0 and players to 1)
 	BYTE					byAttackResult:7; // Action Result ( eBATTLE_ATTACK_RESULT )
 	int						attackResultValue; // Result of the action (damage) //updated
 	BYTE					byAttackSequence; // Attack sequence number (chain attack)
-	float					fReflectedDamage; // Damage and is reflected from the target.
+	float					fReflectedDamage; // Damage reflected from the target.
 	BYTE					byBlockedAction;		// eDBO_GUARD_TYPE
 	sVECTOR3				vShift;
 	sDBO_LP_EP_RECOVERED	lpEpRecovered; //new

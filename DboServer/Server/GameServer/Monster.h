@@ -47,7 +47,9 @@ public:
 
 	virtual bool		HasFunction(DWORD dwFuncFlag) { return false; }
 
-	virtual BYTE		GetMaxChainAttack() { return GetTbldat()->byAttack_Animation_Quantity + 1; }
+	//virtual BYTE		GetMaxChainAttack() { return GetTbldat()->byAttack_Animation_Quantity + 1; } // No NPC seems to have more than 1 (so 2 max).
+	virtual BYTE		GetMaxChainAttack() { return NTL_BATTLE_MAX_CHAIN_ATTACK_COUNT_NPC; }
+	virtual BYTE		GetStartChainIndex() { return NTL_BATTLE_CHAIN_ATTACK_START_NPC; }
 
 	virtual HOBJECT		ConsiderScanTarget(WORD wRange);
 

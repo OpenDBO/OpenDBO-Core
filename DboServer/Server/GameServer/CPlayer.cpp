@@ -3778,7 +3778,7 @@ bool CPlayer::AttackProgress(DWORD dwTickDiff, float fMultiple)
 		
 		UpdateBattleCombatMode(true); //Start/Reset combat event
 
-		AttackAction(pVictim, true);
+		AttackAction(pVictim);
 
 		float fAnimationTime = animationInfo->fDurationTime * 1000.f; //chain attack duration time (GetChainAttackDurationTime())
 		float fAttackAnimationSpeed = (GetAttackSpeedRate() == 0) ? 1.0f : 1000.0f / (float)GetAttackSpeedRate();

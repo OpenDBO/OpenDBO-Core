@@ -98,14 +98,15 @@ const char * NtlGetBattleAttackResultString(BYTE byAttackResult)
 //-----------------------------------------------------------------------------------
 float NtlGetBattleChainAttackBounsRate(BYTE byAttackSequence)
 {
-	static float s_afChainAttackBonusRate[ NTL_BATTLE_MAX_CHAIN_ATTACK_COUNT ] = { 0.0f, 0.5f, 1.0f, 2.0f, 3.0f, 4.0f };
+	// NTL_BATTLE_MAX_CHAIN_ATTACK_COUNT_PLAYER is simply the max possible attack chain number (6).
+	static float s_afChainAttackBonusRate[ NTL_BATTLE_MAX_CHAIN_ATTACK_COUNT_PLAYER ] = { 0.0f, 0.5f, 1.0f, 2.0f, 3.0f, 4.0f };
 
 	if( byAttackSequence <= 0 )
 	{
 		return 0.0f;
 	}
 
-	if( byAttackSequence > NTL_BATTLE_MAX_CHAIN_ATTACK_COUNT )
+	if( byAttackSequence > NTL_BATTLE_MAX_CHAIN_ATTACK_COUNT_PLAYER )
 	{
 		_ASSERT( 0 );
 		return 0.0f;

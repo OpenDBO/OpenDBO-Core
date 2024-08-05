@@ -36,7 +36,7 @@ void CPlayer::UpdatePvpZone(bool bStatus)
 //-------------------------------------------------------------------//
 // send attack action packet
 //-------------------------------------------------------------------//
-void CCharacter::AttackAction(CCharacter* pVictim, bool bIsChainAttack)
+void CCharacter::AttackAction(CCharacter* pVictim)
 {
 	float fDmg = 0.0f;
 	BYTE byAttackType = GetAttackType();
@@ -83,54 +83,62 @@ void CCharacter::AttackAction(CCharacter* pVictim, bool bIsChainAttack)
 	float fChainBonusRate = NtlGetBattleChainAttackBounsRate(m_byChainSequence);
 	fDmg += fDmg * fChainBonusRate / 100;
 
-
-
 	if (BattleIsBlock(pVictim->GetCharAtt()->GetBlockRate(), GetLevel(), pVictim->GetLevel()))
 	{
 		byAttackResult = BATTLE_ATTACK_RESULT_BLOCK;
-		fDmg /= 2.f;
+		fDmg /= 2.f; // TODO: Are we 100% sure about this? Leaked virutual server does no damage on block.
+		goto SEND_PACKET;
 	}
-	else
+
+	// According to the leaked virtual server enemy should either slip or be knocked down once all 6 combo
+	// attacks are performed.
+	if (IsPC() && m_byChainSequence == NTL_BATTLE_MAX_CHAIN_ATTACK_COUNT_PLAYER)
 	{
-		//check crit
-		float fCritDmgRate = 0.0f, fCritDmgBonus = 0.0f, fCritDefRate = 0.0f;
-		bool bIsCrit = false;
+		if (rand() % 2)
+			byAttackResult = BATTLE_ATTACK_RESULT_KNOCKDOWN;
+		else
+			byAttackResult = BATTLE_ATTACK_RESULT_SLIDING;
+		goto SEND_PACKET;
+	}
 
-		if (byAttackType == BATTLE_ATTACK_TYPE_PHYSICAL)
+	// check crit
+	float fCritDmgRate = 0.0f, fCritDmgBonus = 0.0f, fCritDefRate = 0.0f;
+	bool bIsCrit = false;
+
+	if (byAttackType == BATTLE_ATTACK_TYPE_PHYSICAL)
+	{
+		if (BattleIsCrit(GetCharAtt(), pVictim->GetCharAtt(), true))
 		{
-			if (BattleIsCrit(GetCharAtt(), pVictim->GetCharAtt(), true))
-			{
-				bIsCrit = true;
+			bIsCrit = true;
 
-				fCritDmgRate = GetCharAtt()->GetPhysicalCriticalDamageRate();
+			fCritDmgRate = GetCharAtt()->GetPhysicalCriticalDamageRate();
 
-				// critical dmg def
-				fCritDefRate = pVictim->GetCharAtt()->GetPhysicalCriticalDefenceRate();
-			}
+			// critical dmg def
+			fCritDefRate = pVictim->GetCharAtt()->GetPhysicalCriticalDefenceRate();
 		}
-		else if (byAttackType == BATTLE_ATTACK_TYPE_ENERGY)
+	}
+	else if (byAttackType == BATTLE_ATTACK_TYPE_ENERGY)
+	{
+		if (BattleIsCrit(GetCharAtt(), pVictim->GetCharAtt(), false))
 		{
-			if (BattleIsCrit(GetCharAtt(), pVictim->GetCharAtt(), false))
-			{
-				bIsCrit = true;
+			bIsCrit = true;
 
-				fCritDmgRate = GetCharAtt()->GetEnergyCriticalDamageRate();
+			fCritDmgRate = GetCharAtt()->GetEnergyCriticalDamageRate();
 
-				// critical dmg def
-				fCritDefRate = pVictim->GetCharAtt()->GetEnergyCriticalDefenceRate();
-			}
+			// critical dmg def
+			fCritDefRate = pVictim->GetCharAtt()->GetEnergyCriticalDefenceRate();
 		}
+	}
 
-		if (bIsCrit)
-		{
-			byAttackResult = BATTLE_ATTACK_RESULT_CRITICAL_HIT;
+	if (bIsCrit)
+	{
+		byAttackResult = BATTLE_ATTACK_RESULT_CRITICAL_HIT;
 
-			fCritDmgBonus = ((fDmg * fCritDmgRate) / 100.f);
+		fCritDmgBonus = ((fDmg * fCritDmgRate) / 100.f);
 
-			fCritDmgBonus -= fCritDmgBonus * fCritDefRate / 100.f;
+		fCritDmgBonus -= fCritDmgBonus * fCritDefRate / 100.f;
 
-			fDmg += fCritDmgBonus;
-		}
+		fDmg += fCritDmgBonus;
 	}
 
 	//set victim heal-on-hit
@@ -147,18 +155,27 @@ void CCharacter::AttackAction(CCharacter* pVictim, bool bIsChainAttack)
 
 //---SEND PACKET START----------------------------------------------------------
 SEND_PACKET:
-	
 	CNtlPacket packet(sizeof(sGU_CHAR_ACTION_ATTACK));
 	sGU_CHAR_ACTION_ATTACK * res = (sGU_CHAR_ACTION_ATTACK *)packet.GetPacketData();
 	res->wOpCode = GU_CHAR_ACTION_ATTACK;
 	res->hSubject = GetID();
 	res->hTarget = pVictim->GetID();
 	res->dwLpEpEventId = pVictim->AcquireLpEpEventID();
-	res->bChainAttack = (BYTE)bIsChainAttack;
+	res->bChainAttack = IsPC(); // Only players perform chain attacks.
 	res->byAttackResult = byAttackResult;
 	res->attackResultValue = (int)fDmg;
-	res->byAttackSequence = m_byChainSequence;
-	res->fReflectedDamage = fReflectedDamage; //when this is enabled then the client crashes
+	// Player characters will chain all attacks from 1 until max anim id (depending on level, max 6), then reset back to 1.
+	if (IsPC()) {
+		res->byAttackSequence = m_byChainSequence;
+		if ((m_byChainSequence + 1) > GetMaxChainAttack())
+			m_byChainSequence = GetStartChainIndex();
+		else
+			m_byChainSequence++;
+	}
+	// Mobs will simply select either main or secondary attack randomly.
+	else
+		res->byAttackSequence = rand() % GetMaxChainAttack();
+	res->fReflectedDamage = fReflectedDamage;
 	res->byBlockedAction = byBlockedAction;
 	vShift.CopyTo(res->vShift);
 
@@ -192,14 +209,6 @@ SEND_PACKET:
 			pVictim->UpdateCurLP((int)fTargetLpRecoveredWhenHit, true, false);
 		if (res->lpEpRecovered.dwTargetEpRecoveredWhenHit >= 1)
 			pVictim->UpdateCurEP((WORD)fTargetEpRecoveredWhenHit, true, false);
-	}
-
-
-	if (bIsChainAttack)
-	{
-		++m_byChainSequence;
-		if (m_byChainSequence > GetMaxChainAttack())
-			m_byChainSequence = NTL_BATTLE_CHAIN_ATTACK_START;
 	}
 }
 
