@@ -652,7 +652,7 @@ void	CChatServerSession::RecAuctionHousePriceInfoRes(CNtlPacket * pPacket)
 			res->charId = player->GetCharID();
 			res->nItem = req->nItem;
 			res->dwMoney = req->dwPrice;
-			wcscpy_s(res->awchSystem, NTL_MAX_SIZE_CHAR_NAME + 1, L"[DBOR]System");
+			wcscpy_s(res->awchSystem, NTL_MAX_SIZE_CHAR_NAME + 1, L"System");
 			wcscpy_s(res->awchBuyText, NTL_MAX_LENGTH_OF_MAIL_MESSAGE + 1, L"You have bought an Item");
 			wcscpy_s(res->awchSellText, NTL_MAX_LENGTH_OF_MAIL_MESSAGE + 1, L"You have sold an Item");
 			packet.SetPacketLen(sizeof(sGT_TENKAICHIDAISIJYOU_BUY_REQ));

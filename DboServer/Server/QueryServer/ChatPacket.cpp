@@ -1045,7 +1045,7 @@ void CChatServerSession::RecvAuctionHouseSellCancelReq(CNtlPacket * pPacket, CQu
 			GetLocalTime(&ti);
 
 			//enter email to database
-			GetCharDB.Execute("INSERT INTO mail (CharID, SenderType, MailType, TextSize, Text, itemId, FromName, CreateTime, EndTime, RemainDay,year,month,day,hour,minute,second) VALUES (%u,%u,%u,%u,\"%ls\",%I64u,'[DBOR]System',%I64u,%I64u,%u,%u,%u,%u,%u,%u,%u)",
+			GetCharDB.Execute("INSERT INTO mail (CharID, SenderType, MailType, TextSize, Text, itemId, FromName, CreateTime, EndTime, RemainDay,year,month,day,hour,minute,second) VALUES (%u,%u,%u,%u,\"%ls\",%I64u,'System',%I64u,%I64u,%u,%u,%u,%u,%u,%u,%u)",
 				req->charId, eMAIL_SENDER_TYPE_SYSTEM, eMAIL_TYPE_ITEM, mailtextsize, req->wchText, pData->itemId, createtime, endtime, 10, ti.wYear, ti.wMonth, ti.wDay, ti.wHour, ti.wMinute, ti.wSecond);
 
 			//delete & remove from AH & DB
@@ -1094,11 +1094,11 @@ void CChatServerSession::RecvAuctionHouseBuyReq(CNtlPacket * pPacket, CQueryServ
 				int sellTextSize = (int)wcslen(req->wchSellText);
 
 				//enter email to database <buyer>
-				GetCharDB.Execute("INSERT INTO mail (CharID, SenderType, MailType, TextSize, Text, itemId, FromName, CreateTime, EndTime, RemainDay,year,month,day,hour,minute,second) VALUES (%u,%u,%u,%u,\"%ls\",%I64u,'[DBOR]System',%I64u,%I64u,%u,%u,%u,%u,%u,%u,%u)",
+				GetCharDB.Execute("INSERT INTO mail (CharID, SenderType, MailType, TextSize, Text, itemId, FromName, CreateTime, EndTime, RemainDay,year,month,day,hour,minute,second) VALUES (%u,%u,%u,%u,\"%ls\",%I64u,'System',%I64u,%I64u,%u,%u,%u,%u,%u,%u,%u)",
 					req->charId, eMAIL_SENDER_TYPE_SYSTEM, eMAIL_TYPE_ITEM, buyTextSize, req->wchBuyText, pData->itemId, createtime, endtime, 10, ti.wYear, ti.wMonth, ti.wDay, ti.wHour, ti.wMinute, ti.wSecond);
 
 				//enter email to database <seller>
-				GetCharDB.Execute("INSERT INTO mail (CharID, SenderType, MailType, TextSize, Text, Zenny, FromName, CreateTime, EndTime, RemainDay,year,month,day,hour,minute,second) VALUES (%u,%u,%u,%u,\"%ls\",%u,'[DBOR]System',%I64u,%I64u,%u,%u,%u,%u,%u,%u,%u)",
+				GetCharDB.Execute("INSERT INTO mail (CharID, SenderType, MailType, TextSize, Text, Zenny, FromName, CreateTime, EndTime, RemainDay,year,month,day,hour,minute,second) VALUES (%u,%u,%u,%u,\"%ls\",%u,'System',%I64u,%I64u,%u,%u,%u,%u,%u,%u,%u)",
 					req->sellcharId, eMAIL_SENDER_TYPE_SYSTEM, eMAIL_TYPE_ZENNY, sellTextSize, req->wchSellText, req->dwMoney, createtime, endtime, 10, ti.wYear, ti.wMonth, ti.wDay, ti.wHour, ti.wMinute, ti.wSecond);
 
 				//delete & remove from AH & DB
@@ -1184,7 +1184,7 @@ void CChatServerSession::RecvAuctionHousePeriodEndReq(CNtlPacket * pPacket, CQue
 		GetLocalTime(&ti);
 
 		//enter email to database
-		GetCharDB.Execute("INSERT INTO mail (CharID, SenderType, MailType, TextSize, Text, itemId, FromName, CreateTime, EndTime, RemainDay,year,month,day,hour,minute,second) VALUES (%u,%u,%u,%u,\"%ls\",%I64u,'[DBOR]System',%I64u,%I64u,%u,%u,%u,%u,%u,%u,%u)",
+		GetCharDB.Execute("INSERT INTO mail (CharID, SenderType, MailType, TextSize, Text, itemId, FromName, CreateTime, EndTime, RemainDay,year,month,day,hour,minute,second) VALUES (%u,%u,%u,%u,\"%ls\",%I64u,'System',%I64u,%I64u,%u,%u,%u,%u,%u,%u,%u)",
 			pData->charId, eMAIL_SENDER_TYPE_SYSTEM, eMAIL_TYPE_ITEM, (int)wcslen(req->wchText), req->wchText, pData->itemId, createtime, endtime, 10, ti.wYear, ti.wMonth, ti.wDay, ti.wHour, ti.wMinute, ti.wSecond);
 
 
