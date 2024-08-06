@@ -84,7 +84,7 @@ void CCharacterObject::Init()
 
 	m_hTarget = INVALID_HOBJECT;
 
-	m_byChainSequence = GetStartChainIndex();
+	m_byChainSequence = 0;
 
 	m_fWalkSpeedBeforeBlock = 0.0f;
 	m_fRunSpeedBeforeBlock = 0.0f;
@@ -630,7 +630,7 @@ bool CCharacterObject::SetFightMode(bool bFlag)
 {
 	if (m_bFightMode != bFlag)
 	{
-		m_byChainSequence = GetStartChainIndex(); //reset chain attack
+		m_byChainSequence = 0; //reset chain attack
 
 		m_bFightMode = bFlag;
 		return true;
