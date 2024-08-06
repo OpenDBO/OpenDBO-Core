@@ -49,6 +49,17 @@ void CCharacter::AttackAction(CCharacter* pVictim)
 	CNtlVector vShift(pVictim->GetCurLoc() - GetCurLoc());
 	vShift.y = 0.0f;
 	vShift.SafeNormalize();
+	
+	// Player characters will chain all attacks from 1 until max anim id (depending on level, max 6), then reset back to 1.
+	if (IsPC()) {
+		if (m_byChainSequence < GetMaxChainAttack())
+			++m_byChainSequence;
+		else
+			m_byChainSequence = GetStartChainIndex();
+	}
+	// Mobs will simply select either main or secondary attack randomly.
+	else
+		m_byChainSequence = rand() % GetMaxChainAttack();
 
 	if (pVictim->GetStateManager()->IsCharCondition(CHARCOND_INVINCIBLE))
 	{
@@ -66,7 +77,6 @@ void CCharacter::AttackAction(CCharacter* pVictim)
 			goto SEND_PACKET;
 		}
 	}
-
 
 	//check dodge
 	if (BattleIsDodge(pVictim->IsPC(), GetCharAtt()->GetAttackRate(), pVictim->GetCharAtt()->GetDodgeRate(), GetLevel(), pVictim->GetLevel()) == true)
@@ -164,17 +174,7 @@ SEND_PACKET:
 	res->bChainAttack = IsPC(); // Only players perform chain attacks.
 	res->byAttackResult = byAttackResult;
 	res->attackResultValue = (int)fDmg;
-	// Player characters will chain all attacks from 1 until max anim id (depending on level, max 6), then reset back to 1.
-	if (IsPC()) {
-		res->byAttackSequence = m_byChainSequence;
-		if ((m_byChainSequence + 1) > GetMaxChainAttack())
-			m_byChainSequence = GetStartChainIndex();
-		else
-			m_byChainSequence++;
-	}
-	// Mobs will simply select either main or secondary attack randomly.
-	else
-		res->byAttackSequence = rand() % GetMaxChainAttack();
+	res->byAttackSequence = m_byChainSequence;
 	res->fReflectedDamage = fReflectedDamage;
 	res->byBlockedAction = byBlockedAction;
 	vShift.CopyTo(res->vShift);
