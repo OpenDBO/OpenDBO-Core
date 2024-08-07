@@ -526,6 +526,9 @@ bool CCharacterObject::IsAttackable(CCharacterObject* pTarget)
 	{
 		if (this != pTarget)
 		{
+			if (pTarget->IsFainting() || pTarget->IsDespawning())
+				return false;
+
 			if (pTarget->IsValidTarget(0)) //not sure
 			{
 				if (pTarget->GetCharStateID() != CHARSTATE_SLIDING && pTarget->GetCharStateID() != CHARSTATE_HTB && pTarget->GetCharStateID() != CHARSTATE_SANDBAG && pTarget->GetCharStateID() != CHARSTATE_DIRECT_PLAY && pTarget->GetCharStateID() != CHARSTATE_TURNING)

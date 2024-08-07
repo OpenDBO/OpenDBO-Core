@@ -3760,12 +3760,12 @@ bool CPlayer::AttackProgress(DWORD dwTickDiff, float fMultiple)
 		CItem* pWeapon = GetPlayerItemContainer()->GetItem(CONTAINER_TYPE_EQUIP, EQUIP_SLOT_TYPE_HAND);
 		if (pWeapon)
 			byWeaponType = pWeapon->GetTbldat()->byItem_Type;
-		
-		sCHAR_DATA_INFO* animationInfo = GetAniTbldat()->GetChainAttack(GetTbldat()->byClass, ITEM_TYPE_GLOVE, m_byChainSequence);
-		if (!animationInfo)
-			return false;
-		
-	//	printf("m_dwNextAttackTime %u GetAttackSpeedRate() %u Animation-Duration %f \n", m_dwNextAttackTime, GetAttackSpeedRate(), animationInfo->fDurationTime);
+
+		//sCHAR_DATA_INFO* animationInfo = GetAniTbldat()->GetChainAttack(GetTbldat()->byClass, ITEM_TYPE_GLOVE, m_byChainSequence);
+		//if (!animationInfo)
+		//	return false;
+
+		//	printf("m_dwNextAttackTime %u GetAttackSpeedRate() %u Animation-Duration %f \n", m_dwNextAttackTime, GetAttackSpeedRate(), animationInfo->fDurationTime);
 
 		CCharacter* pVictim = g_pObjectManager->GetChar(GetAttackTarget());
 		if (!pVictim || !pVictim->IsInitialized())
@@ -3775,12 +3775,13 @@ bool CPlayer::AttackProgress(DWORD dwTickDiff, float fMultiple)
 			return false;
 		else if (ConsiderAttackRange() == false)
 			return false;
-		
+
 		UpdateBattleCombatMode(true); //Start/Reset combat event
 
 		AttackAction(pVictim);
 
-		float fAnimationTime = animationInfo->fDurationTime * 1000.f; //chain attack duration time (GetChainAttackDurationTime())
+		//float fAnimationTime = animationInfo->fDurationTime * 1000.f; //chain attack duration time (GetChainAttackDurationTime())
+		float fAnimationTime = GetAniTbldat()->GetChainAttackDurationTime(GetTbldat()->byClass, ITEM_TYPE_GLOVE, m_byChainSequence);
 		float fAttackAnimationSpeed = (GetAttackSpeedRate() == 0) ? 1.0f : 1000.0f / (float)GetAttackSpeedRate();
 		float fRequiredAttackAnimationTime = fAnimationTime / fAttackAnimationSpeed;
 
@@ -4184,11 +4185,12 @@ void CPlayer::SetNextAttackTime()
 {
 	CGameServer* app = (CGameServer*)g_pApp;
 
-	sCHAR_DATA_INFO* animationInfo = GetAniTbldat()->GetChainAttack(GetTbldat()->byClass, ITEM_TYPE_GLOVE, m_byChainSequence);
-	if (!animationInfo)
-		return;
+	//sCHAR_DATA_INFO* animationInfo = GetAniTbldat()->GetChainAttack(GetTbldat()->byClass, ITEM_TYPE_GLOVE, m_byChainSequence);
+	//if (!animationInfo)
+	//	return;
 
-	float fAnimationTime = animationInfo->fDurationTime * 1000.f; //chain attack duration time (GetChainAttackDurationTime())
+	//float fAnimationTime = animationInfo->fDurationTime * 1000.f; //chain attack duration time (GetChainAttackDurationTime())
+	float fAnimationTime = GetAniTbldat()->GetChainAttackDurationTime(GetTbldat()->byClass, ITEM_TYPE_GLOVE, m_byChainSequence);
 	float fAttackAnimationSpeed = (GetAttackSpeedRate() == 0) ? 1.0f : 1000.0f / (float)GetAttackSpeedRate();
 	float fRequiredAttackAnimationTime = fAnimationTime / fAttackAnimationSpeed;
 
