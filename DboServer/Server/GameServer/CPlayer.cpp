@@ -3793,9 +3793,9 @@ bool CPlayer::AttackProgress(DWORD dwTickDiff, float fMultiple)
 		if (pWeapon)
 			byWeaponType = pWeapon->GetTbldat()->byItem_Type;
 
-		sCHAR_DATA_INFO* animationInfo = GetAniTbldat()->GetChainAttack(GetTbldat()->byClass, ITEM_TYPE_GLOVE, m_byChainSequence);
-		if (!animationInfo)
-			return false;
+		//sCHAR_DATA_INFO* animationInfo = GetAniTbldat()->GetChainAttack(GetTbldat()->byClass, ITEM_TYPE_GLOVE, m_byChainSequence);
+		//if (!animationInfo)
+		//	return false;
 
 		//	printf("m_dwNextAttackTime %u GetAttackSpeedRate() %u Animation-Duration %f \n", m_dwNextAttackTime, GetAttackSpeedRate(), animationInfo->fDurationTime);
 
@@ -3812,7 +3812,8 @@ bool CPlayer::AttackProgress(DWORD dwTickDiff, float fMultiple)
 
 		AttackAction(pVictim);
 
-		float fAnimationTime = animationInfo->fDurationTime * 1000.f; //chain attack duration time (GetChainAttackDurationTime())
+		//float fAnimationTime = animationInfo->fDurationTime * 1000.f; //chain attack duration time (GetChainAttackDurationTime())
+		float fAnimationTime = GetAniTbldat()->GetChainAttackDurationTime(GetTbldat()->byClass, ITEM_TYPE_GLOVE, m_byChainSequence);
 		float fAttackAnimationSpeed = (GetAttackSpeedRate() == 0) ? 1.0f : 1000.0f / (float)GetAttackSpeedRate();
 		float fRequiredAttackAnimationTime = fAnimationTime / fAttackAnimationSpeed;
 
@@ -4238,11 +4239,12 @@ void CPlayer::SetNextAttackTime()
 {
 	CGameServer* app = (CGameServer*)g_pApp;
 
-	sCHAR_DATA_INFO* animationInfo = GetAniTbldat()->GetChainAttack(GetTbldat()->byClass, ITEM_TYPE_GLOVE, m_byChainSequence);
-	if (!animationInfo)
-		return;
+	//sCHAR_DATA_INFO* animationInfo = GetAniTbldat()->GetChainAttack(GetTbldat()->byClass, ITEM_TYPE_GLOVE, m_byChainSequence);
+	//if (!animationInfo)
+	//	return;
 
-	float fAnimationTime = animationInfo->fDurationTime * 1000.f; //chain attack duration time (GetChainAttackDurationTime())
+	//float fAnimationTime = animationInfo->fDurationTime * 1000.f; //chain attack duration time (GetChainAttackDurationTime())
+	float fAnimationTime = GetAniTbldat()->GetChainAttackDurationTime(GetTbldat()->byClass, ITEM_TYPE_GLOVE, m_byChainSequence);
 	float fAttackAnimationSpeed = (GetAttackSpeedRate() == 0) ? 1.0f : 1000.0f / (float)GetAttackSpeedRate();
 	float fRequiredAttackAnimationTime = fAnimationTime / fAttackAnimationSpeed;
 
