@@ -1,0 +1,378 @@
+//***********************************************************************************
+//
+//	File		:	GraphicDataTable.h
+//
+//	Begin		:	2006-05-29
+//
+//	Copyright	:	ⓒ NTL-Inc Co., Ltd
+//
+//	Author		:	Hong Ho Dong   ( battery@ntl-inc.com )
+//
+//	Desc		:	
+//
+//***********************************************************************************
+#pragma once
+
+// Shared
+enum EGraphicAnimCommon
+{
+	ATTACK_ANIMATION_SET_NUM	= 6,
+
+	ATTACK_ANIMATION_START		= 1000,
+	ATTACK_ANIMATION_DEFAULT    = ATTACK_ANIMATION_START,
+	ATTACK_ANIMATION_GLOVE		= ATTACK_ANIMATION_DEFAULT + ATTACK_ANIMATION_SET_NUM,
+	ATTACK_ANIMATION_GUN		= ATTACK_ANIMATION_GLOVE + ATTACK_ANIMATION_SET_NUM,
+	ATTACK_ANIMATION_STAFF		= ATTACK_ANIMATION_GUN + ATTACK_ANIMATION_SET_NUM,
+	ATTACK_ANIMATION_DUAL_GUN	= ATTACK_ANIMATION_STAFF + ATTACK_ANIMATION_SET_NUM,
+	ATTACK_ANIMATION_END        = ATTACK_ANIMATION_DUAL_GUN + ATTACK_ANIMATION_SET_NUM,
+
+	SKILL_ANIMATION_START       = 2000,
+	SKILL_ANIMATION_END			= SKILL_ANIMATION_START + 200,
+
+    HTB_ANIMATION_START         = 3000,
+    HTB_ANIMATION_END           = HTB_ANIMATION_START + 50,
+};
+
+// Social
+enum ESocialAnimationList
+{
+    SOCIAL_ANIMATION_START = 1500,
+	SOC_AGREE = SOCIAL_ANIMATION_START,
+    SOC_NO,
+    SOC_BYE,
+    SOC_HAPPY,
+    SOC_LAUGH,
+    SOC_SAD,
+    SOC_CLAP_HANDS,
+    SOC_POINT,
+    SOC_RUSH,
+    SOC_YEAH,
+    SOC_AMUSE,
+    SOC_HI,
+    SOC_PAFUPAFU,
+    SOC_COURTESY,
+    SOC_POKE,
+    SOCIAL_ANIMATION_END = SOC_POKE,
+};
+
+// Attack
+enum EAttackAnimationList
+{
+	ATK_DEF_1 = ATTACK_ANIMATION_START,
+    ATK_DEF_2,
+    ATK_DEF_3,
+    ATK_DEF_4,
+    ATK_DEF_5,
+    ATK_DEF_6,
+    ATK_GLOVE_1,
+    ATK_GLOVE_2,
+    ATK_GLOVE_3,
+    ATK_GLOVE_4,
+    ATK_GLOVE_5,
+    ATK_GLOVE_6,
+    ATK_GUN_1,
+    ATK_GUN_2,
+    ATK_GUN_3,
+    ATK_GUN_4,
+    ATK_GUN_5,
+    ATK_GUN_6,
+    ATK_STAFF_1,
+    ATK_STAFF_2,
+    ATK_STAFF_3,
+    ATK_STAFF_4,
+    ATK_STAFF_5,
+    ATK_STAFF_6,
+    ATK_DGUN_1,
+    ATK_DGUN_2,
+    ATK_DGUN_3,
+    ATK_DGUN_4,
+    ATK_DGUN_5,
+    ATK_DGUN_6,
+};
+
+//Battle
+enum EBattleAnimationList
+{
+	BATTLE_ANIMATION_START = 500,
+    BTL_DEF_FP_LOOP = BATTLE_ANIMATION_START,
+    BTL_DEF_FP_HURT,
+    BTL_DEF_FP_DOT_HURT,
+    BTL_DEF_FP_IDLE,
+    BTL_DEF_BLOCK_DEF,
+    BTL_DEF_BLOCK_START,
+    BTL_DEF_BLOCK_END,
+    BTL_DEF_DODGE,
+    BTL_DEF_KD_FLYING,
+    BTL_DEF_KD_LANDING,
+    BTL_DEF_KD_HURT,
+    BTL_DEF_KD_STAND_UP,
+    BTL_DEF_STUN,
+    BTL_DEF_COUNTER,
+    BTL_DEF_GUARD_CRUSH,
+	
+	BTL_DEF_HTB_HOMING_UP,
+	BTL_DEF_HTB_HOMING_IDLE,
+	BTL_DEF_HTB_HOMING_DOWN,
+	BTL_DEF_HTB_HOMING_LANDING,
+	BTL_DEF_HTB_TOSS_UP,
+	BTL_DEF_HTB_TOSS_IDLE,
+	BTL_DEF_HTB_TOSS_HURT,
+	BTL_DEF_HTB_FALL_DOWN,
+	BTL_DEF_HTB_FALL_DOWN_LANDING,
+	BTL_DEF_HTB_FALL_DOWN_HURT,
+
+    BTL_GUN_FP_LOOP,
+    BTL_GUN_FP_HURT,
+    BTL_GUN_FP_DOT_HURT,
+    BTL_GUN_FP_IDLE,
+    BTL_GUN_BLOCK_DEF,
+    BTL_GUN_BLOCK_START,
+    BTL_GUN_BLOCK_END,
+    BTL_GUN_DODGE,
+    BTL_GUN_KD_FLYING,
+    BTL_GUN_KD_LANDING,
+    BTL_GUN_KD_HURT,
+    BTL_GUN_KD_STAND_UP,
+    BTL_GUN_COUNTER,
+    BTL_GUN_GUARD_CRUSH,
+
+    BTL_STAFF_FP_LOOP,
+    BTL_STAFF_FP_HURT,
+    BTL_STAFF_FP_DOT_HURT,
+    BTL_STAFF_FP_IDLE,
+    BTL_STAFF_BLOCK_DEF,
+    BTL_STAFF_BLOCK_START,
+    BTL_STAFF_BLOCK_END,
+    BTL_STAFF_DODGE,
+    BTL_STAFF_KD_FLYING,
+    BTL_STAFF_KD_LANDING,
+    BTL_STAFF_KD_HURT,
+    BTL_STAFF_KD_STAND_UP,
+    BTL_STAFF_COUNTER,
+    BTL_STAFF_GUARD_CRUSH,
+
+    BTL_DGUN_FP_LOOP,
+    BTL_DGUN_FP_HURT,
+    BTL_DGUN_FP_DOT_HURT,
+    BTL_DGUN_FP_IDLE,
+    BTL_DGUN_BLOCK_DEF,
+    BTL_DGUN_BLOCK_START,
+    BTL_DGUN_BLOCK_END,
+    BTL_DGUN_DODGE,
+    BTL_DGUN_KD_FLYING,
+    BTL_DGUN_KD_LANDING,
+    BTL_DGUN_KD_HURT,
+    BTL_DGUN_KD_STAND_UP,	
+    BTL_DGUN_COUNTER,
+    BTL_DGUN_GUARD_CRUSH,
+
+	BATTLE_ANIMATION_END = BTL_DGUN_GUARD_CRUSH,
+};
+
+//Common Animation
+enum ECommonAnimationList
+{
+	COMMON_ANIMATION_START = 1,	
+	NML_SPAWN = COMMON_ANIMATION_START,
+    NML_IDLE_LOOP,
+    NML_IDLE_01,
+    NML_IDLE_02,
+    NML_IDLE_HURT,
+    NML_IDLE_DOT_HURT,
+
+	//NML 안붙은거 오타 입니다. 추후에 고칠려고 노력중(by HongHoDong(2006. 8. 2) 
+    SIT_DOWN,
+    SIT_IDLE,
+    SIT_UP,
+    SIT_HURT,
+    JUMP_START,
+    JUMP_HOVER,
+    JUMP_LANDING_SHORT,
+    JUMP_LANDING_LONG,
+    WALK_FRONT,
+    RUN_FRONT,
+    IDLE_RUN_FRONT,
+    RUN_BACK,
+    IDLE_RUN_BACK,
+    TURN_LEFT,
+    TURN_RIGHT,
+    SWIM_IDLE,
+    SWIM_FRONT,
+	SWIM_BACK,
+    SWIM_IDLE_HURT,
+    SWIM_FAINTING,
+    HOVER_IDLE,
+    HOVER_FRONT,
+    HOVER_IDLE_HURT,
+    HOVER_UP,
+    HOVER_DOWN,
+    HOVER_LANDING,
+    FAINTING,
+    FAINTING_STAND_UP,    
+	NML_DASH_FRONT,
+	NML_DASH_FRONT_LANDING,
+	NML_DASH_BACK,
+	NML_DASH_BACK_LANDING,
+	NML_DASH_LEFT,
+	NML_DASH_LEFT_LANDING,
+	NML_DASH_RIGHT,
+	NML_DASH_RIGHT_LANDING,
+    NML_CHARGE_START,
+    NML_CHARGE_LOOP,
+    NML_CHARGE_END,
+	NML_RIDE,    
+    NML_SCOUTER_ON_OFF,
+    NML_SCOUTER_BURST,
+    NML_SKILL_ABILITY,
+    NML_TRANSFORM_SEQUELA,
+    NML_USE_HOIPOI_CAPSULE,
+    NML_STAFF_IDLE_LOOP,
+    NML_STAFF_IDLE_01,
+    NML_STAFF_IDLE_02,
+    NML_STAFF_FRONT_RUN,
+    NML_STAFF_IDLE_RUN_FRONT,
+	NML_STAFF_BACK_RUN,
+	NML_STAFF_LEFT_TURN,
+	NML_STAFF_RIGHT_TURN,
+    NML_STAFF_SIT_DOWN,
+    NML_STAFF_SIT_IDLE,
+    NML_STAFF_SIT_UP,
+    NML_DGUN_IDLE_LOOP,
+    NML_DGUN_IDLE_01,
+    NML_DGUN_IDLE_02,
+	NML_DGUN_FRONT_RUN,
+    NML_DGUN_IDLE_RUN_FRONT,
+    NML_DGUN_SIT_DOWN,
+    NML_DGUN_SIT_IDLE,
+    NML_DGUN_SIT_UP,
+
+	COMMON_ANIMATION_END = NML_DGUN_SIT_UP
+};
+
+// 변신 상태의 애니메이션 리스트
+enum ETransformAnimationList
+{   TRANSFORM_ANIMATION_START = 4500,
+    
+    TRANS_IDLE = TRANSFORM_ANIMATION_START,
+    TRANS_RUN_FRONT,
+    TRANS_RUN_BACK,
+    TRANS_ATK_DEF_1,
+    TRANS_ATK_DEF_2,
+    TRANS_SPAWN,
+
+    TRANSFORM_ANIMATION_END = TRANS_SPAWN
+};
+
+// PC의 Trigger Animation List
+enum ETriggerAnimationList
+{
+    PC_TRIGGER_ANIMATION_START = 4000,
+    PC_TRIGGER_ANIMATION_END = PC_TRIGGER_ANIMATION_START + 100,
+};
+
+// PC가 비클을 탈때의 애니메이션 리스트
+enum EPCVehicleSRPAnimationList
+{
+    VEHICLE_SRP1_ANIMATION_START = 5000,
+    VEHICLE_SRP1_IDLE = VEHICLE_SRP1_ANIMATION_START,
+    VEHICLE_SRP1_RUN,
+    VEHICLE_SRP1_START,
+    VEHICLE_SRP1_STOP,
+    VEHICLE_SRP1_JUMP,
+    VEHICLE_SRP1_TURN_LEFT,
+    VEHICLE_SRP1_TURN_RIGHT,
+    VEHICLE_SRP1_LANDING,
+    VEHICLE_SRP1_ANIMATION_END = VEHICLE_SRP1_LANDING,
+
+    VEHICLE_SRP2_ANIMATION_START = 5100,
+    VEHICLE_SRP2_IDLE = VEHICLE_SRP2_ANIMATION_START,
+    VEHICLE_SRP2_RUN,
+    VEHICLE_SRP2_START,
+    VEHICLE_SRP2_STOP,
+    VEHICLE_SRP2_JUMP,
+    VEHICLE_SRP2_TURN_LEFT,
+    VEHICLE_SRP2_TURN_RIGHT,
+    VEHICLE_SRP2_LANDING,
+    VEHICLE_SRP2_ANIMATION_END = VEHICLE_SRP2_LANDING,    
+};
+
+/// SubWeapon의 Animation List
+enum EItemAnimationList
+{
+	ITEM_ANIMATION_START = 1,
+	ITEM_IDLE = 1,
+	ITEM_ATTACK,
+
+	ITEM_ANIMATION_END = ITEM_ATTACK,
+};
+
+/// Trigger Object의 Animation List
+enum EObjectAnimationList
+{
+	OBJECT_ANIMATION_START = 1,	
+	OBJECT_ANIMATION_END = 20,
+};
+
+/// 탈것 애니메이션 리스트
+enum EVehicleAnimationList
+{
+    VEHICLE_ANIMATION_START = 1,
+    VEHICLE_IDLE = VEHICLE_ANIMATION_START,
+    VEHICLE_RUN,
+    VEHICLE_START,
+    VEHICLE_STOP,
+    VEHICLE_JUMP,
+    VEHICLE_TURN_LEFT,
+    VEHICLE_TURN_RIGHT,
+    VEHICLE_LANDING,
+    VEHICLE_ANIMATION_END,
+};
+
+/// 아이템 사용 애니메이션 리스트
+enum EItemUseAnimationList
+{
+    ITEM_USE_ANIMATION_START = 6000,
+    ITEM_USE_ANIMATION_END = 6050,
+};
+
+//Animaiton Event
+enum EAnimEventType
+{
+	EVENT_ANIM_NONE,							///< Default
+	EVENT_ANIM_END,								///< Animation Play가 끝났을 때
+	EVENT_ANIM_HIT,								///< Hit Event
+    EVENT_ANIM_VISUAL_EFFECT,					///< Visual Effect가 나올 때 (Loop Effect의 경우 Animation이 바뀔 경우 소멸된다.)
+    EVENT_ANIM_VISUAL_SOUND,					///< Sound를 Play를 해야 할 경우
+    EVENT_ANIM_FOOT_STEP,						///< Character가 발이 땅에 땋았을 경우
+    EVENT_ANIM_LINK_EFFECT,						///< Character가 Create가 될 때 부터 붙는 Effect (Loop Effect만 가능)
+    EVENT_ANIM_WEIGHT_TIME,						///< Character간의 전투에서 특정 시간 동안 Time을 빠르게 또는 늦게 Play 할경우(HTB에서만 사용이 된다.)
+    EVENT_ANIM_TRACE_EFFECT,                    ///< 궤적 이펙트 이벤트
+    EVENT_ANIM_SUB_WEAPON,                      ///< SubWeapon 활성화 이벤트
+    EVENT_ANIM_POST_EFFECT,						///< PostEffect Event
+	EVENT_ANIM_SUMMON_PET,						///< SummonPet Effect
+    EVENT_ANIM_TMQ,                             ///< TMQ Event
+    EVENT_ANIM_ALPHA,                           ///< Alpha Fade Event
+    EVENT_ANIM_EXPLOSION,                       ///< TMQ 폭발 이벤트
+    EVENT_ANIM_DIRECT,                          ///< 연출용 이벤트
+    EVENT_ANIM_COLOR_CHANGE,                    ///< 컬러 체인지 이벤트
+    EVENT_ANIM_STRETCH,                         ///< 본을 늘리는 이벤트
+    EVENT_ANIM_TRIGGER,                         ///< 스킬등에서 사용되는 트리거 이벤트
+    EVENT_ANIM_SKILL_CANCEL,                    ///< 스킬 캔슬 타이밍 이벤트
+};
+
+enum ETargetBehavior
+{
+	//Chain Attack
+	TARGET_BEHAVIOR_NONE,						///< Default
+	TARGET_BEHAVIOR_PUSH,						///< Target이 뒤로 밀린다.
+	TARGET_BEHAVIOR_KNOCK_DOWN,					///< Target이 뒤로 날라 간다.
+	
+	//HTB
+	TARGET_BEHAVIOR_TOSS,						///< Target을 공중으로 올린다.
+	TARGET_BEHAVIOR_FALL_DOWN,					///< Target을 바닥으로 내려 친다.
+};
+
+
+
+
+

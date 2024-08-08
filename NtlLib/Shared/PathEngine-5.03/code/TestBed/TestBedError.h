@@ -1,0 +1,3 @@
+
+class iErrorHandler;
+iErrorHandler& RefTestBedErrorHandler();

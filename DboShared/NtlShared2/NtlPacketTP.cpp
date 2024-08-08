@@ -1,0 +1,45 @@
+#include "StdAfx.h"
+#include "NtlPacketTP.h"
+
+const char * s_packetName_TP[] =
+{
+	DECLARE_PACKET_NAME( TP_NOTIFY_SERVER_BEGIN ),
+	DECLARE_PACKET_NAME( TP_HEARTBEAT ),
+	DECLARE_PACKET_NAME( TP_PLAYER_ENTER_NFY ),
+	DECLARE_PACKET_NAME( TP_PLAYER_LEAVE_NFY ),
+	DECLARE_PACKET_NAME( TP_CHARACTER_WATCH_RES ),
+	DECLARE_PACKET_NAME( TP_PETITION_CHAT_START_RES ),
+	DECLARE_PACKET_NAME( TP_PETITION_CHAT_GM_SAY_RES ),
+	DECLARE_PACKET_NAME( TP_PETITION_CHAT_USER_SAY_REQ ),
+	DECLARE_PACKET_NAME( TP_PETITION_CHAT_USER_END_NFY ),
+	DECLARE_PACKET_NAME( TP_PETITION_USER_INSERT_REQ ),
+	DECLARE_PACKET_NAME( TP_PETITION_SATISFACTION_NFY ),
+	DECLARE_PACKET_NAME( TP_PETITION_CONTENT_MODIFY_REQ ),
+	DECLARE_PACKET_NAME( TP_PETITION_USER_CANCEL_REQ ),
+	DECLARE_PACKET_NAME( TP_SERVER_STATUS_RES ),
+};
+
+
+//------------------------------------------------------------------
+//
+//------------------------------------------------------------------
+const char * NtlGetPacketName_TP(WORD wOpCode)
+{
+	if( wOpCode < TP_OPCODE_BEGIN )
+	{
+		return "NOT DEFINED PACKET NAME : OPCODE LOW";
+	}
+
+	if( wOpCode > TP_OPCODE_END )
+	{
+		return "NOT DEFINED PACKET NAME : OPCODE HIGH";
+	}
+
+	int nIndex = wOpCode - TP_OPCODE_BEGIN;
+	if( nIndex >= _countof( s_packetName_TP) )
+	{
+		return "OPCODE BUFFER OVERFLOW";
+	}
+
+	return s_packetName_TP[ nIndex ];
+}

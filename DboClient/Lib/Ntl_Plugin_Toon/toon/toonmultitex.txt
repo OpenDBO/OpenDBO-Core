@@ -1,0 +1,6 @@
+2005.8.12 
+RpToonMaterial을 확장해서 RwTexture pointer추가 Paint에서 MultPass로 구현 현재 Stream
+을 읽어들이는 부분은 만들지 않았습니다.(toonmultiTex.h, toonmultiTex.c,
+RpMaterial을 확장: toonmultiTex.h, toonmultiTex.c
+Plugin Attach 하는곳: rptoon.c
+Render: d3d9paint.c
