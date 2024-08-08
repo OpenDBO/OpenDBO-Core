@@ -332,7 +332,19 @@ void CChatReceiver::BattleNotification(RWS::CMsg& msg)
 		break;
 		case NTL_ATTACK_RESULT_SLIDING:
 		{
+			if (bIsAvatarAttacker || bViewAttacker)
+			{
+				uiColor = INFOCOLOR_5;
+				swprintf_s(buf, GetDisplayStringManager()->GetString("DST_SYSTEMMSG_SLIDING_ATTACKER"), pwchTargetName);
+			}
+			else
+			{
+				uiColor = INFOCOLOR_13;
+				swprintf_s(buf, GetDisplayStringManager()->GetString("DST_SYSTEMMSG_SLIDING_DEFENDER"), pwchTargetName, pwchAttackerName);
+			}
 
+			Chatlog_Save(CHAT_TYPE_SYSTEM, buf);
+			Chatlog_Notify(CHAT_TYPE_SYSTEM, buf, uiColor);
 		}
 		break;
 		case NTL_ATTACK_RESULT_HEALING:
