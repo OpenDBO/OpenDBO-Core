@@ -1259,7 +1259,7 @@ void CDboVirtualServer::SendCharActionAttack(RwUInt32 uiSerialId)
 		sPacket.bChainAttack = FALSE;
 	
 	if(sPacket.bChainAttack)
-		sPacket.byAttackSequence = byChainAttack%6+NTL_BATTLE_CHAIN_ATTACK_START;
+		sPacket.byAttackSequence = byChainAttack%6+ NTL_BATTLE_CHAIN_ATTACK_START_PLAYER;
 	else
 		sPacket.byAttackSequence = rand()%2;
 

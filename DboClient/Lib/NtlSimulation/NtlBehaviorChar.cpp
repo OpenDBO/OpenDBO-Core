@@ -722,17 +722,17 @@ void CNtlBehaviorCharNormalAttack::SetAnim(const SAttackStuff *pAttackStuff)
         }
 		else if(pItemTblData && Logic_IsEquipedStaffWeapon(pItemTblData))
         {
-			uiAnimId = ATK_STAFF_1 + pAttackStuff->byAttSeq - NTL_BATTLE_CHAIN_ATTACK_START;
+			uiAnimId = ATK_STAFF_1 + pAttackStuff->byAttSeq - NTL_BATTLE_CHAIN_ATTACK_START_PLAYER;
         }
 		else
 		{
 			RwUInt8 byClass = Logic_GetPlayerClass(m_pActor);            
 			if(byClass == PC_CLASS_STREET_FIGHTER)
 			{
-				uiAnimId = ATK_GLOVE_1 + pAttackStuff->byAttSeq - NTL_BATTLE_CHAIN_ATTACK_START;
+				uiAnimId = ATK_GLOVE_1 + pAttackStuff->byAttSeq - NTL_BATTLE_CHAIN_ATTACK_START_PLAYER;
 			}
 			else
-				uiAnimId = ATK_DEF_1 + pAttackStuff->byAttSeq - NTL_BATTLE_CHAIN_ATTACK_START;
+				uiAnimId = ATK_DEF_1 + pAttackStuff->byAttSeq - NTL_BATTLE_CHAIN_ATTACK_START_PLAYER;
 		}
 
 		// 공격 animation 속도를 setting 한다.
