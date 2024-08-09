@@ -1195,10 +1195,11 @@ void CCharacter::StartTeleport(CNtlVector& destLoc, CNtlVector& destDir, WORLDID
 	SetTeleportWorldID(worldid);
 	SetTeleportType(byTeleType);
 
-	if (GetWorldID() != worldid)
+	// Cache previous teleport locations only if the worlds are different or if the cache is not initialized.
+	if (GetWorldID() != worldid || GetBeforeTeleportWorldID() == INVALID_WORLDID)
 	{
-		m_vBeforeTeleportLoc = GetCurLoc();
-		m_uiBeforeTeleportWorldID = GetWorldID();
+		SetBeforeTeleportLoc(GetCurLoc());
+		SetBeforeTeleportWorldID(GetWorldID());
 	}
 
 	SendCharStateDespawning(byTeleType);
