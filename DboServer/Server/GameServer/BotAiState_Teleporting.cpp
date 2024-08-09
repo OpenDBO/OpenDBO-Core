@@ -51,7 +51,9 @@ void CBotAiState_Teleporting::OnEnter()
 	//GetBot()->GetStateManager()->AddConditionFlags(m_dwCharConditionFlag, false);
 	GetBot()->StartTeleport(m_vTeleportLoc, m_vTeleportDir, m_worldId, TELEPORT_TYPE_DEFAULT);
 
-	((CGameServer*)g_pApp)->GetGameMain()->GetWorldManager()->LeaveObject(GetBot());
+	// Only leave world if teleporting between different worlds.
+	if (GetBot()->GetWorldID() != m_worldId)
+		((CGameServer*)g_pApp)->GetGameMain()->GetWorldManager()->LeaveObject(GetBot());
 }
 
 void CBotAiState_Teleporting::OnExit()
@@ -67,8 +69,11 @@ void CBotAiState_Teleporting::OnExit()
 		GetBot()->SetCurDir(m_vTeleportDir);
 
 		GetBot()->GetStateManager()->ChangeCharState(CHARSTATE_STANDING, NULL, true);
+		GetBot()->GetBotController()->ChangeControlState_Idle();
 
-		pWorld->Enter(GetBot());
+		// Only enter world if teleporting between different worlds, otherwise we never left it.
+		if (GetBot()->GetBeforeTeleportWorldID() != m_worldId)
+			pWorld->Enter(GetBot());
 	}
 }
 
