@@ -102,6 +102,14 @@ All required third party tools can be obtained from [our 3rd party repository](h
     - Open "httpd.conf" in Notepad, change the port to "Listen 8080," and change "ServerName localhost:" to "ServerName localhost:8080."
     - In the XAMPP Control Panel, start "Apache" and "MySQL."
     - Ensure your antivirus accepts XAMPP.
+    - If you've set a password for the configuration files on your server, you might not be able to connect to XAMPP without following these steps:
+    - open terminal in xampp control panel
+    - Run the following command to set a password (in this example, the password is 123, but you can use any password):
+    - mysqladmin.exe -u root password 123
+    - Press Enter.
+    - Go to the phpMyAdmin folder and open the config.inc file.
+    - Find the password option and enter the password 123 (or the password you chose) inside the quotes.
+    - This will prevent any connection conflicts.
 
 7. **Open your browser and type: "localhost:8080/phpmyadmin/"**
     - Click "New" in the left column.
