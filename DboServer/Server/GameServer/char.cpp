@@ -1336,6 +1336,36 @@ void CCharacter::SendCharStateKnockdown(sVECTOR3& rShift)
 }
 
 //--------------------------------------------------------------------------------------//
+//		Sliding
+//--------------------------------------------------------------------------------------//
+void CCharacter::SendCharStateSliding(sVECTOR3& rShift)
+{
+	// TODO: Is this correct?
+	CNtlPacket packet(sizeof(sGU_UPDATE_CHAR_STATE));
+	sGU_UPDATE_CHAR_STATE* res = (sGU_UPDATE_CHAR_STATE*)packet.GetPacketData();
+	res->wOpCode = GU_UPDATE_CHAR_STATE;
+	res->handle = this->GetID();
+	res->sCharState.sCharStateBase.byStateID = CHARSTATE_SLIDING;
+	GetStateManager()->CopyAspectTo(&res->sCharState.sCharStateBase.aspectState);
+	GetCurLoc().CopyTo(res->sCharState.sCharStateBase.vCurLoc);
+	GetCurDir().CopyTo(res->sCharState.sCharStateBase.vCurDir);
+	res->sCharState.sCharStateBase.eAirState = AIR_STATE_OFF;
+	res->sCharState.sCharStateBase.bFightMode = this->GetFightMode();
+	res->sCharState.sCharStateBase.dwConditionFlag = GetConditionState();
+	res->sCharState.sCharStateBase.dwStateTime = 0;
+	res->sCharState.sCharStateDetail.sCharStateSliding.vShift.x = rShift.x;
+	res->sCharState.sCharStateDetail.sCharStateSliding.vShift.y = rShift.y;
+	res->sCharState.sCharStateDetail.sCharStateSliding.vShift.z = rShift.z;
+
+	packet.SetPacketLen(sizeof(sGU_UPDATE_CHAR_STATE));
+
+	if (GetStateManager()->CopyFrom(&res->sCharState))	//if change state success then broadcast
+	{
+		Broadcast(&packet);
+	}
+}
+
+//--------------------------------------------------------------------------------------//
 //		SET STANDING STATE
 //--------------------------------------------------------------------------------------//
 void	CCharacter::SendCharStateStanding(bool bCheckState/* = true*/)

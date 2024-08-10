@@ -295,7 +295,7 @@ enum eSYSTEM_EFFECT_APPLY_TYPE
 // 전투 관련 상수 정의 : [4/25/2006 zeroera] : 수정필요 : lua로 옮길 것
 //-----------------------------------------------------------------------------------
 const float			NTL_BATTLE_PUSH_DISTANCE					= 1.0f; // PUSH 거리
-const float			NTL_BATTLE_KNOCKDOWN_DISTANCE				= 5.6f;	// KNOCKDOWN 거리.
+const float			NTL_BATTLE_KNOCKDOWN_DISTANCE				= 5.6f; // KNOCKDOWN 거리. // Am I crazy or this is set to 5.930f in the KR client? (See CreateFallupTimeSequence and arrDistX).
 const float			NTL_BATTLE_SLIDING_DISTANCE					= 4.0f; // SLIDING 거리
 
 const int			NTL_BATTLE_CHAIN_ATTACK_START_NPC			= 0; // chain attack start id for npcs
@@ -306,8 +306,8 @@ const int			NTL_BATTLE_MAX_CHAIN_ATTACK_COUNT_PLAYER	= 6; // The maximum value c
 
 const float			NTL_BATTLE_BLOCK_DAMAGE_REDUCE_RATE			= 0.3f;
 const float			DBO_BATTLE_OFFENCE_CHANGE_RATE_BY_BLOCK		= 0.3f;
-const float			NTL_BATTLE_CRITICAL_DAMAGE_INCREASE_RATE	= 1.5f;	//1.5
-const float			DBO_BATTLE_OFFENCE_BONUS_RATE_BY_CRITICAL	= 75.0f;		// in percent. Default 100
+const float			NTL_BATTLE_CRITICAL_DAMAGE_INCREASE_RATE	= 1.5f;
+const float			DBO_BATTLE_OFFENCE_BONUS_RATE_BY_CRITICAL	= 75.0f; // in percent. Seems like default was 50?
 
 const float			NTL_BATTLE_HIT_FRONT_SIDE_BONUS_RATE		= 1.0f;
 const float			NTL_BATTLE_HIT_BACK_SIDE_BONUS_RATE			= 1.5f;
