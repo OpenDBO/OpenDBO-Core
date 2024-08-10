@@ -65,6 +65,7 @@ public:
 	void			SendCharStateSandbag();
 
 	void			SendCharStateKnockdown(sVECTOR3& rShift);
+	void			SendCharStateSliding(sVECTOR3& rShift);
 
 	void			SendCharStateAirDashAccel(BYTE byMoveDir, BYTE byMoveFlag);
 	bool			SendCharStateMoving(BYTE byMoveDir, BYTE byFlag, bool bBroadCast);
@@ -175,6 +176,10 @@ public:
 	void				IncKnockDownTime(DWORD dwTime) { m_dwKnockdownTime += dwTime; }
 	DWORD				GetKnockDownTime() { return m_dwKnockdownTime; }
 
+	void				InitSliding() { m_dwSlidingTime = 0; }
+	void				IncSlidingTime(DWORD dwTime) { m_dwSlidingTime += dwTime; }
+	DWORD				GetSlidingTime() { return m_dwSlidingTime; }
+
 	void				EnterConfusedState(HOBJECT hCaster);
 	void				EnterTerrorState(HOBJECT hCaster);
 
@@ -204,6 +209,7 @@ private:
 	HOBJECT				m_hMeAttackBot;
 		
 	DWORD				m_dwKnockdownTime;
+	DWORD				m_dwSlidingTime;
 
 	HOBJECT				m_hTargetInConfusion;
 	bool				m_bCheckTargetInConfusion;

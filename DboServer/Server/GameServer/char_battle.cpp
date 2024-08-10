@@ -46,9 +46,7 @@ void CCharacter::AttackAction(CCharacter* pVictim)
 	float fTargetLpRecoveredWhenHit = 0.0f;
 	float fTargetEpRecoveredWhenHit = 0.0f;
 
-	CNtlVector vShift(pVictim->GetCurLoc() - GetCurLoc());
-	vShift.y = 0.0f;
-	vShift.SafeNormalize();
+	CNtlVector vShift;
 	
 	// Player characters will chain all attacks from 1 until max anim id (depending on level, max 6), then reset back to 1.
 	if (IsPC()) {
@@ -85,7 +83,6 @@ void CCharacter::AttackAction(CCharacter* pVictim)
 		goto SEND_PACKET;
 	}
 
-
 	//if not guarded or dodged then calculate damage
 	fDmg = CalcMeleeDamage(this, pVictim);
 
@@ -93,62 +90,75 @@ void CCharacter::AttackAction(CCharacter* pVictim)
 	float fChainBonusRate = NtlGetBattleChainAttackBounsRate(m_byChainSequence);
 	fDmg += fDmg * fChainBonusRate / 100;
 
+	bool bIsComboFinisher = IsPC() && m_byChainSequence == NTL_BATTLE_MAX_CHAIN_ATTACK_COUNT_PLAYER;
 	if (BattleIsBlock(pVictim->GetCharAtt()->GetBlockRate(), GetLevel(), pVictim->GetLevel()))
 	{
-		byAttackResult = BATTLE_ATTACK_RESULT_BLOCK;
-		fDmg /= 2.f; // TODO: Are we 100% sure about this? Leaked virutual server does no damage on block.
-		goto SEND_PACKET;
-	}
-
-	// According to the leaked virtual server enemy should either slip or be knocked down once all 6 combo
-	// attacks are performed.
-	if (IsPC() && m_byChainSequence == NTL_BATTLE_MAX_CHAIN_ATTACK_COUNT_PLAYER)
-	{
-		if (rand() % 2)
-			byAttackResult = BATTLE_ATTACK_RESULT_KNOCKDOWN;
-		else
+		// TODO: Below code is commented out because the sliding (aka a knockdown that's being blocked) mechanic
+		//  seems to not work properly. Unsure if client issue or server issue (most likely).
+		/*if (bIsComboFinisher)
+		{
 			byAttackResult = BATTLE_ATTACK_RESULT_SLIDING;
-		goto SEND_PACKET;
-	}
-
-	// check crit
-	float fCritDmgRate = 0.0f, fCritDmgBonus = 0.0f, fCritDefRate = 0.0f;
-	bool bIsCrit = false;
-
-	if (byAttackType == BATTLE_ATTACK_TYPE_PHYSICAL)
-	{
-		if (BattleIsCrit(GetCharAtt(), pVictim->GetCharAtt(), true))
-		{
-			bIsCrit = true;
-
-			fCritDmgRate = GetCharAtt()->GetPhysicalCriticalDamageRate();
-
-			// critical dmg def
-			fCritDefRate = pVictim->GetCharAtt()->GetPhysicalCriticalDefenceRate();
+			byBlockedAction = DBO_GUARD_TYPE_KNOCKDOWN;
+			vShift = pVictim->GetCurDir();
+			vShift.SafeNormalize();
+			vShift *= -NTL_BATTLE_SLIDING_DISTANCE; // should it be push distance instead?
 		}
-	}
-	else if (byAttackType == BATTLE_ATTACK_TYPE_ENERGY)
-	{
-		if (BattleIsCrit(GetCharAtt(), pVictim->GetCharAtt(), false))
+		else*/
 		{
-			bIsCrit = true;
-
-			fCritDmgRate = GetCharAtt()->GetEnergyCriticalDamageRate();
-
-			// critical dmg def
-			fCritDefRate = pVictim->GetCharAtt()->GetEnergyCriticalDefenceRate();
+			byAttackResult = BATTLE_ATTACK_RESULT_BLOCK;
 		}
+		//fDmg *= (1.0f - NTL_BATTLE_BLOCK_DAMAGE_REDUCE_RATE);
+		fDmg /= 2.0f;
 	}
-
-	if (bIsCrit)
+	else if (bIsComboFinisher)
 	{
-		byAttackResult = BATTLE_ATTACK_RESULT_CRITICAL_HIT;
+		// TODO: Monsters seems to perform an attack just after getting up even if they are far from the player.
+		byAttackResult = BATTLE_ATTACK_RESULT_KNOCKDOWN;
+		vShift = pVictim->GetCurDir();
+		vShift.SafeNormalize();
+		vShift *= -NTL_BATTLE_KNOCKDOWN_DISTANCE;
+	}
+	else
+	{
+		// check crit
+		float fCritDmgRate = 0.0f, fCritDmgBonus = 0.0f, fCritDefRate = 0.0f;
+		bool bIsCrit = false;
 
-		fCritDmgBonus = ((fDmg * fCritDmgRate) / 100.f);
+		if (byAttackType == BATTLE_ATTACK_TYPE_PHYSICAL)
+		{
+			if (BattleIsCrit(GetCharAtt(), pVictim->GetCharAtt(), true))
+			{
+				bIsCrit = true;
+				fCritDmgRate = GetCharAtt()->GetPhysicalCriticalDamageRate();
 
-		fCritDmgBonus -= fCritDmgBonus * fCritDefRate / 100.f;
+				// critical dmg def
+				fCritDefRate = pVictim->GetCharAtt()->GetPhysicalCriticalDefenceRate();
+			}
+		}
+		else if (byAttackType == BATTLE_ATTACK_TYPE_ENERGY)
+		{
+			if (BattleIsCrit(GetCharAtt(), pVictim->GetCharAtt(), false))
+			{
+				bIsCrit = true;
+				fCritDmgRate = GetCharAtt()->GetEnergyCriticalDamageRate();
 
-		fDmg += fCritDmgBonus;
+				// critical dmg def
+				fCritDefRate = pVictim->GetCharAtt()->GetEnergyCriticalDefenceRate();
+			}
+		}
+
+		if (bIsCrit)
+		{
+			byAttackResult = BATTLE_ATTACK_RESULT_CRITICAL_HIT;
+			fCritDmgBonus = ((fDmg * fCritDmgRate) / 100.f);
+			fCritDmgBonus -= fCritDmgBonus * fCritDefRate / 100.f;
+
+			fDmg += fCritDmgBonus;
+		}
+
+		vShift = pVictim->GetCurLoc() - GetCurLoc();
+		vShift.y = 0.0f;
+		vShift.SafeNormalize();
 	}
 
 	//set victim heal-on-hit
@@ -161,7 +171,6 @@ void CCharacter::AttackAction(CCharacter* pVictim)
 
 	//check reflect
 	fReflectedDamage = GetReflectDamage(fDmg, byAttackType, pVictim->GetCharAtt()->GetPhysicalReflection(), pVictim->GetCharAtt()->GetEnergyReflection());
-	
 
 //---SEND PACKET START----------------------------------------------------------
 SEND_PACKET:
@@ -209,6 +218,17 @@ SEND_PACKET:
 			pVictim->UpdateCurLP((int)fTargetLpRecoveredWhenHit, true, false);
 		if (res->lpEpRecovered.dwTargetEpRecoveredWhenHit >= 1)
 			pVictim->UpdateCurEP((WORD)fTargetEpRecoveredWhenHit, true, false);
+	}
+
+	// TODO: Should we send this before the sGU_CHAR_ACTION_ATTACK packet? After? Should we actually send the sGU_UPDATE_CHAR_STATE
+	//  packet too? Or should we simply update the values internally but not broadcast?
+	if (byAttackResult == BATTLE_ATTACK_RESULT_KNOCKDOWN)
+	{
+		pVictim->SendCharStateKnockdown(res->vShift);
+	}
+	else if (byAttackResult == BATTLE_ATTACK_RESULT_SLIDING)
+	{
+		pVictim->SendCharStateSliding(res->vShift);
 	}
 }
 
