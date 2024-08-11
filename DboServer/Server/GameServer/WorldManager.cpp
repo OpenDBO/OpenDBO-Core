@@ -420,7 +420,7 @@ bool CWorldManager::GetDestLocAfterCollision(CWorld * pCurWorld, CCharacter * pC
 						else
 						{
 							float fNewY = 0.0f;
-							long lHeight = GetNaviEngine()->GetFastHeight(pCurWorld->GetNaviInstanceHandle(), vDestLoc.x, vDestLoc.x, vDestLoc.z, fNewY, 5000);
+							long lHeight = GetNaviEngine()->GetFastHeight(pCurWorld->GetNaviInstanceHandle(), vDestLoc.x, vDestLoc.y, vDestLoc.z, fNewY, 5000);
 
 							if (lHeight == 0xFFFFFFFF)
 							{
