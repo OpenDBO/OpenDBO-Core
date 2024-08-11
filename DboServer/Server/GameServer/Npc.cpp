@@ -1502,7 +1502,9 @@ bool CNpc::AttackProgress(DWORD dwTickDiff, float fMultiple)
 		CGameServer* app = (CGameServer*)g_pApp;
 
 		CCharacter* pVictim = g_pObjectManager->GetChar(GetTargetHandle());
-		if (!pVictim || !pVictim->IsInitialized())
+		if (!IsAttackable(pVictim))
+			return false;
+		else if (!ConsiderAttackRange(0.0f))
 			return false;
 
 		AttackAction(pVictim);

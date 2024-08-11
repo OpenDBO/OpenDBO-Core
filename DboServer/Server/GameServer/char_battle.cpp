@@ -114,7 +114,6 @@ void CCharacter::AttackAction(CCharacter* pVictim)
 	}
 	else if (bIsComboFinisher)
 	{
-		// TODO: Monsters seems to perform an attack just after getting up even if they are far from the player.
 		byAttackResult = BATTLE_ATTACK_RESULT_KNOCKDOWN;
 		vShift = pVictim->GetCurDir();
 		vShift.SafeNormalize();
