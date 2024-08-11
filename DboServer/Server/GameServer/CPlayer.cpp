@@ -3800,12 +3800,9 @@ bool CPlayer::AttackProgress(DWORD dwTickDiff, float fMultiple)
 		//	printf("m_dwNextAttackTime %u GetAttackSpeedRate() %u Animation-Duration %f \n", m_dwNextAttackTime, GetAttackSpeedRate(), animationInfo->fDurationTime);
 
 		CCharacter* pVictim = g_pObjectManager->GetChar(GetAttackTarget());
-		if (!pVictim || !pVictim->IsInitialized())
-			return false;
-
 		if (!IsAttackable(pVictim))
 			return false;
-		else if (ConsiderAttackRange() == false)
+		else if (!ConsiderAttackRange())
 			return false;
 
 		UpdateBattleCombatMode(true); //Start/Reset combat event
