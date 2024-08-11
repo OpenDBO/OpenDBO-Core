@@ -46,7 +46,9 @@ void CCharacter::AttackAction(CCharacter* pVictim)
 	float fTargetLpRecoveredWhenHit = 0.0f;
 	float fTargetEpRecoveredWhenHit = 0.0f;
 
-	CNtlVector vShift;
+	CNtlVector vShift(pVictim->GetCurLoc() - GetCurLoc());
+	vShift.y = 0.0f;
+	vShift.SafeNormalize();
 	
 	// Player characters will chain all attacks from 1 until max anim id (depending on level, max 6), then reset back to 1.
 	if (IsPC()) {
@@ -155,10 +157,6 @@ void CCharacter::AttackAction(CCharacter* pVictim)
 
 			fDmg += fCritDmgBonus;
 		}
-
-		vShift = pVictim->GetCurLoc() - GetCurLoc();
-		vShift.y = 0.0f;
-		vShift.SafeNormalize();
 	}
 
 	//set victim heal-on-hit
