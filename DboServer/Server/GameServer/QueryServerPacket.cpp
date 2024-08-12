@@ -2565,6 +2565,21 @@ void CQueryServerSession::RecvCashitemSendGiftRes(CNtlPacket* pPacket)
 		packet2.SetPacketLen(sizeof(sGU_CASHITEM_RECV_GIFT_NFY));
 		pReceiver->SendPacket(&packet2);
 
+		CNtlPacket packet3(sizeof(sGU_CASHITEM_ADD_NFY));
+		sGU_CASHITEM_ADD_NFY* res3 = (sGU_CASHITEM_ADD_NFY*)packet3.GetPacketData();
+		res3->wOpCode = GU_CASHITEM_ADD_NFY;
+		res3->sInfo.byStackCount = req->byCount;
+		res3->sInfo.HLSitemTblidx = req->dwIdxHlsTable;
+		res3->sInfo.qwProductId = req->qwProductId;
+		res3->sInfo.tRegTime.day = req->tRegTime.day;
+		res3->sInfo.tRegTime.hour = req->tRegTime.hour;
+		res3->sInfo.tRegTime.minute = req->tRegTime.minute;
+		res3->sInfo.tRegTime.month = req->tRegTime.month;
+		res3->sInfo.tRegTime.second = req->tRegTime.second;
+		res3->sInfo.tRegTime.year = req->tRegTime.year;
+		packet3.SetPacketLen(sizeof(sGU_CASHITEM_ADD_NFY));
+		pReceiver->SendPacket(&packet3);
+
 		pReceiver->AddCashShopItem(res2->sInfo.qwProductId, &res2->sInfo);
 	}
 }
