@@ -7462,7 +7462,7 @@ void CClientSession::RecvHTBStartReq(CNtlPacket * pPacket)
 								res->sCharState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[i].byStep = i;
 								res->sCharState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[i].sSkillResult.hTarget = req->hTarget;
 								res->sCharState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[i].sSkillResult.byAttackResult = BATTLE_ATTACK_RESULT_HIT;
-								res->sCharState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[i].sSkillResult.byBlockedAction = 255;
+								res->sCharState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[i].sSkillResult.byBlockedAction = DBO_GUARD_TYPE_INVALID;
 								vShift.CopyTo(res->sCharState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[i].sSkillResult.vShift);
 								pTarget->GetCurLoc().CopyTo(res->sCharState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[i].sSkillResult.vFinalSubjectLoc);
 								res->sCharState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[i].sSkillResult.effectResult[0].eResultType = DBO_SYSTEM_EFFECT_RESULT_TYPE_GENERAL;
@@ -7674,7 +7674,11 @@ void CClientSession::RecvHTBForwardReq(CNtlPacket * pPacket)
 
 							if (curState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[pHtb->GetCurrentStep() - 1].sSkillResult.byAttackResult == BATTLE_ATTACK_RESULT_KNOCKDOWN)
 							{
-								pTarget->SendCharStateKnockdown(curState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[0].sSkillResult.vShift);
+								CNtlVector vShift(pTarget->GetCurDir());
+								vShift.SafeNormalize();
+								vShift *= -NTL_BATTLE_KNOCKDOWN_DISTANCE;
+								vShift.CopyTo(curState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[pHtb->GetCurrentStep() - 1].sSkillResult.vShift);
+								pTarget->SendCharStateKnockdown(curState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[pHtb->GetCurrentStep() - 1].sSkillResult.vShift);
 							}
 						}
 

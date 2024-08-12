@@ -1938,17 +1938,11 @@ void CSkill::OnAffected()
 
 			if (m_actionSkill.aSkillResult[i].byAttackResult == BATTLE_ATTACK_RESULT_KNOCKDOWN && pTarget->IsFainting() == false)
 			{
-				CNtlVector vShift(pTarget->GetCurLoc() - m_pOwnerRef->GetCurLoc());
-				vShift.y = 0.0f;
+				CNtlVector vShift(pTarget->GetCurDir());
 				vShift.SafeNormalize();
+				vShift *= -NTL_BATTLE_KNOCKDOWN_DISTANCE;
 				vShift.CopyTo(m_actionSkill.aSkillResult[i].vShift);
 				pTarget->SendCharStateKnockdown(m_actionSkill.aSkillResult[i].vShift);				
-				/*CNtlVector* pvNewCurDir;
-				pvNewCurDir->x = pTarget->GetCurDir().x;
-				pvNewCurDir->y = pTarget->GetCurDir().y;
-				pvNewCurDir->z = pTarget->GetCurDir().z;
-				pTarget->GetCurLoc() = pTarget->GetCurLoc() + RotateVector180Degree(pvNewCurDir) * 6;*/
-				
 			}
 
 			bool bIsTargetFaint = false;
