@@ -239,7 +239,6 @@ public:
 
 	//DWC
 	void						RecvDwcWorldCountInfoReq(CNtlPacket * pPacket);
-	void						DwcWorldDirection(CNtlPacket * pPacket);
 	void						RecvDwcWorldEnterReq(CNtlPacket * pPacket);
 	void						RecvDwcWorldEnterConfirmReq(CNtlPacket * pPacket);
 	void						RecvDwcScenarioInfoReq(CNtlPacket * pPacket);

@@ -221,12 +221,12 @@ void CClientSession::RecvEnterWorld(CNtlPacket * pPacket)
 		content->Dungeon001_World = 0;
 		content->bDisableUpgrade = 0;
 
-		content->bDisableWeirdDissassemble = 0;		
+		content->bDisableWeirdDissassemble = 1;		
 
-		content->bDisableOldScouter = 0;
-		content->bDisableNewScouter = 1;
+		content->bDisableOldScouter = 1;
+		content->bDisableNewScouter = 0;
 
-		content->Dungeon004_Trigger = 0;
+		content->Dungeon004_Trigger = 1;
 		content->Dungeon006_Trigger = 0;
 		content->Dungeon007_Trigger = 0;
 
@@ -240,11 +240,11 @@ void CClientSession::RecvEnterWorld(CNtlPacket * pPacket)
 
 		content->byteUnknown4_1 = 0;
 
-		content->bDisableDWC = 0;
+		content->bDisableDWC = 1;
 
 		content->byteUnknown4_3 = 0;
 		content->byteUnknown4_4 = 0;
-		content->byteUnknown4_5 = 0;
+		content->byteUnknown4_5 = 1;
 		content->byteUnknown4_6 = 0;
 		content->byteUnknown4_7 = 0;
 		content->byteUnknown4_8 = 0;
@@ -2381,7 +2381,7 @@ void	CClientSession::RecvMailSendReq(CNtlPacket * pPacket)
 		goto _end;
 	}
 
-	if (cPlayer->GetLevel() < MAIL_SEND_REQUIRED_LEVEL) //only lv 29 and higher can send mails
+	if (cPlayer->GetLevel() < MAIL_SEND_REQUIRED_LEVEL) //only lv 10 and higher can send mails
 	{
 		sendmailres = GAME_FAIL;
 		goto _end;
@@ -2412,11 +2412,11 @@ void	CClientSession::RecvMailSendReq(CNtlPacket * pPacket)
 		dwFee += req->dwZenny;
 
 	// dont allow to send mails with request zeni (Only used to scam)
-	if (req->byMailType == eMAIL_TYPE_ZENNY_REQ)
+	/*if (req->byMailType == eMAIL_TYPE_ZENNY_REQ)
 	{
 		sendmailres = GAME_FAIL;
 		goto _end;
-	}
+	}*/
 
 	//check zeni
 	if (cPlayer->GetZeni() < dwFee)
@@ -12507,17 +12507,14 @@ void	CClientSession::RecvDwcWorldCountInfoReq(CNtlPacket * pPacket)
 		res->wOpCode = GU_DWC_WORLDCOUNT_INFO_RES;
 		res->wResultCode = GAME_SUCCESS;
 		res->hNpc = req->hNpc;
-		res->byWorldCount = 2;
-		res->byLimitCount = 10;
+		res->byWorldCount = 1;
+		res->byLimitCount = 1;
 		res->asWorldCountInfo[0].tblidx = 1;
 		res->asWorldCountInfo[0].wUseCount = 1;
-		res->asWorldCountInfo[1].tblidx = 2;
-		res->asWorldCountInfo[1].wUseCount = 50;
 	packet.SetPacketLen( sizeof(sGU_DWC_WORLDCOUNT_INFO_RES) );
 	g_pApp->Send(GetHandle(), &packet );
 
 }
-
 //--------------------------------------------------------------------------------------//
 //		DWC WORLD ENTER
 //--------------------------------------------------------------------------------------//

@@ -136,30 +136,30 @@ void CGameProcessor::Run(DWORD dwTickCount)
 		m_dwLogTick += dwTickDiff;
 
 	//	if (m_dwLogTick >= 1000) //log every 10 seconds
-		//{
-		//	float fTimeDif = ((float)(rEnd.QuadPart - rStart.QuadPart)) * 1000.f / ((float)m_freq.QuadPart);
-		//	if (fTimeDif > 200.f)
-		//	{
-		//		ERR_LOG(LOG_SYSTEM, "LOG-TICK: fTimeDif = %f, Event %f, Item %f, Shenron %f, Trade %f, World %f, Object %f, Spawn %f, Dungeon %f, Script %f, RankBattle %f, DynamicEvent %f, DbHunt %f, rParty %f",
-		//			fTimeDif,
-		//			((float)(rEvent.QuadPart - rStart.QuadPart)) * 1000.f / ((float)m_freq.QuadPart),
-		//			((float)(rItem.QuadPart - rEvent.QuadPart)) * 1000.f / ((float)m_freq.QuadPart),
-		//			((float)(rShenron.QuadPart - rItem.QuadPart)) * 1000.f / ((float)m_freq.QuadPart),
-		//			((float)(rTrade.QuadPart - rShenron.QuadPart)) * 1000.f / ((float)m_freq.QuadPart),
-		//			((float)(rWorld.QuadPart - rTrade.QuadPart)) * 1000.f / ((float)m_freq.QuadPart),
-		//			((float)(rObject.QuadPart - rWorld.QuadPart)) * 1000.f / ((float)m_freq.QuadPart),
-		//			((float)(rSpawn.QuadPart - rObject.QuadPart)) * 1000.f / ((float)m_freq.QuadPart),
-		//			((float)(rDungeon.QuadPart - rSpawn.QuadPart)) * 1000.f / ((float)m_freq.QuadPart),
-		//			((float)(rScript.QuadPart - rDungeon.QuadPart)) * 1000.f / ((float)m_freq.QuadPart),
-		//			((float)(rRankBattle.QuadPart - rScript.QuadPart)) * 1000.f / ((float)m_freq.QuadPart),
-		//			((float)(rDynamicEvent.QuadPart - rRankBattle.QuadPart)) * 1000.f / ((float)m_freq.QuadPart),
-		//			((float)(rDbHunt.QuadPart - rDynamicEvent.QuadPart)) * 1000.f / ((float)m_freq.QuadPart),
-		//			((float)(rParty.QuadPart - rDbHunt.QuadPart)) * 1000.f / ((float)m_freq.QuadPart)
-		//		);
-		//	}
+		{
+			float fTimeDif = ((float)(rEnd.QuadPart - rStart.QuadPart)) * 1000.f / ((float)m_freq.QuadPart);
+			if (fTimeDif > 200.f)
+			{
+				ERR_LOG(LOG_SYSTEM, "LOG-TICK: fTimeDif = %f, Event %f, Item %f, Shenron %f, Trade %f, World %f, Object %f, Spawn %f, Dungeon %f, Script %f, RankBattle %f, DynamicEvent %f, DbHunt %f, rParty %f",
+					fTimeDif,
+					((float)(rEvent.QuadPart - rStart.QuadPart)) * 1000.f / ((float)m_freq.QuadPart),
+					((float)(rItem.QuadPart - rEvent.QuadPart)) * 1000.f / ((float)m_freq.QuadPart),
+					((float)(rShenron.QuadPart - rItem.QuadPart)) * 1000.f / ((float)m_freq.QuadPart),
+					((float)(rTrade.QuadPart - rShenron.QuadPart)) * 1000.f / ((float)m_freq.QuadPart),
+					((float)(rWorld.QuadPart - rTrade.QuadPart)) * 1000.f / ((float)m_freq.QuadPart),
+					((float)(rObject.QuadPart - rWorld.QuadPart)) * 1000.f / ((float)m_freq.QuadPart),
+					((float)(rSpawn.QuadPart - rObject.QuadPart)) * 1000.f / ((float)m_freq.QuadPart),
+					((float)(rDungeon.QuadPart - rSpawn.QuadPart)) * 1000.f / ((float)m_freq.QuadPart),
+					((float)(rScript.QuadPart - rDungeon.QuadPart)) * 1000.f / ((float)m_freq.QuadPart),
+					((float)(rRankBattle.QuadPart - rScript.QuadPart)) * 1000.f / ((float)m_freq.QuadPart),
+					((float)(rDynamicEvent.QuadPart - rRankBattle.QuadPart)) * 1000.f / ((float)m_freq.QuadPart),
+					((float)(rDbHunt.QuadPart - rDynamicEvent.QuadPart)) * 1000.f / ((float)m_freq.QuadPart),
+					((float)(rParty.QuadPart - rDbHunt.QuadPart)) * 1000.f / ((float)m_freq.QuadPart)
+				);
+			}
 
-		//	m_dwLogTick = 0;
-		//}
+			m_dwLogTick = 0;
+		}
 		
 	}
 }

@@ -66,8 +66,8 @@ void CObjectManager::SpawnNpcAndMob()
 					sNPC_SERVER_TBLDAT* pNpcSrv = (sNPC_SERVER_TBLDAT*)g_pTableContainer->GetNpcServerTable()->FindData(pNPCTblData->tblidx);
 					if (pNpcSrv)
 					{
-						//if (pNPCTblData->bValidity_Able == true && pNpcSrv->bValidity_Able == true)
-						//{
+						if (pNPCTblData->bValidity_Able == true && pNpcSrv->bValidity_Able == true)
+						{
 							CNpc* pNpc = (CNpc*)CreateCharacter(OBJTYPE_NPC);
 							if (pNpc)
 							{
@@ -79,7 +79,7 @@ void CObjectManager::SpawnNpcAndMob()
 									delete pNpc;
 								}
 							}
-						//}
+						}
 					}
 				}
 			}

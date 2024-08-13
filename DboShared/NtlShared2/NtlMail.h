@@ -16,7 +16,7 @@
 #include "NtlItem.h"
 #include "NtlSharedType.h"
 
-const BYTE		MAIL_SEND_REQUIRED_LEVEL = 29;		// Level required to send mail
+const BYTE		MAIL_SEND_REQUIRED_LEVEL = 10;		// Level required to send mail
 const DWORD		NTL_MAX_BASIC_MAIL_SEND_ZENNY	= 10;		// Commission
 const DWORD		NTL_MAX_ATTACH_MAIL_SEND_ZENNY	= 20;		// Commission
 const DWORD		NTL_MAX_MAIL_SEND_ZENNY_AMOUNTS	= 100000000;	// 첨부 최대가능 금액
