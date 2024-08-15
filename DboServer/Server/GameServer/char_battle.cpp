@@ -101,9 +101,7 @@ void CCharacter::AttackAction(CCharacter* pVictim)
 		{
 			byAttackResult = BATTLE_ATTACK_RESULT_SLIDING;
 			byBlockedAction = DBO_GUARD_TYPE_KNOCKDOWN;
-			vShift = pVictim->GetCurDir();
-			vShift.SafeNormalize();
-			vShift *= -NTL_BATTLE_SLIDING_DISTANCE; // should it be push distance instead?
+			vShift *= +NTL_BATTLE_SLIDING_DISTANCE; // should it be push distance instead?
 		}
 		else*/
 		{
@@ -115,9 +113,7 @@ void CCharacter::AttackAction(CCharacter* pVictim)
 	else if (bIsComboFinisher)
 	{
 		byAttackResult = BATTLE_ATTACK_RESULT_KNOCKDOWN;
-		vShift = pVictim->GetCurDir();
-		vShift.SafeNormalize();
-		vShift *= -NTL_BATTLE_KNOCKDOWN_DISTANCE;
+		vShift *= +NTL_BATTLE_KNOCKDOWN_DISTANCE;
 	}
 	else
 	{
