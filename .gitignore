@@ -75,6 +75,7 @@ NtlLib/Shared/Zip/zlib123/projects/Win32_LIB_Release
 Xtreme ToolkitPro v13.2.1
 DboClient/Tool/2DParticleEditor/Release4Tools/
 Xtreme ToolkitPro v15.2.1/
+NtlLib/Server/boost_1_64_0
 
 # JetBrains Rider
 *.sln.iml
