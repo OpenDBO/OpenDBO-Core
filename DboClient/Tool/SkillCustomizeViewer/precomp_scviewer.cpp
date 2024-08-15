@@ -1,1 +1,0 @@
-#include "precomp_scviewer.h"

@@ -1,1 +1,0 @@
-#include "precomp_guidevtool.h"

@@ -35,7 +35,6 @@ DboClient/Tool/TSTool/Release4Tools
 DboClient/Tool/TableEditor/Release4Tools
 DboServer/.vs
 DboServer/x64
-DboServer/ExecutionEnv
 DboServer/Server/AuthServer/ExecutionEnv
 DboServer/Server/CharServer/ExecutionEnv
 DboServer/Server/ChatServer/ExecutionEnv
@@ -76,3 +75,16 @@ NtlLib/Shared/Zip/zlib123/projects/Win32_LIB_Release
 Xtreme ToolkitPro v13.2.1
 DboClient/Tool/2DParticleEditor/Release4Tools/
 Xtreme ToolkitPro v15.2.1/
+
+# JetBrains Rider
+*.sln.iml
+
+**.dmp
+**.pdb
+**.exe
+**.ini
+**.log
+**.tlog
+**.obj
+**.pch
+**.res

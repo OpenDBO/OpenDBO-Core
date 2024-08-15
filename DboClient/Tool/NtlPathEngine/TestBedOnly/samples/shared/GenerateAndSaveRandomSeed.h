@@ -1,2 +1,0 @@
-
-unsigned long GenerateAndSaveRandomSeed();

@@ -1,7 +1,0 @@
-// Font Define. 
-//
-// ex) UserDefineName = Filename, Fontname;
-// If font is systemfont, insert "system" instead of fontfilename.
-
-Default = SomaM.ttf, ¼Ò¸ÁM;
-//Default = HGRSGU.TTF, HGPSoeiKakuGothicUB;
