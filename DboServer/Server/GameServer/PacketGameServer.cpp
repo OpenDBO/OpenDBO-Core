@@ -7486,6 +7486,7 @@ void CClientSession::RecvHTBForwardReq(CNtlPacket * pPacket)
 							if (curState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[pHtb->GetCurrentStep() - 1].sSkillResult.byAttackResult == BATTLE_ATTACK_RESULT_KNOCKDOWN)
 							{
 								CNtlVector vShift(pTarget->GetCurLoc() - cPlayer->GetCurLoc());
+								vShift.y = 0.0f;
 								vShift.SafeNormalize();
 								vShift *= +NTL_BATTLE_KNOCKDOWN_DISTANCE;
 								vShift.CopyTo(curState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[pHtb->GetCurrentStep() - 1].sSkillResult.vShift);

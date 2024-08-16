@@ -1929,6 +1929,7 @@ void CSkill::OnAffected()
 			if (m_actionSkill.aSkillResult[i].byAttackResult == BATTLE_ATTACK_RESULT_KNOCKDOWN && pTarget->IsFainting() == false)
 			{
 				CNtlVector vShift(pTarget->GetCurLoc() - m_pOwnerRef->GetCurLoc());
+				vShift.y = 0.0f;
 				vShift.SafeNormalize();
 				vShift *= +NTL_BATTLE_KNOCKDOWN_DISTANCE;
 				vShift.CopyTo(m_actionSkill.aSkillResult[i].vShift);
