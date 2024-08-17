@@ -4,7 +4,7 @@ PublicAddress = 127.0.0.1
 Port = 30000
 ServerID = 0
 Channel = 0
-Servername = DBO Classic
+Servername = OpenDBO
 Channelname = 
 
 [Query Connect]

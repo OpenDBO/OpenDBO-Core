@@ -4,7 +4,7 @@ PublicAddress = 127.0.0.1
 Port = 30009
 ServerID = 0
 Channel = 9
-Servername = DBO Classic
+Servername = OpenDBO
 Channelname = Dojo
 
 [Query Connect]
