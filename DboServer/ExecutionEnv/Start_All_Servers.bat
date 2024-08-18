@@ -1,7 +1,22 @@
-start start_query_server.bat
-start start_master_server.bat
-start start_auth_server.bat
-start start_char_server_0.bat
-start start_chat_server.bat
-start start_channel_0.bat
+@echo off
+
+start MasterServer.exe
+timeout /t 1 /nobreak > nul
+
+start QueryServer.exe
+timeout /t 1 /nobreak > nul
+
+start AuthServer.exe
+timeout /t 1 /nobreak > nul
+
+start CharServer.exe .\\config\\CharServer.ini
+timeout /t 1 /nobreak > nul
+
+start GameServer.exe .\\config\\GameServer.ini
+timeout /t 1 /nobreak > nul
+
+start ChatServer.exe
+timeout /t 1 /nobreak > nul
+
 exit
+
