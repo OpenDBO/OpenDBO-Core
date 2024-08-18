@@ -17590,13 +17590,13 @@ void CClientSession::RecvItemSocketInsertBeadReq(CNtlPacket * pPacket)
 	CItem* item = NULL;
 	CItem* bead = NULL;
 
-	if (IsInvenContainer(req->byBeadPlace) && IsInvenContainer(req->byItemPlace))
+	if (IsInvenContainer(req->byBeadPlace) && (IsInvenContainer(req->byItemPlace) || IsEquipContainer(req->byItemPlace)))
 	{
 		item = cPlayer->GetPlayerItemContainer()->GetItem(req->byItemPlace, req->byItemPos);
 		bead = cPlayer->GetPlayerItemContainer()->GetItem(req->byBeadPlace, req->byBeadPos);
 		if (item == NULL || item->GetCount() == 0 || bead == NULL || bead->GetCount() == 0)
 			resultcode = GAME_ITEM_NOT_FOUND;
-		else if (item->IsLocked() || bead->IsLocked())
+		else if (item->IsLocked(false) || bead->IsLocked(false))
 			resultcode = GAME_ITEM_IS_LOCK;
 		else
 		{
