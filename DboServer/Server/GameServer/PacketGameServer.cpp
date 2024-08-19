@@ -3408,6 +3408,12 @@ void CClientSession::RecvGuildBankMoveStackReq(CNtlPacket * pPacket)
 	res->byDstPlace = req->byDestPlace;
 	res->byDstPos = req->byDestPos;
 
+	if (res->bySrcPlace == res->byDstPlace && res->bySrcPos == res->byDstPos)
+	{
+		resultcode = GAME_FAIL;
+		goto END;
+	}
+
 	if (cPlayer->IsUsingBank() == false || cPlayer->IsBankLoaded() == false || cPlayer->GetPlayerItemContainer()->IsUsingGuildBank() == false)
 	{
 		resultcode = GAME_FAIL;
@@ -5504,6 +5510,12 @@ void CClientSession::RecvItemStackReq(CNtlPacket * pPacket)
 	res->bySrcPos = req->bySrcPos;
 	res->byDstPlace = req->byDestPlace;
 	res->byDstPos = req->byDestPos;
+
+	if (res->bySrcPlace == res->byDstPlace && res->bySrcPos == res->byDstPos)
+	{
+		resultcode = GAME_FAIL;
+		goto END;
+	}
 
 	if (cPlayer->GetPlayerItemContainer()->IsInventoryReserved(req->bySrcPlace, req->bySrcPos) || cPlayer->GetPlayerItemContainer()->IsInventoryReserved(req->byDestPlace, req->byDestPos))
 	{
@@ -9087,6 +9099,12 @@ void CClientSession::RecvBankStackReq(CNtlPacket * pPacket)
 	res->bySrcPos = req->bySrcPos;
 	res->byDstPlace = req->byDestPlace;
 	res->byDstPos = req->byDestPos;
+
+	if (res->bySrcPlace == res->byDstPlace && res->bySrcPos == res->byDstPos)
+	{
+		resultcode = GAME_FAIL;
+		goto END;
+	}
 
 	if (cPlayer->IsUsingBank() == false || cPlayer->IsBankLoaded() == false || cPlayer->GetPlayerItemContainer()->IsUsingGuildBank())
 	{
@@ -13487,6 +13505,7 @@ void CClientSession::RecvBudokaiMudosaInfoReq(CNtlPacket * pPacket)
 	res->aMudosaInfo[0].wCurrentUserCount = 0;
 	NTL_SAFE_WCSCPY(res->aMudosaInfo[0].wszMudosaName, L"Mudosa");
 	res->byMudosaCount = 1;
+	res->wResultCode = GAME_SUCCESS;
 	g_pApp->Send(GetHandle(), &packet);
 }
 
