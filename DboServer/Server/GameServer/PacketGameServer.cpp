@@ -17076,7 +17076,7 @@ void CClientSession::RecvItemSocketInsertBeadReq(CNtlPacket * pPacket)
 			//	printf("bead->GetTbldat()->byItem_Type %u item->GetTbldat()->byItem_Type %u \n", bead->GetTbldat()->byItem_Type, item->GetTbldat()->byItem_Type);
 		}
 	}
-	else resultcode = GAME_FAIL;
+	else resultcode = GAME_ITEM_POSITION_FAIL;
 
 	CNtlPacket packet(sizeof(sGU_ITEM_SOCKET_INSERT_BEAD_RES));
 	sGU_ITEM_SOCKET_INSERT_BEAD_RES* res = (sGU_ITEM_SOCKET_INSERT_BEAD_RES*)packet.GetPacketData();
@@ -17102,7 +17102,12 @@ void CClientSession::RecvItemSocketInsertBeadReq(CNtlPacket * pPacket)
 	{
 		resultcode = item->InsertSocketBead(bead); //insert bead aka dogi ball
 		if (resultcode == GAME_SUCCESS)
+		{
+			// If item is equipped, make sure to recalculate stats.
+			if (item->IsEquipped())
+				cPlayer->GetCharAtt()->CalculateAll();
 			return;
+		}
 	}
 
 	res->wResultCode = resultcode;

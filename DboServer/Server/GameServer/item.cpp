@@ -1714,6 +1714,10 @@ WORD CItem::InsertSocketBead(CItem* pBeadItem)
 
 	pBeadItem->SetCount(res->byBeadRemainStack, false, false);
 
+	// Update item effect fields.
+	memcpy(&GetOptionSet().aRandomOption[6], &aRandomOption[0], sizeof(sITEM_RANDOM_OPTION));
+	memcpy(&GetOptionSet().aRandomOption[7], &aRandomOption[1], sizeof(sITEM_RANDOM_OPTION));
+
 	return GAME_SUCCESS;
 }
 
