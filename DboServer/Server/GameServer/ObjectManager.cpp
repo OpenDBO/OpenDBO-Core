@@ -449,7 +449,7 @@ void CObjectManager::ProcessRespawn()
 			CNpc* pBot = it->first;
 			if (pBot)
 			{
-				if (dwCurTick > it->second + (40 * 1000))
+				if (dwCurTick > it->second + (pBot->GetSpawnTime() * 1000))
 				{
 					if (BIT_FLAG_TEST(pBot->GetSpawnFuncFlag(), SPAWN_FUNC_FLAG_RESPAWN)) //Check if can spawn
 						pBot->Spawn(false);
