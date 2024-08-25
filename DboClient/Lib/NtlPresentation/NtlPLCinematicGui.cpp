@@ -254,7 +254,7 @@ VOID CNtlPLCinematicGui::SetCinematicFlash( void* pData )
 	{
 		CRectangle rect( 0, 0, m_pCinematicObject->GetWidth(), m_pCinematicObject->GetHeight() );
 
-		CNtlPLLuaLinkedFlash* pFlash = NTL_NEW CNtlPLLuaLinkedFlash( rect, pFlashData->pFilename, m_pCinematicObject->GetImageFrame(),
+		CNtlPLLuaLinkedFlash* pFlash = NTL_NEW CNtlPLLuaLinkedFlash( rect, pFlashData->pFilename, m_pCinematicObject->GetFlashPanel(),
 																	 pFlashData->pEchoData, pFlashData->bUseTime, pFlashData->fLifeTime,
 																	 pFlashData->fBeginAlphaTime, pFlashData->fEndAlphaTime, pFlashData->flagPlayTimeType );
 

@@ -62,6 +62,7 @@ public:
 	static CNtlPLCinematicObject* GetInstance(VOID) { return m_pInstance; }
 
 	gui::CFrame*		GetImageFrame(VOID) { return m_pImageFrame; }
+	gui::CPanel*		GetFlashPanel(VOID) { return m_pCinematicBack; }
 	gui::CDialog*		GetBalloon(VOID) { return m_pBalloon; }
 	gui::CHtmlBox*		GetHtmlText(VOID) { return m_pHtmlText; }
 	gui::CStaticBox*	GetText(VOID) { return m_pText; }
