@@ -1307,6 +1307,9 @@ void CChatServerSession::RecvHlsSlotMachineExtractReq(CNtlPacket * pPacket, CQue
 					pCache->SetEventCoin(pCache->GetEventCoin() - (DWORD)req->wCoin);
 					GetAccDB.WaitExecute("UPDATE accounts SET EventCoins=%u WHERE AccountID=%u", pCache->GetEventCoin(), req->accountId); //if player bought cash and did not update his cash in game.. This is why we do like this
 
+					pCharCache->SetWaguPoints(pCharCache->GetWaguPoints() + req->wWaguPointGain);
+					GetCharDB.Execute("UPDATE characters SET WaguPoint=%u WHERE CharID=%u", pCharCache->GetWaguPoints(), req->charId);
+					res->wWaguPoint = pCharCache->GetWaguPoints();
 				}
 			}			
 			else
@@ -1348,6 +1351,9 @@ void CChatServerSession::RecvHlsSlotMachineExtractReq(CNtlPacket * pPacket, CQue
 					pCache->SetWaguCoin(pCache->GetWaguCoin() - (DWORD)req->wCoin);
 					GetAccDB.WaitExecute("UPDATE accounts SET WaguCoins=%u WHERE AccountID=%u", pCache->GetWaguCoin(), req->accountId); //if player bought cash and did not update his cash in game.. This is why we do like this
 
+					pCharCache->SetWaguPoints(pCharCache->GetWaguPoints() + req->wWaguPointGain);
+					GetCharDB.Execute("UPDATE characters SET WaguPoint=%u WHERE CharID=%u", pCharCache->GetWaguPoints(), req->charId);
+					res->wWaguPoint = pCharCache->GetWaguPoints();
 				}				
 			}
 

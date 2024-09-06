@@ -1009,6 +1009,7 @@
     <ClInclude Include="GameProcessor.h" />
     <ClInclude Include="HelpMeListManager.h" />
     <ClInclude Include="HitBySkillContainer.h" />
+    <ClInclude Include="WPShopContainer.h" />
     <ClInclude Include="MeHaterManager.h" />
     <ClInclude Include="NpcParty.h" />
     <ClInclude Include="NpcPartyManager.h" />

@@ -1682,6 +1682,18 @@ void CGameServerSession::RecvUpdateCharNetpyReq(CNtlPacket * pPacket, CQueryServ
 	}
 }
 
+void CGameServerSession::RecvUpdateWaguPoinstReq(CNtlPacket* pPacket, CQueryServer * app)
+{
+	sGQ_CHAR_WAGUPOINT_UPDATE_REQ* req = (sGQ_CHAR_WAGUPOINT_UPDATE_REQ*)pPacket->GetPacketData();
+
+	CPlayerCache* pPlayerCache = g_pPlayerCache->GetCharacter(req->charId);
+	if (pPlayerCache)
+	{
+		GetCharDB.Execute("UPDATE characters SET WaguPoint=%u WHERE CharID=%u", req->dwWaguPoints, req->charId);
+		pPlayerCache->SetWaguPoints(req->dwWaguPoints);
+	}
+}
+
 void CGameServerSession::RecvQuestItemCreateReq(CNtlPacket * pPacket, CQueryServer * app)
 {
 	UNREFERENCED_PARAMETER(app);

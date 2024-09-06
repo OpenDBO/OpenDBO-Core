@@ -1185,14 +1185,14 @@ enum eRESULTCODE
 	//--NEW------------------------------------------------------------
 	// Event System ( 11000 ~ )
 	//-----------------------------------------------------------------
-	EVENT_YOU_ALREADY_HAVE_CHARACTER,
+	EVENT_YOU_ALREADY_HAVE_CHARACTER = 11000,
 	EVENT_NO_MORE_NEW_CHARACTER_ALLOWED,
 	EVENT_OFF_CONTENTS_USED,
 
 	//--NEW------------------------------------------------------------
 	// Scramble System ( 12000 ~ )
 	//-----------------------------------------------------------------
-	SCRAMBLE_CANNOT_DO_WHILE_JOINED,
+	SCRAMBLE_CANNOT_DO_WHILE_JOINED = 12000,
 	SCRAMBLE_CANNOT_DO_WHILE_NOT_JOINED,
 	SCRAMBLE_CANNOT_DO_ALREADY_REWARDED,
 	SCRAMBLE_CANNOT_DO_TARGET_IS_NOT_JOINED,
@@ -1223,7 +1223,7 @@ enum eRESULTCODE
 	//--NEW------------------------------------------------------------
 	// TENKAICHI DAISIJYOU System ( 13000 ~ )
 	//-----------------------------------------------------------------
-	TENKAICHIDAISIJYOU_CANNOT_SELL_NO_MONEY,
+	TENKAICHIDAISIJYOU_CANNOT_SELL_NO_MONEY = 13000,
 	TENKAICHIDAISIJYOU_CANNOT_NOT_EXIST,
 	TENKAICHIDAISIJYOU_CANNOT_LACK_OF_ITEM_STACK,
 	TENKAICHIDAISIJYOU_CANNOT_BUY_NO_MONEY,
@@ -1247,7 +1247,7 @@ enum eRESULTCODE
 	//--NEW------------------------------------------------------------
 	// Maskot System ( 14000 ~ )
 	//-----------------------------------------------------------------
-	MASCOT_FAIL,
+	MASCOT_FAIL = 14000,
 	MASCOT_ALREADY_EXIST,
 	MASCOT_NOT_EXIST,
 	MASCOT_WAS_NOT_SUMMONED,
@@ -1273,7 +1273,7 @@ enum eRESULTCODE
 	//--NEW------------------------------------------------------------
 	// wagu wagu machine System ( 15000 ~ )
 	//-----------------------------------------------------------------
-	WAGUWAGUMACHINE_FAIL,
+	WAGUWAGUMACHINE_FAIL = 15000,
 	WAGUWAGUMACHINE_NOT_EXIST_MACHINE,
 	WAGUWAGUMACHINE_NOT_EXIST_QNTT,
 	WAGUWAGUMACHINE_NOT_ENOUGH_COIN,
@@ -1288,7 +1288,7 @@ enum eRESULTCODE
 	WAGUWAGUMACHINE_OVER_MAX_EVENTCOIN,
 
 	//-----------------------------------------------------------------
-	GAME_COMMON_MESSAGE_02,
+	GAME_COMMON_MESSAGE_02 = 15100,
 	GAME_COMMON_ALREADY_REGISTERED,
 	GAME_COMMON_NOT_REGISTERED,
 	GAME_COMMON_CAN_NOT_DO_HERE,
@@ -1303,10 +1303,13 @@ enum eRESULTCODE
 	GAME_COMMON_LACK_OF_SPACE_REWARD_HAS_BEEN_DELIVERED_BY_MAIL,
 
 	//-----------------------------------------------------------------
+	DWC_SUCCESS = 15200,
 	DWC_FAIL,
+	GAME_DWC_OUT_RESERVED,
 
 	//-----------------------------------------------------------------
 	GAME_BATTLE_DUNGEON_FAIL,
+	GAME_BATTLE_DUNGEON_SUCCESS = 15300,
 	GAME_BATTLE_DUNGEON_NOT_READY_ALL,
 	GAME_BATTLE_DUNGEON_NOT_IN_RANGE,
 	GAME_BATTLE_DUNGEON_NOT_SAME_MEMBER,
@@ -1314,12 +1317,14 @@ enum eRESULTCODE
 	GAME_BATTLE_DUNGEON_FAIL_STATE,
 
 	//-----------------------------------------------------------------
+	GAME_CLOSED_BOX_SUCCESS = 15400,
 	GAME_CLOSED_BOX_FAIL,
 	GAME_CLOSED_BOX_KEY_NOT_FOUND,
 	GAME_CLOSED_BOX_KEY_NOT_ENOUGH,
 	GAME_CLOSED_BOX_KEY_MISMATCH,
 
 	//-----------------------------------------------------------------
+	GAME_ITEM_EXCHANGE_SUCCESS = 15500,
 	GAME_ITEM_EXCHANGE_FAIL,
 	GAME_ITEM_EXCHANGE_NOT_STACKED,
 	GAME_ITEM_UPGRADED_EXCHANGE_POWDER_NOT_FOUND,
@@ -1330,15 +1335,21 @@ enum eRESULTCODE
 	GAME_ITEM_UPGRADED_EXCHANGE_ITEM_FAIL,
 
 	//-----------------------------------------------------------------
+	CHARTITLE_SUCCESS = 15600,
 	CHARTITLE_NO_HAVE,
 	CHARTITLE_YOU_ALREADY_HAVE_THE_TITLE,
 	CHARTITLE_TITLE_IS_ON_PROGRESS,
 
 	//-----------------------------------------------------------------
 	AIR_FAIL,
-	AIR_CANNOT_FLY_JUMP_NOT_ENOUGH_AP,
+	AIR_CANNOT_FLY_JUMP_NOT_ENOUGH_AP = 15800,
 	GAME_COMMON_CANT_DO_THAT_IN_AIR_MODE_STATE,
 	AIR_CANNOT_FLY_ACCEL,
+
+	//-----------------------------------------------------------------
+	GIFTSHOP_SUCCESS = 15900,
+	GIFTSHOP_CLOSE_STATE,
+	GIFTSHOP_NOT_ENOUGH_WP_POINT,
 
 	GAME_SKILL_CANT_USE_SKILL_WHEN_ROLLING_ATTACK,
 	GAME_SKILL_CANT_USE_SKILL_WHEN_RABIES,

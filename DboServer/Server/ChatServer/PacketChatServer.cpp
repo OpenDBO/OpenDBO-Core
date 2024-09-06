@@ -1477,7 +1477,6 @@ void CClientSession::RecvHlsSlotMachineExtractReq(CNtlPacket * pPacket)
 	{
 		return;
 	}
-	//return;
 
 	CNtlPacket packet(sizeof(sTU_HLS_SLOT_MACHINE_EXTRACT_RES));
 	sTU_HLS_SLOT_MACHINE_EXTRACT_RES* res = (sTU_HLS_SLOT_MACHINE_EXTRACT_RES*)packet.GetPacketData();
@@ -1538,6 +1537,11 @@ void CClientSession::RecvHlsSlotMachineExtractReq(CNtlPacket * pPacket)
 									g_pHlsSlotMachine->GetSlotItems(pSlotMachine->pTbldat->tblidx, &vecSlotItems);
 
 									res2->byExtractCount++;
+									// WP Points gain, set it to 5 points per draw.
+									res2->wWaguPointGain = 5;
+									if (cPlayer->GetWaguWaguPoints() + res2->wWaguPointGain > NTL_MAX_WAGU_WAGU_SHOPPOINTS)
+										res2->wWaguPointGain = NTL_MAX_WAGU_WAGU_SHOPPOINTS - cPlayer->GetWaguWaguPoints();
+									cPlayer->SetWaguWaguPoints(cPlayer->GetWaguWaguPoints() + res2->wWaguPointGain);
 								}
 							}
 
@@ -1552,6 +1556,14 @@ void CClientSession::RecvHlsSlotMachineExtractReq(CNtlPacket * pPacket)
 
 							packet2.SetPacketLen(sizeof(sTQ_HLS_SLOT_MACHINE_EXTRACT_REQ));
 							app->SendTo(app->GetQueryServerSession(), &packet2);
+
+							CNtlPacket packet3(sizeof(sTG_CHAR_WAGUPOINT_UPDATE_RES));
+							sTG_CHAR_WAGUPOINT_UPDATE_RES* res3 = (sTG_CHAR_WAGUPOINT_UPDATE_RES*)packet3.GetPacketData();
+							res3->wOpCode = TG_CHAR_WAGUPOINT_UPDATE_RES;
+							res3->charId = cPlayer->GetCharID();
+							res3->dwWaguPoints = cPlayer->GetWaguWaguPoints();
+							packet3.SetPacketLen(sizeof(sTG_CHAR_WAGUPOINT_UPDATE_RES));
+							app->Send(g_pServerInfoManager->GetGsSession(cPlayer->GetChannel()), &packet3);
 
 							return;
 						}
@@ -1613,6 +1625,11 @@ void CClientSession::RecvHlsSlotMachineExtractReq(CNtlPacket * pPacket)
 									g_pHlsSlotMachine->GetSlotItems(pSlotMachine->pTbldat->tblidx, &vecSlotItems);
 
 									res2->byExtractCount++;
+									// WP Points gain, set it to 5 points per draw.
+									res2->wWaguPointGain = 5;
+									if (cPlayer->GetWaguWaguPoints() + res2->wWaguPointGain > NTL_MAX_WAGU_WAGU_SHOPPOINTS)
+										res2->wWaguPointGain = NTL_MAX_WAGU_WAGU_SHOPPOINTS - cPlayer->GetWaguWaguPoints();
+									cPlayer->SetWaguWaguPoints(cPlayer->GetWaguWaguPoints() + res2->wWaguPointGain);
 								}
 							}
 
@@ -1628,6 +1645,14 @@ void CClientSession::RecvHlsSlotMachineExtractReq(CNtlPacket * pPacket)
 							packet2.SetPacketLen(sizeof(sTQ_HLS_SLOT_MACHINE_EXTRACT_REQ));
 							app->SendTo(app->GetQueryServerSession(), &packet2);
 
+							CNtlPacket packet3(sizeof(sTG_CHAR_WAGUPOINT_UPDATE_RES));
+							sTG_CHAR_WAGUPOINT_UPDATE_RES* res3 = (sTG_CHAR_WAGUPOINT_UPDATE_RES*)packet3.GetPacketData();
+							res3->wOpCode = TG_CHAR_WAGUPOINT_UPDATE_RES;
+							res3->charId = cPlayer->GetCharID();
+							res3->dwWaguPoints = cPlayer->GetWaguWaguPoints();
+							packet3.SetPacketLen(sizeof(sTG_CHAR_WAGUPOINT_UPDATE_RES));
+							app->Send(g_pServerInfoManager->GetGsSession(cPlayer->GetChannel()), &packet3);
+
 							return;
 						}
 						else res->wResultCode = WAGUWAGUMACHINE_FAIL;
@@ -1641,9 +1666,9 @@ void CClientSession::RecvHlsSlotMachineExtractReq(CNtlPacket * pPacket)
 		else res->wResultCode = WAGUWAGUMACHINE_NOT_EXIST_MACHINE;
 	}
 	else res->wResultCode = WAGUWAGUMACHINE_NOT_EXIST_MACHINE;
-	//printf("resultcode %d \n", res->wResultCode);
-	res->wNewWaguWaguPoints = 0;
-	res->byReallyExtractCount = 0;
+
+	res->wNewWaguWaguPoints = cPlayer->GetWaguWaguPoints();
+	res->byReallyExtractCount = req->byExtractCount;
 	packet.SetPacketLen(sizeof(sTU_HLS_SLOT_MACHINE_EXTRACT_RES));
 	app->Send(GetHandle(), &packet);
 }

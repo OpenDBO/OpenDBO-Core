@@ -1026,12 +1026,12 @@ void CQueryServerSession::RecvHlsSlotMachineExtractRes(CNtlPacket * pPacket, CCh
 			{
 				if (req->wCoin > (WORD)player->GetWaguMachineCoin())
 				{
-					res->wNewWaguWaguPoints = 0;
+					res->wNewWaguWaguPoints = req->wWaguPoint;
 					ERR_LOG(LOG_HACK, "SLOT-MACHINE: Player %u, Account %u used more wagu coins than available !!!", req->charId, req->accountId);
 				}
 				else
 				{
-					res->wNewWaguWaguPoints = 0; //TODO
+					res->wNewWaguWaguPoints = req->wWaguPoint;
 				}
 			}
 
@@ -1103,12 +1103,12 @@ void CQueryServerSession::RecvHlsSlotMachineExtractRes(CNtlPacket * pPacket, CCh
 			{
 				if (req->wCoin > (WORD)player->GetEventMachineCoin())
 				{
-					res->wNewWaguWaguPoints = 0;
+					res->wNewWaguWaguPoints = req->wWaguPoint;
 					ERR_LOG(LOG_HACK, "SLOT-MACHINE: Player %u, Account %u used more wagu coins than available !!!", req->charId, req->accountId);
 				}
 				else
 				{
-					res->wNewWaguWaguPoints = 0; //TODO
+					res->wNewWaguWaguPoints = req->wWaguPoint;
 				}
 			}
 

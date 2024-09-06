@@ -92,6 +92,8 @@ public:
 
 	void						RecvConnectChannelChangeRes(CNtlPacket * pPacket);
 
+	void						RecvCharWaguPointUpdateRes(CNtlPacket* pPacket);
+
 	//Send packet to chat server
 	void						SendUpdatePcLevel(CPlayer* pPlayer);
 

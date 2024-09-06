@@ -82,6 +82,7 @@ public:
 	void						RecvCharConvertGenderNfy(CNtlPacket* pPacket, CQueryServer* app);
 	void						RecvUpdateCharZennyReq(CNtlPacket* pPacket, CQueryServer* app);
 	void						RecvUpdateCharNetpyReq(CNtlPacket* pPacket, CQueryServer* app);
+	void						RecvUpdateWaguPoinstReq(CNtlPacket* pPacket, CQueryServer* app);
 	void						RecvQuestItemCreateReq(CNtlPacket* pPacket, CQueryServer* app);
 	void						RecvQuestItemDeleteReq(CNtlPacket* pPacket, CQueryServer* app);
 	void						RecvQuestItemMoveReq(CNtlPacket* pPacket, CQueryServer* app);

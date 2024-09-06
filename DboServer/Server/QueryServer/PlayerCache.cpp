@@ -1539,6 +1539,11 @@ void CPlayerCache::SetNetPyPoints(DWORD dwPoints)
 	m_sPcData.NetPyPoit = dwPoints;
 }
 
+void CPlayerCache::SetWaguPoints(DWORD dwPoints)
+{
+	m_sPcData.dwWaguWaguPoints = dwPoints;
+}
+
 void CPlayerCache::StoreRunTimeData(DWORD dwExp, TBLIDX worldIdx, WORLDID worldId, sVECTOR3 & rLoc, sVECTOR3 & rDir)
 {
 	m_sPcData.dwEXP = dwExp;

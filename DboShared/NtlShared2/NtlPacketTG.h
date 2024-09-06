@@ -61,7 +61,7 @@ enum eOPCODE_TG
 	TG_BUDOKAI_GM_BUDOKAI_SERVER_ENTER_RES,
 
 	TG_CHAR_MARKING_UPDATE_NFY,							// 칭호 업데이트
-
+	TG_CHAR_WAGUPOINT_UPDATE_RES,
 	TG_CHAR_SERVER_TELEPORT,							// Teleport player to other channel
 
 	TG_DOJO_CREATED_NFY,
@@ -367,6 +367,11 @@ END_PROTOCOL()
 BEGIN_PROTOCOL(TG_CHAR_MARKING_UPDATE_NFY)
 	CHARACTERID							charId;
 //	sMARKING							sMarking;
+END_PROTOCOL()
+//------------------------------------------------------------------
+BEGIN_PROTOCOL( TG_CHAR_WAGUPOINT_UPDATE_RES )
+CHARACTERID			charId;
+DWORD				dwWaguPoints;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( TG_CHAR_SERVER_TELEPORT )

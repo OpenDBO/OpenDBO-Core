@@ -502,6 +502,7 @@ ACCOUNTID		accountId;
 BYTE			byHlsMachineType;
 WORD			wMachineIndex;
 WORD			wCoin;
+WORD			wWaguPoint;
 BYTE			byRanking[DBO_MAX_HLS_SLOT_MACHINES_MAX_ITEMS];
 TBLIDX			ItemTblidx[DBO_MAX_HLS_SLOT_MACHINES_MAX_ITEMS];
 BYTE			byStackCount[DBO_MAX_HLS_SLOT_MACHINES_MAX_ITEMS];

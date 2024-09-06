@@ -465,6 +465,7 @@ CHARACTERID			charId;
 WORD				machineIndex;
 BYTE				byHlsMachineType;
 WORD				wCoin;
+WORD				wWaguPointGain;
 TBLIDX				aItemTblidx[DBO_MAX_HLS_SLOT_MACHINES_MAX_ITEMS];
 BYTE				abyStackCount[DBO_MAX_HLS_SLOT_MACHINES_MAX_ITEMS];
 BYTE				abySetCount[DBO_MAX_HLS_SLOT_MACHINES_MAX_ITEMS];

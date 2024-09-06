@@ -1191,4 +1191,14 @@ void CChatServerSession::RecvConnectChannelChangeRes(CNtlPacket * pPacket)
 	}
 }
 
+void CChatServerSession::RecvCharWaguPointUpdateRes(CNtlPacket* pPacket)
+{
+	sTG_CHAR_WAGUPOINT_UPDATE_RES* req = (sTG_CHAR_WAGUPOINT_UPDATE_RES*)pPacket->GetPacketData();
+
+	CPlayer* player = g_pObjectManager->FindByChar(req->charId);
+	if (player && player->IsInitialized())
+	{
+		player->UpdateWaguPoints(req->dwWaguPoints);
+	}
+}
 

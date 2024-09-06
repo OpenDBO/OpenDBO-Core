@@ -167,6 +167,9 @@ public:
 	DWORD						GetNetPyPoints() { return m_sPcData.NetPyPoit; }
 	void						SetNetPyPoints(DWORD dwPoints);
 
+	DWORD						GetWaguPoints() { return m_sPcData.dwWaguWaguPoints; }
+	void						SetWaguPoints(DWORD dwPoints);
+
 	DWORD						GetReputation() { return m_sPcData.dwReputation; }
 
 	void						SetJoinID(JOINID joinid) { m_sPcData.wJoinID = joinid; }

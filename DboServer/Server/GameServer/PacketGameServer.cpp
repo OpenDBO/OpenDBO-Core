@@ -60,6 +60,7 @@
 #include "BudokaiManager.h"
 #include "BusSystem.h"
 #include "scsManager.h"
+#include "WPShopContainer.h"
 
 
 
@@ -11895,16 +11896,29 @@ void CClientSession::RecvGiftShopStartReq(CNtlPacket * pPacket)
 	if (!cPlayer || !cPlayer->IsInitialized())
 		return;
 
-	//Load items
+
+	for (int i = 0; i < NTL_MAX_WP_TABS; i++)
 	{
 		CNtlPacket packet(sizeof(sGU_GIFT_SHOP_TAB_INFO_NFY));
 		sGU_GIFT_SHOP_TAB_INFO_NFY* res = (sGU_GIFT_SHOP_TAB_INFO_NFY*)packet.GetPacketData();
 		res->wOpCode = GU_GIFT_SHOP_TAB_INFO_NFY;
-		res->byTabIndex = 0;
-		wcscpy_s(res->wszTabName, NTL_MAX_SIZE_TAB_NAME_IN_UNICODE + 1, L"Event");
-		res->byItemCount = 1;
-		res->aSellItemInfo[0].dwPrice = 500;
-		res->aSellItemInfo[0].idxItemTbl = 10;
+		res->byTabIndex = i;
+		wcscpy_s(res->wszTabName, NTL_MAX_SIZE_TAB_NAME_IN_UNICODE + 1, NTL_WP_TAB_NAMES[i]);
+
+		for (int ii = 0; ii < NTL_MAX_SHOPPING_CART; ii++)
+		{
+			TBLIDX idxItemTbl = NTL_WP_SELL_INFO_CONTAINER[i][ii].idxItemTbl;
+			// Check if we have reached the end of the item list. If so, update item count and stop looping.
+			if (idxItemTbl == INVALID_TBLIDX)
+			{
+				res->byItemCount = ii;
+				break;
+			}
+
+			res->aSellItemInfo[ii].idxItemTbl = NTL_WP_SELL_INFO_CONTAINER[i][ii].idxItemTbl;
+			res->aSellItemInfo[ii].dwPrice = NTL_WP_SELL_INFO_CONTAINER[i][ii].dwPrice;
+		}
+
 		packet.SetPacketLen(sizeof(sGU_GIFT_SHOP_TAB_INFO_NFY));
 		g_pApp->Send(GetHandle(), &packet);
 	}
@@ -11927,18 +11941,92 @@ void CClientSession::RecvGiftShopBuyReq(CNtlPacket * pPacket)
 	if (!cPlayer || !cPlayer->IsInitialized())
 		return;
 
-	// TO DO: ADD CHECK IF ENOUGH WAGU POINTS / REMOVE WAGU POINTS
-	/*sUG_GIFT_SHOP_BUY_REQ * req = (sUG_GIFT_SHOP_BUY_REQ*)pPacket->GetPacketData();
+	sUG_GIFT_SHOP_BUY_REQ* req = (sUG_GIFT_SHOP_BUY_REQ*)pPacket->GetPacketData();
+
+	CItemTable* itemTbl = g_pTableContainer->GetItemTable();
+
+	WORD buy_item_result = GAME_SUCCESS;
+	if (req->nShopVersion != 169 || req->byBuyCount == 0 || req->byBuyCount > NTL_MAX_BUY_SHOPPING_CART)
+		buy_item_result = GAME_FAIL;
+	else if (cPlayer->GetPlayerItemContainer()->CountEmptyInventory() < req->byBuyCount)
+		buy_item_result = GAME_ITEM_INVEN_FULL;
+	else
+	{
+		DWORD price = 0;
+		BYTE byBuyCount = 0;
+
+		for (int i = 0; i < req->byBuyCount; i++)
+		{
+			if (req->sBuyData[i].byItemPos >= NTL_MAX_SHOPPING_CART)
+				return;
+			if (NTL_WP_SELL_INFO_CONTAINER[req->sBuyData[i].byMerchantTab][req->sBuyData[i].byItemPos].idxItemTbl == NULL)
+				return;
+
+			sITEM_TBLDAT* pItemData = (sITEM_TBLDAT*)itemTbl->FindData(NTL_WP_SELL_INFO_CONTAINER[req->sBuyData[i].byMerchantTab][req->sBuyData[i].byItemPos].idxItemTbl);
+
+			if (pItemData)
+			{
+				// Calculate total price.
+				if (req->sBuyData[i].byStack > 0)
+				{
+					++byBuyCount;
+					price += NTL_WP_SELL_INFO_CONTAINER[req->sBuyData[i].byMerchantTab][req->sBuyData[i].byItemPos].dwPrice * req->sBuyData[i].byStack;
+				}
+				else
+				{
+					buy_item_result = GAME_ITEM_STACK_FAIL;
+					break;
+				}
+			}
+			else
+			{
+				buy_item_result = GAME_FAIL;
+				break;
+			}
+		}
+
+		if (buy_item_result == GAME_SUCCESS)
+		{
+			if (cPlayer->GetWaguPoints() < price)
+				buy_item_result = GIFTSHOP_NOT_ENOUGH_WP_POINT;
+
+			if (cPlayer->GetPlayerItemContainer()->CountEmptyInventory() < byBuyCount)
+				buy_item_result = GAME_ITEM_INVEN_FULL;
+		}
+
+		if (buy_item_result == GAME_SUCCESS)
+		{
+			for (int i = 0; i < req->byBuyCount; i++)
+			{
+				sITEM_TBLDAT* pItemTbldat = (sITEM_TBLDAT*)itemTbl->FindData(NTL_WP_SELL_INFO_CONTAINER[req->sBuyData[i].byMerchantTab][req->sBuyData[i].byItemPos].idxItemTbl);
+				if (pItemTbldat)
+				{
+					g_pItemManager->CreateItem(cPlayer, pItemTbldat->tblidx, req->sBuyData[i].byStack, INVALID_BYTE, INVALID_BYTE, pItemTbldat->Item_Option_Tblidx == INVALID_TBLIDX);
+				}
+			}
+
+			cPlayer->UpdateWaguPoints(cPlayer->GetWaguPoints() - price);
+
+			CGameServer* app = (CGameServer*)g_pApp;
+
+			CNtlPacket packetGQ(sizeof(sGQ_CHAR_WAGUPOINT_UPDATE_REQ));
+			sGQ_CHAR_WAGUPOINT_UPDATE_REQ* resGQ = (sGQ_CHAR_WAGUPOINT_UPDATE_REQ*)packetGQ.GetPacketData();
+			resGQ->wOpCode = GQ_CHAR_WAGUPOINT_UPDATE_REQ;
+			resGQ->charId = cPlayer->GetCharID();
+			resGQ->accountId = cPlayer->GetAccountID();
+			resGQ->dwWaguPoints = cPlayer->GetWaguPoints();
+			packetGQ.SetPacketLen(sizeof(sGQ_CHAR_WAGUPOINT_UPDATE_REQ));
+			app->SendTo(app->GetQueryServerSession(), &packetGQ);
+		}
+	}
 
 	CNtlPacket packet(sizeof(sGU_GIFT_SHOP_BUY_RES));
 	sGU_GIFT_SHOP_BUY_RES* res = (sGU_GIFT_SHOP_BUY_RES*)packet.GetPacketData();
-
-		res->wOpCode = GU_GIFT_SHOP_BUY_RES;
-		res->dwGiftPoint = cPlayer->GetWaguPoints();
-		res->wResultCode = GAME_SUCCESS;*/
-
-
-
+	res->wOpCode = GU_GIFT_SHOP_BUY_RES;
+	res->dwGiftPoint = cPlayer->GetWaguPoints();
+	res->wResultCode = buy_item_result;
+	packet.SetPacketLen(sizeof(sGU_GIFT_SHOP_BUY_RES));
+	g_pApp->Send(GetHandle(), &packet);
 }
 
 //--------------------------------------------------------------------------------------//
