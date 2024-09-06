@@ -1538,10 +1538,7 @@ void CClientSession::RecvHlsSlotMachineExtractReq(CNtlPacket * pPacket)
 
 									res2->byExtractCount++;
 									// WP Points gain, set it to 5 points per draw.
-									res2->wWaguPointGain = 5;
-									if (cPlayer->GetWaguWaguPoints() + res2->wWaguPointGain > NTL_MAX_WAGU_WAGU_SHOPPOINTS)
-										res2->wWaguPointGain = NTL_MAX_WAGU_WAGU_SHOPPOINTS - cPlayer->GetWaguWaguPoints();
-									cPlayer->SetWaguWaguPoints(cPlayer->GetWaguWaguPoints() + res2->wWaguPointGain);
+									res2->wWaguPointGain += 5;
 								}
 							}
 
@@ -1553,6 +1550,10 @@ void CClientSession::RecvHlsSlotMachineExtractReq(CNtlPacket * pPacket)
 							{
 								g_pHlsSlotMachine->Init();
 							}
+
+							if (cPlayer->GetWaguWaguPoints() + res2->wWaguPointGain > NTL_MAX_WAGU_WAGU_SHOPPOINTS)
+								res2->wWaguPointGain = NTL_MAX_WAGU_WAGU_SHOPPOINTS - cPlayer->GetWaguWaguPoints();
+							cPlayer->SetWaguWaguPoints(cPlayer->GetWaguWaguPoints() + res2->wWaguPointGain);
 
 							packet2.SetPacketLen(sizeof(sTQ_HLS_SLOT_MACHINE_EXTRACT_REQ));
 							app->SendTo(app->GetQueryServerSession(), &packet2);
@@ -1626,10 +1627,7 @@ void CClientSession::RecvHlsSlotMachineExtractReq(CNtlPacket * pPacket)
 
 									res2->byExtractCount++;
 									// WP Points gain, set it to 5 points per draw.
-									res2->wWaguPointGain = 5;
-									if (cPlayer->GetWaguWaguPoints() + res2->wWaguPointGain > NTL_MAX_WAGU_WAGU_SHOPPOINTS)
-										res2->wWaguPointGain = NTL_MAX_WAGU_WAGU_SHOPPOINTS - cPlayer->GetWaguWaguPoints();
-									cPlayer->SetWaguWaguPoints(cPlayer->GetWaguWaguPoints() + res2->wWaguPointGain);
+									res2->wWaguPointGain += 5;
 								}
 							}
 
@@ -1641,6 +1639,10 @@ void CClientSession::RecvHlsSlotMachineExtractReq(CNtlPacket * pPacket)
 							{
 								g_pHlsSlotMachine->Init();
 							}
+
+							if (cPlayer->GetWaguWaguPoints() + res2->wWaguPointGain > NTL_MAX_WAGU_WAGU_SHOPPOINTS)
+								res2->wWaguPointGain = NTL_MAX_WAGU_WAGU_SHOPPOINTS - cPlayer->GetWaguWaguPoints();
+							cPlayer->SetWaguWaguPoints(cPlayer->GetWaguWaguPoints() + res2->wWaguPointGain);
 
 							packet2.SetPacketLen(sizeof(sTQ_HLS_SLOT_MACHINE_EXTRACT_REQ));
 							app->SendTo(app->GetQueryServerSession(), &packet2);
@@ -1667,8 +1669,8 @@ void CClientSession::RecvHlsSlotMachineExtractReq(CNtlPacket * pPacket)
 	}
 	else res->wResultCode = WAGUWAGUMACHINE_NOT_EXIST_MACHINE;
 
-	res->wNewWaguWaguPoints = cPlayer->GetWaguWaguPoints();
-	res->byReallyExtractCount = req->byExtractCount;
+	res->wNewWaguWaguPoints = 0;
+	res->byReallyExtractCount = 0;
 	packet.SetPacketLen(sizeof(sTU_HLS_SLOT_MACHINE_EXTRACT_RES));
 	app->Send(GetHandle(), &packet);
 }
