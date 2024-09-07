@@ -118,7 +118,7 @@ ACMD(do_setitemduration);
 ACMD(do_bind);
 ACMD(do_exp);
 ACMD(do_resetexp);
-ACMD(do_starthoneybee);
+ACMD(do_startevent);
 ACMD(do_stophoneybee);
 ACMD(do_deleteguild);
 ACMD(do_cancelah);
@@ -185,7 +185,7 @@ struct command_info cmd_info[] =
 	{ "@deltitle", do_deltitle, ADMIN_LEVEL_ADMIN },
 	{ "@setitemduration", do_setitemduration, ADMIN_LEVEL_ADMIN },
 	{ "@bind", do_bind, ADMIN_LEVEL_ADMIN },	
-	{ "@startevent", do_starthoneybee, ADMIN_LEVEL_ADMIN }, // 0 honey, 1 Fairy
+	{ "@startevent", do_startevent, ADMIN_LEVEL_ADMIN }, // 0 honey, 1 Fairy
 	{ "@stopevent", do_stophoneybee, ADMIN_LEVEL_ADMIN }, // 0 Honey, 1 Fairy
 	{ "@deleteguild", do_deleteguild, ADMIN_LEVEL_ADMIN },
 	{ "@cancelah", do_cancelah, ADMIN_LEVEL_ADMIN },
@@ -1757,7 +1757,7 @@ ACMD(do_resetexp)
 	}
 }
 
-ACMD(do_starthoneybee)
+ACMD(do_startevent)
 {
 	CGameServer* app = (CGameServer*)g_pApp;
 
@@ -1765,17 +1765,20 @@ ACMD(do_starthoneybee)
 	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
 	BYTE Type = (BYTE)atof(strToken.c_str());
 
+	strToken = pToken->PeekNextToken(NULL, &iLine);
+	BYTE Hours = (BYTE)atof(strToken.c_str());
+	if (Hours == 0) Hours = 3;
+
 	if (Type == 0)
 	{
-		g_pHoneyBeeEvent->StartEvent(3);
+		g_pHoneyBeeEvent->StartEvent(Hours);
 		NTL_PRINT(PRINT_APP, "Honey Bee Event Started");
 	}
 	if (Type == 1)
 	{
-		g_pFairyEvent->StartEvent(3);
+		g_pFairyEvent->StartEvent(Hours);
 		NTL_PRINT(PRINT_APP, "Fairy Event Started");
 	}
-	
 }
 
 ACMD(do_stophoneybee)
