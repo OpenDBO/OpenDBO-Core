@@ -1628,7 +1628,6 @@ void CPlayer::RecvPcMascotLoadRes(sMASCOT_DATA_EX* pData, BYTE byCount)
 
 	for (BYTE i = 0; i < byCount; i++)
 	{
-		ERR_LOG(LOG_SYSTEM, "Could not find mascot tblidx %u", pData[i].tblidx);
 		sMASCOT_STATUS_TBLDAT* mascotTbldat = (sMASCOT_STATUS_TBLDAT*)g_pTableContainer->GetMascotStatusTable()->FindData(pData[i].tblidx);
 		if (mascotTbldat)
 		{
