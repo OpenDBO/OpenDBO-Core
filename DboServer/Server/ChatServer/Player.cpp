@@ -38,6 +38,7 @@ CPlayer::CPlayer()
 	m_byChannel = INVALID_SERVERCHANNELID;
 	m_vCurrentPos.Reset();
 
+	m_wSlotMachineUsage = 0;
 	m_dwWaguMachineCoins = 0;
 	m_dwEventMachineCoins = 0;
 	m_dwWaguWaguPoints = 0;

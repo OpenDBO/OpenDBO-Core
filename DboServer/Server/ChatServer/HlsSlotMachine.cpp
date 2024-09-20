@@ -145,6 +145,8 @@ void CHlsSlotMachine::AddWinner(TBLIDX slotId, TBLIDX itemTblidx, CPlayer * pPla
 	NTL_SAFE_WCSCPY(pWinner->wszPlayer, pPlayer->GetCharName());
 	pWinner->wWinCount = pPlayer->GetSlotMachineCount();
 	pWinner->winnerIndex = m_aWinnerIndex[slotId - 1];
+	// Reset count.
+	pPlayer->ResetSlotMachineCount();
 
 	m_slotWinnerInfo[slotId - 1].push_back(pWinner);
 

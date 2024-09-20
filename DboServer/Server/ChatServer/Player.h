@@ -151,6 +151,7 @@ public:
 	inline DWORD							GetMuteDuration() { return m_dwMuteDurationInMilliseconds; }
 
 	inline void								IncreaseSlotMachineCount() { m_wSlotMachineUsage++; }
+	inline void								ResetSlotMachineCount() { m_wSlotMachineUsage = 0; }
 	inline WORD								GetSlotMachineCount() { return m_wSlotMachineUsage; }
 	
 
