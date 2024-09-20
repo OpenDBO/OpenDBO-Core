@@ -133,9 +133,9 @@ void CGameProcessor::Run(DWORD dwTickCount)
 
 		QueryPerformanceCounter(&rEnd);
 
-		m_dwLogTick += dwTickDiff;
+		/*m_dwLogTick += dwTickDiff;
 
-	//	if (m_dwLogTick >= 1000) //log every 10 seconds
+		if (m_dwLogTick >= 360000) //log every hour
 		{
 			float fTimeDif = ((float)(rEnd.QuadPart - rStart.QuadPart)) * 1000.f / ((float)m_freq.QuadPart);
 			if (fTimeDif > 200.f)
@@ -159,7 +159,7 @@ void CGameProcessor::Run(DWORD dwTickCount)
 			}
 
 			m_dwLogTick = 0;
-		}
+		}*/
 		
 	}
 }
