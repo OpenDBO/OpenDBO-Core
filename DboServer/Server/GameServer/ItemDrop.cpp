@@ -98,10 +98,10 @@ void CItemDrop::GenerateRank(sITEM_TBLDAT* table, bool bDungeon, BYTE byMobGrade
 
 	DWORD dwRank = dwSuperior + dwExcellent + dwRare + dwLegendary;
 
-	float fSuperiorRate = 20.f;
-	float fExcellentRate = 15.f;
-	float fRareRate = 10.f;
-	float fLegendaryRate = 5.f;
+	float fSuperiorRate = 4.f;
+	float fExcellentRate = 3.f;
+	float fRareRate = 2.f;
+	float fLegendaryRate = 1.f;
 
 	if (dwRank > 0)
 	{
