@@ -2723,22 +2723,49 @@ WORD CQuest::ProgressTsEntity(CNtlTSEntity* pEntity, NTL_TS_T_ID tId, CQuestProg
 		}break;
 		case DBO_ACT_TYPE_ID_ACT_SKYDGN:
 		{
-			CDboTSActSkyDgn* pTLQ = (CDboTSActSkyDgn*)pEntity;
-			if (pTLQ)
+			if (m_pkOwner->GetAspectStateId() == ASPECTSTATE_SPINNING_ATTACK || m_pkOwner->GetAspectStateId() == ASPECTSTATE_ROLLING_ATTACK)
+				return RESULT_FAIL;
+
+			CDboTSActSkyDgn* pSkyUD = (CDboTSActSkyDgn*)pEntity;
+			if (pSkyUD)
 			{
-				if (pTLQ->GetSkyDungeonType() == eTLQ_DUNGEON_TYPE_ENTER)
+				if (pSkyUD->GetSkyDungeonType() == eTLQ_DUNGEON_TYPE_ENTER)
 				{
-					sDUNGEON_TBLDAT* pDungeon = (sDUNGEON_TBLDAT*)g_pTableContainer->GetDungeonTable()->FindData(pTLQ->GetSkyDungeonTblIdx());
-					if (pDungeon == NULL)
+					if (m_pkOwner->GetRankBattleRoomTblidx() != INVALID_TBLIDX)
+						return GAME_RANKBATTLE_MEMBER_ALREADY_JOINED_RANKBATTLE;
+					else if (m_pkOwner->GetDragonballScrambleBallFlag() > 0)
+						return GAME_CAN_NOT_TELEPORT;
+					else if (m_pkOwner->GetLevel() < 40)
+						return GAME_WORLD_ENTER_NEED_HIGH_LEVEL;
+					else if (m_pkOwner->GetParty() && m_pkOwner->GetParty()->GetPartyMemberCount() > 1)
+						return GAME_CAN_NOT_TELEPORT;
+					// TODO: Originally, players were limited to 4 entries per day for Sky Dungeons. 
+					// Additionally, a maximum of 300 Sky Dungeons could be challenged per channel.
+					// Reference: https://www.dbocom.com/forum/showthread.php?t=19682 (patch notes).
+
+					if (CTimeLeapDungeon* pDungeon = g_pDungeonManager->CreateTimeLeapDungeon(m_pkOwner, pSkyUD->GetSkyDungeonTblIdx()))
 					{
-						printf("Could not find dungeon tblidx %u \n", pTLQ->GetSkyDungeonTblIdx());
-						return GAME_FAIL;
-					}		
-					return GAME_FAIL;
-					/*WORLDID ID = pDungeon->linkWorld;
-					m_pkOwner->TeleportSky(ID);	*/				
-				}				
+						CWorld* pWorld = pDungeon->GetWorld();
+						m_pkOwner->StartTeleport(pWorld->GetTbldat()->vStart1Loc, pWorld->GetTbldat()->vStart1Dir, pWorld->GetID(), TELEPORT_TYPE_TIMEQUEST);
+						m_pkOwner->SetTLQ(pDungeon);
+					}
+					else
+						return RESULT_FAIL;
+				}
+				else if (pSkyUD->GetSkyDungeonType() == eTLQ_DUNGEON_TYPE_LEAVE)
+				{
+					if (CTimeLeapDungeon* pDungeon = m_pkOwner->GetTLQ())
+					{
+						CWorld* pWorld = pDungeon->GetWorld();
+						m_pkOwner->StartTeleport(pWorld->GetTbldat()->outWorldLoc, pWorld->GetTbldat()->outWorldDir, pWorld->GetTbldat()->outWorldTblidx, TELEPORT_TYPE_TIMEQUEST);
+						pDungeon->Destroy();
+						g_pDungeonManager->DestroyTimeLeapDungeon(m_pkOwner->GetCharID(), m_pkOwner->GetTLQ());
+						m_pkOwner->SetTLQ(NULL);
+					}
+				}
 			}
+			else
+				return GAME_FAIL;
 		}
 		break;
 

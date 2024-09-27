@@ -6,12 +6,12 @@ NTL_TS_IMPLEMENT_RTTI( CDboTSActSkyDgn, CNtlTSAction )
 
 
 CDboTSActSkyDgn::CDboTSActSkyDgn( void )
-: m_eSkyDungeonType( ePARTY_DUNGEON_TYPE_ENTER )
+: m_eSkyDungeonType( eTLQ_DUNGEON_TYPE_ENTER )
 , m_uiSkyDungeonTblIdx( 0xffffffff )
 {
 }
 
-void CDboTSActSkyDgn::SetSkyDungeonType( ePARTY_DUNGEON_TYPE eDungeonType )
+void CDboTSActSkyDgn::SetSkyDungeonType(eTLQ_DUNGEON_TYPE eDungeonType )
 {
 	m_eSkyDungeonType = eDungeonType;
 }
@@ -27,7 +27,7 @@ void CDboTSActSkyDgn::ApplyScriptDataForScript( const CNtlTSScrProperty& clPrope
 
 	if ( clProperty.IsExist( "type" ) )
 	{
-		SetSkyDungeonType( (ePARTY_DUNGEON_TYPE)atoi( clProperty.GetValue( "type" ).c_str() ) );
+		SetSkyDungeonType( (eTLQ_DUNGEON_TYPE)atoi( clProperty.GetValue( "type" ).c_str() ) );
 	}
 
 	if ( clProperty.IsExist( "idx" ) )

@@ -12,7 +12,7 @@ class CDboTSActSkyDgn : public CNtlTSAction
 
 // Member variables
 protected:
-	ePARTY_DUNGEON_TYPE					m_eSkyDungeonType;
+	eTLQ_DUNGEON_TYPE					m_eSkyDungeonType;
 	unsigned int						m_uiSkyDungeonTblIdx;
 
 // Constructions
@@ -24,9 +24,8 @@ public:
 public:
 	virtual unsigned int				GetEntityType( void ) const { return DBO_ACT_TYPE_ID_ACT_SKYDGN; }
 
-	//TO-DO FIND OUT IF ITS "ePARTY_DUNGEON_TYPE"
-	ePARTY_DUNGEON_TYPE					GetSkyDungeonType( void ) const;
-	void								SetSkyDungeonType( ePARTY_DUNGEON_TYPE eDungeonType );
+	eTLQ_DUNGEON_TYPE					GetSkyDungeonType( void ) const;
+	void								SetSkyDungeonType(eTLQ_DUNGEON_TYPE eDungeonType );
 
 	unsigned int						GetSkyDungeonTblIdx( void ) const;
 	void								SetSkyDungeonTblIdx( unsigned int uiTblIdx );
@@ -39,7 +38,7 @@ protected:
 };
 
 
-inline ePARTY_DUNGEON_TYPE CDboTSActSkyDgn::GetSkyDungeonType( void ) const
+inline eTLQ_DUNGEON_TYPE CDboTSActSkyDgn::GetSkyDungeonType( void ) const
 {
 	return m_eSkyDungeonType;
 }
