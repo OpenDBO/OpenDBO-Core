@@ -3,6 +3,15 @@
 -- References:
 --    - https://www.youtube.com/watch?v=ehyNk4c6zu0
 
+-- TODO: Guard Robot Alerty mobs should spawn other mobs if engaged
+--       in combat and not killed every X seconds. Currently they
+--       don't do this (check videos for more references). At this moment
+--       those mobs are being spawned when reaching certain areas
+--       ("area enter"), this logic should be removed and added to
+--       the guard robots instead.
+-- TODO: Missing text notifications on some events and mobs speaking
+--       when pulled and so on.
+
 -- Author(s): Tuo, Grender (OpenDBO)
 
 
