@@ -6,7 +6,7 @@
 
 
 CTQSNodeAction_DirectionIndicate::CTQSNodeAction_DirectionIndicate(const char* lpszName)
-:CControlScriptNodeAction(TQS_NODE_ACTION_DIRECTION_INDICATE, lpszName)
+	:CControlScriptNodeAction(TQS_NODE_ACTION_DIRECTION_INDICATE, lpszName)
 {
 	m_bIndicate = false;
 	m_bAutoHide = true;
