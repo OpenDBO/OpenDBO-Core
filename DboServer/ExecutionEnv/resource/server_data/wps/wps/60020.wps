@@ -8,6 +8,12 @@
 --       spawn_mob_skdungeon_001_02.rdf since pathing seems broken
 --       below the window glass.
 
+-- TODO: Guard Robot Alerty mobs should spawn other mobs if engaged
+--       in combat and not killed every X seconds. Currently they
+--       don't do this (check videos for more references).
+-- TODO: Missing text notifications on some events and mobs speaking
+--       when pulled and so on.
+
 -- Author(s): Tuo, Grender (OpenDBO)
 
 
