@@ -1,0 +1,473 @@
+-- Sky Dungeon #2
+
+-- References:
+--     - https://www.youtube.com/watch?v=hgfE0iAolFw
+--     - https://www.youtube.com/watch?v=YV0X2LufyZ8
+
+-- NOTE: Last boss and an add needed to be slightly repositioned in
+--       spawn_mob_skdungeon_001_02.rdf since pathing seems broken
+--       below the window glass.
+
+-- TODO: Guard Robot Alerty mobs should spawn other mobs if engaged
+--       in combat and not killed every X seconds. Currently they
+--       don't do this (check videos for more references).
+-- TODO: Missing text notifications on some events and mobs speaking
+--       when pulled and so on.
+
+-- Author(s): Tuo, Grender (OpenDBO)
+
+
+GameStage( 0 )
+--[	
+	-- Spawn mobs in the first area	
+	Action( "add mobgroup" )
+	--[
+		Param( "group", 201 )
+		Param( "no spawn wait", "true" )
+	--]
+	End()
+
+	-- Spawn Guard Robot Alerty in the first area
+	Action( "add mobgroup" )
+	--[
+		Param( "group", 202 )
+		Param( "play script", 52914301 )
+		Param( "play scene", 1 )
+		Param( "no spawn wait", "true" )
+	--]
+	End()		
+	Action( "add mobgroup" )
+	--[
+		Param( "group", 203 )
+		Param( "play script", 52914301 )
+		Param( "play scene", 2 )
+		Param( "no spawn wait", "true" )
+	--]
+	End()	
+	Action( "add mobgroup" )
+	--[
+		Param( "group", 204 )
+		Param( "play script", 52914301 )
+		Param( "play scene", 3 )
+		Param( "no spawn wait", "true" )
+	--]
+	End()	
+	Action( "add mobgroup" )
+	--[
+		Param( "group", 205 )
+		Param( "play script", 52914301 )
+		Param( "play scene", 4 )
+		Param( "no spawn wait", "true" )
+	--]
+	End()	
+------------------------------------------------------------------------
+	-- Wait until all mobs in the first area die
+	Action("wait") 
+	--[
+		Condition( "check mobgroup" )
+		--[
+			Param( "group", 201 )
+			Param( "count", 0 )
+		--]
+		End()	
+		Condition( "check mobgroup" )
+		--[
+			Param( "group", 202 )
+			Param( "count", 0 )
+		--]
+		End()	
+		Condition( "check mobgroup" )
+		--[
+			Param( "group", 203 )
+			Param( "count", 0 )
+		--]
+		End()
+		Condition( "check mobgroup" )
+		--[
+			Param( "group", 205 )
+			Param( "count", 0 )
+		--]
+		End()
+    --]
+	End()		
+------------------------------------------------------------------------		
+	-- Enable lever
+	Action( "change object state" )
+	--[
+		Param( "index", 8 )
+		Param( "state", 1 )
+		Param( "substate show", 1 )
+	--]
+	End()
+------------------------------------------------------------------------
+	Action( "wait" )
+	--[
+		Condition( "recv event from ts" )
+		--[
+			Param( "trigger type", "object" )
+			Param( "event id", 1168 )
+		--]
+		End()
+	--]
+	End()
+------------------------------------------------------------------------
+	-- Open the first door
+	Action( "change object state" )
+	--[
+		Param( "index", 9 )
+		Param( "state", 1 )
+		Param( "substate show", 1 )
+	--]
+	End()
+------------------------------------------------------------------------
+	-- Spawn mobs and Guard Robot Alerty in the second area
+	Action( "add mobgroup" )
+	--[
+		Param( "group", 208 )
+		Param( "no spawn wait", "true" )
+	--]
+	End()
+    
+	Action( "add mobgroup" )
+	--[
+		Param( "group", 209 )
+		Param( "play script", 52914301 )
+		Param( "play scene", 5 )
+		Param( "no spawn wait", "true" )
+	--]
+	End()
+	Action( "add mobgroup" )
+	--[
+		Param( "group", 210 )
+		Param( "play script", 52914301 )
+		Param( "play scene", 6 )
+		Param( "no spawn wait", "true" )
+	--]
+	End()
+	Action( "add mobgroup" )
+	--[
+		Param( "group", 211 )
+		Param( "play script", 52914301 )
+		Param( "play scene", 7 )
+		Param( "no spawn wait", "true" )
+	--]
+	End()	
+------------------------------------------------------------------------
+	-- Add Check Point in the second area
+	Action( "direction indicate" )
+	--[
+		Param( "apply", "true" )
+		Param( "indicate type", "point" )
+		Param( "loc x", 661.22 )
+		Param( "loc z", 870.13 )
+	--]
+	End()
+    
+	-- Wait until all mobs are dead
+	Action("wait") 
+	--[
+		Condition( "check mobgroup" )
+		--[
+			Param( "group", 208 )
+			Param( "count", 0 )
+		--]
+		End()
+		Condition( "check mobgroup" )
+		--[
+			Param( "group", 209 )
+			Param( "count", 0 )
+		--]
+		End()
+		Condition( "check mobgroup" )
+		--[
+			Param( "group", 210 )
+			Param( "count", 0 )
+		--]
+		End()
+    --]	
+	End()
+------------------------------------------------------------------------
+	-- Enable lever
+	Action( "change object state" )
+	--[
+		Param( "index", 11 )
+		Param( "state", 1 )
+		Param( "substate show", 1 )
+	--]
+	End()	
+------------------------------------------------------------------------	
+	Action( "wait" )
+	--[
+		Condition( "recv event from ts" )
+		--[
+			Param( "trigger type", "object" )
+			Param( "event id", 1169 )
+		--]
+		End()
+	--]
+	End()
+------------------------------------------------------------------------	
+	-- Open second door
+	Action( "change object state" )
+	--[
+		Param( "index", 10 )
+		Param( "state", 1 )
+		Param( "substate show", 1 )
+	--]
+	End()
+------------------------------------------------------------------------
+	-- Spawn mobs in third area
+	Action( "add mobgroup" )
+	--[
+		Param( "group", 214 )
+		Param( "no spawn wait", "true" )
+	--]
+	End()
+	Action( "add mobgroup" )
+	--[
+		Param( "group", 215 )
+		Param( "play script", 52914301 )
+		Param( "play scene", 8 )		
+		Param( "no spawn wait", "true" )
+	--]
+	End()
+	Action( "add mobgroup" )
+	--[
+		Param( "group", 216 )
+		Param( "play script", 52914301 )
+		Param( "play scene", 9 )	
+		Param( "no spawn wait", "true" )
+	--]
+	End()
+------------------------------------------------------------------------
+	-- Add Check Point next to the second door
+	Action( "direction indicate" )
+	--[
+		Param( "apply", "true" )
+		Param( "indicate type", "point" )
+		Param( "loc x", 649.004 )
+		Param( "loc z", 852.179 )
+	--]
+	End()	
+------------------------------------------------------------------------
+	-- Wait until mobs in the third area die
+	Action("wait") 
+	--[
+		Condition( "check mobgroup" )
+		--[
+			Param( "group", 214 )
+			Param( "count", 0 )
+		--]
+		End()		
+		Condition( "check mobgroup" )
+		--[
+			Param( "group", 215 )
+			Param( "count", 0 )
+		--]
+		End()
+		Condition( "check mobgroup" )
+		--[
+			Param( "group", 216 )
+			Param( "count", 0 )
+		--]
+		End()			
+    --]	
+	End()
+------------------------------------------------------------------------	
+	-- Enable third lever
+	Action( "change object state" )
+	--[
+		Param( "index", 12 )
+		Param( "state", 1 )
+		Param( "substate show", 1 )
+	--]
+	End()
+------------------------------------------------------------------------	
+	Action( "wait" )
+	--[
+		Condition( "recv event from ts" )
+		--[
+			Param( "trigger type", "object" )
+			Param( "event id", 1170 )
+		--]
+		End()
+	--]
+	End()
+------------------------------------------------------------------------	
+	-- Open third door
+	Action( "change object state" )
+	--[
+		Param( "index", 13 )
+		Param( "state", 1 )
+		Param( "substate show", 1 )
+	--]
+	End()
+------------------------------------------------------------------------
+	-- Add Check Point in the fourth area
+	Action( "direction indicate" )
+	--[
+		Param( "apply", "true" )
+		Param( "indicate type", "point" )
+		Param( "loc x", 732.264 )
+		Param( "loc z", 856.494 )
+	--]
+	End()
+------------------------------------------------------------------------	
+	-- Spawn mobs in the fourth area
+	Action( "add mobgroup" )
+	--[
+		Param( "group", 219 )
+		Param( "no spawn wait", "true" )
+	--]
+	End()
+	Action( "add mobgroup" )
+	--[
+		Param( "group", 222 )	
+		Param( "play script", 52914301 )
+		Param( "play scene", 10 )
+		Param( "no spawn wait", "true" )
+	--]
+	End()
+	Action( "add mobgroup" )
+	--[
+		Param( "group", 223 )
+		Param( "play script", 52914301 )
+		Param( "play scene", 11 )
+		Param( "no spawn wait", "true" )
+	--]
+	End()
+	Action( "add mobgroup" )
+	--[
+		Param( "group", 224 )
+		Param( "play script", 52914301 )
+		Param( "play scene", 12 )
+		Param( "no spawn wait", "true" )
+	--]
+	End()
+	Action( "add mobgroup" )
+	--[
+		Param( "group", 225 )
+		Param( "play script", 52914301 )
+		Param( "play scene", 13 )
+		Param( "no spawn wait", "true" )
+	--]
+	End()
+------------------------------------------------------------------------
+	-- Wait until mobs in the fourth area die
+	Action("wait") 
+	--[
+		Condition( "check mobgroup" )
+		--[
+			Param( "group", 219 )
+			Param( "count", 0 )
+		--]
+		End()		
+		Condition( "check mobgroup" )
+		--[
+			Param( "group", 222 )
+			Param( "count", 0 )
+		--]
+		End()
+		Condition( "check mobgroup" )
+		--[
+			Param( "group", 223 )
+			Param( "count", 0 )
+		--]
+		End()	
+		Condition( "check mobgroup" )
+		--[
+			Param( "group", 224 )
+			Param( "count", 0 )
+		--]
+		End()	
+		Condition( "check mobgroup" )
+		--[
+			Param( "group", 225 )
+			Param( "count", 0 )
+		--]
+		End()			
+    --]	
+	End()
+------------------------------------------------------------------------	
+    -- Enable fourth lever	
+	Action( "change object state" )
+	--[
+		Param( "index", 15 )
+		Param( "state", 1 )
+		Param( "substate show", 1 )
+	--]
+	End()
+------------------------------------------------------------------------	
+	Action( "wait" )
+	--[
+		Condition( "recv event from ts" )
+		--[
+			Param( "trigger type", "object" )
+			Param( "event id", 1171 )
+		--]
+		End()
+	--]
+	End()
+------------------------------------------------------------------------
+	-- Open fourth door
+	Action( "change object state" )
+	--[
+		Param( "index", 14 )
+		Param( "state", 1 )
+		Param( "substate show", 1 )
+	--]
+	End()
+------------------------------------------------------------------------
+    -- Add Check Point in the final area
+	Action( "direction indicate" )
+	--[
+		Param( "apply", "true" )
+		Param( "indicate type", "point" )
+		Param( "loc x", 741.297 )
+		Param( "loc z", 903.942 )
+	--]
+	End()
+------------------------------------------------------------------------	
+	-- Spawn mobs in the final area
+	Action( "add mobgroup" )
+	--[
+		Param( "group", 220 )
+		Param( "no spawn wait", "true" )
+	--]
+	End()	
+	Action( "add mobgroup" )
+	--[
+		Param( "group", 221 )
+		Param( "no spawn wait", "true" )
+	--]
+	End()
+------------------------------------------------------------------------
+	-- Wait until all mobs in the final area are dead
+	Action("wait") 
+	--[
+		Condition( "check mobgroup" )
+		--[
+			Param( "group", 220 )
+			Param( "count", 0 )
+		--]
+		End()					
+		Condition( "check mobgroup" )
+		--[
+			Param( "group", 221 )
+			Param( "count", 0 )
+		--]
+		End()					
+    --]	
+	End()
+------------------------------------------------------------------------
+
+	-- Make Exit Portal visible
+	Action( "change object state" )
+	--[
+		Param( "index", 16 )
+		Param( "state", 1 )
+		Param( "substate show", 1 )
+	--]
+	End()
+--]
+End()
