@@ -678,7 +678,10 @@ public:
 		const uSTOC_EVT_DATA& uEvtInfoData,		// 서버 이벤트 정보 - 데이터
 		RwUInt32 uiEventType,					// eEVENT_GEN_TYPE ( 현재는 eEVENT_GEN_TYPE_CLICK_NPC 만 사용함 )
 		RwUInt32 uiEventID,						// uiEventType 에 따른 인덱스, eEVENT_GEN_TYPE_CLICK_NPC : Mob table index
-		RwBool bIsEventStarter );				// Event type [ True : Starter, False : Reward ]
+		RwBool bIsEventStarter,					// Event type [ True : Starter, False : Reward ]
+		RwV3d indicatorTargetPos,
+		RwUInt32 indicatorTargetWorldID,
+		RwUInt32 indicatorNpcTblidx);				
 
 
 	static void UpdateQuestProgressInfo_Nfy( sTS_KEY& sTSKey,
@@ -699,7 +702,11 @@ public:
 		eSTOC_EVT_DATA_TYPE eEvtInfoType,		// 서버 이벤트 정보 - 데이터 타입
 		const uSTOC_EVT_DATA& uEvtInfoData,		// 서버 이벤트 정보 - 데이터
 		RwUInt32 uiTimeLimit,					// 타임 제한 정보
-		RwBool bAuto );
+		RwBool bAuto,
+		RwV3d indicatorTargetPos,
+		RwUInt32 indicatorTargetWorldID,
+		RwUInt32 indicatorNpcTblidx,
+		eGRADE_TYPE m_eGradeType);
 
 	static void DoQuest( sQUEST_INFO& sQuestInfo,							// Quest 정보
 						 eEVENT_GEN_TYPE eEventGenType,						// Event 종류

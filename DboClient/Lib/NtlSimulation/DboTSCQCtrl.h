@@ -64,6 +64,9 @@ protected:
 	RwUInt32							m_uiContents;
 	sREWARD_INFO*						m_pDefRwd;
 	sREWARD_INFO*						m_pSelRwd;
+	RwUInt32							m_uiTargetWorld;
+	RwV3d								m_uiTargetPosition;
+	RwUInt32							m_uiNpcTblidx;
 
 	//new
 	unsigned int						m_uiRewardZenny;
@@ -108,6 +111,9 @@ public:
 	virtual RwUInt32					GetContents( void )		{ return m_uiContents; }
 	virtual sREWARD_INFO*				GetDefRwd( void )		{ return m_pDefRwd; }
 	virtual sREWARD_INFO*				GetSelRwd( void )		{ return m_pSelRwd; }
+	virtual RwUInt32					GetTargetWorldID(void)	{ return m_uiTargetWorld; }
+	virtual RwV3d						GetTargetPosition(void) { return m_uiTargetPosition; }
+	virtual RwUInt32					GetNpcTblidx(void)		{ return m_uiNpcTblidx; }
 
 	virtual unsigned int				GetRewardExp(void) { return m_uiRewardExp; }
 	virtual unsigned int				GetRewardZeny(void) { return m_uiRewardZenny; }
@@ -118,6 +124,9 @@ public:
 
 	bool								IsQuestShareMode( void )	{ return m_bQuestShare; }
 	void								SetQuestShareMode( bool bShare ) { m_bQuestShare = bShare; }
+	void								SetTargetWorldID(RwUInt32 value) { m_uiTargetWorld = value; }
+	void								SetTargetPosition(RwV3d value) { m_uiTargetPosition = value; }
+	void								SetNpcTblidx(RwUInt32 value) { m_uiNpcTblidx = value; }
 
 	bool								IsCompletedServerEvt( void );
 
