@@ -33,7 +33,7 @@ public:
 	/************************************************************************/
 	/* Virtual Functions                                                    */
 	/************************************************************************/
-	virtual bool Initialize(CNtlString Hostname, unsigned int port,
+	virtual std::string Initialize(CNtlString Hostname, unsigned int port,
 		CNtlString Username, CNtlString Password, CNtlString DatabaseName,
 		UINT32 ConnectionCount) = 0;
 

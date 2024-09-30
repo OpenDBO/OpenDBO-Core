@@ -725,6 +725,9 @@ enum eOPCODE_GU
 
 	GU_OPCODE_END_DUMMY,
 	GU_OPCODE_END = GU_OPCODE_END_DUMMY - 1,
+
+	// Mascot
+	
 };
 
 

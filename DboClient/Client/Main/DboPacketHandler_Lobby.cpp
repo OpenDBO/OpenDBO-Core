@@ -1472,3 +1472,21 @@ void PacketHandler_GSGameChannelChangeRes(void *pPacket)
 	}
 }
 
+// Mascot
+// Handler for processing mascot info packets received from the server
+void PacketHandler_GSAvatarMascotInfo(void* pPacket)
+{
+	// Cast the received packet to the appropriate mascot info packet structure
+	sGU_MASCOT_INFO_EX* pMascotInfo = (sGU_MASCOT_INFO_EX*)pPacket;
+
+	// Retrieve the avatar's mascot information storage
+	SMascotInfo* pAvatarInfo = GetNtlSLGlobal()->GetAvatarMascotInfo();
+
+	// Update the mascot count with the count received in the packet
+	pAvatarInfo->wCount = pMascotInfo->byCount;
+
+	// Copy the mascot data from the received packet into the avatar's mascot data array
+	memcpy(pAvatarInfo->asMascotData, pMascotInfo->asMascotData, pAvatarInfo->wCount * sizeof(sMASCOT_DATA_EX));
+}
+
+

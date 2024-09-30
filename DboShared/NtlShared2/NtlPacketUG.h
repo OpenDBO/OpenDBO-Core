@@ -349,6 +349,9 @@ enum eOPCODE_UG
 
 	UG_OPCODE_DUMMY,
 	UG_OPCODE_END = UG_OPCODE_DUMMY - 1
+
+	// Mascot
+	
 };
 
 
@@ -1967,8 +1970,6 @@ float		fAppTime;
 bool		bSpeedHack;
 DWORD		dwCameraMoveCount;
 END_PROTOCOL()
-
-
 	
 #pragma pack()
 

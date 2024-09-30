@@ -32,6 +32,7 @@ class CNtlTriggerSyncManager;
 #include "NtlSLTBudokai.h"
 #include "NtlTeleport.h"
 #include "NtlDojo.h"
+#include "NtlMascot.h"
 
 /**
 * \brief Avatar Info
@@ -108,6 +109,13 @@ typedef struct _STenkaichiBudokaiInfo
 	sBUDOKAI_JOIN_INFO					sJoinInfo;							///< 플레이어의 신청 상태
 } STenkaichiBudokaiInfo;
 
+// Mascot
+typedef struct _SMascotInfo
+{
+	RwUInt16			wCount;
+	sMASCOT_DATA_EX		asMascotData[GMT_MAX_PC_HAVE_MASCOT];
+}SMascotInfo;
+
 /**
 * \brief	!! AdjustMoney !!
 *			서버와 클라이언트 간의 제니 사용 타이밍을 맞춰주기 위하여 저장. (파티참,메일 등..)
@@ -165,7 +173,7 @@ private:
 	static CNtlSLGlobal		*m_pInstance;
 	
 	SAvatarInfo				m_sAvatarInfo;						///< 게임 진입시 avatar 정보를 담는 자료구조
-	STenkaichiBudokaiInfo	m_sTenkaichiBudokaiInfo;			///< 게임 진입시 천하제일 무도회 정보를 담는 자료구조
+	STenkaichiBudokaiInfo	m_sTenkaichiBudokaiInfo;			///< 게임 진입시 천하제일 무도회 정보를 담는 자료구조						
 	SSummonPetInfo			m_sSummonPetInfo;					///< avatar가 summon pet 소환시 보내주는 정보
 	SSummonPetSkillInfo		m_sSummonPetSkillInfo;				///< avatar가 summon pet 소환시 보내주는 정보 (skill)
 	SAdjustZennyInfo		m_sAdjustZennyInfo;					///< 서버,클라이언트간 제니사용타이밍이 다름으로 인해 생기는 것을 보정.
@@ -178,6 +186,9 @@ private:
 	DBOTIME					m_ServerTimeOffset;					///< ( 서버타임 - 클라이언트 ), 클라이언트 타임에 더해서 사용.
 
 	HOBJECT					m_hNpcFacingHandle;
+
+	// Mascot
+	SMascotInfo				m_sMascotInfo;
 
 public:
 
@@ -221,6 +232,9 @@ public:
 
 	void			SetNpcFacingHandle(HOBJECT hHandle) { m_hNpcFacingHandle = hHandle; }
 	HOBJECT			GetNpcFacingHandle() { return m_hNpcFacingHandle; }
+
+	// Mascot
+	SMascotInfo* GetAvatarMascotInfo(void);
 };
 
 static CNtlSLGlobal* GetNtlSLGlobal(void)
@@ -294,5 +308,10 @@ inline DBOTIME CNtlSLGlobal::GetServerTime(void)
 	return time(NULL) + m_ServerTimeOffset;
 }
 
+// Mascot
+inline SMascotInfo* CNtlSLGlobal::GetAvatarMascotInfo(void)
+{
+	return &m_sMascotInfo;
+}
 
 #endif

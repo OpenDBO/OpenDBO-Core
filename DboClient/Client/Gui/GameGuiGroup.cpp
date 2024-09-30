@@ -86,7 +86,6 @@
 #include "FriendListGui.h"
 #include "InterfaceShakeGui.h"
 #include "RankBoardGui.h"
-#include "MascotGui.h"
 #include "CommuTargetGui.h"
 #include "TimeNotifyGui.h"
 #include "SideDialogControlGui.h"
@@ -147,6 +146,11 @@
 #include "HoiPoiMixRecipeGui.h"
 #include "QuickTeleportGui.h"
 
+// Mascot
+#include "MascotGui.h"
+#include "MascotFusion.h"
+#include "MascotSkillReMake.h"
+#include "MascotStatusBarGui.h"
 
 
 // 2007.11.17 by agebreak
@@ -270,7 +274,6 @@ CGameGuiGroup::CGameGuiGroup()
 , m_pFriendListGui(NULL)
 , m_pInterfaceShakeGui(NULL)
 , m_pRankBoardGui(NULL)
-, m_pMascotGui(NULL)
 , m_pCommuTargetGui(NULL)
 , m_pTimeNotifyGui(NULL)
 , m_pCinematicGui(NULL)
@@ -322,6 +325,12 @@ CGameGuiGroup::CGameGuiGroup()
 , m_pCCBDBoardGui(NULL)
 , m_pCCBDNotifyGui(NULL)
 , m_pCCBDRewardGui(NULL)
+
+// Mascot
+, m_pMascotGui(NULL)
+, m_pMascotFusion(NULL)
+, m_pMascotSkillReMake(NULL)
+, m_pMascotStatusBarGui(NULL)
 {	
 }
 
@@ -690,6 +699,10 @@ RwBool CGameGuiGroup::Create(void)
 
 	// Mascot Gui
 	AddDialog(m_pMascotGui, CMascotGui, "MascotGui", DIALOG_MASCOT);
+	AddDialog(m_pMascotFusion, CMascotFusion, "CMascotFusion", DIALOG_MASCOT_FUSION);
+	AddDialog(m_pMascotSkillReMake, CMascotSkillReMake, "CMascotSkillReMake", DIALOG_MASCOT_SKILL_REMAKE);
+	m_pMascotGui->Link(m_pMascotFusion->GetDialog());
+	m_pMascotGui->Link(m_pMascotSkillReMake->GetDialog());
 
 	// party
 	AddDialog(m_pPartyMenu, CPartyMenu, "PartyMenuGui", DIALOG_PARTYMENU );	
@@ -795,6 +808,10 @@ RwBool CGameGuiGroup::Create(void)
 	LinkMsg(g_EventDialog);
 	LinkMsg(g_EventDojoStateNotify);
 
+	// Mascot events
+	LinkMsg(g_EventMascotSummon);
+	LinkMsg(g_EventMascotUnSummon);
+
 	GetDialogManager()->OpenDefaultDialog();
 
 	NTL_RETURN(TRUE);
@@ -819,6 +836,10 @@ void CGameGuiGroup::Destroy(void)
 	UnLinkMsg(g_EventDialog);
 	UnLinkMsg(g_EventDojoStateNotify);
 
+	// Mascot 
+	UnLinkMsg(g_EventMascotSummon);
+	UnLinkMsg(g_EventMascotUnSummon);
+
 	CTBGui::DeleteInstance();
 	CRBGui::DeleteInstance();
 
@@ -826,6 +847,9 @@ void CGameGuiGroup::Destroy(void)
 	CBalloonManager::DeleteInstance();
 	CPetStatusBarGui::DeleteInstance();
 	CPetSkillWindowGui::DeleteInstance();
+
+	// Mascot
+	CMascotStatusBarGui::DeleteInstance();
 
 	RemoveDialog(m_pItemOptionRestructureGui);
 	RemoveDialog(m_pQuickTeleportGui);
@@ -948,6 +972,11 @@ void CGameGuiGroup::Destroy(void)
 	RemoveDialog(m_pCCBDBoardGui);
 	RemoveDialog(m_pCCBDNotifyGui);
 	RemoveDialog(m_pCCBDRewardGui);
+
+	// Mascot
+	RemoveDialog(m_pMascotGui);
+	RemoveDialog(m_pMascotFusion);
+	RemoveDialog(m_pMascotSkillReMake);
 			
 	if( m_pCinematicGui )
 	{
@@ -1349,6 +1378,23 @@ void CGameGuiGroup::HandleEvents(RWS::CMsg &pMsg)
 			GetSideDialogManager()->UnRegistDialog(SDIALOG_SCRAMBLE_STATUS);
 			RemoveDialog(m_pScrambleStatusGui);
 		}
+	}
+
+	// Mascot
+	else if (pMsg.Id == g_EventMascotUnSummon)
+	{
+		GetDialogManager()->CloseDialog(DIALOG_MASCOT_STATUS_BAR);
+
+		GetDialogManager()->LocationDialogs(GetDboGlobal()->GetScreenWidth(), GetDboGlobal()->GetScreenHeight());
+	}
+	else if (pMsg.Id == g_EventMascotSummon)
+	{
+		SDboEventMascotOperate* pData = reinterpret_cast<SDboEventMascotOperate*>(pMsg.pData);
+
+		GetDialogManager()->RegistDialog(DIALOG_MASCOT_STATUS_BAR, CMascotStatusBarGui::GetInstance(), &CMascotStatusBarGui::SwitchDialog);
+		CMascotStatusBarGui::GetInstance()->SetMascotID(pData->index);
+		GetDialogManager()->LocationDialogs(GetDboGlobal()->GetScreenWidth(), GetDboGlobal()->GetScreenHeight());
+		GetDialogManager()->OpenDialog(DIALOG_MASCOT_STATUS_BAR);
 	}
 
 	NTL_RETURNVOID();

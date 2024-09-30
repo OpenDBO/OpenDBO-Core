@@ -51,18 +51,30 @@ void CTable::Init()
 
 void CTable::Reset()
 {
-	for( TABLEIT it = m_mapTableList.begin(); it != m_mapTableList.end(); it++ )
+	// Check if the map is initialized
+	if (m_mapTableList.empty())
 	{
-		sTBLDAT* pTable = it->second;
-		if (pTable)
-		{
-			delete pTable;
-			it->second = NULL;
-		}
+		return;
 	}
 
+	for (TABLEIT it = m_mapTableList.begin(); it != m_mapTableList.end();)
+	{
+		sTBLDAT* pTable = it->second;
+
+		// Ensure pTable is valid before deletion
+		if (pTable)
+		{
+			delete pTable; // Free the memory
+			pTable = nullptr; // Clear the pointer after deletion
+		}
+
+		it = m_mapTableList.erase(it); // Erase returns the next iterator
+	}
+
+	// Clear the map after all elements have been deleted
 	m_mapTableList.clear();
 
+	// Clear the XML file name
 	::ZeroMemory(m_wszXmlFileName, sizeof(m_wszXmlFileName));
 }
 

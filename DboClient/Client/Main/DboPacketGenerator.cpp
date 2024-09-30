@@ -3510,6 +3510,52 @@ bool CGamePacketGenerator::SendClientInfoNfy(bool bSpeedHack)
 	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
 }
 
+// Mascot
+bool CGamePacketGenerator::SendSummonMascot(BYTE index)
+{
+	if (API_GetSLPacketLockManager()->IsLock(GU_MASCOT_SUMMON_EX_RES))
+		return false;
+
+	sUG_MASCOT_SUMMON_REQ_EX sPacket;
+	memset(&sPacket, 0, sizeof(sPacket));
+
+	sPacket.wOpCode = UG_MASCOT_SUMMON_REQ_EX;
+	sPacket.byIndex = index;
+
+	API_GetSLPacketLockManager()->Lock(GU_MASCOT_SUMMON_EX_RES);
+	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
+}
+
+bool CGamePacketGenerator::SendUnSummonMascot(BYTE index)
+{
+	if (API_GetSLPacketLockManager()->IsLock(GU_MASCOT_UNSUMMON_EX_RES))
+		return false;
+
+	sUG_MASCOT_UNSUMMON_REQ_EX sPacket;
+	memset(&sPacket, 0, sizeof(sPacket));
+
+	sPacket.wOpCode = UG_MASCOT_UNSUMMON_REQ_EX;
+	sPacket.byIndex = index;
+
+	API_GetSLPacketLockManager()->Lock(GU_MASCOT_UNSUMMON_EX_RES);
+	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
+}
+
+bool CGamePacketGenerator::SendDeleteMascot(BYTE index)
+{
+	if (API_GetSLPacketLockManager()->IsLock(GU_MASCOT_DELETE_EX_RES))
+		return false;
+
+	sUG_MASCOT_DELETE_REQ_EX sPacket;
+	memset(&sPacket, 0, sizeof(sPacket));
+
+	sPacket.wOpCode = UG_MASCOT_DELETE_REQ_EX;
+	sPacket.byIndex = index;
+
+	API_GetSLPacketLockManager()->Lock(GU_MASCOT_DELETE_EX_RES);
+	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

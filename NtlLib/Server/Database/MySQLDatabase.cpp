@@ -36,10 +36,10 @@ void MySQLDatabase::RollbackTransaction(DatabaseConnection* conn)
 	_SendQuery(conn, "ROLLBACK", false);
 }
 
-bool MySQLDatabase::Initialize(CNtlString Hostname, unsigned int port, CNtlString Username, CNtlString Password, CNtlString DatabaseName, UINT32 ConnectionCount)
+std::string MySQLDatabase::Initialize(CNtlString Hostname, unsigned int port, CNtlString Username, CNtlString Password, CNtlString DatabaseName, UINT32 ConnectionCount)
 {
 	static bool is_lib_inited = false;
-	MYSQL *temp, *temp2;
+	MYSQL* temp, * temp2;
 	my_bool my_true = true;
 
 	mHostname = Hostname;
@@ -49,73 +49,56 @@ bool MySQLDatabase::Initialize(CNtlString Hostname, unsigned int port, CNtlStrin
 	mDatabaseName = DatabaseName;
 	mPort = port;
 
-	ERR_LOG(LOG_SYSTEM, "Connecting to `%s`, database `%s`...\n", Hostname.c_str(), DatabaseName.c_str());
+	NTL_PRINT(LOG_SYSTEM, "Connecting to `%s`, database `%s`...\n", Hostname.c_str(), DatabaseName.c_str());
 
-	static char *server_args[] = {
-		"this_program",       /* this string is not used */
-	//	"--datadir=.",
+	static char* server_args[] = {
+		"this_program",
 		"--key_buffer_size=32M"
 	};
-	static char *server_groups[] = {
+	static char* server_groups[] = {
 		"embedded",
 		"server",
 		"this_program_SERVER",
-		(char *)NULL
+		(char*)NULL
 	};
 
-	is_lib_inited = true;
 	if (!is_lib_inited)
 	{
-		int e = mysql_library_init(sizeof(server_args) / sizeof(char *), server_args, server_groups);
+		int e = mysql_library_init(sizeof(server_args) / sizeof(char*), server_args, server_groups);
 		if (e)
-			ERR_LOG(LOG_SYSTEM, "mysql_library_init failed, error code is : %d\n", e);
+			return "mysql_library_init failed, error code: " + std::to_string(e);
 		is_lib_inited = true;
 	}
 
-	///SYNC CONNECTION
+	// SYNC CONNECTION
 	temp = mysql_init(NULL);
+	if (!temp)
+	{
+		return "mysql_init failed.";
+	}
 
 	if (mysql_options(temp, MYSQL_SET_CHARSET_NAME, "utf8"))
-		ERR_LOG(LOG_SYSTEM, "Could not set utf8 character set.\n");
+		NTL_PRINT(LOG_SYSTEM, "Could not set utf8 character set.\n");
 
 	if (mysql_options(temp, MYSQL_OPT_COMPRESS, &my_true))
-		ERR_LOG(LOG_SYSTEM, "MYSQL_OPT_COMPRESS, could not be set\n");
+		NTL_PRINT(LOG_SYSTEM, "MYSQL_OPT_COMPRESS could not be set.\n");
 
 	if (mysql_options(temp, MYSQL_OPT_RECONNECT, &my_true))
-		ERR_LOG(LOG_SYSTEM, "MYSQL_OPT_RECONNECT could not be set, connection drops may occur but will be counteracted.\n");
+		NTL_PRINT(LOG_SYSTEM, "MYSQL_OPT_RECONNECT could not be set.\n");
 
 	temp2 = mysql_real_connect(temp, Hostname.c_str(), Username.c_str(), Password.c_str(), DatabaseName.c_str(), port, NULL, 0);
 	if (temp2 == NULL)
 	{
-		ERR_LOG(LOG_SYSTEM, "Connection failed due to: `%s`\n", mysql_error(temp));
-		return false;
+		std::string errorMsg = "Connection to database `" + std::string(DatabaseName.c_str()) + "` on host `" + std::string(Hostname.c_str()) + "` failed due to: `" + mysql_error(temp) + "`. Please check your credentials and server availability.";
+		mysql_close(temp);  // Clean up the connection
+		return errorMsg;
 	}
 
 	ConnectionSync = new MySQLDatabaseConnection;
 	((MySQLDatabaseConnection*)ConnectionSync)->MySql = temp2;
 
-
-	////ASYNC CONNECTION
-	//temp = mysql_init( NULL );
-
-	//if(mysql_options(temp, MYSQL_SET_CHARSET_NAME, "utf8"))
-	//	ERR_LOG(LOG_SYSTEM, "Could not set utf8 character set.");
-
-	//if (mysql_options(temp, MYSQL_OPT_RECONNECT, &my_true))
-	//	ERR_LOG(LOG_SYSTEM, "MYSQL_OPT_RECONNECT could not be set, connection drops may occur but will be counteracted.");
-
-	//temp2 = mysql_real_connect(temp, Hostname.c_str(), Username.c_str(), Password.c_str(), DatabaseName.c_str(), port, NULL, 0);
-	//if( temp2 == NULL )
-	//{
-	//	ERR_LOG(LOG_SYSTEM, "Connection failed due to: `%s`", mysql_error(temp));
-	//	return false;
-	//}
-
-	//ConnectionAsync = new MySQLDatabaseConnection;
-	//((MySQLDatabaseConnection*)ConnectionAsync)->MySql = temp2;
-
 	Database::_Initialize();
-	return true;
+	return ""; // No error
 }
 
 std::string MySQLDatabase::EscapeString(std::string Escape)

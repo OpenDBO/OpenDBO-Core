@@ -915,4 +915,12 @@ void PacketHandler_GUCashItemRecvGiftNfy(void* pPacket);
 // QuickSlot
 void Packethandler_GUQuickSlotDelNfy( void* pPacket );
 
+// Mascot
+void PacketHandler_GSAvatarMascotInfo(void* pPacket);
+void PacketHandler_GSMascotExRegisterNfy(void* pPacket);
+void PacketHandler_GSMascotExDeleteRes(void* pPacket);
+void PacketHandler_GSMascotExSummonRes(void* pPacket);
+void PacketHandler_GSUpdateMascotSummon(void* pPacket);
+void PacketHandler_GSMascotExUnSummonRes(void* pPacket);
+
 #endif

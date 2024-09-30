@@ -358,6 +358,11 @@ public:
 	bool SendCharTitleSelectReq(TBLIDX tblIndex);
 
 	bool	SendClientInfoNfy(bool bSpeedHack);
+
+	// Mascot
+	bool SendSummonMascot(BYTE index);
+	bool SendUnSummonMascot(BYTE index);
+	bool SendDeleteMascot(BYTE index);
 };
 
 class CChatPacketGenerator : public CNtlPacketGenerator

@@ -4899,3 +4899,184 @@ void PacketHandler_GSAvatarCharTitleSelectNfy(void * pPacket)
 
 	CNtlSLEventGenerator::EventSobCharTitleSelectNfy(pResult->handle, pResult->charTitle);
 }
+
+// Mascot
+// Handles the notification of a newly registered mascot
+void PacketHandler_GSMascotExRegisterNfy(void* pPacket)
+{
+	// Cast the packet to the mascot registration structure
+	sGU_MASCOT_REGISTER_EX_NFY* pResult = (sGU_MASCOT_REGISTER_EX_NFY*)pPacket;
+
+	// Add the new mascot data to the avatar's mascot info
+	GetNtlSLGlobal()->GetAvatarMascotInfo()->asMascotData[GetNtlSLGlobal()->GetAvatarMascotInfo()->wCount] = pResult->mascotdata;
+
+	// Increment the mascot count
+	GetNtlSLGlobal()->GetAvatarMascotInfo()->wCount += 1;
+
+	// Trigger an event to notify the system of the mascot registration
+	CDboEventGenerator::MascotRegister(pResult->mascotdata);
+}
+
+// Handles the response from the server when a mascot is summoned
+void PacketHandler_GSMascotExSummonRes(void* pPacket)
+{
+	// Unlock the packet lock for mascot summon responses
+	API_GetSLPacketLockManager()->Unlock(GU_MASCOT_SUMMON_EX_RES);
+
+	// Cast the packet to the mascot summon response structure
+	sGU_MASCOT_SUMMON_EX_RES* pResult = (sGU_MASCOT_SUMMON_EX_RES*)pPacket;
+
+	// Check if the summon was successful
+	if (pResult->wResultCode == GAME_SUCCESS)
+	{
+		// Trigger an event to notify that the mascot was successfully summoned
+		CDboEventGenerator::MascotSummonRes(pResult->byIndex);
+	}
+	else
+	{
+		// Display an error message if the summon failed
+		GetAlarmManager()->AlarmMessage(Logic_GetResultCodeString(pResult->wResultCode, "GAME_FAIL"), TRUE);
+	}
+}
+
+// Handles the response from the server when a mascot is unsummoned
+void PacketHandler_GSMascotExUnSummonRes(void* pPacket)
+{
+	// Unlock the packet lock for mascot unsummon responses
+	API_GetSLPacketLockManager()->Unlock(GU_MASCOT_UNSUMMON_EX_RES);
+
+	// Cast the packet to the mascot unsummon response structure
+	sGU_MASCOT_UNSUMMON_EX_RES* pResult = (sGU_MASCOT_UNSUMMON_EX_RES*)pPacket;
+
+	// Check if the unsummon was successful
+	if (pResult->wResultCode == GAME_SUCCESS)
+	{
+		// Trigger an event to notify that the mascot was successfully unsummoned
+		CDboEventGenerator::MascotUnSummonRes(pResult->byIndex);
+	}
+	else
+	{
+		// Display an error message if the unsummon failed
+		GetAlarmManager()->AlarmMessage(Logic_GetResultCodeString(pResult->wResultCode, "GAME_FAIL"), TRUE);
+	}
+}
+
+// Updates the mascot summon status, likely intended for other clients to receive information about summoned mascots
+void PacketHandler_GSUpdateMascotSummon(void* pPacket)
+{
+	// Cast the packet to the mascot summon update structure
+	sGU_UPDATE_MASCOT_SUMMON* pResult = (sGU_UPDATE_MASCOT_SUMMON*)pPacket;
+
+	// The following commented-out code likely processes character state and summon synchronization.
+	// However, it is not currently functional, and the logic appears to handle pet summoning.
+
+	// The code commented below could be used to get the avatar's state and synchronize the mascot's position and state.
+
+	/*
+	
+	GetNtlSLGlobal()->GetAvatarInfo()->sCharState.sCharStateBase;
+	SAvatarInfo* CurChar = (SAvatarInfo*)GetNtlSobManager()->GetSobObject(pResult->handle);
+	
+	sCHARSTATE* pCharState = &(CurChar->sCharState);
+
+	RwV3d vLoc, vDir;
+
+	CNtlMath::MathRwV3dAssign(&vLoc,
+		CurChar->sCharState.sCharStateBase.vCurLoc.x,
+		CurChar->sCharState.sCharStateBase.vCurLoc.y,
+		CurChar->sCharState.sCharStateBase.vCurLoc.z);
+	CNtlMath::MathRwV3dAssign(&vDir,
+		CurChar->sCharState.sCharStateBase.vCurDir.x,
+		CurChar->sCharState.sCharStateBase.vCurDir.y,
+		CurChar->sCharState.sCharStateBase.vCurDir.z);
+
+	sCHARSTATE* pCharState = &(CurChar->sCharState);
+
+	CNtlSobAvatar* pSobAvatar = GetNtlSLGlobal()->GetSobAvatar();
+	if (pSobAvatar->GetSerialID() == pResult->handle)
+	{
+		UPetData uPetBrief;
+		uPetBrief.pPetBrief = NULL;
+
+		CNtlSLEventGenerator::SobPetCreate(SLCLASS_PET, pResult->handle, vLoc, vDir, FALSE, uPetBrief, pCharState);
+		CNtlSLEventGenerator::SobSummonPetSpawnSync(pResult->handle, pResult->handle);
+	}
+	*/
+}
+
+// Handles the response from the server when a mascot is deleted
+void PacketHandler_GSMascotExDeleteRes(void* pPacket)
+{
+	// Unlock the packet lock for mascot delete responses
+	API_GetSLPacketLockManager()->Unlock(GU_MASCOT_DELETE_EX_RES);
+
+	// Cast the packet to the mascot delete response structure
+	sGU_MASCOT_DELETE_EX_RES* pResult = (sGU_MASCOT_DELETE_EX_RES*)pPacket;
+
+	// Check if the deletion was successful
+	if (pResult->wResultCode == GAME_SUCCESS)
+	{
+		// Get the mascot data array from the avatar's mascot information
+		sMASCOT_DATA_EX* info = GetNtlSLGlobal()->GetAvatarMascotInfo()->asMascotData;
+
+		// Iterate over the mascot data to find the mascot to delete
+		for (int i = 0; i < 40; i++)
+		{
+			// If the current mascot's index matches the index of the mascot to be deleted
+			if (info[i].byIndex == pResult->byIndex)
+			{
+				// Shift all mascot data entries after the deleted mascot's entry up by one
+				for (i; i < 39; i++)
+				{
+					// If the next mascot data entry is valid, copy its data to the current position
+					if (info[i + 1].byIndex != INVALID_BYTE)
+					{
+						info[i].byIndex = info[i + 1].byIndex;
+						info[i].byItemRank = info[i + 1].byItemRank;
+						info[i].byUnknown = info[i + 1].byUnknown;
+						info[i].dwCurExp = info[i + 1].dwCurExp;
+						info[i].dwCurVP = info[i + 1].dwCurVP;
+						info[i].dwMaxVP = info[i + 1].dwMaxVP;
+						info[i].itemTblidx = info[i + 1].itemTblidx;
+						info[i].tblidx = info[i + 1].tblidx;
+						info[i].wunknown = info[i + 1].wunknown;
+						info[i].wunknown2 = info[i + 1].wunknown2;
+						// Copy the mascot's skill table indices
+						memcpy(info[i].skillTblidx, info[i + 1].skillTblidx, sizeof(TBLIDX) * 4);
+					}
+					else {
+						// Stop if there are no more valid entries
+						break;
+					}
+				}
+				// Exit the outer loop once the mascot is deleted and the data is shifted
+				break;
+			}
+		}
+
+		// Clear the last mascot entry (slot 39) after shifting data
+		info[39].byIndex = INVALID_BYTE;
+		info[39].byItemRank = INVALID_BYTE;
+		info[39].byUnknown = INVALID_BYTE;
+		info[39].dwCurExp = INVALID_DWORD;
+		info[39].dwCurVP = INVALID_DWORD;
+		info[39].dwMaxVP = INVALID_DWORD;
+		info[39].itemTblidx = INVALID_TBLIDX;
+		info[39].tblidx = INVALID_TBLIDX;
+		info[39].wunknown = INVALID_WORD;
+		info[39].wunknown2 = INVALID_WORD;
+		memset(info[39].skillTblidx, 0, sizeof(TBLIDX) * 4);
+
+		// Decrease the mascot count in the avatar's mascot info
+		GetNtlSLGlobal()->GetAvatarMascotInfo()->wCount -= 1;
+
+		// Trigger an event to notify that the mascot has been deleted
+		CDboEventGenerator::DeleteMascotRes(pResult->byIndex);
+	}
+	else {
+		// If the deletion failed, display an error message
+		GetAlarmManager()->AlarmMessage(Logic_GetResultCodeString(pResult->wResultCode, "GAME_FAIL"), TRUE);
+	}
+}
+
+

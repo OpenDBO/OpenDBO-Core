@@ -38,6 +38,7 @@ struct sFriendMember;
 struct stSkillUpgradeInfo;
 class CNtlSobBuffAttr;
 struct sCASHITEM;
+struct stMACOT_INFO;
 
 class CInfoWindowGui : public CNtlPLGui
 {
@@ -91,11 +92,15 @@ public:
 	//! Position 
 	VOID	CalcPos(RwInt32 nXPos, RwInt32 nYPos);
 
+	// Mascot
+	VOID	SetMascotInfo(stMACOT_INFO* pData);
+	VOID	SetMascotSkillInfo(sSKILL_TBLDAT* pData);
+
 private:
 	//! Implementation
 
 	// Item /////////////////////////////////////////////////////////////////////////////////
-	VOID	SetItemInfo_Name(gui::CMDStaticBox* pmdBox, sITEM_TBLDAT* pData, RwUInt8 ucGrade, RwUInt8 ucRank);
+	VOID	SetItemInfo_Name(gui::CMDStaticBox* pmdBox, sITEM_TBLDAT* pData, RwUInt8 ucGrade, RwUInt8 ucRank, bool isMascot = false);
 	VOID	SetItemInfo_CommonPointType(gui::CMDStaticBox* pmdBox, sITEM_TBLDAT* pData);
 	VOID	SetItemInfo_Attr_Info(gui::CMDStaticBox* pmdBox, sITEM_TBLDAT* pData, RwUInt8 byBattleAttribute);
 	VOID	SetItemInfo_EquipLimit(gui::CMDStaticBox* pmdBox, sITEM_TBLDAT* pData, CNtlSobAvatarAttr* pAvatarAttr);

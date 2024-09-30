@@ -28,6 +28,9 @@
 
 #include "GUISoundDefine.h"
 
+using namespace RWS;
+//#include "../../Client/Gui/AlarmManager.h"
+
 CNtlInventoryBase::CNtlInventoryBase()
 {
 	for(RwInt32 i = 0; i < NTL_MAX_EQUIP_ITEM_SLOT; ++i)
@@ -739,53 +742,69 @@ void CNtlInventory::ItemSocketDestroyBeadEventHandler(RWS::CMsg & msg)
 	NTL_RETURNVOID();
 }
 
-void CNtlInventory::ItemUseActionEventHandler(RWS::CMsg &msg)
+void CNtlInventory::ItemUseActionEventHandler(RWS::CMsg& msg)
 {
-	NTL_FUNCTION( "CNtlInventory::ItemUseActionEventHandler" );
+	NTL_FUNCTION("CNtlInventory::ItemUseActionEventHandler");
 
-	SNtlEventSobItemUseAction *pItemUseAction = reinterpret_cast<SNtlEventSobItemUseAction*>(msg.pData);
+	SNtlEventSobItemUseAction* pItemUseAction = reinterpret_cast<SNtlEventSobItemUseAction*>(msg.pData);
 
 	CUseItemTable* pUseItemTbl = API_GetTableContainer()->GetUseItemTable();
-	sUSE_ITEM_TBLDAT *pUseItemTblData = reinterpret_cast<sUSE_ITEM_TBLDAT*>( pUseItemTbl->FindData(pItemUseAction->uiItemTableIdx) );
+	sUSE_ITEM_TBLDAT* pUseItemTblData = reinterpret_cast<sUSE_ITEM_TBLDAT*>(pUseItemTbl->FindData(pItemUseAction->uiItemTableIdx));
 	NTL_ASSERT(pUseItemTblData, "CNtlInventory::ItemUseActionEventHandler => use item table data not found" << "(" << pItemUseAction->uiItemTableIdx << ")");
 
-	SetItemCooltimeInfo( pUseItemTblData->dwCool_Time_Bit_Flag, (float)pUseItemTblData->dwCool_Time);
+	SetItemCooltimeInfo(pUseItemTblData->dwCool_Time_Bit_Flag, (float)pUseItemTblData->dwCool_Time);
 
-	for( RwInt32 i = 0 ; i < NTL_MAX_BAGSLOT_COUNT ; ++i )
+	for (RwInt32 i = 0; i < NTL_MAX_BAGSLOT_COUNT; ++i)
 	{
-		if( GetBagItem( i ) == INVALID_SERIAL_ID )
+		if (GetBagItem(i) == INVALID_SERIAL_ID)
 			continue;
 
-		CNtlSobItem* pBagItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( GetBagItem( i ) ) );
-		NTL_ASSERT( pBagItem, "Bag is must present" );		
+		CNtlSobItem* pBagItem = reinterpret_cast<CNtlSobItem*>(GetNtlSobManager()->GetSobObject(GetBagItem(i)));
+		NTL_ASSERT(pBagItem, "Bag must be present");
 
-		for( RwInt32 j = 0 ; j < pBagItem->GetChildNum() ; ++j )
+		for (RwInt32 j = 0; j < pBagItem->GetChildNum(); ++j)
 		{
-			CNtlSobItem* pItem = pBagItem->GetChildItem( j );
-			if( pItem == NULL )
+			CNtlSobItem* pItem = pBagItem->GetChildItem(j);
+			if (pItem == NULL)
 				continue;
 
-			CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>( pItem->GetSobAttr() );
-			if( pItemAttr->IsNeedToIdentify() )
+			CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>(pItem->GetSobAttr());
+			if (pItemAttr->IsNeedToIdentify())
 				continue;
 
 			sITEM_TBLDAT* pItemData = pItemAttr->GetItemTbl();
-			NTL_ASSERT( pItemData, "CNtlInventory::ItemUseActionEventHandler : pItemData Muse be Present! " );
+			NTL_ASSERT(pItemData, "CNtlInventory::ItemUseActionEventHandler : pItemData must be present!");
 
-			if( pItemData->Use_Item_Tblidx == INVALID_TBLIDX )
+			if (pItemData->Use_Item_Tblidx == INVALID_TBLIDX)
 				continue;
 
-			sUSE_ITEM_TBLDAT* pItemUseData = reinterpret_cast<sUSE_ITEM_TBLDAT*>( pUseItemTbl->FindData( pItemData->Use_Item_Tblidx ) );
+			sUSE_ITEM_TBLDAT* pItemUseData = reinterpret_cast<sUSE_ITEM_TBLDAT*>(pUseItemTbl->FindData(pItemData->Use_Item_Tblidx));
 
-			stCOOLTIMEDATA* pCooltimeData = GetFirstItemCooltimeInfo( pItemUseData->dwCool_Time_Bit_Flag );
-			
-			if( pCooltimeData )
+			// Check if pItemUseData is valid before using it
+			if (pItemUseData)
 			{
-				if( pCooltimeData->fCoolTime != 0.0f )
+				stCOOLTIMEDATA* pCooltimeData = GetFirstItemCooltimeInfo(pItemUseData->dwCool_Time_Bit_Flag);
+
+				if (pCooltimeData)
 				{
-					CNtlSobIcon* pSobIcon = pItem->GetIcon();
-					pSobIcon->SetIconState( CNtlSobIcon::ICON_STATE_COOLING, pCooltimeData->fCoolTime, pCooltimeData->fCurrentTime );				
+					if (pCooltimeData->fCoolTime != 0.0f)
+					{
+						CNtlSobIcon* pSobIcon = pItem->GetIcon();
+						pSobIcon->SetIconState(CNtlSobIcon::ICON_STATE_COOLING, pCooltimeData->fCoolTime, pCooltimeData->fCurrentTime);
+					}
 				}
+				else
+				{
+					// Notify user with custom message when no cool time data is found
+					std::string coolTimeMessage = "No cool time data found for item: " + std::to_string(pItemData->Use_Item_Tblidx);
+					//SendMessage(coolTimeMessage);
+				}
+			}
+			else
+			{
+				// Notify user with custom message when item use data is not found
+				std::string customMessage = "Item use data not found for item table index: " + std::to_string(pItemData->Use_Item_Tblidx);
+				//SendMessage(customMessage);
 			}
 		}
 	}
@@ -1105,11 +1124,18 @@ void CNtlInventory::InvalidItem(RwUInt32 uiItemSerial)
 	*/
 }
 
-void CNtlInventory::SetItemCooltimeInfo( RwUInt32 uiFlag, RwReal fCoolTime )
+void CNtlInventory::SetItemCooltimeInfo(RwUInt32 uiFlag, RwReal fCoolTime)
 {
-	for( RwInt32 i = 0 ; i < ITEM_COOL_TIME_GROUP_COUNT ; ++i )
+	// Ensure the array is initialized
+	if (ITEM_COOL_TIME_GROUP_COUNT <= 0 || m_stCoolTimeGroup == nullptr)
 	{
-		if( uiFlag & m_stCoolTimeGroup[i].dwFlag )
+		std::cerr << "CoolTime group is not initialized properly." << std::endl;
+		return;
+	}
+
+	for (RwInt32 i = 0; i < ITEM_COOL_TIME_GROUP_COUNT; ++i)
+	{
+		if (uiFlag & m_stCoolTimeGroup[i].dwFlag)
 		{
 			m_stCoolTimeGroup[i].fCoolTime = fCoolTime;
 			m_stCoolTimeGroup[i].fCurrentTime = 0.0f;
@@ -1117,11 +1143,18 @@ void CNtlInventory::SetItemCooltimeInfo( RwUInt32 uiFlag, RwReal fCoolTime )
 	}
 }
 
-void CNtlInventory::UnsetItemCooltimeInfo( RwUInt32 uiFlag )
+void CNtlInventory::UnsetItemCooltimeInfo(RwUInt32 uiFlag)
 {
-	for( RwUInt32 i = 0 ; i < ITEM_COOL_TIME_GROUP_COUNT ; ++i )
+	// Ensure the array is initialized
+	if (ITEM_COOL_TIME_GROUP_COUNT <= 0 || m_stCoolTimeGroup == nullptr)
 	{
-		if( uiFlag & m_stCoolTimeGroup[i].dwFlag )
+		std::cerr << "CoolTime group is not initialized properly." << std::endl;
+		return;
+	}
+
+	for (RwUInt32 i = 0; i < ITEM_COOL_TIME_GROUP_COUNT; ++i)
+	{
+		if (uiFlag & m_stCoolTimeGroup[i].dwFlag)
 		{
 			m_stCoolTimeGroup[i].fCoolTime = 0.0f;
 			m_stCoolTimeGroup[i].fCurrentTime = 0.0f;
@@ -1129,15 +1162,29 @@ void CNtlInventory::UnsetItemCooltimeInfo( RwUInt32 uiFlag )
 	}
 }
 
-stCOOLTIMEDATA* CNtlInventory::GetFirstItemCooltimeInfo( RwUInt32 uiFlag )
+stCOOLTIMEDATA* CNtlInventory::GetFirstItemCooltimeInfo(RwUInt32 uiFlag)
 {
-	for( RwUInt32 i = 0 ; i < ITEM_COOL_TIME_GROUP_COUNT ; ++i )
+	// Ensure the array is correctly initialized and ITEM_COOL_TIME_GROUP_COUNT is valid
+	if (ITEM_COOL_TIME_GROUP_COUNT <= 0 || m_stCoolTimeGroup == nullptr)
 	{
-		if( uiFlag & m_stCoolTimeGroup[i].dwFlag )
-			return &m_stCoolTimeGroup[i];
-			
+		// Log an error or handle accordingly
+		std::cerr << "CoolTime group is not initialized properly." << std::endl;
+		return nullptr;
 	}
-	return NULL;
+
+	for (RwUInt32 i = 0; i < ITEM_COOL_TIME_GROUP_COUNT; ++i)
+	{
+		// Debug output to inspect values
+		std::cout << "Checking index " << i << ": uiFlag = " << uiFlag << ", dwFlag = " << m_stCoolTimeGroup[i].dwFlag << std::endl;
+
+		if (uiFlag & m_stCoolTimeGroup[i].dwFlag)
+		{
+			return &m_stCoolTimeGroup[i]; // Return the first matching cool time info
+		}
+	}
+
+	// If no match was found, return nullptr
+	return nullptr;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////

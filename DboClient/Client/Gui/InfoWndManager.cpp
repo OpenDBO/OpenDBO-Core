@@ -209,6 +209,13 @@ VOID CInfoWndManager::ShowInfoWindow( RwBool bShow, RwInt32 eState /* = INFOWND_
 		case INFOWND_HLS_ITEM:
 			m_pInfoWnd->SetHlsItemInfo(reinterpret_cast<sCASHITEM*>(pInstance));
 			break;
+		// Mascot
+		case INFOWND_MASCOT_INFO:
+			m_pInfoWnd->SetMascotInfo(reinterpret_cast<stMACOT_INFO*>(pInstance));
+			break;
+		case INFOWND_MASCOT_SKILL_INFO:
+			m_pInfoWnd->SetMascotSkillInfo(reinterpret_cast<sSKILL_TBLDAT*>(pInstance));
+			break;
 		default:
 			NTL_ASSERTFAIL( "CInfoWndManager::ShowInfoWindow : Invalid State" );
 			return;

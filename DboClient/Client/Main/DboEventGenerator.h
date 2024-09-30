@@ -270,6 +270,15 @@ public:
     // 한국 상용화 관련
     static void UpdateNetPy(NETP netPy, NETP dwAccumulationNetP, DWORD timeNextGainTime);       
     static void NetMarbleMemberShipNfy();
+
+	// Mascot
+	static void MascotRegister(sMASCOT_DATA_EX mascotdata);
+	static void SummonMascot(BYTE index);
+	static void UnSummonMascot(BYTE index);
+	static void DeleteMascot(BYTE index);
+	static void DeleteMascotRes(BYTE index);
+	static void MascotSummonRes(BYTE index);
+	static void MascotUnSummonRes(BYTE index);
 };
 
 #endif

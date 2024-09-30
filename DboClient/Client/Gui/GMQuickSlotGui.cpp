@@ -424,8 +424,9 @@ VOID CGMQuickSlotGui::OnClicked_Tenkaichi_MenuShowHide( gui::CComponent* pCompon
 		GetDialogManager()->SwitchBag(false);
 		GetDialogManager()->CloseDialog(DIALOG_HP);		
 		GetDialogManager()->CloseDialog(DIALOG_MINIMAP);
-		GetDialogManager()->CloseDialog(DIALOG_PET_STATUSBAR);
-		GetDialogManager()->CloseDialog(DIALOG_PET_SKILL_SLOT);
+		//GetDialogManager()->CloseDialog(DIALOG_PET_STATUSBAR);
+		//GetDialogManager()->CloseDialog(DIALOG_MASCOT_STATUS_BAR);
+		//GetDialogManager()->CloseDialog(DIALOG_PET_SKILL_SLOT);
 		GetDialogManager()->CloseDialog(DIALOG_CHAT);
 	}
 	else

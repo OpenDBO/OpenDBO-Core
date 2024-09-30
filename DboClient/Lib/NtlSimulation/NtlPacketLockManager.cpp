@@ -317,7 +317,10 @@ CNtlPacketLockManager::CNtlPacketLockManager(VOID)
 
 	m_mapLockPacket[GU_PARTY_SELECT_STATE_RES] = LT_WORLDCONCEPT;
 
-
+	// Mascot
+	m_mapLockPacket[GU_MASCOT_DELETE_EX_RES] = LT_COMMUNITY;
+	m_mapLockPacket[GU_MASCOT_SUMMON_EX_RES] = LT_COMMUNITY;
+	m_mapLockPacket[GU_MASCOT_UNSUMMON_EX_RES] = LT_COMMUNITY;
 
 	m_listLockedTime.push_back( sLockedPacket(LT_ITEM) );
 	m_listLockedTime.push_back( sLockedPacket(LT_ZENNY) );

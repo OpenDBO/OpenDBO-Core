@@ -178,10 +178,21 @@ void CQueryServer::CreateQueryTaskRunThread(int nAmount)
 	}
 }
 
-
+bool InitializeDatabase(CNtlString host, unsigned int port, CNtlString user, CNtlString password, CNtlString dbName, Database& database, const char* dbType)
+{
+	std::string errorMsg = database.Initialize(host, port, user, password, dbName, 5);
+	if (!errorMsg.empty())
+	{
+		NTL_PRINT(PRINT_APP, "SQL: %s database initialization failed. Host='%s', Port='%d', User='%s', Database='%s'. Error: %s",
+			dbType, host.c_str(), port, user.c_str(), dbName.c_str(), errorMsg.c_str());
+		Sleep(5000);
+		return false;
+	}
+	return true;
+}
 
 //-----------------------------------------------------------------------------------
-//		QueryServerMain
+//      QueryServerMain
 //-----------------------------------------------------------------------------------
 int main(int argc, _TCHAR* argv[])
 {
@@ -194,13 +205,11 @@ int main(int argc, _TCHAR* argv[])
 	SetConsoleTitle(TEXT("OpenDBO Query Server"));
 
 	// CHECK INI FILE AND START PROGRAM
-
 	int rc = app.Create(argc, argv, ".\\config\\QueryServer.ini");
 	if (NTL_SUCCESS != rc)
 		return rc;
 
 	// LOG FILE
-
 	char m_LogFile[256];
 	sprintf(m_LogFile, ".\\logs\\queryserver\\log_%02u-%02u-%02u.txt", ti.wYear, ti.wMonth, ti.wDay);
 
@@ -211,54 +220,42 @@ int main(int argc, _TCHAR* argv[])
 	app.m_log.AttachLogStream(traceFileStream.GetFilePtr());
 	NtlSetPrintFlag(PRINT_APP | PRINT_SYSTEM);
 
-
-
 	NTL_PRINT(PRINT_APP, "CONNECT TO DATABASE...");
 
 	// CONNECT TO CHARACTER DATABASE
 	db_char = Database::CreateDatabaseInterface(1);
-	// Initialize it
-	if (!GetCharDB.Initialize(app.GetCharDatabaseHost(), app.GetCharDatabasePort(), app.GetCharDatabaseUser(),
-		app.GetCharDatabasePassword(), app.GetCharDatabaseName(), 5))
+	if (!InitializeDatabase(app.GetCharDatabaseHost(), app.GetCharDatabasePort(), app.GetCharDatabaseUser(),
+		app.GetCharDatabasePassword(), app.GetCharDatabaseName(), GetCharDB, "Character"))
 	{
-		NTL_PRINT(PRINT_APP, "sql : character database initialization failed. Exiting.");
-		Sleep(5000);
 		return 0;
 	}
 
 	// CONNECT TO ACCOUNT DATABASE
 	db_acc = Database::CreateDatabaseInterface(1);
-	// Initialize it
-	if (!GetAccDB.Initialize(app.GetAccDatabaseHost(), app.GetAccDatabasePort(), app.GetAccDatabaseUser(),
-		app.GetAccDatabasePassword(), app.GetAccDatabaseName(), 5))
+	if (!InitializeDatabase(app.GetAccDatabaseHost(), app.GetAccDatabasePort(), app.GetAccDatabaseUser(),
+		app.GetAccDatabasePassword(), app.GetAccDatabaseName(), GetAccDB, "Account"))
 	{
-		NTL_PRINT(PRINT_APP, "sql : account database initialization failed. Exiting.");
-		Sleep(5000);
 		return 0;
 	}
 
 	// CONNECT TO LOG DATABASE
 	db_log = Database::CreateDatabaseInterface(1);
-	// Initialize it
-	if (!GetLogDB.Initialize(app.GetLogDatabaseHost(), app.GetLogDatabasePort(), app.GetLogDatabaseUser(),
-		app.GetLogDatabasePassword(), app.GetLogDatabaseName(), 5))
+	if (!InitializeDatabase(app.GetLogDatabaseHost(), app.GetLogDatabasePort(), app.GetLogDatabaseUser(),
+		app.GetLogDatabasePassword(), app.GetLogDatabaseName(), GetLogDB, "Log"))
 	{
-		NTL_PRINT(PRINT_APP, "sql : log database initialization failed. Exiting.");
-		Sleep(5000);
 		return 0;
 	}
 
 	unsigned int mysqlthreadsafe = mysql_thread_safe();
 	if (!mysqlthreadsafe)
-		NTL_PRINT(PRINT_APP, "mysql lib is not a thread safe mode!!!!!!!!!");
+		NTL_PRINT(PRINT_APP, "mysql lib is not in thread-safe mode!!!!!!!!!");
 
 	Database::StartThread();
-	
-	app.Start();
 
+	app.Start();
 	app.CreateQueryTaskRunThread(1);
 
-	NTL_PRINT(PRINT_APP,"QUERY SERVER READY!");
+	NTL_PRINT(PRINT_APP, "QUERY SERVER READY!");
 	app.WaitCommandInput();
 	app.WaitForTerminate();
 

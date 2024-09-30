@@ -412,6 +412,7 @@ RwUInt32 Logic_GetItemRankColor( RwUInt8 byRank );
 
 const WCHAR* Logic_GetItemRankName(RwUInt8 byRank);
 
-
+// Mascot
+const WCHAR* Logic_GetMascotRankName(RwUInt8 byRank);
 
 #endif
