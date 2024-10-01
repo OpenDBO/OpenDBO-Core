@@ -53,6 +53,7 @@ public:
 
 	VOID			Show(bool bShow);
 	VOID			Render(bool bTopRender = false);
+	VOID			SetClippingRect(CRectangle* parentRtClipping);
 
 	RwBool			PtInRect(int iPosX, int iPosY);
 
