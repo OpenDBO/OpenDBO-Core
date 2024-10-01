@@ -1824,7 +1824,11 @@ void CDboTSCQAgency::TU_ShowQuestIndicatorNfy( NTL_TS_T_ID tId, bool bAuto )
 											 pQCtrl->GetServerEvtDataType(),
 											 pQCtrl->GetServerEvtData(),
 											 pQCtrl->GetLimitTime(),
-											 bAuto );
+											 bAuto,
+											 pQCtrl->GetTargetPosition(),
+											 pQCtrl->GetTargetWorldID(),
+											 pQCtrl->GetNpcTblidx(),
+											 pQCtrl->GetGradeType());
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -1838,6 +1842,7 @@ void CDboTSCQAgency::TU_ShowQuestIndicatorNfy( NTL_TS_T_ID tId, bool bAuto )
 void CDboTSCQAgency::TU_UpdateQuestStateNfy( NTL_TS_T_ID tId, bool bOutStateMsg, unsigned int uiUpdatedQState, unsigned int uiQState, unsigned int uiQuestTitle, eSTOC_EVT_DATA_TYPE eEvtInfoType, const uSTOC_EVT_DATA& uEvtInfoData )
 {
 	OUT_QMSG_3( "[Quest] Trigger -> User : Update quest state nfy message Ã³¸®Áß [%d, %d, %d]", tId, uiUpdatedQState, uiQState );
+	CDboTSCQCtrl* pQCtrl = (CDboTSCQCtrl*)FindProgressTrigger(tId);
 
 	sTS_KEY key;
 	key.byTSType = TS_TYPE_QUEST_CS;
@@ -1846,12 +1851,33 @@ void CDboTSCQAgency::TU_UpdateQuestStateNfy( NTL_TS_T_ID tId, bool bOutStateMsg,
 	key.tcID = NTL_TS_TC_ID_INVALID;
 	key.taID = NTL_TS_TA_ID_INVALID;
 
+	RwV3d indicatorTargetPos;
+	RwUInt32 indicatorTargetWorldID = 0xffffffff;
+	RwUInt32 indicatorNpcTblidx = 0xffffffff;
 	RwUInt32 uiEventType, uiEventID;
 	RwBool bIsEventStarter;
 
 	GetStarterOrRewardEventInfo( tId, uiEventType, uiEventID, bIsEventStarter );
 
-	CNtlSLEventGenerator::UpdateQuestState_Nfy( key, bOutStateMsg, uiUpdatedQState, uiQState, uiQuestTitle, eEvtInfoType, uEvtInfoData, uiEventType, uiEventID, bIsEventStarter );
+	if (uiUpdatedQState & eTS_PROG_STATE_CLEARED || uiQState == eTS_PROG_STATE_CLEARED) {
+
+		RwInt32 activeWorldID = Logic_GetActiveWorldId();
+		RwV3d* npcPos = GetTSCMain()->FindNPCPosition(activeWorldID, uiEventID);
+
+		if (npcPos) {
+			indicatorTargetPos.x = npcPos->x;
+			indicatorTargetPos.y = npcPos->y;
+			indicatorTargetPos.z = npcPos->z;
+			pQCtrl->SetTargetPosition(indicatorTargetPos);
+			indicatorTargetWorldID = activeWorldID;
+
+		}
+		indicatorNpcTblidx = uiEventID;
+		pQCtrl->SetNpcTblidx(indicatorNpcTblidx);
+		pQCtrl->SetTargetWorldID(indicatorTargetWorldID);
+	}
+
+	CNtlSLEventGenerator::UpdateQuestState_Nfy(key, bOutStateMsg, uiUpdatedQState, uiQState, uiQuestTitle, eEvtInfoType, uEvtInfoData, uiEventType, uiEventID, bIsEventStarter, indicatorTargetPos, indicatorTargetWorldID, indicatorNpcTblidx);
 }
 
 //////////////////////////////////////////////////////////////////////////

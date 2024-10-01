@@ -3228,7 +3228,10 @@ void CNtlSLEventGenerator::UpdateQuestState_Nfy( sTS_KEY& sTSKey,
 												 const uSTOC_EVT_DATA& uEvtInfoData,
 												 RwUInt32 uiEventType,
 												 RwUInt32 uiEventID,
-												 RwBool bIsEventStarter )
+												 RwBool bIsEventStarter,
+												 RwV3d indicatorTargetPos,
+												 RwUInt32 indicatorTargetWorldID,
+												 RwUInt32 indicatorNpcTblidx)
 {
 	SNtlEventUpdateQuestState_Nfy sUpdateQuestStateNfy;
 	sUpdateQuestStateNfy.sTSKey = sTSKey;
@@ -3241,6 +3244,9 @@ void CNtlSLEventGenerator::UpdateQuestState_Nfy( sTS_KEY& sTSKey,
 	sUpdateQuestStateNfy.uiEventType = uiEventType;
 	sUpdateQuestStateNfy.uiEventID = uiEventID;
 	sUpdateQuestStateNfy.bIsEventStarter = bIsEventStarter;
+	sUpdateQuestStateNfy.indicatorTargetPos = indicatorTargetPos;
+	sUpdateQuestStateNfy.indicatorTargetWorldID = indicatorTargetWorldID;
+	sUpdateQuestStateNfy.indicatorNpcTblidx = indicatorNpcTblidx;
 
 	RWS::CMsg msg;
 	msg.Id = g_EventUpdateQuestState_Nfy;
@@ -3299,14 +3305,18 @@ void CNtlSLEventGenerator::HideIndicator( sTS_KEY& sTSKey )
 	_SendMsg(msg);
 }
 
-void CNtlSLEventGenerator::ShowIndicator_Nfy( sTS_KEY& sTSKey,
-											 RwUInt32 uiQState,
-											 RwUInt32 uiQuestTitle,
-											 RwUInt32 uiQuestGoal,
-											 eSTOC_EVT_DATA_TYPE eEvtInfoType,
-											 const uSTOC_EVT_DATA& uEvtInfoData,
-											 RwUInt32 uiTimeLimit,
-											 RwBool bAuto )
+void CNtlSLEventGenerator::ShowIndicator_Nfy(sTS_KEY& sTSKey,
+	RwUInt32 uiQState,
+	RwUInt32 uiQuestTitle,
+	RwUInt32 uiQuestGoal,
+	eSTOC_EVT_DATA_TYPE eEvtInfoType,
+	const uSTOC_EVT_DATA& uEvtInfoData,
+	RwUInt32 uiTimeLimit,
+	RwBool bAuto,
+	RwV3d indicatorTargetPos,
+	RwUInt32 indicatorTargetWorldID,
+	RwUInt32 indicatorNpcTblidx,
+	eGRADE_TYPE m_eGradeType)
 {
 	SNtlEventShowIndicator_Nfy sShowIndicatorNfy;
 	sShowIndicatorNfy.sTSKey = sTSKey;
@@ -3314,9 +3324,14 @@ void CNtlSLEventGenerator::ShowIndicator_Nfy( sTS_KEY& sTSKey,
 	sShowIndicatorNfy.uiQuestTitle = uiQuestTitle;
 	sShowIndicatorNfy.uiQuestGoal = uiQuestGoal;
 	sShowIndicatorNfy.eEvtInfoType = eEvtInfoType;
-	memcpy( &sShowIndicatorNfy.uEvtInfoData, &uEvtInfoData, sizeof(sShowIndicatorNfy.uEvtInfoData) );
+	sShowIndicatorNfy.uEvtInfoData = uEvtInfoData;
+	memcpy(&sShowIndicatorNfy.uEvtInfoData, &uEvtInfoData, sizeof(sShowIndicatorNfy.uEvtInfoData));
 	sShowIndicatorNfy.uiTimeLimit = uiTimeLimit;
 	sShowIndicatorNfy.bAuto = bAuto;
+	sShowIndicatorNfy.indicatorTargetPos = indicatorTargetPos;
+	sShowIndicatorNfy.indicatorTargetWorldID = indicatorTargetWorldID;
+	sShowIndicatorNfy.indicatorNpcTblidx = indicatorNpcTblidx;
+	sShowIndicatorNfy.m_eGradeType = m_eGradeType;
 
 	RWS::CMsg msg;
 	msg.Id = g_EventShowIndicator_Nfy;

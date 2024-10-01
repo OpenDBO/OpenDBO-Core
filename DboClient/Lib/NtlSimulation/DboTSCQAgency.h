@@ -157,7 +157,7 @@ public:
 
 	void								TU_ShowQuestWindowNfy( NTL_TS_T_ID tId );
 
-	void								TU_ShowQuestIndicatorNfy( NTL_TS_T_ID tId, bool bAuto );
+	void								TU_ShowQuestIndicatorNfy(NTL_TS_T_ID tId, bool bAuto );
 
 	void								TU_UpdateQuestStateNfy( NTL_TS_T_ID tId, bool bOutStateMsg, unsigned int uiUpdatedQState, unsigned int uiQState, unsigned int uiQuestTitle, eSTOC_EVT_DATA_TYPE eEvtInfoType, const uSTOC_EVT_DATA& uEvtInfoData );
 
