@@ -5007,8 +5007,8 @@ void CClientSession::RecvCharTeleportReq(CNtlPacket * pPacket)
 
 		if (cPlayer->GetCurWorld())
 		{
-			//if teleport out of TLQ then destroy.
-			if (cPlayer->GetTeleportWorldID() != cPlayer->GetWorldID() && (cPlayer->GetCurWorld()->GetRuleType() == GAMERULE_TLQ)
+			//if teleport out of TLQ (or SKD) then destroy.
+			if (cPlayer->GetTeleportWorldID() != cPlayer->GetWorldID() && cPlayer->GetCurWorld()->GetRuleType() == GAMERULE_TLQ || cPlayer->GetCurWorld()->GetRuleType() == GAMERULE_SKD)
 			{
 				cPlayer->GetQuests()->GetEventMap()->Clear();
 
