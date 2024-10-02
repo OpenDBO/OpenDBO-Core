@@ -4376,7 +4376,7 @@ void CClientSession::RecvPartyLeaveReq(CNtlPacket * pPacket)
 			resultcode = GAME_PARTY_LEAVING_IS_NOT_ALLOWED;
 		else if(cPlayer->GetCurWorld() == NULL || cPlayer->GetCurWorld()->GetRuleType() == GAMERULE_RANKBATTLE)
 			resultcode = GAME_TIMEQUEST_CANNOT_LEAVE_IN_PARTY_WHEN_PLAYING_RANKBATTLE;
-		else if (cPlayer->GetTMQ())
+		else if (cPlayer->GetTMQ() || cPlayer->GetCCBD())
 			resultcode = GAME_FAIL;
 		else
 			cPlayer->GetParty()->LeaveParty(cPlayer);
