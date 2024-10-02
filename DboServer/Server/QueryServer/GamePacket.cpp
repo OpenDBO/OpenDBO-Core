@@ -3928,20 +3928,94 @@ void CGameServerSession::RecvItemChangeDurationTimeReq(CNtlPacket * pPacket, CQu
 
 void CGameServerSession::RecvShopNetpyItemBuyReq(CNtlPacket * pPacket, CQueryServer * app)
 {
-	sGQ_SHOP_NETPYITEM_BUY_REQ * req = (sGQ_SHOP_NETPYITEM_BUY_REQ*)pPacket->GetPacketData();
+	sGQ_SHOP_NETPYITEM_BUY_REQ* req = (sGQ_SHOP_NETPYITEM_BUY_REQ*)pPacket->GetPacketData();
+
+	CNtlPacket packet(sizeof(sQG_SHOP_NETPYITEM_BUY_RES));
+	sQG_SHOP_NETPYITEM_BUY_RES* res = (sQG_SHOP_NETPYITEM_BUY_RES*)packet.GetPacketData();
+	res->wOpCode = QG_SHOP_NETPYITEM_BUY_RES;
+	res->charId = req->charId;
+	res->handle = req->handle;
+	res->wResultCode = GAME_SUCCESS;
+	res->byBuyCount = req->byBuyCount;
+	res->netpyPoint = req->netpyPoint;
+	memcpy(res->sInven, req->sInven, sizeof(req->sInven));
+
+	CPlayerCache* pCache = g_pPlayerCache->GetCharacter(req->charId);
+	if (pCache)
+	{
+		for (BYTE i = 0; i < req->byBuyCount; i++)
+		{
+			res->itemID[i] = g_pItemManager->CreateItem(req->sInven[i], req->charId);
+
+			pCache->AddItem(req->sInven[i], res->itemID[i]);
+		}
+
+		pCache->SetNetPyPoints(UnsignedSafeDecrease<DWORD>(pCache->GetNetPyPoints(), req->netpyPoint));
+		GetCharDB.Execute("UPDATE characters SET Netpy=%u WHERE CharID=%u", pCache->GetNetPyPoints(), req->charId);
+	}
+	else res->wResultCode = QUERY_FAIL;
+
+	packet.SetPacketLen(sizeof(sQG_SHOP_NETPYITEM_BUY_RES));
+	app->Send(GetHandle(), &packet);
 }
 
 
 void CGameServerSession::RecvDurationItemBuyReq(CNtlPacket * pPacket, CQueryServer * app)
 {
-	sGQ_DURATION_ITEM_BUY_REQ * req = (sGQ_DURATION_ITEM_BUY_REQ*)pPacket->GetPacketData();
+	sGQ_DURATION_ITEM_BUY_REQ* req = (sGQ_DURATION_ITEM_BUY_REQ*)pPacket->GetPacketData();
+
+	CNtlPacket packet(sizeof(sQG_DURATION_ITEM_BUY_RES));
+	sQG_DURATION_ITEM_BUY_RES* res = (sQG_DURATION_ITEM_BUY_RES*)packet.GetPacketData();
+	res->wOpCode = QG_DURATION_ITEM_BUY_RES;
+	res->byPayType = req->byPayType;
+	res->byPos = req->byPos;
+	res->charId = req->charId;
+	res->dwPayAmount = req->dwPayAmount;
+	res->handle = req->handle;
+	res->merchantTblidx = req->merchantTblidx;
+	memcpy(&res->sItem, &req->sItem, sizeof(sITEM_DATA));
+	res->wResultCode = GAME_SUCCESS;
+
+	CPlayerCache* pCache = g_pPlayerCache->GetCharacter(req->charId);
+	if (pCache)
+	{
+		if (pCache->GetNetPyPoints() >= req->dwPayAmount)
+		{
+			if (req->sItem.itemId == INVALID_ITEMID)
+			{
+				res->sItem.itemId = g_pItemManager->CreateItem(req->sItem);
+
+				pCache->AddItem(res->sItem);
+			}
+			else
+			{
+				if (sITEM_DATA* pItem = pCache->GetItemData(req->sItem.itemId))
+				{
+					pItem->byStackcount = req->sItem.byStackcount;
+					GetCharDB.Execute("UPDATE items SET count=%u WHERE id=%I64u", req->sItem.byStackcount, req->sItem.itemId);
+				}
+				else res->wResultCode = QUERY_FAIL;
+			}
+
+			if (res->wResultCode == GAME_SUCCESS)
+			{
+				pCache->SetNetPyPoints(UnsignedSafeDecrease<NETP>(pCache->GetNetPyPoints(), req->dwPayAmount));
+				GetCharDB.Execute("UPDATE characters SET Netpy=%u WHERE CharID=%u", pCache->GetNetPyPoints(), req->charId);
+			}
+		}
+		else res->wResultCode = GAME_NETP_POINT_NOT_ENOUGH;
+	}
+	else res->wResultCode = QUERY_FAIL;
+
+	packet.SetPacketLen(sizeof(sQG_DURATION_ITEM_BUY_RES));
+	app->Send(GetHandle(), &packet);
 }
 
 void CGameServerSession::RecvDurationRenewReq(CNtlPacket* pPacket, CQueryServer* app)
 {
 	UNREFERENCED_PARAMETER(app);
 
-	sGQ_DURATION_RENEW_REQ * req = (sGQ_DURATION_RENEW_REQ*)pPacket->GetPacketData();
+	sGQ_DURATION_RENEW_REQ* req = (sGQ_DURATION_RENEW_REQ*)pPacket->GetPacketData();
 
 	CAccountCache* pAccount = g_pPlayerCache->GetAccount(req->accountId);
 	if (pAccount)
@@ -3951,7 +4025,15 @@ void CGameServerSession::RecvDurationRenewReq(CNtlPacket* pPacket, CQueryServer*
 		{
 			bool bSuccess = true;
 
-			if (req->byPayType == 2) //cash
+			if (req->byPayType == 1) // NetPy Token
+			{
+				if (pCache->GetNetPyPoints() >= req->dwPayAmount)
+				{
+					pCache->SetNetPyPoints(pCache->GetNetPyPoints() - req->dwPayAmount);
+				}
+				else bSuccess = false;
+			}
+			else if (req->byPayType == 2) // Cash Token
 			{
 				if (pAccount->GetCash() >= req->dwPayAmount)
 				{
@@ -3959,7 +4041,7 @@ void CGameServerSession::RecvDurationRenewReq(CNtlPacket* pPacket, CQueryServer*
 				}
 				else bSuccess = false;
 			}
-			else
+			else // Zeni
 			{
 				if (pCache->GetZeni() >= req->dwPayAmount)
 				{
@@ -3974,11 +4056,15 @@ void CGameServerSession::RecvDurationRenewReq(CNtlPacket* pPacket, CQueryServer*
 
 				GetCharDB.Execute("UPDATE items SET UseEndTime=%I64u WHERE id=%I64u", req->sData.nUseEndTime, req->sData.itemID);
 
-				if (req->byPayType == 2) //cash
+				if (req->byPayType == 1) // NetPy Token
+				{
+					GetCharDB.Execute("UPDATE characters SET Netpy=%u WHERE CharID=%u", pCache->GetNetPyPoints(), req->charId);
+				}
+				else if (req->byPayType == 2) // Cash Token
 				{
 					GetAccDB.WaitExecute("UPDATE accounts SET mallpoints=%u WHERE AccountID=%u", pAccount->GetCash(), req->accountId);
 				}
-				else
+				else // Zeni
 				{
 					GetCharDB.Execute("UPDATE characters SET Money=%u WHERE CharID=%u", pCache->GetZeni(), req->charId);
 				}

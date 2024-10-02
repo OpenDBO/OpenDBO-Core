@@ -3499,6 +3499,7 @@ BEGIN_PROTOCOL(GU_DURATION_ITEM_BUY_RES)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_DURATION_RENEW_RES)
+	HOBJECT				hItemHandle;
 	WORD				wResultCode;
 END_PROTOCOL()
 //------------------------------------------------------------------

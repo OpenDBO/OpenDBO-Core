@@ -10980,7 +10980,35 @@ void CClientSession::RecvItemDurationRenewReq(CNtlPacket * pPacket)
 				if (pItemData->bIsCanRenewal)
 				{
 					DWORD dwPaymentAmount = 0;
-					if (pItemData->byCommonPointType == 2) // 2 == CASH POINTS
+					if (pItemData->byCommonPointType == 1) // 1 == NETPY TOKEN
+					{
+						if (cPlayer->GetNetPyPoints() >= pItemData->CommonPoint)
+						{
+							CNtlPacket packet2(sizeof(sGU_ITEM_UPDATE));
+							sGU_ITEM_UPDATE* res2 = (sGU_ITEM_UPDATE*)packet2.GetPacketData();
+							res2->wOpCode = GU_ITEM_UPDATE;
+							res2->handle = req->hItemHandle;
+							memcpy(&res2->sItemData, &pItem->GetItemData(), sizeof(sITEM_DATA));
+
+							if (pItem->IsExpired() == false)
+								res2->sItemData.nUseEndTime = pItem->GetItemData().nUseEndTime + pItemData->dwUseDurationMax;
+							else
+							{
+								res2->sItemData.nUseEndTime = app->GetTime() + (DBOTIME)pItemData->dwUseDurationMax;
+							}
+
+							packet2.SetPacketLen(sizeof(sGU_ITEM_UPDATE));
+							app->Send(GetHandle(), &packet2);
+
+							pItem->SetUseEndTime(res2->sItemData.nUseEndTime);
+
+							dwPaymentAmount = pItemData->CommonPoint;
+
+							cPlayer->UpdateNetPyPoints(cPlayer->GetNetPyPoints() - pItemData->CommonPoint, 0, false);
+						}
+						else resultcode = GAME_NETP_POINT_NOT_ENOUGH;
+					}
+					else if (pItemData->byCommonPointType == 2) // 2 == CASH POINTS
 					{
 						if (cPlayer->GetItemShopCash() >= pItemData->CommonPoint)
 						{
@@ -11066,6 +11094,7 @@ void CClientSession::RecvItemDurationRenewReq(CNtlPacket * pPacket)
 	CNtlPacket packet(sizeof(sGU_DURATION_RENEW_RES));
 	sGU_DURATION_RENEW_RES* res = (sGU_DURATION_RENEW_RES*)packet.GetPacketData();
 	res->wOpCode = GU_DURATION_RENEW_RES;
+	res->hItemHandle = req->hItemHandle;
 	res->wResultCode = resultcode;
 	packet.SetPacketLen(sizeof(sGU_DURATION_RENEW_RES));
 	app->Send(GetHandle(), &packet);
@@ -13229,8 +13258,101 @@ void CClientSession::RecvDurationItemBuyReq(CNtlPacket * pPacket)
 	if (!cPlayer || !cPlayer->IsInitialized())
 		return;
 
-	sUG_DURATION_ITEM_BUY_REQ * req = (sUG_DURATION_ITEM_BUY_REQ *)pPacket->GetPacketData();
-	SendResultcode(eRESULTCODE::GAME_NETP_POINT_CANT_BE_USED_RIGHT_NOW);
+	sUG_DURATION_ITEM_BUY_REQ* req = (sUG_DURATION_ITEM_BUY_REQ*)pPacket->GetPacketData();
+
+	WORD resultcode = GAME_SUCCESS;
+
+	sMERCHANT_TBLDAT* pMerchantData = (sMERCHANT_TBLDAT*)g_pTableContainer->GetMerchantTable()->FindData(req->merchantTblidx);
+	if (pMerchantData == NULL)
+		resultcode = GAME_FAIL;
+	else if (cPlayer->GetPlayerItemContainer()->CountEmptyInventory() == 0)
+		resultcode = GAME_ITEM_INVEN_FULL;
+	else if (req->byPos >= NTL_MAX_MERCHANT_COUNT)
+		resultcode = GAME_FAIL;
+	else
+	{
+		if (pMerchantData->bySell_Type == MERCHANT_SELL_TYPE_NETPY)
+		{
+			sITEM_TBLDAT* pItemData = (sITEM_TBLDAT*)g_pTableContainer->GetItemTable()->FindData(pMerchantData->aitem_Tblidx[req->byPos]);
+			if (pItemData)
+			{
+				if (cPlayer->GetNetPyPoints() >= pItemData->CommonPoint)
+				{
+					cPlayer->UpdateNetPyPoints(cPlayer->GetNetPyPoints() - pItemData->CommonPoint, 0, false);
+
+					CGameServer* app = (CGameServer*)g_pApp;
+
+					CNtlPacket pQry(sizeof(sGQ_DURATION_ITEM_BUY_REQ));
+					sGQ_DURATION_ITEM_BUY_REQ* rQry = (sGQ_DURATION_ITEM_BUY_REQ*)pQry.GetPacketData();
+					rQry->wOpCode = GQ_DURATION_ITEM_BUY_REQ;
+					rQry->handle = cPlayer->GetID();
+					rQry->charId = cPlayer->GetCharID();
+					rQry->byPayType = 0;
+					rQry->dwPayAmount = pItemData->CommonPoint;
+					rQry->merchantTblidx = req->merchantTblidx;
+					rQry->byPos = req->byPos;
+
+					CItem* itemcheck = NULL;
+					if (pItemData->byMax_Stack > 1)
+					{
+						itemcheck = cPlayer->GetPlayerItemContainer()->CheckStackItem(pItemData->tblidx, 1, pItemData->byMax_Stack, ITEM_RESTRICT_STATE_TYPE_LIMIT);
+					}
+
+					if (itemcheck)
+					{
+						itemcheck->SetCount(itemcheck->GetCount() + 1, true, false);
+
+						memcpy(&rQry->sItem, &itemcheck->GetItemData(), sizeof(sITEM_DATA));
+					}
+					else
+					{
+						std::pair<BYTE, BYTE> inv = cPlayer->GetPlayerItemContainer()->GetEmptyInventory();
+
+						cPlayer->GetPlayerItemContainer()->AddReservedInventory(inv.first, inv.second);
+
+						rQry->sItem.Init();
+						rQry->sItem.charId = cPlayer->GetCharID();
+						rQry->sItem.itemNo = pItemData->tblidx;
+						rQry->sItem.byStackcount = 1;
+						rQry->sItem.byPlace = inv.first;
+						rQry->sItem.byPosition = inv.second;
+						rQry->sItem.byCurrentDurability = pItemData->byDurability;
+						rQry->sItem.byRank = pItemData->byRank;
+						rQry->sItem.bNeedToIdentify = false;
+						rQry->sItem.byRestrictState = ITEM_RESTRICT_STATE_TYPE_LIMIT;
+						rQry->sItem.sOptionSet.Init();
+						rQry->sItem.byDurationType = pItemData->byDurationType;
+
+						if (pItemData->bIsCanHaveOption && pItemData->Item_Option_Tblidx != INVALID_TBLIDX)
+							rQry->sItem.sOptionSet.aOptionTblidx[0] = pItemData->Item_Option_Tblidx;
+
+						if (pItemData->byDurationType == eDURATIONTYPE_FLATSUM)
+						{
+							rQry->sItem.nUseStartTime = app->GetTime();
+							rQry->sItem.nUseEndTime = rQry->sItem.nUseStartTime + pItemData->dwUseDurationMax;
+						}
+					}
+
+					pQry.SetPacketLen(sizeof(sGQ_DURATION_ITEM_BUY_REQ));
+					app->SendTo(app->GetQueryServerSession(), &pQry);
+
+					return;
+				}
+				else resultcode = GAME_NETP_POINT_NOT_ENOUGH;
+			}
+			else resultcode = GAME_FAIL;
+		}
+		else resultcode = GAME_FAIL;
+	}
+
+	CNtlPacket packet(sizeof(sGU_DURATION_ITEM_BUY_RES));
+	sGU_DURATION_ITEM_BUY_RES* res = (sGU_DURATION_ITEM_BUY_RES*)packet.GetPacketData();
+	res->wOpCode = GU_DURATION_ITEM_BUY_RES;
+	res->wResultCode = resultcode;
+	res->byPos = req->byPos;
+	res->merchantTblidx = req->merchantTblidx;
+	packet.SetPacketLen(sizeof(sGU_DURATION_ITEM_BUY_RES));
+	g_pApp->Send(GetHandle(), &packet);
 }
 
 //--------------------------------------------------------------------------------------//
