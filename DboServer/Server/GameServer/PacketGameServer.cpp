@@ -3181,7 +3181,25 @@ void CClientSession::RecvGuildBankMoveReq(CNtlPacket * pPacket)
 
 		CItem* dest_item = cPlayer->GetPlayerItemContainer()->GetItem(req->byDestPlace, req->byDestPos);
 
-		sITEM_TBLDAT* pItemData = src_item->GetTbldat();
+		sITEM_TBLDAT* pItemDataSrc = src_item->GetTbldat();
+		if (pItemDataSrc)
+		{
+			if (src_item->GetCount() < 1 || src_item->GetCount() > pItemDataSrc->byMax_Stack)
+			{
+				item_move_res = GAME_FAIL;
+				goto END;
+			}
+		}
+
+		if (dest_item)
+		{
+			sITEM_TBLDAT* pItemDataDest = dest_item->GetTbldat();
+			if (dest_item->GetCount() < 1 || dest_item->GetCount() > pItemDataDest->byMax_Stack)
+			{
+				item_move_res = GAME_FAIL;
+				goto END;
+			}
+		}
 
 		if (dest_item) //check if dest item can be stored in guild bank
 		{
@@ -3284,21 +3302,21 @@ void CClientSession::RecvGuildBankMoveReq(CNtlPacket * pPacket)
 		}
 		if (req->byDestPlace == CONTAINER_TYPE_EQUIP) //check if equip item
 		{
-			if (cPlayer->GetLevel() < pItemData->byNeed_Min_Level) //check level
+			if (cPlayer->GetLevel() < pItemDataSrc->byNeed_Min_Level) //check level
 				item_move_res = GAME_ITEM_NEED_MORE_LEVEL;
-			else if (cPlayer->GetLevel() > pItemData->byNeed_Max_Level)
+			else if (cPlayer->GetLevel() > pItemDataSrc->byNeed_Max_Level)
 				item_move_res = GAME_ITEM_TOO_HIGH_LEVEL_TO_USE_ITEM;
 
-			else if (Dbo_CheckClass(cPlayer->GetClass(), pItemData->dwNeed_Class_Bit_Flag) == false) //check class
+			else if (Dbo_CheckClass(cPlayer->GetClass(), pItemDataSrc->dwNeed_Class_Bit_Flag) == false) //check class
 				item_move_res = GAME_ITEM_CLASS_FAIL;
 
-			else if (BIT_FLAG_TEST(MAKE_BIT_FLAG(cPlayer->GetGender()), pItemData->dwNeed_Gender_Bit_Flag) == false) //check gender
+			else if (BIT_FLAG_TEST(MAKE_BIT_FLAG(cPlayer->GetGender()), pItemDataSrc->dwNeed_Gender_Bit_Flag) == false) //check gender
 				item_move_res = GAME_ITEM_GENDER_DOESNT_MATCH;
 
-			else if (pItemData->byRace_Special != cPlayer->GetRace() && pItemData->byRace_Special != INVALID_BYTE) //check race
+			else if (pItemDataSrc->byRace_Special != cPlayer->GetRace() && pItemDataSrc->byRace_Special != INVALID_BYTE) //check race
 				item_move_res = GAME_CHAR_RACE_FAIL;
 
-			else if (BIT_FLAG_TEST(MAKE_BIT_FLAG(req->byDestPos), pItemData->dwEquip_Slot_Type_Bit_Flag) == false) //check if item can go to that position
+			else if (BIT_FLAG_TEST(MAKE_BIT_FLAG(req->byDestPos), pItemDataSrc->dwEquip_Slot_Type_Bit_Flag) == false) //check if item can go to that position
 				item_move_res = GAME_ITEM_POSITION_FAIL;
 
 			else if (src_item->GetRestrictState() == ITEM_RESTRICT_STATE_TYPE_SEAL)
@@ -3452,7 +3470,7 @@ void CClientSession::RecvGuildBankMoveStackReq(CNtlPacket * pPacket)
 
 	if (pDestItem == NULL)	//UNSTACK ITEM
 	{
-		if (pSrcItem->GetTbldat()->byMax_Stack == 1 || req->byStackCount == 0) //is the item even stack-able?
+		if (pSrcItem->GetTbldat()->byMax_Stack == 1 || req->byStackCount == 0 || req->byStackCount < 0 || req->byStackCount > pSrcItem->GetTbldat()->byMax_Stack) //is the item even stack-able?
 		{
 			resultcode = GAME_ITEM_STACK_FAIL;
 		}
@@ -3488,7 +3506,7 @@ void CClientSession::RecvGuildBankMoveStackReq(CNtlPacket * pPacket)
 		{
 			resultcode = GAME_ITEM_STACK_FAIL;
 		}
-		else if (pSrcItem->GetCount() < req->byStackCount || pSrcItem->GetTbldat()->byMax_Stack == 1 || req->byStackCount == 0) //check: has less than required items? is item possible to stack? is the stack request == 0
+		else if (pSrcItem->GetCount() < req->byStackCount || pSrcItem->GetTbldat()->byMax_Stack == 1 || req->byStackCount == 0 || req->byStackCount < 0 || req->byStackCount > pSrcItem->GetTbldat()->byMax_Stack) //check: has less than required items? is item possible to stack? is the stack request == 0
 		{
 			resultcode = GAME_ITEM_STACK_FAIL;
 		}
@@ -4198,7 +4216,7 @@ void CClientSession::RecvPartyLeaveReq(CNtlPacket * pPacket)
 			resultcode = GAME_PARTY_LEAVING_IS_NOT_ALLOWED;
 		else if(cPlayer->GetCurWorld() == NULL || cPlayer->GetCurWorld()->GetRuleType() == GAMERULE_RANKBATTLE)
 			resultcode = GAME_TIMEQUEST_CANNOT_LEAVE_IN_PARTY_WHEN_PLAYING_RANKBATTLE;
-		else if (cPlayer->GetTMQ())
+		else if (cPlayer->GetTMQ() || cPlayer->GetCCBD())
 			resultcode = GAME_FAIL;
 		else
 			cPlayer->GetParty()->LeaveParty(cPlayer);
@@ -4829,8 +4847,8 @@ void CClientSession::RecvCharTeleportReq(CNtlPacket * pPacket)
 
 		if (cPlayer->GetCurWorld())
 		{
-			//if teleport out of TLQ then destroy.
-			if (cPlayer->GetTeleportWorldID() != cPlayer->GetWorldID() && cPlayer->GetCurWorld()->GetRuleType() == GAMERULE_TLQ)
+			//if teleport out of TLQ (or SKD) then destroy.
+			if (cPlayer->GetTeleportWorldID() != cPlayer->GetWorldID() && cPlayer->GetCurWorld()->GetRuleType() == GAMERULE_TLQ || cPlayer->GetCurWorld()->GetRuleType() == GAMERULE_SKD)
 			{
 				cPlayer->GetQuests()->GetEventMap()->Clear();
 
@@ -5264,7 +5282,24 @@ void CClientSession::RecvItemMoveReq(CNtlPacket * pPacket)
 	{
 		CItem* dest_item = cPlayer->GetPlayerItemContainer()->GetItem(req->byDestPlace, req->byDestPos);
 
-		sITEM_TBLDAT* pItemData = src_item->GetTbldat();
+		sITEM_TBLDAT* pItemDataSrc = src_item->GetTbldat();
+		if (pItemDataSrc)
+		{
+			if (src_item->GetCount() < 1 || src_item->GetCount() > pItemDataSrc->byMax_Stack)
+			{
+				item_move_res = GAME_FAIL;
+				goto END;
+			}
+		}
+		if (dest_item)
+		{
+			sITEM_TBLDAT* pItemDataDest = dest_item->GetTbldat();
+			if (dest_item->GetCount() < 1 || dest_item->GetCount() > pItemDataDest->byMax_Stack)
+			{
+				item_move_res = GAME_FAIL;
+				goto END;
+			}
+		}
 
 		if (src_item->IsLocked(false)) //only check if not equiped
 		{
@@ -5339,21 +5374,21 @@ void CClientSession::RecvItemMoveReq(CNtlPacket * pPacket)
 
 		if (req->byDestPlace == CONTAINER_TYPE_EQUIP)
 		{
-			if (cPlayer->GetLevel() < pItemData->byNeed_Min_Level) //check level
+			if (cPlayer->GetLevel() < pItemDataSrc->byNeed_Min_Level) //check level
 				item_move_res = GAME_ITEM_NEED_MORE_LEVEL;
-			else if(cPlayer->GetLevel() > pItemData->byNeed_Max_Level)
+			else if(cPlayer->GetLevel() > pItemDataSrc->byNeed_Max_Level)
 				item_move_res = GAME_ITEM_TOO_HIGH_LEVEL_TO_USE_ITEM;
 
-			else if( Dbo_CheckClass(cPlayer->GetClass(), pItemData->dwNeed_Class_Bit_Flag) == false ) //check class
+			else if( Dbo_CheckClass(cPlayer->GetClass(), pItemDataSrc->dwNeed_Class_Bit_Flag) == false ) //check class
 				item_move_res = GAME_ITEM_CLASS_FAIL;
 
-			else if(BIT_FLAG_TEST( MAKE_BIT_FLAG(cPlayer->GetGender()), pItemData->dwNeed_Gender_Bit_Flag ) == false) //check gender
+			else if(BIT_FLAG_TEST( MAKE_BIT_FLAG(cPlayer->GetGender()), pItemDataSrc->dwNeed_Gender_Bit_Flag ) == false) //check gender
 				item_move_res = GAME_ITEM_GENDER_DOESNT_MATCH;
 
-			else if(pItemData->byRace_Special != cPlayer->GetRace() && pItemData->byRace_Special != INVALID_BYTE) //check race
+			else if(pItemDataSrc->byRace_Special != cPlayer->GetRace() && pItemDataSrc->byRace_Special != INVALID_BYTE) //check race
 				item_move_res = GAME_CHAR_RACE_FAIL;
 			
-			else if (BIT_FLAG_TEST(MAKE_BIT_FLAG(req->byDestPos), pItemData->dwEquip_Slot_Type_Bit_Flag) == false) //check if item can go to that position
+			else if (BIT_FLAG_TEST(MAKE_BIT_FLAG(req->byDestPos), pItemDataSrc->dwEquip_Slot_Type_Bit_Flag) == false) //check if item can go to that position
 				item_move_res = GAME_ITEM_POSITION_FAIL;
 
 			else if (src_item->GetRestrictState() == ITEM_RESTRICT_STATE_TYPE_SEAL)
@@ -5546,7 +5581,7 @@ void CClientSession::RecvItemStackReq(CNtlPacket * pPacket)
 
 	if (pDestItem == NULL)	//UNSTACK ITEM
 	{
-		if (pSrcItem->GetTbldat()->byMax_Stack == 1 || req->byStackCount == 0) //is the item even stack-able?
+		if (pSrcItem->GetTbldat()->byMax_Stack == 1 || req->byStackCount == 0 || req->byStackCount < 0 || req->byStackCount > pSrcItem->GetTbldat()->byMax_Stack) //is the item even stack-able?
 		{
 			resultcode = GAME_ITEM_STACK_FAIL;
 		}
@@ -5583,7 +5618,7 @@ void CClientSession::RecvItemStackReq(CNtlPacket * pPacket)
 		{
 			resultcode = GAME_ITEM_STACK_FAIL;
 		}
-		else if (pSrcItem->GetCount() < req->byStackCount || pSrcItem->GetTbldat()->byMax_Stack == 1 || req->byStackCount == 0) //check: has less than required items? is item possible to stack? is the stack request == 0
+		else if (pSrcItem->GetCount() < req->byStackCount || pSrcItem->GetTbldat()->byMax_Stack == 1 || req->byStackCount == 0 || req->byStackCount < 0 || req->byStackCount > pSrcItem->GetTbldat()->byMax_Stack) //check: has less than required items? is item possible to stack? is the stack request == 0
 		{
 			resultcode = GAME_ITEM_STACK_FAIL;
 		}
@@ -5720,6 +5755,8 @@ void CClientSession::RecvShopBuyReq(CNtlPacket * pPacket)
 	if (req->byBuyCount == 0 || req->byBuyCount > NTL_MAX_BUY_SHOPPING_CART)
 		buy_item_result = GAME_FAIL;
 	else if (cPlayer->GetNpcShopHandle() != req->handle) // check if viewing the same NPC
+		buy_item_result = GAME_FAIL;
+	else if (cPlayer->IsTrading() || cPlayer->HasPrivateShop()) // check if trading or selling in private shop
 		buy_item_result = GAME_FAIL;
 	else if (cPlayer->GetNpcShopType() != NPC_SHOP_TYPE_DEFAULT) // check if same type
 		buy_item_result = GAME_FAIL;
@@ -5918,6 +5955,8 @@ void CClientSession::RecvShopSellReq(CNtlPacket * pPacket)
 	if (req->bySellCount == 0 || req->bySellCount > NTL_MAX_BUY_SHOPPING_CART)
 		resultcode = GAME_FAIL;
 	else if (cPlayer->GetNpcShopHandle() != req->handle) // check if viewing the same NPC
+		resultcode = GAME_FAIL;
+	else if (cPlayer->IsTrading() || cPlayer->HasPrivateShop()) // check if trading or selling in private shop
 		resultcode = GAME_FAIL;
 	else
 	{
@@ -8871,7 +8910,25 @@ void CClientSession::RecvBankMoveReq(CNtlPacket * pPacket)
 
 		CItem* dest_item = cPlayer->GetPlayerItemContainer()->GetItem(req->byDestPlace, req->byDestPos);
 
-		sITEM_TBLDAT* pItemData = src_item->GetTbldat();
+		sITEM_TBLDAT* pItemDataSrc = src_item->GetTbldat();
+		if (pItemDataSrc)
+		{
+			if (src_item->GetCount() < 1 || src_item->GetCount() > pItemDataSrc->byMax_Stack)
+			{
+				item_move_res = GAME_FAIL;
+				goto END;
+			}
+		}
+
+		if (dest_item)
+		{
+			sITEM_TBLDAT* pItemDataDest = dest_item->GetTbldat();
+			if (dest_item->GetCount() < 1 || dest_item->GetCount() > pItemDataDest->byMax_Stack)
+			{
+				item_move_res = GAME_FAIL;
+				goto END;
+			}
+		}
 
 		if (dest_item) //check if dest item can be stored in bank
 		{
@@ -8975,21 +9032,21 @@ void CClientSession::RecvBankMoveReq(CNtlPacket * pPacket)
 
 		if (req->byDestPlace == CONTAINER_TYPE_EQUIP) //check if equip item
 		{
-			if (cPlayer->GetLevel() < pItemData->byNeed_Min_Level) //check level
+			if (cPlayer->GetLevel() < pItemDataSrc->byNeed_Min_Level) //check level
 				item_move_res = GAME_ITEM_NEED_MORE_LEVEL;
-			else if (cPlayer->GetLevel() > pItemData->byNeed_Max_Level)
+			else if (cPlayer->GetLevel() > pItemDataSrc->byNeed_Max_Level)
 				item_move_res = GAME_ITEM_TOO_HIGH_LEVEL_TO_USE_ITEM;
 
-			else if (Dbo_CheckClass(cPlayer->GetClass(), pItemData->dwNeed_Class_Bit_Flag) == false) //check class
+			else if (Dbo_CheckClass(cPlayer->GetClass(), pItemDataSrc->dwNeed_Class_Bit_Flag) == false) //check class
 				item_move_res = GAME_ITEM_CLASS_FAIL;
 
-			else if (BIT_FLAG_TEST(MAKE_BIT_FLAG(cPlayer->GetGender()), pItemData->dwNeed_Gender_Bit_Flag) == false) //check gender
+			else if (BIT_FLAG_TEST(MAKE_BIT_FLAG(cPlayer->GetGender()), pItemDataSrc->dwNeed_Gender_Bit_Flag) == false) //check gender
 				item_move_res = GAME_ITEM_GENDER_DOESNT_MATCH;
 
-			else if (pItemData->byRace_Special != INVALID_BYTE && pItemData->byRace_Special != cPlayer->GetRace()) //check race
+			else if (pItemDataSrc->byRace_Special != INVALID_BYTE && pItemDataSrc->byRace_Special != cPlayer->GetRace()) //check race
 				item_move_res = GAME_CHAR_RACE_FAIL;
 
-			else if (BIT_FLAG_TEST(MAKE_BIT_FLAG(req->byDestPos), pItemData->dwEquip_Slot_Type_Bit_Flag) == false) //check if item can go to that position
+			else if (BIT_FLAG_TEST(MAKE_BIT_FLAG(req->byDestPos), pItemDataSrc->dwEquip_Slot_Type_Bit_Flag) == false) //check if item can go to that position
 				item_move_res = GAME_ITEM_POSITION_FAIL;
 
 			else if (src_item->GetRestrictState() == ITEM_RESTRICT_STATE_TYPE_SEAL)
@@ -9144,7 +9201,7 @@ void CClientSession::RecvBankStackReq(CNtlPacket * pPacket)
 
 	if (pDestItem == NULL)	//UNSTACK ITEM
 	{
-		if (pSrcItem->GetTbldat()->byMax_Stack == 1 || req->byStackCount == 0) //is the item even stack-able?
+		if (pSrcItem->GetTbldat()->byMax_Stack == 1 || req->byStackCount == 0 || req->byStackCount < 0 || req->byStackCount > pSrcItem->GetTbldat()->byMax_Stack) //is the item even stack-able?
 		{
 			resultcode = GAME_ITEM_STACK_FAIL;
 		}
@@ -9181,7 +9238,7 @@ void CClientSession::RecvBankStackReq(CNtlPacket * pPacket)
 		{
 			resultcode = GAME_ITEM_STACK_FAIL;
 		}
-		else if (pSrcItem->GetCount() < req->byStackCount || pSrcItem->GetTbldat()->byMax_Stack == 1 || req->byStackCount == 0) //check: has less than required items? is item possible to stack? is the stack request == 0
+		else if (pSrcItem->GetCount() < req->byStackCount || pSrcItem->GetTbldat()->byMax_Stack == 1 || req->byStackCount == 0 || req->byStackCount < 0 || req->byStackCount > pSrcItem->GetTbldat()->byMax_Stack) //check: has less than required items? is item possible to stack? is the stack request == 0
 		{
 			resultcode = GAME_ITEM_STACK_FAIL;
 		}
@@ -9289,6 +9346,8 @@ void CClientSession::RecvRepairItemReq(CNtlPacket * pPacket)
 
 	if (cPlayer->GetNpcShopHandle() != req->handle) // check if viewing the same NPC
 		res->wResultCode = GAME_FAIL;
+	else if (cPlayer->IsTrading() || cPlayer->HasPrivateShop()) // check if trading or selling in private shop
+		res->wResultCode = GAME_FAIL;
 	else if (IsInvenContainer(req->byPlace) == false && IsEquipContainer(req->byPlace) == false)
 		res->wResultCode = GAME_FAIL;
 	else
@@ -9372,6 +9431,8 @@ void CClientSession::RecvEquipRepairReq(CNtlPacket * pPacket)
 	res->wOpCode = GU_ITEM_EQUIP_REPAIR_RES;
 
 	if (cPlayer->GetNpcShopHandle() != req->handle) // check if viewing the same NPC
+		res->wResultCode = GAME_FAIL;
+	else if (cPlayer->IsTrading() || cPlayer->HasPrivateShop()) // check if trading or selling in private shop
 		res->wResultCode = GAME_FAIL;
 	else
 	{
@@ -9472,6 +9533,8 @@ void CClientSession::RecvShopIdentifyItemReq(CNtlPacket * pPacket)
 	res->wResultCode = GAME_SUCCESS;
 	
 	if (cPlayer->GetNpcShopHandle() != req->hNpchandle) // check if viewing the same NPC
+		res->wResultCode = GAME_FAIL;
+	else if (cPlayer->IsTrading() || cPlayer->HasPrivateShop()) // check if trading or selling in private shop
 		res->wResultCode = GAME_FAIL;
 	else if (cPlayer->GetZeni() < NTL_SHOP_ITEM_IDENTIFY_ZENNY)
 		res->wResultCode = GAME_ZENNY_NOT_ENOUGH;
@@ -10398,7 +10461,35 @@ void CClientSession::RecvItemDurationRenewReq(CNtlPacket * pPacket)
 				if (pItemData->bIsCanRenewal)
 				{
 					DWORD dwPaymentAmount = 0;
-					if (pItemData->byCommonPointType == 2) // 2 == CASH POINTS
+					if (pItemData->byCommonPointType == 1) // 1 == NETPY TOKEN
+					{
+						if (cPlayer->GetNetPy() >= pItemData->CommonPoint)
+						{
+							CNtlPacket packet2(sizeof(sGU_ITEM_UPDATE));
+							sGU_ITEM_UPDATE* res2 = (sGU_ITEM_UPDATE*)packet2.GetPacketData();
+							res2->wOpCode = GU_ITEM_UPDATE;
+							res2->handle = req->hItemHandle;
+							memcpy(&res2->sItemData, &pItem->GetItemData(), sizeof(sITEM_DATA));
+
+							if (pItem->IsExpired() == false)
+								res2->sItemData.nUseEndTime = pItem->GetItemData().nUseEndTime + pItemData->dwUseDurationMax;
+							else
+							{
+								res2->sItemData.nUseEndTime = app->GetTime() + (DBOTIME)pItemData->dwUseDurationMax;
+							}
+
+							packet2.SetPacketLen(sizeof(sGU_ITEM_UPDATE));
+							app->Send(GetHandle(), &packet2);
+
+							pItem->SetUseEndTime(res2->sItemData.nUseEndTime);
+
+							dwPaymentAmount = pItemData->CommonPoint;
+
+							cPlayer->UpdateNetPy(cPlayer->GetNetPy() - pItemData->CommonPoint, 0, false);
+						}
+						else resultcode = GAME_NETP_POINT_NOT_ENOUGH;
+					}
+					else if (pItemData->byCommonPointType == 2) // 2 == CASH POINTS
 					{
 						if (cPlayer->GetItemShopCash() >= pItemData->CommonPoint)
 						{
@@ -10484,6 +10575,7 @@ void CClientSession::RecvItemDurationRenewReq(CNtlPacket * pPacket)
 	CNtlPacket packet(sizeof(sGU_DURATION_RENEW_RES));
 	sGU_DURATION_RENEW_RES* res = (sGU_DURATION_RENEW_RES*)packet.GetPacketData();
 	res->wOpCode = GU_DURATION_RENEW_RES;
+	res->hItemHandle = req->hItemHandle;
 	res->wResultCode = resultcode;
 	packet.SetPacketLen(sizeof(sGU_DURATION_RENEW_RES));
 	app->Send(GetHandle(), &packet);
@@ -12191,6 +12283,8 @@ void CClientSession::RecvBuyEventItemShopReq(CNtlPacket * pPacket)
 		buy_item_result = GAME_FAIL;
 	else if (cPlayer->GetNpcShopType() != NPC_SHOP_TYPE_TENKAICHI) // check if same type
 		buy_item_result = GAME_FAIL;
+	else if (cPlayer->IsTrading() || cPlayer->HasPrivateShop()) // check if trading or selling in private shop
+		buy_item_result = GAME_FAIL;
 	else if (cPlayer->GetPlayerItemContainer()->CountEmptyInventory() < req->byBuyCount)
 		buy_item_result = GAME_ITEM_INVEN_FULL;
 	else
@@ -12379,6 +12473,8 @@ void CClientSession::RecvItemExchangeReq(CNtlPacket * pPacket)
 		buy_item_result = GAME_FAIL;
 	else if (cPlayer->GetNpcShopType() != NPC_SHOP_TYPE_EXCHANGE) // check if same type
 		buy_item_result = GAME_FAIL;
+	else if (cPlayer->IsTrading() || cPlayer->HasPrivateShop()) // check if trading or selling in private shop
+		buy_item_result = GAME_FAIL;
 	else if (req->sBuyData.byMerchantTab >= NTL_MAX_MERCHANT_TAB_COUNT)
 		buy_item_result = GAME_FAIL;
 	else if (req->sBuyData.byItemPos >= NTL_MAX_MERCHANT_COUNT)
@@ -12548,8 +12644,101 @@ void CClientSession::RecvDurationItemBuyReq(CNtlPacket * pPacket)
 	if (!cPlayer || !cPlayer->IsInitialized())
 		return;
 
-	sUG_DURATION_ITEM_BUY_REQ * req = (sUG_DURATION_ITEM_BUY_REQ *)pPacket->GetPacketData();
+	sUG_DURATION_ITEM_BUY_REQ* req = (sUG_DURATION_ITEM_BUY_REQ*)pPacket->GetPacketData();
 
+	WORD resultcode = GAME_SUCCESS;
+
+	sMERCHANT_TBLDAT* pMerchantData = (sMERCHANT_TBLDAT*)g_pTableContainer->GetMerchantTable()->FindData(req->merchantTblidx);
+	if (pMerchantData == NULL)
+		resultcode = GAME_FAIL;
+	else if (cPlayer->GetPlayerItemContainer()->CountEmptyInventory() == 0)
+		resultcode = GAME_ITEM_INVEN_FULL;
+	else if (req->byPos >= NTL_MAX_MERCHANT_COUNT)
+		resultcode = GAME_FAIL;
+	else
+	{
+		if (pMerchantData->bySell_Type == MERCHANT_SELL_TYPE_NETPY)
+		{
+			sITEM_TBLDAT* pItemData = (sITEM_TBLDAT*)g_pTableContainer->GetItemTable()->FindData(pMerchantData->aitem_Tblidx[req->byPos]);
+			if (pItemData)
+			{
+				if (cPlayer->GetNetPy() >= pItemData->CommonPoint)
+				{
+					cPlayer->UpdateNetPy(cPlayer->GetNetPy() - pItemData->CommonPoint, 0, false);
+
+					CGameServer* app = (CGameServer*)g_pApp;
+
+					CNtlPacket pQry(sizeof(sGQ_DURATION_ITEM_BUY_REQ));
+					sGQ_DURATION_ITEM_BUY_REQ* rQry = (sGQ_DURATION_ITEM_BUY_REQ*)pQry.GetPacketData();
+					rQry->wOpCode = GQ_DURATION_ITEM_BUY_REQ;
+					rQry->handle = cPlayer->GetID();
+					rQry->charId = cPlayer->GetCharID();
+					rQry->byPayType = 0;
+					rQry->dwPayAmount = pItemData->CommonPoint;
+					rQry->merchantTblidx = req->merchantTblidx;
+					rQry->byPos = req->byPos;
+
+					CItem* itemcheck = NULL;
+					if (pItemData->byMax_Stack > 1)
+					{
+						itemcheck = cPlayer->GetPlayerItemContainer()->CheckStackItem(pItemData->tblidx, 1, pItemData->byMax_Stack, ITEM_RESTRICT_STATE_TYPE_LIMIT);
+					}
+
+					if (itemcheck)
+					{
+						itemcheck->SetCount(itemcheck->GetCount() + 1, true, false);
+
+						memcpy(&rQry->sItem, &itemcheck->GetItemData(), sizeof(sITEM_DATA));
+					}
+					else
+					{
+						std::pair<BYTE, BYTE> inv = cPlayer->GetPlayerItemContainer()->GetEmptyInventory();
+
+						cPlayer->GetPlayerItemContainer()->AddReservedInventory(inv.first, inv.second);
+
+						rQry->sItem.Init();
+						rQry->sItem.charId = cPlayer->GetCharID();
+						rQry->sItem.itemNo = pItemData->tblidx;
+						rQry->sItem.byStackcount = 1;
+						rQry->sItem.byPlace = inv.first;
+						rQry->sItem.byPosition = inv.second;
+						rQry->sItem.byCurrentDurability = pItemData->byDurability;
+						rQry->sItem.byRank = pItemData->byRank;
+						rQry->sItem.bNeedToIdentify = false;
+						rQry->sItem.byRestrictState = ITEM_RESTRICT_STATE_TYPE_LIMIT;
+						rQry->sItem.sOptionSet.Init();
+						rQry->sItem.byDurationType = pItemData->byDurationType;
+
+						if (pItemData->bIsCanHaveOption && pItemData->Item_Option_Tblidx != INVALID_TBLIDX)
+							rQry->sItem.sOptionSet.aOptionTblidx[0] = pItemData->Item_Option_Tblidx;
+
+						if (pItemData->byDurationType == eDURATIONTYPE_FLATSUM)
+						{
+							rQry->sItem.nUseStartTime = app->GetTime();
+							rQry->sItem.nUseEndTime = rQry->sItem.nUseStartTime + pItemData->dwUseDurationMax;
+						}
+					}
+
+					pQry.SetPacketLen(sizeof(sGQ_DURATION_ITEM_BUY_REQ));
+					app->SendTo(app->GetQueryServerSession(), &pQry);
+
+					return;
+				}
+				else resultcode = GAME_NETP_POINT_NOT_ENOUGH;
+			}
+			else resultcode = GAME_FAIL;
+		}
+		else resultcode = GAME_FAIL;
+	}
+
+	CNtlPacket packet(sizeof(sGU_DURATION_ITEM_BUY_RES));
+	sGU_DURATION_ITEM_BUY_RES* res = (sGU_DURATION_ITEM_BUY_RES*)packet.GetPacketData();
+	res->wOpCode = GU_DURATION_ITEM_BUY_RES;
+	res->wResultCode = resultcode;
+	res->byPos = req->byPos;
+	res->merchantTblidx = req->merchantTblidx;
+	packet.SetPacketLen(sizeof(sGU_DURATION_ITEM_BUY_RES));
+	g_pApp->Send(GetHandle(), &packet);
 }
 
 //--------------------------------------------------------------------------------------//

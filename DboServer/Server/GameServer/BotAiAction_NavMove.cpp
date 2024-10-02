@@ -124,10 +124,19 @@ void CBotAiAction_NavMove::DoNavMove()
 
 			if (m_fMoveSpeed != INVALID_FLOAT)
 			{
-				printf("update move speed \n");
+				//printf("update move speed \n");
 				/*CBot::SetWalkingSpeed((CBot *)&v19->vfptr, v68->m_fMoveSpeed);
 				CBot::SetRunningSpeed((CBot *)&v20->vfptr, v68->m_fMoveSpeed);*/
-				//pBot->UpdateMoveSpeed(m_fMoveSpeed);
+				if (m_bRunMode)
+				{
+					if (pBot->GetRunSpeed() != m_fMoveSpeed)
+						pBot->UpdateMoveSpeed(pBot->GetWalkingSpeed(), m_fMoveSpeed);
+				}
+				else
+				{
+					if (pBot->GetWalkingSpeed() != m_fMoveSpeed)
+						pBot->UpdateMoveSpeed(m_fMoveSpeed, pBot->GetRunSpeed());
+				}
 			}
 
 			if (pBot->GetPathFinder()->PathFind())
