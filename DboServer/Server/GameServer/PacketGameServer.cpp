@@ -5944,6 +5944,8 @@ void CClientSession::RecvShopBuyReq(CNtlPacket * pPacket)
 		buy_item_result = GAME_FAIL;
 	else if (cPlayer->GetNpcShopHandle() != req->handle) // check if viewing the same NPC
 		buy_item_result = GAME_FAIL;
+	else if (cPlayer->IsTrading() || cPlayer->HasPrivateShop()) // check if trading or selling in private shop
+		buy_item_result = GAME_FAIL;
 	else if (cPlayer->GetNpcShopType() != NPC_SHOP_TYPE_DEFAULT) // check if same type
 		buy_item_result = GAME_FAIL;
 	else
@@ -6141,6 +6143,8 @@ void CClientSession::RecvShopSellReq(CNtlPacket * pPacket)
 	if (req->bySellCount == 0 || req->bySellCount > NTL_MAX_BUY_SHOPPING_CART)
 		resultcode = GAME_FAIL;
 	else if (cPlayer->GetNpcShopHandle() != req->handle) // check if viewing the same NPC
+		resultcode = GAME_FAIL;
+	else if (cPlayer->IsTrading() || cPlayer->HasPrivateShop()) // check if trading or selling in private shop
 		resultcode = GAME_FAIL;
 	else
 	{
@@ -9525,6 +9529,8 @@ void CClientSession::RecvRepairItemReq(CNtlPacket * pPacket)
 		res->wResultCode = GAME_FAIL;
 	else if (IsInvenContainer(req->byPlace) == false && IsEquipContainer(req->byPlace) == false)
 		res->wResultCode = GAME_FAIL;
+	else if (cPlayer->IsTrading() || cPlayer->HasPrivateShop()) // check if trading or selling in private shop
+		res->wResultCode = GAME_FAIL;
 	else
 	{
 		CNpc* pNPC = g_pObjectManager->GetNpc(req->handle);
@@ -9605,7 +9611,9 @@ void CClientSession::RecvEquipRepairReq(CNtlPacket * pPacket)
 	sGU_ITEM_EQUIP_REPAIR_RES * res = (sGU_ITEM_EQUIP_REPAIR_RES *)packet.GetPacketData();
 	res->wOpCode = GU_ITEM_EQUIP_REPAIR_RES;
 
-	if (cPlayer->IsTrading() || cPlayer->HasPrivateShop() || cPlayer->GetNpcShopHandle() != req->handle) // check if trading, having private shop and viewing the same NPC
+	if (cPlayer->GetNpcShopHandle() != req->handle) // check if viewing the same NPC
+		res->wResultCode = GAME_FAIL;
+	else if (cPlayer->IsTrading() || cPlayer->HasPrivateShop()) // check if trading or selling in private shop
 		res->wResultCode = GAME_FAIL;
 	else
 	{
@@ -9705,7 +9713,9 @@ void CClientSession::RecvShopIdentifyItemReq(CNtlPacket * pPacket)
 	res->byPos = req->byPos;
 	res->wResultCode = GAME_SUCCESS;
 	
-	if (cPlayer->IsTrading() || cPlayer->HasPrivateShop() || cPlayer->GetNpcShopHandle() != req->hNpchandle) // check if trading, having private shop and viewing the same NPC
+	if (cPlayer->GetNpcShopHandle() != req->hNpchandle) // check if viewing the same NPC
+		res->wResultCode = GAME_FAIL;
+	else if (cPlayer->IsTrading() || cPlayer->HasPrivateShop()) // check if trading or selling in private shop
 		res->wResultCode = GAME_FAIL;
 	else if (cPlayer->GetZeni() < NTL_SHOP_ITEM_IDENTIFY_ZENNY)
 		res->wResultCode = GAME_ZENNY_NOT_ENOUGH;
@@ -12901,6 +12911,8 @@ void CClientSession::RecvBuyEventItemShopReq(CNtlPacket * pPacket)
 		buy_item_result = GAME_FAIL;
 	else if (cPlayer->GetNpcShopType() != NPC_SHOP_TYPE_TENKAICHI) // check if same type
 		buy_item_result = GAME_FAIL;
+	else if (cPlayer->IsTrading() || cPlayer->HasPrivateShop()) // check if trading or selling in private shop
+		buy_item_result = GAME_FAIL;
 	else if (cPlayer->GetPlayerItemContainer()->CountEmptyInventory() < req->byBuyCount)
 		buy_item_result = GAME_ITEM_INVEN_FULL;
 	else
@@ -13088,6 +13100,8 @@ void CClientSession::RecvItemExchangeReq(CNtlPacket * pPacket)
 	if (cPlayer->GetNpcShopHandle() != req->handle) // check if viewing the same NPC
 		buy_item_result = GAME_FAIL;
 	else if (cPlayer->GetNpcShopType() != NPC_SHOP_TYPE_EXCHANGE) // check if same type
+		buy_item_result = GAME_FAIL;
+	else if (cPlayer->IsTrading() || cPlayer->HasPrivateShop()) // check if trading or selling in private shop
 		buy_item_result = GAME_FAIL;
 	else if (req->sBuyData.byMerchantTab >= NTL_MAX_MERCHANT_TAB_COUNT)
 		buy_item_result = GAME_FAIL;
