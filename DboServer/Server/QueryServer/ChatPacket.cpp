@@ -1069,7 +1069,7 @@ void CChatServerSession::RecvAuctionHouseBuyReq(CNtlPacket * pPacket, CQueryServ
 	sQT_TENKAICHIDAISIJYOU_BUY_RES * res = (sQT_TENKAICHIDAISIJYOU_BUY_RES *)packet.GetPacketData();
 	res->wOpCode = QT_TENKAICHIDAISIJYOU_BUY_RES;
 	res->charId = req->charId;
-	res->dwMoney = 0;
+	res->dwMoney = req->dwMoney;
 	res->nItem = req->nItem;
 	res->wResultCode = GAME_SUCCESS;
 
@@ -1109,8 +1109,6 @@ void CChatServerSession::RecvAuctionHouseBuyReq(CNtlPacket * pPacket, CQueryServ
 				//remove & update zeni from buyer
 				pCache->SetZeni(pCache->GetZeni() - req->dwMoney);
 				GetCharDB.Execute("UPDATE characters SET Money=%u WHERE CharID=%u", pCache->GetZeni(), req->charId);
-
-				res->dwMoney = pCache->GetZeni();
 			}
 			else res->wResultCode = TENKAICHIDAISIJYOU_CANNOT_NOT_EXIST;
 		}
