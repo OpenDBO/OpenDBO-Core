@@ -683,8 +683,7 @@ void	CChatServerSession::RecAuctionHouseBuyRes(CNtlPacket * pPacket)
 	{
 		if (req->wResultCode == GAME_SUCCESS)
 		{
-			player->SetZeni(req->dwMoney);
-
+			player->UpdateZeni(ZENNY_CHANGE_TYPE_TMP_BUY, req->dwMoney, false, false);
 			player->ReloadMailsStatistic(false);
 		}
 
