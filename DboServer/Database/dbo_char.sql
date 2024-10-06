@@ -153,6 +153,7 @@ CREATE TABLE `characters` (
   `PlayTime` bigint(20) unsigned NOT NULL DEFAULT '0' COMMENT 'play time in seconds',
   `SuperiorEffectType` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `CreateTime` bigint(15) unsigned NOT NULL COMMENT 'time(0)',
+  `IsOnline` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`CharID`,`CharName`,`SrvFarmID`),
   UNIQUE KEY `CharID` (`CharID`) USING BTREE,
   UNIQUE KEY `CharName` (`CharName`) USING BTREE,
