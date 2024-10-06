@@ -243,6 +243,12 @@ void CPlayer::LeaveGame()
 		GetBuffManager()->EndSubBuff(ACTIVE_EP_OVER_TIME, INVALID_SYSTEM_EFFECT_CODE);
 	}
 
+	// If any transformation is active, make sure to cancel it.
+	if (GetTransformationTbldat())
+	{
+		CancelTransformation();
+	}
+
 	g_pEventMgr->RemoveEvents(this);
 	
 	if (GetPlayerItemContainer()->IsUsingGuildBank())
