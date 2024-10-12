@@ -1,5 +1,6 @@
+-- Script for quest 6062 "<Master Class> Attaining Title".
 
-GameStage( 0 )
+GameStage(0)
 --[
 	Action( "add npc" )
 	--[
@@ -40,29 +41,60 @@ GameStage( 0 )
 	--]
 	End()
 
-	Action( "wait" )
+	
+	Action( "function" )
 	--[
-		Condition( "check time" )
+		Condition( "child" )
 		--[
-			Param( "time", 120 )
+			Action( "wait" )
+			--[
+				Condition( "check time" )
+				--[ 
+					Param( "time", 120 )
+				--]
+				End()
+			--]
+			End()
+			
+			Action( "wps fail" )
+			--[
+			--]
+			End()			
 		--]
 		End()
-	--]
-	End()
 
+		Action( "wait" )
+		--[
+
+			Condition( "check mobgroup" )
+			--[ 
+				Param( "group", 60621 )
+				Param( "count", 0 )
+			--]
+			End()			
+		--]
+		End()		
+		
+		Action(	"send event to ts" )
+		--[
+			Param( "trigger type", "quest"	)
+			Param( "apply type", "register all" )
+			Param( "event id", 427 )
+		--]
+		End()
+		
+	--]
+	End()	
+--]
+End()
+
+GameFailed()
+--[
 	Action( "remove mobgroup" )
 	--[
 		Param( "group", 60621 )
 		Param( "type", "clear" )
 	--]
-	End()
-
-	Action(	"send event to ts" )
-	--[
-		Param( "trigger type", "quest"	)
-		Param( "apply type", "register all" )
-		Param( "event id", 427 )
-	--]
-	End()
+	End()			
 --]
 End()
