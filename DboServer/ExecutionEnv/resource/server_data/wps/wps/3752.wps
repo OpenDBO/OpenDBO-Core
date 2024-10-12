@@ -1,0 +1,216 @@
+-- Script for quest 3745 "Tattered Inn".
+
+GameStage(0)
+--[ 
+	Action( "add mob" )
+	--[
+		Param( "index", 19841204 )
+		Param( "group", 302801 )
+		Param( "loc x", -3926.34 )
+		Param( "loc y", -80.85 )
+		Param( "loc z", -5391.40 )
+		Param( "dir x", 0.98 )
+	 	Param( "dir z", -0.16 )
+	 	Param( "no spawn wait", "true" )
+	--]
+	End()
+	Action( "add mob" )
+	--[
+		Param( "index", 19841204 )
+		Param( "group", 302802 )
+		Param( "loc x", -3922.31 )
+		Param( "loc y", -80.85 )
+		Param( "loc z", -5386.63 )
+		Param( "dir x", -0.14 )
+	 	Param( "dir z", -0.99 )
+	 	Param( "no spawn wait", "true" )
+	--]
+	End()
+	Action( "add mob" )
+	--[
+		Param( "index", 19841204 )
+		Param( "group", 302803 )
+		Param( "loc x", -3917.03 )
+		Param( "loc y", -80.85 )
+		Param( "loc z", -5390.40 )
+		Param( "dir x", -0.98 )
+	 	Param( "dir z", -0.19 )
+	 	Param( "no spawn wait", "true" )
+	--]
+	End()
+	Action( "add mob" )
+	--[
+		Param( "index", 19841204 )
+		Param( "group", 302804 )
+		Param( "loc x", -3919.77 )
+		Param( "loc y", -80.85 )
+		Param( "loc z", -5397.50 )
+		Param( "dir x", -0.11 )
+	 	Param( "dir z", 0.89 )
+	 	Param( "no spawn wait", "true" )
+	--]
+	End()
+	
+	
+	Action( "function" )
+	--[
+		Condition( "child" )
+		--[
+			Action( "wait" )
+			--[
+				Condition( "check time" )
+				--[ 
+					Param( "time", 300 )
+				--]
+				End()
+			--]
+			End()
+
+			Action( "wps fail" )
+			--[
+			--]
+			End()
+			
+
+		--]
+		End()
+
+		Action( "wait" )
+		--[
+
+			Condition( "check mobgroup" )
+			--[ 
+				Param( "group", 302801 )
+				Param( "count", 1 )
+			--]
+			End()
+			Condition( "check mobgroup" )
+			--[ 
+				Param( "group", 302802 )
+				Param( "count", 1 )
+			--]
+			End()
+			Condition( "check mobgroup" )
+			--[ 
+				Param( "group", 302803 )
+				Param( "count", 1 )
+			--]
+			End()
+			Condition( "check mobgroup" )
+			--[ 
+				Param( "group", 302804 )
+				Param( "count", 1 )
+			--]
+			End()
+		--]
+		End()
+		
+	--]
+	End()	
+	
+	
+	Action( "add mob" )
+	--[
+		Param( "index", 19841110 )
+		Param( "group", 3028001 )
+		Param( "loc x", -3926.34 )
+		Param( "loc y", -80.85 )
+		Param( "loc z", -5391.40 )
+		Param( "dir x", 0.98 )
+	 	Param( "dir z", -0.16 )
+	 	Param( "no spawn wait", "true" )
+	--]
+	End()
+	Action( "add mob" )
+	--[
+		Param( "index", 19841110 )
+		Param( "group", 3028002 )
+		Param( "loc x", -3922.31 )
+		Param( "loc y", -80.85 )
+		Param( "loc z", -5386.63 )
+		Param( "dir x", -0.14 )
+	 	Param( "dir z", -0.99 )
+	 	Param( "no spawn wait", "true" )
+	--]
+	End()
+	Action( "add mob" )
+	--[
+		Param( "index", 19841110 )
+		Param( "group", 3028003 )
+		Param( "loc x", -3917.03 )
+		Param( "loc y", -80.85 )
+		Param( "loc z", -5390.40 )
+		Param( "dir x", -0.98 )
+	 	Param( "dir z", -0.19 )
+	 	Param( "no spawn wait", "true" )
+	--]
+	End()
+	Action( "add mob" )
+	--[
+		Param( "index", 19841110 )
+		Param( "group", 3028004 )
+		Param( "loc x", -3919.77 )
+		Param( "loc y", -80.85 )
+		Param( "loc z", -5397.50 )
+		Param( "dir x", -0.11 )
+	 	Param( "dir z", 0.89 )
+	 	Param( "no spawn wait", "true" )
+	--]
+	End()	
+	Action( "function" )
+	--[
+		Condition( "child" )
+		--[
+			Action( "wait" )
+			--[
+				Condition( "check time" )
+				--[ 
+					Param( "time", 300 )
+				--]
+				End()
+			--]
+			End()
+
+			Action( "wps fail" )
+			--[
+			--]
+			End()
+			
+
+		--]
+		End()
+
+		Action( "wait" )
+		--[
+
+			Condition( "check mobgroup" )
+			--[ 
+				Param( "group", 3028001 )
+				Param( "count", 1 )
+			--]
+			End()
+			Condition( "check mobgroup" )
+			--[ 
+				Param( "group", 3028002 )
+				Param( "count", 1 )
+			--]
+			End()
+			Condition( "check mobgroup" )
+			--[ 
+				Param( "group", 3028003 )
+				Param( "count", 1 )
+			--]
+			End()
+			Condition( "check mobgroup" )
+			--[ 
+				Param( "group", 3028004 )
+				Param( "count", 1 )
+			--]
+			End()
+		--]
+		End()
+		
+	--]
+	End()	
+--]
+End()

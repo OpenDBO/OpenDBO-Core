@@ -1,0 +1,8 @@
+-- Script for quest 3771 "Climate Change 2".
+-- TODO: Anything needed?
+
+GameStage(0)
+--[	
+	
+--]
+End()

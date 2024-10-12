@@ -1,22 +1,16 @@
 CNtlTSTrigger
 {
 	sm = 1;
-	sq = 1;
+	sq = 0;
 	qc = 24;
 	rq = 0;
-	tid = 3848;
-	title = 384802;
+	tid = 3860;
+	title = 382302;
 
 	CNtlTSGroup
 	{
 		gid = 0;
 
-		CDboTSContEnd
-		{
-			cid = 254;
-			prelnk = "4;";
-			type = 1;
-		}
 		CDboTSContGAct
 		{
 			cid = 4;
@@ -40,6 +34,12 @@ CNtlTSTrigger
 				idx2 = -1;
 			}
 		}
+		CDboTSContEnd
+		{
+			cid = 254;
+			prelnk = "4;";
+			type = 1;
+		}
 		CDboTSContGCond
 		{
 			cid = 3;
@@ -59,29 +59,10 @@ CNtlTSTrigger
 			prelnk = "2;1;0;";
 			type = 0;
 		}
-		CDboTSContReward
-		{
-			canclnk = 255;
-			cid = 100;
-			rwdzeny = 0;
-			desc = 384814;
-			nextlnk = 4;
-			rwdexp = 0;
-			rwdtbl = 384801;
-			rwdtype = 0;
-			ltime = -1;
-			prelnk = "3;";
-			usetbl = 1;
-
-			CDboTSClickNPC
-			{
-				npcidx = "5631101;";
-			}
-		}
 		CDboTSContStart
 		{
 			cid = 0;
-			stdiag = 384807;
+			stdiag = 382307;
 			nolnk = 253;
 			rm = 0;
 			yeslnk = 1;
@@ -89,17 +70,30 @@ CNtlTSTrigger
 			CDboTSCheckLvl
 			{
 				maxlvl = 100;
-				minlvl = 69;
+				minlvl = 60;
 			}
 			CDboTSClickNPC
 			{
-				npcidx = "5631101;";
-			}
-			CDboTSCheckClrQst
+				npcidx = "1381108;";
+			}			
+		}
+		CDboTSContReward
+		{
+			canclnk = 255;
+			cid = 100;
+			rwdzeny = 0;
+			desc = 382314;
+			nextlnk = 4;
+			rwdexp = 0;
+			rwdtbl = 382301;
+			rwdtype = 0;
+			ltime = -1;
+			prelnk = "3;";
+			usetbl = 1;
+
+			CDboTSClickNPC
 			{
-				and = "3847;";
-				flink = 0;
-				not = 0;
+				npcidx = "1381108;";
 			}
 		}
 		CDboTSContGAct
@@ -111,9 +105,9 @@ CNtlTSTrigger
 
 			CDboTSActNPCConv
 			{
-				conv = 384809;
+				conv = 382309;
 				ctype = 1;
-				idx = 5631101;
+				idx = 1381108;
 				taid = 2;
 			}
 			CDboTSActSToCEvt
@@ -121,8 +115,8 @@ CNtlTSTrigger
 				apptype = 0;
 				cnt1 = 0;
 				eitype = 0;
-				idx0 = 18451100;
-				cnt0 = 1;
+				idx0 = 13001100;
+				cnt0 = 150;
 				cnt2 = 0;
 				ectype = -1;
 				etype = 0;
@@ -133,41 +127,46 @@ CNtlTSTrigger
 			}
 			CDboTSActRegQInfo
 			{
-				m0widx = 15;
-				m0fx = "-4293.64";
+				cont = 382308;
+				m1fx = "-4154.060059";
+				m1fy = "0.000000";
+				sort = 382305;
 				m0fy = "0.000000";
-				m0fz = "-6432.5";
-				m0ttip = 384815;
 				m0pat = 2;
-				cont = 384808;
-				gtype = 2;
-				area = 384801;
-				goal = 384804;
+				m1fz = "-5109.490234";
 				grade = -1;
+				m0fx = "-3848.659912";
+				m0ttip = 382315;
+				m1pat = 2;
+				m1widx = 15;
 				rwd = 100;
-				scitem = -1;
-				sort = 384805;
-				stype = 256;
 				taid = 1;
-				title = 384802;
+				title = 382302;
+				gtype = 2;
+				area = 382301;
+				goal = 382304;
+				m0fz = "-5397.129883";
+				m0widx = 15;
+				m1ttip = 382315;
+				scitem = -1;
+				stype = 1;
 			}
 		}
 		CDboTSContProposal
 		{
 			cancellnk = 253;
 			cid = 1;
-			cont = 384808;
+			cont = 382308;
 			gtype = 2;
 			oklnk = 2;
-			area = 384801;
-			goal = 384804;
-			sort = 384805;
+			area = 382301;
+			goal = 382304;
+			sort = 382305;
 			prelnk = "0;";
 			ds = 1;
 			grade = 0;
 			rwd = 100;
-			title = 384802;
+			title = 382302;
 		}
 	}
 }
-
