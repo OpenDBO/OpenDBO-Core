@@ -1,0 +1,8 @@
+-- Script for quest 3782 "That is a misunderstanding!".
+-- TODO: Anything needed?
+
+GameStage(0)
+--[	
+	
+--]
+End() 
