@@ -133,6 +133,12 @@ CNtlTSTrigger
 			}
 			CDboTSActRegQInfo
 			{
+				m0widx = 15;
+				m0fx = "-4293.64";
+				m0fy = "0.000000";
+				m0fz = "-6432.5";
+				m0ttip = 384815;
+				m0pat = 1;
 				cont = 384808;
 				gtype = 2;
 				area = 384801;

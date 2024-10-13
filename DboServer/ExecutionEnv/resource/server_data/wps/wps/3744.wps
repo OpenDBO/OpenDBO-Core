@@ -1,0 +1,29 @@
+-- Script for quest 3744 "Critical Kindergarten 4".
+
+GameStage(0)
+--[		
+	Action( "add mob" )
+	--[
+		Param( "index", 11521113 )
+		Param( "group", 11521113 )
+		Param( "loc x", -5217.269 )
+		Param( "loc y", -97.090 )
+		Param( "loc z", -4052.448 )
+		Param( "dir x", -0.507 )
+	 	Param( "dir z", -0.862 )
+	 	Param( "no spawn wait", "true" )
+	--]
+	End()
+    
+	Action("wait") 
+	--[
+		Condition( "check mobgroup" )
+		--[
+			Param( "group", 11521113 )
+			Param( "count", 1 )
+		--]
+		End()		
+    --]
+	End()		
+--]
+End()

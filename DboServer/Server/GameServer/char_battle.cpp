@@ -92,9 +92,10 @@ void CCharacter::AttackAction(CCharacter* pVictim)
 	float fChainBonusRate = NtlGetBattleChainAttackBounsRate(m_byChainSequence);
 	fDmg += fDmg * fChainBonusRate / 100;
 
-	bool bIsComboFinisher = IsPC() && m_byChainSequence == NTL_BATTLE_MAX_CHAIN_ATTACK_COUNT_PLAYER;
+	//bool bIsComboFinisher = IsPC() && m_byChainSequence == NTL_BATTLE_MAX_CHAIN_ATTACK_COUNT_PLAYER;
 	if (BattleIsBlock(pVictim->GetCharAtt()->GetBlockRate(), GetLevel(), pVictim->GetLevel()))
 	{
+		// Commented out code because this sliding behavior didn't seem to exist in latest retail TW version.
 		// TODO: Below code is commented out because the sliding (aka a knockdown that's being blocked) mechanic
 		//  seems to not work properly. Unsure if client issue or server issue (most likely).
 		/*if (bIsComboFinisher)
@@ -110,11 +111,12 @@ void CCharacter::AttackAction(CCharacter* pVictim)
 		//fDmg *= (1.0f - NTL_BATTLE_BLOCK_DAMAGE_REDUCE_RATE);
 		fDmg /= 2.0f;
 	}
-	else if (bIsComboFinisher)
-	{
-		byAttackResult = BATTLE_ATTACK_RESULT_KNOCKDOWN;
-		vShift *= +NTL_BATTLE_KNOCKDOWN_DISTANCE;
-	}
+	// Commented out code because this knockdown behavior didn't seem to exist in latest retail TW version.
+	//else if (bIsComboFinisher)
+	//{
+	//	byAttackResult = BATTLE_ATTACK_RESULT_KNOCKDOWN;
+	//	vShift *= +NTL_BATTLE_KNOCKDOWN_DISTANCE;
+	//}
 	else
 	{
 		// check crit
@@ -213,16 +215,17 @@ SEND_PACKET:
 			pVictim->UpdateCurEP((WORD)fTargetEpRecoveredWhenHit, true, false);
 	}
 
+	// Commented out code because this knockdown/sliding behavior didn't seem to exist in latest retail TW version.
 	// TODO: Should we send this before the sGU_CHAR_ACTION_ATTACK packet? After? Should we actually send the sGU_UPDATE_CHAR_STATE
 	//  packet too? Or should we simply update the values internally but not broadcast?
-	if (byAttackResult == BATTLE_ATTACK_RESULT_KNOCKDOWN)
-	{
-		pVictim->SendCharStateKnockdown(res->vShift);
-	}
-	else if (byAttackResult == BATTLE_ATTACK_RESULT_SLIDING)
-	{
-		pVictim->SendCharStateSliding(res->vShift);
-	}
+	//if (byAttackResult == BATTLE_ATTACK_RESULT_KNOCKDOWN)
+	//{
+	//	pVictim->SendCharStateKnockdown(res->vShift);
+	//}
+	//else if (byAttackResult == BATTLE_ATTACK_RESULT_SLIDING)
+	//{
+	//	pVictim->SendCharStateSliding(res->vShift);
+	//}
 }
 
 void CCharacter::SpecialAttackAction(CCharacter * pVictim, BYTE byAttackType, BYTE bySourceType, TBLIDX sourceTblidx, CSkill* pSkill)

@@ -1,0 +1,293 @@
+-- Script for quest 3758 "Terrifying Events".
+
+GameStage(0)
+--[	
+	-- Lodging Traveler NPC
+	Action( "remove npc" )
+	--[
+		Param( "index", 7636201 )
+		Param( "type", "clear" )
+	--]
+	End()
+	Action( "add npc" )
+	--[
+		Param( "index", 7636201 )
+		Param( "loc x", -3873.670 )
+		Param( "loc y", -84.277 )
+		Param( "loc z", -5646.680 )
+		Param( "dir x", 0.957 )
+	 	Param( "dir z", 0.289 )
+		Param("play script", 7636201)
+		Param("play scene", 1)
+		Param( "no spawn wait", "true" )		
+	--]
+	End()
+	--Fat visitor
+	Action( "remove npc" )
+	--[
+		Param( "index", 7635201 )
+		Param( "type", "clear" )
+	--]
+	End()
+	Action( "add npc" )
+	--[
+		Param( "index", 7635201 )
+		Param( "loc x", -3880.650 )
+		Param( "loc y", -84.277 )
+		Param( "loc z", -5655.380 )
+		Param( "dir x", -0.030 )
+	 	Param( "dir z", -1.000 )
+		Param("play script", 7635201)
+		Param("play scene", 1)
+		Param( "no spawn wait", "true" )		
+	--]
+	End()
+	--Blue guy
+	Action( "remove npc" )
+	--[
+		Param( "index", 7637201 )
+		Param( "type", "clear" )
+	--]
+	End()
+	Action( "add npc" )
+	--[
+		Param( "index", 7637201 )
+		Param( "loc x", -3864.770 )
+		Param( "loc y", -84.277 )
+		Param( "loc z", -5653.910 )
+		Param( "dir x", 0 )
+	 	Param( "dir z", 1.000 )
+		Param("play script", 7637201)
+		Param("play scene", 1)
+		Param( "no spawn wait", "true" )		
+	--]
+	End()
+	--Vesitor
+	Action( "remove npc" )
+	--[
+		Param( "index", 3172501 )
+		Param( "type", "clear" )
+	--]
+	End()
+	Action( "add npc" )
+	--[
+		Param( "index", 3172501 )
+		Param( "loc x", -3871.950 )
+		Param( "loc y", -84.277 )
+		Param( "loc z", -5662.610 )
+		Param( "dir x", -0.990 )
+	 	Param( "dir z", -0.140 )
+		Param("play script", 3172501)
+		Param("play scene", 1)
+		Param( "no spawn wait", "true" )		
+	--]
+	End()
+	
+	Action( "wait" )
+	--[
+		Condition( "recv event from sps" )
+		--[			
+			Param( "event id", 1 )
+		--]
+		End()
+	--]
+	End()
+	Action( "remove npc" )
+	--[
+		Param( "index", 7636201 )
+		Param( "type", "clear" )
+	--]
+	End()
+	Action( "wait" )
+	--[
+		Condition( "recv event from sps" )
+		--[			
+			Param( "event id", 2 )
+		--]
+		End()
+	--]
+	End()
+	Action( "remove npc" )
+	--[
+		Param( "index", 7637201 )
+		Param( "type", "clear" )
+	--]
+	End()
+	Action( "wait" )
+	--[
+		Condition( "recv event from sps" )
+		--[			
+			Param( "event id", 3 )
+		--]
+		End()
+	--]
+	End()
+	Action( "remove npc" )
+	--[
+		Param( "index", 7635201 )
+		Param( "type", "clear" )
+	--]
+	End()
+	Action( "wait" )
+	--[
+		Condition( "recv event from sps" )
+		--[			
+			Param( "event id", 4 )
+		--]
+		End()
+	--]
+	End()
+	Action( "remove npc" )
+	--[
+		Param( "index", 3172501 )
+		Param( "type", "clear" )
+	--]
+	End()
+	
+	Action( "add npc" )
+	--[
+		Param( "index", 7636201 )
+		Param( "loc x", -3873.670 )
+		Param( "loc y", -84.277 )
+		Param( "loc z", -5646.680 )
+		Param( "dir x", 0.957 )
+	 	Param( "dir z", 0.289 )	
+		Param( "no spawn wait", "true" )	
+		Param( "stand alone", "true" )
+	--]
+	End()
+	
+	Action( "add npc" )
+	--[
+		Param( "index", 7635201 )
+		Param( "loc x", -3880.650 )
+		Param( "loc y", -84.277 )
+		Param( "loc z", -5655.380 )
+		Param( "dir x", -0.030 )
+	 	Param( "dir z", -1.000 )
+		Param( "no spawn wait", "true" )	
+		Param( "stand alone", "true" )
+	--]
+	End()
+	
+	Action( "add npc" )
+	--[
+		Param( "index", 7637201 )
+		Param( "loc x", -3864.770 )
+		Param( "loc y", -84.277 )
+		Param( "loc z", -5653.910 )
+		Param( "dir x", 0 )
+	 	Param( "dir z", 1.000 )		
+		Param( "no spawn wait", "true" )	
+		Param( "stand alone", "true" )
+	--]
+	End()
+	
+	Action( "add npc" )
+	--[
+		Param( "index", 3172501 )
+		Param( "loc x", -3871.950 )
+		Param( "loc y", -84.277 )
+		Param( "loc z", -5662.610 )
+		Param( "dir x", -0.990 )
+	 	Param( "dir z", -0.140 )		
+		Param( "no spawn wait", "true" )
+		Param( "stand alone", "true" )
+	--]
+	End()
+	
+	Action("send event to ts")
+	--[
+		Param("trigger type", "quest")
+		Param("apply type", "register all")
+		Param("event id", 1205)
+	--]
+	End()	
+	
+--]
+End()
+
+GameFailed()
+--[
+	Action( "remove npc" )
+	--[
+		Param( "index", 7636201 )
+		Param( "type", "clear" )
+	--]
+	End()
+
+	Action( "remove npc" )
+	--[
+		Param( "index", 7635201 )
+		Param( "type", "clear" )
+	--]
+	End()
+	
+	Action( "remove npc" )
+	--[
+		Param( "index", 7637201 )
+		Param( "type", "clear" )
+	--]
+	End()
+	
+	Action( "remove npc" )
+	--[
+		Param( "index", 3172501 )
+		Param( "type", "clear" )
+	--]
+	End()
+	
+	Action( "add npc" )
+	--[
+		Param( "index", 7636201 )
+		Param( "loc x", -3873.670 )
+		Param( "loc y", -84.277 )
+		Param( "loc z", -5646.680 )
+		Param( "dir x", 0.957 )
+	 	Param( "dir z", 0.289 )	
+		Param( "no spawn wait", "true" )	
+		Param( "stand alone", "true" )
+	--]
+	End()
+	
+	Action( "add npc" )
+	--[
+		Param( "index", 7635201 )
+		Param( "loc x", -3880.650 )
+		Param( "loc y", -84.277 )
+		Param( "loc z", -5655.380 )
+		Param( "dir x", -0.030 )
+	 	Param( "dir z", -1.000 )
+		Param( "no spawn wait", "true" )	
+		Param( "stand alone", "true" )
+	--]
+	End()
+	
+	Action( "add npc" )
+	--[
+		Param( "index", 7637201 )
+		Param( "loc x", -3864.770 )
+		Param( "loc y", -84.277 )
+		Param( "loc z", -5653.910 )
+		Param( "dir x", 0 )
+	 	Param( "dir z", 1.000 )		
+		Param( "no spawn wait", "true" )	
+		Param( "stand alone", "true" )
+	--]
+	End()
+	
+	Action( "add npc" )
+	--[
+		Param( "index", 3172501 )
+		Param( "loc x", -3871.950 )
+		Param( "loc y", -84.277 )
+		Param( "loc z", -5662.610 )
+		Param( "dir x", -0.990 )
+	 	Param( "dir z", -0.140 )		
+		Param( "no spawn wait", "true" )
+		Param( "stand alone", "true" )
+	--]
+	End()	
+			
+--]
+End()
