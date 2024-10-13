@@ -82,6 +82,8 @@ CDboTSCQCtrl::CDboTSCQCtrl()
 	m_uiContents = 0xffffffff;
 	m_pDefRwd = 0;
 	m_pSelRwd = 0;
+	m_uiTargetWorld = 0xffffffff;
+	m_uiNpcTblidx = 0xffffffff;
 
 	m_uiUpdateTimeCnt = 0;
 
@@ -1390,13 +1392,30 @@ void CDboTSCQCtrl::LoadQuestProgressInfo_V0( const sPROGRESS_QUEST_INFO::uDATA& 
 				}
 				else
 				{
+					if (!IsCleared()) {
+						for (int i = 0; i < pActQInfo->GetMaxNumOfQuestMarkInfo(); ++i)
+						{
+							const CDboTSActRegQInfo::SQUEST_MARK_INFO& sQMarkInfo = pActQInfo->GetQuestMarkInfo(i);
+							if (0xffffffff != sQMarkInfo.uiWorldTblIdx) {
+								m_uiTargetPosition.x = sQMarkInfo.fX;
+								m_uiTargetPosition.y = sQMarkInfo.fY;
+								m_uiTargetPosition.z = sQMarkInfo.fZ;
 
+								m_uiTargetWorld = sQMarkInfo.uiWorldTblIdx;
+
+								if (sQMarkInfo.uiWorldTblIdx != 1) {
+									break;
+								}
+							}
+						}
+					}
+					
 					m_uiRewardExp = 0;
 					m_uiRewardZenny = 0;
 					m_pDefRwd = 0;
 					m_pSelRwd = 0;
 				}
-
+				
 				// 클라이언트 UI 업데이트
 				((CDboTSCQAgency*)GetParent())->TU_RegQuestInfoNfy( GetTrigger()->GetID(), m_tcQuestInfo, m_taQuestInfo, false, GetTrigger()->IsShareQuest(), GetArea(), GetCurState(), m_uiTitle, GetGoal(), m_eSort );
 			}
@@ -3503,6 +3522,23 @@ void CDboTSCQCtrl::TU_RegisterQuestInfo( sTS_KEY& sKey, CDboTSActRegQInfo* pAct 
 
 	m_tcQuestInfo = sKey.tcID;
 	m_taQuestInfo = sKey.taID;
+
+
+	for (int i = 0; i < pAct->GetMaxNumOfQuestMarkInfo(); ++i)
+	{
+		const CDboTSActRegQInfo::SQUEST_MARK_INFO& sQMarkInfo = pAct->GetQuestMarkInfo(i);
+		if (0xffffffff != sQMarkInfo.uiWorldTblIdx) {
+			m_uiTargetPosition.x = sQMarkInfo.fX;
+			m_uiTargetPosition.y = sQMarkInfo.fY;
+			m_uiTargetPosition.z = sQMarkInfo.fZ;
+
+			m_uiTargetWorld = sQMarkInfo.uiWorldTblIdx;
+
+			if (sQMarkInfo.uiWorldTblIdx != 1) {
+				break;
+			}
+		}
+	}
 
 	// 클라이언트 UI 업데이트
 	((CDboTSCQAgency*)GetParent())->TU_RegQuestInfoNfy( sKey.tID, sKey.tcID, sKey.taID, true, GetTrigger()->IsShareQuest(), GetArea(), GetCurState(), GetTitle(), GetGoal(), GetSortType() );

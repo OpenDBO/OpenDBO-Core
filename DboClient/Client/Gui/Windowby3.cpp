@@ -177,6 +177,44 @@ VOID CWindowby3::Render(bool bTopRender /* = false */)
 		m_Window[i].Render(bTopRender);
 }
 
+VOID CWindowby3::SetClippingRect(CRectangle* parentRtClipping) {
+	for (RwInt8 i = 0; i < WINDOWS_NUM; ++i) {
+		if (parentRtClipping) {
+			CRectangle m_rtClipping;
+			CRectangle rtParentScreen = parentRtClipping;
+
+			CRectangle rtSelfScreen;
+			m_Window[i].GetRect(rtSelfScreen);
+
+			if (rtParentScreen.left > rtSelfScreen.left)
+				m_rtClipping.left = rtParentScreen.left;
+			else
+				m_rtClipping.left = rtSelfScreen.left;
+
+			if (rtParentScreen.top > rtSelfScreen.top)
+				m_rtClipping.top = rtParentScreen.top;
+			else
+				m_rtClipping.top = rtSelfScreen.top;
+
+			if (rtParentScreen.right < rtSelfScreen.right)
+				m_rtClipping.right = rtParentScreen.right;
+			else
+				m_rtClipping.right = rtSelfScreen.right;
+
+			if (rtParentScreen.bottom < rtSelfScreen.bottom)
+				m_rtClipping.bottom = rtParentScreen.bottom;
+			else
+				m_rtClipping.bottom = rtSelfScreen.bottom;
+
+			m_Window[i].SetClippingRect(m_rtClipping);
+			m_Window[i].SetClippingMode(TRUE);
+		}
+		else {
+			m_Window[i].SetClippingMode(FALSE);
+		}
+	}
+}
+
 RwBool CWindowby3::PtInRect(int iPosX, int iPosY)
 {
 	CRectangle rect_0, rect_2;

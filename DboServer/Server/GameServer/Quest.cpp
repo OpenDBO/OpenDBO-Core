@@ -2758,9 +2758,6 @@ WORD CQuest::ProgressTsEntity(CNtlTSEntity* pEntity, NTL_TS_T_ID tId, CQuestProg
 					{
 						CWorld* pWorld = pDungeon->GetWorld();
 						m_pkOwner->StartTeleport(pWorld->GetTbldat()->outWorldLoc, pWorld->GetTbldat()->outWorldDir, pWorld->GetTbldat()->outWorldTblidx, TELEPORT_TYPE_TIMEQUEST);
-						pDungeon->Destroy();
-						g_pDungeonManager->DestroyTimeLeapDungeon(m_pkOwner->GetCharID(), m_pkOwner->GetTLQ());
-						m_pkOwner->SetTLQ(NULL);
 					}
 				}
 			}
