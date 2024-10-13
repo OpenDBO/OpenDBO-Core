@@ -32,7 +32,7 @@ CNtlTSTrigger
 				m0fy = "0.000000";
 				m0fz = "-4147.92";
 				m0ttip = 384415;
-				m0pat = 2;
+				m0pat = 1;
 				cont = 384408;
 				gtype = 2;
 				area = 384401;

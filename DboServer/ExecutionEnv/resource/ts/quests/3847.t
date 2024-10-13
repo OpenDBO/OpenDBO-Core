@@ -93,13 +93,13 @@ CNtlTSTrigger
 				m0fy = "0.000000";
 				m0fz = "-5968.73";
 				m0ttip = 384715;
-				m0pat = 2;
+				m0pat = 1;
 				m1widx = 15;
 				m1fx = "-4407.17";
 				m1fy = "0.000000";
 				m1fz = "-5484.16";
 				m1ttip = 384715;
-				m1pat = 2;
+				m1pat = 1;
 				cont = 384708;
 				gtype = 2;
 				area = 384701;
