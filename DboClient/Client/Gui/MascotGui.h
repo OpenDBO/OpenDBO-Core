@@ -74,10 +74,21 @@ public:
         TBLIDX				skillTblidx[4];
     };
 
+    struct MascotRunTimeParameters
+    {
+        RwInt32 m_CurrentMascotSlotIndex; // Used to know which Mascot icon the mouse selected
+        RwUInt32 m_CurrentMascotSerialId; // Used to get the Mascot avatar
+    };
+
     struct MascotSkillIcon
     {
         CRegularSlotGui		slot;
         TBLIDX				skillTblidx;
+    };
+    enum
+    {
+        MASCOT_SLOT,
+        SKILL_SLOT
     };
 
 protected:
@@ -91,11 +102,14 @@ protected:
     VOID    OnPaint();
 
     // Mouse Actions
-    VOID    OnMouseDown(const CKey& key);
-    VOID    OnMouseUp(const CKey& key);
-    VOID    OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY);
+    VOID    OnMouseDownMascot(const CKey& key);
+    VOID    OnMouseUpMascot(const CKey& key);
+    VOID    OnMouseDownSkill(const CKey& key);
+    VOID    OnMouseUpSkill(const CKey& key);
+    VOID    OnMouseEnterSlot(gui::CComponent* pComponent);
+    VOID    OnMouseLeaveSlot(gui::CComponent* pComponent);
     VOID	OnMouseWheel(RwInt32 nFlag, RwInt16 sDelta, CPos& pos);
-    
+
 
     // MASCOT Actions
     VOID    OnMascotClicked(RwInt32 Slot);
@@ -105,7 +119,7 @@ protected:
     VOID    OnMascotDelBtnClicked(gui::CComponent* pComponent);
     VOID    OnMascotFusionBtnClicked(gui::CComponent* pComponent);
     VOID    OnMascotRenameBtnClicked(gui::CComponent* pComponent);
-  
+
     // Modals
     VOID    ShowItemInfoWindow(bool bIsShow, int slot = -1);
     VOID	ShowSkillInfoWindow(bool bIsShow, int slot = -1);
@@ -119,8 +133,7 @@ protected:
     RwBool	CreateFlashEffect(RwInt32 nSlotIdx);
 
     // Slots
-    RwInt32	PtinSlot(RwInt32 iX, RwInt32 iY);
-    RwInt32	PtinSlotSkill(RwInt32 iX, RwInt32 iY);
+    RwInt32	PtinSlot(RwInt32 iSlotKind, RwInt32 iX, RwInt32 iY);
 
     // Custom methods
     void InitializeMascotIconsAndSkills();
@@ -128,6 +141,11 @@ protected:
     VOID OpenMascotInfo(RwBool isShow, RwInt32 iSlotIdx);
     VOID RefreshSkillSlot();
     std::wstring stringToWString(const std::string& str);
+    int CMascotGui::ExtractIndex(const std::string& componentName);
+    void CMascotGui::OutputDebugInfo(int tabID, const std::string& componentName, int index,
+        const std::wstring& toolTipText, const std::string& descriptionText,
+        const std::string& pageName);
+
 
 protected:
     static CMascotGui* m_pInstance;			///< Objects
@@ -174,6 +192,12 @@ protected:
     gui::CPanel* m_pPn_SkillIcon2;
     gui::CPanel* m_pPn_SkillIcon3;
 
+    // Panel map
+    gui::CPanel* m_pPn_IvnIcons[dMAX_MASCOT_SLOT] = {
+    m_pPn_IvnIcon0, m_pPn_IvnIcon1, m_pPn_IvnIcon2, m_pPn_IvnIcon3,
+    m_pPn_IvnIcon4, m_pPn_IvnIcon5, m_pPn_IvnIcon6, m_pPn_IvnIcon7
+    };
+
     // ScrollBar Group
     gui::CScrollBar* m_pscb_MascotScroll;
 
@@ -184,15 +208,16 @@ protected:
     gui::CSlot m_slotBtnMascotDel;
     gui::CSlot m_slotBtnMascotFusion;
     gui::CSlot m_slotBtnMascotRename;
-    gui::CSlot m_slotPaint;
-    gui::CSlot m_slotMove;
-    gui::CSlot m_slotMouseMove;
-    gui::CSlot m_slotMouseDown;
-    gui::CSlot m_slotMouseUp;
     gui::CSlot m_slotMascotScrollChanged;
     gui::CSlot m_slotMascotScrollSliderMoved;
     gui::CSlot m_slotMouseWheel;
     gui::CSlot m_slotReMakeSkill[dMAX_MASCOT_SKILL];
+    gui::CSlot m_slotMascotMouseEnter[dMAX_MASCOT_SLOT];
+    gui::CSlot m_slotMascotMouseLeave[dMAX_MASCOT_SLOT];
+    gui::CSlot m_slotMascotMouseDown[dMAX_MASCOT_SLOT];
+    gui::CSlot m_slotMascotMouseUp[dMAX_MASCOT_SLOT];
+    gui::CSlot m_slotMascotPaint[dMAX_MASCOT_SLOT];
+    gui::CSlot m_slotMascotMove[dMAX_MASCOT_SLOT];
 
     // Flash
     gui::CFlash* m_apflaEffect;
@@ -230,4 +255,8 @@ protected:
     RwInt32	m_CurLine;
     RwUInt32 m_uiEffectFrame;
     RwInt32 m_SummonMascotIndex;
+    RwInt32 m_CurrentSkillSlotIndex;
+
+    // Model
+    MascotRunTimeParameters m_CurrentMascotParamters;
 };

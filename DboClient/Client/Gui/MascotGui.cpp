@@ -32,6 +32,13 @@
 #include "IconMoveManager.h"
 #include "NtlSobCharProxy.h"
 
+#include <Windows.h> // Include Windows header for OutputDebugString
+#include <string>
+#include <sstream> // Required for std::ostringstream
+#include <locale>  // Required for std::wstring_convert
+#include <codecvt> // Required for std::wstring_convert
+#include <regex>   // Required for regex to match patterns
+
 #define dMASCOTEX_CON_START_X 25
 #define dMASCOTEX_CON_START_Y 343
 
@@ -118,14 +125,6 @@ RwBool CMascotGui::Create()
     m_pPn_Buff1 = (gui::CPanel*)GetComponent("Pn_Buff1");
     m_pPn_Buff2 = (gui::CPanel*)GetComponent("Pn_Buff2");
     m_pPn_Buff3 = (gui::CPanel*)GetComponent("Pn_Buff3");
-    m_pPn_IvnIcon0 = (gui::CPanel*)GetComponent("Pn_IvnIcon0");
-    m_pPn_IvnIcon1 = (gui::CPanel*)GetComponent("Pn_IvnIcon1");
-    m_pPn_IvnIcon2 = (gui::CPanel*)GetComponent("Pn_IvnIcon2");
-    m_pPn_IvnIcon3 = (gui::CPanel*)GetComponent("Pn_IvnIcon3");
-    m_pPn_IvnIcon4 = (gui::CPanel*)GetComponent("Pn_IvnIcon4");
-    m_pPn_IvnIcon5 = (gui::CPanel*)GetComponent("Pn_IvnIcon5");
-    m_pPn_IvnIcon6 = (gui::CPanel*)GetComponent("Pn_IvnIcon6");
-    m_pPn_IvnIcon7 = (gui::CPanel*)GetComponent("Pn_IvnIcon7");
     m_pPn_SkillIcon0 = (gui::CPanel*)GetComponent("Pn_SkillIcon0");
     m_pPn_SkillIcon1 = (gui::CPanel*)GetComponent("Pn_SkillIcon1");
     m_pPn_SkillIcon2 = (gui::CPanel*)GetComponent("Pn_SkillIcon2");
@@ -136,7 +135,7 @@ RwBool CMascotGui::Create()
     m_pscb_MascotScroll->SetMaxValue(8);
 
     // From local_data.dat
-    m_pbtn_Summon->SetToolTip(GetDisplayStringManager()->GetString("DST_RECALL")); 
+    m_pbtn_Summon->SetToolTip(GetDisplayStringManager()->GetString("DST_RECALL"));
     m_pbtn_SummonEnd->SetToolTip(GetDisplayStringManager()->GetString("DST_RELEASE"));
     m_pbtn_MascotDel->SetToolTip(GetDisplayStringManager()->GetString("DST_DELETE"));
     m_pbtn_MascotFusion->SetToolTip(GetDisplayStringManager()->GetString("DST_MASCOTEX_FUSIONBUTTON"));
@@ -161,13 +160,6 @@ RwBool CMascotGui::Create()
     m_slotMascotScrollSliderMoved = m_pscb_MascotScroll->SigSliderMoved().Connect(this, &CMascotGui::OnScrollChanged);
     m_slotMouseWheel = GetNtlGuiManager()->GetGuiManager()->SigCaptureWheelMove().Connect(this, &CMascotGui::OnMouseWheel);
 
-    // Events - Mouse
-    m_slotMouseDown = m_pThis->SigMouseDown().Connect(this, &CMascotGui::OnMouseDown);
-    m_slotMouseUp = m_pThis->SigMouseUp().Connect(this, &CMascotGui::OnMouseUp);
-    m_slotMouseMove = m_pThis->SigMouseMove().Connect(this, &CMascotGui::OnMouseMove);
-    m_slotMove = m_pThis->SigMove().Connect(this, &CMascotGui::OnMove);
-    m_slotPaint = m_pThis->SigPaint().Connect(this, &CMascotGui::OnPaint);
-
     // Window Name
     m_sttbTitle->SetPosition(DBOGUI_DIALOG_TITLE_X, DBOGUI_DIALOG_TITLE_Y);
     m_sttbTitle->SetText(GetDisplayStringManager()->GetString("DST_MASCOT"));
@@ -181,7 +173,7 @@ RwBool CMascotGui::Create()
 
     // Icons and Skills
     InitializeMascotIconsAndSkills();
-    
+
     // Gui Manager
     GetNtlGuiManager()->AddUpdateFunc(this);
 
@@ -206,18 +198,54 @@ std::wstring CMascotGui::stringToWString(const std::string& str)
 
 void CMascotGui::InitializeMascotIconsAndSkills()
 {
+    // Set the current indexes to -1
+    m_CurrentMascotParamters.m_CurrentMascotSlotIndex = -1;
+    m_CurrentMascotParamters.m_CurrentMascotSerialId = -1;
+    m_CurrentSkillSlotIndex = -1;
+
     // Initialize mascot icon slots
     RwInt32 iIconX = dMASCOTEX_CON_START_X;
     RwInt32 iIconY = dMASCOTEX_CON_START_Y;
 
     for (RwInt32 i = 0; i < dMAX_MASCOT_SLOT; ++i)
     {
+        // Generate the dynamic component name with index
+        char componentName[256];
+        sprintf(componentName, "Pn_IvnIcon%d", i);  // Create component name dynamically
+
+        // Retrieve the panel using the dynamic name
+        m_pPn_IvnIcons[i] = (gui::CPanel*)GetComponent(componentName);
+
+        // Connect mouse events for each panel dynamically
+        m_slotMascotMouseEnter[i] = m_pPn_IvnIcons[i]->SigMouseEnter().Connect(this, &CMascotGui::OnMouseEnterSlot);
+        m_slotMascotMouseLeave[i] = m_pPn_IvnIcons[i]->SigMouseLeave().Connect(this, &CMascotGui::OnMouseLeaveSlot);
+        m_slotMascotMouseDown[i] = m_pPn_IvnIcons[i]->SigMouseDown().Connect(this, &CMascotGui::OnMouseDownMascot);
+        m_slotMascotMouseUp[i] = m_pPn_IvnIcons[i]->SigMouseUp().Connect(this, &CMascotGui::OnMouseUpMascot);
+        m_slotMascotMove[i] = m_pPn_IvnIcons[i]->SigMove().Connect(this, &CMascotGui::OnMove);
+        m_slotMascotPaint[i] = m_pPn_IvnIcons[i]->SigPaint().Connect(this, &CMascotGui::OnPaint);
+
         // Set up mascot icon slots and positions
         m_MascotIcon[i].slot.Create(m_pThis, DIALOG_MASCOT, REGULAR_SLOT_ITEM_TABLE);
-        m_MascotIcon[i].slot.SetPosition_fromParent((i + 1) % 4 == 0 ? iIconX - 0.5 : iIconX, iIconY);
 
-        (i + 1) % 4 == 0 ? iIconX = dMASCOTEX_CON_START_X : iIconX += dMASCOTEX_SLOT_GAP_HORI_X;
-        (i + 1) % 4 == 0 ? iIconY += dMASCOTEX_SLOT_GAP_HORI_Y : 0;
+        // Correctly set the position of the slot relative to its parent
+        m_MascotIcon[i].slot.SetPosition_fromParent(iIconX, iIconY);
+
+        // Debugging output to verify slot position
+        char positionMessage[256];
+        sprintf(positionMessage, "Slot %d: Position (%d, %d)\n", i, iIconX, iIconY);
+        OutputDebugString(positionMessage);
+
+        // Update the icon X position for the next slot
+        // Ensure proper positioning for the next row
+        if ((i + 1) % 4 == 0)
+        {
+            iIconX = dMASCOTEX_CON_START_X; // Reset X position
+            iIconY += dMASCOTEX_SLOT_GAP_HORI_Y; // Move down for the next row
+        }
+        else
+        {
+            iIconX += dMASCOTEX_SLOT_GAP_HORI_X; // Move right for the next slot
+        }
     }
 
     // Initialize skill icons and buttons
@@ -427,89 +455,204 @@ VOID CMascotGui::OnPaint()
     m_surMascot.Render();
 }
 
-VOID CMascotGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
+VOID CMascotGui::OnMouseEnterSlot(gui::CComponent* pComponent)
 {
-    // Determine if the mouse is within a mascot slot
-    RwInt32 iPtinSlot = PtinSlot(nX, nY);
+    int tabID = pComponent->GetTabID();
+    std::string componentName = pComponent->GetID();
+    std::wstring toolTipText = pComponent->GetToolTip();
+    std::string descriptionText = pComponent->GetDescription();
+    std::string pageName = pComponent->GetPage();
 
-    // Determine if the mouse is within a skill slot
-    RwInt32 iPtinSlotSkill = PtinSlotSkill(nX, nY);
-    if (iPtinSlotSkill != dMASCOT_INVALID_INDEX)
+    // Extract index from component name
+    int index = ExtractIndex(componentName);
+
+    // Process based on component type
+    if (index != -1)
     {
-        // Highlight the skill if within the slot and show skill info
-        FocusEffectSkill(true, iPtinSlotSkill);
-        if (m_MascotSkill[iPtinSlotSkill].slot.GetSkillTable())
-            ShowSkillInfoWindow(true, iPtinSlotSkill);
-    }
-    else {
-        // Remove highlight and hide skill info if outside the slot
-        FocusEffectSkill(false, iPtinSlotSkill);
-        ShowSkillInfoWindow(false, iPtinSlotSkill);
+        if (componentName.find("Pn_IvnIcon") != std::string::npos)
+        {
+            // Set the current index 
+            m_CurrentMascotParamters.m_CurrentMascotSlotIndex = index;
+            m_CurrentMascotParamters.m_CurrentMascotSerialId = m_MascotIcon[index].slot.GetSerial();
+
+            // Highlight the mascot if within a slot and show item info
+            FocusEffect(true, index);
+            if (m_MascotIcon[index].slot.GetItemTable())
+                ShowItemInfoWindow(true, index);
+        }
+        else if (componentName.find("Pn_SkillIcon") != std::string::npos)
+        {
+            // Set the current index 
+            m_CurrentSkillSlotIndex = index;
+
+            // Highlight the skill if within the slot and show skill info
+            FocusEffectSkill(true, index);
+            if (m_MascotSkill[index].slot.GetSkillTable())
+                ShowSkillInfoWindow(true, index);
+        }
     }
 
-    // Highlight the mascot if within a slot and show item info
-    if (iPtinSlot != dMASCOT_INVALID_INDEX)
+    // Output debug information
+    OutputDebugInfo(tabID, componentName, index, toolTipText, descriptionText, pageName);
+}
+
+VOID CMascotGui::OnMouseLeaveSlot(gui::CComponent* pComponent)
+{
+    std::string componentName = pComponent->GetID();
+
+    // Extract index from component name
+    int index = ExtractIndex(componentName);
+
+    // Process based on component type
+    if (index != -1)
     {
-        FocusEffect(true, iPtinSlot);
-        if (m_MascotIcon[iPtinSlot].slot.GetItemTable())
-            ShowItemInfoWindow(true, iPtinSlot);
+        if (componentName.find("Pn_IvnIcon") != std::string::npos)
+        {
+            // Set the current index 
+            m_CurrentMascotParamters.m_CurrentMascotSlotIndex = -1;
+            m_CurrentMascotParamters.m_CurrentMascotSerialId = -1;
+
+            // Remove highlight and hide item info if outside the mascot slot
+            FocusEffect(false, index);
+            ShowItemInfoWindow(false, index);
+        }
+        else if (componentName.find("Pn_SkillIcon") != std::string::npos)
+        {
+            // Set the current index 
+            m_CurrentSkillSlotIndex = -1;
+
+            // Remove highlight and hide skill info if outside the skill slot
+            FocusEffectSkill(false, index);
+            ShowSkillInfoWindow(false, index);
+        }
     }
-    else {
-        // Remove highlight and hide item info if outside the slot
-        FocusEffect(false, iPtinSlot);
-        ShowItemInfoWindow(false, iPtinSlot);
+}
+
+
+// Helper function to extract index from component name
+int CMascotGui::ExtractIndex(const std::string& componentName)
+{
+    std::regex indexRegex("Pn_(Ivn|Skill)Icon(\\d+)$");
+    std::smatch matches;
+
+    if (std::regex_search(componentName, matches, indexRegex))
+    {
+        return std::stoi(matches[2]); // Get the captured index as an integer
     }
+
+    return -1; // Return -1 if no match found
+}
+
+// Helper function to output debug information
+void CMascotGui::OutputDebugInfo(int tabID, const std::string& componentName, int index,
+    const std::wstring& toolTipText, const std::string& descriptionText,
+    const std::string& pageName)
+{
+    std::ostringstream oss;
+    oss << "Component: tabID = " << tabID
+        << ", componentName = " << componentName
+        << ", index = " << index
+        << ", toolTip = " << std::wstring_convert<std::codecvt_utf8<wchar_t>>().to_bytes(toolTipText)
+        << ", description = " << descriptionText
+        << ", pageName = " << pageName;
+
+    // Output the final string
+    OutputDebugString(oss.str().c_str());
+}
+
+// Method to check if a point is within a mascot OR skill slot
+RwInt32 CMascotGui::PtinSlot(RwInt32 iSlotKind, RwInt32 iX, RwInt32 iY)
+{
+    // Debugging output for the parameters
+    char debugMessage[256];
+    sprintf(debugMessage, "Parameters: isSlotKind = %d, iX = %d, iY = %d\n", iSlotKind, iX, iY);
+    OutputDebugString(debugMessage);
+
+    // Offsets required as the mouse coordinates do not match the slot coordinates
+    const int xOffsetAdjustment = 496;
+    const int yOffsetAdjustment = 97;
+
+    // Adjust the mouse coordinates for comparison
+    RwInt32 adjustedX = iX + xOffsetAdjustment;
+    RwInt32 adjustedY = iY + yOffsetAdjustment;
+
+    switch (iSlotKind)
+    {
+    case MASCOT_SLOT:
+        for (RwInt32 i = 0; i < dMAX_MASCOT_SLOT; ++i)
+        {
+            // Calculate the actual slot rectangle
+            RwInt32 left = m_MascotIcon[i].slot.GetParentX() + m_MascotIcon[i].slot.GetX_fromParent();
+            RwInt32 right = left + m_MascotIcon[i].slot.GetWidth();
+            RwInt32 top = m_MascotIcon[i].slot.GetParentY() + m_MascotIcon[i].slot.GetY_fromParent();
+            RwInt32 bottom = top + m_MascotIcon[i].slot.GetHeight();
+
+            // Debugging output to verify slot rectangle
+            sprintf(debugMessage, "Checking slot %d: Rect (%d, %d, %d, %d)\n", i, left, top, right, bottom);
+            OutputDebugString(debugMessage);
+
+            // Check if the adjusted mouse coordinates are within the rectangle of a mascot slot
+            if (adjustedX >= left && adjustedX <= right && adjustedY >= top && adjustedY <= bottom) {
+                sprintf(debugMessage, "Slot %d found at adjusted coordinates (%d, %d)\n", i, adjustedX, adjustedY);
+                OutputDebugString(debugMessage);
+                return i; // Return the index of the slot if found
+            }
+
+            // Check if the mouse coordinates are within the rectangle of a mascot slot
+            if (m_MascotIcon[i].slot.PtInRect(iX, iY))
+                return i; // Return the index of the mascot slot if found
+        }
+        break;
+    case SKILL_SLOT:
+        for (RwInt32 i = 0; i < dMAX_MASCOT_SKILL; ++i) {
+            // Check if the mouse coordinates are within the rectangle of a skill slot
+            if (m_MascotSkill[i].slot.PtInRect(iX, iY))
+                return i; // Return the index of the skill slot if found
+        }
+        break;
+    default:
+        break;
+    }
+
+    return dMASCOT_INVALID_INDEX; // Return invalid index if not found
 }
 
 // Handles mouse button down events.
 // Captures the mouse if the focus is on this GUI and checks if any mascot slots or skill slots are clicked.
 // Sets the clicked slot and initiates visual effects.
-VOID CMascotGui::OnMouseDown(const CKey& key)
+VOID CMascotGui::OnMouseDownMascot(const CKey& key)
 {
-    gui::CGUIManager* pGuiMgr = CNtlPLGuiManager::GetInstance()->GetGuiManager();
-    if (pGuiMgr->GetFocus() == m_pThis)
-        RaiseLinked();
+    if (m_CurrentMascotParamters.m_CurrentMascotSlotIndex != -1) {
 
-    if (GetDialogManager()->GetMode() != DIALOGMODE_UNKNOWN)
+        m_iMouseDownSlot = m_CurrentMascotParamters.m_CurrentMascotSlotIndex;
+        m_pThis->CaptureMouse();
+
+        // Set the clicked effect for the mascot icon.
+        m_iClickEffectedSlot = m_CurrentMascotParamters.m_CurrentMascotSlotIndex;
+        m_MascotIcon[m_iClickEffectedSlot].slot.ClickEffect(true);
+
         return;
-
-    for (RwInt32 i = 0; i < dMAX_MASCOT_SLOT; ++i)
-    {
-        // Check if the mascot icon has a valid serial and is clicked.
-        if (m_MascotIcon[i].slot.GetSerial() != INVALID_SERIAL_ID &&
-            m_MascotIcon[i].slot.PtInRect((RwInt32)key.m_fX, (RwInt32)key.m_fY))
-        {
-            m_iMouseDownSlot = i;
-            m_pThis->CaptureMouse();
-
-            // Set the clicked effect for the mascot icon.
-            m_iClickEffectedSlot = i;
-            m_MascotIcon[m_iClickEffectedSlot].slot.ClickEffect(true);
-
-            return;
-        }
     }
+}
 
-    for (RwInt32 i = 0; i < dMAX_MASCOT_SKILL; ++i)
-    {
-        if (m_MascotSkill[i].slot.GetSerial() != INVALID_SERIAL_ID &&
-            m_MascotSkill[i].slot.PtInRect((RwInt32)key.m_fX, (RwInt32)key.m_fY) &&
-            m_SummonMascotIndex == m_MascotIcon[m_iSelectedSlot].byIndex
-            ) {
-            m_iMouseDownSlotSkill = i;
-            m_pThis->CaptureMouse();
+VOID CMascotGui::OnMouseDownSkill(const CKey& key)
+{
+    if (m_CurrentSkillSlotIndex != -1 &&
+        m_SummonMascotIndex == m_MascotIcon[m_iSelectedSlot].byIndex) {
 
-            // Set the clicked effect for the skill icon.
-            m_iClidkEffectedSlotSkill = i;
-            m_MascotSkill[m_iClidkEffectedSlotSkill].slot.ClickEffect(true);
-        }
+        m_iMouseDownSlotSkill = m_CurrentSkillSlotIndex;
+        m_pThis->CaptureMouse();
+
+        // Set the clicked effect for the skill icon.
+        m_iClidkEffectedSlotSkill = m_CurrentSkillSlotIndex;
+        m_MascotSkill[m_iClidkEffectedSlotSkill].slot.ClickEffect(true);
     }
 }
 
 // Handles mouse button up events.
 // Releases the mouse and checks for valid clicks on mascot and skill slots.
 // Executes actions based on the type of button clicked (left or right).
-VOID CMascotGui::OnMouseUp(const CKey& key)
+VOID CMascotGui::OnMouseUpMascot(const CKey& key)
 {
     m_pThis->ReleaseMouse();
 
@@ -520,6 +663,62 @@ VOID CMascotGui::OnMouseUp(const CKey& key)
         m_iClickEffectedSlot = dMASCOT_INVALID_INDEX;
     }
 
+    if (!IsShow())
+    {
+        m_iMouseDownSlot = dMASCOT_INVALID_INDEX;
+        return;
+    }
+
+    if (key.m_nID == UD_LEFT_BUTTON) // Left button click
+    {
+        // Select and open the mascot info window.
+        SelectEffect(true, m_iMouseDownSlot);
+        OpenMascotInfo(true, m_iMouseDownSlot);
+        OnMascotClicked(m_iMouseDownSlot);
+    }
+    else if (key.m_nID == UD_RIGHT_BUTTON) // Right button click
+    {
+        SelectEffect(true, m_iMouseDownSlot);
+        OnSummonBtnClicked(NULL);
+        OpenMascotInfo(true, m_iMouseDownSlot);
+        OnMascotClicked(m_iMouseDownSlot);
+
+        // The following lines of code are responsible for handling item selection in the gift shop interface.
+        // The item index is calculated based on the current page and the selected mouse-down slot.
+        // This functionality appears to be related to registering an item for an event, either for a maximum item action
+        // (e.g., gifting the entire stack) or for a regular item action (e.g., gifting a single item).
+        //
+        // The code is commented out possibly because the item registration logic was not fully implemented,
+        // may have caused unintended behavior, or was deemed unnecessary for the current functionality.
+        //
+        // RwInt32 iItemIndex = (m_iCurPage * dMAX_ITEM_PANEL) + m_iMouseDownSlot;
+
+        // if (key.m_dwVKey == UD_MK_CONTROL)
+        // {
+        //     // If the Control key is pressed, register a gift shop event for the maximum item action.
+        //     CDboEventGenerator::GiftShopEvent(eGIFTSHOP_EVENT_REG_ITEM_MAX,
+        //         m_aShopItem[m_iCurTab][iItemIndex].hItem,
+        //         m_aShopItem[m_iCurTab][iItemIndex].uiPrice,
+        //         (wchar_t*)m_aShopItem[m_iCurTab][iItemIndex].wstrItemName.c_str(),
+        //         m_iCurTab, iItemIndex, m_aShopItem[m_iCurTab][iItemIndex].pITEM_DATA->byMax_Stack);
+        // }
+        // else
+        // {
+        //     // Otherwise, register a gift shop event for a regular item action.
+        //     CDboEventGenerator::GiftShopEvent(eGIFTSHOP_EVENT_REG_ITEM,
+        //         m_aShopItem[m_iCurTab][iItemIndex].hItem,
+        //         m_aShopItem[m_iCurTab][iItemIndex].uiPrice,
+        //         (wchar_t*)m_aShopItem[m_iCurTab][iItemIndex].wstrItemName.c_str(),
+        //         m_iCurTab, iItemIndex, 1);
+        // }
+    }
+
+    // Reset mouse down slots after processing.
+    m_iMouseDownSlot = dMASCOT_INVALID_INDEX;
+}
+
+VOID CMascotGui::OnMouseUpSkill(const CKey& key)
+{
     // Clear the click effect for the skill icon if it was clicked.
     if (m_iClidkEffectedSlotSkill != dMASCOT_INVALID_INDEX)
     {
@@ -529,87 +728,31 @@ VOID CMascotGui::OnMouseUp(const CKey& key)
 
     if (!IsShow())
     {
-        m_iMouseDownSlot = dMASCOT_INVALID_INDEX;
         m_iMouseDownSlotSkill = dMASCOT_INVALID_INDEX;
         return;
     }
 
-    // Check for valid clicks on the mascot icon and execute appropriate actions.
-    if (m_MascotIcon[m_iMouseDownSlot].slot.GetSerial() != INVALID_SERIAL_ID &&
-        m_MascotIcon[m_iMouseDownSlot].slot.PtInRect((RwInt32)key.m_fX, (RwInt32)key.m_fY))
+    if (m_SummonMascotIndex == m_MascotIcon[m_iSelectedSlot].byIndex)
     {
         if (key.m_nID == UD_LEFT_BUTTON) // Left button click
         {
-            // Select and open the mascot info window.
-            SelectEffect(true, m_iMouseDownSlot);
-            OpenMascotInfo(true, m_iMouseDownSlot);
-            OnMascotClicked(m_iMouseDownSlot);
-        }
-        else if (key.m_nID == UD_RIGHT_BUTTON) // Right button click
-        {
-            SelectEffect(true, m_iMouseDownSlot);
-            OnSummonBtnClicked(NULL);
-            OpenMascotInfo(true, m_iMouseDownSlot);
-            OnMascotClicked(m_iMouseDownSlot);
-
-            // The following lines of code are responsible for handling item selection in the gift shop interface.
-            // The item index is calculated based on the current page and the selected mouse-down slot.
-            // This functionality appears to be related to registering an item for an event, either for a maximum item action
-            // (e.g., gifting the entire stack) or for a regular item action (e.g., gifting a single item).
-            //
-            // The code is commented out possibly because the item registration logic was not fully implemented,
-            // may have caused unintended behavior, or was deemed unnecessary for the current functionality.
-            //
-            // RwInt32 iItemIndex = (m_iCurPage * dMAX_ITEM_PANEL) + m_iMouseDownSlot;
-
-            // if (key.m_dwVKey == UD_MK_CONTROL)
-            // {
-            //     // If the Control key is pressed, register a gift shop event for the maximum item action.
-            //     CDboEventGenerator::GiftShopEvent(eGIFTSHOP_EVENT_REG_ITEM_MAX,
-            //         m_aShopItem[m_iCurTab][iItemIndex].hItem,
-            //         m_aShopItem[m_iCurTab][iItemIndex].uiPrice,
-            //         (wchar_t*)m_aShopItem[m_iCurTab][iItemIndex].wstrItemName.c_str(),
-            //         m_iCurTab, iItemIndex, m_aShopItem[m_iCurTab][iItemIndex].pITEM_DATA->byMax_Stack);
-            // }
-            // else
-            // {
-            //     // Otherwise, register a gift shop event for a regular item action.
-            //     CDboEventGenerator::GiftShopEvent(eGIFTSHOP_EVENT_REG_ITEM,
-            //         m_aShopItem[m_iCurTab][iItemIndex].hItem,
-            //         m_aShopItem[m_iCurTab][iItemIndex].uiPrice,
-            //         (wchar_t*)m_aShopItem[m_iCurTab][iItemIndex].wstrItemName.c_str(),
-            //         m_iCurTab, iItemIndex, 1);
-            // }
-        }
-    }
-
-    // Check for valid clicks on the skill icon and execute appropriate actions.
-    if (m_MascotSkill[m_iMouseDownSlotSkill].slot.GetSerial() != INVALID_SERIAL_ID &&
-        m_MascotSkill[m_iMouseDownSlotSkill].slot.PtInRect((RwInt32)key.m_fX, (RwInt32)key.m_fY))
-    {
-        if (m_SummonMascotIndex == m_MascotIcon[m_iSelectedSlot].byIndex)
-        {
-            if (key.m_nID == UD_LEFT_BUTTON) // Left button click
+            if (GetIconMoveManager()->IsActive())
             {
-                if (GetIconMoveManager()->IsActive())
-                {
-                    if (GetIconMoveManager()->GetSrcSerial() == m_MascotSkill[m_iMouseDownSlotSkill].slot.GetSerial())
-                        GetIconMoveManager()->IconMoveEnd();
-                }
-                else if (GetIconMoveManager()->IconMovePickUp(m_MascotSkill[m_iMouseDownSlotSkill].slot.GetSerial(), PLACE_SKILL, 0, 0, m_MascotSkill[m_iMouseDownSlotSkill].slot.GetTexture()))
-                {
-                    SelectEffectSkill(true, m_iMouseDownSlotSkill);
-                }
+                if (GetIconMoveManager()->GetSrcSerial() == m_MascotSkill[m_iMouseDownSlotSkill].slot.GetSerial())
+                    GetIconMoveManager()->IconMoveEnd();
             }
-            else if (key.m_nID == UD_RIGHT_BUTTON) { // Right button click
-                // Logic for using the skill (not implemented in the provided code).
-                // Logic_UseProc(m_MascotSkill[m_iMouseDownSlotSkill].slot.GetSerial());
+            else if (GetIconMoveManager()->IconMovePickUp(m_MascotSkill[m_iMouseDownSlotSkill].slot.GetSerial(), PLACE_SKILL, 0, 0, m_MascotSkill[m_iMouseDownSlotSkill].slot.GetTexture()))
+            {
+                SelectEffectSkill(true, m_iMouseDownSlotSkill);
             }
+        }
+        else if (key.m_nID == UD_RIGHT_BUTTON) { // Right button click
+            // Logic for using the skill (not implemented in the provided code).
+            // Logic_UseProc(m_MascotSkill[m_iMouseDownSlotSkill].slot.GetSerial());
         }
     }
 
     // Reset mouse down slots after processing.
-    m_iMouseDownSlot = dMASCOT_INVALID_INDEX;
     m_iMouseDownSlotSkill = dMASCOT_INVALID_INDEX;
 }
 
@@ -664,30 +807,6 @@ VOID CMascotGui::OnMove(RwInt32 iOldX, RwInt32 iOldY)
 
     // Move linked GUI elements based on the change in position
     MoveLinkedPLGui(rtScreen.left - iOldX, rtScreen.top - iOldY);
-}
-
-// Method to check if a point is within a mascot slot
-RwInt32 CMascotGui::PtinSlot(RwInt32 iX, RwInt32 iY)
-{
-    for (RwInt32 i = 0; i < dMAX_MASCOT_SLOT; ++i)
-    {
-        // Check if the mouse coordinates are within the rectangle of a mascot slot
-        if (m_MascotIcon[i].slot.PtInRect(iX, iY))
-            return i; // Return the index of the slot if found
-    }
-
-    return dMASCOT_INVALID_INDEX; // Return invalid index if not found
-}
-
-// Method to check if a point is within a skill slot
-RwInt32 CMascotGui::PtinSlotSkill(RwInt32 iX, RwInt32 iY)
-{
-    for (RwInt32 i = 0; i < dMAX_MASCOT_SKILL; ++i) {
-        // Check if the mouse coordinates are within the rectangle of a skill slot
-        if (m_MascotSkill[i].slot.PtInRect(iX, iY))
-            return i; // Return the index of the skill slot if found
-    }
-    return dMASCOT_INVALID_INDEX; // Return invalid index if not found
 }
 
 // Method to show or hide the item information window
@@ -907,7 +1026,7 @@ VOID CMascotGui::OnSummonBtnClicked(gui::CComponent* pComponent)
     }
     else {
         // Show an alarm message if no mascot is selected
-        GetAlarmManager()->AlarmMessage("DST_MASCOTEX_NOT_SELECT"); 
+        GetAlarmManager()->AlarmMessage("DST_MASCOTEX_NOT_SELECT");
     }
 }
 
@@ -922,7 +1041,7 @@ VOID CMascotGui::OnSummonEndBtnClicked(gui::CComponent* pComponent)
     else
     {
         // Show an alarm message if no mascot is summoned
-        GetAlarmManager()->AlarmMessage("DST_WARN_NO_EXIST_RECALLED_MASCOT"); 
+        GetAlarmManager()->AlarmMessage("DST_WARN_NO_EXIST_RECALLED_MASCOT");
     }
 }
 
@@ -963,17 +1082,17 @@ VOID CMascotGui::OnMascotFusionBtnClicked(gui::CComponent* pComponent)
             }
             else {
                 // Show an alarm message if the selected mascot is currently summoned
-                GetAlarmManager()->AlarmMessage("DST_MASCOTEX_FUSION_MAINMASCOT_SUMMONING"); 
+                GetAlarmManager()->AlarmMessage("DST_MASCOTEX_FUSION_MAINMASCOT_SUMMONING");
             }
         }
         else {
             // Show an alarm message if the conditions for fusion are not met
-            GetAlarmManager()->AlarmMessage("DST_MASCOTEX_FUSION_EXPLACK"); 
+            GetAlarmManager()->AlarmMessage("DST_MASCOTEX_FUSION_EXPLACK");
         }
     }
     else {
         // Show an alarm message if no mascot is selected
-        GetAlarmManager()->AlarmMessage("DST_MASCOTEX_NOT_SELECT"); 
+        GetAlarmManager()->AlarmMessage("DST_MASCOTEX_NOT_SELECT");
     }
 }
 

@@ -657,24 +657,24 @@ VOID CComponent::SetHeight(int nHeight)
 	}
 }
 
-VOID CComponent::SetParent(CComponent *pParent, BOOL bParentAddRemoveProc /* = FALSE */)
+VOID CComponent::SetParent(CComponent* pParent, BOOL bParentAddRemoveProc /* = FALSE */)
 {
-	// 추가된 기능 : 외부에서 씀
-	if( bParentAddRemoveProc )
+	// Added functionality: handle externally
+	if (bParentAddRemoveProc)
 	{
-		if( m_pImpl->m_pParent )
-			m_pImpl->m_pParent->RemoveChild( this );
-	
-		pParent->AddChild( this );
+		if (m_pImpl->m_pParent)
+			m_pImpl->m_pParent->RemoveChild(this);
 
-		// 위치 갱신
+		pParent->AddChild(this);
+
+		// Position adjustment
 		CRectangle rect = GetPosition();
-		m_pImpl->CalcClippingRect();		
-		m_pImpl->m_SigMove(rect.left,rect.top);
-		//m_pImpl->m_SigResize(rect.GetWidth(),rect.GetHeight());		
-		ChildCascade( CHILD_DO_MOVE );
+		m_pImpl->CalcClippingRect();
+		m_pImpl->m_SigMove(rect.left, rect.top);
+		// m_pImpl->m_SigResize(rect.GetWidth(), rect.GetHeight());        
+		ChildCascade(CHILD_DO_MOVE);
 	}
-	// 원래 기능 : 내부에서 씀.
+	// Original functionality: handle internally
 	else
 	{
 		m_pImpl->m_pParent = pParent;
@@ -690,7 +690,7 @@ VOID CComponent::Show(bool bShow)
 {
 	m_pImpl->m_bVisible = bShow;
 
-	// 부모창이 닫힐때 자식창의 툴팁도 같이 닫는다.
+	// When the sub-window closes, the tooltip in the main window closes as well.
 	if( !bShow )
 		m_pImpl->CheckToolTipHide();
 }
