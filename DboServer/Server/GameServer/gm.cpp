@@ -37,8 +37,6 @@ void gm_read_command(sUG_SERVER_COMMAND* sPacket, CPlayer* pPlayer)
 	WCHAR wchBuffer[1024];
 	wcscpy_s(wchBuffer, sizeof(wchBuffer) / sizeof(wchBuffer[0]), sPacket->awchCommand);
 
-	ERR_LOG(LOG_USER, "User %u uses gm command %s", pPlayer->GetCharID(), ws2s(wchBuffer).c_str());
-
 	CNtlTokenizerW lexer(wchBuffer);
 	int iLine;
 	int icmd;
@@ -58,7 +56,7 @@ void gm_read_command(sUG_SERVER_COMMAND* sPacket, CPlayer* pPlayer)
 
 	if (cmd_info[icmd].eAdminLevel > ADMIN_LEVEL_EARLY_ACCESS && pPlayer->IsGameMaster() == false)
 		return;
-	//printf("GM Level %d \n", pPlayer->GetGMLevel());
+	
 	//log
 	CNtlPacket packetQry(sizeof(sGQ_GM_LOG));
 	sGQ_GM_LOG* resQry = (sGQ_GM_LOG*)packetQry.GetPacketData();
