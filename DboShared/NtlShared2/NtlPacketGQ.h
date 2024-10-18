@@ -2374,7 +2374,7 @@ END_PROTOCOL()
 BEGIN_PROTOCOL(GQ_GM_LOG)
 BYTE			byLogType;
 CHARACTERID		charId;
-char			chBuffer[1024];
+WCHAR			wchBuffer[1024];
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GQ_CHAR_WAGUPOINT_UPDATE_REQ)
