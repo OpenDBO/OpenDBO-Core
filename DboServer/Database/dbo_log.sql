@@ -119,7 +119,7 @@ DROP TABLE IF EXISTS `gm_log`;
 CREATE TABLE `gm_log` (
   `CharID` int(15) unsigned NOT NULL,
   `LogType` int(3) unsigned DEFAULT NULL,
-  `String` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci,
+  `String` text CHARACTER SET utf8 COLLATE utf8_general_ci,
   `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
