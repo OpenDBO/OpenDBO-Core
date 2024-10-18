@@ -37,7 +37,7 @@ void gm_read_command(sUG_SERVER_COMMAND* sPacket, CPlayer* pPlayer)
 	WCHAR wchBuffer[1024];
 	wcscpy_s(wchBuffer, sizeof(wchBuffer) / sizeof(wchBuffer[0]), sPacket->awchCommand);
 
-	ERR_LOG(LOG_USER, "User %u uses gm command %s", pPlayer->GetCharID(), ws2s(wchBuffer));
+	ERR_LOG(LOG_USER, "User %u uses gm command %s", pPlayer->GetCharID(), ws2s(wchBuffer).c_str());
 
 	CNtlTokenizerW lexer(wchBuffer);
 	int iLine;
