@@ -5282,5 +5282,5 @@ void CGameServerSession::RecvGmLog(CNtlPacket * pPacket, CQueryServer * app)
 {
 	sGQ_GM_LOG * req = (sGQ_GM_LOG*)pPacket->GetPacketData();
 
-	GetLogDB.Execute("INSERT INTO gm_log (CharID, LogType, String) VALUES (%u,%u,'%s')", req->charId, req->byLogType, req->chBuffer);
+	GetLogDB.Execute("INSERT INTO gm_log (CharID, LogType, String) VALUES (%u,%u,'%ls')", req->charId, req->byLogType, req->wchBuffer);
 }
