@@ -7305,7 +7305,7 @@ void CClientSession::RecvBuffDropReq(CNtlPacket * pPacket)
 			//anti bug for lp/ep auto recover pot
 			if(buff->GetSourceType() == DBO_OBJECT_SOURCE_ITEM)
 			{
-				if (buff->GetSystemEffectCode(0) == ACTIVE_LP_AUTO_RECOVER || buff->GetSystemEffectCode(0) == ACTIVE_EP_AUTO_RECOVER)
+				if (buff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_1) == ACTIVE_LP_AUTO_RECOVER || buff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_1) == ACTIVE_EP_AUTO_RECOVER)
 				{
 					if (buff->GetRemainTime(0) > 0) //dont allow to remove auto pot while its on cooldown
 					{
@@ -7352,7 +7352,7 @@ void CClientSession::RecvBuffDropReq(CNtlPacket * pPacket)
 						}
 					}
 				}
-				else if (buff->GetSystemEffectCode(0) == ACTIVE_EXCITATION_MALE && buff->GetSystemEffectCode(1) == ACTIVE_EXCITATION_FEMALE) //check if drop turtle book buff
+				else if (buff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_1) == ACTIVE_EXCITATION_MALE && buff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_2) == ACTIVE_EXCITATION_FEMALE) //check if drop turtle book buff
 				{
 					if (cPlayer->GetGender() != GENDER_MALE) //only nemkian and female
 					{
@@ -7710,7 +7710,7 @@ void CClientSession::RecvHTBForwardReq(CNtlPacket * pPacket)
 							}
 						}
 
-						if (pHtb->GetAttackFailed() == false)
+						if (!pHtb->GetAttackFailed())
 						{
 							sCHARSTATE curState;
 							cPlayer->GetStateManager()->CopyTo(&curState);
@@ -7729,7 +7729,7 @@ void CClientSession::RecvHTBForwardReq(CNtlPacket * pPacket)
 								pTarget->OnSkillAction(cPlayer, (int)fDmg, (DWORD)fDmg, curState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[pHtb->GetCurrentStep() - 1].sSkillResult.byAttackResult, true);
 							}
 
-							if (curState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[pHtb->GetCurrentStep() - 1].sSkillResult.byAttackResult == BATTLE_ATTACK_RESULT_KNOCKDOWN)
+							if (curState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[pHtb->GetCurrentStep() - 1].sSkillResult.byAttackResult == BATTLE_ATTACK_RESULT_KNOCKDOWN && !pTarget->IsKnockedDown() && !pTarget->IsFainting())
 							{
 								CNtlVector vShift(pTarget->GetCurLoc() - cPlayer->GetCurLoc());
 								vShift.y = 0.0f;
@@ -7748,12 +7748,12 @@ void CClientSession::RecvHTBForwardReq(CNtlPacket * pPacket)
 							pTarget->SetHtbSkillCaster(cPlayer->GetID());
 							cPlayer->SetCurrentHtbSkill(INVALID_BYTE);
 
-							if (pTarget->IsFainting() == false && pTarget->IsKnockedDown() == false)
+							if (!pTarget->IsFainting() && !pTarget->IsKnockedDown())
 							{
 								pTarget->SendCharStateStanding();
 							}
 
-							if (cPlayer->IsFainting() == false) //check if faint. Maybe player faint when receiving reflect dmg
+							if (!cPlayer->IsFainting()) //check if faint. Maybe player faint when receiving reflect dmg
 								cPlayer->SendCharStateStanding();
 						}
 						else
