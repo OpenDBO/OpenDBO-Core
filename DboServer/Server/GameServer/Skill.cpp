@@ -1934,6 +1934,7 @@ void CSkill::OnAffected()
 				vShift.y = 0.0f;
 				vShift.SafeNormalize();
 				vShift *= +NTL_BATTLE_KNOCKDOWN_DISTANCE;
+				vShift.CopyTo(skillResult.vShift);
 				pTarget->SendCharStateKnockdown(skillResult.vShift);				
 			}
 
