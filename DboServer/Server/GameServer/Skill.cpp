@@ -1938,16 +1938,6 @@ void CSkill::OnAffected()
 			if (nStealLP > 0)
 				m_pOwnerRef->UpdateCurLP(nStealLP, true, false);
 
-			if (skillResult.byAttackResult == BATTLE_ATTACK_RESULT_KNOCKDOWN && !pTarget->IsKnockedDown())
-			{
-				CNtlVector vShift(pTarget->GetCurLoc() - m_pOwnerRef->GetCurLoc());
-				vShift.y = 0.0f;
-				vShift.SafeNormalize();
-				vShift *= +NTL_BATTLE_KNOCKDOWN_DISTANCE;
-				vShift.CopyTo(skillResult.vShift);
-				pTarget->SendCharStateKnockdown(skillResult.vShift);				
-			}
-
 			if (m_actionSkill.bIsSkillHarmful)
 			{
 				if (skillResult.effectResult[NTL_SYSTEM_EFFECT_1].eResultType == DBO_SYSTEM_EFFECT_RESULT_TYPE_DD_DOT)
@@ -1992,6 +1982,16 @@ void CSkill::OnAffected()
 				{
 					pTarget->GetBuffManager()->EndBuff(ACTIVE_SLEEP);
 				}
+			}
+
+			if (skillResult.byAttackResult == BATTLE_ATTACK_RESULT_KNOCKDOWN && !pTarget->IsKnockedDown())
+			{
+				CNtlVector vShift(pTarget->GetCurLoc() - m_pOwnerRef->GetCurLoc());
+				vShift.y = 0.0f;
+				vShift.SafeNormalize();
+				vShift *= +NTL_BATTLE_KNOCKDOWN_DISTANCE;
+				vShift.CopyTo(skillResult.vShift);
+				pTarget->SendCharStateKnockdown(skillResult.vShift);
 			}
 
 			//add buffs last or it might happen that buff like sleep will be removed at OnSkillAction
