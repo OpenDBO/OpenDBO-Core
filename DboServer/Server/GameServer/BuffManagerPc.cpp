@@ -308,7 +308,7 @@ void CBuffManagerPc::CheckSubBuffs(BYTE byWorldRuleType)
 							pBuff->ActivateBuff(false);
 						}
 					}
-					else if (pBuff->GetSystemEffectCode(0) != ACTIVE_LP_AUTO_RECOVER && pBuff->GetSystemEffectCode(0) != ACTIVE_EP_AUTO_RECOVER)
+					else if (pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_1) != ACTIVE_LP_AUTO_RECOVER && pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_1) != ACTIVE_EP_AUTO_RECOVER)
 					{
 
 						if (pUseItemTbldat->dwUse_Restriction_Rule_Bit_Flag == 0 || BIT_FLAG_TEST(pUseItemTbldat->dwUse_Restriction_Rule_Bit_Flag, MAKE_BIT_FLAG(byWorldRuleType) == false)) //check if buff has to be activated

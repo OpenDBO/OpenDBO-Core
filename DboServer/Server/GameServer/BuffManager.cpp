@@ -480,7 +480,7 @@ void CBuffManager::EndBuff(eSYSTEM_EFFECT_CODE effectcode)
 		CBuff* pBuff = m_apBuff[i];
 		if (pBuff)
 		{
-			if (pBuff->GetSystemEffectCode(0) == effectcode || pBuff->GetSystemEffectCode(1) == effectcode)
+			if (pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_1) == effectcode || pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_2) == effectcode)
 			{
 				RemoveBuff(pBuff->GetBuffIndex(), pBuff->GetBuffType(), CBuff::BUFF_REMOVAL_REASON_BY_ITSELF);
 				break;
@@ -496,7 +496,7 @@ void CBuffManager::EndBuffs(eSYSTEM_EFFECT_CODE effectcode)
 		CBuff* pBuff = m_apBuff[i];
 		if (pBuff)
 		{
-			if (pBuff->GetSystemEffectCode(0) == effectcode || pBuff->GetSystemEffectCode(1) == effectcode)
+			if (pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_1) == effectcode || pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_2) == effectcode)
 			{
 				RemoveBuff(pBuff->GetBuffIndex(), pBuff->GetBuffType(), CBuff::BUFF_REMOVAL_REASON_BY_ITSELF);
 			}
@@ -547,7 +547,7 @@ void CBuffManager::EndBlessBuff(eSYSTEM_EFFECT_CODE effectcode)
 		CBuff* pBuff = m_blessBuffList.GetAt(pos);
 		if (pBuff)
 		{
-			if (pBuff->GetSystemEffectCode(0) == effectcode || pBuff->GetSystemEffectCode(1) == effectcode)
+			if (pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_1) == effectcode || pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_2) == effectcode)
 			{
 				RemoveBuff(pBuff->GetBuffIndex(), pBuff->GetBuffType(), CBuff::BUFF_REMOVAL_REASON_BY_ITSELF);
 				break;
@@ -568,7 +568,7 @@ void CBuffManager::EndBlessBuffTS(eSYSTEM_EFFECT_CODE effectcode)
 		CBuff* pBuff = m_blessBuffList.GetAt(pos);
 		if (pBuff)
 		{
-			if (pBuff->GetSystemEffectCode(0) == effectcode || pBuff->GetSystemEffectCode(1) == effectcode)
+			if (pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_1) == effectcode || pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_2) == effectcode)
 			{
 				pBuff->GetBuffInfo()->dwTimeRemaining = 1;
 				break;
@@ -589,7 +589,7 @@ void CBuffManager::EndSubBuff(eSYSTEM_EFFECT_CODE effectcode, eSYSTEM_EFFECT_COD
 		CBuff* pBuff = m_subBuffList.GetAt(pos);
 		if (pBuff)
 		{
-			if (pBuff->GetSystemEffectCode(0) == effectcode && pBuff->GetSystemEffectCode(1) == effectcode2)
+			if (pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_1) == effectcode && pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_2) == effectcode2)
 			{
 				pBuff->GetBuffInfo()->dwTimeRemaining = 1;
 				pBuff->GetBuffInfo()->aBuffParameter[0].buffParameter.dwRemainValue = 0;
@@ -636,7 +636,7 @@ void CBuffManager::EndCurseBuff(eSYSTEM_EFFECT_CODE effectcode)
 		CBuff* pBuff = m_curseBuffList.GetAt(pos);
 		if (pBuff)
 		{
-			if (pBuff->GetSystemEffectCode(0) == effectcode || pBuff->GetSystemEffectCode(1) == effectcode)
+			if (pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_1) == effectcode || pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_2) == effectcode)
 			{
 				RemoveBuff(pBuff->GetBuffIndex(), pBuff->GetBuffType(), CBuff::BUFF_REMOVAL_REASON_BY_ITSELF);
 				break;
@@ -656,7 +656,7 @@ void CBuffManager::EndCurseBuffTS(eSYSTEM_EFFECT_CODE effectcode)
 		CBuff* pBuff = m_curseBuffList.GetAt(pos);
 		if (pBuff)
 		{
-			if (pBuff->GetSystemEffectCode(0) == effectcode || pBuff->GetSystemEffectCode(1) == effectcode)
+			if (pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_1) == effectcode || pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_2) == effectcode)
 			{
 				pBuff->GetBuffInfo()->dwTimeRemaining = 1;
 				break;
@@ -679,16 +679,16 @@ bool CBuffManager::CheckAndApplyOtherStun(BYTE byEndState, WORD wEffectCodeEnd)
 				{
 					if (byEndState == CHARSTATE_STUNNED)
 					{
-						if(Dbo_IsSystemEffectForStun(wEffectCodeEnd) && (Dbo_IsSystemEffectForStun(pBuff->GetSystemEffectCode(0)) || Dbo_IsSystemEffectForStun(pBuff->GetSystemEffectCode(1))))
+						if(Dbo_IsSystemEffectForStun(wEffectCodeEnd) && (Dbo_IsSystemEffectForStun(pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_1)) || Dbo_IsSystemEffectForStun(pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_2))))
 							continue;
 					}
 					else if (byEndState == CHARSTATE_PARALYZED)
 					{
-						if(Dbo_IsSystemEffectForStun(wEffectCodeEnd) && (Dbo_IsSystemEffectForStun(pBuff->GetSystemEffectCode(0)) || Dbo_IsSystemEffectForStun(pBuff->GetSystemEffectCode(1))))
+						if(Dbo_IsSystemEffectForStun(wEffectCodeEnd) && (Dbo_IsSystemEffectForStun(pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_1)) || Dbo_IsSystemEffectForStun(pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_2))))
 							continue;
 					}
 
-					if (Dbo_IsSystemEffectForBodyCurse(pBuff->GetSystemEffectCode(0)) || Dbo_IsSystemEffectForBodyCurse(pBuff->GetSystemEffectCode(1)))
+					if (Dbo_IsSystemEffectForBodyCurse(pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_1)) || Dbo_IsSystemEffectForBodyCurse(pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_2)))
 					{
 						pBuff->OnEffectActive();
 
@@ -818,7 +818,7 @@ CBuff* CBuffManager::FindBuff(eSYSTEM_EFFECT_CODE effectcode, eSYSTEM_EFFECT_COD
 		CBuff* pBuff = m_apBuff[i];
 		if (pBuff)
 		{
-			if (pBuff->GetSystemEffectCode(0) == effectcode && pBuff->GetSystemEffectCode(1) == effectcode2)
+			if (pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_1) == effectcode && pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_2) == effectcode2)
 				return pBuff;
 		}
 	}
@@ -833,7 +833,7 @@ CBuff * CBuffManager::FindAnyBuff(eSYSTEM_EFFECT_CODE effectcode)
 		CBuff* pBuff = m_apBuff[i];
 		if (pBuff)
 		{
-			if (pBuff->GetSystemEffectCode(0) == effectcode || pBuff->GetSystemEffectCode(1) == effectcode)
+			if (pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_1) == effectcode || pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_2) == effectcode)
 				return pBuff;
 		}
 	}
@@ -867,7 +867,7 @@ CBuff * CBuffManager::FindCurse(eSYSTEM_EFFECT_CODE effectcode, DWORD dwLeastDur
 		CBuff* pBuff = m_curseBuffList.GetAt(pos);
 		if (pBuff && pBuff->GetBuffInfo()->dwTimeRemaining >= dwLeastDuration)
 		{
-			if (pBuff->GetSystemEffectCode(0) == effectcode || pBuff->GetSystemEffectCode(1) == effectcode)
+			if (pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_1) == effectcode || pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_2) == effectcode)
 				return pBuff;
 		}
 
@@ -884,7 +884,7 @@ bool CBuffManager::HasAirSkillBuff()
 		CBuff* pBuff = m_apBuff[i];
 		if (pBuff)
 		{
-			if (pBuff->GetSystemEffectCode(0) == ACTIVE_AIR_MOVE || pBuff->GetSystemEffectCode(0) == ACTIVE_AIR_MOVE_DASH_ACCEL)
+			if (pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_1) == ACTIVE_AIR_MOVE || pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_1) == ACTIVE_AIR_MOVE_DASH_ACCEL)
 				return true;
 		}
 	}
@@ -1002,7 +1002,7 @@ void CBuffManager::RemoveAllStun()
 		CBuff* pBuff = m_curseBuffList.GetAt(pos);
 		if (pBuff)
 		{
-			if (Dbo_IsSystemEffectForBodyCurse(pBuff->GetSystemEffectCode(0)) || Dbo_IsSystemEffectForBodyCurse(pBuff->GetSystemEffectCode(1)))
+			if (Dbo_IsSystemEffectForBodyCurse(pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_1)) || Dbo_IsSystemEffectForBodyCurse(pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_2)))
 			{
 				pos = RemoveBuff_Internal(CBuff::BUFF_REMOVAL_REASON_ETC, &m_curseBuffList, pos);
 				continue;
@@ -1067,7 +1067,7 @@ bool CBuffManager::RemoveRandomCurseBuff(bool bDontRemoveBodyCurse/* = false*/)
 		if (pBuff)
 		{
 			if (bDontRemoveBodyCurse == false ||
-				(Dbo_IsSystemEffectForBodyCurse(pBuff->GetSystemEffectCode(0)) == false && Dbo_IsSystemEffectForBodyCurse(pBuff->GetSystemEffectCode(1)) == false 
+				(Dbo_IsSystemEffectForBodyCurse(pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_1)) == false && Dbo_IsSystemEffectForBodyCurse(pBuff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_2)) == false 
 					&& pBuff->GetBuffInfo()->aBuffParameter[0].byBuffParameterType == DBO_BUFF_PARAMETER_TYPE_DEFAULT && pBuff->GetBuffInfo()->aBuffParameter[1].byBuffParameterType == DBO_BUFF_PARAMETER_TYPE_DEFAULT))
 			{
 				vecTemp.push_back(pos);
