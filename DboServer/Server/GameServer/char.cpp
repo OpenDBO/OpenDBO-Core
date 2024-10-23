@@ -971,13 +971,13 @@ bool CCharacter::IsReachable(CCharacter *pTarget, std::list<CNtlVector>& rlistCo
 					sNAVI_POS src(GetCurLoc().x, GetCurLoc().y, GetCurLoc().z);
 					sNAVI_POS dest(pTarget->GetCurLoc().x, pTarget->GetCurLoc().y, pTarget->GetCurLoc().z);
 
-					eCOL_TEST_RESULT eResult = GetNaviEngine()->FastCanMoveNearestDest(GetCurWorld()->GetNaviInstanceHandle(), fSubjectAgentRadius, src, dest);
+					eCOL_TEST_RESULT eResult = GetNaviEngine()->CollisionTest(GetCurWorld()->GetNaviInstanceHandle(), fSubjectAgentRadius, src, dest, PATH_HORIZ_RANGE);
 					switch (eResult)
 					{
 						case eCOL_TEST_RESULT_INVALID_DEST_POS:
 						{
 							sNAVI_POS sFirstCollisionPos;
-							if (GetNaviEngine()->FastFirstCollisionTest(GetCurWorld()->GetNaviInstanceHandle(), fSubjectAgentRadius, src, dest, sFirstCollisionPos) == eCOL_TEST_RESULT_COL)
+							if (GetNaviEngine()->FirstCollisionTest(GetCurWorld()->GetNaviInstanceHandle(), fSubjectAgentRadius, src, dest, sFirstCollisionPos) == eCOL_TEST_RESULT_COL)
 							{
 								rlistCollisionPos.push_back(CNtlVector(sFirstCollisionPos.x, sFirstCollisionPos.y, sFirstCollisionPos.z));
 							}
@@ -987,13 +987,13 @@ bool CCharacter::IsReachable(CCharacter *pTarget, std::list<CNtlVector>& rlistCo
 						case eCOL_TEST_RESULT_COL:
 						{
 							sNAVI_POS sFirstCollisionPos;
-							if (GetNaviEngine()->FastFirstCollisionTest(GetCurWorld()->GetNaviInstanceHandle(), fSubjectAgentRadius, src, dest, sFirstCollisionPos) == eCOL_TEST_RESULT_COL)
+							if (GetNaviEngine()->FirstCollisionTest(GetCurWorld()->GetNaviInstanceHandle(), fSubjectAgentRadius, src, dest, sFirstCollisionPos) == eCOL_TEST_RESULT_COL)
 							{
 								rlistCollisionPos.push_back(CNtlVector(sFirstCollisionPos.x, sFirstCollisionPos.y, sFirstCollisionPos.z));
 							}
 							std::vector<sNAVI_POS> vTempVector;
 
-							return GetNaviEngine()->FastFindPath(GetCurWorld()->GetNaviInstanceHandle(), fSubjectAgentRadius, src, dest, vTempVector);
+							return GetNaviEngine()->FindPath(GetCurWorld()->GetNaviInstanceHandle(), fSubjectAgentRadius, src, dest, vTempVector);
 						}
 						break;
 

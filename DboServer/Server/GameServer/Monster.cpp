@@ -95,6 +95,12 @@ bool CMonster::CreateDataAndSpawn(WORLDID worldId, sMOB_TBLDAT* mobTbldat, sSPAW
 	sTempState.sCharStateBase.dwStateTime = 0;
 	sTempState.sCharStateBase.eAirState = AIR_STATE_OFF;
 	spawnTbldat->vSpawn_Dir.CopyTo(sTempState.sCharStateBase.vCurDir);
+	// If no height (y) is defined, try to get it before spawning the object.
+	if (spawnTbldat->vSpawn_Loc.y == 0.0f)
+	{
+		CGameServer* app = (CGameServer*)g_pApp;
+		spawnTbldat->vSpawn_Loc.y = app->GetGameMain()->GetWorldManager()->GetAdjustedHeight(worldId, spawnTbldat->vSpawn_Loc.x, spawnTbldat->vSpawn_Loc.y, spawnTbldat->vSpawn_Loc.z, PATH_VERT_RANGE);
+	}
 	spawnTbldat->vSpawn_Loc.CopyTo(sTempState.sCharStateBase.vCurLoc);
 	sTempState.sCharStateBase.aspectState.sAspectStateBase.byAspectStateId = ASPECTSTATE_INVALID;
 
@@ -186,6 +192,12 @@ bool CMonster::CreateDataAndSpawn(sMOB_DATA& sData, sMOB_TBLDAT* mobTbldat, BYTE
 	sTempState.sCharStateBase.dwStateTime = 0;
 	sTempState.sCharStateBase.eAirState = AIR_STATE_OFF;
 	sTempState.sCharStateBase.vCurDir = sData.vSpawnDir;
+	// If no height (y) is defined, try to get it before spawning the object.
+	if (sData.vSpawnLoc.y == 0.0f)
+	{
+		CGameServer* app = (CGameServer*)g_pApp;
+		sData.vSpawnLoc.y = app->GetGameMain()->GetWorldManager()->GetAdjustedHeight(sData.worldID, sData.vSpawnLoc.x, sData.vSpawnLoc.y, sData.vSpawnLoc.z, PATH_VERT_RANGE);
+	}
 	sTempState.sCharStateBase.vCurLoc = sData.vSpawnLoc;
 	sTempState.sCharStateBase.aspectState.sAspectStateBase.byAspectStateId = ASPECTSTATE_INVALID;
 

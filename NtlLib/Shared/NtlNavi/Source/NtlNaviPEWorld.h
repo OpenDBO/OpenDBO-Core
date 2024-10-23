@@ -127,41 +127,21 @@ public:
 
 	float							GetHeight( float x, float y, float z );
 
-	long							GetFastHeight(float x, float y, float z, float& newy, int nVertRange);
-
 	float							GetGuaranteedHeight(float x, float y, float z);
+
+	bool							FindNearestPos( NAVI_INST_HANDLE hHandle, float fAgentRadius, CNtlNaviVector3& vSourcePos, int nHorizRange, int nClosestRange );
 
 	bool							FindNearestPos( NAVI_INST_HANDLE hHandle, float fAgentRadius, CNtlNaviVector3& vSourcePos );
 
-	bool							FindNearestPos(NAVI_INST_HANDLE hHandle, float fAgentRadius, CNtlNaviVector3& vSourcePos, sNAVI_FAST_POS& sFastPos);
+	eCOL_TEST_RESULT				CollisionTest( NAVI_INST_HANDLE hHandle, float fAgentRadius, CNtlNaviVector3& vSourcePos, CNtlNaviVector3& vTargetPos, int nHorizRange );
 
 	eCOL_TEST_RESULT				CollisionTest( NAVI_INST_HANDLE hHandle, float fAgentRadius, CNtlNaviVector3& vSourcePos, CNtlNaviVector3& vTargetPos );
 
-	eCOL_TEST_RESULT				CollisionTest(NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_FAST_POS& sSrcFastPos, sNAVI_FAST_POS& sDestFastPos);
-
 	eCOL_TEST_RESULT				FirstCollisionTest( NAVI_INST_HANDLE hHandle, float fAgentRadius, CNtlNaviVector3& vSourcePos, CNtlNaviVector3& vTargetPos, CNtlNaviVector3& vFirstCollison );
-
-	eCOL_TEST_RESULT				FirstCollisionTest(NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_FAST_POS& vSourcePos, CNtlNaviVector3& vTargetPos, CNtlNaviVector3& vFirstCollison);
 
 	bool							FindPath( NAVI_INST_HANDLE hHandle, float fAgentRadius, CNtlNaviVector3& vSourcePos, CNtlNaviVector3& vTargetPos, vecdef_NaviPosList& defNaviPosList );
 
-	bool							FindPath(NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_FAST_POS& sSrcFastPos, sNAVI_FAST_POS& sDestFastPos, vecdef_NaviPosList& defNaviPosList);
-
-	bool							FastFindNearestPos(NAVI_INST_HANDLE hHandle, float fAgentRadius, CNtlNaviVector3& vSourcePos, int nHorizRange, int nClosestRange);
-
-	eCOL_TEST_RESULT				FastFirstCollisionTest(NAVI_INST_HANDLE hHandle, float fAgentRadius, CNtlNaviVector3& vSourcePos, CNtlNaviVector3& vTargetPos, CNtlNaviVector3& vFirstCollison);
-
-	eCOL_TEST_RESULT				FastCollisionTest(NAVI_INST_HANDLE hHandle, float fAgentRadius, CNtlNaviVector3& vSourcePos, CNtlNaviVector3& vTargetPos);
-
-	eCOL_TEST_RESULT				FastCollisionTest(NAVI_INST_HANDLE hHandle, float fAgentRadius, CNtlNaviVector3& vSourcePos, CNtlNaviVector3& vTargetPos, CNtlNaviVector3& vNewTargetPos);
-
-	bool							FastFindPath(NAVI_INST_HANDLE hHandle, float fAgentRadius, CNtlNaviVector3& vSourcePos, CNtlNaviVector3& vTargetPos, vecdef_NaviPosList& defNaviPosList);
-
-	eCOL_TEST_RESULT				FastChaseFindPath(NAVI_INST_HANDLE hHandle, float fAgentRadius, CNtlNaviVector3& vSourcePos, CNtlNaviVector3& vTargetPos, vecdef_NaviPosList& defNaviPosList);
-
-	eCOL_TEST_RESULT				FastCanMoveNearestDest(NAVI_INST_HANDLE hHandle, float fAgentRadius, CNtlNaviVector3& vSourcePos, CNtlNaviVector3& vTargetPos);
-
-	bool							IsValidPos(sNAVI_POS & sSrcPos);
+	bool							IsValidPos( sNAVI_POS & sSrcPos );
 
 // Tool interface
 public:
