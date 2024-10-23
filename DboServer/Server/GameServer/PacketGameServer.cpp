@@ -788,19 +788,19 @@ void CClientSession::RecvCharMove(CNtlPacket * pPacket)
 
 	if (cPlayer->GetFacingHandle() != INVALID_HOBJECT)
 	{
-		ERR_LOG(LOG_USER, "Player %u received move packet while facing an NPC", cPlayer->GetCharID());
+		//ERR_LOG(LOG_USER, "Player %u received move packet while facing an NPC", cPlayer->GetCharID());
 		return; // error handling
 	}
 	
 	if (cPlayer->GetAirState() == AIR_STATE_ON)
 	{
-		ERR_LOG(LOG_USER, "Player %u received move packet while air state", cPlayer->GetCharID());
+		//ERR_LOG(LOG_USER, "Player %u received move packet while air state", cPlayer->GetCharID());
 		return;
 	}
 	
 	if (req->byMoveDirection > NTL_MOVE_R_TURN_R)
 	{
-		ERR_LOG(LOG_USER, "Player %u send wrong movedirection %u", cPlayer->GetCharID(), req->byMoveDirection);
+		//ERR_LOG(LOG_USER, "Player %u send wrong movedirection %u", cPlayer->GetCharID(), req->byMoveDirection);
 		return;
 	}
 
@@ -809,13 +809,13 @@ void CClientSession::RecvCharMove(CNtlPacket * pPacket)
 	{
 		if (cPlayer->GetStateManager()->CanCharStateTransition(CHARSTATE_MOVING) == false)
 		{
-			ERR_LOG(LOG_USER, "Player %u cant go CHARSTATE_MOVING with current state %u", cPlayer->GetCharID(), cPlayer->GetCharStateID());
+			//ERR_LOG(LOG_USER, "Player %u cant go CHARSTATE_MOVING with current state %u", cPlayer->GetCharID(), cPlayer->GetCharStateID());
 			return;
 		}
 
 		if (cPlayer->GetMoveFlag() != NTL_MOVE_FLAG_INVALID && cPlayer->GetMoveFlag() > NTL_MOVE_FLAG_SWIM)
 		{
-			ERR_LOG(LOG_USER, "Player %u is wrong move flag %u", cPlayer->GetCharID(), cPlayer->GetMoveFlag());
+			//ERR_LOG(LOG_USER, "Player %u is wrong move flag %u", cPlayer->GetCharID(), cPlayer->GetMoveFlag());
 			return;
 		}
 
@@ -824,7 +824,7 @@ void CClientSession::RecvCharMove(CNtlPacket * pPacket)
 		if (BIT_FLAG_TEST(qwCondition, CHARCOND_FLAG_TAUNT) || BIT_FLAG_TEST(qwCondition, CHARCOND_FLAG_DIRECT_PLAY) || BIT_FLAG_TEST(qwCondition, CHARCOND_FLAG_CONFUSED)
 			|| BIT_FLAG_TEST(qwCondition, CHARCOND_FLAG_TERROR) || BIT_FLAG_TEST(qwCondition, CHARCOND_FLAG_AFTEREFFECT))
 		{
-			ERR_LOG(LOG_USER, "Player %u tried moving in wrong condition (flag)%u", cPlayer->GetCharID(), qwCondition);
+			//ERR_LOG(LOG_USER, "Player %u tried moving in wrong condition (flag)%u", cPlayer->GetCharID(), qwCondition);
 			return;
 		}
 	}
@@ -836,14 +836,14 @@ void CClientSession::RecvCharMove(CNtlPacket * pPacket)
 		if (cPlayer->GetMoveFlag() == NTL_MOVE_FLAG_FLY || cPlayer->GetMoveFlag() == NTL_MOVE_FLAG_FLY_DASH || cPlayer->GetMoveFlag() == NTL_MOVE_FLAG_FLY_ACCEL || cPlayer->GetMoveFlag() == NTL_MOVE_FLAG_FLY_QUICK_DOWN
 			|| cPlayer->GetMoveFlag() == NTL_MOVE_FLAG_JUMP || cPlayer->GetMoveFlag() == NTL_MOVE_FLAG_FALLING)
 		{
-			ERR_LOG(LOG_USER, "Player %u is wrong move flag %u", cPlayer->GetCharID(), cPlayer->GetMoveFlag()); 
+			//ERR_LOG(LOG_USER, "Player %u is wrong move flag %u", cPlayer->GetCharID(), cPlayer->GetMoveFlag()); 
 			return;
 		}
 
 		if (cPlayer->GetCharStateID() != CHARSTATE_SITTING && cPlayer->GetCharStateID() != CHARSTATE_MOVING && cPlayer->GetCharStateID() != CHARSTATE_DESTMOVE && cPlayer->GetCharStateID() != CHARSTATE_FOLLOWING
 			&& cPlayer->GetCharStateID() != CHARSTATE_DASH_PASSIVE)
 		{
-			ERR_LOG(LOG_USER, "Player %u is wrong state %u", cPlayer->GetCharID(), cPlayer->GetCharStateID());
+			//ERR_LOG(LOG_USER, "Player %u is wrong state %u", cPlayer->GetCharID(), cPlayer->GetCharStateID());
 			return;
 		}
 	}
@@ -915,7 +915,7 @@ void CClientSession::RecvCharAirMove(CNtlPacket * pPacket)
 		if (cPlayer->GetMoveFlag() != NTL_MOVE_FLAG_INVALID && 
 			(cPlayer->GetMoveFlag() < NTL_MOVE_FLAG_FLY || cPlayer->GetMoveFlag() > NTL_MOVE_FLAG_FLY_ACCEL))
 		{
-			ERR_LOG(LOG_USER, "Player %u is wrong move flag %u", cPlayer->GetCharID(), cPlayer->GetMoveFlag());
+			//ERR_LOG(LOG_USER, "Player %u is wrong move flag %u", cPlayer->GetCharID(), cPlayer->GetMoveFlag());
 			return;
 		}
 	}
@@ -924,13 +924,13 @@ void CClientSession::RecvCharAirMove(CNtlPacket * pPacket)
 		if (cPlayer->GetCharStateID() != CHARSTATE_MOVING && cPlayer->GetCharStateID() != CHARSTATE_DESTMOVE && cPlayer->GetCharStateID() != CHARSTATE_FOLLOWING
 			&& cPlayer->GetCharStateID() != CHARSTATE_AIR_JUMP && cPlayer->GetCharStateID() != CHARSTATE_AIR_DASH_ACCEL)
 		{
-			ERR_LOG(LOG_USER, "Player %u is wrong state %u", cPlayer->GetCharID(), cPlayer->GetCharStateID());
+			//ERR_LOG(LOG_USER, "Player %u is wrong state %u", cPlayer->GetCharID(), cPlayer->GetCharStateID());
 			return;
 		}
 
 		if (cPlayer->GetMoveFlag() < NTL_MOVE_FLAG_FLY || cPlayer->GetMoveFlag() > NTL_MOVE_FLAG_FLY_ACCEL)
 		{
-			ERR_LOG(LOG_USER, "Player %u is wrong move flag %u", cPlayer->GetCharID(), cPlayer->GetMoveFlag());
+			//ERR_LOG(LOG_USER, "Player %u is wrong move flag %u", cPlayer->GetCharID(), cPlayer->GetMoveFlag());
 			return;
 		}
 	}
@@ -7110,7 +7110,7 @@ void CClientSession::RecvBuffDropReq(CNtlPacket * pPacket)
 			//anti bug for lp/ep auto recover pot
 			if(buff->GetSourceType() == DBO_OBJECT_SOURCE_ITEM)
 			{
-				if (buff->GetSystemEffectCode(0) == ACTIVE_LP_AUTO_RECOVER || buff->GetSystemEffectCode(0) == ACTIVE_EP_AUTO_RECOVER)
+				if (buff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_1) == ACTIVE_LP_AUTO_RECOVER || buff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_1) == ACTIVE_EP_AUTO_RECOVER)
 				{
 					if (buff->GetRemainTime(0) > 0) //dont allow to remove auto pot while its on cooldown
 					{
@@ -7157,7 +7157,7 @@ void CClientSession::RecvBuffDropReq(CNtlPacket * pPacket)
 						}
 					}
 				}
-				else if (buff->GetSystemEffectCode(0) == ACTIVE_EXCITATION_MALE && buff->GetSystemEffectCode(1) == ACTIVE_EXCITATION_FEMALE) //check if drop turtle book buff
+				else if (buff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_1) == ACTIVE_EXCITATION_MALE && buff->GetSystemEffectCode(NTL_SYSTEM_EFFECT_2) == ACTIVE_EXCITATION_FEMALE) //check if drop turtle book buff
 				{
 					if (cPlayer->GetGender() != GENDER_MALE) //only nemkian and female
 					{
@@ -7515,26 +7515,19 @@ void CClientSession::RecvHTBForwardReq(CNtlPacket * pPacket)
 							}
 						}
 
-						if (pHtb->GetAttackFailed() == false)
+						if (!pHtb->GetAttackFailed())
 						{
 							sCHARSTATE curState;
 							cPlayer->GetStateManager()->CopyTo(&curState);
 
-							//apply reflect
+							// Apply reflect.
 							if (curState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[pHtb->GetCurrentStep() - 1].sSkillResult.damageByReflectingCurse > 0.f)
 							{
 								cPlayer->OnSkillAction(pTarget, (int)curState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[pHtb->GetCurrentStep() - 1].sSkillResult.damageByReflectingCurse, 0, BATTLE_ATTACK_RESULT_REFLECTED_DAMAGE, false);
 							}
 
-							float fDmg = curState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[pHtb->GetCurrentStep() - 1].sSkillResult.effectResult[0].DD_DOT_fDamage;
-
-							//apply dmg
-							if (fDmg > 0.f)
-							{
-								pTarget->OnSkillAction(cPlayer, (int)fDmg, (DWORD)fDmg, curState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[pHtb->GetCurrentStep() - 1].sSkillResult.byAttackResult, true);
-							}
-
-							if (curState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[pHtb->GetCurrentStep() - 1].sSkillResult.byAttackResult == BATTLE_ATTACK_RESULT_KNOCKDOWN)
+							// Apply knockdown.
+							if (curState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[pHtb->GetCurrentStep() - 1].sSkillResult.byAttackResult == BATTLE_ATTACK_RESULT_KNOCKDOWN && !pTarget->IsKnockedDown() && !pTarget->IsFainting())
 							{
 								CNtlVector vShift(pTarget->GetCurLoc() - cPlayer->GetCurLoc());
 								vShift.y = 0.0f;
@@ -7542,6 +7535,14 @@ void CClientSession::RecvHTBForwardReq(CNtlPacket * pPacket)
 								vShift *= +NTL_BATTLE_KNOCKDOWN_DISTANCE;
 								vShift.CopyTo(curState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[pHtb->GetCurrentStep() - 1].sSkillResult.vShift);
 								pTarget->SendCharStateKnockdown(curState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[pHtb->GetCurrentStep() - 1].sSkillResult.vShift);
+							}
+
+							float fDmg = curState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[pHtb->GetCurrentStep() - 1].sSkillResult.effectResult[0].DD_DOT_fDamage;
+
+							// Apply damage.
+							if (fDmg > 0.f)
+							{
+								pTarget->OnSkillAction(cPlayer, (int)fDmg, (DWORD)fDmg, curState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[pHtb->GetCurrentStep() - 1].sSkillResult.byAttackResult, true);
 							}
 						}
 
@@ -7553,12 +7554,12 @@ void CClientSession::RecvHTBForwardReq(CNtlPacket * pPacket)
 							pTarget->SetHtbSkillCaster(cPlayer->GetID());
 							cPlayer->SetCurrentHtbSkill(INVALID_BYTE);
 
-							if (pTarget->IsFainting() == false && pTarget->IsKnockedDown() == false)
+							if (!pTarget->IsFainting() && !pTarget->IsKnockedDown())
 							{
 								pTarget->SendCharStateStanding();
 							}
 
-							if (cPlayer->IsFainting() == false) //check if faint. Maybe player faint when receiving reflect dmg
+							if (!cPlayer->IsFainting()) //check if faint. Maybe player faint when receiving reflect dmg
 								cPlayer->SendCharStateStanding();
 						}
 						else

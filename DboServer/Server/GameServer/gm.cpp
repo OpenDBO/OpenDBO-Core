@@ -30,22 +30,20 @@ void gm_read_command(sUG_SERVER_COMMAND* sPacket, CPlayer* pPlayer)
 {
 	CGameServer* app = (CGameServer*)g_pApp;
 
-	char chBuffer[1024];
-	WideCharToMultiByte(GetACP(), 0, sPacket->awchCommand, -1, chBuffer, 1024, NULL, NULL);
+	WCHAR wchBuffer[1024];
+	wcscpy_s(wchBuffer, sizeof(wchBuffer) / sizeof(wchBuffer[0]), sPacket->awchCommand);
 
-	ERR_LOG(LOG_USER, "User %u uses gm command %s", pPlayer->GetCharID(), chBuffer);
-
-	CNtlTokenizer lexer(chBuffer);
+	CNtlTokenizerW lexer(wchBuffer);
 	int iLine;
 	int icmd;
 
-	std::string strCommand = lexer.PeekNextToken(NULL, &iLine);
+	std::wstring strCommand = lexer.PeekNextToken(NULL, &iLine);
 
 	for (icmd = 0; icmd < NTL_MAX_LENGTH_OF_CHAT_MESSAGE; icmd++)
 	{
-		if (!strcmp(cmd_info[icmd].command, "@qwasawedsadas"))
+		if (!wcscmp(cmd_info[icmd].command, L"@qwasawedsadas"))
 			return;
-		else if (!strcmp(cmd_info[icmd].command, strCommand.c_str()))
+		else if (!wcscmp(cmd_info[icmd].command, strCommand.c_str()))
 			break;
 	}
 
@@ -61,7 +59,7 @@ void gm_read_command(sUG_SERVER_COMMAND* sPacket, CPlayer* pPlayer)
 	resQry->wOpCode = GQ_GM_LOG;
 	resQry->byLogType = 0;
 	resQry->charId = pPlayer->GetCharID();
-	strcpy(resQry->chBuffer, chBuffer);
+	wcscpy_s(resQry->wchBuffer, wchBuffer);
 	packetQry.SetPacketLen(sizeof(sGQ_GM_LOG)); // to avoid having huge packet
 	app->SendTo(app->GetQueryServerSession(), &packetQry);
 
@@ -126,68 +124,68 @@ ACMD(do_test);
 
 struct command_info cmd_info[] =
 {
-	{ "@setspeed", do_setspeed, ADMIN_LEVEL_GAME_MASTER },
-	{ "@addmob", do_addmob, ADMIN_LEVEL_ADMIN },
-	{ "@addmobgroup", do_addmobgroup, ADMIN_LEVEL_ADMIN },
-	{ "@addnpc", do_addnpc, ADMIN_LEVEL_ADMIN },
-	{ "@additem", do_additem, ADMIN_LEVEL_ADMIN },
-	{ "@addmasteritem", do_addmasteritem, ADMIN_LEVEL_NONE },
-	{ "@addskill", do_addskill, ADMIN_LEVEL_ADMIN },
-	{ "@addskill2", do_addskill2, ADMIN_LEVEL_NONE },
-	{ "@r", do_r, ADMIN_LEVEL_DEV_SERVER },
-	{ "@addhtb", do_addhtb, ADMIN_LEVEL_NONE },
-	{ "@setzenny", do_setzenny, ADMIN_LEVEL_ADMIN },
-	{ "@setlevel", do_setlevel, ADMIN_LEVEL_ADMIN },
-	{ "@hide", do_hide, ADMIN_LEVEL_GAME_MASTER },
-	{ "@notice", do_notice, ADMIN_LEVEL_GAME_MASTER },
-	{ "@pm", do_pm, ADMIN_LEVEL_GAME_MASTER },
-	{ "@teleport", do_teleport, ADMIN_LEVEL_GAME_MASTER },
-	{ "@world", do_world, ADMIN_LEVEL_GAME_MASTER },
-	{ "@warp", do_warp, ADMIN_LEVEL_GAME_MASTER },
-	{ "@call", do_call, ADMIN_LEVEL_GAME_MASTER },
-	{ "@shutdown", do_shutdown, ADMIN_LEVEL_ADMIN },
-	{ "@setadult", do_setadult, ADMIN_LEVEL_GAME_MASTER },
-	{ "@setclass", do_setclass, ADMIN_LEVEL_ADMIN },
-	{ "@dc", do_dc, ADMIN_LEVEL_GAME_MASTER },
-	{ "@kill", do_kill, ADMIN_LEVEL_ADMIN },
-	{ "@delallitems", do_delallitems, ADMIN_LEVEL_GAME_MASTER },
-	{ "@god", do_god, ADMIN_LEVEL_ADMIN },
-	{ "@invincible", do_invincible, ADMIN_LEVEL_ADMIN },
-	{ "@bann", do_bann, ADMIN_LEVEL_GAME_MASTER },
-	{ "@dbann", do_dbann, ADMIN_LEVEL_GAME_MASTER },
-	{ "@purge", do_purge, ADMIN_LEVEL_COMMUNITY_MANAGER },
-	{ "@unstuck", do_unstuck, ADMIN_LEVEL_NONE },
-	{ "@warfog", do_warfog, ADMIN_LEVEL_GAME_MASTER },
-	{ "@upgrade", do_upgrade, ADMIN_LEVEL_ADMIN },
-	{ "@setitemrank", do_setitemrank, ADMIN_LEVEL_ADMIN },
-	{ "@mute", do_mute, ADMIN_LEVEL_GAME_MASTER },
-	{ "@unmute", do_unmute, ADMIN_LEVEL_GAME_MASTER },
-	{ "@go", do_go, ADMIN_LEVEL_GAME_MASTER },
-	{ "@addtitle", do_addtitle, ADMIN_LEVEL_GAME_MASTER },
-	{ "@deltitle", do_deltitle, ADMIN_LEVEL_GAME_MASTER },
-	{ "@setitemduration", do_setitemduration, ADMIN_LEVEL_ADMIN },
-	{ "@bind", do_bind, ADMIN_LEVEL_GAME_MASTER },
-	{ "@exp", do_exp, ADMIN_LEVEL_NONE },
-	{ "@resetexp", do_resetexp, ADMIN_LEVEL_NONE },
-	{ "@starthoneybee", do_starthoneybee, ADMIN_LEVEL_COMMUNITY_MANAGER },
-	{ "@stophoneybee", do_stophoneybee, ADMIN_LEVEL_COMMUNITY_MANAGER },
-	{ "@deleteguild", do_deleteguild, ADMIN_LEVEL_COMMUNITY_MANAGER },
-	{ "@cancelah", do_cancelah, ADMIN_LEVEL_GAME_MASTER },
-	{ "@addmudosa", do_addmudosa, ADMIN_LEVEL_ADMIN },
-	{ "@startgm", do_start, ADMIN_LEVEL_GAME_MASTER },
-	{ "@createloot", do_createloot, ADMIN_LEVEL_ADMIN },
-	{ "@removeskillscd", do_removeskillscd, ADMIN_LEVEL_ADMIN },
-	{ "@test", do_test, ADMIN_LEVEL_ADMIN },
+	{ L"@setspeed", do_setspeed, ADMIN_LEVEL_GAME_MASTER },
+	{ L"@addmob", do_addmob, ADMIN_LEVEL_ADMIN },
+	{ L"@addmobgroup", do_addmobgroup, ADMIN_LEVEL_ADMIN },
+	{ L"@addnpc", do_addnpc, ADMIN_LEVEL_ADMIN },
+	{ L"@additem", do_additem, ADMIN_LEVEL_ADMIN },
+	{ L"@addmasteritem", do_addmasteritem, ADMIN_LEVEL_NONE },
+	{ L"@addskill", do_addskill, ADMIN_LEVEL_ADMIN },
+	{ L"@addskill2", do_addskill2, ADMIN_LEVEL_NONE },
+	{ L"@r", do_r, ADMIN_LEVEL_DEV_SERVER },
+	{ L"@addhtb", do_addhtb, ADMIN_LEVEL_NONE },
+	{ L"@setzenny", do_setzenny, ADMIN_LEVEL_ADMIN },
+	{ L"@setlevel", do_setlevel, ADMIN_LEVEL_ADMIN },
+	{ L"@hide", do_hide, ADMIN_LEVEL_GAME_MASTER },
+	{ L"@notice", do_notice, ADMIN_LEVEL_GAME_MASTER },
+	{ L"@pm", do_pm, ADMIN_LEVEL_GAME_MASTER },
+	{ L"@teleport", do_teleport, ADMIN_LEVEL_GAME_MASTER },
+	{ L"@world", do_world, ADMIN_LEVEL_GAME_MASTER },
+	{ L"@warp", do_warp, ADMIN_LEVEL_GAME_MASTER },
+	{ L"@call", do_call, ADMIN_LEVEL_GAME_MASTER },
+	{ L"@shutdown", do_shutdown, ADMIN_LEVEL_ADMIN },
+	{ L"@setadult", do_setadult, ADMIN_LEVEL_GAME_MASTER },
+	{ L"@setclass", do_setclass, ADMIN_LEVEL_ADMIN },
+	{ L"@dc", do_dc, ADMIN_LEVEL_GAME_MASTER },
+	{ L"@kill", do_kill, ADMIN_LEVEL_ADMIN },
+	{ L"@delallitems", do_delallitems, ADMIN_LEVEL_GAME_MASTER },
+	{ L"@god", do_god, ADMIN_LEVEL_ADMIN },
+	{ L"@invincible", do_invincible, ADMIN_LEVEL_ADMIN },
+	{ L"@bann", do_bann, ADMIN_LEVEL_GAME_MASTER },
+	{ L"@dbann", do_dbann, ADMIN_LEVEL_GAME_MASTER },
+	{ L"@purge", do_purge, ADMIN_LEVEL_COMMUNITY_MANAGER },
+	{ L"@unstuck", do_unstuck, ADMIN_LEVEL_NONE },
+	{ L"@warfog", do_warfog, ADMIN_LEVEL_GAME_MASTER },
+	{ L"@upgrade", do_upgrade, ADMIN_LEVEL_ADMIN },
+	{ L"@setitemrank", do_setitemrank, ADMIN_LEVEL_ADMIN },
+	{ L"@mute", do_mute, ADMIN_LEVEL_GAME_MASTER },
+	{ L"@unmute", do_unmute, ADMIN_LEVEL_GAME_MASTER },
+	{ L"@go", do_go, ADMIN_LEVEL_GAME_MASTER },
+	{ L"@addtitle", do_addtitle, ADMIN_LEVEL_GAME_MASTER },
+	{ L"@deltitle", do_deltitle, ADMIN_LEVEL_GAME_MASTER },
+	{ L"@setitemduration", do_setitemduration, ADMIN_LEVEL_ADMIN },
+	{ L"@bind", do_bind, ADMIN_LEVEL_GAME_MASTER },
+	{ L"@exp", do_exp, ADMIN_LEVEL_NONE },
+	{ L"@resetexp", do_resetexp, ADMIN_LEVEL_NONE },
+	{ L"@starthoneybee", do_starthoneybee, ADMIN_LEVEL_COMMUNITY_MANAGER },
+	{ L"@stophoneybee", do_stophoneybee, ADMIN_LEVEL_COMMUNITY_MANAGER },
+	{ L"@deleteguild", do_deleteguild, ADMIN_LEVEL_COMMUNITY_MANAGER },
+	{ L"@cancelah", do_cancelah, ADMIN_LEVEL_GAME_MASTER },
+	{ L"@addmudosa", do_addmudosa, ADMIN_LEVEL_ADMIN },
+	{ L"@startgm", do_start, ADMIN_LEVEL_GAME_MASTER },
+	{ L"@createloot", do_createloot, ADMIN_LEVEL_ADMIN },
+	{ L"@removeskillscd", do_removeskillscd, ADMIN_LEVEL_ADMIN },
+	{ L"@test", do_test, ADMIN_LEVEL_ADMIN },
 
-	{ "@qwasawedsadas", NULL, ADMIN_LEVEL_ADMIN }
+	{ L"@qwasawedsadas", NULL, ADMIN_LEVEL_ADMIN }
 };
 
 
 ACMD(do_setspeed)
 {
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	float fSpeed = (float)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	float fSpeed = (float)atof(ws2s(strToken).c_str());
 
 	pPlayer->UpdateMoveSpeed(fSpeed, fSpeed);
 }
@@ -195,8 +193,8 @@ ACMD(do_setspeed)
 ACMD(do_addmob)
 {
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	TBLIDX MobId = (TBLIDX)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	TBLIDX MobId = (TBLIDX)atof(ws2s(strToken).c_str());
 
 	sMOB_TBLDAT* pMOBTblData = (sMOB_TBLDAT*)g_pTableContainer->GetMobTable()->FindData(MobId);
 	if (pMOBTblData)
@@ -240,8 +238,8 @@ ACMD(do_addmob)
 ACMD(do_addmobgroup)
 {
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	TBLIDX groupId = (TBLIDX)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	TBLIDX groupId = (TBLIDX)atof(ws2s(strToken).c_str());
 
 	DWORD spawnCount = g_pTableContainer->GetMobSpawnTable(pPlayer->GetCurWorld()->GetIdx())->GetSpawnGroupCount(groupId);
 	sSPAWN_TBLDAT* spawnTbldat = g_pTableContainer->GetMobSpawnTable(pPlayer->GetCurWorld()->GetIdx())->GetSpawnGroupFirst(groupId);
@@ -318,8 +316,8 @@ ACMD(do_addmobgroup)
 ACMD(do_addnpc)
 {
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	TBLIDX npcid = (TBLIDX)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	TBLIDX npcid = (TBLIDX)atof(ws2s(strToken).c_str());
 
 	sNPC_TBLDAT* pTblData = (sNPC_TBLDAT*)g_pTableContainer->GetNpcTable()->FindData(npcid);
 
@@ -366,12 +364,12 @@ ACMD(do_addnpc)
 ACMD(do_additem)
 {
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	TBLIDX ItemId = (TBLIDX)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	TBLIDX ItemId = (TBLIDX)atof(ws2s(strToken).c_str());
 
 	pToken->PopToPeek();
 	strToken = pToken->PeekNextToken(NULL, &iLine);
-	BYTE amount = (BYTE)atof(strToken.c_str());
+	BYTE amount = (BYTE)atof(ws2s(strToken).c_str());
 
 	if (amount == 0 || amount == INVALID_BYTE)
 		amount = 1;
@@ -399,8 +397,8 @@ ACMD(do_additem)
 ACMD(do_addmasteritem)
 {
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	BYTE bySecondClass = (BYTE)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	BYTE bySecondClass = (BYTE)atof(ws2s(strToken).c_str());
 
 	TBLIDX itemTblidx = INVALID_TBLIDX;
 
@@ -496,8 +494,8 @@ ACMD(do_addskill)
 	CGameServer * app = (CGameServer*)g_pApp;
 
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	TBLIDX SkillId = (TBLIDX)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	TBLIDX SkillId = (TBLIDX)atof(ws2s(strToken).c_str());
 
 	WORD wTemp;
 
@@ -546,8 +544,8 @@ ACMD(do_addhtb)
 	CGameServer * app = (CGameServer*)NtlSfxGetApp();
 
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	TBLIDX id = (TBLIDX)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	TBLIDX id = (TBLIDX)atof(ws2s(strToken).c_str());
 	WORD wTemp;
 
 	if (pPlayer->IsGameMaster() == false)
@@ -592,8 +590,8 @@ ACMD(do_addhtb)
 ACMD(do_setzenny)
 {
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	DWORD zeni = (DWORD)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	DWORD zeni = (DWORD)atof(ws2s(strToken).c_str());
 
 	ERR_LOG(LOG_USER, "Player: %u receive %u zeni from gm command", pPlayer->GetCharID(), zeni);
 
@@ -607,8 +605,8 @@ ACMD(do_setlevel)
 	CPlayer* pTarget = pPlayer;
 
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	BYTE level = (BYTE)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	BYTE level = (BYTE)atof(ws2s(strToken).c_str());
 
 
 	RwUInt32 curlv = pTarget->GetLevel();
@@ -671,22 +669,22 @@ ACMD(do_notice)
 	*/
 
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	BYTE byDisType = (BYTE)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	BYTE byDisType = (BYTE)atof(ws2s(strToken).c_str());
 
 	pToken->PopToPeek();
-	std::string text = "";
+	std::wstring text = L"";
 
 	while (text.length() < NTL_MAX_LENGTH_OF_CHAT_MESSAGE)
 	{
-		std::string mtext = pToken->PeekNextToken(NULL, &iLine);
-		if (mtext == ";" || mtext == "")
+		std::wstring mtext = pToken->PeekNextToken(NULL, &iLine);
+		if (mtext == L";" || mtext == L"")
 		{
 			break;
 		}
 		else
 		{
-			text += mtext; text += " ";
+			text += mtext; text += L" ";
 		}
 	}
 
@@ -698,7 +696,7 @@ ACMD(do_notice)
 	res->wOpCode = GT_SYSTEM_DISPLAY_TEXT;
 	res->serverChannelId = INVALID_SERVERCHANNELID;
 	res->byDisplayType = byDisType;
-	wcscpy_s(res->wszMessage, NTL_MAX_LENGTH_OF_CHAT_MESSAGE + 1, s2ws(text).c_str());
+	wcscpy_s(res->wszMessage, NTL_MAX_LENGTH_OF_CHAT_MESSAGE + 1, text.c_str());
 	packet.SetPacketLen(sizeof(sGT_SYSTEM_DISPLAY_TEXT));
 	app->SendTo(app->GetChatServerSession(), &packet);
 }
@@ -706,32 +704,32 @@ ACMD(do_notice)
 ACMD(do_pm)
 {
 	pToken->PopToPeek();
-	std::string strName = pToken->PeekNextToken(NULL, &iLine);
+	std::wstring strName = pToken->PeekNextToken(NULL, &iLine);
 
 	pToken->PopToPeek();
-	std::string text = "";
+	std::wstring text = L"";
 
 	while (text.length() < NTL_MAX_LENGTH_OF_CHAT_MESSAGE)
 	{
-		std::string mtext = pToken->PeekNextToken(NULL, &iLine);
-		if (mtext == ";" || mtext == "")
+		std::wstring mtext = pToken->PeekNextToken(NULL, &iLine);
+		if (mtext == L";" || mtext == L"")
 		{
 			break;
 		}
 		else
 		{
-			text += mtext; text += " ";
+			text += mtext; text += L" ";
 		}
 	}
 
-	if (CPlayer* pTarget = g_pObjectManager->FindByName(s2ws(strName).c_str()))
+	if (CPlayer* pTarget = g_pObjectManager->FindByName(strName.c_str()))
 	{
 		CNtlPacket packet(sizeof(sGU_SYSTEM_DISPLAY_TEXT));
 		sGU_SYSTEM_DISPLAY_TEXT * res = (sGU_SYSTEM_DISPLAY_TEXT*)packet.GetPacketData();
 		res->wOpCode = GU_SYSTEM_DISPLAY_TEXT;
 		res->wMessageLengthInUnicode = (WORD)text.length();
 		res->byDisplayType = SERVER_TEXT_EMERGENCY;
-		wcscpy_s(res->awchMessage, NTL_MAX_LENGTH_OF_CHAT_MESSAGE + 1, s2ws(text).c_str());
+		wcscpy_s(res->awchMessage, NTL_MAX_LENGTH_OF_CHAT_MESSAGE + 1, text.c_str());
 		packet.SetPacketLen(sizeof(sGU_SYSTEM_DISPLAY_TEXT));
 		pTarget->SendPacket(&packet);
 	}
@@ -740,8 +738,8 @@ ACMD(do_pm)
 ACMD(do_teleport)
 {
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	BYTE byMap = (BYTE)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	BYTE byMap = (BYTE)atof(ws2s(strToken).c_str());
 	WORLDID worldid = 1;
 
 	CNtlVector destLoc;
@@ -818,8 +816,8 @@ ACMD(do_teleport)
 ACMD(do_world)
 {
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	WORLDID worldId = (WORLDID)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	WORLDID worldId = (WORLDID)atof(ws2s(strToken).c_str());
 
 	CGameServer* app = (CGameServer*)g_pApp;
 
@@ -847,7 +845,7 @@ ACMD(do_world)
 ACMD(do_warp)
 {
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
 
 	std::wstring name = std::wstring(strToken.begin(), strToken.end());
 	const wchar_t* wname = name.c_str();
@@ -860,7 +858,7 @@ ACMD(do_warp)
 ACMD(do_call)
 {
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
 
 	std::wstring name = std::wstring(strToken.begin(), strToken.end());
 	const wchar_t* wname = name.c_str();
@@ -880,8 +878,8 @@ ACMD(do_shutdown)
 ACMD(do_setadult)
 {
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	int n = (int)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	int n = (int)atof(ws2s(strToken).c_str());
 	bool bAdultSet = n != 0;
 
 	pPlayer->UpdateAdult(bAdultSet);
@@ -890,8 +888,8 @@ ACMD(do_setadult)
 ACMD(do_setclass)
 {
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	BYTE byClass = (BYTE)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	BYTE byClass = (BYTE)atof(ws2s(strToken).c_str());
 
 	pPlayer->UpdateClass(byClass);
 }
@@ -899,7 +897,7 @@ ACMD(do_setclass)
 ACMD(do_dc)
 {
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
 	std::wstring name = std::wstring(strToken.begin(), strToken.end());
 	const wchar_t* wname = name.c_str();
 
@@ -911,7 +909,7 @@ ACMD(do_dc)
 ACMD(do_kill)
 {
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
 	std::wstring name = std::wstring(strToken.begin(), strToken.end());
 	const wchar_t* wname = name.c_str();
 
@@ -948,8 +946,8 @@ ACMD(do_invincible)
 	*/
 
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	int nSeconds = (int)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	int nSeconds = (int)atof(ws2s(strToken).c_str());
 
 	if (nSeconds == 0 || nSeconds > 3600)
 		nSeconds = 3600;
@@ -978,34 +976,34 @@ ACMD(do_bann)
 		@bann USERNAME DURATION(DAYS. 255 = PERMA) REASON(MAX 256 CHARACTERS)
 	*/
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
 	std::wstring name = std::wstring(strToken.begin(), strToken.end());
 
 	pToken->PopToPeek();
 	strToken = pToken->PeekNextToken(NULL, &iLine);
-	BYTE byDuration = (BYTE)atof(strToken.c_str());
+	BYTE byDuration = (BYTE)atof(ws2s(strToken).c_str());
 
 	pToken->PopToPeek();
-	std::string text = "";
+	std::wstring text = L"";
 
 	while (text.length() < NTL_MAX_LENGTH_OF_CHAT_MESSAGE)
 	{
-		std::string mtext = pToken->PeekNextToken(NULL, &iLine);
-		if (mtext == ";" || mtext == "")
+		std::wstring mtext = pToken->PeekNextToken(NULL, &iLine);
+		if (mtext == L";" || mtext == L"")
 		{
 			break;
 		}
 		else
 		{
 			text += mtext;
-			text += " ";
+			text += L" ";
 		}
 	}
 
 	CPlayer* target = g_pObjectManager->FindByName(name.c_str());
 	if (target && target->IsInitialized())
 	{
-		target->Bann(text, byDuration, pPlayer->GetAccountID());
+		target->Bann(ws2s(text), byDuration, pPlayer->GetAccountID());
 	}
 }
 
@@ -1018,27 +1016,27 @@ ACMD(do_dbann)
 		@dbann ACCOUNT_ID DURATION(DAYS. 255 = PERMA) REASON(MAX 256 CHARACTERS)
 	*/
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	ACCOUNTID accid = (ACCOUNTID)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	ACCOUNTID accid = (ACCOUNTID)atof(ws2s(strToken).c_str());
 
 	pToken->PopToPeek();
 	strToken = pToken->PeekNextToken(NULL, &iLine);
-	BYTE byDuration = (BYTE)atof(strToken.c_str());
+	BYTE byDuration = (BYTE)atof(ws2s(strToken).c_str());
 
 	pToken->PopToPeek();
-	std::string text = "";
+	std::wstring text = L"";
 
 	while (text.length() < NTL_MAX_LENGTH_OF_CHAT_MESSAGE)
 	{
-		std::string mtext = pToken->PeekNextToken(NULL, &iLine);
-		if (mtext == ";" || mtext == "")
+		std::wstring mtext = pToken->PeekNextToken(NULL, &iLine);
+		if (mtext == L";" || mtext == L"")
 		{
 			break;
 		}
 		else
 		{
 			text += mtext;
-			text += " ";
+			text += L" ";
 		}
 	}
 
@@ -1047,7 +1045,7 @@ ACMD(do_dbann)
 	qRes->wOpCode = GQ_ACCOUNT_BANN;
 	qRes->gmAccountID = pPlayer->GetAccountID();
 	qRes->targetAccountID = accid;
-	strcpy_s(qRes->szReason, NTL_MAX_LENGTH_OF_CHAT_MESSAGE + 1, text.c_str());
+	strcpy_s(qRes->szReason, NTL_MAX_LENGTH_OF_CHAT_MESSAGE + 1, ws2s(text).c_str());
 	qRes->byDuration = byDuration;
 	pQry.SetPacketLen(sizeof(sGQ_ACCOUNT_BANN));
 	app->SendTo(app->GetQueryServerSession(), &pQry);
@@ -1098,7 +1096,7 @@ ACMD(do_purge) //despawn all monster around player
 ACMD(do_unstuck)
 {
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
 
 	if (!pPlayer->GetClientSession())
 		return;
@@ -1137,7 +1135,7 @@ ACMD(do_warfog)
 {
 	CGameServer* app = (CGameServer*)g_pApp;
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
 	
 	CTriggerObject* pNextObj = NULL;
 	CTriggerObject* pObj = (CTriggerObject*)pPlayer->GetCurWorld()->GetObjectList()->GetFirst(OBJTYPE_TOBJECT);
@@ -1171,8 +1169,8 @@ ACMD(do_upgrade)
 {
 	CGameServer* app = (CGameServer*)g_pApp;
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	int nGrade = (int)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	int nGrade = (int)atof(ws2s(strToken).c_str());
 
 	nGrade = (nGrade > NTL_ITEM_MAX_GRADE) ? NTL_ITEM_MAX_GRADE : nGrade;
 
@@ -1217,8 +1215,8 @@ ACMD(do_setitemrank)
 {
 	CGameServer* app = (CGameServer*)g_pApp;
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	int nRank = (int)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	int nRank = (int)atof(ws2s(strToken).c_str());
 
 	nRank = (nRank > ITEM_RANK_LAST) ? ITEM_RANK_LAST : nRank;
 
@@ -1268,27 +1266,27 @@ ACMD(do_mute)
 	*/
 
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
 	std::wstring name = std::wstring(strToken.begin(), strToken.end());
 
 	pToken->PopToPeek();
 	strToken = pToken->PeekNextToken(NULL, &iLine);
-	DWORD dwDuration = (DWORD)atof(strToken.c_str());
+	DWORD dwDuration = (DWORD)atof(ws2s(strToken).c_str());
 
 	pToken->PopToPeek();
-	std::string text = "";
+	std::wstring text = L"";
 
 	while (text.length() < NTL_MAX_LENGTH_OF_MAIL_MESSAGE - 10)
 	{
-		std::string mtext = pToken->PeekNextToken(NULL, &iLine);
-		if (mtext == ";" || mtext == "")
+		std::wstring mtext = pToken->PeekNextToken(NULL, &iLine);
+		if (mtext == L";" || mtext == L"")
 		{
 			break;
 		}
 		else
 		{
 			text += mtext;
-			text += " ";
+			text += L" ";
 		}
 	}
 
@@ -1299,7 +1297,7 @@ ACMD(do_mute)
 	res->dwDurationInMinute = dwDuration;
 	NTL_SAFE_WCSCPY(res->awchGmCharName, pPlayer->GetCharName());
 	NTL_SAFE_WCSCPY(res->awchCharName, name.c_str());
-	wcscpy_s(res->wchReason, NTL_MAX_LENGTH_OF_MAIL_MESSAGE + 1, s2ws(text).c_str());
+	wcscpy_s(res->wchReason, NTL_MAX_LENGTH_OF_MAIL_MESSAGE + 1, text.c_str());
 	packet.SetPacketLen(sizeof(sGT_UPDATE_PUNISH));
 	app->SendTo(app->GetChatServerSession(), &packet);
 }
@@ -1313,7 +1311,7 @@ ACMD(do_unmute)
 	*/
 
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
 	std::wstring name = std::wstring(strToken.begin(), strToken.end());
 
 	CNtlPacket packet(sizeof(sGT_UPDATE_PUNISH));
@@ -1337,16 +1335,16 @@ ACMD(do_go)
 	CNtlVector vLoc;
 
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	vLoc.x = (float)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	vLoc.x = (float)atof(ws2s(strToken).c_str());
 
 	pToken->PopToPeek();
 	strToken = pToken->PeekNextToken(NULL, &iLine);
-	vLoc.y = (float)atof(strToken.c_str());
+	vLoc.y = (float)atof(ws2s(strToken).c_str());
 
 	pToken->PopToPeek();
 	strToken = pToken->PeekNextToken(NULL, &iLine);
-	vLoc.z = (float)atof(strToken.c_str());
+	vLoc.z = (float)atof(ws2s(strToken).c_str());
 
 	pPlayer->StartTeleport(vLoc, pPlayer->GetCurDir(), pPlayer->GetWorldID(), TELEPORT_TYPE_COMMAND);
 }
@@ -1357,12 +1355,12 @@ ACMD(do_addtitle)
 	CGameServer* app = (CGameServer*)g_pApp;
 
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	TBLIDX titleIdx = (TBLIDX)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	TBLIDX titleIdx = (TBLIDX)atof(ws2s(strToken).c_str());
 
 	pToken->PopToPeek();
 	strToken = pToken->PeekNextToken(NULL, &iLine);
-	CHARACTERID destPc = (CHARACTERID)atof(strToken.c_str());
+	CHARACTERID destPc = (CHARACTERID)atof(ws2s(strToken).c_str());
 
 	CPlayer* pTarget = pPlayer;
 
@@ -1392,12 +1390,12 @@ ACMD(do_deltitle)
 	CGameServer* app = (CGameServer*)g_pApp;
 
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	TBLIDX titleIdx = (TBLIDX)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	TBLIDX titleIdx = (TBLIDX)atof(ws2s(strToken).c_str());
 
 	pToken->PopToPeek();
 	strToken = pToken->PeekNextToken(NULL, &iLine);
-	CHARACTERID destPc = (CHARACTERID)atof(strToken.c_str());
+	CHARACTERID destPc = (CHARACTERID)atof(ws2s(strToken).c_str());
 
 	CPlayer* pTarget = pPlayer;
 
@@ -1427,8 +1425,8 @@ ACMD(do_setitemduration)
 	CGameServer* app = (CGameServer*)g_pApp;
 
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	DWORD dwSeconds = (DWORD)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	DWORD dwSeconds = (DWORD)atof(ws2s(strToken).c_str());
 
 	/*
 		@setitemduration SECONDS
@@ -1487,9 +1485,9 @@ ACMD(do_bind)
 ACMD(do_exp)
 {
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
 
-	if (pPlayer->IsReceiveExpDisabled() == false && strToken.compare("off") == 0)
+	if (pPlayer->IsReceiveExpDisabled() == false && strToken.compare(L"off") == 0)
 	{
 		pPlayer->SetExpReceiveDisabled(true);
 
@@ -1504,7 +1502,7 @@ ACMD(do_exp)
 		packet.SetPacketLen(sizeof(sGU_SYSTEM_DISPLAY_TEXT));
 		pPlayer->SendPacket(&packet);
 	}
-	else if (pPlayer->IsReceiveExpDisabled() == true && strToken.compare("on") == 0)
+	else if (pPlayer->IsReceiveExpDisabled() == true && strToken.compare(L"on") == 0)
 	{
 		pPlayer->SetExpReceiveDisabled(false);
 
@@ -1524,7 +1522,7 @@ ACMD(do_exp)
 ACMD(do_resetexp)
 {
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
 
 	if (pPlayer->GetExp() > 0)
 	{
@@ -1548,8 +1546,8 @@ ACMD(do_starthoneybee)
 	CGameServer* app = (CGameServer*)g_pApp;
 
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	BYTE byHours = (BYTE)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	BYTE byHours = (BYTE)atof(ws2s(strToken).c_str());
 
 	if (byHours > 12)
 		byHours = 12;
@@ -1567,8 +1565,8 @@ ACMD(do_stophoneybee)
 	CGameServer* app = (CGameServer*)g_pApp;
 
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	BYTE byHours = (BYTE)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	BYTE byHours = (BYTE)atof(ws2s(strToken).c_str());
 
 	/*
 	@stophoneybee
@@ -1583,8 +1581,8 @@ ACMD(do_deleteguild)
 	CGameServer* app = (CGameServer*)g_pApp;
 
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	const char* chName = strToken.c_str();
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	const char* chName = ws2s(strToken).c_str();
 
 	/*
 		@deleteguild GUILDNAME
@@ -1611,8 +1609,8 @@ ACMD(do_cancelah)
 	CGameServer* app = (CGameServer*)g_pApp;
 
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	CHARACTERID charid = (CHARACTERID)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	CHARACTERID charid = (CHARACTERID)atof(ws2s(strToken).c_str());
 
 	/*
 		@cancelah charid
@@ -1632,8 +1630,8 @@ ACMD(do_addmudosa)
 	CGameServer * app = (CGameServer*)NtlSfxGetApp();
 
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	DWORD dwMudosa = (DWORD)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	DWORD dwMudosa = (DWORD)atof(ws2s(strToken).c_str());
 
 	pToken->PopToPeek();
 	strToken = pToken->PeekNextToken(NULL, &iLine);
@@ -1658,11 +1656,11 @@ ACMD(do_start)
 	CGameServer * app = (CGameServer*)NtlSfxGetApp();
 
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	BYTE byClass = (BYTE)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	BYTE byClass = (BYTE)atof(ws2s(strToken).c_str());
 
 	strToken = pToken->PeekNextToken(NULL, &iLine);
-	int nlv = (int)atof(strToken.c_str());
+	int nlv = (int)atof(ws2s(strToken).c_str());
 
 	if (nlv != 60 && nlv != 70)
 		return;
@@ -1827,11 +1825,11 @@ ACMD(do_start)
 ACMD(do_createloot)
 {
 	pToken->PopToPeek();
-	std::string strToken = pToken->PeekNextToken(NULL, &iLine);
-	TBLIDX ItemId = (TBLIDX)atof(strToken.c_str());
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	TBLIDX ItemId = (TBLIDX)atof(ws2s(strToken).c_str());
 
 	strToken = pToken->PeekNextToken(NULL, &iLine);
-	int nCount = (int)atof(strToken.c_str());
+	int nCount = (int)atof(ws2s(strToken).c_str());
 
 	if (nCount > 100)
 		nCount = 100;

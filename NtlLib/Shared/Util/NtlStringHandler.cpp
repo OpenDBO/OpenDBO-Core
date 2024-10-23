@@ -1,17 +1,18 @@
 #include "StdAfx.h"
 #include "NtlStringHandler.h"
 
+#include <codecvt>
+
 
 const DWORD NTL_MAX_LENGTH_OF_FORMAT_STRING_RESULT = 1024;
 
 std::wstring s2ws(const std::string& s)
 {
-#if(_MSC_PLATFORM_TOOLSET > 100)
+#if(_MSC_VER >= 1900)
 
-	std::string convert_typeX = std::codecvt_utf8<wchar_t>;
-	std::wstring_convert<convert_typeX, wchar_t> converterX;
+	std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t> converter;
+	return converter.from_bytes(s);
 
-	return converterX.from_bytes(s);
 #else
 
 	WCHAR* pTemp = Ntl_MB2WC(s.c_str());
@@ -27,12 +28,10 @@ std::wstring s2ws(const std::string& s)
 
 std::string ws2s(const std::wstring& wstr)
 {
-#if(_MSC_PLATFORM_TOOLSET > 100)
+#if(_MSC_VER >= 1900)
 
-	auto convert_typeX = std::codecvt_utf8<wchar_t>;
-	std::wstring_convert<convert_typeX, wchar_t> converterX;
-
-	return converterX.to_bytes(wstr);
+	std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t> converter;
+	return converter.to_bytes(wstr);
 
 #else
 

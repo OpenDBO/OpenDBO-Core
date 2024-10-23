@@ -1893,10 +1893,12 @@ void CSkill::OnAffected()
 
 	for (int i = 0; i < m_actionSkill.bySkillResultCount; i++)
 	{
-		CCharacter* pTarget = g_pObjectManager->GetChar(m_actionSkill.aSkillResult[i].hTarget);
-		if (pTarget && pTarget->IsInitialized() && pTarget->IsFainting() == false)
+		auto& skillResult = m_actionSkill.aSkillResult[i];
+		CCharacter* pTarget = g_pObjectManager->GetChar(skillResult.hTarget);
+
+		if (pTarget && pTarget->IsInitialized() && !pTarget->IsFainting())
 		{
-			nTotalReflect += m_actionSkill.aSkillResult[i].damageByReflectingCurse;
+			nTotalReflect += skillResult.damageByReflectingCurse;
 
 			if (m_actionSkill.bIsSkillHarmful && !m_pOwnerRef->IsAttackable(pTarget))
 			{
@@ -1910,73 +1912,85 @@ void CSkill::OnAffected()
 			}
 
 			float fDmg = 0.0f;
-			int nRecoverLP = 0;
+			int nStealLP = 0;
 
-			if (m_actionSkill.aSkillResult[i].effectResult[NTL_SYSTEM_EFFECT_1].eResultType == DBO_SYSTEM_EFFECT_RESULT_TYPE_LP_EP_STEAL)
+			// Calculate LP steal if needed.
+			if (skillResult.effectResult[NTL_SYSTEM_EFFECT_1].eResultType == DBO_SYSTEM_EFFECT_RESULT_TYPE_LP_EP_STEAL)
 			{
-				fDmg += m_actionSkill.aSkillResult[i].effectResult[NTL_SYSTEM_EFFECT_1].LP_EP_STEAL_fLpDamage;
-				nRecoverLP += (int)m_actionSkill.aSkillResult[i].effectResult[NTL_SYSTEM_EFFECT_1].LP_EP_STEAL_fLpGained;
+				fDmg += skillResult.effectResult[NTL_SYSTEM_EFFECT_1].LP_EP_STEAL_fLpDamage;
+				nStealLP += (int)skillResult.effectResult[NTL_SYSTEM_EFFECT_1].LP_EP_STEAL_fLpGained;
 			}
-			if (m_actionSkill.aSkillResult[i].effectResult[NTL_SYSTEM_EFFECT_2].eResultType == DBO_SYSTEM_EFFECT_RESULT_TYPE_LP_EP_STEAL)
+			if (skillResult.effectResult[NTL_SYSTEM_EFFECT_2].eResultType == DBO_SYSTEM_EFFECT_RESULT_TYPE_LP_EP_STEAL)
 			{
-				fDmg += m_actionSkill.aSkillResult[i].effectResult[NTL_SYSTEM_EFFECT_2].LP_EP_STEAL_fLpDamage;
-				nRecoverLP += (int)m_actionSkill.aSkillResult[i].effectResult[NTL_SYSTEM_EFFECT_2].LP_EP_STEAL_fLpGained;
-			}
-
-			if(nRecoverLP > 0)
-				m_pOwnerRef->UpdateCurLP(nRecoverLP, true, false);
-
-			if (m_actionSkill.aSkillResult[i].byAttackResult == BATTLE_ATTACK_RESULT_KNOCKDOWN && pTarget->IsFainting() == false)
-			{
-				CNtlVector vShift(pTarget->GetCurLoc() - m_pOwnerRef->GetCurLoc());
-				vShift.y = 0.0f;
-				vShift.SafeNormalize();
-				vShift *= +NTL_BATTLE_KNOCKDOWN_DISTANCE;
-				vShift.CopyTo(m_actionSkill.aSkillResult[i].vShift);
-				pTarget->SendCharStateKnockdown(m_actionSkill.aSkillResult[i].vShift);
+				fDmg += skillResult.effectResult[NTL_SYSTEM_EFFECT_2].LP_EP_STEAL_fLpDamage;
+				nStealLP += (int)skillResult.effectResult[NTL_SYSTEM_EFFECT_2].LP_EP_STEAL_fLpGained;
 			}
 
-			bool bIsTargetFaint = false;
+			if (nStealLP > 0)
+				m_pOwnerRef->UpdateCurLP(nStealLP, true, false);
 
 			if (m_actionSkill.bIsSkillHarmful)
 			{
-				if (m_actionSkill.aSkillResult[i].effectResult[NTL_SYSTEM_EFFECT_1].eResultType == DBO_SYSTEM_EFFECT_RESULT_TYPE_DD_DOT)
-				{
-					fDmg += m_actionSkill.aSkillResult[i].effectResult[NTL_SYSTEM_EFFECT_1].DD_DOT_fDamage;
-				}
-
-				if (m_actionSkill.aSkillResult[i].effectResult[NTL_SYSTEM_EFFECT_2].eResultType == DBO_SYSTEM_EFFECT_RESULT_TYPE_DD_DOT)
-				{
-					fDmg += m_actionSkill.aSkillResult[i].effectResult[NTL_SYSTEM_EFFECT_2].DD_DOT_fDamage;
-				}
-
-				//printf("fDmg %f bySkill_Active_Type %u \n", fDmg, GetOriginalTableData()->bySkill_Active_Type);
-				if (fDmg > 0.0f && m_actionSkill.bCanTargetRecoverOnHit) //deal dmg and check if not dead
-				{
-					if (pTarget->OnSkillAction(m_pOwnerRef, (int)fDmg, 0, m_actionSkill.aSkillResult[i].byAttackResult, m_actionSkill.bCanWakeUpTarget) == false)
-					{
-						if (m_actionSkill.aSkillResult[i].effectResult[NTL_SYSTEM_EFFECT_1].DD_DOT_lpEpRecovered.bIsLpRecoveredWhenHit || m_actionSkill.aSkillResult[i].effectResult[NTL_SYSTEM_EFFECT_2].DD_DOT_lpEpRecovered.bIsLpRecoveredWhenHit)
-							pTarget->UpdateCurLP(m_actionSkill.aSkillResult[i].effectResult[NTL_SYSTEM_EFFECT_1].DD_DOT_lpEpRecovered.targetLpRecoveredWhenHit + m_actionSkill.aSkillResult[i].effectResult[NTL_SYSTEM_EFFECT_2].DD_DOT_lpEpRecovered.targetLpRecoveredWhenHit, true, false);
-
-						if (m_actionSkill.aSkillResult[i].effectResult[NTL_SYSTEM_EFFECT_1].DD_DOT_lpEpRecovered.bIsEpRecoveredWhenHit || m_actionSkill.aSkillResult[i].effectResult[NTL_SYSTEM_EFFECT_2].DD_DOT_lpEpRecovered.bIsEpRecoveredWhenHit)
-							pTarget->UpdateCurEP(WORD(m_actionSkill.aSkillResult[i].effectResult[NTL_SYSTEM_EFFECT_1].DD_DOT_lpEpRecovered.dwTargetEpRecoveredWhenHit + m_actionSkill.aSkillResult[i].effectResult[NTL_SYSTEM_EFFECT_2].DD_DOT_lpEpRecovered.dwTargetEpRecoveredWhenHit), true, false);
-					}
-					else
-					{
-						bIsTargetFaint = true;
-					}
-				}
-				else if (m_actionSkill.bCanWakeUpTarget)
+				// If target is sleeping and the action can wake it up, to do it.
+				if (pTarget->IsSleeping() && m_actionSkill.bCanWakeUpTarget)
 				{
 					pTarget->GetBuffManager()->EndBuff(ACTIVE_SLEEP);
 				}
+
+				// Apply knockdown if needed.
+				if (skillResult.byAttackResult == BATTLE_ATTACK_RESULT_KNOCKDOWN && !pTarget->IsKnockedDown())
+				{
+					CNtlVector vShift(pTarget->GetCurLoc() - m_pOwnerRef->GetCurLoc());
+					vShift.y = 0.0f;
+					vShift.SafeNormalize();
+					vShift *= +NTL_BATTLE_KNOCKDOWN_DISTANCE;
+					vShift.CopyTo(skillResult.vShift);
+					pTarget->SendCharStateKnockdown(skillResult.vShift);
+				}
+
+				// Calculate dot damage if needed.
+				if (skillResult.effectResult[NTL_SYSTEM_EFFECT_1].eResultType == DBO_SYSTEM_EFFECT_RESULT_TYPE_DD_DOT)
+					fDmg += skillResult.effectResult[NTL_SYSTEM_EFFECT_1].DD_DOT_fDamage;
+				if (skillResult.effectResult[NTL_SYSTEM_EFFECT_2].eResultType == DBO_SYSTEM_EFFECT_RESULT_TYPE_DD_DOT)
+					fDmg += skillResult.effectResult[NTL_SYSTEM_EFFECT_2].DD_DOT_fDamage;
+
+				if (fDmg > 0.0f) // Deal dmg if it exists.
+				{
+					// Try to deal damage and if target dies with this action, stop handling it and continue with any other possible target.
+					if (pTarget->OnSkillAction(m_pOwnerRef, (int)fDmg, 0, skillResult.byAttackResult, m_actionSkill.bCanWakeUpTarget))
+						continue;
+					
+					// If action can possibly recover LP/EP on hit, try to do it.
+					if (m_actionSkill.bCanTargetRecoverOnHit)
+					{
+						int nRecoverLP = 0;
+						int nRecoverEP = 0;
+
+						// Calculate any possible LP recovery.
+						if (skillResult.effectResult[NTL_SYSTEM_EFFECT_1].DD_DOT_lpEpRecovered.bIsLpRecoveredWhenHit)
+							nRecoverLP += skillResult.effectResult[NTL_SYSTEM_EFFECT_1].DD_DOT_lpEpRecovered.targetLpRecoveredWhenHit;
+						if (skillResult.effectResult[NTL_SYSTEM_EFFECT_2].DD_DOT_lpEpRecovered.bIsLpRecoveredWhenHit)
+							nRecoverLP += skillResult.effectResult[NTL_SYSTEM_EFFECT_2].DD_DOT_lpEpRecovered.targetLpRecoveredWhenHit;
+
+						// Calculate any possible EP recovery.
+						if (skillResult.effectResult[NTL_SYSTEM_EFFECT_2].DD_DOT_lpEpRecovered.bIsEpRecoveredWhenHit)
+							nRecoverEP += skillResult.effectResult[NTL_SYSTEM_EFFECT_2].DD_DOT_lpEpRecovered.dwTargetEpRecoveredWhenHit;
+						if (skillResult.effectResult[NTL_SYSTEM_EFFECT_1].DD_DOT_lpEpRecovered.bIsEpRecoveredWhenHit)
+							nRecoverEP += skillResult.effectResult[NTL_SYSTEM_EFFECT_1].DD_DOT_lpEpRecovered.dwTargetEpRecoveredWhenHit;
+
+						// Apply the recoveries if they exist.
+						if (nRecoverLP > 0)
+							pTarget->UpdateCurLP(nRecoverLP, true, false);
+						if (nRecoverEP > 0)
+							pTarget->UpdateCurEP(WORD(nRecoverEP), true, false);
+					}
+				}
 			}
 
-			//add buffs last or it might happen that buff like sleep will be removed at OnSkillAction
+			// Add buffs last or it might happen that buff like sleep will be removed at OnSkillAction.
 
-			//check if we have to add a buff
-			//	printf("m_actionSkill.dwKeepTime[i] %u m_actionSkill.aSkillResult[i].byAttackResult %u\n", m_actionSkill.dwKeepTime[i], m_actionSkill.aSkillResult[i].byAttackResult);
-			if (bIsTargetFaint == false && m_actionSkill.dwKeepTime[i] > 0 && m_actionSkill.aSkillResult[i].byAttackResult != BATTLE_ATTACK_RESULT_RESISTED && m_actionSkill.aSkillResult[i].byAttackResult != BATTLE_ATTACK_RESULT_IMMUNE)
+			// Check if we have to add a buff.
+			if (m_actionSkill.dwKeepTime[i] > 0 && skillResult.byAttackResult != BATTLE_ATTACK_RESULT_RESISTED && skillResult.byAttackResult != BATTLE_ATTACK_RESULT_IMMUNE)
 			{
 				BYTE buffIndex = INVALID_BYTE;
 
@@ -1995,19 +2009,19 @@ void CSkill::OnAffected()
 		}
 	}
 
-	//deal reflect damage
+	// Deal reflected damage.
 	if (nTotalReflect > 0)
 	{
 		if(m_pOwnerRef->OnAttackAction(NULL, nTotalReflect, BATTLE_ATTACK_RESULT_REFLECTED_DAMAGE))
 		{
-			//init skill
+			// Init skill.
 			InitSkillUse();
 
 			return;
 		}
 	}
 
-	// Check if has curse which damage me when using skill
+	// Check if has curse which damage me when using skill.
 	if (m_pOwnerRef->GetStateManager()->IsCharCondition(CHARCOND_INVINCIBLE) == false)
 	{
 		if (CBuff* pCurseBuff = m_pOwnerRef->GetBuffManager()->FindAnyBuff(ACTIVE_SKILL_LP_DAMAGE))
@@ -2032,14 +2046,12 @@ void CSkill::OnAffected()
 					if (pCurseDebuffSkill->bySkill_Effect_Type[x] == SYSTEM_EFFECT_APPLY_TYPE_PERCENT)
 						fCurseDmg = fCurseDmg * (float)m_pOwnerRef->GetCurLP() / 100.f;
 
-					//	printf("fCurseDmg %f, pCurseDebuffSkill->bySkill_Effect_Type[0] %u \n", fCurseDmg, pCurseDebuffSkill->bySkill_Effect_Type[x]);
-
 					m_pOwnerRef->SendEffectAffected(g_pTableContainer->GetSystemEffectTable()->GetEffectTblidx(ACTIVE_SKILL_LP_DAMAGE), pCurseBuff->GetSourceType(), pCurseBuff->GetSourceTblidx(),
 						fCurseDmg, INVALID_FLOAT, pCurseBuff->GetCasterHandle());
 
 					if (m_pOwnerRef->OnBuffDamage(pCurseBuff->GetCasterHandle(), fCurseDmg))
 					{
-						//init skill
+						// Init skill.
 						InitSkillUse();
 
 						return;
@@ -2057,7 +2069,7 @@ void CSkill::OnAffected()
 		m_pOwnerRef->Faint(NULL, FAINT_REASON_SELF_FAINTING);
 	}
 
-	//do it outside loop. Otherwise if the target is dead and no other target exist, this will never be called.
+	// Do it outside loop. Otherwise if the target is dead and no other target exist, this will never be called.
 	for (int e = 0; e < NTL_MAX_EFFECT_IN_SKILL; e++)
 	{
 		switch (GetEffectCode(e))
@@ -2076,7 +2088,7 @@ void CSkill::OnAffected()
 		}
 	}
 
-	//init skill
+	// Init skill.
 	InitSkillUse();
 }
 

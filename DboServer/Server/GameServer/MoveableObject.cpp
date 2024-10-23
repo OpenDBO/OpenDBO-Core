@@ -236,7 +236,7 @@ bool CMoveableObject::PredictMovement(DWORD dwTickDiff, CNtlVector& rvNewDir, CN
 		}
 		else
 		{
-			ERR_LOG(LOG_USER, "invalid move flag(%u) in predict movement", GetMoveFlag());
+			//ERR_LOG(LOG_USER, "invalid move flag(%u) in predict movement", GetMoveFlag());
 			return false;
 		}
 	}
@@ -269,7 +269,7 @@ bool CMoveableObject::PredictMovement(DWORD dwTickDiff, CNtlVector& rvNewDir, CN
 		}
 		else
 		{
-			ERR_LOG(LOG_USER, "invalid move flag(%u) in predict movement", GetMoveFlag());
+			//ERR_LOG(LOG_USER, "invalid move flag(%u) in predict movement", GetMoveFlag());
 			return false;
 		}
 	}

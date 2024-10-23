@@ -549,18 +549,6 @@ float CNtlNaviImp::GetHeight( NAVI_INST_HANDLE hHandle, float x, float y, float 
 	return pPEWorld->GetHeight( x, y, z );
 }
 
-long CNtlNaviImp::GetFastHeight(NAVI_INST_HANDLE hHandle, float x, float y, float z, float & newy, int nVertRange)
-{
-	if(m_pNaviPEDataImporter == NULL)
-		return 0xFFFFFFFF;
-
-	CNtlNaviPEWorld* pPEWorld = m_pNaviPEDataImporter->FindNaviWorld(hHandle);
-	if (pPEWorld == NULL)
-		return 0xFFFFFFFF;
-
-	return pPEWorld->GetFastHeight(x, y, z, newy, nVertRange);
-}
-
 float CNtlNaviImp::GetGuaranteedHeight( NAVI_INST_HANDLE hHandle, float x, float y, float z )
 {
 	if ( NULL == m_pNaviPEDataImporter )
@@ -583,7 +571,7 @@ float CNtlNaviImp::GetGuaranteedHeight( NAVI_INST_HANDLE hHandle, float x, float
 	return pPEWorld->GetGuaranteedHeight( x, y, z );
 }
 
-bool CNtlNaviImp::FindNearestPos( NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS& sSrcPos )
+bool CNtlNaviImp::FindNearestPos( NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS& sSrcPos, int nHorizRange, int nClosestRange )
 {
 	if ( NULL == m_pNaviPEDataImporter )
 	{
@@ -604,7 +592,7 @@ bool CNtlNaviImp::FindNearestPos( NAVI_INST_HANDLE hHandle, float fAgentRadius, 
 
 	CNtlNaviVector3 vSrcPos( sSrcPos.x, sSrcPos.y, sSrcPos.z );
 
-	bool bRet = pPEWorld->FindNearestPos( hHandle, fAgentRadius, vSrcPos );
+	bool bRet = pPEWorld->FindNearestPos( hHandle, fAgentRadius, vSrcPos, nHorizRange, nClosestRange );
 
 	if ( bRet )
 	{
@@ -616,37 +604,9 @@ bool CNtlNaviImp::FindNearestPos( NAVI_INST_HANDLE hHandle, float fAgentRadius, 
 	return bRet;
 }
 
-bool CNtlNaviImp::FindNearestPos(NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS & sSrcPos, sNAVI_FAST_POS & sSrcFastPos)
+bool CNtlNaviImp::FindNearestPos( NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS& sSrcPos )
 {
-	if (NULL == m_pNaviPEDataImporter)
-	{
-		return false;
-	}
-
-	CNtlNaviPEWorld* pPEWorld = m_pNaviPEDataImporter->FindNaviWorld(hHandle);
-
-	if (NULL == pPEWorld)
-	{
-		return false;
-	}
-
-	if (pPEWorld->GetCurState() != CNtlNaviPEWorld::eNAVI_PE_STATE_COMPLETE)
-	{
-		return false;
-	}
-
-	CNtlNaviVector3 vSrcPos(sSrcPos.x, sSrcPos.y, sSrcPos.z);
-
-	bool bRet = pPEWorld->FindNearestPos(hHandle, fAgentRadius, vSrcPos, sSrcFastPos);
-
-	if (bRet)
-	{
-		sSrcPos.x = vSrcPos.GetX();
-		sSrcPos.y = vSrcPos.GetY();
-		sSrcPos.z = vSrcPos.GetZ();
-	}
-
-	return bRet;
+	return FindNearestPos(hHandle, fAgentRadius, sSrcPos, PATH_HORIZ_RANGE, PATH_CLOSEST_RANGE);
 }
 
 /**
@@ -656,16 +616,17 @@ bool CNtlNaviImp::FindNearestPos(NAVI_INST_HANDLE hHandle, float fAgentRadius, s
 * \param lAgentRadius Agent의 반지름
 * \param vSourcePos	시작 좌표
 * \param vTargetPos 끝 좌표
+* \param nHorizRange Max horizontal range search
 * \return 충돌 결과를 나타내는 eCOL_TEST_RESULT 열거형
 */
-eCOL_TEST_RESULT CNtlNaviImp::CollisionTest( NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS& sSrcPos, sNAVI_POS& sDestPos )
+eCOL_TEST_RESULT CNtlNaviImp::CollisionTest( NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS& sSrcPos, sNAVI_POS& sDestPos, int nHorizRange )
 {
 	if ( NULL == m_pNaviPEDataImporter )
 	{
 		return eCOL_TEST_RESULT_FAILED;
 	}
 
-	CNtlNaviPEWorld* pPEWorld = m_pNaviPEDataImporter->FindNaviWorld( hHandle );
+	CNtlNaviPEWorld* pPEWorld = m_pNaviPEDataImporter->FindNaviWorld(hHandle);
 
 	if ( NULL == pPEWorld )
 	{
@@ -677,32 +638,15 @@ eCOL_TEST_RESULT CNtlNaviImp::CollisionTest( NAVI_INST_HANDLE hHandle, float fAg
 		return eCOL_TEST_RESULT_FAILED;
 	}
 
-	CNtlNaviVector3 vSrcPos( sSrcPos.x, sSrcPos.y, sSrcPos.z );
-	CNtlNaviVector3 vDestPos( sDestPos.x, sDestPos.y, sDestPos.z );
+	CNtlNaviVector3 vSrcPos(sSrcPos.x, sSrcPos.y, sSrcPos.z);
+	CNtlNaviVector3 vDestPos(sDestPos.x, sDestPos.y, sDestPos.z);
 
-	return pPEWorld->CollisionTest( hHandle, fAgentRadius, vSrcPos, vDestPos );
+	return pPEWorld->CollisionTest(hHandle, fAgentRadius, vSrcPos, vDestPos, nHorizRange);
 }
 
-eCOL_TEST_RESULT CNtlNaviImp::CollisionTest(NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_FAST_POS & sSrcFastPos, sNAVI_FAST_POS & sDestFastPos)
+eCOL_TEST_RESULT CNtlNaviImp::CollisionTest( NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS& sSrcPos, sNAVI_POS& sDestPos )
 {
-	if (NULL == m_pNaviPEDataImporter)
-	{
-		return eCOL_TEST_RESULT_FAILED;
-	}
-
-	CNtlNaviPEWorld* pPEWorld = m_pNaviPEDataImporter->FindNaviWorld(hHandle);
-
-	if (NULL == pPEWorld)
-	{
-		return eCOL_TEST_RESULT_FAILED;
-	}
-
-	if (pPEWorld->GetCurState() != CNtlNaviPEWorld::eNAVI_PE_STATE_COMPLETE)
-	{
-		return eCOL_TEST_RESULT_FAILED;
-	}
-
-	return pPEWorld->CollisionTest(hHandle, fAgentRadius, sSrcFastPos, sDestFastPos);
+	return CollisionTest(hHandle, fAgentRadius, sSrcPos, sDestPos, PATH_HORIZ_RANGE);
 }
 
 /**
@@ -746,36 +690,6 @@ eCOL_TEST_RESULT CNtlNaviImp::FirstCollisionTest( NAVI_INST_HANDLE hHandle, floa
 	return eTestResult;
 }
 
-eCOL_TEST_RESULT CNtlNaviImp::FirstCollisionTest(NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_FAST_POS & sSrcPos, sNAVI_POS & sDestPos, sNAVI_POS & sFirstCollisionPos)
-{
-	if (NULL == m_pNaviPEDataImporter)
-	{
-		return eCOL_TEST_RESULT_FAILED;
-	}
-
-	CNtlNaviPEWorld* pPEWorld = m_pNaviPEDataImporter->FindNaviWorld(hHandle);
-
-	if (NULL == pPEWorld)
-	{
-		return eCOL_TEST_RESULT_FAILED;
-	}
-
-	if (pPEWorld->GetCurState() != CNtlNaviPEWorld::eNAVI_PE_STATE_COMPLETE)
-	{
-		return eCOL_TEST_RESULT_FAILED;
-	}
-
-	CNtlNaviVector3 vDestPos(sDestPos.x, sDestPos.y, sDestPos.z);
-	CNtlNaviVector3 vFirstCollisionPos;
-
-	eCOL_TEST_RESULT eTestResult = pPEWorld->FirstCollisionTest(hHandle, fAgentRadius, sSrcPos, vDestPos, vFirstCollisionPos);
-	sFirstCollisionPos.x = vFirstCollisionPos.GetX();
-	sFirstCollisionPos.y = vFirstCollisionPos.GetY();
-	sFirstCollisionPos.z = vFirstCollisionPos.GetZ();
-
-	return eTestResult;
-}
-
 bool CNtlNaviImp::FindPath( NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS& sSrcPos, sNAVI_POS& sDestPos, vecdef_NaviPosList& defNaviPosList )
 {
 	if ( NULL == m_pNaviPEDataImporter )
@@ -799,207 +713,6 @@ bool CNtlNaviImp::FindPath( NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_
 	CNtlNaviVector3 vDestPos( sDestPos.x, sDestPos.y, sDestPos.z );
 
 	return pPEWorld->FindPath( hHandle, fAgentRadius, vSrcPos, vDestPos, defNaviPosList );
-}
-
-bool CNtlNaviImp::FindPath(NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_FAST_POS & sSrcFastPos, sNAVI_FAST_POS & sDestFastPos, vecdef_NaviPosList & defNaviPosList)
-{
-	if (NULL == m_pNaviPEDataImporter)
-	{
-		return false;
-	}
-
-	CNtlNaviPEWorld* pPEWorld = m_pNaviPEDataImporter->FindNaviWorld(hHandle);
-
-	if (NULL == pPEWorld)
-	{
-		return false;
-	}
-
-	if (pPEWorld->GetCurState() != CNtlNaviPEWorld::eNAVI_PE_STATE_COMPLETE)
-	{
-		return false;
-	}
-
-	return pPEWorld->FindPath(hHandle, fAgentRadius, sSrcFastPos, sDestFastPos, defNaviPosList);
-}
-
-bool CNtlNaviImp::FastFindNearestPos(NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS & sSrcPos, int nHorizRange, int nClosestRange)
-{
-	if (NULL == m_pNaviPEDataImporter)
-	{
-		return false;
-	}
-
-	CNtlNaviPEWorld* pPEWorld = m_pNaviPEDataImporter->FindNaviWorld(hHandle);
-
-	if (NULL == pPEWorld)
-	{
-		return false;
-	}
-
-	CNtlNaviVector3 vSourcePos(sSrcPos.x, sSrcPos.y, sSrcPos.z);
-
-	bool bRet = pPEWorld->FastFindNearestPos(hHandle, fAgentRadius, vSourcePos, nHorizRange, nClosestRange);
-	if (bRet)
-	{
-		sSrcPos.x = vSourcePos.GetX();
-		sSrcPos.y = vSourcePos.GetY();
-		sSrcPos.z = vSourcePos.GetZ();
-	}
-
-	return bRet;
-}
-
-eCOL_TEST_RESULT CNtlNaviImp::FastFirstCollisionTest(NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS & sSrcPos, sNAVI_POS & sDestPos, sNAVI_POS & sFirstCollisionPos)
-{
-	if (NULL == m_pNaviPEDataImporter)
-	{
-		return eCOL_TEST_RESULT_FAILED;
-	}
-
-	CNtlNaviPEWorld* pPEWorld = m_pNaviPEDataImporter->FindNaviWorld(hHandle);
-
-	if (NULL == pPEWorld)
-	{
-		return eCOL_TEST_RESULT_FAILED;
-	}
-
-	CNtlNaviVector3 vSourcePos(sSrcPos.x, sSrcPos.y, sSrcPos.z);
-	CNtlNaviVector3 vTargetPos(sDestPos.x, sDestPos.y, sDestPos.z);
-	CNtlNaviVector3 vFirstCollison;
-
-	eCOL_TEST_RESULT eResult = pPEWorld->FastFirstCollisionTest(hHandle, fAgentRadius, vSourcePos, vTargetPos, vFirstCollison);
-
-	sFirstCollisionPos.x = vFirstCollison.GetX();
-	sFirstCollisionPos.y = vFirstCollison.GetY();
-	sFirstCollisionPos.z = vFirstCollison.GetX();
-
-	return eResult;
-}
-
-eCOL_TEST_RESULT CNtlNaviImp::FastCollisionTest(NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS & sSrcPos, sNAVI_POS & sDestPos)
-{
-	if (NULL == m_pNaviPEDataImporter)
-	{
-		return eCOL_TEST_RESULT_FAILED;
-	}
-
-	CNtlNaviPEWorld* pPEWorld = m_pNaviPEDataImporter->FindNaviWorld(hHandle);
-
-	if (NULL == pPEWorld)
-	{
-		return eCOL_TEST_RESULT_FAILED;
-	}
-
-	CNtlNaviVector3 vSourcePos(sSrcPos.x, sSrcPos.y, sSrcPos.z);
-	CNtlNaviVector3 vTargetPos(sDestPos.x, sDestPos.y, sDestPos.z);
-
-	return pPEWorld->FastCollisionTest(hHandle, fAgentRadius, vSourcePos, vTargetPos);
-}
-
-eCOL_TEST_RESULT CNtlNaviImp::FastCollisionTest(NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS & sSrcPos, sNAVI_POS & sDestPos, sNAVI_POS & sNewDestPos)
-{
-	if (NULL == m_pNaviPEDataImporter)
-	{
-		return eCOL_TEST_RESULT_FAILED;
-	}
-
-	CNtlNaviPEWorld* pPEWorld = m_pNaviPEDataImporter->FindNaviWorld(hHandle);
-
-	if (NULL == pPEWorld)
-	{
-		return eCOL_TEST_RESULT_FAILED;
-	}
-
-	CNtlNaviVector3 vSourcePos(sSrcPos.x, sSrcPos.y, sSrcPos.z);
-	CNtlNaviVector3 vTargetPos(sDestPos.x, sDestPos.y, sDestPos.z);
-	CNtlNaviVector3 vNewTargetPos;
-
-	eCOL_TEST_RESULT eResult =  pPEWorld->FastCollisionTest(hHandle, fAgentRadius, vSourcePos, vTargetPos, vNewTargetPos);
-
-	if (eResult == eCOL_TEST_RESULT_NO_COL)
-	{
-		sNewDestPos.x = vNewTargetPos.GetX();
-		sNewDestPos.y = vNewTargetPos.GetY();
-		sNewDestPos.z = vNewTargetPos.GetZ();
-	}
-
-	return eResult;
-}
-
-bool CNtlNaviImp::FastFindPath(NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS & sSrcPos, sNAVI_POS & sDestPos, vecdef_NaviPosList & defNaviPosList)
-{
-	if (NULL == m_pNaviPEDataImporter)
-	{
-		return false;
-	}
-
-	CNtlNaviPEWorld* pPEWorld = m_pNaviPEDataImporter->FindNaviWorld(hHandle);
-
-	if (NULL == pPEWorld)
-	{
-		return false;
-	}
-
-	if (pPEWorld->GetCurState() != CNtlNaviPEWorld::eNAVI_PE_STATE_COMPLETE)
-	{
-		return false;
-	}
-
-	CNtlNaviVector3 vSrcPos(sSrcPos.x, sSrcPos.y, sSrcPos.z);
-	CNtlNaviVector3 vDestPos(sDestPos.x, sDestPos.y, sDestPos.z);
-
-	return pPEWorld->FastFindPath(hHandle, fAgentRadius, vSrcPos, vDestPos, defNaviPosList);
-}
-
-eCOL_TEST_RESULT CNtlNaviImp::FastChaseFindPath(NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS & sSrcPos, sNAVI_POS & sDestPos, vecdef_NaviPosList & defNaviPosList)
-{
-	if (NULL == m_pNaviPEDataImporter)
-	{
-		return eCOL_TEST_RESULT_FAILED;
-	}
-
-	CNtlNaviPEWorld* pPEWorld = m_pNaviPEDataImporter->FindNaviWorld(hHandle);
-
-	if (NULL == pPEWorld)
-	{
-		return eCOL_TEST_RESULT_FAILED;
-	}
-
-	if (pPEWorld->GetCurState() != CNtlNaviPEWorld::eNAVI_PE_STATE_COMPLETE)
-	{
-		return eCOL_TEST_RESULT_FAILED;
-	}
-
-	CNtlNaviVector3 vSrcPos(sSrcPos.x, sSrcPos.y, sSrcPos.z);
-	CNtlNaviVector3 vDestPos(sDestPos.x, sDestPos.y, sDestPos.z);
-
-	return pPEWorld->FastChaseFindPath(hHandle, fAgentRadius, vSrcPos, vDestPos, defNaviPosList);
-}
-
-eCOL_TEST_RESULT CNtlNaviImp::FastCanMoveNearestDest(NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS & sSrcPos, sNAVI_POS & sDestPos)
-{
-	if (NULL == m_pNaviPEDataImporter)
-	{
-		return eCOL_TEST_RESULT_FAILED;
-	}
-
-	CNtlNaviPEWorld* pPEWorld = m_pNaviPEDataImporter->FindNaviWorld(hHandle);
-
-	if (NULL == pPEWorld)
-	{
-		return eCOL_TEST_RESULT_FAILED;
-	}
-
-	if (pPEWorld->GetCurState() != CNtlNaviPEWorld::eNAVI_PE_STATE_COMPLETE)
-	{
-		return eCOL_TEST_RESULT_FAILED;
-	}
-
-	CNtlNaviVector3 vSourcePos(sSrcPos.x, sSrcPos.y, sSrcPos.z);
-	CNtlNaviVector3 vTargetPos(sDestPos.x, sDestPos.y, sDestPos.z);
-
-	return pPEWorld->FastCanMoveNearestDest(hHandle, fAgentRadius, vSourcePos, vTargetPos);
 }
 
 bool CNtlNaviImp::IsValidPos(NAVI_INST_HANDLE hHandle, sNAVI_POS & sSrcPos)

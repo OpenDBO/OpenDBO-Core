@@ -365,20 +365,17 @@ float CWorldManager::GetAdjustedHeight(WORLDID worldId, float fX, float fY, floa
 	{
 		CWorld* pWorld = FindWorld(worldId);
 		if (pWorld == NULL)
+		{
 			return fY;
+		}
 
 		if (GetNaviEngine()->IsPathDataLoaded(pWorld->GetTbldat()->dwWorldResourceID))
 		{
-			float fNewY;
-			long lHeight = GetNaviEngine()->GetFastHeight(pWorld->GetNaviInstanceHandle(), fX, fY, fZ, fNewY, nVertRange);
-
-			if (lHeight == 0xFFFFFFFF)
+			float fNewY = GetNaviEngine()->GetGuaranteedHeight(pWorld->GetNaviInstanceHandle(), fX, fY, fZ);
+			if (fNewY != NAVI_FLT_MAX)
 			{
-				ERR_LOG(LOG_USER, "Any object can't spawn at this point., worldId = %u, fX = %f, fY = %f, fZ = %f", worldId, fX, fY, fZ);
-				return fY;
+				return fNewY;
 			}
-
-			return fNewY;
 		}
 	}
 
@@ -395,7 +392,7 @@ bool CWorldManager::GetDestLocAfterCollision(CWorld * pCurWorld, CCharacter * pC
 
 			if (GetNaviEngine()->IsPathDataLoaded(pCurWorld->GetTbldat()->dwWorldResourceID))
 			{
-				vDestLoc.y = GetAdjustedHeight(pCurWorld->GetID(), vDestLoc.x, vDestLoc.y, vDestLoc.z, 5000);
+				vDestLoc.y = GetAdjustedHeight(pCurWorld->GetID(), vDestLoc.x, vDestLoc.y, vDestLoc.z, PATH_VERT_RANGE);
 
 				sNAVI_POS sNaviCurLoc(pChar->GetCurLoc().x, pChar->GetCurLoc().y, pChar->GetCurLoc().z);
 				sNAVI_POS sNaviDestLoc(vDestLoc.x, vDestLoc.y, vDestLoc.z);
@@ -406,7 +403,7 @@ bool CWorldManager::GetDestLocAfterCollision(CWorld * pCurWorld, CCharacter * pC
 			//	CSimplePerfomanceChecker::CSimplePerfomanceChecker(&v44);
 			//	CSimplePerfomanceChecker::Start(&v44)
 
-				eCOL_TEST_RESULT eResult = GetNaviEngine()->FastFirstCollisionTest(pCurWorld->GetNaviInstanceHandle(), fAgentRadius, sNaviCurLoc, sNaviDestLoc, sFirstCollisionPos);
+				eCOL_TEST_RESULT eResult = GetNaviEngine()->FirstCollisionTest(pCurWorld->GetNaviInstanceHandle(), fAgentRadius, sNaviCurLoc, sNaviDestLoc, sFirstCollisionPos);
 
 				switch (eResult)
 				{
@@ -419,10 +416,8 @@ bool CWorldManager::GetDestLocAfterCollision(CWorld * pCurWorld, CCharacter * pC
 						}
 						else
 						{
-							float fNewY = 0.0f;
-							long lHeight = GetNaviEngine()->GetFastHeight(pCurWorld->GetNaviInstanceHandle(), vDestLoc.x, vDestLoc.y, vDestLoc.z, fNewY, 5000);
-
-							if (lHeight == 0xFFFFFFFF)
+							float fNewY = GetNaviEngine()->GetGuaranteedHeight(pCurWorld->GetNaviInstanceHandle(), vDestLoc.x, vDestLoc.y, vDestLoc.z);
+							if (fNewY == NAVI_FLT_MAX)
 							{
 								return false;
 							}
