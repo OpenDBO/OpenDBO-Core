@@ -7715,20 +7715,13 @@ void CClientSession::RecvHTBForwardReq(CNtlPacket * pPacket)
 							sCHARSTATE curState;
 							cPlayer->GetStateManager()->CopyTo(&curState);
 
-							//apply reflect
+							// Apply reflect.
 							if (curState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[pHtb->GetCurrentStep() - 1].sSkillResult.damageByReflectingCurse > 0.f)
 							{
 								cPlayer->OnSkillAction(pTarget, (int)curState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[pHtb->GetCurrentStep() - 1].sSkillResult.damageByReflectingCurse, 0, BATTLE_ATTACK_RESULT_REFLECTED_DAMAGE, false);
 							}
 
-							float fDmg = curState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[pHtb->GetCurrentStep() - 1].sSkillResult.effectResult[0].DD_DOT_fDamage;
-
-							//apply dmg
-							if (fDmg > 0.f)
-							{
-								pTarget->OnSkillAction(cPlayer, (int)fDmg, (DWORD)fDmg, curState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[pHtb->GetCurrentStep() - 1].sSkillResult.byAttackResult, true);
-							}
-
+							// Apply knockdown.
 							if (curState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[pHtb->GetCurrentStep() - 1].sSkillResult.byAttackResult == BATTLE_ATTACK_RESULT_KNOCKDOWN && !pTarget->IsKnockedDown() && !pTarget->IsFainting())
 							{
 								CNtlVector vShift(pTarget->GetCurLoc() - cPlayer->GetCurLoc());
@@ -7737,6 +7730,14 @@ void CClientSession::RecvHTBForwardReq(CNtlPacket * pPacket)
 								vShift *= +NTL_BATTLE_KNOCKDOWN_DISTANCE;
 								vShift.CopyTo(curState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[pHtb->GetCurrentStep() - 1].sSkillResult.vShift);
 								pTarget->SendCharStateKnockdown(curState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[pHtb->GetCurrentStep() - 1].sSkillResult.vShift);
+							}
+
+							float fDmg = curState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[pHtb->GetCurrentStep() - 1].sSkillResult.effectResult[0].DD_DOT_fDamage;
+
+							// Apply damage.
+							if (fDmg > 0.f)
+							{
+								pTarget->OnSkillAction(cPlayer, (int)fDmg, (DWORD)fDmg, curState.sCharStateDetail.sCharStateHTB.aHTBSkillResult[pHtb->GetCurrentStep() - 1].sSkillResult.byAttackResult, true);
 							}
 						}
 
