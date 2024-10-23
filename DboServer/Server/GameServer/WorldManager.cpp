@@ -392,7 +392,7 @@ bool CWorldManager::GetDestLocAfterCollision(CWorld * pCurWorld, CCharacter * pC
 
 			if (GetNaviEngine()->IsPathDataLoaded(pCurWorld->GetTbldat()->dwWorldResourceID))
 			{
-				vDestLoc.y = GetAdjustedHeight(pCurWorld->GetID(), vDestLoc.x, vDestLoc.y, vDestLoc.z, 5000);
+				vDestLoc.y = GetAdjustedHeight(pCurWorld->GetID(), vDestLoc.x, vDestLoc.y, vDestLoc.z, PATH_VERT_RANGE);
 
 				sNAVI_POS sNaviCurLoc(pChar->GetCurLoc().x, pChar->GetCurLoc().y, pChar->GetCurLoc().z);
 				sNAVI_POS sNaviDestLoc(vDestLoc.x, vDestLoc.y, vDestLoc.z);
@@ -417,8 +417,13 @@ bool CWorldManager::GetDestLocAfterCollision(CWorld * pCurWorld, CCharacter * pC
 						else
 						{
 							float fNewY = GetNaviEngine()->GetGuaranteedHeight(pCurWorld->GetNaviInstanceHandle(), vDestLoc.x, vDestLoc.y, vDestLoc.z);
+							if (fNewY == NAVI_FLT_MAX)
+							{
+								return false;
+							}
+
 							rvDestLoc.x = vDestLoc.x;
-							rvDestLoc.y = fNewY != NAVI_FLT_MAX ? fNewY : vDestLoc.y;
+							rvDestLoc.y = fNewY;
 							rvDestLoc.z = vDestLoc.z;
 						}
 
