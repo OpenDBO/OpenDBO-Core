@@ -915,7 +915,7 @@ void CClientSession::RecvCharAirMove(CNtlPacket * pPacket)
 		if (cPlayer->GetMoveFlag() != NTL_MOVE_FLAG_INVALID && 
 			(cPlayer->GetMoveFlag() < NTL_MOVE_FLAG_FLY || cPlayer->GetMoveFlag() > NTL_MOVE_FLAG_FLY_ACCEL))
 		{
-			ERR_LOG(LOG_USER, "Player %u is wrong move flag %u", cPlayer->GetCharID(), cPlayer->GetMoveFlag());
+			//ERR_LOG(LOG_USER, "Player %u is wrong move flag %u", cPlayer->GetCharID(), cPlayer->GetMoveFlag());
 			return;
 		}
 	}
@@ -924,13 +924,13 @@ void CClientSession::RecvCharAirMove(CNtlPacket * pPacket)
 		if (cPlayer->GetCharStateID() != CHARSTATE_MOVING && cPlayer->GetCharStateID() != CHARSTATE_DESTMOVE && cPlayer->GetCharStateID() != CHARSTATE_FOLLOWING
 			&& cPlayer->GetCharStateID() != CHARSTATE_AIR_JUMP && cPlayer->GetCharStateID() != CHARSTATE_AIR_DASH_ACCEL)
 		{
-			ERR_LOG(LOG_USER, "Player %u is wrong state %u", cPlayer->GetCharID(), cPlayer->GetCharStateID());
+			//ERR_LOG(LOG_USER, "Player %u is wrong state %u", cPlayer->GetCharID(), cPlayer->GetCharStateID());
 			return;
 		}
 
 		if (cPlayer->GetMoveFlag() < NTL_MOVE_FLAG_FLY || cPlayer->GetMoveFlag() > NTL_MOVE_FLAG_FLY_ACCEL)
 		{
-			ERR_LOG(LOG_USER, "Player %u is wrong move flag %u", cPlayer->GetCharID(), cPlayer->GetMoveFlag());
+			//ERR_LOG(LOG_USER, "Player %u is wrong move flag %u", cPlayer->GetCharID(), cPlayer->GetMoveFlag());
 			return;
 		}
 	}
