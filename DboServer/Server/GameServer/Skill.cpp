@@ -1939,23 +1939,23 @@ void CSkill::OnAffected()
 			if (nStealLP > 0)
 				m_pOwnerRef->UpdateCurLP(nStealLP, true, false);
 
-			// Apply knockdown if needed.
-			if (skillResult.byAttackResult == BATTLE_ATTACK_RESULT_KNOCKDOWN && !pTarget->IsKnockedDown())
-			{
-				CNtlVector vShift(pTarget->GetCurLoc() - m_pOwnerRef->GetCurLoc());
-				vShift.y = 0.0f;
-				vShift.SafeNormalize();
-				vShift *= +NTL_BATTLE_KNOCKDOWN_DISTANCE;
-				vShift.CopyTo(skillResult.vShift);
-				pTarget->SendCharStateKnockdown(skillResult.vShift);
-			}
-
 			if (m_actionSkill.bIsSkillHarmful)
 			{
 				// If target is sleeping and the action can wake it up, to do it.
 				if (pTarget->IsSleeping() && m_actionSkill.bCanWakeUpTarget)
 				{
 					pTarget->GetBuffManager()->EndBuff(ACTIVE_SLEEP);
+				}
+
+				// Apply knockdown if needed.
+				if (skillResult.byAttackResult == BATTLE_ATTACK_RESULT_KNOCKDOWN && !pTarget->IsKnockedDown())
+				{
+					CNtlVector vShift(pTarget->GetCurLoc() - m_pOwnerRef->GetCurLoc());
+					vShift.y = 0.0f;
+					vShift.SafeNormalize();
+					vShift *= +NTL_BATTLE_KNOCKDOWN_DISTANCE;
+					vShift.CopyTo(skillResult.vShift);
+					pTarget->SendCharStateKnockdown(skillResult.vShift);
 				}
 
 				// Calculate dot damage if needed.
