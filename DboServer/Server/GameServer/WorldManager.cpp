@@ -365,20 +365,17 @@ float CWorldManager::GetAdjustedHeight(WORLDID worldId, float fX, float fY, floa
 	{
 		CWorld* pWorld = FindWorld(worldId);
 		if (pWorld == NULL)
+		{
 			return fY;
+		}
 
 		if (GetNaviEngine()->IsPathDataLoaded(pWorld->GetTbldat()->dwWorldResourceID))
 		{
-			float fNewY;
-			long lHeight = GetNaviEngine()->GetFastHeight(pWorld->GetNaviInstanceHandle(), fX, fY, fZ, fNewY, nVertRange);
-
-			if (lHeight == 0xFFFFFFFF)
+			float fNewY = GetNaviEngine()->GetGuaranteedHeight(pWorld->GetNaviInstanceHandle(), fX, fY, fZ);
+			if (fNewY != NAVI_FLT_MAX)
 			{
-				ERR_LOG(LOG_USER, "Any object can't spawn at this point., worldId = %u, fX = %f, fY = %f, fZ = %f", worldId, fX, fY, fZ);
-				return fY;
+				return fNewY;
 			}
-
-			return fNewY;
 		}
 	}
 
@@ -406,7 +403,7 @@ bool CWorldManager::GetDestLocAfterCollision(CWorld * pCurWorld, CCharacter * pC
 			//	CSimplePerfomanceChecker::CSimplePerfomanceChecker(&v44);
 			//	CSimplePerfomanceChecker::Start(&v44)
 
-				eCOL_TEST_RESULT eResult = GetNaviEngine()->FastFirstCollisionTest(pCurWorld->GetNaviInstanceHandle(), fAgentRadius, sNaviCurLoc, sNaviDestLoc, sFirstCollisionPos);
+				eCOL_TEST_RESULT eResult = GetNaviEngine()->FirstCollisionTest(pCurWorld->GetNaviInstanceHandle(), fAgentRadius, sNaviCurLoc, sNaviDestLoc, sFirstCollisionPos);
 
 				switch (eResult)
 				{
@@ -419,16 +416,9 @@ bool CWorldManager::GetDestLocAfterCollision(CWorld * pCurWorld, CCharacter * pC
 						}
 						else
 						{
-							float fNewY = 0.0f;
-							long lHeight = GetNaviEngine()->GetFastHeight(pCurWorld->GetNaviInstanceHandle(), vDestLoc.x, vDestLoc.y, vDestLoc.z, fNewY, 5000);
-
-							if (lHeight == 0xFFFFFFFF)
-							{
-								return false;
-							}
-
+							float fNewY = GetNaviEngine()->GetGuaranteedHeight(pCurWorld->GetNaviInstanceHandle(), vDestLoc.x, vDestLoc.y, vDestLoc.z);
 							rvDestLoc.x = vDestLoc.x;
-							rvDestLoc.y = fNewY;
+							rvDestLoc.y = fNewY != NAVI_FLT_MAX ? fNewY : vDestLoc.y;
 							rvDestLoc.z = vDestLoc.z;
 						}
 

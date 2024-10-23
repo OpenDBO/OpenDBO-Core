@@ -43,14 +43,13 @@ bool CBotAiAction_NavMove::AttachControlScriptNode(CControlScriptNode* pControlS
 		m_bRunMode = pPointMove->m_bRunMode;
 		m_fMoveSpeed = pPointMove->m_fMoveSpeed;
 
-		//get Y loc
+		// If no height (y) is defined, try to get it.
 		if (m_vDestLoc.y == 0.0f)
 		{
 			if (GetBot()->GetCurWorld())
 			{
 				CGameServer* app = (CGameServer*)g_pApp;
-
-				m_vDestLoc.y = app->GetGameMain()->GetWorldManager()->GetAdjustedHeight(GetBot()->GetCurWorld()->GetID(), m_vDestLoc.x, m_vDestLoc.y, m_vDestLoc.z, 5000);
+				m_vDestLoc.y = app->GetGameMain()->GetWorldManager()->GetAdjustedHeight(GetBot()->GetCurWorld()->GetID(), m_vDestLoc.x, m_vDestLoc.y, m_vDestLoc.z, PATH_VERT_RANGE);
 
 				return true;
 			}

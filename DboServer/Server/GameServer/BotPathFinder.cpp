@@ -211,13 +211,13 @@ CBotPathFinder::ePATH_FINDING_RESULT CBotPathFinder::PathFind()
 		{
 			sNAVI_POS sFirstCollision;
 
-			eCOL_TEST_RESULT eResult = GetNaviEngine()->FastFirstCollisionTest(m_pOwnerRef->GetCurWorld()->GetNaviInstanceHandle(), fSubjectAgentRadius, vParentCurLoc, dest, sFirstCollision);
+			eCOL_TEST_RESULT eResult = GetNaviEngine()->FirstCollisionTest(m_pOwnerRef->GetCurWorld()->GetNaviInstanceHandle(), fSubjectAgentRadius, vParentCurLoc, dest, sFirstCollision);
 			switch (eResult)
 			{
 				case eCOL_TEST_RESULT_INVALID_DEST_POS:
 				case eCOL_TEST_RESULT_COL:
 				{
-					if (GetNaviEngine()->FastFindPath(m_pOwnerRef->GetCurWorld()->GetNaviInstanceHandle(), fSubjectAgentRadius, vParentCurLoc, dest, m_vecPosList) == false)
+					if (GetNaviEngine()->FindPath(m_pOwnerRef->GetCurWorld()->GetNaviInstanceHandle(), fSubjectAgentRadius, vParentCurLoc, dest, m_vecPosList) == false)
 					{
 						return PATH_FINDING_RESULT_FAILED;
 					}
@@ -299,7 +299,7 @@ CBotPathFinder::ePATH_FINDING_RESULT CBotPathFinder::WanderPathFind()
 		{
 			sNAVI_POS sFirstCollision;
 
-			eCOL_TEST_RESULT eResult = GetNaviEngine()->FastFirstCollisionTest(m_pOwnerRef->GetCurWorld()->GetNaviInstanceHandle(), fSubjectAgentRadius, src, dest, sFirstCollision);
+			eCOL_TEST_RESULT eResult = GetNaviEngine()->FirstCollisionTest(m_pOwnerRef->GetCurWorld()->GetNaviInstanceHandle(), fSubjectAgentRadius, src, dest, sFirstCollision);
 			switch (eResult)
 			{
 				case eCOL_TEST_RESULT_INVALID_SRC_POS:
@@ -318,22 +318,14 @@ CBotPathFinder::ePATH_FINDING_RESULT CBotPathFinder::WanderPathFind()
 
 				case eCOL_TEST_RESULT_NO_COL:
 				{
-					float fNewY = 0.0f;
-
-					long lLong = GetNaviEngine()->GetFastHeight(m_pOwnerRef->GetCurWorld()->GetNaviInstanceHandle(), dest.x, dest.y, dest.z, fNewY, 5000);
-
-					if(lLong != 0xFFFFFFFF)
+					float fNewY = GetNaviEngine()->GetGuaranteedHeight(m_pOwnerRef->GetCurWorld()->GetNaviInstanceHandle(), dest.x, dest.y, dest.z);
+					if (fNewY != NAVI_FLT_MAX)
 					{
 						dest.y = fNewY;
 
 						m_vecPosList.clear();
 						m_vecPosList.push_back(src);
 						m_vecPosList.push_back(dest);
-					}
-					else
-					{
-						ERR_LOG(LOG_SYSTEM, "can not find Navi Heigth. tblidx[%u] ResourceId[%u] x:y:z[%0.3f:%0.3f:%0.3f]",
-							m_pOwnerRef->GetCurWorld()->GetIdx(), m_pOwnerRef->GetCurWorld()->GetTbldat()->dwWorldResourceID, dest.x, dest.y, dest.z);
 					}
 				}
 				break;
@@ -393,10 +385,10 @@ bool CBotPathFinder::GetNearestPos(CNtlVector& rLoc)
 		if (GetNaviEngine()->IsPathDataLoaded(m_pOwnerRef->GetCurWorld()->GetTbldat()->dwWorldResourceID))
 		{
 			float fSubjectAgentRadius = Dbo_ConvertToAgentRadius(m_pOwnerRef->GetObjectRadius());
-			int nClosestRange = (int)(fSubjectAgentRadius * 100);
+			int nClosestRange = (int)(fSubjectAgentRadius * PATH_RATIO);
 			sNAVI_POS src(rLoc.x, rLoc.y, rLoc.z);
 
-			return GetNaviEngine()->FastFindNearestPos(m_pOwnerRef->GetCurWorld()->GetNaviInstanceHandle(), fSubjectAgentRadius, src, 1, nClosestRange);
+			return GetNaviEngine()->FindNearestPos(m_pOwnerRef->GetCurWorld()->GetNaviInstanceHandle(), fSubjectAgentRadius, src, PATH_HORIZ_RANGE, nClosestRange);
 		}
 		else
 		{

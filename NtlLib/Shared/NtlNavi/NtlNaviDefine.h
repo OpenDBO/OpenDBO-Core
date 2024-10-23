@@ -127,11 +127,11 @@ enum eCOL_TEST_RESULT
 //////////////////////////////////////////////////////////////////////////
 
 
-#define MAX_PATH_HEIGHT						(1500000)
+#define MAX_PATH_HEIGHT						(1500000) // 15000 * PATH_RATIO
 
-#define PATH_HORIZ_RANGE					(2000)
-#define PATH_VERT_RANGE						(5000)
-#define PATH_CLOSEST_RANGE					(2000)
+#define PATH_HORIZ_RANGE					(2000) // 20 * PATH_RATIO
+#define PATH_VERT_RANGE						(5000) // 50 * PATH_RATIO
+#define PATH_CLOSEST_RANGE					(2000) // 20 * PATH_RATIO
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -212,13 +212,6 @@ struct sNAVI_POS
 
 typedef std::vector< sNAVI_POS > vecdef_NaviPosList;
 
-
-struct sNAVI_FAST_POS
-{
-	cPosition pos;
-	iMesh *pGround;
-	unsigned int uiGroupId;
-};
 
 //////////////////////////////////////////////////////////////////////////
 // Data for Rendering

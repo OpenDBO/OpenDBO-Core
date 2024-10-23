@@ -109,41 +109,21 @@ public:
 
 	virtual float					GetHeight( NAVI_INST_HANDLE hHandle, float x, float y, float z );
 
-	virtual long					GetFastHeight(NAVI_INST_HANDLE hHandle, float x, float y, float z, float& newy, int nVertRange);
-
 	virtual float					GetGuaranteedHeight( NAVI_INST_HANDLE hHandle, float x, float y, float z );
+
+	virtual bool					FindNearestPos( NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS& sSrcPos, int nHorizRange, int nClosestRange );
 
 	virtual bool					FindNearestPos( NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS& sSrcPos );
 
-	virtual bool					FindNearestPos(NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS& sSrcPos, sNAVI_FAST_POS& sSrcFastPos);
+	virtual eCOL_TEST_RESULT		CollisionTest( NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS& sSrcPos, sNAVI_POS& sDestPos, int nHorizRange );
 
 	virtual eCOL_TEST_RESULT		CollisionTest( NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS& sSrcPos, sNAVI_POS& sDestPos );
 
-	virtual eCOL_TEST_RESULT		CollisionTest(NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_FAST_POS& sSrcFastPos, sNAVI_FAST_POS& sDestFastPos);
-
 	virtual eCOL_TEST_RESULT		FirstCollisionTest( NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS& sSrcPos, sNAVI_POS& sDestPos, sNAVI_POS& sFirstCollisionPos );
-
-	virtual eCOL_TEST_RESULT		FirstCollisionTest(NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_FAST_POS& sSrcPos, sNAVI_POS& sDestPos, sNAVI_POS& sFirstCollisionPos);
 
 	virtual bool					FindPath( NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS& sSrcPos, sNAVI_POS& sDestPos, vecdef_NaviPosList& defNaviPosList );
 
-	virtual bool					FindPath(NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_FAST_POS& sSrcFastPos, sNAVI_FAST_POS& sDestFastPos, vecdef_NaviPosList& defNaviPosList);
-
-	virtual bool					FastFindNearestPos(NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS& sSrcPos, int nHorizRange, int nClosestRange);
-
-	virtual eCOL_TEST_RESULT		FastFirstCollisionTest(NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS& sSrcPos, sNAVI_POS& sDestPos, sNAVI_POS& sFirstCollisionPos);
-
-	virtual eCOL_TEST_RESULT		FastCollisionTest(NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS& sSrcPos, sNAVI_POS& sDestPos);
-
-	virtual eCOL_TEST_RESULT		FastCollisionTest(NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS& sSrcPos, sNAVI_POS& sDestPos, sNAVI_POS& sNewDestPos);
-
-	virtual bool					FastFindPath(NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS& sSrcPos, sNAVI_POS& sDestPos, vecdef_NaviPosList& defNaviPosList);
-
-	virtual eCOL_TEST_RESULT		FastChaseFindPath(NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS& sSrcPos, sNAVI_POS& sDestPos, vecdef_NaviPosList& defNaviPosList);
-
-	virtual eCOL_TEST_RESULT		FastCanMoveNearestDest(NAVI_INST_HANDLE hHandle, float fAgentRadius, sNAVI_POS& sSrcPos, sNAVI_POS& sDestPos);
-
-	virtual bool					IsValidPos(NAVI_INST_HANDLE hHandle, sNAVI_POS& sSrcPos);
+	virtual bool					IsValidPos( NAVI_INST_HANDLE hHandle, sNAVI_POS& sSrcPos );
 
 };
 

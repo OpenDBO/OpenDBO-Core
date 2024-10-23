@@ -77,8 +77,14 @@ bool CSummonPet::CreateDataAndSpawn(HOBJECT hOwner, TBLIDX sourceTblidx, sNPC_TB
 	sTempState.sCharStateBase.dwConditionFlag = 0;
 	sTempState.sCharStateBase.dwStateTime = 0;
 	sTempState.sCharStateBase.eAirState = AIR_STATE_OFF;
-	rCurLoc.CopyTo(sTempState.sCharStateBase.vCurLoc);
 	rCurDir.CopyTo(sTempState.sCharStateBase.vCurDir);
+	// If no height (y) is defined, try to get it before spawning the object.
+	if (rCurLoc.y == 0.0f)
+	{
+		CGameServer* app = (CGameServer*)g_pApp;
+		rCurLoc.y = app->GetGameMain()->GetWorldManager()->GetAdjustedHeight(worldId, rCurLoc.x, rCurLoc.y, rCurLoc.z, PATH_VERT_RANGE);
+	}
+	rCurLoc.CopyTo(sTempState.sCharStateBase.vCurLoc);
 	sTempState.sCharStateBase.aspectState.sAspectStateBase.byAspectStateId = ASPECTSTATE_INVALID;
 
 	bot_profile.nicknameTblidx = INVALID_TBLIDX;
