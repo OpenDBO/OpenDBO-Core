@@ -83,7 +83,7 @@ bool CNtlNaviPEWorld::ImportPathData( const char* pPath, unsigned char byLoadFla
 
 	if ( byLoadFlags & ePATH_DATA_LOAD_FLAG_LOAD_ONLY_WORLD )
 	{
-		// ÇØ´ç Æú´õ°¡ Á¸ÀçÇÏ´ÂÁö °Ë»çÇÑ´Ù
+		// 해당 폴더가 존재하는지 검사한다
 		bool bFindPathFolder = false;
 
 		{
@@ -115,7 +115,7 @@ bool CNtlNaviPEWorld::ImportPathData( const char* pPath, unsigned char byLoadFla
 			}
 		}
 
-		// ÇØ´ç ÆÐ½º¸¦ ¸øÃ£À¸¸é ÆÐ½º µ¥ÀÌÅÍ¸¸ »ç¿ëÇÏÁö ¾Ê´Â °ÍÀ¸·Î Ã³¸®ÇÑ´Ù
+		// 해당 패스를 못찾으면 패스 데이터만 사용하지 않는 것으로 처리한다
 		if ( !bFindPathFolder )
 		{
 			return true;
@@ -135,7 +135,7 @@ bool CNtlNaviPEWorld::ImportPathData( const char* pPath, unsigned char byLoadFla
 
 	SetCurState( eNAVI_PE_STATE_LOADING );
 
-	// Multi-thread ·ÎµùÀÌ ¾Æ´Ñ °æ¿ì
+	// Multi-thread 로딩이 아닌 경우
 	if ( NULL == CNtlLoadingQueue::GetInstance() )
 	{
 		return CheckLoadComplete();
@@ -262,7 +262,7 @@ unsigned int CNtlNaviPEWorld::GetAttribute( float x, float z )
 				pODInfo->GetWorldMinPos( fMinPosX, fMinPosZ );
 				pODInfo->GetWorldMaxPos( fMaxPosX, fMaxPosZ );
 
-				// Field id °è»ê
+				// Field id 계산
 
 				float fFieldSize = pODInfo->GetFieldSize();
 
@@ -278,7 +278,7 @@ unsigned int CNtlNaviPEWorld::GetAttribute( float x, float z )
 					return 0;
 				}
 
-				// Tile id °è»ê
+				// Tile id 계산
 
 				float fTileSize = pODInfo->GetTileSize();
 
@@ -306,7 +306,7 @@ unsigned int CNtlNaviPEWorld::GetAttribute( float x, float z )
 				pIDInfo->GetWorldMinPos( fMinPosX, fMinPosZ );
 				pIDInfo->GetWorldMaxPos( fMaxPosX, fMaxPosZ );
 
-				// Block id °è»ê
+				// Block id 계산
 
 				float fBlockSize = pIDInfo->GetBlockSize();
 
@@ -386,7 +386,7 @@ unsigned int CNtlNaviPEWorld::GetTextAllIndex( float x, float z )
 				pODInfo->GetWorldMinPos( fMinPosX, fMinPosZ );
 				pODInfo->GetWorldMaxPos( fMaxPosX, fMaxPosZ );
 
-				// Field id °è»ê
+				// Field id 계산
 
 				float fFieldSize = pODInfo->GetFieldSize();
 
@@ -423,7 +423,7 @@ unsigned int CNtlNaviPEWorld::GetTextAllIndex( float x, float z )
 				pIDInfo->GetWorldMinPos( fMinPosX, fMinPosZ );
 				pIDInfo->GetWorldMaxPos( fMaxPosX, fMaxPosZ );
 
-				// Block id °è»ê
+				// Block id 계산
 
 				float fBlockSize = pIDInfo->GetBlockSize();
 
@@ -473,7 +473,7 @@ unsigned int CNtlNaviPEWorld::GetZoneIndex( float x, float z )
 				pODInfo->GetWorldMinPos( fMinPosX, fMinPosZ );
 				pODInfo->GetWorldMaxPos( fMaxPosX, fMaxPosZ );
 
-				// Field id °è»ê
+				// Field id 계산
 
 				float fFieldSize = pODInfo->GetFieldSize();
 
@@ -510,7 +510,7 @@ unsigned int CNtlNaviPEWorld::GetZoneIndex( float x, float z )
 				pIDInfo->GetWorldMinPos( fMinPosX, fMinPosZ );
 				pIDInfo->GetWorldMaxPos( fMaxPosX, fMaxPosZ );
 
-				// Block id °è»ê
+				// Block id 계산
 
 				float fBlockSize = pIDInfo->GetBlockSize();
 
@@ -560,7 +560,7 @@ float CNtlNaviPEWorld::GetHeight( float x, float y, float z )
 				pODInfo->GetWorldMinPos( fMinPosX, fMinPosZ );
 				pODInfo->GetWorldMaxPos( fMaxPosX, fMaxPosZ );
 
-				// Field id °è»ê
+				// Field id 계산
 
 				float fFieldSize = pODInfo->GetFieldSize();
 				float fGroupSize = fFieldSize * pODInfo->GetCrossFieldCntOfGroup();
@@ -608,7 +608,7 @@ float CNtlNaviPEWorld::GetHeight( float x, float y, float z )
 
 			if ( pIDInfo )
 			{
-				// ÀÎµµ¿öÀÇ °æ¿ì ÇÏ³ªÀÇ navigation mesh ¸¸ Á¸ÀçÇÔ
+				// 인도워의 경우 하나의 navigation mesh 만 존재함
 				if ( m_defGroupDataList.size() != 1 )
 				{
 					return NAVI_FLT_MAX;
@@ -664,7 +664,7 @@ float CNtlNaviPEWorld::GetGuaranteedHeight( float x, float y, float z )
 				pODInfo->GetWorldMinPos( fMinPosX, fMinPosZ );
 				pODInfo->GetWorldMaxPos( fMaxPosX, fMaxPosZ );
 
-				// Field id °è»ê
+				// Field id 계산
 
 				float fFieldSize = pODInfo->GetFieldSize();
 				float fGroupSize = fFieldSize * pODInfo->GetCrossFieldCntOfGroup();
@@ -712,7 +712,7 @@ float CNtlNaviPEWorld::GetGuaranteedHeight( float x, float y, float z )
 
 			if ( pIDInfo )
 			{
-				// ÀÎµµ¿öÀÇ °æ¿ì ÇÏ³ªÀÇ navigation mesh ¸¸ Á¸ÀçÇÔ
+				// 인도워의 경우 하나의 navigation mesh 만 존재함
 				if ( m_defGroupDataList.size() != 1 )
 				{
 					return NAVI_FLT_MAX;
@@ -778,7 +778,7 @@ bool CNtlNaviPEWorld::FindNearestPos(NAVI_INST_HANDLE hHandle, float fAgentRadiu
 			pODInfo->GetWorldMinPos(fMinPosX, fMinPosZ);
 			pODInfo->GetWorldMaxPos(fMaxPosX, fMaxPosZ);
 
-			// Field id °è»ê
+			// Field id 계산
 
 			float fFieldSize = pODInfo->GetFieldSize();
 			float fGroupSize = fFieldSize * pODInfo->GetCrossFieldCntOfGroup();
@@ -864,7 +864,7 @@ bool CNtlNaviPEWorld::FindNearestPos(NAVI_INST_HANDLE hHandle, float fAgentRadiu
 				return false;
 			}
 
-			// ÀÎµµ¿öÀÇ °æ¿ì ÇÏ³ªÀÇ navigation mesh ¸¸ Á¸ÀçÇÔ
+			// 인도워의 경우 하나의 navigation mesh 만 존재함
 			if (m_defGroupDataList.size() != 1)
 			{
 				return false;
@@ -946,7 +946,7 @@ bool CNtlNaviPEWorld::FindNearestPos(NAVI_INST_HANDLE hHandle, float fAgentRadiu
 */
 eCOL_TEST_RESULT CNtlNaviPEWorld::CollisionTest( NAVI_INST_HANDLE hHandle, float fAgentRadius, CNtlNaviVector3& vSourcePos, CNtlNaviVector3& vTargetPos, int nHorizRange )
 {
-	// ÇöÀç PathEngine data°¡ ¿ÏÀüÈ÷ ·ÎµùµÇ¾î ÀÖÁö ¾Ê´Ù¸é ¿¬»êÀ» ¼öÇàÇÒ ¼ö ¾ø´Ù.
+	// 현재 PathEngine data가 완전히 로딩되어 있지 않다면 연산을 수행할 수 없다.
 	if ( eNAVI_PE_STATE_COMPLETE != GetCurState() )
 	{
 		return eCOL_TEST_RESULT_FAILED;
@@ -961,40 +961,40 @@ eCOL_TEST_RESULT CNtlNaviPEWorld::CollisionTest( NAVI_INST_HANDLE hHandle, float
 		{
 			CNtlNaviWorldOutDoorInfo* pODInfo = (CNtlNaviWorldOutDoorInfo*)m_pNaviDataMng->GetLoadedWorld();
 
-			// OutDoor Á¤º¸¸¦ °¡Á®¿Í¼­ À¯È¿ÇÒ ¶§¸¸ °Ë»çÇÑ´Ù.
+			// OutDoor 정보를 가져와서 유효할 때만 검사한다.
 			if ( pODInfo )
 			{
-				// ÇöÀç Agent list¿¡¼­ À¯È¿ÇÑ ¹ÝÁö¸§ÀÇ Agent¸¦ ²¨³»¿Â´Ù. ¾ø´Ù¸é Ãæµ¹ ½ÇÆÐ¸¦ ¸®ÅÏÇÑ´Ù.
+				// 현재 Agent list에서 유효한 반지름의 Agent를 꺼내온다. 없다면 충돌 실패를 리턴한다.
 				mapdef_AgentList::iterator itAgent = m_defAgentList.find( fAgentRadius );
 				if ( itAgent == m_defAgentList.end() )
 				{
 					return eCOL_TEST_RESULT_FAILED;
 				}
 
-				// ÇöÀç OutDoorÀÇ ÀüÃ¼ Å©±â °è»ê
+				// 현재 OutDoor의 전체 크기 계산
 				float fMinPosX, fMinPosZ;
 				float fMaxPosX, fMaxPosZ;
 
 				pODInfo->GetWorldMinPos( fMinPosX, fMinPosZ );
 				pODInfo->GetWorldMaxPos( fMaxPosX, fMaxPosZ );
 
-				// Field id °è»ê
+				// Field id 계산
 				float fFieldSize = pODInfo->GetFieldSize();
 				float fGroupSize = fFieldSize * pODInfo->GetCrossFieldCntOfGroup();
 
-				unsigned int uiCrossGroupCnt = (unsigned int)((fMaxPosX - fMinPosX) / fGroupSize);	// GroupÀÇ Çà °è»ê
-				unsigned int uiGroupX = (unsigned int)((x - fMinPosX) / fGroupSize);				// GroupÀÇ X °è»ê
-				unsigned int uiGroupZ = (unsigned int)((z - fMinPosZ) / fGroupSize);				// GroupÀÇ Z °è»ê
+				unsigned int uiCrossGroupCnt = (unsigned int)((fMaxPosX - fMinPosX) / fGroupSize);	// Group의 행 계산
+				unsigned int uiGroupX = (unsigned int)((x - fMinPosX) / fGroupSize);				// Group의 X 계산
+				unsigned int uiGroupZ = (unsigned int)((z - fMinPosZ) / fGroupSize);				// Group의 Z 계산
 				unsigned int uiGroupID = uiGroupX + uiGroupZ * uiCrossGroupCnt;						// Group ID
 
-				// GroupÀÇ ID·Î ÇöÀç X Y °¡ ¼ÓÇØ ÀÖ´Â GroupÀ» ²¨³»¿Â´Ù.
+				// Group의 ID로 현재 X Y 가 속해 있는 Group을 꺼내온다.
 				mapdef_GroupDataList::iterator itGroup = m_defGroupDataList.find( uiGroupID );
 				if ( itGroup == m_defGroupDataList.end() )
 				{
 					return eCOL_TEST_RESULT_FAILED;
 				}
 
-				// Group Data¸¦ ²¨³»¿Â´Ù.
+				// Group Data를 꺼내온다.
 				sGROUP_DATA& sGroupData = itGroup->second;
 				if ( NULL == sGroupData.pGroundMesh )
 				{
@@ -1003,7 +1003,7 @@ eCOL_TEST_RESULT CNtlNaviPEWorld::CollisionTest( NAVI_INST_HANDLE hHandle, float
 
 				tSigned32 arTemp[3];
 
-				// SourceÀÇ ¿ùµå ÁÂÇ¥ -> ÆÐ½º¿£Áø ÁÂÇ¥
+				// Source의 월드 좌표 -> 패스엔진 좌표
 				arTemp[0] = (tSigned32) WORLD_COORD_TO_PATH_COORD( x );
 				arTemp[1] = (tSigned32) WORLD_COORD_TO_PATH_COORD( z );
 				arTemp[2] = (tSigned32) WORLD_COORD_TO_PATH_COORD( vSourcePos.GetY() );
@@ -1013,7 +1013,7 @@ eCOL_TEST_RESULT CNtlNaviPEWorld::CollisionTest( NAVI_INST_HANDLE hHandle, float
 					return eCOL_TEST_RESULT_INVALID_SRC_POS;
 				}
 
-				// TargetÀÇ ¿ùµå ÁÂÇ¥ -> ÆÐ½º¿£Áø ÁÂÇ¥
+				// Target의 월드 좌표 -> 패스엔진 좌표
 				arTemp[0] = (tSigned32) WORLD_COORD_TO_PATH_COORD( vTargetPos.GetX() );
 				arTemp[1] = (tSigned32) WORLD_COORD_TO_PATH_COORD( vTargetPos.GetZ() );
 				arTemp[2] = (tSigned32) WORLD_COORD_TO_PATH_COORD( vTargetPos.GetY() );
@@ -1023,7 +1023,7 @@ eCOL_TEST_RESULT CNtlNaviPEWorld::CollisionTest( NAVI_INST_HANDLE hHandle, float
 					return eCOL_TEST_RESULT_INVALID_DEST_POS;
 				}
 
-				// ÇöÀç GroupIDÀÇ ¾Ë¸Â´Â Collision context ¸¦ ²¨³»¿Â´Ù.
+				// 현재 GroupID의 알맞는 Collision context 를 꺼내온다.
 				iCollisionContext* pContext = NULL;
 				if ( hHandle )
 				{
@@ -1040,7 +1040,7 @@ eCOL_TEST_RESULT CNtlNaviPEWorld::CollisionTest( NAVI_INST_HANDLE hHandle, float
 					}
 				}
 
-				// Source ¿Í Target À» ÀÕ´Â LineÀÌ Ãæµ¹µÇ´ÂÁö ¾ÈµÇ´ÂÁö Å×½ºÆ®ÇÑ´Ù.
+				// Source 와 Target 을 잇는 Line이 충돌되는지 안되는지 테스트한다.
 				eCOL_TEST_RESULT eTestResult = eCOL_TEST_RESULT_FAILED;
 				if( sGroupData.pGroundMesh->testLineCollision( itAgent->second.pShape, pContext, cSourcePos, cTargetPos ) )
 					eTestResult = eCOL_TEST_RESULT_COL;
@@ -1063,7 +1063,7 @@ eCOL_TEST_RESULT CNtlNaviPEWorld::CollisionTest( NAVI_INST_HANDLE hHandle, float
 					return eCOL_TEST_RESULT_FAILED;
 				}
 
-				// ÀÎµµ¿öÀÇ °æ¿ì ÇÏ³ªÀÇ navigation mesh ¸¸ Á¸ÀçÇÔ. ±×·¸Áö ¾Ê´Â °æ¿ìÀÇ Data°¡ Àß¸øµÈ °ÍÀÓ
+				// 인도워의 경우 하나의 navigation mesh 만 존재함. 그렇지 않는 경우의 Data가 잘못된 것임
 				if ( m_defGroupDataList.size() != 1 )
 				{
 					return eCOL_TEST_RESULT_FAILED;
@@ -1080,7 +1080,7 @@ eCOL_TEST_RESULT CNtlNaviPEWorld::CollisionTest( NAVI_INST_HANDLE hHandle, float
 				arTemp[1] = (tSigned32) WORLD_COORD_TO_PATH_COORD( z );
 				arTemp[2] = (tSigned32) WORLD_COORD_TO_PATH_COORD( vSourcePos.GetY() );
 
-				// PathEngine»óÀÇ ÁÂÇ¥·Î º¯È¯
+				// PathEngine상의 좌표로 변환
 				cPosition cSourcePos = sGroupData.pGroundMesh->positionNear3DPoint( arTemp, nHorizRange, PATH_VERT_RANGE );
 				if ( cSourcePos.cell == -1 )
 				{
@@ -1442,7 +1442,7 @@ bool CNtlNaviPEWorld::FindPath( NAVI_INST_HANDLE hHandle, float fAgentRadius, CN
 				pODInfo->GetWorldMinPos( fMinPosX, fMinPosZ );
 				pODInfo->GetWorldMaxPos( fMaxPosX, fMaxPosZ );
 
-				// Field id °è»ê
+				// Field id 계산
 
 				float fFieldSize = pODInfo->GetFieldSize();
 				float fGroupSize = fFieldSize * pODInfo->GetCrossFieldCntOfGroup();
@@ -1553,7 +1553,7 @@ bool CNtlNaviPEWorld::FindPath( NAVI_INST_HANDLE hHandle, float fAgentRadius, CN
 					return false;
 				}
 
-				// ÀÎµµ¿öÀÇ °æ¿ì ÇÏ³ªÀÇ navigation mesh ¸¸ Á¸ÀçÇÔ
+				// 인도워의 경우 하나의 navigation mesh 만 존재함
 				if ( m_defGroupDataList.size() != 1 )
 				{
 					return false;
@@ -1740,7 +1740,7 @@ iMesh* CNtlNaviPEWorld::GetNearestMesh( CNtlNaviVector3& vPos )
 				pODInfo->GetWorldMinPos( fMinPosX, fMinPosZ );
 				pODInfo->GetWorldMaxPos( fMaxPosX, fMaxPosZ );
 
-				// Field id °è»ê
+				// Field id 계산
 
 				float fFieldSize = pODInfo->GetFieldSize();
 				float fGroupSize = fFieldSize * pODInfo->GetCrossFieldCntOfGroup();
@@ -1752,7 +1752,7 @@ iMesh* CNtlNaviPEWorld::GetNearestMesh( CNtlNaviVector3& vPos )
 
 				mapdef_GroupDataList::iterator itGroup = m_defGroupDataList.find( uiGroupID );
 
-				// ÇØ´çÇÏ´Â Group ID¸¦ Ã£Áö ¸øÇÔ
+				// 해당하는 Group ID를 찾지 못함
 				if ( itGroup == m_defGroupDataList.end() )
 				{
 					return NULL;
@@ -1766,7 +1766,7 @@ iMesh* CNtlNaviPEWorld::GetNearestMesh( CNtlNaviVector3& vPos )
 
 	case eNAVI_INFO_WORLD_INDOOR:
 		{
-			// ÀÎµµ¿öÀÇ °æ¿ì ÇÏ³ªÀÇ navigation mesh ¸¸ Á¸ÀçÇÔ
+			// 인도워의 경우 하나의 navigation mesh 만 존재함
 			if ( m_defGroupDataList.size() != 1 )
 			{
 				return NULL;
@@ -1828,7 +1828,7 @@ void CNtlNaviPEWorld::Destroy( void )
 
 bool CNtlNaviPEWorld::ImportWorldInfo( const char* pPath )
 {
-	// Navigation data manager »ý¼º
+	// Navigation data manager 생성
 	if ( !m_pNaviDataMng->Create( pPath ) )
 	{
 		CNtlNaviLog::GetInstance()->Log( "[IMPORT] Creating the navi data manager failed. [%s]", pPath );
@@ -1836,7 +1836,7 @@ bool CNtlNaviPEWorld::ImportWorldInfo( const char* pPath )
 		return false;
 	}
 
-	// Navigation world info ·Îµù
+	// Navigation world info 로딩
 	if ( NULL == m_pNaviDataMng->Load_World() )
 	{
 		CNtlNaviLog::GetInstance()->Log( "[IMPORT] Can not import world info data. [%s]", pPath );
@@ -2118,12 +2118,12 @@ void CNtlNaviPEWorld::AttachEntityToLoad( CNtlNaviLoadingEntity* pEntity )
 
 	m_defLoadingEntityList.push_back( pEntity );
 
-	// Multi-threadÀ» »ç¿ëÇÑ ·Îµù
+	// Multi-thread을 사용한 로딩
 	if ( CNtlLoadingQueue::GetInstance() )
 	{
 		CNtlLoadingQueue::GetInstance()->AttachEntityToLoad( pEntity );
 	}
-	// Multi-threadÀ» »ç¿ëÇÏÁö ¾Ê´Â ·Îµù
+	// Multi-thread을 사용하지 않는 로딩
 	else
 	{
 		pEntity->RunMultiThread();
