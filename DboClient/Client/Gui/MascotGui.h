@@ -103,9 +103,7 @@ protected:
 
     // Mouse Actions
     VOID    OnMouseDownMascot(const CKey& key);
-    VOID    OnMouseUpMascot(const CKey& key);
     VOID    OnMouseDownSkill(const CKey& key);
-    VOID    OnMouseUpSkill(const CKey& key);
     VOID    OnMouseEnterSlot(gui::CComponent* pComponent);
     VOID    OnMouseLeaveSlot(gui::CComponent* pComponent);
     VOID	OnMouseWheel(RwInt32 nFlag, RwInt16 sDelta, CPos& pos);
@@ -192,10 +190,13 @@ protected:
     gui::CPanel* m_pPn_SkillIcon2;
     gui::CPanel* m_pPn_SkillIcon3;
 
-    // Panel map
+    // Panel map 
     gui::CPanel* m_pPn_IvnIcons[dMAX_MASCOT_SLOT] = {
-    m_pPn_IvnIcon0, m_pPn_IvnIcon1, m_pPn_IvnIcon2, m_pPn_IvnIcon3,
-    m_pPn_IvnIcon4, m_pPn_IvnIcon5, m_pPn_IvnIcon6, m_pPn_IvnIcon7
+        m_pPn_IvnIcon0, m_pPn_IvnIcon1, m_pPn_IvnIcon2, m_pPn_IvnIcon3,
+        m_pPn_IvnIcon4, m_pPn_IvnIcon5, m_pPn_IvnIcon6, m_pPn_IvnIcon7
+    };
+    gui::CPanel* m_pPn_SkillIcons[dMAX_MASCOT_SLOT] = {
+        m_pPn_SkillIcon0, m_pPn_SkillIcon1, m_pPn_SkillIcon2, m_pPn_SkillIcon3
     };
 
     // ScrollBar Group
@@ -212,10 +213,14 @@ protected:
     gui::CSlot m_slotMascotScrollSliderMoved;
     gui::CSlot m_slotMouseWheel;
     gui::CSlot m_slotReMakeSkill[dMAX_MASCOT_SKILL];
+    gui::CSlot m_slotSkillMouseEnter[dMAX_MASCOT_SLOT];
+    gui::CSlot m_slotSkillMouseLeave[dMAX_MASCOT_SLOT];
+    gui::CSlot m_slotSkillMouseDown[dMAX_MASCOT_SLOT];
+    gui::CSlot m_slotSkillPaint[dMAX_MASCOT_SLOT];
+    gui::CSlot m_slotSkillMove[dMAX_MASCOT_SLOT];
     gui::CSlot m_slotMascotMouseEnter[dMAX_MASCOT_SLOT];
     gui::CSlot m_slotMascotMouseLeave[dMAX_MASCOT_SLOT];
     gui::CSlot m_slotMascotMouseDown[dMAX_MASCOT_SLOT];
-    gui::CSlot m_slotMascotMouseUp[dMAX_MASCOT_SLOT];
     gui::CSlot m_slotMascotPaint[dMAX_MASCOT_SLOT];
     gui::CSlot m_slotMascotMove[dMAX_MASCOT_SLOT];
 

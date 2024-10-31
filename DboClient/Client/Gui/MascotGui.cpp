@@ -125,10 +125,6 @@ RwBool CMascotGui::Create()
     m_pPn_Buff1 = (gui::CPanel*)GetComponent("Pn_Buff1");
     m_pPn_Buff2 = (gui::CPanel*)GetComponent("Pn_Buff2");
     m_pPn_Buff3 = (gui::CPanel*)GetComponent("Pn_Buff3");
-    m_pPn_SkillIcon0 = (gui::CPanel*)GetComponent("Pn_SkillIcon0");
-    m_pPn_SkillIcon1 = (gui::CPanel*)GetComponent("Pn_SkillIcon1");
-    m_pPn_SkillIcon2 = (gui::CPanel*)GetComponent("Pn_SkillIcon2");
-    m_pPn_SkillIcon3 = (gui::CPanel*)GetComponent("Pn_SkillIcon3");
 
     // ScrollBar
     m_pscb_MascotScroll = (gui::CScrollBar*)GetComponent("Scb_MascotScroll");
@@ -220,7 +216,6 @@ void CMascotGui::InitializeMascotIconsAndSkills()
         m_slotMascotMouseEnter[i] = m_pPn_IvnIcons[i]->SigMouseEnter().Connect(this, &CMascotGui::OnMouseEnterSlot);
         m_slotMascotMouseLeave[i] = m_pPn_IvnIcons[i]->SigMouseLeave().Connect(this, &CMascotGui::OnMouseLeaveSlot);
         m_slotMascotMouseDown[i] = m_pPn_IvnIcons[i]->SigMouseDown().Connect(this, &CMascotGui::OnMouseDownMascot);
-        m_slotMascotMouseUp[i] = m_pPn_IvnIcons[i]->SigMouseUp().Connect(this, &CMascotGui::OnMouseUpMascot);
         m_slotMascotMove[i] = m_pPn_IvnIcons[i]->SigMove().Connect(this, &CMascotGui::OnMove);
         m_slotMascotPaint[i] = m_pPn_IvnIcons[i]->SigPaint().Connect(this, &CMascotGui::OnPaint);
 
@@ -255,6 +250,20 @@ void CMascotGui::InitializeMascotIconsAndSkills()
 
     for (RwInt32 i = 0; i < dMAX_MASCOT_SKILL; ++i)
     {
+        // Generate the dynamic component name with index
+        char componentName[256];
+        sprintf(componentName, "Pn_SkillIcon%d", i);  // Create component name dynamically
+
+        // Retrieve the panel using the dynamic name
+        m_pPn_SkillIcons[i] = (gui::CPanel*)GetComponent(componentName);
+
+        // Connect mouse events for each panel dynamically
+        m_slotSkillMouseEnter[i] = m_pPn_SkillIcons[i]->SigMouseEnter().Connect(this, &CMascotGui::OnMouseEnterSlot);
+        m_slotSkillMouseLeave[i] = m_pPn_SkillIcons[i]->SigMouseLeave().Connect(this, &CMascotGui::OnMouseLeaveSlot);
+        m_slotSkillMouseDown[i] = m_pPn_SkillIcons[i]->SigMouseDown().Connect(this, &CMascotGui::OnMouseDownSkill);
+        m_slotSkillMove[i] = m_pPn_SkillIcons[i]->SigMove().Connect(this, &CMascotGui::OnMove);
+        m_slotSkillPaint[i] = m_pPn_SkillIcons[i]->SigPaint().Connect(this, &CMascotGui::OnPaint);
+
         m_MascotSkill[i].slot.Create(m_pThis, DIALOG_MASCOT, REGULAR_SLOT_SKILL_TABLE);
         m_MascotSkill[i].slot.SetPosition_fromParent(dMASCOTEX_SKILL_X, iSkillIconY);
 
@@ -631,6 +640,70 @@ VOID CMascotGui::OnMouseDownMascot(const CKey& key)
         m_iClickEffectedSlot = m_CurrentMascotParamters.m_CurrentMascotSlotIndex;
         m_MascotIcon[m_iClickEffectedSlot].slot.ClickEffect(true);
 
+
+        // Mouse Up Event:
+        m_pThis->ReleaseMouse();
+
+        // Clear the click effect for the mascot icon if it was clicked.
+        if (m_iClickEffectedSlot != dMASCOT_INVALID_INDEX)
+        {
+            m_MascotIcon[m_iClickEffectedSlot].slot.ClickEffect(false);
+            m_iClickEffectedSlot = dMASCOT_INVALID_INDEX;
+        }
+
+        if (!IsShow())
+        {
+            m_iMouseDownSlot = dMASCOT_INVALID_INDEX;
+            return;
+        }
+
+        if (key.m_nID == UD_LEFT_BUTTON) // Left button click
+        {
+            // Select and open the mascot info window.
+            SelectEffect(true, m_iMouseDownSlot);
+            OpenMascotInfo(true, m_iMouseDownSlot);
+            OnMascotClicked(m_iMouseDownSlot);
+        }
+        else if (key.m_nID == UD_RIGHT_BUTTON) // Right button click
+        {
+            SelectEffect(true, m_iMouseDownSlot);
+            OnSummonBtnClicked(NULL);
+            OpenMascotInfo(true, m_iMouseDownSlot);
+            OnMascotClicked(m_iMouseDownSlot);
+
+            // The following lines of code are responsible for handling item selection in the gift shop interface.
+            // The item index is calculated based on the current page and the selected mouse-down slot.
+            // This functionality appears to be related to registering an item for an event, either for a maximum item action
+            // (e.g., gifting the entire stack) or for a regular item action (e.g., gifting a single item).
+            //
+            // The code is commented out possibly because the item registration logic was not fully implemented,
+            // may have caused unintended behavior, or was deemed unnecessary for the current functionality.
+            //
+            // RwInt32 iItemIndex = (m_iCurPage * dMAX_ITEM_PANEL) + m_iMouseDownSlot;
+
+            // if (key.m_dwVKey == UD_MK_CONTROL)
+            // {
+            //     // If the Control key is pressed, register a gift shop event for the maximum item action.
+            //     CDboEventGenerator::GiftShopEvent(eGIFTSHOP_EVENT_REG_ITEM_MAX,
+            //         m_aShopItem[m_iCurTab][iItemIndex].hItem,
+            //         m_aShopItem[m_iCurTab][iItemIndex].uiPrice,
+            //         (wchar_t*)m_aShopItem[m_iCurTab][iItemIndex].wstrItemName.c_str(),
+            //         m_iCurTab, iItemIndex, m_aShopItem[m_iCurTab][iItemIndex].pITEM_DATA->byMax_Stack);
+            // }
+            // else
+            // {
+            //     // Otherwise, register a gift shop event for a regular item action.
+            //     CDboEventGenerator::GiftShopEvent(eGIFTSHOP_EVENT_REG_ITEM,
+            //         m_aShopItem[m_iCurTab][iItemIndex].hItem,
+            //         m_aShopItem[m_iCurTab][iItemIndex].uiPrice,
+            //         (wchar_t*)m_aShopItem[m_iCurTab][iItemIndex].wstrItemName.c_str(),
+            //         m_iCurTab, iItemIndex, 1);
+            // }
+        }
+
+        // Reset mouse down slots after processing.
+        m_iMouseDownSlot = dMASCOT_INVALID_INDEX;
+
         return;
     }
 }
@@ -646,114 +719,43 @@ VOID CMascotGui::OnMouseDownSkill(const CKey& key)
         // Set the clicked effect for the skill icon.
         m_iClidkEffectedSlotSkill = m_CurrentSkillSlotIndex;
         m_MascotSkill[m_iClidkEffectedSlotSkill].slot.ClickEffect(true);
-    }
-}
 
-// Handles mouse button up events.
-// Releases the mouse and checks for valid clicks on mascot and skill slots.
-// Executes actions based on the type of button clicked (left or right).
-VOID CMascotGui::OnMouseUpMascot(const CKey& key)
-{
-    m_pThis->ReleaseMouse();
-
-    // Clear the click effect for the mascot icon if it was clicked.
-    if (m_iClickEffectedSlot != dMASCOT_INVALID_INDEX)
-    {
-        m_MascotIcon[m_iClickEffectedSlot].slot.ClickEffect(false);
-        m_iClickEffectedSlot = dMASCOT_INVALID_INDEX;
-    }
-
-    if (!IsShow())
-    {
-        m_iMouseDownSlot = dMASCOT_INVALID_INDEX;
-        return;
-    }
-
-    if (key.m_nID == UD_LEFT_BUTTON) // Left button click
-    {
-        // Select and open the mascot info window.
-        SelectEffect(true, m_iMouseDownSlot);
-        OpenMascotInfo(true, m_iMouseDownSlot);
-        OnMascotClicked(m_iMouseDownSlot);
-    }
-    else if (key.m_nID == UD_RIGHT_BUTTON) // Right button click
-    {
-        SelectEffect(true, m_iMouseDownSlot);
-        OnSummonBtnClicked(NULL);
-        OpenMascotInfo(true, m_iMouseDownSlot);
-        OnMascotClicked(m_iMouseDownSlot);
-
-        // The following lines of code are responsible for handling item selection in the gift shop interface.
-        // The item index is calculated based on the current page and the selected mouse-down slot.
-        // This functionality appears to be related to registering an item for an event, either for a maximum item action
-        // (e.g., gifting the entire stack) or for a regular item action (e.g., gifting a single item).
-        //
-        // The code is commented out possibly because the item registration logic was not fully implemented,
-        // may have caused unintended behavior, or was deemed unnecessary for the current functionality.
-        //
-        // RwInt32 iItemIndex = (m_iCurPage * dMAX_ITEM_PANEL) + m_iMouseDownSlot;
-
-        // if (key.m_dwVKey == UD_MK_CONTROL)
-        // {
-        //     // If the Control key is pressed, register a gift shop event for the maximum item action.
-        //     CDboEventGenerator::GiftShopEvent(eGIFTSHOP_EVENT_REG_ITEM_MAX,
-        //         m_aShopItem[m_iCurTab][iItemIndex].hItem,
-        //         m_aShopItem[m_iCurTab][iItemIndex].uiPrice,
-        //         (wchar_t*)m_aShopItem[m_iCurTab][iItemIndex].wstrItemName.c_str(),
-        //         m_iCurTab, iItemIndex, m_aShopItem[m_iCurTab][iItemIndex].pITEM_DATA->byMax_Stack);
-        // }
-        // else
-        // {
-        //     // Otherwise, register a gift shop event for a regular item action.
-        //     CDboEventGenerator::GiftShopEvent(eGIFTSHOP_EVENT_REG_ITEM,
-        //         m_aShopItem[m_iCurTab][iItemIndex].hItem,
-        //         m_aShopItem[m_iCurTab][iItemIndex].uiPrice,
-        //         (wchar_t*)m_aShopItem[m_iCurTab][iItemIndex].wstrItemName.c_str(),
-        //         m_iCurTab, iItemIndex, 1);
-        // }
-    }
-
-    // Reset mouse down slots after processing.
-    m_iMouseDownSlot = dMASCOT_INVALID_INDEX;
-}
-
-VOID CMascotGui::OnMouseUpSkill(const CKey& key)
-{
-    // Clear the click effect for the skill icon if it was clicked.
-    if (m_iClidkEffectedSlotSkill != dMASCOT_INVALID_INDEX)
-    {
-        m_MascotSkill[m_iClidkEffectedSlotSkill].slot.ClickEffect(false);
-        m_iClidkEffectedSlotSkill = dMASCOT_INVALID_INDEX;
-    }
-
-    if (!IsShow())
-    {
-        m_iMouseDownSlotSkill = dMASCOT_INVALID_INDEX;
-        return;
-    }
-
-    if (m_SummonMascotIndex == m_MascotIcon[m_iSelectedSlot].byIndex)
-    {
-        if (key.m_nID == UD_LEFT_BUTTON) // Left button click
+        // Clear the click effect for the skill icon if it was clicked.
+        if (m_iClidkEffectedSlotSkill != dMASCOT_INVALID_INDEX)
         {
-            if (GetIconMoveManager()->IsActive())
-            {
-                if (GetIconMoveManager()->GetSrcSerial() == m_MascotSkill[m_iMouseDownSlotSkill].slot.GetSerial())
-                    GetIconMoveManager()->IconMoveEnd();
-            }
-            else if (GetIconMoveManager()->IconMovePickUp(m_MascotSkill[m_iMouseDownSlotSkill].slot.GetSerial(), PLACE_SKILL, 0, 0, m_MascotSkill[m_iMouseDownSlotSkill].slot.GetTexture()))
-            {
-                SelectEffectSkill(true, m_iMouseDownSlotSkill);
-            }
+            m_MascotSkill[m_iClidkEffectedSlotSkill].slot.ClickEffect(false);
+            m_iClidkEffectedSlotSkill = dMASCOT_INVALID_INDEX;
         }
-        else if (key.m_nID == UD_RIGHT_BUTTON) { // Right button click
-            // Logic for using the skill (not implemented in the provided code).
-            // Logic_UseProc(m_MascotSkill[m_iMouseDownSlotSkill].slot.GetSerial());
-        }
-    }
 
-    // Reset mouse down slots after processing.
-    m_iMouseDownSlotSkill = dMASCOT_INVALID_INDEX;
+        if (!IsShow())
+        {
+            m_iMouseDownSlotSkill = dMASCOT_INVALID_INDEX;
+            return;
+        }
+
+        if (m_SummonMascotIndex == m_MascotIcon[m_iSelectedSlot].byIndex)
+        {
+            if (key.m_nID == UD_LEFT_BUTTON) // Left button click
+            {
+                if (GetIconMoveManager()->IsActive())
+                {
+                    if (GetIconMoveManager()->GetSrcSerial() == m_MascotSkill[m_iMouseDownSlotSkill].slot.GetSerial())
+                        GetIconMoveManager()->IconMoveEnd();
+                }
+                else if (GetIconMoveManager()->IconMovePickUp(m_MascotSkill[m_iMouseDownSlotSkill].slot.GetSerial(), PLACE_SKILL, 0, 0, m_MascotSkill[m_iMouseDownSlotSkill].slot.GetTexture()))
+                {
+                    SelectEffectSkill(true, m_iMouseDownSlotSkill);
+                }
+            }
+            else if (key.m_nID == UD_RIGHT_BUTTON) { // Right button click
+                // Logic for using the skill (not implemented in the provided code).
+                // Logic_UseProc(m_MascotSkill[m_iMouseDownSlotSkill].slot.GetSerial());
+            }
+        }
+
+        // Reset mouse down slots after processing.
+        m_iMouseDownSlotSkill = dMASCOT_INVALID_INDEX;
+    }
 }
 
 // Handles mouse wheel events to scroll through the mascot GUI
