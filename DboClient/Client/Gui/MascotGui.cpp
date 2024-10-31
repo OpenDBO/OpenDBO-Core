@@ -121,6 +121,7 @@ RwBool CMascotGui::Create()
 
     // Panel
     m_pPn_IvnBack = (gui::CPanel*)GetComponent("Pn_IvnBack");
+    m_pPn_IvnBack->SetToolTip(GetDisplayStringManager()->GetString("DST_MASCOTEX_BAG"));
     m_pPn_Buff0 = (gui::CPanel*)GetComponent("Pn_Buff0");
     m_pPn_Buff1 = (gui::CPanel*)GetComponent("Pn_Buff1");
     m_pPn_Buff2 = (gui::CPanel*)GetComponent("Pn_Buff2");
