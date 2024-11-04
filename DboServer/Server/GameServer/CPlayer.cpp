@@ -3119,7 +3119,7 @@ void CPlayer::DeleteMascot(BYTE byIndex)
 		WORD resultcode = GAME_SUCCESS;
 
 		//Check if pet is summoned
-		if (player_data.mascotTblidx == mascot->GetMascotData()->tblidx)
+		if (GetCurrentMascot() && GetCurrentMascot()->GetMascotData() && GetCurrentMascot()->GetMascotData()->byIndex == byIndex)
 			resultcode = SUMMONING_MASCOT_CANT_DELETE;
 
 		CGameServer* app = (CGameServer*)g_pApp;
