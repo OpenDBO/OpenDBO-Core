@@ -112,6 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ActionMap.cpp" />
+    <ClCompile Include="NtlSobMascotAttr.cpp" />
     <ClCompile Include="DBODirectorIndicate.cpp" />
     <ClCompile Include="DboMovingAlgorithm.cpp" />
     <ClCompile Include="DboTLConditionCheck.cpp" />
@@ -356,6 +357,7 @@
     <ClInclude Include="NtlActionMapDef.h" />
     <ClInclude Include="NtlBehaviorCharAirMove.h" />
     <ClInclude Include="NtlSLCCBD.h" />
+    <ClInclude Include="NtlSobMascotAttr.h" />
     <ClInclude Include="NtlWorldConceptCCBD.h" />
     <ClInclude Include="NtlWorldConceptFreePvpZone.h" />
     <ClInclude Include="ResultCodeString.h" />

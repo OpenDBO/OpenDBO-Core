@@ -807,6 +807,9 @@
     <ClCompile Include="NtlSLCCBD.cpp">
       <Filter>Object\Etc</Filter>
     </ClCompile>
+    <ClCompile Include="NtlSobMascotAttr.cpp">
+      <Filter>Object\Attribute</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NtlSLEvent.h">
@@ -1447,6 +1450,9 @@
     </ClInclude>
     <ClInclude Include="NtlSLCCBD.h">
       <Filter>Object\Etc</Filter>
+    </ClInclude>
+    <ClInclude Include="NtlSobMascotAttr.h">
+      <Filter>Object\Attribute</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

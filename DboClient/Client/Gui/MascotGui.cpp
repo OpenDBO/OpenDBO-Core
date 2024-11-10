@@ -1030,8 +1030,7 @@ VOID CMascotGui::OnMascotClicked(RwInt32 Slot)
     CNtlSobCharProxy* pCharProxy = reinterpret_cast<CNtlSobCharProxy*>(GetNtlSLGlobal()->GetSobAvatar()->GetSobProxy());
 
     CNtlSob* pSobMascot = GetNtlSobManager()->GetSobObject(m_CurrentMascotParamters.m_CurrentMascotSerialId);
-  
-  
+
     //CNtlSobItem* mMascotProxy = m_MascotIcon[m_CurrentMascotParamters.m_CurrentMascotSlotIndex].slot.GetSobItem();
     //CNtlSobItemAttr* mMascotProxyAttr = m_MascotIcon[m_CurrentMascotParamters.m_CurrentMascotSlotIndex].slot.GetSobItemAttr();
 

@@ -1,7 +1,7 @@
 ﻿/*****************************************************************************
 *
 * File			: MascotGui.h
-* Author		: col.alejo (Alex), Grender
+* Author		: Alejandro-HUB
 * Copyright	: (주)NTL
 * Date			: 2021. 5. 16
 * Abstract		: DBO Mascot Summon/View Status gui.
