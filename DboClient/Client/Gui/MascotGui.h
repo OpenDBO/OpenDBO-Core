@@ -139,6 +139,7 @@ protected:
     VOID OpenMascotInfo(RwBool isShow, RwInt32 iSlotIdx);
     VOID RefreshSkillSlot();
     std::wstring stringToWString(const std::string& str);
+    WCHAR* CMascotGui::stringToWChar(const std::string& str);
     int CMascotGui::ExtractIndex(const std::string& componentName);
     void CMascotGui::OutputDebugInfo(int tabID, const std::string& componentName, int index,
         const std::wstring& toolTipText, const std::string& descriptionText,

@@ -168,6 +168,10 @@ RwBool CMascotGui::Create()
     m_pbtn_MascotFusion->SetText(GetDisplayStringManager()->GetString("DST_MASCOTEX_FUSIONBUTTON"));
     m_pbtn_MascotRename->SetText(stringToWString("C.Name"));
 
+    // Set the name of the info
+    m_psttb_Info->SetText(stringToWChar("Mascot Information"));
+    m_psttb_SkillInfo->SetText(stringToWChar("Skills"));
+
     // Icons and Skills
     InitializeMascotIconsAndSkills();
 
@@ -193,12 +197,27 @@ std::wstring CMascotGui::stringToWString(const std::string& str)
     return converter.from_bytes(str);
 }
 
+// Function to convert std::string to WCHAR array
+WCHAR* CMascotGui::stringToWChar(const std::string& str)
+{
+    // Convert to std::wstring first
+    std::wstring wstr = std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>>().from_bytes(str);
+
+    // Allocate a new WCHAR array (including null terminator)
+    WCHAR* wCharArray = new WCHAR[wstr.length() + 1];
+    std::copy(wstr.begin(), wstr.end(), wCharArray);
+    wCharArray[wstr.length()] = L'\0'; // Add null terminator
+
+    return wCharArray;
+}
+
+
 void CMascotGui::InitializeMascotIconsAndSkills()
 {
-    // Set the current indexes to -1
-    m_CurrentMascotParamters.m_CurrentMascotSlotIndex = -1;
-    m_CurrentMascotParamters.m_CurrentMascotSerialId = -1;
-    m_CurrentSkillSlotIndex = -1;
+    // Set the current indexes to dMASCOT_INVALID_INDEX
+    m_CurrentMascotParamters.m_CurrentMascotSlotIndex = dMASCOT_INVALID_INDEX;
+    m_CurrentMascotParamters.m_CurrentMascotSerialId = dMASCOT_INVALID_INDEX;
+    m_CurrentSkillSlotIndex = dMASCOT_INVALID_INDEX;
 
     // Initialize mascot icon slots
     RwInt32 iIconX = dMASCOTEX_CON_START_X;
@@ -477,7 +496,7 @@ VOID CMascotGui::OnMouseEnterSlot(gui::CComponent* pComponent)
     int index = ExtractIndex(componentName);
 
     // Process based on component type
-    if (index != -1)
+    if (index != dMASCOT_INVALID_INDEX)
     {
         if (componentName.find("Pn_IvnIcon") != std::string::npos)
         {
@@ -514,27 +533,24 @@ VOID CMascotGui::OnMouseLeaveSlot(gui::CComponent* pComponent)
     int index = ExtractIndex(componentName);
 
     // Process based on component type
-    if (index != -1)
+    if (componentName.find("Pn_IvnIcon") != std::string::npos)
     {
-        if (componentName.find("Pn_IvnIcon") != std::string::npos)
-        {
-            // Set the current index 
-            m_CurrentMascotParamters.m_CurrentMascotSlotIndex = -1;
-            m_CurrentMascotParamters.m_CurrentMascotSerialId = -1;
+        // Set the current index 
+        m_CurrentMascotParamters.m_CurrentMascotSlotIndex = dMASCOT_INVALID_INDEX;
+        m_CurrentMascotParamters.m_CurrentMascotSerialId = dMASCOT_INVALID_INDEX;
 
-            // Remove highlight and hide item info if outside the mascot slot
-            FocusEffect(false, index);
-            ShowItemInfoWindow(false, index);
-        }
-        else if (componentName.find("Pn_SkillIcon") != std::string::npos)
-        {
-            // Set the current index 
-            m_CurrentSkillSlotIndex = -1;
+        // Remove highlight and hide item info if outside the mascot slot
+        FocusEffect(false, index);
+        ShowItemInfoWindow(false, index);
+    }
+    else if (componentName.find("Pn_SkillIcon") != std::string::npos)
+    {
+        // Set the current index 
+        m_CurrentSkillSlotIndex = dMASCOT_INVALID_INDEX;
 
-            // Remove highlight and hide skill info if outside the skill slot
-            FocusEffectSkill(false, index);
-            ShowSkillInfoWindow(false, index);
-        }
+        // Remove highlight and hide skill info if outside the skill slot
+        FocusEffectSkill(false, index);
+        ShowSkillInfoWindow(false, index);
     }
 }
 
@@ -550,7 +566,7 @@ int CMascotGui::ExtractIndex(const std::string& componentName)
         return std::stoi(matches[2]); // Get the captured index as an integer
     }
 
-    return -1; // Return -1 if no match found
+    return dMASCOT_INVALID_INDEX; // Return dMASCOT_INVALID_INDEX if no match found
 }
 
 // Helper function to output debug information
@@ -632,7 +648,8 @@ RwInt32 CMascotGui::PtinSlot(RwInt32 iSlotKind, RwInt32 iX, RwInt32 iY)
 // Sets the clicked slot and initiates visual effects.
 VOID CMascotGui::OnMouseDownMascot(const CKey& key)
 {
-    if (m_CurrentMascotParamters.m_CurrentMascotSlotIndex != -1) {
+    if (m_CurrentMascotParamters.m_CurrentMascotSlotIndex != dMASCOT_INVALID_INDEX
+        && m_MascotIcon[m_CurrentMascotParamters.m_CurrentMascotSlotIndex].Tblidx != INVALID_TBLIDX) {
 
         m_iMouseDownSlot = m_CurrentMascotParamters.m_CurrentMascotSlotIndex;
         m_pThis->CaptureMouse();
@@ -711,7 +728,8 @@ VOID CMascotGui::OnMouseDownMascot(const CKey& key)
 
 VOID CMascotGui::OnMouseDownSkill(const CKey& key)
 {
-    if (m_CurrentSkillSlotIndex != -1 &&
+    if (m_CurrentSkillSlotIndex != dMASCOT_INVALID_INDEX &&
+        m_MascotSkill[m_CurrentSkillSlotIndex].skillTblidx != INVALID_TBLIDX &&
         m_SummonMascotIndex == m_MascotIcon[m_iSelectedSlot].byIndex) {
 
         m_iMouseDownSlotSkill = m_CurrentSkillSlotIndex;
@@ -1011,12 +1029,40 @@ VOID CMascotGui::OnMascotClicked(RwInt32 Slot)
 {
     CNtlSobCharProxy* pCharProxy = reinterpret_cast<CNtlSobCharProxy*>(GetNtlSLGlobal()->GetSobAvatar()->GetSobProxy());
 
-    // Load the character's UI texture for the mascot display.
-    m_texMascot.Load(pCharProxy->UIPcStatusBarRender());
-    m_surMascot.SetTexture(&m_texMascot);
+    CNtlSob* pSobMascot = GetNtlSobManager()->GetSobObject(m_CurrentMascotParamters.m_CurrentMascotSerialId);
+  
+  
+    //CNtlSobItem* mMascotProxy = m_MascotIcon[m_CurrentMascotParamters.m_CurrentMascotSlotIndex].slot.GetSobItem();
+    //CNtlSobItemAttr* mMascotProxyAttr = m_MascotIcon[m_CurrentMascotParamters.m_CurrentMascotSlotIndex].slot.GetSobItemAttr();
 
-    CRectangle rtScreen = m_pThis->GetScreenRect();
-    m_surMascot.SetRectWH(rtScreen.left + 50, rtScreen.top + 51, 132, 176);
+    if (pSobMascot)
+    {
+        // Illust
+        CNtlSobAttr* pMascotAttr = pSobMascot->GetSobAttr();
+        if (pMascotAttr == NULL)
+            DBO_ASSERT(0, "CMascotGui::OnMascotClicked - pMascotAttr is NULL");
+
+        if (m_surMascot.GetTexture())
+        {
+            Logic_DeleteTexture(m_surMascot.GetTexture());
+            m_surMascot.UnsetTexture();
+        }
+
+        CHAR acMascotIllustBuffer[256];
+        //sprintf_s(acMascotIllustBuffer, 256, "Pet_%s.png", pMascotAttr->GetModelName());
+
+        // Create Textrue
+        m_surMascot.SetTexture(Logic_CreateTexture(acMascotIllustBuffer, TEXTYPE_ICON));
+    }
+    else
+    {
+        // Load the character's UI texture for the mascot display.
+        m_texMascot.Load(pCharProxy->UIPcStatusBarRender());
+        m_surMascot.SetTexture(&m_texMascot);
+
+        CRectangle rtScreen = m_pThis->GetScreenRect();
+        m_surMascot.SetRectWH(rtScreen.left + 50, rtScreen.top + 51, 132, 176);
+    }
 }
 
 VOID CMascotGui::OnSummonBtnClicked(gui::CComponent* pComponent)
