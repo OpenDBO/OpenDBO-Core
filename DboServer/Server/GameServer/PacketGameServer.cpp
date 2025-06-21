@@ -4611,7 +4611,7 @@ void CClientSession::RecvCharBindReq(CNtlPacket * pPacket)
 	CTriggerObject* pPopoObject = NULL;
 
 	if(cPlayer->GetBindObjectTblidx() == req->bindObjectTblidx)
-		wResultCode = GAME_FAIL;
+		wResultCode = GAME_COMMON_ALREADY_REGISTERED;
 	else if (cPlayer->GetCurWorld() == NULL)
 		wResultCode = GAME_WORLD_NOT_FOUND;
 	else

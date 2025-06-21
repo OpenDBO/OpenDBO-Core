@@ -1931,25 +1931,34 @@ RpAtomic *CNtlPLCharacter::RenderCallBack(RpAtomic *pAtomic)
 			}
 
 			// Çü¼® coding
-			if(m_SkipAdge)
+			if (m_SkipAdge)
 			{
 				AtomicDefaultRenderCallBack(pAtomic);
 			}
 			else
 			{
-				SToonData *pToonData = pItemEntity->GetToonData();
-				if(pToonData->pToonInk)
+				SToonData* pToonData = pItemEntity->GetToonData();
+				if (pToonData->pToonInk)
 				{
-					Helper_SetToonAtomicRender( pAtomic, pToonData);
+					Helper_SetToonAtomicRender(pAtomic, pToonData);
 				}
 
-				if(RpNtlAtomicGetFlag(pAtomic) & NTL_TOON_EDGE_OFF)
+				if (RpNtlAtomicGetFlag(pAtomic) & NTL_TOON_EDGE_OFF)
 				{
 					AtomicDefaultRenderCallBack(pAtomic);
 				}
-				else
+				if (RpNtlAtomicGetFlag(pAtomic) & NTL_TOON_DETAIL_EDGE)
 				{
 					RpNtlAtomicGetRenderCallBack(pAtomic)(pAtomic);
+				}
+				if (RpNtlAtomicGetFlag(pAtomic) & NTL_TOON_NOT_EDGE)
+				{
+					RpNtlAtomicGetRenderCallBack(pAtomic)(pAtomic);
+				}
+				else
+				{
+					RpNtlAtomicSetRenderCallBack(pAtomic, RpD3D9ToonFastSilhouetteAtomicRenderCallback);
+					RpD3D9ToonFastSilhouetteAtomicRenderCallback(pAtomic);
 				}
 			}
 
