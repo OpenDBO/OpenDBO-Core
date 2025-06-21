@@ -301,6 +301,12 @@ extern RWS::CEventId g_EventOpenScouterBackgroundGui;
 // test code
 extern RWS::CEventId g_EventSCS;
 
+// Mascot
+extern RWS::CEventId g_EventMascotRegister;
+extern RWS::CEventId g_EventMascotDelete;
+extern RWS::CEventId g_EventMascotSummon;
+extern RWS::CEventId g_EventMascotUnSummon;
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1362,6 +1368,11 @@ enum eCommercialExtendCommandType
 	eSET_DURATION_EXTEND_TARGET_ITEM,	/// 기간 연장할 Target NtlSobItem setting
 	eCHANGE_COMMERCIALEXTEND_MODE,		/// COMMERCIALEXTEND_DIALOG에서   GUI_EXTEND_MODE 변경
 	eOPEN_COMMERCIALEXTEND_DIALOG,		/// data: RwInt32 iMode, RwUInt32 uiItemIdx
+
+	// Mascot
+	eSUMMON_MASCOT,
+	eUNSUMMON_MASCOT,
+	eDELETE_MASCOT,
 };
 
 struct SDboEventCommercialExtendNPCData
@@ -1449,6 +1460,17 @@ struct SDboEventBudokaiPrizeWinnerName
 
 	// sVARIABLE_DATA
 	void*	pData;
+};
+
+// Mascot
+struct SDboEventMascotRegister
+{
+	sMASCOT_DATA_EX mascotdata;
+};
+
+struct SDboEventMascotOperate
+{
+	BYTE	index;
 };
 
 #endif

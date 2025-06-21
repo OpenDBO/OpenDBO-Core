@@ -1217,6 +1217,15 @@
     <ClCompile Include="DropItemInfoGuiList.cpp">
       <Filter>Gui\Component\Game\InfoWnd</Filter>
     </ClCompile>
+    <ClCompile Include="MascotFusion.cpp">
+      <Filter>Gui\Component\Game\Mascot</Filter>
+    </ClCompile>
+    <ClCompile Include="MascotSkillReMake.cpp">
+      <Filter>Gui\Component\Game\Mascot</Filter>
+    </ClCompile>
+    <ClCompile Include="MascotStatusBarGui.cpp">
+      <Filter>Gui\Component\Game\Mascot</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gui\ContractGui.h">
@@ -2130,6 +2139,15 @@
     </ClInclude>
     <ClInclude Include="DropItemInfoGuiList.h">
       <Filter>Gui\Component\Game\InfoWnd</Filter>
+    </ClInclude>
+    <ClInclude Include="MascotFusion.h">
+      <Filter>Gui\Component\Game\Mascot</Filter>
+    </ClInclude>
+    <ClInclude Include="MascotSkillReMake.h">
+      <Filter>Gui\Component\Game\Mascot</Filter>
+    </ClInclude>
+    <ClInclude Include="MascotStatusBarGui.h">
+      <Filter>Gui\Component\Game\Mascot</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

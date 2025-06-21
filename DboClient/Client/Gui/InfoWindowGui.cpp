@@ -1451,25 +1451,59 @@ VOID CInfoWindowGui::SetSkillUpgradeInfo( stSkillUpgradeInfo* pUpgradeInfo )
 
 // ITEM SUB //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-VOID CInfoWindowGui::SetItemInfo_Name( gui::CMDStaticBox* pmdBox, sITEM_TBLDAT* pData, RwUInt8 ucGrade, RwUInt8 ucRank )
+// Sets the item name and rank information in the provided static box
+VOID CInfoWindowGui::SetItemInfo_Name(gui::CMDStaticBox* pmdBox, sITEM_TBLDAT* pData, RwUInt8 ucGrade, RwUInt8 ucRank, bool isMascot)
 {
-	// 아이템 이름
+	//////////////////////////////////////////////////////////////////////////////
+	// Item Name
 
-	RwUInt32 uiColor = Logic_GetItemRankColor( ucRank );	
-	std::wstring strBuf = API_GetTableContainer()->GetTextAllTable()->GetItemTbl()->GetText( pData->Name );
+	// Get the color associated with the item's rank
+	RwUInt32 uiColor = Logic_GetItemRankColor(ucRank);
 
-	if( pData->byItem_Type != ITEM_TYPE_DRAGONBALL && ucGrade > 0 )
+	// Retrieve the item name from the item table using its ID and store it in a string
+	std::wstring strBuf = API_GetTableContainer()->GetTextAllTable()->GetItemTbl()->GetText(pData->Name);
+
+	// If the item is not a Dragon Ball type and has a grade (upgrade level), append the grade level to the name
+	if (pData->byItem_Type != ITEM_TYPE_DRAGONBALL && ucGrade > 0)
 	{
 		WCHAR buf[16];
-		swprintf_s( buf, 16, L" + %u", ucGrade );
+		swprintf_s(buf, 16, L" + %u", ucGrade);  // Format the grade and append it to the item name
 		strBuf += buf;
 	}
 
-	pmdBox->SetItem( strBuf.c_str(), "ItemName", FONT_TITLE, COMP_TEXT_LEFT, uiColor );
+	// Display the item name in the static box with appropriate formatting and color
+	pmdBox->SetItem(strBuf.c_str(), "ItemName", isMascot ? FONT_TEXT : FONT_TITLE, COMP_TEXT_LEFT, uiColor);
 
-	if (ucRank > ITEM_RANK_NORMAL)
+	//////////////////////////////////////////////////////////////////////////////
+	// Item Rank
+
+	// If the item is a mascot, display its rank in the right-aligned column
+	if (isMascot)
 	{
-		pmdBox->SetItem(Logic_GetItemRankName(ucRank), "ItemRank", FONT_TITLE, COMP_TEXT_RIGHT, uiColor, 10, TRUE);
+		pmdBox->SetItem(Logic_GetMascotRankName(ucRank), "ItemRank", FONT_TEXT, COMP_TEXT_RIGHT, uiColor, 10, TRUE);
+	}
+	else
+	{
+		// If the item rank is above "Normal", display the rank (for non-mascot items)
+		if (ucRank > ITEM_RANK_NORMAL)
+		{
+			pmdBox->SetItem(Logic_GetItemRankName(ucRank), "ItemRank", FONT_TITLE, COMP_TEXT_RIGHT, uiColor, 10, TRUE);
+		}
+	}
+
+	//////////////////////////////////////////////////////////////////////////////
+	// Developer Mode Check (GM Testing Mode)
+
+	// If the user is a developer or GM (Game Master), display additional information (item ID)
+	if (Logic_IsDevUser())
+	{
+		// Insert a blank line for visual separation
+		pmdBox->SetBlankLine(INFOWND_BLANKLINE_HEIGHT);
+
+		// Format the item ID and display it for testing/debugging purposes
+		WCHAR buff[256];
+		swprintf_s(buff, 256, GetDisplayStringManager()->GetString("DST_GAME_MASTER_TBLIDX"), pData->tblidx);
+		pmdBox->SetItem(buff, "ItemTblidx", FONT_TEXT, COMP_TEXT_RIGHT, uiColor);
 	}
 }
 
@@ -2787,7 +2821,7 @@ VOID CInfoWindowGui::SetSkillInfo_UseCondition( sSKILL_TBLDAT* pData, sSKILL_TBL
 	if( pSkill )
 		pAttr = reinterpret_cast<CNtlSobSkillAttr*>( pSkill->GetSobAttr() );
 
-	if( pBaseData->dwRequire_LP || pBaseData->wRequire_EP )
+	if( pBaseData->dwRequire_LP || pBaseData->wRequire_EP || pBaseData->dwRequire_VP)
 		m_pmdBox->SetBlankLine( INFOWND_BLANKLINE_HEIGHT );
 
 	if( pBaseData->dwRequire_LP )
@@ -2829,6 +2863,22 @@ VOID CInfoWindowGui::SetSkillInfo_UseCondition( sSKILL_TBLDAT* pData, sSKILL_TBL
 		}	
 
 		m_pmdBox->Format( strItemName.c_str(), FONT_TEXT, COMP_TEXT_LEFT, uiColor, 0, FALSE, pString, (RwInt32)fRequredEP );
+	}
+
+	if (pBaseData->dwRequire_VP)
+	{
+		strItemName = "RequireVP";
+
+		if (!bGrayed)
+			uiColor = INFOCOLOR_2;
+		else
+		{
+			uiColor = INFOCOLOR_9;
+			strItemName += "Grayed";
+		}
+
+		pString = const_cast<WCHAR*>(GetDisplayStringManager()->GetString("DST_MASCOTEX_SKILL_VP_CONSUMPTION"));
+		m_pmdBox->Format(strItemName.c_str(), FONT_TEXT, COMP_TEXT_LEFT, uiColor, 0, FALSE, pString, pBaseData->dwRequire_VP);
 	}
 
 	if( pAttr )
@@ -4209,3 +4259,103 @@ VOID CInfoWindowGui::SetItemInfo_RecipeInfo( gui::CMDStaticBox* pmdBox, sITEM_TB
 		m_pmdBox->SetItem( awcBuffer, "SellingZennyData", FONT_TEXT, COMP_TEXT_LEFT, INFOCOLOR_0 );
 	}
 }
+
+// Mascot
+// Updates the info window with the details of the specified mascot
+VOID CInfoWindowGui::SetMascotInfo(stMACOT_INFO* pData)
+{
+	// Clear any previous information in the info window
+	m_pmdBox->Clear();
+
+	// Retrieve item data based on the provided table index of the mascot
+	sITEM_TBLDAT* itemData = Logic_GetItemDataFromTable(pData->tblidx);
+
+	// Set the mascot's name in the info window, using the item's data and rank
+	SetItemInfo_Name(m_pmdBox, itemData, 0, pData->byItemRank, true);
+
+	// Set the battle attribute information for the item in the info window
+	SetItemInfo_Attr_Info(m_pmdBox, itemData, itemData->byBattle_Attribute);
+
+	// Add a blank line for visual separation in the info window
+	m_pmdBox->SetBlankLine(INFOWND_BLANKLINE_HEIGHT);
+
+	// Construct and set the current VP (Vital Points) information in the info window
+	std::string VP = "Vp  : " + std::to_string(pData->dwCurVP);
+	m_pmdBox->SetItem(VP.c_str(), "VP", FONT_TEXT, COMP_TEXT_LEFT, INFOCOLOR_0);
+
+	// Add another blank line for visual separation
+	m_pmdBox->SetBlankLine(INFOWND_BLANKLINE_HEIGHT);
+
+	// Calculate the experience percentage and construct the display string
+	int ExpPercent = ((float)pData->dwCurExp / (float)pData->dwMaxExp) * 100.0f;
+	std::string EXP = "Exp : " + std::to_string(ExpPercent) + "%";
+
+	// Set the experience information in the info window
+	m_pmdBox->SetItem(EXP.c_str(), "EXP", FONT_TEXT, COMP_TEXT_LEFT, INFOCOLOR_0);
+
+	// Finally, draw the updated items in the info window
+	m_pmdBox->DrawItem();
+}
+
+// Updates the info window with the details of the specified mascot skill
+VOID CInfoWindowGui::SetMascotSkillInfo(sSKILL_TBLDAT* pData)
+{
+	// Clear any previous information in the info window
+	m_pmdBox->Clear();
+
+	//////////////////////////////////////////////////////////////////////////////
+	// Skill Information
+
+	WCHAR* pString = NULL;
+
+	// Set the skill name, grade, and class details for the skill
+	SetSkillInfo_NameGradeClass(pData, TRUE);  // Skill Name
+
+	// Set the conditions required to use the skill
+	SetSkillInfo_UseCondition(pData, pData);  // Usage Conditions
+
+	// Set the effect data of the skill (what the skill does)
+	SetSkillInfo_EffectData(pData, INFOCOLOR_7);  // Effect Data
+
+	// Set the type of application for the skill (who or what the skill applies to)
+	SetSkillInfo_AppointApply(pData);  // Application Type
+
+	// Set parameters like cooldown duration for the skill
+	SetSkillInfo_Parameter(NULL, pData, pData, FALSE);  // Skill Cooldown Time
+
+	// If the request is not from a quick slot dialog, show information about the next skill in the chain, if applicable
+	if (GetInfoWndManager()->GetRequestGui() != DIALOG_QUICKSLOT)
+	{
+		// Check if there is a next skill in the chain (skill upgrade)
+		if (pData->dwNextSkillTblidx != INVALID_TBLIDX)
+		{
+			// Retrieve the next skill's data from the skill table
+			CSkillTable* pSkillTable = API_GetTableContainer()->GetSkillTable();
+			sSKILL_TBLDAT* pNextData = reinterpret_cast<sSKILL_TBLDAT*>(pSkillTable->FindData(pData->dwNextSkillTblidx));
+
+			// Add a blank line for visual separation
+			m_pmdBox->SetBlankLine(INFOWND_BLANKLINE_HEIGHT);
+
+			// Display information about the next skill's grade
+			pString = const_cast<WCHAR*>(GetDisplayStringManager()->GetString("DST_SKILL_GRADE"));
+			m_pmdBox->Format("NextSkillGrade", FONT_TEXT, COMP_TEXT_LEFT, INFOCOLOR_9, 0, FALSE, pString, pNextData->bySkill_Grade);
+
+			// Set the conditions required to use the next skill
+			SetSkillInfo_UseCondition(pNextData, pNextData, TRUE);
+
+			// Set the effect data for the next skill
+			SetSkillInfo_EffectData(pNextData, INFOCOLOR_9, 1);
+
+			// Add another blank line for visual separation
+			m_pmdBox->SetBlankLine(INFOWND_BLANKLINE_HEIGHT);
+
+			// Set parameters like cooldown for the next skill
+			SetSkillInfo_Parameter(NULL, pNextData, pNextData, TRUE);
+		}
+	}
+
+	//////////////////////////////////////////////////////////////////////////////
+	// Draw the updated items in the info window
+	m_pmdBox->DrawItem();
+}
+

@@ -1001,6 +1001,24 @@ VOID CCommercialExtendGui::HandleEvents( RWS::CMsg& msg )
 
 			OpenDialog( eMode, NULL, pExData->uiItemIdx );
 		}
+		else if (eSUMMON_MASCOT == pData->eCommandType)
+		{
+			SDboEventMascotOperate* pExData = (SDboEventMascotOperate*)pData->pData;
+
+			SummonMascot(pExData->index);
+		}
+		else if (eUNSUMMON_MASCOT == pData->eCommandType)
+		{
+			SDboEventMascotOperate* pExData = (SDboEventMascotOperate*)pData->pData;
+
+			UnSummonMascot(pExData->index);
+		}
+		else if (eDELETE_MASCOT == pData->eCommandType)
+		{
+			SDboEventMascotOperate* pExData = (SDboEventMascotOperate*)pData->pData;
+
+			DeleteMascot(pExData->index);
+		}
 	}
 	else if( msg.Id == g_EventMsgBoxResult )
 		HandleEventsSubMsgBox( msg );
@@ -1126,6 +1144,27 @@ VOID CCommercialExtendGui::HandleEventsSubMsgBox( RWS::CMsg& msg )
 					}
 				}
 			}
+		}
+	}
+	else if (pEvent->strID == "DST_RECALL_START_MASCOT_MB_CONFIRM")
+	{
+		if (pEvent->eResult == MBR_OK)
+		{
+			NetSendMascotSummon();
+		}
+	}
+	else if (pEvent->strID == "DST_RECALL_STOP_MASCOT_MB_CONFIRM")
+	{
+		if (pEvent->eResult == MBR_OK)
+		{
+			NetSendMascotUnSummon();
+		}
+	}
+	else if (pEvent->strID == "DST_MASCOT_DELETE_MB_CONFIRM")
+	{
+		if (pEvent->eResult == MBR_OK)
+		{
+			NetSendMascotDelete();
 		}
 	}
 
@@ -1278,3 +1317,36 @@ VOID CCommercialExtendGui::HandleEventsSubMsgBox( RWS::CMsg& msg )
 //	}
 }
 ///////////////////////////////////////// Test Code
+
+VOID CCommercialExtendGui::SummonMascot(BYTE index)
+{
+	GetAlarmManager()->FormattedAlarmMessage("DST_RECALL_START_MASCOT_MB_CONFIRM", FALSE, NULL);
+	m_NetSendData.DataSendMascot.m_Index = index;
+}
+
+VOID CCommercialExtendGui::UnSummonMascot(BYTE index)
+{
+	GetAlarmManager()->FormattedAlarmMessage("DST_RECALL_STOP_MASCOT_MB_CONFIRM", FALSE, NULL);
+	m_NetSendData.DataSendMascot.m_Index = index;
+}
+
+VOID CCommercialExtendGui::DeleteMascot(BYTE index)
+{
+	GetAlarmManager()->FormattedAlarmMessage("DST_MASCOT_DELETE_MB_CONFIRM", FALSE, NULL);
+	m_NetSendData.DataSendMascot.m_Index = index;
+}
+
+VOID CCommercialExtendGui::NetSendMascotSummon()
+{
+	GetDboGlobal()->GetGamePacketGenerator()->SendSummonMascot(m_NetSendData.DataSendMascot.m_Index);
+}
+
+VOID CCommercialExtendGui::NetSendMascotUnSummon()
+{
+	GetDboGlobal()->GetGamePacketGenerator()->SendUnSummonMascot(m_NetSendData.DataSendMascot.m_Index);
+}
+
+VOID CCommercialExtendGui::NetSendMascotDelete()
+{
+	GetDboGlobal()->GetGamePacketGenerator()->SendDeleteMascot(m_NetSendData.DataSendMascot.m_Index);
+}

@@ -155,11 +155,19 @@ protected:
 	public:
 		RwUInt64				m_uiProductId;					/// Yardrat Ã¢°í¿ë		/// CASH_EXTEND, CASH_BUY
 	};
+
+	class CDataSendMascot
+	{
+	public:
+		BYTE					m_Index;
+	};
+
 	typedef union
 	{
 		CDataSendBuyDurItemNPC			DataSendBuyDurItemNPC;
 		CDataSendBuyDurItemNetpy		DataSendBuyDurItemNetpy;
 		CDataSendMoveDurItemFromYardrat	DataSendMoveDurItemFromYardrat;
+		CDataSendMascot					DataSendMascot;
 	} UNI_NET_SEND;
 
 	UNI_NET_SEND				m_NetSendData;		
@@ -189,6 +197,16 @@ public:
 	VOID						NetSendBuyDurItemNPC();				/// NPC Shop
 	VOID						NetSendBuyDurItemNetpy();			/// Netpy Shop
 	VOID						NetSendMoveDurItemFromYardrat();	/// Yardrat
+
+	// Mascot
+	VOID						SummonMascot(BYTE index);
+	VOID						UnSummonMascot(BYTE index);
+	VOID						DeleteMascot(BYTE index);
+
+	// Mascot - Net
+	VOID						NetSendMascotSummon();
+	VOID						NetSendMascotUnSummon();
+	VOID						NetSendMascotDelete();
 
 	//! Event
 	virtual VOID				HandleEvents( RWS::CMsg& msg );

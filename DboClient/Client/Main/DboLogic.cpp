@@ -3581,3 +3581,23 @@ const WCHAR * Logic_GetItemRankName(RwUInt8 byRank)
 
 	return L"";
 }
+
+// Mascot
+const WCHAR* Logic_GetMascotRankName(RwUInt8 byRank)
+{
+	switch (byRank)
+	{
+	case ITEM_RANK_NORMAL:		return GetDisplayStringManager()->GetString("DST_MASCOTEX_GRADE_1"); break;
+	case ITEM_RANK_SUPERIOR:	return GetDisplayStringManager()->GetString("DST_MASCOTEX_GRADE_2"); break;
+	case ITEM_RANK_EXCELLENT:	return GetDisplayStringManager()->GetString("DST_MASCOTEX_GRADE_3"); break;
+	case ITEM_RANK_RARE:		return GetDisplayStringManager()->GetString("DST_MASCOTEX_GRADE_4"); break;
+
+	default:
+	{
+		NTL_ASSERTFAIL("Not defined item rank type: " << (int)byRank);
+	}
+	break;
+	}
+
+	return L"";
+}

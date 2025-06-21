@@ -1,15 +1,14 @@
 /*****************************************************************************
  *
- * File			: NtlSobGlobal.h
- * Author		: HyungSuk, Jang
- * Copyright	: (주)NTL
- * Date			: 2005. 8. 23	
- * Abstract		: Simulation global type
+ * File         : NtlSobGlobal.h
+ * Author       : HyungSuk, Jang
+ * Copyright    : (c) NTL
+ * Date         : 2005. 8. 23
+ * Abstract     : Simulation global type
  *****************************************************************************
- * Desc         : 
+ * Desc         :
  *
  *****************************************************************************/
-
 
 #ifndef __NTL_SLGLOBAL_H__
 #define __NTL_SLGLOBAL_H__
@@ -32,216 +31,230 @@ class CNtlTriggerSyncManager;
 #include "NtlSLTBudokai.h"
 #include "NtlTeleport.h"
 #include "NtlDojo.h"
+#include "NtlMascot.h"
 
-/**
-* \brief Avatar Info
-*/
+ /**
+ * \brief Avatar Info
+ */
 typedef struct _SAvatarInfo
 {
-	RwUInt32			uiSerialId;										// avatar serial id
-	sPC_PROFILE			sCharPf;										// avatar profile
-	sCHARSTATE			sCharState;										// avatar state
-	RwUInt16			wItemCount;									// 유효한 item count	
-	sITEM_PROFILE		sItemPf[NTL_MAX_COUNT_USER_HAVE_INVEN_ITEM];	// item profile
-	RwUInt8				bySkillCount;									// 우효한 skill count
-	sSKILL_INFO			sSkillPf[NTL_MAX_PC_HAVE_SKILL];				// skill profile
-	RwUInt8				byHTBCount;										// 유효한 HTB count
-	sHTB_SKILL_INFO		sHTBPf[NTL_HTB_MAX_PC_HAVE_HTB_SKILL];			// HTB profile
-	RwUInt8				byBuffCount;
-	sBUFF_INFO			sBuffPf[DBO_MAX_BUFF_CHARACTER_HAS];
-	sWORLD_INFO			sOldWorldInfo;
-	sWORLD_INFO			sWorldInfo;
-	sQUEST_COMPLETE_INFO sQuestCompleteInfo;								// 퀘스트 완료 정보
-	RwUInt8				byQuestProgressInfoCount;							// 퀘스트 진행 정보 개수
-	sQUEST_PROGRESS_INFO sQuestProgressInfo[eMAX_CAN_PROGRESS_QUEST_NUM];	// 퀘스트 진행 정보
-	sQUEST_INVENTORY_FULLDATA sQuestInventoryInfo;							// 퀘스트 인벤토리 정보
-	RwUInt8				bySetQuickSlotInfo;									// 퀵슬롯 정보가 들어오면 TRUE;
-	RwUInt8				byQuickSlotInfoCount;								// 퀵슬롯 정보 개수
-	sQUICK_SLOT_PROFILE	sQuickSlotInfo[NTL_CHAR_QUICK_SLOT_MAX_COUNT];		// 퀵슬롯 정보
-    RwUInt8             byMaxRpStock;                                       ///< 최대 RP Stock 개수
-	
-	RwUInt8				byMailCount;										// 메일 갯수
-	RwUInt8				byUnreadMailCountNormal;							// 안 읽은 편지 : 일반 메일
-	RwUInt8				byUnreadMailCountManager;							// 안 읽은 편지 : 매니져 메일
+    RwUInt32            uiSerialId;                                     // avatar serial id
+    sPC_PROFILE         sCharPf;                                        // avatar profile
+    sCHARSTATE          sCharState;                                     // avatar state
+    RwUInt16            wItemCount;                                     // Valid item count
+    sITEM_PROFILE       sItemPf[NTL_MAX_COUNT_USER_HAVE_INVEN_ITEM];    // item profile
+    RwUInt8             bySkillCount;                                   // Valid skill count
+    sSKILL_INFO         sSkillPf[NTL_MAX_PC_HAVE_SKILL];                // skill profile
+    RwUInt8             byHTBCount;                                     // Valid HTB count
+    sHTB_SKILL_INFO     sHTBPf[NTL_HTB_MAX_PC_HAVE_HTB_SKILL];          // HTB profile
+    RwUInt8             byBuffCount;
+    sBUFF_INFO          sBuffPf[DBO_MAX_BUFF_CHARACTER_HAS];
+    sWORLD_INFO         sOldWorldInfo;
+    sWORLD_INFO         sWorldInfo;
+    sQUEST_COMPLETE_INFO sQuestCompleteInfo;                            // Quest completion information
+    RwUInt8             byQuestProgressInfoCount;                       // Number of ongoing quest info
+    sQUEST_PROGRESS_INFO sQuestProgressInfo[eMAX_CAN_PROGRESS_QUEST_NUM]; // Ongoing quest info
+    sQUEST_INVENTORY_FULLDATA sQuestInventoryInfo;                      // Quest inventory info
+    RwUInt8             bySetQuickSlotInfo;                             // TRUE if quick slot info is loaded
+    RwUInt8             byQuickSlotInfoCount;                           // Number of quick slot info
+    sQUICK_SLOT_PROFILE sQuickSlotInfo[NTL_CHAR_QUICK_SLOT_MAX_COUNT];  // Quick slot info
+    RwUInt8             byMaxRpStock;                                   ///< Maximum RP Stock count
 
-	char				acWarFogFlag[NTL_MAX_SIZE_WAR_FOG];					// 워포그 정보
+    RwUInt8             byMailCount;                                    // Mail count
+    RwUInt8             byUnreadMailCountNormal;                        // Unread mail: Normal mail
+    RwUInt8             byUnreadMailCountManager;                       // Unread mail: Manager mail
 
-	char				abyTitleIndexFlag[NTL_MAX_CHAR_TITLE_COUNT_IN_FLAG];
+    char                acWarFogFlag[NTL_MAX_SIZE_WAR_FOG];             // War fog info
 
-	sRANKBATTLE_SCORE_INFO sRankBattleScoreInfo;							// 랭크배틀 전적 정보
+    char                abyTitleIndexFlag[NTL_MAX_CHAR_TITLE_COUNT_IN_FLAG];
 
-	RwUInt8				byDojoBriefCount;
-	sDBO_DOJO_BRIEF		sDojoBrief[DBO_MAX_COUNT_DOJO_IN_WORLD];
+    sRANKBATTLE_SCORE_INFO sRankBattleScoreInfo;                        // Rank battle achievement info
 
-	PORTALID			aPortalID[NTL_PORTAL_MAX_COUNT];	// portals we have registered
+    RwUInt8             byDojoBriefCount;
+    sDBO_DOJO_BRIEF     sDojoBrief[DBO_MAX_COUNT_DOJO_IN_WORLD];
 
-	bool				bCombatMode;
+    PORTALID            aPortalID[NTL_PORTAL_MAX_COUNT];                // Registered portals
 
-}SAvatarInfo;
+    bool                bCombatMode;
+
+} SAvatarInfo;
 
 /**
-* \brief 소환수의 정보
+* \brief Summon pet info
 */
 typedef struct _SSummonPetInfo
 {
-	RwUInt32				uiSerialId;			// avatar summon pet serial id
-	sSUMMON_PET_PROFILE		sCharPf;			// avatar summon pet profile
-	sCHARSTATE				sCharState;			// avatar summon pet character state
-}SSummonPetInfo;
+    RwUInt32                uiSerialId;         // avatar summon pet serial id
+    sSUMMON_PET_PROFILE     sCharPf;            // avatar summon pet profile
+    sCHARSTATE              sCharState;         // avatar summon pet character state
+} SSummonPetInfo;
 
 /**
-* \brief 소환수 스킬의 정보
+* \brief Summon pet skill info
 */
 typedef struct _SSummonPetSkillInfo
 {
-	RwUInt8				bySkillCount;						// avatar summon pet skill count
-	sSKILL_INFO_PET		aSkillInfo[NTL_MAX_NPC_HAVE_SKILL];	// avatar summon pet skill info
-}SSummonPetSkillInfo;
+    RwUInt8             bySkillCount;                      // avatar summon pet skill count
+    sSKILL_INFO_PET     aSkillInfo[NTL_MAX_NPC_HAVE_SKILL]; // avatar summon pet skill info
+} SSummonPetSkillInfo;
 
 /**
-* \brief 천하제일 무도회 상태에 대한 정보
+* \brief Tenkaichi Budokai tournament status info
 */
 typedef struct _STenkaichiBudokaiInfo
 {
-	sBUDOKAI_UPDATE_STATE_INFO			sStateInfo;			///< 천하제일 무도회 메인 스테이트
-	sBUDOKAI_UPDATE_MATCH_STATE_INFO	sMatchStateInfo[MAX_BUDOKAI_STATE];	///< 매치 상태
-	sBUDOKAI_JOIN_INFO					sJoinInfo;							///< 플레이어의 신청 상태
+    sBUDOKAI_UPDATE_STATE_INFO          sStateInfo;         ///< Tenkaichi Budokai main state
+    sBUDOKAI_UPDATE_MATCH_STATE_INFO    sMatchStateInfo[MAX_BUDOKAI_STATE]; ///< Match status
+    sBUDOKAI_JOIN_INFO                  sJoinInfo;                           ///< Player participation status
 } STenkaichiBudokaiInfo;
 
+// Mascot
+typedef struct _SMascotInfo
+{
+    RwUInt16            wCount;
+    sMASCOT_DATA_EX     asMascotData[GMT_MAX_PC_HAVE_MASCOT];
+} SMascotInfo;
+
 /**
-* \brief	!! AdjustMoney !!
-*			서버와 클라이언트 간의 제니 사용 타이밍을 맞춰주기 위하여 저장. (파티참,메일 등..)
+* \brief    !! AdjustMoney !!
+*           Saving type to manage adjustments in money between server and client. (Party, Mail, etc.)
 */
 struct SAdjustZennyInfo
 {
-	enum ZENNYADJUSTTYPE { USER_TRADE, PARTY_CHARM, MAIL_BOX, PARTY_INVEN, NUM_TYPE };
-	
-	RwInt32	m_aiAdjustZenny[NUM_TYPE];	
+    enum ZENNYADJUSTTYPE { USER_TRADE, PARTY_CHARM, MAIL_BOX, PARTY_INVEN, NUM_TYPE };
 
-	void	Init(void);
-	void	SetAdjustZenny(RwInt32 eType, RwInt32 nValue);	
-	RwInt32	GetAdjustZenny(RwInt32 eType);
+    RwInt32 m_aiAdjustZenny[NUM_TYPE];
+
+    void    Init(void);
+    void    SetAdjustZenny(RwInt32 eType, RwInt32 nValue);
+    RwInt32 GetAdjustZenny(RwInt32 eType);
 };
 
 struct SAvatarRecipeInfo
 {
-	RwUInt16			wCount;
-	sRECIPE_DATA		asRecipeData[NTL_ITEM_RECIPE_MAX_COUNT];
+    RwUInt16            wCount;
+    sRECIPE_DATA        asRecipeData[NTL_ITEM_RECIPE_MAX_COUNT];
 };
 
 /**
-* \brief	!! PassiveSkillEffect !!
-*			패시브 스킬에 따른 스킬 변화를 저장. 
+* \brief    !! PassiveSkillEffect !!
+*           Stores skill changes related to passive skills.
 */
 struct SPassiveSkillEffect
 {
-	RwUInt32				SkillTblidx;
-	RwUInt8					bySlotidx;
-	sDBO_UPDATED_SKILL_DATA	sUpdatedSkillData;
+    RwUInt32                SkillTblidx;
+    RwUInt8                 bySlotidx;
+    sDBO_UPDATED_SKILL_DATA sUpdatedSkillData;
 };
 
-typedef std::list<SPassiveSkillEffect>				LIST_PASSIVE_SKILL_EFFECT;
-typedef std::list<SPassiveSkillEffect>::iterator	LIST_PASSIVE_SKILL_EFFECT_ITER;	
+typedef std::list<SPassiveSkillEffect>              LIST_PASSIVE_SKILL_EFFECT;
+typedef std::list<SPassiveSkillEffect>::iterator    LIST_PASSIVE_SKILL_EFFECT_ITER;
 
 /**
-* \brief	GameManiaTime
-* GMT 정보를 저장
+* \brief GameManiaTime
+* Stores GMT information
 */
 struct SGameManiaTimeInfo
 {
-	RwUInt8 byGMTResetCount;
-	sGAME_MANIA_TIME_DATA sCurrent;
-	sGAME_MANIA_TIME_DATA sNext;
+    RwUInt8 byGMTResetCount;
+    sGAME_MANIA_TIME_DATA sCurrent;
+    sGAME_MANIA_TIME_DATA sNext;
 };
 
 /**
 * \ingroup Simulation
-* \brief Simulation layer에서 자유롭게 접근할 수 있는 전역 자료구조
+* \brief Public singleton class for global access in the Simulation layer.
 */
 class CNtlSLGlobal
 {
 private:
 
-	static CNtlSLGlobal		*m_pInstance;
-	
-	SAvatarInfo				m_sAvatarInfo;						///< 게임 진입시 avatar 정보를 담는 자료구조
-	STenkaichiBudokaiInfo	m_sTenkaichiBudokaiInfo;			///< 게임 진입시 천하제일 무도회 정보를 담는 자료구조
-	SSummonPetInfo			m_sSummonPetInfo;					///< avatar가 summon pet 소환시 보내주는 정보
-	SSummonPetSkillInfo		m_sSummonPetSkillInfo;				///< avatar가 summon pet 소환시 보내주는 정보 (skill)
-	SAdjustZennyInfo		m_sAdjustZennyInfo;					///< 서버,클라이언트간 제니사용타이밍이 다름으로 인해 생기는 것을 보정.
-	SAvatarRecipeInfo		m_sAvatarRecipeInfo;				///< 게임 진입시 아바타의 레시피 데티타를 담는 자료구조
-	SGameManiaTimeInfo		m_sGameManiaTimeInfo;
-	LIST_PASSIVE_SKILL_EFFECT m_listPassveSkillEffectInfo;		///< 아바타 생성 이전에 날라오는 스킬별 패시브이펙트 적용 정보.
+    static CNtlSLGlobal* m_pInstance;
 
-	CNtlSobAvatar			*m_pSobAvatar;						///< avatar 객체 instance pointer
-	RwBool					m_bWorldUpdateAvaterPos;
-	DBOTIME					m_ServerTimeOffset;					///< ( 서버타임 - 클라이언트 ), 클라이언트 타임에 더해서 사용.
+    SAvatarInfo             m_sAvatarInfo;                        ///< Singleton holding avatar info during gameplay
+    STenkaichiBudokaiInfo   m_sTenkaichiBudokaiInfo;               ///< Singleton holding Tenkaichi Budokai tournament info
+    SSummonPetInfo          m_sSummonPetInfo;                     ///< Info provided when avatar summons a pet
+    SSummonPetSkillInfo     m_sSummonPetSkillInfo;                ///< Info provided when avatar summons a pet (skill)
+    SAdjustZennyInfo        m_sAdjustZennyInfo;                   ///< Manages type of money adjustment between server and client.
+    SAvatarRecipeInfo       m_sAvatarRecipeInfo;                  ///< Singleton holding recipe data of the avatar
+    SGameManiaTimeInfo      m_sGameManiaTimeInfo;
+    LIST_PASSIVE_SKILL_EFFECT m_listPassveSkillEffectInfo;        ///< Info related to applied passive skill effects during gameplay.
 
-	HOBJECT					m_hNpcFacingHandle;
+    CNtlSobAvatar* m_pSobAvatar;                        ///< Instance pointer of avatar object
+    RwBool                  m_bWorldUpdateAvaterPos;
+    DBOTIME                 m_ServerTimeOffset;                   ///< (Server time - Client), used relative to client time.
+
+    HOBJECT                 m_hNpcFacingHandle;
+
+    // Mascot
+    SMascotInfo             m_sMascotInfo;
 
 public:
 
-	static bool				m_bSelectSkillMode;
-	static SERIAL_HANDLE	m_hSelectSkillModeHandle;
-	
+    static bool             m_bSelectSkillMode;
+    static SERIAL_HANDLE    m_hSelectSkillModeHandle;
+
 public:
 
-	CNtlSLGlobal();
-	~CNtlSLGlobal();
+    CNtlSLGlobal();
+    ~CNtlSLGlobal();
 
-	static CNtlSLGlobal* GetInstance(void);
+    static CNtlSLGlobal* GetInstance(void);
 
-	RwBool Create(RwBool bVirtualNet);
-	void Destroy(void);
+    RwBool Create(RwBool bVirtualNet);
+    void Destroy(void);
 
-	void			Reset(void);
-	void			ResetTenkaichiBudokaiInfo(void);
-	
-	SAvatarInfo*	GetAvatarInfo(void);
+    void            Reset(void);
+    void            ResetTenkaichiBudokaiInfo(void);
 
-	SSummonPetInfo*			GetAvatarSummonPetInfo(void);
-	SSummonPetSkillInfo*	GetAvatarSummonPetSkillInfo(void);
-	STenkaichiBudokaiInfo*	GetTBudokaiStateInfo(void);
-	SAdjustZennyInfo*		GetAdjustZennyInfo(void);
-	SAvatarRecipeInfo*		GetAvatarRecipeInfo(void);
-	SGameManiaTimeInfo*		GetGameManiaTimeInfo(void);
-	LIST_PASSIVE_SKILL_EFFECT* GetPassiveSkillEffectInfo(void);
-	
-	void			SetSobAvatar(CNtlSobAvatar *pSobAvatar);
-	CNtlSobAvatar*	GetSobAvatar(void);
+    SAvatarInfo* GetAvatarInfo(void);
 
-	bool			IsSkillSelectMode();
-	SERIAL_HANDLE	GetSkillSelectModeHandle();
-	
-	void			SetWorldUpdateAvatarPosition(RwBool bAvatarPos);
-	RwBool			IsWorldUpdateAvaterPosition(void);
+    SSummonPetInfo* GetAvatarSummonPetInfo(void);
+    SSummonPetSkillInfo* GetAvatarSummonPetSkillInfo(void);
+    STenkaichiBudokaiInfo* GetTBudokaiStateInfo(void);
+    SAdjustZennyInfo* GetAdjustZennyInfo(void);
+    SAvatarRecipeInfo* GetAvatarRecipeInfo(void);
+    SGameManiaTimeInfo* GetGameManiaTimeInfo(void);
+    LIST_PASSIVE_SKILL_EFFECT* GetPassiveSkillEffectInfo(void);
 
-	void			SetServerTime( DBOTIME serverTime );
-	DBOTIME			GetServerTime(void);
+    void            SetSobAvatar(CNtlSobAvatar* pSobAvatar);
+    CNtlSobAvatar* GetSobAvatar(void);
 
-	void			SetNpcFacingHandle(HOBJECT hHandle) { m_hNpcFacingHandle = hHandle; }
-	HOBJECT			GetNpcFacingHandle() { return m_hNpcFacingHandle; }
+    bool            IsSkillSelectMode();
+    SERIAL_HANDLE   GetSkillSelectModeHandle();
+
+    void            SetWorldUpdateAvatarPosition(RwBool bAvatarPos);
+    RwBool          IsWorldUpdateAvaterPosition(void);
+
+    void            SetServerTime(DBOTIME serverTime);
+    DBOTIME         GetServerTime(void);
+
+    void            SetNpcFacingHandle(HOBJECT hHandle) { m_hNpcFacingHandle = hHandle; }
+    HOBJECT         GetNpcFacingHandle() { return m_hNpcFacingHandle; }
+
+    // Mascot
+    SMascotInfo* GetAvatarMascotInfo(void);
 };
 
 static CNtlSLGlobal* GetNtlSLGlobal(void)
 {
-	return CNtlSLGlobal::GetInstance(); 
+    return CNtlSLGlobal::GetInstance();
 }
 
 // Inline ----------
 inline SAvatarInfo* CNtlSLGlobal::GetAvatarInfo(void)
 {
-	return &m_sAvatarInfo;
+    return &m_sAvatarInfo;
 }
 
 inline SSummonPetInfo* CNtlSLGlobal::GetAvatarSummonPetInfo(void)
 {
-	return &m_sSummonPetInfo;
+    return &m_sSummonPetInfo;
 }
 
 inline SSummonPetSkillInfo* CNtlSLGlobal::GetAvatarSummonPetSkillInfo(void)
 {
-	return &m_sSummonPetSkillInfo;
+    return &m_sSummonPetSkillInfo;
 }
 
 inline SAvatarRecipeInfo* CNtlSLGlobal::GetAvatarRecipeInfo(void)
@@ -266,12 +279,12 @@ inline RwBool CNtlSLGlobal::IsWorldUpdateAvaterPosition(void)
 
 inline STenkaichiBudokaiInfo* CNtlSLGlobal::GetTBudokaiStateInfo( void )
 {
-	return &m_sTenkaichiBudokaiInfo;
+    return &m_sTenkaichiBudokaiInfo;
 }
 
 inline SAdjustZennyInfo* CNtlSLGlobal::GetAdjustZennyInfo( void )
 {
-	return &m_sAdjustZennyInfo;
+    return &m_sAdjustZennyInfo;
 }
 
 inline LIST_PASSIVE_SKILL_EFFECT* CNtlSLGlobal::GetPassiveSkillEffectInfo( void )
@@ -281,7 +294,7 @@ inline LIST_PASSIVE_SKILL_EFFECT* CNtlSLGlobal::GetPassiveSkillEffectInfo( void 
 
 inline SGameManiaTimeInfo* CNtlSLGlobal::GetGameManiaTimeInfo( void )
 {
-	return &m_sGameManiaTimeInfo;
+    return &m_sGameManiaTimeInfo;
 }
 
 inline void CNtlSLGlobal::SetServerTime( DBOTIME serverTime )
@@ -294,5 +307,10 @@ inline DBOTIME CNtlSLGlobal::GetServerTime(void)
 	return time(NULL) + m_ServerTimeOffset;
 }
 
+// Mascot
+inline SMascotInfo* CNtlSLGlobal::GetAvatarMascotInfo(void)
+{
+    return &m_sMascotInfo;
+}
 
 #endif

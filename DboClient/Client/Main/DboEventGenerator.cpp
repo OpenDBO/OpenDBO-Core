@@ -1732,3 +1732,67 @@ void CDboEventGenerator::OpenScouterBackgroundGui()
 {
     SEND_MSG(g_EventOpenScouterBackgroundGui, NULL);
 }
+
+// Mascot
+void CDboEventGenerator::MascotRegister(sMASCOT_DATA_EX mascotdata)
+{
+	SDboEventMascotRegister sData;
+	sData.mascotdata = mascotdata;
+
+	SEND_MSG(g_EventMascotRegister, &sData);
+}
+
+void CDboEventGenerator::DeleteMascot(BYTE index)
+{
+	SDboEventCommercialExtendCommand sData;
+	SDboEventMascotOperate sMascotData;
+	sData.eCommandType = eDELETE_MASCOT;
+	sData.pData = &sMascotData;
+	sMascotData.index = index;
+
+	SEND_MSG(g_EventCommercialExtendCommand, &sData);
+}
+
+void CDboEventGenerator::DeleteMascotRes(BYTE index)
+{
+	SDboEventMascotOperate sData;
+	sData.index = index;
+
+	SEND_MSG(g_EventMascotDelete, &sData);
+}
+
+void CDboEventGenerator::SummonMascot(BYTE index)
+{
+	SDboEventCommercialExtendCommand sData;
+	SDboEventMascotOperate sMascotData;
+	sData.eCommandType = eSUMMON_MASCOT;
+	sData.pData = &sMascotData;
+	sMascotData.index = index;
+
+	SEND_MSG(g_EventCommercialExtendCommand, &sData);
+}
+
+void CDboEventGenerator::MascotSummonRes(BYTE index)
+{
+	SDboEventMascotOperate sData;
+	sData.index = index;
+	SEND_MSG(g_EventMascotSummon, &sData);
+}
+
+void CDboEventGenerator::UnSummonMascot(BYTE index)
+{
+	SDboEventCommercialExtendCommand sData;
+	SDboEventMascotOperate sMascotData;
+	sData.eCommandType = eUNSUMMON_MASCOT;
+	sData.pData = &sMascotData;
+	sMascotData.index = index;
+
+	SEND_MSG(g_EventCommercialExtendCommand, &sData);
+}
+
+void CDboEventGenerator::MascotUnSummonRes(BYTE index)
+{
+	SDboEventMascotOperate sData;
+	sData.index = index;
+	SEND_MSG(g_EventMascotUnSummon, &sData);
+}

@@ -69,7 +69,6 @@ class CFlashNotifyGui;
 class CFriendListGui;
 class CInterfaceShakeGui;
 class CRankBoardGui;
-class CMascotGui;
 class CCommuTargetGui;
 class CTimeNotifyGui;
 class CSideDialogControlGui;
@@ -121,6 +120,12 @@ class CCCBDNotifyGui;
 class CCCBDRewardGui;
 class CHoiPoiMixRecipeGui;
 class CHoiPoiMixCraftGui;
+
+// Mascot
+class CMascotGui;
+class CMascotFusion;
+class CMascotSkillReMake;
+class CMascotStatusBarGui;
 
 class CGMGuiGroup;
 
@@ -183,7 +188,6 @@ private:
     CFriendListGui*             m_pFriendListGui;
 	CInterfaceShakeGui*			m_pInterfaceShakeGui;
 	CRankBoardGui*				m_pRankBoardGui;
-	CMascotGui*                 m_pMascotGui;
     CCommuTargetGui*            m_pCommuTargetGui;
 	CTimeNotifyGui*				m_pTimeNotifyGui;
 	CSideDialogControlGui*		m_pSideDialogControl;
@@ -238,6 +242,12 @@ private:
 	CCCBDBoardGui*				m_pCCBDBoardGui;
 	CCCBDNotifyGui*				m_pCCBDNotifyGui;
 	CCCBDRewardGui*				m_pCCBDRewardGui;
+
+	// Mascot
+	CMascotGui* m_pMascotGui;
+	CMascotFusion* m_pMascotFusion;
+	CMascotSkillReMake* m_pMascotSkillReMake;
+	CMascotStatusBarGui* m_pMascotStatusBarGui;
 
 	gui::CSlot m_slotPaint;
 		

@@ -476,3 +476,7 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/NtlLib/Shared/NtlXMLLoader/xmlparser_i.c
+/NtlLib/Shared/NtlXMLLoader/xmlparser_h.h
+/NtlLib/Shared/NtlXMLLoader/msxml2_i.c
+/NtlLib/Shared/NtlXMLLoader/msxml2_h.h

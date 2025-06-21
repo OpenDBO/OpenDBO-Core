@@ -281,6 +281,10 @@ RwBool CreateTableContainer(RwUInt8 byLoadMethod)
 	flagManager.Set(CTableContainer::TABLE_ITEM_ENCHANT);
 	flagManager.Set(CTableContainer::TABLE_NPC_SERVER);
 
+	// Mascot
+	flagManager.Set(CTableContainer::TABLE_MASCOT);
+	flagManager.Set(CTableContainer::TABLE_MASCOT_STATUS);
+	flagManager.Set(CTableContainer::TABLE_MASCOT_GRADE);
 
 	fileNameList.SetFileName(CTableContainer::TABLE_EXP,					"table_exp_data");
 	fileNameList.SetFileName(CTableContainer::TABLE_WORLD,					"Table_World_Data");
@@ -337,6 +341,11 @@ RwBool CreateTableContainer(RwUInt8 byLoadMethod)
 	fileNameList.SetFileName(CTableContainer::TABLE_DWC,					"table_dwc_data");
 	fileNameList.SetFileName(CTableContainer::TABLE_ITEM_ENCHANT, "table_item_enchant_data");
 	fileNameList.SetFileName(CTableContainer::TABLE_NPC_SERVER,				"table_npc_data_server"); // required for mini map so we dont show npcs that are not spawned
+
+	// Mascot
+	fileNameList.SetFileName(CTableContainer::TABLE_MASCOT, "table_mascot_data");
+	fileNameList.SetFileName(CTableContainer::TABLE_MASCOT_STATUS, "table_mascot_status_data");
+	fileNameList.SetFileName(CTableContainer::TABLE_MASCOT_GRADE, "table_mascot_grade_data");
 
 	g_pTableContainer = NTL_NEW CTableContainer;
 	

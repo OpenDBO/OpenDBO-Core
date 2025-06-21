@@ -37,6 +37,8 @@
 #define WORLDITEM_MODELNAME_DRANGONBALL_BASIC		"I_DRP_21"
 #define WORLDITEM_MODELNAME_DRANGONBALL_NORMAL		"I_DRP_22"
 
+#define ITEM_EVENT_MODEL	"I_DRP_40"
+
 DEFINITION_MEMORY_POOL( CNtlSobWorldItemProxy )
 
 CNtlSobWorldItemProxy::CNtlSobWorldItemProxy()
@@ -92,9 +94,11 @@ VOID CNtlSobWorldItemProxy::CreatePLWorldItem( RWS::CMsg& msg )
 	{
 		if( pAttr->IsIdentified() ) 
 		{
+			sITEM_TBLDAT* pTblDat = pAttr->GetItemTbl();
+
 			if( pAttr->IsDragonBall() )
 			{
-                // 드래곤볼 타입을 판단한다.
+				// Handles the Dragon Ball type.
                 sITEM_TBLDAT* pTblDat = pAttr->GetItemTbl();
                 if(!pTblDat)
                     return;
@@ -104,7 +108,7 @@ VOID CNtlSobWorldItemProxy::CreatePLWorldItem( RWS::CMsg& msg )
                     return;
 
                 eDRAGON_BALL_TYPE byType = pDBTable->GetDropItemType(pTblDat->tblidx);
-        //        NTL_ASSERT(byType != DRAGON_BALL_TYPE_NONE, __FUNCTION__ << "DragonBall Drop Type Invalid" );
+				// NTL_ASSERT(byType != DRAGON_BALL_TYPE_NONE, __FUNCTION__ << "DragonBall Drop Type Invalid" );
 
 				if (byType == DRAGON_BALL_TYPE_NONE) // by daneos
 				{
@@ -127,6 +131,15 @@ VOID CNtlSobWorldItemProxy::CreatePLWorldItem( RWS::CMsg& msg )
 			}
 			else
 			{
+				if (pTblDat->byItem_Type == ITEM_TYPE_EVENT_MASCOT_EXP_FOOD ||
+					pTblDat->byItem_Type == ITEM_TYPE_EVENT_MASCOT_FOOD ||
+					pTblDat->byItem_Type == ITEM_TYPE_EVENT_MASCOT_AUTO_FOOD ||
+					pTblDat->byItem_Type == ITEM_TYPE_EVENT_MASCOT_CHANGE_SKILL ||
+					pTblDat->byItem_Type == ITEM_TYPE_EVENT_MASCOT_LEVELUP)
+				{
+					szModelName = ITEM_EVENT_MODEL;
+
+				}
 				switch( pAttr->GetRank() )
 				{
 					case ITEM_RANK_NOTHING: szModelName = WORLDITEM_MODELNAME_ETC; break;

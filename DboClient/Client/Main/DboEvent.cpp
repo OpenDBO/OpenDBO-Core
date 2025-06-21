@@ -269,3 +269,9 @@ RWS::CEventId g_EventNetMarbleMemberShipNfy;
 //-------------------------------------------------------
 // test code
 RWS::CEventId g_EventSCS;
+
+// Mascot
+RWS::CEventId g_EventMascotRegister;
+RWS::CEventId g_EventMascotDelete;
+RWS::CEventId g_EventMascotSummon;
+RWS::CEventId g_EventMascotUnSummon;

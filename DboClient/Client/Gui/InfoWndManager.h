@@ -23,6 +23,17 @@ struct stINFOWND_REWARD
 	RwInt32		nValue;
 };
 
+struct stMACOT_INFO
+{
+	TBLIDX			tblidx;
+	BYTE			byItemRank;
+	DWORD			dwCurExp;
+	DWORD			dwCurVP;
+	DWORD			dwMaxVP;
+	DWORD			dwMaxExp;
+
+};
+
 struct stINFOWND_UPGRADE
 {
 	enum MAXLINE { MAXLINECOUNT = 4 };
@@ -129,6 +140,10 @@ public:
 		INFOWND_SKILL_SPUPGRADE,				/// SP 업그레이드 버튼.
 		INFOWND_RECIPE,
 		INFOWND_HLS_ITEM,
+
+		// Mascot
+		INFOWND_MASCOT_INFO,
+		INFOWND_MASCOT_SKILL_INFO
 	};
 
 	~CInfoWndManager(VOID);

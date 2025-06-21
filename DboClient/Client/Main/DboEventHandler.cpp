@@ -212,6 +212,12 @@ RwBool CDboEventHandler::Create(void)
 	RegisterMsg(g_EventHLShopEventItemAddNfy, "g_EventHLShopEventItemAddNfy", "SDboEventHLShopEventItemAddNfy");
 	RegisterMsg(g_EventHLShopEventItemDelNfy, "g_EventHLShopEventItemDelNfy", "SDboEventHLShopEventItemDelNfy");
 	RegisterMsg(g_EventHLShopEventItemGiftRes, "g_EventHLShopEventItemGiftRes", "SDboEventHLShopEventItemGiftRes");
+
+	// Mascot
+	RegisterMsg(g_EventMascotRegister, "g_EventMascotRegister", "SDboEventMascotRegister");
+	RegisterMsg(g_EventMascotDelete, "g_EventMascotDelete", "SDboEventMascotOperate");
+	RegisterMsg(g_EventMascotSummon, "g_EventMascotSummon", "SDboEventMascotOperate");
+	RegisterMsg(g_EventMascotUnSummon, "g_EventMascotUnSummon", "SDboEventMascotOperate");
 	
 	//test		
 	RegisterMsg(g_EventSCS, "g_EventSCS", "" );
@@ -394,6 +400,12 @@ void CDboEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventHLShopEventItemAddNfy);
 	UnRegisterMsg(g_EventHLShopEventItemDelNfy);
 	UnRegisterMsg(g_EventHLShopEventItemGiftRes);
+
+	// Mascot
+	UnRegisterMsg(g_EventMascotRegister);
+	UnRegisterMsg(g_EventMascotDelete);
+	UnRegisterMsg(g_EventMascotSummon);
+	UnRegisterMsg(g_EventMascotUnSummon);
 			
 	UnRegisterMsg(g_EventSCS);		
 	NTL_RETURNVOID();

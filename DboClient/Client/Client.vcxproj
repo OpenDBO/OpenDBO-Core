@@ -394,6 +394,9 @@
     <ClCompile Include="Main\PacketProc.cpp" />
     <ClCompile Include="Main\PetitionManager.cpp" />
     <ClCompile Include="Main\WinMain.cpp" />
+    <ClCompile Include="MascotFusion.cpp" />
+    <ClCompile Include="MascotSkillReMake.cpp" />
+    <ClCompile Include="MascotStatusBarGui.cpp" />
     <ClCompile Include="MrPoPoHandler.cpp" />
     <ClCompile Include="NetPySideIconGui.cpp" />
     <ClCompile Include="NetPySideView.cpp" />
@@ -454,6 +457,9 @@
     <ClInclude Include="ItemOptionRestructureGui.h" />
     <ClInclude Include="ItemSwapCartGui.h" />
     <ClInclude Include="ItemSwapGui.h" />
+    <ClInclude Include="MascotFusion.h" />
+    <ClInclude Include="MascotSkillReMake.h" />
+    <ClInclude Include="MascotStatusBarGui.h" />
     <ClInclude Include="PlayerTitleGui.h" />
     <ClInclude Include="QuickTeleportGui.h" />
     <ClInclude Include="ScouterMeasureDlgGui.h" />

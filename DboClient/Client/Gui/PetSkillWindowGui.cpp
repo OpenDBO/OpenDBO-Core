@@ -403,47 +403,47 @@ VOID CPetSkillWindowGui::OnMouseDownSummonAttack(const CKey& key)
 
 VOID CPetSkillWindowGui::OnClickSummonAttack(const CKey& key)
 {
-    if(!m_uiSummonPetID)
+    if (!m_uiSummonPetID)
         return;
 
-    // 마우스 우측 클릭시에만 공격하도록 한다.
-    if(key.m_nID != UD_RIGHT_BUTTON)
+    // Only attack when right-clicking the mouse.
+    if (key.m_nID != UD_RIGHT_BUTTON)
         return;
 
     m_pBtnSummonAttack->GetSurfaceFocus()->clear();
-    m_pBtnSummonAttack->AddSurfaceFocus(m_surAttackBtnUp);    
+    m_pBtnSummonAttack->AddSurfaceFocus(m_surAttackBtnUp);
     m_pBtnSummonAttack->ReleaseMouse();
 
-	// peessi: MouseCapture 상태에서 UI가 사라진 경우에, 콜백에 따른 작동을 막는다. 
-	if( !m_pBtnSummonAttack->IsVisibleTruly() )
-		return;
+    // peessi: When the UI disappears while in MouseCapture state, cancel the action for consistency.
+    if (!m_pBtnSummonAttack->IsVisibleTruly())
+        return;
 
-    //// 설정한 타겟을 펫이 공격하게 한다.  
-	// 서버로 Pet을 옮기는 작업 중
+    //// Make the pet attack the set target.
+    // Process of commanding the pet to the server
     CNtlSobPet* pSobPet = reinterpret_cast<CNtlSobPet*>(GetNtlSobManager()->GetSobObject(m_uiSummonPetID));
-    if(!pSobPet)
+    if (!pSobPet)
         return;
 
     SERIAL_HANDLE hTarget = Logic_GetAvatarTargetHandle();
-    if(hTarget == INVALID_SERIAL_ID)
+    if (hTarget == INVALID_SERIAL_ID)
         return;
 
-    if(!Logic_IsEnemyTagetFromPetActor(pSobPet, hTarget))   // 공격할수 있는 대상인지 확인
+    if (!Logic_IsEnemyTagetFromPetActor(pSobPet, hTarget))   // Check if the target can be attacked.
         return;
 
-	API_GetSLPacketGenerator()->SendPetAttackTargetNfy( pSobPet->GetServerSyncAvatarType() );
+    API_GetSLPacketGenerator()->SendPetAttackTargetNfy(pSobPet->GetServerSyncAvatarType());
 
     /*CNtlSLEventGenerator::SobPetBeginAttack(m_uiSummonPetID, hTarget);    */
 }
 
-VOID CPetSkillWindowGui::OnMouseEnter( gui::CComponent* pComponent )
+VOID CPetSkillWindowGui::OnMouseEnter(gui::CComponent* pComponent)
 {
-    m_bVisibeFocus = TRUE;      // 아이콘 포커스를 그린다.
+    m_bVisibeFocus = TRUE;      // Highlight the icon focus.
 
-    // 툴팁을 뛰운다    
+    // Display the tooltip.
     RwInt32 nX = m_pThis->GetPosition().left;
     RwInt32 nY = m_pThis->GetPosition().top - 60;
-    GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_JUST_WTEXT, nX, nY, (void*)GetDisplayStringManager()->GetString("DST_PET_TOOLTIP_ATTACK"), DIALOG_PET_SKILL_SLOT); 
+    GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_JUST_WTEXT, nX, nY, (void*)GetDisplayStringManager()->GetString("DST_PET_TOOLTIP_ATTACK"), DIALOG_PET_SKILL_SLOT);
 }
 
 VOID CPetSkillWindowGui::OnMove( RwInt32 iOldX, RwInt32 iOldY )
@@ -466,7 +466,7 @@ VOID CPetSkillWindowGui::OnMouseLeave( gui::CComponent* pComponent )
 {
     m_bVisibeFocus = FALSE;
 
-    // 툴팁을 없앤다.
+    // Remove the tooltip.
     if(GetInfoWndManager()->GetRequestGui() == DIALOG_PET_SKILL_SLOT)
     {
         GetInfoWndManager()->ShowInfoWindow(FALSE);

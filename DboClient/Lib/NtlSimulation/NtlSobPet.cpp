@@ -42,7 +42,7 @@ RwBool CNtlSobPet::Create(void)
 {
 	NTL_FUNCTION("CNtlSobPet::Create");
 
-	// proxy 설정
+	// Set up proxy.
 	m_pSobProxy = NTL_NEW CNtlSobCharProxy;
 	m_pSobProxy->Create(0);
 	m_pSobProxy->SetSobObj(this);
@@ -55,7 +55,7 @@ RwBool CNtlSobPet::Create(void)
 		NTL_RETURN(FALSE);
 	}
 
-	// class name 설정.
+	// Set class name.
 	SetClassName(SLCLASS_NAME_PET);
 
 	NTL_RETURN(TRUE);
@@ -65,7 +65,7 @@ void CNtlSobPet::Destroy(void)
 {
 	NTL_FUNCTION("CNtlSobPet::Destroy");
 
-	// ower에 pet 해제.
+	// Remove pet from owner.
 	CNtlSobFeelingActor *pSobFeelingActor = reinterpret_cast<CNtlSobFeelingActor*>( GetNtlSobManager()->GetSobObject(GetOwnerID()) );
 	if(pSobFeelingActor)
 		pSobFeelingActor->GetPetBuffer()->RemovePet(GetSerialID());
@@ -100,7 +100,7 @@ void CNtlSobPet::HandleEvents(RWS::CMsg &pMsg)
 	{
 		SNtlEventSobPetCreate *pSobCreate = reinterpret_cast<SNtlEventSobPetCreate*>(pMsg.pData);
 
-		// ower에 pet 등록.
+		// Register pet to owner.
 		CNtlSobPlayer *pSobPlayer = reinterpret_cast<CNtlSobPlayer*>( GetNtlSobManager()->GetSobObject(pSobCreate->uPetBrief.pPetBrief->hOwner) );
 		if(pSobPlayer)
 			pSobPlayer->GetPetBuffer()->AddPet(pSobCreate->hSerialId);
@@ -136,7 +136,7 @@ void CNtlSobPet::HandleEvents(RWS::CMsg &pMsg)
 		// proxy setting
 		GetSobProxy()->HandleEvents(pMsg);
 
-		// 좌표와 방향 세팅.
+		// Set up status and relationship.
 		RwV3d vLoc, vDir;
 		RwV3dAssignMacro(&vLoc, &pSobCreate->vLoc); 
 		RwV3dAssignMacro(&vDir, &pSobCreate->vDir); 

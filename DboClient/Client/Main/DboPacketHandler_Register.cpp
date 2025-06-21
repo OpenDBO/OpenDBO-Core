@@ -800,6 +800,14 @@ void RegisterPacketHandler(void)
 
 	// QuickSlot
 	CNtlPacketHandler::Register( GU_QUICK_SLOT_DEL_NFY, Packethandler_GUQuickSlotDelNfy );
+
+	// Mascot
+	CNtlPacketHandler::Register(GU_MASCOT_INFO_EX, PacketHandler_GSAvatarMascotInfo);
+	CNtlPacketHandler::Register(GU_MASCOT_REGISTER_EX_NFY, PacketHandler_GSMascotExRegisterNfy);
+	CNtlPacketHandler::Register(GU_MASCOT_DELETE_EX_RES, PacketHandler_GSMascotExDeleteRes);
+	CNtlPacketHandler::Register(GU_MASCOT_SUMMON_EX_RES, PacketHandler_GSMascotExSummonRes);
+	CNtlPacketHandler::Register(GU_UPDATE_MASCOT_SUMMON, PacketHandler_GSUpdateMascotSummon);
+	CNtlPacketHandler::Register(GU_MASCOT_UNSUMMON_EX_RES, PacketHandler_GSMascotExUnSummonRes);
 }
 
 void UnRegisterPacketHandler(void)
@@ -1503,4 +1511,12 @@ void UnRegisterPacketHandler(void)
 	CNtlPacketHandler::UnRegister(GU_GMT_INFO_NFY);
 	CNtlPacketHandler::UnRegister(GU_GMT_UPDATE_RES);
 	CNtlPacketHandler::UnRegister(GU_GMT_CHANGED_NFY);
+
+	// Mascot
+	CNtlPacketHandler::UnRegister(GU_MASCOT_INFO_EX);
+	CNtlPacketHandler::UnRegister(GU_MASCOT_REGISTER_EX_NFY);
+	CNtlPacketHandler::UnRegister(GU_MASCOT_DELETE_EX_RES);
+	CNtlPacketHandler::UnRegister(GU_MASCOT_SUMMON_EX_RES);
+	CNtlPacketHandler::UnRegister(GU_UPDATE_MASCOT_SUMMON);
+	CNtlPacketHandler::UnRegister(GU_MASCOT_UNSUMMON_EX_RES);
 }
