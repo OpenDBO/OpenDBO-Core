@@ -18,6 +18,7 @@
 #include "NtlSobTriggerObjectAttr.h"
 #include "NtlSobVehicleAttr.h"
 #include "NtlSobDynamicObjectAttr.h"
+#include "NtlSobMascotAttr.h"
 
 
 CNtlSobAttr* CNtlSobAttrFactory::CreateSobAttrFactory(RwUInt32 uiClassId)
@@ -83,6 +84,9 @@ CNtlSobAttr* CNtlSobAttrFactory::CreateSobAttrFactory(RwUInt32 uiClassId)
 		break;
 	case SLCLASS_DYNAMIC_OBJECT:
 		pObjAttr = NTL_NEW CNtlSobDynamicObjectAttr;
+		break;
+	case SLCLASS_MASCOT:
+		pObjAttr = NTL_NEW CNtlSobMascotAttr;
 		break;
 	}
 

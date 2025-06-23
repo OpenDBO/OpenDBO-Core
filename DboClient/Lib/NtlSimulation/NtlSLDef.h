@@ -2,7 +2,7 @@
  *
  * File			: NtlSLDef.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ï¿½ï¿½)NTL
  * Date			: 2005. 8. 10	
  * Abstract		: Simulation object entity base class
  *****************************************************************************
@@ -40,29 +40,30 @@ typedef void*						CINEMATIC_HANDLE;
 #define SLCLASS_NPC					3
 #define SLCLASS_MONSTER				4
 #define SLCLASS_PET					5
-#define SLCLASS_WORLD_ITEM			6
-#define SLCLASS_SLOT_ITEM			7
-#define SLCLASS_SLOT_QUESTITEM		8
-#define SLCLASS_PROJECTILE			9
-#define SLCLASS_INFLUENCE			10
-#define SLCLASS_BUFF				11
-#define SLCLASS_SKILL				12
-#define SLCLASS_HTBSKILL			13
-#define SLCLASS_ACTIONSKILL			14
-#define SLCLASS_SYNC_STATUS			15
-#define SLCLASS_ITEM_ICON			16
-#define SLCLASS_QUESTITEM_ICON		17
-#define SLCLASS_BUFF_ICON			18
-#define SLCLASS_SKILL_ICON			19
-#define SLCLASS_HTBSKILL_ICON		20
-#define SLCLASS_ACTIONSKILL_ICON	21
-#define SLCLASS_MERCHANT_ITEM		22
-#define SLCLASS_TRIGGER_OBJECT		23
-#define SLCLASS_EVENT_OBJECT        24
-#define SLCLASS_VEHICLE				25
-#define SLCLASS_DYNAMIC_OBJECT		26
+#define SLCLASS_MASCOT				6 // mascot
+#define SLCLASS_WORLD_ITEM			7
+#define SLCLASS_SLOT_ITEM			8
+#define SLCLASS_SLOT_QUESTITEM		9
+#define SLCLASS_PROJECTILE			10
+#define SLCLASS_INFLUENCE			11
+#define SLCLASS_BUFF				12
+#define SLCLASS_SKILL				13
+#define SLCLASS_HTBSKILL			14
+#define SLCLASS_ACTIONSKILL			15
+#define SLCLASS_SYNC_STATUS			16
+#define SLCLASS_ITEM_ICON			17
+#define SLCLASS_QUESTITEM_ICON		18
+#define SLCLASS_BUFF_ICON			19
+#define SLCLASS_SKILL_ICON			20
+#define SLCLASS_HTBSKILL_ICON		21
+#define SLCLASS_ACTIONSKILL_ICON	22
+#define SLCLASS_MERCHANT_ITEM		23
+#define SLCLASS_TRIGGER_OBJECT		24
+#define SLCLASS_EVENT_OBJECT        25
+#define SLCLASS_VEHICLE				26
+#define SLCLASS_DYNAMIC_OBJECT		27
 
-#define MAX_SLCLASS					26
+#define MAX_SLCLASS					27
 
 //--------------------------------------------------------------
 // simulation class name
@@ -72,6 +73,7 @@ typedef void*						CINEMATIC_HANDLE;
 #define SLCLASS_NAME_NPC				"Sob_Npc"
 #define SLCLASS_NAME_MONSTER			"Sob_Monster"
 #define SLCLASS_NAME_PET				"Sob_Pet"
+#define SLCLASS_NAME_MASCOT				"Sob_Mascot"
 #define SLCLASS_NAME_WORLD_ITEM			"Sob_WorldItem"
 #define SLCLASS_NAME_SLOT_ITEM			"Sob_SlotItem"
 #define SLCLASS_NAME_SLOT_QUESTITEM		"Sob_SlotQuestItem"
@@ -99,19 +101,23 @@ typedef void*						CINEMATIC_HANDLE;
 
 #define SLCONTROLLER_PLYAER					0x0001		// avatar control
 #define SLCONTROLLER_PLAYER_SYNC			0x0002		// player sync control
-#define SLCONTROLLER_SERVER					0x0004		// server°¡ control
-#define SLCONTROLLER_SUMMON_PET				0x0008		// ÀÚ±â°¡ controlÇÏ´Â summonn pet
-#define SLCONTROLLER_ITEM_PET				0x0010		// ÀÚ±â°¡ controlÇÏ´Â item pet
+#define SLCONTROLLER_SERVER					0x0004		// server control
+#define SLCONTROLLER_SUMMON_PET				0x0008		// Ú±â°¡ controlÏ´ summonn pet
+#define SLCONTROLLER_ITEM_PET				0x0010		// Ú±â°¡ controlÏ´ item pet
 #define SLCONTROLLER_VEHICLE				0x0020		// Vehicle control
 #define SLCONTROLLER_VEHICLE_SYNC			0x0040		// Vehicle sysnc control
 
+//--------------------------------------------------------------
+// component types
+
+#define COMPTYPE_MASCOT						0x0001		// mascot component type
 
 //--------------------------------------------------------------
 // simulation object flags
 
-#define SLFLAG_ADD_UPDATE					0x00000001		// update¿¡ Ãß°¡ÇÏ¶ó.
-#define SLFLAG_UPDATE_PAUSE					0x00000002		// update¸¦ pause¸¦ ÇÏ¶ó.
-#define SLFLAG_NOT_INPUT					0x00000004		// input¿¡ ´ëÇÑ Ã³¸® ºÒ°¡.
+#define SLFLAG_ADD_UPDATE					0x00000001		// updateï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï¶ï¿½.
+#define SLFLAG_UPDATE_PAUSE					0x00000002		// updateï¿½ï¿½ pauseï¿½ï¿½ ï¿½Ï¶ï¿½.
+#define SLFLAG_NOT_INPUT					0x00000004		// inputï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½Ò°ï¿½.
 #define SLFLAG_NOT_VISIBLE					0x00000008		// Do not render.
 #define SLFLAG_CAN_SKILLUSE					0x00000010		// It is an object that can use skill.
 #define SLFLAG_CAN_REVIVAL					0x00000020		// Is it possible to resurrect?
@@ -148,7 +154,7 @@ typedef void*						CINEMATIC_HANDLE;
 #define SLFLAG_ACTOR_CALC_HEIGHT            0x00000010      // Set this flag if you need to recalculate the height.
 
 //--------------------------------------------------------------
-// °´Ã¼ update ¿ì¼±¼øÀ§
+// ï¿½ï¿½Ã¼ update ï¿½ì¼±ï¿½ï¿½ï¿½ï¿½
 
 #define SLUPDATE_PRIORITY_CROWD             11
 #define SLUPDATE_PRIORITY_INPUT				10		

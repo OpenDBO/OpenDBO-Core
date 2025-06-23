@@ -17,9 +17,15 @@
 #include "NtlSLApi.h"
 #include "NtlSLEventFunc.h"
 #include "NtlCameraController.h"
+#include "NtlSobManager.h"
+#include "NtlSobGroup.h"
+#include "NtlSobFactory.h"
+#include "NtlSLDef.h"
 
 // table
 #include "MascotGradeTable.h"
+
+
 
 // dbo
 #include "DboGlobal.h"
@@ -31,6 +37,11 @@
 #include <InfoWndManager.h>
 #include "IconMoveManager.h"
 #include "NtlSobCharProxy.h"
+
+// mascot
+#include "NtlSobMascot.h"
+#include "NtlSobMascotAttr.h"
+#include "NtlSobMascotProxy.h"
 
 #include <Windows.h> // Include Windows header for OutputDebugString
 #include <string>
@@ -58,6 +69,20 @@ CMascotGui::CMascotGui(const RwChar* pName)
 
 CMascotGui::~CMascotGui()
 {
+    // Clean up temporary UI mascot in destructor
+    if (m_pTempUIMascot)
+    {
+        OutputDebugString("[MASCOT_CLEANUP] Cleaning up temporary UI mascot in destructor\n");
+        CNtlSobMascotProxy* pProxy = reinterpret_cast<CNtlSobMascotProxy*>(m_pTempUIMascot->GetSobProxy());
+        if (pProxy)
+        {
+            pProxy->DeleteUIMascotStatusWndCamera();
+            pProxy->DeleteUIMascotStatusWndCharacter();
+        }
+        m_pTempUIMascot->Destroy();
+        NTL_DELETE(m_pTempUIMascot);
+        m_pTempUIMascot = NULL;
+    }
 }
 
 void CMascotGui::Init()
@@ -83,6 +108,8 @@ void CMascotGui::Init()
 
     // Pointer
     m_apflaEffect = NULL;
+    m_pTempUIMascot = NULL; // Initialize temporary UI mascot pointer
+    m_pWorldMascot = NULL; // Initialize world mascot pointer
 }
 
 RwBool CMascotGui::Create()
@@ -320,6 +347,25 @@ void CMascotGui::InitializeMascotIconsAndSkills()
 
 void CMascotGui::Destroy()
 {
+    // Clean up temporary UI mascot if it exists
+    if (m_pTempUIMascot)
+    {
+        OutputDebugString("[MASCOT_CLEANUP] Cleaning up temporary UI mascot on GUI destroy\n");
+        CNtlSobMascotProxy* pProxy = reinterpret_cast<CNtlSobMascotProxy*>(m_pTempUIMascot->GetSobProxy());
+        if (pProxy)
+        {
+            pProxy->DeleteUIMascotStatusWndCamera();
+            pProxy->DeleteUIMascotStatusWndCharacter();
+        }
+        m_pTempUIMascot->Destroy();
+        NTL_DELETE(m_pTempUIMascot);
+        m_pTempUIMascot = NULL;
+    }
+
+    // NOTE: Do NOT clean up world mascot here! 
+    // Destroy() is called when GUI closes, not when mascot is unsummoned.
+    // World mascot should remain alive even when GUI is closed.
+
     // Remove Mascot icons
     for (RwInt32 i = 0; i < dMAX_MASCOT_SLOT; ++i)
         m_MascotIcon[i].slot.Destroy();
@@ -346,6 +392,13 @@ RwInt32 CMascotGui::SwitchDialog(bool bOpen)
         // Refresh the list based on the current line
         RefreshList(m_CurLine);
 
+        // Check if there's already a summoned mascot and create UI texture for it
+        if (m_SummonMascotIndex != dMASCOT_INVALID_INDEX)
+        {
+            // Create UI texture for the currently summoned mascot
+            CreateUITextureForSummonedMascot(m_SummonMascotIndex);
+        }
+
         // Show the dialog
         Show(bOpen);
     }
@@ -364,6 +417,21 @@ RwInt32 CMascotGui::SwitchDialog(bool bOpen)
 
         // Hide skill info window
         ShowSkillInfoWindow(false);
+
+        // Clean up temporary UI mascot when window closes
+        if (m_pTempUIMascot)
+        {
+            OutputDebugString("[MASCOT_CLEANUP] Cleaning up temporary UI mascot on window close\n");
+            CNtlSobMascotProxy* pProxy = reinterpret_cast<CNtlSobMascotProxy*>(m_pTempUIMascot->GetSobProxy());
+            if (pProxy)
+            {
+                pProxy->DeleteUIMascotStatusWndCamera();
+                pProxy->DeleteUIMascotStatusWndCharacter();
+            }
+            m_pTempUIMascot->Destroy();
+            NTL_DELETE(m_pTempUIMascot);
+            m_pTempUIMascot = NULL;
+        }
 
         // Show the dialog (which will actually hide it in this case since bOpen is false)
         Show(bOpen);
@@ -421,17 +489,119 @@ void CMascotGui::HandleEvents(RWS::CMsg& msg)
         m_psttb_Summoned->SetText(GetDisplayStringManager()->GetString("DST_MASCOTEX_STATUS_SUBTITLE_SUMMON"));  // The mascot has been successfully summoned.
         // Create the flash effect for the summoned mascot
         CreateFlashEffect(pData->index);
+
+        // Convert temporary UI mascot to real world mascot (don't delete it!)
+        if (m_pTempUIMascot)
+        {
+            // Clean up only the UI-specific components, but keep the world mascot
+            CNtlSobMascotProxy* pProxy = reinterpret_cast<CNtlSobMascotProxy*>(m_pTempUIMascot->GetSobProxy());
+            if (pProxy)
+            {
+                // Only delete UI camera, keep the world mascot alive
+                pProxy->DeleteUIMascotStatusWndCamera();
+                // DON'T delete the character - that's the world mascot we want to keep
+            }
+            
+            // NOW create the world mascot (this was moved from global events to here)
+            m_pTempUIMascot->CreateWorldMascot();
+            
+            // Track the world mascot for proper cleanup on unsummon
+            m_pWorldMascot = m_pTempUIMascot;
+            
+            // Clear the temp mascot pointer but DON'T delete the object - it's now the real world mascot
+            m_pTempUIMascot = NULL;
+        }
+        GetDialogManager()->CloseDialog(DIALOG_MASCOT);
     }
     // Check if the event is for unsummoning a mascot
     else if (msg.Id == g_EventMascotUnSummon)
     {
+        OutputDebugString("[MASCOT_UNSUMMON] Handling mascot unsummon event\n");
+
+        // CRITICAL: Remove the world mascot from the world and delete it
+        if (m_pWorldMascot)
+        {
+            OutputDebugString("[MASCOT_UNSUMMON] Found world mascot, removing from world\n");
+
+            // Get the serial ID before destroying
+            SERIAL_HANDLE hSerialId = m_pWorldMascot->GetSerialID();
+            char debugBuffer[256];
+            sprintf_s(debugBuffer, "[MASCOT_UNSUMMON] Attempting to remove mascot with serial ID: %u\n", hSerialId);
+            OutputDebugString(debugBuffer);
+
+            // Check if mascot is registered in SOB manager before trying to delete through manager
+            CNtlSob* pSobCheck = GetNtlSobManager()->GetSobObject(hSerialId);
+            if (pSobCheck && pSobCheck == m_pWorldMascot)
+            {
+                OutputDebugString("[MASCOT_UNSUMMON] Mascot found in SOB manager, deleting through manager\n");
+                GetNtlSobManager()->DeleteObject(m_pWorldMascot);
+            }
+            else
+            {
+                sprintf_s(debugBuffer, "[MASCOT_UNSUMMON] Mascot not in SOB manager (found: %s, same: %s), destroying directly\n", 
+                    pSobCheck ? "YES" : "NO", (pSobCheck == m_pWorldMascot) ? "YES" : "NO");
+                OutputDebugString(debugBuffer);
+                
+                // Manually destroy since it's not in the SOB manager
+                CNtlSobMascotProxy* pProxy = reinterpret_cast<CNtlSobMascotProxy*>(m_pWorldMascot->GetSobProxy());
+                if (pProxy)
+                {
+                    pProxy->RemoveWorld(); // Remove from world first
+                }
+                m_pWorldMascot->Destroy(); // Destroy the object
+                NTL_DELETE(m_pWorldMascot); // Delete the memory
+            }
+            
+            m_pWorldMascot = NULL;
+            OutputDebugString("[MASCOT_UNSUMMON] World mascot cleanup completed\n");
+        }
+        else
+        {
+            OutputDebugString("[MASCOT_UNSUMMON] No world mascot found to remove\n");
+            
+            // Try to find any mascot in the SOB manager and remove it
+            CNtlSobGroup* pMascotGroup = GetNtlSobManager()->GetSobGroup(SLCLASS_MASCOT);
+            if (pMascotGroup && pMascotGroup->GetCount() > 0)
+            {
+                OutputDebugString("[MASCOT_UNSUMMON] Found mascots in SOB manager, attempting to remove them\n");
+                
+                // Get the first mascot from the group
+                CNtlSobGroup::MapObject& mapObjects = pMascotGroup->GetObjects();
+                CNtlSobGroup::MapObject::iterator it = mapObjects.begin();
+                if (it != mapObjects.end())
+                {
+                    CNtlSob* pMascot = it->second;
+                    if (pMascot)
+                    {
+                        char debugBuffer[256];
+                        sprintf_s(debugBuffer, "[MASCOT_UNSUMMON] Removing mascot from SOB manager: %u\n", pMascot->GetSerialID());
+                        OutputDebugString(debugBuffer);
+                        GetNtlSobManager()->DeleteObject(pMascot);
+                    }
+                }
+            }
+        }
+
         m_SummonMascotIndex = dMASCOT_INVALID_INDEX; // Reset the summoned mascot index
+        
+        // Deselect any currently selected slot since no mascot is summoned
+        if (m_iSelectedSlot != dMASCOT_INVALID_INDEX)
+        {
+            OutputDebugString("[MASCOT_UNSUMMON] Deselecting current slot\n");
+            SelectEffect(false, m_iSelectedSlot); // Remove selection visual effect
+            m_iSelectedSlot = dMASCOT_INVALID_INDEX;
+            m_iSelectedIndex = dMASCOT_INVALID_INDEX;
+            OpenMascotInfo(false, dMASCOT_INVALID_INDEX); // Clear mascot info display
+        }
+        
         RefreshSkillSlot(); // Refresh the skill slot UI
         m_psttb_Summoned->Clear(); // Clear the summoned status text
 
         // Hide and disable the flash effect for the unsummoned mascot
         m_apflaEffect->Show(false);
         m_apflaEffect->Enable(false);
+
+        OutputDebugString("[MASCOT_UNSUMMON] Mascot unsummon handling complete\n");
     }
 
     NTL_RETURNVOID(); // End of function, returning void
@@ -480,8 +650,11 @@ VOID CMascotGui::OnPaint()
     if (m_bFocus_Skill)
         m_FocusEffect_Skill.Render();
 
-    // Render the mascot surface
-    m_surMascot.Render();
+    // Render the mascot surface only if texture is valid
+    if (m_surMascot.GetTexture() && m_surMascot.GetTexture()->GetTexture())
+    {
+        m_surMascot.Render(true); // Render on top
+    }
 }
 
 VOID CMascotGui::OnMouseEnterSlot(gui::CComponent* pComponent)
@@ -1027,43 +1200,187 @@ VOID CMascotGui::OnCloseBtnClicked(gui::CComponent* pComponent)
 // Loads the character's texture and updates the mascot's display rectangle.
 VOID CMascotGui::OnMascotClicked(RwInt32 Slot)
 {
+    // PREVIEW LOGS - Creating Temporary UI Mascot for Preview
+
+    
+    char logBuffer[512];
+    sprintf_s(logBuffer, "[PREVIEW_VERIFY] Clicked Slot: %d\n", Slot);
+    OutputDebugString(logBuffer);
+    
     CNtlSobCharProxy* pCharProxy = reinterpret_cast<CNtlSobCharProxy*>(GetNtlSLGlobal()->GetSobAvatar()->GetSobProxy());
+    sprintf_s(logBuffer, "[PREVIEW_VERIFY] Character proxy (fallback): %s\n", pCharProxy ? "AVAILABLE" : "NULL");
+    OutputDebugString(logBuffer);
 
-    CNtlSob* pSobMascot = GetNtlSobManager()->GetSobObject(m_CurrentMascotParamters.m_CurrentMascotSerialId);
-
-    //CNtlSobItem* mMascotProxy = m_MascotIcon[m_CurrentMascotParamters.m_CurrentMascotSlotIndex].slot.GetSobItem();
-    //CNtlSobItemAttr* mMascotProxyAttr = m_MascotIcon[m_CurrentMascotParamters.m_CurrentMascotSlotIndex].slot.GetSobItemAttr();
-
-    if (pSobMascot)
+    // Handle selection effect
+    if (m_iSelectedSlot != Slot && m_iSelectedSlot != dMASCOT_INVALID_INDEX)
     {
-        // Illust
-        CNtlSobAttr* pMascotAttr = pSobMascot->GetSobAttr();
-        if (pMascotAttr == NULL)
-            DBO_ASSERT(0, "CMascotGui::OnMascotClicked - pMascotAttr is NULL");
+        SelectEffect(FALSE, m_iSelectedSlot);
+    }
+    SelectEffect(TRUE, Slot);
 
-        if (m_surMascot.GetTexture())
+    // Check if we have valid mascot data for preview
+    if (Slot >= 0 && Slot < dMAX_MASCOT_SLOT && m_MascotIcon[Slot].byIndex != INVALID_BYTE)
+    {
+
+        
+        sprintf_s(logBuffer, "[PREVIEW_VERIFY] Mascot data - Index: %d, TblIdx: %u\n", 
+            m_MascotIcon[Slot].byIndex, m_MascotIcon[Slot].MascotTblidx);
+        OutputDebugString(logBuffer);
+        
+        // Create temporary mascot for UI preview (following character UI pattern)
+        CNtlSobMascot* pTempUIMascot = NTL_NEW CNtlSobMascot;
+        if (pTempUIMascot && pTempUIMascot->Create())
         {
-            Logic_DeleteTexture(m_surMascot.GetTexture());
-            m_surMascot.UnsetTexture();
+
+            
+            // Set mascot data for preview rendering
+            pTempUIMascot->SetMascotIndex(m_MascotIcon[Slot].byIndex);
+            pTempUIMascot->SetMascotTblidx(m_MascotIcon[Slot].MascotTblidx);
+            pTempUIMascot->SetItemTblidx(m_MascotIcon[Slot].MascotTblidx);
+            
+            // Get mascot proxy for UI rendering (like character status bar)
+            CNtlSobMascotProxy* pMascotProxy = reinterpret_cast<CNtlSobMascotProxy*>(pTempUIMascot->GetSobProxy());
+            if (pMascotProxy)
+            {
+
+                
+                // FOLLOWING CHARACTER PROXY PATTERN: Initialize UI infrastructure manually
+                // Character proxy does this in SobCreateEventHandler conditionally
+                pMascotProxy->CreateUIMascotStatusWndCharacter();
+                pMascotProxy->CreateUIMascotStatusWndCamera();
+                
+                // Try to get mascot texture after UI infrastructure is set up
+                RwTexture* pMascotTexture = pMascotProxy->UIPcStatusBarRender();
+                if (pMascotTexture)
+                {
+
+                    
+                    // Follow exact character rendering pattern for UI preview
+                    m_texMascot.Load(pMascotTexture);
+                    m_surMascot.SetTexture(&m_texMascot);
+
+                    CRectangle rtScreen = m_pThis->GetScreenRect();
+                    m_surMascot.SetRectWH(rtScreen.left + 50, rtScreen.top + 51, 132, 176);
+                    
+                    
+                }
+                else
+                {
+
+                    
+                    // Fallback to character if mascot texture generation fails
+                    RwTexture* pCharTexture = pCharProxy->UIPcStatusBarRender();
+                    if (pCharTexture)
+                    {
+                        m_texMascot.Load(pCharTexture);
+                        m_surMascot.SetTexture(&m_texMascot);
+
+                        CRectangle rtScreen = m_pThis->GetScreenRect();
+                        m_surMascot.SetRectWH(rtScreen.left + 50, rtScreen.top + 51, 132, 176);
+                        
+
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
+            else
+            {
+
+                
+                // Fallback to character if mascot proxy fails
+                RwTexture* pCharTexture = pCharProxy->UIPcStatusBarRender();
+                if (pCharTexture)
+                {
+                    m_texMascot.Load(pCharTexture);
+                    m_surMascot.SetTexture(&m_texMascot);
+
+                    CRectangle rtScreen = m_pThis->GetScreenRect();
+                    m_surMascot.SetRectWH(rtScreen.left + 50, rtScreen.top + 51, 132, 176);
+                    
+
+                }
+                else
+                {
+
+                }
+            }
+            
+            // Clean up temporary UI mascot after rendering
+
+            
+            // Store temporary mascot for later cleanup - DON'T delete immediately
+            // The texture needs to stay alive for GUI display
+            // Will be cleaned up when window closes, mascot summoned, or different mascot selected
+            if (m_pTempUIMascot)
+            {
+                // Clean up previous temp mascot if it exists
+                CNtlSobMascotProxy* pOldProxy = reinterpret_cast<CNtlSobMascotProxy*>(m_pTempUIMascot->GetSobProxy());
+                if (pOldProxy)
+                {
+                    pOldProxy->DeleteUIMascotStatusWndCamera();
+                    pOldProxy->DeleteUIMascotStatusWndCharacter();
+                }
+                m_pTempUIMascot->Destroy();
+                NTL_DELETE(m_pTempUIMascot);
+            }
+            
+            // Store the new temporary mascot for later cleanup
+            m_pTempUIMascot = pTempUIMascot;
         }
+        else
+        {
 
-        CHAR acMascotIllustBuffer[256];
-        //sprintf_s(acMascotIllustBuffer, 256, "Pet_%s.png", pMascotAttr->GetModelName());
+            
+            // Fallback to character if temp mascot creation fails
+            RwTexture* pCharTexture = pCharProxy->UIPcStatusBarRender();
+            if (pCharTexture)
+            {
+                m_texMascot.Load(pCharTexture);
+                m_surMascot.SetTexture(&m_texMascot);
 
-        // Create Textrue
-        m_surMascot.SetTexture(Logic_CreateTexture(acMascotIllustBuffer, TEXTYPE_ICON));
+                CRectangle rtScreen = m_pThis->GetScreenRect();
+                m_surMascot.SetRectWH(rtScreen.left + 50, rtScreen.top + 51, 132, 176);
+                
+
+            }
+            else
+            {
+
+            }
+            
+            if (pTempUIMascot)
+            {
+                NTL_DELETE(pTempUIMascot);
+            }
+        }
     }
     else
     {
-        // Load the character's UI texture for the mascot display.
-        m_texMascot.Load(pCharProxy->UIPcStatusBarRender());
-        m_surMascot.SetTexture(&m_texMascot);
 
-        CRectangle rtScreen = m_pThis->GetScreenRect();
-        m_surMascot.SetRectWH(rtScreen.left + 50, rtScreen.top + 51, 132, 176);
+        
+        // Empty slot - use character fallback
+        RwTexture* pCharTexture = pCharProxy->UIPcStatusBarRender();
+        if (pCharTexture)
+        {
+            m_texMascot.Load(pCharTexture);
+            m_surMascot.SetTexture(&m_texMascot);
+
+            CRectangle rtScreen = m_pThis->GetScreenRect();
+            m_surMascot.SetRectWH(rtScreen.left + 50, rtScreen.top + 51, 132, 176);
+            
+
+        }
+        else
+        {
+
+        }
     }
-}
+    
 
+}
 VOID CMascotGui::OnSummonBtnClicked(gui::CComponent* pComponent)
 {
     // Check if a mascot slot is selected
@@ -1468,3 +1785,73 @@ VOID CMascotGui::OnMascotRenameBtnClicked(gui::CComponent* pComponent)
 {
     return VOID();
 }
+
+VOID CMascotGui::CreateUITextureForSummonedMascot(RwInt32 summonedIndex)
+{
+    // Clean up any existing temp mascot first
+    if (m_pTempUIMascot)
+    {
+        CNtlSobMascotProxy* pProxy = reinterpret_cast<CNtlSobMascotProxy*>(m_pTempUIMascot->GetSobProxy());
+        if (pProxy)
+        {
+            pProxy->DeleteUIMascotStatusWndCamera();
+            pProxy->DeleteUIMascotStatusWndCharacter();
+        }
+        m_pTempUIMascot->Destroy();
+        NTL_DELETE(m_pTempUIMascot);
+        m_pTempUIMascot = NULL;
+    }
+
+    // Find the summoned mascot data
+    SMascotInfo* pMascotInfo = GetNtlSLGlobal()->GetAvatarMascotInfo();
+    if (!pMascotInfo) return;
+
+    sMASCOT_DATA_EX* pMascotData = NULL;
+    for (int i = 0; i < pMascotInfo->wCount; i++)
+    {
+        if (pMascotInfo->asMascotData[i].byIndex == summonedIndex)
+        {
+            pMascotData = &pMascotInfo->asMascotData[i];
+            break;
+        }
+    }
+
+    if (!pMascotData) return;
+
+    // Create temporary UI mascot for the summoned mascot (same as preview logic)
+    m_pTempUIMascot = NTL_NEW CNtlSobMascot;
+    if (m_pTempUIMascot && m_pTempUIMascot->Create())
+    {
+        // Set mascot data
+        CNtlSobMascotAttr* pMascotAttr = reinterpret_cast<CNtlSobMascotAttr*>(m_pTempUIMascot->GetSobAttr());
+        if (pMascotAttr)
+        {
+            pMascotAttr->SetItemTblidx(pMascotData->itemTblidx);
+        }
+
+        // Get mascot proxy for UI rendering
+        CNtlSobMascotProxy* pMascotProxy = reinterpret_cast<CNtlSobMascotProxy*>(m_pTempUIMascot->GetSobProxy());
+        if (pMascotProxy)
+        {
+            // Initialize UI infrastructure for texture rendering (CORRECTED: no parameters)
+            pMascotProxy->CreateUIMascotStatusWndCharacter();
+            pMascotProxy->CreateUIMascotStatusWndCamera();
+
+            // Generate UI texture (CORRECTED: no parameters, returns RwTexture*)
+            RwTexture* pMascotTexture = pMascotProxy->UIPcStatusBarRender();
+            if (pMascotTexture)
+            {
+                // CORRECTED: Follow the same pattern as OnMascotClicked
+                m_texMascot.Load(pMascotTexture);
+                m_surMascot.SetTexture(&m_texMascot);
+
+                CRectangle rtScreen = m_pThis->GetScreenRect();
+                m_surMascot.SetRectWH(rtScreen.left + 50, rtScreen.top + 51, 132, 176);
+                
+                // Show the texture
+                m_surMascot.Show(true);
+            }
+        }
+    }
+}
+                    

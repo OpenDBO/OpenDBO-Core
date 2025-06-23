@@ -113,6 +113,8 @@
   <ItemGroup>
     <ClCompile Include="ActionMap.cpp" />
     <ClCompile Include="NtlSobMascotAttr.cpp" />
+    <ClCompile Include="NtlSobMascot.cpp" />
+    <ClCompile Include="NtlSobMascotProxy.cpp" />
     <ClCompile Include="DBODirectorIndicate.cpp" />
     <ClCompile Include="DboMovingAlgorithm.cpp" />
     <ClCompile Include="DboTLConditionCheck.cpp" />
@@ -551,6 +553,8 @@
     <ClInclude Include="NtlWorldConceptTrade.h" />
     <ClInclude Include="NtlWorldConceptTutorial.h" />
     <ClInclude Include="precomp_ntlsimulation.h" />
+    <ClInclude Include="NtlSobMascot.h" />
+    <ClInclude Include="NtlSobMascotProxy.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\DboShared\DboTrigger\DboTrigger.vcxproj">

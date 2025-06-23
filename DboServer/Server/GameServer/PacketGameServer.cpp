@@ -12908,6 +12908,11 @@ void CClientSession::RecvMascotSummonReq(CNtlPacket * pPacket)
 		res2->handle = cPlayer->GetID();
 		res2->tblidx = cPlayer->GetMascotTblidx();
 		packet2.SetPacketLen(sizeof(sGU_UPDATE_MASCOT_SUMMON));
+		
+		// Send to the summoning player first (this was missing!)
+		g_pApp->Send(GetHandle(), &packet2);
+		
+		// Then broadcast to other players
 		cPlayer->Broadcast(&packet2, cPlayer);
 	}
 }
@@ -12953,6 +12958,11 @@ void CClientSession::RecvMascotUnsummonReq(CNtlPacket * pPacket)
 		res2->handle = cPlayer->GetID();
 		res2->tblidx = cPlayer->GetMascotTblidx();
 		packet2.SetPacketLen(sizeof(sGU_UPDATE_MASCOT_SUMMON));
+		
+		// Send to the summoning player first (for consistency)
+		g_pApp->Send(GetHandle(), &packet2);
+		
+		// Then broadcast to other players
 		cPlayer->Broadcast(&packet2, cPlayer);
 	}
 }

@@ -61,6 +61,8 @@
 #include "NtlWorldConceptDBC.h"
 #include "NtlSobManager.h"
 #include "NtlSobStatusAnimSyncManager.h"
+#include "NtlSobMascot.h"
+#include "NtlSobMascotAttr.h"
 #include "NtlCameraController.h"
 #include "NtlCameraManager.h"
 #include "InputActionMap.h"
@@ -4920,23 +4922,36 @@ void PacketHandler_GSMascotExRegisterNfy(void* pPacket)
 // Handles the response from the server when a mascot is summoned
 void PacketHandler_GSMascotExSummonRes(void* pPacket)
 {
+	OutputDebugStringA("[MASCOT_SUMMON_DEBUG] PacketHandler_GSMascotExSummonRes - Entry\n");
+	
 	// Unlock the packet lock for mascot summon responses
 	API_GetSLPacketLockManager()->Unlock(GU_MASCOT_SUMMON_EX_RES);
 
 	// Cast the packet to the mascot summon response structure
 	sGU_MASCOT_SUMMON_EX_RES* pResult = (sGU_MASCOT_SUMMON_EX_RES*)pPacket;
 
+	char debugBuffer[256];
+	sprintf_s(debugBuffer, "[MASCOT_SUMMON_DEBUG] Summon response - index: %u, result: %u\n", 
+		pResult->byIndex, pResult->wResultCode);
+	OutputDebugStringA(debugBuffer);
+
 	// Check if the summon was successful
 	if (pResult->wResultCode == GAME_SUCCESS)
 	{
+		OutputDebugStringA("[MASCOT_SUMMON_DEBUG] Summon successful - triggering GUI update event\n");
+		
 		// Trigger an event to notify that the mascot was successfully summoned
 		CDboEventGenerator::MascotSummonRes(pResult->byIndex);
 	}
 	else
 	{
+		OutputDebugStringA("[MASCOT_SUMMON_DEBUG] Summon failed - showing error message\n");
+		
 		// Display an error message if the summon failed
 		GetAlarmManager()->AlarmMessage(Logic_GetResultCodeString(pResult->wResultCode, "GAME_FAIL"), TRUE);
 	}
+	
+	OutputDebugStringA("[MASCOT_SUMMON_DEBUG] PacketHandler_GSMascotExSummonRes - Exit\n");
 }
 
 // Handles the response from the server when a mascot is unsummoned
@@ -4961,47 +4976,47 @@ void PacketHandler_GSMascotExUnSummonRes(void* pPacket)
 	}
 }
 
-// Updates the mascot summon status, likely intended for other clients to receive information about summoned mascots
+// Updates the mascot summon status, creates mascot SOB object when summoned
 void PacketHandler_GSUpdateMascotSummon(void* pPacket)
 {
+	OutputDebugStringA("[MASCOT_WORLD_CREATE] PacketHandler_GSUpdateMascotSummon - Entry\n");
+	
 	// Cast the packet to the mascot summon update structure
 	sGU_UPDATE_MASCOT_SUMMON* pResult = (sGU_UPDATE_MASCOT_SUMMON*)pPacket;
 
-	// The following commented-out code likely processes character state and summon synchronization.
-	// However, it is not currently functional, and the logic appears to handle pet summoning.
+	char debugBuffer[256];
+	sprintf_s(debugBuffer, "[MASCOT_WORLD_CREATE] Update packet - handle: %u, tblidx: %u\n", 
+		pResult->handle, pResult->tblidx);
+	OutputDebugStringA(debugBuffer);
 
-	// The code commented below could be used to get the avatar's state and synchronize the mascot's position and state.
-
-	/*
-	
-	GetNtlSLGlobal()->GetAvatarInfo()->sCharState.sCharStateBase;
-	SAvatarInfo* CurChar = (SAvatarInfo*)GetNtlSobManager()->GetSobObject(pResult->handle);
-	
-	sCHARSTATE* pCharState = &(CurChar->sCharState);
-
-	RwV3d vLoc, vDir;
-
-	CNtlMath::MathRwV3dAssign(&vLoc,
-		CurChar->sCharState.sCharStateBase.vCurLoc.x,
-		CurChar->sCharState.sCharStateBase.vCurLoc.y,
-		CurChar->sCharState.sCharStateBase.vCurLoc.z);
-	CNtlMath::MathRwV3dAssign(&vDir,
-		CurChar->sCharState.sCharStateBase.vCurDir.x,
-		CurChar->sCharState.sCharStateBase.vCurDir.y,
-		CurChar->sCharState.sCharStateBase.vCurDir.z);
-
-	sCHARSTATE* pCharState = &(CurChar->sCharState);
-
+	// Check if this is our avatar being updated
 	CNtlSobAvatar* pSobAvatar = GetNtlSLGlobal()->GetSobAvatar();
 	if (pSobAvatar->GetSerialID() == pResult->handle)
 	{
-		UPetData uPetBrief;
-		uPetBrief.pPetBrief = NULL;
-
-		CNtlSLEventGenerator::SobPetCreate(SLCLASS_PET, pResult->handle, vLoc, vDir, FALSE, uPetBrief, pCharState);
-		CNtlSLEventGenerator::SobSummonPetSpawnSync(pResult->handle, pResult->handle);
+		OutputDebugStringA("[MASCOT_WORLD_CREATE] This is our avatar's mascot\n");
+		
+		if (pResult->tblidx != INVALID_TBLIDX)
+		{
+			OutputDebugStringA("[MASCOT_WORLD_CREATE] Mascot summoned successfully\n");
+			
+			// No manual creation needed - the temp mascot system handles creation
+			// and the GUI converts temp mascots to persistent world mascots
+		}
+		else
+		{
+			OutputDebugStringA("[MASCOT_WORLD_CREATE] Mascot is being unsummoned\n");
+			
+			// For now, let the system handle mascot cleanup naturally
+			// TODO: Implement proper mascot deletion when needed
+			OutputDebugStringA("[MASCOT_WORLD_CREATE] Mascot unsummon handling - to be implemented\n");
+		}
 	}
-	*/
+	else
+	{
+		OutputDebugStringA("[MASCOT_WORLD_CREATE] This is another player's mascot - ignoring\n");
+	}
+	
+	OutputDebugStringA("[MASCOT_WORLD_CREATE] PacketHandler_GSUpdateMascotSummon - Exit\n");
 }
 
 // Handles the response from the server when a mascot is deleted

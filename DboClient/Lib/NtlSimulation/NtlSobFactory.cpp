@@ -21,6 +21,7 @@
 #include "NtlSobEventObject.h"
 #include "NtlSobVehicle.h"
 #include "NtlSobDynamicObject.h"
+#include "NtlSobMascot.h"
 
 #define SOB_FACTORY_KEY		0x9000000 // changed from 0x80000000 to 0x8000000 because 0x80000000 is too high
 
@@ -114,6 +115,9 @@ CNtlSob* CNtlSobFactory::CreateSobFactroy(RwUInt32 uiClassId)
 		break;
 	case SLCLASS_DYNAMIC_OBJECT:
 		pObj = NTL_NEW CNtlSobDynamicObject;
+		break;
+	case SLCLASS_MASCOT:
+		pObj = NTL_NEW CNtlSobMascot;
 		break;
 	}
 

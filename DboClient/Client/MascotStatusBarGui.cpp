@@ -107,7 +107,7 @@ void CMascotStatusBarGui::SetMascotID(BYTE index)
 
 			m_pgbSP->SetRange(0, MascotList->asMascotData[i].dwMaxVP);
 			m_pgbSP->SetPos(MascotList->asMascotData[i].dwCurVP);
-			m_pgbSP->SetToolTip(GetDisplayStringManager()->GetString("DST_MASCOTEX_VP_REGEN")); // Ð´Ò»¸öÃ¿Ê®Ãë Ôö¼Ó1µãvpµÄÐ§¹û
+			m_pgbSP->SetToolTip(GetDisplayStringManager()->GetString("DST_MASCOTEX_VP_REGEN")); // Ð´Ò»ï¿½ï¿½Ã¿Ê®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½vpï¿½ï¿½Ð§ï¿½ï¿½
 			m_sttNickName->SetText(MascotName.c_str());
 			m_sttSP->Format(L"%u / %u", MascotList->asMascotData[i].dwCurVP, MascotList->asMascotData[i].dwMaxVP);
 
@@ -144,7 +144,7 @@ VOID CMascotStatusBarGui::OnMove(RwInt32 iOldX, RwInt32 iOldY)
 {
 	CRectangle rect = m_pThis->GetScreenRect();
 
-	// ÀÏ·¯½ºÆ®
+	// ï¿½Ï·ï¿½ï¿½ï¿½Æ®
 	m_surMascot.SetRectWH(rect.left + SUR_CHAR_LEFT_OFFSET, rect.top + SUR_CHAR_TOP_OFFSET, 38, 38);
 
 }

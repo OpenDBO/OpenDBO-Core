@@ -1006,7 +1006,7 @@ void CDboEventGenerator::RpBonusSetup( RwInt32 iXPos, RwInt32 iYPos, VOID* pData
 }
 
 /**
-* \brief RpBonus ¼±ÅÃ UI¸¦ ¿ÀÇÂÇÏ¶ó´Â ÀÌº¥Æ®
+* \brief RpBonus ï¿½ï¿½ï¿½ï¿½ UIï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ï¿½ ï¿½Ìºï¿½Æ®
 * \param pData (CNtlSobSkillIcon*)
 */
 void CDboEventGenerator::RpBonusSelect( VOID* pData ) 
@@ -1105,12 +1105,12 @@ void CDboEventGenerator::ZennyLootingEffect( RwUInt32 uiZenny )
 }
 
 /**
-* \brief ¾ÆÀÌÅÛÀÌ »ý¼ºµÇ´Â ÀÌÆåÆ®
-* \param hSerial		(RwUInt32) ¾ÆÀÌÅÛÀÇ ÇÚµé
-* \param ucBagIdx		(RwUInt8) °¡¹æÀÇ ¹øÈ£
-* \param ucSlotIdx		(RwUInt8) °¡¹æ ¾ÈÀÇ À§Ä¡
-* \param bGambleUse		(RwBool) °×ºí È¿°ú
-* \remarks RwBool ÇüÀÎ bGambleUse¸¦ Ãß°¡ÇÏ¿© °×ºí ¾ÆÀÌÅÛ È¿°ú¸¦ Ãß°¡Çß½À´Ï´Ù.
+* \brief ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
+* \param hSerial		(RwUInt32) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
+* \param ucBagIdx		(RwUInt8) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+* \param ucSlotIdx		(RwUInt8) ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
+* \param bGambleUse		(RwBool) ï¿½×ºï¿½ È¿ï¿½ï¿½
+* \remarks RwBool ï¿½ï¿½ï¿½ï¿½ bGambleUseï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ï¿ï¿½ ï¿½×ºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¿ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.
 */
 void CDboEventGenerator::ItemCreatedEffect( RwUInt32 hSerial, RwUInt8 ucBagIdx, RwUInt8 ucSlotIdx )
 {
@@ -1763,6 +1763,12 @@ void CDboEventGenerator::DeleteMascotRes(BYTE index)
 
 void CDboEventGenerator::SummonMascot(BYTE index)
 {
+	OutputDebugStringA("[MASCOT_EVENT_DEBUG] CDboEventGenerator::SummonMascot - Entry\n");
+	
+	char debugBuffer[128];
+	sprintf_s(debugBuffer, "[MASCOT_EVENT_DEBUG] Summoning mascot index: %u\n", index);
+	OutputDebugStringA(debugBuffer);
+	
 	SDboEventCommercialExtendCommand sData;
 	SDboEventMascotOperate sMascotData;
 	sData.eCommandType = eSUMMON_MASCOT;
@@ -1770,6 +1776,8 @@ void CDboEventGenerator::SummonMascot(BYTE index)
 	sMascotData.index = index;
 
 	SEND_MSG(g_EventCommercialExtendCommand, &sData);
+	
+	OutputDebugStringA("[MASCOT_EVENT_DEBUG] Event sent successfully\n");
 }
 
 void CDboEventGenerator::MascotSummonRes(BYTE index)
