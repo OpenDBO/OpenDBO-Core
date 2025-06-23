@@ -2,7 +2,7 @@
  *
  * File			: NtlSLDef.h
  * Author		: HyungSuk, Jang
- * Copyright	: (��)NTL
+ * Copyright	: (c)NTL
  * Date			: 2005. 8. 10	
  * Abstract		: Simulation object entity base class
  *****************************************************************************
@@ -102,8 +102,8 @@ typedef void*						CINEMATIC_HANDLE;
 #define SLCONTROLLER_PLYAER					0x0001		// avatar control
 #define SLCONTROLLER_PLAYER_SYNC			0x0002		// player sync control
 #define SLCONTROLLER_SERVER					0x0004		// server control
-#define SLCONTROLLER_SUMMON_PET				0x0008		// ڱⰡ controlϴ summonn pet
-#define SLCONTROLLER_ITEM_PET				0x0010		// ڱⰡ controlϴ item pet
+#define SLCONTROLLER_SUMMON_PET				0x0008		// summon pet that I control
+#define SLCONTROLLER_ITEM_PET				0x0010		// item pet that I control
 #define SLCONTROLLER_VEHICLE				0x0020		// Vehicle control
 #define SLCONTROLLER_VEHICLE_SYNC			0x0040		// Vehicle sysnc control
 
@@ -115,9 +115,9 @@ typedef void*						CINEMATIC_HANDLE;
 //--------------------------------------------------------------
 // simulation object flags
 
-#define SLFLAG_ADD_UPDATE					0x00000001		// update�� �߰��϶�.
-#define SLFLAG_UPDATE_PAUSE					0x00000002		// update�� pause�� �϶�.
-#define SLFLAG_NOT_INPUT					0x00000004		// input�� ���� ó�� �Ұ�.
+#define SLFLAG_ADD_UPDATE					0x00000001		// add to update
+#define SLFLAG_UPDATE_PAUSE					0x00000002		// pause update
+#define SLFLAG_NOT_INPUT					0x00000004		// cannot process input
 #define SLFLAG_NOT_VISIBLE					0x00000008		// Do not render.
 #define SLFLAG_CAN_SKILLUSE					0x00000010		// It is an object that can use skill.
 #define SLFLAG_CAN_REVIVAL					0x00000020		// Is it possible to resurrect?
@@ -154,7 +154,7 @@ typedef void*						CINEMATIC_HANDLE;
 #define SLFLAG_ACTOR_CALC_HEIGHT            0x00000010      // Set this flag if you need to recalculate the height.
 
 //--------------------------------------------------------------
-// ��ü update �켱����
+// object update priority
 
 #define SLUPDATE_PRIORITY_CROWD             11
 #define SLUPDATE_PRIORITY_INPUT				10		

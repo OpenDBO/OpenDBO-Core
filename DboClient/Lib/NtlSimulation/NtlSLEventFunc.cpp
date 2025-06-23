@@ -148,7 +148,7 @@ void CNtlSLEventGenerator::CreateWorld( RwBool bCreate )
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
-* avatar/camera �̵� �� ȸ��
+* avatar/camera movement and rotation
 */
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -222,7 +222,7 @@ void CNtlSLEventGenerator::CameraDB(SERIAL_HANDLE hSerialId)
 	SEND_MSG(g_EventCameraDB, &sCameraDB);
 }
 
-// Ÿ�Ӹӽ� ����� ī�޶�
+// time machine test camera
 void CNtlSLEventGenerator::CameraTimeMachine( SERIAL_HANDLE hSerialID ) 
 {
 	CNtlSobActor* pObj = (CNtlSobActor*)GetNtlSobManager()->GetSobObject(hSerialID);
@@ -288,13 +288,13 @@ void CNtlSLEventGenerator::CameraDirectSplineNode(RwReal fDelayTime, RwV3d vStar
 	_SendMsg(msg);
 }
 
-// ����ī�޶�� ī�޶� ü���� �Ѵ�.
+// switch to free camera
 void CNtlSLEventGenerator::CameraFree() 
 {
 	SEND_MSG(g_EventCameraFree, NULL);
 }
 
-// 1��Ī ī�޶�� ��ȯ�Ѵ�.
+// switch to first person camera
 void CNtlSLEventGenerator::CameraFPS(RwV3d& vCurrLookAt, RwV3d& vTargetLookAt)
 {
 	SNtlEventCameraFPS data;    
@@ -304,7 +304,7 @@ void CNtlSLEventGenerator::CameraFPS(RwV3d& vCurrLookAt, RwV3d& vTargetLookAt)
 	SEND_MSG(g_EventCameraFPS, &data);
 }
 
-// ���� ī�޶�� ��ȯ�Ѵ�
+// switch to bus camera
 void CNtlSLEventGenerator::CameraBus(CNtlSobActor* pActor)
 {
 	SNtlEventCameraControlBus data;    

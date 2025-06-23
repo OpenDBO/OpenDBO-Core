@@ -92,7 +92,7 @@ RwUInt8	API_LoadSLDevMasterInformation(void)
 
 	char chBuffer[1024];
     
-	// master operation�� ���´�.
+	// Read master operation.
 	IXMLDOMNode* pNode = doc.SelectSingleNode((char*)"/master_options/op");
 	
 	if(!doc.GetTextWithAttributeName(pNode, "key", chBuffer, 1024))
@@ -112,7 +112,7 @@ RwUInt8	API_LoadSLDevMasterInformation(void)
 	g_pDevMasterInfo->bPackFileUse = TRUE;
 	g_pDevMasterInfo->bThreadLoading = TRUE;
 
-	// master cheat�� ���´�.
+	// Read master cheat.
 
 	pNode = doc.SelectSingleNode((char*)"/master_options/cheat");
 
@@ -144,7 +144,7 @@ RwUInt8	API_LoadSLDevMasterInformation(void)
 	
 	pNode->Release(); 
 
-	// master camera�� ���´�.
+	// Read master camera.
 	
 	pNode = doc.SelectSingleNode((char*)"/master_options/camera");
 	if(!doc.GetTextWithAttributeName(pNode, "fov", chBuffer, 1024))
@@ -185,7 +185,7 @@ RwUInt8	API_LoadSLDevMasterInformation(void)
 	pNode->Release(); 
 
 
-	// master screen�� ���´�.
+	// Read master screen.
 
 	pNode = doc.SelectSingleNode((char*)"/master_options/screen");
 	if(!doc.GetTextWithAttributeName(pNode, "modechange", chBuffer, 1024))

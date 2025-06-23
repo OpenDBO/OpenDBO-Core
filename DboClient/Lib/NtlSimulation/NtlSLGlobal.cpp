@@ -50,8 +50,8 @@ CNtlSLGlobal* CNtlSLGlobal::GetInstance(void)
 
 /**
 * \brief Create
-* \param bVirtualNet		(RwBool) ���� Network�� �������� �� �ִ� ����
-* \return ���� ���� ����
+* \param bVirtualNet		(RwBool) Whether virtual network can be used or not
+* \return Success or failure
 */
 RwBool CNtlSLGlobal::Create(RwBool bVirtualNet)
 {
@@ -106,7 +106,7 @@ SERIAL_HANDLE CNtlSLGlobal::GetSkillSelectModeHandle()
 
 void CNtlSLGlobal::ResetTenkaichiBudokaiInfo( void )
 {
-	// õ������ ����ȸ ���ҽ�
+	// Tenkaichi Budokai info reset
 	memset(&m_sTenkaichiBudokaiInfo, 0, sizeof(STenkaichiBudokaiInfo));
 	m_sTenkaichiBudokaiInfo.sMatchStateInfo[BUDOKAI_MATCH_TYPE_INDIVIDIAUL].byState = INVALID_BUDOKAI_MATCH_TYPE;
 	m_sTenkaichiBudokaiInfo.sMatchStateInfo[BUDOKAI_MATCH_TYPE_TEAM].byState = INVALID_BUDOKAI_MATCH_TYPE;

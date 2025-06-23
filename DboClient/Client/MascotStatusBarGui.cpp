@@ -107,7 +107,7 @@ void CMascotStatusBarGui::SetMascotID(BYTE index)
 
 			m_pgbSP->SetRange(0, MascotList->asMascotData[i].dwMaxVP);
 			m_pgbSP->SetPos(MascotList->asMascotData[i].dwCurVP);
-			m_pgbSP->SetToolTip(GetDisplayStringManager()->GetString("DST_MASCOTEX_VP_REGEN")); // дһ��ÿʮ�� ����1��vp��Ч��
+			m_pgbSP->SetToolTip(GetDisplayStringManager()->GetString("DST_MASCOTEX_VP_REGEN")); // VP regenerates 1 point every 10 seconds
 			m_sttNickName->SetText(MascotName.c_str());
 			m_sttSP->Format(L"%u / %u", MascotList->asMascotData[i].dwCurVP, MascotList->asMascotData[i].dwMaxVP);
 
@@ -144,7 +144,7 @@ VOID CMascotStatusBarGui::OnMove(RwInt32 iOldX, RwInt32 iOldY)
 {
 	CRectangle rect = m_pThis->GetScreenRect();
 
-	// �Ϸ���Ʈ
+	// Portrait
 	m_surMascot.SetRectWH(rect.left + SUR_CHAR_LEFT_OFFSET, rect.top + SUR_CHAR_TOP_OFFSET, 38, 38);
 
 }
