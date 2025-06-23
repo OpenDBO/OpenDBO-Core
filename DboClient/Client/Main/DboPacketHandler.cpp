@@ -5005,10 +5005,6 @@ void PacketHandler_GSUpdateMascotSummon(void* pPacket)
 		else
 		{
 			OutputDebugStringA("[MASCOT_WORLD_CREATE] Mascot is being unsummoned\n");
-			
-			// For now, let the system handle mascot cleanup naturally
-			// TODO: Implement proper mascot deletion when needed
-			OutputDebugStringA("[MASCOT_WORLD_CREATE] Mascot unsummon handling - to be implemented\n");
 		}
 	}
 	else

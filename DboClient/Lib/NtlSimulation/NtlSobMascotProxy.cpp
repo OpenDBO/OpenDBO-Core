@@ -369,30 +369,37 @@ CNtlPLCharacter* CNtlSobMascotProxy::CreateMascotEntity(RwBool bNotShading)
 			else
 			{
 				OutputDebugStringA("[MASCOT_WORLD_CREATE] WARNING: SOB object NOT found in manager - this is the problem!\n");
-				OutputDebugStringA("[MASCOT_WORLD_CREATE] ATTEMPTING TO FIX: Assigning valid serial ID and adding to SOB manager\n");
+				OutputDebugStringA("[MASCOT_WORLD_CREATE] ATTEMPTING TO FIX: Adding to SOB manager\n");
 				
-				// CRITICAL FIX: First assign a valid serial ID (use the handle from the packet)
-				// Looking at the logs, we have handle: 2043952 from the server packet
-				// But let's use a simple approach - create a new SOB object through the manager
-				
-				// Create a new mascot object through SOB manager with proper serial ID
-				SERIAL_HANDLE hNewSerial = (SERIAL_HANDLE)GetTickCount64(); // Simple unique ID generation
-				if (hNewSerial == INVALID_SERIAL_ID)
-					hNewSerial = 1000000; // Fallback to avoid invalid ID
-				
-				// Set the valid serial ID
-				m_pSobObj->SetSerialID(hNewSerial);
-				
-				char debugBuffer5[256];
-				sprintf_s(debugBuffer5, "[MASCOT_WORLD_CREATE] Assigned new SerialID: %u (was invalid)\n", hNewSerial);
-				OutputDebugStringA(debugBuffer5);
+				// Check if serial ID is already valid (assigned by GUI)
+				SERIAL_HANDLE hCurrentSerial = m_pSobObj->GetSerialID();
+				if (hCurrentSerial == INVALID_SERIAL_ID)
+				{
+					// Fallback: assign new serial ID if still invalid
+					SERIAL_HANDLE hNewSerial = (SERIAL_HANDLE)GetTickCount64();
+					if (hNewSerial == INVALID_SERIAL_ID)
+						hNewSerial = 1000000;
+					
+					m_pSobObj->SetSerialID(hNewSerial);
+					hCurrentSerial = hNewSerial;
+					
+					char debugBuffer5[256];
+					sprintf_s(debugBuffer5, "[MASCOT_WORLD_CREATE] Assigned fallback SerialID: %u\n", hNewSerial);
+					OutputDebugStringA(debugBuffer5);
+				}
+				else
+				{
+					char debugBuffer5[256];
+					sprintf_s(debugBuffer5, "[MASCOT_WORLD_CREATE] Using existing valid SerialID: %u\n", hCurrentSerial);
+					OutputDebugStringA(debugBuffer5);
+				}
 				
 				// Now add to SOB manager with valid serial ID
 				GetNtlSobManager()->AddObject(m_pSobObj->GetClassID(), m_pSobObj);
 				GetNtlSobManager()->AddUpdate(m_pSobObj);
 				
 				// Verify it's now registered
-				CNtlSob* pVerifySOB = GetNtlSobManager()->GetSobObject(hNewSerial);
+				CNtlSob* pVerifySOB = GetNtlSobManager()->GetSobObject(hCurrentSerial);
 				if (pVerifySOB)
 				{
 					OutputDebugStringA("[MASCOT_WORLD_CREATE] SUCCESS: Mascot now found in SOB manager with valid serial ID!\n");

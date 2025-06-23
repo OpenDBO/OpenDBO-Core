@@ -84,7 +84,6 @@ protected:
 	* mascot entity 생성 (following expert guidance)
 	*/
 	CNtlPLCharacter* CreateMascotEntity(RwBool bNotShading = FALSE);
-	void DeleteMascotEntity(void);
 
 
 
@@ -156,6 +155,7 @@ public:
 	*/
 	virtual void			AddWorld(void);		
 	virtual void			RemoveWorld(void);
+	void					DeleteMascotEntity(void);		// Made public for proper cleanup
 
 	/**
 	* transform에 관련된 함수들.

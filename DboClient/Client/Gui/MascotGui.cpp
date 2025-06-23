@@ -502,6 +502,14 @@ void CMascotGui::HandleEvents(RWS::CMsg& msg)
                 // DON'T delete the character - that's the world mascot we want to keep
             }
             
+            // CRITICAL: Assign a valid serial ID BEFORE creating world mascot
+            // This ensures both GUI and proxy references use the same valid serial ID
+            SERIAL_HANDLE hNewSerial = (SERIAL_HANDLE)GetTickCount64();
+            if (hNewSerial == INVALID_SERIAL_ID)
+                hNewSerial = 1000000; // Fallback to avoid invalid ID
+            
+            m_pTempUIMascot->SetSerialID(hNewSerial);
+            
             // NOW create the world mascot (this was moved from global events to here)
             m_pTempUIMascot->CreateWorldMascot();
             
@@ -534,6 +542,23 @@ void CMascotGui::HandleEvents(RWS::CMsg& msg)
             if (pSobCheck && pSobCheck == m_pWorldMascot)
             {
                 OutputDebugString("[MASCOT_UNSUMMON] Mascot found in SOB manager, deleting through manager\n");
+                
+                // CRITICAL: First manually remove the visual entity from world before SOB deletion
+                CNtlSobMascotProxy* pProxy = reinterpret_cast<CNtlSobMascotProxy*>(m_pWorldMascot->GetSobProxy());
+                if (pProxy)
+                {
+                    // Explicitly remove the 3D model from the world
+                    pProxy->RemoveWorld();
+                    
+                    // Also delete the mascot entity to ensure visual cleanup
+                    pProxy->DeleteMascotEntity();
+                    
+                    char debugBuffer2[256];
+                    sprintf_s(debugBuffer2, "[MASCOT_UNSUMMON] Visual entity removed from world for serial ID: %u\n", hSerialId);
+                    OutputDebugString(debugBuffer2);
+                }
+                
+                // Now delete from SOB manager
                 GetNtlSobManager()->DeleteObject(m_pWorldMascot);
             }
             else
