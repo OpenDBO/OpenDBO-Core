@@ -1006,7 +1006,7 @@ void CDboEventGenerator::RpBonusSetup( RwInt32 iXPos, RwInt32 iYPos, VOID* pData
 }
 
 /**
-* \brief RpBonus 선택 UI를 오픈하라는 이벤트
+* \brief RpBonus setup UI show event
 * \param pData (CNtlSobSkillIcon*)
 */
 void CDboEventGenerator::RpBonusSelect( VOID* pData ) 
@@ -1105,12 +1105,12 @@ void CDboEventGenerator::ZennyLootingEffect( RwUInt32 uiZenny )
 }
 
 /**
-* \brief 아이템이 생성되는 이펙트
-* \param hSerial		(RwUInt32) 아이템의 핸들
-* \param ucBagIdx		(RwUInt8) 가방의 번호
-* \param ucSlotIdx		(RwUInt8) 가방 안의 위치
-* \param bGambleUse		(RwBool) 겜블 효과
-* \remarks RwBool 형인 bGambleUse를 추가하여 겜블 아이템 효과를 추가했습니다.
+* \brief Item created effect event
+* \param hSerial		(RwUInt32) item serial code
+* \param ucBagIdx		(RwUInt8) bag index number
+* \param ucSlotIdx		(RwUInt8) slot position index
+* \param bGambleUse		(RwBool) gamble effect
+* \remarks RwBool parameter bGambleUse added for gamble item effect.
 */
 void CDboEventGenerator::ItemCreatedEffect( RwUInt32 hSerial, RwUInt8 ucBagIdx, RwUInt8 ucSlotIdx )
 {
@@ -1763,6 +1763,12 @@ void CDboEventGenerator::DeleteMascotRes(BYTE index)
 
 void CDboEventGenerator::SummonMascot(BYTE index)
 {
+	OutputDebugStringA("[MASCOT_EVENT_DEBUG] CDboEventGenerator::SummonMascot - Entry\n");
+	
+	char debugBuffer[128];
+	sprintf_s(debugBuffer, "[MASCOT_EVENT_DEBUG] Summoning mascot index: %u\n", index);
+	OutputDebugStringA(debugBuffer);
+	
 	SDboEventCommercialExtendCommand sData;
 	SDboEventMascotOperate sMascotData;
 	sData.eCommandType = eSUMMON_MASCOT;
@@ -1770,6 +1776,8 @@ void CDboEventGenerator::SummonMascot(BYTE index)
 	sMascotData.index = index;
 
 	SEND_MSG(g_EventCommercialExtendCommand, &sData);
+	
+	OutputDebugStringA("[MASCOT_EVENT_DEBUG] Event sent successfully\n");
 }
 
 void CDboEventGenerator::MascotSummonRes(BYTE index)

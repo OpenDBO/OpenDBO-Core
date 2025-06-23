@@ -41,6 +41,7 @@
 #include "NtlSLApi.h"
 #include "NtlSobProxy.h"
 #include "NtlSobCharProxy.h"
+#include "NtlSobMascotProxy.h"
 #include "NtlSLGlobal.h"
 #include "NtlFSMStateBase.h"
 #include "NtlSobCharProxyDecoration.h"
@@ -613,7 +614,7 @@ void CNtlSobManager::UpdateOptionRangeOut(RwReal fElapsed)
 					if(CNtlSobFactory::IsClientCreateSerialId(hSerialId))
 						continue;
 
-					// camera¿Í ÇöÀç °Å¸® check
+					// cameraï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ check
 					vPos = pSobObj->GetPosition();
 					v2dSobPos.x = vPos.x;
 					v2dSobPos.y = vPos.z;
@@ -630,7 +631,7 @@ void CNtlSobManager::UpdateOptionRangeOut(RwReal fElapsed)
 					{
 						if(bRangeOut)
 						{
-							// Range Out List¿¡¼­ »èÁ¦ÇÑ´Ù.
+							// Range Out Listï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 							RemoveOptionRangeOut(hSerialId);
 						}
 					}
@@ -638,7 +639,7 @@ void CNtlSobManager::UpdateOptionRangeOut(RwReal fElapsed)
 					{
 						if(!bRangeOut)
 						{
-							// Range Out List¿¡ Ãß°¡ÇÑ´Ù.
+							// Range Out Listï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ñ´ï¿½.
 							pSobProxy = pSobObj->GetSobProxy();
 							if(pSobProxy == NULL)
 								continue;
@@ -667,7 +668,7 @@ void CNtlSobManager::Update(RwReal fElapsed)
 
 	m_pMoveFrameSkip->Update(CNtlTimer::GetFps());
 
-	// slot itemÀÌ ¾Æ´Ñ °æ¿ì.
+	// slot itemï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½.
 	RwReal fWeightElapsed;
 	MapObject::iterator it;
 	for(it = m_mapUpdate.begin(); it != m_mapUpdate.end(); )  
@@ -700,13 +701,13 @@ void CNtlSobManager::Update(RwReal fElapsed)
 			++it;
 	}
 
-//  Àá½Ã ÁÖ¼® Ã³¸®
+//  ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ Ã³ï¿½ï¿½
 //	UpdateOptionRangeOut(fElapsed);
 
 	// elapsed control update
 	GetNtlSobElapsedControlManager()->Update(fElapsed);
 
-	// remove queue Ã³¸®.
+	// remove queue Ã³ï¿½ï¿½.
 	if(m_listRemoveQueue.size() == 0)
 		return;
 
@@ -1143,7 +1144,7 @@ RwUInt32 CNtlSobManager::GetSobObjectUpdateCount(void) const
 	return (RwUInt32)m_mapUpdate.size();
 }
 
-/// °¡Àå °¡±î¿î ·çÆÃ °¡´ÉÇÑ ¿ùµå ¾ÆÀÌÅÛÀ» Ã£¾Æ¼­ ¹ÝÈ¯ÇÑ´Ù.
+/// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½Æ¼ï¿½ ï¿½ï¿½È¯ï¿½Ñ´ï¿½.
 CNtlSob* CNtlSobManager::GetSobNearWorldItem(const RwV3d& vLoc)
 {
 	CNtlSobGroup *pGroup = FindGroup(SLCLASS_WORLD_ITEM);
@@ -1318,7 +1319,7 @@ void CNtlSobManager::SobPlayerChangeGuildEmblemHandler(RWS::CMsg &pMsg)
 	{
 		CNtlSobCharProxy *pSobCharProxy = reinterpret_cast<CNtlSobCharProxy*>( pSobPlayer->GetSobProxy() );
 
-		// °ÔÀÓÁß¿¡ ¿¥ºí·½ÀÌ º¯°æµÇ¾ú´Ù
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½
 		pSobCharProxy->SetEmblemFactor(pEvent->byTypeA, pEvent->byTypeAColor,
 									   pEvent->byTypeB, pEvent->byTypeBColor,
 									   pEvent->byTypeC, pEvent->byTypeCColor);
@@ -1506,7 +1507,7 @@ void CNtlSobManager::EventObjectThreadLoadCompleteEventHandler(RWS::CMsg& pMsg)
 	}
 }
 
-// ÇöÀç Ä³¸¯ÅÍ°¡ TMQ »óÅÂÀÎÁö È®ÀÎÇÏ°í, TMQ »óÅÂ¶ó¸é Ä«¸Þ¶óÇÑÅ× Ä«¸Þ¶ó ¿¬Ãâ ÀÌº¥Æ®¸¦ º¸³½´Ù.
+// ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½Í°ï¿½ TMQ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï°ï¿½, TMQ ï¿½ï¿½ï¿½Â¶ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 void CNtlSobManager::TMQEventHandler( RWS::CMsg &pMsg ) 
 {
     if(pMsg.Id == g_EventAnimTMQ)
@@ -1538,8 +1539,8 @@ void CNtlSobManager::PostEffectEventHandler( RWS::CMsg& pMsg )
 {
     SNtlEventPostEffect* pData = (SNtlEventPostEffect*)pMsg.pData;    
 
-    // ¾Æ·¡ Á¤ÀÇµÈ Å¬·¡½ºÀÇ ÀÌº¥Æ®¸¸ ¿¬ÃâÇÑ´Ù.
-    // ´Ù¸¥ PCµéÀÇ ÀÌº¥Æ®´Â ¿¬ÃâÇÏÁö ¾Ê´Â´Ù.
+    // ï¿½Æ·ï¿½ ï¿½ï¿½ï¿½Çµï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+    // ï¿½Ù¸ï¿½ PCï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
     CNtlSob* pSob = GetSobObject(pData->uiSerialID);
     if(pSob->GetClassID() == SLCLASS_AVATAR || 
        pSob->GetClassID() == SLCLASS_NPC || 
@@ -1554,12 +1555,12 @@ void CNtlSobManager::EventCreateWorldHandler( RWS::CMsg& pMsg )
 {
     SNtlEventCreateWorld* pData = (SNtlEventCreateWorld*)pMsg.pData;
     
-    if(pData->bCreate)      // ¿ùµå°¡ »õ·Î »ý¼ºµÉ¶§
+    if(pData->bCreate)      // ï¿½ï¿½ï¿½å°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½É¶ï¿½
     {
-        // ¾Æ¹ÙÅ¸¸¸ Ãß°¡ÇÑ´Ù.
+        // ï¿½Æ¹ï¿½Å¸ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ñ´ï¿½.
         GetNtlSLGlobal()->GetSobAvatar()->GetSobProxy()->AddWorld();
     }
-    else    // ¿ùµå°¡ Á¦°Å µÉ¶§
+    else    // ï¿½ï¿½ï¿½å°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½É¶ï¿½
     {
         RemoveWorld();
     }
@@ -1583,7 +1584,7 @@ void CNtlSobManager::SobCondConfusedEventHandler( RWS::CMsg& pMsg )
     CNtlSob* pSob = GetSobObject(pData->hSubject);
     if(pSob)
     {
-        // ÀÚ±â ÀÚ½ÅÀÌ°Å³ª, ÀÚ½ÅÀÇ ÆêÀÎ °æ¿ì¿¡¸¸ Ã³¸®ÇÑ´Ù.
+        // ï¿½Ú±ï¿½ ï¿½Ú½ï¿½ï¿½Ì°Å³ï¿½, ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ñ´ï¿½.
         if(pSob->GetClassID() == SLCLASS_AVATAR || pSob->GetOwnerID() == GetNtlSLGlobal()->GetSobAvatar()->GetSerialID())
         {
             pSob->HandleEvents(pMsg);
@@ -1597,7 +1598,7 @@ void CNtlSobManager::SobCondTerrorEventHandler( RWS::CMsg& pMsg )
     CNtlSob* pSob = GetSobObject(pData->hSubject);
     if(pSob)
     {
-        // ÀÚ±â ÀÚ½ÅÀÌ°Å³ª, ÀÚ½ÅÀÇ ÆêÀÎ °æ¿ì¿¡¸¸ Ã³¸®ÇÑ´Ù.
+        // ï¿½Ú±ï¿½ ï¿½Ú½ï¿½ï¿½Ì°Å³ï¿½, ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ñ´ï¿½.
         if(pSob->GetClassID() == SLCLASS_AVATAR || pSob->GetOwnerID() == GetNtlSLGlobal()->GetSobAvatar()->GetSerialID())
         {
             pSob->HandleEvents(pMsg);

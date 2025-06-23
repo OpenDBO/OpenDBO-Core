@@ -5,6 +5,7 @@
 #include "stdafx.h"
 #include "AuthServer.h"
 #include "mysql.h"
+#include "DatabaseEnv.h"
 
 Database* db_acc;
 Database* db_log;
@@ -282,10 +283,11 @@ int main(int argc, _TCHAR* argv[])
 	// CONNECT TO ACCOUNT DATABASE
 	db_acc = Database::CreateDatabaseInterface(1);
 	// Initialize it
-	if (!GetAccDB.Initialize(app.GetAccDatabaseHost(), app.GetAccDatabasePort(), app.GetAccDatabaseUser(),
-		app.GetAccDatabasePassword(), app.GetAccDatabaseName(), 5))
+	std::string accDbError = GetAccDB.Initialize(app.GetAccDatabaseHost(), app.GetAccDatabasePort(), app.GetAccDatabaseUser(),
+		app.GetAccDatabasePassword(), app.GetAccDatabaseName(), 5);
+	if (!accDbError.empty())
 	{
-		NTL_PRINT(PRINT_APP, "sql : account database initialization failed. Exiting.");
+		NTL_PRINT(PRINT_APP, "sql : account database initialization failed. Error: %s", accDbError.c_str());
 		Sleep(5000);
 		return 0;
 	}
@@ -293,10 +295,11 @@ int main(int argc, _TCHAR* argv[])
 	// CONNECT TO LOG DATABASE
 	db_log = Database::CreateDatabaseInterface(1);
 	// Initialize it
-	if (!GetLogDB.Initialize(app.GetLogDatabaseHost(), app.GetLogDatabasePort(), app.GetLogDatabaseUser(),
-		app.GetLogDatabasePassword(), app.GetLogDatabaseName(), 5))
+	std::string logDbError = GetLogDB.Initialize(app.GetLogDatabaseHost(), app.GetLogDatabasePort(), app.GetLogDatabaseUser(),
+		app.GetLogDatabasePassword(), app.GetLogDatabaseName(), 5);
+	if (!logDbError.empty())
 	{
-		NTL_PRINT(PRINT_APP, "sql : log database initialization failed. Exiting.");
+		NTL_PRINT(PRINT_APP, "sql : log database initialization failed. Error: %s", logDbError.c_str());
 		Sleep(5000);
 		return 0;
 	}

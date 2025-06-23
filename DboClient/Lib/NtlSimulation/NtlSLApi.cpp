@@ -38,6 +38,7 @@
 #include "NtlSobElapsedController.h"
 #include "NtlSoundMoodManager.h"
 #include "NtlSLLogic.h"
+#include "NtlSobMascotProxy.h"
 
 
 MEMORYSTATUS				g_memStaus;
@@ -91,7 +92,7 @@ RwUInt8	API_LoadSLDevMasterInformation(void)
 
 	char chBuffer[1024];
     
-	// master operation¿ª æÚæÓø¬¥Ÿ.
+	// Read master operation.
 	IXMLDOMNode* pNode = doc.SelectSingleNode((char*)"/master_options/op");
 	
 	if(!doc.GetTextWithAttributeName(pNode, "key", chBuffer, 1024))
@@ -111,7 +112,7 @@ RwUInt8	API_LoadSLDevMasterInformation(void)
 	g_pDevMasterInfo->bPackFileUse = TRUE;
 	g_pDevMasterInfo->bThreadLoading = TRUE;
 
-	// master cheat¿ª æÚæÓø¬¥Ÿ.
+	// Read master cheat.
 
 	pNode = doc.SelectSingleNode((char*)"/master_options/cheat");
 
@@ -143,7 +144,7 @@ RwUInt8	API_LoadSLDevMasterInformation(void)
 	
 	pNode->Release(); 
 
-	// master camera¿ª æÚæÓø¬¥Ÿ.
+	// Read master camera.
 	
 	pNode = doc.SelectSingleNode((char*)"/master_options/camera");
 	if(!doc.GetTextWithAttributeName(pNode, "fov", chBuffer, 1024))
@@ -184,7 +185,7 @@ RwUInt8	API_LoadSLDevMasterInformation(void)
 	pNode->Release(); 
 
 
-	// master screen¿ª æÚæÓø¬¥Ÿ.
+	// Read master screen.
 
 	pNode = doc.SelectSingleNode((char*)"/master_options/screen");
 	if(!doc.GetTextWithAttributeName(pNode, "modechange", chBuffer, 1024))
@@ -450,8 +451,9 @@ RwBool API_SLInit(RwBool bVirtualNet, CNtlCamera *pCamera, RwUInt8 byLoadMethod,
 	g_pGameCameraManager->SetActiveCamera(pCamera);
 	g_pCamera = pCamera;
 
-	// event handler µÓ∑œ.
+	// event handler Îì±Î°ù.
 	CNtlSobCharProxy::RegisterEventHandler();
+	CNtlSobMascotProxy::RegisterEventHandler();
 
 	g_pSLGlobal = NTL_NEW CNtlSLGlobal;
 	if(!g_pSLGlobal->Create(TRUE))
@@ -466,7 +468,7 @@ RwBool API_SLInit(RwBool bVirtualNet, CNtlCamera *pCamera, RwUInt8 byLoadMethod,
 		NTL_RETURN(FALSE);
 	}
 
-	// Game clock µÓ∑œ.
+	// Game clock Îì±Î°ù.
 	g_pGameClock = NTL_NEW CNtlClock;
 
 	g_pDTCinematicManager = NTL_NEW CNtlDTCinematicManager;
@@ -481,7 +483,7 @@ RwBool API_SLInit(RwBool bVirtualNet, CNtlCamera *pCamera, RwUInt8 byLoadMethod,
 	}
 
 
-	// Callback µÓ∑œ
+	// Callback Îì±Î°ù
 	LinkCallback_GetDogiColorIndex(Logic_GetSobPlayerDogiColor);
 
 
@@ -552,7 +554,7 @@ void API_SLReset(void)
 		NTL_DELETE(g_pGameClock);
 	}
 
-	// ¥ŸΩ√ ª˝º∫
+	// Ï∂îÍ∞Ä Ï¥àÍ∏∞Ìôî
 
 	g_pTriggerSyncManager = NTL_NEW CNtlTriggerSyncManager;
 	g_pTriggerSyncManager->Create();
@@ -582,7 +584,7 @@ void API_SLReset(void)
 	g_pWorldConcept = NTL_NEW CNtlWorldConcept;
 	g_pWorldConcept->Create();
 	
-	// Game clock µÓ∑œ.
+	// Game clock Îì±Î°ù.
 	g_pGameClock = NTL_NEW CNtlClock;
 
 	g_pDTCinematicManager = NTL_NEW CNtlDTCinematicManager;

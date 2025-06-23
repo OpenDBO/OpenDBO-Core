@@ -13,6 +13,7 @@
 #include "DojoWar.h"
 #include "HlsSlotMachine.h"
 #include "NtlRandom.h"
+#include "DatabaseEnv.h"
 
 
 Database* db_char;
@@ -240,10 +241,11 @@ int main(int argc, _TCHAR* argv[])
 	// CONNECT TO CHARACTER DATABASE
 	db_char = Database::CreateDatabaseInterface(1);
 	// Initialize it
-	if (!GetCharDB.Initialize(app.GetCharDatabaseHost(), app.GetCharDatabasePort(), app.GetCharDatabaseUser(),
-		app.GetCharDatabasePassword(), app.GetCharDatabaseName(), 5))
+	std::string charDbError = GetCharDB.Initialize(app.GetCharDatabaseHost(), app.GetCharDatabasePort(), app.GetCharDatabaseUser(),
+		app.GetCharDatabasePassword(), app.GetCharDatabaseName(), 5);
+	if (!charDbError.empty())
 	{
-		NTL_PRINT(PRINT_APP, "sql : character database initialization failed. Exiting.");
+		NTL_PRINT(PRINT_APP, "sql : character database initialization failed. Error: %s", charDbError.c_str());
 		Sleep(5000);
 		return 0;
 	}
@@ -251,10 +253,11 @@ int main(int argc, _TCHAR* argv[])
 	// CONNECT TO ACCOUNT DATABASE
 	db_acc = Database::CreateDatabaseInterface(1);
 	// Initialize it
-	if (!GetAccDB.Initialize(app.GetAccDatabaseHost(), app.GetAccDatabasePort(), app.GetAccDatabaseUser(),
-		app.GetAccDatabasePassword(), app.GetAccDatabaseName(), 5))
+	std::string accDbError = GetAccDB.Initialize(app.GetAccDatabaseHost(), app.GetAccDatabasePort(), app.GetAccDatabaseUser(),
+		app.GetAccDatabasePassword(), app.GetAccDatabaseName(), 5);
+	if (!accDbError.empty())
 	{
-		NTL_PRINT(PRINT_APP, "sql : account database initialization failed. Exiting.");
+		NTL_PRINT(PRINT_APP, "sql : account database initialization failed. Error: %s", accDbError.c_str());
 		Sleep(5000);
 		return 0;
 	}
@@ -262,10 +265,11 @@ int main(int argc, _TCHAR* argv[])
 	// CONNECT TO LOG DATABASE
 	db_log = Database::CreateDatabaseInterface(1);
 	// Initialize it
-	if (!GetLogDB.Initialize(app.GetLogDatabaseHost(), app.GetLogDatabasePort(), app.GetLogDatabaseUser(),
-		app.GetLogDatabasePassword(), app.GetLogDatabaseName(), 5))
+	std::string logDbError = GetLogDB.Initialize(app.GetLogDatabaseHost(), app.GetLogDatabasePort(), app.GetLogDatabaseUser(),
+		app.GetLogDatabasePassword(), app.GetLogDatabaseName(), 5);
+	if (!logDbError.empty())
 	{
-		NTL_PRINT(PRINT_APP, "sql : log database initialization failed. Exiting.");
+		NTL_PRINT(PRINT_APP, "sql : log database initialization failed. Error: %s", logDbError.c_str());
 		Sleep(5000);
 		return 0;
 	}

@@ -43,6 +43,7 @@ struct sMascot_TBLDAT;
 
 class CMascotList;
 class CMascotGui;
+class CNtlSobMascot;
 
 // MASCOT GUI
 class CMascotGui : public CNtlPLGui, public RWS::CEventHandler
@@ -138,6 +139,7 @@ protected:
     VOID RefreshList(RwInt32 iOffSet);
     VOID OpenMascotInfo(RwBool isShow, RwInt32 iSlotIdx);
     VOID RefreshSkillSlot();
+    VOID CreateUITextureForSummonedMascot(RwInt32 summonedIndex);
     std::wstring stringToWString(const std::string& str);
     WCHAR* CMascotGui::stringToWChar(const std::string& str);
     int CMascotGui::ExtractIndex(const std::string& componentName);
@@ -242,6 +244,12 @@ protected:
 
     // Texture
     gui::CTexture m_texMascot;
+
+    // Temporary UI mascot for preview (cleaned up when window closes, mascot summoned, or different mascot selected)
+    class CNtlSobMascot* m_pTempUIMascot;
+
+    // World mascot tracking (for proper cleanup on unsummon)
+    class CNtlSobMascot* m_pWorldMascot;
 
     // Bool
     RwBool m_bFocus;

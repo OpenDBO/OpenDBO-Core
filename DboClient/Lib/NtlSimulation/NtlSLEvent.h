@@ -1455,6 +1455,8 @@ struct SNtlEventSobPetCreate : public SNtlEventSobCharCreate	// simulation pet o
 	UPetData		uPetBrief;
 };
 
+// Remove custom mascot create event - use existing character system
+
 struct SNtlEventSobPetSkillInfo		// Pet Skill info
 {
 	BYTE				bySkillCount;
