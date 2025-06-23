@@ -54,7 +54,7 @@ public:
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	static void WorldChange(RwBool bWorldChange);
-	static void CreateWorld(RwBool bCreate);            ///< ���尡 �����ǰų� �Ҹ�ɶ� �̺�Ʈ�� �߻�
+	static void CreateWorld(RwBool bCreate);            ///< event occurs when world is created or destroyed
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/**
@@ -106,7 +106,7 @@ public:
 	static void ActionScreenShot(const std::string& strFileName);
 	static void ActionSkillSelectMode(bool bSelect, SERIAL_HANDLE hSerialId);
 
-    // �׼� �������� �̿��� �׼� (AvatarController���� �ѹ� �ɷ����� �̺�Ʈ�� ������)
+    // action using action mapping (events sent once from AvatarController)
     static void ActionFuncSitAndStand();
     static void ActionFuncBasicAttack();
     static void ActionFuncAssist();
@@ -123,7 +123,7 @@ public:
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	//---------------------------------------------------------
-	// input�� ���� event
+	// input related event
 
 	static void SobShowNfy(SERIAL_HANDLE hSerialId, RwBool bVisible);
 
@@ -142,19 +142,19 @@ public:
 	static void SobGotFocus(SERIAL_HANDLE hSerialId);
 	static void SobLostFocus(SERIAL_HANDLE hSerialId);
 
-	// Ŀ�´�Ƽ Ÿ�� ����/���� �̺�Ʈ
+	// community target select/release events
 	static void CommuTargetSelect(CHARACTERID targetID, SERIAL_HANDLE hSerialId, WCHAR* wchName, ECommuTargetType type);
 	static void CommuTargetRelease(SERIAL_HANDLE hSerialId);
 
-	static void BotCaution_Nfy(SERIAL_HANDLE hSerialId);            ///< ���� �� �߰��������� �̺�Ʈ �߻�    
-	static void BotHelpMe_Nfy(SERIAL_HANDLE hSerialId, RwBool bisRequester);    ///< ���� ������ ��û�Ҷ� �߻��ϴ� �̺�Ʈ
+	static void BotCaution_Nfy(SERIAL_HANDLE hSerialId);            ///< bot caution event occurs when detected by GM    
+	static void BotHelpMe_Nfy(SERIAL_HANDLE hSerialId, RwBool bisRequester);    ///< bot help request event occurs when help is requested
 
 
-	/// ���� Ÿ�� ����/���� �̺�Ʈ
+	/// party target select/release events
 	static void ShareTargetMarking(SERIAL_HANDLE hSerialId, RwUInt8 bySlot);
 	static void ShareTargetRelease(SERIAL_HANDLE hSerialId);
 
-    /// Ÿ�� ��ũ ����/���� �̺�Ʈ
+    /// target mark select/release events
     static void SobTargetMarkSelect(SERIAL_HANDLE hSerialId);
     static void SobTargetMarkRelease(SERIAL_HANDLE hSerialId);
 

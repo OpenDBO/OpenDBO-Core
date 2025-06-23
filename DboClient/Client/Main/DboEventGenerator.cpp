@@ -1006,7 +1006,7 @@ void CDboEventGenerator::RpBonusSetup( RwInt32 iXPos, RwInt32 iYPos, VOID* pData
 }
 
 /**
-* \brief RpBonus ���� UI�� �����϶�� �̺�Ʈ
+* \brief RpBonus setup UI show event
 * \param pData (CNtlSobSkillIcon*)
 */
 void CDboEventGenerator::RpBonusSelect( VOID* pData ) 
@@ -1105,12 +1105,12 @@ void CDboEventGenerator::ZennyLootingEffect( RwUInt32 uiZenny )
 }
 
 /**
-* \brief �������� �����Ǵ� ����Ʈ
-* \param hSerial		(RwUInt32) �������� �ڵ�
-* \param ucBagIdx		(RwUInt8) ������ ��ȣ
-* \param ucSlotIdx		(RwUInt8) ���� ���� ��ġ
-* \param bGambleUse		(RwBool) �׺� ȿ��
-* \remarks RwBool ���� bGambleUse�� �߰��Ͽ� �׺� ������ ȿ���� �߰��߽��ϴ�.
+* \brief Item created effect event
+* \param hSerial		(RwUInt32) item serial code
+* \param ucBagIdx		(RwUInt8) bag index number
+* \param ucSlotIdx		(RwUInt8) slot position index
+* \param bGambleUse		(RwBool) gamble effect
+* \remarks RwBool parameter bGambleUse added for gamble item effect.
 */
 void CDboEventGenerator::ItemCreatedEffect( RwUInt32 hSerial, RwUInt8 ucBagIdx, RwUInt8 ucSlotIdx )
 {

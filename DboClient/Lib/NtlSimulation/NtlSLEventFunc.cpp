@@ -3109,13 +3109,13 @@ void CNtlSLEventGenerator::ReloadTS( void )
 }
 
 void CNtlSLEventGenerator::RegQuest_Nfy( sTS_KEY& sTSKey,
-										bool bNewRegister,						// ����Ʈ ��Ͻ� New type�� ��� ����
-										bool bQuestShare,						// ����Ʈ ����
-										RwUInt32 uiQuestAreaName,				// ����Ʈ ���� �̸�
-										RwUInt32 uiQuestState,					// ����Ʈ ����
-										RwUInt32 uiQuestTitle,					// ����Ʈ ����
-										RwUInt32 uiQuestGoal,					// ����Ʈ ����
-										eQUEST_SORT_TYPE eQuestSortType )		// ����Ʈ ������ Ÿ��
+										bool bNewRegister,						// quest register New type check
+										bool bQuestShare,						// quest share
+										RwUInt32 uiQuestAreaName,				// quest area name
+										RwUInt32 uiQuestState,					// quest state
+										RwUInt32 uiQuestTitle,					// quest title
+										RwUInt32 uiQuestGoal,					// quest goal
+										eQUEST_SORT_TYPE eQuestSortType )		// quest sort type
 {
 	SNtlEventRegQuest_Nfy sRegQuestNfy;
 	sRegQuestNfy.sTSKey = sTSKey;
@@ -3158,22 +3158,22 @@ void CNtlSLEventGenerator::ShowQuestWindow( sTS_KEY& sTSKey )
 }
 
 void CNtlSLEventGenerator::ShowQuestWindow_Nfy( sTS_KEY& sTSKey,
-											    RwUInt32 uiQuestAreaName,			// ����Ʈ ���� �̸�
-											    RwUInt32 uiQuestTitle,				// ����Ʈ ����
-											    RwUInt32 uiQuestSort,				// ����Ʈ ����
-											    RwUInt32 uiQuestGrade,				// ����Ʈ ���̵�
-											    eGRADE_TYPE eGradeType,				// ����Ʈ ���̵� Ÿ��
-											    RwUInt32 uiQuestGoal,				// ����Ʈ ��ǥ
-											    RwUInt32 uiQuestContents,			// ����Ʈ ����
-											    sREWARD_INFO* psDefaultReward,		// ����Ʈ ���� ���� - �⺻ ����
-											    sREWARD_INFO* psSelectReward,		// ����Ʈ ���� ���� - ���� ����
+											    RwUInt32 uiQuestAreaName,			// quest area name
+											    RwUInt32 uiQuestTitle,				// quest title
+											    RwUInt32 uiQuestSort,				// quest sort
+											    RwUInt32 uiQuestGrade,				// quest grade
+											    eGRADE_TYPE eGradeType,				// quest grade type
+											    RwUInt32 uiQuestGoal,				// quest goal
+											    RwUInt32 uiQuestContents,			// quest contents
+											    sREWARD_INFO* psDefaultReward,		// quest reward info - default reward
+											    sREWARD_INFO* psSelectReward,		// quest reward info - select reward
 	unsigned int uiRewardExp,
 	unsigned int uiRewardZeni,
-											    eSTOC_EVT_DATA_TYPE eEvtInfoType,	// ���� �̺�Ʈ ���� - ������ Ÿ��
-											    const uSTOC_EVT_DATA& uEvtInfoData,	// ���� �̺�Ʈ ���� - ������
-											    RwUInt32 uiTimeLimit,				// Ÿ�� ���� ����
-											    RwUInt32 uiEventType,				// eEVENT_GEN_TYPE ( ����� eEVENT_GEN_TYPE_CLICK_NPC �� ����� )
-											    RwUInt32 uiEventID,					// uiEventType �� ���� �ε��� eEVENT_GEN_TYPE_CLICK_NPC	: Mob table index
+											    eSTOC_EVT_DATA_TYPE eEvtInfoType,	// event info type - data type
+											    const uSTOC_EVT_DATA& uEvtInfoData,	// event info data - content
+											    RwUInt32 uiTimeLimit,				// time limit data
+											    RwUInt32 uiEventType,				// eEVENT_GEN_TYPE ( example eEVENT_GEN_TYPE_CLICK_NPC etc )
+											    RwUInt32 uiEventID,					// uiEventType related index eEVENT_GEN_TYPE_CLICK_NPC	: Mob table index
 												RwBool bIsEventStarter )			// Event type [ True : Starter, False : Reward ]
 
 {
@@ -3341,10 +3341,10 @@ void CNtlSLEventGenerator::ShowIndicator_Nfy(sTS_KEY& sTSKey,
 	_SendMsg(msg);
 }
 
-void CNtlSLEventGenerator::DoQuest( sQUEST_INFO& sQuestInfo,		// Quest ����
-								    eEVENT_GEN_TYPE eEventGenType,	// Event ����
+void CNtlSLEventGenerator::DoQuest( sQUEST_INFO& sQuestInfo,		// Quest info
+								    eEVENT_GEN_TYPE eEventGenType,	// Event generation type
 									RwUInt32 uiOwnerID,				// Owner ID
-									RwBool bTransCameraCtrlRight)	// ī�޶� ������� �ѱ�� ��� TRUE
+									RwBool bTransCameraCtrlRight)	// camera control transfer when TRUE
 {
 	SNtlEventDoQuest sDoQuest;
 	sDoQuest.sQuestInfo = sQuestInfo;
