@@ -4,6 +4,7 @@
 // shared
 #include "NtlWorld.h"
 #include "TableContainer.h"
+#include "ItemTable.h"
 
 // sound
 #include "NtlSoundDefines.h"
@@ -48,6 +49,8 @@
 #include "NtlCameraManager.h"
 #include "NtlSobStatusAnimSyncManager.h"
 #include "NtlSobCharPerfController.h"
+#include "NtlSobWorldItemAttr.h"				// Added to detect the attribute of the item for the drop filter
+#include "NtlStorageManager.h"					// To obatin the values in the menu from use for filter
 
 
 CNtlSobManager* CNtlSobManager::m_pInstance = 0;
@@ -904,52 +907,33 @@ void CNtlSobManager::RemoveTriggerIdMapping(RwInt32 uiClassId, CNtlSob *pObj)
 	}
 }
 
-void CNtlSobManager::AddObject(RwInt32 uiClassId, CNtlSob* pObj)
-
+void CNtlSobManager::AddObject(RwInt32 uiClassId, CNtlSob *pObj)
 {
 	NTL_FUNCTION("CNtlSobManager::AddObject");
-	if (pObj == nullptr)
-	{
-		NTL_RETURNVOID(); // early exit if pObj is null
-	}
-
 
 	SERIAL_HANDLE hSerialId = pObj->GetSerialID();
-	CNtlSob* pFindSobObj = FindEntity(uiClassId, hSerialId);
-
-	if (pFindSobObj != nullptr)
-	{
-		NTL_RETURNVOID(); // already exists, skip
-	}
+	
+	CNtlSob *pFindSobObj = FindEntity(uiClassId, hSerialId);
+	NTL_PRE(pFindSobObj == NULL);
 
 	MapObject::iterator it = m_mapObject.find(hSerialId);
-
-
-	if (it != m_mapObject.end())
-	{
-		NTL_RETURNVOID(); // already in map, skip
-	}
+	NTL_ASSERTE(it == m_mapObject.end());
 
 	m_mapObject[hSerialId] = pObj;
-
-	if (pObj->GetFlags() & SLFLAG_ADD_UPDATE)
-
-	{
+	if(pObj->GetFlags() & SLFLAG_ADD_UPDATE)
 		m_mapUpdate[hSerialId] = pObj;
-	}
+		
 
-	CNtlSobGroup* pGroup = FindGroup(uiClassId);
-
-	if (pGroup == nullptr)
+	CNtlSobGroup *pGroup = FindGroup(uiClassId);
+	if(pGroup == NULL)
 	{
 		pGroup = NTL_NEW CNtlSobGroup;
-		pGroup->Create();
-
+		pGroup->Create(); 
 		m_mapGroup[uiClassId] = pGroup;
 	}
-
-	pGroup->AddEntity(pObj);
-
+	
+	pGroup->AddEntity(pObj); 
+	
 	NTL_RETURNVOID();
 }
 
@@ -1180,23 +1164,87 @@ CNtlSob* CNtlSobManager::GetSobNearWorldItem(const RwV3d& vLoc)
 	for(it = mapObject.begin(); it != mapObject.end(); ++it)
 	{
 		pSobObj = reinterpret_cast<CNtlSobWorldItem*>( (*it).second );
-		if( !pSobObj->IsEnableLoot() )
+		CNtlSobWorldItemAttr* pAttr = reinterpret_cast<CNtlSobWorldItemAttr*>(pSobObj->GetSobAttr());			// Gets the rarity from CNtlSobWorldItemAttr
+		
+		
+		// Always loot Money and DragonBalls
+		if (pAttr->IsMoney() || pAttr->IsDragonBall())
+		{
+			// DBO_WARNING_MESSAGE(("Loot Money: " + std::to_string(pAttr->IsMoney())).c_str());
+			if (!pSobObj->IsEnableLoot() || pSobObj->IsLootSend())
+			{
+				continue;
+			}
+			fLength = CNtlMath::GetLength(pSobObj->GetPosition(), vLoc);
+			if (fLength <= fMinLength)
+			{
+				fMinLength = fLength;
+				pNearSobObj = pSobObj;
+			}
 			continue;
+		}
 
-		if(pSobObj->IsLootSend())
-			continue;
+		bool bLoot = false;
 
-        fLength = CNtlMath::GetLength(pSobObj->GetPosition(), vLoc);
-        if(fLength <= fMinLength)
-        {
-            fMinLength = fLength;
-            pNearSobObj = pSobObj;
-        }
+		// Ensures it is an item
+		if (pAttr->IsItem())
+		{
+
+			sITEM_TBLDAT* pItemTbl = pAttr->GetItemTbl();
+			if (!pItemTbl)
+				continue;
+			
+			// Checks the item type (byItemType) to determine if the item is a stone or a consumable
+			switch (pItemTbl->byItem_Type)
+			{
+			case ITEM_STONE_BLUE: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_STONE_BLUE); break;
+			case ITEM_STONE_RED: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_STONE_RED); break;
+			case ITEM_STONE_GREEN: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_STONE_GREEN); break;
+			case ITEM_STONE_PURPLE: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_STONE_PURPLE); break;
+			case ITEM_STONE_WHITE: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_STONE_WHITE); break;
+			case ITEM_STONE_ADOWN: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_STONE_ADOWN); break;
+			case ITEM_STONE_WDOWN: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_STONE_WDOWN); break;
+			case ITEM_CONSUMABLE: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_CONSUMABLE); break;
+			default:
+				// Checks the rarity (Rank) of the item in question
+				switch (pAttr->GetRank())
+				{
+				case ITEM_RARITY_NORMAL: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_RARITY_NORMAL); break;
+				case ITEM_RARITY_SUPERIOR: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_RARITY_SUPERIOR); break;
+				case ITEM_RARITY_EXCELLENT: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_RARITY_EXCELLENT); break;
+				case ITEM_RARITY_RARE: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_RARITY_RARE); break;
+				case ITEM_RARITY_LEGENDARY: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_RARITY_LEGENDARY); break;
+				}
+
+			}
+
+			// Checks for mystery item to skip or continue
+			if (!pAttr->IsIdentified())
+			{
+				bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_MYSTERYITEM);
+			}
+			// At least one filter needs to be selected, otherwise skip
+			if (!bLoot)
+			{
+				continue;
+			}
+
+			if (!pSobObj->IsEnableLoot() || pSobObj->IsLootSend())
+				continue;
+
+			fLength = CNtlMath::GetLength(pSobObj->GetPosition(), vLoc);
+			if (fLength <= fMinLength)
+			{
+				fMinLength = fLength;
+				pNearSobObj = pSobObj;
+			}
+		}
 	}
 
     if(pNearSobObj)
         return pNearSobObj;
 
+	// Reset loot send state if nothing found
 	if(!mapObject.empty())
 	{
 		for(it = mapObject.begin(); it != mapObject.end(); ++it)

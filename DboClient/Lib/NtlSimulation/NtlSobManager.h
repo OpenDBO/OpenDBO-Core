@@ -17,6 +17,25 @@
 #include "ceventhandler.h"
 #include "NtlSLDef.h"
 
+// Define the item GetRank ID
+#define ITEM_RARITY_NORMAL		1
+#define ITEM_RARITY_SUPERIOR	2
+#define ITEM_RARITY_EXCELLENT	3
+#define ITEM_RARITY_RARE		4
+#define ITEM_RARITY_LEGENDARY	5
+
+// Define the Stone ByItemType ID
+#define ITEM_STONE_BLUE			74
+#define ITEM_STONE_RED			73
+#define ITEM_STONE_GREEN		76
+#define ITEM_STONE_PURPLE		75
+#define ITEM_STONE_WHITE		60
+#define ITEM_STONE_ADOWN		78
+#define ITEM_STONE_WDOWN		77
+
+// Define the Consumables ByItemType ID
+#define ITEM_CONSUMABLE			30
+
 class CNtlSob;
 class CNtlSobGroup;
 class CNtlSobStatusAnimSyncManager;

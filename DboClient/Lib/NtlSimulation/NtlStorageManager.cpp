@@ -19,6 +19,7 @@
 #include "NtlStorageGroupScouter.h"
 #include "NtlStorageGroupQuest.h"
 #include "NtlStorageGroupCharacter.h"
+#include "NtlStorageGroupExtra.h"	// Added the new group for storage
 
 // Serializer
 #include "NtlStorageBinarySerializer.h"
@@ -106,6 +107,16 @@ bool CNtlStorageManager::Create()
 	}
 	m_mapStorageGroup.insert( std::make_pair( eNTL_STORAGE_GROUP_CHARACTER, pGroupCharacter ) );
 
+	// Extra
+	CNtlStorageGroupExtra* pGroupExtra = NTL_NEW CNtlStorageGroupExtra();
+	if (!pGroupExtra->Create())
+	{
+		pGroupExtra->Destroy();
+		NTL_DELETE(pGroupExtra);
+		return false;
+	}
+	m_mapStorageGroup.insert( std::make_pair( eNTL_STORAGE_GROUP_EXTRA, pGroupExtra ) );
+
 	return true;
 }
 
@@ -135,7 +146,8 @@ bool CNtlStorageManager::Load( eNTL_STORAGE_GROUP_TYPE eType, const char* filena
 		if( eType == eNTL_STORAGE_ACCOUNT ||
 			eType == eNTL_STORAGE_GROUP_SYSTEM ||
 			eType == eNTL_STORAGE_GROUP_GAMEINFO ||
-			eType == eNTL_STORAGE_GROUP_CHARACTER )
+			eType == eNTL_STORAGE_GROUP_CHARACTER ||
+			eType == eNTL_STORAGE_GROUP_EXTRA)
 		{
 			FILE* fp = NULL;
 
@@ -232,7 +244,8 @@ bool CNtlStorageManager::Save( eNTL_STORAGE_GROUP_TYPE eType, const char* filena
 		if( eType == eNTL_STORAGE_GROUP_ACCOUNT ||
 			eType == eNTL_STORAGE_GROUP_SYSTEM ||
 			eType == eNTL_STORAGE_GROUP_GAMEINFO ||
-			eType == eNTL_STORAGE_GROUP_CHARACTER )
+			eType == eNTL_STORAGE_GROUP_CHARACTER ||
+			eType == eNTL_STORAGE_GROUP_EXTRA)
 		{
 			CNtlStorageTextSerializer s(10000, 5000);
 			pGroup->Save( &s );
