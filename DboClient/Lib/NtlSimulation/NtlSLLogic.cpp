@@ -199,7 +199,7 @@ bool Logic_GetCurMemory( DWORD& PageFaultCount,
 
 void   Logic_CalcLimitMemory(SIZE_T TotalPhysMemory)
 {
-	g_uiLimitMemory = 2068
+	g_uiLimitMemory = 2068;
 }
 
 RwBool Logic_IsCreateHitEffect(void)

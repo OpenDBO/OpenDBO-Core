@@ -1960,17 +1960,9 @@ BYTE* CNtlWorldSectorInfo::SectorPrelightsSkipToFileMem(BYTE* pFileMem)
 
 RwBool CNtlWorldSectorInfo::SectorObjectLoadFromFile(FILE* pFile, CNtlWorldSector* pNtlWorldSector, EActiveWorldType eActiveWorldType)
 {
-
-
-	if (!pNtlWorldSector->m_vecNtlPLEntityOrnament.empty())Add commentMore actions
-
-
+	if (!pNtlWorldSector->m_vecNtlPLEntityOrnament.empty())
 {
-
-
     return FALSE;
-
-
 }
 	DBO_ASSERTE(pNtlWorldSector->m_vecNtlPLEntityOrnament.empty());
 
