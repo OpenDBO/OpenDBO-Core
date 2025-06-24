@@ -2556,15 +2556,25 @@ void CNtlPLObject::ClearLoopSound()
 	m_listLoopSound.clear();
 }
 
-RwBool CNtlPLObject::IsExistLoopSound( RwChar* szSoundName ) 
+RwBool CNtlPLObject::IsExistLoopSound(RwChar* szSoundName)
 {
+	// Check if szSoundName is null
+	if (!szSoundName)
+		return FALSE;
+
+	// Check if sound manager is available
+	CNtlSoundManager* pSoundManager = GetSoundManager();
+	if (!pSoundManager)
+		return FALSE;
+
 	ListSoundHandle::iterator it = m_listLoopSound.begin();
-	for(; it != m_listLoopSound.end(); ++it)
+	for (; it != m_listLoopSound.end(); ++it)
 	{
 		SOUND_HANDLE hListSound = *it;
-		if(strlen(GetSoundManager()->GetSoundName(hListSound)) > 0)
+		const RwChar* szListSoundName = pSoundManager->GetSoundName(hListSound);
+		if (szListSoundName && strlen(szListSoundName) > 0)
 		{
-			if(_strcmpi(GetSoundManager()->GetSoundName(hListSound),szSoundName) == 0)
+			if (_strcmpi(szListSoundName, szSoundName) == 0)
 			{
 				return TRUE;
 			}
@@ -2937,10 +2947,10 @@ RwReal CNtlPLObject::GetVisibleCullingDistance()
 #ifdef dNTL_WORLD_TOOL_MODE
 	return m_fVisibleCullingDistance;
 #else
-	if (m_fVisibleCullingDistance > 1024 || m_fVisibleCullingDistance < GetNtlPLOptionManager()->GetObjectFar())
+	/*if (m_fVisibleCullingDistance > 1024 || m_fVisibleCullingDistance < GetNtlPLOptionManager()->GetObjectFar())
 	{
 		return m_fVisibleCullingDistance;
-	}
+	}*/
 	return GetNtlPLOptionManager()->GetObjectFar();
 #endif
 }
@@ -7477,10 +7487,10 @@ RwReal CNtlPLObject::GetVisibleCullingDistance()
 #ifdef dNTL_WORLD_TOOL_MODE
 	return m_fVisibleCullingDistance;
 #else
-	if (m_fVisibleCullingDistance > 512 || m_fVisibleCullingDistance < GetNtlPLOptionManager()->GetObjectFar())
+	/*if (m_fVisibleCullingDistance > 512 || m_fVisibleCullingDistance < GetNtlPLOptionManager()->GetObjectFar())
 	{
 		return m_fVisibleCullingDistance;
-	}
+	}*/
 	return GetNtlPLOptionManager()->GetObjectFar();
 #endif
 }
