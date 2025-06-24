@@ -142,7 +142,7 @@ RwV3d		g_v3Default = {1.f, 1.f, 1.f};
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// ÇÔ¼ö Æ÷ÀÎÅÍ µî·Ï
+// ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -199,18 +199,7 @@ bool Logic_GetCurMemory( DWORD& PageFaultCount,
 
 void   Logic_CalcLimitMemory(SIZE_T TotalPhysMemory)
 {
-	if(TotalPhysMemory < 1024*1024*600)
-	{
-		g_uiLimitMemory = 600;
-	}
-	else if(TotalPhysMemory < 1024*1024*1100)
-	{
-		g_uiLimitMemory = 800;
-	}
-	else
-	{
-		g_uiLimitMemory = 950;
-	}
+	g_uiLimitMemory = 2068
 }
 
 RwBool Logic_IsCreateHitEffect(void)
@@ -273,7 +262,7 @@ RwBool Logic_IsUIDevInfoVisible(void)
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // monster/player logic
-// ÁÖÀÇ : ¼Óµµ´Â table data¿Í »óÅÂ ¹× ¹öÇÁ°¡ °í·ÁµÈ ¼Óµµ°¡ µÉ°ÍÀÌ´Ù.
+// ï¿½ï¿½ï¿½ï¿½ : ï¿½Óµï¿½ï¿½ï¿½ table dataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½É°ï¿½ï¿½Ì´ï¿½.
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -281,7 +270,7 @@ RwBool Logic_IsUIDevInfoVisible(void)
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// actor ¼Ó¼º logic
+// actor ï¿½Ó¼ï¿½ logic
 
 const WCHAR* Logic_GetName(CNtlSob *pSobObj)
 {
@@ -525,7 +514,7 @@ void Logic_SetRpStock( CNtlSob* pSobObj, RwUInt32 uiRpStock )
 
 		if( uiRpStock > (RwUInt32)GetNtlSLGlobal()->GetAvatarInfo()->sCharPf.byCurRPBall)
         {
-            // RP StockÀÌ ¿Ã¶úÀ»¶§ ÀÌº¥Æ® 
+            // RP Stockï¿½ï¿½ ï¿½Ã¶ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ® 
             if(Logic_GetActorStateId(pSobActor) == NTL_FSMSID_CHARGING)
             {
                 pSobActor->GetSobProxy()->CreatePLEffect(NTL_VID_RPBALL_UP, &pSobActor->GetPosition());
@@ -1370,7 +1359,7 @@ float Logic_GetMaxDashDistanceBackLeftRight(CNtlSobActor * pActor)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// player ÀüÁ÷ 
+// player ï¿½ï¿½ï¿½ï¿½ 
 
 RwUInt8	Logic_GetPlayerRace(CNtlSobActor *pActor)
 {
@@ -1451,7 +1440,7 @@ RwUInt32 Logic_GetReputation(CNtlSobActor *pActor)
 
 RwUInt8	Logic_ConverClasstoRace(RwUInt8 byClass)
 {
-	// Å¬·¡½º°¡ ¾î¶² Á¾Á·¿¡ ¼ÓÇÏ´ÂÁö ¾Ë¾Æº»´Ù
+	// Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½î¶² ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ ï¿½Ë¾Æºï¿½ï¿½ï¿½
 	switch(byClass)
 	{
 	case PC_CLASS_HUMAN_FIGHTER:
@@ -1766,7 +1755,7 @@ RwBool Logic_IsMasterSkill(SERIAL_HANDLE hSkillSerial)
 
 RwReal Logic_GetSkillApplyRange(CNtlSobActor* pActor, RwUInt32 uiSkillTblidx)
 {
-	// ¾Æ¹ÙÅ¸¸¸ »ç¿ë °¡´É
+	// ï¿½Æ¹ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if(!pActor || pActor->GetClassID() != SLCLASS_AVATAR)
 		return 0.0f;
 
@@ -1944,9 +1933,9 @@ RwReal Logic_GetRequiredEPFactor( CNtlSobActor* pActor )
 //}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// actorÀÇ »óÅÂ ¹× mode
+// actorï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ mode
 
-// actor°¡ community actorÀÎ°¡?(npc, trigger object, world item)
+// actorï¿½ï¿½ community actorï¿½Î°ï¿½?(npc, trigger object, world item)
 RwBool Logic_IsCommunityActor(CNtlSobActor *pActor)
 {
 	if( !pActor )
@@ -1992,7 +1981,7 @@ RwBool Logic_IsGambleActor( CNtlSobActor *pActor )
 	return FALSE;
 }
 
-// operation trigger actor ÀÎ°¡?
+// operation trigger actor ï¿½Î°ï¿½?
 RwBool Logic_IsOperationTriggerActor(CNtlSobActor *pActor)
 {
 	if( !pActor )
@@ -2016,7 +2005,7 @@ RwUInt32 Logic_GetDirectIdTriggerActor(CNtlSobActor *pActor)
 	return pObjTblData->objectDirectionIndex;
 }
 
-// actorÀÇ state id¸¦ ³Ñ°ÜÁØ´Ù.
+// actorï¿½ï¿½ state idï¿½ï¿½ ï¿½Ñ°ï¿½ï¿½Ø´ï¿½.
 RwUInt32 Logic_GetActorStateId(CNtlSobActor *pActor)
 {
 	if( !pActor )
@@ -2052,7 +2041,7 @@ RwUInt32 Logic_GetActorStateFlags( CNtlSobActor* pActor )
 	return pStateBase->GetFlags();
 }
 
-// actor°¡ target ÇÏ°í ÀÖ´Â serial id
+// actorï¿½ï¿½ target ï¿½Ï°ï¿½ ï¿½Ö´ï¿½ serial id
 SERIAL_HANDLE Logic_GetActorTargetSerialId(CNtlSobActor *pActor)
 {
 	if( !pActor )
@@ -2072,7 +2061,7 @@ SERIAL_HANDLE Logic_GetActorTargetSerialId(CNtlSobActor *pActor)
 }
 
 
-// actor ÇöÀç ÀüÅõÁßÀÎ°¡?
+// actor ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î°ï¿½?
 RwBool Logic_IsActorBattleMode(CNtlSobActor *pActor)
 {
 	if( !pActor )
@@ -2853,11 +2842,11 @@ CNtlSobActor* Logic_FindNearEnemyFromAvatarActor(void)
 	if(pSobAvatar == NULL)
 		return NULL;
 
-    // PVP, ·©Å© ¹èÆ², ÃµÇÏÁ¦ÀÏ¹«µµÈ¸µîÀÇ »óÈ²ÀÌ ÀÖ±â ¶§¹®¿¡ WorldConcept¿¡¼­ Å¸°ÙÀ» °Ë»öÇØ¾ß ÇÑ´Ù.
+    // PVP, ï¿½ï¿½Å© ï¿½ï¿½Æ², Ãµï¿½ï¿½ï¿½ï¿½ï¿½Ï¹ï¿½ï¿½ï¿½È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È²ï¿½ï¿½ ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ WorldConceptï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ø¾ï¿½ ï¿½Ñ´ï¿½.
     return GetNtlWorldConcept()->FindNearEnemyFromAvatarActor(pSobAvatar);
 }
 
-// ÀÚµ¿ Å¸°ÙÆÃÀÇ Å¸°Ù Á¤º¸ ¸®½º
+// ï¿½Úµï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 struct STargetInfo
 {
     CNtlSobActor*   pActor;
@@ -2869,16 +2858,16 @@ bool TargetInfoSorter(STargetInfo* elem1, STargetInfo* elem2)
     return elem1->fDistance < elem2->fDistance;
 }
 
-/// ÀÏ¹ÝÀûÀÎ °æ¿ì¿¡¼­ Ã£´Â ÀÚµ¿ Å¸°Ù
+/// ï¿½Ï¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½Úµï¿½ Å¸ï¿½ï¿½
 CNtlSobActor* Logic_GetAutoTarget(CNtlSobActor* pActor)
 {
     if(!pActor)
         return NULL;
 
     const RwReal  MAX_TARGET_LENGTH = 35.0f;
-    static RwUInt32 nTargetIndex = 0;                // ¼øÂ÷ÀûÀ¸·Î Å¸°ÙÀ» ¼±ÅÃÇÏ±â À§ÇÑ Static º¯¼ö
-    static CNtlSobActor* pPrevTargetActor = NULL;    // ±âÁ¸ Å¸°ÙÀ» ÀúÀåÇØµÐ´Ù.
-    static CNtlSobActor* pNearTargetActor = NULL;    // °¡Àå °¡±î¿î Å¸°ÙÀ» ÀúÀåÇØµÐ´Ù.
+    static RwUInt32 nTargetIndex = 0;                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ Static ï¿½ï¿½ï¿½ï¿½
+    static CNtlSobActor* pPrevTargetActor = NULL;    // ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ØµÐ´ï¿½.
+    static CNtlSobActor* pNearTargetActor = NULL;    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ØµÐ´ï¿½.
     RwReal fLen = 0.0f;
     
     std::vector<STargetInfo*> vecTargetList;
@@ -2902,13 +2891,13 @@ CNtlSobActor* Logic_GetAutoTarget(CNtlSobActor* pActor)
             
             fLen = CNtlMath::GetLength(pActor->GetPosition(), pTarActor->GetPosition());            
 
-            // ÀÏÁ¤ °Å¸® ÀÌ»óÀÌ¸é Å¸°ÙÆÃ ÇÏÁö ¾Ê´Â´Ù
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ ï¿½Ì»ï¿½ï¿½Ì¸ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½
             if ( fLen > MAX_TARGET_LENGTH)
             {
                 continue;
             }
 
-            // ½Ã¾ß¿¡ µé¾î¿ÀÁö ¾ÊÀ¸¸é Å¸°ÙÆÃ ÇÏÁö ¾Ê´Â´Ù.
+            // ï¿½Ã¾ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
             sSphere.center = pTarActor->GetPosition();
             sSphere.radius = pTarActor->GetSobProxy()->GetPLEntityHeight();
             if ( !RwCameraFrustumTestSphere( GetNtlGameCameraManager()->GetCamera()->GetCamera(), &sSphere ) )
@@ -2922,7 +2911,7 @@ CNtlSobActor* Logic_GetAutoTarget(CNtlSobActor* pActor)
                 continue;                                        
             }
 
-            // ¸®½ºÆ®¿¡ ´ã´Â´Ù.
+            // ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½Â´ï¿½.
             STargetInfo* pTargetInfo = NTL_NEW STargetInfo();
             pTargetInfo->fDistance = fLen;
             pTargetInfo->pActor = pTarActor;
@@ -2931,11 +2920,11 @@ CNtlSobActor* Logic_GetAutoTarget(CNtlSobActor* pActor)
         
         if(!vecTargetList.empty())
         {
-            // ¸®½ºÆ®¸¦ ¼ÒÆÃÇÑ´Ù.
+            // ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
             std::sort(vecTargetList.begin(), vecTargetList.end(), TargetInfoSorter);
             nTargetIndex = nTargetIndex >= vecTargetList.size() ? 0 : nTargetIndex;            
 
-            if(pNearTargetActor != vecTargetList[0]->pActor)        // °¡Àå °¡±î¿î Å¸°ÙÀÌ º¯°æµÇ¸é »õ·Î Å¸°ÙÆÃÇÑ´Ù. (Ä³¸¯ÅÍ ÀÌµ¿, ¸÷ ¹èÄ¡ º¯°æ)
+            if(pNearTargetActor != vecTargetList[0]->pActor)        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. (Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½, ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½)
             {
                 nTargetIndex = 0;                                
                 pNearTargetActor = vecTargetList[0]->pActor;
@@ -2943,7 +2932,7 @@ CNtlSobActor* Logic_GetAutoTarget(CNtlSobActor* pActor)
 
             CNtlSobActor* pTargetActor = vecTargetList[nTargetIndex++]->pActor;
             
-            if(pTargetActor == pPrevTargetActor)    // ÀÌÀü Å¸°Ù°ú »õ·Î¿î Å¸°ÙÀÌ °°À¸¸é ´ÙÀ½ Å¸°ÙÀ» ¼±ÅÃÇÑ´Ù.
+            if(pTargetActor == pPrevTargetActor)    // ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½Ù°ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
             {
                 nTargetIndex = nTargetIndex >= vecTargetList.size() ? 0 : nTargetIndex;
                 pTarActor = vecTargetList[nTargetIndex++]->pActor;
@@ -3342,7 +3331,7 @@ void Logic_AvatarStateChange(void)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// table data ¾ò¾î¿À±â.
+// table data ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 
 void Logic_MakeMobBrief(sMOB_BRIEF *pBrief, TBLIDX tblidx)
 {
@@ -3633,7 +3622,7 @@ sITEM_TBLDAT* Logic_GetItemDataFromSob(SERIAL_HANDLE hSerial)
 		CNtlSobItemAttr* pSobItemAttr = reinterpret_cast<CNtlSobItemAttr*>(pSobItem->GetSobAttr());
 		NTL_ASSERT(pSobItemAttr, "Logic_GetItemDataFromSob, Not exist sob item attiribure of handle : " << hSerial);
 
-		// ¹ÌÈ®ÀÎ ¾ÆÀÌÅÛ
+		// ï¿½ï¿½È®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		if( pSobItemAttr->IsNeedToIdentify() )
 			return NULL;
 
@@ -4419,7 +4408,7 @@ SERIAL_HANDLE Logic_FirstItem_in_Bag(TBLIDX index)
 		sITEM_TBLDAT* pBagITEM_TBLDAT		= pSobBagItemAttr->GetItemTbl();
 
 
-		// °¡¹æ ¾È¿¡ ÇöÀç µî·ÏµÈ ¿¬·á¿Í °°Àº ¿¬·áÀÇ °¹¼ö¸¦ ¼¼¾îº»´Ù.
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½È¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ïµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½îº»ï¿½ï¿½.
 		for( RwUInt8 k = 0 ; k < pBagITEM_TBLDAT->byBag_Size ; ++k )
 		{
 			CNtlSobItem* pSobItem			= pSobBagItem->GetChildItem(k);
@@ -4539,7 +4528,7 @@ RwReal Logic_GetItemSystemEffectValue(sITEM_TBLDAT* pITEM_TBLDAT, RwUInt32 uiSys
 		if( !pSYSTEM_EFFECT_TBLDAT )
 			continue;
 
-		// pSYSTEM_EFFECT_TBLDAT->effectCodeÀÇ °ªÀº NtlSystemEffect.h¿¡ Á¤ÀÇµÇ¾î ÀÖ´Ù
+		// pSYSTEM_EFFECT_TBLDAT->effectCodeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ NtlSystemEffect.hï¿½ï¿½ ï¿½ï¿½ï¿½ÇµÇ¾ï¿½ ï¿½Ö´ï¿½
 		if( (RwUInt32)pSYSTEM_EFFECT_TBLDAT->effectCode == uiSystemEffect )
 		{
 			return (RwReal)pUSE_ITEM_TBLDAT->aSystem_Effect_Value[i];
@@ -4654,11 +4643,11 @@ typedef struct _SCharCollisionBrief
 	RwReal fCollDist;
 	RwV3d vCollPos;
 	RwV3d vCollNormal;
-	RwV3d vAdjustCollPos;	// char ÀÌµ¿ ¹æÇâ¿¡ µû¸¥ collisin positionÀ» º¸Á¤ÇÑ´Ù.
+	RwV3d vAdjustCollPos;	// char ï¿½Ìµï¿½ ï¿½ï¿½ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ collisin positionï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	RwBool bCollRecursive;
 	RwV3d vNewPos;
-	RwBool bCollMoveImPossible;	// Ãæµ¹Àº Çß´Âµ¥, ¾î¶²ÂÊÀ¸·Î ÀÌµ¿ÇÒ ¼ö ¾ø´Â °æ¿ì.
-	RwBool bCollJump;           // Á¡ÇÁ¸¦ ÇØ¼­ À§·Î Ãæµ¹ÇßÀ» °æ¿ì
+	RwBool bCollMoveImPossible;	// ï¿½æµ¹ï¿½ï¿½ ï¿½ß´Âµï¿½, ï¿½î¶²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½.
+	RwBool bCollJump;           // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	CNtlPLEntity *pCollPLEntity;
 }SCharCollisionBrief;
 
@@ -4706,12 +4695,12 @@ void Logic_ProcWorldLight(CNtlSobActor *pActor, RwV3d vPos)
 
 	CNtlSobProxy*	pSobProxy	= pActor->GetSobProxy();
 
-	// vPosÀÇ ShadowPropertyÁ¤º¸¸¦ °¡Á®¿Â´Ù.
+	// vPosï¿½ï¿½ ShadowPropertyï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½.
 	RwBool			bIsInShadow	= GetNtlPLOptionManager()->GetTerrainShadow() && (GetSceneManager()->GetWorldNormalAttribute(vPos) & DBO_WORLD_ATTR_GROUP_FLAG_WORLD_SHADOW);
 
 	if (bIsInShadow && CNtlPLGlobal::m_pWHEntity && CNtlPLGlobal::m_pWHEntity->GetClassType() == PLENTITY_OBJECT)
 	{
-		// pActor°¡ Object À§¿¡ ÀÖ°í SelfShadow(FALSE)¶ó¸é Shadow¸¦ Àû¿ëÇÏÁö ¾Ê´Â´Ù.
+		// pActorï¿½ï¿½ Object ï¿½ï¿½ï¿½ï¿½ ï¿½Ö°ï¿½ SelfShadow(FALSE)ï¿½ï¿½ï¿½ Shadowï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 		CNtlPLObject* pPLObject = reinterpret_cast<CNtlPLObject*>(CNtlPLGlobal::m_pWHEntity);
 		if (!(pPLObject->GetFlags() & NTL_PLEFLAG_SHADOW_PROP))
 		{
@@ -5002,7 +4991,7 @@ RwReal Logic_GetSwimmingOffset(CNtlSobActor *pActor)
 		}
         else if(pPlayerAttr->GetRace() == RACE_MAJIN && Logic_IsTransform(pActor))
         {
-            // º¯½ÅÇÑ ¼ø¼ö¸¶ÀÎÀº ¾î¸¥ÀÇ OffsetÀ» Àû¿ëÇØ¾ßÇÑ´Ù.
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½î¸¥ï¿½ï¿½ Offsetï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½Ñ´ï¿½.
             fOffset = SWIM_OFFSET_ADULT;
         }
 		else
@@ -5178,7 +5167,7 @@ void Logic_GetCharacterCollisionBBox(RwBBox *pBox, SCharCollisionBrief *pCollBri
 	RwV3d *pFront = &pCollBrief->vCharFront;
 	RwV3d *pRight = &pCollBrief->vCharRight;
 
-	// Ãæµ¹¿ë ¹Ù¿îµù ¹Ú½º´Â ¿ø·¡ ¹Ú½º ³ôÀÌÀÇ 0.3~0.8±îÁö¸¸ Ã¼Å©ÇÑ´Ù (°Å´ë ³ª¸ß¶§¹®)
+	// ï¿½æµ¹ï¿½ï¿½ ï¿½Ù¿ï¿½ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 0.3~0.8ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ñ´ï¿½ (ï¿½Å´ï¿½ ï¿½ï¿½ï¿½ß¶ï¿½ï¿½ï¿½)
 	// by agebreak 
 	vBoxVertex[0].x = pPos->x + (pRight->x * pCollBrief->fCharHalfWidth);
 	vBoxVertex[0].y = pPos->y;// + pCollBrief->fCharHeight * 0.3f;
@@ -5192,7 +5181,7 @@ void Logic_GetCharacterCollisionBBox(RwBBox *pBox, SCharCollisionBrief *pCollBri
 
 void Logic_GetCharacterCollisionLine(CNtlSobActor *pActor, RwLine *pLine, SCharCollisionBrief *pCollBrief )
 {
-	// ³ôÀÌ : character À§Ä¡¿¡ character ³ôÀÌÀÇ 30% ÁöÁ¡À¸·Î ÇÑ´Ù.
+	// ï¿½ï¿½ï¿½ï¿½ : character ï¿½ï¿½Ä¡ï¿½ï¿½ character ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 30% ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
 
 	if( !pActor || !pLine || !pCollBrief )
 		return;
@@ -5205,7 +5194,7 @@ void Logic_GetCharacterCollisionLine(CNtlSobActor *pActor, RwLine *pLine, SCharC
 
 	if ( fLineY < CHAR_COLLISION_LINE_LIMIT_HEIGHT )
 	{
-		// GreatNamek°¡ ¾Æ´Ñ °æ¿ì´Â Collision height ¸¦ Clipping ÇÑ´Ù
+		// GreatNamekï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½ Collision height ï¿½ï¿½ Clipping ï¿½Ñ´ï¿½
 		if ( NULL == pActor || !Logic_IsTransformGreatNamek( pActor ) )
 		{
 			fLineY = CHAR_COLLISION_LINE_LIMIT_HEIGHT;
@@ -5216,22 +5205,22 @@ void Logic_GetCharacterCollisionLine(CNtlSobActor *pActor, RwLine *pLine, SCharC
 	RwReal fRightX = pRight->x * pCollBrief->fCharHalfWidth;
 	RwReal fRightZ = pRight->z * pCollBrief->fCharHalfWidth;
 
-	// Áß¾Ó
+	// ï¿½ß¾ï¿½
 	pLine[0].start.x = pPos->x;
 	pLine[0].start.y = fLineY;
 	pLine[0].start.z = pPos->z;
 
-	//// ¿ÞÂÊ
+	//// ï¿½ï¿½ï¿½ï¿½
 	pLine[1].start.x = pPos->x - fRightX;
 	pLine[1].start.y = fLineY;
 	pLine[1].start.z = pPos->z - fRightZ;
 
-	// ¿À¸¥ÂÊ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	pLine[2].start.x = pPos->x + fRightX;
 	pLine[2].start.y = fLineY;
 	pLine[2].start.z = pPos->z + fRightZ;
 
-	// YÃà ¹æÇâ Ã¼Å© ¶óÀÎ
+	// Yï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¼Å© ï¿½ï¿½ï¿½ï¿½
 	pLine[3].start.x = pPos->x;
 	pLine[3].start.y = fLineY;
 	pLine[3].start.z = pPos->z;
@@ -5260,12 +5249,12 @@ RwBool Logic_GetCharacterCollisionAtomicNormal(RwLine *pLine, SWorldCharIntersec
 
 	RwBool bIndoorWorld = GetSceneManager()->GetActiveWorldType() == AW_RWWORLD ? TRUE : FALSE;
 
-	// Á¡ÇÁ°¡ ¾Æ´Ï¸é ¸¶Áö¸· ¶óÀÎ(yÃàÃ¼Å©)Àº Ã¼Å©ÇÏÁö ¾Ê´Â´Ù.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(yï¿½ï¿½Ã¼Å©)ï¿½ï¿½ Ã¼Å©ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 	RwInt32 nLineCnt = bJump ? CHAR_COLLISION_LINE_COUNT : CHAR_COLLISION_LINE_COUNT - 1;
 
 	for(RwInt32 iLineIdx = 0; iLineIdx < nLineCnt; ++iLineIdx)
 	{
-		// IndoorÀÏ °æ¿ì.
+		// Indoorï¿½ï¿½ ï¿½ï¿½ï¿½.
 		if(bIndoorWorld)
 		{
 			if(Collision_WorldIntersectionWorldSector(pLine[iLineIdx], sCharData))
@@ -5281,7 +5270,7 @@ RwBool Logic_GetCharacterCollisionAtomicNormal(RwLine *pLine, SWorldCharIntersec
 
 					pCollBrief->pCollPLEntity = NULL;
 
-					// Á¡ÇÁ·Î Ãæµ¹ÇÑ°ÇÁö Ã¼Å©ÇÑ´Ù.
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ï¿½Ñ°ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ñ´ï¿½.
 					if(iLineIdx == CHAR_COLLISION_LINE_JUMP_INDEX)
 					{
 						pCollBrief->bCollJump = TRUE;
@@ -5305,7 +5294,7 @@ RwBool Logic_GetCharacterCollisionAtomicNormal(RwLine *pLine, SWorldCharIntersec
 
 					pCollBrief->pCollPLEntity = reinterpret_cast<CNtlPLEntity*>( RpNtlAtomicGetData(sCharInfo.pAtomic[i]) );
 
-					// Á¡ÇÁ·Î Ãæµ¹ÇÑ°ÇÁö Ã¼Å©ÇÑ´Ù.
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ï¿½Ñ°ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ñ´ï¿½.
 					if(iLineIdx == CHAR_COLLISION_LINE_JUMP_INDEX)
 					{
 						pCollBrief->bCollJump = TRUE;
@@ -5398,7 +5387,7 @@ RwBool Logic_IsCharacterCollisionMove(CNtlSobActor *pActor, RwBool bCollision, S
 
 		RwV3dNormalize( &vDist, &vDist );
 
-		// RayÀÇ ±æÀÌ¸¦ Á»´õ ±æ°Ô Àâ¾ÆÁØ´Ù
+		// Rayï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ø´ï¿½
 		vDist *= fLen + 1.5f;
 
 		vEndPos = vStartPos + vDist;
@@ -5520,20 +5509,20 @@ RwUInt8 Logic_CharacterCollisionBegin(CNtlSobActor *pActor, RwReal fSpeed, RwRea
 
 	Logic_GetCharacterCollisionAxis(fSpeed * fElapsed, &g_sColliBrief);
 
-	// Ãæµ¹ÇÒ bounding box ¿µ¿ªÀ» ±¸ÇÑ´Ù.
+	// ï¿½æµ¹ï¿½ï¿½ bounding box ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
 	RwBBox box;
 	Logic_GetCharacterCollisionBBox(&box, &g_sColliBrief);
 
-	// bounding box Ãæµ¹À» ÇÑ´Ù.	
+	// bounding box ï¿½æµ¹ï¿½ï¿½ ï¿½Ñ´ï¿½.	
 	RwBool bBoxCollision = FALSE, bCollision = FALSE;
 	SWorldCharIntersectionInfo sCharInfo;
 	bBoxCollision = Collision_WorldIntersectionCharacter(box, sCharInfo);
 
-	// Ãæµ¹ÇÑ ray¸¦ ±¸ÇÑ´Ù.
+	// ï¿½æµ¹ï¿½ï¿½ rayï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
 	RwLine Line[CHAR_COLLISION_LINE_COUNT];
 	Logic_GetCharacterCollisionLine(pActor, Line, &g_sColliBrief);
 
-	// Ãæµ¹ÇÑ atomicÀÇ °¡±î¿î polygonÀ» Ã£¾Æ normalÀ» ±¸ÇÑ´Ù.
+	// ï¿½æµ¹ï¿½ï¿½ atomicï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ polygonï¿½ï¿½ Ã£ï¿½ï¿½ normalï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
 	RwBool bIndoorWorld = GetSceneManager()->GetActiveWorldType() == AW_RWWORLD ? TRUE : FALSE;
 	if(bBoxCollision || bIndoorWorld)
 	{
@@ -5559,8 +5548,8 @@ RwUInt8 Logic_CharacterCollisionBegin(CNtlSobActor *pActor, RwReal fSpeed, RwRea
 
 			if(Logic_IsCharacterCollisionNewPosition(&g_sColliBrief))
 			{
-				// Ãæµ¹À» ÇßÀ» °æ¿ì.. Ãæµ¹ ±â¿ï±â¸¦ ±¸ÇÑ´Ù.
-				// »õ·Î¿î À§Ä¡¸¦ setting ÇÑ´Ù.
+				// ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½.. ï¿½æµ¹ ï¿½ï¿½ï¿½â¸¦ ï¿½ï¿½ï¿½Ñ´ï¿½.
+				// ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ setting ï¿½Ñ´ï¿½.
 				if(Logic_IsTransformGreatNamek(pActor))
 				{
 					g_sColliBrief.vNewPos = g_sColliBrief.vCharCurrPos;
@@ -5612,20 +5601,20 @@ RwBool Logic_CharacterCollisionRecusive(CNtlSobActor* pActor, RwReal fSpeed, RwR
 
 	Logic_GetCharacterCollisionAxis(fSpeed * fElapsed, &g_sColliBrief);
 
-	// Ãæµ¹ÇÒ bounding box ¿µ¿ªÀ» ±¸ÇÑ´Ù.
+	// ï¿½æµ¹ï¿½ï¿½ bounding box ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
 	RwBBox box;
 	Logic_GetCharacterCollisionBBox(&box, &g_sColliBrief);
 
-	// bounding box Ãæµ¹À» ÇÑ´Ù.
+	// bounding box ï¿½æµ¹ï¿½ï¿½ ï¿½Ñ´ï¿½.
 	RwBool bCollision;
 	SWorldCharIntersectionInfo sCharInfo;
 	bCollision = Collision_WorldIntersectionCharacter(box, sCharInfo);
 
-	// Ãæµ¹ÇÑ ray¸¦ ±¸ÇÑ´Ù.
+	// ï¿½æµ¹ï¿½ï¿½ rayï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
 	RwLine Line[CHAR_COLLISION_LINE_COUNT];
 	Logic_GetCharacterCollisionLine(pActor, Line, &g_sColliBrief);
 
-	// Ãæµ¹ÇÑ atomicÀÇ °¡±î¿î polygonÀ» Ã£¾Æ normalÀ» ±¸ÇÑ´Ù.
+	// ï¿½æµ¹ï¿½ï¿½ atomicï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ polygonï¿½ï¿½ Ã£ï¿½ï¿½ normalï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
 	RwBool bIndoorWorld = GetSceneManager()->GetActiveWorldType() == AW_RWWORLD ? TRUE : FALSE;
 	if(bCollision || bIndoorWorld)
 		bCollision = Logic_GetCharacterCollisionAtomicNormal(Line, sCharInfo, &g_sColliBrief, bJump);
@@ -5794,7 +5783,7 @@ RwBool Logic_IsMyPartyMember(SERIAL_HANDLE hSerial)
 
 RwBool Logic_CanPartyLeave()
 {
-	// ¸ÞÀÎ¿ùµå´Â ÄÁ¼ÁÀÌ Á¤ÀÇµÇ¾î ÀÖÁö ¾Ê¾Æ NULLÀÌ ¹ÝÈ¯µÈ´Ù
+	// ï¿½ï¿½ï¿½Î¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÇµÇ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾ï¿½ NULLï¿½ï¿½ ï¿½ï¿½È¯ï¿½È´ï¿½
 	CNtlWorldConceptController* pWorldConcept = GetNtlWorldConcept()->FindGradeExtController(WORLD_CONCEPT_FIRST_GRADE);
 	if( !pWorldConcept )
 		return TRUE;
@@ -5807,7 +5796,7 @@ RwBool Logic_CanPartyLeave()
 		return TRUE;
 	}
 
-	// StateÁß¿¡¼­ Exit°¡ °¡Àå ¸¶Áö¸·ÀÌ¶ó´Â °¡Á¤ÇÏ¿¡ °Ë»çÇÑ´Ù
+	// Stateï¿½ß¿ï¿½ï¿½ï¿½ Exitï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Ë»ï¿½ï¿½Ñ´ï¿½
 	if( pWorldConcept->GetState() == WORLD_STATE_EXIT ||
 		pWorldConcept->GetState() == WORLD_STATE_NONE )
 		return TRUE;
@@ -5817,7 +5806,7 @@ RwBool Logic_CanPartyLeave()
 
 RwBool Logic_CanPartyInvite()
 {
-	// ¸ÞÀÎ¿ùµå´Â ÄÁ¼ÁÀÌ Á¤ÀÇµÇ¾î ÀÖÁö ¾Ê¾Æ NULLÀÌ ¹ÝÈ¯µÈ´Ù
+	// ï¿½ï¿½ï¿½Î¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÇµÇ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾ï¿½ NULLï¿½ï¿½ ï¿½ï¿½È¯ï¿½È´ï¿½
 	CNtlWorldConceptController* pWorldConcept = GetNtlWorldConcept()->FindGradeExtController(WORLD_CONCEPT_FIRST_GRADE);
 	if( !pWorldConcept )
 		return TRUE;
@@ -5830,7 +5819,7 @@ RwBool Logic_CanPartyInvite()
 		return TRUE;
 	}
 
-	// StateÁß¿¡¼­ Exit°¡ °¡Àå ¸¶Áö¸·ÀÌ¶ó´Â °¡Á¤ÇÏ¿¡ °Ë»çÇÑ´Ù
+	// Stateï¿½ß¿ï¿½ï¿½ï¿½ Exitï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Ë»ï¿½ï¿½Ñ´ï¿½
 	if( pWorldConcept->GetState() == WORLD_STATE_EXIT ||
 		pWorldConcept->GetState() == WORLD_STATE_NONE )
 		return TRUE;
@@ -6033,7 +6022,7 @@ void Logic_SetHeadNameColor(CNtlSob* pSob)
 			CNtlSobTriggerObjectAttr* pTriggerObjectAttr = reinterpret_cast<CNtlSobTriggerObjectAttr*>( pTriggerObject->GetSobAttr() );
 			CNtlSobTriggerObjectProxy* pTriggerObjectAttrProxy = reinterpret_cast<CNtlSobTriggerObjectProxy*>( pTriggerObject->GetSobProxy() );
 
-			// Æ®¸®°Å ¿ÀºêÁ§Æ®´Â ÀÌ¸§ÀÌ ¾øÀ» ¼öµµ ÀÖ´Ù
+			// Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½
 			if( pTriggerObjectAttr->GetName() )
 				pTriggerObjectAttrProxy->SetNameColor(pTriggerObjectAttr->GetName(), NTL_OBJ_NAME_COLOR);
 			else
@@ -6143,7 +6132,7 @@ RwBool Logic_IsCanCreatePrivateShop()
 
 			if(FSMUtil_IsPrivateShopping(pPlayer->GetCurrentState()))
 			{
-				// ¹Ý°æ 3M ÀÌ³»¿¡ °³ÀÎ »óÁ¡ÀÌ ÇÏ³ª ÀÌ»ó ÀÖ½À´Ï´Ù
+				// ï¿½Ý°ï¿½ 3M ï¿½Ì³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ ï¿½Ì»ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½
 				CNtlSLEventGenerator::SysMsg(pAvater->GetSerialID(), "GAME_PRIVATESHOP_PRIVATESHOP_ANOTHER_PRIVATESHOP");
 				return FALSE;
 			}
@@ -6156,7 +6145,7 @@ RwBool Logic_IsCanCreatePrivateShop()
 
 	for(int i = 0; i < 2; i++)
 	{
-		// npc °Ë»ç.
+		// npc ï¿½Ë»ï¿½.
 		pSobGroup = GetNtlSobManager()->GetSobGroup(arrClass[i]);
 		if (pSobGroup)
 		{
@@ -6178,7 +6167,7 @@ RwBool Logic_IsCanCreatePrivateShop()
 				RwReal fLength = RwV2dLength(&v2Sub);
 				if (fLength <= fLimitedDistance + (fPLWidth + fPLDepth)/4.0f )
 				{
-					// ¹Ý°æ 2M ÀÌ³»¿¡ NPC°¡ Á¸ÀçÇÕ´Ï´Ù. ( NPC ¿Í °ãÄ¡´Â ¹®Á¦¸¦ ÇØ°á )
+					// ï¿½Ý°ï¿½ 2M ï¿½Ì³ï¿½ï¿½ï¿½ NPCï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½. ( NPC ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø°ï¿½ )
 					CNtlSLEventGenerator::SysMsg(pAvater->GetSerialID(), "GAME_PRIVATESHOP_PRIVATESHOP_ANOTHER_NPC");
 					return FALSE;
 				}
@@ -6237,7 +6226,7 @@ RwBool Logic_IsCoolTimeUpdate(CNtlSobActor *pActor)
 	return TRUE;
 }
 
-// ºí·¢¸®½ºÆ®¿¡ ÀÖ´ÂÁö È®ÀÎÇÑ´Ù.
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ñ´ï¿½.
 RwBool Logic_IsBlackList( RwUInt32 uiSerialID ) 
 {
 	CNtlSob* pActor = GetNtlSobManager()->GetSobObject(uiSerialID);
@@ -6347,7 +6336,7 @@ RwInt32 Logic_isPartyShareTarget( SERIAL_HANDLE hSerial )
 		}
 	}
 
-	// ÀÏÄ¡ÇÏ´Â°ÍÀÌ ¾øÀ¸¸é -1À» ¹ÝÈ¯ÇÑ´Ù.
+	// ï¿½ï¿½Ä¡ï¿½Ï´Â°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -1ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ñ´ï¿½.
 	return -1;
 }
 
@@ -6367,7 +6356,7 @@ RwInt32 Logic_GetShareTargetBlankSlot()
 	static RwInt32 nBlankSlot = 0;
 
 	RwInt32 nSlot = Logic_isPartyShareTarget(INVALID_SERIAL_ID);
-	if(nSlot == -1) // ºó ½½·ÔÀÌ ¾øÀ»¶§
+	if(nSlot == -1) // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	{
 		nSlot = nBlankSlot;
 
@@ -6507,7 +6496,7 @@ RwBool Logic_CanRideOnVehicle(SERIAL_HANDLE hHandle, CNtlSobItem* pSobItem)
 
 	if ( NULL == pUseItemTbl )
 	{
-		// ÇØ´ç ¾ÆÀÌÅÛÀÌ vehicle ¾ÆÀÌÅÛÀÌ ¾Æ´Ñ °æ¿ì´Â TRUE
+		// ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ vehicle ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½ TRUE
 		return TRUE;
 	}
 
@@ -6515,7 +6504,7 @@ RwBool Logic_CanRideOnVehicle(SERIAL_HANDLE hHandle, CNtlSobItem* pSobItem)
 
 	if ( NULL == pUseItemTblData )
 	{
-		// ÇØ´ç ¾ÆÀÌÅÛÀÌ vehicle ¾ÆÀÌÅÛÀÌ ¾Æ´Ñ °æ¿ì´Â TRUE
+		// ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ vehicle ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½ TRUE
 		return TRUE;
 	}
 
@@ -6523,7 +6512,7 @@ RwBool Logic_CanRideOnVehicle(SERIAL_HANDLE hHandle, CNtlSobItem* pSobItem)
 
 	if ( NULL == pSystemEffectTbl )
 	{
-		// ÇØ´ç ¾ÆÀÌÅÛÀÌ vehicle ¾ÆÀÌÅÛÀÌ ¾Æ´Ñ °æ¿ì´Â TRUE
+		// ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ vehicle ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½ TRUE
 		return TRUE;
 	}
 
@@ -6542,11 +6531,11 @@ RwBool Logic_CanRideOnVehicle(SERIAL_HANDLE hHandle, CNtlSobItem* pSobItem)
 
 	if ( !bVehicleItem )
 	{
-		// ÇØ´ç ¾ÆÀÌÅÛÀÌ vehicle ¾ÆÀÌÅÛÀÌ ¾Æ´Ñ °æ¿ì´Â TRUE
+		// ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ vehicle ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½ TRUE
 		return TRUE;
 	}
 
-	// ÁöÇü °Ë»ç
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
 
 	CNtlSob* pSobObj = GetNtlSobManager()->GetSobObject( hHandle );
 
@@ -6711,8 +6700,8 @@ RwBool Logic_IsTransformRollingAttack(CNtlSobActor* pSobActor)
 	return FALSE;
 }
 
-// º¯½Å½ºÅ³ÀÌ ¾Æ´Ï¸é, 0À» ¹ÝÈ¯
-// º¯½Å ½ºÅ³ÀÌ¸é ¸î·¹º§ º¯½Å ½ºÅ³ÀÎÁö ¹ÝÈ¯
+// ï¿½ï¿½ï¿½Å½ï¿½Å³ï¿½ï¿½ ï¿½Æ´Ï¸ï¿½, 0ï¿½ï¿½ ï¿½ï¿½È¯
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å³ï¿½Ì¸ï¿½ ï¿½î·¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
 RwUInt32 Logic_IsTransformSkill( RwUInt32 uiSkillTblId ) 
 {
 	sSKILL_TBLDAT* pData = (sSKILL_TBLDAT*)API_GetTableContainer()->GetSkillTable()->FindData(uiSkillTblId);
@@ -6905,13 +6894,13 @@ RwBool Logic_CanTranslateIdleState( CNtlSobActor* pActor )
 
 	RwUInt32 nStateId = Logic_GetActorStateId(pActor);
 
-	if(nStateId == NTL_FSMSID_ONBUS)            // ¹ö½ºÀÎ °æ¿ì¿¡´Â ¾ÈµÊ
+	if(nStateId == NTL_FSMSID_ONBUS)            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½ ï¿½Èµï¿½
 		return FALSE;
 
-	if(nStateId == NTL_FSMSID_ONVEHICLE)        // Å»°ÍÀÎ °æ¿ì¿¡´Â ¾ÈµÊ
+	if(nStateId == NTL_FSMSID_ONVEHICLE)        // Å»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½ ï¿½Èµï¿½
 		return FALSE;
 
-    if(nStateId == NTL_FSMSID_KNOCKDOWN)        // ³Ë´Ù¿îÀÏ °æ¿ì¿¡´Â ¾ÈµÊ
+    if(nStateId == NTL_FSMSID_KNOCKDOWN)        // ï¿½Ë´Ù¿ï¿½ï¿½ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½ ï¿½Èµï¿½
         return FALSE;
 
 	return TRUE;
@@ -7479,7 +7468,7 @@ RwBool Logic_IsUsableIndex(RwUInt32 uiIndex, RwUInt32 uiMaxIndex, RwUInt32 uiInv
 
 RwBool Logic_IsCollisionLine( RwV3d& vStartPos, RwV3d& vEndPos, OUT CNtlPLEntity* pColEntity /*= NULL*/ ) 
 {
-    // ¿ÀºêÁ§Æ®¿¡ ´ëÇØ¼­¸¸ Ãæµ¹À» °Ë»çÇÑ´Ù.
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ ï¿½æµ¹ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ñ´ï¿½.
     RwLine colRay;
     colRay.start = vStartPos;
     colRay.end = vEndPos;    
@@ -7577,22 +7566,22 @@ void Logic_GetVehicleCollisionLine( RwLine* pLine, SCharCollisionBrief* pCollBri
 	RwReal fRightX = pRight->x * pCollBrief->fCharHalfWidth;
 	RwReal fRightZ = pRight->z * pCollBrief->fCharHalfWidth;
 
-	// Áß¾Ó
+	// ï¿½ß¾ï¿½
 	pLine[0].start.x = pPos->x;
 	pLine[0].start.y = fLineY;
 	pLine[0].start.z = pPos->z;
 
-	// ¿ÞÂÊ
+	// ï¿½ï¿½ï¿½ï¿½
 	pLine[1].start.x = pPos->x - fRightX;
 	pLine[1].start.y = fLineY;
 	pLine[1].start.z = pPos->z - fRightZ;
 
-	// ¿À¸¥ÂÊ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	pLine[2].start.x = pPos->x + fRightX;
 	pLine[2].start.y = fLineY;
 	pLine[2].start.z = pPos->z + fRightZ;
 
-	// YÃà ¹æÇâ Ã¼Å© ¶óÀÎ
+	// Yï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¼Å© ï¿½ï¿½ï¿½ï¿½
 	pLine[3].start.x = pPos->x;
 	pLine[3].start.y = fLineY;
 	pLine[3].start.z = pPos->z;
@@ -7717,7 +7706,7 @@ RwBool Logic_IsVehicleCollisionMove( CNtlSobVehicle* pActor, RwBool bCollision, 
 
 		RwV3dNormalize( &vDist, &vDist );
 
-		// RayÀÇ ±æÀÌ¸¦ Á»´õ ±æ°Ô Àâ¾ÆÁØ´Ù
+		// Rayï¿½ï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ø´ï¿½
 		vDist *= fLen + 1.5f;
 
 		vEndPos = vStartPos + vDist;
@@ -7853,12 +7842,12 @@ RwBool Logic_GetVehicleCollisionAtomicNormal( RwLine* pLine, SWorldCharIntersect
 
 	RwBool bIndoorWorld = GetSceneManager()->GetActiveWorldType() == AW_RWWORLD ? TRUE : FALSE;
 
-	// Á¡ÇÁ°¡ ¾Æ´Ï¸é ¸¶Áö¸· ¶óÀÎ(yÃà Ã¼Å©)Àº Ã¼Å©ÇÏÁö ¾Ê´Â´Ù.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(yï¿½ï¿½ Ã¼Å©)ï¿½ï¿½ Ã¼Å©ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 	RwInt32 nLineCnt = bJump ? VEHICLE_COLLISION_LINE_COUNT : VEHICLE_COLLISION_LINE_COUNT - 1;
 
 	for ( RwInt32 iLineIdx = 0; iLineIdx < nLineCnt; ++iLineIdx )
 	{
-		// IndoorÀÏ °æ¿ì.
+		// Indoorï¿½ï¿½ ï¿½ï¿½ï¿½.
 		if ( bIndoorWorld )
 		{
 			if ( Collision_WorldIntersectionWorldSector( pLine[iLineIdx], sCharData ) )
@@ -7874,7 +7863,7 @@ RwBool Logic_GetVehicleCollisionAtomicNormal( RwLine* pLine, SWorldCharIntersect
 
 					pCollBrief->pCollPLEntity = NULL;
 
-					// Á¡ÇÁ·Î Ãæµ¹ÇÑ°ÇÁö Ã¼Å©ÇÑ´Ù.
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ï¿½Ñ°ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ñ´ï¿½.
 					if ( iLineIdx == VEHICLE_COLLISION_LINE_JUMP_INDEX )
 					{
 						pCollBrief->bCollJump = TRUE;
@@ -7898,7 +7887,7 @@ RwBool Logic_GetVehicleCollisionAtomicNormal( RwLine* pLine, SWorldCharIntersect
 
 					pCollBrief->pCollPLEntity = reinterpret_cast<CNtlPLEntity*>( RpNtlAtomicGetData( sCharInfo.pAtomic[i] ) );
 
-					// Á¡ÇÁ·Î Ãæµ¹ÇÑ°ÇÁö Ã¼Å©ÇÑ´Ù.
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ï¿½Ñ°ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ñ´ï¿½.
 					if ( iLineIdx == CHAR_COLLISION_LINE_JUMP_INDEX )
 					{
 						pCollBrief->bCollJump = TRUE;
@@ -7918,21 +7907,21 @@ RwUInt8 Logic_VehicleCollisionBegin( CNtlSobVehicle* pActor, RwReal fSpeed, RwRe
 
 	Logic_GetVehicleCollisionAxis( &g_sColliBrief );
 
-	// Ãæµ¹ÇÒ bounding box ¿µ¿ªÀ» ±¸ÇÑ´Ù.
+	// ï¿½æµ¹ï¿½ï¿½ bounding box ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
 	RwBBox box;
 	Logic_GetVehicleCollisionBBox( &box, &g_sColliBrief );
 
-	// bounding box Ãæµ¹À» ÇÑ´Ù.
+	// bounding box ï¿½æµ¹ï¿½ï¿½ ï¿½Ñ´ï¿½.
 	RwUInt8 byColliResult = NTL_CHARACTER_COLLI_NONE;
 	RwBool bBoxCollision = FALSE, bCollision = FALSE;
 	SWorldCharIntersectionInfo sCharInfo;
 	bBoxCollision = Collision_WorldIntersectionCharacter( box, sCharInfo );
 
-	// Ãæµ¹ÇÑ ray¸¦ ±¸ÇÑ´Ù.
+	// ï¿½æµ¹ï¿½ï¿½ rayï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
 	RwLine Line[CHAR_COLLISION_LINE_COUNT];
 	Logic_GetVehicleCollisionLine( Line, &g_sColliBrief );
 
-	// Ãæµ¹ÇÑ atomicÀÇ °¡±î¿î polygonÀ» Ã£¾Æ normalÀ» ±¸ÇÑ´Ù.
+	// ï¿½æµ¹ï¿½ï¿½ atomicï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ polygonï¿½ï¿½ Ã£ï¿½ï¿½ normalï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
 	RwBool bIndoorWorld = GetSceneManager()->GetActiveWorldType() == AW_RWWORLD ? TRUE : FALSE;
 
 	if ( bBoxCollision || bIndoorWorld )
@@ -7999,20 +7988,20 @@ RwBool Logic_VehicleCollisionRecusive( RwReal fSpeed, RwReal fElapsed, RwBool bJ
 {
 	Logic_GetVehicleCollisionAxis( &g_sColliBrief );
 
-	// Ãæµ¹ÇÒ bounding box ¿µ¿ªÀ» ±¸ÇÑ´Ù.
+	// ï¿½æµ¹ï¿½ï¿½ bounding box ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
 	RwBBox box;
 	Logic_GetVehicleCollisionBBox( &box, &g_sColliBrief );
 
-	// bounding box Ãæµ¹À» ÇÑ´Ù.
+	// bounding box ï¿½æµ¹ï¿½ï¿½ ï¿½Ñ´ï¿½.
 	RwBool bCollision;
 	SWorldCharIntersectionInfo sCharInfo;
 	bCollision = Collision_WorldIntersectionCharacter( box, sCharInfo );
 
-	// Ãæµ¹ÇÑ ray¸¦ ±¸ÇÑ´Ù.
+	// ï¿½æµ¹ï¿½ï¿½ rayï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
 	RwLine Line[CHAR_COLLISION_LINE_COUNT];
 	Logic_GetVehicleCollisionLine( Line, &g_sColliBrief );
 
-	// Ãæµ¹ÇÑ atomicÀÇ °¡±î¿î polygonÀ» Ã£¾Æ normalÀ» ±¸ÇÑ´Ù.
+	// ï¿½æµ¹ï¿½ï¿½ atomicï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ polygonï¿½ï¿½ Ã£ï¿½ï¿½ normalï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
 	RwBool bIndoorWorld = GetSceneManager()->GetActiveWorldType() == AW_RWWORLD ? TRUE : FALSE;
 	if ( bCollision || bIndoorWorld )
 	{
@@ -8112,7 +8101,7 @@ SOUND_HANDLE Logic_PlayGUISound(char* pcFileName)
 
 void Logic_PlayItemPickUpSound(sITEM_TBLDAT* pITEM_TBLDAT)
 {
-	// ÀÏ´Ü ¼Ò¸®°¡ ÇÏ³ªÀÌ¹Ç·Î null °Ë»çÇÏÁö ¾Ê°í ¹Ù·Î µðÆúÆ® »ç¿îµå Ãâ·Â
+	// ï¿½Ï´ï¿½ ï¿½Ò¸ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½Ì¹Ç·ï¿½ null ï¿½Ë»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	//switch( pITEM_TBLDAT->byItem_Type )
 	//{
 	//default: break;
@@ -8133,20 +8122,20 @@ void Logic_PlayItemPutDownSound(sITEM_TBLDAT* pITEM_TBLDAT, RwUInt8 byDestPlace)
 	{
 	case CONTAINER_TYPE_EQUIP:
 		{
-			// Ä³¸¯ÅÍ ½ºÅÝÃ¢
+			// Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¢
 			Logic_PlayGUISound(GSD_SYSTEM_ITEM_EQUIP);
 			return;
 		}
 	}
 	/*
-	// ¾Æ¸¶µµ ¼Ò¸®ÀÇ Á¾·ù°¡ ÇÏ³ª ´õ ´Ã¾î³ö¾ß µÉµí ÇÔ. ÀÏ¹Ý °¡¹æ¿¡ µî·ÏµÇ´Â ¼Ò¸®·Î...
-	// °¢Á¾ °¡¹æ
+	// ï¿½Æ¸ï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ ï¿½ï¿½ ï¿½Ã¾ï¿½ï¿½ï¿½ï¿½ ï¿½Éµï¿½ ï¿½ï¿½. ï¿½Ï¹ï¿½ ï¿½ï¿½ï¿½æ¿¡ ï¿½ï¿½ÏµÇ´ï¿½ ï¿½Ò¸ï¿½ï¿½ï¿½...
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	CONTAINER_TYPE_BAG1
 	CONTAINER_TYPE_BAG2
 	CONTAINER_TYPE_BAG3
 	CONTAINER_TYPE_BAG4
 	CONTAINER_TYPE_BAG5
-	// ¿À¸¥ÂÊ ÇÏ´Ü °¡¹æ µî·ÏÇÏ´Â °÷
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½
 	CONTAINER_TYPE_BAGSLOT
 	*/
 	// Defualt

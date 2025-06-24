@@ -904,34 +904,113 @@ void CNtlSobManager::RemoveTriggerIdMapping(RwInt32 uiClassId, CNtlSob *pObj)
 	}
 }
 
-void CNtlSobManager::AddObject(RwInt32 uiClassId, CNtlSob *pObj)
+void CNtlSobManager::AddObject(RwInt32 uiClassId, CNtlSob* pObj)Add commentMore actions
+
 {
+
 	NTL_FUNCTION("CNtlSobManager::AddObject");
 
+
+
+
+	if (pObj == nullptr)
+
+
+	{
+
+
+		NTL_RETURNVOID(); // early exit if pObj is null
+
+
+	}
+
+
+
+
 	SERIAL_HANDLE hSerialId = pObj->GetSerialID();
-	
-	CNtlSob *pFindSobObj = FindEntity(uiClassId, hSerialId);
-	NTL_PRE(pFindSobObj == NULL);
+
+
+
+
+
+	CNtlSob* pFindSobObj = FindEntity(uiClassId, hSerialId);
+
+
+	if (pFindSobObj != nullptr)
+
+
+	{
+
+
+		NTL_RETURNVOID(); // already exists, skip
+
+
+	}
+
+
 
 	MapObject::iterator it = m_mapObject.find(hSerialId);
-	NTL_ASSERTE(it == m_mapObject.end());
+
+
+	if (it != m_mapObject.end())
+
+
+	{
+
+
+		NTL_RETURNVOID(); // already in map, skip
+
+
+	}
+
+
 
 	m_mapObject[hSerialId] = pObj;
-	if(pObj->GetFlags() & SLFLAG_ADD_UPDATE)
-		m_mapUpdate[hSerialId] = pObj;
-		
 
-	CNtlSobGroup *pGroup = FindGroup(uiClassId);
-	if(pGroup == NULL)
+
+
+
+
+	if (pObj->GetFlags() & SLFLAG_ADD_UPDATE)
+
+
 	{
-		pGroup = NTL_NEW CNtlSobGroup;
-		pGroup->Create(); 
-		m_mapGroup[uiClassId] = pGroup;
+
+		m_mapUpdate[hSerialId] = pObj;
+
+
 	}
-	
-	pGroup->AddEntity(pObj); 
-	
+
+
+
+
+	CNtlSobGroup* pGroup = FindGroup(uiClassId);
+
+
+	if (pGroup == nullptr)
+
+	{
+
+		pGroup = NTL_NEW CNtlSobGroup;
+
+
+		pGroup->Create();
+
+		m_mapGroup[uiClassId] = pGroup;
+
+	}
+
+
+
+
+
+	pGroup->AddEntity(pObj);
+
+
+
+
 	NTL_RETURNVOID();
+
 }
 
 CNtlSobManager::MapObject::iterator CNtlSobManager::RemoveObject(RwInt32 uiClassId, CNtlSob *pObj)

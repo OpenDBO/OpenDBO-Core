@@ -80,6 +80,8 @@ RwBool CNtlPLEntity::CullingTest(RwCamera* pRwCamera, RwUInt16 uiRenderFrame)
 #ifdef _DEBUG
 	++CNtlPLGlobal::m_uiCullTestCnt;
 #endif
+		
+	m_uiRenderFrame = 0; // reset the cull flag for the new frame
 
 	// Culiing Test�� �õ� �Ѵٸ� Culling�� ����ϰڴٴ� �ǹ̴�. �ʱⰪ�� �����Ѵ�.
 	if (m_uiRenderFrame != uiRenderFrame)
