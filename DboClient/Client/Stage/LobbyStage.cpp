@@ -288,7 +288,7 @@ bool CLobbyStage::Create(void)
 	// option load
 	Logic_LoadAccountOption();
 	Logic_LoadGameOption();
-
+	Logic_LoadExtraOption();	// New EXTRA tab for filters
 
 #ifdef USE_DISCORD
 	GetDiscordManager()->LoginCharServer();
