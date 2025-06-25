@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0"?>
 <config_options>
-	<op ver="0.1" ip="127.0.0.1" port="20200"/>
-	<BUGTRAP ip="127.0.0.1" port ="9999" folder="" />
+	<op ver="0.1" ip="127.0.0.1" port="20200" />
+	<BUGTRAP ip="127.0.0.1" port="9999" folder="OpenDBO BugTrap Report" />
 	<localize folder="english" />
 </config_options>
