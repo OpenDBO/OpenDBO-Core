@@ -239,6 +239,7 @@
     <ClCompile Include="Gui\OptionControlTab.cpp" />
     <ClCompile Include="Gui\OptionGraphicTab.cpp" />
     <ClCompile Include="Gui\OptionWindowGui.cpp" />
+    <ClInclude Include="Gui\OptionFilter.cpp" />
     <ClCompile Include="Gui\PartyMemberGui.cpp" />
     <ClCompile Include="Gui\PartyMenuGui.cpp" />
     <ClCompile Include="Gui\PetitionGui.cpp" />
@@ -582,6 +583,7 @@
     <ClInclude Include="Gui\OptionControlTab.h" />
     <ClInclude Include="Gui\OptionGraphicTab.h" />
     <ClInclude Include="Gui\OptionWindowGui.h" />
+    <ClInclude Include="Gui\OptionFilter.h" />
     <ClInclude Include="Gui\PartyMemberGui.h" />
     <ClInclude Include="Gui\PartyMenuGui.h" />
     <ClInclude Include="Gui\PetitionGui.h" />

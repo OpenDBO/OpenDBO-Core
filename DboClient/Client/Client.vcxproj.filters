@@ -231,9 +231,6 @@
     <Filter Include="Precomp">
       <UniqueIdentifier>{879fb690-3c8a-4f58-b28e-6966b594d38a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Exception">
-      <UniqueIdentifier>{10fd2886-6532-4474-8419-a1561824bdaa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Thread">
       <UniqueIdentifier>{d73489b9-9b92-46ab-81b2-3df3a84b1716}</UniqueIdentifier>
     </Filter>
@@ -296,6 +293,9 @@
     </Filter>
     <Filter Include="Gui\Component\Game\UltimateDungeon %28UD%29">
       <UniqueIdentifier>{bb7816fb-b492-4312-8345-5b5bd1a65dc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Gui\Exception">
+      <UniqueIdentifier>{10fd2886-6532-4474-8419-a1561824bdaa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1068,13 +1068,13 @@
       <Filter>Precomp</Filter>
     </ClCompile>
     <ClCompile Include="Main\DboExceptionHandler.cpp">
-      <Filter>Exception</Filter>
+      <Filter>Gui\Exception</Filter>
     </ClCompile>
     <ClCompile Include="Main\DboExtraErrorReport.cpp">
-      <Filter>Exception</Filter>
+      <Filter>Gui\Exception</Filter>
     </ClCompile>
     <ClCompile Include="Main\Msjexhnd.cpp">
-      <Filter>Exception</Filter>
+      <Filter>Gui\Exception</Filter>
     </ClCompile>
     <ClCompile Include="Thread\GameLoadingThread.cpp">
       <Filter>Thread</Filter>
@@ -1967,13 +1967,13 @@
       <Filter>Precomp</Filter>
     </ClInclude>
     <ClInclude Include="Main\DboExceptionHandler.h">
-      <Filter>Exception</Filter>
+      <Filter>Gui\Exception</Filter>
     </ClInclude>
     <ClInclude Include="Main\DboExtraErrorReport.h">
-      <Filter>Exception</Filter>
+      <Filter>Gui\Exception</Filter>
     </ClInclude>
     <ClInclude Include="Main\Msjexhnd.h">
-      <Filter>Exception</Filter>
+      <Filter>Gui\Exception</Filter>
     </ClInclude>
     <ClInclude Include="Thread\CriticalSection.h">
       <Filter>Thread</Filter>
@@ -2148,6 +2148,12 @@
     </ClInclude>
     <ClInclude Include="MascotStatusBarGui.h">
       <Filter>Gui\Component\Game\Mascot</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\OptionFilter.h">
+      <Filter>Gui\Component\Game\Option</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\OptionFilter.cpp">
+      <Filter>Gui\Component\Game\Option</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
