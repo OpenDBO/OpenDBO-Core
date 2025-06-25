@@ -84,22 +84,22 @@ void CNtlPLEventHandler::Destroy(void)
 {
 	NTL_FUNCTION("CNtlPLEventHandler::Destroy");
 	
-	UnRegisterMsg (g_EventAnimEnd);
-	UnRegisterMsg (g_EventAnimHit);
-	UnRegisterMsg (g_EventAnimFootStep);
-	UnRegisterMsg (g_EventWeightTime);
-	UnRegisterMsg (g_EventSubWeaponActive);
-	UnRegisterMsg (g_EventSubWeaponDeActive);
-	UnRegisterMsg (g_EventSummon);
-    UnRegisterMsg (g_EventAlpha);
-    UnRegisterMsg (g_EventAnimTMQ);
-    UnRegisterMsg (g_EventExplosion);
-    UnRegisterMsg (g_EventAnimPostEffect);
-    UnRegisterMsg (g_EventAnimDirect);
-    UnRegisterMsg (g_EventAnimColorChange);
-    UnRegisterMsg (g_EventAnimStretch);
-    UnRegisterMsg (g_EventAnimTrigger);
-	UnRegisterMsg (g_EventAnimSkillCancel);
+	UnRegisterMsg(g_EventAnimEnd);
+	UnRegisterMsg(g_EventAnimHit);
+	UnRegisterMsg(g_EventAnimFootStep);
+	UnRegisterMsg(g_EventWeightTime);
+	UnRegisterMsg(g_EventSubWeaponActive);
+	UnRegisterMsg(g_EventSubWeaponDeActive);
+	UnRegisterMsg(g_EventSummon);
+	UnRegisterMsg(g_EventAlpha);
+	UnRegisterMsg(g_EventAnimTMQ);
+	UnRegisterMsg(g_EventExplosion);
+	UnRegisterMsg(g_EventAnimPostEffect);
+	UnRegisterMsg(g_EventAnimDirect);
+	UnRegisterMsg(g_EventAnimColorChange);
+	UnRegisterMsg(g_EventAnimStretch);
+	UnRegisterMsg(g_EventAnimTrigger);
+	UnRegisterMsg(g_EventAnimSkillCancel);
 
 	// world field switching effects
 	UnRegisterMsg(NPEI_IS_ANOTHER_FIELD_CHANGED);
@@ -108,37 +108,36 @@ void CNtlPLEventHandler::Destroy(void)
 	UnRegisterMsg(NPEI_IS_ANOTHER_BLOCK_CHANGED_WITHOUT_DELAY);
 	UnRegisterMsg(NPEI_IS_ANOTHER_OBJECT_CHANGED);
 	UnRegisterMsg(NPEI_IS_ANOTHER_OBJECT_CHANGED_WITHOUT_DELAY);
-	UnRegisterMsg(NPEI_IS_ANOTHER_SECTOR_CHANGED_WITHOUT_DELAY);
 	UnRegisterMsg(NPEI_IS_MAPNAME_CHANGE);
+	UnRegisterMsg(NPEI_IS_ANOTHER_SECTOR_CHANGED_WITHOUT_DELAY);
 
 	// trigger doodads
 	UnRegisterMsg(g_EventTriDoodads);
 
-    // Event Object
-    UnRegisterMsg(g_EventCreateEventObject);
-    UnRegisterMsg(g_EventThreadLoadingComplete);
+	// Event Object
+	UnRegisterMsg(g_EventCreateEventObject);
+	UnRegisterMsg(g_EventThreadLoadingComplete);
 
 	// gui event
-	UnRegisterMsg (g_EventResize);
+	UnRegisterMsg(g_EventResize);
 
-	// gui event
-	UnRegisterMsg (g_EventCinematicViewShow);
-	UnRegisterMsg (g_EventCinematicBalloon);
-	UnRegisterMsg (g_EventCinematicFlash);
-	UnRegisterMsg (g_EventCinematicEcho);
-	UnRegisterMsg (g_EventResetCinematic);
+	UnRegisterMsg(g_EventCinematicViewShow);
+	UnRegisterMsg(g_EventCinematicBalloon);
+	UnRegisterMsg(g_EventCinematicFlash);
+	UnRegisterMsg(g_EventCinematicEcho);
+	UnRegisterMsg(g_EventResetCinematic);
 
-	UnRegisterMsg (g_EventCinematicFadeOut);
-	UnRegisterMsg (g_EventCinematicFadeIn);
+	UnRegisterMsg(g_EventCinematicFadeOut);
+	UnRegisterMsg(g_EventCinematicFadeIn);
 
-	UnRegisterMsg (g_EventCinematicBreak);
+	UnRegisterMsg(g_EventCinematicBreak);
 
-	UnRegisterMsg (g_EventShowProfilerGui);
+	UnRegisterMsg(g_EventShowProfilerGui);
 
 	UnRegisterMsg(g_EventShowSpectatorBalloon);
 	UnRegisterMsg(g_EventHideAllSpectatorBalloon);
 
-	UnRegisterMsg(g_EventShowPlayerName);    
+	UnRegisterMsg(g_EventShowPlayerName);
 
 	UnRegisterMsg(g_EventDirectPlayCancel);
 

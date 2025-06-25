@@ -242,16 +242,23 @@ void CDboEventHandler::Destroy(void)
 {
 	NTL_FUNCTION("CDboEventHandler::Destroy");
 
-	UnLinkMsg( g_EventSysMsg );
-	UnLinkMsg( g_EventSysStringMsg );
-	UnLinkMsg( g_EventFormatSysMsg );
-	UnLinkMsg( g_EventFormatSysStringMsg );
-	UnLinkMsg( g_EventSobNpcCommunity );
 	UnLinkMsg(g_EventVirtualServerPacket);
 	UnLinkMsg(g_EventNetSendError);
-	UnLinkMsg( g_EventSobTriggerObjCommunity );
-	UnLinkMsg( g_EventCreateStage);
-	UnLinkMsg( g_EventTLDisableDialogMoveOption);
+
+	// SL Event Link
+	UnLinkMsg(g_EventSysMsg);
+	UnLinkMsg(g_EventSysStringMsg);
+	UnLinkMsg(g_EventFormatSysMsg);
+	UnLinkMsg(g_EventFormatSysStringMsg);
+	UnLinkMsg(g_EventSobNpcCommunity);
+	UnLinkMsg(g_EventSobTriggerObjCommunity);
+	UnLinkMsg(g_EventCreateStage);
+	UnLinkMsg(g_EventTLDisableDialogMoveOption);
+
+	UnRegisterMsg(g_EventVirtualServerPacket);
+	UnRegisterMsg(g_EventLogInServerConnect);
+	UnRegisterMsg(g_EventLobbyServerConnect);
+	UnRegisterMsg(g_EventGameServerConnect);
 
 	UnRegisterMsg(g_EventLogInStageStateEnter);
 	UnRegisterMsg(g_EventLogInStageStateExit);
@@ -260,13 +267,8 @@ void CDboEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventCharStageStateEnter);
 	UnRegisterMsg(g_EventCharStageStateExit);
 	UnRegisterMsg(g_EventLoginMessage);
-	UnRegisterMsg(g_EventLobbyMessage);	
+	UnRegisterMsg(g_EventLobbyMessage);
 	UnRegisterMsg(g_EventCharMake);
-	
-	UnRegisterMsg(g_EventVirtualServerPacket);
-	UnRegisterMsg(g_EventLogInServerConnect);
-	UnRegisterMsg(g_EventLobbyServerConnect);
-	UnRegisterMsg(g_EventGameServerConnect);
 
 	UnRegisterMsg(g_EventDebug_for_Developer);
 	UnRegisterMsg(g_EventLobbyPacketHelper);
@@ -284,9 +286,8 @@ void CDboEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventFlashNotifyString);
 	UnRegisterMsg(g_EventFlashFinishNotify);
 	UnRegisterMsg(g_EventFlashNotifyFinish);
-	UnRegisterMsg(g_EventGroupNotify);	
+	UnRegisterMsg(g_EventGroupNotify);
 	UnRegisterMsg(g_EventNameNotify);
-	
 	UnRegisterMsg(g_EventIconMoveClick);
 	UnRegisterMsg(g_EventIconPopupShow);
 	UnRegisterMsg(g_EventIconPopupResult);
@@ -294,10 +295,10 @@ void CDboEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventCalcPopupResult);
 	UnRegisterMsg(g_EventPickedUpHide);
 	UnRegisterMsg(g_EventDialog);
-	UnRegisterMsg(g_EventPostDialog);	
+	UnRegisterMsg(g_EventPostDialog);
 	UnRegisterMsg(g_EventShop);
-	UnRegisterMsg(g_EventUpdateRP);	
-    UnRegisterMsg(g_EventUpdateRpStock);
+	UnRegisterMsg(g_EventUpdateRP);
+	UnRegisterMsg(g_EventUpdateRpStock);
 	UnRegisterMsg(g_EventUpdateExp);
 	UnRegisterMsg(g_EventCharObjDelete);
 	UnRegisterMsg(g_EventItemUpgradeResult);
@@ -306,8 +307,10 @@ void CDboEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventItemChangeBattleAttributeResult);
 	UnRegisterMsg(g_EventRegisterItemUpgrade);
 	UnRegisterMsg(g_EventRegisterItemChangeBattleAttribute);
+
 	UnRegisterMsg(g_EventCharTitleSelectRes);
 	UnRegisterMsg(g_EventCharTitleUpdate);
+
 	UnRegisterMsg(g_EventQuickSlotInfo);
 	UnRegisterMsg(g_EventQuickSlotDelNfy);
 	UnRegisterMsg(g_EventNPCDialogOpen);
@@ -333,7 +336,7 @@ void CDboEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventReadingMail);
 	UnRegisterMsg(g_EventMailSlotUpdate);
 	UnRegisterMsg(g_EventQuestMessage);
-	UnRegisterMsg(g_EventQuestMessage2);	
+	UnRegisterMsg(g_EventQuestMessage2);
 	UnRegisterMsg(g_EventRpBonusSetup);
 	UnRegisterMsg(g_EventRpBonusSelect);
 	UnRegisterMsg(g_EventRpBonusAuto);
@@ -356,37 +359,49 @@ void CDboEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventBudokaiTournamentTeamInfo);
 	UnRegisterMsg(g_EventDiceResult);
 	UnRegisterMsg(g_EventDiceResultShow);
-	UnRegisterMsg(g_EventDiceRollReqtoServer);	
-	UnRegisterMsg(g_EventDiceStart);	
+	UnRegisterMsg(g_EventDiceRollReqtoServer);
+	UnRegisterMsg(g_EventDiceStart);
 	UnRegisterMsg(g_EventShopGambleBuyRes);
 	UnRegisterMsg(g_EventGambleUseEffect);
 	UnRegisterMsg(g_EventRegMailAttachItem);
-	UnRegisterMsg(g_EventPetition);	
+
+	UnRegisterMsg(g_EventRegBindSealingAttachItem);
+	UnRegisterMsg(g_EventRegHoiPoiMixMaterialItem);
+	UnRegisterMsg(g_EventRegCCBDCouponItem);
+	UnRegisterMsg(g_EventRegOptionReconstructItem);
+	UnRegisterMsg(g_EventOpenQuickTeleport);
+	UnRegisterMsg(g_EventQuickTeleportLoad);
+	UnRegisterMsg(g_EventQuickTeleportUpdate);
+	UnRegisterMsg(g_EventQuickTeleportDelete);
+	UnRegisterMsg(g_EventQuickTeleportMove);
+
+	UnRegisterMsg(g_EventRegAuctionHouseItem);
+
+	UnRegisterMsg(g_EventPetition);
 	UnRegisterMsg(g_EventTeleportProposalNfy);
 	UnRegisterMsg(g_EventTeleportConfirmRes);
-	UnRegisterMsg(g_EventObserverMenu);	
+	UnRegisterMsg(g_EventObserverMenu);
 	UnRegisterMsg(g_EventRPCharge);
 	UnRegisterMsg(g_EventBattleCombatMode);
 	UnRegisterMsg(g_EventItemIdentifyEffect);
 
-	UnRegisterMsg( g_EventHoipoiMixItemMakeRes );
-	UnRegisterMsg( g_EventHoipoiMixCreateStart );
+	UnRegisterMsg(g_EventHoipoiMixItemMakeRes);
+	UnRegisterMsg(g_EventHoipoiMixCreateStart);
 
-	UnRegisterMsg( g_EventLoading );
+	UnRegisterMsg(g_EventHintViewClosed);
 
-	UnRegisterMsg( g_EventHintViewClosed );
+	UnRegisterMsg(g_EventLoading);
 
-	UnRegisterMsg( g_EventNetPyShopEvent );
+	UnRegisterMsg(g_EventOpenBagGui);
+	UnRegisterMsg(g_EventOpenScouterBackgroundGui);
 
-    UnRegisterMsg( g_EventOpenBagGui );
-    UnRegisterMsg( g_EventOpenScouterBackgroundGui );
-    //////////////////////////////////////////////////////////////////////////
-    // 한국 PC방 관련
-    UnRegisterMsg(g_EventUpdateNetPy);
-    UnRegisterMsg(g_EventNetMarbleMemberShipNfy);
+	// 한국 PC방 관련
+	UnRegisterMsg(g_EventUpdateNetPy);
+	UnRegisterMsg(g_EventNetMarbleMemberShipNfy);
+	UnRegisterMsg(g_EventNetPyShopEvent);
 
 	// CommercialExtend
-    UnRegisterMsg(g_EventCommercialExtendCommand);
+	UnRegisterMsg(g_EventCommercialExtendCommand);
 
 	//hl shop
 	UnRegisterMsg(g_EventHLShopEvent);
@@ -406,8 +421,10 @@ void CDboEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventMascotDelete);
 	UnRegisterMsg(g_EventMascotSummon);
 	UnRegisterMsg(g_EventMascotUnSummon);
-			
-	UnRegisterMsg(g_EventSCS);		
+
+	//test		
+	UnRegisterMsg(g_EventSCS);
+
 	NTL_RETURNVOID();
 }
 

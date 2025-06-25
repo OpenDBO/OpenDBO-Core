@@ -47,23 +47,23 @@ void CNtlSoundEventHandler::Destroy(void)
 {
 	NTL_FUNCTION("CNtlSoundEventHandler::Destroy");
 
-	UnLinkMsg(g_EventSoundEventMusic);
-	UnLinkMsg(g_EventSoundKnockdown);
-	UnLinkMsg(g_EventSoundMinMaxRate);
+    UnLinkMsg(g_EventSoundEventMusic);
+    UnLinkMsg(g_EventSoundKnockdown);
+    UnLinkMsg(g_EventSoundMinMaxRate);
 
-	UnRegisterMsg(g_EventSoundReleaseSound);
-	UnRegisterMsg(g_EventSoundFinishFade);
-	UnRegisterMsg(g_EventSoundEventMusic);
-	UnRegisterMsg(g_EventSoundRestTime);
-	UnRegisterMsg(g_EventSoundKnockdown);
-	UnRegisterMsg(g_EventSoundMinMaxRate);
-	UnRegisterMsg(g_EventSoundAddListRangeBGM);
-	UnRegisterMsg(g_EventSoundDelListRangeBGM);
-	UnRegisterMsg(g_EventSoundChangeListRangeBGM);
-	UnRegisterMsg(g_EventSoundAddListShareBGM);
-	UnRegisterMsg(g_EventSoundDeleteAllListShareBGM);
-	UnRegisterMsg(g_EventSoundShareBGMPlayRate);
-	UnRegisterMsg(g_EventSoundReleaseObjectGroup);
+    UnRegisterMsg(g_EventSoundReleaseSound);
+    UnRegisterMsg(g_EventSoundFinishFade);
+    UnRegisterMsg(g_EventSoundEventMusic);
+    UnRegisterMsg(g_EventSoundRestTime);
+    UnRegisterMsg(g_EventSoundKnockdown);
+    UnRegisterMsg(g_EventSoundMinMaxRate);
+    UnRegisterMsg(g_EventSoundAddListRangeBGM);
+    UnRegisterMsg(g_EventSoundDelListRangeBGM);
+    UnRegisterMsg(g_EventSoundChangeListRangeBGM);
+    UnRegisterMsg(g_EventSoundAddListShareBGM);
+    UnRegisterMsg(g_EventSoundDeleteAllListShareBGM);
+    UnRegisterMsg(g_EventSoundShareBGMPlayRate);
+    UnRegisterMsg(g_EventSoundReleaseObjectGroup);
 
 	NTL_RETURNVOID();
 }
