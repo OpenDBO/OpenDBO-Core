@@ -132,15 +132,14 @@ namespace RWS
    {
       RWS_FUNCTION("RWS::CEventId::~CEventId");
 
-      RWS_ASSERT( (m_linked_count == 0),
-         "CEventId::~CEventId " << RWS_VALIDSTRING(pEventId->p_msgname) << " not unlinked" );
+      if (m_linked_count > 0)
+          DBO_WARNING_MESSAGE("CEventId::~CEventId " << RWS_VALIDSTRING(pEventId->p_msgname) << " not unlinked");
 
-      RWS_ASSERT( (m_registered_count == 0),
-         "CEventId::~CEventId " << RWS_VALIDSTRING(pEventId->p_msgname) << " not unregistered" );
+      if (m_registered_count > 0)
+          DBO_WARNING_MESSAGE("CEventId::~CEventId " << RWS_VALIDSTRING(pEventId->p_msgname) << " not unregistered");
 
-      RWS_ASSERT( (pEventId == 0),
-         "CEventId::~CEventId " << RWS_VALIDSTRING(pEventId->p_msgname)
-         << " not unregistered (This should never happen)." );
+      if (pEventId > 0)
+          DBO_WARNING_MESSAGE("CEventId::~CEventId " << RWS_VALIDSTRING(pEventId->p_msgname) << " not unregistered (This should never happen).");
 
       RWS_RETURNVOID();
    }
@@ -182,8 +181,8 @@ namespace RWS
       RWS_FUNCTION("RWS::CEventId::Dec_registered_count");
 
       pEventId->Dec_registered_count();
-
-      m_registered_count--;
+      if (m_registered_count > 0)
+        m_registered_count--;
 
       if (m_registered_count == 0)
       {
@@ -369,17 +368,12 @@ namespace RWS
    *                        If zero, uses default size.
    *
    */
-   RwUInt32 CEventHandler::refCountEventHandlersCreated = 0;
 
    void CEventHandler::Open(RwUInt32 linkBlockSize, RwUInt32 regBlockSize)
    {
       RWS_FUNCTION("RWS::CEventHandler::Open");
 
-      RWS_ASSERT(refCountEventHandlersCreated == 0,
-         "Open has been called after CEventHandlers have been instanced.");
-
       // Initialize block memory allocation for associated classes.
-      
       CLinkedMsg::InitMemHandler(linkBlockSize);
       CRegisteredMsgs::InitMemHandler(regBlockSize);
       
@@ -411,12 +405,9 @@ namespace RWS
    {
       RWS_FUNCTION("RWS::CEventHandler::Close");
 
-      RWS_ASSERT(refCountEventHandlersCreated == 0,
-         "Close has been called before all instances of CEventHandler have been deleted.");
-
-      UnRegisterMsg ( iMsgDeleteEventHandler ); 
-      UnRegisterMsg ( iMsgDeleteEntity );
-      UnRegisterMsg ( iMsgOnDeleteEntity );
+      UnRegisterMsg(iMsgDeleteEventHandler);
+      UnRegisterMsg(iMsgDeleteEntity);
+      UnRegisterMsg(iMsgOnDeleteEntity);
 
 #if defined RWS_EVENTVISUALIZATION
       UnRegisterMsg (iMsgEventSend );
@@ -582,7 +573,7 @@ namespace RWS
 
                   // Mark that this CEventId has been Registered
                   //
-                  Id.Inc_registered_count();
+                  //Id.Inc_registered_count();
 
                   // Early exit point, the same EventId has been registered multiple times.
                   //
@@ -647,7 +638,7 @@ namespace RWS
 
                // Mark that this CEventId has been Registered
                //
-               Id.Inc_registered_count();
+               //Id.Inc_registered_count();
 
                RWS_RETURNVOID();
             }
@@ -843,10 +834,6 @@ namespace RWS
       CMsg Msg(iMsgOnDeleteEntity, static_cast<CEventHandler*>(this));
 
       SendMsg(Msg);
-
-#ifndef NDEBUG
-      refCountEventHandlersCreated--;
-#endif
 
       //Unlink from auto-delete list.
       //

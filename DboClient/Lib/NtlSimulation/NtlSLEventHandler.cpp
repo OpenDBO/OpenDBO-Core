@@ -440,7 +440,7 @@ RwBool CNtlSLEventHandler::Create(void)
 	RegisterMsg (g_EventDBCShedule_Info, "g_EventDBCShedule_Info", "SNtlEventDBCShedule_Info");	
     RegisterMsg (g_EventDBCScatter, "g_EventDBScatter", "");
 
-	// 
+	// TS Script
 	RegisterMsg (g_EventTSItemUse, "g_EventTSItemUse", "SNtlEventTSItemUse");
 	RegisterMsg (g_EventTSItemGet, "g_EventTSItemGet", "SNtlEventTSItemGet");
 	RegisterMsg (g_EventTSItemEquip, "g_EventTSItemEquip", "SNtlEventTSItemEquip");
@@ -505,7 +505,7 @@ RwBool CNtlSLEventHandler::Create(void)
 	// Popo Notify
 	RegisterMsg(g_EventPopoNotify, "g_EventPopoNotify", "SNtlEventPopoNotify" );
 
-    // 버스 및 탈것
+    // Vehicle
     RegisterMsg(g_EventSobOnBus, "g_EventSobOnBus", "SNtlEventSobOnBus");
 	RegisterMsg(g_EventSobOnVehicle, "g_EventSobOnVehicle", "SNtlEventSobOnVehicle");
 
@@ -537,7 +537,7 @@ RwBool CNtlSLEventHandler::Create(void)
 	RegisterMsg(g_EventTLDisableDialogMoveOption, "g_EventTLDisableDialogMoveOption", "SNtlEventTLDisableDialogMoveOption");
 	RegisterMsg(g_EventTLEnableSkip, "g_EventTLEnableSkip", "SNtlEventTLEnableSkip");
 
-	// 천하제일 무도회
+	// PvP
 	RegisterMsg(g_EventMinorMatchStateUpdate, "g_EventMinorMatchStateUpdate", "SNtlMinorMatchStateUpdate");
 	RegisterMsg(g_EventMinorMatchTeamInfo, "g_EventMinorMatchTeamInfo", "SNtlMinorMatchTeamInfo");
 	RegisterMsg(g_EventMinorMatchPlayerState, "g_EventMinorMatchPlayerState", "SNtlMinorMatchPlayerState");
@@ -632,274 +632,289 @@ void CNtlSLEventHandler::Destroy(void)
 {
 	NTL_FUNCTION("CNtlSLEventHander::Destroy");
 
-	UnRegisterMsg (g_EventSysMsg);
-	UnRegisterMsg (g_EventSysStringMsg);
-	UnRegisterMsg (g_EventFormatSysMsg);
-	UnRegisterMsg (g_EventFormatSysStringMsg);
-	UnRegisterMsg (g_EventNetSendError);
-	UnRegisterMsg (g_EventNotifySendPacket);
-	UnRegisterMsg (g_EventNotifyReceivePacket);
+	UnRegisterMsg(g_EventSysMsg);
+	UnRegisterMsg(g_EventSysStringMsg);
+	UnRegisterMsg(g_EventFormatSysMsg);
+	UnRegisterMsg(g_EventFormatSysStringMsg);
+	UnRegisterMsg(g_EventNetSendError);
+	UnRegisterMsg(g_EventNotifySendPacket);
+	UnRegisterMsg(g_EventNotifyReceivePacket);
 
-	UnRegisterMsg (g_EventCameraSmoothingMove);
-	UnRegisterMsg (g_EventCameraShake);
-	UnRegisterMsg (g_EventCameraDash);
-	UnRegisterMsg (g_EventCameraNpc);
-	UnRegisterMsg (g_EventCameraDB);
-	UnRegisterMsg (g_EventCameraDTClear);
-	UnRegisterMsg (g_EventCameraDTSplineNode);
-    UnRegisterMsg (g_EventCameraFree);
-    UnRegisterMsg (g_EventCameraTimeMachine);
-	UnRegisterMsg (g_EventCameraExplosion);
-	UnRegisterMsg (g_EventCameraTimeMachineArrive);    
-	UnRegisterMsg (g_EventCameraKnockDownMatrix);
-    UnRegisterMsg (g_EventCameraFPS);
-	UnRegisterMsg (g_EventCameraBus);
-    UnRegisterMsg (g_EventCameraObserver);
-	UnRegisterMsg (g_EventCameraControlDelete);
+	UnRegisterMsg(g_EventCameraSmoothingMove);
+	UnRegisterMsg(g_EventCameraShake);
+	UnRegisterMsg(g_EventCameraDash);
+	UnRegisterMsg(g_EventCameraNpc);
+	UnRegisterMsg(g_EventCameraDB);
+	UnRegisterMsg(g_EventCameraDTClear);
+	UnRegisterMsg(g_EventCameraDTSplineNode);
+	UnRegisterMsg(g_EventCameraFree);
+	UnRegisterMsg(g_EventCameraTimeMachine);
+	UnRegisterMsg(g_EventCameraExplosion);
+	UnRegisterMsg(g_EventCameraTimeMachineArrive);
+	UnRegisterMsg(g_EventCameraKnockDownMatrix);
+	UnRegisterMsg(g_EventCameraFPS);
+	UnRegisterMsg(g_EventCameraBus);
+	UnRegisterMsg(g_EventCameraObserver);
+	UnRegisterMsg(g_EventCameraControlDelete);
 
-	UnRegisterMsg (g_EventWorldChange);
-    UnRegisterMsg (g_EventCreateWorld);
-	
-	UnRegisterMsg (g_EventActionMapHalt);
-	UnRegisterMsg (g_EventActionMapJump);
+	UnRegisterMsg(g_EventWorldChange);
+	UnRegisterMsg(g_EventCreateWorld);
+
+	UnRegisterMsg(g_EventActionMapHalt);
+	UnRegisterMsg(g_EventActionMapJump);
 	UnRegisterMsg(g_EventActionMapAirJump);
-	UnRegisterMsg (g_EventActionMapSitAndStand);
-	UnRegisterMsg (g_EventActionMapSkillUse);
-	UnRegisterMsg (g_EventActionMapHTBUse);
-	UnRegisterMsg (g_EventActionMapItemUse);
-	UnRegisterMsg (g_EventActionMapSocialUse);
-	UnRegisterMsg (g_EventActionMapPrivateShopOpen);
-	UnRegisterMsg (g_EventActionMapCharging);
-	UnRegisterMsg (g_EventActionMapBlocking);
-	UnRegisterMsg (g_EventActionMapAutoFollow);
-	UnRegisterMsg (g_EventActionMapDice);
-    UnRegisterMsg (g_EventScreenShot);
-    UnRegisterMsg (g_EventActionFuncBasicAttack);
-    UnRegisterMsg (g_EventActionFuncAssist);
-    UnRegisterMsg (g_EventActionFuncGetItem);
-    UnRegisterMsg (g_EventActionFuncSitAndStand);
+	UnRegisterMsg(g_EventActionMapSitAndStand);
+	UnRegisterMsg(g_EventActionMapSkillUse);
+	UnRegisterMsg(g_EventActionMapHTBUse);
+	UnRegisterMsg(g_EventActionMapItemUse);
+	UnRegisterMsg(g_EventActionMapSocialUse);
+	UnRegisterMsg(g_EventActionMapPrivateShopOpen);
+	UnRegisterMsg(g_EventActionMapCharging);
+	UnRegisterMsg(g_EventActionMapBlocking);
+	UnRegisterMsg(g_EventActionMapAutoFollow);
+	UnRegisterMsg(g_EventActionMapDice);
+	UnRegisterMsg(g_EventScreenShot);
+	UnRegisterMsg(g_EventSkillSelectMode);
+	UnRegisterMsg(g_EventActionFuncBasicAttack);
+	UnRegisterMsg(g_EventActionFuncAssist);
+	UnRegisterMsg(g_EventActionFuncGetItem);
+	UnRegisterMsg(g_EventActionFuncSitAndStand);
 
 	UnRegisterMsg(g_EventESCinNarrationMode);
 
-	UnRegisterMsg (g_EventSobShowNfy);
-	
-	UnRegisterMsg (g_EventTerrainClick);
-	UnRegisterMsg (g_EventKeyboardMove);
-	UnRegisterMsg (g_EventKeyboardMoveStop);
-	UnRegisterMsg (g_EventKeyboardDashMove);
-	UnRegisterMsg (g_EventMouseDashMove);
+	UnRegisterMsg(g_EventSobShowNfy);
+
+	UnRegisterMsg(g_EventTerrainClick);
+	UnRegisterMsg(g_EventKeyboardMove);
+	UnRegisterMsg(g_EventKeyboardMoveStop);
+	UnRegisterMsg(g_EventKeyboardDashMove);
+	UnRegisterMsg(g_EventMouseDashMove);
 	UnRegisterMsg(g_EventAirDashMove);
 	UnRegisterMsg(g_EventAirAccelMove);
-	UnRegisterMsg (g_EventInputChangeHeading);
-	UnRegisterMsg (g_EventSobTargetSelect);
-	UnRegisterMsg (g_EventSobTargetSelectRelease);
-	UnRegisterMsg (g_EventSobAttackMarkRelease);
-	UnRegisterMsg (g_EventSobAttackSelect);
-    UnRegisterMsg (g_EventSobTargetMarkSelect);
-    UnRegisterMsg (g_EventSobTargetMarkRelease);
-	UnRegisterMsg (g_EventSobGotFocus);
-	UnRegisterMsg (g_EventSobLostFocus);
-    UnRegisterMsg (g_EventCommuTargetSelect);
-    UnRegisterMsg (g_EventCommuTargetRelease);
-    UnRegisterMsg (g_EventBotCaution_Nfy);
-    UnRegisterMsg (g_EventBotHelpMe_Nfy);
-    UnRegisterMsg (g_EventShareTargetSelect);
-    UnRegisterMsg (g_EventShareTargetRelease);
-	UnRegisterMsg (g_EventAvatarTargetStateChange);
-    UnRegisterMsg (g_EventTenkaichiMarking);
+	UnRegisterMsg(g_EventInputChangeHeading);
+	UnRegisterMsg(g_EventSobTargetSelect);
+	UnRegisterMsg(g_EventSobTargetSelectRelease);
+	UnRegisterMsg(g_EventSobAttackMarkRelease);
+	UnRegisterMsg(g_EventSobAttackSelect);
+	UnRegisterMsg(g_EventSobTargetMarkSelect);
+	UnRegisterMsg(g_EventSobTargetMarkRelease);
+	UnRegisterMsg(g_EventSobGotFocus);
+	UnRegisterMsg(g_EventSobLostFocus);
+	UnRegisterMsg(g_EventCommuTargetSelect);
+	UnRegisterMsg(g_EventCommuTargetRelease);
+	UnRegisterMsg(g_EventBotCaution_Nfy);
+	UnRegisterMsg(g_EventBotHelpMe_Nfy);
+	UnRegisterMsg(g_EventShareTargetSelect);
+	UnRegisterMsg(g_EventShareTargetRelease);
+	UnRegisterMsg(g_EventAvatarTargetStateChange);
+	UnRegisterMsg(g_EventTenkaichiMarking);
 
 	UnRegisterMsg(g_EventSobEventTitleEffect);
-	
-	UnRegisterMsg (g_EventSobCreate);
-	UnRegisterMsg (g_EventSobDelete);
-	UnRegisterMsg (g_EventSobSummonPetSpawnSync);
-	UnRegisterMsg (g_EventSobPetSkillInfo);
-	UnRegisterMsg (g_EventSobMove);
-    UnRegisterMsg (g_EventSobMoveSync);
-	UnRegisterMsg (g_EventSobSecondDestMove);
-	UnRegisterMsg (g_EventSobDirectionFloat);
-	UnRegisterMsg (g_EventSobSplineMove);
-	UnRegisterMsg (g_EventSobAdjustMovePosition);
-	UnRegisterMsg (g_EventSobDash);
-	UnRegisterMsg (g_EventSobFollowMove);
-	UnRegisterMsg (g_EventSobMoveStop);
-	UnRegisterMsg (g_EventSobAdjustMove);
-    UnRegisterMsg (g_EventSobPushingNfy);
-	UnRegisterMsg (g_EventSobGuardCrush);
-	UnRegisterMsg (g_EventSobMovePatternSync);
+
+	UnRegisterMsg(g_EventSobCreate);
+	UnRegisterMsg(g_EventSobDelete);
+	UnRegisterMsg(g_EventSobSummonPetSpawnSync);
+	UnRegisterMsg(g_EventSobPetSkillInfo);
+	UnRegisterMsg(g_EventSobMove);
+	UnRegisterMsg(g_EventSobMoveSync);
+	UnRegisterMsg(g_EventSobSecondDestMove);
+	UnRegisterMsg(g_EventSobDirectionFloat);
+	UnRegisterMsg(g_EventSobSplineMove);
+	UnRegisterMsg(g_EventSobAdjustMovePosition);
+	UnRegisterMsg(g_EventSobDash);
+	UnRegisterMsg(g_EventSobFollowMove);
+	UnRegisterMsg(g_EventSobMoveStop);
+	UnRegisterMsg(g_EventSobAdjustMove);
+	UnRegisterMsg(g_EventSobPushingNfy);
+	UnRegisterMsg(g_EventSobGuardCrush);
+	UnRegisterMsg(g_EventSobMovePatternSync);
 	UnRegisterMsg(g_EventSobAirJump);
 	UnRegisterMsg(g_EventSobAirAccel);
-	
-	
-	UnRegisterMsg (g_EventSobStanding);
-	UnRegisterMsg (g_EventSobFightingMode);
-	UnRegisterMsg (g_EventSobAttack);
+
+	UnRegisterMsg(g_EventSobStanding);
+	UnRegisterMsg(g_EventSobFightingMode);
+	UnRegisterMsg(g_EventSobAttack);
 	UnRegisterMsg(g_EventSobSpecialAttack);
 	UnRegisterMsg(g_EventSobBattleNotification);
-	UnRegisterMsg (g_EventSobAttacked);
-	UnRegisterMsg (g_EventSobPetBeginAttack);
-	UnRegisterMsg (g_EventSobHit);
-	UnRegisterMsg (g_EventSobAttackFollow);
-	UnRegisterMsg (g_EventSobAttackMode);
-    UnRegisterMsg (g_EventSobSendAttackEnd);
-	UnRegisterMsg (g_EventSobJump);
-	UnRegisterMsg (g_EventSobJumpDirection);
-	UnRegisterMsg (g_EventSobJumpEnd);
-	UnRegisterMsg (g_EventSobSit);
-	UnRegisterMsg (g_EventSobPrivateShop);
-	UnRegisterMsg (g_EventSobConvertClass);
-    UnRegisterMsg (g_EventSobChangeAdult);
+	UnRegisterMsg(g_EventSobAttacked);
+	UnRegisterMsg(g_EventSobPetBeginAttack);
+	UnRegisterMsg(g_EventSobHit);
+	UnRegisterMsg(g_EventSobAttackFollow);
+	UnRegisterMsg(g_EventSobAttackMode);
+	UnRegisterMsg(g_EventSobSendAttackEnd);
+	UnRegisterMsg(g_EventSobJump);
+	UnRegisterMsg(g_EventSobJumpDirection);
+	UnRegisterMsg(g_EventSobJumpEnd);
+	UnRegisterMsg(g_EventSobSit);
+	UnRegisterMsg(g_EventSobPrivateShop);
+	UnRegisterMsg(g_EventSobConvertClass);
+	UnRegisterMsg(g_EventSobChangeAdult);
 
 	UnRegisterMsg(g_EventCharTitleSelectNfy);
 
 	UnRegisterMsg(g_EventEnableAir);
 	UnRegisterMsg(g_EventSetAp);
 
-	UnRegisterMsg (g_EventSobDirectPlay);
-	UnRegisterMsg (g_EventSobAnimPlay);
-	UnRegisterMsg (g_EventSobProxyGUIUpdate);
-	
-	UnRegisterMsg (g_EventSobItemAdd);
-	UnRegisterMsg (g_EventSobItemMove);
-	UnRegisterMsg (g_EventSobItemStackMove);
-	UnRegisterMsg (g_EventSobItemUpdate);
-	UnRegisterMsg (g_EventSobItemDelete);
-	UnRegisterMsg (g_EventSobItemDurUpdate);
+	UnRegisterMsg(g_EventSobDirectPlay);
+	UnRegisterMsg(g_EventSobAnimPlay);
+	UnRegisterMsg(g_EventSobProxyGUIUpdate);
+
+	// simulation object item
+	UnRegisterMsg(g_EventSobItemAdd);
+	UnRegisterMsg(g_EventSobItemMove);
+	UnRegisterMsg(g_EventSobItemStackMove);
+	UnRegisterMsg(g_EventSobItemUpdate);
+	UnRegisterMsg(g_EventSobItemDelete);
+	UnRegisterMsg(g_EventSobItemDurUpdate);
+	UnRegisterMsg(g_EventSobEquipChange);
+	UnRegisterMsg(g_EventSobEquipItemDurDown);
+	UnRegisterMsg(g_EventSobItemUseAction);
+	UnRegisterMsg(g_EventSobItemUpgrade);
+	UnRegisterMsg(g_EventSobItemChangeOptionSet);
+	UnRegisterMsg(g_EventSobItemChangeBattleAttribute);
+	UnRegisterMsg(g_EventSobEquippedItemUpgradeAll);
+	UnRegisterMsg(g_EventSobItemCancel);
+	UnRegisterMsg(g_EventSobItemUseResFailed);
+	UnRegisterMsg(g_EventSobItemCasting);
+	UnRegisterMsg(g_EventSobCheckItemInOut);
 	UnRegisterMsg(g_EventSobItemRestrictionUpdate);
 	UnRegisterMsg(g_EventItemSocketInsertBead);
 	UnRegisterMsg(g_EventItemSocketDestroyBead);
-	UnRegisterMsg (g_EventSobEquipChange);
-	UnRegisterMsg (g_EventSobEquipItemDurDown);	
-	UnRegisterMsg (g_EventSobItemUseAction);
-	UnRegisterMsg (g_EventSobItemUpgrade);
-	UnRegisterMsg(g_EventSobItemChangeOptionSet);
-	UnRegisterMsg(g_EventSobItemChangeBattleAttribute);
-	UnRegisterMsg (g_EventSobEquippedItemUpgradeAll);
-	UnRegisterMsg (g_EventSobItemCancel);
-	UnRegisterMsg (g_EventSobItemUseResFailed);
-	UnRegisterMsg (g_EventSobItemCasting);
-	UnRegisterMsg (g_EventSobCheckItemInOut);
-    UnRegisterMsg (g_EventTransform);
-    UnRegisterMsg (g_EventMobTransform);
-    UnRegisterMsg (g_EventTransformCandy);
-    UnRegisterMsg (g_EventSobTransformSequela);
-    UnRegisterMsg (g_EventAfterEffectRemainTimeNfy);
-    UnRegisterMsg (g_EventSobCondTerror);
-    UnRegisterMsg (g_EventSobCondConfused);
-    UnRegisterMsg (g_EventSobCondHindingKi);
+
+	// 변신 관련 이벤트
+	UnRegisterMsg(g_EventTransform);
+	UnRegisterMsg(g_EventMobTransform);
+	UnRegisterMsg(g_EventTransformCandy);
+	UnRegisterMsg(g_EventSobTransformSequela);
 
 	UnRegisterMsg(g_EventCinematicScale);
 
+	// 컨디션 관련 이벤트
+	UnRegisterMsg(g_EventAfterEffectRemainTimeNfy);
+	UnRegisterMsg(g_EventSobCondTerror);
+	UnRegisterMsg(g_EventSobCondConfused);
+	UnRegisterMsg(g_EventSobCondHindingKi);
+
+
+	// party select
 	UnRegisterMsg(g_EventPartySelectStateInit);
 	UnRegisterMsg(g_EventPartySelectState);
-
+	// cc battle dungeon
 	UnRegisterMsg(g_EventBattleDungeonStateUpdate);
 	UnRegisterMsg(g_EventBattleDungeonStageClear);
 	UnRegisterMsg(g_EventBattleDungeonLimitTime);
 	UnRegisterMsg(g_EventBattleDungeonFail);
 	UnRegisterMsg(g_EventBattleDungeonRewardFinish);
 
+	// simulation object about quickslot
+	UnRegisterMsg(g_EventSobDeleteQuickSlotIcon);
 
-	UnRegisterMsg (g_EventSobDeleteQuickSlotIcon);
+	// simulation object quest item
+	UnRegisterMsg(g_EventSobWarehouseUpdate);
+	UnRegisterMsg(g_EventSobWarehouseItemCreate);
+	UnRegisterMsg(g_EventSobWarehouseItemAdd);
+	UnRegisterMsg(g_EventSobWarehouseItemDelete);
+	UnRegisterMsg(g_EventSobWarehouseItemMove);
+	UnRegisterMsg(g_EventSobWarehouseItemStackMove);
 
-	UnRegisterMsg (g_EventSobWarehouseUpdate);
-	UnRegisterMsg (g_EventSobWarehouseItemCreate);
-	UnRegisterMsg (g_EventSobWarehouseItemAdd);
-	UnRegisterMsg (g_EventSobWarehouseItemDelete);
-	UnRegisterMsg (g_EventSobWarehouseItemMove);
-	UnRegisterMsg (g_EventSobWarehouseItemStackMove);
+	// simulation object quest item
+	UnRegisterMsg(g_EventSobQuestItemAdd);
+	UnRegisterMsg(g_EventSobQuestItemDelete);
+	UnRegisterMsg(g_EventSobQuestItemMove);
+	UnRegisterMsg(g_EventSobQuestItemUpdate);
 
-	UnRegisterMsg (g_EventSobQuestItemAdd);
-	UnRegisterMsg (g_EventSobQuestItemDelete);
-	UnRegisterMsg (g_EventSobQuestItemMove);
-	UnRegisterMsg (g_EventSobQuestItemUpdate);
-	
-	UnRegisterMsg (g_EventSobSkillCancel);
-	UnRegisterMsg (g_EventSobSkillAffectingCancel);
-	UnRegisterMsg (g_EventSobSkillCasting);
-	UnRegisterMsg (g_EventSobSkillAction);
-	UnRegisterMsg (g_EventSobSkillActioned);
-	UnRegisterMsg (g_EventSobSkillAdd);
-	UnRegisterMsg (g_EventSobSkillUpgrade);
-	UnRegisterMsg (g_EventSobCooling);
-	UnRegisterMsg (g_EventSobHTBSkillAdd);
-	UnRegisterMsg (g_EventSobHTBSkillAction);
-	UnRegisterMsg (g_EventSobSocialAction);
-	UnRegisterMsg (g_EventSobSocialActionCooling);
-	UnRegisterMsg (g_EventSkillInit);
-	UnRegisterMsg (g_EventRpBonusSetupRes);
-	UnRegisterMsg (g_EventSetSkillPassiveEffect);
+	// simulation object cooling
+	UnRegisterMsg(g_EventSobCooling);
+
+	// simulation object skill
+	UnRegisterMsg(g_EventSobSkillCancel);
+	UnRegisterMsg(g_EventSobSkillAffectingCancel);
+	UnRegisterMsg(g_EventSobSkillCasting);
+	UnRegisterMsg(g_EventSobSkillAction);
+	UnRegisterMsg(g_EventSobSkillActioned);
+	UnRegisterMsg(g_EventSobSkillAdd);
+	UnRegisterMsg(g_EventSobSkillUpgrade);
+	UnRegisterMsg(g_EventSobHTBSkillAdd);
+	UnRegisterMsg(g_EventSobHTBSkillAction);
+	UnRegisterMsg(g_EventSobSocialAction);
+	UnRegisterMsg(g_EventSobSocialActionCooling);
+	UnRegisterMsg(g_EventSkillInit);
+	UnRegisterMsg(g_EventRpBonusSetupRes);
+	UnRegisterMsg(g_EventSetSkillPassiveEffect);
 	UnRegisterMsg(g_EventSkillInfoText);
-		
-	UnRegisterMsg (g_EventSobBuffAdd);
-	UnRegisterMsg (g_EventSobBuffDrop);
-	UnRegisterMsg (g_EventSobBuffRefreshAll);
+
+	// buff
+	UnRegisterMsg(g_EventSobBuffAdd);
+	UnRegisterMsg(g_EventSobBuffDrop);
+	UnRegisterMsg(g_EventSobBuffRefreshAll);
 	UnRegisterMsg(g_EventSobBuffActivate);
 	UnRegisterMsg(g_EventSobBuffAutoRecover);
 
-	UnRegisterMsg (g_EventSobFakeBuffAdd);
-	UnRegisterMsg (g_EventSobFakeBuffDrop);
-	UnRegisterMsg (g_EventSobFakeBuffRefreshAll);	
+	UnRegisterMsg(g_EventSobFakeBuffAdd);
+	UnRegisterMsg(g_EventSobFakeBuffDrop);
+	UnRegisterMsg(g_EventSobFakeBuffRefreshAll);
 	UnRegisterMsg(g_EventSobFakeBuffActivate);
 
-	UnRegisterMsg (g_EventSobStateTransition);
-	UnRegisterMsg (g_EventSobServerUpdateState);
-	UnRegisterMsg (g_EventSobServerUpdateCondition);
-    UnRegisterMsg (g_EventSobServerUpdateAspect);
-	UnRegisterMsg (g_EventSobFainting);
-    UnRegisterMsg (g_EventSobUpdateLPStatusNfy);
+	// state transition
+	UnRegisterMsg(g_EventSobStateTransition);
+	UnRegisterMsg(g_EventSobServerUpdateState);
+	UnRegisterMsg(g_EventSobServerUpdateCondition);
+	UnRegisterMsg(g_EventSobServerUpdateAspect);
+	UnRegisterMsg(g_EventSobFainting);
+	UnRegisterMsg(g_EventSobUpdateLPStatusNfy);
 
-	UnRegisterMsg (g_EventPartyUpdate);
-	UnRegisterMsg (g_EventPartyCreate);
-	UnRegisterMsg (g_EventPartyLeave);
-	UnRegisterMsg (g_EventPartyMemberAdd);
-	UnRegisterMsg (g_EventPartyMemberDel);
-	UnRegisterMsg (g_EventPartyLeaderChange);
-	UnRegisterMsg (g_EventPartyUpdateValue);
-	UnRegisterMsg (g_EventPartyMemberLocation);
+	// party
+	UnRegisterMsg(g_EventPartyUpdate);
+	UnRegisterMsg(g_EventPartyCreate);
+	UnRegisterMsg(g_EventPartyLeave);
+	UnRegisterMsg(g_EventPartyMemberAdd);
+	UnRegisterMsg(g_EventPartyMemberDel);
+	UnRegisterMsg(g_EventPartyLeaderChange);
+	UnRegisterMsg(g_EventPartyUpdateValue);
+	UnRegisterMsg(g_EventPartyMemberLocation);
 
-	UnRegisterMsg (g_EventSLGuild);
-	UnRegisterMsg (g_EventNotifyGuild);
-	UnRegisterMsg (g_EventChangeGuildName);
-	UnRegisterMsg (g_EventChangeGuildEmblem);	
+	UnRegisterMsg(g_EventSLGuild);
+	UnRegisterMsg(g_EventNotifyGuild);
+	UnRegisterMsg(g_EventChangeGuildName);
+	UnRegisterMsg(g_EventChangeGuildEmblem);
+	UnRegisterMsg(g_EventGuildWarehouse);
+	UnRegisterMsg(g_EventGuildWarehouseNotify);
 
-	UnRegisterMsg (g_EventGuildWarehouse);
-	UnRegisterMsg (g_EventGuildWarehouseNotify);
+	UnRegisterMsg(g_EventGuildWarehouseItemInfo);
+	UnRegisterMsg(g_EventGuildWarehouseItemMove);
+	UnRegisterMsg(g_EventGuildWarehouseItemStackMove);
 
-	UnRegisterMsg (g_EventGuildWarehouseItemInfo);
-	UnRegisterMsg (g_EventGuildWarehouseItemMove);
-	UnRegisterMsg (g_EventGuildWarehouseItemStackMove);
+	UnRegisterMsg(g_EventDojo);
+	UnRegisterMsg(g_EventDojoNotify);
+	UnRegisterMsg(g_EventDojoState);
+	UnRegisterMsg(g_EventDojoStateNotify);
+	UnRegisterMsg(g_EventScrambleDefaultInfo);
+	UnRegisterMsg(g_EventScrambleDefaultInfoNotify);
 
-	UnRegisterMsg (g_EventDojo);
-	UnRegisterMsg (g_EventDojoNotify);
-	UnRegisterMsg (g_EventDojoState);
-	UnRegisterMsg (g_EventDojoStateNotify);
-	UnRegisterMsg (g_EventScrambleDefaultInfo);
-	UnRegisterMsg (g_EventScrambleDefaultInfoNotify);
+	UnRegisterMsg(g_EventHTBRPStock);
+	UnRegisterMsg(g_EventHTBRPResult);
 
-	UnRegisterMsg (g_EventHTBRPStock);
-	UnRegisterMsg (g_EventHTBRPResult);
+	UnRegisterMsg(g_EventPartyShareTargetRes);
+	UnRegisterMsg(g_EventPartyShareTargetNfy);
 
-    UnRegisterMsg (g_EventPartyShareTargetRes);
-    UnRegisterMsg (g_EventPartyShareTargetNfy);
+	// Friend List
+	UnRegisterMsg(g_EventFriendAdd_Res);
+	UnRegisterMsg(g_EventFriendDel_Res);
+	UnRegisterMsg(g_EventFriendMove_Res);
+	UnRegisterMsg(g_EventFriendList_Info);
+	UnRegisterMsg(g_EventBlackListAdd_Res);
+	UnRegisterMsg(g_EventBlackListDel_Res);
+	UnRegisterMsg(g_EventFriendInfo);
+	UnRegisterMsg(g_EventFriendInfoChange);
+	UnRegisterMsg(g_EventFriendInfoNotify);
 
-    UnRegisterMsg (g_EventFriendAdd_Res);
-    UnRegisterMsg (g_EventFriendDel_Res);
-    UnRegisterMsg (g_EventFriendMove_Res);
-    UnRegisterMsg (g_EventFriendList_Info);
-    UnRegisterMsg (g_EventBlackListAdd_Res);
-    UnRegisterMsg (g_EventBlackListDel_Res);
-    UnRegisterMsg (g_EventFriendInfo);
-    UnRegisterMsg (g_EventFriendInfoChange);
-    UnRegisterMsg (g_EventFriendInfoNotify);
-
-	// HelpHint
-	UnRegisterMsg (g_EventHelpHint);
-	UnRegisterMsg (g_EventRegisterQuestPosMark);
-	UnRegisterMsg (g_EventUnregisterQuestPosMark);
-	UnRegisterMsg (g_EventShowQuestPosMark);
-	UnRegisterMsg (g_EventBind);
-	UnRegisterMsg (g_EventBindNotify);
+	// otherparam
+	UnRegisterMsg(g_EventHelpHint);
+	UnRegisterMsg(g_EventRegisterQuestPosMark);
+	UnRegisterMsg(g_EventUnregisterQuestPosMark);
+	UnRegisterMsg(g_EventShowQuestPosMark);
+	UnRegisterMsg(g_EventBind);
+	UnRegisterMsg(g_EventBindNotify);
 
 	// PrivateShop
 	UnRegisterMsg(g_EventPrivateShopState);
@@ -909,32 +924,34 @@ void CNtlSLEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventPrivateShopItemSelect);
 	UnRegisterMsg(g_EventPrivateShopItemBuying);
 	UnRegisterMsg(g_EventPrivateShopItemState);
-	UnRegisterMsg(g_EventPrivateShopNameTag);
 
+	// TMQ
 	UnRegisterMsg(g_EventTMQEnterRes);
-	UnRegisterMsg (g_EventTMQ);
-	UnRegisterMsg (g_EventTMQNotify);
-    UnRegisterMsg (g_EventDirectionNfy);
+	UnRegisterMsg(g_EventTMQ);
+	UnRegisterMsg(g_EventTMQNotify);
+	UnRegisterMsg(g_EventDirectionNfy);
 
+	// UD
 	UnRegisterMsg(g_EventUDEnterRes);
 
+	// RankBattle
 	//UnRegisterMsg (g_EventRBBoardUpdate);
 	//UnRegisterMsg (g_EventRBRoomInfo);
-	//UnRegisterMsg (g_EventRBRoom);                              
-	//UnRegisterMsg (g_EventRBMatch);                             
-	UnRegisterMsg( g_EventRBBoardInfo );
-	UnRegisterMsg( g_EventRBJoin );
-	UnRegisterMsg (g_EventRBBattleStateUpdate);                 
-	UnRegisterMsg (g_EventRBBattleTeamInfo);                    
-	UnRegisterMsg (g_EventRBBattlePlayerState);                 
-	UnRegisterMsg (g_EventRBBattleKillScoreUpdate);
-	UnRegisterMsg (g_EventRBBattleStageFinish);                 
-	UnRegisterMsg (g_EventRBBattleMatchFinish);                 
-	UnRegisterMsg (g_EventRBBattleEnd);
-	UnRegisterMsg (g_EventRBTotalScoreUpdate);                 
-	UnRegisterMsg (g_EventRBForcedEnd);
+	//UnRegisterMsg (g_EventRBRoom);
+	//UnRegisterMsg (g_EventRBMatch);
+	UnRegisterMsg(g_EventRBBoardInfo);
+	UnRegisterMsg(g_EventRBJoin);
+	UnRegisterMsg(g_EventRBBattleStateUpdate);
+	UnRegisterMsg(g_EventRBBattleTeamInfo);
+	UnRegisterMsg(g_EventRBBattlePlayerState);
+	UnRegisterMsg(g_EventRBBattleKillScoreUpdate);
+	UnRegisterMsg(g_EventRBBattleStageFinish);
+	UnRegisterMsg(g_EventRBBattleMatchFinish);
+	UnRegisterMsg(g_EventRBBattleEnd);
+	UnRegisterMsg(g_EventRBTotalScoreUpdate);
+	UnRegisterMsg(g_EventRBForcedEnd);
 
-	//MailSystem
+	// MailSystem
 	UnRegisterMsg(g_EventMailStart);
 	UnRegisterMsg(g_EventMailLoadInfo);
 	UnRegisterMsg(g_EventMailLoadData);
@@ -951,12 +968,7 @@ void CNtlSLEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventMailSystemNfy);
 	UnRegisterMsg(g_EventMailMultiDelRes);
 
-	// ActionMap
-	UnRegisterMsg(g_EventActionMapLoadInfo);
-	UnRegisterMsg(g_EventActionMapUpdateRes);
-	UnRegisterMsg(g_EventActionMapClientNotify);
-
-	//Char
+	// Char
 	UnRegisterMsg(g_EventCharAway);
 
 	// auction house
@@ -966,103 +978,116 @@ void CNtlSLEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventAuctionHouseSellCancelRes);
 	UnRegisterMsg(g_EventAuctionHouseBuyRes);
 
-	UnRegisterMsg (g_EventSobInfoUpdate);
-	UnRegisterMsg (g_EventSobNpcCommunity);
-	UnRegisterMsg (g_EventSobTriggerObjCommunity);
-	UnRegisterMsg (g_EventSobDynamicObjCommunity);
-	UnRegisterMsg (g_EventSobPrivateShopCommunity);
-	UnRegisterMsg (g_EventSobTargetInfoUpdate);
+	// ActionMap
+	UnRegisterMsg(g_EventActionMapLoadInfo);
+	UnRegisterMsg(g_EventActionMapUpdateRes);
+	UnRegisterMsg(g_EventActionMapClientNotify);
+
+	// simulation object 정보 update.
+	UnRegisterMsg(g_EventSobInfoUpdate);
+	UnRegisterMsg(g_EventSobNpcCommunity);
+	UnRegisterMsg(g_EventSobTriggerObjCommunity);
+	UnRegisterMsg(g_EventSobDynamicObjCommunity);
+	UnRegisterMsg(g_EventSobPrivateShopCommunity);
+	UnRegisterMsg(g_EventSobTargetInfoUpdate);
 	UnRegisterMsg(g_EventSobTargetChanged);
-	UnRegisterMsg (g_EventSobPickWorldItem);
-	UnRegisterMsg (g_EventSobCastingDirect);
-	UnRegisterMsg (g_EventSobRevivalNotify);
-    UnRegisterMsg (g_EventNPCCommuExit);
-	
-	UnRegisterMsg (g_EventSobGetState);
-	UnRegisterMsg (g_EventSobGetFightingMode);
+	UnRegisterMsg(g_EventSobPickWorldItem);
+	UnRegisterMsg(g_EventSobCastingDirect);
+	UnRegisterMsg(g_EventSobRevivalNotify);
+	UnRegisterMsg(g_EventNPCCommuExit);
+
+	UnRegisterMsg(g_EventPrivateShopNameTag);
+
+	// simulation object 정보 얻어오기.
+	UnRegisterMsg(g_EventSobGetState);
+	UnRegisterMsg(g_EventSobGetFightingMode);
 	UnRegisterMsg(g_EventSobGetAirMode);
 
 	// trigger => client event
-	UnRegisterMsg (g_EventScouter);
-	UnRegisterMsg (g_EventReloadTS);
-	UnRegisterMsg (g_EventRegQuest_Nfy);
-	UnRegisterMsg (g_EventUnregQuest_Nfy);
-	UnRegisterMsg (g_EventUpdateQuestState_Nfy);
-	UnRegisterMsg (g_EventUpdateQuestProgressInfo_Nfy);
-	UnRegisterMsg (g_EventGiveUpQuest);
-	UnRegisterMsg (g_EventDoQuest);
-	UnRegisterMsg (g_EventQuestProposalDialog_Req);
-	UnRegisterMsg (g_EventQuestProposalDialog_Res);
-	UnRegisterMsg (g_EventQuestUserSelectDialog_Req);
-	UnRegisterMsg (g_EventQuestUserSelectDialog_Res);
-	UnRegisterMsg (g_EventQuestNarrationUserSelectDialog_Req );
-	UnRegisterMsg (g_EventQuestNarrationUserSelectDialog_Res );
-	UnRegisterMsg (g_EventQuestRewardDialog_Req);
-	UnRegisterMsg (g_EventQuestRewardDialog_Res);
-	UnRegisterMsg (g_EventQuestNarrationDialog_Req);
-	UnRegisterMsg (g_EventQuestNarrationDialog_Res);
-	UnRegisterMsg (g_EventQuestNPCDialog_Req);
-	UnRegisterMsg (g_EventQuestNPCDialog_Res);
-	UnRegisterMsg (g_EventQuestObjDialog_Req);
-	UnRegisterMsg (g_EventQuestObjDialog_Res);
-	UnRegisterMsg (g_EventShowQuestWindow);
-	UnRegisterMsg (g_EventShowQuestWindow_Nfy);
-	UnRegisterMsg (g_EventShowIndicator);
-	UnRegisterMsg (g_EventHideIndicator);
-	UnRegisterMsg (g_EventShowIndicator_Nfy);
-	UnRegisterMsg (g_EventQuestShare_Nfy);
-	UnRegisterMsg (g_EventQuestAcceptProposal_Nfy);
-	UnRegisterMsg (g_EventQuestAcceptReward_Nfy);
-	UnRegisterMsg (g_EventQuestAcceptGiveUp_Nfy);
-
-	UnRegisterMsg (g_EventShowTutorialNfy);
-	UnRegisterMsg (g_EventTSRemovingTMQQuest_Nfy);
-	UnRegisterMsg (g_EventTSPCDialog_Nfy);
-	UnRegisterMsg (g_EventTSMudosaTeleport_Req);
-	UnRegisterMsg (g_EventTSMudosaTeleport_Res);
-	UnRegisterMsg (g_EventTSFinished);
-	UnRegisterMsg (g_EventTSSkipContainer);
+	UnRegisterMsg(g_EventScouter);
+	UnRegisterMsg(g_EventReloadTS);
+	UnRegisterMsg(g_EventRegQuest_Nfy);
+	UnRegisterMsg(g_EventUnregQuest_Nfy);
+	UnRegisterMsg(g_EventUpdateQuestState_Nfy);
+	UnRegisterMsg(g_EventUpdateQuestProgressInfo_Nfy);
+	UnRegisterMsg(g_EventGiveUpQuest);
+	UnRegisterMsg(g_EventDoQuest);
+	UnRegisterMsg(g_EventQuestProposalDialog_Req);
+	UnRegisterMsg(g_EventQuestProposalDialog_Res);
+	UnRegisterMsg(g_EventQuestUserSelectDialog_Req);
+	UnRegisterMsg(g_EventQuestUserSelectDialog_Res);
+	UnRegisterMsg(g_EventQuestNarrationUserSelectDialog_Req);
+	UnRegisterMsg(g_EventQuestNarrationUserSelectDialog_Res);
+	UnRegisterMsg(g_EventQuestRewardDialog_Req);
+	UnRegisterMsg(g_EventQuestRewardDialog_Res);
+	UnRegisterMsg(g_EventQuestNarrationDialog_Req);
+	UnRegisterMsg(g_EventQuestNarrationDialog_Res);
+	UnRegisterMsg(g_EventShowQuestWindow);
+	UnRegisterMsg(g_EventShowQuestWindow_Nfy);
+	UnRegisterMsg(g_EventShowIndicator);
+	UnRegisterMsg(g_EventHideIndicator);
+	UnRegisterMsg(g_EventShowIndicator_Nfy);
+	UnRegisterMsg(g_EventQuestNPCDialog_Req);
+	UnRegisterMsg(g_EventQuestNPCDialog_Res);
+	UnRegisterMsg(g_EventQuestShare_Nfy);
+	UnRegisterMsg(g_EventQuestAcceptProposal_Nfy);
+	UnRegisterMsg(g_EventQuestAcceptReward_Nfy);
+	UnRegisterMsg(g_EventQuestAcceptGiveUp_Nfy);
+	UnRegisterMsg(g_EventQuestObjDialog_Req);
+	UnRegisterMsg(g_EventQuestObjDialog_Res);
+	UnRegisterMsg(g_EventShowTutorialNfy);
+	UnRegisterMsg(g_EventTSRemovingTMQQuest_Nfy);
+	UnRegisterMsg(g_EventTSPCDialog_Nfy);
+	UnRegisterMsg(g_EventTSMudosaTeleport_Req);
+	UnRegisterMsg(g_EventTSMudosaTeleport_Res);
+	UnRegisterMsg(g_EventTSFinished);
+	UnRegisterMsg(g_EventTSSkipContainer);
 
 	// DragonBall Collection	
-	UnRegisterMsg (g_EventNightEffect);
-	UnRegisterMsg (g_EventDBCNarration);
-	UnRegisterMsg (g_EventDBCNarrationEnd);	
-	UnRegisterMsg (g_EventDBCCheck_Res);
-	UnRegisterMsg (g_EventDBCReward_Res);
-	UnRegisterMsg (g_EventDBCCollect_Nfy);
-	UnRegisterMsg (g_EventDBCShedule_Info);	
-    UnRegisterMsg (g_EventDBCScatter);
-
-	UnRegisterMsg (g_EventTSItemUse);
-	UnRegisterMsg (g_EventTSItemGet);
-	UnRegisterMsg (g_EventTSItemEquip);
-	UnRegisterMsg (g_EventTSScoutUse);
-	UnRegisterMsg (g_EventTSSkillUse);
-	UnRegisterMsg (g_EventTSRankBattle);
-	UnRegisterMsg (g_EventTSColTriggerObject);
-	UnRegisterMsg (g_EventTSBindStone);
-	UnRegisterMsg (g_EventTSSearchQuest);
-	UnRegisterMsg (g_EventTSItemUpgrade);
-	UnRegisterMsg (g_EventTSTeleport);
-	UnRegisterMsg (g_EventTSBudokai);
-	UnRegisterMsg (g_EventTSSlotMachine);
-	UnRegisterMsg (g_EventTSHoipoiMix);
-	UnRegisterMsg (g_EventTSPrivateShop);
-	UnRegisterMsg (g_EventTSFreeBattle);
-	UnRegisterMsg (g_EventTSItemIdentity);
-	UnRegisterMsg (g_EventTSUseMail);
-	UnRegisterMsg (g_EventTSParty);
+	UnRegisterMsg(g_EventNightEffect);
+	UnRegisterMsg(g_EventDBCNarration);
+	UnRegisterMsg(g_EventDBCNarrationEnd);
+	UnRegisterMsg(g_EventDBCCheck_Res);
+	UnRegisterMsg(g_EventDBCReward_Res);
+	UnRegisterMsg(g_EventDBCCollect_Nfy);
+	UnRegisterMsg(g_EventDBCShedule_Info);
+	UnRegisterMsg(g_EventDBCScatter);
+	
+	// TS Script
+	UnRegisterMsg(g_EventTSItemUse);
+	UnRegisterMsg(g_EventTSItemGet);
+	UnRegisterMsg(g_EventTSItemEquip);
+	UnRegisterMsg(g_EventTSScoutUse);
+	UnRegisterMsg(g_EventTSSkillUse);
+	UnRegisterMsg(g_EventTSRankBattle);
+	UnRegisterMsg(g_EventTSColTriggerObject);
+	UnRegisterMsg(g_EventTSBindStone);
+	UnRegisterMsg(g_EventTSSearchQuest);
+	UnRegisterMsg(g_EventTSItemUpgrade);
+	UnRegisterMsg(g_EventTSTeleport);
+	UnRegisterMsg(g_EventTSBudokai);
+	UnRegisterMsg(g_EventTSSlotMachine);
+	UnRegisterMsg(g_EventTSHoipoiMix);
+	UnRegisterMsg(g_EventTSPrivateShop);
+	UnRegisterMsg(g_EventTSFreeBattle);
+	UnRegisterMsg(g_EventTSItemIdentity);
+	UnRegisterMsg(g_EventTSUseMail);
+	UnRegisterMsg(g_EventTSParty);
+	UnRegisterMsg(g_EventTSClickSideIcon);
+	UnRegisterMsg(g_EventTSLevelCheck);
+	UnRegisterMsg(g_EventTSQuest);
+	UnRegisterMsg(g_EventTSDialogOpen);
 
 	// trigger direct system message
-	UnRegisterMsg (g_EventQuestDirectForward);
-	UnRegisterMsg (g_EventQuestDirectEcho);
-	UnRegisterMsg (g_EventQuestMark);
+	UnRegisterMsg(g_EventQuestDirectForward);
+	UnRegisterMsg(g_EventQuestDirectEcho);
+	UnRegisterMsg(g_EventQuestMark);
 
 	// trigger object
-	UnRegisterMsg (g_EventTObjectUpdateState);
+	UnRegisterMsg(g_EventTObjectUpdateState);
 
 	// Char Ready
-	UnRegisterMsg (g_EventCharReady);
+	UnRegisterMsg(g_EventCharReady);
 
 	// SideIcon : HintIcon
 	UnRegisterMsg(g_EventRegSideHintIcon);
@@ -1070,35 +1095,38 @@ void CNtlSLEventHandler::Destroy(void)
 	// World Concept
 	UnRegisterMsg(g_EventChangeWorldConceptState);
 	UnRegisterMsg(g_EventTMQCleintState);
-    
-    // UI
-    UnRegisterMsg(g_EventToolTip);
-    UnRegisterMsg(g_EventUIConfigReload);
 
-    // Portal 
-    UnRegisterMsg(g_EventPortalInfoRes);
+	// UI
+	UnRegisterMsg(g_EventToolTip);
+	UnRegisterMsg(g_EventUIConfigReload);
+
+	// Portal System
+	UnRegisterMsg(g_EventPortalInfoRes);
 	UnRegisterMsg(g_EventPortalAddReq);
-    UnRegisterMsg(g_EventPortalAddRes);
-    UnRegisterMsg(g_EventPortalRes);
+	UnRegisterMsg(g_EventPortalAddRes);
+	UnRegisterMsg(g_EventPortalRes);
 
 	// Operate object
 	UnRegisterMsg(g_EventOperateObjectTimeBar);
 
-	// KnockDown Notify -> Wakeup Gui
+	// Knockdown Notify -> WakeUp GUI
 	UnRegisterMsg(g_EventKnockDownNfy);
 	UnRegisterMsg(g_EventKnockDownWakeUpNfy);
 	UnRegisterMsg(g_EventBlockingNfy);
 	UnRegisterMsg(g_EventChargingNfy);
 
+	// Popo Notify
 	UnRegisterMsg(g_EventPopoNotify);
 
-    // 버스 및 탈것
-    UnRegisterMsg(g_EventSobOnBus);
+	// Vehicle
+	UnRegisterMsg(g_EventSobOnBus);
 	UnRegisterMsg(g_EventSobOnVehicle);
+
 	UnRegisterMsg(g_EventSobVehicleStart);
 	UnRegisterMsg(g_EventSobRideOnOffVehicle);
-	UnRegisterMsg(g_EventSobVehicleEngine);	
+	UnRegisterMsg(g_EventSobVehicleEngine);
 	UnRegisterMsg(g_EventSobVehicleStunt);
+
 	UnRegisterMsg(g_EventBusMove);
 
 	// Tutorial
@@ -1122,7 +1150,7 @@ void CNtlSLEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventTLDisableDialogMoveOption);
 	UnRegisterMsg(g_EventTLEnableSkip);
 
-	// 천하제일 무도회
+	// PvP
 	UnRegisterMsg(g_EventMinorMatchStateUpdate);
 	UnRegisterMsg(g_EventMinorMatchTeamInfo);
 	UnRegisterMsg(g_EventMinorMatchPlayerState);
@@ -1144,10 +1172,10 @@ void CNtlSLEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventFinalMatchStageFinish);
 	UnRegisterMsg(g_EventFinalMatchMatchFinish);
 	UnRegisterMsg(g_EventAwardInfo);
-	
-	UnRegisterMsg(g_EventBudokaiStateInfoNfy );
-	UnRegisterMsg(g_EventBudokaiUpdateStateNfy );
-	UnRegisterMsg(g_EventBudokaiUpdateMatchStateNfy );
+
+	UnRegisterMsg(g_EventBudokaiStateInfoNfy);
+	UnRegisterMsg(g_EventBudokaiUpdateStateNfy);
+	UnRegisterMsg(g_EventBudokaiUpdateMatchStateNfy);
 	UnRegisterMsg(g_EventBudokaiJoinIndividualRes);
 	UnRegisterMsg(g_EventBudokaiLeaveIndividualRes);
 	UnRegisterMsg(g_EventBudokaiJoinTeamInfoRes);
@@ -1176,13 +1204,14 @@ void CNtlSLEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventGameServerChangeIn);
 	UnRegisterMsg(g_EventGameServerChannelChanged);
 
+	// Game chat option
 	UnRegisterMsg(g_EventGameChatOption);
 
 	// Broad message
 	UnRegisterMsg(g_EventBroadMsgBegNfy);
 	UnRegisterMsg(g_EventBroadMsgEndNfy);
 
-	// Drop item
+	//Drop item
 	UnRegisterMsg(g_EventSobCreateDropItemInfo);
 
 	// Naming
@@ -1192,22 +1221,22 @@ void CNtlSLEventHandler::Destroy(void)
 	// ChangeClassAuthorityChanged
 	UnRegisterMsg(g_EventChangeClassAuthorityChangedNfy);
 
-	// Dynamic Object
+	// Hoipoi Machine
 	UnRegisterMsg(g_EventDynamicObjectUpdateState);
 	UnRegisterMsg(g_EventHoipoiMixRecipeRegNfy);
 	UnRegisterMsg(g_EventHoipoiMixItemRecipeInfo);
 	UnRegisterMsg(g_EventHoipoiMixItemMakeExpNfy);
 	UnRegisterMsg(g_EventHoipoiMixInfoUpdate);
 
-	// Character Refresh battle attribute modifier
+
+	// Character Refresh Battle attribute Modifier
 	UnRegisterMsg(g_EventCharRefreshBattleAttributeModifier);
 
-	// Character Rank point reset notify
 	UnRegisterMsg(g_EventCharRankPointResetNfy);
 
-	UnRegisterMsg( g_EventQuickSlotGuiMode );
-	UnRegisterMsg( g_EventQuickSlotLockMode );
-	UnRegisterMsg( g_EventMobDie );
+	UnRegisterMsg(g_EventQuickSlotGuiMode);
+	UnRegisterMsg(g_EventQuickSlotLockMode);
+	UnRegisterMsg(g_EventMobDie);
 
 	NTL_RETURNVOID();
 }

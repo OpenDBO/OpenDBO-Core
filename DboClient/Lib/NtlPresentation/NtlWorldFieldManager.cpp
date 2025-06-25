@@ -549,7 +549,6 @@ void CNtlWorldFieldManager::Init(RpWorld* pNtlWorld, RwV3d& SpawnPos)
 
 	// initialize spawning position such as avatar, datum index, move flags ��ʼ������λ�ã���ͷ�������������ƶ���־
 	RwInt32 CurFieldIdx = GetFieldIdx(SpawnPos);
-	DBO_WARNING_MESSAGE("spawn position: " << SpawnPos);
 	NTL_ASSERTE(CurFieldIdx != -1);
 
 	m_OldDatumIdx = CurFieldIdx;

@@ -119,6 +119,8 @@ public:
 private:
 
 	void		Destroy();
+	// Destruction guard flag
+	bool m_bIsBeingDestroyed;
 
 protected:
 

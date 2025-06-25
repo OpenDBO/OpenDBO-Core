@@ -27,6 +27,11 @@ CTable::CTable(void)
 
 CTable::~CTable(void)
 {
+	// Check destruction guard
+	if (m_bIsBeingDestroyed)
+		return;
+
+	m_bIsBeingDestroyed = true;
 	Destroy();
 }
 
@@ -51,6 +56,12 @@ void CTable::Init()
 
 void CTable::Reset()
 {
+	// Check destruction guard
+	if (m_bIsBeingDestroyed)
+	{
+		return;
+	}
+
 	// Check if the map is initialized
 	if (m_mapTableList.empty())
 	{

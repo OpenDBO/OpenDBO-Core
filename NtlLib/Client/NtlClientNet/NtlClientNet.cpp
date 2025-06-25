@@ -1959,7 +1959,7 @@ bool CMsgBaseNetworkImp::NetMsgProc(WPARAM wParam, LPARAM lParam)
 					int rc = WSAGetLastError();
 					if( WSAEWOULDBLOCK != rc )
 					{
-						NET_LOGDL( "Connection Send Error (%d)%s", rc, NtlGetErrorMessage( rc ) );
+						//NET_LOGDL( "Connection Send Error (%d)%s", rc, NtlGetErrorMessage( rc ) );
 						InternalDisconnect( pConnection->GetHandle() );
 					}
 				}
@@ -2498,7 +2498,7 @@ bool CEventBaseNetworkImp::PushPacket(HSERVER hServer, void * pData, int nDataSi
 			int rc = WSAGetLastError();
 			if( WSAEWOULDBLOCK != rc )
 			{
-				NET_LOGDL( "Connection Send Error, (%d)%s", rc, NtlGetErrorMessage( rc ) );
+				//NET_LOGDL( "Connection Send Error, (%d)%s", rc, NtlGetErrorMessage( rc ) );
 				InternalDisconnect( pConnection->GetHandle() );
 			}
 		}
@@ -2584,14 +2584,14 @@ void CEventBaseNetworkImp::OnThreadProc()
 		CAutoPtr_ServerConnection pConnection = Acquire( m_eventInfo.ahServer[i] );
 		if( false == pConnection.IsValidPtr() )
 		{
-			NET_LOGDL( "Connection Find Error" );
+			//NET_LOGDL( "Connection Find Error" );
 			continue;					
 		}
 
 		if( SOCKET_ERROR == WSAEnumNetworkEvents( m_eventInfo.ahServer[i], m_eventInfo.ahEvent[i], &wsaNetworkEvents ) )
 		{
 			int rc = WSAGetLastError();
-			NET_LOGDL( "WSAEnumNetworkEvents Fail (%d)%s", rc, NtlGetErrorMessage(rc) );
+			//NET_LOGDL( "WSAEnumNetworkEvents Fail (%d)%s", rc, NtlGetErrorMessage(rc) );
 			continue;
 		}
 

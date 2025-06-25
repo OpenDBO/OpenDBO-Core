@@ -378,7 +378,7 @@ namespace RWS
                                                    event has been registered.   */
 
       void Inc_registered_count(void) {iCountRegistered++;}
-      void Dec_registered_count(void) {iCountRegistered--;}
+      void Dec_registered_count(void) {if (iCountRegistered > 0) iCountRegistered--;}
 
       RwBool PendingUnlink;                    /**< Flag indicating that this event has pending unlink's.  */
       RwBool HandlingEvent;                    /**< Flag indicating that this event is 
@@ -889,11 +889,6 @@ namespace RWS
 
    class CEventHandler
    {
-   private:
-
-	  // Prevent EventHandlers being created before event sys had been opened
-      //
-      static RwUInt32 refCountEventHandlersCreated;
 
    public:
 
@@ -947,9 +942,7 @@ namespace RWS
       CEventHandler(CEventVisualization *pCEventVisualization) : 
          m_pCEventVisualization(pCEventVisualization), m_Active(true)
       {
-#ifndef NDEBUG
-         refCountEventHandlersCreated++;
-#endif
+
       };
 
       /**
@@ -961,9 +954,7 @@ namespace RWS
 #else
       CEventHandler() : m_Active(true)
       {
-#ifndef NDEBUG
-         refCountEventHandlersCreated++;
-#endif
+
       };
 
       /**
