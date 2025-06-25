@@ -40,6 +40,7 @@
 #include "OptionControlTab.h"
 #include "OptionChattingTab.h"
 #include "OptionGraphicTab.h"
+#include "OptionFilter.h"
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -95,7 +96,8 @@ RwBool COptionWindowGui::Create()
 	m_apVirtualComponent[7] = GetComponent("dlgOption8");
 	m_apVirtualComponent[8] = GetComponent("dlgOption9");
 
-	m_apOptionButton[SYSTEM_GRAPHIC]	= m_apOptionButton[GAME_CONTROL]	= (gui::CButton*)GetComponent("btnOption1");
+	// Add the "Filter" button for "Extra" in button 1
+	m_apOptionButton[SYSTEM_GRAPHIC]	= m_apOptionButton[GAME_CONTROL]	= m_apOptionButton[EXTRA_FILTER] = (gui::CButton*)GetComponent("btnOption1");
 	m_apOptionButton[SYSTEM_SOUND]		= m_apOptionButton[GAME_INFO]		= (gui::CButton*)GetComponent("btnOption2");
 	m_apOptionButton[GAME_ETC]		= (gui::CButton*)GetComponent("btnOption3");
 	m_apOptionButton[GAME_CHATTING] = (gui::CButton*)GetComponent("btnOption4");
@@ -131,8 +133,10 @@ RwBool COptionWindowGui::Create()
 
 	m_pTabButton->AddTab(std::string());
 	m_pTabButton->AddTab(std::string());
+	m_pTabButton->AddTab(std::string());
 	m_pTabButton->ChangeTabText(0, std::wstring(GetDisplayStringManager()->GetString("DST_OPTION_TAB_SYSTEM")));
 	m_pTabButton->ChangeTabText(1, std::wstring(GetDisplayStringManager()->GetString("DST_OPTION_TAB_GAME")));
+	m_pTabButton->ChangeTabText(2, std::wstring(GetDisplayStringManager()->GetString("DST_OPTION_TAB_EXTRA")));
 
 	// OptionTab Setting
 	m_apOptionTab[SYSTEM_GRAPHIC]	= NTL_NEW COptionGraphic;
@@ -141,6 +145,7 @@ RwBool COptionWindowGui::Create()
 	m_apOptionTab[GAME_INFO]		= NTL_NEW COptionInfo;
 	m_apOptionTab[GAME_ETC]		= NTL_NEW COptionETC;
 	m_apOptionTab[GAME_CHATTING]	= NTL_NEW COptionChatting;
+	m_apOptionTab[EXTRA_FILTER] = NTL_NEW COptionFilter;
 
 	for (int i = 0; i < OPTION_NUM; ++i)
 	{
@@ -251,6 +256,11 @@ void COptionWindowGui::SelectOptionTab( const eOPTION_CATEGORY eID )
 				m_pTabButton->SelectTab( SYSTEM, TRUE );
 				SwitchOptionTab( eID );
 			}
+			else if(m_ePresentOption < EXTRA_FILTER && eID >= EXTRA_FILTER)	// Added the selection to the Extra tab (testing)
+			{
+				m_pTabButton->SelectTab(EXTRA, TRUE);
+				SwitchOptionTab(eID);
+			}
 			else
 			{
 				SwitchOptionTab( eID );
@@ -295,6 +305,18 @@ void COptionWindowGui::OnTabChanged(RwInt32 nIndex, RwInt32 nOldIndex)
 			m_apOptionButton[GAME_CHATTING]->Show(true);
 		}
 		break;
+		case EXTRA:		// New "Extra" option with a "Filter" tab
+		{
+			ButtonTextExtra();
+			SwitchOptionTab(EXTRA_FILTER);
+			m_apOptionButton[EXTRA_FILTER]->Show(true);
+
+			m_apOptionButton[SYSTEM_SOUND]->Show(false);
+
+			m_apOptionButton[GAME_INFO]->Show(false);
+			m_apOptionButton[GAME_ETC]->Show(false);
+			m_apOptionButton[GAME_CHATTING]->Show(false);
+		}
 	}
 
 	//m_eLastType = static_cast<eOPTION_TYPE>(nIndex);
@@ -320,6 +342,12 @@ void COptionWindowGui::ButtonTextGame()
 	m_apOptionButton[GAME_ETC]->SetToolTip(GetDisplayStringManager()->GetString("DST_OPTION_TOOLTIP_TAB_ETC"));
 	m_apOptionButton[GAME_CHATTING]->SetText(GetDisplayStringManager()->GetString("DST_OPTION_TAB_GAME_CHATTING"));
 	m_apOptionButton[GAME_CHATTING]->SetToolTip(GetDisplayStringManager()->GetString( "DST_OPTION_TOOLTIP_TAB_CHATTING"));
+}
+void COptionWindowGui::ButtonTextExtra()
+{
+	m_apOptionButton[EXTRA_FILTER]->SetText(GetDisplayStringManager()->GetString("DST_OPTION_TAB_EXTRA_FILTER"));
+	m_apOptionButton[EXTRA_FILTER]->SetToolTip(GetDisplayStringManager()->GetString("DST_OPTION_TOOLTIP_TAB_EXTRA_FILTER"));
+
 }
 
 void COptionWindowGui::SetComponentPos(RwInt32 iPos, gui::CComponent* pComponent)
@@ -382,6 +410,7 @@ void COptionWindowGui::OptionOk()
 
 	Logic_SaveGameOption();
 	Logic_SaveSystemOption();
+	Logic_SaveExtraOption();		// New EXTRA tab for filter
 }
 
 void COptionWindowGui::OptionCancel()

@@ -32,6 +32,7 @@ VOID DboExceptionHandler( PEXCEPTION_POINTERS pExceptionInfo )
 			Logic_SaveScouterOption();
 			Logic_SaveQuestOption();
 			Logic_SaveCharacterOption();
+			Logic_SaveExtraOption();		// New EXTRA tab added
 		}
 	}
 

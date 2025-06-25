@@ -2667,6 +2667,77 @@ void Logic_SaveGameOption(void)
 	GetNtlStorageManager()->Save( eNTL_STORAGE_GROUP_GAMEINFO, str.c_str() );
 }
 
+/**
+* \brief eNTL_STORAGE_GROUP_EXTRA load function.
+*/
+void Logic_LoadExtraOption(void)
+{
+	RwChar chBuffer[128];
+	SUserData* pUserData = GetDboGlobal()->GetUserData();
+
+	// user
+	std::string str = USEROPT_SERIALIZE_FOLDERNAME;
+
+	// 
+	::WideCharToMultiByte(GetACP(), 0, pUserData->wchUserID, -1, chBuffer, 128, NULL, NULL);
+	str += "\\";
+	str += chBuffer;
+
+	// file name
+	str += "\\";
+	str += EXTRAENV_SERIALIZE_FILENAME;
+
+	WIN32_FIND_DATA finddata;
+	HANDLE hFile = ::FindFirstFile(str.c_str(), &finddata);
+
+	if (hFile == INVALID_HANDLE_VALUE || finddata.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+	{
+		/*NtlLogFilePrint("Logic_LoadExtraOption");*/
+		::FindClose(hFile);
+		return;
+	}
+
+	::FindClose(hFile);
+
+	GetNtlStorageManager()->Load(eNTL_STORAGE_GROUP_EXTRA, str.c_str());
+}
+
+/**
+* \brief eNTL_STORAGE_GROUP_EXTRA save function.
+*/
+void Logic_SaveExtraOption(void)
+{
+	RwChar chBuffer[128];
+	SUserData* pUserData = GetDboGlobal()->GetUserData();
+
+	HANDLE hFile;
+	WIN32_FIND_DATA finddata;
+
+	// user
+	std::string str = USEROPT_SERIALIZE_FOLDERNAME;
+	hFile = ::FindFirstFile(str.c_str(), &finddata);
+	if (hFile == INVALID_HANDLE_VALUE || !(finddata.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
+		::CreateDirectory(str.c_str(), NULL);
+
+	::FindClose(hFile);
+
+	// 
+	::WideCharToMultiByte(GetACP(), 0, pUserData->wchUserID, -1, chBuffer, 128, NULL, NULL);
+	str += "\\";
+	str += chBuffer;
+	hFile = ::FindFirstFile(str.c_str(), &finddata);
+	if (hFile == INVALID_HANDLE_VALUE || !(finddata.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
+		::CreateDirectory(str.c_str(), NULL);
+
+	::FindClose(hFile);
+
+	// file name
+	str += "\\";
+	str += EXTRAENV_SERIALIZE_FILENAME;
+
+	GetNtlStorageManager()->Save(eNTL_STORAGE_GROUP_EXTRA, str.c_str());
+}
+
 void Logic_LoadCharacterOption( void )
 {
 	RwChar chBuffer[128];
@@ -2675,7 +2746,7 @@ void Logic_LoadCharacterOption( void )
 	// user
 	std::string str = USEROPT_SERIALIZE_FOLDERNAME;
 
-	// 계정
+	//
 	::WideCharToMultiByte(GetACP(), 0, pUserData->wchUserID, -1, chBuffer, 128, NULL, NULL);
 	str += "\\";
 	str += chBuffer;
@@ -2688,12 +2759,12 @@ void Logic_LoadCharacterOption( void )
 		return;
 	}
 
-	// 서버 이름.
+	// 
 	::WideCharToMultiByte(GetACP(), 0, pLobby->GetServerName(), -1, chBuffer, 128, NULL, NULL);
 	str += "\\";
 	str += chBuffer;
 
-	// 캐릭터 이름.
+	// 
 	RwUInt8 bySelChar = pLobby->GetSelectedCharacterIndex();
 	sLOBBY_CHARACTER* pLOBBY_CHARACTER = pLobby->GetCharacter( bySelChar );
 	if( !pLOBBY_CHARACTER )

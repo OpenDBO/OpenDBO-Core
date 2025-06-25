@@ -312,6 +312,32 @@ bool Logic_ApplyNtlStorageUnit( CNtlStorageUnit* pUnit, unsigned int uiFlags )
 			}
 		}
 		break;
+	case eNTL_STORAGE_EXTRAFILTER:
+		{
+			if (uiFlags)
+			{
+				// First define global/static variables for each filter option
+				RwBool bNormal = pUnit->GetBoolData(dSTORAGE_FILTER_RARITY_NORMAL);
+				RwBool bSuperior = pUnit->GetBoolData(dSTORAGE_FILTER_RARITY_SUPERIOR);
+				RwBool bExcellent = pUnit->GetBoolData(dSTORAGE_FILTER_RARITY_EXCELLENT);
+				RwBool bRare = pUnit->GetBoolData(dSTORAGE_FILTER_RARITY_RARE);
+				RwBool bLegendary = pUnit->GetBoolData(dSTORAGE_FILTER_RARITY_LEGENDARY);
+
+				RwBool bStoneBlue = pUnit->GetBoolData(dSTORAGE_FILTER_STONE_BLUE);
+				RwBool bStoneRed = pUnit->GetBoolData(dSTORAGE_FILTER_STONE_RED);
+				RwBool bStoneGreen = pUnit->GetBoolData(dSTORAGE_FILTER_STONE_GREEN);
+				RwBool bStonePurple = pUnit->GetBoolData(dSTORAGE_FILTER_STONE_PURPLE);
+				RwBool bStoneWhite = pUnit->GetBoolData(dSTORAGE_FILTER_STONE_WHITE);
+				RwBool bStoneADown = pUnit->GetBoolData(dSTORAGE_FILTER_STONE_ADOWN);
+				RwBool bStoneWDown = pUnit->GetBoolData(dSTORAGE_FILTER_STONE_WDOWN);
+
+				RwBool bMystery = pUnit->GetBoolData(dSTORAGE_FILTER_MYSTERYITEM);
+				RwBool bConsumable = pUnit->GetBoolData(dSTORAGE_FILTER_CONSUMABLE);
+
+				// Room to add more as needed
+			}
+		}
+	break;
 	case eNTL_STORAGE_CHARACTER:
 		{
 			if( uiFlags & eNTL_STORAGE_APPLY_CLIENT )

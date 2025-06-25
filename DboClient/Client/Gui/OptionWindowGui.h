@@ -25,6 +25,7 @@ class COptionControl;
 class COptionInfo;
 class COptionETC;
 class COptionChatting;
+class COptionFilter;
 
 #define dOPTION_VIRTUAL_NUM				9			// 보여질 리스트의 갯수
 #define dOPTION_VIRTUAL_NUM_CONTROL		9			// 조작키에서 보여질 리스트의 갯수
@@ -54,7 +55,8 @@ public:
 	{
 		NONE	= -1,
 		SYSTEM	= 0,
-		GAME	= 1
+		GAME	= 1,
+		EXTRA	= 2		// New category "Extra" added to add additional options
 	};
 
 	enum eOPTION_CATEGORY
@@ -62,8 +64,9 @@ public:
 		OPTION_NONE		= -1,
 		SYSTEM_GRAPHIC	= 0,		SYSTEM_SOUND	= 1,
 		GAME_CONTROL	= 2,		GAME_INFO		= 3,		GAME_ETC		= 4,
-		GAME_CHATTING	= 5,		
-		OPTION_NUM		= 6
+		GAME_CHATTING	= 5,
+		EXTRA_FILTER	= 6,	// New tab Filter added to Extra
+		OPTION_NUM		= 7		// Updated the total number of options
 	};
 
 protected:
@@ -135,6 +138,7 @@ public:
 	// Tab Setting 
 	void		ButtonTextSystem();
 	void		ButtonTextGame();
+	void		ButtonTextExtra();
 
 	void		OptionReset();
 	void		OptionOk();

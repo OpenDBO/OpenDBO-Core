@@ -13,4 +13,5 @@ const char* g_acNtlStorageTypeString[eNTL_STORAGE_NUMS] = {
 	"[CHARACTER]",
 	"[CHARACTER_ETC]",
 	"[SCOUTER]",
-	"[SYSTEM_ETC]" };
+	"[SYSTEM_ETC]",
+	"[EXTRAFILTER]"  };

@@ -37,6 +37,7 @@
 #define ACCOUNTOPT_SERIALIZE_FILENAME		"Account.opt"
 #define SYSTEMENV_SERIALIZE_FILENAME		"SystemEnv.txt"
 #define GAMEENV_SERIALIZE_FILENAME			"GameEnv.txt"
+#define EXTRAENV_SERIALIZE_FILENAME			"ExtraEnv.txt"
 
 #define CHARACTERENV_SERIALIZE_FILENAME		"CharacterEnv.txt";
 #define SCOUTEROPT_SERILIZE_FILENAME		"Scouter.opt";
