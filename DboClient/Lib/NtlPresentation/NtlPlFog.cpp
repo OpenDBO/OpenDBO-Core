@@ -25,8 +25,8 @@ void CNtlPLFog::Initialize(void)
 
 
     // Increased near plane to start fog further away
-    m_Plane[0] = 10.0f; // Changed from 10.0f to push fog further
-    m_Plane[1] = 1024.0f; // Slightly increased from 456.0f for consistency
+    m_Plane[0] = 150.0f; // Changed from 10.0f to push fog further
+    m_Plane[1] = 700.0f; // Slightly increased from 456.0f for consistency
 
     m_bSwitch = TRUE;
     m_RestTime4Change = -999.0f;
@@ -132,8 +132,8 @@ void CNtlPLFog::Switch()
 RwBool CNtlPLFog::Render(void)
 {
     // Adjusted near plane calculation to ensure fog starts further away
-    RwReal fPlaneNear = m_Plane[0]; // Removed -512.0f offset to respect m_Plane[0]
-    RwReal fPlaneFar = m_Plane[1];  // Use m_Plane[1] directly or adjust based on dFOG_EFFECT_FAR
+    RwReal fPlaneNear = m_Plane[0] - GetNtlPLOptionManager()->GetTerrainFar() + dFOG_EFFECT_FAR;
+    RwReal fPlaneFar = dFOG_EFFECT_FAR;
 
     // Ensure near plane is at least a reasonable distance from the camera
     fPlaneNear = CNtlPLGlobal::m_RwCamera->nearPlane + (fPlaneNear > dFOG_EFFECT_NEAR ? fPlaneNear : dFOG_EFFECT_NEAR);
@@ -141,9 +141,9 @@ RwBool CNtlPLFog::Render(void)
 
     // Clamp to prevent fog from starting too close or extending too far
     CLAMP(fPlaneNear, dFOG_EFFECT_NEAR, m_Plane[0]);
-    CLAMP(fPlaneFar, dFOG_EFFECT_NEAR, m_Plane[1]);
+    CLAMP(fPlaneFar, dFOG_EFFECT_FAR, m_Plane[1]);
 
-    BegLinearFogRenderState(RWRGBALONG(m_RGBA4DN.red, m_RGBA4DN.green, m_RGBA4DN.blue, 155), fPlaneNear * 1.5, fPlaneFar * 1.5);
+    BegLinearFogRenderState(RWRGBALONG(m_RGBA4DN.red, m_RGBA4DN.green, m_RGBA4DN.blue, 155), fPlaneNear, fPlaneFar);
 
     if (!m_bSwitch)
     {
