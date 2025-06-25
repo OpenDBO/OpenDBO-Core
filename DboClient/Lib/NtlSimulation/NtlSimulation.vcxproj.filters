@@ -810,6 +810,15 @@
     <ClCompile Include="NtlSobMascotAttr.cpp">
       <Filter>Object\Attribute</Filter>
     </ClCompile>
+    <ClCompile Include="NtlStorageGroupExtra.cpp">
+      <Filter>Serialize\Group</Filter>
+    </ClCompile>
+    <ClCompile Include="NtlSobMascot.cpp">
+      <Filter>Object\Instance</Filter>
+    </ClCompile>
+    <ClCompile Include="NtlSobMascotProxy.cpp">
+      <Filter>Object\Proxy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="NtlSLEvent.h">
@@ -1453,6 +1462,15 @@
     </ClInclude>
     <ClInclude Include="NtlSobMascotAttr.h">
       <Filter>Object\Attribute</Filter>
+    </ClInclude>
+    <ClInclude Include="NtlStorageGroupExtra.h">
+      <Filter>Serialize\Group</Filter>
+    </ClInclude>
+    <ClInclude Include="NtlSobMascot.h">
+      <Filter>Object\Instance</Filter>
+    </ClInclude>
+    <ClInclude Include="NtlSobMascotProxy.h">
+      <Filter>Object\Proxy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

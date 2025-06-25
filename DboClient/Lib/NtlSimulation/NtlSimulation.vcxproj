@@ -291,6 +291,7 @@
     <ClCompile Include="NtlStorageBinarySerializer.cpp" />
     <ClCompile Include="NtlStorageDefine.cpp" />
     <ClCompile Include="NtlStorageGroup.cpp" />
+    <ClCompile Include="NtlStorageGroupExtra.cpp" />
     <ClCompile Include="NtlStorageGroupAccount.cpp" />
     <ClCompile Include="NtlStorageGroupCharacter.cpp" />
     <ClCompile Include="NtlStorageGroupGameInfo.cpp" />
@@ -520,6 +521,7 @@
     <ClInclude Include="NtlStorageBinarySerializer.h" />
     <ClInclude Include="NtlStorageDefine.h" />
     <ClInclude Include="NtlStorageGroup.h" />
+    <ClInclude Include="NtlStorageGroupExtra.h" />
     <ClInclude Include="NtlStorageGroupAccount.h" />
     <ClInclude Include="NtlStorageGroupCharacter.h" />
     <ClInclude Include="NtlStorageGroupGameInfo.h" />
