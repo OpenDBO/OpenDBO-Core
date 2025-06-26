@@ -1176,7 +1176,6 @@ CNtlSob* CNtlSobManager::GetSobNearWorldItem(const RwV3d& vLoc)
 		pSobObj = reinterpret_cast<CNtlSobWorldItem*>( (*it).second );
 		CNtlSobWorldItemAttr* pAttr = reinterpret_cast<CNtlSobWorldItemAttr*>(pSobObj->GetSobAttr());			// Gets the rarity from CNtlSobWorldItemAttr
 		
-		
 		// Always loot Money and DragonBalls
 		if (pAttr->IsMoney() || pAttr->IsDragonBall())
 		{
@@ -1194,12 +1193,11 @@ CNtlSob* CNtlSobManager::GetSobNearWorldItem(const RwV3d& vLoc)
 			continue;
 		}
 
-		bool bLoot = false;
+		bool bLoot = true;
 
 		// Ensures it is an item
 		if (pAttr->IsItem())
 		{
-
 			sITEM_TBLDAT* pItemTbl = pAttr->GetItemTbl();
 			if (!pItemTbl)
 				continue;
@@ -1207,24 +1205,24 @@ CNtlSob* CNtlSobManager::GetSobNearWorldItem(const RwV3d& vLoc)
 			// Checks the item type (byItemType) to determine if the item is a stone or a consumable
 			switch (pItemTbl->byItem_Type)
 			{
-			case ITEM_STONE_BLUE: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_STONE_BLUE); break;
-			case ITEM_STONE_RED: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_STONE_RED); break;
-			case ITEM_STONE_GREEN: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_STONE_GREEN); break;
-			case ITEM_STONE_PURPLE: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_STONE_PURPLE); break;
-			case ITEM_STONE_WHITE: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_STONE_WHITE); break;
-			case ITEM_STONE_ADOWN: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_STONE_ADOWN); break;
-			case ITEM_STONE_WDOWN: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_STONE_WDOWN); break;
-			case ITEM_CONSUMABLE: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_CONSUMABLE); break;
-			default:
-				// Checks the rarity (Rank) of the item in question
-				switch (pAttr->GetRank())
-				{
-				case ITEM_RARITY_NORMAL: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_RARITY_NORMAL); break;
-				case ITEM_RARITY_SUPERIOR: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_RARITY_SUPERIOR); break;
-				case ITEM_RARITY_EXCELLENT: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_RARITY_EXCELLENT); break;
-				case ITEM_RARITY_RARE: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_RARITY_RARE); break;
-				case ITEM_RARITY_LEGENDARY: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_RARITY_LEGENDARY); break;
-				}
+				case ITEM_STONE_BLUE: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_STONE_BLUE); break;
+				case ITEM_STONE_RED: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_STONE_RED); break;
+				case ITEM_STONE_GREEN: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_STONE_GREEN); break;
+				case ITEM_STONE_PURPLE: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_STONE_PURPLE); break;
+				case ITEM_STONE_WHITE: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_STONE_WHITE); break;
+				case ITEM_STONE_ADOWN: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_STONE_ADOWN); break;
+				case ITEM_STONE_WDOWN: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_STONE_WDOWN); break;
+				case ITEM_CONSUMABLE: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_CONSUMABLE); break;
+				default:
+					// Checks the rarity (Rank) of the item in question
+					switch (pAttr->GetRank())
+					{
+						case ITEM_RARITY_NORMAL: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_RARITY_NORMAL); break;
+						case ITEM_RARITY_SUPERIOR: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_RARITY_SUPERIOR); break;
+						case ITEM_RARITY_EXCELLENT: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_RARITY_EXCELLENT); break;
+						case ITEM_RARITY_RARE: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_RARITY_RARE); break;
+						case ITEM_RARITY_LEGENDARY: bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_RARITY_LEGENDARY); break;
+					}
 
 			}
 
@@ -1233,11 +1231,10 @@ CNtlSob* CNtlSobManager::GetSobNearWorldItem(const RwV3d& vLoc)
 			{
 				bLoot = GetNtlStorageManager()->GetBoolData(dSTORAGE_FILTER_MYSTERYITEM);
 			}
-			// At least one filter needs to be selected, otherwise skip
+
+			// If this item is filtered out; skip.
 			if (!bLoot)
-			{
 				continue;
-			}
 
 			if (!pSobObj->IsEnableLoot() || pSobObj->IsLootSend())
 				continue;
