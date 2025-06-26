@@ -910,14 +910,24 @@ void CNtlSobManager::RemoveTriggerIdMapping(RwInt32 uiClassId, CNtlSob *pObj)
 void CNtlSobManager::AddObject(RwInt32 uiClassId, CNtlSob *pObj)
 {
 	NTL_FUNCTION("CNtlSobManager::AddObject");
+	if (pObj == nullptr)
+	{
+		NTL_RETURNVOID(); // early exit if pObj is null
+	}
 
 	SERIAL_HANDLE hSerialId = pObj->GetSerialID();
 	
 	CNtlSob *pFindSobObj = FindEntity(uiClassId, hSerialId);
-	NTL_PRE(pFindSobObj == NULL);
+	if (pFindSobObj != nullptr)
+	{
+		NTL_RETURNVOID(); // already exists, skip
+	}
 
 	MapObject::iterator it = m_mapObject.find(hSerialId);
-	NTL_ASSERTE(it == m_mapObject.end());
+	if (it != m_mapObject.end())
+	{
+		NTL_RETURNVOID(); // already in map, skip
+	}
 
 	m_mapObject[hSerialId] = pObj;
 	if(pObj->GetFlags() & SLFLAG_ADD_UPDATE)
