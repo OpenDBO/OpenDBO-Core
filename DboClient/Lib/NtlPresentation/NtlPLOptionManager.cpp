@@ -38,8 +38,8 @@ void CNtlPLOptionManager::DestroyInstance()
 
 CNtlPLOptionManager::CNtlPLOptionManager()
 {
-	m_fFarObject		= 1024.0f;
-	m_fFarTerrain		= 1024.0f;
+	m_fFarObject		= 768.0f;
+	m_fFarTerrain		= 768.0f;
 	m_bWaterSpecular	= TRUE;
 	m_uiWeatherLevel	= 0;
 

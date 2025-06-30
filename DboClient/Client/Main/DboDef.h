@@ -27,7 +27,7 @@
 #define EXTRA_SCREEN_HEIGHT		1024		// cj�� ��û�� ���ؼ�.
 
 #define DEFAULT_CAMERA_NEAR		0.5f
-#define DEFAULT_CAMERA_FAR		1024.0f
+#define DEFAULT_CAMERA_FAR		768.0f
 
 //----------------------------------------------------------------------------
 // serialize file
