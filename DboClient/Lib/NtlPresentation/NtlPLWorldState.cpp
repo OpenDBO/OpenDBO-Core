@@ -90,7 +90,7 @@ RpAtomic* GetWorldSpace(RpIntersection* pIntersection, RpWorldSector* pWorldSect
 		intersection.t.line.start	= pIntersection->t.point;
 		intersection.t.line.start.y	= pIntersection->t.point.y + 0.1f;
 		intersection.t.line.end		= pIntersection->t.point;
-		intersection.t.line.end.y	= pIntersection->t.point.y - 1024.0f;
+		intersection.t.line.end.y	= pIntersection->t.point.y - 768.0f;
 
 		pGetWorldSpace->pTestObject = pPLObject;
 		RpAtomicForAllIntersections(pAtomic, &intersection, GetWorldSpace, pData);

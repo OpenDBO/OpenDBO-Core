@@ -371,7 +371,7 @@ void BegBaseSkyRenderState(void)
 	RwRenderStateSet(rwRENDERSTATEZTESTENABLE, (void*)FALSE);
 	RwRenderStateSet(rwRENDERSTATEZWRITEENABLE, (void*)FALSE);
 	
-	static RwReal fDistMax = 1024.0f;
+	static RwReal fDistMax = 768.0f;
 	RpNtlActiveCameraSetFarDistance(fDistMax);
 
 	return;
@@ -399,7 +399,7 @@ void BegDummySkyRenderState(void)
 	RwRenderStateSet(rwRENDERSTATEZTESTENABLE, (void*)FALSE);
 	RwRenderStateSet(rwRENDERSTATEZWRITEENABLE, (void*)FALSE);
 
-	static RwReal fDistMax = 1024.0f;
+	static RwReal fDistMax = 768.0f;
 	RpNtlActiveCameraSetFarDistance(fDistMax);
 
 	return;

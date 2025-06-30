@@ -74,7 +74,7 @@ bool Logic_ApplyNtlStorageUnit( CNtlStorageUnit* pUnit, unsigned int uiFlags )
 					case 1: fTerranRange = 300.f; break;
 					case 2: fTerranRange = 400.f; break;
 					case 3: fTerranRange = 512.f; break;
-					case 4: fTerranRange = 1024.f; break;
+					case 4: fTerranRange = 768.f; break;
 					default: fTerranRange = 512.f; break;
 				}
 				if( GetNtlPLOptionManager()->GetTerrainFar() != fTerranRange )
@@ -89,7 +89,7 @@ bool Logic_ApplyNtlStorageUnit( CNtlStorageUnit* pUnit, unsigned int uiFlags )
 					case 1: fObjectRange = 300.f; break;
 					case 2: fObjectRange = 400.f; break;
 					case 3: fObjectRange = 512.f; break;
-					case 4: fObjectRange = 1024.f; break;
+					case 4: fObjectRange = 768.f; break;
 					default: fObjectRange = 512.f; break;
 				}
 
