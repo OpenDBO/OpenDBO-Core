@@ -3,8 +3,11 @@
 //
 
 #pragma once
+#define WM_UPDATE_ICON (WM_USER + 101)// Custom message to update the icon in the preview window
 
 #include "FileView.h"
+#include "ItemPreviewWnd.h"
+
 
 class CMainFrame : public CFrameWndEx
 {
@@ -12,6 +15,7 @@ class CMainFrame : public CFrameWndEx
 protected: // create from serialization only
 	CMainFrame();
 	DECLARE_DYNCREATE(CMainFrame)
+	afx_msg LRESULT OnUpdateIcon(WPARAM wParam, LPARAM lParam);// Custom message handler to update the icon in the preview window
 
 // Attributes
 public:
@@ -37,6 +41,7 @@ protected:  // control bar embedded members
 	CMFCToolBar       m_wndToolBar;
 	CMFCStatusBar     m_wndStatusBar;
 	CFileView         m_wndFileView;
+	CItemPreviewWnd   m_wndItemPreview;// Item preview window
 
 // Generated message map functions
 protected:
@@ -45,7 +50,6 @@ protected:
 	afx_msg LRESULT OnToolbarCreateNew(WPARAM wp, LPARAM lp);
 	afx_msg void OnSettingChange(UINT uFlags, LPCTSTR lpszSection);
 	DECLARE_MESSAGE_MAP()
-
 	BOOL CreateDockingWindows();
 	void SetDockingWindowIcons(BOOL bHiColorIcons);
 };

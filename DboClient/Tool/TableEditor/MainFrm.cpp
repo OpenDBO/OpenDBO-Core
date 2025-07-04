@@ -10,6 +10,7 @@
 #include "ClassView.h"
 #include "PropertiesWnd.h"
 
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -23,6 +24,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWndEx)
 	ON_COMMAND(ID_VIEW_CUSTOMIZE, &CMainFrame::OnViewCustomize)
 	ON_REGISTERED_MESSAGE(AFX_WM_CREATETOOLBAR, &CMainFrame::OnToolbarCreateNew)
 	ON_WM_SETTINGCHANGE()
+	ON_MESSAGE(WM_UPDATE_ICON, &CMainFrame::OnUpdateIcon)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -191,6 +193,19 @@ BOOL CMainFrame::CreateDockingWindows()
 		return FALSE; // failed to create
 	}
 
+	// Create Item Preview pane
+	CString strItemPreview;
+	strItemPreview = _T("Item Preview"); 
+	ASSERT(bNameValid);
+	if (!m_wndItemPreview.Create(strItemPreview, this, CRect(300, 300, 600, 500), TRUE, ID_VIEW_ITEMPREVIEW,
+		WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_FLOAT_MULTI))
+	{
+		TRACE0("Failed to create Item Preview pane\n");
+		return FALSE; // failed to create
+	}
+	m_wndItemPreview.SetIcon(theApp.LoadIcon(IDI_CLASS_VIEW), FALSE);
+
+
 	SetDockingWindowIcons(theApp.m_bHiColorIcons);
 	return TRUE;
 }
@@ -224,6 +239,17 @@ void CMainFrame::Dump(CDumpContext& dc) const
 
 
 // CMainFrame message handlers
+
+LRESULT CMainFrame::OnUpdateIcon(WPARAM, LPARAM lParam)
+{
+	CString* pIcon = reinterpret_cast<CString*>(lParam);
+	if (pIcon)
+	{
+		m_wndItemPreview.SetIconImage(*pIcon);
+		delete pIcon;
+	}
+	return 0;
+}
 
 void CMainFrame::OnViewCustomize()
 {

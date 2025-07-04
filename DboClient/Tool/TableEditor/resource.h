@@ -71,6 +71,7 @@
 #define IDS_FIND_TAB				302
 #define IDS_EXPLORER				305
 #define IDS_EDIT_MENU				306
+#define ID_VIEW_ITEMPREVIEW         1100//png icom preview
 
 // Next default values for new objects
 //

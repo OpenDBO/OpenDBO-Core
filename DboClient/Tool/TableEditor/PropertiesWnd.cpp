@@ -10,6 +10,7 @@
 #include "ItemTable.h"
 #include "NewbieTable.h"
 #include "NpcSpeechTable.h"
+#include "TextAllTable.h"
 
 
 #ifdef _DEBUG
@@ -74,9 +75,34 @@ void CPropertiesWnd::LoadTableData(int nTableType, sTBLDAT* pTbldat)
 
 			ADD_SUB_ITEM("TBLIDX",						pTableData->tblidx,						 "Item Table Index");
 			ADD_SUB_ITEM("bValidity_Able",				pTableData->bValidity_Able,				 "Set item active/inactive");
-			ADD_SUB_ITEM("Name",						pTableData->Name,						 "Name Table Index");
-			ADD_SUB_ITEM("wszNameText",					pTableData->wszNameText,				 "Item Name. Max 32 Chars");
-			ADD_SUB_ITEM("szIcon_Name",					pTableData->szIcon_Name,				 "Icon Name");
+			//Original code 
+			//ADD_SUB_ITEM("Name",						pTableData->Name,						 "Name Table Index");
+			
+			// Tooltip with translation
+			CString wszNameDesc = _T("Name Table Index");
+			CTextAllTable* pTextAllTable = GetTableContainer()->GetTextAllTable();
+			if (pTextAllTable)
+			{
+				CTextTable* pItemTextTable = pTextAllTable->GetItemTbl(); // item name translations
+				if (pItemTextTable)
+				{
+					std::wstring wstrTranslated;
+					if (pItemTextTable->GetText(pTableData->Name, &wstrTranslated))
+					{
+						wszNameDesc += _T("\nTranslated: ");
+						wszNameDesc += wstrTranslated.c_str();
+					}
+					else
+					{
+						wszNameDesc += _T("\nTranslation not found.");
+					}
+				}
+			}
+			ADD_SUB_ITEM("Name", pTableData->Name, wszNameDesc); // Tooltip com tradução
+			ADD_SUB_ITEM("wszNameText", pTableData->wszNameText, "Internal Item Name (Max 32 chars)");
+            ADD_SUB_ITEM("szIcon_Name",					pTableData->szIcon_Name,				 "Icon Name");
+			CString* pStr = new CString(pTableData->szIcon_Name);// Create a CString to hold the icon name
+			::SendMessage(AfxGetMainWnd()->GetSafeHwnd(), WM_UPDATE_ICON, 0, (LPARAM)pStr);// Send the icon name to the main window to update the icon
 			ADD_SUB_ITEM("byModel_Type",				(int)pTableData->byModel_Type,			 "Model Type");
 			ADD_SUB_ITEM("szModel",						pTableData->szModel,					 "Model Name");
 			ADD_SUB_ITEM("szSub_Weapon_Act_Model",		pTableData->szSub_Weapon_Act_Model,		 "Item Table Index");
