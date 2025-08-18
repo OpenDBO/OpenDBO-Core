@@ -633,6 +633,7 @@ const int			NTL_UNIDENTIFY_SUPERIOR_RATE = 10;
 const int			NTL_UNIDENTIFY_NORMAL_RATE = 5;
 
 const int			NTL_ITEM_MAX_GRADE = 15;
+//const int			NTL_ITEM_MAX_GRADE = 17;
 
 const int			NTL_ITEM_COUNT_GRADE = 5;
 

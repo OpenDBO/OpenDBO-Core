@@ -225,6 +225,17 @@ void CPlayer::LeaveGame()
 	if (!IsInitialized())
 		return;
 
+	sREJOIN_TICKET sRejoinTicket{};
+	sRejoinTicket.charId = GetCharID();
+	sRejoinTicket.partyId = GetPartyID();
+	sRejoinTicket.channelId = app->GetGsChannel();
+	sRejoinTicket.expireAtMs = GetTickCount() + 10 * 60 * 1000; // 10 minutes
+
+	sREJOIN_TARGET tgt{};
+	tgt.worldId = GetLastRejoinWorldId();
+	tgt.loc = GetLastRejoinLoc();
+	tgt.dir = GetLastRejoinDir();
+
 	g_pBusSystem->RemovePlayerSync(this);
 
 	if (GetBusID() != INVALID_HOBJECT)
@@ -275,7 +286,8 @@ void CPlayer::LeaveGame()
 	//!! THIS MUST BE CALLED BEFORE CALLING "LEAVEPARTY" !! remove mark from all partys which marked me. If we dont call this before "LeaveParty" then m_setMarkedByEnemyParty has invalid party inside
 	g_pPartyManager->CleanMark(&m_setMarkedByEnemyParty, GetID());
 
-	if (GetParty())
+	auto cParty = GetParty();
+	if (cParty)
 		GetParty()->LeaveParty(this);
 
 	event_TeleportProposal(); //unset all teleport proposal data. Also called when time out.
@@ -290,6 +302,16 @@ void CPlayer::LeaveGame()
 	if (GetTLQ())
 	{
 		CWorld* pWorld = GetTLQ()->GetWorld();
+		sRejoinTicket.dungeonType = eREJOIN_DUNGEON_TYPE::REJOIN_TLQ;
+		sRejoinTicket.worldId = pWorld->GetID();
+		tgt.loc = pWorld->GetTbldat()->outWorldLoc;
+		tgt.dir = pWorld->GetTbldat()->outWorldDir;
+
+		// In case of TLQ, we need to check if the player is in a party
+		if (cParty && cParty->GetPartyMemberCount() > 1) {
+			g_Rejoin.PutWithTarget(sRejoinTicket, tgt);
+		}
+
 		SetCurLoc(pWorld->GetTbldat()->outWorldLoc);
 		SetWorldID(pWorld->GetTbldat()->outWorldTblidx);
 		SetMapNameTblidx(GetNaviEngine()->GetTextAllIndex(pWorld->GetNaviInstanceHandle(), GetCurLoc().x, GetCurLoc().z));
@@ -298,6 +320,16 @@ void CPlayer::LeaveGame()
 	else if (GetUD())
 	{
 		CWorld* pWorld = GetUD()->GetWorld();
+		sRejoinTicket.dungeonType = eREJOIN_DUNGEON_TYPE::REJOIN_UD;
+		sRejoinTicket.worldId = pWorld->GetID();
+		tgt.loc = pWorld->GetTbldat()->outWorldLoc;
+		tgt.dir = pWorld->GetTbldat()->outWorldDir;
+
+		// In case of UD, we need to check if the player is in a party
+		if (cParty && cParty->GetPartyMemberCount() > 1) {
+			g_Rejoin.PutWithTarget(sRejoinTicket, tgt);
+		}
+
 		SetCurLoc(pWorld->GetTbldat()->outWorldLoc);
 		SetWorldID(pWorld->GetTbldat()->outWorldTblidx);
 		SetMapNameTblidx(GetNaviEngine()->GetTextAllIndex(pWorld->GetNaviInstanceHandle(), GetCurLoc().x, GetCurLoc().z));
@@ -308,6 +340,16 @@ void CPlayer::LeaveGame()
 	else if (GetCCBD())
 	{
 		CWorld* pWorld = GetCCBD()->GetWorld();
+		sRejoinTicket.dungeonType = eREJOIN_DUNGEON_TYPE::REJOIN_CC;
+		sRejoinTicket.worldId = pWorld->GetID();
+		tgt.loc = pWorld->GetTbldat()->outWorldLoc;
+		tgt.dir = pWorld->GetTbldat()->outWorldDir;
+
+		// In case of CC, we need to check if the player is in a party
+		if (cParty && cParty->GetPartyMemberCount() > 1) {
+			g_Rejoin.PutWithTarget(sRejoinTicket, tgt);
+		}
+
 		SetCurLoc(pWorld->GetTbldat()->outWorldLoc);
 		SetWorldID(pWorld->GetTbldat()->outWorldTblidx);
 		SetMapNameTblidx(GetNaviEngine()->GetTextAllIndex(pWorld->GetNaviInstanceHandle(), GetCurLoc().x, GetCurLoc().z));
@@ -318,6 +360,16 @@ void CPlayer::LeaveGame()
 	else if (GetTMQ())
 	{
 		CWorld* pWorld = GetTMQ()->GetWorld();
+		sRejoinTicket.dungeonType = eREJOIN_DUNGEON_TYPE::REJOIN_TMQ;
+		sRejoinTicket.worldId = pWorld->GetID();
+		tgt.loc = pWorld->GetTbldat()->outWorldLoc;
+		tgt.dir = pWorld->GetTbldat()->outWorldDir;
+
+		// In case of TMQ, we need to check if the player is in a party
+		if (cParty && cParty->GetPartyMemberCount() > 1) {
+			g_Rejoin.PutWithTarget(sRejoinTicket, tgt);
+		}
+
 		SetCurLoc(pWorld->GetTbldat()->outWorldLoc);
 		SetWorldID(pWorld->GetTbldat()->outWorldTblidx);
 		SetMapNameTblidx(GetNaviEngine()->GetTextAllIndex(pWorld->GetNaviInstanceHandle(), GetCurLoc().x, GetCurLoc().z));
@@ -4094,6 +4146,9 @@ void CPlayer::StartTeleport(CNtlVector& destLoc, CNtlVector& destDir, WORLDID wo
 	m_bTeleportSyncDirectPlay = bSyncDirectPlay;
 	m_bTeleportAnotherServer = bTeleportAnotherServer;
 
+	// REJOIN SYSTEM
+	UpdateRejoinTargetIfDungeon(destLoc, destDir, worldid, byTeleType);
+
 	CCharacter::StartTeleport(destLoc, destDir, worldid, byTeleType);
 }
 
@@ -4132,6 +4187,9 @@ void CPlayer::TeleportAnotherServer(CNtlVector& destLoc, CNtlVector& destDir, TB
 	m_vTeleportProposalDir = destDir;
 	m_teleportProposalWorldID = worldid;
 	m_byTeleportProposalType = byTeleType;
+
+	// REJOIN SYSTEM
+	UpdateRejoinTargetIfDungeon(destLoc, destDir, worldid, byTeleType);
 
 	if (bProposal)
 	{

@@ -22,12 +22,14 @@
 #include "TriggerObject.h"
 #include "GameMain.h"
 #include "DragonballScramble.h"
+#include "DragonballHunt.h"
 #include "HoneyBeeEvent.h"
 #include "ItemDrop.h"
 #include "PortalTable.h"
 #include "NtlPacketTU.h"
 #include "NtlStringW.h"
 #include "DungeonManager.h"
+#include "StoneDropEvent.h"
 #include "Fairy Event.h"
 
 void gm_read_command(sUG_SERVER_COMMAND* sPacket, CPlayer* pPlayer)
@@ -56,7 +58,7 @@ void gm_read_command(sUG_SERVER_COMMAND* sPacket, CPlayer* pPlayer)
 
 	if (cmd_info[icmd].eAdminLevel > ADMIN_LEVEL_EARLY_ACCESS && pPlayer->IsGameMaster() == false)
 		return;
-	
+
 	//log
 	CNtlPacket packetQry(sizeof(sGQ_GM_LOG));
 	sGQ_GM_LOG* resQry = (sGQ_GM_LOG*)packetQry.GetPacketData();
@@ -130,6 +132,17 @@ ACMD(do_PlayerCount);
 ACMD(do_fly);
 ACMD(do_BatleEvent);
 ACMD(do_notify);
+ACMD(do_resetskills);
+ACMD(do_setdark);
+ACMD(do_buff);
+ACMD(do_start_dbhunt);
+ACMD(do_stop_dbhunt);
+ACMD(do_start_dbscramble);
+ACMD(do_stop_dbscramble);
+ACMD(do_big);
+ACMD(do_start_stonedrop);
+ACMD(do_stop_stonedrop);
+
 struct command_info cmd_info[] =
 {
 	// Everyone
@@ -140,10 +153,10 @@ struct command_info cmd_info[] =
 	{ L"@addmasteritem", do_addmasteritem, ADMIN_LEVEL_NONE }, // This command adds the item used to complete the master quest for your class, in case you lose it by accident. Can only be used after you accept it from Korin.
 	{ L"@addskill2", do_addskill2, ADMIN_LEVEL_NONE }, // This command unlocks the master class passive skill, in case a bug causes you to lose it. Can only be used after you have unlocked your master class.
 	{ L"@addhtb", do_addhtb, ADMIN_LEVEL_NONE }, // This command unlocks the main htb and master class htb, if you have already learned them. This is meant to be used after a skill reset. Can only be used after you have unlocked your master class.
-	
+
 	// GM
-	
-	{ L"@pm", do_pm, ADMIN_LEVEL_GAME_MASTER },		
+
+	{ L"@pm", do_pm, ADMIN_LEVEL_GAME_MASTER },
 	{ L"@mute", do_mute, ADMIN_LEVEL_GAME_MASTER },
 	{ L"@unmute", do_unmute, ADMIN_LEVEL_GAME_MASTER },
 
@@ -161,14 +174,14 @@ struct command_info cmd_info[] =
 	{ L"@addmob", do_addmob, ADMIN_LEVEL_ADMIN },
 	{ L"@addmobgroup", do_addmobgroup, ADMIN_LEVEL_ADMIN },
 	{ L"@addnpc", do_addnpc, ADMIN_LEVEL_ADMIN },
-	{ L"@additem", do_additem, ADMIN_LEVEL_ADMIN },	
-	{ L"@addskill", do_addskill, ADMIN_LEVEL_ADMIN },	
+	{ L"@additem", do_additem, ADMIN_LEVEL_ADMIN },
+	{ L"@addskill", do_addskill, ADMIN_LEVEL_ADMIN },
 	{ L"@heal", do_r, ADMIN_LEVEL_ADMIN },
-	{ L"@setzenny", do_setzenny, ADMIN_LEVEL_ADMIN },	
-	{ L"@delallitems", do_delallitems, ADMIN_LEVEL_ADMIN },	
-	{ L"@shutdown", do_shutdown, ADMIN_LEVEL_ADMIN },	
+	{ L"@setzenny", do_setzenny, ADMIN_LEVEL_ADMIN },
+	{ L"@delallitems", do_delallitems, ADMIN_LEVEL_ADMIN },
+	{ L"@shutdown", do_shutdown, ADMIN_LEVEL_ADMIN },
 	{ L"@dc", do_dc, ADMIN_LEVEL_ADMIN },
-	{ L"@kill", do_kill, ADMIN_LEVEL_ADMIN },	
+	{ L"@kill", do_kill, ADMIN_LEVEL_ADMIN },
 	{ L"@god", do_god, ADMIN_LEVEL_ADMIN },
 	{ L"@invincible", do_invincible, ADMIN_LEVEL_ADMIN },
 	{ L"@bann", do_bann, ADMIN_LEVEL_ADMIN },
@@ -183,7 +196,7 @@ struct command_info cmd_info[] =
 	{ L"@addtitle", do_addtitle, ADMIN_LEVEL_ADMIN },
 	{ L"@deltitle", do_deltitle, ADMIN_LEVEL_ADMIN },
 	{ L"@setitemduration", do_setitemduration, ADMIN_LEVEL_ADMIN },
-	{ L"@bind", do_bind, ADMIN_LEVEL_ADMIN },	
+	{ L"@bind", do_bind, ADMIN_LEVEL_ADMIN },
 	{ L"@startevent", do_startevent, ADMIN_LEVEL_ADMIN }, // 0 honey, 1 Fairy
 	{ L"@stopevent", do_stophoneybee, ADMIN_LEVEL_ADMIN }, // 0 Honey, 1 Fairy
 	{ L"@deleteguild", do_deleteguild, ADMIN_LEVEL_ADMIN },
@@ -192,16 +205,200 @@ struct command_info cmd_info[] =
 	{ L"@startgm", do_start, ADMIN_LEVEL_ADMIN },
 	{ L"@createloot", do_createloot, ADMIN_LEVEL_ADMIN },
 	{ L"@test", do_test, ADMIN_LEVEL_ADMIN },
-	{ L"@all", do_TeleportAll, ADMIN_LEVEL_ADMIN },	
+	{ L"@all", do_TeleportAll, ADMIN_LEVEL_ADMIN },
 	{ L"@PvpEvent", do_BatleEvent, ADMIN_LEVEL_ADMIN },
+	{ L"@big", do_big, ADMIN_LEVEL_ADMIN },
 	{ L"@level", do_setlevel2, ADMIN_LEVEL_ADMIN },
 	{ L"@fly", do_fly, ADMIN_LEVEL_ADMIN },
+	{ L"@resetskills", do_resetskills, ADMIN_LEVEL_ADMIN },
+	{ L"@setdark", do_setdark, ADMIN_LEVEL_GAME_MASTER},
+	{ L"@buff", do_buff, ADMIN_LEVEL_ADMIN },
+	{ L"@start_dbhunt",do_start_dbhunt,ADMIN_LEVEL_GAME_MASTER},
+	{ L"@stop_dbhunt",do_stop_dbhunt,ADMIN_LEVEL_GAME_MASTER},
+	{ L"@start_dbscramble",do_start_dbscramble,ADMIN_LEVEL_GAME_MASTER},
+	{ L"@stop_dbscramble",do_stop_dbscramble,ADMIN_LEVEL_GAME_MASTER},
+	{ L"@start_stonedrop", do_start_stonedrop, ADMIN_LEVEL_GAME_MASTER },
+	{ L"@stop_stonedrop", do_stop_stonedrop, ADMIN_LEVEL_GAME_MASTER },
 
 	{ L"@qwasawedsadas", NULL, ADMIN_LEVEL_ADMIN }
 };
 
+ACMD(do_big)
+{
+	pToken->PopToPeek();
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	BYTE fsize = (BYTE)atof(ws2s(strToken).c_str());
+
+	pPlayer->UpdateSizeRate(fsize);
+}
+
+ACMD(do_start_dbhunt)
+{
+	pToken->PopToPeek();
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	BYTE byHours = (BYTE)atof(ws2s(strToken).c_str());
+
+	if (byHours > 24)
+		byHours = 24;
+
+	if (byHours == 0)
+		g_pDragonballHuntEvent->StartEvent();
+	else
+		g_pDragonballHuntEvent->StartEvent(byHours);
+
+	NTL_PRINT(PRINT_APP, "Dragonball Hunt Event Started");
+}
+
+ACMD(do_stop_dbhunt)
+{
+	g_pDragonballHuntEvent->EndEvent();
+	NTL_PRINT(PRINT_APP, "Dragonball Hunt Event Stopped");
+}
+
+ACMD(do_start_dbscramble)
+{
+	g_pDragonballScramble->StartEvent();
+	NTL_PRINT(PRINT_APP, "Dragonball Scramble Event Started");
+}
+
+ACMD(do_stop_dbscramble)
+{
+	g_pDragonballScramble->EndEvent(true);
+	NTL_PRINT(PRINT_APP, "Dragonball Scramble Event Stopped");
+}
+
+ACMD(do_start_stonedrop)
+{
+	pToken->PopToPeek();
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	BYTE byHours = (BYTE)atof(ws2s(strToken).c_str());
+
+	if (byHours > 24)
+		byHours = 24;
+
+	if (byHours == 0)
+		g_pStoneDropEvent->StartEvent();
+	else
+		g_pStoneDropEvent->StartEvent(byHours);
+
+	NTL_PRINT(PRINT_APP, "Double Stone Drop Event Started");
+}
+
+ACMD(do_stop_stonedrop)
+{
+	g_pStoneDropEvent->EndEvent();
+	NTL_PRINT(PRINT_APP, "Double Stone Drop Event Stopped");
+}
+
+ACMD(do_buff)
+{
+	/*
+		@buff BUFF_ID DURATION(SECONDS)
+	*/
+	pToken->PopToPeek();
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	int buffindex = (int)atof(ws2s(strToken).c_str());
+
+	pToken->PopToPeek();
+	std::wstring strToken1 = pToken->PeekNextToken(NULL, &iLine);
+	int nSeconds = (int)atof(ws2s(strToken1).c_str());
+
+	pToken->PopToPeek();
+	strToken = pToken->PeekNextToken(NULL, &iLine);
+
+	std::wstring name = std::wstring(strToken.begin(), strToken.end());
+	const wchar_t* wname = name.c_str();
+
+	CPlayer* cTarget = g_pObjectManager->FindByName(wname);
+	if (!cTarget || !cTarget->IsInitialized())
+	{
+		cTarget = pPlayer;
+	}
+
+	if (nSeconds == 0 || nSeconds > 3600)
+		nSeconds = 3600;
+
+	sDBO_BUFF_PARAMETER aBuffParameter[NTL_MAX_EFFECT_IN_SKILL];
+	sSKILL_TBLDAT* pSkillTbldat = (sSKILL_TBLDAT*)g_pTableContainer->GetSkillTable()->FindData(buffindex);
+
+	if (pSkillTbldat) {
+		eSYSTEM_EFFECT_CODE aeEffectCode[NTL_MAX_EFFECT_IN_SKILL];
+
+		for (int i = 0; i < NTL_MAX_EFFECT_IN_SKILL; i++)
+		{
+			aBuffParameter[i].byBuffParameterType = DBO_BUFF_PARAMETER_TYPE_DEFAULT;
+			aBuffParameter[i].buffParameter.fParameter = (float)(pSkillTbldat->aSkill_Effect_Value[i]);
+			aBuffParameter[i].buffParameter.dwRemainValue = (DWORD)pSkillTbldat->aSkill_Effect_Value[i];
+
+			aeEffectCode[i] = g_pTableContainer->GetSystemEffectTable()->GetEffectCodeWithTblidx(pSkillTbldat->skill_Effect[i]);
+
+			if (aeEffectCode[i] == ACTIVE_HEAL_OVER_TIME || aeEffectCode[i] == ACTIVE_EP_OVER_TIME)
+			{
+				aBuffParameter[i].byBuffParameterType = DBO_BUFF_PARAMETER_TYPE_HOT;
+				aBuffParameter[i].buffParameter.dwRemainTime = pSkillTbldat->dwKeepTimeInMilliSecs;
+			}
+			else if (aeEffectCode[i] == ACTIVE_BLEED || aeEffectCode[i] == ACTIVE_POISON || aeEffectCode[i] == ACTIVE_STOMACHACHE || aeEffectCode[i] == ACTIVE_BURN)
+			{
+				aBuffParameter[i].byBuffParameterType = DBO_BUFF_PARAMETER_TYPE_DOT;
+				aBuffParameter[i].buffParameter.dwRemainTime = pSkillTbldat->dwKeepTimeInMilliSecs;
+			}
+		}
+
+		DWORD dwDurationInMs = nSeconds * 1000;
+
+		cTarget->GetBuffManager()->RegisterBuff(dwDurationInMs, aeEffectCode, aBuffParameter, INVALID_HOBJECT, BUFF_TYPE_BLESS, pSkillTbldat);
+	}
+}
+
+ACMD(do_setdark)
+{
+	pToken->PopToPeek();
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	BYTE dark = (BYTE)atof(ws2s(strToken).c_str());
+
+	if (dark == 1) {
+		CWorldZone* pWorldZone = pPlayer->GetCurWorldZone();
+		pWorldZone->UpdateZoneInfo(true);
+	}
+	else {
+		CWorldZone* pWorldZone = pPlayer->GetCurWorldZone();
+		pWorldZone->UpdateZoneInfo(false);
+	}
+}
+
+ACMD(do_resetskills)
+{
+	pToken->PopToPeek();
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+
+	std::wstring name = std::wstring(strToken.begin(), strToken.end());
+	const wchar_t* wname = name.c_str();
+
+	CPlayer* target = g_pObjectManager->FindByName(wname);
+	if (!target || !target->IsInitialized())
+	{
+		return;
+	}
+
+	CGameServer* app = (CGameServer*)g_pApp;
+
+	if (target->GetAspectStateId() == ASPECTSTATE_INVALID)
+	{
+		CNtlPacket pQry(sizeof(sGQ_SKILL_INIT_REQ));
+		sGQ_SKILL_INIT_REQ* rQry = (sGQ_SKILL_INIT_REQ*)pQry.GetPacketData();
+		rQry->wOpCode = GQ_SKILL_INIT_REQ;
+		rQry->handle = target->GetID();
+		rQry->charId = target->GetCharID();
+		rQry->dwSP = (DWORD)target->GetLevel() - 1;
+		rQry->bySkillResetMethod = 0;
+		pQry.SetPacketLen(sizeof(sGQ_SKILL_INIT_REQ));
+		app->SendTo(app->GetQueryServerSession(), &pQry);
+	}
+}
+
 ACMD(do_PlayerCount)
 {
+
 	CNtlStringW msg;
 
 	CNtlPacket packetMsg(sizeof(sGU_SYSTEM_DISPLAY_TEXT));
@@ -219,6 +416,7 @@ ACMD(do_setspeed)
 	float fSpeed = (float)atof(ws2s(strToken).c_str());
 
 	pPlayer->UpdateMoveSpeed(fSpeed, fSpeed);
+	pPlayer->UpdateAttackSpeed(300);
 }
 
 ACMD(do_addmob)
@@ -226,44 +424,44 @@ ACMD(do_addmob)
 	pToken->PopToPeek();
 	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
 	TBLIDX MobId = (TBLIDX)atof(ws2s(strToken).c_str());
-	
-		sMOB_TBLDAT* pMOBTblData = (sMOB_TBLDAT*)g_pTableContainer->GetMobTable()->FindData(MobId);
 
-		if (pMOBTblData)
-		{
-			sVECTOR3 spawnloc;
-			spawnloc.x = pPlayer->GetCurLoc().x + rand() % 5;
-			spawnloc.y = pPlayer->GetCurLoc().y;
-			spawnloc.z = pPlayer->GetCurLoc().z + rand() % 5;
+	sMOB_TBLDAT* pMOBTblData = (sMOB_TBLDAT*)g_pTableContainer->GetMobTable()->FindData(MobId);
 
-			sVECTOR3 spawndir;
-			spawndir.x = pPlayer->GetCurDir().x + rand() % 5;
-			spawndir.y = pPlayer->GetCurDir().y;
-			spawndir.z = pPlayer->GetCurDir().z + rand() % 5;
+	if (pMOBTblData)
+	{
+		sVECTOR3 spawnloc;
+		spawnloc.x = pPlayer->GetCurLoc().x + rand() % 5;
+		spawnloc.y = pPlayer->GetCurLoc().y;
+		spawnloc.z = pPlayer->GetCurLoc().z + rand() % 5;
 
-			sSPAWN_TBLDAT sMobSpawn;
-			sMobSpawn.vSpawn_Dir.CopyFrom(spawndir);
-			sMobSpawn.vSpawn_Loc.CopyFrom(spawnloc);
-			sMobSpawn.dwParty_Index = INVALID_DWORD;
-			sMobSpawn.byMove_Range = 30;
-			sMobSpawn.bySpawn_Move_Type = SPAWN_MOVE_WANDER;
-			sMobSpawn.bySpawn_Loc_Range = 30;
-			sMobSpawn.byWander_Range = 30;
-			sMobSpawn.path_Table_Index = INVALID_TBLIDX;
-			sMobSpawn.playScript = INVALID_TBLIDX;
-			sMobSpawn.playScriptScene = INVALID_TBLIDX;
-			sMobSpawn.aiScript = INVALID_TBLIDX;
-			sMobSpawn.aiScriptScene = INVALID_TBLIDX;
-			sMobSpawn.actionPatternTblidx = 1;
+		sVECTOR3 spawndir;
+		spawndir.x = pPlayer->GetCurDir().x + rand() % 5;
+		spawndir.y = pPlayer->GetCurDir().y;
+		spawndir.z = pPlayer->GetCurDir().z + rand() % 5;
 
-			printf("dwFormulaOffset: %u, wUseRace: %u, wMonsterClass: %u, LP:%u, fSettingRate_LP:%f, EP:%u, Str:%u, Con:%u, Foc:%u, Dex:%u, Sol:%u, Eng:%u\n",
-				pMOBTblData->dwFormulaOffset, pMOBTblData->dwMobGroup, pMOBTblData->wMonsterClass, pMOBTblData->dwBasic_LP, pMOBTblData->fSettingRate_LP,
-				pMOBTblData->wBasic_EP,
-				pMOBTblData->wBasicStr, pMOBTblData->wBasicCon, pMOBTblData->wBasicFoc, pMOBTblData->wBasicDex, pMOBTblData->wBasicSol, pMOBTblData->wBasicEng);
+		sSPAWN_TBLDAT sMobSpawn;
+		sMobSpawn.vSpawn_Dir.CopyFrom(spawndir);
+		sMobSpawn.vSpawn_Loc.CopyFrom(spawnloc);
+		sMobSpawn.dwParty_Index = INVALID_DWORD;
+		sMobSpawn.byMove_Range = 30;
+		sMobSpawn.bySpawn_Move_Type = SPAWN_MOVE_WANDER;
+		sMobSpawn.bySpawn_Loc_Range = 30;
+		sMobSpawn.byWander_Range = 30;
+		sMobSpawn.path_Table_Index = INVALID_TBLIDX;
+		sMobSpawn.playScript = INVALID_TBLIDX;
+		sMobSpawn.playScriptScene = INVALID_TBLIDX;
+		sMobSpawn.aiScript = INVALID_TBLIDX;
+		sMobSpawn.aiScriptScene = INVALID_TBLIDX;
+		sMobSpawn.actionPatternTblidx = 1;
 
-			CMonster* pMob = (CMonster*)g_pObjectManager->CreateCharacter(OBJTYPE_MOB);
-			pMob->CreateDataAndSpawn(pPlayer->GetWorldID(), pMOBTblData, &sMobSpawn, false, 0);
-		}		
+		printf("dwFormulaOffset: %u, wUseRace: %u, wMonsterClass: %u, LP:%u, fSettingRate_LP:%f, EP:%u, Str:%u, Con:%u, Foc:%u, Dex:%u, Sol:%u, Eng:%u\n",
+			pMOBTblData->dwFormulaOffset, pMOBTblData->dwMobGroup, pMOBTblData->wMonsterClass, pMOBTblData->dwBasic_LP, pMOBTblData->fSettingRate_LP,
+			pMOBTblData->wBasic_EP,
+			pMOBTblData->wBasicStr, pMOBTblData->wBasicCon, pMOBTblData->wBasicFoc, pMOBTblData->wBasicDex, pMOBTblData->wBasicSol, pMOBTblData->wBasicEng);
+
+		CMonster* pMob = (CMonster*)g_pObjectManager->CreateCharacter(OBJTYPE_MOB);
+		pMob->CreateDataAndSpawn(pPlayer->GetWorldID(), pMOBTblData, &sMobSpawn, false, 0);
+	}
 }
 
 ACMD(do_addmobgroup)
@@ -405,7 +603,22 @@ ACMD(do_additem)
 	if (amount == 0 || amount == INVALID_BYTE)
 		amount = 1;
 
+	pToken->PopToPeek();
+	strToken = pToken->PeekNextToken(NULL, &iLine);
+
 	CPlayer* pTarget = pPlayer;
+
+	if (!strToken.empty())
+	{
+		std::wstring name = std::wstring(strToken.begin(), strToken.end());
+		const wchar_t* wname = name.c_str();
+
+		pTarget = g_pObjectManager->FindByName(wname);
+		if (!pTarget || !pTarget->IsInitialized())
+		{
+			pTarget = pPlayer; // if target not found, use self
+		}
+	}
 
 	if (pTarget->GetPlayerItemContainer()->CountEmptyInventory() >= 1)
 	{
@@ -433,10 +646,28 @@ ACMD(do_addmasteritem)
 
 	TBLIDX itemTblidx = INVALID_TBLIDX;
 
-	if (pPlayer->GetClass() > PC_CLASS_1_LAST)
+	pToken->PopToPeek();
+	strToken = pToken->PeekNextToken(NULL, &iLine);
+
+	CPlayer* pTarget = pPlayer;
+
+	if (!strToken.empty())
+	{
+		std::wstring name = std::wstring(strToken.begin(), strToken.end());
+		const wchar_t* wname = name.c_str();
+
+		pTarget = g_pObjectManager->FindByName(wname);
+		if (!pTarget || !pTarget->IsInitialized())
+		{
+			pTarget = pPlayer; // if target not found, use self
+		}
+	}
+
+
+	if (pTarget->GetClass() > PC_CLASS_1_LAST)
 		return;
 
-	switch (pPlayer->GetClass())
+	switch (pTarget->GetClass())
 	{
 	case PC_CLASS_HUMAN_FIGHTER:
 	{
@@ -511,18 +742,18 @@ ACMD(do_addmasteritem)
 	sITEM_TBLDAT* pTblData = (sITEM_TBLDAT*)g_pTableContainer->GetItemTable()->FindData(itemTblidx);
 	if (pTblData)
 	{
-		if (pPlayer->GetPlayerItemContainer()->GetItemByIdx(itemTblidx) == NULL)
+		if (pTarget->GetPlayerItemContainer()->GetItemByIdx(itemTblidx) == NULL)
 		{
-			std::pair<BYTE, BYTE> inv = pPlayer->GetPlayerItemContainer()->GetEmptyInventory();
+			std::pair<BYTE, BYTE> inv = pTarget->GetPlayerItemContainer()->GetEmptyInventory();
 			if (inv.first != INVALID_BYTE && inv.second != INVALID_BYTE)
-				g_pItemManager->CreateItem(pPlayer, itemTblidx, 1, inv.first, inv.second);
+				g_pItemManager->CreateItem(pTarget, itemTblidx, 1, inv.first, inv.second);
 		}
 	}
 }
 
 ACMD(do_addskill)
 {
-	CGameServer * app = (CGameServer*)g_pApp;
+	CGameServer* app = (CGameServer*)g_pApp;
 
 	pToken->PopToPeek();
 	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
@@ -530,118 +761,204 @@ ACMD(do_addskill)
 
 	WORD wTemp;
 
-	if (pPlayer->GetSkillManager())
-		pPlayer->GetSkillManager()->LearnSkill(SkillId, wTemp, false);
+	pToken->PopToPeek();
+	strToken = pToken->PeekNextToken(NULL, &iLine);
+
+	CPlayer* pTarget = pPlayer;
+
+	if (!strToken.empty())
+	{
+		std::wstring name = std::wstring(strToken.begin(), strToken.end());
+		const wchar_t* wname = name.c_str();
+
+		pTarget = g_pObjectManager->FindByName(wname);
+		if (!pTarget || !pTarget->IsInitialized())
+		{
+			pTarget = pPlayer; // if target not found, use self
+		}
+	}
+
+	if (pTarget->GetSkillManager())
+		pTarget->GetSkillManager()->LearnSkill(SkillId, wTemp, false);
 }
 ACMD(do_fly)
 {
 	CGameServer* app = (CGameServer*)g_pApp;
 	WORD wTemp;
-	if (pPlayer->GetLevel() < 30)
+
+	pToken->PopToPeek();
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+
+	CPlayer* pTarget = pPlayer;
+
+	if (!strToken.empty())
+	{
+		std::wstring name = std::wstring(strToken.begin(), strToken.end());
+		const wchar_t* wname = name.c_str();
+
+		pTarget = g_pObjectManager->FindByName(wname);
+		if (!pTarget || !pTarget->IsInitialized())
+		{
+			pTarget = pPlayer; // if target not found, use self
+		}
+	}
+
+	if (pTarget->GetLevel() < 30)
 		return;
 
-	switch (pPlayer->GetClass())
+	switch (pTarget->GetClass())
 	{
-	case PC_CLASS_HUMAN_FIGHTER:	
-	case PC_CLASS_STREET_FIGHTER: 
+	case PC_CLASS_HUMAN_FIGHTER:
+	case PC_CLASS_STREET_FIGHTER:
 	case PC_CLASS_SWORD_MASTER:
 	{
-		if (pPlayer->GetSkillManager())
-			pPlayer->GetSkillManager()->LearnSkill(20911, wTemp, false);
+		if (pTarget->GetSkillManager())
+			pTarget->GetSkillManager()->LearnSkill(20911, wTemp, false);
 		break;
-	}		
+	}
 	case PC_CLASS_HUMAN_MYSTIC:
 	case PC_CLASS_CRANE_ROSHI:
 	case PC_CLASS_TURTLE_ROSHI:
 	{
-		if (pPlayer->GetSkillManager())
-			pPlayer->GetSkillManager()->LearnSkill(120911, wTemp, false);
+		if (pTarget->GetSkillManager())
+			pTarget->GetSkillManager()->LearnSkill(120911, wTemp, false);
 		break;
 	}
 	case PC_CLASS_NAMEK_FIGHTER:
 	case PC_CLASS_DARK_WARRIOR:
 	case PC_CLASS_SHADOW_KNIGHT:
 	{
-		if (pPlayer->GetSkillManager())
-			pPlayer->GetSkillManager()->LearnSkill(320811, wTemp, false);
+		if (pTarget->GetSkillManager())
+			pTarget->GetSkillManager()->LearnSkill(320811, wTemp, false);
 		break;
 	}
 	case PC_CLASS_NAMEK_MYSTIC:
 	case PC_CLASS_DENDEN_HEALER:
 	case PC_CLASS_POCO_SUMMONER:
 	{
-		if (pPlayer->GetSkillManager())
-			pPlayer->GetSkillManager()->LearnSkill(421111, wTemp, false);
+		if (pTarget->GetSkillManager())
+			pTarget->GetSkillManager()->LearnSkill(421111, wTemp, false);
 		break;
 	}
 	case PC_CLASS_MIGHTY_MAJIN:
 	case PC_CLASS_ULTI_MA:
 	case PC_CLASS_GRAND_MA:
 	{
-		if (pPlayer->GetSkillManager())
-			pPlayer->GetSkillManager()->LearnSkill(520241, wTemp, false);
+		if (pTarget->GetSkillManager())
+			pTarget->GetSkillManager()->LearnSkill(520241, wTemp, false);
 		break;
 	}
 	case PC_CLASS_WONDER_MAJIN:
 	case PC_CLASS_PLAS_MA:
 	case PC_CLASS_KAR_MA:
 	{
-		if (pPlayer->GetSkillManager())
-			pPlayer->GetSkillManager()->LearnSkill(620231, wTemp, false);
+		if (pTarget->GetSkillManager())
+			pTarget->GetSkillManager()->LearnSkill(620231, wTemp, false);
 		break;
 	}
 
 	default: return; break;
-	}	
+	}
 }
 ACMD(do_addskill2)
 {
-	CGameServer * app = (CGameServer*)NtlSfxGetApp();
+	CGameServer* app = (CGameServer*)NtlSfxGetApp();
 
 	TBLIDX SkillId = INVALID_TBLIDX;
 
-	switch (pPlayer->GetClass())
-	{
-		case PC_CLASS_STREET_FIGHTER: SkillId = 729991; break;
-		case PC_CLASS_SWORD_MASTER: SkillId = 829991; break;
-		case PC_CLASS_CRANE_ROSHI: SkillId = 929991; break;
-		case PC_CLASS_TURTLE_ROSHI: SkillId = 1029991; break;
-		case PC_CLASS_DARK_WARRIOR: SkillId = 1329991; break;
-		case PC_CLASS_SHADOW_KNIGHT: SkillId = 1429991; break;
-		case PC_CLASS_DENDEN_HEALER: SkillId = 1529991; break;
-		case PC_CLASS_POCO_SUMMONER: SkillId = 1629991; break;
-		case PC_CLASS_ULTI_MA: SkillId = 1729991; break;
-		case PC_CLASS_GRAND_MA: SkillId = 1829991; break;
-		case PC_CLASS_PLAS_MA: SkillId = 1929991; break;
-		case PC_CLASS_KAR_MA: SkillId = 2029991; break;
+	pToken->PopToPeek();
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
 
-		default: return; break;
+	CPlayer* pTarget = pPlayer;
+
+	if (!strToken.empty())
+	{
+		std::wstring name = std::wstring(strToken.begin(), strToken.end());
+		const wchar_t* wname = name.c_str();
+
+		pTarget = g_pObjectManager->FindByName(wname);
+		if (!pTarget || !pTarget->IsInitialized())
+		{
+			pTarget = pPlayer; // if target not found, use self
+		}
+	}
+
+	switch (pTarget->GetClass())
+	{
+	case PC_CLASS_STREET_FIGHTER: SkillId = 729991; break;
+	case PC_CLASS_SWORD_MASTER: SkillId = 829991; break;
+	case PC_CLASS_CRANE_ROSHI: SkillId = 929991; break;
+	case PC_CLASS_TURTLE_ROSHI: SkillId = 1029991; break;
+	case PC_CLASS_DARK_WARRIOR: SkillId = 1329991; break;
+	case PC_CLASS_SHADOW_KNIGHT: SkillId = 1429991; break;
+	case PC_CLASS_DENDEN_HEALER: SkillId = 1529991; break;
+	case PC_CLASS_POCO_SUMMONER: SkillId = 1629991; break;
+	case PC_CLASS_ULTI_MA: SkillId = 1729991; break;
+	case PC_CLASS_GRAND_MA: SkillId = 1829991; break;
+	case PC_CLASS_PLAS_MA: SkillId = 1929991; break;
+	case PC_CLASS_KAR_MA: SkillId = 2029991; break;
+
+	default: return; break;
 	}
 
 	WORD wTemp;
 
 
-	if (pPlayer->GetSkillManager())
-		pPlayer->GetSkillManager()->LearnSkill(SkillId, wTemp, false);
+	if (pTarget->GetSkillManager())
+		pTarget->GetSkillManager()->LearnSkill(SkillId, wTemp, false);
 }
 
 ACMD(do_r)
 {
-	pPlayer->UpdateCurLpEp(pPlayer->GetMaxLP(), pPlayer->GetMaxEP(), true, false);
+	pToken->PopToPeek();
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+
+	CPlayer* pTarget = pPlayer;
+
+	if (!strToken.empty())
+	{
+		std::wstring name = std::wstring(strToken.begin(), strToken.end());
+		const wchar_t* wname = name.c_str();
+
+		pTarget = g_pObjectManager->FindByName(wname);
+		if (!pTarget || !pTarget->IsInitialized())
+		{
+			pTarget = pPlayer; // if target not found, use self
+		}
+	}
+
+	pTarget->UpdateCurLpEp(pPlayer->GetMaxLP(), pPlayer->GetMaxEP(), true, false);
 }
 
 ACMD(do_addhtb)
 {
-	CGameServer * app = (CGameServer*)NtlSfxGetApp();
+	CGameServer* app = (CGameServer*)NtlSfxGetApp();
 
 	pToken->PopToPeek();
 	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
 	TBLIDX id = (TBLIDX)atof(ws2s(strToken).c_str());
 	WORD wTemp;
 
-	if (pPlayer->IsGameMaster() == false)
+	pToken->PopToPeek();
+	strToken = pToken->PeekNextToken(NULL, &iLine);
+
+	CPlayer* pTarget = pPlayer;
+
+	if (!strToken.empty())
 	{
-		switch (pPlayer->GetClass())
+		std::wstring name = std::wstring(strToken.begin(), strToken.end());
+		const wchar_t* wname = name.c_str();
+
+		pTarget = g_pObjectManager->FindByName(wname);
+		if (!pTarget || !pTarget->IsInitialized())
+		{
+			pTarget = pPlayer; // if target not found, use self
+		}
+	}
+
+	if (pTarget->IsGameMaster() == false)
+	{
+		switch (pTarget->GetClass())
 		{
 		case PC_CLASS_STREET_FIGHTER:
 		case PC_CLASS_SWORD_MASTER:
@@ -675,23 +992,38 @@ ACMD(do_addhtb)
 		}
 	}
 
-	pPlayer->GetHtbSkillManager()->LearnHtbSkill(id, wTemp);
+	pTarget->GetHtbSkillManager()->LearnHtbSkill(id, wTemp);
 }
 
 ACMD(do_setzenny)
 {
+	CPlayer* pCurrentPlayer = pPlayer;
+
 	pToken->PopToPeek();
 	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
 	DWORD zeni = (DWORD)atof(ws2s(strToken).c_str());
 
+	pToken->PopToPeek();
+	strToken = pToken->PeekNextToken(NULL, &iLine);
+	std::wstring name = std::wstring(strToken.begin(), strToken.end());
+	const wchar_t* wname = name.c_str();
+
+	if (!name.empty())
+	{
+		CPlayer* target = g_pObjectManager->FindByName(wname);
+		if (target && target->IsInitialized()) {
+			pCurrentPlayer = target;
+		}
+	}
+
 	ERR_LOG(LOG_USER, "Player: %u receive %u zeni from gm command", pPlayer->GetCharID(), zeni);
 
-	pPlayer->UpdateZeni(ZENNY_CHANGE_TYPE_CHEAT, zeni, true);
+	pCurrentPlayer->UpdateZeni(ZENNY_CHANGE_TYPE_CHEAT, zeni, true);
 }
 
 ACMD(do_setlevel)
 {
-	CGameServer * app = (CGameServer*)NtlSfxGetApp();
+	CGameServer* app = (CGameServer*)NtlSfxGetApp();
 
 	CPlayer* pTarget = pPlayer;
 
@@ -699,15 +1031,29 @@ ACMD(do_setlevel)
 	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
 	BYTE level = (BYTE)atof(ws2s(strToken).c_str());
 
+	pToken->PopToPeek();
+	strToken = pToken->PeekNextToken(NULL, &iLine);
+
+	if (!strToken.empty())
+	{
+		std::wstring name = std::wstring(strToken.begin(), strToken.end());
+		const wchar_t* wname = name.c_str();
+
+		pTarget = g_pObjectManager->FindByName(wname);
+		if (!pTarget || !pTarget->IsInitialized())
+		{
+			pTarget = pPlayer; // if target not found, use self
+		}
+	}
 
 	RwUInt32 curlv = pTarget->GetLevel();
-	sEXP_TBLDAT *ExpData = (sEXP_TBLDAT *)g_pTableContainer->GetExpTable()->FindData(level);
+	sEXP_TBLDAT* ExpData = (sEXP_TBLDAT*)g_pTableContainer->GetExpTable()->FindData(level);
 	if (!ExpData)
 		return;
 
 
 	CNtlPacket packet(sizeof(sGU_UPDATE_CHAR_LEVEL));
-	sGU_UPDATE_CHAR_LEVEL * res = (sGU_UPDATE_CHAR_LEVEL*)packet.GetPacketData();
+	sGU_UPDATE_CHAR_LEVEL* res = (sGU_UPDATE_CHAR_LEVEL*)packet.GetPacketData();
 	res->wOpCode = GU_UPDATE_CHAR_LEVEL;
 	res->byCurLevel = level;
 	res->byPrevLevel = curlv;
@@ -748,7 +1094,7 @@ ACMD(do_setlevel2)
 {
 	CGameServer* app = (CGameServer*)NtlSfxGetApp();
 
-	CPlayer* pTarget = pPlayer;	
+	CPlayer* pTarget = pPlayer;
 
 	pToken->PopToPeek();
 	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
@@ -756,7 +1102,7 @@ ACMD(do_setlevel2)
 
 
 	RwUInt32 curlv = pTarget->GetLevel();
-	if (level <= curlv  || level > 70)
+	if (level <= curlv || level > 70)
 		return;
 	sEXP_TBLDAT* ExpData = (sEXP_TBLDAT*)g_pTableContainer->GetExpTable()->FindData(level);
 	if (!ExpData)
@@ -839,7 +1185,7 @@ ACMD(do_notice)
 	CGameServer* app = (CGameServer*)g_pApp;
 
 	CNtlPacket packet(sizeof(sGT_SYSTEM_DISPLAY_TEXT));
-	sGT_SYSTEM_DISPLAY_TEXT * res = (sGT_SYSTEM_DISPLAY_TEXT*)packet.GetPacketData();
+	sGT_SYSTEM_DISPLAY_TEXT* res = (sGT_SYSTEM_DISPLAY_TEXT*)packet.GetPacketData();
 	res->wOpCode = GT_SYSTEM_DISPLAY_TEXT;
 	res->serverChannelId = INVALID_SERVERCHANNELID;
 	res->byDisplayType = byDisType;
@@ -872,7 +1218,7 @@ ACMD(do_pm)
 	if (CPlayer* pTarget = g_pObjectManager->FindByName(strName.c_str()))
 	{
 		CNtlPacket packet(sizeof(sGU_SYSTEM_DISPLAY_TEXT));
-		sGU_SYSTEM_DISPLAY_TEXT * res = (sGU_SYSTEM_DISPLAY_TEXT*)packet.GetPacketData();
+		sGU_SYSTEM_DISPLAY_TEXT* res = (sGU_SYSTEM_DISPLAY_TEXT*)packet.GetPacketData();
 		res->wOpCode = GU_SYSTEM_DISPLAY_TEXT;
 		res->wMessageLengthInUnicode = (WORD)text.length();
 		res->byDisplayType = SERVER_TEXT_EMERGENCY;
@@ -885,13 +1231,13 @@ ACMD(do_pm)
 ACMD(do_teleport)
 {
 	pToken->PopToPeek();
-	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);	
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
 	int Portal = (BYTE)atof(ws2s(strToken).c_str());
 	sPORTAL_TBLDAT* pPortalTblData = (sPORTAL_TBLDAT*)g_pTableContainer->GetPortalTable()->FindData(Portal);
 	if (pPortalTblData == NULL)
 	{
 		return;
-	}	
+	}
 
 	pPlayer->StartTeleport(pPortalTblData->vLoc, pPortalTblData->vDir, pPortalTblData->worldId, TELEPORT_TYPE_COMMAND);
 }
@@ -904,24 +1250,41 @@ ACMD(do_world)
 
 	CGameServer* app = (CGameServer*)g_pApp;
 
+	pToken->PopToPeek();
+	strToken = pToken->PeekNextToken(NULL, &iLine);
+
+	CPlayer* pTarget = pPlayer;
+
+	if (!strToken.empty())
+	{
+		std::wstring name = std::wstring(strToken.begin(), strToken.end());
+		const wchar_t* wname = name.c_str();
+
+		pTarget = g_pObjectManager->FindByName(wname);
+		if (!pTarget || !pTarget->IsInitialized())
+		{
+			pTarget = pPlayer; // if target not found, use self
+		}
+	}
+
 	sWORLD_TBLDAT* pWorldTbldat = (sWORLD_TBLDAT*)g_pTableContainer->GetWorldTable()->FindData(worldId);
 	if (pWorldTbldat == NULL)
 	{
 		return;
 	}
 
-	/*if (CWorld* pWorld = app->GetGameMain()->GetWorldManager()->FindWorld(worldId))
+	if (CWorld* pWorld = app->GetGameMain()->GetWorldManager()->FindWorld(worldId))
 	{
-		pPlayer->StartTeleport(pWorld->GetTbldat()->vDefaultLoc, pPlayer->GetCurDir(), worldId, TELEPORT_TYPE_COMMAND);
+		pTarget->StartTeleport(pWorld->GetTbldat()->vDefaultLoc, pTarget->GetCurDir(), worldId, TELEPORT_TYPE_COMMAND);
 	}
 	else
-	{*/
+	{
 		CWorld* pWorld2 = app->GetGameMain()->GetWorldManager()->CreateWorld(pWorldTbldat);
 		if (pWorld2 == NULL)
 			return;
 
-		pPlayer->StartTeleport(pWorld2->GetTbldat()->vStart1Loc, pPlayer->GetCurDir(), pWorld2->GetID(), TELEPORT_TYPE_COMMAND);
-	//}
+		pTarget->StartTeleport(pWorld2->GetTbldat()->vStart1Loc, pTarget->GetCurDir(), pWorld2->GetID(), TELEPORT_TYPE_COMMAND);
+	}
 }
 
 
@@ -934,8 +1297,10 @@ ACMD(do_warp)
 	const wchar_t* wname = name.c_str();
 
 	CCharacter* target = g_pObjectManager->FindByName(wname);
-	if (target && target->GetCurWorld() && target->GetCurWorld()->GetTbldat()->bDynamic == false) //avoid teleporting by gm code into dungeon
+	if (target)
+	{
 		pPlayer->StartTeleport(target->GetCurLoc(), target->GetCurDir(), target->GetWorldID(), TELEPORT_TYPE_COMMAND);
+	}
 }
 
 ACMD(do_call)
@@ -947,8 +1312,26 @@ ACMD(do_call)
 	const wchar_t* wname = name.c_str();
 
 	CCharacter* target = g_pObjectManager->FindByName(wname);
-	if (target && target->GetCurWorld()) //avoid teleporting by gm code into dungeon
-		target->StartTeleport(pPlayer->GetCurLoc(), pPlayer->GetCurDir(), pPlayer->GetWorldID(), TELEPORT_TYPE_COMMAND);
+
+	pToken->PopToPeek();
+	strToken = pToken->PeekNextToken(NULL, &iLine);
+
+	CCharacter* pPlayerTarget = pPlayer;
+	if (!strToken.empty())
+	{
+		std::wstring name = std::wstring(strToken.begin(), strToken.end());
+		const wchar_t* wname = name.c_str();
+
+		pPlayerTarget = g_pObjectManager->FindByName(wname);
+		if (pPlayerTarget && pPlayerTarget->IsInitialized())
+		{
+			pPlayerTarget = pPlayerTarget;
+		}
+	}
+
+	//if (target && target->GetCurWorld()) //avoid teleporting by gm code into dungeon
+	if (target)
+		target->StartTeleport(pPlayerTarget->GetCurLoc(), pPlayerTarget->GetCurDir(), pPlayerTarget->GetWorldID(), TELEPORT_TYPE_COMMAND);
 }
 ACMD(do_TeleportAll)
 {
@@ -959,28 +1342,45 @@ ACMD(do_TeleportAll)
 	const wchar_t* wname = name.c_str();
 	//printf("Name %s \n", name.c_str());
 
-	CNtlVector vPos(pPlayer->GetCurLoc());		
+	CNtlVector vPos(pPlayer->GetCurLoc());
 
 	g_pObjectManager->FindAll(vPos, pPlayer->GetCurDir(), pPlayer->GetWorldID());
 
-	/*if (target) //avoid teleporting by gm code into dungeon
-		target->StartTeleport(vPos, pPlayer->GetCurDir(), pPlayer->GetWorldID(), TELEPORT_TYPE_COMMAND);	*/
+	//if (target) //avoid teleporting by gm code into dungeon
+	//	target->StartTeleport(vPos, pPlayer->GetCurDir(), pPlayer->GetWorldID(), TELEPORT_TYPE_COMMAND);
 }
 ACMD(do_shutdown)
 {
-	CGameServer * app = (CGameServer*)g_pApp;
+	CGameServer* app = (CGameServer*)g_pApp;
 
 	app->GetGameProcessor()->StartServerShutdownEvent();
 }
 
 ACMD(do_setadult)
 {
+	CPlayer* pTarget = pPlayer;
+
 	pToken->PopToPeek();
 	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
 	int n = (int)atof(ws2s(strToken).c_str());
 	bool bAdultSet = n != 0;
 
-	pPlayer->UpdateAdult(bAdultSet);
+	pToken->PopToPeek();
+	strToken = pToken->PeekNextToken(NULL, &iLine);
+
+	if (!strToken.empty())
+	{
+		std::wstring name = std::wstring(strToken.begin(), strToken.end());
+		const wchar_t* wname = name.c_str();
+
+		pTarget = g_pObjectManager->FindByName(wname);
+		if (!pTarget || !pTarget->IsInitialized())
+		{
+			pTarget = pPlayer; // if target not found, use self
+		}
+	}
+
+	pTarget->UpdateAdult(bAdultSet);
 }
 
 ACMD(do_setclass)
@@ -988,6 +1388,27 @@ ACMD(do_setclass)
 	pToken->PopToPeek();
 	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
 	BYTE byClass = (BYTE)atof(ws2s(strToken).c_str());
+
+	pToken->PopToPeek();
+	strToken = pToken->PeekNextToken(NULL, &iLine);
+
+	CPlayer* target = pPlayer;
+
+	if (!strToken.empty())
+	{
+		std::wstring name = std::wstring(strToken.begin(), strToken.end());
+		const wchar_t* wname = name.c_str();
+
+		target = g_pObjectManager->FindByName(wname);
+		if (target && target->IsInitialized()) {
+			pPlayer = target;
+		}
+		else
+		{
+			ERR_LOG(LOG_GENERAL, "Player %s not found", ws2s(name).c_str());
+			return;
+		}
+	}
 
 	pPlayer->UpdateClass(byClass);
 }
@@ -1018,23 +1439,55 @@ ACMD(do_kill)
 
 ACMD(do_delallitems)
 {
-	pPlayer->GetPlayerItemContainer()->DeleteAllItems();
+	pToken->PopToPeek();
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+
+	CPlayer* pTarget = pPlayer;
+
+	if (!strToken.empty())
+	{
+		std::wstring name = std::wstring(strToken.begin(), strToken.end());
+		const wchar_t* wname = name.c_str();
+
+		pTarget = g_pObjectManager->FindByName(wname);
+		if (!pTarget || !pTarget->IsInitialized())
+		{
+			pTarget = pPlayer; // if target not found, use self
+		}
+	}
+
+	pTarget->GetPlayerItemContainer()->DeleteAllItems();
 }
 
 ACMD(do_god)
 {
-	pPlayer->GetCharAtt()->SetPhysicalOffence(INVALID_WORD);
-	pPlayer->GetCharAtt()->SetPhysicalDefence(INVALID_WORD);
-	pPlayer->GetCharAtt()->SetEnergyOffence(INVALID_WORD);
+	CPlayer* pCurrentPlayer = pPlayer;
 
-	pPlayer->UpdateAttackSpeed(100);
+	pToken->PopToPeek();
+	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+	std::wstring name = std::wstring(strToken.begin(), strToken.end());
+	const wchar_t* wname = name.c_str();
 
-	if (pPlayer->GetImmortalMode() == eIMMORTAL_MODE_OFF)
-		pPlayer->SetImmortalMode(eIMMORTAL_MODE_NORMAL);
+	if (!name.empty())
+	{
+		CPlayer* target = g_pObjectManager->FindByName(wname);
+		if (target && target->IsInitialized()) {
+			pCurrentPlayer = target;
+		}
+	}
+
+	pCurrentPlayer->GetCharAtt()->SetPhysicalOffence(INVALID_WORD);
+	pCurrentPlayer->GetCharAtt()->SetPhysicalDefence(INVALID_WORD);
+	pCurrentPlayer->GetCharAtt()->SetEnergyOffence(INVALID_WORD);
+
+	pCurrentPlayer->UpdateAttackSpeed(300);
+
+	if (pCurrentPlayer->GetImmortalMode() == eIMMORTAL_MODE_OFF)
+		pCurrentPlayer->SetImmortalMode(eIMMORTAL_MODE_NORMAL);
 	else
-		pPlayer->SetImmortalMode(eIMMORTAL_MODE_OFF);
+		pCurrentPlayer->SetImmortalMode(eIMMORTAL_MODE_OFF);
 
-	pPlayer->UpdateMoveSpeed(25.f, 25.f);
+	pCurrentPlayer->UpdateMoveSpeed(35.f, 35.f);
 }
 
 ACMD(do_invincible)
@@ -1050,6 +1503,23 @@ ACMD(do_invincible)
 	if (nSeconds == 0 || nSeconds > 3600)
 		nSeconds = 3600;
 
+	pToken->PopToPeek();
+	strToken = pToken->PeekNextToken(NULL, &iLine);
+
+	CPlayer* pTarget = pPlayer;
+
+	if (!strToken.empty())
+	{
+		std::wstring name = std::wstring(strToken.begin(), strToken.end());
+		const wchar_t* wname = name.c_str();
+
+		pTarget = g_pObjectManager->FindByName(wname);
+		if (!pTarget || !pTarget->IsInitialized())
+		{
+			pTarget = pPlayer; // if target not found, use self
+		}
+	}
+
 	sDBO_BUFF_PARAMETER aBuffParameter[NTL_MAX_EFFECT_IN_SKILL];
 	sSKILL_TBLDAT* pTempSkillTbldat = (sSKILL_TBLDAT*)g_pTableContainer->GetSkillTable()->FindData(2385);
 
@@ -1063,7 +1533,7 @@ ACMD(do_invincible)
 
 	DWORD dwDurationInMs = nSeconds * 1000;
 
-	pPlayer->GetBuffManager()->RegisterBuff(dwDurationInMs, aeEffectCode, aBuffParameter, INVALID_HOBJECT, BUFF_TYPE_BLESS, pTempSkillTbldat);
+	pTarget->GetBuffManager()->RegisterBuff(dwDurationInMs, aeEffectCode, aBuffParameter, INVALID_HOBJECT, BUFF_TYPE_BLESS, pTempSkillTbldat);
 }
 
 ACMD(do_bann)
@@ -1139,7 +1609,7 @@ ACMD(do_dbann)
 	}
 
 	CNtlPacket pQry(sizeof(sGQ_ACCOUNT_BANN));
-	sGQ_ACCOUNT_BANN * qRes = (sGQ_ACCOUNT_BANN *)pQry.GetPacketData();
+	sGQ_ACCOUNT_BANN* qRes = (sGQ_ACCOUNT_BANN*)pQry.GetPacketData();
 	qRes->wOpCode = GQ_ACCOUNT_BANN;
 	qRes->gmAccountID = pPlayer->GetAccountID();
 	qRes->targetAccountID = accid;
@@ -1210,7 +1680,7 @@ ACMD(do_BatleEvent) //despawn all monster around player
 	vPos.z = -72.067;
 	vPos.z = -92.004;
 
-	CPlayer* pNextPlayer = NULL;	
+	CPlayer* pNextPlayer = NULL;
 
 	CWorldCell::QUADPAGE page = pWorldCell->GetCellQuadPage(pPlayer->GetCurLoc());
 	for (int dir = CWorldCell::QUADPAGE_FIRST; dir < CWorldCell::QUADPAGE_COUNT; dir++)
@@ -1236,15 +1706,15 @@ ACMD(do_BatleEvent) //despawn all monster around player
 					{
 						CWorld* pWorld2 = app->GetGameMain()->GetWorldManager()->CreateWorld(pWorldTbldat);
 						if (pWorld2 == NULL)
-						return;
+							return;
 
 						pMobTarget->StartTeleport(vPos, pMobTarget->GetCurDir(), pWorld2->GetID(), TELEPORT_TYPE_COMMAND);
 					}
 
 				}
-				
+
 				pMobTarget = pNextPlayer;
-			}			
+			}
 		}
 	}
 }
@@ -1292,7 +1762,7 @@ ACMD(do_warfog)
 	CGameServer* app = (CGameServer*)g_pApp;
 	pToken->PopToPeek();
 	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
-	
+
 	CTriggerObject* pNextObj = NULL;
 	CTriggerObject* pObj = (CTriggerObject*)pPlayer->GetCurWorld()->GetObjectList()->GetFirst(OBJTYPE_TOBJECT);
 	while (pObj)
@@ -1306,7 +1776,7 @@ ACMD(do_warfog)
 				if (pPlayer->AddWarFogFlag(pObj->GetContent()))
 				{
 					CNtlPacket packetQry(sizeof(sGQ_WAR_FOG_UPDATE_REQ));
-					sGQ_WAR_FOG_UPDATE_REQ * resQry = (sGQ_WAR_FOG_UPDATE_REQ*)packetQry.GetPacketData();
+					sGQ_WAR_FOG_UPDATE_REQ* resQry = (sGQ_WAR_FOG_UPDATE_REQ*)packetQry.GetPacketData();
 					resQry->wOpCode = GQ_WAR_FOG_UPDATE_REQ;
 					resQry->charID = pPlayer->GetCharID();
 					resQry->contentsTblidx = pObj->GetContent();
@@ -1323,6 +1793,8 @@ ACMD(do_warfog)
 
 ACMD(do_upgrade)
 {
+	CPlayer* pTarget = pPlayer;
+
 	CGameServer* app = (CGameServer*)g_pApp;
 	pToken->PopToPeek();
 	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
@@ -1330,11 +1802,26 @@ ACMD(do_upgrade)
 
 	nGrade = (nGrade > NTL_ITEM_MAX_GRADE) ? NTL_ITEM_MAX_GRADE : nGrade;
 
+	pToken->PopToPeek();
+	strToken = pToken->PeekNextToken(NULL, &iLine);
+
+	if (!strToken.empty())
+	{
+		std::wstring name = std::wstring(strToken.begin(), strToken.end());
+		const wchar_t* wname = name.c_str();
+
+		pTarget = g_pObjectManager->FindByName(wname);
+		if (!pTarget || !pTarget->IsInitialized())
+		{
+			pTarget = pPlayer; // if target not found, use self
+		}
+	}
+
 	int nCount = 0;
 
 	for (int i = 0; i < EQUIP_SLOT_TYPE_SCOUTER; i++)
 	{
-		CItem* pItem = pPlayer->GetPlayerItemContainer()->GetItem(CONTAINER_TYPE_EQUIP, i);
+		CItem* pItem = pTarget->GetPlayerItemContainer()->GetItem(CONTAINER_TYPE_EQUIP, i);
 		if (pItem)
 		{
 			if (pItem->GetGrade() != nGrade)
@@ -1342,18 +1829,18 @@ ACMD(do_upgrade)
 				pItem->SetGrade(nGrade);
 
 				CNtlPacket packet(sizeof(sGU_ITEM_UPDATE));
-				sGU_ITEM_UPDATE * res = (sGU_ITEM_UPDATE*)packet.GetPacketData();
+				sGU_ITEM_UPDATE* res = (sGU_ITEM_UPDATE*)packet.GetPacketData();
 				res->wOpCode = GU_ITEM_UPDATE;
 				res->handle = pItem->GetID();
 				memcpy(&res->sItemData, &pItem->GetItemData(), sizeof(sITEM_DATA));
 				packet.SetPacketLen(sizeof(sGU_ITEM_UPDATE));
-				pPlayer->SendPacket(&packet);
+				pTarget->SendPacket(&packet);
 
 				CNtlPacket pQry(sizeof(sGQ_ITEM_UPDATE_REQ));
-				sGQ_ITEM_UPDATE_REQ * rQry = (sGQ_ITEM_UPDATE_REQ *)pQry.GetPacketData();
+				sGQ_ITEM_UPDATE_REQ* rQry = (sGQ_ITEM_UPDATE_REQ*)pQry.GetPacketData();
 				rQry->wOpCode = GQ_ITEM_UPDATE_REQ;
-				rQry->handle = pPlayer->GetID();
-				rQry->charId = pPlayer->GetCharID();
+				rQry->handle = pTarget->GetID();
+				rQry->charId = pTarget->GetCharID();
 				memcpy(&rQry->sItem, &pItem->GetItemData(), sizeof(sITEM_DATA));
 				pQry.SetPacketLen(sizeof(sGQ_ITEM_UPDATE_REQ));
 				app->SendTo(app->GetQueryServerSession(), &pQry);
@@ -1363,8 +1850,8 @@ ACMD(do_upgrade)
 		}
 	}
 
-	if(nCount > 0)
-		pPlayer->GetCharAtt()->CalculateAll();
+	if (nCount > 0)
+		pTarget->GetCharAtt()->CalculateAll();
 }
 
 ACMD(do_setitemrank)
@@ -1388,7 +1875,7 @@ ACMD(do_setitemrank)
 				pItem->SetRank(nRank);
 
 				CNtlPacket packet(sizeof(sGU_ITEM_UPDATE));
-				sGU_ITEM_UPDATE * res = (sGU_ITEM_UPDATE*)packet.GetPacketData();
+				sGU_ITEM_UPDATE* res = (sGU_ITEM_UPDATE*)packet.GetPacketData();
 				res->wOpCode = GU_ITEM_UPDATE;
 				res->handle = pItem->GetID();
 				memcpy(&res->sItemData, &pItem->GetItemData(), sizeof(sITEM_DATA));
@@ -1396,7 +1883,7 @@ ACMD(do_setitemrank)
 				pPlayer->SendPacket(&packet);
 
 				CNtlPacket pQry(sizeof(sGQ_ITEM_UPDATE_REQ));
-				sGQ_ITEM_UPDATE_REQ * rQry = (sGQ_ITEM_UPDATE_REQ *)pQry.GetPacketData();
+				sGQ_ITEM_UPDATE_REQ* rQry = (sGQ_ITEM_UPDATE_REQ*)pQry.GetPacketData();
 				rQry->wOpCode = GQ_ITEM_UPDATE_REQ;
 				rQry->handle = pPlayer->GetID();
 				rQry->charId = pPlayer->GetCharID();
@@ -1447,7 +1934,7 @@ ACMD(do_mute)
 	}
 
 	CNtlPacket packet(sizeof(sGT_UPDATE_PUNISH));
-	sGT_UPDATE_PUNISH * res = (sGT_UPDATE_PUNISH*)packet.GetPacketData();
+	sGT_UPDATE_PUNISH* res = (sGT_UPDATE_PUNISH*)packet.GetPacketData();
 	res->wOpCode = GT_UPDATE_PUNISH;
 	res->accountId = pPlayer->GetAccountID();
 	res->dwDurationInMinute = dwDuration;
@@ -1471,7 +1958,7 @@ ACMD(do_unmute)
 	std::wstring name = std::wstring(strToken.begin(), strToken.end());
 
 	CNtlPacket packet(sizeof(sGT_UPDATE_PUNISH));
-	sGT_UPDATE_PUNISH * res = (sGT_UPDATE_PUNISH*)packet.GetPacketData();
+	sGT_UPDATE_PUNISH* res = (sGT_UPDATE_PUNISH*)packet.GetPacketData();
 	res->wOpCode = GT_UPDATE_PUNISH;
 	res->accountId = pPlayer->GetAccountID();
 	res->dwDurationInMinute = 0;
@@ -1566,7 +2053,7 @@ ACMD(do_addtitle)
 	pToken->PopToPeek();
 	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
 	TBLIDX titleIdx = (TBLIDX)atof(ws2s(strToken).c_str());
-		
+
 	CPlayer* pTarget = pPlayer;
 
 	strToken = pToken->PeekNextToken(NULL, &iLine);
@@ -1574,7 +2061,7 @@ ACMD(do_addtitle)
 	const wchar_t* wname = name.c_str();
 
 	CPlayer* destPc = g_pObjectManager->FindByName(wname);
-	
+
 
 	if (destPc != NULL)
 	{
@@ -1677,7 +2164,7 @@ ACMD(do_bind)
 	if (pPlayer->GetCurWorld() && pPlayer->GetCurWorld()->GetTbldat()->bDynamic == false)
 	{
 		CNtlPacket packetQry(sizeof(sGQ_PC_UPDATE_BIND_REQ));
-		sGQ_PC_UPDATE_BIND_REQ * resQry = (sGQ_PC_UPDATE_BIND_REQ *)packetQry.GetPacketData();
+		sGQ_PC_UPDATE_BIND_REQ* resQry = (sGQ_PC_UPDATE_BIND_REQ*)packetQry.GetPacketData();
 		resQry->wOpCode = GQ_PC_UPDATE_BIND_REQ;
 		resQry->charId = pPlayer->GetCharID();
 		resQry->handle = pPlayer->GetID();
@@ -1709,7 +2196,7 @@ ACMD(do_exp)
 		WCHAR* msg = L"Receive EXP has been disabled";
 
 		CNtlPacket packet(sizeof(sGU_SYSTEM_DISPLAY_TEXT));
-		sGU_SYSTEM_DISPLAY_TEXT * res = (sGU_SYSTEM_DISPLAY_TEXT*)packet.GetPacketData();
+		sGU_SYSTEM_DISPLAY_TEXT* res = (sGU_SYSTEM_DISPLAY_TEXT*)packet.GetPacketData();
 		res->wOpCode = GU_SYSTEM_DISPLAY_TEXT;
 		res->wMessageLengthInUnicode = (WORD)wcslen(msg);
 		res->byDisplayType = SERVER_TEXT_SYSTEM;
@@ -1724,7 +2211,7 @@ ACMD(do_exp)
 		WCHAR* msg = L"Receive EXP has been enabled";
 
 		CNtlPacket packet(sizeof(sGU_SYSTEM_DISPLAY_TEXT));
-		sGU_SYSTEM_DISPLAY_TEXT * res = (sGU_SYSTEM_DISPLAY_TEXT*)packet.GetPacketData();
+		sGU_SYSTEM_DISPLAY_TEXT* res = (sGU_SYSTEM_DISPLAY_TEXT*)packet.GetPacketData();
 		res->wOpCode = GU_SYSTEM_DISPLAY_TEXT;
 		res->wMessageLengthInUnicode = (WORD)wcslen(msg);
 		res->byDisplayType = SERVER_TEXT_SYSTEM;
@@ -1742,7 +2229,7 @@ ACMD(do_resetexp)
 	if (pPlayer->GetExp() > 0)
 	{
 		CNtlPacket packet(sizeof(sGU_UPDATE_CHAR_EXP));
-		sGU_UPDATE_CHAR_EXP * res = (sGU_UPDATE_CHAR_EXP*)packet.GetPacketData();
+		sGU_UPDATE_CHAR_EXP* res = (sGU_UPDATE_CHAR_EXP*)packet.GetPacketData();
 		res->handle = pPlayer->GetID();
 		res->wOpCode = GU_UPDATE_CHAR_EXP;
 		res->dwCurExp = 0;
@@ -1815,7 +2302,7 @@ ACMD(do_deleteguild)
 	WCHAR* wchName = Ntl_MB2WC((char*)chName);
 
 	CNtlPacket cPacket(sizeof(sGT_GUILD_DELETE));
-	sGT_GUILD_DELETE * cRes = (sGT_GUILD_DELETE *)cPacket.GetPacketData();
+	sGT_GUILD_DELETE* cRes = (sGT_GUILD_DELETE*)cPacket.GetPacketData();
 	cRes->wOpCode = GT_GUILD_DELETE;
 	cRes->gmCharId = pPlayer->GetCharID();
 	NTL_SAFE_WCSCPY(cRes->wszGuildName, wchName);
@@ -1841,7 +2328,7 @@ ACMD(do_cancelah)
 	*/
 
 	CNtlPacket packet(sizeof(sGT_TENKAICHIDAISIJYOU_SELL_CANCEL_REQ));
-	sGT_TENKAICHIDAISIJYOU_SELL_CANCEL_REQ * res = (sGT_TENKAICHIDAISIJYOU_SELL_CANCEL_REQ *)packet.GetPacketData();
+	sGT_TENKAICHIDAISIJYOU_SELL_CANCEL_REQ* res = (sGT_TENKAICHIDAISIJYOU_SELL_CANCEL_REQ*)packet.GetPacketData();
 	res->wOpCode = GT_TENKAICHIDAISIJYOU_SELL_CANCEL_REQ;
 	res->charId = charid;
 	res->nItem = INVALID_ITEMID;
@@ -1851,7 +2338,7 @@ ACMD(do_cancelah)
 
 ACMD(do_addmudosa)
 {
-	CGameServer * app = (CGameServer*)NtlSfxGetApp();
+	CGameServer* app = (CGameServer*)NtlSfxGetApp();
 
 	pToken->PopToPeek();
 	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
@@ -1877,7 +2364,7 @@ ACMD(do_addmudosa)
 
 ACMD(do_start)
 {
-	CGameServer * app = (CGameServer*)NtlSfxGetApp();
+	CGameServer* app = (CGameServer*)NtlSfxGetApp();
 
 	pToken->PopToPeek();
 	std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
@@ -2068,7 +2555,7 @@ ACMD(do_createloot)
 		vec.x += RandomRangeF(-10.0f, 10.0f);
 		vec.z += RandomRangeF(-10.0f, 10.0f);
 
-		CItemDrop * pBall = g_pItemManager->CreateSingleDrop(100.f, ItemId);
+		CItemDrop* pBall = g_pItemManager->CreateSingleDrop(100.f, ItemId);
 		if (pBall)
 		{
 			pBall->AddToGround(pPlayer->GetWorldID(), vec);

@@ -44,6 +44,34 @@ CItemDrop::~CItemDrop()
 	SAFE_DELETE(m_sOptionSet);
 }
 
+bool CItemDrop::IsStoneTblidx(TBLIDX id)
+{
+	// Rangos continuos:
+	// ROJAS:        160001..160017
+	// AZULES:       160201..160217
+	// VIOLETAS:     160401..160417
+	// VERDES:       160601..160617
+	// BLACK-RED:    160801..160817
+	// BLACK-BLUE:   161001..161017
+	if (InRange(id, 160001, 160017)) return true; // RED_U*_STONE
+	if (InRange(id, 160201, 160217)) return true; // BLUE_U*_STONE
+	if (InRange(id, 160401, 160417)) return true; // PURPLE_U*_STONE
+	if (InRange(id, 160601, 160617)) return true; // GREEN_U*_STONE
+	if (InRange(id, 160801, 160817)) return true; // BLACK_RED_U*_STONE
+	if (InRange(id, 161001, 161017)) return true; // BLACK_BLUE_U*_STONE
+
+	// IDs sueltos (white)
+	switch (id)
+	{
+	case 12000:     // WHITE_U30_STONE
+	case 11120088:  // WHITE_U55_STONE
+	case 11120098:  // WHITE_U60_STONE
+	case 11120219:  // WHITE_U70_STONE
+		return true;
+	default:
+		return false;
+	}
+}
 
 void CItemDrop::CopyToObjectInfo(sOBJECT_INFO *pObjectInfo, CHARACTERID playerCharID)
 {
@@ -292,6 +320,87 @@ void CItemDrop::PickUpItem(CPlayer* pPlayer)
 
 	CNtlPacket packet3(sizeof(sGU_ITEM_PICK_RES));
 	sGU_ITEM_PICK_RES * res3 = (sGU_ITEM_PICK_RES *)packet3.GetPacketData();
+	res3->wOpCode = GU_ITEM_PICK_RES;
+	res3->wResultCode = resultcode;
+	res3->bByPartyHunting = bByPartyHunting;
+	res3->bPartyDice = bPartyDice;
+	res3->itemTblidx = m_tblidx;
+	packet3.SetPacketLen(sizeof(sGU_ITEM_PICK_RES));
+	pPlayer->SendPacket(&packet3);
+}
+
+void CItemDrop::PickUpStoneItem(CPlayer* pPlayer)
+{
+	if (!pPlayer || !pPlayer->IsInitialized())
+		return;
+
+	if (!IsStoneTblidx(m_tblidx))
+		return;
+
+	WORD resultcode = GAME_SUCCESS;
+
+	bool bPartyDice = false;
+	bool bInOrder = false;
+	bool bByPartyHunting = false;
+
+	if (pPlayer->GetDragonballScramble() == false &&
+		pPlayer->GetParty() &&
+		pPlayer->GetParty()->GetZeniLootingMethod() != NTL_PARTY_ITEM_LOOTING_GREEDILY &&
+		pPlayer->GetParty()->GetPartyMemberCount() > 1)
+	{
+		switch (pPlayer->GetParty()->GetItemLootingMethod())
+		{
+		case NTL_PARTY_ITEM_LOOTING_IN_ORDER:
+		{
+			if (pPlayer->GetParty()->GetItemLootingMethodRank() <= m_byRank)
+				bInOrder = true;
+		} break;
+
+		case NTL_PARTY_ITEM_LOOTING_DICE:
+		case NTL_PARTY_ITEM_LOOTING_DICE_BY_EQUIPED:
+		{
+			if (pPlayer->GetParty()->GetItemLootingMethodRank() <= m_byRank)
+				bPartyDice = true;
+		} break;
+
+		default: break;
+		}
+	}
+
+	if (pPlayer->GetDragonballScramble() == false && m_tblidx >= 200041 && m_tblidx <= 200047)
+	{
+		resultcode = SCRAMBLE_CANNOT_DO_WHILE_NOT_JOINED;
+	}
+	else
+	{
+		if (bPartyDice == false)
+		{
+			if (bInOrder == false)
+			{
+				if (g_pItemManager->CreateItem(pPlayer, this) == false)
+					resultcode = GAME_ITEM_INVEN_FULL;
+				else
+					g_pItemManager->DestroyItemDropOverTime(this);
+			}
+			else
+			{
+				if (pPlayer->GetParty()->ShareItemDropInOrder(this))
+					g_pItemManager->DestroyItemDropOverTime(this);
+				else
+					resultcode = GAME_PARTY_NOBODY_CANT_RECEIVE_ITEM_RIGHT_NOW;
+			}
+		}
+		else
+		{
+			if (pPlayer->GetParty()->CreatePartyInventoryItem(this) == false)
+				resultcode = GAME_PARTY_NO_EMPTY_SPACE_IN_PARTY_INVENTORY;
+			else
+				bByPartyHunting = true;
+		}
+	}
+
+	CNtlPacket packet3(sizeof(sGU_ITEM_PICK_RES));
+	sGU_ITEM_PICK_RES* res3 = (sGU_ITEM_PICK_RES*)packet3.GetPacketData();
 	res3->wOpCode = GU_ITEM_PICK_RES;
 	res3->wResultCode = resultcode;
 	res3->bByPartyHunting = bByPartyHunting;

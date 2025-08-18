@@ -37,8 +37,6 @@ void CDungeonManager::TickProcess(DWORD dwTickDiff)
 }
 
 
-
-
 WORD CDungeonManager::CreateTimeQuest(CPlayer* player, TBLIDX id, BYTE byDifficulty, BYTE byMode)
 {
 	sTIMEQUEST_TBLDAT* pTimeQuestTbldat = (sTIMEQUEST_TBLDAT*)g_pTableContainer->GetTimeQuestTable()->FindData(id);
@@ -169,8 +167,6 @@ void CDungeonManager::DestroyTimeLeapDungeon(CHARACTERID charID, CTimeLeapDungeo
 	m_mapTimeLeapDungeon.erase(charID);
 	SAFE_DELETE(pDungeon);
 }
-
-
 
 
 CUltimateDungeon* CDungeonManager::CreateUltimateDungeon(CPlayer* pOwner, GROUPID groupid, BYTE byDifficulty)

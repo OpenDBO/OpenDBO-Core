@@ -158,7 +158,8 @@ void CParty::RemoveMember(CHARACTERID hMember)
 		CPlayer* pPlayer = *it;
 		if (pPlayer && pPlayer->GetCharID() == hMember)
 		{
-			pPlayer->SetPartyID(m_hPartyID);
+			//pPlayer->SetPartyID(m_hPartyID);
+			pPlayer->SetPartyID(INVALID_PARTYID); //remove party id
 
 			m_vecMember.erase(it);
 			break;

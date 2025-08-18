@@ -7,7 +7,7 @@ ServerID = 0
 Host = 127.0.0.1
 Port = 3306
 User = root
-Password = password
+Password = test
 Db = dbo_acc
 
 [Master Connect]

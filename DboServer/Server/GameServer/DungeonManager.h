@@ -7,6 +7,7 @@
 #include "TimeLeapDungeon.h"
 #include "UltimateDungeon.h"
 #include "BattleDungeon.h"
+#include "RejoinSystem.h"
 
 class CPlayer;
 

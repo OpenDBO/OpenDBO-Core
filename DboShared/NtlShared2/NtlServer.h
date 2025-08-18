@@ -45,6 +45,7 @@ struct sGAME_SERVERCONFIG
 	int				SoloExpRate;		//in percent
 	int				PartyExpRate;		//in percent
 	int				ItemDropRate;		//in percent
+	int				StoneDropRate;		//in percent
 	BYTE			MaxLevel;
 	int				ZeniDropRate;		//in percent
 	int				ZeniBonusRate;		//in percent

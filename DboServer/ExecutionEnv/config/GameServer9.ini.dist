@@ -15,14 +15,14 @@ Port = 41001
 Host = 127.0.0.1
 Port = 3306
 User = root
-Password = password
+Password = test
 Db = dbo_char
 
 [DATABASE_ACCOUNT]
 Host = 127.0.0.1
 Port = 3306
 User = root
-Password = password
+Password = test
 Db = dbo_acc
 
 [Chat Connect]

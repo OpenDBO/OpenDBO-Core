@@ -58,6 +58,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <BrowseInformation>false</BrowseInformation>
       <DisableSpecificWarnings>4100</DisableSpecificWarnings>
+      <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
@@ -336,6 +337,7 @@
     <ClCompile Include="PlayerItemContainer.cpp" />
     <ClCompile Include="qg_opcodes.cpp" />
     <ClCompile Include="QuestProgress.cpp" />
+    <ClCompile Include="RejoinSystem.cpp" />
     <ClCompile Include="ScriptAlgoAction_Default.cpp" />
     <ClCompile Include="ScriptAlgoAction_Case.cpp" />
     <ClCompile Include="DojoManager.cpp" />
@@ -359,6 +361,9 @@
     <ClCompile Include="ObjectController.cpp" />
     <ClCompile Include="ObjectMsg.cpp" />
     <ClCompile Include="scsManager.cpp" />
+    <ClCompile Include="StoneDropEvent.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="tg_opcodes.cpp" />
     <ClCompile Include="ug_opcodes.cpp" />
     <ClCompile Include="ParameterReader.cpp" />
@@ -1002,6 +1007,7 @@
     <ClInclude Include="PlayerItemContainer.h" />
     <ClInclude Include="qg_opcodes.h" />
     <ClInclude Include="QuestProgress.h" />
+    <ClInclude Include="RejoinSystem.h" />
     <ClInclude Include="ScriptAlgoAction_Case.h" />
     <ClInclude Include="EscortManager.h" />
     <ClInclude Include="GameData.h" />
@@ -1009,6 +1015,7 @@
     <ClInclude Include="GameProcessor.h" />
     <ClInclude Include="HelpMeListManager.h" />
     <ClInclude Include="HitBySkillContainer.h" />
+    <ClInclude Include="StoneDropEvent.h" />
     <ClInclude Include="WPShopContainer.h" />
     <ClInclude Include="MeHaterManager.h" />
     <ClInclude Include="NpcParty.h" />

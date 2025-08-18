@@ -62,6 +62,20 @@ public:
 
 	void					Bann(std::string strReason, BYTE byDuration, ACCOUNTID gmAccountID);
 
+	void					UpdateRejoinTargetIfDungeon(const CNtlVector& loc, const CNtlVector& dir, WORLDID wid, BYTE teleType)
+							{
+								if (teleType == TELEPORT_TYPE_DUNGEON)
+								{
+									m_lastRejoinTargetWorldId = wid;
+									m_lastRejoinTargetLoc = loc;
+									m_lastRejoinTargetDir = dir;
+								}
+							}
+
+	WORLDID					GetLastRejoinWorldId() const { return m_lastRejoinTargetWorldId; }
+	const					CNtlVector& GetLastRejoinLoc()     const { return m_lastRejoinTargetLoc; }
+	const					CNtlVector& GetLastRejoinDir()     const { return m_lastRejoinTargetDir; }
+
 private:
 
 	DWORD					dwNextSaveTime;
@@ -77,6 +91,9 @@ private:
 
 	sSERVER_INFO*			m_pDestServerInfo; //when switch channel
 	char					m_achAuthKey[NTL_MAX_SIZE_AUTH_KEY];
+	WORLDID					m_lastRejoinTargetWorldId = INVALID_WORLDID;
+	CNtlVector				m_lastRejoinTargetLoc = CNtlVector::ZERO;
+	CNtlVector				m_lastRejoinTargetDir = CNtlVector::ZERO;
 
 private:
 	

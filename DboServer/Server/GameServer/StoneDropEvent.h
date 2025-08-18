@@ -1,0 +1,318 @@
+#ifndef __Stone_Drop_EVENT_SYSTEM__
+#define __Stone_Drop_EVENT_SYSTEM__
+
+#include "stdafx.h"
+#include "NtlSingleton.h"
+#include "NtlSharedType.h"
+#include <map>
+
+#define RED_DROP_RATE 25
+#define BLUE_DROP_RATE 25
+#define PURPLE_DROP_RATE 18
+#define GREEN_DROP_RATE 18
+#define BLACK_RED_DROP_RATE 15
+#define BLACK_BLUE_DROP_RATE 15
+#define WHITE_DROP_RATE 10
+
+#define RED_U6_STONE 160001
+#define RED_U11_STONE 160002
+#define RED_U16_STONE 160003
+#define RED_U21_STONE 160004
+#define RED_U26_STONE 160005
+#define RED_U30_STONE 160006
+#define RED_U34_STONE 160007
+#define RED_U38_STONE 160008
+#define RED_U42_STONE 160009
+#define RED_U46_STONE 160010
+#define RED_U50_STONE 160011
+#define RED_U53_STONE 160012
+#define RED_U55_STONE 160013
+#define RED_U58_STONE 160014
+#define RED_U60_STONE 160015
+#define RED_U65_STONE 160016
+#define RED_U70_STONE 160017
+
+#define BLUE_U6_STONE 160201
+#define BLUE_U11_STONE 160202
+#define BLUE_U16_STONE 160203
+#define BLUE_U21_STONE 160204
+#define BLUE_U26_STONE 160205
+#define BLUE_U30_STONE 160206
+#define BLUE_U34_STONE 160207
+#define BLUE_U38_STONE 160208
+#define BLUE_U42_STONE 160209
+#define BLUE_U46_STONE 160210
+#define BLUE_U50_STONE 160211
+#define BLUE_U53_STONE 160212
+#define BLUE_U55_STONE 160213
+#define BLUE_U58_STONE 160214
+#define BLUE_U60_STONE 160215
+#define BLUE_U65_STONE 160216
+#define BLUE_U70_STONE 160217
+
+#define PURPLE_U6_STONE 160401
+#define PURPLE_U11_STONE 160402
+#define PURPLE_U16_STONE 160403
+#define PURPLE_U21_STONE 160404
+#define PURPLE_U26_STONE 160405
+#define PURPLE_U30_STONE 160406
+#define PURPLE_U34_STONE 160407
+#define PURPLE_U38_STONE 160408
+#define PURPLE_U42_STONE 160409
+#define PURPLE_U46_STONE 160410
+#define PURPLE_U50_STONE 160411
+#define PURPLE_U53_STONE 160412
+#define PURPLE_U55_STONE 160413
+#define PURPLE_U58_STONE 160414
+#define PURPLE_U60_STONE 160415
+#define PURPLE_U65_STONE 160416
+#define PURPLE_U70_STONE 160417
+
+#define GREEN_U6_STONE 160601
+#define GREEN_U11_STONE 160602
+#define GREEN_U16_STONE 160603
+#define GREEN_U21_STONE 160604
+#define GREEN_U26_STONE 160605
+#define GREEN_U30_STONE 160606
+#define GREEN_U34_STONE 160607
+#define GREEN_U38_STONE 160608
+#define GREEN_U42_STONE 160609
+#define GREEN_U46_STONE 160610
+#define GREEN_U50_STONE 160611
+#define GREEN_U53_STONE 160612
+#define GREEN_U55_STONE 160613
+#define GREEN_U58_STONE 160614
+#define GREEN_U60_STONE 160615
+#define GREEN_U65_STONE 160616
+#define GREEN_U70_STONE 160617
+
+#define BLACK_RED_U6_STONE 160801
+#define BLACK_RED_U11_STONE 160802
+#define BLACK_RED_U16_STONE 160803
+#define BLACK_RED_U21_STONE 160804
+#define BLACK_RED_U26_STONE 160805
+#define BLACK_RED_U30_STONE 160806
+#define BLACK_RED_U34_STONE 160807
+#define BLACK_RED_U38_STONE 160808
+#define BLACK_RED_U42_STONE 160809
+#define BLACK_RED_U46_STONE 160810
+#define BLACK_RED_U50_STONE 160811
+#define BLACK_RED_U53_STONE 160812
+#define BLACK_RED_U55_STONE 160813
+#define BLACK_RED_U58_STONE 160814
+#define BLACK_RED_U60_STONE 160815
+#define BLACK_RED_U65_STONE 160816
+#define BLACK_RED_U70_STONE 160817
+
+#define BLACK_BLUE_U6_STONE 161001
+#define BLACK_BLUE_U11_STONE 161002
+#define BLACK_BLUE_U16_STONE 161003
+#define BLACK_BLUE_U21_STONE 161004
+#define BLACK_BLUE_U26_STONE 161005
+#define BLACK_BLUE_U30_STONE 161006
+#define BLACK_BLUE_U34_STONE 161007
+#define BLACK_BLUE_U38_STONE 161008
+#define BLACK_BLUE_U42_STONE 161009
+#define BLACK_BLUE_U46_STONE 161010
+#define BLACK_BLUE_U50_STONE 161011
+#define BLACK_BLUE_U53_STONE 161012
+#define BLACK_BLUE_U55_STONE 161013
+#define BLACK_BLUE_U58_STONE 161014
+#define BLACK_BLUE_U60_STONE 161015
+#define BLACK_BLUE_U65_STONE 161016
+#define BLACK_BLUE_U70_STONE 161017
+
+#define WHITE_U30_STONE 12000
+#define WHITE_U55_STONE 11120088
+#define WHITE_U60_STONE 11120098
+#define WHITE_U70_STONE 11120219
+
+const static std::map<int, int> redStonesConstantMap = {
+	{6, RED_U6_STONE},
+	{11, RED_U11_STONE},
+	{16, RED_U16_STONE},
+	{21, RED_U21_STONE},
+	{26, RED_U26_STONE},
+	{30, RED_U30_STONE},
+	{34, RED_U34_STONE},
+	{38, RED_U38_STONE},
+	{42, RED_U42_STONE},
+	{46, RED_U46_STONE},
+	{50, RED_U50_STONE},
+	{53, RED_U53_STONE},
+	{55, RED_U55_STONE},
+	{58, RED_U58_STONE},
+	{60, RED_U60_STONE},
+	{65, RED_U65_STONE},
+	{70, RED_U70_STONE},
+};
+
+const static std::map<int, int> blueStonesConstantMap = {
+	{6, BLUE_U6_STONE},
+	{11, BLUE_U11_STONE},
+	{16, BLUE_U16_STONE},
+	{21, BLUE_U21_STONE},
+	{26, BLUE_U26_STONE},
+	{30, BLUE_U30_STONE},
+	{34, BLUE_U34_STONE},
+	{38, BLUE_U38_STONE},
+	{42, BLUE_U42_STONE},
+	{46, BLUE_U46_STONE},
+	{50, BLUE_U50_STONE},
+	{53, BLUE_U53_STONE},
+	{55, BLUE_U55_STONE},
+	{58, BLUE_U58_STONE},
+	{60, BLUE_U60_STONE},
+	{65, BLUE_U65_STONE},
+	{70, BLUE_U70_STONE},
+};
+
+const static std::map<int, int> purpleStonesConstantMap = {
+	{6, PURPLE_U6_STONE},
+	{11, PURPLE_U11_STONE},
+	{16, PURPLE_U16_STONE},
+	{21, PURPLE_U21_STONE},
+	{26, PURPLE_U26_STONE},
+	{30, PURPLE_U30_STONE},
+	{34, PURPLE_U34_STONE},
+	{38, PURPLE_U38_STONE},
+	{42, PURPLE_U42_STONE},
+	{46, PURPLE_U46_STONE},
+	{50, PURPLE_U50_STONE},
+	{53, PURPLE_U53_STONE},
+	{55, PURPLE_U55_STONE},
+	{58, PURPLE_U58_STONE},
+	{60, PURPLE_U60_STONE},
+	{65, PURPLE_U65_STONE},
+	{70, PURPLE_U70_STONE},
+};
+
+const static std::map<int, int> greenStonesConstantMap = {
+	{6, GREEN_U6_STONE},
+	{11, GREEN_U11_STONE},
+	{16, GREEN_U16_STONE},
+	{21, GREEN_U21_STONE},
+	{26, GREEN_U26_STONE},
+	{30, GREEN_U30_STONE},
+	{34, GREEN_U34_STONE},
+	{38, GREEN_U38_STONE},
+	{42, GREEN_U42_STONE},
+	{46, GREEN_U46_STONE},
+	{50, GREEN_U50_STONE},
+	{53, GREEN_U53_STONE},
+	{55, GREEN_U55_STONE},
+	{58, GREEN_U58_STONE},
+	{60, GREEN_U60_STONE},
+	{65, GREEN_U65_STONE},
+	{70, GREEN_U70_STONE},
+};
+
+const static std::map<int, int> blackRedStonesConstantMap = {
+	{6, BLACK_RED_U6_STONE},
+	{11, BLACK_RED_U11_STONE},
+	{16, BLACK_RED_U16_STONE},
+	{21, BLACK_RED_U21_STONE},
+	{26, BLACK_RED_U26_STONE},
+	{30, BLACK_RED_U30_STONE},
+	{34, BLACK_RED_U34_STONE},
+	{38, BLACK_RED_U38_STONE},
+	{42, BLACK_RED_U42_STONE},
+	{46, BLACK_RED_U46_STONE},
+	{50, BLACK_RED_U50_STONE},
+	{53, BLACK_RED_U53_STONE},
+	{55, BLACK_RED_U55_STONE},
+	{58, BLACK_RED_U58_STONE},
+	{60, BLACK_RED_U60_STONE},
+	{65, BLACK_RED_U65_STONE},
+	{70, BLACK_RED_U70_STONE},
+};
+
+const static std::map<int, int> blackBlueStonesConstantMap = {
+	{6, BLACK_BLUE_U6_STONE},
+	{11, BLACK_BLUE_U11_STONE},
+	{16, BLACK_BLUE_U16_STONE},
+	{21, BLACK_BLUE_U21_STONE},
+	{26, BLACK_BLUE_U26_STONE},
+	{30, BLACK_BLUE_U30_STONE},
+	{34, BLACK_BLUE_U34_STONE},
+	{38, BLACK_BLUE_U38_STONE},
+	{42, BLACK_BLUE_U42_STONE},
+	{46, BLACK_BLUE_U46_STONE},
+	{50, BLACK_BLUE_U50_STONE},
+	{53, BLACK_BLUE_U53_STONE},
+	{55, BLACK_BLUE_U55_STONE},
+	{58, BLACK_BLUE_U58_STONE},
+	{60, BLACK_BLUE_U60_STONE},
+	{65, BLACK_BLUE_U65_STONE},
+	{70, BLACK_BLUE_U70_STONE},
+};
+
+const static std::map<int, int> whiteStonesConstantMap = {
+	{30, WHITE_U30_STONE},
+	{55, WHITE_U55_STONE},
+	{60, WHITE_U60_STONE},
+	{70, WHITE_U70_STONE},
+};
+
+
+class CMonster;
+class CCharacter;
+
+class CStoneDropEvent : public CNtlSingleton<CStoneDropEvent>
+{
+	struct sEVENT_START_INFO
+	{
+		BYTE			byStartTime;
+		BYTE			byEndTime;
+		bool			bIsOpen[7];
+	};
+public:
+
+	CStoneDropEvent();
+	virtual ~CStoneDropEvent();
+
+private:
+
+	void				Init();
+	float				CalculateBaseDropChance();
+	int					GetRedStoneByLevel(int stoneLevel);
+	int					GetBlueStoneByLevel(int stoneLevel);
+	int					GetPurpleStoneByLevel(int stoneLevel);
+	int					GetGreenStoneByLevel(int stoneLevel);
+	int					GetBlackRedStoneByLevel(int stoneLevel);
+	int					GetBlackBlueStoneByLevel(int stoneLevel);
+	int					GetWhiteStoneByLevel(int stoneLevel);
+	void				CreateSingleDrop(CMonster* pMob, CCharacter* pPlayer, int dropId);
+
+public:
+
+	void				StartEvent(BYTE byHours = 3);
+
+	void				EndEvent();
+
+	void				LoadEvent(HSESSION hSession);
+
+public:
+
+	void				TickProcess(DWORD dwTick);
+
+	void				Update(CMonster* pMob, CCharacter* pPlayer);
+
+private:
+
+	bool				m_bOn;
+
+	DBOTIME				m_timeStart;
+
+	DBOTIME				m_timeEnd;
+
+	DWORD				m_dwNextUpdateTick;
+
+	int					m_nMonsterSummoned;
+	sEVENT_START_INFO		m_aEventStartInfo;
+};
+
+#define GetStoneDropEvent()			CStoneDropEvent::GetInstance()
+#define g_pStoneDropEvent			GetStoneDropEvent()
+
+#endif#pragma once

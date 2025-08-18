@@ -37,6 +37,7 @@
 #include "BusSystem.h"
 #include "scsManager.h"
 #include "HoneyBeeEvent.h"
+#include "StoneDropEvent.h"
 #include "Fairy Event.h"
 
 
@@ -175,6 +176,10 @@ int CGameServer::OnInitApp()
 
 	NTL_PRINT(PRINT_APP, "HoneyBee System");
 	CHoneyBeeEvent* pHoneyBee = new CHoneyBeeEvent;
+	UNREFERENCED_PARAMETER(pScs);
+
+	NTL_PRINT(PRINT_APP, "StoneDrop System");
+	CStoneDropEvent* pStoneDrop = new CStoneDropEvent;
 	UNREFERENCED_PARAMETER(pScs);
 
 	NTL_PRINT(PRINT_APP, "Fairy System");
@@ -480,6 +485,10 @@ int	CGameServer::OnConfiguration(const char * lpszConfigFile)
 	{
 		return NTL_ERR_SYS_CONFIG_FILE_READ_FAIL;
 	}
+	if (!file.Read("GAMECONFIG", "StoneDropRate", m_config.StoneDropRate))
+	{
+		m_config.StoneDropRate = 100;
+	}
 	if (!file.Read("GAMECONFIG", "QuestExpRate", m_config.QuestExpRate))
 	{
 		return NTL_ERR_SYS_CONFIG_FILE_READ_FAIL;
@@ -599,6 +608,16 @@ BOOL CGameServer::OnCommandInput(std::string& sCmd)
 	{
 		g_pFairyEvent->EndEvent();
 		NTL_PRINT(PRINT_APP, "Fairy Event Stopped");
+	}
+	else if (sCmd == "startdropstone")
+	{
+		g_pStoneDropEvent->StartEvent();
+		NTL_PRINT(PRINT_APP, "Drop Stone Event Started");
+	}
+	else if (sCmd == "stopdropstone")
+	{
+		g_pStoneDropEvent->EndEvent();
+		NTL_PRINT(PRINT_APP, "Drop Stone Event Stopped");
 	}
 	return TRUE;
 }

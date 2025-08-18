@@ -38,6 +38,7 @@ public:
 	bool						AddToGround(WORLDID Worldid, sVECTOR3 & pos);
 
 	bool						IsOwnership(CPlayer* ch);
+	void						PickUpStoneItem(CPlayer* pPlayer);
 
 	inline void					SetZeni(DWORD zeni) { m_dwZeniDrop = zeni; }
 	inline DWORD				GetZeni() { return m_dwZeniDrop; }
@@ -72,7 +73,8 @@ private:
 
 	//used for dice
 	bool						m_bLocked;
-
+	static bool					IsStoneTblidx(TBLIDX id);
+	static bool					InRange(TBLIDX id, TBLIDX a, TBLIDX b) { return id >= a && id <= b; }
 
 public:
 

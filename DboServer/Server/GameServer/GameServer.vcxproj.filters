@@ -613,6 +613,12 @@
     <Filter Include="In-Game Event System\Fairy Event">
       <UniqueIdentifier>{91757e60-54fe-4dde-9a8d-4b7e90f8b608}</UniqueIdentifier>
     </Filter>
+    <Filter Include="In-Game Event System\StoneDrop Event">
+      <UniqueIdentifier>{ef961a43-d56b-4a4f-a78d-e56923c793e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rejoin">
+      <UniqueIdentifier>{5204e064-91cf-4dc0-9894-9676cfe57567}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClientSession.cpp">
@@ -2600,6 +2606,12 @@
     </ClCompile>
     <ClCompile Include="Fairy Event.cpp">
       <Filter>In-Game Event System\Fairy Event</Filter>
+    </ClCompile>
+    <ClCompile Include="StoneDropEvent.cpp">
+      <Filter>In-Game Event System\StoneDrop Event</Filter>
+    </ClCompile>
+    <ClCompile Include="RejoinSystem.cpp">
+      <Filter>Rejoin</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -4636,6 +4648,12 @@
     </ClInclude>
     <ClInclude Include="WPShopContainer.h">
       <Filter>utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="StoneDropEvent.h">
+      <Filter>In-Game Event System\StoneDrop Event</Filter>
+    </ClInclude>
+    <ClInclude Include="RejoinSystem.h">
+      <Filter>Rejoin</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

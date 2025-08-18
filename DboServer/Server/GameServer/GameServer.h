@@ -77,6 +77,7 @@ public:
 	int				GetSoloExpRate()		{ return m_config.SoloExpRate; }
 	int				GetPartyExpRate()		{ return m_config.PartyExpRate; }
 	int				GetItemDropRate()		{ return m_config.ItemDropRate; }
+	int				GetStoneDropRate()      { return m_config.StoneDropRate; }
 	int				GetZeniDropRate()		{ return m_config.ZeniDropRate; }
 	int				GetZeniBonusRate()		{ return m_config.ZeniBonusRate; }
 	int				GetZeniPartyBonusRate() { return m_config.ZeniPartyBonusRate; }

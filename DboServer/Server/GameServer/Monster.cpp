@@ -17,6 +17,7 @@
 #include "SystemEffectTable.h"
 #include "SummonPet.h"
 #include "HoneyBeeEvent.h"
+#include "StoneDropEvent.h"
 #include "Fairy Event.h"
 #include <queue>
 
@@ -492,6 +493,7 @@ bool CMonster::Faint(CCharacterObject* pkKiller, eFAINT_REASON byReason)
 			CreateKillReward(GetCurWorld()->GetRuleType() != GAMERULE_CCBATTLEDUNGEON);
 			g_pDynamicFieldSystemEvent->Update(this, pKiller);
 			g_pHoneyBeeEvent->Update(this, pKiller);
+			g_pStoneDropEvent->Update(this, pKiller);
 			g_pFairyEvent->Update(this, pKiller);
 			int l_LevelGap = abs(pKiller->GetLevel() - GetLevel());
 			//printf("l_LevelGap %d \n", l_LevelGap);
