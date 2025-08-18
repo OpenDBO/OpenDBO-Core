@@ -14047,7 +14047,7 @@ void CClientSession::RecvMascotAutoLootingReq(CNtlPacket* pPacket)
 					continue;
 
 				//check distance
-				if (cPlayer->IsInRange(item, NTL_MAX_LOOTING_DISTANCE * 2.f) == false)
+				if (cPlayer->IsInRange(item, NTL_MAX_LOOTING_DISTANCE * 4.f) == false)
 					continue;
 
 				//check ownership
