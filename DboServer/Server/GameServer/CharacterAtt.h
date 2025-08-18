@@ -264,8 +264,8 @@ public:
 
 	BYTE	GetExpBoost() { return m_pAttribute.byExpBooster; }
 
-	//float	GetPhysicalArmorPenRate() { return m_pAttribute.fLastPhysicalCritDmgRate; }//Xanu
-	//float	GetEnergyArmorPenRate() { return m_pAttribute.fLastEnergyCritDmgRate; }//Xanu
+	float	GetPhysicalArmorPenRate() { return m_pAttribute.fLastPhysicalCritDmgRate; }
+	float	GetEnergyArmorPenRate() { return m_pAttribute.fLastEnergyCritDmgRate; }
 
 //SETTER
 	void	SetMaxLP(int nMaxLP) { m_pAttribute.dwLastMaxLP = nMaxLP; }

@@ -94,7 +94,6 @@ bool BattleIsBlock(WORD wDefenceRate, BYTE byAttackerLv, BYTE byTargetLv)
 	return Dbo_CheckProbabilityF(fRate);
 }
 
-
 //-----------------------------------------------------------------------------------------------------------//
 //											CALCULATE SKILL DAMAGE
 //-----------------------------------------------------------------------------------------------------------//
@@ -104,449 +103,270 @@ bool BattleIsBlock(WORD wDefenceRate, BYTE byAttackerLv, BYTE byTargetLv)
 //--------------------------------------------------------------------------------------//
 void CalcSkillDamage(CCharacterObject* pCaster, CCharacterObject* victim, sSKILL_TBLDAT* skilltbl, BYTE byEffectNr, float fBaseSkillDmg, float& resultvalue, BYTE& rAttackResult, int& rfReflectDmg, sDBO_LP_EP_RECOVERED* pLpEpRecover, bool bIncreaseDmg/* = false*/, bool bAttackFromBehindBonus/* = false*/)
 {
-	float  fFinalDamage = 0.0f, min_damage = 0.0f, max_damage = 0.0f, fAttackerPower = 0.0f, fTargetDefensePower = 0.0f, fCritDmgRate = 0.0f, fCritDefRate = 0.0f;
-	float FinalProp = (int)GetAttributeBonusRate(pCaster->IsPC(), 0, pCaster->GetCharAtt()->GetBattleAttributeOffence(), victim->GetCharAtt()->GetBattleAttributeDefence(), 0, pCaster->GetCharAtt()->GetAvatarAttribute(), victim->GetCharAtt()->GetAvatarAttribute());
-	//printf("Prop %f\n", FinalProp);
-	
+	CCharacterAtt* cCasterAtt = pCaster->GetCharAtt();
+	CCharacterAtt* cVictimAtt = victim->GetCharAtt();
+
+	float fFinalDamage = 0.0f;
+	float min_damage = 0.0f;
+	float max_damage = 0.0f;
+	float fAttackerPower = 0.0f;
+	float fTargetDefensePower = 0.0f;
+	float fCritDefRate = 0.0f;
+
+	bool bIsApplyTypeValue = skilltbl->bySkill_Effect_Type[byEffectNr] == SYSTEM_EFFECT_APPLY_TYPE_VALUE;
+	bool bIsApplyTypePercent = skilltbl->bySkill_Effect_Type[byEffectNr] == SYSTEM_EFFECT_APPLY_TYPE_PERCENT;
+	bool bIsSubWeapon = pCaster->IsPC() && skilltbl->byRequire_Epuip_Slot_Type == EQUIP_SLOT_TYPE_SUB_WEAPON;
+
+	bool bIsSkillPhysical = skilltbl->bySkill_Type == NTL_SKILL_TYPE_PHYSICAL;
+	bool bIsSkillEnergy = skilltbl->bySkill_Type == NTL_SKILL_TYPE_ENERGY;
+	bool bIsSkillState = skilltbl->bySkill_Type == NTL_SKILL_TYPE_STATE;
+
+	float fWeaponPhysicalOffence = bIsSubWeapon ? cCasterAtt->GetSubWeaponPhysicalOffence() : cCasterAtt->GetPhysicalOffence();
+	float fWeaponEnergyOffence = bIsSubWeapon ? cCasterAtt->GetSubWeaponEnergyOffence() : cCasterAtt->GetEnergyOffence();
+
 	/* INFO:
 		- At "value" damage, we do not add weapon offence. See https://youtu.be/cj5E1dOIYfk?t=155 as proof. With weapon offence added we deal much more dmg. Without we deal exact the same damage. State needs to be figured out.
 		- State calculation is / 1.5 instead of 2.0. Watch https://youtu.be/JlBDzAmoNTk?t=317 for more info.
 	*/
 
-	CCharacterAtt* pCasterAtt = pCaster->GetCharAtt();
-
-	//printf("skilltbl->bySkill_Type %u, skilltbl->bySkill_Effect_Type[byEffectNr] %u \n", skilltbl->bySkill_Type, skilltbl->bySkill_Effect_Type[byEffectNr]);
-	if (skilltbl->bySkill_Effect_Type[byEffectNr] == SYSTEM_EFFECT_APPLY_TYPE_VALUE)
+	if (bIsApplyTypeValue || bIsApplyTypePercent)
 	{
-		if (skilltbl->bySkill_Type == NTL_SKILL_TYPE_PHYSICAL)
+		if (bIsSkillPhysical)
 		{
-			fAttackerPower = fBaseSkillDmg;
-
-			fTargetDefensePower = (float)victim->GetCharAtt()->GetPhysicalDefence();
-
-			// <armor pen> decrease def
-			//fTargetDefensePower -= pCaster->GetCharAtt()->GetPhysicalArmorPenRate() * fTargetDefensePower / 100.f;
-
-			// critical dmg def
-			fCritDefRate = victim->GetCharAtt()->GetPhysicalCriticalDefenceRate();
+			fAttackerPower = bIsApplyTypeValue ? fBaseSkillDmg : fWeaponPhysicalOffence + ((fWeaponPhysicalOffence * fBaseSkillDmg) / 100.f);
+			fTargetDefensePower = CalcDefensePower(cVictimAtt->GetPhysicalDefence(), cCasterAtt->GetPhysicalArmorPenRate());
+			fCritDefRate = cVictimAtt->GetPhysicalCriticalDefenceRate();
 		}
-		else if (skilltbl->bySkill_Type == NTL_SKILL_TYPE_ENERGY)
+		else if (bIsSkillEnergy)
 		{
-			fAttackerPower = fBaseSkillDmg;
-
-			fTargetDefensePower = (float)victim->GetCharAtt()->GetEnergyDefence();
-
-			// <armor pen> decrease def
-			//fTargetDefensePower -= pCaster->GetCharAtt()->GetEnergyArmorPenRate() * fTargetDefensePower / 100.f;
-
-			// critical dmg def
-			fCritDefRate = victim->GetCharAtt()->GetEnergyCriticalDefenceRate();
+			fAttackerPower = bIsApplyTypeValue ? fBaseSkillDmg : fWeaponEnergyOffence + ((fWeaponEnergyOffence * fBaseSkillDmg) / 100.f);
+			fTargetDefensePower = CalcDefensePower(cVictimAtt->GetEnergyDefence(), cCasterAtt->GetEnergyArmorPenRate());
+			fCritDefRate = cVictimAtt->GetEnergyCriticalDefenceRate();
 		}
-		else if (skilltbl->bySkill_Type == NTL_SKILL_TYPE_STATE)
+		else if (bIsSkillState)
 		{
-			if (pCaster->IsPC() && skilltbl->byRequire_Epuip_Slot_Type == EQUIP_SLOT_TYPE_SUB_WEAPON)
-				fAttackerPower = fBaseSkillDmg + float(pCaster->GetCharAtt()->GetSubWeaponPhysicalOffence() + pCaster->GetCharAtt()->GetSubWeaponEnergyOffence() / 2.5f);
-			else
-				fAttackerPower = fBaseSkillDmg + float(pCaster->GetCharAtt()->GetPhysicalOffence() + pCaster->GetCharAtt()->GetEnergyOffence() / 2.5f);
+			float fDefense = (cVictimAtt->GetPhysicalDefence() + cVictimAtt->GetEnergyOffence()) / 1.5f;
+			float fPenRate = (cCasterAtt->GetPhysicalArmorPenRate() + cCasterAtt->GetEnergyArmorPenRate()) / 2.f;
+			float fWeaponStateOffence = (fWeaponPhysicalOffence + fWeaponEnergyOffence) / 1.5f;
 
-			fTargetDefensePower = float(victim->GetCharAtt()->GetPhysicalDefence() + victim->GetCharAtt()->GetEnergyDefence() / 1.5f);
-
-			// <armor pen> decrease def
-			//fTargetDefensePower -= ((pCaster->GetCharAtt()->GetPhysicalArmorPenRate() + pCaster->GetCharAtt()->GetEnergyArmorPenRate()) / 2.f) * fTargetDefensePower / 100.f;
-
-			// critical dmg def
-			fCritDefRate = (victim->GetCharAtt()->GetPhysicalCriticalDefenceRate() + victim->GetCharAtt()->GetEnergyCriticalDefenceRate()) / 2.f;
+			fAttackerPower = bIsApplyTypeValue ? fBaseSkillDmg + fWeaponStateOffence : (fWeaponStateOffence * fBaseSkillDmg) / 100.f;
+			fTargetDefensePower = CalcDefensePower(fDefense, fPenRate);
+			fCritDefRate = (cVictimAtt->GetPhysicalCriticalDefenceRate() + cVictimAtt->GetEnergyCriticalDefenceRate()) / 2.f;
 		}
 	}
-	else if (skilltbl->bySkill_Effect_Type[byEffectNr] == SYSTEM_EFFECT_APPLY_TYPE_PERCENT)
-	{
-		if (skilltbl->bySkill_Type == NTL_SKILL_TYPE_PHYSICAL)
-		{
-			if (pCaster->IsPC() && skilltbl->byRequire_Epuip_Slot_Type == EQUIP_SLOT_TYPE_SUB_WEAPON)
-				fAttackerPower = (((float)pCaster->GetCharAtt()->GetSubWeaponPhysicalOffence() + (float)pCaster->GetCharAtt()->GetPhysicalOffence() * fBaseSkillDmg) / 100.f);
-			else
-				fAttackerPower = (((float)pCaster->GetCharAtt()->GetPhysicalOffence() * fBaseSkillDmg) / 100.f);
 
-			fTargetDefensePower = (float)victim->GetCharAtt()->GetPhysicalDefence();
+	fAttackerPower = CalcPropBonus(pCaster, victim, fAttackerPower);
 
-			// <armor pen> decrease def
-			//fTargetDefensePower -= pCaster->GetCharAtt()->GetPhysicalArmorPenRate() * fTargetDefensePower / 100.f;
-
-			// critical dmg def
-			fCritDefRate = victim->GetCharAtt()->GetPhysicalCriticalDefenceRate();
-		}
-		else if (skilltbl->bySkill_Type == NTL_SKILL_TYPE_ENERGY)
-		{
-			if (pCaster->IsPC() && skilltbl->byRequire_Epuip_Slot_Type == EQUIP_SLOT_TYPE_SUB_WEAPON)
-				fAttackerPower = (((float)pCaster->GetCharAtt()->GetSubWeaponEnergyOffence() + (float)pCaster->GetCharAtt()->GetEnergyOffence() * fBaseSkillDmg) / 100.f);
-			else
-				fAttackerPower = (((float)pCaster->GetCharAtt()->GetEnergyOffence() * fBaseSkillDmg) / 100.f);
-
-			fTargetDefensePower = (float)victim->GetCharAtt()->GetEnergyDefence();
-
-			// <armor pen> decrease def
-			//fTargetDefensePower -= pCaster->GetCharAtt()->GetEnergyArmorPenRate() * fTargetDefensePower / 100.f;
-
-			// critical dmg def
-			fCritDefRate = victim->GetCharAtt()->GetEnergyCriticalDefenceRate();
-		}
-		else if (skilltbl->bySkill_Type == NTL_SKILL_TYPE_STATE)
-		{
-			float fStateOffence = 0.f;
-			if (pCaster->IsPC() && skilltbl->byRequire_Epuip_Slot_Type == EQUIP_SLOT_TYPE_SUB_WEAPON)
-				fStateOffence = ((float)pCaster->GetCharAtt()->GetSubWeaponPhysicalOffence() + (float)pCaster->GetCharAtt()->GetSubWeaponEnergyOffence()) / 2.5f;
-			else
-				fStateOffence = ((float)pCaster->GetCharAtt()->GetPhysicalOffence() + (float)pCaster->GetCharAtt()->GetEnergyOffence()) / 2.5f;
-
-			fAttackerPower = (fStateOffence * fBaseSkillDmg) / 100.f;
-			fTargetDefensePower = (float)victim->GetCharAtt()->GetPhysicalDefence() + (float)victim->GetCharAtt()->GetEnergyDefence() / 1.5f;
-
-			// <armor pen> decrease def
-		//	fTargetDefensePower -= ((pCaster->GetCharAtt()->GetPhysicalArmorPenRate() + pCaster->GetCharAtt()->GetEnergyArmorPenRate()) / 2.f) * fTargetDefensePower / 100.f;
-
-			// critical dmg def
-			fCritDefRate = (victim->GetCharAtt()->GetPhysicalCriticalDefenceRate() + victim->GetCharAtt()->GetEnergyCriticalDefenceRate()) / 2.f;
-		}
-	}
-	
-	//fAttackerPower *= 1.4f;	
-	float PropsValueAtack = 0;
-	float PropsValueDefese = 0;
-	if (FinalProp > 0)
-	{
-		PropsValueAtack = (fAttackerPower * FinalProp / 100.f);
-		fAttackerPower += PropsValueAtack;
-		//printf("Prop Atack Damage %f\n", PropsValueAtack);
-	}
-	else if (FinalProp < 0)
-	{
-		PropsValueDefese = (fAttackerPower * FinalProp / 100.f) * -1;
-		fAttackerPower -= PropsValueDefese;
-		//printf("Prop Defese Damage %f\n", PropsValueDefese);
-	}	
-
-	float fDmg0 = fAttackerPower * (1.05f - (fTargetDefensePower / (fTargetDefensePower + (float)pCaster->GetLevel() * CFormulaTable::m_afRate[3100][1])));
-	
-	min_damage = fDmg0 * (CFormulaTable::m_afRate[3500][1] + ((float)pCaster->GetLevel() * CFormulaTable::m_afRate[3500][2]));
-	max_damage = fDmg0 * (CFormulaTable::m_afRate[3500][3] - ((float)pCaster->GetLevel() * CFormulaTable::m_afRate[3500][4]));
+	float fDmg0 = fAttackerPower * (1.f - (fTargetDefensePower / (fTargetDefensePower + (float)pCaster->GetLevel() * CFormulaTable::m_afRate[3100][1])));
+	min_damage = CalcMinDamage(fDmg0, pCaster->GetLevel());
+	max_damage = CalcMaxDamage(fDmg0, pCaster->GetLevel());
 
 	fFinalDamage = RandomRangeF(min_damage, max_damage);
-	
-	
 
-	//printf("fDmg0 %f min_damage %f, max_damage %f fAttackerPower %f \n", fDmg0, min_damage, max_damage, fAttackerPower);
+
 	resultvalue = (fFinalDamage <= 1.f) ? 1.f : fFinalDamage;
-	
 
-	//---------------//
+	resultvalue = CalcCritBonus(resultvalue, cCasterAtt, skilltbl->bySkill_Type, rAttackResult, fCritDefRate, bIncreaseDmg);
 
-	//check if crit success and add damage
-	if (rAttackResult == BATTLE_ATTACK_RESULT_CRITICAL_HIT)		//only add crit dmg once
-	{
-		float fCritDmgBonus = 0.0f;
-
-		if (skilltbl->bySkill_Type == NTL_SKILL_TYPE_PHYSICAL) //check if physical dmg
-		{
-			fCritDmgRate = pCasterAtt->GetPhysicalCriticalDamageRate();
-		}
-		else if (skilltbl->bySkill_Type == NTL_SKILL_TYPE_ENERGY) //check if energy dmg
-		{
-			fCritDmgRate = pCasterAtt->GetEnergyCriticalDamageRate();
-		}
-		else if (skilltbl->bySkill_Type == NTL_SKILL_TYPE_STATE)
-		{
-			fCritDmgRate = (pCasterAtt->GetPhysicalCriticalDamageRate() + pCasterAtt->GetEnergyCriticalDamageRate()) / 2.f;
-		}
-
-		fCritDmgBonus = ((resultvalue * fCritDmgRate) / 100.f);
-
-		if (bIncreaseDmg) // check if has increase crit dmg effect bonus
-		{
-			fCritDmgBonus *= (DBO_BATTLE_OFFENCE_BONUS_RATE_BY_CRITICAL / 100.f);
-		}
-
-		fCritDmgBonus -= fCritDmgBonus * fCritDefRate / 100.f;
-
-		resultvalue += fCritDmgBonus;
-	}
-
-
-
-	//---------------//
-	//reflect dmg
-	rfReflectDmg += (int)GetSkillReflectDamage(resultvalue, skilltbl->bySkill_Type, victim->GetCharAtt()->GetPhysicalReflection(), victim->GetCharAtt()->GetEnergyReflection());
+	// Reflect Damage
+	rfReflectDmg += (int)GetSkillReflectDamage(resultvalue, skilltbl->bySkill_Type, victim->GetCharAtt());
 
 	//---------------//
 	if (pLpEpRecover)
 	{
-		//lp ep recover
-		pLpEpRecover->targetLpRecoveredWhenHit = (int)(victim->GetCharAtt()->GetLpRecoveryWhenHit() + (resultvalue * victim->GetCharAtt()->GetLpRecoveryWhenHitInPercent() / 100.0f));
-		if (pLpEpRecover->targetLpRecoveredWhenHit > 0)
-			pLpEpRecover->bIsLpRecoveredWhenHit = true;
+		// LP Recover
+		pLpEpRecover->targetLpRecoveredWhenHit = (int)(cVictimAtt->GetLpRecoveryWhenHit() + (resultvalue * cVictimAtt->GetLpRecoveryWhenHitInPercent() / 100.0f));
+		pLpEpRecover->bIsLpRecoveredWhenHit = pLpEpRecover->targetLpRecoveredWhenHit > 0;
 
-		//printf("resultvalue %f rLpEpRecover.targetLpRecoveredWhenHit %u, GetLpRecoveryWhenHitInPercent %f, GetLpRecoveryWhenHit %u, %f \n", 
-		//	resultvalue, rLpEpRecover.targetLpRecoveredWhenHit, victim->GetCharAtt()->GetLpRecoveryWhenHitInPercent(), victim->GetCharAtt()->GetLpRecoveryWhenHit(), resultvalue * victim->GetCharAtt()->GetLpRecoveryWhenHitInPercent() / 100.0f);
-
-		pLpEpRecover->dwTargetEpRecoveredWhenHit = (DWORD)(victim->GetCharAtt()->GetEpRecoveryWhenHit() + (resultvalue * victim->GetCharAtt()->GetEpRecoveryWhenHitInPercent() / 100.0f));
-		if (pLpEpRecover->dwTargetEpRecoveredWhenHit > 0)
-			pLpEpRecover->bIsEpRecoveredWhenHit = true;
+		// EP Recover
+		pLpEpRecover->dwTargetEpRecoveredWhenHit = (DWORD)(cVictimAtt->GetEpRecoveryWhenHit() + (resultvalue * cVictimAtt->GetEpRecoveryWhenHitInPercent() / 100.0f));
+		pLpEpRecover->bIsEpRecoveredWhenHit = pLpEpRecover->dwTargetEpRecoveredWhenHit > 0;
 	}
-
-	//ERR_LOG(LOG_USER,"Attacker Lv: %d Victim Lv %d Victim Obj Type %d CalcSkillDamage: %f \n", ch->GetLevel(), victim->GetLevel(), victim->GetObjType(), resultvalue);
 }
-
 
 //--------------------------------------------------------------------------------------//
 //		
 //--------------------------------------------------------------------------------------//
 void CalcSpecialSkillDamage(CCharacterObject* pCaster, CCharacterObject* victim, sSKILL_TBLDAT* skilltbl, BYTE byEffectNr, float fBaseSkillDmg, float& resultvalue, BYTE& rAttackResult, int& rfReflectDmg, sDBO_LP_EP_RECOVERED& rLpEpRecover)
 {
-	float  fFinalDamage = 0.0f, min_damage = 0.0f, max_damage = 0.0f, fAttackerPower = 0.0f, fTargetDefensePower = 0.0f, fCritDefRate = 0.0f;
-	float fCritDmgRate = 0.0f;	
-	if (skilltbl->bySkill_Type == NTL_SKILL_TYPE_PHYSICAL)
+	CCharacterAtt* cCasterAtt = pCaster->GetCharAtt();
+	CCharacterAtt* cVictimAtt = victim->GetCharAtt();
+
+	float fFinalDamage = 0.0f;
+	float min_damage = 0.0f;
+	float max_damage = 0.0f;
+	float fAttackerPower = 0.0f;
+	float fTargetDefensePower = 0.0f;
+	float fCritDefRate = 0.0f;
+	float fCritDmgRate = 0.0f;
+
+	bool bIsSubWeapon = pCaster->IsPC() && skilltbl->byRequire_Epuip_Slot_Type == EQUIP_SLOT_TYPE_SUB_WEAPON;
+	bool bIsSkillPhysical = skilltbl->bySkill_Type == NTL_SKILL_TYPE_PHYSICAL;
+	bool bIsSkillEnergy = skilltbl->bySkill_Type == NTL_SKILL_TYPE_ENERGY;
+	bool bIsSkillState = skilltbl->bySkill_Type == NTL_SKILL_TYPE_STATE;
+
+	float fWeaponPhysicalOffence = bIsSubWeapon ? cCasterAtt->GetSubWeaponPhysicalOffence() : cCasterAtt->GetPhysicalOffence();
+	float fWeaponEnergyOffence = bIsSubWeapon ? cCasterAtt->GetSubWeaponEnergyOffence() : cCasterAtt->GetEnergyOffence();
+
+	if (bIsSkillPhysical)
 	{
-		if (pCaster->IsPC() && skilltbl->byRequire_Epuip_Slot_Type == EQUIP_SLOT_TYPE_SUB_WEAPON)
-			fAttackerPower = ((float)pCaster->GetCharAtt()->GetSubWeaponPhysicalOffence() * (fBaseSkillDmg / 2.f)) / 100.f;
-		else
-			fAttackerPower = ((float)pCaster->GetCharAtt()->GetPhysicalOffence() * (fBaseSkillDmg / 2.f)) / 100.f;
-
-		fTargetDefensePower = (float)victim->GetCharAtt()->GetPhysicalDefence();
-
-		// <armor pen> decrease def
-		//fTargetDefensePower -= pCaster->GetCharAtt()->GetPhysicalArmorPenRate() * fTargetDefensePower / 100.f;
-
-		// critical dmg def
-		fCritDefRate = victim->GetCharAtt()->GetPhysicalCriticalDefenceRate();
+		fAttackerPower = (fWeaponPhysicalOffence * (fBaseSkillDmg / 2.f)) / 100.f;
+		fTargetDefensePower = CalcDefensePower(cVictimAtt->GetPhysicalDefence(), cCasterAtt->GetPhysicalArmorPenRate());
+		fCritDefRate = cVictimAtt->GetPhysicalCriticalDefenceRate();
 	}
-	else if (skilltbl->bySkill_Type == NTL_SKILL_TYPE_ENERGY)
+	else if (bIsSkillEnergy)
 	{
-		if (pCaster->IsPC() && skilltbl->byRequire_Epuip_Slot_Type == EQUIP_SLOT_TYPE_SUB_WEAPON)
-			fAttackerPower = ((float)pCaster->GetCharAtt()->GetSubWeaponEnergyOffence() * (fBaseSkillDmg / 2.f)) / 100.f;
-		else
-			fAttackerPower = ((float)pCaster->GetCharAtt()->GetEnergyOffence() * (fBaseSkillDmg / 2.f)) / 100.f;
-
-		fTargetDefensePower = (float)victim->GetCharAtt()->GetEnergyDefence();
-
-		// <armor pen> decrease def
-		//fTargetDefensePower -= pCaster->GetCharAtt()->GetEnergyArmorPenRate() * fTargetDefensePower / 100.f;
-
-		// critical dmg def
-		fCritDefRate = victim->GetCharAtt()->GetEnergyCriticalDefenceRate();
+		fAttackerPower = (fWeaponEnergyOffence * (fBaseSkillDmg / 2.f)) / 100.f;
+		fTargetDefensePower = CalcDefensePower(cVictimAtt->GetEnergyDefence(), cCasterAtt->GetEnergyArmorPenRate());
+		fCritDefRate = cVictimAtt->GetEnergyCriticalDefenceRate();
 	}
-	else if (skilltbl->bySkill_Type == NTL_SKILL_TYPE_STATE)
+	else if (bIsSkillState)
 	{
-		float fStateOffence = 0.f;
-		if (pCaster->IsPC() && skilltbl->byRequire_Epuip_Slot_Type == EQUIP_SLOT_TYPE_SUB_WEAPON)
-			fStateOffence = ((float)pCaster->GetCharAtt()->GetSubWeaponPhysicalOffence() + (float)pCaster->GetCharAtt()->GetSubWeaponEnergyOffence()) / 2.f;
-		else
-			fStateOffence = ((float)pCaster->GetCharAtt()->GetPhysicalOffence() + (float)pCaster->GetCharAtt()->GetEnergyOffence()) / 2.f;
+		float fDefense = (cVictimAtt->GetPhysicalDefence() + cVictimAtt->GetEnergyOffence()) / 2.f;
+		float fPenRate = (cCasterAtt->GetPhysicalArmorPenRate() + cCasterAtt->GetEnergyArmorPenRate()) / 2.f;
+		float fWeaponStateOffence = (fWeaponPhysicalOffence + fWeaponEnergyOffence) / 2.f;
 
-		fAttackerPower = (fStateOffence * fBaseSkillDmg) / 100.f;
-		fTargetDefensePower = (float)victim->GetCharAtt()->GetPhysicalDefence() + (float)victim->GetCharAtt()->GetEnergyDefence() / 2.f;
-
-		// <armor pen> decrease def
-		//fTargetDefensePower -= ((pCaster->GetCharAtt()->GetPhysicalArmorPenRate() + pCaster->GetCharAtt()->GetEnergyArmorPenRate()) / 2.f) * fTargetDefensePower / 100.f;
-
-		// critical dmg def
-		fCritDefRate = (victim->GetCharAtt()->GetPhysicalCriticalDefenceRate() + victim->GetCharAtt()->GetEnergyCriticalDefenceRate()) / 2.f;
+		fAttackerPower = (fWeaponStateOffence * fBaseSkillDmg) / 100.f;
+		fTargetDefensePower = CalcDefensePower(fDefense, fPenRate);
+		fCritDefRate = (cVictimAtt->GetPhysicalCriticalDefenceRate() + cVictimAtt->GetEnergyCriticalDefenceRate()) / 2.f;
 	}
 
 	float fDmg0 = fAttackerPower * (1.f - (fTargetDefensePower / (fTargetDefensePower + (float)pCaster->GetLevel() * 15.f)));
 
-	min_damage = fDmg0 * (CFormulaTable::m_afRate[3500][1] + ((float)pCaster->GetLevel() * CFormulaTable::m_afRate[3500][2]));
-	max_damage = fDmg0 * (CFormulaTable::m_afRate[3500][3] - ((float)pCaster->GetLevel() * CFormulaTable::m_afRate[3500][4]));
+	min_damage = CalcMinDamage(fDmg0, pCaster->GetLevel());
+	max_damage = CalcMaxDamage(fDmg0, pCaster->GetLevel());
 
 	fFinalDamage = RandomRangeF(min_damage, max_damage);
+
 	resultvalue = (fFinalDamage <= 1.f) ? 1.f : fFinalDamage;
-	
-	
+
+	resultvalue = CalcCritBonus(resultvalue, cCasterAtt, skilltbl->bySkill_Type, rAttackResult, fCritDefRate, false);
+
+	// Reflect Damage
+	rfReflectDmg += (int)GetSkillReflectDamage(resultvalue, skilltbl->bySkill_Type, cVictimAtt);
 
 	//---------------//
+	// LP Recover
+	rLpEpRecover.targetLpRecoveredWhenHit += (int)(cVictimAtt->GetLpRecoveryWhenHit() + (resultvalue * cVictimAtt->GetLpRecoveryWhenHitInPercent() / 100.0f));
+	rLpEpRecover.bIsLpRecoveredWhenHit = rLpEpRecover.targetLpRecoveredWhenHit > 0;
 
-	//check if crit success and add damage
-	if (rAttackResult == BATTLE_ATTACK_RESULT_CRITICAL_HIT)		//only add crit dmg once
-	{
-		float fCritDmgBonus = 0.0f;
-
-		if (skilltbl->bySkill_Type == NTL_SKILL_TYPE_PHYSICAL) //check if physical dmg
-		{
-			fCritDmgRate = pCaster->GetCharAtt()->GetPhysicalCriticalDamageRate();
-		}
-		else if (skilltbl->bySkill_Type == NTL_SKILL_TYPE_ENERGY) //check if energy dmg
-		{
-			fCritDmgRate = pCaster->GetCharAtt()->GetEnergyCriticalDamageRate();
-		}
-		else if (skilltbl->bySkill_Type == NTL_SKILL_TYPE_STATE)
-		{
-			fCritDmgRate = (pCaster->GetCharAtt()->GetPhysicalCriticalDamageRate() + pCaster->GetCharAtt()->GetEnergyCriticalDamageRate()) / 2.f;
-		}
-
-		fCritDmgBonus = ((resultvalue * fCritDmgRate) / 100.f);
-
-		fCritDmgBonus -= fCritDmgBonus * fCritDefRate / 100.f;
-
-		resultvalue += fCritDmgBonus;
-	}
-
-	//---------------//
-	//reflect dmg
-	rfReflectDmg += (int)GetSkillReflectDamage(resultvalue, skilltbl->bySkill_Type, victim->GetCharAtt()->GetPhysicalReflection(), victim->GetCharAtt()->GetEnergyReflection());
-
-	//---------------//
-	//lp ep recover
-	rLpEpRecover.targetLpRecoveredWhenHit += (int)(victim->GetCharAtt()->GetLpRecoveryWhenHit() + (resultvalue * victim->GetCharAtt()->GetLpRecoveryWhenHitInPercent() / 100.0f));
-	if (rLpEpRecover.targetLpRecoveredWhenHit > 0)
-		rLpEpRecover.bIsLpRecoveredWhenHit = true;
-
-	rLpEpRecover.dwTargetEpRecoveredWhenHit += (DWORD)(victim->GetCharAtt()->GetEpRecoveryWhenHit() + (resultvalue * victim->GetCharAtt()->GetEpRecoveryWhenHitInPercent() / 100.0f));
-	if (rLpEpRecover.dwTargetEpRecoveredWhenHit > 0)
-		rLpEpRecover.bIsEpRecoveredWhenHit = true;
-
-	//ERR_LOG(LOG_USER,"Attacker Lv: %d Victim Lv %d Victim Obj Type %d CalcSkillDamage: %f \n", ch->GetLevel(), victim->GetLevel(), victim->GetObjType(), resultvalue);
+	// EP Recover
+	rLpEpRecover.dwTargetEpRecoveredWhenHit += (DWORD)(cVictimAtt->GetEpRecoveryWhenHit() + (resultvalue * cVictimAtt->GetEpRecoveryWhenHitInPercent() / 100.0f));
+	rLpEpRecover.bIsEpRecoveredWhenHit = rLpEpRecover.dwTargetEpRecoveredWhenHit > 0;
 }
 
-
-void CalcSkillDotDamage(CCharacterObject * pCaster, CCharacterObject * victim, sSKILL_TBLDAT * skilltbl, BYTE byEffectNr, WORD wDefence, float fBaseSkillDmg, float fBonusDmg, float & resultvalue, BYTE rAttackResult, BYTE byEffectCode)
+void CalcSkillDotDamage(CCharacterObject* pCaster, CCharacterObject* victim, sSKILL_TBLDAT* skilltbl, BYTE byEffectNr, WORD wDefence, float fBaseSkillDmg, float fBonusDmg, float& resultvalue, BYTE rAttackResult, BYTE byEffectCode)
 {
+	CCharacterAtt* cCasterAtt = pCaster->GetCharAtt();
+	CCharacterAtt* cVictimAtt = victim->GetCharAtt();
 
-	float  fFinalDamage = 0.0f, min_damage = 0.0f, max_damage = 0.0f, fAttackerPower = 0.0f, fCritDmgRate = 0.0f, fCritDefRate = 0.0f;
-	float fTargetDefensePower = (float)wDefence;
-	
-	if (skilltbl->bySkill_Effect_Type[byEffectNr] == SYSTEM_EFFECT_APPLY_TYPE_VALUE)
+	float  fFinalDamage = 0.0f;
+	float min_damage = 0.0f;
+	float max_damage = 0.0f;
+	float fAttackerPower = 0.0f;
+	float fCritDefRate = 0.0f;
+	float fTargetDefensePower = wDefence;
+
+	bool bIsApplyTypeValue = skilltbl->bySkill_Effect_Type[byEffectNr] == SYSTEM_EFFECT_APPLY_TYPE_VALUE;
+	bool bIsApplyTypePercent = skilltbl->bySkill_Effect_Type[byEffectNr] == SYSTEM_EFFECT_APPLY_TYPE_PERCENT;
+	bool bIsSubWeapon = pCaster->IsPC() && skilltbl->byRequire_Epuip_Slot_Type == EQUIP_SLOT_TYPE_SUB_WEAPON;
+
+	bool bIsSkillPhysical = skilltbl->bySkill_Type == NTL_SKILL_TYPE_PHYSICAL;
+	bool bIsSkillEnergy = skilltbl->bySkill_Type == NTL_SKILL_TYPE_ENERGY;
+	bool bIsSkillState = skilltbl->bySkill_Type == NTL_SKILL_TYPE_STATE;
+
+	float fWeaponPhysicalOffence = bIsSubWeapon ? cCasterAtt->GetSubWeaponPhysicalOffence() : cCasterAtt->GetPhysicalOffence();
+	float fWeaponEnergyOffence = bIsSubWeapon ? cCasterAtt->GetSubWeaponEnergyOffence() : cCasterAtt->GetEnergyOffence();
+
+	if (bIsApplyTypeValue)
 	{
 		fAttackerPower = fBaseSkillDmg;
 		fFinalDamage = fAttackerPower * (1.f - (fTargetDefensePower / (fTargetDefensePower + (float)pCaster->GetLevel() * 25.f)));
 	}
-	else if (skilltbl->bySkill_Effect_Type[byEffectNr] == SYSTEM_EFFECT_APPLY_TYPE_PERCENT)
+	else if (bIsApplyTypePercent)
 	{
-		if (skilltbl->bySkill_Type == NTL_SKILL_TYPE_PHYSICAL)
+		if (bIsSkillPhysical)
 		{
-			if (pCaster->IsPC() && skilltbl->byRequire_Epuip_Slot_Type == EQUIP_SLOT_TYPE_SUB_WEAPON)
-				fAttackerPower = ((float)pCaster->GetCharAtt()->GetSubWeaponPhysicalOffence() + (float)pCaster->GetCharAtt()->GetPhysicalOffence() * fBaseSkillDmg) / 100.f;
-			else
-				fAttackerPower = ((float)pCaster->GetCharAtt()->GetPhysicalOffence() * fBaseSkillDmg) / 100.f;
+			fAttackerPower = (fWeaponPhysicalOffence * fBaseSkillDmg) / 100.f;
 
-			fTargetDefensePower += (float)victim->GetCharAtt()->GetPhysicalDefence();
-
-			// <armor pen> decrease def
-			//fTargetDefensePower -= pCaster->GetCharAtt()->GetPhysicalArmorPenRate() * fTargetDefensePower / 100.f;
+			fTargetDefensePower += cVictimAtt->GetPhysicalDefence();
+			fTargetDefensePower = CalcDefensePower(fTargetDefensePower, cCasterAtt->GetPhysicalArmorPenRate());
 
 			// critical dmg def
-			fCritDefRate = victim->GetCharAtt()->GetPhysicalCriticalDefenceRate();
+			fCritDefRate = cVictimAtt->GetPhysicalCriticalDefenceRate();
 		}
-		else if (skilltbl->bySkill_Type == NTL_SKILL_TYPE_ENERGY)
+		else if (bIsSkillEnergy)
 		{
-			if (pCaster->IsPC() && skilltbl->byRequire_Epuip_Slot_Type == EQUIP_SLOT_TYPE_SUB_WEAPON)
-				fAttackerPower = ((float)pCaster->GetCharAtt()->GetSubWeaponEnergyOffence() + (float)pCaster->GetCharAtt()->GetEnergyOffence() * fBaseSkillDmg) / 100.f;
-			else
-				fAttackerPower = ((float)pCaster->GetCharAtt()->GetEnergyOffence() * fBaseSkillDmg) / 100.f;
+			fAttackerPower = (fWeaponEnergyOffence * fBaseSkillDmg) / 100.f;
 
-			fTargetDefensePower += (float)victim->GetCharAtt()->GetEnergyDefence();
-
-			// <armor pen> decrease def
-			//fTargetDefensePower -= pCaster->GetCharAtt()->GetEnergyArmorPenRate() * fTargetDefensePower / 100.f;
+			fTargetDefensePower += cVictimAtt->GetEnergyDefence();
+			fTargetDefensePower = CalcDefensePower(fTargetDefensePower, cCasterAtt->GetEnergyArmorPenRate());
 
 			// critical dmg def
-			fCritDefRate = victim->GetCharAtt()->GetEnergyCriticalDefenceRate();
+			fCritDefRate = cVictimAtt->GetEnergyCriticalDefenceRate();
 		}
-		else if (skilltbl->bySkill_Type == NTL_SKILL_TYPE_STATE)
+		else if (bIsSkillState)
 		{
 			float fStateOffence;
 
-			if (pCaster->IsPC() && skilltbl->byRequire_Epuip_Slot_Type == EQUIP_SLOT_TYPE_SUB_WEAPON)
-				fStateOffence = ((float)pCaster->GetCharAtt()->GetSubWeaponPhysicalOffence() + (float)pCaster->GetCharAtt()->GetSubWeaponEnergyOffence()) / 2.f;
-			else
-				fStateOffence = ((float)pCaster->GetCharAtt()->GetPhysicalOffence() + (float)pCaster->GetCharAtt()->GetEnergyOffence()) / 2.f;
+			float fDefense = (cVictimAtt->GetPhysicalDefence() + cVictimAtt->GetEnergyOffence()) / 2.f;
+			float fPenRate = (cCasterAtt->GetPhysicalArmorPenRate() + cCasterAtt->GetEnergyArmorPenRate()) / 2.f;
+			float fWeaponStateOffence = (fWeaponPhysicalOffence + fWeaponEnergyOffence) / 2.f;
 
-			fAttackerPower = (fStateOffence * fBaseSkillDmg) / 100.f;
-			fTargetDefensePower += ((float)victim->GetCharAtt()->GetPhysicalDefence() + (float)victim->GetCharAtt()->GetEnergyDefence()) / 2.f;
-
-			// <armor pen> decrease def
-			//fTargetDefensePower -= ((pCaster->GetCharAtt()->GetPhysicalArmorPenRate() + pCaster->GetCharAtt()->GetEnergyArmorPenRate()) / 2.f) * fTargetDefensePower / 100.f;
+			fAttackerPower = (fWeaponStateOffence * fBaseSkillDmg) / 100.f;
+			fTargetDefensePower += fDefense;
+			fTargetDefensePower = CalcDefensePower(fTargetDefensePower, fPenRate);
 
 			// critical dmg def
-			fCritDefRate = (victim->GetCharAtt()->GetPhysicalCriticalDefenceRate() + victim->GetCharAtt()->GetEnergyCriticalDefenceRate()) / 2.f;
+			fCritDefRate = (cVictimAtt->GetPhysicalCriticalDefenceRate() + cVictimAtt->GetEnergyCriticalDefenceRate()) / 2.f;
 		}
 
 		fFinalDamage = fAttackerPower * (1.f - (fTargetDefensePower / (fTargetDefensePower + (float)pCaster->GetLevel() * 35.f)));
 	}
-	if(skilltbl->tblidx >= 910471 || skilltbl->tblidx <= 910476)
-	fBonusDmg /= 1.8;
 
 	fFinalDamage += fBonusDmg;
-	//printf("Bleed fFinalDamage %f \n", fFinalDamage);
+
 	if (victim->IsPC())
 	{
-		if(byEffectCode == ACTIVE_BLEED || ACTIVE_BURN || wDefence < 1)
+		if (byEffectCode == ACTIVE_BLEED || byEffectCode == ACTIVE_BURN || wDefence < 1)
+		{
 			fFinalDamage -= (float)wDefence;
+		}
 		else
+		{
 			fFinalDamage -= (float)wDefence / 2.0f;
+		}
 	}
+
 	resultvalue = (fFinalDamage <= 1.f) ? 1.f : fFinalDamage;
-	
-	
 
-	//---------------//
-
-	//check if crit success and add damage
-	if (rAttackResult == BATTLE_ATTACK_RESULT_CRITICAL_HIT)		//only add crit dmg once
-	{
-		float fCritDmgBonus = 0.0f;
-
-		if (skilltbl->bySkill_Type == NTL_SKILL_TYPE_PHYSICAL) //check if physical dmg
-		{
-			fCritDmgRate = pCaster->GetCharAtt()->GetPhysicalCriticalDamageRate() / 2.f;
-		}
-		else if (skilltbl->bySkill_Type == NTL_SKILL_TYPE_ENERGY) //check if energy dmg
-		{
-			fCritDmgRate = pCaster->GetCharAtt()->GetEnergyCriticalDamageRate() / 2.f;
-		}
-		else if (skilltbl->bySkill_Type == NTL_SKILL_TYPE_STATE)
-		{
-			fCritDmgRate = (pCaster->GetCharAtt()->GetPhysicalCriticalDamageRate() + pCaster->GetCharAtt()->GetEnergyCriticalDamageRate()) / 4.f;
-		}
-
-		fCritDmgBonus = ((resultvalue * fCritDmgRate) / 100.f);
-
-		fCritDmgBonus -= fCritDmgBonus * fCritDefRate / 100.f;
-
-		resultvalue += fCritDmgBonus;
-	}
+	resultvalue = CalcCritBonus(resultvalue, pCaster->GetCharAtt(), skilltbl->bySkill_Type, rAttackResult, fCritDefRate);
 }
-
 
 void CalcLifeStealDamage(CCharacterObject* pCaster, CCharacterObject* victim, sSKILL_TBLDAT* skilltbl, BYTE byEffectNr, float fBaseSkillDmg, float& resultvalue)
 {
-	float  fFinalDamage = 0.0f, fAttackerPower = 0.0f, fTargetDefensePower = 0.0f;	
-	if (skilltbl->bySkill_Type == NTL_SKILL_TYPE_ENERGY)
-	{
-		if (pCaster->IsPC() && skilltbl->byRequire_Epuip_Slot_Type == EQUIP_SLOT_TYPE_SUB_WEAPON)
-			fAttackerPower = fBaseSkillDmg + (float)pCaster->GetCharAtt()->GetSubWeaponEnergyOffence();
-		else
-			fAttackerPower = fBaseSkillDmg + (float)pCaster->GetCharAtt()->GetEnergyOffence();
+	CCharacterAtt* cCasterAtt = pCaster->GetCharAtt();
+	CCharacterAtt* cVictimAtt = victim->GetCharAtt();
 
-		fTargetDefensePower = (float)victim->GetCharAtt()->GetEnergyDefence();
+	float fFinalDamage = 0.0f;
+	float fAttackerPower = 0.0f;
+	float fTargetDefensePower = 0.0f;
 
-		// <armor pen> decrease def
-		//fTargetDefensePower -= pCaster->GetCharAtt()->GetEnergyArmorPenRate() * fTargetDefensePower / 100.f;
-	}
-	else
-	{
-		if (pCaster->IsPC() && skilltbl->byRequire_Epuip_Slot_Type == EQUIP_SLOT_TYPE_SUB_WEAPON)
-			fAttackerPower = fBaseSkillDmg + (float)pCaster->GetCharAtt()->GetSubWeaponPhysicalOffence();
-		else
-			fAttackerPower = fBaseSkillDmg + (float)pCaster->GetCharAtt()->GetPhysicalOffence();
+	bool bIsSubWeapon = pCaster->IsPC() && skilltbl->byRequire_Epuip_Slot_Type == EQUIP_SLOT_TYPE_SUB_WEAPON;
+	bool bIsSkillEnergy = skilltbl->bySkill_Type == NTL_SKILL_TYPE_ENERGY;
 
-		fTargetDefensePower = (float)victim->GetCharAtt()->GetPhysicalDefence();
+	float fWeaponPhysicalOffence = bIsSubWeapon ? cCasterAtt->GetSubWeaponPhysicalOffence() : cCasterAtt->GetPhysicalOffence();
+	float fWeaponEnergyOffence = bIsSubWeapon ? cCasterAtt->GetSubWeaponEnergyOffence() : cCasterAtt->GetEnergyOffence();
+	float fCasterOffence = bIsSkillEnergy ? fWeaponEnergyOffence : fWeaponPhysicalOffence;
+	float fCasterArmorPenRate = bIsSkillEnergy ? cCasterAtt->GetEnergyArmorPenRate() : cCasterAtt->GetPhysicalArmorPenRate();
+	float fVictimDefence = bIsSkillEnergy ? cVictimAtt->GetEnergyDefence() : cVictimAtt->GetPhysicalDefence();
 
-		// <armor pen> decrease def
-		//fTargetDefensePower -= pCaster->GetCharAtt()->GetPhysicalArmorPenRate() * fTargetDefensePower / 100.f;
-	}
+	fAttackerPower = fBaseSkillDmg + fCasterOffence;
+	fTargetDefensePower = CalcDefensePower(fVictimDefence, fCasterArmorPenRate);
 
 	fFinalDamage = fAttackerPower * (1.f - (fTargetDefensePower / (fTargetDefensePower + (float)pCaster->GetLevel() * 35.f)));
 
-	resultvalue = (fFinalDamage <= 1.f) ? 1.f : fFinalDamage;	
-	//---------------//
+	resultvalue = (fFinalDamage <= 1.f) ? 1.f : fFinalDamage;
 }
 
 
@@ -555,112 +375,80 @@ void CalcLifeStealDamage(CCharacterObject* pCaster, CCharacterObject* victim, sS
 //--------------------------------------------------------------------------------------//
 float CalcMeleeDamage(CCharacter* pkAttacker, CCharacter* pkVictim)
 {
-	float  fFinalDamage = 0.0f, min_damage = 0.0f, max_damage = 0.0f, fAttackerPower = 0.0f, fTargetDefensePower = 0.0f;
-	float FinalProp = (int)GetAttributeBonusRate(pkAttacker->IsPC(), 0, pkVictim->GetCharAtt()->GetBattleAttributeOffence(), pkVictim->GetCharAtt()->GetBattleAttributeDefence(), 0, pkAttacker->GetCharAtt()->GetAvatarAttribute(), pkVictim->GetCharAtt()->GetAvatarAttribute());
-	if (pkAttacker->GetAttackType() == BATTLE_ATTACK_TYPE_ENERGY)
-	{
-		fAttackerPower = (float)pkAttacker->GetCharAtt()->GetEnergyOffence();
-		fTargetDefensePower = (float)pkVictim->GetCharAtt()->GetEnergyDefence();
+	CCharacterAtt* cCasterAtt = pkAttacker->GetCharAtt();
+	CCharacterAtt* cVictimAtt = pkVictim->GetCharAtt();
 
-		// <armor pen> decrease def
-		//fTargetDefensePower -= pkAttacker->GetCharAtt()->GetEnergyArmorPenRate() * fTargetDefensePower / 100.f;
-	}
-	else
-	{
-		fAttackerPower = (float)pkAttacker->GetCharAtt()->GetPhysicalOffence();
-		fTargetDefensePower = (float)pkVictim->GetCharAtt()->GetPhysicalDefence();
+	float fFinalDamage = 0.0f;
+	float min_damage = 0.0f;
+	float max_damage = 0.0f;
+	float fAttackerPower = 0.0f;
+	float fTargetDefensePower = 0.0f;
 
-		// <armor pen> decrease def
-		//fTargetDefensePower -= pkAttacker->GetCharAtt()->GetPhysicalArmorPenRate() * fTargetDefensePower / 100.f;
-	}
-	float PropsValueAtack = 0;
-	float PropsValueDefese = 0;
-	//fAttackerPower *= 1.3f;
-	if (FinalProp > 0)
-	{
-		PropsValueAtack = (fAttackerPower / 100.f * FinalProp);
-		fAttackerPower += PropsValueAtack;
-		//printf("Auto Atack Props Positive %f\n", PropsValueAtack);
-	}
-	else if (FinalProp < 0)
-	{
-		PropsValueDefese = (fAttackerPower / 100.f * FinalProp) * -1;
-		fAttackerPower -= PropsValueDefese;
-		//printf("Auto Atack Props Negative %f\n", PropsValueDefese);
-	}
-	float fDmg0 = fAttackerPower * (1.05f - (fTargetDefensePower / (fTargetDefensePower + (float)pkAttacker->GetLevel() * CFormulaTable::m_afRate[3100][1])));
+	bool bIsAttackEnergy = pkAttacker->GetAttackType() == BATTLE_ATTACK_TYPE_ENERGY;
 
-	min_damage = fDmg0 * (CFormulaTable::m_afRate[3500][1] + ((float)pkAttacker->GetLevel() * CFormulaTable::m_afRate[3500][2]));
-	max_damage = fDmg0 * (CFormulaTable::m_afRate[3500][3] - ((float)pkAttacker->GetLevel() * CFormulaTable::m_afRate[3500][4]));
+	float fCasterOffence = bIsAttackEnergy ? cCasterAtt->GetEnergyOffence() : cCasterAtt->GetPhysicalOffence();
+	float fCasterArmorPenRate = bIsAttackEnergy ? cCasterAtt->GetEnergyArmorPenRate() : cCasterAtt->GetPhysicalArmorPenRate();
+	float fVictimDefence = bIsAttackEnergy ? cVictimAtt->GetEnergyDefence() : cVictimAtt->GetPhysicalDefence();
+
+	fAttackerPower = fCasterOffence;
+	fTargetDefensePower = CalcDefensePower(fVictimDefence, fCasterArmorPenRate);
+
+	fAttackerPower = CalcPropBonus(pkAttacker, pkVictim, fAttackerPower);
+
+	float fDmg0 = fAttackerPower * (1.f - (fTargetDefensePower / (fTargetDefensePower + (float)pkAttacker->GetLevel() * CFormulaTable::m_afRate[3100][1])));
+
+	min_damage = CalcMinDamage(fDmg0, pkAttacker->GetLevel());
+	max_damage = CalcMaxDamage(fDmg0, pkAttacker->GetLevel());
 
 	fFinalDamage = RandomRangeF(min_damage, max_damage);
-
-	//if (pkAttacker->IsPC())
-	//	printf("fAttackerPower %f, fTargetDefensePower %f, min_damage %f, max_damage %f, fFinalDamage %f, fAttributeBonusRate %f, fDmg0 %f, fDmg1 %f\n", fAttackerPower, fTargetDefensePower, min_damage, max_damage, fFinalDamage, fAttributeBonusRate, fDmg0, fDmg1);
 
 	return (fFinalDamage <= 1.f) ? 1.f : fFinalDamage;
 }
 
-
-void CalcDirectHeal(CCharacterObject * pCaster, sSKILL_TBLDAT * skilltbl, BYTE byEffectNr, float & resultvalue)
+void CalcDirectHeal(CCharacterObject* pCaster, sSKILL_TBLDAT* skilltbl, BYTE byEffectNr, float& resultvalue)
 {
-	resultvalue = (float)skilltbl->aSkill_Effect_Value[byEffectNr];
+	CCharacterAtt* cCasterAtt = pCaster->GetCharAtt();
+	bool bIsSubWeapon = pCaster->IsPC() && skilltbl->byRequire_Epuip_Slot_Type == EQUIP_SLOT_TYPE_SUB_WEAPON;
+	float fWeaponEnergyOffence = bIsSubWeapon ? cCasterAtt->GetSubWeaponEnergyOffence() : cCasterAtt->GetSubWeaponEnergyOffence();
 
-	if (pCaster->IsPC() && skilltbl->byRequire_Epuip_Slot_Type == EQUIP_SLOT_TYPE_SUB_WEAPON)
-	{
-		//add weapon offence to healing power
-		resultvalue += (float)pCaster->GetCharAtt()->GetSubWeaponEnergyOffence();
+	resultvalue = skilltbl->aSkill_Effect_Value[byEffectNr];
 
-		// Add % heal bonus (offence * %)
-		resultvalue += (float)pCaster->GetCharAtt()->GetSubWeaponEnergyOffence() * pCaster->GetCharAtt()->GetDirectHealPowerBonusInPercent() / 100.f;
-	}
-	else
-	{
-		//add weapon offence to healing power
-		resultvalue += (float)pCaster->GetCharAtt()->GetEnergyOffence();
+	//add weapon offence to healing power
+	resultvalue += fWeaponEnergyOffence;
 
-		// Add % heal bonus (offence * %)
-		resultvalue += (float)pCaster->GetCharAtt()->GetEnergyOffence() * pCaster->GetCharAtt()->GetDirectHealPowerBonusInPercent() / 100.f;
-	}
+	// Add % heal bonus (offence * %)
+	resultvalue += fWeaponEnergyOffence * cCasterAtt->GetDirectHealPowerBonusInPercent() / 100.f;
 
 	// Add Static Bonus
-	resultvalue += pCaster->GetCharAtt()->GetDirectHealPowerBonus();
-
-	//NTL_PRINT(PRINT_APP,"resultvalue %f, GetSubWeaponEnergyOffence %u, GetEnergyOffence %u, GetDirectHealPowerBonusInPercent %f, GetDirectHealPowerBonus %f \n", 
-	//	resultvalue, pCaster->GetCharAtt()->GetSubWeaponEnergyOffence(), pCaster->GetCharAtt()->GetEnergyOffence(), pCaster->GetCharAtt()->GetDirectHealPowerBonusInPercent(), pCaster->GetCharAtt()->GetDirectHealPowerBonus());
+	resultvalue += cCasterAtt->GetDirectHealPowerBonus();
 }
 
-
-void CalcHealOverTime(CCharacterObject * pCaster, sSKILL_TBLDAT * skilltbl, BYTE byEffectNr, float & resultvalue)
+void CalcHealOverTime(CCharacterObject* pCaster, sSKILL_TBLDAT* skilltbl, BYTE byEffectNr, float& resultvalue)
 {
+	CCharacterAtt* cCasterAtt = pCaster->GetCharAtt();
+	bool bIsSubWeapon = pCaster->IsPC() && skilltbl->byRequire_Epuip_Slot_Type == EQUIP_SLOT_TYPE_SUB_WEAPON;
+	float fWeaponEnergyOffence = bIsSubWeapon ? cCasterAtt->GetSubWeaponEnergyOffence() : cCasterAtt->GetSubWeaponEnergyOffence();
+
 	resultvalue = (float)skilltbl->aSkill_Effect_Value[byEffectNr];
 
-	if (pCaster->IsPC() && skilltbl->byRequire_Epuip_Slot_Type == EQUIP_SLOT_TYPE_SUB_WEAPON)
-	{
-		// Add % heal bonus (offence * %)
-		resultvalue += (float)pCaster->GetCharAtt()->GetSubWeaponEnergyOffence() * pCaster->GetCharAtt()->GetHotPowerBonusInPercent() / 100.f;
-	}
-	else
-	{
-		// Add % heal bonus (offence * %)
-		resultvalue += (float)pCaster->GetCharAtt()->GetEnergyOffence() * pCaster->GetCharAtt()->GetHotPowerBonusInPercent() / 100.f;
-	}
+	// Add % heal bonus (offence * %)
+	resultvalue += fWeaponEnergyOffence * cCasterAtt->GetHotPowerBonusInPercent() / 100.f;
 
 	// Add Static Bonus
-	resultvalue += pCaster->GetCharAtt()->GetHotPowerBonus();
+	resultvalue += cCasterAtt->GetHotPowerBonus();
 }
-
 
 //--------------------------------------------------------------------------------------//
 //		INCREASES THE AGGRO FROM MONSTER WHICH ARE ATTACKING pTARGET (USED WHEN PCASTER HEAL PTARGET)
 //--------------------------------------------------------------------------------------//
-void IncreaseTargetEnemyAggro(CCharacter * pCaster, CCharacter * pTarget, DWORD dwDefaultAggro)
+void IncreaseTargetEnemyAggro(CCharacter* pCaster, CCharacter* pTarget, DWORD dwDefaultAggro)
 {
-	int nAgro = (int)(dwDefaultAggro + pCaster->GetCharAtt()->GetSkillAggroBonus());
-	nAgro += (int)((float)nAgro * pCaster->GetCharAtt()->GetSkillAggroBonusInPercent() / 100.f);
+	CCharacterAtt* cCasterAtt = pCaster->GetCharAtt();
+	int nAgro = (int)(dwDefaultAggro + cCasterAtt->GetSkillAggroBonus());
+	nAgro += (int)((float)nAgro * cCasterAtt->GetSkillAggroBonusInPercent() / 100.f);
 
-	CTargetListManager::AGGROPOINT_MAP::iterator it = pTarget->GetTargetListManager()->AggroBegin();
-	CTargetListManager::AGGROPOINT_MAP::iterator itEnd = pTarget->GetTargetListManager()->AggroEnd();
+	auto it = pTarget->GetTargetListManager()->AggroBegin();
+	auto itEnd = pTarget->GetTargetListManager()->AggroEnd();
 
 	int nLoopCount = 0;
 
@@ -685,32 +473,32 @@ void IncreaseTargetEnemyAggro(CCharacter * pCaster, CCharacter * pTarget, DWORD 
 	}
 }
 
-float GetReflectDamage(float fDmg, BYTE byAttackType, float fPhysicalReflect, float fEnergyReflect)
+float GetReflectDamage(float fDmg, BYTE byAttackType, CCharacterAtt* pVictimAtt)
 {
-	if (byAttackType == BATTLE_ATTACK_TYPE_PHYSICAL)
-	{
-		return fDmg * fPhysicalReflect / 100.0f;
-	}
-	else if (byAttackType == BATTLE_ATTACK_TYPE_ENERGY)
-	{
-		return fDmg * fEnergyReflect / 100.0f;
-	}
+	/*
+		We need to sum + 1 to convert enum types
 
-	return 0.0f;
+		NTL_SKILL_TYPE_PHYSICAL = BATTLE_ATTACK_TYPE_PHYSICAL + 1
+		NTL_SKILL_TYPE_ENERGY = BATTLE_ATTACK_TYPE_ENERGY + 1
+	*/
+
+	return GetSkillReflectDamage(fDmg, byAttackType + 1, pVictimAtt);
 }
 
-float GetSkillReflectDamage(float fDmg, BYTE bySkillType, float fPhysicalReflect, float fEnergyReflect)
+float GetSkillReflectDamage(float fDmg, BYTE bySkillType, CCharacterAtt* pVictimAtt)
 {
-	if (bySkillType == NTL_SKILL_TYPE_PHYSICAL)
+	bool bIsSkillPhysical = bySkillType == NTL_SKILL_TYPE_PHYSICAL;
+	bool bIsSkillEnergy = bySkillType == NTL_SKILL_TYPE_ENERGY;
+	float fReflectedValue = 0.0f;
+
+	if (bIsSkillPhysical || bIsSkillEnergy)
 	{
-		return fDmg * fPhysicalReflect / 100.0f;
-	}
-	else if (bySkillType == NTL_SKILL_TYPE_ENERGY)
-	{
-		return fDmg * fEnergyReflect / 100.0f;
+		float fReflection = bIsSkillPhysical ? pVictimAtt->GetPhysicalReflection() : pVictimAtt->GetEnergyReflection();
+
+		fReflectedValue = fDmg * fReflection / 100.0f;
 	}
 
-	return 0.0f;
+	return fReflectedValue;
 }
 
 float GetAttributeBonusRate(bool bIsPc, bool bSubWeapon, BYTE byOffence, BYTE byDefence, BYTE bySubOffence, sAVATAR_ATTRIBUTE& sOffenceAttribute, sAVATAR_ATTRIBUTE& sDefenceAttribute)
@@ -749,4 +537,121 @@ float GetAttributeBonusRate(bool bIsPc, bool bSubWeapon, BYTE byOffence, BYTE by
 
 	//printf("fAttributeBonusRate %f, byAttrOffence %f, byDefence %f \n", fAttributeBonusRate, byAttrOffence, byDefence);
 	return fAttributeBonusRate;
+}
+
+
+////////////////////////////////////////////////
+//  Helper Methods
+/////////////////////////////////////////////////
+
+float CalcPropBonus(CCharacterObject* pCaster, CCharacterObject* pVictim, float fAttackerPower)
+{
+	CCharacterAtt* cCasterAtt = pCaster->GetCharAtt();
+	CCharacterAtt* cVictimAtt = pVictim->GetCharAtt();
+
+	float FinalProp = GetAttributeBonusRate(pCaster->IsPC(), 0, cCasterAtt->GetBattleAttributeOffence(),
+		cVictimAtt->GetBattleAttributeDefence(), 0,
+		cCasterAtt->GetAvatarAttribute(), cVictimAtt->GetAvatarAttribute());
+	float PropsValue = 0;
+
+	if (FinalProp == 0)
+	{
+		return fAttackerPower;
+	}
+
+	PropsValue = (fAttackerPower * FinalProp / 100.f);
+
+	return fAttackerPower + PropsValue;
+}
+
+float CalcDefensePower(float fDefence, float fArmorPenRate)
+{
+	return fDefence - (fArmorPenRate * fDefence / 100.0f);
+}
+
+float CalcCritBonus(float fResultValue, CCharacterAtt* pCasterAtt, BYTE bySkill_Type, BYTE byAttackResult, float fCritDefRate, bool bIncreaseDmg)
+{
+	bool bIsSkillPhysical = bySkill_Type == NTL_SKILL_TYPE_PHYSICAL;
+	bool bIsSkillEnergy = bySkill_Type == NTL_SKILL_TYPE_ENERGY;
+	bool bIsSkillState = bySkill_Type == NTL_SKILL_TYPE_STATE;
+	float fCritDmgRate = 0.0f;
+	float fCritDmgBonus = 0.0f;
+
+	if (byAttackResult == BATTLE_ATTACK_RESULT_CRITICAL_HIT)
+	{
+		if (bIsSkillPhysical)
+		{
+			fCritDmgRate = pCasterAtt->GetPhysicalCriticalDamageRate();
+		}
+		else if (bIsSkillEnergy)
+		{
+			fCritDmgRate = pCasterAtt->GetEnergyCriticalDamageRate();
+		}
+		else if (bIsSkillState)
+		{
+			fCritDmgRate = (pCasterAtt->GetPhysicalCriticalDamageRate() + pCasterAtt->GetEnergyCriticalDamageRate()) / 2.f;
+		}
+
+		fCritDmgBonus = ((fResultValue * fCritDmgRate) / 100.f);
+		fCritDmgBonus = bIncreaseDmg ? fCritDmgBonus * (DBO_BATTLE_OFFENCE_BONUS_RATE_BY_CRITICAL / 100.f) : fCritDmgBonus;
+		fCritDmgBonus -= fCritDmgBonus * fCritDefRate / 100.f;
+	}
+
+	return fResultValue + fCritDmgBonus;
+}
+
+
+float CalcMinDamage(float fDamage, float fLevel)
+{
+	return fDamage * (CFormulaTable::m_afRate[3500][1] + (fLevel * CFormulaTable::m_afRate[3500][2]));
+}
+
+float CalcMaxDamage(float fDamage, float fLevel)
+{
+	return fDamage * (CFormulaTable::m_afRate[3500][3] - (fLevel * CFormulaTable::m_afRate[3500][4]));
+}
+
+bool IsValidAttribute(BYTE byAttr)
+{
+	return byAttr == BATTLE_ATTRIBUTE_HONEST ||
+		byAttr == BATTLE_ATTRIBUTE_STRANGE ||
+		byAttr == BATTLE_ATTRIBUTE_WILD ||
+		byAttr == BATTLE_ATTRIBUTE_ELEGANCE ||
+		byAttr == BATTLE_ATTRIBUTE_FUNNY;
+}
+
+float GetOffenceAttribute(BYTE byAttr, sAVATAR_ATTRIBUTE& sOffenceAttribute)
+{
+	switch (byAttr) {
+	case BATTLE_ATTRIBUTE_HONEST:
+		return sOffenceAttribute.fHonestOffense;
+	case BATTLE_ATTRIBUTE_STRANGE:
+		return sOffenceAttribute.fStrangeOffense;
+	case BATTLE_ATTRIBUTE_WILD:
+		return sOffenceAttribute.fWildOffense;
+	case BATTLE_ATTRIBUTE_ELEGANCE:
+		return sOffenceAttribute.fEleganceOffense;
+	case BATTLE_ATTRIBUTE_FUNNY:
+		return sOffenceAttribute.fFunnyOffense;
+	default:
+		return 0.0f;
+	}
+}
+
+float GetDefenceAttribute(BYTE byAttr, sAVATAR_ATTRIBUTE& sDefenceAttribute)
+{
+	switch (byAttr) {
+	case BATTLE_ATTRIBUTE_HONEST:
+		return sDefenceAttribute.fHonestDefense;
+	case BATTLE_ATTRIBUTE_STRANGE:
+		return sDefenceAttribute.fStrangeDefense;
+	case BATTLE_ATTRIBUTE_WILD:
+		return sDefenceAttribute.fWildDefense;
+	case BATTLE_ATTRIBUTE_ELEGANCE:
+		return sDefenceAttribute.fEleganceDefense;
+	case BATTLE_ATTRIBUTE_FUNNY:
+		return sDefenceAttribute.fFunnyDefense;
+	default:
+		return 0.0f;
+	}
 }

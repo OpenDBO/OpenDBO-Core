@@ -49,6 +49,8 @@ void CCharacter::AttackAction(CCharacter* pVictim)
 	CNtlVector vShift(pVictim->GetCurLoc() - GetCurLoc());
 	vShift.y = 0.0f;
 	vShift.SafeNormalize();
+
+	//float reducedDmg = 0;
 	
 	// Player characters will chain all attacks from 1 until max anim id (depending on level, max 6), then reset back to 1.
 	if (IsPC()) {
@@ -165,7 +167,11 @@ void CCharacter::AttackAction(CCharacter* pVictim)
 	//	fTargetLpRecoveredWhenHit, pVictim->GetCharAtt()->GetLastLpRecoveryWhenHit(), pVictim->GetCharAtt()->GetLastLpRecoveryWhenHitInPercent(), fDmg);
 
 	//check reflect
-	fReflectedDamage = GetReflectDamage(fDmg, byAttackType, pVictim->GetCharAtt()->GetPhysicalReflection(), pVictim->GetCharAtt()->GetEnergyReflection());
+	//check reflect
+	fReflectedDamage = GetReflectDamage(fDmg, byAttackType, pVictim->GetCharAtt());
+
+	//if (reducedDmg > 0)
+	//	fDmg = reducedDmg;
 
 //---SEND PACKET START----------------------------------------------------------
 SEND_PACKET:
