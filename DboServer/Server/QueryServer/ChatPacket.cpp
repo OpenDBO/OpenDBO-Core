@@ -12,14 +12,20 @@
 #include "CashshopManager.h"
 #include "ItemManager.h"
 
+std::string to_utf8(const wchar_t* w) {
+	int len = WideCharToMultiByte(CP_UTF8, 0, w, -1, nullptr, 0, nullptr, nullptr);
+	std::string s(len, '\0'); // reservamos espacio incluyendo el null-terminator
+	WideCharToMultiByte(CP_UTF8, 0, w, -1, &s[0], len, nullptr, nullptr);
+	s.resize(len - 1); // sacamos el null final
+	return s;
+}
 
-
-void CChatServerSession::RecvGuildCreateReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvGuildCreateReq(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_GUILD_CREATE_REQ * req = (sTQ_GUILD_CREATE_REQ*)pPacket->GetPacketData();
+	sTQ_GUILD_CREATE_REQ* req = (sTQ_GUILD_CREATE_REQ*)pPacket->GetPacketData();
 
 	CNtlPacket packet(sizeof(sQT_GUILD_CREATE_RES));
-	sQT_GUILD_CREATE_RES * res = (sQT_GUILD_CREATE_RES *)packet.GetPacketData();
+	sQT_GUILD_CREATE_RES* res = (sQT_GUILD_CREATE_RES*)packet.GetPacketData();
 	res->wOpCode = QT_GUILD_CREATE_RES;
 	res->wResultCode = GAME_SUCCESS;
 	res->byServerChannelIndex = req->byServerChannelIndex;
@@ -74,9 +80,9 @@ void CChatServerSession::RecvGuildCreateReq(CNtlPacket * pPacket, CQueryServer *
 	app->Send(GetHandle(), &packet);
 }
 
-void CChatServerSession::RecvGuildDataReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvGuildDataReq(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_GUILD_DATA_REQ * req = (sTQ_GUILD_DATA_REQ*)pPacket->GetPacketData();
+	sTQ_GUILD_DATA_REQ* req = (sTQ_GUILD_DATA_REQ*)pPacket->GetPacketData();
 
 	UNREFERENCED_PARAMETER(app);
 	UNREFERENCED_PARAMETER(req);
@@ -84,12 +90,12 @@ void CChatServerSession::RecvGuildDataReq(CNtlPacket * pPacket, CQueryServer * a
 	g_pGuild->SendGuildData(GetHandle());
 }
 
-void CChatServerSession::RecvGuildDisbandReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvGuildDisbandReq(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_GUILD_DISBAND_REQ * req = (sTQ_GUILD_DISBAND_REQ*)pPacket->GetPacketData();
+	sTQ_GUILD_DISBAND_REQ* req = (sTQ_GUILD_DISBAND_REQ*)pPacket->GetPacketData();
 
 	CNtlPacket packet(sizeof(sQT_GUILD_DISBAND_RES));
-	sQT_GUILD_DISBAND_RES * res = (sQT_GUILD_DISBAND_RES *)packet.GetPacketData();
+	sQT_GUILD_DISBAND_RES* res = (sQT_GUILD_DISBAND_RES*)packet.GetPacketData();
 	res->wOpCode = QT_GUILD_DISBAND_RES;
 	res->wResultCode = CHAT_SUCCESS;
 	res->bByUser = req->bByUser;
@@ -112,12 +118,12 @@ void CChatServerSession::RecvGuildDisbandReq(CNtlPacket * pPacket, CQueryServer 
 	app->Send(GetHandle(), &packet);
 }
 
-void CChatServerSession::RecvGuildInviteReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvGuildInviteReq(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_GUILD_INVITE_REQ * req = (sTQ_GUILD_INVITE_REQ*)pPacket->GetPacketData();
+	sTQ_GUILD_INVITE_REQ* req = (sTQ_GUILD_INVITE_REQ*)pPacket->GetPacketData();
 
 	CNtlPacket packet(sizeof(sQT_GUILD_INVITE_RES));
-	sQT_GUILD_INVITE_RES * res = (sQT_GUILD_INVITE_RES *)packet.GetPacketData();
+	sQT_GUILD_INVITE_RES* res = (sQT_GUILD_INVITE_RES*)packet.GetPacketData();
 	res->wOpCode = QT_GUILD_INVITE_RES;
 	res->wResultCode = GAME_SUCCESS;
 	res->guildId = req->guildId;
@@ -155,12 +161,12 @@ void CChatServerSession::RecvGuildInviteReq(CNtlPacket * pPacket, CQueryServer *
 	app->Send(GetHandle(), &packet);
 }
 
-void CChatServerSession::RecvGuildLeaveReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvGuildLeaveReq(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_GUILD_LEAVE_REQ * req = (sTQ_GUILD_LEAVE_REQ*)pPacket->GetPacketData();
+	sTQ_GUILD_LEAVE_REQ* req = (sTQ_GUILD_LEAVE_REQ*)pPacket->GetPacketData();
 
 	CNtlPacket packet(sizeof(sQT_GUILD_LEAVE_RES));
-	sQT_GUILD_LEAVE_RES * res = (sQT_GUILD_LEAVE_RES *)packet.GetPacketData();
+	sQT_GUILD_LEAVE_RES* res = (sQT_GUILD_LEAVE_RES*)packet.GetPacketData();
 	res->wOpCode = QT_GUILD_LEAVE_RES;
 	res->wResultCode = CHAT_SUCCESS;
 	res->leavingMemberCharId = req->leavingMemberCharId;
@@ -208,12 +214,12 @@ void CChatServerSession::RecvGuildLeaveReq(CNtlPacket * pPacket, CQueryServer * 
 	app->Send(GetHandle(), &packet);
 }
 
-void CChatServerSession::RecvGuildKickOutReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvGuildKickOutReq(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_GUILD_KICK_OUT_REQ * req = (sTQ_GUILD_KICK_OUT_REQ*)pPacket->GetPacketData();
+	sTQ_GUILD_KICK_OUT_REQ* req = (sTQ_GUILD_KICK_OUT_REQ*)pPacket->GetPacketData();
 
 	CNtlPacket packet(sizeof(sQT_GUILD_KICK_OUT_RES));
-	sQT_GUILD_KICK_OUT_RES * res = (sQT_GUILD_KICK_OUT_RES *)packet.GetPacketData();
+	sQT_GUILD_KICK_OUT_RES* res = (sQT_GUILD_KICK_OUT_RES*)packet.GetPacketData();
 	res->wOpCode = QT_GUILD_KICK_OUT_RES;
 	res->wResultCode = CHAT_SUCCESS;
 	res->kickedOutMemberCharId = req->kickedOutMemberCharId;
@@ -298,12 +304,12 @@ void CChatServerSession::RecvGuildKickOutReq(CNtlPacket * pPacket, CQueryServer 
 }
 
 
-void CChatServerSession::RecvGuildAppointSecondMasterReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvGuildAppointSecondMasterReq(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_GUILD_APPOINT_SECOND_MASTER_REQ * req = (sTQ_GUILD_APPOINT_SECOND_MASTER_REQ*)pPacket->GetPacketData();
+	sTQ_GUILD_APPOINT_SECOND_MASTER_REQ* req = (sTQ_GUILD_APPOINT_SECOND_MASTER_REQ*)pPacket->GetPacketData();
 
 	CNtlPacket packet(sizeof(sQT_GUILD_APPOINT_SECOND_MASTER_RES));
-	sQT_GUILD_APPOINT_SECOND_MASTER_RES * res = (sQT_GUILD_APPOINT_SECOND_MASTER_RES *)packet.GetPacketData();
+	sQT_GUILD_APPOINT_SECOND_MASTER_RES* res = (sQT_GUILD_APPOINT_SECOND_MASTER_RES*)packet.GetPacketData();
 	res->wOpCode = QT_GUILD_APPOINT_SECOND_MASTER_RES;
 	res->wResultCode = QUERY_FAIL;
 	res->targetMemberCharId = req->targetMemberCharId;
@@ -335,12 +341,12 @@ void CChatServerSession::RecvGuildAppointSecondMasterReq(CNtlPacket * pPacket, C
 }
 
 
-void CChatServerSession::RecvGuildDismissSecondMasterReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvGuildDismissSecondMasterReq(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_GUILD_DISMISS_SECOND_MASTER_REQ * req = (sTQ_GUILD_DISMISS_SECOND_MASTER_REQ*)pPacket->GetPacketData();
+	sTQ_GUILD_DISMISS_SECOND_MASTER_REQ* req = (sTQ_GUILD_DISMISS_SECOND_MASTER_REQ*)pPacket->GetPacketData();
 
 	CNtlPacket packet(sizeof(sQT_GUILD_DISMISS_SECOND_MASTER_RES));
-	sQT_GUILD_DISMISS_SECOND_MASTER_RES * res = (sQT_GUILD_DISMISS_SECOND_MASTER_RES *)packet.GetPacketData();
+	sQT_GUILD_DISMISS_SECOND_MASTER_RES* res = (sQT_GUILD_DISMISS_SECOND_MASTER_RES*)packet.GetPacketData();
 	res->wOpCode = QT_GUILD_DISMISS_SECOND_MASTER_RES;
 	res->wResultCode = QUERY_FAIL;
 	res->targetMemberCharId = req->targetMemberCharId;
@@ -372,12 +378,12 @@ void CChatServerSession::RecvGuildDismissSecondMasterReq(CNtlPacket * pPacket, C
 }
 
 
-void CChatServerSession::RecvGuildChangeGuildMasterReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvGuildChangeGuildMasterReq(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_GUILD_CHANGE_GUILD_MASTER_REQ * req = (sTQ_GUILD_CHANGE_GUILD_MASTER_REQ*)pPacket->GetPacketData();
+	sTQ_GUILD_CHANGE_GUILD_MASTER_REQ* req = (sTQ_GUILD_CHANGE_GUILD_MASTER_REQ*)pPacket->GetPacketData();
 
 	CNtlPacket packet(sizeof(sQT_GUILD_CHANGE_GUILD_MASTER_RES));
-	sQT_GUILD_CHANGE_GUILD_MASTER_RES * res = (sQT_GUILD_CHANGE_GUILD_MASTER_RES *)packet.GetPacketData();
+	sQT_GUILD_CHANGE_GUILD_MASTER_RES* res = (sQT_GUILD_CHANGE_GUILD_MASTER_RES*)packet.GetPacketData();
 	res->wOpCode = QT_GUILD_CHANGE_GUILD_MASTER_RES;
 	res->wResultCode = CHAT_SUCCESS;
 	res->newMasterCharId = req->targetMemberCharId;
@@ -395,12 +401,12 @@ void CChatServerSession::RecvGuildChangeGuildMasterReq(CNtlPacket * pPacket, CQu
 }
 
 
-void CChatServerSession::RecvGuildFunctionAddReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvGuildFunctionAddReq(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_GUILD_FUNCTION_ADD_REQ * req = (sTQ_GUILD_FUNCTION_ADD_REQ*)pPacket->GetPacketData();
+	sTQ_GUILD_FUNCTION_ADD_REQ* req = (sTQ_GUILD_FUNCTION_ADD_REQ*)pPacket->GetPacketData();
 
 	CNtlPacket packet(sizeof(sQT_GUILD_FUNCTION_ADD_RES));
-	sQT_GUILD_FUNCTION_ADD_RES * res = (sQT_GUILD_FUNCTION_ADD_RES *)packet.GetPacketData();
+	sQT_GUILD_FUNCTION_ADD_RES* res = (sQT_GUILD_FUNCTION_ADD_RES*)packet.GetPacketData();
 	res->wOpCode = QT_GUILD_FUNCTION_ADD_RES;
 	res->wResultCode = GAME_SUCCESS;
 	res->byServerChannelIndex = req->byServerChannelIndex;
@@ -441,12 +447,12 @@ void CChatServerSession::RecvGuildFunctionAddReq(CNtlPacket * pPacket, CQuerySer
 	app->Send(GetHandle(), &packet);
 }
 
-void CChatServerSession::RecvGuildGiveZeniReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvGuildGiveZeniReq(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_GUILD_GIVE_ZENNY_REQ * req = (sTQ_GUILD_GIVE_ZENNY_REQ*)pPacket->GetPacketData();
+	sTQ_GUILD_GIVE_ZENNY_REQ* req = (sTQ_GUILD_GIVE_ZENNY_REQ*)pPacket->GetPacketData();
 
 	CNtlPacket packet(sizeof(sQT_GUILD_GIVE_ZENNY_RES));
-	sQT_GUILD_GIVE_ZENNY_RES * res = (sQT_GUILD_GIVE_ZENNY_RES *)packet.GetPacketData();
+	sQT_GUILD_GIVE_ZENNY_RES* res = (sQT_GUILD_GIVE_ZENNY_RES*)packet.GetPacketData();
 	res->wOpCode = QT_GUILD_GIVE_ZENNY_RES;
 	res->wResultCode = GAME_SUCCESS;
 	res->byServerChannelIndex = req->byServerChannelIndex;
@@ -481,12 +487,12 @@ void CChatServerSession::RecvGuildGiveZeniReq(CNtlPacket * pPacket, CQueryServer
 }
 
 
-void CChatServerSession::RecvGuildChangeNoticeReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvGuildChangeNoticeReq(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_GUILD_CHANGE_NOTICE_REQ * req = (sTQ_GUILD_CHANGE_NOTICE_REQ*)pPacket->GetPacketData();
+	sTQ_GUILD_CHANGE_NOTICE_REQ* req = (sTQ_GUILD_CHANGE_NOTICE_REQ*)pPacket->GetPacketData();
 
 	CNtlPacket packet(sizeof(sQT_GUILD_CHANGE_NOTICE_RES));
-	sQT_GUILD_CHANGE_NOTICE_RES * res = (sQT_GUILD_CHANGE_NOTICE_RES *)packet.GetPacketData();
+	sQT_GUILD_CHANGE_NOTICE_RES* res = (sQT_GUILD_CHANGE_NOTICE_RES*)packet.GetPacketData();
 	res->wOpCode = QT_GUILD_CHANGE_NOTICE_RES;
 	res->wResultCode = CHAT_SUCCESS;
 	res->charId = req->charId;
@@ -513,12 +519,12 @@ void CChatServerSession::RecvGuildChangeNoticeReq(CNtlPacket * pPacket, CQuerySe
 }
 
 
-void CChatServerSession::RecvGuildCreateMarkReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvGuildCreateMarkReq(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_GUILD_CREATE_MARK_REQ * req = (sTQ_GUILD_CREATE_MARK_REQ*)pPacket->GetPacketData();
+	sTQ_GUILD_CREATE_MARK_REQ* req = (sTQ_GUILD_CREATE_MARK_REQ*)pPacket->GetPacketData();
 
 	CNtlPacket packet(sizeof(sQT_GUILD_CREATE_MARK_RES));
-	sQT_GUILD_CREATE_MARK_RES * res = (sQT_GUILD_CREATE_MARK_RES *)packet.GetPacketData();
+	sQT_GUILD_CREATE_MARK_RES* res = (sQT_GUILD_CREATE_MARK_RES*)packet.GetPacketData();
 	res->wOpCode = QT_GUILD_CREATE_MARK_RES;
 	res->wResultCode = GAME_SUCCESS;
 	res->byServerChannelIndex = req->byServerChannelIndex;
@@ -540,12 +546,12 @@ void CChatServerSession::RecvGuildCreateMarkReq(CNtlPacket * pPacket, CQueryServ
 }
 
 
-void CChatServerSession::RecvGuildChangeMarkReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvGuildChangeMarkReq(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_GUILD_CHANGE_MARK_REQ * req = (sTQ_GUILD_CHANGE_MARK_REQ*)pPacket->GetPacketData();
+	sTQ_GUILD_CHANGE_MARK_REQ* req = (sTQ_GUILD_CHANGE_MARK_REQ*)pPacket->GetPacketData();
 
 	CNtlPacket packet(sizeof(sQT_GUILD_CHANGE_MARK_RES));
-	sQT_GUILD_CHANGE_MARK_RES * res = (sQT_GUILD_CHANGE_MARK_RES *)packet.GetPacketData();
+	sQT_GUILD_CHANGE_MARK_RES* res = (sQT_GUILD_CHANGE_MARK_RES*)packet.GetPacketData();
 	res->wOpCode = QT_GUILD_CHANGE_MARK_RES;
 	res->wResultCode = GAME_SUCCESS;
 	res->byServerChannelIndex = req->byServerChannelIndex;
@@ -578,12 +584,12 @@ void CChatServerSession::RecvGuildChangeMarkReq(CNtlPacket * pPacket, CQueryServ
 	app->Send(GetHandle(), &packet);
 }
 
-void CChatServerSession::RecvGuildChangeNameRes(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvGuildChangeNameRes(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_GUILD_CHANGE_NAME_REQ * req = (sTQ_GUILD_CHANGE_NAME_REQ*)pPacket->GetPacketData();
+	sTQ_GUILD_CHANGE_NAME_REQ* req = (sTQ_GUILD_CHANGE_NAME_REQ*)pPacket->GetPacketData();
 
 	CNtlPacket packet(sizeof(sQT_GUILD_CHANGE_NAME_RES));
-	sQT_GUILD_CHANGE_NAME_RES * res = (sQT_GUILD_CHANGE_NAME_RES *)packet.GetPacketData();
+	sQT_GUILD_CHANGE_NAME_RES* res = (sQT_GUILD_CHANGE_NAME_RES*)packet.GetPacketData();
 	res->wOpCode = QT_GUILD_CHANGE_NAME_RES;
 	res->wResultCode = GAME_SUCCESS;
 	res->byServerChannelIndex = req->byServerChannelIndex;
@@ -626,9 +632,9 @@ void CChatServerSession::RecvGuildChangeNameRes(CNtlPacket * pPacket, CQueryServ
 }
 
 
-void CChatServerSession::RecvDojoDataReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvDojoDataReq(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_DOJO_DATA_REQ * req = (sTQ_DOJO_DATA_REQ*)pPacket->GetPacketData();
+	sTQ_DOJO_DATA_REQ* req = (sTQ_DOJO_DATA_REQ*)pPacket->GetPacketData();
 
 	UNREFERENCED_PARAMETER(app);
 	UNREFERENCED_PARAMETER(req);
@@ -636,12 +642,12 @@ void CChatServerSession::RecvDojoDataReq(CNtlPacket * pPacket, CQueryServer * ap
 	g_pDojo->SendDojoData(GetHandle());
 }
 
-void CChatServerSession::RecvDojoCreateReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvDojoCreateReq(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_DOJO_CREATE_REQ * req = (sTQ_DOJO_CREATE_REQ*)pPacket->GetPacketData();
+	sTQ_DOJO_CREATE_REQ* req = (sTQ_DOJO_CREATE_REQ*)pPacket->GetPacketData();
 
 	CNtlPacket packet(sizeof(sQT_DOJO_CREATE_RES));
-	sQT_DOJO_CREATE_RES * res = (sQT_DOJO_CREATE_RES *)packet.GetPacketData();
+	sQT_DOJO_CREATE_RES* res = (sQT_DOJO_CREATE_RES*)packet.GetPacketData();
 	res->wOpCode = QT_DOJO_CREATE_RES;
 	res->wResultCode = GAME_SUCCESS;
 	res->byServerChannelId = req->byServerChannelId;
@@ -661,12 +667,12 @@ void CChatServerSession::RecvDojoCreateReq(CNtlPacket * pPacket, CQueryServer * 
 	app->Send(GetHandle(), &packet);
 }
 
-void CChatServerSession::RecvDojoUpdateReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvDojoUpdateReq(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_DOJO_UPDATE_REQ * req = (sTQ_DOJO_UPDATE_REQ*)pPacket->GetPacketData();
+	sTQ_DOJO_UPDATE_REQ* req = (sTQ_DOJO_UPDATE_REQ*)pPacket->GetPacketData();
 
 	CNtlPacket packet(sizeof(sQT_DOJO_UPDATE_RES));
-	sQT_DOJO_UPDATE_RES * res = (sQT_DOJO_UPDATE_RES *)packet.GetPacketData();
+	sQT_DOJO_UPDATE_RES* res = (sQT_DOJO_UPDATE_RES*)packet.GetPacketData();
 	res->wOpCode = QT_DOJO_UPDATE_RES;
 	res->wResultCode = CHAT_SUCCESS;
 	res->byServerChannelId = req->byServerChannelId;
@@ -678,7 +684,7 @@ void CChatServerSession::RecvDojoUpdateReq(CNtlPacket * pPacket, CQueryServer * 
 
 		memcpy(pDojo, &req->sDojoData, sizeof(sDBO_DOJO_DATA));
 
-		GetCharDB.Execute("UPDATE dojos SET GuildId=%u, Level=0, PeaceStatus=0, PeacePoints=0, GuildName=\"%ls\", LeaderName=(null), Notice=(null), ChallengeGuildId=%u, SeedCharName=(null) WHERE DojoTblidx=%u", 
+		GetCharDB.Execute("UPDATE dojos SET GuildId=%u, Level=0, PeaceStatus=0, PeacePoints=0, GuildName=\"%ls\", LeaderName=(null), Notice=(null), ChallengeGuildId=%u, SeedCharName=(null) WHERE DojoTblidx=%u",
 			pDojo->guildId, pDojo->wszName, INVALID_GUILDID, pDojo->dojoTblidx);
 
 		g_pDojo->RemoveDojo(res->guildId);
@@ -691,19 +697,19 @@ void CChatServerSession::RecvDojoUpdateReq(CNtlPacket * pPacket, CQueryServer * 
 	app->Send(GetHandle(), &packet);
 }
 
-void CChatServerSession::RecvDojoDeleteReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvDojoDeleteReq(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_DOJO_DEL_REQ * req = (sTQ_DOJO_DEL_REQ*)pPacket->GetPacketData();
+	sTQ_DOJO_DEL_REQ* req = (sTQ_DOJO_DEL_REQ*)pPacket->GetPacketData();
 
 	CNtlPacket packet(sizeof(sQT_DOJO_DEL_RES));
-	sQT_DOJO_DEL_RES * res = (sQT_DOJO_DEL_RES *)packet.GetPacketData();
+	sQT_DOJO_DEL_RES* res = (sQT_DOJO_DEL_RES*)packet.GetPacketData();
 	res->wOpCode = QT_DOJO_DEL_RES;
 	res->wResultCode = GAME_SUCCESS;
 	res->byServerChannelId = req->byServerChannelId;
 	res->charId = req->charId;
 	res->dojoTblidx = req->dojoTblidx;
 	res->guildId = req->guildId;
-	
+
 	if (g_pDojo->DeleteDojo(req->guildId, req->dojoTblidx))
 		GetCharDB.Execute("DELETE FROM dojos WHERE DojoTblidx=%u", req->dojoTblidx);
 	else
@@ -713,12 +719,12 @@ void CChatServerSession::RecvDojoDeleteReq(CNtlPacket * pPacket, CQueryServer * 
 	app->Send(GetHandle(), &packet);
 }
 
-void CChatServerSession::RecvDojoFunctionAddReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvDojoFunctionAddReq(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_DOJO_FUNCTION_ADD_REQ * req = (sTQ_DOJO_FUNCTION_ADD_REQ*)pPacket->GetPacketData();
+	sTQ_DOJO_FUNCTION_ADD_REQ* req = (sTQ_DOJO_FUNCTION_ADD_REQ*)pPacket->GetPacketData();
 
 	CNtlPacket packet(sizeof(sQT_DOJO_FUNCTION_ADD_RES));
-	sQT_DOJO_FUNCTION_ADD_RES * res = (sQT_DOJO_FUNCTION_ADD_RES *)packet.GetPacketData();
+	sQT_DOJO_FUNCTION_ADD_RES* res = (sQT_DOJO_FUNCTION_ADD_RES*)packet.GetPacketData();
 	res->wOpCode = QT_DOJO_FUNCTION_ADD_RES;
 	res->wResultCode = GAME_SUCCESS;
 	res->byServerChannelIndex = req->byServerChannelIndex;
@@ -770,12 +776,12 @@ void CChatServerSession::RecvDojoFunctionAddReq(CNtlPacket * pPacket, CQueryServ
 }
 
 
-void CChatServerSession::RecvDojoBudokaiSeedAddReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvDojoBudokaiSeedAddReq(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_DOJO_BUDOKAI_SEED_ADD_REQ * req = (sTQ_DOJO_BUDOKAI_SEED_ADD_REQ*)pPacket->GetPacketData();
+	sTQ_DOJO_BUDOKAI_SEED_ADD_REQ* req = (sTQ_DOJO_BUDOKAI_SEED_ADD_REQ*)pPacket->GetPacketData();
 
 	CNtlPacket packet(sizeof(sQT_DOJO_BUDOKAI_SEED_ADD_RES));
-	sQT_DOJO_BUDOKAI_SEED_ADD_RES * res = (sQT_DOJO_BUDOKAI_SEED_ADD_RES *)packet.GetPacketData();
+	sQT_DOJO_BUDOKAI_SEED_ADD_RES* res = (sQT_DOJO_BUDOKAI_SEED_ADD_RES*)packet.GetPacketData();
 	res->wOpCode = QT_DOJO_BUDOKAI_SEED_ADD_RES;
 	res->wResultCode = CHAT_SUCCESS;
 	res->charId = req->charId;
@@ -794,12 +800,12 @@ void CChatServerSession::RecvDojoBudokaiSeedAddReq(CNtlPacket * pPacket, CQueryS
 	app->Send(GetHandle(), &packet);
 }
 
-void CChatServerSession::RecvDojoBudokaiSeedDelReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvDojoBudokaiSeedDelReq(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_DOJO_BUDOKAI_SEED_DEL_REQ * req = (sTQ_DOJO_BUDOKAI_SEED_DEL_REQ*)pPacket->GetPacketData();
+	sTQ_DOJO_BUDOKAI_SEED_DEL_REQ* req = (sTQ_DOJO_BUDOKAI_SEED_DEL_REQ*)pPacket->GetPacketData();
 
 	CNtlPacket packet(sizeof(sQT_DOJO_BUDOKAI_SEED_DEL_RES));
-	sQT_DOJO_BUDOKAI_SEED_DEL_RES * res = (sQT_DOJO_BUDOKAI_SEED_DEL_RES *)packet.GetPacketData();
+	sQT_DOJO_BUDOKAI_SEED_DEL_RES* res = (sQT_DOJO_BUDOKAI_SEED_DEL_RES*)packet.GetPacketData();
 	res->wOpCode = QT_DOJO_BUDOKAI_SEED_DEL_RES;
 	res->wResultCode = CHAT_SUCCESS;
 	res->charId = req->charId;
@@ -817,12 +823,12 @@ void CChatServerSession::RecvDojoBudokaiSeedDelReq(CNtlPacket * pPacket, CQueryS
 	app->Send(GetHandle(), &packet);
 }
 
-void CChatServerSession::RecvDojoScrambleRewardReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvDojoScrambleRewardReq(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_DOJO_SCRAMBLE_REWARD_REQ * req = (sTQ_DOJO_SCRAMBLE_REWARD_REQ*)pPacket->GetPacketData();
+	sTQ_DOJO_SCRAMBLE_REWARD_REQ* req = (sTQ_DOJO_SCRAMBLE_REWARD_REQ*)pPacket->GetPacketData();
 
 	CNtlPacket packet(sizeof(sQT_DOJO_SCRAMBLE_REWARD_RES));
-	sQT_DOJO_SCRAMBLE_REWARD_RES * res = (sQT_DOJO_SCRAMBLE_REWARD_RES *)packet.GetPacketData();
+	sQT_DOJO_SCRAMBLE_REWARD_RES* res = (sQT_DOJO_SCRAMBLE_REWARD_RES*)packet.GetPacketData();
 	res->wOpCode = QT_DOJO_SCRAMBLE_REWARD_RES;
 	res->wResultCode = CHAT_SUCCESS;
 	res->dojoTblidx = req->dojoTblidx;
@@ -850,12 +856,12 @@ void CChatServerSession::RecvDojoScrambleRewardReq(CNtlPacket * pPacket, CQueryS
 	app->Send(GetHandle(), &packet);
 }
 
-void CChatServerSession::RecvDojoChangeNoticeReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvDojoChangeNoticeReq(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_DOJO_CHANGE_NOTICE_REQ * req = (sTQ_DOJO_CHANGE_NOTICE_REQ*)pPacket->GetPacketData();
+	sTQ_DOJO_CHANGE_NOTICE_REQ* req = (sTQ_DOJO_CHANGE_NOTICE_REQ*)pPacket->GetPacketData();
 
 	CNtlPacket packet(sizeof(sQT_DOJO_CHANGE_NOTICE_RES));
-	sQT_DOJO_CHANGE_NOTICE_RES * res = (sQT_DOJO_CHANGE_NOTICE_RES *)packet.GetPacketData();
+	sQT_DOJO_CHANGE_NOTICE_RES* res = (sQT_DOJO_CHANGE_NOTICE_RES*)packet.GetPacketData();
 	res->wOpCode = QT_DOJO_CHANGE_NOTICE_RES;
 	res->wResultCode = CHAT_SUCCESS;
 	res->wNoticeLengthInUnicode = req->wNoticeLengthInUnicode;
@@ -865,7 +871,7 @@ void CChatServerSession::RecvDojoChangeNoticeReq(CNtlPacket * pPacket, CQuerySer
 	res->guildId = req->guildId;
 	res->charId = req->charId;
 
-	
+
 	if (CPlayerCache* pCache = g_pPlayerCache->GetCharacter(req->charId))
 	{
 		sDBO_DOJO_DATA* pDojoData = g_pDojo->GetDojoData(req->guildId);
@@ -889,12 +895,12 @@ void CChatServerSession::RecvDojoChangeNoticeReq(CNtlPacket * pPacket, CQuerySer
 	app->Send(GetHandle(), &packet);
 }
 
-void CChatServerSession::RecvAuctionHouseSellReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvAuctionHouseSellReq(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_TENKAICHIDAISIJYOU_SELL_REQ * req = (sTQ_TENKAICHIDAISIJYOU_SELL_REQ*)pPacket->GetPacketData();
+	sTQ_TENKAICHIDAISIJYOU_SELL_REQ* req = (sTQ_TENKAICHIDAISIJYOU_SELL_REQ*)pPacket->GetPacketData();
 
 	CNtlPacket packet(sizeof(sQT_TENKAICHIDAISIJYOU_SELL_RES));
-	sQT_TENKAICHIDAISIJYOU_SELL_RES * res = (sQT_TENKAICHIDAISIJYOU_SELL_RES *)packet.GetPacketData();
+	sQT_TENKAICHIDAISIJYOU_SELL_RES* res = (sQT_TENKAICHIDAISIJYOU_SELL_RES*)packet.GetPacketData();
 	res->wOpCode = QT_TENKAICHIDAISIJYOU_SELL_RES;
 	res->byServerChannelIndex = req->byServerChannelIndex;
 	res->byServerIndex = req->byServerIndex;
@@ -948,10 +954,20 @@ void CChatServerSession::RecvAuctionHouseSellReq(CNtlPacket * pPacket, CQuerySer
 					//ADD ITEM TO AH MAP
 					g_pAH->InsertItem(pData);
 
-					//add to db
-					GetCharDB.Execute("INSERT INTO auctionhouse (id,CharID,TabType,ItemName,Seller,Price,ItemID,TimeStart,TimeEnd,ItemLevel,NeedClass,ItemType) VALUES (%I64u, %u, %u,\"%ls\",\"%ls\", %u, %I64u, %I64u, %u, %u, %u, %u)",
-						pData->nItem, req->charId, req->byTabType, req->awchItemName, pData->awchSeller, req->dwPrice, rItemData.itemId, req->nStartSellTime, req->nEndSellTime, req->byItemLevel, req->dwClassBitFlag, req->byItemType);
+					// add in DB
+					char sql[4096];
+					auto name = to_utf8(req->awchItemName);
+					auto seller = to_utf8(req->awchSeller);
 
+					int n = _snprintf_s(sql, sizeof(sql), _TRUNCATE,
+						"INSERT INTO auctionhouse "
+						"(id, CharID, TabType, ItemName, Seller, Price, ItemID, TimeStart, TimeEnd, ItemLevel, NeedClass, ItemType) "
+						"VALUES (%I64u, %u, %u, N'%s', N'%s', %u, %I64u, %I64u, %I64u, %u, %u, %u)",
+						req->itemId, req->charId, req->byTabType,
+						name.c_str(), seller.c_str(),
+						req->dwPrice, req->itemId, req->nStartSellTime, req->nEndSellTime,
+						req->byItemLevel, req->dwClassBitFlag, req->byItemType
+					);
 
 					// update stack count from original item
 					pItem->byStackcount -= req->byCount;
@@ -990,7 +1006,7 @@ void CChatServerSession::RecvAuctionHouseSellReq(CNtlPacket * pPacket, CQuerySer
 					pData->nUseEndTime = pItem->nUseEndTime;
 					pData->byRestrictState = pItem->byRestrictState;
 					//ADD ITEM TO AH MAP
-					g_pAH->InsertItem(pData); 
+					g_pAH->InsertItem(pData);
 
 					//delete & remove item from seller
 					pCache->RemoveItem(req->itemId);
@@ -998,9 +1014,21 @@ void CChatServerSession::RecvAuctionHouseSellReq(CNtlPacket * pPacket, CQuerySer
 					//unset owner
 					GetCharDB.Execute("UPDATE items SET owner_id=0 WHERE id=%I64u", req->itemId);
 
-					//add to db
-					GetCharDB.Execute("INSERT INTO auctionhouse (id,CharID,TabType,ItemName,Seller,Price,ItemID,TimeStart,TimeEnd,ItemLevel,NeedClass,ItemType) VALUES (%I64u, %u, %u,\"%ls\",\"%ls\", %u, %I64u, %I64u, %u, %u, %u, %u)",
-						pData->nItem, req->charId, req->byTabType, req->awchItemName, pData->awchSeller, req->dwPrice, req->itemId, req->nStartSellTime, req->nEndSellTime, req->byItemLevel, req->dwClassBitFlag, req->byItemType);
+					char sql[4096];
+					auto name = to_utf8(req->awchItemName);
+					auto seller = to_utf8(req->awchSeller);
+
+					int n = _snprintf_s(sql, sizeof(sql), _TRUNCATE,
+						"INSERT INTO auctionhouse "
+						"(id, CharID, TabType, ItemName, Seller, Price, ItemID, TimeStart, TimeEnd, ItemLevel, NeedClass, ItemType) "
+						"VALUES (%I64u, %u, %u, N'%s', N'%s', %u, %I64u, %I64u, %I64u, %u, %u, %u)",
+						req->itemId, req->charId, req->byTabType,
+						name.c_str(), seller.c_str(),
+						req->dwPrice, req->itemId, req->nStartSellTime, req->nEndSellTime,
+						req->byItemLevel, req->dwClassBitFlag, req->byItemType
+					);
+
+					GetCharDB.Execute(sql);
 
 					//update player zeni & db
 					pCache->SetZeni(pCache->GetZeni() - req->dwFee);
@@ -1021,12 +1049,12 @@ void CChatServerSession::RecvAuctionHouseSellReq(CNtlPacket * pPacket, CQuerySer
 	app->Send(GetHandle(), &packet);
 }
 
-void CChatServerSession::RecvAuctionHouseSellCancelReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvAuctionHouseSellCancelReq(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_TENKAICHIDAISIJYOU_SELL_CANCEL_REQ * req = (sTQ_TENKAICHIDAISIJYOU_SELL_CANCEL_REQ*)pPacket->GetPacketData();
+	sTQ_TENKAICHIDAISIJYOU_SELL_CANCEL_REQ* req = (sTQ_TENKAICHIDAISIJYOU_SELL_CANCEL_REQ*)pPacket->GetPacketData();
 
 	CNtlPacket packet(sizeof(sQT_TENKAICHIDAISIJYOU_SELL_CANCEL_RES));
-	sQT_TENKAICHIDAISIJYOU_SELL_CANCEL_RES * res = (sQT_TENKAICHIDAISIJYOU_SELL_CANCEL_RES *)packet.GetPacketData();
+	sQT_TENKAICHIDAISIJYOU_SELL_CANCEL_RES* res = (sQT_TENKAICHIDAISIJYOU_SELL_CANCEL_RES*)packet.GetPacketData();
 	res->wOpCode = QT_TENKAICHIDAISIJYOU_SELL_CANCEL_RES;
 	res->charId = req->charId;
 	res->wResultCode = GAME_SUCCESS;
@@ -1061,12 +1089,12 @@ void CChatServerSession::RecvAuctionHouseSellCancelReq(CNtlPacket * pPacket, CQu
 	app->Send(GetHandle(), &packet);
 }
 
-void CChatServerSession::RecvAuctionHouseBuyReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvAuctionHouseBuyReq(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_TENKAICHIDAISIJYOU_BUY_REQ * req = (sTQ_TENKAICHIDAISIJYOU_BUY_REQ*)pPacket->GetPacketData();
+	sTQ_TENKAICHIDAISIJYOU_BUY_REQ* req = (sTQ_TENKAICHIDAISIJYOU_BUY_REQ*)pPacket->GetPacketData();
 
 	CNtlPacket packet(sizeof(sQT_TENKAICHIDAISIJYOU_BUY_RES));
-	sQT_TENKAICHIDAISIJYOU_BUY_RES * res = (sQT_TENKAICHIDAISIJYOU_BUY_RES *)packet.GetPacketData();
+	sQT_TENKAICHIDAISIJYOU_BUY_RES* res = (sQT_TENKAICHIDAISIJYOU_BUY_RES*)packet.GetPacketData();
 	res->wOpCode = QT_TENKAICHIDAISIJYOU_BUY_RES;
 	res->charId = req->charId;
 	res->dwMoney = req->dwMoney;
@@ -1120,9 +1148,9 @@ void CChatServerSession::RecvAuctionHouseBuyReq(CNtlPacket * pPacket, CQueryServ
 	app->Send(GetHandle(), &packet);
 }
 
-void CChatServerSession::RecvAuctionHouseServerDataReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvAuctionHouseServerDataReq(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_TENKAICHIDAISIJYOU_SERVERDATA_REQ * req = (sTQ_TENKAICHIDAISIJYOU_SERVERDATA_REQ*)pPacket->GetPacketData();
+	sTQ_TENKAICHIDAISIJYOU_SERVERDATA_REQ* req = (sTQ_TENKAICHIDAISIJYOU_SERVERDATA_REQ*)pPacket->GetPacketData();
 
 	UNREFERENCED_PARAMETER(req);
 
@@ -1130,7 +1158,7 @@ void CChatServerSession::RecvAuctionHouseServerDataReq(CNtlPacket * pPacket, CQu
 	int nTotal = g_pAH->GetCount();
 
 	CNtlPacket packet(sizeof(sQT_TENKAICHIDAISIJYOU_SERVERDATA_RES));
-	sQT_TENKAICHIDAISIJYOU_SERVERDATA_RES * res = (sQT_TENKAICHIDAISIJYOU_SERVERDATA_RES *)packet.GetPacketData();
+	sQT_TENKAICHIDAISIJYOU_SERVERDATA_RES* res = (sQT_TENKAICHIDAISIJYOU_SERVERDATA_RES*)packet.GetPacketData();
 	res->wOpCode = QT_TENKAICHIDAISIJYOU_SERVERDATA_RES;
 	res->byCurPacketCount = 0;
 	res->bEndList = false;
@@ -1156,14 +1184,14 @@ void CChatServerSession::RecvAuctionHouseServerDataReq(CNtlPacket * pPacket, CQu
 	app->Send(GetHandle(), &packet);
 }
 
-void CChatServerSession::RecvAuctionHousePeriodEndReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvAuctionHousePeriodEndReq(CNtlPacket* pPacket, CQueryServer* app)
 {
 	UNREFERENCED_PARAMETER(app);
 
-	sTQ_TENKAICHIDAISIJYOU_PERIODEND_REQ * req = (sTQ_TENKAICHIDAISIJYOU_PERIODEND_REQ*)pPacket->GetPacketData();
+	sTQ_TENKAICHIDAISIJYOU_PERIODEND_REQ* req = (sTQ_TENKAICHIDAISIJYOU_PERIODEND_REQ*)pPacket->GetPacketData();
 
 	CNtlPacket packet(sizeof(sQT_TENKAICHIDAISIJYOU_PERIODEND_RES));
-	sQT_TENKAICHIDAISIJYOU_PERIODEND_RES * res = (sQT_TENKAICHIDAISIJYOU_PERIODEND_RES *)packet.GetPacketData();
+	sQT_TENKAICHIDAISIJYOU_PERIODEND_RES* res = (sQT_TENKAICHIDAISIJYOU_PERIODEND_RES*)packet.GetPacketData();
 	res->wOpCode = QT_TENKAICHIDAISIJYOU_PERIODEND_RES;
 	res->wResultCode = GAME_SUCCESS;
 	res->nItem = req->nItem;
@@ -1197,11 +1225,11 @@ void CChatServerSession::RecvAuctionHousePeriodEndReq(CNtlPacket * pPacket, CQue
 	//app->Send(GetHandle(), &packet);
 }
 
-void CChatServerSession::RecvMutePlayerNfy(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvMutePlayerNfy(CNtlPacket* pPacket, CQueryServer* app)
 {
 	UNREFERENCED_PARAMETER(app);
 
-	sTQ_MUTE_PLAYER_NFY * req = (sTQ_MUTE_PLAYER_NFY*)pPacket->GetPacketData();
+	sTQ_MUTE_PLAYER_NFY* req = (sTQ_MUTE_PLAYER_NFY*)pPacket->GetPacketData();
 
 	if (req->dwDurationInMinute > 0) //check if we mute
 	{
@@ -1245,12 +1273,12 @@ void CChatServerSession::RecvMutePlayerNfy(CNtlPacket * pPacket, CQueryServer * 
 	}
 }
 
-void CChatServerSession::RecvHlsSlotMachineExtractReq(CNtlPacket * pPacket, CQueryServer * app)
+void CChatServerSession::RecvHlsSlotMachineExtractReq(CNtlPacket* pPacket, CQueryServer* app)
 {
-	sTQ_HLS_SLOT_MACHINE_EXTRACT_REQ * req = (sTQ_HLS_SLOT_MACHINE_EXTRACT_REQ*)pPacket->GetPacketData();
+	sTQ_HLS_SLOT_MACHINE_EXTRACT_REQ* req = (sTQ_HLS_SLOT_MACHINE_EXTRACT_REQ*)pPacket->GetPacketData();
 
 	CNtlPacket packet(sizeof(sQT_HLS_SLOT_MACHINE_EXTRACT_RES));
-	sQT_HLS_SLOT_MACHINE_EXTRACT_RES * res = (sQT_HLS_SLOT_MACHINE_EXTRACT_RES *)packet.GetPacketData();
+	sQT_HLS_SLOT_MACHINE_EXTRACT_RES* res = (sQT_HLS_SLOT_MACHINE_EXTRACT_RES*)packet.GetPacketData();
 	res->wOpCode = QT_HLS_SLOT_MACHINE_EXTRACT_RES;
 	res->wResultCode = CHAT_SUCCESS;
 	res->accountId = req->accountId;
@@ -1265,7 +1293,7 @@ void CChatServerSession::RecvHlsSlotMachineExtractReq(CNtlPacket * pPacket, CQue
 	{
 		CPlayerCache* pCharCache = g_pPlayerCache->GetCharacter(req->charId);
 		if (pCharCache)
-		{			
+		{
 			if (req->byHlsMachineType == 1)
 			{
 				if (pCache->GetEventCoin() >= (DWORD)req->wCoin)
@@ -1309,7 +1337,7 @@ void CChatServerSession::RecvHlsSlotMachineExtractReq(CNtlPacket * pPacket, CQue
 					GetCharDB.Execute("UPDATE characters SET WaguPoint=%u WHERE CharID=%u", pCharCache->GetWaguPoints(), req->charId);
 					res->wWaguPoint = pCharCache->GetWaguPoints();
 				}
-			}			
+			}
 			else
 			{
 				if (pCache->GetWaguCoin() >= (DWORD)req->wCoin)
@@ -1352,7 +1380,7 @@ void CChatServerSession::RecvHlsSlotMachineExtractReq(CNtlPacket * pPacket, CQue
 					pCharCache->SetWaguPoints(pCharCache->GetWaguPoints() + req->wWaguPointGain);
 					GetCharDB.Execute("UPDATE characters SET WaguPoint=%u WHERE CharID=%u", pCharCache->GetWaguPoints(), req->charId);
 					res->wWaguPoint = pCharCache->GetWaguPoints();
-				}				
+				}
 			}
 
 		}
@@ -1363,4 +1391,3 @@ void CChatServerSession::RecvHlsSlotMachineExtractReq(CNtlPacket * pPacket, CQue
 	packet.SetPacketLen(sizeof(sQT_HLS_SLOT_MACHINE_EXTRACT_RES));
 	app->Send(GetHandle(), &packet);
 }
-
