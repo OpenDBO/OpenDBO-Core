@@ -64,13 +64,13 @@ CPlayerItemContainer::~CPlayerItemContainer()
 }
 
 
-void CPlayerItemContainer::Init(CPlayer * pOwner)
+void CPlayerItemContainer::Init(CPlayer* pOwner)
 {
 	m_pOwner = pOwner;
 }
 
 
-void CPlayerItemContainer::AddItem(CItem * pItem)
+void CPlayerItemContainer::AddItem(CItem* pItem)
 {
 	sITEM_DATA& rItemData = pItem->GetItemData();
 
@@ -80,70 +80,70 @@ void CPlayerItemContainer::AddItem(CItem * pItem)
 
 	switch (rItemData.byPlace)
 	{
-		case CONTAINER_TYPE_BAGSLOT:
+	case CONTAINER_TYPE_BAGSLOT:
+	{
+		if (pItem->IsBag())
 		{
-			if (pItem->IsBag())
-			{
-				InsertActiveBag(rItemData.byPosition, pItem);
-				InsertItem(pItem->GetID(), pItem);
-			}
-			else
-				ERR_LOG(LOG_USER, "ERROR: Item has Place 0 but is not a bag !!!");
-		}
-		break;
-
-		case CONTAINER_TYPE_BAG1:
-		case CONTAINER_TYPE_BAG2:
-		case CONTAINER_TYPE_BAG3:
-		case CONTAINER_TYPE_BAG4:
-		case CONTAINER_TYPE_BAG5:
-		{
+			InsertActiveBag(rItemData.byPosition, pItem);
 			InsertItem(pItem->GetID(), pItem);
 		}
-		break;
+		else
+			ERR_LOG(LOG_USER, "ERROR: Item has Place 0 but is not a bag !!!");
+	}
+	break;
 
-		case CONTAINER_TYPE_EQUIP:
-		{
-			InsertItem(pItem->GetID(), pItem);
+	case CONTAINER_TYPE_BAG1:
+	case CONTAINER_TYPE_BAG2:
+	case CONTAINER_TYPE_BAG3:
+	case CONTAINER_TYPE_BAG4:
+	case CONTAINER_TYPE_BAG5:
+	{
+		InsertItem(pItem->GetID(), pItem);
+	}
+	break;
 
-			m_sItemBrief[rItemData.byPosition].byBattleAttribute = rItemData.byBattleAttribute;
-			m_sItemBrief[rItemData.byPosition].byGrade = rItemData.byGrade;
-			m_sItemBrief[rItemData.byPosition].byRank = rItemData.byRank;
-			m_sItemBrief[rItemData.byPosition].tblidx = rItemData.itemNo;
+	case CONTAINER_TYPE_EQUIP:
+	{
+		InsertItem(pItem->GetID(), pItem);
 
-			pItem->SetEquipped(true);
-		}
-		break;
+		m_sItemBrief[rItemData.byPosition].byBattleAttribute = rItemData.byBattleAttribute;
+		m_sItemBrief[rItemData.byPosition].byGrade = rItemData.byGrade;
+		m_sItemBrief[rItemData.byPosition].byRank = rItemData.byRank;
+		m_sItemBrief[rItemData.byPosition].tblidx = rItemData.itemNo;
 
-		case CONTAINER_TYPE_BANKSLOT:
-		case CONTAINER_TYPE_BANK1:
-		case CONTAINER_TYPE_BANK2:
-		case CONTAINER_TYPE_BANK3:
-		case CONTAINER_TYPE_BANK4:
-		{
-			InsertBankItem(pItem->GetID(), pItem);
-		}
-		break;
+		pItem->SetEquipped(true);
+	}
+	break;
 
-		case CONTAINER_TYPE_GUILD1:
-		case CONTAINER_TYPE_GUILD2:
-		case CONTAINER_TYPE_GUILD3:
-		{
-			InsertGuildBankItem(pItem->GetID(), pItem);
-		}
-		break;
+	case CONTAINER_TYPE_BANKSLOT:
+	case CONTAINER_TYPE_BANK1:
+	case CONTAINER_TYPE_BANK2:
+	case CONTAINER_TYPE_BANK3:
+	case CONTAINER_TYPE_BANK4:
+	{
+		InsertBankItem(pItem->GetID(), pItem);
+	}
+	break;
 
-		default: ERR_LOG(LOG_USER, "ERROR: Invalid Place. Place = %u, ItemID = %I64u", rItemData.byPlace, pItem->GetItemID()); break;
+	case CONTAINER_TYPE_GUILD1:
+	case CONTAINER_TYPE_GUILD2:
+	case CONTAINER_TYPE_GUILD3:
+	{
+		InsertGuildBankItem(pItem->GetID(), pItem);
+	}
+	break;
+
+	default: ERR_LOG(LOG_USER, "ERROR: Invalid Place. Place = %u, ItemID = %I64u", rItemData.byPlace, pItem->GetItemID()); break;
 	}
 }
 
-void CPlayerItemContainer::MoveItem(CItem * pItem, BYTE byCurPlace, BYTE byNewPlace, BYTE byOldPos, BYTE byNewPos)
+void CPlayerItemContainer::MoveItem(CItem* pItem, BYTE byCurPlace, BYTE byNewPlace, BYTE byOldPos, BYTE byNewPos)
 {
 	//check if move item inventory <-> inventory
 	if (
 		(IsInvenContainer(byCurPlace) || IsBagContainer(byCurPlace) || IsEquipContainer(byCurPlace))
 		&& (IsInvenContainer(byNewPlace) || IsBagContainer(byNewPlace) || IsEquipContainer(byNewPlace))
-	)
+		)
 	{
 		return;
 	}
@@ -194,7 +194,7 @@ void CPlayerItemContainer::MoveItem(CItem * pItem, BYTE byCurPlace, BYTE byNewPl
 }
 
 
-CItem * CPlayerItemContainer::GetItem(BYTE byPlace, BYTE byPos)
+CItem* CPlayerItemContainer::GetItem(BYTE byPlace, BYTE byPos)
 {
 	if (IsBagContainer(byPlace) || IsInvenContainer(byPlace) || IsEquipContainer(byPlace)) //check if place is from bag/inventory. Search char items
 	{
@@ -260,13 +260,13 @@ void CPlayerItemContainer::RemoveItem(BYTE byPlace, HOBJECT hHandle)
 	ERR_LOG(LOG_USER, "ERROR: Could not remove item. User %u, place %u, handle %u \n", byPlace, hHandle);
 }
 
-void CPlayerItemContainer::InsertItem(HOBJECT hHandle, CItem * item)
+void CPlayerItemContainer::InsertItem(HOBJECT hHandle, CItem* item)
 {
 	m_map_CharItems.insert(std::make_pair(hHandle, item));
 }
 
 
-CItem * CPlayerItemContainer::GetItem(HOBJECT hHandle)
+CItem* CPlayerItemContainer::GetItem(HOBJECT hHandle)
 {
 	TItemsMap::iterator it = m_map_CharItems.find(hHandle);
 
@@ -278,7 +278,7 @@ CItem * CPlayerItemContainer::GetItem(HOBJECT hHandle)
 	return it->second;
 }
 
-CItem * CPlayerItemContainer::GetItemByIdx(TBLIDX itemTblidx)
+CItem* CPlayerItemContainer::GetItemByIdx(TBLIDX itemTblidx)
 {
 	for (TItemsMap::iterator it = m_map_CharItems.begin(); it != m_map_CharItems.end(); it++)
 	{
@@ -290,7 +290,7 @@ CItem * CPlayerItemContainer::GetItemByIdx(TBLIDX itemTblidx)
 	return NULL;
 }
 
-CItem * CPlayerItemContainer::GetItem(ITEMID itemId)
+CItem* CPlayerItemContainer::GetItem(ITEMID itemId)
 {
 	for (TItemsMap::iterator it = m_map_CharItems.begin(); it != m_map_CharItems.end(); it++)
 	{
@@ -302,7 +302,7 @@ CItem * CPlayerItemContainer::GetItem(ITEMID itemId)
 	return NULL;
 }
 
-CItem * CPlayerItemContainer::CheckStackItem(TBLIDX itemidx, BYTE byCount, BYTE byMaxStack, BYTE byRestrictState)
+CItem* CPlayerItemContainer::CheckStackItem(TBLIDX itemidx, BYTE byCount, BYTE byMaxStack, BYTE byRestrictState)
 {
 	for (TItemsMap::iterator it = m_map_CharItems.begin(); it != m_map_CharItems.end(); it++)
 	{
@@ -422,7 +422,7 @@ BYTE CPlayerItemContainer::CountEmptyInventory()
 
 bool CPlayerItemContainer::IsBagEmpty(BYTE byBagPos)
 {
-	if(byBagPos >= NTL_MAX_BAGSLOT_COUNT)
+	if (byBagPos >= NTL_MAX_BAGSLOT_COUNT)
 		return false;
 
 	CItem* pBag = m_arr_ActiveBags[byBagPos]; //get bag
@@ -534,7 +534,7 @@ TBLIDX CPlayerItemContainer::GetMissingDragonball()
 	for (int i = 0; i < NTL_ITEM_MAX_DRAGONBALL; i++)
 	{
 		CItem* pItem = GetItemByIdx(existingBallIdx[i]);
-		if(pItem == NULL)
+		if (pItem == NULL)
 			vecRandBallIdx.push_back(existingBallIdx[i]);
 	}
 
@@ -584,7 +584,7 @@ void CPlayerItemContainer::RemoveReservedInventory(BYTE byPlace, BYTE byPos)
 void CPlayerItemContainer::SortInventory(BYTE byInventoryType, HOBJECT hNpcHandle)
 {
 	CNtlPacket packet(sizeof(sGU_INVENTORY_SORT_RES));
-	sGU_INVENTORY_SORT_RES * res = (sGU_INVENTORY_SORT_RES *)packet.GetPacketData();
+	sGU_INVENTORY_SORT_RES* res = (sGU_INVENTORY_SORT_RES*)packet.GetPacketData();
 	res->wOpCode = GU_INVENTORY_SORT_RES;
 	res->wResultCode = 500;
 	res->byInventoryType = byInventoryType;
@@ -629,7 +629,7 @@ void CPlayerItemContainer::SortInventory(BYTE byInventoryType, HOBJECT hNpcHandl
 	//	}
 	//}
 	//else
-		res->wResultCode = 501;
+	res->wResultCode = 501;
 
 	packet.SetPacketLen(sizeof(sGU_INVENTORY_SORT_RES));
 	m_pOwner->SendPacket(&packet);
@@ -642,7 +642,7 @@ void CPlayerItemContainer::ProcessItemWithDuration(DWORD dwTickDiff)
 	if (m_dwDurationUpdateTick == 0)
 	{
 		m_dwDurationUpdateTick = 1000;
-	//	printf("m_mapItemsWithDuration.size() %u \n", (int)m_mapItemsWithDuration.size());
+		//	printf("m_mapItemsWithDuration.size() %u \n", (int)m_mapItemsWithDuration.size());
 		CGameServer* app = (CGameServer*)g_pApp;
 		DBOTIME curTime = app->GetTime();
 
@@ -658,7 +658,7 @@ void CPlayerItemContainer::ProcessItemWithDuration(DWORD dwTickDiff)
 					pItem->SetUseEndTime(0);
 					pItem->SetLocked(true);
 
-			//		printf("pItem->GetTbldat()->byDurationType %u \n", pItem->GetTbldat()->byDurationType);
+					//		printf("pItem->GetTbldat()->byDurationType %u \n", pItem->GetTbldat()->byDurationType);
 					if (pItem->GetTbldat()->byDurationType == eDURATIONTYPE_FLATSUM)
 					{
 						CNtlPacket pQry(sizeof(sGQ_ITEM_CHANGE_DURATIONTIME_REQ));
@@ -673,7 +673,7 @@ void CPlayerItemContainer::ProcessItemWithDuration(DWORD dwTickDiff)
 					else
 					{
 						CNtlPacket pQry(sizeof(sGQ_ITEM_GRADEINIT_BY_COUPON_REQ));
-						sGQ_ITEM_GRADEINIT_BY_COUPON_REQ * rQry = (sGQ_ITEM_GRADEINIT_BY_COUPON_REQ *)pQry.GetPacketData();
+						sGQ_ITEM_GRADEINIT_BY_COUPON_REQ* rQry = (sGQ_ITEM_GRADEINIT_BY_COUPON_REQ*)pQry.GetPacketData();
 						rQry->wOpCode = GQ_ITEM_GRADEINIT_BY_COUPON_REQ;
 						rQry->handle = m_pOwner->GetID();
 						rQry->charId = m_pOwner->GetCharID();
@@ -694,7 +694,7 @@ void CPlayerItemContainer::ProcessItemWithDuration(DWORD dwTickDiff)
 	}
 }
 
-void CPlayerItemContainer::AddItemDuration(HOBJECT hHandle, CItem * pItem)
+void CPlayerItemContainer::AddItemDuration(HOBJECT hHandle, CItem* pItem)
 {
 	m_mapItemsWithDuration.insert({ hHandle, pItem });
 }
@@ -708,7 +708,7 @@ bool CPlayerItemContainer::HasItemInDuration(HOBJECT hHandle)
 }
 
 
-void CPlayerItemContainer::SetItemBrief(BYTE byPos, sITEM_DATA * pItemData)
+void CPlayerItemContainer::SetItemBrief(BYTE byPos, sITEM_DATA* pItemData)
 {
 	m_sItemBrief[byPos].byBattleAttribute = pItemData->byBattleAttribute;
 	m_sItemBrief[byPos].byGrade = pItemData->byGrade;
@@ -721,7 +721,7 @@ void CPlayerItemContainer::UnsetItemBrief(BYTE byPos)
 	m_sItemBrief[byPos].tblidx = INVALID_TBLIDX;
 }
 
-void CPlayerItemContainer::CopyItemBrief(sITEM_BRIEF * pBrief)
+void CPlayerItemContainer::CopyItemBrief(sITEM_BRIEF* pBrief)
 {
 	memcpy(pBrief, m_sItemBrief, sizeof(m_sItemBrief));
 }
@@ -753,7 +753,7 @@ void CPlayerItemContainer::OnDecreaseEquipmentDurability(BYTE* pbyDur, BYTE& rby
 	}
 }
 
-void CPlayerItemContainer::CopyBaseItemAttributesTo(sAVATAR_ATTRIBUTE & avt)
+void CPlayerItemContainer::CopyBaseItemAttributesTo(sAVATAR_ATTRIBUTE& avt)
 {
 	for (BYTE a = 0; a <= EQUIP_SLOT_TYPE_BOOTS; a++)
 	{
@@ -802,8 +802,8 @@ void CPlayerItemContainer::CopyItemAttributesTo(CCharacterAtt* pCharAtt)
 	sITEM_TBLDAT* setRingIdx[NTL_SET_ITEM_SEMI_COUNT]; //semi because we can only have max 2
 	memset(setRingIdx, NULL, sizeof(setRingIdx));
 
-//	for (TItemsMap::iterator it = m_map_CharItems.begin(); it != m_map_CharItems.end(); it++)
-	for(BYTE a = 0; a < EQUIP_SLOT_TYPE_COUNT; a++)
+	//	for (TItemsMap::iterator it = m_map_CharItems.begin(); it != m_map_CharItems.end(); it++)
+	for (BYTE a = 0; a < EQUIP_SLOT_TYPE_COUNT; a++)
 	{
 		CItem* item = GetItem(CONTAINER_TYPE_EQUIP, a);
 		if (item /*item->GetPlace() == CONTAINER_TYPE_EQUIP*/ && item->GetDurability() > 0)
@@ -855,7 +855,7 @@ void CPlayerItemContainer::CopyItemAttributesTo(CCharacterAtt* pCharAtt)
 					if (pinvitemdata->set_Item_Tblidx != INVALID_TBLIDX)
 						setRingIdx[nSetRingCount++] = pinvitemdata;
 				}
-				
+
 
 				if (item->GetPos() >= EQUIP_SLOT_TYPE_COSTUME_SET) // dogi ball
 				{
@@ -976,7 +976,19 @@ void CPlayerItemContainer::CopyItemAttributesTo(CCharacterAtt* pCharAtt)
 				bSemi = true;
 
 				sSET_ITEM_TBLDAT* pSetItemTbldat = (sSET_ITEM_TBLDAT*)g_pTableContainer->GetSetItemTable()->FindData(setIdx);
+				if (pSetItemTbldat == NULL)
+				{
+					ERR_LOG(LOG_GENERAL, "ERROR: Could not find sSET_ITEM_TBLDAT. SetTblidx %u", setIdx);
+					continue;
+				}
+
 				sITEM_OPTION_TBLDAT* optionTbldat = (sITEM_OPTION_TBLDAT*)g_pTableContainer->GetItemOptionTable()->FindData(pSetItemTbldat->semiSetOption);
+
+				if (optionTbldat == NULL)
+				{
+					ERR_LOG(LOG_GENERAL, "ERROR: Could not find sITEM_OPTION_TBLDAT. Tblidx %u", pSetItemTbldat->semiSetOption);
+					continue;
+				}
 
 				//always only have 1 effect code
 				Dbo_SetAvatarAttributeValue(pCharAtt, g_pTableContainer->GetSystemEffectTable()->GetEffectCodeWithTblidx(optionTbldat->system_Effect[0]), (float)optionTbldat->nValue[0], (BYTE)optionTbldat->bAppliedInPercent[0]);
@@ -987,7 +999,20 @@ void CPlayerItemContainer::CopyItemAttributesTo(CCharacterAtt* pCharAtt)
 				bFull = true;
 
 				sSET_ITEM_TBLDAT* pSetItemTbldat = (sSET_ITEM_TBLDAT*)g_pTableContainer->GetSetItemTable()->FindData(setIdx);
+
+				if (pSetItemTbldat == NULL)
+				{
+					ERR_LOG(LOG_GENERAL, "ERROR: Could not find sSET_ITEM_TBLDAT. SetTblidx %u", setIdx);
+					continue;
+				}
+
 				sITEM_OPTION_TBLDAT* optionTbldat = (sITEM_OPTION_TBLDAT*)g_pTableContainer->GetItemOptionTable()->FindData(pSetItemTbldat->fullSetOption);
+
+				if (optionTbldat == NULL)
+				{
+					ERR_LOG(LOG_GENERAL, "ERROR: Could not find sITEM_OPTION_TBLDAT. Tblidx %u", pSetItemTbldat->fullSetOption);
+					continue;
+				}
 
 				//always only have 1 effect code
 				Dbo_SetAvatarAttributeValue(pCharAtt, g_pTableContainer->GetSystemEffectTable()->GetEffectCodeWithTblidx(optionTbldat->system_Effect[0]), (float)optionTbldat->nValue[0], (BYTE)optionTbldat->bAppliedInPercent[0]);
@@ -1071,11 +1096,11 @@ CItem* CPlayerItemContainer::WearGenderRequiredItem2(BYTE byNewGender)
 				if (pItemData)
 				{
 					if (pItemData->dwNeed_Gender_Bit_Flag > 0 && BIT_FLAG_TEST(MAKE_BIT_FLAG(byNewGender), pItemData->dwNeed_Gender_Bit_Flag) == false)
-					{						
+					{
 						item->SetLocked(true);
 						return item;
 					}
-					
+
 				}
 			}
 		}
@@ -1083,12 +1108,12 @@ CItem* CPlayerItemContainer::WearGenderRequiredItem2(BYTE byNewGender)
 
 	return NULL;
 }
-void CPlayerItemContainer::InsertBankItem(HOBJECT hHandle, CItem * item)
+void CPlayerItemContainer::InsertBankItem(HOBJECT hHandle, CItem* item)
 {
 	m_map_BankItems.insert(std::make_pair(hHandle, item));
 }
 
-CItem * CPlayerItemContainer::GetBankItem(HOBJECT hHandle)
+CItem* CPlayerItemContainer::GetBankItem(HOBJECT hHandle)
 {
 	TItemsMap::iterator it = m_map_BankItems.find(hHandle);
 	if (it != m_map_BankItems.end())
