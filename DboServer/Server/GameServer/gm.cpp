@@ -114,6 +114,7 @@ ACMD(do_exp);
 ACMD(do_resetexp);
 ACMD(do_starthoneybee);
 ACMD(do_stophoneybee);
+ACMD(do_createguild);
 ACMD(do_deleteguild);
 ACMD(do_cancelah);
 ACMD(do_addmudosa);
@@ -169,6 +170,7 @@ struct command_info cmd_info[] =
 	{ L"@resetexp", do_resetexp, ADMIN_LEVEL_NONE },
 	{ L"@starthoneybee", do_starthoneybee, ADMIN_LEVEL_COMMUNITY_MANAGER },
 	{ L"@stophoneybee", do_stophoneybee, ADMIN_LEVEL_COMMUNITY_MANAGER },
+	{ L"@createguild", do_createguild, ADMIN_LEVEL_GAME_MASTER }, // Haven't tested if it works for others. Create a single party first.
 	{ L"@deleteguild", do_deleteguild, ADMIN_LEVEL_COMMUNITY_MANAGER },
 	{ L"@cancelah", do_cancelah, ADMIN_LEVEL_GAME_MASTER },
 	{ L"@addmudosa", do_addmudosa, ADMIN_LEVEL_ADMIN },
@@ -1574,6 +1576,48 @@ ACMD(do_stophoneybee)
 
 	g_pHoneyBeeEvent->EndEvent();
 	NTL_PRINT(PRINT_APP, "HoneybeeEvent Stopped");
+}
+
+// Maybe remove later after testing if it's needed.
+#ifndef NTL_MIN_SIZE_GUILD_NAME
+#define NTL_MIN_SIZE_GUILD_NAME 3
+#endif
+#ifndef NTL_MAX_SIZE_GUILD_NAME
+#define NTL_MAX_SIZE_GUILD_NAME 16
+#endif
+
+ACMD(do_createguild)
+{
+	CGameServer* app = (CGameServer*)g_pApp;
+
+	pToken->PopToPeek();
+	std::wstring wTok = pToken->PeekNextToken(NULL, &iLine);
+
+	std::string name = ws2s(wTok);     // keep storage alive
+	if (name.empty())
+		return;
+
+	// Basic validation (optional)
+	if (name.length() < NTL_MIN_SIZE_GUILD_NAME || name.length() > NTL_MAX_SIZE_GUILD_NAME)
+		return;
+	if (name.find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890") != std::string::npos)
+		return;
+
+	WCHAR* wchName = Ntl_MB2WC((char*)name.c_str());
+
+	CNtlPacket cPacket(sizeof(sGT_GUILD_CREATE));
+	sGT_GUILD_CREATE* req = (sGT_GUILD_CREATE*)cPacket.GetPacketData();
+	req->wOpCode = GT_GUILD_CREATE;
+	req->creatorCharId = pPlayer->GetCharID();
+	NTL_SAFE_WCSCPY(req->wszGuildName, wchName);
+	cPacket.SetPacketLen(sizeof(sGT_GUILD_CREATE));
+
+	app->SendTo(app->GetChatServerSession(), &cPacket);
+
+	Ntl_CleanUpHeapStringW(wchName);
+
+	// Strongly recommend a log so you can prove it fired
+	ERR_LOG(LOG_USER, "GM @createguild fired: charId=%u name=%s", pPlayer->GetCharID(), name.c_str());
 }
 
 ACMD(do_deleteguild)
