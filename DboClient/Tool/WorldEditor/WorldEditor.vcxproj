@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug4Client|Win32">
@@ -50,8 +50,7 @@
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="ExtensionSettings">
-  </ImportGroup>
+  <ImportGroup Label="ExtensionSettings"></ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
@@ -99,7 +98,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)Renderware\Include;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlPresentation;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)..\DboShared;$(SolutionDir)..\NtlLib\Shared\NtlXMLLoader;$(SolutionDir)..\NtlLib\Shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)RenderwareX64\Include;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlPresentation;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)..\DboShared;$(SolutionDir)..\NtlLib\Shared\NtlXMLLoader;$(SolutionDir)..\NtlLib\Shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;RWDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -133,7 +132,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)Renderware\Include;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlPresentation;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)..\DboShared;$(SolutionDir)..\NtlLib\Shared\NtlXMLLoader;$(SolutionDir)..\NtlLib\Shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)RenderwareX64\Include;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlPresentation;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)..\DboShared;$(SolutionDir)..\NtlLib\Shared\NtlXMLLoader;$(SolutionDir)..\NtlLib\Shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;RWDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -153,8 +152,7 @@
       <AdditionalLibraryDirectories>$(SolutionDir)NtlLib\Shared\NtlXMLLoader\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <EntryPointSymbol>
-      </EntryPointSymbol>
+      <EntryPointSymbol></EntryPointSymbol>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <PostBuildEvent>
@@ -167,7 +165,7 @@
       <MkTypLibCompatible>false</MkTypLibCompatible>
     </Midl>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\DboShared\NtlXMLLoader;$(SolutionDir)Renderware\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\DboShared\NtlXMLLoader;$(SolutionDir)RenderwareX64\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;UNICODE;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -197,7 +195,7 @@
       <MkTypLibCompatible>false</MkTypLibCompatible>
     </Midl>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\DboShared\NtlXMLLoader;$(SolutionDir)Renderware\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\DboShared\NtlXMLLoader;$(SolutionDir)RenderwareX64\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;UNICODE;_UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -222,75 +220,75 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Renderware\Include\rpadc.h" />
-    <ClInclude Include="..\..\Renderware\Include\rpanisot.h" />
-    <ClInclude Include="..\..\Renderware\Include\rpcollis.h" />
-    <ClInclude Include="..\..\Renderware\Include\rpcriter.h" />
-    <ClInclude Include="..\..\Renderware\Include\rpcrowd.h" />
-    <ClInclude Include="..\..\Renderware\Include\rpdbgerr.h" />
-    <ClInclude Include="..\..\Renderware\Include\rpdmorph.h" />
-    <ClInclude Include="..\..\Renderware\Include\rpdpvs.h" />
-    <ClInclude Include="..\..\Renderware\Include\rpenv.h" />
-    <ClInclude Include="..\..\Renderware\Include\rperror.h" />
-    <ClInclude Include="..\..\Renderware\Include\rphanim.h" />
-    <ClInclude Include="..\..\Renderware\Include\rpid.h" />
-    <ClInclude Include="..\..\Renderware\Include\rplodatm.h" />
-    <ClInclude Include="..\..\Renderware\Include\rplogo.h" />
-    <ClInclude Include="..\..\Renderware\Include\rpltmap.h" />
-    <ClInclude Include="..\..\Renderware\Include\rpmatfx.h" />
-    <ClInclude Include="..\..\Renderware\Include\rpmipkl.h" />
-    <ClInclude Include="..\..\Renderware\Include\rpmorph.h" />
-    <ClInclude Include="..\..\Renderware\Include\rpnormmap.h" />
-    <ClInclude Include="..\..\Renderware\Include\rppatch.h" />
-    <ClInclude Include="..\..\Renderware\Include\rpprtadv.h" />
-    <ClInclude Include="..\..\Renderware\Include\rpprtstd.h" />
-    <ClInclude Include="..\..\Renderware\Include\rpptank.h" />
-    <ClInclude Include="..\..\Renderware\Include\rppvs.h" />
-    <ClInclude Include="..\..\Renderware\Include\rprandom.h" />
-    <ClInclude Include="..\..\Renderware\Include\rpskin.h" />
-    <ClInclude Include="..\..\Renderware\Include\rpspline.h" />
-    <ClInclude Include="..\..\Renderware\Include\rpteam.h" />
-    <ClInclude Include="..\..\Renderware\Include\rptoon.h" />
-    <ClInclude Include="..\..\Renderware\Include\rpusrdat.h" />
-    <ClInclude Include="..\..\Renderware\Include\rpuvanim.h" />
-    <ClInclude Include="..\..\Renderware\Include\rpworld.h" />
-    <ClInclude Include="..\..\Renderware\Include\rt2d.h" />
-    <ClInclude Include="..\..\Renderware\Include\rt2danim.h" />
-    <ClInclude Include="..\..\Renderware\Include\rtanim.h" />
-    <ClInclude Include="..\..\Renderware\Include\rtbary.h" />
-    <ClInclude Include="..\..\Renderware\Include\rtbezpat.h" />
-    <ClInclude Include="..\..\Renderware\Include\rtbmp.h" />
-    <ClInclude Include="..\..\Renderware\Include\rtcharse.h" />
-    <ClInclude Include="..\..\Renderware\Include\rtcmpkey.h" />
-    <ClInclude Include="..\..\Renderware\Include\rtdict.h" />
-    <ClInclude Include="..\..\Renderware\Include\rtfsyst.h" />
-    <ClInclude Include="..\..\Renderware\Include\rtgcond.h" />
-    <ClInclude Include="..\..\Renderware\Include\rtgncpip.h" />
-    <ClInclude Include="..\..\Renderware\Include\rtimport.h" />
-    <ClInclude Include="..\..\Renderware\Include\rtintsec.h" />
-    <ClInclude Include="..\..\Renderware\Include\rtltmap.h" />
-    <ClInclude Include="..\..\Renderware\Include\rtltmapcnv.h" />
-    <ClInclude Include="..\..\Renderware\Include\rtmipk.h" />
-    <ClInclude Include="..\..\Renderware\Include\rtnormmap.h" />
-    <ClInclude Include="..\..\Renderware\Include\rtpick.h" />
-    <ClInclude Include="..\..\Renderware\Include\rtpitexd.h" />
-    <ClInclude Include="..\..\Renderware\Include\rtpng.h" />
-    <ClInclude Include="..\..\Renderware\Include\rtquat.h" />
-    <ClInclude Include="..\..\Renderware\Include\rtras.h" />
-    <ClInclude Include="..\..\Renderware\Include\rtray.h" />
-    <ClInclude Include="..\..\Renderware\Include\rtskinsp.h" />
-    <ClInclude Include="..\..\Renderware\Include\rtslerp.h" />
-    <ClInclude Include="..\..\Renderware\Include\rtsplpvs.h" />
-    <ClInclude Include="..\..\Renderware\Include\rttiff.h" />
-    <ClInclude Include="..\..\Renderware\Include\rttilerd.h" />
-    <ClInclude Include="..\..\Renderware\Include\rttoc.h" />
-    <ClInclude Include="..\..\Renderware\Include\rttoon.h" />
-    <ClInclude Include="..\..\Renderware\Include\rtvcat.h" />
-    <ClInclude Include="..\..\Renderware\Include\rtwing.h" />
-    <ClInclude Include="..\..\Renderware\Include\rtworld.h" />
-    <ClInclude Include="..\..\Renderware\Include\rwcore.h" />
-    <ClInclude Include="..\..\Renderware\Include\rwplcore.h" />
-    <ClInclude Include="..\..\Renderware\Include\rwversion.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rpadc.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rpanisot.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rpcollis.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rpcriter.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rpcrowd.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rpdbgerr.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rpdmorph.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rpdpvs.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rpenv.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rperror.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rphanim.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rpid.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rplodatm.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rplogo.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rpltmap.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rpmatfx.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rpmipkl.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rpmorph.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rpnormmap.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rppatch.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rpprtadv.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rpprtstd.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rpptank.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rppvs.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rprandom.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rpskin.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rpspline.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rpteam.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rptoon.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rpusrdat.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rpuvanim.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rpworld.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rt2d.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rt2danim.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rtanim.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rtbary.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rtbezpat.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rtbmp.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rtcharse.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rtcmpkey.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rtdict.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rtfsyst.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rtgcond.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rtgncpip.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rtimport.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rtintsec.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rtltmap.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rtltmapcnv.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rtmipk.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rtnormmap.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rtpick.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rtpitexd.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rtpng.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rtquat.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rtras.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rtray.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rtskinsp.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rtslerp.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rtsplpvs.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rttiff.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rttilerd.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rttoc.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rttoon.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rtvcat.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rtwing.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rtworld.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rwcore.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rwplcore.h" />
+    <ClInclude Include="..\..\RenderwareX64\Include\rwversion.h" />
     <ClInclude Include="AssetObjectDlg.h" />
     <ClInclude Include="AssetObjectTreeCtrl.h" />
     <ClInclude Include="AssetObjectView.h" />
@@ -503,6 +501,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug4Client|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release4Client|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="SWordNode.cpp" />
@@ -634,8 +633,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets"></ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
       <UserProperties RESOURCE_FILE="WorldEditor.rc" />

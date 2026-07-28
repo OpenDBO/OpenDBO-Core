@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug4Client|Win32">
@@ -30,14 +30,14 @@
     <PlatformToolset>v80</PlatformToolset>
     <UseOfMfc>Static</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release4Client|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v80</PlatformToolset>
     <UseOfMfc>Static</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -52,8 +52,7 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="ExtensionSettings">
-  </ImportGroup>
+  <ImportGroup Label="ExtensionSettings"></ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -98,7 +97,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)Lib\NtlFlasher\Include;$(SolutionDir)Lib\NtlFlasher\3rdParty\jpeg-6b;$(SolutionDir)Lib\NtlFlasher\3rdParty\zlib-1.2.3;$(SolutionDir)..\ntllib\Shared;src/ctrl;src/project;$(SolutionDir)Renderware\Include;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlPresentation;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)..\ntllib\Shared\NtlXMLLoader;$(SolutionDir)..\ntllib\Shared\NtlTrigger;$(SolutionDir)Lib\NtlSimulation;$(SolutionDir)..\ntllib\Shared\Util;$(SolutionDir)..\ntllib\client\ntlclientnet;$(SolutionDir)..\dboshared\ntlgametable;$(SolutionDir)..\dboshared\ntlshared2;$(SolutionDir)..\dboshared\DboTrigger;$(SolutionDir)Lib\NtlSound;$(SolutionDir)Lib\NtlGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Lib\NtlFlasher\Include;$(SolutionDir)Lib\NtlFlasher\3rdParty\jpeg-6b;$(SolutionDir)Lib\NtlFlasher\3rdParty\zlib-1.2.3;$(SolutionDir)..\ntllib\Shared;src/ctrl;src/project;$(SolutionDir)RenderwareX64\Include;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlPresentation;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)..\ntllib\Shared\NtlXMLLoader;$(SolutionDir)..\ntllib\Shared\NtlTrigger;$(SolutionDir)Lib\NtlSimulation;$(SolutionDir)..\ntllib\Shared\Util;$(SolutionDir)..\ntllib\client\ntlclientnet;$(SolutionDir)..\dboshared\ntlgametable;$(SolutionDir)..\dboshared\ntlshared2;$(SolutionDir)..\dboshared\DboTrigger;$(SolutionDir)Lib\NtlSound;$(SolutionDir)Lib\NtlGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;RWDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -132,7 +131,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)Lib\NtlFlasher\Include;$(SolutionDir)Lib\NtlFlasher\3rdParty\jpeg-6b;$(SolutionDir)Lib\NtlFlasher\3rdParty\zlib-1.2.3;$(SolutionDir)..\ntllib\Shared;src/ctrl;src/project;$(SolutionDir)Renderware\Include;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlPresentation;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)..\ntllib\Shared\NtlXMLLoader;$(SolutionDir)..\ntllib\Shared\NtlTrigger;$(SolutionDir)Lib\NtlSimulation;$(SolutionDir)..\ntllib\Shared\Util;$(SolutionDir)..\ntllib\client\ntlclientnet;$(SolutionDir)..\dboshared\ntlgametable;$(SolutionDir)..\dboshared\ntlshared2;$(SolutionDir)..\dboshared\DboTrigger;$(SolutionDir)Lib\NtlSound;$(SolutionDir)Lib\NtlGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Lib\NtlFlasher\Include;$(SolutionDir)Lib\NtlFlasher\3rdParty\jpeg-6b;$(SolutionDir)Lib\NtlFlasher\3rdParty\zlib-1.2.3;$(SolutionDir)..\ntllib\Shared;src/ctrl;src/project;$(SolutionDir)RenderwareX64\Include;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlPresentation;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)..\ntllib\Shared\NtlXMLLoader;$(SolutionDir)..\ntllib\Shared\NtlTrigger;$(SolutionDir)Lib\NtlSimulation;$(SolutionDir)..\ntllib\Shared\Util;$(SolutionDir)..\ntllib\client\ntlclientnet;$(SolutionDir)..\dboshared\ntlgametable;$(SolutionDir)..\dboshared\ntlshared2;$(SolutionDir)..\dboshared\DboTrigger;$(SolutionDir)Lib\NtlSound;$(SolutionDir)Lib\NtlGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;RWDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -166,7 +165,7 @@
     </Midl>
     <ClCompile>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)Lib\NtlFlasher\Include;$(SolutionDir)Lib\NtlFlasher\3rdParty\jpeg-6b;$(SolutionDir)Lib\NtlFlasher\3rdParty\zlib-1.2.3;$(SolutionDir)..\ntllib\Shared;src/ctrl;src/project;$(SolutionDir)Renderware\Include;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlPresentation;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)..\ntllib\Shared\NtlXMLLoader;$(SolutionDir)..\ntllib\Shared\NtlTrigger;$(SolutionDir)Lib\NtlSimulation;$(SolutionDir)..\ntllib\Shared\Util;$(SolutionDir)..\ntllib\client\ntlclientnet;$(SolutionDir)..\dboshared\ntlgametable;$(SolutionDir)..\dboshared\ntlshared2;$(SolutionDir)..\dboshared\DboTrigger;$(SolutionDir)Lib\NtlSound;$(SolutionDir)Lib\NtlGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Lib\NtlFlasher\Include;$(SolutionDir)Lib\NtlFlasher\3rdParty\jpeg-6b;$(SolutionDir)Lib\NtlFlasher\3rdParty\zlib-1.2.3;$(SolutionDir)..\ntllib\Shared;src/ctrl;src/project;$(SolutionDir)RenderwareX64\Include;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlPresentation;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)..\ntllib\Shared\NtlXMLLoader;$(SolutionDir)..\ntllib\Shared\NtlTrigger;$(SolutionDir)Lib\NtlSimulation;$(SolutionDir)..\ntllib\Shared\Util;$(SolutionDir)..\ntllib\client\ntlclientnet;$(SolutionDir)..\dboshared\ntlgametable;$(SolutionDir)..\dboshared\ntlshared2;$(SolutionDir)..\dboshared\DboTrigger;$(SolutionDir)Lib\NtlSound;$(SolutionDir)Lib\NtlGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -201,7 +200,7 @@
     </Midl>
     <ClCompile>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)Lib\NtlFlasher\Include;$(SolutionDir)Lib\NtlFlasher\3rdParty\jpeg-6b;$(SolutionDir)Lib\NtlFlasher\3rdParty\zlib-1.2.3;$(SolutionDir)..\ntllib\Shared;src/ctrl;src/project;$(SolutionDir)Renderware\Include;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlPresentation;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)..\ntllib\Shared\NtlXMLLoader;$(SolutionDir)..\ntllib\Shared\NtlTrigger;$(SolutionDir)Lib\NtlSimulation;$(SolutionDir)..\ntllib\Shared\Util;$(SolutionDir)..\ntllib\client\ntlclientnet;$(SolutionDir)..\dboshared\ntlgametable;$(SolutionDir)..\dboshared\ntlshared2;$(SolutionDir)..\dboshared\DboTrigger;$(SolutionDir)Lib\NtlSound;$(SolutionDir)Lib\NtlGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Lib\NtlFlasher\Include;$(SolutionDir)Lib\NtlFlasher\3rdParty\jpeg-6b;$(SolutionDir)Lib\NtlFlasher\3rdParty\zlib-1.2.3;$(SolutionDir)..\ntllib\Shared;src/ctrl;src/project;$(SolutionDir)RenderwareX64\Include;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlPresentation;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)..\ntllib\Shared\NtlXMLLoader;$(SolutionDir)..\ntllib\Shared\NtlTrigger;$(SolutionDir)Lib\NtlSimulation;$(SolutionDir)..\ntllib\Shared\Util;$(SolutionDir)..\ntllib\client\ntlclientnet;$(SolutionDir)..\dboshared\ntlgametable;$(SolutionDir)..\dboshared\ntlshared2;$(SolutionDir)..\dboshared\DboTrigger;$(SolutionDir)Lib\NtlSound;$(SolutionDir)Lib\NtlGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -224,8 +223,7 @@
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <LinkTimeCodeGeneration>
-      </LinkTimeCodeGeneration>
+      <LinkTimeCodeGeneration></LinkTimeCodeGeneration>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
   </ItemDefinitionGroup>
@@ -235,6 +233,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug4Client|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release4Client|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="WorldPatchProcess.cpp" />
@@ -330,8 +329,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets"></ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
       <UserProperties RESOURCE_FILE="WorldPatchProcess.rc" />

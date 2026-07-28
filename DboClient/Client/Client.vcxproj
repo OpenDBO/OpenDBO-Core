@@ -1,9 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -17,7 +21,14 @@
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <UseOfAtl>false</UseOfAtl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <UseOfAtl>false</UseOfAtl>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -26,14 +37,23 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>14.0.25431.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)DragonBall\</OutDir>
-    <IntDir>(Configuration)\</IntDir>
+    <IntDir>$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)DragonBall\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <LocalDebuggerWorkingDirectory>$(SolutionDir)DragonBall\</LocalDebuggerWorkingDirectory>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <PreBuildEvent>
@@ -41,8 +61,8 @@
       </Command>
     </PreBuildEvent>
     <ClCompile>
-      <WholeProgramOptimization>true</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)Lib\NtlMovie;$(SolutionDir)Lib\NtlFlasher;$(GFXSDK_DIR)\Src\GRenderer;$(GFXSDK_DIR)\Src\GKernel;$(GFXSDK_DIR)\Src\GFxXML;$(GFXSDK_DIR)\Include;..\..\NtlLib\Shared\NtlTrigger;..\..\NtlLib\Shared;..\..\NtlLib\Shared\Util;..\..\NtlLib\Shared\NtlXMLLoader;..\..\NtlLib\Client\NtlClientNet;..\..\DboShared\NtlGameTable;..\..\DboShared\DboTrigger;..\..\DboShared\NtlShared2;..\..\NtlLib\Shared\Lua;$(SolutionDir)Renderware\Include;$(SolutionDir)Lib\Ntl_Plugin_Collis\collis;$(SolutionDir)Lib\Ntl_Plugin_Toon\toon;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)Lib\NtlPresentation;$(SolutionDir)Lib\NtlSimulation;$(SolutionDir)Lib\NtlGui;$(SolutionDir)Lib\NtlSound;.\Stage;.\Main;.\Gui;.\Input;.\Camera;.\Thread;.\Parser;.\LoadingScene;.;$(SolutionDir)BVL;.\Addin;.\Addin\Devil;$(DXSDK_DIR)Include;$(SolutionDir)Lib\Discord;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>$(SolutionDir)Lib\NtlMovie;$(SolutionDir)Lib\NtlFlasher;$(GFXSDK_DIR)\Src\GRenderer;$(GFXSDK_DIR)\Src\GKernel;$(GFXSDK_DIR)\Src\GFxXML;$(GFXSDK_DIR)\Include;..\..\NtlLib\Shared\NtlTrigger;..\..\NtlLib\Shared;..\..\NtlLib\Shared\Util;..\..\NtlLib\Shared\NtlXMLLoader;..\..\NtlLib\Client\NtlClientNet;..\..\DboShared\NtlGameTable;..\..\DboShared\DboTrigger;..\..\DboShared\NtlShared2;..\..\NtlLib\Shared\Lua;$(SolutionDir)RenderwareX64\Include;$(SolutionDir)Lib\Ntl_Plugin_Collis\collis;$(SolutionDir)Lib\Ntl_Plugin_Toon\toon;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)Lib\NtlPresentation;$(SolutionDir)Lib\NtlSimulation;$(SolutionDir)Lib\NtlGui;$(SolutionDir)Lib\NtlSound;.\Stage;.\Main;.\Gui;.\Input;.\Camera;.\Thread;.\Parser;.\LoadingScene;.;$(SolutionDir)BVL;.\Addin;.\Addin\Devil;$(DXSDK_DIR)Include;$(SolutionDir)Lib\Discord;$(GFXSDK_DIR)\Lib\$(PlatformName)\Msvc80\Release;$(GFXSDK_DIR)\3rdParty\jpeg-6b\lib\$(PlatformName)\Msvc142\Release;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;DISCORD_DYNAMIC_LIB;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -63,6 +83,59 @@
       <AdditionalLibraryDirectories>$(SolutionDir)Renderware\Lib\Release;$(SolutionDir)BugTrap;$(SolutionDir)DirectShow;.\Addin\Devil;$(SolutionDir)Lib/Localize/Lib;$(DXSDK_DIR)Lib\x86;$(SolutionDir)Release;$(GFXSDK_DIR)\Lib\Win32\Msvc80\Release;$(GFXSDK_DIR)\3rdParty\expat-2.0.1\lib;$(GFXSDK_DIR)\Lib\$(PlatformName)\Msvc80\Release;$(GFXSDK_DIR)\3rdParty\jpeg-6b\lib\$(PlatformName)\Msvc142\Release;$(SolutionDir)Lib\Discord;$(SolutionDir)Lib\NtlSound\fmod;$(SolutionDir)..\NtlLib\Shared\Zip\zlib123\projects\$(Configuration)\$(PlatformName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
+      <GenerateMapFile>true</GenerateMapFile>
+      <MapFileName>
+      </MapFileName>
+      <MapExports>false</MapExports>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+      <RandomizedBaseAddress />
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <ProjectReference>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>$(SolutionDir)Lib\NtlMovie;$(SolutionDir)Lib\NtlFlasher;$(GFXSDK_DIR)\Src\GRenderer;$(GFXSDK_DIR)\Src\GKernel;$(GFXSDK_DIR)\Src\GFxXML;$(GFXSDK_DIR)\Include;..\..\NtlLib\Shared\NtlTrigger;..\..\NtlLib\Shared;..\..\NtlLib\Shared\Util;..\..\NtlLib\Shared\NtlXMLLoader;..\..\NtlLib\Client\NtlClientNet;..\..\DboShared\NtlGameTable;..\..\DboShared\DboTrigger;..\..\DboShared\NtlShared2;..\..\NtlLib\Shared\Lua;$(SolutionDir)RenderwareX64\Include;$(SolutionDir)Lib\Ntl_Plugin_Collis\collis;$(SolutionDir)Lib\Ntl_Plugin_Toon\toon;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)Lib\NtlPresentation;$(SolutionDir)Lib\NtlSimulation;$(SolutionDir)Lib\NtlGui;$(SolutionDir)Lib\NtlSound;.\Stage;.\Main;.\Gui;.\Input;.\Camera;.\Thread;.\Parser;.\LoadingScene;.;$(SolutionDir)BVL;.\Addin;.\Addin\Devil;$(DXSDK_DIR)Include;$(SolutionDir)Lib\Discord;$(GFXSDK_DIR)\Lib\$(PlatformName)\Msvc80\Release;$(GFXSDK_DIR)\3rdParty\jpeg-6b\lib\$(PlatformName)\Msvc142\Release;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>precomp_dboclient.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4099;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <AdditionalOptions>/GL- %(AdditionalOptions)</AdditionalOptions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <UseUnicodeForAssemblerListing>false</UseUnicodeForAssemblerListing>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <UseFullPaths>true</UseFullPaths>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ddraw.lib;Ws2_32.lib;Winmm.lib;Imm32.lib;rtdict.lib;rtcharse.lib;rtfsyst.lib;rtbmp.lib;rtpng.lib;rtintsec.lib;rtpick.lib;rttoc.lib;rpworld.lib;rtanim.lib;rphanim.lib;rtquat.lib;rplogo.lib;rpusrdat.lib;rpid.lib;rpmatfx.lib;rpuvanim.lib;rpprtstd.lib;rpprtadv.lib;rpptank.lib;rpskintoon.lib;rpskin.lib;rprandom.lib;rtimport.lib;rtgcond.lib;rtwing.lib;rtray.lib;rplodatm.lib;strmiids.lib;libgfx.lib;libgrenderer_d3d9.lib;zlib.lib;d3dx9.lib;d3d9.lib;Devil.lib;libpng.lib;rppvs.lib;rpltmap.lib;rtltmap.lib;rpmipkl.lib;rtpitexd.lib;rtbary.lib;libjpeg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)RenderwareX64\Lib\Release_x64;$(SolutionDir)BugTrap;$(SolutionDir)DirectShow;.\Addin\Devil;$(SolutionDir)Lib/Localize/Lib;$(DXSDK_DIR)Lib\x64;$(SolutionDir)\x64\Release;$(GFXSDK_DIR)\Lib\x64\Msvc80\Release;$(GFXSDK_DIR)\3rdParty\expat-2.0.1\lib;$(GFXSDK_DIR)\Lib\$(PlatformName)\Msvc80\Release;$(GFXSDK_DIR)\3rdParty\jpeg-6b\lib\$(PlatformName)\Msvc80\Release;$(GFXSDK_DIR)\3rdParty\libpng\Lib\$(PlatformName)\Msvc80\Release;$(SolutionDir)Lib\Discord;$(SolutionDir)Lib\NtlSound\fmod;$(SolutionDir)..\NtlLib\Shared\Zip\zlib123\projects\$(Configuration)\$(PlatformName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>/LTCG:OFF %(AdditionalOptions)</AdditionalOptions>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(TargetDir)$(TargetName).pdb</ProgramDatabaseFile>
       <GenerateMapFile>false</GenerateMapFile>
@@ -72,7 +145,7 @@
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <TargetMachine>MachineX86</TargetMachine>
+      <TargetMachine>MachineX64</TargetMachine>
       <RandomizedBaseAddress />
     </Link>
     <PostBuildEvent>
@@ -111,6 +184,10 @@
   <ItemGroup>
     <ClCompile Include="..\BVL\MoviePlayer.cpp" />
     <ClCompile Include="..\DirectShow\DirectShowMovie.cpp" />
+    <ClCompile Include="crt_compat.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>_NO_CRT_STDIO_INLINE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
     <ClCompile Include="Addin\DboAddinManager.cpp" />
     <ClCompile Include="CCBDBoardGui.cpp" />
     <ClCompile Include="CCBDNotifyGui.cpp" />
@@ -122,6 +199,8 @@
     <ClCompile Include="Gui\AltarGui.cpp">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
       <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
     </ClCompile>
     <ClCompile Include="Gui\AuctionHouseGui.cpp" />
     <ClCompile Include="Gui\BackboardGui.cpp" />
@@ -164,6 +243,8 @@
     <ClCompile Include="Gui\DBCRewardGUI.cpp">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
       <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
     </ClCompile>
     <ClCompile Include="Gui\DBCSideIconGui.cpp" />
     <ClCompile Include="Gui\DBOTitleGui.cpp" />
@@ -413,6 +494,7 @@
     <ClCompile Include="PlayerTitleGui.cpp" />
     <ClCompile Include="precomp_dboclient.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="QuickTeleportGui.cpp" />
     <ClCompile Include="ScouterMeasureDlgGui.cpp" />
