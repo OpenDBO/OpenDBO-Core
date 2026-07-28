@@ -2,7 +2,7 @@
 //	File		:	NtlResourceParticleSystem.cpp
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	�� 2005 by agebreak CO., Ltd
+//	Copyright	:	ⓒ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************

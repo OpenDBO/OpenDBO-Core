@@ -4,8 +4,8 @@
 //#include "NtlToonMaterial.h"
 
 /**
- * Plugin ���� ID �ٸ� Plugin�� ���� ID�� ������ �ȵȴ�.
- * ������ Renderware�� ������ �ϰ� ������ �Ѵ�.
+ * Plugin 고유 ID 다른 Plugin과 같은 ID가 있으면 안된다.
+ * 원래는 Renderware에 보고를 하고 만들어야 한다.
  */
 const RwUInt32 PluginID = 0xFE;
 
@@ -20,7 +20,7 @@ const RwUInt16 NTL_ATOMIC_SAVE_VER = 1;
 const RwUInt16 NTL_ATOMIC_SAVE_VER1 = 2;
 
 /**
- * �߰� Data
+ * 추가 Data
  */
 struct NtlAtomicPluginData
 {
@@ -29,34 +29,34 @@ struct NtlAtomicPluginData
 	RwUInt16	uiVersion;			//Save Version
 	RwUInt32	uiFlag;				//Atomic Flag
 
-	// ���� pUser�� �޸𸮻󿡼� ���������� ���ϼ� �ֵ��� ������� ������ ������Ʈ �������ʿ��� ����ϰ� �ֽ��ϴ�.
-	// NtlPLObj���� ������Ʈ ������ �÷��װ� ���ٸ� �� Pointer�� �������� ����ϼŵ� �˴ϴ�
-	// ���� �� ������ �������� ���̱� ������ ����, ������ ���� å���� ������ ���쿡�� �ذ��ؾ� �մϴ�.
-	// �÷����� ��Ʈ��Ʈ���� ��쿡 �´� �Ҹ깮���� ����ϴ�. �̰��� Ŭ�е��� �ʽ��ϴ�.  - ���
+	// 현재 pUser는 메모리상에서 범용적으로 쓰일수 있도록 만들어져 있으면 오브젝트 쉐도우쪽에서 사용하고 있습니다.
+	// NtlPLObj에서 오브젝트 쉐도우 플래그가 없다면 이 Pointer를 공용으로 사용하셔도 됩니다
+	// 또한 이 변수는 공용으로 쓰이기 때문에 생성, 삭제에 대한 책임은 각각의 모쥴에서 해결해야 합니다.
+	// 플러그인 디스트럭트에서 경우에 맞는 소멸문제가 생깁니다. 이값은 클론되지 않습니다.  - 우디
 	void* pUserDat;				
 
-	// �� ������ ������Ʈ ������ ���� ���� �Դϴ�. ���� ���������� �÷��װ� ���ٸ� �� ������ �������� ��� �ϽǼ� �ֽ��ϴ�. �̰��� Ŭ�е˴ϴ�. �����ϼ���. - ���
+	// 이 변수는 오브젝트 쉐도우 전용 변수 입니다. 위와 마찬가지로 플래그가 없다면 이 변수를 공용으로 사용 하실수 있습니다. 이값은 클론됩니다. 주의하세여. - 우디
 	RwUInt16 UserDat;
 
-	// �� ������ ������Ʈ ������ ���� ���� �Դϴ�. ���� ���������� �÷��װ� ���ٸ� �� ������ �������� ��� �ϽǼ� �ֽ��ϴ�. �̰��� Ŭ�е˴ϴ�. �����ϼ���. - ���
+	// 이 변수는 오브젝트 쉐도우 전용 변수 입니다. 위와 마찬가지로 플래그가 없다면 이 변수를 공용으로 사용 하실수 있습니다. 이값은 클론됩니다. 주의하세여. - 우디
 	RwReal _UserDatReal;
 
-	// Atomic�� Modulate�� Alpha��
+	// Atomic에 Modulate될 Alpha값
 	RwUInt8		alpha;
 
 	RpAtomicCallBackRender atomicRenderCallBack;
 
-	// �� ������ ȯ��� ���� ���� �Դϴ�. ���� ���������� �÷��װ� ���ٸ� �� ������ �������� ��� �ϽǼ� �ֽ��ϴ�. �̰��� Ŭ�е˴ϴ�. �����ϼ���. - ���
+	// 이 변수는 환경맵 전용 변수 입니다. 위와 마찬가지로 플래그가 없다면 이 변수를 공용으로 사용 하실수 있습니다. 이값은 클론됩니다. 주의하세여. - 우디
 	RwUInt16 _EnvTexName;
 };
 
 /**
- * Ȯ�� �� Offset Memory �ּ�
+ * 확장 된 Offset Memory 주소
  */
 unsigned int iPlugin_Offset = 0;
 
 /**
- * Ȯ�� Offset ���� �Լ�
+ * 확장 Offset 접근 함수
  */
 inline NtlAtomicPluginData* NtlGetPluginData( RpAtomic* pAtomic)
 {
@@ -71,7 +71,7 @@ inline NtlAtomicPluginData* NtlGetPluginData( RpAtomic* pAtomic)
 }
 
 /**
- * Ȯ�� Offset ���� �Լ�
+ * 확장 Offset 접근 함수
  */
 inline const NtlAtomicPluginData *NtlGetPluginData( const RpAtomic* pAtomic )
 {
@@ -138,7 +138,7 @@ void *Plugin_Copy(void* pDestObject, const void* pSrcObject, RwInt32 offset, RwI
 	NTL_PRE(pDestObject);
 	NTL_PRE(pSrcObject);
 
-	//void Data�� Copy�� ���� �ʴ´�. Pointer�� �߸� �Ǿ Error�� ������ �ִ�.	
+	//void Data는 Copy를 하지 않는다. Pointer가 잘못 되어서 Error의 소지가 있다.	
 	NtlAtomicPluginData* pSrcData  = NtlGetPluginData((RpAtomic*)pSrcObject);
 	NtlAtomicPluginData* pDestData = NtlGetPluginData((RpAtomic*)pDestObject);
 
@@ -261,7 +261,7 @@ static RwStream *Plugin_StreamWrite( RwStream *stream,
 }
 
 /**
- * PlugIn�� Save�� �� ��쿡�� ����� �Ѵ�.
+ * PlugIn을 Save를 할 경우에만 사용을 한다.
  */
 static RwInt32 Plugin_StreamGetSize( const void *pAtomic,
                                      RwInt32     offset,
@@ -269,7 +269,7 @@ static RwInt32 Plugin_StreamGetSize( const void *pAtomic,
 {
 	NtlAtomicPluginData* pPluginData = NtlGetPluginData((RpAtomic*)pAtomic);
 	
-	// �׻� �ֽ� ������ ���� �Ѵ�.(NTL_ATOMIC_SAVE_VER)
+	// 항상 최신 버전을 저장 한다.(NTL_ATOMIC_SAVE_VER)
 	//pPluginData->uiVersion = NTL_ATOMIC_SAVE_VER;
 	//return (sizeof(pPluginData->uiVersion) + sizeof(pPluginData->uiFlag) + sizeof(pPluginData->UserDat) + sizeof(pPluginData->_UserDatReal) );
 
@@ -278,13 +278,13 @@ static RwInt32 Plugin_StreamGetSize( const void *pAtomic,
 }
 
 /**
- * Plugin ���
+ * Plugin 등록
  */      
 RwBool RpNtlAtomicPluginAttach(void)
 {
     NTL_FUNCTION("RpNtlAtomicPluginAttach");
 
-	//Atomic Ȯ���� �Ұ�� �Ѿ���� ���� ������ Ȯ���� �� Offset �ּ� �̴�.
+	//Atomic 확장을 할경우 넘어오는 값이 실제로 확장이 된 Offset 주소 이다.
     iPlugin_Offset = RpAtomicRegisterPlugin (sizeof(NtlAtomicPluginData),
 											 MAKECHUNKID(rwVENDORID_CRITERIONRM, PluginID),
 											 Plugin_Constructor,  
@@ -307,7 +307,7 @@ RwBool RpNtlAtomicPluginAttach(void)
 }
 
 /**
- * Plugin Ȯ�� ���� �Լ�
+ * Plugin 확장 접근 함수
  */   
 void RpNtlAtomicSetData( RpAtomic* pAtomic, void *pData)
 {

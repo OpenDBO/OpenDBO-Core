@@ -2,7 +2,7 @@
  *
  * File			: ChatGui.h
  * Author		: Peessi
- * Copyright	: (��)NTL
+ * Copyright	: (주)NTL
  * Date			: 2007. 5. 10	
  * Abstract		: DBO chatting gui.
  *****************************************************************************
@@ -96,7 +96,7 @@ private:
 	VOID	Option_Alpha(RwUInt8 byAlpha);
 	VOID	Option_DisplayChatLogType(RwUInt8 byDisplayIndex, eChatType eType, RwBool bEnable);
 
-	// Option_DisplayChatLogType �Լ��� ��� ȣ���� �ڿ� �� ����� �����ϱ� ���� �Լ�
+	// Option_DisplayChatLogType 함수를 모두 호출한 뒤에 그 결과를 적용하기 위한 함수
 	VOID	Option_RefreshDisplayChatLog(RwUInt8 byDisplayIndex);
 
 	//! Callbacks

@@ -213,7 +213,7 @@ void CPackEditorDlg::CreateThread(void)
 	if ( m_hThread ) 
 		return;
 
-	// Thread �� �����Ѵ�
+	// Thread 를 생성한다
 	m_hThread = (HANDLE)_beginthreadex( NULL, 0, &PackExport, this, 0, &m_uiThreaID );
 
 	m_bThreadExport = TRUE;
@@ -225,7 +225,7 @@ void CPackEditorDlg::DeleteThread(void)
 	{
 		WaitForSingleObject( m_hThread, INFINITE );
 
-		// Thread �ڵ��� �ݴ´�
+		// Thread 핸들을 닫는다
 		CloseHandle( m_hThread );
 
 		m_hThread = 0;

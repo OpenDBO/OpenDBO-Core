@@ -94,7 +94,7 @@ void CNtlBehaviorCharGroundMove::Enter(void)
     //{
         SetAnim(m_MoveStuff.byMoveFlags);
 
-        // Idle -> Run ���� �ִϸ��̼�
+        // Idle -> Run 보간 애니메이션
         SetIdle2RunAnim();
 
         //m_fSyncSendTime = MOVE_SYNC_SEND_TIME;
@@ -114,11 +114,11 @@ void CNtlBehaviorCharGroundMove::SetIdle2RunAnim( void )
     if(m_pActor->GetSobProxy()->GetDisableAniChange() || Logic_IsTransformSpinAttack(m_pActor) || Logic_IsTransformRollingAttack(m_pActor))
         return;
 
-    // ���Žÿ��� ���� �ִϸ��̼��� ���Ѵ�.
+    // 변신시에는 보간 애니메이션을 안한다.
     if(Logic_GetPlayerRace(m_pActor) == RACE_NAMEK && Logic_IsTransform(m_pActor))
         return;
 
-    // Idle �ִϸ��̼� ���϶��� ��ȯ�Ѵ�.
+    // Idle 애니메이션 중일때만 전환한다.
     if(!IsIdleAnimationPlaying())
         return;
 
@@ -159,7 +159,7 @@ void CNtlBehaviorCharGroundMove::Exit(void)
     }
     
 
-    // ���߿� base class enter�� ȣ���Ѵ�.
+    // 나중에 base class enter를 호출한다.
     CNtlBehaviorBase::Exit(); 
 }
 
@@ -170,7 +170,7 @@ void CNtlBehaviorCharGroundMove::Update(RwReal fElapsed)
     if(IsFinish() && !m_pActor->GetSobProxy()->GetDisableAniChange()) // �ִϸ��̼� ����ȵǴ� ���¿����� ������ �ʴ´�. (ȸ�������� ����)
         return;
 
-    // ���� �ִϸ��̼� ó�� (2Frame �ĺ��� �̵��Ѵ�)
+    // 보간 애니메이션 처리 (2Frame 후부터 이동한다)
     if(!m_bInterAnimEnd)
     {
         if(m_fInterAnimTime < FRAME_2)
@@ -316,9 +316,9 @@ void CNtlBehaviorCharGroundMove::FootStepMaterialProc(RWS::CMsg &pMsg)
         BYTE						byMaterial	= 0;
         RwReal						fHeight		= 0.0f;
 
-        // Cz : CNtlPLGlobal::m_pWHEntity ���强�� ������ GetWorldHeight�� ȣ���մϴ�.
-        //		Performance�� ������ �� ������ ������ �����Ƿ� ����ϱ�� �Ͽ����ϴ�.
-        //		������ ������ ���� ��� �����̸� ȣ���� �ּ���.
+        // Cz : CNtlPLGlobal::m_pWHEntity 보장성을 때문에 GetWorldHeight를 호출합니다.
+        //		Performance에 문제가 될 요지가 보이지 않으므로 사용하기로 하였습니다.
+        //		문제의 요지가 있을 경우 진성이를 호출해 주세요.
         if (!(GetSceneManager()->GetWorldHeight(&vPos, fHeight, NULL) && CNtlPLGlobal::m_pWHEntity))
         {
             byMaterial = GetSceneManager()->GetWorldMaterialAttribute(vPos);

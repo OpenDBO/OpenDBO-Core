@@ -2,7 +2,7 @@
  *
  * File			: NtlTypeAnimData.h
  * Author		: HongHoDong
- * Copyright	: (��)NTL
+ * Copyright	: (주)NTL
  * Date			: 2006. 4. 11	
  * Abstract		: NTL NtlTypeAnimData
  *****************************************************************************
@@ -19,12 +19,12 @@
 #include "NtlCharacterData.h"
 #include "NtlSerializer.h"
 
-/// �÷��� ���� ������
+/// 플래그 관련 설정들
 #define ANIM_FLAG_CULL_TEST_ALL_ATOMIC  0x00000001
 
 /*!
  * \Animation
- * STypeAnimData: ������ �ʴ� Data(Read�� ����)
+ * STypeAnimData: 변하지 않는 Data(Read만 가능)
  * 
  */
 class AnimEvent_CompareFunc
@@ -62,8 +62,8 @@ struct STypeAnimData
 			{
 				if(vecAnimEvent[i] != NULL)
 				{
-                    // Hit Event���� Multi Hissidan �����Ͱ� �������� �Ҵ�Ǿ� �ֱ� ������
-                    // ����ȯ�� ���Ŀ� ������� �Ѵ�.
+                    // Hit Event에는 Multi Hissidan 데이터가 동적으로 할당되어 있기 때문에
+                    // 형변환을 한후에 지워줘야 한다.
                     if(vecAnimEvent[i]->eEventID == EVENT_ANIM_HIT)
                     {
                         SEventAnimHit* pEventAnimHit = (SEventAnimHit*)vecAnimEvent[i];
@@ -86,7 +86,7 @@ struct STypeAnimData
 		sort(vecAnimEvent.begin(), vecAnimEvent.end(), cf);
 	}
 
-    //--------- �÷��� ����
+    //--------- 플래그 관련
     void    SetCullTestAllAtomic(RwBool bFlag) {flagAnim |= ANIM_FLAG_CULL_TEST_ALL_ATOMIC;}
     RwBool  IsCullTestAllAtomic() {return flagAnim & ANIM_FLAG_CULL_TEST_ALL_ATOMIC;}
 };

@@ -2,7 +2,7 @@
  *
  * File			: NtlBehaviorCharMove.h
  * Author		: HyungSuk, Jang
- * Copyright	: (��)NTL
+ * Copyright	: (주)NTL
  * Date			: 2006. 2. 9	
  * Abstract		: character move behavior class
  *****************************************************************************

@@ -315,7 +315,7 @@ VOID CQuickSlotGui::Init(VOID)
 			m_abPushDownKey[j][i] = FALSE;
 			m_abIsProcDownKey[j][i] = FALSE;
 
-			// �������� ���µ�
+			// 퀵슬롯의 상태들
 			m_afPushDownKeyElapsed[j][i] = 0.0f;
 			m_abEnableIgnoreUp[j][i] = FALSE;
 		}
@@ -349,19 +349,19 @@ RwBool CQuickSlotGui::Create(VOID)
 {
 	NTL_FUNCTION("CQuickSlotGui::Create");
 
-	// �����ռ� ���õ� Component ����
+	// 퀵슬롱세 관련된 Component 생성
 	if( !CNtlPLGui::Create( "", "gui\\QuickSlot.srf", "gui\\QuickSlot.frm" ) )
 		NTL_RETURN( FALSE );
 
 	CNtlPLGui::CreateComponents( CNtlPLGuiManager::GetInstance()->GetGuiManager() );
 
-	// �������� ������ �� �ݹ��� �ʿ��� ������Ʈ���� ��������
+	// 퀵슬롯을 구성할 때 콜백이 필요한 컴포넌트들을 가져오고
 	m_pThis = (gui::CDialog*)GetComponent( "dlgMain" );
 	m_pUpRowBtn = (gui::CButton*)GetComponent( "btnSlotPrev" );
 	m_pDownRowBtn = (gui::CButton*)GetComponent( "btnSlotNext" );
 	m_pRowNum = (gui::CStaticBox*)GetComponent( "stbNum" );
 
-	// �������ش�.
+	// 연결해준다.
 	m_slotUpRowClick = m_pUpRowBtn->SigClicked().Connect( this, &CQuickSlotGui::OnClickedUpRow );
 	m_slotDownRowClick = m_pDownRowBtn->SigClicked().Connect( this, &CQuickSlotGui::OnClickedDownRow );
 	m_slotMouseUp = m_pThis->SigMouseUp().Connect( this, &CQuickSlotGui::OnMouseUp );
@@ -375,8 +375,8 @@ RwBool CQuickSlotGui::Create(VOID)
 	SetSlotRectHardCode();
 	m_pRowNum->SetText( m_nCurrentRow + 1 );
 
-	// ������ ����Ű�� �̸��� �����ϰ� ����Ѵ�.
-	// ������ Index�� �ʱ�ȭ�Ѵ�.
+	// 퀵슬롯 단축키의 이름을 생성하고 등록한다.
+	// 퀵슬롯 Index를 초기화한다.
 	m_anQuickSlotRow[ROW_DEFAULT] = 2;
 	m_anQuickSlotRow[ROW_EX] = 1;
 	m_anQuickSlotRow[ROW_EX2] = 0;
@@ -387,7 +387,7 @@ RwBool CQuickSlotGui::Create(VOID)
 	// InputMap Setting
 	LinkActionMap();
 
-	// Update ����
+	// Update 연결
 	GetNtlGuiManager()->AddUpdateFunc( this );
 
 	// Event
@@ -493,7 +493,7 @@ VOID CQuickSlotGui::Update( RwReal fElapsed )
 				m_afPushDownKeyElapsed[i][j] += fElapsed;
 				if( m_afPushDownKeyElapsed[i][j] > 0.5f )
 				{
-					// �ð� �ʱ�ȭ
+					// 시간 초기화
 					m_afPushDownKeyElapsed[i][j] = 0.0f;
 
 					SERIAL_HANDLE hSerial = m_aQuickSlotItem[nDataRow][j].GetFirstSerialID();
@@ -502,8 +502,8 @@ VOID CQuickSlotGui::Update( RwReal fElapsed )
 					if( hSerial == INVALID_SERIAL_ID || nEnableState != CQuickSlotItem::ENABLE )
 						continue;
 
-					// �ٿ� �ǰ� ���� �� �ѹ� ����ƴٸ� �ش� ������ KeyDown, KeyUp�� �Ͼ�� �������� Flag�� üũ�Ͽ�
-					// ��ų �ߺ� ����� ���´�.
+					// 다운 되고 있을 때 한번 실행됐다면 해당 슬롯의 KeyDown, KeyUp이 일어나기 전까지는 Flag로 체크하여
+					// 스킬 중복 사용을 막는다.
 					if( !m_abIsProcDownKey[i][j] )
 					{
 						m_abEnableIgnoreUp[i][j] = Logic_UseProcRpBonusSkill( hSerial );
@@ -520,14 +520,14 @@ VOID CQuickSlotGui::Update( RwReal fElapsed )
 		}
 	}
 	
-	// ���� ���콺�� �ٿ��� �ε����� 0���� ũ�ٸ� ( ��ȿ�ϴٸ� )
-	// ���콺 �ð��� ������Ʈ�Ѵ�.
+	// 현재 마우스로 다운한 인덱스가 0보다 크다면 ( 유효하다면 )
+	// 마우스 시간을 업데이트한다.
 	if( m_nRSelectedSlotIdx >= 0 && m_nMouseOnIndex == m_nRSelectedSlotIdx )
 	{
 		m_fPushDownMouseElapsed += fElapsed;
 		if( m_fPushDownMouseElapsed > 0.5f )
 		{
-			// �ð� �ʱ�ȭ
+			// 시간 초기화
 			m_fPushDownMouseElapsed = 0.0f;
 
 			RwInt32 nVisibleRow = SLOTID_TO_ROW( m_nRSelectedSlotIdx );
@@ -543,8 +543,8 @@ VOID CQuickSlotGui::Update( RwReal fElapsed )
 			if( hSerial == INVALID_SERIAL_ID || nEnableState != CQuickSlotItem::ENABLE )
 				return;
 
-			// �ٿ� �ǰ� ���� �� �ѹ� ����ƴٸ� �ش� ���Կ� �ٽ� MosueSlot �� �Ͼ�� �������� Flag�� üũ�Ͽ�
-			// ��ų �ߺ� ����� ���´�.
+			// 다운 되고 있을 때 한번 실행됐다면 해당 슬롯에 다시 MosueSlot 이 일어나기 전까지는 Flag로 체크하여
+			// 스킬 중복 사용을 막는다.
 			if( !m_bIsProcMouseSelected )
 			{
 				m_bIsProcMouseSelected = TRUE;
@@ -577,7 +577,7 @@ VOID CQuickSlotGui::HandleEvents( RWS::CMsg& msg )
 		if( pData->hSerialId != GetNtlSLGlobal()->GetSobAvatar()->GetSerialID() )
 			return;
 
-		// ������ ����, ���� ����.
+		// 아이템 갯수, 삭제 때문.
 		if( pData->uiUpdateType & ( EVENT_AIUT_ITEM | EVENT_AIUT_SKILL_RPBONUS ) )
 			UpdateAllSlot( CHECK_FLAG_ITEMNEED );
 
@@ -594,7 +594,7 @@ VOID CQuickSlotGui::HandleEvents( RWS::CMsg& msg )
 					{
 						if( m_aQuickSlotItem[i][j].GetFirstSerialID() == hSerial )
 						{
-							// ��ü�� ���׷��̵��� ������ ���� �ʴ´�.
+							// 객체는 업그레이드의 영향을 받지 않는다.
 							if( IsVisibleRow( i ) )
 							{
 								if( ROWCOL_TO_SLOTID( i, j ) == m_nMouseOnIndex && GetInfoWndManager()->GetRequestGui() == DIALOG_QUICKSLOT )
@@ -666,7 +666,7 @@ VOID CQuickSlotGui::HandleEvents( RWS::CMsg& msg )
 	{
 		LoadQuickSlot();
 	}
-	// peessi : �� �̺�Ʈ�� �������� ���ﶧ�� �ƴ϶�, �������� â���� ���󰥶� � ȣ��, �̸��� �ٲ�� �Ѵ�.
+	// peessi : 이 이벤트는 퀵슬롯을 지울때가 아니라, 아이템이 창고로 날라갈때 등에 호출, 이름을 바꿔야 한다.
 	else if( msg.Id == g_EventSobDeleteQuickSlotIcon )
 	{
 		SNtlEventSobDeleteQuickSlotIcon* pData = reinterpret_cast<SNtlEventSobDeleteQuickSlotIcon*>( msg.pData );
@@ -695,7 +695,7 @@ VOID CQuickSlotGui::HandleEvents( RWS::CMsg& msg )
 	}
 	else if( msg.Id == g_EventCapsuleLockItemWithoutBag )
 	{
-		// �Ŀ� Capsule Lock/Unlock �� �����Կ� ���õ� ���� �������� �׶� �۾��Ѵ�.
+		// 후에 Capsule Lock/Unlock 등 퀵슬롯에 관련된 룰이 정해지면 그때 작업한다.
 		/*SDboEventCapsuleLockItemWithoutBag* pData = reinterpret_cast<SDboEventCapsuleLockItemWithoutBag*>( msg.pData );
 
 		RwInt32 nEnableState = pData->bEnable ? CQuickSlotItem::CAPSULE_LOCK : CQuickSlotItem::ENABLE;
@@ -925,12 +925,12 @@ VOID CQuickSlotGui::HandleEvents( RWS::CMsg& msg )
 	//	{
 	//		if( pData->nWorkId == PMW_USE )
 	//		{
-	//			// ���
+	//			// 사용
 	//			IconUseProc( pData->nSrcSlotIdx );
 	//		}
 	//		else if( pData->nWorkId == PMW_PULLOUT )
 	//		{
-	//			// �����Կ��� ����
+	//			// 퀵슬롯에서 삭제
 	//			if( m_aQuickSlotItem[m_nCurrentRow][pData->nSrcSlotIdx].hSerial == pData->uiSerial )
 	//			{
 	//				UnsetIconFromQuickSlot( m_nCurrentRow, pData->nSrcSlotIdx );
@@ -1022,7 +1022,7 @@ RwInt32 CQuickSlotGui::ActionMapQuickSlotDown( uintptr_t uiKey )
 
 	nSlotIdx = ROWCOL_TO_SLOTID( nVisibleRowIndex, uiKey );
 
-	// ó�� ���ȴٸ� �׿� �´� ������ �ʱ�ȭ
+	// 처음 눌렸다면 그에 맞는 정보를 초기화
 	if( KeyClickEffect( TRUE, nSlotIdx ) )
 	{
 		/*GetAlarmManager()->AlarmMessage( L"Key Down" );*/
@@ -1062,11 +1062,11 @@ RwInt32 CQuickSlotGui::ActionMapQuickSlotUp( uintptr_t uiKey )
 
 	nSlotIdx = ROWCOL_TO_SLOTID( nVisibleRowIndex, uiKey );
 
-	// Key �� Up�� ���·� �̹����� ������ְ�, m_abEnableignoreUp ����� ����
-	// �������� Icon�� ������� ������ �����ش�.
+	// Key 를 Up한 상태로 이미지를 만들어주고, m_abEnableignoreUp 결과에 따라서
+	// 퀵슬롯의 Icon을 사용할지 안할지 정해준다.
 	if( KeyClickEffect( FALSE, nSlotIdx ) )
 	{
-		// peessi : Ű���տ� �°� Row���� �ٲ��� ��.
+		// peessi : 키조합에 맞게 Row값이 바뀌어야 함.
 		if( m_abIsProcDownKey[nVisibleRowIndex][uiKey] == FALSE )
 			m_abIsProcDownKey[nVisibleRowIndex][uiKey] = TRUE;
 
@@ -1095,10 +1095,10 @@ RwInt32 CQuickSlotGui::ActionMapQuickSlotExDown( uintptr_t uiKey )
 	if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_QUICK_SLOT_2_LAST ) )
 		return 1;
 	
-	// ó�� ���ȴٸ� �׿� �´� ������ �ʱ�ȭ
+	// 처음 눌렸다면 그에 맞는 정보를 초기화
 	if( KeyClickEffect( TRUE, nSlotIdx ) )
 	{
-		// peessi : Ű���տ� �°� Row���� �ٲ��� ��.
+		// peessi : 키조합에 맞게 Row값이 바뀌어야 함.
 		/*GetAlarmManager()->AlarmMessage( L"Key Down" );*/
 		m_afPushDownKeyElapsed[nVisibleRowIndex][uiKey] = 0.0f;
 		m_abEnableIgnoreUp[nVisibleRowIndex][uiKey] = FALSE;
@@ -1128,11 +1128,11 @@ RwInt32 CQuickSlotGui::ActionMapQuickSlotExUp( uintptr_t uiKey )
 	
 	/*GetAlarmManager()->AlarmMessage( L"Key Up" );*/
 
-	// Key �� Up�� ���·� �̹����� ������ְ�, m_abEnableignoreUp ����� ����
-	// �������� Icon�� ������� ������ �����ش�.
+	// Key 를 Up한 상태로 이미지를 만들어주고, m_abEnableignoreUp 결과에 따라서
+	// 퀵슬롯의 Icon을 사용할지 안할지 정해준다.
 	if( KeyClickEffect( FALSE, nSlotIdx ) )
 	{
-		// peessi : Ű���տ� �°� Row���� �ٲ��� ��.
+		// peessi : 키조합에 맞게 Row값이 바뀌어야 함.
 		if( m_abIsProcDownKey[nVisibleRowIndex][uiKey] == FALSE )
 			m_abIsProcDownKey[nVisibleRowIndex][uiKey] = TRUE;
 
@@ -1161,10 +1161,10 @@ RwInt32 CQuickSlotGui::ActionMapQuickSlotEx2Down( uintptr_t uiKey )
 	if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_QUICK_SLOT_2_LAST ) )
 		return 1;
 	
-	// ó�� ���ȴٸ� �׿� �´� ������ �ʱ�ȭ
+	// 처음 눌렸다면 그에 맞는 정보를 초기화
 	if( KeyClickEffect( TRUE, nSlotIdx ) )
 	{
-		// peessi : Ű���տ� �°� Row���� �ٲ��� ��.
+		// peessi : 키조합에 맞게 Row값이 바뀌어야 함.
 		/*GetAlarmManager()->AlarmMessage( L"Key Down" );*/
 		m_afPushDownKeyElapsed[nVisibleRowIndex][uiKey] = 0.0f;
 		m_abEnableIgnoreUp[nVisibleRowIndex][uiKey] = FALSE;
@@ -1194,11 +1194,11 @@ RwInt32 CQuickSlotGui::ActionMapQuickSlotEx2Up( uintptr_t uiKey )
 	
 	/*GetAlarmManager()->AlarmMessage( L"Key Up" );*/
 
-	// Key �� Up�� ���·� �̹����� ������ְ�, m_abEnableignoreUp ����� ����
-	// �������� Icon�� ������� ������ �����ش�.
+	// Key 를 Up한 상태로 이미지를 만들어주고, m_abEnableignoreUp 결과에 따라서
+	// 퀵슬롯의 Icon을 사용할지 안할지 정해준다.
 	if( KeyClickEffect( FALSE, nSlotIdx ) )
 	{
-		// peessi : Ű���տ� �°� Row���� �ٲ��� ��.
+		// peessi : 키조합에 맞게 Row값이 바뀌어야 함.
 		if( m_abIsProcDownKey[nVisibleRowIndex][uiKey] == FALSE )
 			m_abIsProcDownKey[nVisibleRowIndex][uiKey] = TRUE;
 
@@ -1459,10 +1459,10 @@ VOID CQuickSlotGui::SendPacketToSetIcon( RwInt32 nRow, RwInt32 nCol, CNtlSobIcon
 }
 
 /**
-* \brief ��ǥ�� ��ġ�� �������� �ε����� �����´�.
-* \param	nX				X ��ǥ
-* \param	nY				Y ��ǥ
-* \return	�������� �ε���(-1 �̶�� ��ǥ�� �ε������� ����ٴ� ��)
+* \brief 좌표상에 위치한 퀵슬롯의 인덱스를 가져온다.
+* \param	nX				X 좌표
+* \param	nY				Y 좌표
+* \return	퀵슬롯의 인덱스(-1 이라면 좌표가 인덱스에서 벗어났다는 것)
 */
 RwInt32 CQuickSlotGui::GetQuickSlotIdx( RwInt32 nX, RwInt32 nY )
 {
@@ -1556,7 +1556,7 @@ VOID CQuickSlotGui::ShowIconDestination(VOID)
 }
 
 /**
-* \brief �������� �ڽ��� ������ �ϵ��ڵ�
+* \brief 퀵슬롯의 박스의 구성을 하드코딩
 */
 VOID CQuickSlotGui::SetSlotRectHardCode(VOID)
 {
@@ -1604,7 +1604,7 @@ VOID CQuickSlotGui::SetSlotRectHardCode(VOID)
 
 			m_asurRPType[j][i].SetPositionfromParent( m_artQuickSlot[j][i].left + QUICK_RPTYPE_OFFSET, m_artQuickSlot[j][i].top + QUICK_RPTYPE_OFFSET );		
 
-			// peessi : Flash�� �ε��� ���ϰ� ����, �̸� �ε��ؼ� ����Ѵ�. 
+			// peessi : Flash는 로딩시 부하가 심해, 미리 로딩해서 사용한다. 
 			CRectangle rect;
 			rect.SetRectWH( m_artQuickSlot[j][i].left - 5, m_artQuickSlot[j][i].top - 5, 42, 42 );				  
 			m_apflaEffect[j][i] = NTL_NEW gui::CFlash( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), "Skill_action.swf" );
@@ -1616,7 +1616,7 @@ VOID CQuickSlotGui::SetSlotRectHardCode(VOID)
 }
 
 /**
-* \brief �ݵ�� ������ CQuickSlotGui::SetSlotHardCodeRect �Լ� ���� �Ŀ� ����Ǿ�� �Ѵ�.
+* \brief 반드시 기존의 CQuickSlotGui::SetSlotHardCodeRect 함수 실행 후에 실행되어야 한다.
 */
 VOID CQuickSlotGui::CreateShortCutKeyName()
 {
@@ -1632,7 +1632,7 @@ VOID CQuickSlotGui::CreateShortCutKeyName()
 			RwInt32 nRight	= m_artQuickSlot[j][i].right;
 			RwInt32 nBottom = m_artQuickSlot[j][i].bottom;
 
-			// Static Box�� ��ġ
+			// Static Box의 위치
 			rtRect.SetRect( nLeft, nTop, nRight, nBottom );
 
 			m_apStbShortCutName[j][i] = NTL_NEW gui::CStaticBox( &rtRect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), DBOGUI_SLOT_KEYNAME_ALIGN );
@@ -1656,7 +1656,7 @@ VOID CQuickSlotGui::DestroyShortCutKeyName()
 }
 
 /**
-* \brief ���ʿ� �����Կ� ����Ű �̸��� SetText �Ѵ�.
+* \brief 최초에 퀵슬롯에 단축키 이름을 SetText 한다.
 */
 VOID CQuickSlotGui::RegisterShortCutkeyName()
 {
@@ -1681,7 +1681,7 @@ VOID CQuickSlotGui::IconPutDownProc(RwUInt32 hSerial, RwInt32 ePlace, RwInt32 nS
 	if( CheckIconMoveLock() )
 		return;	
 
-	// ���� ó��
+	// 예외 처리
 	if( !IsValidVisibleSlotIdx( nSlotIdx ) )
 		return;
 
@@ -1714,7 +1714,7 @@ VOID CQuickSlotGui::IconPutDownProc(RwUInt32 hSerial, RwInt32 ePlace, RwInt32 nS
 		// Data Set
 		SetIconToQuickSlot( nDataRow, nCol, hSerial, pIcon );
 
-		// ��Ŷ ������ 
+		// 패킷 보내기 
 		RwInt32 nSlotID = ROWCOL_TO_SLOTID( nDataRow, nCol );
 		NTL_ASSERT( nSlotID >= 0 && nSlotID < 48, "CQuickSlotItem::IconPutDownProc : SlotID Error!(" << nSlotID << ")" );	
 		SendPacketToSetIcon( nDataRow, nCol, pIcon );
@@ -1732,7 +1732,7 @@ VOID CQuickSlotGui::IconPutDownProc(RwUInt32 hSerial, RwInt32 ePlace, RwInt32 nS
 			m_aQuickSlotItem[nDataRow][nCol] = m_aQuickSlotItem[nSrcDataRow][nSrcCol];
 			m_aQuickSlotItem[nSrcDataRow][nSrcCol] = TempQuickSlot;
 
-			// ��Ŷ ������
+			// 패킷 보내기
 			if( m_aQuickSlotItem[nDataRow][nCol].IsValid() )
 			{
 				RwInt32 nSlotID = ROWCOL_TO_SLOTID( nDataRow, nCol );
@@ -1786,7 +1786,7 @@ VOID CQuickSlotGui::IconUseProc( RwInt32 nSlotIdx )
 	if( hSerial == INVALID_SERIAL_ID || nEnableState != CQuickSlotItem::ENABLE )
 		return;
 
-	// Icon�� ��ų�� ��� ���� RpBonus Dialog�� �� ������ ���ȵǰ� �ؾ� �Ѵ�.
+	// Icon이 스킬일 경우 현재 RpBonus Dialog가 떠 있으면 사용안되게 해야 한다.
 	if( m_aQuickSlotItem[nDataRowIndex][nColIndex].GetSLClassID() == SLCLASS_SKILL_ICON )
 		if( GetDialogManager()->IsOpenDialog( DIALOG_SKILL_RPBONUS ) )
 			return;
@@ -1933,7 +1933,7 @@ bool CQuickSlotGui::CanPlaceItem(CNtlSobIcon* pIcon)
 	return true;
 }
 
-// Desc : UpdateAllSlot������ ���� QuickSlot�����Ͱ� �ƴ� Cool-time, Stack, QuickSlotRow�� ��ȭ�� �����Ѵ�.
+// Desc : UpdateAllSlot에서는 실제 QuickSlot데이터가 아닌 Cool-time, Stack, QuickSlotRow의 변화만 조정한다.
 VOID CQuickSlotGui::UpdateAllSlot( RwUInt32 flagUseableCheck /* = 0  */ )
 {
 	for( RwInt32 j = 0 ; j < m_nVisibleRowCount ; ++j )
@@ -2237,7 +2237,7 @@ RwBool CQuickSlotGui::CreateFlashEffect( RwInt32 nSlotIdx )
 	m_apflaEffect[nRowIdx][nColIdx]->Show( true );
 	//
 
-	// peessi : Flash �ε��� ���ϰ� ���� �̸� �ε��ؼ� �����. 
+	// peessi : Flash 로딩시 부하가 심해 미리 로딩해서 사용함. 
 	//if( m_apflaEffect[nRowIdx][nColIdx] )
 	//	NTL_RETURN( TRUE );
 
@@ -2270,7 +2270,7 @@ VOID CQuickSlotGui::DestroyFlashEffect( RwInt32 nSlotIdx )
 	m_apflaEffect[nRowIdx][nColIdx]->Show( false );
 	//
 
-	// peessi : Flash �ε��� ���ϰ� ���� �̸� �ε��ؼ� �����. 
+	// peessi : Flash 로딩시 부하가 심해 미리 로딩해서 사용함. 
 	//NTL_DELETE( m_apflaEffect[nRowIdx][nColIdx] );
 }
 
@@ -2305,7 +2305,7 @@ RwBool CQuickSlotGui::ClickEffect( RwBool bPush, RwInt32 nSlotIdx /* = -1  */)
 {
 	CRectangle rtScreen = m_pThis->GetScreenRect();
 
-	// TRUE = �ٿ�, FALSE = ��
+	// TRUE = 다운, FALSE = 업
 	if( bPush )
 	{
 		if( !IsValidVisibleSlotIdx( nSlotIdx ) )
@@ -2314,7 +2314,7 @@ RwBool CQuickSlotGui::ClickEffect( RwBool bPush, RwInt32 nSlotIdx /* = -1  */)
 		RwInt32 nRowIdx = SLOTID_TO_ROW( nSlotIdx );
 		RwInt32 nColIdx = SLOTID_TO_COL( nSlotIdx );
 
-		// �̹� Ű����� ������ �ִ� Ű��� �����ش�.
+		// 이미 키보드로 눌려져 있는 키라면 막아준다.
 		if( m_abPushDownKey[nRowIdx][nColIdx] )
 			return FALSE;
 
@@ -2334,7 +2334,7 @@ RwBool CQuickSlotGui::ClickEffect( RwBool bPush, RwInt32 nSlotIdx /* = -1  */)
 		return FALSE;	
 	}
 
-	// ���콺�� ���� Index�� ������ Index
+	// 마우스로 누른 Index를 현재의 Index
 	m_nPushDownIndex = nSlotIdx;
 
 	return TRUE;
@@ -2358,7 +2358,7 @@ RwBool CQuickSlotGui::KeyClickEffect( RwBool bPush, RwInt32 nSlotIdx )
 		m_asurIcon[nRowIdx][nColIdx].SetRect( rtScreen.left + m_artQuickSlot[nRowIdx][nColIdx].left + ICONPUSH_SIZEDIFF, rtScreen.top + m_artQuickSlot[nRowIdx][nColIdx].top + ICONPUSH_SIZEDIFF,
 											  rtScreen.left + m_artQuickSlot[nRowIdx][nColIdx].right - ICONPUSH_SIZEDIFF, rtScreen.top + m_artQuickSlot[nRowIdx][nColIdx].bottom - ICONPUSH_SIZEDIFF );
 
-		// �̹� ������ �ִٸ� FALSE�� ����
+		// 이미 눌려져 있다면 FALSE를 리턴
 		if( m_abPushDownKey[nRowIdx][nColIdx] )
 			return FALSE;
 		else 
@@ -2424,7 +2424,7 @@ RwBool CQuickSlotGui::UseableCheck_ItemNeed( sSKILL_TBLDAT* pData )
 
 	if( byRequireItemType != INVALID_BYTE )
 	{
-		// ���� �ʿ� ������ Ÿ���� ����, �������⸸���� �����Ǿ� �ִ�. 			
+		// 현재 필요 아이템 타입은 무기, 보조무기만으로 지정되어 있다. 			
 		if( Check_EquippedSlot( EQUIP_SLOT_TYPE_HAND, byRequireItemType ) )
 			return TRUE;
 
@@ -2647,7 +2647,7 @@ RwBool CQuickSlotGui::UseableCheck_AvatarState( sSKILL_TBLDAT* pData )
 
 RwBool CQuickSlotGui::UseableCheck_AvatarState(VOID)
 {
-	// �������϶��� �Ϲ� ��ų�� ������� ���Ѵ�	
+	// 변신중일때는 일반 스킬은 사용하지 못한다	
 	if(Logic_IsTransform(GetNtlSLGlobal()->GetSobAvatar()))
 	{
 		BYTE byAspectStateID = GetNtlSLGlobal()->GetSobAvatar()->GetAspectState()->sAspectStateBase.byAspectStateId;
@@ -2861,7 +2861,7 @@ VOID CQuickSlotGui::SetVisibleRowCount( RwInt32 nVisibleRowCount )
 		break;
 	}
 
-	// peessi : GUIComponent�� ��������� �Ѵ�. 
+	// peessi : GUIComponent는 삭제해줘야 한다. 
 	for( RwInt32 i = nVisibleRowCount ; i < QUICKSLOT_MAX_VISIBLE_ROW ; ++i )
 	{
 		for( RwInt32 j = 0 ; j < QUICKSLOT_MAXCOL ; ++j )
@@ -2877,7 +2877,7 @@ VOID CQuickSlotGui::SetVisibleRowCount( RwInt32 nVisibleRowCount )
 
 	UpdateAllSlot( CHECK_FLAG_ALL );	
 
-	// ����� ���׿� ���� ����Ű �̸��� �ٽ� �����Ѵ�.
+	// 변경된 사항에 따라 단축키 이름을 다시 세팅한다.
 	RegisterShortCutkeyName();
 
 	GetDialogManager()->LocationDialogs( GetDboGlobal()->GetScreenWidth(), GetDboGlobal()->GetScreenHeight() );
@@ -3070,7 +3070,7 @@ VOID CQuickSlotGui::OnMouseUp( const CKey& key )
 					bReg = Logic_CanMouseInput_in_Tutorial( ETL_MOUSE_INPUT_TYPE_QUICK_SLOT_2_LAST_REG );
 				}
 
-				// ������ PutDown
+				// 아이콘 PutDown
 				if( bReg )
 					IconPutDownProc( GetIconMoveManager()->GetSrcSerial(), GetIconMoveManager()->GetSrcPlace(), nSlotIdx );
 			}
@@ -3139,7 +3139,7 @@ VOID CQuickSlotGui::OnMouseUp( const CKey& key )
 
 			if( bClick )
 			{
-				// ���� �ε����� �����ϱ�� �� �ε����� �ƴ϶�� ����
+				// 현재 인덱스가 무시하기로 한 인덱스가 아니라면 실행
 				if( m_nEnableIgnoreIndex != nSlotIdx )
 				{
 					RwBool bExcute = false;

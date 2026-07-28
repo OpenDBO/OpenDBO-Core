@@ -357,7 +357,7 @@ VOID CChatGui::SetDismovableDisplayPositioin(RwBool bForce /* = FALSE */)
 	RwInt32 iHeight = rtScreen.top;
 	for each( CChatDisplayGui* pDisplayGui in m_listDisplayGui )
 	{
-		// ù ��° ���÷���â�� �׻� �پ�ٴѴ�
+		// 첫 번째 디스플레이창은 항상 붙어다닌다
 		iHeight -= pDisplayGui->GetHeight();
 		pDisplayGui->SetPosition(rtScreen.left, iHeight);
 
@@ -984,7 +984,7 @@ VOID CChatGui::OnESCKeyUp(VOID)
 	GetNtlGuiManager()->GetGuiManager()->SetFocus( GetNtlGuiManager()->GetGuiManager() );
 	m_bChatModeEndReturn = TRUE;
 
-	// dialog manager �� ��ȸ cancel process disable setting
+	// dialog manager 을 일회 cancel process disable setting
 	CDboEventGenerator::DialogEvent(DIALOGEVENT_INPUTEDITBOX_LOST_FOCUS_WITH_ESC_KEY);
 }
 

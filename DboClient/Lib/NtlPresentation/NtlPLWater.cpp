@@ -177,7 +177,7 @@ RwBool CNtlPLWater::OnCreate(CNtlWorldSector* pNtlWorldSector, sSECTOR_WATER_ATT
 	pTList = RpGeometryGetTriangles(pGeometry);
 	pTexCoord = RpGeometryGetVertexTexCoords(pGeometry, rwTEXTURECOORDINATEINDEX0);
 
-	// �ε���
+	// 인도어
 	//SPos.x = pNtlWorldSector->m_pWorldSector->boundingBox.inf.x;
 	//SPos.y = pNtlWorldSector->m_pWorldSector->boundingBox.inf.z;
 	SPos.x = pNtlWorldSector->DatumPoint.x - (dGET_WORLD_PARAM()->WorldSectorSize / 2);
@@ -249,7 +249,7 @@ RwBool CNtlPLWater::OnCreate(CNtlWorldSector* pNtlWorldSector, sSECTOR_WATER_ATT
 	RpAtomicSetPipeline(pSectorWaterAttr->_pAtom, D3D9NtlWorldWaterSectorAtomicPipeline);
 
 	// set frame and geometry
-	// �ε���
+	// 인도어
 	//RpAtomicSetFrame(pSectorWaterAttr->_pAtom, dNTL_WORLD_SECTOR_LOCAL(RpWorldSectorGetWorld(pNtlWorldSector->m_pWorldSector), pParentFrame));
 	//RpAtomicSetGeometry(pSectorWaterAttr->_pAtom, pGeometry, 0);
 // 	switch (GetSceneManager()->GetActiveWorldType())

@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File: QuestNarrationGui.h
 // Desc: QuestNarrationGui
-//		 Narration ����
+//		 Narration 관련
 //
 // 2006.12.5 Peessi@hitel.net   
 //
@@ -94,7 +94,7 @@ private:
 	
 	bool				m_bResult;					// ���� �����ΰ� �������� �ΰ�.
 	RwUInt8				m_bySelectID;				// User Select Value;
-	//RwBool				m_bShowPCMessageOnPCSelect;	// PCSelect�� PCMessage�� ǥ������ ����. Begin���� ���ö� Ing���� �Ǻ��ϱ� ����.
+	//RwBool				m_bShowPCMessageOnPCSelect;	// PCSelect시 PCMessage를 표시할지 여부. Begin으로 들어올때 Ing에서 판별하기 위해.
 
 	CQuestGui*			m_pQuestGui;
 

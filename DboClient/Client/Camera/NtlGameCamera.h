@@ -2,7 +2,7 @@
  *
  * File			: NTLCamera.h
  * Author		: HongHoDong
- * Copyright	: (��)NTL
+ * Copyright	: (주)NTL
  * Date			: 2005. 7. 14	
  * Abstract		: NTl Camera
  *****************************************************************************

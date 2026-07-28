@@ -276,7 +276,7 @@ VOID CNtlPLCinematicGui::SetCinematicFlash( void* pData )
 	}		
 	else 
 	{
-		// Flash�� �� ������ �Ŀ� Flash ������ ���ƿ´�. 
+		// Flash는 다 지워진 후에 Flash 삭제가 날아온다. 
 		if( IsStateNone( ALL ) )
 		{
 			m_pCinematicObject->SwitchDialog( false );

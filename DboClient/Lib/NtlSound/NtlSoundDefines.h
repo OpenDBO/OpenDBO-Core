@@ -6,33 +6,33 @@
 #include "fmod/fmod.hpp"
 #include "fmod/fmod_common.h"
 
-//#define SOUND_DEBUG_LOG						///< ����׿� ���� ���� �α� �����
+//#define SOUND_DEBUG_LOG						///< 디버그용 사운드 관련 로그 남기기
 
 class CNtlSoundDSP;
 
 
-// �Ÿ� ////////////////////////////////////////////////////////////////////////////
+// 거리 ////////////////////////////////////////////////////////////////////////////
 #define MIN_DISTANCE_BETWEEN_MINMAX		1.f	///< ���� ���� �ִ� �Ÿ��� �ּ� �Ÿ����� �⺻������ �� Ŀ���ϴ� �⺻��ġ
 
 
-// �ð� ////////////////////////////////////////////////////////////////////////////
+// 시간 ////////////////////////////////////////////////////////////////////////////
 #define SOUND_FADEINOUT_INTERVAL_TIME	100		///< Fade In/Out �ÿ� ������ ��ȭ�� �ִ� �ð� (���� :milisecond)
 #define DELAY_EFFECT_SOUND_TIME			500		///< ���� �̸��� ����Ʈ ���尣 �÷��� ���� �ð�
 
 #define dBGM_FADE_OUT_TIME				2000	///< ������� ������ų� ��ü�� ���� fade out �ð�
 
 
-// ���� �ڵ� ////////////////////////////////////////////////////////////////////////////
+// 사운드 핸들 ////////////////////////////////////////////////////////////////////////////
 #define INVALID_SOUND_HANDLE				0xffffffff
 
 
-// ä�� ���� //////////////////////////////////////////////////////////////////////////
+// 채널 갯수 //////////////////////////////////////////////////////////////////////////
 #define MAX_FMOD_CHANNELS				4093	///< Maximum channel (hardware + software) supported by FMOD
 #define MAX_DBO_CHANNELS				2048	///< Number of channels used in Dbo (increased for x64)
 #define MAX_EFFECT_CHANNELS				128		///< The number of all channels of the effect that can be played at maximum
 
 
-// ��ġ ���� //////////////////////////////////////////////////////////////////////////
+// 수치 범위 //////////////////////////////////////////////////////////////////////////
 #define dNTLSOUND_VOLUME_DEFAULT				1.0f
 #define dNTLSOUND_VOLUME_BACKGROUND_MAX			0.5f
 #define dNTLSOUND_VOLUME_EVENT_MAX				0.7f
@@ -132,7 +132,7 @@ enum eStoreResult
 
 struct sNtlVolume
 {
-	///< ���� : 0.0f ~ 1.0f
+	///< 범위 : 0.0f ~ 1.0f
 	float		fMainVolume;
 	float		fFadeVolume;
 	float		fWhenMoviePlayVolume;			///< �������� �÷��� �� ���� ����

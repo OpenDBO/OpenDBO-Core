@@ -2,7 +2,7 @@
  *
  * File			: GameStage.h
  * Author		: HyungSuk, Jang
- * Copyright	: (��)NTL
+ * Copyright	: (주)NTL
  * Date			: 2005. 8. 17	
  * Abstract		: Game stage class
  *****************************************************************************
@@ -92,14 +92,14 @@ private:
 
 public:
 	// Multi thread loading
-		// ���� �����尡 ȣ���ϴ� �Լ�
-		// �뵵 : ������ ������ �ε��� �����ϱ� �� ���� �۾��� �����Ѵ�
+		// 메인 쓰레드가 호출하는 함수
+		// 용도 : 쓰레드 데이터 로딩을 시작하기 전 사전 작업을 수행한다
 	void PreMutiThreadLoading( void );
-		// ������ �ε� �����尡 ȣ���ϴ� �Լ�
-		// �뵵 : �����带 �̿��� ������ �ε��� �����Ѵ�
+		// 데이터 로딩 쓰레드가 호출하는 함수
+		// 용도 : 쓰레드를 이용해 데이터 로딩을 수행한다
 	void MutiThreadLoading( void );
-		// ���� �����尡 ȣ���ϴ� �Լ�
-		// �뵵 : ������ ������ �ε� �� ���� �۾��� �����Ѵ�
+		// 메인 쓰레드가 호출하는 함수
+		// 용도 : 쓰레드 데이터 로딩 후 사후 작업을 수행한다
 	void PostMutiThreadLoading( void );
 
 	virtual void PostRender(void);

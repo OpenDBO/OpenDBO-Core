@@ -91,7 +91,7 @@ RwBool CModelToolApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight,
 		NTL_RETURN(FALSE);
 	}
     
-	// Active Camera�� �����Ѵ�.
+	// Active Camera로 세팅한다.
 	CNtlPLGlobal::SetActiveCamera(m_pCamera->GetCamera());
 
     RwRGBA colorTextForeGround = {255, 255, 255, 255};
@@ -100,36 +100,36 @@ RwBool CModelToolApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight,
 	if(!m_pCharset)
 		NTL_RETURN(FALSE);
 
-    // Hit Time ǥ�ÿ� Charset�� �����Ѵ�.
+    // Hit Time 표시용 Charset을 생성한다.
     RwRGBA colorHitForeGround = {255, 255, 255, 255};
     RwRGBA colorHitBackGround = {255, 0, 0, 255};
     m_pCharsetHitTime = RtCharsetCreate(&colorHitForeGround, &colorHitBackGround);
 
-	// Visual Manager�� �����Ѵ�.
+	// Visual Manager를 생성한다.
 	m_pVisualManager = NTL_NEW CNtlPLVisualManager();
 	if(!m_pVisualManager->Create())
 	{
 		NTL_RETURN(FALSE);
 	}
 
-	// Active Scene Manager�� setting �Ѵ�.
+	// Active Scene Manager를 setting 한다.
 	CNtlPLSceneManagerFactory::ActiveSceneManager(m_pVisualManager);
 
-	// Property Container�� �����ϰ�, �����͸� Load �Ѵ�.	
+	// Property Container를 생성하고, 데이터를 Load 한다.	
 	//if(!m_PropContainer.Load(""))
 	//{
 	//	NTL_ASSERTFAIL("Property Container Load Fail!");
 	//	NTL_RETURN(FALSE);
 	//}
 
-	// RpWorld�� Create �Ѵ�.
+	// RpWorld를 Create 한다.
 	RwBBox bb;
 	bb.inf.x = -1000.0f; bb.inf.y = -1000.0f; bb.inf.z = -1000.0f;
 	bb.sup.x = bb.sup.y = bb.sup.z = 1000.0f;
 	m_pWorld = RpWorldCreate(&bb);
 	CNtlPLGlobal::SetActiveWorld(m_pWorld);
 
-	// RpWorld�� Camea�� Add�Ѵ�.
+	// RpWorld에 Camea를 Add한다.
 	RpWorldAddCamera(CNtlPLGlobal::m_pRpWorld, CNtlPLGlobal::m_RwCamera);
 
 	// Ambient Light Create
@@ -160,10 +160,10 @@ RwBool CModelToolApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight,
 	m_pCharacter = new CMTCharacter;
 	m_pCharacter->Create();
 
-    // ����� �����Ѵ�.
+    // 배경을 생성한다.
     CreateWorld();
 
-    // �޸� ��볻���� ���ϱ� ���ؼ� DirectX7 ��ü�� �����Ѵ�.
+    // 메모리 사용내용을 구하기 위해서 DirectX7 개체를 생성한다.
     DirectDrawCreateEx(NULL, (void**)&m_lpDD, IID_IDirectDraw7, NULL);
     
 	NTL_RETURN(TRUE);
@@ -199,7 +199,7 @@ void CModelToolApplication::Destroy()
 
 	m_ResoureManager.Destroy();
 
-	// Light destroy (todo. Light�� Class Wrapping�ϸ� �ȵɱ�?)
+	// Light destroy (todo. Light도 Class Wrapping하면 안될까?)
 	RpWorldRemoveLight(CNtlPLGlobal::m_pRpWorld, m_pLtAmbient);
 	RpWorldRemoveLight(CNtlPLGlobal::m_pRpWorld, m_pLtDirectional);
 
@@ -353,7 +353,7 @@ void CModelToolApplication::DisplayInfo()
     RsSprintf(caption, RWSTRING("FPS : %4.2f"), GetFps());
     RsCharsetPrint(m_pCharset, caption, 0, 0, rsPRINTPOSTOPRIGHT); 
 
-    // ���� �޸𸮸� ���Ѵ�.    
+    // 비디오 메모리를 구한다.    
     DDSCAPS2      ddsCaps2; 
     DWORD         dwTotal; 
     DWORD         dwFree;
@@ -369,7 +369,7 @@ void CModelToolApplication::DisplayInfo()
     float fTotalVideoMem = (float)dwTotal / (1024.0f * 1024.0f);
     float fUseVideoMem = (float)(dwTotal - dwFree) / (1024.0f * 1024.0f);
 
-    // �ý��� �޸𸮸� ���Ѵ�.
+    // 시스템 메모리를 구한다.
     MEMORYSTATUSEX MemStatus;
     MemStatus.dwLength=sizeof(MemStatus);
     GlobalMemoryStatusEx(&MemStatus);
@@ -385,7 +385,7 @@ void CModelToolApplication::DisplayInfo()
 
 void CModelToolApplication::DisplayHitTime()
 {
-    // ������ HitTime�ÿ� HitTime�� ȭ�鿡 ǥ���Ѵ�.
+    // 설정된 HitTime시에 HitTime을 화면에 표시한다.
 
     if(!m_pAnimEditChar || !m_pAnimEditChar->GetProperty())
         return;
@@ -398,7 +398,7 @@ void CModelToolApplication::DisplayHitTime()
     //if(!pAnimData)
     //    return;
 
-    //// �ִϸ��̼��� ���� �ð�
+    //// 애니메이션의 현재 시간
     //RwReal fCurrentAnimTime = m_pAnimEditChar->GetBaseCurrentAnimTime();
     //RwBool bVisible = FALSE;
 
@@ -409,7 +409,7 @@ void CModelToolApplication::DisplayHitTime()
     //   {
     //       if(pEventAnim->eEventID == EVENT_ANIM_HIT && pEventAnim->fTime != 0.00f)
     //       {
-    //           // �̺�Ʈ Ÿ�ӿ��� 0.5�� ���� ǥ���Ѵ�.
+    //           // 이벤트 타임에서 0.5초 동안 표시한다.
     //           if(fCurrentAnimTime >= pEventAnim->fTime && fCurrentAnimTime < (pEventAnim->fTime + 0.5f))
     //           {
     //                bVisible = TRUE;
@@ -462,14 +462,14 @@ RwBool CModelToolApplication::Update(RwReal fTime, RwReal fElapsedTime)
         }
 
 
-        // Wireframe ǥ��
+        // Wireframe 표시
         if(m_bViewWire)
         {
             if(m_pAnimEditChar)
                 m_pAnimEditChar->RenderWireFrame();
         }
 
-        // World ǥ��
+        // World 표시
         if(m_bViewWorld)
         {
             if(m_pResWorld)
@@ -478,7 +478,7 @@ RwBool CModelToolApplication::Update(RwReal fTime, RwReal fElapsedTime)
                 RpClumpRender(m_pResSky->GetClump());
         }
 
-        // Hierarchy ǥ��
+        // Hierarchy 표시
         if(m_bViewHierarchy)
         {
             if(m_pCharacter)
@@ -487,7 +487,7 @@ RwBool CModelToolApplication::Update(RwReal fTime, RwReal fElapsedTime)
                 m_pAnimEditChar->RenderHierarchy();
         }
         
-        // ȭ�鿡 ���� ǥ��
+        // 화면에 정보 표시
         DisplayInfo();
         if(m_pAnimEditChar)
         {
@@ -501,7 +501,7 @@ RwBool CModelToolApplication::Update(RwReal fTime, RwReal fElapsedTime)
 
 	RwCameraShowRaster(m_pCamera->GetCamera(), GetHWnd(), 0);
     
-    // �ִϸ��̼� ���� ������Ʈ
+    // 애니메이션 툴뷰 업데이트
     CAnimToolView::GetInstance()->Update();
 
 	NTL_RETURN(TRUE);
@@ -587,7 +587,7 @@ RwBool CModelToolApplication::CreateWorld()
     if(!m_pResWorld)
         return FALSE;
 
-    //todo. �׽�Ʈ�� �ӽ� ��ġ
+    //todo. 테스트용 임시 수치
     //RwV3d vTrans;
     //vTrans.x = 305.0f;
     //vTrans.y = 26.4f;

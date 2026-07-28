@@ -2,7 +2,7 @@
 //	File		:	NtlPostEffectCamera.h
 //	Desc		:	
 //	Begin		:	2006. 2.13
-//	Copyright	:	�� 2006 by Mahwang CO., Ltd
+//	Copyright	:	ⓒ 2006 by Mahwang CO., Ltd
 //	Author		:	Mahwang
 //	Update		:	
 //***********************************************************************************

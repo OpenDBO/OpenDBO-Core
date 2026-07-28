@@ -2,14 +2,14 @@
  *
  * File			: InputAction.h
  * Author		: HyungSuk, Jang
- * Copyright	: (��)NTL
+ * Copyright	: (주)NTL
  * Date			: 2005. 8. 26	
  * Abstract		: Input action 
  *****************************************************************************
  * Desc         : 
  *
  * 1st Refactoring(2008. 1. 15 ~ 1. 20 ) : 
- * �ڷᱸ���� �Ŵ����� ���� �и�( InputActionMap <-> ActionMap )
+ * 자료구조와 매니저를 완전 분리( InputActionMap <-> ActionMap )
  *
  *****************************************************************************/
 
@@ -64,7 +64,7 @@ public:
 	void SetActive(RwBool bActive);
 
 public:
-	// CActionMap �������̽�
+	// CActionMap 인터페이스
 	void			InitInputMode();					///< �Է� ��� ����
 	RwUInt32		GetInputMode();						///< � ACTION�� INPUTMODE����
 	void			SetInputMode( RwUInt32 nAction );	///< nAction�� �Է� ��� ����
@@ -94,7 +94,7 @@ protected:
 	void HitTestUpDbClickDashMap(SInputDashMap& sDashMap);
 	void CallDashMove(RwUInt32 uiServerDashMoveFlags);
 
-	// �׼�ID�� �Ѱ� ó���ϰ� ����� �Լ���
+	// 액션ID를 넘겨 처리하게 변경된 함수들
 	void ActionDownMoveHandler(RwUInt32 uiAction);		///< �׼ǿ� ���� �̵� �׼� �ڵ鷯
 	void ActionDownDashMoveHandler(RwUInt32 uiAction);	///< �׼ǿ� ���� �뽬 �׼� �ڵ鷯
 	void ActionDownBehaviorHandler(RwUInt32 uiAction);	///< �׼ǿ� ���� �ൿ �׼� �ڵ鷯
@@ -174,7 +174,7 @@ private:
 	SInputDashMap m_sRightDashMap;
 	SInputDashMap m_sBackDashMap;
 
-	// �׼Ǹ� Ŭ����(ActionMap.h) by Kell
+	// 액션맵 클래스(ActionMap.h) by Kell
 	CActionMapManager m_ActionMapManager;
 
 public:

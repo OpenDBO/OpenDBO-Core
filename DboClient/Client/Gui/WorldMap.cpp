@@ -231,7 +231,7 @@ RwBool CWorldMapGui::Create()
 
 	std::wstring wstrText;
 
-	// "우리 유파 보기 버튼"
+	// "�슦由� �쑀�뙆 蹂닿린 踰꾪듉"
 	wstrText = GetDisplayStringManager()->GetString("DST_WORLDMAP_SHOW_OUR_GUILD");
 	m_pVisibleOurGuildMemberButton = (gui::CButton*)GetComponent( "btnVisibleOurGuildMember" );
 	m_pVisibleOurGuildMemberButton->SetToolTip(wstrText);
@@ -239,7 +239,7 @@ RwBool CWorldMapGui::Create()
 	m_pVisibleOurGuildMemberButton->SetDown(true);
 	m_slotVisibleOurGuildMemberButton = m_pVisibleOurGuildMemberButton->SigToggled().Connect(this, &CWorldMapGui::OnToggle_VisibleOurGuildMemberButton);
 
-	// "우리 유파 미니맵에 보기 버튼"
+	// "�슦由� �쑀�뙆 誘몃땲留듭뿉 蹂닿린 踰꾪듉"
 	wstrText = GetDisplayStringManager()->GetString("DST_WORLDMAP_SHOW_OUR_GUILD_IN_MINIMAP");
 	m_pVisibleOurGuildMemberMiniMapButton = (gui::CButton*)GetComponent( "btnVisibleOurGuildMemberMiniMap" );
 	m_pVisibleOurGuildMemberMiniMapButton->SetToolTip(wstrText);
@@ -247,12 +247,12 @@ RwBool CWorldMapGui::Create()
 	m_pVisibleOurGuildMemberMiniMapButton->SetDown(true);
 	m_slotVisibleOurGuildMemberMiniMapButton = m_pVisibleOurGuildMemberMiniMapButton->SigToggled().Connect(this, &CWorldMapGui::OnToggle_VisibleOurGuildMemberMiniMapButton);
 
-	// "우리 유파"
+	// "�슦由� �쑀�뙆"
 	m_pOurGuild = (gui::CStaticBox*)GetComponent( "stbOurGuild" );;
 	m_pOurGuild->SetText( GetDisplayStringManager()->GetString("DST_WORLDMAP_SHOW_OUR_GUILD_MEMBER") );
 
 
-	// "상대 유파 보기 버튼"
+	// "�긽��� �쑀�뙆 蹂닿린 踰꾪듉"
 	wstrText = GetDisplayStringManager()->GetString("DST_WORLDMAP_SHOW_OTHER_GUILD");
 	m_pVisibleOtherGuildMemberButton = (gui::CButton*)GetComponent( "btnVisibleOtherGuildMember" );
 	m_pVisibleOtherGuildMemberButton->SetToolTip(wstrText);
@@ -260,7 +260,7 @@ RwBool CWorldMapGui::Create()
 	m_pVisibleOtherGuildMemberButton->SetDown(true);
 	m_slotVisibleOtherGuildMemberButton = m_pVisibleOtherGuildMemberButton->SigToggled().Connect(this, &CWorldMapGui::OnToggle_VisibleOtherGuildMemberButton);
 
-	// "상대 유파 미니맵에 보기 버튼"
+	// "�긽��� �쑀�뙆 誘몃땲留듭뿉 蹂닿린 踰꾪듉"
 	wstrText = GetDisplayStringManager()->GetString("DST_WORLDMAP_SHOW_OTHER_GUILD_IN_MINIMAP");
 	m_pVisibleOtherGuildMemberMiniMapButton = (gui::CButton*)GetComponent( "btnVisibleOtherGuildMemberMiniMap" );
 	m_pVisibleOtherGuildMemberMiniMapButton->SetToolTip(wstrText);
@@ -268,17 +268,17 @@ RwBool CWorldMapGui::Create()
 	m_pVisibleOtherGuildMemberMiniMapButton->SetDown(true);
 	m_slotVisibleOtherGuildMemberMiniMapButton = m_pVisibleOtherGuildMemberMiniMapButton->SigToggled().Connect(this, &CWorldMapGui::OnToggle_VisibleOtherGuildMemberMiniMapButton);
 
-	// "상대 유파"
+	// "�긽��� �쑀�뙆"
 	m_pOtherGuild = (gui::CStaticBox*)GetComponent( "stbOtherGuild" );
 	m_pOtherGuild->SetText( GetDisplayStringManager()->GetString("DST_WORLDMAP_SHOW_OTHER_GUILD_MEMBER") );	
 
 
 
-	// "투명도"
+	// "�닾紐낅룄"
 	m_pTransparency = (gui::CStaticBox*)GetComponent( "stbTransparency" );
 	m_pTransparency->SetText( GetDisplayStringManager()->GetString("DST_WORLDMAP_TRANSPARENCY") );	
 
-	// 월드맵의 틀
+	// �썡�뱶留듭쓽 ���
 	m_MapFrameUp.SetSurface(0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfFrameUL" ) );	
 	m_MapFrameUp.SetSurface(1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfFrameUC" ) );	
 	m_MapFrameUp.SetSurface(2, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfFrameUR" ) );		
@@ -290,19 +290,19 @@ RwBool CWorldMapGui::Create()
 	m_MapFrameDown.SetSurface(1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfFrameBC" ) );	
 	m_MapFrameDown.SetSurface(2, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfFrameBR" ) );	
 
-	// DBO 지도간 비율
+	// DBO 吏��룄媛� 鍮꾩쑉
 	/*m_surDboRate[MAP_DBO_1].SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfMapRate1" ) );
 	m_surDboRate[MAP_DBO_1_25].SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfMapRate125" ) );
 	m_surDboRate[MAP_DBO_1_5].SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfMapRate15" ) );
 	m_surDboRate[MAP_DBO_2].SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfMapRate2" ) );
 	m_surDboRate[MAP_DBO_4].SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("WorldMap.srf", "srfMapRate2"));*/
 
-	// (피아구분)팀을 나누어서 싸우는 경우의 사람들
+	// (�뵾�븘援щ텇)����쓣 �굹�늻�뼱�꽌 �떥�슦�뒗 寃쎌슦�쓽 �궗�엺�뱾
 	m_surCamp[CAMP_PEOPLE_MY_PARTY]		.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfCampParty" ) );
 	m_surCamp[CAMP_PEOPLE_MY_TEAM]		.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfCampMyTeam" ) );
 	m_surCamp[CAMP_PEOPLE_EMENY_TEAM]	.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfCampEnemy" ) );
 
-	// 도장전 인장
+	// �룄�옣�쟾 �씤�옣
 	m_surScrambleSeal[DBO_TEAM_MY_TEAM]		.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfSeal_MyTeam" ) );
 	m_surScrambleSeal[DBO_TEAM_ENEMY]		.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfSeal_Enemy" ) );
 	m_surScrambleSeal[DBO_TEAM_NEUTRAILITY]	.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfSeal_NoTeam" ) );
@@ -673,7 +673,7 @@ VOID CWorldMapGui::Update(RwReal fElapsed)
 	// by daneos: remove the if from UpdateChangeZoneMap, to fix avatar mark, quest marks, etc.
 	UpdateChangeZoneMap(fElapsed);
 
-	// 연산량을 줄이기 위해 일정시간마다 Update
+	// �뿰�궛�웾�쓣 以꾩씠湲� �쐞�빐 �씪�젙�떆媛꾨쭏�떎 Update
 	if( m_fElapsedTime < WORLDMAP_UPDATETIME )
 	{
 		m_fElapsedTime += fElapsed;
@@ -720,8 +720,8 @@ RwBool CWorldMapGui::UpdateChangeZoneMap(RwReal fElapsed)
 
 	if( idxAreaInfoIndex == 0xffffffff )
 	{
-		// avooo's commnet : 아마도 맵네임인덱스가 지정되지 않은 곳일 것이다.
-		// 월드 모드로 열어주자
+		// avooo's commnet : �븘留덈룄 留듬꽕�엫�씤�뜳�뒪媛� 吏��젙�릺吏� �븡��� 怨녹씪 寃껋씠�떎.
+		// �썡�뱶 紐⑤뱶濡� �뿴�뼱二쇱옄
 		idxAreaInfoIndex	= 200100000;
 		byTempMapMode		= WORLDMAP_TYPE_WORLD;
 
@@ -762,9 +762,9 @@ VOID CWorldMapGui::UpdateWarfogEffect(RwReal fElapsed)
 		if( m_WarFogDisappearEvent.fElapsed < dWARFOG_SCHEDULE_WAIT_OPEN_DIALOG ||
 			m_WarFogDisappearEvent.bActiveEffect )
 		{
-			// 월드맵이 열릴 때 지도, 워포그, 랜드마크 등의 텍스처를 디스크에서 읽기에 느리다.
-			// SwitchDialog에서 텍스처를 모두 로딩한 후 m_WarFogDisappearEvent.bActiveEffect이 true가 된다
-			// 따라서, 텍스처 로딩 중 공연히 워포그 이벤트 업데이트 시간이 흐르지 않는다
+			// �썡�뱶留듭씠 �뿴由� �븣 吏��룄, �썙�룷洹�, �옖�뱶留덊겕 �벑�쓽 �뀓�뒪泥섎�� �뵒�뒪�겕�뿉�꽌 �씫湲곗뿉 �뒓由щ떎.
+			// SwitchDialog�뿉�꽌 �뀓�뒪泥섎�� 紐⑤몢 濡쒕뵫�븳 �썑 m_WarFogDisappearEvent.bActiveEffect�씠 true媛� �맂�떎
+			// �뵲�씪�꽌, �뀓�뒪泥� 濡쒕뵫 以� 怨듭뿰�엳 �썙�룷洹� �씠踰ㅽ듃 �뾽�뜲�씠�듃 �떆媛꾩씠 �쓲瑜댁�� �븡�뒗�떎
 			m_WarFogDisappearEvent.fElapsed += fElapsed;
 		}
 
@@ -775,14 +775,14 @@ VOID CWorldMapGui::UpdateWarfogEffect(RwReal fElapsed)
 
 		if( m_WarFogDisappearEvent.fElapsed >= dWARFOG_SCHEDULE_WAIT_OPEN_DIALOG )
 		{
-			// 일정 시간이 지나면 자동으로 열린다
+			// �씪�젙 �떆媛꾩씠 吏��굹硫� �옄�룞�쑝濡� �뿴由곕떎
 			if( GetDialogManager()->IsOpenDialog(DIALOG_WORLDMAP) == FALSE )
 				GetDialogManager()->OpenDialog(DIALOG_WORLDMAP);
 		}
 
 		if( m_WarFogDisappearEvent.fElapsed >= dWARFOG_SCHEDULE_TIME_BY_DISSAPEAR )
 		{
-			// 지연 시간이 지나고 워포그가 사라진다
+			// 吏��뿰 �떆媛꾩씠 吏��굹怨� �썙�룷洹멸�� �궗�씪吏꾨떎
 			for(RwUInt8 i = 0 ; i < DBO_WORLD_MAP_TABLE_COUNT_WORLD_WARFOG ; ++i)
 			{
 				if( m_WarFog[i].bShow &&
@@ -799,7 +799,7 @@ VOID CWorldMapGui::UpdateWarfogEffect(RwReal fElapsed)
 			}
 		}
 
-		// 워포그 사라지기 이벤트 종료
+		// �썙�룷洹� �궗�씪吏�湲� �씠踰ㅽ듃 醫낅즺
 		if( m_WarFogDisappearEvent.fElapsed == m_WarFogDisappearEvent.fRemainTime )
 		{
 			for(RwUInt8 i = 0 ; i < DBO_WORLD_MAP_TABLE_COUNT_WORLD_WARFOG ; ++i)
@@ -1249,7 +1249,7 @@ RwBool CWorldMapGui::LoadingMapSurface(RwUInt8 byMapMode)
 			m_v2MapPos.x = pWORLD_MAP_TBLDAT->vStandardLoc.x;
 			m_v2MapPos.y = pWORLD_MAP_TBLDAT->vStandardLoc.z;
 
-			// 텍스처 이름
+			// 議� �씠由�
 			sprintf_s(acFileName, 128, "world");
 
 			// 맵 스케일

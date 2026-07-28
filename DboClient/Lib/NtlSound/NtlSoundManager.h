@@ -2,7 +2,7 @@
 *
 * File			: NtlSoundManaager.h
 * Author		: Hong SungBock
-* Copyright		: (��)NTL
+* Copyright		: (주)NTL
 * Date			: 2006. 7. 11	
 * Abstract		: Ntl Sound Manager by Singleton
 *****************************************************************************
@@ -65,10 +65,10 @@ public:
 
 	// System
 
-	///< FMOD System �ʱ�ȭ, Channel Group �ʱ�ȭ
-	///< fDopplerScale : ����( ������ �̵� �ӵ�, �Ҹ��� ��� ��ü�� �̵� �ӵ��� ���� ������ ��ȭ)
-	///< fDistanceFactor : �Ҹ��� �鸮�� ������ ����(ex : 1����, 1��Ƽ)
-	///< fRollOffScale : ����(�Ÿ��� ���� �ҷ��� ũ�� ����
+	///< FMOD System 초기화, Channel Group 초기화
+	///< fDopplerScale : 반향( 음원의 이동 속도, 소리를 듣는 주체의 이동 속도에 따른 음파의 변화)
+	///< fDistanceFactor : 소리가 들리는 길이의 비율(ex : 1미터, 1센티)
+	///< fRollOffScale : 감쇠(거리에 따른 불륨의 크기 감소
 	void		Init(const char* pcPath, float fMasterVolume = 1.0, float fDopplerScale = 1.0,
 					 float fDistacneFactor = 1.0, float fRollOffScale = 1.0);				
 
@@ -97,11 +97,11 @@ public:
 
 	unsigned int	GetPlayingChannels();			///< ���� ���ֵǰ� sound channel�� ����
 
-	///< ����
+	///< 볼륨
 	void		SetMasterVolume(float fVolume);
 	float		GetMasterVolume();
 
-	// ȿ�� ����
+	// 효과 적용
 	void		SetMasterEffect(FMOD_DSP_TYPE eType);
 	void		ReleaseMasterEffect(FMOD_DSP_TYPE eType);
 
@@ -120,7 +120,7 @@ public:
 	void		SetGroupVolume(int iChannelGroup, float fVolume);///< ChannelGroup�� ������ �����Ѵ�
 	float		GetGroupVolume(int iChannelGroup);				///< ChannelGroup�� ������ ��ȯ�Ѵ�
 
-	// ȿ�� ����
+	// 효과 적용
 	void		SetGroupEffect(int iChannelGroup, FMOD_DSP_TYPE eType);
 	void		ReleaseGroupEffect(int iChannelGroup, FMOD_DSP_TYPE eType);
 
@@ -133,10 +133,10 @@ public:
 	float		GetValidGroupRange(int iChannelGroup);				///< ä�� �׷캰 ���� ������ �Ÿ��� �˾ƺ���.
 
 	void		FadeIn(int iGroup, float fDestVolume, unsigned int ulTime);
-	///< fVolume�� ���� �������� ũ�ų� ulTime�� 0 ���ϸ� ������� �ʴ´�
+	///< fVolume이 현재 볼륨보다 크거나 ulTime이 0 이하면 실행되지 않는다
 
 	void		FadeOut(int iGroup, float fDestVolume, unsigned int ulTime);
-	///< fVolume�� ���� �������� �۰ų� ulTime�� 0 ���ϸ� ������� �ʴ´�
+	///< fVolume이 현재 볼륨보다 작거나 ulTime이 0 이하면 실행되지 않는다
 
 	bool		IsMute(int iChannelGroup);
 
@@ -153,7 +153,7 @@ public:
 	void		SetChannelVolume(SOUND_HANDLE hHandle, float fVolume);	///< Channel�� ������ �����Ѵ�
 	float		GetChannelVolume(SOUND_HANDLE hHandle);					///< Channel�� ������ ��ȯ�Ѵ�
 
-	// ȿ�� ����
+	// 효과 적용
 	void		SetChannelEffect(SOUND_HANDLE hHandle, FMOD_DSP_TYPE eType);
 	void		ReleaseChannelEffect(SOUND_HANDLE hHandle, FMOD_DSP_TYPE eType);
 
@@ -161,10 +161,10 @@ public:
 	void		GetMinMaxDistance(SOUND_HANDLE hHandle, float &fMinDistance, float &fMaxDistance);
 
 	void		FadeIn(SOUND_HANDLE hHandle, float fDestVolume, unsigned int ulTime);
-	///< fVolume�� ���� �������� ũ�ų� ulTime�� 0 ���ϸ� ������� �ʴ´�
+	///< fVolume이 현재 볼륨보다 크거나 ulTime이 0 이하면 실행되지 않는다
 
 	void		FadeOut(SOUND_HANDLE hHandle, float fDestVolume, unsigned int ulTime);
-	///< fVolume�� ���� �������� �۰ų� ulTime�� 0 ���ϸ� ������� �ʴ´�
+	///< fVolume이 현재 볼륨보다 작거나 ulTime이 0 이하면 실행되지 않는다
 
 	CNtlSound*	GetSound(SOUND_HANDLE hHandle);			///< ���� ������ ��ȯ�Ѵ�.
 
@@ -177,7 +177,7 @@ protected:
 	int			CanPlay(sNtlSoundPlayParameta* pParameta);
 
 	bool		IsValidGroupRange(int iChannelGroup, float fPosX, float fPosY, float fPosZ);
-	///< ä�� �׷캰 ������ �� �ִ� �������� �������� �˻�
+	///< 채널 그룹별 연주할 수 있는 범위내에 사운드인지 검사
 
 	float		LengthFromListenerToSound(float fPosX, float fPosY, float fPosZ);
 	bool		IsExistGroup(int iGroup);	///< true : �˸´� Group index, false : �������� �ʴ� �׷� index

@@ -2,7 +2,7 @@
  *
  * File			: NtlMatExt
  * Author		: HongHoDong
- * Copyright	: (��)NTL
+ * Copyright	: (주)NTL
  * Date			: 2005. 11. 27	
  * Abstract		: NTl Mat Extension
  *****************************************************************************

@@ -2,7 +2,7 @@
  *
  * File			: CharacterStage.h
  * Author		: HyungSuk, Jang
- * Copyright	: (��)NTL
+ * Copyright	: (주)NTL
  * Date			: 2006. 11. 28	
  * Abstract		: Character stage class
  *****************************************************************************
@@ -87,7 +87,7 @@ private:
 	RwInt8					m_byRace;
 	RwInt8					m_byCharHeightType;
 
-	// ���콺 �� ��ũ�ѿ� ���� �ڿ������� ������ �ϱ� ���� ��� �� �޼��� ����
+	// 마우스 휠 스크롤에 따라 자연스러운 반응을 하기 위해 모든 휠 메세지 저장
 	std::list<sCameraZoom>	m_listZoomMode;
 	RwReal					m_fReservatedZoomStep;
 	RwReal					m_fTotalZoomStep;
@@ -127,7 +127,7 @@ private:
 	void SetupDefaultCamerabyRace(RwUInt8 byRace);							//Avatar�� ��ġ, Camera�� ��ġ�� �ʱ�ȭ
 	void CreateBackGroundStage( RwUInt32 uiRace, RwBool bForce = false);	//World�� ����(�ѹ��� ������ �ȴ�.)
 	void TeleportStage();													//SetUpDefaultCamerabyRace�� ���ؼ� ������ ������ Teleport
-																			//Teleport�� �ε��� �Ͼ��.
+																			//Teleport시 로딩이 일어난다.
 
 	void DestroyBackGroundStage();
 	void DestroyAvatar();

@@ -158,7 +158,7 @@ VOID CQuestNarrationGui::HandleEvents( RWS::CMsg& msg )
 				pData->sNarration.eProgState == eNARRATION_PROGRESS_STATE_SINGLE ) )
 				CNtlPLEventGenerator::ResetCinematic( SNtlEventResetCinematic::QUESTNARRATION );
 
-			// �ٽ� �����־���� Data
+			// 다시 보내주어야할 Data
 			m_pTCUnit = pData->pTCUnit;
 			m_TSKey = pData->sNarration.sTSKey;
 
@@ -170,7 +170,7 @@ VOID CQuestNarrationGui::HandleEvents( RWS::CMsg& msg )
 				pData->sNarrationUserSelect.eProgState == eUSER_SEL_PROGRESS_STATE_SINGLE ) )
 				CNtlPLEventGenerator::ResetCinematic( SNtlEventResetCinematic::QUESTNARRATION );
 
-			// �ٽ� �����־���� Data
+			// 다시 보내주어야할 Data
 			m_pTCUnit = pData->pTCUnit;
 			m_TSKey = pData->sNarrationUserSelect.sTSKey;
 
@@ -251,7 +251,7 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationDialog_Req* pData )
 		SetState( STATE_ING, eOwnerType );
 	}
 
-	// �̹��� �ε� �� �̸� ���
+	// 이미지 로드 및 이름 출력
 	std::string strFileName;
 
 	if( pData->eOwnerType == eNARRATION_OWNER_NPC )
@@ -260,7 +260,7 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationDialog_Req* pData )
 		CTextTable* pNPCText = API_GetTableContainer()->GetTextAllTable()->GetNPCTbl();
 		if( !m_pCinematicObject->SetImageTexture( pNPCData->szILLust, pData->eOwnerState ) )
 		{
-			// �׸��� ������ �⺻�� ���. �̷��� ������ ��� �׸� ���
+			// 그림이 없으면 기본값 출력. 이래도 없으면 흰색 그림 출력
 			m_pCinematicObject->SetImageTexture( pNPCData->szILLust, 0 );				
 		}		
 		m_pCinematicObject->ShowImage( TRUE );			
@@ -272,7 +272,7 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationDialog_Req* pData )
 		CTextTable* pMobText = API_GetTableContainer()->GetTextAllTable()->GetMobTbl();
 		if( !m_pCinematicObject->SetImageTexture( pMobData->szILLust, pData->eOwnerState ) )
 		{
-			// �׸��� ������ �⺻�� ���. �̷��� ������ ��� �׸� ���
+			// 그림이 없으면 기본값 출력. 이래도 없으면 흰색 그림 출력
 			m_pCinematicObject->SetImageTexture( pMobData->szILLust, 0 );				
 		}
 		m_pCinematicObject->ShowImage( TRUE );			
@@ -289,14 +289,14 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationDialog_Req* pData )
 		//m_pCinematicObject->GetPCMessage()->SetPosition( rect );
 
 
-		// ���� ��� �ݱ�.
+		// 선택 모드 닫기.
 		for( RwUInt8 i = 0 ; i < CINEMATIC_MAX_PC_SELECT ; ++i )
 			m_pCinematicObject->GetPCSelect( i )->Show( false );
 
 		m_pCinematicObject->GetPCSelectFocus()->Show( false );
 	}
 
-	// ǳ����ȭ ����.
+	// 풍선대화 세팅.
 	if( eOwnerType == NPCMOB )
 	{
 		if( pData->eGUIType == eNARRATION_GUI_TYPE_NORMAL )
@@ -309,7 +309,7 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationDialog_Req* pData )
 		}
 	}
 
-	// ��ȭ ��½�Ÿ�� ����
+	// 대화 출력스타일 세팅
 	if( eOwnerType == NPCMOB )
 	{
 		if( pData->eDialogDirType == eNARRATION_DIALOG_DIR_TYPE_NORMAL )
@@ -347,7 +347,7 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationDialog_Req* pData )
 		}
 	}
 
-	// ��ȭ �Է�
+	// 대화 입력
 	sQUEST_TEXT_DATA_TBLDAT* pTextData = reinterpret_cast<sQUEST_TEXT_DATA_TBLDAT*>( API_GetTableContainer()->GetQuestTextDataTable()->FindData( pData->uiDialog ) );
 	if( pTextData )
 	{
@@ -371,7 +371,7 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationDialog_Req* pData )
 			m_pCinematicObject->GetBalloon()->Show( false );	// ��ȭ ���� ���� ��ǳ���� ǥ������ ����.
 	}	
 
-	// �ð� �Է�
+	// 시간 입력
 	m_uiMaxLifeTime = pData->uiMaxLifeTime - (RwUInt32)CINEMATIC_MOVETIME * 1000;	
 	m_uiCurrentTime = 0;
 }
@@ -382,7 +382,7 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationUserSelectDialog_Req*
 		return;		
 
 	m_eTSState = pData->eProgState;
-	// peessitemp: ���� ��½�Ÿ���� �����Ƿ� �ϴ� �̷���...
+	// peessitemp: 문자 출력스타일이 없으므로 일단 이렇게...
 	m_eTextOutType = eNARRATION_DIALOG_DIR_TYPE_INVALID;
 
 	if( m_eTSState == eNARRATION_PROGRESS_STATE_START || m_eTSState == eNARRATION_PROGRESS_STATE_SINGLE )
@@ -394,13 +394,13 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationUserSelectDialog_Req*
 		SetState( STATE_ING, PC_SELECT );
 	}
 
-	// �̸� ���
+	// 이름 출력
 	m_pCinematicObject->SetPCName( Logic_GetName( reinterpret_cast<CNtlSob*>( GetNtlSLGlobal()->GetSobAvatar() ) ) );		
 
 
 	sQUEST_TEXT_DATA_TBLDAT* pTextData = NULL;
 
-	//// ��ǳ�� ���
+	//// 말풍선 출력
 	//if( pData->uiConv == INVALID_TBLIDX )
 	//{
 	//	m_bShowPCMessageOnPCSelect = FALSE;				
@@ -424,7 +424,7 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationUserSelectDialog_Req*
 	//	}		
 	//}
 
-	// ��ȭ���� ����.
+	// 대화선택 세팅.
 	for( RwUInt8 i = 0 ; i < CINEMATIC_MAX_PC_SELECT ; ++i )
 	{
 		if( i >= pData->nBranchCnt )
@@ -462,7 +462,7 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationUserSelectDialog_Req*
 	m_pCinematicObject->SetPCSelectValue( 0 );
 	m_pCinematicObject->GetPCSelectFocus()->Show( true );
 
-	// �ð� �Է�
+	// 시간 입력
 	m_uiMaxLifeTime = 0xFFFFFFFF;
 	m_uiCurrentTime = 0;
 }

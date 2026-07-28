@@ -1391,7 +1391,7 @@ BEGIN_PROTOCOL(GU_ZENNY_PICK_RES)
 	DWORD			dwAcquisitionZenny;
 	DWORD			dwBonusZenny;
 	// 'dwOriginalZenny' MUST NOT be referred if 'bSharedInParty' is false.
-	// bSharedInParty�� false�̸� dwOriginalZenny���� �����ؼ��� �� �ȴ�.
+	// bSharedInParty가 false이면 dwOriginalZenny값은 참조해서는 안 된다.
 	// by YOSHIKI(2007-10-02)
 	DWORD			dwOriginalZenny; //Drop Zenny�̴�.
 END_PROTOCOL()
@@ -2127,8 +2127,8 @@ BEGIN_PROTOCOL( GU_TIMEQUEST_REWARD_NFY )
 	BYTE					byTriggerType;			// Compensation type ts type information
 	NTL_TS_EVENT_ID			teid;					// Compensation-related ts event information
 	DWORD					dwWaitTime;				// Reward Wait �ð� // not need anymore
-//	DWORD					dwClearTime;			// Ŭ���� �ð� // not need anymore
-//	DWORD					dwBonusTime;			// ���ʽ� �ð� // not need anymore
+//	DWORD					dwClearTime;			// 클리어 시간 // not need anymore
+//	DWORD					dwBonusTime;			// 보너스 시간 // not need anymore
 	bool					bIsDayRecord : 1;			// True if a DayRecord is constructed
 	bool					bIsBestRecord : 1;			// True if the best record is established
 END_PROTOCOL()
@@ -2326,8 +2326,8 @@ BEGIN_PROTOCOL( GU_PRIVATESHOP_OPEN_RES )
 	sSUMMARY_PRIVATESHOP_SHOP_DATA	sSummaryPrivateShopData;
 	BYTE							byNoticeSize;
 	WCHAR							wcNotice[NTL_MAX_PRIVATESHOP_NOTICE_IN_UNICODE + 1];
-	//wcNotice�� �����̱� ������ wcNotice �ؿ��� ���ο� ������ �����ϸ� ����� �ȵȴ�.
-	//�ݵ�� byNoticeSize���� ���� ������ �Ұ�.[10/2/2007 SGpro]
+	//wcNotice가 가변이기 때문에 wcNotice 밑에다 새로운 변수를 설정하면 절대로 안된다.
+	//반드시 byNoticeSize위에 변수 선언을 할것.[10/2/2007 SGpro]
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_PRIVATESHOP_OPEN_NFY )
@@ -2374,7 +2374,7 @@ END_PROTOCOL()
 BEGIN_PROTOCOL( GU_PRIVATESHOP_ENTER_RES )
 	WORD						wResultCode;
 	sPACKET_PRIVATESHOP_SHOP_DATA		sPrivateShopData;
-//Private Shop Item���� GU_PRIVATESHOP_ITEM_DATA_INFO�� ������
+//Private Shop Item들은 GU_PRIVATESHOP_ITEM_DATA_INFO로 보낸다
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_PRIVATESHOP_LEAVE_RES )
@@ -2889,7 +2889,7 @@ BEGIN_PROTOCOL(GU_BUDOKAI_JOIN_INFO_RES)
 
 	BYTE					byMatchType;		// eBUDOKAI_MATCH_TYPE
 
-	// ���� ���� ������ ���� �ʿ�
+	// 추후 다음 데이터 압축 필요
 	union
 	{
 		sBUDOKAI_REGISTER_INDIVIDUAL_INFO	sIndividualInfo;
@@ -2903,7 +2903,7 @@ BEGIN_PROTOCOL(GU_BUDOKAI_JOIN_STATE_RES)
 	BYTE			byJoinState;		// eBUDOKAI_JOIN_STATE
 	BYTE			byJoinResult;		// ���� ���
 
-	// ������ ���� ���
+	// 정보가 없을 경우
 	// byMatchType = INVALID_BUDOKAI_MATCH_TYPE
 	// byJoinState = INVALID_BUDOKAI_JOIN_STATE
 	// byJoinResult = INVALID_BUDOKAI_JOIN_RESULT

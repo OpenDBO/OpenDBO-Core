@@ -79,7 +79,7 @@ RwBool DeleteFolder(const RwChar* pFolderName)
 
 RwChar g_chLogPath[MAX_PATH]	= "dbolog.txt";
 
-// �α� ������ �뷮�� 10kb�� �Ѿ�� �����Ѵ�.
+// 로그 파일의 용량이 10kb를 넘어가면 삭제한다.
 #define MAX_LOG_FILE_SIZE 10240
 void NtlLogFileSizeCheck()
 {
@@ -169,7 +169,7 @@ void NtlLogFilePrintArgs(RwChar *fmt, ... )
 	fclose(fp);
 }
 
-// Trace�� ���� ���ο� ������ �����Ͽ� ����Ѵ�
+// Trace는 매일 새로운 파일을 생성하여 기록한다
 RwChar g_chTracePath[MAX_PATH]	= "";
 
 void NtlTraceEnable_inRelease(bool bEnable)

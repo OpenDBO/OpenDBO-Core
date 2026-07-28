@@ -2,7 +2,7 @@
 //	File		:	NtlBlurCamera.cpp
 //	Desc		:	
 //	Begin		:	2006. 2.13
-//	Copyright	:	�� 2006 by agebreak CO., Ltd
+//	Copyright	:	ⓒ 2006 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************

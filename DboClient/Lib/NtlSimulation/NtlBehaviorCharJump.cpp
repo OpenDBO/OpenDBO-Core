@@ -53,7 +53,7 @@ void CNtlBehaviorCharJump::Enter(void)
 {
     ChangeJumpState(JUMPSTATE_START);
 
-    // ���߿� base class enter�� ȣ���Ѵ�.
+    // 나중에 base class enter를 호출한다.
     CNtlBehaviorBase::Enter(); 
 }
 
@@ -159,7 +159,7 @@ void CNtlBehaviorCharJump::UpdatePositionMove(SMoveStuff *pMoveStuff, SJumpStuff
         CNtlMath::MathRwV3dAssign(&vNewDir, vHeading.x, 0.0f, vHeading.z); 
         m_pActor->SetDirection(&vNewDir);
 
-        // ���ڸ� ������� ��ġ �̵��� ���´�.
+        // 제자리 점프라면 위치 이동은 막는다.
         if(m_bNoneDirJump)
             return;
 
@@ -172,12 +172,12 @@ void CNtlBehaviorCharJump::UpdatePositionMove(SMoveStuff *pMoveStuff, SJumpStuff
         //{
         //    UpdateMoveSync(vPos, fElapsed);        
         //    
-        //    // ����� ����� �����Ѵ�.
+        //    // 계산한 결과를 적용한다.
         //    vPos = m_pActor->GetPosition();            
         //    return;
         //}
 
-        // �浹 üũ.
+        // 충돌 체크.
         if(m_pActor->GetFlags() & SLFLAG_OBJECT_COLLISION)
         {
             RwReal fCurrHeight = vPos.y;
@@ -244,14 +244,14 @@ RwBool CNtlBehaviorCharJump::UpdateMoveSync(RwV3d vPos, RwReal fElapsedTime)
         }
     }    
     
-    // ���� MoveSync�� ���� �־���� ��ġ�� ����� ��, �� ��ġ�� �������� ������ �����Ѵ�.        
+    // 원래 MoveSync에 맞춰 있어야할 위치를 계산한 후, 그 위치로 가기위한 포스를 결정한다.        
     RwV3d vSyncDir = pMoveSyncStuff->m_pMoveSyncCurr->vLoc - vPos;    
     vSyncDir.y = 0.0f;
     RwReal vSyncDistance = RwV3dLength(&vSyncDir);
     RwV3dNormalize(&vSyncDir, &vSyncDir);    
     vPos += vSyncDir * (vSyncDistance / MOVE_SYNC_SPEED) * fElapsedTime * 2.0f;    
 
-    // ���� ��ġ
+    // 최종 위치
     m_pActor->SetPosition(&vPos);
     //m_pActor->SetPosition(&pMoveSyncStuff->m_pMoveSyncCurr->vLoc);
 
@@ -305,7 +305,7 @@ void CNtlBehaviorCharJump::UpdateJumpLoop(SMoveStuff *pMoveStuff, SJumpStuff *pJ
 
     Logic_GetWorldHeight(m_pActor, &vPos, m_sHStuff);
 
-    // �浹 �ߴµ� ��������ε� �̵��� �Ұ����� ��� �����ش�.
+    // 충돌 했는데 어느쪽으로도 이동이 불가능할 경우 멈춰준다.
     if(pMoveStuff->byMoveFlags != NTL_MOVE_NONE)
     {
         if(vNextPos.y <= m_sHStuff.fFinialHeight + 0.5f || m_byCollMoveImpossCnt >= COLLISION_MOVE_IMPOSSIBLE_COUNT)
@@ -382,7 +382,7 @@ void CNtlBehaviorCharJump::UpdateJumpStandLanding(SMoveStuff *pMoveStuff, SJumpS
 
         if(!m_bRandingVisualEffect && !m_sHStuff.bWaterAttr)
         {
-            // �����  effect�� �Ҵ�.
+            // 사운드와  effect를 켠다.
             RwV3d vPosOrg = m_pActor->GetPosition();
 
             sNtlSoundPlayParameta tSoundParam;

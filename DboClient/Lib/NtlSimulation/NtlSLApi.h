@@ -2,7 +2,7 @@
  *
  * File			: NtlSLApi.h
  * Author		: HyungSuk, Jang
- * Copyright	: (��)NTL
+ * Copyright	: (주)NTL
  * Date			: 2006. 10. 25	
  * Abstract		: Simulation layer API Function
  *****************************************************************************

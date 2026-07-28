@@ -1,9 +1,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File: QuickSlotGui.h
-// Desc: Skill�� Item�� ��ũ�� �����ϴ� GUI
+// Desc: Skill및 Item의 링크를 관리하는 GUI
 //
 // 2006.06.12 Peessi@hitel.net
-// 2007.11.30 Kell - RpBonus Skill �߰�
+// 2007.11.30 Kell - RpBonus Skill 추가
 //
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -70,7 +70,7 @@ private:
 	RwUInt8						m_byQuickSlotID;
 };
 
-// �ʱ� ���۽�, ������ ��Ͻ� ���� �������� ã�� ���� �ʿ�. 
+// 초기 시작시, 아이템 등록시 같은 아이템을 찾는 로직 필요. 
 
 class CQuickSlotGui : public CNtlPLGui, RWS::CEventHandler
 {
@@ -239,12 +239,12 @@ private:
 	gui::CStaticBox* m_pRowNum;
 	gui::CStaticBox* m_apstbStackNum[QUICKSLOT_MAX_VISIBLE_ROW][QUICKSLOT_MAXCOL];
 
-	// AttckMode���� �÷��� ����Ʈ
+	// AttckMode관련 플래시 이펙트
 	RwBool			 m_bAttackMode;
 	RwUInt32		 m_uiEffectFrame;	// �����ӵ��⸦ ���� ���.
 	gui::CFlash*	 m_apflaEffect[QUICKSLOT_MAX_VISIBLE_ROW][QUICKSLOT_MAXCOL];
 	
-	// ����Ű �̸��� ������ִ� Comopnent
+	// 단축키 이름을 출력해주는 Comopnent
 	gui::CStaticBox* m_apStbShortCutName[QUICKSLOT_MAX_VISIBLE_ROW][QUICKSLOT_MAXCOL];
 	RwInt32			 m_anQuickSlotRow[ROW_NUMS];
 	

@@ -209,7 +209,7 @@ void CGameStage::Destroy(void)
 		NTL_DELETE(m_pTeleportScene);
 	}
 	
-	// ���̺� ��� ���� ( ���� �� �޸� ���� )
+	// 세이브 방식 변경 ( 저장 후 메모리 삭제 )
 	Logic_SaveScouterOption();
 	Logic_SaveQuestOption();
 	Logic_SaveCharacterOption();
@@ -254,7 +254,7 @@ void CGameStage::Destroy(void)
 	// unlink keyboard/mouse down
 	CInputHandler::GetInstance()->UnLinkKeyDown(m_hKeyboardDown);
 	
-	// ������ �����ٰ� �˸�.
+	// 서버로 나간다고 알림.
 	CGamePacketGenerator *pGameNetSender = CDboGlobal::GetInstance()->GetGamePacketGenerator();  
 	pGameNetSender->SendGameLeaveReq(); 
 	
@@ -277,7 +277,7 @@ void CGameStage::Destroy(void)
 	// Destroy TextureCamera
 	CMapItem::DestroyCamera();
 
-	// world���� camera remove
+	// world에서 camera remove
 	if(CNtlPLGlobal::m_pRpWorld)
 		RpWorldRemoveCamera(CNtlPLGlobal::m_pRpWorld, CNtlPLGlobal::m_RwCamera);
 
@@ -367,18 +367,18 @@ void CGameStage::UpdateLoadingScene(RwReal fElapsed)
 
 RwBool CGameStage::UpdateLoadingThread(RwReal fElapsed)
 {
-	// Multi-thread�� �����ϰ� ���� �ʴ� ����
+	// Multi-thread가 동작하고 있지 않는 상태
 	if(m_pLoadingThread == NULL)
 		return FALSE;
 
-	// Multi-thread loading �Ϸ�
+	// Multi-thread loading 완료
 	if(m_pLoadingThread->GetLoadState() == CGameLoadingThread::eGAME_LOAD_STATE_LOADED)
 	{
 		PostMutiThreadLoading();
 		return TRUE;
 	}
 
-	// Multi-thread loading ��...
+	// Multi-thread loading 중...
 
 	GetSoundManager()->Update(fElapsed);
 
@@ -487,11 +487,11 @@ void CGameStage::UpdateGameEnterLoadingSchedulingWorld(RwReal fElapsed)
 		}
 	}
 
-	// avatar�� ���� �������� �ʾ�����?
+	// avatar가 아직 생성되지 않았으면?
 	if(!IsAvatarCreate())
 		return;
 
-	// avatar�� ready �Ǿ��°�?
+	// avatar가 ready 되었는가?
 	if(!m_bAvatarReady)
 	{
 		if(m_pAvatar->IsAvatarReady())
@@ -516,7 +516,7 @@ void CGameStage::UpdateTeleportLoadingReadyScene(RwReal fElapsed)
 {
 	RwV3d vAvatarPos = m_pAvatar->GetPosition();
 		
-	// ���� ���� �� �ٽ� ����.(update �Ѵ�.)
+	// 월드 삭제 후 다시 생성.(update 한다.)
 	if(m_bWorldChange)
 	{
 		RwFrameListSetAutoUpdate(FALSE);
@@ -557,7 +557,7 @@ void CGameStage::UpdateTeleportLoadingReadyScene(RwReal fElapsed)
 
 		RwFrameListSetAutoUpdate(TRUE);
 
-		// world�� �ѹ� ������Ʈ �Ѵ�.
+		// world를 한번 업데이트 한다.
 		if(m_pWorldEntity)
 		{
 			//RwBool bEnable = GetLoadObjectSeamlessScheduling();
@@ -594,11 +594,11 @@ void CGameStage::UpdateTeleportLoadingReadyScene(RwReal fElapsed)
 
 		GetNtlGameCameraManager()->ResetCamera();
 
-		// ���� ���� teleport �Ѵ�.
+		// 월드 지형 teleport 한다.
 		if(m_pWorldEntity)
 			m_pWorldEntity->SetPortalPosition(vAvatarPos);
 
-		// world�� �ѹ� ������Ʈ �Ѵ�.
+		// world를 한번 업데이트 한다.
 		if(m_pWorldEntity)
 		{
 			m_pWorldEntity->SetPlayerPosition(vAvatarPos);
@@ -617,7 +617,7 @@ void CGameStage::UpdateTeleportLoadingTeleportScene(RwReal fElapsed)
 	RwV3d vWorldUpdatePos = GetUpdateWorldPosition();
 	UpdateWorld(vWorldUpdatePos);
 
-	// world�� loading �Ǿ��°�?
+	// world가 loading 되었는가?
 	if(!m_bWorldReady)
 	{
 		if(!m_pWorldEntity->GetWorldReady())
@@ -626,7 +626,7 @@ void CGameStage::UpdateTeleportLoadingTeleportScene(RwReal fElapsed)
 		m_bWorldReady = TRUE;
 	}
 
-	// ���ӿ� ó�� �����ϰų�, teleport�� ��쿡�� resource�� �� ���� ������ ó���Ѵ�.
+	// 게임에 처음 진입하거나, teleport일 경우에는 resource를 다 읽은 다음에 처리한다.
 	if(m_bCheckResourceScheduling)
 	{
 		if(GetNtlResourceManager()->IsEmptyLoadScheduling())
@@ -637,13 +637,13 @@ void CGameStage::UpdateTeleportLoadingTeleportScene(RwReal fElapsed)
 				AvatarCreate();
 			}
 
-			// avatar�� ������ؾ� �ϴ°�?
+			// avatar를 재생성해야 하는가?
 			if(IsAvatarReCreate())
 			{
 				AvatarReCreate();
 			}
 
-			// ��Ʈ�� �����͸� �޾Ƶ��δ�.
+			// 네트웍 데이터를 받아들인다.
 //			GetSceneManager()->SetThreadLoad( FALSE );
 			m_pTeleportScene->SetState(CHAR_TELEPORT_LOAD_END);
 			CPacketProc::GetInstance()->ActivePop(TRUE);
@@ -677,7 +677,7 @@ void CGameStage::UpdateTeleportLoadingSpawnReadyScene(RwReal fElapsed)
 	RwV3d vWorldUpdatePos = GetUpdateWorldPosition();
 	UpdateWorld(vWorldUpdatePos);
 
-	// avatar�� ready �Ǿ��°�?
+	// avatar가 ready 되었는가?
 	if(!m_bAvatarReady)
 	{
 		if(m_pAvatar->IsAvatarReady())
@@ -867,10 +867,10 @@ void CGameStage::EventProcUpdateTick(RwReal fElapsed)
 		UpdateGameIdle(fElapsed);
 	}
 
-    // ��Ȳ�� ���� ���� �����ʸ� �����Ѵ�.
+    // 상황에 따른 사운드 리스너를 설정한다.
     UpdateSoundListener();
 	
-	// avatar�� �����Ǿ� ���� ������?
+	// avatar가 생성되어 있지 않으면?
 	if(!IsAvatarCreate())
 		return;
 
@@ -888,7 +888,7 @@ void CGameStage::EventProcUpdateTick(RwReal fElapsed)
 
 void CGameStage::EventProcWorldChange(RwBool bWorldChange)
 {
-	// loading�� �����Ѵ�.
+	// loading을 시작한다.
 	
 	m_pTeleportScene = NTL_NEW CGameTeleportScene(bWorldChange);
 
@@ -911,8 +911,8 @@ void CGameStage::EventProcWorldChange(RwBool bWorldChange)
 	m_eUpdageType = EGUT_GAME_TELEPORT_LOADING;
 
 	//---------------------------------------------------
-	// teleport �� world �� �ٸ� ���.
-	// avatar resource�� ���忡�� ����.
+	// teleport 할 world 가 다를 경우.
+	// avatar resource를 월드에서 뺀다.
 	if(m_bWorldChange)
 	{
 	}
@@ -978,8 +978,8 @@ void CGameStage::MutiThreadLoading( void )
 		NTL_DELETE(m_pGuiGroup);
 	}
 
-	// height field world�� �����Ѵ�.
-	// avatar ��ǥ ������.
+	// height field world를 생성한다.
+	// avatar 좌표 얻어오기.
 	SAvatarInfo *pAvatarInfo = GetNtlSLGlobal()->GetAvatarInfo();
 	RwV3d vAvatarPos;
 	CNtlMath::MathRwV3dAssign(&vAvatarPos,	
@@ -1023,7 +1023,7 @@ void CGameStage::MutiThreadLoading( void )
 
 void CGameStage::PostMutiThreadLoading( void )
 {
-	// �ε� Thread�� �����Ѵ�
+	// 로딩 Thread를 종료한다
 	if ( m_pLoadingThread )
 	{
 		NTL_DELETE(m_pLoadingThread);
@@ -1039,7 +1039,7 @@ void CGameStage::PostMutiThreadLoading( void )
 
 	GetNtlSobManager()->SetActive( TRUE );
 	
-	// Effect ����
+	// Effect 복구
 	if(GetNtlStorageManager()->GetBoolData( dSTORAGE_GRAPHIC_SHADER_HDR ))
 		CNtlPostEffectCamera::SetPostEffectFilters(POST_EFFECT_FILTER_HDR);
 	else
@@ -1243,7 +1243,7 @@ void CGameStage::UpdateSoundListener()
             return;
         }
 
-        // �ó׸�ƽ���̸� ī�޶�� �����Ѵ�.
+        // 시네마틱중이면 카메라로 세팅한다.
         if(GetNtlDTCinematicManager()->IsRunning())
         {
             GetSceneManager()->SetSoundListener(NULL);

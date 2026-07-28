@@ -2,7 +2,7 @@
  *
  * File			: LoginGui.h
  * Author		: HyungSuk, Jang
- * Copyright	: (��)NTL
+ * Copyright	: (주)NTL
  * Date			: 2005. 9. 20	
  * Update		: 2007. 10. 15
  * Abstract		: DBO Login gui.

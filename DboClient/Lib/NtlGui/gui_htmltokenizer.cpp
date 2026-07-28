@@ -28,7 +28,7 @@ CHtmlTokenizer::CHtmlTokenizer(const std::string &filename, bool bUsePack)
 	if(!m_bSuccess)
 		return;
 
-	//	��ҹ��� ���� ���ϰ� �����.
+	//	대소문자 구분 안하게 만든다.
 	//	ToLower();
 
 	m_strFileName = filename;
@@ -46,7 +46,7 @@ CHtmlTokenizer::CHtmlTokenizer(const wchar_t *pMemory, int nSize)
 
 	wcscpy_s( m_pData, nSize+1 , pMemory );
 
-	// ��ҹ��� ���� ���ϰ� �����.
+	// 대소문자 구분 안하게 만든다.
 	//	ToLower();
 
 	Tokenize();
@@ -75,7 +75,7 @@ bool CHtmlTokenizer::Load(const char *pFileName, bool bUsePack )
 		char* pData = NULL;
 		int nSize;
 
-		// �ϴ� ���ۿ� ��Ƽ� �о�´�.
+		// 일단 버퍼에 담아서 읽어온다.
 		(*g_fnHtmlCallPack)(pFileName, (void**)&pData, &nSize );
 		if( pData == NULL )
 			return false;
@@ -84,13 +84,13 @@ bool CHtmlTokenizer::Load(const char *pFileName, bool bUsePack )
 		memcpy( pBuffer, pData, sizeof(char) * nSize );
 		pBuffer[nSize] = '\0';
 	
-		// // UTF - 16�� ��쿡
+		// // UTF - 16일 경우에
 		if( abyUnicodeBom[0] == pBuffer[0] &&
 			abyUnicodeBom[1] == pBuffer[1] )
 		{
 			size_t nStrLen = strlen( pBuffer+2 );
-			// Wide���� �迭�� 2Byte �� �ϳ���.
-			// ���� BOM �ڵ带 �� ���� 2�� ������ ��ŭ �����Ѵ�.
+			// Wide형의 배열은 2Byte 당 하나임.
+			// 앞의 BOM 코드를 뺀 것의 2를 나눠준 만큼 복사한다.
 			m_nTotalSize = (int)nStrLen;
 			m_pData = NTL_NEW WCHAR[m_nTotalSize+1];
 			memcpy( m_pData, pBuffer+2, nSize-2 );
@@ -107,7 +107,7 @@ bool CHtmlTokenizer::Load(const char *pFileName, bool bUsePack )
 			m_pData[m_nTotalSize] = L'\0';
 		}
 
-		// ��Ƴ��� ���۸� �����Ѵ�.
+		// 담아놓은 버퍼를 삭제한다.
 		NTL_ARRAY_DELETE( pData );
 		NTL_ARRAY_DELETE( pBuffer );
 	}
@@ -124,15 +124,15 @@ bool CHtmlTokenizer::Load(const char *pFileName, bool bUsePack )
 			return false;
 #endif
 
-		// Kell's Comment : UTF-16/UCS2 �� �˻��Ѵ�. �̿��� ����� MultiByte�� �д´�.
-		// UTF-16�� Byte-order Mark�� 2byte �� FF FE �� ����ϰ� �� ����� ��������
-		// �޸����̳� Word���� ����ϴ� ����̴�. (����)
+		// Kell's Comment : UTF-16/UCS2 만 검사한다. 이외의 방식은 MultiByte로 읽는다.
+		// UTF-16의 Byte-order Mark는 2byte 인 FF FE 를 사용하고 이 방식은 윈도우의
+		// 메모장이나 Word에서 사용하는 방식이다. (주의)
 
-		// ���� 2 Byte�� �о�´�.
+		// 앞의 2 Byte만 읽어온다.
 		fread( abyHtml_Bom, 2, 1, fp );
 
-		// Unicode(LE)�� �ƴ� ��� Assert�� �ɸ���.
-		// ����� MultiByte�� Unicode, 2�� �� �о���� �Ѵ�.
+		// Unicode(LE)가 아닌 경우 Assert가 걸린다.
+		// 현재는 MultiByte와 Unicode, 2개 다 읽어들어야 한다.
 		// assert( abyUnicodeBom == abyHtml_Bom );
 
 		// UTF-16(Little-Endian)
@@ -143,7 +143,7 @@ bool CHtmlTokenizer::Load(const char *pFileName, bool bUsePack )
 			int nSize = ftell(fp);
 			fseek(fp, 0, SEEK_SET);
 
-			// Unicode�� 2byte�� 1character�� ����Ѵ�.
+			// Unicode는 2byte당 1character를 사용한다.
 			int nStrLen = m_nTotalSize = (nSize/2);
 			m_pData = NTL_NEW wchar_t[nStrLen];
 			m_pData[nStrLen-1] = L'\0';
@@ -165,7 +165,7 @@ bool CHtmlTokenizer::Load(const char *pFileName, bool bUsePack )
 
 			m_pData = NTL_NEW wchar_t[nSize];
 
-			// Wide Character�� ��ȯ
+			// Wide Character로 변환
 			::MultiByteToWideChar( GetACP(), 0,pData, -1, m_pData, nSize );
 
 			NTL_ARRAY_DELETE( pData );
@@ -223,7 +223,7 @@ VOID CHtmlTokenizer::Tokenize(VOID)
 
 	int buff_pos = 0;
 
-	// TOKEN_TEXT Ÿ���� ����� ���� ���Ǵ� ����
+	// TOKEN_TEXT 타입을 만들기 위해 사용되는 버퍼
 #define HTML_BUFFER_SIZE 200000
 	wchar_t *buffer = NTL_NEW wchar_t [HTML_BUFFER_SIZE];
 

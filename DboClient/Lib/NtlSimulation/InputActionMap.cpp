@@ -91,7 +91,7 @@ CInputActionMap::~CInputActionMap()
 }
 
 /**
-* \brief CInputActionMap�� �ν��Ͻ� ����(�̱���)
+* \brief CInputActionMap의 인스턴스 리턴(싱글톤)
 */
 CInputActionMap* CInputActionMap::GetInstance(void)
 {
@@ -118,7 +118,7 @@ RwBool CInputActionMap::Create(void)
 	m_hMouseDown = CInputHandler::GetInstance()->LinkMouseDown( this, &CInputActionMap::MouseDownHandler);
 	m_hMouseUp = CInputHandler::GetInstance()->LinkMouseUp( this, &CInputActionMap::MouseUpHandler);
 
-	// ActionMapManager �ʱ�ȭ
+	// ActionMapManager 초기화
 	InitDefaultActionMap();
 	m_ActionMapManager.ClearInputAction();
 	m_ActionMapManager.ClearReleaseAction();
@@ -126,7 +126,7 @@ RwBool CInputActionMap::Create(void)
 
 	RegisterFlagMap();	// ����ȸ���� ���� Ű�� ���
 
-	// ���ø����̼ǿ� ��Ű�� ����Ѵ�. print screen/sys rq Ű�� �̿��ϱ� ����
+	// 어플리케이션에 핫키를 등록한다. print screen/sys rq 키를 이용하기 위해
 	/*RegisterHotKey( CNtlApplication::GetInstance()->GetHWnd(), NTL_KEY_SNAPSHOT, 0, VK_SNAPSHOT );*/
 	
 	NTL_RETURN(TRUE);
@@ -188,11 +188,11 @@ void CInputActionMap::Destroy(void)
 
 /**
 * \brief Update
-* \param fElapsed	(RwReal) ���� Update���� ����� �ð�
+* \param fElapsed	(RwReal) 이전 Update에서 경과된 시간
 */
 void CInputActionMap::Update(RwReal fElapsed)
 {
-	// InputActionMap�� ��Ȱ��ȭ ���¶�� Update���� �ʴ´�.
+	// InputActionMap이 비활성화 상태라면 Update하지 않는다.
 	if(!m_bActive)
 		return;
 
@@ -216,7 +216,7 @@ void CInputActionMap::Update(RwReal fElapsed)
 
 /**
 * \brief HandleEvents
-* \param pMsg	(RWS::CMsg&) �̺�Ʈ�� �޽���
+* \param pMsg	(RWS::CMsg&) 이벤트의 메시지
 */
 void CInputActionMap::HandleEvents(RWS::CMsg &pMsg)
 {
@@ -245,80 +245,80 @@ void CInputActionMap::HandleEvents(RWS::CMsg &pMsg)
 }
 
 /**
-* \brief ���ӿ� ������ �� �������� �����ִ� ����Ű ������ �޴´�.
+* \brief 게임에 접속할 때 서버에서 내려주는 단축키 정보를 받는다.
 */
 void CInputActionMap::HandleEventActionmapLoadInfo( RWS::CMsg& msg ) 
 {
 	SNtlEventActionMapLoadInfo* pPacket = (SNtlEventActionMapLoadInfo*)msg.pData;
 
-	// pPacket->byCount�� 0 �̸� ������ ����Ǿ� �ִ� ����Ű�� ���ٴ� ���̴�.
-	// Ŭ���̾�Ʈ�� �ϵ� �ڵ��Ǿ� �ִ� ����Ű�� �������ְ� ������ �����Ѵ�.
+	// pPacket->byCount가 0 이면 서버에 저장되어 있는 단축키가 없다는 것이다.
+	// 클라이언트에 하드 코딩되어 있는 단축키로 셋팅해주고 서버에 적용한다.
 	if( 0 == pPacket->byCount )
 	{
 		m_ActionMapManager.ClearActionMap();
 
-		// ActionMap�� ���ǵǾ� �ִ� �⺻ �׼Ǹ����� �����Ѵ�.
+		// ActionMap에 정의되어 있는 기본 액션맵으로 정의한다.
 		m_ActionMapManager.InitDefaultActionMap();
 
-		// ��� Release Action�� ���õ� �����̳� ����� Ŭ����
+		// 모든 Release Action에 관련된 사항이나 결과값 클리어
 		m_ActionMapManager.ClearResult();
 		m_ActionMapManager.ClearReleaseAction();
 		m_ActionMapManager.ClearInputAction();
 
-		// ������ ���� �� ����
+		// 서버에 저장 및 적용
 		ApplyActionMap();
 
-		// ĸ��( byCount �� 0 �̶�� Ŭ���̾�Ʈ�� ����Ű�� �������� �ŷ� �Ѵ�. )
+		// 캡쳐( byCount 가 0 이라면 클라이언트의 단축키를 전적으로 신뢰 한다. )
 		m_ActionMapManager.CaptureActionMap();
 	}
 	else
 	{
 		m_ActionMapManager.ClearActionMap();
 
-		// �������� ����Ű�� �޾Ƽ� �׼Ǹ��� ����
+		// 서버에서 단축키를 받아서 액션맵을 구성
 		for( int i=0; i<pPacket->byCount; ++i )
 			m_ActionMapManager.SetCombineKey( pPacket->asData[i].wKey, pPacket->asData[i].wActionID );
 
-		// ĸ��(������ �ִ� ��)
+		// 캡쳐(서버에 있는 것)
 		m_ActionMapManager.CaptureActionMap();
 
-		// ������ ����Ǿ� �ִ� ����Ʈ ������ �ʱ�ȭ
+		// 기존에 선언되어 있던 디폴트 값으로 초기화
 		m_ActionMapManager.InitDefaultActionMap();
 
-		// ����Ʈ �ʱ�ȭ �� �Ϳ� �ٽ� �ѹ� Setting
+		// 디폴트 초기화 된 것에 다시 한번 Setting
 		for( int i=0; i<pPacket->byCount; ++i )
 			m_ActionMapManager.SetCombineKey( pPacket->asData[i].wKey, pPacket->asData[i].wActionID );
 
-		// ��� Release Action�� ���õ� �����̳� ����� Ŭ����
+		// 모든 Release Action에 관련된 사항이나 결과값 클리어
 		m_ActionMapManager.ClearResult();
 		m_ActionMapManager.ClearReleaseAction();
 		m_ActionMapManager.ClearInputAction();
 
-		// �ٽ� ����
+		// 다시 적용
 		ApplyActionMap();
 	}
 }
 
 /**
-* \breif ������ ����� ����Ű ������ ������ �� ���� ���
+* \breif 서버에 변경된 단축키 정보를 보내고 난 후의 결과
 */
 void CInputActionMap::HandleEventsActionMapUpdateRes( RWS::CMsg& msg ) 
 {
 	SNtlEventActionMapUpdateRes* pPacket = (SNtlEventActionMapUpdateRes*)msg.pData;
 
-	// ����
+	// 성공
 	if( pPacket->bSuccess )
 	{
-		// �������� ������ �����Ǿ����� �Ϻ��ϰ� ������ �ϰ�
-		// ������ ������ �� �ִ� ���·� �����д�.
+		// 서버에도 저장이 성공되었으면 완벽하게 적용을 하고
+		// 서버에 적용할 수 있는 상태로 만들어둔다.
 		m_ActionMapManager.CaptureActionMap();
 		m_bAcceptServer = TRUE;
 	}
-	// ����
+	// 실패
 	else
 	{
-		// �����Ͽ��ٸ� ������ ĸ�ĵ� ����Ű�� ����������
-		// ���Ӱ� �⺻ ����Ű�� �����Ͽ� �����Ѵ�.
+		// 실패하였다면 기존에 캡쳐된 단축키를 날려버리고
+		// 새롭게 기본 단축키를 구성하여 세팅한다.
 
 		m_ActionMapManager.InitDefaultActionMap();
 		m_bAcceptServer = TRUE;
@@ -352,13 +352,13 @@ void CInputActionMap::Reset(void)
 	}
 	SetFlagAction( ACTION_AVATAR_BLOCKING, FALSE );
 
-	// ������ ȸ��
+	// 퀵슬롯 회복
 	for( int i = ACTION_QUICK_1; i <= ACTION_QUICK_PLUS; ++i )
 	{
-		// �������� ������ �־��ٸ�(?)
+		// 퀵슬롯이 눌러져 있었다면(?)
 		if( IsDownAction( i ) )
 		{
-			// 0 ~ 11 ( 12�� )
+			// 0 ~ 11 ( 12개 )
 			m_pCallSkillQuickSlotUp->Call( i - ACTION_QUICK_1 );
 			SetFlagAction( i, FALSE );
 		}
@@ -405,12 +405,12 @@ void CInputActionMap::Reset(void)
 	//m_cActionMap.RemoveIgnoreKey();
 	m_mapUpdownRef.clear();
 
-	// ActionMap�� Up Down Reference�� Ŭ�����Ѵ�.
+	// ActionMap의 Up Down Reference를 클리어한다.
 	m_ActionMapManager.ClearInputAction();
 }
 
 /**
-* \brief �̵��� ���õ� �ڷḸ Reset
+* \brief 이동에 관련된 자료만 Reset
 */
 void CInputActionMap::ResetMoveFlags( void ) 
 {
@@ -439,12 +439,12 @@ void CInputActionMap::ResetMoveFlags( void )
 	m_sBackDashMap.fTime = 0.0f;
 	m_sBackDashMap.uiMoveFlags = NTL_MOVE_B;
 
-	// ActionMap�� Up Down Reference�� Ŭ�����Ѵ�.
+	// ActionMap의 Up Down Reference를 클리어한다.
 	m_ActionMapManager.ClearInputAction();
 }
 
 /**
-* \brief Key�� Down�� ���� ������ �ͼ� �׼��� ã�Ƴ���.
+* \brief Key가 Down된 것을 가지고 와서 액션을 찾아낸다.
 */
 int CInputActionMap::KeyDownHandler(uintptr_t pKeyData)
 {
@@ -452,7 +452,7 @@ int CInputActionMap::KeyDownHandler(uintptr_t pKeyData)
 
 	unsigned short usAction = ACTION_INVALID;
 
-	// RepCount�� 1�϶��� �����Ѵٴ� ���� �ѹ��� �����Ѵٴ� ���̴�.
+	// RepCount가 1일때만 실행한다는 것은 한번만 실행한다는 뜻이다.
 	if(pData->uiRepCount == 1)
 	{
 		// TODO: The current tab key uses the hardcoded ACTION_TARGET_AUTO action ID
@@ -488,7 +488,7 @@ int CInputActionMap::KeyDownHandler(uintptr_t pKeyData)
 
 		int nKey = pData->uiChar & 0xFF;
 
-		// KeyRef ����
+		// KeyRef 증가
 		KeyReference( (unsigned char)(pData->uiChar & 0xFF) );
 
 		// Returns if the key is ignored.
@@ -513,7 +513,7 @@ int CInputActionMap::KeyDownHandler(uintptr_t pKeyData)
 }
 
 /**
-* \brief Ű�� Up �Ǿ��� �� Ű�� ������ �ͼ� �׼Ǹ��� ������ �´�.
+* \brief 키가 Up 되었을 때 키를 가지고 와서 액션맵을 가지고 온다.
 */
 int CInputActionMap::KeyUpHandler(uintptr_t pKeyData)
 {
@@ -533,13 +533,13 @@ int CInputActionMap::KeyUpHandler(uintptr_t pKeyData)
 		}
 	}
 
-	// VK_JUNJA�� ALT�� ���� ���¿��� = �� �Է����� ��� ( �ϵ��ڵ����� ġȯ���ش�. )
+	// VK_JUNJA는 ALT를 누른 상태에서 = 를 입력했을 경우 ( 하드코딩으로 치환해준다. )
 	if ((pData->uiChar & 0xFF) == VK_JUNJA)
 	{
 		pData->uiChar = NTL_KEY_EQUAL;
 	}
 
-	// KeyRef ���� : ���� Down �Ǿ��� �ʴ� Ű��� ������ ���� ( Snap Shot ���� ���ܷ� �Ѵ�. )
+	// KeyRef 감소 : 만약 Down 되었지 않는 키라면 무조건 리턴 ( Snap Shot 만은 예외로 한다. )
 	if( !KeyReference( (unsigned char)(pData->uiChar & 0xFF), FALSE ) && ( (unsigned char)(pData->uiChar & 0xFF) ) != VK_SNAPSHOT )
 		return 1;
 
@@ -557,7 +557,7 @@ int CInputActionMap::KeyUpHandler(uintptr_t pKeyData)
 		// If there are no errors, it is the same as a normal INVALID.
 		if( byErr == SET_RESULT_INVALID )
 		{
-			// ���� ��������� �ϴ� Action���� List�� �ִٸ� ��� �������ش�.
+			// 만약 해제해줘야 하는 Action들의 List가 있다면 모두 해제해준다.
 			if( !uiActionUpList.empty() )
 			{
 				for each( unsigned short uiActionUp in uiActionUpList )
@@ -572,7 +572,7 @@ int CInputActionMap::KeyUpHandler(uintptr_t pKeyData)
 			return 1;
 		}
 
-		// ���������� ������ �Ǿ��ٸ� InputActionMap�� ���¸� ȸ�������ش�.
+		// 정상적으로 셋팅이 되었다면 InputActionMap의 상태를 회복시켜준다.
 		Reset();
 		
 		switch( byErr )
@@ -622,7 +622,7 @@ int CInputActionMap::MouseDownHandler(uintptr_t pMouseData)
 {
 
 	/*SMouseData *pData = reinterpret_cast<SMouseData*>(pMouseData);*/
-	//if(pData->chBtnType == MOUSE_RBTN)  //���콺 �����°� �Ŀ� ����
+	//if(pData->chBtnType == MOUSE_RBTN)  //마우스 눌리는건 후에 구현
 	//m_bRBtnDown = TRUE;
 
 	//ConvertServerFlags(m_uiServerMoveFlags);
@@ -646,7 +646,7 @@ void CInputActionMap::SetActive(RwBool bActive)
 { 
 	m_bActive = bActive; 
 
-	// ��Ȱ��ȭ��� �̵� Flag�� Reset
+	// 비활성화라면 이동 Flag를 Reset
 	if( bActive == FALSE )
 		ResetMoveFlags();
 }
@@ -667,7 +667,7 @@ void CInputActionMap::SetInputMode( RwUInt32 nAction )
 	{
 		BYTE byErr = m_ActionMapManager.GetLastResult();
 
-		// ���� ����
+		// 에러 검출
 		if( byErr == SET_RESULT_OK )
 			return;
 	}
@@ -689,10 +689,10 @@ void CInputActionMap::InitDefaultActionMap()
 }
 
 /**
-* \brief �׼Ǹ��� ����
+* \brief 액션맵의 적용
 *
-* �ڷᱸ���� CActionMap���� ����� ���� üũ�ϰ� �װ��� ����Ͽ�
-* ������ ��Ŷ�� �����Ѵ�.
+* 자료구조인 CActionMap에서 변경된 점을 체크하고 그것을 기록하여
+* 서버로 패킷을 전송한다.
 */
 RwBool CInputActionMap::ApplyActionMap()
 {
@@ -703,8 +703,8 @@ RwBool CInputActionMap::ApplyActionMap()
 	BYTE byCount = 0;
 	if( m_ActionMapManager.GetUpdateData( pData , byCount ) )
 	{
-		// �ٲ� ���� �ִٸ� ��Ŷ�� ������ Result�ڵ尡 �������� ����Ǳ� ������ ������ ������ �� �� ����
-		// ���� �����Ѵ�.
+		// 바뀐 점이 있다면 패킷을 보내고 Result코드가 변경점이 적용되기 전까지 서버에 적용을 할 수 없는
+		// 모드로 셋팅한다.
 		API_GetSLPacketGenerator()->SendCharKeyUpdateReq( pData, byCount );
 
 		m_bAcceptServer = FALSE;
@@ -722,21 +722,21 @@ void CInputActionMap::CancleActionMap()
 }
 
 /**
-* \brief ���õ� Ű�� ����Ѵ�.
-* \param byKey		(RwUInt8) Ű�� VK_CODE
-* \param nRefCount	(int) ���õ� Ƚ��, KeyUpHandler���� ī��Ʈ�� üũ�Ѵ�.
-* \return ��������
+* \brief 무시될 키를 등록한다.
+* \param byKey		(RwUInt8) 키의 VK_CODE
+* \param nRefCount	(int) 무시될 횟수, KeyUpHandler에서 카운트를 체크한다.
+* \return 성공여부
 */
 RwBool CInputActionMap::RegisterIgnoreKey( RwUInt8 byKey, int nRefCount ) 
 {
 	IGNOREMAP::iterator it = m_mapIgnore.find( byKey );
-	// �̹� ������
+	// 이미 존재함
 	if( it != m_mapIgnore.end() )
 	{
 		return FALSE;
 	}
 
-	// �������� �ʴ´ٸ� �߰��Ѵ�.
+	// 존재하지 않는다면 추가한다.
 	m_mapIgnore[byKey] = (RwUInt8)nRefCount;
 	
 	return TRUE;
@@ -746,13 +746,13 @@ RwBool CInputActionMap::RemoveIgnoreKey( RwUInt8 byKey )
 {
 	IGNOREMAP::iterator it = m_mapIgnore.find( byKey );
 
-	// �������� ����
+	// 존재하지 않음
 	if( it == m_mapIgnore.end() )
 	{
 		return FALSE;
 	}
 
-	// �����ϸ� ����
+	// 존재하면 삭제
 	m_mapIgnore.erase( it );
 
 	return TRUE;
@@ -762,23 +762,23 @@ RwBool CInputActionMap::IsIgnoreKey( RwUInt8 byKey, RwBool bRef /*= FALSE */ )
 {
 	IGNOREMAP::iterator it = m_mapIgnore.find( byKey );
 
-	// ���õǴ� Ű�� �ƴ�.
+	// 무시되는 키가 아님.
 	if( it == m_mapIgnore.end() )
 		return FALSE;
 	
-	// BYTE���� INVALID��� REF�� �������� �ʰ� ����
+	// BYTE값이 INVALID라면 REF를 감소하지 않고 무시
 	if( it->second == 0xFF )
 		return TRUE;
 
-	// Ref Count ����
+	// Ref Count 감소
 	if( bRef )
 		(*it).second--;
 
-	// 0 ���� �۰ų� ������ ����
+	// 0 보다 작거나 같으면 삭제
 	if( (*it).second <= 0 )
 		m_mapIgnore.erase( it );
 
-	// �����϶�� �˷���
+	// 무시하라고 알려줌
 	return TRUE;
 }
 
@@ -932,7 +932,7 @@ void CInputActionMap::HitTestUpDbClickDashMap(SInputDashMap& sDashMap)
 
 void CInputActionMap::CallDashMove(RwUInt32 uiServerDashMoveFlags)
 {
-	// dash ������(0.1 �� �ȿ� �� �ٽ� ������). 
+	// dash 보낸다(0.1 초 안에 또 다시 누르면). 
 	if(!m_bActive || !m_pCallKeyboardDashMove)
 		return;
 
@@ -965,7 +965,7 @@ void CInputActionMap::ActionDownMoveHandler( RwUInt32 uiAction )
 		m_uiKey2MoveValidFlags = m_uiMoveFlags;
 	}
 
-	// ACTION�� ���� �ൿ ����
+	// ACTION에 따른 행동 정의
 	switch( uiAction )
 	{
 	case ACTION_AVATAR_FORWARD:
@@ -1011,10 +1011,10 @@ void CInputActionMap::ActionDownMoveHandler( RwUInt32 uiAction )
 }
 
 /**
-* \brief �뽬 �̵��� üũ�Ѵ�.
+* \brief 대쉬 이동을 체크한다.
 *
-* ���� �׼ǿ� �´� �뽬�� �ߵ��� Ȯ���Ͽ� ������ ������ �뽬�� �����Ѵ�.
-* \param iAction (unsigned int)�׼�ID
+* 현재 액션에 맞는 대쉬의 발동을 확인하여 조건이 맞으면 대쉬를 실행한다.
+* \param iAction (unsigned int)액션ID
 */
 void CInputActionMap::ActionDownDashMoveHandler( RwUInt32 uiAction ) 
 {
@@ -1092,11 +1092,11 @@ void CInputActionMap::ActionDownBehaviorHandler( RwUInt32 uiAction )
 }
 
 /**
-* \brief Ű�� ������ �� ó���Ǵ� GUI �׼ǵ�
+* \brief 키를 눌렀을 때 처리되는 GUI 액션들
 *
-* Ű�� ���� ���¿��� �߻��� �� �ִ� GUI�׼ǵ��� �˻��Ͽ� �����ϰ� 
+* 키를 누른 상태에서 발생할 수 있는 GUI액션들을 검사하여 실행하고 
 *
-* \param iAction (unsigned int)�׼�ID
+* \param iAction (unsigned int)액션ID
 */
 void CInputActionMap::ActionDownGuiHandler( RwUInt32 uiAction ) 
 {
@@ -1221,7 +1221,7 @@ void CInputActionMap::ActionDownGuiHandler( RwUInt32 uiAction )
 			break;
 		}
 
-		// Ȯ�� 1��
+		// 확장 1번
 	case ACTION_QUICK_1_EX:
 		{
 			if( m_pCallSkillQuickSlotExDown )
@@ -1331,7 +1331,7 @@ void CInputActionMap::ActionDownGuiHandler( RwUInt32 uiAction )
 			break;
 		}
 
-		// Ȯ�� 2��
+		// 확장 2번
 	case ACTION_QUICK_1_EX2:
 		{
 			if( m_pCallSkillQuickSlotEx2Down )
@@ -1482,11 +1482,11 @@ void CInputActionMap::ActionDownGuiHandler( RwUInt32 uiAction )
 }
 
 /**
-* \brief Ű���� ���� �̵��׼� �ڵ鷯
+* \brief 키업에 따른 이동액션 핸들러
 *
-* Ű ���� ���� �߻��ϴ� �̵� �׼��� ó���Ѵ�.
+* 키 업에 따라 발생하는 이동 액션을 처리한다.
 *
-* \param iAction (unsigned int)�׼�ID
+* \param iAction (unsigned int)액션ID
 */
 void CInputActionMap::ActionUpMoveHandler( RwUInt32 uiAction ) 
 {
@@ -1583,11 +1583,11 @@ void CInputActionMap::ActionUpMoveHandler( RwUInt32 uiAction )
 }
 
 /**
-* \brief Ű���� ���� �̵� �׼��� �뽬 �ڵ鷯
+* \brief 키업에 따른 이동 액션의 대쉬 핸들러
 *
-* Ű���� ���� �̵� �׼ǿ� �뽬�� ó���ؾ� �ϴ� �κ����� Ȯ���ϰ� �����Ѵ�.
+* 키업에 따른 이동 액션에 대쉬를 처리해야 하는 부분인지 확인하고 실행한다.
 *
-* \param iAction (unsigned int)�׼�ID
+* \param iAction (unsigned int)액션ID
 */
 void CInputActionMap::ActionUpDashMoveHandler( RwUInt32 uiAction ) 
 {
@@ -1773,9 +1773,9 @@ void CInputActionMap::ActionUpBehaviorHandler( RwUInt32 uiAction )
 }
 
 /**
-* \brief Ű���� ���� GUI �׼��� �ڵ鷯
+* \brief 키업에 따른 GUI 액션의 핸들러
 *
-* \param iAction (unsigned int)�׼�ID
+* \param iAction (unsigned int)액션ID
 */
 void CInputActionMap::ActionUpGuiHandler( RwUInt32 uiAction ) 
 {
@@ -1899,7 +1899,7 @@ void CInputActionMap::ActionUpGuiHandler( RwUInt32 uiAction )
 			break;
 		}
 
-		// Ȯ�� 1��
+		// 확장 1번
 	case ACTION_QUICK_1_EX:
 		{
 			if( m_pCallSkillQuickSlotExUp )
@@ -2009,7 +2009,7 @@ void CInputActionMap::ActionUpGuiHandler( RwUInt32 uiAction )
 			break;
 		}
 
-	// Ȯ�� 2��
+	// 확장 2번
 	case ACTION_QUICK_1_EX2:
 		{
 			if( m_pCallSkillQuickSlotEx2Up )
@@ -2156,7 +2156,7 @@ void CInputActionMap::ActionUpGuiHandler( RwUInt32 uiAction )
 		break;
 	}
 
-	// ���̾�α� �׼� ó��
+	// 다이얼로그 액션 처리
 	if( m_pCallDialogAction )
 		m_pCallDialogAction->Call( uiAction );
 }
@@ -2209,9 +2209,9 @@ void CInputActionMap::RegisterFlagMap()
 }
 
 /**
-* \brief ���� �׼��� ���¸� ������ �´�.
-* \param iAction	�׼�
-* \return �׼��� ���� ( ������ FALSE )
+* \brief 현재 액션의 상태를 가지고 온다.
+* \param iAction	액션
+* \return 액션의 상태 ( 없으면 FALSE )
 */
 RwBool CInputActionMap::IsDownAction( RwUInt32 uiAction ) 
 {
@@ -2225,10 +2225,10 @@ RwBool CInputActionMap::IsDownAction( RwUInt32 uiAction )
 }
 
 /**
-* \brief �׼��� �÷��׸� �����Ѵ�.
-* \param iAction	�׼��� NUMBER
-* \param bDown		�ٿ��� ����
-* \return ��������
+* \brief 액션의 플래그를 지정한다.
+* \param iAction	액션의 NUMBER
+* \param bDown		다운의 상태
+* \return 성공여부
 */
 RwBool CInputActionMap::SetFlagAction( RwUInt32 uiAction, RwBool bDown ) 
 {
@@ -2411,25 +2411,25 @@ void CInputActionMap::UnLinkChatPageChane( void )
 }
 
 /**
-* \brief Ű�� Up/Down Ƚ���� ����Ѵ�.
-* \param byChar		(RwUInt8) Ű�� ������
-* \param bDown		(RwBool) Ű�� Up/Down ����
-* \return Ű�� �̹� �ʿ� �����ؼ� Ref ��/���� �Ͼ�� ��� TRUE
+* \brief 키의 Up/Down 횟수를 기록한다.
+* \param byChar		(RwUInt8) 키의 데이터
+* \param bDown		(RwBool) 키의 Up/Down 여부
+* \return 키가 이미 맵에 존재해서 Ref 증/감이 일어났을 경우 TRUE
 */
 RwBool CInputActionMap::KeyReference( RwUInt8 byChar, RwBool bDown /* = TRUE */)
 {
-	// �̹� Ű�� ������ ���
+	// 이미 키가 존재할 경우
 	UPDOWNREF::iterator it = m_mapUpdownRef.find( byChar );
 	if( it != m_mapUpdownRef.end() )
 	{
-		// Ref ����
+		// Ref 증가
 		if( bDown )
 		{
 			(*it).second++;
 		}
 		else
 		{
-			// Ref ����
+			// Ref 감소
 			(*it).second--;
 			if( (*it).second <= 0 )
 				m_mapUpdownRef.erase( it );
@@ -2437,7 +2437,7 @@ RwBool CInputActionMap::KeyReference( RwUInt8 byChar, RwBool bDown /* = TRUE */)
 
 		return TRUE;
 	}
-	// Ű�� �������� ���� ���
+	// 키가 존재하지 않을 경우
 	else
 	{
 		if( bDown )

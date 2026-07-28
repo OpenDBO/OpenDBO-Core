@@ -87,7 +87,7 @@ void FillAttackStuff(SAttackStuff *pAttStuff, SERIAL_HANDLE hAttackerSerialId, S
 		bSkillConsider = FALSE;
 	}
 	
-	// skill ���� DH or HOT or DB or BB or DC or CB
+	// skill 사용시 DH or HOT or DB or BB or DC or CB
 	if(bSkillConsider && byLogicType == NTL_ATTACK_LOGIC_SKILL)
 	{
 		CSkillTable *pSkillTbl = API_GetTableContainer()->GetSkillTable();
@@ -236,7 +236,7 @@ RwUInt8 JumpKeyStopMapping(RwUInt8 byCurrKey)
 
 void HitTargetEffectDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 {
-	// Guard Block�� ����������...
+	// Guard Block을 성공했으면...
 	RwUInt8 byBlocking			= pHitStuff->uiAttr.bitBlocking;
 	RwUInt8 byTargetEffectDir	= pHitStuff->byTargetEffectDir;
 
@@ -246,17 +246,17 @@ void HitTargetEffectDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 	}
 
 	//-------------------------------------------------
-	// effect�� ����Ѵ�.
+	// effect를 출력한다.
 	CNtlSobProxy *pSobProxy = pActor->GetSobProxy();
 	RwV3d vPos = pActor->GetPosition();
 
-	// �⺻ attack effect
+	// 기본 attack effect
 	RwV3d vTargetEffPos;
 	CNtlPLEntity *pPLTarEntity = NULL;
 	if(pHitStuff->bCreateHitStuffEffect && strlen(pHitStuff->chTargetEffName) > 0)
 	{
         vTargetEffPos = vPos;
-		// physic ����(miss �϶��� Ÿ�� ����Ʈ�� ����.)
+		// physic 공격(miss 일때는 타격 이펙트를 뺀다.)
 		if(pHitStuff->uiAttr.bitPhysic == NTL_ATTACK_PHYSIC_MELEE)
 		{
 			if(pHitStuff->uiAttr.bitResult != NTL_ATTACK_RESULT_DODGE)
@@ -285,7 +285,7 @@ void HitTargetEffectDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 					
 			}
 		}
-		// energy attack.(healing, buff ���� ����)
+		// energy attack.(healing, buff 전부 포함)
 		else
 		{
 			
@@ -303,7 +303,7 @@ void HitTargetEffectDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 		}
 	}
 
-	// target effect ������ �����Ѵ�.)
+	// target effect 방향을 설정한다.)
 	if(pPLTarEntity)
 	{
 		if(byTargetEffectDir != TARGET_EFFECT_TYPE_NONE)
@@ -344,7 +344,7 @@ void HitResultDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 	RwV3d vPos = pActor->GetPosition();
 	RwV3d vTargetEffPos;
 
-	// heal or buff skill�� �ƴϸ�?
+	// heal or buff skill이 아니면?
 	RwUInt8 byResult	= pHitStuff->uiAttr.bitResult;
 	RwUInt8 byBlocking	= pHitStuff->uiAttr.bitBlocking;
 
@@ -499,17 +499,17 @@ void HitResultDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 		}
 		else if(byResult == NTL_ATTACK_RESULT_HEALING)
 		{
-			// damage�� ����Ѵ�.
+			// damage를 출력한다.
 			pSobProxy->CreatePLDamageBox(vPos, pHitStuff->sDamageStuff.iDamage, TRUE);
 		}
 	}
 
 	//---------------------------------------------------
-	// blocking effect ���.
+	// blocking effect 출력.
 		
 	if(byBlocking != DBO_GUARD_TYPE_INVALID)
 	{
-		// effect ����.
+		// effect 연출.
 
 		RwReal fPLEntityHalfWidth = pSobProxy->GetPLEntityWidth()/2.0f;
 		RwReal fPLEntityHeight = pSobProxy->GetPLEntityHeight();
@@ -630,7 +630,7 @@ void HitStatusStealSkillDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// event ó�� �Լ�.
+// event 처리 함수.
 
 void FSMEvent_CharActActionMapJump(CNtlSobActor *pActor, SNtlEventActionMapJump *pJump, CNtlFSMStateBase *pStateBase)
 {
@@ -792,7 +792,7 @@ void FSMEvent_CharActActionMapAutoFollow(CNtlSobActor *pActor, SNtlEventActionMa
 	pMoveStuff->byFormFlag = NTL_MOVE_FLAG_RUN;
 	pMoveStuff->hFollowSerialId = pAutoFollow->hTargetSerialId;
 
-    // ���� ��ġ�� �������� �������� �ľ��Ѵ�.    
+    // 현재 위치가 육지인지 물속인지 파악한다.    
     SWorldHeightStuff hStuff;
     if(Logic_IsSwimmingActor(pActor, &pActor->GetPosition(), hStuff))
         pMoveStuff->byForm = NTL_MOVEFORM_SWIMMING;

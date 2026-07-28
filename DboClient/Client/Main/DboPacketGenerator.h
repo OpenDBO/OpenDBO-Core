@@ -2,7 +2,7 @@
  *
  * File			: DboPacketGenerator.h
  * Author		: HyungSuk, Jang
- * Copyright	: (��)NTL
+ * Copyright	: (주)NTL
  * Date			: 2005. 9. 27	
  * Abstract		: DBO packet generator
  *****************************************************************************
@@ -212,14 +212,14 @@ public:
 	bool SendGuildWarehouseZennyReq(RwUInt32 uiNPCSerial, RwUInt32 uiZenny, RwBool bSave);
 	bool SendGuildWarehouseEnd();
 
-	// ����
+	// 도장
 	bool SendDojo_CreateReq(RwUInt32 uiNPCHandle);
 	bool SendDojo_FunctionAddReq(RwUInt32 uiGuildManagerHandle, RwUInt8 byFunction, RwUInt8 byPlace, RwUInt8 byPos);
 	bool SendDojo_ScrambleReq(RwUInt32 uiNPCHandle);
 	bool SendDojo_ScrambleResponseReq(bool bAccept);
 	bool SendDojo_NPCInfoReq(RwUInt32 uiNPCSerial);
 
-	// ����
+	// 도복
 	bool SendDogi_CreateReq(RwUInt32 uiHandle, void* pDogiData);
 	bool SendDogi_ChagneReq(RwUInt32 uiHandle, void* pDogiData);
 	bool SendGuildDogi_CreateReq(RwUInt32 uiHandle, void* pDogiData);
@@ -245,7 +245,7 @@ public:
 	//bool SendRBMatchCancelReq(void);
 	
 	// PrivateShop
-	//bool SendPrivateShopCreateReq(); // SL�� �̵�
+	//bool SendPrivateShopCreateReq(); // SL로 이동
 	bool SendPrivateShopExitReq();
 	bool SendPrivateShopOpenReq(const WCHAR* pwcPrivateShopName, const WCHAR* pwcNotice, bool bIsOwnerEmpty);
 	bool SendPrivateShopCloseReq();
@@ -268,7 +268,7 @@ public:
 	bool SendMailDelReq(RwUInt32 hSerialID, MAILID mailID);
 	bool SendMailReturnReq(RwUInt32 hSerialID, MAILID mailID);
 	bool SendMailReloadReq(RwUInt32 hSerialID);
-	//bool SendMailLoadReq(RwUInt32 hSerialID, MAILID mailID); // SL �� �̵�
+	//bool SendMailLoadReq(RwUInt32 hSerialID, MAILID mailID); // SL 로 이동
 	bool SendMailItemReceiveReq(RwUInt32 hSerialID, MAILID mailID);
 	bool SendMailLockReq(RwUInt32 hSerialID, MAILID mailID, bool bIsLock);
 	bool SendCharAwayReq(bool bIsAway);
@@ -294,10 +294,10 @@ public:
 	// KnockDown Recovery
 	bool SendCharKnockDownReleaseNfy();								///< �˴ٿ��� ȸ���Ѵٰ� ��û�Ѵ�.
 
-    // ����    
+    // 변신    
     bool SendTransformCancelReq();                              ///< ���� ��Ҹ� ��û�Ѵ�.
 
-	// õ������ ����ȸ ��û ����
+	// 천하제일 무도회 신청 관련
 	bool SendBudokaiJoinIndividualReq();
 	bool SendBudokaiLeaveIndividualReq();
 	bool SendBudokaiJoinTeamInfoReq();
@@ -309,7 +309,7 @@ public:
 	bool SendBudokaiPrizeWinnerNameReq();
 	bool SendBudokaiPrizeTeamWinnerNameReq();
 
-	// �ֻ���
+	// 주사위
 	bool SendRoolReq();
 	bool SendItemDiceReq(HOBJECT hItemHandle, BYTE byDice);
 
@@ -319,7 +319,7 @@ public:
 	// Teleport
 	bool SendTeleportConfirmReq(bool bTeleport, RwUInt8 byTeleportIndex);
 
-	// ��ų�ʱ�ȭ
+	// 스킬초기화
 	bool SendSkillInitReq(RwUInt32 hSerialID);
 	bool SendSkillResetPlusReq(BYTE byPlace, BYTE byPos);
 
@@ -422,7 +422,7 @@ public:
 	bool SendBudokaiTournamentTeamListReq( RwUInt8 byReceivedListCount );
 	bool SendBudokaiTournamentTeamInfoReq( RwUInt16 wJoinID1, RwUInt16 wJoinID2 );	
 
-	// ����
+	// 도장
 	bool SendDojo_BudokaiSeedAddReq(const WCHAR* pwcCharName);
 	bool SendDojo_NoticeChangeReq(RwUInt16 wNoticeLengthInUnicode, WCHAR* awcNotice);
 

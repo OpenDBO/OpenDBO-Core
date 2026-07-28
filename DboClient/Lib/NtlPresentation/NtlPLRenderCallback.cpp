@@ -79,7 +79,7 @@ void NtlAtomicRender(RpAtomic * pAtomic, const RwV3d *pCameraPos)
 		RwUInt32 uiRenderFlags = RpNtlAtomicGetFlag(pAtomic);
 	if(uiRenderFlags & NTL_FINAL_SORT)
 	{
-		// sorter�� atomic�� �߰��Ѵ�.	
+		// sorter에 atomic을 추가한다.	
 		GetAtomicSorterContainer()->Push(PLSORT_ATOMIC, pAtomic, pCameraPos);
 	}
 	else
@@ -374,7 +374,7 @@ RpWorldSector* NtlWorldSectorAtomicCallback(RpWorldSector *pWorldSector, void *d
 // 							else
 // 							{
 // #ifdef dNTL_WORLD_TOOL_MODE
-// 								// World Tool���� Object Visible�� Off ��Ų ��� Object�� ������ ���� �ʴ´�. (07.10.24 by agebreak)
+// 								// World Tool에서 Object Visible을 Off 시킨 경우 Object는 렌더링 하지 않는다. (07.10.24 by agebreak)
 // 								if(CNtlPLGlobal::m_bObjectRender || pPLEntity->GetClassType() != PLENTITY_OBJECT )
 // 								{
 // 									if( !(RpNtlAtomicGetFlag(atomic) & NTL_NOT_VISIBLE) )
@@ -527,7 +527,7 @@ RpWorldSector* NtlWorldSectorRenderCallback(RpWorldSector *pWorldSector, void *d
 // }
 // #endif
 
-// �ε���
+// 인도어
 RpWorldSector* NtlWorldSectorRenderCallBack_PVSBBox(RpWorldSector* worldSector)
 {
 	RwRGBA			rgbaColor	= { 0, 0, 0, 25};

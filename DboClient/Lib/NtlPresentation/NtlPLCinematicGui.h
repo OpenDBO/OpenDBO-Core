@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File: NtlPLCinematicGui.h
-// Desc: NtlPLCinematicGui. DTEditor������ ����� ���� Client���� ������ ��.
+// Desc: NtlPLCinematicGui. DTEditor에서의 사용을 위해 Client에서 이주해 옴.
 //
 // 2007.12.21 Peessi@hitel.net   
 //

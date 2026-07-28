@@ -9,7 +9,7 @@
 #define USING_GUI	using namespace gui
 
 /**
-* \brief ������Ʈ�� ������ �����ϴ� ������
+* \brief 컴포넌트의 유형을 정의하는 열거형
 */
 enum COMPONENT_STYLE
 {
@@ -24,7 +24,7 @@ enum COMPONENT_STYLE
 };
 
 /**
-* \brief Text�� ��� ó��
+* \brief Text의 배경 처리
 */
 enum TEXT_BK
 {
@@ -33,7 +33,7 @@ enum TEXT_BK
 };
 
 /**
-* \brief Text�� ȿ��
+* \brief Text의 효과
 */
 enum TEXT_EFFECT
 {
@@ -155,7 +155,7 @@ typedef uintptr_t	COMPPAGE_HANDLE;
 
 //////////////////////////////////////////////////////////////////////////////////////
 // staticbox symbol macro
-// desc : ��ħǥ, ������ǥ ��.
+// desc : 마침표, 글줄임표 등.
 //////////////////////////////////////////////////////////////////////////////////////
 #define STATICBOX_SYMBOL_CHARACTER_PERIOD	L'.'
 #define STATICBOX_SYMBOL_STRING_ELLIPSIS	L"..."

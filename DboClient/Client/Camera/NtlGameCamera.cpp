@@ -215,7 +215,7 @@ void CNtlGameCamera::HandleEvents(RWS::CMsg &pMsg)
 	{	
 		m_bTargetMoveFlag = FALSE;
 
-		//���� �̵��� Angle�� ������ �Ѵ�.
+		//현재 이동된 Angle에 고정을 한다.
 		m_fPrefYAngle = m_fYAngle;
 		m_fSmoothYAngle = m_fOldSmoothYAngle;
 	}

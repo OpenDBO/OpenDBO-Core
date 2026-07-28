@@ -260,7 +260,7 @@ int	CNtlWeAvatarController::MouseUpHandler(unsigned int uiMouseData)
 	{
 		MouseUpRBtnHandler(pData);
 	}
-	// camera auto rotate�� �����Ѵ�.
+	// camera auto rotate를 판정한다.
 	CalcCameraRotateToCharBack();
 	NTL_RETURN(1);
 }
@@ -323,8 +323,8 @@ void CNtlWeAvatarController::CalcCameraRotateToCharBack(void)
 			if(fCovAngleY >= 360.0f)
 				fCovAngleY -= 360.0f;
 
-			//  ȸ���� �ð� �ݴ� ���� ȸ���̴�.
-			//  ī�޶� angle ���� character angle ����.
+			//  회전은 시계 반대 방향 회전이다.
+			//  카메라 angle 에서 character angle 뺀다.
 			RwReal fSubAngleY = fCovAngleY - fAngleY;
 
 			if(fSubAngleY > 0.0f)

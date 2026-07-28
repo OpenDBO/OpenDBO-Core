@@ -2,9 +2,9 @@
  *
  * File			: NtlMath.h
  * Author		: HongHoDong
- * Copyright	: (��)NTL
+ * Copyright	: (주)NTL
  * Date			: 2005. 9. 21	
- * Abstract		: Math���� �Լ���
+ * Abstract		: Math관련 함수들
  *****************************************************************************
  * Desc         : 
  *

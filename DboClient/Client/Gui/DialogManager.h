@@ -1,7 +1,7 @@
 /******************************************************************************
 * File			: DialogManager.h
 * Author		: Hong SungBock
-* Copyright		: (��)NTL
+* Copyright		: (주)NTL
 * Date			: 2006. 8. 11
 * Abstract		: 
 *****************************************************************************
@@ -205,7 +205,7 @@ protected:
 	LIST_REQUESTED_OPENDIALOG_IN_NARRATION m_listRequestedOpenDialogInNarration;	
 	
 	DIALOG_RAISE	m_listRaiseDialogbyUser;		///< ������ ���ۿ� ���� ȭ�鿡 ��Ÿ���� GUI�� ����
-													///< ���� ���߿� �׸��� ���̾�α� ������ �������� ����
+													///< 가장 나중에 그리는 다이얼로그 순으로 오름차순 정렬
 
 	REGULAR_MAP		m_mapRegular;					///< ȭ���� ������ ��ġ�� ������ ���̾�α��� ����
 	FE_MAP			m_mapEntireFocuing;				///< ȭ���� ��ü ������ �̿��ϸ� ������ ������ ���߽�Ű�� ���� ���̾�α�
@@ -237,9 +237,9 @@ VOID CDialogManager::RegistDialog(int iDialog, CNtlPLGui* pDialog, int (Callback
 
 	m_mapDialog[iDialog] = info;
 
-	// EFDialog �켱���� ����
+	// EFDialog 우선순위 결정
 	if( IsEFDialog((eDialogType)iDialog) )
 		info.pDialog->GetDialog()->SetPriority(dDIALOGPRIORITY_EFDIALOG);
 
-	// Regular Dialog, ����, ���̵� ���̾�α״� dDIALOGPRIORITY_EFDIALOG �� ����
+	// Regular Dialog, 가방, 사이드 다이얼로그는 dDIALOGPRIORITY_EFDIALOG 를 쓴다
 }

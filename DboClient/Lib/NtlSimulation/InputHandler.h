@@ -2,7 +2,7 @@
  *
  * File			: InputHandler.h
  * Author		: HyungSuk, Jang
- * Copyright	: (��)NTL
+ * Copyright	: (주)NTL
  * Date			: 2005. 8. 26	
  * Abstract		: Input handler 
  *****************************************************************************

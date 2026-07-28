@@ -2,7 +2,7 @@
 //	File		:	NtlResourceFileManager.h
 //	Desc		:	
 //	Begin		:	2004.9.23
-//	Copyright	:	�� 2004 by agebreak CO., Ltd
+//	Copyright	:	ⓒ 2004 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -171,10 +171,10 @@ public:
 
 			if(FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 			{
-				//  ���丮�̸�
+				//  디렉토리이면
 				if(FindFileData.cFileName[0] == '.')
 				{
-					//  Dot ���丮�� ��ŵ�Ѵ�.
+					//  Dot 디렉토리는 스킵한다.
 				} 
 				else
 				{

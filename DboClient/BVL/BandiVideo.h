@@ -34,21 +34,21 @@
 #define BANDI_VIDEO_LIBRARY_VERSION			_BVL_MAKE_VER(1,1,0,5)		// 1.1.0.5
 
 ///e// Notification Messages
-///k// �̺�Ʈ �߻��� NOTIFY �޽���
+///k// 이벤트 발생시 NOTIFY 메시지
 ///e// Use RegisterWindowMessage() function to register messages
-///k// RegisterWindowMessage()�� �������� ����Ѵ�.
+///k// RegisterWindowMessage()로 선언한후 사용한다.
 
 extern UINT	WM_BVNOTIFY_EOF;				// END OF FILE NOTIFICATION, WPARAM: BandiVideo * pBV 
 extern UINT	WM_BVNOTIFY_OPENED;				///k// OpenAsync() ȣ��� ���� ���� ��� �뺸, WPARAM: ���� ����(HRESULT) ///e// result of OpenAsync(), WPARAM: HRESULT value of OpenAsync()
 
 ///e// definition of volume min, volume max
-///k// ���� �ִ�, �ּҰ�
+///k// 볼륨 최대, 최소값
 #define	BVL_MIN_VOLUME	0
 #define	BVL_MAX_VOLUME	255
 
 
 ///e// pixel type of video in movie file
-///k// �̹����� �ȼ� ����(Ÿ��)
+///k// 이미지의 픽셀 포맷(타입)
 enum BVL_PIXEL_FORMAT
 {
 	BVLPF_X8R8G8B8,							///e// use D3DFMT_X8R8G8B8 in D3D9	///k // D3DFMT_X8R8G8B8 ���
@@ -57,7 +57,7 @@ enum BVL_PIXEL_FORMAT
 };
 
 ///e// Options for Open() option
-///k// Open() �Լ� �ɼ�
+///k// Open() 함수 옵션
 enum BVL_OPEN_OPT
 {
 	BVL_OPEN_OPT_NONE,						///k // ���� ���⸸ �ϰ� ����� ���� ����	///e// Open only
@@ -66,7 +66,7 @@ enum BVL_OPEN_OPT
 };
 
 ///e// Audio devide enumerations
-///k// ����� ��ġ ����
+///k// 오디오 장치 설정
 enum BVL_AUDIO_DEVICE
 {
 	BVL_AUDIO_DEVICE_NULL,					///e // disable audio track										///k // ������� ����		
@@ -81,7 +81,7 @@ enum BVL_CONTEXT_TYPE
 };
 
 ///e// Current status of Video player
-///k// ������ ���� ����
+///k// 비디오의 현재 상태
 enum BVL_STATUS
 {
 	BVL_STATUS_UNINITIALIZED=0,				///k // ���� ���̺귯���� Create ���� ����								///e// Video library object is not initialized
@@ -94,7 +94,7 @@ enum BVL_STATUS
 };
 
 ///e// Video Information
-///k// ���� ����
+///k// 비디오 정보
 struct	BVLVideoInfo
 {
 	BVL_STATUS			Status;				///k // ������ ������¸� �����ϰ� �ֽ��ϴ�.										///e// Current status of video player
@@ -114,7 +114,7 @@ typedef	struct IBVLMemoryBuffer *LPBVLFRAME, *LPGDIFRAME;
 struct IDirect3DTexture9;
 
 ///e// Buffer Class when using HBITMAP or DIB section
-///k// HBITMAP �̳� DIB�� �̿��� ��쿡 ����� ���� Ŭ����
+///k// HBITMAP 이나 DIB를 이용할 경우에 사용할 버퍼 클래스
 struct IBVLMemoryBuffer
 {
 	virtual	HBITMAP		GetHBitmap(void)		const PURE;	///k // IBVLMemoryBuffer�� HBitmap�� ����		///e// Get HBitmap of current video frame
@@ -123,7 +123,7 @@ struct IBVLMemoryBuffer
 
 
 ///e// Video Source interface
-///k// ���� �ҽ� �������̽�
+///k// 비디오 소스 인터페이스
 struct IBandiVideoSource
 {
 public:
@@ -135,7 +135,7 @@ public:
 
 
 ///e// Video Library interface
-///k// ���� ��� �������̽�
+///k// 비디오 재생 인터페이스
 struct IBandiVideo
 {
 public:
