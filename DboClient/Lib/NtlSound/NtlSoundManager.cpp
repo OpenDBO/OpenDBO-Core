@@ -424,6 +424,22 @@ int CNtlSoundManager::Play(sNtlSoundPlayParameta* pParameta)
 		break;
 		case CHANNEL_GROUP_AVATAR_VOICE_SOUND:
 		case CHANNEL_GROUP_AVATAR_EFFECT_SOUND:
+		{
+			unsigned int iCount = 0;
+
+			iCount += m_apChannelGroup[CHANNEL_GROUP_AVATAR_VOICE_SOUND]->GetPlayingChannels();
+			iCount += m_apChannelGroup[CHANNEL_GROUP_AVATAR_EFFECT_SOUND]->GetPlayingChannels();
+			iCount += m_apChannelGroup[CHANNEL_GROUP_VOICE_SOUND]->GetPlayingChannels();
+			iCount += m_apChannelGroup[CHANNEL_GROUP_EFFECT_SOUND]->GetPlayingChannels();
+			if( iCount >= MAX_EFFECT_CHANNELS )
+			{
+				pSound->Release();
+				return SOUNDRESULT_MAX_EFFECT_CHANNELS;
+			}
+
+			result = API_Create_Sound(pSound, pParameta, d2D_SOUND_MODE, fullName);
+		}
+		break;
 		case CHANNEL_GROUP_VOICE_SOUND:
 		case CHANNEL_GROUP_EFFECT_SOUND:
 		{
@@ -433,7 +449,6 @@ int CNtlSoundManager::Play(sNtlSoundPlayParameta* pParameta)
 			iCount += m_apChannelGroup[CHANNEL_GROUP_AVATAR_EFFECT_SOUND]->GetPlayingChannels();
 			iCount += m_apChannelGroup[CHANNEL_GROUP_VOICE_SOUND]->GetPlayingChannels();
 			iCount += m_apChannelGroup[CHANNEL_GROUP_EFFECT_SOUND]->GetPlayingChannels();
-			//DBO_WARNING_MESSAGE("EFFECT SOUNDS: " << iCount);
 			if( iCount >= MAX_EFFECT_CHANNELS )
 			{
 				pSound->Release();
@@ -500,8 +515,6 @@ int CNtlSoundManager::Play(sNtlSoundPlayParameta* pParameta)
 
 	switch(pSound->m_iChannelGroup)
 	{
-			case CHANNEL_GROUP_AVATAR_VOICE_SOUND:
-			case CHANNEL_GROUP_AVATAR_EFFECT_SOUND:
 			case CHANNEL_GROUP_VOICE_SOUND:
 			case CHANNEL_GROUP_EFFECT_SOUND:
 			case CHANNEL_GROUP_OBJECT_MUSIC:

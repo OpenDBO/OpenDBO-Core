@@ -6,33 +6,33 @@
 #include "fmod/fmod.hpp"
 #include "fmod/fmod_common.h"
 
-//#define SOUND_DEBUG_LOG						///< µð¹ö±×¿ë »ç¿îµå °ü·Ã ·Î±× ³²±â±â
+//#define SOUND_DEBUG_LOG						///< ï¿½ï¿½ï¿½ï¿½×¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 
 class CNtlSoundDSP;
 
 
-// °Å¸® ////////////////////////////////////////////////////////////////////////////
-#define MIN_DISTANCE_BETWEEN_MINMAX		1.f	///< »ç¿îµå ¿¬ÁÖ ÃÖ´ë °Å¸®°¡ ÃÖ¼Ò °Å¸®º¸´Ù ±âº»ÀûÀ¸·Î ´õ Ä¿¾ßÇÏ´Â ±âº»¼öÄ¡
+// ï¿½Å¸ï¿½ ////////////////////////////////////////////////////////////////////////////
+#define MIN_DISTANCE_BETWEEN_MINMAX		1.f	///< ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½âº»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ä¿ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½âº»ï¿½ï¿½Ä¡
 
 
-// ½Ã°£ ////////////////////////////////////////////////////////////////////////////
-#define SOUND_FADEINOUT_INTERVAL_TIME	100		///< Fade In/Out ½Ã¿¡ º¼·ýÀÇ º¯È­°¡ ÀÖ´Â ½Ã°£ (´ÜÀ§ :milisecond)
-#define DELAY_EFFECT_SOUND_TIME			500		///< °°Àº ÀÌ¸§ÀÇ ÀÌÆåÆ® »ç¿îµå°£ ÇÃ·¹ÀÌ Áö¿¬ ½Ã°£
+// ï¿½Ã°ï¿½ ////////////////////////////////////////////////////////////////////////////
+#define SOUND_FADEINOUT_INTERVAL_TIME	100		///< Fade In/Out ï¿½Ã¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ã°ï¿½ (ï¿½ï¿½ï¿½ï¿½ :milisecond)
+#define DELAY_EFFECT_SOUND_TIME			500		///< ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½å°£ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
 
-#define dBGM_FADE_OUT_TIME				2000	///< ¹è°æÀ½ÀÌ »ç¶óÁö°Å³ª ±³Ã¼µÉ ¶§ÀÇ fade out ½Ã°£
+#define dBGM_FADE_OUT_TIME				2000	///< ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ fade out ï¿½Ã°ï¿½
 
 
-// »ç¿îµå ÇÚµé ////////////////////////////////////////////////////////////////////////////
+// ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ ////////////////////////////////////////////////////////////////////////////
 #define INVALID_SOUND_HANDLE				0xffffffff
 
 
-// Ã¤³Î °¹¼ö //////////////////////////////////////////////////////////////////////////
+// Ã¤ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ //////////////////////////////////////////////////////////////////////////
 #define MAX_FMOD_CHANNELS				4093	///< Maximum channel (hardware + software) supported by FMOD
-#define MAX_DBO_CHANNELS				512		///< Number of channels used in Dbo
-#define MAX_EFFECT_CHANNELS				40		///< The number of all channels of the effect that can be played at maximum
+#define MAX_DBO_CHANNELS				2048	///< Number of channels used in Dbo (increased for x64)
+#define MAX_EFFECT_CHANNELS				128		///< The number of all channels of the effect that can be played at maximum
 
 
-// ¼öÄ¡ ¹üÀ§ //////////////////////////////////////////////////////////////////////////
+// ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ //////////////////////////////////////////////////////////////////////////
 #define dNTLSOUND_VOLUME_DEFAULT				1.0f
 #define dNTLSOUND_VOLUME_BACKGROUND_MAX			0.5f
 #define dNTLSOUND_VOLUME_EVENT_MAX				0.7f
@@ -61,38 +61,38 @@ enum eSoundResourceType
 
 enum eFMODPlayType
 {
-	FMODPLAYTYPE_3DMODE,						///< 3D ±âº» »ç¿îµå ¸ðµå
-	FMODPLAYTYPE_3D_TOOLMODE,					///< 3D Tool »ç¿îµå ¸ðµå
+	FMODPLAYTYPE_3DMODE,						///< 3D ï¿½âº» ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+	FMODPLAYTYPE_3D_TOOLMODE,					///< 3D Tool ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
 	FMODPLAYTYPE_NUM
 };
 
 enum eSoundPlayState
 {
-	SPS_NONE,									///< ¿¬ÁÖ°¡ ³¡³µ°Å³ª »ç¿îµå Á¤º¸°¡ ¾ø´Ù
-	SPS_PLAYING,								///< ¿¬ÁÖÁß
-	SPS_PLAY_FADE_IN,							///< Fade in ÁßÀÌ´Ù
-	SPS_PLAY_FADE_OUT,							///< Fade Out ÁßÀÌ´Ù
-	SPS_SLEEP,									///< ¿¬ÁÖ°¡ ÁßÁöµÇ¾î ´ë±â»óÅÂÀÌ´Ù
+	SPS_NONE,									///< ï¿½ï¿½ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	SPS_PLAYING,								///< ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	SPS_PLAY_FADE_IN,							///< Fade in ï¿½ï¿½ï¿½Ì´ï¿½
+	SPS_PLAY_FADE_OUT,							///< Fade Out ï¿½ï¿½ï¿½Ì´ï¿½
+	SPS_SLEEP,									///< ï¿½ï¿½ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½
 };
 
 enum eChannelGroupType
 {
 	CHANNEL_GROUP_FIRST = 0,
 
-	CHANNEL_GROUP_UI_SOUND = CHANNEL_GROUP_FIRST,///< UI È¿°úÀ½
-	CHANNEL_GROUP_JINGLE_MUSIC,					///< (ÀÌº¥Æ® ¹ß»ý½Ã)Äù½ºÆ® È¹µæ, Äù½ºÆ® ¿Ï·á µîÀÇ ÂªÀº À½¾Ç
-	CHANNEL_GROUP_FLASH_MUSIC,					///< ÇÃ·¡½¬ ¹è°æÀ½
-	CHANNEL_GROUP_BGM,							///< DBO ¸ÞÀÎ ¹è°æÀ½¾Ç
-	CHANNEL_GROUP_AVATAR_VOICE_SOUND,			///< ¾Æ¹ÙÅ¸ÀÇ À½¼º
-	CHANNEL_GROUP_AVATAR_EFFECT_SOUND,			///< ¾Æ¹ÙÅ¸ÀÇ ÀÌÆåÆ® »ç¿îµå
-	CHANNEL_GROUP_VOICE_SOUND,					///< ¾×ÅÍÀÇ À½¼º
-	CHANNEL_GROUP_EFFECT_SOUND,					///< ÀÌÆåÆ® »ç¿îµå
-	CHANNEL_GROUP_OBJECT_MUSIC,					///< ¿ÀºêÁ§Æ® ¹ÂÁ÷, ÀÚµ¿Â÷ ¼Ò¸® µî(ÀÏÁ¤Áö¿ª¿¡¼­¸¸ ¼Ò¸®°¡ ³ª¸ç ¸Ö¾îÁú¼ö·Ï º¼·ýÀÌ ÁÙ¾îµç´Ù)
-	CHANNEL_GROUP_AMBIENT_MUSIC,				///< ±¤¿ª È¯°æ ¼ÒÀ½(ÀÏÁ¤Áö¿ª¿¡¼­ µ¿ÀÏÇÑ º¼·ýÀ¸·Î ³­´Ù)
-	CHANNEL_GROUP_WEATHER_EFFECT_SOUND,			///< ³¯¾¾È¿°úÀ½(³¯¾¾ °ü·Ã »ç¿îµå°¡ Àá½Ã ÇÃ·¹ÀÌ µÈ´Ù)
-	CHANNEL_GROUP_WEATHER_MUSIC,				///< ³¯¾¾À½¾Ç(ÀÓÀÇ·Î ¸ØÃâ ¶§±îÁö ¹«ÇÑ ¹Ýº¹ÀÌ µÈ´Ù)
-	CHANNEL_GROUP_JINGLE_MUSIC_WITHOUT_FADE,	///< CHANNEL_GROUP_JINGLE_MUSIC ¿Í °°Áö¸¸ BGM¿¡ ¿µÇâÀ» ³¢Ä¡Áö ¾Ê´Â´Ù
+	CHANNEL_GROUP_UI_SOUND = CHANNEL_GROUP_FIRST,///< UI È¿ï¿½ï¿½ï¿½ï¿½
+	CHANNEL_GROUP_JINGLE_MUSIC,					///< (ï¿½Ìºï¿½Æ® ï¿½ß»ï¿½ï¿½ï¿½)ï¿½ï¿½ï¿½ï¿½Æ® È¹ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½ Âªï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	CHANNEL_GROUP_FLASH_MUSIC,					///< ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+	CHANNEL_GROUP_BGM,							///< DBO ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	CHANNEL_GROUP_AVATAR_VOICE_SOUND,			///< ï¿½Æ¹ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	CHANNEL_GROUP_AVATAR_EFFECT_SOUND,			///< ï¿½Æ¹ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+	CHANNEL_GROUP_VOICE_SOUND,					///< ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	CHANNEL_GROUP_EFFECT_SOUND,					///< ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+	CHANNEL_GROUP_OBJECT_MUSIC,					///< ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½, ï¿½Úµï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½ ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¾ï¿½ï¿½ï¿½)
+	CHANNEL_GROUP_AMBIENT_MUSIC,				///< ï¿½ï¿½ï¿½ï¿½ È¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+	CHANNEL_GROUP_WEATHER_EFFECT_SOUND,			///< ï¿½ï¿½ï¿½ï¿½È¿ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½å°¡ ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½È´ï¿½)
+	CHANNEL_GROUP_WEATHER_MUSIC,				///< ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ýºï¿½ï¿½ï¿½ ï¿½È´ï¿½)
+	CHANNEL_GROUP_JINGLE_MUSIC_WITHOUT_FADE,	///< CHANNEL_GROUP_JINGLE_MUSIC ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ BGMï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ê´Â´ï¿½
 
 	NUM_CHANNEL_GROUP,
 
@@ -103,13 +103,13 @@ enum eBGMType
 {
 	BGM_TYPE_SHARE_THEME,						///< DBO Common Theme
 	BGM_TYPE_LOCAL_THEME,						///< Local theme song
-	BGM_TYPE_MAIN_THEME,						///< º» °ÔÀÓ¾ÈÀÌ ¾Æ´Ñ °÷¿¡¼­ ÇÃ·¹ÀÌ µÇ´Â BGM
-	BGM_TYPE_RANGE,								///< ÀÏÁ¤ ¹üÀ§ ¾È¿¡¼­ ÇÃ·¹ÀÌµÇ´Â BGM
-	BGM_TYPE_PVP,								///< ÇÃ·¹ÀÌ¾î 1:1 ´ëÀü Å×¸¶°î
-	BGM_TYPE_RANKBATTLE_BATTLE,					///< ·©Å©¹èÆ²
+	BGM_TYPE_MAIN_THEME,						///< ï¿½ï¿½ ï¿½ï¿½ï¿½Ó¾ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ BGM
+	BGM_TYPE_RANGE,								///< ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½È¿ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ÌµÇ´ï¿½ BGM
+	BGM_TYPE_PVP,								///< ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ 1:1 ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½
+	BGM_TYPE_RANKBATTLE_BATTLE,					///< ï¿½ï¿½Å©ï¿½ï¿½Æ²
 	BGM_TYPE_THEME_BGM,							///< THEME BGM
-	BGM_TYPE_SERVER_PLAYED,						///< ¼­¹öÂÊ ¿äÃ»À¸·Î PlayÇÏ´Â BGM
-	BGM_TYPE_CINEMATIC,							///< ½Ã³×¸¶Æ½ BGM	
+	BGM_TYPE_SERVER_PLAYED,						///< ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ Playï¿½Ï´ï¿½ BGM
+	BGM_TYPE_CINEMATIC,							///< ï¿½Ã³×¸ï¿½Æ½ BGM	
 	BGM_TYPE_WAIT,
 
 	NUM_BGM_TYPE,
@@ -119,23 +119,23 @@ enum eBGMType
 
 enum eFadeInOutType
 {	
-	FADE_IN,									///< Fade In Àû¿ë
-	FADE_OUT									///< Fade Out Àû¿ë
+	FADE_IN,									///< Fade In ï¿½ï¿½ï¿½ï¿½
+	FADE_OUT									///< Fade Out ï¿½ï¿½ï¿½ï¿½
 };
 
 enum eStoreResult
 {
-	STORE_READY_TO_PLAY,						///< ¹Ù·Î ÇÃ·¹ÀÌ ÇÑ´Ù
-	STORE_LIST,									///< ¸®½ºÆ®»óÀ¸·Î¸¸ º°µµ °ü¸®ÇÑ´Ù
-	STORE_FAIL,									///< ÀúÀå ½ÇÆÐ
+	STORE_READY_TO_PLAY,						///< ï¿½Ù·ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½
+	STORE_LIST,									///< ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
+	STORE_FAIL,									///< ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 };
 
 struct sNtlVolume
 {
-	///< ¹üÀ§ : 0.0f ~ 1.0f
+	///< ï¿½ï¿½ï¿½ï¿½ : 0.0f ~ 1.0f
 	float		fMainVolume;
 	float		fFadeVolume;
-	float		fWhenMoviePlayVolume;			///< µ¿¿µ»óÀÌ ÇÃ·¹ÀÌ µÉ ¶§ÀÇ º¼·ý
+	float		fWhenMoviePlayVolume;			///< ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 	sNtlVolume()
 	:fMainVolume(1.f)
@@ -145,9 +145,9 @@ struct sNtlVolume
 
 struct sNtlPitch
 {	
-	float		fMainPitch;					///< ¹üÀ§ : 0.0f ~ 10.f( default : 1.f )
-	float		fPitchRate;					///< ¹üÀ§ : Á¦ÇÑ ¾øÀ½
-	float		fSlowMotionPitchRate;		///< ¹üÀ§ : Á¦ÇÑ ¾øÀ½
+	float		fMainPitch;					///< ï¿½ï¿½ï¿½ï¿½ : 0.0f ~ 10.f( default : 1.f )
+	float		fPitchRate;					///< ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	float		fSlowMotionPitchRate;		///< ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 	sNtlPitch() : fMainPitch(1.f), fPitchRate(1.f), fSlowMotionPitchRate(1.f) {}
 };
