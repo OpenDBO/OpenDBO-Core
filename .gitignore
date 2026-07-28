@@ -480,3 +480,34 @@ FodyWeavers.xsd
 /NtlLib/Shared/NtlXMLLoader/xmlparser_h.h
 /NtlLib/Shared/NtlXMLLoader/msxml2_i.c
 /NtlLib/Shared/NtlXMLLoader/msxml2_h.h
+
+# x64 build outputs
+DboClient/**/x64/
+DboClient/**/Release_x64/
+DboClient/**/*_x64/
+DboClient/**/x64/
+
+# RenderwareX64 compiled libraries (built from source, not source-controlled)
+DboClient/RenderwareX64/Lib/Release_x64/*.lib
+DboClient/RenderwareX64/Lib/Release_x64/*.pdb
+DboClient/RenderwareX64/Lib/Release_x64/*.exp
+DboClient/RenderwareX64/Lib/Release_x64/*.ilk
+
+# Preprocessor output
+*.i
+
+# Client logs
+DboClient/Client/*.log
+DboClient/Client/*.txt
+  
+# x64 port additions  
+*.bak  
+*.i  
+.commandcode/  
+DboClient/Client/DxLog.txt  
+DboClient/Client/dbolog.txt  
+DboClient/emitter.i  
+DboClient/RenderwareX64/Lib/Release_x64.bak/ 
+
+# Task lists (local planning, not tracked)
+/tasks/
