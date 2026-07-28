@@ -50,7 +50,10 @@ All required third party tools can be obtained from [our 3rd party repository](h
 
 10. **In Solution Explorer, go to DBO\Client.vcxproj and repeat step 7.**
 
-11. **In Solution Explorer, navigate to Tools\2DParticleEditor, right-click, and unload it.**
+11. **Unload all Tool projects:**
+    - In Solution Explorer, expand the `Tool` solution folder.
+    - Right-click each tool project (2DParticleEditor, DTEditor, GUIEditor, GuiDevTool, ModelTool2, NaviTool, NtlWE, PackEditor, SkillCustomizeViewer, TSEvtMaker, TSTool, Venus, WorldEditor, WorldPatchProcess) and select **Unload project**.
+    - These tools are not required for building the Client and may cause compilation errors if left loaded.
 
 12. **Right-click on Client.vcxproj -> Build**
     - You should encounter only one error after compiling: 'libjpeg.lib'
