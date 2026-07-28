@@ -2,9 +2,9 @@
  *
  * File			: NtlMath.h
  * Author		: HongHoDong
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ï¿½ï¿½)NTL
  * Date			: 2005. 9. 21	
- * Abstract		: Math°ü·Ã ÇÔ¼öµé
+ * Abstract		: Mathï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½
  *****************************************************************************
  * Desc         : 
  *
@@ -13,6 +13,7 @@
 #define _NTL_MATH_
 
 #include <rwcore.h>
+#include <cstring>
 
 #define NTL_EPSILON 0.0001f
 #define DBO_PI	3.1415926535897932384626433832795028841971693993751f
@@ -128,7 +129,7 @@ public:
 
 /**
  * \ingroup Core
- * Math°ü·Ã ÇÔ¼öµéÀÇ ÁýÇÕ
+ * Mathï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
  * 
  */
 class CNtlMath
@@ -168,32 +169,32 @@ public:
 	static void MathGetRotationMatrix(RwMatrix *pMatrix, const RwV3d* pvUnit_A, const RwV3d* pvUnit_B);
 	static void MathGetMatrix(RwMatrix *pMatrix, const RwV3d* pvScale, const RwV3d* pvRot, const RwV3d* pvPos);
 	
-	static DWORD	FtoDW(FLOAT f) { return *((DWORD*)&f); }
-	static RwReal	DWtoF(DWORD w) { return *((FLOAT*)&w); }
+	static DWORD	FtoDW(FLOAT f) { DWORD dw; memcpy(&dw, &f, sizeof(DWORD)); return dw; }
+	static RwReal	DWtoF(DWORD w) { RwReal f; memcpy(&f, &w, sizeof(RwReal)); return f; }
 
     
-    static RwRGBA Interpolation(const RwRGBA& startColor, const RwRGBA& endColor, const RwReal fDelta);    // RwRGBA°ªÀÇ º¸°£°ªÀ» ±¸ÇÑ´Ù (delta : 0.0 ~ 1.0 ±îÁöÀÇ °ª)
-    static RwReal Interpolation(const RwReal fStart, const RwReal fEnd, const RwReal fDelta);               // Real°ªÀÇ º¸°£°ªÀ» ±¸ÇÑ´Ù. (delta : 0.0 ~ 1.0 ±îÁöÀÇ °ª)
-    static RwV3d  Interpolation(const RwV3d& vStart, const RwV3d& vEnd, const RwReal fDelta);               // RwV3d°ªÀÇ ¼±Çü º¸°£°ªÀ» ±¸ÇÑ´Ù.
+    static RwRGBA Interpolation(const RwRGBA& startColor, const RwRGBA& endColor, const RwReal fDelta);    // RwRGBAï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½ (delta : 0.0 ~ 1.0 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½)
+    static RwReal Interpolation(const RwReal fStart, const RwReal fEnd, const RwReal fDelta);               // Realï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½. (delta : 0.0 ~ 1.0 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½)
+    static RwV3d  Interpolation(const RwV3d& vStart, const RwV3d& vEnd, const RwReal fDelta);               // RwV3dï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
 
 	static RwBool LineSphereCollisionTestPixelRay(RwCamera *pCamera, RwSphere *pSphere, RwInt32 iPixelX, RwInt32 iPixelY, RwReal fRayDist, RwReal& fDistance); 
 
 	static RwBool BBoxBBoxCollision(const RwBBox *pBox1, const RwBBox *pBox2);
 
-    // °ªÀ» ¹üÀ§³»·Î Àß¶ó¼­ ¹ÝÈ¯ÇÑ´Ù. 
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß¶ï¿½ ï¿½ï¿½È¯ï¿½Ñ´ï¿½. 
     static RwReal Range(const RwReal fValue, const RwReal fMin, const RwReal fMax);
 
-    // Çà·Ä·ÎºÎÅÍ ½ºÄÉÀÏ°ªÀ» ÃßÃâÇÑ´Ù. (±Õµî ½ºÄÉÀÏÀÎ°æ¿ì¿¡¸¸ Àû¿ëµÈ´Ù)
+    // ï¿½ï¿½Ä·Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. (ï¿½Õµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î°ï¿½ì¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È´ï¿½)
     static RwReal ScaleFromRwMatrix(const RwMatrix& matrix);
     
-    // º¤ÅÍVÀÇ  1 / V¸¦ °è»êÇÑ´Ù.
+    // ï¿½ï¿½ï¿½ï¿½Vï¿½ï¿½  1 / Vï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
     static RwV3d RwV3dInverse(const RwV3d& v3d);
 
 	static RwInt32 GetSafeIdx3D(RwV3d& vPos, RwInt32 iHalfSize, RwInt32 iChunkSize, RwInt32 iChunkNum);
 };
 
 //////////////////////////////////////////////////////////////////////////
-// ¿¬»êÀÚ ¿À¹ö·Îµù (2006.09.13 by agebreak)
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Îµï¿½ (2006.09.13 by agebreak)
 //////////////////////////////////////////////////////////////////////////
 const RwV3d operator+(const RwV3d& lhs, const RwV3d& rhs);
 const RwV3d operator-(const RwV3d& lhs, const RwV3d& rhs);
@@ -216,13 +217,13 @@ const RwV2d operator/(const RwV2d& lhs, const RwReal& rhs);
 const void	operator*=(RwV2d& lhs, const RwReal& rhs);
 
 /************************************************************************/
-/* Spline º¸°£ °è»ê ÇÔ¼ö                                                */
+/* Spline ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½                                                */
 /************************************************************************/
 
-// u : Weight °ª
-// u2 : WeightÀÇ Á¦°ö°ª
-// u3 : WeightÀÇ »ïÁ¦°ö°ª
-// Cntrl : ÄÁÆ®·Ñ Æ÷ÀÎÆ®µé 
+// u : Weight ï¿½ï¿½
+// u2 : Weightï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// u3 : Weightï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// Cntrl : ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ 
 
 #define _XSL_B_SPLINE(u, u_2, u_3, cntrl0, cntrl1, cntrl2, cntrl3)		\
     (																	\

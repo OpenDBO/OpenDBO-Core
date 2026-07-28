@@ -552,7 +552,7 @@ namespace RWS
                //
                CRegisteredMsgs *pRMsg = Id;
 
-			   // Çü¼®
+			   // ï¿½ï¿½ï¿½ï¿½
                // pRMsg->p_format = static_cast<char *>(::RWS_OP_NEW( strlen (p_formatstring) + 1));
 			   RwInt32 iLen = (RwInt32)strlen (p_formatstring) + 1;
 			   pRMsg->p_format = static_cast<char *>(NTL_NEW char[iLen]);
@@ -612,7 +612,7 @@ namespace RWS
                   // Previously registered with no format string, redefine using this format string
                   // from then on it must match.
                   //
-				  // Çü¼®
+				  // ï¿½ï¿½ï¿½ï¿½
                   // pRMsg->p_format = static_cast<char *>(::RWS_OP_NEW( strlen (p_formatstring) + 1));
 				  RwInt32 iLen = (RwInt32)strlen (p_formatstring) + 1;
 				  pRMsg->p_format = static_cast<char *>(NTL_NEW char[iLen]);
@@ -677,7 +677,7 @@ namespace RWS
       //
       // Note: "ABC" returns 3 0 terminate requires "ABC" + 0
       //
-	  // Çü¼®
+	  // ï¿½ï¿½ï¿½ï¿½
       // pRMsg->p_msgname = static_cast<char *>(::RWS_OP_NEW( strlen (p_msgname) + 1));
 	  RwInt32 iLen = (RwInt32)strlen (p_msgname) + 1;
 	  pRMsg->p_msgname = static_cast<char *>(NTL_NEW char [iLen]);
@@ -690,7 +690,7 @@ namespace RWS
    
       if (p_formatstring)
       {
-		  // Çü¼®
+		  // ï¿½ï¿½ï¿½ï¿½
           // pRMsg->p_format = static_cast<char *>(::RWS_OP_NEW( strlen (p_formatstring) + 1));
 		  RwInt32 iLen = (RwInt32)strlen (p_formatstring) + 1;
 		  pRMsg->p_format = static_cast<char *>(NTL_NEW char[strlen (p_formatstring) + 1]);
@@ -791,12 +791,12 @@ namespace RWS
             // Free the memory associated with the name string
             //
 			RWS_ARRAY_DELETE(pRMsg->p_msgname);
-			// Çü¼®
+			// ï¿½ï¿½ï¿½ï¿½
 			// operator delete (pRMsg->p_msgname);
             pRMsg->p_msgname = 0;
    
             // Free the memory associated with the format string
-            // Çü¼®
+            // ï¿½ï¿½ï¿½ï¿½
             // operator delete (pRMsg->p_format);
 			RWS_ARRAY_DELETE(pRMsg->p_format);
             pRMsg->p_format = 0;
@@ -2372,8 +2372,8 @@ namespace RWS
 
             RWS_PRE(iPlugin_Offset);
 
-            const RwUInt32 baseAddr = reinterpret_cast<RwUInt32>(&atomic);
-            const RwUInt32 pluginAddr = baseAddr + iPlugin_Offset;
+            const uintptr_t baseAddr = reinterpret_cast<uintptr_t>(&atomic);
+            const uintptr_t pluginAddr = baseAddr + iPlugin_Offset;
 
             RWS_RETURN(reinterpret_cast<PluginData*>(pluginAddr));
          }
@@ -2393,8 +2393,8 @@ namespace RWS
 
             RWS_PRE(iPlugin_Offset);
 
-            const RwUInt32 baseAddr = reinterpret_cast<RwUInt32>(&atomic);
-            const RwUInt32 pluginAddr = baseAddr + iPlugin_Offset;
+            const uintptr_t baseAddr = reinterpret_cast<uintptr_t>(&atomic);
+            const uintptr_t pluginAddr = baseAddr + iPlugin_Offset;
 
             RWS_RETURN(reinterpret_cast<const PluginData*>(pluginAddr));
          }

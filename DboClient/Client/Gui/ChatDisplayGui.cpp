@@ -60,7 +60,7 @@ RwBool CChatDisplayGui::Create(CChatGui* pChatGui)
 	m_pOutDisplay->SetLineSpace(CHAT_DISP_LINE_GAP);
 	m_pOutDisplay->SetMaxLine(CHAT_DISP_MAX_LINE);
 
-	// ÃÖÇÏ´Ü ³»¿ë º¸±â ¹öÆ°
+	// ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
 	m_pLastButton = (gui::CButton*)GetComponent("btnLastButton");
 	m_slotLastButton = m_pLastButton->SigClicked().Connect(this, &CChatDisplayGui::OnClicked_LastButton);	
 
@@ -283,7 +283,7 @@ CChatDisplayGui::eResizeType CChatDisplayGui::CheckResizePosition(RwInt32 iX, Rw
 	CRectangle rtScreen = m_pThis->GetScreenRect();
 	CRectangle rtRect;
 
-	// ¿ì»ó´Ü
+	// ï¿½ï¿½ï¿½ï¿½
 	rtRect = rtScreen;
 	rtRect.left = rtRect.right - dMOUSE_CHECK_SIZE;
 	rtRect.bottom = rtScreen.top + dMOUSE_CHECK_SIZE;	
@@ -291,7 +291,7 @@ CChatDisplayGui::eResizeType CChatDisplayGui::CheckResizePosition(RwInt32 iX, Rw
 	if( rtRect.PtInRect(iX, iY) )
 		return RESIZE_TYPE_RIGHT_TOP;
 
-	// ¿ìÇÏ´Ü
+	// ï¿½ï¿½ï¿½Ï´ï¿½
 	rtRect = rtScreen;
 	rtRect.left = rtRect.right - dMOUSE_CHECK_SIZE;
 	rtRect.top = rtScreen.bottom - dMOUSE_CHECK_SIZE;
@@ -299,21 +299,21 @@ CChatDisplayGui::eResizeType CChatDisplayGui::CheckResizePosition(RwInt32 iX, Rw
 	if( rtRect.PtInRect(iX, iY) )
 		return RESIZE_TYPE_RIGHT_BOTTOM;
 
-	// »ó´Ü
+	// ï¿½ï¿½ï¿½
 	rtRect = rtScreen;
 	rtRect.bottom = rtScreen.top + dMOUSE_CHECK_SIZE;
 
 	if( rtRect.PtInRect(iX, iY) )
 		return RESIZE_TYPE_TOP;
 
-	// ÇÏ´Ü
+	// ï¿½Ï´ï¿½
 	rtRect = rtScreen;
 	rtRect.top = rtScreen.bottom - dMOUSE_CHECK_SIZE;
 
 	if( rtRect.PtInRect(iX, iY) )
 		return RESIZE_TYPE_BOTTOM;
 
-	// ¿ìÃø
+	// ï¿½ï¿½ï¿½ï¿½
 	rtRect = rtScreen;
 	rtRect.left = rtScreen.right - dMOUSE_CHECK_SIZE;
 
@@ -346,7 +346,7 @@ VOID CChatDisplayGui::ResizeDisplay(RwInt32 iCurMouseX, RwInt32 iCurMouseY)
 	RwInt32 iNewX = iCurMouseX - m_ResizingInfo.iConfirmXPos;
 	RwInt32 iNewY = iCurMouseY - m_ResizingInfo.iConfirmYPos;
 
-	// ³ôÀÌ Á¶Àý
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if( m_ResizingInfo.eType == RESIZE_TYPE_TOP ||
 		m_ResizingInfo.eType == RESIZE_TYPE_RIGHT_TOP )
 	{
@@ -354,14 +354,14 @@ VOID CChatDisplayGui::ResizeDisplay(RwInt32 iCurMouseX, RwInt32 iCurMouseY)
 
 		if( (rtScreen.bottom - rtScreen.top) < CHAT_DISP_MINIMUM_HEIGHT )
 		{
-			// ÃÖ¼Ò Å©±â
+			// ï¿½Ö¼ï¿½ Å©ï¿½ï¿½
 			RwInt32 iRealTop = rtScreen.bottom - CHAT_DISP_MINIMUM_HEIGHT;
 			iNewY += iRealTop - rtScreen.top;
 			rtScreen.top = iRealTop;
 		}
 		else if( (rtScreen.bottom - rtScreen.top) > CHAT_DISP_MAXIMUM_HEIGHT )
 		{
-			// ÃÖ´ë Å©±â
+			// ï¿½Ö´ï¿½ Å©ï¿½ï¿½
 			RwInt32 iRealTop = rtScreen.bottom - CHAT_DISP_MAXIMUM_HEIGHT;
 			iNewY += iRealTop - rtScreen.top;
 			rtScreen.top = iRealTop;
@@ -374,21 +374,21 @@ VOID CChatDisplayGui::ResizeDisplay(RwInt32 iCurMouseX, RwInt32 iCurMouseY)
 
 		if( (rtScreen.bottom - rtScreen.top) < CHAT_DISP_MINIMUM_HEIGHT )
 		{
-			// ÃÖ¼Ò Å©±â
+			// ï¿½Ö¼ï¿½ Å©ï¿½ï¿½
 			RwInt32 iRealBottom = rtScreen.top + CHAT_DISP_MINIMUM_HEIGHT;
 			iNewY += iRealBottom - rtScreen.bottom;
 			rtScreen.bottom = iRealBottom;
 		}
 		else if( (rtScreen.bottom - rtScreen.top) > CHAT_DISP_MAXIMUM_HEIGHT )
 		{
-			// ÃÖ´ë Å©±â
+			// ï¿½Ö´ï¿½ Å©ï¿½ï¿½
 			RwInt32 iRealBottom = rtScreen.top + CHAT_DISP_MAXIMUM_HEIGHT;
 			iNewY += iRealBottom - rtScreen.bottom;
 			rtScreen.bottom = iRealBottom;
 		}
 	}
 
-	// ³ÐÀÌ Á¶Àý
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if( m_ResizingInfo.eType == RESIZE_TYPE_RIGHT_TOP ||
 		m_ResizingInfo.eType == RESIZE_TYPE_RIGHT ||
 		m_ResizingInfo.eType == RESIZE_TYPE_RIGHT_BOTTOM )
@@ -397,26 +397,26 @@ VOID CChatDisplayGui::ResizeDisplay(RwInt32 iCurMouseX, RwInt32 iCurMouseY)
 
 		if( (rtScreen.right - rtScreen.left) < CHAT_DISP_MINIMUM_WIDTH )
 		{
-			// ÃÖ¼Ò Å©±â
+			// ï¿½Ö¼ï¿½ Å©ï¿½ï¿½
 			RwInt32 iRealRight = rtScreen.left + CHAT_DISP_MINIMUM_WIDTH;
 			iNewX += iRealRight - rtScreen.right;
 			rtScreen.right = iRealRight;
 		}
 		else if( (rtScreen.right - rtScreen.left) > CHAT_DISP_MAXIMUM_WIDTH )
 		{
-			// ÃÖ´ë Å©±â
+			// ï¿½Ö´ï¿½ Å©ï¿½ï¿½
 			RwInt32 iRealRight = rtScreen.left + CHAT_DISP_MAXIMUM_WIDTH;
 			iNewX += iRealRight - rtScreen.right;
 			rtScreen.right = iRealRight;
 		}
 	}
 
-	// »çÀÌÁî°¡ º¯°æÀÌ µÇ¾ú´Â°¡
+	// ï¿½ï¿½ï¿½ï¿½ï¿½î°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½Â°ï¿½
 	if( GetPosition() != rtScreen )
 	{
 		if( m_byDisplayGuiIndex == 0 )
 		{
-			// Ã¤ÆÃ ÀÔ·ÂÃ¢µµ »çÀÌÁî¸¦ °°ÀÌ º¯°æÇÑ´Ù
+			// Ã¤ï¿½ï¿½ ï¿½Ô·ï¿½Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½î¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
 			CChatGui* pChatGui = reinterpret_cast<CChatGui*>( GetDialogManager()->GetDialog(DIALOG_CHAT) );
 			CRectangle rtChatScreen = pChatGui->GetPosition();
 
@@ -465,10 +465,10 @@ VOID CChatDisplayGui::OnClicked_LastButton(gui::CComponent* pComponent)
 	m_pOutDisplay->LastLine();
 }
 
-RwInt32	CChatDisplayGui::MouseMoveHandler(RwUInt32 uiMouseData)
+RwInt32	CChatDisplayGui::MouseMoveHandler(uintptr_t uiMouseData)
 {
-	// GUI¿¡ Æ÷Ä¿½º°¡ ¾ø°Å³ª Ã¤ÆÃÃ¢ÀÌ Enable »óÅÂ¿©µµ ·ÎÁ÷ÀÌ µ¿ÀÛÇÏµµ·Ï
-	// InputHandler¿¡¼­ Á÷Á¢ ÀÌº¥Æ®¸¦ ¹Þ¾ÆµéÀÎ´Ù
+	// GUIï¿½ï¿½ ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Å³ï¿½ Ã¤ï¿½ï¿½Ã¢ï¿½ï¿½ Enable ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½
+	// InputHandlerï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½Þ¾Æµï¿½ï¿½Î´ï¿½
 	if( !IsShow() )
 		return 1;
 
@@ -498,7 +498,7 @@ RwInt32	CChatDisplayGui::MouseMoveHandler(RwUInt32 uiMouseData)
 	return 1;
 }
 
-RwInt32	CChatDisplayGui::MouseUpHandler(RwUInt32 uiMouseData)
+RwInt32	CChatDisplayGui::MouseUpHandler(uintptr_t uiMouseData)
 {
 	SMouseData* pMouseData = (SMouseData*)uiMouseData;
 	
@@ -575,7 +575,7 @@ VOID CChatDisplayGui::OnMouseDown(const CKey& key)
 	{
 	case RESIZE_TYPE_RIGHT_TOP:
 		{
-			// ¿ì»ó´Ü
+			// ï¿½ï¿½ï¿½ï¿½
 			m_ResizingInfo.eType = RESIZE_TYPE_RIGHT_TOP;
 			m_pThis->CaptureMouse();
 			GetDialogManager()->OnMode(DIALOGMODE_CHATTING_RESIZE_RIGHTUP);
@@ -583,7 +583,7 @@ VOID CChatDisplayGui::OnMouseDown(const CKey& key)
 		}
 	case RESIZE_TYPE_RIGHT_BOTTOM:
 		{
-			// ¿ìÇÏ´Ü
+			// ï¿½ï¿½ï¿½Ï´ï¿½
 			if( m_byDisplayGuiIndex == 0 )
 				return;
 
@@ -594,7 +594,7 @@ VOID CChatDisplayGui::OnMouseDown(const CKey& key)
 		}
 	case RESIZE_TYPE_TOP:
 		{
-			// »ó´Ü
+			// ï¿½ï¿½ï¿½
 			m_ResizingInfo.eType = RESIZE_TYPE_TOP;
 			m_pThis->CaptureMouse();
 			GetDialogManager()->OnMode(DIALOGMODE_CHATTING_RESIZE_HORI);
@@ -602,7 +602,7 @@ VOID CChatDisplayGui::OnMouseDown(const CKey& key)
 		}
 	case RESIZE_TYPE_BOTTOM:
 		{
-			// ÇÏ´Ü
+			// ï¿½Ï´ï¿½
 			if( m_byDisplayGuiIndex == 0 )
 				return;
 
@@ -613,7 +613,7 @@ VOID CChatDisplayGui::OnMouseDown(const CKey& key)
 		}
 	case RESIZE_TYPE_RIGHT:
 		{
-			// ¿ìÃø
+			// ï¿½ï¿½ï¿½ï¿½
 			m_ResizingInfo.eType = RESIZE_TYPE_RIGHT;
 			m_pThis->CaptureMouse();
 			GetDialogManager()->OnMode(DIALOGMODE_CHATTING_RESIZE_VERT);
@@ -628,7 +628,7 @@ VOID CChatDisplayGui::OnMouseDown(const CKey& key)
 	}
 
 
-	// ChatDisplay¸¦ ¿òÁ÷ÀÏ ¼ö ÀÖ´ÂÁö...
+	// ChatDisplayï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½...
 	if( !m_bLock )
 	{
 		m_Tracking.bTracking = TRUE;
@@ -754,7 +754,7 @@ VOID CChatDisplayGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 				if( !pChatGui )
 					return;
 
-				// Ã¤ÆÃÀ» ÀÔ·ÂÇÏ´Â Ã¢µµ °°ÀÌ ¿òÁ÷ÀÎ´Ù
+				// Ã¤ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï´ï¿½ Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½
 				CRectangle rtChatScreen = pChatGui->GetPosition();
 				RwInt32 iX = rtChatScreen.left + (CMouse::m_nX - m_Tracking.iCapturedX);
 				RwInt32 iY = rtChatScreen.top + (CMouse::m_nY - m_Tracking.iCapturedY);

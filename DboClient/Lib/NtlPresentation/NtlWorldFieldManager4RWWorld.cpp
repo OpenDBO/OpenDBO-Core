@@ -474,9 +474,9 @@ void CNtlWorldFieldManager4RWWorld::CreateRpWorld()
 	string strR = str1 + str2 + str3;
 	sprintf_s(acTempTexPath, MAX_PATH, "texture\\ntlwe\\indoor\\;texture\\object\\;%s", strR.c_str());	
 
-	void*		pFile	= NULL;
 	RwStream*	pStream	= NULL;
 	RpWorld*	pWorld	= NULL;
+	RwUInt8*	buf		= NULL;
 
 	if(GetNtlResourcePackManager()->GetActiveFlags() & NTL_PACK_TYPE_FLAG_TERRAIN)
 	{
@@ -485,11 +485,30 @@ void CNtlWorldFieldManager4RWWorld::CreateRpWorld()
 		if(bPack)
 		{
 			_chdir(dGET_WORLD_PARAM()->CurWorkingFolderName);
-			pFile = RwFopen(sPackFileData.strPackFileName.c_str(), "rb");
-			if(pFile)
+			FILE* fp = NULL;
+			if (fopen_s(&fp, sPackFileData.strPackFileName.c_str(), "rb") == 0)
 			{
-				RwFseek(pFile, sPackFileData.uiOffset, RTFILE_POS_BEGIN);
-				pStream = RwStreamOpen(rwSTREAMFILE, rwSTREAMREAD, pFile);
+				fseek(fp, sPackFileData.uiOffset, SEEK_SET);
+				buf = (RwUInt8*)RwMalloc(sPackFileData.uiSize, rwMEMHINTDUR_GLOBAL);
+				if (buf)
+				{
+					size_t readBytes = fread(buf, 1, sPackFileData.uiSize, fp);
+					fclose(fp);
+					if (readBytes == sPackFileData.uiSize)
+					{
+						RwMemory mem;
+						mem.start = buf;
+						mem.length = sPackFileData.uiSize;
+						pStream = RwStreamOpen(rwSTREAMMEMORY, rwSTREAMREAD, &mem);
+					}
+					else
+					{
+						RwFree(buf);
+						buf = NULL;
+					}
+				}
+				else
+					fclose(fp);
 			}
 		}
 	}
@@ -534,9 +553,9 @@ void CNtlWorldFieldManager4RWWorld::CreateRpWorld()
 		}
 	}
 
-	if (pFile)
+	if (buf)
 	{
-		RwFclose(pFile);
+		RwFree(buf);
 	}
 }
 
@@ -639,7 +658,7 @@ RpAtomic* GetNtlWorldIndoorCollisionInfo(RpIntersection* pIntersection, RpWorldS
 // 				RwV3d vCollPos;
 // 				RwV3dAdd(&vCollPos, &pCollInfo->RayOri, &vScale);
 // 
-// 				// Åø¿¡¼­ÀÇ Mouse Pick Data´Â TransparencyTileµµ Ãæµ¹ÇØ¾ß ÇÑ´Ù. ÀÎµµ¾î¿¡¼­´Â ±»ÀÌ ÇÊ¿ä ÇÏÁö ¾ÊÀ» °Í °°´Ù.
+// 				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Mouse Pick Dataï¿½ï¿½ TransparencyTileï¿½ï¿½ ï¿½æµ¹ï¿½Ø¾ï¿½ ï¿½Ñ´ï¿½. ï¿½Îµï¿½ï¿½î¿¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 // // 				if (!dGET_COLLISION_INFO_UPDATE() && GetSceneManager()->GetWorldAttribute(vCollPos) & dNMAP_TRANSPARENCY_TILE_FLAG)
 // // 				{
 // // 					continue;
@@ -669,7 +688,7 @@ RpCollisionTriangle* GetNtlWorldIndoorCollisionInfo( RpIntersection *pIntersecti
 		vCollPos.y = pLine->start.y + (fRatio * vDelta.y);
 		vCollPos.z = pLine->start.z + (fRatio * vDelta.z);
 		
-		// Åø¿¡¼­ÀÇ Mouse Pick Data´Â TransparencyTileµµ Ãæµ¹ÇØ¾ß ÇÑ´Ù. ÀÎµµ¾î¿¡¼­´Â ±»ÀÌ ÇÊ¿ä ÇÏÁö ¾ÊÀ» °Í °°´Ù.
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Mouse Pick Dataï¿½ï¿½ TransparencyTileï¿½ï¿½ ï¿½æµ¹ï¿½Ø¾ï¿½ ï¿½Ñ´ï¿½. ï¿½Îµï¿½ï¿½î¿¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 // 		if (!dGET_COLLISION_INFO_UPDATE() && GetSceneManager()->GetWorldAttribute(vCollPos) & dNMAP_TRANSPARENCY_TILE_FLAG)
 // 		{
 // 			continue;
@@ -894,7 +913,7 @@ void CNtlWorldFieldManager4RWWorld::SetAnotherField(RwBool ChangeStraightAway)
 
 void CNtlWorldFieldManager4RWWorld::UpdateMsg(RwV3d& Pos)
 {
-	// world field switching effect : ÀÎµµ¾î¿¡¼­´Â FieldChanged Message¸¦ º¸³»Áö ¾Ê´Â´Ù.
+	// world field switching effect : ï¿½Îµï¿½ï¿½î¿¡ï¿½ï¿½ï¿½ï¿½ FieldChanged Messageï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 // 	if(GetFieldPropVariationStarting())
 // 	{
 // 		// Update current map name
@@ -939,7 +958,7 @@ RwBool CNtlWorldFieldManager4RWWorld::UpdateFieldMap(RwV3d& Pos)
 	// update old datum index
 	m_OldDatumIdx = m_NewDatumIdx;
 
-	// send msgs right after another fields : ÀÎµµ¾î ¿¡¼­´Â FieldChagedMessage¸¦ º¸³»Áö ¾Ê´Â´Ù.
+	// send msgs right after another fields : ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ FieldChagedMessageï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 	// CNtlPLEventGenerator::IsAnotherFieldChangedWithoutDelay();
 
 	return TRUE;
@@ -1194,7 +1213,7 @@ RpWorldSector* CollisionWorldSectorDecalIndoor(RpIntersection * pIntersection, R
 			DecalCallbackParam*	pDecalParam = (DecalCallbackParam*)pData;
 			RwInt32				nBuffCnt	= *pDecalParam->pBufferCnt;
 
-			// ÃÖ´ë °³¼ö¸¦ ³ÑÀ¸¸é Vertex¸¦ »ý¼ºÇÏÁö ¾Ê°í Äµ½½ÇÑ´Ù.
+			// ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Vertexï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ Äµï¿½ï¿½ï¿½Ñ´ï¿½.
 			if(nBuffCnt + 2 >= pDecalParam->nMaxVertextCnt)	
 			{
 				*(pDecalParam->pBufferCnt) += 3;
@@ -1233,7 +1252,7 @@ RpCollisionTriangle* CollisionWorldSectorDecalIndoor(RpIntersection *pIntersecti
 	DecalCallbackParam*	pDecalParam = (DecalCallbackParam*)pData;
 	RwInt32				nBuffCnt	= *pDecalParam->pBufferCnt;
 
-	// ÃÖ´ë °³¼ö¸¦ ³ÑÀ¸¸é Vertex¸¦ »ý¼ºÇÏÁö ¾Ê°í Äµ½½ÇÑ´Ù.
+	// ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Vertexï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ Äµï¿½ï¿½ï¿½Ñ´ï¿½.
 	if(nBuffCnt + 2 >= pDecalParam->nMaxVertextCnt)
 	{
 		*(pDecalParam->pBufferCnt) += 3;
@@ -1285,7 +1304,7 @@ RwBool CNtlWorldFieldManager4RWWorld::GetWorldDecal(RwV3d& vPosition, RwV3d& vSi
 
 	DecalCallbackParam decalCallbackParam;		
 	decalCallbackParam.vPos					= vPosition;
-	decalCallbackParam.pBufferCnt			= (RwInt32*)&nRenderVertexCount; ///< ÇöÀç±îÁö »ý¼ºµÈ Vertex ¹öÆÛÀÇ ´ÙÀ½ºÎÅÍ ´ã´Â´Ù.
+	decalCallbackParam.pBufferCnt			= (RwInt32*)&nRenderVertexCount; ///< ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Vertex ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â´ï¿½.
 	decalCallbackParam.pVertices			= pVertices;			
 	decalCallbackParam.fIntersectionRadius	= sqrtf(vSize.x * vSize.x + vSize.z * vSize.z) * 0.5f;
 	decalCallbackParam.fScale				= 1.0f;

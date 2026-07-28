@@ -315,7 +315,7 @@ VOID CQuickSlotGui::Init(VOID)
 			m_abPushDownKey[j][i] = FALSE;
 			m_abIsProcDownKey[j][i] = FALSE;
 
-			// Äü½½·ÔÀÇ »óÅÂµé
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Âµï¿½
 			m_afPushDownKeyElapsed[j][i] = 0.0f;
 			m_abEnableIgnoreUp[j][i] = FALSE;
 		}
@@ -349,19 +349,19 @@ RwBool CQuickSlotGui::Create(VOID)
 {
 	NTL_FUNCTION("CQuickSlotGui::Create");
 
-	// Äü½½·Õ¼¼ °ü·ÃµÈ Component »ý¼º
+	// ï¿½ï¿½ï¿½ï¿½ï¿½Õ¼ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ Component ï¿½ï¿½ï¿½ï¿½
 	if( !CNtlPLGui::Create( "", "gui\\QuickSlot.srf", "gui\\QuickSlot.frm" ) )
 		NTL_RETURN( FALSE );
 
 	CNtlPLGui::CreateComponents( CNtlPLGuiManager::GetInstance()->GetGuiManager() );
 
-	// Äü½½·ÔÀ» ±¸¼ºÇÒ ¶§ ÄÝ¹éÀÌ ÇÊ¿äÇÑ ÄÄÆ÷³ÍÆ®µéÀ» °¡Á®¿À°í
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ý¹ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	m_pThis = (gui::CDialog*)GetComponent( "dlgMain" );
 	m_pUpRowBtn = (gui::CButton*)GetComponent( "btnSlotPrev" );
 	m_pDownRowBtn = (gui::CButton*)GetComponent( "btnSlotNext" );
 	m_pRowNum = (gui::CStaticBox*)GetComponent( "stbNum" );
 
-	// ¿¬°áÇØÁØ´Ù.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
 	m_slotUpRowClick = m_pUpRowBtn->SigClicked().Connect( this, &CQuickSlotGui::OnClickedUpRow );
 	m_slotDownRowClick = m_pDownRowBtn->SigClicked().Connect( this, &CQuickSlotGui::OnClickedDownRow );
 	m_slotMouseUp = m_pThis->SigMouseUp().Connect( this, &CQuickSlotGui::OnMouseUp );
@@ -375,8 +375,8 @@ RwBool CQuickSlotGui::Create(VOID)
 	SetSlotRectHardCode();
 	m_pRowNum->SetText( m_nCurrentRow + 1 );
 
-	// Äü½½·Ô ´ÜÃàÅ°ÀÇ ÀÌ¸§À» »ý¼ºÇÏ°í µî·ÏÇÑ´Ù.
-	// Äü½½·Ô Index¸¦ ÃÊ±âÈ­ÇÑ´Ù.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Indexï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½Ñ´ï¿½.
 	m_anQuickSlotRow[ROW_DEFAULT] = 2;
 	m_anQuickSlotRow[ROW_EX] = 1;
 	m_anQuickSlotRow[ROW_EX2] = 0;
@@ -387,7 +387,7 @@ RwBool CQuickSlotGui::Create(VOID)
 	// InputMap Setting
 	LinkActionMap();
 
-	// Update ¿¬°á
+	// Update ï¿½ï¿½ï¿½ï¿½
 	GetNtlGuiManager()->AddUpdateFunc( this );
 
 	// Event
@@ -395,7 +395,7 @@ RwBool CQuickSlotGui::Create(VOID)
 	LinkMsg( g_EventIconMoveClick, 0 );
 	LinkMsg( g_EventSobInfoUpdate, 0 );
 	LinkMsg( g_EventSobCooling, 0 );
-	LinkMsg( g_EventSobItemAdd, 0, 0x7000 );	// ¾ÆÀÌÅÛÀÌ »ý¼ºµÈÈÄ ÀÌº¥Æ®¸¦ ¹Þ´Â´Ù.
+	LinkMsg( g_EventSobItemAdd, 0, 0x7000 );	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½Þ´Â´ï¿½.
 	LinkMsg( g_EventSobItemDelete, 0 );
 	LinkMsg( g_EventQuickSlotInfo, 0 );
 	LinkMsg( g_EventSobDeleteQuickSlotIcon, 0 );
@@ -493,7 +493,7 @@ VOID CQuickSlotGui::Update( RwReal fElapsed )
 				m_afPushDownKeyElapsed[i][j] += fElapsed;
 				if( m_afPushDownKeyElapsed[i][j] > 0.5f )
 				{
-					// ½Ã°£ ÃÊ±âÈ­
+					// ï¿½Ã°ï¿½ ï¿½Ê±ï¿½È­
 					m_afPushDownKeyElapsed[i][j] = 0.0f;
 
 					SERIAL_HANDLE hSerial = m_aQuickSlotItem[nDataRow][j].GetFirstSerialID();
@@ -502,8 +502,8 @@ VOID CQuickSlotGui::Update( RwReal fElapsed )
 					if( hSerial == INVALID_SERIAL_ID || nEnableState != CQuickSlotItem::ENABLE )
 						continue;
 
-					// ´Ù¿î µÇ°í ÀÖÀ» ¶§ ÇÑ¹ø ½ÇÇàµÆ´Ù¸é ÇØ´ç ½½·ÔÀÇ KeyDown, KeyUpÀÌ ÀÏ¾î³ª±â Àü±îÁö´Â Flag·Î Ã¼Å©ÇÏ¿©
-					// ½ºÅ³ Áßº¹ »ç¿ëÀ» ¸·´Â´Ù.
+					// ï¿½Ù¿ï¿½ ï¿½Ç°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ñ¹ï¿½ ï¿½ï¿½ï¿½ï¿½Æ´Ù¸ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ KeyDown, KeyUpï¿½ï¿½ ï¿½Ï¾î³ªï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Flagï¿½ï¿½ Ã¼Å©ï¿½Ï¿ï¿½
+					// ï¿½ï¿½Å³ ï¿½ßºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½.
 					if( !m_abIsProcDownKey[i][j] )
 					{
 						m_abEnableIgnoreUp[i][j] = Logic_UseProcRpBonusSkill( hSerial );
@@ -520,14 +520,14 @@ VOID CQuickSlotGui::Update( RwReal fElapsed )
 		}
 	}
 	
-	// ÇöÀç ¸¶¿ì½º·Î ´Ù¿îÇÑ ÀÎµ¦½º°¡ 0º¸´Ù Å©´Ù¸é ( À¯È¿ÇÏ´Ù¸é )
-	// ¸¶¿ì½º ½Ã°£À» ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½Ù¿ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ Å©ï¿½Ù¸ï¿½ ( ï¿½ï¿½È¿ï¿½Ï´Ù¸ï¿½ )
+	// ï¿½ï¿½ï¿½ì½º ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½Ñ´ï¿½.
 	if( m_nRSelectedSlotIdx >= 0 && m_nMouseOnIndex == m_nRSelectedSlotIdx )
 	{
 		m_fPushDownMouseElapsed += fElapsed;
 		if( m_fPushDownMouseElapsed > 0.5f )
 		{
-			// ½Ã°£ ÃÊ±âÈ­
+			// ï¿½Ã°ï¿½ ï¿½Ê±ï¿½È­
 			m_fPushDownMouseElapsed = 0.0f;
 
 			RwInt32 nVisibleRow = SLOTID_TO_ROW( m_nRSelectedSlotIdx );
@@ -543,8 +543,8 @@ VOID CQuickSlotGui::Update( RwReal fElapsed )
 			if( hSerial == INVALID_SERIAL_ID || nEnableState != CQuickSlotItem::ENABLE )
 				return;
 
-			// ´Ù¿î µÇ°í ÀÖÀ» ¶§ ÇÑ¹ø ½ÇÇàµÆ´Ù¸é ÇØ´ç ½½·Ô¿¡ ´Ù½Ã MosueSlot ÀÌ ÀÏ¾î³ª±â Àü±îÁö´Â Flag·Î Ã¼Å©ÇÏ¿©
-			// ½ºÅ³ Áßº¹ »ç¿ëÀ» ¸·´Â´Ù.
+			// ï¿½Ù¿ï¿½ ï¿½Ç°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ñ¹ï¿½ ï¿½ï¿½ï¿½ï¿½Æ´Ù¸ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½Ô¿ï¿½ ï¿½Ù½ï¿½ MosueSlot ï¿½ï¿½ ï¿½Ï¾î³ªï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Flagï¿½ï¿½ Ã¼Å©ï¿½Ï¿ï¿½
+			// ï¿½ï¿½Å³ ï¿½ßºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½.
 			if( !m_bIsProcMouseSelected )
 			{
 				m_bIsProcMouseSelected = TRUE;
@@ -577,7 +577,7 @@ VOID CQuickSlotGui::HandleEvents( RWS::CMsg& msg )
 		if( pData->hSerialId != GetNtlSLGlobal()->GetSobAvatar()->GetSerialID() )
 			return;
 
-		// ¾ÆÀÌÅÛ °¹¼ö, »èÁ¦ ¶§¹®.
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 		if( pData->uiUpdateType & ( EVENT_AIUT_ITEM | EVENT_AIUT_SKILL_RPBONUS ) )
 			UpdateAllSlot( CHECK_FLAG_ITEMNEED );
 
@@ -594,7 +594,7 @@ VOID CQuickSlotGui::HandleEvents( RWS::CMsg& msg )
 					{
 						if( m_aQuickSlotItem[i][j].GetFirstSerialID() == hSerial )
 						{
-							// °´Ã¼´Â ¾÷±×·¹ÀÌµåÀÇ ¿µÇâÀ» ¹ÞÁö ¾Ê´Â´Ù.
+							// ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 							if( IsVisibleRow( i ) )
 							{
 								if( ROWCOL_TO_SLOTID( i, j ) == m_nMouseOnIndex && GetInfoWndManager()->GetRequestGui() == DIALOG_QUICKSLOT )
@@ -666,7 +666,7 @@ VOID CQuickSlotGui::HandleEvents( RWS::CMsg& msg )
 	{
 		LoadQuickSlot();
 	}
-	// peessi : ÀÌ ÀÌº¥Æ®´Â Äü½½·ÔÀ» Áö¿ï¶§°¡ ¾Æ´Ï¶ó, ¾ÆÀÌÅÛÀÌ Ã¢°í·Î ³¯¶ó°¥¶§ µî¿¡ È£Ãâ, ÀÌ¸§À» ¹Ù²ã¾ß ÇÑ´Ù.
+	// peessi : ï¿½ï¿½ ï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¶§ï¿½ï¿½ ï¿½Æ´Ï¶ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¢ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ó°¥¶ï¿½ ï¿½î¿¡ È£ï¿½ï¿½, ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ ï¿½Ñ´ï¿½.
 	else if( msg.Id == g_EventSobDeleteQuickSlotIcon )
 	{
 		SNtlEventSobDeleteQuickSlotIcon* pData = reinterpret_cast<SNtlEventSobDeleteQuickSlotIcon*>( msg.pData );
@@ -695,7 +695,7 @@ VOID CQuickSlotGui::HandleEvents( RWS::CMsg& msg )
 	}
 	else if( msg.Id == g_EventCapsuleLockItemWithoutBag )
 	{
-		// ÈÄ¿¡ Capsule Lock/Unlock µî Äü½½·Ô¿¡ °ü·ÃµÈ ·êÀÌ Á¤ÇØÁö¸é ±×¶§ ÀÛ¾÷ÇÑ´Ù.
+		// ï¿½Ä¿ï¿½ Capsule Lock/Unlock ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô¿ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¶ï¿½ ï¿½Û¾ï¿½ï¿½Ñ´ï¿½.
 		/*SDboEventCapsuleLockItemWithoutBag* pData = reinterpret_cast<SDboEventCapsuleLockItemWithoutBag*>( msg.pData );
 
 		RwInt32 nEnableState = pData->bEnable ? CQuickSlotItem::CAPSULE_LOCK : CQuickSlotItem::ENABLE;
@@ -925,12 +925,12 @@ VOID CQuickSlotGui::HandleEvents( RWS::CMsg& msg )
 	//	{
 	//		if( pData->nWorkId == PMW_USE )
 	//		{
-	//			// »ç¿ë
+	//			// ï¿½ï¿½ï¿½
 	//			IconUseProc( pData->nSrcSlotIdx );
 	//		}
 	//		else if( pData->nWorkId == PMW_PULLOUT )
 	//		{
-	//			// Äü½½·Ô¿¡¼­ »èÁ¦
+	//			// ï¿½ï¿½ï¿½ï¿½ï¿½Ô¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	//			if( m_aQuickSlotItem[m_nCurrentRow][pData->nSrcSlotIdx].hSerial == pData->uiSerial )
 	//			{
 	//				UnsetIconFromQuickSlot( m_nCurrentRow, pData->nSrcSlotIdx );
@@ -974,7 +974,7 @@ CPos CQuickSlotGui::GetInitialRowPosOffset(VOID)
 	return pos;
 }
 
-RwInt32 CQuickSlotGui::ActionMapQuickSlotChange( RwUInt32 uiParam )
+RwInt32 CQuickSlotGui::ActionMapQuickSlotChange( uintptr_t uiParam )
 {
 	if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_QUICK_SLOT_CHANGE ) )
 		return 1;
@@ -996,7 +996,7 @@ RwInt32 CQuickSlotGui::ActionMapQuickSlotChange( RwUInt32 uiParam )
 	return 1;
 }
 
-RwInt32 CQuickSlotGui::ActionMapQuickSlotDown( RwUInt32 uiKey )
+RwInt32 CQuickSlotGui::ActionMapQuickSlotDown( uintptr_t uiKey )
 {
 	if( uiKey == 0 )
 	{
@@ -1022,7 +1022,7 @@ RwInt32 CQuickSlotGui::ActionMapQuickSlotDown( RwUInt32 uiKey )
 
 	nSlotIdx = ROWCOL_TO_SLOTID( nVisibleRowIndex, uiKey );
 
-	// Ã³À½ ´­·È´Ù¸é ±×¿¡ ¸Â´Â Á¤º¸¸¦ ÃÊ±âÈ­
+	// Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½È´Ù¸ï¿½ ï¿½×¿ï¿½ ï¿½Â´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
 	if( KeyClickEffect( TRUE, nSlotIdx ) )
 	{
 		/*GetAlarmManager()->AlarmMessage( L"Key Down" );*/
@@ -1034,7 +1034,7 @@ RwInt32 CQuickSlotGui::ActionMapQuickSlotDown( RwUInt32 uiKey )
 	return 1;
 }
 
-RwInt32 CQuickSlotGui::ActionMapQuickSlotUp( RwUInt32 uiKey )
+RwInt32 CQuickSlotGui::ActionMapQuickSlotUp( uintptr_t uiKey )
 {
 	if( uiKey == 1 )
 	{
@@ -1062,11 +1062,11 @@ RwInt32 CQuickSlotGui::ActionMapQuickSlotUp( RwUInt32 uiKey )
 
 	nSlotIdx = ROWCOL_TO_SLOTID( nVisibleRowIndex, uiKey );
 
-	// Key ¸¦ UpÇÑ »óÅÂ·Î ÀÌ¹ÌÁö¸¦ ¸¸µé¾îÁÖ°í, m_abEnableignoreUp °á°ú¿¡ µû¶ó¼­
-	// Äü½½·ÔÀÇ IconÀ» »ç¿ëÇÒÁö ¾ÈÇÒÁö Á¤ÇØÁØ´Ù.
+	// Key ï¿½ï¿½ Upï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö°ï¿½, m_abEnableignoreUp ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Iconï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
 	if( KeyClickEffect( FALSE, nSlotIdx ) )
 	{
-		// peessi : Å°Á¶ÇÕ¿¡ ¸Â°Ô Row°ªÀÌ ¹Ù²î¾î¾ß ÇÔ.
+		// peessi : Å°ï¿½ï¿½ï¿½Õ¿ï¿½ ï¿½Â°ï¿½ Rowï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ï¿½ ï¿½ï¿½.
 		if( m_abIsProcDownKey[nVisibleRowIndex][uiKey] == FALSE )
 			m_abIsProcDownKey[nVisibleRowIndex][uiKey] = TRUE;
 
@@ -1077,7 +1077,7 @@ RwInt32 CQuickSlotGui::ActionMapQuickSlotUp( RwUInt32 uiKey )
 	return 1;
 }
 
-RwInt32 CQuickSlotGui::ActionMapQuickSlotExDown( RwUInt32 uiKey )
+RwInt32 CQuickSlotGui::ActionMapQuickSlotExDown( uintptr_t uiKey )
 {
 	RwInt32 nSlotIdx = -1;
 	RwInt32 nVisibleRowIndex = -1;
@@ -1095,10 +1095,10 @@ RwInt32 CQuickSlotGui::ActionMapQuickSlotExDown( RwUInt32 uiKey )
 	if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_QUICK_SLOT_2_LAST ) )
 		return 1;
 	
-	// Ã³À½ ´­·È´Ù¸é ±×¿¡ ¸Â´Â Á¤º¸¸¦ ÃÊ±âÈ­
+	// Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½È´Ù¸ï¿½ ï¿½×¿ï¿½ ï¿½Â´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
 	if( KeyClickEffect( TRUE, nSlotIdx ) )
 	{
-		// peessi : Å°Á¶ÇÕ¿¡ ¸Â°Ô Row°ªÀÌ ¹Ù²î¾î¾ß ÇÔ.
+		// peessi : Å°ï¿½ï¿½ï¿½Õ¿ï¿½ ï¿½Â°ï¿½ Rowï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ï¿½ ï¿½ï¿½.
 		/*GetAlarmManager()->AlarmMessage( L"Key Down" );*/
 		m_afPushDownKeyElapsed[nVisibleRowIndex][uiKey] = 0.0f;
 		m_abEnableIgnoreUp[nVisibleRowIndex][uiKey] = FALSE;
@@ -1108,7 +1108,7 @@ RwInt32 CQuickSlotGui::ActionMapQuickSlotExDown( RwUInt32 uiKey )
 	return 1;
 }
 
-RwInt32 CQuickSlotGui::ActionMapQuickSlotExUp( RwUInt32 uiKey )
+RwInt32 CQuickSlotGui::ActionMapQuickSlotExUp( uintptr_t uiKey )
 {
 	RwInt32 nSlotIdx = -1;
 	RwInt32 nVisibleRowIndex = -1;
@@ -1128,11 +1128,11 @@ RwInt32 CQuickSlotGui::ActionMapQuickSlotExUp( RwUInt32 uiKey )
 	
 	/*GetAlarmManager()->AlarmMessage( L"Key Up" );*/
 
-	// Key ¸¦ UpÇÑ »óÅÂ·Î ÀÌ¹ÌÁö¸¦ ¸¸µé¾îÁÖ°í, m_abEnableignoreUp °á°ú¿¡ µû¶ó¼­
-	// Äü½½·ÔÀÇ IconÀ» »ç¿ëÇÒÁö ¾ÈÇÒÁö Á¤ÇØÁØ´Ù.
+	// Key ï¿½ï¿½ Upï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö°ï¿½, m_abEnableignoreUp ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Iconï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
 	if( KeyClickEffect( FALSE, nSlotIdx ) )
 	{
-		// peessi : Å°Á¶ÇÕ¿¡ ¸Â°Ô Row°ªÀÌ ¹Ù²î¾î¾ß ÇÔ.
+		// peessi : Å°ï¿½ï¿½ï¿½Õ¿ï¿½ ï¿½Â°ï¿½ Rowï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ï¿½ ï¿½ï¿½.
 		if( m_abIsProcDownKey[nVisibleRowIndex][uiKey] == FALSE )
 			m_abIsProcDownKey[nVisibleRowIndex][uiKey] = TRUE;
 
@@ -1143,7 +1143,7 @@ RwInt32 CQuickSlotGui::ActionMapQuickSlotExUp( RwUInt32 uiKey )
 	return 1;
 }
 
-RwInt32 CQuickSlotGui::ActionMapQuickSlotEx2Down( RwUInt32 uiKey )
+RwInt32 CQuickSlotGui::ActionMapQuickSlotEx2Down( uintptr_t uiKey )
 {
 	RwInt32 nSlotIdx = -1;
 	RwInt32 nVisibleRowIndex = -1;
@@ -1161,10 +1161,10 @@ RwInt32 CQuickSlotGui::ActionMapQuickSlotEx2Down( RwUInt32 uiKey )
 	if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_QUICK_SLOT_2_LAST ) )
 		return 1;
 	
-	// Ã³À½ ´­·È´Ù¸é ±×¿¡ ¸Â´Â Á¤º¸¸¦ ÃÊ±âÈ­
+	// Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½È´Ù¸ï¿½ ï¿½×¿ï¿½ ï¿½Â´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
 	if( KeyClickEffect( TRUE, nSlotIdx ) )
 	{
-		// peessi : Å°Á¶ÇÕ¿¡ ¸Â°Ô Row°ªÀÌ ¹Ù²î¾î¾ß ÇÔ.
+		// peessi : Å°ï¿½ï¿½ï¿½Õ¿ï¿½ ï¿½Â°ï¿½ Rowï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ï¿½ ï¿½ï¿½.
 		/*GetAlarmManager()->AlarmMessage( L"Key Down" );*/
 		m_afPushDownKeyElapsed[nVisibleRowIndex][uiKey] = 0.0f;
 		m_abEnableIgnoreUp[nVisibleRowIndex][uiKey] = FALSE;
@@ -1174,7 +1174,7 @@ RwInt32 CQuickSlotGui::ActionMapQuickSlotEx2Down( RwUInt32 uiKey )
 	return 1;
 }
 
-RwInt32 CQuickSlotGui::ActionMapQuickSlotEx2Up( RwUInt32 uiKey )
+RwInt32 CQuickSlotGui::ActionMapQuickSlotEx2Up( uintptr_t uiKey )
 {
 	RwInt32 nSlotIdx = -1;
 	RwInt32 nVisibleRowIndex = -1;
@@ -1194,11 +1194,11 @@ RwInt32 CQuickSlotGui::ActionMapQuickSlotEx2Up( RwUInt32 uiKey )
 	
 	/*GetAlarmManager()->AlarmMessage( L"Key Up" );*/
 
-	// Key ¸¦ UpÇÑ »óÅÂ·Î ÀÌ¹ÌÁö¸¦ ¸¸µé¾îÁÖ°í, m_abEnableignoreUp °á°ú¿¡ µû¶ó¼­
-	// Äü½½·ÔÀÇ IconÀ» »ç¿ëÇÒÁö ¾ÈÇÒÁö Á¤ÇØÁØ´Ù.
+	// Key ï¿½ï¿½ Upï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö°ï¿½, m_abEnableignoreUp ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Iconï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
 	if( KeyClickEffect( FALSE, nSlotIdx ) )
 	{
-		// peessi : Å°Á¶ÇÕ¿¡ ¸Â°Ô Row°ªÀÌ ¹Ù²î¾î¾ß ÇÔ.
+		// peessi : Å°ï¿½ï¿½ï¿½Õ¿ï¿½ ï¿½Â°ï¿½ Rowï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½ï¿½ï¿½ ï¿½ï¿½.
 		if( m_abIsProcDownKey[nVisibleRowIndex][uiKey] == FALSE )
 			m_abIsProcDownKey[nVisibleRowIndex][uiKey] = TRUE;
 
@@ -1459,10 +1459,10 @@ VOID CQuickSlotGui::SendPacketToSetIcon( RwInt32 nRow, RwInt32 nCol, CNtlSobIcon
 }
 
 /**
-* \brief ÁÂÇ¥»ó¿¡ À§Ä¡ÇÑ Äü½½·ÔÀÇ ÀÎµ¦½º¸¦ °¡Á®¿Â´Ù.
-* \param	nX				X ÁÂÇ¥
-* \param	nY				Y ÁÂÇ¥
-* \return	Äü½½·ÔÀÇ ÀÎµ¦½º(-1 ÀÌ¶ó¸é ÁÂÇ¥°¡ ÀÎµ¦½º¿¡¼­ ¹þ¾î³µ´Ù´Â °Í)
+* \brief ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½.
+* \param	nX				X ï¿½ï¿½Ç¥
+* \param	nY				Y ï¿½ï¿½Ç¥
+* \return	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½(-1 ï¿½Ì¶ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½î³µï¿½Ù´ï¿½ ï¿½ï¿½)
 */
 RwInt32 CQuickSlotGui::GetQuickSlotIdx( RwInt32 nX, RwInt32 nY )
 {
@@ -1556,7 +1556,7 @@ VOID CQuickSlotGui::ShowIconDestination(VOID)
 }
 
 /**
-* \brief Äü½½·ÔÀÇ ¹Ú½ºÀÇ ±¸¼ºÀ» ÇÏµåÄÚµù
+* \brief ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ïµï¿½ï¿½Úµï¿½
 */
 VOID CQuickSlotGui::SetSlotRectHardCode(VOID)
 {
@@ -1604,7 +1604,7 @@ VOID CQuickSlotGui::SetSlotRectHardCode(VOID)
 
 			m_asurRPType[j][i].SetPositionfromParent( m_artQuickSlot[j][i].left + QUICK_RPTYPE_OFFSET, m_artQuickSlot[j][i].top + QUICK_RPTYPE_OFFSET );		
 
-			// peessi : Flash´Â ·Îµù½Ã ºÎÇÏ°¡ ½ÉÇØ, ¹Ì¸® ·ÎµùÇØ¼­ »ç¿ëÇÑ´Ù. 
+			// peessi : Flashï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½Ì¸ï¿½ ï¿½Îµï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. 
 			CRectangle rect;
 			rect.SetRectWH( m_artQuickSlot[j][i].left - 5, m_artQuickSlot[j][i].top - 5, 42, 42 );				  
 			m_apflaEffect[j][i] = NTL_NEW gui::CFlash( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), "Skill_action.swf" );
@@ -1616,7 +1616,7 @@ VOID CQuickSlotGui::SetSlotRectHardCode(VOID)
 }
 
 /**
-* \brief ¹Ýµå½Ã ±âÁ¸ÀÇ CQuickSlotGui::SetSlotHardCodeRect ÇÔ¼ö ½ÇÇà ÈÄ¿¡ ½ÇÇàµÇ¾î¾ß ÇÑ´Ù.
+* \brief ï¿½Ýµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ CQuickSlotGui::SetSlotHardCodeRect ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ ï¿½Ñ´ï¿½.
 */
 VOID CQuickSlotGui::CreateShortCutKeyName()
 {
@@ -1632,7 +1632,7 @@ VOID CQuickSlotGui::CreateShortCutKeyName()
 			RwInt32 nRight	= m_artQuickSlot[j][i].right;
 			RwInt32 nBottom = m_artQuickSlot[j][i].bottom;
 
-			// Static BoxÀÇ À§Ä¡
+			// Static Boxï¿½ï¿½ ï¿½ï¿½Ä¡
 			rtRect.SetRect( nLeft, nTop, nRight, nBottom );
 
 			m_apStbShortCutName[j][i] = NTL_NEW gui::CStaticBox( &rtRect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), DBOGUI_SLOT_KEYNAME_ALIGN );
@@ -1656,7 +1656,7 @@ VOID CQuickSlotGui::DestroyShortCutKeyName()
 }
 
 /**
-* \brief ÃÖÃÊ¿¡ Äü½½·Ô¿¡ ´ÜÃàÅ° ÀÌ¸§À» SetText ÇÑ´Ù.
+* \brief ï¿½ï¿½ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô¿ï¿½ ï¿½ï¿½ï¿½ï¿½Å° ï¿½Ì¸ï¿½ï¿½ï¿½ SetText ï¿½Ñ´ï¿½.
 */
 VOID CQuickSlotGui::RegisterShortCutkeyName()
 {
@@ -1681,7 +1681,7 @@ VOID CQuickSlotGui::IconPutDownProc(RwUInt32 hSerial, RwInt32 ePlace, RwInt32 nS
 	if( CheckIconMoveLock() )
 		return;	
 
-	// ¿¹¿Ü Ã³¸®
+	// ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 	if( !IsValidVisibleSlotIdx( nSlotIdx ) )
 		return;
 
@@ -1714,7 +1714,7 @@ VOID CQuickSlotGui::IconPutDownProc(RwUInt32 hSerial, RwInt32 ePlace, RwInt32 nS
 		// Data Set
 		SetIconToQuickSlot( nDataRow, nCol, hSerial, pIcon );
 
-		// ÆÐÅ¶ º¸³»±â 
+		// ï¿½ï¿½Å¶ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 		RwInt32 nSlotID = ROWCOL_TO_SLOTID( nDataRow, nCol );
 		NTL_ASSERT( nSlotID >= 0 && nSlotID < 48, "CQuickSlotItem::IconPutDownProc : SlotID Error!(" << nSlotID << ")" );	
 		SendPacketToSetIcon( nDataRow, nCol, pIcon );
@@ -1732,7 +1732,7 @@ VOID CQuickSlotGui::IconPutDownProc(RwUInt32 hSerial, RwInt32 ePlace, RwInt32 nS
 			m_aQuickSlotItem[nDataRow][nCol] = m_aQuickSlotItem[nSrcDataRow][nSrcCol];
 			m_aQuickSlotItem[nSrcDataRow][nSrcCol] = TempQuickSlot;
 
-			// ÆÐÅ¶ º¸³»±â
+			// ï¿½ï¿½Å¶ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			if( m_aQuickSlotItem[nDataRow][nCol].IsValid() )
 			{
 				RwInt32 nSlotID = ROWCOL_TO_SLOTID( nDataRow, nCol );
@@ -1786,7 +1786,7 @@ VOID CQuickSlotGui::IconUseProc( RwInt32 nSlotIdx )
 	if( hSerial == INVALID_SERIAL_ID || nEnableState != CQuickSlotItem::ENABLE )
 		return;
 
-	// IconÀÌ ½ºÅ³ÀÏ °æ¿ì ÇöÀç RpBonus Dialog°¡ ¶° ÀÖÀ¸¸é »ç¿ë¾ÈµÇ°Ô ÇØ¾ß ÇÑ´Ù.
+	// Iconï¿½ï¿½ ï¿½ï¿½Å³ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ RpBonus Dialogï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÈµÇ°ï¿½ ï¿½Ø¾ï¿½ ï¿½Ñ´ï¿½.
 	if( m_aQuickSlotItem[nDataRowIndex][nColIndex].GetSLClassID() == SLCLASS_SKILL_ICON )
 		if( GetDialogManager()->IsOpenDialog( DIALOG_SKILL_RPBONUS ) )
 			return;
@@ -1933,7 +1933,7 @@ bool CQuickSlotGui::CanPlaceItem(CNtlSobIcon* pIcon)
 	return true;
 }
 
-// Desc : UpdateAllSlot¿¡¼­´Â ½ÇÁ¦ QuickSlotµ¥ÀÌÅÍ°¡ ¾Æ´Ñ Cool-time, Stack, QuickSlotRowÀÇ º¯È­¸¸ Á¶Á¤ÇÑ´Ù.
+// Desc : UpdateAllSlotï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ QuickSlotï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Æ´ï¿½ Cool-time, Stack, QuickSlotRowï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 VOID CQuickSlotGui::UpdateAllSlot( RwUInt32 flagUseableCheck /* = 0  */ )
 {
 	for( RwInt32 j = 0 ; j < m_nVisibleRowCount ; ++j )
@@ -1988,7 +1988,7 @@ VOID CQuickSlotGui::UpdateAllSlot( RwUInt32 flagUseableCheck /* = 0  */ )
 
 					//	DestroyFlashEffect( ROWCOL_TO_SLOTID( j, i ) );
 						DestroyStackNumber( ROWCOL_TO_SLOTID( j, i ) );
-						m_asurDisableSkill[j][i].Show( FALSE );	// ÃÊ±âÈ­
+						m_asurDisableSkill[j][i].Show( FALSE );	// ï¿½Ê±ï¿½È­
 
 						if( flagUseableCheck & CHECK_FLAG_LPEPRP )
 						{
@@ -2117,7 +2117,7 @@ VOID CQuickSlotGui::UpdateAllSlot( RwUInt32 flagUseableCheck /* = 0  */ )
 					//	else
 					//		DestroyFlashEffect( ROWCOL_TO_SLOTID( j, i ) );
 
-						m_asurDisableSkill[j][i].Show( FALSE );	// ÃÊ±âÈ­
+						m_asurDisableSkill[j][i].Show( FALSE );	// ï¿½Ê±ï¿½È­
 						
 						/*if( flagUseableCheck & CHECK_FLAG_TARGETAPPLY )
 						{
@@ -2145,7 +2145,7 @@ VOID CQuickSlotGui::UpdateAllSlot( RwUInt32 flagUseableCheck /* = 0  */ )
 					{
 					//	DestroyFlashEffect( ROWCOL_TO_SLOTID( j, i ) );
 						DestroyStackNumber( ROWCOL_TO_SLOTID( j, i ) );
-						m_asurDisableSkill[j][i].Show( FALSE );	// ÃÊ±âÈ­
+						m_asurDisableSkill[j][i].Show( FALSE );	// ï¿½Ê±ï¿½È­
 						m_asurRPType[j][i].Show( FALSE );
 					}
 
@@ -2237,7 +2237,7 @@ RwBool CQuickSlotGui::CreateFlashEffect( RwInt32 nSlotIdx )
 	m_apflaEffect[nRowIdx][nColIdx]->Show( true );
 	//
 
-	// peessi : Flash ·Îµù½Ã ºÎÇÏ°¡ ½ÉÇØ ¹Ì¸® ·ÎµùÇØ¼­ »ç¿ëÇÔ. 
+	// peessi : Flash ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½Îµï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½. 
 	//if( m_apflaEffect[nRowIdx][nColIdx] )
 	//	NTL_RETURN( TRUE );
 
@@ -2270,7 +2270,7 @@ VOID CQuickSlotGui::DestroyFlashEffect( RwInt32 nSlotIdx )
 	m_apflaEffect[nRowIdx][nColIdx]->Show( false );
 	//
 
-	// peessi : Flash ·Îµù½Ã ºÎÇÏ°¡ ½ÉÇØ ¹Ì¸® ·ÎµùÇØ¼­ »ç¿ëÇÔ. 
+	// peessi : Flash ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½Îµï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½. 
 	//NTL_DELETE( m_apflaEffect[nRowIdx][nColIdx] );
 }
 
@@ -2305,7 +2305,7 @@ RwBool CQuickSlotGui::ClickEffect( RwBool bPush, RwInt32 nSlotIdx /* = -1  */)
 {
 	CRectangle rtScreen = m_pThis->GetScreenRect();
 
-	// TRUE = ´Ù¿î, FALSE = ¾÷
+	// TRUE = ï¿½Ù¿ï¿½, FALSE = ï¿½ï¿½
 	if( bPush )
 	{
 		if( !IsValidVisibleSlotIdx( nSlotIdx ) )
@@ -2314,7 +2314,7 @@ RwBool CQuickSlotGui::ClickEffect( RwBool bPush, RwInt32 nSlotIdx /* = -1  */)
 		RwInt32 nRowIdx = SLOTID_TO_ROW( nSlotIdx );
 		RwInt32 nColIdx = SLOTID_TO_COL( nSlotIdx );
 
-		// ÀÌ¹Ì Å°º¸µå·Î ´­·ÁÁ® ÀÖ´Â Å°¶ó¸é ¸·¾ÆÁØ´Ù.
+		// ï¿½Ì¹ï¿½ Å°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ Å°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
 		if( m_abPushDownKey[nRowIdx][nColIdx] )
 			return FALSE;
 
@@ -2334,7 +2334,7 @@ RwBool CQuickSlotGui::ClickEffect( RwBool bPush, RwInt32 nSlotIdx /* = -1  */)
 		return FALSE;	
 	}
 
-	// ¸¶¿ì½º·Î ´©¸¥ Index¸¦ ÇöÀçÀÇ Index
+	// ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Indexï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Index
 	m_nPushDownIndex = nSlotIdx;
 
 	return TRUE;
@@ -2358,7 +2358,7 @@ RwBool CQuickSlotGui::KeyClickEffect( RwBool bPush, RwInt32 nSlotIdx )
 		m_asurIcon[nRowIdx][nColIdx].SetRect( rtScreen.left + m_artQuickSlot[nRowIdx][nColIdx].left + ICONPUSH_SIZEDIFF, rtScreen.top + m_artQuickSlot[nRowIdx][nColIdx].top + ICONPUSH_SIZEDIFF,
 											  rtScreen.left + m_artQuickSlot[nRowIdx][nColIdx].right - ICONPUSH_SIZEDIFF, rtScreen.top + m_artQuickSlot[nRowIdx][nColIdx].bottom - ICONPUSH_SIZEDIFF );
 
-		// ÀÌ¹Ì ´­·ÁÁ® ÀÖ´Ù¸é FALSE¸¦ ¸®ÅÏ
+		// ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ù¸ï¿½ FALSEï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		if( m_abPushDownKey[nRowIdx][nColIdx] )
 			return FALSE;
 		else 
@@ -2424,7 +2424,7 @@ RwBool CQuickSlotGui::UseableCheck_ItemNeed( sSKILL_TBLDAT* pData )
 
 	if( byRequireItemType != INVALID_BYTE )
 	{
-		// ÇöÀç ÇÊ¿ä ¾ÆÀÌÅÛ Å¸ÀÔÀº ¹«±â, º¸Á¶¹«±â¸¸À¸·Î ÁöÁ¤µÇ¾î ÀÖ´Ù. 			
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½â¸¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½Ö´ï¿½. 			
 		if( Check_EquippedSlot( EQUIP_SLOT_TYPE_HAND, byRequireItemType ) )
 			return TRUE;
 
@@ -2647,7 +2647,7 @@ RwBool CQuickSlotGui::UseableCheck_AvatarState( sSKILL_TBLDAT* pData )
 
 RwBool CQuickSlotGui::UseableCheck_AvatarState(VOID)
 {
-	// º¯½ÅÁßÀÏ¶§´Â ÀÏ¹Ý ½ºÅ³Àº »ç¿ëÇÏÁö ¸øÇÑ´Ù	
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ï¿½ï¿½ ï¿½Ï¹ï¿½ ï¿½ï¿½Å³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½	
 	if(Logic_IsTransform(GetNtlSLGlobal()->GetSobAvatar()))
 	{
 		BYTE byAspectStateID = GetNtlSLGlobal()->GetSobAvatar()->GetAspectState()->sAspectStateBase.byAspectStateId;
@@ -2710,7 +2710,7 @@ RwInt32 CQuickSlotGui::GetDataRowIndex( RwInt32 nVisibleRowIndex )
 	}
 
 	RwInt32 nVisibleCurrentIndex = m_nVisibleRowCount - 1;			
-	RwInt32 nIndexOffset = nVisibleCurrentIndex - nVisibleRowIndex;	// Ç×»ó CurrentIndex°¡ Å©´Ù.
+	RwInt32 nIndexOffset = nVisibleCurrentIndex - nVisibleRowIndex;	// ï¿½×»ï¿½ CurrentIndexï¿½ï¿½ Å©ï¿½ï¿½.
 	nResult = ( m_nCurrentRow + nIndexOffset ) % QUICKSLOT_MAXROW;
 
 	return nResult;
@@ -2861,7 +2861,7 @@ VOID CQuickSlotGui::SetVisibleRowCount( RwInt32 nVisibleRowCount )
 		break;
 	}
 
-	// peessi : GUIComponent´Â »èÁ¦ÇØÁà¾ß ÇÑ´Ù. 
+	// peessi : GUIComponentï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½. 
 	for( RwInt32 i = nVisibleRowCount ; i < QUICKSLOT_MAX_VISIBLE_ROW ; ++i )
 	{
 		for( RwInt32 j = 0 ; j < QUICKSLOT_MAXCOL ; ++j )
@@ -2877,7 +2877,7 @@ VOID CQuickSlotGui::SetVisibleRowCount( RwInt32 nVisibleRowCount )
 
 	UpdateAllSlot( CHECK_FLAG_ALL );	
 
-	// º¯°æµÈ »çÇ×¿¡ µû¶ó ´ÜÃàÅ° ÀÌ¸§À» ´Ù½Ã ¼¼ÆÃÇÑ´Ù.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½×¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å° ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	RegisterShortCutkeyName();
 
 	GetDialogManager()->LocationDialogs( GetDboGlobal()->GetScreenWidth(), GetDboGlobal()->GetScreenHeight() );
@@ -3070,7 +3070,7 @@ VOID CQuickSlotGui::OnMouseUp( const CKey& key )
 					bReg = Logic_CanMouseInput_in_Tutorial( ETL_MOUSE_INPUT_TYPE_QUICK_SLOT_2_LAST_REG );
 				}
 
-				// ¾ÆÀÌÄÜ PutDown
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ PutDown
 				if( bReg )
 					IconPutDownProc( GetIconMoveManager()->GetSrcSerial(), GetIconMoveManager()->GetSrcPlace(), nSlotIdx );
 			}
@@ -3139,7 +3139,7 @@ VOID CQuickSlotGui::OnMouseUp( const CKey& key )
 
 			if( bClick )
 			{
-				// ÇöÀç ÀÎµ¦½º°¡ ¹«½ÃÇÏ±â·Î ÇÑ ÀÎµ¦½º°¡ ¾Æ´Ï¶ó¸é ½ÇÇà
+				// ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ï¿½ ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ï¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				if( m_nEnableIgnoreIndex != nSlotIdx )
 				{
 					RwBool bExcute = false;

@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File: DBCNarrationGui.h
 // Desc: DBCNarrationGui
-//		 Narration °ü·Ã
+//		 Narration ï¿½ï¿½ï¿½ï¿½
 //
 // 2006.12.5 Peessi@hitel.net   
 //
@@ -32,7 +32,7 @@ public:
 	RwBool	Create(VOID);
 	VOID	Destroy(VOID);
 
-	INT		StateUpdate( RwUInt32 uiElapsedTime );
+	INT		StateUpdate( uintptr_t uiElapsedTime );
 
 	//! Event
 	VOID	HandleEvents( RWS::CMsg& msg );
@@ -57,8 +57,8 @@ private:
 	gui::CSlot	m_slotOnMouseDown;
 
 	//! Variable
-	STATE				m_eUIState;					// UIÀÚÃ¼ÀÇ State
-	RwInt32				m_eNarrationState;			// NarrationÀÇ State	
+	STATE				m_eUIState;					// UIï¿½ï¿½Ã¼ï¿½ï¿½ State
+	RwInt32				m_eNarrationState;			// Narrationï¿½ï¿½ State	
 
 	CNtlPLCinematicObject*	m_pCinematicObject;
 

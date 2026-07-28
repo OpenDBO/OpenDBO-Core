@@ -121,6 +121,9 @@ CNtlPLCharacter::~CNtlPLCharacter()
 	GetNtlPLCullingScheduler()->RemoveCulling(GetClassType(), this);
 #endif
 
+	// Safety net: remove from world if Destroy() wasn't called
+	RemoveWorld();
+
     if(m_sScheduleResInfo.bPCFlag && (m_sScheduleResInfo.uiRace == RACE_NAMEK || m_sScheduleResInfo.uiRace == RACE_MAJIN))
     {
         NTL_DELETE(m_pTypeBoneData);
@@ -133,9 +136,9 @@ RwBool CNtlPLCharacter::SetProperty(const CNtlPLProperty *pData)
 }
 
 /**
-* Character »ý¼º½Ã È£ÃâÀÌ µÈ´Ù.
-* \param pParam Character »ý¼º½Ã ÇÊ¿äÇÑ(Head, Hair, SkinColor, HairColor°ªÀ» ¹Þ¾Æ¾ß ÇÑ´Ù. Pc, Mob, Npc¿¡ ´ëÇÑ ±¸ºÐµµ)
-* \return ½ÇÆÐ À¯¹«
+* Character ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½ï¿½ ï¿½È´ï¿½.
+* \param pParam Character ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½(Head, Hair, SkinColor, HairColorï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¾ï¿½ ï¿½Ñ´ï¿½. Pc, Mob, Npcï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ðµï¿½)
+* \return ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 */
 RwBool CNtlPLCharacter::Create(const SPLEntityCreateParam *pParam)
 {
@@ -405,6 +408,7 @@ RwBool CNtlPLCharacter::Update(float fElapsed)
 	{
 		return TRUE;
 	}
+
 /*
 	static RwBool woody = FALSE;
 	if(dOKEY(DIK_I))
@@ -638,9 +642,9 @@ RwBool CNtlPLCharacter::Update(float fElapsed)
 }
 
 /**
-* Visula Manager¿¡¼­ Render¸¦ °­Á¦·Î È£ÃâÇÏ°Ô Çß´Ù.
-* CallBack Çü½ÄÀ¸·Î º¯°æÀ» ÇØ¾ß ÇÒµí ÇÏ´Ù.
-* \return ½ÇÆÐ À¯¹«
+* Visula Managerï¿½ï¿½ï¿½ï¿½ Renderï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ß´ï¿½.
+* CallBack ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ ï¿½Òµï¿½ ï¿½Ï´ï¿½.
+* \return ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 */
 RwBool CNtlPLCharacter::Render(void)
 {	
@@ -671,8 +675,8 @@ static RpAtomic *RenderToTextureAtomic(RpAtomic *pAtomic, void *pData)
 }
 
 /**
-* Texture¿¡ RenderingÀ» ÇÒ °æ¿ì ¾²´Â ÇÔ¼ö
-* \return ½ÇÆÐ À¯¹«
+* Textureï¿½ï¿½ Renderingï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
+* \return ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 */
 RwBool CNtlPLCharacter::RenderToTexture()
 {
@@ -726,8 +730,8 @@ void CNtlPLCharacter::UpdatePreBoneScale()
 
         if(bTargetPosApply && parentIndex == uiBone1)
         {
-            // ¾î±ú º»À¸·ÎºÎÅÍ Å¸°ÙÀÇ °¢µµ¸¦ °è»êÇØ¼­ º¯ÇüÇÑ´Ù. 
-            // Å¸°Ù ¹æÇâÀ¸·Î º»À» ´Ã¸®±â À§ÇØ¼­´Ù. ³ª¸ÞÅ© ÆÈ´Ã¸®±â ½ºÅ³¿ë (by agebreak 08-10-23)
+            // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. 
+            // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½Å© ï¿½È´Ã¸ï¿½ï¿½ï¿½ ï¿½ï¿½Å³ï¿½ï¿½ (by agebreak 08-10-23)
             RwV3d vBonePos = pMatClavicle->pos;            
             vBonePos.x = GetPosition().x;
             vBonePos.z = GetPosition().z;
@@ -739,7 +743,7 @@ void CNtlPLCharacter::UpdatePreBoneScale()
             RwV3dNormalize(&vTargetDir, &vTargetDir);            
             RwReal fAngle = acos(RwV3dDotProduct(&vDir, &vTargetDir));
 
-            // ¿ÞÂÊ, ¿À¸¥ÂÊ ¾î±ú¿¡ µû¶ó¼­ ÈÖ¾îÁö´Â °¢µµ°¡ ´Ù¸£´Ù.
+            // ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½.
             if(strstr(m_szBoneStretchAxisBone, " L ") > 0)
             {
                 fAngle = vBonePos.y <= m_vBoneStretchTargetPos.y ? fAngle : -fAngle;
@@ -808,7 +812,7 @@ void CNtlPLCharacter::UpdatePostBoneScale()
 }
 
 /**
-* Toon Data¸¦ »ý¼ºÀ» ÇÑ´Ù.
+* Toon Dataï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
 */
 void CNtlPLCharacter::CreateToonData(const RwChar *szTexName, const RwChar *szTexPath)
 {
@@ -829,9 +833,9 @@ void CNtlPLCharacter::CreateToonData(const RwChar *szTexName, const RwChar *szTe
 }
 
 /**
-* Animation¿¡ ÇÊ¿äÇÑ ¼¼ÆÃÀ» ÇÑ´Ù.
+* Animationï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
 * \param pAnim RtAnimAnimation Data
-* \return ½ÇÆÐ À¯¹«
+* \return ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 */
 RwBool CNtlPLCharacter::CreateAnim(RwUInt32 uiAnimKey, RwReal fStartTime, RwBool bLoop )
 {
@@ -896,11 +900,11 @@ RwBool CNtlPLCharacter::IsExistAnim(RwUInt32 uiAnimKey)
 
 
 /**
-* Animation Change¸¦ ÇÑ´Ù. RUN_FRONT, RUN_BACK, ROTATE´Â ÇöÀç AnimationÀÌ ÀÖÀ» °æ¿ì º¯°æÇÏÁö ¾Ê´Â´Ù.
+* Animation Changeï¿½ï¿½ ï¿½Ñ´ï¿½. RUN_FRONT, RUN_BACK, ROTATEï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Animationï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 * \param uiAnimKey		AnimationKey
-* \param fStartTime	Animation ½ÃÀÛ½Ã°£
-* \param bLoop			Loop À¯¹«
-* \return ½ÇÆÐ À¯¹«
+* \param fStartTime	Animation ï¿½ï¿½ï¿½Û½Ã°ï¿½
+* \param bLoop			Loop ï¿½ï¿½ï¿½ï¿½
+* \return ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 */
 RwBool CNtlPLCharacter::SetBaseAnimation(RwUInt32 uiAnimKey, RwReal fStartTime, RwBool bLoop)
 {
@@ -964,11 +968,11 @@ RwBool CNtlPLCharacter::SetBaseAnimation(RwUInt32 uiAnimKey, RwReal fStartTime, 
 }
 
 /**
-* Animation Blend¸¦ ÇÏÁö ¾Ê°í Pre, Next ¸ðµÎ Animation¸¦ ¹Ù²Û´Ù. 
+* Animation Blendï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ Pre, Next ï¿½ï¿½ï¿½ Animationï¿½ï¿½ ï¿½Ù²Û´ï¿½. 
 * \param uiAnimKey		AnimationKey
-* \param fStartTime	Animation ½ÃÀÛ½Ã°£
-* \param bLoop			Loop À¯¹«
-* \return ½ÇÆÐ À¯¹«
+* \param fStartTime	Animation ï¿½ï¿½ï¿½Û½Ã°ï¿½
+* \param bLoop			Loop ï¿½ï¿½ï¿½ï¿½
+* \return ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 */
 RwBool CNtlPLCharacter::SetAllAnimation(RwUInt32 uiAnimKey, RwReal fStartTime, RwBool bLoop)
 {
@@ -1033,7 +1037,7 @@ RwBool CNtlPLCharacter::SetBlend(EBlendType eBlendType, RwReal fBlendAlpha, RwRe
 }
 
 /**
-* Animation¿¡¼­ÀÇ AnimHit
+* Animationï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ AnimHit
 * \return SAnimHitParam
 */
 SAnimPlayInfo *CNtlPLCharacter::GetBaseAnimPlayInfo()
@@ -1211,8 +1215,8 @@ RpAtomic* CNtlPLCharacter::GetAtomic( const std::string& strName )
 }
 
 /**
-* pPosÀ§Ä¡¿¡ Character¸¦ À§Ä¡ ½ÃÅ²´Ù.
-* \param pPos World¿¡¼­ÀÇ À§Ä¡
+* pPosï¿½ï¿½Ä¡ï¿½ï¿½ Characterï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½Å²ï¿½ï¿½.
+* \param pPos Worldï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
 */
 void CNtlPLCharacter::SetPosition(const RwV3d *pPos)
 {
@@ -1245,7 +1249,25 @@ void CNtlPLCharacter::SetPosition(const RwV3d *pPos)
 
 	RwFrameUpdateObjects( pFrame );
 
-	// SoundÀÇ À§Ä¡µµ º¯°æÇÑ´Ù.
+	// Update cloned atomics' world bounding spheres (their frames are separate from the clump hierarchy)
+	for( RwInt32 i = 0; i < static_cast<RwInt32>( m_vecAtomicList.size() ); ++i )
+	{
+		RpAtomic* pAtomic = static_cast<RpAtomic*>( m_vecAtomicList.at( i )->pData );
+		if( pAtomic )
+		{
+			const RwSphere* pLocalSphere = RpAtomicGetBoundingSphere( pAtomic );
+			if( pLocalSphere )
+			{
+				// sphere is rotation-invariant: just entity pos + local offset
+				pAtomic->worldBoundingSphere.center.x = m_vCurPos.x + pLocalSphere->center.x;
+				pAtomic->worldBoundingSphere.center.y = m_vCurPos.y + pLocalSphere->center.y;
+				pAtomic->worldBoundingSphere.center.z = m_vCurPos.z + pLocalSphere->center.z;
+				pAtomic->worldBoundingSphere.radius = pLocalSphere->radius;
+			}
+		}
+	}
+
+	// Soundï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	ListSoundHandle::iterator it = m_listLoopSound.begin();
 	for(; it != m_listLoopSound.end(); ++it)
 	{
@@ -1253,14 +1275,14 @@ void CNtlPLCharacter::SetPosition(const RwV3d *pPos)
 		GetSoundManager()->SetSoundPosition(hSound, m_vCurPos.x, m_vCurPos.y, m_vCurPos.z);
 	}
 
-	// PositionÀÌ º¯°æÀÌ µÉ °æ¿ì¿¡ À§Ä¡´Â º¯°æÀÌ µÇÁö ¾Ê´Â´Ù.(ÀÌ°Å Test¸¦ Á» ÇØºÁ¾ß ÇÒ µí ÇÏ´Ù by HoDong)
+	// Positionï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ì¿¡ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.(ï¿½Ì°ï¿½ Testï¿½ï¿½ ï¿½ï¿½ ï¿½Øºï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ï´ï¿½ by HoDong)
 	//CNtlPLAttach::Update(0.f);
 }
 
 
 /**
-* Base Scale¸¦ Á¶Á¤À» ÇÑ´Ù.
-* \param fScale Default°ªÀº 1.f ÀÌ´Ù.
+* Base Scaleï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
+* \param fScale Defaultï¿½ï¿½ï¿½ï¿½ 1.f ï¿½Ì´ï¿½.
 */
 void CNtlPLCharacter::SetScale(RwReal fScale)
 {
@@ -1300,8 +1322,8 @@ RwReal CNtlPLCharacter::GetScale()
 
 
 /**
-* Base Scale¸¦ Á¶Á¤À» ÇÑ´Ù.
-* \param fScale Default°ªÀº 1.f ÀÌ´Ù.
+* Base Scaleï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
+* \param fScale Defaultï¿½ï¿½ï¿½ï¿½ 1.f ï¿½Ì´ï¿½.
 */
 void CNtlPLCharacter::SetBaseScale(RwReal fBaseScale)
 {
@@ -1316,7 +1338,7 @@ void CNtlPLCharacter::SetBaseScale(RwReal fBaseScale)
 		return;
 
 	NTL_ASSERTE(m_pResourceClump);
-	if( m_pResourceClump == NULL)
+	if(m_pResourceClump == NULL)
 		return;
 
 	RwFrame* pFrame;
@@ -1338,7 +1360,7 @@ void CNtlPLCharacter::SetBaseScale(RwReal fBaseScale)
 }
 
 /**
-* ÇÁ·ÎÆÛÆ¼¿¡ ¼³Á¤µÈ BaseScaleÀ» ¹ÝÈ¯ÇÑ´Ù.
+* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ BaseScaleï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ñ´ï¿½.
 */
 RwReal CNtlPLCharacter::GetBaseScale()
 {
@@ -1353,8 +1375,8 @@ RwReal CNtlPLCharacter::GetBaseScale()
 }
 
 /**
-* ¹ßÀÌ ¶¥¿¡¼­ ¶³¾îÁú °æ¿ì À§Ä¡°ªÀÌ´Ù.
-* \param pPos ÀÌµ¿½ÃÅ³ À§Ä¡ÀÌ´Ù.
+* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½Ì´ï¿½.
+* \param pPos ï¿½Ìµï¿½ï¿½ï¿½Å³ ï¿½ï¿½Ä¡ï¿½Ì´ï¿½.
 */
 void CNtlPLCharacter::SetPosOffset(RwV3d *pPos)
 {
@@ -1387,8 +1409,8 @@ void CNtlPLCharacter::SetPosOffset(RwV3d *pPos)
 }
 
 /**
-* CharacterÀÇ È¸Àü
-* \param fAngleY È¸Àü°ª
+* Characterï¿½ï¿½ È¸ï¿½ï¿½
+* \param fAngleY È¸ï¿½ï¿½ï¿½ï¿½
 */
 void CNtlPLCharacter::SetAngleY(const RwReal fAngleY)
 {
@@ -1451,8 +1473,8 @@ void CNtlPLCharacter::SetAngleX(const RwReal fAngleX)
 }
 
 /**
-* ÇöÀç Angle¿¡¼­ fAngleDeltaY°ª ¸¸Å­À» ´õÇÑ´Ù.
-* \param fAngleDeltaY Delta È¸Àü°ª
+* ï¿½ï¿½ï¿½ï¿½ Angleï¿½ï¿½ï¿½ï¿½ fAngleDeltaYï¿½ï¿½ ï¿½ï¿½Å­ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
+* \param fAngleDeltaY Delta È¸ï¿½ï¿½ï¿½ï¿½
 */
 void CNtlPLCharacter::SetAngleDelta(const RwReal fAngleDeltaY)
 {
@@ -1463,8 +1485,8 @@ void CNtlPLCharacter::SetAngleDelta(const RwReal fAngleDeltaY)
 }
 
 /**
-* Æ¯Á¤ BoneÀÇ Matrix °ªÀ» ¾ò´Â´Ù.
-* \param pBoneName BoneÀÇ ÀÌ¸§
+* Æ¯ï¿½ï¿½ Boneï¿½ï¿½ Matrix ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â´ï¿½.
+* \param pBoneName Boneï¿½ï¿½ ï¿½Ì¸ï¿½
 */
 RwMatrix* CNtlPLCharacter::GetBoneMatrix(const RwChar *pBoneName)
 {
@@ -1605,11 +1627,52 @@ void CNtlPLCharacter::SetMatrix( RwMatrix& matWorld)
 	RwMatrixCopy(pMatChar, &matWorld);
     pMatChar->pos = ZeroAxis;
     
-    // Base ScaleÀ» Àû¿ëÇØÁà¾ß¸¸ ÇÑ´Ù.
+    // Base Scaleï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß¸ï¿½ ï¿½Ñ´ï¿½.
     RwFrameScale(pFrame, &m_pTypeBoneData->vBaseScale, rwCOMBINEPOSTCONCAT);
     RwFrameTranslate(pFrame, RwMatrixGetPos(&matWorld), rwCOMBINEPOSTCONCAT);
 
 	RwFrameUpdateObjects(pFrame);
+
+	// Update cloned atomics' world bounding spheres (same as SetPosition)
+	for( RwInt32 i = 0; i < static_cast<RwInt32>( m_vecAtomicList.size() ); ++i )
+	{
+		RpAtomic* pAtomic = static_cast<RpAtomic*>( m_vecAtomicList.at( i )->pData );
+		if( pAtomic )
+		{
+			const RwSphere* pLocalSphere = RpAtomicGetBoundingSphere( pAtomic );
+			if( pLocalSphere )
+			{
+				RwMatrix* pLtm = RwFrameGetLTM( RpAtomicGetFrame( pAtomic ) );
+				if( pLtm )
+				{
+					pAtomic->worldBoundingSphere.center.x =
+						pLocalSphere->center.x * pLtm->right.x +
+						pLocalSphere->center.y * pLtm->up.x +
+						pLocalSphere->center.z * pLtm->at.x +
+						m_vCurPos.x;
+					pAtomic->worldBoundingSphere.center.y =
+						pLocalSphere->center.x * pLtm->right.y +
+						pLocalSphere->center.y * pLtm->up.y +
+						pLocalSphere->center.z * pLtm->at.y +
+						m_vCurPos.y;
+					pAtomic->worldBoundingSphere.center.z =
+						pLocalSphere->center.x * pLtm->right.z +
+						pLocalSphere->center.y * pLtm->up.z +
+						pLocalSphere->center.z * pLtm->at.z +
+						m_vCurPos.z;
+
+					RwReal fMaxScaleSq = 0;
+					RwReal fLenSq = pLtm->right.x * pLtm->right.x + pLtm->right.y * pLtm->right.y + pLtm->right.z * pLtm->right.z;
+					if( fLenSq > fMaxScaleSq ) fMaxScaleSq = fLenSq;
+					fLenSq = pLtm->up.x * pLtm->up.x + pLtm->up.y * pLtm->up.y + pLtm->up.z * pLtm->up.z;
+					if( fLenSq > fMaxScaleSq ) fMaxScaleSq = fLenSq;
+					fLenSq = pLtm->at.x * pLtm->at.x + pLtm->at.y * pLtm->at.y + pLtm->at.z * pLtm->at.z;
+					if( fLenSq > fMaxScaleSq ) fMaxScaleSq = fLenSq;
+					pAtomic->worldBoundingSphere.radius = pLocalSphere->radius * sqrtf( fMaxScaleSq );
+				}
+			}
+		}
+	}
 }
 
 
@@ -1930,7 +1993,7 @@ RpAtomic *CNtlPLCharacter::RenderCallBack(RpAtomic *pAtomic)
 				}
 			}
 
-			// Çü¼® coding
+			// ï¿½ï¿½ï¿½ï¿½ coding
 			if (m_SkipAdge)
 			{
 				AtomicDefaultRenderCallBack(pAtomic);
@@ -2003,7 +2066,7 @@ RpAtomic *CNtlPLCharacter::RenderCallBack(RpAtomic *pAtomic)
 						RwRGBAReal	sColorReal;
 						RwRGBARealFromRwRGBA(&sColorReal, pCharEntity->GetColor());
 
-						// Atomic¿¡ ¼³Á¤µÈ Alpha °ª
+						// Atomicï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Alpha ï¿½ï¿½
 						RwReal fAtomicAlpha = RpNtlAtomicGetAlpha(pAtomic) / 255.0f;
 
 						RwRGBA sColor;
@@ -2032,7 +2095,7 @@ RpAtomic *CNtlPLCharacter::RenderCallBack(RpAtomic *pAtomic)
 				}
 			}
 
-			// Çü¼® coding
+			// ï¿½ï¿½ï¿½ï¿½ coding
 			if(m_SkipAdge)
 			{
 				AtomicDefaultRenderCallBack(pAtomic);
@@ -2169,7 +2232,7 @@ void CNtlPLCharacter::OnEventTraceEffect( SEventTrace* pEventTrace )
 
 void CNtlPLCharacter::OnEventVisualEffect( SEventVisualEffect* pEventVisualEffect ) 
 {
-	//Effect NameÀÌ ¾ø´Â °æ¿ì´Â ¹«Á¶°Ç ReturnÀ» ÇÑ´Ù.
+	//Effect Nameï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Returnï¿½ï¿½ ï¿½Ñ´ï¿½.
 	if( strlen(pEventVisualEffect->chEffectName) <= 0)
 		return;
 
@@ -2179,7 +2242,7 @@ void CNtlPLCharacter::OnEventVisualEffect( SEventVisualEffect* pEventVisualEffec
 
 	if(!pEventVisualEffect->bAttach || pEventVisualEffect->eBoneType == BONE_CHARACTER)
 	{
-		// ¸¸¾à LoopEffect ¸®½ºÆ®¿¡ °°Àº ÀÌ¸§,BoneÀÌ ÀÖÀ¸¸é »õ·Î »ý¼ºÇÏÁö ¾Ê´Â´Ù.
+		// ï¿½ï¿½ï¿½ï¿½ LoopEffect ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½,Boneï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 		if(IsExistLoopEffect(pEventVisualEffect->chEffectName, pEventVisualEffect->chBoneName))
 			return;
 
@@ -2190,16 +2253,16 @@ void CNtlPLCharacter::OnEventVisualEffect( SEventVisualEffect* pEventVisualEffec
 
 		CNtlInstanceEffect *pInstanceEffect = (CNtlInstanceEffect *)pPLEntity;
 
-		// ÀÌÆåÆ®ÀÇ Scale Àû¿ë À¯¹« ÇÃ·¡±×¸¦ ¼³Á¤ÇÑ´Ù.
+		// ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ Scale ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 		pInstanceEffect->SetApplyScale(pEventVisualEffect->bApplyScale);
 		pPLEntity->SetScale(GetBaseScale() * m_vScale.x);            
 
-		//Effect¿¡ CharacterÀÇ Serial ID¸¦ ³Ö´Â´Ù.(Client¿¡¼­ »ç¿ëÀ» ÇÏ±â À§ÇØ¼­)
+		//Effectï¿½ï¿½ Characterï¿½ï¿½ Serial IDï¿½ï¿½ ï¿½Ö´Â´ï¿½.(Clientï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½)
 		pPLEntity->SetSerialID(GetSerialID());
 
 		pInstanceEffect->SetPlayAnimSpeed(m_fAnimSpeed);
 
-		// AutoDelete°¡ ¾Æ´Ï¸é LoopEffect¶ó°í °£ÁÖÇÏ°í ¸®½ºÆ®¿¡ Ãß°¡ÇÑ´Ù              
+		// AutoDeleteï¿½ï¿½ ï¿½Æ´Ï¸ï¿½ LoopEffectï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ñ´ï¿½              
 		if(!pPLEntity->IsAutoDelete())
 		{
 			SLoopEffect* pLoopEffect = NTL_NEW SLoopEffect();
@@ -2220,7 +2283,7 @@ void CNtlPLCharacter::OnEventVisualEffect( SEventVisualEffect* pEventVisualEffec
 		{
 			if(pEventVisualEffect->bProjectileType)
 			{
-				//  ¹ß»çÃ¼ Å¸ÀÔÀÎ°æ¿ì¿¡´Â Attach ÇÏÁö ¾Ê´Â´Ù.
+				//  ï¿½ß»ï¿½Ã¼ Å¸ï¿½ï¿½ï¿½Î°ï¿½ì¿¡ï¿½ï¿½ Attach ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 				RwMatrix* pMatBone = GetBoneMatrix(pEventVisualEffect->chBoneName);
 				RwMatrix matEffect;
 				RwMatrixSetIdentity(&matEffect);
@@ -2311,17 +2374,17 @@ void CNtlPLCharacter::OnEventSubWeapon( SEventSubWeapon* pEventSubWeapon )
 
 void CNtlPLCharacter::OnEventVisualSound( SEventSound* pEventSound ) 
 {
-	// Sound¸¦ PlayÇÑ´Ù.    
+	// Soundï¿½ï¿½ Playï¿½Ñ´ï¿½.    
 
 	if(strlen(pEventSound->chSoundName) <= 1)
 		return ;
 
-	// LoopSoundÀÌ°í ÀÌ¹Ì ±âÁ¸¿¡ PlayµÇ°í ÀÖ´Ù¸é PlayÇÏÁö ¾Ê´Â´Ù.
+	// LoopSoundï¿½Ì°ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Playï¿½Ç°ï¿½ ï¿½Ö´Ù¸ï¿½ Playï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 	if(pEventSound->bLoop && IsExistLoopSound(pEventSound->chSoundName))
 		return ;
 
 
-	// ÆÄÀÏÀÌ ¿©·¯°³ ¼¼ÆÃµÇ¾î ÀÖ´Â°æ¿ì¿¡´Â ·£´ýÀ¸·Î ÇÃ·¹ÀÌµÈ´Ù.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÃµÇ¾ï¿½ ï¿½Ö´Â°ï¿½ì¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ÌµÈ´ï¿½.
 	std::string soundFileName;
 	int nMax = 1;
 	if(strlen(pEventSound->chSoundName4) > 0)
@@ -2355,7 +2418,7 @@ void CNtlPLCharacter::OnEventVisualSound( SEventSound* pEventSound )
 		soundFileName = pEventSound->chSoundName;
 	}
 
-	// ÇÇÄ¡¸¦ ·£´ýÀ¸·Î ¼±ÅÃÇÑ´Ù
+	// ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
 	RwReal fSoundPitch = NtlRandomNumber(pEventSound->fSoundPitchMin, pEventSound->fSoundPitchMax);
 
 	sNtlSoundPlayParameta tSoundParam;
@@ -2373,7 +2436,7 @@ void CNtlPLCharacter::OnEventVisualSound( SEventSound* pEventSound )
 	// by daneos test
 	int iRet = GetSoundManager()->Play(&tSoundParam);
 
-	// Loop Sound¸é ¸®½ºÆ®¿¡ Ãß°¡ÇÑ´Ù.
+	// Loop Soundï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ñ´ï¿½.
 	if(iRet == SOUNDRESULT_OK && pEventSound->bLoop && tSoundParam.hHandle != INVALID_SOUND_HANDLE)
 	{
 		AddLoopSound(tSoundParam.hHandle);
@@ -2402,7 +2465,7 @@ void CNtlPLCharacter::OnEventHit( SEventAnimHit* pEventHit )
 
 void CNtlPLCharacter::OnEventPostEffect( SEventPostEffect* pEventPostEffect ) 
 {
-	// Æ÷½ºÆ® ÀÌÆåÆ®´Â Å¸°ÙÀ» ÆÇº°ÇÏ°í, ÀÚ½Å ÀÌ¿ÜÀÇ ´Ù¸¥ Ä³¸¯ÅÍÀÇ ÀÌÆåÆ®¸¦ º¸Áö ¾Ê±â À§ÇØ¼­ Simul ·¹ÀÌ¾î¿¡¼­ Ã³¸®ÇÑ´Ù.
+	// ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½Çºï¿½ï¿½Ï°ï¿½, ï¿½Ú½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ Simul ï¿½ï¿½ï¿½Ì¾î¿¡ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ñ´ï¿½.
 	CNtlPLEventGenerator::AnimEventPostEffect(GetSerialID(), pEventPostEffect);
 }
 
@@ -2413,7 +2476,7 @@ void CNtlPLCharacter::OnEventSummonPet( SEventSummonPet* pEventSummonPet )
 
 void CNtlPLCharacter::OnEventAlphaFade( SEventAlpha* pEventAlpha ) 
 {
-	// Atomic Alpha¿¡ °üÇØ¼­¸¸ PL´Ü¿¡¼­ Ã³¸®ÇÑ´Ù.
+	// Atomic Alphaï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ PLï¿½Ü¿ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ñ´ï¿½.
 	if(pEventAlpha->eAlphaEventType != SEventAlpha::E_ALPHA_EVENT_ATOMIC)
 	{
 		CNtlPLEventGenerator::AnimEventAlpha(GetSerialID(), (void*)pEventAlpha);
@@ -2510,7 +2573,7 @@ void CNtlPLCharacter::ClearLoopEffect()
     {
         if(pLoopEffect && pLoopEffect->pLoopEffectIntance)
         {
-            // »èÁ¦°¡ ¾Æ´Ï¶ó Á¾·á¸¦ ½ÃÅ²´Ù.
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ï¶ï¿½ ï¿½ï¿½ï¿½á¸¦ ï¿½ï¿½Å²ï¿½ï¿½.
             pLoopEffect->pLoopEffectIntance->Finish();            
         }
 
@@ -2824,25 +2887,29 @@ RwBool CNtlPLCharacter::CullingTest(RwCamera* pRwCamera, RwUInt16 uiRenderFrame)
 			{				
 				if (IsCullingTestAllAtomic())
 				{
-					// [m_vecAtomicList.size()]¹ø Occluder Proxy´Â Bounding Sphere´Ù.
 					for (RwInt32 i = 0; i < iNumAtomic; ++i)
 					{
 #ifdef _DEBUG
 						++CNtlPLGlobal::m_uiCullTestAtomicCnt;
 #endif
 
-						RpAtomic*		pAtomic = static_cast<RpAtomic*>(m_vecAtomicList.at(i)->pData);
-						const RwSphere* pSphere = RpAtomicGetWorldBoundingSphere(pAtomic);
+						RpAtomic* pAtomic = static_cast<RpAtomic*>(m_vecAtomicList.at(i)->pData);
+
+						// Cloned atomics have stale frame LTMs. Use entity position + local radius instead.
+						const RwSphere* pLocalSphere = RpAtomicGetBoundingSphere(pAtomic);
+						RwSphere sphere;
+						sphere.center = GetPosition();
+						sphere.radius = pLocalSphere ? pLocalSphere->radius : 1.0f;
 
 						if (!CNtlPLGlobal::m_bCollObjVisible && (RpNtlAtomicGetFlag(pAtomic) & NTL_NOT_VISIBLE))
 						{
 							++iFrustumCheck;							
 						}
-						else if (RwCameraFrustumTestSphere(pRwCamera, pSphere) == rwSPHEREOUTSIDE)
+						else if (RwCameraFrustumTestSphere(pRwCamera, &sphere) == rwSPHEREOUTSIDE)
 						{
 							++iFrustumCheck;
 						}
-						else if (OccluderQuery(EOCCLUDER_SPHERE, EPLOCCLUDER_FUNC_CHARACTER, (void*)pSphere, i))
+						else if (OccluderQuery(EOCCLUDER_SPHERE, EPLOCCLUDER_FUNC_CHARACTER, (void*)&sphere, i))
 						{ 
 							++iOccluderCheck;
 						}
@@ -2855,12 +2922,6 @@ RwBool CNtlPLCharacter::CullingTest(RwCamera* pRwCamera, RwUInt16 uiRenderFrame)
 				else
 				{
 					RwSphere* pSphere = GetBoundingSphere();
-
-// 					static RwRGBA	clr = { 255, 255, 255 ,255 };
-// 					static RwMatrix	mat;
-// 
-// 					RwMatrixTranslate(&mat, &pSphere->center, rwCOMBINEREPLACE);
-// 					RenderGeometryBillboardSphere(&mat, &clr, pSphere->radius, pRwCamera, TRUE);
 
 #ifdef _DEBUG
 					++CNtlPLGlobal::m_uiCullTestAtomicCnt;
@@ -2883,8 +2944,8 @@ RwBool CNtlPLCharacter::CullingTest(RwCamera* pRwCamera, RwUInt16 uiRenderFrame)
 			}
 			else if (iFrustumCheck + iOccluderCheck >= iNumAtomic) 
 			{
-				// Frustum + Occluder °¹¼ö°¡ Atomic °¹¼öº¸´Ù ¸¹´Ù¸é
-				// OCCLUDER Flag¸¦ ¼ÂÆÃ ÇÑ´Ù. ´Ü OccluderCheck °¹¼ö°¡ Á¸ÀçÇØ¾ß ÇÏ¹Ç·Î, iFrustumCheck >= iNumAtomic¸¦ Åë°úÇØ¾ß¸¸ °¡´ÉÇÏ´Ù.
+				// Frustum + Occluder ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Atomic ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½
+				// OCCLUDER Flagï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½. ï¿½ï¿½ OccluderCheck ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Ï¹Ç·ï¿½, iFrustumCheck >= iNumAtomicï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ø¾ß¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
 				m_uiCullFlags |= NTL_PLEFLAG_CULLED_OCCLUDER;
 			}
 		}
@@ -2947,8 +3008,8 @@ RwBool CNtlPLCharacter::CullingTest(RwCamera* pRwCamera)
 			}
 			else if (iFrustumCheck + iOccluderCheck >= iNumAtomic) 
 			{
-				// Frustum + Occluder °¹¼ö°¡ Atomic °¹¼öº¸´Ù ¸¹´Ù¸é
-				// OCCLUDER Flag¸¦ ¼ÂÆÃ ÇÑ´Ù. ´Ü OccluderCheck °¹¼ö°¡ Á¸ÀçÇØ¾ß ÇÏ¹Ç·Î, iFrustumCheck >= iNumAtomic¸¦ Åë°úÇØ¾ß¸¸ °¡´ÉÇÏ´Ù.
+				// Frustum + Occluder ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Atomic ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½
+				// OCCLUDER Flagï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½. ï¿½ï¿½ OccluderCheck ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Ï¹Ç·ï¿½, iFrustumCheck >= iNumAtomicï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ø¾ß¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.
 				m_uiCullFlags |= NTL_PLEFLAG_CULLED_OCCLUDER;
 			}
 		}		
@@ -2979,7 +3040,7 @@ void CNtlPLCharacter::SetCullFlags(RwUInt32 uiFlag)
 
 RwReal CNtlPLCharacter::GetAlphaDistance() 
 {
-    // ¼³Á¤ÀÌ ¾ÈµÇ¾î ÀÖÀ¸¸é ³ôÀÌÀÇ 1.5¹è¸¦ ¹ÝÈ¯ÇÑ´Ù.
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ÈµÇ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1.5ï¿½è¸¦ ï¿½ï¿½È¯ï¿½Ñ´ï¿½.
     return m_pProperty->GetAlphaDistance() == 0.0f ? GetHeight() * 1.5f : m_pProperty->GetAlphaDistance();
 }
 

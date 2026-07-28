@@ -2,7 +2,7 @@
 //	File		:	NtlBlurCamera.cpp
 //	Desc		:	
 //	Begin		:	2006. 2.13
-//	Copyright	:	¨Ï 2006 by Mahwang CO., Ltd
+//	Copyright	:	ï¿½ï¿½ 2006 by Mahwang CO., Ltd
 //	Author		:	Mahwang
 //	Update		:	
 //***********************************************************************************
@@ -139,7 +139,7 @@ void CNtlBlurCamera::DestroyBlurCamera(RwCamera*& pCamera, RwTexture*& pTexture)
 	}
 }
 
-int CNtlBlurCamera::KeyboardDownHandler(unsigned int uiKeyData)
+int CNtlBlurCamera::KeyboardDownHandler(uintptr_t uiKeyData)
 {
 	SKeyData *pData = reinterpret_cast<SKeyData*>(uiKeyData);
 	
@@ -662,7 +662,7 @@ void CNtlBlurCamera::Update_GaussainFiltering(RwRGBA& color, HWND hWnd)
 	m_lpEffect->SetFloat(m_hMapHeight, m_nBlurTextureHeight);
 
 	// ==========================================
-	// °¡·Î ¹æÇâ °¡¿ì½Ã¾È ÇÊÅÍ
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¾ï¿½ ï¿½ï¿½ï¿½ï¿½
 	// ==========================================
 	RwCameraClear(m_pGaussianCamera, &color, rwCAMERACLEARZ|rwCAMERACLEARIMAGE);
 	if(RwCameraBeginUpdate(m_pGaussianCamera))
@@ -678,7 +678,7 @@ void CNtlBlurCamera::Update_GaussainFiltering(RwRGBA& color, HWND hWnd)
 	m_lpEffect->EndPass();
 
 	// ==========================================
-	// °¡·Î ¹æÇâ °¡¿ì½Ã¾È ÇÊÅÍ
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¾ï¿½ ï¿½ï¿½ï¿½ï¿½
 	// ==========================================
 	m_lpEffect->BeginPass(EFFECT_PASS_GAUSSAIN_Y);
 
@@ -706,7 +706,7 @@ void CNtlBlurCamera::Update_ReductionFiltering(RwRGBA& color, HWND hWnd)
 	m_lpEffect->BeginPass(EFFECT_PASS_NONE);
 
 	// ==========================================
-	// ºí·¯ È­¸é Ãà¼ÒÇÏ±â
+	// ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	// ==========================================
 	RwCameraClear(m_pReductionCamera, &color, rwCAMERACLEARZ|rwCAMERACLEARIMAGE);
 	if(RwCameraBeginUpdate(m_pReductionCamera))
@@ -722,7 +722,7 @@ void CNtlBlurCamera::Update_ReductionFiltering(RwRGBA& color, HWND hWnd)
 
 
 	// ==========================================
-	// ºí·¯ È­¸é È®´ëÇÏ±â
+	// ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï±ï¿½
 	// ==========================================
 	m_lpEffect->BeginPass(EFFECT_PASS_NONE);
 
@@ -749,7 +749,7 @@ void CNtlBlurCamera::Update_ReductionFiltering(RwRGBA& color, HWND hWnd)
 void CNtlBlurCamera::Update_FakeHDRFiltering(RwRGBA& color, HWND hWnd)
 {
 	// ==========================================
-	// È­¸é Ãà¼ÒÇÏ±â
+	// È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	// ==========================================
 	m_lpEffect->BeginPass(EFFECT_PASS_NONE);
 	RwCameraClear(m_pReductionCamera, &color, rwCAMERACLEARZ|rwCAMERACLEARIMAGE);
@@ -766,7 +766,7 @@ void CNtlBlurCamera::Update_FakeHDRFiltering(RwRGBA& color, HWND hWnd)
 
 
 	// ==========================================
-	// Ãà¼ÒÈ­¸é ºí·¯ ¸ÔÀÌ±â
+	// ï¿½ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì±ï¿½
 	// ==========================================
 	for (RwInt32 i = 0; i < m_nFakeHDRBlurCount; ++ i)
 	{
@@ -804,7 +804,7 @@ void CNtlBlurCamera::Update_FakeHDRFiltering(RwRGBA& color, HWND hWnd)
 
 
 	// ==========================================
-	// È­¸é È®´ëÇÏ±â
+	// È­ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï±ï¿½
 	// ==========================================
 	m_lpEffect->BeginPass(EFFECT_PASS_NONE);
 	RwCameraClear(m_pTempCamera, &color, rwCAMERACLEARZ|rwCAMERACLEARIMAGE);
@@ -883,7 +883,7 @@ void CNtlBlurCamera::Update_Last(RwRGBA& color, HWND hWnd)
 	m_lpEffect->BeginPass(EFFECT_PASS_LASTDRAW);
 
 	// ==========================================
-	// ÃÖÁ¾ÀûÀ¸·Î ±×¸®±â
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½
 	// ==========================================
 	RwCameraClear(m_pBlurCamera, &color, rwCAMERACLEARZ|rwCAMERACLEARIMAGE);
 	if(RwCameraBeginUpdate(m_pBlurCamera))
@@ -1062,7 +1062,7 @@ void CNtlBlurCamera::DrawInfo(RtCharset* pCharset, RwInt32 iIdx)
 
 //-------------------------------------------------------------
 // Name: UpdateGaussainWeightTable()
-// Desc: °¡ÁßÄ¡ °è»ê
+// Desc: ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½
 //-------------------------------------------------------------
 void CNtlBlurCamera::UpdateGaussainWeightTable(FLOAT fGaussainDispersion_sq)
 {
@@ -1077,7 +1077,7 @@ void CNtlBlurCamera::UpdateGaussainWeightTable(FLOAT fGaussainDispersion_sq)
 
 //-------------------------------------------------------------
 // Name: CreateReductionTexture()
-// Desc: °¡ÁßÄ¡ °è»ê
+// Desc: ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½
 //-------------------------------------------------------------
 void CNtlBlurCamera::CreateReductionTexture(RwInt32 nTextureSize)
 {

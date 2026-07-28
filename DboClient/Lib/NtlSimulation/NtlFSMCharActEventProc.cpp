@@ -87,7 +87,7 @@ void FillAttackStuff(SAttackStuff *pAttStuff, SERIAL_HANDLE hAttackerSerialId, S
 		bSkillConsider = FALSE;
 	}
 	
-	// skill »ç¿ë½Ã DH or HOT or DB or BB or DC or CB
+	// skill ï¿½ï¿½ï¿½ï¿½ DH or HOT or DB or BB or DC or CB
 	if(bSkillConsider && byLogicType == NTL_ATTACK_LOGIC_SKILL)
 	{
 		CSkillTable *pSkillTbl = API_GetTableContainer()->GetSkillTable();
@@ -236,7 +236,7 @@ RwUInt8 JumpKeyStopMapping(RwUInt8 byCurrKey)
 
 void HitTargetEffectDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 {
-	// Guard BlockÀ» ¼º°øÇßÀ¸¸é...
+	// Guard Blockï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...
 	RwUInt8 byBlocking			= pHitStuff->uiAttr.bitBlocking;
 	RwUInt8 byTargetEffectDir	= pHitStuff->byTargetEffectDir;
 
@@ -246,17 +246,17 @@ void HitTargetEffectDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 	}
 
 	//-------------------------------------------------
-	// effect¸¦ Ãâ·ÂÇÑ´Ù.
+	// effectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	CNtlSobProxy *pSobProxy = pActor->GetSobProxy();
 	RwV3d vPos = pActor->GetPosition();
 
-	// ±âº» attack effect
+	// ï¿½âº» attack effect
 	RwV3d vTargetEffPos;
 	CNtlPLEntity *pPLTarEntity = NULL;
 	if(pHitStuff->bCreateHitStuffEffect && strlen(pHitStuff->chTargetEffName) > 0)
 	{
         vTargetEffPos = vPos;
-		// physic °ø°Ý(miss ÀÏ¶§´Â Å¸°Ý ÀÌÆåÆ®¸¦ »«´Ù.)
+		// physic ï¿½ï¿½ï¿½ï¿½(miss ï¿½Ï¶ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.)
 		if(pHitStuff->uiAttr.bitPhysic == NTL_ATTACK_PHYSIC_MELEE)
 		{
 			if(pHitStuff->uiAttr.bitResult != NTL_ATTACK_RESULT_DODGE)
@@ -285,7 +285,7 @@ void HitTargetEffectDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 					
 			}
 		}
-		// energy attack.(healing, buff ÀüºÎ Æ÷ÇÔ)
+		// energy attack.(healing, buff ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 		else
 		{
 			
@@ -303,7 +303,7 @@ void HitTargetEffectDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 		}
 	}
 
-	// target effect ¹æÇâÀ» ¼³Á¤ÇÑ´Ù.)
+	// target effect ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.)
 	if(pPLTarEntity)
 	{
 		if(byTargetEffectDir != TARGET_EFFECT_TYPE_NONE)
@@ -344,7 +344,7 @@ void HitResultDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 	RwV3d vPos = pActor->GetPosition();
 	RwV3d vTargetEffPos;
 
-	// heal or buff skillÀÌ ¾Æ´Ï¸é?
+	// heal or buff skillï¿½ï¿½ ï¿½Æ´Ï¸ï¿½?
 	RwUInt8 byResult	= pHitStuff->uiAttr.bitResult;
 	RwUInt8 byBlocking	= pHitStuff->uiAttr.bitBlocking;
 
@@ -423,7 +423,7 @@ void HitResultDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 				if(pHitStuff->uiAttr.bitPowerEffect)
 				{
 					sNtlSoundPlayParameta tSoundParam;
-					tSoundParam.iChannelGroup	= CHANNEL_GROUP_EFFECT_SOUND;
+					tSoundParam.iChannelGroup	= CHANNEL_GROUP_AVATAR_EFFECT_SOUND;
 					tSoundParam.pcFileName		= SOUND_HIT_POWER;
 					tSoundParam.fXPos			= vPos.x;
 					tSoundParam.fYPos			= vPos.y;
@@ -438,7 +438,7 @@ void HitResultDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 					if(rand()%2)
 					{
 						sNtlSoundPlayParameta tSoundParam;
-						tSoundParam.iChannelGroup	= CHANNEL_GROUP_EFFECT_SOUND;
+						tSoundParam.iChannelGroup	= CHANNEL_GROUP_AVATAR_EFFECT_SOUND;
 						tSoundParam.pcFileName		= SOUND_HIT1;
 						tSoundParam.fXPos			= vPos.x;
 						tSoundParam.fYPos			= vPos.y;
@@ -453,7 +453,7 @@ void HitResultDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 					else
 					{
 						sNtlSoundPlayParameta tSoundParam;
-						tSoundParam.iChannelGroup	= CHANNEL_GROUP_EFFECT_SOUND;
+						tSoundParam.iChannelGroup	= CHANNEL_GROUP_AVATAR_EFFECT_SOUND;
 						tSoundParam.pcFileName		= SOUND_HIT2;
 						tSoundParam.fXPos			= vPos.x;
 						tSoundParam.fYPos			= vPos.y;
@@ -499,17 +499,17 @@ void HitResultDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 		}
 		else if(byResult == NTL_ATTACK_RESULT_HEALING)
 		{
-			// damage¸¦ Ãâ·ÂÇÑ´Ù.
+			// damageï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 			pSobProxy->CreatePLDamageBox(vPos, pHitStuff->sDamageStuff.iDamage, TRUE);
 		}
 	}
 
 	//---------------------------------------------------
-	// blocking effect Ãâ·Â.
+	// blocking effect ï¿½ï¿½ï¿½.
 		
 	if(byBlocking != DBO_GUARD_TYPE_INVALID)
 	{
-		// effect ¿¬Ãâ.
+		// effect ï¿½ï¿½ï¿½ï¿½.
 
 		RwReal fPLEntityHalfWidth = pSobProxy->GetPLEntityWidth()/2.0f;
 		RwReal fPLEntityHeight = pSobProxy->GetPLEntityHeight();
@@ -565,7 +565,7 @@ void HitResultDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 
 void HitStatusStealSkillDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 {
-	if(pHitStuff->uiAttr.bitResult == NTL_ATTACK_RESULT_STEAL ||            // ÀÌ ÇÃ·¡±×´Â Projectile Àü¿ëÀÌ´Ù. (Client Ã³¸®¿ë) ¾Æ·¡ ÄÚµå ÂüÁ¶
+	if(pHitStuff->uiAttr.bitResult == NTL_ATTACK_RESULT_STEAL ||            // ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½×´ï¿½ Projectile ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½. (Client Ã³ï¿½ï¿½ï¿½ï¿½) ï¿½Æ·ï¿½ ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
        pHitStuff->uiAttr.bitResult == NTL_ATTACK_RESULT_BLOCK ||
        pHitStuff->uiAttr.bitReserved == NTL_ATTACK_RESULT_DODGE)
 		return;
@@ -630,7 +630,7 @@ void HitStatusStealSkillDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// event Ã³¸® ÇÔ¼ö.
+// event Ã³ï¿½ï¿½ ï¿½Ô¼ï¿½.
 
 void FSMEvent_CharActActionMapJump(CNtlSobActor *pActor, SNtlEventActionMapJump *pJump, CNtlFSMStateBase *pStateBase)
 {
@@ -792,7 +792,7 @@ void FSMEvent_CharActActionMapAutoFollow(CNtlSobActor *pActor, SNtlEventActionMa
 	pMoveStuff->byFormFlag = NTL_MOVE_FLAG_RUN;
 	pMoveStuff->hFollowSerialId = pAutoFollow->hTargetSerialId;
 
-    // ÇöÀç À§Ä¡°¡ À°ÁöÀÎÁö ¹°¼ÓÀÎÁö ÆÄ¾ÇÇÑ´Ù.    
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¾ï¿½ï¿½Ñ´ï¿½.    
     SWorldHeightStuff hStuff;
     if(Logic_IsSwimmingActor(pActor, &pActor->GetPosition(), hStuff))
         pMoveStuff->byForm = NTL_MOVEFORM_SWIMMING;

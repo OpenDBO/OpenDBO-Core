@@ -2,7 +2,7 @@
  *
  * File			: NtlTypeAnimData.h
  * Author		: HongHoDong
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ï¿½ï¿½)NTL
  * Date			: 2006. 4. 11	
  * Abstract		: NTL NtlTypeAnimData
  *****************************************************************************
@@ -19,15 +19,15 @@
 #include "NtlCharacterData.h"
 #include "NtlSerializer.h"
 
-/// ÇÃ·¡±× °ü·Ã ¼³Á¤µé
+/// ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #define ANIM_FLAG_CULL_TEST_ALL_ATOMIC  0x00000001
 
 /*!
  * \Animation
- * STypeAnimData: º¯ÇÏÁö ¾Ê´Â Data(Read¸¸ °¡´É)
+ * STypeAnimData: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ Data(Readï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
  * 
  */
-class AnimEvent_CompareFunc : public std::binary_function<SEventAnim *, SEventAnim *, bool> 
+class AnimEvent_CompareFunc
 {
 public:
 	bool operator() (const SEventAnim* lhs, const SEventAnim* rhs) const
@@ -41,13 +41,13 @@ public:
 
 struct STypeAnimData
 {
-	std::string			strAnimName;							///< Animation File ÀÌ¸§
+	std::string			strAnimName;							///< Animation File ï¿½Ì¸ï¿½
 	RwUInt32			uiAnimKey;								///< Animation Key
-	RwReal              fPlayTime;                              ///< AnimationÀÇ PlayTime
-    RwUInt32            flagAnim;                               ///< ¾Ö´Ï¸ÞÀÌ¼Ç °ü·ÃµÈ ¼³Á¤ ÇÃ·¡±×
+	RwReal              fPlayTime;                              ///< Animationï¿½ï¿½ PlayTime
+    RwUInt32            flagAnim;                               ///< ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½
 
-	std::vector<SEventAnim *> vecAnimEvent;						///< Animation Eventµé (fTime¿¡ Á¤·ÄÀÌ µÇ¾î ÀÖ¾î¾ß ÇÑ´Ù.)
-	RwBool						m_bReLoad;						///< Resource¸¦ »õ·Î ÀÐ¾î¾ß ÇÒ °æ¿ì
+	std::vector<SEventAnim *> vecAnimEvent;						///< Animation Eventï¿½ï¿½ (fTimeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ ï¿½Ö¾ï¿½ï¿½ ï¿½Ñ´ï¿½.)
+	RwBool						m_bReLoad;						///< Resourceï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
 	
 	STypeAnimData() : uiAnimKey(INVALID_GRAPHIC_ANIMATION_ID), m_bReLoad(FALSE), fPlayTime(0.0f), flagAnim(0)
 	{
@@ -62,8 +62,8 @@ struct STypeAnimData
 			{
 				if(vecAnimEvent[i] != NULL)
 				{
-                    // Hit Event¿¡´Â Multi Hissidan µ¥ÀÌÅÍ°¡ µ¿ÀûÀ¸·Î ÇÒ´çµÇ¾î ÀÖ±â ¶§¹®¿¡
-                    // Çüº¯È¯À» ÇÑÈÄ¿¡ Áö¿öÁà¾ß ÇÑ´Ù.
+                    // Hit Eventï¿½ï¿½ï¿½ï¿½ Multi Hissidan ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò´ï¿½Ç¾ï¿½ ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                    // ï¿½ï¿½ï¿½ï¿½È¯ï¿½ï¿½ ï¿½ï¿½ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
                     if(vecAnimEvent[i]->eEventID == EVENT_ANIM_HIT)
                     {
                         SEventAnimHit* pEventAnimHit = (SEventAnimHit*)vecAnimEvent[i];
@@ -86,7 +86,7 @@ struct STypeAnimData
 		sort(vecAnimEvent.begin(), vecAnimEvent.end(), cf);
 	}
 
-    //--------- ÇÃ·¡±× °ü·Ã
+    //--------- ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     void    SetCullTestAllAtomic(RwBool bFlag) {flagAnim |= ANIM_FLAG_CULL_TEST_ALL_ATOMIC;}
     RwBool  IsCullTestAllAtomic() {return flagAnim & ANIM_FLAG_CULL_TEST_ALL_ATOMIC;}
 };
@@ -112,7 +112,7 @@ public:
 	STypeAnimData	*Get(RwUInt32 uiKey);									///< Get STypeAnimData
 	STypeAnimData	*Add(RwUInt32 uiKey, const std::string &strAnimName);	///< Add STypeAnimData
     STypeAnimData	*Add(RwUInt32 uiKey, STypeAnimData *pTypeAnimData);     ///< Add STypeAnimData 
-    void            Remove(RwUInt32 uiKey);                                 ///< ¸Ê¿¡¼­ µ¥ÀÌÅÍ¸¦ Á¦°ÅÇÑ´Ù. (by Agebreak. 2006.05.01)
+    void            Remove(RwUInt32 uiKey);                                 ///< ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. (by Agebreak. 2006.05.01)
 
     TYPE_ANIM_MAP	*GetTypeAnimMap();
 
@@ -121,8 +121,8 @@ public:
     void SetAnimPath(std::string& strAnimPath) { m_strAnimPath = strAnimPath;}
     std::string GetAnimPath() {return m_strAnimPath;}
 
-	void	SaveSerialize( CNtlSerializer& sOut);						///< Serialize °´Ã¼¿¡ µ¥ÀÌÅÍ¸¦ ÀúÀåÇÑ´Ù.
-	void	LoadSerialize( CNtlSerializer& sIn);						///< Serailize °´Ã¼¿¡¼­ µ¥ÀÌÅÍ¸¦ ·ÎµåÇÑ´Ù.
+	void	SaveSerialize( CNtlSerializer& sOut);						///< Serialize ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+	void	LoadSerialize( CNtlSerializer& sIn);						///< Serailize ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Îµï¿½ï¿½Ñ´ï¿½.
 };
 
 #endif

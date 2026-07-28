@@ -56,7 +56,7 @@ struct _rxD3D8fvfEntry
  Static variables
  */
 
-static RwUInt32         DefaultVBSize = 128 * 1024;
+static RwUInt32         DefaultVBSize = 256 * 1024;
 
 static RxD3D8fvfEntry   *FvfList = NULL;
 

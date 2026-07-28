@@ -13,6 +13,10 @@
 #include "NtlPLGuiManager.h"
 #include "NtlPLSceneManager.h"
 
+#ifndef GCL_HCURSOR
+#define GCL_HCURSOR (-12)
+#endif
+
 // simulation
 #include "NtlWorldconcept.h"
 #include "NtlSobTriggerObject.h"
@@ -260,7 +264,7 @@ void CCursorManager::WorldCursorProc(CNtlSob* pSobObj)
 				CNtlSobNpcAttr* pSobNPCAttr = reinterpret_cast<CNtlSobNpcAttr*>( pSobNPC->GetSobAttr() );
 				sNPC_TBLDAT* pNPC_TBLDAT = pSobNPCAttr->GetNpcTbl();
 
-				// ¾Æ¹ÙÅ¸°¡ ¹ö½º ¿ä±ÝÀ» °¡Áö°í ÀÖ°í Å» ¼ö ÀÖ´Â °Å¸®ÀÎÁö Á¶»ç
+				// ï¿½Æ¹ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö°ï¿½ Å» ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				if( Logic_GetZenny() >= pNPC_TBLDAT->amerchant_Tblidx[0] )
 				{
 					if( Logic_InFollowRange(reinterpret_cast<CNtlSobActor*>(pAvatar), pActor, (RwReal)NTL_MAX_BUS_DISTANCE) )
@@ -278,7 +282,7 @@ void CCursorManager::WorldCursorProc(CNtlSob* pSobObj)
 			}
 			else
 			{
-				// ¾Æ¹ÙÅ¸°¡ Å¸°í ÀÖ´Â ¹ö½º°¡ ¾Æ´Ñ ´Ù¸¥ ¹ö½º¿¡ ¸¶¿ì½º Ä¿¼­¸¦ ¿Å°å´Ù
+				// ï¿½Æ¹ï¿½Å¸ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ï¿½
 				SetMouseCursor( CS_DEAL_SHOP );	
 			}
 		}		
@@ -322,7 +326,7 @@ void CCursorManager::WorldCursorProc(CNtlSob* pSobObj)
 VOID CCursorManager::InitLobbyCursor()
 {
 	SetMouseCursor(CS_LOBBY_CURSOR);
-	SetClassLong( CNtlApplication::GetInstance()->GetHWnd(), GCL_HCURSOR, (LONG)m_hMouseCursor[m_eCurCursor] );
+	SetClassLongPtr( CNtlApplication::GetInstance()->GetHWnd(), GCL_HCURSOR, (LONG_PTR)m_hMouseCursor[m_eCurCursor] );
 }
 
 VOID CCursorManager::InitGameCursor()
@@ -333,7 +337,7 @@ VOID CCursorManager::InitGameCursor()
 		SetCursor(m_hMouseCursor[m_eCurCursor]);
 	}
 
-	SetClassLong(CNtlApplication::GetInstance()->GetHWnd(), GCL_HCURSOR, (LONG)m_hMouseCursor[m_eCurCursor]);
+	SetClassLongPtr(CNtlApplication::GetInstance()->GetHWnd(), GCL_HCURSOR, (LONG_PTR)m_hMouseCursor[m_eCurCursor]);
 }
 
 VOID CCursorManager::ShowMouseCursor( RwBool bShow /* = TRUE  */)
@@ -365,14 +369,14 @@ VOID CCursorManager::SetMouseCursor( STATE eState )
 
 	m_eCurCursor = (RwUInt8)eState;
 
-	// ¹Ù·Î Ä¿¼­¸¦ º¯°æÇÏ±â À§ÇØ
+	// ï¿½Ù·ï¿½ Ä¿ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½
 	SetCursor(m_hMouseCursor[m_eCurCursor]);
 
-	// Ä¿¼­ µî·Ï
-	SetClassLong( CNtlApplication::GetInstance()->GetHWnd(), GCL_HCURSOR, (LONG)m_hMouseCursor[m_eCurCursor] );
+	// Ä¿ï¿½ï¿½ ï¿½ï¿½ï¿½
+	SetClassLongPtr( CNtlApplication::GetInstance()->GetHWnd(), GCL_HCURSOR, (LONG_PTR)m_hMouseCursor[m_eCurCursor] );
 
 	if( eState == CS_BATTLE_TARGET )
-	{	// Å¸°Ù ¼±ÅÃ½Ã
+	{	// Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½Ã½ï¿½
 		Logic_PlayGUISound( GSD_SYSTEM_ENEMY_FOUSE );
 	}
 }

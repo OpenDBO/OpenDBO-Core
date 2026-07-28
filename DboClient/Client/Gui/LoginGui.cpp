@@ -18,6 +18,7 @@
 
 // Simulation
 #include "InputActionMap.h"
+#include "InputHandler.h"
 #include "NtlStorageManager.h"
 
 // dbo
@@ -31,6 +32,9 @@
 #include "DboApplication.h"
 #include "MoviePlayer.h"
 #include "DialogDefine.h"
+
+extern char g_szAutoLoginID[256];
+extern char g_szAutoLoginPass[256];
 
 
 CLogInGui::CLogInGui(const RwChar *pName)
@@ -57,14 +61,14 @@ RwBool CLogInGui::Create()
 
 	m_pFrame = (gui::CFrame*)GetComponent("frmParent");
 
-	// ¹è°æ
+	// ï¿½ï¿½ï¿½
 	m_pFlashBackground = (gui::CFlash*)GetComponent("flaBackground");
 
 	m_pFlashCredit = (gui::CFlash*)GetComponent("flaCredit");
 	m_pFlashCredit->Show(false);
 
 
-	// µ¿¿µ»ó Àç»ý ¹öÆ°
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
 	m_pCinemaButton = (gui::CButton*)GetComponent("CinemaButton");
 	m_pCinemaButton->SetTextFont(DEFAULT_FONT, 105, DEFAULT_FONT_ATTR);
 	m_pCinemaButton->SetTextFocusColor(INFOCOLOR_LOBBY_FOC);
@@ -72,7 +76,7 @@ RwBool CLogInGui::Create()
 	m_pCinemaButton->SetText( GetDisplayStringManager()->GetString("DST_LOGIN_PLAY_MOVIE") );
 	m_slotCinemaButton = m_pCinemaButton->SigClicked().Connect( this, &CLogInGui::ClickedCinemaButton);
 
-	// Á¦ÀÛÁø º¸±â ¹öÆ°
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
 	m_pCreditButton = (gui::CButton*)GetComponent("CreditButton");
 	m_pCreditButton->SetTextFont(DEFAULT_FONT, 105, DEFAULT_FONT_ATTR);
 	m_pCreditButton->SetTextFocusColor(INFOCOLOR_LOBBY_FOC);
@@ -115,24 +119,24 @@ RwBool CLogInGui::Create()
 	// Input box background
 	m_srfInputDialogBack.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Login.srf", "srfInputDialogBack" ));
 
-	// °øÁö»çÇ× ¹ØÁÙ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	m_NoticeUnderLine.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Login.srf", "underLine" ));
 
-	// '°èÁ¤ ÀÌ¸§' ½ºÅÂÆ½
+	// 'ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½' ï¿½ï¿½ï¿½ï¿½Æ½
 	rect.SetRectWH(417, 588, 60, 30);
 	m_pAccountName = NTL_NEW gui::CStaticBox( rect, m_pFrame, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER );
 	m_pAccountName->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pAccountName->SetText( GetDisplayStringManager()->GetString("DST_LOGIN_ID") );
 	m_pAccountName->Enable(false);
 
-	// 'ºñ¹Ð¹øÈ£' ½ºÅÂÆ½
+	// 'ï¿½ï¿½Ð¹ï¿½È£' ï¿½ï¿½ï¿½ï¿½Æ½
 	rect.SetRectWH(417, 616, 60, 30);
 	m_pPassward = NTL_NEW gui::CStaticBox( rect, m_pFrame, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER );
 	m_pPassward->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pPassward->SetText( GetDisplayStringManager()->GetString("DST_LOGIN_PASSWARD") );
 	m_pPassward->Enable(false);
 
-	// 'Dbo °øÁö»çÇ×' ½ºÅÂÆ½
+	// 'Dbo ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½' ï¿½ï¿½ï¿½ï¿½Æ½
 	rect.SetRectWH(773, 436, 220, 30);
 	m_pNotive = NTL_NEW gui::CStaticBox( rect, m_pFrame, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER);
 	m_pNotive->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
@@ -180,7 +184,7 @@ RwBool CLogInGui::Create()
 
 	m_handleKeyDown = CInputHandler::GetInstance()->LinkKeyDown(this, &CLogInGui::KeyboardDownHandler);
 
-	// event µî·Ï.
+	// event ï¿½ï¿½ï¿½.
 	LinkMsg(g_EventLoginGuiEnable, 0);
 	LinkMsg(g_EventLogInStageStateEnter, 0);
 	LinkMsg(g_EventLogInStageStateExit, 0);
@@ -493,13 +497,23 @@ VOID CLogInGui::LogInStageEnterEventHandler(RWS::CMsg &msg)
 		CNtlSoundEventGenerator::SendEventMusic(EVENT_MUSIC_START_MAIN_THEME);
 		m_pLoginButton->ClickEnable(false);
 		m_pAccountInput->SetFocus();
-		Show(true);		
+		Show(true);
+		if (g_szAutoLoginID[0])
+		{
+			m_pAccountInput->SetText(g_szAutoLoginID);
+			m_pPasswardInput->SetText(g_szAutoLoginPass);
+		}
 		break;
 	case LOGIN_STATE_SERVER_CONNECT_FAIL:
 		GetAlarmManager()->AlarmMessage( "DST_CHAR_SERVER_CONNECT_FAIL" );
 		break;
 	case LOGIN_STATE_IDLE:
 		m_pLoginButton->ClickEnable(true);
+		if (g_szAutoLoginID[0])
+		{
+			g_szAutoLoginID[0] = '\0';
+			ClickedLoginButton(m_pLoginButton);
+		}
 		break;
 	case LOGIN_STATE_CONTRACT:
 	case LOGIN_STATE_LOGINREQ:
@@ -571,9 +585,9 @@ VOID CLogInGui::ResizeEventHandler(RWS::CMsg &msg)
 	LocateComponent(pPacket->iWidht, pPacket->iHeight);	
 }
 
-int CLogInGui::KeyboardDownHandler(unsigned int uiKeyData)
+int CLogInGui::KeyboardDownHandler(uintptr_t uiKeyData)
 {
-	SKeyData* pData = (SKeyData*)uiKeyData;
+	SKeyData* pData = CInputHandler::GetLastKeyData();
 
 	if (pData->uiChar == NTL_KEY_ESCAPE)
 	{

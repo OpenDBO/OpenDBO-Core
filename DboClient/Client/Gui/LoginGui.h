@@ -2,7 +2,7 @@
  *
  * File			: LoginGui.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ï¿½ï¿½)NTL
  * Date			: 2005. 9. 20	
  * Update		: 2007. 10. 15
  * Abstract		: DBO Login gui.
@@ -38,14 +38,14 @@ public:
 	VOID			LogInStageTimeOutEventHandler(RWS::CMsg &msg);
 	VOID			ResizeEventHandler(RWS::CMsg &msg);
 
-	int				KeyboardDownHandler(unsigned int uiKeyData);
+	int				KeyboardDownHandler(uintptr_t uiKeyData);
 	
 protected:
 	CLogInGui() {}
 	virtual VOID	HandleEvents( RWS::CMsg &msg );
 
 	VOID			OnTimer(void);
-	VOID			SwitchEnableButtons(bool bEnable);	///< Exit ¹öÆ°À» Á¦¿ÜÇÑ ¹öÆ°ÀÇ ÀÌ¿ë°¡´É ¼³Á¤
+	VOID			SwitchEnableButtons(bool bEnable);	///< Exit ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½Ì¿ë°¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 	RwInt32			TabButtonHandle();
 
@@ -83,18 +83,18 @@ protected:
 	gui::CSlot			m_slotSigChangedTest;
 	gui::CSlot			m_slotSigActivityTest;
 
-	gui::CButton*		m_pCinemaButton;			///< µ¿¿µ»ó Àç»ý ¹öÆ°
-	gui::CButton*		m_pCreditButton;			///< Á¦ÀÛÁø º¸±â ¹öÆ°
+	gui::CButton*		m_pCinemaButton;			///< ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
+	gui::CButton*		m_pCreditButton;			///< ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
 	gui::CButton*		m_pGamePolicyButton;		///< 
 	gui::CButton*		m_pNewAccountButton;		///< 
-	gui::CButton*		m_pLoginButton;				///< ·Î±×ÀÎ ¹öÆ°
-	gui::CButton*		m_pExitButton;				///< ³ª°¡±â ¹öÆ°
+	gui::CButton*		m_pLoginButton;				///< ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
+	gui::CButton*		m_pExitButton;				///< ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
 
-	gui::CStaticBox*	m_pAccountName;				///< '°èÁ¤ ÀÌ¸§' ½ºÅÂÆ½
-	gui::CStaticBox*	m_pPassward;				///< 'ºñ¹Ð¹øÈ£' ºñ¹Ð¹øÈ£ ½ºÅÂÆ½
-	gui::CStaticBox*	m_pNotive;					///< 'Dbo °øÁö»çÇ×' ½ºÅÂÆ½
+	gui::CStaticBox*	m_pAccountName;				///< 'ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½' ï¿½ï¿½ï¿½ï¿½Æ½
+	gui::CStaticBox*	m_pPassward;				///< 'ï¿½ï¿½Ð¹ï¿½È£' ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½Æ½
+	gui::CStaticBox*	m_pNotive;					///< 'Dbo ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½' ï¿½ï¿½ï¿½ï¿½Æ½
 
-	gui::CStaticBox*	m_pVersion;					///< Dbo ¹öÀü Ç¥½Ã
+	gui::CStaticBox*	m_pVersion;					///< Dbo ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½
 
 	gui::CInputBox*		m_pAccountInput;			///< Account Input
 	gui::CInputBox*		m_pPasswardInput;			///< Passward Input
@@ -105,8 +105,8 @@ protected:
 
 	gui::CFlash*		m_pFlashCredit;
 
-	CSurfaceGui			m_srfInputDialogBack;		///< ÀÎÇ²¹Ú½º ¹è°æ
-	CSurfaceGui			m_NoticeUnderLine;			///< °øÁö»çÇ× ¹ØÁÙ
+	CSurfaceGui			m_srfInputDialogBack;		///< ï¿½ï¿½Ç²ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½
+	CSurfaceGui			m_NoticeUnderLine;			///< ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 
 	void*				m_handleKeyDown;

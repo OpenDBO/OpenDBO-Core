@@ -375,7 +375,7 @@ _rwResHeapInit(void *resHeap, RwUInt32 size)
 {
     rwResHeapHeader    *heapInfo = (rwResHeapHeader *) resHeap;
     rwResHeapBlockHeader *firstBlock;
-    RwUInt32            start, end;
+    uintptr_t start, end;
     RwInt32             blockSize;
 
     RWFUNCTION(RWSTRING("_rwResHeapInit"));
@@ -388,9 +388,9 @@ _rwResHeapInit(void *resHeap, RwUInt32 size)
 
     /* Get 32 byte aligned start and end of the heap block */
     start =
-        ((RwUInt32) resHeap + sizeof(rwResHeapHeader) +
-         31) & 0xFFFFFFE0;
-    end = ((RwUInt32) resHeap + size) & 0xFFFFFFE0;
+        ((uintptr_t) resHeap + sizeof(rwResHeapHeader) +
+         31) & ~(uintptr_t)31;
+    end = ((uintptr_t) resHeap + size) & ~(uintptr_t)31;
 
     /* Get size of available storage */
     blockSize = end - start - sizeof(rwResHeapBlockHeader);
@@ -555,7 +555,7 @@ _rwResHeapAlloc(void *resHeap, RwUInt32 size)
 
     /* Round allocation size up to next 32 byte multiple */
     size += 31;
-    size &= 0xFFFFFFE0;
+    size &= ~(uintptr_t)31;
 
     /* Walk the heap...
      * Find the first block that satisfies our needs and
@@ -686,7 +686,7 @@ _rwResHeapRealloc(void *memory, RwUInt32 size)
 
     /* Round allocation size up to next 32 byte multiple */
     size += 31;
-    size &= 0xFFFFFFE0;
+    size &= ~(uintptr_t)31;
 
     /* Ideally, we'd have enough space to just use this block */
     if (size <= block->size)
@@ -909,3 +909,4 @@ _rwResHeapGetStats(void *resHeap, /* Pointer to base of heap */
 
     RWRETURN(TRUE);
 }
+

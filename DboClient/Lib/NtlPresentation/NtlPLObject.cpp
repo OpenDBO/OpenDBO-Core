@@ -1705,19 +1705,22 @@ RwBool CNtlPLObject::RenderToTexture()
 		return TRUE;
 
 	RpClump*	pClump = GetClump();
-	RwLLLink*	pCur;
-	RwLLLink*	pEnd;
-	RwLLLink*	pNext;
+	// atomicList is now a direct RpAtomic* circular list after the x64 struct refactor
 	RpAtomic*	pCurAtomicInClump;
+	RpAtomic*	pNext;
 
-	pCur = rwLinkListGetFirstLLLink(&pClump->atomicList);
-	pEnd = rwLinkListGetTerminator(&pClump->atomicList);
+
+
+
 
 	BeginFogState(FALSE);
 
-	while(pCur != pEnd)
-	{	
-		pCurAtomicInClump = rwLLLinkGetData(pCur, RpAtomic, inClumpLink);
+	if(pClump->atomicList)
+	{
+		pCurAtomicInClump = pClump->atomicList;
+		do
+		{
+			pNext = pCurAtomicInClump->next;
 
 		RwUInt32 uiRenderFlags = RpNtlAtomicGetFlag(pCurAtomicInClump);
 		if((uiRenderFlags & NTL_ALPHATEST) || (uiRenderFlags & NTL_ALPHA))
@@ -1739,8 +1742,8 @@ RwBool CNtlPLObject::RenderToTexture()
 			pCurAtomicInClump->renderCallBack(pCurAtomicInClump);
 		}
 
-		pNext	= rwLLLinkGetNext(pCur);
-		pCur	= pNext;
+			pCurAtomicInClump = pNext;
+		} while(pCurAtomicInClump != pClump->atomicList);
 	}
 
 	CNtlPLAttach::RenderToTexture();
@@ -1761,17 +1764,20 @@ RwBool CNtlPLObject::Render()
 		NTL_RPROFILE(FALSE);
 
 	RpClump*					pClump = GetClump();
-	RwLLLink*					pCur;
-	RwLLLink*					pEnd;
-	RwLLLink*					pNext;
-	RpAtomic*					pCurAtomicInClump;
+	// atomicList is now a direct RpAtomic* circular list after the x64 struct refactor
+	RpAtomic*	pCurAtomicInClump;
+	RpAtomic*	pNext;
 
-	pCur = rwLinkListGetFirstLLLink(&pClump->atomicList);
-	pEnd = rwLinkListGetTerminator(&pClump->atomicList);
 
-	while(pCur != pEnd)
-	{	
-		pCurAtomicInClump = rwLLLinkGetData(pCur, RpAtomic, inClumpLink);
+
+
+
+	if(pClump->atomicList)
+	{
+		pCurAtomicInClump = pClump->atomicList;
+		do
+		{
+			pNext = pCurAtomicInClump->next;
 
 		RwUInt32 uiRenderFlags = RpNtlAtomicGetFlag(pCurAtomicInClump);
 
@@ -1797,8 +1803,8 @@ RwBool CNtlPLObject::Render()
 			}
 		}
 
-		pNext	= rwLLLinkGetNext(pCur);
-		pCur	= pNext;
+			pCurAtomicInClump = pNext;
+		} while(pCurAtomicInClump != pClump->atomicList);
 	}
 
 	NTL_RPROFILE(TRUE);
@@ -6254,19 +6260,22 @@ RwBool CNtlPLObject::RenderToTexture()
 		return TRUE;
 
 	RpClump*	pClump = GetClump();
-	RwLLLink*	pCur;
-	RwLLLink*	pEnd;
-	RwLLLink*	pNext;
+	// atomicList is now a direct RpAtomic* circular list after the x64 struct refactor
 	RpAtomic*	pCurAtomicInClump;
+	RpAtomic*	pNext;
 
-	pCur = rwLinkListGetFirstLLLink(&pClump->atomicList);
-	pEnd = rwLinkListGetTerminator(&pClump->atomicList);
+
+
+
 
 	BeginFogState(FALSE);
 
-	while(pCur != pEnd)
-	{	
-		pCurAtomicInClump = rwLLLinkGetData(pCur, RpAtomic, inClumpLink);
+	if(pClump->atomicList)
+	{
+		pCurAtomicInClump = pClump->atomicList;
+		do
+		{
+			pNext = pCurAtomicInClump->next;
 
 		RwUInt32 uiRenderFlags = RpNtlAtomicGetFlag(pCurAtomicInClump);
 		if((uiRenderFlags & NTL_ALPHATEST) || (uiRenderFlags & NTL_ALPHA))
@@ -6288,8 +6297,8 @@ RwBool CNtlPLObject::RenderToTexture()
 			pCurAtomicInClump->renderCallBack(pCurAtomicInClump);
 		}
 
-		pNext	= rwLLLinkGetNext(pCur);
-		pCur	= pNext;
+			pCurAtomicInClump = pNext;
+		} while(pCurAtomicInClump != pClump->atomicList);
 	}
 
 	CNtlPLAttach::RenderToTexture();
@@ -6310,17 +6319,20 @@ RwBool CNtlPLObject::Render()
 		NTL_RPROFILE(FALSE);
 
 	RpClump*					pClump = GetClump();
-	RwLLLink*					pCur;
-	RwLLLink*					pEnd;
-	RwLLLink*					pNext;
-	RpAtomic*					pCurAtomicInClump;
+	// atomicList is now a direct RpAtomic* circular list after the x64 struct refactor
+	RpAtomic*	pCurAtomicInClump;
+	RpAtomic*	pNext;
 
-	pCur = rwLinkListGetFirstLLLink(&pClump->atomicList);
-	pEnd = rwLinkListGetTerminator(&pClump->atomicList);
 
-	while(pCur != pEnd)
-	{	
-		pCurAtomicInClump = rwLLLinkGetData(pCur, RpAtomic, inClumpLink);
+
+
+
+	if(pClump->atomicList)
+	{
+		pCurAtomicInClump = pClump->atomicList;
+		do
+		{
+			pNext = pCurAtomicInClump->next;
 
 		RwUInt32 uiRenderFlags = RpNtlAtomicGetFlag(pCurAtomicInClump);
 
@@ -6346,8 +6358,8 @@ RwBool CNtlPLObject::Render()
 			}
 		}
 
-		pNext	= rwLLLinkGetNext(pCur);
-		pCur	= pNext;
+			pCurAtomicInClump = pNext;
+		} while(pCurAtomicInClump != pClump->atomicList);
 	}
 
 	NTL_RPROFILE(TRUE);

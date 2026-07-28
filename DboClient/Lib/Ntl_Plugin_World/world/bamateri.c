@@ -1090,8 +1090,8 @@ _rpMaterialChunkInfoRead(RwStream * stream,
     materialChunkInfo->color = tmpCol;
 
     if (size <=
-        (((RwUInt32) & materialChunkInfo->surfaceProps) -
-         ((RwUInt32) materialChunkInfo)))
+        (((uintptr_t) & materialChunkInfo->surfaceProps) -
+         ((uintptr_t) materialChunkInfo)))
     {
         materialChunkInfo->surfaceProps.ambient = (RwReal)(1.0);
         materialChunkInfo->surfaceProps.diffuse = (RwReal)(1.0);

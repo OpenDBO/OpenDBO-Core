@@ -2,7 +2,7 @@
 //	File		:	NtlResourceFileManager.h
 //	Desc		:	
 //	Begin		:	2004.9.23
-//	Copyright	:	¨Ï 2004 by agebreak CO., Ltd
+//	Copyright	:	ï¿½ï¿½ 2004 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -23,7 +23,7 @@
 #include "NtlDebug.h"
 
 
-struct STRING_COMPARE_NOCASE : public std::binary_function<std::string, std::string, bool>
+struct STRING_COMPARE_NOCASE
 {
 	static bool compare_nocase(wchar_t c1, wchar_t c2)
 	{
@@ -171,10 +171,10 @@ public:
 
 			if(FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 			{
-				//  µð·ºÅä¸®ÀÌ¸é
+				//  ï¿½ï¿½ï¿½ä¸®ï¿½Ì¸ï¿½
 				if(FindFileData.cFileName[0] == '.')
 				{
-					//  Dot µð·ºÅä¸®´Â ½ºÅµÇÑ´Ù.
+					//  Dot ï¿½ï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½Åµï¿½Ñ´ï¿½.
 				} 
 				else
 				{

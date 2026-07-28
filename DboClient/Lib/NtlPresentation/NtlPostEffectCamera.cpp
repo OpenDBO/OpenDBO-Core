@@ -2,7 +2,7 @@
 //	File		:	NtlBlurCamera.cpp
 //	Desc		:	
 //	Begin		:	2006. 2.13
-//	Copyright	:	¨Ï 2006 by agebreak CO., Ltd
+//	Copyright	:	ï¿½ï¿½ 2006 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -247,8 +247,7 @@ RwCamera* CNtlPostEffectCamera::Create(RwInt32 width,
 
 	if (!CreateEffect())
 	{
-		DBO_WARNING_MESSAGE("CreateEffect FAIL");
-		return NULL;
+		DBO_WARNING_MESSAGE("CreateEffect FAIL - continuing without post effects");
 	}
 
 	m_pMainCamera = CNtlCamera::Create(width, height, zBuffer, fNearClipPlane, fFarClipPlane);
@@ -299,7 +298,7 @@ void Set2DVertex(RwIm2DVertex* pVertex, RwReal fX, RwReal fY, RwReal fZ, RwReal 
     RwIm2DVertexSetIntRGBA(pVertex, 255, 255, 255, 255); 
 }
 
-// ±¼Àý ÀÌÆåÆ®¸¦ ±¸ÇöÇÏ±â À§ÇØ¼­ ViewÀÇ VertexÀÇ ¼ö¸¦ ´Ã¸®´Â ÇÔ¼ö
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ Viewï¿½ï¿½ Vertexï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¸ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
 void SetViewVertex(RwIm2DVertex* pVertex, RwInt32 nWidht, RwInt32 nHeight, RwCamera* pCamera)
 {
     int nCount = 0;
@@ -389,9 +388,12 @@ RwBool CNtlPostEffectCamera::CreateEffect()
 
 				if (FAILED(D3DXCreateEffect(m_lpDevice, pTempBuffer, iPackSize + 1, NULL, NULL, 0, NULL, &m_lpEffect, &pErr)))
 				{
-					RwChar* Error = (RwChar*)pErr->GetBufferPointer();
-					DBO_WARNING_MESSAGE("Error " << Error);
-					pErr->Release();
+					if (pErr)
+					{
+						RwChar* Error = (RwChar*)pErr->GetBufferPointer();
+						DBO_WARNING_MESSAGE("Error " << Error);
+						pErr->Release();
+					}
 					NTL_ARRAY_DELETE(pPackBuffer);
 					NTL_ARRAY_DELETE(pTempBuffer);
 					return FALSE;
@@ -409,9 +411,12 @@ RwBool CNtlPostEffectCamera::CreateEffect()
 		{
 			if (FAILED(D3DXCreateEffectFromFile(m_lpDevice, m_strShaderName.c_str(), NULL, NULL, 0, NULL, &m_lpEffect, &pErr)))
 			{
-				RwChar* Error = (RwChar*)pErr->GetBufferPointer();
-				DBO_WARNING_MESSAGE("Error " << Error);
-				pErr->Release();
+				if (pErr)
+				{
+					RwChar* Error = (RwChar*)pErr->GetBufferPointer();
+					DBO_WARNING_MESSAGE("Error " << Error);
+					pErr->Release();
+				}
 				return FALSE;
 			}
 		}
@@ -506,7 +511,7 @@ void CNtlPostEffectCamera::Update_Power_MonoPower()
 void CNtlPostEffectCamera::Update_FakeHDRFiltering()
 {
 	// ==========================================
-	// È­¸é Ãà¼ÒÇÏ±â
+	// È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	// ==========================================
 	if (SUCCEEDED(m_lpEffect->BeginPass(EFFECT_PASS_NONE)))
 	{
@@ -515,7 +520,7 @@ void CNtlPostEffectCamera::Update_FakeHDRFiltering()
 		{
 			if(RwCameraBeginUpdate(m_pReductionCamera))
 			{
-				// camera¸¦ update ÇÑÈÄ render state¸¦ ¸ÔÀÎ´Ù.
+				// cameraï¿½ï¿½ update ï¿½ï¿½ï¿½ï¿½ render stateï¿½ï¿½ ï¿½ï¿½ï¿½Î´ï¿½.
 				RwRenderStateSet(rwRENDERSTATECULLMODE,	(void *)rwCULLMODECULLNONE);
 
 				BeginPostEffectState(FALSE);
@@ -534,7 +539,7 @@ void CNtlPostEffectCamera::Update_FakeHDRFiltering()
 	}
 
 	// ==========================================
-	// Ãà¼ÒÈ­¸é ºí·¯ ¸ÔÀÌ±â
+	// ï¿½ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì±ï¿½
 	// ==========================================
 	if (SUCCEEDED(m_lpEffect->BeginPass(EFFECT_PASS_16BOX)))
 	{
@@ -545,11 +550,11 @@ void CNtlPostEffectCamera::Update_FakeHDRFiltering()
 		{
 			if(RwCameraBeginUpdate(m_pFakeHDRCamera))
 			{
-				// camera¸¦ update ÇÑÈÄ render state¸¦ ¸ÔÀÎ´Ù.
+				// cameraï¿½ï¿½ update ï¿½ï¿½ï¿½ï¿½ render stateï¿½ï¿½ ï¿½ï¿½ï¿½Î´ï¿½.
 				RwRenderStateSet(rwRENDERSTATECULLMODE,	(void *)rwCULLMODECULLNONE);
 
-				//programmable vertex PipelineÀÎ °æ¿ì TextureStateÀÇ TexCoordIndex°¡ Stage ¸í°ú °°¾Æ¾ß ÇÑ´Ù.(by HoDong 2007. 4. 12)
-				//Test¸¦ 1ÁÖÀÏ Á¤µµ º¸´Ù°¡ Á¤¸®¸¦ ÇÑ´Ù.
+				//programmable vertex Pipelineï¿½ï¿½ ï¿½ï¿½ï¿½ TextureStateï¿½ï¿½ TexCoordIndexï¿½ï¿½ Stage ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ¾ï¿½ ï¿½Ñ´ï¿½.(by HoDong 2007. 4. 12)
+				//Testï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
 
 				// CzStateChange : Start
 				// CzStateChange : Old
@@ -587,11 +592,11 @@ void CNtlPostEffectCamera::Update_FakeHDRFiltering()
 		{
 			if(RwCameraBeginUpdate(m_pReductionCamera))
 			{
-				// camera¸¦ update ÇÑÈÄ render state¸¦ ¸ÔÀÎ´Ù.
+				// cameraï¿½ï¿½ update ï¿½ï¿½ï¿½ï¿½ render stateï¿½ï¿½ ï¿½ï¿½ï¿½Î´ï¿½.
 				RwRenderStateSet(rwRENDERSTATECULLMODE,	(void *)rwCULLMODECULLNONE);
 
-				// programmable vertex PipelineÀÎ °æ¿ì TextureStateÀÇ TexCoordIndex°¡ Stage ¸í°ú °°¾Æ¾ß ÇÑ´Ù.(by HoDong 2007. 4. 12)
-				// Test¸¦ 1ÁÖÀÏ Á¤µµ º¸´Ù°¡ Á¤¸®¸¦ ÇÑ´Ù.
+				// programmable vertex Pipelineï¿½ï¿½ ï¿½ï¿½ï¿½ TextureStateï¿½ï¿½ TexCoordIndexï¿½ï¿½ Stage ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ¾ï¿½ ï¿½Ñ´ï¿½.(by HoDong 2007. 4. 12)
+				// Testï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
 
 				// CzStateChange : Start
 				// CzStateChange : Old
@@ -621,7 +626,7 @@ void CNtlPostEffectCamera::Update_FakeHDRFiltering()
 	}
 	
 	// ==========================================
-	// È­¸é È®´ëÇÏ±â
+	// È­ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï±ï¿½
 	// ==========================================
 	if (SUCCEEDED(m_lpEffect->BeginPass(EFFECT_PASS_NONE)))
 	{
@@ -630,7 +635,7 @@ void CNtlPostEffectCamera::Update_FakeHDRFiltering()
 		{
 			if(RwCameraBeginUpdate(m_pTempCamera))
 			{
-				// camera¸¦ update ÇÑÈÄ render state¸¦ ¸ÔÀÎ´Ù.
+				// cameraï¿½ï¿½ update ï¿½ï¿½ï¿½ï¿½ render stateï¿½ï¿½ ï¿½ï¿½ï¿½Î´ï¿½.
 				RwRenderStateSet(rwRENDERSTATECULLMODE,	(void *)rwCULLMODECULLNONE);
 
 				BeginPostEffectState(FALSE);
@@ -652,7 +657,7 @@ void CNtlPostEffectCamera::Update_FakeHDRFiltering()
 
 //-------------------------------------------------------------
 // Name: CreateReductionTexture()
-// Desc: °¡ÁßÄ¡ °è»ê
+// Desc: ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½
 //-------------------------------------------------------------
 void CNtlPostEffectCamera::CreateReductionTexture(RwInt32 nTextureSize)
 {
@@ -832,7 +837,7 @@ RwCamera* CNtlPostEffectCamera::MainCameraBeginUpdate(RwReal fElapsed)
 			//m_lpEffect->BeginPass(EFFECT_PASS_LASTDRAW);
 			//m_lpEffect->CommitChanges();
 			
-			// Test¸¦ 1ÁÖÀÏ Á¤µµ º¸´Ù°¡ Á¤¸®¸¦ ÇÑ´Ù.(by HoDong 2007.4.11)
+			// Testï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.(by HoDong 2007.4.11)
 			RwD3D9SetTextureStageState (0, D3DTSS_COLOROP,		D3DTOP_SELECTARG1);
 			RwD3D9SetTextureStageState (0, D3DTSS_COLORARG1,	D3DTA_TEXTURE);
 			
@@ -963,7 +968,7 @@ void CNtlPostEffectCamera::UpdateMotionBlur(RwReal fElapsedTime)
 		NTL_RPROFILE_VOID()
 	}
 
-    // ¾ËÆÄ°ªÀ» ¾÷µ¥ÀÌÆ® ÇÑ´Ù.
+    // ï¿½ï¿½ï¿½Ä°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ñ´ï¿½.
     if(m_fBlurAlpha > EFFECT_BLUR_ALPHA)
     {
         m_fBlurAlpha -= (m_fBlurFadeVelocity * fElapsedTime);
@@ -973,7 +978,7 @@ void CNtlPostEffectCamera::UpdateMotionBlur(RwReal fElapsedTime)
         }
     }
 
-    // ÇöÀç È­¸éÀ» ºí·¯ ´©Àû ÅØ½ºÃÄ¿¡ ¾ËÆÄ°ªÀ» ÁÖ°í Âï´Â´Ù.
+    // ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½Ä°ï¿½ï¿½ï¿½ ï¿½Ö°ï¿½ ï¿½ï¿½Â´ï¿½.
     for(int i = 0; i < 4; ++i)
     {
         RwIm2DVertexSetRealRGBA(&m_RhwBlurVertex[i], 255, 255, 255, m_fBlurAlpha);
@@ -989,7 +994,7 @@ void CNtlPostEffectCamera::UpdateMotionBlur(RwReal fElapsedTime)
         RwCameraEndUpdate(m_pMotionBlurCamera);
     }
 
-    // ´©Àû ºí·¯ ÅØ½ºÃÄ¸¦ ÇöÀçÈ­¸é¿¡ Âï´Â´Ù.
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½ï¿½Ä¸ï¿½ ï¿½ï¿½ï¿½ï¿½È­ï¿½é¿¡ ï¿½ï¿½Â´ï¿½.
     RwIm2DVertex rhwVertex[4];
     memcpy(rhwVertex, m_RhwVertex, sizeof(RwIm2DVertex) * 4);
     for(int i = 0; i < 4; ++i)
@@ -1027,7 +1032,7 @@ void CNtlPostEffectCamera::SetEnableBlur(RwBool bEnable, RwReal fFadeTime /* = 0
     {
 		if (RwCameraClear(m_pMotionBlurCamera, &m_BackgroundColor, rwCAMERACLEARZ|rwCAMERACLEARIMAGE))
 		{
-			// ÇöÀç È­¸éÀ» ºí·¯ ´©Àû ÅØ½ºÃÄ¿¡ ¾ËÆÄ°ªÀ» ÁÖ°í Âï´Â´Ù.
+			// ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½Ä°ï¿½ï¿½ï¿½ ï¿½Ö°ï¿½ ï¿½ï¿½Â´ï¿½.
 			for(int i = 0; i < 4; ++i)
 			{
 				RwIm2DVertexSetRealRGBA(&m_RhwBlurVertex[i], 255, 255, 255, 255);

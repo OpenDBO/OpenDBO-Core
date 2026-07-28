@@ -91,7 +91,7 @@ CInputActionMap::~CInputActionMap()
 }
 
 /**
-* \brief CInputActionMapÀÇ ÀÎ½ºÅÏ½º ¸®ÅÏ(½Ì±ÛÅæ)
+* \brief CInputActionMapï¿½ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½Ì±ï¿½ï¿½ï¿½)
 */
 CInputActionMap* CInputActionMap::GetInstance(void)
 {
@@ -118,15 +118,15 @@ RwBool CInputActionMap::Create(void)
 	m_hMouseDown = CInputHandler::GetInstance()->LinkMouseDown( this, &CInputActionMap::MouseDownHandler);
 	m_hMouseUp = CInputHandler::GetInstance()->LinkMouseUp( this, &CInputActionMap::MouseUpHandler);
 
-	// ActionMapManager ÃÊ±âÈ­
+	// ActionMapManager ï¿½Ê±ï¿½È­
 	InitDefaultActionMap();
 	m_ActionMapManager.ClearInputAction();
 	m_ActionMapManager.ClearReleaseAction();
 	m_ActionMapManager.ClearResult();
 
-	RegisterFlagMap();	// »óÅÂÈ¸º¹À» À§ÇÑ Å°¸¦ µî·Ï
+	RegisterFlagMap();	// ï¿½ï¿½ï¿½ï¿½È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å°ï¿½ï¿½ ï¿½ï¿½ï¿½
 
-	// ¾îÇÃ¸®ÄÉÀÌ¼Ç¿¡ ÇÖÅ°¸¦ µî·ÏÇÑ´Ù. print screen/sys rq Å°¸¦ ÀÌ¿ëÇÏ±â À§ÇØ
+	// ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½Ì¼Ç¿ï¿½ ï¿½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. print screen/sys rq Å°ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½
 	/*RegisterHotKey( CNtlApplication::GetInstance()->GetHWnd(), NTL_KEY_SNAPSHOT, 0, VK_SNAPSHOT );*/
 	
 	NTL_RETURN(TRUE);
@@ -188,11 +188,11 @@ void CInputActionMap::Destroy(void)
 
 /**
 * \brief Update
-* \param fElapsed	(RwReal) ÀÌÀü Update¿¡¼­ °æ°úµÈ ½Ã°£
+* \param fElapsed	(RwReal) ï¿½ï¿½ï¿½ï¿½ Updateï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
 */
 void CInputActionMap::Update(RwReal fElapsed)
 {
-	// InputActionMapÀÌ ºñÈ°¼ºÈ­ »óÅÂ¶ó¸é UpdateÇÏÁö ¾Ê´Â´Ù.
+	// InputActionMapï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­ ï¿½ï¿½ï¿½Â¶ï¿½ï¿½ Updateï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 	if(!m_bActive)
 		return;
 
@@ -216,7 +216,7 @@ void CInputActionMap::Update(RwReal fElapsed)
 
 /**
 * \brief HandleEvents
-* \param pMsg	(RWS::CMsg&) ÀÌº¥Æ®ÀÇ ¸Þ½ÃÁö
+* \param pMsg	(RWS::CMsg&) ï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½
 */
 void CInputActionMap::HandleEvents(RWS::CMsg &pMsg)
 {
@@ -245,80 +245,80 @@ void CInputActionMap::HandleEvents(RWS::CMsg &pMsg)
 }
 
 /**
-* \brief °ÔÀÓ¿¡ Á¢¼ÓÇÒ ¶§ ¼­¹ö¿¡¼­ ³»·ÁÁÖ´Â ´ÜÃàÅ° Á¤º¸¸¦ ¹Þ´Â´Ù.
+* \brief ï¿½ï¿½ï¿½Ó¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½Å° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´Â´ï¿½.
 */
 void CInputActionMap::HandleEventActionmapLoadInfo( RWS::CMsg& msg ) 
 {
 	SNtlEventActionMapLoadInfo* pPacket = (SNtlEventActionMapLoadInfo*)msg.pData;
 
-	// pPacket->byCount°¡ 0 ÀÌ¸é ¼­¹ö¿¡ ÀúÀåµÇ¾î ÀÖ´Â ´ÜÃàÅ°°¡ ¾ø´Ù´Â °ÍÀÌ´Ù.
-	// Å¬¶óÀÌ¾ðÆ®¿¡ ÇÏµå ÄÚµùµÇ¾î ÀÖ´Â ´ÜÃàÅ°·Î ¼ÂÆÃÇØÁÖ°í ¼­¹ö¿¡ Àû¿ëÇÑ´Ù.
+	// pPacket->byCountï¿½ï¿½ 0 ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½ï¿½Ù´ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½.
+	// Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®ï¿½ï¿½ ï¿½Ïµï¿½ ï¿½Úµï¿½ï¿½Ç¾ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	if( 0 == pPacket->byCount )
 	{
 		m_ActionMapManager.ClearActionMap();
 
-		// ActionMap¿¡ Á¤ÀÇµÇ¾î ÀÖ´Â ±âº» ¾×¼Ç¸ÊÀ¸·Î Á¤ÀÇÇÑ´Ù.
+		// ActionMapï¿½ï¿½ ï¿½ï¿½ï¿½ÇµÇ¾ï¿½ ï¿½Ö´ï¿½ ï¿½âº» ï¿½×¼Ç¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 		m_ActionMapManager.InitDefaultActionMap();
 
-		// ¸ðµç Release Action¿¡ °ü·ÃµÈ »çÇ×ÀÌ³ª °á°ú°ª Å¬¸®¾î
+		// ï¿½ï¿½ï¿½ Release Actionï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 		m_ActionMapManager.ClearResult();
 		m_ActionMapManager.ClearReleaseAction();
 		m_ActionMapManager.ClearInputAction();
 
-		// ¼­¹ö¿¡ ÀúÀå ¹× Àû¿ë
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		ApplyActionMap();
 
-		// Ä¸ÃÄ( byCount °¡ 0 ÀÌ¶ó¸é Å¬¶óÀÌ¾ðÆ®ÀÇ ´ÜÃàÅ°¸¦ ÀüÀûÀ¸·Î ½Å·Ú ÇÑ´Ù. )
+		// Ä¸ï¿½ï¿½( byCount ï¿½ï¿½ 0 ï¿½Ì¶ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å·ï¿½ ï¿½Ñ´ï¿½. )
 		m_ActionMapManager.CaptureActionMap();
 	}
 	else
 	{
 		m_ActionMapManager.ClearActionMap();
 
-		// ¼­¹ö¿¡¼­ ´ÜÃàÅ°¸¦ ¹Þ¾Æ¼­ ¾×¼Ç¸ÊÀ» ±¸¼º
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½ ï¿½Þ¾Æ¼ï¿½ ï¿½×¼Ç¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		for( int i=0; i<pPacket->byCount; ++i )
 			m_ActionMapManager.SetCombineKey( pPacket->asData[i].wKey, pPacket->asData[i].wActionID );
 
-		// Ä¸ÃÄ(¼­¹ö¿¡ ÀÖ´Â °Í)
+		// Ä¸ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½)
 		m_ActionMapManager.CaptureActionMap();
 
-		// ±âÁ¸¿¡ ¼±¾ðµÇ¾î ÀÖ´ø µðÆúÆ® °ªÀ¸·Î ÃÊ±âÈ­
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
 		m_ActionMapManager.InitDefaultActionMap();
 
-		// µðÆúÆ® ÃÊ±âÈ­ µÈ °Í¿¡ ´Ù½Ã ÇÑ¹ø Setting
+		// ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ê±ï¿½È­ ï¿½ï¿½ ï¿½Í¿ï¿½ ï¿½Ù½ï¿½ ï¿½Ñ¹ï¿½ Setting
 		for( int i=0; i<pPacket->byCount; ++i )
 			m_ActionMapManager.SetCombineKey( pPacket->asData[i].wKey, pPacket->asData[i].wActionID );
 
-		// ¸ðµç Release Action¿¡ °ü·ÃµÈ »çÇ×ÀÌ³ª °á°ú°ª Å¬¸®¾î
+		// ï¿½ï¿½ï¿½ Release Actionï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 		m_ActionMapManager.ClearResult();
 		m_ActionMapManager.ClearReleaseAction();
 		m_ActionMapManager.ClearInputAction();
 
-		// ´Ù½Ã Àû¿ë
+		// ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		ApplyActionMap();
 	}
 }
 
 /**
-* \breif ¼­¹ö¿¡ º¯°æµÈ ´ÜÃàÅ° Á¤º¸¸¦ º¸³»°í ³­ ÈÄÀÇ °á°ú
+* \breif ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å° ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 */
 void CInputActionMap::HandleEventsActionMapUpdateRes( RWS::CMsg& msg ) 
 {
 	SNtlEventActionMapUpdateRes* pPacket = (SNtlEventActionMapUpdateRes*)msg.pData;
 
-	// ¼º°ø
+	// ï¿½ï¿½ï¿½ï¿½
 	if( pPacket->bSuccess )
 	{
-		// ¼­¹ö¿¡µµ ÀúÀåÀÌ ¼º°øµÇ¾úÀ¸¸é ¿Ïº®ÇÏ°Ô Àû¿ëÀ» ÇÏ°í
-		// ¼­¹ö¿¡ Àû¿ëÇÒ ¼ö ÀÖ´Â »óÅÂ·Î ¸¸µé¾îµÐ´Ù.
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ïºï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï°ï¿½
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½.
 		m_ActionMapManager.CaptureActionMap();
 		m_bAcceptServer = TRUE;
 	}
-	// ½ÇÆÐ
+	// ï¿½ï¿½ï¿½ï¿½
 	else
 	{
-		// ½ÇÆÐÇÏ¿´´Ù¸é ±âÁ¸¿¡ Ä¸ÃÄµÈ ´ÜÃàÅ°¸¦ ³¯·Á¹ö¸®°í
-		// »õ·Ó°Ô ±âº» ´ÜÃàÅ°¸¦ ±¸¼ºÇÏ¿© ¼¼ÆÃÇÑ´Ù.
+		// ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä¸ï¿½Äµï¿½ ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		// ï¿½ï¿½ï¿½Ó°ï¿½ ï¿½âº» ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 
 		m_ActionMapManager.InitDefaultActionMap();
 		m_bAcceptServer = TRUE;
@@ -352,13 +352,13 @@ void CInputActionMap::Reset(void)
 	}
 	SetFlagAction( ACTION_AVATAR_BLOCKING, FALSE );
 
-	// Äü½½·Ô È¸º¹
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½
 	for( int i = ACTION_QUICK_1; i <= ACTION_QUICK_PLUS; ++i )
 	{
-		// Äü½½·ÔÀÌ ´­·¯Á® ÀÖ¾ú´Ù¸é(?)
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½Ù¸ï¿½(?)
 		if( IsDownAction( i ) )
 		{
-			// 0 ~ 11 ( 12°³ )
+			// 0 ~ 11 ( 12ï¿½ï¿½ )
 			m_pCallSkillQuickSlotUp->Call( i - ACTION_QUICK_1 );
 			SetFlagAction( i, FALSE );
 		}
@@ -405,12 +405,12 @@ void CInputActionMap::Reset(void)
 	//m_cActionMap.RemoveIgnoreKey();
 	m_mapUpdownRef.clear();
 
-	// ActionMapÀÇ Up Down Reference¸¦ Å¬¸®¾îÇÑ´Ù.
+	// ActionMapï¿½ï¿½ Up Down Referenceï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	m_ActionMapManager.ClearInputAction();
 }
 
 /**
-* \brief ÀÌµ¿¿¡ °ü·ÃµÈ ÀÚ·á¸¸ Reset
+* \brief ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½Ú·á¸¸ Reset
 */
 void CInputActionMap::ResetMoveFlags( void ) 
 {
@@ -439,20 +439,20 @@ void CInputActionMap::ResetMoveFlags( void )
 	m_sBackDashMap.fTime = 0.0f;
 	m_sBackDashMap.uiMoveFlags = NTL_MOVE_B;
 
-	// ActionMapÀÇ Up Down Reference¸¦ Å¬¸®¾îÇÑ´Ù.
+	// ActionMapï¿½ï¿½ Up Down Referenceï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	m_ActionMapManager.ClearInputAction();
 }
 
 /**
-* \brief Key°¡ DownµÈ °ÍÀ» °¡Áö°í ¿Í¼­ ¾×¼ÇÀ» Ã£¾Æ³½´Ù.
+* \brief Keyï¿½ï¿½ Downï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Í¼ï¿½ ï¿½×¼ï¿½ï¿½ï¿½ Ã£ï¿½Æ³ï¿½ï¿½ï¿½.
 */
-int CInputActionMap::KeyDownHandler(unsigned int pKeyData)
+int CInputActionMap::KeyDownHandler(uintptr_t pKeyData)
 {
-	SKeyData *pData = reinterpret_cast<SKeyData*>( pKeyData );
+	SKeyData *pData = CInputHandler::GetLastKeyData();
 
 	unsigned short usAction = ACTION_INVALID;
 
-	// RepCount°¡ 1ÀÏ¶§¸¸ ½ÇÇàÇÑ´Ù´Â °ÍÀº ÇÑ¹ø¸¸ ½ÇÇàÇÑ´Ù´Â ¶æÀÌ´Ù.
+	// RepCountï¿½ï¿½ 1ï¿½Ï¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´Ù´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´Ù´ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½.
 	if(pData->uiRepCount == 1)
 	{
 		// TODO: The current tab key uses the hardcoded ACTION_TARGET_AUTO action ID
@@ -488,7 +488,7 @@ int CInputActionMap::KeyDownHandler(unsigned int pKeyData)
 
 		int nKey = pData->uiChar & 0xFF;
 
-		// KeyRef Áõ°¡
+		// KeyRef ï¿½ï¿½ï¿½ï¿½
 		KeyReference( (unsigned char)(pData->uiChar & 0xFF) );
 
 		// Returns if the key is ignored.
@@ -513,11 +513,11 @@ int CInputActionMap::KeyDownHandler(unsigned int pKeyData)
 }
 
 /**
-* \brief Å°°¡ Up µÇ¾úÀ» ¶§ Å°¸¦ °¡Áö°í ¿Í¼­ ¾×¼Ç¸ÊÀ» °¡Áö°í ¿Â´Ù.
+* \brief Å°ï¿½ï¿½ Up ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½ Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Í¼ï¿½ ï¿½×¼Ç¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Â´ï¿½.
 */
-int CInputActionMap::KeyUpHandler(unsigned int pKeyData)
+int CInputActionMap::KeyUpHandler(uintptr_t pKeyData)
 {
-	SKeyData *pData = reinterpret_cast<SKeyData*>( pKeyData );
+	SKeyData *pData = CInputHandler::GetLastKeyData();
 
 	unsigned short usAction = ACTION_INVALID;
 
@@ -533,13 +533,13 @@ int CInputActionMap::KeyUpHandler(unsigned int pKeyData)
 		}
 	}
 
-	// VK_JUNJA´Â ALT¸¦ ´©¸¥ »óÅÂ¿¡¼­ = ¸¦ ÀÔ·ÂÇßÀ» °æ¿ì ( ÇÏµåÄÚµùÀ¸·Î Ä¡È¯ÇØÁØ´Ù. )
+	// VK_JUNJAï¿½ï¿½ ALTï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½ = ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ( ï¿½Ïµï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ Ä¡È¯ï¿½ï¿½ï¿½Ø´ï¿½. )
 	if ((pData->uiChar & 0xFF) == VK_JUNJA)
 	{
 		pData->uiChar = NTL_KEY_EQUAL;
 	}
 
-	// KeyRef °¨¼Ò : ¸¸¾à Down µÇ¾úÁö ¾Ê´Â Å°¶ó¸é ¹«Á¶°Ç ¸®ÅÏ ( Snap Shot ¸¸Àº ¿¹¿Ü·Î ÇÑ´Ù. )
+	// KeyRef ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½ Down ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ Å°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ( Snap Shot ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ü·ï¿½ ï¿½Ñ´ï¿½. )
 	if( !KeyReference( (unsigned char)(pData->uiChar & 0xFF), FALSE ) && ( (unsigned char)(pData->uiChar & 0xFF) ) != VK_SNAPSHOT )
 		return 1;
 
@@ -557,7 +557,7 @@ int CInputActionMap::KeyUpHandler(unsigned int pKeyData)
 		// If there are no errors, it is the same as a normal INVALID.
 		if( byErr == SET_RESULT_INVALID )
 		{
-			// ¸¸¾à ÇØÁ¦ÇØÁà¾ß ÇÏ´Â ActionµéÀÇ List°¡ ÀÖ´Ù¸é ¸ðµÎ ÇØÁ¦ÇØÁØ´Ù.
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ Actionï¿½ï¿½ï¿½ï¿½ Listï¿½ï¿½ ï¿½Ö´Ù¸ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
 			if( !uiActionUpList.empty() )
 			{
 				for each( unsigned short uiActionUp in uiActionUpList )
@@ -572,7 +572,7 @@ int CInputActionMap::KeyUpHandler(unsigned int pKeyData)
 			return 1;
 		}
 
-		// Á¤»óÀûÀ¸·Î ¼ÂÆÃÀÌ µÇ¾ú´Ù¸é InputActionMapÀÇ »óÅÂ¸¦ È¸º¹½ÃÄÑÁØ´Ù.
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½Ù¸ï¿½ InputActionMapï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
 		Reset();
 		
 		switch( byErr )
@@ -587,7 +587,7 @@ int CInputActionMap::KeyUpHandler(unsigned int pKeyData)
 				CNtlSLEventGenerator::ActionMapClientNotify( SNtlEventActionMapClientNotify::ACTIONMAP_NOTCOMBINE );
 			}
 			break;
-			case SET_RESULT_ALREADY_KEY:			// °¡Áö°í ÀÖ´ø Å°¸¦ ÇØÁ¦ÇÔ
+			case SET_RESULT_ALREADY_KEY:			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			{
 				CNtlSLEventGenerator::ActionMapClientNotify( SNtlEventActionMapClientNotify::ACTIONMAP_RELEASE, m_ActionMapManager.GetLastReleaseAction() );
 			}
@@ -618,11 +618,11 @@ int CInputActionMap::KeyUpHandler(unsigned int pKeyData)
 }
 
 
-int CInputActionMap::MouseDownHandler(unsigned int pMouseData)
+int CInputActionMap::MouseDownHandler(uintptr_t pMouseData)
 {
 
 	/*SMouseData *pData = reinterpret_cast<SMouseData*>(pMouseData);*/
-	//if(pData->chBtnType == MOUSE_RBTN)  //¸¶¿ì½º ´­¸®´Â°Ç ÈÄ¿¡ ±¸Çö
+	//if(pData->chBtnType == MOUSE_RBTN)  //ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ï¿½Â°ï¿½ ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 	//m_bRBtnDown = TRUE;
 
 	//ConvertServerFlags(m_uiServerMoveFlags);
@@ -630,7 +630,7 @@ int CInputActionMap::MouseDownHandler(unsigned int pMouseData)
 	return 1;
 }
 
-int CInputActionMap::MouseUpHandler(unsigned int pMouseData)
+int CInputActionMap::MouseUpHandler(uintptr_t pMouseData)
 {
 
 	/*SMouseData *pData = reinterpret_cast<SMouseData*>(pMouseData);*/
@@ -646,7 +646,7 @@ void CInputActionMap::SetActive(RwBool bActive)
 { 
 	m_bActive = bActive; 
 
-	// ºñÈ°¼ºÈ­¶ó¸é ÀÌµ¿ Flag¸¦ Reset
+	// ï¿½ï¿½È°ï¿½ï¿½È­ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ Flagï¿½ï¿½ Reset
 	if( bActive == FALSE )
 		ResetMoveFlags();
 }
@@ -667,7 +667,7 @@ void CInputActionMap::SetInputMode( RwUInt32 nAction )
 	{
 		BYTE byErr = m_ActionMapManager.GetLastResult();
 
-		// ¿¡·¯ °ËÃâ
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		if( byErr == SET_RESULT_OK )
 			return;
 	}
@@ -689,10 +689,10 @@ void CInputActionMap::InitDefaultActionMap()
 }
 
 /**
-* \brief ¾×¼Ç¸ÊÀÇ Àû¿ë
+* \brief ï¿½×¼Ç¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 *
-* ÀÚ·á±¸Á¶ÀÎ CActionMap¿¡¼­ º¯°æµÈ Á¡À» Ã¼Å©ÇÏ°í ±×°ÍÀ» ±â·ÏÇÏ¿©
-* ¼­¹ö·Î ÆÐÅ¶À» Àü¼ÛÇÑ´Ù.
+* ï¿½Ú·á±¸ï¿½ï¿½ï¿½ï¿½ CActionMapï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ï°ï¿½ ï¿½×°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½
+* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 */
 RwBool CInputActionMap::ApplyActionMap()
 {
@@ -703,8 +703,8 @@ RwBool CInputActionMap::ApplyActionMap()
 	BYTE byCount = 0;
 	if( m_ActionMapManager.GetUpdateData( pData , byCount ) )
 	{
-		// ¹Ù²ï Á¡ÀÌ ÀÖ´Ù¸é ÆÐÅ¶À» º¸³»°í ResultÄÚµå°¡ º¯°æÁ¡ÀÌ Àû¿ëµÇ±â Àü±îÁö ¼­¹ö¿¡ Àû¿ëÀ» ÇÒ ¼ö ¾ø´Â
-		// ¸ðµå·Î ¼ÂÆÃÇÑ´Ù.
+		// ï¿½Ù²ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ù¸ï¿½ ï¿½ï¿½Å¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Resultï¿½Úµå°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 		API_GetSLPacketGenerator()->SendCharKeyUpdateReq( pData, byCount );
 
 		m_bAcceptServer = FALSE;
@@ -722,21 +722,21 @@ void CInputActionMap::CancleActionMap()
 }
 
 /**
-* \brief ¹«½ÃµÉ Å°¸¦ µî·ÏÇÑ´Ù.
-* \param byKey		(RwUInt8) Å°ÀÇ VK_CODE
-* \param nRefCount	(int) ¹«½ÃµÉ È½¼ö, KeyUpHandler¿¡¼­ Ä«¿îÆ®¸¦ Ã¼Å©ÇÑ´Ù.
-* \return ¼º°ø¿©ºÎ
+* \brief ï¿½ï¿½ï¿½Ãµï¿½ Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+* \param byKey		(RwUInt8) Å°ï¿½ï¿½ VK_CODE
+* \param nRefCount	(int) ï¿½ï¿½ï¿½Ãµï¿½ È½ï¿½ï¿½, KeyUpHandlerï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ®ï¿½ï¿½ Ã¼Å©ï¿½Ñ´ï¿½.
+* \return ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 */
 RwBool CInputActionMap::RegisterIgnoreKey( RwUInt8 byKey, int nRefCount ) 
 {
 	IGNOREMAP::iterator it = m_mapIgnore.find( byKey );
-	// ÀÌ¹Ì Á¸ÀçÇÔ
+	// ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	if( it != m_mapIgnore.end() )
 	{
 		return FALSE;
 	}
 
-	// Á¸ÀçÇÏÁö ¾Ê´Â´Ù¸é Ãß°¡ÇÑ´Ù.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´Ù¸ï¿½ ï¿½ß°ï¿½ï¿½Ñ´ï¿½.
 	m_mapIgnore[byKey] = (RwUInt8)nRefCount;
 	
 	return TRUE;
@@ -746,13 +746,13 @@ RwBool CInputActionMap::RemoveIgnoreKey( RwUInt8 byKey )
 {
 	IGNOREMAP::iterator it = m_mapIgnore.find( byKey );
 
-	// Á¸ÀçÇÏÁö ¾ÊÀ½
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if( it == m_mapIgnore.end() )
 	{
 		return FALSE;
 	}
 
-	// Á¸ÀçÇÏ¸é »èÁ¦
+	// ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 	m_mapIgnore.erase( it );
 
 	return TRUE;
@@ -762,23 +762,23 @@ RwBool CInputActionMap::IsIgnoreKey( RwUInt8 byKey, RwBool bRef /*= FALSE */ )
 {
 	IGNOREMAP::iterator it = m_mapIgnore.find( byKey );
 
-	// ¹«½ÃµÇ´Â Å°°¡ ¾Æ´Ô.
+	// ï¿½ï¿½ï¿½ÃµÇ´ï¿½ Å°ï¿½ï¿½ ï¿½Æ´ï¿½.
 	if( it == m_mapIgnore.end() )
 		return FALSE;
 	
-	// BYTE°ªÀÌ INVALID¶ó¸é REF¸¦ °¨¼ÒÇÏÁö ¾Ê°í ¹«½Ã
+	// BYTEï¿½ï¿½ï¿½ï¿½ INVALIDï¿½ï¿½ï¿½ REFï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if( it->second == 0xFF )
 		return TRUE;
 
-	// Ref Count °¨¼Ò
+	// Ref Count ï¿½ï¿½ï¿½ï¿½
 	if( bRef )
 		(*it).second--;
 
-	// 0 º¸´Ù ÀÛ°Å³ª °°À¸¸é »èÁ¦
+	// 0 ï¿½ï¿½ï¿½ï¿½ ï¿½Û°Å³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if( (*it).second <= 0 )
 		m_mapIgnore.erase( it );
 
-	// ¹«½ÃÇÏ¶ó°í ¾Ë·ÁÁÜ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ï¿½ ï¿½Ë·ï¿½ï¿½ï¿½
 	return TRUE;
 }
 
@@ -932,7 +932,7 @@ void CInputActionMap::HitTestUpDbClickDashMap(SInputDashMap& sDashMap)
 
 void CInputActionMap::CallDashMove(RwUInt32 uiServerDashMoveFlags)
 {
-	// dash º¸³½´Ù(0.1 ÃÊ ¾È¿¡ ¶Ç ´Ù½Ã ´©¸£¸é). 
+	// dash ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(0.1 ï¿½ï¿½ ï¿½È¿ï¿½ ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½). 
 	if(!m_bActive || !m_pCallKeyboardDashMove)
 		return;
 
@@ -965,7 +965,7 @@ void CInputActionMap::ActionDownMoveHandler( RwUInt32 uiAction )
 		m_uiKey2MoveValidFlags = m_uiMoveFlags;
 	}
 
-	// ACTION¿¡ µû¸¥ Çàµ¿ Á¤ÀÇ
+	// ACTIONï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½àµ¿ ï¿½ï¿½ï¿½ï¿½
 	switch( uiAction )
 	{
 	case ACTION_AVATAR_FORWARD:
@@ -1011,10 +1011,10 @@ void CInputActionMap::ActionDownMoveHandler( RwUInt32 uiAction )
 }
 
 /**
-* \brief ´ë½¬ ÀÌµ¿À» Ã¼Å©ÇÑ´Ù.
+* \brief ï¿½ë½¬ ï¿½Ìµï¿½ï¿½ï¿½ Ã¼Å©ï¿½Ñ´ï¿½.
 *
-* ÇöÀç ¾×¼Ç¿¡ ¸Â´Â ´ë½¬ÀÇ ¹ßµ¿À» È®ÀÎÇÏ¿© Á¶°ÇÀÌ ¸ÂÀ¸¸é ´ë½¬¸¦ ½ÇÇàÇÑ´Ù.
-* \param iAction (unsigned int)¾×¼ÇID
+* ï¿½ï¿½ï¿½ï¿½ ï¿½×¼Ç¿ï¿½ ï¿½Â´ï¿½ ï¿½ë½¬ï¿½ï¿½ ï¿½ßµï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ë½¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+* \param iAction (unsigned int)ï¿½×¼ï¿½ID
 */
 void CInputActionMap::ActionDownDashMoveHandler( RwUInt32 uiAction ) 
 {
@@ -1064,13 +1064,13 @@ void CInputActionMap::ActionDownBehaviorHandler( RwUInt32 uiAction )
 			}
 			break;
 		}
-	case ACTION_AVATAR_LOOTING:		// ·çÆÃ
+	case ACTION_AVATAR_LOOTING:		// ï¿½ï¿½ï¿½ï¿½
 		{
 			if( m_pCallLooting )
 				m_pCallLooting->Call();
 			break;
 		}
-	case ACTION_AVATAR_CHARGE:		// ±â ¸ðÀ¸±â
+	case ACTION_AVATAR_CHARGE:		// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		{
 			if( m_pCallCharging && IsDownAction( ACTION_AVATAR_CHARGE ) == FALSE  )
 			{
@@ -1092,11 +1092,11 @@ void CInputActionMap::ActionDownBehaviorHandler( RwUInt32 uiAction )
 }
 
 /**
-* \brief Å°¸¦ ´­·¶À» ¶§ Ã³¸®µÇ´Â GUI ¾×¼Çµé
+* \brief Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ç´ï¿½ GUI ï¿½×¼Çµï¿½
 *
-* Å°¸¦ ´©¸¥ »óÅÂ¿¡¼­ ¹ß»ýÇÒ ¼ö ÀÖ´Â GUI¾×¼ÇµéÀ» °Ë»çÇÏ¿© ½ÇÇàÇÏ°í 
+* Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ GUIï¿½×¼Çµï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ 
 *
-* \param iAction (unsigned int)¾×¼ÇID
+* \param iAction (unsigned int)ï¿½×¼ï¿½ID
 */
 void CInputActionMap::ActionDownGuiHandler( RwUInt32 uiAction ) 
 {
@@ -1105,14 +1105,14 @@ void CInputActionMap::ActionDownGuiHandler( RwUInt32 uiAction )
 
 	switch( uiAction )
 	{
-	case ACTION_TARGET_SELF:		// ÀÚ±â ÀÚ½Å ¼±ÅÃ
+	case ACTION_TARGET_SELF:		// ï¿½Ú±ï¿½ ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		{
 			if( m_pCallAvatarSelect )
 				m_pCallAvatarSelect->Call();
 			break;
 		}
 
-	case ACTION_QUICK_1:			// Äü½½·Ô
+	case ACTION_QUICK_1:			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		{
 			if( m_pCallSkillQuickSlotDown && IsDownAction( ACTION_QUICK_1 ) == FALSE )
 			{
@@ -1221,7 +1221,7 @@ void CInputActionMap::ActionDownGuiHandler( RwUInt32 uiAction )
 			break;
 		}
 
-		// È®Àå 1¹ø
+		// È®ï¿½ï¿½ 1ï¿½ï¿½
 	case ACTION_QUICK_1_EX:
 		{
 			if( m_pCallSkillQuickSlotExDown )
@@ -1331,7 +1331,7 @@ void CInputActionMap::ActionDownGuiHandler( RwUInt32 uiAction )
 			break;
 		}
 
-		// È®Àå 2¹ø
+		// È®ï¿½ï¿½ 2ï¿½ï¿½
 	case ACTION_QUICK_1_EX2:
 		{
 			if( m_pCallSkillQuickSlotEx2Down )
@@ -1441,28 +1441,28 @@ void CInputActionMap::ActionDownGuiHandler( RwUInt32 uiAction )
 			break;
 		}
 
-	case ACTION_TARGET_1STPARTY:		// Ã¹¹øÂ° ÆÄÆ¼¿ø ¼±ÅÃ
+	case ACTION_TARGET_1STPARTY:		// Ã¹ï¿½ï¿½Â° ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		{
 			if( m_pCallPartySelect )
 				m_pCallPartySelect->Call( 0 );
 
 			break;
 		}
-	case ACTION_TARGET_2NDPARTY:		//  µÎ¹øÂ° ÆÄÆ¼¿ø ¼±ÅÃ
+	case ACTION_TARGET_2NDPARTY:		//  ï¿½Î¹ï¿½Â° ï¿½ï¿½Æ¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		{
 			if( m_pCallPartySelect )
 				m_pCallPartySelect->Call( 1 );
 
 			break;
 		}
-	case ACTION_TARGET_3RDPARTY:		// ¼¼¹øÂ°
+	case ACTION_TARGET_3RDPARTY:		// ï¿½ï¿½ï¿½ï¿½Â°
 		{
 			if( m_pCallPartySelect )
 				m_pCallPartySelect->Call( 2 );
 
 			break;
 		}
-	case ACTION_TARGET_4THPARTY:		// ³×¹øÂ°
+	case ACTION_TARGET_4THPARTY:		// ï¿½×¹ï¿½Â°
 		{
 			if( m_pCallPartySelect )
 				m_pCallPartySelect->Call( 3 );
@@ -1482,17 +1482,17 @@ void CInputActionMap::ActionDownGuiHandler( RwUInt32 uiAction )
 }
 
 /**
-* \brief Å°¾÷¿¡ µû¸¥ ÀÌµ¿¾×¼Ç ÇÚµé·¯
+* \brief Å°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½×¼ï¿½ ï¿½Úµé·¯
 *
-* Å° ¾÷¿¡ µû¶ó ¹ß»ýÇÏ´Â ÀÌµ¿ ¾×¼ÇÀ» Ã³¸®ÇÑ´Ù.
+* Å° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½Ï´ï¿½ ï¿½Ìµï¿½ ï¿½×¼ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ñ´ï¿½.
 *
-* \param iAction (unsigned int)¾×¼ÇID
+* \param iAction (unsigned int)ï¿½×¼ï¿½ID
 */
 void CInputActionMap::ActionUpMoveHandler( RwUInt32 uiAction ) 
 {
 	switch( uiAction )
 	{
-		case ACTION_AVATAR_FORWARD:	// ÀüÁø
+		case ACTION_AVATAR_FORWARD:	// ï¿½ï¿½ï¿½ï¿½
 		{
 			m_uiMoveFlags &= (~NTL_BIT_FRONT_MOVE);
 
@@ -1510,7 +1510,7 @@ void CInputActionMap::ActionUpMoveHandler( RwUInt32 uiAction )
 
 			break;
 		}
-		case ACTION_AVATAR_LEFTTURN: // ÁÂÈ¸Àü
+		case ACTION_AVATAR_LEFTTURN: // ï¿½ï¿½È¸ï¿½ï¿½
 		{
 			m_uiMoveFlags &= (~NTL_BIT_TURN_LEFT_MOVE);
 
@@ -1524,7 +1524,7 @@ void CInputActionMap::ActionUpMoveHandler( RwUInt32 uiAction )
 
 			break;
 		}
-		case ACTION_AVATAR_BACKWARD: // ÈÄÁø
+		case ACTION_AVATAR_BACKWARD: // ï¿½ï¿½ï¿½ï¿½
 		{
 			m_uiMoveFlags &= (~NTL_BIT_BACK_MOVE);
 
@@ -1537,7 +1537,7 @@ void CInputActionMap::ActionUpMoveHandler( RwUInt32 uiAction )
 				m_pCallKeyboardMove->Call(m_uiServerMoveFlags);
 		}
 		break;
-		case ACTION_AVATAR_RIGHTTURN: // ¿ìÈ¸Àü
+		case ACTION_AVATAR_RIGHTTURN: // ï¿½ï¿½È¸ï¿½ï¿½
 		{
 			m_uiMoveFlags &= (~NTL_BIT_TURN_RIGHT_MOVE);
 
@@ -1583,11 +1583,11 @@ void CInputActionMap::ActionUpMoveHandler( RwUInt32 uiAction )
 }
 
 /**
-* \brief Å°¾÷¿¡ µû¸¥ ÀÌµ¿ ¾×¼ÇÀÇ ´ë½¬ ÇÚµé·¯
+* \brief Å°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½×¼ï¿½ï¿½ï¿½ ï¿½ë½¬ ï¿½Úµé·¯
 *
-* Å°¾÷¿¡ µû¸¥ ÀÌµ¿ ¾×¼Ç¿¡ ´ë½¬¸¦ Ã³¸®ÇØ¾ß ÇÏ´Â ºÎºÐÀÎÁö È®ÀÎÇÏ°í ½ÇÇàÇÑ´Ù.
+* Å°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½×¼Ç¿ï¿½ ï¿½ë½¬ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Ï´ï¿½ ï¿½Îºï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 *
-* \param iAction (unsigned int)¾×¼ÇID
+* \param iAction (unsigned int)ï¿½×¼ï¿½ID
 */
 void CInputActionMap::ActionUpDashMoveHandler( RwUInt32 uiAction ) 
 {
@@ -1635,13 +1635,13 @@ void CInputActionMap::ActionUpBehaviorHandler( RwUInt32 uiAction )
 
 			break;
 		}
-	case ACTION_TARGET_AUTO:			// °¡±î¿î Àû ¼±ÅÃ
+	case ACTION_TARGET_AUTO:			// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		{
 			if( m_pCallAutoTarget )
 				m_pCallAutoTarget->Call();
 			break;
 		}
-	case ACTION_TARGET_AUTOATK:			// ÀÚµ¿ °ø°Ý
+	case ACTION_TARGET_AUTOATK:			// ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
 		{
 			if( m_pCallAutoAttack )
 				m_pCallAutoAttack->Call();
@@ -1662,7 +1662,7 @@ void CInputActionMap::ActionUpBehaviorHandler( RwUInt32 uiAction )
 			}
 			break;
 		}
-	case ACTION_AVATAR_JUMP:		// Á¡ÇÁ Flag È¸º¹
+	case ACTION_AVATAR_JUMP:		// ï¿½ï¿½ï¿½ï¿½ Flag È¸ï¿½ï¿½
 		{
 			if( m_pCallJump )
 			{
@@ -1773,9 +1773,9 @@ void CInputActionMap::ActionUpBehaviorHandler( RwUInt32 uiAction )
 }
 
 /**
-* \brief Å°¾÷¿¡ µû¸¥ GUI ¾×¼ÇÀÇ ÇÚµé·¯
+* \brief Å°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ GUI ï¿½×¼ï¿½ï¿½ï¿½ ï¿½Úµé·¯
 *
-* \param iAction (unsigned int)¾×¼ÇID
+* \param iAction (unsigned int)ï¿½×¼ï¿½ID
 */
 void CInputActionMap::ActionUpGuiHandler( RwUInt32 uiAction ) 
 {
@@ -1899,7 +1899,7 @@ void CInputActionMap::ActionUpGuiHandler( RwUInt32 uiAction )
 			break;
 		}
 
-		// È®Àå 1¹ø
+		// È®ï¿½ï¿½ 1ï¿½ï¿½
 	case ACTION_QUICK_1_EX:
 		{
 			if( m_pCallSkillQuickSlotExUp )
@@ -2009,7 +2009,7 @@ void CInputActionMap::ActionUpGuiHandler( RwUInt32 uiAction )
 			break;
 		}
 
-	// È®Àå 2¹ø
+	// È®ï¿½ï¿½ 2ï¿½ï¿½
 	case ACTION_QUICK_1_EX2:
 		{
 			if( m_pCallSkillQuickSlotEx2Up )
@@ -2147,7 +2147,7 @@ void CInputActionMap::ActionUpGuiHandler( RwUInt32 uiAction )
 				m_pCallChatPageChange->Call( 1 );
 		}
 		break;
-	case ACTION_GLOBAL_SNAPSHOT:		// ½ºÅ©¸° Ä¸ÃÄ ±â´É
+	case ACTION_GLOBAL_SNAPSHOT:		// ï¿½ï¿½Å©ï¿½ï¿½ Ä¸ï¿½ï¿½ ï¿½ï¿½ï¿½
 		{
 			GetNtlGameCameraManager()->SetCaptureScreenShot();
 			break;
@@ -2156,7 +2156,7 @@ void CInputActionMap::ActionUpGuiHandler( RwUInt32 uiAction )
 		break;
 	}
 
-	// ´ÙÀÌ¾ó·Î±× ¾×¼Ç Ã³¸®
+	// ï¿½ï¿½ï¿½Ì¾ï¿½Î±ï¿½ ï¿½×¼ï¿½ Ã³ï¿½ï¿½
 	if( m_pCallDialogAction )
 		m_pCallDialogAction->Call( uiAction );
 }
@@ -2166,11 +2166,11 @@ void CInputActionMap::ActionUpGuiHandler( RwUInt32 uiAction )
 */
 void CInputActionMap::RegisterFlagMap() 
 {
-	m_mapFlag[ACTION_AVATAR_CHARGE] = FALSE;		// ±â ¸ðÀ¸±â
-	m_mapFlag[ACTION_AVATAR_BLOCKING] = FALSE;		// ºí·ÏÅ·
+	m_mapFlag[ACTION_AVATAR_CHARGE] = FALSE;		// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	m_mapFlag[ACTION_AVATAR_BLOCKING] = FALSE;		// ï¿½ï¿½ï¿½ï¿½Å·
 	m_mapFlag[ACTION_AVATAR_SITDOWN] = FALSE;		// sit/stand up & fly down
-	m_mapFlag[ACTION_AVATAR_JUMP] = FALSE;			// Á¡ÇÁ
-	m_mapFlag[ACTION_QUICK_1] = FALSE;				// Äü½½·Ô ´ÜÃàÅ°µé
+	m_mapFlag[ACTION_AVATAR_JUMP] = FALSE;			// ï¿½ï¿½ï¿½ï¿½
+	m_mapFlag[ACTION_QUICK_1] = FALSE;				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½
 	m_mapFlag[ACTION_QUICK_2] = FALSE;
 	m_mapFlag[ACTION_QUICK_3] = FALSE;
 	m_mapFlag[ACTION_QUICK_4] = FALSE;
@@ -2209,9 +2209,9 @@ void CInputActionMap::RegisterFlagMap()
 }
 
 /**
-* \brief ÇöÀç ¾×¼ÇÀÇ »óÅÂ¸¦ °¡Áö°í ¿Â´Ù.
-* \param iAction	¾×¼Ç
-* \return ¾×¼ÇÀÇ »óÅÂ ( ¾øÀ¸¸é FALSE )
+* \brief ï¿½ï¿½ï¿½ï¿½ ï¿½×¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Â´ï¿½.
+* \param iAction	ï¿½×¼ï¿½
+* \return ï¿½×¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ( ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ FALSE )
 */
 RwBool CInputActionMap::IsDownAction( RwUInt32 uiAction ) 
 {
@@ -2225,10 +2225,10 @@ RwBool CInputActionMap::IsDownAction( RwUInt32 uiAction )
 }
 
 /**
-* \brief ¾×¼ÇÀÇ ÇÃ·¡±×¸¦ ÁöÁ¤ÇÑ´Ù.
-* \param iAction	¾×¼ÇÀÇ NUMBER
-* \param bDown		´Ù¿îÀÇ »óÅÂ
-* \return ¼º°ø¿©ºÎ
+* \brief ï¿½×¼ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+* \param iAction	ï¿½×¼ï¿½ï¿½ï¿½ NUMBER
+* \param bDown		ï¿½Ù¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+* \return ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 */
 RwBool CInputActionMap::SetFlagAction( RwUInt32 uiAction, RwBool bDown ) 
 {
@@ -2411,25 +2411,25 @@ void CInputActionMap::UnLinkChatPageChane( void )
 }
 
 /**
-* \brief Å°ÀÇ Up/Down È½¼ö¸¦ ±â·ÏÇÑ´Ù.
-* \param byChar		(RwUInt8) Å°ÀÇ µ¥ÀÌÅÍ
-* \param bDown		(RwBool) Å°ÀÇ Up/Down ¿©ºÎ
-* \return Å°°¡ ÀÌ¹Ì ¸Ê¿¡ Á¸ÀçÇØ¼­ Ref Áõ/°¨ÀÌ ÀÏ¾î³µÀ» °æ¿ì TRUE
+* \brief Å°ï¿½ï¿½ Up/Down È½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+* \param byChar		(RwUInt8) Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+* \param bDown		(RwBool) Å°ï¿½ï¿½ Up/Down ï¿½ï¿½ï¿½ï¿½
+* \return Å°ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ Ref ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¾î³µï¿½ï¿½ ï¿½ï¿½ï¿½ TRUE
 */
 RwBool CInputActionMap::KeyReference( RwUInt8 byChar, RwBool bDown /* = TRUE */)
 {
-	// ÀÌ¹Ì Å°°¡ Á¸ÀçÇÒ °æ¿ì
+	// ï¿½Ì¹ï¿½ Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	UPDOWNREF::iterator it = m_mapUpdownRef.find( byChar );
 	if( it != m_mapUpdownRef.end() )
 	{
-		// Ref Áõ°¡
+		// Ref ï¿½ï¿½ï¿½ï¿½
 		if( bDown )
 		{
 			(*it).second++;
 		}
 		else
 		{
-			// Ref °¨¼Ò
+			// Ref ï¿½ï¿½ï¿½ï¿½
 			(*it).second--;
 			if( (*it).second <= 0 )
 				m_mapUpdownRef.erase( it );
@@ -2437,7 +2437,7 @@ RwBool CInputActionMap::KeyReference( RwUInt8 byChar, RwBool bDown /* = TRUE */)
 
 		return TRUE;
 	}
-	// Å°°¡ Á¸ÀçÇÏÁö ¾ÊÀ» °æ¿ì
+	// Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	else
 	{
 		if( bDown )
@@ -2446,3 +2446,4 @@ RwBool CInputActionMap::KeyReference( RwUInt8 byChar, RwBool bDown /* = TRUE */)
 		return FALSE;
 	}
 }
+

@@ -14,6 +14,13 @@
 #include "NtlPLPalette.h"
 #include "NtlDefaultItemData.h"
 
+#ifdef _DEBUG
+#include <crtdbg.h>
+#define HEAP_CHECK() do { if (!_CrtCheckMemory()) { OutputDebugStringA("HEAP CORRUPTION DETECTED at " __FILE__ "\n"); __debugbreak(); } } while(0)
+#else
+#define HEAP_CHECK() ((void)0)
+#endif
+
 RwBool API_PLEffectCreate(void)
 {
 	CNtlEffectSystemFreeList::m_strClumpTexturePath = PATH_EFFECT_TEXTURE;
@@ -109,14 +116,28 @@ void API_PL_PathnameDestroy(RwChar * buffer)
 	return;
 }
 
+static RpClump* SafeLoadClump(RwStream* stream)
+{
+	__try
+	{
+		return (RpClump*)RpClumpStreamRead(stream);
+	}
+	__except(EXCEPTION_EXECUTE_HANDLER)
+	{
+		char buf[256];
+		sprintf_s(buf, "SafeLoadClump: exception 0x%08X at address\n", GetExceptionCode());
+		OutputDebugStringA(buf);
+		return NULL;
+	}
+}
+
 RpClump * API_PL_LoadClump( const RwChar * filename )
 {
 	RwStream    *stream = NULL;
 	RpClump     *clump = NULL;
 	RwChar	    *pathName;
-	void		*fp = NULL;
+	RwUInt8*    buf = NULL;
 
-	//   
 	pathName = API_PL_PathnameCreate(filename);
 
 	SPackResFileData sPackFileData;
@@ -124,11 +145,30 @@ RpClump * API_PL_LoadClump( const RwChar * filename )
 
 	if(bPack)
 	{
-		fp = RwFopen(sPackFileData.strPackFileName.c_str(), "rb");
-		if(fp)
+		FILE* fp = NULL;
+		if (fopen_s(&fp, sPackFileData.strPackFileName.c_str(), "rb") == 0)
 		{
-			RwFseek(fp, sPackFileData.uiOffset, RTFILE_POS_BEGIN);
-			stream = RwStreamOpen(rwSTREAMFILE, rwSTREAMREAD, fp);
+			fseek(fp, sPackFileData.uiOffset, SEEK_SET);
+			buf = (RwUInt8*)RwMalloc(sPackFileData.uiSize, rwMEMHINTDUR_GLOBAL);
+			if (buf)
+			{
+				size_t readBytes = fread(buf, 1, sPackFileData.uiSize, fp);
+				fclose(fp);
+				if (readBytes == sPackFileData.uiSize)
+				{
+					RwMemory mem;
+					mem.start = buf;
+					mem.length = sPackFileData.uiSize;
+					stream = RwStreamOpen(rwSTREAMMEMORY, rwSTREAMREAD, &mem);
+				}
+				else
+				{
+					RwFree(buf);
+					buf = NULL;
+				}
+			}
+			else
+				fclose(fp);
 		}
 	}
 	else
@@ -139,17 +179,20 @@ RpClump * API_PL_LoadClump( const RwChar * filename )
 	if(stream)
 	{
 		RwStreamFindChunk(stream, rwID_CLUMP, NULL, NULL);
-		clump = (RpClump*)RpClumpStreamRead(stream);
+		HEAP_CHECK();
+		clump = SafeLoadClump(stream);
+		HEAP_CHECK();
 		RwStreamClose(stream, NULL);
+		HEAP_CHECK();
 	}
 
-	if(fp)
+	if (buf)
 	{
-		RwFclose(fp);
-		fp = NULL;
+		RwFree(buf);
 	}
 
 	API_PL_PathnameDestroy(pathName);
+	HEAP_CHECK();
 
 	if (clump == NULL)
 	{
@@ -161,24 +204,35 @@ RpClump * API_PL_LoadClump( const RwChar * filename )
 
 RtDict*	API_PL_LoadUVAnimDict(const RwChar* strFullName)
 {
-	// Modify Fluorite(2007.03.21)
-	// Desc: added code for resource pack.
-
     RtDict* pDict = NULL;
 	RwStream* pStream = NULL;
-	void *fp = NULL;
 
 	SPackResFileData sPackFileData;
 	RwBool bPack = GetNtlResourcePackManager()->LoadObject(strFullName, sPackFileData);
 	if(bPack)
 	{
-		fp = RwFopen(sPackFileData.strPackFileName.c_str(), "rb");
-		if(fp == NULL)
-			return NULL;
-
-		RwFseek(fp, sPackFileData.uiOffset, RTFILE_POS_BEGIN);
-
-		pStream = RwStreamOpen(rwSTREAMFILE, rwSTREAMREAD, fp);
+		FILE* fp = NULL;
+		if (fopen_s(&fp, sPackFileData.strPackFileName.c_str(), "rb") == 0)
+		{
+			fseek(fp, sPackFileData.uiOffset, SEEK_SET);
+			RwUInt8* buf = (RwUInt8*)RwMalloc(sPackFileData.uiSize, rwMEMHINTDUR_GLOBAL);
+			if (buf)
+			{
+				size_t readBytes = fread(buf, 1, sPackFileData.uiSize, fp);
+				fclose(fp);
+				if (readBytes == sPackFileData.uiSize)
+				{
+					RwMemory mem;
+					mem.start = buf;
+					mem.length = sPackFileData.uiSize;
+					pStream = RwStreamOpen(rwSTREAMMEMORY, rwSTREAMREAD, &mem);
+				}
+				else
+					RwFree(buf);
+			}
+			else
+				fclose(fp);
+		}
 	}
 	else
 		pStream = RwStreamOpen(rwSTREAMFILENAME, rwSTREAMREAD, strFullName);
@@ -191,9 +245,6 @@ RtDict*	API_PL_LoadUVAnimDict(const RwChar* strFullName)
 		}
 		RwStreamClose(pStream, NULL);
 	}
-
-	if(fp)
-		RwFclose(fp);
 
 	return pDict;
 }
@@ -216,14 +267,19 @@ RpAtomic * API_PL_LoadAtomic( const RwChar *filename, const RwChar * pTexturePat
 
 	int count = RpClumpGetNumAtomics( clump );
 
-	RwLLLink *	pLink = rwLinkListGetFirstLLLink( &(clump->atomicList) );
-	RpAtomic *	pAtomic = rwLLLinkGetData( pLink, RpAtomic, inClumpLink );
+	// atomicList is now a direct RpAtomic* pointer (not RwLinkList) after the x64 struct refactor
+	RpAtomic *	pAtomic = clump->atomicList;
 
 	pAtomic = RpAtomicClone( pAtomic );
 
 	RpAtomicSetFrame( pAtomic, RwFrameCreate() );
 
 	RpGeometry * pGeometry = RpAtomicGetGeometry( pAtomic );
+	if (pGeometry == NULL) {
+		char buf[512];
+		sprintf_s(buf, "API_PL_LoadAtomic: NULL geometry after loading %s\n", filename);
+		OutputDebugStringA(buf);
+	}
 	//	RpCollisionGeometryBuildData( pGeometry, NULL );
 
 	RpClumpDestroy( clump );
@@ -281,8 +337,17 @@ RwBool API_PL_AtomicSetTexture(RpAtomic* pAtomic, RwTexture* pTexture)
 
 void API_PL_AtomicSetGeoFlags(RpAtomic* pAtomic, RwUInt32 Flags)
 {
-	RpGeometry*	pGeometry	= RpAtomicGetGeometry(pAtomic);
-	RpMaterial*	pMaterial	= RpGeometryGetMaterial(pGeometry, 0);
+	if (!pAtomic) return;
+
+	RpGeometry* pGeometry = RpAtomicGetGeometry(pAtomic);
+	if (!pGeometry)
+	{
+		DBO_WARNING_MESSAGE("API_PL_AtomicSetGeoFlags: atomic has no geometry");
+		return;
+	}
+
+	// opcional: verificar material apenas se necess√°rio
+	// RpMaterial* pMaterial = RpGeometryGetMaterial(pGeometry, 0);
 
 	RpGeometrySetFlags(pGeometry, Flags);
 }
@@ -345,7 +410,7 @@ void API_PL_1BColorClamp(RwReal* pDst, RwReal Value)
 	*pDst = *pDst + Value;
 }
 
-void API_PL_RasterSaveImage(const RwRaster *pRaster, const RwChar *pszFileName, RwInt32 _Width, RwInt32 _Height)    ///< Raster∏¶ Image∑Œ ¿˙¿Â(.png, .bmp)
+void API_PL_RasterSaveImage(const RwRaster *pRaster, const RwChar *pszFileName, RwInt32 _Width, RwInt32 _Height)    ///< RasterÔøΩÔøΩ ImageÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ(.png, .bmp)
 {
 	RwImage *image;
 	RwImage *imageDst;
@@ -372,9 +437,9 @@ void API_PL_RasterSaveImage(const RwRaster *pRaster, const RwChar *pszFileName, 
 }
 
 /**
- * Raster∏¶ Image∑Œ ¿˙¿Â¿ª «—¥Ÿ.
- * \param pRaster: Image∑Œ ¿˙¿Â«“ Raster
- * \param pszFileName: ¿˙¿Â«“ ∆ƒ¿œ ¿Ã∏ß »Æ¿Â∏Ì(.png, .bmp)ø° µ˚∂Ûº≠ ¿˙¿Â¿Ã µ»¥Ÿ.
+ * RasterÔøΩÔøΩ ImageÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ ÔøΩ—¥ÔøΩ.
+ * \param pRaster: ImageÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ Raster
+ * \param pszFileName: ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ ÔøΩÃ∏ÔøΩ »ÆÔøΩÔøΩÔøΩ(.png, .bmp)ÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ ÔøΩ»¥ÔøΩ.
  */
 void API_PL_RasterSaveImage(const RwRaster *pRaster, const RwChar *pszFileName)
 {
@@ -397,8 +462,8 @@ void API_PL_RasterSaveImage(const RwRaster *pRaster, const RwChar *pszFileName)
 }
 
 /**
- * Camera¿« Target¿ª Look At «“ ºˆ ¿÷µµ∑œ Camera¿« Matrix¿ª ∫Ø∞Ê«—¥Ÿ.
- * Camera¿« Up¿Ã y∞° -1¿Ã ¿ß¬ ¿Ã¥Ÿ. ¡∂Ω…«ÿº≠ ªÁøÎ
+ * CameraÔøΩÔøΩ TargetÔøΩÔøΩ Look At ÔøΩÔøΩ ÔøΩÔøΩ ÔøΩ÷µÔøΩÔøΩÔøΩ CameraÔøΩÔøΩ MatrixÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩÔøΩ—¥ÔøΩ.
+ * CameraÔøΩÔøΩ UpÔøΩÔøΩ yÔøΩÔøΩ -1ÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩÔøΩÃ¥ÔøΩ. ÔøΩÔøΩÔøΩÔøΩÔøΩÿºÔøΩ ÔøΩÔøΩÔøΩ
  */
 void API_PL_CameraLookAt( RwCamera* pCamera, const RwV3d* pSetCameraPos, const RwV3d* pTarget, const RwV3d* pSentInUp, RwReal fAtAxisRot /* = 0.0f */ )
 {
@@ -467,12 +532,12 @@ void API_PL_CameraMatrixLookAt( RwMatrix *pMat, const RwV3d* pSetCameraPos, cons
 }
 
 /**
- * 3D¡¬«•∏¶ 2D¡¬«•∑Œ ∫Ø»Ø«—¥Ÿ.
- * \param v3DPos ∫Ø»Ø«“ 3D¡¬«•
- * \param nWidth View¿« ≥–¿Ã
- * \param nHeight View¿« ≥Ù¿Ã
- * \param bOutSideReturn ¿Ã ∞™¿Ã TRUE¿Ã∏È ƒ´∏ﬁ∂Û π€ø° ¿÷¥¬ ∏∂¿Ã≥ Ω∫ ∞™µµ ∏Æ≈œ«ÿ¡ÿ¥Ÿ. (µ∆˙∆Æ¥¬ False). ¥Ÿ∏∏ ¿Ã∂ß 3D¡¬«•∞° ƒ´∏ﬁ∂Û µ⁄∆Ì¿Ã∏È (9999,9999)∏¶ π›»Ø«—¥Ÿ.
- * return ∫Ø»Øµ» 2D¡¬«•. ((0,0)¿Ã∏È ƒ´∏ﬁ∂Û π€ø° ¿÷¥Ÿ)
+ * 3DÔøΩÔøΩ«•ÔøΩÔøΩ 2DÔøΩÔøΩ«•ÔøΩÔøΩ ÔøΩÔøΩ»ØÔøΩ—¥ÔøΩ.
+ * \param v3DPos ÔøΩÔøΩ»ØÔøΩÔøΩ 3DÔøΩÔøΩ«•
+ * \param nWidth ViewÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ
+ * \param nHeight ViewÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ
+ * \param bOutSideReturn ÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ TRUEÔøΩÃ∏ÔøΩ ƒ´ÔøΩﬁ∂ÔøΩ ÔøΩ€øÔøΩ ÔøΩ÷¥ÔøΩ ÔøΩÔøΩÔøΩÃ≥ ΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÿ¥ÔøΩ. (ÔøΩÔøΩÔøΩÔøΩ∆ÆÔøΩÔøΩ False). ÔøΩŸ∏ÔøΩ ÔøΩÃ∂ÔøΩ 3DÔøΩÔøΩ«•ÔøΩÔøΩ ƒ´ÔøΩﬁ∂ÔøΩ ÔøΩÔøΩÔøΩÔøΩÔøΩÃ∏ÔøΩ (9999,9999)ÔøΩÔøΩ ÔøΩÔøΩ»ØÔøΩ—¥ÔøΩ.
+ * return ÔøΩÔøΩ»ØÔøΩÔøΩ 2DÔøΩÔøΩ«•. ((0,0)ÔøΩÃ∏ÔøΩ ƒ´ÔøΩﬁ∂ÔøΩ ÔøΩ€øÔøΩ ÔøΩ÷¥ÔøΩ)
  */
 RwV2d API_PL_Calc3DPosTo2D( RwV3d* v3DPos, RwInt32 nWidth, RwInt32 nHeight, RwBool bOutSideReturn)
 {
@@ -494,7 +559,7 @@ RwV2d API_PL_Calc3DPosTo2D( RwV3d* v3DPos, RwInt32 nWidth, RwInt32 nHeight, RwBo
     RwMatrix* pViewMatrix = RwCameraGetViewMatrix( CNtlPLGlobal::m_RwCamera );
     RwV3dTransformPoints( &v2dPoint, &sphere.center, 1, pViewMatrix );
 
-	if(v2dPoint.z <= 0.0f)	// z∞° ∏∂¿Ã≥ Ω∫¿Ã∏È ƒ´∏ﬁ∂Û µ⁄∆Ìø° ¿÷¥Ÿ. ¿Ã∂ß¥¬ (9999, 9999)∏¶ π›»Ø«—¥Ÿ.
+	if(v2dPoint.z <= 0.0f)	// zÔøΩÔøΩ ÔøΩÔøΩÔøΩÃ≥ ΩÔøΩÔøΩÃ∏ÔøΩ ƒ´ÔøΩﬁ∂ÔøΩ ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ ÔøΩ÷¥ÔøΩ. ÔøΩÃ∂ÔøΩÔøΩÔøΩ (9999, 9999)ÔøΩÔøΩ ÔøΩÔøΩ»ØÔøΩ—¥ÔøΩ.
 	{
 		v2dReturn.x = 9999.0f;
 		v2dReturn.y = 9999.0f;

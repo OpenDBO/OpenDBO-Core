@@ -213,7 +213,7 @@ void CPackEditorDlg::CreateThread(void)
 	if ( m_hThread ) 
 		return;
 
-	// Thread ¸¦ »ý¼ºÇÑ´Ù
+	// Thread ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
 	m_hThread = (HANDLE)_beginthreadex( NULL, 0, &PackExport, this, 0, &m_uiThreaID );
 
 	m_bThreadExport = TRUE;
@@ -225,7 +225,7 @@ void CPackEditorDlg::DeleteThread(void)
 	{
 		WaitForSingleObject( m_hThread, INFINITE );
 
-		// Thread ÇÚµéÀ» ´Ý´Â´Ù
+		// Thread ï¿½Úµï¿½ï¿½ï¿½ ï¿½Ý´Â´ï¿½
 		CloseHandle( m_hThread );
 
 		m_hThread = 0;
@@ -256,7 +256,7 @@ unsigned int CPackEditorDlg::PackExport(void* pParam)
 	return 0;
 }
 
-int CPackEditorDlg::MakePackNotify(unsigned int uiNotifyString ,unsigned int uiPersent)
+int CPackEditorDlg::MakePackNotify(uintptr_t uiNotifyString ,uintptr_t uiPersent)
 {
     USES_CONVERSION;
 

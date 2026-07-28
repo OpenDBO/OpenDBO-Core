@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File: QuestNarrationGui.h
 // Desc: QuestNarrationGui
-//		 Narration °ü·Ã
+//		 Narration ï¿½ï¿½ï¿½ï¿½
 //
 // 2006.12.5 Peessi@hitel.net   
 //
@@ -32,7 +32,7 @@ public:
 	RwBool	Create( CQuestGui* pQuestGui );
 	VOID	Destroy(VOID);	
 
-	INT		StateUpdate( RwUInt32 uiElapsedTime );
+	INT		StateUpdate( uintptr_t uiElapsedTime );
 
 	//! Event
 	VOID	HandleEvents( RWS::CMsg& msg );		
@@ -82,19 +82,19 @@ private:
 	CNtlTCUnit*			m_pTCUnit;
 	sTS_KEY				m_TSKey;
 	
-	STATE				m_eUIState;					// UIÀÚÃ¼ÀÇ State
-	RwInt32				m_eTSState;					// TS·Î ºÎÅÍÀÇ State
-	RwInt32				m_eTextOutType;				// Text Ãâ·Â ¹æ½Ä
-	RwUInt32			m_uiMaxLifeTime;			// ÀÌ ½Ã°£ÀÌ Áö³ª¸é °­Á¦·Î true¸¦ ³Ñ°ÜÁØ´Ù.
+	STATE				m_eUIState;					// UIï¿½ï¿½Ã¼ï¿½ï¿½ State
+	RwInt32				m_eTSState;					// TSï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ State
+	RwInt32				m_eTextOutType;				// Text ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+	RwUInt32			m_uiMaxLifeTime;			// ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ trueï¿½ï¿½ ï¿½Ñ°ï¿½ï¿½Ø´ï¿½.
 	RwUInt32			m_uiCurrentTime;			//
-	RwUInt32			m_flagOwnerType;			// OWNERTYPE Flag, ÀÌÀü¿¡ ¾î¶² Å¸ÀÔÀÌ ½ÇÇàµÇ¾ú³ª. Begin ~ End
-	OWNERTYPE			m_eCurrentType;				// ÇöÀçÀÇ Å¸ÀÔ¸¸.
+	RwUInt32			m_flagOwnerType;			// OWNERTYPE Flag, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½î¶² Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½. Begin ~ End
+	OWNERTYPE			m_eCurrentType;				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½Ô¸ï¿½.
 
 	RwUInt8				m_byPCSelectID[CINEMATIC_MAX_PC_SELECT];
 	
-	bool				m_bResult;					// °­Á¦ Á¾·áÀÎ°¡ Á¤»óÁ¾·á ÀÎ°¡.
+	bool				m_bResult;					// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Î°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î°ï¿½.
 	RwUInt8				m_bySelectID;				// User Select Value;
-	//RwBool				m_bShowPCMessageOnPCSelect;	// PCSelect½Ã PCMessage¸¦ Ç¥½ÃÇÒÁö ¿©ºÎ. BeginÀ¸·Î µé¾î¿Ã¶§ Ing¿¡¼­ ÆÇº°ÇÏ±â À§ÇØ.
+	//RwBool				m_bShowPCMessageOnPCSelect;	// PCSelectï¿½ï¿½ PCMessageï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. Beginï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã¶ï¿½ Ingï¿½ï¿½ï¿½ï¿½ ï¿½Çºï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½.
 
 	CQuestGui*			m_pQuestGui;
 

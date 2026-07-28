@@ -2,7 +2,7 @@
 //	File		:	NtlBlurCamera.cpp
 //	Desc		:	
 //	Begin		:	2006. 2.13
-//	Copyright	:	¨Ï 2006 by Mahwang CO., Ltd
+//	Copyright	:	ï¿½ï¿½ 2006 by Mahwang CO., Ltd
 //	Author		:	Mahwang
 //	Update		:	
 //***********************************************************************************
@@ -574,7 +574,7 @@ void CNtlPostEffectCamera::Update_FakeHDRFiltering(RwRGBA& color)
 	RwRenderStateSet(rwRENDERSTATECULLMODE,	(void *)rwCULLMODECULLNONE);
 
 	// ==========================================
-	// È­¸é Ãà¼ÒÇÏ±â
+	// È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	// ==========================================
 	m_lpEffect->BeginPass(EFFECT_PASS_NONE);
 	RwCameraClear(m_pReductionCamera, &color, rwCAMERACLEARZ|rwCAMERACLEARIMAGE);
@@ -593,7 +593,7 @@ void CNtlPostEffectCamera::Update_FakeHDRFiltering(RwRGBA& color)
 
 
 	// ==========================================
-	// Ãà¼ÒÈ­¸é ºí·¯ ¸ÔÀÌ±â
+	// ï¿½ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì±ï¿½
 	// ==========================================
 	m_lpEffect->BeginPass(EFFECT_PASS_16BOX);
 	m_lpEffect->SetFloat(m_hMapWidth, (RwReal)m_nTextureReductionSize);
@@ -632,7 +632,7 @@ void CNtlPostEffectCamera::Update_FakeHDRFiltering(RwRGBA& color)
 
 
 	// ==========================================
-	// È­¸é È®´ëÇÏ±â
+	// È­ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï±ï¿½
 	// ==========================================
 	m_lpEffect->BeginPass(EFFECT_PASS_NONE);
 	RwCameraClear(m_pTempCamera, &color, rwCAMERACLEARZ|rwCAMERACLEARIMAGE);
@@ -661,7 +661,7 @@ void CNtlPostEffectCamera::Update_FakeHDRFiltering(RwRGBA& color)
 RwBool CNtlPostEffectCamera::BeginCameraUpdate(RwRGBA& color)
 {
 	// ==========================================
-	// ÃÖÁ¾ÀûÀ¸·Î ±×¸®±â
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½
 	// ==========================================
 	RwCameraClear(m_pBlurCamera, &color, rwCAMERACLEARZ|rwCAMERACLEARIMAGE);
 	if(RwCameraBeginUpdate(m_pBlurCamera))
@@ -761,7 +761,7 @@ void CNtlPostEffectCamera::EndCameraUpdate(RwRGBA& color)
 
 //-------------------------------------------------------------
 // Name: CreateReductionTexture()
-// Desc: °¡ÁßÄ¡ °è»ê
+// Desc: ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½
 //-------------------------------------------------------------
 void CNtlPostEffectCamera::CreateReductionTexture(RwInt32 nTextureSize)
 {
@@ -786,7 +786,7 @@ void CNtlPostEffectCamera::CreateReductionTexture(RwInt32 nTextureSize)
 	}
 }
 
-int CNtlPostEffectCamera::KeyboardDownHandler(unsigned int uiKeyData)
+int CNtlPostEffectCamera::KeyboardDownHandler(uintptr_t uiKeyData)
 {
 	SKeyData *pData = reinterpret_cast<SKeyData*>(uiKeyData);
 	

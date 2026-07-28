@@ -2,7 +2,7 @@
 //	File		:	NtlPostEffectCamera.h
 //	Desc		:	
 //	Begin		:	2006. 2.13
-//	Copyright	:	¨Ï 2006 by Mahwang CO., Ltd
+//	Copyright	:	ï¿½ï¿½ 2006 by Mahwang CO., Ltd
 //	Author		:	Mahwang
 //	Update		:	
 //***********************************************************************************
@@ -125,7 +125,7 @@ public:
 
 	void		CreateReductionTexture(RwInt32 nTextureSize);
 
-	int			KeyboardDownHandler(unsigned int uiKeyData);
+	int			KeyboardDownHandler(uintptr_t uiKeyData);
 
 	void		DrawTexture();
 

@@ -102,7 +102,7 @@ public:
 	VOID				SetPCSelectRegion( RwUInt8 byTotalCount, RwUInt8 byPCSelectRegionHeight, RwBool bShowProc );
 	VOID				DisableAllPCSelect(VOID);
 
-	VOID				AddFlashObject( CNtlPLCinematicFlash* pFlash );	// ¹Ýµå½Ã New·Î »ý¼ºÇØ¼­ ³Ñ°Ü¾ßÇÔ.
+	VOID				AddFlashObject( CNtlPLCinematicFlash* pFlash );	// ï¿½Ýµï¿½ï¿½ Newï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Ñ°Ü¾ï¿½ï¿½ï¿½.
 	VOID				DeleteAllFlashObject(VOID);
 	RwBool				IsFlashObjectUpdated(VOID);
 
@@ -112,7 +112,7 @@ public:
 
 	//! Operation
 	template<class CallbackClass>
-	VOID	LinkUpdateCallBack( CallbackClass* cbclass, RwInt32 (CallbackClass::*callback)(RwUInt32) );
+	VOID	LinkUpdateCallBack( CallbackClass* cbclass, RwInt32 (CallbackClass::*callback)(uintptr_t) );
 	VOID	UnLinkUpdateCallBack(VOID) { NTL_DELETE( m_pUpdateCallback ); }	
 
 	VOID	InitShowSetting(VOID);			
@@ -180,7 +180,7 @@ private:
 };
 
 template<class CallbackClass>
-VOID CNtlPLCinematicObject::LinkUpdateCallBack(CallbackClass* cbclass, RwInt32 (CallbackClass::*callback)( RwUInt32 uiElapsedTime ) )
+VOID CNtlPLCinematicObject::LinkUpdateCallBack(CallbackClass* cbclass, RwInt32 (CallbackClass::*callback)( uintptr_t uiElapsedTime ) )
 {
 	UnLinkUpdateCallBack();
 	m_pUpdateCallback = NTL_NEW CNtlCallbackWidget1<CallbackClass>( cbclass, callback );

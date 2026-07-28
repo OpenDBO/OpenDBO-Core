@@ -2,7 +2,7 @@
  *
  * File			: toonmultitex.c
  * Author		: HongHoDong
- * Copyright	: (аж)NTL
+ * Copyright	: (О©╫О©╫)NTL
  * Date			: 2005. 8. 12	
  * Abstract		: NTl Application
  *****************************************************************************
@@ -375,6 +375,17 @@ void RpNtlMaterialExecuteRenderCB(void* _pParam)
 	}
 
 	RWRETURNVOID();	
+}
+
+RwBool RpNtlMaterialHasRenderCB(RpMaterial *pMaterial)
+{
+	RpNtlMaterialExt *materialExt = NULL;
+	if(pMaterial == NULL)
+		return FALSE;
+	materialExt = GetNtlMaterialExt(pMaterial, LocalOffset);
+	if(materialExt == NULL)
+		return FALSE;
+	return (materialExt->fpCB != NULL);
 }
 
 RwBool RpNtlMaterialExtSetUVTexture(RpMaterial *pMaterial, RwTexture *pTexture)

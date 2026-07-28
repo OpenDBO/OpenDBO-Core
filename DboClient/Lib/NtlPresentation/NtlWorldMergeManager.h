@@ -251,7 +251,7 @@ class CSpawnMergeContainer
 	struct SSpawn;
 	struct SParty;
 
-	typedef std::map<DWORD, SParty*>	MAP_PARTY;
+	typedef std::map<uintptr_t, SParty*>	MAP_PARTY;
 	typedef MAP_PARTY::iterator			MAP_PARTY_IT;
 
 

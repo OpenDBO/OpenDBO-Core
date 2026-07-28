@@ -169,7 +169,7 @@ RwBool CDirectApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, Rw
 	//----------------------------------------------------
 
 	// camera
-	// active renderware camera setting ÇÑ´Ù.
+	// active renderware camera setting ï¿½Ñ´ï¿½.
 	m_pCamera = NTL_NEW CNtlPostEffectCamera;
 	if(!m_pCamera->Create(iWidth, iHeight, zBuffer, 0.5f , 500.0f))
 	{
@@ -199,7 +199,7 @@ RwBool CDirectApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, Rw
 		NTL_RETURN(FALSE);
 	}	
 
-//	Pack »ç¿ë
+//	Pack ï¿½ï¿½ï¿½
 	if( bUsePackData )
 	{
 		LinkTextureLoad(ResourcPackTextureLoad);
@@ -215,7 +215,7 @@ RwBool CDirectApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, Rw
 			NTL_PACK_TYPE_FLAG_TABLE | NTL_PACK_TYPE_FLAG_SCRIPT | NTL_PACK_TYPE_FLAG_PROPERTY);
 	}
 	
-	// property container »ý¼º ¹× load ÇÑ´Ù.
+	// property container ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ load ï¿½Ñ´ï¿½.
 	m_pPropContainter = NTL_NEW CNtlPLPropertyContainer;
 
 	if(!m_pPropContainter->LoadSerialize())
@@ -225,7 +225,7 @@ RwBool CDirectApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, Rw
 	}
 
 	// visual manager create
-	// active scene manager¸¦ setting ÇÑ´Ù.
+	// active scene managerï¿½ï¿½ setting ï¿½Ñ´ï¿½.
 	m_pVisualManager = NTL_NEW CNtlPLVisualManager;
 	if(!m_pVisualManager->Create())
 	{
@@ -246,10 +246,10 @@ RwBool CDirectApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, Rw
 
 	GetNtlGuiManager()->CreatePLGuiGroup();
 	
-	// active scene manager¸¦ setting ÇÑ´Ù.
+	// active scene managerï¿½ï¿½ setting ï¿½Ñ´ï¿½.
 	CNtlPLSceneManagerFactory::ActiveSceneManager(m_pVisualManager);
 
-	// sound »ý¼º
+	// sound ï¿½ï¿½ï¿½ï¿½
 	GetSoundManager()->Init(".\\sound\\", 1.0f, 1.0f, 1.0f, 0.5f);
 
 	//----------------------------------------------------
@@ -277,7 +277,7 @@ RwBool CDirectApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, Rw
 
 	const sWORLD_TBLDAT* pWorldTblData = GetActiveWorldTableData();
 	
-	// avatar »ý¼º.
+	// avatar ï¿½ï¿½ï¿½ï¿½.
 	CreteAvatarInfo(m_vAvatarInitPos);
 	CreateWorld(m_vAvatarInitPos, pWorldTblData->szName);
 
@@ -600,7 +600,7 @@ void CDirectApplication::UpdateSoundListener(void)
 {
 	if(m_pAvatar)
 	{
-		// ½Ã³×¸¶Æ½ÁßÀÌ¸é Ä«¸Þ¶ó·Î ¼¼ÆÃÇÑ´Ù.
+		// ï¿½Ã³×¸ï¿½Æ½ï¿½ï¿½ï¿½Ì¸ï¿½ Ä«ï¿½Þ¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 		if(GetNtlDTCinematicManager()->IsRunning())
 		{
 			GetSceneManager()->SetSoundListener(NULL);
@@ -665,7 +665,7 @@ RwBool CDirectApplication::Update(RwReal fTime, RwReal fElapsedTime)
 	}
 
 
-	// ´Ù¸¥ edit viewer rendering.
+	// ï¿½Ù¸ï¿½ edit viewer rendering.
 	EditViewerRendering(fElapsedTime);
 	
 	NTL_RETURN(TRUE);
@@ -717,7 +717,7 @@ void CDirectApplication::Destroy()
 		m_pVisualManager = NULL;
 	}
 	
-	// property¸¦ destroy ÇÑ´Ù.
+	// propertyï¿½ï¿½ destroy ï¿½Ñ´ï¿½.
 	if(m_pPropContainter)
 	{
 		m_pPropContainter->Destroy();
@@ -732,7 +732,7 @@ void CDirectApplication::Destroy()
 		m_pCharset = NULL;
     }
 
-	// sound ÇØÁ¦
+	// sound ï¿½ï¿½ï¿½ï¿½
 	GetSoundManager()->Release();
 
 	UnLinkTextureLoad();
@@ -777,7 +777,7 @@ void CDirectApplication::Destroy()
 	NTL_RETURNVOID();
 }
 
-int CDirectApplication::ActionMapKeyboardMove(unsigned int uiMoveFlags)
+int CDirectApplication::ActionMapKeyboardMove(uintptr_t uiMoveFlags)
 {
 	m_uiMoveFlags = uiMoveFlags;
 
@@ -790,14 +790,14 @@ int CDirectApplication::ActionMapKeyboardMove(unsigned int uiMoveFlags)
 		}
 		else 
 		{
-            // ÇÁ¸® Ä«¸Þ¶ó°¡ È°¼ºÈ­ µÇ¾î ÀÖ´ÂÁö È®ÀÎÇÑ´Ù.
+            // ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ È°ï¿½ï¿½È­ ï¿½Ç¾ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ñ´ï¿½.
             if(GetNtlGameCameraManager()->IsActiveFreeCamera())
             {
                 GetNtlGameCameraManager()->FreeCameraMove(uiMoveFlags, GetFreeCameraSpeed());
             }
             else
             {
-                // ÇÁ¸®Ä«¸Þ¶ó°¡ ¾ø´Â °æ¿ì¿¡¸¸ ¾Æ¹ÙÅ¸ ÀÌµ¿
+                // ï¿½ï¿½ï¿½ï¿½Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½ ï¿½Æ¹ï¿½Å¸ ï¿½Ìµï¿½
 			    CNtlSLEventGenerator::KeyboardMove(uiMoveFlags, FALSE, 0.0f);
             }
 		}
@@ -912,7 +912,7 @@ void CDirectApplication::CreteAvatarInfo(RwV3d vPos)
 //	pAvatarInfo->sItemPf[0].byPos			= EQUIP_SLOT_TYPE_JACKET;
 //	pAvatarInfo->sItemPf[0].byStackcount	= 1;
 //	pAvatarInfo->sItemPf[0].byRank			= 1;
-//	pAvatarInfo->sItemPf[0].byCurDur		= 1;		// ³»±¸µµ
+//	pAvatarInfo->sItemPf[0].byCurDur		= 1;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 	for(RwInt32 i = 0; i < NTL_MAX_OPTION_IN_ITEM; i++)
 	{

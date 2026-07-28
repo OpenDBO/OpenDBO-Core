@@ -149,9 +149,9 @@ struct sNtlWorldParam
 	RwInt32		WorldTexAddr;
 	RwInt32		WorldPolyCnt;
 
-	// ÀÎµµ¾î
+	// ï¿½Îµï¿½ï¿½ï¿½
 	RwInt32		WorldBlockSize;
-	// ÀÎµµ¾î
+	// ï¿½Îµï¿½ï¿½ï¿½
 	RwInt32		WorldBlockNum;
 
 	RwReal		WorldNearPlane;
@@ -167,12 +167,12 @@ struct sNtlWorldParam
 	RwChar		CurDefaultTexPath[NTL_MAX_DIR_PATH];
 	RwChar		WorldChar64Buf[64];
 
-	// ÀÎµµ¾î
+	// ï¿½Îµï¿½ï¿½ï¿½
 	RwInt32		WorldType; // 0:HeightWorld // 1:IndoorWorld(RwWorld)
 
 	RwChar		WorldRAW[64];
 
-	// ÀÎµµ¾î
+	// ï¿½Îµï¿½ï¿½ï¿½
 	RwChar		WorldBSP[64];
 
 	RwBool		LODEnable;
@@ -459,8 +459,8 @@ struct sNTL_FIELD_PROP
 		// Normal Property
 		if (bTileDataAlloc && GetSceneManager()->GetActiveWorldType() == AW_HEGITHFIELD)
 		{
-			_pBitProp = NTL_NEW DWORD [(dGET_WORLD_PARAM()->WorldSectorTileNum * 2) * (dGET_WORLD_PARAM()->WorldSectorTileNum * 2)];
-			::ZeroMemory(_pBitProp, sizeof(DWORD) * (dGET_WORLD_PARAM()->WorldSectorTileNum * 2) * (dGET_WORLD_PARAM()->WorldSectorTileNum * 2));
+			_pBitProp = NTL_NEW uint32_t [(dGET_WORLD_PARAM()->WorldSectorTileNum * 2) * (dGET_WORLD_PARAM()->WorldSectorTileNum * 2)];
+			::ZeroMemory(_pBitProp, sizeof(uint32_t) * (dGET_WORLD_PARAM()->WorldSectorTileNum * 2) * (dGET_WORLD_PARAM()->WorldSectorTileNum * 2));
 		}
 		else
 		{
@@ -575,7 +575,7 @@ public:
 		::strcpy_s(_Name, 64, Prop._Name);
 		if (_pBitProp && Prop._pBitProp)
 		{
-			::CopyMemory(_pBitProp, Prop._pBitProp, sizeof(DWORD) * (dGET_WORLD_PARAM()->WorldSectorTileNum * 2) * (dGET_WORLD_PARAM()->WorldSectorTileNum * 2));
+			::CopyMemory(_pBitProp, Prop._pBitProp, sizeof(uint32_t) * (dGET_WORLD_PARAM()->WorldSectorTileNum * 2) * (dGET_WORLD_PARAM()->WorldSectorTileNum * 2));
 		}
 		_FogColor		= Prop._FogColor;
 		_FogCamPlane[0] = Prop._FogCamPlane[0];
@@ -648,7 +648,7 @@ public:
 	RwChar	_Name[64];
 
 	// Normal Property
-	DWORD* _pBitProp;
+	uint32_t* _pBitProp;
 
 	// Fog
 	RwRGBA	_FogColor;

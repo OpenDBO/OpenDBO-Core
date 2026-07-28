@@ -52,11 +52,11 @@ struct RxD3D9ResEntryHeader
 
     void        *indexBuffer;   /**< Index buffer */
 
-    RwUInt32    primType;       /**< Primitive type */
+    RwPrimitiveType    primType;       /**< Primitive type */
 
     RxD3D9VertexStream vertexStream[RWD3D9_MAX_VERTEX_STREAMS];   /**< Vertex streams */
 
-    RwBool      useOffsets;      /**< Use vertex buffer offsets when setting the streams */
+    RwUInt8      useOffsets;      /**< Use vertex buffer offsets when setting the streams */
 
     void        *vertexDeclaration;   /**< Vertex declaration */
 
@@ -65,6 +65,8 @@ struct RxD3D9ResEntryHeader
 
     RwUInt32    totalNumVertex; /**< Total number of vertices. Needed for
                                      reinstancing, not for rendering */
+
+    RwUInt8      isLive;         /**< Resource is live/valid */
 };
 
 /* This is what I keep in memory as part of the instance data setup */

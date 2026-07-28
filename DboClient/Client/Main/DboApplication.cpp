@@ -1,5 +1,7 @@
 ﻿#include "precomp_dboclient.h"
 #include "resource.h"
+#include <psapi.h>
+#pragma comment(lib, "psapi.lib")
 
 //#include "toonmultiTex.h"
 #include "DboApplication.h"
@@ -90,7 +92,9 @@
 // #include "Msjexhnd.h"
 #include "DboExceptionHandler.h"
 #include "SayFilter.h"
+#ifndef _WIN64
 #include "NtlBugTrap.h"
+#endif
 #include "MoviePlayer.h"
 #include "DboAddinManager.h"
 #include "LinkItemTrasformList.h"
@@ -100,13 +104,14 @@
 #include "DboExtraErrorReport.h"
 #include "TeleportProposalManager.h"
 #include "Thread.h"
-#include "PacketTracer.h"
 #include "LobbyManager.h"
 
 
 // discord
 #ifdef USE_DISCORD
+#ifndef _WIN64
 #include "Discord.h"
+#endif
 #endif
 
 // lleo52 - 추후 삭제 필요
@@ -158,6 +163,7 @@ void CDboApplication::SetErrorReport()
 {
     CDboExtraErrorReport::SetDXDiagLog();
 
+#ifndef _WIN64
 	// Settings for bugtrap
 	char szVer[32] = {0,};
 	sprintf_s(szVer, "%d.%d", CLIENT_LVER, CLIENT_RVER);
@@ -187,10 +193,12 @@ void CDboApplication::SetErrorReport()
     strAddLogFile = buf;
     strAddLogFile += "\\DxLog.txt";
     BT_AddLogFile(strAddLogFile.c_str());
+#endif
 }
 
 RwBool CDboApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, RwBool zBuffer)
 {
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_CHECK_ALWAYS_DF);
 	NTL_FUNCTION("CDboApplication::CreateSubSystem" );
 
 	 // Load keyboard accelerators
@@ -361,8 +369,7 @@ RwBool CDboApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, RwBoo
 
 	if(!bLoadPropertyContainer)
 	{
-		NTL_ASSERTFAIL("Property container load fail");
-		NTL_RETURN(FALSE);
+		DBO_WARNING_MESSAGE("Property container load fail");
 	}
 
 	// camera 
@@ -524,10 +531,6 @@ RwBool CDboApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, RwBoo
 
 	// debug console command manager
 	m_pDumpManager = NTL_NEW CDumpCmdManager;
-	if (Logic_IsDevUser())
-	{
-		GetDumpCmdManager()->ActiveDumpTarget(CDumpCmdManager::DUMP_TARGET_CONSOLE, TRUE);
-	}
 
 	GetCursorManager()->CreateInstance();
 	GetCursorManager()->InitLobbyCursor();
@@ -564,17 +567,17 @@ RwBool CDboApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, RwBoo
 		NTL_RETURN(FALSE);
 	}
 
-	CPacketTracer::CreateInstance();			/// woosungs_test 20090804
-
 	// lleo52 - 추후 제거 필요
 	CNtlMovieManager::CreateInstance( CDboApplication::GetInstance()->GetHWnd() );
 
 #ifdef USE_DISCORD
+#ifndef _WIN64
 
 	CDiscord::CreateInstance();
 
 	GetDiscordManager()->SetUseDiscord(GetNtlStorageManager()->GetBoolData(dSTORAGE_SYSTEM_ETC_DISCORD));
 
+#endif
 #endif
 
 
@@ -1190,7 +1193,9 @@ RwBool CDboApplication::Update(RwReal fTime, RwReal fElapsedTime)
 
 	// update discord
 #ifdef USE_DISCORD
+#ifndef _WIN64
 	GetDiscordManager()->UpdateDiscordConnection();
+#endif
 #endif // USE_DISCORD
 
 	m_fLastClientInfoUpdate += fElapsedTime;
@@ -1232,10 +1237,10 @@ void CDboApplication::Destroy()
 	gui::CStringLocalConverter::DestroyInstance();
 
 #ifdef USE_DISCORD
+#ifndef _WIN64
 	CDiscord::DestroyInstance();
 #endif
-
-	CPacketTracer::DeleteInstance();			/// woosungs_test 20090804
+#endif
 
 	CMoviePlayer::DestoryInstance();
 
@@ -1422,6 +1427,24 @@ void CDboApplication::DisplayInfo()
 	RsSprintf(caption, RWSTRING("Video : %u/%uMB"), (dwTotalVideo - dwAvailVideo) / dwDataPack, dwTotalVideo / dwDataPack);
 	RsCharsetPrint(m_pCharset, caption, 0, iIdx++, rsPRINTPOSTOPRIGHT);
 
+	// Process memory (actual game RAM usage)
+	{
+		static DWORD s_dwProcessMB = 0;
+		static RwReal fProcMemCheck = 0.0f;
+		fProcMemCheck -= g_GetElapsedTime();
+		if (fProcMemCheck < 0.0f)
+		{
+			PROCESS_MEMORY_COUNTERS pmc;
+			if (GetProcessMemoryInfo(GetCurrentProcess(), &pmc, sizeof(pmc)))
+			{
+				s_dwProcessMB = (DWORD)(pmc.WorkingSetSize / (1024 * 1024));
+			}
+			fProcMemCheck = 0.5f;
+		}
+		RsSprintf(caption, RWSTRING("Game RAM: %uMB"), s_dwProcessMB);
+		RsCharsetPrint(m_pCharset, caption, 0, iIdx++, rsPRINTPOSTOPRIGHT);
+	}
+
 // 	RsSprintf(caption, RWSTRING("CullTestCnt:%u"), CNtlPLGlobal::m_uiCullTestCnt);
 // 	RsCharsetPrint(m_pCharset, caption, 0, iIdx++, rsPRINTPOSTOPRIGHT);
 // 
@@ -1518,6 +1541,9 @@ RwBool CDboApplication::Create( HINSTANCE hInstance, RwInt32 posX, RwInt32 posY,
 	// Release In the version, the option is read and applied on the user's computer.
 	
 	RwBool bUserScreen = GetNtlStorageManager()->GetBoolData( dSTORAGE_GRAPHIC_WINDOW_MODE );
+#if defined(_WIN64)
+	bUserScreen = TRUE;
+#endif
 	RwInt32 nScreenWidth = GetNtlStorageManager()->GetIntData( dSTORAGE_GRAPHIC_SELECT_VIDEOWIDTH );
 	RwInt32 nScreenHeight = GetNtlStorageManager()->GetIntData( dSTORAGE_GRAPHIC_SELECT_VIDEOHEIGHT );
 	RwInt32 nScreenDepth = GetNtlStorageManager()->GetIntData( dSTORAGE_GRAPHIC_SELECT_VIDEODEPTH );

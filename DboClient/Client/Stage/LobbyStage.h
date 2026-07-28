@@ -2,7 +2,7 @@
  *
  * File			: CharacterStage.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ï¿½ï¿½)NTL
  * Date			: 2006. 11. 28	
  * Abstract		: Character stage class
  *****************************************************************************
@@ -71,11 +71,11 @@ private:
 	CNtlPLWorldEntity		*m_pWorldEntity;						// Main World
 	
 	RwV3d					m_vCameraPos;							// Camera Position
-	RwV3d					m_vCameraPosAt;							// Camera°¡ º¸´Â À§Ä¡							
-	RwV3d					m_vAvatarPos;							// AvatarÀÇ À§Ä¡
+	RwV3d					m_vCameraPosAt;							// Cameraï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡							
+	RwV3d					m_vAvatarPos;							// Avatarï¿½ï¿½ ï¿½ï¿½Ä¡
 	RwV3d					m_vAvatarUpdatePos;
 
-	RwReal					m_fAvatarAngleY;						// AvatarÀÇ YÃà È¸Àü °ª
+	RwReal					m_fAvatarAngleY;						// Avatarï¿½ï¿½ Yï¿½ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½
 
 	CNtlSobAvatar			*m_pAvatar;								// Avatar
 	RwInt32					m_iAvatarRotState;						// Avatar Rotation State
@@ -87,7 +87,7 @@ private:
 	RwInt8					m_byRace;
 	RwInt8					m_byCharHeightType;
 
-	// ¸¶¿ì½º ÈÙ ½ºÅ©·Ñ¿¡ µû¶ó ÀÚ¿¬½º·¯¿î ¹ÝÀÀÀ» ÇÏ±â À§ÇØ ¸ðµç ÈÙ ¸Þ¼¼Áö ÀúÀå
+	// ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ ï¿½ï¿½Å©ï¿½Ñ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	std::list<sCameraZoom>	m_listZoomMode;
 	RwReal					m_fReservatedZoomStep;
 	RwReal					m_fTotalZoomStep;
@@ -97,7 +97,7 @@ private:
 	sCameraData				m_CameraData[RACE_COUNT + 1][NUM_CHT][NUM_ZL];
 	RwV3d					m_v3Dir[RACE_COUNT + 1][NUM_CHT][NUM_ZL];
 
-	RwBool					m_bOptionApply;							// CLobbayStage °´Ã¼ »ý¼º½Ã ÇÑ¹ø¸¸ FALSE °ªÀ» °¡Áø´Ù.
+	RwBool					m_bOptionApply;							// CLobbayStage ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¹ï¿½ï¿½ï¿½ FALSE ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 
 private:
 	INPUT_HANDLE m_hKeyDown;
@@ -105,7 +105,7 @@ private:
 private:
 	void CheckDeletedCharacter();
 
-	int	KeyboardDownHandler(unsigned int uiKeyData);
+	int	KeyboardDownHandler(uintptr_t uiKeyData);
 
 	// Process network
 	void RequestLobbyInfo();
@@ -124,10 +124,10 @@ private:
 
 	void CreateDownLoadAvatar( sPC_SUMMARY *pCharInfo);
 
-	void SetupDefaultCamerabyRace(RwUInt8 byRace);							//AvatarÀÇ À§Ä¡, CameraÀÇ À§Ä¡¸¦ ÃÊ±âÈ­
-	void CreateBackGroundStage( RwUInt32 uiRace, RwBool bForce = false);	//World¸¦ »ý¼º(ÇÑ¹ø¸¸ »ý¼ºÀÌ µÈ´Ù.)
-	void TeleportStage();													//SetUpDefaultCamerabyRace¿¡ ÀÇÇØ¼­ ¼³Á¤µÈ °÷À¸·Î Teleport
-																			//Teleport½Ã ·ÎµùÀÌ ÀÏ¾î³­´Ù.
+	void SetupDefaultCamerabyRace(RwUInt8 byRace);							//Avatarï¿½ï¿½ ï¿½ï¿½Ä¡, Cameraï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ê±ï¿½È­
+	void CreateBackGroundStage( RwUInt32 uiRace, RwBool bForce = false);	//Worldï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½È´ï¿½.)
+	void TeleportStage();													//SetUpDefaultCamerabyRaceï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Teleport
+																			//Teleportï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½Ï¾î³­ï¿½ï¿½.
 
 	void DestroyBackGroundStage();
 	void DestroyAvatar();

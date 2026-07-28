@@ -1,7 +1,7 @@
 /******************************************************************************
 * File			: DialogManager.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ï¿½ï¿½)NTL
 * Date			: 2006. 8. 11
 * Abstract		: 
 *****************************************************************************
@@ -35,8 +35,8 @@ class CNtlSobItem;
 #define dREGULARDIALOG_FIRST_X		37
 #define dREGULARDIALOG_GAP			10
 #define dCHARM_Y					450
-#define dNEED_SIZE_MORE_REGULAR		379	///< Regular Dialog¸¦ ÇÏ³ª´õ ¿­ ¼ö ÀÖ±â À§ÇØ ÇÊ¿äÇÑ ¿©À¯Æø
-#define dDAFAULT_REGULAR_COUNT		2	///< ±âº»ÀûÀ¸·Î ¿­ ¼ö ÀÖ´Â ·¹±Ö·¯ ´ÙÀÌ¾ó·Î±×ÀÇ °¹¼ö
+#define dNEED_SIZE_MORE_REGULAR		379	///< Regular Dialogï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define dDAFAULT_REGULAR_COUNT		2	///< ï¿½âº»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½Ö·ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 
 
@@ -47,8 +47,8 @@ public:
 
 	struct DialogInfo
 	{
-		CNtlPLGui*				pDialog;		///< ´ÙÀÌ¾ó·Î±×·ÎÀÇ Æ÷ÀÎÅÍ
-		CNtlCallbackParam1bool* pCallSwitch;	///< ´ÙÀÌ¾ó·Î±× ¿­°í ´Ý´Â ÇÔ¼ö·ÎÀÇ ÄÝ¹é
+		CNtlPLGui*				pDialog;		///< ï¿½ï¿½ï¿½Ì¾ï¿½Î±×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		CNtlCallbackParam1bool* pCallSwitch;	///< ï¿½ï¿½ï¿½Ì¾ï¿½Î±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ý´ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ý¹ï¿½
 
 		DialogInfo()
 		{
@@ -93,62 +93,62 @@ public:
 
 	virtual ~CDialogManager();
 	
-	static VOID	CreateInstance(gui::CGUIManager* pGuiManager);								///< ¸Å´ÏÀú ÃÊ±âÈ­	
+	static VOID	CreateInstance(gui::CGUIManager* pGuiManager);								///< ï¿½Å´ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­	
 	static VOID	DestoryInstance();
 
 	VOID		Update(RwReal fElapsed);
 
 	template <class Callbackclass>
-	VOID		RegistDialog(int iDialog, CNtlPLGui* pDialog, int (Callbackclass::*callback)(bool bOpen));	///< ´ÙÀÌ¾ó·Î±×¸¦ µî·ÏÇÑ´Ù.	
-	VOID		UnRegistDialog(int iDialog);		///< ÇØ´ç ´ÙÀÌ¾ó·Î±×¸¦ ÇØÁ¦ÇÑ´Ù.	
+	VOID		RegistDialog(int iDialog, CNtlPLGui* pDialog, int (Callbackclass::*callback)(bool bOpen));	///< ï¿½ï¿½ï¿½Ì¾ï¿½Î±×¸ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.	
+	VOID		UnRegistDialog(int iDialog);		///< ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.	
 
-	VOID		SwitchBag(RwBool bOpen);			///< °¡¹æ º¸¿©ÁÖ±â On/Off
+	VOID		SwitchBag(RwBool bOpen);			///< ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ On/Off
 	VOID		SwitchBagByIndex(RwInt32 nIndex);
-	RwBool		SwitchDialog(int iDialog);			///< ´ÙÀÌ¾ó·Î±×¸¦ ¿­°Å³ª ´Ý´Â´Ù.	
+	RwBool		SwitchDialog(int iDialog);			///< ï¿½ï¿½ï¿½Ì¾ï¿½Î±×¸ï¿½ ï¿½ï¿½ï¿½Å³ï¿½ ï¿½Ý´Â´ï¿½.	
 
-	VOID		OpenGMDialog();						///< GM ´ÙÀÌ¾ó·Î±×¸¦ ÀüºÎ ¿¬´Ù
-	VOID		OpenDefaultDialog();				///< ±âº» ´ÙÀÌ¾ó·Î±×¸¦ ¿¬´Ù
-	RwBool		OpenDialog(int iDialog, SERIAL_HANDLE hSerial = INVALID_SERIAL_ID, RwBool bPlaySound = TRUE); ///< ´ÙÀÌ¾ó·Î±×¸¦ ¿¬´Ù, uiNPCSerial : NPC ´ÙÀÌ¾ó·Î±×ÀÏ »ç¿ë
+	VOID		OpenGMDialog();						///< GM ï¿½ï¿½ï¿½Ì¾ï¿½Î±×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	VOID		OpenDefaultDialog();				///< ï¿½âº» ï¿½ï¿½ï¿½Ì¾ï¿½Î±×¸ï¿½ ï¿½ï¿½ï¿½ï¿½
+	RwBool		OpenDialog(int iDialog, SERIAL_HANDLE hSerial = INVALID_SERIAL_ID, RwBool bPlaySound = TRUE); ///< ï¿½ï¿½ï¿½Ì¾ï¿½Î±×¸ï¿½ ï¿½ï¿½ï¿½ï¿½, uiNPCSerial : NPC ï¿½ï¿½ï¿½Ì¾ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
-	RwBool		CloseDialog(int iDialog, RwBool bPlaySound = TRUE);				///< ´ÙÀÌ¾ó·Î±×¸¦ ´Ý´Â´Ù.
-	VOID		CloseGMDialog();					///< GM ´ÙÀÌ¾ó·Î±×¸¦ ÀüºÎ ´Ý´Â´Ù
-	VOID		CloseNotDefaultDialog();			///< ±âº» ´ÙÀÌ¾ó·Î±×¸¦ Á¦¿ÜÇÑ ¸ðµç ´ÙÀÌ¾ó·Î±×¸¦ ´Ý´Â´Ù.
-	VOID		CloseAll();							///< ¸ðµç ´ÙÀÌ¾ó·Î±×¸¦ ´Ý´Â´Ù.
+	RwBool		CloseDialog(int iDialog, RwBool bPlaySound = TRUE);				///< ï¿½ï¿½ï¿½Ì¾ï¿½Î±×¸ï¿½ ï¿½Ý´Â´ï¿½.
+	VOID		CloseGMDialog();					///< GM ï¿½ï¿½ï¿½Ì¾ï¿½Î±×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ý´Â´ï¿½
+	VOID		CloseNotDefaultDialog();			///< ï¿½âº» ï¿½ï¿½ï¿½Ì¾ï¿½Î±×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±×¸ï¿½ ï¿½Ý´Â´ï¿½.
+	VOID		CloseAll();							///< ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±×¸ï¿½ ï¿½Ý´Â´ï¿½.
 
 
-	VOID		RaiseDialogbyUser(RwInt32 iDialog);	///< À¯Àú¿¡ ÀÇÇØ ´ÙÀÌ¾ó·Î±×°¡ È­¸é¿¡ ³ªÅ¸³ª´Â ¼ø°£ °¡Àå À§¿¡ ±×·ÁÁö°í ÀÖÀ½À» ¾Ë¸°´Ù.
-	VOID		HideDialogbyUser(RwInt32 iDialog);	///< À¯Àú¿¡ ÀÇÇØ ´ÙÀÌ¾ó·Î±×°¡ È­¸é¿¡¼­ »ç¶óÁö´Â ¼ø°£ È­¸é¿¡ ±×·ÁÁöÁö ¾ÊÀ½À» ¾Ë¸°´Ù.
+	VOID		RaiseDialogbyUser(RwInt32 iDialog);	///< ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±×°ï¿½ È­ï¿½é¿¡ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¸ï¿½ï¿½ï¿½.
+	VOID		HideDialogbyUser(RwInt32 iDialog);	///< ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±×°ï¿½ È­ï¿½é¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È­ï¿½é¿¡ ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¸ï¿½ï¿½ï¿½.
 		
-	RwInt32		GetOpendNPCDIalog();				///< ¿­·ÁÀÖ´Â NPC ´ÙÀÌ¾ó·Î±×¸¦ °Ë»çÇÑ´Ù.	
+	RwInt32		GetOpendNPCDIalog();				///< ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ NPC ï¿½ï¿½ï¿½Ì¾ï¿½Î±×¸ï¿½ ï¿½Ë»ï¿½ï¿½Ñ´ï¿½.	
 	CNtlSob*	GetOpenedTarget();
 
-	DialogInfo*	GetDialogInfo(int iDialog);			///< ÇØ´ç ´ÙÀÌ¾ó·Î±×ÀÇ Á¤º¸¸¦ ¹ÝÈ¯ÇÑ´Ù.
-	CNtlPLGui*	GetDialog(int iDialog);			///< ÇØ´ç ´ÙÀÌ¾ó·Î±×ÀÇ Æ÷ÀÎÅÍ¸¦ ¹ÝÈ¯ÇÑ´Ù.
-	RwInt32		GetTopDialog();						///< °¡Àå À§¿¡¼­ ±×·ÁÁö°í ÀÖ´Â ´ÙÀÌ¾ó·Î±×ÀÇ ÀÎµ¦½º¸¦ ¹ÝÈ¯ÇÑ´Ù.
+	DialogInfo*	GetDialogInfo(int iDialog);			///< ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ñ´ï¿½.
+	CNtlPLGui*	GetDialog(int iDialog);			///< ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½È¯ï¿½Ñ´ï¿½.
+	RwInt32		GetTopDialog();						///< ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ñ´ï¿½.
 
-	int			HandleDialogAction(unsigned int iAction); ///< ¾×¼ÇÀ» Ã³¸®ÇÑ´Ù. by Kell
-	VOID		HandleMouse(const CKey& key);		///< ¸¶¿ì½º¸¦ Ã³¸®ÇÑ´Ù
+		int HandleDialogAction(uintptr_t iAction); ///< ï¿½×¼ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ñ´ï¿½. by Kell
+	VOID		HandleMouse(const CKey& key);		///< ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ñ´ï¿½
 
-	VOID		OnMode(eDialogMode eMode);			///< ¸ðµå ¼³Á¤
-	VOID		OffMode();							///< ¸ðµå¸¦ ÇØÁ¦ÇÑ´Ù
+	VOID		OnMode(eDialogMode eMode);			///< ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	VOID		OffMode();							///< ï¿½ï¿½å¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
 	eDialogMode	GetMode();
-	RwInt32		HowManyOpenMaxRegular();			///< ÇöÀç Å¬¶óÀÌ¾ðÆ®ÀÇ ³ÐÀÌ¿¡¼­ ¿­ ¼ö ÀÖ´Â ÃÖ´ë ·¹±Ö·¯ ´ÙÀÌ¾ó·Î±×ÀÇ °¹¼ö¸¦ ¹ÝÈ¯ÇÑ´Ù
-	RwInt32		GetPosY_of_HalfRegular();			///< ±æÀÌ°¡ Àý¹ÝÁ¤µµÀÎ ·¹±Ö·¯ ´ÙÀÌ¾ó·Î±×ÀÇ Y ÁÂÇ¥¸¦ ¹ÝÈ¯ÇÑ´Ù
-	VOID		Disable_OnObserver(RwBool bVisible);	///< Observer ¸ðµå¿¡¼­ ÀÏºÎ ´ÙÀÌ¾ó·Î±×¸¦ º¸¿©ÁÙÁö ¿©ºÎ¸¦ Á¤ÇÑ´Ù
+	RwInt32		HowManyOpenMaxRegular();			///< ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½Ö·ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ñ´ï¿½
+	RwInt32		GetPosY_of_HalfRegular();			///< ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö·ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±ï¿½ï¿½ï¿½ Y ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ñ´ï¿½
+	VOID		Disable_OnObserver(RwBool bVisible);	///< Observer ï¿½ï¿½å¿¡ï¿½ï¿½ ï¿½Ïºï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½
 
-	VOID		LocateBag(RwInt32 iWidth, RwInt32 iHeight, RwBool bForce = FALSE);///< °¡¹æÀ» ¾Ë¸ÂÀº À§Ä¡·Î Á¤·ÄÇÑ´Ù
+	VOID		LocateBag(RwInt32 iWidth, RwInt32 iHeight, RwBool bForce = FALSE);///< ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¸ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
 	VOID		LocationDialogs(RwInt32 iWidth, RwInt32 iHeight);
-	VOID		Locate_MovableDefaultPosition();	///< ´ÙÀÌ¾ó·Î±×°¡ ¿òÁ÷ÀÏ ¼ö ÀÖÀ» ¶§ÀÇ ±âº» À§Ä¡¸¦ ÁöÁ¤
+	VOID		Locate_MovableDefaultPosition();	///< ï¿½ï¿½ï¿½Ì¾ï¿½Î±×°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½âº» ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-	RwBool		IsExistDialog(RwInt32 iDialog);		///< ´ÙÀÌ¾ó·Î±×°¡ Á¸ÀçÇÏ´ÂÁö ¿©ºÎ
-	RwBool		CanMoveItem_in_Capsule();			///< Ä¸½¶¾ÈÀÇ ¾ÆÀÌÄÜÀ» ¿òÁ÷ÀÏ ¼ö ÀÖ´ÂÁö ÆÇ´Ü
-	RwBool		CanPickupItem_in_Capsule();			///< Ä¸½¶¾ÈÀÇ ¾ÆÀÌÄÜÀ» ÁýÀ» ¼ö ÀÖ´ÂÁö ÆÇ´Ü
-	RwBool		IsOpenDialog(int iDialog);			///< ´ÙÀÌ¾ó·Î±×°¡ ¿­·ÁÀÖ´ÂÁö °Ë»çÇÑ´Ù.
-	RwBool		IsBagOpen();						///< t : °¡¹æÀÌ ÇÏ³ª ÀÌ»ó ¿­·ÁÀÖ´Ù.
-	RwBool		IsOpenNPCDialog();					///< NPC °ü·Ã ´ÙÀÌ¾ó·Î±×°¡ ¿­·ÁÀÖ´ÂÁö °Ë»çÇÑ´Ù.
-	RwBool		IsNPCDialog(RwInt32 iDialog);		///< NPC °ü·Ã ´ÙÀÌ¾ó·Î±×ÀÎÁö °Ë»çÇÑ´Ù.
-	RwBool		IsTriggerSystemDialogOpen();		///< Quest, Trigger°ü·Ã Ã¢ÀÌ ¿­·ÁÀÖ´ÂÁö °Ë»çÇÑ´Ù. by peessi
-	RwBool		IsMode(eDialogMode eMode);			///< ´ÙÀÌ¾ó·Î±× °ü·Ã ¸ðµå¸¦ ¾Ë¾Æº»´Ù
+	RwBool		IsExistDialog(RwInt32 iDialog);		///< ï¿½ï¿½ï¿½Ì¾ï¿½Î±×°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	RwBool		CanMoveItem_in_Capsule();			///< Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½
+	RwBool		CanPickupItem_in_Capsule();			///< Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½
+	RwBool		IsOpenDialog(int iDialog);			///< ï¿½ï¿½ï¿½Ì¾ï¿½Î±×°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ñ´ï¿½.
+	RwBool		IsBagOpen();						///< t : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ ï¿½Ì»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½.
+	RwBool		IsOpenNPCDialog();					///< NPC ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±×°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ñ´ï¿½.
+	RwBool		IsNPCDialog(RwInt32 iDialog);		///< NPC ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ñ´ï¿½.
+	RwBool		IsTriggerSystemDialogOpen();		///< Quest, Triggerï¿½ï¿½ï¿½ï¿½ Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ñ´ï¿½. by peessi
+	RwBool		IsMode(eDialogMode eMode);			///< ï¿½ï¿½ï¿½Ì¾ï¿½Î±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½å¸¦ ï¿½Ë¾Æºï¿½ï¿½ï¿½
 	RwBool		IsRegularDialog(eDialogType eType);
 	RwBool		IsEFDialog(eDialogType eType);
 	RwBool		IsOpenEFDialog();
@@ -172,9 +172,9 @@ protected:
 	VOID		RegisteRegularDialog();
 	VOID		RegisteEntireFocusingDialog();
 	
-	VOID		ProcessESC();						///< ESCÅ°¸¦ ´­·¶À» ¶§ Ã³¸®	
+	VOID		ProcessESC();						///< ESCÅ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã³ï¿½ï¿½	
 	VOID		ProcessOpenRegular(eDialogType eDialog);
-	VOID		ProcessLayer(eDialogType eDialog);		///< ´ÙÀÌ¾ó·Î±×ÀÇ ·¹ÀÌ¾î¸¦ Á¤¸®ÇÑ´Ù
+	VOID		ProcessLayer(eDialogType eDialog);		///< ï¿½ï¿½ï¿½Ì¾ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾î¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
 	VOID		ProcessCloseRegular(eDialogType eDialog);
 	VOID		ProcessMovableDialogs(RwBool bMovable);
 
@@ -182,16 +182,16 @@ protected:
 	VOID		Locate_UserPosition(RwInt32 iWidth, RwInt32 iHeight);
 	VOID		Locate_UserDefaultPosition(RwInt32 iWidth, RwInt32 iHeight);	
 
-	VOID		PlayOpenSound(RwInt32 iDialog);		///< À¯Àú°¡ ´ÙÀÌ¾ó·Î±×¸¦ ¿­ ¶§ÀÇ È¿°úÀ½
-	VOID		PlayCloseSound(RwInt32 iDialog);	///< À¯Àú°¡ ´ÙÀÌ¾ó·Î±×¸¦ ´ÝÀ» ¶§ÀÇ È¿°úÀ½
+	VOID		PlayOpenSound(RwInt32 iDialog);		///< ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±×¸ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¿ï¿½ï¿½ï¿½ï¿½
+	VOID		PlayCloseSound(RwInt32 iDialog);	///< ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¿ï¿½ï¿½ï¿½ï¿½
 
 protected:
 	gui::CSlot		m_slotMouse;
 
-	DIALOG_MAP		m_mapDialog;					///< µî·ÏµÈ ´ÙÀÌ¾ó·Î±×µéÀÇ Æ÷ÀÎÅÍ ¸ðÀ½
+	DIALOG_MAP		m_mapDialog;					///< ï¿½ï¿½Ïµï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±×µï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	sOpenTarget		m_OpenedTarget;
 	
-	eDialogMode		m_eMode;						///< ¸ðµå
+	eDialogMode		m_eMode;						///< ï¿½ï¿½ï¿½
 	RwInt32			m_iRegularStrartY;
 	RwInt32			m_iOldWidth;
 	RwInt32			m_iOldHeight;
@@ -204,11 +204,11 @@ protected:
 	LIST_OPENED_REGULAR_DIALOG m_listOpenedRegularDilaog;
 	LIST_REQUESTED_OPENDIALOG_IN_NARRATION m_listRequestedOpenDialogInNarration;	
 	
-	DIALOG_RAISE	m_listRaiseDialogbyUser;		///< À¯ÀúÀÇ Á¶ÀÛ¿¡ ÀÇÇØ È­¸é¿¡ ³ªÅ¸³ª´Â GUIÀÇ ¸ðÀ½
-													///< °¡Àå ³ªÁß¿¡ ±×¸®´Â ´ÙÀÌ¾ó·Î±× ¼øÀ¸·Î ¿À¸§Â÷¼ø Á¤·Ä
+	DIALOG_RAISE	m_listRaiseDialogbyUser;		///< ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½ï¿½ï¿½ï¿½ È­ï¿½é¿¡ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ GUIï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+													///< ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-	REGULAR_MAP		m_mapRegular;					///< È­¸éÀÇ ÁöÁ¤µÈ À§Ä¡¿¡ ¿­¸®´Â ´ÙÀÌ¾ó·Î±×ÀÇ ¸ðÀ½
-	FE_MAP			m_mapEntireFocuing;				///< È­¸éÀÇ ÀüÃ¼ ¿µ¿ªÀ» ÀÌ¿ëÇÏ¸ç À¯ÀúÀÇ ½ÃÁ¡À» ÁýÁß½ÃÅ°±â À§ÇÑ ´ÙÀÌ¾ó·Î±×
+	REGULAR_MAP		m_mapRegular;					///< È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	FE_MAP			m_mapEntireFocuing;				///< È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß½ï¿½Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±ï¿½
 
 	// If we clicked an item (like dogi ball)
 	CNtlSobItem*	m_pClickedItem;
@@ -237,9 +237,9 @@ VOID CDialogManager::RegistDialog(int iDialog, CNtlPLGui* pDialog, int (Callback
 
 	m_mapDialog[iDialog] = info;
 
-	// EFDialog ¿ì¼±¼øÀ§ °áÁ¤
+	// EFDialog ï¿½ì¼±ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if( IsEFDialog((eDialogType)iDialog) )
 		info.pDialog->GetDialog()->SetPriority(dDIALOGPRIORITY_EFDIALOG);
 
-	// Regular Dialog, °¡¹æ, »çÀÌµå ´ÙÀÌ¾ó·Î±×´Â dDIALOGPRIORITY_EFDIALOG ¸¦ ¾´´Ù
+	// Regular Dialog, ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±×´ï¿½ dDIALOGPRIORITY_EFDIALOG ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 }

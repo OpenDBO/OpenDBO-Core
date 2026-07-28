@@ -1,22 +1,13 @@
 #include "precomp_ntlcore.h"
 #include "NtlProfiler.h"
 #include "NtlDebug.h"
+#include <intrin.h>
 
+#pragma intrinsic(__rdtsc)
 
 inline void Profile_Get_Ticks(_int64 * ticks)
 {
-	__asm
-	{
-		push edx;
-		push ecx;
-		mov ecx,ticks;
-		_emit 0Fh
-			_emit 31h
-			mov [ecx],eax;
-		mov [ecx+4],edx;
-		pop ecx;
-		pop edx;
-	}
+	*ticks = __rdtsc();
 }
 
 inline float Profile_Get_Tick_Rate(void)

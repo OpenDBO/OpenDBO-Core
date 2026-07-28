@@ -76,7 +76,7 @@ VOID CNtlPLEmblemStuffList::LoadScript()
 			return;
 		}
 
-		// ¹öÆÛ + 1 »ý¼º
+		// ï¿½ï¿½ï¿½ï¿½ + 1 ï¿½ï¿½ï¿½ï¿½
 		pBuffer = NTL_NEW RwChar[iSize + 1];
         ZeroMemory(pBuffer, sizeof(RwChar) * (iSize + 1));
 		memcpy(pBuffer, pcData, sizeof(char) * iSize);

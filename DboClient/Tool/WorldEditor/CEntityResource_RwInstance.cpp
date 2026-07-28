@@ -862,10 +862,8 @@ RpAtomic * CEntityResource::LoadAtomic( const RwChar * pFileName )
 			return NULL;
 		}
 
-  		RwLLLink *	pLink = rwLinkListGetFirstLLLink( &(pClump->atomicList) );
-		pAtomic = rwLLLinkGetData( pLink, RpAtomic, inClumpLink );
-
-		pAtomic = RpAtomicClone( pAtomic );
+		// atomicList is now a direct RpAtomic* pointer after the x64 struct refactor
+		pAtomic = RpAtomicClone( pClump->atomicList );
 
 		RpAtomicSetFrame( pAtomic, RwFrameCreate() );
 
@@ -957,8 +955,8 @@ RwBool CEntityResource::ExportRpAtomic( const RwChar * pString ) const
     RwStreamClose( pStream, NULL );
 
 	RpAtomic *		pAtomicSrc = reinterpret_cast<RpAtomic *>(m_pInstance);
-	RwLLLink *		pLink = rwLinkListGetFirstLLLink( &(pClump->atomicList) );
-	RpAtomic *		pAtomicDst = rwLLLinkGetData( pLink, RpAtomic, inClumpLink );
+	// atomicList is now a direct RpAtomic* pointer after the x64 struct refactor
+	RpAtomic *		pAtomicDst = pClump->atomicList;
 
 	RpGeometry *	pGeometrySrc = RpAtomicGetGeometry( pAtomicSrc );
 	RpGeometry *	pGeometryDst = RpAtomicGetGeometry( pAtomicDst );
@@ -1018,8 +1016,8 @@ RwBool CEntityResource::ExportRpAtomic( const RwChar * pString ) const
     RwStreamClose( pStream, NULL );
 
 	RpAtomic *		pAtomicSrc = reinterpret_cast<RpAtomic *>(m_pInstance);
-	RwLLLink *		pLink = rwLinkListGetFirstLLLink( &(pClump->atomicList) );
-	RpAtomic *		pAtomicDst = rwLLLinkGetData( pLink, RpAtomic, inClumpLink );
+	// atomicList is now a direct RpAtomic* pointer after the x64 struct refactor
+	RpAtomic *		pAtomicDst = pClump->atomicList;
 
 	RpGeometry *	pGeometrySrc = RpAtomicGetGeometry( pAtomicSrc );
 	RpGeometry *	pGeometryDst = RpAtomicGetGeometry( pAtomicDst );

@@ -470,7 +470,7 @@ bool CUniBuffer::SetText( LPCWSTR wszText )
 
 			HFONT hFont = (HFONT)SelectObject(m_pFont->GetHdc(), m_pFont->GetHFont());
 
-			int nWidth = 0;
+ 			int nWidth = 0;
 			for(int i = 0; i < nBufferSize; i++)
 			{
 				::GetTextExtentPoint32( m_pFont->GetHdc(), &wszText[i], 1, &size );

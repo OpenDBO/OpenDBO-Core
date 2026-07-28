@@ -8,6 +8,13 @@
 #include "NtlPLEvent.h"
 #include "ntlworldcommon.h"
 #include "NtlPLEvent.h"
+
+#ifdef _DEBUG
+#include <crtdbg.h>
+#define HEAP_CHECK() do { if (!_CrtCheckMemory()) { OutputDebugStringA("HEAP CORRUPTION DETECTED in NtlPLSkyDragon.cpp\n"); __debugbreak(); } } while(0)
+#else
+#define HEAP_CHECK() ((void)0)
+#endif
 #include "ceventhandler.h"
 #include "ntlworldinterface.h"
 #include "NtlPLSceneManager.h"
@@ -47,9 +54,16 @@ RwBool CNtlPLSkyDragon::Create(const SPLEntityCreateParam* pParam)
 
 	// Dummy sky atomic
 	m_pDummySkyLayer			= NTL_NEW sSKY_LAYER;
+	HEAP_CHECK();
 	m_pDummySkyLayer->_pAtom	= API_PL_LoadAtomic("world\\mesh\\sky_dummy.dff", ".\\texture\\ntlwe\\sky\\");
+	HEAP_CHECK();
 	m_pDummySkyLayer->_pRender	= TRUE;
-	DBO_ASSERT(m_pDummySkyLayer->_pAtom, "Resource load failed.");
+	if (!m_pDummySkyLayer->_pAtom)
+	{
+		DBO_WARNING_MESSAGE("CNtlPLSkyDragon::Create : Failed to load sky_dummy.dff");
+		NTL_DELETE(m_pDummySkyLayer);
+		NTL_RETURN(FALSE);
+	}
 
 	API_PL_AtomicSetGeoFlags(m_pDummySkyLayer->_pAtom, rpGEOMETRYPOSITIONS | rpGEOMETRYPRELIT | rpGEOMETRYMODULATEMATERIALCOLOR | rpGEOMETRYTEXTURED);
 
@@ -61,13 +75,23 @@ RwBool CNtlPLSkyDragon::Create(const SPLEntityCreateParam* pParam)
 	// Base sky atomic
 	m_pBaseSkyLayer[1]				= NTL_NEW sSKY_LAYER;
 	m_pBaseSkyLayer[1]->_pAtom		= API_PL_LoadAtomic("world\\mesh\\sky_base.dff", ".\\texture\\ntlwe\\Sky\\");
+	HEAP_CHECK();
 	m_pBaseSkyLayer[1]->_pRender	= FALSE;
-	DBO_ASSERT(m_pBaseSkyLayer[1]->_pAtom, "Resource load failed.");
+	if (!m_pBaseSkyLayer[1]->_pAtom)
+	{
+		DBO_WARNING_MESSAGE("CNtlPLSkyDragon::Create : Failed to load sky_base.dff (base)");
+		NTL_RETURN(FALSE);
+	}
 
 	API_PL_AtomicSetGeoFlags(m_pBaseSkyLayer[1]->_pAtom, rpGEOMETRYPOSITIONS | rpGEOMETRYPRELIT | rpGEOMETRYMODULATEMATERIALCOLOR | rpGEOMETRYTEXTURED);
 
 	pTexture = CNtlPLResourceManager::GetInstance()->LoadTexture("sky01.png", ".\\texture\\ntlwe\\sky\\");
-	DBO_ASSERT(pTexture, "Texture load failed.");
+	HEAP_CHECK();
+	if (!pTexture)
+	{
+		DBO_WARNING_MESSAGE("CNtlPLSkyDragon::Create : Texture sky01.png load failed");
+		NTL_RETURN(FALSE);
+	}
 
 	API_PL_AtomicSetTexture(m_pBaseSkyLayer[1]->_pAtom, pTexture);
 	API_PL_AtomicSetMaterialSetAlpha(m_pBaseSkyLayer[1]->_pAtom, 255);
@@ -77,13 +101,23 @@ RwBool CNtlPLSkyDragon::Create(const SPLEntityCreateParam* pParam)
 	// blending temporary sky atomics
 	m_pBlendedSkyLayer[0]			= NTL_NEW sSKY_LAYER;
 	m_pBlendedSkyLayer[0]->_pAtom	= API_PL_LoadAtomic("world\\mesh\\sky_base.dff", ".\\texture\\ntlwe\\Sky\\");
+	HEAP_CHECK();
 	m_pBlendedSkyLayer[0]->_pRender = FALSE;
-	DBO_ASSERT(m_pBlendedSkyLayer[0]->_pAtom, "Resource load failed.");
+	if (!m_pBlendedSkyLayer[0]->_pAtom)
+	{
+		DBO_WARNING_MESSAGE("CNtlPLSkyDragon::Create : Failed to load sky_base.dff (blended)");
+		NTL_RETURN(FALSE);
+	}
 
 	API_PL_AtomicSetGeoFlags(m_pBlendedSkyLayer[0]->_pAtom, rpGEOMETRYPOSITIONS | rpGEOMETRYPRELIT | rpGEOMETRYMODULATEMATERIALCOLOR | rpGEOMETRYTEXTURED);
 
 	pTexture = CNtlPLResourceManager::GetInstance()->LoadTexture("cloud-t03.png", ".\\texture\\ntlwe\\sky\\");
-	DBO_ASSERT(pTexture, "Texture load failed.");
+	HEAP_CHECK();
+	if (!pTexture)
+	{
+		DBO_WARNING_MESSAGE("CNtlPLSkyDragon::Create : Texture cloud-t03.png load failed");
+		NTL_RETURN(FALSE);
+	}
 
 	API_PL_AtomicSetTexture(m_pBlendedSkyLayer[0]->_pAtom, pTexture);
 	API_PL_AtomicSetMaterialSetAlpha(m_pBlendedSkyLayer[0]->_pAtom, 255);
@@ -128,8 +162,10 @@ void CNtlPLSkyDragon::HandleEvents(RWS::CMsg &pMsg)
 VOID CNtlPLSkyDragon::VisibilitySwitch(RwBool _Switch)
 {
 	m_VisibilityFlag = _Switch;
-	m_pBaseSkyLayer[1]->_pRender	= _Switch;
-	m_pBlendedSkyLayer[0]->_pRender	= _Switch;
+	if (m_pBaseSkyLayer[1])
+		m_pBaseSkyLayer[1]->_pRender	= _Switch;
+	if (m_pBlendedSkyLayer[0])
+		m_pBlendedSkyLayer[0]->_pRender	= _Switch;
 }
 
 VOID CNtlPLSkyDragon::FadeLerp(eCUR_FADE_STATUS _CFS, RpAtomic* _pAtom, RwReal _STime, RwReal _ETime)
@@ -160,8 +196,10 @@ void CNtlPLSkyDragon::UpdateFieldVariation(RwReal fElapsed)
 	{
 		m_RestTime4Change[0] -= g_GetElapsedTime();
 
-		FadeLerp(m_CFSIdx, m_pBaseSkyLayer[1]->_pAtom, m_RestTime4Change[0], dSKY_DRAGON_FADE_VARIATION_TIME);
-		FadeLerp(m_CFSIdx, m_pBlendedSkyLayer[0]->_pAtom, m_RestTime4Change[0], dSKY_DRAGON_FADE_VARIATION_TIME);
+		if (m_pBaseSkyLayer[1] && m_pBaseSkyLayer[1]->_pAtom)
+			FadeLerp(m_CFSIdx, m_pBaseSkyLayer[1]->_pAtom, m_RestTime4Change[0], dSKY_DRAGON_FADE_VARIATION_TIME);
+		if (m_pBlendedSkyLayer[0] && m_pBlendedSkyLayer[0]->_pAtom)
+			FadeLerp(m_CFSIdx, m_pBlendedSkyLayer[0]->_pAtom, m_RestTime4Change[0], dSKY_DRAGON_FADE_VARIATION_TIME);
 
 		if(m_RestTime4Change[0] < 0)
 		{
@@ -169,8 +207,10 @@ void CNtlPLSkyDragon::UpdateFieldVariation(RwReal fElapsed)
 
 			if(m_CFSIdx == eCFS_IN)
 			{
-				API_PL_AtomicSetMaterialSetAlpha(m_pBaseSkyLayer[1]->_pAtom, 255);
-				API_PL_AtomicSetMaterialSetAlpha(m_pBlendedSkyLayer[0]->_pAtom, 255);
+				if (m_pBaseSkyLayer[1] && m_pBaseSkyLayer[1]->_pAtom)
+					API_PL_AtomicSetMaterialSetAlpha(m_pBaseSkyLayer[1]->_pAtom, 255);
+				if (m_pBlendedSkyLayer[0] && m_pBlendedSkyLayer[0]->_pAtom)
+					API_PL_AtomicSetMaterialSetAlpha(m_pBlendedSkyLayer[0]->_pAtom, 255);
 
 				VisibilitySwitch(TRUE);
 				VisibilitySwitchOfMainSky(FALSE);
@@ -179,8 +219,10 @@ void CNtlPLSkyDragon::UpdateFieldVariation(RwReal fElapsed)
 			}
 			else if(m_CFSIdx == eCFS_OUT)
 			{
-				API_PL_AtomicSetMaterialSetAlpha(m_pBaseSkyLayer[1]->_pAtom, 0);
-				API_PL_AtomicSetMaterialSetAlpha(m_pBlendedSkyLayer[0]->_pAtom, 0);
+				if (m_pBaseSkyLayer[1] && m_pBaseSkyLayer[1]->_pAtom)
+					API_PL_AtomicSetMaterialSetAlpha(m_pBaseSkyLayer[1]->_pAtom, 0);
+				if (m_pBlendedSkyLayer[0] && m_pBlendedSkyLayer[0]->_pAtom)
+					API_PL_AtomicSetMaterialSetAlpha(m_pBlendedSkyLayer[0]->_pAtom, 0);
 
 				VisibilitySwitch(FALSE);
 				VisibilitySwitchOfMainSky(TRUE);
@@ -196,28 +238,34 @@ RwBool CNtlPLSkyDragon::Update(RwReal fElapsed)
 	if(CNtlPLGlobal::m_bWorldSkyVisible == FALSE)
 		return TRUE;
 
+	if (!m_pDummySkyLayer || !m_pBaseSkyLayer[1] || !m_pBlendedSkyLayer[0])
+		return TRUE;
+
 	// update fade variation
 	UpdateFieldVariation(fElapsed);
 
 	// update trasform variation
-	API_PL_TranslationAtomic(m_pDummySkyLayer->_pAtom, m_WorldDatumPos, rwCOMBINEREPLACE);
+	if (m_pDummySkyLayer->_pAtom)
+		API_PL_TranslationAtomic(m_pDummySkyLayer->_pAtom, m_WorldDatumPos, rwCOMBINEREPLACE);
 
 	m_pBaseSkyLayer[1]->Rotate(dSKY_DRAGON_LAYER0_ROTATION_SPEED);
 	m_pBlendedSkyLayer[0]->Rotate(dSKY_DRAGON_LAYER1_ROTATION_SPEED);
-	API_PL_RotationAtomic(m_pBaseSkyLayer[1]->_pAtom, m_pBaseSkyLayer[1]->_RotSpeed, rwCOMBINEREPLACE);
-	API_PL_RotationAtomic(m_pBlendedSkyLayer[0]->_pAtom, m_pBlendedSkyLayer[0]->_RotSpeed, rwCOMBINEREPLACE);
+	if (m_pBaseSkyLayer[1]->_pAtom)
+		API_PL_RotationAtomic(m_pBaseSkyLayer[1]->_pAtom, m_pBaseSkyLayer[1]->_RotSpeed, rwCOMBINEREPLACE);
+	if (m_pBlendedSkyLayer[0]->_pAtom)
+		API_PL_RotationAtomic(m_pBlendedSkyLayer[0]->_pAtom, m_pBlendedSkyLayer[0]->_RotSpeed, rwCOMBINEREPLACE);
 
-	if(m_pBaseSkyLayer[0]->_pRender)
+	if(m_pBaseSkyLayer[0]->_pRender && m_pBaseSkyLayer[0]->_pAtom)
 	{
 		API_PL_TranslationAtomic(m_pBaseSkyLayer[0]->_pAtom, m_WorldDatumPos, rwCOMBINEREPLACE);
 	}
 
-	if(m_pBaseSkyLayer[1]->_pRender)
+	if(m_pBaseSkyLayer[1]->_pRender && m_pBaseSkyLayer[1]->_pAtom)
 	{	
 		API_PL_TranslationAtomic(m_pBaseSkyLayer[1]->_pAtom, m_WorldDatumPos, rwCOMBINEPOSTCONCAT);
 	}
 
-	if(m_pBlendedSkyLayer[0]->_pRender)
+	if(m_pBlendedSkyLayer[0]->_pRender && m_pBlendedSkyLayer[0]->_pAtom)
 	{
 		API_PL_TranslationAtomic(m_pBlendedSkyLayer[0]->_pAtom, m_WorldDatumPos, rwCOMBINEPOSTCONCAT);
 	}

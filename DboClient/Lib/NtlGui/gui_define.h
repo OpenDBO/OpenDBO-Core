@@ -9,36 +9,36 @@
 #define USING_GUI	using namespace gui
 
 /**
-* \brief ÄÄÆ÷³ÍÆ®ÀÇ À¯ÇüÀ» Á¤ÀÇÇÏ´Â ¿­°ÅÇü
+* \brief ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 */
 enum COMPONENT_STYLE
 {
-	COMP_HER_SCROLL				= 0x00000001,		///< ¼öÆò ½ºÅ©·Ñ ( Horizontal scroll )
-	COMP_VER_SCROLL				= 0x00000002,		///< ¼öÁ÷ ½ºÅ©·Ñ ( Vertical scroll )
-	COMP_TEXT_LEFT				= 0x00000004,		///< Text : ¿ÞÂÊ Á¤·Ä
-	COMP_TEXT_CENTER			= 0x00000008,		///< Text : Áß¾Ó Á¤·Ä
-	COMP_TEXT_RIGHT				= 0x00000010,		///< Text : ¿À¸¥ÂÊ Á¤·Ä
-	COMP_TEXT_UP				= 0x00000020,		///< Text : »ó´Ü Á¤·Ä
-	COMP_TEXT_VERTICAL_CENTER	= 0x00000040,		///< Text : Áß´Ü Á¤·Ä
-	COMP_TEXT_DOWN				= 0x00000080		///< Text : ÇÏ´Ü Á¤·Ä
+	COMP_HER_SCROLL				= 0x00000001,		///< ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ ( Horizontal scroll )
+	COMP_VER_SCROLL				= 0x00000002,		///< ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ ( Vertical scroll )
+	COMP_TEXT_LEFT				= 0x00000004,		///< Text : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	COMP_TEXT_CENTER			= 0x00000008,		///< Text : ï¿½ß¾ï¿½ ï¿½ï¿½ï¿½ï¿½
+	COMP_TEXT_RIGHT				= 0x00000010,		///< Text : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	COMP_TEXT_UP				= 0x00000020,		///< Text : ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	COMP_TEXT_VERTICAL_CENTER	= 0x00000040,		///< Text : ï¿½ß´ï¿½ ï¿½ï¿½ï¿½ï¿½
+	COMP_TEXT_DOWN				= 0x00000080		///< Text : ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
 };
 
 /**
-* \brief TextÀÇ ¹è°æ Ã³¸®
+* \brief Textï¿½ï¿½ ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 */
 enum TEXT_BK
 {
-	BK_TRANSPARENT,			///< Åõ¸í
-	BK_OPAQUE				///< ºÒÅõ¸í
+	BK_TRANSPARENT,			///< ï¿½ï¿½ï¿½ï¿½
+	BK_OPAQUE				///< ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };
 
 /**
-* \brief TextÀÇ È¿°ú
+* \brief Textï¿½ï¿½ È¿ï¿½ï¿½
 */
 enum TEXT_EFFECT
 {
 	TE_NONE,
-	TE_SHADOW,				///< ±×¸²ÀÚ
+	TE_SHADOW,				///< ï¿½×¸ï¿½ï¿½ï¿½
 	TE_OUTLINE				///< outline
 };
 
@@ -133,8 +133,8 @@ enum TEXT_EFFECT
 
 #define GUI_MOUSE_WHEEL_DELTA		120
 
-typedef unsigned int	COMPPAGE_HANDLE;
-typedef unsigned int	RESOURCE_HANDLE;
+typedef uintptr_t	COMPPAGE_HANDLE;
+	typedef uintptr_t	RESOURCE_HANDLE;
 
 #define UNISCRIBE_DLLNAME L"\\usp10.dll"
 
@@ -155,7 +155,7 @@ typedef unsigned int	RESOURCE_HANDLE;
 
 //////////////////////////////////////////////////////////////////////////////////////
 // staticbox symbol macro
-// desc : ¸¶Ä§Ç¥, ±ÛÁÙÀÓÇ¥ µî.
+// desc : ï¿½ï¿½Ä§Ç¥, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¥ ï¿½ï¿½.
 //////////////////////////////////////////////////////////////////////////////////////
 #define STATICBOX_SYMBOL_CHARACTER_PERIOD	L'.'
 #define STATICBOX_SYMBOL_STRING_ELLIPSIS	L"..."

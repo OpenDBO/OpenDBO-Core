@@ -2,7 +2,7 @@
  *
  * File			: NtlCallbackWidget.h
  * Author		: HyungSuk, Jang
- * Copyright	: (аж)NTL
+ * Copyright	: (О©╫О©╫)NTL
  * Date			: 2005. 8. 22	
  * Abstract		: callback widget
  *****************************************************************************
@@ -50,7 +50,7 @@ class CNtlCallbackParam1
 public:
 
 	virtual ~CNtlCallbackParam1() {}
-	virtual int Call(unsigned int param1)=0;
+	virtual int Call(uintptr_t param1)=0;
 };
 
 template <class Callbackclass>
@@ -58,13 +58,13 @@ class CNtlCallbackWidget1 : public CNtlCallbackParam1
 {
 public:
 
-	typedef int (Callbackclass::*Callback)(unsigned int param1);
+	typedef int (Callbackclass::*Callback)(uintptr_t param1);
 	
 	//: Method Slot V0 Constructor
 	CNtlCallbackWidget1(Callbackclass *cbclass, Callback callback)
 	: m_cbclass(cbclass), m_callback(callback) {;}
 
-	virtual int Call(unsigned int param1)
+	virtual int Call(uintptr_t param1)
 	{
 		return (m_cbclass->*m_callback)(param1);
 	}
@@ -80,7 +80,7 @@ class CNtlCallbackParam2
 public:
 
 	virtual ~CNtlCallbackParam2() {}
-	virtual int Call(unsigned int param1,unsigned int param2)=0;
+	virtual int Call(uintptr_t param1,uintptr_t param2)=0;
 };
 
 template <class Callbackclass>
@@ -88,12 +88,12 @@ class CNtlCallbackWidget2 : public CNtlCallbackParam2
 {
 public:
 
-	typedef int (Callbackclass::*Callback)(unsigned int param1,unsigned int param2);
+	typedef int (Callbackclass::*Callback)(uintptr_t param1,uintptr_t param2);
 	
 	CNtlCallbackWidget2(Callbackclass *cbclass, Callback callback)
 	: m_cbclass(cbclass), m_callback(callback) {;}
 
-	virtual int Call(unsigned int param1,unsigned int param2)
+	virtual int Call(uintptr_t param1,uintptr_t param2)
 	{
 		return (m_cbclass->*m_callback)(param1,param2);
 	}

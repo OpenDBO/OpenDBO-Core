@@ -97,7 +97,7 @@ static RwUInt32     NumDynamicVertexBuffer = 0;
 #endif /* defined(RWDEBUG) */
 
 #define MAX_DYNAMIC_VERTEX_BUFFER_MANAGER       4
-#define MAX_DYNAMIC_VERTEX_BUFFER_MANAGER_SIZE (256*1024)
+#define MAX_DYNAMIC_VERTEX_BUFFER_MANAGER_SIZE (512*1024)
 
 static RwUInt32 CurrentDynamicVertexBufferManager = 0;
 static RwUInt32 OffSetDynamicVertexBufferManager[MAX_DYNAMIC_VERTEX_BUFFER_MANAGER] = { 0 };

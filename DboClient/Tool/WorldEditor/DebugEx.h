@@ -560,6 +560,18 @@ void  GetProcessorInfo ( LPTSTR pszBuf )
 			ptszProcessorName[49];
 	pszVendor[12] = 0;
 	pszProcessorName[48] = 0;
+
+#if defined(_M_X64) || defined(_WIN64)
+	#include <intrin.h>
+	int cpuInfo[4];
+	__cpuid(cpuInfo, 0);
+	nMaxStdFn = cpuInfo[0];
+	*((int*)&pszVendor[0]) = cpuInfo[1];
+	*((int*)&pszVendor[4]) = cpuInfo[3];
+	*((int*)&pszVendor[8]) = cpuInfo[2];
+	__cpuid(cpuInfo, 0x80000000);
+	nMaxExtFn = cpuInfo[0];
+#else
 	__asm  {
 		xor		eax, eax
 		cpuid
@@ -571,6 +583,7 @@ void  GetProcessorInfo ( LPTSTR pszBuf )
 		cpuid
 		mov		nMaxExtFn, eax
 	}
+#endif
 	CharToTchar (pszVendor, ptszVendor, 13);
 
 	bool	bIntel = lstrcmpA (pszVendor, "AuthenticAMD") != 0;
@@ -578,6 +591,37 @@ void  GetProcessorInfo ( LPTSTR pszBuf )
 	ProcessorSignature		ps;
 	DWORD		dwFeatures,
 				dwExtFeatures;
+#if defined(_M_X64) || defined(_WIN64)
+	if ( nMaxStdFn >= 1 ) {
+		__cpuid(cpuInfo, 1);
+		ps = cpuInfo[0];
+		dwFeatures = cpuInfo[3];
+	}
+	if ( !bIntel && nMaxExtFn >= 0x80000001 ) {
+		__cpuid(cpuInfo, 0x80000001);
+		dwExtFeatures = cpuInfo[3];
+	}
+	else {
+		dwExtFeatures = dwFeatures;
+	}
+	if ( nMaxExtFn >= 0x80000004 ) {
+		__cpuid(cpuInfo, 0x80000002);
+		*((int*)&pszProcessorName[0]) = cpuInfo[0];
+		*((int*)&pszProcessorName[4]) = cpuInfo[1];
+		*((int*)&pszProcessorName[8]) = cpuInfo[2];
+		*((int*)&pszProcessorName[12]) = cpuInfo[3];
+		__cpuid(cpuInfo, 0x80000003);
+		*((int*)&pszProcessorName[16]) = cpuInfo[0];
+		*((int*)&pszProcessorName[20]) = cpuInfo[1];
+		*((int*)&pszProcessorName[24]) = cpuInfo[2];
+		*((int*)&pszProcessorName[28]) = cpuInfo[3];
+		__cpuid(cpuInfo, 0x80000004);
+		*((int*)&pszProcessorName[32]) = cpuInfo[0];
+		*((int*)&pszProcessorName[36]) = cpuInfo[1];
+		*((int*)&pszProcessorName[40]) = cpuInfo[2];
+		*((int*)&pszProcessorName[44]) = cpuInfo[3];
+	}
+#else
 	if ( nMaxStdFn >= 1 )  __asm  {
 		mov		eax, 1
 		cpuid
@@ -614,6 +658,7 @@ void  GetProcessorInfo ( LPTSTR pszBuf )
 		ret
 		end:
 	}
+#endif
 	CharToTchar (pszProcessorName, ptszProcessorName, 49);
 
 	int		nLen = 0;

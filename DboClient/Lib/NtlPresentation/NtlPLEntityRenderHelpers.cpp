@@ -68,7 +68,9 @@ void Helper_SetToonAtomic(RpAtomic *pAtomic, SToonData *pToonData)
 			RpToonGeoSetPaint(g, pToonData->pToonPaint);
 
 		if( RpSkinGeometryGetSkin( RpAtomicGetGeometry(pAtomic)) )
+		{
  			RpSkinAtomicSetType(pAtomic, rpSKINTYPETOON);
+		}
 
 		RwInt32 uiRenderFlag = RpNtlAtomicGetFlag(pAtomic);
 	}
@@ -143,7 +145,7 @@ void Helper_DestroyAllAtomics(ENTITY_ATOMIC_VEC *pAtomicList)
 		if((*pAtomicList)[i]->bClone)
 		{
 			RpAtomic *pAtomic = (*pAtomicList)[i]->pData;
-			RpAtomicDestroy(pAtomic);  //ÀÌ»óÇÏ°Ô ¿¡·¯°¡ ³­´Ù. À½ ¿ì¼± µý°ÅÇÏ°í Á»´õ ÀÛ¾÷À» ÇÏÀÚ
+			RpAtomicDestroy(pAtomic);  //ï¿½Ì»ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ ï¿½ì¼± ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		}
 
 		NTL_DELETE ((*pAtomicList)[i]);

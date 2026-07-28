@@ -57,20 +57,24 @@ RwBool CNtlPLSky::Create(const SPLEntityCreateParam* pParam)
 {
 	NTL_FUNCTION("CNtlPLSky::Create");
 
-	m_pDummySkyLayer			= NTL_NEW sSKY_LAYER;
-	m_pDummySkyLayer->_pAtom	= API_PL_LoadAtomic("world\\mesh\\sky_dummy.dff", ".\\texture\\ntlwe\\sky\\");
-	m_pDummySkyLayer->_pRender	= TRUE;
+	// Diffuse sky dome (vertex-colored gradient)
+	m_pBaseSkyLayer[0]				= NTL_NEW sSKY_LAYER;
+	m_pBaseSkyLayer[0]->_pAtom		= API_PL_LoadAtomic("world\\mesh\\sky_diffuse.dff", ".\\texture\\ntlwe\\sky\\");
+	m_pBaseSkyLayer[0]->_pRender	= FALSE;
+	DBO_ASSERT(m_pBaseSkyLayer[0]->_pAtom, "Resource load failed.");
+
+	API_PL_AtomicSetGeoFlags(m_pBaseSkyLayer[0]->_pAtom, rpGEOMETRYPOSITIONS | rpGEOMETRYPRELIT | rpGEOMETRYMODULATEMATERIALCOLOR);
+
+	// Dummy sky atomic
+	m_pDummySkyLayer				= NTL_NEW sSKY_LAYER;
+	m_pDummySkyLayer->_pAtom		= API_PL_LoadAtomic("world\\mesh\\sky_dummy.dff", ".\\texture\\ntlwe\\sky\\");
+	m_pDummySkyLayer->_pRender		= TRUE;
 	DBO_ASSERT(m_pDummySkyLayer->_pAtom, "Resource load failed.");
 
 	API_PL_AtomicSetGeoFlags(m_pDummySkyLayer->_pAtom, rpGEOMETRYPOSITIONS | rpGEOMETRYPRELIT | rpGEOMETRYMODULATEMATERIALCOLOR | rpGEOMETRYTEXTURED);
+	strcpy_s(API_PL_AtomicGetTexture(m_pDummySkyLayer->_pAtom)->name, rwTEXTUREBASENAMELENGTH, "null");
 
-	// Diffuse sky atomic
-	m_pBaseSkyLayer[0]				= NTL_NEW sSKY_LAYER;
-	m_pBaseSkyLayer[0]->_pAtom		= API_PL_LoadAtomic("world\\mesh\\sky_diffuse.dff", ".\\texture\\ntlwe\\Sky\\");
-	m_pBaseSkyLayer[0]->_pRender	= TRUE;
-	DBO_ASSERT(m_pBaseSkyLayer[0]->_pAtom, "Resource load failed.");
-	API_PL_AtomicSetGeoFlags(m_pBaseSkyLayer[0]->_pAtom, rpGEOMETRYPOSITIONS | rpGEOMETRYPRELIT | rpGEOMETRYMODULATEMATERIALCOLOR | rpGEOMETRYTEXTURED);
-
+	// Base textured sky atomic
 	m_pBaseSkyLayer[1]				= NTL_NEW sSKY_LAYER;
 	m_pBaseSkyLayer[1]->_pAtom		= API_PL_LoadAtomic("world\\mesh\\sky_base.dff", ".\\texture\\ntlwe\\sky\\");
 	m_pBaseSkyLayer[1]->_pRender	= FALSE;
@@ -113,7 +117,7 @@ RwBool CNtlPLSky::Create(const SPLEntityCreateParam* pParam)
 	API_PL_AtomicSetGeoFlags(m_pBlendedSkyLayer[1]->_pAtom, rpGEOMETRYPOSITIONS | rpGEOMETRYPRELIT | rpGEOMETRYMODULATEMATERIALCOLOR | rpGEOMETRYTEXTURED);
 	strcpy_s(API_PL_AtomicGetTexture(m_pBlendedSkyLayer[1]->_pAtom)->name, rwTEXTUREBASENAMELENGTH, "null");
 
-	// ³õÊ¼»¯Ìì¿ÕµÄ±³¾°ÑÕÉ«
+	// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ÕµÄ±ï¿½ï¿½ï¿½ï¿½ï¿½É«
 	RwRGBA	RGBATmp[3];
 	RGBATmp[0].red = 255;
 	RGBATmp[0].green = 255;
@@ -296,6 +300,36 @@ void CNtlPLSky::RunableVariation(sNTL_FIELD_PROP* pNtlFieldProp, RwBool NoVariat
 {
 	//DBO_WARNING_MESSAGE("_BaseSkyMode: " << pNtlFieldProp->_BaseSkyMode << " _NewSkyValue: " << pNtlFieldProp->_NewSkyValue << " _BaseSkyTexName: " << pNtlFieldProp->_BaseSkyTexName);
 	// decide interpolation of RGB color; dSKY_RGB_EFFECT_SWITCHING_TIME
+
+	// Handle initial NOTHING->X transitions
+	if(GetBaseSkyMode() == eBSM_NOTHING)
+	{
+		if(pNtlFieldProp->_BaseSkyMode == eBSM_RGB_MODE)
+		{
+			m_pBaseSkyLayer[0]->_pRender = TRUE;
+			m_pBaseSkyLayer[1]->_pRender = FALSE;
+
+			memcpy(&m_pBaseSkyLayer[0]->_RGBA[0], &pNtlFieldProp->_RGBSkyColor[0], sizeof(RwRGBA));
+			memcpy(&m_pBaseSkyLayer[0]->_RGBA[1], &pNtlFieldProp->_RGBSkyColor[1], sizeof(RwRGBA));
+			memcpy(&m_pBaseSkyLayer[0]->_RGBA[2], &pNtlFieldProp->_RGBSkyColor[2], sizeof(RwRGBA));
+			SetColorOfDiffuseSkyAtomic(pNtlFieldProp->_RGBSkyColor);
+		}
+		else if(pNtlFieldProp->_BaseSkyMode == eBSM_TEX_MODE)
+		{
+			m_pBaseSkyLayer[0]->_pRender = FALSE;
+			m_pBaseSkyLayer[1]->_pRender = TRUE;
+
+			RwTexture* pTexture = CNtlPLResourceManager::GetInstance()->LoadTexture(pNtlFieldProp->_BaseSkyTexName, "texture\\ntlwe\\sky\\");
+			if(pTexture)
+			{
+				API_PL_AtomicSetTexture(m_pBaseSkyLayer[1]->_pAtom, pTexture);
+				API_PL_AtomicSetMaterialSetAlpha(m_pBaseSkyLayer[1]->_pAtom, 255);
+				RwTextureSetFilterMode(pTexture, rwFILTERLINEARMIPLINEAR);
+				CNtlPLResourceManager::GetInstance()->UnLoadTexture(pTexture);
+			}
+		}
+	}
+
 	if(pNtlFieldProp->_BaseSkyMode == eBSM_TEX_MODE && GetBaseSkyMode() == eBSM_TEX_MODE)
 	{
 		if(	strcmp(pNtlFieldProp->_BaseSkyTexName, API_PL_AtomicGetTexture(m_pBaseSkyLayer[1]->_pAtom)->name) ||
@@ -789,9 +823,15 @@ RwBool CNtlPLSky::Update(RwReal fElapsed)
 	if(CNtlPLGlobal::m_bWorldSkyVisible == FALSE || m_bPassedSky)
 		return TRUE;
 
+	if(!m_pBaseSkyLayer[0] || !m_pBaseSkyLayer[1] ||
+	   !m_pBlendedSkyLayer[0] || !m_pBlendedSkyLayer[1] ||
+	   !m_pBlendedTmpLayer[0] || !m_pBlendedTmpLayer[1])
+		return TRUE;
+
 	UpdateFieldVariation(fElapsed);
 
-	API_PL_TranslationAtomic(m_pDummySkyLayer->_pAtom, m_WorldDatumPos, rwCOMBINEREPLACE);
+	if(m_pDummySkyLayer)
+		API_PL_TranslationAtomic(m_pDummySkyLayer->_pAtom, m_WorldDatumPos, rwCOMBINEREPLACE);
 
 	m_pBaseSkyLayer[1]->Rotate(m_pBaseSkyLayer[1]->_RotSpeedMPS);
 	m_pBlendedSkyLayer[0]->Rotate(m_pBlendedSkyLayer[0]->_RotSpeedMPS);
@@ -868,6 +908,13 @@ RwBool CNtlPLSky::Render(void)
 		NTL_RPROFILE(TRUE)
 	}
 
+	if(!m_pBaseSkyLayer[0] || !m_pBaseSkyLayer[1] ||
+	   !m_pBlendedSkyLayer[0] || !m_pBlendedSkyLayer[1] ||
+	   !m_pBlendedTmpLayer[0] || !m_pBlendedTmpLayer[1])
+	{
+		NTL_RPROFILE(TRUE)
+	}
+
 	if(!m_VisibilityFlag)
 	{
 		NTL_RPROFILE(TRUE)
@@ -881,7 +928,7 @@ RwBool CNtlPLSky::Render(void)
 
 		SkyLayerRender(m_pBaseSkyLayer[1], TFactor);
 
-		// ±¸¸§°ú SkyBox »çÀÌ¿¡ ÇØ/´ÞÀ» ·»´õ¸µÇÑ´Ù. (2007.08.06 by agebreak)
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ SkyBox ï¿½ï¿½ï¿½Ì¿ï¿½ ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. (2007.08.06 by agebreak)
 		CNtlPLVisualManager* pVisualManager = (CNtlPLVisualManager*)GetSceneManager();
 		CNtlPLRenderGroup* pSunGroup = pVisualManager->FindInstanceGroup(PLENTITY_SUN);
 		if(pSunGroup)
@@ -906,7 +953,8 @@ RwBool CNtlPLSky::Render(void)
 
 	BegDummySkyRenderState();
 	{
-		SkyLayerRender(m_pDummySkyLayer, TFactor);
+		if(m_pDummySkyLayer)
+			SkyLayerRender(m_pDummySkyLayer, TFactor);
 	}
 	EndDummySkyRenderState();
 
@@ -1940,7 +1988,7 @@ void CNtlPLSky::RunableLightning(RwReal fTimeFadeIn, RwReal fTimeFadeOut)
 // 
 // 			SkyLayerRender(m_pBaseSkyLayer[1], TFactor);
 // 
-// 			// ±¸¸§°ú SkyBox »çÀÌ¿¡ ÇØ/´ÞÀ» ·»´õ¸µÇÑ´Ù. (2007.08.06 by agebreak)
+// 			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ SkyBox ï¿½ï¿½ï¿½Ì¿ï¿½ ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. (2007.08.06 by agebreak)
 // 			CNtlPLVisualManager* pVisualManager = (CNtlPLVisualManager*)GetSceneManager();
 // 			CNtlPLRenderGroup* pSunGroup = pVisualManager->FindInstanceGroup(PLENTITY_SUN);
 // 			if(pSunGroup)

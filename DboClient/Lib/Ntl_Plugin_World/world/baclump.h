@@ -185,7 +185,8 @@ struct RpClump
         RwObject            object;
 
         /* Information about all the Atomics */
-        RwLinkList          atomicList;
+        //RwLinkList          atomicList;
+        RpAtomic*           atomicList; // x64 port: direct pointer circular list
 
         /* Lists of lights and cameras */
         RwLinkList          lightList;
@@ -234,7 +235,10 @@ struct RpAtomic
 
     /* Connections to other atomics */
     RpClump            *clump;
-    RwLLLink            inClumpLink;
+    // x64 port: replaced inClumpLink with direct prev/next pointers
+    //RwLLLink            inClumpLink;
+    RpAtomic           *prev;
+    RpAtomic           *next;
 
     /* callbacks */
     RpAtomicCallBackRender renderCallBack;

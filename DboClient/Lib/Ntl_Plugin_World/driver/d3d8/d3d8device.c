@@ -248,7 +248,7 @@ static RwUInt32     NumDynamicVertexBuffer = 0;
 #endif /* defined(RWDEBUG) */
 
 #define MAX_DYNAMIC_VERTEX_BUFFER_MANAGER       4
-#define MAX_DYNAMIC_VERTEX_BUFFER_MANAGER_SIZE (256*1024)
+#define MAX_DYNAMIC_VERTEX_BUFFER_MANAGER_SIZE (512*1024)
 
 static RwUInt32 CurrentDynamicVertexBufferManager = 0;
 static RwUInt32 OffSetDynamicVertexBufferManager[MAX_DYNAMIC_VERTEX_BUFFER_MANAGER] = { 0 };
@@ -1208,7 +1208,7 @@ D3D8DeviceSystemOpen(void *out __RWUNUSED__,
     {
         RwChar buffer[256];
         RwInt32 len;
-        MEMORYSTATUS memstats;
+        MEMORYSTATUSEX memstats;
 
         /* OS info */
         len = rwsprintf(buffer, "\nOS Info: ");
@@ -1218,8 +1218,9 @@ D3D8DeviceSystemOpen(void *out __RWUNUSED__,
         RWSRCGLOBAL(debugFunction) (rwDEBUGMESSAGE,
             "------------------------------------------------------------------------------");
 
-        GlobalMemoryStatus(&memstats);
-        len = (memstats.dwTotalPhys / (1024 * 1024));
+        memstats.dwLength = sizeof(MEMORYSTATUSEX);
+        GlobalMemoryStatusEx(&memstats);
+        len = (int)(memstats.ullTotalPhys / (1024 * 1024));
         len = ((len + 1) & 0xfffffffe); /* Round up to a multiple of 2 */
         rwsprintf(buffer, "   RAM:    %d MB", len);
         RWSRCGLOBAL(debugFunction) (rwDEBUGMESSAGE, buffer);

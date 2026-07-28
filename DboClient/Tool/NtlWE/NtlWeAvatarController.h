@@ -58,8 +58,8 @@ private:
 	void	MouseUpRBtnHandler(const SMouseData *pData);
 	void	MouseMoveRBtnHandler(const SMouseData *pData);
 	
-	int		ActionMapKeyboardMove(unsigned int uiMoveFlags);
-	int     ActionJump(unsigned int uiMoveFlags);
+	int ActionMapKeyboardMove(uintptr_t uiMoveFlags);
+	int ActionJump(uintptr_t uiMoveFlags);
 
 	int		MouseWheelHandler(unsigned int uiMouseData);
 	int		MouseMoveHandler(unsigned int uiMouseData);

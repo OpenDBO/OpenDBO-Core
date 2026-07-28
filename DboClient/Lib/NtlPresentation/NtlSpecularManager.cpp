@@ -168,11 +168,10 @@ RwBool CNtlSpecularManager::CreateCameraFilter()
 	RwTextureSetAddressing(m_pTextureFilter, rwTEXTUREADDRESSCLAMP);
 
 	m_pTextureReflection = GetNtlResourceManager()->LoadTexture(SPECULAR_FILENAME, SPECULAR_PATH);
-	DBO_ASSERT(m_pTextureReflection, "Texture load failed.");
-
 	if (!m_pTextureReflection)
 	{
-		return FALSE;
+		DBO_WARNING_MESSAGE("Texture load failed (non-fatal): " << SPECULAR_FILENAME);
+		m_pTextureReflection = NULL;
 	}
 
 	return TRUE;
@@ -465,10 +464,10 @@ void CNtlSpecularManager::SetSpecular(const sNTL_SPECULAR& sNtlSpecular, RwBool 
 /*
 #define SPECULAR_DISTANCE		512
 #define	SPECULAR_TEXTURE_SIZE	512
-//#define dSPECULARMANAGER_USE_PROJ_PERSPECTIVE // ¿ø±ÙÅõ¿µ¸ðµå·Î º¯È¯½Ã Á¦´ë·Î µ¿ÀÛÇÏÁö ¾ÊÀ½. Á¤º¸ Â÷¿øÀ¸·Î ¼Ò½º »èÁ¦ ¾ÈÇÔ.
-// DEFALT		: ÆòÇàÅõ¿µ
-// PERSPECTIVE	: °Å¸®¿¡ µû¸¥ ½ºÄÉÀÏ										
-// PARALLEL		: Å©±â¿¡ µû¸¥ ½ºÄÉÀÏ
+//#define dSPECULARMANAGER_USE_PROJ_PERSPECTIVE // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+// DEFALT		: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// PERSPECTIVE	: ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½										
+// PARALLEL		: Å©ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 CNtlSpecularManager::CNtlSpecularManager()
 {
@@ -760,7 +759,7 @@ void CNtlSpecularManager::CalcMatrixTexture()
 //	RwFrameUpdateObjects(m_pFrame);	
 //}
 
-void CNtlSpecularManager::CalcCameraFrustum() //³ôÀÌ °íÁ¤ Åõ¿µ
+void CNtlSpecularManager::CalcCameraFrustum() //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 {
 	RwMatrix*	pmatLight	= RwFrameGetMatrix(m_pFrame);
 	RwV3d		vAt			= *RwMatrixGetPos(RwFrameGetMatrix(RwCameraGetFrame(CNtlPLGlobal::m_RwCamera)));
@@ -781,7 +780,7 @@ void CNtlSpecularManager::CalcCameraFrustum() //³ôÀÌ °íÁ¤ Åõ¿µ
 
 	API_PL_CameraMatrixLookAt(pmatLight, &vPos, &vAt);
 	
-	RwMatrixUpdate(pmatLight); // ÀÌ°Å ¾ÈÇØµµ µÈ´Ù.c
+	RwMatrixUpdate(pmatLight); // ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½Øµï¿½ ï¿½È´ï¿½.c
 	RwFrameUpdateObjects(m_pFrame);	
 }
 
