@@ -744,7 +744,7 @@ BEGIN_PROTOCOL(GU_PONG)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_SESSION_STATE_WRONG)
-	WORD			wPrevOPCode;	// ÀÌÀü¿¡ º¸³Â´ø ÄÚµå¹øÈ£
+	WORD			wPrevOPCode;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½ ï¿½Úµï¿½ï¿½È£
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_CHAR_STATE_WRONG)
@@ -796,8 +796,8 @@ BEGIN_PROTOCOL(GU_AVATAR_SKILL_INFO)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_AVATAR_HTB_INFO)
-	BYTE			byHTBSkillCount; // HTB ½ºÅ³ °³¼ö
-	sHTB_SKILL_INFO	aHTBSkillnfo[NTL_HTB_MAX_PC_HAVE_HTB_SKILL]; // HTB ½ºÅ³ Á¤º¸
+	BYTE			byHTBSkillCount; // HTB ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½
+	sHTB_SKILL_INFO	aHTBSkillnfo[NTL_HTB_MAX_PC_HAVE_HTB_SKILL]; // HTB ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_AVATAR_BUFF_INFO)
@@ -822,7 +822,7 @@ BEGIN_PROTOCOL(GU_AVATAR_QUEST_COMPLETE_INFO)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_AVATAR_QUEST_PROGRESS_INFO)
-	BYTE					byProgressCount; // ÇöÀç ÁøÇàÇÏ°í ÀÖ´Â Äù½ºÆ® °³¼ö
+	BYTE					byProgressCount; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 	sQUEST_PROGRESS_INFO	progressInfo[eMAX_CAN_PROGRESS_QUEST_NUM]; // Quest progression data
 END_PROTOCOL()
 //------------------------------------------------------------------
@@ -854,14 +854,14 @@ BEGIN_PROTOCOL(GU_CHAR_MOVE)
 	_compressedLocation		vCurLoc;
 	_compressedDirection	vCurDir;
 	BYTE			byMoveDirection;
-	BYTE			byMoveFlag;		// ¶Ù±â È¤Àº °È±â(ENtlMovementFlag ÂüÁ¶)
+	BYTE			byMoveFlag;		// ï¿½Ù±ï¿½ È¤ï¿½ï¿½ ï¿½È±ï¿½(ENtlMovementFlag ï¿½ï¿½ï¿½ï¿½)
 	BYTE			byMoveStatus; //new
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_CHAR_DEST_MOVE)
 	HOBJECT					handle;
 	_compressedLocation		vCurLoc; //
-	BYTE					byMoveFlag;		// ¶Ù±â È¤Àº °È±â(ENtlMovementFlag ÂüÁ¶)
+	BYTE					byMoveFlag;		// ï¿½Ù±ï¿½ È¤ï¿½ï¿½ ï¿½È±ï¿½(ENtlMovementFlag ï¿½ï¿½ï¿½ï¿½)
 	bool					bHaveSecondDestLoc;
 	_compressedLocation		vSecondDestLoc;  //
 	BYTE					actionPatternIndex;
@@ -904,7 +904,7 @@ BEGIN_PROTOCOL(GU_CHAR_FOLLOW_MOVE)
 	HOBJECT			hTarget;
 	float			fDistance;
 	BYTE			byMovementReason;
-	BYTE			byMoveFlag;		// ¶Ù±â È¤Àº °È±â(ENtlMovementFlag ÂüÁ¶)
+	BYTE			byMoveFlag;		// ï¿½Ù±ï¿½ È¤ï¿½ï¿½ ï¿½È±ï¿½(ENtlMovementFlag ï¿½ï¿½ï¿½ï¿½)
 	BYTE			byMoveStatus;//new
 	sVECTOR3		vDestLoc;
 END_PROTOCOL()
@@ -966,12 +966,12 @@ BEGIN_PROTOCOL( GU_CHAR_CONVERT_CLASS )
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_CHAR_DIALOG)
-	HOBJECT				hSubject;				// ´ëÈ­ ÇÏ´Â Ä³¸¯ÅÍ ÇÚµé
-	BYTE				byDialogType;			// ´ëÈ­ Á¾·ù ( eCHAR_DIALOG_TYPE )
-	TBLIDX				textTblidx;				// ´ëÈ­ ³»¿ë Å×ÀÌºí ¹øÈ£ ( INVALID °¡ ¾Æ´Ï¸é ÇØ´ç ÅØ½ºÆ®¸¦ Ã£¾Æ Ãâ·ÂÇÏ°í, INVALID¸é ¾Æ·¡ÀÇ ÅØ½ºÆ®¸¦ Ãâ·ÂÇØ ÁÙ °Í)
-	bool				bIsRefSpeechTable;		// speech table( NPCSpeechTable À» ÂüÁ¶ÇÏ´Â°¡? )
-	WORD				wTextLen;				// ´ëÈ­³»¿ëÀÇ ±æÀÌ
-	WCHAR				awchText[NTL_MAX_LENGTH_OF_CHAT_MESSAGE + 1]; // ´ëÈ­³»¿ë
+	HOBJECT				hSubject;				// ï¿½ï¿½È­ ï¿½Ï´ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
+	BYTE				byDialogType;			// ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ ( eCHAR_DIALOG_TYPE )
+	TBLIDX				textTblidx;				// ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½È£ ( INVALID ï¿½ï¿½ ï¿½Æ´Ï¸ï¿½ ï¿½Ø´ï¿½ ï¿½Ø½ï¿½Æ®ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï°ï¿½, INVALIDï¿½ï¿½ ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½)
+	bool				bIsRefSpeechTable;		// speech table( NPCSpeechTable ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´Â°ï¿½? )
+	WORD				wTextLen;				// ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	WCHAR				awchText[NTL_MAX_LENGTH_OF_CHAT_MESSAGE + 1]; // ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_CHAR_DIRECT_PLAY )
@@ -1264,7 +1264,7 @@ END_PROTOCOL()
 BEGIN_PROTOCOL(GU_ITEM_CREATE)
 	HOBJECT			handle;
 	sITEM_DATA      sItemData;
-	bool			bIsNew;		// Effect Ãß°¡ 
+	bool			bIsNew;		// Effect ï¿½ß°ï¿½ 
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_ITEM_UPDATE)
@@ -1290,8 +1290,8 @@ BEGIN_PROTOCOL(GU_ITEM_MOVE_STACK_RES)
 	BYTE			bySrcPos;
 	BYTE			byDestPlace;
 	BYTE			byDestPos;	
-	BYTE			byStackCount1;//°á°úÀûÀ¸·Î ³õ¿©Áú°ª SOURCE
-	BYTE			byStackCount2;//°á°úÀûÀ¸·Î ³õ¿©Áú°ª DESTINATION
+	BYTE			byStackCount1;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ SOURCE
+	BYTE			byStackCount2;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ DESTINATION
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_ITEM_DELETE)
@@ -1352,7 +1352,7 @@ END_PROTOCOL()
 BEGIN_PROTOCOL(GU_ITEM_STACK_UPDATE)
 	HOBJECT			hItemHandle;
 	BYTE			byStack;
-	bool			bIsNew;		// Effect Ãß°¡ 
+	bool			bIsNew;		// Effect ï¿½ß°ï¿½ 
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_ITEM_UPGRADE_RES)
@@ -1372,7 +1372,7 @@ END_PROTOCOL()
 BEGIN_PROTOCOL(GU_ITEM_IDENTIFY_RES)
 	HOBJECT			hItemHandle;
 	WORD			wResultCode;
-	sITEM_DATA      sItemData;			// ¼º°ø½Ã¿¡¸¸ ¼¼ÆÃ
+	sITEM_DATA      sItemData;			// ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_ITEM_PICK_RES)
@@ -1391,9 +1391,9 @@ BEGIN_PROTOCOL(GU_ZENNY_PICK_RES)
 	DWORD			dwAcquisitionZenny;
 	DWORD			dwBonusZenny;
 	// 'dwOriginalZenny' MUST NOT be referred if 'bSharedInParty' is false.
-	// bSharedInParty°¡ falseÀÌ¸é dwOriginalZenny°ªÀº ÂüÁ¶ÇØ¼­´Â ¾È µÈ´Ù.
+	// bSharedInPartyï¿½ï¿½ falseï¿½Ì¸ï¿½ dwOriginalZennyï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½È´ï¿½.
 	// by YOSHIKI(2007-10-02)
-	DWORD			dwOriginalZenny; //Drop ZennyÀÌ´Ù.
+	DWORD			dwOriginalZenny; //Drop Zennyï¿½Ì´ï¿½.
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_UPDATE_CHAR_STATE)
@@ -1482,7 +1482,7 @@ END_PROTOCOL()
 BEGIN_PROTOCOL(GU_UPDATE_CHAR_ZENNY)
 	HOBJECT			handle;
 	DWORD			dwZenny;
-	bool			bIsNew;		// Effect Ãß°¡
+	bool			bIsNew;		// Effect ï¿½ß°ï¿½
 	BYTE			byChangeType; // eZENNY_CHANGE_TYPE - NtlCharacter.h
 END_PROTOCOL()
 //------------------------------------------------------------------
@@ -1494,24 +1494,24 @@ BEGIN_PROTOCOL(GU_SYSTEM_DISPLAY_TEXT)
 	WCHAR			awGMChar[NTL_MAX_SIZE_CHAR_NAME + 1];
 	BYTE			byDisplayType;				// eSERVER_TEXT_TYPE
 	WORD			wMessageLengthInUnicode;
-	WCHAR			awchMessage[NTL_MAX_LENGTH_OF_CHAT_MESSAGE + 1]; // ³»¿ë
+	WCHAR			awchMessage[NTL_MAX_LENGTH_OF_CHAT_MESSAGE + 1]; // ï¿½ï¿½ï¿½ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_SYSTEM_DISPLAY_SCRIPT_TEXT)
 	BYTE			byDisplayType;				// eSERVER_TEXT_TYPE
 	TBLIDX			textTblidx;
 	WORD			wMessageLengthInUnicode;
-	WCHAR			awchMessage[NTL_MAX_LENGTH_OF_CHAT_MESSAGE + 1]; // ³»¿ë
+	WCHAR			awchMessage[NTL_MAX_LENGTH_OF_CHAT_MESSAGE + 1]; // ï¿½ï¿½ï¿½ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_SYSTEM_DISPLAY_RESULTCODE)
 	BYTE			byDisplayType;				// eSERVER_TEXT_TYPE
-	WORD			wResultCode;				// Ãâ·ÂÇÒ ResultCode
+	WORD			wResultCode;				// ï¿½ï¿½ï¿½ï¿½ï¿½ ResultCode
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_SHOP_START_RES)
 	HOBJECT			handle;
-	BYTE			byType; //	0: ±âº»  1:ÇÑÁ¤¼ö·® ÆÇ¸Å ÀÌº¥Æ® NPC 
+	BYTE			byType; //	0: ï¿½âº»  1:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¸ï¿½ ï¿½Ìºï¿½Æ® NPC 
 	WORD			wResultCode;
 END_PROTOCOL()
 //------------------------------------------------------------------
@@ -1566,9 +1566,9 @@ BEGIN_PROTOCOL(GU_PARTY_INFO)
 	HOBJECT					hLeader;
 	BYTE					byItemLootingMethod;
 	BYTE					byZennyLootingMethod;
-	sSHARETARGET_INFO		sharetargetInfo[NTL_MAX_SHARETARGET_COUNT];// °øÀ¯Å¸°Ùµ¥ÀÌÅ¸ [3/28/2008 SGpro]
+	sSHARETARGET_INFO		sharetargetInfo[NTL_MAX_SHARETARGET_COUNT];// ï¿½ï¿½ï¿½ï¿½Å¸ï¿½Ùµï¿½ï¿½ï¿½Å¸ [3/28/2008 SGpro]
 	ePARTY_DUNGEON_STATE	eDiff;
-	BYTE					byItemRank;			// ÆÄÆ¼ÀÎº¥¿¡ ³ÖÀ» ¾ÆÀÌÅÛÀÇ eITEM_RANK Ãß°¡
+	BYTE					byItemRank;			// ï¿½ï¿½Æ¼ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ eITEM_RANK ï¿½ß°ï¿½
 	BYTE					byMemberInfoCount;
 	sPARTY_MEMBER_INFO		memberInfo[NTL_MAX_MEMBER_IN_PARTY - 1];	
 END_PROTOCOL()
@@ -1662,7 +1662,7 @@ BEGIN_PROTOCOL(GU_PARTY_MEMBER_GAINED_ZENNY_NFY)
 	DWORD					dwBonusZenny;
 
 	// 'dwOriginalZenny' MUST NOT be referred if 'bSharedInParty' is false.
-	DWORD					dwOriginalZenny; //MobÀÌ DropÇÑ Zenny
+	DWORD					dwOriginalZenny; //Mobï¿½ï¿½ Dropï¿½ï¿½ Zenny
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_PARTY_MEMBER_LOCATION_NFY)
@@ -1719,7 +1719,7 @@ BEGIN_PROTOCOL(GU_BANK_ZENNY_RES)
 	HOBJECT				handle;
 	WORD				wResultCode;
 	DWORD				dwZenny;
-	bool				bIsSave;		// 1: Àú±Ý 0: ÀÎÃâ
+	bool				bIsSave;		// 1: ï¿½ï¿½ï¿½ï¿½ 0: ï¿½ï¿½ï¿½ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_BANK_BUY_RES)
@@ -1758,7 +1758,7 @@ BEGIN_PROTOCOL(GU_SCOUTER_EQUIP_CHECK_RES)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TS_CONFIRM_STEP_RES)
-	BYTE				byTsType; // Æ®¸®°Å Å¸ÀÔ
+	BYTE				byTsType; // Æ®ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½
 	WORD				wResultCode;
 	NTL_TS_T_ID			tId;
 	NTL_TS_TC_ID		tcCurId;
@@ -1767,14 +1767,14 @@ BEGIN_PROTOCOL(GU_TS_CONFIRM_STEP_RES)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TS_UPDATE_SYNC_NFY)
-	BYTE				byTsType; // Æ®¸®°Å Å¸ÀÔ
+	BYTE				byTsType; // Æ®ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½
 	NTL_TS_T_ID			tId;
 	NTL_TS_TC_ID		tcId;
 	NTL_TS_TA_ID		taId;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TS_UPDATE_STATE)
-	BYTE				byTsType; // Æ®¸®°Å Å¸ÀÔ
+	BYTE				byTsType; // Æ®ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½
 	NTL_TS_T_ID			tId;
 	BYTE				byType;
 	WORD				wTSState;
@@ -1782,7 +1782,7 @@ BEGIN_PROTOCOL(GU_TS_UPDATE_STATE)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TS_UPDATE_EVENT_NFY)
-	BYTE				byTsType; // Æ®¸®°Å Å¸ÀÔ
+	BYTE				byTsType; // Æ®ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½
 	NTL_TS_EVENT_ID		teid;
 END_PROTOCOL()
 //------------------------------------------------------------------
@@ -1815,16 +1815,16 @@ END_PROTOCOL()
 BEGIN_PROTOCOL(GU_QUEST_ITEM_CREATE_NFY)
 	BYTE				byPos;
 	TBLIDX				qItemTblidx;
-	BYTE				byCurCount;			// ÇöÀç Ä«¿îÆ®
+	BYTE				byCurCount;			// ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ®
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_QUEST_ITEM_DELETE_NFY)
-	BYTE				byDeletePos;		// »èÁ¦ÇÑ ¾ÆÀÌÅÛÀÇ À§Ä¡
+	BYTE				byDeletePos;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_QUEST_ITEM_UPDATE_NFY)
 	BYTE				byPos;
-	BYTE				byCurCount;			// ÇöÀç Ä«¿îÆ®
+	BYTE				byCurCount;			// ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ®
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_QUEST_ITEM_MOVE_RES)
@@ -1837,7 +1837,7 @@ END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_QUEST_ITEM_DELETE_RES)
 	WORD				wResultCode;
-	BYTE				byDeletePos;		// »èÁ¦ÇÑ ¾ÆÀÌÅÛÀÇ À§Ä¡
+	BYTE				byDeletePos;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_QUEST_SVREVT_START_NFY)
@@ -1866,15 +1866,15 @@ BEGIN_PROTOCOL(GU_QUEST_GIVEUP_RES)
 	WORD				wResultCode;
 END_PROTOCOL()
 //------------------------------------------------------------------
-BEGIN_PROTOCOL(GU_QUEST_SHARE_NFY)				// Äù½ºÆ® °øÀ¯
+BEGIN_PROTOCOL(GU_QUEST_SHARE_NFY)				// ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 	WORD				wResultCode;
 	NTL_TS_T_ID			tId;
 	HOBJECT				hActor;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_QUEST_RESET_NFY)			// A specified range of quests and delete progress information and complete information.
-	QUESTID				startResetQID;		// ¹üÀ§ ÁöÁ¤
-	QUESTID				endResetQID;		// ¹üÀ§ ÁöÁ¤
+	QUESTID				startResetQID;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	QUESTID				endResetQID;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_QUEST_OBJECT_VISIT_RES)
@@ -1891,21 +1891,21 @@ BEGIN_PROTOCOL(GU_QUEST_FORCED_COMPLETION_NFY)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_FREEBATTLE_CHALLENGE_RES)
-	HOBJECT				hTarget; // ´ëÀüÀ» ¿äÃ»Çß´ø Å¸°ÙÀÇ ÇÚµé
-	WORD				wResultCode; // ÀÀ´ä ÄÚµå
+	HOBJECT				hTarget; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ß´ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
+	WORD				wResultCode; // ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_FREEBATTLE_ACCEPT_REQ)
-	HOBJECT				hChallenger; // ´ëÀüÀ» ¿äÃ»ÇÑ Ä³¸¯ÅÍÀÇ ÇÚµé
+	HOBJECT				hChallenger; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_FREEBATTLE_CANCEL_NFY)
-	WORD				wResultCode; // ´ëÀüÃë¼Ò¿¡ ´ëÇÑ ÀÌÀ¯
+	WORD				wResultCode; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_FREEBATTLE_START_NFY)
-	HOBJECT				hTarget; // ´ëÀü»ó´ë ÇÚµé
-	sVECTOR3			vRefreeLoc;	// ½ÉÆÇ À§Ä¡
+	HOBJECT				hTarget; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
+	sVECTOR3			vRefreeLoc;	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_FREEBATTLE_OUTSIDE_NFY)
@@ -1946,7 +1946,7 @@ BEGIN_PROTOCOL(GU_PET_CHAR_INFO)
 		sSUMMON_PET_PROFILE		sSummonPetProfile;
 		sITEM_PET_PROFILE		sItemPetProfile;
 	};
-	WORD				wCharStateSize; //-[9/7/2006 zeroera] : ¼³¸í : Å¬¶óÀÌ¾ðÆ®¸¦ À§ÇÑ Ä³¸¯ÅÍ»óÅÂ »çÀÌÁî Á¤º¸
+	WORD				wCharStateSize; //-[9/7/2006 zeroera] : ï¿½ï¿½ï¿½ï¿½ : Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	sCHARSTATE			sCharState;
 END_PROTOCOL()
 //------------------------------------------------------------------
@@ -1989,43 +1989,43 @@ BEGIN_PROTOCOL(GU_TRADE_OK_REQ)
 	HOBJECT				handle;			//Handle the requestor
 END_PROTOCOL()
 //------------------------------------------------------------------
-BEGIN_PROTOCOL(GU_TRADE_ADD_NFY)			// ¼º°øÀÏ ¶§¸¸
-	HOBJECT				hItem;				// »ó´ë ¾ÆÀÌÅÛ ÇÚµé
-	sITEM_DATA			sItem;				// »ó´ë°¡ ¿Ã·Á ³õÀ» ¾ÆÀÌÅÛÀÇ Á¤º¸
-	BYTE				byCount;			// °ãÃÄÀÖ´Â ¾ÆÀÌÅÛÁß ¸î°³ÀÎ°¡? Default 1°³
+BEGIN_PROTOCOL(GU_TRADE_ADD_NFY)			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	HOBJECT				hItem;				// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
+	sITEM_DATA			sItem;				// ï¿½ï¿½ë°¡ ï¿½Ã·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	BYTE				byCount;			// ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½î°³ï¿½Î°ï¿½? Default 1ï¿½ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TRADE_ADD_RES)
-	HOBJECT				hItem;				// ³» ¾ÆÀÌÅÛ ÇÚµé
-	BYTE				byCount;			// °ãÃÄÀÖ´Â ¾ÆÀÌÅÛÁß ¸î°³ÀÎ°¡? Default 1°³
-	WORD				wResultCode;		// Å¸°ÙÀÇ ÀÀ´ä¹× °¡´É À¯¹« ¿¡ µû¸¥ ¿©·¯°¡Áö °á°ú°ª
+	HOBJECT				hItem;				// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
+	BYTE				byCount;			// ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½î°³ï¿½Î°ï¿½? Default 1ï¿½ï¿½
+	WORD				wResultCode;		// Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
-BEGIN_PROTOCOL(GU_TRADE_DEL_NFY)			// ¼º°øÀÏ ¶§¸¸
-	HOBJECT				hItem;				// »ó´ë ¾ÆÀÌÅÛ ÇÚµé
+BEGIN_PROTOCOL(GU_TRADE_DEL_NFY)			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	HOBJECT				hItem;				// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TRADE_DEL_RES)
-	HOBJECT				hItem;				// ³» ¾ÆÀÌÅÛ ÇÚµé
-	WORD				wResultCode;		// Å¸°ÙÀÇ ÀÀ´ä¹× °¡´É À¯¹« ¿¡ µû¸¥ ¿©·¯°¡Áö °á°ú°ª
+	HOBJECT				hItem;				// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
+	WORD				wResultCode;		// Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TRADE_MODIFY_NFY)
-	HOBJECT				hTarget;			// Å¸°Ù ÇÚµé
-	HOBJECT				hItem;				// ³» ¾ÆÀÌÅÛ ÇÚµé
-	BYTE				byCount;			// °ãÃÄÀÖ´Â ¾ÆÀÌÅÛÁß ¸î°³ÀÎ°¡? Default 1°³
+	HOBJECT				hTarget;			// Å¸ï¿½ï¿½ ï¿½Úµï¿½
+	HOBJECT				hItem;				// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
+	BYTE				byCount;			// ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½î°³ï¿½Î°ï¿½? Default 1ï¿½ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TRADE_MODIFY_RES)
-	HOBJECT				hTarget;			// Å¸°Ù ÇÚµé
-	HOBJECT				hItem;				// ³» ¾ÆÀÌÅÛ ÇÚµé
-	BYTE				byCount;			// °ãÃÄÀÖ´Â ¾ÆÀÌÅÛÁß ¸î°³ÀÎ°¡? Default 1°³
-	WORD				wResultCode;		// Å¸°ÙÀÇ ÀÀ´ä¹× °¡´É À¯¹« ¿¡ µû¸¥ ¿©·¯°¡Áö °á°ú°ª
+	HOBJECT				hTarget;			// Å¸ï¿½ï¿½ ï¿½Úµï¿½
+	HOBJECT				hItem;				// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
+	BYTE				byCount;			// ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½î°³ï¿½Î°ï¿½? Default 1ï¿½ï¿½
+	WORD				wResultCode;		// Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
-BEGIN_PROTOCOL(GU_TRADE_ZENNY_UPDATE_NFY)// ¼º°øÀÏ ¶§¸¸
-	HOBJECT				hTarget;			// Å¸°Ù ÇÚµé
-	DWORD				dwZenny;			// ¿Å±æ ¸¸Å­ÀÇ Á¦´Ï (ÀÚ±â°¡ °®°í ÀÖ´Â Á¦´Ï ÇÑµµ ³»)
+BEGIN_PROTOCOL(GU_TRADE_ZENNY_UPDATE_NFY)// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	HOBJECT				hTarget;			// Å¸ï¿½ï¿½ ï¿½Úµï¿½
+	DWORD				dwZenny;			// ï¿½Å±ï¿½ ï¿½ï¿½Å­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½Ú±â°¡ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ñµï¿½ ï¿½ï¿½)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TRADE_ZENNY_UPDATE_RES)
@@ -2048,18 +2048,18 @@ BEGIN_PROTOCOL(GU_TRADE_END_RES)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TRADE_CANCEL_NFY)
-	HOBJECT				hTarget;			// Å¸°Ù ÇÚµé
+	HOBJECT				hTarget;			// Å¸ï¿½ï¿½ ï¿½Úµï¿½
 	WORD				wResultCode;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TRADE_CANCEL_RES)
-	HOBJECT				hTarget;			// Å¸°Ù ÇÚµé
-	WORD				wResultCode;		// Å¸°ÙÀÇ ÀÀ´ä¹× °¡´É À¯¹« ¿¡ µû¸¥ ¿©·¯°¡Áö °á°ú°ª
+	HOBJECT				hTarget;			// Å¸ï¿½ï¿½ ï¿½Úµï¿½
+	WORD				wResultCode;		// Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TRADE_DENY_RES)
-	bool				bIsDeny;			// °ÅÀý ÇÁ·¹±× 
-	WORD				wResultCode;		// ¸¸¾à ±³È¯ÁßÀÌ¶ó¸é ½ÇÆÐÇÑ´Ù. ±×¿Ü ¼º°ø ¹× °á°ú
+	bool				bIsDeny;			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+	WORD				wResultCode;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. ï¿½×¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_GUILD_NAME_CHANGED_NFY)
@@ -2083,12 +2083,12 @@ BEGIN_PROTOCOL(GU_TOBJECT_UPDATE_STATE)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TOBJECT_ACTION_ATTACK)
-	HOBJECT				hSubject;				// ¾×¼Ç ÁÖÃ¼ Ä³¸¯ÅÍ ÇÚµé
-	HOBJECT				hTarget;				// ¾×¼Ç Å¸°Ù Ä³¸¯ÅÍ ÇÚµé
-	BYTE				byAttackType;			// ¾×¼Ç °á°ú ( eBATTLE_ATTACK_RESULT )
-	BYTE				byAttackResult;			// ¾×¼Ç °á°ú ( eBATTLE_ATTACK_RESULT )
-	WORD				wAttackResultValue;		// ¾×¼ÇÀÇ °á°ú °ª ( µ¥¹ÌÁö )
-	sVECTOR3			vShift;					// ¾îÅÃÀ¸·Î ÀÎÇÑ ÀÌµ¿ º¤ÅÍ
+	HOBJECT				hSubject;				// ï¿½×¼ï¿½ ï¿½ï¿½Ã¼ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
+	HOBJECT				hTarget;				// ï¿½×¼ï¿½ Å¸ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
+	BYTE				byAttackType;			// ï¿½×¼ï¿½ ï¿½ï¿½ï¿½ ( eBATTLE_ATTACK_RESULT )
+	BYTE				byAttackResult;			// ï¿½×¼ï¿½ ï¿½ï¿½ï¿½ ( eBATTLE_ATTACK_RESULT )
+	WORD				wAttackResultValue;		// ï¿½×¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ( ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ )
+	sVECTOR3			vShift;					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TUTORIAL_HINT_UPDATE_RES)
@@ -2126,9 +2126,9 @@ END_PROTOCOL()
 BEGIN_PROTOCOL( GU_TIMEQUEST_REWARD_NFY )
 	BYTE					byTriggerType;			// Compensation type ts type information
 	NTL_TS_EVENT_ID			teid;					// Compensation-related ts event information
-	DWORD					dwWaitTime;				// Reward Wait ½Ã°£ // not need anymore
-//	DWORD					dwClearTime;			// Å¬¸®¾î ½Ã°£ // not need anymore
-//	DWORD					dwBonusTime;			// º¸³Ê½º ½Ã°£ // not need anymore
+	DWORD					dwWaitTime;				// Reward Wait ï¿½Ã°ï¿½ // not need anymore
+//	DWORD					dwClearTime;			// Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ // not need anymore
+//	DWORD					dwBonusTime;			// ï¿½ï¿½ï¿½Ê½ï¿½ ï¿½Ã°ï¿½ // not need anymore
 	bool					bIsDayRecord : 1;			// True if a DayRecord is constructed
 	bool					bIsBestRecord : 1;			// True if the best record is established
 END_PROTOCOL()
@@ -2168,9 +2168,9 @@ BEGIN_PROTOCOL( GU_MINI_NARRATION_NFY )
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_PROGRESS_MESSAGE_NFY )
-	BYTE					byProgressType;			//ÁøÇà Å¸ÀÔ ePROGRESS_MESSAGE_TYPE
-	BYTE					byMessageType;			// ¸Þ½ÃÁö Å¸ÀÔ eTIMEQUEST_MESSAGE_TYPE
-	BYTE					byMessageValue;			// ¸Þ½ÃÁöÀÇ °ª 
+	BYTE					byProgressType;			//ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ePROGRESS_MESSAGE_TYPE
+	BYTE					byMessageType;			// ï¿½Þ½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ eTIMEQUEST_MESSAGE_TYPE
+	BYTE					byMessageValue;			// ï¿½Þ½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ 
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_DIRECTION_INDICATE_NFY )
@@ -2326,8 +2326,8 @@ BEGIN_PROTOCOL( GU_PRIVATESHOP_OPEN_RES )
 	sSUMMARY_PRIVATESHOP_SHOP_DATA	sSummaryPrivateShopData;
 	BYTE							byNoticeSize;
 	WCHAR							wcNotice[NTL_MAX_PRIVATESHOP_NOTICE_IN_UNICODE + 1];
-	//wcNotice°¡ °¡º¯ÀÌ±â ¶§¹®¿¡ wcNotice ¹Ø¿¡´Ù »õ·Î¿î º¯¼ö¸¦ ¼³Á¤ÇÏ¸é Àý´ë·Î ¾ÈµÈ´Ù.
-	//¹Ýµå½Ã byNoticeSizeÀ§¿¡ º¯¼ö ¼±¾ðÀ» ÇÒ°Í.[10/2/2007 SGpro]
+	//wcNoticeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ wcNotice ï¿½Ø¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ÈµÈ´ï¿½.
+	//ï¿½Ýµï¿½ï¿½ byNoticeSizeï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò°ï¿½.[10/2/2007 SGpro]
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_PRIVATESHOP_OPEN_NFY )
@@ -2374,7 +2374,7 @@ END_PROTOCOL()
 BEGIN_PROTOCOL( GU_PRIVATESHOP_ENTER_RES )
 	WORD						wResultCode;
 	sPACKET_PRIVATESHOP_SHOP_DATA		sPrivateShopData;
-//Private Shop ItemµéÀº GU_PRIVATESHOP_ITEM_DATA_INFO·Î º¸³½´Ù
+//Private Shop Itemï¿½ï¿½ï¿½ï¿½ GU_PRIVATESHOP_ITEM_DATA_INFOï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_PRIVATESHOP_LEAVE_RES )
@@ -2390,12 +2390,12 @@ END_PROTOCOL()
 BEGIN_PROTOCOL( GU_PRIVATESHOP_ITEM_SELECT_RES )
 	WORD				wResultCode;
 	BYTE				byPrivateShopInventorySlotPos;
-	BYTE				byItemState;//eITEMSTATE °ªÀ» °®´Â´Ù
+	BYTE				byItemState;//eITEMSTATE ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_PRIVATESHOP_ITEM_SELECT_NFY )
 	BYTE				byPrivateShopInventorySlotPos;
-	BYTE				byItemState;//eITEMSTATE °ªÀ» °®´Â´Ù
+	BYTE				byItemState;//eITEMSTATE ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_PRIVATESHOP_ITEM_STATE_NFY )
@@ -2407,7 +2407,7 @@ BEGIN_PROTOCOL( GU_PRIVATESHOP_LEAVE_NFY )
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_TUTORIAL_WAIT_NFY )
-	WORD						wWaitingCount; // ÇöÀç ÀÚ½Å¾ÕÀÇ ´ë±â¼ö
+	WORD						wWaitingCount; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ú½Å¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_TUTORIAL_WAIT_CANCEL_RES )
@@ -2419,8 +2419,8 @@ BEGIN_PROTOCOL( GU_TUTORIAL_PLAY_QUIT_RES )
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_MAIL_START_RES )
-	HOBJECT				hObject;	// ¸ÞÀÏ¼Û¼ö½ÅÅ¾ ¿ÀºêÁ§Æ® (½ºÄ«¿ìÆ®ÆÄÃ÷ Âø¿ë½Ã INVALID_OBJECT )
-	WORD 				wResultCode;	// °á°ú
+	HOBJECT				hObject;	// ï¿½ï¿½ï¿½Ï¼Û¼ï¿½ï¿½ï¿½Å¾ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® (ï¿½ï¿½Ä«ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ INVALID_OBJECT )
+	WORD 				wResultCode;	// ï¿½ï¿½ï¿½
 	bool				bIsAway;
 END_PROTOCOL()
 //------------------------------------------------------------------
@@ -2431,44 +2431,44 @@ BEGIN_PROTOCOL( GU_MAIL_SEND_RES )
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_MAIL_READ_RES )
-	HOBJECT	hObject;	// ¸ÞÀÏ¼Û¼ö½ÅÅ¾ ¿ÀºêÁ§Æ® (½ºÄ«¿ìÆ®ÆÄÃ÷ Âø¿ë½Ã INVALID_OBJECT )
-	MAILID	mailID;	// ¸ÞÀÏ ¾ÆÀÌµð
-	WORD	wResultCode;	// ¸ÞÀÏÀÌ ÀÌ¹Ì »èÁ¦ µÇ¾úÀ» ¶§´Â ½ÇÆÐ 
+	HOBJECT	hObject;	// ï¿½ï¿½ï¿½Ï¼Û¼ï¿½ï¿½ï¿½Å¾ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® (ï¿½ï¿½Ä«ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ INVALID_OBJECT )
+	MAILID	mailID;	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½
+	WORD	wResultCode;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 	BYTE	byRemainDay;
 	DBOTIME endTime;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_MAIL_DEL_RES )
-	HOBJECT	hObject;	// ¸ÞÀÏ¼Û¼ö½ÅÅ¾ ¿ÀºêÁ§Æ® (½ºÄ«¿ìÆ®ÆÄÃ÷ Âø¿ë½Ã INVALID_OBJECT )
-	MAILID	mailID;	// ¸ÞÀÏ ¾ÆÀÌµð
-	WORD	wResultCode;	// ¸ÞÀÏÀÌ ÀÌ¹Ì »èÁ¦ µÇ¾úÀ» ¶§´Â ½ÇÆÐ 
+	HOBJECT	hObject;	// ï¿½ï¿½ï¿½Ï¼Û¼ï¿½ï¿½ï¿½Å¾ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® (ï¿½ï¿½Ä«ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ INVALID_OBJECT )
+	MAILID	mailID;	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½
+	WORD	wResultCode;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_MAIL_RETURN_RES )
-	HOBJECT	hObject;	// ¸ÞÀÏ¼Û¼ö½ÅÅ¾ ¿ÀºêÁ§Æ® (½ºÄ«¿ìÆ®ÆÄÃ÷ Âø¿ë½Ã INVALID_OBJECT )
-	MAILID	mailID;	// ¸ÞÀÏ ¾ÆÀÌµð
-	WORD	wResultCode;	// ¸ÞÀÏÀÌ ÀÌ¹Ì »èÁ¦ µÇ¾úÀ» ¶§´Â ½ÇÆÐ 
+	HOBJECT	hObject;	// ï¿½ï¿½ï¿½Ï¼Û¼ï¿½ï¿½ï¿½Å¾ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® (ï¿½ï¿½Ä«ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ INVALID_OBJECT )
+	MAILID	mailID;	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½
+	WORD	wResultCode;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_MAIL_RELOAD_RES )		// <-- send if reload by player (pressed reload button)
-	HOBJECT	hObject;	// ¸ÞÀÏ¼Û¼ö½ÅÅ¾ ¿ÀºêÁ§Æ® (½ºÄ«¿ìÆ®ÆÄÃ÷ Âø¿ë½Ã INVALID_OBJECT )
-	WORD wResultCode;	// ¼º°øÀ¯¹«
-	BYTE	byMailCount;		// ÇöÀç ÀüÃ¼¸ÞÀÏ Ä«¿îÆ® 
-	BYTE	byManagerCount;		// ÀÐÁö ¾ÊÀº ¸Å´ÏÁ® ¸ÞÀÏ Ä«¿îÆ®
-	BYTE	byNormalCount;		// ÀÐÁö ¾ÊÀº ³ë¸Ö ¸ÞÀÏ Ä«¿îÆ®
-	MAILID   aMailID[NTL_MAX_MAIL_SLOT_COUNT];	// Ä«¿îÆ®¿¡ ÇØ´çÇÏ´Â ÀúÀåµÈ ¸ÞÀÏ ¾ÆÀÌµð 
+	HOBJECT	hObject;	// ï¿½ï¿½ï¿½Ï¼Û¼ï¿½ï¿½ï¿½Å¾ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® (ï¿½ï¿½Ä«ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ INVALID_OBJECT )
+	WORD wResultCode;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	BYTE	byMailCount;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ® 
+	BYTE	byManagerCount;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ®
+	BYTE	byNormalCount;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ®
+	MAILID   aMailID[NTL_MAX_MAIL_SLOT_COUNT];	// Ä«ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ 
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_MAIL_RELOAD_NFY )		// <-- send if reload by timer
-	BYTE	byMailCount;		// ÇöÀç ÀüÃ¼¸ÞÀÏ Ä«¿îÆ® 
-	BYTE	byManagerCount;		// ÀÐÁö ¾ÊÀº ¸Å´ÏÁ® ¸ÞÀÏ Ä«¿îÆ®
-	BYTE	byNormalCount;		// ÀÐÁö ¾ÊÀº ³ë¸Ö ¸ÞÀÏ Ä«¿îÆ®
-	MAILID  aMailID[NTL_MAX_MAIL_SLOT_COUNT];	// Ä«¿îÆ®¿¡ ÇØ´çÇÏ´Â ÀúÀåµÈ ¸ÞÀÏ ¾ÆÀÌµð 
+	BYTE	byMailCount;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ® 
+	BYTE	byManagerCount;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Å´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ®
+	BYTE	byNormalCount;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ®
+	MAILID  aMailID[NTL_MAX_MAIL_SLOT_COUNT];	// Ä«ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ 
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_MAIL_LOAD_RES )
-	HOBJECT	hObject;		// ¸ÞÀÏ¼Û¼ö½ÅÅ¾ ¿ÀºêÁ§Æ® (½ºÄ«¿ìÆ®ÆÄÃ÷ Âø¿ë½Ã INVALID_OBJECT )
-	WORD	wResultCode;	// ¼º°øÀ¯¹«
+	HOBJECT	hObject;		// ï¿½ï¿½ï¿½Ï¼Û¼ï¿½ï¿½ï¿½Å¾ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® (ï¿½ï¿½Ä«ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ INVALID_OBJECT )
+	WORD	wResultCode;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_MAIL_LOAD_DATA )
@@ -2484,9 +2484,9 @@ BEGIN_PROTOCOL( GU_MAIL_LOAD_INFO )
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_MAIL_ITEM_RECEIVE_RES )
-	HOBJECT	hObject;	// ¸ÞÀÏ¼Û¼ö½ÅÅ¾ ¿ÀºêÁ§Æ® (½ºÄ«¿ìÆ®ÆÄÃ÷ Âø¿ë½Ã INVALID_OBJECT )
-	WORD wResultCode;	// ¼º°øÀ¯¹«
-	MAILID	mailID;	// ¸ÞÀÏ ¾ÆÀÌµð
+	HOBJECT	hObject;	// ï¿½ï¿½ï¿½Ï¼Û¼ï¿½ï¿½ï¿½Å¾ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® (ï¿½ï¿½Ä«ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ INVALID_OBJECT )
+	WORD wResultCode;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	MAILID	mailID;	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_MAIL_LOCK_RES )
@@ -2502,10 +2502,10 @@ BEGIN_PROTOCOL( GU_MAIL_CLOSE_NFY )
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_MAIL_MULTI_DEL_RES )
-	HOBJECT	hObject;		// ¸ÞÀÏ¼Û¼ö½ÅÅ¾ ¿ÀºêÁ§Æ® (½ºÄ«¿ìÆ®ÆÄÃ÷ Âø¿ë½Ã INVALID_OBJECT )
-	WORD	wResultCode;	// ¸ÞÀÏÀÌ ÀÌ¹Ì »èÁ¦ µÇ¾úÀ» ¶§´Â ½ÇÆÐ
+	HOBJECT	hObject;		// ï¿½ï¿½ï¿½Ï¼Û¼ï¿½ï¿½ï¿½Å¾ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® (ï¿½ï¿½Ä«ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ INVALID_OBJECT )
+	WORD	wResultCode;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	BYTE	byCount;
-	MAILID	aMailID[NTL_MAX_COUNT_OF_MULTI_DEL];	// ¸ÞÀÏ ¾ÆÀÌµð
+	MAILID	aMailID[NTL_MAX_COUNT_OF_MULTI_DEL];	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_PORTAL_INFO)
@@ -2522,7 +2522,7 @@ END_PROTOCOL()
 BEGIN_PROTOCOL(GU_PORTAL_RES)
 	WORD			wResultCode;
 	HOBJECT			hNpcHandle;
-	BYTE			byPoint;		// 0~7±îÁö ¼±ÅÃµÈ ÀÎµ¦½º
+	BYTE			byPoint;		// 0~7ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½Îµï¿½ï¿½ï¿½
 	CNtlVector		vLoc;
 	CNtlVector		vDir;
 	WORLDID			worldID;
@@ -2542,7 +2542,7 @@ BEGIN_PROTOCOL(GU_MOB_LUCKY_DROP_NFY)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_ITEM_UPGRADE_ALL_NFY)
-	BYTE			abyGrade[NTL_ITEM_UPGRADE_EQUIP_COUNT];  // ¹è¿­ ÀÎµ¦½º´Â ÇØ´ç Pos, Value´Â ÇØ´ç °á°ú ±×·¹ÀÌµå( 255 INVALID´Â ¾ÆÀÌÅÛÀÌ ¾ø´Â °æ¿ì)
+	BYTE			abyGrade[NTL_ITEM_UPGRADE_EQUIP_COUNT];  // ï¿½è¿­ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ Pos, Valueï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½Ìµï¿½( 255 INVALIDï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_BOT_BOTCAUTION_NFY )		//  [2/20/2008 SGpro]
@@ -2608,7 +2608,7 @@ BEGIN_PROTOCOL(GU_GUILD_BANK_ZENNY_RES)
 	HOBJECT			handle;
 	WORD			wResultCode;
 	DWORD			dwZenny;
-	bool			bIsSave;		// 1: Àú±Ý 0: ÀÎÃâ
+	bool			bIsSave;		// 1: ï¿½ï¿½ï¿½ï¿½ 0: ï¿½ï¿½ï¿½ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_CROSSFIRE_RES )
@@ -2663,14 +2663,14 @@ BEGIN_PROTOCOL(GU_SHOP_ITEM_IDENTIFY_RES)
 	HOBJECT			hNpchandle;		// NpcHandle
 	BYTE			byPlace;
 	BYTE			byPos;
-	sITEM_DATA      sItemData;			// ¼º°ø½Ã¿¡¸¸ ¼¼ÆÃ
+	sITEM_DATA      sItemData;			// ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_MATCH_MINORMATCH_STATE_UPDATE_NFY)
 	BYTE			byMatchState;		// eBUDOKAI_MAJORMATCH_STATE
 	bool			bIsEnter;			// true : Enter, false : exit
 	BYTE			byStage;
-	DWORD			dwRemainTime;		// ¹Ð¸®¼¼ÄÁµå ´ÜÀ§
+	DWORD			dwRemainTime;		// ï¿½Ð¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_MATCH_MINORMATCH_TEAM_INFO_NFY)
@@ -2688,8 +2688,8 @@ END_PROTOCOL()
 BEGIN_PROTOCOL(GU_MATCH_MINORMATCH_UPDATE_SCORE_NFY)
 	TEAMTYPE		wTeamType;
 	BYTE			byScore;
-	HOBJECT			hSlayer;			// ±âÀý½ÃÅ² character
-	HOBJECT			hFainter;			// ±âÀýÇÑ character
+	HOBJECT			hSlayer;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å² character
+	HOBJECT			hFainter;			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ character
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_MATCH_MINORMATCH_TEAM_SCORE_NFY)
@@ -2718,7 +2718,7 @@ BEGIN_PROTOCOL(GU_MATCH_MAJORMATCH_STATE_UPDATE_NFY)
 	BYTE			byMatchState;		// eBUDOKAI_MAJORMATCH_STATE
 	bool			bIsEnter;			// true : Enter, false : exit
 	BYTE			byStage;
-	DWORD			dwRemainTime;		// ¹Ð¸®¼¼ÄÁµå ´ÜÀ§
+	DWORD			dwRemainTime;		// ï¿½Ð¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_MATCH_MAJORMATCH_TEAM_INFO_NFY)
@@ -2735,28 +2735,28 @@ BEGIN_PROTOCOL(GU_MATCH_MAJORMATCH_PLAYER_STATE_NFY)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_MATCH_MAJORMATCH_UPDATE_SCORE_NFY)
-	sMATCH_SCORE	sStageScore;		// ½ºÅ×ÀÌÁö ½ºÄÚ¾î
+	sMATCH_SCORE	sStageScore;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¾ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_MATCH_MAJORMATCH_STAGE_FINISH_NFY)
 	BYTE			byStageResult;		// eMATCH_RESULT
 	WORD			wStageWinner;		// Stage Winner TeamType
-	sMATCH_SCORE	sMatchScore;		// °æ±â ½ºÄÚ¾î
-	bool			bIsObserver;		// ¿ÉÁ®¹ö ¸ðµå¿¡¼­ »ç¿ë
+	sMATCH_SCORE	sMatchScore;		// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¾ï¿½
+	bool			bIsObserver;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½å¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½
 	int				nGetPoint; //new
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_MATCH_MAJORMATCH_MATCH_FINISH_NFY)
 	BYTE			byMatchResult;		// eMATCH_RESULT
 	WORD			wMatchWinner;		// Match Winner TeamType
-	sMATCH_SCORE	sMatchScore;		// °æ±â ½ºÄÚ¾î
+	sMATCH_SCORE	sMatchScore;		// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¾ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_MATCH_FINALMATCH_STATE_UPDATE_NFY)
 	BYTE			byMatchState;		// eBUDOKAI_MAJORMATCH_STATE
 	bool			bIsEnter;			// true : Enter, false : exit
 	BYTE			byStage;
-	DWORD			dwRemainTime;		// ¹Ð¸®¼¼ÄÁµå ´ÜÀ§
+	DWORD			dwRemainTime;		// ï¿½Ð¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_MATCH_FINALMATCH_TEAM_INFO_NFY)
@@ -2773,26 +2773,26 @@ BEGIN_PROTOCOL(GU_MATCH_FINALMATCH_PLAYER_STATE_NFY)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_MATCH_FINALMATCH_UPDATE_SCORE_NFY)
-	sMATCH_SCORE	sStageScore;		// ½ºÅ×ÀÌÁö ½ºÄÚ¾î
+	sMATCH_SCORE	sStageScore;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¾ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_MATCH_FINALMATCH_STAGE_FINISH_NFY)
 	BYTE			byStageResult;		// eMATCH_RESULT
 	WORD			wStageWinner;		// Stage Winner TeamType
-	sMATCH_SCORE	sMatchScore;		// °æ±â ½ºÄÚ¾î
-	bool			bIsObserver;		// ¿ÉÁ®¹ö ¸ðµå¿¡¼­ »ç¿ë
+	sMATCH_SCORE	sMatchScore;		// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¾ï¿½
+	bool			bIsObserver;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½å¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½
 	int				nGetPoint; //new
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_MATCH_FINALMATCH_MATCH_FINISH_NFY)
 	BYTE			byMatchResult;		// eMATCH_RESULT
 	WORD			wMatchWinner;		// Match Winner TeamType
-	sMATCH_SCORE	sMatchScore;		// °æ±â ½ºÄÚ¾î
+	sMATCH_SCORE	sMatchScore;		// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¾ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_MATCH_AWARDING_NFY)
 	WORD			awTeamName[MAX_FINALMATCH_RESULT];
-	sVARIABLE_DATA	sData;	// WCHAR wszTeamName[NTL_MAX_LENGTH_BUDOKAI_TEAM_NAME_IN_UNICODE + 1]; : ÀúÀåµÈ °ªÀº NULLÀ» Æ÷ÇÔÇÏÁö ¾Ê´Â´Ù.
+	sVARIABLE_DATA	sData;	// WCHAR wszTeamName[NTL_MAX_LENGTH_BUDOKAI_TEAM_NAME_IN_UNICODE + 1]; : ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ NULLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_SKILL_CONFUSE_TARGET_NFY)
@@ -2837,8 +2837,8 @@ END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_BUDOKAI_JOIN_INDIVIDUAL_RES)
 	WORD			wResultCode;
-	WORD			wJoinId;			// Âü°¡ ¹øÈ£
-	bool			bDojoRecommender;	// µµÀåÃßÃµÀÚÀÎÁö?
+	WORD			wJoinId;			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+	bool			bDojoRecommender;	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_BUDOKAI_LEAVE_INDIVIDUAL_RES)
@@ -2889,7 +2889,7 @@ BEGIN_PROTOCOL(GU_BUDOKAI_JOIN_INFO_RES)
 
 	BYTE					byMatchType;		// eBUDOKAI_MATCH_TYPE
 
-	// ÃßÈÄ ´ÙÀ½ µ¥ÀÌÅÍ ¾ÐÃà ÇÊ¿ä
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½
 	union
 	{
 		sBUDOKAI_REGISTER_INDIVIDUAL_INFO	sIndividualInfo;
@@ -2901,9 +2901,9 @@ BEGIN_PROTOCOL(GU_BUDOKAI_JOIN_STATE_RES)
 	WORD			wResultCode;
 	BYTE			byMatchType;		// eBUDOKAI_MATCH_TYPE
 	BYTE			byJoinState;		// eBUDOKAI_JOIN_STATE
-	BYTE			byJoinResult;		// Âü°¡ °á°ú
+	BYTE			byJoinResult;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
-	// Á¤º¸°¡ ¾øÀ» °æ¿ì
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	// byMatchType = INVALID_BUDOKAI_MATCH_TYPE
 	// byJoinState = INVALID_BUDOKAI_JOIN_STATE
 	// byJoinResult = INVALID_BUDOKAI_JOIN_RESULT
@@ -2921,7 +2921,7 @@ END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_BOT_BOTCAUTION_HELPME_NFY)
 	HOBJECT			hBot;
-	bool			bIsRequester; // true : SOS¸¦ ¿äÃ»ÇÑ ÀÚ
+	bool			bIsRequester; // true : SOSï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_BUDOKAI_MUDOSA_INFO_RES)
@@ -2981,7 +2981,7 @@ BEGIN_PROTOCOL(GU_BUDOKAI_GM_MATCH_PROGRESS_INFO_RES)
 	BYTE								byMatchDepth;		// eBUDOKAI_MATCH_DEPTH
 
 	BYTE								byStateCount;
-	sBUDOKAI_GM_MATCH_PROGRESS_STATE	aStateList[BUDOKAI_MAX_MATCH_COUNT];	// °¡º¯
+	sBUDOKAI_GM_MATCH_PROGRESS_STATE	aStateList[BUDOKAI_MAX_MATCH_COUNT];	// ï¿½ï¿½ï¿½ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_BUDOKAI_GM_MATCH_ARENA_ENTER_RES)
@@ -3016,7 +3016,7 @@ BEGIN_PROTOCOL(GU_ITEM_REPLACE)
 	BYTE			byDeleteItemPlace;
 	BYTE			byDeleteItemPos;
 	sITEM_DATA      sCreateItemData;
-	bool			bIsNew;		// Effect Ãß°¡ 
+	bool			bIsNew;		// Effect ï¿½ß°ï¿½ 
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_SHOP_GAMBLE_BUY_RES)
@@ -3061,17 +3061,17 @@ END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TELEPORT_PROPOSAL_NFY)
 	BYTE				byTeleportType;
-	BYTE				byInfoIndex;		// ¼­¹ö¿¡¼­ ÅÚ·¹Æ÷Æ® Á¤º¸¸¦ ÂüÁ¶ÇÏ±âÀ§ÇÑ ÀÎµ¦½º
+	BYTE				byInfoIndex;		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½
 	WORD				wWaitTime;			//60
-	TBLIDX				worldTblidx;		// ¿ùµå Å×ÀÌºí ÀÎµ¦½º : Á¤º¸¸¦ Á»´õ »ó¼¼ÇÏ°Ô Ãâ·ÂÇÏ±â À§ÇÑ ¿ëµµ.
+	TBLIDX				worldTblidx;		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½Îµï¿½ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ëµµ.
 
 	union
 	{
 		DWORD			dwReserve; //INVALID_DWORD
-		BYTE			byBudokaiMatchDepth;	// ÃµÇÏÁ¦ÀÏ¹«µµÈ¸ XX°­
+		BYTE			byBudokaiMatchDepth;	// Ãµï¿½ï¿½ï¿½ï¿½ï¿½Ï¹ï¿½ï¿½ï¿½È¸ XXï¿½ï¿½
 	};
 
-	WCHAR				wszSummonnerName[NTL_MAX_SIZE_CHAR_NAME + 1];	// °¡º¯
+	WCHAR				wszSummonnerName[NTL_MAX_SIZE_CHAR_NAME + 1];	// ï¿½ï¿½ï¿½ï¿½
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TELEPORT_CONFIRM_RES)
@@ -3092,7 +3092,7 @@ BEGIN_PROTOCOL(GU_GAME_COMMON_MSG_NFY)
 	WORD				wResultCode;         
 END_PROTOCOL()
 //------------------------------------------------------------------
-BEGIN_PROTOCOL(GU_HOIPOIMIX_RECIPE_REG_NFY)			// ·¹½ÃÇÇµî·Ï
+BEGIN_PROTOCOL(GU_HOIPOIMIX_RECIPE_REG_NFY)			// ï¿½ï¿½ï¿½ï¿½ï¿½Çµï¿½ï¿½
  	TBLIDX				recipeTblidx;	
 END_PROTOCOL()
 //------------------------------------------------------------------	
@@ -3247,13 +3247,13 @@ BEGIN_PROTOCOL(GU_PLAY_BGM)
 	bool				bPrevBgmFadeOut; //new
 	DWORD				dwDelay;
 	BYTE				byLength;
-	char				szName[513];		// null À» Æ÷ÇÔÇØ¼­ º¸³½´Ù.
+	char				szName[513];		// null ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_PLAY_JINGLE)
 	bool				bApplyFadeInOut;
 	BYTE				byLength;
-	char				szName[513];		// null À» Æ÷ÇÔÇØ¼­ º¸³½´Ù.
+	char				szName[513];		// null ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_DOJO_MARK_CHANGED_NFY)
@@ -3291,8 +3291,8 @@ END_PROTOCOL()
 BEGIN_PROTOCOL(GU_BUS_LOCATION_NFY)
 	HOBJECT				hSubject;
 	TBLIDX				busTblidx;
-	sVECTOR2			vCurLoc;
-	sVECTOR2			vCurDir;
+	sVECTOR3			vCurLoc;
+	sVECTOR3			vCurDir;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_BUS_LOCATION_ERASED_NFY)
@@ -3311,7 +3311,7 @@ BEGIN_PROTOCOL( GU_ITEM_EXPIRED_NFY )
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_SHOP_NETPYITEM_START_RES)
-	BYTE			byType; //	0: ±âº»  1:ÇÑÁ¤¼ö·® ÆÇ¸Å ÀÌº¥Æ® NPC 
+	BYTE			byType; //	0: ï¿½âº»  1:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¸ï¿½ ï¿½Ìºï¿½Æ® NPC 
 	WORD			wResultCode;
 	WORD			wUnknown; // 7
 	WORD			wUnknown2; // 234
