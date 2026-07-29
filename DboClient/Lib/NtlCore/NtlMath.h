@@ -129,7 +129,7 @@ public:
 
 /**
  * \ingroup Core
- * Math���� �Լ����� ����
+ * Math관련 함수들의 집합
  * 
  */
 class CNtlMath
@@ -173,28 +173,28 @@ public:
 	static RwReal	DWtoF(DWORD w) { RwReal f; memcpy(&f, &w, sizeof(RwReal)); return f; }
 
     
-    static RwRGBA Interpolation(const RwRGBA& startColor, const RwRGBA& endColor, const RwReal fDelta);    // RwRGBA���� �������� ���Ѵ� (delta : 0.0 ~ 1.0 ������ ��)
-    static RwReal Interpolation(const RwReal fStart, const RwReal fEnd, const RwReal fDelta);               // Real���� �������� ���Ѵ�. (delta : 0.0 ~ 1.0 ������ ��)
-    static RwV3d  Interpolation(const RwV3d& vStart, const RwV3d& vEnd, const RwReal fDelta);               // RwV3d���� ���� �������� ���Ѵ�.
+    static RwRGBA Interpolation(const RwRGBA& startColor, const RwRGBA& endColor, const RwReal fDelta);    // RwRGBA값의 보간값을 구한다 (delta : 0.0 ~ 1.0 까지의 값)
+    static RwReal Interpolation(const RwReal fStart, const RwReal fEnd, const RwReal fDelta);               // Real값의 보간값을 구한다. (delta : 0.0 ~ 1.0 까지의 값)
+    static RwV3d  Interpolation(const RwV3d& vStart, const RwV3d& vEnd, const RwReal fDelta);               // RwV3d값의 선형 보간값을 구한다.
 
 	static RwBool LineSphereCollisionTestPixelRay(RwCamera *pCamera, RwSphere *pSphere, RwInt32 iPixelX, RwInt32 iPixelY, RwReal fRayDist, RwReal& fDistance); 
 
 	static RwBool BBoxBBoxCollision(const RwBBox *pBox1, const RwBBox *pBox2);
 
-    // ���� �������� �߶� ��ȯ�Ѵ�. 
+    // 값을 범위내로 잘라서 반환한다. 
     static RwReal Range(const RwReal fValue, const RwReal fMin, const RwReal fMax);
 
-    // ��ķκ��� �����ϰ��� �����Ѵ�. (�յ� �������ΰ�쿡�� ����ȴ�)
+    // 행렬로부터 스케일값을 추출한다. (균등 스케일인경우에만 적용된다)
     static RwReal ScaleFromRwMatrix(const RwMatrix& matrix);
     
-    // ����V��  1 / V�� ����Ѵ�.
+    // 벡터V의  1 / V를 계산한다.
     static RwV3d RwV3dInverse(const RwV3d& v3d);
 
 	static RwInt32 GetSafeIdx3D(RwV3d& vPos, RwInt32 iHalfSize, RwInt32 iChunkSize, RwInt32 iChunkNum);
 };
 
 //////////////////////////////////////////////////////////////////////////
-// ������ �����ε� (2006.09.13 by agebreak)
+// 연산자 오버로딩 (2006.09.13 by agebreak)
 //////////////////////////////////////////////////////////////////////////
 const RwV3d operator+(const RwV3d& lhs, const RwV3d& rhs);
 const RwV3d operator-(const RwV3d& lhs, const RwV3d& rhs);
@@ -217,13 +217,13 @@ const RwV2d operator/(const RwV2d& lhs, const RwReal& rhs);
 const void	operator*=(RwV2d& lhs, const RwReal& rhs);
 
 /************************************************************************/
-/* Spline ���� ��� �Լ�                                                */
+/* Spline 보간 계산 함수                                                */
 /************************************************************************/
 
-// u : Weight ��
-// u2 : Weight�� ������
-// u3 : Weight�� ��������
-// Cntrl : ��Ʈ�� ����Ʈ�� 
+// u : Weight 값
+// u2 : Weight의 제곱값
+// u3 : Weight의 삼제곱값
+// Cntrl : 컨트롤 포인트들 
 
 #define _XSL_B_SPLINE(u, u_2, u_3, cntrl0, cntrl1, cntrl2, cntrl3)		\
     (																	\

@@ -34,7 +34,7 @@
 #include "GUISoundDefine.h"
 
 #define QUEST_NARRATION_TEXT_INTERVAL	0.025f
-#define QUEST_NARRATION_TEXT_FONTNUM	1			// 3 -> 1 �� ���� -by Kell(09. 07. 15)
+#define QUEST_NARRATION_TEXT_FONTNUM	1			// 3 -> 1 로 수정 -by Kell(09. 07. 15)
 
 #define QUEST_NARRATION_PCMESSAGE_MARGIN_X	60
 #define QUEST_NARRATION_PCMESSAGE_POS_Y		40
@@ -368,7 +368,7 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationDialog_Req* pData )
 				m_pCinematicObject->SetPCMessage( buf, wcslen( buf ) );
 		}		
 		else
-			m_pCinematicObject->GetBalloon()->Show( false );	// ��ȭ ���� ���� ��ǳ���� ǥ������ ����.
+			m_pCinematicObject->GetBalloon()->Show( false );	// 대화 없는 경우는 말풍선을 표시하지 않음.
 	}	
 
 	// 시간 입력
@@ -455,7 +455,7 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationUserSelectDialog_Req*
 		}	
 	}
 
-	RwInt32 nPCFrameTextRegionHeight = m_pCinematicObject->GetPCFrame()->GetHeight() - 19;	// MagicalNumber : �̹����� ������ �κ��� 19 pixel ��ŭ.
+	RwInt32 nPCFrameTextRegionHeight = m_pCinematicObject->GetPCFrame()->GetHeight() - 19;	// MagicalNumber : 이미지로 가리는 부분이 19 pixel 만큼.
 	m_pCinematicObject->SetPCSelectRegion( (RwUInt8)pData->nBranchCnt, (RwUInt8)nPCFrameTextRegionHeight, TRUE );
 
 	m_bySelectID = m_byPCSelectID[0];

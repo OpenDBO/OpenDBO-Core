@@ -34,7 +34,7 @@ public:
 
 	struct sChatOption
 	{
-		RwBool				bAlwaysInput;				///< ä���Է��� �Է¸�尡 �����Ǵ��� ����
+		RwBool				bAlwaysInput;				///< 채팅입력후 입력모드가 유지되는지 여부
 		bool				bLockChatDisplay;
 		bool				bShowChatScroll;
 		RwUInt8				byAlpha;
@@ -42,7 +42,7 @@ public:
 
 	struct sPositionInfo
 	{
-		RwInt32				iOldScreenHeight;			///< Ŭ���̾�Ʈ Resize�� �ϴܿ��� ������ �Ÿ� ���� ����
+		RwInt32				iOldScreenHeight;			///< 클라이언트 Resize시 하단에서 일정한 거리 유지 위해
 	};
 
 
@@ -152,7 +152,7 @@ protected:
 
 	RwBool				m_bChatModeEndReturn;
 	RwBool				m_bRenderBackground;
-	RwBool				m_bInitializedOption;			/// �ɼǿ� ���� �ʱ�ȭ�� �ߴ�
+	RwBool				m_bInitializedOption;			/// 옵션에 따른 초기화를 했다
 	eChatType			m_eChatType;
 	sChatOption			m_ChatOption;
 	sPositionInfo		m_tPositionInfo;	

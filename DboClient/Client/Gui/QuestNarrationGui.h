@@ -82,17 +82,17 @@ private:
 	CNtlTCUnit*			m_pTCUnit;
 	sTS_KEY				m_TSKey;
 	
-	STATE				m_eUIState;					// UI��ü�� State
-	RwInt32				m_eTSState;					// TS�� ������ State
-	RwInt32				m_eTextOutType;				// Text ��� ���
-	RwUInt32			m_uiMaxLifeTime;			// �� �ð��� ������ ������ true�� �Ѱ��ش�.
+	STATE				m_eUIState;					// UI자체의 State
+	RwInt32				m_eTSState;					// TS로 부터의 State
+	RwInt32				m_eTextOutType;				// Text 출력 방식
+	RwUInt32			m_uiMaxLifeTime;			// 이 시간이 지나면 강제로 true를 넘겨준다.
 	RwUInt32			m_uiCurrentTime;			//
-	RwUInt32			m_flagOwnerType;			// OWNERTYPE Flag, ������ � Ÿ���� ����Ǿ���. Begin ~ End
-	OWNERTYPE			m_eCurrentType;				// ������ Ÿ�Ը�.
+	RwUInt32			m_flagOwnerType;			// OWNERTYPE Flag, 이전에 어떤 타입이 실행되었나. Begin ~ End
+	OWNERTYPE			m_eCurrentType;				// 현재의 타입만.
 
 	RwUInt8				m_byPCSelectID[CINEMATIC_MAX_PC_SELECT];
 	
-	bool				m_bResult;					// ���� �����ΰ� �������� �ΰ�.
+	bool				m_bResult;					// 강제 종료인가 정상종료 인가.
 	RwUInt8				m_bySelectID;				// User Select Value;
 	//RwBool				m_bShowPCMessageOnPCSelect;	// PCSelect시 PCMessage를 표시할지 여부. Begin으로 들어올때 Ing에서 판별하기 위해.
 

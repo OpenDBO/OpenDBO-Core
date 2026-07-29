@@ -142,7 +142,7 @@ RwBool CModelToolApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight,
 	m_pLtDirectional = RpLightCreate(rpLIGHTDIRECTIONAL);
 	if(m_pLtDirectional)
 	{
-		RwFrame* pFrame = NULL;		// Directional Light�� ���� Frame
+		RwFrame* pFrame = NULL;		// Directional Light를 붙일 Frame
 		RpLightSetColor(m_pLtDirectional, &color);
 
 		pFrame = RwFrameCreate();

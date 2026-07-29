@@ -124,7 +124,7 @@ RwBool CInputActionMap::Create(void)
 	m_ActionMapManager.ClearReleaseAction();
 	m_ActionMapManager.ClearResult();
 
-	RegisterFlagMap();	// ����ȸ���� ���� Ű�� ���
+	RegisterFlagMap();	// 상태회복을 위한 키를 등록
 
 	// 어플리케이션에 핫키를 등록한다. print screen/sys rq 키를 이용하기 위해
 	/*RegisterHotKey( CNtlApplication::GetInstance()->GetHWnd(), NTL_KEY_SNAPSHOT, 0, VK_SNAPSHOT );*/
@@ -587,7 +587,7 @@ int CInputActionMap::KeyUpHandler(uintptr_t pKeyData)
 				CNtlSLEventGenerator::ActionMapClientNotify( SNtlEventActionMapClientNotify::ACTIONMAP_NOTCOMBINE );
 			}
 			break;
-			case SET_RESULT_ALREADY_KEY:			// ������ �ִ� Ű�� ������
+			case SET_RESULT_ALREADY_KEY:			// 가지고 있던 키를 해제함
 			{
 				CNtlSLEventGenerator::ActionMapClientNotify( SNtlEventActionMapClientNotify::ACTIONMAP_RELEASE, m_ActionMapManager.GetLastReleaseAction() );
 			}
@@ -1064,13 +1064,13 @@ void CInputActionMap::ActionDownBehaviorHandler( RwUInt32 uiAction )
 			}
 			break;
 		}
-	case ACTION_AVATAR_LOOTING:		// ����
+	case ACTION_AVATAR_LOOTING:		// 루팅
 		{
 			if( m_pCallLooting )
 				m_pCallLooting->Call();
 			break;
 		}
-	case ACTION_AVATAR_CHARGE:		// �� ������
+	case ACTION_AVATAR_CHARGE:		// 기 모으기
 		{
 			if( m_pCallCharging && IsDownAction( ACTION_AVATAR_CHARGE ) == FALSE  )
 			{
@@ -1105,14 +1105,14 @@ void CInputActionMap::ActionDownGuiHandler( RwUInt32 uiAction )
 
 	switch( uiAction )
 	{
-	case ACTION_TARGET_SELF:		// �ڱ� �ڽ� ����
+	case ACTION_TARGET_SELF:		// 자기 자신 선택
 		{
 			if( m_pCallAvatarSelect )
 				m_pCallAvatarSelect->Call();
 			break;
 		}
 
-	case ACTION_QUICK_1:			// ������
+	case ACTION_QUICK_1:			// 퀵슬롯
 		{
 			if( m_pCallSkillQuickSlotDown && IsDownAction( ACTION_QUICK_1 ) == FALSE )
 			{
@@ -1441,28 +1441,28 @@ void CInputActionMap::ActionDownGuiHandler( RwUInt32 uiAction )
 			break;
 		}
 
-	case ACTION_TARGET_1STPARTY:		// ù��° ��Ƽ�� ����
+	case ACTION_TARGET_1STPARTY:		// 첫번째 파티원 선택
 		{
 			if( m_pCallPartySelect )
 				m_pCallPartySelect->Call( 0 );
 
 			break;
 		}
-	case ACTION_TARGET_2NDPARTY:		//  �ι�° ��Ƽ�� ����
+	case ACTION_TARGET_2NDPARTY:		//  두번째 파티원 선택
 		{
 			if( m_pCallPartySelect )
 				m_pCallPartySelect->Call( 1 );
 
 			break;
 		}
-	case ACTION_TARGET_3RDPARTY:		// ����°
+	case ACTION_TARGET_3RDPARTY:		// 세번째
 		{
 			if( m_pCallPartySelect )
 				m_pCallPartySelect->Call( 2 );
 
 			break;
 		}
-	case ACTION_TARGET_4THPARTY:		// �׹�°
+	case ACTION_TARGET_4THPARTY:		// 네번째
 		{
 			if( m_pCallPartySelect )
 				m_pCallPartySelect->Call( 3 );
@@ -1492,7 +1492,7 @@ void CInputActionMap::ActionUpMoveHandler( RwUInt32 uiAction )
 {
 	switch( uiAction )
 	{
-		case ACTION_AVATAR_FORWARD:	// ����
+		case ACTION_AVATAR_FORWARD:	// 전진
 		{
 			m_uiMoveFlags &= (~NTL_BIT_FRONT_MOVE);
 
@@ -1510,7 +1510,7 @@ void CInputActionMap::ActionUpMoveHandler( RwUInt32 uiAction )
 
 			break;
 		}
-		case ACTION_AVATAR_LEFTTURN: // ��ȸ��
+		case ACTION_AVATAR_LEFTTURN: // 좌회전
 		{
 			m_uiMoveFlags &= (~NTL_BIT_TURN_LEFT_MOVE);
 
@@ -1524,7 +1524,7 @@ void CInputActionMap::ActionUpMoveHandler( RwUInt32 uiAction )
 
 			break;
 		}
-		case ACTION_AVATAR_BACKWARD: // ����
+		case ACTION_AVATAR_BACKWARD: // 후진
 		{
 			m_uiMoveFlags &= (~NTL_BIT_BACK_MOVE);
 
@@ -1537,7 +1537,7 @@ void CInputActionMap::ActionUpMoveHandler( RwUInt32 uiAction )
 				m_pCallKeyboardMove->Call(m_uiServerMoveFlags);
 		}
 		break;
-		case ACTION_AVATAR_RIGHTTURN: // ��ȸ��
+		case ACTION_AVATAR_RIGHTTURN: // 우회전
 		{
 			m_uiMoveFlags &= (~NTL_BIT_TURN_RIGHT_MOVE);
 
@@ -1635,13 +1635,13 @@ void CInputActionMap::ActionUpBehaviorHandler( RwUInt32 uiAction )
 
 			break;
 		}
-	case ACTION_TARGET_AUTO:			// ����� �� ����
+	case ACTION_TARGET_AUTO:			// 가까운 적 선택
 		{
 			if( m_pCallAutoTarget )
 				m_pCallAutoTarget->Call();
 			break;
 		}
-	case ACTION_TARGET_AUTOATK:			// �ڵ� ����
+	case ACTION_TARGET_AUTOATK:			// 자동 공격
 		{
 			if( m_pCallAutoAttack )
 				m_pCallAutoAttack->Call();
@@ -1662,7 +1662,7 @@ void CInputActionMap::ActionUpBehaviorHandler( RwUInt32 uiAction )
 			}
 			break;
 		}
-	case ACTION_AVATAR_JUMP:		// ���� Flag ȸ��
+	case ACTION_AVATAR_JUMP:		// 점프 Flag 회복
 		{
 			if( m_pCallJump )
 			{
@@ -2147,7 +2147,7 @@ void CInputActionMap::ActionUpGuiHandler( RwUInt32 uiAction )
 				m_pCallChatPageChange->Call( 1 );
 		}
 		break;
-	case ACTION_GLOBAL_SNAPSHOT:		// ��ũ�� ĸ�� ���
+	case ACTION_GLOBAL_SNAPSHOT:		// 스크린 캡쳐 기능
 		{
 			GetNtlGameCameraManager()->SetCaptureScreenShot();
 			break;
@@ -2166,11 +2166,11 @@ void CInputActionMap::ActionUpGuiHandler( RwUInt32 uiAction )
 */
 void CInputActionMap::RegisterFlagMap() 
 {
-	m_mapFlag[ACTION_AVATAR_CHARGE] = FALSE;		// �� ������
-	m_mapFlag[ACTION_AVATAR_BLOCKING] = FALSE;		// ����ŷ
+	m_mapFlag[ACTION_AVATAR_CHARGE] = FALSE;		// 기 모으기
+	m_mapFlag[ACTION_AVATAR_BLOCKING] = FALSE;		// 블록킹
 	m_mapFlag[ACTION_AVATAR_SITDOWN] = FALSE;		// sit/stand up & fly down
-	m_mapFlag[ACTION_AVATAR_JUMP] = FALSE;			// ����
-	m_mapFlag[ACTION_QUICK_1] = FALSE;				// ������ ����Ű��
+	m_mapFlag[ACTION_AVATAR_JUMP] = FALSE;			// 점프
+	m_mapFlag[ACTION_QUICK_1] = FALSE;				// 퀵슬롯 단축키들
 	m_mapFlag[ACTION_QUICK_2] = FALSE;
 	m_mapFlag[ACTION_QUICK_3] = FALSE;
 	m_mapFlag[ACTION_QUICK_4] = FALSE;

@@ -41,13 +41,13 @@ public:
 
 struct STypeAnimData
 {
-	std::string			strAnimName;							///< Animation File �̸�
+	std::string			strAnimName;							///< Animation File 이름
 	RwUInt32			uiAnimKey;								///< Animation Key
-	RwReal              fPlayTime;                              ///< Animation�� PlayTime
-    RwUInt32            flagAnim;                               ///< �ִϸ��̼� ���õ� ���� �÷���
+	RwReal              fPlayTime;                              ///< Animation의 PlayTime
+    RwUInt32            flagAnim;                               ///< 애니메이션 관련된 설정 플래그
 
-	std::vector<SEventAnim *> vecAnimEvent;						///< Animation Event�� (fTime�� ������ �Ǿ� �־�� �Ѵ�.)
-	RwBool						m_bReLoad;						///< Resource�� ���� �о�� �� ���
+	std::vector<SEventAnim *> vecAnimEvent;						///< Animation Event들 (fTime에 정렬이 되어 있어야 한다.)
+	RwBool						m_bReLoad;						///< Resource를 새로 읽어야 할 경우
 	
 	STypeAnimData() : uiAnimKey(INVALID_GRAPHIC_ANIMATION_ID), m_bReLoad(FALSE), fPlayTime(0.0f), flagAnim(0)
 	{
@@ -112,7 +112,7 @@ public:
 	STypeAnimData	*Get(RwUInt32 uiKey);									///< Get STypeAnimData
 	STypeAnimData	*Add(RwUInt32 uiKey, const std::string &strAnimName);	///< Add STypeAnimData
     STypeAnimData	*Add(RwUInt32 uiKey, STypeAnimData *pTypeAnimData);     ///< Add STypeAnimData 
-    void            Remove(RwUInt32 uiKey);                                 ///< �ʿ��� �����͸� �����Ѵ�. (by Agebreak. 2006.05.01)
+    void            Remove(RwUInt32 uiKey);                                 ///< 맵에서 데이터를 제거한다. (by Agebreak. 2006.05.01)
 
     TYPE_ANIM_MAP	*GetTypeAnimMap();
 
@@ -121,8 +121,8 @@ public:
     void SetAnimPath(std::string& strAnimPath) { m_strAnimPath = strAnimPath;}
     std::string GetAnimPath() {return m_strAnimPath;}
 
-	void	SaveSerialize( CNtlSerializer& sOut);						///< Serialize ��ü�� �����͸� �����Ѵ�.
-	void	LoadSerialize( CNtlSerializer& sIn);						///< Serailize ��ü���� �����͸� �ε��Ѵ�.
+	void	SaveSerialize( CNtlSerializer& sOut);						///< Serialize 객체에 데이터를 저장한다.
+	void	LoadSerialize( CNtlSerializer& sIn);						///< Serailize 객체에서 데이터를 로드한다.
 };
 
 #endif

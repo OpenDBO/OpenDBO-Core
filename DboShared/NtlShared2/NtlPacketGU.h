@@ -744,7 +744,7 @@ BEGIN_PROTOCOL(GU_PONG)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_SESSION_STATE_WRONG)
-	WORD			wPrevOPCode;	// ������ ���´� �ڵ��ȣ
+	WORD			wPrevOPCode;	// 이전에 보냈던 코드번호
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_CHAR_STATE_WRONG)
@@ -796,8 +796,8 @@ BEGIN_PROTOCOL(GU_AVATAR_SKILL_INFO)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_AVATAR_HTB_INFO)
-	BYTE			byHTBSkillCount; // HTB ��ų ����
-	sHTB_SKILL_INFO	aHTBSkillnfo[NTL_HTB_MAX_PC_HAVE_HTB_SKILL]; // HTB ��ų ����
+	BYTE			byHTBSkillCount; // HTB 스킬 개수
+	sHTB_SKILL_INFO	aHTBSkillnfo[NTL_HTB_MAX_PC_HAVE_HTB_SKILL]; // HTB 스킬 정보
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_AVATAR_BUFF_INFO)
@@ -822,7 +822,7 @@ BEGIN_PROTOCOL(GU_AVATAR_QUEST_COMPLETE_INFO)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_AVATAR_QUEST_PROGRESS_INFO)
-	BYTE					byProgressCount; // ���� �����ϰ� �ִ� ����Ʈ ����
+	BYTE					byProgressCount; // 현재 진행하고 있는 퀘스트 개수
 	sQUEST_PROGRESS_INFO	progressInfo[eMAX_CAN_PROGRESS_QUEST_NUM]; // Quest progression data
 END_PROTOCOL()
 //------------------------------------------------------------------
@@ -854,14 +854,14 @@ BEGIN_PROTOCOL(GU_CHAR_MOVE)
 	_compressedLocation		vCurLoc;
 	_compressedDirection	vCurDir;
 	BYTE			byMoveDirection;
-	BYTE			byMoveFlag;		// �ٱ� Ȥ�� �ȱ�(ENtlMovementFlag ����)
+	BYTE			byMoveFlag;		// 뛰기 혹은 걷기(ENtlMovementFlag 참조)
 	BYTE			byMoveStatus; //new
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_CHAR_DEST_MOVE)
 	HOBJECT					handle;
 	_compressedLocation		vCurLoc; //
-	BYTE					byMoveFlag;		// �ٱ� Ȥ�� �ȱ�(ENtlMovementFlag ����)
+	BYTE					byMoveFlag;		// 뛰기 혹은 걷기(ENtlMovementFlag 참조)
 	bool					bHaveSecondDestLoc;
 	_compressedLocation		vSecondDestLoc;  //
 	BYTE					actionPatternIndex;
@@ -904,7 +904,7 @@ BEGIN_PROTOCOL(GU_CHAR_FOLLOW_MOVE)
 	HOBJECT			hTarget;
 	float			fDistance;
 	BYTE			byMovementReason;
-	BYTE			byMoveFlag;		// �ٱ� Ȥ�� �ȱ�(ENtlMovementFlag ����)
+	BYTE			byMoveFlag;		// 뛰기 혹은 걷기(ENtlMovementFlag 참조)
 	BYTE			byMoveStatus;//new
 	sVECTOR3		vDestLoc;
 END_PROTOCOL()
@@ -966,12 +966,12 @@ BEGIN_PROTOCOL( GU_CHAR_CONVERT_CLASS )
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_CHAR_DIALOG)
-	HOBJECT				hSubject;				// ��ȭ �ϴ� ĳ���� �ڵ�
-	BYTE				byDialogType;			// ��ȭ ���� ( eCHAR_DIALOG_TYPE )
-	TBLIDX				textTblidx;				// ��ȭ ���� ���̺� ��ȣ ( INVALID �� �ƴϸ� �ش� �ؽ�Ʈ�� ã�� ����ϰ�, INVALID�� �Ʒ��� �ؽ�Ʈ�� ����� �� ��)
-	bool				bIsRefSpeechTable;		// speech table( NPCSpeechTable �� �����ϴ°�? )
-	WORD				wTextLen;				// ��ȭ������ ����
-	WCHAR				awchText[NTL_MAX_LENGTH_OF_CHAT_MESSAGE + 1]; // ��ȭ����
+	HOBJECT				hSubject;				// 대화 하는 캐릭터 핸들
+	BYTE				byDialogType;			// 대화 종류 ( eCHAR_DIALOG_TYPE )
+	TBLIDX				textTblidx;				// 대화 내용 테이블 번호 ( INVALID 가 아니면 해당 텍스트를 찾아 출력하고, INVALID면 아래의 텍스트를 출력해 줄 것)
+	bool				bIsRefSpeechTable;		// speech table( NPCSpeechTable 을 참조하는가? )
+	WORD				wTextLen;				// 대화내용의 길이
+	WCHAR				awchText[NTL_MAX_LENGTH_OF_CHAT_MESSAGE + 1]; // 대화내용
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_CHAR_DIRECT_PLAY )
@@ -1264,7 +1264,7 @@ END_PROTOCOL()
 BEGIN_PROTOCOL(GU_ITEM_CREATE)
 	HOBJECT			handle;
 	sITEM_DATA      sItemData;
-	bool			bIsNew;		// Effect �߰� 
+	bool			bIsNew;		// Effect 추가 
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_ITEM_UPDATE)
@@ -1290,8 +1290,8 @@ BEGIN_PROTOCOL(GU_ITEM_MOVE_STACK_RES)
 	BYTE			bySrcPos;
 	BYTE			byDestPlace;
 	BYTE			byDestPos;	
-	BYTE			byStackCount1;//��������� �������� SOURCE
-	BYTE			byStackCount2;//��������� �������� DESTINATION
+	BYTE			byStackCount1;//결과적으로 놓여질값 SOURCE
+	BYTE			byStackCount2;//결과적으로 놓여질값 DESTINATION
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_ITEM_DELETE)
@@ -1352,7 +1352,7 @@ END_PROTOCOL()
 BEGIN_PROTOCOL(GU_ITEM_STACK_UPDATE)
 	HOBJECT			hItemHandle;
 	BYTE			byStack;
-	bool			bIsNew;		// Effect �߰� 
+	bool			bIsNew;		// Effect 추가 
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_ITEM_UPGRADE_RES)
@@ -1372,7 +1372,7 @@ END_PROTOCOL()
 BEGIN_PROTOCOL(GU_ITEM_IDENTIFY_RES)
 	HOBJECT			hItemHandle;
 	WORD			wResultCode;
-	sITEM_DATA      sItemData;			// �����ÿ��� ����
+	sITEM_DATA      sItemData;			// 성공시에만 세팅
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_ITEM_PICK_RES)
@@ -1393,7 +1393,7 @@ BEGIN_PROTOCOL(GU_ZENNY_PICK_RES)
 	// 'dwOriginalZenny' MUST NOT be referred if 'bSharedInParty' is false.
 	// bSharedInParty가 false이면 dwOriginalZenny값은 참조해서는 안 된다.
 	// by YOSHIKI(2007-10-02)
-	DWORD			dwOriginalZenny; //Drop Zenny�̴�.
+	DWORD			dwOriginalZenny; //Drop Zenny이다.
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_UPDATE_CHAR_STATE)
@@ -1482,7 +1482,7 @@ END_PROTOCOL()
 BEGIN_PROTOCOL(GU_UPDATE_CHAR_ZENNY)
 	HOBJECT			handle;
 	DWORD			dwZenny;
-	bool			bIsNew;		// Effect �߰�
+	bool			bIsNew;		// Effect 추가
 	BYTE			byChangeType; // eZENNY_CHANGE_TYPE - NtlCharacter.h
 END_PROTOCOL()
 //------------------------------------------------------------------
@@ -1494,24 +1494,24 @@ BEGIN_PROTOCOL(GU_SYSTEM_DISPLAY_TEXT)
 	WCHAR			awGMChar[NTL_MAX_SIZE_CHAR_NAME + 1];
 	BYTE			byDisplayType;				// eSERVER_TEXT_TYPE
 	WORD			wMessageLengthInUnicode;
-	WCHAR			awchMessage[NTL_MAX_LENGTH_OF_CHAT_MESSAGE + 1]; // ����
+	WCHAR			awchMessage[NTL_MAX_LENGTH_OF_CHAT_MESSAGE + 1]; // 내용
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_SYSTEM_DISPLAY_SCRIPT_TEXT)
 	BYTE			byDisplayType;				// eSERVER_TEXT_TYPE
 	TBLIDX			textTblidx;
 	WORD			wMessageLengthInUnicode;
-	WCHAR			awchMessage[NTL_MAX_LENGTH_OF_CHAT_MESSAGE + 1]; // ����
+	WCHAR			awchMessage[NTL_MAX_LENGTH_OF_CHAT_MESSAGE + 1]; // 내용
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_SYSTEM_DISPLAY_RESULTCODE)
 	BYTE			byDisplayType;				// eSERVER_TEXT_TYPE
-	WORD			wResultCode;				// ����� ResultCode
+	WORD			wResultCode;				// 출력할 ResultCode
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_SHOP_START_RES)
 	HOBJECT			handle;
-	BYTE			byType; //	0: �⺻  1:�������� �Ǹ� �̺�Ʈ NPC 
+	BYTE			byType; //	0: 기본  1:한정수량 판매 이벤트 NPC 
 	WORD			wResultCode;
 END_PROTOCOL()
 //------------------------------------------------------------------
@@ -1566,9 +1566,9 @@ BEGIN_PROTOCOL(GU_PARTY_INFO)
 	HOBJECT					hLeader;
 	BYTE					byItemLootingMethod;
 	BYTE					byZennyLootingMethod;
-	sSHARETARGET_INFO		sharetargetInfo[NTL_MAX_SHARETARGET_COUNT];// ����Ÿ�ٵ���Ÿ [3/28/2008 SGpro]
+	sSHARETARGET_INFO		sharetargetInfo[NTL_MAX_SHARETARGET_COUNT];// 공유타겟데이타 [3/28/2008 SGpro]
 	ePARTY_DUNGEON_STATE	eDiff;
-	BYTE					byItemRank;			// ��Ƽ�κ��� ���� �������� eITEM_RANK �߰�
+	BYTE					byItemRank;			// 파티인벤에 넣을 아이템의 eITEM_RANK 추가
 	BYTE					byMemberInfoCount;
 	sPARTY_MEMBER_INFO		memberInfo[NTL_MAX_MEMBER_IN_PARTY - 1];	
 END_PROTOCOL()
@@ -1662,7 +1662,7 @@ BEGIN_PROTOCOL(GU_PARTY_MEMBER_GAINED_ZENNY_NFY)
 	DWORD					dwBonusZenny;
 
 	// 'dwOriginalZenny' MUST NOT be referred if 'bSharedInParty' is false.
-	DWORD					dwOriginalZenny; //Mob�� Drop�� Zenny
+	DWORD					dwOriginalZenny; //Mob이 Drop한 Zenny
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_PARTY_MEMBER_LOCATION_NFY)
@@ -1719,7 +1719,7 @@ BEGIN_PROTOCOL(GU_BANK_ZENNY_RES)
 	HOBJECT				handle;
 	WORD				wResultCode;
 	DWORD				dwZenny;
-	bool				bIsSave;		// 1: ���� 0: ����
+	bool				bIsSave;		// 1: 저금 0: 인출
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_BANK_BUY_RES)
@@ -1758,7 +1758,7 @@ BEGIN_PROTOCOL(GU_SCOUTER_EQUIP_CHECK_RES)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TS_CONFIRM_STEP_RES)
-	BYTE				byTsType; // Ʈ���� Ÿ��
+	BYTE				byTsType; // 트리거 타입
 	WORD				wResultCode;
 	NTL_TS_T_ID			tId;
 	NTL_TS_TC_ID		tcCurId;
@@ -1767,14 +1767,14 @@ BEGIN_PROTOCOL(GU_TS_CONFIRM_STEP_RES)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TS_UPDATE_SYNC_NFY)
-	BYTE				byTsType; // Ʈ���� Ÿ��
+	BYTE				byTsType; // 트리거 타입
 	NTL_TS_T_ID			tId;
 	NTL_TS_TC_ID		tcId;
 	NTL_TS_TA_ID		taId;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TS_UPDATE_STATE)
-	BYTE				byTsType; // Ʈ���� Ÿ��
+	BYTE				byTsType; // 트리거 타입
 	NTL_TS_T_ID			tId;
 	BYTE				byType;
 	WORD				wTSState;
@@ -1782,7 +1782,7 @@ BEGIN_PROTOCOL(GU_TS_UPDATE_STATE)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TS_UPDATE_EVENT_NFY)
-	BYTE				byTsType; // Ʈ���� Ÿ��
+	BYTE				byTsType; // 트리거 타입
 	NTL_TS_EVENT_ID		teid;
 END_PROTOCOL()
 //------------------------------------------------------------------
@@ -1815,16 +1815,16 @@ END_PROTOCOL()
 BEGIN_PROTOCOL(GU_QUEST_ITEM_CREATE_NFY)
 	BYTE				byPos;
 	TBLIDX				qItemTblidx;
-	BYTE				byCurCount;			// ���� ī��Ʈ
+	BYTE				byCurCount;			// 현재 카운트
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_QUEST_ITEM_DELETE_NFY)
-	BYTE				byDeletePos;		// ������ �������� ��ġ
+	BYTE				byDeletePos;		// 삭제한 아이템의 위치
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_QUEST_ITEM_UPDATE_NFY)
 	BYTE				byPos;
-	BYTE				byCurCount;			// ���� ī��Ʈ
+	BYTE				byCurCount;			// 현재 카운트
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_QUEST_ITEM_MOVE_RES)
@@ -1837,7 +1837,7 @@ END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_QUEST_ITEM_DELETE_RES)
 	WORD				wResultCode;
-	BYTE				byDeletePos;		// ������ �������� ��ġ
+	BYTE				byDeletePos;		// 삭제한 아이템의 위치
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_QUEST_SVREVT_START_NFY)
@@ -1866,15 +1866,15 @@ BEGIN_PROTOCOL(GU_QUEST_GIVEUP_RES)
 	WORD				wResultCode;
 END_PROTOCOL()
 //------------------------------------------------------------------
-BEGIN_PROTOCOL(GU_QUEST_SHARE_NFY)				// ����Ʈ ����
+BEGIN_PROTOCOL(GU_QUEST_SHARE_NFY)				// 퀘스트 공유
 	WORD				wResultCode;
 	NTL_TS_T_ID			tId;
 	HOBJECT				hActor;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_QUEST_RESET_NFY)			// A specified range of quests and delete progress information and complete information.
-	QUESTID				startResetQID;		// ���� ����
-	QUESTID				endResetQID;		// ���� ����
+	QUESTID				startResetQID;		// 범위 지정
+	QUESTID				endResetQID;		// 범위 지정
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_QUEST_OBJECT_VISIT_RES)
@@ -1891,21 +1891,21 @@ BEGIN_PROTOCOL(GU_QUEST_FORCED_COMPLETION_NFY)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_FREEBATTLE_CHALLENGE_RES)
-	HOBJECT				hTarget; // ������ ��û�ߴ� Ÿ���� �ڵ�
-	WORD				wResultCode; // ���� �ڵ�
+	HOBJECT				hTarget; // 대전을 요청했던 타겟의 핸들
+	WORD				wResultCode; // 응답 코드
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_FREEBATTLE_ACCEPT_REQ)
-	HOBJECT				hChallenger; // ������ ��û�� ĳ������ �ڵ�
+	HOBJECT				hChallenger; // 대전을 요청한 캐릭터의 핸들
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_FREEBATTLE_CANCEL_NFY)
-	WORD				wResultCode; // ������ҿ� ���� ����
+	WORD				wResultCode; // 대전취소에 대한 이유
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_FREEBATTLE_START_NFY)
-	HOBJECT				hTarget; // ������� �ڵ�
-	sVECTOR3			vRefreeLoc;	// ���� ��ġ
+	HOBJECT				hTarget; // 대전상대 핸들
+	sVECTOR3			vRefreeLoc;	// 심판 위치
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_FREEBATTLE_OUTSIDE_NFY)
@@ -1946,7 +1946,7 @@ BEGIN_PROTOCOL(GU_PET_CHAR_INFO)
 		sSUMMON_PET_PROFILE		sSummonPetProfile;
 		sITEM_PET_PROFILE		sItemPetProfile;
 	};
-	WORD				wCharStateSize; //-[9/7/2006 zeroera] : ���� : Ŭ���̾�Ʈ�� ���� ĳ���ͻ��� ������ ����
+	WORD				wCharStateSize; //-[9/7/2006 zeroera] : 설명 : 클라이언트를 위한 캐릭터상태 사이즈 정보
 	sCHARSTATE			sCharState;
 END_PROTOCOL()
 //------------------------------------------------------------------
@@ -1989,43 +1989,43 @@ BEGIN_PROTOCOL(GU_TRADE_OK_REQ)
 	HOBJECT				handle;			//Handle the requestor
 END_PROTOCOL()
 //------------------------------------------------------------------
-BEGIN_PROTOCOL(GU_TRADE_ADD_NFY)			// ������ ����
-	HOBJECT				hItem;				// ��� ������ �ڵ�
-	sITEM_DATA			sItem;				// ��밡 �÷� ���� �������� ����
-	BYTE				byCount;			// �����ִ� �������� ��ΰ�? Default 1��
+BEGIN_PROTOCOL(GU_TRADE_ADD_NFY)			// 성공일 때만
+	HOBJECT				hItem;				// 상대 아이템 핸들
+	sITEM_DATA			sItem;				// 상대가 올려 놓을 아이템의 정보
+	BYTE				byCount;			// 겹쳐있는 아이템중 몇개인가? Default 1개
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TRADE_ADD_RES)
-	HOBJECT				hItem;				// �� ������ �ڵ�
-	BYTE				byCount;			// �����ִ� �������� ��ΰ�? Default 1��
-	WORD				wResultCode;		// Ÿ���� ����� ���� ���� �� ���� �������� �����
+	HOBJECT				hItem;				// 상대 아이템 핸들
+	BYTE				byCount;			// 겹쳐있는 아이템중 몇개인가? Default 1개
+	WORD				wResultCode;		// 타겟의 응답및 가능 유무 에 따른 여러가지 결과값
 END_PROTOCOL()
 //------------------------------------------------------------------
-BEGIN_PROTOCOL(GU_TRADE_DEL_NFY)			// ������ ����
-	HOBJECT				hItem;				// ��� ������ �ڵ�
+BEGIN_PROTOCOL(GU_TRADE_DEL_NFY)			// 성공일 때만
+	HOBJECT				hItem;				// 상대 아이템 핸들
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TRADE_DEL_RES)
-	HOBJECT				hItem;				// �� ������ �ڵ�
-	WORD				wResultCode;		// Ÿ���� ����� ���� ���� �� ���� �������� �����
+	HOBJECT				hItem;				// 상대 아이템 핸들
+	WORD				wResultCode;		// 타겟의 응답및 가능 유무 에 따른 여러가지 결과값
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TRADE_MODIFY_NFY)
-	HOBJECT				hTarget;			// Ÿ�� �ڵ�
-	HOBJECT				hItem;				// �� ������ �ڵ�
-	BYTE				byCount;			// �����ִ� �������� ��ΰ�? Default 1��
+	HOBJECT				hTarget;			// 타겟 핸들
+	HOBJECT				hItem;				// 상대 아이템 핸들
+	BYTE				byCount;			// 겹쳐있는 아이템중 몇개인가? Default 1개
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TRADE_MODIFY_RES)
-	HOBJECT				hTarget;			// Ÿ�� �ڵ�
-	HOBJECT				hItem;				// �� ������ �ڵ�
-	BYTE				byCount;			// �����ִ� �������� ��ΰ�? Default 1��
-	WORD				wResultCode;		// Ÿ���� ����� ���� ���� �� ���� �������� �����
+	HOBJECT				hTarget;			// 타겟 핸들
+	HOBJECT				hItem;				// 상대 아이템 핸들
+	BYTE				byCount;			// 겹쳐있는 아이템중 몇개인가? Default 1개
+	WORD				wResultCode;		// 타겟의 응답및 가능 유무 에 따른 여러가지 결과값
 END_PROTOCOL()
 //------------------------------------------------------------------
-BEGIN_PROTOCOL(GU_TRADE_ZENNY_UPDATE_NFY)// ������ ����
-	HOBJECT				hTarget;			// Ÿ�� �ڵ�
-	DWORD				dwZenny;			// �ű� ��ŭ�� ���� (�ڱⰡ ���� �ִ� ���� �ѵ� ��)
+BEGIN_PROTOCOL(GU_TRADE_ZENNY_UPDATE_NFY)// 성공일 때만
+	HOBJECT				hTarget;			// 타겟 핸들
+	DWORD				dwZenny;			// 옮길 만큼의 제니 (자기가 갖고 있는 제니 한도 내)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TRADE_ZENNY_UPDATE_RES)
@@ -2048,18 +2048,18 @@ BEGIN_PROTOCOL(GU_TRADE_END_RES)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TRADE_CANCEL_NFY)
-	HOBJECT				hTarget;			// Ÿ�� �ڵ�
+	HOBJECT				hTarget;			// 타겟 핸들
 	WORD				wResultCode;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TRADE_CANCEL_RES)
-	HOBJECT				hTarget;			// Ÿ�� �ڵ�
-	WORD				wResultCode;		// Ÿ���� ����� ���� ���� �� ���� �������� �����
+	HOBJECT				hTarget;			// 타겟 핸들
+	WORD				wResultCode;		// 타겟의 응답및 가능 유무 에 따른 여러가지 결과값
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TRADE_DENY_RES)
-	bool				bIsDeny;			// ���� ������ 
-	WORD				wResultCode;		// ���� ��ȯ���̶�� �����Ѵ�. �׿� ���� �� ���
+	bool				bIsDeny;			// 거절 프레그 
+	WORD				wResultCode;		// 만약 교환중이라면 실패한다. 그외 성공 및 결과
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_GUILD_NAME_CHANGED_NFY)
@@ -2083,12 +2083,12 @@ BEGIN_PROTOCOL(GU_TOBJECT_UPDATE_STATE)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TOBJECT_ACTION_ATTACK)
-	HOBJECT				hSubject;				// �׼� ��ü ĳ���� �ڵ�
-	HOBJECT				hTarget;				// �׼� Ÿ�� ĳ���� �ڵ�
-	BYTE				byAttackType;			// �׼� ��� ( eBATTLE_ATTACK_RESULT )
-	BYTE				byAttackResult;			// �׼� ��� ( eBATTLE_ATTACK_RESULT )
-	WORD				wAttackResultValue;		// �׼��� ��� �� ( ������ )
-	sVECTOR3			vShift;					// �������� ���� �̵� ����
+	HOBJECT				hSubject;				// 대화 하는 캐릭터 핸들
+	HOBJECT				hTarget;				// 액션 타겟 캐릭터 핸들
+	BYTE				byAttackType;			// 액션 결과 ( eBATTLE_ATTACK_RESULT )
+	BYTE				byAttackResult;			// 액션 결과 ( eBATTLE_ATTACK_RESULT )
+	WORD				wAttackResultValue;		// 액션의 결과 값 ( 데미지 )
+	sVECTOR3			vShift;					// 어택으로 인한 이동 벡터
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TUTORIAL_HINT_UPDATE_RES)
@@ -2126,7 +2126,7 @@ END_PROTOCOL()
 BEGIN_PROTOCOL( GU_TIMEQUEST_REWARD_NFY )
 	BYTE					byTriggerType;			// Compensation type ts type information
 	NTL_TS_EVENT_ID			teid;					// Compensation-related ts event information
-	DWORD					dwWaitTime;				// Reward Wait �ð� // not need anymore
+	DWORD					dwWaitTime;				// Reward Wait 시간 // not need anymore
 //	DWORD					dwClearTime;			// 클리어 시간 // not need anymore
 //	DWORD					dwBonusTime;			// 보너스 시간 // not need anymore
 	bool					bIsDayRecord : 1;			// True if a DayRecord is constructed
@@ -2168,9 +2168,9 @@ BEGIN_PROTOCOL( GU_MINI_NARRATION_NFY )
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_PROGRESS_MESSAGE_NFY )
-	BYTE					byProgressType;			//���� Ÿ�� ePROGRESS_MESSAGE_TYPE
-	BYTE					byMessageType;			// �޽��� Ÿ�� eTIMEQUEST_MESSAGE_TYPE
-	BYTE					byMessageValue;			// �޽����� �� 
+	BYTE					byProgressType;			//진행 타입 ePROGRESS_MESSAGE_TYPE
+	BYTE					byMessageType;			// 메시지 타입 eTIMEQUEST_MESSAGE_TYPE
+	BYTE					byMessageValue;			// 메시지의 값 
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_DIRECTION_INDICATE_NFY )
@@ -2390,12 +2390,12 @@ END_PROTOCOL()
 BEGIN_PROTOCOL( GU_PRIVATESHOP_ITEM_SELECT_RES )
 	WORD				wResultCode;
 	BYTE				byPrivateShopInventorySlotPos;
-	BYTE				byItemState;//eITEMSTATE ���� ���´�
+	BYTE				byItemState;//eITEMSTATE 값을 갖는다
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_PRIVATESHOP_ITEM_SELECT_NFY )
 	BYTE				byPrivateShopInventorySlotPos;
-	BYTE				byItemState;//eITEMSTATE ���� ���´�
+	BYTE				byItemState;//eITEMSTATE 값을 갖는다
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_PRIVATESHOP_ITEM_STATE_NFY )
@@ -2407,7 +2407,7 @@ BEGIN_PROTOCOL( GU_PRIVATESHOP_LEAVE_NFY )
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_TUTORIAL_WAIT_NFY )
-	WORD						wWaitingCount; // ���� �ڽž��� ����
+	WORD						wWaitingCount; // 현재 자신앞의 대기수
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_TUTORIAL_WAIT_CANCEL_RES )
@@ -2419,8 +2419,8 @@ BEGIN_PROTOCOL( GU_TUTORIAL_PLAY_QUIT_RES )
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_MAIL_START_RES )
-	HOBJECT				hObject;	// ���ϼۼ���ž ������Ʈ (��ī��Ʈ���� ����� INVALID_OBJECT )
-	WORD 				wResultCode;	// ���
+	HOBJECT				hObject;	// 메일송수신탑 오브젝트 (스카우트파츠 착용시 INVALID_OBJECT )
+	WORD 				wResultCode;	// 결과
 	bool				bIsAway;
 END_PROTOCOL()
 //------------------------------------------------------------------
@@ -2431,44 +2431,44 @@ BEGIN_PROTOCOL( GU_MAIL_SEND_RES )
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_MAIL_READ_RES )
-	HOBJECT	hObject;	// ���ϼۼ���ž ������Ʈ (��ī��Ʈ���� ����� INVALID_OBJECT )
-	MAILID	mailID;	// ���� ���̵�
-	WORD	wResultCode;	// ������ �̹� ���� �Ǿ��� ���� ���� 
+	HOBJECT	hObject;	// 메일송수신탑 오브젝트 (스카우트파츠 착용시 INVALID_OBJECT )
+	MAILID	mailID;	// 메일 아이디
+	WORD	wResultCode;	// 메일이 이미 삭제 되었을 때는 실패 
 	BYTE	byRemainDay;
 	DBOTIME endTime;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_MAIL_DEL_RES )
-	HOBJECT	hObject;	// ���ϼۼ���ž ������Ʈ (��ī��Ʈ���� ����� INVALID_OBJECT )
-	MAILID	mailID;	// ���� ���̵�
-	WORD	wResultCode;	// ������ �̹� ���� �Ǿ��� ���� ���� 
+	HOBJECT	hObject;	// 메일송수신탑 오브젝트 (스카우트파츠 착용시 INVALID_OBJECT )
+	MAILID	mailID;	// 메일 아이디
+	WORD	wResultCode;	// 메일이 이미 삭제 되었을 때는 실패 
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_MAIL_RETURN_RES )
-	HOBJECT	hObject;	// ���ϼۼ���ž ������Ʈ (��ī��Ʈ���� ����� INVALID_OBJECT )
-	MAILID	mailID;	// ���� ���̵�
-	WORD	wResultCode;	// ������ �̹� ���� �Ǿ��� ���� ���� 
+	HOBJECT	hObject;	// 메일송수신탑 오브젝트 (스카우트파츠 착용시 INVALID_OBJECT )
+	MAILID	mailID;	// 메일 아이디
+	WORD	wResultCode;	// 메일이 이미 삭제 되었을 때는 실패 
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_MAIL_RELOAD_RES )		// <-- send if reload by player (pressed reload button)
-	HOBJECT	hObject;	// ���ϼۼ���ž ������Ʈ (��ī��Ʈ���� ����� INVALID_OBJECT )
-	WORD wResultCode;	// ��������
-	BYTE	byMailCount;		// ���� ��ü���� ī��Ʈ 
-	BYTE	byManagerCount;		// ���� ���� �Ŵ��� ���� ī��Ʈ
-	BYTE	byNormalCount;		// ���� ���� ��� ���� ī��Ʈ
-	MAILID   aMailID[NTL_MAX_MAIL_SLOT_COUNT];	// ī��Ʈ�� �ش��ϴ� ����� ���� ���̵� 
+	HOBJECT	hObject;	// 메일송수신탑 오브젝트 (스카우트파츠 착용시 INVALID_OBJECT )
+	WORD wResultCode;	// 성공유무
+	BYTE	byMailCount;		// 현재 전체메일 카운트 
+	BYTE	byManagerCount;		// 읽지 않은 매니져 메일 카운트
+	BYTE	byNormalCount;		// 읽지 않은 노멀 메일 카운트
+	MAILID   aMailID[NTL_MAX_MAIL_SLOT_COUNT];	// 카운트에 해당하는 저장된 메일 아이디 
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_MAIL_RELOAD_NFY )		// <-- send if reload by timer
-	BYTE	byMailCount;		// ���� ��ü���� ī��Ʈ 
-	BYTE	byManagerCount;		// ���� ���� �Ŵ��� ���� ī��Ʈ
-	BYTE	byNormalCount;		// ���� ���� ��� ���� ī��Ʈ
-	MAILID  aMailID[NTL_MAX_MAIL_SLOT_COUNT];	// ī��Ʈ�� �ش��ϴ� ����� ���� ���̵� 
+	BYTE	byMailCount;		// 현재 전체메일 카운트 
+	BYTE	byManagerCount;		// 읽지 않은 매니져 메일 카운트
+	BYTE	byNormalCount;		// 읽지 않은 노멀 메일 카운트
+	MAILID  aMailID[NTL_MAX_MAIL_SLOT_COUNT];	// 카운트에 해당하는 저장된 메일 아이디 
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_MAIL_LOAD_RES )
-	HOBJECT	hObject;		// ���ϼۼ���ž ������Ʈ (��ī��Ʈ���� ����� INVALID_OBJECT )
-	WORD	wResultCode;	// ��������
+	HOBJECT	hObject;		// 메일송수신탑 오브젝트 (스카우트파츠 착용시 INVALID_OBJECT )
+	WORD	wResultCode;	// 성공유무
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_MAIL_LOAD_DATA )
@@ -2484,9 +2484,9 @@ BEGIN_PROTOCOL( GU_MAIL_LOAD_INFO )
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_MAIL_ITEM_RECEIVE_RES )
-	HOBJECT	hObject;	// ���ϼۼ���ž ������Ʈ (��ī��Ʈ���� ����� INVALID_OBJECT )
-	WORD wResultCode;	// ��������
-	MAILID	mailID;	// ���� ���̵�
+	HOBJECT	hObject;	// 메일송수신탑 오브젝트 (스카우트파츠 착용시 INVALID_OBJECT )
+	WORD wResultCode;	// 성공유무
+	MAILID	mailID;	// 메일 아이디
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_MAIL_LOCK_RES )
@@ -2502,10 +2502,10 @@ BEGIN_PROTOCOL( GU_MAIL_CLOSE_NFY )
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_MAIL_MULTI_DEL_RES )
-	HOBJECT	hObject;		// ���ϼۼ���ž ������Ʈ (��ī��Ʈ���� ����� INVALID_OBJECT )
-	WORD	wResultCode;	// ������ �̹� ���� �Ǿ��� ���� ����
+	HOBJECT	hObject;		// 메일송수신탑 오브젝트 (스카우트파츠 착용시 INVALID_OBJECT )
+	WORD	wResultCode;	// 메일이 이미 삭제 되었을 때는 실패
 	BYTE	byCount;
-	MAILID	aMailID[NTL_MAX_COUNT_OF_MULTI_DEL];	// ���� ���̵�
+	MAILID	aMailID[NTL_MAX_COUNT_OF_MULTI_DEL];	// 메일 아이디
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_PORTAL_INFO)
@@ -2522,7 +2522,7 @@ END_PROTOCOL()
 BEGIN_PROTOCOL(GU_PORTAL_RES)
 	WORD			wResultCode;
 	HOBJECT			hNpcHandle;
-	BYTE			byPoint;		// 0~7���� ���õ� �ε���
+	BYTE			byPoint;		// 0~7까지 선택된 인덱스
 	CNtlVector		vLoc;
 	CNtlVector		vDir;
 	WORLDID			worldID;
@@ -2542,7 +2542,7 @@ BEGIN_PROTOCOL(GU_MOB_LUCKY_DROP_NFY)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_ITEM_UPGRADE_ALL_NFY)
-	BYTE			abyGrade[NTL_ITEM_UPGRADE_EQUIP_COUNT];  // �迭 �ε����� �ش� Pos, Value�� �ش� ��� �׷��̵�( 255 INVALID�� �������� ���� ���)
+	BYTE			abyGrade[NTL_ITEM_UPGRADE_EQUIP_COUNT];  // 배열 인덱스는 해당 Pos, Value는 해당 결과 그레이드( 255 INVALID는 아이템이 없는 경우)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_BOT_BOTCAUTION_NFY )		//  [2/20/2008 SGpro]
@@ -2608,7 +2608,7 @@ BEGIN_PROTOCOL(GU_GUILD_BANK_ZENNY_RES)
 	HOBJECT			handle;
 	WORD			wResultCode;
 	DWORD			dwZenny;
-	bool			bIsSave;		// 1: ���� 0: ����
+	bool			bIsSave;		// 1: 저금 0: 인출
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_CROSSFIRE_RES )
@@ -2663,14 +2663,14 @@ BEGIN_PROTOCOL(GU_SHOP_ITEM_IDENTIFY_RES)
 	HOBJECT			hNpchandle;		// NpcHandle
 	BYTE			byPlace;
 	BYTE			byPos;
-	sITEM_DATA      sItemData;			// �����ÿ��� ����
+	sITEM_DATA      sItemData;			// 성공시에만 세팅
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_MATCH_MINORMATCH_STATE_UPDATE_NFY)
 	BYTE			byMatchState;		// eBUDOKAI_MAJORMATCH_STATE
 	bool			bIsEnter;			// true : Enter, false : exit
 	BYTE			byStage;
-	DWORD			dwRemainTime;		// �и������� ����
+	DWORD			dwRemainTime;		// 밀리세컨드 단위
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_MATCH_MINORMATCH_TEAM_INFO_NFY)
@@ -2688,8 +2688,8 @@ END_PROTOCOL()
 BEGIN_PROTOCOL(GU_MATCH_MINORMATCH_UPDATE_SCORE_NFY)
 	TEAMTYPE		wTeamType;
 	BYTE			byScore;
-	HOBJECT			hSlayer;			// ������Ų character
-	HOBJECT			hFainter;			// ������ character
+	HOBJECT			hSlayer;			// 기절시킨 character
+	HOBJECT			hFainter;			// 기절한 character
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_MATCH_MINORMATCH_TEAM_SCORE_NFY)
@@ -2718,7 +2718,7 @@ BEGIN_PROTOCOL(GU_MATCH_MAJORMATCH_STATE_UPDATE_NFY)
 	BYTE			byMatchState;		// eBUDOKAI_MAJORMATCH_STATE
 	bool			bIsEnter;			// true : Enter, false : exit
 	BYTE			byStage;
-	DWORD			dwRemainTime;		// �и������� ����
+	DWORD			dwRemainTime;		// 밀리세컨드 단위
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_MATCH_MAJORMATCH_TEAM_INFO_NFY)
@@ -2735,28 +2735,28 @@ BEGIN_PROTOCOL(GU_MATCH_MAJORMATCH_PLAYER_STATE_NFY)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_MATCH_MAJORMATCH_UPDATE_SCORE_NFY)
-	sMATCH_SCORE	sStageScore;		// �������� ���ھ�
+	sMATCH_SCORE	sStageScore;		// 스테이지 스코어
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_MATCH_MAJORMATCH_STAGE_FINISH_NFY)
 	BYTE			byStageResult;		// eMATCH_RESULT
 	WORD			wStageWinner;		// Stage Winner TeamType
-	sMATCH_SCORE	sMatchScore;		// ��� ���ھ�
-	bool			bIsObserver;		// ������ ��忡�� ���
+	sMATCH_SCORE	sMatchScore;		// 경기 스코어
+	bool			bIsObserver;		// 옵져버 모드에서 사용
 	int				nGetPoint; //new
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_MATCH_MAJORMATCH_MATCH_FINISH_NFY)
 	BYTE			byMatchResult;		// eMATCH_RESULT
 	WORD			wMatchWinner;		// Match Winner TeamType
-	sMATCH_SCORE	sMatchScore;		// ��� ���ھ�
+	sMATCH_SCORE	sMatchScore;		// 경기 스코어
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_MATCH_FINALMATCH_STATE_UPDATE_NFY)
 	BYTE			byMatchState;		// eBUDOKAI_MAJORMATCH_STATE
 	bool			bIsEnter;			// true : Enter, false : exit
 	BYTE			byStage;
-	DWORD			dwRemainTime;		// �и������� ����
+	DWORD			dwRemainTime;		// 밀리세컨드 단위
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_MATCH_FINALMATCH_TEAM_INFO_NFY)
@@ -2773,26 +2773,26 @@ BEGIN_PROTOCOL(GU_MATCH_FINALMATCH_PLAYER_STATE_NFY)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_MATCH_FINALMATCH_UPDATE_SCORE_NFY)
-	sMATCH_SCORE	sStageScore;		// �������� ���ھ�
+	sMATCH_SCORE	sStageScore;		// 스테이지 스코어
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_MATCH_FINALMATCH_STAGE_FINISH_NFY)
 	BYTE			byStageResult;		// eMATCH_RESULT
 	WORD			wStageWinner;		// Stage Winner TeamType
-	sMATCH_SCORE	sMatchScore;		// ��� ���ھ�
-	bool			bIsObserver;		// ������ ��忡�� ���
+	sMATCH_SCORE	sMatchScore;		// 경기 스코어
+	bool			bIsObserver;		// 옵져버 모드에서 사용
 	int				nGetPoint; //new
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_MATCH_FINALMATCH_MATCH_FINISH_NFY)
 	BYTE			byMatchResult;		// eMATCH_RESULT
 	WORD			wMatchWinner;		// Match Winner TeamType
-	sMATCH_SCORE	sMatchScore;		// ��� ���ھ�
+	sMATCH_SCORE	sMatchScore;		// 경기 스코어
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_MATCH_AWARDING_NFY)
 	WORD			awTeamName[MAX_FINALMATCH_RESULT];
-	sVARIABLE_DATA	sData;	// WCHAR wszTeamName[NTL_MAX_LENGTH_BUDOKAI_TEAM_NAME_IN_UNICODE + 1]; : ����� ���� NULL�� �������� �ʴ´�.
+	sVARIABLE_DATA	sData;	// WCHAR wszTeamName[NTL_MAX_LENGTH_BUDOKAI_TEAM_NAME_IN_UNICODE + 1]; : 저장된 값은 NULL을 포함하지 않는다.
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_SKILL_CONFUSE_TARGET_NFY)
@@ -2837,8 +2837,8 @@ END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_BUDOKAI_JOIN_INDIVIDUAL_RES)
 	WORD			wResultCode;
-	WORD			wJoinId;			// ���� ��ȣ
-	bool			bDojoRecommender;	// ������õ������?
+	WORD			wJoinId;			// 참가 번호
+	bool			bDojoRecommender;	// 도장추천자인지?
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_BUDOKAI_LEAVE_INDIVIDUAL_RES)
@@ -2901,7 +2901,7 @@ BEGIN_PROTOCOL(GU_BUDOKAI_JOIN_STATE_RES)
 	WORD			wResultCode;
 	BYTE			byMatchType;		// eBUDOKAI_MATCH_TYPE
 	BYTE			byJoinState;		// eBUDOKAI_JOIN_STATE
-	BYTE			byJoinResult;		// ���� ���
+	BYTE			byJoinResult;		// 참가 결과
 
 	// 정보가 없을 경우
 	// byMatchType = INVALID_BUDOKAI_MATCH_TYPE
@@ -2921,7 +2921,7 @@ END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_BOT_BOTCAUTION_HELPME_NFY)
 	HOBJECT			hBot;
-	bool			bIsRequester; // true : SOS�� ��û�� ��
+	bool			bIsRequester; // true : SOS를 요청한 자
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_BUDOKAI_MUDOSA_INFO_RES)
@@ -2981,7 +2981,7 @@ BEGIN_PROTOCOL(GU_BUDOKAI_GM_MATCH_PROGRESS_INFO_RES)
 	BYTE								byMatchDepth;		// eBUDOKAI_MATCH_DEPTH
 
 	BYTE								byStateCount;
-	sBUDOKAI_GM_MATCH_PROGRESS_STATE	aStateList[BUDOKAI_MAX_MATCH_COUNT];	// ����
+	sBUDOKAI_GM_MATCH_PROGRESS_STATE	aStateList[BUDOKAI_MAX_MATCH_COUNT];	// 가변
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_BUDOKAI_GM_MATCH_ARENA_ENTER_RES)
@@ -3016,7 +3016,7 @@ BEGIN_PROTOCOL(GU_ITEM_REPLACE)
 	BYTE			byDeleteItemPlace;
 	BYTE			byDeleteItemPos;
 	sITEM_DATA      sCreateItemData;
-	bool			bIsNew;		// Effect �߰� 
+	bool			bIsNew;		// Effect 추가 
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_SHOP_GAMBLE_BUY_RES)
@@ -3061,17 +3061,17 @@ END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TELEPORT_PROPOSAL_NFY)
 	BYTE				byTeleportType;
-	BYTE				byInfoIndex;		// �������� �ڷ���Ʈ ������ �����ϱ����� �ε���
+	BYTE				byInfoIndex;		// 서버에서 텔레포트 정보를 참조하기위한 인덱스
 	WORD				wWaitTime;			//60
-	TBLIDX				worldTblidx;		// ���� ���̺� �ε��� : ������ ���� ���ϰ� ����ϱ� ���� �뵵.
+	TBLIDX				worldTblidx;		// 월드 테이블 인덱스 : 정보를 좀더 상세하게 출력하기 위한 용도.
 
 	union
 	{
 		DWORD			dwReserve; //INVALID_DWORD
-		BYTE			byBudokaiMatchDepth;	// õ�����Ϲ���ȸ XX��
+		BYTE			byBudokaiMatchDepth;	// 천하제일무도회 XX강
 	};
 
-	WCHAR				wszSummonnerName[NTL_MAX_SIZE_CHAR_NAME + 1];	// ����
+	WCHAR				wszSummonnerName[NTL_MAX_SIZE_CHAR_NAME + 1];	// 가변
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TELEPORT_CONFIRM_RES)
@@ -3092,7 +3092,7 @@ BEGIN_PROTOCOL(GU_GAME_COMMON_MSG_NFY)
 	WORD				wResultCode;         
 END_PROTOCOL()
 //------------------------------------------------------------------
-BEGIN_PROTOCOL(GU_HOIPOIMIX_RECIPE_REG_NFY)			// �����ǵ��
+BEGIN_PROTOCOL(GU_HOIPOIMIX_RECIPE_REG_NFY)			// 레시피등록
  	TBLIDX				recipeTblidx;	
 END_PROTOCOL()
 //------------------------------------------------------------------	
@@ -3247,13 +3247,13 @@ BEGIN_PROTOCOL(GU_PLAY_BGM)
 	bool				bPrevBgmFadeOut; //new
 	DWORD				dwDelay;
 	BYTE				byLength;
-	char				szName[513];		// null �� �����ؼ� ������.
+	char				szName[513];		// null 을 포함해서 보낸다.
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_PLAY_JINGLE)
 	bool				bApplyFadeInOut;
 	BYTE				byLength;
-	char				szName[513];		// null �� �����ؼ� ������.
+	char				szName[513];		// null 을 포함해서 보낸다.
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_DOJO_MARK_CHANGED_NFY)
@@ -3311,7 +3311,7 @@ BEGIN_PROTOCOL( GU_ITEM_EXPIRED_NFY )
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_SHOP_NETPYITEM_START_RES)
-	BYTE			byType; //	0: �⺻  1:�������� �Ǹ� �̺�Ʈ NPC 
+	BYTE			byType; //	0: 기본  1:한정수량 판매 이벤트 NPC 
 	WORD			wResultCode;
 	WORD			wUnknown; // 7
 	WORD			wUnknown2; // 234

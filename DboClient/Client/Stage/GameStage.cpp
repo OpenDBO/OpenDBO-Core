@@ -523,7 +523,7 @@ void CGameStage::UpdateTeleportLoadingReadyScene(RwReal fElapsed)
 		
 		RpWorldRemoveCamera(CNtlPLGlobal::m_pRpWorld, CNtlPLGlobal::m_RwCamera);
 
-        CNtlSLEventGenerator::CreateWorld(FALSE);       // �̺�Ʈ �߻�
+        CNtlSLEventGenerator::CreateWorld(FALSE);       // 이벤트 발생
 
 		DeleteWorld();
 
@@ -553,7 +553,7 @@ void CGameStage::UpdateTeleportLoadingReadyScene(RwReal fElapsed)
 
 		RpWorldAddCamera(CNtlPLGlobal::m_pRpWorld, CNtlPLGlobal::m_RwCamera);
 
-        CNtlSLEventGenerator::CreateWorld(TRUE);        // �̺�Ʈ �߻�
+        CNtlSLEventGenerator::CreateWorld(TRUE);        // 이벤트 발생
 
 		RwFrameListSetAutoUpdate(TRUE);
 

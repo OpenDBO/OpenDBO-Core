@@ -464,10 +464,10 @@ void CNtlSpecularManager::SetSpecular(const sNTL_SPECULAR& sNtlSpecular, RwBool 
 /*
 #define SPECULAR_DISTANCE		512
 #define	SPECULAR_TEXTURE_SIZE	512
-//#define dSPECULARMANAGER_USE_PROJ_PERSPECTIVE // ������������ ��ȯ�� ����� �������� ����. ���� �������� �ҽ� ���� ����.
-// DEFALT		: ��������
-// PERSPECTIVE	: �Ÿ��� ���� ������										
-// PARALLEL		: ũ�⿡ ���� ������
+//#define dSPECULARMANAGER_USE_PROJ_PERSPECTIVE // 원근투영모드로 변환시 제대로 동작하지 않음. 정보 차원으로 소스 삭제 안함.
+// DEFALT		: 평행투영
+// PERSPECTIVE	: 거리에 따른 스케일										
+// PARALLEL		: 크기에 따른 스케일
 
 CNtlSpecularManager::CNtlSpecularManager()
 {
@@ -759,7 +759,7 @@ void CNtlSpecularManager::CalcMatrixTexture()
 //	RwFrameUpdateObjects(m_pFrame);	
 //}
 
-void CNtlSpecularManager::CalcCameraFrustum() //���� ���� ����
+void CNtlSpecularManager::CalcCameraFrustum() //높이 고정 투영
 {
 	RwMatrix*	pmatLight	= RwFrameGetMatrix(m_pFrame);
 	RwV3d		vAt			= *RwMatrixGetPos(RwFrameGetMatrix(RwCameraGetFrame(CNtlPLGlobal::m_RwCamera)));
@@ -780,7 +780,7 @@ void CNtlSpecularManager::CalcCameraFrustum() //���� ���� ��
 
 	API_PL_CameraMatrixLookAt(pmatLight, &vPos, &vAt);
 	
-	RwMatrixUpdate(pmatLight); // �̰� ���ص� �ȴ�.c
+	RwMatrixUpdate(pmatLight); // 이거 안해도 된다.c
 	RwFrameUpdateObjects(m_pFrame);	
 }
 

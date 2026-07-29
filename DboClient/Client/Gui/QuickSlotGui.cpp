@@ -395,7 +395,7 @@ RwBool CQuickSlotGui::Create(VOID)
 	LinkMsg( g_EventIconMoveClick, 0 );
 	LinkMsg( g_EventSobInfoUpdate, 0 );
 	LinkMsg( g_EventSobCooling, 0 );
-	LinkMsg( g_EventSobItemAdd, 0, 0x7000 );	// �������� �������� �̺�Ʈ�� �޴´�.
+	LinkMsg( g_EventSobItemAdd, 0, 0x7000 );	// 아이템이 생성된후 이벤트를 받는다.
 	LinkMsg( g_EventSobItemDelete, 0 );
 	LinkMsg( g_EventQuickSlotInfo, 0 );
 	LinkMsg( g_EventSobDeleteQuickSlotIcon, 0 );
@@ -1988,7 +1988,7 @@ VOID CQuickSlotGui::UpdateAllSlot( RwUInt32 flagUseableCheck /* = 0  */ )
 
 					//	DestroyFlashEffect( ROWCOL_TO_SLOTID( j, i ) );
 						DestroyStackNumber( ROWCOL_TO_SLOTID( j, i ) );
-						m_asurDisableSkill[j][i].Show( FALSE );	// �ʱ�ȭ
+						m_asurDisableSkill[j][i].Show( FALSE );	// 초기화
 
 						if( flagUseableCheck & CHECK_FLAG_LPEPRP )
 						{
@@ -2117,7 +2117,7 @@ VOID CQuickSlotGui::UpdateAllSlot( RwUInt32 flagUseableCheck /* = 0  */ )
 					//	else
 					//		DestroyFlashEffect( ROWCOL_TO_SLOTID( j, i ) );
 
-						m_asurDisableSkill[j][i].Show( FALSE );	// �ʱ�ȭ
+						m_asurDisableSkill[j][i].Show( FALSE );	// 초기화
 						
 						/*if( flagUseableCheck & CHECK_FLAG_TARGETAPPLY )
 						{
@@ -2145,7 +2145,7 @@ VOID CQuickSlotGui::UpdateAllSlot( RwUInt32 flagUseableCheck /* = 0  */ )
 					{
 					//	DestroyFlashEffect( ROWCOL_TO_SLOTID( j, i ) );
 						DestroyStackNumber( ROWCOL_TO_SLOTID( j, i ) );
-						m_asurDisableSkill[j][i].Show( FALSE );	// �ʱ�ȭ
+						m_asurDisableSkill[j][i].Show( FALSE );	// 초기화
 						m_asurRPType[j][i].Show( FALSE );
 					}
 
@@ -2710,7 +2710,7 @@ RwInt32 CQuickSlotGui::GetDataRowIndex( RwInt32 nVisibleRowIndex )
 	}
 
 	RwInt32 nVisibleCurrentIndex = m_nVisibleRowCount - 1;			
-	RwInt32 nIndexOffset = nVisibleCurrentIndex - nVisibleRowIndex;	// �׻� CurrentIndex�� ũ��.
+	RwInt32 nIndexOffset = nVisibleCurrentIndex - nVisibleRowIndex;	// 항상 CurrentIndex가 크다.
 	nResult = ( m_nCurrentRow + nIndexOffset ) % QUICKSLOT_MAXROW;
 
 	return nResult;

@@ -305,7 +305,7 @@ void CPacketProc::RecvVirualPackProc(void *pPacket)
 		return;
 	}
 
-	// ������ queue�� �׿� �ִ� packet�� ������ ó���Ѵ�.
+	// 기존에 queue에 쌓여 있는 packet이 있으면 처리한다.
 	PopVirutalPacket();
 
 	CNtlPacketHandler::DetectPacketHeader(pVirtualPacket->chPacket);
@@ -317,7 +317,7 @@ void CPacketProc::ActivePop(RwBool bPop)
 
 	if(IsActivePop())
 	{
-		// ������ queue�� �׿� �ִ� packet�� ������ ó���Ѵ�.
+		// 기존에 queue에 쌓여 있는 packet이 있으면 처리한다.
 		PopVirutalPacket();
 	}
 }

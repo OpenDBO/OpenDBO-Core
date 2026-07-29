@@ -160,7 +160,7 @@ RpWorldSector* NtlWorldSectorAtomicCallback(RpWorldSector *pWorldSector, void *d
 				{
 					ENtlPLEntityType eNtlPLEntityType = pPLEntity->GetClassType();
 
-#ifdef dNTL_WORLD_CULLING_NEW // CullingTest�� ���� ������ IsVisible�� üũ �ϴ� �Ͱ� ����.
+#ifdef dNTL_WORLD_CULLING_NEW // CullingTest의 성공 유무는 IsVisible을 체크 하는 것과 같다.
 					if (eNtlPLEntityType == PLENTITY_OBJECT || eNtlPLEntityType == PLENTITY_CHARACTER || eNtlPLEntityType == PLENTITY_ITEM)
 					{
 						if (pPLEntity->CullingTest((RwCamera*)RWSRCGLOBAL(curCamera), CNtlPLGlobal::m_uiRenderFrame))

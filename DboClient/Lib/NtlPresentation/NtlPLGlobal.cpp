@@ -27,7 +27,7 @@ std::string					CNtlPLGlobal::m_strAppPath = "";
 
 RwBool						CNtlPLGlobal::m_bCollObjVisible = FALSE;
 RwReal						CNtlPLGlobal::m_fDistFiterFrequency = 2.0f;	
-RwReal						CNtlPLGlobal::m_fDistFiterObjFrequency = 1.0f;	// ������Ʈ ���̵� ������ Ÿ��
+RwReal						CNtlPLGlobal::m_fDistFiterObjFrequency = 1.0f;	// 오브젝트 페이드 블렌딩 타임
 RwBool						CNtlPLGlobal::m_bWorldTerrainVisible = TRUE;
 RwBool						CNtlPLGlobal::m_bWorldSkyVisible = TRUE;
 RwBool						CNtlPLGlobal::m_bCharacterUpdateVisible = FALSE;
@@ -38,7 +38,7 @@ RwBool						CNtlPLGlobal::m_UseTerrainPVSMode = TRUE;
 RwUInt32					CNtlPLGlobal::m_uiRenderFlag = 0x00000000;
 RwBool						CNtlPLGlobal::m_IsMinimapRendering = FALSE;
 RwUInt32					CNtlPLGlobal::m_uiMinimapLayer = NTL_PLEFLAG_MINIMAP_LAYER_NONE;
-RwBool						CNtlPLGlobal::m_bObjectRender = TRUE;              ///< Object Render ���� �÷���
+RwBool						CNtlPLGlobal::m_bObjectRender = TRUE;              ///< Object Render 유무 플래그
 RwBool						CNtlPLGlobal::m_bRenderScouter = TRUE;
 RwBool          		    CNtlPLGlobal::m_bEntityNotCulling = FALSE;
 RwBool						CNtlPLGlobal::m_bItemDropDisplay = TRUE;

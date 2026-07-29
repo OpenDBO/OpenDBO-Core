@@ -62,8 +62,8 @@
 #include "AlarmManager.h"
 #include "DialogManager.h"
 
-#include "NtlPLObject.h"		//Test ���� ���� ����(by HoDong)
-#include "NtlPLEventGenerator.h"//Test ���� ���� ����(by Peessi)
+#include "NtlPLObject.h"		//Test 추후 삭제 예정(by HoDong)
+#include "NtlPLEventGenerator.h"//Test 추후 삭제 예정(by Peessi)
 #include "NtlPLEvent.h"
 
 #include "TBGui.h"

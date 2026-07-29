@@ -18,11 +18,11 @@
 
 RwBool		NtlMatExtPluginAttach(void);
 
-RwBool		NtlMatExtSetMultiTexture(RpMaterial *pMaterial, RwTexture *pTexture);	/**<Set MultiTexture ���� 1�常 ���� */
-RwTexture  *NtlMatExtGetMultiTexture(RpMaterial *pMaterial);						/**<Get MultiTexture ���� 1�常 ���� */
+RwBool		NtlMatExtSetMultiTexture(RpMaterial *pMaterial, RwTexture *pTexture);	/**<Set MultiTexture 현재 1장만 지원 */
+RwTexture  *NtlMatExtGetMultiTexture(RpMaterial *pMaterial);						/**<Get MultiTexture 현재 1장만 지원 */
 
-void		NtlMatExtSetFlag(RpMaterial *pMaterial, RwUInt32 bFlag);				/**<Set Material �Ӽ� Flag Ntl_PluginToon�� NtlMaterialExt.h ���� */
-RwUInt32	NtlMatExtGetFlag(RpMaterial *pMaterial);								/**<Get Material �Ӽ� Flag Ntl_PluginToon�� NtlMaterialExt.h ���� */
+void		NtlMatExtSetFlag(RpMaterial *pMaterial, RwUInt32 bFlag);				/**<Set Material 속성 Flag Ntl_PluginToon의 NtlMaterialExt.h 참조 */
+RwUInt32	NtlMatExtGetFlag(RpMaterial *pMaterial);								/**<Get Material 속성 Flag Ntl_PluginToon의 NtlMaterialExt.h 참조 */
 
 void		NtlMatExtSetPipeline(RpAtomic *pAtomic);
 void		NtlMatExtSetToonSkinPipelineRenderCB(RpAtomic *pAtomic);

@@ -45,7 +45,7 @@ protected:
 	virtual VOID	HandleEvents( RWS::CMsg &msg );
 
 	VOID			OnTimer(void);
-	VOID			SwitchEnableButtons(bool bEnable);	///< Exit ��ư�� ������ ��ư�� �̿밡�� ����
+	VOID			SwitchEnableButtons(bool bEnable);	///< Exit 버튼을 제외한 버튼의 이용가능 설정
 
 	RwInt32			TabButtonHandle();
 
@@ -83,18 +83,18 @@ protected:
 	gui::CSlot			m_slotSigChangedTest;
 	gui::CSlot			m_slotSigActivityTest;
 
-	gui::CButton*		m_pCinemaButton;			///< ������ ��� ��ư
-	gui::CButton*		m_pCreditButton;			///< ������ ���� ��ư
+	gui::CButton*		m_pCinemaButton;			///< 동영상 재생 버튼
+	gui::CButton*		m_pCreditButton;			///< 제작진 보기 버튼
 	gui::CButton*		m_pGamePolicyButton;		///< 
 	gui::CButton*		m_pNewAccountButton;		///< 
-	gui::CButton*		m_pLoginButton;				///< �α��� ��ư
-	gui::CButton*		m_pExitButton;				///< ������ ��ư
+	gui::CButton*		m_pLoginButton;				///< 로그인 버튼
+	gui::CButton*		m_pExitButton;				///< 나가기 버튼
 
-	gui::CStaticBox*	m_pAccountName;				///< '���� �̸�' ����ƽ
-	gui::CStaticBox*	m_pPassward;				///< '��й�ȣ' ��й�ȣ ����ƽ
-	gui::CStaticBox*	m_pNotive;					///< 'Dbo ��������' ����ƽ
+	gui::CStaticBox*	m_pAccountName;				///< '계정 이름' 스태틱
+	gui::CStaticBox*	m_pPassward;				///< '비밀번호' 비밀번호 스태틱
+	gui::CStaticBox*	m_pNotive;					///< 'Dbo 공지사항' 스태틱
 
-	gui::CStaticBox*	m_pVersion;					///< Dbo ���� ǥ��
+	gui::CStaticBox*	m_pVersion;					///< Dbo 버전 표시
 
 	gui::CInputBox*		m_pAccountInput;			///< Account Input
 	gui::CInputBox*		m_pPasswardInput;			///< Passward Input
@@ -105,8 +105,8 @@ protected:
 
 	gui::CFlash*		m_pFlashCredit;
 
-	CSurfaceGui			m_srfInputDialogBack;		///< ��ǲ�ڽ� ���
-	CSurfaceGui			m_NoticeUnderLine;			///< �������� ����
+	CSurfaceGui			m_srfInputDialogBack;		///< 인풋박스 배경
+	CSurfaceGui			m_NoticeUnderLine;			///< 공지사항 밑줄
 
 
 	void*				m_handleKeyDown;

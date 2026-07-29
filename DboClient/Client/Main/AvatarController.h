@@ -66,7 +66,7 @@ public:
 	int	KeyboardDownHandler(uintptr_t uiKeyData);
 	int KeyboardUpHandler(uintptr_t uiKeyData);
 	
-	int RestoreHandler(void);		///< Device Restore ó�� �Լ�
+	int RestoreHandler(void);		///< Device Restore 처리 함수
 		
 	/**
 	*	input action map 처리 함수.

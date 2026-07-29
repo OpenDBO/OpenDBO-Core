@@ -587,7 +587,7 @@ void CNtlSobAvatar::HandleEvents(RWS::CMsg &pMsg)
 		// gui data update
 		CNtlSLEventGenerator::SobUpdate(GetSerialID(), EVENT_AIUT_ATTR | EVENT_AIUT_SKILL | EVENT_AIUT_ITEM | EVENT_AIUT_ZENNY | EVENT_AIUT_QUESTITEM | EVENT_AIUT_BUFF, 0 );
 		
-		if( Logic_IsFirstClass( this ) && pAvatarInfo->sCharPf.bChangeClass )	// 1�����̸鼭 ���������� ���� ������.
+		if( Logic_IsFirstClass( this ) && pAvatarInfo->sCharPf.bChangeClass )	// 1차직이면서 전직가능할 떄만 보낸다.
 			CNtlSLEventGenerator::ChangeClassAuthorityChanged( pAvatarInfo->sCharPf.bChangeClass );
 		
 		// server sync avatar type
@@ -792,7 +792,7 @@ void CNtlSobAvatar::HandleEvents(RWS::CMsg &pMsg)
         if(GetSobProxy())
             GetSobProxy()->HandleEvents(pMsg);
 
-        CNtlSobPlayer::HandleEvents(pMsg); // Idle������ ó���Ѵ�.
+        CNtlSobPlayer::HandleEvents(pMsg); // Idle에서도 처리한다.
     }
     else if(pMsg.Id == g_EventWorldChange || pMsg.Id == g_EventDirectionNfy)            
     {

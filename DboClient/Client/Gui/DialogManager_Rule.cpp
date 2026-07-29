@@ -709,7 +709,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 
 	switch( iAction )
 	{	
-	case ACTION_WINDOW_PROFILE:		// ĳ���� ���� â
+	case ACTION_WINDOW_PROFILE:		// 캐릭터 정보 창
 		{
 			RwBool bOpen = IsOpenDialog(DIALOG_STATUS);
 
@@ -730,7 +730,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			SwitchDialog( DIALOG_STATUS );
 			break;
 		}
-	case ACTION_WINDOW_SKILL:		// ��ų ���� â
+	case ACTION_WINDOW_SKILL:		// 스킬 정보 창
 		{
 			RwBool bOpen = IsOpenDialog(DIALOG_SKILL);
 
@@ -752,7 +752,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 
 			break;
 		}
-	case ACTION_WINDOW_QUEST:		// ����Ʈ ���� â
+	case ACTION_WINDOW_QUEST:		// 퀘스트 정보 창
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_QUEST ) )
 				NTL_RETURN(1);
@@ -763,7 +763,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			SwitchDialog(DIALOG_QUESTLIST);
 			break;
 		}
-	case ACTION_WINDOW_MINIMAP:		// �̴ϸ�
+	case ACTION_WINDOW_MINIMAP:		// 미니맵
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_MINIMAP ) )
 				NTL_RETURN(1);
@@ -780,7 +780,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 
 			break;
 		}
-	case ACTION_WINDOW_WORLDMAP:	// �����
+	case ACTION_WINDOW_WORLDMAP:	// 월드맵
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_WORLDMAP ) )
 				NTL_RETURN(1);
@@ -788,7 +788,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			SwitchDialog(DIALOG_WORLDMAP);
 			break;
 		}
-	case ACTION_WINDOW_MAINCAP:	// ĸ��(����)
+	case ACTION_WINDOW_MAINCAP:	// 캡슐(가방)
 		{
 			RwBool bBagOpen = IsBagOpen();			
 
@@ -813,7 +813,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 
 			break;
 		}
-	case ACTION_WINDOW_GUILD:		// ��� Ŀ�´�Ƽ
+	case ACTION_WINDOW_GUILD:		// 길드 커뮤니티
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_GUILD ) )
 				NTL_RETURN(1);
@@ -852,7 +852,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			SwitchDialog(DIALOG_FRIEND_LIST);
 		}
 		break;
-	case ACTION_WINDOW_OPTION: // �ɼ� ������
+	case ACTION_WINDOW_OPTION: // 옵션 윈도우
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_OPTION ) )
 				NTL_RETURN(1);
@@ -863,7 +863,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			SwitchDialog( DIALOG_OPTIONWND );
 			break;
 		}
-	case ACTION_WINDOW_RANKBOARD:	// ��ũ����
+	case ACTION_WINDOW_RANKBOARD:	// 랭크보드
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_RANKBOARD ) )
 				NTL_RETURN(1);
@@ -881,7 +881,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			SwitchDialog(DIALOG_MASCOT);
 			break;
 		}
-	case ACTION_WINDOW_HELP:	// ����
+	case ACTION_WINDOW_HELP:	// 도움말
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_HELP ) )
 				NTL_RETURN(1);
@@ -890,7 +890,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			// 기획팀 Help Data Test를 위해서 힌트를 업데이트 한다. 추후 삭제 할 것.
 			break;
 		}
-	case ACTION_WINDOW_MAIN: // ���� �޴�
+	case ACTION_WINDOW_MAIN: // 메인 메뉴
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_MAINMENU ) )
 				NTL_RETURN(1);
@@ -908,17 +908,17 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			SwitchDialog( DIALOG_MAINMENU );
 			break;
 		}
-	case ACTION_MINIMAP_ZOOMOUT:	// �̴ϸ� ���
+	case ACTION_MINIMAP_ZOOMOUT:	// 미니맵 축소
 		{
 			CDboEventGenerator::MapEvent(MMT_MINIMAP_ZOON_OUT);
 			break;
 		}
-	case ACTION_MINIMAP_ZOOMIN:	// �̴ϸ� Ȯ��
+	case ACTION_MINIMAP_ZOOMIN:	// 미니맵 확대
 		{
 			CDboEventGenerator::MapEvent(MMT_MINIMAP_ZOON_IN);
 			break;
 		}
-	case ACTION_GLOBAL_CANCLE:	// ESC Ű ó��
+	case ACTION_GLOBAL_CANCLE:	// ESC 키 처리
 		{
 			ProcessESC();
 			break;

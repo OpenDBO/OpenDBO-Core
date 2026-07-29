@@ -234,9 +234,9 @@ void NtlMatExtRenderCallback( RwResEntry *repEntry, void *object,RwUInt8 type, R
 			}
 		}
 
-		// Cz : WorldEditor���� Shadow Property�� ������ �� rxGEOMETRY_TEXTURED, rxGEOMETRY_TEXTURED2 Flag��
-		// ���� �ϱ� ������ ���� �� Texture�� NULL�� �����Ǿ� Radeon���� ShadowMap�� Render���� �ʴ´�.
-		// WorldEditor������ �̺κ��� ��ü�Ͽ� ����Ѵ�.
+		// Cz : WorldEditor에서 Shadow Property를 추출할 때 rxGEOMETRY_TEXTURED, rxGEOMETRY_TEXTURED2 Flag를
+		// 제거 하기 때문에 추출 시 Texture가 NULL로 설정되어 Radeon에서 ShadowMap이 Render되지 않는다.
+		// WorldEditor에서는 이부분을 교체하여 사용한다.
 #ifdef dNTL_WORLD_TOOL_MODE
 		if (material->texture != NULL && (flags & (rxGEOMETRY_TEXTURED | rxGEOMETRY_TEXTURED2)) != 0)
 		{
@@ -424,7 +424,7 @@ void NtlMatExtRenderCallback( RwResEntry *repEntry, void *object,RwUInt8 type, R
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-		// ���������� ��� ó�� �Ǵ� �κ�
+		// 선택했을때 밝게 처리 되는 부분
 		if(RpNtlMaterialExtGetFlag(material) & rpNTL_MATERIAL_ADD_COLOR)
 		{
 			D3DCOLOR    matColor;

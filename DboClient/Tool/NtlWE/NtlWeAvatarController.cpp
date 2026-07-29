@@ -328,15 +328,15 @@ void CNtlWeAvatarController::CalcCameraRotateToCharBack(void)
 			RwReal fSubAngleY = fCovAngleY - fAngleY;
 
 			if(fSubAngleY > 0.0f)
-				if(fSubAngleY > 180.0f) // ������ ������Ų��.
+				if(fSubAngleY > 180.0f) // 각도를 증가시킨다.
 					m_sRotCharBack.fDelta = 360.0f - fSubAngleY;
-				else // ������ ���ҽ�Ų��.
-					m_sRotCharBack.fDelta = -fSubAngleY; //(�ð� �ݴ� �����̹Ƿ� ����� �Ѵ�.)
+				else // 각도를 감소시킨다.
+					m_sRotCharBack.fDelta = -fSubAngleY; //(시계 반대 방향이므로 빼줘야 한다.)
 			else
-				if(fSubAngleY > -180.0f) // ������ ������Ų��.
+				if(fSubAngleY > -180.0f) // 각도를 증가시킨다.
 					m_sRotCharBack.fDelta = fabs(fSubAngleY); 
-				else // ������ ���ҽ�Ų��.
-					m_sRotCharBack.fDelta = -(360.0f - fabs(fSubAngleY)); // �ð� �ݴ� �����̹Ƿ� ����� �Ѵ�.
+				else // 각도를 감소시킨다.
+					m_sRotCharBack.fDelta = -(360.0f - fabs(fSubAngleY)); // 시계 반대 방향이므로 빼줘야 한다.
 			
 			m_sRotCharBack.fCurr = 0.0f;
 			m_sRotCharBack.bActive = TRUE;

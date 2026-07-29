@@ -466,7 +466,7 @@ RwBool CNtlPLWater::OnRender(CNtlWorldSector* pNtlWorldSector, RxD3D9InstanceDat
 				RwD3D9SetTexture(pNtlWorldSector->m_pWater->_pDepthMap, 3);
 				RwD3D9SetTransform(D3DTS_TEXTURE3, &pNtlWorldSector->m_pWater->_matTex[0]);
 
-				RwD3D9SetTextureStageState(3, D3DTSS_ALPHAOP, D3DTOP_SELECTARG1); // CNtlPLWater::OnRender �ȿ��� ����
+				RwD3D9SetTextureStageState(3, D3DTSS_ALPHAOP, D3DTOP_SELECTARG1); // CNtlPLWater::OnRender 안에서 결정
 				RwD3D9SetTextureStageState(3, D3DTSS_ALPHAARG1, D3DTA_TEXTURE);
 			}
 			else
@@ -474,7 +474,7 @@ RwBool CNtlPLWater::OnRender(CNtlWorldSector* pNtlWorldSector, RxD3D9InstanceDat
 				RwD3D9SetTexture(NULL, 3);
 				RwD3D9SetTransform(D3DTS_TEXTURE3, &CNtlPLGlobal::m_matIden);
 
-				RwD3D9SetTextureStageState(3, D3DTSS_ALPHAOP, D3DTOP_SELECTARG2); // CNtlPLWater::OnRender �ȿ��� ����
+				RwD3D9SetTextureStageState(3, D3DTSS_ALPHAOP, D3DTOP_SELECTARG2); // CNtlPLWater::OnRender 안에서 결정
 				RwD3D9SetTextureStageState(3, D3DTSS_ALPHAARG2, D3DTA_CURRENT);
 			}
 		}

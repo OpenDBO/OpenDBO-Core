@@ -1051,7 +1051,7 @@ void CLobbyStage::CreateDownLoadAvatar(sPC_SUMMARY *pCharInfo)
 		pAvatarInfo->sItemPf[pAvatarInfo->wItemCount].byPos				= (BYTE)i;
 		pAvatarInfo->sItemPf[pAvatarInfo->wItemCount].byStackcount			= (BYTE)1;
 		pAvatarInfo->sItemPf[pAvatarInfo->wItemCount].byRank				= pCharInfo->sItem[i].byRank;
-		pAvatarInfo->sItemPf[pAvatarInfo->wItemCount].byCurDur				= 100;			// ����� ä�� �����ø� �˴ϴ�.
+		pAvatarInfo->sItemPf[pAvatarInfo->wItemCount].byCurDur				= 100;			// 여기는 채워 넣으시면 됩니다.
 		pAvatarInfo->sItemPf[pAvatarInfo->wItemCount].sOptionSet.Init();
 		pAvatarInfo->sItemPf[pAvatarInfo->wItemCount].byRestrictState = ITEM_RESTRICT_STATE_TYPE_NONE;
 		pAvatarInfo->sItemPf[pAvatarInfo->wItemCount].bNeedToIdentify		= false;

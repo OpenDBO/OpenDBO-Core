@@ -201,7 +201,7 @@ void CNtlBehaviorCharJump::UpdatePositionMove(SMoveStuff *pMoveStuff, SJumpStuff
             }
         }
     }
-    else // ���ڸ� ���� 
+    else // 제자리 점프 
     {
         if((m_pActor->GetFlags() & SLFLAG_OBJECT_COLLISION) && m_fJumpUpSpeed > 0.0f)
         {
@@ -233,12 +233,12 @@ RwBool CNtlBehaviorCharJump::UpdateMoveSync(RwV3d vPos, RwReal fElapsedTime)
 
     if(pMoveSyncStuff->m_pMoveSyncCurr == NULL)
     {
-        if(pMoveSyncStuff->Next() == NULL)         // ���� ��Ŷ�� ���޾Ҵ�        
+        if(pMoveSyncStuff->Next() == NULL)         // 아직 패킷을 못받았다        
             return FALSE;
     }
     else
     {
-        if(!pMoveSyncStuff->m_MoveSyncQ.empty())        // ���� ��Ŷ�� �޾Ƽ� ó���Ѵ�.
+        if(!pMoveSyncStuff->m_MoveSyncQ.empty())        // 다음 패킷을 받아서 처리한다.
         {
             pMoveSyncStuff->Next();
         }
@@ -396,7 +396,7 @@ void CNtlBehaviorCharJump::UpdateJumpStandLanding(SMoveStuff *pMoveStuff, SJumpS
 
 			GetSoundManager()->Play(&tSoundParam);
 
-            // visual effect�� �ִ´�.
+            // visual effect를 넣는다.
             CNtlSobProxy *pSobProxy = m_pActor->GetSobProxy();
             pSobProxy->CreatePLEffect(NTL_VID_JUMP_LANDING, &vPosOrg);
 
@@ -442,7 +442,7 @@ void CNtlBehaviorCharJump::UpdateJumpMoveLanding(SMoveStuff *pMoveStuff, SJumpSt
 
         if(!m_bRandingVisualEffect)
         {
-            // �����  effect�� �Ҵ�.
+            // 사운드와  effect를 켠다.
             RwV3d vPosOrg = m_pActor->GetPosition();
 
             sNtlSoundPlayParameta tSoundParam;
@@ -456,7 +456,7 @@ void CNtlBehaviorCharJump::UpdateJumpMoveLanding(SMoveStuff *pMoveStuff, SJumpSt
 
 			 GetSoundManager()->Play(&tSoundParam);
 
-            // visual effect�� �ִ´�.
+            // visual effect를 넣는다.
             CNtlSobProxy *pSobProxy = m_pActor->GetSobProxy();
             //pSobProxy->CreatePLEffect(NTL_VID_JUMP_LANDING, &vPosOrg);
             pSobProxy->CreatePLEffect(NTL_VID_JUMP_LANDING, &vPos);
@@ -508,7 +508,7 @@ void CNtlBehaviorCharJump::UpdateJumpWaterLanding(SMoveStuff *pMoveStuff, SJumpS
                 vPos.z = vDest.z;
             }
 
-            // ��ǰ ����Ʈ�� ǥ���Ѵ�.
+            // 거품 이펙트를 표현한다.
             if(!m_bCreateBubbleEffect)
             {
                 m_pWaterBubbleEffect = (CNtlInstanceEffect*)GetSceneManager()->CreateEntity(PLENTITY_EFFECT, NTL_VID_SWIM_BUBBLE);
@@ -536,7 +536,7 @@ void CNtlBehaviorCharJump::UpdateJumpWaterLanding(SMoveStuff *pMoveStuff, SJumpS
             vPos.y = fSwimmingHeight;            
             Finish();
 
-            // ��ǰ ����Ʈ�� ���ش�.
+            // 거품 이펙트를 표현한다.
             if(m_pWaterBubbleEffect)
             {
                 m_pWaterBubbleEffect->Finish();
@@ -607,7 +607,7 @@ void CNtlBehaviorCharJump::ChangeJumpState(RwUInt8 byJumpState)
     }
     else if(byJumpState == JUMPSTATE_WATER_LANDING)
     {
-        // �� effect�� ǥ���Ѵ�. 
+        // 물 effect를 표현한다. 
         RwV3d vPos = m_pActor->GetPosition();
         vPos.y = m_sHStuff.fWaterHeight;
         CNtlSobProxy *pSobProxy = m_pActor->GetSobProxy();
@@ -627,7 +627,7 @@ void CNtlBehaviorCharJump::ChangeJumpState(RwUInt8 byJumpState)
     pJumpStuff->eState = (ECharJumpState)byJumpState;
 }
 
-/// ������ MoveSync ��Ŷ�� ������ ���⸦ �����
+/// 서버에 MoveSync 패킷을 보내서 동기를 맞춘다
 void CNtlBehaviorCharJump::UpdateSendSyncCheck( RwReal fElapsedTime ) 
 {
     if(m_pActor->GetClassID() != SLCLASS_AVATAR)

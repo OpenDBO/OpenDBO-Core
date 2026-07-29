@@ -264,7 +264,7 @@ void CCursorManager::WorldCursorProc(CNtlSob* pSobObj)
 				CNtlSobNpcAttr* pSobNPCAttr = reinterpret_cast<CNtlSobNpcAttr*>( pSobNPC->GetSobAttr() );
 				sNPC_TBLDAT* pNPC_TBLDAT = pSobNPCAttr->GetNpcTbl();
 
-				// �ƹ�Ÿ�� ���� ����� ������ �ְ� Ż �� �ִ� �Ÿ����� ����
+				// 아바타가 버스 요금을 가지고 있고 탈 수 있는 거리인지 조사
 				if( Logic_GetZenny() >= pNPC_TBLDAT->amerchant_Tblidx[0] )
 				{
 					if( Logic_InFollowRange(reinterpret_cast<CNtlSobActor*>(pAvatar), pActor, (RwReal)NTL_MAX_BUS_DISTANCE) )
@@ -282,7 +282,7 @@ void CCursorManager::WorldCursorProc(CNtlSob* pSobObj)
 			}
 			else
 			{
-				// �ƹ�Ÿ�� Ÿ�� �ִ� ������ �ƴ� �ٸ� ������ ���콺 Ŀ���� �Ű��
+				// 아바타가 버스 요금을 가지고 있고 탈 수 있는 거리인지 조사
 				SetMouseCursor( CS_DEAL_SHOP );	
 			}
 		}		
@@ -369,14 +369,14 @@ VOID CCursorManager::SetMouseCursor( STATE eState )
 
 	m_eCurCursor = (RwUInt8)eState;
 
-	// �ٷ� Ŀ���� �����ϱ� ����
+	// 바로 커서를 변경하기 위해
 	SetCursor(m_hMouseCursor[m_eCurCursor]);
 
-	// Ŀ�� ���
+	// 커서 등록
 	SetClassLongPtr( CNtlApplication::GetInstance()->GetHWnd(), GCL_HCURSOR, (LONG_PTR)m_hMouseCursor[m_eCurCursor] );
 
 	if( eState == CS_BATTLE_TARGET )
-	{	// Ÿ�� ���ý�
+	{	// 타겟 선택시
 		Logic_PlayGUISound( GSD_SYSTEM_ENEMY_FOUSE );
 	}
 }

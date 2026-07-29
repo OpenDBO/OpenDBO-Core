@@ -63,7 +63,7 @@ RwImageSetPath(strImagePath.c_str());*/
 // 		}		
 // 		m_strImagePath += pInPath;
 // 
-// 		*ppOutPath		= const_cast<RwChar*>(m_strImagePath.c_str()); // ���������� �̷��� ����...
+// 		*ppOutPath		= const_cast<RwChar*>(m_strImagePath.c_str()); // 위험하지만 이렇게 하자...
 // 		*pOutPathSize	= m_strImagePath.size();
 // 	}
 // 	return bResult;
@@ -133,7 +133,7 @@ CNtlPLResourceManager::CNtlPLResourceManager()
 }
 
 /**
-*  singleton CNtlPLResourceManager interface �Լ�.
+*  singleton CNtlPLResourceManager interface 함수.
 *
 */
 CNtlPLResourceManager* CNtlPLResourceManager::GetInstance(void)
@@ -143,7 +143,7 @@ CNtlPLResourceManager* CNtlPLResourceManager::GetInstance(void)
 }
 
 /**
-* Initial �Լ�.
+* Initial 함수.
 *
 */
 bool CNtlPLResourceManager::Crate(void)
@@ -153,7 +153,7 @@ bool CNtlPLResourceManager::Crate(void)
 
 
 /**
-*  Terminate �Լ�.
+*  Terminate 함수.
 *
 */
 void CNtlPLResourceManager::Destroy(void)
@@ -172,7 +172,7 @@ void CNtlPLResourceManager::Destroy(void)
 
 
 /**
-*  Update �Լ�.
+*  Update 함수.
 *
 */
 
@@ -189,8 +189,8 @@ void CNtlPLResourceManager::Update(RwReal fElapsed)
 }
 
 /**
-*  application�� ���� �Ǿ��� �� �������� ���� resource�� debugging�� ���� �Լ�.
-*  debugging ������ file or output window�� display �� �� �ֵ��� �Ѵ�.
+*  application이 종료 되었을 때 해지되지 않은 resource를 debugging을 위한 함수.
+*  debugging 내용을 file or output window로 display 할 수 있도록 한다.
 *
 */
 void CNtlPLResourceManager::DebugResource(void)
@@ -205,11 +205,11 @@ void CNtlPLResourceManager::DebugResource(void)
 
 
 /**
-*  CNtlPLResource ��ü�� �����ϴ� �Լ�.
+*  CNtlPLResource 객체를 생성하는 함수.
 *
-*  \param pName resource name�� CNtlPLResource�� ��´�.
-*  \param iType renderware data�� type.
-*  \param iType renderware data�� pointer.
+*  \param pName resource name을 CNtlPLResource에 담는다.
+*  \param iType renderware data의 type.
+*  \param iType renderware data의 pointer.
 */
 CNtlPLResource* CNtlPLResourceManager::CreateResource(const char *pName, unsigned int uiType, bool bClone, void *pData)
 {
@@ -226,9 +226,9 @@ CNtlPLResource* CNtlPLResourceManager::CreateResource(const char *pName, unsigne
 }
 
 /**
-*  CNtlPLResource ��ü�� container�� ����ϴ� �Լ�.
+*  CNtlPLResource 객체를 container에 등록하는 함수.
 *
-*  \param pResource container ����� resource pointer
+*  \param pResource container 등록할 resource pointer
 */
 void CNtlPLResourceManager::RegisterResource(const CNtlPLResource *pResource)
 {
@@ -269,9 +269,9 @@ void CNtlPLResourceManager::RegisterResource(const CNtlPLResource *pResource)
 
 
 /**
-*  CNtlPLResource ��ü�� container���� �����ϴ� �Լ�.
+*  CNtlPLResource 객체를 container에 등록하는 함수.
 *
-*  \param pResource container ������ resource pointer
+*  \param pResource container 등록할 resource pointer
 */
 void CNtlPLResourceManager::UnRegisterResource(const CNtlPLResource *pResource)
 {
@@ -393,8 +393,8 @@ void CNtlPLResourceManager::UnRegisterResource(const CNtlPLResource *pResource)
 }
 
 /**
-*  RenderWare data�� �д� �Լ�.
-*  clump�� atomic�� ó�� �����ϴ��� clone clump �� atomic���� �ٽ� �����Ͽ� �����Ѵ�.
+*  RenderWare data를 읽는 함수.
+*  clump와 atomic는 처음 생성하더라도 clone clump 및 atomic으로 다시 생성하여 리턴한다.
 *
 *  \param pStrName file name
 *  \param pResourcePath resource path
@@ -524,10 +524,10 @@ CNtlPLResource* CNtlPLResourceManager::LoadDefault(const char *pStrName, const c
 		}
 	}
 
-	// clone ������ ���ؼ�..
+	// clone 생성을 위해서..
 	pResource = Find(pFileName, uiType);
 
-	// clone ����.
+	// clone 생성.
 	if(uiType == rwID_CLUMP || uiType == rwID_ATOMIC)
 	{
 		pData = CreateCloneRwData( pResource->GetType(), (void*)pResource->GetData() );  
@@ -545,7 +545,7 @@ CNtlPLResource* CNtlPLResourceManager::LoadDefault(const char *pStrName, const c
 }
 
 /**
-*  RenderWare world data�� �д� �Լ�.
+*  RenderWare world data를 읽는 함수.
 *
 *  \param pStrName file name
 *  \param pResourcePath resource path
@@ -561,11 +561,11 @@ CNtlPLResource* CNtlPLResourceManager::LoadWorld(const char *pStrName, const cha
 }
 
 /**
-*  RenderWare data�� �д� �Լ�.
+*  RenderWare data를 읽는 함수.
 *
 *  \param pStrName file name
 *  \param pResourcePath resource path
-*  \param bClone clump�� clone���� ������ �������� �����ϴ� ����.
+*  \param bClone clump를 clone으로 생성할 것인지를 결정하는 변수.
 */
 
 CNtlPLResource* CNtlPLResourceManager::LoadClump(const char *pStrName, const char * pResourcePath)
@@ -603,11 +603,11 @@ void CNtlPLResourceManager::LoadSchedulingClump(const char *pStrName, const char
 }
 
 /**
-*  RenderWare data�� �д� �Լ�.
+*  RenderWare data를 읽는 함수.
 *
 *  \param pStrName file name
 *  \param pResourcePath resource path
-*  \param bClone atomic�� clone���� ������ �������� �����ϴ� ����.
+*  \param bClone atomic를 clone으로 생성할 것인지를 결정하는 변수.
 */
 
 CNtlPLResource* CNtlPLResourceManager::LoadAtomic(const char *pStrName, const char * pResourcePath)
@@ -634,14 +634,14 @@ CNtlPLResource* CNtlPLResourceManager::LoadAnimation(const char *pStrName)
 }
 
 /**
-*  RenderWare data�� �д� �Լ�.
+*  RenderWare data를 읽는 함수.
 *
 *  \param pStrName file name
 *  \param pResourcePath resource path
-*  \param eFilterMode texture�� filtering mode. renderware RwTextureFilterMode�� ����.
-*  \param EResDictType texture�� group���� ������ ������ ��쿡 group�� id�� �ȴ�.
-*         group���� �����ϴ� ������ �˻� �ӵ��� ������ �� �� �ִ�.     
-*         �Ϲ������� object, character, terrain, texture, ui���� group�� ������ �� �� �ִ�.
+*  \param eFilterMode texture의 filtering mode. renderware RwTextureFilterMode를 참조.
+*  \param EResDictType texture를 group으로 나누어 관리할 경우에 group의 id가 된다.
+*         group으로 관리하는 이유는 검색 속도를 빠르게 할 수 있다.     
+*         일반적으로 object, character, terrain, texture, ui등의 group을 생각해 볼 수 있다.
 */
 
 RwTexture* CNtlPLResourceManager::LoadTexture(const char *pStrName, const char * pResourcePath, EResDictType eType /*= RES_TEX_DEFAULT_DICT*/ , const char *pStrMaskName /*= NULL*/)
@@ -704,9 +704,9 @@ RwTexture* CNtlPLResourceManager::CreateTexture(const char *pStrName,
 
 
 /**
-*  resource�� unload �Ѵ�.
+*  resource를 unload 한다.
 *
-*  \param pResource unload�� resource pointer
+*  \param pResource unload할 resource pointer
 */
 void CNtlPLResourceManager::UnLoad(CNtlPLResource *pResource)
 {
@@ -731,7 +731,7 @@ void CNtlPLResourceManager::UnLoad(CNtlPLResource *pResource)
 }
 
 /**
-*  scheduling�� ��ϵǾ� �ִ� entity�� �ش��ϴ� scheduling node�� �����Ѵ�.
+*  scheduling상에 등록되어 있는 entity에 해당하는 scheduling node를 삭제한다.
 *
 */
 void CNtlPLResourceManager::UnLoadScheduling(CNtlPLEntity *pPLEntity, CNtlPLResource *pResource)
@@ -749,7 +749,7 @@ void CNtlPLResourceManager::UnLoadScheduling(CNtlPLEntity *pPLEntity, CNtlPLReso
 }
 
 /**
-*  container���� name���� CNtlPLResource�� ã�´�.
+*  container에서 name으로 CNtlPLResource를 찾는다.
 *
 *  \param pTexture texture pointer
 */
@@ -759,7 +759,7 @@ void CNtlPLResourceManager::UnLoadTexture(RwTexture *pTexture)
 }
 
 /**
-*  container���� name���� CNtlPLResource�� ã�´�.
+*  container에서 name으로 CNtlPLResource를 찾는다.
 *
 *  \param pName name string
 *  \param uiType the resource type
@@ -842,7 +842,7 @@ CNtlPLResource* CNtlPLResourceManager::Find(const char *pName, unsigned int uiTy
 }
 
 /**
-*  renderware world�� �����ϴ� �Լ�.
+*  renderware world를 생성하는 함수.
 *
 *  \param pStream world stream data
 */
@@ -862,7 +862,7 @@ RpWorld* CNtlPLResourceManager::WorldStreamRead (RwStream *pStream)
 
 
 /**
-*  renderware atomic�� �����ϴ� �Լ�.
+*  renderware atomic를 생성하는 함수.
 *
 *  \param pStream atomic stream data
 */
@@ -883,7 +883,7 @@ RpAtomic* CNtlPLResourceManager::AtomicStreamRead (RwStream *pStream)
 
 
 /**
-*  renderware clump�� �����ϴ� �Լ�.
+*  renderware clump를 생성하는 함수.
 *
 *  \param pStream clump stream data
 */
@@ -907,9 +907,9 @@ RpClump* CNtlPLResourceManager::ClumpStreamRead (RwStream *pStream)
 
 
 /**
-*  renderware data type�� �ش��ϴ� data�� �����ϴ� �Լ�.
+*  renderware data type에 해당하는 data를 생성하는 함수.
 *
-*  \param pSteam stream ��ü pointer.
+*  \param pSteam stream 객체 pointer.
 *  \param iType renderware data type.
 */
 
@@ -954,11 +954,11 @@ void* CNtlPLResourceManager::CreateRwData(RwStream *pStream, unsigned int iType)
 }
 
 /**
-*  renderware data�� �ش��ϴ� clone data�� �����Ѵ�.
-*  type�� ���Ͽ� ������ renderware clone �Լ��� �����Ѵ�.
+*  renderware data에 해당하는 clone data를 생성한다.
+*  type을 비교하여 적절한 renderware clone 함수를 적용한다.
 *
 *  \param iType renderware data type.
-*  \param pData clone�� renderware data.
+*  \param pData clone할 renderware data.
 */
 void* CNtlPLResourceManager::CreateCloneRwData(unsigned int iType, void *pData)
 {
@@ -982,10 +982,10 @@ void* CNtlPLResourceManager::CreateCloneRwData(unsigned int iType, void *pData)
 }
 
 /**
-*  renderware data�� �ش��ϴ� type�� �����ϰ� �����Ѵ�.
+*  renderware data에 해당하는 type에 적절하게 삭제한다.
 *
 *  \param iType renderware data type.
-*  \param pData ������ renderware data.
+*  \param pData 삭제할 renderware data.
 */
 void CNtlPLResourceManager::DestroyRwData(unsigned int iType, void *pData)
 {

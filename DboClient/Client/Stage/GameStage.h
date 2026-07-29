@@ -136,7 +136,7 @@ protected:
 	void	UpdateTeleportLoadingSpawnReadyScene(RwReal fElapsed);
 	void	UpdateTeleportLoadingLoadFinishScene(RwReal fElapsed);
 
-    void    UpdateSoundListener();                              ///< ��Ȳ�� ���� ���� �����ʸ� �����Ѵ�.
+    void    UpdateSoundListener();                              ///< 상황에 따른 사운드 리스너를 세팅한다.
 	
 	void	UpdateDebugDisplay(RwReal fElapsed);
 

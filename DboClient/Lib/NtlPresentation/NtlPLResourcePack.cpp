@@ -332,10 +332,10 @@ void CNtlPLResoucePackManager::GetAllFiles(std::string& strOffsetFolder, std::li
 
 		if(FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 		{
-			//  ���丮�̸�
+			//  디렉토리이면
 			if(FindFileData.cFileName[0] == '.')
 			{
-				//  Dot ���丮�� ��ŵ�Ѵ�.
+				//  Dot 디렉토리는 스킵한다.
 			} 
 			else
 			{
@@ -497,7 +497,7 @@ RwInt32 CNtlPLResoucePackManager::SavePack(RwUInt8 byPackType, std::list<std::st
 	pResPack->ClearHeader();
 
 	//----------------------------------------------------
-	// ������ directory�� �����Ѵ�.
+	// 현재의 directory를 설정한다.
 	RwChar strCurPath[NTL_MAX_DIR_PATH];
 	::GetCurrentDirectory(NTL_MAX_DIR_PATH, strCurPath);
 
@@ -650,7 +650,7 @@ RwChar*	CNtlPLResoucePackManager::UnPackLeadBuffer(RwChar* pBuffer, const RwChar
 
 void CNtlPLResoucePackManager::UnPackSaveBuffer(const RwChar *pFileName, const RwChar *pBuffer, SFilePackHeaderElement *pElement)
 {
-    // �б� ���뵵 ����� �ֵ��� �Ӽ��� ��ȯ�Ѵ�.
+    // 읽기 전용도 덮어쓸수 있도록 속성을 변환한다.
     ::SetFileAttributes(pFileName, FILE_ATTRIBUTE_NORMAL);
 
 	FILE *fp = NULL;
@@ -884,7 +884,7 @@ void CNtlPLResoucePackManager::FilterPathBuffer(const RwChar *pPath, const RwCha
 	RwInt32 iOffset = 0;
 	RwInt32 iLen = 0;
 
-	// Ȯ���� filter �����.
+	// 확장자 filter 만들기.
 	iLen = (RwInt32)strlen(pFileName);
 	for(RwInt32 i = 0; i < iLen; i++)
 	{
@@ -907,7 +907,7 @@ void CNtlPLResoucePackManager::FilterPathBuffer(const RwChar *pPath, const RwCha
 	if(pPath == NULL)
 		return;
 
-	// path�� �ҹ��ڷ� �����.
+	// path를 소문자로 만들기.
 	m_iCurrPathNum = 0;
 	iOffset = 0;
 	iLen = (RwInt32)strlen(pPath);
@@ -1267,7 +1267,7 @@ void CNtlPLResoucePackManager::LoadFlash(const RwChar *pFileName, void **pData, 
 	if(pElement == NULL)
 		return;
 
-	// Flash Size�� int�� ����.
+	// Flash Size는 int로 한정.
 	if(pElement->uiSize >= 0x80000000 )
 		return;
 

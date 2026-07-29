@@ -298,7 +298,7 @@ void Set2DVertex(RwIm2DVertex* pVertex, RwReal fX, RwReal fY, RwReal fZ, RwReal 
     RwIm2DVertexSetIntRGBA(pVertex, 255, 255, 255, 255); 
 }
 
-// ���� ����Ʈ�� �����ϱ� ���ؼ� View�� Vertex�� ���� �ø��� �Լ�
+// 굴절 이펙트를 구현하기 위해서 View의 Vertex의 수를 늘리는 함수
 void SetViewVertex(RwIm2DVertex* pVertex, RwInt32 nWidht, RwInt32 nHeight, RwCamera* pCamera)
 {
     int nCount = 0;
@@ -511,7 +511,7 @@ void CNtlPostEffectCamera::Update_Power_MonoPower()
 void CNtlPostEffectCamera::Update_FakeHDRFiltering()
 {
 	// ==========================================
-	// ȭ�� ����ϱ�
+	// 화면 축소하기
 	// ==========================================
 	if (SUCCEEDED(m_lpEffect->BeginPass(EFFECT_PASS_NONE)))
 	{
@@ -520,7 +520,7 @@ void CNtlPostEffectCamera::Update_FakeHDRFiltering()
 		{
 			if(RwCameraBeginUpdate(m_pReductionCamera))
 			{
-				// camera�� update ���� render state�� ���δ�.
+				// camera를 update 한후 render state를 먹인다.
 				RwRenderStateSet(rwRENDERSTATECULLMODE,	(void *)rwCULLMODECULLNONE);
 
 				BeginPostEffectState(FALSE);
@@ -539,7 +539,7 @@ void CNtlPostEffectCamera::Update_FakeHDRFiltering()
 	}
 
 	// ==========================================
-	// ���ȭ�� ���� ���̱�
+	// 축소화면 블러 먹이기
 	// ==========================================
 	if (SUCCEEDED(m_lpEffect->BeginPass(EFFECT_PASS_16BOX)))
 	{
@@ -550,11 +550,11 @@ void CNtlPostEffectCamera::Update_FakeHDRFiltering()
 		{
 			if(RwCameraBeginUpdate(m_pFakeHDRCamera))
 			{
-				// camera�� update ���� render state�� ���δ�.
+				// camera를 update 한후 render state를 먹인다.
 				RwRenderStateSet(rwRENDERSTATECULLMODE,	(void *)rwCULLMODECULLNONE);
 
-				//programmable vertex Pipeline�� ��� TextureState�� TexCoordIndex�� Stage ���� ���ƾ� �Ѵ�.(by HoDong 2007. 4. 12)
-				//Test�� 1���� ���� ���ٰ� ������ �Ѵ�.
+				//programmable vertex Pipeline인 경우 TextureState의 TexCoordIndex가 Stage 명과 같아야 한다.(by HoDong 2007. 4. 12)
+				//Test를 1주일 정도 보다가 정리를 한다.
 
 				// CzStateChange : Start
 				// CzStateChange : Old
@@ -592,11 +592,11 @@ void CNtlPostEffectCamera::Update_FakeHDRFiltering()
 		{
 			if(RwCameraBeginUpdate(m_pReductionCamera))
 			{
-				// camera�� update ���� render state�� ���δ�.
+				// camera를 update 한후 render state를 먹인다.
 				RwRenderStateSet(rwRENDERSTATECULLMODE,	(void *)rwCULLMODECULLNONE);
 
-				// programmable vertex Pipeline�� ��� TextureState�� TexCoordIndex�� Stage ���� ���ƾ� �Ѵ�.(by HoDong 2007. 4. 12)
-				// Test�� 1���� ���� ���ٰ� ������ �Ѵ�.
+				// programmable vertex Pipeline인 경우 TextureState의 TexCoordIndex가 Stage 명과 같아야 한다.(by HoDong 2007. 4. 12)
+				// Test를 1주일 정도 보다가 정리를 한다.
 
 				// CzStateChange : Start
 				// CzStateChange : Old
@@ -626,7 +626,7 @@ void CNtlPostEffectCamera::Update_FakeHDRFiltering()
 	}
 	
 	// ==========================================
-	// ȭ�� Ȯ���ϱ�
+	// 화면 축소하기
 	// ==========================================
 	if (SUCCEEDED(m_lpEffect->BeginPass(EFFECT_PASS_NONE)))
 	{
@@ -635,7 +635,7 @@ void CNtlPostEffectCamera::Update_FakeHDRFiltering()
 		{
 			if(RwCameraBeginUpdate(m_pTempCamera))
 			{
-				// camera�� update ���� render state�� ���δ�.
+				// camera를 update 한후 render state를 먹인다.
 				RwRenderStateSet(rwRENDERSTATECULLMODE,	(void *)rwCULLMODECULLNONE);
 
 				BeginPostEffectState(FALSE);
@@ -657,7 +657,7 @@ void CNtlPostEffectCamera::Update_FakeHDRFiltering()
 
 //-------------------------------------------------------------
 // Name: CreateReductionTexture()
-// Desc: ����ġ ���
+// Desc: 가중치 계산
 //-------------------------------------------------------------
 void CNtlPostEffectCamera::CreateReductionTexture(RwInt32 nTextureSize)
 {
@@ -837,7 +837,7 @@ RwCamera* CNtlPostEffectCamera::MainCameraBeginUpdate(RwReal fElapsed)
 			//m_lpEffect->BeginPass(EFFECT_PASS_LASTDRAW);
 			//m_lpEffect->CommitChanges();
 			
-			// Test�� 1���� ���� ���ٰ� ������ �Ѵ�.(by HoDong 2007.4.11)
+			// Test를 1주일 정도 보다가 정리를 한다.(by HoDong 2007.4.11)
 			RwD3D9SetTextureStageState (0, D3DTSS_COLOROP,		D3DTOP_SELECTARG1);
 			RwD3D9SetTextureStageState (0, D3DTSS_COLORARG1,	D3DTA_TEXTURE);
 			
@@ -968,7 +968,7 @@ void CNtlPostEffectCamera::UpdateMotionBlur(RwReal fElapsedTime)
 		NTL_RPROFILE_VOID()
 	}
 
-    // ���İ��� ������Ʈ �Ѵ�.
+    // 알파값을 업데이트 한다.
     if(m_fBlurAlpha > EFFECT_BLUR_ALPHA)
     {
         m_fBlurAlpha -= (m_fBlurFadeVelocity * fElapsedTime);
@@ -978,7 +978,7 @@ void CNtlPostEffectCamera::UpdateMotionBlur(RwReal fElapsedTime)
         }
     }
 
-    // ���� ȭ���� ���� ���� �ؽ��Ŀ� ���İ��� �ְ� ��´�.
+    // 현재 화면을 블러 누적 텍스쳐에 알파값을 주고 찍는다.
     for(int i = 0; i < 4; ++i)
     {
         RwIm2DVertexSetRealRGBA(&m_RhwBlurVertex[i], 255, 255, 255, m_fBlurAlpha);
@@ -994,7 +994,7 @@ void CNtlPostEffectCamera::UpdateMotionBlur(RwReal fElapsedTime)
         RwCameraEndUpdate(m_pMotionBlurCamera);
     }
 
-    // ���� ���� �ؽ��ĸ� ����ȭ�鿡 ��´�.
+    // 누적 블러 텍스쳐를 현재화면에 찍는다.
     RwIm2DVertex rhwVertex[4];
     memcpy(rhwVertex, m_RhwVertex, sizeof(RwIm2DVertex) * 4);
     for(int i = 0; i < 4; ++i)
@@ -1032,7 +1032,7 @@ void CNtlPostEffectCamera::SetEnableBlur(RwBool bEnable, RwReal fFadeTime /* = 0
     {
 		if (RwCameraClear(m_pMotionBlurCamera, &m_BackgroundColor, rwCAMERACLEARZ|rwCAMERACLEARIMAGE))
 		{
-			// ���� ȭ���� ���� ���� �ؽ��Ŀ� ���İ��� �ְ� ��´�.
+			// 현재 화면을 블러 누적 텍스쳐에 알파값을 주고 찍는다.
 			for(int i = 0; i < 4; ++i)
 			{
 				RwIm2DVertexSetRealRGBA(&m_RhwBlurVertex[i], 255, 255, 255, 255);

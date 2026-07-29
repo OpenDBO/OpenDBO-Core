@@ -472,7 +472,7 @@ RwBool CNtlResourceParticleSystem::Load(FILE* pFile)
 		break;
 	}
 
-    // Trail Action �߰� (���� 6)
+    // Trail Action 추가 (버젼 6)
     if(CNtlResourceEffect::m_nVersion >= 0x00000006 && IsEmitterDataFlag(rpPRTSTDEMITTERDATAFLAGTRAIL))
     {
 		if (CNtlResourceEffect::m_nVersion >= 0x00000067)
@@ -508,9 +508,9 @@ RwBool CNtlResourceParticleSystem::Load(FILE* pFile)
 	return TRUE;
 }
 
-// ��ƼŬ�� ������ġ�� ��Ÿ�ٴ��� Flag�� �����Ѵ�.
-// �� Flag�� ������ InstanceParticle Ŭ�����ȿ��� �����ȴ�(Update��)
-// �� Flag�� m_nPointEmitterDataFlag �ʵ忡 �����ȴ�.
+// 파티클이 생성위치를 나타다닐지 Flag를 설정한다.
+// 이 Flag의 영향은 InstanceParticle 클래스안에서 설정된다(Update시)
+// 이 Flag는 m_nPointEmitterDataFlag 필드에 설정된다.
 void CNtlResourceParticleSystem::SetFollowFlag(BOOL bFollow)
 {
     if(bFollow)

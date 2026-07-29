@@ -565,7 +565,7 @@ void HitResultDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 
 void HitStatusStealSkillDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 {
-	if(pHitStuff->uiAttr.bitResult == NTL_ATTACK_RESULT_STEAL ||            // �� �÷��״� Projectile �����̴�. (Client ó����) �Ʒ� �ڵ� ����
+	if(pHitStuff->uiAttr.bitResult == NTL_ATTACK_RESULT_STEAL ||            // 이 플래그는 Projectile 전용이다. (Client 처리용) 아래 코드 참조
        pHitStuff->uiAttr.bitResult == NTL_ATTACK_RESULT_BLOCK ||
        pHitStuff->uiAttr.bitReserved == NTL_ATTACK_RESULT_DODGE)
 		return;

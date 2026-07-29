@@ -57,8 +57,8 @@ private:
 	gui::CSlot	m_slotOnMouseDown;
 
 	//! Variable
-	STATE				m_eUIState;					// UI��ü�� State
-	RwInt32				m_eNarrationState;			// Narration�� State	
+	STATE				m_eUIState;					// UI자체의 State
+	RwInt32				m_eNarrationState;			// Narration의 State	
 
 	CNtlPLCinematicObject*	m_pCinematicObject;
 

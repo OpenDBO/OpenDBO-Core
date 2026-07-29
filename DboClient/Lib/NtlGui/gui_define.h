@@ -13,14 +13,14 @@
 */
 enum COMPONENT_STYLE
 {
-	COMP_HER_SCROLL				= 0x00000001,		///< ���� ��ũ�� ( Horizontal scroll )
-	COMP_VER_SCROLL				= 0x00000002,		///< ���� ��ũ�� ( Vertical scroll )
-	COMP_TEXT_LEFT				= 0x00000004,		///< Text : ���� ����
-	COMP_TEXT_CENTER			= 0x00000008,		///< Text : �߾� ����
-	COMP_TEXT_RIGHT				= 0x00000010,		///< Text : ������ ����
-	COMP_TEXT_UP				= 0x00000020,		///< Text : ��� ����
-	COMP_TEXT_VERTICAL_CENTER	= 0x00000040,		///< Text : �ߴ� ����
-	COMP_TEXT_DOWN				= 0x00000080		///< Text : �ϴ� ����
+	COMP_HER_SCROLL				= 0x00000001,		///< 수평 스크롤 ( Horizontal scroll )
+	COMP_VER_SCROLL				= 0x00000002,		///< 수직 스크롤 ( Vertical scroll )
+	COMP_TEXT_LEFT				= 0x00000004,		///< Text : 왼쪽 정렬
+	COMP_TEXT_CENTER			= 0x00000008,		///< Text : 중앙 정렬
+	COMP_TEXT_RIGHT				= 0x00000010,		///< Text : 오른쪽 정렬
+	COMP_TEXT_UP				= 0x00000020,		///< Text : 상단 정렬
+	COMP_TEXT_VERTICAL_CENTER	= 0x00000040,		///< Text : 중단 정렬
+	COMP_TEXT_DOWN				= 0x00000080		///< Text : 하단 정렬
 };
 
 /**
@@ -28,8 +28,8 @@ enum COMPONENT_STYLE
 */
 enum TEXT_BK
 {
-	BK_TRANSPARENT,			///< ����
-	BK_OPAQUE				///< ������
+	BK_TRANSPARENT,			///< 투명
+	BK_OPAQUE				///< 불투명
 };
 
 /**
@@ -38,7 +38,7 @@ enum TEXT_BK
 enum TEXT_EFFECT
 {
 	TE_NONE,
-	TE_SHADOW,				///< �׸���
+	TE_SHADOW,				///< 그림자
 	TE_OUTLINE				///< outline
 };
 
