@@ -103,8 +103,6 @@ void CFreeBattleManager::EndFreeBattle(DWORD dwFreeBattleID, CHARACTERID uiWinne
 	if(invitor && invitor->IsInitialized())
 	{
 		invitor->InitFreeBattle();
-		invitor->GetBuffManager()->RemoveAllBuff();
-		invitor->GetCharAtt()->CalculateAll();
 
 		invitor->StandUpIfPossible(invitor->GetCharStateID());
 
@@ -134,8 +132,6 @@ void CFreeBattleManager::EndFreeBattle(DWORD dwFreeBattleID, CHARACTERID uiWinne
 	if(target && target->IsInitialized())
 	{
 		target->InitFreeBattle();
-		target->GetBuffManager()->RemoveAllBuff();
-		target->GetCharAtt()->CalculateAll();
 
 		target->StandUpIfPossible(target->GetCharStateID());
 
