@@ -5424,11 +5424,16 @@ void CClientSession::RecvItemMoveReq(CNtlPacket * pPacket)
 		}
 		else if(req->bySrcPlace == CONTAINER_TYPE_EQUIP) //unequip
 		{
-		/*	if (req->bySrcPos == EQUIP_SLOT_TYPE_QUEST) //dont allow to unequip quest items
+			if (req->bySrcPos == EQUIP_SLOT_TYPE_HAND)
 			{
-				item_move_res = GAME_ITEM_IS_LOCK;
+				cPlayer->GetCharAtt()->SetBattleAttributeOffence(BATTLE_ATTRIBUTE_NONE);
 			}
-			else*/ if(dest_item == NULL)
+			else if (req->bySrcPos == EQUIP_SLOT_TYPE_JACKET) {
+
+				cPlayer->GetCharAtt()->SetBattleAttributeDefence(BATTLE_ATTRIBUTE_NONE);
+			}
+
+			if(dest_item == NULL)
 			{
 				if (cPlayer->UnequipItem(src_item) == false)
 				{
@@ -10586,18 +10591,18 @@ void CClientSession::RecvItemDurationRenewReq(CNtlPacket * pPacket)
 //--------------------------------------------------------------------------------------//
 //		UPDATE ITEM BATTLE ATTRIBUTE
 //--------------------------------------------------------------------------------------//
-void CClientSession::RecvItemChangeBattleAttributeReq(CNtlPacket * pPacket)
+void CClientSession::RecvItemChangeBattleAttributeReq(CNtlPacket* pPacket)
 {
 	if (!cPlayer || !cPlayer->IsInitialized())
 		return;
 
 	CGameServer* app = (CGameServer*)g_pApp;
 
-	sUG_ITEM_CHAGE_BATTLE_ATTRIBUTE_REQ * req = (sUG_ITEM_CHAGE_BATTLE_ATTRIBUTE_REQ*)pPacket->GetPacketData();
+	sUG_ITEM_CHAGE_BATTLE_ATTRIBUTE_REQ* req = (sUG_ITEM_CHAGE_BATTLE_ATTRIBUTE_REQ*)pPacket->GetPacketData();
 	WORD resultcode = GAME_SUCCESS;
 	BYTE byBattleattribute = BATTLE_ATTRIBUTE_NONE;
 	DWORD dwPrice = 0;
-	
+
 	CNpc* pNpc = g_pObjectManager->GetNpc(req->npcHandle);
 	if (pNpc)
 	{
@@ -10614,54 +10619,48 @@ void CClientSession::RecvItemChangeBattleAttributeReq(CNtlPacket * pPacket)
 						{
 							if (pItem->IsLocked() == false)
 							{
-								if (pItem->GetTbldat()->byEquip_Type == EQUIP_TYPE_MAIN_WEAPON)
+								dwPrice = Dbo_GetChargeItemBattleAttributeChange(pItem->GetRank(), pItem->GetTbldat()->byNeed_Min_Level);
+
+								if (cPlayer->GetZeni() >= dwPrice)
 								{
-									dwPrice = Dbo_GetChargeItemBattleAttributeChange(pItem->GetRank(), pItem->GetTbldat()->byNeed_Min_Level);
-
-									if (cPlayer->GetZeni() >= dwPrice)
+									CItem* additionalItem = cPlayer->GetPlayerItemContainer()->GetItem(req->byAdditialItemPlace, req->byAdditialItemPos);
+									if (additionalItem && additionalItem->GetCount() > 0 && additionalItem->GetGrade() == 0 && req->byAdditionalAttribute < BATTLE_ATTRIBUTE_COUNT
+										&& additionalItem->IsLocked() == false && IsInvenContainer(additionalItem->GetPlace())
+										&& additionalItem->GetTbldat()->byNeed_Min_Level >= pItem->GetTbldat()->byNeed_Min_Level
+										&& additionalItem->GetRank() >= pItem->GetRank())
 									{
-										CItem* additionalItem = cPlayer->GetPlayerItemContainer()->GetItem(req->byAdditialItemPlace, req->byAdditialItemPos);
-										if (additionalItem && additionalItem->GetCount() > 0 && additionalItem->GetGrade() == 0 && req->byAdditionalAttribute < BATTLE_ATTRIBUTE_COUNT
-											&& additionalItem->IsLocked() == false && IsInvenContainer(additionalItem->GetPlace())
-											&& additionalItem->GetTbldat()->byEquip_Type == pItem->GetTbldat()->byEquip_Type
-											&& additionalItem->GetTbldat()->byNeed_Min_Level >= pItem->GetTbldat()->byNeed_Min_Level
-											&& additionalItem->GetRank() >= pItem->GetRank())
-										{
-											if (Dbo_CheckProbability(50))
-												byBattleattribute = req->byAdditionalAttribute;
-											else
-												byBattleattribute = BATTLE_ATTRIBUTE_NONE;
-
-											//del additional item
-											additionalItem->SetCount(additionalItem->GetCount() - 1, false, true);
-										}
+										if (Dbo_CheckProbability(70))
+											byBattleattribute = req->byAdditionalAttribute;
 										else
-										{
-											if (Dbo_CheckProbability(20))
-												byBattleattribute = RandomRange(BATTLE_ATTRIBUTE_HONEST, BATTLE_ATTRIBUTE_FUNNY);
-											else
-												byBattleattribute = BATTLE_ATTRIBUTE_NONE;
-										}
+											byBattleattribute = pItem->GetBattleAttribute();
 
-
-										pItem->SetBattleAttribute(byBattleattribute);
-										cPlayer->UpdateZeni(ZENNY_CHANGE_TYPE_ITEM_ATTRIBUTE_CHANGE, dwPrice, false, false);
-
-										CNtlPacket packetQry(sizeof(sGQ_ITEM_CHANGE_ATTRIBUTE_REQ));
-										sGQ_ITEM_CHANGE_ATTRIBUTE_REQ* resQry = (sGQ_ITEM_CHANGE_ATTRIBUTE_REQ*)packetQry.GetPacketData();
-										resQry->wOpCode = GQ_ITEM_CHANGE_ATTRIBUTE_REQ;
-										resQry->charId = cPlayer->GetCharID();
-										resQry->handle = cPlayer->GetID();
-										resQry->byBattleAttribute = byBattleattribute;
-										resQry->itemId = pItem->GetItemID();
-										resQry->dwZeni = dwPrice;
-										packetQry.SetPacketLen(sizeof(sGQ_ITEM_CHANGE_ATTRIBUTE_REQ));
-										app->SendTo(app->GetQueryServerSession(), &packetQry);
-
+										additionalItem->SetCount(additionalItem->GetCount() - 1, false, true);
 									}
-									else resultcode = GAME_ZENNY_NOT_ENOUGH;
+									else
+									{
+										if (Dbo_CheckProbability(50))
+											byBattleattribute = RandomRange(BATTLE_ATTRIBUTE_HONEST, BATTLE_ATTRIBUTE_FUNNY);
+										else
+											byBattleattribute = pItem->GetBattleAttribute();
+									}
+
+
+									pItem->SetBattleAttribute(byBattleattribute);
+									cPlayer->UpdateZeni(ZENNY_CHANGE_TYPE_ITEM_ATTRIBUTE_CHANGE, dwPrice, false, false);
+
+									CNtlPacket packetQry(sizeof(sGQ_ITEM_CHANGE_ATTRIBUTE_REQ));
+									sGQ_ITEM_CHANGE_ATTRIBUTE_REQ* resQry = (sGQ_ITEM_CHANGE_ATTRIBUTE_REQ*)packetQry.GetPacketData();
+									resQry->wOpCode = GQ_ITEM_CHANGE_ATTRIBUTE_REQ;
+									resQry->charId = cPlayer->GetCharID();
+									resQry->handle = cPlayer->GetID();
+									resQry->byBattleAttribute = byBattleattribute;
+									resQry->itemId = pItem->GetItemID();
+									resQry->dwZeni = dwPrice;
+									packetQry.SetPacketLen(sizeof(sGQ_ITEM_CHANGE_ATTRIBUTE_REQ));
+									app->SendTo(app->GetQueryServerSession(), &packetQry);
+
 								}
-								else resultcode = GAME_ITEM_CHANGE_BATTLE_ATTRIBUTE_WRONG_ITEM_TYPE;
+								else resultcode = GAME_ZENNY_NOT_ENOUGH;
 							}
 							else resultcode = GAME_ITEM_IS_LOCK;
 						}

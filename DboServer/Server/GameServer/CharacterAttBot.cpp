@@ -70,7 +70,8 @@ void CCharacterAttBot::CalculateAtt()
 	m_pAttribute.wEpRegen = pBotTbldat->wEP_Regeneration;
 	m_pAttribute.wEpSitdownRegen = m_pAttribute.wMaxEP * 20 / 100;
 	m_pAttribute.wEpBattleRegen = pBotTbldat->wEP_Regeneration;
-	m_byBattle_Attribute = pBotTbldat->byBattle_Attribute;
+	m_byBattle_Attribute_Ofence = pBotTbldat->byBattle_Attribute;
+	m_byBattle_Attribute_Defence = pBotTbldat->byBattle_Attribute;
 
 	m_pAttribute.fRunSpeed = pBotTbldat->fRun_Speed;
 	m_pAttribute.fFlySpeed = pBotTbldat->fRun_Speed;

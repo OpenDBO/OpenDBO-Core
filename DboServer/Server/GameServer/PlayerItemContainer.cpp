@@ -825,6 +825,8 @@ void CPlayerItemContainer::CopyItemAttributesTo(CCharacterAtt* pCharAtt)
 				}
 				else if (item->GetPos() == EQUIP_SLOT_TYPE_JACKET)
 				{
+					m_pOwner->GetCharAtt()->SetBattleAttributeDefence(item->GetBattleAttribute());
+
 					if (pinvitemdata->set_Item_Tblidx != INVALID_TBLIDX)
 						vecSetArmor.push_back(pinvitemdata->set_Item_Tblidx);
 				}
