@@ -1,4 +1,4 @@
-#include "precomp_dboclient.h"
+ï»¿#include "precomp_dboclient.h"
 #include "ItemChangeBattleAttributeGui.h"
 
 // shared
@@ -37,8 +37,8 @@ CItemChangeBattleAttributeGui::CItemChangeBattleAttributeGui(VOID)
 	Init();
 }
 
-CItemChangeBattleAttributeGui::CItemChangeBattleAttributeGui( const RwChar* pName )
-: CNtlPLGui( pName )
+CItemChangeBattleAttributeGui::CItemChangeBattleAttributeGui(const RwChar* pName)
+	: CNtlPLGui(pName)
 {
 	Init();
 }
@@ -62,9 +62,11 @@ VOID CItemChangeBattleAttributeGui::Init(VOID)
 	m_nMouseOnIdx = INVALID_INDEX;
 	m_nPushDownIndex = INVALID_INDEX;
 
-	for( RwInt32 i = 0; i < NUM_SLOT; ++i )
+	m_byUpgradeItemBattleAttribute = BATTLE_ATTRIBUTE_NONE;
+
+	for (RwInt32 i = 0; i < NUM_SLOT; ++i)
 	{
-		m_anFocusEffect[i] = SLOT_FOCUS_NONE;				
+		m_anFocusEffect[i] = SLOT_FOCUS_NONE;
 	}
 
 	m_eState = STATE_NONE;
@@ -76,14 +78,15 @@ VOID CItemChangeBattleAttributeGui::Init(VOID)
 
 RwBool CItemChangeBattleAttributeGui::Create(VOID)
 {
-	NTL_FUNCTION( "CItemChangeBattleAttributeGui::Create" );
+	NTL_FUNCTION("CItemChangeBattleAttributeGui::Create");
 
-	if( !CNtlPLGui::Create( "gui\\ItemChangeBattleAtt.rsr", "gui\\ItemChangeBattleAtt.srf", "gui\\ItemChangeBattleAtt.frm" ) )
-		NTL_RETURN( FALSE );
+	if (!CNtlPLGui::Create("gui\\ItemChangeBattleAtt.rsr", "gui\\ItemChangeBattleAtt.srf", "gui\\ItemChangeBattleAtt.frm"))
+		NTL_RETURN(FALSE);
 
-	CNtlPLGui::CreateComponents( GetNtlGuiManager()->GetGuiManager() );
+	CNtlPLGui::CreateComponents(GetNtlGuiManager()->GetGuiManager());
 
-	m_pThis = (gui::CDialog*)GetComponent( "dlgMain" );
+	m_pThis = (gui::CDialog*)GetComponent("dlgMain");
+
 
 	m_pstbTitle = (gui::CStaticBox*)GetComponent("stbTitle");
 	m_pstbInfoTitle = (gui::CStaticBox*)GetComponent("stbInfoTitle");
@@ -91,25 +94,25 @@ RwBool CItemChangeBattleAttributeGui::Create(VOID)
 	m_pflsUpgradeEffect = (gui::CFlash*)GetComponent("flsUpgradeEffect");
 	m_phtmlInfoText = (gui::CHtmlBox*)GetComponent("htmlUpgradeInfo");
 
-	m_pbtnExit = (gui::CButton*)GetComponent( "btnExit" );
-	m_pbtnCompound = (gui::CButton*)GetComponent( "btnCompound" );
+	m_pbtnExit = (gui::CButton*)GetComponent("btnExit");
+	m_pbtnCompound = (gui::CButton*)GetComponent("btnCompound");
 
-	m_pdlgResult = (gui::CDialog*)GetComponent( "dlgResult" );
-	m_pflsResult = (gui::CFlash*)GetComponent( "flsResult" );
-	m_pbtnCloseResult = (gui::CButton*)GetComponent( "btnClose" );
+	m_pdlgResult = (gui::CDialog*)GetComponent("dlgResult");
+	m_pflsResult = (gui::CFlash*)GetComponent("flsResult");
+	m_pbtnCloseResult = (gui::CButton*)GetComponent("btnClose");
 
-	m_slotMouseDown		= m_pThis->SigMouseDown().Connect( this, &CItemChangeBattleAttributeGui::OnMouseDown );
-	m_slotMouseUp		= m_pThis->SigMouseUp().Connect( this, &CItemChangeBattleAttributeGui::OnMouseUp );
-	m_slotMouseMove		= m_pThis->SigMouseMove().Connect( this, &CItemChangeBattleAttributeGui::OnMouseMove );
-	m_slotMouseOut		= m_pThis->SigMouseLeave().Connect( this, &CItemChangeBattleAttributeGui::OnMouseOut );
-	m_slotPaint			= m_pThis->SigPaint().Connect( this, &CItemChangeBattleAttributeGui::OnPaint );
-	m_slotMove			= m_pThis->SigMove().Connect( this, &CItemChangeBattleAttributeGui::OnMove );
-	m_slotClickExitBtn  = m_pbtnExit->SigClicked().Connect( this, &CItemChangeBattleAttributeGui::OnClickExitBtn );
-	m_slotClickCompoundBtn = m_pbtnCompound->SigClicked().Connect( this, &CItemChangeBattleAttributeGui::OnClickCompoundBtn );
-	m_slotClickCloseResult = m_pbtnCloseResult->SigClicked().Connect( this, &CItemChangeBattleAttributeGui::OnClickCloseResult );
-	m_slotCaptureMouseDown = GetNtlGuiManager()->GetGuiManager()->SigCaptureMouseDown().Connect( this, &CItemChangeBattleAttributeGui::OnCaptureMouseDown );
-	m_slotCaptureMouseWheel= m_phtmlInfoText->SigMouseWheel().Connect( this, &CItemChangeBattleAttributeGui::OnCaptureMouseWheel );
-	m_slotChangeAttributeEffectEnd = m_pflsUpgradeEffect->SigMovieEnd().Connect( this, &CItemChangeBattleAttributeGui::OnChangeAttributeEffectEnd);
+	m_slotMouseDown = m_pThis->SigMouseDown().Connect(this, &CItemChangeBattleAttributeGui::OnMouseDown);
+	m_slotMouseUp = m_pThis->SigMouseUp().Connect(this, &CItemChangeBattleAttributeGui::OnMouseUp);
+	m_slotMouseMove = m_pThis->SigMouseMove().Connect(this, &CItemChangeBattleAttributeGui::OnMouseMove);
+	m_slotMouseOut = m_pThis->SigMouseLeave().Connect(this, &CItemChangeBattleAttributeGui::OnMouseOut);
+	m_slotPaint = m_pThis->SigPaint().Connect(this, &CItemChangeBattleAttributeGui::OnPaint);
+	m_slotMove = m_pThis->SigMove().Connect(this, &CItemChangeBattleAttributeGui::OnMove);
+	m_slotClickExitBtn = m_pbtnExit->SigClicked().Connect(this, &CItemChangeBattleAttributeGui::OnClickExitBtn);
+	m_slotClickCompoundBtn = m_pbtnCompound->SigClicked().Connect(this, &CItemChangeBattleAttributeGui::OnClickCompoundBtn);
+	m_slotClickCloseResult = m_pbtnCloseResult->SigClicked().Connect(this, &CItemChangeBattleAttributeGui::OnClickCloseResult);
+	m_slotCaptureMouseDown = GetNtlGuiManager()->GetGuiManager()->SigCaptureMouseDown().Connect(this, &CItemChangeBattleAttributeGui::OnCaptureMouseDown);
+	m_slotCaptureMouseWheel = m_phtmlInfoText->SigMouseWheel().Connect(this, &CItemChangeBattleAttributeGui::OnCaptureMouseWheel);
+	m_slotChangeAttributeEffectEnd = m_pflsUpgradeEffect->SigMovieEnd().Connect(this, &CItemChangeBattleAttributeGui::OnChangeAttributeEffectEnd);
 	m_slotChangeAttributeEffectResultEnd = m_pflsResult->SigMovieEnd().Connect(this, &CItemChangeBattleAttributeGui::OnChangeAttributeResultEffectEnd);
 
 	// Above the stack number.
@@ -117,36 +120,36 @@ RwBool CItemChangeBattleAttributeGui::Create(VOID)
 
 	SetSlotRectHardCode();
 	SetBasicUISetting();
-	Show( false );
+	Show(false);
 
-	m_pdlgResult->Show( false );
+	m_pdlgResult->Show(false);
 
-	LinkMsg(g_EventItemChangeBattleAttributeResult, 0 );
-	LinkMsg( g_EventNPCDialogOpen, 0 );
-	LinkMsg( g_EventDialog, 0 );
-	LinkMsg( g_EventSobInfoUpdate, 0 );
-	LinkMsg( g_EventIconMoveClick, 0 );
-	LinkMsg( g_EventSobItemDelete, 0, 0x9000 );		// Because you are writing a pointer, you must come in before the object is cleared.
-	LinkMsg(g_EventRegisterItemChangeBattleAttribute, 0 );
-	LinkMsg( g_EventGameServerChangeOut );
+	LinkMsg(g_EventItemChangeBattleAttributeResult, 0);
+	LinkMsg(g_EventNPCDialogOpen, 0);
+	LinkMsg(g_EventDialog, 0);
+	LinkMsg(g_EventSobInfoUpdate, 0);
+	LinkMsg(g_EventIconMoveClick, 0);
+	LinkMsg(g_EventSobItemDelete, 0, 0x9000);		// Because you are writing a pointer, you must come in before the object is cleared.
+	LinkMsg(g_EventRegisterItemChangeBattleAttribute, 0);
+	LinkMsg(g_EventGameServerChangeOut);
 	LinkMsg(g_EventMsgBoxResult);
 
 	// Dialog Priority
 	m_pThis->SetPriority(dDIALOGPRIORITY_DEFAULT);
 
-	NTL_RETURN( TRUE );
+	NTL_RETURN(TRUE);
 }
 
 VOID CItemChangeBattleAttributeGui::Destroy(VOID)
 {
 	UnLinkMsg(g_EventItemChangeBattleAttributeResult);
-	UnLinkMsg( g_EventNPCDialogOpen );
-	UnLinkMsg( g_EventDialog );
-	UnLinkMsg( g_EventSobInfoUpdate );
-	UnLinkMsg( g_EventIconMoveClick );
-	UnLinkMsg( g_EventSobItemDelete );
+	UnLinkMsg(g_EventNPCDialogOpen);
+	UnLinkMsg(g_EventDialog);
+	UnLinkMsg(g_EventSobInfoUpdate);
+	UnLinkMsg(g_EventIconMoveClick);
+	UnLinkMsg(g_EventSobItemDelete);
 	UnLinkMsg(g_EventRegisterItemChangeBattleAttribute);
-	UnLinkMsg( g_EventGameServerChangeOut );
+	UnLinkMsg(g_EventGameServerChangeOut);
 	UnLinkMsg(g_EventMsgBoxResult);
 
 	CNtlPLGui::DestroyComponents();
@@ -155,169 +158,172 @@ VOID CItemChangeBattleAttributeGui::Destroy(VOID)
 
 VOID CItemChangeBattleAttributeGui::DestroyResultDialog(VOID)
 {
-	m_pdlgResult->Show( false );
-	m_pflsResult->PlayMovie( FALSE );
+	m_pdlgResult->Show(false);
+	m_pflsResult->PlayMovie(FALSE);
+}
+// ï¿½ï¿½ï¿½ï¿½
+VOID CItemChangeBattleAttributeGui::Update(RwReal fElapsed)
+{
+	if (m_eState == STATE_RESULT)
+	{
+		m_pflsResult->Update(fElapsed);
+	}
+	else if (m_eState == STATE_UPGRADE_PROCESS)
+	{
+		m_pflsUpgradeEffect->Update(fElapsed);
+	}
+
+	for (RwInt32 i = 0; i < NUM_SLOT; ++i)
+	{
+		m_aSlotEffect[i].Update(fElapsed);
+	}
+
+	m_TempItemSlot.Update(fElapsed);
+	//m_BackFocus.Update( fElapsed );
 }
 
-VOID CItemChangeBattleAttributeGui::Update( RwReal fElapsed )
+// ï¿½Ô»ï¿½ï¿½ò¿ª¹ï¿½
+RwInt32 CItemChangeBattleAttributeGui::SwitchDialog(bool bOpen)
 {
-	if( m_eState == STATE_RESULT )
+	if (bOpen)
 	{
-		m_pflsResult->Update( fElapsed );
-	}
-	else if( m_eState == STATE_UPGRADE_PROCESS )
-	{
-		m_pflsUpgradeEffect->Update( fElapsed );
-	}
-
-	for( RwInt32 i = 0 ; i < NUM_SLOT ; ++i )
-	{
-		m_aSlotEffect[i].Update( fElapsed );
-	}
-
-	m_TempItemSlot.Update( fElapsed );
-	m_BackFocus.Update( fElapsed );
-}
-
-RwInt32 CItemChangeBattleAttributeGui::SwitchDialog( bool bOpen )
-{
-	if( bOpen )
-	{
-		CNtlWorldConceptNPCCOMMU* pWorldConceptController = reinterpret_cast<CNtlWorldConceptNPCCOMMU*>( GetNtlWorldConcept()->GetWorldConceptController(WORLD_PLAY_NPC_COMMU) );
+		CNtlWorldConceptNPCCOMMU* pWorldConceptController = reinterpret_cast<CNtlWorldConceptNPCCOMMU*>(GetNtlWorldConcept()->GetWorldConceptController(WORLD_PLAY_NPC_COMMU));
 		pWorldConceptController->ChangeState(WORLD_NPC_ITEM_UPGRADE);
 
-		RaiseTop();			
+		RaiseTop();
 
-		Show( true );
+		Show(true);
 		DeleteOfferItem();
 		DeleteUpgradeItem();
-		SetState( STATE_NONE );
+		SetState(STATE_NONE);
 
-		for( RwInt32 i = 0 ; i < NUM_SLOT ; ++i )
-			m_aSlotEffect[i].SetState( stSLOTEFFECT::SLOT_EFFECT_NONE );
+		for (RwInt32 i = 0; i < NUM_SLOT; ++i)
+			m_aSlotEffect[i].SetState(stSLOTEFFECT::SLOT_EFFECT_NONE);
 
-		m_TempItemSlot.SetState( stSLOTEFFECT::SLOT_EFFECT_NONE );
-		m_BackFocus.SetState( stSLOTEFFECT::SLOT_EFFECT_NONE );
+		m_TempItemSlot.SetState(stSLOTEFFECT::SLOT_EFFECT_NONE);
+		m_BackFocus.SetState(stSLOTEFFECT::SLOT_EFFECT_ON);
 
-		GetNtlGuiManager()->AddUpdateFunc( this );		
-		m_pflsUpgradeEffect->Show( false );
+		GetNtlGuiManager()->AddUpdateFunc(this);
+		m_pflsUpgradeEffect->Show(false);
 	}
 	else
 	{
-		if( m_eState == STATE_PACKETWAIT )
+		if (m_eState == STATE_PACKETWAIT)
 			return -1;
 
-		GetNtlWorldConcept()->RemoveWorldPlayConcept( WORLD_PLAY_NPC_COMMU );
-		GetDialogManager()->SwitchBag( FALSE );
+		GetNtlWorldConcept()->RemoveWorldPlayConcept(WORLD_PLAY_NPC_COMMU);
+		GetDialogManager()->SwitchBag(FALSE);
 
-		if( GetIconMoveManager()->GetSrcPlace() == PLACE_ITEMUPGRADE )
+		if (GetIconMoveManager()->GetSrcPlace() == PLACE_ITEMUPGRADE)
 			GetIconMoveManager()->IconMoveEnd();
 
-		if( m_pdlgResult->IsVisible() )
+		if (m_pdlgResult->IsVisible())
 			DestroyResultDialog();
 
-		Show( false );
+		Show(false);
 		DeleteOfferItem();
 		DeleteUpgradeItem();
 
-		for( RwInt32 i = 0 ; i < NUM_SLOT ; ++i )
-			m_aSlotEffect[i].SetState( stSLOTEFFECT::SLOT_EFFECT_NONE );
+		for (RwInt32 i = 0; i < NUM_SLOT; ++i)
+			m_aSlotEffect[i].SetState(stSLOTEFFECT::SLOT_EFFECT_NONE);
 
-		m_TempItemSlot.SetState( stSLOTEFFECT::SLOT_EFFECT_NONE );
-		m_BackFocus.SetState( stSLOTEFFECT::SLOT_EFFECT_NONE );
+		m_TempItemSlot.SetState(stSLOTEFFECT::SLOT_EFFECT_NONE);
+		m_BackFocus.SetState(stSLOTEFFECT::SLOT_EFFECT_ON);
 
 		Logic_CancelNpcFacing();
 
-		GetNtlGuiManager()->RemoveUpdateFunc( this );
+		GetNtlGuiManager()->RemoveUpdateFunc(this);
 		m_pflsUpgradeEffect->Unload();
 	}
 
 	return 1;
 }
 
-VOID CItemChangeBattleAttributeGui::HandleEvents( RWS::CMsg& msg )
+VOID CItemChangeBattleAttributeGui::HandleEvents(RWS::CMsg& msg)
 {
-	if( msg.Id == g_EventItemChangeBattleAttributeResult)
+	if (msg.Id == g_EventItemChangeBattleAttributeResult) // ï¿½Ä±ï¿½ï¿½ï¿½ßµï¿½ ï¿½ï¿½ï¿½Ô¸ï¿½Ä§
 	{
-		SDboItemChangeBattleAttributeResult* pData = reinterpret_cast<SDboItemChangeBattleAttributeResult*>( msg.pData );
+		SDboItemChangeBattleAttributeResult* pData = reinterpret_cast<SDboItemChangeBattleAttributeResult*>(msg.pData);
 
-		SetResult( pData->wResultcode, pData->byBattleAttribute );
+		SetResult(pData->wResultcode, pData->byBattleAttribute);
 	}
-	else if( msg.Id == g_EventNPCDialogOpen )
+	else if (msg.Id == g_EventNPCDialogOpen) // npc ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½
 	{
-		SDboNpcDialogOpen* pData = reinterpret_cast<SDboNpcDialogOpen*>( msg.pData );
+		SDboNpcDialogOpen* pData = reinterpret_cast<SDboNpcDialogOpen*>(msg.pData);
 
-		if( pData->eDialog != DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE )
+		if (pData->eDialog != DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE)
 			return;
 
-		GetDialogManager()->OpenDialog( DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE, GetNtlSLGlobal()->GetSobAvatar()->GetSerialID() );
-		GetDialogManager()->SwitchBag( TRUE );
+		GetDialogManager()->OpenDialog(DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE, GetNtlSLGlobal()->GetSobAvatar()->GetSerialID());
+		GetDialogManager()->SwitchBag(TRUE);
 		m_hNPCSerial = pData->hSerialId;
 	}
-	else if( msg.Id == g_EventDialog )
+	else if (msg.Id == g_EventDialog) // ï¿½ï¿½UIï¿½Ô»ï¿½
 	{
-		SDboEventDialog* pData = reinterpret_cast<SDboEventDialog*>( msg.pData );
-		if( pData->iType == DIALOGEVENT_NPC_BYEBYE && pData->iDestDialog == DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE )
+		SDboEventDialog* pData = reinterpret_cast<SDboEventDialog*>(msg.pData);
+		if (pData->iType == DIALOGEVENT_NPC_BYEBYE && pData->iDestDialog == DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE)
 		{
-			GetDialogManager()->CloseDialog( DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE );
+			GetDialogManager()->CloseDialog(DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE);
 		}
 	}
-	else if( msg.Id == g_EventSobInfoUpdate )
+	else if (msg.Id == g_EventSobInfoUpdate) // ï¿½ï¿½ï¿½Âµï¿½ï¿½ßµï¿½ï¿½ï¿½Ï¢
 	{
-		SNtlEventSobInfoUpdate* pData = reinterpret_cast<SNtlEventSobInfoUpdate*>( msg.pData );
+		SNtlEventSobInfoUpdate* pData = reinterpret_cast<SNtlEventSobInfoUpdate*>(msg.pData);
 
-		if( pData->hSerialId != GetNtlSLGlobal()->GetSobAvatar()->GetSerialID() )
+		if (pData->hSerialId != GetNtlSLGlobal()->GetSobAvatar()->GetSerialID())
 			return;
 
-		if( pData->uiUpdateType & EVENT_AIUT_ITEM )
+		if (pData->uiUpdateType & EVENT_AIUT_ITEM)
 		{
-			UpdateSlotIcon();			
+			UpdateSlotIcon();
 		}
 	}
-	else if( msg.Id == g_EventIconMoveClick )
+	else if (msg.Id == g_EventIconMoveClick) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ICON ï¿½Æ¶ï¿½
 	{
 		RwBool bPickUpState = (RwBool)msg.pData;
-		ShowIconDestination( bPickUpState );
+		ShowIconDestination(bPickUpState);
 	}
-	else if( msg.Id == g_EventSobItemDelete )
+	else if (msg.Id == g_EventSobItemDelete) // É¾ï¿½ï¿½ï¿½ï¿½Ä§ï¿½Äµï¿½ï¿½ï¿½
 	{
-		SNtlEventSobItemDelete* pData = reinterpret_cast<SNtlEventSobItemDelete*>( msg.pData );
+		SNtlEventSobItemDelete* pData = reinterpret_cast<SNtlEventSobItemDelete*>(msg.pData);
 
-		if(m_pOfferItem)
+		if (m_pOfferItem)
 		{
-			if( pData->hItemSerialId == m_pOfferItem->GetSerialID() )
-				DeleteOfferItem();						
+			if (pData->hItemSerialId == m_pOfferItem->GetSerialID())
+				DeleteOfferItem();
 		}
 	}
-	else if( msg.Id == g_EventRegisterItemChangeBattleAttribute)
+	else if (msg.Id == g_EventRegisterItemChangeBattleAttribute) // ï¿½Ñµï¿½ï¿½ß·Åµï¿½GUIï¿½ï¿½
 	{
-		SDboRegisterItemUpgrade* pData = reinterpret_cast<SDboRegisterItemUpgrade*>( msg.pData );
+		SDboRegisterItemUpgrade* pData = reinterpret_cast<SDboRegisterItemUpgrade*>(msg.pData);
 
-		CNtlSobItem* pItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( pData->hSrcSerial ) );
-		if( pItem )
+		CNtlSobItem* pItem = reinterpret_cast<CNtlSobItem*>(GetNtlSobManager()->GetSobObject(pData->hSrcSerial));
+		// ï¿½Ð¶Ïµï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
+		if (pItem)
 		{
-			CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>( pItem->GetSobAttr() );
+			CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>(pItem->GetSobAttr());
 
+			// ï¿½Ð¶Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			if (m_pUpgradeItem == NULL)
 			{
-				if (IsUpgradableItem(pItemAttr))
+				if (IsUpgradableItem(pItemAttr)) // ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½
 				{
-					if(SetItemSlot(pData->hSrcSerial, pData->eSrcPlace, pData->uiSrcSlotIdx, SLOT_ITEM, FALSE))
+					if (SetItemSlot(pData->hSrcSerial, pData->eSrcPlace, pData->uiSrcSlotIdx, SLOT_ITEM, TRUE))
 						RaiseTop();
 				}
 			}
 			else
 			{
-				if(SetItemSlot(pData->hSrcSerial, pData->eSrcPlace, pData->uiSrcSlotIdx, SLOT_HONEST, FALSE))
+				if (SetItemSlot(pData->hSrcSerial, pData->eSrcPlace, pData->uiSrcSlotIdx, SLOT_HONEST, TRUE))
 					RaiseTop();
 			}
-		}		
+		}
 	}
-	else if( msg.Id == g_EventGameServerChangeOut )
+	else if (msg.Id == g_EventGameServerChangeOut)
 	{
-		GetDialogManager()->CloseDialog( DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE );
+		GetDialogManager()->CloseDialog(DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE);
 	}
-	else if (msg.Id == g_EventMsgBoxResult)
+	else if (msg.Id == g_EventMsgBoxResult) // ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½Ä§
 	{
 		SDboEventMsgBoxResult* pEvent = reinterpret_cast<SDboEventMsgBoxResult*>(msg.pData);
 
@@ -350,117 +356,122 @@ VOID CItemChangeBattleAttributeGui::SetSlotRectHardCode(VOID)
 {
 	CRectangle rtScreen = m_pThis->GetScreenRect();
 
-	m_rtSlot[SLOT_ITEM].SetRectWH( 144, 267, DBOGUI_ICON_SIZE, DBOGUI_ICON_SIZE );
-	m_rtSlot[SLOT_HONEST].SetRectWH( 144, 201, DBOGUI_ICON_SIZE, DBOGUI_ICON_SIZE );
-	m_rtSlot[SLOT_STRANGE].SetRectWH( 179, 327, DBOGUI_ICON_SIZE, DBOGUI_ICON_SIZE );
-	m_rtSlot[SLOT_WILD].SetRectWH( 211, 263, DBOGUI_ICON_SIZE, DBOGUI_ICON_SIZE );
-	m_rtSlot[SLOT_ELEGANT].SetRectWH( 109, 327, DBOGUI_ICON_SIZE, DBOGUI_ICON_SIZE );
-	m_rtSlot[SLOT_FUNNY].SetRectWH( 76, 263, DBOGUI_ICON_SIZE, DBOGUI_ICON_SIZE );
+	// ï¿½ï¿½ï¿½ï¿½Í¼
+	m_BackFocus.m_rtEffectSlot.SetRectWH(15, 152, 290, 276);
+	m_BackFocus.m_surSlotEffect.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("ItemChangeBattleAtt.srf", "srfSlotBack"));
 
-	m_aSlotEffect[SLOT_ITEM].m_rtEffectSlot.SetRectWH( 110, 236, 101, 92 );
-	m_aSlotEffect[SLOT_HONEST].m_rtEffectSlot.SetRectWH( 126, 171, 64, 72 );
-	m_aSlotEffect[SLOT_STRANGE].m_rtEffectSlot.SetRectWH( 168, 317, 93, 76 );
-	m_aSlotEffect[SLOT_WILD].m_rtEffectSlot.SetRectWH( 200, 244, 81, 62 );
-	m_aSlotEffect[SLOT_ELEGANT].m_rtEffectSlot.SetRectWH( 61, 317, 90, 81 );
-	m_aSlotEffect[SLOT_FUNNY].m_rtEffectSlot.SetRectWH( 36, 239, 84, 66 );
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½
+	m_rtSlot[SLOT_ITEM].SetRectWH(144, 267, DBOGUI_ICON_SIZE, DBOGUI_ICON_SIZE);
+	m_rtSlot[SLOT_HONEST].SetRectWH(144, 201, DBOGUI_ICON_SIZE, DBOGUI_ICON_SIZE);
+	m_rtSlot[SLOT_STRANGE].SetRectWH(179, 327, DBOGUI_ICON_SIZE, DBOGUI_ICON_SIZE);
+	m_rtSlot[SLOT_WILD].SetRectWH(211, 263, DBOGUI_ICON_SIZE, DBOGUI_ICON_SIZE);
+	m_rtSlot[SLOT_ELEGANT].SetRectWH(109, 327, DBOGUI_ICON_SIZE, DBOGUI_ICON_SIZE);
+	m_rtSlot[SLOT_FUNNY].SetRectWH(76, 263, DBOGUI_ICON_SIZE, DBOGUI_ICON_SIZE);
+
+
+	// ×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½
+	m_aSlotEffect[SLOT_ITEM].m_rtEffectSlot.SetRectWH(110, 236, 101, 92);
+	m_aSlotEffect[SLOT_HONEST].m_rtEffectSlot.SetRectWH(126, 171, 64, 72);
+	m_aSlotEffect[SLOT_STRANGE].m_rtEffectSlot.SetRectWH(168, 317, 93, 76);
+	m_aSlotEffect[SLOT_WILD].m_rtEffectSlot.SetRectWH(200, 244, 81, 62);
+	m_aSlotEffect[SLOT_ELEGANT].m_rtEffectSlot.SetRectWH(61, 317, 90, 81);
+	m_aSlotEffect[SLOT_FUNNY].m_rtEffectSlot.SetRectWH(36, 239, 84, 66);
 	m_TempItemSlot.m_rtEffectSlot = m_aSlotEffect[SLOT_ITEM].m_rtEffectSlot;
 
-	m_aSlotEffect[SLOT_HONEST].m_surSlotEffect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "ItemChangeBattleAtt.srf", "srfEffectHonest" ) );
-	m_aSlotEffect[SLOT_STRANGE].m_surSlotEffect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "ItemChangeBattleAtt.srf", "srfEffectStrange" ) );
-	m_aSlotEffect[SLOT_WILD].m_surSlotEffect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "ItemChangeBattleAtt.srf", "srfEffectWild" ) );
-	m_aSlotEffect[SLOT_ELEGANT].m_surSlotEffect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "ItemChangeBattleAtt.srf", "srfEffectElegant" ) );
-	m_aSlotEffect[SLOT_FUNNY].m_surSlotEffect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "ItemChangeBattleAtt.srf", "srfEffectFunny" ) );
+	m_aSlotEffect[SLOT_HONEST].m_surSlotEffect.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("ItemChangeBattleAtt.srf", "srfEffectHonest"));
+	m_aSlotEffect[SLOT_STRANGE].m_surSlotEffect.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("ItemChangeBattleAtt.srf", "srfEffectStrange"));
+	m_aSlotEffect[SLOT_WILD].m_surSlotEffect.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("ItemChangeBattleAtt.srf", "srfEffectWild"));
+	m_aSlotEffect[SLOT_ELEGANT].m_surSlotEffect.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("ItemChangeBattleAtt.srf", "srfEffectElegant"));
+	m_aSlotEffect[SLOT_FUNNY].m_surSlotEffect.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("ItemChangeBattleAtt.srf", "srfEffectFunny"));
 
-	m_BackFocus.m_rtEffectSlot.SetRectWH( 15, 152, 290, 276 );
-	m_BackFocus.m_surSlotEffect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "ItemChangeBattleAtt.srf", "srfBackFocus" ) );
 
-	for( RwInt32 i = 0 ; i < NUM_SLOT ; ++i )
+	for (RwInt32 i = 0; i < NUM_SLOT; ++i)
 	{
-		m_surSlot[i].SetRectWH( rtScreen.left + m_rtSlot[i].left, rtScreen.top + m_rtSlot[i].top, DBOGUI_ICON_SIZE, DBOGUI_ICON_SIZE );
-		m_asurFocus[i].SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", "srfSlotFocusEffect" ) );
-		m_asurFocus[i].SetRectWH( 0, 0, DBOGUI_ICON_SIZE, DBOGUI_ICON_SIZE );		
-		m_asurDisableSlot[i].SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", "srfSlotDisableEffect" ) );
-		m_asurDisableSlot[i].SetRectWH( rtScreen.left + m_rtSlot[i].left, rtScreen.top + m_rtSlot[i].top, DBOGUI_ICON_SIZE, DBOGUI_ICON_SIZE );				
-		m_aSlotEffect[i].m_surSlotEffect.Show( FALSE );
+		m_surSlot[i].SetRectWH(rtScreen.left + m_rtSlot[i].left, rtScreen.top + m_rtSlot[i].top, DBOGUI_ICON_SIZE, DBOGUI_ICON_SIZE);
+		m_asurFocus[i].SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfSlotFocusEffect"));
+		m_asurFocus[i].SetRectWH(0, 0, DBOGUI_ICON_SIZE, DBOGUI_ICON_SIZE);
+		m_asurDisableSlot[i].SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfSlotDisableEffect"));
+		m_asurDisableSlot[i].SetRectWH(rtScreen.left + m_rtSlot[i].left, rtScreen.top + m_rtSlot[i].top, DBOGUI_ICON_SIZE, DBOGUI_ICON_SIZE);
+		m_aSlotEffect[i].m_surSlotEffect.Show(FALSE);
 	}
-}	
+}
 
 VOID CItemChangeBattleAttributeGui::SetBasicUISetting(VOID)
 {
-	m_pstbTitle->SetText( GetDisplayStringManager()->GetString( "DST_ITEMPROPERTY_TRANSFER" ) );
-	m_pstbInfoTitle->SetText( GetDisplayStringManager()->GetString( "DST_ITEMPROPERTY_TRANSFER_INFOTITLE" ) );
-	m_pbtnCompound->SetText( GetDisplayStringManager()->GetString( "DST_ITEMPROPERTY_TRANSFER" ) );	
+	m_pstbTitle->SetText(GetDisplayStringManager()->GetString("DST_ITEMPROPERTY_TRANSFER"));
+	m_pstbInfoTitle->SetText(GetDisplayStringManager()->GetString("DST_ITEMPROPERTY_TRANSFER_INFOTITLE"));
+	m_pbtnCompound->SetText(GetDisplayStringManager()->GetString("DST_ITEMPROPERTY_TRANSFER"));
 }
 
-RwInt32 CItemChangeBattleAttributeGui::GetChildSlotIdx( RwInt32 nX, RwInt32 nY )
+RwInt32 CItemChangeBattleAttributeGui::GetChildSlotIdx(RwInt32 nX, RwInt32 nY)
 {
-	for( RwInt32 i = 0 ; i < NUM_SLOT ; ++i )
+	for (RwInt32 i = 0; i < NUM_SLOT; ++i)
 	{
-		if( m_rtSlot[i].PtInRect( nX, nY ) )
+		if (m_rtSlot[i].PtInRect(nX, nY))
 			return i;
 	}
 
 	return -1;
 }
 
-// Error Notify´Â ¿©±â¼­ Ã³¸®.
-bool CItemChangeBattleAttributeGui::SetItemSlot( RwUInt32 hSerialID, RwUInt32 eSrcplace, RwUInt32 uiSrcSlotIdx, RwUInt32 uiDestSlotIdx, RwBool bNeedToIconMoveEnd )
+// Error Notifyï¿½ï¿½ ï¿½ï¿½ï¿½â¼­ Ã³ï¿½ï¿½.
+bool CItemChangeBattleAttributeGui::SetItemSlot(RwUInt32 hSerialID, RwUInt32 eSrcplace, RwUInt32 uiSrcSlotIdx, RwUInt32 uiDestSlotIdx, RwBool bNeedToIconMoveEnd)
 {
-	if( m_eState == STATE_UPGRADE_PROCESS ||
+	if (m_eState == STATE_UPGRADE_PROCESS ||
 		m_eState == STATE_PACKETWAIT ||
-		m_eState == STATE_RESULT )
+		m_eState == STATE_RESULT)
 	{
-		GetAlarmManager()->AlarmMessage( "DST_ITEMUPGRADE_NOTIFY_CANNOT_CONTROL_STATE" );
+		GetAlarmManager()->AlarmMessage("DST_ITEMUPGRADE_NOTIFY_CANNOT_CONTROL_STATE");
 		return false;
 	}
 
-	CNtlSobItem* pItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( hSerialID ) );
-	NTL_ASSERT( pItem, "CItemChangeBattleAttributeGui::SetITemSlot : pItem is must be present!" );
+	CNtlSobItem* pItem = reinterpret_cast<CNtlSobItem*>(GetNtlSobManager()->GetSobObject(hSerialID));
+	NTL_ASSERT(pItem, "CItemChangeBattleAttributeGui::SetITemSlot : pItem is must be present!");
 
-	CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>( pItem->GetSobAttr() );
+	CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>(pItem->GetSobAttr());
 	RwInt32 nSrcPlace = eSrcplace;
 
-	if( nSrcPlace == PLACE_ITEMUPGRADE )
+	if (nSrcPlace == PLACE_ITEMUPGRADE)
 	{
 		RwInt32 nSrcSlotIdx = uiSrcSlotIdx;
 
-		if( uiSrcSlotIdx == uiDestSlotIdx )
+		if (uiSrcSlotIdx == uiDestSlotIdx)
 		{
-			if( bNeedToIconMoveEnd )
+			if (bNeedToIconMoveEnd)
 				GetIconMoveManager()->IconMoveEnd();
 
 			return true;
 		}
 
-		if( uiDestSlotIdx == SLOT_ITEM )
+		if (uiDestSlotIdx == SLOT_ITEM)
 		{
-			GetAlarmManager()->AlarmMessage( "DST_ITEMUPGRADE_NOTIFY_CAN_INSERT_ONLY_UPGRADEBLE_ITEM" );
+			GetAlarmManager()->AlarmMessage("DST_ITEMUPGRADE_NOTIFY_CAN_INSERT_ONLY_UPGRADEBLE_ITEM");
 			return false;
 		}
 		else
 		{
-			SetOfferItem( uiDestSlotIdx, pItem );
+			SetOfferItem(uiDestSlotIdx, pItem);
 
 			if (m_eState == STATE_UPGRADE_READY)
 				SetState(STATE_UPGRADE_READY);
 		}
 	}
-	else if( nSrcPlace == PLACE_BAG )
+	else if (nSrcPlace == PLACE_BAG)
 	{
-		if( m_eState == STATE_NONE )
+		if (m_eState == STATE_NONE)
 		{
-			if( uiDestSlotIdx == SLOT_ITEM )
+			if (uiDestSlotIdx == SLOT_ITEM)
 			{
-				if( !IsUpgradableItem( pItemAttr ) )
+				if (!IsUpgradableItem(pItemAttr))
 				{
-					GetAlarmManager()->AlarmMessage( "DST_ITEMUPGRADE_NOTIFY_CAN_INSERT_ONLY_UPGRADEBLE_ITEM" );
+					GetAlarmManager()->AlarmMessage("DST_ITEMUPGRADE_NOTIFY_CAN_INSERT_ONLY_UPGRADEBLE_ITEM");
 					return false;
 				}
 
-				SetUpgradeItem( pItem );
+				SetUpgradeItem(pItem);
 				SetState(STATE_UPGRADE_READY);
 			}
-			else 
+			else
 			{
 				if (m_pUpgradeItem == NULL)
 				{
@@ -468,72 +479,72 @@ bool CItemChangeBattleAttributeGui::SetItemSlot( RwUInt32 hSerialID, RwUInt32 eS
 					return false;
 				}
 
-				if( !IsValidOfferItem( pItemAttr ) )
+				if (!IsValidOfferItem(pItemAttr))
 				{
-					GetAlarmManager()->AlarmMessage( "DST_ITEMPROPERTY_NOTIFY_TRANSITEM_NEED_LEVEL_ERR" );
+					GetAlarmManager()->AlarmMessage("DST_ITEMPROPERTY_NOTIFY_TRANSITEM_NEED_LEVEL_ERR");
 					return false;
 				}
 
 
 				DeleteOfferItem(true);
 
-				SetOfferItem( uiDestSlotIdx, pItem );
-			}			
+				SetOfferItem(uiDestSlotIdx, pItem);
+			}
 		}
-		else if( m_eState == STATE_UPGRADE_READY)
+		else if (m_eState == STATE_UPGRADE_READY)
 		{
-			if( uiDestSlotIdx == SLOT_ITEM )
+			if (uiDestSlotIdx == SLOT_ITEM)
 			{
-				if( IsUpgradableItem( pItemAttr ) )
+				if (IsUpgradableItem(pItemAttr))
 				{
-					GetAlarmManager()->AlarmMessage( "DST_ITEMUPGRADE_NOTIFY_CANNOT_INSERT_DUPLEX" );
+					GetAlarmManager()->AlarmMessage("DST_ITEMUPGRADE_NOTIFY_CANNOT_INSERT_DUPLEX");
 					return false;
 				}
 				else
 				{
-					GetAlarmManager()->AlarmMessage( "DST_ITEMUPGRADE_NOTIFY_CAN_INSERT_ONLY_UPGRADEBLE_ITEM" );
+					GetAlarmManager()->AlarmMessage("DST_ITEMUPGRADE_NOTIFY_CAN_INSERT_ONLY_UPGRADEBLE_ITEM");
 					return false;
 				}
 			}
 			else
 			{
-				if( !IsValidOfferItem( pItemAttr ) )
+				if (!IsValidOfferItem(pItemAttr))
 				{
-					GetAlarmManager()->AlarmMessage( "DST_ITEMPROPERTY_NOTIFY_TRANSITEM_NEED_LEVEL_ERR" );
+					GetAlarmManager()->AlarmMessage("DST_ITEMPROPERTY_NOTIFY_TRANSITEM_NEED_LEVEL_ERR");
 					return false;
 				}
 
 				DeleteOfferItem(true);
 
-				SetOfferItem( uiDestSlotIdx, pItem );		
-			}				
+				SetOfferItem(uiDestSlotIdx, pItem);
+			}
 		}
 		else // Upgrade Ready
 		{
-			if( uiDestSlotIdx == SLOT_ITEM )
+			if (uiDestSlotIdx == SLOT_ITEM)
 			{
-				GetAlarmManager()->AlarmMessage( "DST_ITEMUPGRADE_NOTIFY_CANNOT_INSERT_DUPLEX" );
+				GetAlarmManager()->AlarmMessage("DST_ITEMUPGRADE_NOTIFY_CANNOT_INSERT_DUPLEX");
 			}
 			else
 			{
-				GetAlarmManager()->AlarmMessage( "DST_ITEMUPGRADE_NOTIFY_CANNOT_INSERT_HOIPOISTONE" );
+				GetAlarmManager()->AlarmMessage("DST_ITEMUPGRADE_NOTIFY_CANNOT_INSERT_HOIPOISTONE");
 			}
 
 			return false;
-		}	
+		}
 
-		CDboEventGenerator::DialogEvent( DIALOGEVENT_BEGIN_UPGRADE_ITEM_IN_BAG, PLACE_ITEMUPGRADE, PLACE_BAG, pItem->GetParentItemSlotIdx(), pItem->GetItemSlotIdx() );
+		CDboEventGenerator::DialogEvent(DIALOGEVENT_BEGIN_UPGRADE_ITEM_IN_BAG, PLACE_ITEMUPGRADE, PLACE_BAG, pItem->GetParentItemSlotIdx(), pItem->GetItemSlotIdx());
 	}
 	else
 	{
 		return false;
-	}	
+	}
 
 	// 
 	UpdateSlotIcon();
 
-	// ¾ÆÀÌÄÜ ¹«ºê ¿Ï·á
-	if( bNeedToIconMoveEnd )
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½
+	if (bNeedToIconMoveEnd)
 		GetIconMoveManager()->IconMoveEnd();
 
 	return true;
@@ -541,46 +552,48 @@ bool CItemChangeBattleAttributeGui::SetItemSlot( RwUInt32 hSerialID, RwUInt32 eS
 
 VOID CItemChangeBattleAttributeGui::UpdateSlotIcon(VOID)
 {
-	// Info Wnd º¯°æ
-	if( m_nMouseOnIdx >= 0 && GetInfoWndManager()->GetRequestGui() == DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE )
+	// Info Wnd ï¿½ï¿½ï¿½ï¿½
+	if (m_nMouseOnIdx >= 0 && GetInfoWndManager()->GetRequestGui() == DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE)
 	{
-		ShowInfoWnd( TRUE, m_nMouseOnIdx );					
+		ShowInfoWnd(TRUE, m_nMouseOnIdx);
 	}
 
-	// UpgradeReady»óÅÂ½Ã ½ºÄ«¿ìÅÍ ÆÄÃ÷ °ü·ÃÇØ¼­ ¹Ù²î¾úÀ¸¸é ´Ù½Ã ¼¼ÆÃ
-	if( m_eState == STATE_UPGRADE_READY )
+	// UpgradeReadyï¿½ï¿½ï¿½Â½ï¿½ ï¿½ï¿½Ä«ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½Ù²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	if (m_eState == STATE_UPGRADE_READY)
 	{
-		SetState( STATE_UPGRADE_READY );
+		SetState(STATE_UPGRADE_READY);
 	}
 }
 
-VOID CItemChangeBattleAttributeGui::SetUpgradeItem( CNtlSobItem* pUpgradeItem )
+// ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½icon
+VOID CItemChangeBattleAttributeGui::SetUpgradeItem(CNtlSobItem* pUpgradeItem)
 {
-	if( !pUpgradeItem )
+	if (!pUpgradeItem)
 	{
-		NTL_ASSERTFAIL( "CItemChangeBattleAttributeGui::SetUpgrade : Slot Fail or Invalid Icon");
+		NTL_ASSERTFAIL("CItemChangeBattleAttributeGui::SetUpgrade : Slot Fail or Invalid Icon");
 		return;
 	}
 
 	m_pUpgradeItem = pUpgradeItem;
-	m_surSlot[SLOT_ITEM].SetTexture( (gui::CTexture*)pUpgradeItem->GetIcon()->GetImage() );	
-
-	SetAttributeSlotEffect( SLOT_ITEM, TRUE );
+	m_surSlot[SLOT_ITEM].SetTexture((gui::CTexture*)pUpgradeItem->GetIcon()->GetImage());
+	SetAttributeSlotEffect(SLOT_ITEM, TRUE);
+	UpdateCurrentBattleAttribute();
 }
 
-VOID CItemChangeBattleAttributeGui::SetOfferItem( RwInt32 nSlotIdx, CNtlSobItem* pOfferItem )
+
+VOID CItemChangeBattleAttributeGui::SetOfferItem(RwInt32 nSlotIdx, CNtlSobItem* pOfferItem)
 {
-	if( !pOfferItem || ! IsValidIdx( nSlotIdx ) )
+	if (!pOfferItem || !IsValidIdx(nSlotIdx))
 	{
-		NTL_ASSERTFAIL( "CItemChangeBattleAttributeGui::SetOfferItem : Slot Fail or Invalid Icon");
+		NTL_ASSERTFAIL("CItemChangeBattleAttributeGui::SetOfferItem : Slot Fail or Invalid Icon");
 		return;
 	}
 
-	// ¾ÆÀÌÅÛ ¾÷±×·¹ÀÌµå ³»ºÎ¿¡¼­ ¿òÁ÷ÀÏ¶§ ÀÌÀü ÀÌÆåÆ®¸¦ Áö¿î´Ù. DeleteHoipoiStoneÀº ¾÷±×·¹ÀÌµå Ã¢¿¡¼­ »ç¶óÁú¶§¸¸ È£ÃâµÈ´Ù. 
-	if(m_pOfferItem)
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½. DeleteHoipoiStoneï¿½ï¿½ ï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½ Ã¢ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½È´ï¿½. 
+	if (m_pOfferItem)
 	{
 		m_surSlot[nSlotIdx].UnsetTexture();
-		SetAttributeSlotEffect(m_nOfferItemBattleSlotIdx, FALSE );
+		SetAttributeSlotEffect(m_nOfferItemBattleSlotIdx, FALSE);
 	}
 
 	m_pOfferItem = pOfferItem;
@@ -589,11 +602,11 @@ VOID CItemChangeBattleAttributeGui::SetOfferItem( RwInt32 nSlotIdx, CNtlSobItem*
 	m_uiOfferItemSlotIdx = m_pOfferItem->GetItemSlotIdx();
 
 	m_nOfferItemBattleSlotIdx = nSlotIdx;
-	m_surSlot[nSlotIdx].SetTexture( (gui::CTexture*)pOfferItem->GetIcon()->GetImage() );
+	m_surSlot[nSlotIdx].SetTexture((gui::CTexture*)pOfferItem->GetIcon()->GetImage());
 
-	SetAttributeSlotEffect( nSlotIdx, TRUE );	
+	SetAttributeSlotEffect(nSlotIdx, TRUE);
 
-	Logic_PlayGUISound( GSD_SYSTEM_ITEM_LIGHT_ON );
+	Logic_PlayGUISound(GSD_SYSTEM_ITEM_LIGHT_ON);
 }
 
 VOID CItemChangeBattleAttributeGui::DeleteUpgradeItem(VOID)
@@ -605,6 +618,7 @@ VOID CItemChangeBattleAttributeGui::DeleteUpgradeItem(VOID)
 
 		m_surSlot[SLOT_ITEM].SetTexture((gui::CTexture*)NULL);
 		m_pUpgradeItem = NULL;
+		m_byUpgradeItemBattleAttribute = BATTLE_ATTRIBUTE_NONE;
 
 		SetAttributeSlotEffect(SLOT_ITEM, FALSE);
 	}
@@ -617,23 +631,23 @@ VOID CItemChangeBattleAttributeGui::DeleteUpgradeItem(VOID)
 
 VOID CItemChangeBattleAttributeGui::DeleteOfferItem(bool bReplace)
 {
-	if(m_uiOfferItemParentSlotIdx != INVALID_INDEX)
+	if (m_uiOfferItemParentSlotIdx != INVALID_INDEX)
 	{
-		CDboEventGenerator::DialogEvent( DIALOGEVENT_END_UPGRADE_ITEM_IN_BAG, PLACE_ITEMUPGRADE, PLACE_BAG, 
+		CDboEventGenerator::DialogEvent(DIALOGEVENT_END_UPGRADE_ITEM_IN_BAG, PLACE_ITEMUPGRADE, PLACE_BAG,
 			m_uiOfferItemParentSlotIdx, m_uiOfferItemSlotIdx);
 
 		m_pOfferItem = NULL;
 		m_uiOfferItemParentSlotIdx = INVALID_INDEX;
 		m_uiOfferItemSlotIdx = INVALID_INDEX;
-	
-		SetAttributeSlotEffect( m_nOfferItemBattleSlotIdx, FALSE );
-		m_surSlot[m_nOfferItemBattleSlotIdx].SetTexture( (gui::CTexture*)NULL );
+
+		SetAttributeSlotEffect(m_nOfferItemBattleSlotIdx, FALSE);
+		m_surSlot[m_nOfferItemBattleSlotIdx].SetTexture((gui::CTexture*)NULL);
 		m_nOfferItemBattleSlotIdx = -1;
 
 		// Info
 		if (m_pUpgradeItem && bReplace == false)
 		{
-			const WCHAR* pInfo = GetDisplayStringManager()->GetString("DST_ITEMUPGRADE_MSG_MAXLEVEL_ITEM_IN");
+			const WCHAR* pInfo = GetDisplayStringManager()->GetString("DST_ITEMUPGRADE_MSG_MINLEVEL_ITEM_IN");
 			m_phtmlInfoText->SetHtmlFromMemory(pInfo, wcslen(pInfo));
 		}
 	}
@@ -642,18 +656,18 @@ VOID CItemChangeBattleAttributeGui::DeleteOfferItem(bool bReplace)
 // peessiupgrade : If it disappears, it should be received and processed.
 VOID CItemChangeBattleAttributeGui::SetResult(WORD wResultcode, RwUInt8 byBattleAttribute)
 {
-	NTL_ASSERT( m_pUpgradeItem, "CItemChangeBattleAttributeGui::HandleEvents : UpgradeItem Must be Present!" );
+	NTL_ASSERT(m_pUpgradeItem, "CItemChangeBattleAttributeGui::HandleEvents : UpgradeItem Must be Present!");
 
-	// execption.. --;; ¿¡·¯¸Þ½ÃÁö´Â ÆÐÅ¶ÇÚµé·¯¿¡¼­ Ã³¸®µÈ´Ù.
-	if(wResultcode != GAME_SUCCESS )
+	// execption.. --;; ï¿½ï¿½ï¿½ï¿½ï¿½Þ½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¶ï¿½Úµé·¯ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½È´ï¿½.
+	if (wResultcode != GAME_SUCCESS)
 	{
 		SetState(STATE_UPGRADE_READY);
 		return;
 	}
 
+	CNtlSobItemAttr* pUpgradeItemAttr = reinterpret_cast<CNtlSobItemAttr*>(m_pUpgradeItem->GetSobAttr());
 
-
-	if (byBattleAttribute == BATTLE_ATTRIBUTE_NONE ||	// check if fail without offer item
+	if (byBattleAttribute == m_byUpgradeItemBattleAttribute ||	// check if fail without offer item
 		(m_uiOfferItemParentSlotIdx != INVALID_INDEX && byBattleAttribute != GetAttributeFromSlot()))	// check if fail when we offer item
 	{
 		m_pflsResult->Load(ITEMUPGRADEGUI_FAIL_FLASHFILE);
@@ -661,134 +675,136 @@ VOID CItemChangeBattleAttributeGui::SetResult(WORD wResultcode, RwUInt8 byBattle
 	}
 	else
 	{
-		m_pflsResult->Load( ITEMUPGRADEGUI_SUCCESS_FLASHFILE );
-		m_pflsResult->PlayMovie( TRUE ); 
+		m_pflsResult->Load(ITEMUPGRADEGUI_SUCCESS_FLASHFILE);
+		m_pflsResult->PlayMovie(TRUE);
 	}
 
 	// remove the offer item
 	DeleteOfferItem();
 
-	SetState( STATE_RESULT );
+	SetState(STATE_RESULT);
+
+	UpdateCurrentBattleAttribute();
 }
 
-VOID CItemChangeBattleAttributeGui::SetState( STATE eState )
+VOID CItemChangeBattleAttributeGui::SetState(STATE eState)
 {
-	m_pbtnExit->ClickEnable( TRUE );
-	m_pbtnCompound->ClickEnable( FALSE );
+	m_pbtnExit->ClickEnable(TRUE);
+	m_pbtnCompound->ClickEnable(FALSE);
 
-	DisableSlot( FALSE );
+	DisableSlot(FALSE);
 
 	const WCHAR* pInfo;
 
-	switch( eState )
+	switch (eState)
 	{
-		case STATE_NONE:
+	case STATE_NONE:
+	{
+		// Info
+		pInfo = GetDisplayStringManager()->GetString("DST_ITEMUPGRADE_MSG_SLOT_IS_EMPTY");
+		m_phtmlInfoText->SetHtmlFromMemory(pInfo, wcslen(pInfo));
+
+		if (GetIconMoveManager()->IsActive())
+			ShowIconDestination(TRUE);
+
+		//if( m_BackFocus.m_eSlotEffect != stSLOTEFFECT::SLOT_EFFECT_NONE )
+		m_BackFocus.SetState(stSLOTEFFECT::SLOT_EFFECT_ON);
+	}
+	break;
+	case STATE_UPGRADE_READY:
+	{
+		// Info
+		if (m_pOfferItem == NULL)
 		{
-			// Info
-			pInfo = GetDisplayStringManager()->GetString( "DST_ITEMUPGRADE_MSG_SLOT_IS_EMPTY" );
-			m_phtmlInfoText->SetHtmlFromMemory( pInfo, wcslen( pInfo ) );
-
-			if( GetIconMoveManager()->IsActive() )
-				ShowIconDestination( TRUE );			
-
-			if( m_BackFocus.m_eSlotEffect != stSLOTEFFECT::SLOT_EFFECT_NONE )
-				m_BackFocus.SetState( stSLOTEFFECT::SLOT_EFFECT_OFF );
+			pInfo = GetDisplayStringManager()->GetString("DST_ITEMUPGRADE_MSG_MINLEVEL_ITEM_IN");
+			m_phtmlInfoText->SetHtmlFromMemory(pInfo, wcslen(pInfo));
 		}
-		break;
-		case STATE_UPGRADE_READY:
+		else
 		{
-			// Info
-			if( m_pOfferItem == NULL )
-			{
-				pInfo = GetDisplayStringManager()->GetString( "DST_ITEMUPGRADE_MSG_MAXLEVEL_ITEM_IN" );
-				m_phtmlInfoText->SetHtmlFromMemory( pInfo, wcslen( pInfo ) );			
-			}
-			else
-			{
-				pInfo = GetDisplayStringManager()->GetString( "DST_ITEMUPGRADE_MSG_BLACK_HOIPOISTONE_IN" );
-				m_phtmlInfoText->SetHtmlFromMemory( pInfo, wcslen( pInfo ) );			
-			}
-
-			// enable change attribute Button
-			m_pbtnCompound->ClickEnable(TRUE);
-
-			if( m_BackFocus.m_eSlotEffect != stSLOTEFFECT::SLOT_EFFECT_NONE )
-				m_BackFocus.SetState( stSLOTEFFECT::SLOT_EFFECT_ON);
-		}		
-		break;
-		case TATE_UPGRADE_CONFIRM:
-		{
-			DisableSlot(TRUE);
-
-			CNtlSobItemAttr* pSobItemAttr = reinterpret_cast<CNtlSobItemAttr*>(m_pUpgradeItem->GetSobAttr());
-			
-			DWORD dwPrice = Dbo_GetChargeItemBattleAttributeChange(pSobItemAttr->GetRank(), pSobItemAttr->GetItemTbl()->byNeed_Min_Level);
-
-			if (m_pOfferItem)
-			{
-				int nPercent = 50;
-				GetAlarmManager()->FormattedAlarmMessage("DST_CHANGE_ITEMBATTLEATTR_TWO_MSG", FALSE, NULL, Logic_FormatZeni(dwPrice), nPercent);
-			}
-			else
-			{
-				int nPercent = 20;
-				GetAlarmManager()->FormattedAlarmMessage("DST_CHANGE_ITEMBATTLEATTR_ONE_MSG", FALSE, NULL, Logic_FormatZeni(dwPrice), nPercent);
-			}
+			pInfo = GetDisplayStringManager()->GetString("DST_ITEMUPGRADE_MSG_BLACK_HOIPOISTONE_IN");
+			m_phtmlInfoText->SetHtmlFromMemory(pInfo, wcslen(pInfo));
 		}
-		break;
-		case STATE_UPGRADE_PROCESS:
-		{
-			DisableSlot(TRUE);
 
-			m_pflsUpgradeEffect->Load(ITEMUPGRADEGUI_PROCESS_FLASHFILE);
+		// enable change attribute Button
+		m_pbtnCompound->ClickEnable(TRUE);
 
-			m_pflsUpgradeEffect->RestartMovie();
-			m_pflsUpgradeEffect->Show(TRUE);
-		}
-		break;
-		case STATE_PACKETWAIT:
-		{
-			DisableSlot( TRUE );
+		//if( m_BackFocus.m_eSlotEffect != stSLOTEFFECT::SLOT_EFFECT_NONE )
+		m_BackFocus.SetState(stSLOTEFFECT::SLOT_EFFECT_ON);
+	}
+	break;
+	case TATE_UPGRADE_CONFIRM:
+	{
+		DisableSlot(TRUE);
 
-			// Exit button disabled !!!
-			m_pbtnExit->ClickEnable( FALSE );
-		}
-		break;
-		case STATE_RESULT:
+		CNtlSobItemAttr* pSobItemAttr = reinterpret_cast<CNtlSobItemAttr*>(m_pUpgradeItem->GetSobAttr());
+
+		DWORD dwPrice = Dbo_GetChargeItemBattleAttributeChange(pSobItemAttr->GetRank(), pSobItemAttr->GetItemTbl()->byNeed_Min_Level);
+
+		if (m_pOfferItem)
 		{
-			DisableSlot( TRUE );
-			m_pdlgResult->Show( true );			
+			int nPercent = 70;
+			GetAlarmManager()->FormattedAlarmMessage("DST_CHANGE_ITEMBATTLEATTR_TWO_MSG", FALSE, NULL, Logic_FormatZeni(dwPrice), nPercent);
 		}
-		break;
+		else
+		{
+			int nPercent = 50;
+			GetAlarmManager()->FormattedAlarmMessage("DST_CHANGE_ITEMBATTLEATTR_ONE_MSG", FALSE, NULL, Logic_FormatZeni(dwPrice), nPercent);
+		}
+	}
+	break;
+	case STATE_UPGRADE_PROCESS:
+	{
+		DisableSlot(TRUE);
+
+		m_pflsUpgradeEffect->Load(ITEMUPGRADEGUI_PROCESS_FLASHFILE);
+
+		m_pflsUpgradeEffect->RestartMovie();
+		m_pflsUpgradeEffect->Show(TRUE);
+	}
+	break;
+	case STATE_PACKETWAIT:
+	{
+		DisableSlot(TRUE);
+
+		// Exit button disabled !!!
+		m_pbtnExit->ClickEnable(FALSE);
+	}
+	break;
+	case STATE_RESULT:
+	{
+		DisableSlot(TRUE);
+		m_pdlgResult->Show(true);
+	}
+	break;
 	}
 
 	m_eState = eState;
 }
 
-// peessiupgrade : Info window check
-VOID CItemChangeBattleAttributeGui::ShowInfoWnd( RwBool bShow, RwInt32 nMouseOnIdx /* = -1  */ )
+// peessiupgrade : Info window check ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½Ú¼ï¿½ï¿½
+VOID CItemChangeBattleAttributeGui::ShowInfoWnd(RwBool bShow, RwInt32 nMouseOnIdx /* = -1  */)
 {
-	if(nMouseOnIdx >= NUM_SLOT)
+	if (nMouseOnIdx >= NUM_SLOT)
 		return;
 
-	if( bShow )
+	if (bShow)
 	{
 		CRectangle rtScreen = m_pThis->GetScreenRect();
 
-		if( nMouseOnIdx == SLOT_ITEM)
+		if (nMouseOnIdx == SLOT_ITEM)
 		{
-			if( m_pUpgradeItem )
+			if (m_pUpgradeItem)
 			{
-				GetInfoWndManager()->ShowInfoWindow( TRUE, CInfoWndManager::INFOWND_ITEM,
+				GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_ITEM,
 					m_rtSlot[nMouseOnIdx].left + rtScreen.left, m_rtSlot[nMouseOnIdx].top + rtScreen.top,
-					(VOID*)GetSlotObject( nMouseOnIdx ), DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE );				
+					(VOID*)GetSlotObject(nMouseOnIdx), DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE);
 			}
 			else
 			{
-				GetInfoWndManager()->ShowInfoWindow( TRUE, CInfoWndManager::INFOWND_JUST_WTEXT,
+				GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_JUST_WTEXT,
 					m_rtSlot[nMouseOnIdx].left + rtScreen.left, m_rtSlot[nMouseOnIdx].top + rtScreen.top,
-					(VOID*)GetDisplayStringManager()->GetString( "DST_ITEMUPGRADE_INFO_ITEM_SLOT" ), DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE );
-			}			
+					(VOID*)GetDisplayStringManager()->GetString("DST_ITEMUPGRADE_INFO_ITEM_SLOT"), DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE);
+			}
 		}
 		else
 		{
@@ -802,28 +818,28 @@ VOID CItemChangeBattleAttributeGui::ShowInfoWnd( RwBool bShow, RwInt32 nMouseOnI
 				}
 				else
 				{
+					// ï¿½Ë´ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ß¸ï¿½Ä§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 					stINFOWND_BATTLEATTR sBattleAttr;
 					sBattleAttr.eBattleAttrInfoType = stINFOWND_BATTLEATTR::TYPE_ATTR_UPGRADE;
 
 					switch (nMouseOnIdx)
 					{
-						case SLOT_HONEST: sBattleAttr.bySourceWeaponAttr = BATTLE_ATTRIBUTE_HONEST;	break;
-						case SLOT_STRANGE: sBattleAttr.bySourceWeaponAttr = BATTLE_ATTRIBUTE_STRANGE; break;
-						case SLOT_WILD: sBattleAttr.bySourceWeaponAttr = BATTLE_ATTRIBUTE_WILD; break;
-						case SLOT_ELEGANT: sBattleAttr.bySourceWeaponAttr = BATTLE_ATTRIBUTE_ELEGANCE; break;
-						case SLOT_FUNNY: sBattleAttr.bySourceWeaponAttr = BATTLE_ATTRIBUTE_FUNNY; break;
-						default: return;
+					case SLOT_HONEST: sBattleAttr.bySourceWeaponAttr = BATTLE_ATTRIBUTE_HONEST;	sBattleAttr.bySourceArmorAttr = BATTLE_ATTRIBUTE_HONEST; break;
+					case SLOT_STRANGE: sBattleAttr.bySourceWeaponAttr = BATTLE_ATTRIBUTE_STRANGE; sBattleAttr.bySourceArmorAttr = BATTLE_ATTRIBUTE_STRANGE; break;
+					case SLOT_WILD: sBattleAttr.bySourceWeaponAttr = BATTLE_ATTRIBUTE_WILD; sBattleAttr.bySourceArmorAttr = BATTLE_ATTRIBUTE_WILD; break;
+					case SLOT_ELEGANT: sBattleAttr.bySourceWeaponAttr = BATTLE_ATTRIBUTE_ELEGANCE; sBattleAttr.bySourceArmorAttr = BATTLE_ATTRIBUTE_ELEGANCE; break;
+					case SLOT_FUNNY: sBattleAttr.bySourceWeaponAttr = BATTLE_ATTRIBUTE_FUNNY; sBattleAttr.bySourceArmorAttr = BATTLE_ATTRIBUTE_FUNNY; break;
+					default: return;
 					}
 
 					GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_BATTLEATTRIBUTE, m_rtSlot[nMouseOnIdx].left + rtScreen.left, m_rtSlot[nMouseOnIdx].top + rtScreen.top, (VOID*)&sBattleAttr, DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE);
-
 				}
 			}
 		}
 	}
 	else
 	{
-		GetInfoWndManager()->ShowInfoWindow( FALSE );		
+		GetInfoWndManager()->ShowInfoWindow(FALSE);
 	}
 }
 
@@ -835,6 +851,8 @@ void CItemChangeBattleAttributeGui::SendItemChangeBattleAttributePacket()
 	RwUInt8 byAdditialItemPlace = INVALID_BYTE;
 	RwUInt8 byAdditialItemPos = INVALID_BYTE;
 	RwUInt8 byAdditionalAttribute = INVALID_BYTE;
+
+	UpdateCurrentBattleAttribute();
 
 	if (m_pOfferItem)
 	{
@@ -849,179 +867,190 @@ void CItemChangeBattleAttributeGui::SendItemChangeBattleAttributePacket()
 	SetState(STATE_PACKETWAIT);
 }
 
-VOID CItemChangeBattleAttributeGui::ShowIconDestination( RwBool isPick )
+void CItemChangeBattleAttributeGui::UpdateCurrentBattleAttribute()
 {
-	if( isPick )
+	if (m_pUpgradeItem)
 	{
-		if( GetIconMoveManager()->GetSrcPlace() == PLACE_BAG )
+		CNtlSobItemAttr* pUpgradeItemAttr = reinterpret_cast<CNtlSobItemAttr*>(m_pUpgradeItem->GetSobAttr());
+		m_byUpgradeItemBattleAttribute = pUpgradeItemAttr->GetBattleAttribute();
+	}
+}
+
+VOID CItemChangeBattleAttributeGui::ShowIconDestination(RwBool isPick)
+{
+	if (isPick)
+	{
+		if (GetIconMoveManager()->GetSrcPlace() == PLACE_BAG)
 		{
-			if( m_eState == STATE_UPGRADE_PROCESS || m_eState == STATE_PACKETWAIT || m_eState == STATE_RESULT )
+			if (m_eState == STATE_UPGRADE_PROCESS || m_eState == STATE_PACKETWAIT || m_eState == STATE_RESULT)
 				return;
 			else
 			{
-				CNtlSobItem* pSobItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( GetIconMoveManager()->GetSrcSerial() ) );
-				NTL_ASSERT( pSobItem, "CItemChangeBattleAttributeGui::ShowIconDestination : pSobItem is must be present!" );			
+				CNtlSobItem* pSobItem = reinterpret_cast<CNtlSobItem*>(GetNtlSobManager()->GetSobObject(GetIconMoveManager()->GetSrcSerial()));
+				NTL_ASSERT(pSobItem, "CItemChangeBattleAttributeGui::ShowIconDestination : pSobItem is must be present!");
 
-				CNtlSobItemAttr* pSobItemAttr = reinterpret_cast<CNtlSobItemAttr*>( pSobItem->GetSobAttr() );
-				NTL_ASSERT( pSobItemAttr, "CItemChangeBattleAttributeGui::ShowIconDestination : pSobItemAttr is must be present!" );			
+				CNtlSobItemAttr* pSobItemAttr = reinterpret_cast<CNtlSobItemAttr*>(pSobItem->GetSobAttr());
+				NTL_ASSERT(pSobItemAttr, "CItemChangeBattleAttributeGui::ShowIconDestination : pSobItemAttr is must be present!");
 
-				if( m_pUpgradeItem == NULL && IsUpgradableItem(pSobItemAttr))
+				if (m_pUpgradeItem == NULL && IsUpgradableItem(pSobItemAttr))
 				{
 					m_anFocusEffect[SLOT_ITEM] |= SLOT_FOCUS_CAN_MOVE;
 				}
-				else if( IsValidOfferItem( pSobItemAttr ) )
+				else if (IsValidOfferItem(pSobItemAttr))
 				{
-					for( RwInt32 i = 0 ; i < NUM_SLOTEFFECT ; ++i )
+					for (RwInt32 i = 0; i < NUM_SLOTEFFECT; ++i)
 					{
 						m_anFocusEffect[i] = m_anFocusEffect[i] | SLOT_FOCUS_CAN_MOVE;
-					}	
-				}				
+					}
+				}
 			}
 		}
-		else if( GetIconMoveManager()->GetSrcPlace() == PLACE_ITEMUPGRADE )
+		else if (GetIconMoveManager()->GetSrcPlace() == PLACE_ITEMUPGRADE)
 		{
-			if( m_eState == STATE_UPGRADE_PROCESS || m_eState == STATE_PACKETWAIT || m_eState == STATE_RESULT )
+			if (m_eState == STATE_UPGRADE_PROCESS || m_eState == STATE_PACKETWAIT || m_eState == STATE_RESULT)
 				return;
 			else
 			{
-				// Item Àº ÀåÂøµÈÈÄ¿¡´Â PickupÀÌ µÇÁö ¾Ê´Â´Ù.
-				for( RwInt32 i = 0 ; i < NUM_SLOTEFFECT ; ++i )
+				// Item ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½ Pickupï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
+				for (RwInt32 i = 0; i < NUM_SLOTEFFECT; ++i)
 				{
 					m_anFocusEffect[i] = m_anFocusEffect[i] | SLOT_FOCUS_CAN_MOVE;
 				}
-			}			
+			}
 		}
 	}
 	else
 	{
-		for( RwInt32 i = 0 ; i < NUM_SLOT ; ++i )
+		for (RwInt32 i = 0; i < NUM_SLOT; ++i)
 		{
 			m_anFocusEffect[i] = m_anFocusEffect[i] & ~SLOT_FOCUS_CAN_MOVE;
 		}
 	}
 }
 
-VOID CItemChangeBattleAttributeGui::DisableSlot( RwBool bDisable )
+VOID CItemChangeBattleAttributeGui::DisableSlot(RwBool bDisable)
 {
-	for( RwInt32 i = 0 ; i < NUM_SLOT ; ++i )
+	for (RwInt32 i = 0; i < NUM_SLOT; ++i)
 	{
-		m_asurDisableSlot[i].Show( bDisable );
+		m_asurDisableSlot[i].Show(bDisable);
 	}
 }
 
-VOID CItemChangeBattleAttributeGui::ClickEffect( RwBool bPush, RwInt32 nSlotIdx /* = -1  */ )
+VOID CItemChangeBattleAttributeGui::ClickEffect(RwBool bPush, RwInt32 nSlotIdx /* = -1  */)
 {
 	CRectangle rtScreen = m_pThis->GetScreenRect();
 
-	if( bPush )
+	if (bPush)
 	{
-		m_surSlot[nSlotIdx].SetRect( rtScreen.left + m_rtSlot[nSlotIdx].left + ICONPUSH_SIZEDIFF, rtScreen.top + m_rtSlot[nSlotIdx].top + ICONPUSH_SIZEDIFF,
-			rtScreen.left + m_rtSlot[nSlotIdx].right - ICONPUSH_SIZEDIFF, rtScreen.top + m_rtSlot[nSlotIdx].bottom - ICONPUSH_SIZEDIFF );
+		m_surSlot[nSlotIdx].SetRect(rtScreen.left + m_rtSlot[nSlotIdx].left + ICONPUSH_SIZEDIFF, rtScreen.top + m_rtSlot[nSlotIdx].top + ICONPUSH_SIZEDIFF,
+			rtScreen.left + m_rtSlot[nSlotIdx].right - ICONPUSH_SIZEDIFF, rtScreen.top + m_rtSlot[nSlotIdx].bottom - ICONPUSH_SIZEDIFF);
 	}
-	else if( m_nPushDownIndex >= 0 )
+	else if (m_nPushDownIndex >= 0)
 	{
-		m_surSlot[m_nPushDownIndex].SetRect( rtScreen.left + m_rtSlot[m_nPushDownIndex].left, rtScreen.top + m_rtSlot[m_nPushDownIndex].top,
-			rtScreen.left + m_rtSlot[m_nPushDownIndex].right, rtScreen.top + m_rtSlot[m_nPushDownIndex].bottom );
-	}	
+		m_surSlot[m_nPushDownIndex].SetRect(rtScreen.left + m_rtSlot[m_nPushDownIndex].left, rtScreen.top + m_rtSlot[m_nPushDownIndex].top,
+			rtScreen.left + m_rtSlot[m_nPushDownIndex].right, rtScreen.top + m_rtSlot[m_nPushDownIndex].bottom);
+	}
 
 	m_nPushDownIndex = nSlotIdx;
 }
 
-VOID CItemChangeBattleAttributeGui::SetAttributeSlotEffect( RwInt32 nSlotIdx, RwBool bInSlot )
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô²Ûµï¿½Ð§ï¿½ï¿½
+VOID CItemChangeBattleAttributeGui::SetAttributeSlotEffect(RwInt32 nSlotIdx, RwBool bInSlot)
 {
-	if(nSlotIdx >= NUM_SLOT)
+	if (nSlotIdx >= NUM_SLOT)
 		return;
 
-	if( bInSlot )
+	if (bInSlot)
 	{
-		if( nSlotIdx == SLOT_ITEM )
+		if (nSlotIdx == SLOT_ITEM) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½
 		{
-			if( !m_pOfferItem )
+			if (!m_pOfferItem)
 			{
-				m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "ItemChangeBattleAtt.srf", "srfItemEffectNone" ) );
+				m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("ItemChangeBattleAtt.srf", "srfItemEffectNone"));
 			}
 			else
 			{
-				switch( m_nOfferItemBattleSlotIdx )
+				switch (m_nOfferItemBattleSlotIdx)
 				{
-					case SLOT_HONEST: m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "ItemChangeBattleAtt.srf", "srfItemEffectHonest" ) ); break;
-					case SLOT_STRANGE: m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "ItemChangeBattleAtt.srf", "srfItemEffectStrange" ) ); break;
-					case SLOT_WILD: m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "ItemChangeBattleAtt.srf", "srfItemEffectWild" ) ); break;
-					case SLOT_ELEGANT: m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "ItemChangeBattleAtt.srf", "srfItemEffectElegant" ) ); break;
-					case SLOT_FUNNY: m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "ItemChangeBattleAtt.srf", "srfItemEffectFunny" ) ); break;
+				case SLOT_HONEST: m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("ItemChangeBattleAtt.srf", "srfItemEffectHonest")); break;
+				case SLOT_STRANGE: m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("ItemChangeBattleAtt.srf", "srfItemEffectStrange")); break;
+				case SLOT_WILD: m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("ItemChangeBattleAtt.srf", "srfItemEffectWild")); break;
+				case SLOT_ELEGANT: m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("ItemChangeBattleAtt.srf", "srfItemEffectElegant")); break;
+				case SLOT_FUNNY: m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("ItemChangeBattleAtt.srf", "srfItemEffectFunny")); break;
 				}
 			}
 
 			CRectangle rtScreen = m_pThis->GetScreenRect();
-			m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetPosition( rtScreen.left + m_aSlotEffect[SLOT_ITEM].m_rtEffectSlot.left, rtScreen.top + m_aSlotEffect[SLOT_ITEM].m_rtEffectSlot.top );
-			m_aSlotEffect[SLOT_ITEM].SetState( stSLOTEFFECT::SLOT_EFFECT_ON );
+			m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetPosition(rtScreen.left + m_aSlotEffect[SLOT_ITEM].m_rtEffectSlot.left, rtScreen.top + m_aSlotEffect[SLOT_ITEM].m_rtEffectSlot.top);
+			m_aSlotEffect[SLOT_ITEM].SetState(stSLOTEFFECT::SLOT_EFFECT_ON);
 		}
-		else // hoipoi stone slot
+		else // hoipoi stone slot ï¿½ï¿½ï¿½Ê¯Í·ï¿½ï¿½
 		{
-			if( m_pUpgradeItem )
+			if (m_pUpgradeItem)
 			{
-				m_TempItemSlot.m_surSlotEffect.SetSurface( *m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.GetSurface() );
+				m_TempItemSlot.m_surSlotEffect.SetSurface(*m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.GetSurface());
 
-				switch(m_nOfferItemBattleSlotIdx)
+				switch (m_nOfferItemBattleSlotIdx)
 				{
-					case SLOT_HONEST: m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "ItemChangeBattleAtt.srf", "srfItemEffectHonest" ) ); break;
-					case SLOT_STRANGE: m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "ItemChangeBattleAtt.srf", "srfItemEffectStrange" ) ); break;
-					case SLOT_WILD: m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "ItemChangeBattleAtt.srf", "srfItemEffectWild" ) ); break;
-					case SLOT_ELEGANT: m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "ItemChangeBattleAtt.srf", "srfItemEffectElegant" ) ); break;
-					case SLOT_FUNNY: m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "ItemChangeBattleAtt.srf", "srfItemEffectFunny" ) ); break;
+				case SLOT_HONEST: m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("ItemChangeBattleAtt.srf", "srfItemEffectHonest")); break;
+				case SLOT_STRANGE: m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("ItemChangeBattleAtt.srf", "srfItemEffectStrange")); break;
+				case SLOT_WILD: m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("ItemChangeBattleAtt.srf", "srfItemEffectWild")); break;
+				case SLOT_ELEGANT: m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("ItemChangeBattleAtt.srf", "srfItemEffectElegant")); break;
+				case SLOT_FUNNY: m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("ItemChangeBattleAtt.srf", "srfItemEffectFunny")); break;
 				}
 
 				CRectangle rtScreen = m_pThis->GetScreenRect();
-				m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetPosition( rtScreen.left + m_aSlotEffect[SLOT_ITEM].m_rtEffectSlot.left, rtScreen.top + m_aSlotEffect[SLOT_ITEM].m_rtEffectSlot.top );
-				m_aSlotEffect[SLOT_ITEM].SetState( stSLOTEFFECT::SLOT_EFFECT_ON );
+				m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetPosition(rtScreen.left + m_aSlotEffect[SLOT_ITEM].m_rtEffectSlot.left, rtScreen.top + m_aSlotEffect[SLOT_ITEM].m_rtEffectSlot.top);
+				m_aSlotEffect[SLOT_ITEM].SetState(stSLOTEFFECT::SLOT_EFFECT_ON);
 
-				m_TempItemSlot.m_surSlotEffect.SetPosition( rtScreen.left + m_TempItemSlot.m_rtEffectSlot.left, rtScreen.top + m_TempItemSlot.m_rtEffectSlot.top );
-				m_TempItemSlot.SetState( stSLOTEFFECT::SLOT_EFFECT_OFF );
+				m_TempItemSlot.m_surSlotEffect.SetPosition(rtScreen.left + m_TempItemSlot.m_rtEffectSlot.left, rtScreen.top + m_TempItemSlot.m_rtEffectSlot.top);
+				m_TempItemSlot.SetState(stSLOTEFFECT::SLOT_EFFECT_OFF);
 			}
 
-			m_aSlotEffect[nSlotIdx].SetState( stSLOTEFFECT::SLOT_EFFECT_ON );
+			m_aSlotEffect[nSlotIdx].SetState(stSLOTEFFECT::SLOT_EFFECT_ON);
 		}
-	}	
+	}
 	else
 	{
-		if( nSlotIdx == SLOT_ITEM )
+		if (nSlotIdx == SLOT_ITEM)
 		{
-			m_aSlotEffect[SLOT_ITEM].SetState( stSLOTEFFECT::SLOT_EFFECT_OFF );
+			m_aSlotEffect[SLOT_ITEM].SetState(stSLOTEFFECT::SLOT_EFFECT_OFF);
 		}
 		else
 		{
 			// Only when the Hoi Poi Stone has completely disappeared, the original slot is turned to a no-attribute effect.
-			if( m_pUpgradeItem && !m_pOfferItem )
+			if (m_pUpgradeItem && !m_pOfferItem)
 			{
-				m_TempItemSlot.m_surSlotEffect.SetSurface( *m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.GetSurface() );
-				m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "ItemChangeBattleAtt.srf", "srfItemEffectNone" ) );
+				m_TempItemSlot.m_surSlotEffect.SetSurface(*m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.GetSurface());
+				m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("ItemChangeBattleAtt.srf", "srfItemEffectNone"));
 
 				CRectangle rtScreen = m_pThis->GetScreenRect();
-				m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetPosition( rtScreen.left + m_aSlotEffect[SLOT_ITEM].m_rtEffectSlot.left, rtScreen.top + m_aSlotEffect[SLOT_ITEM].m_rtEffectSlot.top );
-				m_aSlotEffect[SLOT_ITEM].SetState( stSLOTEFFECT::SLOT_EFFECT_ON );
+				m_aSlotEffect[SLOT_ITEM].m_surSlotEffect.SetPosition(rtScreen.left + m_aSlotEffect[SLOT_ITEM].m_rtEffectSlot.left, rtScreen.top + m_aSlotEffect[SLOT_ITEM].m_rtEffectSlot.top);
+				m_aSlotEffect[SLOT_ITEM].SetState(stSLOTEFFECT::SLOT_EFFECT_ON);
 
-				m_TempItemSlot.m_surSlotEffect.SetPosition( rtScreen.left + m_TempItemSlot.m_rtEffectSlot.left, rtScreen.top + m_TempItemSlot.m_rtEffectSlot.top );
-				m_TempItemSlot.SetState( stSLOTEFFECT::SLOT_EFFECT_OFF );
+				m_TempItemSlot.m_surSlotEffect.SetPosition(rtScreen.left + m_TempItemSlot.m_rtEffectSlot.left, rtScreen.top + m_TempItemSlot.m_rtEffectSlot.top);
+				m_TempItemSlot.SetState(stSLOTEFFECT::SLOT_EFFECT_OFF);
 			}
 
-			m_aSlotEffect[nSlotIdx].SetState( stSLOTEFFECT::SLOT_EFFECT_OFF );
+			m_aSlotEffect[nSlotIdx].SetState(stSLOTEFFECT::SLOT_EFFECT_OFF);
 		}
 	}
 }
 
-RwBool CItemChangeBattleAttributeGui::IsUpgradableItem( CNtlSobItemAttr* pItemAttr )
+// ï¿½Ð¶Ïµï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ç¿ï¿½ï¿½Ô¸ï¿½Ä§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+RwBool CItemChangeBattleAttributeGui::IsUpgradableItem(CNtlSobItemAttr* pItemAttr)
 {
-	if( pItemAttr->IsNeedToIdentify() )
+	if (pItemAttr->IsNeedToIdentify())
 		return FALSE;
 
 	sITEM_TBLDAT* pData = pItemAttr->GetItemTbl();
 
-	if( !pData )
+	if (!pData)
 		return FALSE;
 
-	if( EQUIP_TYPE_MAIN_WEAPON == pData->byEquip_Type //||
+	if (EQUIP_TYPE_MAIN_WEAPON == pData->byEquip_Type ||
 		/*EQUIP_TYPE_SUB_WEAPON == pData->byEquip_Type ||*/
-		/*EQUIP_TYPE_ARMOR == pData->byEquip_Type*/ )
+		(EQUIP_TYPE_ARMOR == pData->byEquip_Type && pData->byItem_Type == ITEM_TYPE_JACKET))
 	{
 		return TRUE;
 	}
@@ -1029,59 +1058,60 @@ RwBool CItemChangeBattleAttributeGui::IsUpgradableItem( CNtlSobItemAttr* pItemAt
 	return FALSE;
 }
 
-RwBool CItemChangeBattleAttributeGui::IsValidOfferItem( CNtlSobItemAttr* pItemAttr )
+// ï¿½Ð¶ï¿½ï¿½á¹©ï¿½ï¿½×°ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Ð§
+RwBool CItemChangeBattleAttributeGui::IsValidOfferItem(CNtlSobItemAttr* pItemAttr)
 {
 	sITEM_TBLDAT* pData = pItemAttr->GetItemTbl();
 
-	if( !m_pUpgradeItem )
+	if (!m_pUpgradeItem)
 		return TRUE;
 
-	CNtlSobItemAttr* pUpgradeItemAttr = reinterpret_cast<CNtlSobItemAttr*>( m_pUpgradeItem->GetSobAttr() );
+	CNtlSobItemAttr* pUpgradeItemAttr = reinterpret_cast<CNtlSobItemAttr*>(m_pUpgradeItem->GetSobAttr());
 	sITEM_TBLDAT* pItemData = pUpgradeItemAttr->GetItemTbl();
-	NTL_ASSERT( pItemData, "CItemChangeBattleAttributeGui::IsValidOfferItem : Item Must have ItemTable" );
+	NTL_ASSERT(pItemData, "CItemChangeBattleAttributeGui::IsValidOfferItem : Item Must have ItemTable");
 
-	if( pData->byNeed_Min_Level >= pItemData->byNeed_Min_Level && pItemAttr->GetRank() >= pUpgradeItemAttr->GetRank()
-		&& pData->byEquip_Type == pItemData->byEquip_Type && pItemAttr->GetGrade() == 0)
+	if (pData->byNeed_Min_Level >= pItemData->byNeed_Min_Level && pItemAttr->GetRank() >= pUpgradeItemAttr->GetRank()
+		&& pItemAttr->GetGrade() == 0)
 		return TRUE;
 
 	return FALSE;
 }
 
 
-RwBool CItemChangeBattleAttributeGui::IsValidIconPickup( RwInt32 nClickIdx )
+RwBool CItemChangeBattleAttributeGui::IsValidIconPickup(RwInt32 nClickIdx)
 {
-	if( m_eState == STATE_UPGRADE_PROCESS || 
+	if (m_eState == STATE_UPGRADE_PROCESS ||
 		m_eState == STATE_PACKETWAIT ||
-		m_eState == STATE_RESULT )
+		m_eState == STATE_RESULT)
 	{
-		GetAlarmManager()->AlarmMessage( "DST_ITEMUPGRADE_NOTIFY_CANNOT_CONTROL_STATE" );
+		GetAlarmManager()->AlarmMessage("DST_ITEMUPGRADE_NOTIFY_CANNOT_CONTROL_STATE");
 		return FALSE;
 	}
 
-	if( IsEmptySlot( nClickIdx ) )
+	if (IsEmptySlot(nClickIdx))
 	{
 		return FALSE;
 	}
-	else if( IsUpgradeItemSlot( nClickIdx ) )
+	else if (IsUpgradeItemSlot(nClickIdx))
 	{
-		GetAlarmManager()->AlarmMessage( "DST_ITEMUPGRADE_NOTIFY_CANNOT_PICKUP_UPGRADE_ITEM" );
+		GetAlarmManager()->AlarmMessage("DST_ITEMUPGRADE_NOTIFY_CANNOT_PICKUP_UPGRADE_ITEM");
 		return FALSE;
 	}
 
 	return TRUE;
 }
 
-RwBool CItemChangeBattleAttributeGui::IsValidRightBtnProc( RwInt32 nClickIdx )
+RwBool CItemChangeBattleAttributeGui::IsValidRightBtnProc(RwInt32 nClickIdx)
 {
-	if( m_eState == STATE_UPGRADE_PROCESS || 
+	if (m_eState == STATE_UPGRADE_PROCESS ||
 		m_eState == STATE_PACKETWAIT ||
-		m_eState == STATE_RESULT )
+		m_eState == STATE_RESULT)
 	{
-		GetAlarmManager()->AlarmMessage( "DST_ITEMUPGRADE_NOTIFY_CANNOT_CONTROL_STATE" );
+		GetAlarmManager()->AlarmMessage("DST_ITEMUPGRADE_NOTIFY_CANNOT_CONTROL_STATE");
 		return FALSE;
 	}
 
-	if( IsEmptySlot( nClickIdx ) )
+	if (IsEmptySlot(nClickIdx))
 	{
 		return FALSE;
 	}
@@ -1089,40 +1119,40 @@ RwBool CItemChangeBattleAttributeGui::IsValidRightBtnProc( RwInt32 nClickIdx )
 	return TRUE;
 }
 
-RwBool CItemChangeBattleAttributeGui::IsValidIdx( RwInt32 nIdx )
+RwBool CItemChangeBattleAttributeGui::IsValidIdx(RwInt32 nIdx)
 {
-	if( nIdx >= 0 && nIdx < NUM_SLOT )
+	if (nIdx >= 0 && nIdx < NUM_SLOT)
 		return TRUE;
 
 	return FALSE;
 }
 
-RwBool CItemChangeBattleAttributeGui::IsEmptySlot( RwInt32 nSlotIdx )
+RwBool CItemChangeBattleAttributeGui::IsEmptySlot(RwInt32 nSlotIdx)
 {
-	if( nSlotIdx == SLOT_ITEM )
+	if (nSlotIdx == SLOT_ITEM)
 	{
-		if( m_pUpgradeItem )
+		if (m_pUpgradeItem)
 			return FALSE;
 		else
 			return TRUE;
 	}
 	else
 	{
-		if( m_nOfferItemBattleSlotIdx == nSlotIdx )
+		if (m_nOfferItemBattleSlotIdx == nSlotIdx)
 			return FALSE;
-		else 
+		else
 			return TRUE;
-	}	
+	}
 }
 
-RwBool CItemChangeBattleAttributeGui::IsUpgradeItemSlot( RwInt32 nSlotIdx )
+RwBool CItemChangeBattleAttributeGui::IsUpgradeItemSlot(RwInt32 nSlotIdx)
 {
-	return ( SLOT_ITEM == nSlotIdx ) ? TRUE : FALSE ;
+	return (SLOT_ITEM == nSlotIdx) ? TRUE : FALSE;
 }
 
-RwBool CItemChangeBattleAttributeGui::IsOfferItemSlot( RwInt32 nSlotIdx )
+RwBool CItemChangeBattleAttributeGui::IsOfferItemSlot(RwInt32 nSlotIdx)
 {
-	return (m_nOfferItemBattleSlotIdx == nSlotIdx ) ? TRUE : FALSE ;
+	return (m_nOfferItemBattleSlotIdx == nSlotIdx) ? TRUE : FALSE;
 }
 
 BYTE CItemChangeBattleAttributeGui::GetAttributeFromSlot()
@@ -1131,130 +1161,130 @@ BYTE CItemChangeBattleAttributeGui::GetAttributeFromSlot()
 	{
 		switch (m_nOfferItemBattleSlotIdx)
 		{
-			case SLOT_HONEST: return BATTLE_ATTRIBUTE_HONEST;
-			case SLOT_STRANGE: return BATTLE_ATTRIBUTE_STRANGE;
-			case SLOT_WILD: return BATTLE_ATTRIBUTE_WILD;
-			case SLOT_ELEGANT: return BATTLE_ATTRIBUTE_ELEGANCE;
-			case SLOT_FUNNY: return BATTLE_ATTRIBUTE_FUNNY;
+		case SLOT_HONEST: return BATTLE_ATTRIBUTE_HONEST;
+		case SLOT_STRANGE: return BATTLE_ATTRIBUTE_STRANGE;
+		case SLOT_WILD: return BATTLE_ATTRIBUTE_WILD;
+		case SLOT_ELEGANT: return BATTLE_ATTRIBUTE_ELEGANCE;
+		case SLOT_FUNNY: return BATTLE_ATTRIBUTE_FUNNY;
 
-			default: return INVALID_BYTE;
+		default: return INVALID_BYTE;
 		}
 	}
 
 	return INVALID_BYTE;
 }
 
-CNtlSobItem* CItemChangeBattleAttributeGui::GetSlotObject( RwInt32 nSlotIdx )
+CNtlSobItem* CItemChangeBattleAttributeGui::GetSlotObject(RwInt32 nSlotIdx)
 {
-	if( IsUpgradeItemSlot( nSlotIdx ) )
+	if (IsUpgradeItemSlot(nSlotIdx))
 		return m_pUpgradeItem;
-	else if(IsOfferItemSlot( nSlotIdx ) )
+	else if (IsOfferItemSlot(nSlotIdx))
 		return m_pOfferItem;
 
 	return NULL;
 }
 
-VOID CItemChangeBattleAttributeGui::OnMouseDown( const CKey& key )
+VOID CItemChangeBattleAttributeGui::OnMouseDown(const CKey& key)
 {
-	int nClickIdx = GetChildSlotIdx( (int)key.m_fX, (int)key.m_fY );
+	int nClickIdx = GetChildSlotIdx((int)key.m_fX, (int)key.m_fY);
 
-	if( nClickIdx < 0 )
+	if (nClickIdx < 0)
 		return;
 
-	if( !GetIconMoveManager()->IsActive() )
-		ClickEffect( TRUE, nClickIdx );
+	if (!GetIconMoveManager()->IsActive())
+		ClickEffect(TRUE, nClickIdx);
 
-	if( m_asurDisableSlot[nClickIdx].IsShow() )
+	if (m_asurDisableSlot[nClickIdx].IsShow())
 		return;
 
-	if( key.m_nID == UD_LEFT_BUTTON )
+	if (key.m_nID == UD_LEFT_BUTTON)
 	{
-		if( GetIconMoveManager()->IsActive() )
+		if (GetIconMoveManager()->IsActive())
 		{
 			m_nLSelectedSlotIdx = nClickIdx;
 		}
 		else
 		{
-			if( IsValidIconPickup( nClickIdx ) )
-				m_nLSelectedSlotIdx = nClickIdx;			
+			if (IsValidIconPickup(nClickIdx))
+				m_nLSelectedSlotIdx = nClickIdx;
 		}
 	}
-	else if( key.m_nID == UD_RIGHT_BUTTON )
+	else if (key.m_nID == UD_RIGHT_BUTTON)
 	{
-		if( !GetIconMoveManager()->IsActive() )
+		if (!GetIconMoveManager()->IsActive())
 		{
-			if( IsValidRightBtnProc( nClickIdx ) )
+			if (IsValidRightBtnProc(nClickIdx))
 			{
-				if( nClickIdx == SLOT_ITEM )
+				if (nClickIdx == SLOT_ITEM)
 				{
-					if( m_pUpgradeItem )
+					if (m_pUpgradeItem)
 						m_nRSelectedSlotIdx = nClickIdx;
 				}
 				else
 				{
-					if( nClickIdx == m_nOfferItemBattleSlotIdx)
+					if (nClickIdx == m_nOfferItemBattleSlotIdx)
 						m_nRSelectedSlotIdx = nClickIdx;
-				}				
-			}					
+				}
+			}
 		}
 	}
 
 	m_pThis->CaptureMouse();
 
-	if( m_nLSelectedSlotIdx >= 0 && m_nRSelectedSlotIdx >= 0 )
+	if (m_nLSelectedSlotIdx >= 0 && m_nRSelectedSlotIdx >= 0)
 	{
 		m_nLSelectedSlotIdx = -1;
 		m_nRSelectedSlotIdx = -1;
 		m_pThis->ReleaseMouse();
-		ClickEffect( FALSE );
+		ClickEffect(FALSE);
 	}
 }
 
-VOID CItemChangeBattleAttributeGui::OnMouseUp( const CKey& key )
+VOID CItemChangeBattleAttributeGui::OnMouseUp(const CKey& key)
 {
-	RwInt32 nClickIdx = GetChildSlotIdx( (RwInt32)key.m_fX, (RwInt32)key.m_fY );
-	ClickEffect( FALSE );
+	RwInt32 nClickIdx = GetChildSlotIdx((RwInt32)key.m_fX, (RwInt32)key.m_fY);
+	ClickEffect(FALSE);
 
 	m_pThis->ReleaseMouse();
 
-	if( nClickIdx < 0 || !IsShow() )
+	if (nClickIdx < 0 || !IsShow())
 	{
 		m_nLSelectedSlotIdx = -1;
 		m_nRSelectedSlotIdx = -1;
 		return;
 	}
 
-	if( key.m_nID == UD_LEFT_BUTTON )
+	if (key.m_nID == UD_LEFT_BUTTON)
 	{
-		if( nClickIdx == m_nLSelectedSlotIdx )
+		if (nClickIdx == m_nLSelectedSlotIdx)
 		{
-			if( GetIconMoveManager()->IsActive() )
+			if (GetIconMoveManager()->IsActive())
 			{
-				if( GetIconMoveManager()->GetSrcSerial() != INVALID_SERIAL_ID )
+				if (GetIconMoveManager()->GetSrcSerial() != INVALID_SERIAL_ID)
 				{
-					SetItemSlot( GetIconMoveManager()->GetSrcSerial(), 
+					SetItemSlot(GetIconMoveManager()->GetSrcSerial(),
 						GetIconMoveManager()->GetSrcPlace(),
 						GetIconMoveManager()->GetSrcSlotIdx(),
-						nClickIdx, TRUE );
+						nClickIdx, TRUE);
 				}
 			}
 			else
 			{
-				if( IsOfferItemSlot( nClickIdx ) )
+				if (IsOfferItemSlot(nClickIdx))
 				{
-					GetIconMoveManager()->IconMovePickUp( m_pOfferItem->GetSerialID(), PLACE_ITEMUPGRADE,
-						nClickIdx, 1, m_pOfferItem->GetIcon()->GetImage() );
-				}								
+					GetIconMoveManager()->IconMovePickUp(m_pOfferItem->GetSerialID(), PLACE_ITEMUPGRADE,
+						nClickIdx, 1, m_pOfferItem->GetIcon()->GetImage());
+				}
 			}
 		}
 
 		m_nLSelectedSlotIdx = -1;
 	}
-	else if( key.m_nID == UD_RIGHT_BUTTON )
+	else if (key.m_nID == UD_RIGHT_BUTTON)
 	{
-		if( nClickIdx == m_nRSelectedSlotIdx )
+		if (nClickIdx == m_nRSelectedSlotIdx)
 		{
-			if( !GetIconMoveManager()->IsActive() )
+			if (!GetIconMoveManager()->IsActive())
 			{
 				if (nClickIdx == SLOT_ITEM)
 				{
@@ -1264,160 +1294,162 @@ VOID CItemChangeBattleAttributeGui::OnMouseUp( const CKey& key )
 				else
 					DeleteOfferItem();
 
-				// Info Wnd º¯°æ
-				if( m_nMouseOnIdx >= 0 && GetInfoWndManager()->GetRequestGui() == DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE )
+				// Info Wnd ï¿½ï¿½ï¿½ï¿½
+				if (m_nMouseOnIdx >= 0 && GetInfoWndManager()->GetRequestGui() == DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE)
 				{
-					ShowInfoWnd( TRUE, m_nMouseOnIdx );					
+					ShowInfoWnd(TRUE, m_nMouseOnIdx);
 				}
 			}
-		}		
+		}
 
 		m_nRSelectedSlotIdx = -1;
 	}
 }
 
-VOID CItemChangeBattleAttributeGui::OnMouseMove( RwInt32 nKey, RwInt32 nXPos, RwInt32 nYPos )
+VOID CItemChangeBattleAttributeGui::OnMouseMove(RwInt32 nKey, RwInt32 nXPos, RwInt32 nYPos)
 {
-	RwInt32 nMouseOnIdx = GetChildSlotIdx( nXPos, nYPos );
+	RwInt32 nMouseOnIdx = GetChildSlotIdx(nXPos, nYPos);
 
-	if( nMouseOnIdx >= 0 )
+	if (nMouseOnIdx >= 0)
 	{
-		m_anFocusEffect[nMouseOnIdx] = m_anFocusEffect[nMouseOnIdx] | SLOT_FOCUS;		
+		m_anFocusEffect[nMouseOnIdx] = m_anFocusEffect[nMouseOnIdx] | SLOT_FOCUS;
 
-		if( m_nMouseOnIdx != nMouseOnIdx )
+		if (m_nMouseOnIdx != nMouseOnIdx)
 		{
 			m_anFocusEffect[m_nMouseOnIdx] = m_anFocusEffect[m_nMouseOnIdx] & ~SLOT_FOCUS;
 			m_nMouseOnIdx = nMouseOnIdx;
 
-			ShowInfoWnd( TRUE, m_nMouseOnIdx );							
+			ShowInfoWnd(TRUE, m_nMouseOnIdx);
 
-			if( nMouseOnIdx == m_nPushDownIndex )
-				ClickEffect( TRUE, nMouseOnIdx );
-			else if( m_nPushDownIndex >= 0 )
-				ClickEffect( FALSE, m_nPushDownIndex );
+			if (nMouseOnIdx == m_nPushDownIndex)
+				ClickEffect(TRUE, nMouseOnIdx);
+			else if (m_nPushDownIndex >= 0)
+				ClickEffect(FALSE, m_nPushDownIndex);
 		}
 	}
 	else
 	{
-		if( m_nMouseOnIdx >= 0 )
+		if (m_nMouseOnIdx >= 0)
 		{
 			m_anFocusEffect[m_nMouseOnIdx] = m_anFocusEffect[m_nMouseOnIdx] & ~SLOT_FOCUS;
 			m_nMouseOnIdx = -1;
-			if( m_nPushDownIndex >= 0 )
-				ClickEffect( FALSE, m_nPushDownIndex );
-			ShowInfoWnd( FALSE );
+			if (m_nPushDownIndex >= 0)
+				ClickEffect(FALSE, m_nPushDownIndex);
+			ShowInfoWnd(FALSE);
 		}
 	}
 }
 
-VOID CItemChangeBattleAttributeGui::OnMouseOut( gui::CComponent* pComponent )
+VOID CItemChangeBattleAttributeGui::OnMouseOut(gui::CComponent* pComponent)
 {
-	if( m_nMouseOnIdx >= 0 )
+	if (m_nMouseOnIdx >= 0)
 	{
 		m_anFocusEffect[m_nMouseOnIdx] = m_anFocusEffect[m_nMouseOnIdx] & ~SLOT_FOCUS;
 		m_nMouseOnIdx = -1;
-		if( m_nPushDownIndex >= 0 )
-			ClickEffect( FALSE, m_nPushDownIndex );
-		ShowInfoWnd( FALSE );
+		if (m_nPushDownIndex >= 0)
+			ClickEffect(FALSE, m_nPushDownIndex);
+		ShowInfoWnd(FALSE);
 	}
 }
 
+// ï¿½Ë´ï¿½ï¿½ï¿½È¾ ï¿½Þ¸ï¿½Î»ï¿½Úµï¿½ï¿½Âµï¿½Ä£ï¿½ï¿½
 VOID CItemChangeBattleAttributeGui::OnPaint(VOID)
 {
 	m_BackFocus.m_surSlotEffect.Render();
 
-	if( m_pUpgradeItem )
+	if (m_pUpgradeItem)
 		m_surSlot[SLOT_ITEM].Render();
 
-	if( m_nOfferItemBattleSlotIdx >= 0 )
+
+	if (m_nOfferItemBattleSlotIdx >= 0)
 		m_surSlot[m_nOfferItemBattleSlotIdx].Render();
 
-	for( RwInt32 i = 0 ; i < NUM_SLOT ; ++i )
+	for (RwInt32 i = 0; i < NUM_SLOT; ++i)
 	{
-		if( m_anFocusEffect[i] )
+		if (m_anFocusEffect[i])
 			m_asurFocus[i].Render();
 
 		m_asurDisableSlot[i].Render();
-		m_aSlotEffect[i].m_surSlotEffect.Render();				
-	}	
+		m_aSlotEffect[i].m_surSlotEffect.Render();
+	}
 
 	m_TempItemSlot.m_surSlotEffect.Render();
 }
 
-VOID CItemChangeBattleAttributeGui::OnMove( RwInt32 nXPos, RwInt32 nYPos )
+VOID CItemChangeBattleAttributeGui::OnMove(RwInt32 nXPos, RwInt32 nYPos)
 {
 	CRectangle rtScreen = m_pThis->GetScreenRect();
 	CRectangle rect;
 
-	for( RwInt32 i = 0 ; i < NUM_SLOT ; ++i )
+	for (RwInt32 i = 0; i < NUM_SLOT; ++i)
 	{
-		m_surSlot[i].SetPosition( rtScreen.left + m_rtSlot[i].left, rtScreen.top + m_rtSlot[i].top );
-		m_asurFocus[i].SetPosition( rtScreen.left + m_rtSlot[i].left, rtScreen.top + m_rtSlot[i].top );
-		m_asurDisableSlot[i].SetPosition( rtScreen.left + m_rtSlot[i].left, rtScreen.top + m_rtSlot[i].top );
-		m_aSlotEffect[i].m_surSlotEffect.SetPosition( rtScreen.left + m_aSlotEffect[i].m_rtEffectSlot.left, rtScreen.top + m_aSlotEffect[i].m_rtEffectSlot.top );
-	}	
+		m_surSlot[i].SetPosition(rtScreen.left + m_rtSlot[i].left, rtScreen.top + m_rtSlot[i].top);
+		m_asurFocus[i].SetPosition(rtScreen.left + m_rtSlot[i].left, rtScreen.top + m_rtSlot[i].top);
+		m_asurDisableSlot[i].SetPosition(rtScreen.left + m_rtSlot[i].left, rtScreen.top + m_rtSlot[i].top);
+		m_aSlotEffect[i].m_surSlotEffect.SetPosition(rtScreen.left + m_aSlotEffect[i].m_rtEffectSlot.left, rtScreen.top + m_aSlotEffect[i].m_rtEffectSlot.top);
+	}
 
-	m_TempItemSlot.m_surSlotEffect.SetPosition( rtScreen.left + m_TempItemSlot.m_rtEffectSlot.left, rtScreen.top + m_TempItemSlot.m_rtEffectSlot.top );
-	m_BackFocus.m_surSlotEffect.SetPosition( rtScreen.left + m_BackFocus.m_rtEffectSlot.left, rtScreen.top + m_BackFocus.m_rtEffectSlot.top );
+	m_TempItemSlot.m_surSlotEffect.SetPosition(rtScreen.left + m_TempItemSlot.m_rtEffectSlot.left, rtScreen.top + m_TempItemSlot.m_rtEffectSlot.top);
+	m_BackFocus.m_surSlotEffect.SetPosition(rtScreen.left + m_BackFocus.m_rtEffectSlot.left, rtScreen.top + m_BackFocus.m_rtEffectSlot.top);
 }
 
-VOID CItemChangeBattleAttributeGui::OnClickExitBtn( gui::CComponent* pComponent )
+VOID CItemChangeBattleAttributeGui::OnClickExitBtn(gui::CComponent* pComponent)
 {
-	if( m_eState == STATE_PACKETWAIT )
+	if (m_eState == STATE_PACKETWAIT)
 		return;
 
-	GetDialogManager()->CloseDialog( DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE );
+	GetDialogManager()->CloseDialog(DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE);
 }
 
-VOID CItemChangeBattleAttributeGui::OnClickCompoundBtn( gui::CComponent* pComponent )
+VOID CItemChangeBattleAttributeGui::OnClickCompoundBtn(gui::CComponent* pComponent)
 {
-	if( m_eState != STATE_UPGRADE_READY )
+	if (m_eState != STATE_UPGRADE_READY)
 		return;
 
 	SetState(TATE_UPGRADE_CONFIRM);
 
-	if( GetIconMoveManager()->GetSrcPlace() == PLACE_ITEMUPGRADE )
-		GetIconMoveManager()->IconMoveEnd();	
+	if (GetIconMoveManager()->GetSrcPlace() == PLACE_ITEMUPGRADE)
+		GetIconMoveManager()->IconMoveEnd();
 }
 
-VOID CItemChangeBattleAttributeGui::OnClickCloseResult( gui::CComponent* pComponent )
+VOID CItemChangeBattleAttributeGui::OnClickCloseResult(gui::CComponent* pComponent)
 {
-	if( m_pUpgradeItem )
+	if (m_pUpgradeItem)
 	{
 		SetState(STATE_UPGRADE_READY);
 	}
 	else
 	{
-		SetState( STATE_NONE );
+		SetState(STATE_NONE);
 	}
 
 	DestroyResultDialog();
 }
 
-VOID CItemChangeBattleAttributeGui::OnCaptureMouseDown( const CKey& key )
+VOID CItemChangeBattleAttributeGui::OnCaptureMouseDown(const CKey& key)
 {
-	CAPTURE_MOUSEDOWN_RAISE( DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE, key.m_fX, key.m_fY );
+	CAPTURE_MOUSEDOWN_RAISE(DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE, key.m_fX, key.m_fY);
 }
 
-VOID CItemChangeBattleAttributeGui::OnCaptureMouseWheel( RwInt32 nFlag, RwInt16 sDelta, CPos& pos )
+VOID CItemChangeBattleAttributeGui::OnCaptureMouseWheel(RwInt32 nFlag, RwInt16 sDelta, CPos& pos)
 {
 	gui::CScrollBar* pScrollBar = m_phtmlInfoText->GetScrollBar();
 
 	RwInt32 nValue = pScrollBar->GetValue();
 	RwInt32 nMaxValue = pScrollBar->GetMaxValue();
-	RwInt32 nDelta = nValue - ( sDelta * 18 ) / GUI_MOUSE_WHEEL_DELTA;
+	RwInt32 nDelta = nValue - (sDelta * 18) / GUI_MOUSE_WHEEL_DELTA;
 
-	if( nDelta < 0 )
+	if (nDelta < 0)
 		nDelta = 0;
-	else if( nDelta > nMaxValue )
+	else if (nDelta > nMaxValue)
 		nDelta = nMaxValue;
 
-	pScrollBar->SetValue( nDelta );
+	pScrollBar->SetValue(nDelta);
 }
 
-VOID CItemChangeBattleAttributeGui::OnChangeAttributeEffectEnd( gui::CComponent* pComponent )
+VOID CItemChangeBattleAttributeGui::OnChangeAttributeEffectEnd(gui::CComponent* pComponent)
 {
-	m_pflsUpgradeEffect->Show( false );
+	m_pflsUpgradeEffect->Show(false);
 	SendItemChangeBattleAttributePacket();
 }
 

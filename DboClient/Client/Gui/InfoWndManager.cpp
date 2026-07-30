@@ -186,6 +186,9 @@ VOID CInfoWndManager::ShowInfoWindow( RwBool bShow, RwInt32 eState /* = INFOWND_
 		case INFOWND_BATTLEATTRIBUTE:
 			m_pInfoWnd->SetBattleAttributeDisplay( reinterpret_cast<stINFOWND_BATTLEATTR*>( pInstance ) );
 			break;
+		case INFOWND_BATTLEATTRIBUTE_ARMOR:
+			m_pInfoWnd->SetBattleAttributeDisplay(reinterpret_cast<stINFOWND_BATTLEATTR*>(pInstance));
+			break;
 		case INFOWND_QUEST_SEARCH:
 			m_pInfoWnd->SetQuestSearch( reinterpret_cast<QUEST_SEARCH_LIST*>( pInstance ) );
 			break;

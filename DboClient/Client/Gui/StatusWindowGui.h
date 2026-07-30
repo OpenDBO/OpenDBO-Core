@@ -81,7 +81,8 @@ public:
 	VOID	SetSlotRectHardCode(VOID);
 	VOID	SetTextHardCode(VOID);
 	VOID	CalcBattleAttribute(VOID);
-	VOID	SetBattleAttribute(eTYPE_BATTLEATTR eType, RwUInt8 byBattleAttribute);
+	VOID	SetBattleAttribute(RwUInt8 byBattleAttribute);
+	VOID	SetBattleAttribute2(RwUInt8 byBattleAttribute);
 
 	VOID	ClickEffect( RwBool bPush, RwInt32 nSlotIdx = -1 );
 	VOID	FritzEffect( eFRITZEFFECT eFritzState, RwInt32 nSlotIdx );
@@ -95,7 +96,6 @@ public:
 	VOID	SetEXPInfoWnd(VOID);
 
 	VOID	SetAttributeToolTip(VOID);
-	VOID	OnBattleAttributeRefresh();
 
 protected:
 	VOID	OnMouseDown( const CKey& key );
@@ -116,13 +116,22 @@ protected:
 	VOID	OnDragRotBtnRelease( gui::CComponent* pComponent );
 	VOID	OnDragRotMouseMove( RwInt32 nFlags, RwInt32 nX, RwInt32 nY );
 
-	VOID	OnMouseWeaponAttrEnter(gui::CComponent* pComponent);
-	VOID	OnMouseWeaponAttrLeave(gui::CComponent* pComponent);
-	VOID	OnMouseArmorAttrEnter(gui::CComponent* pComponent);
-	VOID	OnMouseArmorAttrLeave(gui::CComponent* pComponent);
+	VOID	OnMouseBattleAttrEnter(gui::CComponent* pComponent);
+	VOID	OnMouseBattleAttrLeave(gui::CComponent* pComponent);
 
-	VOID	SetSourceAttr(RwUInt8 bySourceWeaponAttr, RwUInt8 bySourceArmorAttr);
-	VOID	SetTargetAttr(RwUInt8 byTargetWeaponAttr, RwUInt8 byTargetArmorAttr);
+	VOID	OnMouseBattleAttrDefenseEnter(gui::CComponent* pComponent);
+	VOID	OnMouseBattleAttrDefenseLeave(gui::CComponent* pComponent);
+
+	VOID	SetSourceAttr(RwUInt8 bySourceWeaponAttr);
+	VOID	SetSourceAttrArmor(RwUInt8 bySourceArmorAttr);
+	VOID	SetTargetAttr(RwUInt8 byTargetWeaponAttr);
+	VOID	SetTargetAttrArmor(RwUInt8 byTargetArmorAttr);
+
+	VOID	OnBattleAttributeRefresh();
+	VOID	OnBattleAttributeRefreshCommon(
+				gui::CPanel* pPanel,
+				stINFOWND_BATTLEATTR::eTYPE eAttrType,
+				CInfoWndManager::eINFOWNDSTATE eInfoWndState);
 
 	
 	gui::CSlot  m_slotMouseDown;
@@ -192,7 +201,8 @@ protected:
 	gui::CSlot			m_slotCharTitleButton;
 	
 	gui::CStaticBox*	m_pstbBattleAttrTitle;
-	gui::CPanel*		m_ppnlBattleAttribute[TYPECOUNT];	
+	gui::CPanel*		m_pnlBattleAttribute;
+	gui::CPanel*		m_pnlBattleAttributeDefense;
 
 
 
