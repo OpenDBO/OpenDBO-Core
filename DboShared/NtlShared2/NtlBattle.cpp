@@ -145,40 +145,40 @@ BYTE NtlGetBattleChainAttackSequence(BYTE byCharLevel)
 ////		Purpose	:
 ////		Return	:
 ////-----------------------------------------------------------------------------------
-//float NtlGetBattleAttributeBonusRate(BYTE bySubjectAtt, BYTE byTargetAtt)
-//{
-//	static float afBattleAttributeBonusRate[BATTLE_ATTRIBUTE_COUNT][BATTLE_ATTRIBUTE_COUNT] = 
-//	{
-//		// BATTLE_ATTRIBUTE_NONE
-//		{ 0.0f, -5.0f, -5.0f, -5.0f, -5.0f, -5.0f },
-//
-//		// BATTLE_ATTRIBUTE_HONEST
-//		{ 5.0f, 0.0f, 5.0f, 10.0f, -10.0f, -5.0f },
-//
-//		// BATTLE_ATTRIBUTE_STRANGE
-//		{ 5.0f, -5.0f, 0.0f, 5.0f, 10.0f, -10.0f },
-//
-//		// BATTLE_ATTRIBUTE_WILD
-//		{ 5.0f, -10.0f, -5.0f, 0.0f, 5.0f, 10.0f },
-//
-//		// BATTLE_ATTRIBUTE_ELEGANCE
-//		{ 5.0f, 10.0f, -10.0f, -5.0f, 0.0f, 5.0f },
-//
-//		// BATTLE_ATTRIBUTE_FUNNY
-//		{ 5.0f, 5.0f, 10.0f, -10.0f, -5.0f, 0.0f },
-//
-//	};
-//
-//
-//	if( bySubjectAtt >= BATTLE_ATTRIBUTE_COUNT || byTargetAtt >= BATTLE_ATTRIBUTE_COUNT )
-//	{
-//		_ASSERT( 0 );
-//		return 0.0f;
-//	}
-//
-//
-//	return afBattleAttributeBonusRate[ bySubjectAtt ][byTargetAtt ];
-//}
+float NtlGetBattleAttributeBonusRate(BYTE bySubjectAtt, BYTE byTargetAtt)
+{
+	static float afBattleAttributeBonusRate[BATTLE_ATTRIBUTE_COUNT][BATTLE_ATTRIBUTE_COUNT] =
+	{
+		// BATTLE_ATTRIBUTE_NONE
+		{ 0.0f, -5.0f, -5.0f, -5.0f, -5.0f, -5.0f },
+
+		// BATTLE_ATTRIBUTE_HONEST
+		{ 5.0f, 0.0f, 5.0f, 10.0f, -10.0f, -5.0f },
+
+		// BATTLE_ATTRIBUTE_STRANGE
+		{ 5.0f, -5.0f, 0.0f, 5.0f, 10.0f, -10.0f },
+
+		// BATTLE_ATTRIBUTE_WILD
+		{ 5.0f, -10.0f, -5.0f, 0.0f, 5.0f, 10.0f },
+
+		// BATTLE_ATTRIBUTE_ELEGANCE
+		{ 5.0f, 10.0f, -10.0f, -5.0f, 0.0f, 5.0f },
+
+		// BATTLE_ATTRIBUTE_FUNNY
+		{ 5.0f, 5.0f, 10.0f, -10.0f, -5.0f, 0.0f },
+
+	};
+
+
+	if (bySubjectAtt >= BATTLE_ATTRIBUTE_COUNT || byTargetAtt >= BATTLE_ATTRIBUTE_COUNT)
+	{
+		_ASSERT(0);
+		return 0.0f;
+	}
+
+
+	return afBattleAttributeBonusRate[bySubjectAtt][byTargetAtt];
+}
 
 
 //-----------------------------------------------------------------------------------
@@ -219,12 +219,66 @@ BYTE GetBattleAttributeEffectApplyType(BYTE byAtt)
 	return abyBattleAttributeApplyType[byAtt];
 }
 
-float GetBattleAttributeEffectApplyValue(BYTE byAtt)
+float GetBattleAttributeEffectApplyValue(BYTE byAtt, BYTE Source)
 {
-	static float afBattleAttributeApplyValue[BATTLE_ATTRIBUTE_COUNT] =
+
+	float afBattleAttributeApplyValue[BATTLE_ATTRIBUTE_COUNT] =
 	{
-		0.f, 5.f, 5.f, 5.f, 5.f, 5.f
+		5.f,5.f, 5.f, 5.f, 5.f, 5.f
 	};
+
+	switch (Source) {
+	case BATTLE_ATTRIBUTE_NONE:
+		afBattleAttributeApplyValue[0] = 0.f;
+		afBattleAttributeApplyValue[1] = -5.f;
+		afBattleAttributeApplyValue[2] = -5.f;
+		afBattleAttributeApplyValue[3] = -5.f;
+		afBattleAttributeApplyValue[4] = -5.f;
+		afBattleAttributeApplyValue[5] = -5.f;
+		break;
+	case BATTLE_ATTRIBUTE_HONEST:
+		afBattleAttributeApplyValue[0] = 10.f;
+		afBattleAttributeApplyValue[1] = 5.f;
+		afBattleAttributeApplyValue[2] = 10.f;
+		afBattleAttributeApplyValue[3] = 15.f;
+		afBattleAttributeApplyValue[4] = -5.f;
+		afBattleAttributeApplyValue[5] = 0.f;
+		break;
+	case BATTLE_ATTRIBUTE_STRANGE:
+		afBattleAttributeApplyValue[0] = 10.f;
+		afBattleAttributeApplyValue[1] = 0.f;
+		afBattleAttributeApplyValue[2] = 5.f;
+		afBattleAttributeApplyValue[3] = 10.f;
+		afBattleAttributeApplyValue[4] = 15.f;
+		afBattleAttributeApplyValue[5] = -5.f;
+		break;
+	case BATTLE_ATTRIBUTE_WILD:
+		afBattleAttributeApplyValue[0] = 10.f;
+		afBattleAttributeApplyValue[1] = -5.f;
+		afBattleAttributeApplyValue[2] = 0.f;
+		afBattleAttributeApplyValue[3] = 5.f;
+		afBattleAttributeApplyValue[4] = 10.f;
+		afBattleAttributeApplyValue[5] = 15.f;
+		break;
+	case BATTLE_ATTRIBUTE_ELEGANCE:
+		afBattleAttributeApplyValue[0] = 10.f;
+		afBattleAttributeApplyValue[1] = 15.f;
+		afBattleAttributeApplyValue[2] = -5.f;
+		afBattleAttributeApplyValue[3] = 0.f;
+		afBattleAttributeApplyValue[4] = 5.f;
+		afBattleAttributeApplyValue[5] = 10.f;
+		break;
+	case BATTLE_ATTRIBUTE_FUNNY:
+		afBattleAttributeApplyValue[0] = 10.f;
+		afBattleAttributeApplyValue[1] = 10.f;
+		afBattleAttributeApplyValue[2] = 15.f;
+		afBattleAttributeApplyValue[3] = -5.f;
+		afBattleAttributeApplyValue[4] = 0.f;
+		afBattleAttributeApplyValue[5] = 5.f;
+		break;
+	default:
+		return 0.f;
+	}
 
 	if (byAtt >= BATTLE_ATTRIBUTE_COUNT)
 	{
