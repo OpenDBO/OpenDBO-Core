@@ -948,7 +948,7 @@ bool CGamePacketGenerator::SendNPCShopBuy(RwUInt32 uiNPCSerial, sSHOP_BUY_CART* 
 
 bool CGamePacketGenerator::SendNPCShopSell(RwInt32 uiNPCSerial, sSHOP_SELL_CART* pShopSellCart[NTL_MAX_SELL_SHOPPING_CART])
 {
-	// ¼­¹ö·ÎºÎÅÍ ¸ÕÀúº¸³½ ¸Þ¼¼Áö°¡ ÀÖ´Âµ¥ ¾ÆÁ÷ ¾È¿Ô´Ù¸é false ¸®ÅÏ
+	// If there's a message that was sent first from the server, but it hasn't arrived yet, return false
 	if( API_GetSLPacketLockManager()->IsLock(GU_SHOP_SELL_RES) )
 		return true;
 
@@ -980,7 +980,7 @@ bool CGamePacketGenerator::SendNPCShopSell(RwInt32 uiNPCSerial, sSHOP_SELL_CART*
 	iLength = sizeof(sPacket.wOpCode) + sizeof(sPacket.handle) + sizeof(sPacket.bySellCount)
 		+ ( sizeof(sSHOP_SELL_CART) * sPacket.bySellCount );
 
-	// ¼­¹ö·ÎºÎÅÍ ÀÀ´äÀ» ±â´Ù¸®´Â ¸Þ¼¼Áö ¸ñ·Ï¿¡ Ãß°¡
+	// Add to the list of messages waiting for a response from the server
 	API_GetSLPacketLockManager()->Lock(GU_SHOP_SELL_RES);
 	return m_pNetSender->SendPacket(iLength, &sPacket);
 }
@@ -1072,7 +1072,7 @@ bool CGamePacketGenerator::SendEventItemShopEndReq()
 
 bool CGamePacketGenerator::SendItemRepair(RwInt32 uiNPCSerial, RwUInt8 iPlace, RwUInt8 iPos)
 {
-	// ¼­¹ö·ÎºÎÅÍ ¸ÕÀúº¸³½ ¸Þ¼¼Áö°¡ ÀÖ´Âµ¥ ¾ÆÁ÷ ¾È¿Ô´Ù¸é false ¸®ÅÏ
+	// If there's a message that was already sent by the server that hasn't arrived yet, return false
 	if( API_GetSLPacketLockManager()->IsLock(GU_ITEM_REPAIR_RES) )
 		return true;
 	
@@ -1084,15 +1084,15 @@ bool CGamePacketGenerator::SendItemRepair(RwInt32 uiNPCSerial, RwUInt8 iPlace, R
 	sPacket.byPlace = iPlace;
 	sPacket.byPos = iPos;
 
-	// ¼­¹ö·ÎºÎÅÍ ÀÀ´äÀ» ±â´Ù¸®´Â ¸Þ¼¼Áö ¸ñ·Ï¿¡ Ãß°¡
+	// Add to the list of messages waiting for a response from the server
 	API_GetSLPacketLockManager()->Lock(GU_ITEM_REPAIR_RES);
-	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);	
+	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
 }
 
 bool CGamePacketGenerator::SendItemIdentification(RwUInt8 byPlace, RwUInt8 byPos)
 {
-	// ¼­¹ö·ÎºÎÅÍ ¸ÕÀúº¸³½ ¸Þ¼¼Áö°¡ ÀÖ´Âµ¥ ¾ÆÁ÷ ¾È¿Ô´Ù¸é false ¸®ÅÏ
-	if( API_GetSLPacketLockManager()->IsLock(GU_ITEM_IDENTIFY_RES) )
+	// If there's a message that was already sent by the server that hasn't arrived yet, return false
+	if (API_GetSLPacketLockManager()->IsLock(GU_ITEM_IDENTIFY_RES))
 		return true;
 
 	sUG_ITEM_IDENTIFY_REQ sPacket;
@@ -1102,7 +1102,7 @@ bool CGamePacketGenerator::SendItemIdentification(RwUInt8 byPlace, RwUInt8 byPos
 	sPacket.byPlace = byPlace;
 	sPacket.byPos = byPos;
 
-	// ¼­¹ö·ÎºÎÅÍ ÀÀ´äÀ» ±â´Ù¸®´Â ¸Þ¼¼Áö ¸ñ·Ï¿¡ Ãß°¡
+	// Add to the list of messages waiting for a response from the server
 	API_GetSLPacketLockManager()->Lock(GU_ITEM_IDENTIFY_RES);
 	
 	// Item Identify Effect
@@ -1124,7 +1124,7 @@ bool CGamePacketGenerator::SendPCInfoView(RwUInt32 uiSerial)
 
 bool CGamePacketGenerator::SendItemAllRepair(RwInt32 uiNPCSerial)
 {
-	// ¼­¹ö·ÎºÎÅÍ ¸ÕÀúº¸³½ ¸Þ¼¼Áö°¡ ÀÖ´Âµ¥ ¾ÆÁ÷ ¾È¿Ô´Ù¸é false ¸®ÅÏ
+	// If there's a message that was already sent by the server that hasn't arrived yet, return false
 	if( API_GetSLPacketLockManager()->IsLock(GU_ITEM_EQUIP_REPAIR_RES) )
 		return true;
 
@@ -1134,28 +1134,28 @@ bool CGamePacketGenerator::SendItemAllRepair(RwInt32 uiNPCSerial)
 	sPacket.wOpCode = UG_ITEM_EQUIP_REPAIR_REQ;
 	sPacket.handle = uiNPCSerial;
 
-	// ¼­¹ö·ÎºÎÅÍ ÀÀ´äÀ» ±â´Ù¸®´Â ¸Þ¼¼Áö ¸ñ·Ï¿¡ Ãß°¡
+	// Add to the list of messages waiting for a response from the server
 	API_GetSLPacketLockManager()->Lock(GU_ITEM_EQUIP_REPAIR_RES);
-	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);	
+	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
 }
 
 bool CGamePacketGenerator::SendItemIdentifyReq(RwInt32 uiNPCSerial, RwUInt8 iPlace, RwUInt8 iPos)
 {
 	// If there is a message previously sent from the server but it has not been done yet, it returns false.
-	if( API_GetSLPacketLockManager()->IsLock(GU_SHOP_ITEM_IDENTIFY_RES) )
+	if (API_GetSLPacketLockManager()->IsLock(GU_SHOP_ITEM_IDENTIFY_RES))
 		return true;
 
 	sUG_SHOP_ITEM_IDENTIFY_REQ sPacket;
 	memset(&sPacket, 0, sizeof(sPacket));
 
 	sPacket.wOpCode = UG_SHOP_ITEM_IDENTIFY_REQ;
-	sPacket.hNpchandle	= uiNPCSerial;
-	sPacket.byPlace		= iPlace;
-	sPacket.byPos		= iPos;
+	sPacket.hNpchandle = uiNPCSerial;
+	sPacket.byPlace = iPlace;
+	sPacket.byPos = iPos;
 
 	// Add to the list of messages waiting for a response from the server
 	API_GetSLPacketLockManager()->Lock(GU_SHOP_ITEM_IDENTIFY_RES);
-	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);	
+	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
 }
 
 bool CGamePacketGenerator::SendItemDisassembleReq(RwUInt8 iPlace, RwUInt8 iPos)
@@ -1244,21 +1244,21 @@ bool CGamePacketGenerator::SendScouterMeasure(RwUInt32 uiTargetSerial)
 	memset(&sPacket, 0, sizeof(sPacket));
 
 	sPacket.wOpCode = UG_SCOUTER_INDICATOR_REQ;
-	sPacket.hTarget = uiTargetSerial;	
+	sPacket.hTarget = uiTargetSerial;
 
 	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
 }
 
 bool CGamePacketGenerator::SendPartyCreate(const WCHAR* pcText)
 {
-	if( API_GetSLPacketLockManager()->IsLock(GU_PARTY_CREATE_RES) )
+	if (API_GetSLPacketLockManager()->IsLock(GU_PARTY_CREATE_RES))
 		return true;
 
 	sUG_PARTY_CREATE_REQ sPacket;
 	memset(&sPacket, 0, sizeof(sPacket));
-	
+
 	sPacket.wOpCode = UG_PARTY_CREATE_REQ;
-	memcpy(sPacket.wszPartyName, pcText, sizeof(WCHAR)*wcslen(pcText));
+	memcpy(sPacket.wszPartyName, pcText, sizeof(WCHAR) * wcslen(pcText));
 
 	API_GetSLPacketLockManager()->Lock(GU_PARTY_CREATE_RES);
 	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
@@ -1266,7 +1266,7 @@ bool CGamePacketGenerator::SendPartyCreate(const WCHAR* pcText)
 
 bool CGamePacketGenerator::SendPartyDisband()
 {
-	if( API_GetSLPacketLockManager()->IsLock(GU_PARTY_DISBAND_RES) )
+	if (API_GetSLPacketLockManager()->IsLock(GU_PARTY_DISBAND_RES))
 		return true;
 
 	sUG_PARTY_DISBAND_REQ sPacket;
@@ -1280,7 +1280,7 @@ bool CGamePacketGenerator::SendPartyDisband()
 
 bool CGamePacketGenerator::SendPartyInvite(RwUInt32 uiSerial)
 {
-	if( API_GetSLPacketLockManager()->IsLock(GU_PARTY_INVITE_RES) )
+	if (API_GetSLPacketLockManager()->IsLock(GU_PARTY_INVITE_RES))
 		return true;
 
 	sUG_PARTY_INVITE_REQ sPacket;
@@ -1293,33 +1293,33 @@ bool CGamePacketGenerator::SendPartyInvite(RwUInt32 uiSerial)
 	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
 }
 
-bool CGamePacketGenerator::SendPartyInvite_CharID( RwUInt32 uiCharID ) 
+bool CGamePacketGenerator::SendPartyInvite_CharID(RwUInt32 uiCharID)
 {
-	// ÀÌ ÆÐÅ¶ÀÇ ÀÀ´äÀ¸·Î´Â UG_PARTY_INVITE_REQ ÀÇ ÀÀ´ä°ú °°Àº °ÍÀÌ ¿Â´Ù
-	if( API_GetSLPacketLockManager()->IsLock(GU_PARTY_INVITE_RES) )
+	// The response to this packet comes as the same as the response to UG_PARTY_INVITE_REQ
+	if (API_GetSLPacketLockManager()->IsLock(GU_PARTY_INVITE_RES))
 		return true;
 
-    sUG_PARTY_INVITE_CHARID_REQ sPacket;
+	sUG_PARTY_INVITE_CHARID_REQ sPacket;
 	memset(&sPacket, 0, sizeof(sPacket));
 
-    sPacket.wOpCode = UG_PARTY_INVITE_CHARID_REQ;
-    sPacket.targetCharId = uiCharID;
+	sPacket.wOpCode = UG_PARTY_INVITE_CHARID_REQ;
+	sPacket.targetCharId = uiCharID;
 
 	API_GetSLPacketLockManager()->Lock(GU_PARTY_INVITE_RES);
-    return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
+	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
 }
 
 bool CGamePacketGenerator::SendPartyInvite_Name(const WCHAR* pcName)
 {
-	// ÀÌ ÆÐÅ¶ÀÇ ÀÀ´äÀ¸·Î´Â UG_PARTY_INVITE_REQ ÀÇ ÀÀ´ä°ú °°Àº °ÍÀÌ ¿Â´Ù
-	if( API_GetSLPacketLockManager()->IsLock(GU_PARTY_INVITE_RES) )
+	// The response to this packet comes as the same as the response to UG_PARTY_INVITE_REQ
+	if (API_GetSLPacketLockManager()->IsLock(GU_PARTY_INVITE_RES))
 		return true;
 
 	sUG_PARTY_INVITE_CHAR_NAME_REQ sPacket;
 	memset(&sPacket, 0, sizeof(sPacket));
 
 	sPacket.wOpCode = UG_PARTY_INVITE_CHAR_NAME_REQ;
-	swprintf_s(sPacket.wszTargetName, sizeof(sPacket.wszTargetName)/2, L"%s", pcName);
+	swprintf_s(sPacket.wszTargetName, sizeof(sPacket.wszTargetName) / 2, L"%s", pcName);
 
 	API_GetSLPacketLockManager()->Lock(GU_PARTY_INVITE_RES);
 	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
@@ -1327,7 +1327,7 @@ bool CGamePacketGenerator::SendPartyInvite_Name(const WCHAR* pcName)
 
 bool CGamePacketGenerator::SendPartyResponseInvite(RwUInt32 byResponse)
 {
-	if( API_GetSLPacketLockManager()->IsLock(GU_PARTY_RESPONSE_INVITATION_RES) )
+	if (API_GetSLPacketLockManager()->IsLock(GU_PARTY_RESPONSE_INVITATION_RES))
 		return true;
 
 	sUG_PARTY_RESPONSE_INVITATION sPacket;
@@ -1341,8 +1341,8 @@ bool CGamePacketGenerator::SendPartyResponseInvite(RwUInt32 byResponse)
 }
 
 bool CGamePacketGenerator::SendPartyLeave()
-{	
-	if( API_GetSLPacketLockManager()->IsLock(GU_PARTY_LEAVE_RES) )
+{
+	if (API_GetSLPacketLockManager()->IsLock(GU_PARTY_LEAVE_RES))
 		return true;
 
 	sUG_PARTY_LEAVE_REQ sPacket;
@@ -1356,7 +1356,7 @@ bool CGamePacketGenerator::SendPartyLeave()
 
 bool CGamePacketGenerator::SendPartyKickOut(RwUInt32 uiSerial)
 {
-	if( API_GetSLPacketLockManager()->IsLock(GU_PARTY_KICK_OUT_RES) )
+	if (API_GetSLPacketLockManager()->IsLock(GU_PARTY_KICK_OUT_RES))
 		return true;
 
 	sUG_PARTY_KICK_OUT_REQ sPacket;
@@ -1371,7 +1371,7 @@ bool CGamePacketGenerator::SendPartyKickOut(RwUInt32 uiSerial)
 
 bool CGamePacketGenerator::SendPartyChangeLeader(RwUInt32 uiSerial)
 {
-	if( API_GetSLPacketLockManager()->IsLock(GU_PARTY_CHANGE_LEADER_RES) )
+	if (API_GetSLPacketLockManager()->IsLock(GU_PARTY_CHANGE_LEADER_RES))
 		return true;
 
 	sUG_PARTY_CHANGE_LEADER_REQ sPacket;
@@ -1386,8 +1386,8 @@ bool CGamePacketGenerator::SendPartyChangeLeader(RwUInt32 uiSerial)
 
 bool CGamePacketGenerator::SendPartyZennyDivision(RwUInt8 byDivision)
 {
-	if( API_GetSLPacketLockManager()->IsLock( GU_PARTY_CHANGE_ZENNY_LOOTING_METHOD_RES ) )
-		return true;	
+	if (API_GetSLPacketLockManager()->IsLock(GU_PARTY_CHANGE_ZENNY_LOOTING_METHOD_RES))
+		return true;
 
 	sUG_PARTY_CHANGE_ZENNY_LOOTING_METHOD_REQ sPacket;
 	memset(&sPacket, 0, sizeof(sPacket));
@@ -1395,14 +1395,14 @@ bool CGamePacketGenerator::SendPartyZennyDivision(RwUInt8 byDivision)
 	sPacket.wOpCode = UG_PARTY_CHANGE_ZENNY_LOOTING_METHOD_REQ;
 	sPacket.byLootingMethod = byDivision;
 
-	API_GetSLPacketLockManager()->Lock( GU_PARTY_CHANGE_ZENNY_LOOTING_METHOD_RES );
+	API_GetSLPacketLockManager()->Lock(GU_PARTY_CHANGE_ZENNY_LOOTING_METHOD_RES);
 	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
 }
 
 bool CGamePacketGenerator::SendPartyItemDivision(RwUInt8 byDivision)
 {
-	if( API_GetSLPacketLockManager()->IsLock( GU_PARTY_CHANGE_ITEM_LOOTING_METHOD_RES ) )
-		return true;	
+	if (API_GetSLPacketLockManager()->IsLock(GU_PARTY_CHANGE_ITEM_LOOTING_METHOD_RES))
+		return true;
 
 	sUG_PARTY_CHANGE_ITEM_LOOTING_METHOD_REQ sPacket;
 	memset(&sPacket, 0, sizeof(sPacket));
@@ -1410,20 +1410,20 @@ bool CGamePacketGenerator::SendPartyItemDivision(RwUInt8 byDivision)
 	sPacket.wOpCode = UG_PARTY_CHANGE_ITEM_LOOTING_METHOD_REQ;
 	sPacket.byLootingMethod = byDivision;
 
-	API_GetSLPacketLockManager()->Lock( GU_PARTY_CHANGE_ITEM_LOOTING_METHOD_RES );
+	API_GetSLPacketLockManager()->Lock(GU_PARTY_CHANGE_ITEM_LOOTING_METHOD_RES);
 	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
 }
 
 bool CGamePacketGenerator::SendBankLoadReq(RwUInt32 uiNPCSerial)
 {
-	if( API_GetSLPacketLockManager()->IsLock( GU_BANK_LOAD_RES ) )
+	if (API_GetSLPacketLockManager()->IsLock(GU_BANK_LOAD_RES))
 		return true;
 
 	sUG_BANK_LOAD_REQ sPacket;
 	memset(&sPacket, 0, sizeof(sPacket));
 
 	sPacket.wOpCode = UG_BANK_LOAD_REQ;
-	sPacket.handle	= uiNPCSerial;
+	sPacket.handle = uiNPCSerial;
 
 	API_GetSLPacketLockManager()->Lock(GU_BANK_LOAD_RES);
 	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
@@ -1431,12 +1431,12 @@ bool CGamePacketGenerator::SendBankLoadReq(RwUInt32 uiNPCSerial)
 
 bool CGamePacketGenerator::SendBankStart(RwUInt32 uiNPCSerial, RwBool* pSendResult)
 {
-	if( !pSendResult )
+	if (!pSendResult)
 		return true;
 
-	*pSendResult = API_GetSLPacketLockManager()->IsLock( GU_BANK_START_RES );
+	*pSendResult = API_GetSLPacketLockManager()->IsLock(GU_BANK_START_RES);
 
-	if( *pSendResult )
+	if (*pSendResult)
 		return true;
 
 	sUG_BANK_START_REQ sPacket;
@@ -1451,7 +1451,7 @@ bool CGamePacketGenerator::SendBankStart(RwUInt32 uiNPCSerial, RwBool* pSendResu
 
 bool CGamePacketGenerator::SendBankMove(RwUInt32 uiNPCSerial, RwUInt8 bySrcPlace, RwUInt8 bySrcPos, RwUInt8 byDestPlace, RwUInt8 byDestPos)
 {
-	if( API_GetSLPacketLockManager()->IsLock( GU_BANK_MOVE_RES ) )
+	if (API_GetSLPacketLockManager()->IsLock(GU_BANK_MOVE_RES))
 		return true;
 
 	sUG_BANK_MOVE_REQ sPacket;
@@ -1464,14 +1464,14 @@ bool CGamePacketGenerator::SendBankMove(RwUInt32 uiNPCSerial, RwUInt8 bySrcPlace
 	sPacket.byDestPlace = byDestPlace;
 	sPacket.byDestPos = byDestPos;
 
-	// ¼­¹ö·ÎºÎÅÍ ÀÀ´äÀ» ±â´Ù¸®´Â ¸Þ¼¼Áö ¸ñ·Ï¿¡ Ãß°¡
+	// Add to the list of messages waiting for a response from the server
 	API_GetSLPacketLockManager()->Lock(GU_BANK_MOVE_RES);
 	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
 }
 
 bool CGamePacketGenerator::SendBankMoveStack(RwUInt32 uiNPCSerial, RwUInt8 bySrcPlace, RwUInt8 bySrcPos, RwUInt8 byDestPlace, RwUInt8 byDestPos, RwUInt8 byStackCount)
 {
-	if( API_GetSLPacketLockManager()->IsLock( GU_BANK_MOVE_STACK_RES ) )
+	if (API_GetSLPacketLockManager()->IsLock(GU_BANK_MOVE_STACK_RES))
 		return true;
 
 	sUG_BANK_MOVE_STACK_REQ sPacket;
@@ -1485,14 +1485,14 @@ bool CGamePacketGenerator::SendBankMoveStack(RwUInt32 uiNPCSerial, RwUInt8 bySrc
 	sPacket.byDestPos = byDestPos;
 	sPacket.byStackCount = byStackCount;
 
-	// ¼­¹ö·ÎºÎÅÍ ÀÀ´äÀ» ±â´Ù¸®´Â ¸Þ¼¼Áö ¸ñ·Ï¿¡ Ãß°¡
+	// Add to the list of messages waiting for a response from the server
 	API_GetSLPacketLockManager()->Lock(GU_BANK_MOVE_STACK_RES);
 	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
 }
 
 bool CGamePacketGenerator::SendBankEnd()
 {
-	if( API_GetSLPacketLockManager()->IsLock( GU_BANK_END_RES ) )
+	if (API_GetSLPacketLockManager()->IsLock(GU_BANK_END_RES))
 		return true;
 
 	sUG_BANK_END_REQ sPacket;
@@ -1506,7 +1506,7 @@ bool CGamePacketGenerator::SendBankEnd()
 
 bool CGamePacketGenerator::SendBankZenny(RwUInt32 uiNPCSerial, RwUInt32 uiZenny, bool bIsSave)
 {
-	if( API_GetSLPacketLockManager()->IsLock( GU_BANK_ZENNY_RES ) )
+	if (API_GetSLPacketLockManager()->IsLock(GU_BANK_ZENNY_RES))
 		return true;
 
 	sUG_BANK_ZENNY_REQ sPacket;
@@ -1517,14 +1517,14 @@ bool CGamePacketGenerator::SendBankZenny(RwUInt32 uiNPCSerial, RwUInt32 uiZenny,
 	sPacket.dwZenny = uiZenny;
 	sPacket.bIsSave = bIsSave;
 
-	// ¼­¹ö·ÎºÎÅÍ ÀÀ´äÀ» ±â´Ù¸®´Â ¸Þ¼¼Áö ¸ñ·Ï¿¡ Ãß°¡
+	// Add to the list of messages waiting for a response from the server
 	API_GetSLPacketLockManager()->Lock(GU_BANK_ZENNY_RES);
 	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
 }
 
 bool CGamePacketGenerator::SendBankBuy(RwUInt32 uiNPCSerial, RwUInt8 byMerchantTab, RwUInt8 byPos)
 {
-	if( API_GetSLPacketLockManager()->IsLock( GU_BANK_BUY_RES ) )
+	if (API_GetSLPacketLockManager()->IsLock(GU_BANK_BUY_RES))
 		return true;
 
 	sUG_BANK_BUY_REQ sPacket;
@@ -1541,7 +1541,7 @@ bool CGamePacketGenerator::SendBankBuy(RwUInt32 uiNPCSerial, RwUInt8 byMerchantT
 
 bool CGamePacketGenerator::SendBankDeleteItem(RwUInt8 byPlace, RwUInt8 byPos, RwBool* pPacketLock)
 {
-	if( API_GetSLPacketLockManager()->IsLock( GU_BANK_ITEM_DELETE_RES ) )
+	if (API_GetSLPacketLockManager()->IsLock(GU_BANK_ITEM_DELETE_RES))
 	{
 		*pPacketLock = TRUE;
 		return true;
@@ -1556,14 +1556,14 @@ bool CGamePacketGenerator::SendBankDeleteItem(RwUInt8 byPlace, RwUInt8 byPos, Rw
 	sPacket.byPlace = byPlace;
 	sPacket.byPos = byPos;
 
-	// ¼­¹ö·ÎºÎÅÍ ÀÀ´äÀ» ±â´Ù¸®´Â ¸Þ¼¼Áö ¸ñ·Ï¿¡ Ãß°¡
+	// Add to the list of messages waiting for a response from the server
 	API_GetSLPacketLockManager()->Lock(GU_BANK_ITEM_DELETE_RES);
 	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
 }
 
 bool CGamePacketGenerator::SendFreeBattleChallengeReq(RwUInt32 uiTargetSerial)
 {
-	if( API_GetSLPacketLockManager()->IsLock( GU_FREEBATTLE_CHALLENGE_RES ) )
+	if (API_GetSLPacketLockManager()->IsLock(GU_FREEBATTLE_CHALLENGE_RES))
 		return true;
 
 	sUG_FREEBATTLE_CHALLENGE_REQ sPacket;
@@ -1589,7 +1589,7 @@ bool CGamePacketGenerator::SendFreeBattleAcceptRes(RwUInt8 byAccept)
 
 bool CGamePacketGenerator::SendTradeStartReq(RwUInt32 uiSerial)
 {
-	if( API_GetSLPacketLockManager()->IsLock(GU_TRADE_START_RES) )
+	if (API_GetSLPacketLockManager()->IsLock(GU_TRADE_START_RES))
 		return true;
 
 	sUG_TRADE_START_REQ sPacket;
@@ -1618,7 +1618,7 @@ bool CGamePacketGenerator::SendTradeOkReq(RwUInt32 uiSerial, RwUInt8 byOK)
 bool CGamePacketGenerator::SendTradeAddReq(RwUInt32 uiTarget, RwUInt32 uiItem, RwUInt8 byCount)
 {
 	// If there is a message previously sent from the server but it has not been done yet, it returns false.
-	if( API_GetSLPacketLockManager()->IsLock(GU_TRADE_ADD_RES) )
+	if (API_GetSLPacketLockManager()->IsLock(GU_TRADE_ADD_RES))
 		return true;
 
 	sUG_TRADE_ADD_REQ sPacket;
@@ -1637,8 +1637,8 @@ bool CGamePacketGenerator::SendTradeAddReq(RwUInt32 uiTarget, RwUInt32 uiItem, R
 
 bool CGamePacketGenerator::SendTradeDelReq(RwUInt32 uiTarget, RwUInt32 uiItem)
 {
-	// ¼­¹ö·ÎºÎÅÍ ¸ÕÀúº¸³½ ¸Þ¼¼Áö°¡ ÀÖ´Âµ¥ ¾ÆÁ÷ ¾È¿Ô´Ù¸é false ¸®ÅÏ
-	if( API_GetSLPacketLockManager()->IsLock(GU_TRADE_DEL_RES) )
+	// If there's a message that was already sent by the server that hasn't arrived yet, return false
+	if (API_GetSLPacketLockManager()->IsLock(GU_TRADE_DEL_RES))
 		return true;
 
 	sUG_TRADE_DEL_REQ sPacket;
@@ -1648,7 +1648,7 @@ bool CGamePacketGenerator::SendTradeDelReq(RwUInt32 uiTarget, RwUInt32 uiItem)
 	sPacket.hTarget = uiTarget;
 	sPacket.hItem = uiItem;
 
-	// ¼­¹ö·ÎºÎÅÍ ÀÀ´äÀ» ±â´Ù¸®´Â ¸Þ¼¼Áö ¸ñ·Ï¿¡ Ãß°¡
+	// Add to the list of messages waiting for a response from the server
 	API_GetSLPacketLockManager()->Lock(GU_TRADE_DEL_RES);
 
 	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
@@ -1656,8 +1656,8 @@ bool CGamePacketGenerator::SendTradeDelReq(RwUInt32 uiTarget, RwUInt32 uiItem)
 
 bool CGamePacketGenerator::SendTradeUpdateItem(RwUInt32 uiTarget, RwUInt32 uiItem, RwUInt8 byCount)
 {
-	// ¼­¹ö·ÎºÎÅÍ ¸ÕÀúº¸³½ ¸Þ¼¼Áö°¡ ÀÖ´Âµ¥ ¾ÆÁ÷ ¾È¿Ô´Ù¸é false ¸®ÅÏ
-	if( API_GetSLPacketLockManager()->IsLock(GU_TRADE_MODIFY_RES) )
+	// If there's a message that was already sent by the server that hasn't arrived yet, return false
+	if (API_GetSLPacketLockManager()->IsLock(GU_TRADE_MODIFY_RES))
 		return true;
 
 	sUG_TRADE_MODIFY_REQ sPacket;
@@ -1668,7 +1668,7 @@ bool CGamePacketGenerator::SendTradeUpdateItem(RwUInt32 uiTarget, RwUInt32 uiIte
 	sPacket.hItem = uiItem;
 	sPacket.byCount = byCount;
 
-	// ¼­¹ö·ÎºÎÅÍ ÀÀ´äÀ» ±â´Ù¸®´Â ¸Þ¼¼Áö ¸ñ·Ï¿¡ Ãß°¡
+	// Add to the list of messages waiting for a response from the server
 	API_GetSLPacketLockManager()->Lock(GU_TRADE_MODIFY_RES);
 
 	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
@@ -1676,8 +1676,8 @@ bool CGamePacketGenerator::SendTradeUpdateItem(RwUInt32 uiTarget, RwUInt32 uiIte
 
 bool CGamePacketGenerator::SendTradeZennyUpdateReq(RwUInt32 uiTarget, RwUInt32 uiZenny)
 {
-	// ¼­¹ö·ÎºÎÅÍ ¸ÕÀúº¸³½ ¸Þ¼¼Áö°¡ ÀÖ´Âµ¥ ¾ÆÁ÷ ¾È¿Ô´Ù¸é false ¸®ÅÏ
-	if( API_GetSLPacketLockManager()->IsLock(GU_TRADE_ZENNY_UPDATE_RES) )
+	// If there's a message that was already sent by the server that hasn't arrived yet, return false
+	if (API_GetSLPacketLockManager()->IsLock(GU_TRADE_ZENNY_UPDATE_RES))
 		return true;
 
 	sUG_TRADE_ZENNY_UPDATE_REQ sPacket;
@@ -1687,7 +1687,7 @@ bool CGamePacketGenerator::SendTradeZennyUpdateReq(RwUInt32 uiTarget, RwUInt32 u
 	sPacket.hTarget = uiTarget;
 	sPacket.dwZenny = uiZenny;
 
-	// ¼­¹ö·ÎºÎÅÍ ÀÀ´äÀ» ±â´Ù¸®´Â ¸Þ¼¼Áö ¸ñ·Ï¿¡ Ãß°¡
+	// Add to the list of messages waiting for a response from the server
 	API_GetSLPacketLockManager()->Lock(GU_TRADE_ZENNY_UPDATE_RES);
 
 	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
@@ -1695,8 +1695,8 @@ bool CGamePacketGenerator::SendTradeZennyUpdateReq(RwUInt32 uiTarget, RwUInt32 u
 
 bool CGamePacketGenerator::SendTradeEndReq(RwUInt32 uiTarget, RwUInt32 uiPacketCount, bool bLock)
 {
-	// ¼­¹ö·ÎºÎÅÍ ¸ÕÀúº¸³½ ¸Þ¼¼Áö°¡ ÀÖ´Âµ¥ ¾ÆÁ÷ ¾È¿Ô´Ù¸é false ¸®ÅÏ
-	if( API_GetSLPacketLockManager()->IsLock(GU_TRADE_END_RES) )
+	// If there's a message that was already sent by the server that hasn't arrived yet, return false
+	if (API_GetSLPacketLockManager()->IsLock(GU_TRADE_END_RES))
 		return true;
 
 	sUG_TRADE_END_REQ sPacket;
@@ -1707,7 +1707,7 @@ bool CGamePacketGenerator::SendTradeEndReq(RwUInt32 uiTarget, RwUInt32 uiPacketC
 	sPacket.dwPacketCount = uiPacketCount;
 	sPacket.bIsSet = bLock;
 
-	// ¼­¹ö·ÎºÎÅÍ ÀÀ´äÀ» ±â´Ù¸®´Â ¸Þ¼¼Áö ¸ñ·Ï¿¡ Ãß°¡
+	// Add to the list of messages waiting for a response from the server
 	API_GetSLPacketLockManager()->Lock(GU_TRADE_END_RES);
 
 	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);

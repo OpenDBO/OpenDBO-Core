@@ -73,7 +73,7 @@
 
 #define NTL_MAX_LENGTH_MODEL_NAME						(32)
 
-#define NTL_MAX_LENGTH_REPORT_NAME						(64) // ¸®Æ÷Æ® ³²±æ ‹š »ç¿ëÇÏ´Â ÀÌ¸§ÀÇ ÃÖ´ë±æÀÌ(½ºÅ³, ¾ÆÀÌÅÛ ¸÷ µîµî)
+#define NTL_MAX_LENGTH_REPORT_NAME						(64) // Maximum length of names used when leaving a report (skills, items, mobs, etc.)
 #define NTL_MAX_LENGTH_REPORT_NAME_UNICODE				(64)
 #define NTL_MAX_LENGTH_REPORT_NAME_MUlTIBYTE_BUFFER		(512)
 
@@ -102,7 +102,7 @@
 #define NTL_MAX_SIZE_WORLD_NAME_UNICODE					(32)
 #define NTL_MAX_SIZE_FULL_WORLD_NAME					(64)
 
-#define NTL_MAX_LENGTH_SKILL_NAME_TEXT					(40) // GM Åø »ç¿ë ·Î±×¿¡¼­ »ç¿ëÇÏ´Â Å©±â
+#define NTL_MAX_LENGTH_SKILL_NAME_TEXT					(40) // The size used in GM tool usage logs
 #define NTL_MAX_LENGTH_ITEM_NAME_TEXT					(32)
 #define NTL_MAX_LENGTH_BEFORE_AFTER_STATUS				(128)
 
