@@ -250,7 +250,8 @@ public:
 	float	GetHotPowerBonus() { return m_pAttribute.fHotPowerBonus; }
 	float	GetHotPowerBonusInPercent() { return m_pAttribute.fHotPowerBonusInPercent; }
 	float	GetDotValueChangePercent() { return m_pAttribute.fDotValueChangePercent; }
-	BYTE	GetBattleAttributeOffence() { return m_byBattle_Attribute; }
+	BYTE	GetBattleAttributeOffence() { return m_byBattle_Attribute_Ofence; }
+	BYTE	GetBattleAttributeDefence() { return m_byBattle_Attribute_Defence; }
 	float	GetPhysicalCriticalDefenceRate() { return m_pAttribute.fPhysicalCriticalDefenceRate; }
 	float	GetEnergyCriticalDefenceRate() { return m_pAttribute.fEnergyCriticalDefenceRate; }
 
@@ -281,7 +282,8 @@ public:
 
 	void	SetSkillAnimationSpeedModifier(float fSpeed) { m_pAttribute.fSkillAnimationSpeedModifier = fSpeed; }
 
-	void	SetBattleAttributeOffence(BYTE byAttribute) { m_byBattle_Attribute = byAttribute; }
+	void	SetBattleAttributeOffence(BYTE byAttribute) { m_byBattle_Attribute_Ofence = byAttribute; }
+	void	SetBattleAttributeDefence(BYTE byAttribute) { m_byBattle_Attribute_Defence = byAttribute; }
 
 	void	SetPhysicalOffence(WORD wAttack) { m_pAttribute.wPhysicalOffence = wAttack; }
 	void	SetEnergyOffence(WORD wAttack) { m_pAttribute.wEnergyOffence = wAttack; }
@@ -294,7 +296,8 @@ protected:
 
 	CCharacter*				m_pOwnerRef;
 	sAVATAR_ATTRIBUTE		m_pAttribute;
-	BYTE					m_byBattle_Attribute;		//eBATTLE_ATTRIBUTE //[0] Offence (main)
+	BYTE					m_byBattle_Attribute_Ofence;
+	BYTE					m_byBattle_Attribute_Defence;
 
 	float					m_fRunSpeedBackup;
 	WORD					m_wAttackSpeedBackup;

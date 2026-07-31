@@ -2399,7 +2399,7 @@ void PacketHandler_GSAvatarAttrUpdate(void *pPacket)
 
 	CNtlSob *pSobObj = GetNtlSobManager()->GetSobObject(pAttrUpdate->hHandle);
 	if(pSobObj)
-		Logic_SetStatus(pSobObj, pAttrUpdate->byAttributeTotalCount, pAttrUpdate->abyFlexibleField);
+		Logic_SetStatus(pSobObj, pAttrUpdate->byAttributeTotalCount, pAttrUpdate->abyFlexibleField, pAttrUpdate->byBattle_Attribute_Ofence, pAttrUpdate->byBattle_Attribute_Defence);
 }
 
 void PacketHandler_GUCharUpdateHonor(void *pPacket)

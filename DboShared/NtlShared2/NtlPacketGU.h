@@ -838,6 +838,8 @@ BEGIN_PROTOCOL(GU_AVATAR_ATTRIBUTE_UPDATE)
 	HOBJECT			hHandle;
 	BYTE			byAttributeTotalCount;
 	BYTE			abyFlexibleField[((UCHAR_MAX - 1) / 8 + 1) + sizeof(sAVATAR_ATTRIBUTE)];
+	BYTE			byBattle_Attribute_Ofence;
+	BYTE			byBattle_Attribute_Defence;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_OBJECT_CREATE)

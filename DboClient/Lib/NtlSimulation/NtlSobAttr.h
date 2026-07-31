@@ -353,6 +353,17 @@ public:
 	float m_fPhysicalArmorPenRate;
 	float m_fEnergyArmorPenRate;
 
+	float m_fHonestOffense;
+	float m_fHonestDefense;
+	float m_fStrangeOffense;
+	float m_fStrangeDefense;
+	float m_fWildOffense;
+	float m_fWildDefense;
+	float m_fEleganceOffense;
+	float m_fEleganceDefense;
+	float m_fFunnyOffense;
+	float m_fFunnyDefense;
+
 private:
 
 	RwReal			m_fAttackRange;

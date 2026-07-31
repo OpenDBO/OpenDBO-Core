@@ -265,6 +265,16 @@ CNtlAvatar::sATTRIBUTE_LOGIC CNtlAvatar::m_attributeLogic[ATTRIBUTE_TO_UPDATE_CO
 	ATTRIBUTE_LOGIC_DEFINE(byQuestDropRate, BYTE),
 	ATTRIBUTE_LOGIC_DEFINE(fPhysicalArmorPenRate, float),
 	ATTRIBUTE_LOGIC_DEFINE(fEnergyArmorPenRate, float),
+	ATTRIBUTE_LOGIC_DEFINE(fHonestOffense, float),
+	ATTRIBUTE_LOGIC_DEFINE(fHonestDefense, float),
+	ATTRIBUTE_LOGIC_DEFINE(fStrangeOffense, float),
+	ATTRIBUTE_LOGIC_DEFINE(fStrangeDefense, float),
+	ATTRIBUTE_LOGIC_DEFINE(fWildOffense, float),
+	ATTRIBUTE_LOGIC_DEFINE(fWildDefense, float),
+	ATTRIBUTE_LOGIC_DEFINE(fEleganceOffense, float),
+	ATTRIBUTE_LOGIC_DEFINE(fEleganceDefense, float),
+	ATTRIBUTE_LOGIC_DEFINE(fFunnyOffense, float),
+	ATTRIBUTE_LOGIC_DEFINE(fFunnyDefense, float),
 
 };
 
@@ -434,6 +444,16 @@ CNtlAvatar::sATTRIBUTE_LOGIC CNtlAvatar::m_attributeLogicNew[ATTRIBUTE_TO_UPDATE
 	ATTRIBUTE_LOGIC_DEFINE_NEW(pbyQuestDropRate, BYTE),
 	ATTRIBUTE_LOGIC_DEFINE_NEW(pfPhysicalArmorPenRate, float),
 	ATTRIBUTE_LOGIC_DEFINE_NEW(pfEnergyArmorPenRate, float),
+	ATTRIBUTE_LOGIC_DEFINE_NEW(pfHonestOffense, float),
+	ATTRIBUTE_LOGIC_DEFINE_NEW(pfHonestDefense, float),
+	ATTRIBUTE_LOGIC_DEFINE_NEW(pfStrangeOffense, float),
+	ATTRIBUTE_LOGIC_DEFINE_NEW(pfStrangeDefense, float),
+	ATTRIBUTE_LOGIC_DEFINE_NEW(pfWildOffense, float),
+	ATTRIBUTE_LOGIC_DEFINE_NEW(pfWildDefense, float),
+	ATTRIBUTE_LOGIC_DEFINE_NEW(pfEleganceOffense, float),
+	ATTRIBUTE_LOGIC_DEFINE_NEW(pfEleganceDefense, float),
+	ATTRIBUTE_LOGIC_DEFINE_NEW(pfFunnyOffense, float),
+	ATTRIBUTE_LOGIC_DEFINE_NEW(pfFunnyDefense, float),
 };
 
 #undef ATTRIBUTE_LOGIC_DEFINE_NEW
@@ -569,6 +589,21 @@ sAVATAR_ATTRIBUTE_LINK CNtlAvatar::ConvertAVATAR_ATTRIBUTE(sAVATAR_ATTRIBUTE* av
 	newavt.pbyQuestDropRate = &avt->byQuestDropRate;
 	newavt.pfPhysicalArmorPenRate = &avt->fPhysicalArmorPenRate;
 	newavt.pfEnergyArmorPenRate = &avt->fEnergyArmorPenRate;
+
+	newavt.pfHonestOffense = &avt->fHonestOffense;
+	newavt.pfHonestDefense = &avt->fHonestDefense;
+
+	newavt.pfStrangeOffense = &avt->fStrangeOffense;
+	newavt.pfStrangeDefense = &avt->fStrangeDefense;
+
+	newavt.pfWildOffense = &avt->fWildOffense;
+	newavt.pfWildDefense = &avt->fWildDefense;
+
+	newavt.pfEleganceOffense = &avt->fEleganceOffense;
+	newavt.pfEleganceDefense = &avt->fEleganceDefense;
+
+	newavt.pfFunnyOffense = &avt->fFunnyOffense;
+	newavt.pfFunnyDefense = &avt->fFunnyDefense;
 
 	return newavt;
 }

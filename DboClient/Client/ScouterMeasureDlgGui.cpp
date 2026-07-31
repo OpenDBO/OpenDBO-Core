@@ -619,6 +619,13 @@ VOID CScouterMeasureDlgGui::HandleEvents(RWS::CMsg& msg)
 					if (m_scouterData.hTarget != pEvent->uiUserData)
 						return;
 
+					RwUInt8 ArmorBattleAttr = 0;
+					RwUInt8 MainBattleAttr = 0;
+
+					bool IsDragonball = false;
+
+					int MobTblidx = INVALID_TBLIDX;
+
 					if (m_scouterData.uiMoreMeasureCount == 0)
 					{
 						// Use the scouter to measure your combat power for the tutorial.
@@ -638,24 +645,34 @@ VOID CScouterMeasureDlgGui::HandleEvents(RWS::CMsg& msg)
 						{
 							CNtlSobPlayerAttr* pPlayer = reinterpret_cast<CNtlSobPlayerAttr*>(m_scouterData.pSobTarget->GetSobAttr());
 							uiTargetTableIndex = pPlayer->GetPcTbl()->tblidx;
+							ArmorBattleAttr = pPlayer->GetArmorBattleAttr();
+							MainBattleAttr = pPlayer->GetMainBattleAttr();
 						}
 						break;
 						case SLCLASS_NPC:
 						{
 							CNtlSobNpcAttr* pNPC = reinterpret_cast<CNtlSobNpcAttr*>(m_scouterData.pSobTarget->GetSobAttr());
 							uiTargetTableIndex = pNPC->GetNpcTbl()->tblidx;
+							ArmorBattleAttr = pNPC->GetNpcTbl()->byBattle_Attribute;
 						}
 						break;
 						case SLCLASS_MONSTER:
 						{
 							CNtlSobMonsterAttr* pMonster = reinterpret_cast<CNtlSobMonsterAttr*>(m_scouterData.pSobTarget->GetSobAttr());
 							uiTargetTableIndex = pMonster->GetMobTbl()->dwMobGroup;
+							ArmorBattleAttr = pMonster->GetMobTbl()->byBattle_Attribute;
+							IsDragonball = pMonster->IsHaveDragonBall();
+
+							pMonster->GetMobTbl()->dwAi_Bit_Flag;
+
+							MobTblidx = pMonster->GetMobTbl()->tblidx;
 						}
 						break;
 						case SLCLASS_PET:
 						{
 							CNtlSobPetAttr* pPet = reinterpret_cast<CNtlSobPetAttr*>(m_scouterData.pSobTarget->GetSobAttr());
 							uiTargetTableIndex = pPet->GetNpcTbl()->tblidx;
+							ArmorBattleAttr = pPet->GetNpcTbl()->byBattle_Attribute;
 						}
 						break;
 						default:

@@ -3827,18 +3827,16 @@ VOID CInfoWindowGui::SetBattleAttributeDisplay( stINFOWND_BATTLEATTR* pBattleAtt
 			if( pBattleAttr->bySourceWeaponAttr == INVALID_BYTE )
 				return;
 
-		/*	m_pmdBox->SetItem( Logic_GetBattleAttributeName( pBattleAttr->bySourceWeaponAttr ), "Title", FONT_TITLE, COMP_TEXT_LEFT, Logic_GetBattleAttributeColor( pBattleAttr->bySourceWeaponAttr ) );
-			m_pmdBox->SetItem( GetDisplayStringManager()->GetString( "DST_ITEMUPGRADE_INFO_HOIPOI_SLOT_EMPTY_TITLE" ), "Title2", FONT_TITLE, COMP_TEXT_LEFT, INFOCOLOR_0, 0, TRUE );
-			m_pmdBox->SetBlankLine( INFOWND_BLANKLINE_HEIGHT );
+			m_pmdBox->SetItem(Logic_GetBattleAttributeName(pBattleAttr->bySourceWeaponAttr), "Title", FONT_TITLE, COMP_TEXT_LEFT, Logic_GetBattleAttributeColor(pBattleAttr->bySourceWeaponAttr));
+			m_pmdBox->SetItem(GetDisplayStringManager()->GetString("DST_ITEMUPGRADE_INFO_HOIPOI_SLOT_EMPTY_TITLE"), "Title2", FONT_TITLE, COMP_TEXT_LEFT, INFOCOLOR_0, 0, TRUE);
+			m_pmdBox->SetBlankLine(INFOWND_BLANKLINE_HEIGHT);
 
-			m_pmdBox->SetItem( GetDisplayStringManager()->GetString( "DST_ITEMUPGRADE_INFO_HOIPOI_SLOT_EMPTY_LINE1" ), "Line1", FONT_TEXT, COMP_TEXT_LEFT, INFOCOLOR_0 );
-			m_pmdBox->SetItem( Logic_GetBattleAttributeName( pBattleAttr->bySourceWeaponAttr ), "Line2_Attr_1", FONT_TEXT, COMP_TEXT_LEFT, Logic_GetBattleAttributeColor( pBattleAttr->bySourceWeaponAttr ) );
-			m_pmdBox->SetItem( GetDisplayStringManager()->GetString( "DST_ITEMUPGRADE_INFO_HOIPOI_SLOT_EMPTY_LINE2_1" ), "Line2_1", FONT_TEXT, COMP_TEXT_LEFT, INFOCOLOR_0, 0, TRUE );
-			m_pmdBox->SetItem( Logic_GetBattleAttributeName( pBattleAttr->bySourceWeaponAttr ), "Line2_Attr_2", FONT_TEXT, COMP_TEXT_LEFT, Logic_GetBattleAttributeColor( pBattleAttr->bySourceWeaponAttr ), 0, TRUE );
-			m_pmdBox->SetItem( GetDisplayStringManager()->GetString( "DST_ITEMUPGRADE_INFO_HOIPOI_SLOT_EMPTY_LINE2_2" ), "Line2_2", FONT_TEXT, COMP_TEXT_LEFT, INFOCOLOR_0, 0, TRUE );
-			m_pmdBox->SetBlankLine( INFOWND_BLANKLINE_HEIGHT );
-
-			SetBattleAttrInfo_Upgrade( pBattleAttr );*/
+			m_pmdBox->SetItem(GetDisplayStringManager()->GetString("DST_ITEMUPGRADE_INFO_HOIPOI_SLOT_EMPTY_LINE1"), "Line1", FONT_TEXT, COMP_TEXT_LEFT, INFOCOLOR_0);
+			m_pmdBox->SetItem(Logic_GetBattleAttributeName(pBattleAttr->bySourceWeaponAttr), "Line2_Attr_1", FONT_TEXT, COMP_TEXT_LEFT, Logic_GetBattleAttributeColor(pBattleAttr->bySourceWeaponAttr));
+			m_pmdBox->SetItem(GetDisplayStringManager()->GetString("DST_ITEMUPGRADE_INFO_HOIPOI_SLOT_EMPTY_LINE2_1"), "Line2_1", FONT_TEXT, COMP_TEXT_LEFT, INFOCOLOR_0, 0, TRUE);
+			m_pmdBox->SetItem(Logic_GetBattleAttributeName(pBattleAttr->bySourceWeaponAttr), "Line2_Attr_2", FONT_TEXT, COMP_TEXT_LEFT, Logic_GetBattleAttributeColor(pBattleAttr->bySourceWeaponAttr), 0, TRUE);
+			m_pmdBox->SetItem(GetDisplayStringManager()->GetString("DST_ITEMUPGRADE_INFO_HOIPOI_SLOT_EMPTY_LINE2_2"), "Line2_2", FONT_TEXT, COMP_TEXT_LEFT, INFOCOLOR_0, 0, TRUE);
+			m_pmdBox->SetBlankLine(INFOWND_BLANKLINE_HEIGHT);
 
 			SetBattleAttrInfo_Upgrade(pBattleAttr);
 
@@ -3900,10 +3898,15 @@ VOID CInfoWindowGui::SetBattleAttrInfo_Weapon(stINFOWND_BATTLEATTR* pAttr)
 {
 	WCHAR awcBuffer[256];
 	CHAR acLine[32];
+	RwReal Bonus = 0.f;
 
 	// Target Weapon Attribute 의 값이 INVALID 라면 대상이 없는 것임
 	if (pAttr->bySourceWeaponAttr == INVALID_BYTE)
 		return;
+
+	if (pAttr->bySourceWeaponAttr != BATTLE_ATTRIBUTE_NONE) {
+		Bonus = pAttr->afSourceOffenceBonus[pAttr->bySourceWeaponAttr] - 5.f;
+	}
 
 	for (RwUInt8 i = BATTLE_ATTRIBUTE_NONE; i < BATTLE_ATTRIBUTE_COUNT; ++i)
 	{
@@ -3911,7 +3914,7 @@ VOID CInfoWindowGui::SetBattleAttrInfo_Weapon(stINFOWND_BATTLEATTR* pAttr)
 		m_pmdBox->SetItem(Logic_GetBattleAttributeName(i), acLine, FONT_TEXT, COMP_TEXT_LEFT, Logic_GetBattleAttributeColor(i));
 
 		// 현재 속성에게의 공격력 + 보너스 공격력을 표시한다.
-		RwReal fRate = GetBattleAttributeEffectApplyValue(i) + pAttr->afSourceOffenceBonus[pAttr->bySourceWeaponAttr];
+		RwReal fRate = Bonus + GetBattleAttributeEffectApplyValue(i, pAttr->bySourceWeaponAttr);
 		swprintf_s(awcBuffer, 256, GetDisplayStringManager()->GetString("DST_BATTLEATTR_ATTACK_RATE_TARGET"), fRate);
 
 		sprintf_s(acLine, 32, "Info%d", i + BATTLE_ATTRIBUTE_COUNT);
@@ -3928,18 +3931,24 @@ VOID CInfoWindowGui::SetBattleAttrInfo_Armor( stINFOWND_BATTLEATTR* pAttr )
 {
 	WCHAR awcBuffer[256];
 	CHAR acLine[32];
+	RwReal Bonus = 0.f;
+
 	DBO_WARNING_MESSAGE("B");
-	// Target Weapon Attribute 의 값이 INVALID 라면 대상이 없는 것임
+	// If the value of Target Weapon Attribute is INVALID, it means there is no target
 	if( pAttr->bySourceArmorAttr == INVALID_BYTE )
 		return;
+
+	if (pAttr->bySourceArmorAttr != BATTLE_ATTRIBUTE_NONE) {
+		Bonus = pAttr->afSourceDefenceBonus[pAttr->bySourceArmorAttr] - 5.f;
+	}
 	
 	for(RwUInt8 i = BATTLE_ATTRIBUTE_NONE; i < BATTLE_ATTRIBUTE_COUNT; ++i )
 	{
 		sprintf_s( acLine, 32, "Info%d", i );
 		m_pmdBox->SetItem( Logic_GetBattleAttributeName( i ), acLine, FONT_TEXT, COMP_TEXT_LEFT, Logic_GetBattleAttributeColor( i ) );
 		
-		// 현재 속성에게의 방어력 + 보너스 방어력을 표시한다.
-		RwReal fRate = GetBattleAttributeEffectApplyValue( i ) + pAttr->afSourceDefenceBonus[pAttr->bySourceArmorAttr];
+		// Displays the defense (power) against the current attribute + bonus defense.
+		RwReal fRate = Bonus + GetBattleAttributeEffectApplyValue(i, pAttr->bySourceArmorAttr);
 		swprintf_s( awcBuffer, 256, GetDisplayStringManager()->GetString( "DST_BATTLEATTR_DEFENCE_RATE_TARGET" ), fRate );
 		
 		sprintf_s( acLine, 32, "Info%d", i+BATTLE_ATTRIBUTE_COUNT );
@@ -3990,56 +3999,40 @@ VOID CInfoWindowGui::SetBattleAttrInfo_Armor( stINFOWND_BATTLEATTR* pAttr )
 //	m_pmdBox->SetItem( awcBuffer, "DefenceRate", FONT_TEXT, COMP_TEXT_LEFT, uiColor );
 //}
 
-VOID CInfoWindowGui::SetBattleAttrInfo_Upgrade( stINFOWND_BATTLEATTR* pAttr )
+VOID CInfoWindowGui::SetBattleAttrInfo_Upgrade(stINFOWND_BATTLEATTR* pAttr)
 {
-	DBO_WARNING_MESSAGE("E");
-	//for( RwUInt8 i = BATTLE_ATTRIBUTE_NONE ; i < BATTLE_ATTRIBUTE_COUNT ; ++i )
-	//{
-	//	if( i == pAttr->bySourceWeaponAttr )
-	//		continue;
-
-	//	sprintf_s( acLine, 32, "Info%d", i );
-	//	m_pmdBox->SetItem( Logic_GetBattleAttributeName( i ), acLine, FONT_TEXT, COMP_TEXT_LEFT, Logic_GetBattleAttributeColor( i ) );
-	//	sprintf_s( acLine, 32, "Info%d_1", i );
-	//	m_pmdBox->SetItem( GetDisplayStringManager()->GetString( "DST_ITEMUPGRADE_INFO_HOIPOI_SLOT_ATTR" ), acLine, FONT_TEXT, COMP_TEXT_LEFT, INFOCOLOR_0, 0, TRUE );
-	//	
-	//	// Displays the ATK of the current attribute + Bonus ATK.
-	//	RwReal fRate = GetBattleAttributeEffectApplyValue( i ) + pAttr->afSourceOffenceBonus[pAttr->bySourceWeaponAttr];
-	//	RwUInt32 uiColor = INFOCOLOR_0;
-	//			
-	//	if( fRate >= 0.0f )
-	//	{
-	//		swprintf_s( awcBuffer, 256, GetDisplayStringManager()->GetString( "DST_ITEMUPGRADE_INFO_HOIPOI_SLOT_ATTR_BETTER" ), fRate );			
-	//		uiColor = INFOCOLOR_2;
-	//	}
-	//	else
-	//	{
-	//		swprintf_s( awcBuffer, 256, GetDisplayStringManager()->GetString( "DST_ITEMUPGRADE_INFO_HOIPOI_SLOT_ATTR_WORSE" ), abs( fRate ) );			
-	//		uiColor = INFOCOLOR_5;
-	//	}
-
-	//	sprintf_s( acLine, 32, "Info%d_2", i );
-	//	m_pmdBox->SetItem( awcBuffer, acLine, FONT_TEXT, COMP_TEXT_LEFT, uiColor, 0, TRUE );
-	//}
-
 	WCHAR awcBuffer[512];
 	CHAR acLine[32];
 	WCHAR awcPropName[32];
 
-	for (BYTE i = BATTLE_ATTRIBUTE_HONEST; i < BATTLE_ATTRIBUTE_COUNT; ++i)
+	//DBO_WARNING_MESSAGE("E");
+	for (RwUInt8 i = BATTLE_ATTRIBUTE_NONE; i < BATTLE_ATTRIBUTE_COUNT; ++i)
 	{
+		if (i == pAttr->bySourceWeaponAttr)
+			continue;
+
 		sprintf_s(acLine, 32, "Info%d", i);
-		swprintf_s(awcPropName, 32, L"%ls: ", Logic_GetBattleAttributeName(i));
-		m_pmdBox->SetItem(awcPropName, acLine, FONT_TEXT, COMP_TEXT_LEFT, Logic_GetBattleAttributeColor(i));
+		m_pmdBox->SetItem(Logic_GetBattleAttributeName(i), acLine, FONT_TEXT, COMP_TEXT_LEFT, Logic_GetBattleAttributeColor(i));
+		sprintf_s(acLine, 32, "Info%d_1", i);
+		m_pmdBox->SetItem(GetDisplayStringManager()->GetString("DST_ITEMUPGRADE_INFO_HOIPOI_SLOT_ATTR"), acLine, FONT_TEXT, COMP_TEXT_LEFT, INFOCOLOR_0, 0, TRUE);
 
-		sSYSTEM_EFFECT_TBLDAT* pSystemEffectTbldat = API_GetTableContainer()->GetSystemEffectTable()->FindDataWithEffectCode(GetBattleAttributeEffectCode(i));
-		std::wstring wstrStatName = API_GetTableContainer()->GetTextAllTable()->GetSystemEffectTbl()->GetText(pSystemEffectTbldat->Effect_Info_Text);
+		// Displays the ATK of the current attribute + Bonus ATK.
+		RwReal fRate = GetBattleAttributeEffectApplyValue(i, pAttr->bySourceArmorAttr) + pAttr->afSourceOffenceBonus[pAttr->bySourceWeaponAttr];
+		RwUInt32 uiColor = INFOCOLOR_0;
 
-		int nRate = (int)GetBattleAttributeEffectApplyValue(i);
-		swprintf_s(awcBuffer, 512, wstrStatName.c_str(), nRate);
+		if (fRate >= 0.0f)
+		{
+			swprintf_s(awcBuffer, 256, GetDisplayStringManager()->GetString("DST_ITEMUPGRADE_INFO_HOIPOI_SLOT_ATTR_BETTER"), fRate);
+			uiColor = INFOCOLOR_2;
+		}
+		else
+		{
+			swprintf_s(awcBuffer, 256, GetDisplayStringManager()->GetString("DST_ITEMUPGRADE_INFO_HOIPOI_SLOT_ATTR_WORSE"), abs(fRate));
+			uiColor = INFOCOLOR_5;
+		}
 
-		sprintf_s(acLine, 32, "Info%d", i + BATTLE_ATTRIBUTE_COUNT);
-		m_pmdBox->SetItem(awcBuffer, acLine, FONT_TEXT, COMP_TEXT_LEFT, INFOCOLOR_0, 0, TRUE);
+		sprintf_s(acLine, 32, "Info%d_2", i);
+		m_pmdBox->SetItem(awcBuffer, acLine, FONT_TEXT, COMP_TEXT_LEFT, uiColor, 0, TRUE);
 	}
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

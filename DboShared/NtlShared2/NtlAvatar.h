@@ -123,6 +123,17 @@ enum eATTRIBUTE_TO_UPDATE
 	ATTRIBUTE_TO_UPDATE_PHYSICAL_ARMOR_PEN_RATE,
 	ATTRIBUTE_TO_UPDATE_ENERGY_ARMOR_PEN_RATE,
 
+	AVATAR_TO_UPDATE_ATTRIBUTE_HONEST_OFFENSE,
+	AVATAR_TO_UPDATE_ATTRIBUTE_HONEST_DEFENSE,
+	AVATAR_TO_UPDATE_ATTRIBUTE_STRANG_OFFENSE,
+	AVATAR_TO_UPDATE_ATTRIBUTE_STRANG_DEFENSE,
+	AVATAR_TO_UPDATE_ATTRIBUTE_WILD_OFFENSE,
+	AVATAR_TO_UPDATE_ATTRIBUTE_WILD_DEFENSE,
+	AVATAR_TO_UPDATE_ATTRIBUTE_ELEGANCE_OFFENSE,
+	AVATAR_TO_UPDATE_ATTRIBUTE_ELEGANCE_DEFENSE,
+	AVATAR_TO_UPDATE_ATTRIBUTE_FUNNY_OFFENSE,
+	AVATAR_TO_UPDATE_ATTRIBUTE_FUNNY_DEFENSE,
+
 	ATTRIBUTE_TO_UPDATE_COUNT,
 	ATTRIBUTE_TO_UPDATE_UNKNOWN	= 0xFF,
 
@@ -244,6 +255,17 @@ struct sAVATAR_ATTRIBUTE
 	BYTE byQuestDropRate;
 	float fPhysicalArmorPenRate; // Decreases x% of target physical def. Note: stat should never be below 0
 	float fEnergyArmorPenRate; //  Decreases x% of target energy def. Note: stat should never be below 0
+
+	float fHonestOffense;
+	float fHonestDefense;
+	float fStrangeOffense;
+	float fStrangeDefense;
+	float fWildOffense;
+	float fWildDefense;
+	float fEleganceOffense;
+	float fEleganceDefense;
+	float fFunnyOffense;
+	float fFunnyDefense;
 };
 
 struct sAVATAR_ATTRIBUTE_LINK
@@ -358,6 +380,17 @@ struct sAVATAR_ATTRIBUTE_LINK
 	BYTE *pbyQuestDropRate;
 	float *pfPhysicalArmorPenRate;
 	float *pfEnergyArmorPenRate;
+
+	float* pfHonestOffense;
+	float* pfHonestDefense;
+	float* pfStrangeOffense;
+	float* pfStrangeDefense;
+	float* pfWildOffense;
+	float* pfWildDefense;
+	float* pfEleganceOffense;
+	float* pfEleganceDefense;
+	float* pfFunnyOffense;
+	float* pfFunnyDefense;
 };
 
 #pragma pack(pop)

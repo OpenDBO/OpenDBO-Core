@@ -79,7 +79,10 @@ private:
 	// Battle combating effect
 	gui::CFlickerEffect	m_feBattleCombat;
 
-	
+	gui::CPanel* m_pnlBattleAttributeWeapon;
+	gui::CPanel* m_pnlBattleAttributeArmor;
+
+	stINFOWND_BATTLEATTR	m_sBattleAttr;
 	// RP Gauge
 	RwReal	m_fCurrentRPChargingTime;
 	RwReal	m_fRPChargingTime;
@@ -110,6 +113,9 @@ public:
 	RwBool	Create(void);
 	void	Destroy(void);
 
+	VOID	CalcBattleAttribute(VOID);
+	VOID	SetBattleAttribute(RwUInt8 byBattleAttribute);
+	VOID	SetBattleAttribute2(RwUInt8 byBattleAttribute);
 	void Update( RwReal fElapsed );
 	void UpdateBeforeCamera(RwReal fElapsed);
 
@@ -147,6 +153,12 @@ private:
 	
 	gui::CSlot	m_slotPaintRPBall;
 	gui::CSlot	m_slotMoveRPBall;
+
+	gui::CSlot m_slotWeaponMouseEnter;
+	gui::CSlot m_slotWeaponMouseLeave;
+
+	gui::CSlot m_slotArmorMouseEnter;
+	gui::CSlot m_slotArmorMouseLeave;
 			
 	VOID	OnPaint(VOID);
 	VOID	OnPaintLast(VOID);
@@ -158,6 +170,12 @@ private:
 	//VOID	OnPowerMove( RwInt32 nOldX, RwInt32 nOldY );
 	VOID	OnAvatarFocused( gui::CComponent* pComponent, bool bFocused );
 	VOID	OnAvatarClick( gui::CComponent* pComponent );	
+	VOID	OnClickScouter(gui::CComponent* pComponent);
+
+	VOID	OnMouseBattleAttrAttackEnter(gui::CComponent* pComponent);
+	VOID	OnMouseBattleAttrAttackLeave(gui::CComponent* pComponent);
+	VOID	OnMouseBattleAttrDefenseEnter(gui::CComponent* pComponent);
+	VOID	OnMouseBattleAttrDefenseLeave(gui::CComponent* pComponent);
 
 };
 
