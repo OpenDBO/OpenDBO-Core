@@ -61,8 +61,8 @@ private:
     CNtlPLItem*		CreatePLItem(RwUInt8 bySlotIdx, const RwChar *pModelName, RwUInt32 uiSerialId, RwUInt8 byUpgrade);
     void			DeleteAllItem(void);    
 
-    void			MakeItemModelName(std::string& strModelName, RwUInt8 byModeNameRule);
-    void			MakeItemModelName(std::string& strModelName, RwUInt8 byRace, RwUInt8 byGender, RwUInt8 bySkinColor, RwUInt8 byModeNameRule);
+    void			MakeItemModelName(std::string& strModelName, RwUInt8 byModeNameRule, RwUInt8 slotId);
+    void			MakeItemModelName(std::string& strModelName, RwUInt8 byRace, RwUInt8 byGender, RwUInt8 bySkinColor, RwBool isAdult, RwUInt8 byModeNameRule, RwUInt8 slotId);
 
     void			StorageMainWeapon(void);
     void			RestoreMainWeapon(void);
