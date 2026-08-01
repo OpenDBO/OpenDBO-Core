@@ -37,13 +37,10 @@ public:
 
 public:
 
-	void		SetMainWeaponAttr(RwUInt8 bAttr) { m_ucMainWeaponBattleAttr = bAttr; }
-	void		SetSubWeaponAttr(RwUInt8 bAttr) { m_ucSubWeaponBattleAttr = bAttr; }
-	void		SetArmorWeaponAttr(RwUInt8 bAttr) { m_ucArmorBattleAttr = bAttr; }
-
-	RwUInt8		GetMainWeaponAttr(void) { return m_ucMainWeaponBattleAttr; }
-	RwUInt8		GetSubWeaponAttr(void) { return m_ucSubWeaponBattleAttr; }
-	RwUInt8		GetArmorWeaponAttr(void) { return m_ucArmorBattleAttr; }
+	void		SetMainBattleAttr(RwUInt8 bAttr) { m_ucBattleAttr = bAttr; }
+	void		SetArmorBattleAttr(RwUInt8 bAttr) { m_ucBattleAttrArmor = bAttr; }
+	RwUInt8		GetMainBattleAttr(void) { return m_ucBattleAttr; }
+	RwUInt8		GetArmorBattleAttr(void) { return m_ucBattleAttrArmor; }
 
 	void		SetPcTbl(const sPC_TBLDAT* pPcTbl);
 	sPC_TBLDAT* GetPcTbl(void) const;
@@ -62,9 +59,8 @@ public:
 
 	sPC_TBLDAT* m_pPcTbl;	/** pc table data pointer */
 
-	RwUInt8		m_ucMainWeaponBattleAttr;
-	RwUInt8		m_ucSubWeaponBattleAttr;
-	RwUInt8		m_ucArmorBattleAttr;
+	RwUInt8		m_ucBattleAttr;
+	RwUInt8		m_ucBattleAttrArmor;
 
 	//////////////////////////////////////////////////////////////////////////
 

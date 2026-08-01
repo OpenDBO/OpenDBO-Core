@@ -30,11 +30,26 @@ extern void CalcHealOverTime(CCharacterObject* pCaster, sSKILL_TBLDAT* skilltbl,
 
 extern void IncreaseTargetEnemyAggro(CCharacter* pCaster, CCharacter* pTarget, DWORD dwDefaultAggro);
 
-extern float GetReflectDamage(float fDmg, BYTE byAttackType, float fPhysicalReflect, float fEnergyReflect);
-extern float GetSkillReflectDamage(float fDmg, BYTE bySkillType, float fPhysicalReflect, float fEnergyReflect);
+extern float GetReflectDamage(float fDmg, BYTE byAttackType, CCharacterAtt* pVictimAtt);
+extern float GetSkillReflectDamage(float fDmg, BYTE bySkillType, CCharacterAtt* pVictimAtt);
 
-//extern float GetAttributeBonusRate(bool bIsPc, bool bSubWeapon, BYTE byOffence, BYTE byDefence, BYTE bySubOffence, sAVATAR_ATTRIBUTE& sOffenceAttribute, sAVATAR_ATTRIBUTE& sDefenceAttribute);
+extern float GetAttributeBonusRate(bool bIsPc, bool bSubWeapon, BYTE byOffence, BYTE byDefence, BYTE bySubOffence, sAVATAR_ATTRIBUTE& sOffenceAttribute, sAVATAR_ATTRIBUTE& sDefenceAttribute);
 
+extern float CalcPropBonus(CCharacterObject* pCaster, CCharacterObject* pVictim, float fAttackerPower);
+
+extern float CalcDefensePower(float fDefence, float fArmorPenRate);
+
+extern float CalcCritBonus(float fResultValue, CCharacterAtt* pCasterAtt, BYTE bySkill_Type, BYTE byAttackResult, float fCritDefRate, bool bIncreaseDmg = false);
+
+extern float CalcMinDamage(float fDamage, float fLevel);
+
+extern float CalcMaxDamage(float fDamage, float fLevel);
+
+extern bool IsValidAttribute(BYTE byAttr);
+
+extern float GetOffenceAttribute(BYTE byAttr, sAVATAR_ATTRIBUTE& sOffenceAttribute);
+
+extern float GetDefenceAttribute(BYTE byAttr, sAVATAR_ATTRIBUTE& sDefenceAttribute);
 #endif
 
 

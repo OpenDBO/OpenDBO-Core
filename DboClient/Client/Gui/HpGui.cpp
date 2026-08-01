@@ -132,6 +132,16 @@ RwBool CHpGui::Create(void)
 	m_pBtn_HpScouterOption = (gui::CButton*)GetComponent("Btn_HpScouterOption");
 	m_pBtn_HpScouterOption->SetToolTip(GetDisplayStringManager()->GetString("DST_SCOUTER_BUTTON_EXPLANATION_NON"));
 
+	m_pnlBattleAttributeWeapon = (gui::CPanel*)GetComponent("pnlBattleAttributeWeapon");
+	m_pnlBattleAttributeArmor = (gui::CPanel*)GetComponent("pnlBattleAttributeArmor");
+	m_pnlBattleAttributeWeapon->Show(true);
+	m_pnlBattleAttributeArmor->Show(true);
+
+	m_slotWeaponMouseEnter = m_pnlBattleAttributeWeapon->SigMouseEnter().Connect(this, &CHpGui::OnMouseBattleAttrAttackEnter);
+	m_slotWeaponMouseLeave = m_pnlBattleAttributeWeapon->SigMouseLeave().Connect(this, &CHpGui::OnMouseBattleAttrAttackLeave);
+	m_slotArmorMouseEnter = m_pnlBattleAttributeArmor->SigMouseEnter().Connect(this, &CHpGui::OnMouseBattleAttrDefenseEnter);
+	m_slotArmorMouseLeave = m_pnlBattleAttributeArmor->SigMouseLeave().Connect(this, &CHpGui::OnMouseBattleAttrDefenseLeave);
+
 	m_slotMove = m_pThis->SigMove().Connect(this, &CHpGui::OnMove);
 	m_sloTracking = m_pThis->SigResize().Connect(this, &CHpGui::OnResize);
 	m_slotPaint = m_pThis->SigPaint().Connect(this, &CHpGui::OnPaint);
@@ -387,6 +397,8 @@ void CHpGui::HandleEvents(RWS::CMsg &pMsg)
 			//m_EPGagueAnimation.SetValue( uiEp, uiMaxEp, m_ppgbEp, TRUE );
 			m_sttHp->Format("%u / %u",uiHp,uiMaxHp);
 			m_sttMp->Format("%u / %u",uiEp,uiMaxEp);
+
+			CalcBattleAttribute();
 		}
 
 		if( pUpdate->uiUpdateType & EVENT_AIUT_BUFF )			
@@ -1016,3 +1028,89 @@ VOID CHpGui::OnAvatarClick( gui::CComponent* pComponent )
 	}
 }
 
+/* VOID CHpGui::OnClickScouter(gui::CComponent* pComponent)
+{
+	GetDialogManager()->SwitchDialog(DIALOG_SCOUTER_OLD_BODY);
+} */
+
+
+VOID CHpGui::OnMouseBattleAttrAttackEnter(gui::CComponent* pComponent)
+{
+	CRectangle rtScreen = pComponent->GetScreenRect();
+
+	m_sBattleAttr.eBattleAttrInfoType = stINFOWND_BATTLEATTR::TYPE_ATTR_WEAPON_INFO;
+
+	GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_BATTLEATTRIBUTE, rtScreen.left, rtScreen.top, reinterpret_cast<void*>(&m_sBattleAttr), DIALOG_STATUS);
+}
+
+VOID CHpGui::OnMouseBattleAttrAttackLeave(gui::CComponent* pComponent)
+{
+	if (DIALOG_STATUS == GetInfoWndManager()->GetRequestGui() && CInfoWndManager::INFOWND_BATTLEATTRIBUTE == GetInfoWndManager()->GetInfoWndState())
+		GetInfoWndManager()->ShowInfoWindow(FALSE);
+}
+
+VOID CHpGui::OnMouseBattleAttrDefenseEnter(gui::CComponent* pComponent)
+{
+	CRectangle rtScreen = pComponent->GetScreenRect();
+
+	m_sBattleAttr.eBattleAttrInfoType = stINFOWND_BATTLEATTR::TYPE_ATTR_ARMOR_INFO;
+
+	GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_BATTLEATTRIBUTE_ARMOR, rtScreen.left, rtScreen.top, reinterpret_cast<void*>(&m_sBattleAttr), DIALOG_STATUS);
+
+}
+
+VOID CHpGui::OnMouseBattleAttrDefenseLeave(gui::CComponent* pComponent)
+{
+	if (DIALOG_STATUS == GetInfoWndManager()->GetRequestGui() && CInfoWndManager::INFOWND_BATTLEATTRIBUTE_ARMOR == GetInfoWndManager()->GetInfoWndState())
+		GetInfoWndManager()->ShowInfoWindow(FALSE);
+}
+
+VOID CHpGui::CalcBattleAttribute(VOID)
+{
+	CNtlSobAvatar* pSobAvatar = GetNtlSLGlobal()->GetSobAvatar();
+	if (pSobAvatar == NULL)
+		return;
+
+	CNtlSobAvatarAttr* pSobAvatarAttr = reinterpret_cast<CNtlSobAvatarAttr*>(pSobAvatar->GetSobAttr());
+	CNtlSobCharProxy* pAvatarProxy = reinterpret_cast<CNtlSobCharProxy*>(pSobAvatar->GetSobProxy());
+
+	SetBattleAttribute(pSobAvatarAttr->GetMainBattleAttr());
+	SetBattleAttribute2(pSobAvatarAttr->GetArmorBattleAttr());
+
+	m_sBattleAttr.bySourceWeaponAttr = pSobAvatarAttr->GetMainBattleAttr();
+	m_sBattleAttr.bySourceArmorAttr = pSobAvatarAttr->GetArmorBattleAttr();
+
+	// ���ó�ʼ����
+	m_sBattleAttr.afSourceOffenceBonus[BATTLE_ATTRIBUTE_HONEST] = pSobAvatarAttr->m_fHonestOffense;
+	m_sBattleAttr.afSourceDefenceBonus[BATTLE_ATTRIBUTE_HONEST] = pSobAvatarAttr->m_fHonestDefense;
+
+	m_sBattleAttr.afSourceOffenceBonus[BATTLE_ATTRIBUTE_STRANGE] = pSobAvatarAttr->m_fStrangeOffense;
+	m_sBattleAttr.afSourceDefenceBonus[BATTLE_ATTRIBUTE_STRANGE] = pSobAvatarAttr->m_fStrangeDefense;
+
+	m_sBattleAttr.afSourceOffenceBonus[BATTLE_ATTRIBUTE_WILD] = pSobAvatarAttr->m_fWildOffense;
+	m_sBattleAttr.afSourceDefenceBonus[BATTLE_ATTRIBUTE_WILD] = pSobAvatarAttr->m_fWildDefense;
+
+	m_sBattleAttr.afSourceOffenceBonus[BATTLE_ATTRIBUTE_ELEGANCE] = pSobAvatarAttr->m_fEleganceOffense;
+	m_sBattleAttr.afSourceDefenceBonus[BATTLE_ATTRIBUTE_ELEGANCE] = pSobAvatarAttr->m_fEleganceDefense;
+
+	m_sBattleAttr.afSourceOffenceBonus[BATTLE_ATTRIBUTE_FUNNY] = pSobAvatarAttr->m_fFunnyOffense;
+	m_sBattleAttr.afSourceDefenceBonus[BATTLE_ATTRIBUTE_FUNNY] = pSobAvatarAttr->m_fFunnyDefense;
+
+}
+
+VOID CHpGui::SetBattleAttribute(RwUInt8 byBattleAttribute)
+{
+	gui::CSurface surface = Logic_GetBattleAttributeIconSurface(byBattleAttribute, TRUE);
+
+	m_pnlBattleAttributeWeapon->GetSurface()->clear();
+	m_pnlBattleAttributeWeapon->AddSurface(surface);
+}
+
+VOID CHpGui::SetBattleAttribute2(RwUInt8 byBattleAttribute)
+{
+
+	gui::CSurface surface = Logic_GetBattleAttributeIconSurface(byBattleAttribute, TRUE);
+
+	m_pnlBattleAttributeArmor->GetSurface()->clear();
+	m_pnlBattleAttributeArmor->AddSurface(surface);
+}

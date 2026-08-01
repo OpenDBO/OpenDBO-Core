@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS `accounts`;
 CREATE TABLE `accounts` (
   `AccountID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `Username` varchar(16) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `Password_hash` varchar(32) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL COMMENT 'password in md5',
+  `Password_hash` varchar(64) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL COMMENT 'password in sha3-256',
   `acc_status` enum('pending','block','active') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'active',
   `email` varchar(80) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'test@mail.com',
   `mallpoints` int(10) unsigned NOT NULL DEFAULT '10000000',
@@ -35,7 +35,7 @@ CREATE TABLE `accounts` (
   `founder` smallint(1) NOT NULL DEFAULT '0' COMMENT '0 = no founder / 1 = first founder / 2 = second / 3 = third',
   `founder_recv` smallint(1) NOT NULL DEFAULT '0' COMMENT '0 = founder not received / 1 = founder received',
   `last_ip` varchar(16) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT '0.0.0.0',
-  `del_char_pw` varchar(32) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT '25f9e794323b453885f5181f1b624d0b',
+  `del_char_pw` varchar(64) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT '87cd084d190e436f147322b90e7384f6a8e0676c99d21ef519ea718e51d45f9c',
   `PremiumSlots` tinyint(1) unsigned NOT NULL DEFAULT '4',
   `EventCoins` int(10) unsigned DEFAULT '0' COMMENT 'coins used to play on HLS event machine',
   `WaguCoins` int(10) unsigned DEFAULT '0' COMMENT 'coins used to play on HLS slot machine',

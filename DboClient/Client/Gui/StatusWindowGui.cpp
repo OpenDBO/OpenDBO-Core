@@ -184,13 +184,12 @@ RwBool CStatusAvatarTab::Create(CNtlPLGui* pParent)
 	m_pbtnRightRot = reinterpret_cast<gui::CButton*>(pParent->GetComponent("btnRightSpin"));
 	m_pbtnDragRot = reinterpret_cast<gui::CButton*>(pParent->GetComponent("btnCharDrag"));
 
-	m_ppnlBattleAttribute[TYPE_ARMOR] = reinterpret_cast<gui::CPanel*>(pParent->GetComponent("pnlDefenceAttr"));
-	m_ppnlBattleAttribute[TYPE_WEAPON] = reinterpret_cast<gui::CPanel*>(pParent->GetComponent("pnlOffenceAttr"));
-
-
 	m_btnCharTitle = reinterpret_cast<gui::CButton*>(pParent->GetComponent("btnCharTitle"));
 	m_btnCharTitle->SetText(GetDisplayStringManager()->GetString("DST_CHAR_TITLE"));
 	m_slotCharTitleButton = m_btnCharTitle->SigClicked().Connect(this, &CStatusAvatarTab::OnCharTitleBtnClicked);
+
+	m_pnlBattleAttribute = reinterpret_cast<gui::CPanel*>(pParent->GetComponent("pnlOffenceAttr"));
+	m_pnlBattleAttributeDefense = reinterpret_cast<gui::CPanel*>(pParent->GetComponent("pnlDefenceAttr"));
 
 	m_slotMouseDown = m_pSelf->SigMouseDown().Connect(this, &CStatusAvatarTab::OnMouseDown);
 	m_slotMouseUp = m_pSelf->SigMouseUp().Connect(this, &CStatusAvatarTab::OnMouseUp);
@@ -208,10 +207,11 @@ RwBool CStatusAvatarTab::Create(CNtlPLGui* pParent)
 	m_slotDragRotBtnRelease = m_pbtnDragRot->SigReleased().Connect(this, &CStatusAvatarTab::OnDragRotBtnRelease);
 	m_slotDragRotMouseMove = m_pbtnDragRot->SigMouseMove().Connect(this, &CStatusAvatarTab::OnDragRotMouseMove);
 
-	m_slotWeaponMouseEnter = m_ppnlBattleAttribute[TYPE_WEAPON]->SigMouseEnter().Connect(this, &CStatusAvatarTab::OnMouseWeaponAttrEnter);
-	m_slotWeaponMouseLeave = m_ppnlBattleAttribute[TYPE_WEAPON]->SigMouseLeave().Connect(this, &CStatusAvatarTab::OnMouseWeaponAttrLeave);
-	m_slotArmorMouseEnter = m_ppnlBattleAttribute[TYPE_ARMOR]->SigMouseEnter().Connect(this, &CStatusAvatarTab::OnMouseArmorAttrEnter);
-	m_slotArmorMouseLeave = m_ppnlBattleAttribute[TYPE_ARMOR]->SigMouseLeave().Connect(this, &CStatusAvatarTab::OnMouseArmorAttrLeave);
+	m_slotWeaponMouseEnter = m_pnlBattleAttribute->SigMouseEnter().Connect(this, &CStatusAvatarTab::OnMouseBattleAttrEnter);
+	m_slotWeaponMouseLeave = m_pnlBattleAttribute->SigMouseLeave().Connect(this, &CStatusAvatarTab::OnMouseBattleAttrLeave);
+
+	m_slotArmorMouseEnter = m_pnlBattleAttributeDefense->SigMouseEnter().Connect(this, &CStatusAvatarTab::OnMouseBattleAttrDefenseEnter);
+	m_slotArmorMouseLeave = m_pnlBattleAttributeDefense->SigMouseLeave().Connect(this, &CStatusAvatarTab::OnMouseBattleAttrDefenseLeave);
 
 
 	// Equip Slot CoordSet
@@ -722,20 +722,10 @@ VOID CStatusAvatarTab::CalcBattleAttribute(VOID)
 	CNtlSobAvatarAttr* pSobAvatarAttr = reinterpret_cast<CNtlSobAvatarAttr*>(pSobAvatar->GetSobAttr());
 	CNtlSobCharProxy* pAvatarProxy = reinterpret_cast<CNtlSobCharProxy*>(pSobAvatar->GetSobProxy());
 
-	RwUInt8 byWeaponAttr = INVALID_BYTE;
-	if (pAvatarProxy->GetActiveSubWeapon())
-	{
-		byWeaponAttr = pSobAvatarAttr->GetSubWeaponAttr();
-		SetBattleAttribute(TYPE_WEAPON, pSobAvatarAttr->GetSubWeaponAttr());
-	}
-	else
-	{
-		byWeaponAttr = pSobAvatarAttr->GetMainWeaponAttr();
-		SetBattleAttribute(TYPE_WEAPON, pSobAvatarAttr->GetMainWeaponAttr());
-	}
-
-	SetBattleAttribute(TYPE_ARMOR, pSobAvatarAttr->GetArmorWeaponAttr());
-	SetSourceAttr(byWeaponAttr, pSobAvatarAttr->GetArmorWeaponAttr());
+	SetBattleAttribute(pSobAvatarAttr->GetMainBattleAttr());
+	SetBattleAttribute2(pSobAvatarAttr->GetArmorBattleAttr());
+	SetSourceAttr(pSobAvatarAttr->GetMainBattleAttr());
+	SetSourceAttrArmor(pSobAvatarAttr->GetArmorBattleAttr());
 
 	// Source�� Bonus�� ���⼭ ����. Target�� Bonus�� ��Ŷ�� ����� �� �����Ѵ�.
 	m_sBattleAttr.afSourceOffenceBonus[BATTLE_ATTRIBUTE_HONEST] = pSobAvatarAttr->fHonestOffense;
@@ -751,10 +741,16 @@ VOID CStatusAvatarTab::CalcBattleAttribute(VOID)
 	m_sBattleAttr.afSourceDefenceBonus[BATTLE_ATTRIBUTE_FUNNY] = pSobAvatarAttr->fFunnyDefense;
 }
 
-VOID CStatusAvatarTab::SetBattleAttribute(eTYPE_BATTLEATTR eType, RwUInt8 byBattleAttribute)
+VOID CStatusAvatarTab::SetBattleAttribute(RwUInt8 byBattleAttribute)
 {
-	Logic_SetBattleAttributeMark(m_ppnlBattleAttribute[eType], byBattleAttribute, FALSE);
+	Logic_SetBattleAttributeMark(m_pnlBattleAttribute, byBattleAttribute, FALSE);
 }
+
+VOID CStatusAvatarTab::SetBattleAttribute2(RwUInt8 byBattleAttribute)
+{
+	Logic_SetBattleAttributeMark(m_pnlBattleAttributeDefense, byBattleAttribute, FALSE);
+}
+
 
 VOID CStatusAvatarTab::ClickEffect(RwBool bPush, RwInt32 nSlotIdx /* = -1  */)
 {
@@ -1158,89 +1154,93 @@ VOID CStatusAvatarTab::OnDragRotMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY
 		m_nDragRotX = nX;
 	}
 }
-
-VOID CStatusAvatarTab::OnMouseWeaponAttrEnter(gui::CComponent* pComponent)
+VOID CStatusAvatarTab::OnMouseBattleAttrEnter(gui::CComponent* pComponent)
 {
 	CRectangle rtScreen = pComponent->GetScreenRect();
 
 	m_sBattleAttr.eBattleAttrInfoType = stINFOWND_BATTLEATTR::TYPE_ATTR_WEAPON_INFO;
 
-	GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_BATTLEATTRIBUTE,
-		rtScreen.left, rtScreen.top,
-		reinterpret_cast<void*>(&m_sBattleAttr),
-		DIALOG_STATUS);
+	GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_BATTLEATTRIBUTE, rtScreen.left, rtScreen.top, reinterpret_cast<void*>(&m_sBattleAttr), DIALOG_STATUS);
 }
 
-VOID CStatusAvatarTab::OnMouseWeaponAttrLeave(gui::CComponent* pComponent)
+
+VOID CStatusAvatarTab::OnMouseBattleAttrLeave(gui::CComponent* pComponent)
 {
-	if (DIALOG_STATUS == GetInfoWndManager()->GetRequestGui() &&
-		CInfoWndManager::INFOWND_BATTLEATTRIBUTE == GetInfoWndManager()->GetInfoWndState())
+	if (DIALOG_STATUS == GetInfoWndManager()->GetRequestGui() && CInfoWndManager::INFOWND_BATTLEATTRIBUTE == GetInfoWndManager()->GetInfoWndState())
 		GetInfoWndManager()->ShowInfoWindow(FALSE);
 }
 
-VOID CStatusAvatarTab::OnMouseArmorAttrEnter(gui::CComponent* pComponent)
+
+VOID CStatusAvatarTab::OnMouseBattleAttrDefenseEnter(gui::CComponent* pComponent)
 {
 	CRectangle rtScreen = pComponent->GetScreenRect();
 
 	m_sBattleAttr.eBattleAttrInfoType = stINFOWND_BATTLEATTR::TYPE_ATTR_ARMOR_INFO;
 
-	GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_BATTLEATTRIBUTE,
-		rtScreen.left, rtScreen.top,
-		reinterpret_cast<void*>(&m_sBattleAttr),
-		DIALOG_STATUS);
+	GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_BATTLEATTRIBUTE_ARMOR, rtScreen.left, rtScreen.top, reinterpret_cast<void*>(&m_sBattleAttr), DIALOG_STATUS);
+
 }
 
-VOID CStatusAvatarTab::OnMouseArmorAttrLeave(gui::CComponent* pComponent)
+VOID CStatusAvatarTab::OnMouseBattleAttrDefenseLeave(gui::CComponent* pComponent)
 {
-	if (DIALOG_STATUS == GetInfoWndManager()->GetRequestGui() &&
-		CInfoWndManager::INFOWND_BATTLEATTRIBUTE == GetInfoWndManager()->GetInfoWndState())
+	if (DIALOG_STATUS == GetInfoWndManager()->GetRequestGui() && CInfoWndManager::INFOWND_BATTLEATTRIBUTE_ARMOR == GetInfoWndManager()->GetInfoWndState())
 		GetInfoWndManager()->ShowInfoWindow(FALSE);
 }
 
-VOID CStatusAvatarTab::SetSourceAttr(RwUInt8 bySourceWeaponAttr, RwUInt8 bySourceArmorAttr)
+VOID CStatusAvatarTab::SetSourceAttr(RwUInt8 bySourceWeaponAttr)
 {
 	m_sBattleAttr.bySourceWeaponAttr = bySourceWeaponAttr;
+}
+
+VOID CStatusAvatarTab::SetSourceAttrArmor(RwUInt8 bySourceArmorAttr)
+{
 	m_sBattleAttr.bySourceArmorAttr = bySourceArmorAttr;
 }
 
-VOID CStatusAvatarTab::SetTargetAttr(RwUInt8 byTargetWeaponAttr, RwUInt8 byTargetArmorAttr)
+VOID CStatusAvatarTab::SetTargetAttr(RwUInt8 byTargetWeaponAttr)
 {
 	m_sBattleAttr.byTargetWeaponAttr = byTargetWeaponAttr;
+}
+
+
+VOID CStatusAvatarTab::SetTargetAttrArmor(RwUInt8 byTargetArmorAttr)
+{
 	m_sBattleAttr.byTargetArmorAttr = byTargetArmorAttr;
 }
 
-VOID CStatusAvatarTab::OnBattleAttributeRefresh()
+VOID CStatusAvatarTab::OnBattleAttributeRefreshCommon(
+	gui::CPanel* pPanel,
+	stINFOWND_BATTLEATTR::eTYPE eAttrType,
+	CInfoWndManager::eINFOWNDSTATE eInfoWndState)
 {
-	// ���� ���콺�� ��ġ�� ���� ���� �Ӽ� �гο� �ִ��� �� ���� �Ӽ� �гο� �ִ��� �Ǵ�
-	eTYPE_BATTLEATTR eType = TYPECOUNT;
-	for (RwInt32 i = 0; i < TYPECOUNT; ++i)
-	{
-		if (m_ppnlBattleAttribute[i]->GetScreenRect().PtInRect(CMouse::GetX(), CMouse::GetY()))
-			eType = (eTYPE_BATTLEATTR)i;
-	}
+	if (pPanel->GetScreenRect().PtInRect(CMouse::GetX(), CMouse::GetY()))
+		m_sBattleAttr.eBattleAttrInfoType = eAttrType;
 
-	// ���콺�� �� ���� �г��� �ƴ϶�� InfoWindow�� ������ �ʿ䰡 ����.
-	if (eType == TYPECOUNT)
-		return;
-	else if (eType == TYPE_WEAPON)
-		m_sBattleAttr.eBattleAttrInfoType = stINFOWND_BATTLEATTR::TYPE_ATTR_WEAPON_INFO;
-	else
-		m_sBattleAttr.eBattleAttrInfoType = stINFOWND_BATTLEATTR::TYPE_ATTR_ARMOR_INFO;
-
-	// ���� HpGui���� ��û�� InfoWindow���� Ȯ���ϰ� ���� �Ӽ� ���� InfoWindow�� ���� �ͱ��� Ȯ��
-	// �Ͽ� �´ٸ� ���� ����� InfoWindow�� �ݰ� ���� ����ش�.
 	if (DIALOG_STATUS == GetInfoWndManager()->GetRequestGui() &&
-		CInfoWndManager::INFOWND_BATTLEATTRIBUTE == GetInfoWndManager()->GetInfoWndState())
+		eInfoWndState == GetInfoWndManager()->GetInfoWndState())
 	{
 		GetInfoWndManager()->ShowInfoWindow(FALSE);
 
-		CRectangle rtScreen = m_ppnlBattleAttribute[eType]->GetScreenRect();
+		CRectangle rtScreen = pPanel->GetScreenRect();
 
-		GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_BATTLEATTRIBUTE,
+		GetInfoWndManager()->ShowInfoWindow(TRUE, eInfoWndState,
 			rtScreen.left, rtScreen.top,
 			reinterpret_cast<void*>(&m_sBattleAttr),
 			DIALOG_STATUS);
 	}
+}
+
+VOID CStatusAvatarTab::OnBattleAttributeRefresh()
+{
+	OnBattleAttributeRefreshCommon(
+		m_pnlBattleAttribute,
+		stINFOWND_BATTLEATTR::TYPE_ATTR_WEAPON_INFO,
+		CInfoWndManager::INFOWND_BATTLEATTRIBUTE);
+
+	OnBattleAttributeRefreshCommon(
+		m_pnlBattleAttributeDefense,
+		stINFOWND_BATTLEATTR::TYPE_ATTR_ARMOR_INFO,
+		CInfoWndManager::INFOWND_BATTLEATTRIBUTE_ARMOR);
 }
 
 void CStatusAvatarTab::SetCharTitleText()

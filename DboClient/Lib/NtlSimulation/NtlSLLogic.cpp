@@ -810,7 +810,7 @@ RwUInt32 Logic_GetMudosaPoint( void )
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // avatar status value
-void Logic_SetStatus(CNtlSob *pSobObj, RwUInt8 byAttributeTotalCount, RwUInt8 *pData)
+void Logic_SetStatus(CNtlSob* pSobObj, RwUInt8 byAttributeTotalCount, RwUInt8* pData, BYTE byBattle_Attribute_Ofence, BYTE byBattle_Attribute_Defence)
 {
 	if(pSobObj == NULL)
 		return;
@@ -825,6 +825,9 @@ void Logic_SetStatus(CNtlSob *pSobObj, RwUInt8 byAttributeTotalCount, RwUInt8 *p
 	{
 		pAvatar = GetNtlSLGlobal()->GetSobAvatar();
 		pAvatarAttr = reinterpret_cast<CNtlSobAvatarAttr*>(pAvatar->GetSobAttr());
+
+		pAvatarAttr->SetMainBattleAttr(byBattle_Attribute_Ofence);
+		pAvatarAttr->SetArmorBattleAttr(byBattle_Attribute_Defence);
 	}
 
 	CNtlSobBattleAttr* pBattleAttr = reinterpret_cast<CNtlSobBattleAttr*>(pSobObj->GetSobAttr());
@@ -917,6 +920,22 @@ void Logic_SetStatus(CNtlSob *pSobObj, RwUInt8 byAttributeTotalCount, RwUInt8 *p
 	sAttrData.fEnergyArmorPenRate = pBattleAttr->m_fEnergyArmorPenRate;
 	sAttrData.fPhysicalCriticalDefenceRate = pBattleAttr->m_fPhysicalCriticalDefenceRate;
 	sAttrData.fEnergyCriticalDefenceRate = pBattleAttr->m_fEnergyCriticalDefenceRate;
+
+	sAttrData.fHonestOffense = pBattleAttr->m_fHonestOffense;
+	sAttrData.fHonestDefense = pBattleAttr->m_fHonestDefense;
+
+	sAttrData.fWildOffense = pBattleAttr->m_fWildOffense;
+	sAttrData.fWildDefense = pBattleAttr->m_fWildDefense;
+
+	sAttrData.fStrangeOffense = pBattleAttr->m_fStrangeOffense;
+	sAttrData.fStrangeDefense = pBattleAttr->m_fStrangeDefense;
+
+	sAttrData.fEleganceOffense = pBattleAttr->m_fEleganceOffense;
+	sAttrData.fEleganceDefense = pBattleAttr->m_fEleganceDefense;
+
+	sAttrData.fFunnyOffense = pBattleAttr->m_fFunnyOffense;
+	sAttrData.fFunnyDefense = pBattleAttr->m_fFunnyDefense;
+
 
 	if (pSobObj->GetClassID() == SLCLASS_AVATAR)
 	{
@@ -1031,6 +1050,21 @@ void Logic_SetStatus(CNtlSob *pSobObj, RwUInt8 byAttributeTotalCount, RwUInt8 *p
 	pBattleAttr->m_fEnergyArmorPenRate = sAttrData.fEnergyArmorPenRate;
 	pBattleAttr->m_fPhysicalCriticalDefenceRate = sAttrData.fPhysicalCriticalDefenceRate;
 	pBattleAttr->m_fEnergyCriticalDefenceRate = sAttrData.fEnergyCriticalDefenceRate;
+
+	pBattleAttr->m_fHonestOffense = sAttrData.fHonestOffense;
+	pBattleAttr->m_fHonestDefense = sAttrData.fHonestDefense;
+
+	pBattleAttr->m_fWildOffense = sAttrData.fWildOffense;
+	pBattleAttr->m_fWildDefense = sAttrData.fWildDefense;
+
+	pBattleAttr->m_fStrangeOffense = sAttrData.fStrangeOffense;
+	pBattleAttr->m_fStrangeDefense = sAttrData.fStrangeDefense;
+
+	pBattleAttr->m_fEleganceOffense = sAttrData.fEleganceOffense;
+	pBattleAttr->m_fEleganceDefense = sAttrData.fEleganceDefense;
+
+	pBattleAttr->m_fFunnyOffense = sAttrData.fFunnyOffense;
+	pBattleAttr->m_fFunnyDefense = sAttrData.fFunnyDefense;
 
 	if(pSobObj->GetClassID() == SLCLASS_AVATAR)
 	{

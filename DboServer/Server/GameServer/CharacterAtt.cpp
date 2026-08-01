@@ -30,7 +30,8 @@ void CCharacterAtt::Init()
 {
 	m_pOwnerRef = NULL;
 	memset(&m_pAttribute, 0, sizeof(sAVATAR_ATTRIBUTE));
-	m_byBattle_Attribute = BATTLE_ATTRIBUTE_NONE;
+	m_byBattle_Attribute_Ofence = BATTLE_ATTRIBUTE_NONE;
+	m_byBattle_Attribute_Defence = BATTLE_ATTRIBUTE_NONE;
 
 	m_wSubWeaponPhysicalOffence = 0;
 	m_wSubWeaponEnergyOffence = 0;
@@ -123,6 +124,8 @@ void CCharacterAtt::CalculateAtt()
 		res->wOpCode = GU_AVATAR_ATTRIBUTE_UPDATE;
 		res->hHandle = m_pOwnerRef->GetID();
 		res->byAttributeTotalCount = ATTRIBUTE_TO_UPDATE_COUNT;
+		res->byBattle_Attribute_Defence = m_byBattle_Attribute_Defence;
+		res->byBattle_Attribute_Ofence = m_byBattle_Attribute_Ofence;
 
 		if (CNtlAvatar::GetInstance()->SaveAvatarAttribute(&flagMgr, &newavt, res->abyFlexibleField, &datasize) == false)
 		{
@@ -1363,54 +1366,52 @@ void CCharacterAtt::CalculateBattleAttribute(float fValue, BYTE byApplyType, boo
 
 void CCharacterAtt::CalculateHonestOffence(float fValue, BYTE byApplyType, bool bIsPlus)
 {
-	CalculateCriticalBlockSuccessRate(fValue, byApplyType, bIsPlus);
+	CalcAttributeF(m_pAttribute.fHonestOffense, fValue, byApplyType, bIsPlus);
 }
 
 void CCharacterAtt::CalculateHonestDefence(float fValue, BYTE byApplyType, bool bIsPlus)
 {
-	CalculateCriticalBlockSuccessRate(fValue, byApplyType, bIsPlus);
+	CalcAttributeF(m_pAttribute.fHonestDefense, fValue, byApplyType, bIsPlus);
 }
 
 void CCharacterAtt::CalculateStrangeOffence(float fValue, BYTE byApplyType, bool bIsPlus)
 {
-//	CalculateMaxLP(fValue, byApplyType, bIsPlus); // TEST TO SEE IF THE ISSUE WITH MOBS BVUGGED LP IS FIXED
+	CalcAttributeF(m_pAttribute.fStrangeOffense, fValue, byApplyType, bIsPlus);
 }
 
 void CCharacterAtt::CalculateStrangeDefence(float fValue, BYTE byApplyType, bool bIsPlus)
 {
-//	CalculateMaxLP(fValue, byApplyType, bIsPlus); // TEST TO SEE IF THE ISSUE WITH MOBS BVUGGED LP IS FIXED
+	CalcAttributeF(m_pAttribute.fStrangeDefense, fValue, byApplyType, bIsPlus);
 }
 
 void CCharacterAtt::CalculateWildOffence(float fValue, BYTE byApplyType, bool bIsPlus)
 {
-	CalculatePhysicalArmorPen(fValue, byApplyType, bIsPlus);
+	CalcAttributeF(m_pAttribute.fWildOffense, fValue, byApplyType, bIsPlus);
 }
 
 void CCharacterAtt::CalculateWildDefence(float fValue, BYTE byApplyType, bool bIsPlus)
 {
-	CalculatePhysicalArmorPen(fValue, byApplyType, bIsPlus);
+	CalcAttributeF(m_pAttribute.fWildDefense, fValue, byApplyType, bIsPlus);
 }
 
 void CCharacterAtt::CalculateEleganceOffence(float fValue, BYTE byApplyType, bool bIsPlus)
 {
-	CalculateEnergyArmorPen(fValue, byApplyType, bIsPlus);
+	CalcAttributeF(m_pAttribute.fEleganceOffense, fValue, byApplyType, bIsPlus);
 }
 
 void CCharacterAtt::CalculateEleganceDefence(float fValue, BYTE byApplyType, bool bIsPlus)
 {
-	CalculateEnergyArmorPen(fValue, byApplyType, bIsPlus);
+	CalcAttributeF(m_pAttribute.fEleganceDefense, fValue, byApplyType, bIsPlus);
 }
 
 void CCharacterAtt::CalculateFunnyOffence(float fValue, BYTE byApplyType, bool bIsPlus)
 {
-	CalculatePhysicalCriticalDefenceRate(fValue, byApplyType, bIsPlus);
-	CalculateEnergyCriticalDefenceRate(fValue, byApplyType, bIsPlus);
+	CalcAttributeF(m_pAttribute.fFunnyOffense, fValue, byApplyType, bIsPlus);
 }
 
 void CCharacterAtt::CalculateFunnyDefence(float fValue, BYTE byApplyType, bool bIsPlus)
 {
-	CalculatePhysicalCriticalDefenceRate(fValue, byApplyType, bIsPlus);
-	CalculateEnergyCriticalDefenceRate(fValue, byApplyType, bIsPlus);
+	CalcAttributeF(m_pAttribute.fFunnyDefense, fValue, byApplyType, bIsPlus);
 }
 
 void CCharacterAtt::CalculatePhysicalReflection(float fValue, BYTE byApplyType, bool bIsPlus)

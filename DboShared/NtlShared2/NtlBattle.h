@@ -360,11 +360,11 @@ const char * DboGetFreeBattleResultString(BYTE byBattleResult);
 //-----------------------------------------------------------------------------------
 BYTE				NtlGetBattleChainAttackSequence(BYTE byCharLevel); // 레벨당 최대 CHAIN ATTACK 수 
 
-//float				NtlGetBattleAttributeBonusRate(BYTE bySubjectAtt, BYTE byTargetAtt); // get battle attribute bonus // old
+float				NtlGetBattleAttributeBonusRate(BYTE bySubjectAtt, BYTE byTargetAtt);
 
 eSYSTEM_EFFECT_CODE	GetBattleAttributeEffectCode(BYTE byAtt);
 BYTE				GetBattleAttributeEffectApplyType(BYTE byAtt);
-float				GetBattleAttributeEffectApplyValue(BYTE byAtt);
+float				GetBattleAttributeEffectApplyValue(BYTE byAtt, BYTE Source);
 
 float				NtlGetBattleChainAttackBounsRate(BYTE byAttackSequence); // 체인 어택에 따른 보너스 공격률
 
