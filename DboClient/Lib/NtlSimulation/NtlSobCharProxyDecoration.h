@@ -69,6 +69,11 @@ private:
 	CNtlPLEntity*				m_pGuardEffect;
 	CNtlPLEntity*				m_pRpChargeEffect;
 
+    bool bCreatePlayTitle{ false };
+    bool bCreatePlayDBSInfo{ true };
+    char pchBone[255];
+    char pchEffect[255];
+
 protected:
 
     /** 

@@ -79,7 +79,7 @@ CNtlPLPlayerName* Helper_CreatePlayerName(const RwV3d *pPos, COLORREF Color, con
 
 void Helper_AttachWorldPos(CNtlPLEntity *pSource, CNtlPLEntity *pTarget, RwV3d vOffset = ZeroAxis, RwBool bApplyRotate = FALSE);
 void Helper_AttachWorldPosHeight(CNtlPLEntity* pSource, CNtlPLEntity* pTarget);           ///< 월드 위치에 붙이는데 높이는 그 위치의 World Height 값을 적용한다.
-void Helper_AttachBone(CNtlPLEntity *pSource, CNtlPLEntity *pTarget, const RwChar *pBoneName, RwV3d vOffset = ZeroAxis);
+void Helper_AttachBone(CNtlPLEntity* pSource, CNtlPLEntity* pTarget, const RwChar* pBoneName, RwV3d vOffset = ZeroAxis, RwV3d vScale = ZeroAxis);
 void Helper_DetachPLEntity(CNtlPLEntity *pSource, CNtlPLEntity *pTarget);
 
 //////////////////////////////////////////////////////////////////////////

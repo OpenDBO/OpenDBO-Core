@@ -571,7 +571,7 @@ void CNtlSobCharEquipProxy::SobEquipCreateEventHandler(RWS::CMsg &pMsg)
 			strModelName = pItemTblData->szModel;
 			if (strModelName.size() != 0)
 			{
-				MakeItemModelName(strModelName, pItemTblData->byModel_Type);
+				MakeItemModelName(strModelName, pItemTblData->byModel_Type, i);
 				m_arrSlotItem[i].pPLItem = CreatePLItem(i, strModelName.c_str(), m_pSobObj->GetSerialID(), pSobItemAttr->GetGrade());
 			}
 
@@ -678,7 +678,7 @@ void CNtlSobCharEquipProxy::SobEquipCreateEventHandler(RWS::CMsg &pMsg)
 			strModelName = pItemTblData->szModel;
 			if (strModelName.size() > 0)
 			{
-				MakeItemModelName(strModelName, pItemTblData->byModel_Type);
+				MakeItemModelName(strModelName, pItemTblData->byModel_Type, i);
 				m_arrSlotItem[i].pPLItem = CreatePLItem(i, strModelName.c_str(), m_pSobObj->GetSerialID(), pItemBrief[i].byGrade);
 			}
 
@@ -827,7 +827,7 @@ void CNtlSobCharEquipProxy::CreateEquipItem(RwUInt32 uiTblId, RwUInt8 bySlotIdx,
 
 	if(strModelName.size() != 0)
 	{
-		MakeItemModelName(strModelName, pItemTblData->byModel_Type);
+		MakeItemModelName(strModelName, pItemTblData->byModel_Type, bySlotIdx);
 		m_arrSlotItem[bySlotIdx].pPLItem		= CreatePLItem(bySlotIdx, strModelName.c_str(), m_pSobObj->GetSerialID(), byGrade);
 	}
 
@@ -983,20 +983,28 @@ void CNtlSobCharEquipProxy::RemoveWorld(void)
 	}
 }
 
-void CNtlSobCharEquipProxy::MakeItemModelName(std::string& strModelName, RwUInt8 byModeNameRule)
+void CNtlSobCharEquipProxy::MakeItemModelName(std::string& strModelName, RwUInt8 byModeNameRule, RwUInt8 slotId)
 {
 	CNtlSobPlayerAttr *pPlayerAttr = reinterpret_cast<CNtlSobPlayerAttr*>(m_pSobObj->GetSobAttr());
 	RwUInt8 byRace = pPlayerAttr->GetRace();
 	RwUInt8 byGender = pPlayerAttr->GetGender();
 	RwUInt8 bySkinColor = pPlayerAttr->GetSkinColor();
+	RwBool isAdult = pPlayerAttr->IsAdult();
 
-	MakeItemModelName(strModelName, byRace, byGender, bySkinColor, byModeNameRule);
+	MakeItemModelName(strModelName, byRace, byGender, bySkinColor, isAdult, byModeNameRule, slotId);
 }
 
-void CNtlSobCharEquipProxy::MakeItemModelName(std::string& strModelName, RwUInt8 byRace, RwUInt8 byGender, RwUInt8 bySkinColor, RwUInt8 byModeNameRule)
+void CNtlSobCharEquipProxy::MakeItemModelName(std::string& strModelName, RwUInt8 byRace, RwUInt8 byGender, RwUInt8 bySkinColor, RwBool isAdult, RwUInt8 byModeNameRule, RwUInt8 slotId)
 {
 	if(byModeNameRule == ITEM_MODEL_TYPE_NONE)
 		return;
+
+	if (!isAdult) {
+		if (slotId == EQUIP_SLOT_TYPE_COSTUME_MASK || slotId == EQUIP_SLOT_TYPE_COSTUME_HAIR_STYLE)
+		{
+			strModelName += "_CH";
+		}
+	}
 
 	// Á¾Á·
 	if(byRace == RACE_HUMAN)
@@ -1155,7 +1163,7 @@ void CNtlSobCharEquipProxy::SobSubWeaponActiveEventHandler(RWS::CMsg &pMsg)
 	std::string strModelName = pItemTblData->szSub_Weapon_Act_Model;
 	if(strModelName.size() != 0)
 	{
-		MakeItemModelName(strModelName, pItemTblData->byModel_Type);
+		MakeItemModelName(strModelName, pItemTblData->byModel_Type, bySlotIdx);
 		m_arrSlotItem[bySlotIdx].pPLItem = CreatePLItem(bySlotIdx, strModelName.c_str(), m_pSobObj->GetSerialID(), m_arrSlotItem[bySlotIdx].byGrade);
 	}
 
@@ -1227,7 +1235,7 @@ void CNtlSobCharEquipProxy::SobSubWeaponDeActiveEventHandler(RWS::CMsg &pMsg)
 
 	if(strModelName.size() != 0)
 	{
-		MakeItemModelName(strModelName, pItemTblData->byModel_Type);
+		MakeItemModelName(strModelName, pItemTblData->byModel_Type, bySlotIdx);
 		m_arrSlotItem[bySlotIdx].pPLItem = CreatePLItem(bySlotIdx, strModelName.c_str(), m_pSobObj->GetSerialID(), m_arrSlotItem[bySlotIdx].byGrade);
 		m_pPLCharacter->SetChangeEquipItem(m_arrSlotItem[bySlotIdx].pPLItem);
 		m_arrSlotItem[bySlotIdx].bCharacterAdd	= TRUE;
@@ -1362,7 +1370,7 @@ void CNtlSobCharEquipProxy::AttachConvertClassEquipItem(CNtlPLCharacter *pPLChar
 
 			if(strModelName.size() != 0)
 			{
-				MakeItemModelName(strModelName, pItemTblData->byModel_Type);
+				MakeItemModelName(strModelName, pItemTblData->byModel_Type, i);
 				m_arrSlotItem[i].pPLItem = CreatePLItem(i, strModelName.c_str(), m_pSobObj->GetSerialID(), m_arrSlotItem[i].byGrade);
 
 				if(bCostume)
