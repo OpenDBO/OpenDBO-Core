@@ -1211,7 +1211,7 @@ RwBool CNtlSobCharDecorationProxy::AttachRPBonusEffect()
     if(!m_vecRPBonusEffect.empty())
         return FALSE;
 
-    // "List of bones to which the RP Bonus (effect/attachment) will be attached
+    // List of bones to which the RP Bonus (effect/attachment) will be attached
     std::string strBoneList1[7];
     std::string strBoneList2;
     strBoneList1[0] = "Bip01 Head";
