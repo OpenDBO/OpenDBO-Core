@@ -244,7 +244,7 @@ void CNtlSobCharDecorationProxy::SobFaintingEventHandler(RWS::CMsg &pMsg)
 	DeletePLTargetMark();
     DeletePLAttackMark();
     
-    // õ������ ����ȸ ��� ��ũ�� ���ش�
+    // Remove the World Martial Arts Tournament championship mark
     if(m_pTenkaichiMark)
     {
         m_pTenkaichiMark->SetVisible(FALSE);
@@ -353,7 +353,7 @@ void CNtlSobCharDecorationProxy::CreatePLShadowDecal(void)
 
 	m_fDefShadowScale = fVariScale * fShadowWeightScale*(fModelWidth + fModelDepth)/2.0f;
 
-    // �ʹ� ū��쿡�� ������ �����ش�.
+    // If it's too large, apply/enforce a limit.
     if(m_fDefShadowScale > 10.0f)
         m_fDefShadowScale = 10.0f;
 
@@ -364,7 +364,7 @@ void CNtlSobCharDecorationProxy::CreatePLShadowDecal(void)
 	param.fVisibleSquaredDist = 1600.0f;	
 	param.pTexName = "shadow.dds";
 	param.pTexPath = ".\\texture\\effect\\";
-	param.fYOffset = 0.01f;						// ���� Decal�� 0.1f�̴�. ���� Decal ���� �׸��ڸ� ǥ���ϱ� ���� ���� �� �ٿ��. (by agebreak 2007.5.11)
+	param.fYOffset = 0.01f;						// The terrain Decal is 0.1f. To render shadows above the terrain decal, we offset it (raise it) a bit more.
 	param.eDecalType = DECAL_TERRAIN;    
 
 	if(m_bShadowCreate)
@@ -372,7 +372,7 @@ void CNtlSobCharDecorationProxy::CreatePLShadowDecal(void)
 		m_pShadowDecal = static_cast<CNtlPLDecal*>(GetSceneManager()->CreateEntity(PLENTITY_DECAL, "NULL", &param));
 		NTL_ASSERT(m_pShadowDecal, "CNtlSobCharProxy::CreatePLShadowDecal");
 		
-		// �÷� ����
+		// Color settings
 		RwRGBA clrShadow;
 		GetSceneManager()->GetWorldShadowColor(m_pPLCharacter->GetPosition(), &clrShadow);
 		clrShadow.red = (RwUInt8)((RwReal)clrShadow.red * DECAL_RATIO);
@@ -455,9 +455,9 @@ void CNtlSobCharDecorationProxy::CreatePLPlayerTitle(const char* pEffectKey, con
 			{
 				CNtlSobAvatarAttr* pAvatarAttr = (CNtlSobAvatarAttr*)pSobAttr;
 
-				RwUInt8 race = pAvatarAttr->GetRace(); // �������
-				RwBool adult = pAvatarAttr->IsAdult(); // ����Ƿ����
-				RwUInt8 gender = pAvatarAttr->GetGender();//����Ա�
+				RwUInt8 race = pAvatarAttr->GetRace();
+				RwBool adult = pAvatarAttr->IsAdult();
+				RwUInt8 gender = pAvatarAttr->GetGender();
 
 				std::string sRace, sAdult, sGender;
 
@@ -481,8 +481,6 @@ void CNtlSobCharDecorationProxy::CreatePLPlayerTitle(const char* pEffectKey, con
 				}
 				sAdult = adult ? "1" : "0";
 
-				//DBO_WARNING_MESSAGE("name:" << m_pTitleEffect->GetName() << " race:" << sRace << " adult:" << sAdult << " gender:" << sGender);
-				// �˴�����xml�ж� Ȼ��Ѷ�Ӧ��ֻ����� ������������
 				CNtlXMLDoc XMLDoc;
 
 				if (!XMLDoc.Create())
@@ -607,7 +605,6 @@ void CNtlSobCharDecorationProxy::CreatePLPlayerTitle(const char* pEffectKey, con
 												return;
 											}
 
-											// �ж������Ƿ����
 											if (strcmp(szRace, sRace.c_str()) != 0 || strcmp(szGender, sGender.c_str()) != 0 || strcmp(szAdult, sAdult.c_str()) != 0)
 											{
 												continue;
@@ -704,7 +701,7 @@ void CNtlSobCharDecorationProxy::CreatePLAttackMark(void)
     
     if(m_pShareTargetMark && m_pShareTargetMark->IsShareTargeting())
     {
-        // ���� Ÿ�� ������ �Ǿ� ������ �Ϲ� ��ũ�� ���� �ʴ´�.
+        // If shared target setting is enabled, the normal mark does not appear.
         CreateShareTargetMark(m_pShareTargetMark->GetSlot(), CNtlShareTargetMark::SHARE_TARGET_ATTACK);
         return;
     }
@@ -749,7 +746,7 @@ void CNtlSobCharDecorationProxy::CreatePLTargetMark(void)
 
     if(m_pShareTargetMark && m_pShareTargetMark->IsShareTargeting())
     {
-        // ���� Ÿ�� ������ �Ǿ� ������ �Ϲ� ��ũ�� ���� �ʴ´�.
+        // If shared target setting is enabled, the normal mark does not appear.
         CreateShareTargetMark(m_pShareTargetMark->GetSlot(), CNtlShareTargetMark::SHARE_TARGET_TARGET);
         return;
     }
@@ -1187,7 +1184,7 @@ void CNtlSobCharDecorationProxy::ResourceLoadComplete(RwBool bVisible)
 		if( m_pPlayerName->IsEnablePlayerNameVisible() )
 			m_pPlayerName->SetVisible(bVisible);
 
-		// m_bNameVisible �� FALSE �ε� ���� m_pPlayerName�� SetVisible(TRUE)�� ���õƴٸ� �� ���̰� ���ش�.
+		// If m_bNameVisible is FALSE, but m_pPlayerName is currently set to SetVisible(TRUE), make it invisible.
 		if( !m_pPlayerName->IsEnablePlayerNameVisible() && m_pPlayerName->IsVisible() )
 			m_pPlayerName->SetVisible(FALSE);
 	}
@@ -1214,7 +1211,7 @@ RwBool CNtlSobCharDecorationProxy::AttachRPBonusEffect()
     if(!m_vecRPBonusEffect.empty())
         return FALSE;
 
-    // RP Bonus�� ���� �� ����Ʈ
+    // "List of bones to which the RP Bonus (effect/attachment) will be attached
     std::string strBoneList1[7];
     std::string strBoneList2;
     strBoneList1[0] = "Bip01 Head";
@@ -1227,7 +1224,7 @@ RwBool CNtlSobCharDecorationProxy::AttachRPBonusEffect()
     strBoneList2 = "Bip01 Pelvis";    
 
     CNtlInstanceEffect* pEffect;
-    for(int i = 0; i < 7; ++i)      // ���� ����Ʈ
+    for(int i = 0; i < 7; ++i)
     {
         if(m_pPLCharacter->GetBoneByName(strBoneList1[i].c_str()))
         {
@@ -1396,7 +1393,7 @@ void CNtlSobCharDecorationProxy::SobShareTargetSelectHandler( RWS::CMsg& pMsg )
     SNtlEventShareTargetSelect* pData = (SNtlEventShareTargetSelect*)pMsg.pData;
     if(pData->hSerialId == m_pSobObj->GetSerialID())
     {
-        // ���� Ÿ�� ��ũ�� �����ϱ� ���� ���� ���¸� �����صд�
+        // Before deleting the existing target mark, save its current state.
         RwBool bAttackMode = m_pAttackMark ? TRUE : FALSE;
         RwBool bTargetMode = m_pTargetMark ? TRUE : FALSE;
 
@@ -1457,7 +1454,7 @@ void CNtlSobCharDecorationProxy::SobTitleEffectHandler(RWS::CMsg & pMsg)
 
 RwBool CNtlSobCharDecorationProxy::IsNotCreateDecalMark() 
 {
-    // ������ �ٴ� ��Į�� �׸��� �ʴ´�.
+    // Buses do not draw floor decals.
     return Logic_IsBus((CNtlSobActor*)m_pSobObj);
 }
 
