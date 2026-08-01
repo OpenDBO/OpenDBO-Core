@@ -303,7 +303,7 @@ public:
 	//---------------------------------------------------
 
 	// bone attach시키면서 effect 생성.
-	virtual CNtlPLEntity* CreatePLChildEffect(const RwChar *pKey, const RwChar *pAttachBoneName, RwV3d vOffset = ZeroAxis, RwBool bIgnoreVisible = FALSE);
+	virtual CNtlPLEntity* CreatePLChildEffect(const RwChar* pKey, const RwChar* pAttachBoneName, RwV3d vOffset = ZeroAxis, RwBool bIgnoreVisible = FALSE, RwReal fEffectScale = 0);
 
 	// offset position에 attach시키면서 effect 생성.
 	virtual CNtlPLEntity*	CreatePLChildEffect(const RwChar *pKey, RwV3d vOffset, RwBool bIgnoreVisible = FALSE, RwBool bApplyRotate = FALSE);

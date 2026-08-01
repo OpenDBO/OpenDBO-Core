@@ -45,6 +45,9 @@
 #include "NtlFSMDef.h"
 #include "NtlShareTargetMark.h"
 
+#include "NtlPLResourcePack.h"
+#include "NtlPLResourceManager.h"
+
 #define DECAL_RATIO 0.2f
 
 RwBool CNtlSobCharDecorationProxy::m_bShadowCreate = TRUE;
@@ -180,6 +183,12 @@ void CNtlSobCharDecorationProxy::Update(RwReal fElapsed)
 
     if(m_pProxyTransform)
         m_pProxyTransform->Update(fElapsed);
+
+	if (m_pPLCharacter->GetCharScheduleResInfo()->bLoadComplete && bCreatePlayTitle)
+	{
+		bCreatePlayTitle = false;
+		CreatePLPlayerTitle(pchEffect, pchBone);
+	}
 }
 
 void CNtlSobCharDecorationProxy::HandleEvents(RWS::CMsg &pMsg)
@@ -235,7 +244,7 @@ void CNtlSobCharDecorationProxy::SobFaintingEventHandler(RWS::CMsg &pMsg)
 	DeletePLTargetMark();
     DeletePLAttackMark();
     
-    // ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ¿ì½Â ¸¶Å©¸¦ ¾ø¾Ø´Ù
+    // Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È¸ ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½Ø´ï¿½
     if(m_pTenkaichiMark)
     {
         m_pTenkaichiMark->SetVisible(FALSE);
@@ -344,7 +353,7 @@ void CNtlSobCharDecorationProxy::CreatePLShadowDecal(void)
 
 	m_fDefShadowScale = fVariScale * fShadowWeightScale*(fModelWidth + fModelDepth)/2.0f;
 
-    // ³Ê¹« Å«°æ¿ì¿¡´Â Á¦ÇÑÀ» ½ÃÄÑÁØ´Ù.
+    // ï¿½Ê¹ï¿½ Å«ï¿½ï¿½ì¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
     if(m_fDefShadowScale > 10.0f)
         m_fDefShadowScale = 10.0f;
 
@@ -355,7 +364,7 @@ void CNtlSobCharDecorationProxy::CreatePLShadowDecal(void)
 	param.fVisibleSquaredDist = 1600.0f;	
 	param.pTexName = "shadow.dds";
 	param.pTexPath = ".\\texture\\effect\\";
-	param.fYOffset = 0.01f;						// ÁöÇü DecalÀÌ 0.1fÀÌ´Ù. ÁöÇü Decal À§·Î ±×¸²ÀÚ¸¦ Ç¥ÇöÇÏ±â À§ÇØ Á¶±Ý ´õ ¶Ù¿î´Ù. (by agebreak 2007.5.11)
+	param.fYOffset = 0.01f;						// ï¿½ï¿½ï¿½ï¿½ Decalï¿½ï¿½ 0.1fï¿½Ì´ï¿½. ï¿½ï¿½ï¿½ï¿½ Decal ï¿½ï¿½ï¿½ï¿½ ï¿½×¸ï¿½ï¿½Ú¸ï¿½ Ç¥ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ù¿ï¿½ï¿½. (by agebreak 2007.5.11)
 	param.eDecalType = DECAL_TERRAIN;    
 
 	if(m_bShadowCreate)
@@ -363,7 +372,7 @@ void CNtlSobCharDecorationProxy::CreatePLShadowDecal(void)
 		m_pShadowDecal = static_cast<CNtlPLDecal*>(GetSceneManager()->CreateEntity(PLENTITY_DECAL, "NULL", &param));
 		NTL_ASSERT(m_pShadowDecal, "CNtlSobCharProxy::CreatePLShadowDecal");
 		
-		// ÄÃ·¯ ¼³Á¤
+		// ï¿½Ã·ï¿½ ï¿½ï¿½ï¿½ï¿½
 		RwRGBA clrShadow;
 		GetSceneManager()->GetWorldShadowColor(m_pPLCharacter->GetPosition(), &clrShadow);
 		clrShadow.red = (RwUInt8)((RwReal)clrShadow.red * DECAL_RATIO);
@@ -427,15 +436,15 @@ void CNtlSobCharDecorationProxy::DeletePLPlayerName(void)
 	}
 }
 
-void CNtlSobCharDecorationProxy::CreatePLPlayerTitle(const char *pEffectKey, const char *pBoneKey)
+void CNtlSobCharDecorationProxy::CreatePLPlayerTitle(const char* pEffectKey, const char* pBoneKey)
 {
 	if (m_pTitleEffect)
 	{
 		DeletePLPlayerTitle();
 	}
 
-	CNtlSobActor *pSobActor = reinterpret_cast<CNtlSobActor*> (m_pSobObj);
-	CNtlSobAttr *pSobAttr = m_pSobObj->GetSobAttr();
+	CNtlSobActor* pSobActor = reinterpret_cast<CNtlSobActor*> (m_pSobObj);
+	CNtlSobAttr* pSobAttr = m_pSobObj->GetSobAttr();
 
 	if (pSobActor->GetClassID() == SLCLASS_AVATAR || pSobActor->GetClassID() == SLCLASS_PLAYER)
 	{
@@ -444,14 +453,236 @@ void CNtlSobCharDecorationProxy::CreatePLPlayerTitle(const char *pEffectKey, con
 			m_pTitleEffect = GetSceneManager()->CreateEntity(PLENTITY_EFFECT, pEffectKey);
 			if (m_pTitleEffect)
 			{
-				Helper_AttachBone(m_pPLCharacter, m_pTitleEffect, pBoneKey);
+				CNtlSobAvatarAttr* pAvatarAttr = (CNtlSobAvatarAttr*)pSobAttr;
+
+				RwUInt8 race = pAvatarAttr->GetRace(); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+				RwBool adult = pAvatarAttr->IsAdult(); // ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
+				RwUInt8 gender = pAvatarAttr->GetGender();//ï¿½ï¿½ï¿½ï¿½Ô±ï¿½
+
+				std::string sRace, sAdult, sGender;
+
+				if (race == RACE_HUMAN) {
+					sRace = "HUMAN";
+				}
+				else if (race == RACE_NAMEK) {
+					sRace = "NAMEK";
+				}
+				else {
+					sRace = "MAJIN";
+				}
+				if (gender == GENDER_MALE) {
+					sGender = "MALE";
+				}
+				else if (gender == GENDER_FEMALE) {
+					sGender = "FEMALE";
+				}
+				else {
+					sGender = "ONESEX";
+				}
+				sAdult = adult ? "1" : "0";
+
+				//DBO_WARNING_MESSAGE("name:" << m_pTitleEffect->GetName() << " race:" << sRace << " adult:" << sAdult << " gender:" << sGender);
+				// ï¿½Ë´ï¿½ï¿½ï¿½ï¿½ï¿½xmlï¿½Ð¶ï¿½ È»ï¿½ï¿½Ñ¶ï¿½Ó¦ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+				CNtlXMLDoc XMLDoc;
+
+				if (!XMLDoc.Create())
+				{
+					NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), !XMLDoc.Create()\n");
+					return;
+				}
+
+				if (GetNtlResourcePackManager()->GetActiveFlags() & NTL_PACK_TYPE_FLAG_SCRIPT)
+				{
+					BYTE* pPackBuffer = NULL;
+					RwInt32	iPackSize = 0;
+
+					GetNtlResourcePackManager()->LoadScript(".\\script\\titleeffect.xml", (void**)&pPackBuffer, &iPackSize);
+					if (pPackBuffer)
+					{
+						BYTE* pTempBuffer = NTL_NEW BYTE[iPackSize + 1];
+						memcpy(pTempBuffer, pPackBuffer, iPackSize);
+						pTempBuffer[iPackSize] = '\0';
+
+						if (!XMLDoc.LoadXML((char*)pTempBuffer))
+						{
+							XMLDoc.Destroy();
+							NTL_ARRAY_DELETE(pTempBuffer);
+							NTL_ARRAY_DELETE(pPackBuffer);
+							NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), !XMLDoc.Load(\".\\script\\titleeffect.xml\")\n");
+							return;
+						}
+						NTL_ARRAY_DELETE(pTempBuffer);
+						NTL_ARRAY_DELETE(pPackBuffer);
+					}
+				}
+				else
+				{
+					if (!XMLDoc.Load(".\\script\\titleeffect.xml"))
+					{
+						XMLDoc.Destroy();
+						NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), !XMLDoc.Load(\".\\script\\titleeffect.xml\")\n");
+						return;
+					}
+				}
+
+				IXMLDOMNodeList* pItemPropertyNodeList = XMLDoc.SelectNodeList((char*)"effectdataproperty");
+				if (pItemPropertyNodeList == NULL)
+				{
+					NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), pItemPropertyNodeList == NULL");
+					return;
+				}
+				char szOffsetX[8] = { 0, };
+				char szOffsetY[8] = { 0, };
+				char szOffsetZ[8] = { 0, };
+				char szScale[8] = { 0, };
+				char szAttachType[32] = { 0, };
+
+				long itemPropertyCount = 0;
+				pItemPropertyNodeList->get_length(&itemPropertyCount);
+				for (long i = 0; i < itemPropertyCount; ++i)
+				{
+					IXMLDOMNode* pItemPropertyNode = NULL;
+					pItemPropertyNodeList->get_item(i, &pItemPropertyNode);
+					if (pItemPropertyNode)
+					{
+						IXMLDOMNodeList* pLMPNodeList = NULL;
+						pItemPropertyNode->selectNodes(L"titleeffect", &pLMPNodeList);
+						if (pLMPNodeList == NULL)
+						{
+							NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), pLMPNodeList == NULL");
+							return;
+						}
+
+						if (pLMPNodeList)
+						{
+							long LMPTypeCount = 0;
+							pLMPNodeList->get_length(&LMPTypeCount);
+							for (long m = 0; m < LMPTypeCount; ++m)
+							{
+								IXMLDOMNode* pLMPTypeNode = NULL;
+								pLMPNodeList->get_item(m, &pLMPTypeNode);
+								if (pLMPTypeNode)
+								{
+									char sLMPName[64] = { 0, };
+									if (!XMLDoc.GetTextWithAttributeName(pLMPTypeNode, "name", sLMPName, sizeof(sLMPName)))
+									{
+										NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), !XMLDoc.GetTextWithAttributeName(pLMPTypeNode, ""name"", sLMPName, sizeof(sLMPName))");
+										return;
+									}
+
+									if (strcmp(sLMPName, m_pTitleEffect->GetName()) != 0)
+									{
+										continue;
+									}
+									IXMLDOMNode* pTypeNode = NULL;
+									IXMLDOMNodeList* pTypeNodeList = NULL;
+
+									pLMPTypeNode->selectNodes(L"effect_element", &pTypeNodeList);
+
+									if (pTypeNodeList)
+									{
+										long dataCount = 0;
+										pTypeNodeList->get_length(&dataCount);
+										for (long t = 0; t < dataCount; t++)
+										{
+											IXMLDOMNode* pDataNode = NULL;
+											pTypeNodeList->get_item(t, &pDataNode);
+											char szRace[32] = { 0, };
+											char szGender[32] = { 0, };
+											char szAdult[32] = { 0, };
+
+											if (!XMLDoc.GetTextWithAttributeName(pDataNode, "race", szRace, sizeof(szRace)))
+											{
+												NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), !XMLDoc.GetTextWithAttributeName(pDataNode,""race"", szType, sizeof(szType))");
+												return;
+											}
+											if (!XMLDoc.GetTextWithAttributeName(pDataNode, "gender", szGender, sizeof(szGender)))
+											{
+												NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), !XMLDoc.GetTextWithAttributeName(pDataNode,""gender"", szType, sizeof(szType))");
+												return;
+											}
+											if (!XMLDoc.GetTextWithAttributeName(pDataNode, "adult", szAdult, sizeof(szAdult)))
+											{
+												NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), !XMLDoc.GetTextWithAttributeName(pDataNode,""adult"", szType, sizeof(szType))");
+												return;
+											}
+
+											// ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
+											if (strcmp(szRace, sRace.c_str()) != 0 || strcmp(szGender, sGender.c_str()) != 0 || strcmp(szAdult, sAdult.c_str()) != 0)
+											{
+												continue;
+											}
+
+											if (!XMLDoc.GetTextWithAttributeName(pDataNode, "attach_type", szAttachType, sizeof(szAttachType)))
+											{
+												NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), !XMLDoc.GetTextWithAttributeName(pDataNode,""attach_type"", szType, sizeof(szType))");
+												return;
+											}
+
+											if (!XMLDoc.GetTextWithAttributeName(pDataNode, "offset_x", szOffsetX, sizeof(szOffsetX)))
+											{
+												NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), !XMLDoc.GetTextWithAttributeName(pDataNode,""offset_x"", szType, sizeof(szType))");
+												return;
+											}
+											if (!XMLDoc.GetTextWithAttributeName(pDataNode, "offset_y", szOffsetY, sizeof(szOffsetY)))
+											{
+												NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), !XMLDoc.GetTextWithAttributeName(pDataNode,""offset_y"", szType, sizeof(szType))");
+												return;
+											}
+											if (!XMLDoc.GetTextWithAttributeName(pDataNode, "offset_z", szOffsetZ, sizeof(szOffsetZ)))
+											{
+												NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), !XMLDoc.GetTextWithAttributeName(pDataNode,""offset_z"", szType, sizeof(szType))");
+												return;
+											}
+											if (!XMLDoc.GetTextWithAttributeName(pDataNode, "scale", szScale, sizeof(szScale)))
+											{
+												NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), !XMLDoc.GetTextWithAttributeName(pDataNode,""scale"", szType, sizeof(szType))");
+												return;
+											}
+											break;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+
+				XMLDoc.Destroy();
+
+				//DBO_WARNING_MESSAGE("x:" << szOffsetX << " y:" << szOffsetY << " z:" << szOffsetZ << " sc:" << szScale);
+				RwV3d offset;
+				offset.x = atof(szOffsetX);
+				offset.y = atof(szOffsetY);
+				offset.z = atof(szOffsetZ);
+
+				RwV3d scale;
+				scale.x = scale.y = scale.z = atof(szScale);
+
+				if (strcmp(szAttachType, "ATTACH_WORLD_POS") == 0)
+				{
+					m_pTitleEffect->SetPosition(&m_pSobObj->GetSobProxy()->GetPosition());
+					m_pTitleEffect->SetDirection(&m_pPLCharacter->GetDirection());
+					m_pTitleEffect->SetScale(atof(szScale));
+					Helper_AttachWorldPos(m_pPLCharacter, m_pTitleEffect, offset);
+				}
+				else if (strcmp(szAttachType, "ATTACH_BONE") == 0)
+				{
+					Helper_AttachBone(m_pPLCharacter, m_pTitleEffect, pBoneKey, offset, scale);
+				}
 
 				m_pTitleEffect->SetSerialID(m_pSobObj->GetSerialID());
 				m_pTitleEffect->SetVisible(TRUE);
+
 			}
+		}
+		else
+		{
+			bCreatePlayTitle = true;
 		}
 	}
 	else
+
 	{
 		return;
 	}
@@ -473,7 +704,7 @@ void CNtlSobCharDecorationProxy::CreatePLAttackMark(void)
     
     if(m_pShareTargetMark && m_pShareTargetMark->IsShareTargeting())
     {
-        // °øÀ¯ Å¸°Ù ¼³Á¤ÀÌ µÇ¾î ÀÖÀ¸¸é ÀÏ¹Ý ¸¶Å©´Â ¶ßÁö ¾Ê´Â´Ù.
+        // ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¹ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
         CreateShareTargetMark(m_pShareTargetMark->GetSlot(), CNtlShareTargetMark::SHARE_TARGET_ATTACK);
         return;
     }
@@ -518,7 +749,7 @@ void CNtlSobCharDecorationProxy::CreatePLTargetMark(void)
 
     if(m_pShareTargetMark && m_pShareTargetMark->IsShareTargeting())
     {
-        // °øÀ¯ Å¸°Ù ¼³Á¤ÀÌ µÇ¾î ÀÖÀ¸¸é ÀÏ¹Ý ¸¶Å©´Â ¶ßÁö ¾Ê´Â´Ù.
+        // ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¹ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
         CreateShareTargetMark(m_pShareTargetMark->GetSlot(), CNtlShareTargetMark::SHARE_TARGET_TARGET);
         return;
     }
@@ -812,6 +1043,10 @@ void CNtlSobCharDecorationProxy::DetachConvertClassEquipItem(void)
 	// character quest mark
 	if(m_pQuestMark)
 		Helper_DetachPLEntity(m_pPLCharacter, m_pQuestMark);
+
+	// player title effect
+	if (m_pTitleEffect)
+		Helper_DetachPLEntity(m_pPLCharacter, m_pTitleEffect);
 }
 
 void CNtlSobCharDecorationProxy::AttachConvertClassEquipItem(CNtlPLCharacter *pPLCharacter)
@@ -866,6 +1101,13 @@ void CNtlSobCharDecorationProxy::AttachConvertClassEquipItem(CNtlPLCharacter *pP
     {
         m_pProxyTransform->SetActor((CNtlSobActor*)m_pSobObj, m_pPLCharacter);
     }
+
+	// player title effect
+	if (m_pTitleEffect)
+	{
+		DeletePLPlayerTitle();
+		CreatePLPlayerTitle(pchEffect, pchBone);
+	}
 }
 
 void CNtlSobCharDecorationProxy::SetNameColor(const WCHAR* pwcName, COLORREF nameColor,
@@ -945,7 +1187,7 @@ void CNtlSobCharDecorationProxy::ResourceLoadComplete(RwBool bVisible)
 		if( m_pPlayerName->IsEnablePlayerNameVisible() )
 			m_pPlayerName->SetVisible(bVisible);
 
-		// m_bNameVisible ÀÌ FALSE ÀÎµ¥ ÇöÀç m_pPlayerNameÀÌ SetVisible(TRUE)·Î ¼¼ÆÃµÆ´Ù¸é ¾È º¸ÀÌ°Ô ÇØÁØ´Ù.
+		// m_bNameVisible ï¿½ï¿½ FALSE ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½ m_pPlayerNameï¿½ï¿½ SetVisible(TRUE)ï¿½ï¿½ ï¿½ï¿½ï¿½ÃµÆ´Ù¸ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½Ø´ï¿½.
 		if( !m_pPlayerName->IsEnablePlayerNameVisible() && m_pPlayerName->IsVisible() )
 			m_pPlayerName->SetVisible(FALSE);
 	}
@@ -972,7 +1214,7 @@ RwBool CNtlSobCharDecorationProxy::AttachRPBonusEffect()
     if(!m_vecRPBonusEffect.empty())
         return FALSE;
 
-    // RP Bonus°¡ ºÙÀ» º» ¸®½ºÆ®
+    // RP Bonusï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
     std::string strBoneList1[7];
     std::string strBoneList2;
     strBoneList1[0] = "Bip01 Head";
@@ -985,7 +1227,7 @@ RwBool CNtlSobCharDecorationProxy::AttachRPBonusEffect()
     strBoneList2 = "Bip01 Pelvis";    
 
     CNtlInstanceEffect* pEffect;
-    for(int i = 0; i < 7; ++i)      // ÀÛÀº ÀÌÆåÆ®
+    for(int i = 0; i < 7; ++i)      // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
     {
         if(m_pPLCharacter->GetBoneByName(strBoneList1[i].c_str()))
         {
@@ -998,7 +1240,7 @@ RwBool CNtlSobCharDecorationProxy::AttachRPBonusEffect()
         }        
     }
 
-    if(m_pPLCharacter->GetBoneByName(strBoneList2.c_str())) // Å« ÀÌÆåÆ®
+    if(m_pPLCharacter->GetBoneByName(strBoneList2.c_str())) // Å« ï¿½ï¿½ï¿½ï¿½Æ®
     {
         pEffect = (CNtlInstanceEffect*)GetSceneManager()->CreateEntity(PLENTITY_EFFECT, NTL_VID_RPBONUS_BIG);
         if(pEffect)
@@ -1154,7 +1396,7 @@ void CNtlSobCharDecorationProxy::SobShareTargetSelectHandler( RWS::CMsg& pMsg )
     SNtlEventShareTargetSelect* pData = (SNtlEventShareTargetSelect*)pMsg.pData;
     if(pData->hSerialId == m_pSobObj->GetSerialID())
     {
-        // ±âÁ¸ Å¸°Ù ¸¶Å©¸¦ »èÁ¦ÇÏ±â Àü¿¡ ÇöÀç »óÅÂ¸¦ ÀúÀåÇØµÐ´Ù
+        // ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ØµÐ´ï¿½
         RwBool bAttackMode = m_pAttackMark ? TRUE : FALSE;
         RwBool bTargetMode = m_pTargetMark ? TRUE : FALSE;
 
@@ -1207,13 +1449,15 @@ void CNtlSobCharDecorationProxy::SobTitleEffectHandler(RWS::CMsg & pMsg)
 	}
 	else
 	{
+		strcpy(pchEffect, pData->pchEffect);
+		strcpy(pchBone, pData->pchBone);
 		CreatePLPlayerTitle(pData->pchEffect, pData->pchBone);
 	}
 }
 
 RwBool CNtlSobCharDecorationProxy::IsNotCreateDecalMark() 
 {
-    // ¹ö½º´Â ¹Ù´Ú µ¥Ä®À» ±×¸®Áö ¾Ê´Â´Ù.
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù´ï¿½ ï¿½ï¿½Ä®ï¿½ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
     return Logic_IsBus((CNtlSobActor*)m_pSobObj);
 }
 

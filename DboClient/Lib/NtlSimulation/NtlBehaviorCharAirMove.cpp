@@ -243,16 +243,25 @@ void CNtlBehaviorCharAirMove::CreateAirEffect(const RwChar* effectName)
 
 	DestroyAirEffect();
 
-	CNtlPLAttach* pPLChar = (CNtlPLAttach*)m_pActor->GetSobProxy()->GetPLMainEntity();
 	m_pPLAirEffect = GetSceneManager()->CreateEntity(PLENTITY_EFFECT, effectName);
 
 	if (m_MoveStuff.byFormFlag == NTL_MOVE_FLAG_FLY_ACCEL)
 	{
-		RwV3d offset = {0.0f, 0.0f, 0.0f};
-		Helper_AttachBone(m_pActor->GetSobProxy()->GetPLMainEntity(), m_pPLAirEffect, "Bip01", offset);
+		RwV3d scale;
+		scale.x = 1.5f;
+		scale.y = 1.5f;
+		scale.z = 1.5f;
+
+		RwV3d Offset;
+		Offset.x = 0.0f;
+		Offset.y = 0.0f;
+		Offset.z = 0.0f;
+
+		Helper_AttachBone(m_pActor->GetSobProxy()->GetPLMainEntity(), m_pPLAirEffect, "Bip01", Offset, scale);
 	}
 	else
 	{
+		CNtlPLAttach* pPLChar = (CNtlPLAttach*)m_pActor->GetSobProxy()->GetPLMainEntity();
 		pPLChar->Attach((CNtlPLAttach*)m_pPLAirEffect);
 	}
 }

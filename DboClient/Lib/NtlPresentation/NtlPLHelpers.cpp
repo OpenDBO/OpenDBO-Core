@@ -217,34 +217,34 @@ void Helper_AttachWorldPosHeight( CNtlPLEntity* pSource, CNtlPLEntity* pTarget )
 	pSourceAttach->AttachWorldPosHeight(pTargetAttach);
 }
 
-void Helper_AttachBone(CNtlPLEntity *pSource, CNtlPLEntity *pTarget, const RwChar *pBoneName, RwV3d vOffset)
+void Helper_AttachBone(CNtlPLEntity* pSource, CNtlPLEntity* pTarget, const RwChar* pBoneName, RwV3d vOffset, RwV3d vScale)
 {
 	NTL_PRE(pSource);
 	NTL_PRE(pTarget);
 	NTL_PRE(pBoneName);
 
-	if( !(pSource->GetFlags() & NTL_PLEFLAG_ATTACH) )
+	if (!(pSource->GetFlags() & NTL_PLEFLAG_ATTACH))
 	{
 		DBO_TRACE(pSource->GetName(), "not attach presentation object");
 		DBO_TRACE(!pSource->GetName(), pSource->GetName() << " - not attach presentation object");
 		return;
 	}
 
-	if( !(pTarget->GetFlags() & NTL_PLEFLAG_ATTACH) )
+	if (!(pTarget->GetFlags() & NTL_PLEFLAG_ATTACH))
 	{
 		DBO_TRACE(pTarget->GetName(), "not attach presentation object");
 		DBO_TRACE(!pTarget->GetName(), pTarget->GetName() << " - not attach presentation object");
 		return;
 	}
 
-	CNtlPLAttach *pSourceAttach = reinterpret_cast<CNtlPLAttach*>(pSource);
-	CNtlPLAttach *pTargetAttach = reinterpret_cast<CNtlPLAttach*>(pTarget);
+	CNtlPLAttach* pSourceAttach = reinterpret_cast<CNtlPLAttach*>(pSource);
+	CNtlPLAttach* pTargetAttach = reinterpret_cast<CNtlPLAttach*>(pTarget);
 
 	SPLAttachAttr sAttachAttr;
 	sAttachAttr.vOffsetPos = vOffset;
+	sAttachAttr.vScale = vScale;
 	pSourceAttach->AttachBone(pTargetAttach, pBoneName, &sAttachAttr);
 }
-
 
 void Helper_DetachPLEntity(CNtlPLEntity *pSource, CNtlPLEntity *pTarget)
 {
