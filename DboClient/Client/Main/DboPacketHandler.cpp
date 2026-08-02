@@ -1894,6 +1894,31 @@ void PacketHandler_GSSkillResetPlusRes(void * pPacket)
 	}
 }
 
+void PacketHandler_GSResetSkillOneRes(void* pPacket)
+{
+	API_GetSLPacketLockManager()->Unlock(GU_SKILL_ONE_RESET_RES);
+
+	sGU_SKILL_ONE_RESET_RES* pResult = (sGU_SKILL_ONE_RESET_RES*)pPacket;
+
+	if (pResult->wResultCode == GAME_SUCCESS)
+	{
+		GetAlarmManager()->AlarmMessage("DST_INIT_SKILL_ONE_POINT_SUCCESS");
+
+		Logic_PlayGUISound(GSD_SYSTEM_SKILL_RESETONE);
+
+		CNtlSobAvatar* pSobAvatar = GetNtlSLGlobal()->GetSobAvatar();
+		CNtlSLEventGenerator::SobSkillResetOne(pSobAvatar->GetSerialID(), pResult->preSkillTblidx, pResult->resetSkillTblidx, pResult->skillIndex);
+	}
+	else if (pResult->wResultCode == GAME_SKILL_RESET_BUDOKAI_REGISTERED)
+	{
+		GetAlarmManager()->AlarmMessage("DST_SKILL_RESET_CONFIRM_MESSAGE_PVP_ERR");
+	}
+	else
+	{
+		GetAlarmManager()->AlarmMessage(Logic_GetResultCodeString(pResult->wResultCode, "GAME_FAIL"), TRUE);
+	}
+}
+
 void PacketHandler_GSCharRenameRes(void * pPacket)
 {
 	sGU_CHARACTER_RENAME_RES* pRes = (sGU_CHARACTER_RENAME_RES*)pPacket;

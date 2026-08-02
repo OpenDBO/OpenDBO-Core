@@ -266,6 +266,7 @@ void RegisterPacketHandler(void)
 	CNtlPacketHandler::Register(GU_SKILL_INIT_RES, PacketHandler_GSSkillInitRes);
 	CNtlPacketHandler::Register(GU_SKILL_INIT_NFY, PacketHandler_GSSkillInitNfy);
 	CNtlPacketHandler::Register(GU_SKILL_RESET_PLUS_RES, PacketHandler_GSSkillResetPlusRes);
+	CNtlPacketHandler::Register(GU_SKILL_ONE_RESET_RES, PacketHandler_GSResetSkillOneRes);
 
 	CNtlPacketHandler::Register(GU_CHARACTER_RENAME_RES, PacketHandler_GSCharRenameRes);
 
@@ -1020,6 +1021,7 @@ void UnRegisterPacketHandler(void)
 
 	CNtlPacketHandler::UnRegister(GU_UPDATE_CHAR_SP);
 	CNtlPacketHandler::UnRegister(GU_SKILL_INIT_RES);
+	CNtlPacketHandler::UnRegister(GU_SKILL_ONE_RESET_RES);
 
 	CNtlPacketHandler::UnRegister(GU_SKILL_RP_BONUS_SETTING_RES);
 

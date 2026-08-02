@@ -263,6 +263,7 @@ void PacketHandler_GSCharUpdateSP(void* pPacket);
 void PacketHandler_GSSkillInitRes(void* pPacket);
 void PacketHandler_GSSkillInitNfy(void* pPacket);
 void PacketHandler_GSSkillResetPlusRes(void* pPacket);
+void PacketHandler_GSResetSkillOneRes(void* pPacket);
 
 
 void PacketHandler_GSCharRenameRes(void* pPacket);
