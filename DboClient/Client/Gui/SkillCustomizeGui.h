@@ -45,6 +45,7 @@ private:
 	VOID	ClearSkillItems(VOID);
 
 	VOID	SetInitSkill(VOID);
+	VOID	SetInitSkillOne(RwUInt32 SkillId);
 	VOID	SetSkillItem( RwInt32 nSlot );
 	VOID	SetHTBItem( RwInt32 nSlot );
 	VOID	SetActionSkillItem( RwInt32 nSlot );
