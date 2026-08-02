@@ -381,13 +381,6 @@ VOID CInfoWindowGui::SetItemInfo( gui::CMDStaticBox* pmdBox, CNtlSobItem* pItem,
 
 	SetItemInfo_Name( pmdBox, pData, pItemAttr->GetGrade(), pItemAttr->GetRank() );
 
-	if (Logic_IsDevUser())
-	{
-		RwUInt32 uiColor = Logic_GetItemRankColor(pItemAttr->GetRank());
-		pmdBox->SetBlankLine(INFOWND_BLANKLINE_HEIGHT);
-		pmdBox->Format("ItemIndex", FONT_TEXT, COMP_TEXT_RIGHT, uiColor, 0, FALSE, "Item Index: %u", pItemAttr->GetTblIdx());
-	}
-
 	SetItemInfo_CommonPointType(pmdBox, pData);
 
 	SetItemInfo_Attr_Info( pmdBox, pData, pItemAttr->GetBattleAttribute() );
