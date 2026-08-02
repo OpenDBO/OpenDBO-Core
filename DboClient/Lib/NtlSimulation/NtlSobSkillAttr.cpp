@@ -44,6 +44,20 @@ void CNtlSobSkillAttr::HandleEvents(RWS::CMsg &pMsg)
 		m_uiExp = 0;
 		m_uiMaxExp = GetSkillTbl()->wNext_Skill_Train_Exp;
 	}
+	else if (pMsg.Id == g_EventSobSkillResetOne)
+	{
+		SNtlEventSobSkillResetOne* pSkillUpgrade = reinterpret_cast<SNtlEventSobSkillResetOne*>(pMsg.pData);
+
+		CSkillTable* pSkillTable = API_GetTableContainer()->GetSkillTable();
+		sSKILL_TBLDAT* pSkillTbl = reinterpret_cast<sSKILL_TBLDAT*>(pSkillTable->FindData(pSkillUpgrade->preSkillTblidx));
+		NTL_ASSERT(pSkillTbl, "Skill table is null (" << pSkillUpgrade->preSkillTblidx << ")");
+
+		SetSkillTbl(pSkillTbl);
+		RefreshPassiveEffect();
+
+		m_uiExp = 0;
+		m_uiMaxExp = GetSkillTbl()->wNext_Skill_Train_Exp;
+	}
 
 	else if(pMsg.Id == g_EventRpBonusSetupRes)
 	{

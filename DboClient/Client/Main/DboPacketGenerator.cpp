@@ -3186,6 +3186,24 @@ bool CGamePacketGenerator::SendSkillResetPlusReq(BYTE byPlace, BYTE byPos)
 	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
 }
 
+bool CGamePacketGenerator::SendResetSkillOne(BYTE Place, BYTE Pos, BYTE SlotIndex)
+{
+	if (API_GetSLPacketLockManager()->IsLock(GU_SKILL_ONE_RESET_RES))
+		return true;
+
+	sUG_SKILL_ONE_RESET_REQ sPacket;
+	memset(&sPacket, 0, sizeof(sPacket));
+
+	sPacket.wOpCode = UG_SKILL_ONE_RESET_REQ;
+	sPacket.byPlace = Place;
+	sPacket.byPos = Pos;
+	sPacket.skillIndex = SlotIndex;
+
+	API_GetSLPacketLockManager()->Lock(GU_SKILL_ONE_RESET_RES);
+
+	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
+}
+
 bool CGamePacketGenerator::SendGMBudokaiServerEnterReq()
 {
 	if( API_GetSLPacketLockManager()->IsLock( GU_BUDOKAI_GM_BUDOKAI_SERVER_ENTER_RES ) )

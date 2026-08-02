@@ -67,6 +67,7 @@ public:
 	VOID	Update( RwReal fElapsed );		
 
 	VOID	SetInitSkill(VOID);
+	VOID	SetInitSkillOne(VOID);
 	VOID	SetSobIcon( CNtlSobIcon* pSobIcon, sTBLDAT* pData );
 	VOID	SetRPType( CNtlSobSkillAttr* pSobSkillAttr );
 	VOID	CheckSkillUpgrade(VOID);
@@ -87,6 +88,7 @@ public:
 	RwBool	IsUpgradeble();
 	RwBool	IsTrainableSkill();
 	RwBool	IsSelfTrainableSkill();
+	RwBool	IsCanResetSkill();
 
 	void	SetLearnAbleSkillBack(bool bActive);
 
@@ -136,6 +138,7 @@ private:
 	gui::CFlash*		m_pflaSelectEffect;
 
 	CSurfaceGui			m_surLearnAbleEffect;
+	CSurfaceGui			m_surNotResetSkillEffect;
 
 	RwBool				m_bUpgradable;
 
@@ -163,6 +166,7 @@ public:
 
 	VOID Show( bool bShow );
 	VOID SetInitSkill(VOID);
+	VOID SetInitSkillOne(RwUInt32 SkillId);
 	VOID SetSkillItem( RwUInt32 uiBaseSkillIndex, CNtlSobIcon* pSobIcon, sTBLDAT* pData );
 	VOID SetRPType( RwUInt32 uiBaseSkillIndex, CNtlSobSkillAttr* pSobSkillAttr );
 	VOID CheckUpgradebleSkill(VOID);

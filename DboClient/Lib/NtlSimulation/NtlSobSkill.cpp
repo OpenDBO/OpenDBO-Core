@@ -87,7 +87,7 @@ void CNtlSobSkill::HandleEvents(RWS::CMsg &pMsg)
 		// skill icon events.
 		m_pIcon->HandleEvents(pMsg); 
 	}
-	else if(pMsg.Id == g_EventSobSkillUpgrade)
+	else if(pMsg.Id == g_EventSobSkillUpgrade || pMsg.Id == g_EventSobSkillResetOne)
 	{
 		GetSobAttr()->HandleEvents(pMsg);
 	}

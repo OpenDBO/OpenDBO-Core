@@ -58,6 +58,7 @@ public:
 	sSKILL_TBLDAT* GetSkillFromTable(RwInt32 iSlotIdx);
 	RwInt32 GetSkillSlotIdx( SERIAL_HANDLE hSerial );
 	RwBool SkillExists( TBLIDX minIdx, TBLIDX maxIdx );	// Upgrade Ã¼Å©¿ë.
+	RwBool IsNeedSkillPre(TBLIDX curIdx);
 
 	RwInt32 GetHTBSkillCount(void);
 	CNtlSobHTBSkill* GetHTBSkill(RwInt32 iSlotIdx);
@@ -95,6 +96,7 @@ private:
 	void CreateEventHandler(RWS::CMsg &pMsg);
 	void AddEventHandler(RWS::CMsg &pMsg);
 	void UpgradeEventHandler(RWS::CMsg &pMsg);
+	void ResetOneEventHandler(RWS::CMsg& pMsg);
 	void SkillAction(RWS::CMsg &pMsg);
 
 	void AddHTBEventHandler(RWS::CMsg& msg);

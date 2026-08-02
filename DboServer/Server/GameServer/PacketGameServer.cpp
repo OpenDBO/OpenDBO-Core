@@ -11789,7 +11789,11 @@ void CClientSession::RecvResetOneSkillReq(CNtlPacket * pPacket)
 	res->skillIndex = req->skillIndex;
 	res->wResultCode = GAME_FAIL;
 
-	if (cPlayer->GetAspectStateId() == ASPECTSTATE_INVALID)
+	if (cPlayer->GetJoinID() != INVALID_JOINID)
+	{
+		res->wResultCode = GAME_SKILL_RESET_BUDOKAI_REGISTERED;
+	}
+	else if (cPlayer->GetAspectStateId() == ASPECTSTATE_INVALID)
 	{
 		if (IsInvenContainer(req->byPlace))
 		{
@@ -11865,6 +11869,8 @@ void CClientSession::RecvResetOneSkillReq(CNtlPacket * pPacket)
 
 							cPlayer->UpdateCharSP(cPlayer->GetSkillPoints() + rQry->dwAddSP);
 							item->SetCount(item->GetCount() - 1, false, false);
+
+							cPlayer->GetCharAtt()->CalculateAll();
 						}
 					}
 					else res->wResultCode = GAME_SKILL_YOU_DONT_HAVE_THE_SKILL;

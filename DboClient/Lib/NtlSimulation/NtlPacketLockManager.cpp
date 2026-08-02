@@ -277,6 +277,7 @@ CNtlPacketLockManager::CNtlPacketLockManager(VOID)
 	// 스킬초기화
 	m_mapLockPacket[GU_SKILL_INIT_RES]									= LT_SKILL;
 	m_mapLockPacket[GU_SKILL_RESET_PLUS_RES]							= LT_SKILL | LT_ITEM;
+	m_mapLockPacket[GU_SKILL_ONE_RESET_RES]							= LT_ITEM;
 
 	// Hoipoimix
 	m_mapLockPacket[GU_HOIPOIMIX_ITEM_CREATE_RES]						= LT_ITEM;
