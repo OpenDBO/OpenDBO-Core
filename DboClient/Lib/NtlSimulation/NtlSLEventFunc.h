@@ -404,6 +404,8 @@ public:
 
 	static void SobSkillUpgrade(SERIAL_HANDLE hSerialId, RwUInt8 bySkillSlotIdx, RwUInt32 uiUpgradeSkillTblId);
 
+	static void SobSkillResetOne(SERIAL_HANDLE hSerialId, TBLIDX preSkillTblidx, TBLIDX resetSkillTblidx, BYTE skillIndex);
+
 	static void SobHTBSkillAdd(SERIAL_HANDLE hSerialId, RwUInt8 byHTBSkillSlotIdx, RwUInt32 uiHTBSkillTblId);
 
 	static void SobHTBSkillAction(SERIAL_HANDLE hSerialId, sCHARSTATE *pCharState);

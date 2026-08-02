@@ -474,6 +474,9 @@ extern RWS::CEventId g_EventSobSkillAdd;
 // simulation object skill update
 extern RWS::CEventId g_EventSobSkillUpgrade;
 
+// simulation object skill reset one
+extern RWS::CEventId g_EventSobSkillResetOne;
+
 // simulation object HTBSkill Add
 extern RWS::CEventId g_EventSobHTBSkillAdd;
 
@@ -2197,6 +2200,13 @@ struct SNtlEventSobSkillUpgrade : public SNtlEventSob
 	RwUInt32		uiUpgradeSkillTblId;
 };
 
+struct SNtlEventSobSkillResetOne : public SNtlEventSob
+{
+	TBLIDX preSkillTblidx;
+	TBLIDX resetSkillTblidx;
+	BYTE skillIndex;
+};
+
 struct SNtlEventSobSocialAction : public SNtlEventSob
 {
 	RwUInt32		uiTblIdx;
@@ -2337,6 +2347,8 @@ enum EEventAvatarInfoUpdateType
 	EVENT_AIUT_POINT_HONOR			= 0x00040000, /** ¸í¿¹ Æ÷ÀÎÆ® */
 	EVENT_AIUT_POINT_MUDOSA			= 0x00080000, /** ¹«µµ»ç Æ÷ÀÎÆ® */
     EVENT_AIUT_NETPY                = 0x00100000, ///< PC¹æ¿ë NetPy Æ÷ÀÎÆ®
+	EVENT_AIUT_SKILL_RESET_ONE		= 0x00200000,
+	EVENT_AIUT_SKILL_CHECK_UPGRADABLE = 0x00400000,
 };
 
 struct SNtlEventSobInfoUpdate : public SNtlEventSob
