@@ -554,6 +554,12 @@ VOID CDialogManager::OnMode(eDialogMode eMode)
 		}
 		break;
 
+		case DIALOGMODE_RESET_ONE_SKILL:
+		{
+			GetCursorManager()->SetDesignatedCursor(CCursorManager::CS_ITEM_USE_SKILL_RESET);
+		}
+		break;
+
 		case DIALOGMODE_UNKNOWN:
 		break;
 
@@ -597,6 +603,16 @@ VOID CDialogManager::OffMode()
 
 			GetNtlSLGlobal()->GetSobAvatar()->GetSobProxy()->EnablePicking(FALSE);
 
+			GetCursorManager()->SetDesignatedCursor(CCursorManager::CS_INVALID_CURSOR);
+		}
+		break;
+
+		case DIALOGMODE_RESET_ONE_SKILL:
+		{
+			if (m_pClickedItem)
+				CDboEventGenerator::EnableItemIcon(TRUE, PLACE_BAG, m_pClickedItem->GetItemSlotIdx(), m_pClickedItem->GetParentItemSlotIdx());
+
+			SetClickedItem(NULL);
 			GetCursorManager()->SetDesignatedCursor(CCursorManager::CS_INVALID_CURSOR);
 		}
 		break;
