@@ -126,6 +126,7 @@
     <ClCompile Include="Gui\AuctionHouseGui.cpp" />
     <ClCompile Include="Gui\BackboardGui.cpp" />
     <ClCompile Include="Gui\BagGui.cpp" />
+    <ClCompile Include="BroadCastSystem.cpp" />
     <ClCompile Include="Gui\BroadCastGui.cpp" />
     <ClCompile Include="Gui\BroadCastUnit.cpp" />
     <ClCompile Include="Gui\BudokaiSideIconGui.cpp" />
@@ -467,6 +468,7 @@
     <ClInclude Include="UltimateDungeonGui.h" />
     <ClInclude Include="YardratWarehouseGui.h" />
     <CustomBuild Include="Gui\BagGui.h" />
+    <ClInclude Include="BroadCastSystem.h" />
     <ClInclude Include="Gui\BroadCastDef.h" />
     <ClInclude Include="Gui\BroadCastGui.h" />
     <ClInclude Include="Gui\BroadCastUnit.h" />

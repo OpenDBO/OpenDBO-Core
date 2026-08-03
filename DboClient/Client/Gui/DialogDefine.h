@@ -86,6 +86,7 @@ enum eDialogType
 	DIALOG_TUTORIAL_CONFIRM,				///< 튜토리얼 확인 메세지
 	DIALOG_PETITION_SATISFACTION,			///< GM 상담 만족도 조사창
 	DIALOG_BROADCAST,
+	DIALOG_BROADCAST_SYSTEM,
 	DIALOG_PET_STATUSBAR,					///< 펫 상태 창    
 	DIALOG_PET_SKILL_SLOT,                ///< 펫을 소환했을때 나타나는 스킬 슬롯창
 

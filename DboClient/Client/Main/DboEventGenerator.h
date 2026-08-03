@@ -266,6 +266,8 @@ public:
 	// open BagGui, ScouterBackgroundGui, ...
 	static void OpenBagGui();
 	static void OpenScouterBackgroundGui();
+
+	static void BroadCast(BYTE MsgType, sMSG_BROADCAST_DATA pData);
     //////////////////////////////////////////////////////////////////////////
     // 한국 상용화 관련
     static void UpdateNetPy(NETP netPy, NETP dwAccumulationNetP, DWORD timeNextGainTime);       

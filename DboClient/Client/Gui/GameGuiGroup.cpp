@@ -101,6 +101,7 @@
 #include "PetitionGui.h"
 #include "PetitionSatisfactionGui.h"
 #include "BroadCastGui.h"
+#include "BroadCastSystem.h"
 #include "SkillAbilitySetGui.h"
 #include "SkillAbilityUseGui.h"
 #include "SkillHTBRpResult.h"
@@ -290,6 +291,7 @@ CGameGuiGroup::CGameGuiGroup()
 , m_pPetition(NULL)
 , m_pPetitionSatisfaction(NULL)
 , m_pBroadCastGui(NULL)
+, m_pBroadCastSystem(NULL)
 , m_pPartyMenu(NULL)
 , m_pSkillAbilitySetGui(NULL)
 , m_pSkillAbilityUseGui(NULL)
@@ -713,6 +715,8 @@ RwBool CGameGuiGroup::Create(void)
 	// BroadCast Gui
 	AddDialog(m_pBroadCastGui, CBroadCastGui, "BroadCastGui", DIALOG_BROADCAST );
 
+	AddDialog(m_pBroadCastSystem, CBroadCastSystem, "BroadCastSystem", DIALOG_BROADCAST_SYSTEM);
+
 	AddDialog(m_pSkillAbilitySetGui, CSkillAbilitySetGui, "SkillAbilitySetGui", DIALOG_SKILLABILITYSET );
 
 	AddDialog(m_pSkillAbilityUseGui, CSkillAbilityUseGui, "SkillAbilityUseGui", DIALOG_SKILLABILITYUSE );
@@ -943,6 +947,7 @@ void CGameGuiGroup::Destroy(void)
 	RemoveDialog(m_pPetition);
 	RemoveDialog(m_pPetitionSatisfaction);	
 	RemoveDialog(m_pBroadCastGui);
+	RemoveDialog(m_pBroadCastSystem);
 	RemoveDialog(m_pPartyMenu);
 	RemoveDialog(m_pSkillAbilitySetGui);
 	RemoveDialog(m_pSkillAbilityUseGui);
