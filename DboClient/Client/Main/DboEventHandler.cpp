@@ -191,6 +191,7 @@ RwBool CDboEventHandler::Create(void)
 
     RegisterMsg(g_EventOpenBagGui, "g_EventOpenBagGui", NULL);
     RegisterMsg(g_EventOpenScouterBackgroundGui, "g_EventOpenScouterBackgroundGui", NULL);
+    RegisterMsg(g_EventBroadCastNfy, "g_EventBroadCastNfy", NULL);
 
     // 한국 PC방 관련
     RegisterMsg(g_EventUpdateNetPy, "g_EventUpdateNetPy", "SDboEventUpdateNetPy");
@@ -394,6 +395,7 @@ void CDboEventHandler::Destroy(void)
 
 	UnRegisterMsg(g_EventOpenBagGui);
 	UnRegisterMsg(g_EventOpenScouterBackgroundGui);
+	UnRegisterMsg(g_EventBroadCastNfy);
 
 	// 한국 PC방 관련
 	UnRegisterMsg(g_EventUpdateNetPy);
