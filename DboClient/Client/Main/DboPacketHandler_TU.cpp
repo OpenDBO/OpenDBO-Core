@@ -460,3 +460,10 @@ void PacketHandler_CharNameChangedNfy(void * pPacket)
 
 	CNtlSLEventGenerator::ChangeCharName(pResult->targetID, pResult->wszCharName, pResult->wszOldCharName);
 }
+
+void PacketHandler_TUBroadCastRes(void* pPacket)
+{
+	sTU_BROADCASTING_SYSTEM_NFY* pResult = (sTU_BROADCASTING_SYSTEM_NFY*)pPacket;
+
+	CDboEventGenerator::BroadCast(pResult->byMsgType, pResult->sData);
+}

@@ -735,6 +735,7 @@ void RegisterPacketHandler(void)
 
 	// Naming
 	CNtlPacketHandler::Register(TU_CHAR_NAME_CHANGED_NFY, PacketHandler_CharNameChangedNfy);
+	CNtlPacketHandler::Register(TU_BROADCASTING_SYSTEM_NFY, PacketHandler_TUBroadCastRes);
 
 	// Display message
 	CNtlPacketHandler::Register(GU_SYSTEM_DISPLAY_RESULTCODE, PacketHandler_SystemDisplayResultCode);

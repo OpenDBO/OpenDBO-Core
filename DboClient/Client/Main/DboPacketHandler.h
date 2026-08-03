@@ -866,6 +866,7 @@ void PacketHandler_TUBudokaiTournamentTeamInfoRes(void* pPacket);
 
 // Naming
 void PacketHandler_CharNameChangedNfy(void* pPacket);
+void PacketHandler_TUBroadCastRes(void* pPacket);
 void PacketHandler_NickNameChangedNfy(void* pPacket);
 
 // Display message
