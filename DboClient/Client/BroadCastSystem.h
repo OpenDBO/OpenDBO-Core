@@ -39,7 +39,7 @@ public:
 
 	void		Update(RwReal fElapsed);
 	void		InitStringBoxFirst();
-	void		InitStringBoxSecound();
+	void		InitStringBoxSecond();
 
 	VOID		OnMouseEnter(gui::CComponent* pComponent);
 	VOID		OnMouseLeave(gui::CComponent* pComponent);
@@ -49,6 +49,8 @@ protected:
 	VOID		LocateComponent(RwInt32 iWidth, RwInt32 iHeight);
 
 private:
+
+	void		InitStringBox(gui::CStaticBox* pStringBox, RwBool& bIsOver, RwReal& fBoxPresentPosX);
 
 	gui::CSlot			m_slotMouseEnter;
 	gui::CSlot			m_slotMouseLeave;
@@ -60,7 +62,7 @@ private:
 
 	gui::CStaticBox*	m_stBackGround;
 	gui::CStaticBox*	m_stString;
-	gui::CStaticBox*	m_stSecoundString;
+	gui::CStaticBox*	m_stSecondString;
 
 protected:
 

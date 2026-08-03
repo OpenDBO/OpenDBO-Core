@@ -52,9 +52,9 @@ RwBool CBroadCastSystem::Create()
 	m_stString = (gui::CStaticBox*)GetComponent("stString");
 	m_stString->SetClippingMode(true);
 	m_stString->SetText("");
-	m_stSecoundString = (gui::CStaticBox*)GetComponent("stSecoundString");
-	m_stSecoundString->SetClippingMode(true);
-	m_stSecoundString->SetText("");
+	m_stSecondString = (gui::CStaticBox*)GetComponent("stSecondString");
+	m_stSecondString->SetClippingMode(true);
+	m_stSecondString->SetText("");
 
 	m_slotMouseEnter = m_pThis->SigMouseEnter().Connect(this, &CBroadCastSystem::OnMouseEnter);
 	m_slotMouseLeave = m_pThis->SigMouseLeave().Connect(this, &CBroadCastSystem::OnMouseLeave);
@@ -68,7 +68,7 @@ RwBool CBroadCastSystem::Create()
 	LinkMsg(g_EventBroadCastNfy, 0);
 	LinkMsg(g_EventResize, 0);
 	InitStringBoxFirst();
-	InitStringBoxSecound();
+	InitStringBoxSecond();
 	NTL_RETURN(TRUE);
 }
 
@@ -276,7 +276,7 @@ void CBroadCastSystem::Update(RwReal fElapsed)
 	{
 	if (!m_sTextOne.empty())
 	{
-		if(m_bIsTwoTextOver || m_stString->GetScreenRect().right < m_stSecoundString->GetScreenRect().left)
+		if(m_bIsTwoTextOver || m_stString->GetScreenRect().right < m_stSecondString->GetScreenRect().left)
 		{
 			m_fBoxPresentPosX -= (fElapsed * (RwReal)g_nTestVal);
 			m_stString->SetPosition(m_fBoxPresentPosX, 19);
@@ -298,21 +298,21 @@ void CBroadCastSystem::Update(RwReal fElapsed)
 			
 	if (!m_sTextTwo.empty()) 
 	{
-		if(m_bIsOneTextOver || m_stSecoundString->GetScreenRect().right < m_stString->GetScreenRect().left)
+		if(m_bIsOneTextOver || m_stSecondString->GetScreenRect().right < m_stString->GetScreenRect().left)
 		{
 			m_fBoxPresentPosXTwo -= (fElapsed * (RwReal)g_nTestVal);
-			m_stSecoundString->SetPosition(m_fBoxPresentPosXTwo, 19);
-			if (m_stSecoundString->GetText().empty())
-				m_stSecoundString->SetText(m_sTextTwo.front().c_str());
+			m_stSecondString->SetPosition(m_fBoxPresentPosXTwo, 19);
+			if (m_stSecondString->GetText().empty())
+				m_stSecondString->SetText(m_sTextTwo.front().c_str());
 
-			if (m_stSecoundString ->GetScreenRect().right < m_stBackGround->GetScreenRect().right)
+			if (m_stSecondString ->GetScreenRect().right < m_stBackGround->GetScreenRect().right)
 				m_bIsTwoTextOver = true;
 			else
 				m_bIsTwoTextOver = false;
 
-			if (m_stSecoundString->GetScreenRect().right < m_stBackGround->GetScreenRect().left)
+			if (m_stSecondString->GetScreenRect().right < m_stBackGround->GetScreenRect().left)
 			{
-				InitStringBoxSecound();
+				InitStringBoxSecond();
 				m_sTextTwo.erase(m_sTextTwo.begin());
 			}
 		}
@@ -335,20 +335,21 @@ RwInt32 CBroadCastSystem::SwitchDialog(bool bOpen)
 	return TRUE;
 }
 
-void CBroadCastSystem::InitStringBoxFirst()
+void CBroadCastSystem::InitStringBox(gui::CStaticBox* pStringBox, RwBool& bIsOver, RwReal& fBoxPresentPosX)
 {
 	CRectangle rtScreen = m_stBackGround->GetScreenRect();
-	m_bIsOneTextOver = true;
-	m_fBoxPresentPosX = (RwReal)rtScreen.GetWidth() + 15;
-	m_stString->Clear();
-	m_stString->SetPosition(m_fBoxPresentPosX, 19);
+	bIsOver = true;
+	fBoxPresentPosX = (RwReal)rtScreen.GetWidth() + 15;
+	pStringBox->Clear();
+	pStringBox->SetPosition(fBoxPresentPosX, 19);
 }
 
-void CBroadCastSystem::InitStringBoxSecound()
+void CBroadCastSystem::InitStringBoxFirst()
 {
-	CRectangle rtScreen = m_stBackGround->GetScreenRect();
-	m_bIsTwoTextOver = true;
-	m_fBoxPresentPosXTwo = (RwReal)rtScreen.GetWidth() + 15;
-	m_stSecoundString->Clear();
-	m_stSecoundString->SetPosition(m_fBoxPresentPosX, 19);
+	InitStringBox(m_stString, m_bIsOneTextOver, m_fBoxPresentPosX);
+}
+
+void CBroadCastSystem::InitStringBoxSecond()
+{
+	InitStringBox(m_stSecondString, m_bIsTwoTextOver, m_fBoxPresentPosXTwo);
 }
