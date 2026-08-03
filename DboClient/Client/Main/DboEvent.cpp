@@ -260,6 +260,7 @@ RWS::CEventId g_EventHLShopEventItemGiftRes;
 
 RWS::CEventId g_EventOpenBagGui;				///< BagGui open시 발생
 RWS::CEventId g_EventOpenScouterBackgroundGui;	///< ScouterBackgroundGui open시 발생(use scouter)
+RWS::CEventId g_EventBroadCastNfy;
 
 //------------------------------------------------------
 // PC방 관련 이벤트

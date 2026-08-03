@@ -298,6 +298,8 @@ extern RWS::CEventId g_EventHLShopEventItemGiftRes;
 extern RWS::CEventId g_EventOpenBagGui; 
 extern RWS::CEventId g_EventOpenScouterBackgroundGui;
 
+extern RWS::CEventId g_EventBroadCastNfy;
+
 // test code
 extern RWS::CEventId g_EventSCS;
 
@@ -503,7 +505,7 @@ struct SDboEventTimeFixedNotify
 };
 
 /**
-* \brief CautionNotify에서 Caution SideIcon으로 보내는 이벤트
+* brief CautionNotify에서 Caution SideIcon으로 보내는 이벤트
 */
 struct SDboEventCautionSideNotify
 {
@@ -872,7 +874,7 @@ struct SDboEventRegPrivateShopItem
 };
 
 /**
-* \brief 개인상점 흥정 시작 이벤트의 구조체
+* brief 개인상점 흥정 시작 이벤트의 구조체
 */
 struct SDboEventPrivateShopBusinessStart
 {
@@ -884,7 +886,7 @@ struct SDboEventPrivateShopBusinessStart
 };
 
 /**
-* \brief 개인상점 흥정 가격조정(즉시구매)의 구조체
+* brief 개인상점 흥정 가격조정(즉시구매)의 구조체
 */
 struct SDboEventPrivateShopBusinessFluctuations
 {
@@ -894,7 +896,7 @@ struct SDboEventPrivateShopBusinessFluctuations
 };
 
 /**
-* \brief 개인상점 흥정창을 닫으라는 이벤트
+* brief 개인상점 흥정창을 닫으라는 이벤트
 */
 struct SDboEventPrivateShopBusinessCloseWindowNfy
 {
@@ -1048,7 +1050,7 @@ struct SDboEventTMQMemberListRes
 };
 
 /**
-* \brief 천하제일 무도회 소식지 Interface를 제어하는 이벤트 구조체
+* brief 천하제일 무도회 소식지 Interface를 제어하는 이벤트 구조체
 */
 struct SDboEventBudokaiNews
 {
@@ -1057,7 +1059,7 @@ struct SDboEventBudokaiNews
 };
 
 /**
-* \brief Script Link Table을 참조하라는 이벤트
+* brief Script Link Table을 참조하라는 이벤트
 */
 struct SDboEventScriptLinkNotify
 {
@@ -1356,6 +1358,12 @@ struct SDboEventHLShopEventItemAddNfy
 struct SDboEventHLShopEventItemDelNfy
 {
 	QWORD qwProductId;
+};
+
+struct SDboEventBroadCastNfy
+{
+	BYTE MsgType;
+	sMSG_BROADCAST_DATA pData;
 };
 
 // CommercialExtend

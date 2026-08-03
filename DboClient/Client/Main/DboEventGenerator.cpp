@@ -1733,6 +1733,16 @@ void CDboEventGenerator::OpenScouterBackgroundGui()
     SEND_MSG(g_EventOpenScouterBackgroundGui, NULL);
 }
 
+void CDboEventGenerator::BroadCast(BYTE MsgType, sMSG_BROADCAST_DATA pData)
+{
+	SDboEventBroadCastNfy sData;
+
+	sData.MsgType = MsgType;
+	sData.pData = pData;
+
+	SEND_MSG(g_EventBroadCastNfy, &sData);
+}
+
 // Mascot
 void CDboEventGenerator::MascotRegister(sMASCOT_DATA_EX mascotdata)
 {
