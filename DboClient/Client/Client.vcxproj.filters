@@ -761,6 +761,9 @@
     <ClCompile Include="Gui\PetitionSatisfactionGui.cpp">
       <Filter>Gui\Component\Game\Petition</Filter>
     </ClCompile>
+    <ClCompile Include="BroadCastSystem.cpp">
+      <Filter>Gui\Component\Game\BroadCast</Filter>
+    </ClCompile>
     <ClCompile Include="Gui\BroadCastGui.cpp">
       <Filter>Gui\Component\Game\BroadCast</Filter>
     </ClCompile>
@@ -1689,6 +1692,9 @@
     </ClInclude>
     <ClInclude Include="Gui\PetitionSatisfactionGui.h">
       <Filter>Gui\Component\Game\Petition</Filter>
+    </ClInclude>
+    <ClInclude Include="BroadCastSystem.h">
+      <Filter>Gui\Component\Game\BroadCast</Filter>
     </ClInclude>
     <ClInclude Include="Gui\BroadCastDef.h">
       <Filter>Gui\Component\Game\BroadCast</Filter>
