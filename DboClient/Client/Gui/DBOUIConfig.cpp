@@ -33,7 +33,7 @@ RwBool CDBOUIConfig::Load()
 		if( pData == NULL )
 			return FALSE;
 		
-		// ¹öÆÛ +1 »ý¼º
+		// ë²„í¼ +1 ìƒì„±
 		char* pBuffer = NTL_NEW char[nSize+1];
 		memcpy( pBuffer, pData, sizeof(char) * nSize );
 		pBuffer[nSize] = '\0';
@@ -59,6 +59,7 @@ RwBool CDBOUIConfig::Load()
     LoadTest();
 	LoadBroadCast();
 	LoadNotify();
+	LoadLoginTerrain(); // load login-screen terrain data
 
     return TRUE;    
 }
@@ -76,7 +77,7 @@ RwBool CDBOUIConfig::Reflash()
 
 RwBool CDBOUIConfig::LoadTeleCast(TELECAST_TYPE eType)
 {
-    // Å¸ÀÔ ºñ±³´Â ÇÏÁö ¾Ê´Â´Ù. (¸®·Îµå)
+    // íƒ€ìž… ë¹„êµëŠ” í•˜ì§€ ì•ŠëŠ”ë‹¤. (ë¦¬ë¡œë“œ)
     m_TeleCast.m_eTelecastType = eType;
 
     std::string strHeader;
@@ -167,7 +168,7 @@ RwBool CDBOUIConfig::LoadTeleCast(TELECAST_TYPE eType)
     }
     pNodeSlide->Release();
 
-    // ¸»Ç³¼±     
+    // ë§í’ì„      
     IXMLDOMNodeList* pBalloonRes = SelectNodeList((char*)strBalloon.c_str());
     long lCount = 0;
     pBalloonRes->get_length(&lCount);    
@@ -198,7 +199,7 @@ RwBool CDBOUIConfig::LoadTeleCast(TELECAST_TYPE eType)
         m_TeleCast.mapBalloonRes[nIndex] = sTeleCastBalloon;
     }
 
-    // ¼­¹ö ¾Ë¸²Ã¢¿ë ¼³Á¤
+    // ì„œë²„ ì•Œë¦¼ì°½ìš© ì„¤ì •
     if(eType == TELECAST_TYPE_SERVER_NOTIFY)
     {
         std::string strNPCID    = strHeader + "NPC_TBLID";
@@ -393,4 +394,233 @@ RwBool CDBOUIConfig::LoadTest()
     CNtlCameraController::SetTargetHeightRatio((RwReal)atof(szBuf));
 
     return TRUE;
+}
+
+RwBool CDBOUIConfig::LoadLoginTerrain() // load login-screen terrain data
+{
+	CNtlXMLDoc XMLDoc;
+
+	if (!XMLDoc.Create())
+	{
+		NTL_ASSERTFAIL("CDBOUIConfig::LoadLoginTerrain(), !XMLDoc.Create()\n");
+		return FALSE;
+	}
+
+	if (GetNtlResourcePackManager()->GetActiveFlags() & NTL_PACK_TYPE_FLAG_SCRIPT)
+	{
+		BYTE* pPackBuffer = NULL;
+		RwInt32	iPackSize = 0;
+
+		GetNtlResourcePackManager()->LoadScript(".\\script\\loginterraindata.xml", (void**)&pPackBuffer, &iPackSize);
+		if (pPackBuffer)
+		{
+			BYTE* pTempBuffer = NTL_NEW BYTE[iPackSize + 1];
+			memcpy(pTempBuffer, pPackBuffer, iPackSize);
+			pTempBuffer[iPackSize] = '\0';
+
+			if (!XMLDoc.LoadXML((char*)pTempBuffer))
+			{
+				XMLDoc.Destroy();
+				NTL_ARRAY_DELETE(pTempBuffer);
+				NTL_ARRAY_DELETE(pPackBuffer);
+				NTL_ASSERTFAIL("CDBOUIConfig::LoadLoginTerrain(), !XMLDoc.Load(\".\\script\\loginterraindata.xml\")\n");
+				return FALSE;
+			}
+			NTL_ARRAY_DELETE(pTempBuffer);
+			NTL_ARRAY_DELETE(pPackBuffer);
+		}
+	}
+	else
+	{
+		if (!XMLDoc.Load(".\\script\\loginterraindata.xml"))
+		{
+			XMLDoc.Destroy();
+			NTL_ASSERTFAIL("CDBOUIConfig::LoadLoginTerrain(), !XMLDoc.Load(\".\\script\\loginterraindata.xml\")\n");
+			return FALSE;
+		}
+	}
+
+	IXMLDOMNodeList* pItemPropertyNodeList = XMLDoc.SelectNodeList((char*)"TerrainData");
+	if (pItemPropertyNodeList == NULL)
+	{
+		NTL_ASSERTFAIL("CDBOUIConfig::LoadLoginTerrain(), pItemPropertyNodeList == NULL");
+		return FALSE;
+	}
+
+	long itemPropertyCount = 0;
+	pItemPropertyNodeList->get_length(&itemPropertyCount);
+	for (long i = 0; i < itemPropertyCount; ++i) // å¾ªçŽ¯ TerrainData å­˜åœ¨å‡ ä¸ªèŠ‚ç‚¹
+	{
+		IXMLDOMNode* pItemPropertyNode = NULL;
+		pItemPropertyNodeList->get_item(i, &pItemPropertyNode);
+		if (pItemPropertyNode)
+		{
+			IXMLDOMNodeList* pLMPNodeList = NULL;
+			pItemPropertyNode->selectNodes(L"Terrain", &pLMPNodeList);
+			if (pLMPNodeList == NULL)
+			{
+				NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), pLMPNodeList == NULL");
+				return FALSE;
+			}
+
+			if (pLMPNodeList)
+			{
+				IXMLDOMNode* pLMPTypeNode = NULL;
+				pLMPNodeList->get_item(0, &pLMPTypeNode);
+				if (pLMPTypeNode)
+				{
+					char Name[64] = { 0, };
+					if (!XMLDoc.GetTextWithAttributeName(pLMPTypeNode, "Name", Name, sizeof(Name)))
+					{
+						NTL_ASSERTFAIL("Name = NULL");
+						return FALSE;
+					}
+
+					char Folder[64] = { 0, };
+					if (!XMLDoc.GetTextWithAttributeName(pLMPTypeNode, "Folder", Folder, sizeof(Folder)))
+					{
+						NTL_ASSERTFAIL("Folder = NULL");
+						return FALSE;
+					}
+
+					char Enable[64] = { 0, };
+					if (!XMLDoc.GetTextWithAttributeName(pLMPTypeNode, "Enable", Enable, sizeof(Enable)))
+					{
+						NTL_ASSERTFAIL("Enable = NULL");
+						return FALSE;
+					}
+
+					m_LoginTerrain.strTerrainName = Name;
+					m_LoginTerrain.strTerrainFolder = Folder;
+
+					if (strcmp(Enable, "true") == 0)
+						m_LoginTerrain.bIsEnable = true;
+					else
+						m_LoginTerrain.bIsEnable = false;
+
+
+
+				}
+
+			}
+
+			IXMLDOMNodeList* pLMPNodeList2 = NULL;
+			pItemPropertyNode->selectNodes(L"Camera", &pLMPNodeList2);
+			if (pLMPNodeList2 == NULL)
+			{
+				NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), pLMPNodeList == NULL");
+				return FALSE;
+			}
+
+			if (pLMPNodeList2)
+			{
+				IXMLDOMNode* pLMPTypeNode = NULL;
+				pLMPNodeList2->get_item(0, &pLMPTypeNode);
+				if (pLMPTypeNode)
+				{
+					char XPos[64] = { 0, };
+					if (!XMLDoc.GetTextWithAttributeName(pLMPTypeNode, "XPos", XPos, sizeof(XPos)))
+					{
+						NTL_ASSERTFAIL("XPos = NULL");
+						return FALSE;
+					}
+
+					char YPos[64] = { 0, };
+					if (!XMLDoc.GetTextWithAttributeName(pLMPTypeNode, "YPos", YPos, sizeof(YPos)))
+					{
+						NTL_ASSERTFAIL("YPos = NULL");
+						return FALSE;
+					}
+
+					char ZPos[64] = { 0, };
+					if (!XMLDoc.GetTextWithAttributeName(pLMPTypeNode, "ZPos", ZPos, sizeof(ZPos)))
+					{
+						NTL_ASSERTFAIL(" = NULL");
+						return FALSE;
+					}
+
+					char DirX[64] = { 0, };
+					if (!XMLDoc.GetTextWithAttributeName(pLMPTypeNode, "DirX", DirX, sizeof(DirX)))
+					{
+						NTL_ASSERTFAIL("DirX = NULL");
+						return FALSE;
+					}
+
+					char DirY[64] = { 0, };
+					if (!XMLDoc.GetTextWithAttributeName(pLMPTypeNode, "DirY", DirY, sizeof(DirY)))
+					{
+						NTL_ASSERTFAIL("DirY = NULL");
+						return FALSE;
+					}
+
+					char DirZ[64] = { 0, };
+					if (!XMLDoc.GetTextWithAttributeName(pLMPTypeNode, "DirZ", DirZ, sizeof(DirZ)))
+					{
+						NTL_ASSERTFAIL("irZ = NULL");
+						return FALSE;
+					}
+
+					char FOV[64] = { 0, };
+					if (!XMLDoc.GetTextWithAttributeName(pLMPTypeNode, "FOV", FOV, sizeof(FOV)))
+					{
+						NTL_ASSERTFAIL("FOV = NULL");
+						return FALSE;
+					}
+
+					m_LoginTerrain.vCameraPos.x = atof(XPos);
+					m_LoginTerrain.vCameraPos.y = atof(YPos);
+					m_LoginTerrain.vCameraPos.z = atof(ZPos);
+					m_LoginTerrain.vCameraPosAt.x = atof(DirX);
+					m_LoginTerrain.vCameraPosAt.y = atof(DirY);
+					m_LoginTerrain.vCameraPosAt.z = atof(DirZ);
+					m_LoginTerrain.fFov = atof(FOV);
+				}
+			}
+
+
+			IXMLDOMNodeList* pLMPNodeList3 = NULL;
+			pItemPropertyNode->selectNodes(L"Avatar", &pLMPNodeList3);
+			if (pLMPNodeList3 == NULL)
+			{
+				NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), pLMPNodeList == NULL");
+				return FALSE;
+			}
+
+			if (pLMPNodeList3)
+			{
+				IXMLDOMNode* pLMPTypeNode = NULL;
+				pLMPNodeList3->get_item(0, &pLMPTypeNode);
+				if (pLMPTypeNode)
+				{
+
+					char XPos[64] = { 0, };
+					if (!XMLDoc.GetTextWithAttributeName(pLMPTypeNode, "XPos", XPos, sizeof(XPos)))
+					{
+						NTL_ASSERTFAIL("XPos = NULL");
+						return FALSE;
+					}
+
+					char YPos[64] = { 0, };
+					if (!XMLDoc.GetTextWithAttributeName(pLMPTypeNode, "YPos", YPos, sizeof(YPos)))
+					{
+						NTL_ASSERTFAIL("YPos = NULL");
+						return FALSE;
+					}
+
+					char ZPos[64] = { 0, };
+					if (!XMLDoc.GetTextWithAttributeName(pLMPTypeNode, "ZPos", ZPos, sizeof(ZPos)))
+					{
+						NTL_ASSERTFAIL("ZPos = NULL");
+						return FALSE;
+					}
+
+					m_LoginTerrain.vAvatarPos.x = atof(XPos);
+					m_LoginTerrain.vAvatarPos.y = atof(YPos);
+					m_LoginTerrain.vAvatarPos.z = atof(ZPos);
+				}
+			}
+		}
+	}
+
+	return TRUE;
 }
