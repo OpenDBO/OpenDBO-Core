@@ -829,11 +829,17 @@ void CAuctionHouseGui::HandleEvents(RWS::CMsg & msg)
 	else if (msg.Id == g_EventDialog)
 	{
 		SDboEventDialog* pPacket = (SDboEventDialog*)msg.pData;
-		if (pPacket->iType == DIALOGEVENT_OPEN_FAIL_NPC_DIALOG &&
-			pPacket->iDestDialog == DIALOG_AUCTION_HOUSE)
+		if (pPacket->iDestDialog == DIALOG_AUCTION_HOUSE)
 		{
-			// Failed to open AH
-			Logic_CancelNpcFacing();
+			if (pPacket->iType == DIALOGEVENT_OPEN_FAIL_NPC_DIALOG)
+			{
+				// Failed to open AH
+				Logic_CancelNpcFacing();
+			}
+			else if (pPacket->iType == DIALOGEVENT_NPC_BYEBYE)
+			{
+				GetDialogManager()->CloseDialog(DIALOG_AUCTION_HOUSE);
+			}
 		}
 	}
 }

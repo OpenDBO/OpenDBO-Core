@@ -176,17 +176,29 @@ RwBool CStatusAvatarTab::Create(CNtlPLGui* pParent)
 		m_pstbETCStatTitle[i] = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent(buf));
 	}
 
+	for (RwInt32 i = 0; i < NUM_DOT_DEFENCE_STAT; ++i)
+	{
+		const char* szFilename[] = { "sttStomachacheDefence", "sttPoisonDefence", "sttBleedDefence", "sttBurnDefence" };
+		char buf[256];
+
+		sprintf_s(buf, 256, "%s%s", szFilename[i], "Title");
+
+		m_pstbDotDefenceStat[i] = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent(szFilename[i]));
+		m_pstbDotDefenceStatTitle[i] = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent(buf));
+	}
+
 
 	m_pstbPCCharacterTitle = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent("sttCharTitle"));
-	m_pstbPCActiveCharacterTitle = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent("sttCharActiveTitle"));
 
 	m_pbtnLeftRot = reinterpret_cast<gui::CButton*>(pParent->GetComponent("btnLeftSpin"));
 	m_pbtnRightRot = reinterpret_cast<gui::CButton*>(pParent->GetComponent("btnRightSpin"));
 	m_pbtnDragRot = reinterpret_cast<gui::CButton*>(pParent->GetComponent("btnCharDrag"));
 
-	m_btnCharTitle = reinterpret_cast<gui::CButton*>(pParent->GetComponent("btnCharTitle"));
-	m_btnCharTitle->SetText(GetDisplayStringManager()->GetString("DST_CHAR_TITLE"));
-	m_slotCharTitleButton = m_btnCharTitle->SigClicked().Connect(this, &CStatusAvatarTab::OnCharTitleBtnClicked);
+	m_pCbbCharTitle = reinterpret_cast<gui::CComboBox*>(pParent->GetComponent("cbbCharTitleCombo"));
+	m_slotCharTitleSelected = m_pCbbCharTitle->SigSelected().Connect(this, &CStatusAvatarTab::OnCharTitleSelected);
+	m_slotTitleComboHighlighted = m_pCbbCharTitle->GetListBox()->SigHighlighted().Connect(this, &CStatusAvatarTab::OnCharTitleComboHighlighted);
+	m_slotTitleComboMouseLeave = m_pCbbCharTitle->GetListBox()->SigMouseLeave().Connect(this, &CStatusAvatarTab::OnCharTitleComboMouseLeave);
+	m_slotTitleComboListToggled = m_pCbbCharTitle->SigListToggled().Connect(this, &CStatusAvatarTab::OnCharTitleComboListToggled);
 
 	m_pnlBattleAttribute = reinterpret_cast<gui::CPanel*>(pParent->GetComponent("pnlOffenceAttr"));
 	m_pnlBattleAttributeDefense = reinterpret_cast<gui::CPanel*>(pParent->GetComponent("pnlDefenceAttr"));
@@ -219,7 +231,7 @@ RwBool CStatusAvatarTab::Create(CNtlPLGui* pParent)
 	SetTextHardCode();
 
 	// load title
-	SetCharTitleText();
+	LoadCharTitleCombo();
 
 	// Tooltip
 	SetAttributeToolTip();
@@ -455,6 +467,16 @@ VOID CStatusAvatarTab::UpdateStatData(VOID)
 	m_pstbETCStat[ATTACKRATE]->SetText(pAvatarAttr->m_wAttackRate);
 	m_pstbETCStat[DODGE]->SetTextColor(uiColor);
 	m_pstbETCStat[DODGE]->SetText(pAvatarAttr->m_wDodgeRate);
+
+	// DOT Defence Stat
+	m_pstbDotDefenceStat[DOT_STOMACHACHE]->SetTextColor(uiColor);
+	m_pstbDotDefenceStat[DOT_STOMACHACHE]->SetText(pAvatarAttr->m_wStomachacheDefence);
+	m_pstbDotDefenceStat[DOT_POISON]->SetTextColor(uiColor);
+	m_pstbDotDefenceStat[DOT_POISON]->SetText(pAvatarAttr->m_wPoisonDefence);
+	m_pstbDotDefenceStat[DOT_BLEED]->SetTextColor(uiColor);
+	m_pstbDotDefenceStat[DOT_BLEED]->SetText(pAvatarAttr->m_wBleedDefence);
+	m_pstbDotDefenceStat[DOT_BURN]->SetTextColor(uiColor);
+	m_pstbDotDefenceStat[DOT_BURN]->SetText(pAvatarAttr->m_wBurnDefence);
 
 	// Name
 	m_pstbPCInfo[NAME]->SetText(pAvatarAttr->GetName());
@@ -702,6 +724,14 @@ VOID CStatusAvatarTab::SetTextHardCode(VOID)
 
 	m_pstbETCStatTitle[0]->SetText(GetDisplayStringManager()->GetString("DST_STATUS_ATTACK_RATE"));
 	m_pstbETCStatTitle[1]->SetText(GetDisplayStringManager()->GetString("DST_STATUS_DODGE"));
+
+	m_pstbDotDefenceStatTitle[DOT_STOMACHACHE]->SetText(GetDisplayStringManager()->GetString("DST_STOMACHACHE_DEFENCE"));
+	m_pstbDotDefenceStatTitle[DOT_POISON]->SetText(GetDisplayStringManager()->GetString("DST_POISON_DEFENCE"));
+	m_pstbDotDefenceStatTitle[DOT_BLEED]->SetText(GetDisplayStringManager()->GetString("DST_BLEED_DEFENCE"));
+	m_pstbDotDefenceStatTitle[DOT_BURN]->SetText(GetDisplayStringManager()->GetString("DST_BURN_DEFENCE"));
+
+	for (RwInt32 i = 0; i < NUM_DOT_DEFENCE_STAT; ++i)
+		m_pstbDotDefenceStatTitle[i]->SetTextColor(RANKBATTLE_COLOR_GREEN, TRUE);
 
 	m_pstbPCInfoTitle[NAME]->SetText(GetDisplayStringManager()->GetString("DST_STATUS_NAME"));
 	m_pstbPCInfoTitle[CLASS]->SetText(GetDisplayStringManager()->GetString("DST_STATUS_JOB"));
@@ -1049,12 +1079,57 @@ VOID CStatusAvatarTab::OnMouseLeave(gui::CComponent* pComponent)
 	}
 }
 
-VOID CStatusAvatarTab::OnCharTitleBtnClicked(gui::CComponent* pComponent)
+VOID CStatusAvatarTab::OnCharTitleSelected(RwInt32 nIndex)
 {
-	if (GetDialogManager()->IsOpenDialog(DIALOG_PLAYER_TITLE))
-		GetDialogManager()->CloseDialog(DIALOG_PLAYER_TITLE);
-	else
-		GetDialogManager()->OpenDialog(DIALOG_PLAYER_TITLE);
+	SAvatarInfo* pAvatarInfo = GetNtlSLGlobal()->GetAvatarInfo();
+
+	TBLIDX uiTitleIdx = (TBLIDX)m_pCbbCharTitle->GetItemData(nIndex);
+
+	if (uiTitleIdx == pAvatarInfo->sCharPf.charTitle)
+		return;
+
+	// titles are all listed, but ones the player hasn't earned yet can't be selected
+	if (uiTitleIdx != INVALID_TBLIDX && !Logic_IsExistFlag(pAvatarInfo->abyTitleIndexFlag, uiTitleIdx - 1, -1))
+	{
+		SetCharTitleText();
+		return;
+	}
+
+	if (GetDboGlobal()->GetGamePacketGenerator()->SendCharTitleSelectReq(uiTitleIdx) == false)
+	{
+		GetAlarmManager()->AlarmMessage("DST_ITEM_CAN_NOT_MOVE_ERROR_PACKET_SEND");
+
+		// revert the dropdown back to the currently active title
+		SetCharTitleText();
+	}
+}
+
+VOID CStatusAvatarTab::OnCharTitleComboHighlighted(RwInt32 nIndex)
+{
+	TBLIDX uiTitleIdx = (TBLIDX)m_pCbbCharTitle->GetItemData(nIndex);
+
+	std::map<TBLIDX, std::wstring>::iterator it = m_mapTitleEffectText.find(uiTitleIdx);
+	if (it == m_mapTitleEffectText.end())
+	{
+		GetInfoWndManager()->ShowInfoWindow(FALSE);
+		return;
+	}
+
+	// same InfoWndManager popup used by every other hover tooltip (e.g. the battle attribute one),
+	// so it gets the same auto-fit width, styling, and always-on-top behavior for free
+	GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_CHARTITLE_EFFECT, CMouse::GetX(), CMouse::GetY(), (VOID*)&it->second, DIALOG_STATUS);
+}
+
+VOID CStatusAvatarTab::OnCharTitleComboMouseLeave(gui::CComponent* pComponent)
+{
+	if (DIALOG_STATUS == GetInfoWndManager()->GetRequestGui() && CInfoWndManager::INFOWND_CHARTITLE_EFFECT == GetInfoWndManager()->GetInfoWndState())
+		GetInfoWndManager()->ShowInfoWindow(FALSE);
+}
+
+VOID CStatusAvatarTab::OnCharTitleComboListToggled(BOOL bShow, gui::CComponent* pComponent)
+{
+	if (!bShow && DIALOG_STATUS == GetInfoWndManager()->GetRequestGui() && CInfoWndManager::INFOWND_CHARTITLE_EFFECT == GetInfoWndManager()->GetInfoWndState())
+		GetInfoWndManager()->ShowInfoWindow(FALSE);
 }
 
 VOID CStatusAvatarTab::OnPaint(VOID)
@@ -1243,20 +1318,80 @@ VOID CStatusAvatarTab::OnBattleAttributeRefresh()
 		CInfoWndManager::INFOWND_BATTLEATTRIBUTE_ARMOR);
 }
 
+void CStatusAvatarTab::LoadCharTitleCombo()
+{
+	m_pCbbCharTitle->ClearAllItems();
+	m_mapTitleEffectText.clear();
+
+	// default entry: no title equipped
+	m_pCbbCharTitle->AddItem(GetDisplayStringManager()->GetString("DST_CHARTITLE_NOSELECT"), INVALID_TBLIDX);
+
+	CTextTable* pTitleTextTable = API_GetTableContainer()->GetTextAllTable()->GetCharTitleTbl();
+	CCharTitleTable* pTable = API_GetTableContainer()->GetCharTitleTable();
+
+	SAvatarInfo* pAvatarInfo = GetNtlSLGlobal()->GetAvatarInfo();
+
+	// list every title, earned or not; OnCharTitleSelected() blocks selecting ones the player hasn't earned
+	for (CTable::TABLEIT it = pTable->Begin(); it != pTable->End(); ++it)
+	{
+		sCHARTITLE_TBLDAT* pTblData = (sCHARTITLE_TBLDAT*)it->second;
+		if (!pTblData)
+			continue;
+
+		bool bRegistered = Logic_IsExistFlag(pAvatarInfo->abyTitleIndexFlag, pTblData->tblidx - 1, -1) ? true : false;
+
+		// blocked titles show as "Not Obtained" instead of revealing their name
+		std::wstring wstrTitleText = bRegistered ?
+			pTitleTextTable->GetText(pTblData->tblNameIndex) :
+			GetDisplayStringManager()->GetString("DST_CHARTITLE_INVALID");
+
+		m_pCbbCharTitle->AddItem(wstrTitleText.c_str(), pTblData->tblidx);
+
+		// blocked titles don't get an effects tooltip either
+		if (!bRegistered)
+			continue;
+
+		std::wstring wstrToolTip;
+		for (BYTE i = 0; i < NTL_MAX_CHAR_TITLE_EFFECT; ++i)
+		{
+			if (pTblData->atblSystem_Effect_Index[i] == INVALID_TBLIDX)
+				break;
+
+			std::wstring wstrEffect;
+			if (Logic_GetSystemEffectText(pTblData->atblSystem_Effect_Index[i], (float)pTblData->abySystem_Effect_Value[i], wstrEffect, pTblData->abySystem_Effect_Type[i]))
+			{
+				if (!wstrToolTip.empty())
+					wstrToolTip += L"\n";
+
+				wstrToolTip += wstrEffect;
+			}
+		}
+
+		// titles with no stat effects are simply absent from the map, so no tooltip is shown for them
+		if (!wstrToolTip.empty())
+			m_mapTitleEffectText[pTblData->tblidx] = wstrToolTip;
+	}
+
+	SetCharTitleText();
+}
+
 void CStatusAvatarTab::SetCharTitleText()
 {
 	SAvatarInfo* pAvatarInfo = GetNtlSLGlobal()->GetAvatarInfo();
 
-	if (pAvatarInfo->sCharPf.charTitle == INVALID_TBLIDX)
+	INT nSelectIdx = 0; // fall back to "No Title" if the active title isn't in the owned-title list yet
+	INT nCount = m_pCbbCharTitle->GetListBox()->GetItemCount();
+	for (INT i = 0; i < nCount; ++i)
 	{
-		m_pstbPCActiveCharacterTitle->SetText(GetDisplayStringManager()->GetString("DST_CHARTITLE_NOSELECT"));
+		if ((TBLIDX)m_pCbbCharTitle->GetItemData(i) == pAvatarInfo->sCharPf.charTitle)
+		{
+			nSelectIdx = i;
+			break;
+		}
 	}
-	else
-	{
-		CTextTable* pTitleTextTable = API_GetTableContainer()->GetTextAllTable()->GetCharTitleTbl();
 
-		m_pstbPCActiveCharacterTitle->SetText(pTitleTextTable->GetText(pAvatarInfo->sCharPf.charTitle).c_str());
-	}
+	m_pCbbCharTitle->SelectItem(nSelectIdx);
+	m_pCbbCharTitle->SetText(m_pCbbCharTitle->GetItemText(nSelectIdx).c_str());
 }
 
 void CStatusAvatarTab::SelectCharTitle(TBLIDX uiIndex)
@@ -1312,18 +1447,8 @@ VOID CStatusAvatarTab::SetAttributeToolTip(VOID)
 	m_pstbBasicStatTitle[ENG]->SetToolTip(GetDisplayStringManager()->GetString("DST_STATUS_TOOLTIP_ENG"));
 	m_pstbBasicStatTitle[SOL]->SetToolTip(GetDisplayStringManager()->GetString("DST_STATUS_TOOLTIP_SOL"));
 	m_pstbBasicStatTitle[FOC]->SetToolTip(GetDisplayStringManager()->GetString("DST_STATUS_TOOLTIP_FOC"));
-
-	m_pstbPhysicalCombatStatTitle[OFFENCE]->SetToolTip(GetDisplayStringManager()->GetString("DST_STATUS_TOOLTIP_PHYSICAL_ATTACK"));
-	m_pstbPhysicalCombatStatTitle[DEFENCE]->SetToolTip(GetDisplayStringManager()->GetString("DST_STATUS_TOOLTIP_PHYSICAL_DEFENCE"));
-	m_pstbPhysicalCombatStatTitle[CRITICAL]->SetToolTip(GetDisplayStringManager()->GetString("DST_STATUS_TOOLTIP_PHYSICAL_CRITICAL"));
-
-	m_pstbEnergyCombatStatTitle[OFFENCE]->SetToolTip(GetDisplayStringManager()->GetString("DST_STATUS_TOOLTIP_ENERGY_ATTACK"));
-	m_pstbEnergyCombatStatTitle[DEFENCE]->SetToolTip(GetDisplayStringManager()->GetString("DST_STATUS_TOOLTIP_ENERGY_DEFENCE"));
-	m_pstbEnergyCombatStatTitle[CRITICAL]->SetToolTip(GetDisplayStringManager()->GetString("DST_STATUS_TOOLTIP_ENERGY_CRITICAL"));
-
-	m_pstbETCStatTitle[ATTACKRATE]->SetToolTip(GetDisplayStringManager()->GetString("DST_STATUS_TOOLTIP_ATTACK_RATING"));
-	m_pstbETCStatTitle[DODGE]->SetToolTip(GetDisplayStringManager()->GetString("DST_STATUS_TOOLTIP_DODGE_RATING"));
 }
+
 //VOID CStatusWindowGui::SetStackNum( RwInt32 nSlot, RwInt32 nStackNum )
 //{
 //	if( nSlot >= NTL_MAX_EQUIP_ITEM_SLOT || nSlot < 0 )
@@ -1901,306 +2026,6 @@ VOID CStatusTechnicTab::OnClickedBtnReduceHoipoiMix(gui::CComponent* pComponent)
 	UpdateUI();
 }
 
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// ! StatusStatsTab
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-CStatusStatsTab::CStatusStatsTab()
-{
-
-}
-
-CStatusStatsTab::~CStatusStatsTab()
-{
-	Destroy();
-}
-
-RwBool CStatusStatsTab::IsShow(VOID)
-{
-	return m_pStatsDlg->IsVisible();
-}
-
-VOID CStatusStatsTab::Init()
-{
-
-}
-
-RwBool CStatusStatsTab::Create(CNtlPLGui* pParent)
-{
-	Init();
-
-	m_pStatsDlg = reinterpret_cast<gui::CDialog*>(pParent->GetComponent("dlgStats"));
-
-	m_pOutDisplayStatsName = reinterpret_cast<gui::COutputBox*>(pParent->GetComponent("outputDisplayStatsName"));
-	m_pOutDisplayStatsName->SetLineSpace(3);
-	m_pOutDisplayStatsName->SetMaxLine(157);
-	m_pOutDisplayStatsName->ShowScrollBar(false);
-
-	m_pOutDisplayStatsValue = reinterpret_cast<gui::COutputBox*>(pParent->GetComponent("outputDisplayStatsValue"));
-	m_pOutDisplayStatsValue->SetLineSpace(3);
-	m_pOutDisplayStatsValue->SetMaxLine(157);
-
-	m_pOutDisplayStatsName->Clear(); // if we dont do this, then it will crash after ~80 lines
-
-	m_pOutDisplayStatsName->AddText("STR:");
-	m_pOutDisplayStatsName->AddText("CON:");
-	m_pOutDisplayStatsName->AddText("FOC:");
-	m_pOutDisplayStatsName->AddText("DEX:");
-	m_pOutDisplayStatsName->AddText("SOL:");
-	m_pOutDisplayStatsName->AddText("ENG:");
-	m_pOutDisplayStatsName->AddText("LP Regen:");
-	m_pOutDisplayStatsName->AddText("LP Sitdown Regen:");
-	m_pOutDisplayStatsName->AddText("LP Battle Regen:");
-	m_pOutDisplayStatsName->AddText("EP Regen:");
-	m_pOutDisplayStatsName->AddText("EP Sitdown Regen:");
-	m_pOutDisplayStatsName->AddText("EP Battle Regen:");
-	m_pOutDisplayStatsName->AddText("AP Regen:");
-	m_pOutDisplayStatsName->AddText("AP Sitdown Regen:");
-	m_pOutDisplayStatsName->AddText("AP Diminution:");
-	m_pOutDisplayStatsName->AddText("RP Charge Speed:");
-	m_pOutDisplayStatsName->AddText("RP Diminution:");
-	m_pOutDisplayStatsName->AddText("Physical Offence:");
-	m_pOutDisplayStatsName->AddText("Physical Defence:");
-	m_pOutDisplayStatsName->AddText("Energy Offence:");
-	m_pOutDisplayStatsName->AddText("Energy Defence:");
-	m_pOutDisplayStatsName->AddText("Physical Armor Pen. Rate:");
-	m_pOutDisplayStatsName->AddText("Energy Armor Pen. Rate:");
-	m_pOutDisplayStatsName->AddText("Hit Rate:");
-	m_pOutDisplayStatsName->AddText("Dodge Rate:");
-	m_pOutDisplayStatsName->AddText("Block Rate:");
-	m_pOutDisplayStatsName->AddText("Block Damage Rate:");
-	m_pOutDisplayStatsName->AddText("Curse Success Rate:");
-	m_pOutDisplayStatsName->AddText("Curse Tolerance Rate:");
-	m_pOutDisplayStatsName->AddText("Physical Critical Rate:");
-	m_pOutDisplayStatsName->AddText("Energy Critical Rate:");
-	m_pOutDisplayStatsName->AddText("Physical Critical Damage Rate:");
-	m_pOutDisplayStatsName->AddText("Energy Critical Damage Rate:");
-	m_pOutDisplayStatsName->AddText("Walk Speed:");
-	m_pOutDisplayStatsName->AddText("Run Speed:");
-	m_pOutDisplayStatsName->AddText("Fly Speed:");
-	m_pOutDisplayStatsName->AddText("Flying Dash Speed:");
-	m_pOutDisplayStatsName->AddText("Flying Accel Speed:");
-	m_pOutDisplayStatsName->AddText("Attack Speed:");
-	m_pOutDisplayStatsName->AddText("Attack Range:");
-	m_pOutDisplayStatsName->AddText("Change Casting Time ");
-	m_pOutDisplayStatsName->AddText("Change Cool Time ");
-	m_pOutDisplayStatsName->AddText("Keep Time: ");
-	m_pOutDisplayStatsName->AddText("DOT Time Change:");
-	m_pOutDisplayStatsName->AddText("Change Required EP: ");
-	m_pOutDisplayStatsName->AddText("Physical Reflection:");
-	m_pOutDisplayStatsName->AddText("Energy Diminution:");
-	m_pOutDisplayStatsName->AddText("Paralyze Tolerance Rate:");
-	m_pOutDisplayStatsName->AddText("Terror Tolerance Rate:");
-	m_pOutDisplayStatsName->AddText("Confusion Tolerance Rate:");
-	m_pOutDisplayStatsName->AddText("Stone Tolerance Rate:");
-	m_pOutDisplayStatsName->AddText("Candy Tolerance Rate:");
-	m_pOutDisplayStatsName->AddText("Paralyze Time Down:");
-	m_pOutDisplayStatsName->AddText("Terror Time Down:");
-	m_pOutDisplayStatsName->AddText("Confusion Time Down:");
-	m_pOutDisplayStatsName->AddText("Stone Time Down:");
-	m_pOutDisplayStatsName->AddText("Candy Time Down:");
-	m_pOutDisplayStatsName->AddText("Bleed Time Down:");
-	m_pOutDisplayStatsName->AddText("Poison Time Down:");
-	m_pOutDisplayStatsName->AddText("Stomachache Time Down:");
-	m_pOutDisplayStatsName->AddText("Block Critical Rate %:");
-	m_pOutDisplayStatsName->AddText("LP Recover On Hit:");
-	m_pOutDisplayStatsName->AddText("LP Recover On Hit %:");
-	m_pOutDisplayStatsName->AddText("EP Recover On Hit:");
-	m_pOutDisplayStatsName->AddText("EP Recover On Hit %:");
-	m_pOutDisplayStatsName->AddText("Stomachache Defence:");
-	m_pOutDisplayStatsName->AddText("Poison Defence:");
-	m_pOutDisplayStatsName->AddText("Bleed Defence:");
-	m_pOutDisplayStatsName->AddText("Burn Defence:");
-	m_pOutDisplayStatsName->AddText("Mind Curse Immunity %:");
-	m_pOutDisplayStatsName->AddText("Body Curse Immunity %:");
-	m_pOutDisplayStatsName->AddText("Change Curse Immunity %:");
-	m_pOutDisplayStatsName->AddText("Skill Animation Speed %:");
-	m_pOutDisplayStatsName->AddText("Weight Limit:");
-	m_pOutDisplayStatsName->AddText("Aggro Bonus:");
-	m_pOutDisplayStatsName->AddText("Aggro Bonus %:");
-	m_pOutDisplayStatsName->AddText("Heal Bonus:");
-	m_pOutDisplayStatsName->AddText("Heal Bonus %:");
-	m_pOutDisplayStatsName->AddText("Heal over Time Bonus:");
-	m_pOutDisplayStatsName->AddText("Heal over Time Bonus %:");
-	m_pOutDisplayStatsName->AddText("Damage over Time Bonus %:");
-	m_pOutDisplayStatsName->AddText("Guard Rate:");
-	m_pOutDisplayStatsName->AddText("Block Skill Damage %:");
-	m_pOutDisplayStatsName->AddText("Block Curse Success %:");
-	m_pOutDisplayStatsName->AddText("Block Knockdown Success %:");
-	m_pOutDisplayStatsName->AddText("Block HTB Success %:");
-	m_pOutDisplayStatsName->AddText("Item Upgrade Rate %:");
-	m_pOutDisplayStatsName->AddText("EXP Boost %:");
-	m_pOutDisplayStatsName->AddText("Quest Drop Rate %:");
-
-	m_slotWheelMoveStats = GetNtlGuiManager()->GetGuiManager()->SigCaptureWheelMove().Connect(this, &CStatusStatsTab::OnCaptureWheelMove);
-	m_slotSliderValueChanged = m_pOutDisplayStatsValue->GetVerticalScrollBar()->SigValueChanged().Connect(this, &CStatusStatsTab::OnScrollChanged);
-	m_slotSliderMoved = m_pOutDisplayStatsValue->GetVerticalScrollBar()->SigSliderMoved().Connect(this, &CStatusStatsTab::OnScrollChanged);
-
-	return TRUE;
-}
-
-VOID CStatusStatsTab::Destroy(VOID)
-{
-	GetNtlGuiManager()->GetGuiManager()->SigCaptureWheelMove().Disconnect(m_slotWheelMoveStats);
-}
-
-VOID CStatusStatsTab::HandleEvents(RWS::CMsg& msg)
-{
-
-}
-
-VOID CStatusStatsTab::Refresh(VOID)
-{
-	UpdateStatData();
-
-	m_pOutDisplayStatsName->FirstLine();
-	m_pOutDisplayStatsValue->FirstLine();
-}
-
-VOID CStatusStatsTab::UpdateStatData(VOID)
-{
-	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
-
-	if (!pAvatar)
-		return;
-
-	CNtlSobAvatarAttr* pAvatarAttr = reinterpret_cast<CNtlSobAvatarAttr*>(pAvatar->GetSobAttr());
-
-	m_pOutDisplayStatsValue->Clear();
-
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->wBaseStr);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->wLastStr);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->wBaseCon);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->wLastCon);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->wBaseFoc);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->wLastFoc);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->wBaseSol);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->wLastSol);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->wBaseEng);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->wLastEng);
-
-	/* TODO: Uncomment those stats
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wLpRegen);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wLpSitdownRegen);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wLpBattleRegen);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wEpRegen);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wEpSitdownRegen);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wEpBattleRegen);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wApRegen);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wApSitdownRegen);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wApDegen);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wRpRegen);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wRpDimimutionRate);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wPhysicalOffence);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wPhysicalDefence);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wEnergyOffence);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wEnergyDefence);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_fPhysicalArmorPenRate);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_fEnergyArmorPenRate);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wAttackRate);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wDodgeRate);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wBlockRate);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wBlockDamageRate);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wCurseSuccessRate);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wCurseToleranceRate);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wPhysicalCriticalRate);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wEnergyCriticalRate);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fPhysicalCriticalDamageRate);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fEnergyCriticalDamageRate);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->GetWalkSpeed());
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->GetRunSpeed());
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->GetFlySpeed());
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->GetFlyDashSpeed());
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->GetFlyAccelSpeed());
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wAttackSpeedRate);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->GetAttackRange());
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->GetCastingTimeModifier());
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->GetCoolingTimeModifier());
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->GetKeepingTimeModifier());
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->GetDOTTimeModifier());
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->GetRequiredEPModifier());
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fPhysicalReflection);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fEnergyReflection);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wParalyzeToleranceRate);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wTerrorToleranceRate);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wConfuseToleranceRate);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wStoneToleranceRate);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wCandyToleranceRate);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fParalyzeKeepTimeDown);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fTerrorKeepTimeDown);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fConfuseKeepTimeDown);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fStoneKeepTimeDown);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fCandyKeepTimeDown);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fBleedingKeepTimeDown);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fPoisonKeepTimeDown);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fStomachacheKeepTimeDown);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fCriticalBlockSuccessRate);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_dwLpRecoveryWhenHit);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fLpRecoveryWhenHitInPercent);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_dwEpRecoveryWhenHit);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fEpRecoveryWhenHitInPercent);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wStomachacheDefence);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wPoisonDefence);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wBleedDefence);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wBurnDefence);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fMindCurseImmunity);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fBodyCurseImmunity);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fChangeCurseImmunity);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->GetSkillAnimationSpeedModifier());
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_dwWeightLimit);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fSkillAggroBonus);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fSkillAggroBonusInPercent);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fDirectHealPowerBonus);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fDirectHealPowerBonusInPercent);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fHotPowerBonus);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fHotPowerBonusInPercent);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->GetDOTValueModifier());
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_wGuardRate);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fSkillDamageBlockModeSuccessRate);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fCurseBlockModeSuccessRate);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fKnockdownBlockModeSuccessRate);
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fHtbBlockModeSuccessRate);
-
-	m_pOutDisplayStatsValue->Format("%.2f", pAvatarAttr->m_fItemUpgradeBonusRate);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_byExpBooster);
-	m_pOutDisplayStatsValue->Format("%u", pAvatarAttr->m_byQuestDropRate);
-	*/
-}
-
-VOID CStatusStatsTab::OnCaptureWheelMove(RwInt32 nFlag, RwInt16 sDelta, CPos& pos)
-{
-	if (!m_pStatsDlg || !IsShow())
-		return;
-
-	//if (m_pStatsDlg->GetParent()->GetChildComponentReverseAt(pos.x, pos.y) != m_pStatsDlg)
-	//	return;
-
-	if (m_pStatsDlg->PosInRect(pos.x, pos.y) != gui::CComponent::INRECT)
-		return;
-
-	if (sDelta < 0)
-	{
-		m_pOutDisplayStatsName->NextLine();
-		m_pOutDisplayStatsValue->NextLine();
-	}
-	else
-	{
-		m_pOutDisplayStatsName->PrevLine();
-		m_pOutDisplayStatsValue->PrevLine();
-	}
-}
-
-VOID CStatusStatsTab::OnScrollChanged(RwInt32 nNewOffset)
-{
-	m_pOutDisplayStatsName->SetLine(nNewOffset);
-}
-
-
-
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ! StatusWnd
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2294,17 +2119,6 @@ RwBool CStatusWindowGui::Create(VOID)
 		NTL_RETURN(FALSE);
 	}
 
-	m_pStatsTab = NTL_NEW CStatusStatsTab;
-	NTL_ASSERT(m_pStatsTab, "CStatusWindowGui::Create() : Alloc Failed");
-	if (!m_pStatsTab->Create(this))
-	{
-		m_pStatsTab->Destroy();
-
-		NTL_DELETE(m_pStatsTab);
-
-		NTL_RETURN(FALSE);
-	}
-
 	// Initial Setting
 	SetBasicUISetting();
 	m_pThis->Show(false);
@@ -2367,7 +2181,6 @@ VOID CStatusWindowGui::Destroy(VOID)
 	NTL_DELETE(m_pAvatarTab);
 	NTL_DELETE(m_pHonorTab);
 	NTL_DELETE(m_pTechnicTab);
-	NTL_DELETE(m_pStatsTab);
 
 	NTL_RETURNVOID();
 }
@@ -2386,8 +2199,6 @@ VOID CStatusWindowGui::HandleEvents(RWS::CMsg& msg)
 		m_pHonorTab->HandleEvents(msg);
 	else if (m_nCurrentTab == TAB_TECHNIC)
 		m_pTechnicTab->HandleEvents(msg);
-	else if (m_nCurrentTab == TAB_STATS)
-		m_pStatsTab->HandleEvents(msg);
 
 	if (msg.Id == g_EventTLNotifyLockUnlock)
 	{
@@ -2470,10 +2281,6 @@ VOID CStatusWindowGui::SetBasicUISetting(VOID)
 	m_ptabStatus->AddTab(std::wstring(GetDisplayStringManager()->GetString("DST_STATUS_TAB_FAMILY")));
 	m_ptabStatus->AddTab(std::wstring(GetDisplayStringManager()->GetString("DST_STATUS_TECHNIC_TITLE")));
 
-	// temporary
-	std::wstring wstrStatsTitle = L"Stats";
-	m_ptabStatus->AddTab(wstrStatsTitle);
-
 	m_ptabStatus->SelectTab((RwInt32)TAB_AVATAR);
 	SelectTab(TAB_AVATAR);
 }
@@ -2487,28 +2294,18 @@ VOID CStatusWindowGui::SelectTab(RwInt32 nIndex)
 		m_pAvatarTab->Refresh();
 		m_pHonorTab->Show(false);
 		m_pTechnicTab->Show(false);
-		m_pStatsTab->Show(false);
 		break;
 	case TAB_HONOR:
 		m_pAvatarTab->Show(false);
 		m_pHonorTab->Show(true);
 		m_pHonorTab->Refresh();
 		m_pTechnicTab->Show(false);
-		m_pStatsTab->Show(false);
 		break;
 	case TAB_TECHNIC:
 		m_pAvatarTab->Show(false);
 		m_pHonorTab->Show(false);
 		m_pTechnicTab->Show(true);
 		m_pTechnicTab->Refresh(NULL);
-		m_pStatsTab->Show(false);
-		break;
-	case TAB_STATS:
-		m_pAvatarTab->Show(false);
-		m_pHonorTab->Show(false);
-		m_pTechnicTab->Show(false);
-		m_pStatsTab->Show(true);
-		m_pStatsTab->Refresh();
 		break;
 	}
 

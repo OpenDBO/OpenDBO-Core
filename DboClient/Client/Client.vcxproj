@@ -220,6 +220,7 @@
     <ClCompile Include="Gui\LoadingGui.cpp" />
     <ClCompile Include="Gui\LoginGui.cpp" />
     <ClCompile Include="Gui\LoginGuiGroup.cpp" />
+    <ClCompile Include="VirtualKeyboardGui.cpp" />
     <ClCompile Include="Gui\LogoGui.cpp" />
     <ClCompile Include="Gui\MailSystemGui.cpp" />
     <ClCompile Include="Gui\MainMenuGui.cpp" />
@@ -565,6 +566,7 @@
     <ClInclude Include="Gui\LoadingGui.h" />
     <ClInclude Include="Gui\LoginGui.h" />
     <ClInclude Include="Gui\LoginGuiGroup.h" />
+    <ClInclude Include="VirtualKeyboardGui.h" />
     <ClInclude Include="Gui\LogoGui.h" />
     <ClInclude Include="Gui\MailSystemGui.h" />
     <ClInclude Include="Gui\MainMenuGui.h" />

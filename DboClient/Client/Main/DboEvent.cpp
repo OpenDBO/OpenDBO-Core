@@ -6,11 +6,11 @@
 
 RWS::CEventId g_EventVirtualServerPacket;	// virutal server packet event
 
-RWS::CEventId g_EventLogInServerConnect;	// LogIn server¿¡ ¿¬°áµÇ¾ú´Ù.
+RWS::CEventId g_EventLogInServerConnect;	// LogIn serverì— ì—°ê²°ë˜ì—ˆë‹¤.
 
-RWS::CEventId g_EventLobbyServerConnect;	// lobby server¿¡ ¿¬°áµÇ¾ú´Ù.
+RWS::CEventId g_EventLobbyServerConnect;	// lobby serverì— ì—°ê²°ë˜ì—ˆë‹¤.
 
-RWS::CEventId g_EventGameServerConnect;		// game server¿¡ ¿¬°áµÇ¾ú´Ù.	
+RWS::CEventId g_EventGameServerConnect;		// game serverì— ì—°ê²°ë˜ì—ˆë‹¤.	
 
 
 RWS::CEventId g_EventLogInStageStateEnter;	// login stage state enter
@@ -19,19 +19,23 @@ RWS::CEventId g_EventLogInStageStateExit;	// login stage state exit
 
 RWS::CEventId g_EventLogInStageTimeOut;			// login stage time out
 
+RWS::CEventId g_EventLoginSuccess;			// login succeeded.
+
+RWS::CEventId g_EventVirtualKeyboard;		// on-screen virtual keyboard key press
+
 
 RWS::CEventId g_EventCharStageStateEnter;	// character stage state enter
 
 RWS::CEventId g_EventCharStageStateExit;	// character stage state exit
 
-RWS::CEventId g_EventCharMake;				// Character Making °ü·Ã
+RWS::CEventId g_EventCharMake;				// Character Making ê´€ë ¨
 
 RWS::CEventId g_EventLoginMessage;			// Login Message
 
 RWS::CEventId g_EventLobbyMessage;			// Lobby Message
 
 
-RWS::CEventId g_EventDebug_for_Developer;	// °³¹ßÀÚ¸¦ À§ÇÑ µğ¹ö±ë ¸ğµå ÀÌº¥Æ®
+RWS::CEventId g_EventDebug_for_Developer;	// ê°œë°œìë¥¼ ìœ„í•œ ë””ë²„ê¹… ëª¨ë“œ ì´ë²¤íŠ¸
 
 RWS::CEventId g_EventLobbyPacketHelper;		// login Packet helper
 
@@ -78,81 +82,81 @@ RWS::CEventId g_EventCalcPopupResult;		// CalcPopup Result
 
 RWS::CEventId g_EventPickedUpHide;			
 
-RWS::CEventId g_EventShop;					// »óÁ¡ ÀÌº¥Æ®
+RWS::CEventId g_EventShop;					// ìƒì  ì´ë²¤íŠ¸
 
-RWS::CEventId g_EventDialog;				// ´ÙÀÌ¾ó·Î±× ÀÌº¥Æ®
+RWS::CEventId g_EventDialog;				// ë‹¤ì´ì–¼ë¡œê·¸ ì´ë²¤íŠ¸
 
-RWS::CEventId g_EventPostDialog;			// ´ÙÀÌ¾ó·Î±× Æ÷½ºÆ® ÀÌº¥Æ®
+RWS::CEventId g_EventPostDialog;			// ë‹¤ì´ì–¼ë¡œê·¸ í¬ìŠ¤íŠ¸ ì´ë²¤íŠ¸
 
-RWS::CEventId g_EventUpdateRP;				// RPº¯È­ÀÌº¥Æ®
+RWS::CEventId g_EventUpdateRP;				// RPë³€í™”ì´ë²¤íŠ¸
 
-RWS::CEventId g_EventUpdateRpStock;         // RP Stock º¯È­ ÀÌº¥Æ®
+RWS::CEventId g_EventUpdateRpStock;         // RP Stock ë³€í™” ì´ë²¤íŠ¸
 
-RWS::CEventId g_EventUpdateExp;				// Exp Áõ°¡ ÀÌº¥Æ®.
+RWS::CEventId g_EventUpdateExp;				// Exp ì¦ê°€ ì´ë²¤íŠ¸.
 
-RWS::CEventId g_EventCharObjDelete;			// Ä³¸¯ÅÍ ¼Ò¸ê ÀÌº¥Æ®.
+RWS::CEventId g_EventCharObjDelete;			// ìºë¦­í„° ì†Œë©¸ ì´ë²¤íŠ¸.
 
 RWS::CEventId g_EventSobCreateDropItemInfo;
 
-RWS::CEventId g_EventItemUpgradeResult;		// ¾ÆÀÌÅÛ ¾÷±×·¹ÀÌµå °á°ú
+RWS::CEventId g_EventItemUpgradeResult;		// ì•„ì´í…œ ì—…ê·¸ë ˆì´ë“œ ê²°ê³¼
 
 RWS::CEventId g_EventItemChangeOptionConfirmation;
 RWS::CEventId g_EventItemChangeOptionResult;
 
-RWS::CEventId g_EventItemChangeBattleAttributeResult;		// ¾ÆÀÌÅÛ ¾÷±×·¹ÀÌµå °á°ú
+RWS::CEventId g_EventItemChangeBattleAttributeResult;		// ì•„ì´í…œ ì—…ê·¸ë ˆì´ë“œ ê²°ê³¼
 
-RWS::CEventId g_EventRegisterItemUpgrade;	// ¾ÆÀÌÅÛ ¾÷±×·¹ÀÌµå½½·Ô¿¡ µî·Ï( ¸¶¿ì½º ¿À¸¥ÂÊ¹öÆ° )
+RWS::CEventId g_EventRegisterItemUpgrade;	// ì•„ì´í…œ ì—…ê·¸ë ˆì´ë“œìŠ¬ë¡¯ì— ë“±ë¡( ë§ˆìš°ìŠ¤ ì˜¤ë¥¸ìª½ë²„íŠ¼ )
 
 RWS::CEventId g_EventRegisterItemChangeBattleAttribute;
 
 RWS::CEventId g_EventCharTitleSelectRes;
 RWS::CEventId g_EventCharTitleUpdate;
 
-RWS::CEventId g_EventQuickSlotInfo;			// ÀúÀåµÈ Äü½½·Ô µ¥ÀÌÅÍ Ãâ·Â.
+RWS::CEventId g_EventQuickSlotInfo;			// ì €ì¥ëœ í€µìŠ¬ë¡¯ ë°ì´í„° ì¶œë ¥.
 
-RWS::CEventId g_EventQuickSlotDelNfy;		// ¼­¹ö¿¡¼­ÀÇ Äü½½·Ô »èÁ¦ ¸í·É.
+RWS::CEventId g_EventQuickSlotDelNfy;		// ì„œë²„ì—ì„œì˜ í€µìŠ¬ë¡¯ ì‚­ì œ ëª…ë ¹.
 
-RWS::CEventId g_EventNPCDialogOpen;			// NPC°ü·Ã ´ÙÀÌ¾ó·Î±× ¿ÀÇÂ.
+RWS::CEventId g_EventNPCDialogOpen;			// NPCê´€ë ¨ ë‹¤ì´ì–¼ë¡œê·¸ ì˜¤í”ˆ.
 
-RWS::CEventId g_EventEndterWorld;			// ¿ùµåÀÇ ÁøÀÔÀÌ³ª ¼ø°£ÀÌµ¿½Ã
+RWS::CEventId g_EventEndterWorld;			// ì›”ë“œì˜ ì§„ì…ì´ë‚˜ ìˆœê°„ì´ë™ì‹œ
 
-RWS::CEventId g_EventMap;					// ¹Ì´Ï¸Ê, Á¸, ¿ùµå¸Ê ¸Ş¼¼Áö
+RWS::CEventId g_EventMap;					// ë¯¸ë‹ˆë§µ, ì¡´, ì›”ë“œë§µ ë©”ì„¸ì§€
 
-RWS::CEventId g_EventUserTrade;				// À¯Àú Æ®·¹ÀÌµå
+RWS::CEventId g_EventUserTrade;				// ìœ ì € íŠ¸ë ˆì´ë“œ
 
-RWS::CEventId g_EventServerCharDialog;		// ServerÀÇ ¸í·É¿¡ ÀÇÇÑ ´ëÈ­Ã¢ »ı¼º.
+RWS::CEventId g_EventServerCharDialog;		// Serverì˜ ëª…ë ¹ì— ì˜í•œ ëŒ€í™”ì°½ ìƒì„±.
 
-RWS::CEventId g_EventOpenHelpWindow;		// Help Wnd ¿ÀÇÂ°ú µ¿½Ã¿¡ Condition Check Ç¥½Ã
+RWS::CEventId g_EventOpenHelpWindow;		// Help Wnd ì˜¤í”ˆê³¼ ë™ì‹œì— Condition Check í‘œì‹œ
 
 RWS::CEventId g_EventOpenHelpContent;
 
-RWS::CEventId g_EventEnableItemIcon;			// ItemIconÀÇ Enable¿©ºÎ.
-RWS::CEventId g_EventCapsuleLockItem;			// ItemIconÀÇ Lock/Unlock ¿©ºÎ
-RWS::CEventId g_EventCapsuleLockItemWithoutBag; // ItemIconÀÇ Lock/Unlock ¿©ºÎ(°¡¹æ¿¡¼­ ¸µÅ©µÈ ¾ÆÀÌÅÛ¿ë)
+RWS::CEventId g_EventEnableItemIcon;			// ItemIconì˜ Enableì—¬ë¶€.
+RWS::CEventId g_EventCapsuleLockItem;			// ItemIconì˜ Lock/Unlock ì—¬ë¶€
+RWS::CEventId g_EventCapsuleLockItemWithoutBag; // ItemIconì˜ Lock/Unlock ì—¬ë¶€(ê°€ë°©ì—ì„œ ë§í¬ëœ ì•„ì´í…œìš©)
 
-RWS::CEventId g_EventDirectMoveIcon;		// ¾ÆÀÌÄÜÀ» Á÷Á¢ ¿Å±â±â À§ÇÔ.
+RWS::CEventId g_EventDirectMoveIcon;		// ì•„ì´ì½˜ì„ ì§ì ‘ ì˜®ê¸°ê¸° ìœ„í•¨.
 
-RWS::CEventId g_EventPrivateShopSelectNfy;	// ¾ÆÀÌÅÛÀ» µî·ÏÇÏ¶ó´Â ³ëÆ¼ÆÄÀÌ
+RWS::CEventId g_EventPrivateShopSelectNfy;	// ì•„ì´í…œì„ ë“±ë¡í•˜ë¼ëŠ” ë…¸í‹°íŒŒì´
 
-RWS::CEventId g_EventRegPrivateShopCartItem;	// °³ÀÎ»óÁ¡ Ä«Æ®¿¡ ¾ÆÀÌÅÛÀ» µî·ÏÇÑ´Ù.
+RWS::CEventId g_EventRegPrivateShopCartItem;	// ê°œì¸ìƒì  ì¹´íŠ¸ì— ì•„ì´í…œì„ ë“±ë¡í•œë‹¤.
 
-RWS::CEventId g_EventRegPrivateShopItem;	// °³ÀÎ»óÁ¡¿¡ ÆÇ¸Å¾ÆÀÌÅÛÀ» µî·ÏÇÑ´Ù.
+RWS::CEventId g_EventRegPrivateShopItem;	// ê°œì¸ìƒì ì— íŒë§¤ì•„ì´í…œì„ ë“±ë¡í•œë‹¤.
 
-RWS::CEventId g_EventPrivateShopBusinessStart;			// °³ÀÎ»óÁ¡ ÈïÁ¤À» ½ÃÀÛ
+RWS::CEventId g_EventPrivateShopBusinessStart;			// ê°œì¸ìƒì  í¥ì •ì„ ì‹œì‘
 
-RWS::CEventId g_EventPrivateShopBusinessFluctuations;	// °³ÀÎ»óÁ¡ ÈïÁ¤ °¡°İ Á¶Á¤ ½ÃÀÛ
+RWS::CEventId g_EventPrivateShopBusinessFluctuations;	// ê°œì¸ìƒì  í¥ì • ê°€ê²© ì¡°ì • ì‹œì‘
 
-RWS::CEventId g_EventPrivateShopBusinessCloseWindow;	// °³ÀÎ»óÁ¡ ÈïÁ¤Ã¢ Close
+RWS::CEventId g_EventPrivateShopBusinessCloseWindow;	// ê°œì¸ìƒì  í¥ì •ì°½ Close
 
-RWS::CEventId g_EventBackboard;				// Backboard Gui ÀÌº¥Æ®
+RWS::CEventId g_EventBackboard;				// Backboard Gui ì´ë²¤íŠ¸
 
-RWS::CEventId g_EventSummonPet;		// SummonPet UI¸¦ À§ÇÑ ÀÌº¥Æ®
+RWS::CEventId g_EventSummonPet;		// SummonPet UIë¥¼ ìœ„í•œ ì´ë²¤íŠ¸
 
-RWS::CEventId g_EventOpenSendMail;			// SendMailÀ» ¿¬´Ù.
+RWS::CEventId g_EventOpenSendMail;			// SendMailì„ ì—°ë‹¤.
 
-RWS::CEventId g_EventReadingMail;			// ReadMailÀ» ÀĞ´Â ÁßÀÌ´Ù.
+RWS::CEventId g_EventReadingMail;			// ReadMailì„ ì½ëŠ” ì¤‘ì´ë‹¤.
 
-RWS::CEventId g_EventRegMailAttachItem;		// ¸ŞÀÏ Attach Ã¢¿¡ ¾ÆÀÌÅÛÀ» µî·ÏÇÑ´Ù.
+RWS::CEventId g_EventRegMailAttachItem;		// ë©”ì¼ Attach ì°½ì— ì•„ì´í…œì„ ë“±ë¡í•œë‹¤.
 
 RWS::CEventId g_EventRegBindSealingAttachItem;		// Attach bind sealing item (equipment or seal coin)
 
@@ -170,64 +174,64 @@ RWS::CEventId g_EventQuickTeleportMove;
 
 RWS::CEventId g_EventRegAuctionHouseItem;
 
-RWS::CEventId g_EventMailSlotUpdate;		// ¸ŞÀÏ SlotÀÇ ¾÷µ¥ÀÌÆ®
+RWS::CEventId g_EventMailSlotUpdate;		// ë©”ì¼ Slotì˜ ì—…ë°ì´íŠ¸
 
-RWS::CEventId g_EventQuestMessage;			// Quest messageÃ¢ °ü·Ã ÀÌº¥Æ®
+RWS::CEventId g_EventQuestMessage;			// Quest messageì°½ ê´€ë ¨ ì´ë²¤íŠ¸
 
-RWS::CEventId g_EventQuestMessage2;			// Quest message2Ã¢ °ü·Ã ÀÌº¥Æ®
+RWS::CEventId g_EventQuestMessage2;			// Quest message2ì°½ ê´€ë ¨ ì´ë²¤íŠ¸
 
-RWS::CEventId g_EventRpBonusSetup;			// Skill RpBonus Setup UI¸¦ OpenÇÑ´Ù.
+RWS::CEventId g_EventRpBonusSetup;			// Skill RpBonus Setup UIë¥¼ Opení•œë‹¤.
 
-RWS::CEventId g_EventRpBonusSelect;			// Skill RpBonus¸¦ ¼±ÅÃÇØ¾ß ÇÑ´Ù.
+RWS::CEventId g_EventRpBonusSelect;			// Skill RpBonusë¥¼ ì„ íƒí•´ì•¼ í•œë‹¤.
 
-RWS::CEventId g_EventRpBonusAuto;		// Skill RpBonus°¡ Auto·Î »ç¿ëÀÌ µÇ¾ú´Ù.
+RWS::CEventId g_EventRpBonusAuto;		// Skill RpBonusê°€ Autoë¡œ ì‚¬ìš©ì´ ë˜ì—ˆë‹¤.
 
-RWS::CEventId g_EventTargetStatusRefresh;	// ÇöÀç Å¸°ÙÁ¤º¸Ã¢À» ¸®ÇÁ·¹½¬. ½ºÄ«¿ìÅÍ »ç¿ë½Ã Á¤º¸ÀçÇ¥½Ã µî¿¡ »ç¿ë.
+RWS::CEventId g_EventTargetStatusRefresh;	// í˜„ì¬ íƒ€ê²Ÿì •ë³´ì°½ì„ ë¦¬í”„ë ˆì‰¬. ìŠ¤ì¹´ìš°í„° ì‚¬ìš©ì‹œ ì •ë³´ì¬í‘œì‹œ ë“±ì— ì‚¬ìš©.
 
-RWS::CEventId g_EventRankBattleRankListRes;	// ·©Å· º¸µåÀÇ ¸®½ºÆ®¸¦ ¹Ş´Â´Ù.
+RWS::CEventId g_EventRankBattleRankListRes;	// ë­í‚¹ ë³´ë“œì˜ ë¦¬ìŠ¤íŠ¸ë¥¼ ë°›ëŠ”ë‹¤.
 
-RWS::CEventId g_EventRankBattleRankFindCharacterRes;	// ·©Å· º¸µå¿¡¼­ Ä³¸¯ÅÍ °Ë»ö °á°ú¸¦ ¹Ş´Â´Ù.
+RWS::CEventId g_EventRankBattleRankFindCharacterRes;	// ë­í‚¹ ë³´ë“œì—ì„œ ìºë¦­í„° ê²€ìƒ‰ ê²°ê³¼ë¥¼ ë°›ëŠ”ë‹¤.
 
-RWS::CEventId g_EventRankBattleRankCompareDayRes;	// ·©Å· º¸µå¿¡¼­ ºñ±³³¯Â¥ ¿äÃ» °á°ú¸¦ ¹Ş´Â´Ù.
+RWS::CEventId g_EventRankBattleRankCompareDayRes;	// ë­í‚¹ ë³´ë“œì—ì„œ ë¹„êµë‚ ì§œ ìš”ì²­ ê²°ê³¼ë¥¼ ë°›ëŠ”ë‹¤.
 
-RWS::CEventId g_EventRankBoardDisable;				// ·©Å© º¸µå¸¦ Disable »óÅÂ·Î ÀüÈ¯ÇÏ¶ó.
+RWS::CEventId g_EventRankBoardDisable;				// ë­í¬ ë³´ë“œë¥¼ Disable ìƒíƒœë¡œ ì „í™˜í•˜ë¼.
 
-RWS::CEventId g_EventZennyLootingEffect;	// Á¦´Ï¸¦ ÁÖ¿üÀ»¶§ Effect
+RWS::CEventId g_EventZennyLootingEffect;	// ì œë‹ˆë¥¼ ì£¼ì› ì„ë•Œ Effect
 
-RWS::CEventId g_EventItemCreatedEffect;		// ¾ÆÀÌÅÛÀÌ ¹éÀ¸·Î µé¾î¿ÔÀ»¶§ Effect
+RWS::CEventId g_EventItemCreatedEffect;		// ì•„ì´í…œì´ ë°±ìœ¼ë¡œ ë“¤ì–´ì™”ì„ë•Œ Effect
 
-RWS::CEventId g_EventSideDialog;				// »çÀÌµå ´ÙÀÌ¾ó·Î±× °ü·Ã
+RWS::CEventId g_EventSideDialog;				// ì‚¬ì´ë“œ ë‹¤ì´ì–¼ë¡œê·¸ ê´€ë ¨
 
-RWS::CEventId g_EventTMQRecordListRes;		// TMQ ·©Å·ÀÇ ¸®½ºÆ®¸¦ ¹Ş´Â´Ù.
+RWS::CEventId g_EventTMQRecordListRes;		// TMQ ë­í‚¹ì˜ ë¦¬ìŠ¤íŠ¸ë¥¼ ë°›ëŠ”ë‹¤.
 
-RWS::CEventId g_EventTMQMemberListRes;		// TMQ ·©Å·¿¡¼­ ¼øÀ§ÀÇ ÆÄÆ¼ ¸®½ºÆ®¸¦ ¹Ş´Â´Ù.
+RWS::CEventId g_EventTMQMemberListRes;		// TMQ ë­í‚¹ì—ì„œ ìˆœìœ„ì˜ íŒŒí‹° ë¦¬ìŠ¤íŠ¸ë¥¼ ë°›ëŠ”ë‹¤.
 
-RWS::CEventId g_EventBudokaiNews;				// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ¼Ò½ÄÁö UI¸¦ Open, ¶Ç´Â Close ÇÑ´Ù.
+RWS::CEventId g_EventBudokaiNews;				// ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì†Œì‹ì§€ UIë¥¼ Open, ë˜ëŠ” Close í•œë‹¤.
 RWS::CEventId g_EventBudokaiPrizeWinnerName;	
 
-RWS::CEventId g_EventScriptLinkNotify;		// Script Link Table ÀÌº¥Æ®
+RWS::CEventId g_EventScriptLinkNotify;		// Script Link Table ì´ë²¤íŠ¸
 
-RWS::CEventId g_EventBudokaiTournamentIndividualList;	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ °³ÀÎÅä³Ê¸ÕÆ®
+RWS::CEventId g_EventBudokaiTournamentIndividualList;	// ì²œí•˜ì œì¼ ë¬´ë„íšŒ ê°œì¸í† ë„ˆë¨¼íŠ¸
 RWS::CEventId g_EventBudokaiTournamentIndividualInfo;	
-RWS::CEventId g_EventBudokaiTournamentTeamList;			// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ °³ÀÎÅä³Ê¸ÕÆ®
+RWS::CEventId g_EventBudokaiTournamentTeamList;			// ì²œí•˜ì œì¼ ë¬´ë„íšŒ ê°œì¸í† ë„ˆë¨¼íŠ¸
 RWS::CEventId g_EventBudokaiTournamentTeamInfo;	
 
-RWS::CEventId g_EventDiceStart;					// ÁÖ»çÀ§ ¿­±â
+RWS::CEventId g_EventDiceStart;					// ì£¼ì‚¬ìœ„ ì—´ê¸°
 
-RWS::CEventId g_EventDiceResult;				// ÁÖ»çÀ§ ±¼¸° °á°ú
-RWS::CEventId g_EventDiceResultShow;			// ÁÖ»çÀ§ °á°ú¸¦ Ç¥½ÃÇÑ´Ù
+RWS::CEventId g_EventDiceResult;				// ì£¼ì‚¬ìœ„ êµ´ë¦° ê²°ê³¼
+RWS::CEventId g_EventDiceResultShow;			// ì£¼ì‚¬ìœ„ ê²°ê³¼ë¥¼ í‘œì‹œí•œë‹¤
 
-RWS::CEventId g_EventDiceRollReqtoServer;		// ÁÖ»çÀ§¸¦ µ¹¸° °á°ú°ªÀ» ¼­¹ö·Î ¿äÃ»ÇÑ´Ù
+RWS::CEventId g_EventDiceRollReqtoServer;		// ì£¼ì‚¬ìœ„ë¥¼ ëŒë¦° ê²°ê³¼ê°’ì„ ì„œë²„ë¡œ ìš”ì²­í•œë‹¤
 
-RWS::CEventId g_EventShopGambleBuyRes;			// °×ºí ¾ÆÀÌÅÛ ±¸ÀÔ °á°ú
-RWS::CEventId g_EventGambleUseEffect;			// °×ºí ¾ÆÀÌÅÛ »ç¿ë ¿¬Ãâ
+RWS::CEventId g_EventShopGambleBuyRes;			// ê²œë¸” ì•„ì´í…œ êµ¬ì… ê²°ê³¼
+RWS::CEventId g_EventGambleUseEffect;			// ê²œë¸” ì•„ì´í…œ ì‚¬ìš© ì—°ì¶œ
 
-RWS::CEventId g_EventPetition;				// À¯Àú ÁøÁ¤ ½Ã½ºÅÛ °ü·Ã ¸Ş¼¼Áö
+RWS::CEventId g_EventPetition;				// ìœ ì € ì§„ì • ì‹œìŠ¤í…œ ê´€ë ¨ ë©”ì„¸ì§€
 
-RWS::CEventId g_EventTeleportProposalNfy;		///< ÅÚ·¹Æ÷Æ® Á¦¾È ÀÌº¥Æ®
-RWS::CEventId g_EventTeleportConfirmRes;		///< ÅÚ·¹Æ÷Æ® È®Á¤ ¸®ÀıÆ®
+RWS::CEventId g_EventTeleportProposalNfy;		///< í…”ë ˆí¬íŠ¸ ì œì•ˆ ì´ë²¤íŠ¸
+RWS::CEventId g_EventTeleportConfirmRes;		///< í…”ë ˆí¬íŠ¸ í™•ì • ë¦¬ì ˆíŠ¸
 
-RWS::CEventId g_EventObserverMenu;					///< GM ¸Ş´º °ü·Ã
+RWS::CEventId g_EventObserverMenu;					///< GM ë©”ë‰´ ê´€ë ¨
 
 RWS::CEventId g_EventRPCharge;					// RP Charge;
 
@@ -235,10 +239,10 @@ RWS::CEventId g_EventBattleCombatMode;			//
 
 RWS::CEventId g_EventItemIdentifyEffect;
 
-RWS::CEventId g_EventHoipoiMixItemMakeRes;		///< ¾ÆÀÌÅÛ ¸¸µé±â
-RWS::CEventId g_EventHoipoiMixCreateStart;		///< ·¹½ÃÇÇ·Î ¾ÆÀÌÅÛÀ» Å©¸®¿¡ÀÌÆ® ÇÑ´Ù.
+RWS::CEventId g_EventHoipoiMixItemMakeRes;		///< ì•„ì´í…œ ë§Œë“¤ê¸°
+RWS::CEventId g_EventHoipoiMixCreateStart;		///< ë ˆì‹œí”¼ë¡œ ì•„ì´í…œì„ í¬ë¦¬ì—ì´íŠ¸ í•œë‹¤.
 
-RWS::CEventId g_EventHintViewClosed;			///< »çÀÌµåºä¸¦ ÇÏ³ª »èÁ¦ÇÑ´Ù.
+RWS::CEventId g_EventHintViewClosed;			///< ì‚¬ì´ë“œë·°ë¥¼ í•˜ë‚˜ ì‚­ì œí•œë‹¤.
 
 RWS::CEventId g_EventLoading;
 
@@ -258,12 +262,12 @@ RWS::CEventId g_EventHLShopEventItemAddNfy;
 RWS::CEventId g_EventHLShopEventItemDelNfy;
 RWS::CEventId g_EventHLShopEventItemGiftRes;
 
-RWS::CEventId g_EventOpenBagGui;				///< BagGui open½Ã ¹ß»ı
-RWS::CEventId g_EventOpenScouterBackgroundGui;	///< ScouterBackgroundGui open½Ã ¹ß»ı(use scouter)
+RWS::CEventId g_EventOpenBagGui;				///< BagGui openì‹œ ë°œìƒ
+RWS::CEventId g_EventOpenScouterBackgroundGui;	///< ScouterBackgroundGui openì‹œ ë°œìƒ(use scouter)
 RWS::CEventId g_EventBroadCastNfy;
 
 //------------------------------------------------------
-// PC¹æ °ü·Ã ÀÌº¥Æ®
+// PCë°© ê´€ë ¨ ì´ë²¤íŠ¸
 RWS::CEventId g_EventUpdateNetPy;
 RWS::CEventId g_EventNetMarbleMemberShipNfy;
 
@@ -275,4 +279,4 @@ RWS::CEventId g_EventSCS;
 RWS::CEventId g_EventMascotRegister;
 RWS::CEventId g_EventMascotDelete;
 RWS::CEventId g_EventMascotSummon;
-RWS::CEventId g_EventMascotUnSummon;
+RWS::CEventId g_EventMascotUnSummon;

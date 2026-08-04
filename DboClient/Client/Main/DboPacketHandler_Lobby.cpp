@@ -87,6 +87,8 @@ void PacketHandler_LSLoginRes(void *pPacket)
 		pLoginNetSender->SetData(INVALID_HSERVER, NULL);
 
 		GetLogInStageState()->ChangeState(LOGIN_STATE_CHAR_SERVER_CONNECT);
+
+		CDboEventGenerator::LoginSuccess();
 	}
 	else
 	{

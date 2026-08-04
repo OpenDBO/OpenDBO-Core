@@ -14,6 +14,8 @@
 #include "InfoWndManager.h"
 #include "GuiLineTree.h"
 
+#include <map>
+
 #define dSTATUSWINDOW_LIST_SCROLL_WIDTH		12
 #define dSTATUSWINDOW_LIST_SCROLL_HEIGHT	19
 #define dSTATUSWINDOW_LIST_SLIDER_WIDTH		12
@@ -44,6 +46,7 @@ public:
 	enum	eBASICSTAT { STR, DEX, CON, ENG, SOL, FOC, NUM_BASIC_STAT };
 	enum	eCOMBATSTAT { OFFENCE, DEFENCE, CRITICAL, NUM_COMBAT_STAT };
 	enum	eETCSTAT { ATTACKRATE, DODGE, NUM_ETC_STAT };
+	enum	eDOTDEFENCESTAT { DOT_STOMACHACHE, DOT_POISON, DOT_BLEED, DOT_BURN, NUM_DOT_DEFENCE_STAT };
 	
 	//! Contructor & Destructor
 	CStatusAvatarTab(VOID);
@@ -106,7 +109,10 @@ protected:
 	VOID	OnMove( RwInt32 nX, RwInt32 nY );
 	VOID	OnMouseLeave( gui::CComponent* pComponent );
 
-	VOID    OnCharTitleBtnClicked(gui::CComponent* pComponent);
+	VOID    OnCharTitleSelected(RwInt32 nIndex);
+	VOID    OnCharTitleComboHighlighted(RwInt32 nIndex);
+	VOID    OnCharTitleComboMouseLeave(gui::CComponent* pComponent);
+	VOID    OnCharTitleComboListToggled(BOOL bShow, gui::CComponent* pComponent);
 
 	VOID	OnLeftRotBtnPress( gui::CComponent* pComponent );
 	VOID	OnLeftRotBtnRelease( gui::CComponent* pComponent );
@@ -158,7 +164,7 @@ protected:
 	CSurfaceGui m_surFocusSlot[NTL_MAX_EQUIP_ITEM_SLOT];
 	RwInt32		m_arrFocusEffect[NTL_MAX_EQUIP_ITEM_SLOT];
 	CSurfaceGui m_surDisableSlot[NTL_MAX_EQUIP_ITEM_SLOT];
-	CSurfaceGui m_surFritzSlot[NTL_MAX_EQUIP_ITEM_SLOT];	// ≥ª±∏µµ∞° ¥Ÿ«—≥‡ºÆµÈ «•Ω√.
+	CSurfaceGui m_surFritzSlot[NTL_MAX_EQUIP_ITEM_SLOT];	// ÎÇ¥Íµ¨ÎèÑÍ∞Ä Îã§ÌïúÎÖÄÏÑùÎì§ ÌëúÏãú.
 
 	CSurfaceGui m_surPickedUp;
 	RwInt32	    m_nShowPickedUp;
@@ -177,8 +183,7 @@ protected:
 	gui::CStaticBox*	m_pstbPCInfoTitle[NUM_PCINFO];
 
 	gui::CStaticBox*	m_pstbPCCharacterTitle;
-	gui::CStaticBox*	m_pstbPCActiveCharacterTitle;
-	
+
 	gui::CStaticBox*	m_pstbStat[NUM_STAT];
 
 	gui::CStaticBox*	m_pstbBasicStat[NUM_BASIC_STAT];
@@ -193,13 +198,22 @@ protected:
 	gui::CStaticBox*	m_pstbETCStat[NUM_ETC_STAT];
 	gui::CStaticBox*	m_pstbETCStatTitle[NUM_ETC_STAT];
 
+	gui::CStaticBox*	m_pstbDotDefenceStat[NUM_DOT_DEFENCE_STAT];
+	gui::CStaticBox*	m_pstbDotDefenceStatTitle[NUM_DOT_DEFENCE_STAT];
+
 	gui::CButton*		m_pbtnLeftRot;
 	gui::CButton*		m_pbtnRightRot;
 	gui::CButton*		m_pbtnDragRot;
 
-	gui::CButton*		m_btnCharTitle;
-	gui::CSlot			m_slotCharTitleButton;
-	
+	gui::CComboBox*		m_pCbbCharTitle;
+	gui::CSlot			m_slotCharTitleSelected;
+	gui::CSlot			m_slotTitleComboHighlighted;
+	gui::CSlot			m_slotTitleComboMouseLeave;
+	gui::CSlot			m_slotTitleComboListToggled;
+
+	// per-title stat effect text, shown via the shared InfoWndManager tooltip while hovering the dropdown
+	std::map<TBLIDX, std::wstring>	m_mapTitleEffectText;
+
 	gui::CStaticBox*	m_pstbBattleAttrTitle;
 	gui::CPanel*		m_pnlBattleAttribute;
 	gui::CPanel*		m_pnlBattleAttributeDefense;
@@ -221,11 +235,15 @@ public:
 	void		SetCharTitleText();
 	void		SelectCharTitle(TBLIDX uiIndex);
 	void		UpdateCharTitle(TBLIDX uiIndex, bool bDelete);
+
+private:
+
+	void		LoadCharTitleCombo();
 };
 
 /**
 * \ingroup client
-* \brief Ω∫≈◊¿Ã≈ÕΩ∫√¢¿« ∏Ìøπ ≈«
+* \brief Ïä§ÌÖåÏù¥ÌÑ∞Ïä§Ï∞ΩÏùò Î™ÖÏòà ÌÉ≠
 */
 class CStatusHonorTab
 {
@@ -281,7 +299,7 @@ private:
 
 /**
 * \ingroup client
-* \brief Ω∫≈◊¿Ã≈ÕΩ∫√¢¿« Technic ≈«
+* \brief Ïä§ÌÖåÏù¥ÌÑ∞Ïä§Ï∞ΩÏùò Technic ÌÉ≠
 */
 class CStatusTechnicTab
 {
@@ -335,51 +353,11 @@ private:
 	gui::CHtmlBox*		m_pHtmlSpecialGuide;
 };
 
-
-class CStatusStatsTab
-{
-public:
-	CStatusStatsTab();
-	~CStatusStatsTab();
-
-	RwBool IsShow(VOID);
-
-	//! Operation
-	VOID	Init();
-	RwBool	Create(CNtlPLGui* pParent);
-	VOID	Destroy(VOID);
-
-	VOID	Show(bool bShow) { m_pStatsDlg->Show(bShow); }
-
-	//! Event
-	VOID	HandleEvents(RWS::CMsg& msg);
-
-	VOID	Refresh(VOID);
-
-	VOID	UpdateStatData(VOID);
-
-	VOID	OnCaptureWheelMove(RwInt32 nFlag, RwInt16 sDelta, CPos& pos);
-
-	VOID	OnScrollChanged(RwInt32 nNewOffset);
-
-private:
-	gui::CDialog*		m_pStatsDlg;
-
-	gui::COutputBox*	m_pOutDisplayStatsName;
-	gui::COutputBox*	m_pOutDisplayStatsValue;
-
-	gui::CSlot			m_slotWheelMoveStats;
-	gui::CSlot			m_slotSliderMoved;
-	gui::CSlot			m_slotSliderValueChanged;
-};
-
-
-
 class CStatusWindowGui : public CNtlPLGui, public RWS::CEventHandler
 {
 public:
 //! Enum
-	enum TAB { TAB_AVATAR, TAB_HONOR, TAB_TECHNIC, TAB_STATS };
+	enum TAB { TAB_AVATAR, TAB_HONOR, TAB_TECHNIC };
 
 //! Contructor & Destructor
 	CStatusWindowGui(VOID);
@@ -422,7 +400,6 @@ private:
 	CStatusAvatarTab*	m_pAvatarTab;
 	CStatusHonorTab*	m_pHonorTab;
 	CStatusTechnicTab*	m_pTechnicTab;
-	CStatusStatsTab*	m_pStatsTab;
 
 	RwInt32				m_nCurrentTab;
 };

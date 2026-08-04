@@ -2,7 +2,7 @@
  *
  * File			: DboEvent.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 9. 28	
  * Abstract		: DBO standard event.
  *****************************************************************************
@@ -26,16 +26,16 @@
 
 //////////////////////////////////////////////////////////////////////////////////
 /**
-* network¿¡ °ü·ÃµÈ event
+* networkì— ê´€ë ¨ëœ event
 */
 
 extern RWS::CEventId g_EventVirtualServerPacket;	// virutal server packet event
 
-extern RWS::CEventId g_EventLogInServerConnect;		// lobby server¿¡ ¿¬°áµÇ¾ú´Ù.
+extern RWS::CEventId g_EventLogInServerConnect;		// lobby serverì— ì—°ê²°ë˜ì—ˆë‹¤.
 
-extern RWS::CEventId g_EventLobbyServerConnect;		// lobby server¿¡ ¿¬°áµÇ¾ú´Ù.
+extern RWS::CEventId g_EventLobbyServerConnect;		// lobby serverì— ì—°ê²°ë˜ì—ˆë‹¤.
 
-extern RWS::CEventId g_EventGameServerConnect;		// game server¿¡ ¿¬°áµÇ¾ú´Ù.	
+extern RWS::CEventId g_EventGameServerConnect;		// game serverì— ì—°ê²°ë˜ì—ˆë‹¤.	
 
 //////////////////////////////////////////////////////////////////////////////////
 // LogIn stage
@@ -45,15 +45,19 @@ extern RWS::CEventId g_EventLogInStageStateExit;	// login stage state exit
 
 extern RWS::CEventId g_EventLogInStageTimeOut;			// login stage state exit
 
+extern RWS::CEventId g_EventLoginSuccess;			// login succeeded.
+
+extern RWS::CEventId g_EventVirtualKeyboard;		// on-screen virtual keyboard key press
+
 
 //////////////////////////////////////////////////////////////////////////////////
-// Ä³¸¯ÅÍ ¼¿·ºÆ® & ¸ŞÀÌÅ·
+// ìºë¦­í„° ì…€ë ‰íŠ¸ & ë©”ì´í‚¹
 
 extern RWS::CEventId g_EventCharStageStateEnter;	// character stage state enter
 
 extern RWS::CEventId g_EventCharStageStateExit;		// character stage state exit
 
-extern RWS::CEventId g_EventCharMake;				// Character Making °ü·Ã
+extern RWS::CEventId g_EventCharMake;				// Character Making ê´€ë ¨
 
 extern RWS::CEventId g_EventLoginMessage;			// Login Message
 
@@ -61,10 +65,10 @@ extern RWS::CEventId g_EventLobbyMessage;			// Lobby Message
 
 //////////////////////////////////////////////////////////////////////////////////
 /**
-* gui¿¡ °ü·ÃµÈ event
+* guiì— ê´€ë ¨ëœ event
 */
 
-extern RWS::CEventId g_EventDebug_for_Developer;	// °³¹ßÀÚ¸¦ À§ÇÑ µğ¹ö±ë ¸ğµå ÀÌº¥Æ®
+extern RWS::CEventId g_EventDebug_for_Developer;	// ê°œë°œìë¥¼ ìœ„í•œ ë””ë²„ê¹… ëª¨ë“œ ì´ë²¤íŠ¸
 
 extern RWS::CEventId g_EventLobbyPacketHelper;		// login Packet helper
 
@@ -111,78 +115,78 @@ extern RWS::CEventId g_EventCalcPopupResult;		// CalcPopup Result
 
 extern RWS::CEventId g_EventPickedUpHide;			
 
-extern RWS::CEventId g_EventShop;					// »óÁ¡ ÀÌº¥Æ®
+extern RWS::CEventId g_EventShop;					// ìƒì  ì´ë²¤íŠ¸
 
-extern RWS::CEventId g_EventDialog;					// ´ÙÀÌ¾ó·Î±× ÀÌº¥Æ®
+extern RWS::CEventId g_EventDialog;					// ë‹¤ì´ì–¼ë¡œê·¸ ì´ë²¤íŠ¸
 
-extern RWS::CEventId g_EventPostDialog;				// ´ÙÀÌ¾ó·Î±× Æ÷½ºÆ® ÀÌº¥Æ®
+extern RWS::CEventId g_EventPostDialog;				// ë‹¤ì´ì–¼ë¡œê·¸ í¬ìŠ¤íŠ¸ ì´ë²¤íŠ¸
 
-extern RWS::CEventId g_EventUpdateRP;				// RP º¯È­ ÀÌº¥Æ®.
-extern RWS::CEventId g_EventUpdateRpStock;          // RP Stock ÀÌº¥Æ®
+extern RWS::CEventId g_EventUpdateRP;				// RP ë³€í™” ì´ë²¤íŠ¸.
+extern RWS::CEventId g_EventUpdateRpStock;          // RP Stock ì´ë²¤íŠ¸
 
-extern RWS::CEventId g_EventUpdateExp;				// EXP º¯È­ ÀÌº¥Æ®.
+extern RWS::CEventId g_EventUpdateExp;				// EXP ë³€í™” ì´ë²¤íŠ¸.
 
-extern RWS::CEventId g_EventCharObjDelete;			// Ä³¸¯ÅÍ ¿ÀºêÁ§Æ® »èÁ¦.
+extern RWS::CEventId g_EventCharObjDelete;			// ìºë¦­í„° ì˜¤ë¸Œì íŠ¸ ì‚­ì œ.
 
-extern RWS::CEventId g_EventItemUpgradeResult;		// ¾ÆÀÌÅÛ ¾÷±×·¹ÀÌµå °á°ú
+extern RWS::CEventId g_EventItemUpgradeResult;		// ì•„ì´í…œ ì—…ê·¸ë ˆì´ë“œ ê²°ê³¼
 
 extern RWS::CEventId g_EventItemChangeOptionConfirmation;
 extern RWS::CEventId g_EventItemChangeOptionResult;
 
 extern RWS::CEventId g_EventItemChangeBattleAttributeResult;
 
-extern RWS::CEventId g_EventRegisterItemUpgrade;	// ¾ÆÀÌÅÛ ¾÷±×·¹ÀÌµå ½½·Ô¿¡ µî·Ï. (¸¶¿ì½º ¿À¸¥ÂÊ ¹öÆ°)
+extern RWS::CEventId g_EventRegisterItemUpgrade;	// ì•„ì´í…œ ì—…ê·¸ë ˆì´ë“œ ìŠ¬ë¡¯ì— ë“±ë¡. (ë§ˆìš°ìŠ¤ ì˜¤ë¥¸ìª½ ë²„íŠ¼)
 
 extern RWS::CEventId g_EventRegisterItemChangeBattleAttribute;
 
 extern RWS::CEventId g_EventCharTitleSelectRes;
 extern RWS::CEventId g_EventCharTitleUpdate;
 
-extern RWS::CEventId g_EventQuickSlotInfo;			// ÀúÀåµÈ Äü½½·Ô µ¥ÀÌÅÍ Ãâ·Â.
+extern RWS::CEventId g_EventQuickSlotInfo;			// ì €ì¥ëœ í€µìŠ¬ë¡¯ ë°ì´í„° ì¶œë ¥.
 
-extern RWS::CEventId g_EventQuickSlotDelNfy;		// ¼­¹ö¿¡¼­ÀÇ Äü½½·Ô »èÁ¦ ¸í·É.
+extern RWS::CEventId g_EventQuickSlotDelNfy;		// ì„œë²„ì—ì„œì˜ í€µìŠ¬ë¡¯ ì‚­ì œ ëª…ë ¹.
 
-extern RWS::CEventId g_EventNPCDialogOpen;			// NPC°ü·Ã ´ÙÀÌ¾ó·Î±× ¿ÀÇÂ
+extern RWS::CEventId g_EventNPCDialogOpen;			// NPCê´€ë ¨ ë‹¤ì´ì–¼ë¡œê·¸ ì˜¤í”ˆ
 
-extern RWS::CEventId g_EventEndterWorld;			// ¿ùµåÀÇ ÁøÀÔÀÌ³ª ¼ø°£ÀÌµ¿½Ã
+extern RWS::CEventId g_EventEndterWorld;			// ì›”ë“œì˜ ì§„ì…ì´ë‚˜ ìˆœê°„ì´ë™ì‹œ
 
-extern RWS::CEventId g_EventMap;					// ¹Ì´Ï¸Ê, Á¸, ¿ùµå¸Ê ¸Ş¼¼Áö
+extern RWS::CEventId g_EventMap;					// ë¯¸ë‹ˆë§µ, ì¡´, ì›”ë“œë§µ ë©”ì„¸ì§€
 
-extern RWS::CEventId g_EventUserTrade;				// À¯Àú Æ®·¹ÀÌµå
+extern RWS::CEventId g_EventUserTrade;				// ìœ ì € íŠ¸ë ˆì´ë“œ
 
-extern RWS::CEventId g_EventServerCharDialog;		// ServerÀÇ ¸í·É¿¡ ÀÇÇÑ ´ëÈ­Ã¢ »ı¼º.
+extern RWS::CEventId g_EventServerCharDialog;		// Serverì˜ ëª…ë ¹ì— ì˜í•œ ëŒ€í™”ì°½ ìƒì„±.
 
-extern RWS::CEventId g_EventOpenHelpWindow;			// Help Wnd ¿ÀÇÂ°ú µ¿½Ã¿¡ Condition Check Ç¥½Ã
+extern RWS::CEventId g_EventOpenHelpWindow;			// Help Wnd ì˜¤í”ˆê³¼ ë™ì‹œì— Condition Check í‘œì‹œ
 
-extern RWS::CEventId g_EventOpenHelpContent;		// Help Wnd ¿ÀÇÂ°ú µ¿½Ã¿¡ ÄÁÅÙÃ÷ÀÇ htm ÆÄÀÏÀ» ¿ÀÇÂ
+extern RWS::CEventId g_EventOpenHelpContent;		// Help Wnd ì˜¤í”ˆê³¼ ë™ì‹œì— ì»¨í…ì¸ ì˜ htm íŒŒì¼ì„ ì˜¤í”ˆ
 
-extern RWS::CEventId g_EventEnableItemIcon;				// ItemIconÀÇ Enable¿©ºÎ.
-extern RWS::CEventId g_EventCapsuleLockItem;			// ItemIconÀÇ Lock/Unlock ¿©ºÎ
-extern RWS::CEventId g_EventCapsuleLockItemWithoutBag;	// ItemIconÀÇ Lock/Unlock ¿©ºÎ(°¡¹æ¿¡¼­ ¸µÅ©µÈ ¾ÆÀÌÅÛ¿ë)
+extern RWS::CEventId g_EventEnableItemIcon;				// ItemIconì˜ Enableì—¬ë¶€.
+extern RWS::CEventId g_EventCapsuleLockItem;			// ItemIconì˜ Lock/Unlock ì—¬ë¶€
+extern RWS::CEventId g_EventCapsuleLockItemWithoutBag;	// ItemIconì˜ Lock/Unlock ì—¬ë¶€(ê°€ë°©ì—ì„œ ë§í¬ëœ ì•„ì´í…œìš©)
 
-extern RWS::CEventId g_EventDirectMoveIcon;			// ¾ÆÀÌÄÜÀ» Á÷Á¢ ¿Å±â±â À§ÇÔ.
+extern RWS::CEventId g_EventDirectMoveIcon;			// ì•„ì´ì½˜ì„ ì§ì ‘ ì˜®ê¸°ê¸° ìœ„í•¨.
 
-extern RWS::CEventId g_EventPrivateShopSelectNfy;	// °³ÀÎ»óÁ¡ ¾ÆÀÌÅÛÀ» ¼¿·ºÆ® Çß´Ü°É ¾Ë·ÁÁÖ´Â ÀÌº¥Æ®
+extern RWS::CEventId g_EventPrivateShopSelectNfy;	// ê°œì¸ìƒì  ì•„ì´í…œì„ ì…€ë ‰íŠ¸ í–ˆë‹¨ê±¸ ì•Œë ¤ì£¼ëŠ” ì´ë²¤íŠ¸
 
-extern RWS::CEventId g_EventRegPrivateShopCartItem;	// °³ÀÎ»óÁ¡ Ä«Æ®¿¡ ¾ÆÀÌÅÛÀ» µî·ÏÇÑ´Ù.
+extern RWS::CEventId g_EventRegPrivateShopCartItem;	// ê°œì¸ìƒì  ì¹´íŠ¸ì— ì•„ì´í…œì„ ë“±ë¡í•œë‹¤.
 
-extern RWS::CEventId g_EventRegPrivateShopItem;		// °³ÀÎ»óÁ¡¿¡ ÆÇ¸Å¾ÆÀÌÅÛÀ» µî·ÏÇÑ´Ù.
+extern RWS::CEventId g_EventRegPrivateShopItem;		// ê°œì¸ìƒì ì— íŒë§¤ì•„ì´í…œì„ ë“±ë¡í•œë‹¤.
 
-extern RWS::CEventId g_EventPrivateShopBusinessStart;			// °³ÀÎ»óÁ¡ ÈïÁ¤À» ½ÃÀÛ
+extern RWS::CEventId g_EventPrivateShopBusinessStart;			// ê°œì¸ìƒì  í¥ì •ì„ ì‹œì‘
 
-extern RWS::CEventId g_EventPrivateShopBusinessFluctuations;	// °³ÀÎ»óÁ¡ ÈïÁ¤ °¡°İ Á¶Á¤ ½ÃÀÛ
+extern RWS::CEventId g_EventPrivateShopBusinessFluctuations;	// ê°œì¸ìƒì  í¥ì • ê°€ê²© ì¡°ì • ì‹œì‘
 
 extern RWS::CEventId g_EventPrivateShopBusinessCloseWindow;
 
-extern RWS::CEventId g_EventBackboard;				// Backboard Gui ÀÌº¥Æ®
+extern RWS::CEventId g_EventBackboard;				// Backboard Gui ì´ë²¤íŠ¸
 
-extern RWS::CEventId g_EventSummonPet;				// SummonPet UI¸¦ À§ÇÑ ÀÌº¥Æ®
+extern RWS::CEventId g_EventSummonPet;				// SummonPet UIë¥¼ ìœ„í•œ ì´ë²¤íŠ¸
 
-extern RWS::CEventId g_EventOpenSendMail;			// SendMailÀ» ¿¬´Ù.
+extern RWS::CEventId g_EventOpenSendMail;			// SendMailì„ ì—°ë‹¤.
 
-extern RWS::CEventId g_EventReadingMail;			// ReadMailÀ» ÀĞ°í ÀÖ´Ù.
+extern RWS::CEventId g_EventReadingMail;			// ReadMailì„ ì½ê³  ìˆë‹¤.
 
-extern RWS::CEventId g_EventRegMailAttachItem;		// Mail¿¡ ¾ÆÀÌÅÛÀ» µî·Ï
+extern RWS::CEventId g_EventRegMailAttachItem;		// Mailì— ì•„ì´í…œì„ ë“±ë¡
 
 extern RWS::CEventId g_EventRegBindSealingAttachItem;
 
@@ -200,77 +204,77 @@ extern RWS::CEventId g_EventQuickTeleportMove;
 
 extern RWS::CEventId g_EventRegAuctionHouseItem;
 
-extern RWS::CEventId g_EventMailSlotUpdate;			// Mail SlotÀÌ ¾÷µ¥ÀÌÆ® µÆÀ½
+extern RWS::CEventId g_EventMailSlotUpdate;			// Mail Slotì´ ì—…ë°ì´íŠ¸ ëìŒ
 
-extern RWS::CEventId g_EventQuestMessage;			// Quest messageÃ¢ °ü·Ã ÀÌº¥Æ®
+extern RWS::CEventId g_EventQuestMessage;			// Quest messageì°½ ê´€ë ¨ ì´ë²¤íŠ¸
 
-extern RWS::CEventId g_EventQuestMessage2;			// Quest message2Ã¢ °ü·Ã ÀÌº¥Æ®
+extern RWS::CEventId g_EventQuestMessage2;			// Quest message2ì°½ ê´€ë ¨ ì´ë²¤íŠ¸
 
-extern RWS::CEventId g_EventRpBonusSetup;			// Skill RpBonus Setup UI¸¦ OpenÇÑ´Ù.
+extern RWS::CEventId g_EventRpBonusSetup;			// Skill RpBonus Setup UIë¥¼ Opení•œë‹¤.
 
-extern RWS::CEventId g_EventRpBonusSelect;			// Skill RpBonus¸¦ ¼±ÅÃÇØ¾ß ÇÑ´Ù.
+extern RWS::CEventId g_EventRpBonusSelect;			// Skill RpBonusë¥¼ ì„ íƒí•´ì•¼ í•œë‹¤.
 
-extern RWS::CEventId g_EventRpBonusAuto;			// Skill RpBonus¸¦ Auto·Î »ç¿ëÇÏ¿´´Ù.
+extern RWS::CEventId g_EventRpBonusAuto;			// Skill RpBonusë¥¼ Autoë¡œ ì‚¬ìš©í•˜ì˜€ë‹¤.
 
-extern RWS::CEventId g_EventTargetStatusRefresh;	// ÇöÀç Å¸°ÙÁ¤º¸Ã¢À» ¸®ÇÁ·¹½¬. ½ºÄ«¿ìÅÍ »ç¿ë½Ã Á¤º¸ÀçÇ¥½Ã µî¿¡ »ç¿ë.
+extern RWS::CEventId g_EventTargetStatusRefresh;	// í˜„ì¬ íƒ€ê²Ÿì •ë³´ì°½ì„ ë¦¬í”„ë ˆì‰¬. ìŠ¤ì¹´ìš°í„° ì‚¬ìš©ì‹œ ì •ë³´ì¬í‘œì‹œ ë“±ì— ì‚¬ìš©.
 
-extern RWS::CEventId g_EventRankBattleRankListRes;	// ·©Å· º¸µåÀÇ ¸®½ºÆ®¸¦ ¹Ş´Â´Ù.
+extern RWS::CEventId g_EventRankBattleRankListRes;	// ë­í‚¹ ë³´ë“œì˜ ë¦¬ìŠ¤íŠ¸ë¥¼ ë°›ëŠ”ë‹¤.
 
-extern RWS::CEventId g_EventRankBattleRankFindCharacterRes;	// ·©Å· º¸µå¿¡¼­ Ä³¸¯ÅÍ °Ë»ö °á°ú¸¦ ¹Ş´Â´Ù.
+extern RWS::CEventId g_EventRankBattleRankFindCharacterRes;	// ë­í‚¹ ë³´ë“œì—ì„œ ìºë¦­í„° ê²€ìƒ‰ ê²°ê³¼ë¥¼ ë°›ëŠ”ë‹¤.
 
-extern RWS::CEventId g_EventRankBattleRankCompareDayRes;	// ·©Å· º¸µå¿¡¼­ ºñ±³³¯Â¥ ¿äÃ» °á°ú¸¦ ¹Ş´Â´Ù.
+extern RWS::CEventId g_EventRankBattleRankCompareDayRes;	// ë­í‚¹ ë³´ë“œì—ì„œ ë¹„êµë‚ ì§œ ìš”ì²­ ê²°ê³¼ë¥¼ ë°›ëŠ”ë‹¤.
 
 extern RWS::CEventId g_EventRankBoardDisable;
 
-extern RWS::CEventId g_EventZennyLootingEffect;		// Á¦´Ï¸¦ ÁÖ¿üÀ»¶§ Effect
+extern RWS::CEventId g_EventZennyLootingEffect;		// ì œë‹ˆë¥¼ ì£¼ì› ì„ë•Œ Effect
 
-extern RWS::CEventId g_EventItemCreatedEffect;		// ¾ÆÀÌÅÛÀÌ ¹éÀ¸·Î µé¾î¿ÔÀ»¶§ Effect
+extern RWS::CEventId g_EventItemCreatedEffect;		// ì•„ì´í…œì´ ë°±ìœ¼ë¡œ ë“¤ì–´ì™”ì„ë•Œ Effect
 
-extern RWS::CEventId g_EventSideDialog;				// »çÀÌµå ´ÙÀÌ¾ó·Î±× °ü·Ã
+extern RWS::CEventId g_EventSideDialog;				// ì‚¬ì´ë“œ ë‹¤ì´ì–¼ë¡œê·¸ ê´€ë ¨
 
-extern RWS::CEventId g_EventTMQRecordListRes;		// TMQ ·©Å·ÀÇ ¸®½ºÆ®¸¦ ¹Ş´Â´Ù.
+extern RWS::CEventId g_EventTMQRecordListRes;		// TMQ ë­í‚¹ì˜ ë¦¬ìŠ¤íŠ¸ë¥¼ ë°›ëŠ”ë‹¤.
 
-extern RWS::CEventId g_EventTMQMemberListRes;		// TMQ ·©Å·¿¡¼­ ¼øÀ§ÀÇ ÆÄÆ¼ ¸®½ºÆ®¸¦ ¹Ş´Â´Ù.
+extern RWS::CEventId g_EventTMQMemberListRes;		// TMQ ë­í‚¹ì—ì„œ ìˆœìœ„ì˜ íŒŒí‹° ë¦¬ìŠ¤íŠ¸ë¥¼ ë°›ëŠ”ë‹¤.
 
-extern RWS::CEventId g_EventBudokaiNews;				// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ¼Ò½ÄÁö
-extern RWS::CEventId g_EventBudokaiPrizeWinnerName;		// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ¿ì½ÂÀÚ ÀÌ¸§
+extern RWS::CEventId g_EventBudokaiNews;				// ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì†Œì‹ì§€
+extern RWS::CEventId g_EventBudokaiPrizeWinnerName;		// ì²œí•˜ì œì¼ ë¬´ë„íšŒ ìš°ìŠ¹ì ì´ë¦„
 
 extern RWS::CEventId g_EventScriptLinkNotify;
 
-extern RWS::CEventId g_EventBudokaiTournamentIndividualList;	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ °³ÀÎÅä³Ê¸ÕÆ®
+extern RWS::CEventId g_EventBudokaiTournamentIndividualList;	// ì²œí•˜ì œì¼ ë¬´ë„íšŒ ê°œì¸í† ë„ˆë¨¼íŠ¸
 extern RWS::CEventId g_EventBudokaiTournamentIndividualInfo;	
-extern RWS::CEventId g_EventBudokaiTournamentTeamList;			// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ °³ÀÎÅä³Ê¸ÕÆ®
+extern RWS::CEventId g_EventBudokaiTournamentTeamList;			// ì²œí•˜ì œì¼ ë¬´ë„íšŒ ê°œì¸í† ë„ˆë¨¼íŠ¸
 extern RWS::CEventId g_EventBudokaiTournamentTeamInfo;	
 
-extern RWS::CEventId g_EventDiceStart;				// ÁÖ»çÀ§ ¿­±â
+extern RWS::CEventId g_EventDiceStart;				// ì£¼ì‚¬ìœ„ ì—´ê¸°
 
-extern RWS::CEventId g_EventDiceResult;				// ÁÖ»çÀ§ ±¼¸° °á°ú
-extern RWS::CEventId g_EventDiceResultShow;			// ÁÖ»çÀ§ °á°ú¸¦ Ç¥½ÃÇÑ´Ù
+extern RWS::CEventId g_EventDiceResult;				// ì£¼ì‚¬ìœ„ êµ´ë¦° ê²°ê³¼
+extern RWS::CEventId g_EventDiceResultShow;			// ì£¼ì‚¬ìœ„ ê²°ê³¼ë¥¼ í‘œì‹œí•œë‹¤
 
-extern RWS::CEventId g_EventDiceRollReqtoServer;	// ÁÖ»çÀ§¸¦ µ¹¸° °á°ú°ªÀ» ¼­¹ö·Î ¿äÃ»ÇÑ´Ù
+extern RWS::CEventId g_EventDiceRollReqtoServer;	// ì£¼ì‚¬ìœ„ë¥¼ ëŒë¦° ê²°ê³¼ê°’ì„ ì„œë²„ë¡œ ìš”ì²­í•œë‹¤
 
-extern RWS::CEventId g_EventShopGambleBuyRes;			// °×ºí ¾ÆÀÌÅÛ ±¸ÀÔ °á°ú
-extern RWS::CEventId g_EventGambleUseEffect;			// °×ºí ¾ÆÀÌÅÛ »ç¿ë ¿¬Ãâ
+extern RWS::CEventId g_EventShopGambleBuyRes;			// ê²œë¸” ì•„ì´í…œ êµ¬ì… ê²°ê³¼
+extern RWS::CEventId g_EventGambleUseEffect;			// ê²œë¸” ì•„ì´í…œ ì‚¬ìš© ì—°ì¶œ
 
-extern RWS::CEventId g_EventPetition;				// À¯Àú ÁøÁ¤ ½Ã½ºÅÛ °ü·Ã ¸Ş¼¼Áö
+extern RWS::CEventId g_EventPetition;				// ìœ ì € ì§„ì • ì‹œìŠ¤í…œ ê´€ë ¨ ë©”ì„¸ì§€
 
 // game teleport proposal notify
-extern RWS::CEventId g_EventTeleportProposalNfy;		///< ÅÚ·¹Æ÷Æ® Á¦¾È ÀÌº¥Æ®
-extern RWS::CEventId g_EventTeleportConfirmRes;			///< ÅÚ·¹Æ÷Æ® È®Á¤ ¸®ÀıÆ®
+extern RWS::CEventId g_EventTeleportProposalNfy;		///< í…”ë ˆí¬íŠ¸ ì œì•ˆ ì´ë²¤íŠ¸
+extern RWS::CEventId g_EventTeleportConfirmRes;			///< í…”ë ˆí¬íŠ¸ í™•ì • ë¦¬ì ˆíŠ¸
 
-extern RWS::CEventId g_EventObserverMenu;					///< GM ¸Ş´º °ü·Ã
+extern RWS::CEventId g_EventObserverMenu;					///< GM ë©”ë‰´ ê´€ë ¨
 
 extern RWS::CEventId g_EventRPCharge;					// RP Charge;
 
 extern RWS::CEventId g_EventBattleCombatMode;					//
 
-extern RWS::CEventId g_EventItemIdentifyEffect;		///< ¾ÆÀÌÅÛ °¨Á¤ ÀÌÆåÆ®
+extern RWS::CEventId g_EventItemIdentifyEffect;		///< ì•„ì´í…œ ê°ì • ì´í™íŠ¸
 
 // Hoipoi Mix
-extern RWS::CEventId g_EventHoipoiMixItemMakeRes;		///< ¾ÆÀÌÅÛ ¸¸µé±â
-extern RWS::CEventId g_EventHoipoiMixCreateStart;		///< ·¹½ÃÇÇ·Î ¾ÆÀÌÅÛ ¸¸µé±â
+extern RWS::CEventId g_EventHoipoiMixItemMakeRes;		///< ì•„ì´í…œ ë§Œë“¤ê¸°
+extern RWS::CEventId g_EventHoipoiMixCreateStart;		///< ë ˆì‹œí”¼ë¡œ ì•„ì´í…œ ë§Œë“¤ê¸°
 
-extern RWS::CEventId g_EventHintViewClosed;				///< »çÀÌµå ºä¸¦ »èÁ¦ÇÑ´Ù.
+extern RWS::CEventId g_EventHintViewClosed;				///< ì‚¬ì´ë“œ ë·°ë¥¼ ì‚­ì œí•œë‹¤.
 
 // Loading
 extern RWS::CEventId g_EventLoading;
@@ -328,14 +332,14 @@ struct SDboEventServerConnect
 
 //////////////////////////////////////////////////////////////////////////////////
 /**
-* gui¿¡ °ü·ÃµÈ event, enum
+* guiì— ê´€ë ¨ëœ event, enum
 */
 
 enum eDEVELOPER_TYPE
 {
-	DEVELOPER_RESET_GUI,						///< GUI¸¦ ÀüºÎ »èÁ¦ÈÄ ´Ù½Ã ·ÎµùÇÑ´Ù
-	DEVELOPER_PREVIEW_OPEN,						///< °³¹ß¿ë Preview Gui¸¦ ¿¬´Ù
-	DEVELOPER_PREVIEW_CLOSE,					///< °³¹ß¿ë Preview Gui¸¦ ´İ´Â´Ù
+	DEVELOPER_RESET_GUI,						///< GUIë¥¼ ì „ë¶€ ì‚­ì œí›„ ë‹¤ì‹œ ë¡œë”©í•œë‹¤
+	DEVELOPER_PREVIEW_OPEN,						///< ê°œë°œìš© Preview Guië¥¼ ì—°ë‹¤
+	DEVELOPER_PREVIEW_CLOSE,					///< ê°œë°œìš© Preview Guië¥¼ ë‹«ëŠ”ë‹¤
 };
 
 struct sDboDeveloperData
@@ -400,55 +404,61 @@ struct SNtlEventCharMake
 enum eLoginEventType
 {
 	LOGIN_EVENT_SUCCESS_LOGIN,						// Login succeeded.
-	LOGIN_EVENT_DISCONNECTED_AUTH_SERVER,			// ÀÎÁõ ¼­¹öÀÇ ¿¬°áÀ» ²÷¾ú´Ù
-	LOGIN_EVENT_FINISH_LOGO_PLAY,					// °¢ È¸»çÀÇ ·Î°í Ç¥½Ã°¡ ³¡³µ´Ù
-	LOGIN_EVENT_START_INTRO_MOVIE_PLAY,				// ÀÎÆ®·Î µ¿¿µ»óÀ» º¸¿©ÁØ´Ù
-	LOGIN_EVENT_SHOW_CONTRACT_PAGE,					// ¾à°ü ÆäÀÌÁö¸¦ º¸¿©ÁØ´Ù
-	LOGIN_EVENT_FINISH_LOADING_AND_MOVIE,			// ·Îµù°ú ¹«ºñ°¡ ³¡³µ´Ù
+	LOGIN_EVENT_DISCONNECTED_AUTH_SERVER,			// ì¸ì¦ ì„œë²„ì˜ ì—°ê²°ì„ ëŠì—ˆë‹¤
+	LOGIN_EVENT_FINISH_LOGO_PLAY,					// ê° íšŒì‚¬ì˜ ë¡œê³  í‘œì‹œê°€ ëë‚¬ë‹¤
+	LOGIN_EVENT_START_INTRO_MOVIE_PLAY,				// ì¸íŠ¸ë¡œ ë™ì˜ìƒì„ ë³´ì—¬ì¤€ë‹¤
+	LOGIN_EVENT_SHOW_CONTRACT_PAGE,					// ì•½ê´€ í˜ì´ì§€ë¥¼ ë³´ì—¬ì¤€ë‹¤
+	LOGIN_EVENT_FINISH_LOADING_AND_MOVIE,			// ë¡œë”©ê³¼ ë¬´ë¹„ê°€ ëë‚¬ë‹¤
 	LOGIN_EVENT_RETRY_LOGIN_REQ,					// Login failed and try again
 };
 
 struct SDboEventLoginMessage
 {
-	RwUInt8		byMessage;							// ¸Ş¼¼Áö
-	RwReal		fValue;								// °ª
+	RwUInt8		byMessage;							// ë©”ì„¸ì§€
+	RwReal		fValue;								// ê°’
 	RwUInt32	uiExData;
+	RwBool		isButton;
+};
+
+struct SDboEventKeyboard
+{
+	std::string key;
 };
 
 enum eLobbyEventType
 {	
-	LMT_UPDATE_SERVER,									// ¼­¹ö ¾÷µ¥ÀÌÆ®	
-	LMT_UPDATE_CHANNEL,									// Ã¤³Î ¾÷µ¥ÀÌÆ®
-	LMT_REFRESH_SERVER,									// ¼­¹ö »óÅÂ °»½Å
-	LMT_REFRESH_CHANEL,									// Ã¤³Î »óÅÂ °»½Å
-	LMT_UPDATE_CHARACTER_LIST,							// Ä³¸¯ÅÍ ¸®½ºÆ®¸¦ ¾÷µ¥ÀÌÆ® ÇÏ¿´´Ù
-	LMT_RENAME_CHARACTER,								// Ä³¸¯ÅÍ ÀÌ¸§ÀÌ ¹Ù²î¾ú´Ù		// this is 8 in tw
-	LMT_SELECT_CHARACTER,								// Ä³¸¯ÅÍ¸¦ ¼±ÅÃÇß´Ù			// this is 9 in tw
-	LMT_DESTORY_LOBBY_AVATAR,							// ·ÎºñÀÇ ¾Æ¹ÙÅ¸ Á¤º¸¸¦ Áö¿î´Ù
-	LMT_DESTORY_LOBBY_WORLD,							// ·ÎºñÀÇ ¿ùµå¸¦ »èÁ¦ÇÑ´Ù
+	LMT_UPDATE_SERVER,									// ì„œë²„ ì—…ë°ì´íŠ¸	
+	LMT_UPDATE_CHANNEL,									// ì±„ë„ ì—…ë°ì´íŠ¸
+	LMT_REFRESH_SERVER,									// ì„œë²„ ìƒíƒœ ê°±ì‹ 
+	LMT_REFRESH_CHANEL,									// ì±„ë„ ìƒíƒœ ê°±ì‹ 
+	LMT_UPDATE_CHARACTER_LIST,							// ìºë¦­í„° ë¦¬ìŠ¤íŠ¸ë¥¼ ì—…ë°ì´íŠ¸ í•˜ì˜€ë‹¤
+	LMT_RENAME_CHARACTER,								// ìºë¦­í„° ì´ë¦„ì´ ë°”ë€Œì—ˆë‹¤		// this is 8 in tw
+	LMT_SELECT_CHARACTER,								// ìºë¦­í„°ë¥¼ ì„ íƒí–ˆë‹¤			// this is 9 in tw
+	LMT_DESTORY_LOBBY_AVATAR,							// ë¡œë¹„ì˜ ì•„ë°”íƒ€ ì •ë³´ë¥¼ ì§€ìš´ë‹¤
+	LMT_DESTORY_LOBBY_WORLD,							// ë¡œë¹„ì˜ ì›”ë“œë¥¼ ì‚­ì œí•œë‹¤
 
-	LMT_SELECT_CHANNEL,									// ChannelÀ» ¼±ÅÃÇß´Ù
-	LMT_CREATE_CHARACTER,								// Ä³¸¯ÅÍ ¸¸µé±â ¹öÆ°À» ´­·¶´Ù
+	LMT_SELECT_CHANNEL,									// Channelì„ ì„ íƒí–ˆë‹¤
+	LMT_CREATE_CHARACTER,								// ìºë¦­í„° ë§Œë“¤ê¸° ë²„íŠ¼ì„ ëˆŒë €ë‹¤
 
-	LMT_GAME_SERVER_WAIT_CHECK_REQ,						// Game Server¿¡ ¿¬°áÀÌ °¡´ÉÇÑÁö Ã¼Å©ÇÑ´Ù
-	LMT_START_CONNECT_GAME_SERVER,						// Game Server¿¡ ¿¬°áÀ» ½ÃÀÛÇÑ´Ù		// 19 in tw
+	LMT_GAME_SERVER_WAIT_CHECK_REQ,						// Game Serverì— ì—°ê²°ì´ ê°€ëŠ¥í•œì§€ ì²´í¬í•œë‹¤
+	LMT_START_CONNECT_GAME_SERVER,						// Game Serverì— ì—°ê²°ì„ ì‹œì‘í•œë‹¤		// 19 in tw
 
 	LMT_ROTATION_STOP,									// Stop Rotation					// 20 in tw
-	LMT_ROTATION_FOREWARD,								// Ä³¸¯ÅÍ°¡ Á¤¸éÀ» ¹Ù¶óº¸°í ¸ØÃá´Ù
+	LMT_ROTATION_FOREWARD,								// ìºë¦­í„°ê°€ ì •ë©´ì„ ë°”ë¼ë³´ê³  ë©ˆì¶˜ë‹¤
 	LMT_ROTATION_LEFT,									// Left Rotation
 	LMT_ROTATION_RIGHT,									// Right Rotation			// 23 in tw
-	LMT_ROTATION,										// ÁÖ¾îÁø °ª ¸¸Å­ È¸ÀüÇÑ´Ù
-	LMT_ZOOM_IN,										// Ä³¸¯ÅÍ¸¦ ÁÜÀÎÇÑ´Ù
-	LMT_ZOOM_OUT,										// Ä³¸¯ÅÍ¸¦ ÁÜ¾Æ¿ôÇÑ´Ù
-	LMT_ZOOM_FAR,										// °¡Àå ¸Õ ÁÜ ´Ü°è
-	LMT_ZOOM_DEFUALT,									// Ä³¸¯ÅÍ¸¦ µğÆúÆ® ÁÜ
-	LMT_ZOOM_FROM_FAR_TO_DEFUALUT,						// °¡Àå ¸Õ ÁÜ ´Ü°è¿¡¼­ default ´Ü°è·Î º¯È­
+	LMT_ROTATION,										// ì£¼ì–´ì§„ ê°’ ë§Œí¼ íšŒì „í•œë‹¤
+	LMT_ZOOM_IN,										// ìºë¦­í„°ë¥¼ ì¤Œì¸í•œë‹¤
+	LMT_ZOOM_OUT,										// ìºë¦­í„°ë¥¼ ì¤Œì•„ì›ƒí•œë‹¤
+	LMT_ZOOM_FAR,										// ê°€ì¥ ë¨¼ ì¤Œ ë‹¨ê³„
+	LMT_ZOOM_DEFUALT,									// ìºë¦­í„°ë¥¼ ë””í´íŠ¸ ì¤Œ
+	LMT_ZOOM_FROM_FAR_TO_DEFUALUT,						// ê°€ì¥ ë¨¼ ì¤Œ ë‹¨ê³„ì—ì„œ default ë‹¨ê³„ë¡œ ë³€í™”
 };
 
 struct SDboEventLobbyMessage
 {
-	RwUInt8		byMessage;							// ¸Ş¼¼Áö
-	RwReal		fValue;								// °ª
+	RwUInt8		byMessage;							// ë©”ì„¸ì§€
+	RwReal		fValue;								// ê°’
 	RwUInt32	uiExData;
 };
 
@@ -505,7 +515,7 @@ struct SDboEventTimeFixedNotify
 };
 
 /**
-* brief CautionNotify¿¡¼­ Caution SideIconÀ¸·Î º¸³»´Â ÀÌº¥Æ®
+* brief CautionNotifyì—ì„œ Caution SideIconìœ¼ë¡œ ë³´ë‚´ëŠ” ì´ë²¤íŠ¸
 */
 struct SDboEventCautionSideNotify
 {
@@ -616,27 +626,27 @@ struct SDboEventShop
 
 enum eShopEventType
 {
-	TRM_NPCSHOP_OPEN,				///< NPC »óÁ¡À» ¿­¾ú´Ù
+	TRM_NPCSHOP_OPEN,				///< NPC ìƒì ì„ ì—´ì—ˆë‹¤
 	TRM_ITEM_EXCHANGE_SHOP_OPEN,
 
-	TRM_REG_ITEM_BY_NPCSHOP,		///< NPC »óÁ¡¿¡¼­ ¹°°ÇÀ» »ç±â À§ÇØ µî·ÏÇÏ¿´´Ù.
-	TRM_REG_ITEM_BY_NPCSHOP_LARGE_BUY,///< NPC »óÁ¡¿¡¼­ ¹°°ÇÀ» »ç±â À§ÇØ ´ë·® µî·ÏÇÏ¿´´Ù.
-	TRM_REG_ITEM_BY_BAG,			///< °¡¹æ¿¡¼­ ¹°°ÇÀ» ÆÈ±âÀ§ÇØ µî·ÏÇÏ¿´´Ù.
+	TRM_REG_ITEM_BY_NPCSHOP,		///< NPC ìƒì ì—ì„œ ë¬¼ê±´ì„ ì‚¬ê¸° ìœ„í•´ ë“±ë¡í•˜ì˜€ë‹¤.
+	TRM_REG_ITEM_BY_NPCSHOP_LARGE_BUY,///< NPC ìƒì ì—ì„œ ë¬¼ê±´ì„ ì‚¬ê¸° ìœ„í•´ ëŒ€ëŸ‰ ë“±ë¡í•˜ì˜€ë‹¤.
+	TRM_REG_ITEM_BY_BAG,			///< ê°€ë°©ì—ì„œ ë¬¼ê±´ì„ íŒ”ê¸°ìœ„í•´ ë“±ë¡í•˜ì˜€ë‹¤.
 	
-	TRM_BUY_SUCCESS,				///< ±¸ÀÔ ¼º°ø
-	TRM_SELL_SUCCESS,				///< ÆÇ¸Å ¼º°ø	
+	TRM_BUY_SUCCESS,				///< êµ¬ì… ì„±ê³µ
+	TRM_SELL_SUCCESS,				///< íŒë§¤ ì„±ê³µ	
 
-	TRM_CLOSE,						///< Ä«Æ®¸¦ ´İ´Â´Ù.
+	TRM_CLOSE,						///< ì¹´íŠ¸ë¥¼ ë‹«ëŠ”ë‹¤.
 
 	TRM_MESSAGETYPE_NUM
 };
 
 struct SDboEventDialog
 {
-	RwInt32			iType;			///< NPC ÀÌº¥Æ® Å¸ÀÔ
+	RwInt32			iType;			///< NPC ì´ë²¤íŠ¸ íƒ€ì…
 
-	RwInt32			iSrcDialog;		///< ÀÌº¥Æ®¸¦ ¹ß»ı½ÃÅ°´Â Dialog
-	RwInt32			iDestDialog;	///< ÀÌº¥Æ®¸¦ ¹Ş´Â Dialog
+	RwInt32			iSrcDialog;		///< ì´ë²¤íŠ¸ë¥¼ ë°œìƒì‹œí‚¤ëŠ” Dialog
+	RwInt32			iDestDialog;	///< ì´ë²¤íŠ¸ë¥¼ ë°›ëŠ” Dialog
 
 	RwInt32			iUserData;
 	RwInt32			iUserData2;
@@ -646,34 +656,34 @@ struct SDboEventDialog
 
 enum eDialogEventType
 {	
-	DIALOGEVENT_NPC_BYEBYE,						///< NPC¿ÍÀÇ ´ëÈ­, °Å·¡µîÀÇ ÀÛ¾÷À» ÁßÁöÇÏ°í ¶°³­´Ù.
-	DIALOGEVENT_BEGIN_TRADING_ITEM_IN_BAG,		///< °¡¹æ ¾ÈÀÇ ¾ÆÀÌÅÛÀÇ °Å·¡¸¦ ½ÃÀÛÇÑ´Ù.
-												///< UserData : °¡¹æ ½½·Ô ÀÎµ¦½º, UserData2 : ½½·Ô ¹øÈ£
-	DIALOGEVENT_END_TRADING_ITEM_IN_BAG,		///< °¡¹æ ¾ÈÀÇ ¾ÆÀÌÅÛÀÇ °Å·¡°¡ ³¡³µ´Ù.
-												///< UserData : °¡¹æ ½½·Ô ÀÎµ¦½º, UserData2 : ½½·Ô ¹øÈ£
-	DIALOGEVENT_BEGIN_UPGRADE_ITEM_IN_BAG,		///< °¡¹æ¾ÈÀÇ ¾ÆÀÌÅÛÀ» ¾÷±×·¹ÀÌµå ÇÑ´Ù.
-												///< UserData : °¡¹æ ½½·Ô ÀÎµ¦½º, UserData2 : ½½·Ô ¹øÈ£
-	DIALOGEVENT_END_UPGRADE_ITEM_IN_BAG,		///< °¡¹æ¾ÈÀÇ ¾ÆÀÌÅÛÀ» ¾÷±×·¹ÀÌµå¸¦ ³¡³½´Ù.
-												///< UserData : °¡¹æ ½½·Ô ÀÎµ¦½º, UserData2 : ½½·Ô ¹øÈ£
+	DIALOGEVENT_NPC_BYEBYE,						///< NPCì™€ì˜ ëŒ€í™”, ê±°ë˜ë“±ì˜ ì‘ì—…ì„ ì¤‘ì§€í•˜ê³  ë– ë‚œë‹¤.
+	DIALOGEVENT_BEGIN_TRADING_ITEM_IN_BAG,		///< ê°€ë°© ì•ˆì˜ ì•„ì´í…œì˜ ê±°ë˜ë¥¼ ì‹œì‘í•œë‹¤.
+												///< UserData : ê°€ë°© ìŠ¬ë¡¯ ì¸ë±ìŠ¤, UserData2 : ìŠ¬ë¡¯ ë²ˆí˜¸
+	DIALOGEVENT_END_TRADING_ITEM_IN_BAG,		///< ê°€ë°© ì•ˆì˜ ì•„ì´í…œì˜ ê±°ë˜ê°€ ëë‚¬ë‹¤.
+												///< UserData : ê°€ë°© ìŠ¬ë¡¯ ì¸ë±ìŠ¤, UserData2 : ìŠ¬ë¡¯ ë²ˆí˜¸
+	DIALOGEVENT_BEGIN_UPGRADE_ITEM_IN_BAG,		///< ê°€ë°©ì•ˆì˜ ì•„ì´í…œì„ ì—…ê·¸ë ˆì´ë“œ í•œë‹¤.
+												///< UserData : ê°€ë°© ìŠ¬ë¡¯ ì¸ë±ìŠ¤, UserData2 : ìŠ¬ë¡¯ ë²ˆí˜¸
+	DIALOGEVENT_END_UPGRADE_ITEM_IN_BAG,		///< ê°€ë°©ì•ˆì˜ ì•„ì´í…œì„ ì—…ê·¸ë ˆì´ë“œë¥¼ ëë‚¸ë‹¤.
+												///< UserData : ê°€ë°© ìŠ¬ë¡¯ ì¸ë±ìŠ¤, UserData2 : ìŠ¬ë¡¯ ë²ˆí˜¸
 
 	DIALOGEVENT_BEGIN_ITEM_IN_OPTIONRECONSTRUCTION,
 	DIALOGEVENT_END_ITEM_IN_OPTIONRECONSTRUCTION,
 
-	DIALOGEVENT_OPEN_FAIL_NPC_DIALOG,			///< NPC ´ÙÀÌ¾ó·Î±×¸¦ ¿©´Â °ÍÀ» ½ÇÆĞÇÏ¿´´Ù
-	DIALOGEVENT_INPUTEDITBOX_LOST_FOCUS_WITH_ESC_KEY,	///< InputEditbBox°¡ ESCÅ°·Î ÀÎÇØ Æ÷Ä¿½º¸¦ ÀÒ¾ú´Ù
+	DIALOGEVENT_OPEN_FAIL_NPC_DIALOG,			///< NPC ë‹¤ì´ì–¼ë¡œê·¸ë¥¼ ì—¬ëŠ” ê²ƒì„ ì‹¤íŒ¨í•˜ì˜€ë‹¤
+	DIALOGEVENT_INPUTEDITBOX_LOST_FOCUS_WITH_ESC_KEY,	///< InputEditbBoxê°€ ESCí‚¤ë¡œ ì¸í•´ í¬ì»¤ìŠ¤ë¥¼ ìƒì—ˆë‹¤
 
-	DIALOGEVENT_SKIP_MOUSE_WHEEL,				///< GUI Chatting DisplayÃ¢¿¡¼­ MouseWheelÀÌ ÀÛµ¿ÇÏ¿© 3D ·ÎÁ÷ÀÇ MouseWheelÀº ¹«½ÃÇÑ´Ù
+	DIALOGEVENT_SKIP_MOUSE_WHEEL,				///< GUI Chatting Displayì°½ì—ì„œ MouseWheelì´ ì‘ë™í•˜ì—¬ 3D ë¡œì§ì˜ MouseWheelì€ ë¬´ì‹œí•œë‹¤
 
-	DIALOGEVENT_CLOSE_EMBLEM_MAKER,				///< Guild DialogÀÇ Emlem Maker gui¸¦ ´İ´Â´Ù
-	DIALOGEVENT_FAIL_CLOSE_EMBLEM_MAKER,		///< Guild DialogÀÇ Emlem Maker gui¸¦ ´İ±â¸¦ ½ÇÆĞÇß´Ù
+	DIALOGEVENT_CLOSE_EMBLEM_MAKER,				///< Guild Dialogì˜ Emlem Maker guië¥¼ ë‹«ëŠ”ë‹¤
+	DIALOGEVENT_FAIL_CLOSE_EMBLEM_MAKER,		///< Guild Dialogì˜ Emlem Maker guië¥¼ ë‹«ê¸°ë¥¼ ì‹¤íŒ¨í–ˆë‹¤
 
-	DIALOGEVENT_CLOSE_GUILD_NOTICE,				///< Guild DialogÀÇ Notice gui¸¦ ´İ´Â´Ù
-	DIALOGEVENT_FAIL_CLOSE_GUILD_NOTICE,		///< Guild DialogÀÇ Notice gui¸¦ ´İ±â¸¦ ½ÇÆĞÇß´Ù
+	DIALOGEVENT_CLOSE_GUILD_NOTICE,				///< Guild Dialogì˜ Notice guië¥¼ ë‹«ëŠ”ë‹¤
+	DIALOGEVENT_FAIL_CLOSE_GUILD_NOTICE,		///< Guild Dialogì˜ Notice guië¥¼ ë‹«ê¸°ë¥¼ ì‹¤íŒ¨í–ˆë‹¤
 
-	DIALOGEVENT_REPAIR,							///< ³»±¸·ÂÀÌ ¶³¾îÁø ÇÑ ¾ÆÀÌÅÛÀ» °íÃÆ´Ù.
-	DIALOGEVENT_REPAIR_ALL,						///< ³»±¸·ÂÀÌ ¶³¾îÁø ¸ğµç ¾ÆÀÌÅÛÀ» °íÃÆ´Ù.
+	DIALOGEVENT_REPAIR,							///< ë‚´êµ¬ë ¥ì´ ë–¨ì–´ì§„ í•œ ì•„ì´í…œì„ ê³ ì³¤ë‹¤.
+	DIALOGEVENT_REPAIR_ALL,						///< ë‚´êµ¬ë ¥ì´ ë–¨ì–´ì§„ ëª¨ë“  ì•„ì´í…œì„ ê³ ì³¤ë‹¤.
 
-	DIALOGEVENT_CREATE_DOJO_GUI,				/// µµÀå GUI¸¦ »ı¼ºÇÑ´Ù
+	DIALOGEVENT_CREATE_DOJO_GUI,				/// ë„ì¥ GUIë¥¼ ìƒì„±í•œë‹¤
 };
 
 struct SDboEventUpdateRP
@@ -693,15 +703,15 @@ struct SDboEventUpdateRpStock
 
 struct SDboEventUpdateExp
 {
-	RwUInt32	uiIncreasedExp;         ///< ÅäÅ» »ó½Â·®
-    RwUInt32    uiAcquisitionExp;       ///< ¿ø·¡ »ó½Â·®, PC¹æ º¸³Ê½º¶§ »ç¿ëÇÑ´Ù
-    RwUInt32    uiBonusExp;             ///< º¸³Ê½º »ó½Â·®, PC¹æ º¸³Ê½º¶§ »ç¿ëÇÑ´Ù.
+	RwUInt32	uiIncreasedExp;         ///< í† íƒˆ ìƒìŠ¹ëŸ‰
+    RwUInt32    uiAcquisitionExp;       ///< ì›ë˜ ìƒìŠ¹ëŸ‰, PCë°© ë³´ë„ˆìŠ¤ë•Œ ì‚¬ìš©í•œë‹¤
+    RwUInt32    uiBonusExp;             ///< ë³´ë„ˆìŠ¤ ìƒìŠ¹ëŸ‰, PCë°© ë³´ë„ˆìŠ¤ë•Œ ì‚¬ìš©í•œë‹¤.
 };
 
 struct SDboEventPartyContribution
 {
-	RwUInt32		iType;				///< ÀÌº¥Æ® Å¸ÀÔ
-	RwUInt8			byPos;				///< ½½·Ô À§Ä¡
+	RwUInt32		iType;				///< ì´ë²¤íŠ¸ íƒ€ì…
+	RwUInt8			byPos;				///< ìŠ¬ë¡¯ ìœ„ì¹˜
 	RwUInt32		uiValue;
 };
 
@@ -741,19 +751,19 @@ struct SDboNpcDialogOpen
 
 enum eMapMessageType
 {
-	MMT_MINIMAP_ZOON_IN,				///< ¹Ì´Ï¸Ê È®´ë
-	MMT_MINIMAP_ZOON_OUT,				///< ¹Ì´Ï¸Ê Ãà¼Ò
+	MMT_MINIMAP_ZOON_IN,				///< ë¯¸ë‹ˆë§µ í™•ëŒ€
+	MMT_MINIMAP_ZOON_OUT,				///< ë¯¸ë‹ˆë§µ ì¶•ì†Œ
 
-	MMT_APPEAR_HIDDEN_OBJECT,			///< È÷µç ¿ÀºêÁ§Æ®°¡ È­¸é¿¡ ³ªÅ¸³­´Ù
-	MMT_DISAPPEAR_HIDDEN_OBJECT,		///< È÷µç ¿ÀºêÁ§Æ®°¡ È­¸é¼­ »ç¶óÁø´Ù
+	MMT_APPEAR_HIDDEN_OBJECT,			///< íˆë“  ì˜¤ë¸Œì íŠ¸ê°€ í™”ë©´ì— ë‚˜íƒ€ë‚œë‹¤
+	MMT_DISAPPEAR_HIDDEN_OBJECT,		///< íˆë“  ì˜¤ë¸Œì íŠ¸ê°€ í™”ë©´ì„œ ì‚¬ë¼ì§„ë‹¤
 
-	MMT_WARFOG_UPDATE,					///< ¿öÆ÷±×¸¦ ¾÷µ¥ÀÌÆ® ÇÑ´Ù
+	MMT_WARFOG_UPDATE,					///< ì›Œí¬ê·¸ë¥¼ ì—…ë°ì´íŠ¸ í•œë‹¤
 
-	MMT_MINIMAP_SHOW_OUR_TEAM,			///< ¹Ì´Ï¸Ê¿¡ ¿ì¸®ÆÀÀ» Ç¥½ÃÇÑ´Ù
-	MMT_MINIMAP_HIDE_OUR_TEAM,			///< ¹Ì´Ï¸Ê¿¡ ¿ì¸®ÆÀÀ» Ç¥½ÃÇÏÁö ¾Ê´Â´Ù
+	MMT_MINIMAP_SHOW_OUR_TEAM,			///< ë¯¸ë‹ˆë§µì— ìš°ë¦¬íŒ€ì„ í‘œì‹œí•œë‹¤
+	MMT_MINIMAP_HIDE_OUR_TEAM,			///< ë¯¸ë‹ˆë§µì— ìš°ë¦¬íŒ€ì„ í‘œì‹œí•˜ì§€ ì•ŠëŠ”ë‹¤
 
-	MMT_MINIMAP_SHOW_OTHER_TEAM,		///< ¹Ì´Ï¸Ê¿¡ »ó´ëÆÀÀ» Ç¥½ÃÇÑ´Ù
-	MMT_MINIMAP_HIDE_OTHER_TEAM,		///< ¹Ì´Ï¸Ê¿¡ »ó´ëÆÀÀ» Ç¥½ÃÇÏÁö ¾Ê´Â´Ù
+	MMT_MINIMAP_SHOW_OTHER_TEAM,		///< ë¯¸ë‹ˆë§µì— ìƒëŒ€íŒ€ì„ í‘œì‹œí•œë‹¤
+	MMT_MINIMAP_HIDE_OTHER_TEAM,		///< ë¯¸ë‹ˆë§µì— ìƒëŒ€íŒ€ì„ í‘œì‹œí•˜ì§€ ì•ŠëŠ”ë‹¤
 };
 
 struct SDboEventMap
@@ -764,22 +774,22 @@ struct SDboEventMap
 
 enum eUserTradeEventType
 {
-	USERTRADE_START,					///< ½ÃÀÛ
-	USERTRADE_ADD_ITEM,					///< ÀÚ½ÅÀÇ ¾ÆÀÌÅÛÀÌ µî·ÏµÇ¾ú´Ù	
-	USERTRADE_DEL_ITEM,					///< ÀÚ½ÅÀÇ ¾ÆÀÌÅÛÀÌ ÇØÁ¦µÇ¾ú´Ù	
-	USERTRADE_UPDATE_ITEM,				///< ¾ÆÀÌÅÛÀÇ °¹¼ö°¡ º¯°æµÇ¾ú´Ù
-	USERTRADE_UPDATE_ZENNY,				///< Á¦´Ï°¡ º¯°æµÇ¾ú´Ù
-	USERTRADE_REDAY,					///< °Å·¡ ÁØºñ°¡ µÇ¾ú´Ù
+	USERTRADE_START,					///< ì‹œì‘
+	USERTRADE_ADD_ITEM,					///< ìì‹ ì˜ ì•„ì´í…œì´ ë“±ë¡ë˜ì—ˆë‹¤	
+	USERTRADE_DEL_ITEM,					///< ìì‹ ì˜ ì•„ì´í…œì´ í•´ì œë˜ì—ˆë‹¤	
+	USERTRADE_UPDATE_ITEM,				///< ì•„ì´í…œì˜ ê°¯ìˆ˜ê°€ ë³€ê²½ë˜ì—ˆë‹¤
+	USERTRADE_UPDATE_ZENNY,				///< ì œë‹ˆê°€ ë³€ê²½ë˜ì—ˆë‹¤
+	USERTRADE_REDAY,					///< ê±°ë˜ ì¤€ë¹„ê°€ ë˜ì—ˆë‹¤
 
-	USERTRADE_ADD_ITEM_NOTIFY,			///< ´Ù¸¥ »ç¶÷ÀÇ ¾ÆÀÌÅÛÀÌ µî·ÏµÇ¾ú´Ù
-	USERTRADE_DEL_ITEM_NOTIFY,			///< ´Ù¸¥ »ç¶÷ÀÇ ¾ÆÀÌÅÛÀÌ ÇØÁ¦µÇ¾ú´Ù
-	USERTRADE_UPDATE_ITEM_NOTIFY,		///< ´Ù¸¥ »ç¶÷ÀÌ ¾ÆÀÌÅÛÀÇ °¹¼ö¸¦ º¯°æÇÏ¿´´Ù
-	USERTRADE_UPDATE_ZENNY_NOTIFY,		///< ´Ù¸¥ »ç¶÷ÀÌ Á¦´Ï¸¦ º¯°æÇÏ¿´´Ù
-	USERTRADE_REDAY_NOTIFY,				///< ´Ù¸¥ »ç¶÷ÀÌ °Å·¡ ÁØºñ°¡ µÇ¾ú´Ù
+	USERTRADE_ADD_ITEM_NOTIFY,			///< ë‹¤ë¥¸ ì‚¬ëŒì˜ ì•„ì´í…œì´ ë“±ë¡ë˜ì—ˆë‹¤
+	USERTRADE_DEL_ITEM_NOTIFY,			///< ë‹¤ë¥¸ ì‚¬ëŒì˜ ì•„ì´í…œì´ í•´ì œë˜ì—ˆë‹¤
+	USERTRADE_UPDATE_ITEM_NOTIFY,		///< ë‹¤ë¥¸ ì‚¬ëŒì´ ì•„ì´í…œì˜ ê°¯ìˆ˜ë¥¼ ë³€ê²½í•˜ì˜€ë‹¤
+	USERTRADE_UPDATE_ZENNY_NOTIFY,		///< ë‹¤ë¥¸ ì‚¬ëŒì´ ì œë‹ˆë¥¼ ë³€ê²½í•˜ì˜€ë‹¤
+	USERTRADE_REDAY_NOTIFY,				///< ë‹¤ë¥¸ ì‚¬ëŒì´ ê±°ë˜ ì¤€ë¹„ê°€ ë˜ì—ˆë‹¤
 
-	USERTRADE_END,						///< Á¾·á
-	USERTRADE_DECLINE,					///< °Å·¡ ½ÅÃ» °ÅºÎ
-	USERTRADE_ACCEPT,					///< °Å·¡ ½ÅÃ» Çã¿ë
+	USERTRADE_END,						///< ì¢…ë£Œ
+	USERTRADE_DECLINE,					///< ê±°ë˜ ì‹ ì²­ ê±°ë¶€
+	USERTRADE_ACCEPT,					///< ê±°ë˜ ì‹ ì²­ í—ˆìš©
 };
 
 struct SDboEventUserTrade
@@ -874,29 +884,29 @@ struct SDboEventRegPrivateShopItem
 };
 
 /**
-* brief °³ÀÎ»óÁ¡ ÈïÁ¤ ½ÃÀÛ ÀÌº¥Æ®ÀÇ ±¸Á¶Ã¼
+* brief ê°œì¸ìƒì  í¥ì • ì‹œì‘ ì´ë²¤íŠ¸ì˜ êµ¬ì¡°ì²´
 */
 struct SDboEventPrivateShopBusinessStart
 {
-	RwUInt8					uiType;					///< »óÁ¡ÁÖÀÎ, ¼Õ´Ô Type
-	RwUInt32				uiShopOwner;			///< »óÁ¡ÁÖÀÎÀÇ ÇÚµé
-	WCHAR					awcTargetName[NTL_MAX_SIZE_CHAR_NAME + 1];	///< »ó´ë¹æÀÇ Ä³¸¯ÅÍ ÀÌ¸§
-	sPRIVATESHOP_ITEM_DATA* pPrivateShopItemData;	///< °³ÀÎ»óÁ¡ ¾ÆÀÌÅÛ µ¥ÀÌÅ¸ ±¸Á¶Ã¼
-	void*					pGui;					///< °³ÀÎ»óÁ¡ÀÇ GUI Å¬·¡½º Æ÷ÀÎÅÍ
+	RwUInt8					uiType;					///< ìƒì ì£¼ì¸, ì†ë‹˜ Type
+	RwUInt32				uiShopOwner;			///< ìƒì ì£¼ì¸ì˜ í•¸ë“¤
+	WCHAR					awcTargetName[NTL_MAX_SIZE_CHAR_NAME + 1];	///< ìƒëŒ€ë°©ì˜ ìºë¦­í„° ì´ë¦„
+	sPRIVATESHOP_ITEM_DATA* pPrivateShopItemData;	///< ê°œì¸ìƒì  ì•„ì´í…œ ë°ì´íƒ€ êµ¬ì¡°ì²´
+	void*					pGui;					///< ê°œì¸ìƒì ì˜ GUI í´ë˜ìŠ¤ í¬ì¸í„°
 };
 
 /**
-* brief °³ÀÎ»óÁ¡ ÈïÁ¤ °¡°İÁ¶Á¤(Áï½Ã±¸¸Å)ÀÇ ±¸Á¶Ã¼
+* brief ê°œì¸ìƒì  í¥ì • ê°€ê²©ì¡°ì •(ì¦‰ì‹œêµ¬ë§¤)ì˜ êµ¬ì¡°ì²´
 */
 struct SDboEventPrivateShopBusinessFluctuations
 {
-	RwUInt8					uiType;					///< »óÁ¡ÁÖÀÎ, ¼Õ´Ô Type
-	sPRIVATESHOP_ITEM_DATA* pPrivateShopItemData;	///< °³ÀÎ»óÁ¡ ¾ÆÀÌÅÛ µ¥ÀÌÅ¸ ±¸Á¶Ã¼
-	RwUInt32				uiStartPrice;			///< ÈïÁ¤ ½ÃÀÛ°¡°İ
+	RwUInt8					uiType;					///< ìƒì ì£¼ì¸, ì†ë‹˜ Type
+	sPRIVATESHOP_ITEM_DATA* pPrivateShopItemData;	///< ê°œì¸ìƒì  ì•„ì´í…œ ë°ì´íƒ€ êµ¬ì¡°ì²´
+	RwUInt32				uiStartPrice;			///< í¥ì • ì‹œì‘ê°€ê²©
 };
 
 /**
-* brief °³ÀÎ»óÁ¡ ÈïÁ¤Ã¢À» ´İÀ¸¶ó´Â ÀÌº¥Æ®
+* brief ê°œì¸ìƒì  í¥ì •ì°½ì„ ë‹«ìœ¼ë¼ëŠ” ì´ë²¤íŠ¸
 */
 struct SDboEventPrivateShopBusinessCloseWindowNfy
 {
@@ -905,8 +915,8 @@ struct SDboEventPrivateShopBusinessCloseWindowNfy
 
 enum eBackboardEventType
 {
-	BET_COLOR,							///< »ö»óÀ» ¹Ù²Û´Ù
-	BET_ALPHA,							///< Åõ¸íµµ¸¦ ¹Ù²Û´Ù
+	BET_COLOR,							///< ìƒ‰ìƒì„ ë°”ê¾¼ë‹¤
+	BET_ALPHA,							///< íˆ¬ëª…ë„ë¥¼ ë°”ê¾¼ë‹¤
 };
 
 struct SDboEventBackboard
@@ -919,8 +929,8 @@ struct SDboEventBackboard
 
 struct SDboEventSummonPet
 {
-	RwBool			bCreate;			// »ı¼ºÀÌ¸é TRUE, ¼Ò¸êÀÌ¸é False
-	RwUInt32		uiSerialID;			// Summon PetÀÇ ½Ã¸®¾ó ID
+	RwBool			bCreate;			// ìƒì„±ì´ë©´ TRUE, ì†Œë©¸ì´ë©´ False
+	RwUInt32		uiSerialID;			// Summon Petì˜ ì‹œë¦¬ì–¼ ID
 };
 
 struct SDboEventOpenSendMail
@@ -1050,21 +1060,21 @@ struct SDboEventTMQMemberListRes
 };
 
 /**
-* brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ¼Ò½ÄÁö Interface¸¦ Á¦¾îÇÏ´Â ÀÌº¥Æ® ±¸Á¶Ã¼
+* brief ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì†Œì‹ì§€ Interfaceë¥¼ ì œì–´í•˜ëŠ” ì´ë²¤íŠ¸ êµ¬ì¡°ì²´
 */
 struct SDboEventBudokaiNews
 {
-	RwBool		bShow;			///< Open Close ¿©ºÎ
-	RwUInt8		byType;			///< OpenÇÒ Type
+	RwBool		bShow;			///< Open Close ì—¬ë¶€
+	RwUInt8		byType;			///< Opení•  Type
 };
 
 /**
-* brief Script Link TableÀ» ÂüÁ¶ÇÏ¶ó´Â ÀÌº¥Æ®
+* brief Script Link Tableì„ ì°¸ì¡°í•˜ë¼ëŠ” ì´ë²¤íŠ¸
 */
 struct SDboEventScriptLinkNotify
 {
-	RwUInt8		byType;								///< ¿¬°áÇÒ ÄÁÅÙÃ÷ÀÇ Å¸ÀÔ
-	RwUInt8		byAction;							///< Å¸ÀÔ¿¡ µû¶ó Çàµ¿ÇÒ ³»¿ë
+	RwUInt8		byType;								///< ì—°ê²°í•  ì»¨í…ì¸ ì˜ íƒ€ì…
+	RwUInt8		byAction;							///< íƒ€ì…ì— ë”°ë¼ í–‰ë™í•  ë‚´ìš©
 	WCHAR		wszValue[DBO_MAX_LENGTH_FILE + 1];	///< Value
 };
 
@@ -1125,10 +1135,10 @@ struct SDboEventShopGambleBuyRes
 
 struct SDboEventGambleUseEffect
 {
-	RwUInt8	ucBagIdx;			// °×ºí ¿¬ÃâÀÌ ³¡³ª¸é Item ÀÌ °¡¹æ¿¡ µé¾î°¡´Â ¿¬ÃâÀ» ÇØÁÖ±â À§ÇØ
+	RwUInt8	ucBagIdx;			// ê²œë¸” ì—°ì¶œì´ ëë‚˜ë©´ Item ì´ ê°€ë°©ì— ë“¤ì–´ê°€ëŠ” ì—°ì¶œì„ í•´ì£¼ê¸° ìœ„í•´
 	RwUInt8	ucSlotIdx;
-	RwUInt32 hCreateSerial;		///< °×ºí·Î »ı¼ºµÈ ¾ÆÀÌÅÛ
-	RwChar  szEffectFile[ DBO_MAX_LENGTH_ITEM_ICON_NAME + 1 ];		// ¿¬Ãâ ÆÄÀÏ ÀÌ¸§
+	RwUInt32 hCreateSerial;		///< ê²œë¸”ë¡œ ìƒì„±ëœ ì•„ì´í…œ
+	RwChar  szEffectFile[ DBO_MAX_LENGTH_ITEM_ICON_NAME + 1 ];		// ì—°ì¶œ íŒŒì¼ ì´ë¦„
 };
 
 struct SDboEventRegMailAttachItem
@@ -1157,18 +1167,18 @@ struct SDboEventQuickTeleportDeleteAndMove
 
 enum ePetitionEventType
 {
-	PETITON_OPEN_DILAOG,						///< »ó´ã(ÁøÁ¤) ¿äÃ»Ã¢À» ¿¬´Ù
-	PETITON_CLOSE_DILAOG,						///< »ó´ã(ÁøÁ¤) ¿äÃ»Ã¢À» ´İ´Â´Ù
-	PETITON_REQUEST_OK,							///< »ó´ã(ÁøÁ¤)ÀÌ ¿äÃ»ÀÌ GM¿¡°Ô Àü´ŞµÇ¾ú´Ù
-	PETITON_MODIFY_OK,							///< »ó´ã(ÁøÁ¤)ÀÇ ¼öÁ¤ ¿äÃ»ÀÌ GM¿¡°Ô Àü´ŞµÇ¾ú´Ù
-	PETITON_CANCEL,								///< »ó´ã(ÁøÁ¤)ÀÌ Ãë¼ÒµÇ¾ú´Ù.
-	PETITON_FINISH,								///< »ó´ã(ÁøÁ¤)ÀÌ Ã³¸®µÇ¾ú´Ù.
+	PETITON_OPEN_DILAOG,						///< ìƒë‹´(ì§„ì •) ìš”ì²­ì°½ì„ ì—°ë‹¤
+	PETITON_CLOSE_DILAOG,						///< ìƒë‹´(ì§„ì •) ìš”ì²­ì°½ì„ ë‹«ëŠ”ë‹¤
+	PETITON_REQUEST_OK,							///< ìƒë‹´(ì§„ì •)ì´ ìš”ì²­ì´ GMì—ê²Œ ì „ë‹¬ë˜ì—ˆë‹¤
+	PETITON_MODIFY_OK,							///< ìƒë‹´(ì§„ì •)ì˜ ìˆ˜ì • ìš”ì²­ì´ GMì—ê²Œ ì „ë‹¬ë˜ì—ˆë‹¤
+	PETITON_CANCEL,								///< ìƒë‹´(ì§„ì •)ì´ ì·¨ì†Œë˜ì—ˆë‹¤.
+	PETITON_FINISH,								///< ìƒë‹´(ì§„ì •)ì´ ì²˜ë¦¬ë˜ì—ˆë‹¤.
 
-	PETITON_ENABLE_PETITON_GUI,					///< PetitionGui¸¦ È°¼ºÈ­ ÇÑ´Ù
+	PETITON_ENABLE_PETITON_GUI,					///< PetitionGuië¥¼ í™œì„±í™” í•œë‹¤
 
-	PETITON_CHATTING_START,						///< GM Ã¤ÆÃÀ» ½ÃÀÛÇÑ´Ù
-	PETITON_CHATTING_END,						///< GM Ã¤ÆÃÀ» Á¾·áÇÑ´Ù
-	PETITON_FINISH_RESEARCH_SATISFACTION,		///< ¸¸Á·µµ Á¶»ç¸¦ Á¾·áÇÑ´Ù
+	PETITON_CHATTING_START,						///< GM ì±„íŒ…ì„ ì‹œì‘í•œë‹¤
+	PETITON_CHATTING_END,						///< GM ì±„íŒ…ì„ ì¢…ë£Œí•œë‹¤
+	PETITON_FINISH_RESEARCH_SATISFACTION,		///< ë§Œì¡±ë„ ì¡°ì‚¬ë¥¼ ì¢…ë£Œí•œë‹¤
 };
 
 struct SDboEventPetition
@@ -1203,14 +1213,14 @@ struct SDboEventTeleportConfirmRes
 
 enum eObserverMenuEventType
 {
-	OBSERVER_START_OBSERVER,					///< ¿ÉÀú¹ö ¸Ş´º¸¦ ½ÃÀÛÇÑ´Ù
-	OBSERVER_END_OBSERVER,						///< ¿ÉÀú¹ö ¸Ş´º¸¦ Á¾·áÇÑ´Ù
-	OBSERVER_SHOW_PLAYER_INFO,					///< PlayerInfo Gui¸¦ º¸¿©ÁØ´Ù
-	OBSERVER_REMOVE_PLAYERINFO_GUI,				///< PlayerInfo Gui¸¦ Á¦°ÅÇÑ´Ù
-	OBSERVER_SELECT_POPUPMENU,					///< Popup ¸Ş´º¿¡¼­ ¼±ÅÃÀ» Çß´Ù
-	OBSERVER_TENKAICHI_MATCH_DATA_REQ,			///< ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ÁøÇàÁ¤º¸¸¦ ¿äÃ»Çß´Ù
-	OBSERVER_TENKAICHI_MATCH_DATA_RES,			///< ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ÁøÇàÁ¤º¸¸¦ ¹Ş¾Ò´Ù
-	OBSERVER_TENKAICHI_MATCH_DATA,				///< ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ÁøÇàÁ¤º¸ ³»¿ë
+	OBSERVER_START_OBSERVER,					///< ì˜µì €ë²„ ë©”ë‰´ë¥¼ ì‹œì‘í•œë‹¤
+	OBSERVER_END_OBSERVER,						///< ì˜µì €ë²„ ë©”ë‰´ë¥¼ ì¢…ë£Œí•œë‹¤
+	OBSERVER_SHOW_PLAYER_INFO,					///< PlayerInfo Guië¥¼ ë³´ì—¬ì¤€ë‹¤
+	OBSERVER_REMOVE_PLAYERINFO_GUI,				///< PlayerInfo Guië¥¼ ì œê±°í•œë‹¤
+	OBSERVER_SELECT_POPUPMENU,					///< Popup ë©”ë‰´ì—ì„œ ì„ íƒì„ í–ˆë‹¤
+	OBSERVER_TENKAICHI_MATCH_DATA_REQ,			///< ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì§„í–‰ì •ë³´ë¥¼ ìš”ì²­í–ˆë‹¤
+	OBSERVER_TENKAICHI_MATCH_DATA_RES,			///< ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì§„í–‰ì •ë³´ë¥¼ ë°›ì•˜ë‹¤
+	OBSERVER_TENKAICHI_MATCH_DATA,				///< ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì§„í–‰ì •ë³´ ë‚´ìš©
 };
 
 struct SDboEventObserverMenu
@@ -1234,7 +1244,7 @@ struct SDboEventBattleCombatMode
 
 struct SDboEventItemIdentifyEffect
 {
-	RwBool			bHandle;					///< Handle°ªÀÌ³Ä Pos°ªÀÌ³ÄÀÇ ¿©ºÎ
+	RwBool			bHandle;					///< Handleê°’ì´ëƒ Posê°’ì´ëƒì˜ ì—¬ë¶€
 
 	SERIAL_HANDLE	hItemHandle;
 	RwUInt8			byPlace;
@@ -1274,7 +1284,7 @@ struct SDboEventMailSlotUpdate
 
 struct SDboEventShopNetPyItemStartRes
 {
-	RwUInt8 byType;	// 0 : ±âº» 1 : ÇÑÁ¤¼ö·® ÆÇ¸Å ÀÌº¥Æ® NPC
+	RwUInt8 byType;	// 0 : ê¸°ë³¸ 1 : í•œì •ìˆ˜ëŸ‰ íŒë§¤ ì´ë²¤íŠ¸ NPC
 };
 
 enum eNetPyShopEventType
@@ -1295,12 +1305,12 @@ struct SDboEventNetPyShopEvent
 	RwUInt8 byEventType;
 
 	RwUInt32		uiSerial;		///< NPC or Item
-	unsigned long	ulPrice;		///< ¾ÆÀÌÅÛ °¡°İ
-	wchar_t*		pcItemName;		///< ¾ÆÀÌÅÛ ÀÌ¸§
+	unsigned long	ulPrice;		///< ì•„ì´í…œ ê°€ê²©
+	wchar_t*		pcItemName;		///< ì•„ì´í…œ ì´ë¦„
 
-	RwInt32			nPlace;			///< »óÁ¡ÀÇ ÅÇ, È¤Àº °¡¹æÀÇ ¹øÈ£
-	RwInt32			nPosition;		///< ÅÇ¾È µî·ÏµÈ ¾ÆÀÌÅÛÀÇ À§Ä¡, °¡¹æ ¾ÈÀÇ ½½·Ô ¹øÈ£
-	RwInt32			nOverlapCount;	///< °¹¼ö
+	RwInt32			nPlace;			///< ìƒì ì˜ íƒ­, í˜¹ì€ ê°€ë°©ì˜ ë²ˆí˜¸
+	RwInt32			nPosition;		///< íƒ­ì•ˆ ë“±ë¡ëœ ì•„ì´í…œì˜ ìœ„ì¹˜, ê°€ë°© ì•ˆì˜ ìŠ¬ë¡¯ ë²ˆí˜¸
+	RwInt32			nOverlapCount;	///< ê°¯ìˆ˜
 };
 
 enum eHLShopEventType
@@ -1369,12 +1379,12 @@ struct SDboEventBroadCastNfy
 // CommercialExtend
 enum eCommercialExtendCommandType
 {
-	eSTART_PROCESS_BUY_NPC_DURATION_ITEM,	/// durration item °Å·¡ °úÁ¤ ½ÃÀÛ
-	eSTART_PROCESS_BUY_NETPY_DURATION_ITEM,	/// durration item °Å·¡ °úÁ¤ ½ÃÀÛ
-	eSTART_PROCESS_MOVE_DURATION_ITEM,	/// durration item ¾ßµå·¡Æ® ÀÌµ¿ °úÁ¤ ½ÃÀÛ
-	eSET_DURATION_ITEM,					/// °Å·¡ÇÒ durration item tblidx setting
-	eSET_DURATION_EXTEND_TARGET_ITEM,	/// ±â°£ ¿¬ÀåÇÒ Target NtlSobItem setting
-	eCHANGE_COMMERCIALEXTEND_MODE,		/// COMMERCIALEXTEND_DIALOG¿¡¼­   GUI_EXTEND_MODE º¯°æ
+	eSTART_PROCESS_BUY_NPC_DURATION_ITEM,	/// durration item ê±°ë˜ ê³¼ì • ì‹œì‘
+	eSTART_PROCESS_BUY_NETPY_DURATION_ITEM,	/// durration item ê±°ë˜ ê³¼ì • ì‹œì‘
+	eSTART_PROCESS_MOVE_DURATION_ITEM,	/// durration item ì•¼ë“œë˜íŠ¸ ì´ë™ ê³¼ì • ì‹œì‘
+	eSET_DURATION_ITEM,					/// ê±°ë˜í•  durration item tblidx setting
+	eSET_DURATION_EXTEND_TARGET_ITEM,	/// ê¸°ê°„ ì—°ì¥í•  Target NtlSobItem setting
+	eCHANGE_COMMERCIALEXTEND_MODE,		/// COMMERCIALEXTEND_DIALOGì—ì„œ   GUI_EXTEND_MODE ë³€ê²½
 	eOPEN_COMMERCIALEXTEND_DIALOG,		/// data: RwInt32 iMode, RwUInt32 uiItemIdx
 
 	// Mascot
@@ -1447,16 +1457,16 @@ enum eLOADING_EVENT_MESSAGE
 };
 
 //////////////////////////////////////////////////////////////////////////
-// ÇÑ±¹ PC¹æ °ü·Ã 
+// í•œêµ­ PCë°© ê´€ë ¨ 
 //////////////////////////////////////////////////////////////////////////
-extern RWS::CEventId g_EventUpdateNetPy;                       ///< NetPy°¡ º¯µ¿ µÇ¾úÀ»¶§
-extern RWS::CEventId g_EventNetMarbleMemberShipNfy;            ///< PC¹æ À¯Àú¶ó´Â ÅëÁö°¡ ¿ÔÀ»¶§
+extern RWS::CEventId g_EventUpdateNetPy;                       ///< NetPyê°€ ë³€ë™ ë˜ì—ˆì„ë•Œ
+extern RWS::CEventId g_EventNetMarbleMemberShipNfy;            ///< PCë°© ìœ ì €ë¼ëŠ” í†µì§€ê°€ ì™”ì„ë•Œ
 
 struct SDboEventUpdateNetPy
 {
-    DWORD   netPy;                                              ///< ÇöÀç ³İÇÇ
-    DWORD   dwAccumlationNetPy;                                 ///< Á¢¼ÓÈÄ ´©Àû NetPy
-    DWORD   timeNextGainTime;                                   ///< ´ÙÀ½ NetPy È¹µæ Å¸ÀÓ (ÃÊ)
+    DWORD   netPy;                                              ///< í˜„ì¬ ë„·í”¼
+    DWORD   dwAccumlationNetPy;                                 ///< ì ‘ì†í›„ ëˆ„ì  NetPy
+    DWORD   timeNextGainTime;                                   ///< ë‹¤ìŒ NetPy íšë“ íƒ€ì„ (ì´ˆ)
 };
 
 struct SDboEventBudokaiPrizeWinnerName
@@ -1481,4 +1491,4 @@ struct SDboEventMascotOperate
 	BYTE	index;
 };
 
-#endif
+#endif

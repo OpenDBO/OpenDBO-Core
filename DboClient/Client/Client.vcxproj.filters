@@ -311,6 +311,9 @@
     <ClCompile Include="Gui\LoginGuiGroup.cpp">
       <Filter>Gui\Component\Login</Filter>
     </ClCompile>
+    <ClCompile Include="VirtualKeyboardGui.cpp">
+      <Filter>Gui\Component\Login</Filter>
+    </ClCompile>
     <ClCompile Include="Gui\LogoGui.cpp">
       <Filter>Gui\Component\Login</Filter>
     </ClCompile>
@@ -1241,6 +1244,9 @@
       <Filter>Gui\Component\Login</Filter>
     </ClInclude>
     <ClInclude Include="Gui\LoginGuiGroup.h">
+      <Filter>Gui\Component\Login</Filter>
+    </ClInclude>
+    <ClInclude Include="VirtualKeyboardGui.h">
       <Filter>Gui\Component\Login</Filter>
     </ClInclude>
     <ClInclude Include="Gui\LogoGui.h">
