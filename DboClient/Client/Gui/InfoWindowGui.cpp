@@ -1290,10 +1290,40 @@ VOID CInfoWindowGui::SetMiniMapInfo(MINIMAPINFO_LIST* pList)
 }
 
 VOID CInfoWindowGui::SetJustWTextInfo( WCHAR* szText )
-{	
+{
 	m_pmdBox->Clear();
 
 	m_pmdBox->SetItem( szText, "justwtext", FONT_TEXT, COMP_TEXT_LEFT, INFOCOLOR_0 );
+
+	m_pmdBox->DrawItem();
+}
+
+VOID CInfoWindowGui::SetCharTitleEffectInfo( const std::wstring* pEffectText )
+{
+	m_pmdBox->Clear();
+
+	m_pmdBox->SetItem( GetDisplayStringManager()->GetString( "DST_CHARTITLE_PROVIDE" ), "charTitleEffectHeader", FONT_TITLE, COMP_TEXT_CENTER, INFOCOLOR_7 );
+
+	if( pEffectText )
+	{
+		char szName[32];
+		INT nLine = 0;
+
+		size_t nStart = 0;
+		while( nStart <= pEffectText->size() )
+		{
+			size_t nEnd = pEffectText->find( L'\n', nStart );
+			if( nEnd == std::wstring::npos )
+				nEnd = pEffectText->size();
+
+			std::wstring wstrLine = pEffectText->substr( nStart, nEnd - nStart );
+
+			sprintf_s( szName, "charTitleEffect%d", nLine++ );
+			m_pmdBox->SetItem( wstrLine.c_str(), szName, FONT_TEXT, COMP_TEXT_CENTER, RANKBATTLE_COLOR_GREEN );
+
+			nStart = nEnd + 1;
+		}
+	}
 
 	m_pmdBox->DrawItem();
 }

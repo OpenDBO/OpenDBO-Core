@@ -85,7 +85,7 @@ VOID CInfoWndManager::ShowInfoWindow( RwBool bShow, RwInt32 eState /* = INFOWND_
 	m_eWndState = (eINFOWNDSTATE)eState;
 	m_eRequestGui = eRequestGui;
 
-	// ÀÏ´Ü Áö¿ò. 
+	// ì¼ë‹¨ ì§€ì›€. 
 	m_pInfoWnd->Show( false );
 
 	if( bShow )
@@ -177,7 +177,7 @@ VOID CInfoWndManager::ShowInfoWindow( RwBool bShow, RwInt32 eState /* = INFOWND_
                 m_pInfoWnd->SetPortalInfo(pPortalToolTip->nPortalID, pPortalToolTip->ePortalIconType, pPortalToolTip->nZenny);
             }            
             break;
-        case INFOWND_FRIEND_LIST:       // Ä£±¸ ¸®½ºÆ®¿¡¼­ ¼¼ºÎ Á¤º¸¸¦ Ç¥½ÃÇÏ±â À§ÇÑ ÅøÆÁ
+        case INFOWND_FRIEND_LIST:       // ì¹œêµ¬ ë¦¬ìŠ¤íŠ¸ì—ì„œ ì„¸ë¶€ ì •ë³´ë¥¼ í‘œì‹œí•˜ê¸° ìœ„í•œ íˆ´íŒ
             m_pInfoWnd->SetFriendInfo(reinterpret_cast<sFriendMember*>(pInstance));
             break;
 		case INFOWND_UPGRADE:
@@ -188,6 +188,9 @@ VOID CInfoWndManager::ShowInfoWindow( RwBool bShow, RwInt32 eState /* = INFOWND_
 			break;
 		case INFOWND_BATTLEATTRIBUTE_ARMOR:
 			m_pInfoWnd->SetBattleAttributeDisplay(reinterpret_cast<stINFOWND_BATTLEATTR*>(pInstance));
+			break;
+		case INFOWND_CHARTITLE_EFFECT:
+			m_pInfoWnd->SetCharTitleEffectInfo(reinterpret_cast<const std::wstring*>(pInstance));
 			break;
 		case INFOWND_QUEST_SEARCH:
 			m_pInfoWnd->SetQuestSearch( reinterpret_cast<QUEST_SEARCH_LIST*>( pInstance ) );
@@ -277,4 +280,4 @@ VOID CInfoWndManager::UnLinkEvent(VOID)
 	// Event Unlink
     UnLinkMsg(g_EventToolTip);
 	UnLinkMsg(g_EventChangeWorldConceptState);
-}
+}
