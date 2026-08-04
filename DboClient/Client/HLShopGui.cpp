@@ -172,6 +172,7 @@ RwBool CHLShopGui::Create()
 	LinkMsg(g_EventHLShopEvent);
 	LinkMsg(g_EventHLShopEventItemBuyRes);
 	LinkMsg(g_EventHLShopEventItemGiftRes);
+	LinkMsg(g_EventDialog);
 
 	Show(false);
 
@@ -186,6 +187,7 @@ void CHLShopGui::Destroy()
 	UnLinkMsg(g_EventHLShopEvent);
 	UnLinkMsg(g_EventHLShopEventItemBuyRes);
 	UnLinkMsg(g_EventHLShopEventItemGiftRes);
+	UnLinkMsg(g_EventDialog);
 
 	m_vecVisibleProducts.clear();
 
@@ -505,6 +507,14 @@ void CHLShopGui::HandleEvents(RWS::CMsg & msg)
 
 		Logic_SetHlsCash(pData->dwCash);
 		m_pstbHaveCash->SetText(Logic_FormatZeni(pData->dwCash));
+	}
+	else if (msg.Id == g_EventDialog)
+	{
+		SDboEventDialog* pData = reinterpret_cast<SDboEventDialog*>(msg.pData);
+		if (pData->iType == DIALOGEVENT_NPC_BYEBYE && pData->iDestDialog == DIALOG_HLSHOP)
+		{
+			OnClickedBtnClose(NULL);
+		}
 	}
 }
 
