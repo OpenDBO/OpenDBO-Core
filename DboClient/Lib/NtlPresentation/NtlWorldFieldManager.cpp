@@ -40,6 +40,7 @@
 
 #include "NtlPLResourceManager.h"
 #include "NtlPLSceneManager.h"
+#include "NtlPostEffectCamera.h"
 
 #include "NtlPLEventGenerator.h"
 
@@ -483,6 +484,11 @@ void CNtlWorldFieldManager::DestroyRpWorld()
 {
 	if (m_pRpWorld)
 	{
+		// The main camera may be attached to this world (MSAA lighting); the
+		// world plugin does not track attached cameras, so detach before the
+		// world is freed.
+		CNtlPostEffectCamera::RemoveMainCameraFromWorld(m_pRpWorld);
+
 		if (!rwLinkListEmpty(&m_pRpWorld->directionalLightList) ||
 			!rwLinkListEmpty(&m_pRpWorld->lightList))
 		{
@@ -6655,6 +6661,11 @@ void CNtlWorldFieldManager::DestroyRpWorld()
 {
 	if (m_pRpWorld)
 	{
+		// The main camera may be attached to this world (MSAA lighting); the
+		// world plugin does not track attached cameras, so detach before the
+		// world is freed.
+		CNtlPostEffectCamera::RemoveMainCameraFromWorld(m_pRpWorld);
+
 		if (!rwLinkListEmpty(&m_pRpWorld->directionalLightList) ||
 			!rwLinkListEmpty(&m_pRpWorld->lightList))
 		{
