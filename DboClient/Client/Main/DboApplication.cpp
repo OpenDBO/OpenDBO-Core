@@ -1096,6 +1096,10 @@ void CDboApplication::SetRenderEnable(RwBool bRender)
 			m_pCamera->CameraShowRaster(GetHWnd(), 0);
 		}
 	}	
+
+	// MSAA level changes are applied between frames (device reset must never
+	// happen inside a begun scene).
+	CNtlPostEffectCamera::FlushMSAALevel();
 }
 
 RwBool CDboApplication::Update(RwReal fTime, RwReal fElapsedTime)
@@ -1149,6 +1153,14 @@ RwBool CDboApplication::Update(RwReal fTime, RwReal fElapsedTime)
 			else 
 			{
 				GetNtlGuiManager()->Update( fElapsedTime );
+			}
+
+			// Name tags / damage text pass: rendered into a separate texture
+			// (occluded by the world z-buffer) so FXAA does not soften them.
+			if( ((CNtlPostEffectCamera*)m_pCamera)->BeginNameCamera() )
+			{
+				m_pVisualManager->RenderDeferredText();
+				((CNtlPostEffectCamera*)m_pCamera)->EndNameCamera();
 			}
 
 			m_pCamera->UpdatePostEffectFilter(); 
@@ -1522,6 +1534,31 @@ RwBool CDboApplication::Create( HINSTANCE hInstance, RwInt32 posX, RwInt32 posY,
 {
 	// Application을 세팅하기 위하여 System의 Option을 읽어들인다.
 	Logic_LoadSystemOption();
+
+	// Apply the saved AA setting before the camera is created.
+	// Stored value: 1 = off, 2 = SSAA 2x, 3 = FXAA, 4 = MSAA 2x, 5 = MSAA 4x, 6 = MSAA 8x
+	{
+		RwInt32 nAAValue = GetNtlStorageManager()->GetIntData( dSTORAGE_GRAPHIC_SSAA );
+		if( nAAValue < 1 ) nAAValue = 1;
+		if( nAAValue > 6 ) nAAValue = 6;
+
+		RwInt32 nAAMode = 0;
+		if( nAAValue == 3 ) nAAMode = 3;
+		else if( nAAValue >= 4 ) nAAMode = nAAValue;
+		CNtlPostEffectCamera::SetAAMode( nAAMode );
+		CNtlPostEffectCamera::SetSSAAScale( nAAValue == 2 ? 2 : 1 );
+
+		// MSAA modes: enable hardware multisampling on the backbuffer
+		// (the driver resets the device and restores all resources).
+		if( nAAValue >= 4 )
+		{
+			RwUInt32 uiLevel = (RwUInt32)CNtlPostEffectCamera::GetMSAALevel();
+			if( RwD3D9ChangeMultiSamplingLevels( uiLevel ) )
+			{
+				CNtlPostEffectCamera::SetCurrentMSAALevel( uiLevel );
+			}
+		}
+	}
 
 	// Debug mode creates a window by referring to the bFullScreen variable that calls this function in WinMain.
 #ifndef NDEBUG

@@ -15,6 +15,8 @@
 #include "NtlInstanceEffect.h"
 #include "NtlPLCharacter.h"
 
+#include "NtlPostEffectCamera.h"
+
 
 // Simulation
 #include "NtlSobManager.h"
@@ -210,6 +212,36 @@ bool Logic_ApplyNtlStorageUnit( CNtlStorageUnit* pUnit, unsigned int uiFlags )
 
 				// FPS LIMIT
 				CNtlApplication::GetInstance()->SetFrameRate(pUnit->GetIntData(dSTORAGE_GRAPHIC_FPS));
+
+				// AA - rebuild the post-effect camera / switch filter on change.
+				// Stored value: 1 = off, 2 = SSAA 2x, 3 = FXAA,
+				// 4 = MSAA 2x, 5 = MSAA 4x, 6 = MSAA 8x
+				RwInt32 nAAValue = pUnit->GetIntData( dSTORAGE_GRAPHIC_SSAA );
+				if( nAAValue < 1 ) nAAValue = 1;
+				if( nAAValue > 6 ) nAAValue = 6;
+				CNtlPostEffectCamera* pPECamera = CNtlPostEffectCamera::GetInstance();
+				if( pPECamera )
+				{
+					RwInt32 nAAMode = ( nAAValue == 3 ) ? 3 : ( nAAValue >= 4 ? nAAValue : 0 );
+					RwInt32 nSSAAScale = ( nAAValue == 2 ) ? 2 : 1;
+
+					// Hardware MSAA level change - deferred: the device reset
+					// runs between frames (CNtlPostEffectCamera::FlushMSAALevel),
+					// never inside a begun scene.
+					RwUInt32 uiTargetLevel = ( nAAValue >= 4 ) ? (RwUInt32)CNtlPostEffectCamera::GetMSAALevel() : 1;
+					if( CNtlPostEffectCamera::GetCurrentMSAALevel() != (RwInt32)uiTargetLevel )
+					{
+						CNtlPostEffectCamera::RequestMSAALevel( uiTargetLevel );
+					}
+
+					if( CNtlPostEffectCamera::GetAAMode() != nAAMode ||
+						CNtlPostEffectCamera::GetSSAAScale() != nSSAAScale )
+					{
+						CNtlPostEffectCamera::SetAAMode( nAAMode );
+						CNtlPostEffectCamera::SetSSAAScale( nSSAAScale );
+						pPECamera->ApplySSAA();
+					}
+				}
 			}
 		}
 		break;
