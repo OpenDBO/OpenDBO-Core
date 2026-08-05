@@ -59,6 +59,8 @@ RwBool COptionGraphic::Create( COptionWindowGui* pOptionWindow )
 	m_pCbbResolution->GetButton()->SetClippingMode( TRUE );
 	m_pCbbResolution->GetStaticBox()->SetClippingMode( TRUE );
 	m_pCbbResolution->GetListBox()->SetClippingMode( TRUE );
+	// Force the packed .frm value so the list always scrolls.
+	m_pCbbResolution->SetMaxVisibleItems(5);
 	m_slotListToggled = m_pCbbResolution->SigListToggled().Connect( this, &COptionGraphic::OnListToggled );
 
 	m_pStbGamma = (gui::CStaticBox*)GetComponent("stbGammaTitle");			///< ���
@@ -80,11 +82,50 @@ RwBool COptionGraphic::Create( COptionWindowGui* pOptionWindow )
 	m_pScbFps->GetIncreaseButton()->SetClippingMode(TRUE);
 	m_pScbFps->GetDecreaseButton()->SetClippingMode(TRUE);
 	m_pScbFps->SetRange(30, 240);
-	m_pScbFps->SetValue(GetNtlStorageManager()->GetIntData(dSTORAGE_GRAPHIC_FPS)); // set default value
-	SetFpsToolTip(m_pScbFps->GetValue());
+
+	// FPS limiter checkbox: checked = limiter on (slider enabled),
+	// unchecked = unlocked (slider disabled and dimmed).
+	m_pChkFpsLimit = (gui::CButton*)GetComponent("chkUnlimitedFps");
+	m_pChkFpsLimit->SetToolTip(L"Enable FPS Limit");
+	m_slotFpsLimitToggled = m_pChkFpsLimit->SigToggled().Connect(this, &COptionGraphic::OnFpsLimitToggled);
 
 	m_slotFpsSliderMoved = m_pScbFps->SigSliderMoved().Connect(this, &COptionGraphic::OnFpsSliderMoved);
 	m_slotFpsValueChanged = m_pScbFps->SigValueChanged().Connect(this, &COptionGraphic::OnFpsSliderMoved);
+
+	// Load FPS value and set limiter checkbox state
+	{
+		RwInt32 iFps = GetNtlStorageManager()->GetIntData(dSTORAGE_GRAPHIC_FPS);
+		RwBool bLimit = (iFps != 0);
+		m_pChkFpsLimit->SetDown(bLimit);
+		if (bLimit)
+		{
+			SetFpsSliderEnabled(TRUE);
+			m_pScbFps->SetValue(iFps);
+			SetFpsToolTip(iFps);
+		}
+		else
+		{
+			SetFpsSliderEnabled(FALSE);
+		}
+	}
+
+	m_pStbSSAATitle = (gui::CStaticBox*)GetComponent("stbSSAATitle");
+	m_pStbSSAATitle->SetText( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_SSAA" ) );
+	m_pCbbSSAA = (gui::CComboBox*)GetComponent("cbbSSAA");
+	m_pCbbSSAA->GetButton()->SetClippingMode( TRUE );
+	m_pCbbSSAA->GetStaticBox()->SetClippingMode( TRUE );
+	m_pCbbSSAA->GetListBox()->SetClippingMode( TRUE );
+	m_pCbbSSAA->AddItem( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_SSAA_OFF" ), 1 );
+	m_pCbbSSAA->AddItem( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_SSAA_2X" ), 2 );
+	m_pCbbSSAA->AddItem( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_SSAA_FXAA" ), 3 );
+	m_pCbbSSAA->AddItem( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_SSAA_MSAA2X" ), 4 );
+	m_pCbbSSAA->AddItem( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_SSAA_MSAA4X" ), 5 );
+	m_pCbbSSAA->AddItem( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_SSAA_MSAA8X" ), 6 );
+	// Force 5 visible items so the 6th shows a scrollbar regardless of what
+	// the packed .frm declares.
+	m_pCbbSSAA->SetMaxVisibleItems(5);
+	SetSSAAValue( GetNtlStorageManager()->GetIntData( dSTORAGE_GRAPHIC_SSAA ) );
+	m_slotSSAAChanged = m_pCbbSSAA->SigSelected().Connect( this, &COptionGraphic::OnSSAAChanged );
 
 	m_pBtnWindowMode = (gui::CButton*)GetComponent("btnWindowMode");		///< ������ ��� ���
 	m_pBtnWindowMode->SetText( GetDisplayStringManager()->GetString( "DST_OPTION_GRAPHIC_WINDOWMODE" ) );
@@ -317,10 +358,29 @@ void COptionGraphic::OnInit()
 	SetFpsToolTip(m_pScbFps->GetValue());
 	CNtlApplication::m_uiFrameRate = m_pScbFps->GetValue();*/
 
+	// FPS limiter checkbox: 0 = unlocked, >0 = FPS limit
+	{
+		RwInt32 iFps = GetNtlStorageManager()->GetIntData(dSTORAGE_GRAPHIC_FPS);
+		RwBool bLimit = (iFps != 0);
+		m_pChkFpsLimit->SetDown(bLimit);
+		if (bLimit)
+		{
+			SetFpsSliderEnabled(TRUE);
+			m_pScbFps->SetValue(iFps);
+			SetFpsToolTip(iFps);
+		}
+		else
+		{
+			SetFpsSliderEnabled(FALSE);
+		}
+	}
+
 	// ��� �ӽ� ������ �����Ѵ�.
 	/*m_pScbTextureQuality->SetValue( 3 );*/
 	//m_pScbCharacterDist->SetValue( 3 );
 	/*m_pBtnUpgradeEffect->SetDown( true );*/
+
+	SetSSAAValue(GetNtlStorageManager()->GetIntData(dSTORAGE_GRAPHIC_SSAA));
 }
 
 void COptionGraphic::OnReset()
@@ -341,6 +401,24 @@ void COptionGraphic::OnReset()
 	m_pScbFps->SetValue(GetNtlStorageManager()->GetIntData(dSTORAGE_GRAPHIC_FPS));
 	SetFpsToolTip(m_pScbFps->GetValue());
 
+	// FPS limiter reset
+	{
+		RwInt32 iFps = GetNtlStorageManager()->GetIntData(dSTORAGE_GRAPHIC_FPS);
+		RwBool bLimit = (iFps != 0);
+		m_pChkFpsLimit->SetDown(bLimit);
+		if (bLimit)
+		{
+			SetFpsSliderEnabled(TRUE);
+			m_pScbFps->SetValue(iFps);
+			SetFpsToolTip(iFps);
+		}
+		else
+		{
+			SetFpsSliderEnabled(FALSE);
+		}
+	}
+
+	SetSSAAValue(GetNtlStorageMTContainer()->GetDefaultInt(dSTORAGE_GRAPHIC_SSAA));
 }
 
 void COptionGraphic::OnOk()
@@ -348,7 +426,10 @@ void COptionGraphic::OnOk()
 	// Apply
 	SetGammaValue( m_pScbGamma->GetValue() );
 	SetVideoMode( m_pCbbResolution->GetSelectedItemIndex() );
-	SetFpsValue(m_pScbFps->GetValue());
+	SetFpsValue(m_pChkFpsLimit->IsDown() ? m_pScbFps->GetValue() : 0);
+
+	// AA: store the value of the selected item (1 = off, 2 = SSAA 2x)
+	GetNtlStorageManager()->SetData( dSTORAGE_GRAPHIC_SSAA, (RwInt32)m_pCbbSSAA->GetItemData( m_pCbbSSAA->GetSelectedItemIndex() ) );
 
 	GetNtlStorageManager()->SetData( dSTORAGE_GRAPHIC_WINDOW_MODE, m_pBtnWindowMode->IsDown() );
 
@@ -377,8 +458,24 @@ void COptionGraphic::OnCancel()
 {
 	CNtlApplication::GetInstance()->SetGammaRamp( GetNtlStorageManager()->GetFloatData(dSTORAGE_GRAPHIC_GAMMA) );
 
-	m_pScbFps->SetValue(GetNtlStorageManager()->GetIntData(dSTORAGE_GRAPHIC_FPS));
-	SetFpsToolTip(m_pScbFps->GetValue());
+	// Restore FPS limiter state
+	{
+		RwInt32 iFps = GetNtlStorageManager()->GetIntData(dSTORAGE_GRAPHIC_FPS);
+		RwBool bLimit = (iFps != 0);
+		m_pChkFpsLimit->SetDown(bLimit);
+		if (bLimit)
+		{
+			SetFpsSliderEnabled(TRUE);
+			m_pScbFps->SetValue(iFps);
+			SetFpsToolTip(iFps);
+		}
+		else
+		{
+			SetFpsSliderEnabled(FALSE);
+		}
+	}
+
+	SetSSAAValue(GetNtlStorageManager()->GetIntData(dSTORAGE_GRAPHIC_SSAA));
 }
 
 void COptionGraphic::OnHandleEvents( RWS::CMsg &pMsg )
@@ -601,7 +698,8 @@ void COptionGraphic::SetFpsValue(RwInt32 iValue)
 {
 	GetNtlStorageManager()->SetData(dSTORAGE_GRAPHIC_FPS, iValue);
 
-	CNtlApplication::m_uiFrameRate = iValue;
+	// 0 = unlocked (the app main loop skips the throttle), >0 = FPS limit
+	CNtlApplication::m_uiFrameRate = (iValue > 0) ? iValue : 0;
 }
 
 void COptionGraphic::OnFpsSliderMoved(RwInt32 iValue)
@@ -614,6 +712,51 @@ void COptionGraphic::SetFpsToolTip(RwInt32 iValue)
 	char toolTipBuf[50];
 	sprintf(toolTipBuf, "%d", iValue);
 	m_pScbFps->SetToolTip(toolTipBuf);
+}
+
+void COptionGraphic::SetFpsSliderEnabled(RwBool bEnable)
+{
+	if (bEnable)
+	{
+		m_pScbFps->Enable(true);
+		m_pScbFps->SetAlpha(255);
+		m_pStbFps->SetTextColor(RGB(255, 255, 255), TRUE);
+	}
+	else
+	{
+		// Disabled state: dim the slider track/thumb and gray the label.
+		m_pScbFps->Enable(false);
+		m_pScbFps->SetAlpha(128);
+		m_pStbFps->SetTextColor(RGB(128, 128, 128), TRUE);
+	}
+}
+
+void COptionGraphic::OnFpsLimitToggled(gui::CComponent* pComponent, bool bDown)
+{
+	// bDown = limiter enabled (slider usable), otherwise unlocked.
+	SetFpsSliderEnabled(bDown);
+}
+
+void COptionGraphic::SetSSAAValue(RwInt32 iValue)
+{
+	if (iValue < 1) iValue = 1;
+	if (iValue > 6) iValue = 6;
+
+	// Stored value: 1 = off, 2 = SSAA 2x, 3 = FXAA,
+	// 4 = MSAA 2x, 5 = MSAA 4x, 6 = MSAA 8x.
+	// Select the matching combo index.
+	RwInt32 nIndex = iValue - 1;
+	m_pCbbSSAA->SelectItem(nIndex);
+}
+
+void COptionGraphic::OnSSAAChanged(RwInt32 iValue)
+{
+	SetSSAAToolTip(iValue);
+}
+
+void COptionGraphic::SetSSAAToolTip(RwInt32 iValue)
+{
+	m_pCbbSSAA->SetToolTip( GetDisplayStringManager()->GetString( "DST_OPTION_TOOLTIP_SSAA" ) );
 }
 
 void COptionGraphic::SelectVideoMode( RwInt32 iWidth, RwInt32 iHeight, RwInt32 iColorDepth )

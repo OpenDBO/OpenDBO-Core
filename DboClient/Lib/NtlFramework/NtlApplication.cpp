@@ -1007,13 +1007,18 @@ int CNtlApplication::MessagePump()
 		else
 		{
 			QueryPerformanceCounter(&start);
-			RwUInt32 uiRateTime = (1000000 / m_uiFrameRate); // in microseconds
 
 			Update();
 
-			do {
-				QueryPerformanceCounter(&end);
-			} while ((end.QuadPart - start.QuadPart) * 1000000.0 / frequency.QuadPart < uiRateTime);
+			// 0 = unlimited frame rate: skip the throttle spin entirely.
+			if (m_uiFrameRate > 0)
+			{
+				RwUInt32 uiRateTime = (1000000 / m_uiFrameRate); // in microseconds
+
+				do {
+					QueryPerformanceCounter(&end);
+				} while ((end.QuadPart - start.QuadPart) * 1000000.0 / frequency.QuadPart < uiRateTime);
+			}
 		}
 	}
 
