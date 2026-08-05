@@ -33,7 +33,7 @@ CNtlStorageUnit::~CNtlStorageUnit()
 }
 
 /**
-* \brief Storage UnitÀ» »ý¼ºÇÑ´Ù. Type°ú Serializer¸¦ ¹Þ¾Æ¼­ ¾Ë¸Â°Ô »ý¼ºÇÑ´Ù.
+* \brief Storage Unitï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. Typeï¿½ï¿½ Serializerï¿½ï¿½ ï¿½Þ¾Æ¼ï¿½ ï¿½Ë¸Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 */
 bool CNtlStorageUnit::Create( eNTL_STORAGE_TYPE eType )
 {
@@ -65,6 +65,7 @@ bool CNtlStorageUnit::Create( eNTL_STORAGE_TYPE eType )
 		INSERT_DEFAULT_VALUE(m_mapStorageData,dSTORAGE_GRAPHIC_CHARACTER_EDGE);
 		INSERT_DEFAULT_VALUE(m_mapStorageData, dSTORAGE_GRAPHIC_SHOW_FPS);
 		INSERT_DEFAULT_VALUE(m_mapStorageData, dSTORAGE_GRAPHIC_FPS);
+		INSERT_DEFAULT_VALUE(m_mapStorageData, dSTORAGE_GRAPHIC_SSAA);
 		break;
 	case eNTL_STORAGE_SOUND:
 		INSERT_DEFAULT_VALUE(m_mapStorageData,dSTORAGE_SOUND_MAIN_VOLUME);
@@ -177,7 +178,7 @@ bool CNtlStorageUnit::GetData( unsigned int uiKey, std::string& strOut )
 	DATAMAP::iterator it = m_mapStorageData.find( uiKey );
 	if( it == m_mapStorageData.end() )
 	{
-		// Key¸¦ Ã£Áö ¸øÇß´Ù.
+		// Keyï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ß´ï¿½.
 		return false;
 	}
 
@@ -190,20 +191,20 @@ bool CNtlStorageUnit::SetData( unsigned int uiKey, std::string strData )
 	DATAMAP::iterator it = m_mapStorageData.find( uiKey );
 	if( it == m_mapStorageData.end() )
 	{
-		// Key¸¦ Ã£Áö ¸øÇß´Ù¸é ¸ÅÇÎ Å×ÀÌºí ÄÁÅ×ÀÌ³Ê¿¡ Key°¡ Á¸ÀçÇÏ´ÂÁö È®ÀÎ
+		// Keyï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ß´Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³Ê¿ï¿½ Keyï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 		eNTL_STORAGE_TYPE eType = GetNtlStorageMTContainer()->GetStorageType( uiKey );
 		if( eType == eNTL_STORAGE_INVALID )
 		{
 			return false;
 		}
 
-		// ÇöÀç UnitÀÇ TypeÀÌ key°¡ °¡Áö°í ÀÖ´Â Type°¡ ÀÏÄ¡ÇÏ´ÂÁö È®ÀÎÇÑ´Ù.
+		// ï¿½ï¿½ï¿½ï¿½ Unitï¿½ï¿½ Typeï¿½ï¿½ keyï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ Typeï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Ï´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ñ´ï¿½.
 		if( eType != m_eStorageType )
 		{
 			return false;
 		}
 
-		// ÀÏÄ¡ ÇÑ´Ù¸é Key°ª¿¡ ¾Ë¸ÂÀº µ¥ÀÌÅ¸¸¦ ¸¸µé¾î¼­ ³Ö¾îÁØ´Ù.
+		// ï¿½ï¿½Ä¡ ï¿½Ñ´Ù¸ï¿½ Keyï¿½ï¿½ï¿½ï¿½ ï¿½Ë¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½î¼­ ï¿½Ö¾ï¿½ï¿½Ø´ï¿½.
 		m_mapStorageData[uiKey] = strData;
 		return true;
 	}
@@ -257,7 +258,7 @@ bool CNtlStorageUnit::GetBoolData( unsigned int uiKey )
 	DATAMAP::iterator it = m_mapStorageData.find( uiKey );
 	if( it == m_mapStorageData.end() )
 	{
-		// Key¸¦ Ã£Áö ¸øÇß´Ù.
+		// Keyï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ß´ï¿½.
 		return false;
 	}
 
@@ -272,7 +273,7 @@ int CNtlStorageUnit::GetIntData( unsigned int uiKey )
 	DATAMAP::iterator it = m_mapStorageData.find( uiKey );
 	if( it == m_mapStorageData.end() )
 	{
-		// Key¸¦ Ã£Áö ¸øÇß´Ù.
+		// Keyï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ß´ï¿½.
 		return 0;
 	}
 
@@ -284,7 +285,7 @@ float CNtlStorageUnit::GetFloatData( unsigned int uiKey )
 	DATAMAP::iterator it = m_mapStorageData.find( uiKey );
 	if( it == m_mapStorageData.end() )
 	{
-		// Key¸¦ Ã£Áö ¸øÇß´Ù.
+		// Keyï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ß´ï¿½.
 		return 0.0f;
 	}
 
@@ -296,7 +297,7 @@ std::string CNtlStorageUnit::GetStringData( unsigned int uiKey )
 	DATAMAP::iterator it = m_mapStorageData.find( uiKey );
 	if( it == m_mapStorageData.end() )
 	{
-		// Key¸¦ Ã£Áö ¸øÇß´Ù.
+		// Keyï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ß´ï¿½.
 		return std::string("");
 	}
 
