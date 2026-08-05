@@ -658,7 +658,7 @@ VOID CLogInGui::ResizeEventHandler(RWS::CMsg& msg)
 	LocateComponent(pPacket->iWidht, pPacket->iHeight);
 }
 
-int CLogInGui::KeyboardDownHandler(unsigned int uiKeyData)
+int CLogInGui::KeyboardDownHandler(uintptr_t uiKeyData)
 {
 	SKeyData* pData = (SKeyData*)uiKeyData;
 
