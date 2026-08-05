@@ -26,6 +26,7 @@
 #include "NtlProfiler.h"
 #include "NtlPLOccluder_Base.h"
 #include "NtlPLCullingScheduling.h"
+#include "NtlPostEffectCamera.h"
  
 #include "NtlPLCharacter.h"
  
@@ -2564,7 +2565,17 @@ void CNtlPLCharacter::SetInkThickness(RwReal fThickness)
 	if( !GetCharScheduleResInfo()->bLoadComplete )
 		return;
 
-	RpToonInkSetOverallThickness(m_ToonData.pToonInk, fThickness);
+	// SSAA: the scene renders at a higher internal resolution, so the toon
+	// outline would appear thinner after downsampling. Boost it by the SSAA
+	// scale (2x -> 2x thickness, 4x -> 4x thickness).
+	RwReal fAppliedThickness = fThickness;
+	RwInt32 nSSAAScale = CNtlPostEffectCamera::GetSSAAScale();
+	if( nSSAAScale > 1 )
+	{
+		fAppliedThickness = fThickness * (RwReal)nSSAAScale;
+	}
+
+	RpToonInkSetOverallThickness(m_ToonData.pToonInk, fAppliedThickness);
 }
 
 void CNtlPLCharacter::ClearLoopEffect()
