@@ -203,6 +203,8 @@ public:
 	void CreateRpChargeEffect(RwChar *pKey);
 	void DeleteRpChargeEffect();
 
+    CNtlPLEntity* CreateAttachedGroundEffect(const RwChar* pKey, const RwChar* pPurpleKey, const RwChar* pRedKey);
+
     // Transform
     void						SobChangeAdult(CNtlPLCharacter* pPLCharacter);                    ///< UI Model이 체인지 되었을때
     CNtlSobCharProxyTransform*  GetProxyTransform() {return m_pProxyTransform;}    

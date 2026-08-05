@@ -1279,21 +1279,7 @@ void CNtlSobCharDecorationProxy::CreateGuardEffect(RwChar* pKey)
 		m_pGuardEffect->SetScale(m_pPLCharacter->GetScale());
 		m_pPLCharacter->AttachBone((CNtlPLAttach*)m_pGuardEffect, "nullroot");
 
-		if (strcmp(pKey, NTL_VID_GUARD_PURPLE) == 0)
-		{
-			m_pRpGuardGroundEffect = GetSceneManager()->CreateEntity(PLENTITY_EFFECT, NTL_VID_GROUND_EFFECT_BIG);
-			m_pRpGuardGroundEffect->SetPosition(&m_pSobObj->GetSobProxy()->GetPosition());
-			m_pRpGuardGroundEffect->SetScale(m_pPLCharacter->GetScale());
-			m_pPLCharacter->AttachBone((CNtlPLAttach*)m_pRpGuardGroundEffect, "nullroot");
-		}
-		else if (strcmp(pKey, NTL_VID_GUARD_REDT) == 0)
-		{
-			m_pRpGuardGroundEffect = GetSceneManager()->CreateEntity(PLENTITY_EFFECT, NTL_VID_GROUND_EFFECT_SMALL);
-			m_pRpGuardGroundEffect->SetPosition(&m_pSobObj->GetSobProxy()->GetPosition());
-			m_pRpGuardGroundEffect->SetScale(m_pPLCharacter->GetScale());
-			m_pPLCharacter->AttachBone((CNtlPLAttach*)m_pRpGuardGroundEffect, "nullroot");
-		}
-
+		m_pRpGuardGroundEffect = CreateAttachedGroundEffect(pKey, NTL_VID_GUARD_PURPLE, NTL_VID_GUARD_REDT);
 	}
 }
 
@@ -1323,22 +1309,8 @@ void CNtlSobCharDecorationProxy::CreateRpChargeEffect(RwChar* pKey)
 		m_pRpChargeEffect->SetScale(m_pPLCharacter->GetScale());
 		m_pPLCharacter->AttachBone((CNtlPLAttach*)m_pRpChargeEffect, "nullroot");
 
-		if (strcmp(pKey, NTL_VID_RP_CHARGE_PURPLE) == 0)
-		{
-			m_pRpChargeGroundEffect = GetSceneManager()->CreateEntity(PLENTITY_EFFECT, NTL_VID_GROUND_EFFECT_BIG);
-			m_pRpChargeGroundEffect->SetPosition(&m_pSobObj->GetSobProxy()->GetPosition());
-			m_pRpChargeGroundEffect->SetScale(m_pPLCharacter->GetScale());
-			m_pPLCharacter->AttachBone((CNtlPLAttach*)m_pRpChargeGroundEffect, "nullroot");
-		}
-		else if (strcmp(pKey, NTL_VID_RP_CHARGE_REDT) == 0)
-		{
-			m_pRpChargeGroundEffect = GetSceneManager()->CreateEntity(PLENTITY_EFFECT, NTL_VID_GROUND_EFFECT_SMALL);
-			m_pRpChargeGroundEffect->SetPosition(&m_pSobObj->GetSobProxy()->GetPosition());
-			m_pRpChargeGroundEffect->SetScale(m_pPLCharacter->GetScale());
-			m_pPLCharacter->AttachBone((CNtlPLAttach*)m_pRpChargeGroundEffect, "nullroot");
-		}
+		m_pRpChargeGroundEffect = CreateAttachedGroundEffect(pKey, NTL_VID_RP_CHARGE_PURPLE, NTL_VID_RP_CHARGE_REDT);
 	}
-
 }
 
 void CNtlSobCharDecorationProxy::DeleteRpChargeEffect()
@@ -1507,6 +1479,34 @@ void CNtlSobCharDecorationProxy::SobChangeAdult( CNtlPLCharacter* pPLCharacter )
         m_pProxyTransform->SetActor((CNtlSobActor*)m_pSobObj, pPLCharacter);
         m_pProxyTransform->PostChangeAdult();
     }
+}
+
+CNtlPLEntity* CNtlSobCharDecorationProxy::CreateAttachedGroundEffect(const RwChar* pKey, const RwChar* pPurpleKey, const RwChar* pRedKey)
+{
+	const RwChar* pGroundKey = NULL;
+
+	if (strcmp(pKey, pPurpleKey) == 0)
+	{
+		pGroundKey = NTL_VID_GROUND_EFFECT_BIG;
+	}
+	else if (strcmp(pKey, pRedKey) == 0)
+	{
+		pGroundKey = NTL_VID_GROUND_EFFECT_SMALL;
+	}
+	else
+	{
+		return NULL;
+	}
+
+	CNtlPLEntity* pGroundEffect = GetSceneManager()->CreateEntity(PLENTITY_EFFECT, pGroundKey);
+	if (pGroundEffect)
+	{
+		pGroundEffect->SetPosition(&m_pSobObj->GetSobProxy()->GetPosition());
+		pGroundEffect->SetScale(m_pPLCharacter->GetScale());
+		m_pPLCharacter->AttachBone((CNtlPLAttach*)pGroundEffect, "nullroot");
+	}
+
+	return pGroundEffect;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
