@@ -2,7 +2,7 @@
  *
  * File			: NtlPLSceneManager.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ï¿½ï¿½)NTL
  * Date			: 2005. 8. 01	
  * Abstract		: Presentation scene manager base class 
  *****************************************************************************
@@ -14,6 +14,8 @@
 #define __NTL_PLVISUALMANAGER_H__
 
 #include <map>
+#include <list>
+#include <utility>
 #include "rpcollis.h"
 #include "ceventhandler.h"
 #include "NtlPLSceneManager.h"
@@ -37,13 +39,13 @@ class CNtlPicking;
 
 /**
  * \ingroup NtlPresentation
- * client application¿¡ visual °´Ã¼ÀÇ °ü¸®ÇÏ´Â classÀÌ´Ù.
- * PL entityµéÀº °¢ÀÚÀÇ layer¸¦ °¡Áö°í ÀÖ°í, layer ¼ø¼­µÇ·Î update ¹× rendering ÇÑ´Ù.
- * renderware¿¡¼­´Â alpha sortingÀÌ ¾ÈµÇ°í ÀÖÀ¸¹Ç·Î , object ´ÜÀ§·Î layer¸¦ ÀÌ¿ëÇÏ¿© alpha sortingÀ» ÇÑ´Ù.
- * ¶ÇÇÑ PL entity¸¦ »ý¼º ¹× ¼Ò¸êÀÇ interface¸¦ Á¦°øÇÏ°í ÀÖÀ¸¸ç, »ý¼º/¼Ò¸ê °ü¸®¸¦ ÀºÆó½ÃÅ³¼ö ÀÖÀ¸¸ç, 
- * factory ¹æ½ÄÀ¸·Î »ý¼º/¼Ò¸êÀ» °ü¸®ÇÑ´Ù.
- * PL entity¸¦ Ãß°¡/»èÁ¦ interface ÇÔ¼ö¸¦ »ç¿ëÇÔÀ¸·Î½á, PL entity °´Ã¼ °ü¸®¸¦ ÀºÆó½ÃÅ³ ¼ö ÀÖÀ¸¸ç, 
- * stl ¿¬°ü ¹è¿­ mapÀ» »ç¿ëÇÑ´Ù.
+ * client applicationï¿½ï¿½ visual ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ classï¿½Ì´ï¿½.
+ * PL entityï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ layerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö°ï¿½, layer ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ update ï¿½ï¿½ rendering ï¿½Ñ´ï¿½.
+ * renderwareï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ alpha sortingï¿½ï¿½ ï¿½ÈµÇ°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ , object ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ layerï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ï¿ï¿½ alpha sortingï¿½ï¿½ ï¿½Ñ´ï¿½.
+ * ï¿½ï¿½ï¿½ï¿½ PL entityï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ò¸ï¿½ï¿½ï¿½ interfaceï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½/ï¿½Ò¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, 
+ * factory ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½/ï¿½Ò¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+ * PL entityï¿½ï¿½ ï¿½ß°ï¿½/ï¿½ï¿½ï¿½ï¿½ interface ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î½ï¿½, PL entity ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Å³ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, 
+ * stl ï¿½ï¿½ï¿½ï¿½ ï¿½è¿­ mapï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
  *
  */
 
@@ -56,25 +58,28 @@ protected:
 	// active
 	RwBool m_bThreadLoad;
 
-	// sortingÀ» À§ÇÑ container¸¦ ÁØºñÇÑ´Ù.
+	// sortingï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ containerï¿½ï¿½ ï¿½Øºï¿½ï¿½Ñ´ï¿½.
 	CNtlPLAtomicSorterContainter *m_pSortContainer;
 
+	// FXAA deferred text: name tags / damage text collected during Render()
+	// and drawn after the composite pass (sorted far -> near).
+	std::list<std::pair<RwReal, CNtlPLEntity*>> m_listDeferredText;
 	// Dojo Data
 	CNtlPLDojoContainer	*m_pDojoContainer;
 	
 	CNtlPLDummyWorld	*m_pRWWorldEntity;		
-	CNtlPLWorldEntity	*m_pWorldEntity;		/** ¼Óµµ¸¦ ºü¸£°Ô ÇÏ±â À§ÇÑ ÂüÁ¶ º¯¼ö. */
-	CNtlPLSky			*m_pSkyEntity;			/** ¼Óµµ¸¦ ºü¸£°Ô ÇÏ±â À§ÇÑ ÂüÁ¶ º¯¼ö. */
-	CNtlPLFog			*m_pFogEntity;			/** ¼Óµµ¸¦ ºü¸£°Ô ÇÏ±â À§ÇÑ ÂüÁ¶ º¯¼ö. */	
-	CNtlPLPlant			*m_pPlantEntity;		/** ¼Óµµ¸¦ ºü¸£°Ô ÇÏ±â À§ÇÑ ÂüÁ¶ º¯¼ö. */	
+	CNtlPLWorldEntity	*m_pWorldEntity;		/** ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. */
+	CNtlPLSky			*m_pSkyEntity;			/** ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. */
+	CNtlPLFog			*m_pFogEntity;			/** ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. */	
+	CNtlPLPlant			*m_pPlantEntity;		/** ï¿½Óµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. */	
 	CNtlPLWater			*m_pWaterEntity;
-	CNtlPicking			*m_pPickingObj;			/** ·»´õ¸µ Picking **/
-    CNtlPLEntity        *m_pSoundListener;      /** Sound¸¦ µè´Â À§Ä¡°¡ µÇ´Â ¸®½º³Ê °´Ã¼ */
+	CNtlPicking			*m_pPickingObj;			/** ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Picking **/
+    CNtlPLEntity        *m_pSoundListener;      /** Soundï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ */
 
 	typedef std::map< RwInt32, CNtlPLRenderGroup*, std::less<RwUInt32> > MapRenderGroup;
-	MapRenderGroup m_mapInstanceGroup;	/** instance¸¦ º¸°üÇÑ´Ù. */
-	MapRenderGroup m_mapUpdateGroup;	/** update ÇÏ´Â entityÀ» µû·Î º¸°üÇÑ´Ù. */
-	MapRenderGroup m_mapRenderGroup;	/** rendering ÇÏ´Â entityÀ» µû·Î º¸°üÇÑ´Ù. */
+	MapRenderGroup m_mapInstanceGroup;	/** instanceï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. */
+	MapRenderGroup m_mapUpdateGroup;	/** update ï¿½Ï´ï¿½ entityï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. */
+	MapRenderGroup m_mapRenderGroup;	/** rendering ï¿½Ï´ï¿½ entityï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½. */
 
 	typedef std::map<CNtlPLEntity*, CNtlPLEntity*> MapReservedUpdate;
 	MapReservedUpdate m_mapAddUpdate;
@@ -89,7 +94,7 @@ protected:
 	// auto delete call
 	RwUInt32	m_uiAutoDelAlarmFlags;
 
-    // ·»´õ ·¹ÀÌ¾î Visible Å×½ºÆ®¿ë 
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½ Visible ï¿½×½ï¿½Æ®ï¿½ï¿½ 
     std::map<RwUInt32, RwBool> m_mapRenderVisible;
 
 	// Culling Scheduling
@@ -155,39 +160,43 @@ public:
 	~CNtlPLVisualManager();
 
 	/**
-	*  visual manager °´Ã¼°¡ »ý¼ºµÈ ´ÙÀ½ È£ÃâÇÏ´Â ÇÔ¼ö.
+	*  visual manager ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½.
 	*  \see Destroy
 	*/
 	virtual RwBool Create(void);
 	
 	/**
-	*  visual manager »èÁ¦µÇ±â Àü¿¡ È£ÃâÇÏ´Â ÇÔ¼ö.
+	*  visual manager ï¿½ï¿½ï¿½ï¿½ï¿½Ç±ï¿½ ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½.
 	*  \see Create
 	*/
 	virtual void Destroy(void);
 
 	/**
-	*  vitual manager update interface ÇÔ¼ö
+	*  vitual manager update interface ï¿½Ô¼ï¿½
 	*  \param fElapsed update delta time
 	*/
 	virtual void Update(RwReal fElapsed);
 
 	/**
-    *  presentation scene manager update Àü¿¡ ui¿¡ entity¸¦ rendering ÇÏ±â À§ÇÑ ÇÔ¼ö.
-	* render ware´Â camera updateµéÀÌ °ãÄ¡¸é ¾ÈµÈ´Ù.
-	* UIµµ camera texture¸¦ »ç¿ëÇÏ¹Ç·Î, main scene camera¿Í update°¡ °ãÄ¡¸é ¾ÈµÈ´Ù.
+    *  presentation scene manager update ï¿½ï¿½ï¿½ï¿½ uiï¿½ï¿½ entityï¿½ï¿½ rendering ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½.
+	* render wareï¿½ï¿½ camera updateï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ÈµÈ´ï¿½.
+	* UIï¿½ï¿½ camera textureï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¹Ç·ï¿½, main scene cameraï¿½ï¿½ updateï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ÈµÈ´ï¿½.
     *
     */
 	virtual void UpdateBeforeCamera(RwReal fElapsed);
 
 	/**
-	*  vitual manager render interface ÇÔ¼ö
+	*  vitual manager render interface ï¿½Ô¼ï¿½
 	*/
 	virtual void Render(void);
 	virtual void Render4RWWorld(void);
 
+	// Renders name tags / damage text deferred after the composite pass so
+	// post-process filters (FXAA) do not affect them.
+	void RenderDeferredText(void);
+
 	/**
-    *  visual manager postrender ÇÔ¼ö.
+    *  visual manager postrender ï¿½Ô¼ï¿½.
     *
     */
 	virtual void PostRender(void);
@@ -205,101 +214,101 @@ public:
 	virtual void ResetGuiManager(RwInt32 iScreenWidth, RwInt32 iScreenHeight);
 
 	/**
-	*  PL entity »ý¼º interface ÇÔ¼ö.
-	*  \param pEntityName´Â entity name.
-	*  \param pPropertyName´Â entity¿¡ Àû¿ëµÉ property name.
-	*  \return »ý¼ºµÈ entity pointer
+	*  PL entity ï¿½ï¿½ï¿½ï¿½ interface ï¿½Ô¼ï¿½.
+	*  \param pEntityNameï¿½ï¿½ entity name.
+	*  \param pPropertyNameï¿½ï¿½ entityï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ property name.
+	*  \return ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ entity pointer
 	*  \see DeleteEntity
 	*/
 	virtual CNtlPLEntity* CreateEntity(ENtlPLEntityType eType, const RwChar *pKey, const SPLEntityCreateParam *pParam = NULL);
 
 	/**
-	*  PL entity ¼Ò¸ê interface ÇÔ¼ö.
-	*  \param pEntity´Â À¯È¿ÇÑ entity instance pointer.
+	*  PL entity ï¿½Ò¸ï¿½ interface ï¿½Ô¼ï¿½.
+	*  \param pEntityï¿½ï¿½ ï¿½ï¿½È¿ï¿½ï¿½ entity instance pointer.
 	*  \see CreateEntity
 	*/
 	virtual void DeleteEntity(CNtlPLEntity *pEntity);
 
 	/**
-	*  PL entity¸¦ entity containter¿¡ addÇÏ´Â interface ÇÔ¼ö.
-	*  \param pEntity´Â À¯È¿ÇÑ entity instance pointer.
-	*  \return ¼º°øÇÏ¸é TRUE, ½ÇÆÐÇÏ¸é FALSE
+	*  PL entityï¿½ï¿½ entity containterï¿½ï¿½ addï¿½Ï´ï¿½ interface ï¿½Ô¼ï¿½.
+	*  \param pEntityï¿½ï¿½ ï¿½ï¿½È¿ï¿½ï¿½ entity instance pointer.
+	*  \return ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ TRUE, ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ FALSE
 	*  \see RemovePLEntity
 	*/
 	virtual RwBool AddPLEntity(CNtlPLEntity *pEntity);
 
 	/**
-	*  PL entity¸¦ entity containter¿¡¼­ removeÇÏ´Â interface ÇÔ¼ö.
-	*  \param pEntity´Â À¯È¿ÇÑ entity instance pointer.
+	*  PL entityï¿½ï¿½ entity containterï¿½ï¿½ï¿½ï¿½ removeï¿½Ï´ï¿½ interface ï¿½Ô¼ï¿½.
+	*  \param pEntityï¿½ï¿½ ï¿½ï¿½È¿ï¿½ï¿½ entity instance pointer.
 	*  \see RemovePLEntity
 	*/
 	virtual void RemovePLEntity(CNtlPLEntity *pEntity);
 
 	/**
-    *  entity¸¦ scene managerÀÇ update¿¡ addÇÏ´Â interface ÇÔ¼ö.
-	*  \param pEntity scene manager¿¡ addÇÒ entity pointer
+    *  entityï¿½ï¿½ scene managerï¿½ï¿½ updateï¿½ï¿½ addï¿½Ï´ï¿½ interface ï¿½Ô¼ï¿½.
+	*  \param pEntity scene managerï¿½ï¿½ addï¿½ï¿½ entity pointer
 	*  \see RemoveUpdate
     *
     */
 	virtual void AddUpdate(CNtlPLEntity *pEntity);
 
 	/**
-    *  entity¸¦ scene managerÀÇ update¿¡ removeÇÏ´Â interface ÇÔ¼ö.
-	*  \param pEntity scene manager¿¡ removeÇÒ entity pointer
+    *  entityï¿½ï¿½ scene managerï¿½ï¿½ updateï¿½ï¿½ removeï¿½Ï´ï¿½ interface ï¿½Ô¼ï¿½.
+	*  \param pEntity scene managerï¿½ï¿½ removeï¿½ï¿½ entity pointer
 	*  \see AddUpdate
     *
     */
 	virtual void RemoveUpdate(CNtlPLEntity *pEntity);
 
 	/**
-    *  entity¸¦ distance filtering manager¿¡ Ãß°¡ÇÑ´Ù.
-	*  \param pEntity distance filtering manager¿¡ addÇÒ entity pointer
+    *  entityï¿½ï¿½ distance filtering managerï¿½ï¿½ ï¿½ß°ï¿½ï¿½Ñ´ï¿½.
+	*  \param pEntity distance filtering managerï¿½ï¿½ addï¿½ï¿½ entity pointer
 	*  \see RemoveDistanceFilter
     *
     */
 	virtual void AddDistanceFilter(CNtlPLEntity *pEntity);
 
 	/**
-    *  entity¸¦ distance filtering manager¿¡ »èÁ¦ÇÑ´Ù.
-	*  \param pEntity distance filtering manager¿¡ removeÇÒ entity pointer
+    *  entityï¿½ï¿½ distance filtering managerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+	*  \param pEntity distance filtering managerï¿½ï¿½ removeï¿½ï¿½ entity pointer
 	*  \see AddDistanceFilter
     *
     */
 	virtual void RemoveDistanceFilter(CNtlPLEntity *pEntity);
 
 	/**
-    *  ÇöÀç active µÇ¾î ÀÖ´Â world type(renderware world or height fieldÀÎ°¡?)
+    *  ï¿½ï¿½ï¿½ï¿½ active ï¿½Ç¾ï¿½ ï¿½Ö´ï¿½ world type(renderware world or height fieldï¿½Î°ï¿½?)
     *
     */
 	virtual EActiveWorldType GetActiveWorldType(void);
 
 	/**
-	*  world °¡ ÁØºñ µÇ¾î ÀÖ´Â°¡?
+	*  world ï¿½ï¿½ ï¿½Øºï¿½ ï¿½Ç¾ï¿½ ï¿½Ö´Â°ï¿½?
 	*  \return ready is TRUE or FALSE
 	*
 	*/
 	virtual RwBool IsWorldReady(void);
 
 	/**
-    *  world position¿¡ ÇØ´çÇÏ´Â terrainÀÇ height¸¦ ±¸ÇÏ´Â interface ÇÔ¼ö.
-	*  \return terrain height value¸¦ ¸®ÅÏÇÑ´Ù.
-	*  \param pWorldPos world position¿¡ ÇØ´çÇÏ´Â RwV3d pointer
+    *  world positionï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ terrainï¿½ï¿½ heightï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ interface ï¿½Ô¼ï¿½.
+	*  \return terrain height valueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+	*  \param pWorldPos world positionï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ RwV3d pointer
 	*
     */
 	virtual RwBool GetWorldHeight(const RwV3d *pWorldPos, RwReal& fHeight, RwV3d *pNormal, RwReal fLineLen = 1000.0f);
 
 	/**
-    *  world position¿¡ ÇØ´çÇÏ´Â terrain ÁöÇü¸¸ ÇØ´çÇÏ´Â height¸¦ ±¸ÇÏ´Â interface ÇÔ¼ö.
-	*  \return terrain height value¸¦ ¸®ÅÏÇÑ´Ù.
-	*  \param pWorldPos world position¿¡ ÇØ´çÇÏ´Â RwV3d pointer
+    *  world positionï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ terrain ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ heightï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ interface ï¿½Ô¼ï¿½.
+	*  \return terrain height valueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+	*  \param pWorldPos world positionï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ RwV3d pointer
 	*
     */
 	virtual RwBool GetTerrainHeight(const RwV3d *pWorldPos, RwReal& fHeight);
 
 
 	/**
-    *  world¿¡ pickµÈ polygonÀ» Ã£´Â´Ù.
-	*  \return Ãæµ¿µÈ polygonÀÇ ÁÂÇ¥.
+    *  worldï¿½ï¿½ pickï¿½ï¿½ polygonï¿½ï¿½ Ã£ï¿½Â´ï¿½.
+	*  \return ï¿½æµ¿ï¿½ï¿½ polygonï¿½ï¿½ ï¿½ï¿½Ç¥.
     *
     */
 
@@ -312,16 +321,16 @@ public:
 	virtual RwBool PickTerrianAndWater(RwV3d& vStartPos, RwV3d& vEndPos, SWorldPickInfo& sPickInfo);
 
 	/**
-    *  camera Ãæµ¹ °Ë»ç¸¦ ÇÏ¿©, »õ·Î¿î Ãæµ¹ camera À§Ä¡¸¦ ±¸ÇÑ´Ù.
-	*  \param1 pCameraPos ÇöÀç cameraÀÇ position
-	*  \param2 pCameraDir ÇöÀç cameraÀÇ direction
-	*  \param2 »õ·Î¿î cameraÀÇ position
+    *  camera ï¿½æµ¹ ï¿½Ë»ç¸¦ ï¿½Ï¿ï¿½, ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½æµ¹ camera ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½.
+	*  \param1 pCameraPos ï¿½ï¿½ï¿½ï¿½ cameraï¿½ï¿½ position
+	*  \param2 pCameraDir ï¿½ï¿½ï¿½ï¿½ cameraï¿½ï¿½ direction
+	*  \param2 ï¿½ï¿½ï¿½Î¿ï¿½ cameraï¿½ï¿½ position
 	*
     */
 	virtual RwBool GetCameraCollision(const RwV3d *pCameraPos, const RwV3d *pLookAt, RwReal fRadius, RwV3d& vNewPos);
 
 	/**
-	*  RpWorld pointer¸¦ ¾ò¾î¿À´Â interface ÇÔ¼ö.
+	*  RpWorld pointerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ interface ï¿½Ô¼ï¿½.
 	*
 	*/
 	virtual RpWorld* GetWorldPtr(void);
@@ -331,18 +340,18 @@ public:
 // 	RwBool CTLine2Sphere(RwLine* _pLine, sNPE_COLLISION_PARAM& sNPECollisionParam);
 
 	/**
-	*  visual managerÀÇ event handler
-	*  \param pMsg´Â event°¡ ¹ß»ýÇÒ °æ¿ì ³Ñ¾î¿À´Â message.
+	*  visual managerï¿½ï¿½ event handler
+	*  \param pMsgï¿½ï¿½ eventï¿½ï¿½ ï¿½ß»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ message.
 	*/
 	//virtual void HandleEvents(RWS::CMsg &pMsg);
 	
-    // ObjectÀÇ Fade °ü·Ã ÇÔ¼ö
-	virtual void	SetDistanceFilter(RwBool bEnable);        ///< ObjectÀÇ Fade±â´ÉÀ» ²ô°Å³ª ÄÒ´Ù. (Map Tool¿¡¼­ »ç¿ë)
-    virtual RwBool  GetDistanceFilterEnable() {return m_bDistFiter;}                        ///< ÇöÀç Fade On/Off »óÅÂ¸¦ ¹ÝÈ¯ÇÑ´Ù.
+    // Objectï¿½ï¿½ Fade ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
+	virtual void	SetDistanceFilter(RwBool bEnable);        ///< Objectï¿½ï¿½ Fadeï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Å³ï¿½ ï¿½Ò´ï¿½. (Map Toolï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½)
+    virtual RwBool  GetDistanceFilterEnable() {return m_bDistFiter;}                        ///< ï¿½ï¿½ï¿½ï¿½ Fade On/Off ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½È¯ï¿½Ñ´ï¿½.
 
 	/**
 	* world attribute
-	* \return worldÀÇ attribute value¸¦ ¸®ÅÏÇÑ´Ù.
+	* \return worldï¿½ï¿½ attribute valueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	* \see GetWorldNormalAttribute
 	* \see GetWorldSpecialAttribute
 	*/
@@ -350,33 +359,33 @@ public:
 
 	/**
 	* world normal attribute
-	* \return worldÀÇ normal attribute value¸¦ ¸®ÅÏÇÑ´Ù.
+	* \return worldï¿½ï¿½ normal attribute valueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	* \see GetWorldSpecialAttribute
 	*/
 	virtual DWORD GetWorldNormalAttribute(RwV3d vPos);
 
 	/**
-	* world special attribute(ÀÏ¹Ý¼Ó¼º °ú Æ¯¼ö¼Ó¼ºÀ¸·Î ³ª´¶´Ù)
-	* \return worldÀÇ special attribute value¸¦ ¸®ÅÏÇÑ´Ù.
+	* world special attribute(ï¿½Ï¹Ý¼Ó¼ï¿½ ï¿½ï¿½ Æ¯ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+	* \return worldï¿½ï¿½ special attribute valueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	* \see GetWorldNormalAttribute
 	*/
 	virtual DWORD GetWorldSpecialAttribute(RwV3d vPos);
 
 	/**
 	* world material attribute
-	* \return worldÀÇ material attribute value¸¦ ¸®ÅÏÇÑ´Ù.
+	* \return worldï¿½ï¿½ material attribute valueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	*/
 	virtual BYTE GetWorldMaterialAttribute(RwV3d vPos);
 
 	/**
-	* ÀÏ¹ÝÀûÀ¸·Î worldÀÇ normal attribute¸¦ Ã¼Å©ÇÏ¿© ¹°ÀÏ °æ¿ì¿¡¸¸ »ç¿ëÇÑ´Ù.
-	* \return worldÀÇ water ³ôÀÌ.
+	* ï¿½Ï¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ worldï¿½ï¿½ normal attributeï¿½ï¿½ Ã¼Å©ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+	* \return worldï¿½ï¿½ water ï¿½ï¿½ï¿½ï¿½.
 	*/
 	virtual RwReal GetWorldWaterHeight(RwV3d vPos);
 
 	/**
-	* ÇöÀç À§Ä¡ÀÇ Bloom effect power factor¸¦ ±¸ÇØ¿Â´Ù.
-	* \return if TRUE ÀÌ¸é °ªÀÌ À¯È¿ÇÏ°í, FALSEÀÌ¸é À¯È¿ÇÏÁö ¾Ê´Ù.
+	* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ Bloom effect power factorï¿½ï¿½ ï¿½ï¿½ï¿½Ø¿Â´ï¿½.
+	* \return if TRUE ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¿ï¿½Ï°ï¿½, FALSEï¿½Ì¸ï¿½ ï¿½ï¿½È¿ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½.
 	*/
 	virtual RwReal					GetActiveBloomFactor(void); 
 
@@ -404,7 +413,7 @@ public:
 
 	virtual RwBool GetWorldLightColor(RwV3d& vPos, RwRGBA* pOutColor, RwBool bCalcShadow);
 
-    virtual void   SetEntityVisible(ENtlPLEntityType eType, RwBool bVisible);             ///< ·»´õ·¹ÀÌ¾îÀÇ ·»´õ¸µÀ» On/Off ÇÑ´Ù. (Å×½ºÆ®¿ë)
+    virtual void   SetEntityVisible(ENtlPLEntityType eType, RwBool bVisible);             ///< ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ On/Off ï¿½Ñ´ï¿½. (ï¿½×½ï¿½Æ®ï¿½ï¿½)
 
 	virtual void	SetVisiblePlanet(RwBool bVisible);
 
