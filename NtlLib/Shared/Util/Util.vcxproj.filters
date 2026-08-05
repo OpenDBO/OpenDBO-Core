@@ -78,6 +78,9 @@
     <ClInclude Include="md5.h">
       <Filter>Crypt</Filter>
     </ClInclude>
+    <ClInclude Include="sha3.h">
+      <Filter>Crypt</Filter>
+    </ClInclude>
     <ClInclude Include="NtlCipher.h">
       <Filter>Crypt</Filter>
     </ClInclude>

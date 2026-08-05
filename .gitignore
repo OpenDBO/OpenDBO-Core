@@ -3,7 +3,10 @@ DboClient/.vs
 DboClient/Release
 DboClient/Release4Tools
 DboClient/Client/(Configuration)
-DboClient/DragonBall
+
+DboClient/DragonBall/*
+!DboClient/DragonBall/devmaster.xml
+
 DboClient/Lib/Discord/Release
 DboClient/Lib/Ntl_Plugin_Collis/Release
 DboClient/Lib/Ntl_Plugin_Collis/Release4Tools

@@ -172,19 +172,12 @@ void CNtlSobFeelingActor::HandleEvents(RWS::CMsg &pMsg)
 
 void CNtlSobFeelingActor::SetPosition(const RwV3d *pPos)
 {
-	if( (GetFlags() & SLFLAG_CAN_GROUND_FLY) && (GetActorFlags() & SLFLAG_ACTOR_HAVE_MOVEABLE) )
-	{
-		RwV3d vPos;
-		RwV3dAssignMacro(&vPos, pPos);
-		CNtlSobMoveableAttr *pSobMoveableAttr = reinterpret_cast<CNtlSobMoveableAttr*>( GetSobAttr() );
-		vPos.y += pSobMoveableAttr->GetFlyHeight();
+	RwV3d vPos;
+	RwV3dAssignMacro(&vPos, pPos);
+	CNtlSobMoveableAttr* pSobMoveableAttr = reinterpret_cast<CNtlSobMoveableAttr*>(GetSobAttr());
+	vPos.y += pSobMoveableAttr->GetFlyHeight();
 
-		CNtlSob::SetPosition(&vPos);
-	}
-	else
-	{
-		CNtlSob::SetPosition(pPos);
-	}
+	CNtlSob::SetPosition(&vPos);
 }
 
 

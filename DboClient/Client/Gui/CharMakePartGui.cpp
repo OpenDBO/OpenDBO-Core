@@ -106,6 +106,7 @@ RwBool CCharMakePartGui::Create(CCharCreateGuiGui* pCreateGui)
 	pClassDisplay->pClassButton[DEFAULT_CLASS_HUMAN_ENGINEER] = (gui::CButton*)GetComponent("btnHumanEngineer");
 	pClassDisplay->pClassButton[DEFAULT_CLASS_HUMAN_ENGINEER]->Enable(false);
 	pClassDisplay->pClassButton[DEFAULT_CLASS_HUMAN_ENGINEER]->ClickEnable(FALSE);
+	pClassDisplay->pClassButton[DEFAULT_CLASS_HUMAN_ENGINEER]->Show(FALSE);
 	pClassDisplay->pClassButton[DEFAULT_CLASS_NAMEK_FIGHTER]= (gui::CButton*)GetComponent("btnNamekFighter");
 	pClassDisplay->pClassButton[DEFAULT_CLASS_NAMEK_MYSTIC]	= (gui::CButton*)GetComponent("btnNamekMystic");
 	pClassDisplay->pClassButton[DEFAULT_CLASS_MAJIN_MIGHTY]	= (gui::CButton*)GetComponent("btnMajinMighty");

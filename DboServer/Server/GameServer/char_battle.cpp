@@ -165,7 +165,7 @@ void CCharacter::AttackAction(CCharacter* pVictim)
 	//	fTargetLpRecoveredWhenHit, pVictim->GetCharAtt()->GetLastLpRecoveryWhenHit(), pVictim->GetCharAtt()->GetLastLpRecoveryWhenHitInPercent(), fDmg);
 
 	//check reflect
-	fReflectedDamage = GetReflectDamage(fDmg, byAttackType, pVictim->GetCharAtt()->GetPhysicalReflection(), pVictim->GetCharAtt()->GetEnergyReflection());
+	fReflectedDamage = GetReflectDamage(fDmg, byAttackType, pVictim->GetCharAtt());
 
 //---SEND PACKET START----------------------------------------------------------
 SEND_PACKET:

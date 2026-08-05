@@ -18,7 +18,6 @@
 
 // Simulation
 #include "InputActionMap.h"
-#include "InputHandler.h"
 #include "NtlStorageManager.h"
 
 // dbo
@@ -33,12 +32,11 @@
 #include "MoviePlayer.h"
 #include "DialogDefine.h"
 
-extern char g_szAutoLoginID[256];
-extern char g_szAutoLoginPass[256];
+#include "VirtualKeyboardGui.h"
+#include "BugTrap.h"
 
-
-CLogInGui::CLogInGui(const RwChar *pName)
-:CNtlPLGui(pName)
+CLogInGui::CLogInGui(const RwChar* pName)
+	:CNtlPLGui(pName)
 {
 }
 
@@ -50,8 +48,16 @@ RwBool CLogInGui::Create()
 {
 	NTL_FUNCTION("CLogInGui::Create");
 
-	if(!CNtlPLGui::Create("gui\\Login.rsr", "gui\\Login.srf", "gui\\Login.frm"))
-		NTL_RETURN(FALSE);
+	if (GetDboGlobal()->GetDBOUIConfig()->GetLoginTerrain()->bIsEnable)
+	{
+		if (!CNtlPLGui::Create("gui\\Login.rsr", "gui\\Login.srf", "gui\\LoginWorld.frm"))
+			NTL_RETURN(FALSE);
+	}
+	else
+	{
+		if (!CNtlPLGui::Create("gui\\Login.rsr", "gui\\Login.srf", "gui\\Login.frm"))
+			NTL_RETURN(FALSE);
+	}
 
 	CNtlPLGui::CreateComponents(CNtlPLGuiManager::GetInstance()->GetGuiManager()); // this lags a bit because of flaCredit
 
@@ -61,30 +67,30 @@ RwBool CLogInGui::Create()
 
 	m_pFrame = (gui::CFrame*)GetComponent("frmParent");
 
-	// 배경
+	// flash背景
 	m_pFlashBackground = (gui::CFlash*)GetComponent("flaBackground");
 
 	m_pFlashCredit = (gui::CFlash*)GetComponent("flaCredit");
 	m_pFlashCredit->Show(false);
 
 
-	// 동영상 재생 버튼
+	// moive电影按钮
 	m_pCinemaButton = (gui::CButton*)GetComponent("CinemaButton");
 	m_pCinemaButton->SetTextFont(DEFAULT_FONT, 105, DEFAULT_FONT_ATTR);
 	m_pCinemaButton->SetTextFocusColor(INFOCOLOR_LOBBY_FOC);
 	m_pCinemaButton->SetTextDownColor(INFOCOLOR_LOBBY_DOWN);
-	m_pCinemaButton->SetText( GetDisplayStringManager()->GetString("DST_LOGIN_PLAY_MOVIE") );
-	m_slotCinemaButton = m_pCinemaButton->SigClicked().Connect( this, &CLogInGui::ClickedCinemaButton);
+	m_pCinemaButton->SetText(GetDisplayStringManager()->GetString("DST_LOGIN_PLAY_MOVIE"));
+	m_slotCinemaButton = m_pCinemaButton->SigClicked().Connect(this, &CLogInGui::ClickedCinemaButton);
 
-	// 동영상 재생 버튼
+	// 制作组按钮
 	m_pCreditButton = (gui::CButton*)GetComponent("CreditButton");
 	m_pCreditButton->SetTextFont(DEFAULT_FONT, 105, DEFAULT_FONT_ATTR);
 	m_pCreditButton->SetTextFocusColor(INFOCOLOR_LOBBY_FOC);
 	m_pCreditButton->SetTextDownColor(INFOCOLOR_LOBBY_DOWN);
-	m_pCreditButton->SetText( GetDisplayStringManager()->GetString("DST_LOGIN_CREDIT") );
-	m_slotCreditButton = m_pCreditButton->SigClicked().Connect( this, &CLogInGui::ClickedCreditButton);
+	m_pCreditButton->SetText(GetDisplayStringManager()->GetString("DST_LOGIN_CREDIT"));
+	m_slotCreditButton = m_pCreditButton->SigClicked().Connect(this, &CLogInGui::ClickedCreditButton);
 
-	// Game Policy Button
+	// 游戏政策按钮
 	m_pGamePolicyButton = (gui::CButton*)GetComponent("GamePolicyButton");
 	m_pGamePolicyButton->SetTextFont(DEFAULT_FONT, 105, DEFAULT_FONT_ATTR);
 	m_pGamePolicyButton->SetTextFocusColor(INFOCOLOR_LOBBY_FOC);
@@ -92,104 +98,119 @@ RwBool CLogInGui::Create()
 	m_pGamePolicyButton->SetText(GetDisplayStringManager()->GetString("DST_LOGIN_CONTRACT"));
 	m_slotGamePolicyButton = m_pGamePolicyButton->SigClicked().Connect(this, &CLogInGui::ClickedGamePolicyButton);
 
-	// Create new account Button
+	// 创建新账号按钮
 	m_pNewAccountButton = (gui::CButton*)GetComponent("NewAccountButton");
 	m_pNewAccountButton->SetTextFont(DEFAULT_FONT, 105, DEFAULT_FONT_ATTR);
 	m_pNewAccountButton->SetTextFocusColor(INFOCOLOR_LOBBY_FOC);
 	m_pNewAccountButton->SetTextDownColor(INFOCOLOR_LOBBY_DOWN);
-	m_pNewAccountButton->SetText( GetDisplayStringManager()->GetString("DST_LOGIN_NEW_ACCOUNT") );
-	m_slotNewAccountButton = m_pNewAccountButton->SigClicked().Connect( this, &CLogInGui::ClickedNewAccountButton);
+	m_pNewAccountButton->SetText(GetDisplayStringManager()->GetString("DST_LOGIN_NEW_ACCOUNT"));
+	m_slotNewAccountButton = m_pNewAccountButton->SigClicked().Connect(this, &CLogInGui::ClickedNewAccountButton);
 
-	// Login button
+	// 登录按钮
 	m_pLoginButton = (gui::CButton*)GetComponent("LoginButton");
 	m_pLoginButton->SetTextFont(DEFAULT_FONT, 105, DEFAULT_FONT_ATTR);
 	m_pLoginButton->SetTextFocusColor(INFOCOLOR_LOBBY_FOC);
 	m_pLoginButton->SetTextDownColor(INFOCOLOR_LOBBY_DOWN);
-	m_pLoginButton->SetText( GetDisplayStringManager()->GetString("DST_LOGIN") );
-	m_slotLoginButton = m_pLoginButton->SigClicked().Connect( this, &CLogInGui::ClickedLoginButton);
+	m_pLoginButton->SetText(GetDisplayStringManager()->GetString("DST_LOGIN"));
+	m_slotLoginButton = m_pLoginButton->SigClicked().Connect(this, &CLogInGui::ClickedLoginButton);
 
-	// Exit button
+	// 退出按钮
 	m_pExitButton = (gui::CButton*)GetComponent("ExitButton");
 	m_pExitButton->SetTextFont(DEFAULT_FONT, 105, DEFAULT_FONT_ATTR);
 	m_pExitButton->SetTextFocusColor(INFOCOLOR_LOBBY_FOC);
 	m_pExitButton->SetTextDownColor(INFOCOLOR_LOBBY_DOWN);
-	m_pExitButton->SetText( GetDisplayStringManager()->GetString("DST_LOBBY_EXIT") );
-	m_slotExitButton = m_pExitButton->SigClicked().Connect( this, &CLogInGui::ClickedExitButton);
+	m_pExitButton->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_EXIT"));
+	m_slotExitButton = m_pExitButton->SigClicked().Connect(this, &CLogInGui::ClickedExitButton);
 
-	// Input box background
-	m_srfInputDialogBack.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Login.srf", "srfInputDialogBack" ));
+	// 虚拟键盘按钮
+	m_pVirtualKeyButton = (gui::CButton*)GetComponent("VirtualKeyButton");
+	m_slotVirtualKeyButton = m_pVirtualKeyButton->SigClicked().Connect(this, &CLogInGui::ClickedVirtualKeyButton);
+	m_pVirtualKeyButton->Enable(false);
 
-	// 공지사항 밑줄
-	m_NoticeUnderLine.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Login.srf", "underLine" ));
+	if (GetDboGlobal()->GetDBOUIConfig()->GetLoginTerrain()->bIsEnable)
+	{
+		m_srfTitle.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("Login.srf", "srfTitle"));
+	}
 
-	// '계정 이름' 스태틱
+	// Input box 背景
+	m_srfInputDialogBack.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("Login.srf", "srfTWInputDialogBack"));
+
+	// 未知 下划线?
+	m_NoticeUnderLine.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("Login.srf", "underLine"));
+
+	// 账号ID文本
 	rect.SetRectWH(417, 588, 60, 30);
-	m_pAccountName = NTL_NEW gui::CStaticBox( rect, m_pFrame, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER );
+	m_pAccountName = NTL_NEW gui::CStaticBox(rect, m_pFrame, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT);
 	m_pAccountName->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
-	m_pAccountName->SetText( GetDisplayStringManager()->GetString("DST_LOGIN_ID") );
+	m_pAccountName->SetText(GetDisplayStringManager()->GetString("DST_LOGIN_ID"));
 	m_pAccountName->Enable(false);
 
-	// '비밀번호' 스태틱
+	// 密码文本
 	rect.SetRectWH(417, 616, 60, 30);
-	m_pPassward = NTL_NEW gui::CStaticBox( rect, m_pFrame, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER );
+	m_pPassward = NTL_NEW gui::CStaticBox(rect, m_pFrame, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT);
 	m_pPassward->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
-	m_pPassward->SetText( GetDisplayStringManager()->GetString("DST_LOGIN_PASSWARD") );
+	m_pPassward->SetText(GetDisplayStringManager()->GetString("DST_LOGIN_PASSWARD"));
 	m_pPassward->Enable(false);
 
-	// 'Dbo 공지사항' 스태틱
+	// 提示/通知文本
 	rect.SetRectWH(773, 436, 220, 30);
-	m_pNotive = NTL_NEW gui::CStaticBox( rect, m_pFrame, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER);
+	m_pNotive = NTL_NEW gui::CStaticBox(rect, m_pFrame, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER);
 	m_pNotive->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pNotive->SetTextColor(RGB(255, 255, 255));
 	m_pNotive->Enable(false);
 
-	// Version
-	rect.SetRectWH(920, 750, 100, 20);
-	WCHAR awcBuffer[50] = L"";
-	swprintf_s(awcBuffer, L"Ver %d.%d", CLIENT_LVER, CLIENT_RVER);
-	m_pVersion = NTL_NEW gui::CStaticBox( rect, m_pFrame, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_RIGHT);
-	m_pVersion->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
-	m_pVersion->SetTextColor(RGB(0, 0, 0));
-	m_pVersion->SetText(awcBuffer);
-	m_pVersion->Enable(false);
-
-	// Account Input
-	m_pAccountInput = (gui::CInputBox*)GetComponent( "AccountInput" );
+	// Username Input
+	m_pAccountInput = (gui::CInputBox*)GetComponent("AccountInput");
 	m_pAccountInput->SetCaretSize(dINPUTBOX_CARET_WIDTH, dINPUTBOX_CARET_HEIGHT);
 	m_pAccountInput->SetMaxLength(NTL_MAX_SIZE_USERID);
 	m_slotEnterAccount = m_pAccountInput->SigReturnPressed().Connect(this, &CLogInGui::PressEnder_in_AccountBox);
+	m_slotAccountInputGotFocus = m_pAccountInput->SigGotFocus().Connect(this, &CLogInGui::OnAccountInput_GotFocus);
 
-	// Passward Input
-	m_pPasswardInput = (gui::CInputBox*)GetComponent( "PasswardInput" );
+	// Password Input
+	m_pPasswardInput = (gui::CInputBox*)GetComponent("PasswardInput");
 	m_pPasswardInput->SetCaretSize(dINPUTBOX_CARET_WIDTH, dINPUTBOX_CARET_HEIGHT);
 	m_pPasswardInput->SetMaxLength(NTL_MAX_SIZE_USERPW);
 	m_pPasswardInput->SetPasswordMode(TRUE);
-	m_slotEnterPassward = m_pPasswardInput->SigReturnPressed().Connect(this, &CLogInGui::PressEnder_in_PasswarsBox);	
+	m_slotEnterPassward = m_pPasswardInput->SigReturnPressed().Connect(this, &CLogInGui::PressEnder_in_PasswarsBox);
+	m_slotPasswarsInputGotFocus = m_pPasswardInput->SigGotFocus().Connect(this, &CLogInGui::OnPasswarsInput_GotFocus);
 
+
+	m_pVirtualKeyboard = NTL_NEW CVirtualKeyboardGui("VirtualKeyboardGui");
+	if (!m_pVirtualKeyboard->Create()) // 如果创建ui成功
+	{
+		if (m_pVirtualKeyboard)
+		{
+			m_pVirtualKeyboard->Destroy();
+			NTL_DELETE(m_pVirtualKeyboard);
+			m_pVirtualKeyboard = NULL;
+		}
+	}
 
 	// Locate Component
 	LocateComponent(GetDboGlobal()->GetScreenWidth(), GetDboGlobal()->GetScreenHeight());
 
 	// sig
-	m_slotMove			= m_pThis->SigMove().Connect( this, &CLogInGui::OnMove );
-	m_slotPaint			= m_pFlashBackground->SigPaint().Connect( this, &CLogInGui::OnPaint );
-	m_creditPaint		= m_pFlashCredit->SigMovieEnd().Connect(this, &CLogInGui::OnCreditPaintEnd);
+	m_slotMove = m_pThis->SigMove().Connect(this, &CLogInGui::OnMove);
+	m_slotPaint = m_pFlashBackground->SigPaint().Connect(this, &CLogInGui::OnPaint);
+	m_creditPaint = m_pFlashCredit->SigMovieEnd().Connect(this, &CLogInGui::OnCreditPaintEnd);
 
 
-	GetNtlGuiManager()->AddUpdateFunc( this );
+	GetNtlGuiManager()->AddUpdateFunc(this);
 
 	// Input Handle
-	GetInputActionMap()->SetActive( FALSE ); 
-	GetInputActionMap()->LinkTabKey( this, &CLogInGui::TabButtonHandle );
+	GetInputActionMap()->SetActive(FALSE);
+	GetInputActionMap()->LinkTabKey(this, &CLogInGui::TabButtonHandle);
 
 	m_handleKeyDown = CInputHandler::GetInstance()->LinkKeyDown(this, &CLogInGui::KeyboardDownHandler);
 
-	// event 등록.
+	// event 殿废.
 	LinkMsg(g_EventLoginGuiEnable, 0);
 	LinkMsg(g_EventLogInStageStateEnter, 0);
 	LinkMsg(g_EventLogInStageStateExit, 0);
 	LinkMsg(g_EventLogInStageTimeOut, 0);
-	LinkMsg(g_EventResize, 0);	
+	LinkMsg(g_EventResize, 0);
+	LinkMsg(g_EventLoginSuccess, 0);
+	LinkMsg(g_EventVirtualKeyboard, 0);
 
 	Show(false);
 
@@ -201,17 +222,19 @@ VOID CLogInGui::Destroy()
 {
 	NTL_FUNCTION("CLogInGui::Destroy");
 
+	m_pVirtualKeyboard->Destroy();
+
 	NTL_DELETE(m_pAccountName);
 	NTL_DELETE(m_pPassward);
 	NTL_DELETE(m_pNotive);
-	NTL_DELETE(m_pVersion);
+	NTL_DELETE(m_pVirtualKeyboard);
 
 	m_pFlashBackground->Unload();
 	m_pFlashCredit->Unload();
-	
-	GetNtlGuiManager()->RemoveUpdateFunc( this );
 
-	GetInputActionMap()->SetActive( TRUE ); 
+	GetNtlGuiManager()->RemoveUpdateFunc(this);
+
+	GetInputActionMap()->SetActive(TRUE);
 	GetInputActionMap()->UnLinkTabKey();
 
 	CInputHandler::GetInstance()->UnLinkKeyDown(m_handleKeyDown);
@@ -219,18 +242,20 @@ VOID CLogInGui::Destroy()
 	UnLinkMsg(g_EventLoginGuiEnable);
 	UnLinkMsg(g_EventLogInStageStateEnter);
 	UnLinkMsg(g_EventLogInStageStateExit);
-	UnLinkMsg(g_EventLogInStageTimeOut);	
-	UnLinkMsg(g_EventResize);	
+	UnLinkMsg(g_EventLogInStageTimeOut);
+	UnLinkMsg(g_EventResize);
+	UnLinkMsg(g_EventLoginSuccess);
+	UnLinkMsg(g_EventVirtualKeyboard);
 
 	CNtlPLGui::DestroyComponents();
-	CNtlPLGui::Destroy(); 
+	CNtlPLGui::Destroy();
 
 	NTL_RETURNVOID();
 }
 
 VOID CLogInGui::Update(RwReal fElapsed)
 {
-	if( IsShow() == FALSE )
+	if (IsShow() == FALSE)
 		return;
 
 	if (m_pFlashCredit->IsVisible())
@@ -250,6 +275,10 @@ VOID CLogInGui::LocateComponent(RwInt32 iWidth, RwInt32 iHeight)
 
 	m_pThis->SetPosition(rect);
 
+	if (GetDboGlobal()->GetDBOUIConfig()->GetLoginTerrain()->bIsEnable)
+		m_srfTitle.SetPosition((rect.GetWidth() - m_srfTitle.GetWidth()) / 2, (rect.GetHeight() - m_srfTitle.GetHeight()) / 2 - 270);
+
+
 	m_pFrame->SetPosition(rect);
 	m_pFlashBackground->SetPosition(rect);
 	m_pFlashCredit->SetPosition(rect);
@@ -263,33 +292,39 @@ VOID CLogInGui::LocateComponent(RwInt32 iWidth, RwInt32 iHeight)
 
 	m_pExitButton->SetPosition(iWidth - 176, iHeight - 116);
 
-	m_srfInputDialogBack.SetPosition(iWidth/2 - m_srfInputDialogBack.GetWidth()/2, iHeight - 194);
+	m_srfInputDialogBack.SetPosition(iWidth / 2 - m_srfInputDialogBack.GetWidth() / 2, iHeight - 300);
 	m_srfInputDialogBack.GetRect(rect);
 
-	m_pLoginButton->SetPosition(rect.left + 39, rect.top + 83);
+	if (m_pVirtualKeyboard != NULL)
+		m_pVirtualKeyboard->GetDialog()->SetPosition(rect.left, rect.top + 130);
 
-	m_pAccountName->SetPosition(rect.left + 16, rect.top + 20);
-	m_pPassward->SetPosition(rect.left + 16, rect.top + 49);
+	m_pVirtualKeyButton->SetPosition(rect.left + 39, rect.top + 86);
 
-	m_pAccountInput->SetPosition(rect.left + 91, rect.top + 28);
-	m_pPasswardInput->SetPosition(rect.left + 91, rect.top + 59);
+	m_pLoginButton->SetPosition(rect.left + 132, rect.top + 86);
+
+	m_pAccountName->SetPosition(rect.left + 40, rect.top + 20);
+	m_pPassward->SetPosition(rect.left + 40, rect.top + 49);
+
+	m_pAccountInput->SetPosition(rect.left + 139, rect.top + 30);
+	m_pPasswardInput->SetPosition(rect.left + 139, rect.top + 58);
 
 
 	m_pNotive->SetPosition(iWidth - 251, iHeight - 332);
-	m_pVersion->SetPosition(iWidth - 104, iHeight - 18);
 	m_NoticeUnderLine.SetPosition(iWidth - 251, iHeight - 311);
+
+
 
 	if (IsShow())
 	{
 		if (GetNtlGuiManager()->GetGuiManager()->GetFocus() == m_pAccountInput)
 		{
-			// If you give focus to the same component again, it will return and write the shortcut
-			m_pPasswardInput->SetFocus();
+			// 如果您再次将焦点放在同一个组件上，它将返回并编写快捷方式  
+			//m_pPasswardInput->SetFocus();
 			m_pAccountInput->SetFocus();
 		}
 		else if (GetNtlGuiManager()->GetGuiManager()->GetFocus() == m_pPasswardInput)
 		{
-			m_pAccountInput->SetFocus();
+			//m_pAccountInput->SetFocus();
 			m_pPasswardInput->SetFocus();
 		}
 	}
@@ -299,12 +334,12 @@ VOID CLogInGui::SwitchEnableButtons(bool bEnable)
 {
 
 }
-
-VOID CLogInGui::ClickedCinemaButton( gui::CComponent* pComponent )
+// 点击观看视频按钮
+VOID CLogInGui::ClickedCinemaButton(gui::CComponent* pComponent)
 {
-	// Watch the video
+	// 观看视频
 
-	if( GetMoviePlayer()->Play(dOPENING_MOVIE, MOVIE_SIZE_RATIO_FULL) )
+	if (GetMoviePlayer()->Play(dOPENING_MOVIE, MOVIE_SIZE_RATIO_FULL))
 	{
 		Logic_SetOptionMoviePlay();
 		GetMoviePlayer()->SetCallBack(this, &CLogInGui::CallBackMoviePlayStop);
@@ -319,7 +354,7 @@ int CLogInGui::CallBackMoviePlayStop()
 	return TRUE;
 }
 
-VOID CLogInGui::ClickedCreditButton( gui::CComponent* pComponent )
+VOID CLogInGui::ClickedCreditButton(gui::CComponent* pComponent)
 {
 	m_pFlashCredit->Load("DBO_Credit.swf");
 
@@ -327,77 +362,67 @@ VOID CLogInGui::ClickedCreditButton( gui::CComponent* pComponent )
 	m_pFlashCredit->Show(true);
 
 	m_pFrame->Show(false);
+
+	if (m_pVirtualKeyboard)
+		m_pVirtualKeyboard->Show(false);
 }
 
 VOID CLogInGui::ClickedGamePolicyButton(gui::CComponent* pComponent)
 {
-	// Show game policy
-	CDboEventGenerator::LoginEvent(LOGIN_EVENT_SHOW_CONTRACT_PAGE);
+	// 显示游戏政策
+	CDboEventGenerator::LoginEvent(LOGIN_EVENT_SHOW_CONTRACT_PAGE, true);
+
 }
 
-VOID CLogInGui::ClickedNewAccountButton( gui::CComponent* pComponent )
+VOID CLogInGui::ClickedNewAccountButton(gui::CComponent* pComponent)
 {
-	// Create a new account	
-	SHELLEXECUTEINFO execInfo;
-	ZeroMemory(&execInfo, sizeof(SHELLEXECUTEINFO));
-	execInfo.cbSize = sizeof(SHELLEXECUTEINFO);
-	execInfo.lpVerb = "open";
-	execInfo.lpFile = "https://opendbo.org";
-	execInfo.lpParameters = "";
-	execInfo.nShow = SW_HIDE;
-	execInfo.fMask = SEE_MASK_NOCLOSEPROCESS | SEE_MASK_FLAG_DDEWAIT;
-	ShellExecuteEx(&execInfo);
+	//新建账号弹出注册官网
+	ShellExecute(NULL, _T("open"), _T("explorer.exe"), Ntl_WC2MB(GetDisplayStringManager()->GetString("DST_PAY_REGISTER")), NULL, SW_SHOW);
 }
 
-VOID CLogInGui::ClickedLoginButton( gui::CComponent* pComponent )
+// 点击登录按钮
+VOID CLogInGui::ClickedLoginButton(gui::CComponent* pComponent)
 {
 	// Sign in
 
-	if(	m_pAccountInput->GetLength() == 0 )
+	if (m_pAccountInput->GetLength() == 0)
 	{
-		GetAlarmManager()->AlarmMessage( "DST_INPUT_YOUR_ID" );
+		GetAlarmManager()->AlarmMessage("DST_INPUT_YOUR_ID");
 		return;
 	}
 
-	if( m_pPasswardInput->GetLength() == 0 )
+	if (m_pPasswardInput->GetLength() == 0)
 	{
-		GetAlarmManager()->AlarmMessage( "DST_INPUT_YOUR_PASSWORD" );
+		GetAlarmManager()->AlarmMessage("DST_INPUT_YOUR_PASSWORD");
 		return;
 	}
-	
+
 	SwitchEnableButtons(false);
 
 	// Do not erase it (Fluorite)
-	// Request login to server
-	const WCHAR *pID = m_pAccountInput->GetText();
-	const WCHAR *pPW = m_pPasswardInput->GetText();
-	SUserData *pUserData = GetDboGlobal()->GetUserData(); 
+	//请求登录到服务器
+	const WCHAR* pID = m_pAccountInput->GetText();
+	// TODO: We need to use hash md5 encryption here to send directly to the server encrypted.
+	const WCHAR* pPW = m_pPasswardInput->GetText();
+	SUserData* pUserData = GetDboGlobal()->GetUserData();
 	wcscpy_s(pUserData->wchUserID, NTL_MAX_SIZE_USERID + 1, pID);
 	wcscpy_s(pUserData->wchPassword, NTL_MAX_SIZE_USERPW + 1, pPW);
 
 	const BYTE* pMacAddress = GetSystemMacAddress();
 
-	if( pMacAddress )
+	if (pMacAddress)
 	{
-		// Check if terms are accepted on this session or if the version of the contract previously accepted is the current version.
-		if (GetDboGlobal()->IsAcceptGameContract() || GetDboGlobal()->GetContractVersion() == (RwUInt32)GetNtlStorageManager()->GetIntData(dSTORAGE_SYSTEM_ETC_CONTRACT))
-		{
+
+		if (GetDboGlobal()->GetContractVersion() == (RwUInt32)GetNtlStorageManager()->GetIntData(dSTORAGE_SYSTEM_ETC_CONTRACT)) //检查版本
 			GetDboGlobal()->GetLoginPacketGenerator()->SendLonInReq(pID, pPW, CLIENT_LVER, CLIENT_RVER, pMacAddress);
-			GetLogInStageState()->ChangeState(LOGIN_STATE_LOGINREQ);
-		}
-		else
-		{
-			GetLogInStageState()->ChangeState(LOGIN_STATE_CONTRACT);
-			CDboEventGenerator::LoginEvent(LOGIN_EVENT_SHOW_CONTRACT_PAGE);
-		}
 	}
 	else
-	{		
-		GetAlarmManager()->AlarmMessage(L"Fail read MAC address", CAlarmManager::ALARM_TYPE_LOBBY_MSGBOX);
+	{
+		GetAlarmManager()->AlarmMessage(L"读取MAC地址失败", CAlarmManager::ALARM_TYPE_LOBBY_MSGBOX);
 	}
 }
 
-VOID CLogInGui::ClickedExitButton( gui::CComponent* pComponent )
+VOID CLogInGui::ClickedExitButton(gui::CComponent* pComponent)
 {
 	// Leave game
 	PostQuitMessage(0);
@@ -405,7 +430,7 @@ VOID CLogInGui::ClickedExitButton( gui::CComponent* pComponent )
 
 VOID CLogInGui::PressEnder_in_AccountBox()
 {
-	if( !IsShow() )
+	if (!IsShow())
 		return;
 
 	// When you press Enter on the account input, the focus moves to the password input
@@ -414,23 +439,53 @@ VOID CLogInGui::PressEnder_in_AccountBox()
 
 VOID CLogInGui::PressEnder_in_PasswarsBox()
 {
-	if( !IsShow() )
+	if (!IsShow())
 		return;
 
 	// Enter in the password input is the same as pressing the login button
 	ClickedLoginButton(NULL);
 }
 
+VOID CLogInGui::OnPasswarsInput_GotFocus()
+{
+	if (m_pVirtualKeyboard)
+	{
+		m_pVirtualKeyButton->Enable(true);
+		m_pVirtualKeyboard->GetDialog()->Show(true);
+	}
+}
+
+
+VOID CLogInGui::OnAccountInput_GotFocus()
+{
+	if (m_pVirtualKeyboard)
+	{
+		m_pVirtualKeyboard->GetDialog()->Show(false);
+		m_pVirtualKeyButton->Enable(false);
+	}
+}
+
+VOID CLogInGui::ClickedVirtualKeyButton(gui::CComponent* pComponent)
+{
+	if (m_pVirtualKeyboard)
+	{
+		if (m_pVirtualKeyboard->GetDialog()->IsVisible())
+			m_pVirtualKeyboard->GetDialog()->Show(false);
+		else
+			m_pVirtualKeyboard->GetDialog()->Show(true);
+	}
+}
+
 RwInt32 CLogInGui::TabButtonHandle()
 {
-	if( !IsShow() )
+	if (!IsShow())
 		return 1;
 
-	if( GetNtlGuiManager()->GetGuiManager()->GetFocus() == m_pAccountInput )
+	if (GetNtlGuiManager()->GetGuiManager()->GetFocus() == m_pAccountInput)
 	{
 		m_pPasswardInput->SetFocus();
 	}
-	else if( GetNtlGuiManager()->GetGuiManager()->GetFocus() == m_pPasswardInput )
+	else if (GetNtlGuiManager()->GetGuiManager()->GetFocus() == m_pPasswardInput)
 	{
 		m_pAccountInput->SetFocus();
 	}
@@ -447,6 +502,7 @@ VOID CLogInGui::OnPaint()
 {
 	m_srfInputDialogBack.Render();
 	m_NoticeUnderLine.Render();
+	m_srfTitle.Render();
 }
 
 VOID CLogInGui::OnCreditPaintEnd(gui::CComponent* pComponent)
@@ -455,40 +511,67 @@ VOID CLogInGui::OnCreditPaintEnd(gui::CComponent* pComponent)
 	m_pFrame->Show(true);
 }
 
-VOID CLogInGui::HandleEvents( RWS::CMsg &msg )
+VOID CLogInGui::HandleEvents(RWS::CMsg& msg)
 {
 	NTL_FUNCTION("CLogInGui::HandleEvents");
 
-	if(msg.Id == g_EventLoginGuiEnable)
+	if (msg.Id == g_EventLoginGuiEnable)
 	{
 		SwitchEnableButtons(true);
 	}
-	else if(msg.Id == g_EventLogInStageStateEnter)
+	else if (msg.Id == g_EventLogInStageStateEnter)
 	{
 		LogInStageEnterEventHandler(msg);
 	}
-	else if(msg.Id == g_EventLogInStageStateExit)
+	else if (msg.Id == g_EventLogInStageStateExit)
 	{
 		LogInStageExitEventHandler(msg);
 	}
-	else if(msg.Id == g_EventLogInStageTimeOut)
+	else if (msg.Id == g_EventLogInStageTimeOut)
 	{
 		LogInStageTimeOutEventHandler(msg);
 	}
-	else if(msg.Id == g_EventResize)
+	else if (msg.Id == g_EventResize)
 	{
 		ResizeEventHandler(msg);
+	}
+	else if (msg.Id == g_EventLoginSuccess)
+	{
+		// event 关闭登录按钮模板
+		CDboEventGenerator::LoginGuiEnable();
+	}
+	else if (msg.Id == g_EventVirtualKeyboard)
+	{
+		SDboEventKeyboard* Data = reinterpret_cast<SDboEventKeyboard*>(msg.pData);
+
+		if (Data->key == "51") // 删除一个
+		{
+			std::string text = ws2s(m_pPasswardInput->GetText());
+			text.pop_back();
+			m_pPasswardInput->SetText(text);
+		}
+		else if (Data->key == "52") // 全部删除
+		{
+			m_pPasswardInput->SetText("");
+		}
+		else
+		{
+			std::string text = ws2s(m_pPasswardInput->GetText());
+			text += Data->key;
+			m_pPasswardInput->SetText(text);
+		}
+
 	}
 
 	NTL_RETURNVOID();
 }
 
-VOID CLogInGui::LogInStageEnterEventHandler(RWS::CMsg &msg)
+VOID CLogInGui::LogInStageEnterEventHandler(RWS::CMsg& msg)
 {
-	SDboEventLogInStageStateEnter *pStageStateEnter = reinterpret_cast<SDboEventLogInStageStateEnter*>(msg.pData);
+	SDboEventLogInStageStateEnter* pStageStateEnter = reinterpret_cast<SDboEventLogInStageStateEnter*>(msg.pData);
 
 	ELogInStageState eState = (ELogInStageState)pStageStateEnter->byState;
-	switch(eState)
+	switch (eState)
 	{
 	case LOGIN_STATE_LOGO:
 		m_pLoginButton->ClickEnable(false);
@@ -498,22 +581,12 @@ VOID CLogInGui::LogInStageEnterEventHandler(RWS::CMsg &msg)
 		m_pLoginButton->ClickEnable(false);
 		m_pAccountInput->SetFocus();
 		Show(true);
-		if (g_szAutoLoginID[0])
-		{
-			m_pAccountInput->SetText(g_szAutoLoginID);
-			m_pPasswardInput->SetText(g_szAutoLoginPass);
-		}
 		break;
 	case LOGIN_STATE_SERVER_CONNECT_FAIL:
-		GetAlarmManager()->AlarmMessage( "DST_CHAR_SERVER_CONNECT_FAIL" );
+		GetAlarmManager()->AlarmMessage("DST_CHAR_SERVER_CONNECT_FAIL");
 		break;
 	case LOGIN_STATE_IDLE:
 		m_pLoginButton->ClickEnable(true);
-		if (g_szAutoLoginID[0])
-		{
-			g_szAutoLoginID[0] = '\0';
-			ClickedLoginButton(m_pLoginButton);
-		}
 		break;
 	case LOGIN_STATE_CONTRACT:
 	case LOGIN_STATE_LOGINREQ:
@@ -524,13 +597,13 @@ VOID CLogInGui::LogInStageEnterEventHandler(RWS::CMsg &msg)
 	}
 }
 
-VOID CLogInGui::LogInStageExitEventHandler(RWS::CMsg &msg)
+VOID CLogInGui::LogInStageExitEventHandler(RWS::CMsg& msg)
 {
-	SDboEventLogInStageStateExit *pStageStateExit = reinterpret_cast<SDboEventLogInStageStateExit*>(msg.pData);
+	SDboEventLogInStageStateExit* pStageStateExit = reinterpret_cast<SDboEventLogInStageStateExit*>(msg.pData);
 
 	ELogInStageState eState = (ELogInStageState)pStageStateExit->byState;
 	//DBO_WARNING_MESSAGE("State: " << eState);
-	switch(eState)
+	switch (eState)
 	{
 	case LOGIN_STATE_LOGO:
 
@@ -555,16 +628,16 @@ VOID CLogInGui::LogInStageExitEventHandler(RWS::CMsg &msg)
 	}
 }
 
-VOID CLogInGui::LogInStageTimeOutEventHandler(RWS::CMsg &msg)
+VOID CLogInGui::LogInStageTimeOutEventHandler(RWS::CMsg& msg)
 {
-	SDboEventLogInStageTimeOut *pStageTimeOut = reinterpret_cast<SDboEventLogInStageTimeOut*>(msg.pData);
+	SDboEventLogInStageTimeOut* pStageTimeOut = reinterpret_cast<SDboEventLogInStageTimeOut*>(msg.pData);
 
 	ELogInStageState eState = (ELogInStageState)pStageTimeOut->byState;
-	switch(eState)
+	switch (eState)
 	{
 	case LOGIN_STATE_LOGO:
 		break;
-	case LOGIN_STATE_SERVER_CONNECT: 
+	case LOGIN_STATE_SERVER_CONNECT:
 		break;
 	case LOGIN_STATE_SERVER_CONNECT_FAIL:
 		break;
@@ -579,15 +652,15 @@ VOID CLogInGui::LogInStageTimeOutEventHandler(RWS::CMsg &msg)
 	}
 }
 
-VOID CLogInGui::ResizeEventHandler(RWS::CMsg &msg)
+VOID CLogInGui::ResizeEventHandler(RWS::CMsg& msg)
 {
-	SNtlPLEventResize* pPacket = reinterpret_cast<SNtlPLEventResize*>( msg.pData );		
-	LocateComponent(pPacket->iWidht, pPacket->iHeight);	
+	SNtlPLEventResize* pPacket = reinterpret_cast<SNtlPLEventResize*>(msg.pData);
+	LocateComponent(pPacket->iWidht, pPacket->iHeight);
 }
 
-int CLogInGui::KeyboardDownHandler(uintptr_t uiKeyData)
+int CLogInGui::KeyboardDownHandler(unsigned int uiKeyData)
 {
-	SKeyData* pData = CInputHandler::GetLastKeyData();
+	SKeyData* pData = (SKeyData*)uiKeyData;
 
 	if (pData->uiChar == NTL_KEY_ESCAPE)
 	{
@@ -601,3 +674,4 @@ int CLogInGui::KeyboardDownHandler(uintptr_t uiKeyData)
 
 	return TRUE;
 }
+

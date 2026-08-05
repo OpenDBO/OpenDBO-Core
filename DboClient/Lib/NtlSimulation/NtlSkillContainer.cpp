@@ -210,6 +210,29 @@ RwBool CNtlSkillContainer::SkillExists( TBLIDX minIdx, TBLIDX maxIdx )
 	return FALSE;
 }
 
+RwBool CNtlSkillContainer::IsNeedSkillPre(TBLIDX curIdx)
+{
+	if (curIdx == INVALID_TBLIDX)
+		return FALSE;
+
+	CNtlSob* pSobObj;
+	CNtlSobSkillAttr* pSobSkillAttr;
+	for (RwInt32 i = 0; i < NTL_MAX_PC_HAVE_SKILL; ++i)
+	{
+		if (m_hSerial[i] == INVALID_SERIAL_ID)
+			continue;
+
+		pSobObj = GetNtlSobManager()->GetSobObject(m_hSerial[i]);
+		pSobSkillAttr = reinterpret_cast<CNtlSobSkillAttr*>(pSobObj->GetSobAttr());
+		sSKILL_TBLDAT* pSkillTblData = pSobSkillAttr->GetSkillTbl();
+
+		if (pSkillTblData->uiRequire_Skill_Tblidx_Min_1 == curIdx || pSkillTblData->uiRequire_Skill_Tblidx_Min_2 == curIdx)
+			return TRUE;
+	}
+
+	return FALSE;
+}
+
 RwInt32 CNtlSkillContainer::GetHTBSkillCount(void)
 {
 	return NTL_HTB_MAX_PC_HAVE_HTB_SKILL;
@@ -428,6 +451,28 @@ void CNtlAvatarSkillContainer::UpgradeEventHandler(RWS::CMsg &pMsg)
 	pSobSkill->HandleEvents(pMsg);
 }
 
+void CNtlAvatarSkillContainer::ResetOneEventHandler(RWS::CMsg& pMsg)
+{
+	SNtlEventSobSkillResetOne* pSkillResetOne = reinterpret_cast<SNtlEventSobSkillResetOne*>(pMsg.pData);
+
+	CNtlSobSkill* Skill = GetSkill(pSkillResetOne->skillIndex);
+	if (Skill)
+	{
+		CNtlSobSkillAttr* pSobSkillAttr = reinterpret_cast<CNtlSobSkillAttr*>(Skill->GetSobAttr());
+
+		NTL_ASSERT(pSkillResetOne->skillIndex >= 0 && pSkillResetOne->skillIndex < NTL_MAX_PC_HAVE_SKILL,
+			"CNtlAvatarSkillContainer::UpgradeEventHandler => slot id( " << pSkillResetOne->skillIndex << " ) is range out");
+
+		NTL_ASSERT(m_hSerial[pSkillResetOne->skillIndex] != INVALID_SERIAL_ID,
+			"CNtlAvatarSkillContainer::UpgradeEventHandler => slot id( " << pSkillResetOne->skillIndex << " ) is not exist");
+
+		if (pSobSkillAttr->GetSkillTbl()->bySkill_Grade != 1)
+		{
+			Skill->HandleEvents(pMsg);
+		}
+	}
+}
+
 void CNtlAvatarSkillContainer::SkillAction(RWS::CMsg &pMsg)
 {
 	SNtlEventSobSkillAction *pSkillAction = reinterpret_cast<SNtlEventSobSkillAction*>( pMsg.pData );
@@ -609,6 +654,10 @@ void CNtlAvatarSkillContainer::HandleEvents(RWS::CMsg &pMsg)
 	else if(pMsg.Id == g_EventSobSkillUpgrade)
 	{
 		UpgradeEventHandler(pMsg);
+	}
+	else if (pMsg.Id == g_EventSobSkillResetOne)
+	{
+		ResetOneEventHandler(pMsg);
 	}
 	else if(pMsg.Id == g_EventSobSkillAction)
 	{

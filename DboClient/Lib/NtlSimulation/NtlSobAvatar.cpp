@@ -650,6 +650,13 @@ void CNtlSobAvatar::HandleEvents(RWS::CMsg &pMsg)
 		SNtlEventSobSkillUpgrade *pSkillUpgrade = reinterpret_cast<SNtlEventSobSkillUpgrade*>(pMsg.pData);
 		CNtlSLEventGenerator::SobUpdate(GetSerialID(), EVENT_AIUT_SKILL_LEVELUP, pSkillUpgrade->bySkillSlotIdx);
 	}
+	else if (pMsg.Id == g_EventSobSkillResetOne)
+	{
+		SNtlEventSobSkillResetOne* pSkillResetOne = reinterpret_cast<SNtlEventSobSkillResetOne*>(pMsg.pData);
+		CNtlSLEventGenerator::SobUpdate(GetSerialID(), EVENT_AIUT_SKILL_RESET_ONE, pSkillResetOne->skillIndex);
+		m_SkillContainer.HandleEvents(pMsg);
+		CNtlSLEventGenerator::SobUpdate(GetSerialID(), EVENT_AIUT_SKILL_CHECK_UPGRADABLE, pSkillResetOne->skillIndex);
+	}
 	else if(pMsg.Id == g_EventSobHTBSkillAdd)
 	{
 		m_SkillContainer.HandleEvents(pMsg);

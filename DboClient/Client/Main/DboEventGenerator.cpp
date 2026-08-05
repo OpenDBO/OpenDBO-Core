@@ -157,13 +157,14 @@ void CDboEventGenerator::CharMaking(RwBool bSetDefaultCamera, RwUInt8	byRace, Rw
 	_SendMsg(msg);
 }
 
-void CDboEventGenerator::LoginEvent(RwUInt8 byMessage, RwReal fValue /* = 0.f */, RwUInt32 uiExData /* = 0 */)
+void CDboEventGenerator::LoginEvent(RwUInt8 byMessage, RwBool isButton /* = false */, RwReal fValue /* = 0.f */, RwUInt32 uiExData /* = 0 */)
 {
 	SDboEventLoginMessage sLoginMessage;
 
 	sLoginMessage.byMessage		= byMessage;
 	sLoginMessage.fValue		= fValue;
 	sLoginMessage.uiExData		= uiExData;
+	sLoginMessage.isButton		= isButton;
 
 	RWS::CMsg msg;
 	msg.Id = g_EventLoginMessage;
@@ -178,6 +179,7 @@ void CDboEventGenerator::LoginPostEvent(RwUInt8 byMessage, RwReal fValue /* = 0.
 	sLoginMessage.byMessage		= byMessage;
 	sLoginMessage.fValue		= fValue;
 	sLoginMessage.uiExData		= uiExData;
+	sLoginMessage.isButton		= false;
 
 	RWS::CMsg msg;
 	msg.Id = g_EventLoginMessage;
@@ -205,8 +207,23 @@ void CDboEventGenerator::LoginGuiEnable(void)
 {
 	RWS::CMsg msg;
 	msg.Id = g_EventLoginGuiEnable;
-	
+
 	_SendMsg(msg);
+}
+
+void CDboEventGenerator::LoginSuccess(void)
+{
+	RWS::CMsg msg;
+	msg.Id = g_EventLoginSuccess;
+
+	_SendMsg(msg);
+}
+
+void CDboEventGenerator::SendVirtualKeyboard(std::string key)
+{
+	SDboEventKeyboard sData;
+	sData.key = key;
+	SEND_MSG(g_EventVirtualKeyboard, &sData);
 }
 
 void CDboEventGenerator::CharSelectGuiEnable(void)
@@ -1731,6 +1748,16 @@ void CDboEventGenerator::OpenBagGui()
 void CDboEventGenerator::OpenScouterBackgroundGui()
 {
     SEND_MSG(g_EventOpenScouterBackgroundGui, NULL);
+}
+
+void CDboEventGenerator::BroadCast(BYTE MsgType, sMSG_BROADCAST_DATA pData)
+{
+	SDboEventBroadCastNfy sData;
+
+	sData.MsgType = MsgType;
+	sData.pData = pData;
+
+	SEND_MSG(g_EventBroadCastNfy, &sData);
 }
 
 // Mascot

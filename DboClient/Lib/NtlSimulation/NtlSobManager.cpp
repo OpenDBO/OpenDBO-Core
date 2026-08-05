@@ -185,6 +185,7 @@ RwBool CNtlSobManager::Create(void)
 	LinkMsg(g_EventSobSkillActioned);
 	LinkMsg(g_EventSobSkillAdd);
 	LinkMsg(g_EventSobSkillUpgrade);
+	LinkMsg(g_EventSobSkillResetOne);
 	LinkMsg(g_EventSobHTBSkillAdd);
 	LinkMsg(g_EventSobHTBSkillAction);
 	LinkMsg(g_EventSobSocialAction);
@@ -313,6 +314,7 @@ RwBool CNtlSobManager::Create(void)
     m_mapEventFunc[g_EventSobSkillActioned.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
     m_mapEventFunc[g_EventSobSkillAdd.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
     m_mapEventFunc[g_EventSobSkillUpgrade.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
+	m_mapEventFunc[g_EventSobSkillResetOne.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
     m_mapEventFunc[g_EventSobSocialAction.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
     m_mapEventFunc[g_EventSobHTBSkillAdd.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
     m_mapEventFunc[g_EventSobHTBSkillAction.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
@@ -492,6 +494,7 @@ void CNtlSobManager::Destroy(void)
 	UnLinkMsg(g_EventSobSkillActioned);
 	UnLinkMsg(g_EventSobSkillAdd);
 	UnLinkMsg(g_EventSobSkillUpgrade);
+	UnLinkMsg(g_EventSobSkillResetOne);
 	UnLinkMsg(g_EventSobHTBSkillAdd);
 	UnLinkMsg(g_EventSobHTBSkillAction);
 	UnLinkMsg(g_EventSobSocialAction);

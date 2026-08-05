@@ -263,6 +263,7 @@ void PacketHandler_GSCharUpdateSP(void* pPacket);
 void PacketHandler_GSSkillInitRes(void* pPacket);
 void PacketHandler_GSSkillInitNfy(void* pPacket);
 void PacketHandler_GSSkillResetPlusRes(void* pPacket);
+void PacketHandler_GSResetSkillOneRes(void* pPacket);
 
 
 void PacketHandler_GSCharRenameRes(void* pPacket);
@@ -865,6 +866,7 @@ void PacketHandler_TUBudokaiTournamentTeamInfoRes(void* pPacket);
 
 // Naming
 void PacketHandler_CharNameChangedNfy(void* pPacket);
+void PacketHandler_TUBroadCastRes(void* pPacket);
 void PacketHandler_NickNameChangedNfy(void* pPacket);
 
 // Display message

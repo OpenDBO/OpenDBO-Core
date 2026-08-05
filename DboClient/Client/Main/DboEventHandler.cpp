@@ -60,6 +60,8 @@ RwBool CDboEventHandler::Create(void)
 	RegisterMsg(g_EventLogInStageStateEnter, "g_EventLogInStageStateEnterStr", "SDboLogInStageStateEnter");
 	RegisterMsg(g_EventLogInStageStateExit, "g_EventLogInStageStateExitStr", "SDboLogInStageStateExit");
 	RegisterMsg(g_EventLogInStageTimeOut, "g_EventLogInStageTimeOutStr", "SDboLogInStageTimeOut");
+	RegisterMsg(g_EventLoginSuccess, "g_EventLoginSuccess", "SDboLoginSuccess");
+	RegisterMsg(g_EventVirtualKeyboard, "g_EventVirtualKeyboard", "SDboEventKeyboard");
 
 	RegisterMsg(g_EventCharStageStateEnter, "g_EventCharStageStateEnterStr", "SDboCharStageStateEnter");
 	RegisterMsg(g_EventCharStageStateExit, "g_EventCharStageStateExitStr", "SDboCharStageStateExit");
@@ -191,8 +193,9 @@ RwBool CDboEventHandler::Create(void)
 
     RegisterMsg(g_EventOpenBagGui, "g_EventOpenBagGui", NULL);
     RegisterMsg(g_EventOpenScouterBackgroundGui, "g_EventOpenScouterBackgroundGui", NULL);
+    RegisterMsg(g_EventBroadCastNfy, "g_EventBroadCastNfy", NULL);
 
-    // ÇÑ±¹ PC¹æ °ü·Ã
+    // í•œêµ­ PCë°© ê´€ë ¨
     RegisterMsg(g_EventUpdateNetPy, "g_EventUpdateNetPy", "SDboEventUpdateNetPy");
     RegisterMsg(g_EventNetMarbleMemberShipNfy, "g_EventNetMarbleMemberShipNfy", NULL);
 	RegisterMsg(g_EventNetPyShopEvent, "g_EventNetPyShopEvent", "SDboNetPyShopEvent" );
@@ -263,6 +266,8 @@ void CDboEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventLogInStageStateEnter);
 	UnRegisterMsg(g_EventLogInStageStateExit);
 	UnRegisterMsg(g_EventLogInStageTimeOut);
+	UnRegisterMsg(g_EventLoginSuccess);
+	UnRegisterMsg(g_EventVirtualKeyboard);
 
 	UnRegisterMsg(g_EventCharStageStateEnter);
 	UnRegisterMsg(g_EventCharStageStateExit);
@@ -394,8 +399,9 @@ void CDboEventHandler::Destroy(void)
 
 	UnRegisterMsg(g_EventOpenBagGui);
 	UnRegisterMsg(g_EventOpenScouterBackgroundGui);
+	UnRegisterMsg(g_EventBroadCastNfy);
 
-	// ÇÑ±¹ PC¹æ °ü·Ã
+	// í•œêµ­ PCë°© ê´€ë ¨
 	UnRegisterMsg(g_EventUpdateNetPy);
 	UnRegisterMsg(g_EventNetMarbleMemberShipNfy);
 	UnRegisterMsg(g_EventNetPyShopEvent);
@@ -523,7 +529,7 @@ void CDboEventHandler::HandleEvents(RWS::CMsg &pMsg)
 
 				if( pActor->GetSerialID() == pCtrlStuff->sRide.hTargetSerialId )
 				{
-					// ³»°¡ Å¸°í ÀÖ´Â ¹ö½ºÀÌ´Ù
+					// ë‚´ê°€ íƒ€ê³  ìžˆëŠ” ë²„ìŠ¤ì´ë‹¤
 					//const WCHAR* pwcText = GetDisplayStringManager()->GetString("DST_BUS_ASK_GET_OFF");
 					//CDboEventGenerator::MsgBoxShow(pwcText, MBW_GET_OFF_BUS_ASK, MBTF_OK | MBTF_CANCEL);
 					GetAlarmManager()->AlarmMessage( "DST_BUS_ASK_GET_OFF" );

@@ -25,7 +25,7 @@
 // User AccountID and Password
 #define NTL_MAX_SIZE_USERID								(16)
 #define NTL_MAX_SIZE_USERPW								(16)
-#define NTL_MAX_SIZE_USERPW_ENCRYPT						(32)
+#define NTL_MAX_SIZE_USERPW_ENCRYPT						(64)
 
 
 //new
@@ -73,7 +73,7 @@
 
 #define NTL_MAX_LENGTH_MODEL_NAME						(32)
 
-#define NTL_MAX_LENGTH_REPORT_NAME						(64) // 리포트 남길 떄 사용하는 이름의 최대길이(스킬, 아이템 몹 등등)
+#define NTL_MAX_LENGTH_REPORT_NAME						(64) // Maximum length of names used when leaving a report (skills, items, mobs, etc.)
 #define NTL_MAX_LENGTH_REPORT_NAME_UNICODE				(64)
 #define NTL_MAX_LENGTH_REPORT_NAME_MUlTIBYTE_BUFFER		(512)
 
@@ -102,7 +102,7 @@
 #define NTL_MAX_SIZE_WORLD_NAME_UNICODE					(32)
 #define NTL_MAX_SIZE_FULL_WORLD_NAME					(64)
 
-#define NTL_MAX_LENGTH_SKILL_NAME_TEXT					(40) // GM 툴 사용 로그에서 사용하는 크기
+#define NTL_MAX_LENGTH_SKILL_NAME_TEXT					(40) // The size used in GM tool usage logs
 #define NTL_MAX_LENGTH_ITEM_NAME_TEXT					(32)
 #define NTL_MAX_LENGTH_BEFORE_AFTER_STATUS				(128)
 

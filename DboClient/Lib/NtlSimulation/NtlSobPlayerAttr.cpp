@@ -26,9 +26,8 @@ CNtlSobPlayerAttr::CNtlSobPlayerAttr()
 {
 	m_pPcTbl		= NULL;
 
-	m_ucMainWeaponBattleAttr = BATTLE_ATTRIBUTE_NONE;
-	m_ucSubWeaponBattleAttr = BATTLE_ATTRIBUTE_NONE;
-	m_ucArmorBattleAttr = BATTLE_ATTRIBUTE_NONE;
+	m_ucBattleAttr = BATTLE_ATTRIBUTE_NONE;
+	m_ucBattleAttrArmor = BATTLE_ATTRIBUTE_NONE;
 
 	m_bInvisibleTitleNameFlag = false;
 	m_wszTitleName.clear();
@@ -93,9 +92,8 @@ void CNtlSobPlayerAttr::HandleEvents(RWS::CMsg &pMsg)
 		SetHairColor(pSobPlayerCreate->pPcBrief->sPcShape.byHairColor);
 		SetSkinColor(pSobPlayerCreate->pPcBrief->sPcShape.bySkinColor);
 
-		SetMainWeaponAttr(pSobPlayerCreate->pPcBrief->sItemBrief[EQUIP_SLOT_TYPE_HAND].byBattleAttribute);
-		SetSubWeaponAttr(pSobPlayerCreate->pPcBrief->sItemBrief[EQUIP_SLOT_TYPE_SUB_WEAPON].byBattleAttribute);
-		SetArmorWeaponAttr(pSobPlayerCreate->pPcBrief->sItemBrief[EQUIP_SLOT_TYPE_JACKET].byBattleAttribute);
+		SetMainBattleAttr(pSobPlayerCreate->pPcBrief->sItemBrief[EQUIP_SLOT_TYPE_HAND].byBattleAttribute);
+		SetArmorBattleAttr(pSobPlayerCreate->pPcBrief->sItemBrief[EQUIP_SLOT_TYPE_JACKET].byBattleAttribute);
 	}
 	else if(pMsg.Id == g_EventSobConvertClass)
 	{
@@ -114,11 +112,9 @@ void CNtlSobPlayerAttr::HandleEvents(RWS::CMsg &pMsg)
 		SNtlEventSobEquipChange* pSobEquipChange = reinterpret_cast<SNtlEventSobEquipChange*>( pMsg.pData );
 
 		if (pSobEquipChange->bySlotIdx == EQUIP_SLOT_TYPE_HAND)
-			SetMainWeaponAttr(pSobEquipChange->byBattleAttribute);
-		else if (pSobEquipChange->bySlotIdx == EQUIP_SLOT_TYPE_SUB_WEAPON)
-			SetSubWeaponAttr(pSobEquipChange->byBattleAttribute);
+			SetMainBattleAttr(pSobEquipChange->byBattleAttribute);
 		else if (pSobEquipChange->bySlotIdx == EQUIP_SLOT_TYPE_JACKET)
-			SetArmorWeaponAttr(pSobEquipChange->byBattleAttribute);
+			SetArmorBattleAttr(pSobEquipChange->byBattleAttribute);
 	}
     else if(pMsg.Id == g_EventSobChangeAdult)
     {

@@ -45,6 +45,9 @@
 #include "NtlFSMDef.h"
 #include "NtlShareTargetMark.h"
 
+#include "NtlPLResourcePack.h"
+#include "NtlPLResourceManager.h"
+
 #define DECAL_RATIO 0.2f
 
 RwBool CNtlSobCharDecorationProxy::m_bShadowCreate = TRUE;
@@ -180,6 +183,12 @@ void CNtlSobCharDecorationProxy::Update(RwReal fElapsed)
 
     if(m_pProxyTransform)
         m_pProxyTransform->Update(fElapsed);
+
+	if (m_pPLCharacter->GetCharScheduleResInfo()->bLoadComplete && bCreatePlayTitle)
+	{
+		bCreatePlayTitle = false;
+		CreatePLPlayerTitle(pchEffect, pchBone);
+	}
 }
 
 void CNtlSobCharDecorationProxy::HandleEvents(RWS::CMsg &pMsg)
@@ -235,7 +244,7 @@ void CNtlSobCharDecorationProxy::SobFaintingEventHandler(RWS::CMsg &pMsg)
 	DeletePLTargetMark();
     DeletePLAttackMark();
     
-    // 천하제일 무도회 우승 마크를 없앤다
+    // Remove the World Martial Arts Tournament championship mark
     if(m_pTenkaichiMark)
     {
         m_pTenkaichiMark->SetVisible(FALSE);
@@ -344,7 +353,7 @@ void CNtlSobCharDecorationProxy::CreatePLShadowDecal(void)
 
 	m_fDefShadowScale = fVariScale * fShadowWeightScale*(fModelWidth + fModelDepth)/2.0f;
 
-    // 너무 큰경우에는 제한을 시켜준다.
+    // If it's too large, apply/enforce a limit.
     if(m_fDefShadowScale > 10.0f)
         m_fDefShadowScale = 10.0f;
 
@@ -355,7 +364,7 @@ void CNtlSobCharDecorationProxy::CreatePLShadowDecal(void)
 	param.fVisibleSquaredDist = 1600.0f;	
 	param.pTexName = "shadow.dds";
 	param.pTexPath = ".\\texture\\effect\\";
-	param.fYOffset = 0.01f;						// 지형 Decal이 0.1f이다. 지형 Decal 위로 그림자를 표현하기 위해 조금 더 뛰운다. (by agebreak 2007.5.11)
+	param.fYOffset = 0.01f;						// The terrain Decal is 0.1f. To render shadows above the terrain decal, we offset it (raise it) a bit more.
 	param.eDecalType = DECAL_TERRAIN;    
 
 	if(m_bShadowCreate)
@@ -363,7 +372,7 @@ void CNtlSobCharDecorationProxy::CreatePLShadowDecal(void)
 		m_pShadowDecal = static_cast<CNtlPLDecal*>(GetSceneManager()->CreateEntity(PLENTITY_DECAL, "NULL", &param));
 		NTL_ASSERT(m_pShadowDecal, "CNtlSobCharProxy::CreatePLShadowDecal");
 		
-		// 컬러 설정
+		// Color settings
 		RwRGBA clrShadow;
 		GetSceneManager()->GetWorldShadowColor(m_pPLCharacter->GetPosition(), &clrShadow);
 		clrShadow.red = (RwUInt8)((RwReal)clrShadow.red * DECAL_RATIO);
@@ -427,15 +436,15 @@ void CNtlSobCharDecorationProxy::DeletePLPlayerName(void)
 	}
 }
 
-void CNtlSobCharDecorationProxy::CreatePLPlayerTitle(const char *pEffectKey, const char *pBoneKey)
+void CNtlSobCharDecorationProxy::CreatePLPlayerTitle(const char* pEffectKey, const char* pBoneKey)
 {
 	if (m_pTitleEffect)
 	{
 		DeletePLPlayerTitle();
 	}
 
-	CNtlSobActor *pSobActor = reinterpret_cast<CNtlSobActor*> (m_pSobObj);
-	CNtlSobAttr *pSobAttr = m_pSobObj->GetSobAttr();
+	CNtlSobActor* pSobActor = reinterpret_cast<CNtlSobActor*> (m_pSobObj);
+	CNtlSobAttr* pSobAttr = m_pSobObj->GetSobAttr();
 
 	if (pSobActor->GetClassID() == SLCLASS_AVATAR || pSobActor->GetClassID() == SLCLASS_PLAYER)
 	{
@@ -444,14 +453,233 @@ void CNtlSobCharDecorationProxy::CreatePLPlayerTitle(const char *pEffectKey, con
 			m_pTitleEffect = GetSceneManager()->CreateEntity(PLENTITY_EFFECT, pEffectKey);
 			if (m_pTitleEffect)
 			{
-				Helper_AttachBone(m_pPLCharacter, m_pTitleEffect, pBoneKey);
+				CNtlSobAvatarAttr* pAvatarAttr = (CNtlSobAvatarAttr*)pSobAttr;
+
+				RwUInt8 race = pAvatarAttr->GetRace();
+				RwBool adult = pAvatarAttr->IsAdult();
+				RwUInt8 gender = pAvatarAttr->GetGender();
+
+				std::string sRace, sAdult, sGender;
+
+				if (race == RACE_HUMAN) {
+					sRace = "HUMAN";
+				}
+				else if (race == RACE_NAMEK) {
+					sRace = "NAMEK";
+				}
+				else {
+					sRace = "MAJIN";
+				}
+				if (gender == GENDER_MALE) {
+					sGender = "MALE";
+				}
+				else if (gender == GENDER_FEMALE) {
+					sGender = "FEMALE";
+				}
+				else {
+					sGender = "ONESEX";
+				}
+				sAdult = adult ? "1" : "0";
+
+				CNtlXMLDoc XMLDoc;
+
+				if (!XMLDoc.Create())
+				{
+					NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), !XMLDoc.Create()\n");
+					return;
+				}
+
+				if (GetNtlResourcePackManager()->GetActiveFlags() & NTL_PACK_TYPE_FLAG_SCRIPT)
+				{
+					BYTE* pPackBuffer = NULL;
+					RwInt32	iPackSize = 0;
+
+					GetNtlResourcePackManager()->LoadScript(".\\script\\titleeffect.xml", (void**)&pPackBuffer, &iPackSize);
+					if (pPackBuffer)
+					{
+						BYTE* pTempBuffer = NTL_NEW BYTE[iPackSize + 1];
+						memcpy(pTempBuffer, pPackBuffer, iPackSize);
+						pTempBuffer[iPackSize] = '\0';
+
+						if (!XMLDoc.LoadXML((char*)pTempBuffer))
+						{
+							XMLDoc.Destroy();
+							NTL_ARRAY_DELETE(pTempBuffer);
+							NTL_ARRAY_DELETE(pPackBuffer);
+							NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), !XMLDoc.Load(\".\\script\\titleeffect.xml\")\n");
+							return;
+						}
+						NTL_ARRAY_DELETE(pTempBuffer);
+						NTL_ARRAY_DELETE(pPackBuffer);
+					}
+				}
+				else
+				{
+					if (!XMLDoc.Load(".\\script\\titleeffect.xml"))
+					{
+						XMLDoc.Destroy();
+						NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), !XMLDoc.Load(\".\\script\\titleeffect.xml\")\n");
+						return;
+					}
+				}
+
+				IXMLDOMNodeList* pItemPropertyNodeList = XMLDoc.SelectNodeList((char*)"effectdataproperty");
+				if (pItemPropertyNodeList == NULL)
+				{
+					NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), pItemPropertyNodeList == NULL");
+					return;
+				}
+				char szOffsetX[8] = { 0, };
+				char szOffsetY[8] = { 0, };
+				char szOffsetZ[8] = { 0, };
+				char szScale[8] = { 0, };
+				char szAttachType[32] = { 0, };
+
+				long itemPropertyCount = 0;
+				pItemPropertyNodeList->get_length(&itemPropertyCount);
+				for (long i = 0; i < itemPropertyCount; ++i)
+				{
+					IXMLDOMNode* pItemPropertyNode = NULL;
+					pItemPropertyNodeList->get_item(i, &pItemPropertyNode);
+					if (pItemPropertyNode)
+					{
+						IXMLDOMNodeList* pLMPNodeList = NULL;
+						pItemPropertyNode->selectNodes(L"titleeffect", &pLMPNodeList);
+						if (pLMPNodeList == NULL)
+						{
+							NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), pLMPNodeList == NULL");
+							return;
+						}
+
+						if (pLMPNodeList)
+						{
+							long LMPTypeCount = 0;
+							pLMPNodeList->get_length(&LMPTypeCount);
+							for (long m = 0; m < LMPTypeCount; ++m)
+							{
+								IXMLDOMNode* pLMPTypeNode = NULL;
+								pLMPNodeList->get_item(m, &pLMPTypeNode);
+								if (pLMPTypeNode)
+								{
+									char sLMPName[64] = { 0, };
+									if (!XMLDoc.GetTextWithAttributeName(pLMPTypeNode, "name", sLMPName, sizeof(sLMPName)))
+									{
+										NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), !XMLDoc.GetTextWithAttributeName(pLMPTypeNode, ""name"", sLMPName, sizeof(sLMPName))");
+										return;
+									}
+
+									if (strcmp(sLMPName, m_pTitleEffect->GetName()) != 0)
+									{
+										continue;
+									}
+									IXMLDOMNode* pTypeNode = NULL;
+									IXMLDOMNodeList* pTypeNodeList = NULL;
+
+									pLMPTypeNode->selectNodes(L"effect_element", &pTypeNodeList);
+
+									if (pTypeNodeList)
+									{
+										long dataCount = 0;
+										pTypeNodeList->get_length(&dataCount);
+										for (long t = 0; t < dataCount; t++)
+										{
+											IXMLDOMNode* pDataNode = NULL;
+											pTypeNodeList->get_item(t, &pDataNode);
+											char szRace[32] = { 0, };
+											char szGender[32] = { 0, };
+											char szAdult[32] = { 0, };
+
+											if (!XMLDoc.GetTextWithAttributeName(pDataNode, "race", szRace, sizeof(szRace)))
+											{
+												NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), !XMLDoc.GetTextWithAttributeName(pDataNode,""race"", szType, sizeof(szType))");
+												return;
+											}
+											if (!XMLDoc.GetTextWithAttributeName(pDataNode, "gender", szGender, sizeof(szGender)))
+											{
+												NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), !XMLDoc.GetTextWithAttributeName(pDataNode,""gender"", szType, sizeof(szType))");
+												return;
+											}
+											if (!XMLDoc.GetTextWithAttributeName(pDataNode, "adult", szAdult, sizeof(szAdult)))
+											{
+												NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), !XMLDoc.GetTextWithAttributeName(pDataNode,""adult"", szType, sizeof(szType))");
+												return;
+											}
+
+											if (strcmp(szRace, sRace.c_str()) != 0 || strcmp(szGender, sGender.c_str()) != 0 || strcmp(szAdult, sAdult.c_str()) != 0)
+											{
+												continue;
+											}
+
+											if (!XMLDoc.GetTextWithAttributeName(pDataNode, "attach_type", szAttachType, sizeof(szAttachType)))
+											{
+												NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), !XMLDoc.GetTextWithAttributeName(pDataNode,""attach_type"", szType, sizeof(szType))");
+												return;
+											}
+
+											if (!XMLDoc.GetTextWithAttributeName(pDataNode, "offset_x", szOffsetX, sizeof(szOffsetX)))
+											{
+												NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), !XMLDoc.GetTextWithAttributeName(pDataNode,""offset_x"", szType, sizeof(szType))");
+												return;
+											}
+											if (!XMLDoc.GetTextWithAttributeName(pDataNode, "offset_y", szOffsetY, sizeof(szOffsetY)))
+											{
+												NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), !XMLDoc.GetTextWithAttributeName(pDataNode,""offset_y"", szType, sizeof(szType))");
+												return;
+											}
+											if (!XMLDoc.GetTextWithAttributeName(pDataNode, "offset_z", szOffsetZ, sizeof(szOffsetZ)))
+											{
+												NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), !XMLDoc.GetTextWithAttributeName(pDataNode,""offset_z"", szType, sizeof(szType))");
+												return;
+											}
+											if (!XMLDoc.GetTextWithAttributeName(pDataNode, "scale", szScale, sizeof(szScale)))
+											{
+												NTL_ASSERTFAIL("CNtlSobCharDecorationProxy::CreatePLPlayerTitle(), !XMLDoc.GetTextWithAttributeName(pDataNode,""scale"", szType, sizeof(szType))");
+												return;
+											}
+											break;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+
+				XMLDoc.Destroy();
+
+				//DBO_WARNING_MESSAGE("x:" << szOffsetX << " y:" << szOffsetY << " z:" << szOffsetZ << " sc:" << szScale);
+				RwV3d offset;
+				offset.x = atof(szOffsetX);
+				offset.y = atof(szOffsetY);
+				offset.z = atof(szOffsetZ);
+
+				RwV3d scale;
+				scale.x = scale.y = scale.z = atof(szScale);
+
+				if (strcmp(szAttachType, "ATTACH_WORLD_POS") == 0)
+				{
+					m_pTitleEffect->SetPosition(&m_pSobObj->GetSobProxy()->GetPosition());
+					m_pTitleEffect->SetDirection(&m_pPLCharacter->GetDirection());
+					m_pTitleEffect->SetScale(atof(szScale));
+					Helper_AttachWorldPos(m_pPLCharacter, m_pTitleEffect, offset);
+				}
+				else if (strcmp(szAttachType, "ATTACH_BONE") == 0)
+				{
+					Helper_AttachBone(m_pPLCharacter, m_pTitleEffect, pBoneKey, offset, scale);
+				}
 
 				m_pTitleEffect->SetSerialID(m_pSobObj->GetSerialID());
 				m_pTitleEffect->SetVisible(TRUE);
+
 			}
+		}
+		else
+		{
+			bCreatePlayTitle = true;
 		}
 	}
 	else
+
 	{
 		return;
 	}
@@ -473,7 +701,7 @@ void CNtlSobCharDecorationProxy::CreatePLAttackMark(void)
     
     if(m_pShareTargetMark && m_pShareTargetMark->IsShareTargeting())
     {
-        // 공유 타겟 설정이 되어 있으면 일반 마크는 뜨지 않는다.
+        // If shared target setting is enabled, the normal mark does not appear.
         CreateShareTargetMark(m_pShareTargetMark->GetSlot(), CNtlShareTargetMark::SHARE_TARGET_ATTACK);
         return;
     }
@@ -518,7 +746,7 @@ void CNtlSobCharDecorationProxy::CreatePLTargetMark(void)
 
     if(m_pShareTargetMark && m_pShareTargetMark->IsShareTargeting())
     {
-        // 공유 타겟 설정이 되어 있으면 일반 마크는 뜨지 않는다.
+        // If shared target setting is enabled, the normal mark does not appear.
         CreateShareTargetMark(m_pShareTargetMark->GetSlot(), CNtlShareTargetMark::SHARE_TARGET_TARGET);
         return;
     }
@@ -812,6 +1040,10 @@ void CNtlSobCharDecorationProxy::DetachConvertClassEquipItem(void)
 	// character quest mark
 	if(m_pQuestMark)
 		Helper_DetachPLEntity(m_pPLCharacter, m_pQuestMark);
+
+	// player title effect
+	if (m_pTitleEffect)
+		Helper_DetachPLEntity(m_pPLCharacter, m_pTitleEffect);
 }
 
 void CNtlSobCharDecorationProxy::AttachConvertClassEquipItem(CNtlPLCharacter *pPLCharacter)
@@ -866,6 +1098,13 @@ void CNtlSobCharDecorationProxy::AttachConvertClassEquipItem(CNtlPLCharacter *pP
     {
         m_pProxyTransform->SetActor((CNtlSobActor*)m_pSobObj, m_pPLCharacter);
     }
+
+	// player title effect
+	if (m_pTitleEffect)
+	{
+		DeletePLPlayerTitle();
+		CreatePLPlayerTitle(pchEffect, pchBone);
+	}
 }
 
 void CNtlSobCharDecorationProxy::SetNameColor(const WCHAR* pwcName, COLORREF nameColor,
@@ -945,7 +1184,7 @@ void CNtlSobCharDecorationProxy::ResourceLoadComplete(RwBool bVisible)
 		if( m_pPlayerName->IsEnablePlayerNameVisible() )
 			m_pPlayerName->SetVisible(bVisible);
 
-		// m_bNameVisible 이 FALSE 인데 현재 m_pPlayerName이 SetVisible(TRUE)로 세팅됐다면 안 보이게 해준다.
+		// If m_bNameVisible is FALSE, but m_pPlayerName is currently set to SetVisible(TRUE), make it invisible.
 		if( !m_pPlayerName->IsEnablePlayerNameVisible() && m_pPlayerName->IsVisible() )
 			m_pPlayerName->SetVisible(FALSE);
 	}
@@ -972,7 +1211,7 @@ RwBool CNtlSobCharDecorationProxy::AttachRPBonusEffect()
     if(!m_vecRPBonusEffect.empty())
         return FALSE;
 
-    // RP Bonus가 붙을 본 리스트
+    // List of bones to which the RP Bonus (effect/attachment) will be attached
     std::string strBoneList1[7];
     std::string strBoneList2;
     strBoneList1[0] = "Bip01 Head";
@@ -985,7 +1224,7 @@ RwBool CNtlSobCharDecorationProxy::AttachRPBonusEffect()
     strBoneList2 = "Bip01 Pelvis";    
 
     CNtlInstanceEffect* pEffect;
-    for(int i = 0; i < 7; ++i)      // 작은 이펙트
+    for(int i = 0; i < 7; ++i)
     {
         if(m_pPLCharacter->GetBoneByName(strBoneList1[i].c_str()))
         {
@@ -998,7 +1237,7 @@ RwBool CNtlSobCharDecorationProxy::AttachRPBonusEffect()
         }        
     }
 
-    if(m_pPLCharacter->GetBoneByName(strBoneList2.c_str())) // 큰 이펙트
+    if(m_pPLCharacter->GetBoneByName(strBoneList2.c_str())) // 큰 占쏙옙占쏙옙트
     {
         pEffect = (CNtlInstanceEffect*)GetSceneManager()->CreateEntity(PLENTITY_EFFECT, NTL_VID_RPBONUS_BIG);
         if(pEffect)
@@ -1154,7 +1393,7 @@ void CNtlSobCharDecorationProxy::SobShareTargetSelectHandler( RWS::CMsg& pMsg )
     SNtlEventShareTargetSelect* pData = (SNtlEventShareTargetSelect*)pMsg.pData;
     if(pData->hSerialId == m_pSobObj->GetSerialID())
     {
-        // 기존 타겟 마크를 삭제하기 전에 현재 상태를 저장해둔다
+        // Before deleting the existing target mark, save its current state.
         RwBool bAttackMode = m_pAttackMark ? TRUE : FALSE;
         RwBool bTargetMode = m_pTargetMark ? TRUE : FALSE;
 
@@ -1207,13 +1446,15 @@ void CNtlSobCharDecorationProxy::SobTitleEffectHandler(RWS::CMsg & pMsg)
 	}
 	else
 	{
+		strcpy(pchEffect, pData->pchEffect);
+		strcpy(pchBone, pData->pchBone);
 		CreatePLPlayerTitle(pData->pchEffect, pData->pchBone);
 	}
 }
 
 RwBool CNtlSobCharDecorationProxy::IsNotCreateDecalMark() 
 {
-    // 버스는 바닥 데칼을 그리지 않는다.
+    // Buses do not draw floor decals.
     return Logic_IsBus((CNtlSobActor*)m_pSobObj);
 }
 

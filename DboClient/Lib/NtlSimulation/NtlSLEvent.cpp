@@ -366,6 +366,8 @@ RWS::CEventId g_EventSobSkillAdd;
 
 RWS::CEventId g_EventSobSkillUpgrade;
 
+RWS::CEventId g_EventSobSkillResetOne;
+
 RWS::CEventId g_EventSobHTBSkillAdd;
 
 RWS::CEventId g_EventSobHTBSkillAction;

@@ -83,6 +83,7 @@ class CGMChatGui;
 class CPetitionGui;
 class CPetitionSatisfaction;
 class CBroadCastGui;
+class CBroadCastSystem;
 class CPartyMenu;
 class CNameNotifyGui;
 class CSkillAbilitySetGui;
@@ -202,6 +203,7 @@ private:
 	CPetitionGui*				m_pPetition;
 	CPetitionSatisfaction*		m_pPetitionSatisfaction;
 	CBroadCastGui*				m_pBroadCastGui;
+	CBroadCastSystem*			m_pBroadCastSystem;
 	CPartyMenu*					m_pPartyMenu;	
 	CNameNotifyGui*				m_pNameNotify;
 	CSkillAbilitySetGui*		m_pSkillAbilitySetGui;

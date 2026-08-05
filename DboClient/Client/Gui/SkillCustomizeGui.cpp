@@ -280,6 +280,10 @@ VOID CSkillCustomizeGui::HandleEvents( RWS::CMsg& msg )
 		{
 			GenerateSkillItems();
 		}
+		else if (pUpdate->uiUpdateType & EVENT_AIUT_SKILL_CHECK_UPGRADABLE)
+		{
+			CheckUpgradebleSkill();
+		}
 		else if( pUpdate->uiUpdateType & EVENT_AIUT_SKILL_RPBONUS )
 		{
 			SetRPType( nSlot );
@@ -288,6 +292,10 @@ VOID CSkillCustomizeGui::HandleEvents( RWS::CMsg& msg )
 		{
 			SetInitSkill();
 			UpdatePopoNotifySkillAlarm();							/// woosungs_test 20090730
+		}
+		else if (pUpdate->uiUpdateType & EVENT_AIUT_SKILL_RESET_ONE)
+		{
+			SetInitSkillOne(nSlot);
 		}
 	}
 	else if( msg.Id == g_EventSobCooling )
@@ -453,6 +461,14 @@ VOID CSkillCustomizeGui::SetInitSkill(VOID)
 	for( RwInt32 i = 0 ; i < SECOND_CLASS_2 ; ++i )
 	{
 		m_pSkillGroup[i]->SetInitSkill();
+	}
+}
+
+VOID CSkillCustomizeGui::SetInitSkillOne(RwUInt32 SkillId)
+{
+	for (RwInt32 i = 0; i <= SECOND_CLASS_2; ++i)
+	{
+		m_pSkillGroup[i]->SetInitSkillOne(SkillId);
 	}
 }
 

@@ -999,6 +999,17 @@ VOID CBagBaseGui::RightButtonProc( RwInt32 nSlotIdx )
 
 		CDboEventGenerator::EnableItemIcon(FALSE, PLACE_BAG, pItem->GetItemSlotIdx(), pItem->GetParentItemSlotIdx());
 	}
+	else if (pITEM_TBLDAT && pITEM_TBLDAT->byItem_Type == ITEM_TYPE_SKILL_ONE_POINT_RESET)
+	{
+		GetDialogManager()->OffMode();
+		GetDialogManager()->OnMode(DIALOGMODE_RESET_ONE_SKILL);
+		GetDialogManager()->SetClickedItem(pItem);
+
+		CDboEventGenerator::EnableItemIcon(FALSE, PLACE_BAG, pItem->GetItemSlotIdx(), pItem->GetParentItemSlotIdx());
+
+		if (!GetDialogManager()->IsOpenDialog(DIALOG_SKILL))
+			GetDialogManager()->OpenDialog(DIALOG_SKILL);
+	}
 	// If the upgrade window is open, navigate accordingly
 	else if( GetDialogManager()->IsOpenDialog( DIALOG_ITEMUPGRADE ) )
 	{

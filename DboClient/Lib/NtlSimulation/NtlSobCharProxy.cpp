@@ -909,16 +909,28 @@ RwBool CNtlSobCharProxy::GetActiveSubWeapon(void)
 	return FALSE;
 }
 
-CNtlPLEntity* CNtlSobCharProxy::CreatePLChildEffect(const RwChar *pKey, const RwChar *pAttachBoneName, RwV3d vOffset /* = ZeroAxis */, RwBool bIgnoreVisible /* = FALSE */)
+CNtlPLEntity* CNtlSobCharProxy::CreatePLChildEffect(const RwChar* pKey, const RwChar* pAttachBoneName, RwV3d vOffset /* = ZeroAxis */, RwBool bIgnoreVisible /* = FALSE */, RwReal fEffectScale /* = 0 */)
 {
-	CNtlPLEntity *pPLEntity = CNtlSobProxy::CreatePLChildEffect(pKey, bIgnoreVisible);
-	if(pPLEntity == NULL)
+	CNtlPLEntity* pPLEntity = CNtlSobProxy::CreatePLChildEffect(pKey, bIgnoreVisible);
+	if (pPLEntity == NULL)
 		return NULL;
 
-	if(m_pCharacter == NULL || pAttachBoneName == NULL)
+	if (m_pCharacter == NULL || pAttachBoneName == NULL)
 		return pPLEntity;
 
-	Helper_AttachBone(m_pCharacter, pPLEntity, pAttachBoneName);
+	RwV3d Scale;
+	Scale.x = 0.f;
+	Scale.y = 0.f;
+	Scale.z = 0.f;
+
+	if (fEffectScale > 0.f)
+	{
+		Scale.x = fEffectScale;
+		Scale.y = fEffectScale;
+		Scale.z = fEffectScale;
+	}
+
+	Helper_AttachBone(m_pCharacter, pPLEntity, pAttachBoneName, ZeroAxis, Scale);
 
 	return pPLEntity;
 }

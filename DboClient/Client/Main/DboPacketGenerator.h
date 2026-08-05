@@ -322,6 +322,7 @@ public:
 	// 스킬초기화
 	bool SendSkillInitReq(RwUInt32 hSerialID);
 	bool SendSkillResetPlusReq(BYTE byPlace, BYTE byPos);
+	bool SendResetSkillOne(BYTE Place, BYTE Pos, BYTE SlotIndex);
 
 	// GM
 	bool SendGMBudokaiServerEnterReq();

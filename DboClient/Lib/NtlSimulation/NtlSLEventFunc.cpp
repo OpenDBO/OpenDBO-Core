@@ -2235,6 +2235,21 @@ void CNtlSLEventGenerator::SobSkillUpgrade(SERIAL_HANDLE hSerialId, RwUInt8 bySk
 	_SendMsg(msg);
 }
 
+void CNtlSLEventGenerator::SobSkillResetOne(SERIAL_HANDLE hSerialId, TBLIDX preSkillTblidx, TBLIDX resetSkillTblidx, BYTE skillIndex)
+{
+	SNtlEventSobSkillResetOne sSobSkillResetOne;
+
+	sSobSkillResetOne.hSerialId = hSerialId;
+	sSobSkillResetOne.preSkillTblidx = preSkillTblidx;
+	sSobSkillResetOne.resetSkillTblidx = resetSkillTblidx;
+	sSobSkillResetOne.skillIndex = skillIndex;
+
+	RWS::CMsg msg;
+	msg.Id = g_EventSobSkillResetOne;
+	msg.pData = reinterpret_cast<void*>(&sSobSkillResetOne);
+	_SendMsg(msg);
+}
+
 void CNtlSLEventGenerator::SobHTBSkillAdd(SERIAL_HANDLE hSerialId, RwUInt8 byHTBSkillSlotIdx, RwUInt32 uiHTBSkillTblId)
 {
 	SNtlEventSobHTBSkillAdd sSobHTBSkillAdd;

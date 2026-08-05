@@ -32,6 +32,11 @@
 #include "DialogManager.h"
 #include "SkillCustomizeParser.h"
 #include "SkillCommon.h"
+#include "NtlSobItemAttr.h"
+
+#include "QuickSlotGui.h"
+//table
+#include "NewbieTable.h"
 
 //#define SKILLWND_ITEM_RPTYPE_X		0
 //#define SKILLWND_ITEM_RPTYPE_Y		0
@@ -56,6 +61,10 @@ CSkillCustomizeItem::CSkillCustomizeItem( CSkillCustomizeSkillItem* pParsedItem 
 	m_surLearnAbleEffect.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("gui\\SkillCustomize.srf", "srfLearnableSkillBack"));
 	m_surLearnAbleEffect.SetClippingMode(TRUE);
 	m_surLearnAbleEffect.Show(FALSE);
+
+	m_surNotResetSkillEffect.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfSlotRed"));
+	m_surNotResetSkillEffect.SetClippingMode(TRUE);
+	m_surNotResetSkillEffect.Show(TRUE);
 
 	m_surFocusEffect.SetSize( DBOGUI_ICON_SIZE, DBOGUI_ICON_SIZE );
 	m_surPickedUp.SetSize( DBOGUI_ICON_SIZE, DBOGUI_ICON_SIZE );
@@ -163,6 +172,25 @@ VOID CSkillCustomizeItem::SetInitSkill(VOID)
 		else
 			Show( true );
 	}
+
+	m_pItem->SetLineActive(FALSE, LINE_TYPE_OPTION);
+}
+
+VOID CSkillCustomizeItem::SetInitSkillOne(VOID)
+{
+	if (m_stSkillUpgradeInfo.byCurrentLevel != 1)
+		return;
+
+	m_pSobIcon = NULL;
+	m_pItem->SetInitSkill();
+
+	m_surRPType.Show(FALSE);
+	ShowPickedUp(FALSE);
+	CoolTimeEffect(FALSE);
+
+	SetColor(SKILLWND_ITEM_NOT_LEARN_COLOR_RED, SKILLWND_ITEM_NOT_LEARN_COLOR_GREEN, SKILLWND_ITEM_NOT_LEARN_COLOR_BLUE);
+
+	m_pItem->SetLineActive(FALSE, LINE_TYPE_OPTION);
 }
 
 VOID CSkillCustomizeItem::SetSobIcon( CNtlSobIcon* pSobIcon, sTBLDAT* pData )
@@ -408,8 +436,10 @@ VOID CSkillCustomizeItem::CheckSkillUpgrade(VOID)
 	}	
 
 	// Apply upgrade line
-	if( SkillCommonLogic::IsLearnable( CSkillGuiItem::SKILL, pSkillData ) )
-		m_pItem->SetLineActive( TRUE, LINE_TYPE_UPGRADE );
+	if (SkillCommonLogic::IsLearnable(CSkillGuiItem::SKILL, pSkillData) || m_stSkillUpgradeInfo.bLearn)
+		m_pItem->SetLineActive(TRUE, LINE_TYPE_UPGRADE);
+	else
+		m_pItem->SetLineActive(FALSE, LINE_TYPE_UPGRADE);
 }
 
 VOID CSkillCustomizeItem::Show( bool bShow )
@@ -692,6 +722,37 @@ VOID CSkillCustomizeItem::OnIconMouseUp( const CKey& key )
 		return;
 	}
 
+	if (GetDialogManager()->IsMode(DIALOGMODE_RESET_ONE_SKILL))
+	{
+		if (IsCanResetSkill())
+		{
+			if (m_pSobIcon)
+			{
+				CNtlSkillContainer* pSkillContainer = GetNtlSLGlobal()->GetSobAvatar()->GetSkillContainer();
+				RwInt32 nSlotIdx = pSkillContainer->GetSkillSlotIdx(m_pSobIcon->GetSobObj()->GetSerialID());
+				CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>(GetDialogManager()->GetClickedItem()->GetSobAttr());
+
+				NTL_ASSERT(nSlotIdx >= 0, "CSkillWindowItemDlg::OnUpgradeButtonClick : Invalid Skill Object");
+
+				eCONTAINER_TYPE Place = Logic_ConvertBagIdxToContainerType(GetDialogManager()->GetClickedItem()->GetParentItemSlotIdx());
+				RwUInt32 Pos = GetDialogManager()->GetClickedItem()->GetItemSlotIdx();
+
+				GetDboGlobal()->GetGamePacketGenerator()->SendResetSkillOne(Place, Pos, nSlotIdx);
+
+				if (pItemAttr->GetStackNum() == 1)
+					GetDialogManager()->OffMode();
+
+				GetInfoWndManager()->ShowInfoWindow(FALSE);
+			}
+			else
+				GetAlarmManager()->AlarmMessage("DST_SKILL_SKILL_NOT_RESET");
+		}
+		else
+			GetAlarmManager()->AlarmMessage("DST_SKILL_SKILL_NOT_RESET");
+
+		return;
+	}
+
 	if( key.m_nID == UD_LEFT_BUTTON )
 	{
 		if( m_eLClickIcon == STATE_CLICK && m_pSobIcon )
@@ -758,6 +819,50 @@ VOID CSkillCustomizeItem::OnIconMouseLeave( gui::CComponent* pComponent )
 		m_eRClickIcon = STATE_CLICK_BUT_OUTSIDE;
 }
 
+RwBool CSkillCustomizeItem::IsCanResetSkill()
+{
+	if (m_pItem)
+	{
+		sSKILL_TBLDAT* pItemTblData = (sSKILL_TBLDAT*)m_pItem->GetSkillData();
+		CNtlSkillContainer* pSkillContainer = GetNtlSLGlobal()->GetSobAvatar()->GetSkillContainer();
+		CNewbieTable* Newbie = API_GetTableContainer()->GetNewbieTable();
+
+		// Popo and Instant Transmission
+		if (pItemTblData->skill_Effect[0] == 500 || pItemTblData->skill_Effect[0] == 502)
+			return false;
+
+		// grade-1 1st transformation skills
+		if (pItemTblData->skill_Effect[0] == 31 && pItemTblData->bySkill_Grade == 1)
+			return false;
+
+		// skills present in any Newbie quickslot preset
+		for (auto it = Newbie->Begin(); it != Newbie->End(); it++)
+		{
+			sNEWBIE_TBLDAT* table = (sNEWBIE_TBLDAT*)it->second;
+
+			for (int i = 0; i < NTL_MAX_NEWBIE_QUICKSLOT_COUNT; i++)
+			{
+				if (table->asQuickData[i].tbilidx == pItemTblData->tblidx)
+				{
+					return false;
+				}
+			}
+		}
+
+		// class-change skills
+		if (pItemTblData->byPC_Class_Change != INVALID_BYTE)
+			return false;
+
+		// not yet learned
+		if (!m_stSkillUpgradeInfo.bLearn)
+			return false;
+
+		return !pSkillContainer->IsNeedSkillPre(pItemTblData->tblidx);
+	}
+
+	return true;
+}
+
 VOID CSkillCustomizeItem::OnIconPaint(VOID)
 {
 	m_surRPType.Render();
@@ -766,6 +871,8 @@ VOID CSkillCustomizeItem::OnIconPaint(VOID)
 	m_CoolTimeEffect.Render();
 
 	m_surLearnAbleEffect.Render();
+	if (GetDialogManager()->IsMode(DIALOGMODE_RESET_ONE_SKILL) && !IsCanResetSkill())
+		m_surNotResetSkillEffect.Render();
 }
 
 VOID CSkillCustomizeItem::OnIconMove( RwInt32 nOldX, RwInt32 nOldY )
@@ -775,6 +882,7 @@ VOID CSkillCustomizeItem::OnIconMove( RwInt32 nOldX, RwInt32 nOldY )
 	m_surFocusEffect.SetPosition( rtScreen.left, rtScreen.top );
 	m_surPickedUp.SetPosition( rtScreen.left, rtScreen.top );
 	m_CoolTimeEffect.SetPosition( rtScreen.left, rtScreen.top );
+	m_surNotResetSkillEffect.SetPosition( rtScreen.left, rtScreen.top);
 
 	CRectangle rtThisScreen = m_pItem->GetSkillScreenRect();
 	m_surLearnAbleEffect.SetPosition(rtThisScreen.left, rtThisScreen.top);
@@ -784,6 +892,7 @@ VOID CSkillCustomizeItem::OnIconMove( RwInt32 nOldX, RwInt32 nOldY )
 	m_surFocusEffect.SetClippingRect( *rtClipping );
 	m_surPickedUp.SetClippingRect( *rtClipping );
 	m_CoolTimeEffect.SetClippingRect( *rtClipping );
+	m_surNotResetSkillEffect.SetClippingRect( *rtClipping );
 
 	CRectangle* rtItemClipping = m_pItem->GetSkillRectangle();
 	m_surLearnAbleEffect.SetClippingRect(*rtItemClipping);
@@ -912,6 +1021,35 @@ VOID CSkillCustomizeItemGroup::SetInitSkill(VOID)
 
 	m_pDialog->SetPosition( m_rtOriginal );
 	CheckSkillGroupShowAndSize();
+}
+
+VOID CSkillCustomizeItemGroup::SetInitSkillOne(RwUInt32 SkillId)
+{
+	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
+	CNtlSkillContainer* pSkillContainer = pAvatar->GetSkillContainer();
+	CNtlSobSkill* pSobSkill = pSkillContainer->GetSkill(SkillId);
+
+	if (pSobSkill)
+	{
+		CNtlSobSkillAttr* pSobSkillAttr = reinterpret_cast<CNtlSobSkillAttr*>(pSobSkill->GetSobAttr());
+		sSKILL_TBLDAT* pSkillTable = pSobSkillAttr->GetSkillTbl();
+
+		if (pSkillTable->bySkill_Grade == 1)
+		{
+			RwUInt32 uiBaseSkillIndex = API_GetTableContainer()->GetSkillTable()->FindBasicSkillTblidx(pSkillTable->tblidx);
+			MAP_SKILL_ITEM_ITER iter = m_mapSkillItem.find(uiBaseSkillIndex);
+			if (iter != m_mapSkillItem.end())
+			{
+				CSkillCustomizeItem* pItem = iter->second;
+				pItem->SetInitSkillOne();
+
+				CNtlSLEventGenerator::SobDeleteQuickSlotIcon(pSobSkill->GetSerialID());
+
+				CNtlSLEventGenerator::SobDelete(pSobSkill->GetSerialID());
+				pSkillContainer->SetSkillSerial(SkillId, INVALID_SERIAL_ID);
+			}
+		}
+	}
 }
 
 VOID CSkillCustomizeItemGroup::SetSkillItem( RwUInt32 uiBaseSkillIndex, CNtlSobIcon* pSobIcon, sTBLDAT* pData )

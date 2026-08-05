@@ -119,7 +119,7 @@ All required third party tools can be obtained from [our 3rd party repository](h
     - Click "Start" at the bottom.
     - Repeat this for "dbo_char" and "dbo_log."
     - Within "dbo_acc," find "accounts," click "insert," and fill in a username and password.
-    - Generate an MD5 Hash for the password using [MD5 Hash Generator](https://www.md5hashgenerator.com), paste it next to "Password_hash," and click "Start" at the bottom.
+    - Generate a SHA3-256 Hash for the password using [SHA3-256 Hash Generator](https://emn178.github.io/online-tools/sha3_256.html), paste it next to "Password_hash," and click "Start" at the bottom.
     - If you want GM permissions make sure to set `admin` and `isgm` to `10` in the `accounts` table and `gamemaster` to `10` in the `characters` tabel from the `dbo_char` database.
 
 8. **Change the server .ini files:**
