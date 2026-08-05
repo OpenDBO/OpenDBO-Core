@@ -47,14 +47,14 @@ void CDBOAddinManager::HandleEvents( RWS::CMsg &pMsg )
 {
     if(pMsg.Id == g_EventScreenShot)
     {
-        // 스크린샷을 찍은후에 날라오는 이벤트
+        // ��ũ������ �����Ŀ� ������� �̺�Ʈ
         OnEventScreenShot(pMsg);
     }
 }
 
 void CDBOAddinManager::OnEventScreenShot( RWS::CMsg& pMsg ) 
 {
-    // png로 저장된 파일을 jpg로 변환한다.
+    // png�� ����� ������ jpg�� ��ȯ�Ѵ�.
     SNtlEventScreenShot* pData = (SNtlEventScreenShot*)pMsg.pData;
     std::string strOrgfileName, strDestFileName;
     strOrgfileName = pData->strFileName;

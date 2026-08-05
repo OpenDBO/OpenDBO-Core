@@ -54,8 +54,8 @@ CModelToolApplication::CModelToolApplication(void)
 	m_pPLEventHandler = NULL;
 
     
-    // Obstacle Mesh가 배경 색상과 같아서 안보이는 경우가 있다.
-    // 배경 색상 설정 기능을 넣기 귀찮아서, 걍 랜덤으로 정해버린다. (그래픽팀과 협의 끝)
+    // Obstacle Mesh�� ��� ����� ���Ƽ� �Ⱥ��̴� ��찡 �ִ�.
+    // ��� ���� ���� ����� �ֱ� �����Ƽ�, �� �������� ���ع�����. (�׷������� ���� ��)
     srand( (unsigned)time( NULL ) );
     m_BackgroundColor.red	= (RwUInt8)NtlRandomNumber(0, 255);
     m_BackgroundColor.green = (RwUInt8)NtlRandomNumber(0, 255);
@@ -99,7 +99,7 @@ CModelToolApplication::~CModelToolApplication(void)
 
 void CModelToolApplication::SetErrorReport() 
 {
-    // 버그트랩용 설정
+    // ����Ʈ���� ����
     BT_SetAppName(MT_WINDOW_NAME);     
     BT_SetSupportServer(_T("10.0.0.73"), 9999);
 }
@@ -146,7 +146,7 @@ RwBool CModelToolApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight,
 	}
 
 
-    // Camera 생성
+    // Camera ����
     m_pCamera = NTL_NEW CNtlGameCamera();
 
     if(!m_pCamera->Create(iWidth, iHeight, zBuffer, 1.0f, 500.0f))
@@ -155,7 +155,7 @@ RwBool CModelToolApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight,
         NTL_RETURN(FALSE);
     }
 
-    // Active Camera로 세팅한다.
+    // Active Camera�� �����Ѵ�.
     CNtlPLGlobal::SetActiveCamera(m_pCamera->GetCamera());
 
     RwRGBA colorTextForeGround = {255, 255, 255, 255};
@@ -168,7 +168,7 @@ RwBool CModelToolApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight,
 		NTL_RETURN(FALSE);
 	}
 
-    // Visual Manager를 생성한다.
+    // Visual Manager�� �����Ѵ�.
     m_pVisualManager = NTL_NEW CNtlPLVisualManager();
     if(!m_pVisualManager->Create())
     {
@@ -176,10 +176,10 @@ RwBool CModelToolApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight,
         NTL_RETURN(FALSE);
     }
 
-    // Active Scene Manager를 setting 한다.
+    // Active Scene Manager�� setting �Ѵ�.
     CNtlPLSceneManagerFactory::ActiveSceneManager(m_pVisualManager);
 
-    // Property Container를 생성하고, 데이터를 Load 한다.	
+    // Property Container�� �����ϰ�, �����͸� Load �Ѵ�.	
    /* if(!m_PropContainer.Load())
     {
         NTL_ASSERTFAIL("Property Container Load Fail!");
@@ -192,7 +192,7 @@ RwBool CModelToolApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight,
     // dummy world.
     //m_pDummyWorld = (CNtlPLDummyWorld*)m_pVisualManager->CreateEntity(PLENTITY_DUMMY_WORLD, "NULL", NULL);
 
-    // RpWorld에 Camea를 Add한다.
+    // RpWorld�� Camea�� Add�Ѵ�.
     RpWorldAddCamera(CNtlPLGlobal::m_pRpWorld, CNtlPLGlobal::m_RwCamera);
 
     // Ambient Light Create
@@ -205,7 +205,7 @@ RwBool CModelToolApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight,
     m_pLtDirectional = RpLightCreate(rpLIGHTDIRECTIONAL);
     if(m_pLtDirectional)
     {
-        RwFrame* pFrame = NULL;		// Directional Light를 붙일 Frame
+        RwFrame* pFrame = NULL;		// Directional Light�� ���� Frame
         RpLightSetColor(m_pLtDirectional, &color);
 
         pFrame = RwFrameCreate();
@@ -221,26 +221,26 @@ RwBool CModelToolApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight,
 
     m_ResoureManager.Crate();		
 
-    // 메모리 사용내용을 구하기 위해서 DirectX7 개체를 생성한다.
+    // �޸� ��볻���� ���ϱ� ���ؼ� DirectX7 ��ü�� �����Ѵ�.
     DirectDrawCreateEx(NULL, (void**)&m_lpDD, IID_IDirectDraw7, NULL);
 
-    // Texture Path를 설정한다
+    // Texture Path�� �����Ѵ�
     SetTexturePath();
 
-    // Toon Data를 생성한다
+    // Toon Data�� �����Ѵ�
     CMTClump::CreateCartoon();    
 
-    // Sound Manager를 생성한다.
+    // Sound Manager�� �����Ѵ�.
     GetSoundManager()->Init(".\\Sound\\");
     GetSoundManager()->SetListenerPosition(0.0f, 0.0f, 0.0f);
 
-    // Face Camera를 생성한다.
+    // Face Camera�� �����Ѵ�.
     m_faceCamera.Create(FACE_CAMERA_SIZE, FACE_CAMERA_SIZE, 128, 128);
     
-    // Item Pool을 생성한다.
+    // Item Pool�� �����Ѵ�.
     m_pItemPool = new CMTItemPool();
     
-    // 스케쥴 로딩(멀티 스레드)를 변경한다.
+    // ������ �ε�(��Ƽ ������)�� �����Ѵ�.
     GetNtlResourceManager()->SetLoadScheduling(FALSE);
 
     NTL_RETURN(TRUE);
@@ -428,7 +428,7 @@ RwBool CModelToolApplication::Resize(RwUInt32 iWidth, RwUInt32 iHeight, RwBool z
 
 void CModelToolApplication::DisplayInfo()
 {
-    // Clump 정보 표시
+    // Clump ���� ǥ��
     GetSafeInstance(CClumpPane)->DisplayInfo(m_pCharset);
 
     RwChar caption[256] = {0,};
@@ -444,7 +444,7 @@ void CModelToolApplication::DisplayInfo()
     }
     RsCharsetPrint(m_pCharset, caption, 0, 0, rsPRINTPOSTOPRIGHT); 
 
-    // 비디오 메모리를 구한다.    
+    // ���� �޸𸮸� ���Ѵ�.    
     DDSCAPS2      ddsCaps2; 
     DWORD         dwTotal; 
     DWORD         dwFree;
@@ -460,7 +460,7 @@ void CModelToolApplication::DisplayInfo()
     float fTotalVideoMem = (float)dwTotal / (1024.0f * 1024.0f);
     float fUseVideoMem = (float)(dwTotal - dwFree) / (1024.0f * 1024.0f);
 
-    // 시스템 메모리를 구한다.
+    // �ý��� �޸𸮸� ���Ѵ�.
     MEMORYSTATUSEX MemStatus;
     MemStatus.dwLength=sizeof(MemStatus);
     GlobalMemoryStatusEx(&MemStatus);
@@ -473,7 +473,7 @@ void CModelToolApplication::DisplayInfo()
     RsSprintf(caption, RWSTRING("LOCAL MEM : %.2f/%.0f"), fUseLocalMem, fTotalLocalMem);
     RsCharsetPrint(m_pCharset, caption, 0, 2, rsPRINTPOSTOPRIGHT);
 
-    // 카메라와 현재 모델 위치(0,0,0)과의 거리를 표시한다.
+    // ī�޶�� ���� �� ��ġ(0,0,0)���� �Ÿ��� ǥ���Ѵ�.
     if(m_pCamera)
     {
         RwFrame* pFrame = RwCameraGetFrame(CNtlPLGlobal::m_RwCamera);
@@ -489,7 +489,7 @@ RwBool CModelToolApplication::Update(RwReal fTime, RwReal fElapsedTime)
 {
     NTL_FUNCTION(__FUNCTION__);
 
-    // Frame 고정을 적용한다.
+    // Frame ������ �����Ѵ�.
     static RwReal fTimeFrameFix = 0.0f;
 
     if(m_bFrameFix)
@@ -570,7 +570,7 @@ RwBool CModelToolApplication::Update(RwReal fTime, RwReal fElapsedTime)
 
 				if(m_pCharacter)
 				{
-					// SlowTime Effect를 위해서 Time을 조절한다.
+					// SlowTime Effect�� ���ؼ� Time�� �����Ѵ�.
 					RwReal fWeightElapsed = fElapsedTime;
 
 					if(m_pCharacter->GetFlags() & NTL_PLEFLAG_WEIGHT_ELAPSED_TIME)
@@ -581,19 +581,19 @@ RwBool CModelToolApplication::Update(RwReal fTime, RwReal fElapsedTime)
 					m_pCharacter->Update(fWeightElapsed);
 					m_pCharacter->Render();
 
-					// Wireframe 표시
+					// Wireframe ǥ��
 					if(m_bViewWire)
 					{
 						m_pCharacter->RenderWireFrame();
 					}
 
-					// Hierarchy 표시
+					// Hierarchy ǥ��
 					if(m_bViewHierarchy)
 					{
 						m_pCharacter->RenderHierarchy();            
 					}
 
-					// 캐릭터 BBox 표시
+					// ĳ���� BBox ǥ��
 					if(m_bViewBBox)
 					{
 						m_pCharacter->RenderAnimBBox();
@@ -604,7 +604,7 @@ RwBool CModelToolApplication::Update(RwReal fTime, RwReal fElapsedTime)
 
 					if(m_eAppMode == MT_MODE_PC)
 					{
-						// Face Camera 렌더링
+						// Face Camera ������
 						m_faceCamera.Render(m_pCamera->GetCamera(), m_v2FaceCameraPos, m_v2FaceCameraSize);
 					}                
 
@@ -622,9 +622,9 @@ RwBool CModelToolApplication::Update(RwReal fTime, RwReal fElapsedTime)
 
 		if(m_pCamera->MainCameraBeginUpdate(fElapsedTime))
 		{
-			// 필터 효과가 안먹는 것은 여기에서 그린다.
+			// ���� ȿ���� �ȸԴ� ���� ���⿡�� �׸���.
 
-			// 화면에 정보 표시        
+			// ȭ�鿡 ���� ǥ��        
 			DisplayInfo();
 
 			m_pCamera->MainCameraEndUpdate();
@@ -644,7 +644,7 @@ RwBool CModelToolApplication::Update(RwReal fTime, RwReal fElapsedTime)
         }
     }
 
-    // 애니메이션 툴뷰 업데이트
+    // �ִϸ��̼� ���� ������Ʈ
     GetSafeInstance(CAnimPlayPane)->Update();    
 
     NTL_RETURN(TRUE);
@@ -709,7 +709,7 @@ LRESULT CModelToolApplication::WndProc(HWND window, UINT message, WPARAM wParam,
         break;
     }
 
-    // Bone Edit를 위한 부분
+    // Bone Edit�� ���� �κ�
     MSG msg;
     msg.hwnd = window;
     msg.message = message;
@@ -1260,7 +1260,7 @@ void CModelToolApplication::SetWorldView( RwBool bView )
 {
 	m_bViewWorld = bView;
 
-	// 지형과 스카이를 같이 없앤다.
+	// ������ ��ī�̸� ���� ���ش�.
 	CNtlPLGlobal::m_bWorldTerrainVisible = bView;
 	CNtlPLGlobal::m_bWorldSkyVisible = bView;
 }

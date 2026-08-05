@@ -2,7 +2,7 @@
 *
 * File			: NtlSoundManaager.h
 * Author		: Hong SungBock
-* Copyright		: (주)NTL
+* Copyright		: (��)NTL
 * Date			: 2006. 7. 11	
 * Abstract		: Ntl Sound Manager by Singleton
 *****************************************************************************
@@ -65,17 +65,17 @@ public:
 
 	// System
 
-	///< FMOD System 초기화, Channel Group 초기화
-	///< fDopplerScale : 반향( 음원의 이동 속도, 소리를 듣는 주체의 이동 속도에 따른 음파의 변화)
-	///< fDistanceFactor : 소리가 들리는 길이의 비율(ex : 1미터, 1센티)
-	///< fRollOffScale : 감쇠(거리에 따른 불륨의 크기 감소
+	///< FMOD System �ʱ�ȭ, Channel Group �ʱ�ȭ
+	///< fDopplerScale : ����( ������ �̵� �ӵ�, �Ҹ��� ��� ��ü�� �̵� �ӵ��� ���� ������ ��ȭ)
+	///< fDistanceFactor : �Ҹ��� �鸮�� ������ ����(ex : 1����, 1��Ƽ)
+	///< fRollOffScale : ����(�Ÿ��� ���� �ҷ��� ũ�� ����
 	void		Init(const char* pcPath, float fMasterVolume = 1.0, float fDopplerScale = 1.0,
 					 float fDistacneFactor = 1.0, float fRollOffScale = 1.0);				
 
 	void		Reset();
-	void		Release();					///< FMOD 시스템 Shut down
+	void		Release();					///< FMOD �ý��� Shut down
 
-	void		SetListenerPosition(float fXPos, float fYPos, float fZPos);	///< Lister 3D 위치 설정
+	void		SetListenerPosition(float fXPos, float fYPos, float fZPos);	///< Lister 3D ��ġ ����
 
 	void		SetListenerPosition(float fXPos, float fYPos, float fZPos, 
 									float fXFoward, float fYFoward, float fZFoward, 
@@ -83,10 +83,10 @@ public:
 
 	int			Play(sNtlSoundPlayParameta* pParameta);
 
-	int			ReplayEnvironmentSound(CNtlSound* pSound);///< 오브젝트 뮤직 다시 플레이 한다.(핸들이 바뀌지 않는다)
-	int			Replay(CNtlSound* pSound);		///< 기존에 플레이되고 있는 사운드를 다시 플레이한다.
+	int			ReplayEnvironmentSound(CNtlSound* pSound);///< ������Ʈ ���� �ٽ� �÷��� �Ѵ�.(�ڵ��� �ٲ��� �ʴ´�)
+	int			Replay(CNtlSound* pSound);		///< ������ �÷��̵ǰ� �ִ� ���带 �ٽ� �÷����Ѵ�.
 
-	void		Update(float fElapsed);			///< 각 ChannelGroup Update와 FMOD::System->update()
+	void		Update(float fElapsed);			///< �� ChannelGroup Update�� FMOD::System->update()
 
 	typedef void (F_CALL* FMOD_DEBUG_CALLBACK)(FMOD_DEBUG_FLAGS flags, const char* file, int line, const char* function, const char* message);
 
@@ -95,48 +95,48 @@ public:
 	//				 Master Group
 	//////////////////////////////////////////////////////////////////////////
 
-	unsigned int	GetPlayingChannels();			///< 현재 연주되고 sound channel의 갯수
+	unsigned int	GetPlayingChannels();			///< ���� ���ֵǰ� sound channel�� ����
 
-	///< 볼륨
+	///< ����
 	void		SetMasterVolume(float fVolume);
 	float		GetMasterVolume();
 
-	// 효과 적용
+	// ȿ�� ����
 	void		SetMasterEffect(FMOD_DSP_TYPE eType);
 	void		ReleaseMasterEffect(FMOD_DSP_TYPE eType);
 
-	void		SetMute(bool bMute);					///< 전체 사운드의 Mute 설정
+	void		SetMute(bool bMute);					///< ��ü ������ Mute ����
 
 
 	//////////////////////////////////////////////////////////////////////////
 	//				 Channel Group
 	//////////////////////////////////////////////////////////////////////////
 
-	void		StopGroup(int iChannelGroup);	///< 채널 그룹 전체를 즉각 Release 시킨다.
+	void		StopGroup(int iChannelGroup);	///< ä�� �׷� ��ü�� �ﰢ Release ��Ų��.
 
 	CNtlChannelGroup*	GetChannelGroup(int iChannelGroup);
 	char*		GetGroupName(int iChannelGroup);
 
-	void		SetGroupVolume(int iChannelGroup, float fVolume);///< ChannelGroup의 볼륨을 설정한다
-	float		GetGroupVolume(int iChannelGroup);				///< ChannelGroup의 볼륨을 반환한다
+	void		SetGroupVolume(int iChannelGroup, float fVolume);///< ChannelGroup�� ������ �����Ѵ�
+	float		GetGroupVolume(int iChannelGroup);				///< ChannelGroup�� ������ ��ȯ�Ѵ�
 
-	// 효과 적용
+	// ȿ�� ����
 	void		SetGroupEffect(int iChannelGroup, FMOD_DSP_TYPE eType);
 	void		ReleaseGroupEffect(int iChannelGroup, FMOD_DSP_TYPE eType);
 
-	void		SetMute(int iChannelGroup, bool bMute);	///< ChannelGroup의 활성화를 설정 t : 끄기, f : 켜기
+	void		SetMute(int iChannelGroup, bool bMute);	///< ChannelGroup�� Ȱ��ȭ�� ���� t : ����, f : �ѱ�
 
 	void		SetProhibition(int iChannelGroup, RwBool bProhibition);
 	RwBool		IsProhibition(int iChannelGroup);
 
-	void		SetValidGroupRange(int iChannelGroup, float fRange);	///< 채널 그룹별 연주 가능한 거리를 설정한다.
-	float		GetValidGroupRange(int iChannelGroup);				///< 채널 그룹별 연주 가능한 거리를 알아본다.
+	void		SetValidGroupRange(int iChannelGroup, float fRange);	///< ä�� �׷캰 ���� ������ �Ÿ��� �����Ѵ�.
+	float		GetValidGroupRange(int iChannelGroup);				///< ä�� �׷캰 ���� ������ �Ÿ��� �˾ƺ���.
 
 	void		FadeIn(int iGroup, float fDestVolume, unsigned int ulTime);
-	///< fVolume이 현재 볼륨보다 크거나 ulTime이 0 이하면 실행되지 않는다
+	///< fVolume�� ���� �������� ũ�ų� ulTime�� 0 ���ϸ� ������� �ʴ´�
 
 	void		FadeOut(int iGroup, float fDestVolume, unsigned int ulTime);
-	///< fVolume이 현재 볼륨보다 작거나 ulTime이 0 이하면 실행되지 않는다
+	///< fVolume�� ���� �������� �۰ų� ulTime�� 0 ���ϸ� ������� �ʴ´�
 
 	bool		IsMute(int iChannelGroup);
 
@@ -145,15 +145,15 @@ public:
 	//				 Channel
 	//////////////////////////////////////////////////////////////////////////
 
-	void		Stop(SOUND_HANDLE& rHandle);	///< 사운드를 Release 시킨다.
-	int			SetSoundPosition(SOUND_HANDLE hHandle, float fPosX, float fPosY, float fPosZ);	///< 채널의 3D 공간상의 위치를 이동시킨다.
+	void		Stop(SOUND_HANDLE& rHandle);	///< ���带 Release ��Ų��.
+	int			SetSoundPosition(SOUND_HANDLE hHandle, float fPosX, float fPosY, float fPosZ);	///< ä���� 3D �������� ��ġ�� �̵���Ų��.
 
-	const char*	GetSoundName(SOUND_HANDLE hHandle);	///< 사운드의 이름을 반환한다
+	const char*	GetSoundName(SOUND_HANDLE hHandle);	///< ������ �̸��� ��ȯ�Ѵ�
 
-	void		SetChannelVolume(SOUND_HANDLE hHandle, float fVolume);	///< Channel의 볼륨을 설정한다
-	float		GetChannelVolume(SOUND_HANDLE hHandle);					///< Channel의 볼륨을 반환한다
+	void		SetChannelVolume(SOUND_HANDLE hHandle, float fVolume);	///< Channel�� ������ �����Ѵ�
+	float		GetChannelVolume(SOUND_HANDLE hHandle);					///< Channel�� ������ ��ȯ�Ѵ�
 
-	// 효과 적용
+	// ȿ�� ����
 	void		SetChannelEffect(SOUND_HANDLE hHandle, FMOD_DSP_TYPE eType);
 	void		ReleaseChannelEffect(SOUND_HANDLE hHandle, FMOD_DSP_TYPE eType);
 
@@ -161,26 +161,26 @@ public:
 	void		GetMinMaxDistance(SOUND_HANDLE hHandle, float &fMinDistance, float &fMaxDistance);
 
 	void		FadeIn(SOUND_HANDLE hHandle, float fDestVolume, unsigned int ulTime);
-	///< fVolume이 현재 볼륨보다 크거나 ulTime이 0 이하면 실행되지 않는다
+	///< fVolume�� ���� �������� ũ�ų� ulTime�� 0 ���ϸ� ������� �ʴ´�
 
 	void		FadeOut(SOUND_HANDLE hHandle, float fDestVolume, unsigned int ulTime);
-	///< fVolume이 현재 볼륨보다 작거나 ulTime이 0 이하면 실행되지 않는다
+	///< fVolume�� ���� �������� �۰ų� ulTime�� 0 ���ϸ� ������� �ʴ´�
 
-	CNtlSound*	GetSound(SOUND_HANDLE hHandle);			///< 사운드 정보를 반환한다.
+	CNtlSound*	GetSound(SOUND_HANDLE hHandle);			///< ���� ������ ��ȯ�Ѵ�.
 
 protected:
-	void		CreateChannelGroups();		///< Channel Group 을 초기화한다	
+	void		CreateChannelGroups();		///< Channel Group �� �ʱ�ȭ�Ѵ�	
 
 	int			CanPlay(int iChannelGroups, const char* pcName,
-						float fPosX, float fPosY, float fPosZ);	///< 새로운 사운드를 연주할 수 있는지 여부
+						float fPosX, float fPosY, float fPosZ);	///< ���ο� ���带 ������ �� �ִ��� ����
 
 	int			CanPlay(sNtlSoundPlayParameta* pParameta);
 
 	bool		IsValidGroupRange(int iChannelGroup, float fPosX, float fPosY, float fPosZ);
-	///< 채널 그룹별 연주할 수 있는 범위내에 사운드인지 검사
+	///< ä�� �׷캰 ������ �� �ִ� �������� �������� �˻�
 
 	float		LengthFromListenerToSound(float fPosX, float fPosY, float fPosZ);
-	bool		IsExistGroup(int iGroup);	///< true : 알맞는 Group index, false : 존재하지 않는 그룹 index
+	bool		IsExistGroup(int iGroup);	///< true : �˸´� Group index, false : �������� �ʴ� �׷� index
 
 
 protected:
@@ -195,7 +195,7 @@ private:
 	std::map<int, std::map<FMOD_DSP_TYPE, FMOD::DSP*>> m_mapGroupDSP;
 
 #ifdef _DEBUG
-	int						m_iDebugFlag;				///< crtdbg용
+	int						m_iDebugFlag;				///< crtdbg��
 #endif
 };
 

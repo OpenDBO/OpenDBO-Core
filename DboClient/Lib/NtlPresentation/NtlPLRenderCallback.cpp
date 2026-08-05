@@ -79,7 +79,7 @@ void NtlAtomicRender(RpAtomic * pAtomic, const RwV3d *pCameraPos)
 		RwUInt32 uiRenderFlags = RpNtlAtomicGetFlag(pAtomic);
 	if(uiRenderFlags & NTL_FINAL_SORT)
 	{
-		// sorter에 atomic을 추가한다.	
+		// sorter�� atomic�� �߰��Ѵ�.	
 		GetAtomicSorterContainer()->Push(PLSORT_ATOMIC, pAtomic, pCameraPos);
 	}
 	else
@@ -160,7 +160,7 @@ RpWorldSector* NtlWorldSectorAtomicCallback(RpWorldSector *pWorldSector, void *d
 				{
 					ENtlPLEntityType eNtlPLEntityType = pPLEntity->GetClassType();
 
-#ifdef dNTL_WORLD_CULLING_NEW // CullingTest의 성공 유무는 IsVisible을 체크 하는 것과 같다.
+#ifdef dNTL_WORLD_CULLING_NEW // CullingTest�� ���� ������ IsVisible�� üũ �ϴ� �Ͱ� ����.
 					if (eNtlPLEntityType == PLENTITY_OBJECT || eNtlPLEntityType == PLENTITY_CHARACTER || eNtlPLEntityType == PLENTITY_ITEM)
 					{
 						if (pPLEntity->CullingTest((RwCamera*)RWSRCGLOBAL(curCamera), CNtlPLGlobal::m_uiRenderFrame))
@@ -374,7 +374,7 @@ RpWorldSector* NtlWorldSectorAtomicCallback(RpWorldSector *pWorldSector, void *d
 // 							else
 // 							{
 // #ifdef dNTL_WORLD_TOOL_MODE
-// 								// World Tool에서 Object Visible을 Off 시킨 경우 Object는 렌더링 하지 않는다. (07.10.24 by agebreak)
+// 								// World Tool���� Object Visible�� Off ��Ų ��� Object�� ������ ���� �ʴ´�. (07.10.24 by agebreak)
 // 								if(CNtlPLGlobal::m_bObjectRender || pPLEntity->GetClassType() != PLENTITY_OBJECT )
 // 								{
 // 									if( !(RpNtlAtomicGetFlag(atomic) & NTL_NOT_VISIBLE) )
@@ -527,7 +527,7 @@ RpWorldSector* NtlWorldSectorRenderCallback(RpWorldSector *pWorldSector, void *d
 // }
 // #endif
 
-// 인도어
+// �ε���
 RpWorldSector* NtlWorldSectorRenderCallBack_PVSBBox(RpWorldSector* worldSector)
 {
 	RwRGBA			rgbaColor	= { 0, 0, 0, 25};

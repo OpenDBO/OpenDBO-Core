@@ -2,7 +2,7 @@
 //	File		:	NtlBlurCamera.cpp
 //	Desc		:	
 //	Begin		:	2006. 2.13
-//	Copyright	:	ⓒ 2006 by Mahwang CO., Ltd
+//	Copyright	:	�� 2006 by Mahwang CO., Ltd
 //	Author		:	Mahwang
 //	Update		:	
 //***********************************************************************************
@@ -574,7 +574,7 @@ void CNtlPostEffectCamera::Update_FakeHDRFiltering(RwRGBA& color)
 	RwRenderStateSet(rwRENDERSTATECULLMODE,	(void *)rwCULLMODECULLNONE);
 
 	// ==========================================
-	// 화면 축소하기
+	// ȭ�� ����ϱ�
 	// ==========================================
 	m_lpEffect->BeginPass(EFFECT_PASS_NONE);
 	RwCameraClear(m_pReductionCamera, &color, rwCAMERACLEARZ|rwCAMERACLEARIMAGE);
@@ -593,7 +593,7 @@ void CNtlPostEffectCamera::Update_FakeHDRFiltering(RwRGBA& color)
 
 
 	// ==========================================
-	// 축소화면 블러 먹이기
+	// ���ȭ�� ���� ���̱�
 	// ==========================================
 	m_lpEffect->BeginPass(EFFECT_PASS_16BOX);
 	m_lpEffect->SetFloat(m_hMapWidth, (RwReal)m_nTextureReductionSize);
@@ -632,7 +632,7 @@ void CNtlPostEffectCamera::Update_FakeHDRFiltering(RwRGBA& color)
 
 
 	// ==========================================
-	// 화면 확대하기
+	// ȭ�� Ȯ���ϱ�
 	// ==========================================
 	m_lpEffect->BeginPass(EFFECT_PASS_NONE);
 	RwCameraClear(m_pTempCamera, &color, rwCAMERACLEARZ|rwCAMERACLEARIMAGE);
@@ -661,7 +661,7 @@ void CNtlPostEffectCamera::Update_FakeHDRFiltering(RwRGBA& color)
 RwBool CNtlPostEffectCamera::BeginCameraUpdate(RwRGBA& color)
 {
 	// ==========================================
-	// 최종적으로 그리기
+	// ���������� �׸���
 	// ==========================================
 	RwCameraClear(m_pBlurCamera, &color, rwCAMERACLEARZ|rwCAMERACLEARIMAGE);
 	if(RwCameraBeginUpdate(m_pBlurCamera))
@@ -761,7 +761,7 @@ void CNtlPostEffectCamera::EndCameraUpdate(RwRGBA& color)
 
 //-------------------------------------------------------------
 // Name: CreateReductionTexture()
-// Desc: 가중치 계산
+// Desc: ����ġ ���
 //-------------------------------------------------------------
 void CNtlPostEffectCamera::CreateReductionTexture(RwInt32 nTextureSize)
 {

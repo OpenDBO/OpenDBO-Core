@@ -2,7 +2,7 @@
  *
  * File			: NtlCallbackWidget.h
  * Author		: HyungSuk, Jang
- * Copyright	: (주)NTL
+ * Copyright	: (��)NTL
  * Date			: 2005. 8. 22	
  * Abstract		: callback widget
  *****************************************************************************

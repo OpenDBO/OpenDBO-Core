@@ -60,32 +60,32 @@ RwBool CGMQuickSlotGui::Create()
 	//				Main Group
 	//////////////////////////////////////////////////////////////////////////
 
-	// GM 캐릭터 보이기 버튼
+	// GM ĳ���� ���̱� ��ư
 	m_pCharShowButton = (gui::CButton*)GetComponent("btnCharShow");
 	m_pCharShowButton->SetToolTip( GetDisplayStringManager()->GetString("DST_OBSERVER_SHOW_AVATAR") );
 	m_slotCharShowButton = m_pCharShowButton->SigClicked().Connect( this, &CGMQuickSlotGui::OnClicked_CharShowHide );
 
-	// GM 캐릭터 숨기기 버튼
+	// GM ĳ���� ����� ��ư
 	m_pCharHideButton = (gui::CButton*)GetComponent("btnCharHide");
 	m_pCharHideButton->SetToolTip( GetDisplayStringManager()->GetString("DST_OBSERVER_HIDE_AVATAR") );
 	m_slotCharHideButton = m_pCharHideButton->SigClicked().Connect( this, &CGMQuickSlotGui::OnClicked_CharShowHide );
 
-	// 천하제일 무도회 메뉴 상위 버튼
+	// õ������ ����ȸ �޴� ���� ��ư
 	m_pTenkaichiButton = (gui::CButton*)GetComponent("btnTenkaichi");
 	m_pTenkaichiButton->SetToolTip( GetDisplayStringManager()->GetString("DST_OBSERVER_TENKAICHI") );
 	m_slotTenkaichiButton = m_pTenkaichiButton->SigClicked().Connect( this, &CGMQuickSlotGui::OnClicked_Tenkaichi );
 
-	// 아바타 이동 버튼
+	// �ƹ�Ÿ �̵� ��ư
 	m_pPortalButton = (gui::CButton*)GetComponent("btnPortal");
 	m_pPortalButton->SetToolTip( GetDisplayStringManager()->GetString("DST_OBSERVER_PORTAL") );
 	m_slotPortalButton = m_pPortalButton->SigClicked().Connect( this, &CGMQuickSlotGui::OnClicked_Portal );
 
-	// 프리 카메라 버튼
+	// ���� ī�޶� ��ư
 	m_pFreeCameraButton = (gui::CButton*)GetComponent("btnFreeCamera");
 	m_pFreeCameraButton->SetToolTip( GetDisplayStringManager()->GetString("DST_OBSERVER_FREE_CAMERA") );
 	m_slotFreeCameraButton = m_pFreeCameraButton->SigClicked().Connect( this, &CGMQuickSlotGui::OnClicked_FreeCamera );
 
-	// 3인칭 카메라 버튼
+	// 3��Ī ī�޶� ��ư
 	m_pNormalCameraButton = (gui::CButton*)GetComponent("btnNormalCamera");
 	m_pNormalCameraButton->SetToolTip( GetDisplayStringManager()->GetString("DST_OBSERVER_NORMAL_CAMERA") );
 	m_slotNormalCameraButton = m_pNormalCameraButton->SigClicked().Connect( this, &CGMQuickSlotGui::OnClicked_FreeCamera );
@@ -96,33 +96,33 @@ RwBool CGMQuickSlotGui::Create()
 	//				Tenkaichi Group
 	//////////////////////////////////////////////////////////////////////////
 
-	// 천하제일 무도회 카메라 위치 변경 버튼
+	// õ������ ����ȸ ī�޶� ��ġ ���� ��ư
 	m_pTenkaichi_CameraLocButton = (gui::CButton*)GetComponent("btnCameraLoc");
 	m_pTenkaichi_CameraLocButton->SetToolTip( GetDisplayStringManager()->GetString("DST_OBSERVER_CAMERA_LOC") );
 	m_slotTenkaichi_CameraLoc = m_pTenkaichi_CameraLocButton->SigClicked().Connect( this, &CGMQuickSlotGui::OnClicked_Tenkaichi_CameraLoc );
 
-	// 천하제일 무도회 카메라 이동 버튼
+	// õ������ ����ȸ ī�޶� �̵� ��ư
 	m_pTenkaichi_CameraMoveButton = (gui::CButton*)GetComponent("btnCameraMove");
 	m_pTenkaichi_CameraMoveButton->SetToolTip( GetDisplayStringManager()->GetString("DST_OBSERVER_CAMERA_MOVE") );
 	m_slotTenkaichi_CameraMove = m_pTenkaichi_CameraMoveButton->SigClicked().Connect( this, &CGMQuickSlotGui::OnClicked_Tenkaichi_CameraMove );
 
-	// 천하제일 무도회 정해진 메뉴 Show 버튼
+	// õ������ ����ȸ ������ �޴� Show ��ư
 	m_pTenkaichi_MenuShowButton = (gui::CButton*)GetComponent("btnMenuShow");
 	m_pTenkaichi_MenuShowButton->SetToolTip( GetDisplayStringManager()->GetString("DST_OBSERVER_MENU_ON") );
 	m_pTenkaichi_MenuShowButton->Show(false);
 	m_slotTenkaichi_MenuShow = m_pTenkaichi_MenuShowButton->SigClicked().Connect( this, &CGMQuickSlotGui::OnClicked_Tenkaichi_MenuShowHide );
 	
-	// 천하제일 무도회 정해진 메뉴 Hide 버튼
+	// õ������ ����ȸ ������ �޴� Hide ��ư
 	m_pTenkaichi_MenuHideButton = (gui::CButton*)GetComponent("btnMenuHide");
 	m_pTenkaichi_MenuHideButton->SetToolTip( GetDisplayStringManager()->GetString("DST_OBSERVER_MENU_OFF") );
 	m_slotTenkaichi_MenuHide = m_pTenkaichi_MenuHideButton->SigClicked().Connect( this, &CGMQuickSlotGui::OnClicked_Tenkaichi_MenuShowHide );
 
-	// 천하제일 무도회 선수 정보 버튼
+	// õ������ ����ȸ ���� ���� ��ư
 	m_pTenkaichi_PlayerButton = (gui::CButton*)GetComponent("btnPlayerInfo");
 	m_pTenkaichi_PlayerButton->SetToolTip( GetDisplayStringManager()->GetString("DST_OBSERVER_PLAYER_INFO") );
 	m_slotTenkaichi_Player = m_pTenkaichi_PlayerButton->SigClicked().Connect( this, &CGMQuickSlotGui::OnClicked_Tenkaichi_Player );
 
-	// 천하제일 무도회 대진표 보기 버튼
+	// õ������ ����ȸ ����ǥ ���� ��ư
 	m_pTenkaichi_TournamentButton = (gui::CButton*)GetComponent("btnTournament");
 	m_pTenkaichi_TournamentButton->SetToolTip( GetDisplayStringManager()->GetString("DST_OBSERVER_TOURNAMENT") );
 	m_slotTenkaichi_Tournament = m_pTenkaichi_TournamentButton->SigClicked().Connect( this, &CGMQuickSlotGui::OnClicked_Tenkaichi_Tournament );
@@ -134,7 +134,7 @@ RwBool CGMQuickSlotGui::Create()
 	m_slotReturn = m_pReturnButton->SigClicked().Connect( this, &CGMQuickSlotGui::OnClicked_Return );
 
 
-	// GM Popup 메뉴
+	// GM Popup �޴�
 	m_pPopupGui = NTL_NEW CGMPopupGui("GMPopup");
 	if(!m_pPopupGui->Create())
 	{
@@ -375,14 +375,14 @@ VOID CGMQuickSlotGui::OnClicked_Tenkaichi( gui::CComponent* pComponent )
 
 VOID CGMQuickSlotGui::OnClicked_Portal( gui::CComponent* pComponent )
 {
-	// GM 이동
+	// GM �̵�
 	m_pPopupGui->PopupType(CGMPopupGui::POPUP_PORTAL);	
 	ShowPopup(TRUE, 2);
 }
 
 VOID CGMQuickSlotGui::OnClicked_FreeCamera( gui::CComponent* pComponent )
 {
-	// Free Camera 전환
+	// Free Camera ��ȯ
 	if( GetNtlGameCameraManager()->IsActiveFreeCamera() )
 	{
 		CNtlSLEventGenerator::CameraControlDelete(CAMERA_CONTROL_FREE);
@@ -399,21 +399,21 @@ VOID CGMQuickSlotGui::OnClicked_FreeCamera( gui::CComponent* pComponent )
 
 VOID CGMQuickSlotGui::OnClicked_Tenkaichi_CameraLoc( gui::CComponent* pComponent )
 {
-	// 카메라 위치 변경
+	// ī�޶� ��ġ ����
 	m_pPopupGui->PopupType(CGMPopupGui::POPUP_CAMERA_LOC);
 	ShowPopup(TRUE, 0);
 }
 
 VOID CGMQuickSlotGui::OnClicked_Tenkaichi_CameraMove( gui::CComponent* pComponent )
 {
-	// 카메라 이동하기
+	// ī�޶� �̵��ϱ�
 	m_pPopupGui->PopupType(CGMPopupGui::POPUP_CAMERA_MOVE);
 	ShowPopup(TRUE, 1);
 }
 
 VOID CGMQuickSlotGui::OnClicked_Tenkaichi_MenuShowHide( gui::CComponent* pComponent )
 {
-	// 정해진 메뉴 Show/Hide
+	// ������ �޴� Show/Hide
 	if( GetDialogManager()->IsOpenDialog(DIALOG_HP) )
 	{
 		m_pTenkaichi_MenuShowButton->Show(true);
@@ -448,14 +448,14 @@ VOID CGMQuickSlotGui::OnClicked_Tenkaichi_MenuShowHide( gui::CComponent* pCompon
 
 VOID CGMQuickSlotGui::OnClicked_Tenkaichi_Player( gui::CComponent* pComponent )
 {
-	// 선수 정보 보기
+	// ���� ���� ����
 	m_pPopupGui->PopupType(CGMPopupGui::POPUP_PLAYER_INFO);
 	ShowPopup(TRUE, 3);
 }
 
 VOID CGMQuickSlotGui::OnClicked_Tenkaichi_Tournament( gui::CComponent* pComponent )
 {
-	// 천하제일 무도회 대진표
+	// õ������ ����ȸ ����ǥ
 	GetDialogManager()->OpenDialog(DIALOG_BUDOKAI_TOURNAMENT);
 	ShowPopup(FALSE, 0);
 }
@@ -666,7 +666,7 @@ VOID CGMQuickSlotGui::HandleEvents( RWS::CMsg &msg )
 
 		if( pEvent->bWorldChange )
 		{
-			// 다시 설정한다
+			// �ٽ� �����Ѵ�
 			SetMenuGroup(m_eMenuGroup);
 		}
 	}

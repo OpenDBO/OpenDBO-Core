@@ -169,7 +169,7 @@ RwBool CDirectApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, Rw
 	//----------------------------------------------------
 
 	// camera
-	// active renderware camera setting 한다.
+	// active renderware camera setting �Ѵ�.
 	m_pCamera = NTL_NEW CNtlPostEffectCamera;
 	if(!m_pCamera->Create(iWidth, iHeight, zBuffer, 0.5f , 500.0f))
 	{
@@ -199,7 +199,7 @@ RwBool CDirectApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, Rw
 		NTL_RETURN(FALSE);
 	}	
 
-//	Pack 사용
+//	Pack ���
 	if( bUsePackData )
 	{
 		LinkTextureLoad(ResourcPackTextureLoad);
@@ -215,7 +215,7 @@ RwBool CDirectApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, Rw
 			NTL_PACK_TYPE_FLAG_TABLE | NTL_PACK_TYPE_FLAG_SCRIPT | NTL_PACK_TYPE_FLAG_PROPERTY);
 	}
 	
-	// property container 생성 및 load 한다.
+	// property container ���� �� load �Ѵ�.
 	m_pPropContainter = NTL_NEW CNtlPLPropertyContainer;
 
 	if(!m_pPropContainter->LoadSerialize())
@@ -225,7 +225,7 @@ RwBool CDirectApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, Rw
 	}
 
 	// visual manager create
-	// active scene manager를 setting 한다.
+	// active scene manager�� setting �Ѵ�.
 	m_pVisualManager = NTL_NEW CNtlPLVisualManager;
 	if(!m_pVisualManager->Create())
 	{
@@ -246,10 +246,10 @@ RwBool CDirectApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, Rw
 
 	GetNtlGuiManager()->CreatePLGuiGroup();
 	
-	// active scene manager를 setting 한다.
+	// active scene manager�� setting �Ѵ�.
 	CNtlPLSceneManagerFactory::ActiveSceneManager(m_pVisualManager);
 
-	// sound 생성
+	// sound ����
 	GetSoundManager()->Init(".\\sound\\", 1.0f, 1.0f, 1.0f, 0.5f);
 
 	//----------------------------------------------------
@@ -277,7 +277,7 @@ RwBool CDirectApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, Rw
 
 	const sWORLD_TBLDAT* pWorldTblData = GetActiveWorldTableData();
 	
-	// avatar 생성.
+	// avatar ����.
 	CreteAvatarInfo(m_vAvatarInitPos);
 	CreateWorld(m_vAvatarInitPos, pWorldTblData->szName);
 
@@ -600,7 +600,7 @@ void CDirectApplication::UpdateSoundListener(void)
 {
 	if(m_pAvatar)
 	{
-		// 시네마틱중이면 카메라로 세팅한다.
+		// �ó׸�ƽ���̸� ī�޶�� �����Ѵ�.
 		if(GetNtlDTCinematicManager()->IsRunning())
 		{
 			GetSceneManager()->SetSoundListener(NULL);
@@ -665,7 +665,7 @@ RwBool CDirectApplication::Update(RwReal fTime, RwReal fElapsedTime)
 	}
 
 
-	// 다른 edit viewer rendering.
+	// �ٸ� edit viewer rendering.
 	EditViewerRendering(fElapsedTime);
 	
 	NTL_RETURN(TRUE);
@@ -717,7 +717,7 @@ void CDirectApplication::Destroy()
 		m_pVisualManager = NULL;
 	}
 	
-	// property를 destroy 한다.
+	// property�� destroy �Ѵ�.
 	if(m_pPropContainter)
 	{
 		m_pPropContainter->Destroy();
@@ -732,7 +732,7 @@ void CDirectApplication::Destroy()
 		m_pCharset = NULL;
     }
 
-	// sound 해제
+	// sound ����
 	GetSoundManager()->Release();
 
 	UnLinkTextureLoad();
@@ -790,14 +790,14 @@ int CDirectApplication::ActionMapKeyboardMove(uintptr_t uiMoveFlags)
 		}
 		else 
 		{
-            // 프리 카메라가 활성화 되어 있는지 확인한다.
+            // ���� ī�޶� Ȱ��ȭ �Ǿ� �ִ��� Ȯ���Ѵ�.
             if(GetNtlGameCameraManager()->IsActiveFreeCamera())
             {
                 GetNtlGameCameraManager()->FreeCameraMove(uiMoveFlags, GetFreeCameraSpeed());
             }
             else
             {
-                // 프리카메라가 없는 경우에만 아바타 이동
+                // ����ī�޶� ���� ��쿡�� �ƹ�Ÿ �̵�
 			    CNtlSLEventGenerator::KeyboardMove(uiMoveFlags, FALSE, 0.0f);
             }
 		}
@@ -912,7 +912,7 @@ void CDirectApplication::CreteAvatarInfo(RwV3d vPos)
 //	pAvatarInfo->sItemPf[0].byPos			= EQUIP_SLOT_TYPE_JACKET;
 //	pAvatarInfo->sItemPf[0].byStackcount	= 1;
 //	pAvatarInfo->sItemPf[0].byRank			= 1;
-//	pAvatarInfo->sItemPf[0].byCurDur		= 1;		// 내구도
+//	pAvatarInfo->sItemPf[0].byCurDur		= 1;		// ������
 
 	for(RwInt32 i = 0; i < NTL_MAX_OPTION_IN_ITEM; i++)
 	{

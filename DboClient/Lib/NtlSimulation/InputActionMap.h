@@ -2,14 +2,14 @@
  *
  * File			: InputAction.h
  * Author		: HyungSuk, Jang
- * Copyright	: (주)NTL
+ * Copyright	: (��)NTL
  * Date			: 2005. 8. 26	
  * Abstract		: Input action 
  *****************************************************************************
  * Desc         : 
  *
  * 1st Refactoring(2008. 1. 15 ~ 1. 20 ) : 
- * 자료구조와 매니저를 완전 분리( InputActionMap <-> ActionMap )
+ * �ڷᱸ���� �Ŵ����� ���� �и�( InputActionMap <-> ActionMap )
  *
  *****************************************************************************/
 
@@ -64,18 +64,18 @@ public:
 	void SetActive(RwBool bActive);
 
 public:
-	// CActionMap 인터페이스
-	void			InitInputMode();					///< 입력 모드 해제
-	RwUInt32		GetInputMode();						///< 어떤 ACTION이 INPUTMODE인지
-	void			SetInputMode( RwUInt32 nAction );	///< nAction에 입력 모드 지정
+	// CActionMap �������̽�
+	void			InitInputMode();					///< �Է� ��� ����
+	RwUInt32		GetInputMode();						///< � ACTION�� INPUTMODE����
+	void			SetInputMode( RwUInt32 nAction );	///< nAction�� �Է� ��� ����
 
-	std::wstring	GetKeyName( RwUInt32 nAction );		///< 액션이 가지고 있는 키의 이름
+	std::wstring	GetKeyName( RwUInt32 nAction );		///< �׼��� ������ �ִ� Ű�� �̸�
 	unsigned short	FindKey( RwUInt32 nAction );
 
-	void			InitDefaultActionMap();				///< 디폴트 액션맵으로 셋팅
+	void			InitDefaultActionMap();				///< ����Ʈ �׼Ǹ����� ����
 
-	RwBool			ApplyActionMap();					///< 액션맵의 적용(서버로 패킷 전송)
-	void			CancleActionMap();					///< 적용 취소
+	RwBool			ApplyActionMap();					///< �׼Ǹ��� ����(������ ��Ŷ ����)
+	void			CancleActionMap();					///< ���� ���
 
 	// Ignore Key
 	RwBool			RegisterIgnoreKey( RwUInt8 byKey, int nRefCount );
@@ -94,11 +94,11 @@ protected:
 	void HitTestUpDbClickDashMap(SInputDashMap& sDashMap);
 	void CallDashMove(RwUInt32 uiServerDashMoveFlags);
 
-	// 액션ID를 넘겨 처리하게 변경된 함수들
-	void ActionDownMoveHandler(RwUInt32 uiAction);		///< 액션에 의한 이동 액션 핸들러
-	void ActionDownDashMoveHandler(RwUInt32 uiAction);	///< 액션에 의한 대쉬 액션 핸들러
-	void ActionDownBehaviorHandler(RwUInt32 uiAction);	///< 액션에 의한 행동 액션 핸들러
-	void ActionDownGuiHandler(RwUInt32 uiAction);		///< 액션에 의한 GUI 액션 핸들러
+	// �׼�ID�� �Ѱ� ó���ϰ� ����� �Լ���
+	void ActionDownMoveHandler(RwUInt32 uiAction);		///< �׼ǿ� ���� �̵� �׼� �ڵ鷯
+	void ActionDownDashMoveHandler(RwUInt32 uiAction);	///< �׼ǿ� ���� �뽬 �׼� �ڵ鷯
+	void ActionDownBehaviorHandler(RwUInt32 uiAction);	///< �׼ǿ� ���� �ൿ �׼� �ڵ鷯
+	void ActionDownGuiHandler(RwUInt32 uiAction);		///< �׼ǿ� ���� GUI �׼� �ڵ鷯
 
 	void ActionUpMoveHandler(RwUInt32 uiAction);			
 	void ActionUpDashMoveHandler(RwUInt32 uiAction);		
@@ -119,54 +119,54 @@ private:
 	INPUT_HANDLE m_hMouseDown;
 	INPUT_HANDLE m_hMouseUp;
 
-	CNtlCallbackParam1 *m_pCallKeyboardMove;		///< 키보드 이동
-	CNtlCallbackParam1 *m_pCallKeyboardDashMove;	///< 키보드 대쉬 이동
-	CNtlCallbackParam0 *m_pCallAvatarSelect;		///< 아바타 선택
-	CNtlCallbackParam1 *m_pCallJump;				///< 점프
-	CNtlCallbackParam1 *m_pCallCharging;			///< 기 모으기
-	CNtlCallbackParam1 *m_pCallBlocking;			///< 블록 모드
-	CNtlCallbackParam1 *m_pCallSitAndStand;			///< 앉아 일어서
-	CNtlCallbackParam0 *m_pCallAutoRun;				///< 자동 달리기
-	CNtlCallbackParam1 *m_pCallSkillQuickSlotDown;	///< 퀵슬롯 다운
-	CNtlCallbackParam1 *m_pCallSkillQuickSlotUp;	///< 퀵슬롯 업
+	CNtlCallbackParam1 *m_pCallKeyboardMove;		///< Ű���� �̵�
+	CNtlCallbackParam1 *m_pCallKeyboardDashMove;	///< Ű���� �뽬 �̵�
+	CNtlCallbackParam0 *m_pCallAvatarSelect;		///< �ƹ�Ÿ ����
+	CNtlCallbackParam1 *m_pCallJump;				///< ����
+	CNtlCallbackParam1 *m_pCallCharging;			///< �� ������
+	CNtlCallbackParam1 *m_pCallBlocking;			///< ���� ���
+	CNtlCallbackParam1 *m_pCallSitAndStand;			///< �ɾ� �Ͼ
+	CNtlCallbackParam0 *m_pCallAutoRun;				///< �ڵ� �޸���
+	CNtlCallbackParam1 *m_pCallSkillQuickSlotDown;	///< ������ �ٿ�
+	CNtlCallbackParam1 *m_pCallSkillQuickSlotUp;	///< ������ ��
 	CNtlCallbackParam1 *m_pCallSkillQuickSlotExDown;
 	CNtlCallbackParam1 *m_pCallSkillQuickSlotExUp;
 	CNtlCallbackParam1 *m_pCallSkillQuickSlotEx2Down;
 	CNtlCallbackParam1 *m_pCallSkillQuickSlotEx2Up;
-	CNtlCallbackParam1 *m_pCallSkillQuickSlotChange;///< 퀵슬롯 PREV, NEXT
+	CNtlCallbackParam1 *m_pCallSkillQuickSlotChange;///< ������ PREV, NEXT
 	CNtlCallbackParam0 *m_pCallExit;				///< Exit
-	CNtlCallbackParam0 *m_pCallLooting;				///< 아이템 줍기
-	CNtlCallbackParam1 *m_pCallDialogAction;		///< Dialog에 보낼 액션
-	CNtlCallbackParam0 *m_pCallTabKey;				///< 탭의 액션
-	CNtlCallbackParam0 *m_pCallAutoTarget;			///< 가까운 적 선택
-	CNtlCallbackParam0 *m_pCallAutoAttack;			///< 자동 공격
-	CNtlCallbackParam0 *m_pCallAutoFollow;			///< 자동 따라가기
-	CNtlCallbackParam1 *m_pCallPartySelect;			///< 파티원 선택
-	CNtlCallbackParam0 *m_pCallPartyAutoSelect;		///< 파티원 자동 선택
-    CNtlCallbackParam0 *m_pCallScouterUse;          ///< 스카우터 사용 (by agebreak)
-	CNtlCallbackParam1 *m_pCallTargetMarking;		///< 타겟 마킹
-	CNtlCallbackParam1 *m_pCallTargetSelecting;		///< 타겟 셀렉팅
-	CNtlCallbackParam1 *m_pCallChatPageChange;			///< 채팅 페이지 (0 UP 1 DOWN)
+	CNtlCallbackParam0 *m_pCallLooting;				///< ������ �ݱ�
+	CNtlCallbackParam1 *m_pCallDialogAction;		///< Dialog�� ���� �׼�
+	CNtlCallbackParam0 *m_pCallTabKey;				///< ���� �׼�
+	CNtlCallbackParam0 *m_pCallAutoTarget;			///< ����� �� ����
+	CNtlCallbackParam0 *m_pCallAutoAttack;			///< �ڵ� ����
+	CNtlCallbackParam0 *m_pCallAutoFollow;			///< �ڵ� ���󰡱�
+	CNtlCallbackParam1 *m_pCallPartySelect;			///< ��Ƽ�� ����
+	CNtlCallbackParam0 *m_pCallPartyAutoSelect;		///< ��Ƽ�� �ڵ� ����
+    CNtlCallbackParam0 *m_pCallScouterUse;          ///< ��ī���� ��� (by agebreak)
+	CNtlCallbackParam1 *m_pCallTargetMarking;		///< Ÿ�� ��ŷ
+	CNtlCallbackParam1 *m_pCallTargetSelecting;		///< Ÿ�� ������
+	CNtlCallbackParam1 *m_pCallChatPageChange;			///< ä�� ������ (0 UP 1 DOWN)
 	
 
 	RwUInt32	m_uiKey1MoveValidFlags;
 	RwUInt32	m_uiKey2MoveValidFlags;
-	RwUInt32	m_uiMoveFlags;						///< 클라이언트에서 사용되는 Move Flags
+	RwUInt32	m_uiMoveFlags;						///< Ŭ���̾�Ʈ���� ���Ǵ� Move Flags
 	RwBool		m_bRBtnDown;
-	RwUInt32	m_uiServerMoveFlags;				///< 서버에 보내는 Move Flags
-	RwBool		m_bActive;							///< InputActionMap이 작동중인지의 여부
-	RwBool		m_bAcceptServer;					///< 서버에 적용이 가능한 상태
+	RwUInt32	m_uiServerMoveFlags;				///< ������ ������ Move Flags
+	RwBool		m_bActive;							///< InputActionMap�� �۵��������� ����
+	RwBool		m_bAcceptServer;					///< ������ ������ ������ ����
 
-	typedef std::map<RwUInt32, RwBool> FLAGMAP;		///< 상태를 회복시켜줘야 할 액션들
+	typedef std::map<RwUInt32, RwBool> FLAGMAP;		///< ���¸� ȸ��������� �� �׼ǵ�
 	FLAGMAP m_mapFlag;
 
-	typedef std::map<RwUInt8, RwUInt8>	IGNOREMAP;	///< 무시되는 키를 모아놓은 맵
+	typedef std::map<RwUInt8, RwUInt8>	IGNOREMAP;	///< ���õǴ� Ű�� ��Ƴ��� ��
 	IGNOREMAP m_mapIgnore;
 
-	typedef std::map<RwUInt16, RwUInt8> SPECMAP;	///< 특정한 동작을 해야하는 액션
+	typedef std::map<RwUInt16, RwUInt8> SPECMAP;	///< Ư���� ������ �ؾ��ϴ� �׼�
 	SPECMAP	m_mapSpecialAction;
 
-	typedef std::map<RwUInt8, RwUInt8> UPDOWNREF;	///< 키가 업/다운 되는 횟수를 체크한다.
+	typedef std::map<RwUInt8, RwUInt8> UPDOWNREF;	///< Ű�� ��/�ٿ� �Ǵ� Ƚ���� üũ�Ѵ�.
 	UPDOWNREF m_mapUpdownRef;
 
 	SInputDashMap m_sFrontDashMap;
@@ -174,7 +174,7 @@ private:
 	SInputDashMap m_sRightDashMap;
 	SInputDashMap m_sBackDashMap;
 
-	// 액션맵 클래스(ActionMap.h) by Kell
+	// �׼Ǹ� Ŭ����(ActionMap.h) by Kell
 	CActionMapManager m_ActionMapManager;
 
 public:

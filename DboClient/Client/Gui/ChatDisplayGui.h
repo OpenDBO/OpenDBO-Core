@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: ChatDisplayGui.h
 * Author		: Hong SungBock
-* Copyright		: (주)NTL
+* Copyright		: (��)NTL
 * Date			: 2008. 7. 1
 * Abstract		: 
 *****************************************************************************
-* Desc			: 채팅 로그가 화면에 보여지는 GUI
+* Desc			: ä�� �αװ� ȭ�鿡 �������� GUI
 *****************************************************************************/
 
 #pragma once
@@ -42,10 +42,10 @@ public:
 	struct sResizingInfo
 	{
 		eResizeType			eType;
-		RwInt32				iConfirmXPos;		///< 변경 완료된 X 좌표
-		RwInt32				iConfirmYPos;		///< 변경 완료된 Y 좌표
-		RwInt32				iConfirmWidth;		///< 변경 완료된 넓이
-		RwInt32				iConfirmHeight;		///< 변경 완료된 높이
+		RwInt32				iConfirmXPos;		///< ���� �Ϸ�� X ��ǥ
+		RwInt32				iConfirmYPos;		///< ���� �Ϸ�� Y ��ǥ
+		RwInt32				iConfirmWidth;		///< ���� �Ϸ�� ����
+		RwInt32				iConfirmHeight;		///< ���� �Ϸ�� ����
 	};
 
 	struct sAlphaInfo
@@ -66,7 +66,7 @@ public:
 
 	struct sPositionInfo
 	{
-		RwInt32				iOldScreenHeight;		///< 클라이언트 Resize시 하단에서 일정한 거리 유지 위해
+		RwInt32				iOldScreenHeight;		///< Ŭ���̾�Ʈ Resize�� �ϴܿ��� ������ �Ÿ� ���� ����
 	};
 
 
@@ -158,5 +158,5 @@ protected:
 	sPositionInfo		m_tPositionInfo;
 
 	RwBool				m_EnableLogType[NUM_ALL_CHAT_TYPE];
-	RwUInt8				m_byDisplayGuiIndex;				///< 몇 번째 디스플레이 창인지
+	RwUInt8				m_byDisplayGuiIndex;				///< �� ��° ���÷��� â����
 };

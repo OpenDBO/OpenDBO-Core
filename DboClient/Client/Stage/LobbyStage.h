@@ -2,7 +2,7 @@
  *
  * File			: CharacterStage.h
  * Author		: HyungSuk, Jang
- * Copyright	: (주)NTL
+ * Copyright	: (��)NTL
  * Date			: 2006. 11. 28	
  * Abstract		: Character stage class
  *****************************************************************************
@@ -71,11 +71,11 @@ private:
 	CNtlPLWorldEntity		*m_pWorldEntity;						// Main World
 	
 	RwV3d					m_vCameraPos;							// Camera Position
-	RwV3d					m_vCameraPosAt;							// Camera가 보는 위치							
-	RwV3d					m_vAvatarPos;							// Avatar의 위치
+	RwV3d					m_vCameraPosAt;							// Camera�� ���� ��ġ							
+	RwV3d					m_vAvatarPos;							// Avatar�� ��ġ
 	RwV3d					m_vAvatarUpdatePos;
 
-	RwReal					m_fAvatarAngleY;						// Avatar의 Y축 회전 값
+	RwReal					m_fAvatarAngleY;						// Avatar�� Y�� ȸ�� ��
 
 	CNtlSobAvatar			*m_pAvatar;								// Avatar
 	RwInt32					m_iAvatarRotState;						// Avatar Rotation State
@@ -87,7 +87,7 @@ private:
 	RwInt8					m_byRace;
 	RwInt8					m_byCharHeightType;
 
-	// 마우스 휠 스크롤에 따라 자연스러운 반응을 하기 위해 모든 휠 메세지 저장
+	// ���콺 �� ��ũ�ѿ� ���� �ڿ������� ������ �ϱ� ���� ��� �� �޼��� ����
 	std::list<sCameraZoom>	m_listZoomMode;
 	RwReal					m_fReservatedZoomStep;
 	RwReal					m_fTotalZoomStep;
@@ -97,7 +97,7 @@ private:
 	sCameraData				m_CameraData[RACE_COUNT + 1][NUM_CHT][NUM_ZL];
 	RwV3d					m_v3Dir[RACE_COUNT + 1][NUM_CHT][NUM_ZL];
 
-	RwBool					m_bOptionApply;							// CLobbayStage 객체 생성시 한번만 FALSE 값을 가진다.
+	RwBool					m_bOptionApply;							// CLobbayStage ��ü ������ �ѹ��� FALSE ���� ������.
 
 private:
 	INPUT_HANDLE m_hKeyDown;
@@ -124,10 +124,10 @@ private:
 
 	void CreateDownLoadAvatar( sPC_SUMMARY *pCharInfo);
 
-	void SetupDefaultCamerabyRace(RwUInt8 byRace);							//Avatar의 위치, Camera의 위치를 초기화
-	void CreateBackGroundStage( RwUInt32 uiRace, RwBool bForce = false);	//World를 생성(한번만 생성이 된다.)
-	void TeleportStage();													//SetUpDefaultCamerabyRace에 의해서 설정된 곳으로 Teleport
-																			//Teleport시 로딩이 일어난다.
+	void SetupDefaultCamerabyRace(RwUInt8 byRace);							//Avatar�� ��ġ, Camera�� ��ġ�� �ʱ�ȭ
+	void CreateBackGroundStage( RwUInt32 uiRace, RwBool bForce = false);	//World�� ����(�ѹ��� ������ �ȴ�.)
+	void TeleportStage();													//SetUpDefaultCamerabyRace�� ���ؼ� ������ ������ Teleport
+																			//Teleport�� �ε��� �Ͼ��.
 
 	void DestroyBackGroundStage();
 	void DestroyAvatar();

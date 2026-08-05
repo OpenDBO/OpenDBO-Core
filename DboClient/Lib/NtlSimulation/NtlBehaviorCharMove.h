@@ -2,7 +2,7 @@
  *
  * File			: NtlBehaviorCharMove.h
  * Author		: HyungSuk, Jang
- * Copyright	: (주)NTL
+ * Copyright	: (��)NTL
  * Date			: 2006. 2. 9	
  * Abstract		: character move behavior class
  *****************************************************************************
@@ -33,7 +33,7 @@ struct SNtlEventSobMoveSync;
 #define COLLISION_MOVE_IMPOSSIBLE_COUNT		3
 
 // dash 
-#define DASH_LANDING_TIME					0.166f  // 0.8초에 DASH_LANDING_DIST 만큼 간다.
+#define DASH_LANDING_TIME					0.166f  // 0.8�ʿ� DASH_LANDING_DIST ��ŭ ����.
 
 // jump
 #define JUMP_GRAVITY_SPEED					11.0f
@@ -62,15 +62,15 @@ public:
 	void	AddPathNode(RwV3d vPos);
 	RwBool	PopPathNode(RwV3d& vPos);
 	void	ClearPathNode(void);
-    RwBool  IsMoveSyncState();                                  ///< MoveSync을 맞춰야하는 상태인지를 반환한다 (다른 캐릭터용)
-    RwBool  IsMoveSyncSend();                                   ///< MoveSync 패킷을 보내야하는 상태인지를 반환한다 (아바타용)
+    RwBool  IsMoveSyncState();                                  ///< MoveSync�� ������ϴ� ���������� ��ȯ�Ѵ� (�ٸ� ĳ���Ϳ�)
+    RwBool  IsMoveSyncSend();                                   ///< MoveSync ��Ŷ�� �������ϴ� ���������� ��ȯ�Ѵ� (�ƹ�Ÿ��)
 
     virtual RwUInt32 HandleEvents(RWS::CMsg &pMsg);    
 
 protected:    
     virtual void	 UpdateAnimSpeed(void);    
-    virtual RwReal   GetMoveSpeed(RwUInt8 byMoveFlag);          ///< Move Flag에 맞는 속도를 반환한다.
-    virtual RwBool   IsMoveSyncEmpty();                         ///< 현재 MoveSyncQ에 Sync할 데이터가 있는지를 반환한다.
+    virtual RwReal   GetMoveSpeed(RwUInt8 byMoveFlag);          ///< Move Flag�� �´� �ӵ��� ��ȯ�Ѵ�.
+    virtual RwBool   IsMoveSyncEmpty();                         ///< ���� MoveSyncQ�� Sync�� �����Ͱ� �ִ����� ��ȯ�Ѵ�.
 
 protected:    
 

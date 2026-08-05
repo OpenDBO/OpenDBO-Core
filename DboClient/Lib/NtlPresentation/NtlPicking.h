@@ -194,12 +194,12 @@ public:
 
 // Implementations
 protected:
-	// Bounding check를 위한 함수들
+	// Bounding check�� ���� �Լ���
 	static const RwSphere*				ResizeBoundingSphereCB( RpAtomic* pAtomic, void* pData );
 	static RpAtomic*					PickAtomicBoundBoxCB( RpIntersection* pInters, RpWorldSector* pWorldSector, RpAtomic* pAtomic, RwReal fDistance, void* pData );
 	static RpCollisionTriangle*			PickAtomicPolygonCB( RpIntersection* pInters, RpCollisionTriangle* pRpColTri, RwReal fRatio, void* pData );
 
-	// Polygon check를 위한 함수들
+	// Polygon check�� ���� �Լ���
 	bool								CreateRaster( RwRaster*& pRaster, RwRaster*& pZRaster, RwTexture*& pTexture );
 	void								DeleteRaster( RwRaster*& pRaster, RwRaster*& pZRaster, RwTexture*& pTexture );
 	void								UpdateCamera_Begin( RwCamera* pCamera );
@@ -216,7 +216,7 @@ protected:
 
 //////////////////////////////////////////////////////////////////////////
 //
-//	Bounding box resizing 최적의 크기를 구하기 위한 테스트용 클래스
+//	Bounding box resizing ������ ũ�⸦ ���ϱ� ���� �׽�Ʈ�� Ŭ����
 //
 //////////////////////////////////////////////////////////////////////////
 

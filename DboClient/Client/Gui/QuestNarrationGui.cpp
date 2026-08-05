@@ -34,7 +34,7 @@
 #include "GUISoundDefine.h"
 
 #define QUEST_NARRATION_TEXT_INTERVAL	0.025f
-#define QUEST_NARRATION_TEXT_FONTNUM	1			// 3 -> 1 로 수정 -by Kell(09. 07. 15)
+#define QUEST_NARRATION_TEXT_FONTNUM	1			// 3 -> 1 �� ���� -by Kell(09. 07. 15)
 
 #define QUEST_NARRATION_PCMESSAGE_MARGIN_X	60
 #define QUEST_NARRATION_PCMESSAGE_POS_Y		40
@@ -158,7 +158,7 @@ VOID CQuestNarrationGui::HandleEvents( RWS::CMsg& msg )
 				pData->sNarration.eProgState == eNARRATION_PROGRESS_STATE_SINGLE ) )
 				CNtlPLEventGenerator::ResetCinematic( SNtlEventResetCinematic::QUESTNARRATION );
 
-			// 다시 보내주어야할 Data
+			// �ٽ� �����־���� Data
 			m_pTCUnit = pData->pTCUnit;
 			m_TSKey = pData->sNarration.sTSKey;
 
@@ -170,7 +170,7 @@ VOID CQuestNarrationGui::HandleEvents( RWS::CMsg& msg )
 				pData->sNarrationUserSelect.eProgState == eUSER_SEL_PROGRESS_STATE_SINGLE ) )
 				CNtlPLEventGenerator::ResetCinematic( SNtlEventResetCinematic::QUESTNARRATION );
 
-			// 다시 보내주어야할 Data
+			// �ٽ� �����־���� Data
 			m_pTCUnit = pData->pTCUnit;
 			m_TSKey = pData->sNarrationUserSelect.sTSKey;
 
@@ -251,7 +251,7 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationDialog_Req* pData )
 		SetState( STATE_ING, eOwnerType );
 	}
 
-	// 이미지 로드 및 이름 출력
+	// �̹��� �ε� �� �̸� ���
 	std::string strFileName;
 
 	if( pData->eOwnerType == eNARRATION_OWNER_NPC )
@@ -260,7 +260,7 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationDialog_Req* pData )
 		CTextTable* pNPCText = API_GetTableContainer()->GetTextAllTable()->GetNPCTbl();
 		if( !m_pCinematicObject->SetImageTexture( pNPCData->szILLust, pData->eOwnerState ) )
 		{
-			// 그림이 없으면 기본값 출력. 이래도 없으면 흰색 그림 출력
+			// �׸��� ������ �⺻�� ���. �̷��� ������ ��� �׸� ���
 			m_pCinematicObject->SetImageTexture( pNPCData->szILLust, 0 );				
 		}		
 		m_pCinematicObject->ShowImage( TRUE );			
@@ -272,7 +272,7 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationDialog_Req* pData )
 		CTextTable* pMobText = API_GetTableContainer()->GetTextAllTable()->GetMobTbl();
 		if( !m_pCinematicObject->SetImageTexture( pMobData->szILLust, pData->eOwnerState ) )
 		{
-			// 그림이 없으면 기본값 출력. 이래도 없으면 흰색 그림 출력
+			// �׸��� ������ �⺻�� ���. �̷��� ������ ��� �׸� ���
 			m_pCinematicObject->SetImageTexture( pMobData->szILLust, 0 );				
 		}
 		m_pCinematicObject->ShowImage( TRUE );			
@@ -289,14 +289,14 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationDialog_Req* pData )
 		//m_pCinematicObject->GetPCMessage()->SetPosition( rect );
 
 
-		// 선택 모드 닫기.
+		// ���� ��� �ݱ�.
 		for( RwUInt8 i = 0 ; i < CINEMATIC_MAX_PC_SELECT ; ++i )
 			m_pCinematicObject->GetPCSelect( i )->Show( false );
 
 		m_pCinematicObject->GetPCSelectFocus()->Show( false );
 	}
 
-	// 풍선대화 세팅.
+	// ǳ����ȭ ����.
 	if( eOwnerType == NPCMOB )
 	{
 		if( pData->eGUIType == eNARRATION_GUI_TYPE_NORMAL )
@@ -309,7 +309,7 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationDialog_Req* pData )
 		}
 	}
 
-	// 대화 출력스타일 세팅
+	// ��ȭ ��½�Ÿ�� ����
 	if( eOwnerType == NPCMOB )
 	{
 		if( pData->eDialogDirType == eNARRATION_DIALOG_DIR_TYPE_NORMAL )
@@ -347,7 +347,7 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationDialog_Req* pData )
 		}
 	}
 
-	// 대화 입력
+	// ��ȭ �Է�
 	sQUEST_TEXT_DATA_TBLDAT* pTextData = reinterpret_cast<sQUEST_TEXT_DATA_TBLDAT*>( API_GetTableContainer()->GetQuestTextDataTable()->FindData( pData->uiDialog ) );
 	if( pTextData )
 	{
@@ -368,10 +368,10 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationDialog_Req* pData )
 				m_pCinematicObject->SetPCMessage( buf, wcslen( buf ) );
 		}		
 		else
-			m_pCinematicObject->GetBalloon()->Show( false );	// 대화 없는 경우는 말풍선을 표시하지 않음.
+			m_pCinematicObject->GetBalloon()->Show( false );	// ��ȭ ���� ���� ��ǳ���� ǥ������ ����.
 	}	
 
-	// 시간 입력
+	// �ð� �Է�
 	m_uiMaxLifeTime = pData->uiMaxLifeTime - (RwUInt32)CINEMATIC_MOVETIME * 1000;	
 	m_uiCurrentTime = 0;
 }
@@ -382,7 +382,7 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationUserSelectDialog_Req*
 		return;		
 
 	m_eTSState = pData->eProgState;
-	// peessitemp: 문자 출력스타일이 없으므로 일단 이렇게...
+	// peessitemp: ���� ��½�Ÿ���� �����Ƿ� �ϴ� �̷���...
 	m_eTextOutType = eNARRATION_DIALOG_DIR_TYPE_INVALID;
 
 	if( m_eTSState == eNARRATION_PROGRESS_STATE_START || m_eTSState == eNARRATION_PROGRESS_STATE_SINGLE )
@@ -394,13 +394,13 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationUserSelectDialog_Req*
 		SetState( STATE_ING, PC_SELECT );
 	}
 
-	// 이름 출력
+	// �̸� ���
 	m_pCinematicObject->SetPCName( Logic_GetName( reinterpret_cast<CNtlSob*>( GetNtlSLGlobal()->GetSobAvatar() ) ) );		
 
 
 	sQUEST_TEXT_DATA_TBLDAT* pTextData = NULL;
 
-	//// 말풍선 출력
+	//// ��ǳ�� ���
 	//if( pData->uiConv == INVALID_TBLIDX )
 	//{
 	//	m_bShowPCMessageOnPCSelect = FALSE;				
@@ -424,7 +424,7 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationUserSelectDialog_Req*
 	//	}		
 	//}
 
-	// 대화선택 세팅.
+	// ��ȭ���� ����.
 	for( RwUInt8 i = 0 ; i < CINEMATIC_MAX_PC_SELECT ; ++i )
 	{
 		if( i >= pData->nBranchCnt )
@@ -455,14 +455,14 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationUserSelectDialog_Req*
 		}	
 	}
 
-	RwInt32 nPCFrameTextRegionHeight = m_pCinematicObject->GetPCFrame()->GetHeight() - 19;	// MagicalNumber : 이미지로 가리는 부분이 19 pixel 만큼.
+	RwInt32 nPCFrameTextRegionHeight = m_pCinematicObject->GetPCFrame()->GetHeight() - 19;	// MagicalNumber : �̹����� ������ �κ��� 19 pixel ��ŭ.
 	m_pCinematicObject->SetPCSelectRegion( (RwUInt8)pData->nBranchCnt, (RwUInt8)nPCFrameTextRegionHeight, TRUE );
 
 	m_bySelectID = m_byPCSelectID[0];
 	m_pCinematicObject->SetPCSelectValue( 0 );
 	m_pCinematicObject->GetPCSelectFocus()->Show( true );
 
-	// 시간 입력
+	// �ð� �Է�
 	m_uiMaxLifeTime = 0xFFFFFFFF;
 	m_uiCurrentTime = 0;
 }

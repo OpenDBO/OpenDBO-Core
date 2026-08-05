@@ -1,4 +1,4 @@
-3rdParty/Xtreme ToolkitPro v15.2.1
+﻿3rdParty/Xtreme ToolkitPro v15.2.1
 DboClient/.vs
 DboClient/Release
 DboClient/Release4Tools
@@ -514,3 +514,13 @@ DboClient/RenderwareX64/Lib/Release_x64.bak/
 
 # Task lists (local planning, not tracked)
 /tasks/
+
+# fmod generated binaries (rebuilt per-architecture into Win32/x64)
+DboClient/Lib/NtlSound/fmod/*.dll
+DboClient/Lib/NtlSound/fmod/*.lib
+DboClient/Lib/NtlSound/fmod/*.exp
+DboClient/DragonBall/fmod*.dll
+
+# build staging folder (headers xcopied by RW plugin post-build)
+DboClient/inc/*
+!DboClient/inc/.gitkeep

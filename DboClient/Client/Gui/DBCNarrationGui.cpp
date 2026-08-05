@@ -144,7 +144,7 @@ VOID CDBCNarrationGui::SetUIData( const RwChar* szTextureName, const WCHAR* wszT
 		SetState( STATE_ING );
 	}
 
-	// 이미지 로드 및 이름 출력
+	// �̹��� �ε� �� �̸� ���
 	if( szTextureName )
 	{
 		m_pCinematicObject->SetImageTexture( const_cast<RwChar*>( szTextureName ) );

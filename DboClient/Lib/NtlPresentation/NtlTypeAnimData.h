@@ -2,7 +2,7 @@
  *
  * File			: NtlTypeAnimData.h
  * Author		: HongHoDong
- * Copyright	: (주)NTL
+ * Copyright	: (��)NTL
  * Date			: 2006. 4. 11	
  * Abstract		: NTL NtlTypeAnimData
  *****************************************************************************
@@ -19,12 +19,12 @@
 #include "NtlCharacterData.h"
 #include "NtlSerializer.h"
 
-/// 플래그 관련 설정들
+/// �÷��� ���� ������
 #define ANIM_FLAG_CULL_TEST_ALL_ATOMIC  0x00000001
 
 /*!
  * \Animation
- * STypeAnimData: 변하지 않는 Data(Read만 가능)
+ * STypeAnimData: ������ �ʴ� Data(Read�� ����)
  * 
  */
 class AnimEvent_CompareFunc
@@ -41,13 +41,13 @@ public:
 
 struct STypeAnimData
 {
-	std::string			strAnimName;							///< Animation File 이름
+	std::string			strAnimName;							///< Animation File �̸�
 	RwUInt32			uiAnimKey;								///< Animation Key
-	RwReal              fPlayTime;                              ///< Animation의 PlayTime
-    RwUInt32            flagAnim;                               ///< 애니메이션 관련된 설정 플래그
+	RwReal              fPlayTime;                              ///< Animation�� PlayTime
+    RwUInt32            flagAnim;                               ///< �ִϸ��̼� ���õ� ���� �÷���
 
-	std::vector<SEventAnim *> vecAnimEvent;						///< Animation Event들 (fTime에 정렬이 되어 있어야 한다.)
-	RwBool						m_bReLoad;						///< Resource를 새로 읽어야 할 경우
+	std::vector<SEventAnim *> vecAnimEvent;						///< Animation Event�� (fTime�� ������ �Ǿ� �־�� �Ѵ�.)
+	RwBool						m_bReLoad;						///< Resource�� ���� �о�� �� ���
 	
 	STypeAnimData() : uiAnimKey(INVALID_GRAPHIC_ANIMATION_ID), m_bReLoad(FALSE), fPlayTime(0.0f), flagAnim(0)
 	{
@@ -62,8 +62,8 @@ struct STypeAnimData
 			{
 				if(vecAnimEvent[i] != NULL)
 				{
-                    // Hit Event에는 Multi Hissidan 데이터가 동적으로 할당되어 있기 때문에
-                    // 형변환을 한후에 지워줘야 한다.
+                    // Hit Event���� Multi Hissidan �����Ͱ� �������� �Ҵ�Ǿ� �ֱ� ������
+                    // ����ȯ�� ���Ŀ� ������� �Ѵ�.
                     if(vecAnimEvent[i]->eEventID == EVENT_ANIM_HIT)
                     {
                         SEventAnimHit* pEventAnimHit = (SEventAnimHit*)vecAnimEvent[i];
@@ -86,7 +86,7 @@ struct STypeAnimData
 		sort(vecAnimEvent.begin(), vecAnimEvent.end(), cf);
 	}
 
-    //--------- 플래그 관련
+    //--------- �÷��� ����
     void    SetCullTestAllAtomic(RwBool bFlag) {flagAnim |= ANIM_FLAG_CULL_TEST_ALL_ATOMIC;}
     RwBool  IsCullTestAllAtomic() {return flagAnim & ANIM_FLAG_CULL_TEST_ALL_ATOMIC;}
 };
@@ -112,7 +112,7 @@ public:
 	STypeAnimData	*Get(RwUInt32 uiKey);									///< Get STypeAnimData
 	STypeAnimData	*Add(RwUInt32 uiKey, const std::string &strAnimName);	///< Add STypeAnimData
     STypeAnimData	*Add(RwUInt32 uiKey, STypeAnimData *pTypeAnimData);     ///< Add STypeAnimData 
-    void            Remove(RwUInt32 uiKey);                                 ///< 맵에서 데이터를 제거한다. (by Agebreak. 2006.05.01)
+    void            Remove(RwUInt32 uiKey);                                 ///< �ʿ��� �����͸� �����Ѵ�. (by Agebreak. 2006.05.01)
 
     TYPE_ANIM_MAP	*GetTypeAnimMap();
 
@@ -121,8 +121,8 @@ public:
     void SetAnimPath(std::string& strAnimPath) { m_strAnimPath = strAnimPath;}
     std::string GetAnimPath() {return m_strAnimPath;}
 
-	void	SaveSerialize( CNtlSerializer& sOut);						///< Serialize 객체에 데이터를 저장한다.
-	void	LoadSerialize( CNtlSerializer& sIn);						///< Serailize 객체에서 데이터를 로드한다.
+	void	SaveSerialize( CNtlSerializer& sOut);						///< Serialize ��ü�� �����͸� �����Ѵ�.
+	void	LoadSerialize( CNtlSerializer& sIn);						///< Serailize ��ü���� �����͸� �ε��Ѵ�.
 };
 
 #endif

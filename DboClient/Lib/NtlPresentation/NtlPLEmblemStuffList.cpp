@@ -76,7 +76,7 @@ VOID CNtlPLEmblemStuffList::LoadScript()
 			return;
 		}
 
-		// 버퍼 + 1 생성
+		// ���� + 1 ����
 		pBuffer = NTL_NEW RwChar[iSize + 1];
         ZeroMemory(pBuffer, sizeof(RwChar) * (iSize + 1));
 		memcpy(pBuffer, pcData, sizeof(char) * iSize);

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug4ClientLocalizeCJIKor|Win32">
@@ -160,7 +160,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(DXSDK_DIR)/Include;.\;.\Control;.\Gfl;.\Property;..\..\RenderwareX64\Include;..\..\Lib\NtlCore;..\..\Lib\NtlFramework;..\..\Lib\NtlPresentation;..\..\Lib\NtlSound;..\..\..\DboShared\NtlShared2;..\..\..\DboShared\NtlShared;..\..\..\DboShared\NtlGameTable;..\..\..\NtlLib\Shared\Util;..\..\..\NtlLib\Shared\NtlXMLLoader;..\..\..\NtlLib\Shared\NtlTrigger;$(SolutionDir)..\NtlLib\Shared\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DXSDK_DIR)/Include;.\;.\Control;.\Gfl;.\Property;..\..\\Include;..\..\Lib\NtlCore;..\..\Lib\NtlFramework;..\..\Lib\NtlPresentation;..\..\Lib\NtlSound;..\..\..\DboShared\NtlShared2;..\..\..\DboShared\NtlShared;..\..\..\DboShared\NtlGameTable;..\..\..\NtlLib\Shared\Util;..\..\..\NtlLib\Shared\NtlXMLLoader;..\..\..\NtlLib\Shared\NtlTrigger;$(SolutionDir)..\NtlLib\Shared\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;RWDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -197,7 +197,7 @@
     </Midl>
     <ClCompile>
       <Optimization>MinSpace</Optimization>
-      <AdditionalIncludeDirectories>.\;.\Control;.\Gfl;.\Property;..\..\RenderwareX64\Include;..\..\Lib\NtlCore;..\..\Lib\NtlFramework;..\..\Lib\NtlPresentation;..\..\Lib\NtlSound;..\..\..\DboShared\NtlXMLLoader;..\..\..\DboShared\NtlShared2;..\..\..\DboShared\NtlShared;..\..\..\DboShared\NtlGameTable;..\..\..\NtlLib\Shared\Util;..\..\..\NtlLib\Shared\NtlXMLLoader;..\..\..\NtlLib\Shared\NtlTrigger;$(SolutionDir)..\NtlLib\Shared\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;.\Control;.\Gfl;.\Property;..\..\\Include;..\..\Lib\NtlCore;..\..\Lib\NtlFramework;..\..\Lib\NtlPresentation;..\..\Lib\NtlSound;..\..\..\DboShared\NtlXMLLoader;..\..\..\DboShared\NtlShared2;..\..\..\DboShared\NtlShared;..\..\..\DboShared\NtlGameTable;..\..\..\NtlLib\Shared\Util;..\..\..\NtlLib\Shared\NtlXMLLoader;..\..\..\NtlLib\Shared\NtlTrigger;$(SolutionDir)..\NtlLib\Shared\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -231,7 +231,7 @@
     </Midl>
     <ClCompile>
       <Optimization>MinSpace</Optimization>
-      <AdditionalIncludeDirectories>.\;.\Control;.\Gfl;.\Property;..\..\RenderwareX64\Include;..\..\Lib\NtlCore;..\..\Lib\NtlFramework;..\..\Lib\NtlPresentation;..\..\Lib\NtlSound;..\..\..\DboShared\NtlShared2;..\..\..\DboShared\NtlShared;..\..\..\DboShared\NtlGameTable;..\..\..\NtlLib\Shared\Util;..\..\..\NtlLib\Shared\NtlXMLLoader;..\..\..\NtlLib\Shared\NtlTrigger;$(SolutionDir)..\NtlLib\Shared\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;.\Control;.\Gfl;.\Property;..\..\\Include;..\..\Lib\NtlCore;..\..\Lib\NtlFramework;..\..\Lib\NtlPresentation;..\..\Lib\NtlSound;..\..\..\DboShared\NtlShared2;..\..\..\DboShared\NtlShared;..\..\..\DboShared\NtlGameTable;..\..\..\NtlLib\Shared\Util;..\..\..\NtlLib\Shared\NtlXMLLoader;..\..\..\NtlLib\Shared\NtlTrigger;$(SolutionDir)..\NtlLib\Shared\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -267,7 +267,7 @@
     </Midl>
     <ClCompile>
       <Optimization>MinSpace</Optimization>
-      <AdditionalIncludeDirectories>.\;.\Control;.\Gfl;.\Property;..\..\RenderwareX64\Include;..\..\Lib\NtlCore;..\..\Lib\NtlFramework;..\..\Lib\NtlPresentation;..\..\Lib\NtlSound;..\..\..\DboShared\NtlShared2;..\..\..\DboShared\NtlShared;..\..\..\DboShared\NtlGameTable;..\..\..\NtlLib\Shared\Util;..\..\..\NtlLib\Shared\NtlXMLLoader;..\..\..\NtlLib\Shared\NtlTrigger;$(SolutionDir)..\NtlLib\Shared\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;.\Control;.\Gfl;.\Property;..\..\\Include;..\..\Lib\NtlCore;..\..\Lib\NtlFramework;..\..\Lib\NtlPresentation;..\..\Lib\NtlSound;..\..\..\DboShared\NtlShared2;..\..\..\DboShared\NtlShared;..\..\..\DboShared\NtlGameTable;..\..\..\NtlLib\Shared\Util;..\..\..\NtlLib\Shared\NtlXMLLoader;..\..\..\NtlLib\Shared\NtlTrigger;$(SolutionDir)..\NtlLib\Shared\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -302,7 +302,7 @@
     </Midl>
     <ClCompile>
       <Optimization>MinSpace</Optimization>
-      <AdditionalIncludeDirectories>.\;.\Control;.\Gfl;.\Property;..\..\RenderwareX64\Include;..\..\Lib\NtlCore;..\..\Lib\NtlFramework;..\..\Lib\NtlPresentation;..\..\Lib\NtlSound;..\..\..\DboShared\NtlShared2;..\..\..\DboShared\NtlShared;..\..\..\DboShared\NtlGameTable;..\..\..\NtlLib\Shared\Util;..\..\..\NtlLib\Shared\NtlXMLLoader;..\..\..\NtlLib\Shared\NtlTrigger;$(SolutionDir)..\NtlLib\Shared\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;.\Control;.\Gfl;.\Property;..\..\\Include;..\..\Lib\NtlCore;..\..\Lib\NtlFramework;..\..\Lib\NtlPresentation;..\..\Lib\NtlSound;..\..\..\DboShared\NtlShared2;..\..\..\DboShared\NtlShared;..\..\..\DboShared\NtlGameTable;..\..\..\NtlLib\Shared\Util;..\..\..\NtlLib\Shared\NtlXMLLoader;..\..\..\NtlLib\Shared\NtlTrigger;$(SolutionDir)..\NtlLib\Shared\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -337,7 +337,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.\;.\Control;.\Gfl;.\Property;..\..\RenderwareX64\Include;..\..\Lib\NtlCore;..\..\Lib\NtlFramework;..\..\Lib\NtlPresentation;..\..\Lib\NtlSound;..\..\..\DboShared\NtlShared2;..\..\..\DboShared\NtlShared;..\..\..\DboShared\NtlGameTable;..\..\..\NtlLib\Shared\Util;..\..\..\NtlLib\Shared\NtlXMLLoader;..\..\..\NtlLib\Shared\NtlTrigger;$(SolutionDir)..\NtlLib\Shared\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;.\Control;.\Gfl;.\Property;..\..\\Include;..\..\Lib\NtlCore;..\..\Lib\NtlFramework;..\..\Lib\NtlPresentation;..\..\Lib\NtlSound;..\..\..\DboShared\NtlShared2;..\..\..\DboShared\NtlShared;..\..\..\DboShared\NtlGameTable;..\..\..\NtlLib\Shared\Util;..\..\..\NtlLib\Shared\NtlXMLLoader;..\..\..\NtlLib\Shared\NtlTrigger;$(SolutionDir)..\NtlLib\Shared\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;RWDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -374,7 +374,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.\;.\Control;.\Gfl;.\Property;..\..\RenderwareX64\Include;..\..\Lib\NtlCore;..\..\Lib\NtlFramework;..\..\Lib\NtlPresentation;..\..\Lib\NtlSound;..\..\..\DboShared\NtlShared2;..\..\..\DboShared\NtlShared;..\..\..\DboShared\NtlGameTable;..\..\..\NtlLib\Shared\Util;..\..\..\NtlLib\Shared\NtlXMLLoader;..\..\..\NtlLib\Shared\NtlTrigger;$(SolutionDir)..\NtlLib\Shared\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;.\Control;.\Gfl;.\Property;..\..\\Include;..\..\Lib\NtlCore;..\..\Lib\NtlFramework;..\..\Lib\NtlPresentation;..\..\Lib\NtlSound;..\..\..\DboShared\NtlShared2;..\..\..\DboShared\NtlShared;..\..\..\DboShared\NtlGameTable;..\..\..\NtlLib\Shared\Util;..\..\..\NtlLib\Shared\NtlXMLLoader;..\..\..\NtlLib\Shared\NtlTrigger;$(SolutionDir)..\NtlLib\Shared\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;RWDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>

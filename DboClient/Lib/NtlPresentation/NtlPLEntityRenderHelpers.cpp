@@ -145,7 +145,7 @@ void Helper_DestroyAllAtomics(ENTITY_ATOMIC_VEC *pAtomicList)
 		if((*pAtomicList)[i]->bClone)
 		{
 			RpAtomic *pAtomic = (*pAtomicList)[i]->pData;
-			RpAtomicDestroy(pAtomic);  //이상하게 에러가 난다. 음 우선 딴거하고 좀더 작업을 하자
+			RpAtomicDestroy(pAtomic);  //�̻��ϰ� ������ ����. �� �켱 �����ϰ� ���� �۾��� ����
 		}
 
 		NTL_DELETE ((*pAtomicList)[i]);

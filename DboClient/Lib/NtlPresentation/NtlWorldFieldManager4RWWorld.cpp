@@ -658,7 +658,7 @@ RpAtomic* GetNtlWorldIndoorCollisionInfo(RpIntersection* pIntersection, RpWorldS
 // 				RwV3d vCollPos;
 // 				RwV3dAdd(&vCollPos, &pCollInfo->RayOri, &vScale);
 // 
-// 				// 툴에서의 Mouse Pick Data는 TransparencyTile도 충돌해야 한다. 인도어에서는 굳이 필요 하지 않을 것 같다.
+// 				// �������� Mouse Pick Data�� TransparencyTile�� �浹�ؾ� �Ѵ�. �ε������ ���� �ʿ� ���� ���� �� ����.
 // // 				if (!dGET_COLLISION_INFO_UPDATE() && GetSceneManager()->GetWorldAttribute(vCollPos) & dNMAP_TRANSPARENCY_TILE_FLAG)
 // // 				{
 // // 					continue;
@@ -688,7 +688,7 @@ RpCollisionTriangle* GetNtlWorldIndoorCollisionInfo( RpIntersection *pIntersecti
 		vCollPos.y = pLine->start.y + (fRatio * vDelta.y);
 		vCollPos.z = pLine->start.z + (fRatio * vDelta.z);
 		
-		// 툴에서의 Mouse Pick Data는 TransparencyTile도 충돌해야 한다. 인도어에서는 굳이 필요 하지 않을 것 같다.
+		// �������� Mouse Pick Data�� TransparencyTile�� �浹�ؾ� �Ѵ�. �ε������ ���� �ʿ� ���� ���� �� ����.
 // 		if (!dGET_COLLISION_INFO_UPDATE() && GetSceneManager()->GetWorldAttribute(vCollPos) & dNMAP_TRANSPARENCY_TILE_FLAG)
 // 		{
 // 			continue;
@@ -913,7 +913,7 @@ void CNtlWorldFieldManager4RWWorld::SetAnotherField(RwBool ChangeStraightAway)
 
 void CNtlWorldFieldManager4RWWorld::UpdateMsg(RwV3d& Pos)
 {
-	// world field switching effect : 인도어에서는 FieldChanged Message를 보내지 않는다.
+	// world field switching effect : �ε������ FieldChanged Message�� ������ �ʴ´�.
 // 	if(GetFieldPropVariationStarting())
 // 	{
 // 		// Update current map name
@@ -958,7 +958,7 @@ RwBool CNtlWorldFieldManager4RWWorld::UpdateFieldMap(RwV3d& Pos)
 	// update old datum index
 	m_OldDatumIdx = m_NewDatumIdx;
 
-	// send msgs right after another fields : 인도어 에서는 FieldChagedMessage를 보내지 않는다.
+	// send msgs right after another fields : �ε��� ������ FieldChagedMessage�� ������ �ʴ´�.
 	// CNtlPLEventGenerator::IsAnotherFieldChangedWithoutDelay();
 
 	return TRUE;
@@ -1213,7 +1213,7 @@ RpWorldSector* CollisionWorldSectorDecalIndoor(RpIntersection * pIntersection, R
 			DecalCallbackParam*	pDecalParam = (DecalCallbackParam*)pData;
 			RwInt32				nBuffCnt	= *pDecalParam->pBufferCnt;
 
-			// 최대 개수를 넘으면 Vertex를 생성하지 않고 캔슬한다.
+			// �ִ� ������ ������ Vertex�� �������� �ʰ� ĵ���Ѵ�.
 			if(nBuffCnt + 2 >= pDecalParam->nMaxVertextCnt)	
 			{
 				*(pDecalParam->pBufferCnt) += 3;
@@ -1252,7 +1252,7 @@ RpCollisionTriangle* CollisionWorldSectorDecalIndoor(RpIntersection *pIntersecti
 	DecalCallbackParam*	pDecalParam = (DecalCallbackParam*)pData;
 	RwInt32				nBuffCnt	= *pDecalParam->pBufferCnt;
 
-	// 최대 개수를 넘으면 Vertex를 생성하지 않고 캔슬한다.
+	// �ִ� ������ ������ Vertex�� �������� �ʰ� ĵ���Ѵ�.
 	if(nBuffCnt + 2 >= pDecalParam->nMaxVertextCnt)
 	{
 		*(pDecalParam->pBufferCnt) += 3;
@@ -1304,7 +1304,7 @@ RwBool CNtlWorldFieldManager4RWWorld::GetWorldDecal(RwV3d& vPosition, RwV3d& vSi
 
 	DecalCallbackParam decalCallbackParam;		
 	decalCallbackParam.vPos					= vPosition;
-	decalCallbackParam.pBufferCnt			= (RwInt32*)&nRenderVertexCount; ///< 현재까지 생성된 Vertex 버퍼의 다음부터 담는다.
+	decalCallbackParam.pBufferCnt			= (RwInt32*)&nRenderVertexCount; ///< ������� ������ Vertex ������ �������� ��´�.
 	decalCallbackParam.pVertices			= pVertices;			
 	decalCallbackParam.fIntersectionRadius	= sqrtf(vSize.x * vSize.x + vSize.z * vSize.z) * 0.5f;
 	decalCallbackParam.fScale				= 1.0f;

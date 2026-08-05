@@ -102,7 +102,7 @@ public:
 	VOID				SetPCSelectRegion( RwUInt8 byTotalCount, RwUInt8 byPCSelectRegionHeight, RwBool bShowProc );
 	VOID				DisableAllPCSelect(VOID);
 
-	VOID				AddFlashObject( CNtlPLCinematicFlash* pFlash );	// 반드시 New로 생성해서 넘겨야함.
+	VOID				AddFlashObject( CNtlPLCinematicFlash* pFlash );	// �ݵ�� New�� �����ؼ� �Ѱܾ���.
 	VOID				DeleteAllFlashObject(VOID);
 	RwBool				IsFlashObjectUpdated(VOID);
 

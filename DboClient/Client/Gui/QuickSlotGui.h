@@ -1,9 +1,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File: QuickSlotGui.h
-// Desc: Skill및 Item의 링크를 관리하는 GUI
+// Desc: Skill�� Item�� ��ũ�� �����ϴ� GUI
 //
 // 2006.06.12 Peessi@hitel.net
-// 2007.11.30 Kell - RpBonus Skill 추가
+// 2007.11.30 Kell - RpBonus Skill �߰�
 //
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -55,7 +55,7 @@ public:
 	stQUICKSLOTOBJ* HasObj( RwUInt32 hSerialID );
 
 	VOID		 SetItem( RwUInt32 hSerialID, CNtlSobIcon* pSetIcon, RwUInt8 byQuickSlotID );
-	RwBool		 UnSetItem( RwUInt32 hSerialID );						// return FALSE : 아직 남아있음. TRUE : 완전히 지워짐
+	RwBool		 UnSetItem( RwUInt32 hSerialID );						// return FALSE : ���� ��������. TRUE : ������ ������
 	VOID		 UnSetItem(VOID);
 	VOID		 SetEnableState( RwInt32 eEnableState ) { m_eEnableState = eEnableState; }
 	VOID		 SetUseableCheckFlag( RwUInt32 flagUseableCheck ) { m_flagUseableCheck = flagUseableCheck; }
@@ -70,7 +70,7 @@ private:
 	RwUInt8						m_byQuickSlotID;
 };
 
-// 초기 시작시, 아이템 등록시 같은 아이템을 찾는 로직 필요. 
+// �ʱ� ���۽�, ������ ��Ͻ� ���� �������� ã�� ���� �ʿ�. 
 
 class CQuickSlotGui : public CNtlPLGui, RWS::CEventHandler
 {
@@ -96,7 +96,7 @@ public:
 	VOID	LinkActionMap();
 	VOID	UnLinkActionMap();
 
-	CPos	GetInitialRowPosOffset(VOID);	// 튜토리얼에서 첫번째 슬롯의 오프셋을 구할떄.
+	CPos	GetInitialRowPosOffset(VOID);	// Ʃ�丮�󿡼� ù��° ������ �������� ���ҋ�.
 
 //! Event
 	VOID	HandleEvents( RWS::CMsg& msg );
@@ -220,17 +220,17 @@ private:
 	RwInt32		m_nRSelectedSlotIdx;
 	RwInt32		m_nMouseOnIndex;
 	
-	RwInt32		m_nPushDownIndex;							// 마우스 다운된 Index
+	RwInt32		m_nPushDownIndex;							// ���콺 �ٿ�� Index
 	
 	// RpBonus
-	RwInt32		m_abPushDownKey[QUICKSLOT_MAX_VISIBLE_ROW][QUICKSLOT_MAXCOL];			// 키 조작 퀵슬롯 상태
-	RwReal		m_afPushDownKeyElapsed[QUICKSLOT_MAX_VISIBLE_ROW][QUICKSLOT_MAXCOL];	// 키 조작 퀵슬롯의 TRUE상태 경과시간
-	RwBool		m_abIsProcDownKey[QUICKSLOT_MAX_VISIBLE_ROW][QUICKSLOT_MAXCOL];		// 현재 검사중인 퀵슬롯이 처리가 되었던 것인가?
-	RwInt32		m_abEnableIgnoreUp[QUICKSLOT_MAX_VISIBLE_ROW][QUICKSLOT_MAXCOL];		// TRUE면 Key Up때 IconProc을 처리 안함
+	RwInt32		m_abPushDownKey[QUICKSLOT_MAX_VISIBLE_ROW][QUICKSLOT_MAXCOL];			// Ű ���� ������ ����
+	RwReal		m_afPushDownKeyElapsed[QUICKSLOT_MAX_VISIBLE_ROW][QUICKSLOT_MAXCOL];	// Ű ���� �������� TRUE���� ����ð�
+	RwBool		m_abIsProcDownKey[QUICKSLOT_MAX_VISIBLE_ROW][QUICKSLOT_MAXCOL];		// ���� �˻����� �������� ó���� �Ǿ��� ���ΰ�?
+	RwInt32		m_abEnableIgnoreUp[QUICKSLOT_MAX_VISIBLE_ROW][QUICKSLOT_MAXCOL];		// TRUE�� Key Up�� IconProc�� ó�� ����
 
 	RwBool		m_bIsProcMouseSelected;
-	RwInt32		m_nEnableIgnoreIndex;						// 마우스 Up때 IconProc을 처리 안할 Index
-	RwReal		m_fPushDownMouseElapsed;					// 마우스 Elapsed
+	RwInt32		m_nEnableIgnoreIndex;						// ���콺 Up�� IconProc�� ó�� ���� Index
+	RwReal		m_fPushDownMouseElapsed;					// ���콺 Elapsed
 		
 	/*gui::CPanel*	m_ppnlAlt;
 	gui::CPanel*	m_ppnlCtrl;*/
@@ -239,19 +239,19 @@ private:
 	gui::CStaticBox* m_pRowNum;
 	gui::CStaticBox* m_apstbStackNum[QUICKSLOT_MAX_VISIBLE_ROW][QUICKSLOT_MAXCOL];
 
-	// AttckMode관련 플래시 이펙트
+	// AttckMode���� �÷��� ����Ʈ
 	RwBool			 m_bAttackMode;
-	RwUInt32		 m_uiEffectFrame;	// 프레임동기를 위해 기억.
+	RwUInt32		 m_uiEffectFrame;	// �����ӵ��⸦ ���� ���.
 	gui::CFlash*	 m_apflaEffect[QUICKSLOT_MAX_VISIBLE_ROW][QUICKSLOT_MAXCOL];
 	
-	// 단축키 이름을 출력해주는 Comopnent
+	// ����Ű �̸��� ������ִ� Comopnent
 	gui::CStaticBox* m_apStbShortCutName[QUICKSLOT_MAX_VISIBLE_ROW][QUICKSLOT_MAXCOL];
 	RwInt32			 m_anQuickSlotRow[ROW_NUMS];
 	
 	gui::CRadarEffect m_CoolTimeEffect[QUICKSLOT_MAX_VISIBLE_ROW][QUICKSLOT_MAXCOL];
 
 	RwBool		m_bLock;
-	RwBool		m_bIconMoveLock;							// 아이콘의 움직임을 멈춘다. 
+	RwBool		m_bIconMoveLock;							// �������� �������� �����. 
 };
 
 #endif

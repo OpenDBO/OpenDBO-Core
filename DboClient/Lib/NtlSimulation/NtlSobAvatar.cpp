@@ -80,7 +80,7 @@ RwBool CNtlSobAvatar::CreateContents(void)
 	if(!m_SkillContainer.Create())
 		return FALSE;
 
-	// DB에 저장된 캐릭터 ID
+	// DB�� ����� ĳ���� ID
 	SAvatarInfo* pAvatarInfo = GetNtlSLGlobal()->GetAvatarInfo();
 	m_charID = pAvatarInfo->sCharPf.charId;
 
@@ -119,7 +119,7 @@ RwBool CNtlSobAvatar::CreateContents(void)
 	// Hoipoi Mix
 	m_HoipoiMix.Create();
 
-	// 도장
+	// ����
 	m_Dojo.Create();
 
 	m_bValidAvatarData = true;
@@ -245,7 +245,7 @@ void CNtlSobAvatar::CreateEvent(void)
 	LinkMsg(g_EventPrivateShopItemState, 0);
 	LinkMsg(g_EventPrivateShopItemBuying, 0);
 		
-	// quest 수락 및 보상.
+	// quest ���� �� ����.
 	LinkMsg(g_EventQuestAcceptProposal_Nfy, 0);
 	LinkMsg(g_EventQuestAcceptReward_Nfy, 0);
 
@@ -290,15 +290,15 @@ void CNtlSobAvatar::CreateEvent(void)
     LinkMsg(g_EventDirectionNfy, NULL);
     LinkMsg(g_EventWorldChange, NULL);
 
-    // 변신
+    // ����
     LinkMsg(g_EventTransform, NULL);
 
-    // 컨디션 관련
+    // ����� ����
     LinkMsg(g_EventAfterEffectRemainTimeNfy, NULL);
 
 	LinkMsg(NPEI_IS_MAPNAME_CHANGE, 0);
 
-	// 채널 변경
+	// ä�� ����
 	LinkMsg(g_EventGameServerChannelChanged, 0);
 
 	// TS Data reload
@@ -306,7 +306,7 @@ void CNtlSobAvatar::CreateEvent(void)
 
 	LinkMsg(g_EventBusMove, 0);
 
-	// 도장
+	// ����
 	LinkMsg(g_EventDojo, 0);	
 	LinkMsg(g_EventDojoState, 0);
 	LinkMsg(g_EventScrambleDefaultInfo, 0);
@@ -381,7 +381,7 @@ void CNtlSobAvatar::DestroyEvent(void)
 	UnLinkMsg(g_EventPrivateShopItemState);
 	UnLinkMsg(g_EventPrivateShopItemBuying);
 
-	// quest 수락 및 보상.
+	// quest ���� �� ����.
 	UnLinkMsg(g_EventQuestAcceptProposal_Nfy);
 	UnLinkMsg(g_EventQuestAcceptReward_Nfy);
 
@@ -445,7 +445,7 @@ RwBool CNtlSobAvatar::Create(void)
 
 	SetFlags(GetFlags() | SLFLAG_NOT_HITSHOCK | SLFLAG_CAMERASHAKE_ENABLE | SLFLAG_SERVER_SENDER);
 
-	// class name 설정.
+	// class name ����.
 	SetClassName(SLCLASS_NAME_AVATAR);
 
 	if(!CreateContents())
@@ -583,11 +583,11 @@ void CNtlSobAvatar::HandleEvents(RWS::CMsg &pMsg)
 		CNtlSobActor::HandleEvents(pMsg); 
 
 		//--------------------------
-		// event 발생.
+		// event �߻�.
 		// gui data update
 		CNtlSLEventGenerator::SobUpdate(GetSerialID(), EVENT_AIUT_ATTR | EVENT_AIUT_SKILL | EVENT_AIUT_ITEM | EVENT_AIUT_ZENNY | EVENT_AIUT_QUESTITEM | EVENT_AIUT_BUFF, 0 );
 		
-		if( Logic_IsFirstClass( this ) && pAvatarInfo->sCharPf.bChangeClass )	// 1차직이면서 전직가능할 떄만 보낸다.
+		if( Logic_IsFirstClass( this ) && pAvatarInfo->sCharPf.bChangeClass )	// 1�����̸鼭 ���������� ���� ������.
 			CNtlSLEventGenerator::ChangeClassAuthorityChanged( pAvatarInfo->sCharPf.bChangeClass );
 		
 		// server sync avatar type
@@ -799,15 +799,15 @@ void CNtlSobAvatar::HandleEvents(RWS::CMsg &pMsg)
         if(GetSobProxy())
             GetSobProxy()->HandleEvents(pMsg);
 
-        CNtlSobPlayer::HandleEvents(pMsg); // Idle에서도 처리한다.
+        CNtlSobPlayer::HandleEvents(pMsg); // Idle������ ó���Ѵ�.
     }
     else if(pMsg.Id == g_EventWorldChange || pMsg.Id == g_EventDirectionNfy)            
     {
-        // 툴팁을 보이고 있는 경우 해제한다.
-        // 클라이언트 레이어의 UI쪽으로 메시지를 쏴서 툴팁 제거
+        // ������ ���̰� �ִ� ��� �����Ѵ�.
+        // Ŭ���̾�Ʈ ���̾��� UI������ �޽����� ���� ���� ����
         CNtlSLEventGenerator::ShowToolTip(FALSE, 0, 0, L"");
 
-        // 프리카메라인 경우 해제한다
+        // ����ī�޶��� ��� �����Ѵ�
         CNtlSLEventGenerator::CameraControlDelete(CAMERA_CONTROL_FREE);
 
         if(GetSobProxy())

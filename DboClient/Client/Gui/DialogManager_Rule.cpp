@@ -46,7 +46,7 @@
 #include "DiceManager.h"
 #include "MsgBoxManager.h"
 
-// 테스트
+// �׽�Ʈ
 #include "NtlPLVisualManager.h"
 #include "NtlPLSun.h"
 #include "NtlMath.h"
@@ -203,7 +203,7 @@ RwBool CDialogManager::SwitchDialog(int iDialog)
 
 RwBool CDialogManager::OpenDialog(int iDialog, SERIAL_HANDLE hSerial /* = INVALID_SERIAL_ID */, RwBool bPlaySound /* = TRUE */)
 {
-	// GM 메뉴에서 일부 다이얼로그를 사용할 수 없도록 하였을 때
+	// GM �޴����� �Ϻ� ���̾�α׸� ����� �� ������ �Ͽ��� ��
 	if( m_bCanVisible_OnOberserver )
 	{
 		if( iDialog == DIALOG_HP			|| iDialog == DIALOG_MINIMAP ||
@@ -211,7 +211,7 @@ RwBool CDialogManager::OpenDialog(int iDialog, SERIAL_HANDLE hSerial /* = INVALI
 			return FALSE;
 	}
 
-	// GM Menu가 켜져 있을 때
+	// GM Menu�� ���� ���� ��
 	if( IsOpenDialog(DIALOG_GM_QUICKSLOT) )
 	{
 		if( iDialog == DIALOG_QUICKSLOT		|| iDialog == DIALOG_EXP ||
@@ -219,7 +219,7 @@ RwBool CDialogManager::OpenDialog(int iDialog, SERIAL_HANDLE hSerial /* = INVALI
 			return FALSE;
 	}
 
-	// 퀘스트 나레이션이 흐르면 리턴 
+	// ����Ʈ �����̼��� �帣�� ���� 
 	if( iDialog != DIALOG_BUDOKAI_TOURNAMENT && 
 		iDialog != DIALOG_BUDOKAI_TOURNAMENT_MATCHINFO &&
 		iDialog != DIALOG_FLASH_NOTIFY &&
@@ -319,21 +319,21 @@ RwBool CDialogManager::CloseDialog(int iDialog, RwBool bPlaySound /* = TRUE */)
 	if(!pDialogInfo)
 		return FALSE;
 
-	// 이미 닫혀 있다면 리턴
+	// �̹� ���� �ִٸ� ����
 	if( !pDialogInfo->pDialog->IsShow() )
 		return FALSE;
 
 	if( pDialogInfo->pCallSwitch->Call(false) < 0 )
 		return FALSE;
 
-	// 더 이상 Entire Focusing Dialog이 없다면 Dialog 뒷편으로 배경을 없앤다
+	// �� �̻� Entire Focusing Dialog�� ���ٸ� Dialog �������� ����� ���ش�
 	if( IsEFDialog((eDialogType)iDialog) )
 	{
 		if( IsOpenEFDialog() == FALSE )
 			CloseDialog(DIALOG_BACKBOARD);
 	}
 
-	// 닫히는 다이얼로그가 NPC 다이얼로그 일 때
+	// ������ ���̾�αװ� NPC ���̾�α� �� ��
 	if( IsNPCDialog(iDialog) )
 		m_OpenedTarget.pOpenedTarget = NULL;
 
@@ -470,7 +470,7 @@ VOID CDialogManager::ProcessESC()
 				}
                 else if(DIALOG_DBC_ALTAR == iDialog)
                 {
-                    // 주문 버튼을 클릭하고 응답을 기다리는 중이면 취소하지 않는다.
+                    // �ֹ� ��ư�� Ŭ���ϰ� ������ ��ٸ��� ���̸� ������� �ʴ´�.
                     if(API_GetSLPacketLockManager()->IsLock(GU_DRAGONBALL_CHECK_RES))
                         return;
 
@@ -482,12 +482,12 @@ VOID CDialogManager::ProcessESC()
 		}
 		else if( GetNtlWorldConcept()->IsActivePlayConcept(WORLD_PLAY_TUTORIAL) )
 		{
-			// 튜토리얼을 종료하시겠습니까?
+			// Ʃ�丮���� �����Ͻðڽ��ϱ�?
 			GetAlarmManager()->AlarmMessage( "DST_TUTORIAL_ASK_END" );
 		}
 		else if(Logic_GetAvatarTargetHandle() != INVALID_SERIAL_ID )
 		{
-			// 타겟을 취소한다
+			// Ÿ���� ����Ѵ�
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_ESC_TARGETING ) )
 				return;
 
@@ -541,13 +541,13 @@ VOID CDialogManager::ProcessOpenRegular(eDialogType eDialog)
 	
 	if( HowManyOpenMaxRegular() <= (RwInt32)m_listOpenedRegularDilaog.size() )
 	{
-		// Regular Dialog가 열릴 수 있는 장소가 남아있지 않다
+		// Regular Dialog�� ���� �� �ִ� ��Ұ� �������� �ʴ�
 		bExistPosition = FALSE;
 		for( ; it_OpenedRegular != m_listOpenedRegularDilaog.end() ; ++it_OpenedRegular )
 		{
 			eDialogType dialogType = *it_OpenedRegular;
 
-			// 배타적 속성이 아닌 Regular dialog 하나를 닫는다
+			// ��Ÿ�� �Ӽ��� �ƴ� Regular dialog �ϳ��� �ݴ´�
 			if( IsHaveAttribute((eDialogType)dialogType, dRDA_EXCLUSIVE) == FALSE )
 			{
 				if( CloseDialog(dialogType) )
@@ -560,9 +560,9 @@ VOID CDialogManager::ProcessOpenRegular(eDialogType eDialog)
 
 	if( bExistPosition == FALSE )
 	{
-		// avooo's : 여기에 들어오는 것은 기획 혹은 프로그램에서 레귤러 다이얼로그에 대한 정의나
-		// 잘못된 월드 컨셉에 의해 배타적인 레귤러 다이얼로그가 동시에 떠서 새로운 레귤러
-		// 다이얼로그가 열릴 공간을 확보하지 못했을 경우이다
+		// avooo's : ���⿡ ������ ���� ��ȹ Ȥ�� ���α׷����� ���ַ� ���̾�α׿� ���� ���ǳ�
+		// �߸��� ���� ������ ���� ��Ÿ���� ���ַ� ���̾�αװ� ���ÿ� ���� ���ο� ���ַ�
+		// ���̾�αװ� ���� ������ Ȯ������ ������ ����̴�
 		DBO_FAIL("Can not open more regaulr dialog");
 		return;
 	}
@@ -577,7 +577,7 @@ VOID CDialogManager::ProcessOpenRegular(eDialogType eDialog)
 	}
 
 
-	// 새로운 다이얼로그를 마지막 자리에 배치한다
+	// ���ο� ���̾�α׸� ������ �ڸ��� ��ġ�Ѵ�
 	pGui = GetDialog(eDialog);
 
 	if( IsHaveAttribute(eDialog, dRDA_HALFSIZE) )
@@ -590,7 +590,7 @@ VOID CDialogManager::ProcessOpenRegular(eDialogType eDialog)
 
 VOID CDialogManager::ProcessLayer(eDialogType eDialog)
 {
-	// 다이얼로그를 그리는 순서를 정리한다
+	// ���̾�α׸� �׸��� ������ �����Ѵ�
 	CNtlPLGui* pGui = GetDialog(eDialog);
 		
 	// EFDialog
@@ -664,12 +664,12 @@ VOID CDialogManager::ProcessMovableDialogs(RwBool bMovable)
 }
 
 /**
-* \brief 액션에 따른 다이얼로그 처리
+* \brief �׼ǿ� ���� ���̾�α� ó��
 *
-* InputAction으로 들어온 액션으로 DialogManager에서 해줄 수 있는 처리를 한다.
-* 기존 HandleHotKey 로 링크되어서 처리하던 키 값을 있던것을 현재 이 함수에 링크하고 액션을 받게 함
+* InputAction���� ���� �׼����� DialogManager���� ���� �� �ִ� ó���� �Ѵ�.
+* ���� HandleHotKey �� ��ũ�Ǿ ó���ϴ� Ű ���� �ִ����� ���� �� �Լ��� ��ũ�ϰ� �׼��� �ް� ��
 *
-* \param iAction (unsigned int)액션. - 정의 InputAction.h
+* \param iAction (unsigned int)�׼�. - ���� InputAction.h
 * \return int
 */
 #include "NtlWorldConceptTutorial.h"
@@ -687,29 +687,29 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 		NTL_RETURN( 1 );
 	}
 
-	// 액션에 따른 다이얼로그 처리 순서
-	// 캐릭터정보
-	// 스킬정보
-	// 퀘스트 정보
-	// 미니맵
-	// 월드맵
-	// 메인캡슐킷
-	// 스카우터
-	// 파티정보
-	// 길드정보
-	// 친구정보
-	// 옵션
-	// 도움말
-	// 메인메뉴
-	// 미니맵축소
-	// 미니맵확대
-	// 채팅이전PAGE
-	// 채팅다음PAGE
-	// 취소
+	// �׼ǿ� ���� ���̾�α� ó�� ����
+	// ĳ��������
+	// ��ų����
+	// ����Ʈ ����
+	// �̴ϸ�
+	// �����
+	// ����ĸ��Ŷ
+	// ��ī����
+	// ��Ƽ����
+	// �������
+	// ģ������
+	// �ɼ�
+	// ����
+	// ���θ޴�
+	// �̴ϸ����
+	// �̴ϸ�Ȯ��
+	// ä������PAGE
+	// ä�ô���PAGE
+	// ���
 
 	switch( iAction )
 	{	
-	case ACTION_WINDOW_PROFILE:		// 캐릭터 정보 창
+	case ACTION_WINDOW_PROFILE:		// ĳ���� ���� â
 		{
 			RwBool bOpen = IsOpenDialog(DIALOG_STATUS);
 
@@ -730,7 +730,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			SwitchDialog( DIALOG_STATUS );
 			break;
 		}
-	case ACTION_WINDOW_SKILL:		// 스킬 정보 창
+	case ACTION_WINDOW_SKILL:		// ��ų ���� â
 		{
 			RwBool bOpen = IsOpenDialog(DIALOG_SKILL);
 
@@ -752,7 +752,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 
 			break;
 		}
-	case ACTION_WINDOW_QUEST:		// 퀘스트 정보 창
+	case ACTION_WINDOW_QUEST:		// ����Ʈ ���� â
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_QUEST ) )
 				NTL_RETURN(1);
@@ -763,7 +763,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			SwitchDialog(DIALOG_QUESTLIST);
 			break;
 		}
-	case ACTION_WINDOW_MINIMAP:		// 미니맵
+	case ACTION_WINDOW_MINIMAP:		// �̴ϸ�
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_MINIMAP ) )
 				NTL_RETURN(1);
@@ -780,7 +780,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 
 			break;
 		}
-	case ACTION_WINDOW_WORLDMAP:	// 월드맵
+	case ACTION_WINDOW_WORLDMAP:	// �����
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_WORLDMAP ) )
 				NTL_RETURN(1);
@@ -788,7 +788,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			SwitchDialog(DIALOG_WORLDMAP);
 			break;
 		}
-	case ACTION_WINDOW_MAINCAP:	// 캡슐(가방)
+	case ACTION_WINDOW_MAINCAP:	// ĸ��(����)
 		{
 			RwBool bBagOpen = IsBagOpen();			
 
@@ -806,14 +806,14 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			if( IsOpenDialog(DIALOG_WORLDMAP))
 				NTL_RETURN(1);
 
-			// 가방이 한개라도 열려 있다면 전부 닫는다.
+			// ������ �Ѱ��� ���� �ִٸ� ���� �ݴ´�.
 			bBagOpen = !bBagOpen;
 
 			SwitchBag(bBagOpen);
 
 			break;
 		}
-	case ACTION_WINDOW_GUILD:		// 길드 커뮤니티
+	case ACTION_WINDOW_GUILD:		// ��� Ŀ�´�Ƽ
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_GUILD ) )
 				NTL_RETURN(1);
@@ -852,7 +852,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			SwitchDialog(DIALOG_FRIEND_LIST);
 		}
 		break;
-	case ACTION_WINDOW_OPTION: // 옵션 윈도우
+	case ACTION_WINDOW_OPTION: // �ɼ� ������
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_OPTION ) )
 				NTL_RETURN(1);
@@ -863,7 +863,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			SwitchDialog( DIALOG_OPTIONWND );
 			break;
 		}
-	case ACTION_WINDOW_RANKBOARD:	// 랭크보드
+	case ACTION_WINDOW_RANKBOARD:	// ��ũ����
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_RANKBOARD ) )
 				NTL_RETURN(1);
@@ -881,16 +881,16 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			SwitchDialog(DIALOG_MASCOT);
 			break;
 		}
-	case ACTION_WINDOW_HELP:	// 도움말
+	case ACTION_WINDOW_HELP:	// ����
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_HELP ) )
 				NTL_RETURN(1);
 
 			SwitchDialog(DIALOG_HELPWND);
-			// 기획팀 Help Data Test를 위해서 힌트를 업데이트 한다. 추후 삭제 할 것.
+			// ��ȹ�� Help Data Test�� ���ؼ� ��Ʈ�� ������Ʈ �Ѵ�. ���� ���� �� ��.
 			break;
 		}
-	case ACTION_WINDOW_MAIN: // 메인 메뉴
+	case ACTION_WINDOW_MAIN: // ���� �޴�
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_MAINMENU ) )
 				NTL_RETURN(1);
@@ -908,17 +908,17 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			SwitchDialog( DIALOG_MAINMENU );
 			break;
 		}
-	case ACTION_MINIMAP_ZOOMOUT:	// 미니맵 축소
+	case ACTION_MINIMAP_ZOOMOUT:	// �̴ϸ� ���
 		{
 			CDboEventGenerator::MapEvent(MMT_MINIMAP_ZOON_OUT);
 			break;
 		}
-	case ACTION_MINIMAP_ZOOMIN:	// 미니맵 확대
+	case ACTION_MINIMAP_ZOOMIN:	// �̴ϸ� Ȯ��
 		{
 			CDboEventGenerator::MapEvent(MMT_MINIMAP_ZOON_IN);
 			break;
 		}
-	case ACTION_GLOBAL_CANCLE:	// ESC 키 처리
+	case ACTION_GLOBAL_CANCLE:	// ESC Ű ó��
 		{
 			ProcessESC();
 			break;
@@ -941,7 +941,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			if( IsOpenDialog(DIALOG_WORLDMAP))
 				NTL_RETURN(1);
 
-			// 가방이 한개라도 열려 있다면 전부 닫는다.
+			// ������ �Ѱ��� ���� �ִٸ� ���� �ݴ´�.
 			bBagOpen = !bBagOpen;
 
 			SwitchBagByIndex(1);			
@@ -966,7 +966,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			if( IsOpenDialog(DIALOG_WORLDMAP))
 				NTL_RETURN(1);
 
-			// 가방이 한개라도 열려 있다면 전부 닫는다.
+			// ������ �Ѱ��� ���� �ִٸ� ���� �ݴ´�.
 			bBagOpen = !bBagOpen;
 
 			SwitchBagByIndex(2);			
@@ -991,7 +991,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			if( IsOpenDialog(DIALOG_WORLDMAP))
 				NTL_RETURN(1);
 
-			// 가방이 한개라도 열려 있다면 전부 닫는다.
+			// ������ �Ѱ��� ���� �ִٸ� ���� �ݴ´�.
 			bBagOpen = !bBagOpen;
 
 			SwitchBagByIndex(3);
@@ -1016,7 +1016,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			if( IsOpenDialog(DIALOG_WORLDMAP))
 				NTL_RETURN(1);
 
-			// 가방이 한개라도 열려 있다면 전부 닫는다.
+			// ������ �Ѱ��� ���� �ִٸ� ���� �ݴ´�.
 			bBagOpen = !bBagOpen;
 
 			SwitchBagByIndex(4);

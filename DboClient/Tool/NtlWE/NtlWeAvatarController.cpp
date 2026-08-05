@@ -260,7 +260,7 @@ int	CNtlWeAvatarController::MouseUpHandler(unsigned int uiMouseData)
 	{
 		MouseUpRBtnHandler(pData);
 	}
-	// camera auto rotate를 판정한다.
+	// camera auto rotate�� �����Ѵ�.
 	CalcCameraRotateToCharBack();
 	NTL_RETURN(1);
 }
@@ -323,20 +323,20 @@ void CNtlWeAvatarController::CalcCameraRotateToCharBack(void)
 			if(fCovAngleY >= 360.0f)
 				fCovAngleY -= 360.0f;
 
-			//  회전은 시계 반대 방향 회전이다.
-			//  카메라 angle 에서 character angle 뺀다.
+			//  ȸ���� �ð� �ݴ� ���� ȸ���̴�.
+			//  ī�޶� angle ���� character angle ����.
 			RwReal fSubAngleY = fCovAngleY - fAngleY;
 
 			if(fSubAngleY > 0.0f)
-				if(fSubAngleY > 180.0f) // 각도를 증가시킨다.
+				if(fSubAngleY > 180.0f) // ������ ������Ų��.
 					m_sRotCharBack.fDelta = 360.0f - fSubAngleY;
-				else // 각도를 감소시킨다.
-					m_sRotCharBack.fDelta = -fSubAngleY; //(시계 반대 방향이므로 빼줘야 한다.)
+				else // ������ ���ҽ�Ų��.
+					m_sRotCharBack.fDelta = -fSubAngleY; //(�ð� �ݴ� �����̹Ƿ� ����� �Ѵ�.)
 			else
-				if(fSubAngleY > -180.0f) // 각도를 증가시킨다.
+				if(fSubAngleY > -180.0f) // ������ ������Ų��.
 					m_sRotCharBack.fDelta = fabs(fSubAngleY); 
-				else // 각도를 감소시킨다.
-					m_sRotCharBack.fDelta = -(360.0f - fabs(fSubAngleY)); // 시계 반대 방향이므로 빼줘야 한다.
+				else // ������ ���ҽ�Ų��.
+					m_sRotCharBack.fDelta = -(360.0f - fabs(fSubAngleY)); // �ð� �ݴ� �����̹Ƿ� ����� �Ѵ�.
 			
 			m_sRotCharBack.fCurr = 0.0f;
 			m_sRotCharBack.bActive = TRUE;

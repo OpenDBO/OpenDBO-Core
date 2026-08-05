@@ -60,7 +60,7 @@ RwBool CChatDisplayGui::Create(CChatGui* pChatGui)
 	m_pOutDisplay->SetLineSpace(CHAT_DISP_LINE_GAP);
 	m_pOutDisplay->SetMaxLine(CHAT_DISP_MAX_LINE);
 
-	// 최하단 내용 보기 버튼
+	// ���ϴ� ���� ���� ��ư
 	m_pLastButton = (gui::CButton*)GetComponent("btnLastButton");
 	m_slotLastButton = m_pLastButton->SigClicked().Connect(this, &CChatDisplayGui::OnClicked_LastButton);	
 
@@ -283,7 +283,7 @@ CChatDisplayGui::eResizeType CChatDisplayGui::CheckResizePosition(RwInt32 iX, Rw
 	CRectangle rtScreen = m_pThis->GetScreenRect();
 	CRectangle rtRect;
 
-	// 우상단
+	// ����
 	rtRect = rtScreen;
 	rtRect.left = rtRect.right - dMOUSE_CHECK_SIZE;
 	rtRect.bottom = rtScreen.top + dMOUSE_CHECK_SIZE;	
@@ -291,7 +291,7 @@ CChatDisplayGui::eResizeType CChatDisplayGui::CheckResizePosition(RwInt32 iX, Rw
 	if( rtRect.PtInRect(iX, iY) )
 		return RESIZE_TYPE_RIGHT_TOP;
 
-	// 우하단
+	// ���ϴ�
 	rtRect = rtScreen;
 	rtRect.left = rtRect.right - dMOUSE_CHECK_SIZE;
 	rtRect.top = rtScreen.bottom - dMOUSE_CHECK_SIZE;
@@ -299,21 +299,21 @@ CChatDisplayGui::eResizeType CChatDisplayGui::CheckResizePosition(RwInt32 iX, Rw
 	if( rtRect.PtInRect(iX, iY) )
 		return RESIZE_TYPE_RIGHT_BOTTOM;
 
-	// 상단
+	// ���
 	rtRect = rtScreen;
 	rtRect.bottom = rtScreen.top + dMOUSE_CHECK_SIZE;
 
 	if( rtRect.PtInRect(iX, iY) )
 		return RESIZE_TYPE_TOP;
 
-	// 하단
+	// �ϴ�
 	rtRect = rtScreen;
 	rtRect.top = rtScreen.bottom - dMOUSE_CHECK_SIZE;
 
 	if( rtRect.PtInRect(iX, iY) )
 		return RESIZE_TYPE_BOTTOM;
 
-	// 우측
+	// ����
 	rtRect = rtScreen;
 	rtRect.left = rtScreen.right - dMOUSE_CHECK_SIZE;
 
@@ -346,7 +346,7 @@ VOID CChatDisplayGui::ResizeDisplay(RwInt32 iCurMouseX, RwInt32 iCurMouseY)
 	RwInt32 iNewX = iCurMouseX - m_ResizingInfo.iConfirmXPos;
 	RwInt32 iNewY = iCurMouseY - m_ResizingInfo.iConfirmYPos;
 
-	// 높이 조절
+	// ���� ����
 	if( m_ResizingInfo.eType == RESIZE_TYPE_TOP ||
 		m_ResizingInfo.eType == RESIZE_TYPE_RIGHT_TOP )
 	{
@@ -354,14 +354,14 @@ VOID CChatDisplayGui::ResizeDisplay(RwInt32 iCurMouseX, RwInt32 iCurMouseY)
 
 		if( (rtScreen.bottom - rtScreen.top) < CHAT_DISP_MINIMUM_HEIGHT )
 		{
-			// 최소 크기
+			// �ּ� ũ��
 			RwInt32 iRealTop = rtScreen.bottom - CHAT_DISP_MINIMUM_HEIGHT;
 			iNewY += iRealTop - rtScreen.top;
 			rtScreen.top = iRealTop;
 		}
 		else if( (rtScreen.bottom - rtScreen.top) > CHAT_DISP_MAXIMUM_HEIGHT )
 		{
-			// 최대 크기
+			// �ִ� ũ��
 			RwInt32 iRealTop = rtScreen.bottom - CHAT_DISP_MAXIMUM_HEIGHT;
 			iNewY += iRealTop - rtScreen.top;
 			rtScreen.top = iRealTop;
@@ -374,21 +374,21 @@ VOID CChatDisplayGui::ResizeDisplay(RwInt32 iCurMouseX, RwInt32 iCurMouseY)
 
 		if( (rtScreen.bottom - rtScreen.top) < CHAT_DISP_MINIMUM_HEIGHT )
 		{
-			// 최소 크기
+			// �ּ� ũ��
 			RwInt32 iRealBottom = rtScreen.top + CHAT_DISP_MINIMUM_HEIGHT;
 			iNewY += iRealBottom - rtScreen.bottom;
 			rtScreen.bottom = iRealBottom;
 		}
 		else if( (rtScreen.bottom - rtScreen.top) > CHAT_DISP_MAXIMUM_HEIGHT )
 		{
-			// 최대 크기
+			// �ִ� ũ��
 			RwInt32 iRealBottom = rtScreen.top + CHAT_DISP_MAXIMUM_HEIGHT;
 			iNewY += iRealBottom - rtScreen.bottom;
 			rtScreen.bottom = iRealBottom;
 		}
 	}
 
-	// 넓이 조절
+	// ���� ����
 	if( m_ResizingInfo.eType == RESIZE_TYPE_RIGHT_TOP ||
 		m_ResizingInfo.eType == RESIZE_TYPE_RIGHT ||
 		m_ResizingInfo.eType == RESIZE_TYPE_RIGHT_BOTTOM )
@@ -397,26 +397,26 @@ VOID CChatDisplayGui::ResizeDisplay(RwInt32 iCurMouseX, RwInt32 iCurMouseY)
 
 		if( (rtScreen.right - rtScreen.left) < CHAT_DISP_MINIMUM_WIDTH )
 		{
-			// 최소 크기
+			// �ּ� ũ��
 			RwInt32 iRealRight = rtScreen.left + CHAT_DISP_MINIMUM_WIDTH;
 			iNewX += iRealRight - rtScreen.right;
 			rtScreen.right = iRealRight;
 		}
 		else if( (rtScreen.right - rtScreen.left) > CHAT_DISP_MAXIMUM_WIDTH )
 		{
-			// 최대 크기
+			// �ִ� ũ��
 			RwInt32 iRealRight = rtScreen.left + CHAT_DISP_MAXIMUM_WIDTH;
 			iNewX += iRealRight - rtScreen.right;
 			rtScreen.right = iRealRight;
 		}
 	}
 
-	// 사이즈가 변경이 되었는가
+	// ����� ������ �Ǿ��°�
 	if( GetPosition() != rtScreen )
 	{
 		if( m_byDisplayGuiIndex == 0 )
 		{
-			// 채팅 입력창도 사이즈를 같이 변경한다
+			// ä�� �Է�â�� ����� ���� �����Ѵ�
 			CChatGui* pChatGui = reinterpret_cast<CChatGui*>( GetDialogManager()->GetDialog(DIALOG_CHAT) );
 			CRectangle rtChatScreen = pChatGui->GetPosition();
 
@@ -467,8 +467,8 @@ VOID CChatDisplayGui::OnClicked_LastButton(gui::CComponent* pComponent)
 
 RwInt32	CChatDisplayGui::MouseMoveHandler(uintptr_t uiMouseData)
 {
-	// GUI에 포커스가 없거나 채팅창이 Enable 상태여도 로직이 동작하도록
-	// InputHandler에서 직접 이벤트를 받아들인다
+	// GUI�� ��Ŀ���� ���ų� ä��â�� Enable ���¿��� ������ �����ϵ���
+	// InputHandler���� ���� �̺�Ʈ�� �޾Ƶ��δ�
 	if( !IsShow() )
 		return 1;
 
@@ -575,7 +575,7 @@ VOID CChatDisplayGui::OnMouseDown(const CKey& key)
 	{
 	case RESIZE_TYPE_RIGHT_TOP:
 		{
-			// 우상단
+			// ����
 			m_ResizingInfo.eType = RESIZE_TYPE_RIGHT_TOP;
 			m_pThis->CaptureMouse();
 			GetDialogManager()->OnMode(DIALOGMODE_CHATTING_RESIZE_RIGHTUP);
@@ -583,7 +583,7 @@ VOID CChatDisplayGui::OnMouseDown(const CKey& key)
 		}
 	case RESIZE_TYPE_RIGHT_BOTTOM:
 		{
-			// 우하단
+			// ���ϴ�
 			if( m_byDisplayGuiIndex == 0 )
 				return;
 
@@ -594,7 +594,7 @@ VOID CChatDisplayGui::OnMouseDown(const CKey& key)
 		}
 	case RESIZE_TYPE_TOP:
 		{
-			// 상단
+			// ���
 			m_ResizingInfo.eType = RESIZE_TYPE_TOP;
 			m_pThis->CaptureMouse();
 			GetDialogManager()->OnMode(DIALOGMODE_CHATTING_RESIZE_HORI);
@@ -602,7 +602,7 @@ VOID CChatDisplayGui::OnMouseDown(const CKey& key)
 		}
 	case RESIZE_TYPE_BOTTOM:
 		{
-			// 하단
+			// �ϴ�
 			if( m_byDisplayGuiIndex == 0 )
 				return;
 
@@ -613,7 +613,7 @@ VOID CChatDisplayGui::OnMouseDown(const CKey& key)
 		}
 	case RESIZE_TYPE_RIGHT:
 		{
-			// 우측
+			// ����
 			m_ResizingInfo.eType = RESIZE_TYPE_RIGHT;
 			m_pThis->CaptureMouse();
 			GetDialogManager()->OnMode(DIALOGMODE_CHATTING_RESIZE_VERT);
@@ -628,7 +628,7 @@ VOID CChatDisplayGui::OnMouseDown(const CKey& key)
 	}
 
 
-	// ChatDisplay를 움직일 수 있는지...
+	// ChatDisplay�� ������ �� �ִ���...
 	if( !m_bLock )
 	{
 		m_Tracking.bTracking = TRUE;
@@ -754,7 +754,7 @@ VOID CChatDisplayGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 				if( !pChatGui )
 					return;
 
-				// 채팅을 입력하는 창도 같이 움직인다
+				// ä���� �Է��ϴ� â�� ���� �����δ�
 				CRectangle rtChatScreen = pChatGui->GetPosition();
 				RwInt32 iX = rtChatScreen.left + (CMouse::m_nX - m_Tracking.iCapturedX);
 				RwInt32 iY = rtChatScreen.top + (CMouse::m_nY - m_Tracking.iCapturedY);

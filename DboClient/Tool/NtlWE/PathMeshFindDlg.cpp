@@ -73,7 +73,7 @@ BEGIN_MESSAGE_MAP(CPathMeshFindDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CFieldSearchDlg 메시지 처리기입니다.
+// CFieldSearchDlg �޽��� ó�����Դϴ�.
 
 BOOL CPathMeshFindDlg::PreTranslateMessage(MSG* pMsg)
 {
@@ -1130,7 +1130,7 @@ BEGIN_MESSAGE_MAP(CPathMeshFindDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CFieldSearchDlg ????? ?????????.
+// CFieldSearchDlg �޽��� ó�����Դϴ�.
 
 BOOL CPathMeshFindDlg::PreTranslateMessage(MSG* pMsg)
 {

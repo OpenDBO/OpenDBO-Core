@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug4ClientLocalizeCJIKor|Win32">
@@ -177,7 +177,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)Lib\NtlFlasher\Include;$(SolutionDir)Lib\NtlFlasher\3rdParty\zlib-1.2.3;$(SolutionDir)Lib\NtlFlasher\3rdParty\jpeg-6b;$(SolutionDir)Lib\NtlFlasher;$(SolutionDir)RenderwareX64\Include;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)Lib\NtlGui;$(SolutionDir)Lib\NtlPresentation;$(SolutionDir)..\DboShared\NtlGameTable;$(SolutionDir)..\DboShared\NtlShared2;$(SolutionDir)..\NtlLib\Shared\Util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Lib\NtlFlasher\Include;$(SolutionDir)Lib\NtlFlasher\3rdParty\zlib-1.2.3;$(SolutionDir)Lib\NtlFlasher\3rdParty\jpeg-6b;$(SolutionDir)Lib\NtlFlasher;$(SolutionDir)Renderware\Include;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)Lib\NtlGui;$(SolutionDir)Lib\NtlPresentation;$(SolutionDir)..\DboShared\NtlGameTable;$(SolutionDir)..\DboShared\NtlShared2;$(SolutionDir)..\NtlLib\Shared\Util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;RWDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -197,7 +197,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug4Client|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)Lib\NtlFlasher\Include;$(SolutionDir)Lib\NtlFlasher\3rdParty\zlib-1.2.3;$(SolutionDir)Lib\NtlFlasher\3rdParty\jpeg-6b;$(SolutionDir)Lib\NtlFlasher;$(SolutionDir)RenderwareX64\Include;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)Lib\NtlGui;$(SolutionDir)Lib\NtlPresentation;$(SolutionDir)..\DboShared\NtlGameTable;$(SolutionDir)..\DboShared\NtlShared2;$(SolutionDir)..\NtlLib\Shared\Util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Lib\NtlFlasher\Include;$(SolutionDir)Lib\NtlFlasher\3rdParty\zlib-1.2.3;$(SolutionDir)Lib\NtlFlasher\3rdParty\jpeg-6b;$(SolutionDir)Lib\NtlFlasher;$(SolutionDir)Renderware\Include;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)Lib\NtlGui;$(SolutionDir)Lib\NtlPresentation;$(SolutionDir)..\DboShared\NtlGameTable;$(SolutionDir)..\DboShared\NtlShared2;$(SolutionDir)..\NtlLib\Shared\Util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;RWDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -217,7 +217,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)RenderwareX64\Include;$(SolutionDir)Lib\Ntl_Plugin_Toon\toon;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)Lib\NtlGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Renderware\Include;$(SolutionDir)Lib\Ntl_Plugin_Toon\toon;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)Lib\NtlGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader />
@@ -230,7 +230,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release4Client|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)RenderwareX64\Include;$(SolutionDir)Lib\Ntl_Plugin_Toon\toon;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)Lib\NtlGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Renderware\Include;$(SolutionDir)Lib\Ntl_Plugin_Toon\toon;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)Lib\NtlGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>
@@ -244,7 +244,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release4Tools|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)RenderwareX64\Include;$(SolutionDir)Lib\Ntl_Plugin_Toon\toon;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)Lib\NtlGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Renderware\Include;$(SolutionDir)Lib\Ntl_Plugin_Toon\toon;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)Lib\NtlGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>
@@ -258,7 +258,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release4ClientLocalizeDev|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)RenderwareX64\Include;$(SolutionDir)Lib\Ntl_Plugin_Toon\toon;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)Lib\NtlGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Renderware\Include;$(SolutionDir)Lib\Ntl_Plugin_Toon\toon;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)Lib\NtlGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader />
@@ -271,7 +271,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release4ClientLocalizeCJIKor|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)RenderwareX64\Include;$(SolutionDir)Lib\Ntl_Plugin_Toon\toon;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)Lib\NtlGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Renderware\Include;$(SolutionDir)Lib\Ntl_Plugin_Toon\toon;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)Lib\NtlGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader />
@@ -285,7 +285,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug4ClientLocalizeCJIKor|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)Lib\NtlFlasher\Include;$(SolutionDir)Lib\NtlFlasher\3rdParty\zlib-1.2.3;$(SolutionDir)Lib\NtlFlasher\3rdParty\jpeg-6b;$(SolutionDir)Lib\NtlFlasher;$(SolutionDir)RenderwareX64\Include;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)Lib\NtlGui;$(SolutionDir)Lib\NtlPresentation;$(SolutionDir)..\DboShared\NtlGameTable;$(SolutionDir)..\DboShared\NtlShared2;$(SolutionDir)..\NtlLib\Shared\Util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Lib\NtlFlasher\Include;$(SolutionDir)Lib\NtlFlasher\3rdParty\zlib-1.2.3;$(SolutionDir)Lib\NtlFlasher\3rdParty\jpeg-6b;$(SolutionDir)Lib\NtlFlasher;$(SolutionDir)Renderware\Include;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)Lib\NtlGui;$(SolutionDir)Lib\NtlPresentation;$(SolutionDir)..\DboShared\NtlGameTable;$(SolutionDir)..\DboShared\NtlShared2;$(SolutionDir)..\NtlLib\Shared\Util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;RWDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -305,7 +305,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug4ClientLocalizeDev|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)Lib\NtlFlasher\Include;$(SolutionDir)Lib\NtlFlasher\3rdParty\zlib-1.2.3;$(SolutionDir)Lib\NtlFlasher\3rdParty\jpeg-6b;$(SolutionDir)Lib\NtlFlasher;$(SolutionDir)RenderwareX64\Include;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)Lib\NtlGui;$(SolutionDir)Lib\NtlPresentation;$(SolutionDir)..\DboShared\NtlGameTable;$(SolutionDir)..\DboShared\NtlShared2;$(SolutionDir)..\NtlLib\Shared\Util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Lib\NtlFlasher\Include;$(SolutionDir)Lib\NtlFlasher\3rdParty\zlib-1.2.3;$(SolutionDir)Lib\NtlFlasher\3rdParty\jpeg-6b;$(SolutionDir)Lib\NtlFlasher;$(SolutionDir)Renderware\Include;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFramework;$(SolutionDir)Lib\NtlGui;$(SolutionDir)Lib\NtlPresentation;$(SolutionDir)..\DboShared\NtlGameTable;$(SolutionDir)..\DboShared\NtlShared2;$(SolutionDir)..\NtlLib\Shared\Util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;RWDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -330,75 +330,75 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Client\Gui\SkillCustomizeParser.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rpadc.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rpanisot.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rpcollis.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rpcriter.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rpcrowd.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rpdbgerr.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rpdmorph.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rpdpvs.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rpenv.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rperror.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rphanim.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rpid.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rplodatm.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rplogo.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rpltmap.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rpmatfx.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rpmipkl.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rpmorph.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rpnormmap.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rppatch.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rpprtadv.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rpprtstd.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rpptank.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rppvs.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rprandom.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rpskin.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rpspline.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rpteam.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rptoon.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rpusrdat.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rpuvanim.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rpworld.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rt2d.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rt2danim.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rtanim.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rtbary.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rtbezpat.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rtbmp.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rtcharse.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rtcmpkey.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rtdict.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rtfsyst.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rtgcond.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rtgncpip.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rtimport.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rtintsec.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rtltmap.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rtltmapcnv.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rtmipk.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rtnormmap.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rtpick.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rtpitexd.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rtpng.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rtquat.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rtras.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rtray.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rtskinsp.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rtslerp.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rtsplpvs.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rttiff.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rttilerd.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rttoc.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rttoon.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rtvcat.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rtwing.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rtworld.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rwcore.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rwplcore.h" />
-    <ClInclude Include="..\..\RenderwareX64\Include\rwversion.h" />
+    <ClInclude Include="..\..\\Include\rpadc.h" />
+    <ClInclude Include="..\..\\Include\rpanisot.h" />
+    <ClInclude Include="..\..\\Include\rpcollis.h" />
+    <ClInclude Include="..\..\\Include\rpcriter.h" />
+    <ClInclude Include="..\..\\Include\rpcrowd.h" />
+    <ClInclude Include="..\..\\Include\rpdbgerr.h" />
+    <ClInclude Include="..\..\\Include\rpdmorph.h" />
+    <ClInclude Include="..\..\\Include\rpdpvs.h" />
+    <ClInclude Include="..\..\\Include\rpenv.h" />
+    <ClInclude Include="..\..\\Include\rperror.h" />
+    <ClInclude Include="..\..\\Include\rphanim.h" />
+    <ClInclude Include="..\..\\Include\rpid.h" />
+    <ClInclude Include="..\..\\Include\rplodatm.h" />
+    <ClInclude Include="..\..\\Include\rplogo.h" />
+    <ClInclude Include="..\..\\Include\rpltmap.h" />
+    <ClInclude Include="..\..\\Include\rpmatfx.h" />
+    <ClInclude Include="..\..\\Include\rpmipkl.h" />
+    <ClInclude Include="..\..\\Include\rpmorph.h" />
+    <ClInclude Include="..\..\\Include\rpnormmap.h" />
+    <ClInclude Include="..\..\\Include\rppatch.h" />
+    <ClInclude Include="..\..\\Include\rpprtadv.h" />
+    <ClInclude Include="..\..\\Include\rpprtstd.h" />
+    <ClInclude Include="..\..\\Include\rpptank.h" />
+    <ClInclude Include="..\..\\Include\rppvs.h" />
+    <ClInclude Include="..\..\\Include\rprandom.h" />
+    <ClInclude Include="..\..\\Include\rpskin.h" />
+    <ClInclude Include="..\..\\Include\rpspline.h" />
+    <ClInclude Include="..\..\\Include\rpteam.h" />
+    <ClInclude Include="..\..\\Include\rptoon.h" />
+    <ClInclude Include="..\..\\Include\rpusrdat.h" />
+    <ClInclude Include="..\..\\Include\rpuvanim.h" />
+    <ClInclude Include="..\..\\Include\rpworld.h" />
+    <ClInclude Include="..\..\\Include\rt2d.h" />
+    <ClInclude Include="..\..\\Include\rt2danim.h" />
+    <ClInclude Include="..\..\\Include\rtanim.h" />
+    <ClInclude Include="..\..\\Include\rtbary.h" />
+    <ClInclude Include="..\..\\Include\rtbezpat.h" />
+    <ClInclude Include="..\..\\Include\rtbmp.h" />
+    <ClInclude Include="..\..\\Include\rtcharse.h" />
+    <ClInclude Include="..\..\\Include\rtcmpkey.h" />
+    <ClInclude Include="..\..\\Include\rtdict.h" />
+    <ClInclude Include="..\..\\Include\rtfsyst.h" />
+    <ClInclude Include="..\..\\Include\rtgcond.h" />
+    <ClInclude Include="..\..\\Include\rtgncpip.h" />
+    <ClInclude Include="..\..\\Include\rtimport.h" />
+    <ClInclude Include="..\..\\Include\rtintsec.h" />
+    <ClInclude Include="..\..\\Include\rtltmap.h" />
+    <ClInclude Include="..\..\\Include\rtltmapcnv.h" />
+    <ClInclude Include="..\..\\Include\rtmipk.h" />
+    <ClInclude Include="..\..\\Include\rtnormmap.h" />
+    <ClInclude Include="..\..\\Include\rtpick.h" />
+    <ClInclude Include="..\..\\Include\rtpitexd.h" />
+    <ClInclude Include="..\..\\Include\rtpng.h" />
+    <ClInclude Include="..\..\\Include\rtquat.h" />
+    <ClInclude Include="..\..\\Include\rtras.h" />
+    <ClInclude Include="..\..\\Include\rtray.h" />
+    <ClInclude Include="..\..\\Include\rtskinsp.h" />
+    <ClInclude Include="..\..\\Include\rtslerp.h" />
+    <ClInclude Include="..\..\\Include\rtsplpvs.h" />
+    <ClInclude Include="..\..\\Include\rttiff.h" />
+    <ClInclude Include="..\..\\Include\rttilerd.h" />
+    <ClInclude Include="..\..\\Include\rttoc.h" />
+    <ClInclude Include="..\..\\Include\rttoon.h" />
+    <ClInclude Include="..\..\\Include\rtvcat.h" />
+    <ClInclude Include="..\..\\Include\rtwing.h" />
+    <ClInclude Include="..\..\\Include\rtworld.h" />
+    <ClInclude Include="..\..\\Include\rwcore.h" />
+    <ClInclude Include="..\..\\Include\rwplcore.h" />
+    <ClInclude Include="..\..\\Include\rwversion.h" />
     <ClInclude Include="precomp_scviewer.h" />
     <ClInclude Include="SCViewerApplication.h" />
   </ItemGroup>

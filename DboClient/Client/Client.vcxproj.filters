@@ -1235,6 +1235,9 @@
     <ClCompile Include="Gui\OptionFilter.cpp">
       <Filter>Gui</Filter>
     </ClCompile>
+    <ClCompile Include="crt_compat.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gui\ContractGui.h">

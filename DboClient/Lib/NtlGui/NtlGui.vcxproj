@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Release|Win32">
@@ -86,7 +86,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)RenderwareX64\Include;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFlasher;$(SolutionDir)Lib\NtlSound;$(DXSDK_DIR)Include;$(GFXSDK_DIR)\Src\GRenderer;$(GFXSDK_DIR)\Src\GKernel;$(GFXSDK_DIR)\Src\GFxXML;$(GFXSDK_DIR)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Renderware\Include;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFlasher;$(SolutionDir)Lib\NtlSound;$(DXSDK_DIR)Include;$(GFXSDK_DIR)\Src\GRenderer;$(GFXSDK_DIR)\Src\GKernel;$(GFXSDK_DIR)\Src\GFxXML;$(GFXSDK_DIR)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -102,7 +102,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release4Tools|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)RenderwareX64\Include;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFlasher;$(SolutionDir)Lib\NtlSound;$(DXSDK_DIR)Include;$(SolutionDir)Lib\NtlFlasher\GFx SDK 3.3\Src\GRenderer;$(SolutionDir)Lib\NtlFlasher\GFx SDK 3.3\Src\GKernel;$(SolutionDir)Lib\NtlFlasher\GFx SDK 3.3\Src\GFxXML;$(SolutionDir)Lib\NtlFlasher\GFx SDK 3.3\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Renderware\Include;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFlasher;$(SolutionDir)Lib\NtlSound;$(DXSDK_DIR)Include;$(SolutionDir)Lib\NtlFlasher\GFx SDK 3.3\Src\GRenderer;$(SolutionDir)Lib\NtlFlasher\GFx SDK 3.3\Src\GKernel;$(SolutionDir)Lib\NtlFlasher\GFx SDK 3.3\Src\GFxXML;$(SolutionDir)Lib\NtlFlasher\GFx SDK 3.3\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -118,7 +118,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)RenderwareX64\Include;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFlasher;$(SolutionDir)Lib\NtlSound;$(DXSDK_DIR)Include;$(GFXSDK_DIR)\Src\GRenderer;$(GFXSDK_DIR)\Src\GKernel;$(GFXSDK_DIR)\Src\GFxXML;$(GFXSDK_DIR)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Renderware\Include;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFlasher;$(SolutionDir)Lib\NtlSound;$(DXSDK_DIR)Include;$(GFXSDK_DIR)\Src\GRenderer;$(GFXSDK_DIR)\Src\GKernel;$(GFXSDK_DIR)\Src\GFxXML;$(GFXSDK_DIR)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -134,7 +134,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release4Tools|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)RenderwareX64\Include;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFlasher;$(SolutionDir)Lib\NtlSound;$(DXSDK_DIR)Include;$(SolutionDir)Lib\NtlFlasher\GFx SDK 3.3\Src\GRenderer;$(SolutionDir)Lib\NtlFlasher\GFx SDK 3.3\Src\GKernel;$(SolutionDir)Lib\NtlFlasher\GFx SDK 3.3\Src\GFxXML;$(SolutionDir)Lib\NtlFlasher\GFx SDK 3.3\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Renderware\Include;$(SolutionDir)Lib\NtlCore;$(SolutionDir)Lib\NtlFlasher;$(SolutionDir)Lib\NtlSound;$(DXSDK_DIR)Include;$(SolutionDir)Lib\NtlFlasher\GFx SDK 3.3\Src\GRenderer;$(SolutionDir)Lib\NtlFlasher\GFx SDK 3.3\Src\GKernel;$(SolutionDir)Lib\NtlFlasher\GFx SDK 3.3\Src\GFxXML;$(SolutionDir)Lib\NtlFlasher\GFx SDK 3.3\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>

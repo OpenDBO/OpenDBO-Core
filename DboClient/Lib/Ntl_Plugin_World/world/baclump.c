@@ -1,3 +1,4 @@
+﻿#include <windows.h>
 /**
  * \ingroup rpatomic
  * \page rpatomicoverview RpAtomic Overview

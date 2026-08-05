@@ -214,7 +214,7 @@ void CLobbyStage::CheckDeletedCharacter(void)
 			return;
 	}
 
-	// 지워진 캐릭터가 선택되어 있을 경우 새로운 캐릭터를 선택한다
+	// ������ ĳ���Ͱ� ���õǾ� ���� ��� ���ο� ĳ���͸� �����Ѵ�
 	if( pLobby->GetCharacterCount() > 0 )
 	{
 		pLobby->SetSelectedCharacterIndex(0);
@@ -352,26 +352,26 @@ void CLobbyStage::RequestLobbyInfo()
 	// request character & channel info
 	if(pConData->byLastServerFarmID == INVALID_SERVERFARMID )
 	{
-		// 마지막으로 접속한 서버 정보가 없다면 모든 서버의 목록을 요청한다
+		// ���������� ������ ���� ������ ���ٸ� ��� ������ ����� ��û�Ѵ�
 		GetDboGlobal()->GetLobbyPacketGenerator()->SendCharServerListReq();	
 
 		GetCharStageState()->ChangeState(CHAR_STATE_SELECT_INFOMATION);
 
-		// 기본 지형 생성
+		// �⺻ ���� ����
 		SetupDefaultCamerabyRace(dRACE_NONE);
 		CreateBackGroundStage((RwUInt32)INVALID_INDEX);
 		TeleportStage();
 	}
 	else
 	{
-		// 마지막으로 접속한 서버가 있을 때에는 그 서버의 정보만을 요청한다
+		// ���������� ������ ������ ���� ������ �� ������ �������� ��û�Ѵ�
 		GetDboGlobal()->GetLobbyPacketGenerator()->SendCharServerListOneReq();
 
-		// 캐릭터 정보를 요청한다. 다음의 3가지 패킷이 응답으로 온다
+		// ĳ���� ������ ��û�Ѵ�. ������ 3���� ��Ŷ�� �������� �´�
 		// CU_SERVER_CHANNEL_INFO, CU_CHARACTER_INFO_RES, CU_CHARACTER_LOAD_RES	
 		GetDboGlobal()->GetLobbyPacketGenerator()->SendCharLoadReq(pConData->uiAccountId, pConData->byLastServerFarmID);
 
-		// 현재 선택된 서버	
+		// ���� ���õ� ����	
 		GetLobbyManager()->SetSelectedServerHandle(pConData->byLastServerFarmID);	
 
 		GetCharStageState()->ChangeState(CHAR_STATE_SELECT_INFOMATION);
@@ -429,17 +429,17 @@ void CLobbyStage::HandleEvents(RWS::CMsg &pMsg)
 
 				sPC_SUMMARY& charInfo = pLOBBY_CHARACTER->tSummary;
 
-				// CreateDownLoadAvatar함수에서 사용하기 위한 아바타의 위치 지정을 위해 호출
+				// CreateDownLoadAvatar�Լ����� ����ϱ� ���� �ƹ�Ÿ�� ��ġ ������ ���� ȣ��
 				SetupDefaultCamerabyRace(charInfo.byRace);
 
 				CreateBackGroundStage(charInfo.byRace);
 				CreateDownLoadAvatar(&charInfo);
 
-				// 생성된 아바타의 키에 따른 어른, 아이별 카메라 좌표 지정
+				// ������ �ƹ�Ÿ�� Ű�� ���� �, ���̺� ī�޶� ��ǥ ����
 				SetupDefaultCamerabyRace(charInfo.byRace);
 				TeleportStage();
 
-				// 카메라를 기본 위치로
+				// ī�޶� �⺻ ��ġ��
 				API_PL_CameraLookAt(CNtlPLGlobal::m_RwCamera, &m_vCameraPos, &m_vCameraPosAt);
 			}
 		}
@@ -483,7 +483,7 @@ void CLobbyStage::HandleEvents(RWS::CMsg &pMsg)
 			sCameraZoom cameraZoom;
 			RwV3d v3Pos, v3Dir;
 
-			// 카메라 위치
+			// ī�޶� ��ġ
 			RwV3dSubMacro(&v3Pos, &m_CameraData[m_byRace][m_byCharHeightType][ZL_ZOOM_IN].v3Pos,
 				&m_CameraData[m_byRace][m_byCharHeightType][ZL_ZOOM_OUT].v3Pos);			
 
@@ -520,7 +520,7 @@ void CLobbyStage::HandleEvents(RWS::CMsg &pMsg)
 			sCameraZoom cameraZoom;
 			RwV3d v3Pos, v3Dir;
 
-			// 카메라 위치
+			// ī�޶� ��ġ
 			RwV3dSubMacro(&v3Pos, &m_CameraData[m_byRace][m_byCharHeightType][ZL_ZOOM_IN].v3Pos,
 				&m_CameraData[m_byRace][m_byCharHeightType][ZL_ZOOM_OUT].v3Pos);			
 
@@ -558,7 +558,7 @@ void CLobbyStage::HandleEvents(RWS::CMsg &pMsg)
 
 			if( hServer == INVALID_SERVERFARMID )
 			{
-				// 서버에 처음 접속한 유저의 경우
+				// ������ ó�� ������ ������ ���
 				SetupDefaultCamerabyRace(dRACE_NONE);
 				TeleportStage();
 			}
@@ -611,7 +611,7 @@ void CLobbyStage::HandleEvents(RWS::CMsg &pMsg)
 
 			if( hServer == INVALID_SERVERFARMID )
 			{
-				// 서버에 처음 접속한 유저의 경우
+				// ������ ó�� ������ ������ ���
 				SetupDefaultCamerabyRace(dRACE_NONE);
 				TeleportStage();
 			}
@@ -628,15 +628,15 @@ void CLobbyStage::HandleEvents(RWS::CMsg &pMsg)
 
 void CLobbyStage::EventProcUpdateTick(RwReal fElapsed)
 {
-	//Player Position을 제대로 Update를 해주어야 하늘이 제대로 나온다.
+	//Player Position�� ����� Update�� ���־�� �ϴ��� ����� ���´�.
 	if(m_pWorldEntity != NULL)
 	{
 		m_pWorldEntity->SetPlayerPosition(m_vAvatarPos);
 
-		// World 가 Ready 상태일 때 한번만 적용.
+		// World �� Ready ������ �� �ѹ��� ����.
 		if(m_pWorldEntity->GetWorldReady())
 		{
-			// 로비에 옵션 적용			
+			// �κ� �ɼ� ����			
 			if( !m_bOptionApply )
 			{
 				if(GetNtlStorageManager()->GetBoolData( dSTORAGE_GRAPHIC_SHADER_HDR ))
@@ -651,13 +651,13 @@ void CLobbyStage::EventProcUpdateTick(RwReal fElapsed)
 
 	GetCharStageState()->Update(fElapsed);
 
-	// 카메라 Zoom in/out
+	// ī�޶� Zoom in/out
 	if( m_listZoomMode.size() > 0 )
 	{
 		std::list<sCameraZoom>::iterator it = m_listZoomMode.begin();
 		sCameraZoom& cameraZoom = *it;
 
-		// 업데이트 타임
+		// ������Ʈ Ÿ��
 		cameraZoom.fElapsed += fElapsed;
 
 		if( cameraZoom.fElapsed > dCAMERA_MOVE_TIME )
@@ -668,7 +668,7 @@ void CLobbyStage::EventProcUpdateTick(RwReal fElapsed)
 
 		API_PL_CameraLookAt(CNtlPLGlobal::m_RwCamera, &v3CameraCurPos, &v3CameraCurDir);
 
-		// 초기화
+		// �ʱ�ȭ
 		if( cameraZoom.fElapsed >= dCAMERA_MOVE_TIME )
 			m_listZoomMode.erase(it);
 	}
@@ -714,11 +714,11 @@ void CLobbyStage::DestroyBackGroundStage()
 
 void CLobbyStage::SetupDefaultCamerabyRace(RwUInt8 byRace)
 {
-	// 서버 셀렉트 화면등 캐릭터가 없을 수도 있다
+	// ���� ����Ʈ ȭ��� ĳ���Ͱ� ���� ���� �ִ�
 	if(m_pAvatar)
 	{
-		// 어른과 아이에 따라 카메라를 캐릭터 쪽으로 최대한 당겼을 때 카메라의 위치를
-		// 달리한다
+		// ��� ���̿� ���� ī�޶� ĳ���� ������ �ִ��� ����� �� ī�޶��� ��ġ��
+		// �޸��Ѵ�
 		if( Logic_IsChild(m_pAvatar) )
 		{
 			m_byCharHeightType = CHT_CHILD;
@@ -788,14 +788,14 @@ void CLobbyStage::SetupDefaultCamerabyRace(RwUInt8 byRace)
 	{
 		RwV3d v3Temp;
 
-		// 카메라가 움직일 최대 거리
+		// ī�޶� ������ �ִ� �Ÿ�
 		RwV3dSubMacro(&v3Temp, &m_CameraData[m_byRace][m_byCharHeightType][ZL_ZOOM_OUT].v3Pos,
 			&m_CameraData[m_byRace][m_byCharHeightType][ZL_ZOOM_IN].v3Pos);
 
 		m_fTotalDistance		= RwV3dLength(&v3Temp);
 		m_fTotalZoomStep		= (RwReal)(RwUInt8)(m_fTotalDistance / dCAMERA_STEP_DISTANCE);
 
-		// 카메라 시점이 움직일 최대 거리
+		// ī�޶� ������ ������ �ִ� �Ÿ�
 		RwV3dSubMacro(&v3Temp, &m_v3Dir[m_byRace][m_byCharHeightType][ZL_ZOOM_OUT],
 			&m_v3Dir[m_byRace][m_byCharHeightType][ZL_ZOOM_IN]);
 
@@ -1051,7 +1051,7 @@ void CLobbyStage::CreateDownLoadAvatar(sPC_SUMMARY *pCharInfo)
 		pAvatarInfo->sItemPf[pAvatarInfo->wItemCount].byPos				= (BYTE)i;
 		pAvatarInfo->sItemPf[pAvatarInfo->wItemCount].byStackcount			= (BYTE)1;
 		pAvatarInfo->sItemPf[pAvatarInfo->wItemCount].byRank				= pCharInfo->sItem[i].byRank;
-		pAvatarInfo->sItemPf[pAvatarInfo->wItemCount].byCurDur				= 100;			// 여기는 채워 넣으시면 됩니다.
+		pAvatarInfo->sItemPf[pAvatarInfo->wItemCount].byCurDur				= 100;			// ����� ä�� �����ø� �˴ϴ�.
 		pAvatarInfo->sItemPf[pAvatarInfo->wItemCount].sOptionSet.Init();
 		pAvatarInfo->sItemPf[pAvatarInfo->wItemCount].byRestrictState = ITEM_RESTRICT_STATE_TYPE_NONE;
 		pAvatarInfo->sItemPf[pAvatarInfo->wItemCount].bNeedToIdentify		= false;
@@ -1080,9 +1080,9 @@ void CLobbyStage::CreateDownLoadAvatar(sPC_SUMMARY *pCharInfo)
 
 void CLobbyStage::TeleportStage()
 {
-	// World의 Positon 변경이 한번에 2번 변경이 되면
-	// World의 Entity에 문제가 생기므로 Avatar를 기준으로
-	// 삼아 Avatar의 위치가 변경이 생길 경우만 위치 변경을 한단( by HoDong )
+	// World�� Positon ������ �ѹ��� 2�� ������ �Ǹ�
+	// World�� Entity�� ������ ����Ƿ� Avatar�� ��������
+	// ��� Avatar�� ��ġ�� ������ ���� ��츸 ��ġ ������ �Ѵ�( by HoDong )
 	if( m_vAvatarPos.x != m_vAvatarUpdatePos.x ||
 		m_vAvatarPos.y != m_vAvatarUpdatePos.y ||
 		m_vAvatarPos.z != m_vAvatarUpdatePos.z )

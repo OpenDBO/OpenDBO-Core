@@ -410,7 +410,7 @@ void API_PL_1BColorClamp(RwReal* pDst, RwReal Value)
 	*pDst = *pDst + Value;
 }
 
-void API_PL_RasterSaveImage(const RwRaster *pRaster, const RwChar *pszFileName, RwInt32 _Width, RwInt32 _Height)    ///< Raster를 Image로 저장(.png, .bmp)
+void API_PL_RasterSaveImage(const RwRaster *pRaster, const RwChar *pszFileName, RwInt32 _Width, RwInt32 _Height)    ///< Raster�� Image�� ����(.png, .bmp)
 {
 	RwImage *image;
 	RwImage *imageDst;
@@ -437,9 +437,9 @@ void API_PL_RasterSaveImage(const RwRaster *pRaster, const RwChar *pszFileName, 
 }
 
 /**
- * Raster를 Image로 저장을 한다.
- * \param pRaster: Image로 저장할 Raster
- * \param pszFileName: 저장할 파일 이름 확장명(.png, .bmp)에 따라서 저장이 된다.
+ * Raster�� Image�� ������ �Ѵ�.
+ * \param pRaster: Image�� ������ Raster
+ * \param pszFileName: ������ ���� �̸� Ȯ���(.png, .bmp)�� ���� ������ �ȴ�.
  */
 void API_PL_RasterSaveImage(const RwRaster *pRaster, const RwChar *pszFileName)
 {
@@ -462,8 +462,8 @@ void API_PL_RasterSaveImage(const RwRaster *pRaster, const RwChar *pszFileName)
 }
 
 /**
- * Camera의 Target을 Look At 할 수 있도록 Camera의 Matrix을 변경한다.
- * Camera의 Up이 y가 -1이 위쪽이다. 조심해서 사용
+ * Camera�� Target�� Look At �� �� �ֵ��� Camera�� Matrix�� �����Ѵ�.
+ * Camera�� Up�� y�� -1�� �����̴�. �����ؼ� ���
  */
 void API_PL_CameraLookAt( RwCamera* pCamera, const RwV3d* pSetCameraPos, const RwV3d* pTarget, const RwV3d* pSentInUp, RwReal fAtAxisRot /* = 0.0f */ )
 {
@@ -532,12 +532,12 @@ void API_PL_CameraMatrixLookAt( RwMatrix *pMat, const RwV3d* pSetCameraPos, cons
 }
 
 /**
- * 3D좌표를 2D좌표로 변환한다.
- * \param v3DPos 변환할 3D좌표
- * \param nWidth View의 넓이
- * \param nHeight View의 높이
- * \param bOutSideReturn 이 값이 TRUE이면 카메라 밖에 있는 마이너스 값도 리턴해준다. (디폴트는 False). 다만 이때 3D좌표가 카메라 뒤편이면 (9999,9999)를 반환한다.
- * return 변환된 2D좌표. ((0,0)이면 카메라 밖에 있다)
+ * 3D��ǥ�� 2D��ǥ�� ��ȯ�Ѵ�.
+ * \param v3DPos ��ȯ�� 3D��ǥ
+ * \param nWidth View�� ����
+ * \param nHeight View�� ����
+ * \param bOutSideReturn �� ���� TRUE�̸� ī�޶� �ۿ� �ִ� ���̳ʽ� ���� �������ش�. (����Ʈ�� False). �ٸ� �̶� 3D��ǥ�� ī�޶� �����̸� (9999,9999)�� ��ȯ�Ѵ�.
+ * return ��ȯ�� 2D��ǥ. ((0,0)�̸� ī�޶� �ۿ� �ִ�)
  */
 RwV2d API_PL_Calc3DPosTo2D( RwV3d* v3DPos, RwInt32 nWidth, RwInt32 nHeight, RwBool bOutSideReturn)
 {
@@ -559,7 +559,7 @@ RwV2d API_PL_Calc3DPosTo2D( RwV3d* v3DPos, RwInt32 nWidth, RwInt32 nHeight, RwBo
     RwMatrix* pViewMatrix = RwCameraGetViewMatrix( CNtlPLGlobal::m_RwCamera );
     RwV3dTransformPoints( &v2dPoint, &sphere.center, 1, pViewMatrix );
 
-	if(v2dPoint.z <= 0.0f)	// z가 마이너스이면 카메라 뒤편에 있다. 이때는 (9999, 9999)를 반환한다.
+	if(v2dPoint.z <= 0.0f)	// z�� ���̳ʽ��̸� ī�޶� ������ �ִ�. �̶��� (9999, 9999)�� ��ȯ�Ѵ�.
 	{
 		v2dReturn.x = 9999.0f;
 		v2dReturn.y = 9999.0f;

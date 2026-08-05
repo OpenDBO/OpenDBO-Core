@@ -928,7 +928,7 @@ RwBool CNtlPLSky::Render(void)
 
 		SkyLayerRender(m_pBaseSkyLayer[1], TFactor);
 
-		// 구름과 SkyBox 사이에 해/달을 렌더링한다. (2007.08.06 by agebreak)
+		// ������ SkyBox ���̿� ��/���� �������Ѵ�. (2007.08.06 by agebreak)
 		CNtlPLVisualManager* pVisualManager = (CNtlPLVisualManager*)GetSceneManager();
 		CNtlPLRenderGroup* pSunGroup = pVisualManager->FindInstanceGroup(PLENTITY_SUN);
 		if(pSunGroup)
@@ -1988,7 +1988,7 @@ void CNtlPLSky::RunableLightning(RwReal fTimeFadeIn, RwReal fTimeFadeOut)
 // 
 // 			SkyLayerRender(m_pBaseSkyLayer[1], TFactor);
 // 
-// 			// 구름과 SkyBox 사이에 해/달을 렌더링한다. (2007.08.06 by agebreak)
+// 			// ������ SkyBox ���̿� ��/���� �������Ѵ�. (2007.08.06 by agebreak)
 // 			CNtlPLVisualManager* pVisualManager = (CNtlPLVisualManager*)GetSceneManager();
 // 			CNtlPLRenderGroup* pSunGroup = pVisualManager->FindInstanceGroup(PLENTITY_SUN);
 // 			if(pSunGroup)

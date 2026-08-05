@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File: NtlPLCinematicGui.h
-// Desc: NtlPLCinematicGui. DTEditor에서의 사용을 위해 Client에서 이주해 옴.
+// Desc: NtlPLCinematicGui. DTEditor������ ����� ���� Client���� ������ ��.
 //
 // 2007.12.21 Peessi@hitel.net   
 //
@@ -35,8 +35,8 @@ private:
 	//gui::CSlot	m_slotMovieEnd;
 
 	RwBool	m_bUseTime;
-	RwReal	m_fLifeTime;				// m_bUseTime : True일때 유효
-	RwReal	m_fFlashMovieTime;			// m_bUseTime : False일때 유효
+	RwReal	m_fLifeTime;				// m_bUseTime : True�϶� ��ȿ
+	RwReal	m_fFlashMovieTime;			// m_bUseTime : False�϶� ��ȿ
 	
 	RwReal	m_fBeginAlphaTime;
 	RwReal  m_fPlayTime;				
