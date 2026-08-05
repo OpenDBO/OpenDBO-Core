@@ -2,7 +2,7 @@
 //	File		:	NtlPostEffectCamera.h
 //	Desc		:	
 //	Begin		:	2006. 2.13
-//	Copyright	:	�� 2006 by agebreak CO., Ltd
+//	Copyright	:	Ã¯Â¿Â½Ã¯Â¿Â½ 2006 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -21,6 +21,7 @@
 
 
 class CNtlPLHeatHaze;
+struct RpWorld;
 
 /**
 *	post effect filter
@@ -28,8 +29,8 @@ class CNtlPLHeatHaze;
 #define POST_EFFECT_FILTER_NONE		0
 #define POST_EFFECT_FILTER_HDR		1
 #define dMONO_POWER_DEFAULT (2.4f)
-#define RES_MESH_CNT 20                                     ///< View ȭ���� Mesh ���� (���� ������)
-#define RES_VERTEX_CNT (RES_MESH_CNT * RES_MESH_CNT * 6)    ///< View ȭ���� Vertex���� (���� ������)
+#define RES_MESH_CNT 20                                     ///< View ÃˆÂ­Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½ Mesh Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½ (Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½ Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½)
+#define RES_VERTEX_CNT (RES_MESH_CNT * RES_MESH_CNT * 6)    ///< View ÃˆÂ­Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½ VertexÃ¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½ (Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½ Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½)
 
 class CNtlPostEffectCamera : public CNtlCamera
 {
@@ -55,6 +56,11 @@ public:
 	RwBool		CreateBlurCamera(RwCamera*& pCamera, RwTexture*& pTexture, RwInt32 nWidth, RwInt32 nHeight, RwReal fNearClipPlane, RwReal fFarClipPlane);
 	RwBool		CreateEffect();
 
+	// Name tag / damage text pass: renders into a separate alpha texture using
+	// the world camera's z-buffer (correct occlusion), composited after FXAA.
+	RwCamera*	BeginNameCamera();
+	void		EndNameCamera();
+
 	virtual		RwCamera* Create( RwInt32 width,
 						RwInt32 height, 
 						RwBool zBuffer, 
@@ -64,6 +70,25 @@ public:
     static CNtlPostEffectCamera*		GetInstance(void);
     static void		SetPostEffectFilters( RwUInt8 byPEFilters );
     static RwUInt8	GetPostEffectFilters(void);
+
+    void		ApplySSAA();
+    static void	SetSSAAScale(RwInt32 nScale);
+    static RwInt32 GetSSAAScale();
+    static RwReal GetRenderScale();
+
+	// AA mode: 0 = off, 3 = FXAA, 4 = MSAA 2x, 5 = MSAA 4x, 6 = MSAA 8x
+    static void	SetAAMode(RwInt32 nMode);
+    static RwInt32 GetAAMode();
+    static RwBool IsAAFilterEnabled();
+    static RwBool IsMSAAMode();
+    static RwInt32 GetMSAALevel();
+    static void	SetCurrentMSAALevel(RwInt32 nLevel);
+    static RwInt32 GetCurrentMSAALevel();
+    static void	RequestMSAALevel(RwInt32 nLevel);
+    static void	FlushMSAALevel();
+    // Detaches the main camera from a world about to be destroyed (the world
+    // plugin does not track attached cameras; the pointer would dangle).
+    static void	RemoveMainCameraFromWorld(RpWorld* pWorld);
 
     virtual	void SetCameraSize(RwRect* rect);
     virtual void SetCalcFov(RwReal fFov);			
@@ -88,13 +113,13 @@ public:
 
     RwV2d       GetScreenSize();
 
-    // Post Effect System ���� �޼ҵ�
+    // Post Effect System Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½ Ã¯Â¿Â½ÃžÂ¼Ã’ÂµÃ¯Â¿Â½
     void        AttachPostEffectSystem(CNtlInstancePostEffectSystem* pPostEffectSystem);
     void        DetachPostEffectSystem(CNtlInstancePostEffectSystem* pPostEffectSystem);
 
-	// LensFlare ���� �޼ҵ�
-	void		AttachLensFlare(CNtlPLLensFlare* pLensFlare);				///< LensFlare ��ü�� ī�޶� �߰��Ѵ�.
-	void		DetachLensFlare(CNtlPLLensFlare* pLensFlare);				///< LensFlare ��ü�� ī�޶󿡼� �����Ѵ�.
+	// LensFlare Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½ Ã¯Â¿Â½ÃžÂ¼Ã’ÂµÃ¯Â¿Â½
+	void		AttachLensFlare(CNtlPLLensFlare* pLensFlare);				///< LensFlare Ã¯Â¿Â½Ã¯Â¿Â½
+	void		DetachLensFlare(CNtlPLLensFlare* pLensFlare);				///< LensFlare Ã¯Â¿Â½Ã¯Â¿Â½
 
 protected:
     RwBool		IsEnablePostEffect(void);
@@ -108,6 +133,11 @@ protected:
 	void		CreateReductionTexture(RwInt32 nTextureSize);
 
 	void		DrawTexture();
+	void		RenderPostEffectQuad(LPD3DXEFFECT pEffect, D3DXHANDLE hTechnique, D3DXHANDLE hRcpFrame, RwTexture* pTexture);
+	void		RenderFXAAComposite();
+	void		RenderSSAAComposite();
+	void		RenderAAModeComposite();
+	RwBool		CreateFSREffect();
 
 	int			ReleaseHandler();
 	int			RestoreHandler();
@@ -119,6 +149,11 @@ public:
 protected:
     static				CNtlPostEffectCamera*	m_pInstance;
     static				RwUInt8					m_byPEFilters;
+    static				RwInt32					m_nSSAAScale;
+    static				RwInt32					m_nAAMode;
+    static				RwInt32					m_nCurrentMSAALevel;
+    static				RwInt32					m_nPendingMSAALevel;
+    static				RwBool					m_bMainCameraBegun;
 
     RwBool				m_bEnableCamera;
     std::string			m_strShaderName;
@@ -133,6 +168,9 @@ protected:
     RwCamera*			m_pTempCamera;
     RwTexture*			m_pTempTexture;
 
+    RwTexture*			m_pNameTexture;
+    RwRaster*			m_pNamePassWorldRaster;
+
     RwCamera*			m_pReductionCamera;
     RwTexture*			m_pReductionTexture;
 
@@ -144,11 +182,12 @@ protected:
 	RwTexture*			m_pHeatHazeTexture;
 	CNtlPLHeatHaze*		m_pHeatHaze;
 
-    // Motion Blur�� ���� ī�޶�� �ؽ��� 
+    // Motion BlurÃ¯Â¿Â½Ã¯Â¿Â½ Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½ Ã„Â«Ã¯Â¿Â½ÃžÂ¶Ã¯Â¿Â½Ã¯Â¿Â½ Ã¯Â¿Â½Ã˜Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½ 
     RwCamera*			m_pMotionBlurCamera;
     RwTexture*			m_pMotionBlurTexture;
 
     RwCamera*			m_pMainCamera;
+    RpWorld*			m_pMainCameraWorld; // world the main camera is attached to (MSAA lighting)
 
     RwIm3DVertex		m_3dVertex[4];
     RwIm2DVertex		m_RhwVertex[4];
@@ -158,6 +197,11 @@ protected:
     LPDIRECT3DDEVICE9	m_lpDevice;
     LPD3DXEFFECT		m_lpEffect;			// Effect File Handler
     D3DXHANDLE			m_hTechnique;
+
+    LPD3DXEFFECT		m_lpFXAAEffect;		// FXAA Effect File Handler
+    D3DXHANDLE			m_hFXAATechnique;
+    D3DXHANDLE			m_hFXAARCPFrame;
+    D3DXHANDLE			m_hGaussianTechnique;
 
     D3DXHANDLE			m_hMapWidth;
     D3DXHANDLE			m_hMapHeight;
@@ -176,12 +220,12 @@ protected:
     RwIm2DVertex		m_PowerVertex[4];
     RwIm2DVertex		m_FinalVertex[4];
 
-    RwBool              m_bEnableBlur;                      ///< ��� ���� Enable Flag
-    RwReal              m_fBlurAlpha;                       ///< ������ Blur Alpha��
-    RwReal              m_fBlurFadeVelocity;                ///< Blur�� ����Ǵ� �ӵ�
+    RwBool              m_bEnableBlur;                      ///< Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½ Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½ Enable Flag
+    RwReal              m_fBlurAlpha;                       ///< Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½ Blur AlphaÃ¯Â¿Â½Ã¯Â¿Â½
+    RwReal              m_fBlurFadeVelocity;                ///< BlurÃ¯Â¿Â½Ã¯Â¿Â½ Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã‡Â´Ã¯Â¿Â½ Ã¯Â¿Â½Ã“ÂµÃ¯Â¿Â½
 
-    std::list<CNtlInstancePostEffectSystem*> m_listPostEffectSystem; ///< ī�޶� ǥ�õ� PostEffect System�� ����Ʈ
-	std::list<CNtlPLLensFlare*> m_listLensFlare;			///< ī�޶� ǥ�õ� Lens Flare ��ü���� ����Ʈ
+    std::list<CNtlInstancePostEffectSystem*> m_listPostEffectSystem; ///< Ã„Â«Ã¯Â¿Â½ÃžÂ¶Ã¯Â¿Â½ Ã‡Â¥Ã¯Â¿Â½
+	std::list<CNtlPLLensFlare*> m_listLensFlare;			///< Ã„Â«Ã¯Â¿Â½ÃžÂ¶Ã¯Â¿Â½ Ã‡Â¥Ã¯Â¿Â½
 
 	// TEST
 public:
