@@ -398,7 +398,7 @@ VOID CListBox_Generic::SelectItem( INT nIndex, bool bSelect )
 	}
 	else
 	{
-		// ÇöÀç ¾Èº¸ÀÌ´Â ÀÎµ¦½º¸¦ ¼±ÅÃÇßÀ» °æ¿ì, ±× ÀÎµ¦½º¸¦ Ã¹ ÀÎµ¦½º·Î ÇÏ°í Ãâ·Â.
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½Èºï¿½ï¿½Ì´ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½, ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ Ã¹ ï¿½Îµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½.
 		if( bSelect )
 			SetTopItem( nIndex );	
 	}	
@@ -508,7 +508,7 @@ VOID CListBox_Generic::SetBkMode( INT nBkMode )
 
 VOID CListBox_Generic::Sort( bool bAscending )
 {
-	// ¹Ì±¸Çö.
+	// ï¿½Ì±ï¿½ï¿½ï¿½.
 }
 
 VOID CListBox_Generic::ClearAll(VOID)
@@ -693,7 +693,7 @@ VOID CListBox_Generic::ReviseItem()
 	}
 }
 
-// ÇÏÀÌ¶óÀÌÆ®, ÅØ½ºÆ® Ãâ·Â°ü·Ã.
+// ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ï¿½Æ®, ï¿½Ø½ï¿½Æ® ï¿½ï¿½Â°ï¿½ï¿½ï¿½.
 VOID CListBox_Generic::DrawItem(VOID)
 {
 	ClearSelectionMasks();
@@ -917,7 +917,7 @@ VOID CListBox_Generic::OnPaint(VOID)
 	std::list<CSurface>::iterator the;
 	for( the = m_listSurface.begin() ; the != m_listSurface.end() ; ++the )
 	{
-		g_GuiRenderer.RenderQueue( &(*the).m_SnapShot, (*the).m_pTexture );
+		g_GuiRenderer.RenderQueue( &(*the).m_SnapShot, (*the).m_pTexture, m_pListBox->GetRenderTop() );
 	}
 
 	std::list<CRectangle*>::iterator it;
@@ -931,10 +931,10 @@ VOID CListBox_Generic::OnPaint(VOID)
 		m_MaskSurface.m_SnapShot.rtRect.top = rtScreen.top + pRect->top;
 		m_MaskSurface.m_SnapShot.rtRect.right = rtScreen.left + pRect->right;
 		m_MaskSurface.m_SnapShot.rtRect.bottom = rtScreen. top + pRect->bottom;
-		g_GuiRenderer.RenderQueue( &m_MaskSurface.m_SnapShot, m_MaskSurface.m_pTexture );
+		g_GuiRenderer.RenderQueue( &m_MaskSurface.m_SnapShot, m_MaskSurface.m_pTexture, m_pListBox->GetRenderTop() );
 	}
 
-	g_GuiRenderer.RenderQueue(&m_TextSurface.m_SnapShot, m_TextSurface.m_pTexture);
+	g_GuiRenderer.RenderQueue(&m_TextSurface.m_SnapShot, m_TextSurface.m_pTexture, m_pListBox->GetRenderTop());
 }
 
 VOID CListBox_Generic::OnSetOptions( const CComponentOptions& options )
@@ -1245,7 +1245,7 @@ VOID CListBox_Generic::OnResize(int nOldWidth, int nOldHeight)
 	CRectangle rect = m_pListBox->GetScreenRect();
 	std::list<CSurface>::iterator it;
 
-	// ListBoxÀÇ ¹è°æÀº ´Ã¾î³­´Ù. 
+	// ListBoxï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¾î³­ï¿½ï¿½. 
 	for( it = m_listSurface.begin() ; it != m_listSurface.end() ; ++it )
 	{
 		(*it).m_SnapShot.rtRect.left = rect.left;
