@@ -145,6 +145,9 @@
 #define NTL_VID_GUARD_REDT					"GME_Guard_07" // refined aura when guarding
 #define NTL_VID_GUARD_PURPLE				"GME_Guard_08" // purple aura when guarding
 
+#define NTL_VID_GROUND_EFFECT_SMALL			"GME_Decal_07" // small ground effect when guarding/charging
+#define NTL_VID_GROUND_EFFECT_BIG			"GME_Decal_08" // big ground effect when guarding/charging
+
 #define NTL_VID_BLOCKING_DEFENCE			"GME_Guard_Attack"
 #define NTL_VID_BLOCKING_DAMAGE				"TXT_Guard_Normal"
 #define NTL_VID_BLOCKING_CURSE				"TXT_Guard_Curse"

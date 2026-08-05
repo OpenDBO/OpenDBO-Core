@@ -68,6 +68,8 @@ private:
 	CNtlPLEntity*				m_pTitleEffect;
 	CNtlPLEntity*				m_pGuardEffect;
 	CNtlPLEntity*				m_pRpChargeEffect;
+    CNtlPLEntity*               m_pRpChargeGroundEffect;
+    CNtlPLEntity*               m_pRpGuardGroundEffect;
 
     bool bCreatePlayTitle{ false };
     bool bCreatePlayDBSInfo{ true };
