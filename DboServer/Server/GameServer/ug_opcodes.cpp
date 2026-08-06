@@ -209,6 +209,8 @@ void CUG_Opcodes::BuildOpcodeList()
 	StoreOpcode(UG_VEHICLE_DIRECT_PLAY_CANCEL_NFY, "UG_VEHICLE_DIRECT_PLAY_CANCEL_NFY", PROCESS_INPLACE, &CClientSession::RecvCancelVehicleDirectPlayNfy);
 	StoreOpcode(UG_VEHICLE_END_REQ, "UG_VEHICLE_END_REQ", PROCESS_THREADUNSAFE, &CClientSession::RecvEndVehicleReq);
 	StoreOpcode(UG_VEHICLE_STUNT_NFY, "UG_VEHICLE_STUNT_NFY", PROCESS_INPLACE, &CClientSession::RecvVehicleStuntNfy);
+	StoreOpcode(UG_VEHICLE_ENGINE_START_REQ, "UG_VEHICLE_STUNT_NFY", PROCESS_INPLACE, &CClientSession::RecvVehicleEngineOn);
+	StoreOpcode(UG_VEHICLE_ENGINE_STOP_REQ, "UG_VEHICLE_STUNT_NFY", PROCESS_INPLACE, &CClientSession::RecvVehicleEngineOff);
 	StoreOpcode(UG_VEHICLE_FUEL_REMOVE_NFY, "UG_VEHICLE_FUEL_REMOVE_NFY", PROCESS_THREADUNSAFE, &CClientSession::RecvVehicleFuelRemoveNfy);
 	StoreOpcode(UG_SKILL_INIT_REQ, "UG_SKILL_INIT_REQ", PROCESS_THREADUNSAFE, &CClientSession::RecvSkillInitReq);
 	StoreOpcode(UG_SKILL_RESET_PLUS_REQ, "UG_SKILL_RESET_PLUS_REQ", PROCESS_THREADUNSAFE, &CClientSession::RecvSkillResetPlusReq);

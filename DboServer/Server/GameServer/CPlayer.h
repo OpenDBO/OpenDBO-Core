@@ -655,6 +655,7 @@ private:
 			hVehicleId = INVALID_HOBJECT;
 			bGetOffOnAttack = true;
 			bAnimationPlay = false;
+			isOnEngine = true;
 		}
 
 		HOBJECT			hVehicleFuelId;
@@ -662,6 +663,7 @@ private:
 		HOBJECT			hVehicleId;
 		bool			bGetOffOnAttack;
 		bool			bAnimationPlay;
+		bool			isOnEngine;
 
 	}m_vehicle;
 
@@ -681,6 +683,9 @@ public:
 
 	inline void		SetVehicleAniPlay(bool bFlag) { m_vehicle.bAnimationPlay = bFlag; }
 	inline bool		IsVehicleAniPlay() { return m_vehicle.bAnimationPlay; }
+
+	inline void		SetVehicleEngine(BYTE Engine) { m_vehicle.isOnEngine = Engine; }
+	inline bool		GetVehicleEngine() { return (bool)m_vehicle.isOnEngine; }
 
 
 /////////////////////////////////////////////////////////////////

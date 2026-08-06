@@ -152,6 +152,7 @@ bool CPlayer::StartVehicle(TBLIDX vehicleIdx, HOBJECT hVehicleId)
 			byVehicleType 1 = stay on vehicle on attack(only auto attack)
 		*/
 		SetVehicle(vehicleIdx, hVehicleId, pVehicleTbl->byVehicleType == 0);
+		SetVehicleEngine(true);
 
 		CNtlPacket pPacket2(sizeof(sGU_UPDATE_CHAR_ASPECT_STATE));
 		sGU_UPDATE_CHAR_ASPECT_STATE * pRes2 = (sGU_UPDATE_CHAR_ASPECT_STATE*)pPacket2.GetPacketData();
@@ -160,6 +161,7 @@ bool CPlayer::StartVehicle(TBLIDX vehicleIdx, HOBJECT hVehicleId)
 		pRes2->aspectState.sAspectStateBase.byAspectStateId = ASPECTSTATE_VEHICLE;
 		pRes2->aspectState.sAspectStateDetail.sVehicle.idVehicleTblidx = vehicleIdx;
 		pRes2->aspectState.sAspectStateDetail.sVehicle.idVehicleItemHandle = hVehicleId;
+		pRes2->aspectState.sAspectStateDetail.sVehicle.bIsEngineOn = GetVehicleEngine();
 		Broadcast(&pPacket2);
 
 		GetStateManager()->CopyAspectFrom(&pRes2->aspectState);
@@ -216,6 +218,7 @@ void CPlayer::EndVehicle(WORD wReasonCode)
 	res4->sCharState.sCharStateBase.aspectState.sAspectStateBase.byAspectStateId = ASPECTSTATE_VEHICLE;
 	res4->sCharState.sCharStateBase.aspectState.sAspectStateDetail.sVehicle.idVehicleTblidx = INVALID_TBLIDX;
 	res4->sCharState.sCharStateBase.aspectState.sAspectStateDetail.sVehicle.idVehicleItemHandle = INVALID_HOBJECT;
+	res4->sCharState.sCharStateBase.aspectState.sAspectStateDetail.sVehicle.bIsEngineOn = GetVehicleEngine();
 	packet4.SetPacketLen(sizeof(sGU_UPDATE_CHAR_STATE));
 	Broadcast(&packet4);
 	

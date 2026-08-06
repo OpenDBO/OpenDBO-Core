@@ -18,6 +18,7 @@ int CAspectState_Vehicle::CopyAspectTo(sASPECTSTATE_DETAIL* pStateDetail)
 
 	pStateDetail->sVehicle.idVehicleItemHandle = pPlayer->GetVehicleItemHandle();
 	pStateDetail->sVehicle.idVehicleTblidx = pPlayer->GetVehicleTblidx();
+	pStateDetail->sVehicle.bIsEngineOn = pPlayer->GetVehicleEngine();
 
 	return sizeof(sASPECTSTATE_VEHICLE);
 }
