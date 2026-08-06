@@ -211,13 +211,12 @@ RwBool CNtlBHVehicleAOIRideOn::Begin( void )
 	CNtlBeCharData* pBeData = reinterpret_cast<CNtlBeCharData*>(m_pVehicle->GetBehaviorData()); 
 	SCtrlStuff* pCtrlStuff = pBeData->GetCtrlStuff();
 
-	// engine disabled by daneos
-	//RwReal fRideOnHeight = 0.f;
-	/*if ( pCtrlStuff->sVehicle.bEngineOn )*/
-	//{
-	//	CNtlSobVehicleAttr* pAttr = (CNtlSobVehicleAttr*)m_pVehicle->GetSobAttr();
-	//	fRideOnHeight = pAttr->GetVehicleTable()->wRunHeight;
-	//}
+	RwReal fRideOnHeight = 0.f;
+	if (pCtrlStuff->sVehicle.bEngineOn)
+	{
+		CNtlSobVehicleAttr* pAttr = (CNtlSobVehicleAttr*)m_pVehicle->GetSobAttr();
+		fRideOnHeight = pAttr->GetVehicleTable()->wRunHeight;
+	}
 
 	RwV3d vCurPos = m_pVehicle->GetPosition();
 	vCurPos.y += 1.f;

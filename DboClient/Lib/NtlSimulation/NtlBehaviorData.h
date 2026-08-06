@@ -2,7 +2,7 @@
  *
  * File			: NtlBehaviorBase.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2006. 2. 13	
  * Abstract		: actor behavior data stuff
  *****************************************************************************
@@ -30,46 +30,46 @@ struct SNtlEventSobMoveSync;
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////
-// °ø°Ý 
+// ê³µê²© 
 
-// °ø°Ý ¼º°øÀÇ ÇüÅÂ.
-#define NTL_ATTACK_RESULT_SUCCESS		0		// °ø°Ý ¼º°ø
-#define NTL_ATTACK_RESULT_BLOCK			1		// °ø°Ý ¹æ¾î
-#define NTL_ATTACK_RESULT_DODGE			2		// °ø°Ý È¸ÇÇ
-#define NTL_ATTACK_RESULT_KNOCKDOWN		3		// °ø°Ý knockdown
-#define NTL_ATTACK_RESULT_SLIDING		4		// °ø°Ý sliding ( NTL_ATTACK_RESULT_KNOCKDOWN | NTL_ATTACK_RESULT_BLOCK )
+// ê³µê²© ì„±ê³µì˜ í˜•íƒœ.
+#define NTL_ATTACK_RESULT_SUCCESS		0		// ê³µê²© ì„±ê³µ
+#define NTL_ATTACK_RESULT_BLOCK			1		// ê³µê²© ë°©ì–´
+#define NTL_ATTACK_RESULT_DODGE			2		// ê³µê²© íšŒí”¼
+#define NTL_ATTACK_RESULT_KNOCKDOWN		3		// ê³µê²© knockdown
+#define NTL_ATTACK_RESULT_SLIDING		4		// ê³µê²© sliding ( NTL_ATTACK_RESULT_KNOCKDOWN | NTL_ATTACK_RESULT_BLOCK )
 #define NTL_ATTACK_RESULT_HEALING		5		// heading
 #define NTL_ATTACK_RESULT_BUFF			6		// heading
-#define NTL_ATTACK_RESULT_STEAL			7		// °ø°ÝÇÑ ´ë»óÀÇ Ã¼·ÂÀ» »¯¼­¿Â´Ù. (ÀÌ ÇÃ·¡±×´Â Projectile Àü¿ë ÇÃ·¡±×´Ù)
+#define NTL_ATTACK_RESULT_STEAL			7		// ê³µê²©í•œ ëŒ€ìƒì˜ ì²´ë ¥ì„ ëºì„œì˜¨ë‹¤. (ì´ í”Œëž˜ê·¸ëŠ” Projectile ì „ìš© í”Œëž˜ê·¸ë‹¤)
 #define NTL_ATTACK_RESULT_IMMUNE		8		// 
 #define NTL_ATTACK_RESULT_RESIST		9		// 
 
 
-// behavior ÇüÅÂ
-#define NTL_ATTACK_NORMAL				0		// ÀÏ¹ÝÀûÀÎ °ø°ÝÇüÅÂ.
+// behavior í˜•íƒœ
+#define NTL_ATTACK_NORMAL				0		// ì¼ë°˜ì ì¸ ê³µê²©í˜•íƒœ.
 #define NTL_ATTACK_PUSH					1		// push
 #define NTL_ATTACK_KNOCKDOWN			2		// knock down
 #define NTL_ATTACK_SLIDING				3		// sliding
-#define NTL_ATTACK_TOSS_UP				4		// °øÁßÀ¸·Î ¶ç¿ì´Â °ø°Ý
-#define NTL_ATTACK_TOSS_DOWN			5		// °øÁß¿¡¼­ ¾Æ·¡·Î ³»·Á ²È´Â °ø°Ý.
+#define NTL_ATTACK_TOSS_UP				4		// ê³µì¤‘ìœ¼ë¡œ ë„ìš°ëŠ” ê³µê²©
+#define NTL_ATTACK_TOSS_DOWN			5		// ê³µì¤‘ì—ì„œ ì•„ëž˜ë¡œ ë‚´ë ¤ ê½‚ëŠ” ê³µê²©.
 
-// ¹°¸®Àû °ø°Ý ÇüÅÂ
-#define NTL_ATTACK_PHYSIC_MELEE			0		// Á÷Á¢ °ø°Ý.
-#define NTL_ATTACK_PHYSIC_PROJECTILE	1		// ¹ß»çÃ¼ °ø°Ý.
-#define NTL_ATTACK_PHYSIC_SPELL			2		// ¸¶¹ý °ø°Ý
+// ë¬¼ë¦¬ì  ê³µê²© í˜•íƒœ
+#define NTL_ATTACK_PHYSIC_MELEE			0		// ì§ì ‘ ê³µê²©.
+#define NTL_ATTACK_PHYSIC_PROJECTILE	1		// ë°œì‚¬ì²´ ê³µê²©.
+#define NTL_ATTACK_PHYSIC_SPELL			2		// ë§ˆë²• ê³µê²©
 
-// ³í¸®Àû °ø°Ý ÇüÅÂ
-#define NTL_ATTACK_LOGIC_NORMAL			0		// ÀÏ¹Ý °ø°Ý(±âº»À¸·Î ¼³Á¤µÈ °ø°Ý ¹æ½Ä)
-#define NTL_ATTACK_LOGIC_SKILL			1		// skill °ø°Ý
+// ë…¼ë¦¬ì  ê³µê²© í˜•íƒœ
+#define NTL_ATTACK_LOGIC_NORMAL			0		// ì¼ë°˜ ê³µê²©(ê¸°ë³¸ìœ¼ë¡œ ì„¤ì •ëœ ê³µê²© ë°©ì‹)
+#define NTL_ATTACK_LOGIC_SKILL			1		// skill ê³µê²©
 
-// attribute °ø°Ý ÇüÅÂ
-#define NTL_ATTACK_ATTR_NORMAL			0		// ÀÏ¹Ý °ø°Ý
-#define NTL_ATTACK_ATTR_CRITICAL		1		// critical °ø°Ý.
+// attribute ê³µê²© í˜•íƒœ
+#define NTL_ATTACK_ATTR_NORMAL			0		// ì¼ë°˜ ê³µê²©
+#define NTL_ATTACK_ATTR_CRITICAL		1		// critical ê³µê²©.
 
 
 struct SAttackDamageStuff
 {
-    RwInt32 iDamage;        ///< ÀÏ¹Ý µ¥¹ÌÁö
+    RwInt32 iDamage;        ///< ì¼ë°˜ ë°ë¯¸ì§€
     
     // DD/DOT        
     RwInt32 iAbsorbedDamage;
@@ -77,7 +77,7 @@ struct SAttackDamageStuff
 
 	sDBO_LP_EP_RECOVERED		lpEpRecovered;	// attacked target recover
         
-    // ½ºÆ¿ ½ºÅ³
+    // ìŠ¤í‹¸ ìŠ¤í‚¬
     float						LP_EP_STEAL_fLpDamage;
     float						LP_EP_STEAL_fEpDamage;
     float						LP_EP_STEAL_fAbsorbedDamage;
@@ -90,15 +90,15 @@ typedef union _UAttackAttr
 {
 	struct 
 	{
-		RwUInt32 bitResult		: 4;	// °ø°Ý ¼º°øÀÇ result.
-		RwUInt32 bitPhysic		: 2;	// ¹°¸®Àû °ø°Ý ÇüÅÂ
-		RwUInt32 bitBehavior	: 4;	// behavior ÇüÅÂ
-		RwUInt32 bitLogic		: 4;	// ³í¸®Àû °ø°Ý ÇüÅÂ
-		RwUInt32 bitCritical	: 1;	// attribute °ø°Ý ÇüÅÂ
+		RwUInt32 bitResult		: 4;	// ê³µê²© ì„±ê³µì˜ result.
+		RwUInt32 bitPhysic		: 2;	// ë¬¼ë¦¬ì  ê³µê²© í˜•íƒœ
+		RwUInt32 bitBehavior	: 4;	// behavior í˜•íƒœ
+		RwUInt32 bitLogic		: 4;	// ë…¼ë¦¬ì  ê³µê²© í˜•íƒœ
+		RwUInt32 bitCritical	: 1;	// attribute ê³µê²© í˜•íƒœ
 		RwUInt32 bitChainAttack : 1;    // chain attack
 		RwUInt32 bitHitSeq		: 4;	// hit sequence
 		RwUInt32 bitPowerEffect : 1;	// power effect
-		RwUInt32 bitBlocking	: 8;	// blocking mode Á¾·ù.
+		RwUInt32 bitBlocking	: 8;	// blocking mode ì¢…ë¥˜.
 		RwUInt32 bitReserved	: 5;        
 	};
 	RwUInt32 uiFlags;
@@ -111,33 +111,33 @@ struct SHitStuff
 
 public:
 
-	UAttackAttr			uiAttr;									// °ø°ÝÀÇ ¸ðµç ¼Ó¼º
+	UAttackAttr			uiAttr;									// ê³µê²©ì˜ ëª¨ë“  ì†ì„±
 	SERIAL_HANDLE		hAttackerSerialId;						// attacker serial id
 	SERIAL_HANDLE		hDefenderSerialId;						// defender serial id
 	SAttackDamageStuff	sDamageStuff;							// damage stuff
-	RwUInt32			uiAttrLogicTblId;						// ¹«±â °ø°Ý : item id, skill °ø°Ý : skill idRw
-	RwUInt32			uiProjectileBehaviorId;					// projectileÀÌ Á¸ÀçÇÏ¸é id¸¦ setting ÇÑ´Ù.
-	RwUInt8				byShotType;								// projectile  ¹ß»ç À§Ä¡(character, weapon, sub weapon)			
-	RwUInt8				bySubWeaponShotFlag;					// projectile  ¹ß»ç À§Ä¡°¡ sub weaponÀÏ °æ¿ì.(character, weapon, sub weapon)
+	RwUInt32			uiAttrLogicTblId;						// ë¬´ê¸° ê³µê²© : item id, skill ê³µê²© : skill idRw
+	RwUInt32			uiProjectileBehaviorId;					// projectileì´ ì¡´ìž¬í•˜ë©´ idë¥¼ setting í•œë‹¤.
+	RwUInt8				byShotType;								// projectile  ë°œì‚¬ ìœ„ì¹˜(character, weapon, sub weapon)			
+	RwUInt8				bySubWeaponShotFlag;					// projectile  ë°œì‚¬ ìœ„ì¹˜ê°€ sub weaponì¼ ê²½ìš°.(character, weapon, sub weapon)
 	RwReal				fSpeed;									// projectile speed
 	RwBool				bLeftHand;								// left or right hand
-	RwBool				bCreateHitStuffEffect;					// Projectile or Target Effct or Word Effect¸¦ »ý¼ºÇÒ °ÍÀÎ°¡?
+	RwBool				bCreateHitStuffEffect;					// Projectile or Target Effct or Word Effectë¥¼ ìƒì„±í•  ê²ƒì¸ê°€?
 	RwChar				chBoneName[NTL_MAX_BONE_NAME];			// bone name
 	RwChar				chProjEffName[NTL_MAX_EFFECT_NAME];		// projectile effect name
 	
 	RwChar				chTargetEffName[NTL_MAX_EFFECT_NAME];	// target effect name
-	RwUInt8				byTargetAttach;							// target¿¡ attachÇÒ °ÍÀÎ°¡?
-	RwReal				fTargetLocHeight;						// target effect  ÅÍÁú ³ôÀÌ °ª(persentÀÌ¸ç, 1.0ÀÌ 100%ÀÌ´Ù.)
-	RwUInt8				byTargetEffectDir;						// target effect ¹æÇâ(character anim event ÂüÁ¶)
+	RwUInt8				byTargetAttach;							// targetì— attachí•  ê²ƒì¸ê°€?
+	RwReal				fTargetLocHeight;						// target effect  í„°ì§ˆ ë†’ì´ ê°’(persentì´ë©°, 1.0ì´ 100%ì´ë‹¤.)
+	RwUInt8				byTargetEffectDir;						// target effect ë°©í–¥(character anim event ì°¸ì¡°)
 	RwChar				chWordEffName[NTL_MAX_EFFECT_NAME];		// target word effect name
 
-	RwV3d				vPushDir;								// push ¹æÇâ.
-	RwBool				bCameraShake;							// Ä«¸Þ¶ó Èçµé±â.
-    RwReal              fShakeFactor;                           // Ä«¸Þ¶ó Èçµé±â ÆÑÅÍ
-    RwReal              fShakeMaxHeight;                        // Ä«¸Þ¶ó Èçµé±â ÃÖ´ëÄ¡ ÆÑÅÍ
+	RwV3d				vPushDir;								// push ë°©í–¥.
+	RwBool				bCameraShake;							// ì¹´ë©”ë¼ í”ë“¤ê¸°.
+    RwReal              fShakeFactor;                           // ì¹´ë©”ë¼ í”ë“¤ê¸° íŒ©í„°
+    RwReal              fShakeMaxHeight;                        // ì¹´ë©”ë¼ í”ë“¤ê¸° ìµœëŒ€ì¹˜ íŒ©í„°
 	SYNCEVENT_HANDLE	hSyncEventId;
 	void				*pProjExtData;
-    RwBool              bHitSoundEcho;                          // Hit SoundÀÇ Echo Àû¿ë À¯¹«
+    RwBool              bHitSoundEcho;                          // Hit Soundì˜ Echo ì ìš© ìœ ë¬´
 
 	SHitStuff& operator = (const SHitStuff& stuff)
 	{
@@ -206,14 +206,14 @@ public:
 
 struct SAttackStuff
 {
-	UAttackAttr			uiType;						// °ø°ÝÀÇ ¸ðµç ¼Ó¼º
+	UAttackAttr			uiType;						// ê³µê²©ì˜ ëª¨ë“  ì†ì„±
 	SERIAL_HANDLE		hAttackerSerialId;			// attacker
 	SERIAL_HANDLE		hDefenderSerialId;			// defender
 	RwUInt8				byAttSeq;					// chain attack sequence
 	SAttackDamageStuff	sDamage;					// damage stuff
-	RwUInt32			uiAttrLogicTblId;			// ¹«±â °ø°Ý : item id, skill °ø°Ý : skill id
+	RwUInt32			uiAttrLogicTblId;			// ë¬´ê¸° ê³µê²© : item id, skill ê³µê²© : skill id
 	RwV3d				vPushDir;
-	RwBool				bAnimSpeedApply;			// °ø°Ý animation speed¸¦ Àû¿ëÇÒ °ÍÀÎ°¡?
+	RwBool				bAnimSpeedApply;			// ê³µê²© animation speedë¥¼ ì ìš©í•  ê²ƒì¸ê°€?
 	RwUInt32			uiSyncEventId;
 	RwV3d				vFinalLoc;
 		
@@ -298,7 +298,7 @@ public:
 #define NTL_MOVEFORM_SWIMMING		1
 #define NTL_MOVEFORM_FLY			2
 #define NTL_MOVEFORM_SPLINE			3
-#define NTL_MOVEFORM_BUS            4               // ¹ö½º ÀÌµ¿
+#define NTL_MOVEFORM_BUS            4               // ë²„ìŠ¤ ì´ë™
 
 
 // move target
@@ -321,9 +321,9 @@ struct SMoveStuff
 	RwUInt8			byForm;							// ground, fly
 	RwUInt8			byFormFlag;						// Walking, running, swimming, etc.
 	RwUInt8			byMoveFlags;					// byMoveDirection
-	RwV3d			vCurrLoc;						// ÀÌµ¿ ÇöÀç À§Ä¡.
-	RwV3d			vDir;							// dashÀÏ °æ¿ì ¹æÇâ vector·Î »ç¿ëµÈ´Ù.
-	RwV3d			vDest;							// mouse ¹× dash ÀÌµ¿ÀÏ °æ¿ì ÃÖÁ¾ ¸ñÀûÁö.
+	RwV3d			vCurrLoc;						// ì´ë™ í˜„ìž¬ ìœ„ì¹˜.
+	RwV3d			vDir;							// dashì¼ ê²½ìš° ë°©í–¥ vectorë¡œ ì‚¬ìš©ëœë‹¤.
+	RwV3d			vDest;							// mouse ë° dash ì´ë™ì¼ ê²½ìš° ìµœì¢… ëª©ì ì§€.
 	RwV3d			vSendDest;						// Second shift destination (on bus)
 	RwReal			fFollowRange;					// follow range
 	SERIAL_HANDLE	hFollowSerialId;				// follow serial
@@ -331,7 +331,7 @@ struct SMoveStuff
 	RwV3d			arrPathNode[DBO_MAX_NEXT_DEST_LOC_COUNT];
 	RwUInt8			byMoveResult;					// Results after moving.
 	RwBool			bSplineGroundCheck;		
-	RwBool			bSplineRunMove;					// run ÀÌµ¿.
+	RwBool			bSplineRunMove;					// run ì´ë™.
 	RwChar			chSpline[NTL_MAX_SPLINE_NAME];
 
 	void Reset(void)
@@ -346,11 +346,11 @@ struct SMoveStuff
 	}
 };
 
-/// Move Sync Á¤º¸¸¦ °¡Áö°í ÀÖ´Â ±¸Á¶Ã¼ (Å¬¶óÀÌ¾ðÆ®¿¡¼­¸¸ »ç¿ëÇÑ´Ù)
+/// Move Sync ì •ë³´ë¥¼ ê°€ì§€ê³  ìžˆëŠ” êµ¬ì¡°ì²´ (í´ë¼ì´ì–¸íŠ¸ì—ì„œë§Œ ì‚¬ìš©í•œë‹¤)
 struct SMoveSyncStuff
 {
-    std::deque<SNtlEventSobMoveSync*>   m_MoveSyncQ;             ///< Move Sync ÆÐÅ¶ Å¥
-    SNtlEventSobMoveSync*               m_pMoveSyncCurr;         ///< ÇöÀç Move Sync°ª    
+    std::deque<SNtlEventSobMoveSync*>   m_MoveSyncQ;             ///< Move Sync íŒ¨í‚· í
+    SNtlEventSobMoveSync*               m_pMoveSyncCurr;         ///< í˜„ìž¬ Move Syncê°’    
 
     SMoveSyncStuff()
     {
@@ -516,26 +516,26 @@ struct SCtrlStuffOperate
 };
 
 /**
-* \brief °×ºí Npc¿¡ ´ëÇÑ Á¤º¸
+* \brief ê²œë¸” Npcì— ëŒ€í•œ ì •ë³´
 */
 struct SCtrlStuffGamble
 {
 	SERIAL_HANDLE	hGambleNpc;
 };
 
-/// ½ºÅÏ Å¸ÀÔ
+/// ìŠ¤í„´ íƒ€ìž…
 struct SCtrlStuffStun
 {
     BYTE    byStunType;
 };
 
-// ¹ö½º ¹× Å»°Í¿¡ ´ëÇÑ Á¤º¸
+// ë²„ìŠ¤ ë° íƒˆê²ƒì— ëŒ€í•œ ì •ë³´
 struct SCtrlStuffRide
 {
     RwUInt32        hTargetSerialId;
 };
 
-/// Pushing »óÅÂ Á¤º¸
+/// Pushing ìƒíƒœ ì •ë³´
 struct SCtrlStuffPushing
 {
     BYTE    byAttackResult;
@@ -543,7 +543,7 @@ struct SCtrlStuffPushing
     RwV3d   vDestPos;
 };
 
-// Vehicle¿¡ ´ëÇÑ Á¤º¸
+// Vehicleì— ëŒ€í•œ ì •ë³´
 
 enum eVehicleEngineMessgeType
 {
@@ -552,14 +552,18 @@ enum eVehicleEngineMessgeType
 	VEHICLE_ENGINE_REG_FUEL,
 	VEHICLE_ENGINE_UNREG_FUEL,
 	VEHICLE_ENGINE_UPDATE_FUEL,
+	VEHICLE_ENGINE_START,
+	VEHICLE_ENGINE_STOP,
 	VEHICLE_ENGINE_END,
+
+	VEHICLE_ENGINE_FAIL_REQUEST_STOP,
 };
 
 struct SCtrlStuffVehicle
 {
 	RwBool	bCreateUpdate;
 	RwBool	bRideOn;
-//	RwBool	bEngineOn; // engine disabled by daneos
+	RwBool	bEngineOn;
 	RwV3d	vSpawnPos;
 	SERIAL_HANDLE hVehicleItem;
 	TBLIDX	idxVehicleItem;
@@ -689,7 +693,7 @@ public:
 	virtual void* GetData(RwReal fTime);
 };
 
-// 3Â÷¿ø ÁÂÇ¥°èÀÇ Time Sequence Å¬·¡½º (by agebreak)
+// 3ì°¨ì› ì¢Œí‘œê³„ì˜ Time Sequence í´ëž˜ìŠ¤ (by agebreak)
 class CNtl3DTimeSequence : public CNtlTimeSequence
 {
     DECLEAR_MEMORY_POOL(CNtl3DTimeSequence, NTL_DEFAULT_MEMORY_POOL);
@@ -706,9 +710,9 @@ protected:
     RwV3d           RecursiveData(RwReal fTime);
 
 protected:
-    RwV3d m_vData;                      ///< ÇöÀç ½ÃÄö½ºÀÇ µ¥ÀÌÅÍ
+    RwV3d m_vData;                      ///< í˜„ìž¬ ì‹œí€€ìŠ¤ì˜ ë°ì´í„°
 
-    static RwV3d m_svCurrData;          ///< Æ÷ÀÎÅÍÇü ¹ÝÈ¯À» À§ÇØ¼­ °¡Áö°í ÀÖ¾î¾ßÇÏ´Â Á¤Àû µ¥ÀÌÅÍ 
+    static RwV3d m_svCurrData;          ///< í¬ì¸í„°í˜• ë°˜í™˜ì„ ìœ„í•´ì„œ ê°€ì§€ê³  ìžˆì–´ì•¼í•˜ëŠ” ì •ì  ë°ì´í„° 
 };
 
 
@@ -724,7 +728,7 @@ private:
 
 	SCtrlStuff	m_sCtrlStuff;
 	SMoveStuff	m_sMoveStuff;
-    SMoveSyncStuff m_sMoveSyncStuff;                ///< Move Sync Á¤º¸¸¦ ´ã°í ÀÖ´Â ±¸Á¶Ã¼
+    SMoveSyncStuff m_sMoveSyncStuff;                ///< Move Sync ì •ë³´ë¥¼ ë‹´ê³  ìžˆëŠ” êµ¬ì¡°ì²´
 	SJumpStuff	m_sJumpStuff;
 	SHitStuff	m_sHitStuff;
 	SSkillStuff m_sSkillStuff;    
@@ -760,7 +764,7 @@ public:
 
 class CNtlSobActor;
 
-// actor ÁÂÇ¥ º¸Á¤¿¡ °üÇÑ ÇÔ¼ö.
+// actor ì¢Œí‘œ ë³´ì •ì— ê´€í•œ í•¨ìˆ˜.
 void Behavior_AdjustPositionJumping(CNtlSobActor *pActor, const RwV3d *pTarLoc);
 
 

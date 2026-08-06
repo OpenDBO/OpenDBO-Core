@@ -110,13 +110,13 @@ void CNtlFSMVehicleActIdleState::Exit( void )
 
 void CNtlFSMVehicleActIdleState::Update( RwReal fElapsed )
 {
-	/*RwV3d vCurPos = m_pVehicle->GetPosition();
+	RwV3d vCurPos = m_pVehicle->GetPosition();
 
 	SWorldHeightStuff sHStuff;
 	Logic_GetWorldHeight( &vCurPos, sHStuff );
 	vCurPos.y = sHStuff.fFinialHeight + m_pVehicle->GetRideOnHeight() / 100.f;
 
-	m_pVehicle->SetPosition( &vCurPos );*/
+	m_pVehicle->SetPosition( &vCurPos );
 }
 
 RwUInt32 CNtlFSMVehicleActIdleState::HandleEvents( RWS::CMsg &pMsg )
@@ -129,6 +129,31 @@ RwUInt32 CNtlFSMVehicleActIdleState::HandleEvents( RWS::CMsg &pMsg )
 		pMoveStuff->byMoveFlags = NTL_MOVE_NONE;
 
 		return NTL_FSM_EVENTRES_QUEUING_REFRESH;
+	}
+	else if (pMsg.Id == g_EventKeyboardMove ||
+		pMsg.Id == g_EventTerrainClick)
+	{
+		CNtlBeCharData* pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData());
+		SCtrlStuff* pCtrlStuff = pBeData->GetCtrlStuff();
+
+		TBLIDX idxFuel = Logic_GetRegisterFuelItemTableIndex();
+
+		if (!pCtrlStuff->sVehicle.bEngineOn &&
+			!API_GetSLPacketLockManager()->IsLock_withoutMessage(GU_VEHICLE_ENGINE_START_RES))
+		{
+			API_GetSLPacketGenerator()->SendVehicle_EngineStartReq(idxFuel);
+
+			return NTL_FSM_EVENTRES_QUEUING;
+		}
+	}
+	else if (pMsg.Id == g_EventSobVehicleEngine)
+	{
+		SNtlEventSobVehicleEngine* pData = (SNtlEventSobVehicleEngine*)pMsg.pData;
+
+		if (VEHICLE_ENGINE_START == pData->byMessage)
+		{
+			Finish();
+		}
 	}
 
 	return CNtlFSMVehicleActStateBase::HandleEvents( pMsg );
@@ -154,25 +179,30 @@ void CNtlFSMVehicleMoveState::Enter( void )
 {
 	CNtlBeCharData* pBeData = reinterpret_cast< CNtlBeCharData* >( m_pActor->GetBehaviorData() );
 
-	SMoveStuff* pMoveStuff = pBeData->GetMoveStuff();
+	SCtrlStuff* pCtrlStuff = pBeData->GetCtrlStuff();
 
-	if ( NTL_MOVETARGET_DIR == pMoveStuff->byType )
+	if (pCtrlStuff->sVehicle.bEngineOn)
 	{
-		m_byMoveType = NTL_MOVETARGET_DIR;
+		SMoveStuff* pMoveStuff = pBeData->GetMoveStuff();
 
-		CNtlBehaviorVehicleKeyboardMove* pBehavior = NTL_NEW CNtlBehaviorVehicleKeyboardMove;
-		AddBehavior( pBehavior );
-	}
-	else if ( NTL_MOVETARGET_LOC == pMoveStuff->byType )
-	{
-		m_byMoveType = NTL_MOVETARGET_LOC;
+		if (NTL_MOVETARGET_DIR == pMoveStuff->byType)
+		{
+			m_byMoveType = NTL_MOVETARGET_DIR;
 
-		CNtlBehaviorVehicleMouseMove* pBehavior = NTL_NEW CNtlBehaviorVehicleMouseMove;
-		AddBehavior( pBehavior );
-	}
-	else
-	{
-		Finish();
+			CNtlBehaviorVehicleKeyboardMove* pBehavior = NTL_NEW CNtlBehaviorVehicleKeyboardMove;
+			AddBehavior(pBehavior);
+		}
+		else if (NTL_MOVETARGET_LOC == pMoveStuff->byType)
+		{
+			m_byMoveType = NTL_MOVETARGET_LOC;
+
+			CNtlBehaviorVehicleMouseMove* pBehavior = NTL_NEW CNtlBehaviorVehicleMouseMove;
+			AddBehavior(pBehavior);
+		}
+		else
+		{
+			Finish();
+		}
 	}
 }
 
@@ -180,18 +210,26 @@ void CNtlFSMVehicleMoveState::Exit( void )
 {
 }
 
-void CNtlFSMVehicleMoveState::Update( RwReal fElapsed )
+void CNtlFSMVehicleMoveState::Update(RwReal fElapsed)
 {
-	CNtlFSMVehicleActStateBase::Update( fElapsed );
+	CNtlFSMVehicleActStateBase::Update(fElapsed);
 
-	CNtlBeCharData* pBeData = reinterpret_cast< CNtlBeCharData* > ( m_pActor->GetBehaviorData() );
+	CNtlBeCharData* pBeData = reinterpret_cast<CNtlBeCharData*> (m_pActor->GetBehaviorData());
 
-	SMoveStuff* pMoveStuff = pBeData->GetMoveStuff();
-	if ( pMoveStuff->byMoveResult & NTL_MOVE_RESULT_FALLING )
+	SCtrlStuff* pCtrlStuff = pBeData->GetCtrlStuff();
+	if (!pCtrlStuff->sVehicle.bEngineOn)
 	{
 		Finish();
 
-		SetNextStateId( NTL_FSMSID_FALLING );
+		return;
+	}
+
+	SMoveStuff* pMoveStuff = pBeData->GetMoveStuff();
+	if (pMoveStuff->byMoveResult & NTL_MOVE_RESULT_FALLING)
+	{
+		Finish();
+
+		SetNextStateId(NTL_FSMSID_FALLING);
 
 		return;
 	}
@@ -252,13 +290,27 @@ CNtlFSMVehicleFollowState::CNtlFSMVehicleFollowState( void )
 	SetStateName( NTL_FSMSN_FOLLOW );
 }
 
-void CNtlFSMVehicleFollowState::Enter( void )
+void CNtlFSMVehicleFollowState::Enter(void)
 {
-	CNtlBeCharData* pBeData = reinterpret_cast< CNtlBeCharData* >( m_pActor->GetBehaviorData() );
+	CNtlBeCharData* pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData());
 	SCtrlStuff* pCtrlStuff = pBeData->GetCtrlStuff();
 
-	CNtlBehaviorVehicleFollowMove* pBehavior = NTL_NEW CNtlBehaviorVehicleFollowMove;
-	AddBehavior( pBehavior );
+	if (pCtrlStuff->sVehicle.bEngineOn)
+	{
+		CNtlBehaviorVehicleFollowMove* pBehavior = NTL_NEW CNtlBehaviorVehicleFollowMove;
+
+		AddBehavior(pBehavior);
+	}
+	else
+	{
+		TBLIDX idxFuel = Logic_GetRegisterFuelItemTableIndex();
+
+		API_GetSLPacketGenerator()->SendVehicle_EngineStartReq(idxFuel);
+
+		SetNextStateId(NTL_FSMSID_FOLLOW);
+
+		Finish();
+	}
 }
 
 void CNtlFSMVehicleFollowState::Exit( void )
@@ -266,11 +318,17 @@ void CNtlFSMVehicleFollowState::Exit( void )
 	CNtlFSMVehicleActStateBase::Exit();
 }
 
-void CNtlFSMVehicleFollowState::Update( RwReal fElapsed )
+void CNtlFSMVehicleFollowState::Update(RwReal fElapsed)
 {
-	CNtlFSMVehicleActStateBase::Update( fElapsed );
+	CNtlFSMVehicleActStateBase::Update(fElapsed);
 
-	CNtlBeCharData* pBeData = reinterpret_cast< CNtlBeCharData* > ( m_pActor->GetBehaviorData() );
+	CNtlBeCharData* pBeData = reinterpret_cast<CNtlBeCharData*> (m_pActor->GetBehaviorData());
+
+	SCtrlStuff* pCtrlStuff = pBeData->GetCtrlStuff();
+	if (!pCtrlStuff->sVehicle.bEngineOn)
+	{
+		Finish();
+	}
 }
 
 RwUInt32 CNtlFSMVehicleFollowState::HandleEvents( RWS::CMsg &pMsg )
