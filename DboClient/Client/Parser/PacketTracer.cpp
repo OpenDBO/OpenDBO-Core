@@ -156,7 +156,7 @@ void CPacketTracer::Create()
 
 	SetRangeOpCode(0, 0x7fffffff);
 
-#ifdef _ENABLE_PACKET_TRACE_	/// «¡∑Œ≈‰ƒ›¿Ã ∫Ø∞Êµ…ºˆ¿÷¥Ÿ. ¿⁄µø∫ÙµÂ∞° Ω«∆–«“ ºˆ ¿÷¿Ω
+#ifdef _ENABLE_PACKET_TRACE_	/// ÌîÑÎ°úÌÜ†ÏΩúÏù¥ Î≥ÄÍ≤ΩÎê†ÏàòÏûàÎã§. ÏûêÎèôÎπåÎìúÍ∞Ä Ïã§Ìå®Ìï† Ïàò ÏûàÏùå
 	m_mapPacketName.insert(PacketEnumNameMap::value_type(AU_LOGIN_RES, "AU_LOGIN_RES"));
 	m_mapPacketName.insert(PacketEnumNameMap::value_type(AU_LOGIN_DISCONNECT_RES, "AU_LOGIN_DISCONNECT_RES"));
 
@@ -270,11 +270,11 @@ void CPacketTracer::Create()
 	PACKETNAME_INSERT( GU_ITEM_MOVE_STACK_RES );
 	PACKETNAME_INSERT( GU_ITEM_DELETE );
 	PACKETNAME_INSERT( GU_ITEM_DELETE_RES );
-	PACKETNAME_INSERT( GU_ITEM_EQUIP_REPAIR_RES );			// ºˆ∏Æ øœ∑· ¿¿¥‰
+	PACKETNAME_INSERT( GU_ITEM_EQUIP_REPAIR_RES );			// ÏàòÎ¶¨ ÏôÑÎ£å ÏùëÎãµ
 	PACKETNAME_INSERT( GU_ITEM_REPAIR_RES );
-	PACKETNAME_INSERT( GU_ITEM_USE_RES ); // æ∆¿Ã≈€ ªÁøÎ ø‰√ªø° ¥Î«— ∞·∞˙
-	PACKETNAME_INSERT( GU_ITEM_CASTING_CANCELED );		// æ∆¿Ã≈€ ƒ≥Ω∫∆√¿Ã √Îº“µ«æ˙¿Ω¿ª æÀ∏≤
-	PACKETNAME_INSERT( GU_ITEM_CASTING_DELAYED_NFY );					// æ∆¿Ã≈€ ƒ≥Ω∫∆√¿Ã ¡ˆø¨µ«æ˙¿Ω¿ª æÀ∏≤
+	PACKETNAME_INSERT( GU_ITEM_USE_RES ); // ÏïÑÏù¥ÌÖú ÏÇ¨Ïö© ÏöîÏ≤≠Ïóê ÎåÄÌïú Í≤∞Í≥º
+	PACKETNAME_INSERT( GU_ITEM_CASTING_CANCELED );		// ÏïÑÏù¥ÌÖú Ï∫êÏä§ÌåÖÏù¥ Ï∑®ÏÜåÎêòÏóàÏùåÏùÑ ÏïåÎ¶º
+	PACKETNAME_INSERT( GU_ITEM_CASTING_DELAYED_NFY );					// ÏïÑÏù¥ÌÖú Ï∫êÏä§ÌåÖÏù¥ ÏßÄÏó∞ÎêòÏóàÏùåÏùÑ ÏïåÎ¶º
 	PACKETNAME_INSERT( GU_ITEM_DUR_DOWN );
 	PACKETNAME_INSERT( GU_ITEM_DUR_UPDATE );
 	PACKETNAME_INSERT( GU_ITEM_STACK_UPDATE );
@@ -289,7 +289,7 @@ void CPacketTracer::Create()
 	PACKETNAME_INSERT( GU_UPDATE_CHAR_LEVEL );
 	PACKETNAME_INSERT( GU_UPDATE_CHAR_SPEED );
 	PACKETNAME_INSERT( GU_UPDATE_CHAR_ATTACK_SPEEDRATE );
-	PACKETNAME_INSERT( GU_UPDATE_ITEM_EQUIP );	// neighbor pcø°∏∏ ¿¸¥ﬁ«—¥Ÿ.
+	PACKETNAME_INSERT( GU_UPDATE_ITEM_EQUIP );	// neighbor pcÏóêÎßå Ï†ÑÎã¨ÌïúÎã§.
 	PACKETNAME_INSERT( GU_UPDATE_ITEM_DELETED );	// 
 	PACKETNAME_INSERT( GU_UPDATE_CHAR_LP );
 	PACKETNAME_INSERT( GU_UPDATE_CHAR_EP );
@@ -297,8 +297,8 @@ void CPacketTracer::Create()
 	PACKETNAME_INSERT( GU_UPDATE_CHAR_LP_EP );
 	PACKETNAME_INSERT( GU_UPDATE_CHAR_ZENNY );
 	PACKETNAME_INSERT( GU_UPDATE_CHAR_MUDOSA_POINT );
-	PACKETNAME_INSERT( GU_SYSTEM_DISPLAY_TEXT ); // ≈ÿΩ∫∆Æ µΩ∫«√∑π¿Ã
-	PACKETNAME_INSERT( GU_SYSTEM_DISPLAY_RESULTCODE );	// ResultCode ≈ÿΩ∫∆Æ∏¶ ≈¨∂Û¿Ãæ∆Æø° √‚∑¬«—¥Ÿ.
+	PACKETNAME_INSERT( GU_SYSTEM_DISPLAY_TEXT ); // ÌÖçÏä§Ìä∏ ÎîîÏä§ÌîåÎ†àÏù¥
+	PACKETNAME_INSERT( GU_SYSTEM_DISPLAY_RESULTCODE );	// ResultCode ÌÖçÏä§Ìä∏Î•º ÌÅ¥ÎùºÏù¥Ïñ∏Ìä∏Ïóê Ï∂úÎ†•ÌïúÎã§.
 	PACKETNAME_INSERT( GU_SHOP_START_RES );
 	PACKETNAME_INSERT( GU_SHOP_BUY_RES );
 	PACKETNAME_INSERT( GU_SHOP_SELL_RES );
@@ -340,49 +340,49 @@ void CPacketTracer::Create()
 	PACKETNAME_INSERT( GU_BANK_ZENNY_RES );
 	PACKETNAME_INSERT( GU_BANK_BUY_RES );
 	PACKETNAME_INSERT( GU_BANK_ITEM_DELETE_RES );
-	PACKETNAME_INSERT( GU_SOCIAL_ACTION ); // Social Action ªÁøÎ
-	PACKETNAME_INSERT( GU_SCOUTER_INDICATOR_RES ); // Ω∫ƒ´øÏ≈Õ ¿¸≈ı∑¬√¯¡§ ∞·∞˙
+	PACKETNAME_INSERT( GU_SOCIAL_ACTION ); // Social Action ÏÇ¨Ïö©
+	PACKETNAME_INSERT( GU_SCOUTER_INDICATOR_RES ); // Ïä§Ïπ¥Ïö∞ÌÑ∞ Ï†ÑÌà¨Î†•Ï∏°Ï†ï Í≤∞Í≥º
 	PACKETNAME_INSERT( GU_SCOUTER_PREDICT_RES );
 	PACKETNAME_INSERT( GU_SCOUTER_EQUIP_CHECK_RES );
 	PACKETNAME_INSERT( GU_SCOUTER_CHIP_REMOVE_ALL_RES );
-	PACKETNAME_INSERT( GU_TS_CONFIRM_STEP_RES );							// ∆Æ∏Æ∞≈ ¥‹∞Ë ¡¯«‡ ¿¿¥‰
-	PACKETNAME_INSERT( GU_TS_UPDATE_SYNC_NFY );							// ∆Æ∏Æ∞≈ µø±‚ ¡¯«‡ æÀ∏≤
-	PACKETNAME_INSERT( GU_TS_UPDATE_STATE );								// ∆Æ∏Æ∞≈ Ω«∆– ªÛ≈¬ æ˜µ•¿Ã∆Æ
-	PACKETNAME_INSERT( GU_TS_UPDATE_EVENT_NFY );							// ∆Æ∏Æ∞≈ ¿Ã∫•∆Æ æ˜µ•¿Ã∆Æ
-	PACKETNAME_INSERT( GU_TS_EXCUTE_TRIGGER );							// ≈¨∂Û¿Ãæ∆Æ ∆Æ∏Æ∞≈ ∞≠¡¶ Ω««‡
+	PACKETNAME_INSERT( GU_TS_CONFIRM_STEP_RES );							// Ìä∏Î¶¨Í±∞ Îã®Í≥Ñ ÏßÑÌñâ ÏùëÎãµ
+	PACKETNAME_INSERT( GU_TS_UPDATE_SYNC_NFY );							// Ìä∏Î¶¨Í±∞ ÎèôÍ∏∞ ÏßÑÌñâ ÏïåÎ¶º
+	PACKETNAME_INSERT( GU_TS_UPDATE_STATE );								// Ìä∏Î¶¨Í±∞ Ïã§Ìå® ÏÉÅÌÉú ÏóÖÎç∞Ïù¥Ìä∏
+	PACKETNAME_INSERT( GU_TS_UPDATE_EVENT_NFY );							// Ìä∏Î¶¨Í±∞ Ïù¥Î≤§Ìä∏ ÏóÖÎç∞Ïù¥Ìä∏
+	PACKETNAME_INSERT( GU_TS_EXCUTE_TRIGGER );							// ÌÅ¥ÎùºÏù¥Ïñ∏Ìä∏ Ìä∏Î¶¨Í±∞ Í∞ïÏ†ú Ïã§Ìñâ
 	PACKETNAME_INSERT( GU_TS_EXCUTE_TRIGGER_OBJECT_RES );				//
 	PACKETNAME_INSERT( GU_TS_TRIGGER_OBJECT_DIALOG_NFY );				// TriggerObject Conversation
 	PACKETNAME_INSERT( GU_TS_PC_DIALOG_NFY );							// PC Conversation
 	PACKETNAME_INSERT( GU_TS_SKIP_CONTAINER );
-	PACKETNAME_INSERT( GU_QUEST_ITEM_CREATE_NFY );						// ƒ˘Ω∫∆Æ æ∆¿Ã≈€ ª˝º∫ æÀ∏≤
-	PACKETNAME_INSERT( GU_QUEST_ITEM_DELETE_NFY );						// ƒ˘Ω∫∆Æ æ∆¿Ã≈€ ªË¡¶ æÀ∏≤
-	PACKETNAME_INSERT( GU_QUEST_ITEM_UPDATE_NFY );						// ƒ˘Ω∫∆Æ æ∆¿Ã≈€ ∫Ø∞Ê æÀ∏≤
-	PACKETNAME_INSERT( GU_QUEST_ITEM_MOVE_RES );							// ƒ˘Ω∫∆Æ æ∆¿Ã≈€ ¿Ãµø ¿¿¥‰
-	PACKETNAME_INSERT( GU_QUEST_ITEM_DELETE_RES );						// ƒ˘Ω∫∆Æ æ∆¿Ã≈€ ªË¡¶ ¿¿¥‰
-	PACKETNAME_INSERT( GU_QUEST_SVREVT_START_NFY );						// ƒ˘Ω∫∆Æ ¿Ã∫•∆Æ Ω√¿€
-	PACKETNAME_INSERT( GU_QUEST_SVREVT_END_NFY );						// ƒ˘Ω∫∆Æ ¿Ã∫•∆Æ ¡æ∑·
-	PACKETNAME_INSERT( GU_QUEST_SVREVT_UPDATE_NFY );						// ƒ˘Ω∫∆Æ ¿Ã∫•∆Æ æ˜µ•¿Ã∆Æ
-	PACKETNAME_INSERT( GU_QUEST_GIVEUP_RES );							// ƒ˘Ω∫∆Æ ∆˜±‚ ¿¿¥‰
-	PACKETNAME_INSERT( GU_QUEST_SHARE_NFY );								// ƒ˘Ω∫∆Æ ∞¯¿Ø
-	PACKETNAME_INSERT( GU_QUEST_RESET_NFY );								// ƒ˘Ω∫∆Æ¿« ¡ˆ¡§µ» π¸¿ß∏∏≈≠ ¡¯«‡ ¡§∫∏øÕ øœ∑· ¡§∫∏∏¶ ªË¡¶«—¥Ÿ.
-	PACKETNAME_INSERT( GU_QUEST_OBJECT_VISIT_RES );						// npc ); tobject πÊπÆ ¿Ã∫•∆Æ
-	PACKETNAME_INSERT( GU_QUEST_FORCED_COMPLETION_NFY );					// ƒ˘Ω∫∆Æ ∞≠¡¶ øœ∑· º≥¡§(≈◊Ω∫∆ÆøÎ)
-	PACKETNAME_INSERT( GU_FREEBATTLE_CHALLENGE_RES );					// «¡∏ÆπË∆≤ ¥Î¿¸ Ω≈√ª ¿¿¥‰
-	PACKETNAME_INSERT( GU_FREEBATTLE_ACCEPT_REQ );						// «¡∏ÆπË∆≤ ¥Î¿¸ºˆ∂Ù ø‰√ª
-	PACKETNAME_INSERT( GU_FREEBATTLE_CANCEL_NFY );						// «¡∏ÆπË∆≤ ¥Î¿¸ √Îº“
-	PACKETNAME_INSERT( GU_FREEBATTLE_START_NFY );						// «¡∏ÆπË∆≤ ¥Î¿¸ Ω√¿€
-	PACKETNAME_INSERT( GU_FREEBATTLE_OUTSIDE_NFY );						// «¡∏ÆπË∆≤ ¥Î¿¸π¸¿ß π˛æÓ≥≤
-	PACKETNAME_INSERT( GU_FREEBATTLE_INSIDE_NFY );						// «¡∏ÆπË∆≤ ¥Î¿¸π¸¿ß µÈæÓø»
-	PACKETNAME_INSERT( GU_FREEBATTLE_END_NFY );							// «¡∏ÆπË∆≤ ¥Î¿¸ ¡æ∑·
-	PACKETNAME_INSERT( GU_QUICK_SLOT_UPDATE_RES );						// ƒ¸ΩΩ∑‘æ˜µ•¿Ã∆Æ
-	PACKETNAME_INSERT( GU_QUICK_SLOT_DEL_NFY );							// ƒ¸ΩΩ∑‘ ªË¡¶	
+	PACKETNAME_INSERT( GU_QUEST_ITEM_CREATE_NFY );						// ÌÄòÏä§Ìä∏ ÏïÑÏù¥ÌÖú ÏÉùÏÑ± ÏïåÎ¶º
+	PACKETNAME_INSERT( GU_QUEST_ITEM_DELETE_NFY );						// ÌÄòÏä§Ìä∏ ÏïÑÏù¥ÌÖú ÏÇ≠Ï†ú ÏïåÎ¶º
+	PACKETNAME_INSERT( GU_QUEST_ITEM_UPDATE_NFY );						// ÌÄòÏä§Ìä∏ ÏïÑÏù¥ÌÖú Î≥ÄÍ≤Ω ÏïåÎ¶º
+	PACKETNAME_INSERT( GU_QUEST_ITEM_MOVE_RES );							// ÌÄòÏä§Ìä∏ ÏïÑÏù¥ÌÖú Ïù¥Îèô ÏùëÎãµ
+	PACKETNAME_INSERT( GU_QUEST_ITEM_DELETE_RES );						// ÌÄòÏä§Ìä∏ ÏïÑÏù¥ÌÖú ÏÇ≠Ï†ú ÏùëÎãµ
+	PACKETNAME_INSERT( GU_QUEST_SVREVT_START_NFY );						// ÌÄòÏä§Ìä∏ Ïù¥Î≤§Ìä∏ ÏãúÏûë
+	PACKETNAME_INSERT( GU_QUEST_SVREVT_END_NFY );						// ÌÄòÏä§Ìä∏ Ïù¥Î≤§Ìä∏ Ï¢ÖÎ£å
+	PACKETNAME_INSERT( GU_QUEST_SVREVT_UPDATE_NFY );						// ÌÄòÏä§Ìä∏ Ïù¥Î≤§Ìä∏ ÏóÖÎç∞Ïù¥Ìä∏
+	PACKETNAME_INSERT( GU_QUEST_GIVEUP_RES );							// ÌÄòÏä§Ìä∏ Ìè¨Í∏∞ ÏùëÎãµ
+	PACKETNAME_INSERT( GU_QUEST_SHARE_NFY );								// ÌÄòÏä§Ìä∏ Í≥µÏú†
+	PACKETNAME_INSERT( GU_QUEST_RESET_NFY );								// ÌÄòÏä§Ìä∏Ïùò ÏßÄÏ†ïÎêú Î≤îÏúÑÎßåÌÅº ÏßÑÌñâ Ï†ïÎ≥¥ÏôÄ ÏôÑÎ£å Ï†ïÎ≥¥Î•º ÏÇ≠Ï†úÌïúÎã§.
+	PACKETNAME_INSERT( GU_QUEST_OBJECT_VISIT_RES );						// npc ); tobject Î∞©Î¨∏ Ïù¥Î≤§Ìä∏
+	PACKETNAME_INSERT( GU_QUEST_FORCED_COMPLETION_NFY );					// ÌÄòÏä§Ìä∏ Í∞ïÏ†ú ÏôÑÎ£å ÏÑ§Ï†ï(ÌÖåÏä§Ìä∏Ïö©)
+	PACKETNAME_INSERT( GU_FREEBATTLE_CHALLENGE_RES );					// ÌîÑÎ¶¨Î∞∞ÌãÄ ÎåÄÏ†Ñ Ïã†Ï≤≠ ÏùëÎãµ
+	PACKETNAME_INSERT( GU_FREEBATTLE_ACCEPT_REQ );						// ÌîÑÎ¶¨Î∞∞ÌãÄ ÎåÄÏ†ÑÏàòÎùΩ ÏöîÏ≤≠
+	PACKETNAME_INSERT( GU_FREEBATTLE_CANCEL_NFY );						// ÌîÑÎ¶¨Î∞∞ÌãÄ ÎåÄÏ†Ñ Ï∑®ÏÜå
+	PACKETNAME_INSERT( GU_FREEBATTLE_START_NFY );						// ÌîÑÎ¶¨Î∞∞ÌãÄ ÎåÄÏ†Ñ ÏãúÏûë
+	PACKETNAME_INSERT( GU_FREEBATTLE_OUTSIDE_NFY );						// ÌîÑÎ¶¨Î∞∞ÌãÄ ÎåÄÏ†ÑÎ≤îÏúÑ Î≤óÏñ¥ÎÇ®
+	PACKETNAME_INSERT( GU_FREEBATTLE_INSIDE_NFY );						// ÌîÑÎ¶¨Î∞∞ÌãÄ ÎåÄÏ†ÑÎ≤îÏúÑ Îì§Ïñ¥Ïò¥
+	PACKETNAME_INSERT( GU_FREEBATTLE_END_NFY );							// ÌîÑÎ¶¨Î∞∞ÌãÄ ÎåÄÏ†Ñ Ï¢ÖÎ£å
+	PACKETNAME_INSERT( GU_QUICK_SLOT_UPDATE_RES );						// ÌÄµÏä¨Î°ØÏóÖÎç∞Ïù¥Ìä∏
+	PACKETNAME_INSERT( GU_QUICK_SLOT_DEL_NFY );							// ÌÄµÏä¨Î°Ø ÏÇ≠Ï†ú	
 	PACKETNAME_INSERT( GU_QUICK_SLOT_INFO );								// QuickSlot Load
 	PACKETNAME_INSERT( GU_PET_CHAR_INFO );
 	PACKETNAME_INSERT( GU_PET_SKILL_INFO );
 	PACKETNAME_INSERT( GU_PET_INFO_END );
-	PACKETNAME_INSERT( GU_PET_DESPAWNED_NFY );							// ∆Í¿« ªÁ∂Û¡¸
-	PACKETNAME_INSERT( GU_PET_DISMISS_PET_RES );							// ∆Í¿« º“»Ø √Îº“ ø‰√ª ∞·∞˙
-	PACKETNAME_INSERT( GU_ACTION_REPORT_MESSAGE );						// «•Ω√«œ∞Ì ΩÕ¿∫ ∏ﬁºº¡ˆ∏¶ ∏Æ¡Æ∆Æ ƒ⁄µÂ ¿Œµ¶Ω∫∏¶ √∑∫Œ«œø© ∫∏≥ª∏È ≈¨∂Û¿Ãæ∆Æ¥¬ «•Ω√«—¥Ÿ.
+	PACKETNAME_INSERT( GU_PET_DESPAWNED_NFY );							// Ìé´Ïùò ÏÇ¨ÎùºÏßê
+	PACKETNAME_INSERT( GU_PET_DISMISS_PET_RES );							// Ìé´Ïùò ÏÜåÌôò Ï∑®ÏÜå ÏöîÏ≤≠ Í≤∞Í≥º
+	PACKETNAME_INSERT( GU_ACTION_REPORT_MESSAGE );						// ÌëúÏãúÌïòÍ≥† Ïã∂ÏùÄ Î©îÏÑ∏ÏßÄÎ•º Î¶¨Ï†∏Ìä∏ ÏΩîÎìú Ïù∏Îç±Ïä§Î•º Ï≤®Î∂ÄÌïòÏó¨ Î≥¥ÎÇ¥Î©¥ ÌÅ¥ÎùºÏù¥Ïñ∏Ìä∏Îäî ÌëúÏãúÌïúÎã§.
 	PACKETNAME_INSERT( GU_TRADE_START_NFY );
 	PACKETNAME_INSERT( GU_TRADE_START_RES );
 	PACKETNAME_INSERT( GU_TRADE_OK_REQ );
@@ -399,72 +399,72 @@ void CPacketTracer::Create()
 	PACKETNAME_INSERT( GU_TRADE_CANCEL_NFY );
 	PACKETNAME_INSERT( GU_TRADE_CANCEL_RES );
 	PACKETNAME_INSERT( GU_TRADE_DENY_RES );
-	PACKETNAME_INSERT( GU_GUILD_NAME_CHANGED_NFY );					// ±ÊµÂ ¿Ã∏ß ∫Ø∞Ê æÀ∏≤
-	PACKETNAME_INSERT( GU_GUILD_CREATE_RES );						// ±ÊµÂ ª˝º∫ ø‰√ª ∞·∞˙
-	PACKETNAME_INSERT( GU_GUILD_INVITE_RES );						// ±ÊµÂ √ ¥Î ∞·∞˙
-	PACKETNAME_INSERT( GU_TOBJECT_UPDATE_STATE );						// ∆Æ∏Æ∞≈ ø¿∫Í¡ß∆Æ ªÛ≈¬ æ˜µ•¿Ã∆Æ
-	PACKETNAME_INSERT( GU_TOBJECT_ACTION_ATTACK );						// ∆Æ∏Æ∞≈ ø¿∫Í¡ß∆Æ µ•πÃ¡ˆ
-	PACKETNAME_INSERT( GU_TUTORIAL_HINT_UPDATE_RES );					// »˘∆Æ «√∑°±◊ æ˜µ•¿Ã∆Æ
-	PACKETNAME_INSERT( GU_TELECAST_MESSAGE_BEG_NFY );					// πÊº€ ∏ﬁΩ√¡ˆ ≈Î¡ˆ Ω√¿€
-	PACKETNAME_INSERT( GU_TELECAST_MESSAGE_END_NFY );					// πÊº€ ∏ﬁΩ√¡ˆ ≈Î¡ˆ ¡æ∑·
-	PACKETNAME_INSERT( GU_BROAD_MESSAGE_BEG_NFY );						// πÊº€ ∏ﬁΩ√¡ˆ Ω√¿€
-	PACKETNAME_INSERT( GU_BROAD_MESSAGE_END_NFY );						// πÊº€ ∏ﬁΩ√¡ˆ ≥°
-	PACKETNAME_INSERT( GU_MINI_NARRATION_NFY );							// πÃ¥œ≥™∑π¿Ãº«
-	PACKETNAME_INSERT( GU_PROGRESS_MESSAGE_NFY );						// ≈∏¿”∏”Ω≈ ¡¯«‡ ∏ﬁΩ√¡ˆ ≈Î¡ˆ
-	PACKETNAME_INSERT( GU_DIRECTION_INDICATE_NFY );						// πÊ«‚¡ˆΩ√ ≈Î¡ˆ
-	PACKETNAME_INSERT( GU_TIMEQUEST_START_NFY );							// ≈∏¿”∏”Ω≈ ƒ˘Ω∫∆Æ Ω√¿€ ≈Î¡ˆ
-	PACKETNAME_INSERT( GU_TIMEQUEST_START_EXCEPTION_NFY );				// ≈∏¿”∏”Ω≈ ƒ˘Ω∫∆Æ ø˘µÂø° ¡¯¿‘ Ω«∆–«‘(º∫∞¯Ω√ø°¥¬ ¿¸º€µ«¡ˆ æ ¥¬¥Ÿ.)
-	PACKETNAME_INSERT( GU_TIMEQUEST_LEAVE_NFY );							// ≈∏¿”∏”Ω≈ ƒ˘Ω∫∆Æ ≈¿Â ≈Î¡ˆ
-	PACKETNAME_INSERT( GU_TIMEQUEST_COUNTDOWN_NFY );						// ≈∏¿”∏”Ω≈ ƒ˘Ω∫∆Æ ƒ´øÓ∆Æ¥ŸøÓ ≈Î¡ˆ
-	PACKETNAME_INSERT( GU_TIMEQUEST_REWARD_NFY );						// ≈∏¿”∏”Ω≈ ƒ˘Ω∫∆Æ ∫∏ªÛ ≈Î¡ˆ
-	PACKETNAME_INSERT( GU_TIMEQUEST_INFORMATION_NFY );				// ≈∏¿”∏”Ω≈ ƒ˘Ω∫∆Æ Ω∫≈◊¿Ã¡ˆ ¡§∫∏ ≈Î¡ˆ
-	PACKETNAME_INSERT( GU_TIMEQUEST_UPDATE_GAME_STATE );					// ≈∏¿”∏”Ω≈ ƒ˘Ω∫∆Æ ∞‘¿” ªÛ≈¬ æ˜µ•¿Ã∆Æ
-	PACKETNAME_INSERT( GU_TIMEQUEST_UPDATE_KILL_COUNT );					// ≈∏¿”∏”Ω≈ ƒ˘Ω∫∆Æ «√∑π¿ÃæÓ ≈≥ ƒ´øÓ∆Æ æ˜µ•¿Ã∆Æ
-	PACKETNAME_INSERT( GU_TIMEQUEST_UPDATE_COUPON_COUNT );				// ≈∏¿”∏”Ω≈ ƒ˘Ω∫∆Æ ƒÌ∆˘¡§∫∏ æ˜µ•¿Ã∆Æ
-	PACKETNAME_INSERT( GU_TIMEQUEST_UPDATE_TMQ_POINT );					// ≈∏¿”∏”Ω≈ ƒ˘Ω∫∆Æ TMQ ∆˜¿Œ∆Æ æ˜µ•¿Ã∆Æ
-	PACKETNAME_INSERT( GU_TIMEQUEST_UPDATE_GAME_TIME );					// ≈∏¿”∏”Ω≈ ƒ˘Ω∫∆Æ ∞‘¿” Ω√∞£ æ˜µ•¿Ã∆Æ
-	PACKETNAME_INSERT( GU_RANKBATTLE_INFO_RES );							// ±‚∫ª ¡§∫∏
-	PACKETNAME_INSERT( GU_RANKBATTLE_JOIN_RES );							// Ω≈√ª
-	PACKETNAME_INSERT( GU_RANKBATTLE_JOIN_NFY );							// member ø°∞‘ Ω≈√ª æÀ∏≤
-	PACKETNAME_INSERT( GU_RANKBATTLE_LEAVE_RES );						// √Îº“
-	PACKETNAME_INSERT( GU_RANKBATTLE_LEAVE_NFY );						// √Îº“ ∆ƒ∆ºø¯ æÀ∏≤
-	PACKETNAME_INSERT( GU_RANKBATTLE_MATCH_START_NFY );					// ∞Ê±‚ Ω√¿€
-	PACKETNAME_INSERT( GU_RANKBATTLE_MATCH_CANCELED_NFY );				// ∞Ê±‚∞° √Îº“µ 
-	PACKETNAME_INSERT( GU_RANKBATTLE_BATTLE_STATE_UPDATE_NFY );			// RankBattle Battle State∏¶ æ˜µ•¿Ã∆Æ(∞Ê±‚¿Â¿« ªÛ≈¬)
-	PACKETNAME_INSERT( GU_RANKBATTLE_BATTLE_TEAM_INFO_NFY );				// RankBattle Team ¡§∫∏∏¶ æÀ∏≤
-	PACKETNAME_INSERT( GU_RANKBATTLE_BATTLE_PLAYER_STATE_NFY );			// RankBattle Player¿« ªÛ≈¬ æÀ∏≤(¿Âø‹ ); ¡◊¿ΩµÓ)
-	PACKETNAME_INSERT( GU_RANKBATTLE_BATTLE_KILLSCORE_UPDATE_NFY );		// RankBattle KillScore æ˜µ•¿Ã∆Æ
-	PACKETNAME_INSERT( GU_RANKBATTLE_BATTLE_STAGE_FINISH_NFY );			// RankBattle Stage Finish - Stage ∏∂ƒß
-	PACKETNAME_INSERT( GU_RANKBATTLE_BATTLE_MATCH_FINISH_NFY );			// RankBattle Battle Finish - ∞Ê±‚ ∏∂ƒß
-	PACKETNAME_INSERT( GU_RANKBATTLE_BATTLE_END_NFY );					// RankBattle¿Ã ≥°≥Ø∂ß pcø°∞‘ æÀ∏≤(PC ∏∂¥Ÿ Battle¿Ã ≥°≥™¥¬ Ω√¡°¿Ã ¥Ÿ∏£π«∑Œ)
-	PACKETNAME_INSERT( GU_RANKBATTLE_BATTLE_FORCED_LEAVE_NFY );			// RankBattle ø°º≠ ∞≠¡¶¿˚¿∏∑Œ WorldLeave µ (≥ π´ ø¿∑£ ∑Œµ˘ ªÛ≈¬ µÓ)
-	PACKETNAME_INSERT( GU_RANKBATTLE_TOTAL_SCORE_UPDATE_NFY );			// ∞≥¿Œ ¿¸¿˚ æ˜µ•¿Ã∆Æ
-	PACKETNAME_INSERT( GU_DRAGONBALL_CHECK_RES );						// µÂ∑°∞Ô∫º UI 7∞≥ πËƒ°OK
-	PACKETNAME_INSERT( GU_DRAGONBALL_REWARD_RES );						// µÂ∑°∞Ô∫º ¥Ÿ ∏¿Ωø° ¥Î«— ∫∏ªÛ º±≈√ ø‰√ª
-	PACKETNAME_INSERT( GU_DRAGONBALL_COLLECT_NFY );						// µÂ∑°∞Ô∫º Ω∫ƒ…¡Ï ≈∏¿” ø¿πˆ≈Î∫∏
-	PACKETNAME_INSERT( GU_DRAGONBALL_SCHEDULE_INFO );						// µÂ∑°∞Ô∫º ºˆ¡˝±‚∞£ ¡§∫∏
-	PACKETNAME_INSERT( GU_PRIVATESHOP_CREATE_RES );							// ∞≥¿ŒªÛ¡°¿ª ª˝º∫ [6/28/2007 SGpro]
-	PACKETNAME_INSERT( GU_PRIVATESHOP_CREATE_NFY );							// ∞≥¿ŒªÛ¡° øπø‹ [1/31/2008 SGpro]
-	PACKETNAME_INSERT( GU_PRIVATESHOP_EXIT_RES );							// ∞≥¿ŒªÛ¡°¿ª ¥›¥¬¥Ÿ[6/28/2007 SGpro]
-	PACKETNAME_INSERT( GU_PRIVATESHOP_OPEN_RES );							// ∞≥¿ŒªÛ¡°ø° ªÛ≈¬∏¶ Open¿∏∑Œ «ÿ¡÷ººø‰[6/28/2007 SGpro]
+	PACKETNAME_INSERT( GU_GUILD_NAME_CHANGED_NFY );					// Í∏∏Îìú Ïù¥Î¶Ñ Î≥ÄÍ≤Ω ÏïåÎ¶º
+	PACKETNAME_INSERT( GU_GUILD_CREATE_RES );						// Í∏∏Îìú ÏÉùÏÑ± ÏöîÏ≤≠ Í≤∞Í≥º
+	PACKETNAME_INSERT( GU_GUILD_INVITE_RES );						// Í∏∏Îìú Ï¥àÎåÄ Í≤∞Í≥º
+	PACKETNAME_INSERT( GU_TOBJECT_UPDATE_STATE );						// Ìä∏Î¶¨Í±∞ Ïò§Î∏åÏ†ùÌä∏ ÏÉÅÌÉú ÏóÖÎç∞Ïù¥Ìä∏
+	PACKETNAME_INSERT( GU_TOBJECT_ACTION_ATTACK );						// Ìä∏Î¶¨Í±∞ Ïò§Î∏åÏ†ùÌä∏ Îç∞ÎØ∏ÏßÄ
+	PACKETNAME_INSERT( GU_TUTORIAL_HINT_UPDATE_RES );					// ÌûåÌä∏ ÌîåÎûòÍ∑∏ ÏóÖÎç∞Ïù¥Ìä∏
+	PACKETNAME_INSERT( GU_TELECAST_MESSAGE_BEG_NFY );					// Î∞©ÏÜ° Î©îÏãúÏßÄ ÌÜµÏßÄ ÏãúÏûë
+	PACKETNAME_INSERT( GU_TELECAST_MESSAGE_END_NFY );					// Î∞©ÏÜ° Î©îÏãúÏßÄ ÌÜµÏßÄ Ï¢ÖÎ£å
+	PACKETNAME_INSERT( GU_BROAD_MESSAGE_BEG_NFY );						// Î∞©ÏÜ° Î©îÏãúÏßÄ ÏãúÏûë
+	PACKETNAME_INSERT( GU_BROAD_MESSAGE_END_NFY );						// Î∞©ÏÜ° Î©îÏãúÏßÄ ÎÅù
+	PACKETNAME_INSERT( GU_MINI_NARRATION_NFY );							// ÎØ∏ÎãàÎÇòÎ†àÏù¥ÏÖò
+	PACKETNAME_INSERT( GU_PROGRESS_MESSAGE_NFY );						// ÌÉÄÏûÑÎ®∏Ïã† ÏßÑÌñâ Î©îÏãúÏßÄ ÌÜµÏßÄ
+	PACKETNAME_INSERT( GU_DIRECTION_INDICATE_NFY );						// Î∞©Ìñ•ÏßÄÏãú ÌÜµÏßÄ
+	PACKETNAME_INSERT( GU_TIMEQUEST_START_NFY );							// ÌÉÄÏûÑÎ®∏Ïã† ÌÄòÏä§Ìä∏ ÏãúÏûë ÌÜµÏßÄ
+	PACKETNAME_INSERT( GU_TIMEQUEST_START_EXCEPTION_NFY );				// ÌÉÄÏûÑÎ®∏Ïã† ÌÄòÏä§Ìä∏ ÏõîÎìúÏóê ÏßÑÏûÖ Ïã§Ìå®Ìï®(ÏÑ±Í≥µÏãúÏóêÎäî Ï†ÑÏÜ°ÎêòÏßÄ ÏïäÎäîÎã§.)
+	PACKETNAME_INSERT( GU_TIMEQUEST_LEAVE_NFY );							// ÌÉÄÏûÑÎ®∏Ïã† ÌÄòÏä§Ìä∏ Ìá¥Ïû• ÌÜµÏßÄ
+	PACKETNAME_INSERT( GU_TIMEQUEST_COUNTDOWN_NFY );						// ÌÉÄÏûÑÎ®∏Ïã† ÌÄòÏä§Ìä∏ Ïπ¥Ïö¥Ìä∏Îã§Ïö¥ ÌÜµÏßÄ
+	PACKETNAME_INSERT( GU_TIMEQUEST_REWARD_NFY );						// ÌÉÄÏûÑÎ®∏Ïã† ÌÄòÏä§Ìä∏ Î≥¥ÏÉÅ ÌÜµÏßÄ
+	PACKETNAME_INSERT( GU_TIMEQUEST_INFORMATION_NFY );				// ÌÉÄÏûÑÎ®∏Ïã† ÌÄòÏä§Ìä∏ Ïä§ÌÖåÏù¥ÏßÄ Ï†ïÎ≥¥ ÌÜµÏßÄ
+	PACKETNAME_INSERT( GU_TIMEQUEST_UPDATE_GAME_STATE );					// ÌÉÄÏûÑÎ®∏Ïã† ÌÄòÏä§Ìä∏ Í≤åÏûÑ ÏÉÅÌÉú ÏóÖÎç∞Ïù¥Ìä∏
+	PACKETNAME_INSERT( GU_TIMEQUEST_UPDATE_KILL_COUNT );					// ÌÉÄÏûÑÎ®∏Ïã† ÌÄòÏä§Ìä∏ ÌîåÎ†àÏù¥Ïñ¥ ÌÇ¨ Ïπ¥Ïö¥Ìä∏ ÏóÖÎç∞Ïù¥Ìä∏
+	PACKETNAME_INSERT( GU_TIMEQUEST_UPDATE_COUPON_COUNT );				// ÌÉÄÏûÑÎ®∏Ïã† ÌÄòÏä§Ìä∏ Ïø†Ìè∞Ï†ïÎ≥¥ ÏóÖÎç∞Ïù¥Ìä∏
+	PACKETNAME_INSERT( GU_TIMEQUEST_UPDATE_TMQ_POINT );					// ÌÉÄÏûÑÎ®∏Ïã† ÌÄòÏä§Ìä∏ TMQ Ìè¨Ïù∏Ìä∏ ÏóÖÎç∞Ïù¥Ìä∏
+	PACKETNAME_INSERT( GU_TIMEQUEST_UPDATE_GAME_TIME );					// ÌÉÄÏûÑÎ®∏Ïã† ÌÄòÏä§Ìä∏ Í≤åÏûÑ ÏãúÍ∞Ñ ÏóÖÎç∞Ïù¥Ìä∏
+	PACKETNAME_INSERT( GU_RANKBATTLE_INFO_RES );							// Í∏∞Î≥∏ Ï†ïÎ≥¥
+	PACKETNAME_INSERT( GU_RANKBATTLE_JOIN_RES );							// Ïã†Ï≤≠
+	PACKETNAME_INSERT( GU_RANKBATTLE_JOIN_NFY );							// member ÏóêÍ≤å Ïã†Ï≤≠ ÏïåÎ¶º
+	PACKETNAME_INSERT( GU_RANKBATTLE_LEAVE_RES );						// Ï∑®ÏÜå
+	PACKETNAME_INSERT( GU_RANKBATTLE_LEAVE_NFY );						// Ï∑®ÏÜå ÌååÌã∞Ïõê ÏïåÎ¶º
+	PACKETNAME_INSERT( GU_RANKBATTLE_MATCH_START_NFY );					// Í≤ΩÍ∏∞ ÏãúÏûë
+	PACKETNAME_INSERT( GU_RANKBATTLE_MATCH_CANCELED_NFY );				// Í≤ΩÍ∏∞Í∞Ä Ï∑®ÏÜåÎê®
+	PACKETNAME_INSERT( GU_RANKBATTLE_BATTLE_STATE_UPDATE_NFY );			// RankBattle Battle StateÎ•º ÏóÖÎç∞Ïù¥Ìä∏(Í≤ΩÍ∏∞Ïû•Ïùò ÏÉÅÌÉú)
+	PACKETNAME_INSERT( GU_RANKBATTLE_BATTLE_TEAM_INFO_NFY );				// RankBattle Team Ï†ïÎ≥¥Î•º ÏïåÎ¶º
+	PACKETNAME_INSERT( GU_RANKBATTLE_BATTLE_PLAYER_STATE_NFY );			// RankBattle PlayerÏùò ÏÉÅÌÉú ÏïåÎ¶º(Ïû•Ïô∏ ); Ï£ΩÏùåÎì±)
+	PACKETNAME_INSERT( GU_RANKBATTLE_BATTLE_KILLSCORE_UPDATE_NFY );		// RankBattle KillScore ÏóÖÎç∞Ïù¥Ìä∏
+	PACKETNAME_INSERT( GU_RANKBATTLE_BATTLE_STAGE_FINISH_NFY );			// RankBattle Stage Finish - Stage ÎßàÏπ®
+	PACKETNAME_INSERT( GU_RANKBATTLE_BATTLE_MATCH_FINISH_NFY );			// RankBattle Battle Finish - Í≤ΩÍ∏∞ ÎßàÏπ®
+	PACKETNAME_INSERT( GU_RANKBATTLE_BATTLE_END_NFY );					// RankBattleÏù¥ ÎÅùÎÇ†Îïå pcÏóêÍ≤å ÏïåÎ¶º(PC ÎßàÎã§ BattleÏù¥ ÎÅùÎÇòÎäî ÏãúÏ†êÏù¥ Îã§Î•¥ÎØÄÎ°ú)
+	PACKETNAME_INSERT( GU_RANKBATTLE_BATTLE_FORCED_LEAVE_NFY );			// RankBattle ÏóêÏÑú Í∞ïÏ†úÏ†ÅÏúºÎ°ú WorldLeave Îê®(ÎÑàÎ¨¥ Ïò§Îûú Î°úÎî© ÏÉÅÌÉú Îì±)
+	PACKETNAME_INSERT( GU_RANKBATTLE_TOTAL_SCORE_UPDATE_NFY );			// Í∞úÏù∏ Ï†ÑÏ†Å ÏóÖÎç∞Ïù¥Ìä∏
+	PACKETNAME_INSERT( GU_DRAGONBALL_CHECK_RES );						// ÎìúÎûòÍ≥§Î≥º UI 7Í∞ú Î∞∞ÏπòOK
+	PACKETNAME_INSERT( GU_DRAGONBALL_REWARD_RES );						// ÎìúÎûòÍ≥§Î≥º Îã§ Î™®ÏùåÏóê ÎåÄÌïú Î≥¥ÏÉÅ ÏÑ†ÌÉù ÏöîÏ≤≠
+	PACKETNAME_INSERT( GU_DRAGONBALL_COLLECT_NFY );						// ÎìúÎûòÍ≥§Î≥º Ïä§ÏºÄÏ•¥ ÌÉÄÏûÑ Ïò§Î≤ÑÌÜµÎ≥¥
+	PACKETNAME_INSERT( GU_DRAGONBALL_SCHEDULE_INFO );						// ÎìúÎûòÍ≥§Î≥º ÏàòÏßëÍ∏∞Í∞Ñ Ï†ïÎ≥¥
+	PACKETNAME_INSERT( GU_PRIVATESHOP_CREATE_RES );							// Í∞úÏù∏ÏÉÅÏ†êÏùÑ ÏÉùÏÑ± [6/28/2007 SGpro]
+	PACKETNAME_INSERT( GU_PRIVATESHOP_CREATE_NFY );							// Í∞úÏù∏ÏÉÅÏ†ê ÏòàÏô∏ [1/31/2008 SGpro]
+	PACKETNAME_INSERT( GU_PRIVATESHOP_EXIT_RES );							// Í∞úÏù∏ÏÉÅÏ†êÏùÑ Îã´ÎäîÎã§[6/28/2007 SGpro]
+	PACKETNAME_INSERT( GU_PRIVATESHOP_OPEN_RES );							// Í∞úÏù∏ÏÉÅÏ†êÏóê ÏÉÅÌÉúÎ•º OpenÏúºÎ°ú Ìï¥Ï£ºÏÑ∏Ïöî[6/28/2007 SGpro]
 	PACKETNAME_INSERT( GU_PRIVATESHOP_OPEN_NFY );							// [7/31/2007 SGpro]
-	PACKETNAME_INSERT( GU_PRIVATESHOP_CLOSE_RES );							// ∞≥¿ŒªÛ¡°ø° ªÛ≈¬∏¶ Close¿∏∑Œ «ÿ¡÷ººø‰[6/28/2007 SGpro]
+	PACKETNAME_INSERT( GU_PRIVATESHOP_CLOSE_RES );							// Í∞úÏù∏ÏÉÅÏ†êÏóê ÏÉÅÌÉúÎ•º CloseÏúºÎ°ú Ìï¥Ï£ºÏÑ∏Ïöî[6/28/2007 SGpro]
 	PACKETNAME_INSERT( GU_PRIVATESHOP_CLOSE_NFY );							// [7/31/2007 SGpro]
-	PACKETNAME_INSERT( GU_PRIVATESHOP_ITEM_INSERT_RES );						// ∞≥¿ŒªÛ¡°ø° æ∆¿Ã≈€ √ﬂ∞° ¿¿¥‰[6/29/2007 SGpro]
-	PACKETNAME_INSERT( GU_PRIVATESHOP_ITEM_UPDATE_RES );						// ∞≥¿ŒªÛ¡°ø° æ∆¿Ã≈€ ºˆ¡§ ¿¿¥‰[6/29/2007 SGpro]
-	PACKETNAME_INSERT( GU_PRIVATESHOP_ITEM_DELETE_RES );						// ∞≥¿ŒªÛ¡°ø° æ∆¿Ã≈€ ªË¡¶ ¿¿¥‰[6/29/2007 SGpro]
-	PACKETNAME_INSERT( GU_PRIVATESHOP_ITEM_BUYING_RES );						// æ∆¿Ã≈€ ±∏∏≈ ¿¿¥‰[6/29/2007 SGpro]
+	PACKETNAME_INSERT( GU_PRIVATESHOP_ITEM_INSERT_RES );						// Í∞úÏù∏ÏÉÅÏ†êÏóê ÏïÑÏù¥ÌÖú Ï∂îÍ∞Ä ÏùëÎãµ[6/29/2007 SGpro]
+	PACKETNAME_INSERT( GU_PRIVATESHOP_ITEM_UPDATE_RES );						// Í∞úÏù∏ÏÉÅÏ†êÏóê ÏïÑÏù¥ÌÖú ÏàòÏ†ï ÏùëÎãµ[6/29/2007 SGpro]
+	PACKETNAME_INSERT( GU_PRIVATESHOP_ITEM_DELETE_RES );						// Í∞úÏù∏ÏÉÅÏ†êÏóê ÏïÑÏù¥ÌÖú ÏÇ≠Ï†ú ÏùëÎãµ[6/29/2007 SGpro]
+	PACKETNAME_INSERT( GU_PRIVATESHOP_ITEM_BUYING_RES );						// ÏïÑÏù¥ÌÖú Íµ¨Îß§ ÏùëÎãµ[6/29/2007 SGpro]
 	PACKETNAME_INSERT( GU_PRIVATESHOP_ITEM_BUYING_NFY );						// [7/31/2007 SGpro]
-	PACKETNAME_INSERT( GU_PRIVATESHOP_ENTER_RES );							// º’¥‘ ¿‘¿Â ¿¿¥‰[6/29/2007 SGpro]
-	PACKETNAME_INSERT( GU_PRIVATESHOP_LEAVE_RES );							// º’¥‘ ≈¿Â ¿¿¥‰[6/29/2007 SGpro]
-	PACKETNAME_INSERT( GU_PRIVATESHOP_ITEM_DATA_INFO );						// æ∆¿Ã≈€ µ•¿Ã≈∏ [7/2/2007 SGpro]
+	PACKETNAME_INSERT( GU_PRIVATESHOP_ENTER_RES );							// ÏÜêÎãò ÏûÖÏû• ÏùëÎãµ[6/29/2007 SGpro]
+	PACKETNAME_INSERT( GU_PRIVATESHOP_LEAVE_RES );							// ÏÜêÎãò Ìá¥Ïû• ÏùëÎãµ[6/29/2007 SGpro]
+	PACKETNAME_INSERT( GU_PRIVATESHOP_ITEM_DATA_INFO );						// ÏïÑÏù¥ÌÖú Îç∞Ïù¥ÌÉÄ [7/2/2007 SGpro]
 	PACKETNAME_INSERT( GU_PRIVATESHOP_ITEM_SELECT_RES );						// [7/19/2007 SGpro]
 	PACKETNAME_INSERT( GU_PRIVATESHOP_ITEM_SELECT_NFY );						// [7/19/2007 SGpro]
 	PACKETNAME_INSERT( GU_PRIVATESHOP_ITEM_STATE_NFY );						// [7/31/2007 SGpro]
 	PACKETNAME_INSERT( GU_PRIVATESHOP_LEAVE_NFY );							// [8/3/2007 SGpro]
-	PACKETNAME_INSERT( GU_TUTORIAL_WAIT_NFY );								// ∆©≈‰∏ÆæÛ ¥Î±‚ æÀ∏≤ 
-	PACKETNAME_INSERT( GU_TUTORIAL_WAIT_CANCEL_RES );						// ∆©≈‰∏ÆæÛ ¥Î±‚ √Îº“ ø‰√ª ¿¿¥‰
-	PACKETNAME_INSERT( GU_TUTORIAL_PLAY_QUIT_RES );							// ∆©≈‰∏ÆæÛ «√∑π¿Ã √Îº“ ø‰√ª ¿¿¥‰
+	PACKETNAME_INSERT( GU_TUTORIAL_WAIT_NFY );								// ÌäúÌÜ†Î¶¨Ïñº ÎåÄÍ∏∞ ÏïåÎ¶º 
+	PACKETNAME_INSERT( GU_TUTORIAL_WAIT_CANCEL_RES );						// ÌäúÌÜ†Î¶¨Ïñº ÎåÄÍ∏∞ Ï∑®ÏÜå ÏöîÏ≤≠ ÏùëÎãµ
+	PACKETNAME_INSERT( GU_TUTORIAL_PLAY_QUIT_RES );							// ÌäúÌÜ†Î¶¨Ïñº ÌîåÎ†àÏù¥ Ï∑®ÏÜå ÏöîÏ≤≠ ÏùëÎãµ
 	PACKETNAME_INSERT( GU_MAIL_START_RES );
 	PACKETNAME_INSERT( GU_MAIL_SEND_RES );
 	PACKETNAME_INSERT( GU_MAIL_READ_RES );
@@ -486,7 +486,7 @@ void CPacketTracer::Create()
 	PACKETNAME_INSERT( GU_WAR_FOG_UPDATE_RES );
 	PACKETNAME_INSERT( GU_MOB_LUCKY_DROP_NFY );
 	PACKETNAME_INSERT( GU_ITEM_UPGRADE_ALL_NFY );
-	PACKETNAME_INSERT( GU_BOT_BOTCAUTION_NFY );// Bot ∞Ê∞Ì [2/20/2008 SGpro]
+	PACKETNAME_INSERT( GU_BOT_BOTCAUTION_NFY );// Bot Í≤ΩÍ≥† [2/20/2008 SGpro]
 	PACKETNAME_INSERT( GU_UPDATE_CHAR_REPUTATION );
 	PACKETNAME_INSERT( GU_GUILD_FUNCTION_ADD_RES );
 	PACKETNAME_INSERT( GU_GUILD_GIVE_ZENNY_RES );
@@ -510,65 +510,65 @@ void CPacketTracer::Create()
 	PACKETNAME_INSERT( GU_TRANSFORM_CANCEL_RES );
 	PACKETNAME_INSERT( GU_SHOP_ITEM_IDENTIFY_RES );
 	PACKETNAME_INSERT( GU_MATCH_MINORMATCH_STATE_UPDATE_NFY );						// Match
-	PACKETNAME_INSERT( GU_MATCH_MINORMATCH_TEAM_INFO_NFY );				// øπº± ∆¿ ¡§∫∏
+	PACKETNAME_INSERT( GU_MATCH_MINORMATCH_TEAM_INFO_NFY );				// ÏòàÏÑ† ÌåÄ Ï†ïÎ≥¥
 	PACKETNAME_INSERT( GU_MATCH_MINORMATCH_PLAYER_STATE_NFY );			//
-	PACKETNAME_INSERT( GU_MATCH_MINORMATCH_UPDATE_SCORE_NFY );			// øπº± Score Update
-	PACKETNAME_INSERT( GU_MATCH_MINORMATCH_TEAM_SCORE_NFY );				// øπº± ∆¿ Ω∫ƒ⁄æÓ ¡§∫∏ ); ≥≠¿‘¿⁄∏¶ ¿ß«— ¡§∫∏
-	PACKETNAME_INSERT( GU_MATCH_MINORMATCH_SELECTION_NFY );				// øπº± µø¡° πﬂª˝Ω√ ¡÷ªÁ¿ß ø¨√‚
-	PACKETNAME_INSERT( GU_MATCH_MINORMATCH_STAGE_FINISH_NFY );			// øπº± stage finish æÀ∏≤
+	PACKETNAME_INSERT( GU_MATCH_MINORMATCH_UPDATE_SCORE_NFY );			// ÏòàÏÑ† Score Update
+	PACKETNAME_INSERT( GU_MATCH_MINORMATCH_TEAM_SCORE_NFY );				// ÏòàÏÑ† ÌåÄ Ïä§ÏΩîÏñ¥ Ï†ïÎ≥¥ ); ÎÇúÏûÖÏûêÎ•º ÏúÑÌïú Ï†ïÎ≥¥
+	PACKETNAME_INSERT( GU_MATCH_MINORMATCH_SELECTION_NFY );				// ÏòàÏÑ† ÎèôÏ†ê Î∞úÏÉùÏãú Ï£ºÏÇ¨ÏúÑ Ïó∞Ï∂ú
+	PACKETNAME_INSERT( GU_MATCH_MINORMATCH_STAGE_FINISH_NFY );			// ÏòàÏÑ† stage finish ÏïåÎ¶º
 	PACKETNAME_INSERT( GU_MATCH_MINORMATCH_MATCH_FINISH_NFY );
 	PACKETNAME_INSERT( GU_MATCH_MAJORMATCH_STATE_UPDATE_NFY );			//
-	PACKETNAME_INSERT( GU_MATCH_MAJORMATCH_TEAM_INFO_NFY );				// ∫ªº± ∆¿ ¡§∫∏
+	PACKETNAME_INSERT( GU_MATCH_MAJORMATCH_TEAM_INFO_NFY );				// Î≥∏ÏÑ† ÌåÄ Ï†ïÎ≥¥
 	PACKETNAME_INSERT( GU_MATCH_MAJORMATCH_PLAYER_STATE_NFY );			//
-	PACKETNAME_INSERT( GU_MATCH_MAJORMATCH_UPDATE_SCORE_NFY );			// ∫ªº± Score Update
-	PACKETNAME_INSERT( GU_MATCH_MAJORMATCH_STAGE_FINISH_NFY );			// ∫ªº± stage finish æÀ∏≤
-	PACKETNAME_INSERT( GU_MATCH_MAJORMATCH_MATCH_FINISH_NFY );			// ∫ªº± match finish æÀ∏≤
+	PACKETNAME_INSERT( GU_MATCH_MAJORMATCH_UPDATE_SCORE_NFY );			// Î≥∏ÏÑ† Score Update
+	PACKETNAME_INSERT( GU_MATCH_MAJORMATCH_STAGE_FINISH_NFY );			// Î≥∏ÏÑ† stage finish ÏïåÎ¶º
+	PACKETNAME_INSERT( GU_MATCH_MAJORMATCH_MATCH_FINISH_NFY );			// Î≥∏ÏÑ† match finish ÏïåÎ¶º
 	PACKETNAME_INSERT( GU_MATCH_FINALMATCH_STATE_UPDATE_NFY );			//
-	PACKETNAME_INSERT( GU_MATCH_FINALMATCH_TEAM_INFO_NFY );				// ∞·º± ∆¿ ¡§∫∏
+	PACKETNAME_INSERT( GU_MATCH_FINALMATCH_TEAM_INFO_NFY );				// Í≤∞ÏÑ† ÌåÄ Ï†ïÎ≥¥
 	PACKETNAME_INSERT( GU_MATCH_FINALMATCH_PLAYER_STATE_NFY );			//
-	PACKETNAME_INSERT( GU_MATCH_FINALMATCH_UPDATE_SCORE_NFY );			// ∞·º± Score Update
-	PACKETNAME_INSERT( GU_MATCH_FINALMATCH_STAGE_FINISH_NFY );			// ∞·º± stage finish æÀ∏≤
-	PACKETNAME_INSERT( GU_MATCH_FINALMATCH_MATCH_FINISH_NFY );			// ∞·º± match finish æÀ∏≤
-	PACKETNAME_INSERT( GU_MATCH_AWARDING_NFY );							// Ω√ªÛΩƒ ∞·∞˙
-	PACKETNAME_INSERT( GU_SKILL_CONFUSE_TARGET_NFY );					// Confuse ªÛ≈¬¿œ ∂ß¿« ∞¯∞› ¥ÎªÛ æÀ∏≤
-	PACKETNAME_INSERT( GU_SKILL_TERROR_COURSE_CHANGE_NFY );				// Terror ªÛ≈¬¿œ ∂ß πÊ«‚ ¿¸»Ø æÀ∏≤
-	PACKETNAME_INSERT( GU_DICE_ROLL_RES );								// Action Skill ¡÷ªÁ¿ß ±º∏Æ±‚
-	PACKETNAME_INSERT( GU_DICE_ROLLED_NFY );								// Action Skill ¡÷ªÁ¿ß ±º∏Æ±‚
-	PACKETNAME_INSERT( GU_BUDOKAI_STATE_INFO_NFY );						// √µ«œ¡¶¿œπ´µµ»∏¿« «ˆ¿Á ªÛ≈¬∏¶ ¿¸º€
-	PACKETNAME_INSERT( GU_BUDOKAI_UPDATE_STATE_NFY );					// √µ«œ¡¶¿œπ´µµ»∏ : main state update
-	PACKETNAME_INSERT( GU_BUDOKAI_UPDATE_MATCH_STATE_NFY );				// √µ«œ¡¶¿œπ´µµ»∏ : match state update
-	PACKETNAME_INSERT( GU_BUDOKAI_JOIN_INDIVIDUAL_RES );					// ∞≥¿Œ µÓ∑œ
-	PACKETNAME_INSERT( GU_BUDOKAI_LEAVE_INDIVIDUAL_RES );				// ∞≥¿Œ √Îº“
-	PACKETNAME_INSERT( GU_BUDOKAI_JOIN_TEAM_INFO_RES );					// ∆¿ ∆˜¿Œ∆Æ
-	PACKETNAME_INSERT( GU_BUDOKAI_JOIN_TEAM_RES );						// ∆¿ µÓ∑œ
-	PACKETNAME_INSERT( GU_BUDOKAI_JOIN_TEAM_NFY );						// ∆¿ µÓ∑œ æÀ∏≤
-	PACKETNAME_INSERT( GU_BUDOKAI_LEAVE_TEAM_RES );						// ∆¿ µÓ∑œ √Îº“
-	PACKETNAME_INSERT( GU_BUDOKAI_LEAVE_TEAM_NFY );						// ∆¿ µÓ∑œ √Îº“ æÀ∏≤
-	PACKETNAME_INSERT( GU_BUDOKAI_LEAVE_TEAM_MEMBER_RES );				// ∆¿ ∏‚πˆ √Îº“
-	PACKETNAME_INSERT( GU_BUDOKAI_LEAVE_TEAM_MEMBER_NFY );				// ∆¿ ∏‚πˆ √Îº“ æÀ∏≤
-	PACKETNAME_INSERT( GU_BUDOKAI_JOIN_INFO_RES );						// ¬¸∞° ¡§∫∏
-	PACKETNAME_INSERT( GU_BUDOKAI_JOIN_STATE_RES );						// ¬¸∞° ªÛ≈¬
-	PACKETNAME_INSERT( GU_BUDOKAI_JOIN_STATE_NFY );						// ¬¸∞° ªÛ≈¬ æÀ∏≤
-	PACKETNAME_INSERT( GU_BUDOKAI_MUDOSA_INFO_RES );						// π´µµªÁ ¡§∫∏
-	PACKETNAME_INSERT( GU_BUDOKAI_MUDOSA_TELEPORT_RES );					// π´µµªÁ ≈⁄∑π∆˜∆Æ
-	PACKETNAME_INSERT( GU_BUDOKAI_PROGRESS_MESSAGE_NFY );				// ∞Ê±‚ ¡¯«‡ ¡§∫∏ æÀ∏≤(∞¯¡ˆ)
+	PACKETNAME_INSERT( GU_MATCH_FINALMATCH_UPDATE_SCORE_NFY );			// Í≤∞ÏÑ† Score Update
+	PACKETNAME_INSERT( GU_MATCH_FINALMATCH_STAGE_FINISH_NFY );			// Í≤∞ÏÑ† stage finish ÏïåÎ¶º
+	PACKETNAME_INSERT( GU_MATCH_FINALMATCH_MATCH_FINISH_NFY );			// Í≤∞ÏÑ† match finish ÏïåÎ¶º
+	PACKETNAME_INSERT( GU_MATCH_AWARDING_NFY );							// ÏãúÏÉÅÏãù Í≤∞Í≥º
+	PACKETNAME_INSERT( GU_SKILL_CONFUSE_TARGET_NFY );					// Confuse ÏÉÅÌÉúÏùº ÎïåÏùò Í≥µÍ≤© ÎåÄÏÉÅ ÏïåÎ¶º
+	PACKETNAME_INSERT( GU_SKILL_TERROR_COURSE_CHANGE_NFY );				// Terror ÏÉÅÌÉúÏùº Îïå Î∞©Ìñ• Ï†ÑÌôò ÏïåÎ¶º
+	PACKETNAME_INSERT( GU_DICE_ROLL_RES );								// Action Skill Ï£ºÏÇ¨ÏúÑ Íµ¥Î¶¨Í∏∞
+	PACKETNAME_INSERT( GU_DICE_ROLLED_NFY );								// Action Skill Ï£ºÏÇ¨ÏúÑ Íµ¥Î¶¨Í∏∞
+	PACKETNAME_INSERT( GU_BUDOKAI_STATE_INFO_NFY );						// Ï≤úÌïòÏ†úÏùºÎ¨¥ÎèÑÌöåÏùò ÌòÑÏû¨ ÏÉÅÌÉúÎ•º Ï†ÑÏÜ°
+	PACKETNAME_INSERT( GU_BUDOKAI_UPDATE_STATE_NFY );					// Ï≤úÌïòÏ†úÏùºÎ¨¥ÎèÑÌöå : main state update
+	PACKETNAME_INSERT( GU_BUDOKAI_UPDATE_MATCH_STATE_NFY );				// Ï≤úÌïòÏ†úÏùºÎ¨¥ÎèÑÌöå : match state update
+	PACKETNAME_INSERT( GU_BUDOKAI_JOIN_INDIVIDUAL_RES );					// Í∞úÏù∏ Îì±Î°ù
+	PACKETNAME_INSERT( GU_BUDOKAI_LEAVE_INDIVIDUAL_RES );				// Í∞úÏù∏ Ï∑®ÏÜå
+	PACKETNAME_INSERT( GU_BUDOKAI_JOIN_TEAM_INFO_RES );					// ÌåÄ Ìè¨Ïù∏Ìä∏
+	PACKETNAME_INSERT( GU_BUDOKAI_JOIN_TEAM_RES );						// ÌåÄ Îì±Î°ù
+	PACKETNAME_INSERT( GU_BUDOKAI_JOIN_TEAM_NFY );						// ÌåÄ Îì±Î°ù ÏïåÎ¶º
+	PACKETNAME_INSERT( GU_BUDOKAI_LEAVE_TEAM_RES );						// ÌåÄ Îì±Î°ù Ï∑®ÏÜå
+	PACKETNAME_INSERT( GU_BUDOKAI_LEAVE_TEAM_NFY );						// ÌåÄ Îì±Î°ù Ï∑®ÏÜå ÏïåÎ¶º
+	PACKETNAME_INSERT( GU_BUDOKAI_LEAVE_TEAM_MEMBER_RES );				// ÌåÄ Î©§Î≤Ñ Ï∑®ÏÜå
+	PACKETNAME_INSERT( GU_BUDOKAI_LEAVE_TEAM_MEMBER_NFY );				// ÌåÄ Î©§Î≤Ñ Ï∑®ÏÜå ÏïåÎ¶º
+	PACKETNAME_INSERT( GU_BUDOKAI_JOIN_INFO_RES );						// Ï∞∏Í∞Ä Ï†ïÎ≥¥
+	PACKETNAME_INSERT( GU_BUDOKAI_JOIN_STATE_RES );						// Ï∞∏Í∞Ä ÏÉÅÌÉú
+	PACKETNAME_INSERT( GU_BUDOKAI_JOIN_STATE_NFY );						// Ï∞∏Í∞Ä ÏÉÅÌÉú ÏïåÎ¶º
+	PACKETNAME_INSERT( GU_BUDOKAI_MUDOSA_INFO_RES );						// Î¨¥ÎèÑÏÇ¨ Ï†ïÎ≥¥
+	PACKETNAME_INSERT( GU_BUDOKAI_MUDOSA_TELEPORT_RES );					// Î¨¥ÎèÑÏÇ¨ ÌÖîÎ†àÌè¨Ìä∏
+	PACKETNAME_INSERT( GU_BUDOKAI_PROGRESS_MESSAGE_NFY );				// Í≤ΩÍ∏∞ ÏßÑÌñâ Ï†ïÎ≥¥ ÏïåÎ¶º(Í≥µÏßÄ)
 	PACKETNAME_INSERT( GU_BUDOKAI_SOCIAL_ACTION_NFY );
-	PACKETNAME_INSERT( GU_BUDOKAI_GM_BUDOKAI_SERVER_ENTER_RES );			// √µ«œ¡¶¿œπ´µµ»∏ º≠πˆ∑Œ ≈⁄∑π∆˜∆Æ ø‰√ª
-	PACKETNAME_INSERT( GU_BUDOKAI_GM_BUDOKAI_SERVER_LEAVE_RES );			// √µ«œ¡¶¿œπ´µµ»∏ º≠πˆø°º≠ ø¯∑° º≠πˆ∑Œ ¿Ãµø
-	PACKETNAME_INSERT( GU_BUDOKAI_GM_MATCH_PROGRESS_INFO_RES );			// «ˆ¿Á ∞Ê±‚ ¡¯«‡ ªÛ»≤ ∏ÆΩ∫∆Æ
-	PACKETNAME_INSERT( GU_BUDOKAI_GM_MATCH_ARENA_ENTER_RES );			// ∞Ê±‚¿Â µÈæÓ∞°±‚
-	PACKETNAME_INSERT( GU_BUDOKAI_GM_MATCH_ARENA_LEAVE_RES );			// ∞Ê±‚¿Â ≥™∞°±‚
+	PACKETNAME_INSERT( GU_BUDOKAI_GM_BUDOKAI_SERVER_ENTER_RES );			// Ï≤úÌïòÏ†úÏùºÎ¨¥ÎèÑÌöå ÏÑúÎ≤ÑÎ°ú ÌÖîÎ†àÌè¨Ìä∏ ÏöîÏ≤≠
+	PACKETNAME_INSERT( GU_BUDOKAI_GM_BUDOKAI_SERVER_LEAVE_RES );			// Ï≤úÌïòÏ†úÏùºÎ¨¥ÎèÑÌöå ÏÑúÎ≤ÑÏóêÏÑú ÏõêÎûò ÏÑúÎ≤ÑÎ°ú Ïù¥Îèô
+	PACKETNAME_INSERT( GU_BUDOKAI_GM_MATCH_PROGRESS_INFO_RES );			// ÌòÑÏû¨ Í≤ΩÍ∏∞ ÏßÑÌñâ ÏÉÅÌô© Î¶¨Ïä§Ìä∏
+	PACKETNAME_INSERT( GU_BUDOKAI_GM_MATCH_ARENA_ENTER_RES );			// Í≤ΩÍ∏∞Ïû• Îì§Ïñ¥Í∞ÄÍ∏∞
+	PACKETNAME_INSERT( GU_BUDOKAI_GM_MATCH_ARENA_LEAVE_RES );			// Í≤ΩÍ∏∞Ïû• ÎÇòÍ∞ÄÍ∏∞
 	PACKETNAME_INSERT( GU_DISCONNECTED_NFY );
-	PACKETNAME_INSERT( GU_BOT_BOTCAUTION_HELPME_NFY );					// Help Me ∞Ê∞Ì [5/27/2008 SGpro]
+	PACKETNAME_INSERT( GU_BOT_BOTCAUTION_HELPME_NFY );					// Help Me Í≤ΩÍ≥† [5/27/2008 SGpro]
 	PACKETNAME_INSERT( GU_SCOUTER_TURN_ON_NFY );	
 	PACKETNAME_INSERT( GU_SCOUTER_TURN_OFF_NFY );
 	PACKETNAME_INSERT( GU_SCOUTER_BROKEN_NFY );
 	PACKETNAME_INSERT( GU_SCOUTER_ITEM_SELL_RES );
 	PACKETNAME_INSERT( GU_SHOP_EVENTITEM_START_RES );					// [7/15/2008 SGpro]
-	PACKETNAME_INSERT( GU_SHOP_EVENTITEM_BUY_RES );						// EVENT ITEM ±∏∏≈ [7/11/2008 SGpro]
+	PACKETNAME_INSERT( GU_SHOP_EVENTITEM_BUY_RES );						// EVENT ITEM Íµ¨Îß§ [7/11/2008 SGpro]
 	PACKETNAME_INSERT( GU_SHOP_EVENTITEM_END_RES );						// [7/15/2008 SGpro]
-	PACKETNAME_INSERT( GU_ITEM_REPLACE );								// ITEM ±≥√º [7/11/2008 SGpro]
-	PACKETNAME_INSERT( GU_SHOP_GAMBLE_BUY_RES );						// EVENT ITEM ±∏∏≈ [7/11/2008 SGpro]
+	PACKETNAME_INSERT( GU_ITEM_REPLACE );								// ITEM ÍµêÏ≤¥ [7/11/2008 SGpro]
+	PACKETNAME_INSERT( GU_SHOP_GAMBLE_BUY_RES );						// EVENT ITEM Íµ¨Îß§ [7/11/2008 SGpro]
 	PACKETNAME_INSERT( GU_PARTY_DUNGEON_DIFF_NFY );
 	PACKETNAME_INSERT( GU_PARTY_DUNGEON_DIFF_RES );
 	PACKETNAME_INSERT( GU_PARTY_DUNGEON_INIT_NFY );
@@ -581,12 +581,12 @@ void CPacketTracer::Create()
 	PACKETNAME_INSERT( GU_TELEPORT_CONFIRM_RES );
 	PACKETNAME_INSERT( GU_AVATAR_PETITION_INFO );
 	PACKETNAME_INSERT( GU_GAME_COMMON_MSG_NFY );
-	PACKETNAME_INSERT( GU_HOIPOIMIX_RECIPE_REG_NFY );					// ∑πΩ√««µÓ∑œ
+	PACKETNAME_INSERT( GU_HOIPOIMIX_RECIPE_REG_NFY );					// Î†àÏãúÌîºÎì±Î°ù
 	PACKETNAME_INSERT( GU_HOIPOIMIX_ITEM_RECIPE_INFO );
 	PACKETNAME_INSERT( GU_DYNAMIC_OBJECT_UPDATE_STATE );
-	PACKETNAME_INSERT( GU_HOIPOIMIX_ITEM_MAKE_EXP_NFY );					// »£¿Ã∆˜¿Ã πÕΩ∫ ∑π∫ßæ˜¿Ã≥™ ∞Ê«Ëƒ° æ˜µ•¿Ã∆Æ
+	PACKETNAME_INSERT( GU_HOIPOIMIX_ITEM_MAKE_EXP_NFY );					// Ìò∏Ïù¥Ìè¨Ïù¥ ÎØπÏä§ Î†àÎ≤®ÏóÖÏù¥ÎÇò Í≤ΩÌóòÏπò ÏóÖÎç∞Ïù¥Ìä∏
 	PACKETNAME_INSERT( GU_CHAR_TARGET_LOST_NFY );
-	PACKETNAME_INSERT( GU_CHAR_GUARD_CRASHED_NFY );		// Guard∞° Skill abilityø° ¿««ÿ ∞≠¡¶∑Œ «ÿ¡¶µ 
+	PACKETNAME_INSERT( GU_CHAR_GUARD_CRASHED_NFY );		// GuardÍ∞Ä Skill abilityÏóê ÏùòÌï¥ Í∞ïÏ†úÎ°ú Ìï¥Ï†úÎê®
 	PACKETNAME_INSERT( GU_UPDATE_CHAR_RP_BALL );
 	PACKETNAME_INSERT( GU_UPDATE_CHAR_RP_BALL_MAX );
 	PACKETNAME_INSERT( GU_AVATAR_RP_INCREASE_START_NFY );
@@ -596,19 +596,23 @@ void CPacketTracer::Create()
 	PACKETNAME_INSERT( GU_CHAR_CHARGE_CANCELED_NFY );
 	PACKETNAME_INSERT( GU_CHAR_REFRESH_LP_EP );
 	PACKETNAME_INSERT( GU_CHAR_NONBATTLEACTIONPATTERNSET_UNITIDX_NFY );
-	PACKETNAME_INSERT( GU_VEHICLE_START_NFY );			// ≈ª ∞Õ Ω√¿€ ¿ßƒ° æÀ∏≤
-	PACKETNAME_INSERT( GU_VEHICLE_END_RES );						// ≈ª ∞Õ ªÁøÎ ¡æ∑· æÀ∏≤
+	PACKETNAME_INSERT( GU_VEHICLE_START_NFY );			// ÌÉà Í≤É ÏãúÏûë ÏúÑÏπò ÏïåÎ¶º
+	PACKETNAME_INSERT( GU_VEHICLE_END_RES );						// ÌÉà Í≤É ÏÇ¨Ïö© Ï¢ÖÎ£å ÏïåÎ¶º
+	PACKETNAME_INSERT(GU_VEHICLE_ENGINE_START_RES);
+	PACKETNAME_INSERT(GU_VEHICLE_ENGINE_START_NFY);
+	PACKETNAME_INSERT(GU_VEHICLE_ENGINE_STOP_RES);
+	PACKETNAME_INSERT(GU_VEHICLE_ENGINE_STOP_NFY);
 	PACKETNAME_INSERT( GU_VEHICLE_END_NFY );
-	PACKETNAME_INSERT( GU_VEHICLE_STUNT_NFY );					// Ω∫∆‰¿ÃΩ∫πŸ ¥©∏ß(≈ª∞Õ)
+	PACKETNAME_INSERT( GU_VEHICLE_STUNT_NFY );					// Ïä§ÌéòÏù¥Ïä§Î∞î ÎàÑÎ¶Ñ(ÌÉàÍ≤É)
 	PACKETNAME_INSERT( GU_SKILL_PASSIVE_EFFECT_APPLIED_NFY );
 	PACKETNAME_INSERT( GU_AVATAR_UPDATED_SKILL_DATA_INFO );
 	PACKETNAME_INSERT( GU_MONSTER_TRANSFORMED_NFY );
 	PACKETNAME_INSERT( GU_DOJO_CREATE_RES );
 	PACKETNAME_INSERT( GU_DOJO_DELETE_RES );
 	PACKETNAME_INSERT( GU_DOJO_FUNCTION_ADD_RES );
-	PACKETNAME_INSERT( GU_DOGI_CREATE_RES );								// µµ∫πª˝º∫
-	PACKETNAME_INSERT( GU_DOGI_CHANGE_RES );								// µµ∫π∫Ø∞Ê
-	PACKETNAME_INSERT( GU_DOGI_UPDATE_NFY );								// µµ∫π∫Ø∞ÊæÀ∏≤
+	PACKETNAME_INSERT( GU_DOGI_CREATE_RES );								// ÎèÑÎ≥µÏÉùÏÑ±
+	PACKETNAME_INSERT( GU_DOGI_CHANGE_RES );								// ÎèÑÎ≥µÎ≥ÄÍ≤Ω
+	PACKETNAME_INSERT( GU_DOGI_UPDATE_NFY );								// ÎèÑÎ≥µÎ≥ÄÍ≤ΩÏïåÎ¶º
 	PACKETNAME_INSERT( GU_GUILD_DOGI_CREATE_RES );
 	PACKETNAME_INSERT( GU_GUILD_DOGI_CHANGE_RES );
 	PACKETNAME_INSERT( GU_CHILD_ADULT_SWITCHED_NFY );
@@ -617,8 +621,8 @@ void CPacketTracer::Create()
 	PACKETNAME_INSERT( GU_DOJO_MARK_CHANGED_NFY );
 	PACKETNAME_INSERT( GU_DOJO_LEVEL_CHANGED_NFY );
 	PACKETNAME_INSERT( GU_UPDATE_CHAR_NETP );
-	PACKETNAME_INSERT( GU_DOJO_SCRAMBLE_RES );							// µµ¿Â¿Ô≈ª¿¸ Ω≈√ªø° ¥Î«— ¿¿¥‰
-	PACKETNAME_INSERT( GU_DOJO_SCRAMBLE_RESPONSE_RES );					// µµ¿Â¿Ô≈ª¿¸ Ω≈√ª¿¿¥‰ √≥∏Æø° ¥Î«— ¿¿¥‰
+	PACKETNAME_INSERT( GU_DOJO_SCRAMBLE_RES );							// ÎèÑÏû•ÏüÅÌÉàÏ†Ñ Ïã†Ï≤≠Ïóê ÎåÄÌïú ÏùëÎãµ
+	PACKETNAME_INSERT( GU_DOJO_SCRAMBLE_RESPONSE_RES );					// ÎèÑÏû•ÏüÅÌÉàÏ†Ñ Ïã†Ï≤≠ÏùëÎãµ Ï≤òÎ¶¨Ïóê ÎåÄÌïú ÏùëÎãµ
 	PACKETNAME_INSERT( GU_NETMARBLEMEMBERIP_NFY );
 	PACKETNAME_INSERT( GU_BUS_LOCATION_NFY );
 	PACKETNAME_INSERT( GU_BUS_LOCATION_ERASED_NFY );
@@ -651,63 +655,63 @@ void CPacketTracer::Create()
 	PACKETNAME_INSERT( TU_CHAT_MESSAGE_PARTY );
 	PACKETNAME_INSERT( TU_CHAT_MESSAGE_GUILD );
 	// Guild Creation/Disbanding
-	PACKETNAME_INSERT( TU_GUILD_CREATED_NFY );						// ±ÊµÂ∞° ª˝º∫µ«æ˙¿Ω¿ª ∞¯¡ˆ
-	PACKETNAME_INSERT( TU_GUILD_INFO );								// ±ÊµÂ ¡§∫∏
-	PACKETNAME_INSERT( TU_GUILD_MEMBER_INFO );						// ±ÊµÂ ∏‚πˆ ¡§∫∏
+	PACKETNAME_INSERT( TU_GUILD_CREATED_NFY );						// Í∏∏ÎìúÍ∞Ä ÏÉùÏÑ±ÎêòÏóàÏùåÏùÑ Í≥µÏßÄ
+	PACKETNAME_INSERT( TU_GUILD_INFO );								// Í∏∏Îìú Ï†ïÎ≥¥
+	PACKETNAME_INSERT( TU_GUILD_MEMBER_INFO );						// Í∏∏Îìú Î©§Î≤Ñ Ï†ïÎ≥¥
 	// Guild Member Invitation/Leaving/Kicking Out
-	PACKETNAME_INSERT( TU_GUILD_DISBAND_RES );						// ±ÊµÂ «ÿ√º ø‰√ª ∞·∞˙
-	PACKETNAME_INSERT( TU_GUILD_BEING_DISBANDED_NFY );				// ±ÊµÂ «ÿ√º ¥Î±‚ ªÛ≈¬ ∞¯¡ˆ
-	PACKETNAME_INSERT( TU_GUILD_DISBAND_CANCEL_RES );				// ±ÊµÂ «ÿ√º √Îº“ ø‰√ª ∞·∞˙
-	PACKETNAME_INSERT( TU_GUILD_DISBAND_CANCELED_NFY );				// ±ÊµÂ «ÿ√º∞° √Îº“µ«æ˙¿Ω¿ª ∞¯¡ˆ
-	PACKETNAME_INSERT( TU_GUILD_DISBANDED_NFY );						// Ω«¡¶ ±ÊµÂ∞° «ÿ√ºµ«æ˙¿Ω¿ª ∞¯¡ˆ
-	PACKETNAME_INSERT( TU_GUILD_INVITED_NFY );						// ±ÊµÂø° √ ¥Îπﬁæ“¿Ω¿ª æÀ∏≤
-	PACKETNAME_INSERT( TU_GUILD_RESPONSE_INVITATION_RES );			// ±ÊµÂ √ ¥Îø° ¥Î«— ¥Î¥‰ ∞·∞˙
-	PACKETNAME_INSERT( TU_GUILD_MEMBER_JOINED_NFY );					// ªı ±ÊµÂø¯ ∞°¿‘ ∞¯¡ˆ
-	PACKETNAME_INSERT( TU_GUILD_INVITATION_DECLINED_NFY );			// ±ÊµÂ √ ¥Î∏¶ ∞≈¿˝
-	PACKETNAME_INSERT( TU_GUILD_INVITATION_EXPIRED_NFY );			// ±ÊµÂ √ ¥Î¿« ¿Ø»ø Ω√∞£ ∞Ê∞˙
-	PACKETNAME_INSERT( TU_GUILD_LEAVE_RES );							// ±ÊµÂ ≈ª≈ ø‰√ª ∞·∞˙
-	PACKETNAME_INSERT( TU_GUILD_MEMBER_LEFT_NFY );					// ±ÊµÂø¯ ≈ª≈ ∞¯¡ˆ
-	PACKETNAME_INSERT( TU_GUILD_KICK_OUT_RES );						// ±ÊµÂø¯¿« ∞≠¡¶ ≈ª≈ ø‰√ª ∞·∞˙
-	PACKETNAME_INSERT( TU_GUILD_MEMBER_KICKED_OUT_NFY );				// ±ÊµÂø¯ ∞≠¡¶ ≈ª≈ ∞¯¡ˆ
+	PACKETNAME_INSERT( TU_GUILD_DISBAND_RES );						// Í∏∏Îìú Ìï¥Ï≤¥ ÏöîÏ≤≠ Í≤∞Í≥º
+	PACKETNAME_INSERT( TU_GUILD_BEING_DISBANDED_NFY );				// Í∏∏Îìú Ìï¥Ï≤¥ ÎåÄÍ∏∞ ÏÉÅÌÉú Í≥µÏßÄ
+	PACKETNAME_INSERT( TU_GUILD_DISBAND_CANCEL_RES );				// Í∏∏Îìú Ìï¥Ï≤¥ Ï∑®ÏÜå ÏöîÏ≤≠ Í≤∞Í≥º
+	PACKETNAME_INSERT( TU_GUILD_DISBAND_CANCELED_NFY );				// Í∏∏Îìú Ìï¥Ï≤¥Í∞Ä Ï∑®ÏÜåÎêòÏóàÏùåÏùÑ Í≥µÏßÄ
+	PACKETNAME_INSERT( TU_GUILD_DISBANDED_NFY );						// Ïã§Ï†ú Í∏∏ÎìúÍ∞Ä Ìï¥Ï≤¥ÎêòÏóàÏùåÏùÑ Í≥µÏßÄ
+	PACKETNAME_INSERT( TU_GUILD_INVITED_NFY );						// Í∏∏ÎìúÏóê Ï¥àÎåÄÎ∞õÏïòÏùåÏùÑ ÏïåÎ¶º
+	PACKETNAME_INSERT( TU_GUILD_RESPONSE_INVITATION_RES );			// Í∏∏Îìú Ï¥àÎåÄÏóê ÎåÄÌïú ÎåÄÎãµ Í≤∞Í≥º
+	PACKETNAME_INSERT( TU_GUILD_MEMBER_JOINED_NFY );					// ÏÉà Í∏∏ÎìúÏõê Í∞ÄÏûÖ Í≥µÏßÄ
+	PACKETNAME_INSERT( TU_GUILD_INVITATION_DECLINED_NFY );			// Í∏∏Îìú Ï¥àÎåÄÎ•º Í±∞Ï†à
+	PACKETNAME_INSERT( TU_GUILD_INVITATION_EXPIRED_NFY );			// Í∏∏Îìú Ï¥àÎåÄÏùò Ïú†Ìö® ÏãúÍ∞Ñ Í≤ΩÍ≥º
+	PACKETNAME_INSERT( TU_GUILD_LEAVE_RES );							// Í∏∏Îìú ÌÉàÌá¥ ÏöîÏ≤≠ Í≤∞Í≥º
+	PACKETNAME_INSERT( TU_GUILD_MEMBER_LEFT_NFY );					// Í∏∏ÎìúÏõê ÌÉàÌá¥ Í≥µÏßÄ
+	PACKETNAME_INSERT( TU_GUILD_KICK_OUT_RES );						// Í∏∏ÎìúÏõêÏùò Í∞ïÏ†ú ÌÉàÌá¥ ÏöîÏ≤≠ Í≤∞Í≥º
+	PACKETNAME_INSERT( TU_GUILD_MEMBER_KICKED_OUT_NFY );				// Í∏∏ÎìúÏõê Í∞ïÏ†ú ÌÉàÌá¥ Í≥µÏßÄ
 	// Appointment of Guild Master/Guild Second Master
-	PACKETNAME_INSERT( TU_GUILD_APPOINT_SECOND_MASTER_RES );			// Second Master¿« ¿”∏Ì ∞·∞˙
-	PACKETNAME_INSERT( TU_GUILD_SECOND_MASTER_APPOINTED_NFY );		// Second Master¿« ¿”∏Ì ∞¯¡ˆ
-	PACKETNAME_INSERT( TU_GUILD_DISMISS_SECOND_MASTER_RES );			// Second Master¿« ¡˜¿ß «ÿ¡¶ ∞·∞˙
-	PACKETNAME_INSERT( TU_GUILD_SECOND_MASTER_DISMISSED_NFY );		// Second Master¿« ¡˜¿ß «ÿ¡¶ ∞¯¡ˆ
-	PACKETNAME_INSERT( TU_GUILD_CHANGE_GUILD_MASTER_RES );			// Guild Master¿« ¿ÃæÁ ∞·∞˙
-	PACKETNAME_INSERT( TU_GUILD_GUILD_MASTER_CHANGED_NFY );			// Guild Master¿« ∫Ø∞Ê ∞¯¡ˆ
+	PACKETNAME_INSERT( TU_GUILD_APPOINT_SECOND_MASTER_RES );			// Second MasterÏùò ÏûÑÎ™Ö Í≤∞Í≥º
+	PACKETNAME_INSERT( TU_GUILD_SECOND_MASTER_APPOINTED_NFY );		// Second MasterÏùò ÏûÑÎ™Ö Í≥µÏßÄ
+	PACKETNAME_INSERT( TU_GUILD_DISMISS_SECOND_MASTER_RES );			// Second MasterÏùò ÏßÅÏúÑ Ìï¥Ï†ú Í≤∞Í≥º
+	PACKETNAME_INSERT( TU_GUILD_SECOND_MASTER_DISMISSED_NFY );		// Second MasterÏùò ÏßÅÏúÑ Ìï¥Ï†ú Í≥µÏßÄ
+	PACKETNAME_INSERT( TU_GUILD_CHANGE_GUILD_MASTER_RES );			// Guild MasterÏùò Ïù¥Ïñë Í≤∞Í≥º
+	PACKETNAME_INSERT( TU_GUILD_GUILD_MASTER_CHANGED_NFY );			// Guild MasterÏùò Î≥ÄÍ≤Ω Í≥µÏßÄ
 	// Sync. of Guild Members' Info
-	PACKETNAME_INSERT( TU_GUILD_MEMBER_POSITION_CHANGED_NFY );		// ±ÊµÂø¯ ¿ßƒ° ∫Ø∞Ê æÀ∏≤
-	PACKETNAME_INSERT( TU_GUILD_MEMBER_CLASS_CHANGED_NFY );			// ±ÊµÂø¯ ¡˜æ˜ ∫Ø∞Ê æÀ∏≤
-	PACKETNAME_INSERT( TU_GUILD_MEMBER_LEVEL_CHANGED_NFY );			// ±ÊµÂø¯ ∑π∫ß ∫Ø∞Ê æÀ∏≤
-	PACKETNAME_INSERT( TU_GUILD_MEMBER_REPUTATION_CHANGED_NFY );		// ±ÊµÂø¯ ∆Ú∆« ∫Ø∞Ê æÀ∏≤
-	PACKETNAME_INSERT( TU_GUILD_MEMBER_ONLINE_NFY );					// ±ÊµÂø¯ ∞‘¿” ¿‘¿Â æÀ∏≤
-	PACKETNAME_INSERT( TU_GUILD_MEMBER_OFFLINE_NFY );				// ±ÊµÂø¯ ∞‘¿” ≈¿Â æÀ∏≤
-	PACKETNAME_INSERT( TU_FRIEND_ADD_RES );		// ƒ£±∏ √ﬂ∞°
-	PACKETNAME_INSERT( TU_FRIEND_DEL_RES );		// ƒ£±∏ ªË¡¶
-	PACKETNAME_INSERT( TU_FRIEND_MOVE_RES );		// ƒ£±∏ -> ∫Ì∑¢∏ÆΩ∫∆Æ∑Œ ¿Ãµø
-	PACKETNAME_INSERT( TU_FRIEND_LIST_INFO );	// ƒ£±∏ ∏ÆΩ∫∆Æ ¡§∫∏
-	PACKETNAME_INSERT( TU_FRIEND_BLACK_ADD_RES );		// ƒ£±∏ ∫Ì∑¢ ∏ÆΩ∫∆Æ √ﬂ∞°
-	PACKETNAME_INSERT( TU_FRIEND_BLACK_DEL_RES );		// ƒ£±∏ ∫Ì∑¢ ∏ÆΩ∫∆Æ ªË¡¶
-	PACKETNAME_INSERT( TU_FRIEND_INFO );					// ø¬∂Û¿Œ ƒ£±∏ ªÛºº ¡§∫∏
-	PACKETNAME_INSERT( TU_FRIEND_INFO_CHANGE );			// ƒ£±∏ ªÛ≈¬∫Ø∞Ê æÀ∏≤
+	PACKETNAME_INSERT( TU_GUILD_MEMBER_POSITION_CHANGED_NFY );		// Í∏∏ÎìúÏõê ÏúÑÏπò Î≥ÄÍ≤Ω ÏïåÎ¶º
+	PACKETNAME_INSERT( TU_GUILD_MEMBER_CLASS_CHANGED_NFY );			// Í∏∏ÎìúÏõê ÏßÅÏóÖ Î≥ÄÍ≤Ω ÏïåÎ¶º
+	PACKETNAME_INSERT( TU_GUILD_MEMBER_LEVEL_CHANGED_NFY );			// Í∏∏ÎìúÏõê Î†àÎ≤® Î≥ÄÍ≤Ω ÏïåÎ¶º
+	PACKETNAME_INSERT( TU_GUILD_MEMBER_REPUTATION_CHANGED_NFY );		// Í∏∏ÎìúÏõê ÌèâÌåê Î≥ÄÍ≤Ω ÏïåÎ¶º
+	PACKETNAME_INSERT( TU_GUILD_MEMBER_ONLINE_NFY );					// Í∏∏ÎìúÏõê Í≤åÏûÑ ÏûÖÏû• ÏïåÎ¶º
+	PACKETNAME_INSERT( TU_GUILD_MEMBER_OFFLINE_NFY );				// Í∏∏ÎìúÏõê Í≤åÏûÑ Ìá¥Ïû• ÏïåÎ¶º
+	PACKETNAME_INSERT( TU_FRIEND_ADD_RES );		// ÏπúÍµ¨ Ï∂îÍ∞Ä
+	PACKETNAME_INSERT( TU_FRIEND_DEL_RES );		// ÏπúÍµ¨ ÏÇ≠Ï†ú
+	PACKETNAME_INSERT( TU_FRIEND_MOVE_RES );		// ÏπúÍµ¨ -> Î∏îÎûôÎ¶¨Ïä§Ìä∏Î°ú Ïù¥Îèô
+	PACKETNAME_INSERT( TU_FRIEND_LIST_INFO );	// ÏπúÍµ¨ Î¶¨Ïä§Ìä∏ Ï†ïÎ≥¥
+	PACKETNAME_INSERT( TU_FRIEND_BLACK_ADD_RES );		// ÏπúÍµ¨ Î∏îÎûô Î¶¨Ïä§Ìä∏ Ï∂îÍ∞Ä
+	PACKETNAME_INSERT( TU_FRIEND_BLACK_DEL_RES );		// ÏπúÍµ¨ Î∏îÎûô Î¶¨Ïä§Ìä∏ ÏÇ≠Ï†ú
+	PACKETNAME_INSERT( TU_FRIEND_INFO );					// Ïò®ÎùºÏù∏ ÏπúÍµ¨ ÏÉÅÏÑ∏ Ï†ïÎ≥¥
+	PACKETNAME_INSERT( TU_FRIEND_INFO_CHANGE );			// ÏπúÍµ¨ ÏÉÅÌÉúÎ≥ÄÍ≤Ω ÏïåÎ¶º
 	PACKETNAME_INSERT( TU_RANKBATTLE_RANK_LIST_RES );
 	PACKETNAME_INSERT( TU_RANKBATTLE_RANK_FIND_CHARACTER_RES );
 	PACKETNAME_INSERT( TU_RANKBATTLE_RANK_COMPARE_DAY_RES );	
-	PACKETNAME_INSERT( TU_GUILD_REPUTATION_CHANGE_NFY );					// ±ÊµÂ∏Ìº∫ ∫Ø∞Ê æÀ∏≤
+	PACKETNAME_INSERT( TU_GUILD_REPUTATION_CHANGE_NFY );					// Í∏∏ÎìúÎ™ÖÏÑ± Î≥ÄÍ≤Ω ÏïåÎ¶º
 	PACKETNAME_INSERT( TU_GUILD_FUNCTION_CHANGE_NFY );
 	PACKETNAME_INSERT( TU_GUILD_CHANGE_NOTICE_NFY );
 	PACKETNAME_INSERT( TU_GUILD_CHANGE_NOTICE_RES );
 	PACKETNAME_INSERT( TU_GUILD_GIVE_ZENNY_NFY );
 	PACKETNAME_INSERT( TU_TMQ_RECORD_LIST_RES );
 	PACKETNAME_INSERT( TU_TMQ_MEMBER_LIST_RES );
-	PACKETNAME_INSERT( TU_BUDOKAI_NOTICE_NFY );						// √µ«œ¡¶¿œπ´µµ»∏ ∞¯¡ˆ
+	PACKETNAME_INSERT( TU_BUDOKAI_NOTICE_NFY );						// Ï≤úÌïòÏ†úÏùºÎ¨¥ÎèÑÌöå Í≥µÏßÄ
 	PACKETNAME_INSERT( TU_BUDOKAI_TOURNAMENT_INDIVIDUAL_LIST_RES );
 	PACKETNAME_INSERT( TU_BUDOKAI_TOURNAMENT_INDIVIDUAL_INFO_RES );
 	PACKETNAME_INSERT( TU_BUDOKAI_TOURNAMENT_TEAM_LIST_RES );
 	PACKETNAME_INSERT( TU_BUDOKAI_TOURNAMENT_TEAM_INFO_RES );
-	PACKETNAME_INSERT( TU_PETITION_CHAT_START_REQ );						// ¡¯¡§ √§∆√ ø‰√ª [ by sooshia 2008-10-15 ]
-	PACKETNAME_INSERT( TU_PETITION_CHAT_GM_SAY_REQ );				// GM¿Ã ∏ª«— ≥ªøÎ [ by sooshia 2008-10-16 ]
+	PACKETNAME_INSERT( TU_PETITION_CHAT_START_REQ );						// ÏßÑÏ†ï Ï±ÑÌåÖ ÏöîÏ≤≠ [ by sooshia 2008-10-15 ]
+	PACKETNAME_INSERT( TU_PETITION_CHAT_GM_SAY_REQ );				// GMÏù¥ ÎßêÌïú ÎÇ¥Ïö© [ by sooshia 2008-10-16 ]
 	PACKETNAME_INSERT( TU_PETITION_CHAT_USER_SAY_RES );				// [ by sooshia 2008-10-16 ]
 	PACKETNAME_INSERT( TU_PETITION_CHAT_GM_END_NFY );					// [ by sooshia 2008-10-17 ]
 	PACKETNAME_INSERT( TU_PETITION_USER_INSERT_RES );					// [ by sooshia 2008-10-18 ]
@@ -718,16 +722,16 @@ void CPacketTracer::Create()
 	PACKETNAME_INSERT( TU_DOJO_CREATED_NFY );
 	PACKETNAME_INSERT( TU_DOJO_DESTROYED_NFY );
 	PACKETNAME_INSERT( TU_DOJO_BRIEF_NFY );
-	PACKETNAME_INSERT( TU_DOJO_SCRAMBLE_NFY );							// ±ÊµÂ∏Æ¥ı∞° π€ø° ≥™∞¨¥Ÿ ø‘∞≈≥™ ¿¿¥‰¿Ã « ø‰«— ªÛ≈¬ ¿œ∂ß ¥ŸΩ√ æÀ∑¡¡ÿ¥Ÿ.
-	PACKETNAME_INSERT( TU_DOJO_SCRAMBLE_INFORM_NFY );					// µµ¿Â¿¸ πÊº€ ∏ﬁºº¡ˆ
-	PACKETNAME_INSERT( TU_DOJO_SCRAMBLE_REJECT_NFY );					// Ω≈√ª«ﬂ¥¯ ¿Ø∆ƒø°∞‘ ∞≈¿˝«œø¥¿ª∂ß
+	PACKETNAME_INSERT( TU_DOJO_SCRAMBLE_NFY );							// Í∏∏ÎìúÎ¶¨ÎçîÍ∞Ä Î∞ñÏóê ÎÇòÍ∞îÎã§ ÏôîÍ±∞ÎÇò ÏùëÎãµÏù¥ ÌïÑÏöîÌïú ÏÉÅÌÉú ÏùºÎïå Îã§Ïãú ÏïåÎ†§Ï§ÄÎã§.
+	PACKETNAME_INSERT( TU_DOJO_SCRAMBLE_INFORM_NFY );					// ÎèÑÏû•Ï†Ñ Î∞©ÏÜ° Î©îÏÑ∏ÏßÄ
+	PACKETNAME_INSERT( TU_DOJO_SCRAMBLE_REJECT_NFY );					// Ïã†Ï≤≠ÌñàÎçò Ïú†ÌååÏóêÍ≤å Í±∞Ï†àÌïòÏòÄÏùÑÎïå
 	PACKETNAME_INSERT( TU_DOJO_BUDOKAI_SEED_ADD_RES );
 	PACKETNAME_INSERT( TU_DOJO_BUDOKAI_SEED_DEL_RES );
-	PACKETNAME_INSERT( TU_DOJO_SCRAMBLE_POINT_NFY );						// µµ¿Â ¡°ºˆ πÊº€ ∏ﬁºº¡ˆ
-	PACKETNAME_INSERT( TU_DOJO_SCRAMBLE_SHIEFT_SEAL_STATE_NFY );			// µµ¿Â ¿Œ¿Â »πµÊ πÊº€
+	PACKETNAME_INSERT( TU_DOJO_SCRAMBLE_POINT_NFY );						// ÎèÑÏû• Ï†êÏàò Î∞©ÏÜ° Î©îÏÑ∏ÏßÄ
+	PACKETNAME_INSERT( TU_DOJO_SCRAMBLE_SHIEFT_SEAL_STATE_NFY );			// ÎèÑÏû• Ïù∏Ïû• ÌöçÎìù Î∞©ÏÜ°
 	PACKETNAME_INSERT( TU_DOJO_NOTICE_CHANGE_RES );
 	PACKETNAME_INSERT( TU_DOJO_NOTICE_CHANGE_NFY );
-	PACKETNAME_INSERT( TU_DOJO_SCRAMBLE_RECEIVE_NFY );					// Ω≈√ª«ﬂ¥¯ ¿Ø∆ƒø°∞‘ Ω¬∂Ùµ«æ˙¿ª∂ß
+	PACKETNAME_INSERT( TU_DOJO_SCRAMBLE_RECEIVE_NFY );					// Ïã†Ï≤≠ÌñàÎçò Ïú†ÌååÏóêÍ≤å ÏäπÎùΩÎêòÏóàÏùÑÎïå
 	PACKETNAME_INSERT( TU_DOJO_SCRAMBLE_RECEIVE_INFO_NFY );
 	PACKETNAME_INSERT( TU_DOJO_SCRAMBLE_REWARD_NFY );
 	PACKETNAME_INSERT( TU_DOJO_SCRAMBLE_RESULT_NFY );
@@ -743,142 +747,142 @@ void CPacketTracer::Create()
 	PACKETNAME_INSERT( UC_CHARACTER_SELECT_REQ );
 	PACKETNAME_INSERT( UC_CHARACTER_EXIT_REQ );
 	PACKETNAME_INSERT( UC_CHARACTER_LOAD_REQ );
-	PACKETNAME_INSERT( UC_CHARACTER_DEL_CANCEL_REQ );					// ¿Ã∏ß¿Ã ¡ﬂ∫π µ«æÓ ∫Ø∞Ê
+	PACKETNAME_INSERT( UC_CHARACTER_DEL_CANCEL_REQ );					// Ïù¥Î¶ÑÏù¥ Ï§ëÎ≥µ ÎêòÏñ¥ Î≥ÄÍ≤Ω
 	PACKETNAME_INSERT( UC_CONNECT_WAIT_CHECK_REQ );
-	PACKETNAME_INSERT( UC_CONNECT_WAIT_CANCEL_REQ );						// ¥Î±‚ √Îº“
+	PACKETNAME_INSERT( UC_CONNECT_WAIT_CANCEL_REQ );						// ÎåÄÍ∏∞ Ï∑®ÏÜå
 	PACKETNAME_INSERT( UC_CHARACTER_RENAME_REQ );
 
 	PACKETNAME_INSERT( UG_PING );
 	PACKETNAME_INSERT( UG_GAME_ENTER_REQ );
-	PACKETNAME_INSERT( UG_GAME_LEAVE_REQ );									// ∞‘¿” ≥™∞®
-	PACKETNAME_INSERT( UG_AUTH_KEY_FOR_COMMUNITY_SERVER_REQ );				// ƒøπ¬¥œ∆º º≠πˆ ¿Œ¡ı≈∞ ø‰√ª
-	PACKETNAME_INSERT( UG_ENTER_WORLD );										// ø˘µÂ ¡¯¿‘
-	PACKETNAME_INSERT( UG_SERVER_COMMAND );									// º≠πˆ ∏Ì∑…æÓ
-	PACKETNAME_INSERT( UG_CHAR_READY_FOR_COMMUNITY_SERVER_NFY );				// ƒøπ¬¥œ∆º º≠πˆøÕ¿« µ•¿Ã≈∏ ¿¸º€ ¡ÿ∫Ò∞° µ«æ˙¿Ω¿ª æÀ∏≤
-	PACKETNAME_INSERT( UG_CHAR_READY_TO_SPAWN );								// ∑Œµ˘ øœ∑·(Spawning state∑Œ¿« ¡¯¿‘ ¡ÿ∫Ò ªÛ≈¬)
-	PACKETNAME_INSERT( UG_CHAR_READY );										// ƒ≥∏Ø≈Õ ¡ÿ∫Ò
-	PACKETNAME_INSERT( UG_CHAR_MOVE );										// ƒ≥∏Ø≈Õ ¿Ãµø
-	PACKETNAME_INSERT( UG_CHAR_DEST_MOVE );									// ƒ≥∏Ø≈Õ ∏Ò¿˚¡ˆ ¿Ãµø
-	PACKETNAME_INSERT( UG_CHAR_CHANGE_HEADING );								// ƒ≥∏Ø≈Õ »∏¿¸
-	PACKETNAME_INSERT( UG_CHAR_CHANGE_DIRECTION_ON_FLOATING );				// ƒ≥∏Ø≈Õ ¡°«¡/falling ∂ß¿« πŸ∂Û∫∏¥¬ πÊ«‚
-	PACKETNAME_INSERT( UG_CHAR_FOLLOW_MOVE );								// ƒ≥∏Ø≈Õ ≈∏∞Ÿ µ˚∂Û∞°±‚
-	PACKETNAME_INSERT( UG_CHAR_DASH_KEYBOARD );								// Keyboard dash Ω√¿€
-	PACKETNAME_INSERT( UG_CHAR_DASH_MOUSE );									// Mouse dash Ω√¿€
-	PACKETNAME_INSERT( UG_CHAR_JUMP );										// ¡°«¡ Ω√¿€
-	PACKETNAME_INSERT( UG_CHAR_JUMP_END );									// ¡°«¡ ¡æ∑·
-	PACKETNAME_INSERT( UG_CHAR_FALLING );									// Falling ªÛ≈¬ Ω√¿€/¡æ∑·
-	PACKETNAME_INSERT( UG_CHAR_TOGG_SITDOWN );								// æ…±‚∏µÂ ≈‰±€
-	PACKETNAME_INSERT( UG_CHAR_TOGG_FIGHTING );								// ¿¸≈ı∏µÂ ≈‰±€
-	PACKETNAME_INSERT( UG_CHAR_TARGET_SELECT );								// ≈∏∞Ÿ º±≈√
-	PACKETNAME_INSERT( UG_CHAR_TARGET_INFO );								// ≈∏∞Ÿ ¡§∫∏ ø‰√ª
-	PACKETNAME_INSERT( UG_CHAR_TARGET_FACING );								// ≈∏∞Ÿ ¥Î∏È
-	PACKETNAME_INSERT( UG_CHAR_ATTACK_BEGIN );								// ∞¯∞› Ω√¿€ æÀ∏≤
-	PACKETNAME_INSERT( UG_CHAR_ATTACK_END );									// ∞¯∞› ¡æ∑· æÀ∏≤
-	PACKETNAME_INSERT( UG_CHAR_CHARGE );										// ƒ≥∏Ø≈Õ ±‚√Ê¿¸
-	PACKETNAME_INSERT( UG_CHAR_BLOCK_MODE );									// Block ∏µÂ Ω√¿€/¡æ∑·
-	PACKETNAME_INSERT( UG_CHAR_TELEPORT_REQ );								// ≈⁄∑π∆˜∆Æ ø‰√ª
-	PACKETNAME_INSERT( UG_CHAR_BIND_REQ );									// πŸ¿ŒµÂ ø‰√ª
-	PACKETNAME_INSERT( UG_CHAR_REVIVAL_REQ );								// ∫Œ»∞ ø‰√ª
-	PACKETNAME_INSERT( UG_CHAR_SERVER_CHANGE_REQ );							// ¥Ÿ∏• ∞‘¿” º≠πˆ∑Œ¿« ¿Ãµø ø‰√ª
-	PACKETNAME_INSERT( UG_CHAR_CHANNEL_CHANGE_REQ );							// ƒ≥∏Ø≈Õ ≥™∞® -> ¥Ÿ∏• º≠πˆ √§≥Œ∑Œ ¿Ãµø ø‰√ª
-	PACKETNAME_INSERT( UG_CHAR_EXIT_REQ );									// ƒ≥∏Ø≈Õ ≥™∞® -> ƒ≥∏Ø≈Õ º≠πˆ∑Œ ¿Ãµø ø‰√ª
-	PACKETNAME_INSERT( UG_GAME_EXIT_REQ );									// ∞‘¿”¿ª ¡æ∑·«‘
+	PACKETNAME_INSERT( UG_GAME_LEAVE_REQ );									// Í≤åÏûÑ ÎÇòÍ∞ê
+	PACKETNAME_INSERT( UG_AUTH_KEY_FOR_COMMUNITY_SERVER_REQ );				// Ïª§ÎÆ§ÎãàÌã∞ ÏÑúÎ≤Ñ Ïù∏Ï¶ùÌÇ§ ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_ENTER_WORLD );										// ÏõîÎìú ÏßÑÏûÖ
+	PACKETNAME_INSERT( UG_SERVER_COMMAND );									// ÏÑúÎ≤Ñ Î™ÖÎ†πÏñ¥
+	PACKETNAME_INSERT( UG_CHAR_READY_FOR_COMMUNITY_SERVER_NFY );				// Ïª§ÎÆ§ÎãàÌã∞ ÏÑúÎ≤ÑÏôÄÏùò Îç∞Ïù¥ÌÉÄ Ï†ÑÏÜ° Ï§ÄÎπÑÍ∞Ä ÎêòÏóàÏùåÏùÑ ÏïåÎ¶º
+	PACKETNAME_INSERT( UG_CHAR_READY_TO_SPAWN );								// Î°úÎî© ÏôÑÎ£å(Spawning stateÎ°úÏùò ÏßÑÏûÖ Ï§ÄÎπÑ ÏÉÅÌÉú)
+	PACKETNAME_INSERT( UG_CHAR_READY );										// Ï∫êÎ¶≠ÌÑ∞ Ï§ÄÎπÑ
+	PACKETNAME_INSERT( UG_CHAR_MOVE );										// Ï∫êÎ¶≠ÌÑ∞ Ïù¥Îèô
+	PACKETNAME_INSERT( UG_CHAR_DEST_MOVE );									// Ï∫êÎ¶≠ÌÑ∞ Î™©Ï†ÅÏßÄ Ïù¥Îèô
+	PACKETNAME_INSERT( UG_CHAR_CHANGE_HEADING );								// Ï∫êÎ¶≠ÌÑ∞ ÌöåÏ†Ñ
+	PACKETNAME_INSERT( UG_CHAR_CHANGE_DIRECTION_ON_FLOATING );				// Ï∫êÎ¶≠ÌÑ∞ Ï†êÌîÑ/falling ÎïåÏùò Î∞îÎùºÎ≥¥Îäî Î∞©Ìñ•
+	PACKETNAME_INSERT( UG_CHAR_FOLLOW_MOVE );								// Ï∫êÎ¶≠ÌÑ∞ ÌÉÄÍ≤ü Îî∞ÎùºÍ∞ÄÍ∏∞
+	PACKETNAME_INSERT( UG_CHAR_DASH_KEYBOARD );								// Keyboard dash ÏãúÏûë
+	PACKETNAME_INSERT( UG_CHAR_DASH_MOUSE );									// Mouse dash ÏãúÏûë
+	PACKETNAME_INSERT( UG_CHAR_JUMP );										// Ï†êÌîÑ ÏãúÏûë
+	PACKETNAME_INSERT( UG_CHAR_JUMP_END );									// Ï†êÌîÑ Ï¢ÖÎ£å
+	PACKETNAME_INSERT( UG_CHAR_FALLING );									// Falling ÏÉÅÌÉú ÏãúÏûë/Ï¢ÖÎ£å
+	PACKETNAME_INSERT( UG_CHAR_TOGG_SITDOWN );								// ÏïâÍ∏∞Î™®Îìú ÌÜ†Í∏Ä
+	PACKETNAME_INSERT( UG_CHAR_TOGG_FIGHTING );								// Ï†ÑÌà¨Î™®Îìú ÌÜ†Í∏Ä
+	PACKETNAME_INSERT( UG_CHAR_TARGET_SELECT );								// ÌÉÄÍ≤ü ÏÑ†ÌÉù
+	PACKETNAME_INSERT( UG_CHAR_TARGET_INFO );								// ÌÉÄÍ≤ü Ï†ïÎ≥¥ ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_CHAR_TARGET_FACING );								// ÌÉÄÍ≤ü ÎåÄÎ©¥
+	PACKETNAME_INSERT( UG_CHAR_ATTACK_BEGIN );								// Í≥µÍ≤© ÏãúÏûë ÏïåÎ¶º
+	PACKETNAME_INSERT( UG_CHAR_ATTACK_END );									// Í≥µÍ≤© Ï¢ÖÎ£å ÏïåÎ¶º
+	PACKETNAME_INSERT( UG_CHAR_CHARGE );										// Ï∫êÎ¶≠ÌÑ∞ Í∏∞Ï∂©Ï†Ñ
+	PACKETNAME_INSERT( UG_CHAR_BLOCK_MODE );									// Block Î™®Îìú ÏãúÏûë/Ï¢ÖÎ£å
+	PACKETNAME_INSERT( UG_CHAR_TELEPORT_REQ );								// ÌÖîÎ†àÌè¨Ìä∏ ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_CHAR_BIND_REQ );									// Î∞îÏù∏Îìú ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_CHAR_REVIVAL_REQ );								// Î∂ÄÌôú ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_CHAR_SERVER_CHANGE_REQ );							// Îã§Î•∏ Í≤åÏûÑ ÏÑúÎ≤ÑÎ°úÏùò Ïù¥Îèô ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_CHAR_CHANNEL_CHANGE_REQ );							// Ï∫êÎ¶≠ÌÑ∞ ÎÇòÍ∞ê -> Îã§Î•∏ ÏÑúÎ≤Ñ Ï±ÑÎÑêÎ°ú Ïù¥Îèô ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_CHAR_EXIT_REQ );									// Ï∫êÎ¶≠ÌÑ∞ ÎÇòÍ∞ê -> Ï∫êÎ¶≠ÌÑ∞ ÏÑúÎ≤ÑÎ°ú Ïù¥Îèô ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_GAME_EXIT_REQ );									// Í≤åÏûÑÏùÑ Ï¢ÖÎ£åÌï®
 	PACKETNAME_INSERT( UG_CHAR_AWAY_REQ );
 	PACKETNAME_INSERT( UG_CHAR_KEY_UPDATE_REQ );
-	PACKETNAME_INSERT( UG_CHAR_DIRECT_PLAY_ACK );							// ø¨√‚ ¡æ∑·»ƒ ∫∏≥ª¡÷¥¬ ¿¿¥‰
-	PACKETNAME_INSERT( UG_CHAR_KNOCKDOWN_RELEASE_NFY );						// ≥À¥ŸøÓ «Æ±‚
-	PACKETNAME_INSERT( UG_CHAR_SKILL_REQ );									// Ω∫≈≥ ªÁøÎ ø‰√ª
-	PACKETNAME_INSERT( UG_SKILL_TARGET_LIST );								// Ω∫≈≥ ≈∏∞Ÿ ∏Ò∑œ æÀ∏≤
-	PACKETNAME_INSERT( UG_SKILL_LEARN_REQ );									// Ω∫≈≥ ºˆ∑√ ø‰√ª
-	PACKETNAME_INSERT( UG_SKILL_UPGRADE_REQ );								// Ω∫≈≥ «‚ªÛ ø‰√ª
-	PACKETNAME_INSERT( UG_SKILL_RP_BONUS_SETTING_REQ );						// Ω∫≈≥∏∂¥Ÿ ¿⁄µø¿∏∑Œ ªÁøÎµ… RP ∫∏≥ Ω∫ ≈∏¿‘ º≥¡§
-	PACKETNAME_INSERT( UG_HTB_START_REQ );								    // HTB Ω√¿€ ø‰√ª
-	PACKETNAME_INSERT( UG_HTB_LEARN_REQ );									// HTB Ω¿µÊ ø‰√ª
-	PACKETNAME_INSERT( UG_HTB_FORWARD_REQ );									// HTB ¡¯«‡
+	PACKETNAME_INSERT( UG_CHAR_DIRECT_PLAY_ACK );							// Ïó∞Ï∂ú Ï¢ÖÎ£åÌõÑ Î≥¥ÎÇ¥Ï£ºÎäî ÏùëÎãµ
+	PACKETNAME_INSERT( UG_CHAR_KNOCKDOWN_RELEASE_NFY );						// ÎÑâÎã§Ïö¥ ÌíÄÍ∏∞
+	PACKETNAME_INSERT( UG_CHAR_SKILL_REQ );									// Ïä§ÌÇ¨ ÏÇ¨Ïö© ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_SKILL_TARGET_LIST );								// Ïä§ÌÇ¨ ÌÉÄÍ≤ü Î™©Î°ù ÏïåÎ¶º
+	PACKETNAME_INSERT( UG_SKILL_LEARN_REQ );									// Ïä§ÌÇ¨ ÏàòÎ†® ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_SKILL_UPGRADE_REQ );								// Ïä§ÌÇ¨ Ìñ•ÏÉÅ ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_SKILL_RP_BONUS_SETTING_REQ );						// Ïä§ÌÇ¨ÎßàÎã§ ÏûêÎèôÏúºÎ°ú ÏÇ¨Ïö©Îê† RP Î≥¥ÎÑàÏä§ ÌÉÄÏûÖ ÏÑ§Ï†ï
+	PACKETNAME_INSERT( UG_HTB_START_REQ );								    // HTB ÏãúÏûë ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_HTB_LEARN_REQ );									// HTB ÏäµÎìù ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_HTB_FORWARD_REQ );									// HTB ÏßÑÌñâ
 	PACKETNAME_INSERT( UG_HTB_RP_BALL_USE_REQ );
-	PACKETNAME_INSERT( UG_BUFF_DROP_REQ );									// Buff «ÿ¡¶ ø‰√ª
-	PACKETNAME_INSERT( UG_ITEM_MOVE_REQ );									// æ∆¿Ã≈€ ¿Ãµø ø‰√ª
-	PACKETNAME_INSERT( UG_ITEM_MOVE_STACK_REQ );								// æ∆¿Ã≈€ Ω∫≈√ ¿Ãµø ø‰√ª
-	PACKETNAME_INSERT( UG_ITEM_DELETE_REQ );									// æ∆¿Ã≈€ ªË¡¶ ø‰√ª
-	PACKETNAME_INSERT( UG_ITEM_EQUIP_REPAIR_REQ );							// ºˆ∏Æ Ω√¿€ ø‰√ª
-	PACKETNAME_INSERT( UG_ITEM_PICK_REQ );									// æ∆¿Ã≈€¡›±‚ ø‰√ª
+	PACKETNAME_INSERT( UG_BUFF_DROP_REQ );									// Buff Ìï¥Ï†ú ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_ITEM_MOVE_REQ );									// ÏïÑÏù¥ÌÖú Ïù¥Îèô ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_ITEM_MOVE_STACK_REQ );								// ÏïÑÏù¥ÌÖú Ïä§ÌÉù Ïù¥Îèô ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_ITEM_DELETE_REQ );									// ÏïÑÏù¥ÌÖú ÏÇ≠Ï†ú ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_ITEM_EQUIP_REPAIR_REQ );							// ÏàòÎ¶¨ ÏãúÏûë ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_ITEM_PICK_REQ );									// ÏïÑÏù¥ÌÖúÏ§çÍ∏∞ ÏöîÏ≤≠
 	PACKETNAME_INSERT( UG_ITEM_REPAIR_REQ );
-	PACKETNAME_INSERT( UG_ITEM_USE_REQ );									// æ∆¿Ã≈€ ªÁøÎ ø‰√ª
-	PACKETNAME_INSERT( UG_ITEM_UPGRADE_REQ );								// æ∆¿Ã≈€ æ˜±◊∑π¿ÃµÂ
-	PACKETNAME_INSERT( UG_ITEM_IDENTIFY_REQ );								// Ω∫ƒ´øÏ≈Õ∆ƒ√˜∑Œ æ∆¿Ã≈€ »Æ¿Œ
-	PACKETNAME_INSERT( UG_ZENNY_PICK_REQ );									// µ∑¡›±‚ ø‰√ª
-	PACKETNAME_INSERT( UG_SHOP_START_REQ );									// ªÛ¡° ø≠±‚
-	PACKETNAME_INSERT( UG_SHOP_BUY_REQ );									// ªÛ¡° π∞∞« ªÁ±‚
-	PACKETNAME_INSERT( UG_SHOP_SELL_REQ );									// ªÛ¡° π∞∞« ∆»±‚
-	PACKETNAME_INSERT( UG_SHOP_END_REQ );									// ªÛ¡° ¥›±‚
-	PACKETNAME_INSERT( UG_PARTY_CREATE_REQ );								// ∆ƒ∆º ∏∏µÈ±‚
-	PACKETNAME_INSERT( UG_PARTY_DISBAND_REQ );								// ∆ƒ∆º «ÿªÍ«œ±‚
-	PACKETNAME_INSERT( UG_PARTY_INVITE_REQ );								// ∆ƒ∆ºø° √ ¥Î«œ±‚
-	PACKETNAME_INSERT( UG_PARTY_INVITE_CHARID_REQ );							// ∆ƒ∆ºø° √ ¥Î«œ±‚(ªÛ¥ÎπÊ¿« CharID ¿ÃøÎ)
-	PACKETNAME_INSERT( UG_PARTY_INVITE_CHAR_NAME_REQ );						// ∆ƒ∆ºø° √ ¥Î«œ±‚(ªÛ¥ÎπÊ¿« ¿Ã∏ß ¿ÃøÎ)
-	PACKETNAME_INSERT( UG_PARTY_RESPONSE_INVITATION );						// ∆ƒ∆º √ ¥Îø° ¥Î«— ¥Î¥‰ ∫∏≥ª±‚
-	PACKETNAME_INSERT( UG_PARTY_LEAVE_REQ );									// ∆ƒ∆º ≈ª≈«œ±‚
-	PACKETNAME_INSERT( UG_PARTY_KICK_OUT_REQ );								// ∏‚πˆ ∞≠¡¶∑Œ ≈ª≈Ω√≈∞±‚
-	PACKETNAME_INSERT( UG_PARTY_CHANGE_LEADER_REQ );							// ∆ƒ∆º ∏Æ¥ı ∫Ø∞Ê«œ±‚
-	PACKETNAME_INSERT( UG_PARTY_CHANGE_ZENNY_LOOTING_METHOD_REQ );			// ¡¶¥œ ∫–πË πÊπ˝ ∫Ø∞Ê«œ±‚
-	PACKETNAME_INSERT( UG_PARTY_CHANGE_ITEM_LOOTING_METHOD_REQ );			// æ∆¿Ã≈€ ∫–πË πÊπ˝ ∫Ø∞Ê«œ±‚
-	PACKETNAME_INSERT( UG_BANK_START_REQ );									// Warehouse æ∆¿Ã≈€ ∑Œµ˘
-	PACKETNAME_INSERT( UG_BANK_MOVE_REQ );									// Warehouse ¿« æ∆¿Ã≈€ ¿Ãµø
-	PACKETNAME_INSERT( UG_BANK_MOVE_STACK_REQ );								// Warehouse ¿« Ω∫≈√æ∆¿Ã≈€ ¿Ãµø
-	PACKETNAME_INSERT( UG_BANK_END_REQ );									// Warehouse ∏¶ ¥›¥¬¥Ÿ.
-	PACKETNAME_INSERT( UG_BANK_ZENNY_REQ );									// Warehouse ø° ¿˙±› »§¿∫ ¿Œ√‚«—¥Ÿ.
-	PACKETNAME_INSERT( UG_BANK_BUY_REQ );									// Warehouse ¿« √¢∞Ì∞°πÊ¿ª ¥√∏∞¥Ÿ.
-	PACKETNAME_INSERT( UG_BANK_ITEM_DELETE_REQ );							// Warehouse ¿« æ∆¿Ã≈€¿ª ªË¡¶«—¥Ÿ.
-	PACKETNAME_INSERT( UG_SCOUTER_INDICATOR_REQ );							// Ω∫ƒ´øÏ≈Õ ¿¸≈ı∑¬√¯¡§	
-	PACKETNAME_INSERT( UG_SCOUTER_PREDICT_REQ );								// Ω∫ƒ´øÏ≈Õ æ˜±◊∑π¿ÃµÂ øπ√¯	
-	PACKETNAME_INSERT( UG_SCOUTER_EQUIP_CHECK_REQ );							// Ω∫ƒ´øÏ≈Õ ªÛ¥Î ¿Â¬¯æ∆¿Ã≈€ »Æ¿Œ
-	PACKETNAME_INSERT( UG_SCOUTER_CHIP_REMOVE_ALL_REQ );						// Ω∫ƒ´øÏ≈Õ ƒ®¿ª ∏µŒ ¡¶∞≈
-	PACKETNAME_INSERT( UG_SOCIAL_ACTION );									// Social Action ªÁøÎ
-	PACKETNAME_INSERT( UG_TS_CONFIRM_STEP_REQ );								// ∆Æ∏Æ∞≈ ¡¯«‡ ø‰√ª
-	PACKETNAME_INSERT( UG_TS_UPDATE_STATE );									// ∆Æ∏Æ∞≈ Ω«∆– ªÛ≈¬ æ˜µ•¿Ã∆Æ
+	PACKETNAME_INSERT( UG_ITEM_USE_REQ );									// ÏïÑÏù¥ÌÖú ÏÇ¨Ïö© ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_ITEM_UPGRADE_REQ );								// ÏïÑÏù¥ÌÖú ÏóÖÍ∑∏Î†àÏù¥Îìú
+	PACKETNAME_INSERT( UG_ITEM_IDENTIFY_REQ );								// Ïä§Ïπ¥Ïö∞ÌÑ∞ÌååÏ∏†Î°ú ÏïÑÏù¥ÌÖú ÌôïÏù∏
+	PACKETNAME_INSERT( UG_ZENNY_PICK_REQ );									// ÎèàÏ§çÍ∏∞ ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_SHOP_START_REQ );									// ÏÉÅÏ†ê Ïó¥Í∏∞
+	PACKETNAME_INSERT( UG_SHOP_BUY_REQ );									// ÏÉÅÏ†ê Î¨ºÍ±¥ ÏÇ¨Í∏∞
+	PACKETNAME_INSERT( UG_SHOP_SELL_REQ );									// ÏÉÅÏ†ê Î¨ºÍ±¥ ÌåîÍ∏∞
+	PACKETNAME_INSERT( UG_SHOP_END_REQ );									// ÏÉÅÏ†ê Îã´Í∏∞
+	PACKETNAME_INSERT( UG_PARTY_CREATE_REQ );								// ÌååÌã∞ ÎßåÎì§Í∏∞
+	PACKETNAME_INSERT( UG_PARTY_DISBAND_REQ );								// ÌååÌã∞ Ìï¥ÏÇ∞ÌïòÍ∏∞
+	PACKETNAME_INSERT( UG_PARTY_INVITE_REQ );								// ÌååÌã∞Ïóê Ï¥àÎåÄÌïòÍ∏∞
+	PACKETNAME_INSERT( UG_PARTY_INVITE_CHARID_REQ );							// ÌååÌã∞Ïóê Ï¥àÎåÄÌïòÍ∏∞(ÏÉÅÎåÄÎ∞©Ïùò CharID Ïù¥Ïö©)
+	PACKETNAME_INSERT( UG_PARTY_INVITE_CHAR_NAME_REQ );						// ÌååÌã∞Ïóê Ï¥àÎåÄÌïòÍ∏∞(ÏÉÅÎåÄÎ∞©Ïùò Ïù¥Î¶Ñ Ïù¥Ïö©)
+	PACKETNAME_INSERT( UG_PARTY_RESPONSE_INVITATION );						// ÌååÌã∞ Ï¥àÎåÄÏóê ÎåÄÌïú ÎåÄÎãµ Î≥¥ÎÇ¥Í∏∞
+	PACKETNAME_INSERT( UG_PARTY_LEAVE_REQ );									// ÌååÌã∞ ÌÉàÌá¥ÌïòÍ∏∞
+	PACKETNAME_INSERT( UG_PARTY_KICK_OUT_REQ );								// Î©§Î≤Ñ Í∞ïÏ†úÎ°ú ÌÉàÌá¥ÏãúÌÇ§Í∏∞
+	PACKETNAME_INSERT( UG_PARTY_CHANGE_LEADER_REQ );							// ÌååÌã∞ Î¶¨Îçî Î≥ÄÍ≤ΩÌïòÍ∏∞
+	PACKETNAME_INSERT( UG_PARTY_CHANGE_ZENNY_LOOTING_METHOD_REQ );			// Ï†úÎãà Î∂ÑÎ∞∞ Î∞©Î≤ï Î≥ÄÍ≤ΩÌïòÍ∏∞
+	PACKETNAME_INSERT( UG_PARTY_CHANGE_ITEM_LOOTING_METHOD_REQ );			// ÏïÑÏù¥ÌÖú Î∂ÑÎ∞∞ Î∞©Î≤ï Î≥ÄÍ≤ΩÌïòÍ∏∞
+	PACKETNAME_INSERT( UG_BANK_START_REQ );									// Warehouse ÏïÑÏù¥ÌÖú Î°úÎî©
+	PACKETNAME_INSERT( UG_BANK_MOVE_REQ );									// Warehouse Ïùò ÏïÑÏù¥ÌÖú Ïù¥Îèô
+	PACKETNAME_INSERT( UG_BANK_MOVE_STACK_REQ );								// Warehouse Ïùò Ïä§ÌÉùÏïÑÏù¥ÌÖú Ïù¥Îèô
+	PACKETNAME_INSERT( UG_BANK_END_REQ );									// Warehouse Î•º Îã´ÎäîÎã§.
+	PACKETNAME_INSERT( UG_BANK_ZENNY_REQ );									// Warehouse Ïóê Ï†ÄÍ∏à ÌòπÏùÄ Ïù∏Ï∂úÌïúÎã§.
+	PACKETNAME_INSERT( UG_BANK_BUY_REQ );									// Warehouse Ïùò Ï∞ΩÍ≥†Í∞ÄÎ∞©ÏùÑ ÎäòÎ¶∞Îã§.
+	PACKETNAME_INSERT( UG_BANK_ITEM_DELETE_REQ );							// Warehouse Ïùò ÏïÑÏù¥ÌÖúÏùÑ ÏÇ≠Ï†úÌïúÎã§.
+	PACKETNAME_INSERT( UG_SCOUTER_INDICATOR_REQ );							// Ïä§Ïπ¥Ïö∞ÌÑ∞ Ï†ÑÌà¨Î†•Ï∏°Ï†ï	
+	PACKETNAME_INSERT( UG_SCOUTER_PREDICT_REQ );								// Ïä§Ïπ¥Ïö∞ÌÑ∞ ÏóÖÍ∑∏Î†àÏù¥Îìú ÏòàÏ∏°	
+	PACKETNAME_INSERT( UG_SCOUTER_EQUIP_CHECK_REQ );							// Ïä§Ïπ¥Ïö∞ÌÑ∞ ÏÉÅÎåÄ Ïû•Ï∞©ÏïÑÏù¥ÌÖú ÌôïÏù∏
+	PACKETNAME_INSERT( UG_SCOUTER_CHIP_REMOVE_ALL_REQ );						// Ïä§Ïπ¥Ïö∞ÌÑ∞ Ïπ©ÏùÑ Î™®Îëê Ï†úÍ±∞
+	PACKETNAME_INSERT( UG_SOCIAL_ACTION );									// Social Action ÏÇ¨Ïö©
+	PACKETNAME_INSERT( UG_TS_CONFIRM_STEP_REQ );								// Ìä∏Î¶¨Í±∞ ÏßÑÌñâ ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_TS_UPDATE_STATE );									// Ìä∏Î¶¨Í±∞ Ïã§Ìå® ÏÉÅÌÉú ÏóÖÎç∞Ïù¥Ìä∏
 	PACKETNAME_INSERT( UG_TS_EXCUTE_TRIGGER_OBJECT );						// Excute Trigger Object
-	PACKETNAME_INSERT( UG_QUEST_ITEM_MOVE_REQ );								// ƒ˘Ω∫∆Æ æ∆¿Ã≈€ ¿Ãµø ø‰√ª
-	PACKETNAME_INSERT( UG_QUEST_ITEM_DELETE_REQ );							// ƒ˘Ω∫∆Æ æ∆¿Ã≈€ ªË¡¶ ø‰√ª
-	PACKETNAME_INSERT( UG_QUEST_GIVEUP_REQ );								// ƒ˘Ω∫∆Æ æ∆¿Ã≈€ ∆˜±‚ ø‰√ª
-	PACKETNAME_INSERT( UG_QUEST_SHARE );										// ƒ˘Ω∫∆Æ ∞¯¿Ø ø‰√ª
-	PACKETNAME_INSERT( UG_QUEST_OBJECT_VISIT_REQ );							// npc ); tobject πÊπÆ ¿Ã∫•∆Æ
-	PACKETNAME_INSERT( UG_FREEBATTLE_CHALLENGE_REQ );						// «¡∏ÆπË∆≤ ¥Î¿¸ Ω≈√ª
-	PACKETNAME_INSERT( UG_FREEBATTLE_ACCEPT_RES );							// «¡∏ÆπË∆≤ ¥Î¿¸ ºˆ∂Ù¿¿¥‰
-	PACKETNAME_INSERT( UG_QUICK_SLOT_UPDATE_REQ );							// ∫¸∏•ΩΩ∑‘ √ﬂ∞° «œ∞≈≥™ ºˆ¡§
-	PACKETNAME_INSERT( UG_QUICK_SLOT_DEL_REQ );								// ∫¸∏•ΩΩ∑‘ ªË¡¶
-	PACKETNAME_INSERT( UG_PET_DISMISS_PET_REQ );								// ∆Í¿« º“»Ø √Îº“ ø‰√ª
-	PACKETNAME_INSERT( UG_TRADE_START_REQ );									// «ÿ¥Á ¿Ø¿˙øÕ¿« ±≥»Ø ø‰√ª
-	PACKETNAME_INSERT( UG_TRADE_OK_RES );									// «ÿ¥Á ¿Ø¡Æ¿« ¿¿¥‰
-	PACKETNAME_INSERT( UG_TRADE_ADD_REQ );                                   // ±≥»Ø√¢ø° æ∆¿Ã≈€ µÓ∑œ 
-	PACKETNAME_INSERT( UG_TRADE_DEL_REQ );									// ±≥»Ø√¢ø° æ∆¿Ã≈€ ªË¡¶
-	PACKETNAME_INSERT( UG_TRADE_MODIFY_REQ );                                   // ±≥»Ø√¢ø° µÓ∑œµ» æ∆¿Ã≈€ ∞≥ºˆ ∫Ø∞Ê 
-	PACKETNAME_INSERT( UG_TRADE_ZENNY_UPDATE_REQ );							// ±≥»Ø√¢ø° ¡¶¥œ µÓ∑œ π◊ ∫Ø∞Ê
-	PACKETNAME_INSERT( UG_TRADE_END_REQ );									// ±≥»Ø øœ∑· πˆ∆∞ ≈¨∏Ø
-	PACKETNAME_INSERT( UG_TRADE_CANCEL_REQ );								// ±≥»Ø √Îº“ »§¿∫ ƒ≥∏Ø¡æ∑· ∞≈∏Æ ¿Ã≈ªΩ√ ªÁøÎ
-	PACKETNAME_INSERT( UG_TRADE_DENY_REQ );									// ±≥»Ø¿Ã ∫“∞°¥… «œ∞‘ «œ∞≈≥™ ∞°¥…«œµµ∑œ «—¥Ÿ.
-	PACKETNAME_INSERT( UG_GUILD_CREATE_REQ );								// ±ÊµÂ ∏∏µÈ±‚ ( Guild Creation/Disbanding )
-	PACKETNAME_INSERT( UG_GUILD_INVITE_REQ );								// ±ÊµÂø° √ ¥Î«œ±‚ ( Guild Member Invitation/Leaving/Kicking Out )
-	PACKETNAME_INSERT( UG_TUTORIAL_HINT_UPDATE_REQ );						// »˘∆Æ ¡¯«‡ ªÛ»≤¿ª æ˜µ•¿Ã∆Æ«—¥Ÿ.
-	PACKETNAME_INSERT( UG_TUTORIAL_WAIT_CANCEL_REQ );						// ∆©≈‰∏ÆæÛ ¥Î±‚ √Îº“«œ±‚
-	PACKETNAME_INSERT( UG_TUTORIAL_PLAY_QUIT_REQ );							// ∆©≈‰∏ÆæÛ «√∑π¿Ã √Îº“«œ±‚
+	PACKETNAME_INSERT( UG_QUEST_ITEM_MOVE_REQ );								// ÌÄòÏä§Ìä∏ ÏïÑÏù¥ÌÖú Ïù¥Îèô ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_QUEST_ITEM_DELETE_REQ );							// ÌÄòÏä§Ìä∏ ÏïÑÏù¥ÌÖú ÏÇ≠Ï†ú ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_QUEST_GIVEUP_REQ );								// ÌÄòÏä§Ìä∏ ÏïÑÏù¥ÌÖú Ìè¨Í∏∞ ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_QUEST_SHARE );										// ÌÄòÏä§Ìä∏ Í≥µÏú† ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_QUEST_OBJECT_VISIT_REQ );							// npc ); tobject Î∞©Î¨∏ Ïù¥Î≤§Ìä∏
+	PACKETNAME_INSERT( UG_FREEBATTLE_CHALLENGE_REQ );						// ÌîÑÎ¶¨Î∞∞ÌãÄ ÎåÄÏ†Ñ Ïã†Ï≤≠
+	PACKETNAME_INSERT( UG_FREEBATTLE_ACCEPT_RES );							// ÌîÑÎ¶¨Î∞∞ÌãÄ ÎåÄÏ†Ñ ÏàòÎùΩÏùëÎãµ
+	PACKETNAME_INSERT( UG_QUICK_SLOT_UPDATE_REQ );							// Îπ†Î•∏Ïä¨Î°Ø Ï∂îÍ∞Ä ÌïòÍ±∞ÎÇò ÏàòÏ†ï
+	PACKETNAME_INSERT( UG_QUICK_SLOT_DEL_REQ );								// Îπ†Î•∏Ïä¨Î°Ø ÏÇ≠Ï†ú
+	PACKETNAME_INSERT( UG_PET_DISMISS_PET_REQ );								// Ìé´Ïùò ÏÜåÌôò Ï∑®ÏÜå ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_TRADE_START_REQ );									// Ìï¥Îãπ Ïú†Ï†ÄÏôÄÏùò ÍµêÌôò ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_TRADE_OK_RES );									// Ìï¥Îãπ Ïú†Ï†∏Ïùò ÏùëÎãµ
+	PACKETNAME_INSERT( UG_TRADE_ADD_REQ );                                   // ÍµêÌôòÏ∞ΩÏóê ÏïÑÏù¥ÌÖú Îì±Î°ù 
+	PACKETNAME_INSERT( UG_TRADE_DEL_REQ );									// ÍµêÌôòÏ∞ΩÏóê ÏïÑÏù¥ÌÖú ÏÇ≠Ï†ú
+	PACKETNAME_INSERT( UG_TRADE_MODIFY_REQ );                                   // ÍµêÌôòÏ∞ΩÏóê Îì±Î°ùÎêú ÏïÑÏù¥ÌÖú Í∞úÏàò Î≥ÄÍ≤Ω 
+	PACKETNAME_INSERT( UG_TRADE_ZENNY_UPDATE_REQ );							// ÍµêÌôòÏ∞ΩÏóê Ï†úÎãà Îì±Î°ù Î∞è Î≥ÄÍ≤Ω
+	PACKETNAME_INSERT( UG_TRADE_END_REQ );									// ÍµêÌôò ÏôÑÎ£å Î≤ÑÌäº ÌÅ¥Î¶≠
+	PACKETNAME_INSERT( UG_TRADE_CANCEL_REQ );								// ÍµêÌôò Ï∑®ÏÜå ÌòπÏùÄ Ï∫êÎ¶≠Ï¢ÖÎ£å Í±∞Î¶¨ Ïù¥ÌÉàÏãú ÏÇ¨Ïö©
+	PACKETNAME_INSERT( UG_TRADE_DENY_REQ );									// ÍµêÌôòÏù¥ Î∂àÍ∞ÄÎä• ÌïòÍ≤å ÌïòÍ±∞ÎÇò Í∞ÄÎä•ÌïòÎèÑÎ°ù ÌïúÎã§.
+	PACKETNAME_INSERT( UG_GUILD_CREATE_REQ );								// Í∏∏Îìú ÎßåÎì§Í∏∞ ( Guild Creation/Disbanding )
+	PACKETNAME_INSERT( UG_GUILD_INVITE_REQ );								// Í∏∏ÎìúÏóê Ï¥àÎåÄÌïòÍ∏∞ ( Guild Member Invitation/Leaving/Kicking Out )
+	PACKETNAME_INSERT( UG_TUTORIAL_HINT_UPDATE_REQ );						// ÌûåÌä∏ ÏßÑÌñâ ÏÉÅÌô©ÏùÑ ÏóÖÎç∞Ïù¥Ìä∏ÌïúÎã§.
+	PACKETNAME_INSERT( UG_TUTORIAL_WAIT_CANCEL_REQ );						// ÌäúÌÜ†Î¶¨Ïñº ÎåÄÍ∏∞ Ï∑®ÏÜåÌïòÍ∏∞
+	PACKETNAME_INSERT( UG_TUTORIAL_PLAY_QUIT_REQ );							// ÌäúÌÜ†Î¶¨Ïñº ÌîåÎ†àÏù¥ Ï∑®ÏÜåÌïòÍ∏∞
 
 	PACKETNAME_INSERT( UG_RANKBATTLE_INFO_REQ );
 	PACKETNAME_INSERT( UG_RANKBATTLE_JOIN_REQ );
 	PACKETNAME_INSERT( UG_RANKBATTLE_LEAVE_REQ );
-	PACKETNAME_INSERT( UG_DRAGONBALL_CHECK_REQ );							// µÂ∑°∞Ô∫º UI 7∞≥ πËƒ°OK
-	PACKETNAME_INSERT( UG_DRAGONBALL_REWARD_REQ );							// µÂ∑°∞Ô∫º ¥Ÿ ∏¿Ωø° ¥Î«— ∫∏ªÛ º±≈√ ø‰√ª
-	PACKETNAME_INSERT( UG_PRIVATESHOP_CREATE_REQ );							// ªÛ¡°¿ª ∏∏µÈæÓ∂Û ø‰√ª[6/28/2007 SGpro]
-	PACKETNAME_INSERT( UG_PRIVATESHOP_EXIT_REQ );							// ªÛ¡°¿ª øœ¿¸»˜ ¥›æ∆∂Û ø‰√ª[6/28/2007 SGpro]
-	PACKETNAME_INSERT( UG_PRIVATESHOP_OPEN_REQ );							// ªÛ¡° ªÛ≈¬∏¶ Open¿∏∑Œ «ÿ∂Û ø‰√ª[6/28/2007 SGpro]
-	PACKETNAME_INSERT( UG_PRIVATESHOP_CLOSE_REQ );							// ªÛ¡° ªÛ≈¬∏¶ Close∑Œ «ÿ∂Û ø‰√ª[6/28/2007 SGpro]
-	PACKETNAME_INSERT( UG_PRIVATESHOP_ITEM_UPDATE_REQ );						// ªÛ¡° æ∆¿Ã≈€ø° ≥ªøÎ¿ª ∫Ø∞Ê ø‰√ª[6/29/2007 SGpro]
-	PACKETNAME_INSERT( UG_PRIVATESHOP_ITEM_INSERT_REQ );						// ªÛ¡° æ∆¿Ã≈€ √ﬂ∞° ø‰√ª[6/29/2007 SGpro]
-	PACKETNAME_INSERT( UG_PRIVATESHOP_ITEM_GET_REQ );						// ªÛ¡° æ∆¿Ã≈€ ¡§∫∏ ø‰√ª
-	PACKETNAME_INSERT( UG_PRIVATESHOP_ITEM_DELETE_REQ );						// ªÛ¡° æ∆¿Ã≈€ ªË¡¶ ø‰√ª[6/29/2007 SGpro]
-	PACKETNAME_INSERT( UG_PRIVATESHOP_ITEM_BUYING_REQ );						// ªÛ¡° æ∆¿Ã≈€ ªÁ±‚ ø‰√ª[6/29/2007 SGpro]
-	PACKETNAME_INSERT( UG_PRIVATESHOP_ENTER_REQ );							// º’¥‘ ¿‘¿Â[6/29/2007 SGpro]
-	PACKETNAME_INSERT( UG_PRIVATESHOP_LEAVE_REQ );							// º’¥‘ ≈¿Â[6/29/2007 SGpro]
-	PACKETNAME_INSERT( UG_PRIVATESHOP_ITEM_SELECT_REQ );						// æ∆¿Ã≈€ ¬Ú[7/19/2007 SGpro]
+	PACKETNAME_INSERT( UG_DRAGONBALL_CHECK_REQ );							// ÎìúÎûòÍ≥§Î≥º UI 7Í∞ú Î∞∞ÏπòOK
+	PACKETNAME_INSERT( UG_DRAGONBALL_REWARD_REQ );							// ÎìúÎûòÍ≥§Î≥º Îã§ Î™®ÏùåÏóê ÎåÄÌïú Î≥¥ÏÉÅ ÏÑ†ÌÉù ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_PRIVATESHOP_CREATE_REQ );							// ÏÉÅÏ†êÏùÑ ÎßåÎì§Ïñ¥Îùº ÏöîÏ≤≠[6/28/2007 SGpro]
+	PACKETNAME_INSERT( UG_PRIVATESHOP_EXIT_REQ );							// ÏÉÅÏ†êÏùÑ ÏôÑÏ†ÑÌûà Îã´ÏïÑÎùº ÏöîÏ≤≠[6/28/2007 SGpro]
+	PACKETNAME_INSERT( UG_PRIVATESHOP_OPEN_REQ );							// ÏÉÅÏ†ê ÏÉÅÌÉúÎ•º OpenÏúºÎ°ú Ìï¥Îùº ÏöîÏ≤≠[6/28/2007 SGpro]
+	PACKETNAME_INSERT( UG_PRIVATESHOP_CLOSE_REQ );							// ÏÉÅÏ†ê ÏÉÅÌÉúÎ•º CloseÎ°ú Ìï¥Îùº ÏöîÏ≤≠[6/28/2007 SGpro]
+	PACKETNAME_INSERT( UG_PRIVATESHOP_ITEM_UPDATE_REQ );						// ÏÉÅÏ†ê ÏïÑÏù¥ÌÖúÏóê ÎÇ¥Ïö©ÏùÑ Î≥ÄÍ≤Ω ÏöîÏ≤≠[6/29/2007 SGpro]
+	PACKETNAME_INSERT( UG_PRIVATESHOP_ITEM_INSERT_REQ );						// ÏÉÅÏ†ê ÏïÑÏù¥ÌÖú Ï∂îÍ∞Ä ÏöîÏ≤≠[6/29/2007 SGpro]
+	PACKETNAME_INSERT( UG_PRIVATESHOP_ITEM_GET_REQ );						// ÏÉÅÏ†ê ÏïÑÏù¥ÌÖú Ï†ïÎ≥¥ ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_PRIVATESHOP_ITEM_DELETE_REQ );						// ÏÉÅÏ†ê ÏïÑÏù¥ÌÖú ÏÇ≠Ï†ú ÏöîÏ≤≠[6/29/2007 SGpro]
+	PACKETNAME_INSERT( UG_PRIVATESHOP_ITEM_BUYING_REQ );						// ÏÉÅÏ†ê ÏïÑÏù¥ÌÖú ÏÇ¨Í∏∞ ÏöîÏ≤≠[6/29/2007 SGpro]
+	PACKETNAME_INSERT( UG_PRIVATESHOP_ENTER_REQ );							// ÏÜêÎãò ÏûÖÏû•[6/29/2007 SGpro]
+	PACKETNAME_INSERT( UG_PRIVATESHOP_LEAVE_REQ );							// ÏÜêÎãò Ìá¥Ïû•[6/29/2007 SGpro]
+	PACKETNAME_INSERT( UG_PRIVATESHOP_ITEM_SELECT_REQ );						// ÏïÑÏù¥ÌÖú Ï∞ú[7/19/2007 SGpro]
 
 	PACKETNAME_INSERT( UG_MAIL_START_REQ );
 	PACKETNAME_INSERT( UG_MAIL_SEND_REQ );
@@ -896,11 +900,11 @@ void CPacketTracer::Create()
 	PACKETNAME_INSERT( UG_WAR_FOG_UPDATE_REQ );	
 	PACKETNAME_INSERT( UG_GUILD_FUNCTION_ADD_REQ );
 	PACKETNAME_INSERT( UG_GUILD_GIVE_ZENNY );
-	PACKETNAME_INSERT( UG_GUILD_BANK_START_REQ );							// GUILD Warehouse æ∆¿Ã≈€ ∑Œµ˘
-	PACKETNAME_INSERT( UG_GUILD_BANK_MOVE_REQ );								// GUILD Warehouse ¿« æ∆¿Ã≈€ ¿Ãµø
-	PACKETNAME_INSERT( UG_GUILD_BANK_MOVE_STACK_REQ );						// GUILD Warehouse ¿« Ω∫≈√æ∆¿Ã≈€ ¿Ãµø
-	PACKETNAME_INSERT( UG_GUILD_BANK_END_REQ );								// GUILD Warehouse ∏¶ ¥›¥¬¥Ÿ.
-	PACKETNAME_INSERT( UG_GUILD_BANK_ZENNY_REQ );							// GUILD Warehouse ø° ¿˙±› »§¿∫ ¿Œ√‚«—¥Ÿ.
+	PACKETNAME_INSERT( UG_GUILD_BANK_START_REQ );							// GUILD Warehouse ÏïÑÏù¥ÌÖú Î°úÎî©
+	PACKETNAME_INSERT( UG_GUILD_BANK_MOVE_REQ );								// GUILD Warehouse Ïùò ÏïÑÏù¥ÌÖú Ïù¥Îèô
+	PACKETNAME_INSERT( UG_GUILD_BANK_MOVE_STACK_REQ );						// GUILD Warehouse Ïùò Ïä§ÌÉùÏïÑÏù¥ÌÖú Ïù¥Îèô
+	PACKETNAME_INSERT( UG_GUILD_BANK_END_REQ );								// GUILD Warehouse Î•º Îã´ÎäîÎã§.
+	PACKETNAME_INSERT( UG_GUILD_BANK_ZENNY_REQ );							// GUILD Warehouse Ïóê Ï†ÄÍ∏à ÌòπÏùÄ Ïù∏Ï∂úÌïúÎã§.
 	PACKETNAME_INSERT( UG_GUILD_CREATE_MARK_REQ );							// GuildMark Create
 	PACKETNAME_INSERT( UG_GUILD_CHANGE_MARK_REQ );							// GuildMark Change
 	PACKETNAME_INSERT( UG_CROSSFIRE_REQ );
@@ -909,32 +913,32 @@ void CPacketTracer::Create()
 	PACKETNAME_INSERT( UG_PARTY_SHARETARGET_REQ );							// [3/28/2008 SGpro]
 	PACKETNAME_INSERT( UG_RIDE_ON_BUS_REQ );
 	PACKETNAME_INSERT( UG_RIDE_OFF_BUS_REQ );
-	PACKETNAME_INSERT( UG_TRANSFORM_CANCEL_REQ );							// ∫ØΩ≈ √Îº“ ø‰√ª
+	PACKETNAME_INSERT( UG_TRANSFORM_CANCEL_REQ );							// Î≥ÄÏã† Ï∑®ÏÜå ÏöîÏ≤≠
 	PACKETNAME_INSERT( UG_SHOP_ITEM_IDENTIFY_REQ );
-	PACKETNAME_INSERT( UG_DICE_ROLL_REQ );									// Action Skill ¡÷ªÁ¿ß ±º∏Æ±‚
-	PACKETNAME_INSERT( UG_BUDOKAI_JOIN_INDIVIDUAL_REQ );						// ∞≥¿Œ µÓ∑œ
-	PACKETNAME_INSERT( UG_BUDOKAI_LEAVE_INDIVIDUAL_REQ );					// ∞≥¿Œ √Îº“
+	PACKETNAME_INSERT( UG_DICE_ROLL_REQ );									// Action Skill Ï£ºÏÇ¨ÏúÑ Íµ¥Î¶¨Í∏∞
+	PACKETNAME_INSERT( UG_BUDOKAI_JOIN_INDIVIDUAL_REQ );						// Í∞úÏù∏ Îì±Î°ù
+	PACKETNAME_INSERT( UG_BUDOKAI_LEAVE_INDIVIDUAL_REQ );					// Í∞úÏù∏ Ï∑®ÏÜå
 	PACKETNAME_INSERT( UG_BUDOKAI_JOIN_TEAM_INFO_REQ );						//
-	PACKETNAME_INSERT( UG_BUDOKAI_JOIN_TEAM_REQ );							// ∆¿ µÓ∑œ
-	PACKETNAME_INSERT( UG_BUDOKAI_LEAVE_TEAM_REQ );							// ∆¿ √Îº“
-	PACKETNAME_INSERT( UG_BUDOKAI_LEAVE_TEAM_MEMBER_REQ );					// ∆¿ ∏‚πˆ √Îº“
+	PACKETNAME_INSERT( UG_BUDOKAI_JOIN_TEAM_REQ );							// ÌåÄ Îì±Î°ù
+	PACKETNAME_INSERT( UG_BUDOKAI_LEAVE_TEAM_REQ );							// ÌåÄ Ï∑®ÏÜå
+	PACKETNAME_INSERT( UG_BUDOKAI_LEAVE_TEAM_MEMBER_REQ );					// ÌåÄ Î©§Î≤Ñ Ï∑®ÏÜå
 
-	PACKETNAME_INSERT( UG_BUDOKAI_JOIN_INFO_REQ );							// ¬¸∞° ¡§∫∏ ø‰√ª
-	PACKETNAME_INSERT( UG_BUDOKAI_JOIN_STATE_REQ );							// ¬¸∞° ªÛ≈¬ ø‰√ª
-	PACKETNAME_INSERT( UG_BUDOKAI_MUDOSA_INFO_REQ );							// π´µµªÁ ¡§∫∏ ø‰√ª
-	PACKETNAME_INSERT( UG_BUDOKAI_MUDOSA_TELEPORT_REQ );						// π´µµªÁ∑Œ ≈⁄∑π∆˜∆Æ ø‰√ª
-	PACKETNAME_INSERT( UG_BUDOKAI_PARTY_MAKER_REQ );							// ∆ƒ∆º ª˝º∫ ø‰√ª ); √µ«œ¡¶¿œπ´µµ»∏ ≈◊Ω∫∆ÆøÎ
+	PACKETNAME_INSERT( UG_BUDOKAI_JOIN_INFO_REQ );							// Ï∞∏Í∞Ä Ï†ïÎ≥¥ ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_BUDOKAI_JOIN_STATE_REQ );							// Ï∞∏Í∞Ä ÏÉÅÌÉú ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_BUDOKAI_MUDOSA_INFO_REQ );							// Î¨¥ÎèÑÏÇ¨ Ï†ïÎ≥¥ ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_BUDOKAI_MUDOSA_TELEPORT_REQ );						// Î¨¥ÎèÑÏÇ¨Î°ú ÌÖîÎ†àÌè¨Ìä∏ ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_BUDOKAI_PARTY_MAKER_REQ );							// ÌååÌã∞ ÏÉùÏÑ± ÏöîÏ≤≠ ); Ï≤úÌïòÏ†úÏùºÎ¨¥ÎèÑÌöå ÌÖåÏä§Ìä∏Ïö©
 	PACKETNAME_INSERT( UG_BUDOKAI_SOCIAL_ACTION );
 
-	PACKETNAME_INSERT( UG_BUDOKAI_GM_BUDOKAI_SERVER_ENTER_REQ );				// √µ«œ¡¶¿œπ´µµ»∏ º≠πˆ∑Œ ≈⁄∑π∆˜∆Æ ø‰√ª
-	PACKETNAME_INSERT( UG_BUDOKAI_GM_BUDOKAI_SERVER_LEAVE_REQ );				// √µ«œ¡¶¿œπ´µµ»∏ º≠πˆø°º≠ ø¯∑° º≠πˆ∑Œ ¿Ãµø
-	PACKETNAME_INSERT( UG_BUDOKAI_GM_MATCH_PROGRESS_INFO_REQ );				// ∞Ê±‚ ¡¯«‡ ¡§∫∏ ø‰√ª
-	PACKETNAME_INSERT( UG_BUDOKAI_GM_MATCH_ARENA_ENTER_REQ );				// ∞Ê±‚¿Â µÈæÓ∞°±‚
-	PACKETNAME_INSERT( UG_BUDOKAI_GM_MATCH_ARENA_LEAVE_REQ );				// ∞Ê±‚¿Â ≥™∞°±‚
+	PACKETNAME_INSERT( UG_BUDOKAI_GM_BUDOKAI_SERVER_ENTER_REQ );				// Ï≤úÌïòÏ†úÏùºÎ¨¥ÎèÑÌöå ÏÑúÎ≤ÑÎ°ú ÌÖîÎ†àÌè¨Ìä∏ ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_BUDOKAI_GM_BUDOKAI_SERVER_LEAVE_REQ );				// Ï≤úÌïòÏ†úÏùºÎ¨¥ÎèÑÌöå ÏÑúÎ≤ÑÏóêÏÑú ÏõêÎûò ÏÑúÎ≤ÑÎ°ú Ïù¥Îèô
+	PACKETNAME_INSERT( UG_BUDOKAI_GM_MATCH_PROGRESS_INFO_REQ );				// Í≤ΩÍ∏∞ ÏßÑÌñâ Ï†ïÎ≥¥ ÏöîÏ≤≠
+	PACKETNAME_INSERT( UG_BUDOKAI_GM_MATCH_ARENA_ENTER_REQ );				// Í≤ΩÍ∏∞Ïû• Îì§Ïñ¥Í∞ÄÍ∏∞
+	PACKETNAME_INSERT( UG_BUDOKAI_GM_MATCH_ARENA_LEAVE_REQ );				// Í≤ΩÍ∏∞Ïû• ÎÇòÍ∞ÄÍ∏∞
 
-	PACKETNAME_INSERT( UG_SCOUTER_TURN_ON );									// Ω∫ƒ´øÏ≈Õ ªÛ≈¬ ø¬
-	PACKETNAME_INSERT( UG_SCOUTER_TURN_OFF );								// Ω∫ƒ´øÏ≈Õ ªÛ≈¬ ø¿«¡
-	PACKETNAME_INSERT( UG_SCOUTER_ITEM_SELL_REQ );							// Ω∫ƒ´øÏ≈Õ∏¶ ≈Î«— æ∆¿Ã≈€ ∆»±‚
+	PACKETNAME_INSERT( UG_SCOUTER_TURN_ON );									// Ïä§Ïπ¥Ïö∞ÌÑ∞ ÏÉÅÌÉú Ïò®
+	PACKETNAME_INSERT( UG_SCOUTER_TURN_OFF );								// Ïä§Ïπ¥Ïö∞ÌÑ∞ ÏÉÅÌÉú Ïò§ÌîÑ
+	PACKETNAME_INSERT( UG_SCOUTER_ITEM_SELL_REQ );							// Ïä§Ïπ¥Ïö∞ÌÑ∞Î•º ÌÜµÌïú ÏïÑÏù¥ÌÖú ÌåîÍ∏∞
 
 	PACKETNAME_INSERT( UG_SHOP_EVENTITEM_START_REQ );						// [7/15/2008 SGpro]
 	PACKETNAME_INSERT( UG_SHOP_EVENTITEM_BUY_REQ );							// [7/11/2008 SGpro]
@@ -945,27 +949,27 @@ void CPacketTracer::Create()
 	PACKETNAME_INSERT( UG_SKILL_INIT_REQ );
 	PACKETNAME_INSERT( UG_TELEPORT_CONFIRM_REQ );
 	PACKETNAME_INSERT( UG_VEHICLE_DIRECT_PLAY_CANCEL_NFY );
-	PACKETNAME_INSERT( UG_VEHICLE_END_REQ );								// ≈ª ∞Õ ªÁøÎ ¡ﬂ¡ˆ.
-	PACKETNAME_INSERT( UG_VEHICLE_STUNT_NFY );							// Ω∫∆‰¿ÃΩ∫ πŸ ¥©∏ß(≈ª∞Õ)
+	PACKETNAME_INSERT( UG_VEHICLE_END_REQ );								// ÌÉà Í≤É ÏÇ¨Ïö© Ï§ëÏßÄ.
+	PACKETNAME_INSERT( UG_VEHICLE_STUNT_NFY );							// Ïä§ÌéòÏù¥Ïä§ Î∞î ÎàÑÎ¶Ñ(ÌÉàÍ≤É)
 	PACKETNAME_INSERT( UG_VEHICLE_FUEL_REMOVE_NFY );
 	PACKETNAME_INSERT( UG_DOJO_CREATE_REQ );
 	PACKETNAME_INSERT( UG_DOJO_DELETE_REQ );
 	PACKETNAME_INSERT( UG_DOJO_FUNCTION_ADD_REQ );
-	PACKETNAME_INSERT( UG_DOGI_CREATE_REQ );								// µµ∫πª˝º∫
-	PACKETNAME_INSERT( UG_DOGI_CHANGE_REQ );								// µµ∫π∫Ø∞Ê
-	PACKETNAME_INSERT( UG_GUILD_DOGI_CREATE_REQ );						// ¿Ø∆ƒµµ∫πª˝º∫
-	PACKETNAME_INSERT( UG_GUILD_DOGI_CHANGE_REQ );						// ¿Ø∆ƒµµ∫π∫Ø∞Ê
-	PACKETNAME_INSERT( UG_DOJO_SCRAMBLE_REQ );							// µµ¿Â¿Ô≈ª¿¸ Ω≈√ª
-	PACKETNAME_INSERT( UG_DOJO_SCRAMBLE_RESPONSE_REQ );					// µµ¿Â¿Ô≈ª¿¸ Ω≈√ªø° ¥Î«— ¿¿¥‰
+	PACKETNAME_INSERT( UG_DOGI_CREATE_REQ );								// ÎèÑÎ≥µÏÉùÏÑ±
+	PACKETNAME_INSERT( UG_DOGI_CHANGE_REQ );								// ÎèÑÎ≥µÎ≥ÄÍ≤Ω
+	PACKETNAME_INSERT( UG_GUILD_DOGI_CREATE_REQ );						// Ïú†ÌååÎèÑÎ≥µÏÉùÏÑ±
+	PACKETNAME_INSERT( UG_GUILD_DOGI_CHANGE_REQ );						// Ïú†ÌååÎèÑÎ≥µÎ≥ÄÍ≤Ω
+	PACKETNAME_INSERT( UG_DOJO_SCRAMBLE_REQ );							// ÎèÑÏû•ÏüÅÌÉàÏ†Ñ Ïã†Ï≤≠
+	PACKETNAME_INSERT( UG_DOJO_SCRAMBLE_RESPONSE_REQ );					// ÎèÑÏû•ÏüÅÌÉàÏ†Ñ Ïã†Ï≤≠Ïóê ÎåÄÌïú ÏùëÎãµ
 	PACKETNAME_INSERT( UG_SHOP_NETPYITEM_START_REQ );
 	PACKETNAME_INSERT( UG_SHOP_NETPYITEM_BUY_REQ );
 	PACKETNAME_INSERT( UG_SHOP_NETPYITEM_END_REQ );
 	PACKETNAME_INSERT( UG_WORLD_MAP_STATUS );
-	PACKETNAME_INSERT( UG_DOJO_NPC_INFO_REQ );							// µµ¿ÂNPCø°∞‘ ¡§∫∏ø‰√ª
+	PACKETNAME_INSERT( UG_DOJO_NPC_INFO_REQ );							// ÎèÑÏû•NPCÏóêÍ≤å Ï†ïÎ≥¥ÏöîÏ≤≠
 	PACKETNAME_INSERT( UG_GAMEGUARD_AUTH_ANSWER_RES );
 	PACKETNAME_INSERT( UG_GAMEGUARD_HACK_INFO_NFY );
-	PACKETNAME_INSERT( UG_SKILL_CASTING_CANCELED_NFY );					// Ω∫≈≥ ƒ≥Ω∫∆√ √Îº“ æÀ∏≤
-	PACKETNAME_INSERT( UG_PET_ATTACK_TARGET_NFY );						// ∆Í¿« ¿¸≈ı ¬¸ø©
+	PACKETNAME_INSERT( UG_SKILL_CASTING_CANCELED_NFY );					// Ïä§ÌÇ¨ Ï∫êÏä§ÌåÖ Ï∑®ÏÜå ÏïåÎ¶º
+	PACKETNAME_INSERT( UG_PET_ATTACK_TARGET_NFY );						// Ìé´Ïùò Ï†ÑÌà¨ Ï∞∏Ïó¨
 
 	PACKETNAME_INSERT( UT_ENTER_CHAT );
 	PACKETNAME_INSERT( UT_CHAT_MESSAGE_SAY );
@@ -973,19 +977,19 @@ void CPacketTracer::Create()
 	PACKETNAME_INSERT( UT_CHAT_MESSAGE_WHISPER );
 	PACKETNAME_INSERT( UT_CHAT_MESSAGE_PARTY );
 	PACKETNAME_INSERT( UT_CHAT_MESSAGE_GUILD );
-	PACKETNAME_INSERT( UT_GUILD_DISBAND_REQ );								// ±ÊµÂ «ÿ√º«œ±‚
-	PACKETNAME_INSERT( UT_GUILD_DISBAND_CANCEL_REQ );						// ±ÊµÂ «ÿ√º √Îº“«œ±‚
-	PACKETNAME_INSERT( UT_GUILD_RESPONSE_INVITATION );						// ±ÊµÂ √ ¥Îø° ¥Î«— ¥Î¥‰ ∫∏≥ª±‚
-	PACKETNAME_INSERT( UT_GUILD_LEAVE_REQ );									// ±ÊµÂ ≈ª≈«œ±‚
-	PACKETNAME_INSERT( UT_GUILD_KICK_OUT_REQ );								// ±ÊµÂ ∏‚πˆ ∞≠¡¶∑Œ ≈ª≈Ω√≈∞±‚
-	PACKETNAME_INSERT( UT_GUILD_APPOINT_SECOND_MASTER_REQ );					// ±ÊµÂ ∏‚πˆ∏¶ Second Master∑Œ ¿”∏Ì«œ±‚
-	PACKETNAME_INSERT( UT_GUILD_DISMISS_SECOND_MASTER_REQ );					// ±ÊµÂ Second Master¿« ¡˜¿ß∏¶ «ÿ¡¶«œ±‚
-	PACKETNAME_INSERT( UT_GUILD_CHANGE_GUILD_MASTER_REQ );					// ±ÊµÂ ∏∂Ω∫≈Õ∏¶ ¿ÃæÁ«œ±‚
-	PACKETNAME_INSERT( UT_FRIEND_ADD_REQ );		// ƒ£±∏ √ﬂ∞°
-	PACKETNAME_INSERT( UT_FRIEND_DEL_REQ );		// ƒ£±∏ ªË¡¶
-	PACKETNAME_INSERT( UT_FRIEND_MOVE_REQ );		// ƒ£±∏ -> ∫Ì∑¢∏ÆΩ∫∆Æ∑Œ ¿Ãµø
-	PACKETNAME_INSERT( UT_FRIEND_BLACK_ADD_REQ );		// ƒ£±∏ ∫Ì∑¢ ∏ÆΩ∫∆Æ √ﬂ∞°
-	PACKETNAME_INSERT( UT_FRIEND_BLACK_DEL_REQ );		// ƒ£±∏ ∫Ì∑¢ ∏ÆΩ∫∆Æ ªË¡¶
+	PACKETNAME_INSERT( UT_GUILD_DISBAND_REQ );								// Í∏∏Îìú Ìï¥Ï≤¥ÌïòÍ∏∞
+	PACKETNAME_INSERT( UT_GUILD_DISBAND_CANCEL_REQ );						// Í∏∏Îìú Ìï¥Ï≤¥ Ï∑®ÏÜåÌïòÍ∏∞
+	PACKETNAME_INSERT( UT_GUILD_RESPONSE_INVITATION );						// Í∏∏Îìú Ï¥àÎåÄÏóê ÎåÄÌïú ÎåÄÎãµ Î≥¥ÎÇ¥Í∏∞
+	PACKETNAME_INSERT( UT_GUILD_LEAVE_REQ );									// Í∏∏Îìú ÌÉàÌá¥ÌïòÍ∏∞
+	PACKETNAME_INSERT( UT_GUILD_KICK_OUT_REQ );								// Í∏∏Îìú Î©§Î≤Ñ Í∞ïÏ†úÎ°ú ÌÉàÌá¥ÏãúÌÇ§Í∏∞
+	PACKETNAME_INSERT( UT_GUILD_APPOINT_SECOND_MASTER_REQ );					// Í∏∏Îìú Î©§Î≤ÑÎ•º Second MasterÎ°ú ÏûÑÎ™ÖÌïòÍ∏∞
+	PACKETNAME_INSERT( UT_GUILD_DISMISS_SECOND_MASTER_REQ );					// Í∏∏Îìú Second MasterÏùò ÏßÅÏúÑÎ•º Ìï¥Ï†úÌïòÍ∏∞
+	PACKETNAME_INSERT( UT_GUILD_CHANGE_GUILD_MASTER_REQ );					// Í∏∏Îìú ÎßàÏä§ÌÑ∞Î•º Ïù¥ÏñëÌïòÍ∏∞
+	PACKETNAME_INSERT( UT_FRIEND_ADD_REQ );		// ÏπúÍµ¨ Ï∂îÍ∞Ä
+	PACKETNAME_INSERT( UT_FRIEND_DEL_REQ );		// ÏπúÍµ¨ ÏÇ≠Ï†ú
+	PACKETNAME_INSERT( UT_FRIEND_MOVE_REQ );		// ÏπúÍµ¨ -> Î∏îÎûôÎ¶¨Ïä§Ìä∏Î°ú Ïù¥Îèô
+	PACKETNAME_INSERT( UT_FRIEND_BLACK_ADD_REQ );		// ÏπúÍµ¨ Î∏îÎûô Î¶¨Ïä§Ìä∏ Ï∂îÍ∞Ä
+	PACKETNAME_INSERT( UT_FRIEND_BLACK_DEL_REQ );		// ÏπúÍµ¨ Î∏îÎûô Î¶¨Ïä§Ìä∏ ÏÇ≠Ï†ú
 	PACKETNAME_INSERT( UT_RANKBATTLE_RANK_LIST_REQ );
 	PACKETNAME_INSERT( UT_RANKBATTLE_RANK_FIND_CHARACTER_REQ );
 	PACKETNAME_INSERT( UT_RANKBATTLE_RANK_COMPARE_DAY_REQ );
@@ -998,7 +1002,7 @@ void CPacketTracer::Create()
 	PACKETNAME_INSERT( UT_BUDOKAI_TOURNAMENT_TEAM_LIST_REQ );
 	PACKETNAME_INSERT( UT_BUDOKAI_TOURNAMENT_TEAM_INFO_REQ );
 	PACKETNAME_INSERT( UT_PETITION_CHAT_START_RES );							// [ by sooshia 2008-10-15 ]
-	PACKETNAME_INSERT( UT_PETITION_CHAT_USER_SAY_REQ );						// ¿Ø¿˙∞° ∏ª«— ≥ªøÎ [ by sooshia 2008-10-16 ]
+	PACKETNAME_INSERT( UT_PETITION_CHAT_USER_SAY_REQ );						// Ïú†Ï†ÄÍ∞Ä ÎßêÌïú ÎÇ¥Ïö© [ by sooshia 2008-10-16 ]
 	PACKETNAME_INSERT( UT_PETITION_CHAT_USER_END_NFY );						// [ by sooshia 2008-10-17 ]
 	PACKETNAME_INSERT( UT_PETITION_CHAT_GM_SAY_RES );						// [ by sooshia 2008-10-18 ]
 	PACKETNAME_INSERT( UT_PETITION_USER_INSERT_REQ );						// [ by sooshia 2008-10-18 ]
