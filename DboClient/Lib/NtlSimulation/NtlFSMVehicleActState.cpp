@@ -117,6 +117,8 @@ void CNtlFSMVehicleActIdleState::Update( RwReal fElapsed )
 	vCurPos.y = sHStuff.fFinialHeight + m_pVehicle->GetRideOnHeight() / 100.f;
 
 	m_pVehicle->SetPosition( &vCurPos );
+
+	UpdateVehicleIdleSound();
 }
 
 RwUInt32 CNtlFSMVehicleActIdleState::HandleEvents( RWS::CMsg &pMsg )
