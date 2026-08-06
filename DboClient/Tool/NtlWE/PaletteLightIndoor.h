@@ -5,7 +5,7 @@
 #include "colourpicker.h"
 #include "afxwin.h"
 
-// PaletteLightIndoor ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// PaletteLightIndoor ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 #define PLI_PROP_COLOR	0x00000001
 #define PLI_PROP_POS	0x00000002
@@ -19,14 +19,14 @@ class CPaletteLightIndoor : public CDialog
 	DECLARE_DYNAMIC(CPaletteLightIndoor)
 
 public:
-	CPaletteLightIndoor(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CPaletteLightIndoor(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CPaletteLightIndoor();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_LIGHT_INDOOR };
 
 protected:
-	virtual void			DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void			DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 
@@ -44,12 +44,12 @@ public:
 	afx_msg void			OnLbnSelchangeListLight();
 
 public:
-	// pEntity °ªÀ¸·Î Dlg Data¸¦ º¯°æÇÑ´Ù.
+	// pEntity ê°’ìœ¼ë¡œ Dlg Dataë¥¼ ë³€ê²½í•œë‹¤.
 	void					UpdatePropertyData(const CNtlPLEntity* pEntity);
 
 	SPLEntityCreateParam*	GetCreateParam(CNtlPLEntity* pEntity);
 
-	// Dlg Data¸¦ º¯°æÇÑ´Ù.
+	// Dlg Dataë¥¼ ë³€ê²½í•œë‹¤.
 	void					EnableDlg(RwUInt32 uiFlags);
 	void					SetLightData(RwInt32 iIdx);
 	void					SetColorData(RwUInt8 r, RwUInt8 g, RwUInt8 b);
@@ -62,7 +62,7 @@ public:
 
 	void					SetLightMapScaleData(RwInt32 iSample);
 
-	// Entity¸¦ Dlg °ªÀ¸·Î ¼¼ÆÃÇÑ´Ù.
+	// Entityë¥¼ Dlg ê°’ìœ¼ë¡œ ì„¸íŒ…í•œë‹¤.
 	void					ApplyPosition();
 	void					ApplyColor();
 	void					ApplyRotate();

@@ -1,4 +1,4 @@
-// AnimAssetAnimSetDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// AnimAssetAnimSetDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -7,7 +7,7 @@
 #include "NewAssetOpen.h"
 #include "NtlPLResourceManager.h"
 
-// CAnimAssetAnimSetDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAnimAssetAnimSetDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CAnimationSetDialog, CDialog)
 CAnimationSetDialog::CAnimationSetDialog(CWnd* pParent /*=NULL*/)
@@ -30,7 +30,7 @@ BEGIN_MESSAGE_MAP(CAnimationSetDialog, CDialog)
 END_MESSAGE_MAP()
 
 
-// CAnimAssetAnimSetDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAnimAssetAnimSetDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CAnimationSetDialog::OnInitDialog()
 {
@@ -38,11 +38,11 @@ BOOL CAnimationSetDialog::OnInitDialog()
 
 	theApp.m_pAnimationSetDialog = this;
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CAnimationSetDialog::UpdateTree()

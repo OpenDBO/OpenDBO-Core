@@ -2,7 +2,7 @@
 //	File		:	NtlInstanceBeamSystem.cpp
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -222,7 +222,7 @@ RwBool CNtlInstanceBeamSystem::Update(RwReal fElapsedTime)
 			m_bReady	= TRUE;
 			m_bUpdate	= TRUE;
 
-			// ½ºÅ¸Æ®°¡ µÇ¸é ¶óÀÌÇÁ Å¸ÀÓÀ» ÃÊ±âÈ­ ÇÑ´Ù.
+			// ìŠ¤íƒ€íŠ¸ê°€ ë˜ë©´ ë¼ì´í”„ íƒ€ì„ì„ ì´ˆê¸°í™” í•œë‹¤.
 			m_fLifeTime = fElapsedTime;
 		}
 		else
@@ -399,7 +399,7 @@ RwBool CNtlInstanceBeamSystem::UpdateFinish( RwReal fElapsedTime )
     }
     if(m_pResourceBeamSystem->m_EmitterPrtFinish.m_nFinishTypeFlag & FINISH_TYPE_FOLLOW)
     {
-        // BeamÀÇ Follow´Â FadeOut ActionÀ» »ç¿ëÇÑ´Ù. (±âÁ¸°úÀÇ È£È¯¼ºÀ» À§ÇØ)
+        // Beamì˜ FollowëŠ” FadeOut Actionì„ ì‚¬ìš©í•œë‹¤. (ê¸°ì¡´ê³¼ì˜ í˜¸í™˜ì„±ì„ ìœ„í•´)
     }
 
     m_fFinishTime += fElapsedTime;

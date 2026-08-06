@@ -1,4 +1,4 @@
-// Attr_CONT_Start.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_CONT_Start.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_CONT_Start.h"
 
 
-// CAttr_CONT_Start ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_CONT_Start ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_CONT_Start, CAttr_Page, 1)
 
@@ -58,4 +58,4 @@ BEGIN_MESSAGE_MAP(CAttr_CONT_Start, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_CONT_Start ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_CONT_Start ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

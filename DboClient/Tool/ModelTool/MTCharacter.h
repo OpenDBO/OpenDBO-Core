@@ -10,9 +10,9 @@ typedef std::map<int, std::string>      BONENAME_MAP;
 
 /*!
  * \brief
- * Model Tool Character °ü·Ã Å¬·¡½º
+ * Model Tool Character ê´€ë ¨ í´ë˜ìŠ¤
  * 
- * CNtlPLCharacter¸¦ »ó¼Ó¹Ş¾Æ¼­ ÇÊ¿äÇÑ ºÎºĞÀ» ¿À¹ö¶óÀÌµùÇÏ¿© »ç¿ëÇÑ´Ù.
+ * CNtlPLCharacterë¥¼ ìƒì†ë°›ì•„ì„œ í•„ìš”í•œ ë¶€ë¶„ì„ ì˜¤ë²„ë¼ì´ë”©í•˜ì—¬ ì‚¬ìš©í•œë‹¤.
  * 
  * \remarks
  * Write remarks for CMTCharacter here.
@@ -24,90 +24,90 @@ class CMTCharacter : public CNtlPLCharacter
 {
 public:
 
-	// CNtlPLCharacter Å¬·¡½ºÀÇ ¸Ş¸ğ¸®Ç®¿¡ ¹®Á¦°¡ ÀÖ¾î¼­. °­Á¦·Î ¿À¹ö¶óÀÌµù Á™´Ù.-_-a
+	// CNtlPLCharacter í´ë˜ìŠ¤ì˜ ë©”ëª¨ë¦¬í’€ì— ë¬¸ì œê°€ ìˆì–´ì„œ. ê°•ì œë¡œ ì˜¤ë²„ë¼ì´ë”© í—€ë‹¤.-_-a
 	void* operator new(size_t size);
 	void operator delete(void *pObj);
 
 	CMTCharacter(void);
 	virtual ~CMTCharacter(void);
 	
-	//--- ¿À¹ö¶óÀÌµù
-	virtual RwBool Create(const SPLEntityCreateParam *pParam  = NULL );		///< ÃÊ±âÈ­ ÀÛ¾÷À» ÇØÁØ´Ù.
+	//--- ì˜¤ë²„ë¼ì´ë”©
+	virtual RwBool Create(const SPLEntityCreateParam *pParam  = NULL );		///< ì´ˆê¸°í™” ì‘ì—…ì„ í•´ì¤€ë‹¤.
 	virtual RwBool Update(RwReal fElapsed);
 	virtual RwBool Render(void);    
 	//--------------------------------------------------------------------
 
-	RwBool  LoadClump(RwChar* filename);				                	///< clump ÆÄÀÏÀ» ·ÎµùÇÑ´Ù.	
-    RwBool  SaveClump(RwChar* fileName);                                    ///< Clump ÆÄÀÏÀ» ÀúÀåÇÑ´Ù.
-	RwBool	RemoveAtomic(RwChar* chAtomicName);			                	///< AtomicÀ» Clump¿¡¼­ Á¦°ÅÇÑ´Ù.
-    void    UpdateClumpInfo();                                              ///< ClumpÀÇ Á¤º¸¸¦ »õ·Î °»½ÅÇÑ´Ù.
-    void    DisplayMaterialAttribute(RwChar* chMaterialName);               ///< MaterialÀÇ ÇöÀç Attribute¸¦ Ç¥½ÃÇÑ´Ù.
-    void    DisplayInfo(RtCharset* pCharSet);                               ///< È­¸é¿¡ Á¤º¸¸¦ Ç¥½ÃÇÑ´Ù.
+	RwBool  LoadClump(RwChar* filename);				                	///< clump íŒŒì¼ì„ ë¡œë”©í•œë‹¤.	
+    RwBool  SaveClump(RwChar* fileName);                                    ///< Clump íŒŒì¼ì„ ì €ì¥í•œë‹¤.
+	RwBool	RemoveAtomic(RwChar* chAtomicName);			                	///< Atomicì„ Clumpì—ì„œ ì œê±°í•œë‹¤.
+    void    UpdateClumpInfo();                                              ///< Clumpì˜ ì •ë³´ë¥¼ ìƒˆë¡œ ê°±ì‹ í•œë‹¤.
+    void    DisplayMaterialAttribute(RwChar* chMaterialName);               ///< Materialì˜ í˜„ì¬ Attributeë¥¼ í‘œì‹œí•œë‹¤.
+    void    DisplayInfo(RtCharset* pCharSet);                               ///< í™”ë©´ì— ì •ë³´ë¥¼ í‘œì‹œí•œë‹¤.
 
-    // Clump ¼Ó¼º °ü·Ã
-    void    Set2Side(RwChar* chAtomicName, RwBool b2Side);                  ///< 2 Side ÇÃ·¡±×¸¦ ¼³Á¤ÇÑ´Ù.
-    void    Set2SideEdge(RwChar* chAtomicName, RwBool b2SideEdge);          ///< 2 Side Edge ÇÃ·¡±×¸¦ ¼³Á¤ÇÑ´Ù.
-    void    SetAlphaTest(RwChar* chAtomicName, RwBool bAlpha);              ///< Alpha Test ÇÃ·¡±×¸¦ ¼³Á¤ÇÑ´Ù.
-    void    SetVisible(RwBool bVisible);                                    ///< È­¸é¿¡ ¸ğµ¨ÀÇ Ç¥½Ã À¯¹«¸¦ ¼³Á¤ÇÑ´Ù.
+    // Clump ì†ì„± ê´€ë ¨
+    void    Set2Side(RwChar* chAtomicName, RwBool b2Side);                  ///< 2 Side í”Œë˜ê·¸ë¥¼ ì„¤ì •í•œë‹¤.
+    void    Set2SideEdge(RwChar* chAtomicName, RwBool b2SideEdge);          ///< 2 Side Edge í”Œë˜ê·¸ë¥¼ ì„¤ì •í•œë‹¤.
+    void    SetAlphaTest(RwChar* chAtomicName, RwBool bAlpha);              ///< Alpha Test í”Œë˜ê·¸ë¥¼ ì„¤ì •í•œë‹¤.
+    void    SetVisible(RwBool bVisible);                                    ///< í™”ë©´ì— ëª¨ë¸ì˜ í‘œì‹œ ìœ ë¬´ë¥¼ ì„¤ì •í•œë‹¤.
 
-    // Material °ü·Ã
-    void    SetMaterialColor(RwChar* chMaterialName, int r, int g, int b);  ///< Material¿¡ Color¸¦ Àû¿ëÇÑ´Ù.
-    RwBool  SetMultiTexture(RwChar* chMaterialName, RwChar* chTextureName, RwChar* chTexturePath); ///< Material¿¡ MultiTexture¸¦ Àû¿ëÇÑ´Ù.
+    // Material ê´€ë ¨
+    void    SetMaterialColor(RwChar* chMaterialName, int r, int g, int b);  ///< Materialì— Colorë¥¼ ì ìš©í•œë‹¤.
+    RwBool  SetMultiTexture(RwChar* chMaterialName, RwChar* chTextureName, RwChar* chTexturePath); ///< Materialì— MultiTextureë¥¼ ì ìš©í•œë‹¤.
 
-    // ¹Ù¿îµù ¹Ú½º °ü·Ã
-	void	CreateBB(RwChar* chAtomicName);				                	///< ÇØ´ç AtomicÀÇ BB¸¦ »ı¼ºÇÑ´Ù.
-	void    ClearBB();								    	                ///< ¹Ù¿îµù ¹Ú½º Á¤º¸¸¦ ºñ¿î´Ù.
+    // ë°”ìš´ë”© ë°•ìŠ¤ ê´€ë ¨
+	void	CreateBB(RwChar* chAtomicName);				                	///< í•´ë‹¹ Atomicì˜ BBë¥¼ ìƒì„±í•œë‹¤.
+	void    ClearBB();								    	                ///< ë°”ìš´ë”© ë°•ìŠ¤ ì •ë³´ë¥¼ ë¹„ìš´ë‹¤.
 
-    // WireFrame ·»´õ¸µ °ü·Ã
-    void              RenderWireFrame(void);                                ///< WireFrameÀ» ·»´õ¸µ ÇÑ´Ù.
+    // WireFrame ë Œë”ë§ ê´€ë ¨
+    void              RenderWireFrame(void);                                ///< WireFrameì„ ë Œë”ë§ í•œë‹¤.
     static RpAtomic*  AtomicRenderWireMesh(RpAtomic *atomic, void * data);    
 
-    // Hierarchy ·»´õ¸µ °ü·Ã
-    void             RenderHierarchy(void);                                 ///< Hierarchy¸¦ ·»´õ¸µ ÇÑ´Ù.
+    // Hierarchy ë Œë”ë§ ê´€ë ¨
+    void             RenderHierarchy(void);                                 ///< Hierarchyë¥¼ ë Œë”ë§ í•œë‹¤.
     static RpAtomic* AtomicRenderSkeleton(RpAtomic *atomic, void * data);
     static RwFrame*  HierarchyRender(RwFrame *frame, void * data);
     static void      SkeletonRender(RwMatrix *LTM, RpHAnimHierarchy *hier);
 
-    // Bone °ü·Ã
-    RwInt32          GetBoneNum() {return m_nBoneCount;};                      ///< BoneÀÇ °³¼ö¸¦ ¹İÈ¯ÇÑ´Ù.    
-    RwChar*          GetBoneName(int nBoneIndex);                            ///< BoneÀÇ ÀÌ¸§À» ¹İÈ¯ÇÑ´Ù.
-    void             SetSelectBone(int nBoneIndex) {m_nCurrentSelectBoneIndex = nBoneIndex;}; ///< ·»´õ¸µÇÒ BoneÀ» ¼±ÅÃÇÑ´Ù.
-    void             SetRenderBone(RwBool bRender) {m_bRenderBone = bRender;}; ///< BoneÀÇ ·»´õ¸µ À¯¹«¸¦ °áÁ¤ÇÑ´Ù.
+    // Bone ê´€ë ¨
+    RwInt32          GetBoneNum() {return m_nBoneCount;};                      ///< Boneì˜ ê°œìˆ˜ë¥¼ ë°˜í™˜í•œë‹¤.    
+    RwChar*          GetBoneName(int nBoneIndex);                            ///< Boneì˜ ì´ë¦„ì„ ë°˜í™˜í•œë‹¤.
+    void             SetSelectBone(int nBoneIndex) {m_nCurrentSelectBoneIndex = nBoneIndex;}; ///< ë Œë”ë§í•  Boneì„ ì„ íƒí•œë‹¤.
+    void             SetRenderBone(RwBool bRender) {m_bRenderBone = bRender;}; ///< Boneì˜ ë Œë”ë§ ìœ ë¬´ë¥¼ ê²°ì •í•œë‹¤.
     
     
 
-    // Animation °ü·Ã   
-    RwBool          SetAnim(RwUInt32 uiKey);                                 ///< ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ¸ğµ¨¿¡ Àû¿ëÇÑ´Ù.    
+    // Animation ê´€ë ¨   
+    RwBool          SetAnim(RwUInt32 uiKey);                                 ///< ì• ë‹ˆë©”ì´ì…˜ì„ ëª¨ë¸ì— ì ìš©í•œë‹¤.    
 
-    // ½ºÅ©¸³Æ® °ü·Ã
-    void            ResetProperty();                                        ///< Ä³¸¯ÅÍ ÇÁ·ÎÆÛÆ¼ÀÇ ¸ğµç ³»¿ëÀ» ¸®¼ÂÇÑ´Ù.
-    CNtlPLCharacterProperty* GetProperty() {return m_pProperty;};           ///< Ä³¸¯ÅÍÀÇ ÇÁ·ÎÆÛÆ¼ÀÇ Æ÷ÀÎÅÍ¸¦ ¹İÈ¯ÇÑ´Ù.
+    // ìŠ¤í¬ë¦½íŠ¸ ê´€ë ¨
+    void            ResetProperty();                                        ///< ìºë¦­í„° í”„ë¡œí¼í‹°ì˜ ëª¨ë“  ë‚´ìš©ì„ ë¦¬ì…‹í•œë‹¤.
+    CNtlPLCharacterProperty* GetProperty() {return m_pProperty;};           ///< ìºë¦­í„°ì˜ í”„ë¡œí¼í‹°ì˜ í¬ì¸í„°ë¥¼ ë°˜í™˜í•œë‹¤.
 
 protected:
-	//--- ¿À¹ö¶óÀÌµù
-	virtual RwBool CreateCartoon();							///< Ä«Å÷À» »ı¼ºÇÑ´Ù.
-	virtual RwBool CreateMesh(const char *szDffName);		///< Mesh¸¦ ·ÎµùÇÑ´Ù
+	//--- ì˜¤ë²„ë¼ì´ë”©
+	virtual RwBool CreateCartoon();							///< ì¹´íˆ°ì„ ìƒì„±í•œë‹¤.
+	virtual RwBool CreateMesh(const char *szDffName);		///< Meshë¥¼ ë¡œë”©í•œë‹¤
 	//----------------------------------------------------------------------
 	
-	void   RenderBB(RwBBox* pBBox);		        			///< ¹Ù¿îµù ¹Ú½º¸¦ ·»´õ¸µ ÇÑ´Ù.
-	void   DisplayClumpInfo();								///< ClumpÀÇ Á¤º¸¸¦ Ç¥½ÃÇÑ´Ù.
+	void   RenderBB(RwBBox* pBBox);		        			///< ë°”ìš´ë”© ë°•ìŠ¤ë¥¼ ë Œë”ë§ í•œë‹¤.
+	void   DisplayClumpInfo();								///< Clumpì˜ ì •ë³´ë¥¼ í‘œì‹œí•œë‹¤.
 
-    // Bone °ü·Ã    
-    void   RenderSelectedBoneScale(RpHAnimHierarchy *pHierarchy, RwInt32 nCurrentBone);    ///< BoneÀ» ·»´õ¸µ ÇÑ´Ù.
+    // Bone ê´€ë ¨    
+    void   RenderSelectedBoneScale(RpHAnimHierarchy *pHierarchy, RwInt32 nCurrentBone);    ///< Boneì„ ë Œë”ë§ í•œë‹¤.
 
     
 	
 protected:
-	MTCharacterInfo		m_charInfo;							///< Ä³¸¯ÅÍ ¸®¼Ò½º Á¤º¸¸¦ °ü¸®ÇÏ´Â °´Ã¼
-	std::vector<RwBBox> m_vecBB;							///< ¹Ù¿îµù ¹Ú½º ¸®½ºÆ®        
-    std::vector<RwTexture*> m_vMultiTexture;                ///< MultiTexture ¸®½ºÆ® (³ªÁß¿¡ ÇØÁ¦¸¦ À§ÇØ ÇÊ¿äÇÏ´Ù)
-    bool                m_bAnim;                            ///< ¾Ö´Ï¸ŞÀÌ¼ÇÀÇ Àû¿ë À¯¹«
-    RtAnimAnimation*    m_pAnimation;                       ///< Ä³¸¯ÅÍ¿¡ Àû¿ëÇÏ´Â ¾Ö´Ï¸ŞÀÌ¼Ç
+	MTCharacterInfo		m_charInfo;							///< ìºë¦­í„° ë¦¬ì†ŒìŠ¤ ì •ë³´ë¥¼ ê´€ë¦¬í•˜ëŠ” ê°ì²´
+	std::vector<RwBBox> m_vecBB;							///< ë°”ìš´ë”© ë°•ìŠ¤ ë¦¬ìŠ¤íŠ¸        
+    std::vector<RwTexture*> m_vMultiTexture;                ///< MultiTexture ë¦¬ìŠ¤íŠ¸ (ë‚˜ì¤‘ì— í•´ì œë¥¼ ìœ„í•´ í•„ìš”í•˜ë‹¤)
+    bool                m_bAnim;                            ///< ì• ë‹ˆë©”ì´ì…˜ì˜ ì ìš© ìœ ë¬´
+    RtAnimAnimation*    m_pAnimation;                       ///< ìºë¦­í„°ì— ì ìš©í•˜ëŠ” ì• ë‹ˆë©”ì´ì…˜
 
-    // Bone °ü·Ã    
-    RwInt32             m_nCurrentSelectBoneIndex;          ///< ÇöÀç ¼±ÅÃµÈ BoneÀÇ Index;
-    RwBool              m_bRenderBone;                      ///< BoneÀÇ ·»´õ¸µ À¯¹«
-    RwBool              m_bVisible;                         ///< ÇöÀç È­¸é¿¡ Ç¥½ÃµÇ´ÂÁö À¯¹«
+    // Bone ê´€ë ¨    
+    RwInt32             m_nCurrentSelectBoneIndex;          ///< í˜„ì¬ ì„ íƒëœ Boneì˜ Index;
+    RwBool              m_bRenderBone;                      ///< Boneì˜ ë Œë”ë§ ìœ ë¬´
+    RwBool              m_bVisible;                         ///< í˜„ì¬ í™”ë©´ì— í‘œì‹œë˜ëŠ”ì§€ ìœ ë¬´
     int                 m_nBoneCount;
 
 };

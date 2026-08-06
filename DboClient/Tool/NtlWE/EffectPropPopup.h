@@ -2,21 +2,21 @@
 
 #include "checkcombobox.h"
 
-// CEffectPropPopup ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CEffectPropPopup ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CEffectPropPopup : public CDialog
 {
 	DECLARE_DYNAMIC(CEffectPropPopup)
 
 public:
-	CEffectPropPopup(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CEffectPropPopup(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CEffectPropPopup();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_EFFECT_PROP };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

@@ -2,7 +2,7 @@
  *
  * File			: CharacterStage.h
  * Author		: HyungSuk, Jang
- * Copyright	: (��)NTL
+ * Copyright	: (占쏙옙)NTL
  * Date			: 2006. 11. 28	
  * Abstract		: Character stage class
  *****************************************************************************
@@ -71,11 +71,11 @@ private:
 	CNtlPLWorldEntity		*m_pWorldEntity;						// Main World
 	
 	RwV3d					m_vCameraPos;							// Camera Position
-	RwV3d					m_vCameraPosAt;							// Camera�� ���� ��ġ							
-	RwV3d					m_vAvatarPos;							// Avatar�� ��ġ
+	RwV3d					m_vCameraPosAt;							// Camera占쏙옙 占쏙옙占쏙옙 占쏙옙치							
+	RwV3d					m_vAvatarPos;							// Avatar占쏙옙 占쏙옙치
 	RwV3d					m_vAvatarUpdatePos;
 
-	RwReal					m_fAvatarAngleY;						// Avatar�� Y�� ȸ�� ��
+	RwReal					m_fAvatarAngleY;						// Avatar占쏙옙 Y占쏙옙 회占쏙옙 占쏙옙
 
 	CNtlSobAvatar			*m_pAvatar;								// Avatar
 	RwInt32					m_iAvatarRotState;						// Avatar Rotation State
@@ -97,7 +97,7 @@ private:
 	sCameraData				m_CameraData[RACE_COUNT + 1][NUM_CHT][NUM_ZL];
 	RwV3d					m_v3Dir[RACE_COUNT + 1][NUM_CHT][NUM_ZL];
 
-	RwBool					m_bOptionApply;							// CLobbayStage ��ü ������ �ѹ��� FALSE ���� ������.
+	RwBool					m_bOptionApply;							// CLobbayStage 占쏙옙체 占쏙옙占쏙옙占쏙옙 占싼뱄옙占쏙옙 FALSE 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙.
 
 private:
 	INPUT_HANDLE m_hKeyDown;
@@ -124,10 +124,10 @@ private:
 
 	void CreateDownLoadAvatar( sPC_SUMMARY *pCharInfo);
 
-	void SetupDefaultCamerabyRace(RwUInt8 byRace);							//Avatar�� ��ġ, Camera�� ��ġ�� �ʱ�ȭ
-	void CreateBackGroundStage( RwUInt32 uiRace, RwBool bForce = false);	//World�� ����(�ѹ��� ������ �ȴ�.)
-	void TeleportStage();													//SetUpDefaultCamerabyRace�� ���ؼ� ������ ������ Teleport
-																			//Teleport�� �ε��� �Ͼ��.
+	void SetupDefaultCamerabyRace(RwUInt8 byRace);							//Avatar占쏙옙 占쏙옙치, Camera占쏙옙 占쏙옙치占쏙옙 占십깍옙화
+	void CreateBackGroundStage( RwUInt32 uiRace, RwBool bForce = false);	//World占쏙옙 占쏙옙占쏙옙(占싼뱄옙占쏙옙 占쏙옙占쏙옙占쏙옙 占싫댐옙.)
+	void TeleportStage();													//SetUpDefaultCamerabyRace占쏙옙 占쏙옙占쌔쇽옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 Teleport
+																			//Teleport占쏙옙 占싸듸옙占쏙옙 占싹어난占쏙옙.
 
 	void DestroyBackGroundStage();
 	void DestroyAvatar();

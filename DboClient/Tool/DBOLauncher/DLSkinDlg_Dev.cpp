@@ -2,7 +2,7 @@
 *
 * File			: DLSkinDlg_Dev.cpp
 * Author		: 
-* Copyright		: (ÁÖ) NTL
+* Copyright		: (ì£¼) NTL
 * Date			:
 * Abstract		: 
 *****************************************************************************
@@ -244,7 +244,7 @@ BOOL CDLSkinDlg_Dev::OnInitDialog( void )
 
 	MoveWindow( 0, 0, 700, 500 );
 
-	// Background image ¼³Á¤
+	// Background image ì„¤ì •
 	EnableEasyMove();
 	SetBitmap( IDB_DEV_BACK );
 	SetStyle( LO_RESIZE );
@@ -253,13 +253,13 @@ BOOL CDLSkinDlg_Dev::OnInitDialog( void )
 	int nScreenX = GetSystemMetrics( SM_CXSCREEN ) / 2 - 350;
 	int nScreenY = GetSystemMetrics( SM_CYSCREEN ) / 2 - 250;
 
-	// È­¸é Áß¾ÓÀ¸·Î dialog ÀÌµ¿
+	// í™”ë©´ ì¤‘ì•™ìœ¼ë¡œ dialog ì´ë™
 	MoveWindow( nScreenX, nScreenY, 700, 500 );
 
-	// Explorer ¼³Á¤
+	// Explorer ì„¤ì •
 	m_ctrExplorerInfo.MoveWindow( 17, 34, 407, 370 );
 
-	// Ãâ·Â ¹®ÀÚ¿­ ¼³Á¤
+	// ì¶œë ¥ ë¬¸ìì—´ ì„¤ì •
 	m_ctrDownload.MoveWindow( 85, 428, 483, 14 );
 	m_ctrDownload.SetWindowText( _T("") );
 
@@ -273,29 +273,29 @@ BOOL CDLSkinDlg_Dev::OnInitDialog( void )
 	m_ctrLog.SetWindowText( _T("") );
 	m_ctrLog.m_bIsLog = TRUE;
 
-	// Cancel ¹öÆ° ¼³Á¤
+	// Cancel ë²„íŠ¼ ì„¤ì •
 	m_ctrCancel.SetButtonImg( IDB_DEV_CLOSE_UP, IDB_DEV_CLOSE_DOWN, IDB_DEV_CLOSE_FOC );
 	m_ctrCancel.MoveWindow( 681, 5, 14, 14 );
 
-	// Start ¹öÆ° ¼³Á¤
+	// Start ë²„íŠ¼ ì„¤ì •
 	m_ctrGameStart.SetButtonImg( IDB_DEV_START_UP, IDB_DEV_START_DOWN, IDB_DEV_START_FOC, IDB_DEV_START_DISABLE );
 	m_ctrGameStart.MoveWindow( 571, 343, 124, 124 );
 	m_ctrGameStart.EnableWindow( FALSE );
 
-	// Integrity ¹öÆ° ¼³Á¤
+	// Integrity ë²„íŠ¼ ì„¤ì •
 	m_ctrGameIntegrity.SetButtonImg( IDB_DEV_INTEGRITY_UP, IDB_DEV_INTEGRITY_DOWN, IDB_DEV_INTEGRITY_FOC, IDB_DEV_INTEGRITY_DISABLE );
 	m_ctrGameIntegrity.MoveWindow( 590, 467, 85, 25 );
 	m_ctrGameIntegrity.EnableWindow( FALSE );
 
-	// Download progress bar ¼³Á¤
+	// Download progress bar ì„¤ì •
 	m_nIDDownloadProgress = AddBitmap( IDB_DEV_PROGRESS, 85, 420, 483, 7 );
 	SetBltRateX( m_nIDDownloadProgress, 0, MAX_PROGRESS_RANGE );
 
-	// Patch progress bar ¼³Á¤
+	// Patch progress bar ì„¤ì •
 	m_nIDPatchProgress = AddBitmap( IDB_DEV_PROGRESS, 85, 448, 483, 7 );
 	SetBltRateX( m_nIDPatchProgress, 0, MAX_PROGRESS_RANGE );
 
-	// Icon ¼³Á¤
+	// Icon ì„¤ì •
 	m_hIcon = AfxGetApp()->LoadIcon( IDR_MAINFRAME );
 	SetIcon( m_hIcon, TRUE );
 	SetIcon( m_hIcon, FALSE );
@@ -340,7 +340,7 @@ void CDLSkinDlg_Dev::OnPaint( void )
 
 		SendMessage( WM_ICONERASEBKGND, (WPARAM) dc.GetSafeHdc(), 0 );
 
-		// Å¬¶óÀÌ¾ğÆ® »ç°¢Çü¿¡¼­ ¾ÆÀÌÄÜÀ» °¡¿îµ¥¿¡ ¸ÂÃä´Ï´Ù.
+		// í´ë¼ì´ì–¸íŠ¸ ì‚¬ê°í˜•ì—ì„œ ì•„ì´ì½˜ì„ ê°€ìš´ë°ì— ë§ì¶¥ë‹ˆë‹¤.
 		int cxIcon = GetSystemMetrics( SM_CXICON );
 		int cyIcon = GetSystemMetrics( SM_CYICON );
 

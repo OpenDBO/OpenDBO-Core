@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: DogiGui.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2009. 4. 6
 * Abstract		: 
 *****************************************************************************
-* Desc			: µµ∫π GUI
+* Desc			: ÎèÑÎ≥µ GUI
 *****************************************************************************/
 
 #pragma once
@@ -102,15 +102,15 @@ protected:
 	gui::CButton*		m_pBtnCancel;
 
 	gui::CStaticBox*	m_pDialogName;
-	gui::CStaticBox*	m_pPreviewDogiStatic;				///< 'µµ∫π πÃ∏Æ∫∏±‚'
-	gui::CStaticBox*	m_pSetupDogiStatic;					///< 'µµ∫π º≥¡§'
+	gui::CStaticBox*	m_pPreviewDogiStatic;				///< 'ÎèÑÎ≥µ ÎØ∏Î¶¨Î≥¥Í∏∞'
+	gui::CStaticBox*	m_pSetupDogiStatic;					///< 'ÎèÑÎ≥µ ÏÑ§Ï†ï'
 
 	CSurfaceGui			m_srfPreviewDogiBar;
 	CSurfaceGui			m_srfSetupDogiBar;
 	CSurfaceGui			m_srfCharacterBackground;
 	CSurfaceGui			m_srfDogiBackground;
 	CSurfaceGui			m_srfColorDisable[dMAX_COLOR_ROW];
-	CSurfaceGui			m_srfCharacter;						///< ƒ≥∏Ø≈Õ∞° ∑£¥ı∏µµ«¥¬ º≠∆‰¿ÃΩ∫
+	CSurfaceGui			m_srfCharacter;						///< Ï∫êÎ¶≠ÌÑ∞Í∞Ä ÎûúÎçîÎßÅÎêòÎäî ÏÑúÌéòÏù¥Ïä§
 	CSurfaceGui			m_srfSlotFocus;
 
 	gui::CTexture		m_texCharacter;

@@ -169,7 +169,7 @@ RwBool CDirectApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, Rw
 	//----------------------------------------------------
 
 	// camera
-	// active renderware camera setting �Ѵ�.
+	// active renderware camera setting 占싼댐옙.
 	m_pCamera = NTL_NEW CNtlPostEffectCamera;
 	if(!m_pCamera->Create(iWidth, iHeight, zBuffer, 0.5f , 500.0f))
 	{
@@ -199,7 +199,7 @@ RwBool CDirectApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, Rw
 		NTL_RETURN(FALSE);
 	}	
 
-//	Pack ���
+//	Pack 사용
 	if( bUsePackData )
 	{
 		LinkTextureLoad(ResourcPackTextureLoad);
@@ -215,7 +215,7 @@ RwBool CDirectApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, Rw
 			NTL_PACK_TYPE_FLAG_TABLE | NTL_PACK_TYPE_FLAG_SCRIPT | NTL_PACK_TYPE_FLAG_PROPERTY);
 	}
 	
-	// property container ���� �� load �Ѵ�.
+	// property container 占쏙옙占쏙옙 占쏙옙 load 占싼댐옙.
 	m_pPropContainter = NTL_NEW CNtlPLPropertyContainer;
 
 	if(!m_pPropContainter->LoadSerialize())
@@ -225,7 +225,7 @@ RwBool CDirectApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, Rw
 	}
 
 	// visual manager create
-	// active scene manager�� setting �Ѵ�.
+	// active scene manager占쏙옙 setting 占싼댐옙.
 	m_pVisualManager = NTL_NEW CNtlPLVisualManager;
 	if(!m_pVisualManager->Create())
 	{
@@ -246,10 +246,10 @@ RwBool CDirectApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, Rw
 
 	GetNtlGuiManager()->CreatePLGuiGroup();
 	
-	// active scene manager�� setting �Ѵ�.
+	// active scene manager占쏙옙 setting 占싼댐옙.
 	CNtlPLSceneManagerFactory::ActiveSceneManager(m_pVisualManager);
 
-	// sound ����
+	// sound 占쏙옙占쏙옙
 	GetSoundManager()->Init(".\\sound\\", 1.0f, 1.0f, 1.0f, 0.5f);
 
 	//----------------------------------------------------
@@ -277,7 +277,7 @@ RwBool CDirectApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, Rw
 
 	const sWORLD_TBLDAT* pWorldTblData = GetActiveWorldTableData();
 	
-	// avatar ����.
+	// avatar 占쏙옙占쏙옙.
 	CreteAvatarInfo(m_vAvatarInitPos);
 	CreateWorld(m_vAvatarInitPos, pWorldTblData->szName);
 
@@ -600,7 +600,7 @@ void CDirectApplication::UpdateSoundListener(void)
 {
 	if(m_pAvatar)
 	{
-		// �ó׸�ƽ���̸� ī�޶�� �����Ѵ�.
+		// 시네마틱중이면 카메라로 세팅한다.
 		if(GetNtlDTCinematicManager()->IsRunning())
 		{
 			GetSceneManager()->SetSoundListener(NULL);
@@ -665,7 +665,7 @@ RwBool CDirectApplication::Update(RwReal fTime, RwReal fElapsedTime)
 	}
 
 
-	// �ٸ� edit viewer rendering.
+	// 占쌕몌옙 edit viewer rendering.
 	EditViewerRendering(fElapsedTime);
 	
 	NTL_RETURN(TRUE);
@@ -717,7 +717,7 @@ void CDirectApplication::Destroy()
 		m_pVisualManager = NULL;
 	}
 	
-	// property�� destroy �Ѵ�.
+	// property占쏙옙 destroy 占싼댐옙.
 	if(m_pPropContainter)
 	{
 		m_pPropContainter->Destroy();
@@ -732,7 +732,7 @@ void CDirectApplication::Destroy()
 		m_pCharset = NULL;
     }
 
-	// sound ����
+	// sound 占쏙옙占쏙옙
 	GetSoundManager()->Release();
 
 	UnLinkTextureLoad();
@@ -790,7 +790,7 @@ int CDirectApplication::ActionMapKeyboardMove(uintptr_t uiMoveFlags)
 		}
 		else 
 		{
-            // ���� ī�޶� Ȱ��ȭ �Ǿ� �ִ��� Ȯ���Ѵ�.
+            // 占쏙옙占쏙옙 카占쌨띰옙 활占쏙옙화 占실억옙 占쌍댐옙占쏙옙 확占쏙옙占싼댐옙.
             if(GetNtlGameCameraManager()->IsActiveFreeCamera())
             {
                 GetNtlGameCameraManager()->FreeCameraMove(uiMoveFlags, GetFreeCameraSpeed());
@@ -912,7 +912,7 @@ void CDirectApplication::CreteAvatarInfo(RwV3d vPos)
 //	pAvatarInfo->sItemPf[0].byPos			= EQUIP_SLOT_TYPE_JACKET;
 //	pAvatarInfo->sItemPf[0].byStackcount	= 1;
 //	pAvatarInfo->sItemPf[0].byRank			= 1;
-//	pAvatarInfo->sItemPf[0].byCurDur		= 1;		// ������
+//	pAvatarInfo->sItemPf[0].byCurDur		= 1;		// 占쏙옙占쏙옙占쏙옙
 
 	for(RwInt32 i = 0; i < NTL_MAX_OPTION_IN_ITEM; i++)
 	{

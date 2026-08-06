@@ -1,7 +1,7 @@
 /******************************************************************************
 * File			: ChatDisplayGui.h
 * Author		: Hong SungBock
-* Copyright		: (��)NTL
+* Copyright		: (占쏙옙)NTL
 * Date			: 2008. 7. 1
 * Abstract		: 
 *****************************************************************************
@@ -42,10 +42,10 @@ public:
 	struct sResizingInfo
 	{
 		eResizeType			eType;
-		RwInt32				iConfirmXPos;		///< ���� �Ϸ�� X ��ǥ
-		RwInt32				iConfirmYPos;		///< ���� �Ϸ�� Y ��ǥ
-		RwInt32				iConfirmWidth;		///< ���� �Ϸ�� ����
-		RwInt32				iConfirmHeight;		///< ���� �Ϸ�� ����
+		RwInt32				iConfirmXPos;		///< 변경 완료된 X 좌표
+		RwInt32				iConfirmYPos;		///< 변경 완료된 Y 좌표
+		RwInt32				iConfirmWidth;		///< 변경 완료된 넓이
+		RwInt32				iConfirmHeight;		///< 변경 완료된 높이
 	};
 
 	struct sAlphaInfo
@@ -66,7 +66,7 @@ public:
 
 	struct sPositionInfo
 	{
-		RwInt32				iOldScreenHeight;		///< Ŭ���̾�Ʈ Resize�� �ϴܿ��� ������ �Ÿ� ���� ����
+		RwInt32				iOldScreenHeight;		///< 클占쏙옙占싱억옙트 Resize占쏙옙 占싹단울옙占쏙옙 占쏙옙占쏙옙占쏙옙 占신몌옙 占쏙옙占쏙옙 占쏙옙占쏙옙
 	};
 
 
@@ -158,5 +158,5 @@ protected:
 	sPositionInfo		m_tPositionInfo;
 
 	RwBool				m_EnableLogType[NUM_ALL_CHAT_TYPE];
-	RwUInt8				m_byDisplayGuiIndex;				///< �� ��° ���÷��� â����
+	RwUInt8				m_byDisplayGuiIndex;				///< 占쏙옙 占쏙옙째 占쏙옙占시뤄옙占쏙옙 창占쏙옙占쏙옙
 };

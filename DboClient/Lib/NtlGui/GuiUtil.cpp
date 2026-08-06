@@ -329,13 +329,13 @@ VOID ChangeLineFeedToCStyle( std::wstring& wstr )
 }
 
 /**
-* \brief 2d VectorÀÇ ¼±Çü º¸°£ ÇÔ¼ö
-* \param v2dOutput		(RwV2d*) °á°ú°ªÀÌ ³ª¿Ã º¤ÅÍÀÇ Æ÷ÀÎÅÍ
-* \param v2dStart		(RwV2d*) ¼±Çüº¸°£ÀÇ Ã¹¹øÂ° º¤ÅÍ
-* \param v2dEnd			(RwV2d*) ¼±Çüº¸°£ÀÇ µÎ¹øÂ° º¤ÅÍ
-* \param fTime			(float)	º¸°£µÉ À§Ä¡
-* \param fGoalTime		(float) º¸°£µÇ´Â À§Ä¡ÀÇ ÃÖ´ë°ª
-* \return º¸°£µÈ º¤ÅÍÀÇ ±æÀÌ
+* \brief 2d Vectorì˜ ì„ í˜• ë³´ê°„ í•¨ìˆ˜
+* \param v2dOutput		(RwV2d*) ê²°ê³¼ê°’ì´ ë‚˜ì˜¬ ë²¡í„°ì˜ í¬ì¸í„°
+* \param v2dStart		(RwV2d*) ì„ í˜•ë³´ê°„ì˜ ì²«ë²ˆì§¸ ë²¡í„°
+* \param v2dEnd			(RwV2d*) ì„ í˜•ë³´ê°„ì˜ ë‘ë²ˆì§¸ ë²¡í„°
+* \param fTime			(float)	ë³´ê°„ë  ìœ„ì¹˜
+* \param fGoalTime		(float) ë³´ê°„ë˜ëŠ” ìœ„ì¹˜ì˜ ìµœëŒ€ê°’
+* \return ë³´ê°„ëœ ë²¡í„°ì˜ ê¸¸ì´
 */
 float RwV2dLineInterpolation( RwV2d* v2dOutput, RwV2d* v2dStart, RwV2d* v2dEnd, float fTime, float fGoalTime )
 {
@@ -351,11 +351,11 @@ float RwV2dLineInterpolation( RwV2d* v2dOutput, RwV2d* v2dStart, RwV2d* v2dEnd, 
 }
 
 /**
-* \brief ¹®ÀÚ¿­¿¡¼­ ÁÖ¾îÁø Ä³¸¯ÅÍ±îÁöÀÇ ÅäÅ«À» ÃßÃâÇÑ´Ù.
-* \param pStr			(char*) ¹®ÀÚ¿­
-* \param pBuffer		(char*) ÃßÃâµÈ ÅäÅ«ÀÌ º¸°üµÉ ¹öÆÛ
-* \param nLen			(char*) ¹öÆÛÀÇ ±æÀÌ
-* \param pMark			(char*) Ä³¸¯ÅÍ
+* \brief ë¬¸ìì—´ì—ì„œ ì£¼ì–´ì§„ ìºë¦­í„°ê¹Œì§€ì˜ í† í°ì„ ì¶”ì¶œí•œë‹¤.
+* \param pStr			(char*) ë¬¸ìì—´
+* \param pBuffer		(char*) ì¶”ì¶œëœ í† í°ì´ ë³´ê´€ë  ë²„í¼
+* \param nLen			(char*) ë²„í¼ì˜ ê¸¸ì´
+* \param pMark			(char*) ìºë¦­í„°
 */
 void ExtractTokenByLastChar( char* pStr, char* pBuffer, int nLen, const char *pMark )
 {
@@ -384,19 +384,19 @@ void ExtractTokenByLastChar( char* pStr, char* pBuffer, int nLen, const char *pM
 }
 
 /**
-* \brief ¿øº» ¹öÆÛ¿¡¼­ ÅäÅ«À» Ã£¾Æ ¹öÆÛ¿¡ ´ã´Â´Ù. ¼º°ø ¿©ºÎ¸¦ ¸®ÅÏ °ªÀ¸·Î È®ÀÎ
-* \param pBuffer		(char*) ¹öÆÛ
-* \param nBufferSize	(int) ¹öÆÛ »çÀÌÁî
-* \param pSrcBuffer		(char*) ´ë»ó ¹öÆÛ
-* \param pToken			(char*) Ã£À» ÅäÅ«
-* \return ¼º°ø ¿©ºÎ
+* \brief ì›ë³¸ ë²„í¼ì—ì„œ í† í°ì„ ì°¾ì•„ ë²„í¼ì— ë‹´ëŠ”ë‹¤. ì„±ê³µ ì—¬ë¶€ë¥¼ ë¦¬í„´ ê°’ìœ¼ë¡œ í™•ì¸
+* \param pBuffer		(char*) ë²„í¼
+* \param nBufferSize	(int) ë²„í¼ ì‚¬ì´ì¦ˆ
+* \param pSrcBuffer		(char*) ëŒ€ìƒ ë²„í¼
+* \param pToken			(char*) ì°¾ì„ í† í°
+* \return ì„±ê³µ ì—¬ë¶€
 */
 BOOL ExtractTokenByFind( char* pOutBuffer, int nBufferSize, char* pSrcBuffer, char* pToken, int nTokenSize )
 {
 	char* startpos = strstr( pSrcBuffer, pToken );
 	if( startpos == NULL )
 	{
-		// Ã£Áö ¸øÇÔ
+		// ì°¾ì§€ ëª»í•¨
 		return FALSE;
 	}
 	
@@ -407,7 +407,7 @@ BOOL ExtractTokenByFind( char* pOutBuffer, int nBufferSize, char* pSrcBuffer, ch
 }
 
 /**
-* \brief ÁÖ¾îÁø ¹öÆÛ¿¡¼­ °ø¹é°ú ÅÇ ¹®ÀÚ, ¶óÀÎ ÇÇµå ¹®ÀÚ¸¦ Á¦°ÅÇÑ´Ù.
+* \brief ì£¼ì–´ì§„ ë²„í¼ì—ì„œ ê³µë°±ê³¼ íƒ­ ë¬¸ì, ë¼ì¸ í”¼ë“œ ë¬¸ìë¥¼ ì œê±°í•œë‹¤.
 */
 void RemoveSpaceForSelfBuffer( char* pStrBuffer )
 {

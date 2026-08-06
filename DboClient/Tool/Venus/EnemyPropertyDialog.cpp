@@ -1,4 +1,4 @@
-// EnemyPropertyDialog.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// EnemyPropertyDialog.cpp : êµ¬í˜„ íŒŒì¼ìž…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -10,7 +10,7 @@
 #include "VenusPlayerEventManager.h"
 #include "VenusPropertyContainer.h"
 
-// CEnemyPropertyDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CEnemyPropertyDialog ëŒ€í™” ìƒìžìž…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNCREATE(CEnemyPropertyDialog, CDialog)
 CEnemyPropertyDialog::CEnemyPropertyDialog(CWnd* pParent /*=NULL*/)
@@ -36,13 +36,13 @@ BEGIN_MESSAGE_MAP(CEnemyPropertyDialog, CDialog)
 END_MESSAGE_MAP()
 
 
-// CEnemyPropertyDialog ¸Þ½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CEnemyPropertyDialog ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ìž…ë‹ˆë‹¤.
 
 BOOL CEnemyPropertyDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ìž‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	DWORD dwStyle;
 	CRect rc;
 	dwStyle = WS_CHILD|WS_VISIBLE|PTS_NOTIFY;
@@ -66,14 +66,14 @@ BOOL CEnemyPropertyDialog::OnInitDialog()
 
 	m_Initialized = TRUE;
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹ÝÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± íŽ˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CEnemyPropertyDialog::OnSize(UINT nType, int cx, int cy)
 {
 	CDialog::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Þ½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if(m_Initialized)
 	{
 		CWnd* pPropertyStaticWindow = GetDlgItem(IDC_PROPERTY_STATIC);
@@ -93,7 +93,7 @@ void CEnemyPropertyDialog::OnSize(UINT nType, int cx, int cy)
 
 void CEnemyPropertyDialog::OnTimer(UINT nIDEvent)
 {
-	// TODO: ¿©±â¿¡ ¸Þ½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	KillTimer(nIDEvent);
 
 	switch(nIDEvent)
@@ -110,7 +110,7 @@ void CEnemyPropertyDialog::OnTimer(UINT nIDEvent)
 
 BOOL CEnemyPropertyDialog::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ëž˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if (pMsg->message == WM_KEYDOWN) 
 	{
 		if(pMsg->wParam == VK_RETURN) return FALSE;	
@@ -304,7 +304,7 @@ void CEnemyPropertyDialog::ApplyProperties(CPropTreeItem* pItem)
 			{
 				pEnemy->m_strClumpName.clear();
 			}
-			// Clump°¡ º¯°æµÇ¸é m_nCurrentNode¸¦ ÃÊ±âÈ­ ÇØ ÁØ´Ù
+			// Clumpê°€ ë³€ê²½ë˜ë©´ m_nCurrentNodeë¥¼ ì´ˆê¸°í™” í•´ ì¤€ë‹¤
 			pEnemy->m_strIdleAnimationName.clear();
 			pEnemy->m_strDamageAnimationName.clear();
 			SetTimer(TIME_TYPE_RESET_PROPERTIES, 100, NULL);

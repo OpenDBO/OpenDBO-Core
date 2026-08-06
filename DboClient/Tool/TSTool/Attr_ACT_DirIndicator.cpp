@@ -1,4 +1,4 @@
-// Attr_ACT_DirIndicator.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_ACT_DirIndicator.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -7,7 +7,7 @@
 #include "NtlDirection.h"
 
 
-// CAttr_ACT_DirIndicator ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_ACT_DirIndicator ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_ACT_DirIndicator, CAttr_Page, 1)
 
@@ -161,14 +161,14 @@ BOOL CAttr_ACT_DirIndicator::OnInitDialog()
 {
 	CAttr_Page::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
-	m_ctrTargetTypeCtrl.SetItemData( m_ctrTargetTypeCtrl.AddString( _T("ÀÚ½Å¿¡°Ô¸¸") ), 1 );
-	int nIdx = m_ctrTargetTypeCtrl.AddString( _T("¸ğµÎ¿¡°Ô") );
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
+	m_ctrTargetTypeCtrl.SetItemData( m_ctrTargetTypeCtrl.AddString( _T("ìì‹ ì—ê²Œë§Œ") ), 1 );
+	int nIdx = m_ctrTargetTypeCtrl.AddString( _T("ëª¨ë‘ì—ê²Œ") );
 	m_ctrTargetTypeCtrl.SetItemData( nIdx, 0 );
 	m_ctrTargetTypeCtrl.SetCurSel( nIdx );
 
-	m_ctrStartCtrl.SetItemData( m_ctrStartCtrl.AddString( _T("Á¾·á") ), 0 );
-	nIdx = m_ctrStartCtrl.AddString( _T("½ÃÀÛ") );
+	m_ctrStartCtrl.SetItemData( m_ctrStartCtrl.AddString( _T("ì¢…ë£Œ") ), 0 );
+	nIdx = m_ctrStartCtrl.AddString( _T("ì‹œì‘") );
 	m_ctrStartCtrl.SetItemData( nIdx, 1 );
 	m_ctrStartCtrl.SetCurSel( nIdx );
 
@@ -189,7 +189,7 @@ BOOL CAttr_ACT_DirIndicator::OnInitDialog()
 	OnCbnSelchangeTsActAttrDirIndicatorTypeCombo();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 
@@ -198,7 +198,7 @@ BEGIN_MESSAGE_MAP(CAttr_ACT_DirIndicator, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_ACT_DirIndicator ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_ACT_DirIndicator ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CAttr_ACT_DirIndicator::OnCbnSelchangeTsActAttrDirIndicatorTypeCombo()
 {

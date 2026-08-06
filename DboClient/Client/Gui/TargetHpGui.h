@@ -2,7 +2,7 @@
 * 
 *  File			: TargetHpGui.h
 *  Author		: HyungSuk, Jang
-*  Copyright	: (¡÷)NTL
+*  Copyright	: (Ï£º)NTL
 *  Date			: 2005. 12. 12	
 *  Abstract		: DBO Target hp gui.
 * ****************************************************************************

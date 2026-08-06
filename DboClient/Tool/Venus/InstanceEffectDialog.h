@@ -2,7 +2,7 @@
 #include "afxwin.h"
 
 
-// CInstanceEffectDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CInstanceEffectDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 #include "Resource.h"
 
@@ -11,18 +11,18 @@ class CInstanceEffectDialog : public CDialog
 	DECLARE_DYNAMIC(CInstanceEffectDialog)
 
 public:
-	CInstanceEffectDialog(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CInstanceEffectDialog(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CInstanceEffectDialog();
 
 	static CInstanceEffectDialog& GetInstance();
 
 	void	BuildInstanceEffect();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_INSTANCE_EFFECT };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

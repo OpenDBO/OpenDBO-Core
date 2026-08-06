@@ -28,16 +28,16 @@ void CNtlRender::Destroy(void)
 
 /**
 *
-*  rendering °´Ã¼ update ÇÔ¼ö.
-*  \param fElapsed´Â ÀÌÀü tick¿¡¼­ ÇöÀç tickÀÇ delta timeÀÌ´Ù.
+*  rendering ê°ì²´ update í•¨ìˆ˜.
+*  \param fElapsedëŠ” ì´ì „ tickì—ì„œ í˜„ì¬ tickì˜ delta timeì´ë‹¤.
 *
 */
 void CNtlRender::Update(float fElapsed)
 {
 	NTL_FUNCTION("CNtlRender::Update");
 
-	// inputÀ» ¾ò¾î¿Â´Ù.
-	// logicÀ» update ÇÑ´Ù. (·£´õ¸µ °´Ã¼ Æ÷ÇÔ)
+	// inputì„ ì–»ì–´ì˜¨ë‹¤.
+	// logicì„ update í•œë‹¤. (ëœë”ë§ ê°ì²´ í¬í•¨)
 
 	g_MsgTick.Id = g_EventRenderTick;
 	m_fFreeElapsed = fElapsed;

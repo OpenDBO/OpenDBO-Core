@@ -4,7 +4,7 @@
 
 /**
  * \ingroup ModelTool2
- * \brief Model Tool¿¡ ¾²ÀÌ´Â Item Å¬·¡½º
+ * \brief Model Toolì— ì“°ì´ëŠ” Item í´ë˜ìŠ¤
  * \date 2006-06-26
  * \author agebreak
  */
@@ -14,11 +14,11 @@ public:
     CMTItem(void);
     virtual ~CMTItem(void);
 
-    /// Memory PoolÀ» »ç¿ëÇÏÁö ¾Ê±â ¶§¹®¿¡ new/delete¸¦ Overriding ÇÑ´Ù.
+    /// Memory Poolì„ ì‚¬ìš©í•˜ì§€ ì•Šê¸° ë•Œë¬¸ì— new/deleteë¥¼ Overriding í•œë‹¤.
     void* operator new(size_t size);
     void operator delete(void *pObj);
 
-    virtual RwBool  Create(const RwChar* szDffFileName, RwBool bEquip = FALSE);                         ///< Clump ÆÄÀÏ·ÎºÎÅÍ °´Ã¼¸¦ »ı¼ºÇÑ´Ù.
+    virtual RwBool  Create(const RwChar* szDffFileName, RwBool bEquip = FALSE);                         ///< Clump íŒŒì¼ë¡œë¶€í„° ê°ì²´ë¥¼ ìƒì„±í•œë‹¤.
     virtual void    Destroy(void);    
 
     virtual void	SetRemoveEquip();    
@@ -26,12 +26,12 @@ public:
     virtual void    AddWorld(void);    
     virtual void    RemoveWorld();
 
-    CMTClump* GetClumpInfo() {return &m_MTClump;}                               ///< MTClump °´Ã¼¸¦ ¹İÈ¯ÇÑ´Ù.
+    CMTClump* GetClumpInfo() {return &m_MTClump;}                               ///< MTClump ê°ì²´ë¥¼ ë°˜í™˜í•œë‹¤.
 
-    // Link Effect °ü·Ã
-    CNtlInstanceEffect* GetLinkEffectFromName(RwChar* szName);              ///< Name¿¡ ÇØ´çÇÏ´Â LinkEffect¸¦ ¹İÈ¯ÇÑ´Ù.
+    // Link Effect ê´€ë ¨
+    CNtlInstanceEffect* GetLinkEffectFromName(RwChar* szName);              ///< Nameì— í•´ë‹¹í•˜ëŠ” LinkEffectë¥¼ ë°˜í™˜í•œë‹¤.
 
 protected:
-    CMTClump    m_MTClump;                                                      ///< Clump Á¤º¸ °´Ã¼    
-    RwBool      m_bEquipView;                                                   ///< ÀåÂøºä¿ëÀ¸·Î »ı¼ºµÈ ¾ÆÀÌÅÛÀÎÁö ¾Æ´ÑÁö À¯¹«
+    CMTClump    m_MTClump;                                                      ///< Clump ì •ë³´ ê°ì²´    
+    RwBool      m_bEquipView;                                                   ///< ì¥ì°©ë·°ìš©ìœ¼ë¡œ ìƒì„±ëœ ì•„ì´í…œì¸ì§€ ì•„ë‹Œì§€ ìœ ë¬´
 };

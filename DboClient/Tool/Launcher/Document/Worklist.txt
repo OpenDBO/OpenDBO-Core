@@ -1,10 +1,10 @@
 2007.2.21
- CurrentVersion Ç¥½Ã, Start Button Enable, Disable
- Version 0.1.05·Î ¿Ã¸² 0.1.04¸¸ Patch ÇßÀ½
+ CurrentVersion í‘œì‹œ, Start Button Enable, Disable
+ Version 0.1.05ë¡œ ì˜¬ë¦¼ 0.1.04ë§Œ Patch í–ˆìŒ
 
- ÃßÈÄ¿¡ ÇÒ°Å
- Patch Server Á¡°ËÁß -> Patch ¾ÈµÇ°Ô, Patch ¾ÈµÉ ¶§ ¹®±¸ Ãâ·Â, ¸ðµÎ Patch°¡ ¾ÈµÈ´Ù, Æ¯º°ÇÑ °æ¿ì µÇ°Ô
- Launcher Patch ÀÏ °æ¿ì Launcher ApplicationÀÌ Á¦ÀÏ »óÀ§ Àü¸é¿¡¼­ ½ÇÇà
+ ì¶”í›„ì— í• ê±°
+ Patch Server ì ê²€ì¤‘ -> Patch ì•ˆë˜ê²Œ, Patch ì•ˆë  ë•Œ ë¬¸êµ¬ ì¶œë ¥, ëª¨ë‘ Patchê°€ ì•ˆëœë‹¤, íŠ¹ë³„í•œ ê²½ìš° ë˜ê²Œ
+ Launcher Patch ì¼ ê²½ìš° Launcher Applicationì´ ì œì¼ ìƒìœ„ ì „ë©´ì—ì„œ ì‹¤í–‰
 
                         
 

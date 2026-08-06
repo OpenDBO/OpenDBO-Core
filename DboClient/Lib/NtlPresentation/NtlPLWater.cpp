@@ -177,7 +177,7 @@ RwBool CNtlPLWater::OnCreate(CNtlWorldSector* pNtlWorldSector, sSECTOR_WATER_ATT
 	pTList = RpGeometryGetTriangles(pGeometry);
 	pTexCoord = RpGeometryGetVertexTexCoords(pGeometry, rwTEXTURECOORDINATEINDEX0);
 
-	// �ε���
+	// 占싸듸옙占쏙옙
 	//SPos.x = pNtlWorldSector->m_pWorldSector->boundingBox.inf.x;
 	//SPos.y = pNtlWorldSector->m_pWorldSector->boundingBox.inf.z;
 	SPos.x = pNtlWorldSector->DatumPoint.x - (dGET_WORLD_PARAM()->WorldSectorSize / 2);
@@ -249,7 +249,7 @@ RwBool CNtlPLWater::OnCreate(CNtlWorldSector* pNtlWorldSector, sSECTOR_WATER_ATT
 	RpAtomicSetPipeline(pSectorWaterAttr->_pAtom, D3D9NtlWorldWaterSectorAtomicPipeline);
 
 	// set frame and geometry
-	// �ε���
+	// 占싸듸옙占쏙옙
 	//RpAtomicSetFrame(pSectorWaterAttr->_pAtom, dNTL_WORLD_SECTOR_LOCAL(RpWorldSectorGetWorld(pNtlWorldSector->m_pWorldSector), pParentFrame));
 	//RpAtomicSetGeometry(pSectorWaterAttr->_pAtom, pGeometry, 0);
 // 	switch (GetSceneManager()->GetActiveWorldType())
@@ -466,7 +466,7 @@ RwBool CNtlPLWater::OnRender(CNtlWorldSector* pNtlWorldSector, RxD3D9InstanceDat
 				RwD3D9SetTexture(pNtlWorldSector->m_pWater->_pDepthMap, 3);
 				RwD3D9SetTransform(D3DTS_TEXTURE3, &pNtlWorldSector->m_pWater->_matTex[0]);
 
-				RwD3D9SetTextureStageState(3, D3DTSS_ALPHAOP, D3DTOP_SELECTARG1); // CNtlPLWater::OnRender �ȿ��� ����
+				RwD3D9SetTextureStageState(3, D3DTSS_ALPHAOP, D3DTOP_SELECTARG1); // CNtlPLWater::OnRender 占싫울옙占쏙옙 占쏙옙占쏙옙
 				RwD3D9SetTextureStageState(3, D3DTSS_ALPHAARG1, D3DTA_TEXTURE);
 			}
 			else
@@ -474,7 +474,7 @@ RwBool CNtlPLWater::OnRender(CNtlWorldSector* pNtlWorldSector, RxD3D9InstanceDat
 				RwD3D9SetTexture(NULL, 3);
 				RwD3D9SetTransform(D3DTS_TEXTURE3, &CNtlPLGlobal::m_matIden);
 
-				RwD3D9SetTextureStageState(3, D3DTSS_ALPHAOP, D3DTOP_SELECTARG2); // CNtlPLWater::OnRender �ȿ��� ����
+				RwD3D9SetTextureStageState(3, D3DTSS_ALPHAOP, D3DTOP_SELECTARG2); // CNtlPLWater::OnRender 占싫울옙占쏙옙 占쏙옙占쏙옙
 				RwD3D9SetTextureStageState(3, D3DTSS_ALPHAARG2, D3DTA_CURRENT);
 			}
 		}

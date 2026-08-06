@@ -1,4 +1,4 @@
-// Attr_Page.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_Page.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_Page.h"
 
 
-// CAttr_Page ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_Page ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 
 IMPLEMENT_DYNAMIC(CAttr_Page, COptionPage)
@@ -164,11 +164,11 @@ BOOL CAttr_Page::OnInitDialog()
 {
 	COptionPage::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if ( m_strData.GetLength() > 0 ) SetPageData( m_strData );
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 
@@ -176,11 +176,11 @@ BEGIN_MESSAGE_MAP(CAttr_Page, COptionPage)
 END_MESSAGE_MAP()
 
 
-// CAttr_Page ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_Page ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CAttr_Page::OnOK()
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	m_strData = GetPageData();
 
 	COptionPage::OnOK();

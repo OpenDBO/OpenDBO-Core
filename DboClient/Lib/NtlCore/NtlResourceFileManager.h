@@ -2,7 +2,7 @@
 //	File		:	NtlResourceFileManager.h
 //	Desc		:	
 //	Begin		:	2004.9.23
-//	Copyright	:	�� 2004 by agebreak CO., Ltd
+//	Copyright	:	占쏙옙 2004 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************

@@ -5,9 +5,9 @@
 #define FILTER_CONFIG                   L"Config File(*.xml;*.edf)|*.xml;*.edf||"
 #define FILTER_DST                      L"Display String File(*.dat)|*.dat||"
 
-//#define ONLY_GRAPHIC_PANE               ///< ±×·¡ÇÈ ¼³Á¤¸¸ º¸ÀÌ°Ô ÄÄÆÄÀÏÇÏ´Â ¿É¼Ç
+//#define ONLY_GRAPHIC_PANE               ///< ê·¸ëž˜í”½ ì„¤ì •ë§Œ ë³´ì´ê²Œ ì»´íŒŒì¼í•˜ëŠ” ì˜µì…˜
 
-// À¯Æ¿ ÇÔ¼öµé
+// ìœ í‹¸ í•¨ìˆ˜ë“¤
 static CString GetFileNameFromPath(CString strFilePath)
 {
     int nIndex = strFilePath.ReverseFind(L'\\');

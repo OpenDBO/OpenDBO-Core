@@ -85,7 +85,7 @@ RwBool CNetPyShopGui::Create()
 
 	char acSurfaceName[64];
 
-	//// Todo : ÃßÈÄ Shop GuiÀÇ Surface°¡ º¯°æµÉ »óÈ²ÀÌ »ı±ä´Ù¸é ´ÙÀ½°ú °°Àº ÄÚµå¸¦ ÀÌ¿ëÇÑ´Ù.
+	//// Todo : ì¶”í›„ Shop Guiì˜ Surfaceê°€ ë³€ê²½ë  ìƒí™©ì´ ìƒê¸´ë‹¤ë©´ ë‹¤ìŒê³¼ ê°™ì€ ì½”ë“œë¥¼ ì´ìš©í•œë‹¤.
 	//if( m_eShopType == SHOP_TYPE_NETPY )
 	//{
 
@@ -100,7 +100,7 @@ RwBool CNetPyShopGui::Create()
 
 	CRectangle rect;
 
-	// »óÁ¡ ÀÌ¸§	
+	// ìƒì  ì´ë¦„	
 	rect.SetRectWH(DBOGUI_DIALOG_TITLE_X, DBOGUI_DIALOG_TITLE_Y, 145, 14);
 	m_pShopTitle = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT );
 	m_pShopTitle->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
@@ -109,7 +109,7 @@ RwBool CNetPyShopGui::Create()
 
 	rect = GetPosition();
 
-	// ¹é¶óÀÎ
+	// ë°±ë¼ì¸
 	m_BackLineSurface.SetType(CWindowby3::WT_HORIZONTAL);
 	m_BackLineSurface.SetSurface( 0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( acSurfaceName, "srfBackLineTop" ) );
 	m_BackLineSurface.SetSurface( 1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( acSurfaceName, "srfBackLineCenter" ) );
@@ -117,21 +117,21 @@ RwBool CNetPyShopGui::Create()
 	m_BackLineSurface.SetSize(303, 351);
 	m_BackLineSurface.SetPositionfromParent(9, 50);
 
-	// ÅÇ ¹öÆ°
+	// íƒ­ ë²„íŠ¼
 	m_pTabButton = (gui::CTabButton*)GetComponent( "TabButton" );
 	m_slotTab = m_pTabButton->SigSelectChanged().Connect( this, &CNetPyShopGui::OnSelectChangeTabButton );	
 
-	// ½½·Ô Æ÷Ä¿½º ÀÌÆåÆ®
+	// ìŠ¬ë¡¯ í¬ì»¤ìŠ¤ ì´í™íŠ¸
 	m_FocusEffect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", "srfSlotFocusEffect" ) );
 
-	// ½½·Ô ¼¿·ºÆ® ÀÌÆåÆ®
+	// ìŠ¬ë¡¯ ì…€ë ‰íŠ¸ ì´í™íŠ¸
 	m_SelectEffect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", "srfSlotGrayedEffect" ) );
 
-	// ¼ÒÁö±İ ¹è°æ ( ÇöÀç ¾øÀ½ ¿äÃ»ÇØ¾ßÇÔ )
+	// ì†Œì§€ê¸ˆ ë°°ê²½ ( í˜„ì¬ ì—†ìŒ ìš”ì²­í•´ì•¼í•¨ )
 	m_MoneyBackPanel.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( acSurfaceName, "MoneyBackPanel" ) );
 	m_MoneyBackPanel.SetPositionfromParent(194, 439);
 
-	// ÆäÀÌÁö ¹è°æ
+	// í˜ì´ì§€ ë°°ê²½
 	m_PageBackPanel.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( acSurfaceName, "PageBackPanel" ) );
 	m_PageBackPanel.SetPositionfromParent(203, 406);
 
@@ -172,7 +172,7 @@ RwBool CNetPyShopGui::Create()
 		m_ItemPanel[i].srfNeedItem.SetPositionfromParent(dNETPYSHOP_TEM_NAME_START_X, iItemNamePosY + 22);
 		m_ItemPanel[i].srfNeedItem.SetSize(dNETPYSHOP_METAL_SMALL_SIZE, dNETPYSHOP_METAL_SMALL_SIZE);
 
-		// ÇÊ¿äÇÑ Æ÷ÀÎÆ®
+		// í•„ìš”í•œ í¬ì¸íŠ¸
 		rect.SetRectWH( dNETPYSHOP_PRICE_START_X, iPricePosY, 68, 16);
 		m_ItemPanel[i].pPoint = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_RIGHT);
 		m_ItemPanel[i].pPoint->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
@@ -185,21 +185,21 @@ RwBool CNetPyShopGui::Create()
 		iPricePosY += dNETPYSHOP_SLOT_GAP_HORI;
 	}		
 
-	// ´ë·® ±¸¸Å ¼³¸í
+	// ëŒ€ëŸ‰ êµ¬ë§¤ ì„¤ëª…
 	rect.SetRectWH(16, 379, 282, 20);
 	m_pLargeBuyExplan = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_RIGHT);
 	m_pLargeBuyExplan->CreateFontStd( "detail", 90, DEFAULT_FONT_ATTR);
 	m_pLargeBuyExplan->SetText(GetDisplayStringManager()->GetString( "DST_NPCSHOP_LARGE_BUY_EXPLAIN" ));
 	m_pLargeBuyExplan->Enable(false);
 
-	// ³ªÀÇ ¼ÒÁö±İ Á¦¸ñ
+	// ë‚˜ì˜ ì†Œì§€ê¸ˆ ì œëª©
 	rect.SetRectWH(135, 442, 63, 17);
 	m_pPocketMoneytitle = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER);
 	m_pPocketMoneytitle->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pPocketMoneytitle->SetText(GetDisplayStringManager()->GetString( "DST_NETPY" ));
 	m_pPocketMoneytitle->Enable(false);
 
-	// ³ªÀÇ ¼ÒÁö±İ	
+	// ë‚˜ì˜ ì†Œì§€ê¸ˆ	
 	rect.SetRectWH(185, 441, 90, 17);
 	m_pPocketMoney = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_RIGHT );
 	m_pPocketMoney->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
@@ -207,7 +207,7 @@ RwBool CNetPyShopGui::Create()
 	m_pPocketMoney->SetText("");
 	m_pPocketMoney->Enable(false);
 
-	// ÇöÀç ÆäÀÌÁö Ç¥½Ã
+	// í˜„ì¬ í˜ì´ì§€ í‘œì‹œ
 	rect.SetRectWH(217, 409, 46, 16);
 	m_pCurrentPage = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER );
 	m_pCurrentPage->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
@@ -286,10 +286,10 @@ VOID CNetPyShopGui::OpenShop()
 	CTextTable* pMerchantTextTable = API_GetTableContainer()->GetTextAllTable()->GetMerchantTbl();
 	CTextTable* pItemTextTable = API_GetTableContainer()->GetTextAllTable()->GetItemTbl();
 
-	// »óÁ¡ ÀÌ¸§
+	// ìƒì  ì´ë¦„
 	m_pShopTitle->SetText( GetDisplayStringManager()->GetString("DST_NETPYSHOP" ) );
 
-	// NetPy Shop ¿¡¼­ Á¤ÀÇµÈ Index 4°¡ÁöÀÇ ÅÇÀ» ºÒ·¯¿Â´Ù.
+	// NetPy Shop ì—ì„œ ì •ì˜ëœ Index 4ê°€ì§€ì˜ íƒ­ì„ ë¶ˆëŸ¬ì˜¨ë‹¤.
 	ShopItem shopItem;
 	char acBuffer[256] = "";
 	for(RwInt32 iTabIndex = 0 ; iTabIndex < dNETPYSHOP_TAB_NUMS; ++iTabIndex )
@@ -297,18 +297,18 @@ VOID CNetPyShopGui::OpenShop()
 		if( m_adwNETPYSHOP_MERCHANT_TBLIDX[iTabIndex] <= 0 )
 			continue;
 
-		// °¢ Tab º° µî·ÏµÈ ¾ÆÀÌÅÛÀ» ÀĞ¾î¿Â´Ù.
+		// ê° Tab ë³„ ë“±ë¡ëœ ì•„ì´í…œì„ ì½ì–´ì˜¨ë‹¤.
 		sMERCHANT_TBLDAT* pMERCHANT_TBLDAT = Logic_GetMerchantDataFromTable(m_adwNETPYSHOP_MERCHANT_TBLIDX[iTabIndex]);
 		if(!pMERCHANT_TBLDAT)
 			continue;
 
-		// Tab ÀÌ¸§			
+		// Tab ì´ë¦„			
 		const wchar_t* pwcMerchantName = pMerchantTextTable->GetText(pMERCHANT_TBLDAT->Tab_Name).c_str();
 		WideCharToMultiByte(GetACP(), 0, pwcMerchantName, -1, acBuffer, 256, NULL, NULL);
 		std::string str = acBuffer;
 		m_pTabButton->AddTab(str);
 
-		// °¢ Tabº° µî·ÏµÈ ¾ÆÀÌÅÛÀ» ShopItem¿¡ µî·ÏÇÑ´Ù			
+		// ê° Tabë³„ ë“±ë¡ëœ ì•„ì´í…œì„ ShopItemì— ë“±ë¡í•œë‹¤			
 		sITEM_TBLDAT* pITEM_DATA;			
 		for( RwInt32 iMerchantIndex = 0 ; iMerchantIndex < NTL_MAX_MERCHANT_COUNT ; ++iMerchantIndex )
 		{				
@@ -316,7 +316,7 @@ VOID CNetPyShopGui::OpenShop()
 			if(!pITEM_DATA)
 				continue;
 
-			// ½ÇÁ¦ ShopItem µ¥ÀÌÅÍ				
+			// ì‹¤ì œ ShopItem ë°ì´í„°				
 			if( pMERCHANT_TBLDAT->aitem_Tblidx[iMerchantIndex] == 0 )
 			{
 				m_aShopItem[iTabIndex][iMerchantIndex].hItem = INVALID_SERIAL_ID;
@@ -332,10 +332,10 @@ VOID CNetPyShopGui::OpenShop()
 		}
 	}		
 
-	// ¼ÒÁö±İ
+	// ì†Œì§€ê¸ˆ
 	SetZenny();
 
-	// ÃÖÃÊ ÅÇ
+	// ìµœì´ˆ íƒ­
 	m_pTabButton->SelectTab(0);
 	UpdateTabContent(0);
 
@@ -535,7 +535,7 @@ RwUInt8 CNetPyShopGui::GetPageCount_of_CurTab()
 {
 	RwUInt8 byLastIndex = 0;
 
-	// ¾ÆÀÌÅÛ ½½·ÔÀº Áß°£¿¡ ºñ¾îÀÖÀ» ¼öµµ ÀÖ´Ù
+	// ì•„ì´í…œ ìŠ¬ë¡¯ì€ ì¤‘ê°„ì— ë¹„ì–´ìˆì„ ìˆ˜ë„ ìˆë‹¤
 	for( RwUInt8 i = 0 ; i < NTL_MAX_MERCHANT_COUNT ; ++i )
 	{
 		if( m_aShopItem[m_iCurTab][i].hItem != INVALID_SERIAL_ID )
@@ -641,7 +641,7 @@ VOID CNetPyShopGui::CheckInfoWindow()
 
 VOID CNetPyShopGui::OnMouseDown( const CKey& key )
 {
-	// ÇöÀç ´ÙÀÌ¾ó·Î±×¿¡ Æ÷Ä¿½º°¡ µé¾î¿À¸é ¸µÅ©µÈ ´ÙÀÌ¾ó·Î±×µéµµ È­¸éÀÇ ÃÖ»ó´ÜÀ¸·Î ¿Å±ä´Ù.
+	// í˜„ì¬ ë‹¤ì´ì–¼ë¡œê·¸ì— í¬ì»¤ìŠ¤ê°€ ë“¤ì–´ì˜¤ë©´ ë§í¬ëœ ë‹¤ì´ì–¼ë¡œê·¸ë“¤ë„ í™”ë©´ì˜ ìµœìƒë‹¨ìœ¼ë¡œ ì˜®ê¸´ë‹¤.
 	gui::CGUIManager *pGuiMgr = CNtlPLGuiManager::GetInstance()->GetGuiManager();  
 	if( pGuiMgr->GetFocus() == m_pThis )
 		RaiseLinked();
@@ -654,14 +654,14 @@ VOID CNetPyShopGui::OnMouseDown( const CKey& key )
 
 	for( RwInt32 i = 0 ; i < dMAX_ITEM_PANEL ; ++i )
 	{
-		// ¾ÆÀÌÄÜ ¿µ¿ª¿¡¼­ ¸¶¿ì½º¸¦ ´­·¶´Ù
+		// ì•„ì´ì½˜ ì˜ì—­ì—ì„œ ë§ˆìš°ìŠ¤ë¥¼ ëˆŒë €ë‹¤
 		if( m_ItemPanel[i].slot.GetSerial() != INVALID_SERIAL_ID &&
 			m_ItemPanel[i].slot.PtInRect((RwInt32)key.m_fX, (RwInt32)key.m_fY) )
 		{
 			m_iMouseDownSlot = i;
 			m_pThis->CaptureMouse();
 
-			// Å¬¸¯ ÀÌº¥Æ® ½ÃÀÛ
+			// í´ë¦­ ì´ë²¤íŠ¸ ì‹œì‘
 			m_iClickEffectedSlot = i;	
 			m_ItemPanel[m_iClickEffectedSlot].slot.ClickEffect(true);
 
@@ -674,7 +674,7 @@ VOID CNetPyShopGui::OnMouseUp( const CKey& key )
 {
 	m_pThis->ReleaseMouse();
 
-	// Å¬¸¯ ÀÌº¥Æ® Á¾·á	
+	// í´ë¦­ ì´ë²¤íŠ¸ ì¢…ë£Œ	
 	if( m_iClickEffectedSlot != dNETPYSHOP_INVALID_INDEX )
 	{		
 		m_ItemPanel[m_iClickEffectedSlot].slot.ClickEffect(false);
@@ -690,7 +690,7 @@ VOID CNetPyShopGui::OnMouseUp( const CKey& key )
 	if( m_iMouseDownSlot < 0 || m_iMouseDownSlot >= dMAX_ITEM_PANEL )
 		return;
 
-	// ¾ÆÀÌÄÜ ¿µ¿ª¿¡¼­ ¸¶¿ì½º¸¦ ´­·¶´Ù
+	// ì•„ì´ì½˜ ì˜ì—­ì—ì„œ ë§ˆìš°ìŠ¤ë¥¼ ëˆŒë €ë‹¤
 	if( m_ItemPanel[m_iMouseDownSlot].slot.GetSerial() != INVALID_SERIAL_ID &&
 		m_ItemPanel[m_iMouseDownSlot].slot.PtInRect((RwInt32)key.m_fX, (RwInt32)key.m_fY) )
 	{
@@ -708,7 +708,7 @@ VOID CNetPyShopGui::OnMouseUp( const CKey& key )
 
 			if( key.m_dwVKey == UD_MK_CONTROL )
 			{
-				// ÃÖ´ë ½ºÅÃ °¹¼ö¸¦ »ê´Ù(1°³ È¤Àº 20°³)
+				// ìµœëŒ€ ìŠ¤íƒ ê°¯ìˆ˜ë¥¼ ì‚°ë‹¤(1ê°œ í˜¹ì€ 20ê°œ)
 				CDboEventGenerator::NetPyShopEvent(eNETPYSHOP_EVENT_REG_ITEM_MAX,
 					m_aShopItem[m_iCurTab][iItemIndex].hItem,
 					m_aShopItem[m_iCurTab][iItemIndex].pITEM_DATA->CommonPoint,
@@ -736,7 +736,7 @@ VOID CNetPyShopGui::OnMove(RwInt32 iOldX, RwInt32 iOldY)
 	m_MoneyBackPanel.SetPositionbyParent(rtScreen.left, rtScreen.top);	
 	m_PageBackPanel.SetPositionbyParent(rtScreen.left, rtScreen.top);
 
-	// NPCShop ´ÙÀÌ¾ó·Î±×°¡ ¿òÁ÷ÀÏ ¶§	
+	// NPCShop ë‹¤ì´ì–¼ë¡œê·¸ê°€ ì›€ì§ì¼ ë•Œ	
 	for( RwInt32 i = 0 ; i < dMAX_ITEM_PANEL ; ++i )
 	{
 		m_ItemPanel[i].slot.SetParentPosition(rtScreen.left, rtScreen.top);
@@ -756,7 +756,7 @@ VOID CNetPyShopGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 
 	if( iPtinSlot != dNETPYSHOP_INVALID_INDEX )
 	{
-		// ½½·Ô Å¬¸¯ ÀÌÆåÆ®
+		// ìŠ¬ë¡¯ í´ë¦­ ì´í™íŠ¸
 		if( m_iClickEffectedSlot != dNETPYSHOP_INVALID_INDEX )
 		{
 			if( m_iClickEffectedSlot == iPtinSlot )
@@ -765,7 +765,7 @@ VOID CNetPyShopGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 				m_ItemPanel[m_iClickEffectedSlot].slot.ClickEffect(false);
 		}
 
-		// ÇöÀç ¾ÆÀÌÅÛ ÆĞ³ÎÀÇ ÀÎÆ÷
+		// í˜„ì¬ ì•„ì´í…œ íŒ¨ë„ì˜ ì¸í¬
 		if( m_ItemPanel[iPtinSlot].slot.GetSerial() != INVALID_SERIAL_ID )
 		{
 			FocusEffect(true, iPtinSlot);
@@ -791,7 +791,7 @@ VOID CNetPyShopGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 		RwInt32 iSmallIconSlot = PtinSlot_of_SmallIcon_in_panel(nX, nY);
 		if( iSmallIconSlot != dNETPYSHOP_INVALID_INDEX )
 		{
-			// ¾ÆÀÌÅÛÀ» »ç±â À§ÇØ¼­ °¡Áö°í ÀÖ¾î¾ß ÇÏ´Â ¾ÆÀÌÅÛ Á¤º¸
+			// ì•„ì´í…œì„ ì‚¬ê¸° ìœ„í•´ì„œ ê°€ì§€ê³  ìˆì–´ì•¼ í•˜ëŠ” ì•„ì´í…œ ì •ë³´
 			if( m_ItemPanel[iSmallIconSlot].slot.GetSerial() != INVALID_SERIAL_ID )
 			{
 				FocusEffect(true, iSmallIconSlot);
@@ -907,7 +907,7 @@ VOID CNetPyShopGui::HandleEvents( RWS::CMsg &msg )
 		if( Logic_GetAvatarHandle() != pEvent->hSerialId )
 			NTL_RETURNVOID();
 
-		// »óÁ¡ÀÌ ¿­·ÁÀÖ´Â »óÅÂ¶ó¸é ³ªÀÇ ¼ÒÁö±İ ¾÷µ¥ÀÌÆ®
+		// ìƒì ì´ ì—´ë ¤ìˆëŠ” ìƒíƒœë¼ë©´ ë‚˜ì˜ ì†Œì§€ê¸ˆ ì—…ë°ì´íŠ¸
 		SetZenny();
 	}
 	else if( msg.Id == g_EventPickedUpHide )

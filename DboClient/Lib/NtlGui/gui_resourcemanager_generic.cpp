@@ -24,7 +24,7 @@ CResourceManager_Generic::~CResourceManager_Generic()
 	}
 	m_stlPage.clear();
 
-	// ÀÌ ¾Æ·¡¿¡¼­ ³²¾ÆÀÖ´Â ³à¼®Àº ¾ø¾Ö¾ßÇÒ ³à¼® -_- : peessi
+	// ì´ ì•„ë˜ì—ì„œ ë‚¨ì•„ìˆëŠ” ë…€ì„ì€ ì—†ì• ì•¼í•  ë…€ì„ -_- : peessi
 	g_TextureMgr.Terminate();
 }
 

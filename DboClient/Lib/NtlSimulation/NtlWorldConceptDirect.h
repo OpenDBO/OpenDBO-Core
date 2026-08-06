@@ -5,7 +5,7 @@
 
 /**
  * \ingroup NtlSimulation
- * \brief ¿¬Ãâ world concept
+ * \brief ì—°ì¶œ world concept
  * \date 2007-07-18
  * \author jhssugi
  */

@@ -436,7 +436,7 @@ RwBool CNtlPLPropertyContainer::Load()
 
 	CNtlFileSerializer nsl(1024 * 1024, 1024 * 1024);
 
-	if (GetNtlResourcePackManager()->GetActiveFlags() & NTL_PACK_TYPE_FLAG_PROPERTY)  // Pack »ç¿ë½Ã    
+	if (GetNtlResourcePackManager()->GetActiveFlags() & NTL_PACK_TYPE_FLAG_PROPERTY)  // Pack ì‚¬ìš©ì‹œ    
 	{
 		void* pData = NULL;
 		RwInt32 iSize = 0;
@@ -785,7 +785,7 @@ RwBool CNtlPLPropertyContainer::LoadWater(const RwChar *pFileName)
 		pNode = NULL;
 	}
 
-	// object element list¸¦ ¾ò¾î¿Â´Ù.
+	// object element listë¥¼ ì–»ì–´ì˜¨ë‹¤.
 	IXMLDOMNodeList *pList = doc.SelectNodeList((char*)"/object_property/object_element/element");
 
 	long  lNum;
@@ -834,7 +834,7 @@ RwBool CNtlPLPropertyContainer::LoadObject(const RwChar *pFileName)
 
 	char chBuffer[1024] = {0,};
 
-	// object property header¸¦ ¾ò¾î¿Â´Ù.
+	// object property headerë¥¼ ì–»ì–´ì˜¨ë‹¤.
 	IXMLDOMNode* pNode = doc.SelectSingleNode((char*)"/OBJECT_PROPERTY/HEADER");
 
 	if(!doc.GetTextWithAttributeName(pNode, "VER", chBuffer, 1024))
@@ -857,7 +857,7 @@ RwBool CNtlPLPropertyContainer::LoadObject(const RwChar *pFileName)
 		pNode = NULL;
 	}
 
-	// object element list¸¦ ¾ò¾î¿Â´Ù.
+	// object element listë¥¼ ì–»ì–´ì˜¨ë‹¤.
 	IXMLDOMNodeList *pList = doc.SelectNodeList((char*)"/OBJECT_PROPERTY/OBJECT_ELEMENT/ELEMENT");
 
 	long  lNum;
@@ -908,7 +908,7 @@ RwBool CNtlPLPropertyContainer::LoadItem(const RwChar *pFileName)
 
 	char chBuffer[1024] = {0,};
 
-	// object property header¸¦ ¾ò¾î¿Â´Ù.
+	// object property headerë¥¼ ì–»ì–´ì˜¨ë‹¤.
 	IXMLDOMNode* pNode = doc.SelectSingleNode((char*)"/ITEM_PROPERTY/HEADER");
 
 	if(!doc.GetTextWithAttributeName(pNode, "VER", chBuffer, 1024))
@@ -929,7 +929,7 @@ RwBool CNtlPLPropertyContainer::LoadItem(const RwChar *pFileName)
 		pNode = NULL;
 	}
 
-	// object element list¸¦ ¾ò¾î¿Â´Ù.
+	// object element listë¥¼ ì–»ì–´ì˜¨ë‹¤.
 	IXMLDOMNodeList *pList = doc.SelectNodeList((char*)"/ITEM_PROPERTY/ITEM_ELEMENT/ELEMENT");
 
 	long  lNum;
@@ -995,7 +995,7 @@ RwBool CNtlPLPropertyContainer::LoadCharacter(const RwChar *pFileName)
 
 		char chBuffer[1024] = {0,};
 
-		// object property header¸¦ ¾ò¾î¿Â´Ù.
+		// object property headerë¥¼ ì–»ì–´ì˜¨ë‹¤.
 		IXMLDOMNode* pNode = doc.SelectSingleNode((char*)"/CHARACTER_PROPERTY/HEADER");
 
 		if(!doc.GetTextWithAttributeName(pNode, "VER", chBuffer, 1024))
@@ -1017,7 +1017,7 @@ RwBool CNtlPLPropertyContainer::LoadCharacter(const RwChar *pFileName)
 			pNode = NULL;
 		}
 
-		// character element list ¾ò¾î ¿Â´Ù.
+		// character element list ì–»ì–´ ì˜¨ë‹¤.
 		IXMLDOMNodeList *pList = doc.SelectNodeList((char*)"/CHARACTER_PROPERTY/CHARACTER_ELEMENT/ELEMENT");
 
 		long  lNum;
@@ -1210,7 +1210,7 @@ RwBool CNtlPLPropertyContainer::LoadGui(const RwChar *pFileName)
 
 	char chBuffer[1024];
 
-	// object property header¸¦ ¾ò¾î¿Â´Ù.
+	// object property headerë¥¼ ì–»ì–´ì˜¨ë‹¤.
 	IXMLDOMNode* pNode = doc.SelectSingleNode((char*)"/gui_property/header");
 	if(!doc.GetTextWithAttributeName(pNode, "ver", chBuffer, 1024))
 	{
@@ -1240,7 +1240,7 @@ RwBool CNtlPLPropertyContainer::LoadGui(const RwChar *pFileName)
 		pNode = NULL;
 	}
 
-	// object element list¸¦ ¾ò¾î¿Â´Ù.
+	// object element listë¥¼ ì–»ì–´ì˜¨ë‹¤.
 	IXMLDOMNodeList *pList = doc.SelectNodeList((char*)"/gui_property/gui_element/element");
 
 	long  lNum;
@@ -1669,8 +1669,8 @@ CNtlPLPropertyContainer::MapProp& CNtlPLPropertyContainer::Gets(ENtlPLEntityType
 
 RwBool CNtlPLPropertyContainer::SaveSerialize(RwBool bEncrypt /* = FALSE */, RwChar* szCryptPassword)
 {
-	// ÇöÀç ·ÎµåµÇ¾î Map¿¡ ÀÖ´Â ÇÁ·ÎÆÛÆ¼µéÀ» ¹ÙÀÌ³Ê¸® ÆÄÀÏ¿¡ ÀúÀåÇÑ´Ù.
-	CNtlFileSerializer nsl(1024 * 2048, 1024 * 1024);	// ±âº» ¹öÆÛ¸¦ 2¸Ş°¡·Î Àâ´Â´Ù.
+	// í˜„ì¬ ë¡œë“œë˜ì–´ Mapì— ìˆëŠ” í”„ë¡œí¼í‹°ë“¤ì„ ë°”ì´ë„ˆë¦¬ íŒŒì¼ì— ì €ì¥í•œë‹¤.
+	CNtlFileSerializer nsl(1024 * 2048, 1024 * 1024);	// ê¸°ë³¸ ë²„í¼ë¥¼ 2ë©”ê°€ë¡œ ì¡ëŠ”ë‹¤.
 
 	RwBool bResut = TRUE;
 
@@ -1849,8 +1849,8 @@ RwBool CNtlPLPropertyContainer::LoadSerialize(RwBool bEncrypt /* = FALSE */, RwC
 		NTL_RETURN(FALSE);
 	}
 
-	// Ä³¸¯ÅÍ, Item, Object¸¦ ·ÎµåÇÑ´Ù.
-	CNtlFileSerializer nsl(1024 * 1024, 1024 * 1024);	// ±âº» ¹öÆÛ¸¦ 10¸Ş°¡·Î Àâ´Â´Ù.
+	// ìºë¦­í„°, Item, Objectë¥¼ ë¡œë“œí•œë‹¤.
+	CNtlFileSerializer nsl(1024 * 1024, 1024 * 1024);	// ê¸°ë³¸ ë²„í¼ë¥¼ 10ë©”ê°€ë¡œ ì¡ëŠ”ë‹¤.
 
 	/*if (nsl.LoadFile(".\\property\\ObjectProperty.rdf") == false)
 		DBO_ASSERT(FALSE, __FUNCTION__ << " Object Property LoadFile Fail");
@@ -1875,7 +1875,7 @@ RwBool CNtlPLPropertyContainer::LoadSerialize(RwBool bEncrypt /* = FALSE */, RwC
 		DBO_ASSERT(FALSE, __FUNCTION__ << " Item Property Load Fail");*/
 
 
-	if(GetNtlResourcePackManager()->GetActiveFlags() & NTL_PACK_TYPE_FLAG_PROPERTY)  // Pack »ç¿ë½Ã    
+	if(GetNtlResourcePackManager()->GetActiveFlags() & NTL_PACK_TYPE_FLAG_PROPERTY)  // Pack ì‚¬ìš©ì‹œ    
 	{   
 		void* pData = NULL;
 		RwInt32 iSize = 0;

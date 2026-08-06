@@ -171,20 +171,20 @@ protected:
 	gui::CSlot			m_slotTitleReleased;
 
 	//! Variable
-	gui::CButton*		m_pbtnIndicator;		// Indicator ¹öÆ°. Toggle½Ä
-	gui::CButton*		m_pbtnShare;			// °øÀ¯ ¹öÆ°.
-	gui::CButton*		m_pbtnTitle;			// Title ¹öÆ°. 
-	gui::CPanel*		m_ppnlState;			// Quest »óÅÂ
+	gui::CButton*		m_pbtnIndicator;		// Indicator ë²„íŠ¼. Toggleì‹
+	gui::CButton*		m_pbtnShare;			// ê³µìœ  ë²„íŠ¼.
+	gui::CButton*		m_pbtnTitle;			// Title ë²„íŠ¼. 
+	gui::CPanel*		m_ppnlState;			// Quest ìƒíƒœ
 	
 	sTS_KEY				m_TSKey;			
 	RwUInt32			m_uiState;
 	RwUInt32			m_uiSortType;
-	std::wstring		m_wstrTitle;			// ¿øº» º¸°ü.
+	std::wstring		m_wstrTitle;			// ì›ë³¸ ë³´ê´€.
 
 	RwUInt32			m_dwClickTime;			// 
 	bool				m_bShare;
 	RwBool				m_bIsNew;
-	RwBool				m_bReserveIndicator;	// TMQ¿¡¼­ µ¹¾Æ¿ÔÀ»¶§ ´Ù½Ã ¶ã¶§ IndicatorÇ¥½Ã ¿©ºÎ
+	RwBool				m_bReserveIndicator;	// TMQì—ì„œ ëŒì•„ì™”ì„ë•Œ ë‹¤ì‹œ ëœ°ë•Œ Indicatorí‘œì‹œ ì—¬ë¶€
 };
 
 #endif

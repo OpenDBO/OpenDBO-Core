@@ -2,7 +2,7 @@
  *
  * File			: NTLCamera.h
  * Author		: HongHoDong
- * Copyright	: (��)NTL
+ * Copyright	: (占쏙옙)NTL
  * Date			: 2005. 7. 14	
  * Abstract		: NTl Camera
  *****************************************************************************
@@ -37,7 +37,7 @@ public:
 	~CNtlGameCamera(void);
 
 private:
-	RwReal	m_fDistance;		//Camera�� Target���� �Ÿ�
+	RwReal	m_fDistance;		//Camera占쏙옙 Target占쏙옙占쏙옙 占신몌옙
 
 	RwReal	m_fMaxDistance;
 	RwReal	m_fMinDistance;

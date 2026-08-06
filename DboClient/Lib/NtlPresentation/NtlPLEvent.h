@@ -2,7 +2,7 @@
  *
  * File			: NtlPLEvent.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 9. 29	
  * Abstract		: presentation layer event type
  *****************************************************************************
@@ -15,23 +15,23 @@
 
 #include "ceventhandler.h"
 
-//AnimationEvent °ü·Ã
-extern RWS::CEventId g_EventAnimEnd;			 //AnimationÀÌ ³¡³µÀ» °æ¿ì
+//AnimationEvent ê´€ë ¨
+extern RWS::CEventId g_EventAnimEnd;			 //Animationì´ ëë‚¬ì„ ê²½ìš°
 extern RWS::CEventId g_EventAnimHit;             //Animation Hit Event
-extern RWS::CEventId g_EventAnimFootStep;		 //Animation ¹ß¹Ù´Ú ¶¥¿¡ ´êÀ»¶§
+extern RWS::CEventId g_EventAnimFootStep;		 //Animation ë°œë°”ë‹¥ ë•…ì— ë‹¿ì„ë•Œ
 extern RWS::CEventId g_EventWeightTime;			 //Animaiton Weight Event
-extern RWS::CEventId g_EventSubWeaponActive;	 //sub weaponÀ» active ½ÃÅ²´Ù ( ¿¹ : µî¿¡ Â÷°í ÀÖ´Â Ä®À» »Ì´Â´Ù. )
-extern RWS::CEventId g_EventSubWeaponDeActive;	 //sub weaponÀ» deactive ½ÃÅ²´Ù ( ¿¹ : »Ì¾Ò´ø Ä®À» ´Ù½Ã µî¿¡ Âù´Ù. )
-extern RWS::CEventId g_EventSummon;				 //summmon active ½ÃÅ²´Ù.( ¼ÒÈ¯¼ö°¡ ¼ÒÈ¯¹°À» ¼ÒÈ¯½ÃÅ°´Â timing event. )
-extern RWS::CEventId g_EventAlpha;               // Alpha Fade¿ë ÀÌº¥Æ®
-extern RWS::CEventId g_EventAnimTMQ;             // TMQ ¿¬Ãâ¿ë ÀÌº¥Æ®
-extern RWS::CEventId g_EventExplosion;           // Æø¹ß ÀÌº¥Æ®
+extern RWS::CEventId g_EventSubWeaponActive;	 //sub weaponì„ active ì‹œí‚¨ë‹¤ ( ì˜ˆ : ë“±ì— ì°¨ê³  ìˆëŠ” ì¹¼ì„ ë½‘ëŠ”ë‹¤. )
+extern RWS::CEventId g_EventSubWeaponDeActive;	 //sub weaponì„ deactive ì‹œí‚¨ë‹¤ ( ì˜ˆ : ë½‘ì•˜ë˜ ì¹¼ì„ ë‹¤ì‹œ ë“±ì— ì°¬ë‹¤. )
+extern RWS::CEventId g_EventSummon;				 //summmon active ì‹œí‚¨ë‹¤.( ì†Œí™˜ìˆ˜ê°€ ì†Œí™˜ë¬¼ì„ ì†Œí™˜ì‹œí‚¤ëŠ” timing event. )
+extern RWS::CEventId g_EventAlpha;               // Alpha Fadeìš© ì´ë²¤íŠ¸
+extern RWS::CEventId g_EventAnimTMQ;             // TMQ ì—°ì¶œìš© ì´ë²¤íŠ¸
+extern RWS::CEventId g_EventExplosion;           // í­ë°œ ì´ë²¤íŠ¸
 extern RWS::CEventId g_EventAnimPostEffect;      // Post Effect Event
-extern RWS::CEventId g_EventAnimDirect;          // ¿¬Ãâ¿ë ÀÌº¥Æ®
-extern RWS::CEventId g_EventAnimColorChange;     // »ö»óº¯°æ ÀÌº¥Æ®
-extern RWS::CEventId g_EventAnimStretch;         // º»ÀÌ ´Ã¾î³ª´Â ÀÌº¥Æ®
-extern RWS::CEventId g_EventAnimTrigger;         // ´Ù¾çÇÏ°Ô »ç¿ëµÇ´Â Æ®¸®°Å ÀÌº¥Æ®
-extern RWS::CEventId g_EventAnimSkillCancel;	 // ½ºÅ³animation µµÁß animatinÀÌ cancelÀÌ °¡´ÉÇÑ point.
+extern RWS::CEventId g_EventAnimDirect;          // ì—°ì¶œìš© ì´ë²¤íŠ¸
+extern RWS::CEventId g_EventAnimColorChange;     // ìƒ‰ìƒë³€ê²½ ì´ë²¤íŠ¸
+extern RWS::CEventId g_EventAnimStretch;         // ë³¸ì´ ëŠ˜ì–´ë‚˜ëŠ” ì´ë²¤íŠ¸
+extern RWS::CEventId g_EventAnimTrigger;         // ë‹¤ì–‘í•˜ê²Œ ì‚¬ìš©ë˜ëŠ” íŠ¸ë¦¬ê±° ì´ë²¤íŠ¸
+extern RWS::CEventId g_EventAnimSkillCancel;	 // ìŠ¤í‚¬animation ë„ì¤‘ animatinì´ cancelì´ ê°€ëŠ¥í•œ point.
 
 struct SNtlEventAnimEnd
 {
@@ -49,10 +49,10 @@ struct SNtlEventAnimHit
 
 struct SNtlEventFootStep
 {
-	RwUInt32 uiSerialId;                        ///< Ä³¸¯ÅÍ °´Ã¼ÀÇ ½Ã¸®¾ó ID
+	RwUInt32 uiSerialId;                        ///< ìºë¦­í„° ê°ì²´ì˜ ì‹œë¦¬ì–¼ ID
     void*    pData;                             // SEventFootStep
 
-    //RwBool   bLeftFoot;                         ///< ¹ß Á¾·ù (True : ¿ŞÂÊ, False : ¿À¸¥ÂÊ)
+    //RwBool   bLeftFoot;                         ///< ë°œ ì¢…ë¥˜ (True : ì™¼ìª½, False : ì˜¤ë¥¸ìª½)
 };
 
 struct SNtlEventWeightTime						//SEventWeightTime(Character\Base NtlAnimEventData.h)
@@ -61,17 +61,17 @@ struct SNtlEventWeightTime						//SEventWeightTime(Character\Base NtlAnimEventDa
 	void		*pData;
 };
 
-struct SNtlEventSubWeaponActive					//sub weaponÀ» active ½ÃÅ²´Ù ( ¿¹ : µî¿¡ Â÷°í ÀÖ´Â Ä®À» »Ì´Â´Ù. )
+struct SNtlEventSubWeaponActive					//sub weaponì„ active ì‹œí‚¨ë‹¤ ( ì˜ˆ : ë“±ì— ì°¨ê³  ìˆëŠ” ì¹¼ì„ ë½‘ëŠ”ë‹¤. )
 {
 	RwUInt32 uiSerialId;
 };
 
-struct SNtlEventSubWeaponDeActive				//sub weaponÀ» deactive ½ÃÅ²´Ù ( ¿¹ : »Ì¾Ò´ø Ä®À» ´Ù½Ã µî¿¡ Âù´Ù. )
+struct SNtlEventSubWeaponDeActive				//sub weaponì„ deactive ì‹œí‚¨ë‹¤ ( ì˜ˆ : ë½‘ì•˜ë˜ ì¹¼ì„ ë‹¤ì‹œ ë“±ì— ì°¬ë‹¤. )
 {
 	RwUInt32 uiSerialId;
 };
 
-struct SNtlEventSummon							//summmon active ½ÃÅ²´Ù.( ¼ÒÈ¯¼ö°¡ ¼ÒÈ¯¹°À» ¼ÒÈ¯½ÃÅ°´Â timing event. )
+struct SNtlEventSummon							//summmon active ì‹œí‚¨ë‹¤.( ì†Œí™˜ìˆ˜ê°€ ì†Œí™˜ë¬¼ì„ ì†Œí™˜ì‹œí‚¤ëŠ” timing event. )
 {
 	RwUInt32 uiSerialId;
 };
@@ -79,52 +79,52 @@ struct SNtlEventSummon							//summmon active ½ÃÅ²´Ù.( ¼ÒÈ¯¼ö°¡ ¼ÒÈ¯¹°À» ¼ÒÈ¯½ÃÅ
 struct SNtlEventAlpha                           /// Alpha Fade Event
 {
     RwUInt32 uiSerialId;
-    void*    pData;                             ///< Alpha Fade Event °´Ã¼ÀÇ Æ÷ÀÎÅÍ
+    void*    pData;                             ///< Alpha Fade Event ê°ì²´ì˜ í¬ì¸í„°
 };
 
 struct SNtlPLEventTMQ
 {
-    RwUInt32    uiSeiralID;                         ///< ÀÌº¥Æ®¸¦ º¸³½ Å¸ÀÓ¸Ó½Å ¿ÀºêÁ§Æ®ÀÇ ½Ã¸®¾ó ID
-    RwBool      bIn;                                ///< TMQ ÁøÀÔ ¿©ºÎ (True¸é ÁøÀÔ/False¸é ¾Æ¿ô)
+    RwUInt32    uiSeiralID;                         ///< ì´ë²¤íŠ¸ë¥¼ ë³´ë‚¸ íƒ€ì„ë¨¸ì‹  ì˜¤ë¸Œì íŠ¸ì˜ ì‹œë¦¬ì–¼ ID
+    RwBool      bIn;                                ///< TMQ ì§„ì… ì—¬ë¶€ (Trueë©´ ì§„ì…/Falseë©´ ì•„ì›ƒ)
 };
 
 struct SNtlPlEventExplosion
 {
-    RwUInt32    uiSerialID;                     ///< ¿ÀºêÁ§Æ®ÀÇ ½Ã¸®¾ó ID
-    void*       pData;                          ///< Explosion Event ±¸Á¶Ã¼ÀÇ Æ÷ÀÎÅÍ
+    RwUInt32    uiSerialID;                     ///< ì˜¤ë¸Œì íŠ¸ì˜ ì‹œë¦¬ì–¼ ID
+    void*       pData;                          ///< Explosion Event êµ¬ì¡°ì²´ì˜ í¬ì¸í„°
 };
 
 struct SNtlEventPostEffect
 {
-    RwUInt32    uiSerialID;                     ///< ÀÌº¥Æ®¸¦ ¹ß»ıÇÏ´Â ¾Æ¹ÙÅ¸ÀÇ ID
-    void*       pData;                          ///< Post Effect Event ±¸Á¶Ã¼ÀÇ Æ÷ÀÎÅÍ
+    RwUInt32    uiSerialID;                     ///< ì´ë²¤íŠ¸ë¥¼ ë°œìƒí•˜ëŠ” ì•„ë°”íƒ€ì˜ ID
+    void*       pData;                          ///< Post Effect Event êµ¬ì¡°ì²´ì˜ í¬ì¸í„°
 };
 
-/// ¿¬Ãâ¿ë ÀÌº¥Æ®
+/// ì—°ì¶œìš© ì´ë²¤íŠ¸
 struct SNtlEventDirect
 {
-    RwUInt32    uiSerialID;                     ///< ÀÌº¥Æ®¸¦ ¹ß»ıÇÏ´Â °´Ã¼ÀÇ ID
-    void*       pData;                          ///< SEventDirect ±¸Á¶Ã¼ÀÇ Æ÷ÀÎÅÍ
+    RwUInt32    uiSerialID;                     ///< ì´ë²¤íŠ¸ë¥¼ ë°œìƒí•˜ëŠ” ê°ì²´ì˜ ID
+    void*       pData;                          ///< SEventDirect êµ¬ì¡°ì²´ì˜ í¬ì¸í„°
 };
 
-/// ÄÃ·¯ º¯°æ ÀÌº¥Æ®
+/// ì»¬ëŸ¬ ë³€ê²½ ì´ë²¤íŠ¸
 struct SNtlEventColorChange
 {
     RwUInt32    uiSerialID;
-    void*       pData;                          ///< SEventColorChange ±¸Á¶Ã¼ÀÇ Æ÷ÀÎÅÍ
+    void*       pData;                          ///< SEventColorChange êµ¬ì¡°ì²´ì˜ í¬ì¸í„°
 };
 
-/// º»´Ã¸®±â ÀÌº¥Æ®
+/// ë³¸ëŠ˜ë¦¬ê¸° ì´ë²¤íŠ¸
 struct SNtlEventStretch
 {
     RwUInt32    uiSerialID;
-    void*       pData;                          ///< SEventStretch ±¸Á¶Ã¼ÀÇ Æ÷ÀÎÅÍ
+    void*       pData;                          ///< SEventStretch êµ¬ì¡°ì²´ì˜ í¬ì¸í„°
 };
 
 struct SNtlEventTrigger
 {
     RwUInt32    uiSerialID;
-    void*       pData;                          ///< SEventTrigger ±¸Á¶Ã¼ÀÇ Æ÷ÀÎÅÍ
+    void*       pData;                          ///< SEventTrigger êµ¬ì¡°ì²´ì˜ í¬ì¸í„°
 };
 
 struct SNtlEventAnimSkillCancel
@@ -182,7 +182,7 @@ struct sNTL_EVENT_TRI_DOODADS
 };
 
 extern RWS::CEventId g_EventCreateEventObject;
-extern RWS::CEventId g_EventThreadLoadingComplete; // ¿£Æ¼Æ¼ÀÇ ½º·¹µå ·ÎµùÀÌ ³¡³µÀ½À» ÅëÁöÇÏ´Â ÀÌº¥Æ®
+extern RWS::CEventId g_EventThreadLoadingComplete; // ì—”í‹°í‹°ì˜ ìŠ¤ë ˆë“œ ë¡œë”©ì´ ëë‚¬ìŒì„ í†µì§€í•˜ëŠ” ì´ë²¤íŠ¸
 
 /// EVENT Object
 struct SNtlPLEventEventObject
@@ -193,7 +193,7 @@ struct SNtlPLEventEventObject
 
 struct SNtlPlThreadLoadingComplete
 {
-    RwUInt32    uiSerialID;                     ///< ¿£Æ¼Æ¼ÀÇ ½Ã¸®¾ó ID
+    RwUInt32    uiSerialID;                     ///< ì—”í‹°í‹°ì˜ ì‹œë¦¬ì–¼ ID
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -225,7 +225,7 @@ extern RWS::CEventId g_EventCinematicViewShow;
 extern RWS::CEventId g_EventCinematicBalloon;
 extern RWS::CEventId g_EventCinematicFlash;
 extern RWS::CEventId g_EventCinematicEcho;
-extern RWS::CEventId g_EventResetCinematic;				// Cinematic ActionÀ» ResetÇÑ´Ù. GUI¿¡¼­¸¸ È£Ãâ
+extern RWS::CEventId g_EventResetCinematic;				// Cinematic Actionì„ Resetí•œë‹¤. GUIì—ì„œë§Œ í˜¸ì¶œ
 
 
 //////////////////////////////////////////////
@@ -234,8 +234,8 @@ extern RWS::CEventId g_EventResetCinematic;				// Cinematic ActionÀ» ResetÇÑ´Ù. 
 */
 //////////////////////////////////////////////
 
-extern RWS::CEventId g_EventCinematicFadeOut;           // ½Ã³×¸¶Æ½ ¿¬Ãâ ½ÃÀÛ
-extern RWS::CEventId g_EventCinematicFadeIn;	        // ½Ã³×¸¶Æ½ ¿¬Ãâ Á¾·á
+extern RWS::CEventId g_EventCinematicFadeOut;           // ì‹œë„¤ë§ˆí‹± ì—°ì¶œ ì‹œì‘
+extern RWS::CEventId g_EventCinematicFadeIn;	        // ì‹œë„¤ë§ˆí‹± ì—°ì¶œ ì¢…ë£Œ
 
 //////////////////////////////////////////////
 /**
@@ -263,7 +263,7 @@ extern RWS::CEventId g_EventHideAllSpectatorBalloon;
 
 //////////////////////////////////////////////
 /**
-* Player °ü·Ã
+* Player ê´€ë ¨
 */
 //////////////////////////////////////////////
 extern RWS::CEventId g_EventShowPlayerName;                     ///< Name Show/Hide
@@ -310,7 +310,7 @@ struct SNtlEventCinematicFlash
 
 	RwBool			bShow;
 	RwChar*			pFilename;
-	RwBool			bUseTime;							// True : ½Ã°£Á¦ False : 1È¸¿¬Ãâ
+	RwBool			bUseTime;							// True : ì‹œê°„ì œ False : 1íšŒì—°ì¶œ
 	RwReal			fLifeTime;
 	void*			pEchoData;
 	RwReal			fBeginAlphaTime;
@@ -341,7 +341,7 @@ enum ECinematicFadeInOutType
 struct SNtlEventCinematicFadeInOut
 {
 	RwUInt8		byType;
-	RwReal		fLifeTime;		// º¸°£ ½Ã°£.
+	RwReal		fLifeTime;		// ë³´ê°„ ì‹œê°„.
 	RwUInt8		byRed;
 	RwUInt8		byGreen;
 	RwUInt8		byBlue;

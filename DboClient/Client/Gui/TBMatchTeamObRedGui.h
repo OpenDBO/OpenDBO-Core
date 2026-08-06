@@ -1,9 +1,9 @@
 /*****************************************************************************
 * File			: TBMatchTeamObRedGui.h
 * Author		: Haesung, Cho
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 11. 24
-* Abstract		: ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ °üÀüÀÚ ÆÀÀü ·¹µåÆÀ GUI
+* Abstract		: ì²œí•˜ì œì¼ ë¬´ë„íšŒ ê´€ì „ì íŒ€ì „ ë ˆë“œíŒ€ GUI
 *****************************************************************************
 * Desc         : 
 *****************************************************************************/
@@ -21,7 +21,7 @@
 #define dTEAMMEMBER_GUI_HEIGHT		45
 
 /**
-* \brief °¢ ¸â¹öµéÀÇ GUI
+* \brief ê° ë©¤ë²„ë“¤ì˜ GUI
 */
 class CTBMatchTeamRedMemberGui : public CNtlPLGui, RWS::CEventHandler
 {
@@ -59,7 +59,7 @@ protected:
 };
 
 /**
-* \brief Red ÆÀÀÇ GUI
+* \brief Red íŒ€ì˜ GUI
 */
 class CTBMatchTeamObRedGui : public CNtlPLGui, RWS::CEventHandler
 {

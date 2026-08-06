@@ -30,7 +30,7 @@
 extern RwBool RpNtlWorldAttach(void);
 extern RpWorldSector *RpNtlWorldSectorRender(RpWorldSector *pRpWorldSector);
 
-// ¿ŒµµæÓ
+// Ïù∏ÎèÑÏñ¥
 //extern RpWorldSector *RpNtlWorldSectorWaterRender(RpWorldSector *pRpWorldSector);
 extern CNtlWorldSector *RpNtlWorldSectorWaterRender(CNtlWorldSector *pNtlWorldSector);
 
@@ -79,7 +79,7 @@ void		_RpNtlWorldD3D9RenderCallback02(RwResEntry *repEntry, void *object, RwUInt
 extern RwBool RpNtlWorldAttach(void);
 extern RpWorldSector *RpNtlWorldSectorRender(RpWorldSector *pRpWorldSector);
 
-// ¿ŒµµæÓ
+// Ïù∏ÎèÑÏñ¥
 //extern RpWorldSector *RpNtlWorldSectorWaterRender(RpWorldSector *pRpWorldSector);
 extern CNtlWorldSector *RpNtlWorldSectorWaterRender(CNtlWorldSector *pNtlWorldSector);
 

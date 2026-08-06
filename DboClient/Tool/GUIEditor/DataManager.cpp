@@ -190,16 +190,16 @@ BOOL	CDataManager::LoadRsrFile( CString& strFullPath, CString& strSubPath, BOOL 
 	
 	LoadResourceList();
 
-	// ¸®½ºÆ® °»½Å
+	// ë¦¬ìŠ¤íŠ¸ ê°±ì‹ 
 	CResourceLayer* pLayer = (CResourceLayer*)CLayerMisc::GetInstance().GetLayer( CLayerMisc::RESOURCE_LAYER );
 	CResourceListDlg* pDlg = (CResourceListDlg*)pLayer->GetRollupDlg( CResourceLayer::RESOURCELISTDLG );
 	pDlg->DisplayList();
 
-	// ÆÄÀÏ Ç¥½Ã
+	// íŒŒì¼ í‘œì‹œ
 	m_bRsrFileLoad = TRUE;
 	g_pFileInfoView->SetRsrText( strSubPath );
 
-	// ºäÀüÈ¯
+	// ë·°ì „í™˜
 	if( bTabChange )
 		CLayerMisc::GetInstance().SetLayer( CLayerMisc::RESOURCE_LAYER );
 
@@ -224,19 +224,19 @@ BOOL CDataManager::LoadSrfFile(CString& strFullPath, CString& strSubPath )
 	if( !m_mgrSurface.AddPage( sFilename ) )
 		return FALSE;
 
-	// ÆÄÀÏ Ç¥½Ã
+	// íŒŒì¼ í‘œì‹œ
 	m_strSrfFileName = strSubPath;
 	m_bSrfFileLoad = TRUE;
 	g_pFileInfoView->SetSrfText( strSubPath );
 	
 	LoadSurfaceList();
 
-	// ¸®½ºÆ® °»½Å
+	// ë¦¬ìŠ¤íŠ¸ ê°±ì‹ 
 	CSurfaceLayer* pLayer = (CSurfaceLayer*)CLayerMisc::GetInstance().GetLayer( CLayerMisc::SURFACE_LAYER );
 	CSurfaceListDlg* pDlg = (CSurfaceListDlg*)pLayer->GetRollupDlg( CSurfaceLayer::SURFACELISTDLG );
 	pDlg->DisplayList();
 
-	// ºäÀüÈ¯
+	// ë·°ì „í™˜
 	CLayerMisc::GetInstance().SetLayer( CLayerMisc::SURFACE_LAYER );
 
 	return TRUE;
@@ -248,7 +248,7 @@ BOOL CDataManager::SaveRsrFile()
 	if( !FileDialogOpen( &strFilename, RSR, FALSE ) )
 		return FALSE;
 
-	// File ¿­±â
+	// File ì—´ê¸°
 	FILE* pFile = NULL;
 #if defined(_MSC_VER) && (_MSC_VER >= 1400)
 	errno_t eValue = fopen_s( &pFile, (LPCTSTR)strFilename, "wt" );
@@ -263,7 +263,7 @@ BOOL CDataManager::SaveRsrFile()
 	fseek( pFile, 0, SEEK_SET );
 	listResourceData::iterator it;
 	
-	// ÀúÀå
+	// ì €ìž¥
 	for( it = m_listResourceData.begin() ; it != m_listResourceData.end() ; ++it )
 	{
 		fprintf( pFile, "resource \"%s\"\n{\n", (LPCTSTR)(*it)->_strName );
@@ -273,7 +273,7 @@ BOOL CDataManager::SaveRsrFile()
 
 	fclose( pFile );
 
-	// ÆÄÀÏ Ç¥½Ã
+	// íŒŒì¼ í‘œì‹œ
 	m_strRsrFileName = g_pFileView->GetTreeCtrl()->GetSubPath( strFilename );
 	m_bRsrFileLoad = TRUE;
 	g_pFileInfoView->SetRsrText( m_strRsrFileName );
@@ -290,7 +290,7 @@ BOOL	CDataManager::SaveSrfFile()
 	if( !FileDialogOpen( &strFilename, SRF, FALSE ) )
 		return FALSE;
 
-	// File ¿­±â
+	// File ì—´ê¸°
 	FILE* pFile = NULL;
 #if defined(_MSC_VER) && (_MSC_VER >= 1400)
 	errno_t eValue = fopen_s( &pFile, (LPCTSTR)strFilename, "wt" );
@@ -305,7 +305,7 @@ BOOL	CDataManager::SaveSrfFile()
 	fseek( pFile, 0, SEEK_SET );
 	listSurfaceData::iterator it;
 	
-	// ÀúÀå
+	// ì €ìž¥
 	for( it = m_listSurfaceData.begin() ; it != m_listSurfaceData.end() ; ++it )
 	{
 		fprintf( pFile, "surface \"%s\"\n{\n", (LPCTSTR)(*it)->_strName );
@@ -329,7 +329,7 @@ BOOL	CDataManager::SaveSrfFile()
 
 	fclose( pFile );
 
-	// ÆÄÀÏ Ç¥½Ã
+	// íŒŒì¼ í‘œì‹œ
 	m_strSrfFileName = g_pFileView->GetTreeCtrl()->GetSubPath( strFilename );
 	m_bSrfFileLoad = TRUE;
 	g_pFileInfoView->SetSrfText( m_strSrfFileName );

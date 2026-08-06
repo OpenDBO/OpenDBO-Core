@@ -51,7 +51,7 @@ CCautionSideViewUnit::~CCautionSideViewUnit()
 
 /**
 * \brief Update
-* \param fElapsed	(RwReal) ÀÌÀü ¾÷µ¥ÀÌÆ®¿¡¼­ °æ°úµÈ ½Ã°£
+* \param fElapsed	(RwReal) ì´ì „ ì—…ë°ì´íŠ¸ì—ì„œ ê²½ê³¼ëœ ì‹œê°„
 */
 void CCautionSideViewUnit::Update( RwReal fElapsed ) 
 {
@@ -65,9 +65,9 @@ void CCautionSideViewUnit::Update( RwReal fElapsed )
 }
 
 /**
-* \brief ºÎ¸ğ ÄÄÆ÷³ÍÆ®¿¡¼­ÀÇ À§Ä¡¸¦ Á¤ÇÑ´Ù.
-* \param nPosX		(RwInt32) XÀÇ ½ÃÀÛ ÁÂÇ¥
-* \param nPosY		(RwInt32) YÀÇ ½ÃÀÛ ÁÂÇ¥
+* \brief ë¶€ëª¨ ì»´í¬ë„ŒíŠ¸ì—ì„œì˜ ìœ„ì¹˜ë¥¼ ì •í•œë‹¤.
+* \param nPosX		(RwInt32) Xì˜ ì‹œì‘ ì¢Œí‘œ
+* \param nPosY		(RwInt32) Yì˜ ì‹œì‘ ì¢Œí‘œ
 */
 void CCautionSideViewUnit::SetPositionFromParent( RwInt32 nPosX, RwInt32 nPosY ) 
 {
@@ -97,8 +97,8 @@ CCautionSideIconGui::~CCautionSideIconGui()
 }
 
 /**
-* \brief Caution SideIconÀÇ ±âº»ÀûÀÎ ÄÄÆ÷³ÍÆ®¸¦ »ı¼ºÇÏ¸ç UIÀÇ ±â´ÉÀû ½½·ÔÀ» ¿¬°áÇÑ´Ù.
-* \returns ¼º°ø ¿©ºÎ
+* \brief Caution SideIconì˜ ê¸°ë³¸ì ì¸ ì»´í¬ë„ŒíŠ¸ë¥¼ ìƒì„±í•˜ë©° UIì˜ ê¸°ëŠ¥ì  ìŠ¬ë¡¯ì„ ì—°ê²°í•œë‹¤.
+* \returns ì„±ê³µ ì—¬ë¶€
 */
 RwBool CCautionSideIconGui::Create() 
 {
@@ -124,7 +124,7 @@ RwBool CCautionSideIconGui::Create()
 }
 
 /**
-* \brief Caution SideIconÀÇ ±âº»ÀûÀÎ ÄÄÆ÷³ÍÆ® ÇØÁ¦ ¹× Å¬·¡½º¿¡¼­ »ç¿ëÇÑ ÀÚ¿øÀ» ÇØÁ¦ÇÑ´Ù.
+* \brief Caution SideIconì˜ ê¸°ë³¸ì ì¸ ì»´í¬ë„ŒíŠ¸ í•´ì œ ë° í´ë˜ìŠ¤ì—ì„œ ì‚¬ìš©í•œ ìì›ì„ í•´ì œí•œë‹¤.
 */
 void CCautionSideIconGui::Destroy() 
 {
@@ -133,8 +133,8 @@ void CCautionSideIconGui::Destroy()
 }
 
 /**
-* \brief »çÀÌµå¾ÆÀÌÄÜ¿¡¼­ »çÀÌµåºäÀÇ µé¾îÀÖ´Â À¯´ÖÀÇ °¹¼ö¸¦ ¹Ş´Â´Ù.
-* \param pData	(void*) SCautionSideViewUnits*À» void* À¸·Î º¯È¯ÇÑ ÀÚ·á
+* \brief ì‚¬ì´ë“œì•„ì´ì½˜ì—ì„œ ì‚¬ì´ë“œë·°ì˜ ë“¤ì–´ìˆëŠ” ìœ ë‹›ì˜ ê°¯ìˆ˜ë¥¼ ë°›ëŠ”ë‹¤.
+* \param pData	(void*) SCautionSideViewUnits*ì„ void* ìœ¼ë¡œ ë³€í™˜í•œ ìë£Œ
 */
 void CCautionSideIconGui::OnSideIconReceive( void* pData ) 
 {
@@ -142,7 +142,7 @@ void CCautionSideIconGui::OnSideIconReceive( void* pData )
 
 	m_nSize = pUnitSize->nSize;
 
-	// »çÀÌÁî°¡ 0ÀÌ°Å³ª ´õ ³·À¸¸é ´İ´Â´Ù.
+	// ì‚¬ì´ì¦ˆê°€ 0ì´ê±°ë‚˜ ë” ë‚®ìœ¼ë©´ ë‹«ëŠ”ë‹¤.
 	if( m_nSize <= 0 )
 	{
 		Show(false);
@@ -158,7 +158,7 @@ void CCautionSideIconGui::OnSideIconReceive( void* pData )
 }
 
 /**
-* \brief ¿¬°áµÈ SideView°¡ ´İ Èú ¶§
+* \brief ì—°ê²°ëœ SideViewê°€ ë‹« í ë•Œ
 */
 void CCautionSideIconGui::OnSideViewClosed() 
 {
@@ -166,7 +166,7 @@ void CCautionSideIconGui::OnSideViewClosed()
 }
 
 /**
-* \brief SideIconÀ» Å¬¸¯ÇßÀ» ¶§ ½ÇÇàµÇµµ·Ï µî·ÏÇÑ ÇÔ¼ö
+* \brief SideIconì„ í´ë¦­í–ˆì„ ë•Œ ì‹¤í–‰ë˜ë„ë¡ ë“±ë¡í•œ í•¨ìˆ˜
 */
 void CCautionSideIconGui::OnIconButtonClicked( gui::CComponent* pComponent ) 
 {
@@ -174,9 +174,9 @@ void CCautionSideIconGui::OnIconButtonClicked( gui::CComponent* pComponent )
 }
 
 /**
-* \brief ±âº» Dialog°¡ MoveµÇ°Å³ª Resize µÆÀ» ¶§ È£Ãâ
-* \param nOldX	(RwInt32) ÀÌÀü X ÁÂÇ¥
-* \param nOldY	(RwInt32) ÀÌÀü Y ÁÂÇ¥
+* \brief ê¸°ë³¸ Dialogê°€ Moveë˜ê±°ë‚˜ Resize ëì„ ë•Œ í˜¸ì¶œ
+* \param nOldX	(RwInt32) ì´ì „ X ì¢Œí‘œ
+* \param nOldY	(RwInt32) ì´ì „ Y ì¢Œí‘œ
 */
 void CCautionSideIconGui::OnMove( RwInt32 nOldX, RwInt32 nOldY ) 
 {
@@ -206,8 +206,8 @@ CCautionSideViewGui::~CCautionSideViewGui()
 }
 
 /**
-* \brief CautionSideViewÀÇ ÄÄÆ÷³ÍÆ®¿Í ¸®¼Ò½º¸¦ »ı¼ºÇÏ°í ÇÊ¿äÇÑ Event¸¦ µî·ÏÇÑ´Ù.
-* \return	¼º°ø¿©ºÎ
+* \brief CautionSideViewì˜ ì»´í¬ë„ŒíŠ¸ì™€ ë¦¬ì†ŒìŠ¤ë¥¼ ìƒì„±í•˜ê³  í•„ìš”í•œ Eventë¥¼ ë“±ë¡í•œë‹¤.
+* \return	ì„±ê³µì—¬ë¶€
 */
 RwBool CCautionSideViewGui::Create() 
 {
@@ -246,7 +246,7 @@ RwBool CCautionSideViewGui::Create()
 }
 
 /**
-* \brief CautionSideView¿¡¼­ »ç¿ëµÈ ÀÚ¿ø°ú ¸®¼Ò½º¸¦ ÇØÁ¦ÇÑ´Ù.
+* \brief CautionSideViewì—ì„œ ì‚¬ìš©ëœ ìì›ê³¼ ë¦¬ì†ŒìŠ¤ë¥¼ í•´ì œí•œë‹¤.
 */
 void CCautionSideViewGui::Destroy() 
 {
@@ -279,14 +279,14 @@ void CCautionSideViewGui::Destroy()
 */
 void CCautionSideViewGui::Update( RwReal fElapsed ) 
 {
-	// List¿¡ ¾Æ¹«·± Unitµµ ¾ø´Ù¸é UpdateÇÏÁö ¾Ê´Â´Ù.	
+	// Listì— ì•„ë¬´ëŸ° Unitë„ ì—†ë‹¤ë©´ Updateí•˜ì§€ ì•ŠëŠ”ë‹¤.	
 	if( m_listUnit.empty() )
 	{
 		/*CSideIconGui::GetInstance()->*/
 		return;
 	}
 	
-	// °»½ÅµÈ ¸ñ·ÏÀÌ ÀÖ´Â °Ë»çÇÑ´Ù.
+	// ê°±ì‹ ëœ ëª©ë¡ì´ ìˆëŠ” ê²€ì‚¬í•œë‹¤.
 	RwBool bIsDelete = FALSE;
 	ListUnitsIt it = m_listUnit.begin();
 	while( it != m_listUnit.end() )
@@ -305,13 +305,13 @@ void CCautionSideViewGui::Update( RwReal fElapsed )
 			it++;
 	}
 
-	// »ç¶óÁø°Å½Ì ÀÖ´Ù¸é Àç °è»ê
+	// ì‚¬ë¼ì§„ê±°ì‹± ìˆë‹¤ë©´ ì¬ ê³„ì‚°
 	if( bIsDelete )
 	{
-		// ³ôÀÌ¸¦ Àç°è»êÇÏ°í À¯´ÖÀ» Àç¹èÄ¡
+		// ë†’ì´ë¥¼ ì¬ê³„ì‚°í•˜ê³  ìœ ë‹›ì„ ì¬ë°°ì¹˜
 		OnSideViewLocate( m_rectIcon );
 
-		// SideIcon¿¡ °¹¼ö¸¦ ¾Ë·ÁÁØ´Ù.
+		// SideIconì— ê°¯ìˆ˜ë¥¼ ì•Œë ¤ì¤€ë‹¤.
 		SendUnitSizeToIcon();
 	}
 }
@@ -333,7 +333,7 @@ void CCautionSideViewGui::OnMove( RwInt32 nOldX, RwInt32 nOldY )
 }
 
 /**
-* \brief ´İ±â ¹öÆ°À» Å¬¸¯ÇßÀ» ¶§
+* \brief ë‹«ê¸° ë²„íŠ¼ì„ í´ë¦­í–ˆì„ ë•Œ
 */
 void CCautionSideViewGui::OnCloseButtonClicked( gui::CComponent* pComponent ) 
 {
@@ -349,11 +349,11 @@ void CCautionSideViewGui::HandleEvents( RWS::CMsg& msg )
 	{
 		SDboEventCautionSideNotify* pNotify = reinterpret_cast<SDboEventCautionSideNotify*>( msg.pData );
 
-		// bActive °¡ TRUE¸é µî·Ï
-		// FALSE¸é »èÁ¦ ( È÷½ºÅä¸®¸¦ ³²±â´Â °ÍÀÌ ¸ñÀûÀÌ±â ¶§¹®¿¡ µû·Î »èÁ¦¸¦ ÇÏÁø ¾Ê´Â´Ù.
+		// bActive ê°€ TRUEë©´ ë“±ë¡
+		// FALSEë©´ ì‚­ì œ ( íˆìŠ¤í† ë¦¬ë¥¼ ë‚¨ê¸°ëŠ” ê²ƒì´ ëª©ì ì´ê¸° ë•Œë¬¸ì— ë”°ë¡œ ì‚­ì œë¥¼ í•˜ì§„ ì•ŠëŠ”ë‹¤.
 		if( pNotify->bActive )
 		{
-			// »ı¼ºÀ» ÇÏ°í »ı¼ºÀÌ ¼º°øÇÏ¸é À©µµ¿ì »çÀÌÁî¸¦ Á¶ÀıÇÑ´Ù.
+			// ìƒì„±ì„ í•˜ê³  ìƒì„±ì´ ì„±ê³µí•˜ë©´ ìœˆë„ìš° ì‚¬ì´ì¦ˆë¥¼ ì¡°ì ˆí•œë‹¤.
 			if( CreateUnit( pNotify->strStringID, pNotify->pString, pNotify->fLifeTime ) )
 			{
 				SendUnitSizeToIcon();
@@ -362,7 +362,7 @@ void CCautionSideViewGui::HandleEvents( RWS::CMsg& msg )
 		}
 		//else
 		//{
-		//	// StringID¸¦ »èÁ¦ÇØÁÖ°í ¸¸¾à »èÁ¦µÈ °ÍÀÌ ÀÖ´Ù¸é À©µµ¿ì »çÀÌÁî¸¦ Á¶ÀıÇÑ´Ù.
+		//	// StringIDë¥¼ ì‚­ì œí•´ì£¼ê³  ë§Œì•½ ì‚­ì œëœ ê²ƒì´ ìˆë‹¤ë©´ ìœˆë„ìš° ì‚¬ì´ì¦ˆë¥¼ ì¡°ì ˆí•œë‹¤.
 		//	if ( DestroyUnit( pNotify->uiStringID ) )
 		//	{
 		//		SendUnitSizeToIcon();
@@ -373,7 +373,7 @@ void CCautionSideViewGui::HandleEvents( RWS::CMsg& msg )
 }
 
 /**
-* \brief ESC Å°¸¦ ´­·¶À» °æ¿ì
+* \brief ESC í‚¤ë¥¼ ëˆŒë €ì„ ê²½ìš°
 */
 void CCautionSideViewGui::OnPressESC() 
 {
@@ -385,7 +385,7 @@ void CCautionSideViewGui::OnPressESC()
 */
 void CCautionSideViewGui::OnSideViewOpen( const void* pData ) 
 {
-	// º¸¿©Áö°í ÀÖ´Ù°Å³ª List¿¡ ¾Æ¹«°Íµµ ¾øÀ¸¸é ²ô°í ¾Æ´Ï¶ó¸é ÄÒ´Ù.
+	// ë³´ì—¬ì§€ê³  ìˆë‹¤ê±°ë‚˜ Listì— ì•„ë¬´ê²ƒë„ ì—†ìœ¼ë©´ ë„ê³  ì•„ë‹ˆë¼ë©´ ì¼ ë‹¤.
 	if( m_pThis->IsVisible() || m_listUnit.empty() )
 		Show(false);
 	else
@@ -394,7 +394,7 @@ void CCautionSideViewGui::OnSideViewOpen( const void* pData )
 
 /**
 * \brief OnSideViewReceive
-* \param pData	(void*) Side IconÀÇ Å©±â¸¦ ¹Ş±â À§ÇØ¼­ CRectangleÀ» Àü´Ş¹Ş´Â´Ù.
+* \param pData	(void*) Side Iconì˜ í¬ê¸°ë¥¼ ë°›ê¸° ìœ„í•´ì„œ CRectangleì„ ì „ë‹¬ë°›ëŠ”ë‹¤.
 */
 void CCautionSideViewGui::OnSideViewReceive( void* pData ) 
 {
@@ -412,8 +412,8 @@ void CCautionSideViewGui::OnSideViewClose()
 }
 
 /**
-* \brief À¯´ÖµéÀÇ ³ôÀÌ·Î ÇöÀçÀÇ ViewÀÇ Å©±â¸¦ Á¤ÇÏ°í UnitµéÀ» ¹èÄ¡ÇÑ´Ù.
-* \param rectSideIcon	(const CRectangle&) Caution SideIconÀÇ È­¸é À§Ä¡ ¹× Å©±â
+* \brief ìœ ë‹›ë“¤ì˜ ë†’ì´ë¡œ í˜„ì¬ì˜ Viewì˜ í¬ê¸°ë¥¼ ì •í•˜ê³  Unitë“¤ì„ ë°°ì¹˜í•œë‹¤.
+* \param rectSideIcon	(const CRectangle&) Caution SideIconì˜ í™”ë©´ ìœ„ì¹˜ ë° í¬ê¸°
 */
 void CCautionSideViewGui::OnSideViewLocate( const CRectangle& rectSideIcon ) 
 {
@@ -437,14 +437,14 @@ void CCautionSideViewGui::OnSideViewLocate( const CRectangle& rectSideIcon )
 }
 
 /**
-* \brief UnitÀ» »ı¼ºÇÑ´Ù.
-* \param uiStringID		(RwUInt32) ¹®ÀÚ¿­ ÀÎµ¦½º (DisplayStringManager)
-* \param pString		(const WCHAR*) ¹®ÀÚ¿­
-* \param fLifeTime		(RwReal) °æ°í ¸Ş½ÃÁö°¡ »ì¾Æ ÀÖ´Â ½Ã°£
+* \brief Unitì„ ìƒì„±í•œë‹¤.
+* \param uiStringID		(RwUInt32) ë¬¸ìì—´ ì¸ë±ìŠ¤ (DisplayStringManager)
+* \param pString		(const WCHAR*) ë¬¸ìì—´
+* \param fLifeTime		(RwReal) ê²½ê³  ë©”ì‹œì§€ê°€ ì‚´ì•„ ìˆëŠ” ì‹œê°„
 */
 RwBool CCautionSideViewGui::CreateUnit(std::string& uiStringID, const WCHAR* pString, RwReal fLifeTime )
 {
-	// 10°³ ÀÌ»óÀÏ °æ¿ì ÇÏ³ª¸¦ Áö¿öÁØ´Ù.
+	// 10ê°œ ì´ìƒì¼ ê²½ìš° í•˜ë‚˜ë¥¼ ì§€ì›Œì¤€ë‹¤.
 	if( (RwInt32)m_listUnit.size() >= dMAX_CAUTION_SIDE_VIEW_UNIT )
 	{
 		CCautionSideViewUnit* pUnit = m_listUnit.back();
@@ -452,7 +452,7 @@ RwBool CCautionSideViewGui::CreateUnit(std::string& uiStringID, const WCHAR* pSt
 		DestroyUnit( pUnit );
 	}
 	
-	// »ı¼º ÈÄ ³Ö±â
+	// ìƒì„± í›„ ë„£ê¸°
 	CCautionSideViewUnit* pUnit = NTL_NEW CCautionSideViewUnit( m_pThis, uiStringID, pString, fLifeTime );
 	m_listUnit.push_front( pUnit );
 
@@ -460,8 +460,8 @@ RwBool CCautionSideViewGui::CreateUnit(std::string& uiStringID, const WCHAR* pSt
 }
 
 /**
-* \brief UnitÀ» »èÁ¦ÇÑ´Ù.
-* \param pUnit	(CCautionSideViewUnit*) UnitÀ» ¸Ş¸ğ¸® ÇØÁ¦ÇÑ´Ù.
+* \brief Unitì„ ì‚­ì œí•œë‹¤.
+* \param pUnit	(CCautionSideViewUnit*) Unitì„ ë©”ëª¨ë¦¬ í•´ì œí•œë‹¤.
 */
 RwBool CCautionSideViewGui::DestroyUnit( CCautionSideViewUnit* pUnit ) 
 {
@@ -471,9 +471,9 @@ RwBool CCautionSideViewGui::DestroyUnit( CCautionSideViewUnit* pUnit )
 }
 
 /**
-* \brief uiStringID¸¦ °¡Áö°í ÀÖ´Â UnitÀ» ¸ğµÎ »èÁ¦ÇÑ´Ù.
-* \param uiStringID		(RwUInt32) ¹®ÀÚ¿­ ÀÎµ¦½º
-* \return ¼º°ø¿©ºÎ
+* \brief uiStringIDë¥¼ ê°€ì§€ê³  ìˆëŠ” Unitì„ ëª¨ë‘ ì‚­ì œí•œë‹¤.
+* \param uiStringID		(RwUInt32) ë¬¸ìì—´ ì¸ë±ìŠ¤
+* \return ì„±ê³µì—¬ë¶€
 */
 RwBool CCautionSideViewGui::DestroyUnit(std::string& uiStringID )
 {
@@ -496,7 +496,7 @@ RwBool CCautionSideViewGui::DestroyUnit(std::string& uiStringID )
 }
 
 /**
-* \brief SideIcon¿¡ UnitÀÇ °¹¼ö¸¦ º¸³½´Ù.
+* \brief SideIconì— Unitì˜ ê°¯ìˆ˜ë¥¼ ë³´ë‚¸ë‹¤.
 */
 void CCautionSideViewGui::SendUnitSizeToIcon() 
 {

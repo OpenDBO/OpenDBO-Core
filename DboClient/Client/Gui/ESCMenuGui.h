@@ -2,7 +2,7 @@
 *
 * File			: ESCMenuGui.h
 * Author		: HyungSuk, Jang
-* Copyright	: (¡÷)NTL
+* Copyright	: (Ï£º)NTL
 * Date			: 2005. 9. 28	
 * Abstract		: DBO MessageBox gui.
 *****************************************************************************

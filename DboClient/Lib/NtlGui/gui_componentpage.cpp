@@ -50,7 +50,7 @@ bool CComponentPage::CreateComponents(CComponent *pParent,CSurfaceManager *pSurf
 	m_bCreate = true;
 
 	CreateComponents(m_pPaser->GetSortedComponents());
-//: º¹»ç¸¦ ÇÑ´Ù...
+//: ë³µì‚¬ë¥¼ í•œë‹¤...
 //	m_stlComponentMap.swap(m_pPaser->GetComponents());
 	return true;
 }
@@ -95,7 +95,7 @@ VOID CComponentPage::CreateComponents(const CGUIFileParser::stlCOMPONENT_SORT_MA
 	{
 		CGUIFileParser::ComponentInfo *pInfo = (*it).second;
 
-		// component°¡ »ý¼ºµÇÁö ¾Ê¾ÒÀ¸¸é...
+		// componentê°€ ìƒì„±ë˜ì§€ ì•Šì•˜ìœ¼ë©´...
 		if (pInfo->pComponent == NULL)
 		{
 			pInfo->pComponent = CComponentManager::CreateComponent(pInfo->type,m_pParent,m_pSurfaceManager);

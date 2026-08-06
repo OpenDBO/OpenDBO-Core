@@ -2,7 +2,7 @@
  *
  * File			: NtlPLEmblem.h
  * Author		: Hong SungBock
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 20057. 5. 3
  * Abstract		: Presentation layer emblem
  *****************************************************************************

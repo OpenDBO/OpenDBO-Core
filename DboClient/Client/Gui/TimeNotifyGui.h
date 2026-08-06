@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: TimeNotifyGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 1. 2
 * Abstract		: 
 *****************************************************************************
-* Desc			: ½Ã°£¿¡ °ü·ÃµÈ »çÇ×À» ¾Ë¸°´Ù
+* Desc			: ì‹œê°„ì— ê´€ë ¨ëœ ì‚¬í•­ì„ ì•Œë¦°ë‹¤
 *****************************************************************************/
 
 #pragma once
@@ -49,7 +49,7 @@ public:
 		RwReal			fElapsed;
 		
 		sTS_KEY					sTSKey;				///< TSÅ°
-		RwUInt32				uiSortType;			///< Äù½ºÆ® Å¸ÀÔ
+		RwUInt32				uiSortType;			///< í€˜ìŠ¤íŠ¸ íƒ€ì…
 	};
 
 	CTimeNotifyGui(const RwChar* pName);

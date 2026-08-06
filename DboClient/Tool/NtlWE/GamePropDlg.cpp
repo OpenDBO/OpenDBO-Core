@@ -1,4 +1,4 @@
-// GamePropDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// GamePropDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -12,7 +12,7 @@
 #include "NtlPLWorldEntity.h"
 #include "NtlWorldPropUtil.h"
 
-// CGamePropDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CGamePropDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CGamePropDlg, CDialog)
 
@@ -53,7 +53,7 @@ BEGIN_MESSAGE_MAP(CGamePropDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CGamePropDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CGamePropDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CGamePropDlg::PreTranslateMessage(MSG* pMsg)
 {

@@ -21,7 +21,7 @@ CResourceFileParser::CResourceFileParser(const std::string &filename)
 
 	enum EParseState
 	{
-		PARSE_GLOBAL,						// ÀüÃ¼ frame
+		PARSE_GLOBAL,						// ì „ì²´ frame
 		PARSE_RESOURCE_TYPE,    // component type
 		PARSE_RESOURCE_NAME,    // component name
 		PARSE_RESOURCE,         // component 
@@ -97,9 +97,9 @@ CResourceFileParser::CResourceFileParser(const std::string &filename)
 				{
 #if defined(_MSC_VER) && (_MSC_VER >= 1400)
 					char buf[1024];
-					sprintf_s(buf, 1024, "Error ==>  gui resource file¿¡ µ¿ÀÏÇÑ ÀÌ¸§ Á¸Àç. [ %s ]",token.c_str());
+					sprintf_s(buf, 1024, "Error ==>  gui resource fileì— ë™ì¼í•œ ì´ë¦„ ì¡´ì¬. [ %s ]",token.c_str());
 #else
-					sprintf(buf, "Error ==>  gui resource file¿¡ µ¿ÀÏÇÑ ÀÌ¸§ Á¸Àç. [ %s ]",token.c_str());
+					sprintf(buf, "Error ==>  gui resource fileì— ë™ì¼í•œ ì´ë¦„ ì¡´ì¬. [ %s ]",token.c_str());
 #endif
 					m_strError = buf;
 					return;
@@ -161,7 +161,7 @@ CResourceFileParser::CResourceFileParser(const std::string &filename)
 				{
 					// the component being finalized is the child of another component
 					// add finalized component to parent's child list.
-					// frame component¿¡ buttonµîÀÇ component¸¦ child·Î µî·ÏÇÑ´Ù...
+					// frame componentì— buttonë“±ì˜ componentë¥¼ childë¡œ ë“±ë¡í•œë‹¤...
 					stlNAMED_COMPONENT_PAIR &parent_comp = stlCompStack.top();
 					parent_comp.second.m_stlChildren.push_back(&(*it.first).second);
 				}

@@ -35,7 +35,7 @@ protected:
 protected:
     static CMaterialPane* m_pInstance;
 
-    CMTClump* m_pMTClump;                                ///< »ç¿ëµÇ´Â Clump °´Ã¼
+    CMTClump* m_pMTClump;                                ///< ì‚¬ìš©ë˜ëŠ” Clump ê°ì²´
 
 
 protected:

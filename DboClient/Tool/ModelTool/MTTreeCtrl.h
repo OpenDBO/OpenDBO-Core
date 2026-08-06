@@ -6,7 +6,7 @@ typedef std::vector<HTREEITEM> TREEITEM_VECTOR;
 
 /**
  * \ingroup ModelTool
- * \brief CTreeCtrlÀ» »ó¼Ó¹Ş¾Æ ModelTool¿¡¼­ »ç¿ëÇÏ´Â TreeCtrl
+ * \brief CTreeCtrlì„ ìƒì†ë°›ì•„ ModelToolì—ì„œ ì‚¬ìš©í•˜ëŠ” TreeCtrl
  * \date 2006-04-17
  * \author agebreak
  */
@@ -28,29 +28,29 @@ public:
 	virtual ~CMTTreeCtrl();
 
     void    SetRoot(WCHAR* szRootName);  
-    void    SetParent(CPagePC* pLeftView);          ///< Æ®¸®ÄÁÆ®·ÑÀ» °¡Áö°í ÀÖ´Â °´Ã¼¸¦ ¼³Á¤ÇÑ´Ù. (¿ŞÂÊºäÀÇ ¸ğµç °´Ã¼´Â CPagePC·ÎºÎÅÍ »ó¼Ó¹ŞÀ½)
+    void    SetParent(CPagePC* pLeftView);          ///< íŠ¸ë¦¬ì»¨íŠ¸ë¡¤ì„ ê°€ì§€ê³  ìˆëŠ” ê°ì²´ë¥¼ ì„¤ì •í•œë‹¤. (ì™¼ìª½ë·°ì˜ ëª¨ë“  ê°ì²´ëŠ” CPagePCë¡œë¶€í„° ìƒì†ë°›ìŒ)
     CString SelectScriptName();
     void    SetScriptName(CString sScriptName);
     CString SelectClumpName();
-    void    AddItem(const RwChar* sScriptName);     ///< ½ºÅ©¸³Æ® Ç×¸ñÀ» Ãß°¡ÇÑ´Ù.
+    void    AddItem(const RwChar* sScriptName);     ///< ìŠ¤í¬ë¦½íŠ¸ í•­ëª©ì„ ì¶”ê°€í•œë‹¤.
 
-    void    SaveTree(WCHAR* szRootName, WCHAR* szFileName);     ///< Æ®¸®³»¿ëÀ» XMLÆÄÀÏ·Î ÀúÀåÇÑ´Ù.
-    void    LoadTree(WCHAR* szFileName);     ///< Æ®¸®³»¿ëÀ» XMLÆÄÀÏ¿¡¼­ ºÒ·¯¿Â´Ù.
+    void    SaveTree(WCHAR* szRootName, WCHAR* szFileName);     ///< íŠ¸ë¦¬ë‚´ìš©ì„ XMLíŒŒì¼ë¡œ ì €ì¥í•œë‹¤.
+    void    LoadTree(WCHAR* szFileName);     ///< íŠ¸ë¦¬ë‚´ìš©ì„ XMLíŒŒì¼ì—ì„œ ë¶ˆëŸ¬ì˜¨ë‹¤.
 
-    void    GetAllChildNode(HTREEITEM hItem, TREEITEM_VECTOR& vTreeItem);   ///< ¸ğµç ¾ÆÀÌÅÛÀ» °Ë»öÇÏ¿© º¤ÅÍ¿¡ ´ã´Â´Ù.
-
-protected:
-    void    EndDrag(CPoint point);                  ///< µå·¡±×°¡ ³¡³¯¶§ È£ÃâµÈ´Ù
-    HTREEITEM GetItemByName(WCHAR* szItemName);     ///< ¾ÆÀÌÅÛÀÇ ÀÌ¸§À¸·Î Æ÷ÀÎÅÍ¸¦ Ã£´Â´Ù.
+    void    GetAllChildNode(HTREEITEM hItem, TREEITEM_VECTOR& vTreeItem);   ///< ëª¨ë“  ì•„ì´í…œì„ ê²€ìƒ‰í•˜ì—¬ ë²¡í„°ì— ë‹´ëŠ”ë‹¤.
 
 protected:
-    CImageList*     m_pImageList;                   ///< Æ®¸®ÄÁÆ®·Ñ¿¡ »ç¿ëµÇ´Â ÀÌ¹ÌÁö ¸®½ºÆ® 
-    HTREEITEM       m_hSelectedItem;                ///< ÇöÀç ¼±ÅÃµÈ ¾ÆÀÌÅÛ
-    HTREEITEM       m_hCurItem;                     ///< µå·¡±×¿¡ »ç¿ëµÇ´Â ¾ÆÀÌÅÛ
-    HTREEITEM       m_hDragItem;                    ///< µå·¡±×¿¡ »ç¿ëµÇ´Â ¾ÆÀÌÅÛ
-    BOOL            m_bDrag;                        ///< µå·¡±×¿¡ »ç¿ëµÉ ÇÃ·¡±×
-    CPagePC*        m_pParentView;                  ///< Æ®¸®¸¦ °¡Áö°í ÀÖ´Â ºÎ¸ğ ºä
-    CString         m_sPrevScriptName;              ///< ÀÌÀü ½ºÅ©¸³Æ®¸í. ÆÄÀÏÀÌ¸§ º¯°æ½Ã ÇÊ¿äÇÏ´Ù
+    void    EndDrag(CPoint point);                  ///< ë“œë˜ê·¸ê°€ ëë‚ ë•Œ í˜¸ì¶œëœë‹¤
+    HTREEITEM GetItemByName(WCHAR* szItemName);     ///< ì•„ì´í…œì˜ ì´ë¦„ìœ¼ë¡œ í¬ì¸í„°ë¥¼ ì°¾ëŠ”ë‹¤.
+
+protected:
+    CImageList*     m_pImageList;                   ///< íŠ¸ë¦¬ì»¨íŠ¸ë¡¤ì— ì‚¬ìš©ë˜ëŠ” ì´ë¯¸ì§€ ë¦¬ìŠ¤íŠ¸ 
+    HTREEITEM       m_hSelectedItem;                ///< í˜„ì¬ ì„ íƒëœ ì•„ì´í…œ
+    HTREEITEM       m_hCurItem;                     ///< ë“œë˜ê·¸ì— ì‚¬ìš©ë˜ëŠ” ì•„ì´í…œ
+    HTREEITEM       m_hDragItem;                    ///< ë“œë˜ê·¸ì— ì‚¬ìš©ë˜ëŠ” ì•„ì´í…œ
+    BOOL            m_bDrag;                        ///< ë“œë˜ê·¸ì— ì‚¬ìš©ë  í”Œë˜ê·¸
+    CPagePC*        m_pParentView;                  ///< íŠ¸ë¦¬ë¥¼ ê°€ì§€ê³  ìˆëŠ” ë¶€ëª¨ ë·°
+    CString         m_sPrevScriptName;              ///< ì´ì „ ìŠ¤í¬ë¦½íŠ¸ëª…. íŒŒì¼ì´ë¦„ ë³€ê²½ì‹œ í•„ìš”í•˜ë‹¤
 
 
 protected:

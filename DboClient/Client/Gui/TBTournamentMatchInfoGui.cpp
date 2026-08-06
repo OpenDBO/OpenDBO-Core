@@ -109,7 +109,7 @@ RwBool CTBTournamentMatchInfoGui::Create(VOID)
 	// Initial Setting
 	m_pThis->Show( false );
 
-	// Event¿¬°á
+	// Eventì—°ê²°
 	LinkMsg( g_EventResize );
 	
 	

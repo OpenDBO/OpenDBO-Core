@@ -17,7 +17,7 @@ public:
 	COutputBox();
     virtual ~COutputBox();
 
-    void EraseBack(CDialog* pDlg);      // ±Û¾¾¿µ¿ªÀ» Áö¿î´Ù.
+    void EraseBack(CDialog* pDlg);      // ê¸€ì”¨ì˜ì—­ì„ ì§€ìš´ë‹¤.
 
 public:
     bool        m_bIsLog;

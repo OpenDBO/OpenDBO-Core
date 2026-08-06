@@ -2,7 +2,7 @@
  *
  * File			: NtlFSMCharActAgent.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2006. 2. 9	
  * Abstract		: character act agent class
  *****************************************************************************
@@ -32,19 +32,19 @@ union UCharActModeFlag
 {
 	struct 
 	{
-		RwUInt32 bitSitDown : 1;			// true¸é ¾É±â , false¸é ÀÏ¾î¼­±â.
-		RwUInt32 bitCharging : 1;			// trueÀÌ¸é charging
-		RwUInt32 bitFightingMode : 1;		// °ø°İ ¸ğµå.
-		RwUInt32 bitClickDisable : 1;		// Å¬¸¯ ±İÁö.
+		RwUInt32 bitSitDown : 1;			// trueë©´ ì•‰ê¸° , falseë©´ ì¼ì–´ì„œê¸°.
+		RwUInt32 bitCharging : 1;			// trueì´ë©´ charging
+		RwUInt32 bitFightingMode : 1;		// ê³µê²© ëª¨ë“œ.
+		RwUInt32 bitClickDisable : 1;		// í´ë¦­ ê¸ˆì§€.
 		RwUInt32 bitClientUIDisable : 1;	// Prohibit client UI output.
-		RwUInt32 bitAttackDisallow : 1;		// °ø°İ ºÒ°¡ ¸ğµå.
-		RwUInt32 bitDirectMode : 1;			// ¿¬Ãâ »óÅÂÀÎ°¡?
-		RwUInt32 bitAutoRun : 1;			// auto runÀÎ°¡?
-        RwUInt32 bitSequela : 1;            // º¯½Å ÈŞÀ¯Áõ »óÅÂÀÎ°¡?
-        RwUInt32 bitTransparent : 1;        // Åõ¸í »óÅÂÀÎ°¡? (GM¿ë)
-        RwUInt32 bitInvisible : 1;          // Åõ¸í »óÅÂÀÎ°¡? (¸÷ ½ºÅ³)
-        RwUInt32 bitHidingKi : 1;           // ±â ¼û±â±â »óÅÂÀÎ°¡?
-        RwUInt32 bitEmergency : 1;          // ºó»ç »óÅÂ ÀÎ°¡?
+		RwUInt32 bitAttackDisallow : 1;		// ê³µê²© ë¶ˆê°€ ëª¨ë“œ.
+		RwUInt32 bitDirectMode : 1;			// ì—°ì¶œ ìƒíƒœì¸ê°€?
+		RwUInt32 bitAutoRun : 1;			// auto runì¸ê°€?
+        RwUInt32 bitSequela : 1;            // ë³€ì‹  íœ´ìœ ì¦ ìƒíƒœì¸ê°€?
+        RwUInt32 bitTransparent : 1;        // íˆ¬ëª… ìƒíƒœì¸ê°€? (GMìš©)
+        RwUInt32 bitInvisible : 1;          // íˆ¬ëª… ìƒíƒœì¸ê°€? (ëª¹ ìŠ¤í‚¬)
+        RwUInt32 bitHidingKi : 1;           // ê¸° ìˆ¨ê¸°ê¸° ìƒíƒœì¸ê°€?
+        RwUInt32 bitEmergency : 1;          // ë¹ˆì‚¬ ìƒíƒœ ì¸ê°€?
 		RwUInt32 bitAirState : 1;
 	};
 
@@ -71,9 +71,9 @@ protected:
 	CNtlSobProxySystemEffect		*m_pSystemEffectColor;
     CNtlSobProxySystemEffect*       m_pSystemInvisible;
     CNtlSobProxySystemEffect*       m_pSystemGMAlpha;
-    CNtlSobProxySystemEffect*       m_pSystemHidingKi;          ///< ±â ¼û±â±â¿ë ¾ËÆÄ ÀÌÆåÆ®	
+    CNtlSobProxySystemEffect*       m_pSystemHidingKi;          ///< ê¸° ìˆ¨ê¸°ê¸°ìš© ì•ŒíŒŒ ì´í™íŠ¸	
 
-    // ÄÁµğ¼Ç °ü·Ã ÀÌÆåÆ®
+    // ì»¨ë””ì…˜ ê´€ë ¨ ì´í™íŠ¸
     CNtlPLEntity					*m_pConditionTaunt;
     CNtlPLEntity					*m_pConditionConfuse;
     CNtlPLEntity					*m_pConditionTerror;  
@@ -83,12 +83,12 @@ protected:
 
 protected:
 
-	// simulation °´Ã¼ÀÇ ¼­¹ö »óÅÂ°¡ º¯È¯¶§ ÀÌº¥Æ®·Î º¯È¯.
+	// simulation ê°ì²´ì˜ ì„œë²„ ìƒíƒœê°€ ë³€í™˜ë•Œ ì´ë²¤íŠ¸ë¡œ ë³€í™˜.
 	virtual void ServerStateUpdateAnalysis(SNtlEventSobServerUpdateState *pServerState);
 	virtual void ServerConditionUpdateAnalysis(RwUInt8 byServerState, RwUInt64 uiCondition);
     virtual void ServerAspectUpdateAnalysis(sASPECTSTATE& sAspectState, RwBool bCreateUpdate);
 
-    // Simulation °´Ã¼°¡ Update µÇ¸é¼­ ¹Ş´Â »óÅÂ º¯È¯ ÇÔ¼öµé
+    // Simulation ê°ì²´ê°€ Update ë˜ë©´ì„œ ë°›ëŠ” ìƒíƒœ ë³€í™˜ í•¨ìˆ˜ë“¤
 	void ServerStateSpawn(sCHARSTATE *pServerState);
 	void ServerStateStanding(sCHARSTATE *pServerState);
 	void ServerStateCharging(sCHARSTATE *pServerState);
@@ -119,11 +119,11 @@ protected:
 	void ServerStateLeaving(sCHARSTATE *pServerState);
     void ServerStateRideOn(sCHARSTATE *pServerState);
     void ServerStateTurning(sCHARSTATE *pServerState);
-    void ServerStateKeepingEffect(sCHARSTATE* pServerState);                    ///< ½ºÅ³ Action LOOP
+    void ServerStateKeepingEffect(sCHARSTATE* pServerState);                    ///< ìŠ¤í‚¬ Action LOOP
 	void ServerStateAirJump(sCHARSTATE* pServerState);
 	void ServerStateAirDashAccel(sCHARSTATE* pServerState);
 
-	// simulation °´Ã¼°¡ Ã³À½ »ı±æ¶§ ¼­¹ö »óÅÂ¿¡ µû¸¥ º¯È¯.
+	// simulation ê°ì²´ê°€ ì²˜ìŒ ìƒê¸¸ë•Œ ì„œë²„ ìƒíƒœì— ë”°ë¥¸ ë³€í™˜.
 	virtual void ServerStateCreateAnalysis(sCHARSTATE *pCharState);
 
 	void ServerStateCreateStanding(sCHARSTATE *pServerState);
@@ -159,11 +159,11 @@ protected:
 	void ServerStateCreateAirJump(sCHARSTATE *pServerState);
 	void ServerStateCreateAirAccel(sCHARSTATE *pServerState);
 
-	// simulation °´Ã¼ÀÇ Aspect »óÅÂ º¯È­¿¡ µû¸¥ º¯È¯.
+	// simulation ê°ì²´ì˜ Aspect ìƒíƒœ ë³€í™”ì— ë”°ë¥¸ ë³€í™˜.
 	void ServerAspectCreateStateVehicle(sASPECTSTATE *pServerAspectState);
 	void ServerAspectStateVehicle(sASPECTSTATE *pServerAspectState);
 
-	// simulation °´Ã¼ÀÇ ´ÙÀ½ »óÅÂ¿¡ ´ëÇÑ Ã³¸® ÇÔ¼ö.
+	// simulation ê°ì²´ì˜ ë‹¤ìŒ ìƒíƒœì— ëŒ€í•œ ì²˜ë¦¬ í•¨ìˆ˜.
 	RwUInt32 AcquireFightingProc(void);
 	RwUInt32 AcquireSkillActionProc(void);
 	RwUInt32 AcquireHTBProc(void);
@@ -177,7 +177,7 @@ public:
 	
 	virtual void			Update(RwReal fElapsed);
 	virtual RwUInt32		HandleEvents(RWS::CMsg &pMsg);	
-	virtual RwUInt32		AcquireNextState(RwUInt32 uiCurrStateId);      ///< Next State¸¦ °áÁ¤ÇÑ´Ù.
+	virtual RwUInt32		AcquireNextState(RwUInt32 uiCurrStateId);      ///< Next Stateë¥¼ ê²°ì •í•œë‹¤.
 
 	virtual void			NotifyUpdateChangeState(RwUInt32 uiOldState, RwUInt32 uiNextState);
 	virtual void			NotifyEvents(RWS::CMsg &pMsg, RwUInt32 uiEventResult, RwUInt32 uiParam1, RwUInt32 uiParam2); ///< event notify function.
@@ -191,7 +191,7 @@ public:
 	void					SetActiveAdjustPosition(RwBool bActive);
 	RwBool					IsActiveAdjustPosition(void);
 
-    //-- »óÅÂ State ¼³Á¤/¹İÈ¯ ÇÔ¼öµé
+    //-- ìƒíƒœ State ì„¤ì •/ë°˜í™˜ í•¨ìˆ˜ë“¤
 	void					SetFightingMode(RwBool bFightingMode);
 	RwBool					IsFightingMode(void);
 
@@ -233,23 +233,23 @@ public:
     void                    SetHidingKi(RwBool bHidingKi);
     RwBool                  IsHidingKi();
 
-    void                    SetEmergency(RwBool bEmergency);            ///< ºó»ç »óÅÂÀÎÁö ¼³Á¤ÇÑ´Ù
-    RwBool                  IsEmergency();                              ///< ºó»ç »óÅÂÀÎÁö ¹İÈ¯ÇÑ´Ù.
+    void                    SetEmergency(RwBool bEmergency);            ///< ë¹ˆì‚¬ ìƒíƒœì¸ì§€ ì„¤ì •í•œë‹¤
+    RwBool                  IsEmergency();                              ///< ë¹ˆì‚¬ ìƒíƒœì¸ì§€ ë°˜í™˜í•œë‹¤.
 
     CNtlPLEntity*			CreateVisualSystemEffect(const RwChar *pKey);
 
-	//-- condition Ã³¸®
+	//-- condition ì²˜ë¦¬
 	
 	void					ConditionVisualColorFlickering(RwUInt64 uiServerCondition);
 	void					ConditionVisualColorFlickeringPop(void);
 	void					ConditionDiff(RwUInt64 uiServerCondition);
-    void                    ConditionTaunt(RwBool bAffect);                          ///< µµ¹ß    
-    void                    ConditionAfterEffect(RwBool bAffect);                    ///< º¯½Å ÈŞÀ¯Áõ Ã³¸®
-    void                    ConditionConfused(RwBool bAffect);                       ///< È¥¶õ Ã³¸®
-    void                    ConditionTerror(RwBool bAffect);                         ///< °øÆ÷ Ã³¸®
-    void                    ConditionTransparent(RwBool bAffect);                    ///< Ä³¸¯ÅÍ Åõ¸í Ã³¸® (GM¿ë)
-    void                    ConditionInvisible(RwBool bAffect);                      ///< ¼û±â (¸÷¿ë)
-    void                    ConditionHidingKi(RwBool bAffect);                       ///< ±â ¼û±â±â
+    void                    ConditionTaunt(RwBool bAffect);                          ///< ë„ë°œ    
+    void                    ConditionAfterEffect(RwBool bAffect);                    ///< ë³€ì‹  íœ´ìœ ì¦ ì²˜ë¦¬
+    void                    ConditionConfused(RwBool bAffect);                       ///< í˜¼ë€ ì²˜ë¦¬
+    void                    ConditionTerror(RwBool bAffect);                         ///< ê³µí¬ ì²˜ë¦¬
+    void                    ConditionTransparent(RwBool bAffect);                    ///< ìºë¦­í„° íˆ¬ëª… ì²˜ë¦¬ (GMìš©)
+    void                    ConditionInvisible(RwBool bAffect);                      ///< ìˆ¨ê¸° (ëª¹ìš©)
+    void                    ConditionHidingKi(RwBool bAffect);                       ///< ê¸° ìˆ¨ê¸°ê¸°
 	void                    ConditionBleed(RwBool bAffect);
 	void                    ConditionPoison(RwBool bAffect);
 	void                    ConditionStomach(RwBool bAffect);

@@ -36,16 +36,16 @@ RwBool CPetitionSatisfaction::Create()
 	m_pThis			= (gui::CDialog*)GetComponent("dlgMain");
 	m_pThis->SetPriority(dDIALOGPRIORITY_QUICKSLOT);
 
-	// ´ÙÀÌ¾ó·Î±× Á¦¸ñ
+	// ë‹¤ì´ì–¼ë¡œê·¸ ì œëª©
 	m_pDialogName	= (gui::CStaticBox*)GetComponent( "stbDialogName" );
 	m_pDialogName->SetPosition(DBOGUI_DIALOG_TITLE_X, DBOGUI_DIALOG_TITLE_Y);
 	m_pDialogName->SetText( GetDisplayStringManager()->GetString("DST_PETITION_SATISFACTION_TITLE") );
 
-	// ¾È³» ¸Þ¼¼Áö
+	// ì•ˆë‚´ ë©”ì„¸ì§€
 	m_pMessage		= (gui::CStaticBox*)GetComponent( "stbComment" );
 	m_pMessage->SetText( GetDisplayStringManager()->GetString("DST_PETITION_SATISFACTION_COMMENT") );
 
-	// ¸¸Á·µµ ÅØ½ºÆ®
+	// ë§Œì¡±ë„ í…ìŠ¤íŠ¸
 	m_pToggleText[0] = (gui::CStaticBox*)GetComponent( "stbGreat" );
 	m_pToggleText[0]->SetText( GetDisplayStringManager()->GetString("DST_PETITION_SATISFACTION_GREAT") );
 
@@ -61,11 +61,11 @@ RwBool CPetitionSatisfaction::Create()
 	m_pToggleText[4] = (gui::CStaticBox*)GetComponent( "stbWorst" );
 	m_pToggleText[4]->SetText( GetDisplayStringManager()->GetString("DST_PETITION_SATISFACTION_WORST") );
 
-	// ´Ý±â ¹öÆ°
+	// ë‹«ê¸° ë²„íŠ¼
 	m_pCloseButton	= (gui::CButton*)GetComponent( "ExitButton" );
 	m_slotCloseButton = m_pCloseButton->SigClicked().Connect(this, &CPetitionSatisfaction::OnClicked_CloseButton);
 
-	// ¸¸Á·µµ ¼±ÅÃ ¶óµð¿À ¹öÆ°
+	// ë§Œì¡±ë„ ì„ íƒ ë¼ë””ì˜¤ ë²„íŠ¼
 	m_pRadioButton[0]	= (gui::CButton*)GetComponent( "btnGreat" );
 	m_pRadioButton[0]->SetToggleMode(true);
 	m_slotRadioButton[0] = m_pRadioButton[0]->SigToggled().Connect(this, &CPetitionSatisfaction::OnClicked_RadioToggleButton);
@@ -86,7 +86,7 @@ RwBool CPetitionSatisfaction::Create()
 	m_pRadioButton[4]->SetToggleMode(true);
 	m_slotRadioButton[4] = m_pRadioButton[4]->SigToggled().Connect(this, &CPetitionSatisfaction::OnClicked_RadioToggleButton);
 
-	// ¸¸Á·µµ º¸³»±â ¹öÆ°
+	// ë§Œì¡±ë„ ë³´ë‚´ê¸° ë²„íŠ¼
 	m_pSendButton	= (gui::CButton*)GetComponent( "btnSend" );
 	m_pSendButton->SetText( GetDisplayStringManager()->GetString("DST_PETITION_SEND") );
 	m_slotSendButton = m_pSendButton->SigClicked().Connect(this, &CPetitionSatisfaction::OnClicked_SendButton);

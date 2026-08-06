@@ -2,7 +2,7 @@
  *
  * File			: NtlBehaviorCharMove.h
  * Author		: HyungSuk, Jang
- * Copyright	: (��)NTL
+ * Copyright	: (占쏙옙)NTL
  * Date			: 2006. 2. 9	
  * Abstract		: character move behavior class
  *****************************************************************************
@@ -33,7 +33,7 @@ struct SNtlEventSobMoveSync;
 #define COLLISION_MOVE_IMPOSSIBLE_COUNT		3
 
 // dash 
-#define DASH_LANDING_TIME					0.166f  // 0.8�ʿ� DASH_LANDING_DIST ��ŭ ����.
+#define DASH_LANDING_TIME					0.166f  // 0.8占십울옙 DASH_LANDING_DIST 占쏙옙큼 占쏙옙占쏙옙.
 
 // jump
 #define JUMP_GRAVITY_SPEED					11.0f
@@ -62,15 +62,15 @@ public:
 	void	AddPathNode(RwV3d vPos);
 	RwBool	PopPathNode(RwV3d& vPos);
 	void	ClearPathNode(void);
-    RwBool  IsMoveSyncState();                                  ///< MoveSync�� ������ϴ� ���������� ��ȯ�Ѵ� (�ٸ� ĳ���Ϳ�)
-    RwBool  IsMoveSyncSend();                                   ///< MoveSync ��Ŷ�� �������ϴ� ���������� ��ȯ�Ѵ� (�ƹ�Ÿ��)
+    RwBool  IsMoveSyncState();                                  ///< MoveSync을 맞춰야하는 상태인지를 반환한다 (다른 캐릭터용)
+    RwBool  IsMoveSyncSend();                                   ///< MoveSync 占쏙옙킷占쏙옙 占쏙옙占쏙옙占쏙옙占싹댐옙 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙환占싼댐옙 (占싣뱄옙타占쏙옙)
 
     virtual RwUInt32 HandleEvents(RWS::CMsg &pMsg);    
 
 protected:    
     virtual void	 UpdateAnimSpeed(void);    
-    virtual RwReal   GetMoveSpeed(RwUInt8 byMoveFlag);          ///< Move Flag�� �´� �ӵ��� ��ȯ�Ѵ�.
-    virtual RwBool   IsMoveSyncEmpty();                         ///< ���� MoveSyncQ�� Sync�� �����Ͱ� �ִ����� ��ȯ�Ѵ�.
+    virtual RwReal   GetMoveSpeed(RwUInt8 byMoveFlag);          ///< Move Flag占쏙옙 占승댐옙 占쌈듸옙占쏙옙 占쏙옙환占싼댐옙.
+    virtual RwBool   IsMoveSyncEmpty();                         ///< 占쏙옙占쏙옙 MoveSyncQ占쏙옙 Sync占쏙옙 占쏙옙占쏙옙占싶곤옙 占쌍댐옙占쏙옙占쏙옙 占쏙옙환占싼댐옙.
 
 protected:    
 

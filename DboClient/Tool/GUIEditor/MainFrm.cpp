@@ -1,4 +1,4 @@
-// MainFrm.cpp : CMainFrame Å¬·¡½ºÀÇ ±¸Çö
+// MainFrm.cpp : CMainFrame í´ë˜ìŠ¤ì˜ êµ¬í˜„
 //
 
 #include "stdafx.h"
@@ -30,18 +30,18 @@ END_MESSAGE_MAP()
 
 static UINT indicators[] =
 {
-	ID_SEPARATOR,           // »óÅÂ ÁÙ Ç¥½Ã±â
+	ID_SEPARATOR,           // ìƒíƒœ ì¤„ í‘œì‹œê¸°
 	ID_INDICATOR_CAPS,
 	ID_INDICATOR_NUM,
 	ID_INDICATOR_SCRL,
 };
 
 
-// CMainFrame »ı¼º/¼Ò¸ê
+// CMainFrame ìƒì„±/ì†Œë©¸
 
 CMainFrame::CMainFrame()
 {
-	// TODO: ¿©±â¿¡ ¸â¹ö ÃÊ±âÈ­ ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©¤ë²„ ì´ˆê¸°í™” ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	m_bSplit = FALSE;
 }
 
@@ -60,7 +60,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		!m_wndToolBar.LoadToolBar(IDR_MAINFRAME))
 	{
 		TRACE0("m_wndToolBar.CreateEx = fail \n");
-		return -1;      // ¸¸µéÁö ¸øÇß½À´Ï´Ù.
+		return -1;      // ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.
 	}
 
 	if (!m_wndStatusBar.Create(this) ||
@@ -68,16 +68,16 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		  sizeof(indicators)/sizeof(UINT)))
 	{
 		TRACE0("m_wndStatusBar.Create = fail\n");
-		return -1;      // ¸¸µéÁö ¸øÇß½À´Ï´Ù.
+		return -1;      // ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.
 	}
-	// TODO: µµ±¸ ¸ğÀ½À» µµÅ·ÇÒ ¼ö ¾ø°Ô ÇÏ·Á¸é ÀÌ ¼¼ ÁÙÀ» »èÁ¦ÇÏ½Ê½Ã¿À.
+	// TODO: ë„êµ¬ ëª¨ìŒì„ ë„í‚¹í•  ìˆ˜ ì—†ê²Œ í•˜ë ¤ë©´ ì´ ì„¸ ì¤„ì„ ì‚­ì œí•˜ì‹­ì‹œì˜¤.
 	m_wndToolBar.EnableDocking(CBRS_ALIGN_ANY);
 	EnableDocking(CBRS_ALIGN_ANY);
 	DockControlBar(&m_wndToolBar);
 	
 	ShowWindow( SW_SHOWMAXIMIZED );
 
-	// ÀüÃ¼È­ ÇÑ ÈÄ »çÀÌÁî Á¶Àı.
+	// ì „ì²´í™” í•œ í›„ ì‚¬ì´ì¦ˆ ì¡°ì ˆ.
 	ResizeSplitWnd();
 
 	InitCtrlBar();
@@ -110,14 +110,14 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 	if( !CFrameWnd::PreCreateWindow(cs) )
 		return FALSE;
-	// TODO: CREATESTRUCT cs¸¦ ¼öÁ¤ÇÏ¿© ¿©±â¿¡¼­
-	// Window Å¬·¡½º ¶Ç´Â ½ºÅ¸ÀÏÀ» ¼öÁ¤ÇÕ´Ï´Ù.
+	// TODO: CREATESTRUCT csë¥¼ ìˆ˜ì •í•˜ì—¬ ì—¬ê¸°ì—ì„œ
+	// Window í´ë˜ìŠ¤ ë˜ëŠ” ìŠ¤íƒ€ì¼ì„ ìˆ˜ì •í•©ë‹ˆë‹¤.
 
 	return TRUE;
 }
 
 
-// CMainFrame Áø´Ü
+// CMainFrame ì§„ë‹¨
 
 #ifdef _DEBUG
 void CMainFrame::AssertValid() const
@@ -133,12 +133,12 @@ void CMainFrame::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CMainFrame ¸Ş½ÃÁö Ã³¸®±â
+// CMainFrame ë©”ì‹œì§€ ì²˜ë¦¬ê¸°
 
 
 BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	//return CFrameWnd::OnCreateClient(lpcs, pContext);
 
 	m_wndSplit1.CreateStatic( this, 2, 1, WS_CHILD | WS_VISIBLE, AFX_IDW_PANE_FIRST );
@@ -161,7 +161,7 @@ BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
 	// Config Load
 	g_pDocument->GetDataManager().LoadConfig();
 			
-	// Split ¿Ï·á
+	// Split ì™„ë£Œ
 	m_bSplit = TRUE;
 
 	return TRUE;
@@ -184,7 +184,7 @@ void CMainFrame::ResizeSplitWnd()
 
 void CMainFrame::ActivateFrame(int nCmdShow)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	static BOOL bFirsttime = TRUE;
 	
 	if(bFirsttime)

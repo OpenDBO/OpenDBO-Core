@@ -55,7 +55,7 @@ protected:
 	// Temp
 	CPoint								m_ptTempEnd;
 
-	// »ı¼º ¿©ºÎ
+	// ìƒì„± ì—¬ë¶€
 	bool								m_bCreated;
 
 	// Anchor
@@ -124,7 +124,7 @@ public:
 protected:
 	virtual void						SetupTheme( void );
 
-	// Segment Á¶ÀÛ
+	// Segment ì¡°ì‘
 	virtual double						GetSegLength( int nIndex ) const;
 	virtual double						GetSegAngle( int nIndex ) const;
 	virtual bool						IntersectsSeg( const CRect &rect, int nIndex ) const;
@@ -132,7 +132,7 @@ protected:
 	virtual void						RemoveSeg( int nIndex );
 	bool								OptimizeSeg( void );
 
-	// ÁÂÇ¥ º¯È¯
+	// ì¢Œí‘œ ë³€í™˜
 	virtual void						SrcTransform( CPoint p[], int nCount ) const;
 	virtual void						DestTransform( CPoint p[], int nCount ) const;
 

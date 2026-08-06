@@ -2,21 +2,21 @@
 #include "afxcmn.h"
 
 
-// CFieldHeatHazeDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CFieldHeatHazeDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CFieldHeatHazeDlg : public CDialog
 {
 	DECLARE_DYNAMIC(CFieldHeatHazeDlg)
 
 public:
-	CFieldHeatHazeDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CFieldHeatHazeDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CFieldHeatHazeDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_ATTR_FIELD_HEATHAZE };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	virtual BOOL OnInitDialog();
 

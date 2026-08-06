@@ -53,12 +53,12 @@ void CCommercialExtendMode::InitShowComponent()
 		m_AttributeControlSet.pButt_btnRefillCash->Show(true);
 	}
 
-	/// Å©±â À§Ä¡ Á¶Á¤
+	/// í¬ê¸° ìœ„ì¹˜ ì¡°ì •
 	CRectangle rect = m_AttributeControlSet.pDialog->GetPosition();
 	rect.bottom = rect.top + m_AttributeControlSet.iDefaultWndHeight;
 	m_AttributeControlSet.pDialog->SetPosition(rect);
 
-		/// Å©±â º¯°æ¿¡ µû¸¥ ÇÏºÎ component À§Ä¡ Á¶Á¤
+		/// í¬ê¸° ë³€ê²½ì— ë”°ë¥¸ í•˜ë¶€ component ìœ„ì¹˜ ì¡°ì •
 	int iDiff1 = m_AttributeControlSet.pStatic_stbDescript2->GetPosition().top - 
 		m_AttributeControlSet.pStatic_stbDescript1->GetPosition().top;
 
@@ -90,7 +90,7 @@ void CCommercialExtendMode::InitShowComponent()
 	rect.Offset(0, m_AttributeControlSet.iDefaultDescript1Top + iDiff2 - rect.top);
 	m_AttributeControlSet.pButt_btnCancel->SetPosition(rect);
 
-	/// ÇÏºÎ ¹öÆ° È¾ À§Ä¡ Á¶Á¤
+	/// í•˜ë¶€ ë²„íŠ¼ íš¡ ìœ„ì¹˜ ì¡°ì •
 	rect = m_AttributeControlSet.pButt_btnCancel->GetPosition();
 	int iWidth = rect.right - rect.left;
 
@@ -105,7 +105,7 @@ void CCommercialExtendMode::SetCurrItemInfo(sITEM_TBLDAT* pITEM_TBLDAT)
 	CRetCaculDayHourMinSecond TimeRes;
 	WCHAR text[GUI_TEXT_BUFFER_SIZE];
 
-	/// ³²Àº »ç¿ë±â°£ ¼³Á¤
+	/// ë‚¨ì€ ì‚¬ìš©ê¸°ê°„ ì„¤ì •
 	CNtlSobItem* pNtlSobItem = Logic_FindInventoryItemMinDurByDurationGroup(pITEM_TBLDAT->dwDurationGroup);
 
 	m_pTargetNtlSobItem = pNtlSobItem;
@@ -131,7 +131,7 @@ void CCommercialExtendMode::SetCurrItemInfo(sITEM_TBLDAT* pITEM_TBLDAT)
 		m_AttributeControlSet.pStatic_stbRemainTime->SetText( text );
 	}
 
-	/// Ãß°¡ »ç¿ë±â°£ ¼³Á¤
+	/// ì¶”ê°€ ì‚¬ìš©ê¸°ê°„ ì„¤ì •
 	Logic_CaculDayHourMinSecond( pITEM_TBLDAT->dwUseDurationMax, &TimeRes );
 
 	if( TimeRes.uiDay > 0 )
@@ -163,14 +163,14 @@ void CCommercialExtendZennyMode::SetCurrItemInfo(sITEM_TBLDAT* pITEM_TBLDAT)
 {
 	CCommercialExtendMode::SetCurrItemInfo( pITEM_TBLDAT );
 
-	/// ¼Ò¸ğ Á¦´Ï
+	/// ì†Œëª¨ ì œë‹ˆ
 	WCHAR text[GUI_TEXT_BUFFER_SIZE];
 	swprintf_s( text, GUI_TEXT_BUFFER_SIZE, L"%s%s", Logic_FormatZeni(pITEM_TBLDAT->dwCost), GetDisplayStringManager()->GetString( "DST_ZENNY" ) );
 	text[GUI_TEXT_BUFFER_SIZE - 1] = NULL;
 
 	m_AttributeControlSet.pStatic_stbConsumeGold->SetText( text );
 
-	/// º¸À¯ Á¦´Ï
+	/// ë³´ìœ  ì œë‹ˆ
 	CNtlSobAvatar* pSobAvatar = GetNtlSLGlobal()->GetSobAvatar();
 	CNtlSobAvatarAttr* pAvatarAttr = reinterpret_cast<CNtlSobAvatarAttr*>( pSobAvatar->GetSobAttr() );
 
@@ -179,10 +179,10 @@ void CCommercialExtendZennyMode::SetCurrItemInfo(sITEM_TBLDAT* pITEM_TBLDAT)
 
 	m_AttributeControlSet.pStatic_stbMyGold->SetText( text );
 
-	/// icon skin º¯°æ
+	/// icon skin ë³€ê²½
 	m_AttributeControlSet.pSurConsumeGoldIcon->SetSurface( 
 		GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CommercialExtend.srf", "srfImageZenny" ) );
-	/// icon skin º¯°æ
+	/// icon skin ë³€ê²½
 	m_AttributeControlSet.pSurMyGoldIcon->SetSurface( 
 		GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CommercialExtend.srf", "srfImageZenny" ) );
 
@@ -192,7 +192,7 @@ void CCommercialExtendZennyMode::SetCurrItemInfo(sITEM_TBLDAT* pITEM_TBLDAT)
 
 RwBool CCommercialExtendZennyMode::ConFirm()
 {
-	/// ±â°£ ¿¬Àå  m_pTargetNtlSobItem
+	/// ê¸°ê°„ ì—°ì¥  m_pTargetNtlSobItem
 	if(m_pTargetNtlSobItem)
 	{
 		if( m_uiMyGold < m_uiConsumeGold )
@@ -246,14 +246,14 @@ void CCommercialExtendNetphyMode::SetCurrItemInfo(sITEM_TBLDAT* pITEM_TBLDAT)
 {
 	CCommercialExtendMode::SetCurrItemInfo( pITEM_TBLDAT );
 
-	/// ¼Ò¸ğ ³İÇÇ
+	/// ì†Œëª¨ ë„·í”¼
 	WCHAR text[GUI_TEXT_BUFFER_SIZE];
 	swprintf_s( text, GUI_TEXT_BUFFER_SIZE, L"%s%s", Logic_FormatZeni(pITEM_TBLDAT->CommonPoint), GetDisplayStringManager()->GetString( "DST_NETPY" ) );
 	text[GUI_TEXT_BUFFER_SIZE - 1] = NULL;
 
 	m_AttributeControlSet.pStatic_stbConsumeGold->SetText( text );
 
-	/// º¸À¯ ³İÇÇ
+	/// ë³´ìœ  ë„·í”¼
 	CNtlSobAvatar* pSobAvatar = GetNtlSLGlobal()->GetSobAvatar();
 	CNtlSobAvatarAttr* pAvatarAttr = reinterpret_cast<CNtlSobAvatarAttr*>( pSobAvatar->GetSobAttr() );
 
@@ -262,10 +262,10 @@ void CCommercialExtendNetphyMode::SetCurrItemInfo(sITEM_TBLDAT* pITEM_TBLDAT)
 
 	m_AttributeControlSet.pStatic_stbMyGold->SetText( text );
 
-	/// icon skin º¯°æ
+	/// icon skin ë³€ê²½
 	m_AttributeControlSet.pSurConsumeGoldIcon->SetSurface( 
 		GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CommercialExtend.srf", "srfPannelNetpy" ) );
-	/// icon skin º¯°æ
+	/// icon skin ë³€ê²½
 	m_AttributeControlSet.pSurMyGoldIcon->SetSurface( 
 		GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CommercialExtend.srf", "srfPannelNetpy" ) );
 
@@ -276,7 +276,7 @@ void CCommercialExtendNetphyMode::SetCurrItemInfo(sITEM_TBLDAT* pITEM_TBLDAT)
 
 RwBool CCommercialExtendNetphyMode::ConFirm()
 {
-	/// ±â°£ ¿¬Àå  m_pTargetNtlSobItem
+	/// ê¸°ê°„ ì—°ì¥  m_pTargetNtlSobItem
 	if(m_pTargetNtlSobItem)
 	{
 		if( m_uiMyGold < m_uiConsumeGold )
@@ -341,29 +341,29 @@ void CCommercialExtendCashMode::Init()
 void CCommercialExtendCashMode::SetCurrItemInfo(sITEM_TBLDAT* pITEM_TBLDAT)
 {
 	CCommercialExtendMode::SetCurrItemInfo( pITEM_TBLDAT );
-	/// Cash´Â ¾ÆÁ÷ ¹Ì¿Ï¼º	///¹Ì±¸Çö
+	/// CashëŠ” ì•„ì§ ë¯¸ì™„ì„±	///ë¯¸êµ¬í˜„
 
-	/// ¼Ò¸ğ Cash
+	/// ì†Œëª¨ Cash
 	WCHAR text[GUI_TEXT_BUFFER_SIZE];
 	swprintf_s( text, GUI_TEXT_BUFFER_SIZE, L"%d%s", pITEM_TBLDAT->CommonPoint, GetDisplayStringManager()->GetString( "DST_CASH" ) );
 	text[GUI_TEXT_BUFFER_SIZE - 1] = NULL;
 
 	m_AttributeControlSet.pStatic_stbConsumeGold->SetText( text );
 
-	/// º¸À¯ ³İÇÇ
+	/// ë³´ìœ  ë„·í”¼
 	CNtlSobAvatar* pSobAvatar = GetNtlSLGlobal()->GetSobAvatar();
 	CNtlSobAvatarAttr* pAvatarAttr = reinterpret_cast<CNtlSobAvatarAttr*>( pSobAvatar->GetSobAttr() );
-	/// Cash´Â ¾ÆÁ÷ ¹Ì¿Ï¼º
+	/// CashëŠ” ì•„ì§ ë¯¸ì™„ì„±
 	//swprintf_s( text, GUI_TEXT_BUFFER_SIZE, L"%d%s", pAvatarAttr->m_dwNetPy, GetDisplayStringManager()->GetString( DST_CASH ) );
 	//text[GUI_TEXT_BUFFER_SIZE - 1] = NULL;
 
 	//m_AttributeControlSet.pStatic_stbMyGold->SetText( text );
 	m_AttributeControlSet.pStatic_stbMyGold->SetText( " " );
 
-	/// icon skin º¯°æ
+	/// icon skin ë³€ê²½
 	m_AttributeControlSet.pSurConsumeGoldIcon->SetSurface( 
 		GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CommercialExtend.srf", "srfPannelCash" ) );
-	/// icon skin º¯°æ
+	/// icon skin ë³€ê²½
 	m_AttributeControlSet.pSurMyGoldIcon->SetSurface( 
 		GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CommercialExtend.srf", "srfPannelCash" ) );
 
@@ -380,13 +380,13 @@ void CCommercialExtendCashMode::Cancel()
 
 void CCommercialExtendCashMode::Buy()
 {
-	/// CCommercialExtendCashBuyMode·Î
+	/// CCommercialExtendCashBuyModeë¡œ
 	CDboEventGenerator::ChangeCommercialExtendmode( CCommercialExtendGui::CASH_BUY );
 }
 
 void CCommercialExtendCashMode::Refill()
 {
-	/// Ä³½¬ÃæÀüÃ¢............  web¿¬µ¿	///¹Ì±¸Çö
+	/// ìºì‰¬ì¶©ì „ì°½............  webì—°ë™	///ë¯¸êµ¬í˜„
 
 }
 
@@ -430,12 +430,12 @@ void CCommercialExtendCashBuyMode::SetCurrItemInfo(sITEM_TBLDAT* pITEM_TBLDAT)
 {
 	CCommercialExtendMode::SetCurrItemInfo( pITEM_TBLDAT );
 
-	/// Cash´Â ¾ÆÁ÷ ¹Ì¿Ï¼º	///¹Ì±¸Çö
+	/// CashëŠ” ì•„ì§ ë¯¸ì™„ì„±	///ë¯¸êµ¬í˜„
 }
 
 RwBool CCommercialExtendCashBuyMode::ConFirm()
 {
-	/// ±â°£ ¿¬Àå  m_pTargetNtlSobItem
+	/// ê¸°ê°„ ì—°ì¥  m_pTargetNtlSobItem
 	if(m_pTargetNtlSobItem)
 	{
 		if( m_uiMyGold < m_uiConsumeGold )
@@ -487,7 +487,7 @@ CCommercialExtendGui::~CCommercialExtendGui()
 VOID CCommercialExtendGui::Init(VOID)
 {
 	m_pCurrITEM_TBLDA = NULL;
-	m_pTargetNtlSobItem = NULL;			/// ±â°£¿¬ÀåÀ» À§ÇÑ itemÀÇ Á¤º¸ ref
+	m_pTargetNtlSobItem = NULL;			/// ê¸°ê°„ì—°ì¥ì„ ìœ„í•œ itemì˜ ì •ë³´ ref
 }
 
 RwBool CCommercialExtendGui::Create(VOID)
@@ -595,8 +595,8 @@ RwBool CCommercialExtendGui::Create(VOID)
 	LinkMsg( g_EventCommercialExtendCommand, 0 );
 	LinkMsg(g_EventMsgBoxResult, 0);
 
-	//// Update ¿¬°á
-	//GetNtlGuiManager()->AddUpdateFunc( this );	/// ±â°£ update
+	//// Update ì—°ê²°
+	//GetNtlGuiManager()->AddUpdateFunc( this );	/// ê¸°ê°„ update
 
 	NTL_RETURN( TRUE );
 }
@@ -661,11 +661,11 @@ VOID CCommercialExtendGui::OpenDialog()
 
 VOID CCommercialExtendGui::OpenDialog(GUI_EXTEND_MODE eMode, sITEM_TBLDAT* pITEM_TBLDAT, RwUInt32 uiItemIdx)
 {
-	if( NUM_EXTEND_MODE == eMode)		/// open½Ã¿£ ³»ºÎ °è»ê mode
+	if( NUM_EXTEND_MODE == eMode)		/// openì‹œì—” ë‚´ë¶€ ê³„ì‚° mode
 	{
 		if( NULL == pITEM_TBLDAT )
 		{
-			if( INVALID_TBLIDX == uiItemIdx )		/// ¹Ì¸® settingµÈ item
+			if( INVALID_TBLIDX == uiItemIdx )		/// ë¯¸ë¦¬ settingëœ item
 				uiItemIdx = m_uiDurItemIdx;
 
 			pITEM_TBLDAT = (sITEM_TBLDAT*)API_GetTableContainer()->GetItemTable()->FindData(uiItemIdx);
@@ -674,7 +674,7 @@ VOID CCommercialExtendGui::OpenDialog(GUI_EXTEND_MODE eMode, sITEM_TBLDAT* pITEM
 		if( NULL == pITEM_TBLDAT )
 			return;
 
-		// ±â°£Á¦ °Ë»ç
+		// ê¸°ê°„ì œ ê²€ì‚¬
 		if( FALSE == Logic_IsTimeLimitItem( pITEM_TBLDAT ) )
 			return;
 
@@ -693,7 +693,7 @@ VOID CCommercialExtendGui::OpenDialog(GUI_EXTEND_MODE eMode, sITEM_TBLDAT* pITEM
 	{
 		if( INVALID_TBLIDX == uiItemIdx )
 		{
-			SetCurrItemTbl( m_uiDurItemIdx );	/// ¹Ì¸® settingµÈ item
+			SetCurrItemTbl( m_uiDurItemIdx );	/// ë¯¸ë¦¬ settingëœ item
 		}
 		else
 		{
@@ -707,7 +707,7 @@ VOID CCommercialExtendGui::OpenDialog(GUI_EXTEND_MODE eMode, sITEM_TBLDAT* pITEM
 
 sITEM_TBLDAT* CCommercialExtendGui::StartBuyDurItemProcessCommonForItem( RwUInt32 uiItemIdx )
 {
-	/// ±â°£Á¦ item ±¸¸Å ½ÃÀÛ event¸¦ ¹ŞÀ¸¸é ½ÇÇà....  entry point
+	/// ê¸°ê°„ì œ item êµ¬ë§¤ ì‹œì‘ eventë¥¼ ë°›ìœ¼ë©´ ì‹¤í–‰....  entry point
 	// Work Flow
 	//
 	//	MBW_BUY_DUR_ITEM --->  MBW_DUR_ITEM_EXTEND			--------->    CCommercialExtendGui
@@ -736,7 +736,7 @@ VOID CCommercialExtendGui::StartBuyDurItemProcessNPC( RwUInt32 uiItemIdx,  RwUIn
 	sITEM_TBLDAT* pITEM_TBLDAT = StartBuyDurItemProcessCommonForItem( uiItemIdx );
 
 	if( pITEM_TBLDAT )
-	{	/// Start MessageBox ½ÃÀÛ		MBW_BUY_DUR_ITEM
+	{	/// Start MessageBox ì‹œì‘		MBW_BUY_DUR_ITEM
 		if (CCommercialExtendGui::ZENNY_EXTEND == m_eCurrExtendGuiMode)
 		{
 			CTextTable* pItemTextTable = API_GetTableContainer()->GetTextAllTable()->GetItemTbl();
@@ -754,7 +754,7 @@ VOID CCommercialExtendGui::StartBuyDurItemProcessNetpy( RwUInt32 uiItemIdx, RwUI
 	sITEM_TBLDAT* pITEM_TBLDAT = StartBuyDurItemProcessCommonForItem( uiItemIdx );
 
 	if( pITEM_TBLDAT )
-	{	/// Start MessageBox ½ÃÀÛ		MBW_BUY_DUR_ITEM
+	{	/// Start MessageBox ì‹œì‘		MBW_BUY_DUR_ITEM
 		if (CCommercialExtendGui::NETPY_EXTEND == m_eCurrExtendGuiMode)
 		{
 			CTextTable* pItemTextTable = API_GetTableContainer()->GetTextAllTable()->GetItemTbl();
@@ -838,7 +838,7 @@ VOID CCommercialExtendGui::SetCurrItemTbl(sITEM_TBLDAT* pITEM_TBLDAT)
 
 		m_pStatic_stbItemName->SetText(pItemTextTable->GetText(pITEM_TBLDAT->Name).c_str());
 
-		if(  TRUE == Logic_IsTimeLimitItem( pITEM_TBLDAT ) )	/// ±â°£Á¦ÀÏ¶§¸¸ 
+		if(  TRUE == Logic_IsTimeLimitItem( pITEM_TBLDAT ) )	/// ê¸°ê°„ì œì¼ë•Œë§Œ 
 			m_pArrayCommercialExtendMode[m_eCurrExtendGuiMode]->SetCurrItemInfo( pITEM_TBLDAT );
 
 		SetIcon( pITEM_TBLDAT->szIcon_Name );
@@ -932,8 +932,8 @@ VOID CCommercialExtendGui::OnPaint(VOID)
 {
 	m_DialogSurface.Render();
 
-	m_surConsumeGoldIcon.Render();				// ÅØ½ºÃ³ ¹Ù²ğ ¼ö ÀÖÀ½
-	m_surMyGoldIcon.Render();					// ÅØ½ºÃ³ ¹Ù²ğ ¼ö ÀÖÀ½
+	m_surConsumeGoldIcon.Render();				// í…ìŠ¤ì²˜ ë°”ë€” ìˆ˜ ìˆìŒ
+	m_surMyGoldIcon.Render();					// í…ìŠ¤ì²˜ ë°”ë€” ìˆ˜ ìˆìŒ
 
 	m_surItemIconSlot.Render();
 	m_surEnterSlot.Render();
@@ -1037,7 +1037,7 @@ VOID CCommercialExtendGui::HandleEventsSubMsgBox( RWS::CMsg& msg )
 			{
 				case CCommercialExtendGui::ZENNY_EXTEND:	/// Purchase of NPC Stores
 				{
-					if (m_pTargetNtlSobItem)	    /// ÀÎº¥¿¡ °°Àº Duration_groupÀÇ item Á¸ÀçÇÏ´ÂÁö °Ë»ç(StartBuyDurItemProcess¼­ ¿Ï·á)
+					if (m_pTargetNtlSobItem)	    /// ì¸ë²¤ì— ê°™ì€ Duration_groupì˜ item ì¡´ì¬í•˜ëŠ”ì§€ ê²€ì‚¬(StartBuyDurItemProcessì„œ ì™„ë£Œ)
 					{
 						CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>( m_pTargetNtlSobItem->GetSobAttr() );
 
@@ -1172,12 +1172,12 @@ VOID CCommercialExtendGui::HandleEventsSubMsgBox( RWS::CMsg& msg )
 
 //	switch (pEvent->uiWorkId)
 //	{
-//	case MBW_COMMERCIAL_MB_UPDATE_TERM_LIMETED_ITEM:	/// inven¿¡¼­ ¾ÆÀÌÅÛ ¿¬Àå½Ã ¸Ş½ÃÁö¹Ú½º Ã³¸®
+//	case MBW_COMMERCIAL_MB_UPDATE_TERM_LIMETED_ITEM:	/// invenì—ì„œ ì•„ì´í…œ ì—°ì¥ì‹œ ë©”ì‹œì§€ë°•ìŠ¤ ì²˜ë¦¬
 //		{
-//			// peessi : ÇöÀç´Â ±×³É ¾ÆÀÌÅÛÀ» À¯È¿È­ ÇÏÁö¸¸, ÀÌÈÄ ¿©±â¼­´Â Ãë¼ÒÇÒ¶§¸¸ À¯È¿È­ ok½Ã ¿¬ÀåÃ¢ »ı¼º, ¾ÆÀÌÅÛ ¿¬ÀåÃ¢À» ´İÀ»¶§ À¯È¿È­.
+//			// peessi : í˜„ì¬ëŠ” ê·¸ëƒ¥ ì•„ì´í…œì„ ìœ íš¨í™” í•˜ì§€ë§Œ, ì´í›„ ì—¬ê¸°ì„œëŠ” ì·¨ì†Œí• ë•Œë§Œ ìœ íš¨í™” okì‹œ ì—°ì¥ì°½ ìƒì„±, ì•„ì´í…œ ì—°ì¥ì°½ì„ ë‹«ì„ë•Œ ìœ íš¨í™”.
 //			if( pEvent->eResult == MBR_OK )	/// 20090820 woosung_test
 //			{
-//				// À¯È¿±â°£ ¿¬ÀåÃ¢ ¿­±â.
+//				// ìœ íš¨ê¸°ê°„ ì—°ì¥ì°½ ì—´ê¸°.
 //				CNtlSobItem* pItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( pEvent->pData->sItemDeleteInfo.hSerial ) );
 //				if( pItem )
 //				{
@@ -1200,11 +1200,11 @@ VOID CCommercialExtendGui::HandleEventsSubMsgBox( RWS::CMsg& msg )
 //		break;	
 //
 ///// NPC, Netpy Shop
-//	case MBW_COMMERCIAL_MB_DIRECT_BUY:			// ±â°£Á¦¾ÆÀÌÅÛ ±¸¸Å ½ÃÀÛ(¿£Æ®¸® Æ÷ÀÎÆ®)  DST_COMMERCIAL_MB_DIRECT_BUY_MSG
+//	case MBW_COMMERCIAL_MB_DIRECT_BUY:			// ê¸°ê°„ì œì•„ì´í…œ êµ¬ë§¤ ì‹œì‘(ì—”íŠ¸ë¦¬ í¬ì¸íŠ¸)  DST_COMMERCIAL_MB_DIRECT_BUY_MSG
 //		{
 //			if( pEvent->eResult == MBR_OK )		
 //			{
-//				if( m_pTargetNtlSobItem )	    /// ÀÎº¥¿¡ °°Àº Duration_groupÀÇ item Á¸ÀçÇÏ´ÂÁö °Ë»ç(StartBuyDurItemProcess¼­ ¿Ï·á)
+//				if( m_pTargetNtlSobItem )	    /// ì¸ë²¤ì— ê°™ì€ Duration_groupì˜ item ì¡´ì¬í•˜ëŠ”ì§€ ê²€ì‚¬(StartBuyDurItemProcessì„œ ì™„ë£Œ)
 //				{
 //					CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>( m_pTargetNtlSobItem->GetSobAttr() );
 //
@@ -1212,7 +1212,7 @@ VOID CCommercialExtendGui::HandleEventsSubMsgBox( RWS::CMsg& msg )
 //						break;
 //					if( pItemAttr && pItemAttr->GetItemTbl() )
 //					{
-//						if( ITEM_TYPE_BAG == pItemAttr->GetItemTbl()->byItem_Type )	/// bag itemÀÎÁö °Ë»ç
+//						if( ITEM_TYPE_BAG == pItemAttr->GetItemTbl()->byItem_Type )	/// bag itemì¸ì§€ ê²€ì‚¬
 //						{
 //							GetAlarmManager()->AlarmMessage("DST_COMMERCIAL_MB_CAPSULEKIT_ITEM_TERM_EXTENTION");
 //						}
@@ -1222,36 +1222,36 @@ VOID CCommercialExtendGui::HandleEventsSubMsgBox( RWS::CMsg& msg )
 //						}
 //					}
 //				}
-//				else	/// ¹Ù·Î ±¸¸Å ÇÑ´Ù(ÀÎº¥³»¿¡ ±â°£Á¦ Á¸Àç ¾ÊÀ¸¸é)
+//				else	/// ë°”ë¡œ êµ¬ë§¤ í•œë‹¤(ì¸ë²¤ë‚´ì— ê¸°ê°„ì œ ì¡´ì¬ ì•Šìœ¼ë©´)
 //				{
 //					GetAlarmManager()->AlarmMessage("DST_COMMERCIAL_MB_ITEM_BUY_CONFIRM_MSG");
 //				}
 //			}
 //		}
 //		break;
-//	case MBW_COMMERCIAL_MB_ITEM_TERM_EXTENTION:		// ±â°£Á¦¾ÆÀÌÅÛ ±â°£¿¬Àå È®ÀÎ -  : ok  DST_COMMERCIAL_MB_ITEM_BUY_MSG
+//	case MBW_COMMERCIAL_MB_ITEM_TERM_EXTENTION:		// ê¸°ê°„ì œì•„ì´í…œ ê¸°ê°„ì—°ì¥ í™•ì¸ -  : ok  DST_COMMERCIAL_MB_ITEM_BUY_MSG
 //		{
-//		/// ±â°£¿¬Àå È®ÀÎÃ¢ open		CCommercialExtendGui command event
+//		/// ê¸°ê°„ì—°ì¥ í™•ì¸ì°½ open		CCommercialExtendGui command event
 //			if( pEvent->eResult == MBR_OK )		
 //				OpenDialog();
 //		}
 //		break;
-//	case MBW_COMMERCIAL_MB_CAPSULEKIT_TERM_EXTENTION: // Bag type ±â°£Á¦¾ÆÀÌÅÛ ±â°£¿¬Àå È®ÀÎ or ±¸¸Å: DST_COMMERCIAL_MB_CAPSULEKIT_ITEM_TERM_EXTENTION
+//	case MBW_COMMERCIAL_MB_CAPSULEKIT_TERM_EXTENTION: // Bag type ê¸°ê°„ì œì•„ì´í…œ ê¸°ê°„ì—°ì¥ í™•ì¸ or êµ¬ë§¤: DST_COMMERCIAL_MB_CAPSULEKIT_ITEM_TERM_EXTENTION
 //		{
-//		/// ±â°£¿¬Àå È®ÀÎÃ¢ open		CCommercialExtendGui command event
+//		/// ê¸°ê°„ì—°ì¥ í™•ì¸ì°½ open		CCommercialExtendGui command event
 //			OpenDialog();
 //		}
 //		break;
-//	case MBW_COMMERCIAL_MB_CAPSULEKIT_BUY: // Bag type ±â°£Á¦¾ÆÀÌÅÛ ±â°£¿¬Àå È®ÀÎ or ±¸¸Å: DST_COMMERCIAL_MB_CAPSULEKIT_ITEM_TERM_EXTENTION
+//	case MBW_COMMERCIAL_MB_CAPSULEKIT_BUY: // Bag type ê¸°ê°„ì œì•„ì´í…œ ê¸°ê°„ì—°ì¥ í™•ì¸ or êµ¬ë§¤: DST_COMMERCIAL_MB_CAPSULEKIT_ITEM_TERM_EXTENTION
 //		{
 //			GetAlarmManager()->AlarmMessage("DST_COMMERCIAL_MB_ITEM_BUY_CONFIRM_MSG");
 //		}
 //		break;
-///// ¾ßµå·¹Æ® Ã¢°í(Cash)
-//	case MBW_COMMERCIAL_MB_DUR_ITEM_GET_FROM_YARDRAT:// ±â°£Á¦¾ÆÀÌÅÛ ±¸¸Å ½ÃÀÛ(¿£Æ®¸® Æ÷ÀÎÆ®)  DST_COMMERCIAL_MB_ITEM_TAKE_CONFIRM_MSG
+///// ì•¼ë“œë ˆíŠ¸ ì°½ê³ (Cash)
+//	case MBW_COMMERCIAL_MB_DUR_ITEM_GET_FROM_YARDRAT:// ê¸°ê°„ì œì•„ì´í…œ êµ¬ë§¤ ì‹œì‘(ì—”íŠ¸ë¦¬ í¬ì¸íŠ¸)  DST_COMMERCIAL_MB_ITEM_TAKE_CONFIRM_MSG
 //		if( pEvent->eResult == MBR_OK )		
 //		{
-//			if( m_pTargetNtlSobItem )	    /// ÀÎº¥¿¡ °°Àº Duration_groupÀÇ item Á¸ÀçÇÏ´ÂÁö °Ë»ç(StartBuyDurItemProcessCash¼­ ¿Ï·á)
+//			if( m_pTargetNtlSobItem )	    /// ì¸ë²¤ì— ê°™ì€ Duration_groupì˜ item ì¡´ì¬í•˜ëŠ”ì§€ ê²€ì‚¬(StartBuyDurItemProcessCashì„œ ì™„ë£Œ)
 //			{
 //				CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>( m_pTargetNtlSobItem->GetSobAttr() );
 //
@@ -1259,7 +1259,7 @@ VOID CCommercialExtendGui::HandleEventsSubMsgBox( RWS::CMsg& msg )
 //					break;
 //				if( pItemAttr && pItemAttr->GetItemTbl() )
 //				{
-//					if( ITEM_TYPE_BAG == pItemAttr->GetItemTbl()->byItem_Type )	/// bag itemÀÎÁö °Ë»ç
+//					if( ITEM_TYPE_BAG == pItemAttr->GetItemTbl()->byItem_Type )	/// bag itemì¸ì§€ ê²€ì‚¬
 //					{
 //						GetAlarmManager()->AlarmMessage("DST_COMMERCIAL_MB_CAPSULEKIT_ITEM_SELECT");
 //					}
@@ -1269,7 +1269,7 @@ VOID CCommercialExtendGui::HandleEventsSubMsgBox( RWS::CMsg& msg )
 //					}
 //				}
 //			}
-//			else	/// ¹Ù·Î ÀÌµ¿ ÇÑ´Ù(ÀÎº¥³»¿¡ ±â°£Á¦ Á¸Àç ¾ÊÀ¸¸é)
+//			else	/// ë°”ë¡œ ì´ë™ í•œë‹¤(ì¸ë²¤ë‚´ì— ê¸°ê°„ì œ ì¡´ì¬ ì•Šìœ¼ë©´)
 //			{
 //				GetAlarmManager()->AlarmMessage("DST_COMMERCIAL_MB_ITEM_MOVE_CONFIRM_MSG");
 //			}
@@ -1277,13 +1277,13 @@ VOID CCommercialExtendGui::HandleEventsSubMsgBox( RWS::CMsg& msg )
 //		break;
 //	case MBW_COMMERCIAL_MB_TERM_OR_BUY_SELECT_CONFIRM: // DST_COMMERCIAL_MB_TERM_OR_BUY_SELECT_CONFIRM_MSG
 //		{
-//			/// ±â°£¿¬Àå È®ÀÎÃ¢ open		CCommercialExtendGui command event
+//			/// ê¸°ê°„ì—°ì¥ í™•ì¸ì°½ open		CCommercialExtendGui command event
 //			OpenDialog();
 //		}
 //		break;
 //	case MBW_COMMERCIAL_MB_CAPSULEKIT_ITEM_TERM_EXTENTION:
 //		{
-//			/// ±â°£¿¬Àå È®ÀÎÃ¢ open		CCommercialExtendGui command event
+//			/// ê¸°ê°„ì—°ì¥ í™•ì¸ì°½ open		CCommercialExtendGui command event
 //			OpenDialog();
 //		}
 //		break;
@@ -1292,21 +1292,21 @@ VOID CCommercialExtendGui::HandleEventsSubMsgBox( RWS::CMsg& msg )
 //			GetAlarmManager()->AlarmMessage("DST_COMMERCIAL_MB_ITEM_MOVE_CONFIRM_MSG");
 //		}
 //		break;
-///// ±¸ÀÔ ÀçÈ®ÀÎ
-//	case MBW_COMMERCIAL_MB_ITEM_BUY_CONFIRM:	// ±â°£Á¦¾ÆÀÌÅÛ ±¸¸Å ÀçÈ®ÀÎ DST_COMMERCIAL_MB_ITEM_BUY_CONFIRM_MSG, 
+///// êµ¬ì… ì¬í™•ì¸
+//	case MBW_COMMERCIAL_MB_ITEM_BUY_CONFIRM:	// ê¸°ê°„ì œì•„ì´í…œ êµ¬ë§¤ ì¬í™•ì¸ DST_COMMERCIAL_MB_ITEM_BUY_CONFIRM_MSG, 
 //		{
-//			/// ±â°£Á¦¾ÆÀÌÅÛ ±¸¸Å			CCommercialExtendGui command event
+//			/// ê¸°ê°„ì œì•„ì´í…œ êµ¬ë§¤			CCommercialExtendGui command event
 //			if( pEvent->eResult == MBR_OK )	
 //			{
 //				switch( m_eCurrExtendGuiMode )
 //				{
-//				case CCommercialExtendGui::ZENNY_EXTEND:	/// NPC»óÁ¡¼­ ±â°£Á¦ ±¸ÀÔ
+//				case CCommercialExtendGui::ZENNY_EXTEND:	/// NPCìƒì ì„œ ê¸°ê°„ì œ êµ¬ì…
 //					NetSendBuyDurItemNPC();
 //					break;
-//				case CCommercialExtendGui::NETPY_EXTEND:	/// Netpy»óÁ¡¼­ ±â°£Á¦ ±¸ÀÔ
+//				case CCommercialExtendGui::NETPY_EXTEND:	/// Netpyìƒì ì„œ ê¸°ê°„ì œ êµ¬ì…
 //					NetSendBuyDurItemNetpy();
 //					break;
-//				case CCommercialExtendGui::CASH_EXTEND:		/// ¾ßµå·¡Æ®·ÎºÎÅÍ ÀÌµ¿
+//				case CCommercialExtendGui::CASH_EXTEND:		/// ì•¼ë“œë˜íŠ¸ë¡œë¶€í„° ì´ë™
 //				case CCommercialExtendGui::CASH_BUY:
 //					NetSendMoveDurItemFromYardrat();
 //					break;

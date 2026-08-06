@@ -1472,7 +1472,7 @@ BOOL CDIB::GaussianBlur( void )
 	tAlphaImage = (COLORREF*) GlobalAlloc( GMEM_FIXED | GMEM_ZEROINIT, m_Size.cx * m_Size.cy * sizeof( COLORREF ) );
 	if( !tAlphaImage )	
 	{
-        AfxMessageBox( _T("[ CDIB::GaussianBlur() ] ¸Ş¸ğ¸® ÇÒ´ç¿¡ ½ÇÆĞ Çß½À´Ï´Ù. [ %ld Bytes]"), m_Size.cx * m_Size.cy  * sizeof( COLORREF ) );
+        AfxMessageBox( _T("[ CDIB::GaussianBlur() ] ë©”ëª¨ë¦¬ í• ë‹¹ì— ì‹¤íŒ¨ í–ˆìŠµë‹ˆë‹¤. [ %ld Bytes]"), m_Size.cx * m_Size.cy  * sizeof( COLORREF ) );
 		return FALSE;
     }
 	
@@ -1557,7 +1557,7 @@ BOOL CDIB::NearestNeighborInterpolation( void )
 	tAlphaImage = (COLORREF*) GlobalAlloc( GMEM_FIXED | GMEM_ZEROINIT, m_Size.cx * m_Size.cy * sizeof( COLORREF ) );
 	if( !tAlphaImage )	
 	{
-        AfxMessageBox( _T("[ CDIB::GaussianBlur() ] ¸Ş¸ğ¸® ÇÒ´ç¿¡ ½ÇÆĞ Çß½À´Ï´Ù. [ %ld Bytes]"), m_Size.cx * m_Size.cy  * sizeof( COLORREF ) );
+        AfxMessageBox( _T("[ CDIB::GaussianBlur() ] ë©”ëª¨ë¦¬ í• ë‹¹ì— ì‹¤íŒ¨ í–ˆìŠµë‹ˆë‹¤. [ %ld Bytes]"), m_Size.cx * m_Size.cy  * sizeof( COLORREF ) );
 		return FALSE;
     }
 	

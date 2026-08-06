@@ -2,7 +2,7 @@
  *
  * File			: NtlPLProperty.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 8. 01	
  * Abstract		: Presentation layer property base class
  *****************************************************************************
@@ -21,8 +21,8 @@ class CNtlXMLDoc;
 
 /**
  * \ingroup NtlPresentation
- * entityÀÇ attibute¸¦ ³ªÅ¸³»´Â base classÀÌ´Ù.
- * ¸ğµç entityµéÀº instance°¡ »ı¼ºµÈ ÈÄ¿¡ SetProperty interface ÇÔ¼ö¸¦ ÅëÇÏ¿© property data¸¦ Àü´ŞµÈ´Ù.
+ * entityì˜ attibuteë¥¼ ë‚˜íƒ€ë‚´ëŠ” base classì´ë‹¤.
+ * ëª¨ë“  entityë“¤ì€ instanceê°€ ìƒì„±ëœ í›„ì— SetProperty interface í•¨ìˆ˜ë¥¼ í†µí•˜ì—¬ property dataë¥¼ ì „ë‹¬ëœë‹¤.
  *
  */
 class CNtlPLProperty
@@ -32,7 +32,7 @@ protected:
 	RwUInt32 m_uiId;
 	std::string m_strName;				/**< String describing the presentation entity property name */
 	std::string m_strClassID;			/**< String describing the presentation entity property class id */
-    RwUInt32    m_uiFlag;               ///< °¢ Entity¿¡ µû¸¥ Flag 
+    RwUInt32    m_uiFlag;               ///< ê° Entityì— ë”°ë¥¸ Flag 
 
 public:
 
@@ -57,7 +57,7 @@ public:
 
 	/**
 	*  prosentation entity property name setting.
-	*  \return property idÀ» ¸®ÅÏÇÑ´Ù.
+	*  \return property idì„ ë¦¬í„´í•œë‹¤.
 	*  \see SetId
 	*/
 	RwUInt32 GetId(void) const;
@@ -70,44 +70,44 @@ public:
 	void SetName(const RwChar *pName);
 
 	/**
-	*  prosentation entity property nameÀ» ¾ò¾î¿À´Â ÇÔ¼ö.
-	*  \return property name stringÀ» ¸®ÅÏÇÑ´Ù.
+	*  prosentation entity property nameì„ ì–»ì–´ì˜¤ëŠ” í•¨ìˆ˜.
+	*  \return property name stringì„ ë¦¬í„´í•œë‹¤.
 	*  \see SetName
 	*/
 	const RwChar* GetName(void);
 
 	/**
 	*  prosentation entity property class id setting.
-	*  \return property nameÀ» ¸®ÅÏÇÑ´Ù.
+	*  \return property nameì„ ë¦¬í„´í•œë‹¤.
 	*  \see GetClassID
 	*/
 	void SetClassID(const RwChar *pClassID);
 
 	/**
-	*  prosentation entity property class id¸¦ ¾ò¾î¿À´Â ÇÔ¼ö.
-	*  \return property class id stringÀ» ¸®ÅÏÇÑ´Ù.
+	*  prosentation entity property class idë¥¼ ì–»ì–´ì˜¤ëŠ” í•¨ìˆ˜.
+	*  \return property class id stringì„ ë¦¬í„´í•œë‹¤.
 	*  \see SetClassID
 	*/
 	const RwChar* GetClassID(void);
 
 	///**
-	//*  property data load ÇÔ¼ö.
-	//*  \return ¼º°øÀÌ¸éTRUE, ½ÇÆĞÀÌ¸é FALSE
+	//*  property data load í•¨ìˆ˜.
+	//*  \return ì„±ê³µì´ë©´TRUE, ì‹¤íŒ¨ì´ë©´ FALSE
 	//*  \param pNode XML doc node
 	//*  \see Save
 	//*/
 	virtual RwBool Load(CNtlXMLDoc *pDoc, IXMLDOMNode *pNode) = 0;
 
 	///**
-	//*  property data save ÇÔ¼ö.
-	//*  \return ¼º°øÀÌ¸éTRUE, ½ÇÆĞÀÌ¸é FALSE
+	//*  property data save í•¨ìˆ˜.
+	//*  \return ì„±ê³µì´ë©´TRUE, ì‹¤íŒ¨ì´ë©´ FALSE
 	//*  \param pNode XML doc node
 	//*  \see Load
 	//*/
 	virtual RwBool Save(CNtlXMLDoc *pDoc, IXMLDOMNode *pNode) = 0;
 
-	virtual void	SaveSerialize(CNtlSerializer& sOut) {}											///< Serialize¿¡ µ¥ÀÌÅÍ¸¦ ÀúÀåÇÏ´Â ÇÔ¼ö
-	virtual void	LoadSerialize(CNtlSerializer& sIn) {}											///< Serialize·ÎºÎÅÍ µ¥ÀÌÅÍ¸¦ °¡Á®¿À´Â ÇÔ¼ö
+	virtual void	SaveSerialize(CNtlSerializer& sOut) {}											///< Serializeì— ë°ì´í„°ë¥¼ ì €ì¥í•˜ëŠ” í•¨ìˆ˜
+	virtual void	LoadSerialize(CNtlSerializer& sIn) {}											///< Serializeë¡œë¶€í„° ë°ì´í„°ë¥¼ ê°€ì ¸ì˜¤ëŠ” í•¨ìˆ˜
 
     virtual RwUInt32 GetFlag() {return m_uiFlag;}
     virtual void     SetFlag(RwUInt32 uiFlag) {m_uiFlag = uiFlag;}

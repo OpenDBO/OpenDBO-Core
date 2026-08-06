@@ -225,7 +225,7 @@ void CNtlTriggerSyncManager::ReleaseUnit(CNtlTCUnit* pUnit, void *pData)
 	pUnitReg->DecRef();
 	if(!pUnitReg->IsValid())
 	{
-		// trigger system ¿∏∑Œ ¿¿¥‰¿ª ∫∏≥Ω¥Ÿ
+		// trigger system ÏúºÎ°ú ÏùëÎãµÏùÑ Î≥¥ÎÇ∏Îã§
 		ResponseQuestTriggerSystem(pUnitReg, pData);
 
 		ReleaseUnitReg(pUnitReg);
@@ -328,7 +328,7 @@ void CNtlTriggerSyncManager::QuestProposalDialogEventHandler(RWS::CMsg &pMsg)
 	CNtlTCUnit *pTCUnit = CreateUnit();
 	RegisterUnit(pTCUnit, pTCUnitReg);
 
-	// event ¿€º∫.
+	// event ÏûëÏÑ±.
 	SNtlEventQuestDirect_Forward sDirect;
 	sDirect.pTCUnit = pTCUnit;
 	sDirect.eTDType = ETD_QuestProposal;
@@ -345,7 +345,7 @@ void CNtlTriggerSyncManager::QuestUserSelectDialogEventHandler(RWS::CMsg &pMsg)
 	CNtlTCUnit *pTCUnit = CreateUnit();
 	RegisterUnit(pTCUnit, pTCUnitReg);
 
-	// event ¿€º∫.
+	// event ÏûëÏÑ±.
 	SNtlEventQuestDirect_Forward sDirect;
 	sDirect.pTCUnit = pTCUnit;
 	sDirect.eTDType = ETD_QuestUserSelect;
@@ -362,7 +362,7 @@ void CNtlTriggerSyncManager::QuestRewardDialogEventHandler(RWS::CMsg &pMsg)
 	CNtlTCUnit *pTCUnit = CreateUnit();
 	RegisterUnit(pTCUnit, pTCUnitReg);
 
-	// event ¿€º∫.
+	// event ÏûëÏÑ±.
 	SNtlEventQuestDirect_Forward sDirect;
 	sDirect.pTCUnit = pTCUnit;
 	sDirect.eTDType = ETD_QuestReward;
@@ -379,7 +379,7 @@ void CNtlTriggerSyncManager::QuestNarrationDialogEventHandler(RWS::CMsg &pMsg)
 	CNtlTCUnit *pTCUnit = CreateUnit();
 	RegisterUnit(pTCUnit, pTCUnitReg);
 	
-	// event ¿€º∫.
+	// event ÏûëÏÑ±.
 	SNtlEventQuestDirect_Forward sDirect;
 	sDirect.pTCUnit = pTCUnit;
 	sDirect.eTDType = ETD_QuestNarration;
@@ -396,7 +396,7 @@ void CNtlTriggerSyncManager::QuestNarrationUserSelectDialogEventHandler(RWS::CMs
 	CNtlTCUnit *pTCUnit = CreateUnit();
 	RegisterUnit(pTCUnit, pTCUnitReg);
 
-	// event ¿€º∫.
+	// event ÏûëÏÑ±.
 	SNtlEventQuestDirect_Forward sDirect;
 	sDirect.pTCUnit = pTCUnit;
 	sDirect.eTDType = ETD_QuestNarrationUserSelect;

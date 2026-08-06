@@ -2,21 +2,21 @@
 #include "afxcmn.h"
 
 
-// CPaletteSE ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteSE ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CPaletteSE : public CDialog
 {
 	DECLARE_DYNAMIC(CPaletteSE)
 
 public:
-	CPaletteSE(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CPaletteSE(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CPaletteSE();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_ATTR_SE };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

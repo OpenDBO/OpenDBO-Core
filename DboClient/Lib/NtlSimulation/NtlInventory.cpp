@@ -93,7 +93,7 @@ void CNtlInventoryBase::HandleEvents(RWS::CMsg &pMsg)
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
-// avatar »ç¿ë
+// avatar ì‚¬ìš©
 
 CNtlInventory::CNtlInventory()
 {
@@ -447,10 +447,10 @@ void CNtlInventory::ItemMoveEventHandler(RWS::CMsg &pMsg)
 			CNtlSobItem *pDestParentBagSobItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( GetBagItem(byDestParentSlotIdx) ) );
 			NTL_ASSERT(pDestParentBagSobItem, "CNtlInventory::ItemMoveEventHandler : dest parent item instance is null !!!");
 
-			// source ÀÌµ¿.
+			// source ì´ë™.
 			pSrcSobItem->SetParentItemSerial(GetBagItem(byDestParentSlotIdx));
 			pDestParentBagSobItem->SetChildSerial(pItemMove->byDestSlotIdx, pItemMove->hSrcSerial);
-			// dest ÀÌµ¿.
+			// dest ì´ë™.
 			SetBagItem(pItemMove->bySrcSlotIdx, pItemMove->hDestSerial);
 		}
 
@@ -468,10 +468,10 @@ void CNtlInventory::ItemMoveEventHandler(RWS::CMsg &pMsg)
 
 		if(pItemMove->byDestPlace == CONTAINER_TYPE_BAGSLOT)
 		{
-			// source ÀÌµ¿.
+			// source ì´ë™.
 			pSrcSobItem->SetParentItemSerial(INVALID_SERIAL_ID);
 			pSrcParentBagSobItem->SetChildSerial(pItemMove->bySrcSlotIdx, pItemMove->hDestSerial);
-			// dest ÀÌµ¿.
+			// dest ì´ë™.
 			SetBagItem(pItemMove->byDestSlotIdx, pItemMove->hSrcSerial);
 		}
 
@@ -479,11 +479,11 @@ void CNtlInventory::ItemMoveEventHandler(RWS::CMsg &pMsg)
 		{
 			RwUInt8 byDestParentSlotIdx = (RwUInt8)(pItemMove->byDestPlace - CONTAINER_TYPE_BAG1);
 
-			// source ÀÌµ¿.
+			// source ì´ë™.
 			pSrcSobItem->SetParentItemSerial(GetBagItem(byDestParentSlotIdx));
 			pSrcParentBagSobItem->SetChildSerial(pItemMove->bySrcSlotIdx, pItemMove->hDestSerial);
 
-			// dest ÀÌµ¿
+			// dest ì´ë™
 			if(pItemMove->hDestSerial != INVALID_SERIAL_ID)
 			{
 				CNtlSobItem *pDestSobItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( pItemMove->hDestSerial ) );
@@ -498,11 +498,11 @@ void CNtlInventory::ItemMoveEventHandler(RWS::CMsg &pMsg)
 
 		else if(pItemMove->byDestPlace == CONTAINER_TYPE_EQUIP)
 		{
-			// source ÀÌµ¿.
+			// source ì´ë™.
 			pSrcSobItem->SetParentItemSerial(INVALID_SERIAL_ID);
 			pSrcParentBagSobItem->SetChildSerial(pItemMove->bySrcSlotIdx, pItemMove->hDestSerial);
 
-			// dest ÀÌµ¿
+			// dest ì´ë™
 			SetEquipItem(pItemMove->byDestSlotIdx, pItemMove->hSrcSerial);
 			if( pItemMove->hDestSerial != INVALID_SERIAL_ID )
 			{
@@ -531,11 +531,11 @@ void CNtlInventory::ItemMoveEventHandler(RWS::CMsg &pMsg)
 			CNtlSobItem *pDestsParentBagSobItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( GetBagItem(byDestParentSlotIdx) ) );
 			NTL_ASSERT(pDestsParentBagSobItem, "CNtlInventory::ItemMoveEventHandler : dest bag item instance is null !!!");
 
-			// source ÀÌµ¿.
+			// source ì´ë™.
 			pSrcSobItemSlot->SetParentItemSerial(GetBagItem(byDestParentSlotIdx));
 			SetEquipItem(pItemMove->bySrcSlotIdx, pItemMove->hDestSerial);
 
-			// dest ÀÌµ¿.
+			// dest ì´ë™.
 			pDestsParentBagSobItem->SetChildSerial(pItemMove->byDestSlotIdx, pItemMove->hSrcSerial);
 
 			Logic_PlayGUISound(GSD_SYSTEM_ITEM_TAKEOFF);
@@ -543,10 +543,10 @@ void CNtlInventory::ItemMoveEventHandler(RWS::CMsg &pMsg)
 
 		else if(pItemMove->byDestPlace == CONTAINER_TYPE_EQUIP)
 		{
-			// source ÀÌµ¿.
+			// source ì´ë™.
 			SetEquipItem(pItemMove->bySrcSlotIdx, pItemMove->hDestSerial);
 
-			// dest ÀÌµ¿.
+			// dest ì´ë™.
 			SetEquipItem(pItemMove->byDestSlotIdx, pItemMove->hSrcSerial);
 
 			Logic_PlayGUISound(GSD_SYSTEM_ITEM_EQUIP);
@@ -609,7 +609,7 @@ void CNtlInventory::ItemStackMoveEventHandler(RWS::CMsg &msg)
 		pDestItem->HandleEvents( msg );
 	}
 
-	// µÑ´Ù Á¸ÀçÇÒ ¶§
+	// ë‘˜ë‹¤ ì¡´ìž¬í•  ë•Œ
 	else
 	{
 		NTL_ASSERT( pSrcItem, "CNtlInventory::ItemStackMoveEventHandler : SrcItem is Null!!" );

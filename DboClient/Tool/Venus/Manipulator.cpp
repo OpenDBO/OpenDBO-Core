@@ -2,7 +2,7 @@
 //	File		:	Manipulator.h
 //	Desc		:	
 //	Begin		:	2005. 1.20
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -214,7 +214,7 @@ void CManipulator::Render(RwMatrix* pViewMatrix)
 
 	const RwV3d vViewPosition = *RwMatrixGetPos(pViewMatrix);
 
-	// Ä«¸Ş¶ó¿Í Manipulator ¿ÍÀÇ °Å¸® °è»êÀ» ÅëÇØ¼­ ½ºÄÉÀÏ ºñÀ² Á¶Àı
+	// ì¹´ë©”ë¼ì™€ Manipulator ì™€ì˜ ê±°ë¦¬ ê³„ì‚°ì„ í†µí•´ì„œ ìŠ¤ì¼€ì¼ ë¹„ìœ¨ ì¡°ì ˆ
 	D3DXMatrixIdentity(&m_matAxisWorld);
 	ModulateCameraScaleMatrix(m_matAxisWorld, (D3DXVECTOR3 *)&vViewPosition, m_vPosition.x, m_vPosition.y, m_vPosition.z);
 	
@@ -674,7 +674,7 @@ int CManipulator::IntersectionArrow(const RwV3d* pRayPos, const RwV3d* pRayDir)
 	int nInsectionType = AXIS_TYPE_NONE;
 
 	// ===================================================
-	// Plane ¸é Ã¼Å©
+	// Plane ë©´ ì²´í¬
 	// ===================================================
 	RwV3d vLocalRayPos, vLocalRayDir;
 	API_GetLocalRay(&vLocalRayPos, &vLocalRayDir, (RwMatrix*)&m_matAxisWorld, pRayPos, pRayDir);

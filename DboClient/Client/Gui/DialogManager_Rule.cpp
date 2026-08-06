@@ -46,7 +46,7 @@
 #include "DiceManager.h"
 #include "MsgBoxManager.h"
 
-// �׽�Ʈ
+// 占쌓쏙옙트
 #include "NtlPLVisualManager.h"
 #include "NtlPLSun.h"
 #include "NtlMath.h"
@@ -203,7 +203,7 @@ RwBool CDialogManager::SwitchDialog(int iDialog)
 
 RwBool CDialogManager::OpenDialog(int iDialog, SERIAL_HANDLE hSerial /* = INVALID_SERIAL_ID */, RwBool bPlaySound /* = TRUE */)
 {
-	// GM �޴����� �Ϻ� ���̾�α׸� ����� �� ������ �Ͽ��� ��
+	// GM 메뉴에서 일부 다이얼로그를 사용할 수 없도록 하였을 때
 	if( m_bCanVisible_OnOberserver )
 	{
 		if( iDialog == DIALOG_HP			|| iDialog == DIALOG_MINIMAP ||
@@ -211,7 +211,7 @@ RwBool CDialogManager::OpenDialog(int iDialog, SERIAL_HANDLE hSerial /* = INVALI
 			return FALSE;
 	}
 
-	// GM Menu�� ���� ���� ��
+	// GM Menu占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙
 	if( IsOpenDialog(DIALOG_GM_QUICKSLOT) )
 	{
 		if( iDialog == DIALOG_QUICKSLOT		|| iDialog == DIALOG_EXP ||
@@ -319,21 +319,21 @@ RwBool CDialogManager::CloseDialog(int iDialog, RwBool bPlaySound /* = TRUE */)
 	if(!pDialogInfo)
 		return FALSE;
 
-	// �̹� ���� �ִٸ� ����
+	// 占싱뱄옙 占쏙옙占쏙옙 占쌍다몌옙 占쏙옙占쏙옙
 	if( !pDialogInfo->pDialog->IsShow() )
 		return FALSE;
 
 	if( pDialogInfo->pCallSwitch->Call(false) < 0 )
 		return FALSE;
 
-	// �� �̻� Entire Focusing Dialog�� ���ٸ� Dialog �������� ����� ���ش�
+	// 더 이상 Entire Focusing Dialog이 없다면 Dialog 뒷편으로 배경을 없앤다
 	if( IsEFDialog((eDialogType)iDialog) )
 	{
 		if( IsOpenEFDialog() == FALSE )
 			CloseDialog(DIALOG_BACKBOARD);
 	}
 
-	// ������ ���̾�αװ� NPC ���̾�α� �� ��
+	// 닫히는 다이얼로그가 NPC 다이얼로그 일 때
 	if( IsNPCDialog(iDialog) )
 		m_OpenedTarget.pOpenedTarget = NULL;
 
@@ -470,7 +470,7 @@ VOID CDialogManager::ProcessESC()
 				}
                 else if(DIALOG_DBC_ALTAR == iDialog)
                 {
-                    // �ֹ� ��ư�� Ŭ���ϰ� ������ ��ٸ��� ���̸� ������� �ʴ´�.
+                    // 주문 버튼을 클릭하고 응답을 기다리는 중이면 취소하지 않는다.
                     if(API_GetSLPacketLockManager()->IsLock(GU_DRAGONBALL_CHECK_RES))
                         return;
 
@@ -541,13 +541,13 @@ VOID CDialogManager::ProcessOpenRegular(eDialogType eDialog)
 	
 	if( HowManyOpenMaxRegular() <= (RwInt32)m_listOpenedRegularDilaog.size() )
 	{
-		// Regular Dialog�� ���� �� �ִ� ��Ұ� �������� �ʴ�
+		// Regular Dialog가 열릴 수 있는 장소가 남아있지 않다
 		bExistPosition = FALSE;
 		for( ; it_OpenedRegular != m_listOpenedRegularDilaog.end() ; ++it_OpenedRegular )
 		{
 			eDialogType dialogType = *it_OpenedRegular;
 
-			// ��Ÿ�� �Ӽ��� �ƴ� Regular dialog �ϳ��� �ݴ´�
+			// 占쏙옙타占쏙옙 占쌈쇽옙占쏙옙 占싣댐옙 Regular dialog 占싹놂옙占쏙옙 占쌥는댐옙
 			if( IsHaveAttribute((eDialogType)dialogType, dRDA_EXCLUSIVE) == FALSE )
 			{
 				if( CloseDialog(dialogType) )
@@ -560,7 +560,7 @@ VOID CDialogManager::ProcessOpenRegular(eDialogType eDialog)
 
 	if( bExistPosition == FALSE )
 	{
-		// avooo's : ���⿡ ������ ���� ��ȹ Ȥ�� ���α׷����� ���ַ� ���̾�α׿� ���� ���ǳ�
+		// avooo's : 여기에 들어오는 것은 기획 혹은 프로그램에서 레귤러 다이얼로그에 대한 정의나
 		// �߸��� ���� ������ ���� ��Ÿ���� ���ַ� ���̾�αװ� ���ÿ� ���� ���ο� ���ַ�
 		// ���̾�αװ� ���� ������ Ȯ������ ������ ����̴�
 		DBO_FAIL("Can not open more regaulr dialog");
@@ -664,12 +664,12 @@ VOID CDialogManager::ProcessMovableDialogs(RwBool bMovable)
 }
 
 /**
-* \brief �׼ǿ� ���� ���̾�α� ó��
+* \brief 액션에 따른 다이얼로그 처리
 *
-* InputAction���� ���� �׼����� DialogManager���� ���� �� �ִ� ó���� �Ѵ�.
-* ���� HandleHotKey �� ��ũ�Ǿ ó���ϴ� Ű ���� �ִ����� ���� �� �Լ��� ��ũ�ϰ� �׼��� �ް� ��
+* InputAction占쏙옙占쏙옙 占쏙옙占쏙옙 占쌓쇽옙占쏙옙占쏙옙 DialogManager占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙 占쌍댐옙 처占쏙옙占쏙옙 占싼댐옙.
+* 占쏙옙占쏙옙 HandleHotKey 占쏙옙 占쏙옙크占실어서 처占쏙옙占싹댐옙 키 占쏙옙占쏙옙 占쌍댐옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙 占쌉쇽옙占쏙옙 占쏙옙크占싹곤옙 占쌓쇽옙占쏙옙 占쌨곤옙 占쏙옙
 *
-* \param iAction (unsigned int)�׼�. - ���� InputAction.h
+* \param iAction (unsigned int)占쌓쇽옙. - 占쏙옙占쏙옙 InputAction.h
 * \return int
 */
 #include "NtlWorldConceptTutorial.h"
@@ -688,28 +688,28 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 	}
 
 	// �׼ǿ� ���� ���̾�α� ó�� ����
-	// ĳ��������
-	// ��ų����
-	// ����Ʈ ����
-	// �̴ϸ�
+	// 캐占쏙옙占쏙옙占쏙옙占쏙옙
+	// 占쏙옙킬占쏙옙占쏙옙
+	// 占쏙옙占쏙옙트 占쏙옙占쏙옙
+	// 占싱니몌옙
 	// �����
-	// ����ĸ��Ŷ
-	// ��ī����
-	// ��Ƽ����
+	// 占쏙옙占쏙옙캡占쏙옙킷
+	// 占쏙옙카占쏙옙占쏙옙
+	// 占쏙옙티占쏙옙占쏙옙
 	// �������
-	// ģ������
-	// �ɼ�
-	// ����
-	// ���θ޴�
+	// 친占쏙옙占쏙옙占쏙옙
+	// 占심쇽옙
+	// 占쏙옙占쏙옙
+	// 占쏙옙占싸메댐옙
 	// �̴ϸ����
-	// �̴ϸ�Ȯ��
-	// ä������PAGE
-	// ä�ô���PAGE
+	// 占싱니몌옙확占쏙옙
+	// 채占쏙옙占쏙옙占쏙옙PAGE
+	// 채占시댐옙占쏙옙PAGE
 	// ���
 
 	switch( iAction )
 	{	
-	case ACTION_WINDOW_PROFILE:		// ĳ���� ���� â
+	case ACTION_WINDOW_PROFILE:		// 캐占쏙옙占쏙옙 占쏙옙占쏙옙 창
 		{
 			RwBool bOpen = IsOpenDialog(DIALOG_STATUS);
 
@@ -730,7 +730,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			SwitchDialog( DIALOG_STATUS );
 			break;
 		}
-	case ACTION_WINDOW_SKILL:		// ��ų ���� â
+	case ACTION_WINDOW_SKILL:		// 占쏙옙킬 占쏙옙占쏙옙 창
 		{
 			RwBool bOpen = IsOpenDialog(DIALOG_SKILL);
 
@@ -752,7 +752,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 
 			break;
 		}
-	case ACTION_WINDOW_QUEST:		// ����Ʈ ���� â
+	case ACTION_WINDOW_QUEST:		// 占쏙옙占쏙옙트 占쏙옙占쏙옙 창
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_QUEST ) )
 				NTL_RETURN(1);
@@ -763,7 +763,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			SwitchDialog(DIALOG_QUESTLIST);
 			break;
 		}
-	case ACTION_WINDOW_MINIMAP:		// �̴ϸ�
+	case ACTION_WINDOW_MINIMAP:		// 占싱니몌옙
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_MINIMAP ) )
 				NTL_RETURN(1);
@@ -780,7 +780,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 
 			break;
 		}
-	case ACTION_WINDOW_WORLDMAP:	// �����
+	case ACTION_WINDOW_WORLDMAP:	// 월드맵
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_WORLDMAP ) )
 				NTL_RETURN(1);
@@ -788,7 +788,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			SwitchDialog(DIALOG_WORLDMAP);
 			break;
 		}
-	case ACTION_WINDOW_MAINCAP:	// ĸ��(����)
+	case ACTION_WINDOW_MAINCAP:	// 캡占쏙옙(占쏙옙占쏙옙)
 		{
 			RwBool bBagOpen = IsBagOpen();			
 
@@ -806,14 +806,14 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			if( IsOpenDialog(DIALOG_WORLDMAP))
 				NTL_RETURN(1);
 
-			// ������ �Ѱ��� ���� �ִٸ� ���� �ݴ´�.
+			// 占쏙옙占쏙옙占쏙옙 占싼곤옙占쏙옙 占쏙옙占쏙옙 占쌍다몌옙 占쏙옙占쏙옙 占쌥는댐옙.
 			bBagOpen = !bBagOpen;
 
 			SwitchBag(bBagOpen);
 
 			break;
 		}
-	case ACTION_WINDOW_GUILD:		// ��� Ŀ�´�Ƽ
+	case ACTION_WINDOW_GUILD:		// 길드 커뮤니티
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_GUILD ) )
 				NTL_RETURN(1);
@@ -852,7 +852,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			SwitchDialog(DIALOG_FRIEND_LIST);
 		}
 		break;
-	case ACTION_WINDOW_OPTION: // �ɼ� ������
+	case ACTION_WINDOW_OPTION: // 占심쇽옙 占쏙옙占쏙옙占쏙옙
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_OPTION ) )
 				NTL_RETURN(1);
@@ -863,7 +863,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			SwitchDialog( DIALOG_OPTIONWND );
 			break;
 		}
-	case ACTION_WINDOW_RANKBOARD:	// ��ũ����
+	case ACTION_WINDOW_RANKBOARD:	// 占쏙옙크占쏙옙占쏙옙
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_RANKBOARD ) )
 				NTL_RETURN(1);
@@ -881,16 +881,16 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			SwitchDialog(DIALOG_MASCOT);
 			break;
 		}
-	case ACTION_WINDOW_HELP:	// ����
+	case ACTION_WINDOW_HELP:	// 占쏙옙占쏙옙
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_HELP ) )
 				NTL_RETURN(1);
 
 			SwitchDialog(DIALOG_HELPWND);
-			// ��ȹ�� Help Data Test�� ���ؼ� ��Ʈ�� ������Ʈ �Ѵ�. ���� ���� �� ��.
+			// 占쏙옙획占쏙옙 Help Data Test占쏙옙 占쏙옙占쌔쇽옙 占쏙옙트占쏙옙 占쏙옙占쏙옙占쏙옙트 占싼댐옙. 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙 占쏙옙.
 			break;
 		}
-	case ACTION_WINDOW_MAIN: // ���� �޴�
+	case ACTION_WINDOW_MAIN: // 占쏙옙占쏙옙 占쌨댐옙
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_MAINMENU ) )
 				NTL_RETURN(1);
@@ -908,17 +908,17 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			SwitchDialog( DIALOG_MAINMENU );
 			break;
 		}
-	case ACTION_MINIMAP_ZOOMOUT:	// �̴ϸ� ���
+	case ACTION_MINIMAP_ZOOMOUT:	// 미니맵 축소
 		{
 			CDboEventGenerator::MapEvent(MMT_MINIMAP_ZOON_OUT);
 			break;
 		}
-	case ACTION_MINIMAP_ZOOMIN:	// �̴ϸ� Ȯ��
+	case ACTION_MINIMAP_ZOOMIN:	// 占싱니몌옙 확占쏙옙
 		{
 			CDboEventGenerator::MapEvent(MMT_MINIMAP_ZOON_IN);
 			break;
 		}
-	case ACTION_GLOBAL_CANCLE:	// ESC Ű ó��
+	case ACTION_GLOBAL_CANCLE:	// ESC 키 처占쏙옙
 		{
 			ProcessESC();
 			break;
@@ -941,7 +941,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			if( IsOpenDialog(DIALOG_WORLDMAP))
 				NTL_RETURN(1);
 
-			// ������ �Ѱ��� ���� �ִٸ� ���� �ݴ´�.
+			// 占쏙옙占쏙옙占쏙옙 占싼곤옙占쏙옙 占쏙옙占쏙옙 占쌍다몌옙 占쏙옙占쏙옙 占쌥는댐옙.
 			bBagOpen = !bBagOpen;
 
 			SwitchBagByIndex(1);			
@@ -966,7 +966,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			if( IsOpenDialog(DIALOG_WORLDMAP))
 				NTL_RETURN(1);
 
-			// ������ �Ѱ��� ���� �ִٸ� ���� �ݴ´�.
+			// 占쏙옙占쏙옙占쏙옙 占싼곤옙占쏙옙 占쏙옙占쏙옙 占쌍다몌옙 占쏙옙占쏙옙 占쌥는댐옙.
 			bBagOpen = !bBagOpen;
 
 			SwitchBagByIndex(2);			
@@ -991,7 +991,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			if( IsOpenDialog(DIALOG_WORLDMAP))
 				NTL_RETURN(1);
 
-			// ������ �Ѱ��� ���� �ִٸ� ���� �ݴ´�.
+			// 占쏙옙占쏙옙占쏙옙 占싼곤옙占쏙옙 占쏙옙占쏙옙 占쌍다몌옙 占쏙옙占쏙옙 占쌥는댐옙.
 			bBagOpen = !bBagOpen;
 
 			SwitchBagByIndex(3);
@@ -1016,7 +1016,7 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			if( IsOpenDialog(DIALOG_WORLDMAP))
 				NTL_RETURN(1);
 
-			// ������ �Ѱ��� ���� �ִٸ� ���� �ݴ´�.
+			// 占쏙옙占쏙옙占쏙옙 占싼곤옙占쏙옙 占쏙옙占쏙옙 占쌍다몌옙 占쏙옙占쏙옙 占쌥는댐옙.
 			bBagOpen = !bBagOpen;
 
 			SwitchBagByIndex(4);

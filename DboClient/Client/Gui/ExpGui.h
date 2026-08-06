@@ -2,7 +2,7 @@
  *
  * File			: ExpGui.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 11. 030	
  * Abstract		: DBO exp  gui.
  *****************************************************************************
@@ -34,7 +34,7 @@ public:
 	RwBool	Update( RwReal fElapsed );	
 	VOID	Render(VOID);
 
-	VOID	SetInitXPos( RwInt32 nScreenXPos );	// DestPosµµ ∞∞¿Ã ºˆ¡§µ .
+	VOID	SetInitXPos( RwInt32 nScreenXPos );	// DestPosÎèÑ Í∞ôÏù¥ ÏàòÏ†ïÎê®.
 	VOID	SetInitYPos( RwInt32 nScreenYPos );
 
 	RwBool	IsEffectShow(VOID) { return m_bShowEffect; }
@@ -57,7 +57,7 @@ private:
 
 	RwBool		m_bSound;
 
-    // PCπÊøÎ √ﬂ∞° EXP ∞¸∑√ ¡§∫∏
+    // PCÎ∞©Ïö© Ï∂îÍ∞Ä EXP Í¥ÄÎ†® Ï†ïÎ≥¥
     RwUInt32    m_uiAcquisitionExp;
     RwUInt32    m_uiBonusExp;
 };

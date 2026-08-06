@@ -48,12 +48,12 @@ RwBool CNtlSobWorldItem::Create(void)
 		NTL_RETURN(FALSE);
 	}
 
-	// proxy ¼³Á¤
+	// proxy ì„¤ì •
 	m_pSobProxy = NTL_NEW CNtlSobWorldItemProxy;
 	m_pSobProxy->Create( NTL_SLPROXY_COMP_EQUIP_ITEM );
 	m_pSobProxy->SetSobObj(this);
 
-	// class name ¼³Á¤.
+	// class name ì„¤ì •.
 	SetClassName(SLCLASS_NAME_WORLD_ITEM);
 
 	NTL_RETURN(TRUE);
@@ -118,7 +118,7 @@ void CNtlSobWorldItem::HandleEvents(RWS::CMsg &pMsg)
 		// World item create event handler.
 		CreateEventHandler(pMsg);
 
-		// ÃÊ±â ÁÂÇ¥ setting
+		// ì´ˆê¸° ì¢Œí‘œ setting
 		RwV3dAssignMacro( &m_vDestPos, &pWorldItemCreate->vLoc );
 
 		SWorldHeightStuff sHStuff;
@@ -234,7 +234,7 @@ VOID CNtlSobWorldItem::State_ActDropUpdate(VOID)
 
 	if( m_fTime > m_fDestTime )
 	{
-		//Time Sequence »èÁ¦
+		//Time Sequence ì‚­ì œ
 		CNtlDistTimeSequence *pTempSeq;
 		CNtlDistTimeSequence *pSeq = m_pSeq;
 
@@ -258,7 +258,7 @@ VOID CNtlSobWorldItem::State_ActDropUpdate(VOID)
 		}
 	}	
 	
-	// ÁÂÇ¥ setting
+	// ì¢Œí‘œ setting
 	SetPosition(&vLoc);
 	SetAngleY( m_fTime * m_fDestAngle );
 

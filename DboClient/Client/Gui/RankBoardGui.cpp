@@ -34,7 +34,7 @@
 #include "TMQBoard.h"
 
 /**
-* \brief »ı¼ºÀÚ
+* \brief ìƒì„±ì
 */
 CRankBoardGui::CRankBoardGui( const RwChar* pName ) 
 : CNtlPLGui( pName )
@@ -57,7 +57,7 @@ CRankBoardGui::CRankBoardGui( const RwChar* pName )
 }
 
 /**
-* \brief ¼Ò¸êÀÚ
+* \brief ì†Œë©¸ì
 */
 CRankBoardGui::~CRankBoardGui() 
 {
@@ -99,7 +99,7 @@ RwBool CRankBoardGui::Create()
 	// Show
 	Show( FALSE );
 
-	// °Ô½ÃÆÇ »ı¼º
+	// ê²Œì‹œíŒ ìƒì„±
 	m_pBoard[eBOARD_RANKBATTLE] = NTL_NEW CRankBattleBoard;
 	m_pBoard[eBOARD_RANKBATTLE]->Create( eBOARD_RANKBATTLE, this );
 
@@ -172,7 +172,7 @@ VOID CRankBoardGui::HandleEvents( RWS::CMsg &msg )
 	{
 		//m_pBoard[eBOARD_TMQ]->MessageProc( msg );
 	}
-	// ·©Å©º¸µå¸¦ Disable»óÅÂ·Î º¯È¯ÇÑ´Ù.
+	// ë­í¬ë³´ë“œë¥¼ Disableìƒíƒœë¡œ ë³€í™˜í•œë‹¤.
 	else if( msg.Id == g_EventRankBoardDisable )
 	{
 		DisableAllButton();
@@ -188,7 +188,7 @@ RwInt32 CRankBoardGui::SwitchDialog( bool bOpen )
 {
 	if( bOpen == TRUE )
 	{
-		// ¹öÆ°ÀÌ È°¼ºÈ­µÈ »óÅÂ¶ó¸é ÇöÀç ÆäÀÌÁö¸¦ ¿äÃ»ÇÑ´Ù. (¾Æ´Ï¶ó¸é ¿äÃ»ÇÏÁö ¾Ê´Â´Ù)
+		// ë²„íŠ¼ì´ í™œì„±í™”ëœ ìƒíƒœë¼ë©´ í˜„ì¬ í˜ì´ì§€ë¥¼ ìš”ì²­í•œë‹¤. (ì•„ë‹ˆë¼ë©´ ìš”ì²­í•˜ì§€ ì•ŠëŠ”ë‹¤)
 		if( m_bEnableButton )
 		{
 			m_pBoard[m_eCurrentBoard]->CurrentPage();
@@ -218,7 +218,7 @@ RwInt32 CRankBoardGui::SwitchDialog( bool bOpen )
 }
 
 /**
-* \brief ButtonÀÌ enable »óÅÂÀÎÁö È®ÀÎ
+* \brief Buttonì´ enable ìƒíƒœì¸ì§€ í™•ì¸
 */
 RwBool CRankBoardGui::IsEnableButton()
 {
@@ -226,11 +226,11 @@ RwBool CRankBoardGui::IsEnableButton()
 }
 
 /**
-* \brief ¸ğµç Board¸¦ Enable ½ÃÅ²´Ù.
+* \brief ëª¨ë“  Boardë¥¼ Enable ì‹œí‚¨ë‹¤.
 */
 VOID CRankBoardGui::EnableAllButton() 
 {
-	// ¸ğµç Board¸¦ Enable TRUE
+	// ëª¨ë“  Boardë¥¼ Enable TRUE
 	//for( int i=0; i<eBOARD_NUMS; ++i)
 	//	m_pBoard[i]->Enable( TRUE );
 
@@ -248,11 +248,11 @@ VOID CRankBoardGui::EnableAllButton()
 }
 
 /**
-* \brief ¸ğµç Board¸¦ Diable ½ÃÅ²´Ù.
+* \brief ëª¨ë“  Boardë¥¼ Diable ì‹œí‚¨ë‹¤.
 */
 VOID CRankBoardGui::DisableAllButton() 
 {
-	// ¸ğµç Board¸¦ Enable TRUE
+	// ëª¨ë“  Boardë¥¼ Enable TRUE
 	/*for( int i=0; i<eBOARD_NUMS; ++i)
 		m_pBoard[i]->Enable( FALSE );*/
 
@@ -261,8 +261,8 @@ VOID CRankBoardGui::DisableAllButton()
 	m_pCbbTitle->Enable( FALSE );
 	m_pCbbTitle->GetButton()->ClickEnable( FALSE );
 	
-	m_fElapsedTime = dRANKBOARD_COMMON_ENABLE_IDLE;		// 3ÃÊ
-	m_bEnableButton = FALSE;	// ¹öÆ° ºñÈ°¼ºÈ­ ¸ğµå
+	m_fElapsedTime = dRANKBOARD_COMMON_ENABLE_IDLE;		// 3ì´ˆ
+	m_bEnableButton = FALSE;	// ë²„íŠ¼ ë¹„í™œì„±í™” ëª¨ë“œ
 
 	m_pStbDataLoading->Show( TRUE );
 
@@ -273,15 +273,15 @@ VOID CRankBoardGui::DisableAllButton()
 
 VOID CRankBoardGui::Update( RwReal fElapsed ) 
 {
-	// ¹öÆ°ÀÌ ºñÈ°¼ºÈ­ ¸ğµå¶ó¸é
+	// ë²„íŠ¼ì´ ë¹„í™œì„±í™” ëª¨ë“œë¼ë©´
 	if( m_bEnableButton == FALSE )
 	{
-		// °æ°ú ½Ã°£À» »©ÁÖ°í
+		// ê²½ê³¼ ì‹œê°„ì„ ë¹¼ì£¼ê³ 
 		m_fElapsedTime -= fElapsed;
 
 		if( m_fElapsedTime < 0.0f )
 		{
-			// È°¼ºÈ­
+			// í™œì„±í™”
 			EnableAllButton();
 		}
 	}
@@ -289,7 +289,7 @@ VOID CRankBoardGui::Update( RwReal fElapsed )
 
 
 /**
-* \brief ´İ±â ¹öÆ°À» Å¬¸¯
+* \brief ë‹«ê¸° ë²„íŠ¼ì„ í´ë¦­
 */
 VOID CRankBoardGui::OnClickedBtnClose( gui::CComponent* pComponent ) 
 {
@@ -300,7 +300,7 @@ VOID CRankBoardGui::OnClickedBtnClose( gui::CComponent* pComponent )
 }
 
 /**
-* \brief ÄŞº¸¹Ú½º¸¦ ´­·¯¼­ ¸®½ºÆ®¹Ú½º¸¦ ³ª¿À°Ô ÇßÀ» ¶§
+* \brief ì½¤ë³´ë°•ìŠ¤ë¥¼ ëˆŒëŸ¬ì„œ ë¦¬ìŠ¤íŠ¸ë°•ìŠ¤ë¥¼ ë‚˜ì˜¤ê²Œ í–ˆì„ ë•Œ
 */
 VOID CRankBoardGui::OnListToggledCbbTitle( RwBool bToggled, gui::CComponent* pComponent ) 
 {
@@ -311,7 +311,7 @@ VOID CRankBoardGui::OnListToggledCbbTitle( RwBool bToggled, gui::CComponent* pCo
 }
 
 /**
-* \brief Å¸ÀÌÆ² ¹öÆ°À» Å¬¸¯ÇÏ¿´À» °æ¿ì ( ÄŞº¸¹Ú½ºÀÇ Button )
+* \brief íƒ€ì´í‹€ ë²„íŠ¼ì„ í´ë¦­í•˜ì˜€ì„ ê²½ìš° ( ì½¤ë³´ë°•ìŠ¤ì˜ Button )
 */
 VOID CRankBoardGui::OnClickedBtnTitle( gui::CComponent* pComponent ) 
 {
@@ -319,8 +319,8 @@ VOID CRankBoardGui::OnClickedBtnTitle( gui::CComponent* pComponent )
 }
 
 /**
-* \brief ÄŞº¸¹Ú½º¸¦ ¼±ÅÃÇÏ¿´À» ¶§ ³¯¶ó¿À´Â Äİ¹é
-* \param nIndex	(RwInt32) ¾ÆÀÌÅÛÀÇ ÀÎµ¦½º
+* \brief ì½¤ë³´ë°•ìŠ¤ë¥¼ ì„ íƒí•˜ì˜€ì„ ë•Œ ë‚ ë¼ì˜¤ëŠ” ì½œë°±
+* \param nIndex	(RwInt32) ì•„ì´í…œì˜ ì¸ë±ìŠ¤
 */
 VOID CRankBoardGui::OnSelectBoard( RwInt32 nIndex )
 {

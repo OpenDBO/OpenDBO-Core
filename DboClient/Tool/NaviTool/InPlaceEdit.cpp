@@ -72,8 +72,8 @@ void CInPlaceEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 		return;
 	}
 	CEdit::OnChar(nChar, nRepCnt, nFlags);
-	// ÇÊ¿äÇÏ´Ù¸é ¿¡µðÆ®ÄÁÆ®·ÑÀÇ Å©±â¸¦ º¯°æÇÑ´Ù.
-	// ¹®ÀÚ¿­ÀÇ Å©±â¸¦ ¾Ë¾Æ³½´Ù.
+	// í•„ìš”í•˜ë‹¤ë©´ ì—ë””íŠ¸ì»¨íŠ¸ë¡¤ì˜ í¬ê¸°ë¥¼ ë³€ê²½í•œë‹¤.
+	// ë¬¸ìžì—´ì˜ í¬ê¸°ë¥¼ ì•Œì•„ë‚¸ë‹¤.
 	CString str;
 	GetWindowText( str );
 	CWindowDC dc(this);
@@ -81,16 +81,16 @@ void CInPlaceEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 	CFont *pFontDC = dc.SelectObject( pFont );
 	CSize size = dc.GetTextExtent( str );
 	dc.SelectObject( pFontDC );
-	size.cx += 5; // ¿©ºÐÀÇ ¹öÆÛ¸¦ Ãß°¡ÇÑ´Ù.
-	// Å¬¶óÀÌ¾ðÆ® »ç°ÝÇü Å©±â¸¦ ¾Ë¾Æ³½´Ù.
+	size.cx += 5; // ì—¬ë¶„ì˜ ë²„í¼ë¥¼ ì¶”ê°€í•œë‹¤.
+	// í´ë¼ì´ì–¸íŠ¸ ì‚¬ê²©í˜• í¬ê¸°ë¥¼ ì•Œì•„ë‚¸ë‹¤.
 	CRect rect, parentrect;
 	GetClientRect( &rect );
 	GetParent()->GetClientRect( &parentrect );
-	// ºÎ¸ðÀÇ ÁÂÇ¥·Î »ç°¢ÇüÀ» º¯È¯ÇÑ´Ù.
+	// ë¶€ëª¨ì˜ ì¢Œí‘œë¡œ ì‚¬ê°í˜•ì„ ë³€í™˜í•œë‹¤.
 	ClientToScreen( &rect );
 	GetParent()->ScreenToClient( &rect );
-	// ÄÁÆ®·ÑÀÌ Å©±âº¯°æµÉ ÇÊ¿ä°¡ ÀÖ´ÀÁö Ã¼Å©ÇÏ°í
-	// ´Ã¾î³¯ °ø°£ÀÌ ÀÖ´ÂÁö Ã¼Å©
+	// ì»¨íŠ¸ë¡¤ì´ í¬ê¸°ë³€ê²½ë  í•„ìš”ê°€ ìžˆëŠì§€ ì²´í¬í•˜ê³ 
+	// ëŠ˜ì–´ë‚  ê³µê°„ì´ ìžˆëŠ”ì§€ ì²´í¬
 	if( size.cx > rect.Width() )
 	{
 		if( size.cx + rect.left < parentrect.right )
@@ -104,7 +104,7 @@ int CInPlaceEdit::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CEdit::OnCreate(lpCreateStruct) == -1)
 		return -1;
-	// Àû´çÇÑ ÆùÆ®¸¦ ÁöÁ¤
+	// ì ë‹¹í•œ í°íŠ¸ë¥¼ ì§€ì •
 	CFont* font = GetParent()->GetFont();
 	SetFont(font);
 	SetWindowText( m_sInitText );

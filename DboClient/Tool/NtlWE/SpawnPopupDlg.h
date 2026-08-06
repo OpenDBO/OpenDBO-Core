@@ -1,21 +1,21 @@
 #pragma once
 
 
-// CSpawnPopupDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CSpawnPopupDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CSpawnPopupDlg : public CDialog
 {
 	DECLARE_DYNAMIC(CSpawnPopupDlg)
 
 public:
-	CSpawnPopupDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CSpawnPopupDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CSpawnPopupDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_SPAWN_POPUP };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

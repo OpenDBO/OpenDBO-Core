@@ -10,10 +10,10 @@ START_GUI
 
 /**
 * \brief Construction
-* \param nCurrIdx		(INT) ÇöÀç ÇàÀÇ Index
-* \param rtClient		(CRectangle) ÇöÀç ÇàÀÇ ¿µ¿ª
+* \param nCurrIdx		(INT) í˜„ì¬ í–‰ì˜ Index
+* \param rtClient		(CRectangle) í˜„ì¬ í–‰ì˜ ì˜ì—­
 * \param bFixedTopDown	(BOOL)
-* \param nLineIntervalY	(INT) ÇöÀç Çà ÀÌÈÄÀÇ Y °£°İ
+* \param nLineIntervalY	(INT) í˜„ì¬ í–‰ ì´í›„ì˜ Y ê°„ê²©
 */
 CRowHtml_Item::CRowHtml_Item(INT nCurrIdx, CRectangle rtClient, BOOL bFixedTopDown, INT nLineIntervalY)
 {
@@ -38,14 +38,14 @@ CRowHtml_Item::CRowHtml_Item(INT nCurrIdx, CRectangle rtClient, BOOL bFixedTopDo
 */
 CRowHtml_Item::~CRowHtml_Item()
 {
-	// Çà ¾È¿¡ Æ÷ÇÔµÈ ¾ÆÀÌÅÛµéÀ» »èÁ¦
+	// í–‰ ì•ˆì— í¬í•¨ëœ ì•„ì´í…œë“¤ì„ ì‚­ì œ
 	std::list<CHtml_Item*>::iterator it;
 	for(it = m_listItems.begin(); it != m_listItems.end(); it++)
 	{
 		NTL_DELETE( *it );
 	}
 
-	// ¾ÆÀÌÅÛµé·Î ÇÑ ÇàÀÌ ÀÌ·ç¾îÁø RowHtml_Item »èÁ¦
+	// ì•„ì´í…œë“¤ë¡œ í•œ í–‰ì´ ì´ë£¨ì–´ì§„ RowHtml_Item ì‚­ì œ
 	std::list<CRowHtml_Item*>::iterator rowit;
 	for(rowit = m_listRowHtmlItem.begin(); rowit != m_listRowHtmlItem.end(); rowit++)
 	{
@@ -54,14 +54,14 @@ CRowHtml_Item::~CRowHtml_Item()
 }
 
 /**
-* \brief °¢ html item µéÀ» ºĞÇØÇÏ¿© RowHtml_ItemÀ¸·Î ¸¸µç´Ù.
+* \brief ê° html item ë“¤ì„ ë¶„í•´í•˜ì—¬ RowHtml_Itemìœ¼ë¡œ ë§Œë“ ë‹¤.
 * \param pItem			(CHtml_Item*) 
 * \param nLineIntervalY	(INT)
-* \return (CHtml_Item*) ´ÙÀ½ ¼ø¼­ÀÇ Item
+* \return (CHtml_Item*) ë‹¤ìŒ ìˆœì„œì˜ Item
 */
 CHtml_Item* CRowHtml_Item::ItemDisposition(CHtml_Item *pItem, INT nLineIntervalY)
 {
-	// ÇöÀç ÇàÀÌ °¡µæ Ã¡´Ù¸é ÇöÀç ¾ÆÀÌÅÛµé ¸®ÅÏÇÑ´Ù. ( ´ÙÀ½ ÇàÀÇ Disposition ½ÃÀÛ ¿ëµµ )
+	// í˜„ì¬ í–‰ì´ ê°€ë“ ì°¼ë‹¤ë©´ í˜„ì¬ ì•„ì´í…œë“¤ ë¦¬í„´í•œë‹¤. ( ë‹¤ìŒ í–‰ì˜ Disposition ì‹œì‘ ìš©ë„ )
 	if(m_bFull)
 		return pItem;
 
@@ -119,7 +119,7 @@ CHtml_Item* CRowHtml_Item::ItemDisposition(CHtml_Item *pItem, INT nLineIntervalY
 }
 
 /**
-* \brief ÇöÀç RowHtml_ItemÀÇ ¿µ¿ª °ªÀ¸·Î ÀüÃ¼ ¿µ¿ª °ªÀ» ¼³Á¤ÇÑ´Ù.
+* \brief í˜„ì¬ RowHtml_Itemì˜ ì˜ì—­ ê°’ìœ¼ë¡œ ì „ì²´ ì˜ì—­ ê°’ì„ ì„¤ì •í•œë‹¤.
 */
 VOID CRowHtml_Item::ItemFinishDisposition(VOID)
 {
@@ -141,7 +141,7 @@ VOID CRowHtml_Item::ItemTBCSorting(VOID)
 }
 
 /**
-* \brief ItemÀ» Texture¿¡ ¾Ë¸Â°Ô Âï¾î³½´Ù.
+* \brief Itemì„ Textureì— ì•Œë§ê²Œ ì°ì–´ë‚¸ë‹¤.
 * \param nOffsetX
 * \param nOffsetY
 * \param rtPaint
@@ -190,8 +190,8 @@ VOID CRowHtml_Item::OnPrePaint(INT nOffsetX, INT nOffsetY, const CRectangle& rtP
 }
 
 /**
-* \brief RowHtmlÀÌ list·Î °¡Áö°í ÀÖ´Â ItemµéÀÇ OnPaint µéÀ» È£ÃâÇÑ´Ù.
-* \param rtScreen	(CRectangle&) ±×·ÁÁú ¿µ¿ª
+* \brief RowHtmlì´ listë¡œ ê°€ì§€ê³  ìˆëŠ” Itemë“¤ì˜ OnPaint ë“¤ì„ í˜¸ì¶œí•œë‹¤.
+* \param rtScreen	(CRectangle&) ê·¸ë ¤ì§ˆ ì˜ì—­
 */
 VOID CRowHtml_Item::OnPaint(const CRectangle& rtScreen)
 {
@@ -214,8 +214,8 @@ VOID CRowHtml_Item::OnBackPaint( const CRectangle& rtScreen )
 }
 
 /**
-* \brief °¡Áö°í ÀÖ´Â Item¿¡°Ô SetAlpha¸¦ È£ÃâÇØÁØ´Ù.
-* \param ucAlpha	(BYTE) ¾ËÆÄ°ª ( 0 ~ 255 )
+* \brief ê°€ì§€ê³  ìˆëŠ” Itemì—ê²Œ SetAlphaë¥¼ í˜¸ì¶œí•´ì¤€ë‹¤.
+* \param ucAlpha	(BYTE) ì•ŒíŒŒê°’ ( 0 ~ 255 )
 */
 VOID CRowHtml_Item::OnSetAlpha( BYTE ucAlpha ) 
 {
@@ -246,8 +246,8 @@ VOID CRowHtml_Item::Update( float fElasped )
 }
 
 /**
-* \brief ÇöÀç ÇàÀÌ ¾ÆÀÌÅÛµé·Î °¡µæÂ÷¼­ ¿Ï·á µÇ¾ú´Â°¡?
-* \return ¿Ï·á ¿©ºÎ
+* \brief í˜„ì¬ í–‰ì´ ì•„ì´í…œë“¤ë¡œ ê°€ë“ì°¨ì„œ ì™„ë£Œ ë˜ì—ˆëŠ”ê°€?
+* \return ì™„ë£Œ ì—¬ë¶€
 */
 BOOL CRowHtml_Item::IsFull(VOID)
 {
@@ -255,8 +255,8 @@ BOOL CRowHtml_Item::IsFull(VOID)
 }
 
 /**
-* \brief ÇöÀç ÇàÀÌ ºñ¾ú´Â°¡?
-* \return ºñ¾îÀÖÀ¸¸é TRUE, ºñ¾îÀÖÁö ¾Ê´Ù¸é FALSE
+* \brief í˜„ì¬ í–‰ì´ ë¹„ì—ˆëŠ”ê°€?
+* \return ë¹„ì–´ìˆìœ¼ë©´ TRUE, ë¹„ì–´ìˆì§€ ì•Šë‹¤ë©´ FALSE
 */
 BOOL CRowHtml_Item::IsEmpty(VOID)
 {
@@ -288,21 +288,21 @@ INT CRowHtml_Item::GetItemCount(VOID)
 
 VOID CRowHtml_Item::GetItemRect( std::list<CRectangle>& list ) 
 {
-	// m_listItem¿¡ µé¾îÀÖ´Â ¾ÆÀÌÅÛµéÀÇ ±ÛÀÚ Å©±â¸¦ ¼ø¼­´ë·Î ´ã¾Æ¿Â´Ù.
+	// m_listItemì— ë“¤ì–´ìˆëŠ” ì•„ì´í…œë“¤ì˜ ê¸€ì í¬ê¸°ë¥¼ ìˆœì„œëŒ€ë¡œ ë‹´ì•„ì˜¨ë‹¤.
 	std::list<CHtml_Item*>::iterator itHtmlItem;
 	for( itHtmlItem = m_listItems.begin(); itHtmlItem != m_listItems.end(); ++itHtmlItem )
 	{
 		CHtml_Item* pHtmlItem = (*itHtmlItem);
 
-		// ¸®½ºÆ®¸¦ ¾ÆÀÌÅÛ¿¡ ³Ö¾îÁØ´Ù.
+		// ë¦¬ìŠ¤íŠ¸ë¥¼ ì•„ì´í…œì— ë„£ì–´ì¤€ë‹¤.
 		if( pHtmlItem->GetType() == HTML_ITEM_STRING ||
 			pHtmlItem->GetType() == HTML_ITEM_LINK )
-			static_cast<CHtml_StringItem*>(pHtmlItem)->GetItemRect( list ); // ¸®½ºÆ®¸¦ ³Ö´Â Ç×¸ñ
+			static_cast<CHtml_StringItem*>(pHtmlItem)->GetItemRect( list ); // ë¦¬ìŠ¤íŠ¸ë¥¼ ë„£ëŠ” í•­ëª©
 	}
 }
 
 /**
-* \brief ÇöÀç ±¸¼ºµÇ¾î ÀÖ´Â RowHtml Itemµé Áß¿¡¼­ ¸µÅ© ¼Ó¼ºÀ» °¡Áö°í ÀÖ´Â ¿µ¿ªÀ» ´ã´Â´Ù.
+* \brief í˜„ì¬ êµ¬ì„±ë˜ì–´ ìˆëŠ” RowHtml Itemë“¤ ì¤‘ì—ì„œ ë§í¬ ì†ì„±ì„ ê°€ì§€ê³  ìˆëŠ” ì˜ì—­ì„ ë‹´ëŠ”ë‹¤.
 */
 VOID CRowHtml_Item::GetLinkRect( std::list<sLinkRect>& list )
 {
@@ -430,19 +430,19 @@ CHtmlBox_Generic::CHtmlBox_Generic(CHtmlBox *pSelf, BOOL bDynamic /* = FALSE */)
 	// default count
 	m_nPresentNum = 1;
 
-	// Dynamic ¼Ó¼º
+	// Dynamic ì†ì„±
 	m_nMaxCX = m_pHtmlBox->GetScreenRect().GetWidth();
 	m_nMaxCY = m_pHtmlBox->GetScreenRect().GetHeight();
 	m_nMinCX = 0;
 	m_nMinCY = 0;
 
-	// DynamicÀÏ ¶§ °è»êÀÇ ±âÁØÀÌ µÇ´Â Rect( Screen, Client )
+	// Dynamicì¼ ë•Œ ê³„ì‚°ì˜ ê¸°ì¤€ì´ ë˜ëŠ” Rect( Screen, Client )
 	m_rectScreen = m_pHtmlBox->GetScreenRect();
 	m_rectClient = m_pHtmlBox->GetClientRect();
 
 	m_nMaxWidth = 0;
 
-	// Link ¼Ó¼º
+	// Link ì†ì„±
 	m_itCaptureLink = m_listDuplicateLink.end();
 	m_pListLink = NULL;
 }
@@ -467,7 +467,7 @@ VOID CHtmlBox_Generic::SetHtmlFromFile(const CHAR *pFileName)
 	m_pHtmlDoc->SetTextBackgroundColor(m_BgColor);
 	m_pHtmlDoc->SetHtmlFromFile(m_pHtmlBox, pFileName);
 
-	// °¡Àå »çÀÌÁî°¡ ±ä ItemÀ» Ã£¾Æ¼­ °Å±â¿¡ ¸ÂÃá´Ù.
+	// ê°€ì¥ ì‚¬ì´ì¦ˆê°€ ê¸´ Itemì„ ì°¾ì•„ì„œ ê±°ê¸°ì— ë§ì¶˜ë‹¤.
 	if( m_bDynamic )
 		AdjustToWidthString();
 
@@ -482,7 +482,7 @@ VOID CHtmlBox_Generic::SetHtmlFromFile(const CHAR *pFileName)
 
 	SetVScrollPos(0);
 
-	// ´ÙÀÌ³ª¹Í ¼Ó¼ºÀÏ ¶§´Â ³ôÀÌ¸¦ Á¶ÀıÇÑ´Ù.
+	// ë‹¤ì´ë‚˜ë¯¹ ì†ì„±ì¼ ë•ŒëŠ” ë†’ì´ë¥¼ ì¡°ì ˆí•œë‹¤.
 	if( m_bDynamic )
 		AdjustToHeightString();
 }
@@ -519,12 +519,12 @@ VOID CHtmlBox_Generic::SetHtmlFromMemory(const WCHAR *pMemory, INT nSize)
 }
 
 /**
-* \brief FONTÀÇ °¡ÁßÄ¡ Àû¿ë
+* \brief FONTì˜ ê°€ì¤‘ì¹˜ ì ìš©
 *
 */
 BOOL CHtmlBox_Generic::SetFontRatio(  float fRatio  ) 
 {
-	// ÇöÀç ÆäÀÌÁö°¡ Ãâ·ÂÁßÀÌ¶ó¸é.. ½ÇÆĞÇÑ´Ù.
+	// í˜„ì¬ í˜ì´ì§€ê°€ ì¶œë ¥ì¤‘ì´ë¼ë©´.. ì‹¤íŒ¨í•œë‹¤.
 	if( m_bIntervalText && !m_bDonePage )
 		return FALSE;
 
@@ -533,14 +533,14 @@ BOOL CHtmlBox_Generic::SetFontRatio(  float fRatio  )
 
 	m_fRatio = fRatio;
 
-	// ¸¸¾à m_pHtmlDocÀÌ NULLÀÌ ¾Æ´Ï¶ó¸é ·Îµù ÈÄ¿¡ Àû¿ëµÈ °ÍÀÌ¹Ç·Î
-	// ¸ğµç String ItemÀ» Àç¹èÄ¡ÇÏ°í ´Ù½Ã ±×·ÁÁØ´Ù.
+	// ë§Œì•½ m_pHtmlDocì´ NULLì´ ì•„ë‹ˆë¼ë©´ ë¡œë”© í›„ì— ì ìš©ëœ ê²ƒì´ë¯€ë¡œ
+	// ëª¨ë“  String Itemì„ ì¬ë°°ì¹˜í•˜ê³  ë‹¤ì‹œ ê·¸ë ¤ì¤€ë‹¤.
 	if( m_pHtmlDoc )
 	{
 		CHtmlDoc::ListHtmlItem::iterator docit;
 		CHtmlDoc::ListHtmlItem listHtmlItem = m_pHtmlDoc->GetItems();
 
-		// ¸ğµç HtmlStringItemÀÇ ¹èÀ²À» Á¤ÇØÁØ´Ù.
+		// ëª¨ë“  HtmlStringItemì˜ ë°°ìœ¨ì„ ì •í•´ì¤€ë‹¤.
 		for(docit = listHtmlItem.begin(); docit != listHtmlItem.end(); ++docit)
 		{
 			if( (*docit)->GetType() == HTML_ITEM_STRING )
@@ -558,7 +558,7 @@ BOOL CHtmlBox_Generic::SetFontRatio(  float fRatio  )
 		if( m_bDynamic )
 			AdjustToWidthString();
 
-		// ´Ù½Ã ¹èÄ¡ÇÏ°í ´Ù½Ã ±×·ÁÁØ´Ù.
+		// ë‹¤ì‹œ ë°°ì¹˜í•˜ê³  ë‹¤ì‹œ ê·¸ë ¤ì¤€ë‹¤.
 		ItemDisposition();
 		ItemLineSorting();
 
@@ -580,8 +580,8 @@ BOOL CHtmlBox_Generic::SetFontRatio(  float fRatio  )
 }
 
 /**
-* \brief StyleÀ» ÁöÁ¤ÇÑ´Ù. 32bit ÀÚ·áÇü
-* \param dwStyle	(DWORD) bit flag·Î µÇ¾î ÀÖ´Â ÀÚ·áÇü
+* \brief Styleì„ ì§€ì •í•œë‹¤. 32bit ìë£Œí˜•
+* \param dwStyle	(DWORD) bit flagë¡œ ë˜ì–´ ìˆëŠ” ìë£Œí˜•
 */
 VOID CHtmlBox_Generic::SetStyle(DWORD dwStyle)
 {
@@ -589,8 +589,8 @@ VOID CHtmlBox_Generic::SetStyle(DWORD dwStyle)
 }
 
 /**
-* \brief HtmlBoxÀÇ ItemµéÀÇ °£°İÀ» ¼³Á¤ÇÑ´Ù.
-* \param nSpace	(INT) ItemµéÀÇ ¶óÀÎ °£°İÀÇ ÇÈ¼¿
+* \brief HtmlBoxì˜ Itemë“¤ì˜ ê°„ê²©ì„ ì„¤ì •í•œë‹¤.
+* \param nSpace	(INT) Itemë“¤ì˜ ë¼ì¸ ê°„ê²©ì˜ í”½ì…€
 */
 VOID CHtmlBox_Generic::SetLineSpace(INT nSpace)
 {
@@ -598,8 +598,8 @@ VOID CHtmlBox_Generic::SetLineSpace(INT nSpace)
 }
 
 /**
-* \brief HtmlÀÇ Text¿¡¼­ Ãâ·ÂµÉ ¹è°æ »ö±òÀ» ¼³Á¤ÇÑ´Ù.
-* \param color	(COLORREF) 32bit »ö»ó
+* \brief Htmlì˜ Textì—ì„œ ì¶œë ¥ë  ë°°ê²½ ìƒ‰ê¹”ì„ ì„¤ì •í•œë‹¤.
+* \param color	(COLORREF) 32bit ìƒ‰ìƒ
 */
 VOID CHtmlBox_Generic::SetTextBackgroundColor(COLORREF color)
 {
@@ -628,7 +628,7 @@ VOID CHtmlBox_Generic::AddSurface( CSurface surface )
 }
 
 /**
-* \brief ÅØ½ºÃÄ¸¦ »ı¼ºÇÑ´Ù.
+* \brief í…ìŠ¤ì³ë¥¼ ìƒì„±í•œë‹¤.
 */
 VOID CHtmlBox_Generic::CreateTextTexture(VOID)
 {
@@ -653,7 +653,7 @@ VOID CHtmlBox_Generic::CreateTextTexture(VOID)
 }
 
 /**
-* \brief ÅØ½ºÃÄ¸¦ »èÁ¦ÇÑ´Ù.
+* \brief í…ìŠ¤ì³ë¥¼ ì‚­ì œí•œë‹¤.
 */
 VOID CHtmlBox_Generic::DeleteTextTexture(VOID)
 {
@@ -667,10 +667,10 @@ VOID CHtmlBox_Generic::DeleteTextTexture(VOID)
 /**
 * \brief IntervalText Mode On
 *
-* IntervalText ¸ğµå¸¦ °¡´ÉÇÏ°Ô ÇÏ°í ÇöÀç m_pHtmlDocÀÌ ÀÚ·á¸¦ °¡Áö°í ÀÖ´Â »óÅÂ¶ó¸é
-* ´Ù½Ã ÇÑ¹ø ÀÚ·áÀÇ À§Ä¡¸¦ °è»êÇÏ°í ÅØ½ºÃÄ¸¦ ¸¸µé¾î³½´Ù.
+* IntervalText ëª¨ë“œë¥¼ ê°€ëŠ¥í•˜ê²Œ í•˜ê³  í˜„ì¬ m_pHtmlDocì´ ìë£Œë¥¼ ê°€ì§€ê³  ìˆëŠ” ìƒíƒœë¼ë©´
+* ë‹¤ì‹œ í•œë²ˆ ìë£Œì˜ ìœ„ì¹˜ë¥¼ ê³„ì‚°í•˜ê³  í…ìŠ¤ì³ë¥¼ ë§Œë“¤ì–´ë‚¸ë‹¤.
 *
-* \param fIntervalTime (float)ÅØ½ºÆ®ÀÇ ÇÑ ±ÛÀÚ°¡ Ãâ·ÂµÇ´Â °£°İÀÇ ½Ã°£_ÃÊ´ÜÀ§
+* \param fIntervalTime (float)í…ìŠ¤íŠ¸ì˜ í•œ ê¸€ìê°€ ì¶œë ¥ë˜ëŠ” ê°„ê²©ì˜ ì‹œê°„_ì´ˆë‹¨ìœ„
 */
 VOID CHtmlBox_Generic::SetIntervalTextEnable( float fIntervalTime ) 
 {
@@ -689,19 +689,19 @@ VOID CHtmlBox_Generic::SetIntervalTextEnable( float fIntervalTime )
 }
 
 /**
-* \brief IntervalText ¸ğµå ÇØÁ¦
-* ÀÌÀü »óÅÂÀÇ Æò¹üÇÑ CHtmlBox·Î µ¹¾Æ°£´Ù. ¸ğµç IntervalText°ü·Ã ¾ÆÀÌÅÛµéÀ» ÃÊ±âÈ­ »èÁ¦ÇÏ°í
-* ÅØ½ºÃÄÀÇ ÁÂÇ¥¿Í UV¸¦ È¸º¹ÇÑ´Ù.
+* \brief IntervalText ëª¨ë“œ í•´ì œ
+* ì´ì „ ìƒíƒœì˜ í‰ë²”í•œ CHtmlBoxë¡œ ëŒì•„ê°„ë‹¤. ëª¨ë“  IntervalTextê´€ë ¨ ì•„ì´í…œë“¤ì„ ì´ˆê¸°í™” ì‚­ì œí•˜ê³ 
+* í…ìŠ¤ì³ì˜ ì¢Œí‘œì™€ UVë¥¼ íšŒë³µí•œë‹¤.
 */
 VOID CHtmlBox_Generic::SetIntervalTextDisable() 
 {
-	// IntervalText °ü·Ã Item »èÁ¦ ¹× ÃÊ±âÈ­
+	// IntervalText ê´€ë ¨ Item ì‚­ì œ ë° ì´ˆê¸°í™”
 	DeleteIntervalText();
 
 	m_bIntervalText = FALSE;
 	m_fIntervalTime = 0.0f;
 
-	// ¸¸¾à m_pHtmlDocÀÌ ItemÀ» °¡Áö°í ÀÖÀ» °æ¿ì
+	// ë§Œì•½ m_pHtmlDocì´ Itemì„ ê°€ì§€ê³  ìˆì„ ê²½ìš°
 	if( m_pHtmlDoc )
 	{
 		SetVScrollEnable(FALSE);
@@ -720,10 +720,10 @@ VOID CHtmlBox_Generic::SetIntervalTextDisable()
 
 		CRectangle rect = m_pHtmlBox->GetScreenRect();
 
-		// ÅØ½ºÃÄ ¿µ¿ª ÃÊ±âÈ­
+		// í…ìŠ¤ì³ ì˜ì—­ ì´ˆê¸°í™”
 		CreateTextTexture();
 
-		// ´Ù½Ã ±×¸®±â :: ItemRenderToTexture
+		// ë‹¤ì‹œ ê·¸ë¦¬ê¸° :: ItemRenderToTexture
 		SetVScrollPos(0);
 
 		if ( m_bDynamic )
@@ -731,13 +731,13 @@ VOID CHtmlBox_Generic::SetIntervalTextDisable()
 	}
 }
 
-// ¾÷µ¥ÀÌÆ®
+// ì—…ë°ì´íŠ¸
 VOID CHtmlBox_Generic::Update( float fElapsedTime  ) 
 {
 	if( m_listRowHtml.empty() )
 		return;
 
-	// ÀÎÅÍ¹úÅØ½ºÆ® ¸ğµå, ÆäÀÌÁö ¿Ï¼º, Àá½Ã ¸ØÃã ‹š´Â UpdateÇÏÁö ¾Ê¾Æµµ µÈ´Ù.
+	// ì¸í„°ë²Œí…ìŠ¤íŠ¸ ëª¨ë“œ, í˜ì´ì§€ ì™„ì„±, ì ì‹œ ë©ˆì¶¤ ë–„ëŠ” Updateí•˜ì§€ ì•Šì•„ë„ ëœë‹¤.
 	if( !m_bIntervalText || m_bDonePage || m_bPause )
 	{
 		std::list<CRowHtml_Item*>::iterator it;
@@ -755,23 +755,23 @@ VOID CHtmlBox_Generic::Update( float fElapsedTime  )
 	if( m_bImmediate )
 		IntervalPageDone(m_nCurrentPage);
 
-	// ÆäÀÌÁö°¡ ¾øÀ¸¸é ¾÷µ¥ÀÌÆ®¸¦ ÇÏÁö ¾Ê´Â´Ù.
+	// í˜ì´ì§€ê°€ ì—†ìœ¼ë©´ ì—…ë°ì´íŠ¸ë¥¼ í•˜ì§€ ì•ŠëŠ”ë‹¤.
 	if( m_pListRectangle[m_nCurrentPage].empty() )
 		return;
 
 	m_fElapsedTime += fElapsedTime;
 
-	// ÇöÀç ´©ÀûµÈ ½Ã°£ÀÌ m_fIntervalTime º¸´Ù ³ôÀ¸¸é Update
+	// í˜„ì¬ ëˆ„ì ëœ ì‹œê°„ì´ m_fIntervalTime ë³´ë‹¤ ë†’ìœ¼ë©´ Update
 	RwReal fRevivalTime = m_fElapsedTime / m_fIntervalTime;
 	if( fRevivalTime > 1.0f )
 	{
-		// Á¤¼ö°ª¸¸ °¡Áö°í ¿Â´Ù.
+		// ì •ìˆ˜ê°’ë§Œ ê°€ì§€ê³  ì˜¨ë‹¤.
 		RwInt32 nRevivalCount = (RwInt32)fRevivalTime;
 		
-		// ¼Ò¼öÁ¡¸¸ °¡Áö°í ¿Â´Ù.
+		// ì†Œìˆ˜ì ë§Œ ê°€ì§€ê³  ì˜¨ë‹¤.
 		RwReal fPercentage = fRevivalTime - (RwReal)nRevivalCount;
 		
-		// ³²Àº Å¸ÀÓÀº ÀúÀå
+		// ë‚¨ì€ íƒ€ì„ì€ ì €ì¥
 		m_fElapsedTime = m_fIntervalTime * fPercentage;
 
 		RwBool bDone = FALSE;
@@ -779,49 +779,49 @@ VOID CHtmlBox_Generic::Update( float fElapsedTime  )
 		{
 			for( int i=0; i< m_nPresentNum; ++i)
 			{
-				// ÇöÀç ¹İº¹ÀÚ¿¡ µé¾î ÀÖ´Â topÀÌ ÀÌÀüÀÇ top°¡ ´Ù¸¦ °æ¿ì ÇÑÁÙÀÌ ³Ñ¾î°£ °Í.
+				// í˜„ì¬ ë°˜ë³µìì— ë“¤ì–´ ìˆëŠ” topì´ ì´ì „ì˜ topê°€ ë‹¤ë¥¼ ê²½ìš° í•œì¤„ì´ ë„˜ì–´ê°„ ê²ƒ.
 				CRectangle rectScr = m_pHtmlBox->GetScreenRect();
 				if( (*itListRect).top != m_nCurrentRow &&
 					( itListRect != m_pListRectangle[m_nCurrentPage].begin() ) )
 				{	
-					// ÀÌÀüÀÇ top °»½Å
+					// ì´ì „ì˜ top ê°±ì‹ 
 					m_nCurrentRow = (*itListRect).top;
 
-					// ÇÑÁÙÀÌ ¿Ï¼ºµÇ¾îÁö¸é m_TextSurfaceÀÇ m_SnapShot¿¡ ´õÇØÁØ´Ù.
+					// í•œì¤„ì´ ì™„ì„±ë˜ì–´ì§€ë©´ m_TextSurfaceì˜ m_SnapShotì— ë”í•´ì¤€ë‹¤.
 					m_TextSurface.m_SnapShot.rtRect.top = rectScr.top;
 					m_TextSurface.m_SnapShot.rtRect.left = rectScr.left;
 					m_TextSurface.m_SnapShot.rtRect.right = rectScr.right;
 					m_TextSurface.m_SnapShot.rtRect.bottom = rectScr.top + ((*itListRect).top - m_vecPageRect[m_nCurrentPage].top);
 
-					// m_TextSurfaceÀÇ UV ¾÷µ¥ÀÌÆ®
+					// m_TextSurfaceì˜ UV ì—…ë°ì´íŠ¸
 					m_TextSurface.m_SnapShot.UVs[2] = (float)m_TextSurface.m_SnapShot.rtRect.GetWidth() 
 						/ (float)m_TextSurface.m_pTexture->GetWidth();
 					m_TextSurface.m_SnapShot.UVs[3] = (float)m_TextSurface.m_SnapShot.rtRect.GetHeight() 
 						/ (float)m_TextSurface.m_pTexture->GetHeight();
 
-					// ÇöÀç Interval·Î Ãâ·ÂµÇ´Â Plane Á¤º¸ ¾÷µ¥ÀÌÆ®
+					// í˜„ì¬ Intervalë¡œ ì¶œë ¥ë˜ëŠ” Plane ì •ë³´ ì—…ë°ì´íŠ¸
 					m_planeInterval.rtRect.right = m_planeInterval.rtRect.left;
 					m_planeInterval.rtRect.top = ((*itListRect).top - m_vecPageRect[m_nCurrentPage].top) + rectScr.top;
 
-					// UV µµ Áõ°¡
+					// UV ë„ ì¦ê°€
 					m_planeInterval.UVs[1] = (float)((*itListRect).top - m_vecPageRect[m_nCurrentPage].top)
 						/ (float)m_TextSurface.m_pTexture->GetHeight();
 				}
 
-				// ÇÑ ±ÛÀÚ¾¿ Áõ°¡½ÃÅ²´Ù.
+				// í•œ ê¸€ìì”© ì¦ê°€ì‹œí‚¨ë‹¤.
 				m_planeInterval.rtRect.left = rectScr.left;
 
-				// ÀÌµ¿ÀÌ µÇ¾ú¾îµµ °¡´ÉÇÒ¼ö ÀÖµµ·Ï.
+				// ì´ë™ì´ ë˜ì—ˆì–´ë„ ê°€ëŠ¥í• ìˆ˜ ìˆë„ë¡.
 				m_planeInterval.rtRect.top = ((*itListRect).top - m_vecPageRect[m_nCurrentPage].top) + rectScr.top;
 				m_planeInterval.rtRect.right += (*itListRect).right;
 				m_planeInterval.rtRect.bottom = m_planeInterval.rtRect.top + (*itListRect).bottom;
 
-				// UVÁÂÇ¥¸¦ °è»êÇÏ°í
+				// UVì¢Œí‘œë¥¼ ê³„ì‚°í•˜ê³ 
 				m_planeInterval.UVs[2] = (float)m_planeInterval.rtRect.GetWidth() / (float)m_TextSurface.m_pTexture->GetWidth();
 				m_planeInterval.UVs[3] = m_planeInterval.UVs[1] + 
 					( (float)m_planeInterval.rtRect.GetHeight() / (float)m_TextSurface.m_pTexture->GetHeight() );
 
-				// ÇöÀç ÆäÀÌÁöÀÇ ±ÛÀÚ¸¦ ´Ù Ãâ·ÂÇß´Ù¸é ÆäÀÌÁö¸¦ ¿Ï¼º½ÃÅ²´Ù.
+				// í˜„ì¬ í˜ì´ì§€ì˜ ê¸€ìë¥¼ ë‹¤ ì¶œë ¥í–ˆë‹¤ë©´ í˜ì´ì§€ë¥¼ ì™„ì„±ì‹œí‚¨ë‹¤.
 				itListRect++;
 				if( itListRect == m_pListRectangle[m_nCurrentPage].end() )
 				{
@@ -835,8 +835,8 @@ VOID CHtmlBox_Generic::Update( float fElapsedTime  )
 }
 
 /**
-* \brief ÆäÀÌÁöÀÇ °¹¼ö¸¦ ¸®ÅÏ
-* \return ÆäÀÌÁö °¹¼ö
+* \brief í˜ì´ì§€ì˜ ê°¯ìˆ˜ë¥¼ ë¦¬í„´
+* \return í˜ì´ì§€ ê°¯ìˆ˜
 */
 INT CHtmlBox_Generic::GetIntervalPageNums( VOID ) 
 {
@@ -849,19 +849,19 @@ INT CHtmlBox_Generic::GetCurrentPage(VOID)
 }
 
 /**
-* \brief ´ÙÀ½ ÆäÀÌÁö
-* \return ¼º°ø¿©ºÎ
+* \brief ë‹¤ìŒ í˜ì´ì§€
+* \return ì„±ê³µì—¬ë¶€
 */
 BOOL CHtmlBox_Generic::SetNextPage( VOID ) 
 {
-	// ÃÑ ÆäÀÌÁö¼öº¸´Ù ÀÛ´Ù¸é ÇöÀç ÆäÀÌÁö¸¦ Áõ°¡ ½ÃÄÑÁØ´Ù.
-	// ¾Æ´Ï¶ó¸é FALSE¸¦ ¸®ÅÏ
+	// ì´ í˜ì´ì§€ìˆ˜ë³´ë‹¤ ì‘ë‹¤ë©´ í˜„ì¬ í˜ì´ì§€ë¥¼ ì¦ê°€ ì‹œì¼œì¤€ë‹¤.
+	// ì•„ë‹ˆë¼ë©´ FALSEë¥¼ ë¦¬í„´
 	if( m_nCurrentPage < m_nPageCount-1 )
 		++m_nCurrentPage;
 	else
 		return FALSE;
 
-	// Áõ°¡µÈ ÆäÀÌÁö·Î ÃÊ±âÈ­
+	// ì¦ê°€ëœ í˜ì´ì§€ë¡œ ì´ˆê¸°í™”
 	IntervalPageInit( m_nCurrentPage );
 	ItemRenderToTexture( m_vecPageRect[m_nCurrentPage].top );
 
@@ -872,18 +872,18 @@ BOOL CHtmlBox_Generic::SetNextPage( VOID )
 }
 
 /**
-* \brief ÀÌÀü ÆäÀÌÁö
-* \return ¼º°ø¿©ºÎ
+* \brief ì´ì „ í˜ì´ì§€
+* \return ì„±ê³µì—¬ë¶€
 */
 BOOL CHtmlBox_Generic::SetPrevPage( VOID ) 
 {
-	// ÀÌÀü ÆäÀÌÁö·Î ³Ñ±è
+	// ì´ì „ í˜ì´ì§€ë¡œ ë„˜ê¹€
 	if( m_nCurrentPage > 0 )
 		--m_nCurrentPage;
 	else
 		return FALSE;
 
-	// °¨¼ÒµÈ ÆäÀÌÁö·Î ÃÊ±âÈ­
+	// ê°ì†Œëœ í˜ì´ì§€ë¡œ ì´ˆê¸°í™”
 	IntervalPageInit( m_nCurrentPage );
 	ItemRenderToTexture( m_vecPageRect[m_nCurrentPage].top );
 
@@ -894,16 +894,16 @@ BOOL CHtmlBox_Generic::SetPrevPage( VOID )
 }
 
 /**
-* \brief ÆäÀÌÁö½ºÅµ
-* \return ¼º°ø¿©ºÎ
+* \brief í˜ì´ì§€ìŠ¤í‚µ
+* \return ì„±ê³µì—¬ë¶€
 */
 BOOL CHtmlBox_Generic::SetSkipPage( VOID ) 
 {
-	// IntervalText ¸ğµå°¡ ¾Æ´Ï¶ó¸é ½ÇÆĞ
+	// IntervalText ëª¨ë“œê°€ ì•„ë‹ˆë¼ë©´ ì‹¤íŒ¨
 	if( m_bIntervalText == FALSE )
 		return FALSE;
 
-	// ÀÌ¹Ì ÆäÀÌÁö°¡ ¿Ï¼ºµÇ¾î ÀÖ´Ù¸é ½ÇÆĞ
+	// ì´ë¯¸ í˜ì´ì§€ê°€ ì™„ì„±ë˜ì–´ ìˆë‹¤ë©´ ì‹¤íŒ¨
 	if( m_bDonePage == FALSE )
 	{
 		IntervalPageDone( m_nCurrentPage );
@@ -914,42 +914,42 @@ BOOL CHtmlBox_Generic::SetSkipPage( VOID )
 }
 
 /**
-* \brief ÆäÀÌÁö ÃÊ±âÈ­
-* ÆäÀÌÁö¸¦ Ãâ·ÂÇÏ±â À§ÇÑ ÃÊ±âÈ­
-* \param nPage (INT)ÆäÀÌÁö ¹øÈ£
+* \brief í˜ì´ì§€ ì´ˆê¸°í™”
+* í˜ì´ì§€ë¥¼ ì¶œë ¥í•˜ê¸° ìœ„í•œ ì´ˆê¸°í™”
+* \param nPage (INT)í˜ì´ì§€ ë²ˆí˜¸
 */
 VOID CHtmlBox_Generic::IntervalPageInit( INT nPage ) 
 {
 	if( nPage >= m_nPageCount || nPage < 0 )
 		return;
 
-	// ¸¸¾à ¸ØÃç ÀÖ´Ù¸é ÇÃ·¹ÀÌ Àç°³
+	// ë§Œì•½ ë©ˆì¶° ìˆë‹¤ë©´ í”Œë ˆì´ ì¬ê°œ
 	if( m_bPause )
 		m_bPause = FALSE;
 
-	// ¹İº¹ÀÚÀÇ À§Ä¡ ÃÊ±âÈ­
+	// ë°˜ë³µìì˜ ìœ„ì¹˜ ì´ˆê¸°í™”
 	itListRect = m_pListRectangle[nPage].begin();
 	m_nCurrentRow = (*itListRect).top;
 
-	// ±ÛÀÚ Ãâ·Â È¿°ú¿¡ »ç¿ëµÉ PlaneÀ» ÃÊ±âÈ­ÇÑ´Ù.
+	// ê¸€ì ì¶œë ¥ íš¨ê³¼ì— ì‚¬ìš©ë  Planeì„ ì´ˆê¸°í™”í•œë‹¤.
 	m_planeInterval.rtRect.left = m_TextSurface.m_SnapShot.rtRect.left;
 	m_planeInterval.rtRect.top = m_TextSurface.m_SnapShot.rtRect.top;
 	m_planeInterval.rtRect.right = m_TextSurface.m_SnapShot.rtRect.left;
 	m_planeInterval.rtRect.bottom = m_TextSurface.m_SnapShot.rtRect.top;
 
-	// UV ÃÊ±âÈ­
+	// UV ì´ˆê¸°í™”
 	m_planeInterval.UVs[0] = 0.0f;
 	m_planeInterval.UVs[1] = 0.0f;
 	m_planeInterval.UVs[2] = 0.0f;
 	m_planeInterval.UVs[3] = 0.0f;
 
-	// »ö»óÀ» ¸ÂÃçÁØ´Ù. ÃÊ±âÈ­
+	// ìƒ‰ìƒì„ ë§ì¶°ì¤€ë‹¤. ì´ˆê¸°í™”
 	m_planeInterval.uAlpha = m_TextSurface.m_SnapShot.uAlpha;
 	m_planeInterval.uBlue = m_TextSurface.m_SnapShot.uBlue;
 	m_planeInterval.uRed = m_TextSurface.m_SnapShot.uRed;
 	m_planeInterval.uGreen = m_TextSurface.m_SnapShot.uGreen;
 
-	// ÅØ½ºÃÄ¸¦ °¡Áö°í ÀÖ´Â ºÎºĞµµ ÃÊ±âÈ­ÇÑ´Ù.
+	// í…ìŠ¤ì³ë¥¼ ê°€ì§€ê³  ìˆëŠ” ë¶€ë¶„ë„ ì´ˆê¸°í™”í•œë‹¤.
 	m_TextSurface.m_SnapShot.rtRect.right = m_TextSurface.m_SnapShot.rtRect.left;
 	m_TextSurface.m_SnapShot.rtRect.bottom = m_TextSurface.m_SnapShot.rtRect.top;
 
@@ -966,9 +966,9 @@ VOID CHtmlBox_Generic::IntervalPageInit( INT nPage )
 }
 
 /**
-* \brief ÆäÀÌÁö ¿Ï·á
-* UV ÁÂÇ¥ °»½Å(¿Ï·á)
-* \param nPage (INT)ÆäÀÌÁö ¹øÈ£
+* \brief í˜ì´ì§€ ì™„ë£Œ
+* UV ì¢Œí‘œ ê°±ì‹ (ì™„ë£Œ)
+* \param nPage (INT)í˜ì´ì§€ ë²ˆí˜¸
 */
 VOID CHtmlBox_Generic::IntervalPageDone( INT nPage ) 
 {
@@ -981,7 +981,7 @@ VOID CHtmlBox_Generic::IntervalPageDone( INT nPage )
 
 	INT nOffsetY = 0;
 
-	//// Interval TextÀÇ °æ¿ì °¢ ÆäÀÌÁö¿¡ µé¾î ÀÖ´Â ¾ÆÀÌÅÛÀÇ Å©±â·Î YÀÇ OffsetÀ» ÁöÁ¤ÇØÁÖ°í
+	//// Interval Textì˜ ê²½ìš° ê° í˜ì´ì§€ì— ë“¤ì–´ ìˆëŠ” ì•„ì´í…œì˜ í¬ê¸°ë¡œ Yì˜ Offsetì„ ì§€ì •í•´ì£¼ê³ 
 	//if( m_bIntervalText )
 	//{
 	//	if( !m_vecPageRect.empty() )
@@ -998,32 +998,32 @@ VOID CHtmlBox_Generic::IntervalPageDone( INT nPage )
 	m_TextSurface.m_SnapShot.UVs[2] = (float)rectScr.GetWidth() / (float)m_TextSurface.m_pTexture->GetWidth();
 	m_TextSurface.m_SnapShot.UVs[3] = (float)m_vecPageRect[nPage].GetHeight() / (float)m_TextSurface.m_pTexture->GetHeight();
 
-	// ÇöÀç ¿Ï·áµÈ ÆäÀÌÁö¸¦ Signal·Î º¸³½´Ù.
+	// í˜„ì¬ ì™„ë£Œëœ í˜ì´ì§€ë¥¼ Signalë¡œ ë³´ë‚¸ë‹¤.
 	m_SigPageDone( nPage );
 }
 
 /**
-* \brief IntervalText ¸Ş¸ğ¸® ÇØÁ¦ ¹× ÃÊ±âÈ­
-* IntervalText¿¡ »ç¿ëµÇ¾ú´ø ¸Ş¸ğ¸®¿Í Á¤º¸µéÀ» »èÁ¦ÇÏ°í ÃÊ±âÈ­ÇÑ´Ù.
+* \brief IntervalText ë©”ëª¨ë¦¬ í•´ì œ ë° ì´ˆê¸°í™”
+* IntervalTextì— ì‚¬ìš©ë˜ì—ˆë˜ ë©”ëª¨ë¦¬ì™€ ì •ë³´ë“¤ì„ ì‚­ì œí•˜ê³  ì´ˆê¸°í™”í•œë‹¤.
 */
 VOID CHtmlBox_Generic::DeleteIntervalText( VOID ) 
 {
 	// Intervals Text
 	if( m_pListRectangle )
 	{
-		// ¹è¿­À» ¼øÈ¸ÇÏ¿© °¢ ¸®½ºÆ®¸¦ ÃÊ±âÈ­
+		// ë°°ì—´ì„ ìˆœíšŒí•˜ì—¬ ê° ë¦¬ìŠ¤íŠ¸ë¥¼ ì´ˆê¸°í™”
 		for( int i=0; i < m_nPageCount; ++i )
 			m_pListRectangle[i].clear();
 
-		// ¹è¿­ÀÇ »èÁ¦
+		// ë°°ì—´ì˜ ì‚­ì œ
 		NTL_ARRAY_DELETE( m_pListRectangle );
 	}
 
-	// [br]ÅÂ±×ÀÇ Á¤º¸ »èÁ¦
+	// [br]íƒœê·¸ì˜ ì •ë³´ ì‚­ì œ
 	m_vecNewLineIdx.clear();
 	m_vecNewPageIdx.clear();
 
-	// ÆäÀÌÁöÀÇ Á¤º¸¸¦ »èÁ¦
+	// í˜ì´ì§€ì˜ ì •ë³´ë¥¼ ì‚­ì œ
 	m_vecPageRect.clear();
 
 	m_nPageCount = 1;
@@ -1038,7 +1038,7 @@ VOID CHtmlBox_Generic::DeleteIntervalText( VOID )
 }
 
 /**
-* \brief °¡Àå ±ä ¾ÆÀÌÅÛÀ» Ã£Àº ´ÙÀ½ ±× ¾ÆÀÌÅÛÀÇ ±æÀÌ¿¡ ¸ÂÃç °¡·Î¸¦ º¯°æÇÑ´Ù. ( Dynamic ÀÏ °æ¿ì )
+* \brief ê°€ì¥ ê¸´ ì•„ì´í…œì„ ì°¾ì€ ë‹¤ìŒ ê·¸ ì•„ì´í…œì˜ ê¸¸ì´ì— ë§ì¶° ê°€ë¡œë¥¼ ë³€ê²½í•œë‹¤. ( Dynamic ì¼ ê²½ìš° )
 */
 VOID CHtmlBox_Generic::AdjustToWidthString( VOID ) 
 {
@@ -1058,12 +1058,12 @@ VOID CHtmlBox_Generic::AdjustToWidthString( VOID )
 		nResizeWidth = m_nMaxCX;
 	}
 
-	// °¡·Î »çÀÌÁî¸¦ ¸ÂÃçÁØ´Ù.
+	// ê°€ë¡œ ì‚¬ì´ì¦ˆë¥¼ ë§ì¶°ì¤€ë‹¤.
 	m_pHtmlBox->SetSize( nResizeWidth, rectClient.GetHeight() );
 }
 
 /**
-/* \brief ÇöÀç °è»êµÈ Itemµé¿¡ ¸ÂÃç¼­ ÄÄÆ÷³ÍÆ®ÀÇ »çÀÌÁî¸¦ º¯°æÇÑ´Ù.
+/* \brief í˜„ì¬ ê³„ì‚°ëœ Itemë“¤ì— ë§ì¶°ì„œ ì»´í¬ë„ŒíŠ¸ì˜ ì‚¬ì´ì¦ˆë¥¼ ë³€ê²½í•œë‹¤.
 */
 VOID CHtmlBox_Generic::AdjustToHeightString( VOID ) 
 {
@@ -1100,9 +1100,9 @@ VOID CHtmlBox_Generic::AdjustToHeightString( VOID )
 }
 
 /**
-* \brief ÆäÀÌÁö¸¦ ÇÃ·¹ÀÌÇÑ´Ù.
-* \param nPage (INT)ÇÃ·¹ÀÌÇÒ ÆäÀÌÁö
-* \return ¼º°ø¿©ºÎ
+* \brief í˜ì´ì§€ë¥¼ í”Œë ˆì´í•œë‹¤.
+* \param nPage (INT)í”Œë ˆì´í•  í˜ì´ì§€
+* \return ì„±ê³µì—¬ë¶€
 */
 BOOL CHtmlBox_Generic::SetPlayPage( INT nPage ) 
 {
@@ -1125,8 +1125,8 @@ BOOL CHtmlBox_Generic::SetPlayPage( INT nPage )
 }
 
 /**
-* \brief ÀÏ½Ã¸ØÃã
-* \param bPause (BOOL)ÀÏ½Ã¸ØÃã(default = TRUE)
+* \brief ì¼ì‹œë©ˆì¶¤
+* \param bPause (BOOL)ì¼ì‹œë©ˆì¶¤(default = TRUE)
 */
 VOID CHtmlBox_Generic::SetPause( BOOL bPause /*= TRUE */ ) 
 {
@@ -1134,8 +1134,8 @@ VOID CHtmlBox_Generic::SetPause( BOOL bPause /*= TRUE */ )
 }
 
 /**
-* \brief Á÷Á¢¸ğµå
-* \param bImmediate (BOOL)Á÷Á¢¸ğµå(default = TRUE)
+* \brief ì§ì ‘ëª¨ë“œ
+* \param bImmediate (BOOL)ì§ì ‘ëª¨ë“œ(default = TRUE)
 */
 VOID CHtmlBox_Generic::SetImmediate( BOOL bImmediate /*= TRUE */ ) 
 {
@@ -1143,8 +1143,8 @@ VOID CHtmlBox_Generic::SetImmediate( BOOL bImmediate /*= TRUE */ )
 }
 
 /**
-* \brief ÇÑ¹ø¿¡ Ãâ·ÂÇÒ ±ÛÀÚÀÇ °¹¼ö¸¦ ¼ÂÆÃÇÑ´Ù.
-* \param nNum	ÇÑ¹ø¿¡ Ãâ·ÂÇÒ °¹¼ö
+* \brief í•œë²ˆì— ì¶œë ¥í•  ê¸€ìì˜ ê°¯ìˆ˜ë¥¼ ì…‹íŒ…í•œë‹¤.
+* \param nNum	í•œë²ˆì— ì¶œë ¥í•  ê°¯ìˆ˜
 */
 VOID CHtmlBox_Generic::SetPresentNum( INT nNum ) 
 {
@@ -1159,7 +1159,7 @@ VOID CHtmlBox_Generic::SetPresentNum( INT nNum )
 }
 
 /**
-* \brief ÇÑ¹ø¿¡ Ãâ·ÂÇÒ °¹¼ö°¡ ¸î°³ÀÎÁö ¹İÈ¯¹Ş´Â´Ù.
+* \brief í•œë²ˆì— ì¶œë ¥í•  ê°¯ìˆ˜ê°€ ëª‡ê°œì¸ì§€ ë°˜í™˜ë°›ëŠ”ë‹¤.
 */
 INT gui::CHtmlBox_Generic::GetPresentNum() 
 {
@@ -1167,7 +1167,7 @@ INT gui::CHtmlBox_Generic::GetPresentNum()
 }
 
 /**
-/* \brief m_pHtmlDoc À» ÇØÁ¦ÇÏ°í ·»´õ¸µµÉ ItemÀ» ÃÊ±âÈ­ÇÑ´Ù.
+/* \brief m_pHtmlDoc ì„ í•´ì œí•˜ê³  ë Œë”ë§ë  Itemì„ ì´ˆê¸°í™”í•œë‹¤.
 */
 VOID CHtmlBox_Generic::DeleteItem(VOID)
 {
@@ -1178,7 +1178,7 @@ VOID CHtmlBox_Generic::DeleteItem(VOID)
 }
 
 /**
-/* \brief m_listRowHtml ¿¡ µé¾îÀÖ´Â ·»´õ¸µµÉ ItemµéÀ» ÇØÁ¦ÇÏ°í list¸¦ clearÇÑ´Ù.
+/* \brief m_listRowHtml ì— ë“¤ì–´ìˆëŠ” ë Œë”ë§ë  Itemë“¤ì„ í•´ì œí•˜ê³  listë¥¼ clearí•œë‹¤.
 */
 VOID CHtmlBox_Generic::DeleteRenderItem(VOID)
 {
@@ -1192,35 +1192,35 @@ VOID CHtmlBox_Generic::DeleteRenderItem(VOID)
 }
 
 /**
-* \brief ¾ÆÀÌÅÛµéÀ» ¼Ó¼º¿¡ ÄÄÆ÷³ÍÆ®ÀÇ »çÀÌÁî¿¡ ¾Ë¸Â°Ô ³Ö±â À§ÇÏ¿© Àç°è»êÇØ¼­
-* CRowHtml_ItemÀ¸·Î ¸¸µç´Ù.
+* \brief ì•„ì´í…œë“¤ì„ ì†ì„±ì— ì»´í¬ë„ŒíŠ¸ì˜ ì‚¬ì´ì¦ˆì— ì•Œë§ê²Œ ë„£ê¸° ìœ„í•˜ì—¬ ì¬ê³„ì‚°í•´ì„œ
+* CRowHtml_Itemìœ¼ë¡œ ë§Œë“ ë‹¤.
 */
 VOID CHtmlBox_Generic::ItemDisposition(VOID)
 {
-	// »õ·Î ÀÛ¼º.
+	// ìƒˆë¡œ ì‘ì„±.
 	DeleteIntervalText();	
 	DeleteRenderItem();
 
-	// CHtmlDoc¿¡ µé¾î ÀÖ´Â ¾ÆÀÌÅÛ ¸®½ºÆ®¸¦ °¡Áö°í ¿Â´Ù.
+	// CHtmlDocì— ë“¤ì–´ ìˆëŠ” ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ë¥¼ ê°€ì§€ê³  ì˜¨ë‹¤.
 	CHtml_Item *pDocHtmlItem;
 	CHtmlDoc::ListHtmlItem::iterator docit;
 	CHtmlDoc::ListHtmlItem listHtmlItem = m_pHtmlDoc->GetItems();
 
-	// ¸ğµç ¾ÆÀÌÅÛÀÇ À§Ä¡¸¦ ÃÊ±âÈ­ÇØÁØ´Ù.
+	// ëª¨ë“  ì•„ì´í…œì˜ ìœ„ì¹˜ë¥¼ ì´ˆê¸°í™”í•´ì¤€ë‹¤.
 	for(docit = listHtmlItem.begin(); docit != listHtmlItem.end(); ++docit)
 	{
 		pDocHtmlItem = (*docit);
 		pDocHtmlItem->ResetItemDisposition();
 	}
 
-	// ¾ÆÀÌÅÛµéÀÌ HtmlBox¿¡ ¾Ë¸Â°Ô µé¾î°¡°Ô ÇÏ±â À§ÇÏ¿© ÃÊ±âÀÇ °è»êÇÏ´Â ¿µ¿ªÀ» Àâ¾ÆÁØ´Ù.
+	// ì•„ì´í…œë“¤ì´ HtmlBoxì— ì•Œë§ê²Œ ë“¤ì–´ê°€ê²Œ í•˜ê¸° ìœ„í•˜ì—¬ ì´ˆê¸°ì˜ ê³„ì‚°í•˜ëŠ” ì˜ì—­ì„ ì¡ì•„ì¤€ë‹¤.
 	CRectangle rect = m_pHtmlBox->GetClientRect();
 
-	// ½ºÅ©·Ñ¹Ù°¡ È°¼ºÈ­ »óÅÂ¶ó¸é ScrollBar ¸¸Å­ Width¸¦ »©ÁØ´Ù.
+	// ìŠ¤í¬ë¡¤ë°”ê°€ í™œì„±í™” ìƒíƒœë¼ë©´ ScrollBar ë§Œí¼ Widthë¥¼ ë¹¼ì¤€ë‹¤.
 	if(m_bVScrollEnable)
 		rect.right -= m_pHtmlBox->m_pScrollBar->GetSliderRect().GetWidth();		
 
-	// °¢ ¾ÆÀÌÅÛµéÀÇ À§Ä¡¸¦ ¼³Á¤ÇÏ±â ¾ÆÀÌÅÛÀÇ Å©±â¸¦ ¹Ì¸® ¼³Á¤ÇÑ´Ù.
+	// ê° ì•„ì´í…œë“¤ì˜ ìœ„ì¹˜ë¥¼ ì„¤ì •í•˜ê¸° ì•„ì´í…œì˜ í¬ê¸°ë¥¼ ë¯¸ë¦¬ ì„¤ì •í•œë‹¤.
 	m_nItemCx = rect.GetWidth();
 	m_nItemCy = rect.GetHeight();
 
@@ -1231,13 +1231,13 @@ VOID CHtmlBox_Generic::ItemDisposition(VOID)
 	CRowHtml_Item *pRowHtml = NTL_NEW CRowHtml_Item(nCurrIdx, rect, FALSE, m_nLineInterY);
 	m_listRowHtml.push_back(pRowHtml);
 
-	// CHtmlDoc¿¡ µé¾îÀÖ´Â ¸ğµç ¾ÆÀÌÅÛµéÀ» ÇöÀç HtmlBox UIÀÇ Å©±â¿¡ ¸ÂÃç¼­
-	// °¢ Çà¸¶´Ù CRowHtml_ItemÀ¸·Î ³ª´©¾î¼­ ÀúÀåÀ» ÇÑ´Ù.
+	// CHtmlDocì— ë“¤ì–´ìˆëŠ” ëª¨ë“  ì•„ì´í…œë“¤ì„ í˜„ì¬ HtmlBox UIì˜ í¬ê¸°ì— ë§ì¶°ì„œ
+	// ê° í–‰ë§ˆë‹¤ CRowHtml_Itemìœ¼ë¡œ ë‚˜ëˆ„ì–´ì„œ ì €ì¥ì„ í•œë‹¤.
 	for(docit = listHtmlItem.begin(); docit != listHtmlItem.end(); ++docit)
 	{
 		pDocHtmlItem = (*docit);
 		
-		// [br] ÅÂ±×ÀÇ ¾ÆÀÌÅÛÀ» ±â·ÏÇØ³õ´Â´Ù.
+		// [br] íƒœê·¸ì˜ ì•„ì´í…œì„ ê¸°ë¡í•´ë†“ëŠ”ë‹¤.
 		if( pDocHtmlItem->GetType() == HTML_ITEM_NEWLINE )
 			m_vecNewLineIdx.push_back( nCurrIdx );
 		
@@ -1254,23 +1254,23 @@ VOID CHtmlBox_Generic::ItemDisposition(VOID)
 		}
 	}
 
-	// ¸¶Áö¸·À¸·Î ³ª¿Â pRowHtml ÀÌ¸é ÀüÃ¼ ¿µ¿ªÀ» ¼³Á¤ÇØÁØ´Ù.
+	// ë§ˆì§€ë§‰ìœ¼ë¡œ ë‚˜ì˜¨ pRowHtml ì´ë©´ ì „ì²´ ì˜ì—­ì„ ì„¤ì •í•´ì¤€ë‹¤.
 	if(pRowHtml)
 	{
 		pRowHtml->ItemFinishDisposition();		
 	}
 
-	// ÇÑ ±ÛÀÚ¾¿ Ãâ·Â ¸ğµå¶ó¸é ÇöÀç ¸¸µé¾îÁø RowHtml_Itemµé·Î ÇÑ ±ÛÀÚ¾¿ ´Ù½Ã ÇÑ¹ø °è»êÀ» ÇØÁà¼­
-	// ÆäÀÌÁö¿¡ ±¸ºĞÇÏ¿© µé¾î°¥ ¼ö ÀÖµµ·Ï ±ÛÀÚ ÇÏ³ª¾¿ÀÇ À§Ä¡¸¦ °è»êÇØ¼­ °¡Áö°í ÀÖ´Â´Ù.
+	// í•œ ê¸€ìì”© ì¶œë ¥ ëª¨ë“œë¼ë©´ í˜„ì¬ ë§Œë“¤ì–´ì§„ RowHtml_Itemë“¤ë¡œ í•œ ê¸€ìì”© ë‹¤ì‹œ í•œë²ˆ ê³„ì‚°ì„ í•´ì¤˜ì„œ
+	// í˜ì´ì§€ì— êµ¬ë¶„í•˜ì—¬ ë“¤ì–´ê°ˆ ìˆ˜ ìˆë„ë¡ ê¸€ì í•˜ë‚˜ì”©ì˜ ìœ„ì¹˜ë¥¼ ê³„ì‚°í•´ì„œ ê°€ì§€ê³  ìˆëŠ”ë‹¤.
 	if( m_bIntervalText )
 		IntervalTextPosCalc();
 
-	// Link ¿µ¿ªÀ» °è»êÇÑ´Ù.
+	// Link ì˜ì—­ì„ ê³„ì‚°í•œë‹¤.
 	LinkRectCalc();
 }
 
 /**
-/* \brief ItemÀÇ Å©±â¸¦ °è»êÇÏ°í ScrollBar°¡ È°¼ºÈ­ µÇ¾î¾ß ÇÏ´ÂÁö, ScrollBarÀÇ Range ¼³Á¤±îÁö ÇÑ´Ù.
+/* \brief Itemì˜ í¬ê¸°ë¥¼ ê³„ì‚°í•˜ê³  ScrollBarê°€ í™œì„±í™” ë˜ì–´ì•¼ í•˜ëŠ”ì§€, ScrollBarì˜ Range ì„¤ì •ê¹Œì§€ í•œë‹¤.
 */
 VOID CHtmlBox_Generic::ItemLineSorting(VOID)
 {
@@ -1283,7 +1283,7 @@ VOID CHtmlBox_Generic::ItemLineSorting(VOID)
 		m_nItemCy = rtArea.bottom;
 	}	
 
-	// Interval Text ¸ğµå¸¦ Àû¿ëÇÒ¶§´Â ScrollÀ» »ç¿ëÇÏÁö ¾Ê´Â´Ù.
+	// Interval Text ëª¨ë“œë¥¼ ì ìš©í• ë•ŒëŠ” Scrollì„ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤.
 	if(m_bVScrollEnable == FALSE && m_bIntervalText == FALSE)
 	{
 		CRectangle rect = m_pHtmlBox->GetClientRect();
@@ -1301,8 +1301,8 @@ VOID CHtmlBox_Generic::ItemLineSorting(VOID)
 }
 
 /**
-* \brief CHtml_ItemµéÀ» Texture¿¡ ·»´õ¸µÇÑ´Ù.
-* \param nVScrollPos	(INT)	½ºÅ©·ÑÀÇ À§Ä¡
+* \brief CHtml_Itemë“¤ì„ Textureì— ë Œë”ë§í•œë‹¤.
+* \param nVScrollPos	(INT)	ìŠ¤í¬ë¡¤ì˜ ìœ„ì¹˜
 */
 VOID CHtmlBox_Generic::ItemRenderToTexture(INT nVScrollPos)
 {
@@ -1315,7 +1315,7 @@ VOID CHtmlBox_Generic::ItemRenderToTexture(INT nVScrollPos)
 	// vertical align
 	CRectangle rect = m_pHtmlBox->GetClientRect();
 
-	// Item À» ·»´õ¸µ ÇÒ ¶§´Â ½ºÅ©·Ñ Offset¸¸ ·»´õ¸µÇÑ´Ù.
+	// Item ì„ ë Œë”ë§ í•  ë•ŒëŠ” ìŠ¤í¬ë¡¤ Offsetë§Œ ë Œë”ë§í•œë‹¤.
 	INT nOffsetX = 0;
 	INT nOffsetY = -nVScrollPos;
 
@@ -1328,11 +1328,11 @@ VOID CHtmlBox_Generic::ItemRenderToTexture(INT nVScrollPos)
 }
 
 /**
-* \brief dwAlign¿¡ ¸ÂÃç¼­ XÀÇ Offset°ªÀ» °è»êÇÑ´Ù.
-* \param dwAlign	(DWORD) Á¤·Ä ¼Ó¼º
-* \param nClipWidth	(INT) °è»êÇÒ X ¿µ¿ª
-* \param nItemWidth	(INT) ¿µ¿ª ¾È¿¡ µé¾î°¡ ÀÖ´Â ¾ÆÀÌÅÛÀÇ Å©±â
-* \return Style¿¡ ¸Â´Â XÀÇ Offset °ª
+* \brief dwAlignì— ë§ì¶°ì„œ Xì˜ Offsetê°’ì„ ê³„ì‚°í•œë‹¤.
+* \param dwAlign	(DWORD) ì •ë ¬ ì†ì„±
+* \param nClipWidth	(INT) ê³„ì‚°í•  X ì˜ì—­
+* \param nItemWidth	(INT) ì˜ì—­ ì•ˆì— ë“¤ì–´ê°€ ìˆëŠ” ì•„ì´í…œì˜ í¬ê¸°
+* \return Styleì— ë§ëŠ” Xì˜ Offset ê°’
 */
 INT CHtmlBox_Generic::GetAlignOffsetX(DWORD dwAlign, INT nClipWidth, INT nItemWidth)
 {
@@ -1355,11 +1355,11 @@ INT CHtmlBox_Generic::GetAlignOffsetX(DWORD dwAlign, INT nClipWidth, INT nItemWi
 }
 
 /**
-* \brief dwAlign¿¡ ¸ÂÃç¼­ YÀÇ Offset°ªÀ» °è»êÇÑ´Ù.
-* \param dwAlign		(DWORD) Á¤·Ä ¼Ó¼º
-* \param nClipHeight	(INT) °è»êÇÒ Y ¿µ¿ª
-* \param nItemHeight	(INT) ¿µ¿ª ¾È¿¡ µé¾î°¡ ÀÖ´Â ¾ÆÀÌÅÛÀÇ Å©±â
-* \return Style¿¡ ¸Â´Â YÀÇ Offset °ª
+* \brief dwAlignì— ë§ì¶°ì„œ Yì˜ Offsetê°’ì„ ê³„ì‚°í•œë‹¤.
+* \param dwAlign		(DWORD) ì •ë ¬ ì†ì„±
+* \param nClipHeight	(INT) ê³„ì‚°í•  Y ì˜ì—­
+* \param nItemHeight	(INT) ì˜ì—­ ì•ˆì— ë“¤ì–´ê°€ ìˆëŠ” ì•„ì´í…œì˜ í¬ê¸°
+* \return Styleì— ë§ëŠ” Yì˜ Offset ê°’
 */
 INT	CHtmlBox_Generic::GetAlignOffsetY(DWORD dwAlign, INT nClipHeight, INT nItemHeight)
 {
@@ -1382,8 +1382,8 @@ INT	CHtmlBox_Generic::GetAlignOffsetY(DWORD dwAlign, INT nClipHeight, INT nItemH
 }
 
 /**
-* \brief Vertical ScrollBarÀÇ È°¼ºÈ­ ¼ÂÆÃ
-* \param bEnable	(BOOL) TRUE = È°¼ºÈ­, FALSE = ºñÈ°¼ºÈ­
+* \brief Vertical ScrollBarì˜ í™œì„±í™” ì…‹íŒ…
+* \param bEnable	(BOOL) TRUE = í™œì„±í™”, FALSE = ë¹„í™œì„±í™”
 */
 VOID CHtmlBox_Generic::SetVScrollEnable(BOOL bEnable)
 {
@@ -1397,8 +1397,8 @@ VOID CHtmlBox_Generic::SetVScrollEnable(BOOL bEnable)
 }
 
 /**
-* \brief Vertical ScrollBarÀÇ ÀÌµ¿°Å¸®¸¦ ¼³Á¤ÇÑ´Ù.
-* \param nRange		(INT) ½ºÅ©·Ñ µÇ´Â ¿µ¿ªÀÇ ÇÈ¼¿
+* \brief Vertical ScrollBarì˜ ì´ë™ê±°ë¦¬ë¥¼ ì„¤ì •í•œë‹¤.
+* \param nRange		(INT) ìŠ¤í¬ë¡¤ ë˜ëŠ” ì˜ì—­ì˜ í”½ì…€
 */
 VOID CHtmlBox_Generic::SetVScrollRange(INT nRange)
 {
@@ -1408,34 +1408,34 @@ VOID CHtmlBox_Generic::SetVScrollRange(INT nRange)
 }
 
 /**
-* \brief Vertical ScrollBarÀÇ ½ºÅ©·ÑµÈ ¿µ¿ªÀ» ¼ÂÆÃ
-* \param nPos	(INT) ½ºÅ©·ÑµÈ ¿µ¿ªÀÇ ÇÈ¼¿
+* \brief Vertical ScrollBarì˜ ìŠ¤í¬ë¡¤ëœ ì˜ì—­ì„ ì…‹íŒ…
+* \param nPos	(INT) ìŠ¤í¬ë¡¤ëœ ì˜ì—­ì˜ í”½ì…€
 */
 VOID CHtmlBox_Generic::SetVScrollPos(INT nPos)
 {
 	m_nVScrollPos = nPos;
 
-	// nPos¸¸Å­ OffsetÀ» ÁÖ¾î¼­ ItemµéÀ» ÅØ½ºÃÄ¿¡ ·»´õ¸µ ÇÑ´Ù.
+	// nPosë§Œí¼ Offsetì„ ì£¼ì–´ì„œ Itemë“¤ì„ í…ìŠ¤ì³ì— ë Œë”ë§ í•œë‹¤.
 	ItemRenderToTexture(nPos);
 
-	// ScrollBarÀÇ ½ºÅ©·Ñ µÈ À§Ä¡¸¦ ¼¼ÆÃÇÑ´Ù.
+	// ScrollBarì˜ ìŠ¤í¬ë¡¤ ëœ ìœ„ì¹˜ë¥¼ ì„¸íŒ…í•œë‹¤.
 	m_pHtmlBox->m_pScrollBar->SetValue( nPos );
 
 	LinkVScrollCalc( nPos );
 }
 
 /**
-* \brief º¸À¯ÇÑ CRowHtml_ItemÀ» IntervalText Mode·Î Àç °è»ê
-* ÇöÀç º¸À¯ÇÏ°í ÀÖ´Â CRowHtml_ItemµéÀ» ±âÁ¸¿¡ Á¤ÇØÁø PageÀÇ ±âÁØ¿¡ ¸ÂÃç¼­ Interval Text Mode·Î °è»êÇÑ´Ù.
-* ComponentÀÇ Script·Î ÃÊ±â¿¡ ÁöÁ¤ÇØÁØ °ªÀ¸·Î °è»êÀ» ÇØÁà¾ß ±âÁØÀÌ ¸íÈ®ÇØÁø´Ù.
+* \brief ë³´ìœ í•œ CRowHtml_Itemì„ IntervalText Modeë¡œ ì¬ ê³„ì‚°
+* í˜„ì¬ ë³´ìœ í•˜ê³  ìˆëŠ” CRowHtml_Itemë“¤ì„ ê¸°ì¡´ì— ì •í•´ì§„ Pageì˜ ê¸°ì¤€ì— ë§ì¶°ì„œ Interval Text Modeë¡œ ê³„ì‚°í•œë‹¤.
+* Componentì˜ Scriptë¡œ ì´ˆê¸°ì— ì§€ì •í•´ì¤€ ê°’ìœ¼ë¡œ ê³„ì‚°ì„ í•´ì¤˜ì•¼ ê¸°ì¤€ì´ ëª…í™•í•´ì§„ë‹¤.
 */
 VOID CHtmlBox_Generic::IntervalTextPosCalc(VOID)
 {
-	// SetOptionÀ¸·Î ÁöÁ¤µÈ °è»ê °ª
+	// SetOptionìœ¼ë¡œ ì§€ì •ëœ ê³„ì‚° ê°’
 	CRectangle rect = m_rectClient;
 
-	// °¢ ÆäÀÌÁö¸¶´Ù ¸î °³ÀÇ ÇàÀÌ µé¾î°¥Áö °è»êÇÏ¿© ÆäÀÌÁöÀÇ °¹¼ö¸¦ ¸ÕÀú ÃøÁ¤ÇÑ´Ù.
-	// ±×¸®°í ÆäÀÌÁö¸¦ ±¸ºĞÁş´Â ¸¶Áö¸· ÇàÀ» ±â·ÏÇÑ´Ù.
+	// ê° í˜ì´ì§€ë§ˆë‹¤ ëª‡ ê°œì˜ í–‰ì´ ë“¤ì–´ê°ˆì§€ ê³„ì‚°í•˜ì—¬ í˜ì´ì§€ì˜ ê°¯ìˆ˜ë¥¼ ë¨¼ì € ì¸¡ì •í•œë‹¤.
+	// ê·¸ë¦¬ê³  í˜ì´ì§€ë¥¼ êµ¬ë¶„ì§“ëŠ” ë§ˆì§€ë§‰ í–‰ì„ ê¸°ë¡í•œë‹¤.
 	std::list<CRowHtml_Item*>::iterator itRowHtml;
 	int nSumHeightRows = 0, nLastBrRow = 0;
 	int nLiveBrRow = 0;
@@ -1444,10 +1444,10 @@ VOID CHtmlBox_Generic::IntervalTextPosCalc(VOID)
 	for( itRowHtml = m_listRowHtml.begin(); itRowHtml != m_listRowHtml.end(); ++itRowHtml )
 	{
 		CRowHtml_Item* pRowHtml = (*itRowHtml);
-		nSumHeightRows += pRowHtml->GetAreaHeight() + m_nLineInterY;	// °¢°¢ÀÇ ÇàÀÇ ³ôÀÌ¸¦ ´õÇÑ´Ù.
+		nSumHeightRows += pRowHtml->GetAreaHeight() + m_nLineInterY;	// ê°ê°ì˜ í–‰ì˜ ë†’ì´ë¥¼ ë”í•œë‹¤.
 
-		// ÇöÀç±îÁö CRowHtml_Item µéÀÇ ÃÑ ³ôÀÌ°¡ ÇöÀç ÆäÀÌÁö¸¦ ¹ş¾î³ª¸é
-		// ±× ÆäÀÌÁö¸¦ ±¸ºĞÇÏ´Â ¸¶Áö¸· brÅÂ±×¸¦ ±â¾ïÇÑ´Ù.
+		// í˜„ì¬ê¹Œì§€ CRowHtml_Item ë“¤ì˜ ì´ ë†’ì´ê°€ í˜„ì¬ í˜ì´ì§€ë¥¼ ë²—ì–´ë‚˜ë©´
+		// ê·¸ í˜ì´ì§€ë¥¼ êµ¬ë¶„í•˜ëŠ” ë§ˆì§€ë§‰ bríƒœê·¸ë¥¼ ê¸°ì–µí•œë‹¤.
 		if( rect.GetHeight() < nSumHeightRows )
 		{
 			m_nPageCount++;
@@ -1460,63 +1460,63 @@ VOID CHtmlBox_Generic::IntervalTextPosCalc(VOID)
 
 			nSumHeightRows = 0;
 
-			// ÆäÀÌÁö°¡ ³Ñ¾î°¡´Â ÇàÀÇ ¹øÈ£¸¦ ±â·ÏÇÑ´Ù.
+			// í˜ì´ì§€ê°€ ë„˜ì–´ê°€ëŠ” í–‰ì˜ ë²ˆí˜¸ë¥¼ ê¸°ë¡í•œë‹¤.
 			m_vecNewPageIdx.push_back( (*itRowHtml)->GetCurrentIndex() );
 			nLiveBrRow = (*itRowHtml)->GetCurrentIndex();
 		}
 
-		// ÇöÀç ÆäÀÌÁöÀÇ ¸¶Áö¸· [br]ÅÂ±×¸¦ ±â·ÏÇØ³õ´Â´Ù.
+		// í˜„ì¬ í˜ì´ì§€ì˜ ë§ˆì§€ë§‰ [br]íƒœê·¸ë¥¼ ê¸°ë¡í•´ë†“ëŠ”ë‹¤.
 		VECINT::iterator itVecNewLine = 
 			std::find( m_vecNewLineIdx.begin(), m_vecNewLineIdx.end(), pRowHtml->GetCurrentIndex() );
 		if( itVecNewLine != m_vecNewLineIdx.end() )
 			nLastBrRow = pRowHtml->GetCurrentIndex();
 	}
 
-	// ¸¸¾à m_pListRectangleÀÌ ÀÌ¹Ì Á¸ÀçÇÒ °æ¿ì Àç°è»êÀ¸·Î ¿©±â°í »èÁ¦ÇÑ´Ù.
+	// ë§Œì•½ m_pListRectangleì´ ì´ë¯¸ ì¡´ì¬í•  ê²½ìš° ì¬ê³„ì‚°ìœ¼ë¡œ ì—¬ê¸°ê³  ì‚­ì œí•œë‹¤.
 	NTL_ARRAY_DELETE( m_pListRectangle );
 
-	// ÆäÀÌÁö °¹¼ö¿¡ ¸ÂÃç¼­ ¸®½ºÆ®¸¦ ¸¸µé°í ±× ¸®½ºÆ®¿¡ °¢°¢ÀÇ ±ÛÀÚ À§Ä¡¸¦ °è»êÇÏ¿© ±â·ÏÇÑ´Ù.
+	// í˜ì´ì§€ ê°¯ìˆ˜ì— ë§ì¶°ì„œ ë¦¬ìŠ¤íŠ¸ë¥¼ ë§Œë“¤ê³  ê·¸ ë¦¬ìŠ¤íŠ¸ì— ê°ê°ì˜ ê¸€ì ìœ„ì¹˜ë¥¼ ê³„ì‚°í•˜ì—¬ ê¸°ë¡í•œë‹¤.
 
-	// ÆäÀÌÁö ÇÒ´ç
+	// í˜ì´ì§€ í• ë‹¹
 	if( m_nPageCount > 0 )
 		m_pListRectangle = NTL_NEW LISTRECTANGLE[m_nPageCount];
 
-	// ±ÛÀÚ À§Ä¡ °è»ê
+	// ê¸€ì ìœ„ì¹˜ ê³„ì‚°
 	int nCurrentPage = 0;
 	for( itRowHtml = m_listRowHtml.begin(); itRowHtml != m_listRowHtml.end(); ++itRowHtml )
 	{
 		CRowHtml_Item* pRowHtml = (*itRowHtml);
 
-		// List¿¡ ¼ø¼­´ë·Î pRowHtmlÀÌ °¡Áö°í ÀÖ´Â StringÀÇ À§Ä¡¸¦ ´ã´Â´Ù.
+		// Listì— ìˆœì„œëŒ€ë¡œ pRowHtmlì´ ê°€ì§€ê³  ìˆëŠ” Stringì˜ ìœ„ì¹˜ë¥¼ ë‹´ëŠ”ë‹¤.
 		pRowHtml->GetItemRect( m_pListRectangle[nCurrentPage] );
 
-		// ÇöÀç ÇàÀÌ ´ÙÀ½ ÆäÀÌÁö·Î ³Ñ¾î°¡´Â °ÍÀÎÁö Ã£¾Æº¸°í ´ÙÀ½ ÆäÀÌÁö·Î ³Ñ¾î°¡´Â ÇàÀÌ¶ó¸é
-		// ÆäÀÌÁö¸¦ Áõ°¡½ÃÄÑÁÖ°í ÆäÀÌÁöÀÇ Á¤º¸¸¦ ±â·ÏÇÑ´Ù.
+		// í˜„ì¬ í–‰ì´ ë‹¤ìŒ í˜ì´ì§€ë¡œ ë„˜ì–´ê°€ëŠ” ê²ƒì¸ì§€ ì°¾ì•„ë³´ê³  ë‹¤ìŒ í˜ì´ì§€ë¡œ ë„˜ì–´ê°€ëŠ” í–‰ì´ë¼ë©´
+		// í˜ì´ì§€ë¥¼ ì¦ê°€ì‹œì¼œì£¼ê³  í˜ì´ì§€ì˜ ì •ë³´ë¥¼ ê¸°ë¡í•œë‹¤.
 		int nCurrentIdx = pRowHtml->GetCurrentIndex();
 		VECINT::iterator itVecNewPage = 
 			std::find( m_vecNewPageIdx.begin(), m_vecNewPageIdx.end(), nCurrentIdx );
 
-		// ÀúÀåÇÏ´Â ÇöÀç ÆäÀÌÁö¸¦ Áõ°¡
+		// ì €ì¥í•˜ëŠ” í˜„ì¬ í˜ì´ì§€ë¥¼ ì¦ê°€
 		if( itVecNewPage != m_vecNewPageIdx.end() )
 			++nCurrentPage;
 	}
 
-	// ¸¶Áö¸· ÆäÀÌÁö¿¡ brÀÌ µé¾î ÀÖÀ» ¼ö ÀÖÀ¸¹Ç·Î °Ë»çÇØÁØ´Ù. (±×¸®°í ¸¶Áö¸· ÆäÀÌÁö´Â »ç¿ëÇÏÁö ¾Ê´Â´Ù.)
+	// ë§ˆì§€ë§‰ í˜ì´ì§€ì— brì´ ë“¤ì–´ ìˆì„ ìˆ˜ ìˆìœ¼ë¯€ë¡œ ê²€ì‚¬í•´ì¤€ë‹¤. (ê·¸ë¦¬ê³  ë§ˆì§€ë§‰ í˜ì´ì§€ëŠ” ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤.)
 	if( m_pListRectangle[m_nPageCount-1].empty() )
 		m_nPageCount -= 1;
 
-	// ÃÊ±â´Â Ã¹¹øÂ° ÆäÀÌÁö·Î ¸ÂÃçÁÖ°í ÆäÀÌÁöÀÇ Å©±â¸¦ °è»êÇÑ´Ù.
+	// ì´ˆê¸°ëŠ” ì²«ë²ˆì§¸ í˜ì´ì§€ë¡œ ë§ì¶°ì£¼ê³  í˜ì´ì§€ì˜ í¬ê¸°ë¥¼ ê³„ì‚°í•œë‹¤.
 	IntervalPagePosCalc();
 	IntervalPageInit( 0 );
 }
 
 /**
-* \brief ÆäÀÌÁöÀÇ À§Ä¡¸¦ °è»êÇÑ´Ù.
-* IntervalMode·Î ³ª´µ¾îÁø ÆäÀÌÁöÀÇ À§Ä¡¸¦ °è»êÇÑ´Ù.
+* \brief í˜ì´ì§€ì˜ ìœ„ì¹˜ë¥¼ ê³„ì‚°í•œë‹¤.
+* IntervalModeë¡œ ë‚˜ë‰˜ì–´ì§„ í˜ì´ì§€ì˜ ìœ„ì¹˜ë¥¼ ê³„ì‚°í•œë‹¤.
 */
 VOID CHtmlBox_Generic::IntervalPagePosCalc( VOID ) 
 {
-	// m_vecPageRect°¡ ºñ¾îÀÖÁö ¾Ê´Ù¸é Àç °è»êÇÏ´Â °ÍÀÌ¹Ç·Î ºñ¾îÁØ´Ù.
+	// m_vecPageRectê°€ ë¹„ì–´ìˆì§€ ì•Šë‹¤ë©´ ì¬ ê³„ì‚°í•˜ëŠ” ê²ƒì´ë¯€ë¡œ ë¹„ì–´ì¤€ë‹¤.
 	if( !m_vecPageRect.empty() )
 		m_vecPageRect.clear();
 
@@ -1539,8 +1539,8 @@ VOID CHtmlBox_Generic::IntervalPagePosCalc( VOID )
 }
 
 /**
-* \brief ½ºÅ©¸³Æ®·Î ¼Ó¼ºÀ» ÀĞ¾îµéÀÎ´Ù.
-* \param options (CComponentOptions&) ÄŞÆ÷³ÍÆ®ÀÇ ½ºÅ©¸³Æ® ÆäÀÌÁö¿¡¼­ ÀĞ¾îµéÀÎ ¼Ó¼º
+* \brief ìŠ¤í¬ë¦½íŠ¸ë¡œ ì†ì„±ì„ ì½ì–´ë“¤ì¸ë‹¤.
+* \param options (CComponentOptions&) ì½¤í¬ë„ŒíŠ¸ì˜ ìŠ¤í¬ë¦½íŠ¸ í˜ì´ì§€ì—ì„œ ì½ì–´ë“¤ì¸ ì†ì„±
 */
 VOID CHtmlBox_Generic::OnSetOptions(const CComponentOptions& options)
 {
@@ -1579,21 +1579,21 @@ VOID CHtmlBox_Generic::OnSetOptions(const CComponentOptions& options)
 				AddSurface(pSurfaceManager->GetSurface(file,options.GetValue("surface",i))); 
 		}
 	}
-	// ÆùÆ® Å©±â ¹èÀ²
+	// í°íŠ¸ í¬ê¸° ë°°ìœ¨
 	if(options.Exists("font_ratio"))
 	{
-		// script·Î µé¾î¿À´Â °ªÀ» ( 0.0 < float < 10.0 ) À¸·Î Á¦ÇÑÇÑ´Ù.
+		// scriptë¡œ ë“¤ì–´ì˜¤ëŠ” ê°’ì„ ( 0.0 < float < 10.0 ) ìœ¼ë¡œ ì œí•œí•œë‹¤.
 		m_fRatio = options.GetValueAsFloat("font_ratio");
 		if( ( m_fRatio <= 0.0f ) | ( m_fRatio > 10.0f ) )
 			m_fRatio = 1.0f;
 	}
 	
-	// Dynamic ¼Ó¼º ½ºÅ©¸³Æ®
+	// Dynamic ì†ì„± ìŠ¤í¬ë¦½íŠ¸
 	if( options.Exists("dynamic") )
 	{
 		m_bDynamic = options.GetValueAsBool("dynamic");
 
-		// Dynamic ¼Ó¼ºÀÌ¶ó¸é µğÆúÆ®·Î ÃÖ´ë °ªÀÌ ÇöÀç ÄÄÆ÷³ÍÆ®ÀÇ Å©±â°¡ µÈ´Ù.
+		// Dynamic ì†ì„±ì´ë¼ë©´ ë””í´íŠ¸ë¡œ ìµœëŒ€ ê°’ì´ í˜„ì¬ ì»´í¬ë„ŒíŠ¸ì˜ í¬ê¸°ê°€ ëœë‹¤.
 		m_nMaxCX = m_pHtmlBox->GetScreenRect().GetWidth();
 		m_nMaxCY = m_pHtmlBox->GetScreenRect().GetHeight();
 
@@ -1646,18 +1646,18 @@ VOID CHtmlBox_Generic::OnSetOptions(const CComponentOptions& options)
 }
 
 /**
-* \brief ¸¸µé¾îÁø RowHtml_ItemµéÀ» ·»´õ¸µÇÑ´Ù.
+* \brief ë§Œë“¤ì–´ì§„ RowHtml_Itemë“¤ì„ ë Œë”ë§í•œë‹¤.
 */
 VOID CHtmlBox_Generic::OnPaint(VOID)
 {
-	// HtmlBoxÀÇ µŞ ¹è°æÀ» Paint
+	// HtmlBoxì˜ ë’· ë°°ê²½ì„ Paint
 	std::list<CSurface>::iterator the; 
 	for(the=m_stlSurface.begin(); the!=m_stlSurface.end(); the++)
 	{
 		g_GuiRenderer.RenderQueue(&(*the).m_SnapShot, (*the).m_pTexture);
 	}
 
-	// BackPicµéÀ» ·»´õ¸µ
+	// BackPicë“¤ì„ ë Œë”ë§
 	
 	CRectangle rtScreen = m_pHtmlBox->GetScreenRect();
 
@@ -1675,7 +1675,7 @@ VOID CHtmlBox_Generic::OnPaint(VOID)
 	INT nOffsetY = 0;
 	CRectangle rect = m_pHtmlBox->GetClientRect();
 
-	// Interval TextÀÇ °æ¿ì °¢ ÆäÀÌÁö¿¡ µé¾î ÀÖ´Â ¾ÆÀÌÅÛÀÇ Å©±â·Î YÀÇ OffsetÀ» ÁöÁ¤ÇØÁÖ°í
+	// Interval Textì˜ ê²½ìš° ê° í˜ì´ì§€ì— ë“¤ì–´ ìˆëŠ” ì•„ì´í…œì˜ í¬ê¸°ë¡œ Yì˜ Offsetì„ ì§€ì •í•´ì£¼ê³ 
 	if( m_bIntervalText )
 	{
 		if( !m_vecPageRect.empty() )
@@ -1684,14 +1684,14 @@ VOID CHtmlBox_Generic::OnPaint(VOID)
 			nOffsetY = GetAlignOffsetY(m_dwStyle, rect.GetHeight(), m_vecPageRect[m_nCurrentPage].GetHeight());
 		}
 	}
-	// ¾Æ´Ñ °æ¿ì¶ó¸é ÀüÃ¼ ¾ÆÀÌÅÛÀÇ ³ôÀÌ·Î °è»êÇÑ´Ù.
+	// ì•„ë‹Œ ê²½ìš°ë¼ë©´ ì „ì²´ ì•„ì´í…œì˜ ë†’ì´ë¡œ ê³„ì‚°í•œë‹¤.
 	else
 	{
 		nOffsetX = GetAlignOffsetX(m_dwStyle, rect.GetWidth(), m_nMaxWidth);
 		nOffsetY = GetAlignOffsetY(m_dwStyle, rect.GetHeight(), m_nItemCy);
 	}
 
-	// Offset°ªÀ» ÀÌ¿ëÇÏ¿© Á¤·ÄµÈ Å©±â¿¡ ¸ÂÃç¼­ Texture¸¦ Âï¾î³½´Ù.
+	// Offsetê°’ì„ ì´ìš©í•˜ì—¬ ì •ë ¬ëœ í¬ê¸°ì— ë§ì¶°ì„œ Textureë¥¼ ì°ì–´ë‚¸ë‹¤.
 	PlaneSnapShot sOffsetSnapShot = m_TextSurface.m_SnapShot;
 
 	sOffsetSnapShot.rtRect.left += nOffsetX;
@@ -1708,11 +1708,11 @@ VOID CHtmlBox_Generic::OnPaint(VOID)
 	sOffsetSnapShot.rtRect.right += nOffsetX;
 	sOffsetSnapShot.rtRect.bottom += nOffsetY;
 
-	// IntervalText Mode¿¡¼­ ÇÑ±ÛÀÚ¾¿ Ãâ·ÂµÇ´Â ¶óÀÎ
+	// IntervalText Modeì—ì„œ í•œê¸€ìì”© ì¶œë ¥ë˜ëŠ” ë¼ì¸
 	if( m_bIntervalText && !m_bDonePage )
 		g_GuiRenderer.RenderQueue( &sOffsetSnapShot, m_TextSurface.m_pTexture );
 
-	// ±×¸²ÀÌ ÇÊ¿äÇÑ ºÎºĞÀ» Paint
+	// ê·¸ë¦¼ì´ í•„ìš”í•œ ë¶€ë¶„ì„ Paint
 	std::list<CRowHtml_Item*>::iterator itPic;
 	for(itPic = m_listRowHtml.begin(); itPic != m_listRowHtml.end(); itPic++)
 	{
@@ -1723,7 +1723,7 @@ VOID CHtmlBox_Generic::OnPaint(VOID)
 
 
 /**
-* \brief Component°¡ Move µÇ¾úÀ» ¶§ È£ÃâµÇ´Â ÇÔ¼ö
+* \brief Componentê°€ Move ë˜ì—ˆì„ ë•Œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜
 * \param nX		(int) nX
 * \param nY		(int) nY
 */
@@ -1754,9 +1754,9 @@ VOID CHtmlBox_Generic::OnMove(int nX,int nY)
 
 VOID CHtmlBox_Generic::OnResize(int nCx, int nCy)
 {
-	// IntervalText ModeÀÇ Dynamic ¼Ó¼ºÀÎµ¥
-	// ÇöÀç ÆäÀÌÁö°¡ Ã¹ ÆäÀÌÁö°¡ ¾Æ´Ò °æ¿ì
-	// ¸®ÅÏ
+	// IntervalText Modeì˜ Dynamic ì†ì„±ì¸ë°
+	// í˜„ì¬ í˜ì´ì§€ê°€ ì²« í˜ì´ì§€ê°€ ì•„ë‹ ê²½ìš°
+	// ë¦¬í„´
 	if( m_bIntervalText && m_bDynamic )
 	{
 		if( m_nCurrentPage != 0 )
@@ -1803,7 +1803,7 @@ VOID CHtmlBox_Generic::OnSetAlpha( BYTE ucAlpha )
 
 	m_TextSurface.m_SnapShot.uAlpha = ucAlpha;
 
-	// Ãâ·ÂµÇ°í ÀÖ´Â ±ÛÀÚ
+	// ì¶œë ¥ë˜ê³  ìˆëŠ” ê¸€ì
 	if( m_bIntervalText )
 		m_planeInterval.uAlpha = m_TextSurface.m_SnapShot.uAlpha;
 
@@ -1818,7 +1818,7 @@ VOID CHtmlBox_Generic::OnSetAlpha( BYTE ucAlpha )
 }
 
 /**
-* \brief »ö»óÀ» ¼³Á¤ÇÑ´Ù.
+* \brief ìƒ‰ìƒì„ ì„¤ì •í•œë‹¤.
 * \param ucRed		(BYTE) Red(0~255)
 * \param ucGreen	(BYTE) Green(0~255)
 * \param ucBlue		(BYTE) Blue(0~255)
@@ -1850,8 +1850,8 @@ VOID CHtmlBox_Generic::OnSetColor( BYTE ucRed, BYTE ucGreen, BYTE ucBlue )
 }
 
 /**
-* \brief ½ºÅ©·ÑÀÌ ¿òÁ÷¿´À» ¶§ È£ÃâµÇ´Â ÇÔ¼ö
-* \param nPos	(INT) ÀÌµ¿µÈ ÇÈ¼¿
+* \brief ìŠ¤í¬ë¡¤ì´ ì›€ì§ì˜€ì„ ë•Œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜
+* \param nPos	(INT) ì´ë™ëœ í”½ì…€
 */
 VOID CHtmlBox_Generic::OnScrollMove( INT nPos )
 {
@@ -1859,7 +1859,7 @@ VOID CHtmlBox_Generic::OnScrollMove( INT nPos )
 }
 
 /**
-* \brief Mouse FocusingÀ» À§ÇÏ¿©
+* \brief Mouse Focusingì„ ìœ„í•˜ì—¬
 * \param key	(CKey&)
 */
 VOID CHtmlBox_Generic::OnMouseMove( INT nKey, INT nXPos, INT nYPos )
@@ -1886,13 +1886,13 @@ VOID CHtmlBox_Generic::OnMouseMove( INT nKey, INT nXPos, INT nYPos )
 }
 
 /**
-* \brief HtmlBox¿¡¼­ MouseDownÀÌ ¿ÔÀ» ¶§ Ã³¸®µÇ´Â ÇÔ¼ö
+* \brief HtmlBoxì—ì„œ MouseDownì´ ì™”ì„ ë•Œ ì²˜ë¦¬ë˜ëŠ” í•¨ìˆ˜
 */
 VOID CHtmlBox_Generic::OnMouseDown( const CKey& key )
 {
 	if( m_bIntervalText )
 	{
-		// Interval Text ModeÀÏ °æ¿ì ÆäÀÌÁö°¡ ¿Ï¼ºµÇÁö ¾Ê¾Ò´Ù¸é Ã³¸®ÇÏÁö ¾Ê´Â´Ù.
+		// Interval Text Modeì¼ ê²½ìš° í˜ì´ì§€ê°€ ì™„ì„±ë˜ì§€ ì•Šì•˜ë‹¤ë©´ ì²˜ë¦¬í•˜ì§€ ì•ŠëŠ”ë‹¤.
 		if( !m_bDonePage )
 			return;
 
@@ -1926,14 +1926,14 @@ VOID CHtmlBox_Generic::OnMouseDown( const CKey& key )
 }
 
 /**
-* \brief HtmlBox¿¡¼­ Mouse UpÀÌ ¿ÔÀ» ¶§ Ã³¸®µÇ´Â ÇÔ¼ö
-* \param key		(CKey&) ¸¶¿ì½ºÀÇ ÁÂÇ¥
+* \brief HtmlBoxì—ì„œ Mouse Upì´ ì™”ì„ ë•Œ ì²˜ë¦¬ë˜ëŠ” í•¨ìˆ˜
+* \param key		(CKey&) ë§ˆìš°ìŠ¤ì˜ ì¢Œí‘œ
 */
 VOID CHtmlBox_Generic::OnMouseUp(const CKey& key)
 {
 	if( m_bIntervalText )
 	{
-		// Interval Text ModeÀÏ °æ¿ì ÆäÀÌÁö°¡ ¿Ï¼ºµÇÁö ¾Ê¾Ò´Ù¸é Ã³¸®ÇÏÁö ¾Ê´Â´Ù.
+		// Interval Text Modeì¼ ê²½ìš° í˜ì´ì§€ê°€ ì™„ì„±ë˜ì§€ ì•Šì•˜ë‹¤ë©´ ì²˜ë¦¬í•˜ì§€ ì•ŠëŠ”ë‹¤.
 		if( !m_bDonePage )
 		{
 			m_itCaptureLink = m_listDuplicateLink.end();
@@ -1955,7 +1955,7 @@ VOID CHtmlBox_Generic::OnMouseUp(const CKey& key)
 				{
 					sLinkRect sLink = (*itLink);
 
-					// ¿µ¿ª¿¡ µé¾î¿Ô´Ù¸é Callback È£Ãâ
+					// ì˜ì—­ì— ë“¤ì–´ì™”ë‹¤ë©´ Callback í˜¸ì¶œ
 					if( m_fnHtmlLinkTag )
 						(*m_fnHtmlLinkTag)(m_pHtmlBox, 
 						sLink.pLinkItem->GetLinkType(), 
@@ -1969,7 +1969,7 @@ VOID CHtmlBox_Generic::OnMouseUp(const CKey& key)
 	}
 	else
 	{
-		// Link ¿µ¿ªÀÌ ¾ø°Å³ª DownÀ» ÇÏÁö ¾Ê¾Ò´õ¶ó¸é ¸®ÅÏ
+		// Link ì˜ì—­ì´ ì—†ê±°ë‚˜ Downì„ í•˜ì§€ ì•Šì•˜ë”ë¼ë©´ ë¦¬í„´
 		if( m_listDuplicateLink.empty() ||
 			m_itCaptureLink == m_listDuplicateLink.end() )
 			return;
@@ -1983,7 +1983,7 @@ VOID CHtmlBox_Generic::OnMouseUp(const CKey& key)
 				{
 					sLinkRect sLink = (*itLink);
 
-					// ¿µ¿ª¿¡ µé¾î¿Ô´Ù¸é Callback È£Ãâ
+					// ì˜ì—­ì— ë“¤ì–´ì™”ë‹¤ë©´ Callback í˜¸ì¶œ
 					if( m_fnHtmlLinkTag )
 						(*m_fnHtmlLinkTag)(m_pHtmlBox,
 						sLink.pLinkItem->GetLinkType(), 
@@ -2000,8 +2000,8 @@ VOID CHtmlBox_Generic::OnMouseUp(const CKey& key)
 }
 
 /**
-* \brief ¾ÆÀÌÅÛÁß °¡Àå ³ĞÀº ÆøÀ» Áö´Ñ ¾ÆÀÌÅÛÀ» ±¸ÇÑ´Ù.
-* \return °¡Àå ³ĞÀº ÆøÀ» °¡Áø ¾ÆÀÌÅÛÀÇ Æ÷ÀÎÅÍ
+* \brief ì•„ì´í…œì¤‘ ê°€ì¥ ë„“ì€ í­ì„ ì§€ë‹Œ ì•„ì´í…œì„ êµ¬í•œë‹¤.
+* \return ê°€ì¥ ë„“ì€ í­ì„ ê°€ì§„ ì•„ì´í…œì˜ í¬ì¸í„°
 */
 INT CHtmlBox_Generic::FindMaxWidthItem( VOID ) 
 {
@@ -2011,7 +2011,7 @@ INT CHtmlBox_Generic::FindMaxWidthItem( VOID )
 		return NULL;
 
 	INT nMaxWidth = 0;
-	INT nRealWidth = 0; // ¸ŞÅ¸ ÅÂ±×¸¦ Æ÷ÇÔÇØ¾ßÇÑ´Ù.
+	INT nRealWidth = 0; // ë©”íƒ€ íƒœê·¸ë¥¼ í¬í•¨í•´ì•¼í•œë‹¤.
 	INT nWidth = 0;
 	CHtml_Item* pHtmlItem = NULL;
 	for( CHtmlDoc::ListHtmlItem::iterator it = listItems.begin(); it != listItems.end(); ++it )
@@ -2034,7 +2034,7 @@ INT CHtmlBox_Generic::FindMaxWidthItem( VOID )
 }
 
 /**
-* \brief ÇÏÀÌÆÛ¸µÅ©ÀÇ ¿µ¿ªÀ» °è»êÇÑ´Ù.
+* \brief í•˜ì´í¼ë§í¬ì˜ ì˜ì—­ì„ ê³„ì‚°í•œë‹¤.
 */
 VOID gui::CHtmlBox_Generic::LinkRectCalc( VOID )
 {
@@ -2053,7 +2053,7 @@ VOID gui::CHtmlBox_Generic::LinkRectCalc( VOID )
 
 	m_listDuplicateLink = m_listOriginLink;
 
-	// Interval Text Mode¶ó¸é ÆäÀÌÁöº°·Î ¸µÅ© ¿µ¿ªÀ» ³ª´µ¾îÁà¾ß ÇÑ´Ù.
+	// Interval Text Modeë¼ë©´ í˜ì´ì§€ë³„ë¡œ ë§í¬ ì˜ì—­ì„ ë‚˜ë‰˜ì–´ì¤˜ì•¼ í•œë‹¤.
 	if( m_bIntervalText )
 	{
 		DeleteIntervalLink();
@@ -2061,11 +2061,11 @@ VOID gui::CHtmlBox_Generic::LinkRectCalc( VOID )
 		if( m_listOriginLink.empty() )
 			return;
 		
-		// ÆäÀÌÁö ¼ö º°·Î ¸®½ºÆ®¸¦ »ı¼º
+		// í˜ì´ì§€ ìˆ˜ ë³„ë¡œ ë¦¬ìŠ¤íŠ¸ë¥¼ ìƒì„±
 		if( m_nPageCount > 0 )
 			m_pListLink = NTL_NEW LISTLINK[m_nPageCount];
 		
-		// °¢ ÆäÀÌÁöº°·Î ¿µ¿ªÀ» °è»êÇÏ¿© ±× ÆäÀÌÁö ¾È¿¡ µé¾î°¡´Â °Íµé³¢¸® ´ã¾Æ³õ´Â´Ù.
+		// ê° í˜ì´ì§€ë³„ë¡œ ì˜ì—­ì„ ê³„ì‚°í•˜ì—¬ ê·¸ í˜ì´ì§€ ì•ˆì— ë“¤ì–´ê°€ëŠ” ê²ƒë“¤ë¼ë¦¬ ë‹´ì•„ë†“ëŠ”ë‹¤.
 		LISTLINK::iterator itOriginLink = m_listOriginLink.begin();
 		int nPage = 0;
 		while( itOriginLink != m_listOriginLink.end() )
@@ -2101,11 +2101,11 @@ VOID gui::CHtmlBox_Generic::LinkRectCalc( VOID )
 }
 
 /**
-* \brief ½ºÅ©·ÑÀÌ ¿òÁ÷ÀÓ¿¡ µû¶ó ¸µÅ©µÇ´Â ¿µ¿ªµµ Àç °è»êÇØÁØ´Ù.
+* \brief ìŠ¤í¬ë¡¤ì´ ì›€ì§ì„ì— ë”°ë¼ ë§í¬ë˜ëŠ” ì˜ì—­ë„ ì¬ ê³„ì‚°í•´ì¤€ë‹¤.
 */
 VOID CHtmlBox_Generic::LinkVScrollCalc( INT nPos )
 {
-	// IntervalText ModeÀÏ °æ¿ì´Â °è»êÇÏÁö ¾Ê´Â´Ù.
+	// IntervalText Modeì¼ ê²½ìš°ëŠ” ê³„ì‚°í•˜ì§€ ì•ŠëŠ”ë‹¤.
 	if( m_bIntervalText )
 		return;
 
@@ -2123,7 +2123,7 @@ VOID CHtmlBox_Generic::LinkVScrollCalc( INT nPos )
 }
 
 /**
-* \brief Interval Text ModeÀÏ ¶§ °è»êÇØ³õÀº ÆäÀÌÁöº° ¸µÅ© ¿µ¿ªÀ» »èÁ¦ÇÑ´Ù.
+* \brief Interval Text Modeì¼ ë•Œ ê³„ì‚°í•´ë†“ì€ í˜ì´ì§€ë³„ ë§í¬ ì˜ì—­ì„ ì‚­ì œí•œë‹¤.
 */
 VOID CHtmlBox_Generic::DeleteIntervalLink( VOID )
 {

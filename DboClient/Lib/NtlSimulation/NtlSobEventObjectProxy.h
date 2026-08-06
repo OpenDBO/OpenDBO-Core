@@ -2,7 +2,7 @@
 *
 * File			: CNtlSobEventObjectProxy
 * Author		: agebreak
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 9. 4	
 * Abstract		: Simulation Event object Proxy
 *****************************************************************************
@@ -36,11 +36,11 @@ public:
     void SobCreateEventHandler(RWS::CMsg &pMsg);
 
     //---------------------------------------------------
-    // main presentation entity¿¡ °ü·ÃµÈ ÇÔ¼ö 
+    // main presentation entityì— ê´€ë ¨ëœ í•¨ìˆ˜ 
     //---------------------------------------------------
 
     /**
-    * transform¿¡ °üÇöµÈ ÇÔ¼ö.
+    * transformì— ê´€í˜„ëœ í•¨ìˆ˜.
     */
 
     virtual void SetPosition(const RwV3d *pPos);
@@ -48,17 +48,17 @@ public:
     virtual void SetAngleY(RwReal fAngle);        
 
     /**
-    * entity Á¤º¸¿¡ °üÇÑ ÇÔ¼ö.
+    * entity ì •ë³´ì— ê´€í•œ í•¨ìˆ˜.
     */
     CNtlPLEntity*			GetPLMainEntity(void);      ///< presentation main entity    
-    virtual RwReal			GetPLEntityWidth(void);     ///< pl entityÀÇ ÆøÀ» ¾ò¾î¿Â´Ù.    
-    virtual RwReal			GetPLEntityHeight(void);    ///< pl entityÀÇ ³ôÀÌ¸¦ ¾ò¾î¿Â´Ù.    
-    virtual RwReal			GetPLEntityDepth(void);     ///< pl entityÀÇ depthÀ» ¾ò¾î¿Â´Ù.
+    virtual RwReal			GetPLEntityWidth(void);     ///< pl entityì˜ í­ì„ ì–»ì–´ì˜¨ë‹¤.    
+    virtual RwReal			GetPLEntityHeight(void);    ///< pl entityì˜ ë†’ì´ë¥¼ ì–»ì–´ì˜¨ë‹¤.    
+    virtual RwReal			GetPLEntityDepth(void);     ///< pl entityì˜ depthì„ ì–»ì–´ì˜¨ë‹¤.
 
 protected:
 
 	/** 
-	* trigger object ÀÌ¸§ »ı¼º.
+	* trigger object ì´ë¦„ ìƒì„±.
 	*/
 	void    CreatePLObjectName(void);
 	void    DeletePLObjectName(void);

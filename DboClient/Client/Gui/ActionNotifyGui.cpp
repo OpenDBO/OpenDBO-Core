@@ -251,7 +251,7 @@ VOID CActionNotifyGui::HandleEvents( RWS::CMsg& msg )
 					++nLineCount;
 			}
 
-			if( nLineCount == MAXLINE )	// ²ËÂ÷ÀÖ´Â °æ¿ì
+			if( nLineCount == MAXLINE )	// ê½‰ì°¨ìžˆëŠ” ê²½ìš°
 			{
 				for( RwInt32 i = 0 ; i < MAXLINE ; ++i )
 				{

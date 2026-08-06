@@ -3,7 +3,7 @@
 //	Desc		:	
 //	Begin		:	2005. 7.28
 //                  2006. 8.17
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //                  HoDong
 //	Update		:	
@@ -25,7 +25,7 @@
 
 #include "NtlPLCullingScheduling.h"
 
-#define EFFECT_NOT_UPDATE_TIME_MAX 0.5f                     ///< Not VisibleÀÌ°Å³ª ÄÃ¸µµÉ¶§ ¾÷µ¥ÀÌÆ® ÁÖ±â
+#define EFFECT_NOT_UPDATE_TIME_MAX 0.5f                     ///< Not Visibleì´ê±°ë‚˜ ì»¬ë§ë ë•Œ ì—…ë°ì´íŠ¸ ì£¼ê¸°
 
 RwBool CNtlInstanceEffect::m_bLowSpec = FALSE;
 RwBool CNtlInstanceEffect::m_bRenderMeshSystem = TRUE;
@@ -93,7 +93,7 @@ CNtlInstanceEffect::~CNtlInstanceEffect(void)
 }
 
 /**
- * Effect »ý¼º
+ * Effect ìƒì„±
  */
 RwBool CNtlInstanceEffect::Create(const SPLEntityCreateParam *pParam)
 {
@@ -124,7 +124,7 @@ void CNtlInstanceEffect::Destroy()
 }
 
 /**
- * Property¸¦ Effect¿¡ Àû¿ëÀ» ÇÑ´Ù.
+ * Propertyë¥¼ Effectì— ì ìš©ì„ í•œë‹¤.
  * \param pData Property Data
  */
 RwBool CNtlInstanceEffect::SetProperty(const CNtlPLProperty *pData)
@@ -141,7 +141,7 @@ RwBool CNtlInstanceEffect::SetProperty(const CNtlPLProperty *pData)
 
 	m_bAutoDelete = pResourceEffect->IsAutoDelete();
 
-    // Sound¸¦ PlayÇÑ´Ù.
+    // Soundë¥¼ Playí•œë‹¤.
 	if(strlen(pResourceEffect->m_EffectSound.chSoundName) > 0)
 	{
         RwInt32 nCnt = 1;
@@ -187,7 +187,7 @@ RwBool CNtlInstanceEffect::SetProperty(const CNtlPLProperty *pData)
 }
 
 /**
- * Effect¸¦ »ý¼ºÀ» ÇÑ´Ù.
+ * Effectë¥¼ ìƒì„±ì„ í•œë‹¤.
  * \param matRender: Effect Local Matrix
  */
 void CNtlInstanceEffect::CreateSystem(CNtlResourceEffect* pResourceEffect, const RwMatrix& matRender)
@@ -221,7 +221,7 @@ void CNtlInstanceEffect::CreateSystem(CNtlResourceEffect* pResourceEffect, const
 		}
 
 		{
-			// FadeOut System ¿¬°á ÇÏ±â
+			// FadeOut System ì—°ê²° í•˜ê¸°
 			svdef_InstanceComponentSystem::iterator it;
 			for (it = m_svSystem.begin(); it != m_svSystem.end(); ++it)
 			{
@@ -348,11 +348,11 @@ RwBool CNtlInstanceEffect::Render()
 }
 
 /**
- * Effect World¿¡ À§Ä¡ ½ÃÅ²´Ù.
- * Matrix°¡ Àû¿ë µÇ°í PositionÀÌ ³Ñ¾î¿À´Â °æ¿ì°¡ ÀÖ´Ù.
- * Matrix¿¡¼­ PositonÀº Å©°Ô ¹®Á¦°¡ ¾øÀ¸³ª Scale ÇÏ°í Rotation
- * Matirx¿Í ÀÓ½Ã º¯¼ö(Scale, Angle)°ú ¾î¶»°Ô µ¿±âÈ­¸¦ ½ÃÅ³±î?
- * \param matWorld Effect¸¦ World¿¡ À§Ä¡ ½ÃÅ°´Â Model Matrix
+ * Effect Worldì— ìœ„ì¹˜ ì‹œí‚¨ë‹¤.
+ * Matrixê°€ ì ìš© ë˜ê³  Positionì´ ë„˜ì–´ì˜¤ëŠ” ê²½ìš°ê°€ ìžˆë‹¤.
+ * Matrixì—ì„œ Positonì€ í¬ê²Œ ë¬¸ì œê°€ ì—†ìœ¼ë‚˜ Scale í•˜ê³  Rotation
+ * Matirxì™€ ìž„ì‹œ ë³€ìˆ˜(Scale, Angle)ê³¼ ì–´ë–»ê²Œ ë™ê¸°í™”ë¥¼ ì‹œí‚¬ê¹Œ?
+ * \param matWorld Effectë¥¼ Worldì— ìœ„ì¹˜ ì‹œí‚¤ëŠ” Model Matrix
  */
 void  CNtlInstanceEffect::SetMatrix(RwMatrix& matWorld)
 {
@@ -382,7 +382,7 @@ RwMatrix &CNtlInstanceEffect::GetMatrix()
 }
 
 /**
- * ModelScale, ModelAngle, WorldPostionÀ¸·Î MatrixÀ» ±¸ÇÑ´Ù.
+ * ModelScale, ModelAngle, WorldPostionìœ¼ë¡œ Matrixì„ êµ¬í•œë‹¤.
  */
 void CNtlInstanceEffect::SetTransform()
 {
@@ -402,9 +402,9 @@ void CNtlInstanceEffect::SetTransform()
 }
 
 /**
- * Effect World¿¡ À§Ä¡ ½ÃÅ²´Ù. m_matWorld¿¡ À§Ä¡ ÁÂÇ¥¸¦ ³Ö´Â´Ù.
- * ±×¸®°í ÀÓ½Ã º¯¼öÀÎ m_vWorldPositionµµ °ªÀ» °»½Å ½ÃÅ²´Ù.
- * \param pPos Effect°¡ À§Ä¡ ÇÒ WorldÀÇ ÁÂÇ¥
+ * Effect Worldì— ìœ„ì¹˜ ì‹œí‚¨ë‹¤. m_matWorldì— ìœ„ì¹˜ ì¢Œí‘œë¥¼ ë„£ëŠ”ë‹¤.
+ * ê·¸ë¦¬ê³  ìž„ì‹œ ë³€ìˆ˜ì¸ m_vWorldPositionë„ ê°’ì„ ê°±ì‹  ì‹œí‚¨ë‹¤.
+ * \param pPos Effectê°€ ìœ„ì¹˜ í•  Worldì˜ ì¢Œí‘œ
  */
  void CNtlInstanceEffect::SetPosition(const RwV3d *pPos)
 {
@@ -439,8 +439,8 @@ void CNtlInstanceEffect::SetTransform()
 }
 
 /**
- * EffectÀÇ World¿¡¼­ÀÇ À§Ä¡¸¦ ¾ò´Â´Ù.
- * \return RwV3d World¿¡¼­ÀÇ À§Ä¡
+ * Effectì˜ Worldì—ì„œì˜ ìœ„ì¹˜ë¥¼ ì–»ëŠ”ë‹¤.
+ * \return RwV3d Worldì—ì„œì˜ ìœ„ì¹˜
  */
 RwV3d CNtlInstanceEffect::GetPosition(void)
 { 
@@ -448,8 +448,8 @@ RwV3d CNtlInstanceEffect::GetPosition(void)
 }
 
 /**
- * Effect¸¦ Model °ø°£¿¡¼­ È¸ÀüÀ» ½ÃÅ²´Ù.
- * \param fXAngle XÃà °¢µµ, YÃà °¢µµ, ZÃà °¢µµ ¸ðµÎ(Degree -360 - 360)
+ * Effectë¥¼ Model ê³µê°„ì—ì„œ íšŒì „ì„ ì‹œí‚¨ë‹¤.
+ * \param fXAngle Xì¶• ê°ë„, Yì¶• ê°ë„, Zì¶• ê°ë„ ëª¨ë‘(Degree -360 - 360)
  */
 void CNtlInstanceEffect::SetRotate(RwReal fXAngle, RwReal fYAngle, RwReal fZAngle)
 {
@@ -477,8 +477,8 @@ void CNtlInstanceEffect::SetRotate(RwReal fXAngle, RwReal fYAngle, RwReal fZAngl
 }
 
 /**
- * Effect¸¦ Model °ø°£¿¡¼­ÀÇ È¸Àü°ªÀ» ¾ò´Â´Ù.
- * \return RwV3d °¢Ãà¿¡ ´ëÇÑ È¸Àü°ª(Degree -360 - 360)
+ * Effectë¥¼ Model ê³µê°„ì—ì„œì˜ íšŒì „ê°’ì„ ì–»ëŠ”ë‹¤.
+ * \return RwV3d ê°ì¶•ì— ëŒ€í•œ íšŒì „ê°’(Degree -360 - 360)
  */
 const RwV3d* CNtlInstanceEffect::GetRotate(void) const
 {
@@ -486,7 +486,7 @@ const RwV3d* CNtlInstanceEffect::GetRotate(void) const
 }
 
 /**
- * EffectÀÇ Model °ø°£¿¡¼­ÀÇ ScaleÀ» Àû¿ëÇÑ´Ù.
+ * Effectì˜ Model ê³µê°„ì—ì„œì˜ Scaleì„ ì ìš©í•œë‹¤.
  */
 void CNtlInstanceEffect::SetScale( RwReal fScale)
 {
@@ -509,7 +509,7 @@ void CNtlInstanceEffect::SetScale( RwReal fScale)
 }
 
 /**
- * EffectÀÇ Model °ø°£¿¡¼­ÀÇ Scale °ªÀ» ¾ò´Â´Ù.
+ * Effectì˜ Model ê³µê°„ì—ì„œì˜ Scale ê°’ì„ ì–»ëŠ”ë‹¤.
  */
 RwReal CNtlInstanceEffect::GetScale( void )
 {
@@ -517,7 +517,7 @@ RwReal CNtlInstanceEffect::GetScale( void )
 }
 
 /**
- * Effect AnimSpeed¸¦ Á¶Á¤ÇÑ´Ù.
+ * Effect AnimSpeedë¥¼ ì¡°ì •í•œë‹¤.
  */
 RwBool CNtlInstanceEffect::SetPlayAnimSpeed(RwReal fAnimSpeed)
 {
@@ -583,12 +583,12 @@ void CNtlInstanceEffect::AddComponentSystem( CNtlInstanceComponentSystem* pCompo
 
 void CNtlInstanceEffect::Finish() 
 {
-    // ³»ºÎÀûÀ¸·Î´Â ComponentSystemµéÀÇ StopÀ» È£ÃâÇÑ´Ù.	
+    // ë‚´ë¶€ì ìœ¼ë¡œëŠ” ComponentSystemë“¤ì˜ Stopì„ í˜¸ì¶œí•œë‹¤.	
 
     svdef_InstanceComponentSystem::iterator it;
     for (it = m_svSystem.begin(); it != m_svSystem.end(); ++it)
     {
-		// ¸ðµÎ False¸¦ ¹ÝÈ¯ÇÏ¸é ¼³Á¤µÈ Finish µ¿ÀÛÀÌ ¾ø´Ù´Â °ÍÀÌ´Ù.
+		// ëª¨ë‘ Falseë¥¼ ë°˜í™˜í•˜ë©´ ì„¤ì •ëœ Finish ë™ìž‘ì´ ì—†ë‹¤ëŠ” ê²ƒì´ë‹¤.
         (*it)->Finish();
     }
 }
@@ -598,7 +598,7 @@ void CNtlInstanceEffect::SetVisible( RwBool bVisible )
     m_bShow = bVisible;
 }
 
-// ½ºÄÉÀÏ Àû¿ë À¯¹«¸¦ ¼³Á¤ÇÑ´Ù
+// ìŠ¤ì¼€ì¼ ì ìš© ìœ ë¬´ë¥¼ ì„¤ì •í•œë‹¤
 void CNtlInstanceEffect::SetApplyScale( RwBool bApply ) 
 {
     m_bApplyScale = bApply;
@@ -641,7 +641,7 @@ void CNtlInstanceEffect::CalcBoundingSphere()
 
     if(m_pResourceEffect->m_EffectBoundingSphere.bDisableAuto)
     {
-        // Á¤ÀÇµÈ ¹Ù¿îµù ½ºÇÇ¾î »ç¿ë
+        // ì •ì˜ëœ ë°”ìš´ë”© ìŠ¤í”¼ì–´ ì‚¬ìš©
         m_BoundingSphere.radius = m_pResourceEffect->m_EffectBoundingSphere.fRadius;
     }
     else

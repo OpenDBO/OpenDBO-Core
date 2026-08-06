@@ -410,7 +410,7 @@ void API_PL_1BColorClamp(RwReal* pDst, RwReal Value)
 	*pDst = *pDst + Value;
 }
 
-void API_PL_RasterSaveImage(const RwRaster *pRaster, const RwChar *pszFileName, RwInt32 _Width, RwInt32 _Height)    ///< Raster�� Image�� ����(.png, .bmp)
+void API_PL_RasterSaveImage(const RwRaster *pRaster, const RwChar *pszFileName, RwInt32 _Width, RwInt32 _Height)    ///< Raster占쏙옙 Image占쏙옙 占쏙옙占쏙옙(.png, .bmp)
 {
 	RwImage *image;
 	RwImage *imageDst;
@@ -437,9 +437,9 @@ void API_PL_RasterSaveImage(const RwRaster *pRaster, const RwChar *pszFileName, 
 }
 
 /**
- * Raster�� Image�� ������ �Ѵ�.
- * \param pRaster: Image�� ������ Raster
- * \param pszFileName: ������ ���� �̸� Ȯ���(.png, .bmp)�� ���� ������ �ȴ�.
+ * Raster占쏙옙 Image占쏙옙 占쏙옙占쏙옙占쏙옙 占싼댐옙.
+ * \param pRaster: Image占쏙옙 占쏙옙占쏙옙占쏙옙 Raster
+ * \param pszFileName: 저장할 파일 이름 확장명(.png, .bmp)에 따라서 저장이 된다.
  */
 void API_PL_RasterSaveImage(const RwRaster *pRaster, const RwChar *pszFileName)
 {
@@ -462,8 +462,8 @@ void API_PL_RasterSaveImage(const RwRaster *pRaster, const RwChar *pszFileName)
 }
 
 /**
- * Camera�� Target�� Look At �� �� �ֵ��� Camera�� Matrix�� �����Ѵ�.
- * Camera�� Up�� y�� -1�� �����̴�. �����ؼ� ���
+ * Camera占쏙옙 Target占쏙옙 Look At 占쏙옙 占쏙옙 占쌍듸옙占쏙옙 Camera占쏙옙 Matrix占쏙옙 占쏙옙占쏙옙占싼댐옙.
+ * Camera의 Up이 y가 -1이 위쪽이다. 조심해서 사용
  */
 void API_PL_CameraLookAt( RwCamera* pCamera, const RwV3d* pSetCameraPos, const RwV3d* pTarget, const RwV3d* pSentInUp, RwReal fAtAxisRot /* = 0.0f */ )
 {
@@ -532,12 +532,12 @@ void API_PL_CameraMatrixLookAt( RwMatrix *pMat, const RwV3d* pSetCameraPos, cons
 }
 
 /**
- * 3D��ǥ�� 2D��ǥ�� ��ȯ�Ѵ�.
- * \param v3DPos ��ȯ�� 3D��ǥ
- * \param nWidth View�� ����
- * \param nHeight View�� ����
- * \param bOutSideReturn �� ���� TRUE�̸� ī�޶� �ۿ� �ִ� ���̳ʽ� ���� �������ش�. (����Ʈ�� False). �ٸ� �̶� 3D��ǥ�� ī�޶� �����̸� (9999,9999)�� ��ȯ�Ѵ�.
- * return ��ȯ�� 2D��ǥ. ((0,0)�̸� ī�޶� �ۿ� �ִ�)
+ * 3D占쏙옙표占쏙옙 2D占쏙옙표占쏙옙 占쏙옙환占싼댐옙.
+ * \param v3DPos 占쏙옙환占쏙옙 3D占쏙옙표
+ * \param nWidth View占쏙옙 占쏙옙占쏙옙
+ * \param nHeight View占쏙옙 占쏙옙占쏙옙
+ * \param bOutSideReturn 占쏙옙 占쏙옙占쏙옙 TRUE占싱몌옙 카占쌨띰옙 占쌜울옙 占쌍댐옙 占쏙옙占싱너쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쌔댐옙. (占쏙옙占쏙옙트占쏙옙 False). 占쌕몌옙 占싱띰옙 3D占쏙옙표占쏙옙 카占쌨띰옙 占쏙옙占쏙옙占싱몌옙 (9999,9999)占쏙옙 占쏙옙환占싼댐옙.
+ * return 占쏙옙환占쏙옙 2D占쏙옙표. ((0,0)占싱몌옙 카占쌨띰옙 占쌜울옙 占쌍댐옙)
  */
 RwV2d API_PL_Calc3DPosTo2D( RwV3d* v3DPos, RwInt32 nWidth, RwInt32 nHeight, RwBool bOutSideReturn)
 {
@@ -559,7 +559,7 @@ RwV2d API_PL_Calc3DPosTo2D( RwV3d* v3DPos, RwInt32 nWidth, RwInt32 nHeight, RwBo
     RwMatrix* pViewMatrix = RwCameraGetViewMatrix( CNtlPLGlobal::m_RwCamera );
     RwV3dTransformPoints( &v2dPoint, &sphere.center, 1, pViewMatrix );
 
-	if(v2dPoint.z <= 0.0f)	// z�� ���̳ʽ��̸� ī�޶� ������ �ִ�. �̶��� (9999, 9999)�� ��ȯ�Ѵ�.
+	if(v2dPoint.z <= 0.0f)	// z占쏙옙 占쏙옙占싱너쏙옙占싱몌옙 카占쌨띰옙 占쏙옙占쏙옙占쏙옙 占쌍댐옙. 占싱띰옙占쏙옙 (9999, 9999)占쏙옙 占쏙옙환占싼댐옙.
 	{
 		v2dReturn.x = 9999.0f;
 		v2dReturn.y = 9999.0f;

@@ -5,21 +5,21 @@
 #include "EditListCtrl.h"
 #include "NtlNaviDefine.h"
 
-// CDlgPathExport ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CDlgPathExport ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CDlgPathExport : public CDialog
 {
 	DECLARE_DYNAMIC(CDlgPathExport)
 
 public:
-	CDlgPathExport(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CDlgPathExport(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CDlgPathExport();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_DIALOG_EXPORT_PATHDATA };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 public:
 	DECLARE_MESSAGE_MAP()

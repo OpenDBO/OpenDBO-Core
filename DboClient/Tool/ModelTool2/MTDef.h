@@ -14,7 +14,7 @@ typedef std::vector<CHAR*> VWChar;
 #define FILTER_UVANIM               "UV Anim File (*.uva)|*.uva||"
 #define FILTER_SOUND                "Sound File(*.wav;*.ogg;*.mp3)|*.wav;*.ogg;*.mp3||"
 
-// æ÷¥œ∏ﬁ¿Ãº« ∆˙¥ı ¡§¿«
+// Ïï†ÎãàÎ©îÏù¥ÏÖò Ìè¥Îçî Ï†ïÏùò
 #define PATH_ANIM_HUMAN_FEMALE      "\\character\\animation_humanfemale\\"
 #define PATH_ANIM_HUMAN_MALE        "\\character\\animation_humanmale\\"
 #define PATH_ANIM_MAJIN_MALE        "\\character\\animation_majinmale\\"        
@@ -38,12 +38,12 @@ typedef std::vector<CHAR*> VWChar;
 #define MT_TREE_VEHICLE             "TreeVehicle.xml"
 #define MT_TREE_PC                  "TreePC.xml"
 
-#define FRAME_FIX_FPS 30.0f             ///< Frame Fix ºˆƒ°
+#define FRAME_FIX_FPS 30.0f             ///< Frame Fix ÏàòÏπò
 
-/// «— æ÷¥œ∏ﬁ¿Ãº«¿« √÷¥Î HitEvent ∞≥ºˆ
+/// Ìïú Ïï†ÎãàÎ©îÏù¥ÏÖòÏùò ÏµúÎåÄ HitEvent Í∞úÏàò
 #define MAX_HIT_EVENT_COUNT         16
 
-/// æ»¿¸«œ∞‘ ΩÃ±€≈Ê ∞¥√º∏¶ ∞°¡Æø¿¥¬ ∏≈≈©∑Œ «‘ºˆ
+/// ÏïàÏ†ÑÌïòÍ≤å Ïã±Í∏ÄÌÜ§ Í∞ùÏ≤¥Î•º Í∞ÄÏ†∏Ïò§Îäî Îß§ÌÅ¨Î°ú Ìï®Ïàò
 #define GetSafeInstance(class) if(class::GetInstance()) class::GetInstance()
 
 // Face camera Size
@@ -61,7 +61,7 @@ enum EModelToolMode
     MT_MODE_NONE,
 };
 
-// ªÛ¥Î∞Ê∑Œ/¿˝¥Î ∞Ê∑Œø°º≠ ∆ƒ¿œ¿Ã∏ß∏∏ √ﬂ√‚«œ¥¬ «‘ºˆ
+// ÏÉÅÎåÄÍ≤ΩÎ°ú/Ï†àÎåÄ Í≤ΩÎ°úÏóêÏÑú ÌååÏùºÏù¥Î¶ÑÎßå Ï∂îÏ∂úÌïòÎäî Ìï®Ïàò
 static char* GetFileNameFromPath(const char* szFilePath)
 {
     if(!szFilePath)
@@ -90,7 +90,7 @@ static CString GetFileNameFromPath(CString strFilePath)
     return strFilePath;
 }
 
-// ªÁøÓµÂ ∆ƒ¿œ¿« «œ¿ß ∞Ê∑Œ∏Ì∏∏ √ﬂ√‚«œ¥¬ «‘ºˆ
+// ÏÇ¨Ïö¥Îìú ÌååÏùºÏùò ÌïòÏúÑ Í≤ΩÎ°úÎ™ÖÎßå Ï∂îÏ∂úÌïòÎäî Ìï®Ïàò
 static CString GetSoundFilePath(CString strFilePath)
 {
     strFilePath.MakeUpper();
@@ -104,7 +104,7 @@ static CString GetSoundFilePath(CString strFilePath)
     return strFilePath;    
 }
 
-// ¿˝¥Î∞Ê∑Œ∑Œ∫Œ≈Õ ªÛ¥Î∞Ê∑Œ∏¶ πﬁæ∆ø¬¥Ÿ.
+// Ï†àÎåÄÍ≤ΩÎ°úÎ°úÎ∂ÄÌÑ∞ ÏÉÅÎåÄÍ≤ΩÎ°úÎ•º Î∞õÏïÑÏò®Îã§.
 static CString GetLinkPathFromPath(CString strFilePath, CString strAbsPath)
 {
     strFilePath.MakeUpper();
@@ -161,7 +161,7 @@ static CString FindFileFromPath(CString strFileName, CString strPath)
     return "";
 }
 
-// µ⁄¿« πÆ¿⁄ø≠¿Ã æ’¿« πÆ¿⁄ø≠ø° ∆˜«‘µ«æ˙¥¬¡ˆ∏¶ π›»Ø«—¥Ÿ. (¥Îº“πÆ¿⁄ ±∏∫∞æ¯¿Ã)
+// Îí§Ïùò Î¨∏ÏûêÏó¥Ïù¥ ÏïûÏùò Î¨∏ÏûêÏó¥Ïóê Ìè¨Ìï®ÎêòÏóàÎäîÏßÄÎ•º Î∞òÌôòÌïúÎã§. (ÎåÄÏÜåÎ¨∏Ïûê Íµ¨Î≥ÑÏóÜÏù¥)
 static BOOL FindNoCase(CString strDest, CString strFind)
 {
     strDest.MakeUpper();
@@ -172,7 +172,7 @@ static BOOL FindNoCase(CString strDest, CString strFind)
     return nIndex != -1?TRUE:FALSE;
 }
 
-// ø¿∫Í¡ß∆ÆøÎ ¿Ã∆Â∆Æ(Wrd, Obj)¿Œ¡ˆ∏¶ π›»Ø«—¥Ÿ.
+// Ïò§Î∏åÏ†ùÌä∏Ïö© Ïù¥ÌéôÌä∏(Wrd, Obj)Ïù∏ÏßÄÎ•º Î∞òÌôòÌïúÎã§.
 static BOOL MTLogic_IsObjectEffect(RwChar* szEffectName)
 {
     USES_CONVERSION;

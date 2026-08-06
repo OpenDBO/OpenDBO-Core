@@ -2,7 +2,7 @@
  *
  * File			: NTLApplication
  * Author		: HongHoDong
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 7. 14	
  * Abstract		: NTl Application
  *****************************************************************************

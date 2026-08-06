@@ -113,7 +113,7 @@ void CBBoxPane::SetModel(CMTCharacter* pCharacter)
         }
         else
         {
-            // ¸¸¾à¿¡ Anim BBox µ¥ÀÌÅÍ°¡ ¾øÀ¸¸é µðÆúÆ® BBox¸¦ »ý¼ºÇÑ´Ù.
+            // ë§Œì•½ì— Anim BBox ë°ì´í„°ê°€ ì—†ìœ¼ë©´ ë””í´íŠ¸ BBoxë¥¼ ìƒì„±í•œë‹¤.
             RwBBox bBoxAnim = m_pCharacter->CreateDefaultAnimBBox();
             fWidth = bBoxAnim.sup.x - bBoxAnim.inf.x;
             fHeight = bBoxAnim.sup.y - bBoxAnim.inf.y;
@@ -153,7 +153,7 @@ LRESULT CBBoxPane::OnGridNotify(WPARAM wParam, LPARAM lParam)
 
 void CBBoxPane::OnChangeWidth()
 {
-    // NOTE: ³ª´©±â 10À» ÇØ¼­ ³Ö´Â´Ù.
+    // NOTE: ë‚˜ëˆ„ê¸° 10ì„ í•´ì„œ ë„£ëŠ”ë‹¤.
     RwReal fBBoxWidth = (float)m_pItemWidth->GetNumber() / 10.0f;
     RwBBox* pBBoxAnim = m_pCharProperty->GetAnimBBox();
     pBBoxAnim->sup.x = fBBoxWidth / 2.0f;
@@ -162,7 +162,7 @@ void CBBoxPane::OnChangeWidth()
 
 void CBBoxPane::OnChangeHeight()
 {
-    // Height´Â À§·Î¸¸ Ä¿Áø´Ù.
+    // HeightëŠ” ìœ„ë¡œë§Œ ì»¤ì§„ë‹¤.
     RwReal fBBoxHeight = (float)m_pItemHeight->GetNumber() / 10.0f;
     RwBBox* pBBoxAnim = m_pCharProperty->GetAnimBBox();
     pBBoxAnim->sup.y = fBBoxHeight;

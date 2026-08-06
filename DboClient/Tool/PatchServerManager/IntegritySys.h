@@ -2,7 +2,7 @@
  *
  * File			: IntegritySys.h
  * Author		:
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			:
  * Abstract		: 
  *****************************************************************************

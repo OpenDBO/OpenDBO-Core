@@ -137,7 +137,7 @@ void CNtlBuffContainer::RefreshAllEventHandler(RWS::CMsg &pMsg)
 {
 	SNtlEventSobBuffRefreshAll *pBuffRefreshAll = reinterpret_cast<SNtlEventSobBuffRefreshAll*>(pMsg.pData);
 
-	// Buff Áö¿ì±â.
+	// Buff ì§€ìš°ê¸°.
 	CNtlSobBuff *pSobBuff;
 	ListBuff::iterator it;
 
@@ -149,7 +149,7 @@ void CNtlBuffContainer::RefreshAllEventHandler(RWS::CMsg &pMsg)
 
 	m_listBuff.clear();
 
-	// Buff Ã¤¿ì±â.
+	// Buff ì±„ìš°ê¸°.
 	for (int i = 0; i < pBuffRefreshAll->byCount; ++i)
 	{
 		pSobBuff = reinterpret_cast<CNtlSobBuff*>(CNtlSLEventGenerator::SobBuffCreate(SLCLASS_BUFF, INVALID_SERIAL_ID, pBuffRefreshAll->pBuffInfo[i].buffIndex, pBuffRefreshAll->pBuffInfo[i].bySourceType, pBuffRefreshAll->pBuffInfo[i].sourceTblidx, 
@@ -452,7 +452,7 @@ void CNtlFakeBuffContainer::HandleEvents(RWS::CMsg &pMsg)
 	}
 	else if(pMsg.Id == g_EventSobFakeBuffRefreshAll)
 	{
-		// ±âÁ¸ ¹öÇÁ ÀüºÎ »èÁ¦
+		// ê¸°ì¡´ ë²„í”„ ì „ë¶€ ì‚­ì œ
 		LIST_FAKE_BUFF_ITER it = m_listBuff.begin();
 		for( ; it != m_listBuff.end() ; ++it )
 		{
@@ -462,7 +462,7 @@ void CNtlFakeBuffContainer::HandleEvents(RWS::CMsg &pMsg)
 
 		m_listBuff.clear();
 
-		// ¹öÇÁ ¼¼·Î ¼³Á¤
+		// ë²„í”„ ì„¸ë¡œ ì„¤ì •
 		SNtlEventSobBuffRefreshAll *pBuffRefreshAll = reinterpret_cast<SNtlEventSobBuffRefreshAll*>(pMsg.pData);
 
 		if( pBuffRefreshAll->hSerialId == m_hOwner )

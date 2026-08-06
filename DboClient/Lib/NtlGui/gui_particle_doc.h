@@ -1,7 +1,7 @@
 /*****************************************************************************
 * File			: gui_particle_doc.h
 * Author		: HaeSung, Cho
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2008. 10. 7 ( last update : 2008. 10. 15 )
 * Abstract		: 
 *****************************************************************************
@@ -140,7 +140,7 @@ public:
 	void	Clear();
 
 	typedef std::map< std::string, std::string >	VALUEMAP;
-	VALUEMAP	m_mapValue;			///< µ•¿Ã≈∏∏¶ ∞°¡ˆ∞Ì ¿÷¥¬ ∏ 
+	VALUEMAP	m_mapValue;			///< Îç∞Ïù¥ÌÉÄÎ•º Í∞ÄÏßÄÍ≥† ÏûàÎäî Îßµ
 
 protected:
 
@@ -264,7 +264,7 @@ protected:
 	BYTE			m_byCurrentValueType;
 
 protected:
-	// ¡÷æÓ¡¯ ≈∞øˆµÂø° µ˚∂Ûº≠ »£√‚µ… «⁄µÈ∑Ø «‘ºˆµÈ¿ª πÃ∏Æ ¡§¿««—¥Ÿ.
+	// Ï£ºÏñ¥ÏßÑ ÌÇ§ÏõåÎìúÏóê Îî∞ÎùºÏÑú Ìò∏Ï∂úÎê† Ìï∏Îì§Îü¨ Ìï®ÏàòÎì§ÏùÑ ÎØ∏Î¶¨ Ï†ïÏùòÌïúÎã§.
 	typedef BOOL (CParticleDoc::*ParsingCall)(char*);
 	typedef std::unordered_map<std::string, ParsingCall> HMapHandler;
 	HMapHandler	m_hmapHandler;

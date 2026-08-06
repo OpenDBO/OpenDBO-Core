@@ -1,4 +1,4 @@
-// MeshLayer.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// MeshLayer.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -30,16 +30,16 @@ BEGIN_MESSAGE_MAP(CMeshLayer, CView)
 END_MESSAGE_MAP()
 
 
-// CMeshLayer ±×¸®±âÀÔ´Ï´Ù.
+// CMeshLayer ê·¸ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CMeshLayer::OnDraw(CDC* pDC)
 {
 	CDocument* pDoc = GetDocument();
-	// TODO: ¿©±â¿¡ ±×¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ê·¸ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 
-// CMeshLayer Áø´ÜÀÔ´Ï´Ù.
+// CMeshLayer ì§„ë‹¨ì…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CMeshLayer::AssertValid() const
@@ -54,13 +54,13 @@ void CMeshLayer::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CMeshLayer ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CMeshLayer ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CMeshLayer::OnInitialUpdate()
 {
 	CView::OnInitialUpdate();
 
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	m_RollupControl.Create(WS_VISIBLE|WS_CHILD, CRect(0,1,190,400), this, IDD_ROLLUPPAGEID);
 
 	m_RollupControl.InsertPage("Mesh List",			IDD_MESH_LIST,		RUNTIME_CLASS(CMeshListDialog));	
@@ -76,7 +76,7 @@ void CMeshLayer::OnSize(UINT nType, int cx, int cy)
 {
 	CView::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if(m_bInitialized)
 	{
 		m_RollupControl.MoveWindow(0, 0, cx, cy);
@@ -87,7 +87,7 @@ void CMeshLayer::OnSetFocus(CWnd* pOldWnd)
 {
 	CView::OnSetFocus(pOldWnd);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	gSetEditLayer(EDIT_LAYER_MESH);
 }
 

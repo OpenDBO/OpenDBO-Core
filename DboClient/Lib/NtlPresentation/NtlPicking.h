@@ -194,12 +194,12 @@ public:
 
 // Implementations
 protected:
-	// Bounding check�� ���� �Լ���
+	// Bounding check占쏙옙 占쏙옙占쏙옙 占쌉쇽옙占쏙옙
 	static const RwSphere*				ResizeBoundingSphereCB( RpAtomic* pAtomic, void* pData );
 	static RpAtomic*					PickAtomicBoundBoxCB( RpIntersection* pInters, RpWorldSector* pWorldSector, RpAtomic* pAtomic, RwReal fDistance, void* pData );
 	static RpCollisionTriangle*			PickAtomicPolygonCB( RpIntersection* pInters, RpCollisionTriangle* pRpColTri, RwReal fRatio, void* pData );
 
-	// Polygon check�� ���� �Լ���
+	// Polygon check占쏙옙 占쏙옙占쏙옙 占쌉쇽옙占쏙옙
 	bool								CreateRaster( RwRaster*& pRaster, RwRaster*& pZRaster, RwTexture*& pTexture );
 	void								DeleteRaster( RwRaster*& pRaster, RwRaster*& pZRaster, RwTexture*& pTexture );
 	void								UpdateCamera_Begin( RwCamera* pCamera );
@@ -216,7 +216,7 @@ protected:
 
 //////////////////////////////////////////////////////////////////////////
 //
-//	Bounding box resizing ������ ũ�⸦ ���ϱ� ���� �׽�Ʈ�� Ŭ����
+//	Bounding box resizing 占쏙옙占쏙옙占쏙옙 크占썩를 占쏙옙占싹깍옙 占쏙옙占쏙옙 占쌓쏙옙트占쏙옙 클占쏙옙占쏙옙
 //
 //////////////////////////////////////////////////////////////////////////
 

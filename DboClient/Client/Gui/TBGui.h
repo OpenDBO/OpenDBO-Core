@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File: TBGui.h
 // Desc: Tenkaichi Budokai Gui Group
-//       ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ °ü·Ã Gui. ½ÃÁğ, ¸ÅÄ¡¿¡ ¸Â°Ô »ı¼º »èÁ¦µÈ´Ù.
+//       ì²œí•˜ì œì¼ ë¬´ë„íšŒ ê´€ë ¨ Gui. ì‹œì¦Œ, ë§¤ì¹˜ì— ë§ê²Œ ìƒì„± ì‚­ì œëœë‹¤.
 //
 // 2007.08.23 Peessi@hitel.net   
 ////////////////////////////////////////////////////////////////////////////////
@@ -47,8 +47,8 @@ public:
 	VOID	Create( RwUInt8 byMatchType );
 	VOID	Destroy(VOID);
 
-	// ¼Ò½ÄÁö »ı¼º ¹× »èÁ¦
-	VOID	CreateBudokaiNewsOnce();	///< ·Îµù ÈÄ ÇÑ¹ø¸¸ ½ÇÇà
+	// ì†Œì‹ì§€ ìƒì„± ë° ì‚­ì œ
+	VOID	CreateBudokaiNewsOnce();	///< ë¡œë”© í›„ í•œë²ˆë§Œ ì‹¤í–‰
 	VOID	CreateBudokaiNews();
 	VOID	DestroyBudokaiNews();
 	
@@ -58,7 +58,7 @@ public:
 	//! Event
 	VOID	HandleEvents( RWS::CMsg& msg );
 
-	// °¢ Match StateÀÇ Update ¶§ Âü°¡ÀÚ¿Í °üÀüÀÚ¸¦ ±¸ºĞÇÏ¿© Ã³¸®ÇÑ´Ù.
+	// ê° Match Stateì˜ Update ë•Œ ì°¸ê°€ìì™€ ê´€ì „ìë¥¼ êµ¬ë¶„í•˜ì—¬ ì²˜ë¦¬í•œë‹¤.
 	VOID	HandleEventMinorMatchStateUpdateEntrance( RWS::CMsg& msg );
 	VOID	HandleEventMinorMatchStateUpdateObserver( RWS::CMsg& msg );
 	VOID	HandleEventMajorMatchStateUpdateEntrance( RWS::CMsg& msg );
@@ -66,7 +66,7 @@ public:
 	VOID	HandleEventFinalMatchStateUpdateEntrance( RWS::CMsg& msg );
 	VOID	HandleEventFinalMatchStateUpdateObserver( RWS::CMsg& msg );
 	
-	// °´Ã¼°¡ Áß°£¿¡ »ı¼º µÇ¾úÀ» ¶§ SetGauge¸¦ ÇØÁÖ±â À§ÇØ
+	// ê°ì²´ê°€ ì¤‘ê°„ì— ìƒì„± ë˜ì—ˆì„ ë•Œ SetGaugeë¥¼ í•´ì£¼ê¸° ìœ„í•´
 	VOID	HandleEventSobCreate( RWS::CMsg& msg );
 
 	//! Implements
@@ -94,14 +94,14 @@ public:
 	CResultNarrationGui*		m_pResultNarration;
 	CCounterGui*				m_pCounter;
 
-	// °üÀüÀÚ GUI
+	// ê´€ì „ì GUI
 	CTBMatchObserverVersusGui*	m_pObserverVersusGui;
 	CTBMatchIndiObRedGui*		m_pMatchIndiObRedGui;
 	CTBMatchIndiObBlueGui*		m_pMatchIndiObBlueGui;
 	CTBMatchTeamObRedGui*		m_pMatchTeamObRedGui;
 	CTBMatchTeamObBlueGui*		m_pMatchTeamObBlueGui;
 
-	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ¼Ò½ÄÁö
+	// ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì†Œì‹ì§€
 	CTBNewsGui*					m_pNewsGui;
 	CTBRequestGui*				m_pRequestGui;
 

@@ -5,7 +5,7 @@
 #include "OptionPage.h"
 
 
-// CAttr_Page ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_Page ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CAttr_Page : public COptionPage
 {
@@ -46,7 +46,7 @@ protected:
 	virtual void	UnPakingPageData( CString& strKey, CString& strValue );
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual BOOL OnInitDialog();
 
 	DECLARE_MESSAGE_MAP()

@@ -1,4 +1,4 @@
-// CreateSplinePathDialog.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// CreateSplinePathDialog.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -10,7 +10,7 @@
 #include "VenusPropertyContainer.h"
 
 
-// CCreateSplinePathDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CCreateSplinePathDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CCreateSplinePathDialog, CDialog)
 CCreateSplinePathDialog::CCreateSplinePathDialog(CWnd* pParent /*=NULL*/)
@@ -52,13 +52,13 @@ BEGIN_MESSAGE_MAP(CCreateSplinePathDialog, CDialog)
 END_MESSAGE_MAP()
 
 
-// CCreateSplinePathDialog ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CCreateSplinePathDialog ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CCreateSplinePathDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	DWORD dwStyle;
 	CRect rc;
 
@@ -85,7 +85,7 @@ BOOL CCreateSplinePathDialog::OnInitDialog()
 	SetProperties();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CCreateSplinePathDialog::SetSplinePath(const RwChar* strName)
@@ -104,7 +104,7 @@ void CCreateSplinePathDialog::OnSize(UINT nType, int cx, int cy)
 {
 	CDialog::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if(m_Initialized)
 	{
 		CWnd* pPropertyStaticWindow = GetDlgItem(IDC_PROPERTY_STATIC);
@@ -136,7 +136,7 @@ void CCreateSplinePathDialog::OnItemChanged(NMHDR* pNotifyStruct, LRESULT* plRes
 
 void CCreateSplinePathDialog::OnTimer(UINT nIDEvent)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	KillTimer(nIDEvent);
 
 	SetProperties();

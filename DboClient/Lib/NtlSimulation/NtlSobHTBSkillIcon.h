@@ -2,11 +2,11 @@
 *
 * File			: NtlSobHTBSkillIcon.h
 * Author		: Peessi
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2006. 8. 1	
 * Abstract		: Simulation HTBskill icon object
 *****************************************************************************
-* Desc          : SkillIconø°º≠ ∫–∏Æ
+* Desc          : SkillIconÏóêÏÑú Î∂ÑÎ¶¨
 *
 *****************************************************************************/
 

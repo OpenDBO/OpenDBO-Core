@@ -43,7 +43,7 @@ CNtlWorldConceptTB::~CNtlWorldConceptTB(void)
 
 RwBool CNtlWorldConceptTB::IsEnableAction( EAvatarAction eAction )
 {
-	// °¢ »óÅÂ¿¡ ¸Â°Ô ¼¼ÆÃ
+	// ê° ìƒíƒœì— ë§žê²Œ ì„¸íŒ…
 	switch(eAction)
 	{
 	case E_ACTION_CAN_COMMUNICATION:
@@ -80,11 +80,11 @@ void CNtlWorldConceptTB::ChangeState( RwInt32 eState )
 	switch( eState )
 	{
 	case WORLD_STATE_ENTER: 
-		// WorldConcept ÃÊ±â¿¡ ÇØ¾ßÇÒ ¼¼ÆÃ. È¤Àº »ý¼ºÀÚ.
-		// ¿©±â¼­ Å×ÀÌºíÀ» ÀÐ¾î¼­ ÇöÀç ¿ùµåÅ¸ÀÔÀ» ¼¼ÆÃÇØ¾ßÇÔ.		
+		// WorldConcept ì´ˆê¸°ì— í•´ì•¼í•  ì„¸íŒ…. í˜¹ì€ ìƒì„±ìž.
+		// ì—¬ê¸°ì„œ í…Œì´ë¸”ì„ ì½ì–´ì„œ í˜„ìž¬ ì›”ë“œíƒ€ìž…ì„ ì„¸íŒ…í•´ì•¼í•¨.		
 		break;
 	case WORLD_STATE_EXIT:	
-		// WorldConcept ¸¶Áö¸·¿¡ ÇØ¾ßÇÒ ¼¼ÆÃ. È¤Àº ¼Ò¸êÀÚ.
+		// WorldConcept ë§ˆì§€ë§‰ì— í•´ì•¼í•  ì„¸íŒ…. í˜¹ì€ ì†Œë©¸ìž.
 		CNtlWorldConceptController::ChangeState( WORLD_STATE_NONE );
 		break;
 	}
@@ -280,7 +280,7 @@ RwBool CNtlWorldConceptTB::CanUseSkill(RwUInt32 hSerialID, RwUInt32& uiResultCod
 
 	if(bRingOut)
 	{
-		// result code¸¦ ÀûÀçÇÑ´Ù.
+		// result codeë¥¼ ì ìž¬í•œë‹¤.
 		uiResultCode = GAME_MATCH_CAN_NOT_USE_SKILL_IN_OUTOFAREA;
 
 		return FALSE;
@@ -538,11 +538,11 @@ void CNtlWorldConceptTB::MajorResetCamera( VOID )
 	if( !pMember )
 		return;
 
-	// ¸â¹öÀÇ Index¸¦ ¾Ë¾Æ¾ß ÇÑ´Ù.
-	// ¸â¹öÀÇ Index¿Í TeamTypeÀ¸·Î aMajorLocÀÇ ÁÂÇ¥¸¦ ÀÐ¾î¿Â´Ù.
+	// ë©¤ë²„ì˜ Indexë¥¼ ì•Œì•„ì•¼ í•œë‹¤.
+	// ë©¤ë²„ì˜ Indexì™€ TeamTypeìœ¼ë¡œ aMajorLocì˜ ì¢Œí‘œë¥¼ ì½ì–´ì˜¨ë‹¤.
 
-	// MajocLoc ÂüÁ¶
-	// FinalResetCamera ¿ª½Ã µ¿ÀÏ ¼¼ÆÃ
+	// MajocLoc ì°¸ì¡°
+	// FinalResetCamera ì—­ì‹œ ë™ì¼ ì„¸íŒ…
 	RwV3d vDir;
 	if( pMember->pTeam->wTeamType == MATCH_TEAM_TYPE_TEAM1 )
 	{
@@ -582,11 +582,11 @@ void CNtlWorldConceptTB::FinalResetCamera( VOID )
 	if( !pMember )
 		return;
 
-	// ¸â¹öÀÇ Index¸¦ ¾Ë¾Æ¾ß ÇÑ´Ù.
-	// ¸â¹öÀÇ Index¿Í TeamTypeÀ¸·Î aMajorLocÀÇ ÁÂÇ¥¸¦ ÀÐ¾î¿Â´Ù.
+	// ë©¤ë²„ì˜ Indexë¥¼ ì•Œì•„ì•¼ í•œë‹¤.
+	// ë©¤ë²„ì˜ Indexì™€ TeamTypeìœ¼ë¡œ aMajorLocì˜ ì¢Œí‘œë¥¼ ì½ì–´ì˜¨ë‹¤.
 
-	// MajocLoc ÂüÁ¶
-	// FinalResetCamera ¿ª½Ã µ¿ÀÏ ¼¼ÆÃ
+	// MajocLoc ì°¸ì¡°
+	// FinalResetCamera ì—­ì‹œ ë™ì¼ ì„¸íŒ…
 	RwV3d vDir;
 	if( pMember->pTeam->wTeamType == MATCH_TEAM_TYPE_TEAM1 )
 	{

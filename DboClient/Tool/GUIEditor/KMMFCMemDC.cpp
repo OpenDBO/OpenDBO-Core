@@ -22,7 +22,7 @@ static char THIS_FILE[]=__FILE__;
 //////////////////////////////////////////////////////////////////////
 
 //@@---------------------------------------------------------------------------
-// »ı¼º/¼Ò¸êÀÚ
+// ìƒì„±/ì†Œë©¸ì
 //
 //-----------------------------------------------------------------------------
 CKMMemDC::CKMMemDC()
@@ -62,7 +62,7 @@ CKMMemDC::~CKMMemDC()
 
 //@@---------------------------------------------------------------------------
 // InitMember()
-// - ´Ü¼ø ¸â¹öº¯¼ö ÃÊ±âÈ­
+// - ë‹¨ìˆœ ë©¤ë²„ë³€ìˆ˜ ì´ˆê¸°í™”
 //-----------------------------------------------------------------------------
 void CKMMemDC::InitMember()
 {
@@ -76,7 +76,7 @@ void CKMMemDC::InitMember()
 
 //@@---------------------------------------------------------------------------
 // Delete()
-// - ÇØ´ç MemDC¸¦ ÆÄ±«
+// - í•´ë‹¹ MemDCë¥¼ íŒŒê´´
 //-----------------------------------------------------------------------------
 void CKMMemDC::Delete()
 {
@@ -94,51 +94,51 @@ void CKMMemDC::Delete()
 
 //@@---------------------------------------------------------------------------
 // Create()
-// - ÇÑ»öÀ¸·Î¸¸ Ã¤¿öÁø ºñ¾îÁ®ÀÖ´Â Memory DC ¸¸µé±â
+// - í•œìƒ‰ìœ¼ë¡œë§Œ ì±„ì›Œì§„ ë¹„ì–´ì ¸ìˆëŠ” Memory DC ë§Œë“¤ê¸°
 //-----------------------------------------------------------------------------
 int CKMMemDC::Create( CWnd* pSrcWnd, int width, int height, COLORREF clr )
 {
 
-	//// ¿¡·¯Ã¼Å©
+	//// ì—ëŸ¬ì²´í¬
 	if( pSrcWnd == NULL )
 	{
-		AfxMessageBox( "CKMMemDC::CreateEmpty()\n\n ºñÁ¤»óÀûÀÎ pSrcWnd" );
+		AfxMessageBox( "CKMMemDC::CreateEmpty()\n\n ë¹„ì •ìƒì ì¸ pSrcWnd" );
 		return FALSE;
 	}
 
 	if( m_pMDC != NULL )
 	{
-		AfxMessageBox( "CKMMemDC::CreateEmpty()\n\n m_pMDC°¡ ÀÌ¹Ì »ç¿ëÁßÀÓ" );
+		AfxMessageBox( "CKMMemDC::CreateEmpty()\n\n m_pMDCê°€ ì´ë¯¸ ì‚¬ìš©ì¤‘ì„" );
 		return FALSE;
 	}
 
 
-	//// ¼Ò½º·Î »ç¿ëÇÒ CDC ÇÏ³ª ¸¸µé±â
+	//// ì†ŒìŠ¤ë¡œ ì‚¬ìš©í•  CDC í•˜ë‚˜ ë§Œë“¤ê¸°
 	CClientDC srcDC( pSrcWnd );
 
 
-	//// MemoryDC »ı¼º
+	//// MemoryDC ìƒì„±
 
-	//(1) ÇÊ¿äÇÑ °ª ¹Ş¾Æ³õ±â 
+	//(1) í•„ìš”í•œ ê°’ ë°›ì•„ë†“ê¸° 
 	m_nWidth  = width;
 	m_nHeight = height;
 
-	//(2) È£È¯¼º MemDC ¸¸µé±â
+	//(2) í˜¸í™˜ì„± MemDC ë§Œë“¤ê¸°
 	m_pMDC = new CDC;
 	m_pMDC->CreateCompatibleDC( &srcDC );
 
-	//(3) È£È¯¼º Bitmap ¸¸µé±â
+	//(3) í˜¸í™˜ì„± Bitmap ë§Œë“¤ê¸°
 	CBitmap bitmap;
 	bitmap.CreateCompatibleBitmap( &srcDC, width, height );
 
-	//(4) MemDC¿¡ Bitmap ¼±ÅÃÇØÁÖ±â
+	//(4) MemDCì— Bitmap ì„ íƒí•´ì£¼ê¸°
 	m_pMDC->SelectObject( bitmap );
 
-	//(5) ´õÀÌ»ó ÇÊ¿ä¾ø´Â Bitmap ÆÄ±«
+	//(5) ë”ì´ìƒ í•„ìš”ì—†ëŠ” Bitmap íŒŒê´´
 	bitmap.DeleteObject();
 	
 
-	//// »ö Ã¤¿ì±â
+	//// ìƒ‰ ì±„ìš°ê¸°
 	CRect rc(0,0,width,height);
 	CBrush brush( clr );
 	m_pMDC->FillRect( &rc, &brush );
@@ -150,60 +150,60 @@ int CKMMemDC::Create( CWnd* pSrcWnd, int width, int height, COLORREF clr )
 
 //@@---------------------------------------------------------------------------
 // CreateFromID()
-// - ResourceÀÇ BitmapÀ» ÀÌ¿ëÇÑ MemoryDC ¸¸µé±â
+// - Resourceì˜ Bitmapì„ ì´ìš©í•œ MemoryDC ë§Œë“¤ê¸°
 //-----------------------------------------------------------------------------
 int CKMMemDC::CreateFromID( CWnd* pSrcWnd, 
 							   UINT nIDBitmap, 
 							   BITMAP* pBMInfo )
 {
 
-	//// ¿¡·¯Ã¼Å©
+	//// ì—ëŸ¬ì²´í¬
 	if( pSrcWnd == NULL )
 	{
-		AfxMessageBox( "CKMMemDC::CreateFromID()\n\n ºñÁ¤»óÀûÀÎ pSrcWnd" );
+		AfxMessageBox( "CKMMemDC::CreateFromID()\n\n ë¹„ì •ìƒì ì¸ pSrcWnd" );
 		return FALSE;
 	}
 
 	if( m_pMDC != NULL )
 	{
-		AfxMessageBox( "CKMMemDC::CreateFromID()\n\n m_pMDC°¡ ÀÌ¹Ì »ç¿ëÁßÀÓ" );
+		AfxMessageBox( "CKMMemDC::CreateFromID()\n\n m_pMDCê°€ ì´ë¯¸ ì‚¬ìš©ì¤‘ì„" );
 		return FALSE;
 	}
 
 
-	//// ¼Ò½º·Î »ç¿ëÇÒ CDC ÇÏ³ª ¸¸µé±â
+	//// ì†ŒìŠ¤ë¡œ ì‚¬ìš©í•  CDC í•˜ë‚˜ ë§Œë“¤ê¸°
 	CClientDC srcDC( pSrcWnd );
 
 
-	//// MemoryDC »ı¼º
+	//// MemoryDC ìƒì„±
 
-	//(1) È£È¯¼º MemDC ¸¸µé±â
+	//(1) í˜¸í™˜ì„± MemDC ë§Œë“¤ê¸°
 	m_pMDC = new CDC;
 	m_pMDC->CreateCompatibleDC( &srcDC );
 
 
-	//(2) È£È¯¼º Bitmap ¸¸µé±â
+	//(2) í˜¸í™˜ì„± Bitmap ë§Œë“¤ê¸°
 	CBitmap bitmap;
 	CBitmap* pBitmapOld = NULL;
 
-	//(3) Resource Bitmap ID°ªÀ» ÀÌ¿ëÇÏ¿© Bitmap ÀĞ±â
+	//(3) Resource Bitmap IDê°’ì„ ì´ìš©í•˜ì—¬ Bitmap ì½ê¸°
 	bitmap.LoadBitmap( nIDBitmap );
 
-	//(4) MemDC¿¡ Bitmap ¼±ÅÃÇØÁÖ±â
+	//(4) MemDCì— Bitmap ì„ íƒí•´ì£¼ê¸°
 	pBitmapOld = (CBitmap*)m_pMDC->SelectObject( bitmap );
 
-		//// ÇÊ¿äÇÑ Á¤º¸°ª ¾ò±â
+		//// í•„ìš”í•œ ì •ë³´ê°’ ì–»ê¸°
 		BITMAP bm;	
 		bitmap.GetBitmap( &bm );
 
 		m_nWidth  = bm.bmWidth;
 		m_nHeight = bm.bmHeight;
 
-		// »ç¿ëÀÚ°¡ ¿äÃ»ÇÒ °æ¿ì¿¡¸¸ Bitmap Á¤º¸°ª µ¹·ÁÁÜ.
+		// ì‚¬ìš©ìê°€ ìš”ì²­í•  ê²½ìš°ì—ë§Œ Bitmap ì •ë³´ê°’ ëŒë ¤ì¤Œ.
 		if( pBMInfo != NULL )
 			bitmap.GetBitmap( pBMInfo );
 
-	//(5) ´õÀÌ»ó ÇÊ¿ä¾ø´Â Bitmap ÆÄ±«
+	//(5) ë”ì´ìƒ í•„ìš”ì—†ëŠ” Bitmap íŒŒê´´
 	bitmap.DeleteObject();
 
 	return TRUE;
@@ -212,61 +212,61 @@ int CKMMemDC::CreateFromID( CWnd* pSrcWnd,
 
 //@@---------------------------------------------------------------------------
 // CreateFromFile()
-// - ¿ÜºÎ¿¡ ÀÖ´Â Bitmap ÆÄÀÏÀ» ÀĞ¾î¼­ MemoryDC¸¦ ¸¸µë.
+// - ì™¸ë¶€ì— ìˆëŠ” Bitmap íŒŒì¼ì„ ì½ì–´ì„œ MemoryDCë¥¼ ë§Œë“¬.
 //-----------------------------------------------------------------------------
 int CKMMemDC::CreateFromFile( CWnd* pSrcWnd, 
 							     const char* szFileName, 
 							     BITMAP* pBMInfo )
 {
 
-	//// ¿¡·¯Ã¼Å©
+	//// ì—ëŸ¬ì²´í¬
 	if( pSrcWnd == NULL )
 	{
-		AfxMessageBox( "CKMMemDC::CreateFromFile()\n\n ºñÁ¤»óÀûÀÎ pSrcWnd" );
+		AfxMessageBox( "CKMMemDC::CreateFromFile()\n\n ë¹„ì •ìƒì ì¸ pSrcWnd" );
 		return FALSE;
 	}
 
 	if( m_pMDC != NULL )
 	{
-		AfxMessageBox( "CKMMemDC::CreateFromFile()\n\n m_pMDC°¡ ÀÌ¹Ì »ç¿ëÁßÀÓ" );
+		AfxMessageBox( "CKMMemDC::CreateFromFile()\n\n m_pMDCê°€ ì´ë¯¸ ì‚¬ìš©ì¤‘ì„" );
 		return FALSE;
 	}
 
 
-	//// ¼Ò½º·Î »ç¿ëÇÒ CDC ÇÏ³ª ¸¸µé±â
+	//// ì†ŒìŠ¤ë¡œ ì‚¬ìš©í•  CDC í•˜ë‚˜ ë§Œë“¤ê¸°
 	CClientDC srcDC( pSrcWnd );
 
 
-	//// MemoryDC »ı¼º
+	//// MemoryDC ìƒì„±
 
-	//(1) È£È¯¼º MemDC ¸¸µé±â
+	//(1) í˜¸í™˜ì„± MemDC ë§Œë“¤ê¸°
 	m_pMDC = new CDC;
 	m_pMDC->CreateCompatibleDC( &srcDC );
 
 
-	//(2) ¿ÜºÎ ÆÄÀÏ·Î ºÎÅÍ HBITMAPÀ¸·Î ÀĞ±â
-	//    - MFC·¹º§ÀÇ ÇÔ¼ö¸¦ ¸øÃ£¾Æ API/GDI ·¹º§ ÇÔ¼ö »ç¿ëÇßÀ½.
+	//(2) ì™¸ë¶€ íŒŒì¼ë¡œ ë¶€í„° HBITMAPìœ¼ë¡œ ì½ê¸°
+	//    - MFCë ˆë²¨ì˜ í•¨ìˆ˜ë¥¼ ëª»ì°¾ì•„ API/GDI ë ˆë²¨ í•¨ìˆ˜ ì‚¬ìš©í–ˆìŒ.
 	HBITMAP hBitmap;
 	hBitmap = (HBITMAP) ::LoadImage( NULL, szFileName, IMAGE_BITMAP,
 									 0, 0, LR_LOADFROMFILE );
 	if( hBitmap == NULL )
 		return 0;
 
-	//(3) MemDC¿¡ HBITMAP ¼±ÅÃÇØÁÖ±â
+	//(3) MemDCì— HBITMAP ì„ íƒí•´ì£¼ê¸°
 	::SelectObject( m_pMDC->m_hDC, hBitmap );
 
-		//// ÇÊ¿äÇÑ Á¤º¸°ª ¾ò±â
+		//// í•„ìš”í•œ ì •ë³´ê°’ ì–»ê¸°
  		BITMAP bm;
 		::GetObject( hBitmap, sizeof(bm), &bm );
 
 		m_nWidth  = bm.bmWidth;
 		m_nHeight = bm.bmHeight;
 
-		// »ç¿ëÀÚ°¡ ¿äÃ»ÇÒ °æ¿ì¿¡¸¸ Bitmap Á¤º¸°ª µ¹·ÁÁÜ.
+		// ì‚¬ìš©ìê°€ ìš”ì²­í•  ê²½ìš°ì—ë§Œ Bitmap ì •ë³´ê°’ ëŒë ¤ì¤Œ.
 		if( pBMInfo != NULL )
 			::GetObject( hBitmap, sizeof(bm), &pBMInfo );
 
-	//(4) ´õ ÀÌ»ó ÇÊ¿ä¾ø´Â HBITMAP ÆÄ±« 
+	//(4) ë” ì´ìƒ í•„ìš”ì—†ëŠ” HBITMAP íŒŒê´´ 
 	::DeleteObject( hBitmap );
 
 	return TRUE;
@@ -276,49 +276,49 @@ int CKMMemDC::CreateFromFile( CWnd* pSrcWnd,
 
 //@@---------------------------------------------------------------------------
 // CreateFromHBM()
-// - HBITMAPÀ¸·Î MemoryDC¸¦ ¸¸µë.
+// - HBITMAPìœ¼ë¡œ MemoryDCë¥¼ ë§Œë“¬.
 //-----------------------------------------------------------------------------
 int CKMMemDC::CreateFromHBM( CWnd* pSrcWnd, 
 							    HBITMAP hBitmap, 
 							    BITMAP* pBMInfo )
 {
 
-	//// ¿¡·¯Ã¼Å©
+	//// ì—ëŸ¬ì²´í¬
 	if( pSrcWnd == NULL )
 	{
-		AfxMessageBox( "CKMMemDC::CreateFromHBM()\n\n ºñÁ¤»óÀûÀÎ pSrcWnd" );
+		AfxMessageBox( "CKMMemDC::CreateFromHBM()\n\n ë¹„ì •ìƒì ì¸ pSrcWnd" );
 		return FALSE;
 	}
 
 	if( m_pMDC != NULL )
 	{
-		AfxMessageBox( "CKMMemDC::CreateFromHBM()\n\n m_pMDC°¡ ÀÌ¹Ì »ç¿ëÁßÀÓ" );
+		AfxMessageBox( "CKMMemDC::CreateFromHBM()\n\n m_pMDCê°€ ì´ë¯¸ ì‚¬ìš©ì¤‘ì„" );
 		return FALSE;
 	}
 
 
-	//// ¼Ò½º·Î »ç¿ëÇÒ CDC ÇÏ³ª ¸¸µé±â
+	//// ì†ŒìŠ¤ë¡œ ì‚¬ìš©í•  CDC í•˜ë‚˜ ë§Œë“¤ê¸°
 	CClientDC srcDC( pSrcWnd );
 
 
-	//// MemoryDC »ı¼º
+	//// MemoryDC ìƒì„±
 
-	//(1) È£È¯¼º MemDC ¸¸µé±â
+	//(1) í˜¸í™˜ì„± MemDC ë§Œë“¤ê¸°
 	m_pMDC = new CDC;
 	m_pMDC->CreateCompatibleDC( &srcDC );
 
 
-	//(2) MemDC¿¡ HBITMAP ¼±ÅÃÇØÁÖ±â
+	//(2) MemDCì— HBITMAP ì„ íƒí•´ì£¼ê¸°
 	::SelectObject( m_pMDC->m_hDC, hBitmap );
 
-		//// ÇÊ¿äÇÑ Á¤º¸°ª ¾ò±â
+		//// í•„ìš”í•œ ì •ë³´ê°’ ì–»ê¸°
  		BITMAP bm;
 		::GetObject( hBitmap, sizeof(bm), &bm );
 
 		m_nWidth  = bm.bmWidth;
 		m_nHeight = bm.bmHeight;
 
-		// »ç¿ëÀÚ°¡ ¿äÃ»ÇÒ °æ¿ì¿¡¸¸ Bitmap Á¤º¸°ª µ¹·ÁÁÜ.
+		// ì‚¬ìš©ìê°€ ìš”ì²­í•  ê²½ìš°ì—ë§Œ Bitmap ì •ë³´ê°’ ëŒë ¤ì¤Œ.
 		if( pBMInfo != NULL )
 			::GetObject( hBitmap, sizeof(bm), &pBMInfo );
 
@@ -381,7 +381,7 @@ int CKMMemDC::BltTo( int sx, int sy, int sw, int sh,
 
 //-----------------------------------------------------------------------------
 // StretchBltTo()
-// - È®´ë/Ãà¼Ò Àû¿ë½ÃÄÑ Âï±â 
+// - í™•ëŒ€/ì¶•ì†Œ ì ìš©ì‹œì¼œ ì°ê¸° 
 //-----------------------------------------------------------------------------
 int CKMMemDC::StretchBltTo( CDC* pDestDC, 
 							int dx, int dy, int dw, int dh,
@@ -434,7 +434,7 @@ int CKMMemDC::StretchBltTo( int sx, int sy, int sw, int sh,
 
 //-----------------------------------------------------------------------------
 // TransBltTo()
-// - ÄÃ·¯Å° Àû¿ëÇØ¼­ Âï±â / Ãß°¡ library ÇÊ¿äÇÔ ( msimg32.lib )
+// - ì»¬ëŸ¬í‚¤ ì ìš©í•´ì„œ ì°ê¸° / ì¶”ê°€ library í•„ìš”í•¨ ( msimg32.lib )
 //-----------------------------------------------------------------------------
 int CKMMemDC::TransBltTo( CDC* pDestDC, 
 					      int dx, int dy )
@@ -519,7 +519,7 @@ int CKMMemDC::TransBltTo( int sx, int sy, int sw, int sh,
 
 //@@---------------------------------------------------------------------------
 // AlphaBltTo()
-// - ºÒÅõ¸í°ª Àû¿ëÇØ¼­ Âï±â
+// - ë¶ˆíˆ¬ëª…ê°’ ì ìš©í•´ì„œ ì°ê¸°
 //-----------------------------------------------------------------------------
 int CKMMemDC::AlphaBltTo( CDC* pDestDC, 
 						  int dx, int dy,
@@ -591,7 +591,7 @@ int CKMMemDC::AlphaBltTo( int sx, int sy, int sw, int sh,
 
 //@@---------------------------------------------------------------------------
 // FillColor()
-// - ´Ü¼ø »ö Ã¤¿ì±â.
+// - ë‹¨ìˆœ ìƒ‰ ì±„ìš°ê¸°.
 //-----------------------------------------------------------------------------
 int CKMMemDC::FillColor( COLORREF clr )
 {
@@ -624,7 +624,7 @@ int CKMMemDC::FillColor( COLORREF clr, int x, int y, int w, int h )
 
 
 //@@---------------------------------------------------------------------------
-// °İÀÚ ±×¸®±â.
+// ê²©ì ê·¸ë¦¬ê¸°.
 //-----------------------------------------------------------------------------
 int CKMMemDC::DrawGrid	( int gridX, int gridY, COLORREF clr, int penWidth )
 {
@@ -638,7 +638,7 @@ int CKMMemDC::DrawGrid	( int gridX, int gridY, COLORREF clr, int penWidth )
 
 		int x1,y1, x2,y2;
 
-		// °¡·Î·Î ±×¸®±â.
+		// ê°€ë¡œë¡œ ê·¸ë¦¬ê¸°.
 		y1 = 0;	y2 = m_nHeight;
 		for( x1=0; x1<m_nWidth;  x1+=gridX )
 		{
@@ -647,7 +647,7 @@ int CKMMemDC::DrawGrid	( int gridX, int gridY, COLORREF clr, int penWidth )
 			m_pMDC->LineTo( x2,y2 );
 		}
 
-		// ¼¼·Î·Î ±×¸®±â.
+		// ì„¸ë¡œë¡œ ê·¸ë¦¬ê¸°.
 		x1 = 0;	x2 = m_nWidth;
 		for( y1=0; y1<m_nHeight; y1+=gridY )
 		{
@@ -664,7 +664,7 @@ int CKMMemDC::DrawGrid	( int gridX, int gridY, COLORREF clr, int penWidth )
 
 
 //@@---------------------------------------------------------------------------
-// Colorkey ¼³Á¤.
+// Colorkey ì„¤ì •.
 //-----------------------------------------------------------------------------
 void CKMMemDC::SetColorkey( BYTE r, BYTE g, BYTE b )
 {
@@ -684,7 +684,7 @@ void CKMMemDC::SetColorkey( int pixelX, int pixelY )
 
 
 //@@---------------------------------------------------------------------------
-// Colorkey¿Í ºñ±³.
+// Colorkeyì™€ ë¹„êµ.
 //-----------------------------------------------------------------------------
 BOOL CKMMemDC::IsColorkey ( BYTE r, BYTE g, BYTE b )
 {
@@ -702,12 +702,12 @@ BOOL CKMMemDC::IsColorkey ( COLORREF color )
 
 
 //@@---------------------------------------------------------------------------
-// Colorkey¿Í ºñ±³ÇÏ¿© ÃÖÀûÈ­.
+// Colorkeyì™€ ë¹„êµí•˜ì—¬ ìµœì í™”.
 //-----------------------------------------------------------------------------
 BOOL CKMMemDC::SelectFix_Optimize ( CRect& rcSelect )
 {
 
-	// ¼±ÅÃ¿µ¿ªÀÌ ¾øÀ¸¸é ³ª°¡¸®.
+	// ì„ íƒì˜ì—­ì´ ì—†ìœ¼ë©´ ë‚˜ê°€ë¦¬.
 	if( rcSelect.IsRectEmpty() ) {
 		return FALSE;
 	}
@@ -728,7 +728,7 @@ BOOL CKMMemDC::SelectFix_Optimize ( CRect& rcSelect )
 	rightNew = bottom = rcSelect.bottom -1;
 
 
-	//// (1/4) À§¿¡¼­ ¾Æ·¡·Î 
+	//// (1/4) ìœ„ì—ì„œ ì•„ë˜ë¡œ 
 	bOptDone = FALSE;
 	for( curY=top; curY<bottom; curY++ ) 
 	{//y
@@ -747,7 +747,7 @@ BOOL CKMMemDC::SelectFix_Optimize ( CRect& rcSelect )
 	}//y
 
 
-	//// (2/4) ¾Æ·¡¿¡¼­ À§·Î 
+	//// (2/4) ì•„ë˜ì—ì„œ ìœ„ë¡œ 
 	bOptDone = FALSE;
 	for( curY=bottom; curY>top; curY-- )
 	{//y
@@ -766,7 +766,7 @@ BOOL CKMMemDC::SelectFix_Optimize ( CRect& rcSelect )
 	}//y
 
 
-	//// (3/4) ¿ŞÂÊ¿¡¼­ ¿À¸¥ÂÊÀ¸·Î
+	//// (3/4) ì™¼ìª½ì—ì„œ ì˜¤ë¥¸ìª½ìœ¼ë¡œ
 	bOptDone = FALSE;
 	for( curX=left; curX<right; curX++ )
 	{//y
@@ -785,7 +785,7 @@ BOOL CKMMemDC::SelectFix_Optimize ( CRect& rcSelect )
 	}//y
 
 
-	//// (4/4) ¿À¸¥ÂÊ¿¡¼­ ¿ŞÂÊÀ¸·Î
+	//// (4/4) ì˜¤ë¥¸ìª½ì—ì„œ ì™¼ìª½ìœ¼ë¡œ
 	bOptDone = FALSE;
 	for( curX=right; curX>left; curX-- )
 	{//y
@@ -822,11 +822,11 @@ BOOL CKMMemDC::SelectFix_Optimize ( CRect& rcSelect )
 
 
 //@@---------------------------------------------------------------------------
-// MemDCÀÇ Æø/³ôÀÌ¿Í ºñ±³ÇÏ¿© ¼öÁ¤.
+// MemDCì˜ í­/ë†’ì´ì™€ ë¹„êµí•˜ì—¬ ìˆ˜ì •.
 //-----------------------------------------------------------------------------
 BOOL CKMMemDC::SelectFix_Bound ( CRect& rcSelect )
 {
-	// ¼±ÅÃ¿µ¿ªÀÌ ¾øÀ¸¸é ³ª°¡¸®.
+	// ì„ íƒì˜ì—­ì´ ì—†ìœ¼ë©´ ë‚˜ê°€ë¦¬.
 	if( rcSelect.IsRectEmpty() ) {
 		return FALSE;
 	}
@@ -837,17 +837,17 @@ BOOL CKMMemDC::SelectFix_Bound ( CRect& rcSelect )
 
 	CRect rcFix;
 
-	// °ãÄ¡´Â ¿µ¿ªÀÌ ÀÖ´Â °æ¿ì.
+	// ê²¹ì¹˜ëŠ” ì˜ì—­ì´ ìˆëŠ” ê²½ìš°.
 	if( rcFix.IntersectRect( &rcSelect, &rcImage ) )
 	{
 		rcSelect = rcFix;
 		return TRUE;
 	}
 
-	// °ãÄ¡´Â ¿µ¿ªÀÌ ¾ø´Â °æ¿ì.
+	// ê²¹ì¹˜ëŠ” ì˜ì—­ì´ ì—†ëŠ” ê²½ìš°.
 	else
 	{
-		// ¼±ÅÃ¿µ¿ª ¹«È¿È­.
+		// ì„ íƒì˜ì—­ ë¬´íš¨í™”.
 		rcSelect.SetRectEmpty();
 		return FALSE;
 	}
@@ -857,7 +857,7 @@ BOOL CKMMemDC::SelectFix_Bound ( CRect& rcSelect )
 
 
 //@@---------------------------------------------------------------------------
-// Grid°£°İÀ¸·Î ¼öÁ¤.
+// Gridê°„ê²©ìœ¼ë¡œ ìˆ˜ì •.
 //-----------------------------------------------------------------------------
 BOOL CKMMemDC::SelectFix_Grid ( int gridX, int gridY, CRect& rcSelect )
 {
@@ -880,7 +880,7 @@ BOOL CKMMemDC::SelectFix_Grid ( int gridX, int gridY, CRect& rcSelect )
 
 	//// done~!
 	CRect rcFixed( leftNew,topNew, rightNew,bottomNew );
-	SelectFix_Bound( rcFixed ); // ¿µ¿ª¹ÛÀÌ µÇ¹ö¸±¼öµµ ÀÖÀ¸¹Ç·Î.
+	SelectFix_Bound( rcFixed ); // ì˜ì—­ë°–ì´ ë˜ë²„ë¦´ìˆ˜ë„ ìˆìœ¼ë¯€ë¡œ.
 
 	if( rcFixed.IsRectEmpty() )
 	{
@@ -898,14 +898,14 @@ BOOL CKMMemDC::SelectFix_Grid ( int gridX, int gridY, CRect& rcSelect )
 
 
 //@@---------------------------------------------------------------------------
-// RECT¿µ¿ª¾È¿¡ MDC°¡ Á¸ÀçÇÏ´Â Áö °Ë»çÇÑ´Ù.
+// RECTì˜ì—­ì•ˆì— MDCê°€ ì¡´ì¬í•˜ëŠ” ì§€ ê²€ì‚¬í•œë‹¤.
 // ---------------------------------------------------------------------------
-// 1. CPoint pt - MemDCÀÇ TopLeft À§Ä¡
-//    CRect* pRect - °Ë»çÇÒ ¿µ¿ª.
+// 1. CPoint pt - MemDCì˜ TopLeft ìœ„ì¹˜
+//    CRect* pRect - ê²€ì‚¬í•  ì˜ì—­.
 //
-// 2. RECT¿µ¿ª°ú °ãÄ¡¸é FALSE¸¦ ¹İÈ¯.
+// 2. RECTì˜ì—­ê³¼ ê²¹ì¹˜ë©´ FALSEë¥¼ ë°˜í™˜.
 // 
-// 3. °ãÄ¡´Â ¿µ¿ªÀ» ±¸ÇÏ°í ½Í´Ù¸é IntersectRect()¸¦ »ç¿ëÇÏ¿© ¹Ù²Ü°Í.
+// 3. ê²¹ì¹˜ëŠ” ì˜ì—­ì„ êµ¬í•˜ê³  ì‹¶ë‹¤ë©´ IntersectRect()ë¥¼ ì‚¬ìš©í•˜ì—¬ ë°”ê¿€ê²ƒ.
 //
 //-----------------------------------------------------------------------------
 BOOL CKMMemDC::IsInRect ( CPoint pt, CRect* pRect )
@@ -926,22 +926,22 @@ BOOL CKMMemDC::GetThumbNail	( CWnd* pSrcWnd, CBitmap *pBMOut,
 {
 	int offX,offY, scaleW,scaleH;
 
-	// Thumbnail ¿ë MDC¸¸µé±â
+	// Thumbnail ìš© MDCë§Œë“¤ê¸°
 	CKMMemDC mdcThumb( pSrcWnd, thW, thH, RGB(192,192,192) );
 	CDC* pDCThumb = mdcThumb.GetMDC();
 
-	// ¿øº» Image Å©±â°¡ Thumbnailº¸´Ù ÀÛÀº »óÈ².
+	// ì›ë³¸ Image í¬ê¸°ê°€ Thumbnailë³´ë‹¤ ì‘ì€ ìƒí™©.
 	if( ( thW > sW ) && ( thH > sH ) )
 	{
-		offX = thW/2 - sW/2; // ThumbnailÀÇ Á¤Áß¾Ó¿¡ À§Ä¡½ÃÅ²´Ù.
+		offX = thW/2 - sW/2; // Thumbnailì˜ ì •ì¤‘ì•™ì— ìœ„ì¹˜ì‹œí‚¨ë‹¤.
 		offY = thH/2 - sH/2; 
 		this->BltTo( pDCThumb, offX,offY );
 	}
 
-	// ¿øº» Image Å©±â°¡ Thumbnailº¸´Ù Å« »óÈ².
+	// ì›ë³¸ Image í¬ê¸°ê°€ Thumbnailë³´ë‹¤ í° ìƒí™©.
 	else
 	{
-		// °¡·Î·Î ´õ ±ä °æ¿ì.
+		// ê°€ë¡œë¡œ ë” ê¸´ ê²½ìš°.
 		if( sW > sH )
 		{
 			scaleW = thW;
@@ -950,7 +950,7 @@ BOOL CKMMemDC::GetThumbNail	( CWnd* pSrcWnd, CBitmap *pBMOut,
 			offY = thH/2 - scaleH/2;
 		}
 
-		// ¼¼·Î·Î ´õ ±ä °æ¿ì.
+		// ì„¸ë¡œë¡œ ë” ê¸´ ê²½ìš°.
 		else
 		{
 			scaleW = (int)( sW * thW / sH );
@@ -962,7 +962,7 @@ BOOL CKMMemDC::GetThumbNail	( CWnd* pSrcWnd, CBitmap *pBMOut,
 	}
 
 
-	// Thumbnail Å×µÎ¸® ¿Ü°û¼±.
+	// Thumbnail í…Œë‘ë¦¬ ì™¸ê³½ì„ .
 	CPen penNew( PS_SOLID, 1, RGB(212,208,200) );
 	CPen* pPenOld = (CPen*)pDCThumb->SelectObject( &penNew );
 	CBrush* pBrOld = (CBrush*)pDCThumb->SelectStockObject( NULL_BRUSH );
@@ -975,14 +975,14 @@ BOOL CKMMemDC::GetThumbNail	( CWnd* pSrcWnd, CBitmap *pBMOut,
 
 
 
-	// CBitmapÀ» À§ÇÑ Pixel °ø°£ È®º¸.
+	// CBitmapì„ ìœ„í•œ Pixel ê³µê°„ í™•ë³´.
 	int thW_4      = (thW*3)+3&~3;
 	int pixelsSize = thW_4*thH;
 	unsigned char* pixels = (unsigned char*)malloc( pixelsSize );
 	memset( pixels, 0, pixelsSize );
 
 
-	// Thumbnail MDC¸¦ ÀÌ¿ëÇÏ¿© Pixels Ã¤¿ì±â.
+	// Thumbnail MDCë¥¼ ì´ìš©í•˜ì—¬ Pixels ì±„ìš°ê¸°.
 	COLORREF color;
 	BYTE r,g,b;
 	for( int y=0; y<thH; y++ )
@@ -997,7 +997,7 @@ BOOL CKMMemDC::GetThumbNail	( CWnd* pSrcWnd, CBitmap *pBMOut,
 	}
 
 
-	// CBitmap °´Ã¼ ¸¸µé±â.
+	// CBitmap ê°ì²´ ë§Œë“¤ê¸°.
 	BITMAPINFO bmI;  memset( &bmI, 0, sizeof(BITMAPINFO) );
 	bmI.bmiHeader.biSize			= sizeof(BITMAPINFOHEADER); 
 	bmI.bmiHeader.biWidth			= thW; 
@@ -1020,7 +1020,7 @@ BOOL CKMMemDC::GetThumbNail	( CWnd* pSrcWnd, CBitmap *pBMOut,
 		return FALSE;
 	}
 
-	// CBitmap »ı¼º.
+	// CBitmap ìƒì„±.
 	pBMOut->DeleteObject();
 	pBMOut->Attach( hBM );
 

@@ -92,9 +92,9 @@ public:
 private:
 //! Variables
 	FLOAT	m_fCurrentTime;			
-	INT		m_nPathIndex;					// ÇöÀç Path Index
+	INT		m_nPathIndex;					// í˜„ì¬ Path Index
 	
-	CPos&	m_posParent;					// EmitterÀÇ ½ºÅ©¸°ÁÂÇ¥.
+	CPos&	m_posParent;					// Emitterì˜ ìŠ¤í¬ë¦°ì¢Œí‘œ.
 
 	std::vector<CPathInfo*>* m_pvecPath;
 };

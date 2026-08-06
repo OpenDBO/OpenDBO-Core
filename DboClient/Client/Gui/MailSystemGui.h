@@ -22,7 +22,7 @@ class CMailSystemMsg;
 
 /**
 * \ingroup client
-* \brief ¸ŞÀÏ¿¡¼­ »ç¿ëµÉ Message BoxÀÇ Å¸ÀÔµîÀ» Á¤ÀÇÇÑ´Ù.
+* \brief ë©”ì¼ì—ì„œ ì‚¬ìš©ë  Message Boxì˜ íƒ€ì…ë“±ì„ ì •ì˜í•œë‹¤.
 */
 class CMailSystemMsg
 {
@@ -80,7 +80,7 @@ public:
 
 /**
 * \ingroup client
-* \brief MailSystem¿¡¼­ÀÇ Mail SlotµîÀ» Á¤ÀÇÇÑ´Ù.
+* \brief MailSystemì—ì„œì˜ Mail Slotë“±ì„ ì •ì˜í•œë‹¤.
 */
 class CMailSlotGui : public CNtlPLGui
 {
@@ -99,7 +99,7 @@ protected:
 	gui::CStaticBox*		m_pStbContent;
 	gui::CStaticBox*		m_pStbDay;
 	gui::CButton*			m_pBtnLock;
-	gui::CButton*			m_pBtnCheck;			///< Ã¼Å©¹Ú½º
+	gui::CButton*			m_pBtnCheck;			///< ì²´í¬ë°•ìŠ¤
 
 	gui::CSlot				m_slotMove;
 	gui::CSlot				m_slotPaintBtnSlot;

@@ -137,9 +137,9 @@ RwBool CNtlPLCharacter::SetProperty(const CNtlPLProperty *pData)
 }
 
 /**
-* Character ������ ȣ���� �ȴ�.
-* \param pParam Character ������ �ʿ���(Head, Hair, SkinColor, HairColor���� �޾ƾ� �Ѵ�. Pc, Mob, Npc�� ���� ���е�)
-* \return ���� ����
+* Character 占쏙옙占쏙옙占쏙옙 호占쏙옙占쏙옙 占싫댐옙.
+* \param pParam Character 占쏙옙占쏙옙占쏙옙 占십울옙占쏙옙(Head, Hair, SkinColor, HairColor占쏙옙占쏙옙 占쌨아억옙 占싼댐옙. Pc, Mob, Npc占쏙옙 占쏙옙占쏙옙 占쏙옙占싻듸옙)
+* \return 占쏙옙占쏙옙 占쏙옙占쏙옙
 */
 RwBool CNtlPLCharacter::Create(const SPLEntityCreateParam *pParam)
 {
@@ -643,9 +643,9 @@ RwBool CNtlPLCharacter::Update(float fElapsed)
 }
 
 /**
-* Visula Manager���� Render�� ������ ȣ���ϰ� �ߴ�.
-* CallBack �������� ������ �ؾ� �ҵ� �ϴ�.
-* \return ���� ����
+* Visula Manager占쏙옙占쏙옙 Render占쏙옙 占쏙옙占쏙옙占쏙옙 호占쏙옙占싹곤옙 占쌩댐옙.
+* CallBack 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쌔억옙 占쌀듸옙 占싹댐옙.
+* \return 占쏙옙占쏙옙 占쏙옙占쏙옙
 */
 RwBool CNtlPLCharacter::Render(void)
 {	
@@ -676,8 +676,8 @@ static RpAtomic *RenderToTextureAtomic(RpAtomic *pAtomic, void *pData)
 }
 
 /**
-* Texture�� Rendering�� �� ��� ���� �Լ�
-* \return ���� ����
+* Texture에 Rendering을 할 경우 쓰는 함수
+* \return 占쏙옙占쏙옙 占쏙옙占쏙옙
 */
 RwBool CNtlPLCharacter::RenderToTexture()
 {
@@ -732,7 +732,7 @@ void CNtlPLCharacter::UpdatePreBoneScale()
         if(bTargetPosApply && parentIndex == uiBone1)
         {
             // ��� �����κ��� Ÿ���� ������ ����ؼ� �����Ѵ�. 
-            // Ÿ�� �������� ���� �ø��� ���ؼ���. ����ũ �ȴø��� ��ų�� (by agebreak 08-10-23)
+            // 타占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占시몌옙占쏙옙 占쏙옙占쌔쇽옙占쏙옙. 占쏙옙占쏙옙크 占싫늘몌옙占쏙옙 占쏙옙킬占쏙옙 (by agebreak 08-10-23)
             RwV3d vBonePos = pMatClavicle->pos;            
             vBonePos.x = GetPosition().x;
             vBonePos.z = GetPosition().z;
@@ -744,7 +744,7 @@ void CNtlPLCharacter::UpdatePreBoneScale()
             RwV3dNormalize(&vTargetDir, &vTargetDir);            
             RwReal fAngle = acos(RwV3dDotProduct(&vDir, &vTargetDir));
 
-            // ����, ������ ����� ���� �־����� ������ �ٸ���.
+            // 왼쪽, 오른쪽 어깨에 따라서 휘어지는 각도가 다르다.
             if(strstr(m_szBoneStretchAxisBone, " L ") > 0)
             {
                 fAngle = vBonePos.y <= m_vBoneStretchTargetPos.y ? fAngle : -fAngle;
@@ -813,7 +813,7 @@ void CNtlPLCharacter::UpdatePostBoneScale()
 }
 
 /**
-* Toon Data�� ������ �Ѵ�.
+* Toon Data占쏙옙 占쏙옙占쏙옙占쏙옙 占싼댐옙.
 */
 void CNtlPLCharacter::CreateToonData(const RwChar *szTexName, const RwChar *szTexPath)
 {
@@ -834,9 +834,9 @@ void CNtlPLCharacter::CreateToonData(const RwChar *szTexName, const RwChar *szTe
 }
 
 /**
-* Animation�� �ʿ��� ������ �Ѵ�.
+* Animation占쏙옙 占십울옙占쏙옙 占쏙옙占쏙옙占쏙옙 占싼댐옙.
 * \param pAnim RtAnimAnimation Data
-* \return ���� ����
+* \return 占쏙옙占쏙옙 占쏙옙占쏙옙
 */
 RwBool CNtlPLCharacter::CreateAnim(RwUInt32 uiAnimKey, RwReal fStartTime, RwBool bLoop )
 {
@@ -901,11 +901,11 @@ RwBool CNtlPLCharacter::IsExistAnim(RwUInt32 uiAnimKey)
 
 
 /**
-* Animation Change�� �Ѵ�. RUN_FRONT, RUN_BACK, ROTATE�� ���� Animation�� ���� ��� �������� �ʴ´�.
+* Animation Change를 한다. RUN_FRONT, RUN_BACK, ROTATE는 현재 Animation이 있을 경우 변경하지 않는다.
 * \param uiAnimKey		AnimationKey
-* \param fStartTime	Animation ���۽ð�
-* \param bLoop			Loop ����
-* \return ���� ����
+* \param fStartTime	Animation 占쏙옙占쌜시곤옙
+* \param bLoop			Loop 占쏙옙占쏙옙
+* \return 占쏙옙占쏙옙 占쏙옙占쏙옙
 */
 RwBool CNtlPLCharacter::SetBaseAnimation(RwUInt32 uiAnimKey, RwReal fStartTime, RwBool bLoop)
 {
@@ -969,11 +969,11 @@ RwBool CNtlPLCharacter::SetBaseAnimation(RwUInt32 uiAnimKey, RwReal fStartTime, 
 }
 
 /**
-* Animation Blend�� ���� �ʰ� Pre, Next ��� Animation�� �ٲ۴�. 
+* Animation Blend를 하지 않고 Pre, Next 모두 Animation를 바꾼다. 
 * \param uiAnimKey		AnimationKey
-* \param fStartTime	Animation ���۽ð�
-* \param bLoop			Loop ����
-* \return ���� ����
+* \param fStartTime	Animation 占쏙옙占쌜시곤옙
+* \param bLoop			Loop 占쏙옙占쏙옙
+* \return 占쏙옙占쏙옙 占쏙옙占쏙옙
 */
 RwBool CNtlPLCharacter::SetAllAnimation(RwUInt32 uiAnimKey, RwReal fStartTime, RwBool bLoop)
 {
@@ -1038,7 +1038,7 @@ RwBool CNtlPLCharacter::SetBlend(EBlendType eBlendType, RwReal fBlendAlpha, RwRe
 }
 
 /**
-* Animation������ AnimHit
+* Animation占쏙옙占쏙옙占쏙옙 AnimHit
 * \return SAnimHitParam
 */
 SAnimPlayInfo *CNtlPLCharacter::GetBaseAnimPlayInfo()
@@ -1216,8 +1216,8 @@ RpAtomic* CNtlPLCharacter::GetAtomic( const std::string& strName )
 }
 
 /**
-* pPos��ġ�� Character�� ��ġ ��Ų��.
-* \param pPos World������ ��ġ
+* pPos占쏙옙치占쏙옙 Character占쏙옙 占쏙옙치 占쏙옙킨占쏙옙.
+* \param pPos World占쏙옙占쏙옙占쏙옙 占쏙옙치
 */
 void CNtlPLCharacter::SetPosition(const RwV3d *pPos)
 {
@@ -1268,7 +1268,7 @@ void CNtlPLCharacter::SetPosition(const RwV3d *pPos)
 		}
 	}
 
-	// Sound�� ��ġ�� �����Ѵ�.
+	// Sound占쏙옙 占쏙옙치占쏙옙 占쏙옙占쏙옙占싼댐옙.
 	ListSoundHandle::iterator it = m_listLoopSound.begin();
 	for(; it != m_listLoopSound.end(); ++it)
 	{
@@ -1282,8 +1282,8 @@ void CNtlPLCharacter::SetPosition(const RwV3d *pPos)
 
 
 /**
-* Base Scale�� ������ �Ѵ�.
-* \param fScale Default���� 1.f �̴�.
+* Base Scale占쏙옙 占쏙옙占쏙옙占쏙옙 占싼댐옙.
+* \param fScale Default占쏙옙占쏙옙 1.f 占싱댐옙.
 */
 void CNtlPLCharacter::SetScale(RwReal fScale)
 {
@@ -1323,8 +1323,8 @@ RwReal CNtlPLCharacter::GetScale()
 
 
 /**
-* Base Scale�� ������ �Ѵ�.
-* \param fScale Default���� 1.f �̴�.
+* Base Scale占쏙옙 占쏙옙占쏙옙占쏙옙 占싼댐옙.
+* \param fScale Default占쏙옙占쏙옙 1.f 占싱댐옙.
 */
 void CNtlPLCharacter::SetBaseScale(RwReal fBaseScale)
 {
@@ -1361,7 +1361,7 @@ void CNtlPLCharacter::SetBaseScale(RwReal fBaseScale)
 }
 
 /**
-* ������Ƽ�� ������ BaseScale�� ��ȯ�Ѵ�.
+* 占쏙옙占쏙옙占쏙옙티占쏙옙 占쏙옙占쏙옙占쏙옙 BaseScale占쏙옙 占쏙옙환占싼댐옙.
 */
 RwReal CNtlPLCharacter::GetBaseScale()
 {
@@ -1376,8 +1376,8 @@ RwReal CNtlPLCharacter::GetBaseScale()
 }
 
 /**
-* ���� ������ ������ ��� ��ġ���̴�.
-* \param pPos �̵���ų ��ġ�̴�.
+* 발이 땅에서 떨어질 경우 위치값이다.
+* \param pPos 占싱듸옙占쏙옙킬 占쏙옙치占싱댐옙.
 */
 void CNtlPLCharacter::SetPosOffset(RwV3d *pPos)
 {
@@ -1410,8 +1410,8 @@ void CNtlPLCharacter::SetPosOffset(RwV3d *pPos)
 }
 
 /**
-* Character�� ȸ��
-* \param fAngleY ȸ����
+* Character占쏙옙 회占쏙옙
+* \param fAngleY 회占쏙옙占쏙옙
 */
 void CNtlPLCharacter::SetAngleY(const RwReal fAngleY)
 {
@@ -1474,8 +1474,8 @@ void CNtlPLCharacter::SetAngleX(const RwReal fAngleX)
 }
 
 /**
-* ���� Angle���� fAngleDeltaY�� ��ŭ�� ���Ѵ�.
-* \param fAngleDeltaY Delta ȸ����
+* 占쏙옙占쏙옙 Angle占쏙옙占쏙옙 fAngleDeltaY占쏙옙 占쏙옙큼占쏙옙 占쏙옙占싼댐옙.
+* \param fAngleDeltaY Delta 회占쏙옙占쏙옙
 */
 void CNtlPLCharacter::SetAngleDelta(const RwReal fAngleDeltaY)
 {
@@ -1486,8 +1486,8 @@ void CNtlPLCharacter::SetAngleDelta(const RwReal fAngleDeltaY)
 }
 
 /**
-* Ư�� Bone�� Matrix ���� ��´�.
-* \param pBoneName Bone�� �̸�
+* 특정 Bone의 Matrix 값을 얻는다.
+* \param pBoneName Bone占쏙옙 占싱몌옙
 */
 RwMatrix* CNtlPLCharacter::GetBoneMatrix(const RwChar *pBoneName)
 {
@@ -1628,7 +1628,7 @@ void CNtlPLCharacter::SetMatrix( RwMatrix& matWorld)
 	RwMatrixCopy(pMatChar, &matWorld);
     pMatChar->pos = ZeroAxis;
     
-    // Base Scale�� ��������߸� �Ѵ�.
+    // Base Scale을 적용해줘야만 한다.
     RwFrameScale(pFrame, &m_pTypeBoneData->vBaseScale, rwCOMBINEPOSTCONCAT);
     RwFrameTranslate(pFrame, RwMatrixGetPos(&matWorld), rwCOMBINEPOSTCONCAT);
 
@@ -1994,7 +1994,7 @@ RpAtomic *CNtlPLCharacter::RenderCallBack(RpAtomic *pAtomic)
 				}
 			}
 
-			// ���� coding
+			// 占쏙옙占쏙옙 coding
 			if (m_SkipAdge)
 			{
 				AtomicDefaultRenderCallBack(pAtomic);
@@ -2067,7 +2067,7 @@ RpAtomic *CNtlPLCharacter::RenderCallBack(RpAtomic *pAtomic)
 						RwRGBAReal	sColorReal;
 						RwRGBARealFromRwRGBA(&sColorReal, pCharEntity->GetColor());
 
-						// Atomic�� ������ Alpha ��
+						// Atomic占쏙옙 占쏙옙占쏙옙占쏙옙 Alpha 占쏙옙
 						RwReal fAtomicAlpha = RpNtlAtomicGetAlpha(pAtomic) / 255.0f;
 
 						RwRGBA sColor;
@@ -2096,7 +2096,7 @@ RpAtomic *CNtlPLCharacter::RenderCallBack(RpAtomic *pAtomic)
 				}
 			}
 
-			// ���� coding
+			// 占쏙옙占쏙옙 coding
 			if(m_SkipAdge)
 			{
 				AtomicDefaultRenderCallBack(pAtomic);
@@ -2233,7 +2233,7 @@ void CNtlPLCharacter::OnEventTraceEffect( SEventTrace* pEventTrace )
 
 void CNtlPLCharacter::OnEventVisualEffect( SEventVisualEffect* pEventVisualEffect ) 
 {
-	//Effect Name�� ���� ���� ������ Return�� �Ѵ�.
+	//Effect Name占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 Return占쏙옙 占싼댐옙.
 	if( strlen(pEventVisualEffect->chEffectName) <= 0)
 		return;
 
@@ -2243,7 +2243,7 @@ void CNtlPLCharacter::OnEventVisualEffect( SEventVisualEffect* pEventVisualEffec
 
 	if(!pEventVisualEffect->bAttach || pEventVisualEffect->eBoneType == BONE_CHARACTER)
 	{
-		// ���� LoopEffect ����Ʈ�� ���� �̸�,Bone�� ������ ���� �������� �ʴ´�.
+		// 占쏙옙占쏙옙 LoopEffect 占쏙옙占쏙옙트占쏙옙 占쏙옙占쏙옙 占싱몌옙,Bone占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占십는댐옙.
 		if(IsExistLoopEffect(pEventVisualEffect->chEffectName, pEventVisualEffect->chBoneName))
 			return;
 
@@ -2254,16 +2254,16 @@ void CNtlPLCharacter::OnEventVisualEffect( SEventVisualEffect* pEventVisualEffec
 
 		CNtlInstanceEffect *pInstanceEffect = (CNtlInstanceEffect *)pPLEntity;
 
-		// ����Ʈ�� Scale ���� ���� �÷��׸� �����Ѵ�.
+		// 占쏙옙占쏙옙트占쏙옙 Scale 占쏙옙占쏙옙 占쏙옙占쏙옙 占시뤄옙占쌓몌옙 占쏙옙占쏙옙占싼댐옙.
 		pInstanceEffect->SetApplyScale(pEventVisualEffect->bApplyScale);
 		pPLEntity->SetScale(GetBaseScale() * m_vScale.x);            
 
-		//Effect�� Character�� Serial ID�� �ִ´�.(Client���� ����� �ϱ� ���ؼ�)
+		//Effect에 Character의 Serial ID를 넣는다.(Client에서 사용을 하기 위해서)
 		pPLEntity->SetSerialID(GetSerialID());
 
 		pInstanceEffect->SetPlayAnimSpeed(m_fAnimSpeed);
 
-		// AutoDelete�� �ƴϸ� LoopEffect��� �����ϰ� ����Ʈ�� �߰��Ѵ�              
+		// AutoDelete가 아니면 LoopEffect라고 간주하고 리스트에 추가한다              
 		if(!pPLEntity->IsAutoDelete())
 		{
 			SLoopEffect* pLoopEffect = NTL_NEW SLoopEffect();
@@ -2375,12 +2375,12 @@ void CNtlPLCharacter::OnEventSubWeapon( SEventSubWeapon* pEventSubWeapon )
 
 void CNtlPLCharacter::OnEventVisualSound( SEventSound* pEventSound ) 
 {
-	// Sound�� Play�Ѵ�.    
+	// Sound占쏙옙 Play占싼댐옙.    
 
 	if(strlen(pEventSound->chSoundName) <= 1)
 		return ;
 
-	// LoopSound�̰� �̹� ������ Play�ǰ� �ִٸ� Play���� �ʴ´�.
+	// LoopSound占싱곤옙 占싱뱄옙 占쏙옙占쏙옙占쏙옙 Play占실곤옙 占쌍다몌옙 Play占쏙옙占쏙옙 占십는댐옙.
 	if(pEventSound->bLoop && IsExistLoopSound(pEventSound->chSoundName))
 		return ;
 
@@ -2419,7 +2419,7 @@ void CNtlPLCharacter::OnEventVisualSound( SEventSound* pEventSound )
 		soundFileName = pEventSound->chSoundName;
 	}
 
-	// ��ġ�� �������� �����Ѵ�
+	// 占쏙옙치占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싼댐옙
 	RwReal fSoundPitch = NtlRandomNumber(pEventSound->fSoundPitchMin, pEventSound->fSoundPitchMax);
 
 	sNtlSoundPlayParameta tSoundParam;
@@ -2437,7 +2437,7 @@ void CNtlPLCharacter::OnEventVisualSound( SEventSound* pEventSound )
 	// by daneos test
 	int iRet = GetSoundManager()->Play(&tSoundParam);
 
-	// Loop Sound�� ����Ʈ�� �߰��Ѵ�.
+	// Loop Sound占쏙옙 占쏙옙占쏙옙트占쏙옙 占쌩곤옙占싼댐옙.
 	if(iRet == SOUNDRESULT_OK && pEventSound->bLoop && tSoundParam.hHandle != INVALID_SOUND_HANDLE)
 	{
 		AddLoopSound(tSoundParam.hHandle);
@@ -2466,7 +2466,7 @@ void CNtlPLCharacter::OnEventHit( SEventAnimHit* pEventHit )
 
 void CNtlPLCharacter::OnEventPostEffect( SEventPostEffect* pEventPostEffect ) 
 {
-	// ����Ʈ ����Ʈ�� Ÿ���� �Ǻ��ϰ�, �ڽ� �̿��� �ٸ� ĳ������ ����Ʈ�� ���� �ʱ� ���ؼ� Simul ���̾�� ó���Ѵ�.
+	// 占쏙옙占쏙옙트 占쏙옙占쏙옙트占쏙옙 타占쏙옙占쏙옙 占실븝옙占싹곤옙, 占쌘쏙옙 占싱울옙占쏙옙 占쌕몌옙 캐占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙트占쏙옙 占쏙옙占쏙옙 占십깍옙 占쏙옙占쌔쇽옙 Simul 占쏙옙占싱어에占쏙옙 처占쏙옙占싼댐옙.
 	CNtlPLEventGenerator::AnimEventPostEffect(GetSerialID(), pEventPostEffect);
 }
 
@@ -2477,7 +2477,7 @@ void CNtlPLCharacter::OnEventSummonPet( SEventSummonPet* pEventSummonPet )
 
 void CNtlPLCharacter::OnEventAlphaFade( SEventAlpha* pEventAlpha ) 
 {
-	// Atomic Alpha�� ���ؼ��� PL�ܿ��� ó���Ѵ�.
+	// Atomic Alpha占쏙옙 占쏙옙占쌔쇽옙占쏙옙 PL占쌤울옙占쏙옙 처占쏙옙占싼댐옙.
 	if(pEventAlpha->eAlphaEventType != SEventAlpha::E_ALPHA_EVENT_ATOMIC)
 	{
 		CNtlPLEventGenerator::AnimEventAlpha(GetSerialID(), (void*)pEventAlpha);
@@ -2584,7 +2584,7 @@ void CNtlPLCharacter::ClearLoopEffect()
     {
         if(pLoopEffect && pLoopEffect->pLoopEffectIntance)
         {
-            // ������ �ƴ϶� ���Ḧ ��Ų��.
+            // 占쏙옙占쏙옙占쏙옙 占싣니띰옙 占쏙옙占써를 占쏙옙킨占쏙옙.
             pLoopEffect->pLoopEffectIntance->Finish();            
         }
 
@@ -2955,7 +2955,7 @@ RwBool CNtlPLCharacter::CullingTest(RwCamera* pRwCamera, RwUInt16 uiRenderFrame)
 			}
 			else if (iFrustumCheck + iOccluderCheck >= iNumAtomic) 
 			{
-				// Frustum + Occluder ������ Atomic �������� ���ٸ�
+				// Frustum + Occluder 占쏙옙占쏙옙占쏙옙 Atomic 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쌕몌옙
 				// OCCLUDER Flag�� ���� �Ѵ�. �� OccluderCheck ������ �����ؾ� �ϹǷ�, iFrustumCheck >= iNumAtomic�� ����ؾ߸� �����ϴ�.
 				m_uiCullFlags |= NTL_PLEFLAG_CULLED_OCCLUDER;
 			}
@@ -3019,7 +3019,7 @@ RwBool CNtlPLCharacter::CullingTest(RwCamera* pRwCamera)
 			}
 			else if (iFrustumCheck + iOccluderCheck >= iNumAtomic) 
 			{
-				// Frustum + Occluder ������ Atomic �������� ���ٸ�
+				// Frustum + Occluder 占쏙옙占쏙옙占쏙옙 Atomic 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쌕몌옙
 				// OCCLUDER Flag�� ���� �Ѵ�. �� OccluderCheck ������ �����ؾ� �ϹǷ�, iFrustumCheck >= iNumAtomic�� ����ؾ߸� �����ϴ�.
 				m_uiCullFlags |= NTL_PLEFLAG_CULLED_OCCLUDER;
 			}

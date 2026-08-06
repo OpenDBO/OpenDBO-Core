@@ -1,4 +1,4 @@
-// Attr_EVT_ItemGet.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_EVT_ItemGet.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_EVT_ItemGet.h"
 
 
-// CAttr_EVT_ItemGet ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_EVT_ItemGet ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_EVT_ItemGet, CAttr_Page, 1)
 
@@ -51,4 +51,4 @@ BEGIN_MESSAGE_MAP(CAttr_EVT_ItemGet, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_EVT_ItemGet ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_EVT_ItemGet ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

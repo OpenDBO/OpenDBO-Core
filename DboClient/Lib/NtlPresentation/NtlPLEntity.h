@@ -2,7 +2,7 @@
  *
  * File			: NtlPLEntity.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 8. 01	
  * Abstract		: Presentation object entity base class
  *****************************************************************************
@@ -57,7 +57,7 @@ class CNtlPLEntityBlendController;
 
 /**
  * \ingroup NtlPresentation
- * Presentation entity base classÀÌ´Ù.
+ * Presentation entity base classì´ë‹¤.
  * 
  */
 class CNtlPLEntity
@@ -104,32 +104,32 @@ public:
 	virtual ~CNtlPLEntity();
 
 	/**
-	*  entity°¡ »ı¼ºµÈ ´ÙÀ½ È£ÃâÇÏ´Â interface ÇÔ¼ö.
+	*  entityê°€ ìƒì„±ëœ ë‹¤ìŒ í˜¸ì¶œí•˜ëŠ” interface í•¨ìˆ˜.
 	*  \see Destroy
 	*/
 	virtual RwBool Create(const SPLEntityCreateParam *pParam = NULL) = 0;
 
 	/**
-	*  entity°¡ creat ÇÔ¼ö°¡ È£ÃâµÈ ´ÙÀ½ ½ÇÇàµÇ´Â interface ÇÔ¼ö.
+	*  entityê°€ creat í•¨ìˆ˜ê°€ í˜¸ì¶œëœ ë‹¤ìŒ ì‹¤í–‰ë˜ëŠ” interface í•¨ìˆ˜.
 	*  \see Destroy
 	*/
 	virtual RwBool PostCreate(void) { return TRUE; }
 
 	/**
-	*  entity°¡ »èÁ¦µÇ±â Àü¿¡ È£ÃâÇÏ´Â interface ÇÔ¼ö.
+	*  entityê°€ ì‚­ì œë˜ê¸° ì „ì— í˜¸ì¶œí•˜ëŠ” interface í•¨ìˆ˜.
 	*  \see Create
 	*/
 	virtual void Destroy(void) = 0;
 
 	/**
-	*  entity update interface ÇÔ¼ö
+	*  entity update interface í•¨ìˆ˜
 	*  \param fElapsed update delta time
 	*  \see Render
 	*/
 	virtual RwBool Update(RwReal fElapsed);
 
 	/**
-	*  entity CullingTest interface ÇÔ¼ö
+	*  entity CullingTest interface í•¨ìˆ˜
 	*  \see SetCull
 	*  \see IsCulled
 	*/
@@ -147,18 +147,18 @@ public:
     virtual void   Finish() {}
 
 	/**
-	*  entity rendering interface ÇÔ¼ö
+	*  entity rendering interface í•¨ìˆ˜
 	*  \see Upate
 	*/
 	virtual RwBool Render(void) = 0;
 
 	/**
-	*  entity rendertotexture interface ÇÔ¼ö
+	*  entity rendertotexture interface í•¨ìˆ˜
 	*/
 	virtual RwBool RenderToTexture(void) { return TRUE; }
 
 	/**
-	*  entity property setting interface ÇÔ¼ö
+	*  entity property setting interface í•¨ìˆ˜
 	*  \param pData Property base pointer
 	*/
 	virtual RwBool SetProperty(const CNtlPLProperty *pData) = 0;
@@ -170,25 +170,25 @@ public:
 	virtual void AddWorld(void)		{}
 
 	/**
-	*  renderware resource¸¦ world¿¡¼­ »èÁ¦ÇÑ´Ù.
+	*  renderware resourceë¥¼ worldì—ì„œ ì‚­ì œí•œë‹¤.
 	*  \see AddWorld
 	*/
 	virtual void RemoveWorld(void)	{}
 
 	/**
-	*  resource manager¿¡¼­ scheduling ÇÑ resource¸¦ »ı¼ºÇÏ±â Àü¿¡ ¾Ë·ÁÁØ´Ù.
+	*  resource managerì—ì„œ scheduling í•œ resourceë¥¼ ìƒì„±í•˜ê¸° ì „ì— ì•Œë ¤ì¤€ë‹¤.
 	*/
 	virtual void CallPreSchedulingResource(void) {}
 
 	/**
-	*  resource manager¿¡¼­ scheduling ÇÑ resource¸¦ ¾Ë·ÁÁØ´Ù.
+	*  resource managerì—ì„œ scheduling í•œ resourceë¥¼ ì•Œë ¤ì¤€ë‹¤.
 	*/
 	virtual void CallSchedulingResource(CNtlPLResource *pResource) {}
 	virtual void CallSchedulingResourceOnly() {}
     virtual RwBool IsSchedulingLoadingComplete() {return TRUE;}
 
 	/**
-	*  entity position interface ÇÔ¼ö
+	*  entity position interface í•¨ìˆ˜
 	*  \param pPos entity position pointer.
 	*  \see GetPosition
 	*/
@@ -202,8 +202,8 @@ public:
     virtual RwV3d GetDirection() {RwV3d dir;dir.x = dir.y = 0.0f;dir.z = 1.0f; return dir;}
 
 	/**
-	*  entity positionÀ» ¸®ÅÏÇÏ´Â interface ÇÔ¼ö.
-	*  \return entity positionÀ» ¸®ÅÏÇÑ´Ù.
+	*  entity positionì„ ë¦¬í„´í•˜ëŠ” interface í•¨ìˆ˜.
+	*  \return entity positionì„ ë¦¬í„´í•œë‹¤.
 	*  \see SetPosition
 	*/
 	// by agebreak
@@ -211,28 +211,28 @@ public:
 	virtual RwV3d GetPosition(void) { return CNtlPLGlobal::m_vZeroV3; }
 
 	/**
-	*  entity scale ÇÔ¼ö.
+	*  entity scale í•¨ìˆ˜.
 	*  \param fScale entity scale value.
 	*  \see GetScale
 	*/
 	virtual void SetScale(RwReal fScale) {}
 
 	/**
-	*  entity scale valueÀ» ¾ò¾î¿À´Â ÇÔ¼ö.
+	*  entity scale valueì„ ì–»ì–´ì˜¤ëŠ” í•¨ìˆ˜.
 	*  \return fScale entity scale value.
 	*  \see SetScale
 	*/
 	virtual RwReal GetScale(void) { return 1.0f; }
 
 	/**
-	*  entity scale vectorÀ» ¾ò¾î¿À´Â ÇÔ¼ö.
+	*  entity scale vectorì„ ì–»ì–´ì˜¤ëŠ” í•¨ìˆ˜.
 	*  \return entity scale vector value.
 	*  \see SetScale
 	*/
 	virtual const RwV3d* GetScaleVector(void) const { return NULL; }
 
 	/**
-	*  entity rotate¸¦ ½ÃÅ°´Â ÇÔ¼ö.
+	*  entity rotateë¥¼ ì‹œí‚¤ëŠ” í•¨ìˆ˜.
 	*  \param fXAngle x-axis rotate.
 	*  \param fXAngle y-axis rotate.
 	*  \param fXAngle z-axis rotate.
@@ -240,128 +240,128 @@ public:
 	virtual void SetRotate(RwReal fXAngle, RwReal fYAngle, RwReal fZAngle) {;}
 
 	/**
-	*  entity rotate vectorÀ» ¾ò¾î¿À´Â ÇÔ¼ö.
+	*  entity rotate vectorì„ ì–»ì–´ì˜¤ëŠ” í•¨ìˆ˜.
 	*  \return entity rotate value.
 	*  \see SetRotate
 	*/
 	virtual const RwV3d* GetRotate(void) const { return NULL;} 
 
 	/**
-	*  entity bounding sphereÀ» ¾ò¾î¿À´Â ÇÔ¼ö.
+	*  entity bounding sphereì„ ì–»ì–´ì˜¤ëŠ” í•¨ìˆ˜.
 	*  \return bounding sphere pointer.
 	*/
 	virtual const RwSphere* GetBoundingSphere(void) { return NULL; }
 
 	/**
-	*  entity bounding boxÀ» ¾ò¾î¿À´Â ÇÔ¼ö.
+	*  entity bounding boxì„ ì–»ì–´ì˜¤ëŠ” í•¨ìˆ˜.
 	*  \return bounding box pointer.
 	*/
 	virtual const RwBBox* GetBoundingBox(void) { return NULL; }
 
 	/**
-	*  entity matrix setting½ÃÅ°´Â ÇÔ¼ö.
-	*  \param matWorld RwMatrix º¯¼ö.
+	*  entity matrix settingì‹œí‚¤ëŠ” í•¨ìˆ˜.
+	*  \param matWorld RwMatrix ë³€ìˆ˜.
 	*/
 	virtual void SetMatrix(RwMatrix& matWorld) {;}
 
 	/**
-	*  entity matrix setting½ÃÅ°´Â ÇÔ¼ö.
+	*  entity matrix settingì‹œí‚¤ëŠ” í•¨ìˆ˜.
 	*  \return matrix 
 	*/
 	virtual RwMatrix& GetMatrix(void) { return CNtlPLGlobal::m_matIden; } 
 
 	/**
-	*  entity alpha °ªÀ» setting ÇÑ´Ù.
+	*  entity alpha ê°’ì„ setting í•œë‹¤.
 	*/
 	virtual void SetAlpha(RwUInt8 byValue) { }
 
 	/**
-	*  entity color °ªÀ» setting ÇÑ´Ù.
+	*  entity color ê°’ì„ setting í•œë‹¤.
 	*/
 	virtual void SetColor(RwUInt8 byRed, RwUInt8 byGreen, RwUInt8 byBlue) { }
 
 	/**
-	*  entity Addcolor °ªÀ» setting ÇÑ´Ù.
+	*  entity Addcolor ê°’ì„ setting í•œë‹¤.
 	*/
 	virtual void SetAddColor(RwUInt8 byRed, RwUInt8 byGreen, RwUInt8 byBlue) { }
 
 	/**
-	*  entity distance culling valueÀ» setting ÇÑ´Ù.
+	*  entity distance culling valueì„ setting í•œë‹¤.
 	*/
 	virtual void SetVisibleCullingDistance(RwReal fDistance);
 
 	/** 
-	*  entity ÇöÀç distance culling value
+	*  entity í˜„ì¬ distance culling value
 	*  \return culling value
 	*/
 	virtual RwReal	GetVisibleCullingDistance(void) const { return m_fVisibleCullingDistance; }
 
 	/**
-	*  entity weight alpha valueÀ» setting ÇÑ´Ù.
+	*  entity weight alpha valueì„ setting í•œë‹¤.
 	*/
 	virtual void SetWeightAlpha(RwReal fWeightValue);
 
 	/** 
-	*  entity ÇöÀç weight alpha
+	*  entity í˜„ì¬ weight alpha
 	*  \return weight alpha
 	*/
 	RwReal GetWeightAlpha(void) const;
 
 	/**
-	*  atomic weight alpha valueÀ» setting ÇÑ´Ù.
+	*  atomic weight alpha valueì„ setting í•œë‹¤.
 	*/
 	virtual void SetAtomicWeightAlpha(const RwChar *pAtomicName, RwReal fWeightValue) {}
 
 	/** 
-	*  entity ÇöÀç weight alpha
+	*  entity í˜„ì¬ weight alpha
 	*  \return weight alpha
 	*/
 	CNtlPLEntityBlendController* GetAlphaBlendController(void);
 
 	/**
-	*  weight elapsed time valueÀ» setting ÇÑ´Ù.
+	*  weight elapsed time valueì„ setting í•œë‹¤.
 	*/
 	void SetWeightElapsedTime(RwReal fWeightValue);
 
 	/** 
-	*  entity ÇöÀç weight elapsed time
+	*  entity í˜„ì¬ weight elapsed time
 	*  \return weight elapsed time
 	*/
 	RwReal GetWeightElapsedTime(void) const;
 
 	/** 
-	*  entity ÇöÀç weight elapsed controller »ı¼º.
+	*  entity í˜„ì¬ weight elapsed controller ìƒì„±.
 	*/
 	virtual void CreateWeightElapsedController(RwReal fLifeTime, RwReal fWeightValue); 
 
 	/** 
-	*  entity ÇöÀç weight elapsed controller ¼Ò¸ê.
+	*  entity í˜„ì¬ weight elapsed controller ì†Œë©¸.
 	*/
 	virtual void DeleteWeightElapsedController(void);
 
 	/** 
-	*  entity rendering on/off ½ÃÅ°´Â ÇÔ¼ö.
-	*  \param rendering on/off flag º¯¼ö.
+	*  entity rendering on/off ì‹œí‚¤ëŠ” í•¨ìˆ˜.
+	*  \param rendering on/off flag ë³€ìˆ˜.
 	*/
 	virtual void	SetVisible(RwBool bVisible);	
 	/** 
-	*  entity  ÇöÀç renderingÀÌ µÇ°í ÀÖ´Â entity ÀÎ°¡?
-	*  \param  ÇÔ²² ¿¬»êµÉ CullFlags.
-	*  \return rendering onÀÌ¸é TRUE, rendering offÀÌ¸é FALSE
+	*  entity  í˜„ì¬ renderingì´ ë˜ê³  ìˆëŠ” entity ì¸ê°€?
+	*  \param  í•¨ê»˜ ì—°ì‚°ë  CullFlags.
+	*  \return rendering onì´ë©´ TRUE, rendering offì´ë©´ FALSE
 	*/
 	virtual RwBool	IsVisible(RwUInt32 uiFlags = 0xFFFFFFFF);
 
 	/** 
-	*  entity camera collisionÀ» À§ÇØ Á¸ÀçÇÏ´Â Visible °Ë»ç ÇÔ¼ö·Î
-	*  Performance Çâ»óÀ» À§ÇÑ CullingÀ» °í·ÁÇÏÁö ¾ÊÀº ÇÔ¼ö
-	*  \return rendering ÁßÀÌ¸é TRUE, ±×·¸Áö ¾ÊÀ¸¸é FALSE
+	*  entity camera collisionì„ ìœ„í•´ ì¡´ì¬í•˜ëŠ” Visible ê²€ì‚¬ í•¨ìˆ˜ë¡œ
+	*  Performance í–¥ìƒì„ ìœ„í•œ Cullingì„ ê³ ë ¤í•˜ì§€ ì•Šì€ í•¨ìˆ˜
+	*  \return rendering ì¤‘ì´ë©´ TRUE, ê·¸ë ‡ì§€ ì•Šìœ¼ë©´ FALSE
 	*/
 	//virtual RwBool	IsVisibleForCameraCollision(void);
 
 	/** 
-	*  entity cullflags setting ½ÃÅ°´Â ÇÔ¼ö.
-	*  \param cullflags check bit º¯¼ö.
-	*  \param cullflasgs on/off º¯¼ö.
+	*  entity cullflags setting ì‹œí‚¤ëŠ” í•¨ìˆ˜.
+	*  \param cullflags check bit ë³€ìˆ˜.
+	*  \param cullflasgs on/off ë³€ìˆ˜.
 	*/
 	virtual void	SetCullFlags(RwUInt32 uiFlag, RwBool bCulled);
 	virtual void	SetCullFlags(RwUInt32 uiFlag);
@@ -369,21 +369,21 @@ public:
 	virtual RwUInt32 GetCullFlags();
 
 	/** 
-	*  entity picking on/off ½ÃÅ°´Â ÇÔ¼ö.
-	*  \param picking on/off flag º¯¼ö.
+	*  entity picking on/off ì‹œí‚¤ëŠ” í•¨ìˆ˜.
+	*  \param picking on/off flag ë³€ìˆ˜.
 	*/
 	virtual void SetPicking(RwBool bPicking);
 
 	/** 
-	*  entity picking order Á¤ÀÇ ÇÔ¼ö.
-	*  \param picking order º¯¼ö.
+	*  entity picking order ì •ì˜ í•¨ìˆ˜.
+	*  \param picking order ë³€ìˆ˜.
 	*/
 	virtual RwUInt16 GetPickingOrder(void);
 
 	virtual void SetPickingOrder(RwUInt16 byPickOrder);
 
 	/** 
-	*  entity weight elapsed time flag on/off ½ÃÅ°´Â ÇÔ¼ö.
+	*  entity weight elapsed time flag on/off ì‹œí‚¤ëŠ” í•¨ìˆ˜.
 	*/
 	virtual void EnableWeightElapsedTime(RwBool bEnable);
   
@@ -394,76 +394,76 @@ public:
 	void SetName(const RwChar *pName);
 
 	/**
-	*  entity nameÀ» ¾ò¾î¿À´Â ÇÔ¼ö.
-	*  \return entity nameÀ» ¸®ÅÏÇÑ´Ù.
+	*  entity nameì„ ì–»ì–´ì˜¤ëŠ” í•¨ìˆ˜.
+	*  \return entity nameì„ ë¦¬í„´í•œë‹¤.
 	*  \see SetName
 	*/
 	const RwChar* GetName(void); 
 
 	/**
 	*  entity class id setting.
-	*  RTTI ´ëÃ¼¿ëÀ¸·Î½á class id¸¦ ÀúÀåÇÔÀ¸·Î½á entity Á¾·ù¸¦ ÆÇº°ÇÑ´Ù.
+	*  RTTI ëŒ€ì²´ìš©ìœ¼ë¡œì¨ class idë¥¼ ì €ì¥í•¨ìœ¼ë¡œì¨ entity ì¢…ë¥˜ë¥¼ íŒë³„í•œë‹¤.
 	*  \see GetClassID
 	*/
 	void SetClassType(const ENtlPLEntityType eType);
 
 	/**
-	*  entity class id¸¦ ¾ò¾î¿À´Â ÇÔ¼ö.
-	*  \return class id¸¦ ¸®ÅÏÇÑ´Ù.
+	*  entity class idë¥¼ ì–»ì–´ì˜¤ëŠ” í•¨ìˆ˜.
+	*  \return class idë¥¼ ë¦¬í„´í•œë‹¤.
 	*  \see SetClassID
 	*/
 	ENtlPLEntityType GetClassType(void) const;
 
 	/**
-	*  entity layer¸¦ setting
-	*  entity layer¸¦ »ç¿ëÇÏ¿©, rendering ¼ø¼­¸¦ Á¶ÀıÇÒ ¼ö ÀÖ´Ù.
-	*  entity layer´Â NtlPLEntity.h¿¡ enumÀ¸·Î Á¤ÀÇµÇ¾î ÀÖ°í, ÇÊ¿ä¿¡ ÀÇÇØ Ãß°¡ÇÒ ¼ö ÀÖ´Ù.
+	*  entity layerë¥¼ setting
+	*  entity layerë¥¼ ì‚¬ìš©í•˜ì—¬, rendering ìˆœì„œë¥¼ ì¡°ì ˆí•  ìˆ˜ ìˆë‹¤.
+	*  entity layerëŠ” NtlPLEntity.hì— enumìœ¼ë¡œ ì •ì˜ë˜ì–´ ìˆê³ , í•„ìš”ì— ì˜í•´ ì¶”ê°€í•  ìˆ˜ ìˆë‹¤.
 	*  \see GetLayer
 	*/
 	void SetLayer(RwUInt32 wLayer);
 
 	/**
-	*  entity layer¸¦ ¾ò¾î ¿À´Â ÇÔ¼ö.
-	*  \return entityÀÇ layer value.
+	*  entity layerë¥¼ ì–»ì–´ ì˜¤ëŠ” í•¨ìˆ˜.
+	*  \return entityì˜ layer value.
 	*  \see SetLayer
 	*/
 	RwUInt32 GetLayer(void) const;
 
 	/**
-	*  entity flag¸¦ setting ÇÑ´Ù.
+	*  entity flagë¥¼ setting í•œë‹¤.
 	*  \see GetFlags
 	*/
 	virtual void SetFlags(RwUInt32 uiFlags);
 
 	/**
-	*  entity flag¸¦ ¾ò¾î¿Â´Ù.
+	*  entity flagë¥¼ ì–»ì–´ì˜¨ë‹¤.
 	*  \see SetFlags
 	*/
 	RwUInt32 GetFlags(void);
 
 	/**
-	*  entity minimap layer¸¦ setting
-	*  entity minimap layer¸¦ »ç¿ëÇÏ¿©, ÇöÀç minimap layer Ãâ·Â¿¡¸¸ »ç¿ëµÈ´Ù.
-	*  entity minimap layer´Â NtlPLEntity.h¿¡ enumÀ¸·Î Á¤ÀÇµÇ¾î ÀÖ°í, ÇÊ¿ä¿¡ ÀÇÇØ Ãß°¡ÇÒ ¼ö ÀÖ´Ù.
+	*  entity minimap layerë¥¼ setting
+	*  entity minimap layerë¥¼ ì‚¬ìš©í•˜ì—¬, í˜„ì¬ minimap layer ì¶œë ¥ì—ë§Œ ì‚¬ìš©ëœë‹¤.
+	*  entity minimap layerëŠ” NtlPLEntity.hì— enumìœ¼ë¡œ ì •ì˜ë˜ì–´ ìˆê³ , í•„ìš”ì— ì˜í•´ ì¶”ê°€í•  ìˆ˜ ìˆë‹¤.
 	*  \see GetMinimapLayer
 	*/
 	void SetMinimapLayer(RwUInt32 uiLayerFlags);
 
 	/**
-	*  entity layer¸¦ ¾ò¾î ¿À´Â ÇÔ¼ö.
-	*  \return entityÀÇ minimap layer flags value.
+	*  entity layerë¥¼ ì–»ì–´ ì˜¤ëŠ” í•¨ìˆ˜.
+	*  \return entityì˜ minimap layer flags value.
 	*  \see SetMinimapLayer
 	*/
 	RwUInt32 GetMinimapLayer(void) const;
 
 	/**
-	*  simulation object serial id¸¦ setting ÇÑ´Ù.
+	*  simulation object serial idë¥¼ setting í•œë‹¤.
 	*  \see GetSerialID
 	*/
 	void SetSerialID(RwUInt32 uiSerialID);
 
 	/**
-	*  simulation object serial id¸¦ ¾ò¾î¿Â´Ù.
+	*  simulation object serial idë¥¼ ì–»ì–´ì˜¨ë‹¤.
 	*  \see SetSerialID
 	*/
 	RwUInt32 GetSerialID(void);
@@ -479,14 +479,14 @@ public:
 #endif
 
 	/**
-	*  entity¿¡ layer ¹× class id¿Í layer°¡ À¯È¿ÇÑ µ¥ÀÌÅÍ¸¦ °¡Áö°í ÀÖ´ÂÁö¸¦ ÆÇº°ÇÏ¿©, entity¿¡ Á¤È®ÇÑ Á¤º¸°¡ µé¾î
-	*  ÀÖ´ÂÁö¸¦ °Ë»çÇÏ´Â ÇÔ¼ö.
-	*  \return class id ¹× layer¿¡ À¯È¿ÇÑ Á¤º¸°¡ µé¾î ÀÖÀ¸¸é true, ±×·¸Áö ¾ÊÀ¸¸é false
+	*  entityì— layer ë° class idì™€ layerê°€ ìœ íš¨í•œ ë°ì´í„°ë¥¼ ê°€ì§€ê³  ìˆëŠ”ì§€ë¥¼ íŒë³„í•˜ì—¬, entityì— ì •í™•í•œ ì •ë³´ê°€ ë“¤ì–´
+	*  ìˆëŠ”ì§€ë¥¼ ê²€ì‚¬í•˜ëŠ” í•¨ìˆ˜.
+	*  \return class id ë° layerì— ìœ íš¨í•œ ì •ë³´ê°€ ë“¤ì–´ ìˆìœ¼ë©´ true, ê·¸ë ‡ì§€ ì•Šìœ¼ë©´ false
 	*/
 	RwBool IsValid(void) const;
 
 	/**
-	*  update time¿¡ ÀÚµ¿À¸·Î »èÁ¦µÇ´Â entityÀÎ°¡..
+	*  update timeì— ìë™ìœ¼ë¡œ ì‚­ì œë˜ëŠ” entityì¸ê°€..
 	*/
 	virtual RwBool IsAutoDelete(void);
 
@@ -495,33 +495,33 @@ public:
 // event function
 //-------------------------------------------------------------------------------
 
-	// ¿ë½Å¼ÒÈ¯½Ã ¼öÇàµÇ´Â ÇÔ¼ö
+	// ìš©ì‹ ì†Œí™˜ì‹œ ìˆ˜í–‰ë˜ëŠ” í•¨ìˆ˜
 	virtual void OnDragonSkyAppearence(RwBool _FlgDragonAppeared) {}
 
 	/**
-	*  entity °¡ click µÇ¾úÀ» ¶§ ¹ß»ıÇÑ´Ù.
+	*  entity ê°€ click ë˜ì—ˆì„ ë•Œ ë°œìƒí•œë‹¤.
 	*/
 	virtual void	OnClicked(void) {}
 
 	/**
-	*  entity °¡ double click µÇ¾úÀ» ¶§ ¹ß»ıÇÑ´Ù.
+	*  entity ê°€ double click ë˜ì—ˆì„ ë•Œ ë°œìƒí•œë‹¤.
 	*/
 	virtual void	OnDbClicked(void) {}
 
 	/**
-	*  entity¿¡ mouse focus°¡ µé¾î¿Ã ¶§ ¹ß»ıÇÑ´Ù.
+	*  entityì— mouse focusê°€ ë“¤ì–´ì˜¬ ë•Œ ë°œìƒí•œë‹¤.
 	*/
 	virtual void	OnGotFocus(void) {}
 
 	/**
-	*  entity¿¡ mouse focus¸¦ ÀÒ¾î¹ö·ÈÀ» ¶§ È£ÃâÇÑ´Ù.
+	*  entityì— mouse focusë¥¼ ìƒì–´ë²„ë ¸ì„ ë•Œ í˜¸ì¶œí•œë‹¤.
 	*/
 	virtual void	OnLostFocus(void) {}
 
 //-------------------------------------------------------------------------------
-// World Editor¸¦ À§ÇÑ Æ®¸®°Å Á¤º¸¸¦ °¡Á®¿À´Â ÀÎÅÍÆäÀÌ½º (by agebreak 2006-11-28)
+// World Editorë¥¼ ìœ„í•œ íŠ¸ë¦¬ê±° ì •ë³´ë¥¼ ê°€ì ¸ì˜¤ëŠ” ì¸í„°í˜ì´ìŠ¤ (by agebreak 2006-11-28)
 //-------------------------------------------------------------------------------
-    virtual RwBBox  GetTriggerAABBInfo() {RwBBox bbbox; ZeroMemory(&bbbox, sizeof(RwBBox)); return bbbox;}                                  ///< ¿ùµå¿¡µğÅÍÀÇ Æ®¸®°Å Á¤º¸¿¡ »ç¿ëÇÏ±â À§ÇÑ AABBÀÇ Á¤º¸¸¦ ¹İÈ¯ÇÑ´Ù.
+    virtual RwBBox  GetTriggerAABBInfo() {RwBBox bbbox; ZeroMemory(&bbbox, sizeof(RwBBox)); return bbbox;}                                  ///< ì›”ë“œì—ë””í„°ì˜ íŠ¸ë¦¬ê±° ì •ë³´ì— ì‚¬ìš©í•˜ê¸° ìœ„í•œ AABBì˜ ì •ë³´ë¥¼ ë°˜í™˜í•œë‹¤.
     virtual RwBBox  GetTriggerAABBInfo(const RwV3d& vPos, const RwV3d& vRotate, const RwV3d& vScale) {RwBBox bbbox; ZeroMemory(&bbbox, sizeof(RwBBox)); return bbbox;}
 
 };

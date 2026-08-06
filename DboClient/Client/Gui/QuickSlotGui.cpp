@@ -315,7 +315,7 @@ VOID CQuickSlotGui::Init(VOID)
 			m_abPushDownKey[j][i] = FALSE;
 			m_abIsProcDownKey[j][i] = FALSE;
 
-			// �������� ���µ�
+			// 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占승듸옙
 			m_afPushDownKeyElapsed[j][i] = 0.0f;
 			m_abEnableIgnoreUp[j][i] = FALSE;
 		}
@@ -349,19 +349,19 @@ RwBool CQuickSlotGui::Create(VOID)
 {
 	NTL_FUNCTION("CQuickSlotGui::Create");
 
-	// �����ռ� ���õ� Component ����
+	// 占쏙옙占쏙옙占쌌쇽옙 占쏙옙占시듸옙 Component 占쏙옙占쏙옙
 	if( !CNtlPLGui::Create( "", "gui\\QuickSlot.srf", "gui\\QuickSlot.frm" ) )
 		NTL_RETURN( FALSE );
 
 	CNtlPLGui::CreateComponents( CNtlPLGuiManager::GetInstance()->GetGuiManager() );
 
-	// �������� ������ �� �ݹ��� �ʿ��� ������Ʈ���� ��������
+	// 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙 占쌥뱄옙占쏙옙 占십울옙占쏙옙 占쏙옙占쏙옙占쏙옙트占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙
 	m_pThis = (gui::CDialog*)GetComponent( "dlgMain" );
 	m_pUpRowBtn = (gui::CButton*)GetComponent( "btnSlotPrev" );
 	m_pDownRowBtn = (gui::CButton*)GetComponent( "btnSlotNext" );
 	m_pRowNum = (gui::CStaticBox*)GetComponent( "stbNum" );
 
-	// �������ش�.
+	// 占쏙옙占쏙옙占쏙옙占쌔댐옙.
 	m_slotUpRowClick = m_pUpRowBtn->SigClicked().Connect( this, &CQuickSlotGui::OnClickedUpRow );
 	m_slotDownRowClick = m_pDownRowBtn->SigClicked().Connect( this, &CQuickSlotGui::OnClickedDownRow );
 	m_slotMouseUp = m_pThis->SigMouseUp().Connect( this, &CQuickSlotGui::OnMouseUp );
@@ -376,7 +376,7 @@ RwBool CQuickSlotGui::Create(VOID)
 	m_pRowNum->SetText( m_nCurrentRow + 1 );
 
 	// ������ ����Ű�� �̸��� �����ϰ� ����Ѵ�.
-	// ������ Index�� �ʱ�ȭ�Ѵ�.
+	// 占쏙옙占쏙옙占쏙옙 Index占쏙옙 占십깍옙화占싼댐옙.
 	m_anQuickSlotRow[ROW_DEFAULT] = 2;
 	m_anQuickSlotRow[ROW_EX] = 1;
 	m_anQuickSlotRow[ROW_EX2] = 0;
@@ -387,7 +387,7 @@ RwBool CQuickSlotGui::Create(VOID)
 	// InputMap Setting
 	LinkActionMap();
 
-	// Update ����
+	// Update 占쏙옙占쏙옙
 	GetNtlGuiManager()->AddUpdateFunc( this );
 
 	// Event
@@ -395,7 +395,7 @@ RwBool CQuickSlotGui::Create(VOID)
 	LinkMsg( g_EventIconMoveClick, 0 );
 	LinkMsg( g_EventSobInfoUpdate, 0 );
 	LinkMsg( g_EventSobCooling, 0 );
-	LinkMsg( g_EventSobItemAdd, 0, 0x7000 );	// �������� �������� �̺�Ʈ�� �޴´�.
+	LinkMsg( g_EventSobItemAdd, 0, 0x7000 );	// 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占싱븝옙트占쏙옙 占쌨는댐옙.
 	LinkMsg( g_EventSobItemDelete, 0 );
 	LinkMsg( g_EventQuickSlotInfo, 0 );
 	LinkMsg( g_EventSobDeleteQuickSlotIcon, 0 );
@@ -493,7 +493,7 @@ VOID CQuickSlotGui::Update( RwReal fElapsed )
 				m_afPushDownKeyElapsed[i][j] += fElapsed;
 				if( m_afPushDownKeyElapsed[i][j] > 0.5f )
 				{
-					// �ð� �ʱ�ȭ
+					// 占시곤옙 占십깍옙화
 					m_afPushDownKeyElapsed[i][j] = 0.0f;
 
 					SERIAL_HANDLE hSerial = m_aQuickSlotItem[nDataRow][j].GetFirstSerialID();
@@ -502,7 +502,7 @@ VOID CQuickSlotGui::Update( RwReal fElapsed )
 					if( hSerial == INVALID_SERIAL_ID || nEnableState != CQuickSlotItem::ENABLE )
 						continue;
 
-					// �ٿ� �ǰ� ���� �� �ѹ� ����ƴٸ� �ش� ������ KeyDown, KeyUp�� �Ͼ�� �������� Flag�� üũ�Ͽ�
+					// 다운 되고 있을 때 한번 실행됐다면 해당 슬롯의 KeyDown, KeyUp이 일어나기 전까지는 Flag로 체크하여
 					// ��ų �ߺ� ����� ���´�.
 					if( !m_abIsProcDownKey[i][j] )
 					{
@@ -527,7 +527,7 @@ VOID CQuickSlotGui::Update( RwReal fElapsed )
 		m_fPushDownMouseElapsed += fElapsed;
 		if( m_fPushDownMouseElapsed > 0.5f )
 		{
-			// �ð� �ʱ�ȭ
+			// 占시곤옙 占십깍옙화
 			m_fPushDownMouseElapsed = 0.0f;
 
 			RwInt32 nVisibleRow = SLOTID_TO_ROW( m_nRSelectedSlotIdx );
@@ -543,7 +543,7 @@ VOID CQuickSlotGui::Update( RwReal fElapsed )
 			if( hSerial == INVALID_SERIAL_ID || nEnableState != CQuickSlotItem::ENABLE )
 				return;
 
-			// �ٿ� �ǰ� ���� �� �ѹ� ����ƴٸ� �ش� ���Կ� �ٽ� MosueSlot �� �Ͼ�� �������� Flag�� üũ�Ͽ�
+			// 다운 되고 있을 때 한번 실행됐다면 해당 슬롯에 다시 MosueSlot 이 일어나기 전까지는 Flag로 체크하여
 			// ��ų �ߺ� ����� ���´�.
 			if( !m_bIsProcMouseSelected )
 			{
@@ -577,7 +577,7 @@ VOID CQuickSlotGui::HandleEvents( RWS::CMsg& msg )
 		if( pData->hSerialId != GetNtlSLGlobal()->GetSobAvatar()->GetSerialID() )
 			return;
 
-		// ������ ����, ���� ����.
+		// 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙, 占쏙옙占쏙옙 占쏙옙占쏙옙.
 		if( pData->uiUpdateType & ( EVENT_AIUT_ITEM | EVENT_AIUT_SKILL_RPBONUS ) )
 			UpdateAllSlot( CHECK_FLAG_ITEMNEED );
 
@@ -594,7 +594,7 @@ VOID CQuickSlotGui::HandleEvents( RWS::CMsg& msg )
 					{
 						if( m_aQuickSlotItem[i][j].GetFirstSerialID() == hSerial )
 						{
-							// ��ü�� ���׷��̵��� ������ ���� �ʴ´�.
+							// 占쏙옙체占쏙옙 占쏙옙占쌓뤄옙占싱듸옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占십는댐옙.
 							if( IsVisibleRow( i ) )
 							{
 								if( ROWCOL_TO_SLOTID( i, j ) == m_nMouseOnIndex && GetInfoWndManager()->GetRequestGui() == DIALOG_QUICKSLOT )
@@ -666,7 +666,7 @@ VOID CQuickSlotGui::HandleEvents( RWS::CMsg& msg )
 	{
 		LoadQuickSlot();
 	}
-	// peessi : �� �̺�Ʈ�� �������� ���ﶧ�� �ƴ϶�, �������� â���� ���󰥶� � ȣ��, �̸��� �ٲ�� �Ѵ�.
+	// peessi : 이 이벤트는 퀵슬롯을 지울때가 아니라, 아이템이 창고로 날라갈때 등에 호출, 이름을 바꿔야 한다.
 	else if( msg.Id == g_EventSobDeleteQuickSlotIcon )
 	{
 		SNtlEventSobDeleteQuickSlotIcon* pData = reinterpret_cast<SNtlEventSobDeleteQuickSlotIcon*>( msg.pData );
@@ -695,7 +695,7 @@ VOID CQuickSlotGui::HandleEvents( RWS::CMsg& msg )
 	}
 	else if( msg.Id == g_EventCapsuleLockItemWithoutBag )
 	{
-		// �Ŀ� Capsule Lock/Unlock �� �����Կ� ���õ� ���� �������� �׶� �۾��Ѵ�.
+		// 占식울옙 Capsule Lock/Unlock 占쏙옙 占쏙옙占쏙옙占쌉울옙 占쏙옙占시듸옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쌓띰옙 占쌜억옙占싼댐옙.
 		/*SDboEventCapsuleLockItemWithoutBag* pData = reinterpret_cast<SDboEventCapsuleLockItemWithoutBag*>( msg.pData );
 
 		RwInt32 nEnableState = pData->bEnable ? CQuickSlotItem::CAPSULE_LOCK : CQuickSlotItem::ENABLE;
@@ -930,7 +930,7 @@ VOID CQuickSlotGui::HandleEvents( RWS::CMsg& msg )
 	//		}
 	//		else if( pData->nWorkId == PMW_PULLOUT )
 	//		{
-	//			// �����Կ��� ����
+	//			// 占쏙옙占쏙옙占쌉울옙占쏙옙 占쏙옙占쏙옙
 	//			if( m_aQuickSlotItem[m_nCurrentRow][pData->nSrcSlotIdx].hSerial == pData->uiSerial )
 	//			{
 	//				UnsetIconFromQuickSlot( m_nCurrentRow, pData->nSrcSlotIdx );
@@ -1022,7 +1022,7 @@ RwInt32 CQuickSlotGui::ActionMapQuickSlotDown( uintptr_t uiKey )
 
 	nSlotIdx = ROWCOL_TO_SLOTID( nVisibleRowIndex, uiKey );
 
-	// ó�� ���ȴٸ� �׿� �´� ������ �ʱ�ȭ
+	// 처占쏙옙 占쏙옙占싫다몌옙 占쌓울옙 占승댐옙 占쏙옙占쏙옙占쏙옙 占십깍옙화
 	if( KeyClickEffect( TRUE, nSlotIdx ) )
 	{
 		/*GetAlarmManager()->AlarmMessage( L"Key Down" );*/
@@ -1066,7 +1066,7 @@ RwInt32 CQuickSlotGui::ActionMapQuickSlotUp( uintptr_t uiKey )
 	// �������� Icon�� ������� ������ �����ش�.
 	if( KeyClickEffect( FALSE, nSlotIdx ) )
 	{
-		// peessi : Ű���տ� �°� Row���� �ٲ��� ��.
+		// peessi : 키占쏙옙占쌌울옙 占승곤옙 Row占쏙옙占쏙옙 占쌕뀐옙占쏙옙 占쏙옙.
 		if( m_abIsProcDownKey[nVisibleRowIndex][uiKey] == FALSE )
 			m_abIsProcDownKey[nVisibleRowIndex][uiKey] = TRUE;
 
@@ -1095,10 +1095,10 @@ RwInt32 CQuickSlotGui::ActionMapQuickSlotExDown( uintptr_t uiKey )
 	if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_QUICK_SLOT_2_LAST ) )
 		return 1;
 	
-	// ó�� ���ȴٸ� �׿� �´� ������ �ʱ�ȭ
+	// 처占쏙옙 占쏙옙占싫다몌옙 占쌓울옙 占승댐옙 占쏙옙占쏙옙占쏙옙 占십깍옙화
 	if( KeyClickEffect( TRUE, nSlotIdx ) )
 	{
-		// peessi : Ű���տ� �°� Row���� �ٲ��� ��.
+		// peessi : 키占쏙옙占쌌울옙 占승곤옙 Row占쏙옙占쏙옙 占쌕뀐옙占쏙옙 占쏙옙.
 		/*GetAlarmManager()->AlarmMessage( L"Key Down" );*/
 		m_afPushDownKeyElapsed[nVisibleRowIndex][uiKey] = 0.0f;
 		m_abEnableIgnoreUp[nVisibleRowIndex][uiKey] = FALSE;
@@ -1132,7 +1132,7 @@ RwInt32 CQuickSlotGui::ActionMapQuickSlotExUp( uintptr_t uiKey )
 	// �������� Icon�� ������� ������ �����ش�.
 	if( KeyClickEffect( FALSE, nSlotIdx ) )
 	{
-		// peessi : Ű���տ� �°� Row���� �ٲ��� ��.
+		// peessi : 키占쏙옙占쌌울옙 占승곤옙 Row占쏙옙占쏙옙 占쌕뀐옙占쏙옙 占쏙옙.
 		if( m_abIsProcDownKey[nVisibleRowIndex][uiKey] == FALSE )
 			m_abIsProcDownKey[nVisibleRowIndex][uiKey] = TRUE;
 
@@ -1161,10 +1161,10 @@ RwInt32 CQuickSlotGui::ActionMapQuickSlotEx2Down( uintptr_t uiKey )
 	if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_QUICK_SLOT_2_LAST ) )
 		return 1;
 	
-	// ó�� ���ȴٸ� �׿� �´� ������ �ʱ�ȭ
+	// 처占쏙옙 占쏙옙占싫다몌옙 占쌓울옙 占승댐옙 占쏙옙占쏙옙占쏙옙 占십깍옙화
 	if( KeyClickEffect( TRUE, nSlotIdx ) )
 	{
-		// peessi : Ű���տ� �°� Row���� �ٲ��� ��.
+		// peessi : 키占쏙옙占쌌울옙 占승곤옙 Row占쏙옙占쏙옙 占쌕뀐옙占쏙옙 占쏙옙.
 		/*GetAlarmManager()->AlarmMessage( L"Key Down" );*/
 		m_afPushDownKeyElapsed[nVisibleRowIndex][uiKey] = 0.0f;
 		m_abEnableIgnoreUp[nVisibleRowIndex][uiKey] = FALSE;
@@ -1198,7 +1198,7 @@ RwInt32 CQuickSlotGui::ActionMapQuickSlotEx2Up( uintptr_t uiKey )
 	// �������� Icon�� ������� ������ �����ش�.
 	if( KeyClickEffect( FALSE, nSlotIdx ) )
 	{
-		// peessi : Ű���տ� �°� Row���� �ٲ��� ��.
+		// peessi : 키占쏙옙占쌌울옙 占승곤옙 Row占쏙옙占쏙옙 占쌕뀐옙占쏙옙 占쏙옙.
 		if( m_abIsProcDownKey[nVisibleRowIndex][uiKey] == FALSE )
 			m_abIsProcDownKey[nVisibleRowIndex][uiKey] = TRUE;
 
@@ -1459,10 +1459,10 @@ VOID CQuickSlotGui::SendPacketToSetIcon( RwInt32 nRow, RwInt32 nCol, CNtlSobIcon
 }
 
 /**
-* \brief ��ǥ�� ��ġ�� �������� �ε����� �����´�.
-* \param	nX				X ��ǥ
-* \param	nY				Y ��ǥ
-* \return	�������� �ε���(-1 �̶�� ��ǥ�� �ε������� ����ٴ� ��)
+* \brief 占쏙옙표占쏙옙 占쏙옙치占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占싸듸옙占쏙옙占쏙옙 占쏙옙占쏙옙占승댐옙.
+* \param	nX				X 占쏙옙표
+* \param	nY				Y 占쏙옙표
+* \return	퀵슬롯의 인덱스(-1 이라면 좌표가 인덱스에서 벗어났다는 것)
 */
 RwInt32 CQuickSlotGui::GetQuickSlotIdx( RwInt32 nX, RwInt32 nY )
 {
@@ -1556,7 +1556,7 @@ VOID CQuickSlotGui::ShowIconDestination(VOID)
 }
 
 /**
-* \brief �������� �ڽ��� ������ �ϵ��ڵ�
+* \brief 占쏙옙占쏙옙占쏙옙占쏙옙 占쌘쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占싹듸옙占쌘듸옙
 */
 VOID CQuickSlotGui::SetSlotRectHardCode(VOID)
 {
@@ -1604,7 +1604,7 @@ VOID CQuickSlotGui::SetSlotRectHardCode(VOID)
 
 			m_asurRPType[j][i].SetPositionfromParent( m_artQuickSlot[j][i].left + QUICK_RPTYPE_OFFSET, m_artQuickSlot[j][i].top + QUICK_RPTYPE_OFFSET );		
 
-			// peessi : Flash�� �ε��� ���ϰ� ����, �̸� �ε��ؼ� ����Ѵ�. 
+			// peessi : Flash는 로딩시 부하가 심해, 미리 로딩해서 사용한다. 
 			CRectangle rect;
 			rect.SetRectWH( m_artQuickSlot[j][i].left - 5, m_artQuickSlot[j][i].top - 5, 42, 42 );				  
 			m_apflaEffect[j][i] = NTL_NEW gui::CFlash( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), "Skill_action.swf" );
@@ -1616,7 +1616,7 @@ VOID CQuickSlotGui::SetSlotRectHardCode(VOID)
 }
 
 /**
-* \brief �ݵ�� ������ CQuickSlotGui::SetSlotHardCodeRect �Լ� ���� �Ŀ� ����Ǿ�� �Ѵ�.
+* \brief 반드시 기존의 CQuickSlotGui::SetSlotHardCodeRect 함수 실행 후에 실행되어야 한다.
 */
 VOID CQuickSlotGui::CreateShortCutKeyName()
 {
@@ -1632,7 +1632,7 @@ VOID CQuickSlotGui::CreateShortCutKeyName()
 			RwInt32 nRight	= m_artQuickSlot[j][i].right;
 			RwInt32 nBottom = m_artQuickSlot[j][i].bottom;
 
-			// Static Box�� ��ġ
+			// Static Box占쏙옙 占쏙옙치
 			rtRect.SetRect( nLeft, nTop, nRight, nBottom );
 
 			m_apStbShortCutName[j][i] = NTL_NEW gui::CStaticBox( &rtRect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), DBOGUI_SLOT_KEYNAME_ALIGN );
@@ -1656,7 +1656,7 @@ VOID CQuickSlotGui::DestroyShortCutKeyName()
 }
 
 /**
-* \brief ���ʿ� �����Կ� ����Ű �̸��� SetText �Ѵ�.
+* \brief 占쏙옙占십울옙 占쏙옙占쏙옙占쌉울옙 占쏙옙占쏙옙키 占싱몌옙占쏙옙 SetText 占싼댐옙.
 */
 VOID CQuickSlotGui::RegisterShortCutkeyName()
 {
@@ -1681,7 +1681,7 @@ VOID CQuickSlotGui::IconPutDownProc(RwUInt32 hSerial, RwInt32 ePlace, RwInt32 nS
 	if( CheckIconMoveLock() )
 		return;	
 
-	// ���� ó��
+	// 占쏙옙占쏙옙 처占쏙옙
 	if( !IsValidVisibleSlotIdx( nSlotIdx ) )
 		return;
 
@@ -1714,7 +1714,7 @@ VOID CQuickSlotGui::IconPutDownProc(RwUInt32 hSerial, RwInt32 ePlace, RwInt32 nS
 		// Data Set
 		SetIconToQuickSlot( nDataRow, nCol, hSerial, pIcon );
 
-		// ��Ŷ ������ 
+		// 占쏙옙킷 占쏙옙占쏙옙占쏙옙 
 		RwInt32 nSlotID = ROWCOL_TO_SLOTID( nDataRow, nCol );
 		NTL_ASSERT( nSlotID >= 0 && nSlotID < 48, "CQuickSlotItem::IconPutDownProc : SlotID Error!(" << nSlotID << ")" );	
 		SendPacketToSetIcon( nDataRow, nCol, pIcon );
@@ -1732,7 +1732,7 @@ VOID CQuickSlotGui::IconPutDownProc(RwUInt32 hSerial, RwInt32 ePlace, RwInt32 nS
 			m_aQuickSlotItem[nDataRow][nCol] = m_aQuickSlotItem[nSrcDataRow][nSrcCol];
 			m_aQuickSlotItem[nSrcDataRow][nSrcCol] = TempQuickSlot;
 
-			// ��Ŷ ������
+			// 占쏙옙킷 占쏙옙占쏙옙占쏙옙
 			if( m_aQuickSlotItem[nDataRow][nCol].IsValid() )
 			{
 				RwInt32 nSlotID = ROWCOL_TO_SLOTID( nDataRow, nCol );
@@ -1786,7 +1786,7 @@ VOID CQuickSlotGui::IconUseProc( RwInt32 nSlotIdx )
 	if( hSerial == INVALID_SERIAL_ID || nEnableState != CQuickSlotItem::ENABLE )
 		return;
 
-	// Icon�� ��ų�� ��� ���� RpBonus Dialog�� �� ������ ���ȵǰ� �ؾ� �Ѵ�.
+	// Icon이 스킬일 경우 현재 RpBonus Dialog가 떠 있으면 사용안되게 해야 한다.
 	if( m_aQuickSlotItem[nDataRowIndex][nColIndex].GetSLClassID() == SLCLASS_SKILL_ICON )
 		if( GetDialogManager()->IsOpenDialog( DIALOG_SKILL_RPBONUS ) )
 			return;
@@ -1933,7 +1933,7 @@ bool CQuickSlotGui::CanPlaceItem(CNtlSobIcon* pIcon)
 	return true;
 }
 
-// Desc : UpdateAllSlot������ ���� QuickSlot�����Ͱ� �ƴ� Cool-time, Stack, QuickSlotRow�� ��ȭ�� �����Ѵ�.
+// Desc : UpdateAllSlot占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 QuickSlot占쏙옙占쏙옙占싶곤옙 占싣댐옙 Cool-time, Stack, QuickSlotRow占쏙옙 占쏙옙화占쏙옙 占쏙옙占쏙옙占싼댐옙.
 VOID CQuickSlotGui::UpdateAllSlot( RwUInt32 flagUseableCheck /* = 0  */ )
 {
 	for( RwInt32 j = 0 ; j < m_nVisibleRowCount ; ++j )
@@ -1988,7 +1988,7 @@ VOID CQuickSlotGui::UpdateAllSlot( RwUInt32 flagUseableCheck /* = 0  */ )
 
 					//	DestroyFlashEffect( ROWCOL_TO_SLOTID( j, i ) );
 						DestroyStackNumber( ROWCOL_TO_SLOTID( j, i ) );
-						m_asurDisableSkill[j][i].Show( FALSE );	// �ʱ�ȭ
+						m_asurDisableSkill[j][i].Show( FALSE );	// 占십깍옙화
 
 						if( flagUseableCheck & CHECK_FLAG_LPEPRP )
 						{
@@ -2117,7 +2117,7 @@ VOID CQuickSlotGui::UpdateAllSlot( RwUInt32 flagUseableCheck /* = 0  */ )
 					//	else
 					//		DestroyFlashEffect( ROWCOL_TO_SLOTID( j, i ) );
 
-						m_asurDisableSkill[j][i].Show( FALSE );	// �ʱ�ȭ
+						m_asurDisableSkill[j][i].Show( FALSE );	// 占십깍옙화
 						
 						/*if( flagUseableCheck & CHECK_FLAG_TARGETAPPLY )
 						{
@@ -2145,7 +2145,7 @@ VOID CQuickSlotGui::UpdateAllSlot( RwUInt32 flagUseableCheck /* = 0  */ )
 					{
 					//	DestroyFlashEffect( ROWCOL_TO_SLOTID( j, i ) );
 						DestroyStackNumber( ROWCOL_TO_SLOTID( j, i ) );
-						m_asurDisableSkill[j][i].Show( FALSE );	// �ʱ�ȭ
+						m_asurDisableSkill[j][i].Show( FALSE );	// 占십깍옙화
 						m_asurRPType[j][i].Show( FALSE );
 					}
 
@@ -2305,7 +2305,7 @@ RwBool CQuickSlotGui::ClickEffect( RwBool bPush, RwInt32 nSlotIdx /* = -1  */)
 {
 	CRectangle rtScreen = m_pThis->GetScreenRect();
 
-	// TRUE = �ٿ�, FALSE = ��
+	// TRUE = 占쌕울옙, FALSE = 占쏙옙
 	if( bPush )
 	{
 		if( !IsValidVisibleSlotIdx( nSlotIdx ) )
@@ -2314,7 +2314,7 @@ RwBool CQuickSlotGui::ClickEffect( RwBool bPush, RwInt32 nSlotIdx /* = -1  */)
 		RwInt32 nRowIdx = SLOTID_TO_ROW( nSlotIdx );
 		RwInt32 nColIdx = SLOTID_TO_COL( nSlotIdx );
 
-		// �̹� Ű����� ������ �ִ� Ű��� �����ش�.
+		// 이미 키보드로 눌려져 있는 키라면 막아준다.
 		if( m_abPushDownKey[nRowIdx][nColIdx] )
 			return FALSE;
 
@@ -2358,7 +2358,7 @@ RwBool CQuickSlotGui::KeyClickEffect( RwBool bPush, RwInt32 nSlotIdx )
 		m_asurIcon[nRowIdx][nColIdx].SetRect( rtScreen.left + m_artQuickSlot[nRowIdx][nColIdx].left + ICONPUSH_SIZEDIFF, rtScreen.top + m_artQuickSlot[nRowIdx][nColIdx].top + ICONPUSH_SIZEDIFF,
 											  rtScreen.left + m_artQuickSlot[nRowIdx][nColIdx].right - ICONPUSH_SIZEDIFF, rtScreen.top + m_artQuickSlot[nRowIdx][nColIdx].bottom - ICONPUSH_SIZEDIFF );
 
-		// �̹� ������ �ִٸ� FALSE�� ����
+		// 占싱뱄옙 占쏙옙占쏙옙占쏙옙 占쌍다몌옙 FALSE占쏙옙 占쏙옙占쏙옙
 		if( m_abPushDownKey[nRowIdx][nColIdx] )
 			return FALSE;
 		else 
@@ -2424,7 +2424,7 @@ RwBool CQuickSlotGui::UseableCheck_ItemNeed( sSKILL_TBLDAT* pData )
 
 	if( byRequireItemType != INVALID_BYTE )
 	{
-		// ���� �ʿ� ������ Ÿ���� ����, �������⸸���� �����Ǿ� �ִ�. 			
+		// 占쏙옙占쏙옙 占십울옙 占쏙옙占쏙옙占쏙옙 타占쏙옙占쏙옙 占쏙옙占쏙옙, 占쏙옙占쏙옙占쏙옙占썩만占쏙옙占쏙옙 占쏙옙占쏙옙占실억옙 占쌍댐옙. 			
 		if( Check_EquippedSlot( EQUIP_SLOT_TYPE_HAND, byRequireItemType ) )
 			return TRUE;
 
@@ -2710,7 +2710,7 @@ RwInt32 CQuickSlotGui::GetDataRowIndex( RwInt32 nVisibleRowIndex )
 	}
 
 	RwInt32 nVisibleCurrentIndex = m_nVisibleRowCount - 1;			
-	RwInt32 nIndexOffset = nVisibleCurrentIndex - nVisibleRowIndex;	// �׻� CurrentIndex�� ũ��.
+	RwInt32 nIndexOffset = nVisibleCurrentIndex - nVisibleRowIndex;	// 占쌓삼옙 CurrentIndex占쏙옙 크占쏙옙.
 	nResult = ( m_nCurrentRow + nIndexOffset ) % QUICKSLOT_MAXROW;
 
 	return nResult;
@@ -2861,7 +2861,7 @@ VOID CQuickSlotGui::SetVisibleRowCount( RwInt32 nVisibleRowCount )
 		break;
 	}
 
-	// peessi : GUIComponent�� ��������� �Ѵ�. 
+	// peessi : GUIComponent는 삭제해줘야 한다. 
 	for( RwInt32 i = nVisibleRowCount ; i < QUICKSLOT_MAX_VISIBLE_ROW ; ++i )
 	{
 		for( RwInt32 j = 0 ; j < QUICKSLOT_MAXCOL ; ++j )
@@ -2877,7 +2877,7 @@ VOID CQuickSlotGui::SetVisibleRowCount( RwInt32 nVisibleRowCount )
 
 	UpdateAllSlot( CHECK_FLAG_ALL );	
 
-	// ����� ���׿� ���� ����Ű �̸��� �ٽ� �����Ѵ�.
+	// 변경된 사항에 따라 단축키 이름을 다시 세팅한다.
 	RegisterShortCutkeyName();
 
 	GetDialogManager()->LocationDialogs( GetDboGlobal()->GetScreenWidth(), GetDboGlobal()->GetScreenHeight() );
@@ -3070,7 +3070,7 @@ VOID CQuickSlotGui::OnMouseUp( const CKey& key )
 					bReg = Logic_CanMouseInput_in_Tutorial( ETL_MOUSE_INPUT_TYPE_QUICK_SLOT_2_LAST_REG );
 				}
 
-				// ������ PutDown
+				// 占쏙옙占쏙옙占쏙옙 PutDown
 				if( bReg )
 					IconPutDownProc( GetIconMoveManager()->GetSrcSerial(), GetIconMoveManager()->GetSrcPlace(), nSlotIdx );
 			}

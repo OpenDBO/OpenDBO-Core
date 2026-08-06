@@ -2,11 +2,11 @@
  *
  * File			: PatchConfigManager.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2008. 6. 23	
  * Abstract		: Patch config 
  *****************************************************************************
- * Desc         : patch¿¡ ´ëÇÑ ÀÚ·á¸¦ °ü¸®ÇÑ´Ù.
+ * Desc         : patchì— ëŒ€í•œ ìë£Œë¥¼ ê´€ë¦¬í•œë‹¤.
  *
  *****************************************************************************/
 
@@ -18,7 +18,7 @@
 
 typedef struct _SPCCommon
 {
-	bool	bDiffPatch;					// diff patch ÀÌ¸é ? true : false
+	bool	bDiffPatch;					// diff patch ì´ë©´ ? true : false
 }SPCCommon;
 
 typedef struct _SPCVersion

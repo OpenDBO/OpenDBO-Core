@@ -71,25 +71,25 @@ int CTSFrame::OnCreate( LPCREATESTRUCT lpCreateStruct )
 	if ( CFrameWnd::OnCreate(lpCreateStruct) == -1 )
 		return -1;
 
-	// ±âº» Åø¹Ù
+	// ê¸°ë³¸ íˆ´ë°”
 	if ( !m_wndToolBar.CreateEx( this, TBSTYLE_FLAT, WS_CHILD | WS_VISIBLE | CBRS_TOP
 		 | CBRS_GRIPPER | CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC ) ||
 		 !m_wndToolBar.LoadToolBar(IDR_MAINFRAME) )
 	{
-		TRACE0( "µµ±¸ ¸ğÀ½À» ¸¸µéÁö ¸øÇß½À´Ï´Ù.\n" );
+		TRACE0( "ë„êµ¬ ëª¨ìŒì„ ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.\n" );
 		return -1;
 	}
 
-	// ÄÁÅ×ÀÌ³Ê Åø¹Ù
+	// ì»¨í…Œì´ë„ˆ íˆ´ë°”
 	if ( !m_wndContToolBar.CreateEx( this, TBSTYLE_FLAT, WS_CHILD | WS_VISIBLE | CBRS_TOP
 		 | CBRS_GRIPPER | CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC ) ||
 		 !m_wndContToolBar.LoadToolBar(IDR_CONTAINERBAR) )
 	{
-		TRACE0( "µµ±¸ ¸ğÀ½À» ¸¸µéÁö ¸øÇß½À´Ï´Ù.\n" );
+		TRACE0( "ë„êµ¬ ëª¨ìŒì„ ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.\n" );
 		return -1;
 	}
 
-	// Project main menu »ı¼º
+	// Project main menu ìƒì„±
 	if ( !m_wndProjMainMenuBar.Create( this,
 									   RUNTIME_CLASS(CTSProjectMainMenuForm),
 									   (CCreateContext*)(lpCreateStruct->lpCreateParams),
@@ -97,12 +97,12 @@ int CTSFrame::OnCreate( LPCREATESTRUCT lpCreateStruct )
 									   WS_CHILD|WS_VISIBLE|CBRS_TOP,
 									   ID_VIEW_PROJECT_MAIN_MENU ) )
 	{
-		TRACE0( "ÇÁ·ÎÁ§Æ® ¸ŞÀÎ ¸Ş´º »ı¼º ½ÇÆĞ.\n" );
+		TRACE0( "í”„ë¡œì íŠ¸ ë©”ì¸ ë©”ë‰´ ìƒì„± ì‹¤íŒ¨.\n" );
 		return -1;
 	}
 	m_wndProjMainMenuBar.SetBarStyle( m_wndProjMainMenuBar.GetBarStyle()|CBRS_TOOLTIPS|CBRS_FLYBY|CBRS_SIZE_DYNAMIC );
 
-	// Quest text bar »ı¼º
+	// Quest text bar ìƒì„±
 	if ( !m_wndQuestTextBar.Create( this,
 									RUNTIME_CLASS(CTSQuestTextForm),
 									(CCreateContext*)(lpCreateStruct->lpCreateParams),
@@ -110,7 +110,7 @@ int CTSFrame::OnCreate( LPCREATESTRUCT lpCreateStruct )
 									WS_CHILD|CBRS_TOP,
 									ID_VIEW_QUEST_TEXT ) )
 	{
-		TRACE0( "ÇÁ·ÎÁ§Æ® ¸ŞÀÎ ¸Ş´º »ı¼º ½ÇÆĞ.\n" );
+		TRACE0( "í”„ë¡œì íŠ¸ ë©”ì¸ ë©”ë‰´ ìƒì„± ì‹¤íŒ¨.\n" );
 		return -1;
 	}
 	m_wndQuestTextBar.SetBarStyle( m_wndQuestTextBar.GetBarStyle()|CBRS_TOOLTIPS|CBRS_FLYBY|CBRS_SIZE_DYNAMIC );
@@ -118,7 +118,7 @@ int CTSFrame::OnCreate( LPCREATESTRUCT lpCreateStruct )
 	if ( !m_wndStatusBar.Create( this ) ||
 		 !m_wndStatusBar.SetIndicators( indicators, sizeof(indicators)/sizeof(UINT)) )
 	{
-		TRACE0( "»óÅÂ Ç¥½ÃÁÙÀ» ¸¸µéÁö ¸øÇß½À´Ï´Ù.\n" );
+		TRACE0( "ìƒíƒœ í‘œì‹œì¤„ì„ ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.\n" );
 		return -1;
 	}
 

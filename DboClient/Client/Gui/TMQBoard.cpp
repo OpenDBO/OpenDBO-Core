@@ -51,14 +51,14 @@ CTMQPartyListItem::~CTMQPartyListItem()
 
 /**
 * \brief Create
-* \param pBoard		(CTMQBoard*) ÇöÀçÀÇ GUI°¡ ºÎ¸ğ·Î °¡Áö´Â CBoard*
-* \param pParentGui	(gui::CComponent*) CTMQPartyListItemÀÌ °¡Áö°í ÀÖ´Â DialogÀÇ ºÎ¸ğ Component
-* \param byIndex	(RwUInt8) ÆÄÆ¼ ¸®½ºÆ®ÀÇ ÀÎµ¦½º ( ¼ø¹ø ¶Ç´Â ¼øÀ§ )
-* \param nTop		(RwInt32) ÆÄÆ¼ ¸®½ºÆ®°¡ °¡Áö´Â DialogÀÇ Y ÁÂÇ¥
+* \param pBoard		(CTMQBoard*) í˜„ì¬ì˜ GUIê°€ ë¶€ëª¨ë¡œ ê°€ì§€ëŠ” CBoard*
+* \param pParentGui	(gui::CComponent*) CTMQPartyListItemì´ ê°€ì§€ê³  ìˆëŠ” Dialogì˜ ë¶€ëª¨ Component
+* \param byIndex	(RwUInt8) íŒŒí‹° ë¦¬ìŠ¤íŠ¸ì˜ ì¸ë±ìŠ¤ ( ìˆœë²ˆ ë˜ëŠ” ìˆœìœ„ )
+* \param nTop		(RwInt32) íŒŒí‹° ë¦¬ìŠ¤íŠ¸ê°€ ê°€ì§€ëŠ” Dialogì˜ Y ì¢Œí‘œ
 */
 VOID CTMQPartyListItem::Create( CTMQBoard* pBoard, gui::CComponent* pParentGui, RwUInt8 byIndex, RwInt32 nTop )
 {
-	// TMQ BoardÀÇ Æ÷ÀÎÅÍ¿Í ÀÎµ¦½º¸¦ ÀúÀåÇÏ°í ÀÖ´Â´Ù.
+	// TMQ Boardì˜ í¬ì¸í„°ì™€ ì¸ë±ìŠ¤ë¥¼ ì €ì¥í•˜ê³  ìˆëŠ”ë‹¤.
 	m_pTMQBoard = pBoard;
 	m_byIndex = byIndex;
 
@@ -68,19 +68,19 @@ VOID CTMQPartyListItem::Create( CTMQBoard* pBoard, gui::CComponent* pParentGui, 
 	rect.SetRectWH( 13, nTop, 316, dRANKBOARD_TMQ_PARTYTIEM_HEIGHT );
 	m_pDlgPartyListItem = NTL_NEW gui::CDialog( &rect, pParentGui, GetNtlGuiManager()->GetSurfaceManager() );
 
-	// ÆÄÆ¼ ÀÌ¸§
+	// íŒŒí‹° ì´ë¦„
 	rect.SetRectWH( 57, 6, 125, 20 );
 	m_pStbPartyName = NTL_NEW gui::CStaticBox( &rect, m_pDlgPartyListItem, GetNtlGuiManager()->GetSurfaceManager(),
 		COMP_TEXT_VERTICAL_CENTER | COMP_TEXT_CENTER );
 	m_pStbPartyName->CreateFontStd( DETAIL_FONT, dRANKBOARD_TMQ_PARTYITEM_FONT_HEIGHT, 0 );
 
-	// Å¬¸®¾î ½Ã°£
+	// í´ë¦¬ì–´ ì‹œê°„
 	rect.SetRectWH( 184, 6, 107, 20 );
 	m_pStbClearTime = NTL_NEW gui::CStaticBox( &rect, m_pDlgPartyListItem, GetNtlGuiManager()->GetSurfaceManager(),
 		COMP_TEXT_VERTICAL_CENTER | COMP_TEXT_CENTER );
 	m_pStbClearTime->CreateFontStd( DETAIL_FONT, dRANKBOARD_TMQ_PARTYITEM_FONT_HEIGHT, 0 );
 
-	// ¹ØÁÙ
+	// ë°‘ì¤„
 	rect.SetRectWH( 0, 33, 316, 1 );
 	m_pPanUnderLine = NTL_NEW gui::CPanel( &rect, m_pDlgPartyListItem, GetNtlGuiManager()->GetSurfaceManager() );
 
@@ -105,19 +105,19 @@ VOID CTMQPartyListItem::Destroy()
 }
 
 /**
-* \brief ÆÄÆ¼ ¸®½ºÆ® Ç×¸ñÀ» ¼¼ÆÃÇÑ´Ù.
-* \param nRank			(RwInt32) ¼øÀ§
-* \param pwcPartyName	(const WCHAR*) ÆÄÆ¼ ÀÌ¸§
-* \param uiClearTime	(RwUInt32) Å¬¸®¾î ±â·Ï
+* \brief íŒŒí‹° ë¦¬ìŠ¤íŠ¸ í•­ëª©ì„ ì„¸íŒ…í•œë‹¤.
+* \param nRank			(RwInt32) ìˆœìœ„
+* \param pwcPartyName	(const WCHAR*) íŒŒí‹° ì´ë¦„
+* \param uiClearTime	(RwUInt32) í´ë¦¬ì–´ ê¸°ë¡
 */
 VOID CTMQPartyListItem::SetItem( RwInt32 nRank, const WCHAR* pwcPartyName, RwUInt32 uiClearTime )
 {
 	m_pStbPartyName->SetText( pwcPartyName );
 
-	// ClearTimeÀº ms ´ÜÀ§
+	// ClearTimeì€ ms ë‹¨ìœ„
 	RwReal fSec = (RwReal)uiClearTime / 1000.f;
 
-	// ÇÏ·ç°¡ ³Ñ¾î°¡¸é ÁöÁ¤µÈ StringÀ» Ãâ·ÂÇÑ´Ù.
+	// í•˜ë£¨ê°€ ë„˜ì–´ê°€ë©´ ì§€ì •ëœ Stringì„ ì¶œë ¥í•œë‹¤.
 	RwUInt32 uiDay = (RwUInt32)(fSec / 86400.f);
 	if( uiDay > 0 )
 		m_pStbClearTime->SetText( GetDisplayStringManager()->GetString( "DST_RANKBOARD_TMQ_OVER_TIME" ) );
@@ -126,7 +126,7 @@ VOID CTMQPartyListItem::SetItem( RwInt32 nRank, const WCHAR* pwcPartyName, RwUIn
 }
 
 /**
-* \brief ¾ÆÀÌÅÛÀ» ÃÊ±âÈ­ÇÑ´Ù.
+* \brief ì•„ì´í…œì„ ì´ˆê¸°í™”í•œë‹¤.
 */
 VOID CTMQPartyListItem::ClearItem()
 {
@@ -135,8 +135,8 @@ VOID CTMQPartyListItem::ClearItem()
 }
 
 /**
-* \brief bEnable ¾ÆÀÌÅÛÀ» ºñÈ°/È°¼ºÈ­ ½ÃÅ²´Ù. ¾ÆÀÌÅÛÀÌ ºñÈ°¼ºÈ­°¡ µÇ¸é ¸¶¿ì½º UPÀ» Ã³¸®ÇÏÁö ¾Ê´Â´Ù.
-* \param bEnable	(RwBool) °¡´É
+* \brief bEnable ì•„ì´í…œì„ ë¹„í™œ/í™œì„±í™” ì‹œí‚¨ë‹¤. ì•„ì´í…œì´ ë¹„í™œì„±í™”ê°€ ë˜ë©´ ë§ˆìš°ìŠ¤ UPì„ ì²˜ë¦¬í•˜ì§€ ì•ŠëŠ”ë‹¤.
+* \param bEnable	(RwBool) ê°€ëŠ¥
 */
 VOID CTMQPartyListItem::Enable( RwBool bEnable )
 {
@@ -147,12 +147,12 @@ VOID CTMQPartyListItem::Enable( RwBool bEnable )
 }
 
 /**
-* \brief ¸¶¿ì½ºÀÇ UPÀ» ¹Ş´Â´Ù.
-* \param key	(CKey&) ¸¶¿ì½º Á¤º¸ÀÇ ±¸Á¶Ã¼
+* \brief ë§ˆìš°ìŠ¤ì˜ UPì„ ë°›ëŠ”ë‹¤.
+* \param key	(CKey&) ë§ˆìš°ìŠ¤ ì •ë³´ì˜ êµ¬ì¡°ì²´
 */
 VOID CTMQPartyListItem::OnMouseUp( const CKey& key )
 {
-	// Á¤º¸°¡ ¾ø´Ù¸é Mouse UpÀ» Ã³¸®ÇÏÁö ¾Ê´Â´Ù.
+	// ì •ë³´ê°€ ì—†ë‹¤ë©´ Mouse Upì„ ì²˜ë¦¬í•˜ì§€ ì•ŠëŠ”ë‹¤.
 	if( !m_pStbPartyName->GetText().compare( L"---" ) )
 		return;
 
@@ -182,9 +182,9 @@ CTMQPartyMemberItem::~CTMQPartyMemberItem()
 }
 
 /**
-* \brief ÆÄÆ¼ ¸â¹ö ¸®½ºÆ®ÀÇ ÄÄÆ÷³ÍÆ®µéÀ» µ¿ÀûÀ¸·Î »ı¼ºÇÑ´Ù.
-* \param pParentGui	(gui::CComponent*) ºÎ¸ğÀÇ GUI
-* \param nTop		(RwInt32) ÇöÀç ¾ÆÀÌÅÛÀÇ Y ½ÃÀÛ À§Ä¡
+* \brief íŒŒí‹° ë©¤ë²„ ë¦¬ìŠ¤íŠ¸ì˜ ì»´í¬ë„ŒíŠ¸ë“¤ì„ ë™ì ìœ¼ë¡œ ìƒì„±í•œë‹¤.
+* \param pParentGui	(gui::CComponent*) ë¶€ëª¨ì˜ GUI
+* \param nTop		(RwInt32) í˜„ì¬ ì•„ì´í…œì˜ Y ì‹œì‘ ìœ„ì¹˜
 */
 VOID CTMQPartyMemberItem::Create( gui::CComponent* pParentGui, RwInt32 nTop )
 {
@@ -219,17 +219,17 @@ VOID CTMQPartyMemberItem::Destroy()
 }
 
 /**
-* \brief ¸â¹ö ¾ÆÀÌÅÛÀ» µ¥ÀÌÅ¸·Î ¼¼ÆÃÇÑ´Ù.
-* \param pwcMemberName	(const WCHAR*) ÆÄÆ¼ ¸â¹öÀÇ ÀÌ¸§
-* \param nLevel			(RwInt32) ·¹º§
-* \param byClass		(RwUInt8) Å¬·¡½º
+* \brief ë©¤ë²„ ì•„ì´í…œì„ ë°ì´íƒ€ë¡œ ì„¸íŒ…í•œë‹¤.
+* \param pwcMemberName	(const WCHAR*) íŒŒí‹° ë©¤ë²„ì˜ ì´ë¦„
+* \param nLevel			(RwInt32) ë ˆë²¨
+* \param byClass		(RwUInt8) í´ë˜ìŠ¤
 */
 VOID CTMQPartyMemberItem::SetItem( const WCHAR* pwcMemberName, RwInt32 nLevel, RwUInt8 byClass )
 {
 	m_pStbPartyMemberName->SetText( pwcMemberName );
 	m_pStbLevel->SetText( nLevel );
 	
-	// ToolTip ¹× ClassÀÇ IconÀ» ´Ş¾ÆÁØ´Ù.
+	// ToolTip ë° Classì˜ Iconì„ ë‹¬ì•„ì¤€ë‹¤.
 	m_pPanClass->DeleteToolTip();
 	m_pPanClass->GetSurface()->clear();
 	m_pPanClass->AddSurface( Logic_GetPCClassIconSurface( byClass, FALSE ) );
@@ -239,7 +239,7 @@ VOID CTMQPartyMemberItem::SetItem( const WCHAR* pwcMemberName, RwInt32 nLevel, R
 }
 
 /**
-* \brief ¾ÆÀÌÅÛÀ» ÃÊ±âÈ­ÇÑ´Ù.
+* \brief ì•„ì´í…œì„ ì´ˆê¸°í™”í•œë‹¤.
 */
 VOID CTMQPartyMemberItem::ClearItem()
 {
@@ -275,9 +275,9 @@ CTMQBoard::~CTMQBoard()
 }
 
 /**
-* \brief TMQ Board¸¦ »ı¼ºÇÑ´Ù.
-* \param eType		(eBoardType) º¸µåÀÇ Å¸ÀÔ
-* \param pParentGui	(CRankBoardGui*) ·©Å· º¸µåÀÇ Æ÷ÀÎÅÍ
+* \brief TMQ Boardë¥¼ ìƒì„±í•œë‹¤.
+* \param eType		(eBoardType) ë³´ë“œì˜ íƒ€ì…
+* \param pParentGui	(CRankBoardGui*) ë­í‚¹ ë³´ë“œì˜ í¬ì¸í„°
 */
 void CTMQBoard::Create( eBoardType eType, CRankBoardGui* pParentGui )
 {
@@ -320,11 +320,11 @@ void CTMQBoard::Create( eBoardType eType, CRankBoardGui* pParentGui )
 	m_slotOnItemSelect = m_pCbbTitle->SigSelected().Connect( this, &CTMQBoard::OnItemSelect );
 	m_slotListToggled = m_pCbbTitle->SigListToggled().Connect( this, &CTMQBoard::OnListToggled );
 
-	// ÆÄÆ¼ ¸®½ºÆ®¸¦ »ı¼ºÇÑ´Ù.
+	// íŒŒí‹° ë¦¬ìŠ¤íŠ¸ë¥¼ ìƒì„±í•œë‹¤.
 	for( RwUInt8 i = 0; i< dRANKBOARD_TMQ_PARTYITEM_NUMS; ++i )
 		m_itemPartyList[i].Create( this, m_pTMQBoardDlg, i, (63) + (dRANKBOARD_TMQ_PARTYTIEM_HEIGHT*i));
 
-	// ¸â¹ö ¸®½ºÆ®¸¦ »ı¼ºÇÑ´Ù.
+	// ë©¤ë²„ ë¦¬ìŠ¤íŠ¸ë¥¼ ìƒì„±í•œë‹¤.
 	for( RwUInt8 i = 0; i< dRANKBOARD_TMQ_PARTYMEMBERITEM_NUMS; ++i )
 		m_itemPartyMember[i].Create( m_pTMQBoardDlg, (106) + (30*i) );
 
@@ -362,7 +362,7 @@ void CTMQBoard::Create( eBoardType eType, CRankBoardGui* pParentGui )
 }
 
 /**
-* \brief TMQ Board¿¡¼­ »ı¼ºÇÑ ¾ÆÀÌÅÛµéÀ» »èÁ¦ÇÑ´Ù.
+* \brief TMQ Boardì—ì„œ ìƒì„±í•œ ì•„ì´í…œë“¤ì„ ì‚­ì œí•œë‹¤.
 */
 void CTMQBoard::Destroy()
 {
@@ -374,8 +374,8 @@ void CTMQBoard::Destroy()
 }
 
 /**
-* \brief ÇöÀç º¸µå°¡ °¡Áö°í ÀÖ´Â DialogÀÇ Show ¿©ºÎ ¼¼ÆÃ
-* \param bShow	(RwBool) TRUE : º¸ÀÓ, FALSE : º¸ÀÌÁö ¾ÊÀ½
+* \brief í˜„ì¬ ë³´ë“œê°€ ê°€ì§€ê³  ìˆëŠ” Dialogì˜ Show ì—¬ë¶€ ì„¸íŒ…
+* \param bShow	(RwBool) TRUE : ë³´ì„, FALSE : ë³´ì´ì§€ ì•ŠìŒ
 */
 void CTMQBoard::Show( RwBool bShow /*= TRUE */ )
 {
@@ -385,8 +385,8 @@ void CTMQBoard::Show( RwBool bShow /*= TRUE */ )
 }
 
 /**
-* \brief ÇöÀç º¸µåÀÇ È°¼ºÈ­ ¿©ºÎ ¼ÂÆÃ
-* \param bEnable	(RwBool) TRUE : È°¼ºÈ­   FALSE : ºñÈ°¼ºÈ­
+* \brief í˜„ì¬ ë³´ë“œì˜ í™œì„±í™” ì—¬ë¶€ ì…‹íŒ…
+* \param bEnable	(RwBool) TRUE : í™œì„±í™”   FALSE : ë¹„í™œì„±í™”
 */
 void CTMQBoard::Enable( RwBool bEnable /*= TRUE */ )
 {
@@ -410,27 +410,27 @@ void CTMQBoard::Enable( RwBool bEnable /*= TRUE */ )
 }
 
 /**
-* \brief ÀÌº¥Æ¼ Ã³¸® ÇÔ¼ö
-* \param msg	(RWS::CMsg*) ÀÌº¥Æ® ±¸Á¶Ã¼
+* \brief ì´ë²¤í‹° ì²˜ë¦¬ í•¨ìˆ˜
+* \param msg	(RWS::CMsg*) ì´ë²¤íŠ¸ êµ¬ì¡°ì²´
 */
 void CTMQBoard::MessageProc( RWS::CMsg& msg )
 {
-	// TMQ ±â·ÏÀÇ ¸®½ºÆ®¸¦ ¹Ş´Â´Ù.
+	// TMQ ê¸°ë¡ì˜ ë¦¬ìŠ¤íŠ¸ë¥¼ ë°›ëŠ”ë‹¤.
 	if( msg.Id == g_EventTMQRecordListRes )
 	{
 		SDboEventTMQRecordListRes* pResult = reinterpret_cast<SDboEventTMQRecordListRes*>(msg.pData);
 
-		// ³­ÀÌµµ
+		// ë‚œì´ë„
 		SetDifficultButton( pResult->byDifficult );
 
 		sTIMEQUEST_TEAM_RANK_DATA* pTeamData = reinterpret_cast<sTIMEQUEST_TEAM_RANK_DATA*>( pResult->paTeam );
 
-		// Ã¹¹øÂ°(Best) ClearTimeÀÌ 0ÀÌ¶ó¸é µ¥ÀÌÅ¸°¡ ¾øÀ½
+		// ì²«ë²ˆì§¸(Best) ClearTimeì´ 0ì´ë¼ë©´ ë°ì´íƒ€ê°€ ì—†ìŒ
 		if( pTeamData[0].dwClearTime == 0 )
 		{
 			SetDataResult( eDATA_NONE );
 			
-			// Select ´Â 0¹øÀ» ÇØÁØ´Ù.
+			// Select ëŠ” 0ë²ˆì„ í•´ì¤€ë‹¤.
 			CRectangle rect = m_itemPartyList[0].GetScreenRect();
 			CRectangle DialogRect = m_pTMQBoardDlg->GetScreenRect();
 
@@ -440,7 +440,7 @@ void CTMQBoard::MessageProc( RWS::CMsg& msg )
 			return;
 		}
 
-		// µ¥ÀÌÅÍ¸¦ GUI¿¡¼­ º¸°üÇÑ´Ù.
+		// ë°ì´í„°ë¥¼ GUIì—ì„œ ë³´ê´€í•œë‹¤.
 		m_byTeamCount = pResult->byTeamCount;
 		for( RwInt32 i = 0; i< pResult->byTeamCount; ++i )
 		{
@@ -451,13 +451,13 @@ void CTMQBoard::MessageProc( RWS::CMsg& msg )
 				sizeof(WCHAR) * NTL_MAX_SIZE_PARTY_NAME );
 		}
 
-		// ¸â¹ö¸¦ ¼º°øÀûÀ¸·Î ¹Ş¾ÒÀ¸¸é 0 ¹øÂ° ¸â¹ö ¸®½ºÆ®¸¦ ¿äÃ»ÇÑ´Ù.
+		// ë©¤ë²„ë¥¼ ì„±ê³µì ìœ¼ë¡œ ë°›ì•˜ìœ¼ë©´ 0 ë²ˆì§¸ ë©¤ë²„ ë¦¬ìŠ¤íŠ¸ë¥¼ ìš”ì²­í•œë‹¤.
 		SelectMemberList( 0 );
 
-		//// ¼º°øÀûÀ¸·Î µ¥ÀÌÅÍ¸¦ ¹Ş¾Ò´Ù.
+		//// ì„±ê³µì ìœ¼ë¡œ ë°ì´í„°ë¥¼ ë°›ì•˜ë‹¤.
 		//SetDataResult( eDATA_OK );
 	}
-	// MEMBER LIST¸¦ ¹Ş´Â´Ù.
+	// MEMBER LISTë¥¼ ë°›ëŠ”ë‹¤.
 	else if( msg.Id == g_EventTMQMemberListRes )
 	{
 		SDboEventTMQMemberListRes* pResult = reinterpret_cast<SDboEventTMQMemberListRes*>(msg.pData);
@@ -486,24 +486,24 @@ void CTMQBoard::MessageProc( RWS::CMsg& msg )
 }
 
 /**
-* \brief ÇöÀç ÆäÀÌÁö¸¦ ¿äÃ»ÇÑ´Ù.
+* \brief í˜„ì¬ í˜ì´ì§€ë¥¼ ìš”ì²­í•œë‹¤.
 */
 void CTMQBoard::CurrentPage()
 {
 	if( m_nCurrentScenario >= (RwInt32)m_vecTblIdx.size() || m_nCurrentScenario < 0 )
 		return;
 	
-	// ÇöÀç ÆäÀÌÁö ¿äÃ»
+	// í˜„ì¬ í˜ì´ì§€ ìš”ì²­
 	GetDboGlobal()->GetChatPacketGenerator()->SendTMQ_Record_List_Req( m_vecTblIdx[m_nCurrentScenario], m_nCurrentDifficulty );
 	ClearPartyList();
 	m_pCbbTitle->SelectItem( m_nCurrentScenario );
 	
-	// BestÀÇ ¸â¹ö ¸®½ºÆ®¸¦ ¿äÃ»
+	// Bestì˜ ë©¤ë²„ ë¦¬ìŠ¤íŠ¸ë¥¼ ìš”ì²­
 	/*SelectMemberList( 0 );*/
 }
 
 /**
-* \brief ÆÄÆ¼ ¸®½ºÆ®¸¦ ÃÊ±âÈ­ÇÑ´Ù.
+* \brief íŒŒí‹° ë¦¬ìŠ¤íŠ¸ë¥¼ ì´ˆê¸°í™”í•œë‹¤.
 */
 VOID CTMQBoard::ClearPartyList()
 {
@@ -512,7 +512,7 @@ VOID CTMQBoard::ClearPartyList()
 }
 
 /**
-* \brief ¸â¹ö ¸®½ºÆ®¸¦ ÃÊ±âÈ­ÇÑ´Ù.
+* \brief ë©¤ë²„ ë¦¬ìŠ¤íŠ¸ë¥¼ ì´ˆê¸°í™”í•œë‹¤.
 */
 VOID CTMQBoard::ClearMemberList()
 {
@@ -521,12 +521,12 @@ VOID CTMQBoard::ClearMemberList()
 }
 
 /**
-* \brief ¸â¹ö ¸®½ºÆ®¸¦ ¿äÃ»ÇÑ´Ù.
-* \param byPartyIndex	(RwUInt8) ¼±ÅÃ ÆÄÆ¼ÀÇ ÀÎµ¦½º ¹øÈ£ ( ex : 0, 1, 2, ... , 6)
+* \brief ë©¤ë²„ ë¦¬ìŠ¤íŠ¸ë¥¼ ìš”ì²­í•œë‹¤.
+* \param byPartyIndex	(RwUInt8) ì„ íƒ íŒŒí‹°ì˜ ì¸ë±ìŠ¤ ë²ˆí˜¸ ( ex : 0, 1, 2, ... , 6)
 */
 VOID CTMQBoard::SelectMemberList( RwUInt8 byPartyIndex )
 {
-	// ¾î¶² ¾ÆÀÌÅÛÀ» ¼¿·ºÇß´ÂÁö
+	// ì–´ë–¤ ì•„ì´í…œì„ ì…€ë ‰í–ˆëŠ”ì§€
 	CRectangle rect = m_itemPartyList[byPartyIndex].GetScreenRect();
 	CRectangle DialogRect = m_pTMQBoardDlg->GetScreenRect();
 
@@ -541,8 +541,8 @@ VOID CTMQBoard::SelectMemberList( RwUInt8 byPartyIndex )
 }
 
 /**
-* \brief ÇöÀç TMQ ½Ã³ª¸®¿ÀÀÇ ³­ÀÌµµ¸¦ ¼³Á¤ÇÑ´Ù.
-* \param byDifficult	(RwUInt8) ³­ÀÌµµ »ó¼ö
+* \brief í˜„ì¬ TMQ ì‹œë‚˜ë¦¬ì˜¤ì˜ ë‚œì´ë„ë¥¼ ì„¤ì •í•œë‹¤.
+* \param byDifficult	(RwUInt8) ë‚œì´ë„ ìƒìˆ˜
 */
 VOID CTMQBoard::SelectDifficult( RwUInt8 byDifficult )
 {
@@ -551,8 +551,8 @@ VOID CTMQBoard::SelectDifficult( RwUInt8 byDifficult )
 }
 
 /**
-* \brief ¼±ÅÃÇÑ ³­ÀÌµµÀÇ ¹öÆ°À» Á¦¿ÜÇÑ ³­ÀÌµµ ¹öÆ°À» È°¼ºÈ­ ½ÃÅ²´Ù.
-* \param byDifficult	(RwUInt8) ³­ÀÌµµ »ó¼ö
+* \brief ì„ íƒí•œ ë‚œì´ë„ì˜ ë²„íŠ¼ì„ ì œì™¸í•œ ë‚œì´ë„ ë²„íŠ¼ì„ í™œì„±í™” ì‹œí‚¨ë‹¤.
+* \param byDifficult	(RwUInt8) ë‚œì´ë„ ìƒìˆ˜
 */
 VOID CTMQBoard::SetDifficultButton( RwUInt8 byDifficult )
 {
@@ -576,7 +576,7 @@ VOID CTMQBoard::SetDifficultButton( RwUInt8 byDifficult )
 }
 
 /**
-* \brief ¼­¹ö¿¡¼­ ³»·Á¿Â µ¥ÀÌÅÍÀÇ À¯È¿¼ºÀ» ±â·ÏÇÑ´Ù.
+* \brief ì„œë²„ì—ì„œ ë‚´ë ¤ì˜¨ ë°ì´í„°ì˜ ìœ íš¨ì„±ì„ ê¸°ë¡í•œë‹¤.
 * \param byDataResult	(RwUInt8) eDataResult
 */
 VOID CTMQBoard::SetDataResult( RwUInt8 byDataResult )
@@ -585,14 +585,14 @@ VOID CTMQBoard::SetDataResult( RwUInt8 byDataResult )
 }
 
 /**
-* \brief °¡Áö°í ÀÖ´Â µ¥ÀÌÅÍ¸¦ Àû¿ëÇÑ´Ù. ¸¸¾à À¯È¿ÇÏÁö ¾ÊÀº µ¥ÀÌÅ¸¶ó°í ÆÇ´ÜµÇ¸é ¾Ë¸ÂÀº ¾È³» ¸Ş½ÃÁö¸¦ Ãâ·ÂÇÑ´Ù.
+* \brief ê°€ì§€ê³  ìˆëŠ” ë°ì´í„°ë¥¼ ì ìš©í•œë‹¤. ë§Œì•½ ìœ íš¨í•˜ì§€ ì•Šì€ ë°ì´íƒ€ë¼ê³  íŒë‹¨ë˜ë©´ ì•Œë§ì€ ì•ˆë‚´ ë©”ì‹œì§€ë¥¼ ì¶œë ¥í•œë‹¤.
 */
 VOID CTMQBoard::ApplyData()
 {
 	ClearPartyList();
 	ClearMemberList();
 
-	// È°¼ºÈ­ µÇ¾úÀ» °æ¿ì Ã³¸®
+	// í™œì„±í™” ë˜ì—ˆì„ ê²½ìš° ì²˜ë¦¬
 	switch( m_byDataResult )
 	{
 	case eDATA_OK:
@@ -622,8 +622,8 @@ VOID CTMQBoard::ApplyData()
 }
 
 /**
-* \brief ÀÌÀü ¹öÆ°À» Å¬¸¯ÇÏ¸é ÇÑ ´Ü°è ÀÌÀüÀÇ ½Ã³ª¸®¿À¸¦ ¼±ÅÃÇÑ´Ù.
-* \param pComponent		(gui::CComponent*) Å¬¸¯µÈ ÄÄÆ÷³ÍÆ®
+* \brief ì´ì „ ë²„íŠ¼ì„ í´ë¦­í•˜ë©´ í•œ ë‹¨ê³„ ì´ì „ì˜ ì‹œë‚˜ë¦¬ì˜¤ë¥¼ ì„ íƒí•œë‹¤.
+* \param pComponent		(gui::CComponent*) í´ë¦­ëœ ì»´í¬ë„ŒíŠ¸
 */
 VOID CTMQBoard::OnClickedBtnPrev( gui::CComponent* pComponent )
 {
@@ -639,15 +639,15 @@ VOID CTMQBoard::OnClickedBtnPrev( gui::CComponent* pComponent )
 }
 
 /**
-* \brief ´ÙÀ½ ¹öÆ°À» Å¬¸¯ÇÏ¸é ÇÑ ´Ü°è ´ÙÀ½ÀÇ ½Ã³ª¸®¿À¸¦ ¼±ÅÃÇÑ´Ù.
-* \param pComponent		(gui::CCOmponent*) Å¬¸¯µÈ ÄÄÆ÷³ÍÆ®
+* \brief ë‹¤ìŒ ë²„íŠ¼ì„ í´ë¦­í•˜ë©´ í•œ ë‹¨ê³„ ë‹¤ìŒì˜ ì‹œë‚˜ë¦¬ì˜¤ë¥¼ ì„ íƒí•œë‹¤.
+* \param pComponent		(gui::CCOmponent*) í´ë¦­ëœ ì»´í¬ë„ŒíŠ¸
 */
 VOID CTMQBoard::OnClickedBtnNext( gui::CComponent* pComponent )
 {
 	// Next
 	if( m_nCurrentScenario >= (RwInt32)m_vecTblIdx.size() )
 	{
-		// ¾ø´Â ½Ã³ª¸®¿ÀÀÔ´Ï´Ù.
+		// ì—†ëŠ” ì‹œë‚˜ë¦¬ì˜¤ì…ë‹ˆë‹¤.
 		GetAlarmManager()->AlarmMessage( "DST_RANKBOARD_BOARD_MSGBOX_NONESCENARIO" );
 		return;
 	}
@@ -657,13 +657,13 @@ VOID CTMQBoard::OnClickedBtnNext( gui::CComponent* pComponent )
 }
 
 /**
-* \brief ¸®½ºÆ® ¹Ú½º¸¦ Åä±ÛÇÏ¿´À» ¶§
-* \param bToggled	(RwBool) Åä±ÛÀÇ ¿©ºÎ
-* \param pComponent	(gui::CComponent*) Åä±ÛµÈ ¸®½ºÆ®¹Ú½ºÀÇ ÄÄÆ÷³ÍÆ®
+* \brief ë¦¬ìŠ¤íŠ¸ ë°•ìŠ¤ë¥¼ í† ê¸€í•˜ì˜€ì„ ë•Œ
+* \param bToggled	(RwBool) í† ê¸€ì˜ ì—¬ë¶€
+* \param pComponent	(gui::CComponent*) í† ê¸€ëœ ë¦¬ìŠ¤íŠ¸ë°•ìŠ¤ì˜ ì»´í¬ë„ŒíŠ¸
 */
 VOID CTMQBoard::OnListToggled( RwBool bToggled, gui::CComponent* pComponent )
 {
-	// º¸¿©Áö°í ÀÖ´Ù¸é ´Ù¸¥ gui¿¡ °ãÃÄÁöÁö ¾Ê°Ô Raise() ½ÃÄÑÁØ´Ù.
+	// ë³´ì—¬ì§€ê³  ìˆë‹¤ë©´ ë‹¤ë¥¸ guiì— ê²¹ì³ì§€ì§€ ì•Šê²Œ Raise() ì‹œì¼œì¤€ë‹¤.
 	if( bToggled )
 	{
 		pComponent->Raise();
@@ -671,7 +671,7 @@ VOID CTMQBoard::OnListToggled( RwBool bToggled, gui::CComponent* pComponent )
 }
 
 /**
-* \brief Easy ¹öÆ°À» Å¬¸¯ÇÏ¿´À» ¶§
+* \brief Easy ë²„íŠ¼ì„ í´ë¦­í•˜ì˜€ì„ ë•Œ
 */
 VOID CTMQBoard::OnClickedBtnEasy( gui::CComponent* pComponent )
 {
@@ -680,7 +680,7 @@ VOID CTMQBoard::OnClickedBtnEasy( gui::CComponent* pComponent )
 }
 
 /**
-* \brief Normal ¹öÆ°À» Å¬¸¯ÇÏ¿´À» ¶§
+* \brief Normal ë²„íŠ¼ì„ í´ë¦­í•˜ì˜€ì„ ë•Œ
 */
 VOID CTMQBoard::OnClickedBtnNormal( gui::CComponent* pComponent )
 {
@@ -689,7 +689,7 @@ VOID CTMQBoard::OnClickedBtnNormal( gui::CComponent* pComponent )
 }
 
 /**
-* \brief Hard ¹öÆ°À» Å¬¸¯ÇÏ¿´À» °æ¿ì
+* \brief Hard ë²„íŠ¼ì„ í´ë¦­í•˜ì˜€ì„ ê²½ìš°
 */
 VOID CTMQBoard::OnClickedBtnHard( gui::CComponent* pComponent )
 {
@@ -698,14 +698,14 @@ VOID CTMQBoard::OnClickedBtnHard( gui::CComponent* pComponent )
 }
 
 /**
-* \brief ¸®½ºÆ®¿¡¼­ ½Ã³ª¸®¿À¸¦ ¼±ÅÃÇßÀ» °æ¿ì
+* \brief ë¦¬ìŠ¤íŠ¸ì—ì„œ ì‹œë‚˜ë¦¬ì˜¤ë¥¼ ì„ íƒí–ˆì„ ê²½ìš°
 */
 VOID CTMQBoard::OnItemSelect( RwInt32 nIndex )
 {
 	// Next
 	if( nIndex >= (RwInt32)m_vecTblIdx.size() )
 	{
-		// ¾ø´Â ½Ã³ª¸®¿ÀÀÔ´Ï´Ù.
+		// ì—†ëŠ” ì‹œë‚˜ë¦¬ì˜¤ì…ë‹ˆë‹¤.
 		GetAlarmManager()->AlarmMessage( "DST_RANKBOARD_BOARD_MSGBOX_NONESCENARIO" );
 		return;
 	}

@@ -154,9 +154,9 @@ RwBool CNtlPLObject::CreateThreadSafe(void)
 	NTL_SPROFILE("CNtlPLObject::CreateThreadSafe");
 
 	Helper_SetClumpAllAtomics(GetClump(), &m_vecAtomicList);		
-	Helper_GetBoneList(GetClump(), &m_mapFrame);            // Bone List�� ������ �д�.
+	Helper_GetBoneList(GetClump(), &m_mapFrame);            // Bone List占쏙옙 占쏙옙占쏙옙占쏙옙 占싻댐옙.
 
-	// Anim�� �����Ѵ�
+	// Anim占쏙옙 占쏙옙占쏙옙占싼댐옙
 	if(m_pProperty->m_strAnimFileName.size() > 0)
 	{
 		SetAnimation(m_pProperty->m_strAnimFileName.c_str());
@@ -170,7 +170,7 @@ RwBool CNtlPLObject::CreateThreadSafe(void)
 	}
 
 
-	// UVAnim�� Clump�� �����Ѵ�.
+	// UVAnim占쏙옙 Clump占쏙옙 占쏙옙占쏙옙占싼댐옙.
 	if(m_pUVAnim)
 	{
 		m_pUVAnim->SetClump(GetClump());
@@ -193,7 +193,7 @@ RwBool CNtlPLObject::CreateThreadSafe(void)
 		SetFlags(GetFlags() | NTL_PLEFLAG_SHADOW);
 	}
 
-	// clump�� ���� atomic
+	// clump占쏙옙 占쏙옙占쏙옙 atomic
 	if( GetClump() != NULL )
 	{
 		// Toon
@@ -207,10 +207,10 @@ RwBool CNtlPLObject::CreateThreadSafe(void)
 			RpNtlAtomicSetData(pAtomic, this);
 
 			// ����ó�� UV�ִϸ� ���� ������Ʈ�� FX����������, ȯ����� ������ �־ FX������������ ������ ������
-			// �ؿ� if(!RpMaterialUVAnimExists(pMaterial))���� ���ѹ� üũ�ϹǷ� ���� ������ �ּ�ó���մϴ�.
+			// 占쌔울옙 if(!RpMaterialUVAnimExists(pMaterial))占쏙옙占쏙옙 占쏙옙占싼뱄옙 체크占싹므뤄옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쌍쇽옙처占쏙옙占쌌니댐옙.
 			// ȯ���, UV�ִϵ��� ���� ������Ʈ�� ������ ����ٸ� �̺κ��� �ٽ� �ѹ� ������ �Ǿ� �մϴ�.
 			// �ּ��� Ǯ�� �Ǹ� UV�� ȯ����� ���� ������Ʈ�� �����ҽ� ������������ Ʋ���Ƿ� addcolor���� �ʽ��ϴ�.
-			// - ����
+			// - 占쏙옙占쏙옙
 			//if(pAtomic->pipeline == NULL && m_pUVAnim == NULL)
 			if(pAtomic->pipeline == NULL)
 			{
@@ -254,10 +254,10 @@ RwBool CNtlPLObject::CreateThreadSafe(void)
 		AttachLightObject();
 	}
 
-	// ������ ��ü�� �����ϰ� ����Ʈ�� �߰��Ѵ�.
+	// 占쏙옙占쏙옙占쏙옙 占쏙옙체占쏙옙 占쏙옙占쏙옙占싹곤옙 占쏙옙占쏙옙트占쏙옙 占쌩곤옙占싼댐옙.
 	m_pFadeBlend = GetAlphaBlendController()->AddAlpha(1.0f);
 
-	// Link Effect�� �����Ѵ�.
+	// Link Effect占쏙옙 占쏙옙占쏙옙占싼댐옙.
 	for(UINT i = 0; i < m_pProperty->m_vLinkEffect.size(); ++i)
 	{
 		SEventLinkEffect* pEventLinkEffect = m_pProperty->m_vLinkEffect[i];        
@@ -288,7 +288,7 @@ RwBool CNtlPLObject::CreateThreadSafe(void)
 		AddLoopSound(tSoundParam.hHandle);
 	}
 
-	// ó�� �ʿ� ���Խÿ� ��Ÿ���� ������Ʈ���� Fade ȿ���� �������� �ʴ´�.    
+	// 처占쏙옙 占십울옙 占쏙옙占쌉시울옙 占쏙옙타占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙트占쏙옙占쏙옙 Fade 효占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占십는댐옙.    
 	if(m_bLoadMap || (!GetSceneManager()->GetDistanceFilterEnable()))
 	{
 		m_eFadeState = FADE_VISIBLE;	        
@@ -320,7 +320,7 @@ RwBool CNtlPLObject::CreateOccluderProxy()
 	{
 		return COccluderProxy::CreateOccluderProxy(0.5f, m_vecAtomicList.size());
 	}
-	else // Animetion �� ������ ���� ���� Entity Bounding Sphere�� ó���Ѵ�.
+	else // Animetion 占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 Entity Bounding Sphere占쏙옙 처占쏙옙占싼댐옙.
 	{
 		return COccluderProxy::CreateOccluderProxy(0.5f, 1);
 	}
@@ -902,7 +902,7 @@ void CNtlPLObject::Destroy(void)
 		RemoveWorld();		
 	}
 
-	// ���⼭�� m_pClumpResource�� null pointer�� �˻����� �ʴ´�(����)
+	// 占쏙옙占썩서占쏙옙 m_pClumpResource占쏙옙 null pointer占쏙옙 占싯삼옙占쏙옙占쏙옙 占십는댐옙(占쏙옙占쏙옙)
 	CNtlPLResourceManager::GetInstance()->UnLoadScheduling(this, m_pClumpResource );
 	m_pClumpResource = NULL;
 
@@ -1077,7 +1077,7 @@ RwBool CNtlPLObject::SetThreadSafeProperty(const CNtlPLProperty *pData)
 			SetFlags(GetFlags() & ~NTL_PLEFLAG_NOTUPDATE);
 	}
 
-	//  Ʈ���� �ִϸ��̼��� ������ Update Flag�� �Ҵ�
+	//  트占쏙옙占쏙옙 占쌍니몌옙占싱쇽옙占쏙옙 占쏙옙占쏙옙占쏙옙 Update Flag占쏙옙 占쌀댐옙
 	if(m_pProperty->GetAnimTable()->GetTypeAnimMap()->size() > 0)
 	{
 		m_bHaveAnim = TRUE;
@@ -1440,7 +1440,7 @@ void CNtlPLObject::SetMatrix( RwMatrix & matWorld )
 
 	RwMatrixCopy( RwFrameGetMatrix( pFrame ), &matWorld );
 
-	// ��ġ���� �����Ѵ�.
+	// 占쏙옙치占쏙옙占쏙옙 占쏙옙占쏙옙占싼댐옙.
 	m_vWorldPosition = *RwMatrixGetPos(&matWorld);
 
 	RwFrameUpdateObjects( pFrame );
@@ -1479,9 +1479,9 @@ RwBool CNtlPLObject::SetUVAnim( const RwChar* szUVAnimFileName )
 }
 
 /**
-* �ִϸ��̼� ���ҽ��� ��ü�� �����ϰ�, ������Ʈ�� �����Ѵ�.
-* \param szAnimFileName ������ AnimFileName (*.anm)
-* return ���� ����
+* 占쌍니몌옙占싱쇽옙 占쏙옙占쌀쏙옙占쏙옙 占쏙옙체占쏙옙 占쏙옙占쏙옙占싹곤옙, 占쏙옙占쏙옙占쏙옙트占쏙옙 占쏙옙占쏙옙占싼댐옙.
+* \param szAnimFileName 占쏙옙占쏙옙占쏙옙 AnimFileName (*.anm)
+* return 占쏙옙占쏙옙 占쏙옙占쏙옙
 */
 RwBool CNtlPLObject::SetAnimation( const RwChar* szAnimFileName ) 
 {
@@ -1497,7 +1497,7 @@ RwBool CNtlPLObject::SetAnimation( const RwChar* szAnimFileName )
 	}
 	else
 	{
-		// �ε��� Anim�� �޸𸮿��� �����Ѵ�.
+		// 占싸듸옙占쏙옙 Anim占쏙옙 占쌨모리울옙占쏙옙 占쏙옙占쏙옙占싼댐옙.
 		CNtlPLResourceManager::GetInstance()->UnLoad(m_pAnimResource);
 		m_pAnimResource = NULL;
 	}
@@ -1552,7 +1552,7 @@ RwBool CNtlPLObject::SetTriggerAnimation(RwUInt32 uiAnimKey, RwReal fStartTime /
 		NTL_RETURN(FALSE);
 	}
 
-	// Instance Anim Table ����
+	// Instance Anim Table 占쏙옙占쏙옙
 	if(!m_pAnimLayer)
 	{
 		CreateAnim();
@@ -1574,7 +1574,7 @@ RwBool CNtlPLObject::SetTriggerAnimation(RwUInt32 uiAnimKey, RwReal fStartTime /
 	ClearLoopSound();
 	
 
-	// Play time�� 0 ~ 1 ���� ������ �����Ѵ�
+	// Play time占쏙옙 0 ~ 1 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싼댐옙
 	RwReal fPlayTime = fStartTime;
 	fPlayTime = (FLT_MAX == fPlayTime ? 0.f : fPlayTime);
 	fPlayTime = fabs(fPlayTime);
@@ -1631,7 +1631,7 @@ void CNtlPLObject::CalcBoundingSphere()
 	m_BSphere.center = m_BSphere.center - GetPosition();
 }
 
-// GetPosition���� ������Ʈ�� ���� ���������� ������.
+// GetPosition占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙트占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙.
 // ������ �� ��� �ٽ� �����Ѵ�.
 // RwSphere* CNtlPLObject::GetBoundingSphere()
 // {
@@ -2016,7 +2016,7 @@ RwBool CNtlPLObject::UpdateFadeSystem()
 		// Fade In
 		else if(m_eFadeState == FADE_NOT_VISIBLE && fDistCamera <= GetVisibleCullingDistance())
 		{
-			//m_eFadeState = FADE_IN_EFFECT;             // ��Ÿ������ Effect���� ��Ÿ���� (������Ʈ�� ���Ŀ� ��Ÿ����)            
+			//m_eFadeState = FADE_IN_EFFECT;             // 占쏙옙타占쏙옙占쏙옙占쏙옙 Effect占쏙옙占쏙옙 占쏙옙타占쏙옙占쏙옙 (占쏙옙占쏙옙占쏙옙트占쏙옙 占쏙옙占식울옙 占쏙옙타占쏙옙占쏙옙)            
 			/// -- Fade In �ɶ��� ������Ʈ�� ����Ʈ�� ���� ��Ÿ���� (2007.7.31 by agebreak - �μ��� �䱸����)
 			m_eFadeState = FADE_IN_OBJECT;
 			m_fFadeTime = 0.0f;
@@ -2079,7 +2079,7 @@ RwBool CNtlPLObject::UpdateFading(RwReal fElapsedTime)
 		}
 		else
 		{
-			// Alpha�� 0%->100%�� ��ȭ��Ų��. 
+			// Alpha占쏙옙 0%->100%占쏙옙 占쏙옙화占쏙옙킨占쏙옙. 
 			m_pFadeBlend->SetWeight(m_fFadeTime / CNtlPLGlobal::m_fDistFiterObjFrequency);            
 		}
 		break;
@@ -2107,7 +2107,7 @@ RwBool CNtlPLObject::UpdateFading(RwReal fElapsedTime)
 		}            
 		else
 		{
-			// Alpha�� 100%->0%�� ��ȯ��ĭ��.           
+			// Alpha占쏙옙 100%->0%占쏙옙 占쏙옙환占쏙옙칸占쏙옙.           
 			m_pFadeBlend->SetWeight((CNtlPLGlobal::m_fDistFiterObjFrequency - m_fFadeTime) / CNtlPLGlobal::m_fDistFiterObjFrequency);            
 		}   
 		break;
@@ -2170,20 +2170,20 @@ RpAtomic *CNtlPLObject::RenderCallBack(RpAtomic *pAtomic)
 						nMatCount = RENDER_MAX_COLOR_TEMP;
 				}
 
-				// Atomic�� ������ Alpha ������ ����                
+				// Atomic占쏙옙 占쏙옙占쏙옙占쏙옙 Alpha 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙                
 				sColorRatioReal.alpha *= RpNtlAtomicGetAlpha(pAtomic) / 255.0f;
 
-				// Fade�� ���� Weight Alpha������ ����
-#ifdef dNTL_WORLD_TOOL_MODE	// �������� ������ Fade Alpha ����
+				// Fade占쏙옙 占쏙옙占쏙옙 Weight Alpha占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙
+#ifdef dNTL_WORLD_TOOL_MODE	// 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 Fade Alpha 占쏙옙占쏙옙
 				sColorRatioReal.alpha *= pEntity->GetWeightAlpha();
 #else
-				if(!(pEntity->GetFlags() & NTL_PLEFLAG_OBJECT_FORCE_VISIBLE)) // �÷��װ� �����ִٸ�, Fade alpha�� �������� �ʴ´�.
+				if(!(pEntity->GetFlags() & NTL_PLEFLAG_OBJECT_FORCE_VISIBLE)) // 占시뤄옙占쌓곤옙 占쏙옙占쏙옙占쌍다몌옙, Fade alpha占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占십는댐옙.
 				{
 					sColorRatioReal.alpha *= pEntity->GetWeightAlpha();
 				}
 #endif                
 
-				if(sColorRatioReal.alpha == 0.0f)       // ���İ� 0.0�̸� ���������� �ʴ´�.
+				if(sColorRatioReal.alpha == 0.0f)       // 占쏙옙占식곤옙 0.0占싱몌옙 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占십는댐옙.
 					NTL_RPROFILE(pAtomic);
 
 				// Alpha Test ATomic�� Alpha ���� ����( Alpha Test�� ��� 208 �̻��� ��� ����� �����)
@@ -2284,8 +2284,8 @@ RpClump * CNtlPLObject::GetClump( void ) const
 }
 
 /**
-* Fade ȿ�� ���¸� �����Ѵ�.
-* \param bEnable Fade ȿ�� ����
+* Fade 효占쏙옙 占쏙옙占승몌옙 占쏙옙占쏙옙占싼댐옙.
+* \param bEnable Fade 효占쏙옙 占쏙옙占쏙옙
 * return 
 */
 void CNtlPLObject::SetFadeEnable(RwBool bEnable)
@@ -2317,7 +2317,7 @@ void CNtlPLObject::SetFadeEnable(RwBool bEnable)
 	{
 		SetFlags(uiFlags & (~NTL_PLEFLAG_FADE));
 
-		// Visual Manager�� Update List�� ���ԵǾ� ������ �����Ѵ�
+		// Visual Manager占쏙옙 Update List占쏙옙 占쏙옙占쌉되억옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싼댐옙
 		if(m_eFadeState != FADE_VISIBLE && m_eFadeState != FADE_NOT_VISIBLE && !m_bHaveAnim)
 		{
 			RemoveSceneUpdate();
@@ -2384,12 +2384,12 @@ void CNtlPLObject::OnEventAnimEnd( SEventAnimEnd* pEventAnimEnd )
 
 void CNtlPLObject::OnEventVisualSound( SEventSound* pEventSound ) 
 {
-	// Sound�� Play�Ѵ�.    
+	// Sound占쏙옙 Play占싼댐옙.    
 
 	if(strlen(pEventSound->chSoundName) <= 1)
 		return ;
 
-	// LoopSound�̰� �̹� ������ Play�ǰ� �ִٸ� Play���� �ʴ´�.
+	// LoopSound占싱곤옙 占싱뱄옙 占쏙옙占쏙옙占쏙옙 Play占실곤옙 占쌍다몌옙 Play占쏙옙占쏙옙 占십는댐옙.
 	if(pEventSound->bLoop && IsExistLoopSound(pEventSound->chSoundName))
 		return ;
 
@@ -2427,7 +2427,7 @@ void CNtlPLObject::OnEventVisualSound( SEventSound* pEventSound )
 		soundFileName = pEventSound->chSoundName;
 	}
 
-	// ��ġ�� �������� �����Ѵ�
+	// 占쏙옙치占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싼댐옙
 	RwReal fSoundPitch = NtlRandomNumber(pEventSound->fSoundPitchMin, pEventSound->fSoundPitchMax);
 
 	sNtlSoundPlayParameta tSoundParam;
@@ -2444,7 +2444,7 @@ void CNtlPLObject::OnEventVisualSound( SEventSound* pEventSound )
 
 	int iRet = GetSoundManager()->Play(&tSoundParam);
 
-	// Loop Sound�� ����Ʈ�� �߰��Ѵ�.
+	// Loop Sound占쏙옙 占쏙옙占쏙옙트占쏙옙 占쌩곤옙占싼댐옙.
 	if(iRet == SOUNDRESULT_OK && pEventSound->bLoop && tSoundParam.hHandle != INVALID_SOUND_HANDLE)
 	{
 		AddLoopSound(tSoundParam.hHandle);
@@ -2453,14 +2453,14 @@ void CNtlPLObject::OnEventVisualSound( SEventSound* pEventSound )
 
 void CNtlPLObject::OnEventVisualEffect( SEventVisualEffect* pEventVisualEffect ) 
 {
-	//Effect Name�� ���� ���� ������ Return�� �Ѵ�.
+	//Effect Name占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 Return占쏙옙 占싼댐옙.
 	if( strlen(pEventVisualEffect->chEffectName) <= 0)
 		return;
 
 	if( strlen(pEventVisualEffect->chBoneName) <= 0 && pEventVisualEffect->bAttachBone)
 		return;
 
-	// ���� LoopEffect ����Ʈ�� ���� �̸�,Bone�� ������ ���� �������� �ʴ´�.
+	// 占쏙옙占쏙옙 LoopEffect 占쏙옙占쏙옙트占쏙옙 占쏙옙占쏙옙 占싱몌옙,Bone占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占십는댐옙.
 	if (IsExistLoopEffect(pEventVisualEffect->chEffectName, pEventVisualEffect->chBoneName))
 	{
 		return;
@@ -2506,7 +2506,7 @@ void CNtlPLObject::OnEventVisualEffect( SEventVisualEffect* pEventVisualEffect )
 
 void CNtlPLObject::OnEventAlphaFade( SEventAlpha* pEventAlpha ) 
 {
-	// Atomic Alpha�� ���ؼ��� PL�ܿ��� ó���Ѵ�.
+	// Atomic Alpha占쏙옙 占쏙옙占쌔쇽옙占쏙옙 PL占쌤울옙占쏙옙 처占쏙옙占싼댐옙.
 	if(pEventAlpha->eAlphaEventType != SEventAlpha::E_ALPHA_EVENT_ATOMIC)
 	{
 		CNtlPLEventGenerator::AnimEventAlpha(GetSerialID(), (void*)pEventAlpha);
@@ -2592,7 +2592,7 @@ RwBool CNtlPLObject::IsExistLoopSound(RwChar* szSoundName)
 
 RwReal CNtlPLObject::GetAnimPlayTime( RwUInt32 uiAnimKey ) 
 {
-	// AnimTable�� ���� �����Ǿ� ���� �ʴٸ� �������ش�. 
+	// AnimTable占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占실억옙 占쏙옙占쏙옙 占십다몌옙 占쏙옙占쏙옙占쏙옙占쌔댐옙. 
 	if(!m_pInstanceAnimTable)
 	{
 		m_pInstanceAnimTable = NTL_NEW CNtlInstanceAnimTable();
@@ -2781,7 +2781,7 @@ RwBool CNtlPLObject::CullingTest(RwCamera* pRwCamera, RwUInt16 uiRenderFrame)
 
 				if (IsCullingTestAllAtomic())
 				{
-					// [m_vecAtomicList.size()]�� Occluder Proxy�� Bounding Sphere��.
+					// [m_vecAtomicList.size()]占쏙옙 Occluder Proxy占쏙옙 Bounding Sphere占쏙옙.
 					for (RwInt32 i = 0; i < iNumAtomic; ++i)
 					{
 #ifdef _DEBUG
@@ -2839,7 +2839,7 @@ RwBool CNtlPLObject::CullingTest(RwCamera* pRwCamera, RwUInt16 uiRenderFrame)
 			}
 			else if (iFrustumCheck + iOccluderCheck >= iNumAtomic) 
 			{
-				// Frustum + Occluder ������ Atomic �������� ���ٸ�
+				// Frustum + Occluder 占쏙옙占쏙옙占쏙옙 Atomic 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쌕몌옙
 				// OCCLUDER Flag�� ���� �Ѵ�. �� OccluderCheck ������ �����ؾ� �ϹǷ�, iFrustumCheck >= iNumAtomic�� ����ؾ߸� �����ϴ�.
 				m_uiCullFlags |= NTL_PLEFLAG_CULLED_OCCLUDER;
 			}
@@ -2908,7 +2908,7 @@ RwBool CNtlPLObject::CullingTest(RwCamera* pRwCamera)
 				}
 				else if (iFrustumCheck + iOccluderCheck >= iNumAtomic) 
 				{
-					// Frustum + Occluder ������ Atomic �������� ���ٸ�
+					// Frustum + Occluder 占쏙옙占쏙옙占쏙옙 Atomic 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쌕몌옙
 					// OCCLUDER Flag�� ���� �Ѵ�. �� OccluderCheck ������ �����ؾ� �ϹǷ�, iFrustumCheck >= iNumAtomic�� ����ؾ߸� �����ϴ�.
 					m_uiCullFlags |= NTL_PLEFLAG_CULLED_OCCLUDER;
 				}
@@ -3080,7 +3080,7 @@ RpWorldSector* NtlRpWorldSectorIntersectionOBB(RpIntersection * pIntersection, R
 	SNtlRpWorldSectorIntersectionOBB*	pNtlRpWorldSectorIntersectionOBB = (SNtlRpWorldSectorIntersectionOBB*)pData;
 	const RwBBox*						pBBoxRpWorldSector = RpWorldSectorGetBBox(pRpWorldSector);
 
-	//���� ���������̱� ���� ���� �Է�.
+	//占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙占싱깍옙 占쏙옙占쏙옙 占쏙옙占쏙옙 占쌉뤄옙.
 	OBBRpWorldSector.fAxisLen[0] = (pBBoxRpWorldSector->sup.x - pBBoxRpWorldSector->inf.x) * 0.5f;
 	OBBRpWorldSector.fAxisLen[1] = (pBBoxRpWorldSector->sup.y - pBBoxRpWorldSector->inf.y) * 0.5f;
 	OBBRpWorldSector.fAxisLen[2] = (pBBoxRpWorldSector->sup.z - pBBoxRpWorldSector->inf.z) * 0.5f;
@@ -3174,9 +3174,9 @@ void CNtlPLObject::SetObjectType(RwUInt32 uiObjectType)
 
 void CNtlPLObject::AddSceneUpdate()
 {
-	// Animation�� ���ų� ObjectType�� MINI_INDOOR_CLOSE �Ǵ� EPL_OBJECT_TYPE_MINI_INDOOR_OPEN�̸�
-	// UpdateList�� �����Ѵ�. Animation�� ������ �ִ� Object�� SetProperty���� Update Flag�� ���� �ϱ� ������
-	// ���⼭�� �����ؼ��� �ȵȴ�.
+	// Animation占쏙옙 占쏙옙占신놂옙 ObjectType占쏙옙 MINI_INDOOR_CLOSE 占실댐옙 EPL_OBJECT_TYPE_MINI_INDOOR_OPEN占싱몌옙
+	// UpdateList占쏙옙 占쏙옙占쏙옙占싼댐옙. Animation占쏙옙 占쏙옙占쏙옙占쏙옙 占쌍댐옙 Object占쏙옙 SetProperty占쏙옙占쏙옙 Update Flag占쏙옙 占쏙옙占쏙옙 占싹깍옙 占쏙옙占쏙옙占쏙옙
+	// 占쏙옙占썩서占쏙옙 占쏙옙占쏙옙占쌔쇽옙占쏙옙 占싫된댐옙.
 	if (GetObjectType() == EPL_OBJECT_TYPE_MINI_INDOOR_CLOSE || 
 		GetObjectType() == EPL_OBJECT_TYPE_MINI_INDOOR_OPEN ||
 		!m_bHaveAnim)
@@ -3187,9 +3187,9 @@ void CNtlPLObject::AddSceneUpdate()
 
 void CNtlPLObject::RemoveSceneUpdate()
 {
-	// Animation�� ���ų� ObjectType�� MINI_INDOOR_CLOSE �Ǵ� EPL_OBJECT_TYPE_MINI_INDOOR_OPEN�̸�
-	// UpdateList�� �����Ѵ�. Animation�� ������ �ִ� Object�� SetProperty���� Update Flag�� ���� �ϱ� ������
-	// ���⼭�� �����ؼ��� �ȵȴ�.
+	// Animation占쏙옙 占쏙옙占신놂옙 ObjectType占쏙옙 MINI_INDOOR_CLOSE 占실댐옙 EPL_OBJECT_TYPE_MINI_INDOOR_OPEN占싱몌옙
+	// UpdateList占쏙옙 占쏙옙占쏙옙占싼댐옙. Animation占쏙옙 占쏙옙占쏙옙占쏙옙 占쌍댐옙 Object占쏙옙 SetProperty占쏙옙占쏙옙 Update Flag占쏙옙 占쏙옙占쏙옙 占싹깍옙 占쏙옙占쏙옙占쏙옙
+	// 占쏙옙占썩서占쏙옙 占쏙옙占쏙옙占쌔쇽옙占쏙옙 占싫된댐옙.
 	if (GetObjectType() != EPL_OBJECT_TYPE_MINI_INDOOR_CLOSE && 
 		GetObjectType() != EPL_OBJECT_TYPE_MINI_INDOOR_OPEN &&
 		!m_bHaveAnim)
@@ -4357,8 +4357,8 @@ RwBool CNtlPLObject::SavePSMap(FILE* pFile)
 // 			}
 // 			else if (dNTL_WORLD_VERSION_COMPARE(dGET_WORLD_PARAM()->WorldSaveVer, dNTL_WORLD_VERSION))
 // 			{
-// 				// Save �� �� ������ �׸��� ������ �����Ѵ�. �� �� �ε� �� PSMap ������ ���� �� �ִ�.
-// 				// Load �� �ϱ� ���ؼ��� Shadow ������ Object���� ���� Load�Ǿ� ������ ���� Shadow�� Object���� ���߿� �б� ������
+// 				// Save 占쏙옙 占쏙옙 占쏙옙占쏙옙占쏙옙 占쌓몌옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싼댐옙. 占쏙옙 占쏙옙 占싸듸옙 占쏙옙 PSMap 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙 占쌍댐옙.
+// 				// Load 占쏙옙 占싹깍옙 占쏙옙占쌔쇽옙占쏙옙 Shadow 占쏙옙占쏙옙占쏙옙 Object占쏙옙占쏙옙 占쏙옙占쏙옙 Load占실억옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 Shadow占쏙옙 Object占쏙옙占쏙옙 占쏙옙占쌩울옙 占싻깍옙 占쏙옙占쏙옙占쏙옙
 // 				// ������ �̷��� �ذ��Ѵ�. ���߿� ������ �ٲپ� �����ϴ� ����� ������ ����.
 // 
 // 				CNtlWorldFieldManager* pMgr = GetSceneManager()->GetWorld()->GetWorldFieldMgr();
@@ -4745,9 +4745,9 @@ RwBool CNtlPLObject::CreateThreadSafe(void)
 	NTL_SPROFILE("CNtlPLObject::CreateThreadSafe");
 
 	Helper_SetClumpAllAtomics(GetClump(), &m_vecAtomicList);		
-	Helper_GetBoneList(GetClump(), &m_mapFrame);            // Bone List�� ������ �д�.
+	Helper_GetBoneList(GetClump(), &m_mapFrame);            // Bone List占쏙옙 占쏙옙占쏙옙占쏙옙 占싻댐옙.
 
-	// Anim�� �����Ѵ�
+	// Anim占쏙옙 占쏙옙占쏙옙占싼댐옙
 	if(m_pProperty->m_strAnimFileName.size() > 0)
 	{
 		SetAnimation(m_pProperty->m_strAnimFileName.c_str());
@@ -4761,7 +4761,7 @@ RwBool CNtlPLObject::CreateThreadSafe(void)
     }
     
 
-	// UVAnim�� Clump�� �����Ѵ�.
+	// UVAnim占쏙옙 Clump占쏙옙 占쏙옙占쏙옙占싼댐옙.
 	if(m_pUVAnim)
 	{
 		m_pUVAnim->SetClump(GetClump());
@@ -4784,7 +4784,7 @@ RwBool CNtlPLObject::CreateThreadSafe(void)
 		SetFlags(GetFlags() | NTL_PLEFLAG_SHADOW);
 	}
 
-	// clump�� ���� atomic
+	// clump占쏙옙 占쏙옙占쏙옙 atomic
 	if( GetClump() != NULL )
 	{
 		// Toon
@@ -4798,10 +4798,10 @@ RwBool CNtlPLObject::CreateThreadSafe(void)
 			RpNtlAtomicSetData(pAtomic, this);
 
 			// ����ó�� UV�ִϸ� ���� ������Ʈ�� FX����������, ȯ����� ������ �־ FX������������ ������ ������
-			// �ؿ� if(!RpMaterialUVAnimExists(pMaterial))���� ���ѹ� üũ�ϹǷ� ���� ������ �ּ�ó���մϴ�.
+			// 占쌔울옙 if(!RpMaterialUVAnimExists(pMaterial))占쏙옙占쏙옙 占쏙옙占싼뱄옙 체크占싹므뤄옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쌍쇽옙처占쏙옙占쌌니댐옙.
 			// ȯ���, UV�ִϵ��� ���� ������Ʈ�� ������ ����ٸ� �̺κ��� �ٽ� �ѹ� ������ �Ǿ� �մϴ�.
 			// �ּ��� Ǯ�� �Ǹ� UV�� ȯ����� ���� ������Ʈ�� �����ҽ� ������������ Ʋ���Ƿ� addcolor���� �ʽ��ϴ�.
-			// - ����
+			// - 占쏙옙占쏙옙
 			//if(pAtomic->pipeline == NULL && m_pUVAnim == NULL)
 			if(pAtomic->pipeline == NULL)
 			{
@@ -4845,10 +4845,10 @@ RwBool CNtlPLObject::CreateThreadSafe(void)
 		AttachLightObject();
 	}
 
-	// ������ ��ü�� �����ϰ� ����Ʈ�� �߰��Ѵ�.
+	// 占쏙옙占쏙옙占쏙옙 占쏙옙체占쏙옙 占쏙옙占쏙옙占싹곤옙 占쏙옙占쏙옙트占쏙옙 占쌩곤옙占싼댐옙.
 	m_pFadeBlend = GetAlphaBlendController()->AddAlpha(1.0f);
 
-	// Link Effect�� �����Ѵ�.
+	// Link Effect占쏙옙 占쏙옙占쏙옙占싼댐옙.
 	for(UINT i = 0; i < m_pProperty->m_vLinkEffect.size(); ++i)
 	{
 		SEventLinkEffect* pEventLinkEffect = m_pProperty->m_vLinkEffect[i];        
@@ -4879,7 +4879,7 @@ RwBool CNtlPLObject::CreateThreadSafe(void)
 		AddLoopSound(tSoundParam.hHandle);
 	}
 
-	// ó�� �ʿ� ���Խÿ� ��Ÿ���� ������Ʈ���� Fade ȿ���� �������� �ʴ´�.    
+	// 처占쏙옙 占십울옙 占쏙옙占쌉시울옙 占쏙옙타占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙트占쏙옙占쏙옙 Fade 효占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占십는댐옙.    
 	if(m_bLoadMap || (!GetSceneManager()->GetDistanceFilterEnable()))
 	{
 		m_eFadeState = FADE_VISIBLE;	        
@@ -4911,7 +4911,7 @@ RwBool CNtlPLObject::CreateOccluderProxy()
 	{
 		return COccluderProxy::CreateOccluderProxy(0.5f, m_vecAtomicList.size());
 	}
-	else // Animetion �� ������ ���� ���� Entity Bounding Sphere�� ó���Ѵ�.
+	else // Animetion 占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 Entity Bounding Sphere占쏙옙 처占쏙옙占싼댐옙.
 	{
 		return COccluderProxy::CreateOccluderProxy(0.5f, 1);
 	}
@@ -5397,7 +5397,7 @@ void CNtlPLObject::Destroy(void)
 		RemoveWorld();		
 	}
 
-	// ���⼭�� m_pClumpResource�� null pointer�� �˻����� �ʴ´�(����)
+	// 占쏙옙占썩서占쏙옙 m_pClumpResource占쏙옙 null pointer占쏙옙 占싯삼옙占쏙옙占쏙옙 占십는댐옙(占쏙옙占쏙옙)
 	CNtlPLResourceManager::GetInstance()->UnLoadScheduling(this, m_pClumpResource );
 	m_pClumpResource = NULL;
 
@@ -5572,7 +5572,7 @@ RwBool CNtlPLObject::SetThreadSafeProperty(const CNtlPLProperty *pData)
 			SetFlags(GetFlags() & ~NTL_PLEFLAG_NOTUPDATE);
 	}
 
-	//  Ʈ���� �ִϸ��̼��� ������ Update Flag�� �Ҵ�
+	//  트占쏙옙占쏙옙 占쌍니몌옙占싱쇽옙占쏙옙 占쏙옙占쏙옙占쏙옙 Update Flag占쏙옙 占쌀댐옙
 	if(m_pProperty->GetAnimTable()->GetTypeAnimMap()->size() > 0)
 	{
 		m_bHaveAnim = TRUE;
@@ -6003,7 +6003,7 @@ void CNtlPLObject::SetMatrix( RwMatrix & matWorld )
 
 	RwMatrixCopy( RwFrameGetMatrix( pFrame ), &matWorld );
 
-	// ��ġ���� �����Ѵ�.
+	// 占쏙옙치占쏙옙占쏙옙 占쏙옙占쏙옙占싼댐옙.
 	m_vWorldPosition = *RwMatrixGetPos(&matWorld);
 
 	RwFrameUpdateObjects( pFrame );
@@ -6042,9 +6042,9 @@ RwBool CNtlPLObject::SetUVAnim( const RwChar* szUVAnimFileName )
 }
 
 /**
-* �ִϸ��̼� ���ҽ��� ��ü�� �����ϰ�, ������Ʈ�� �����Ѵ�.
-* \param szAnimFileName ������ AnimFileName (*.anm)
-* return ���� ����
+* 占쌍니몌옙占싱쇽옙 占쏙옙占쌀쏙옙占쏙옙 占쏙옙체占쏙옙 占쏙옙占쏙옙占싹곤옙, 占쏙옙占쏙옙占쏙옙트占쏙옙 占쏙옙占쏙옙占싼댐옙.
+* \param szAnimFileName 占쏙옙占쏙옙占쏙옙 AnimFileName (*.anm)
+* return 占쏙옙占쏙옙 占쏙옙占쏙옙
 */
 RwBool CNtlPLObject::SetAnimation( const RwChar* szAnimFileName ) 
 {
@@ -6060,7 +6060,7 @@ RwBool CNtlPLObject::SetAnimation( const RwChar* szAnimFileName )
 	}
 	else
 	{
-		// �ε��� Anim�� �޸𸮿��� �����Ѵ�.
+		// 占싸듸옙占쏙옙 Anim占쏙옙 占쌨모리울옙占쏙옙 占쏙옙占쏙옙占싼댐옙.
 		CNtlPLResourceManager::GetInstance()->UnLoad(m_pAnimResource);
 		m_pAnimResource = NULL;
 	}
@@ -6095,7 +6095,7 @@ RwBool CNtlPLObject::SetTriggerAnimation(RwUInt32 uiAnimKey, RwReal fStartTime /
         return FALSE;
     }
 
-	// AnimTable�� ���� �����Ǿ� ���� �ʴٸ� �������ش�. 
+	// AnimTable占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占실억옙 占쏙옙占쏙옙 占십다몌옙 占쏙옙占쏙옙占쏙옙占쌔댐옙. 
 	if(!m_pInstanceAnimTable)
 	{
 		m_pInstanceAnimTable = NTL_NEW CNtlInstanceAnimTable();
@@ -6106,7 +6106,7 @@ RwBool CNtlPLObject::SetTriggerAnimation(RwUInt32 uiAnimKey, RwReal fStartTime /
 	if(!pInstanceAnimData)
 		NTL_RETURN(FALSE);
 
-	// Instance Anim Table ����
+	// Instance Anim Table 占쏙옙占쏙옙
 	if(!m_pAnimLayer)
 	{
 		CreateAnim();
@@ -6129,7 +6129,7 @@ RwBool CNtlPLObject::SetTriggerAnimation(RwUInt32 uiAnimKey, RwReal fStartTime /
 
 	m_uiCurAnimKey = uiAnimKey;
 
-	// Play time�� 0 ~ 1 ���� ������ �����Ѵ�
+	// Play time占쏙옙 0 ~ 1 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싼댐옙
 	RwReal fPlayTime = fStartTime;
 	fPlayTime = (FLT_MAX == fPlayTime ? 0.f : fPlayTime);
 	fPlayTime = fabs(fPlayTime);
@@ -6186,7 +6186,7 @@ void CNtlPLObject::CalcBoundingSphere()
 	m_BSphere.center = m_BSphere.center - GetPosition();
 }
 
-// GetPosition���� ������Ʈ�� ���� ���������� ������.
+// GetPosition占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙트占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙.
 // ������ �� ��� �ٽ� �����Ѵ�.
 // RwSphere* CNtlPLObject::GetBoundingSphere()
 // {
@@ -6571,7 +6571,7 @@ RwBool CNtlPLObject::UpdateFadeSystem()
 		// Fade In
 		else if(m_eFadeState == FADE_NOT_VISIBLE && fDistCamera <= GetVisibleCullingDistance())
 		{
-			//m_eFadeState = FADE_IN_EFFECT;             // ��Ÿ������ Effect���� ��Ÿ���� (������Ʈ�� ���Ŀ� ��Ÿ����)            
+			//m_eFadeState = FADE_IN_EFFECT;             // 占쏙옙타占쏙옙占쏙옙占쏙옙 Effect占쏙옙占쏙옙 占쏙옙타占쏙옙占쏙옙 (占쏙옙占쏙옙占쏙옙트占쏙옙 占쏙옙占식울옙 占쏙옙타占쏙옙占쏙옙)            
 			/// -- Fade In �ɶ��� ������Ʈ�� ����Ʈ�� ���� ��Ÿ���� (2007.7.31 by agebreak - �μ��� �䱸����)
 			m_eFadeState = FADE_IN_OBJECT;
 			m_fFadeTime = 0.0f;
@@ -6634,7 +6634,7 @@ RwBool CNtlPLObject::UpdateFading(RwReal fElapsedTime)
 		}
 		else
 		{
-			// Alpha�� 0%->100%�� ��ȭ��Ų��. 
+			// Alpha占쏙옙 0%->100%占쏙옙 占쏙옙화占쏙옙킨占쏙옙. 
 			m_pFadeBlend->SetWeight(m_fFadeTime / CNtlPLGlobal::m_fDistFiterObjFrequency);            
 		}
 		break;
@@ -6662,7 +6662,7 @@ RwBool CNtlPLObject::UpdateFading(RwReal fElapsedTime)
 		}            
 		else
 		{
-			// Alpha�� 100%->0%�� ��ȯ��ĭ��.           
+			// Alpha占쏙옙 100%->0%占쏙옙 占쏙옙환占쏙옙칸占쏙옙.           
 			m_pFadeBlend->SetWeight((CNtlPLGlobal::m_fDistFiterObjFrequency - m_fFadeTime) / CNtlPLGlobal::m_fDistFiterObjFrequency);            
 		}   
 		break;
@@ -6725,20 +6725,20 @@ RpAtomic *CNtlPLObject::RenderCallBack(RpAtomic *pAtomic)
 					nMatCount = RENDER_MAX_COLOR_TEMP;
 				}
 
-				// Atomic�� ������ Alpha ������ ����                
+				// Atomic占쏙옙 占쏙옙占쏙옙占쏙옙 Alpha 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙                
 				sColorRatioReal.alpha *= RpNtlAtomicGetAlpha(pAtomic) / 255.0f;
 
-				// Fade�� ���� Weight Alpha������ ����
-#ifdef dNTL_WORLD_TOOL_MODE	// �������� ������ Fade Alpha ����
+				// Fade占쏙옙 占쏙옙占쏙옙 Weight Alpha占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙
+#ifdef dNTL_WORLD_TOOL_MODE	// 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 Fade Alpha 占쏙옙占쏙옙
 				sColorRatioReal.alpha *= pEntity->GetWeightAlpha();
 #else
-				if(!(pEntity->GetFlags() & NTL_PLEFLAG_OBJECT_FORCE_VISIBLE)) // �÷��װ� �����ִٸ�, Fade alpha�� �������� �ʴ´�.
+				if(!(pEntity->GetFlags() & NTL_PLEFLAG_OBJECT_FORCE_VISIBLE)) // 占시뤄옙占쌓곤옙 占쏙옙占쏙옙占쌍다몌옙, Fade alpha占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占십는댐옙.
 				{
 					sColorRatioReal.alpha *= pEntity->GetWeightAlpha();
 				}
 #endif                
 
-				if(sColorRatioReal.alpha == 0.0f)       // ���İ� 0.0�̸� ���������� �ʴ´�.
+				if(sColorRatioReal.alpha == 0.0f)       // 占쏙옙占식곤옙 0.0占싱몌옙 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占십는댐옙.
 					NTL_RPROFILE(pAtomic);
 
 				// Alpha Test ATomic�� Alpha ���� ����( Alpha Test�� ��� 208 �̻��� ��� ����� �����)
@@ -6839,8 +6839,8 @@ RpClump * CNtlPLObject::GetClump( void ) const
 }
 
 /**
-* Fade ȿ�� ���¸� �����Ѵ�.
-* \param bEnable Fade ȿ�� ����
+* Fade 효占쏙옙 占쏙옙占승몌옙 占쏙옙占쏙옙占싼댐옙.
+* \param bEnable Fade 효占쏙옙 占쏙옙占쏙옙
 * return 
 */
 void CNtlPLObject::SetFadeEnable(RwBool bEnable)
@@ -6872,7 +6872,7 @@ void CNtlPLObject::SetFadeEnable(RwBool bEnable)
 	{
 		SetFlags(uiFlags & (~NTL_PLEFLAG_FADE));
 
-		// Visual Manager�� Update List�� ���ԵǾ� ������ �����Ѵ�
+		// Visual Manager占쏙옙 Update List占쏙옙 占쏙옙占쌉되억옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싼댐옙
  		if(m_eFadeState != FADE_VISIBLE && m_eFadeState != FADE_NOT_VISIBLE && !m_bHaveAnim)
  		{
 			RemoveSceneUpdate();
@@ -6939,12 +6939,12 @@ void CNtlPLObject::OnEventAnimEnd( SEventAnimEnd* pEventAnimEnd )
 
 void CNtlPLObject::OnEventVisualSound( SEventSound* pEventSound ) 
 {
-	// Sound�� Play�Ѵ�.    
+	// Sound占쏙옙 Play占싼댐옙.    
 
 	if(strlen(pEventSound->chSoundName) <= 1)
 		return ;
 
-	// LoopSound�̰� �̹� ������ Play�ǰ� �ִٸ� Play���� �ʴ´�.
+	// LoopSound占싱곤옙 占싱뱄옙 占쏙옙占쏙옙占쏙옙 Play占실곤옙 占쌍다몌옙 Play占쏙옙占쏙옙 占십는댐옙.
 	if(pEventSound->bLoop && IsExistLoopSound(pEventSound->chSoundName))
 		return ;
 
@@ -6982,7 +6982,7 @@ void CNtlPLObject::OnEventVisualSound( SEventSound* pEventSound )
 		soundFileName = pEventSound->chSoundName;
 	}
 
-	// ��ġ�� �������� �����Ѵ�
+	// 占쏙옙치占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싼댐옙
 	RwReal fSoundPitch = NtlRandomNumber(pEventSound->fSoundPitchMin, pEventSound->fSoundPitchMax);
 
 	sNtlSoundPlayParameta tSoundParam;
@@ -6999,7 +6999,7 @@ void CNtlPLObject::OnEventVisualSound( SEventSound* pEventSound )
 
 	int iRet = GetSoundManager()->Play(&tSoundParam);
 
-	// Loop Sound�� ����Ʈ�� �߰��Ѵ�.
+	// Loop Sound占쏙옙 占쏙옙占쏙옙트占쏙옙 占쌩곤옙占싼댐옙.
 	if(iRet == SOUNDRESULT_OK && pEventSound->bLoop && tSoundParam.hHandle != INVALID_SOUND_HANDLE)
 	{
 		AddLoopSound(tSoundParam.hHandle);
@@ -7008,7 +7008,7 @@ void CNtlPLObject::OnEventVisualSound( SEventSound* pEventSound )
 
 void CNtlPLObject::OnEventVisualEffect( SEventVisualEffect* pEventVisualEffect ) 
 {
-	//Effect Name�� ���� ���� ������ Return�� �Ѵ�.
+	//Effect Name占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 Return占쏙옙 占싼댐옙.
 	if( strlen(pEventVisualEffect->chEffectName) <= 0)
 		return;
 
@@ -7016,7 +7016,7 @@ void CNtlPLObject::OnEventVisualEffect( SEventVisualEffect* pEventVisualEffect )
 		pEventVisualEffect->bAttachBone)
 		return;
 
-	// ���� LoopEffect ����Ʈ�� ���� �̸�,Bone�� ������ ���� �������� �ʴ´�.
+	// 占쏙옙占쏙옙 LoopEffect 占쏙옙占쏙옙트占쏙옙 占쏙옙占쏙옙 占싱몌옙,Bone占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占십는댐옙.
 	if(IsExistLoopEffect(pEventVisualEffect->chEffectName, pEventVisualEffect->chBoneName))
 		return;
 
@@ -7062,7 +7062,7 @@ void CNtlPLObject::OnEventVisualEffect( SEventVisualEffect* pEventVisualEffect )
 
 void CNtlPLObject::OnEventAlphaFade( SEventAlpha* pEventAlpha ) 
 {
-	// Atomic Alpha�� ���ؼ��� PL�ܿ��� ó���Ѵ�.
+	// Atomic Alpha占쏙옙 占쏙옙占쌔쇽옙占쏙옙 PL占쌤울옙占쏙옙 처占쏙옙占싼댐옙.
 	if(pEventAlpha->eAlphaEventType != SEventAlpha::E_ALPHA_EVENT_ATOMIC)
 	{
 		CNtlPLEventGenerator::AnimEventAlpha(GetSerialID(), (void*)pEventAlpha);
@@ -7138,7 +7138,7 @@ RwBool CNtlPLObject::IsExistLoopSound( RwChar* szSoundName )
 
 RwReal CNtlPLObject::GetAnimPlayTime( RwUInt32 uiAnimKey ) 
 {
-	// AnimTable�� ���� �����Ǿ� ���� �ʴٸ� �������ش�. 
+	// AnimTable占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占실억옙 占쏙옙占쏙옙 占십다몌옙 占쏙옙占쏙옙占쏙옙占쌔댐옙. 
 	if(!m_pInstanceAnimTable)
 	{
 		m_pInstanceAnimTable = NTL_NEW CNtlInstanceAnimTable();
@@ -7285,7 +7285,7 @@ void CNtlPLObject::CheckToonData()
 	if(!pToonGeo || !pAtomic)
 		return;
 
-	// Toon ���� (�׽�Ʈ)
+	// Toon 占쏙옙占쏙옙 (占쌓쏙옙트)
 	m_pToonData = NTL_NEW SToonData();
 	m_pToonData->pTexture = CNtlPLResourceManager::GetInstance()->LoadTexture("smooth.png", "texture/toon/");
 	DBO_ASSERT(m_pToonData->pTexture, "Texture load failed.");
@@ -7327,7 +7327,7 @@ RwBool CNtlPLObject::CullingTest(RwCamera* pRwCamera, RwUInt16 uiRenderFrame)
 
 				if (IsCullingTestAllAtomic())
 				{
-					// [m_vecAtomicList.size()]�� Occluder Proxy�� Bounding Sphere��.
+					// [m_vecAtomicList.size()]占쏙옙 Occluder Proxy占쏙옙 Bounding Sphere占쏙옙.
 					for (RwInt32 i = 0; i < iNumAtomic; ++i)
 					{
 #ifdef _DEBUG
@@ -7385,7 +7385,7 @@ RwBool CNtlPLObject::CullingTest(RwCamera* pRwCamera, RwUInt16 uiRenderFrame)
 			}
 			else if (iFrustumCheck + iOccluderCheck >= iNumAtomic) 
 			{
-				// Frustum + Occluder ������ Atomic �������� ���ٸ�
+				// Frustum + Occluder 占쏙옙占쏙옙占쏙옙 Atomic 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쌕몌옙
 				// OCCLUDER Flag�� ���� �Ѵ�. �� OccluderCheck ������ �����ؾ� �ϹǷ�, iFrustumCheck >= iNumAtomic�� ����ؾ߸� �����ϴ�.
 				m_uiCullFlags |= NTL_PLEFLAG_CULLED_OCCLUDER;
 			}
@@ -7454,7 +7454,7 @@ RwBool CNtlPLObject::CullingTest(RwCamera* pRwCamera)
 				}
 				else if (iFrustumCheck + iOccluderCheck >= iNumAtomic) 
 				{
-					// Frustum + Occluder ������ Atomic �������� ���ٸ�
+					// Frustum + Occluder 占쏙옙占쏙옙占쏙옙 Atomic 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쌕몌옙
 					// OCCLUDER Flag�� ���� �Ѵ�. �� OccluderCheck ������ �����ؾ� �ϹǷ�, iFrustumCheck >= iNumAtomic�� ����ؾ߸� �����ϴ�.
 					m_uiCullFlags |= NTL_PLEFLAG_CULLED_OCCLUDER;
 				}
@@ -7626,7 +7626,7 @@ RpWorldSector* NtlRpWorldSectorIntersectionOBB(RpIntersection * pIntersection, R
 	SNtlRpWorldSectorIntersectionOBB*	pNtlRpWorldSectorIntersectionOBB = (SNtlRpWorldSectorIntersectionOBB*)pData;
 	const RwBBox*						pBBoxRpWorldSector = RpWorldSectorGetBBox(pRpWorldSector);
 	
-	//���� ���������̱� ���� ���� �Է�.
+	//占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙占싱깍옙 占쏙옙占쏙옙 占쏙옙占쏙옙 占쌉뤄옙.
 	OBBRpWorldSector.fAxisLen[0] = (pBBoxRpWorldSector->sup.x - pBBoxRpWorldSector->inf.x) * 0.5f;
 	OBBRpWorldSector.fAxisLen[1] = (pBBoxRpWorldSector->sup.y - pBBoxRpWorldSector->inf.y) * 0.5f;
 	OBBRpWorldSector.fAxisLen[2] = (pBBoxRpWorldSector->sup.z - pBBoxRpWorldSector->inf.z) * 0.5f;
@@ -7720,9 +7720,9 @@ void CNtlPLObject::SetObjectType(RwUInt32 uiObjectType)
 
 void CNtlPLObject::AddSceneUpdate()
 {
-	// Animation�� ���ų� ObjectType�� MINI_INDOOR_CLOSE �Ǵ� EPL_OBJECT_TYPE_MINI_INDOOR_OPEN�̸�
-	// UpdateList�� �����Ѵ�. Animation�� ������ �ִ� Object�� SetProperty���� Update Flag�� ���� �ϱ� ������
-	// ���⼭�� �����ؼ��� �ȵȴ�.
+	// Animation占쏙옙 占쏙옙占신놂옙 ObjectType占쏙옙 MINI_INDOOR_CLOSE 占실댐옙 EPL_OBJECT_TYPE_MINI_INDOOR_OPEN占싱몌옙
+	// UpdateList占쏙옙 占쏙옙占쏙옙占싼댐옙. Animation占쏙옙 占쏙옙占쏙옙占쏙옙 占쌍댐옙 Object占쏙옙 SetProperty占쏙옙占쏙옙 Update Flag占쏙옙 占쏙옙占쏙옙 占싹깍옙 占쏙옙占쏙옙占쏙옙
+	// 占쏙옙占썩서占쏙옙 占쏙옙占쏙옙占쌔쇽옙占쏙옙 占싫된댐옙.
 	if (GetObjectType() == EPL_OBJECT_TYPE_MINI_INDOOR_CLOSE || 
 		GetObjectType() == EPL_OBJECT_TYPE_MINI_INDOOR_OPEN ||
 		!m_bHaveAnim)
@@ -7733,9 +7733,9 @@ void CNtlPLObject::AddSceneUpdate()
 
 void CNtlPLObject::RemoveSceneUpdate()
 {
-	// Animation�� ���ų� ObjectType�� MINI_INDOOR_CLOSE �Ǵ� EPL_OBJECT_TYPE_MINI_INDOOR_OPEN�̸�
-	// UpdateList�� �����Ѵ�. Animation�� ������ �ִ� Object�� SetProperty���� Update Flag�� ���� �ϱ� ������
-	// ���⼭�� �����ؼ��� �ȵȴ�.
+	// Animation占쏙옙 占쏙옙占신놂옙 ObjectType占쏙옙 MINI_INDOOR_CLOSE 占실댐옙 EPL_OBJECT_TYPE_MINI_INDOOR_OPEN占싱몌옙
+	// UpdateList占쏙옙 占쏙옙占쏙옙占싼댐옙. Animation占쏙옙 占쏙옙占쏙옙占쏙옙 占쌍댐옙 Object占쏙옙 SetProperty占쏙옙占쏙옙 Update Flag占쏙옙 占쏙옙占쏙옙 占싹깍옙 占쏙옙占쏙옙占쏙옙
+	// 占쏙옙占썩서占쏙옙 占쏙옙占쏙옙占쌔쇽옙占쏙옙 占싫된댐옙.
 	if (GetObjectType() != EPL_OBJECT_TYPE_MINI_INDOOR_CLOSE && 
 		GetObjectType() != EPL_OBJECT_TYPE_MINI_INDOOR_OPEN &&
 		!m_bHaveAnim)

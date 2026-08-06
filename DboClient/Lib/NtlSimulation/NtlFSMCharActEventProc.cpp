@@ -87,7 +87,7 @@ void FillAttackStuff(SAttackStuff *pAttStuff, SERIAL_HANDLE hAttackerSerialId, S
 		bSkillConsider = FALSE;
 	}
 	
-	// skill ���� DH or HOT or DB or BB or DC or CB
+	// skill 占쏙옙占쏙옙 DH or HOT or DB or BB or DC or CB
 	if(bSkillConsider && byLogicType == NTL_ATTACK_LOGIC_SKILL)
 	{
 		CSkillTable *pSkillTbl = API_GetTableContainer()->GetSkillTable();
@@ -236,7 +236,7 @@ RwUInt8 JumpKeyStopMapping(RwUInt8 byCurrKey)
 
 void HitTargetEffectDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 {
-	// Guard Block�� ����������...
+	// Guard Block占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙...
 	RwUInt8 byBlocking			= pHitStuff->uiAttr.bitBlocking;
 	RwUInt8 byTargetEffectDir	= pHitStuff->byTargetEffectDir;
 
@@ -250,13 +250,13 @@ void HitTargetEffectDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 	CNtlSobProxy *pSobProxy = pActor->GetSobProxy();
 	RwV3d vPos = pActor->GetPosition();
 
-	// �⺻ attack effect
+	// 占썩본 attack effect
 	RwV3d vTargetEffPos;
 	CNtlPLEntity *pPLTarEntity = NULL;
 	if(pHitStuff->bCreateHitStuffEffect && strlen(pHitStuff->chTargetEffName) > 0)
 	{
         vTargetEffPos = vPos;
-		// physic ����(miss �϶��� Ÿ�� ����Ʈ�� ����.)
+		// physic 占쏙옙占쏙옙(miss 占싹띰옙占쏙옙 타占쏙옙 占쏙옙占쏙옙트占쏙옙 占쏙옙占쏙옙.)
 		if(pHitStuff->uiAttr.bitPhysic == NTL_ATTACK_PHYSIC_MELEE)
 		{
 			if(pHitStuff->uiAttr.bitResult != NTL_ATTACK_RESULT_DODGE)
@@ -285,7 +285,7 @@ void HitTargetEffectDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 					
 			}
 		}
-		// energy attack.(healing, buff ���� ����)
+		// energy attack.(healing, buff 占쏙옙占쏙옙 占쏙옙占쏙옙)
 		else
 		{
 			
@@ -303,7 +303,7 @@ void HitTargetEffectDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 		}
 	}
 
-	// target effect ������ �����Ѵ�.)
+	// target effect 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싼댐옙.)
 	if(pPLTarEntity)
 	{
 		if(byTargetEffectDir != TARGET_EFFECT_TYPE_NONE)
@@ -344,7 +344,7 @@ void HitResultDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 	RwV3d vPos = pActor->GetPosition();
 	RwV3d vTargetEffPos;
 
-	// heal or buff skill�� �ƴϸ�?
+	// heal or buff skill占쏙옙 占싣니몌옙?
 	RwUInt8 byResult	= pHitStuff->uiAttr.bitResult;
 	RwUInt8 byBlocking	= pHitStuff->uiAttr.bitBlocking;
 
@@ -499,17 +499,17 @@ void HitResultDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 		}
 		else if(byResult == NTL_ATTACK_RESULT_HEALING)
 		{
-			// damage�� ����Ѵ�.
+			// damage를 출력한다.
 			pSobProxy->CreatePLDamageBox(vPos, pHitStuff->sDamageStuff.iDamage, TRUE);
 		}
 	}
 
 	//---------------------------------------------------
-	// blocking effect ���.
+	// blocking effect 출력.
 		
 	if(byBlocking != DBO_GUARD_TYPE_INVALID)
 	{
-		// effect ����.
+		// effect 占쏙옙占쏙옙.
 
 		RwReal fPLEntityHalfWidth = pSobProxy->GetPLEntityWidth()/2.0f;
 		RwReal fPLEntityHeight = pSobProxy->GetPLEntityHeight();
@@ -565,7 +565,7 @@ void HitResultDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 
 void HitStatusStealSkillDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 {
-	if(pHitStuff->uiAttr.bitResult == NTL_ATTACK_RESULT_STEAL ||            // �� �÷��״� Projectile �����̴�. (Client ó����) �Ʒ� �ڵ� ����
+	if(pHitStuff->uiAttr.bitResult == NTL_ATTACK_RESULT_STEAL ||            // 占쏙옙 占시뤄옙占쌓댐옙 Projectile 占쏙옙占쏙옙占싱댐옙. (Client 처占쏙옙占쏙옙) 占싣뤄옙 占쌘듸옙 占쏙옙占쏙옙
        pHitStuff->uiAttr.bitResult == NTL_ATTACK_RESULT_BLOCK ||
        pHitStuff->uiAttr.bitReserved == NTL_ATTACK_RESULT_DODGE)
 		return;
@@ -630,7 +630,7 @@ void HitStatusStealSkillDirect(CNtlSobActor *pActor, const SHitStuff *pHitStuff)
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// event ó�� �Լ�.
+// event 처占쏙옙 占쌉쇽옙.
 
 void FSMEvent_CharActActionMapJump(CNtlSobActor *pActor, SNtlEventActionMapJump *pJump, CNtlFSMStateBase *pStateBase)
 {
@@ -792,7 +792,7 @@ void FSMEvent_CharActActionMapAutoFollow(CNtlSobActor *pActor, SNtlEventActionMa
 	pMoveStuff->byFormFlag = NTL_MOVE_FLAG_RUN;
 	pMoveStuff->hFollowSerialId = pAutoFollow->hTargetSerialId;
 
-    // ���� ��ġ�� �������� �������� �ľ��Ѵ�.    
+    // 占쏙옙占쏙옙 占쏙옙치占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占식억옙占싼댐옙.    
     SWorldHeightStuff hStuff;
     if(Logic_IsSwimmingActor(pActor, &pActor->GetPosition(), hStuff))
         pMoveStuff->byForm = NTL_MOVEFORM_SWIMMING;

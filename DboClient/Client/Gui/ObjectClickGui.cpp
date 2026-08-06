@@ -53,10 +53,10 @@ RwBool CObjectClickGui::Create()
 
 	m_TimeEffect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "ObjectClick.srf", "srfBackCircle" ) );
 
-	// ¹Ù´Ã ±×¸²
+	// ë°”ëŠ˜ ê·¸ë¦¼
 	m_srfNeedle.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("ObjectClick.srf", "srfNeedle"));
 
-	// ¹Ý»ç±¤
+	// ë°˜ì‚¬ê´‘
 	m_srfReflectedLight.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("ObjectClick.srf", "srfReflectedLight"));
 
 	// sig	
@@ -172,7 +172,7 @@ VOID CObjectClickGui::HandleEvents( RWS::CMsg &msg )
 
 		if( pEvent->bShow )
 		{
-			// ¹Ð¸®¼¼ÄÁµå ´ÜÀ§°¡ µé¾î¿Â´Ù
+			// ë°€ë¦¬ì„¸ì»¨ë“œ ë‹¨ìœ„ê°€ ë“¤ì–´ì˜¨ë‹¤
 			m_fLastTime		= (RwReal)pEvent->uiPlayTime/1000.f;
 			m_fRemainTime	= (RwReal)pEvent->uiPlayTime/1000.f;
 

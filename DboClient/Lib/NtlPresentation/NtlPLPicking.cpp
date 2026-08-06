@@ -37,7 +37,7 @@ const RwSphere* NtlCustomBoundingSphere( RpAtomic * atomic, void* pData )
 		return pOriginSphere;
 	}
 
-	// ¹Ù¿îµùÀÇ Å©±â°¡ 0.7M ÀÌÇÏÀÎ °æ¿ìÀÇ Bounding box resizing ¾Ë°í¸®Áò
+	// ë°”ìš´ë”©ì˜ í¬ê¸°ê°€ 0.7M ì´í•˜ì¸ ê²½ìš°ì˜ Bounding box resizing ì•Œê³ ë¦¬ì¦˜
 	if ( pOriginSphere->radius < 0.7f )
 	{
 		RwV3d* pCamPos = (RwV3d*)pData;
@@ -463,7 +463,7 @@ RpAtomic* Collision_IntersectionCharacterBoxAtomic( RpIntersection* pIntersectio
 	return pAtomic;
 }
 
-// ¿À¸§ Â÷¼ø sorting(°¡±î¿î °ÍÀÌ ¾Õ¿¡ ¿Â´Ù)
+// ì˜¤ë¦„ ì°¨ìˆœ sorting(ê°€ê¹Œìš´ ê²ƒì´ ì•ì— ì˜¨ë‹¤)
 int Pick_DepthSortFunc(const void *a, const void *b)
 {
 	/*
@@ -482,7 +482,7 @@ int Pick_DepthSortFunc(const void *a, const void *b)
 }
 
 /**
-* Ãæµ¹ °¡´É AtomicÀÎÁö °Ë»çÇÑ´Ù
+* ì¶©ëŒ ê°€ëŠ¥ Atomicì¸ì§€ ê²€ì‚¬í•œë‹¤
 **/
 RwBool IsCollisionAtomic(RpAtomic* pAtomic)
 {
@@ -521,7 +521,7 @@ RwBool IsCollisionAtomic(RpAtomic* pAtomic)
 }
 
 /**
-* mouse pickingÀ» ÇÑ´Ù.
+* mouse pickingì„ í•œë‹¤.
 */
 void Pick_WorldIntersectionLine(RwLine& Line, SWorldPickInfo& sPickInfo, RwReal fRayDist)
 {
@@ -544,12 +544,12 @@ void Pick_WorldIntersectionLine(RwLine& Line, SWorldPickInfo& sPickInfo, RwReal 
 	//	RpWorldForAllAtomicIntersections( CNtlPLGlobal::m_pRpWorld, &Intersection, Pick_IntersectionLineAtomicCB, &sPickInfo);
 	NtlWorldForAllAtomicIntersections_CustomBBox( CNtlPLGlobal::m_pRpWorld, &Intersection, NtlCustomBoundingSphere, &RwCameraGetFrame(CNtlPLGlobal::m_RwCamera)->modelling.pos, Pick_IntersectionLineAtomicCB, &sPickInfo );
 
-	// Á»´õ ºü¸¥ ¼Óµµ¸¦ À§ÇÏ¿©... qsortµµ ¾ÈÇÏ´Â ¹æ¹ıÀ» »ı°¢ÇØ ºÁ¾ß ÇÑ´Ù.(¿¹¸¦ µé¸é depth ¸¦ ºñ±³¹®À¸·Î ÇÏ¿© ¾´´Ù.)
+	// ì¢€ë” ë¹ ë¥¸ ì†ë„ë¥¼ ìœ„í•˜ì—¬... qsortë„ ì•ˆí•˜ëŠ” ë°©ë²•ì„ ìƒê°í•´ ë´ì•¼ í•œë‹¤.(ì˜ˆë¥¼ ë“¤ë©´ depth ë¥¼ ë¹„êµë¬¸ìœ¼ë¡œ í•˜ì—¬ ì“´ë‹¤.)
 	// qsort((void*)sPickInfo.sAtomic, sPickInfo.byAtomicCnt, sizeof(SPickAtomic), Pick_DepthSortFunc);
 }
 
 /**
-* Ãæµ¹µÇ´Â height field ³ôÀÌ¸¦ ±¸ÇÏ´Â collision logic¿¡ optimize µÇ¾î ÀÖ´Ù.
+* ì¶©ëŒë˜ëŠ” height field ë†’ì´ë¥¼ êµ¬í•˜ëŠ” collision logicì— optimize ë˜ì–´ ìˆë‹¤.
 */
 RwBool Collision_HeightFieldIntersectionLineTopDown(RwLine& Line, SWorldIntersect& sInter)
 {
@@ -571,7 +571,7 @@ RwBool Collision_HeightFieldIntersectionLineTopDown(RwLine& Line, SWorldIntersec
 }
 
 /**
-* Ãæµ¹µÇ´Â Indoor ³ôÀÌ¸¦ ±¸ÇÏ´Â collision logic¿¡ optimize µÇ¾î ÀÖ´Ù.
+* ì¶©ëŒë˜ëŠ” Indoor ë†’ì´ë¥¼ êµ¬í•˜ëŠ” collision logicì— optimize ë˜ì–´ ìˆë‹¤.
 */
 RwBool Collision_IndoorIntersectionLineTopDown(RwLine& Line, SWorldIntersect& sInter)
 {
@@ -587,7 +587,7 @@ RwBool Collision_IndoorIntersectionLineTopDown(RwLine& Line, SWorldIntersect& sI
 
 
 /**
-* Ãæµ¹µÇ´Â object ³ôÀÌ¸¦ ±¸ÇÏ´Â collision logic¿¡ optimize µÇ¾î ÀÖ´Ù.
+* ì¶©ëŒë˜ëŠ” object ë†’ì´ë¥¼ êµ¬í•˜ëŠ” collision logicì— optimize ë˜ì–´ ìˆë‹¤.
 */
 RwBool Collision_WorldIntersectionLineTopDown(RwLine& Line, SWorldIntersect& sInter)
 {
@@ -603,7 +603,7 @@ RwBool Collision_WorldIntersectionLineTopDown(RwLine& Line, SWorldIntersect& sIn
 }
 
 /**
-* Ãæµ¹µÇ´Â mini indoor object ³ôÀÌ¸¦ ±¸ÇÏ´Â collision logic¿¡ optimize µÇ¾î ÀÖ´Ù.
+* ì¶©ëŒë˜ëŠ” mini indoor object ë†’ì´ë¥¼ êµ¬í•˜ëŠ” collision logicì— optimize ë˜ì–´ ìˆë‹¤.
 */
 RwBool Collision_MiniIndoorIntersectionLineTopDown(RwLine& Line, SWorldIntersect& sInter)
 {
@@ -647,7 +647,7 @@ RwBool Collision_WorldIntersectionObjectForTarget( const RwLine& line, SWorldPic
 }
 
 /**
-* world objectÁß¿¡ Ãæµ¹µÇ´Â atomicÀ» ±¸ÇÑ´Ù.
+* world objectì¤‘ì— ì¶©ëŒë˜ëŠ” atomicì„ êµ¬í•œë‹¤.
 */
 RwBool Collision_WorldIntersectionCharacter(RwBBox& box, SWorldCharIntersectionInfo& sCharInfo)
 {
@@ -684,7 +684,7 @@ RwBool Collision_WorldIntersectionWorldSector(RwLine& Line, SWorldCharIntersecti
 }
 
 /**
-* world objectÁß¿¡ Ãæµ¹µÇ´Â atomicÀ» ±¸ÇÑ´Ù.
+* world objectì¤‘ì— ì¶©ëŒë˜ëŠ” atomicì„ êµ¬í•œë‹¤.
 */
 RwBool Collision_WorldIntersectionCharacterData(RwLine& Line, RpAtomic *pAtomic, SWorldCharIntersectionData& sCharDataInfo)
 {
@@ -792,12 +792,12 @@ RpAtomic* Collision_CameraAtomicSphereCB( RpIntersection* pIntersection, RpWorld
 
 
 /**
-* world»óÀÇ °ø°£¿¡¼­ camera Ãæµ¹ Á¤º¸¸¦ ±¸ÇÑ´Ù.
+* worldìƒì˜ ê³µê°„ì—ì„œ camera ì¶©ëŒ ì •ë³´ë¥¼ êµ¬í•œë‹¤.
 */
 
 RwBool Collision_CameraCenterIntersection( const RwV3d& vCameraPos, const RwV3d& vLookAt, RwReal fRadius, RwV3d& vNewPos )
 {
-	// Ä³¸¯ÅÍ¿¡¼­ Ä«¸Ş¶ó¸¦ ¹Ù¶óº¸´Â º¤ÅÍ °è»ê
+	// ìºë¦­í„°ì—ì„œ ì¹´ë©”ë¼ë¥¼ ë°”ë¼ë³´ëŠ” ë²¡í„° ê³„ì‚°
 	RwV3d vCharToCamDir = vCameraPos - vLookAt;
 	RwReal fCharToCamDist = RwV3dNormalize( &vCharToCamDir, &vCharToCamDir );
 	if ( fCharToCamDist <= 0.0001f )
@@ -805,19 +805,19 @@ RwBool Collision_CameraCenterIntersection( const RwV3d& vCameraPos, const RwV3d&
 		return FALSE;
 	}
 
-	// Line Ãæµ¹ Á¤º¸ ÃÊ±âÈ­
+	// Line ì¶©ëŒ ì •ë³´ ì´ˆê¸°í™”
 	g_CameraInterParam.sLineAtomicData.byCollCount = 0;
 
-	// Center intersection ray ±¸¼º
+	// Center intersection ray êµ¬ì„±
 	RpIntersection sCenterIntersData;
 	sCenterIntersData.type = rpINTERSECTLINE;
 	sCenterIntersData.t.line.start = vLookAt;
 	sCenterIntersData.t.line.end = vCameraPos;
 
-	// Center intersection °Ë»ç
+	// Center intersection ê²€ì‚¬
 	RpWorldForAllAtomicIntersections( CNtlPLGlobal::m_pRpWorld, &sCenterIntersData, Collision_CameraAtomicLineCB, NULL );
 
-	// Center intersection °á°ú Ã³¸®
+	// Center intersection ê²°ê³¼ ì²˜ë¦¬
 	if ( g_CameraInterParam.sLineAtomicData.byCollCount > 0 )
 	{
 		RwUInt8 byIndex = 255;
@@ -852,7 +852,7 @@ RwBool Collision_CameraCenterIntersection( const RwV3d& vCameraPos, const RwV3d&
 
 RwBool Collision_CameraBoundaryIntersection( const RwV3d& vCameraPos, const RwV3d& vLookAt, RwReal fRadius, RwV3d& vNewPos )
 {
-	// Ä³¸¯ÅÍ¿¡¼­ Ä«¸Ş¶ó¸¦ ¹Ù¶óº¸´Â º¤ÅÍ °è»ê
+	// ìºë¦­í„°ì—ì„œ ì¹´ë©”ë¼ë¥¼ ë°”ë¼ë³´ëŠ” ë²¡í„° ê³„ì‚°
 	RwV3d vCharToCamDir = vCameraPos - vLookAt;
 	RwReal fCharToCamDist = RwV3dNormalize( &vCharToCamDir, &vCharToCamDir );
 	if ( fCharToCamDist <= 0.0001f )
@@ -861,33 +861,33 @@ RwBool Collision_CameraBoundaryIntersection( const RwV3d& vCameraPos, const RwV3
 	}
 
 	//////////////////////////////////////////////////////////////////////////
-	// Sphere Ãæµ¹
+	// Sphere ì¶©ëŒ
 	//////////////////////////////////////////////////////////////////////////
 
-	// Sphere Ãæµ¹ Á¤º¸ ÃÊ±âÈ­
+	// Sphere ì¶©ëŒ ì •ë³´ ì´ˆê¸°í™”
 	g_CameraInterParam.sLineAtomicData.byCollCount = 0;
 
-	// Sphere intersection ray ±¸¼º
+	// Sphere intersection ray êµ¬ì„±
 	RpIntersection sSphereIntersData;
 	sSphereIntersData.type = rpINTERSECTSPHERE;
 	sSphereIntersData.t.sphere.center = vCameraPos;
 	sSphereIntersData.t.sphere.radius = fRadius;
 
-	// Sphere intersection °Ë»ç
+	// Sphere intersection ê²€ì‚¬
 	RpWorldForAllAtomicIntersections( CNtlPLGlobal::m_pRpWorld, &sSphereIntersData, Collision_CameraAtomicSphereCB, NULL );
 
-	// Sphere intersection °á°ú Ã³¸®
+	// Sphere intersection ê²°ê³¼ ì²˜ë¦¬
 	SWorldCameraLineAtomicData sSphereIntersResult;
 	memcpy( &sSphereIntersResult, &g_CameraInterParam.sLineAtomicData, sizeof( SWorldCameraLineAtomicData ) );
 
 	//////////////////////////////////////////////////////////////////////////
-	// Boundary ray Ãæµ¹
+	// Boundary ray ì¶©ëŒ
 	//////////////////////////////////////////////////////////////////////////
 
-	// Boundary ray intersection Á¤º¸ ÃÊ±âÈ­
+	// Boundary ray intersection ì •ë³´ ì´ˆê¸°í™”
 	g_CameraInterParam.sLineAtomicData.byCollCount = 0;
 
-	// Boundary ray ±¸¼º
+	// Boundary ray êµ¬ì„±
 	RwV3d vRight;
 	RwV3dCrossProduct( &vRight, &CNtlPLGlobal::m_vYAxisV3, &vCharToCamDir );
 	if ( RwV3dNormalize( &vRight, &vRight ) < 0.0001f )
@@ -914,7 +914,7 @@ RwBool Collision_CameraBoundaryIntersection( const RwV3d& vCameraPos, const RwV3
 		}
 	}
 
-	// Boundary ray intersection °Ë»ç
+	// Boundary ray intersection ê²€ì‚¬
 
 	for ( int j = 0; j < 6; ++j )
 	{

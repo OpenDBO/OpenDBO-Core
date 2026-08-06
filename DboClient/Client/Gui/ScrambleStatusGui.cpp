@@ -183,7 +183,7 @@ RwBool CScrambleStatusGui::Create()
 		NTL_RETURN(FALSE);
 
 
-	// ÄÄÆ÷³ÍÆ®¸¦ ¹èÄ¡
+	// ì»´í¬ë„ŒíŠ¸ë¥¼ ë°°ì¹˜
 	SetComponent_of_Team();
 	OnMove(0, 0);
 
@@ -336,10 +336,10 @@ VOID CScrambleStatusGui::SetComponent_of_Team()
 	}
 
 
-	// ½ÇÁ¦ ¿ùµå¿¡¼­ °ø°ÝÆÀÀÌ ºÏÂÊ¿¡ À§Ä¡ÇÑ´Ù. GUIµµ °ø°ÝÆÀÀÇ ÄÄÆ÷³ÍÆ®¸¦ À§¿¡ À§Ä¡ÇÑ´Ù.
+	// ì‹¤ì œ ì›”ë“œì—ì„œ ê³µê²©íŒ€ì´ ë¶ìª½ì— ìœ„ì¹˜í•œë‹¤. GUIë„ ê³µê²©íŒ€ì˜ ì»´í¬ë„ŒíŠ¸ë¥¼ ìœ„ì— ìœ„ì¹˜í•œë‹¤.
 	if( SCRAMBLE_TEAM_OFFENCE == pSCRAMBLE_INFO->eAvatarTeam )
 	{
-		// ¿ì¸®ÆÀ
+		// ìš°ë¦¬íŒ€
 		m_pMyTeamEmblem			->SetPositionfromParent(8, 34);
 		m_pMyTeam_GuildName		->SetPosition(59, 49);
 		m_pMyTeam_PeoplePanel	->SetPosition(9, 81);
@@ -353,7 +353,7 @@ VOID CScrambleStatusGui::SetComponent_of_Team()
 		m_srfMyTeam_GauseBack		.SetPositionfromParent(58, 108);
 		m_srfMyTeam_NoEmblem		.SetPositionfromParent(9, 35);		
 
-		// »ó´ëÆÀ
+		// ìƒëŒ€íŒ€
 		m_pEnemyTeamEmblem			->SetPositionfromParent(8, 204);
 		m_pEnemyTeam_GuildName		->SetPosition(59, 221);
 		m_pEnemyTeam_PeoplePanel	->SetPosition(9, 251);
@@ -369,7 +369,7 @@ VOID CScrambleStatusGui::SetComponent_of_Team()
 	}
 	else
 	{
-		// »ó´ëÆÀ
+		// ìƒëŒ€íŒ€
 		m_pEnemyTeamEmblem			->SetPositionfromParent(8, 34);
 		m_pEnemyTeam_GuildName		->SetPosition(59, 49);
 		m_pEnemyTeam_PeoplePanel	->SetPosition(9, 81);
@@ -383,7 +383,7 @@ VOID CScrambleStatusGui::SetComponent_of_Team()
 		m_srfEnemyTeam_GauseBack	.SetPositionfromParent(58, 108);
 		m_srfEnemyTeam_NoEmblem		.SetPositionfromParent(9, 35);
 
-		// ¿ì¸®ÆÀ
+		// ìš°ë¦¬íŒ€
 		m_pMyTeamEmblem			->SetPositionfromParent(8, 204);
 		m_pMyTeam_GuildName		->SetPosition(59, 221);
 		m_pMyTeam_PeoplePanel	->SetPosition(9, 251);
@@ -481,11 +481,11 @@ VOID CScrambleStatusGui::SetEmblem(RwBool bEnemyTeamTeam, sEmblemFactor* pEmblem
 
 VOID CScrambleStatusGui::InitSealState()
 {
-	// Seal(ÀÎÀåÀÇ GUI ¼ø¼­)
+	// Seal(ì¸ìž¥ì˜ GUI ìˆœì„œ)
 	// 1					2
 	//			3
 	// 4					5
-	// ÀÌ ¼ø¼­¿¡ ¸Â°Ô ÀÎÀå ¿ÀºêÁ§Æ® Å×ÀÌºíÀÇ ÀÎµ¦½º ¼ø¼­¿Í ¹èÄ¡ ¼ø¼­¸¦ ±âÈ¹ÂÊ°ú ¸ÂÃß±â·Î Çß´Ù
+	// ì´ ìˆœì„œì— ë§žê²Œ ì¸ìž¥ ì˜¤ë¸Œì íŠ¸ í…Œì´ë¸”ì˜ ì¸ë±ìŠ¤ ìˆœì„œì™€ ë°°ì¹˜ ìˆœì„œë¥¼ ê¸°íšìª½ê³¼ ë§žì¶”ê¸°ë¡œ í–ˆë‹¤
 
 
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
@@ -512,10 +512,10 @@ VOID CScrambleStatusGui::InitSealState()
 		sSCRAMBLE_SEAL_INFO*	pSCRAMBLE_SEAL_INFO = it_SrambleSeal->second;
 		eDBO_TEAM				eDBOTeam			= Logic_GetScrambleTeam(pSCRAMBLE_SEAL_INFO->eState);
 
-		// »óÅÂ ¼³Á¤
+		// ìƒíƒœ ì„¤ì •
 		SetSealState(byIndex, eDBOTeam);
 
-		// ÅøÆÁ ¼³Á¤
+		// íˆ´íŒ ì„¤ì •
 		if( pObjectTable )
 		{
 			TBLIDX			idxObject		= it_SrambleSeal->first;
@@ -535,7 +535,7 @@ VOID CScrambleStatusGui::InitSealState()
 		++byIndex;
 	}
 
-	// µµÀå ÀïÅ»Àü ´ë±âÁß ¿¬Ãâ ½ÃÀÛ
+	// ë„ìž¥ ìŸíƒˆì „ ëŒ€ê¸°ì¤‘ ì—°ì¶œ ì‹œìž‘
 	if( eDBO_DOJO_STATUS_READY == pSCRAMBLE_INFO->eDojoState )
 	{
 		CNtlLuaState* pLuaState = GetLuaState();
@@ -688,7 +688,7 @@ VOID CScrambleStatusGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 {	
 	CRectangle rtScreen = m_pThis->GetScreenRect();
 
-	// »ó´ëÆí ¿¥ºí·½
+	// ìƒëŒ€íŽ¸ ì— ë¸”ë ˜
 	if( m_srfEnemyTeam_NoEmblem.PtInRect(rtScreen.left + nX, rtScreen.top + nY) )
 	{
 		if( INFO_WINDOW_TYPE_DOJO_NAME_IN_UPPER_EMBLEM != m_eInfoWindowType )
@@ -840,7 +840,7 @@ VOID CScrambleStatusGui::HandleEvents( RWS::CMsg &msg )
 
 				if( SCRAMBLE_TEAM_OFFENCE == pSCRAMBLE_INFO->eAvatarTeam )
 				{
-					// ¿ì¸® À¯ÆÄ Á¤º¸
+					// ìš°ë¦¬ ìœ íŒŒ ì •ë³´
 					m_pMyTeam_PeopleCount	->Format("%d / %d", pDOJO_SCRAMBLE_POINT->byAttCount, DBO_DOJO_SCRAMBLE_MAX_MEMBER);
 					m_pMyTeam_SealCount		->SetText(pDOJO_SCRAMBLE_POINT->byAttSealCount);
 					swprintf_s(awcBuffer, 64, L"%d", pDOJO_SCRAMBLE_POINT->dwAttCharge);
@@ -848,7 +848,7 @@ VOID CScrambleStatusGui::HandleEvents( RWS::CMsg &msg )
 					m_pMyTeam_PointGause->SetPos(pDOJO_SCRAMBLE_POINT->dwAttCharge);
 					m_pMyTeam_Point->SetText((RwUInt32)pDOJO_SCRAMBLE_POINT->dwAttPoint);
 					
-					// »ó´ë À¯ÆÄ Á¤º¸
+					// ìƒëŒ€ ìœ íŒŒ ì •ë³´
 					m_pEnemyTeam_PeopleCount->Format("%d / %d", pDOJO_SCRAMBLE_POINT->byDefCount, DBO_DOJO_SCRAMBLE_MAX_MEMBER);
 					m_pEnemyTeam_SealCount	->SetText(pDOJO_SCRAMBLE_POINT->byDefSealCount);
 					swprintf_s(awcBuffer, 64, L"%d", pDOJO_SCRAMBLE_POINT->dwDefCharge);
@@ -858,7 +858,7 @@ VOID CScrambleStatusGui::HandleEvents( RWS::CMsg &msg )
 				}
 				else
 				{
-					// »ó´ë À¯ÆÄ Á¤º¸
+					// ìƒëŒ€ ìœ íŒŒ ì •ë³´
 					m_pEnemyTeam_PeopleCount	->Format("%d / %d", pDOJO_SCRAMBLE_POINT->byAttCount, DBO_DOJO_SCRAMBLE_MAX_MEMBER);
 					m_pEnemyTeam_SealCount		->SetText(pDOJO_SCRAMBLE_POINT->byAttSealCount);
 					swprintf_s(awcBuffer, 64, L"%d", pDOJO_SCRAMBLE_POINT->dwAttCharge);
@@ -866,7 +866,7 @@ VOID CScrambleStatusGui::HandleEvents( RWS::CMsg &msg )
 					m_pEnemyTeam_PointGause->SetPos(pDOJO_SCRAMBLE_POINT->dwAttCharge);
 					m_pEnemyTeam_Point->SetText((RwUInt32)pDOJO_SCRAMBLE_POINT->dwAttPoint);
 
-					// ¿ì¸® À¯ÆÄ Á¤º¸
+					// ìš°ë¦¬ ìœ íŒŒ ì •ë³´
 					m_pMyTeam_PeopleCount->Format("%d / %d", pDOJO_SCRAMBLE_POINT->byDefCount, DBO_DOJO_SCRAMBLE_MAX_MEMBER);
 					m_pMyTeam_SealCount	->SetText(pDOJO_SCRAMBLE_POINT->byDefSealCount);
 					swprintf_s(awcBuffer, 64, L"%d", pDOJO_SCRAMBLE_POINT->dwDefCharge);

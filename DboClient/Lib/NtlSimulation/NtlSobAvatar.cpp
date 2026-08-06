@@ -80,7 +80,7 @@ RwBool CNtlSobAvatar::CreateContents(void)
 	if(!m_SkillContainer.Create())
 		return FALSE;
 
-	// DB�� ����� ĳ���� ID
+	// DB에 저장된 캐릭터 ID
 	SAvatarInfo* pAvatarInfo = GetNtlSLGlobal()->GetAvatarInfo();
 	m_charID = pAvatarInfo->sCharPf.charId;
 
@@ -119,7 +119,7 @@ RwBool CNtlSobAvatar::CreateContents(void)
 	// Hoipoi Mix
 	m_HoipoiMix.Create();
 
-	// ����
+	// 占쏙옙占쏙옙
 	m_Dojo.Create();
 
 	m_bValidAvatarData = true;
@@ -245,7 +245,7 @@ void CNtlSobAvatar::CreateEvent(void)
 	LinkMsg(g_EventPrivateShopItemState, 0);
 	LinkMsg(g_EventPrivateShopItemBuying, 0);
 		
-	// quest ���� �� ����.
+	// quest 占쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙.
 	LinkMsg(g_EventQuestAcceptProposal_Nfy, 0);
 	LinkMsg(g_EventQuestAcceptReward_Nfy, 0);
 
@@ -290,7 +290,7 @@ void CNtlSobAvatar::CreateEvent(void)
     LinkMsg(g_EventDirectionNfy, NULL);
     LinkMsg(g_EventWorldChange, NULL);
 
-    // ����
+    // 占쏙옙占쏙옙
     LinkMsg(g_EventTransform, NULL);
 
     // ����� ����
@@ -298,7 +298,7 @@ void CNtlSobAvatar::CreateEvent(void)
 
 	LinkMsg(NPEI_IS_MAPNAME_CHANGE, 0);
 
-	// ä�� ����
+	// 채占쏙옙 占쏙옙占쏙옙
 	LinkMsg(g_EventGameServerChannelChanged, 0);
 
 	// TS Data reload
@@ -306,7 +306,7 @@ void CNtlSobAvatar::CreateEvent(void)
 
 	LinkMsg(g_EventBusMove, 0);
 
-	// ����
+	// 占쏙옙占쏙옙
 	LinkMsg(g_EventDojo, 0);	
 	LinkMsg(g_EventDojoState, 0);
 	LinkMsg(g_EventScrambleDefaultInfo, 0);
@@ -381,7 +381,7 @@ void CNtlSobAvatar::DestroyEvent(void)
 	UnLinkMsg(g_EventPrivateShopItemState);
 	UnLinkMsg(g_EventPrivateShopItemBuying);
 
-	// quest ���� �� ����.
+	// quest 占쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙.
 	UnLinkMsg(g_EventQuestAcceptProposal_Nfy);
 	UnLinkMsg(g_EventQuestAcceptReward_Nfy);
 
@@ -445,7 +445,7 @@ RwBool CNtlSobAvatar::Create(void)
 
 	SetFlags(GetFlags() | SLFLAG_NOT_HITSHOCK | SLFLAG_CAMERASHAKE_ENABLE | SLFLAG_SERVER_SENDER);
 
-	// class name ����.
+	// class name 占쏙옙占쏙옙.
 	SetClassName(SLCLASS_NAME_AVATAR);
 
 	if(!CreateContents())
@@ -583,7 +583,7 @@ void CNtlSobAvatar::HandleEvents(RWS::CMsg &pMsg)
 		CNtlSobActor::HandleEvents(pMsg); 
 
 		//--------------------------
-		// event �߻�.
+		// event 占쌩삼옙.
 		// gui data update
 		CNtlSLEventGenerator::SobUpdate(GetSerialID(), EVENT_AIUT_ATTR | EVENT_AIUT_SKILL | EVENT_AIUT_ITEM | EVENT_AIUT_ZENNY | EVENT_AIUT_QUESTITEM | EVENT_AIUT_BUFF, 0 );
 		
@@ -799,12 +799,12 @@ void CNtlSobAvatar::HandleEvents(RWS::CMsg &pMsg)
         if(GetSobProxy())
             GetSobProxy()->HandleEvents(pMsg);
 
-        CNtlSobPlayer::HandleEvents(pMsg); // Idle������ ó���Ѵ�.
+        CNtlSobPlayer::HandleEvents(pMsg); // Idle占쏙옙占쏙옙占쏙옙 처占쏙옙占싼댐옙.
     }
     else if(pMsg.Id == g_EventWorldChange || pMsg.Id == g_EventDirectionNfy)            
     {
-        // ������ ���̰� �ִ� ��� �����Ѵ�.
-        // Ŭ���̾�Ʈ ���̾��� UI������ �޽����� ���� ���� ����
+        // 툴팁을 보이고 있는 경우 해제한다.
+        // 클占쏙옙占싱억옙트 占쏙옙占싱억옙占쏙옙 UI占쏙옙占쏙옙占쏙옙 占쌨쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙
         CNtlSLEventGenerator::ShowToolTip(FALSE, 0, 0, L"");
 
         // ����ī�޶��� ��� �����Ѵ�

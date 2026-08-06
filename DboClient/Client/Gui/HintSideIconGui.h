@@ -1,15 +1,15 @@
 /******************************************************************************
 * File			: HintSideIconGui.h
 * Author		: Kim Jinsung -> Cho Haesung(2007. 1. 16)
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 6. 13
 * Abstract		: 
 *****************************************************************************
-* Desc			: PoPo IconÀ» ÅëÇÏ¿© Html µ¥ÀÌÅ¸¸¦ Ãâ·Â
-CHelpHintConditionCheck			// Hint°¡ ³ª¿Ã Á¶°ÇÀ» Ã¼Å©ÇÏ´Â Å¬·¡½º
-CHintSideIconGui				// PoPo IconÀÇ Side icon
-CHelpHintSideViewGui			// PoPo IconÀ» ÅëÇØ¼­ º¸¿©Áö´Â µµ¿ò¸»(F1)
-CGuideHintSideViewGui			// PoPo IconÀ» ÅëÇØ¼­ º¸¿©Áö´Â Html, Flash µµ¿ò¸»
+* Desc			: PoPo Iconì„ í†µí•˜ì—¬ Html ë°ì´íƒ€ë¥¼ ì¶œë ¥
+CHelpHintConditionCheck			// Hintê°€ ë‚˜ì˜¬ ì¡°ê±´ì„ ì²´í¬í•˜ëŠ” í´ë˜ìŠ¤
+CHintSideIconGui				// PoPo Iconì˜ Side icon
+CHelpHintSideViewGui			// PoPo Iconì„ í†µí•´ì„œ ë³´ì—¬ì§€ëŠ” ë„ì›€ë§(F1)
+CGuideHintSideViewGui			// PoPo Iconì„ í†µí•´ì„œ ë³´ì—¬ì§€ëŠ” Html, Flash ë„ì›€ë§
 *****************************************************************************/
 
 #pragma once
@@ -18,8 +18,8 @@ CGuideHintSideViewGui			// PoPo IconÀ» ÅëÇØ¼­ º¸¿©Áö´Â Html, Flash µµ¿ò¸»
 #include "WindowBy3.h"
 
 //#define dHINTSIDEICON_DEBUG
-#define dHINT_HELP_DEFAULT_HEIGHT		60	// HelpHintText¸¦ Á¦¿ÜÇÑ Component ³ôÀÌ
-#define dHINT_HELP_OPEN_POS_BY_BOTTOM	35	// HelpHintIcon¿¡¼­ Bottom °ª
+#define dHINT_HELP_DEFAULT_HEIGHT		60	// HelpHintTextë¥¼ ì œì™¸í•œ Component ë†’ì´
+#define dHINT_HELP_OPEN_POS_BY_BOTTOM	35	// HelpHintIconì—ì„œ Bottom ê°’
 #define dHINT_HTML_DIRECTORY_GUIDE		"script\\guide\\"
 
 struct sHELP_TBLDAT;
@@ -37,7 +37,7 @@ class CHelpHintConditionCheck;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
 * \ingroup client
-* \brief µµ¿ò¸» ÈùÆ®°¡ ³ª¿À´Â »óÈ²À» Ã¼Å©ÇÏ´Â Å¬·¡½º
+* \brief ë„ì›€ë§ íŒíŠ¸ê°€ ë‚˜ì˜¤ëŠ” ìƒí™©ì„ ì²´í¬í•˜ëŠ” í´ë˜ìŠ¤
 */
 class CHelpHintConditionCheck : public RWS::CEventHandler
 {
@@ -45,7 +45,7 @@ protected:
 	enum eHELPHINT_CONDITION_CHECK
 	{
 		LEVEL_2 = 0,
-		LEVEL_3,								/// level 1 µµ´Ş
+		LEVEL_3,								/// level 1 ë„ë‹¬
 		LEVEL_4,
 		LEVEL_5,
 		LEVEL_6,
@@ -57,23 +57,23 @@ protected:
 		LEVEL_20,			// 10
 		LEVEL_25,
 		LEVEL_30,
-		FIRST_BATTLE_FINISH,					/// Ã³À½ ÀüÅõ°¡ ³¡³ª°í ³ª¼­
-		FIRST_FAINT,							///	Ã³À½ ½Ç½ÅÇßÀ» ¶§
-		FIRST_CLICK_WARHOUSENPC,				/// Ã³À½ Ã¢°íNPC¸¦ Å¬¸¯ ÇÒ ¶§
-		FIRST_LEARN_DASH,						/// Ã³À½ ´ë½Ã¸¦ ¹è¿üÀ» ¶§
-		FIRST_CLICK_SHOPNPC,					/// Ã³À½ »óÁ¡ NPC¸¦ Å¬¸¯ÇÒ ¶§
-		FIRST_LEARN_CHARGE,						/// Ã³À½ Â÷Áö¸¦ ¹è¿üÀ» ¶§
-		FIRST_LEARN_HTB,						/// Ã³À½ HTB¸¦ ¹è¿üÀ» ¶§
-		FIRST_CLICK_MOB,	// 20				/// Ã³À½ ¸÷À» Å¬¸¯ÇßÀ» ¶§
+		FIRST_BATTLE_FINISH,					/// ì²˜ìŒ ì „íˆ¬ê°€ ëë‚˜ê³  ë‚˜ì„œ
+		FIRST_FAINT,							///	ì²˜ìŒ ì‹¤ì‹ í–ˆì„ ë•Œ
+		FIRST_CLICK_WARHOUSENPC,				/// ì²˜ìŒ ì°½ê³ NPCë¥¼ í´ë¦­ í•  ë•Œ
+		FIRST_LEARN_DASH,						/// ì²˜ìŒ ëŒ€ì‹œë¥¼ ë°°ì› ì„ ë•Œ
+		FIRST_CLICK_SHOPNPC,					/// ì²˜ìŒ ìƒì  NPCë¥¼ í´ë¦­í•  ë•Œ
+		FIRST_LEARN_CHARGE,						/// ì²˜ìŒ ì°¨ì§€ë¥¼ ë°°ì› ì„ ë•Œ
+		FIRST_LEARN_HTB,						/// ì²˜ìŒ HTBë¥¼ ë°°ì› ì„ ë•Œ
+		FIRST_CLICK_MOB,	// 20				/// ì²˜ìŒ ëª¹ì„ í´ë¦­í–ˆì„ ë•Œ
 
-		FIRST_LOOT_ITEM	,						/// ÃÖÃÊ item ·çÆÃ  		
-		FIRST_IN_MAINWORLD,						/// ÃÖÃÊ ¿ùµå ÁøÀÔ½Ã NPC dialog¿¡ ´ëÇÑ help hint
-		FIRST_LOOT_EQUIP,						/// ÃÖÃÊ Àåºñitem ·çÆÃ
-		FIRST_KILL_MOB,							/// ÃÖÃÊ Mob »ç³É	
-		FIRST_DOWN_DURABILITY,					/// ÃÖÃÊ Àåºñ ³»±¸µµ ´Ù¿î	
-		FIRST_LOOT_HOIPOISTONE,					/// È£ÀÌÆ÷ÀÌ½ºÅæ item ·çÆÃ
-		FIRST_OPEN_CAPSULEKIT,					/// ÃÖÃÊ open inventory
-		FIRST_USE_SCOUTER,						/// ÃÖÃÊ use scouter
+		FIRST_LOOT_ITEM	,						/// ìµœì´ˆ item ë£¨íŒ…  		
+		FIRST_IN_MAINWORLD,						/// ìµœì´ˆ ì›”ë“œ ì§„ì…ì‹œ NPC dialogì— ëŒ€í•œ help hint
+		FIRST_LOOT_EQUIP,						/// ìµœì´ˆ ì¥ë¹„item ë£¨íŒ…
+		FIRST_KILL_MOB,							/// ìµœì´ˆ Mob ì‚¬ëƒ¥	
+		FIRST_DOWN_DURABILITY,					/// ìµœì´ˆ ì¥ë¹„ ë‚´êµ¬ë„ ë‹¤ìš´	
+		FIRST_LOOT_HOIPOISTONE,					/// í˜¸ì´í¬ì´ìŠ¤í†¤ item ë£¨íŒ…
+		FIRST_OPEN_CAPSULEKIT,					/// ìµœì´ˆ open inventory
+		FIRST_USE_SCOUTER,						/// ìµœì´ˆ use scouter
 
 		FIRST_INTO_TMQ
 	};
@@ -108,14 +108,14 @@ protected:
 	RwBool			IsHelpHint_Level(RWS::CMsg& msg, const eHELPHINT_CONDITION_CHECK& eHelpHint, const RwUInt8& uiLevel);
 	RwBool			IsHelpHint_First_Click_NPC(RWS::CMsg& msg, const eHELPHINT_CONDITION_CHECK& eHelpHint, const RwUInt32& uiNPC);
 	RwBool			IsHelpHint_First_Into_Tmq(RWS::CMsg& msg);
-	RwBool			IsHelpHint_First_TSItemGet(RWS::CMsg& msg);				/// ÃÖÃÊ item ·çÆÃ
-	RwBool			IsHelpHint_EndterWorldNPCDialog(RWS::CMsg& msg);		/// ÃÖÃÊ ¿ùµå ÁøÀÔ½Ã NPC dialog¿¡ ´ëÇÑ help hint
-	RwBool			IsHelpHint_First_TSItemGetEquip(RWS::CMsg& msg);		/// ÃÖÃÊ Àåºñitem ·çÆÃ
-	RwBool			IsHelpHint_First_AvatarKillMob(RWS::CMsg& msg);			/// ÃÖÃÊ Mob »ç³É
-	RwBool			IsHelpHint_First_SobEquipItemDurDown(RWS::CMsg& msg);	/// ÃÖÃÊ Àåºñ ³»±¸µµ ´Ù¿î
-	RwBool			IsHelpHint_First_TSItemGetHoipoiStone(RWS::CMsg& msg);	/// È£ÀÌÆ÷ÀÌ½ºÅæ item ·çÆÃ
-	RwBool			IsHelpHint_First_OpenBagGui(RWS::CMsg& msg);			/// ÃÖÃÊ open inventory
-	RwBool			IsHelpHint_First_OpenScouterBackgroundGui(RWS::CMsg& msg);	/// ÃÖÃÊ use scouter
+	RwBool			IsHelpHint_First_TSItemGet(RWS::CMsg& msg);				/// ìµœì´ˆ item ë£¨íŒ…
+	RwBool			IsHelpHint_EndterWorldNPCDialog(RWS::CMsg& msg);		/// ìµœì´ˆ ì›”ë“œ ì§„ì…ì‹œ NPC dialogì— ëŒ€í•œ help hint
+	RwBool			IsHelpHint_First_TSItemGetEquip(RWS::CMsg& msg);		/// ìµœì´ˆ ì¥ë¹„item ë£¨íŒ…
+	RwBool			IsHelpHint_First_AvatarKillMob(RWS::CMsg& msg);			/// ìµœì´ˆ Mob ì‚¬ëƒ¥
+	RwBool			IsHelpHint_First_SobEquipItemDurDown(RWS::CMsg& msg);	/// ìµœì´ˆ ì¥ë¹„ ë‚´êµ¬ë„ ë‹¤ìš´
+	RwBool			IsHelpHint_First_TSItemGetHoipoiStone(RWS::CMsg& msg);	/// í˜¸ì´í¬ì´ìŠ¤í†¤ item ë£¨íŒ…
+	RwBool			IsHelpHint_First_OpenBagGui(RWS::CMsg& msg);			/// ìµœì´ˆ open inventory
+	RwBool			IsHelpHint_First_OpenScouterBackgroundGui(RWS::CMsg& msg);	/// ìµœì´ˆ use scouter
 };
 
 class CHintSideIconGui : public CSideIconBase, RWS::CEventHandler
@@ -162,7 +162,7 @@ public:
 
 /**
 * \ingroup client
-* \brief µµ¿ò¸» ÈùÆ® SideView
+* \brief ë„ì›€ë§ íŒíŠ¸ SideView
 */
 class CHelpHintSideViewGui : public CSideViewBase, RWS::CEventHandler
 {
@@ -204,7 +204,7 @@ public:
 
 /**
 * \ingroup client
-* \brief Html or Flash µµ¿ò¸»
+* \brief Html or Flash ë„ì›€ë§
 */
 class CGuideHintSideViewGui : public CSideViewBase, RWS::CEventHandler
 {
@@ -262,10 +262,10 @@ public:
 
 /**
 * \ingroup client
-* \brief ¹®ÀÚ¿­ ¾Ë¸²¸» ÈùÆ® SideView
+* \brief ë¬¸ìì—´ ì•Œë¦¼ë§ íŒíŠ¸ SideView
 */
 
-// ¾Ë¸² ¸Ş½ÃÁö°¡ ¶° ÀÖÀ» ½Ã°£
+// ì•Œë¦¼ ë©”ì‹œì§€ê°€ ë–  ìˆì„ ì‹œê°„
 #define dSTRING_HINT_LIFE_TIME		5.0f
 
 class CStringHintSideViewGui : public CSideViewBase, RWS::CEventHandler

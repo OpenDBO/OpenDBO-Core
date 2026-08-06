@@ -89,43 +89,43 @@ RwBool CScouterPCInfoViewerGui::Create()
 	m_pStaticSpecial	->SetText(GetDisplayStringManager()->GetString("DST_SCOUTER_PC_VIEWER_SPECIAL"));
 	m_pstbCostume->SetText(GetDisplayStringManager()->GetString("DST_SCOUTER_PC_VIEWER_COSTUME"));
 
-	// ∏ﬁ¿Œ π´±‚
+	// Î©îÏù∏ Î¨¥Í∏∞
 	m_Item[EQUIP_SLOT_TYPE_HAND].SlotItem.Create(m_pThis, SDIALOG_SCOUTER_PC_VIEWER, REGULAR_SLOT_ITEM_TABLE);
 	m_Item[EQUIP_SLOT_TYPE_HAND].SlotItem.SetPosition_fromParent(44, 58);
 
-	// ∫∏¡∂ π´±‚
+	// Î≥¥Ï°∞ Î¨¥Í∏∞
 	m_Item[EQUIP_SLOT_TYPE_SUB_WEAPON].SlotItem.Create(m_pThis, SDIALOG_SCOUTER_PC_VIEWER, REGULAR_SLOT_ITEM_TABLE);
 	m_Item[EQUIP_SLOT_TYPE_SUB_WEAPON].SlotItem.SetPosition_fromParent(88, 58);
 
-	// ¿⁄ƒœ
+	// ÏûêÏºì
 	m_Item[EQUIP_SLOT_TYPE_JACKET].SlotItem.Create(m_pThis, SDIALOG_SCOUTER_PC_VIEWER, REGULAR_SLOT_ITEM_TABLE);
 	m_Item[EQUIP_SLOT_TYPE_JACKET].SlotItem.SetPosition_fromParent(22, 121);
 
-	// ∆“√˜
+	// Ìå¨Ï∏†
 	m_Item[EQUIP_SLOT_TYPE_PANTS].SlotItem.Create(m_pThis, SDIALOG_SCOUTER_PC_VIEWER, REGULAR_SLOT_ITEM_TABLE);
 	m_Item[EQUIP_SLOT_TYPE_PANTS].SlotItem.SetPosition_fromParent(65, 121);
 
-	// ∫Œ√˜
+	// Î∂ÄÏ∏†
 	m_Item[EQUIP_SLOT_TYPE_BOOTS].SlotItem.Create(m_pThis, SDIALOG_SCOUTER_PC_VIEWER, REGULAR_SLOT_ITEM_TABLE);
 	m_Item[EQUIP_SLOT_TYPE_BOOTS].SlotItem.SetPosition_fromParent(110, 121);
 
-	// ∏Ò∞…¿Ã
+	// Î™©Í±∏Ïù¥
 	m_Item[EQUIP_SLOT_TYPE_NECKLACE].SlotItem.Create(m_pThis, SDIALOG_SCOUTER_PC_VIEWER, REGULAR_SLOT_ITEM_TABLE);
 	m_Item[EQUIP_SLOT_TYPE_NECKLACE].SlotItem.SetPosition_fromParent(22, 184);
 
-	// ±Õ∞≈∏Æ
+	// Í∑ÄÍ±∞Î¶¨
 	m_Item[EQUIP_SLOT_TYPE_EARRING_1].SlotItem.Create(m_pThis, SDIALOG_SCOUTER_PC_VIEWER, REGULAR_SLOT_ITEM_TABLE);
 	m_Item[EQUIP_SLOT_TYPE_EARRING_1].SlotItem.SetPosition_fromParent(66, 184);
 
-	// ±Õ∞≈∏Æ 2
+	// Í∑ÄÍ±∞Î¶¨ 2
 	m_Item[EQUIP_SLOT_TYPE_EARRING_2].SlotItem.Create(m_pThis, SDIALOG_SCOUTER_PC_VIEWER, REGULAR_SLOT_ITEM_TABLE);
 	m_Item[EQUIP_SLOT_TYPE_EARRING_2].SlotItem.SetPosition_fromParent(110, 184);
 
-	// π›¡ˆ
+	// Î∞òÏßÄ
 	m_Item[EQUIP_SLOT_TYPE_RING_1].SlotItem.Create(m_pThis, SDIALOG_SCOUTER_PC_VIEWER, REGULAR_SLOT_ITEM_TABLE);
 	m_Item[EQUIP_SLOT_TYPE_RING_1].SlotItem.SetPosition_fromParent(44, 223);
 
-	// π›¡ˆ 2
+	// Î∞òÏßÄ 2
 	m_Item[EQUIP_SLOT_TYPE_RING_2].SlotItem.Create(m_pThis, SDIALOG_SCOUTER_PC_VIEWER, REGULAR_SLOT_ITEM_TABLE);
 	m_Item[EQUIP_SLOT_TYPE_RING_2].SlotItem.SetPosition_fromParent(88, 223);
 

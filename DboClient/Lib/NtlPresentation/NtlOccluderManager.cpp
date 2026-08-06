@@ -55,7 +55,7 @@ RwBool CNtlOccluderManager::Update(RwReal fElapsed)
 {
 	NTL_FUNCTION("CNtlOccluderManager::Update");
 
-	// Update Time¿¡¼­ Occluder visibility¸¦ Å¬¸®¾î ÇØÁØ´Ù.
+	// Update Timeì—ì„œ Occluder visibilityë¥¼ í´ë¦¬ì–´ í•´ì¤€ë‹¤.
 	m_vecOccluderVisibility.clear();
 
 	/*RwV3d* pCameraPos = RwMatrixGetPos(RwFrameGetMatrix(RwCameraGetFrame(CNtlPLGlobal::m_RwCamera)));
@@ -121,10 +121,10 @@ RwBool CNtlOccluderManager::OccluderQuery(COccluderProxy* pOccluderProxy, RwUInt
 		COccluderProxy::EOccluderProxyState eState = pOccluderProxy->m_pOccluderProxyData[uiTestCnt].eOccluderProxyState;
 		switch (eState)
 		{
-		case COccluderProxy::EOCCLUDER_CHECK: // ¿ÀÅ¬·ç´õ Ã¼Å©ÇØ¾ß ÇÑ´Ù.
+		case COccluderProxy::EOCCLUDER_CHECK: // ì˜¤í´ë£¨ë” ì²´í¬í•´ì•¼ í•œë‹¤.
 			pOccluderProxy->m_pOccluderProxyData[uiTestCnt].pPLOccluder			= NULL;
 			pOccluderProxy->m_pOccluderProxyData[uiTestCnt].eOccluderProxyState	= COccluderProxy::EOCCLUDER_NONE;
-		case COccluderProxy::EOCCLUDER_NONE: // ¿ÀÅ¬·ç´õ Ã¼Å© ¿µ¿ª
+		case COccluderProxy::EOCCLUDER_NONE: // ì˜¤í´ë£¨ë” ì²´í¬ ì˜ì—­
 			{
 				if (m_vecOccluderVisibility.empty())
 				{
@@ -143,7 +143,7 @@ RwBool CNtlOccluderManager::OccluderQuery(COccluderProxy* pOccluderProxy, RwUInt
 					{
 						continue;
 					}
-#ifdef dNTL_WORLD_TOOL_MODE // Tool¿¡¼­¸¸ ·Îµå ÇÏ±â ¶§¹®¿¡.. ÅøÄÚµå·Î ³Ö´Â´Ù.
+#ifdef dNTL_WORLD_TOOL_MODE // Toolì—ì„œë§Œ ë¡œë“œ í•˜ê¸° ë•Œë¬¸ì—.. íˆ´ì½”ë“œë¡œ ë„£ëŠ”ë‹¤.
 					else if (pPLOccluder->IsOccluderFuncFlag(EPLOCCLUDER_FUNC_PVS))
 					{
 						continue;
@@ -183,7 +183,7 @@ RwBool CNtlOccluderManager::OccluderQuery(COccluderProxy* pOccluderProxy, RwUInt
 				} while (++it != itEnd);
 				break;
 			}
-		case COccluderProxy::EOCCLUDER_CULLED: // ÄÃ¸µµÈ ¿ÀºêÁ§Æ®¶ó¸é ÀÚ½ÅÀ» °¡¸° ¿ÀÅ¬·ç´õ¿¡°Ô ´Ù½Ã ¹¯´Â´Ù.
+		case COccluderProxy::EOCCLUDER_CULLED: // ì»¬ë§ëœ ì˜¤ë¸Œì íŠ¸ë¼ë©´ ìì‹ ì„ ê°€ë¦° ì˜¤í´ë£¨ë”ì—ê²Œ ë‹¤ì‹œ ë¬»ëŠ”ë‹¤.
 			{
 				RwBool bCulled = TRUE;
 				if (!pOccluderProxy->m_pOccluderProxyData[uiTestCnt].pPLOccluder->IsRunable())
@@ -222,7 +222,7 @@ RwBool CNtlOccluderManager::OccluderQuery(COccluderProxy* pOccluderProxy, RwUInt
 
 					pOccluderProxy->m_pOccluderProxyData[uiTestCnt].pPLOccluder					= NULL;
 					pOccluderProxy->m_pOccluderProxyData[uiTestCnt].eOccluderProxyState			= COccluderProxy::EOCCLUDER_CHECK;
-					pOccluderProxy->m_pOccluderProxyData[uiTestCnt].fOccluderQueryUpdateTime	+= pOccluderProxy->m_fOccluderQueryTime; // ÄÃ¸µ µÇ¾ú´Ù°¡ ´Ù½Ã º¸ÀÎ °ÍÀº ¾÷µ¥ÀÌÆ® Å¸ÀÓÀ» ´Ã¸°´Ù.
+					pOccluderProxy->m_pOccluderProxyData[uiTestCnt].fOccluderQueryUpdateTime	+= pOccluderProxy->m_fOccluderQueryTime; // ì»¬ë§ ë˜ì—ˆë‹¤ê°€ ë‹¤ì‹œ ë³´ì¸ ê²ƒì€ ì—…ë°ì´íŠ¸ íƒ€ì„ì„ ëŠ˜ë¦°ë‹¤.
 				}
 				break;
 			}
@@ -266,7 +266,7 @@ RwBool CNtlOccluderManager::OccluderQuery(RwUInt32 eType, RwUInt32 eFlag, void* 
 		{
 			continue;
 		}
-#ifdef dNTL_WORLD_TOOL_MODE // Tool¿¡¼­¸¸ ·Îµå ÇÏ±â ¶§¹®¿¡.. ÅøÄÚµå·Î ³Ö´Â´Ù.
+#ifdef dNTL_WORLD_TOOL_MODE // Toolì—ì„œë§Œ ë¡œë“œ í•˜ê¸° ë•Œë¬¸ì—.. íˆ´ì½”ë“œë¡œ ë„£ëŠ”ë‹¤.
 		else if (pPLOccluder->IsOccluderFuncFlag(EPLOCCLUDER_FUNC_PVS))
 		{
 			continue;
@@ -328,7 +328,7 @@ void CNtlOccluderManager::UnRegisterOccluder(CNtlPLOccluder_Base* pPLOccluder)
 
 void CNtlOccluderManager::UnRegisterProxyInOccluder(COccluderProxy* pOccluderProxy)
 {
-	// °´Ã¼´Â ¾ğÁ¦µçÁö ÆÄ±«µÉ ¼ö ÀÖ´Ù. ±×·¯¹Ç·Î ÆÄ±«µÉ ¶§ ¸®½ºÆ®¿¡¼­ »©ÁÖ¾î¾ß ÇÑ´Ù.
+	// ê°ì²´ëŠ” ì–¸ì œë“ ì§€ íŒŒê´´ë  ìˆ˜ ìˆë‹¤. ê·¸ëŸ¬ë¯€ë¡œ íŒŒê´´ë  ë•Œ ë¦¬ìŠ¤íŠ¸ì—ì„œ ë¹¼ì£¼ì–´ì•¼ í•œë‹¤.
 	for (RwUInt32 i = 0; i < pOccluderProxy->m_uiOccluderTestNum; ++i)
 	{
 		CNtlPLOccluder_Base* pOccluder = pOccluderProxy->m_pOccluderProxyData[i].pPLOccluder;

@@ -64,7 +64,7 @@ void CTutorialSideIconGui::OnSideViewClosed()
 
 void CTutorialSideIconGui::OnIconButtonClicked(gui::CComponent* pComponent)
 {	
-	// Æ©Åä¸®¾óÀ» Á¾·áÇÏ½Ã°Ú½À´Ï±î?
+	// íŠœí† ë¦¬ì–¼ì„ ì¢…ë£Œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?
 	//CDboEventGenerator::MsgBoxShow(GetDisplayStringManager()->GetString("DST_TUTORIAL_ASK_END"), MBW_TUTORIAL_ASK_END, MBTF_OK | MBTF_CANCEL);
 	GetAlarmManager()->AlarmMessage( "DST_TUTORIAL_ASK_END" );
 }

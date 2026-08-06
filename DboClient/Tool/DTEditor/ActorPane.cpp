@@ -1,4 +1,4 @@
-// ActorPane.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// ActorPane.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -63,7 +63,7 @@ END_MESSAGE_MAP()
 
 
 
-// CActorPane ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CActorPane ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 #define IDC_ACTOR_GRID				201
 
@@ -72,7 +72,7 @@ int CActorPane::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// TODO:  ¿©±â¿¡ Æ¯¼öÈ­µÈ ÀÛ¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì‘ì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	if(m_PropGrid.Create(CRect(0, 0, 0, 0), this, IDC_ACTOR_GRID))
 	{
@@ -111,7 +111,7 @@ void CActorPane::OnSize(UINT nType, int cx, int cy)
 {
 	CWnd::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CSize sz(0);
 
 	if (m_PropGrid.GetSafeHwnd())

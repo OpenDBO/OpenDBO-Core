@@ -27,13 +27,13 @@ public:
 		ITEM_PARTICLE_LIFE,
 		ITEM_PARTICLE_LIMIT,
 
-		// Box ÀÏ °æ¿ì
+		// Box ì¼ ê²½ìš°
 		ITEM_EMITTER_TYPE,
 
 		ITEM_EMITTER_POSX,
 		ITEM_EMITTER_POSY,
 
-		// Box ÀÏ °æ¿ì¿¡¸¸ ³ª¿È
+		// Box ì¼ ê²½ìš°ì—ë§Œ ë‚˜ì˜´
 		ITEM_EMITTER_WIDTH,
 		ITEM_EMITTER_HEIGHT,
 

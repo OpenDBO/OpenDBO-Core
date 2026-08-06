@@ -2,18 +2,18 @@
  *
  * File			: DumpCommand.h
  * Author		: HyungSuk, Jang
- * Copyright	: (��)NTL
+ * Copyright	: (주)NTL
  * Date			: 2005. 12. 26
  * Update		: 2006. 9. 29
  * Abstract		: DBO dump command manager
  *****************************************************************************
- * Desc         : Ŭ���̾�Ʈ���� ����׿� �޼����� �Է��� �� �ֵ��� �����Ͽ���
- *				  DEBUG ��忡���� �����Ѵ�
+ * Desc         : 클라이언트에서 디버그용 메세지를 입력할 수 있도록 수정하였다
+ *				  DEBUG 모드에서만 동작한다
  *				  
- * ���� ��
- *	1) DUMP_DEBUG_MSG(DUMP_FLAG_MOVE, "��ǥ���� �߸��Ǿ����");
- *	2) DUMP_DEBUG_MSG(DUMP_FLAG_MOVE, MakeStr("��ǥ��(x : %d, y : %d)�� �߸��Ǿ����ϴ�", 30, 40));
- *	3) DUMP_DEBUG_MSG(DUMP_FLAG_MOVE, MakeStr("%s�� �����ϴ�", "����"));
+ * 사용법 예
+ *	1) DUMP_DEBUG_MSG(DUMP_FLAG_MOVE, "좌표값이 잘못되었어요");
+ *	2) DUMP_DEBUG_MSG(DUMP_FLAG_MOVE, MakeStr("좌표값(x : %d, y : %d)이 잘못되었습니다", 30, 40));
+ *	3) DUMP_DEBUG_MSG(DUMP_FLAG_MOVE, MakeStr("%s가 없습니다", "몬스터"));
  * 
  *****************************************************************************/
 
@@ -86,10 +86,10 @@ public:
 	RwBool Command(const RwChar *pCmd);
 	RwBool Command(const WCHAR *pCmd);
 
-	// Ŭ���̾�Ʈ�� �ַܼκ��� �Է¹޴� �޼����̴�
+	// 클라이언트의 콘솔로부터 입력받는 메세지이다
 	void CleintConsoleCommand(const RwChar *pCmd);
 	
-	// Ŭ���̾�Ʈ���� �޼����� �����ش�.
+	// 클라이언트에서 메세지를 보여준다.
 	void OutPutClientMessage(eDUMP_TYPE eDumpType, const RwChar* pMessage);
 	void OutPutClientMessage(eDUMP_TYPE eDumpType, const WCHAR* pMessage);
 

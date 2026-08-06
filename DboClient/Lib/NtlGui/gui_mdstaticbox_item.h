@@ -9,13 +9,13 @@ class CMDStaticBox_Item
 {
 public:
 //! Variables
-	std::wstring m_wstrText;		// ItemÀÇ Text, ½ÇÁ¦ Data
-	std::string	 m_strName;			// ItemÀÇ ID
+	std::wstring m_wstrText;		// Itemì˜ Text, ì‹¤ì œ Data
+	std::string	 m_strName;			// Itemì˜ ID
 
 	INT			m_nPosX;
-	INT			m_nPosY;			// ItemÀÇ Left, Top
+	INT			m_nPosY;			// Itemì˜ Left, Top
 	INT			m_nCX;
-	INT			m_nCY;				// ItemÀÇ Width, Height
+	INT			m_nCY;				// Itemì˜ Width, Height
 		
 	COLORREF	m_colorText;		
 	DWORD 		m_dwStyle;
@@ -24,11 +24,11 @@ public:
 	INT			m_nEffectMode;
 	INT			m_nEffectValue;
 
-	BOOL		m_bAttachPrevLine;	// »óÀ§ ¶óÀÎ ³¡¿¡¼­ ½ÃÀÛ.
+	BOOL		m_bAttachPrevLine;	// ìƒìœ„ ë¼ì¸ ëì—ì„œ ì‹œì‘.
 
-	DWORD		m_dwFontIndex;		// ItemÀÇ ÆùÆ® ÀÎµ¦½º.
+	DWORD		m_dwFontIndex;		// Itemì˜ í°íŠ¸ ì¸ë±ìŠ¤.
 
-	std::list<CMDStaticBox_Item*> m_listChildItem;	// ÀÚ½Ä Item
+	std::list<CMDStaticBox_Item*> m_listChildItem;	// ìì‹ Item
 
 //! Constructor & Destructor
 	CMDStaticBox_Item()

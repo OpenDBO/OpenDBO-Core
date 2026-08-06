@@ -38,7 +38,7 @@ static void *rpNtlWorldSectorSplatDestructor(void *object, RwInt32 offset, RwInt
 	RwUInt32 i = 0;
 	//sRpNtlWorldSectorSplat *pNtlWorlSectorSplat = dGetNtlWorldSectorSplatInfo(object, offset);
 	//pNtlWorlSectorSplat->pNtlWorldSector = NULL;
-	// pNtlWorldSector ³»ºÎ¿¡¼­ ¾ÆÅä¹ÍÀÌ ÆÄ±«µÇ¸é ÀÌ ÆÄ±«ÀÚ°¡ ºÒ¸®¹Ç·Î »¶³²
+	// pNtlWorldSector ë‚´ë¶€ì—ì„œ ì•„í† ë¯¹ì´ íŒŒê´´ë˜ë©´ ì´ íŒŒê´´ìžê°€ ë¶ˆë¦¬ë¯€ë¡œ ë»‘ë‚¨
 
 	NTL_RETURN(object);
 }

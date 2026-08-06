@@ -6,7 +6,7 @@
 
 #include "afxwin.h"
 
-// CPalettePerformanceOcclusion ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPalettePerformanceOcclusion ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 #define POC_PROP_PLANE	0x00000001
 #define POC_PROP_POS	0x00000002
@@ -20,14 +20,14 @@ class CPalettePerformanceOcclusion : public CDialog
 	DECLARE_DYNAMIC(CPalettePerformanceOcclusion)
 
 public:
-	CPalettePerformanceOcclusion(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CPalettePerformanceOcclusion(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CPalettePerformanceOcclusion();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_PERFORMANCE_OCCLUSION };
 
 protected:
-	virtual void			DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void			DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

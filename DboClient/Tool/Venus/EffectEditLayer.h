@@ -1,7 +1,7 @@
 #pragma once
 
 
-// CEffectEditLayer ºäÀÔ´Ï´Ù.
+// CEffectEditLayer ë·°ì…ë‹ˆë‹¤.
 #include "RollupCtrl.h"
 
 #include "NtlEffectDefine.h"
@@ -12,7 +12,7 @@ class CEffectEditLayer : public CView
 	DECLARE_DYNCREATE(CEffectEditLayer)
 
 protected:
-	CEffectEditLayer();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CEffectEditLayer();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CEffectEditLayer();
 
 public:
@@ -35,7 +35,7 @@ public:
     RwBool  SaveXMLTree(RwChar* szFileName);
 
 public:
-	virtual void OnDraw(CDC* pDC);      // ÀÌ ºä¸¦ ±×¸®±â À§ÇØ ÀçÁ¤ÀÇµÇ¾ú½À´Ï´Ù.
+	virtual void OnDraw(CDC* pDC);      // ì´ ë·°ë¥¼ ê·¸ë¦¬ê¸° ìœ„í•´ ì¬ì •ì˜ë˜ì—ˆìŠµë‹ˆë‹¤.
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;

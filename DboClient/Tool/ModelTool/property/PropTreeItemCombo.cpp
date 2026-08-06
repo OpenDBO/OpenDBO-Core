@@ -1,4 +1,4 @@
-// PropTreeItemCombo.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PropTreeItemCombo.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -31,18 +31,18 @@ END_MESSAGE_MAP()
 
 
 
-// CPropTreeItemCombo ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPropTreeItemCombo ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 
 void CPropTreeItemCombo::OnCbnSelchange()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CommitChanges();
 }
 
 void CPropTreeItemCombo::OnCbnKillfocus()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CommitChanges();
 }
 
@@ -220,7 +220,7 @@ void CPropTreeItemCombo::SetCurSelText(const char* szText)
     int nCurSel = GetCurSel();
     CString strTarget = A2W(szText);
 
-    // TODO : ÇÔ¼ö ¿Ï¼º
+    // TODO : í•¨ìˆ˜ ì™„ì„±
     for(int i = 0; i < GetCount(); ++i)
     {
         CString strText;

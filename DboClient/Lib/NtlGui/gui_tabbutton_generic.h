@@ -31,15 +31,15 @@ public:
 	INT		AddTab( std::wstring& wstrTabText );
 	VOID	ClearTab(VOID);
 
-	VOID	CalcTabRect(VOID);							// °¢ ComponentÀÇ Å©±â¸¦ Á¶Àı.
+	VOID	CalcTabRect(VOID);							// ê° Componentì˜ í¬ê¸°ë¥¼ ì¡°ì ˆ.
 
-	VOID	InitLine(VOID);								// LineÀ» Component Size¿¡ ¸ÂÃã.
+	VOID	InitLine(VOID);								// Lineì„ Component Sizeì— ë§ì¶¤.
 
-	VOID	ApplyAttribute(VOID);						// »ı¼ºµÇ¾î ÀÖ´Â TabÀÇ ¼Ó¼ºµéÀ» ´Ù½Ã Àû¿ëÇÔ.
+	VOID	ApplyAttribute(VOID);						// ìƒì„±ë˜ì–´ ìˆëŠ” Tabì˜ ì†ì„±ë“¤ì„ ë‹¤ì‹œ ì ìš©í•¨.
 	
 public:
 //! Implements
-	VOID	AvailableWidthCheck(VOID);					// ÇöÀç UI¿¡ Ç¥½ÃÇÒ ¸¸ÇÑ »çÀÌÁî°¡ ÃæºĞÇÑÁö.
+	VOID	AvailableWidthCheck(VOID);					// í˜„ì¬ UIì— í‘œì‹œí•  ë§Œí•œ ì‚¬ì´ì¦ˆê°€ ì¶©ë¶„í•œì§€.
 
 //! Signals
 	CSignal_v1<INT>	m_SigSelected;
@@ -78,8 +78,8 @@ public:
 
 	INT			m_nTextMarginX;
 	INT			m_nTextMarginY;
-	INT			m_nUnselWidth;						// ¼±ÅÃµÇÁö ¾ÊÀº ¹öÆ°ÀÇ Æø
-	INT			m_nMarginWidth;						// ³²´Â Æø.
+	INT			m_nUnselWidth;						// ì„ íƒë˜ì§€ ì•Šì€ ë²„íŠ¼ì˜ í­
+	INT			m_nMarginWidth;						// ë‚¨ëŠ” í­.
 		
 	INT			m_nSelectedIndex;	
 

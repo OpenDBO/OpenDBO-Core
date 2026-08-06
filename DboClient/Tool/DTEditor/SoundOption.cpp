@@ -1,4 +1,4 @@
-// SoundOption.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// SoundOption.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "SoundOption.h"
 
 #include "NtlSoundManager.h"
-// CSoundOption ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CSoundOption ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CSoundOption, CDialog)
 
@@ -35,7 +35,7 @@ BOOL CSoundOption::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	float fBGMVolume			= GetSoundManager()->GetGroupVolume(CHANNEL_GROUP_BGM);
 	float fWeatherEffectVolume	= GetSoundManager()->GetGroupVolume(CHANNEL_GROUP_WEATHER_EFFECT_SOUND);
 	float fWeatherMusicVolume	= GetSoundManager()->GetGroupVolume(CHANNEL_GROUP_WEATHER_MUSIC);
@@ -45,7 +45,7 @@ BOOL CSoundOption::OnInitDialog()
 	bool bWeatherMusicMute		= GetSoundManager()->IsMute(CHANNEL_GROUP_WEATHER_MUSIC);
 
 
-	// MusicÀÇ º¼·ıÀÌ ³Ê¹« Ä¿¼­ 50% ÁÙ¿©¼­ ¾´´Ù
+	// Musicì˜ ë³¼ë¥¨ì´ ë„ˆë¬´ ì»¤ì„œ 50% ì¤„ì—¬ì„œ ì“´ë‹¤
 	m_ScrollbarBGMVolume		.SetRangeMax(50);
 	m_ScrollbarWeatherEffect	.SetRangeMax(50);
 	m_ScrollbarWeatherMusic		.SetRangeMax(50);
@@ -85,11 +85,11 @@ BEGIN_MESSAGE_MAP(CSoundOption, CDialog)
 END_MESSAGE_MAP()
 
 
-// CSoundOption ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CSoundOption ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CSoundOption::OnBnClicked_CheckBgm()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	UpdateData(TRUE);
 
 	if( BST_CHECKED == m_BtnCheckBGMMute.GetCheck() )
@@ -104,7 +104,7 @@ void CSoundOption::OnBnClicked_CheckBgm()
 
 void CSoundOption::OnBnClicked_CheckWeatherEffect()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	UpdateData(TRUE);
 
 	if( BST_CHECKED == m_BtnCheckWeatherEffect.GetCheck() )
@@ -119,7 +119,7 @@ void CSoundOption::OnBnClicked_CheckWeatherEffect()
 
 void CSoundOption::OnBnClicked_CheckWeatherMusic()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	UpdateData(TRUE);
 
 	if( BST_CHECKED == m_BtnCheckWeatherMusic.GetCheck() )
@@ -134,13 +134,13 @@ void CSoundOption::OnBnClicked_CheckWeatherMusic()
 
 void CSoundOption::OnBnClicked_OK()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	OnOK();
 }
 
 void CSoundOption::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if( pScrollBar )
 	{
 		UpdateData(TRUE);

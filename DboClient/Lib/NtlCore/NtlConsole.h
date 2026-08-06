@@ -2,7 +2,7 @@
  *
  * File			: NtlConsole.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 12. 19	
  * Abstract		: console winodw manager
  *****************************************************************************

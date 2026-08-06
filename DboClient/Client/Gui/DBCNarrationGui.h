@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File: DBCNarrationGui.h
 // Desc: DBCNarrationGui
-//		 Narration ����
+//		 Narration 占쏙옙占쏙옙
 //
 // 2006.12.5 Peessi@hitel.net   
 //
@@ -57,8 +57,8 @@ private:
 	gui::CSlot	m_slotOnMouseDown;
 
 	//! Variable
-	STATE				m_eUIState;					// UI��ü�� State
-	RwInt32				m_eNarrationState;			// Narration�� State	
+	STATE				m_eUIState;					// UI占쏙옙체占쏙옙 State
+	RwInt32				m_eNarrationState;			// Narration占쏙옙 State	
 
 	CNtlPLCinematicObject*	m_pCinematicObject;
 

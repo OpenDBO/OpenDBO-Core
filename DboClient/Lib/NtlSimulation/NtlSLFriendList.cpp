@@ -57,31 +57,31 @@ VOID CNtlSLFriendList::Leave()
 
 void CNtlSLFriendList::HandleEvents( RWS::CMsg &pMsg ) 
 {
-    if(pMsg.Id == g_EventFriendAdd_Res)         // Ä£±¸ Ãß°¡
+    if(pMsg.Id == g_EventFriendAdd_Res)         // ì¹œêµ¬ ì¶”ê°€
     {
         OnFriendAddRes((SNtlEventFriendAddRes*)pMsg.pData);
     }
-    else if(pMsg.Id == g_EventFriendDel_Res)    // Ä£±¸ »èÁ¦
+    else if(pMsg.Id == g_EventFriendDel_Res)    // ì¹œêµ¬ ì‚­ì œ
     {
         OnFriendDelRes((SNtlEventFriendDelRes*)pMsg.pData);
     }
-    else if(pMsg.Id == g_EventFriendMove_Res)   // Ä£±¸ ºí·Ï
+    else if(pMsg.Id == g_EventFriendMove_Res)   // ì¹œêµ¬ ë¸”ë¡
     {
         OnFriendMoveRes((SNtlEventFriendMoveRes*)pMsg.pData);
     }
-    else if(pMsg.Id == g_EventFriendList_Info)  // Ä£±¸ ¸®½ºÆ® Á¤º¸ ¼ö½Å
+    else if(pMsg.Id == g_EventFriendList_Info)  // ì¹œêµ¬ ë¦¬ìŠ¤íŠ¸ ì •ë³´ ìˆ˜ì‹ 
     {
         OnFriendListInfo((SNtlEventFriendListInfo*)pMsg.pData);
     }
-    else if(pMsg.Id == g_EventFriendInfo)       // Ä£±¸ Á¤º¸ 
+    else if(pMsg.Id == g_EventFriendInfo)       // ì¹œêµ¬ ì •ë³´ 
     {
         OnFriendInfo((SNtlEventFriendInfo*)pMsg.pData);
     }
-    else if(pMsg.Id == g_EventFriendInfoChange) // Ä£±¸ Á¤º¸ º¯°æ
+    else if(pMsg.Id == g_EventFriendInfoChange) // ì¹œêµ¬ ì •ë³´ ë³€ê²½
     {
         OnFriendInfoChange((SNtlEventFriendInfoChange*)pMsg.pData);
     }
-	else if (pMsg.Id == g_EventChangeCharName) // Ä£±¸ Á¤º¸ º¯°æ
+	else if (pMsg.Id == g_EventChangeCharName) // ì¹œêµ¬ ì •ë³´ ë³€ê²½
 	{
 		OnFriendNameChange((SNtlEventChangeCharName*)pMsg.pData);
 	}

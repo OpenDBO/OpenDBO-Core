@@ -91,7 +91,7 @@ void CNtlBehaviorProjBall::Update(RwReal fElapsed)
 	RwV3d vCurrDir = pSobProj->GetDirection() + vDir * fElapsed;
 	RwV3dNormalize(&vCurrDir, &vCurrDir);
 
-    // ÇöÀç ³²Àº °Å¸®¸¦ ±¸ÇÑ´Ù.
+    // í˜„ì¬ ë‚¨ì€ ê±°ë¦¬ë¥¼ êµ¬í•œë‹¤.
     RwV3d vDelta = vCurrDir * fSpeed * fElapsed;	
     RwV3d vNextPos = vPos + vDelta;	
     RwReal fDist = CNtlMath::GetLength(vPos, vDestPos);    
@@ -102,7 +102,7 @@ void CNtlBehaviorProjBall::Update(RwReal fElapsed)
 	plane.PlaneFromPointNormal(&vDestPos, &vDir);
 	RwReal fDot = plane.DotProduct(&vNextPos); 
 
-	// delta time µ¿¾È ÀÌµ¿ °Å¸®¸¦ ±¸ÇÑ´Ù.
+	// delta time ë™ì•ˆ ì´ë™ ê±°ë¦¬ë¥¼ êµ¬í•œë‹¤.
 	if(fDot >= 0.0f)
 	{
 		pSobProj->SetPosition(&vDestPos);
@@ -162,12 +162,12 @@ void CNtlBehaviorProjMagare::Update( RwReal fElapsed )
     RwV3d vCurrDir = pSobProj->GetDirection() + vDir * fElapsed;
     RwV3dNormalize(&vCurrDir, &vCurrDir);
 
-    // ÇöÀç ³²Àº °Å¸®¸¦ ±¸ÇÑ´Ù.
+    // í˜„ì¬ ë‚¨ì€ ê±°ë¦¬ë¥¼ êµ¬í•œë‹¤.
     RwV3d vDelta = vCurrDir * fSpeed * fElapsed;	
     RwV3d vNextPos = vPos + vDelta;	
     RwReal fDist = CNtlMath::GetLength(vPos, vDestPos);    
 
-    // µÚ·Î µ¹¾Æ°¡´Â Å×½ºÆ®¿ë
+    // ë’¤ë¡œ ëŒì•„ê°€ëŠ” í…ŒìŠ¤íŠ¸ìš©
     if(m_eStatus == MAGARE_GO)
     {
         if(fDist <= fTargetHeight * MAGARE_RADIUS)
@@ -235,20 +235,20 @@ void CNtlBehaviorProjBeam::Update(RwReal fElapsed)
 	RwV3d vDir;
 	RwV3dSubMacro(&vDir, &vDestPos, &vPos); 
 		
-	// ÇöÀç ³²Àº °Å¸®¸¦ ±¸ÇÑ´Ù.
+	// í˜„ì¬ ë‚¨ì€ ê±°ë¦¬ë¥¼ êµ¬í•œë‹¤.
 	RwReal fCurrSqaredLen = CNtlMath::MathRwV3dSquaredLength(&vDir);
 
 	RwV3d vDelta;
 	RwV3dNormalize(&vDir, &vDir);
 	CNtlMath::MathRwV3dAssign(&vDelta, vDir.x*fElapsed*fSpeed, vDir.y*fElapsed*fSpeed, vDir.z*fElapsed*fSpeed);
 
-	// delta time µ¿¾È ÀÌµ¿ °Å¸®¸¦ ±¸ÇÑ´Ù.
+	// delta time ë™ì•ˆ ì´ë™ ê±°ë¦¬ë¥¼ êµ¬í•œë‹¤.
 	if(fCurrSqaredLen < CNtlMath::MathRwV3dSquaredLength(&vDelta))
 	{
 		m_pActor->SetPosition(&vDestPos);
 		Finish();
 
-		// Lua¸¦ ¿¬µ¿ÇÑ´Ù.
+		// Luaë¥¼ ì—°ë™í•œë‹¤.
 		return;
 	}
 	    
@@ -295,7 +295,7 @@ void CNtlBehaviorProjHisshidan::Enter(void)
 		m_fTargetHeight = pSobProxy->GetPLEntityHeight();
 	}
 
-	// hissidan projectile ¹æÇâ ³ëÀÌÁî.
+	// hissidan projectile ë°©í–¥ ë…¸ì´ì¦ˆ.
 	CNtlSobProjectile *pSobProj = reinterpret_cast<CNtlSobProjectile*>(m_pActor);
 
 	if(!m_bAngleUse)
@@ -312,7 +312,7 @@ void CNtlBehaviorProjHisshidan::Enter(void)
 
 		RwReal fRandValue = NtlRandomNumber(0.3f, 0.7f);
 		
-		// ¿À¸¥ÂÊ, ¿ŞÂÊ º¸Á¤.
+		// ì˜¤ë¥¸ìª½, ì™¼ìª½ ë³´ì •.
 		if(bLeftHand)
 		{
 			vDir.x -= vRight.x*fRandValue;
@@ -382,7 +382,7 @@ void CNtlBehaviorProjHisshidan::Update(RwReal fElapsed)
     vCurrDir += vDir * fElapsed * fIncSpeed;
 	RwV3dNormalize(&vCurrDir, &vCurrDir);
 
-	// ÇöÀç ³²Àº °Å¸®¸¦ ±¸ÇÑ´Ù.	
+	// í˜„ì¬ ë‚¨ì€ ê±°ë¦¬ë¥¼ êµ¬í•œë‹¤.	
 	RwV3d vNextPos = vPos + (vCurrDir * fElapsed * fSpeed);	
 
 	CNtlPlane plane;
@@ -391,7 +391,7 @@ void CNtlBehaviorProjHisshidan::Update(RwReal fElapsed)
 	plane.PlaneFromPointNormal(&vDestPos, &vDir);
 	RwReal fDot = plane.DotProduct(&vNextPos); 
 						
-	// delta time µ¿¾È ÀÌµ¿ °Å¸®¸¦ ±¸ÇÑ´Ù.
+	// delta time ë™ì•ˆ ì´ë™ ê±°ë¦¬ë¥¼ êµ¬í•œë‹¤.
 	if(fDot >= 0.0f)
 	{
 		vDestPos.y += NtlRandomNumber(-1.0f, 1.0f);
@@ -533,7 +533,7 @@ void CHisshidanPiece::Update(RwReal fElapsed)
 	RwV3d vDir;
 	RwV3dSubMacro(&vDir, &vDestPos, &m_vPos); 
 
-	// ÇöÀç ³²Àº °Å¸®¸¦ ±¸ÇÑ´Ù.
+	// í˜„ì¬ ë‚¨ì€ ê±°ë¦¬ë¥¼ êµ¬í•œë‹¤.
 	RwV3dNormalize(&vDir, &vDir);
 		
 	RwReal fIncSpeed = m_fIncSpeed*fSpeed/HISSHIDAN_DEFAULT_SPEED;
@@ -544,7 +544,7 @@ void CHisshidanPiece::Update(RwReal fElapsed)
 
 	RwV3dNormalize(&m_vCurrDir, &m_vCurrDir);
 
-	// ÇöÀç ³²Àº °Å¸®¸¦ ±¸ÇÑ´Ù.
+	// í˜„ì¬ ë‚¨ì€ ê±°ë¦¬ë¥¼ êµ¬í•œë‹¤.
 	RwV3d vDelta;
 	CNtlMath::MathRwV3dAssign(&vDelta, m_vCurrDir.x*fElapsed*fSpeed, m_vCurrDir.y*fElapsed*fSpeed, m_vCurrDir.z*fElapsed*fSpeed);
 
@@ -557,7 +557,7 @@ void CHisshidanPiece::Update(RwReal fElapsed)
 	plane.PlaneFromPointNormal(&vDestPos, &vDir);
 	RwReal fDot = plane.DotProduct(&vNextPos); 
 						
-	// delta time µ¿¾È ÀÌµ¿ °Å¸®¸¦ ±¸ÇÑ´Ù.
+	// delta time ë™ì•ˆ ì´ë™ ê±°ë¦¬ë¥¼ êµ¬í•œë‹¤.
 	if(fDot >= 0.0f)
 	{
 		vDestPos.y += NtlRandomNumber(-1.0f, 1.0f);
@@ -848,7 +848,7 @@ void CNtlBehaviorProjHelljone::UpdateLoop(RwReal fElapsed)
 	RwV3d vDir;
 	RwV3dSubMacro(&vDir, &vDestPos, &vPos); 
 
-	// ÇöÀç ³²Àº °Å¸®¸¦ ±¸ÇÑ´Ù.
+	// í˜„ì¬ ë‚¨ì€ ê±°ë¦¬ë¥¼ êµ¬í•œë‹¤.
 	RwV3dNormalize(&vDir, &vDir);
 
 	RwV3d vCurrDir = m_pActor->GetDirection();
@@ -861,7 +861,7 @@ void CNtlBehaviorProjHelljone::UpdateLoop(RwReal fElapsed)
 
 	RwV3dNormalize(&vCurrDir, &vCurrDir);
 
-	// ÇöÀç ³²Àº °Å¸®¸¦ ±¸ÇÑ´Ù.
+	// í˜„ì¬ ë‚¨ì€ ê±°ë¦¬ë¥¼ êµ¬í•œë‹¤.
 	RwV3d vDelta;
 	CNtlMath::MathRwV3dAssign(&vDelta, vCurrDir.x*fElapsed*fSpeed, vCurrDir.y*fElapsed*fSpeed, vCurrDir.z*fElapsed*fSpeed);
 
@@ -874,7 +874,7 @@ void CNtlBehaviorProjHelljone::UpdateLoop(RwReal fElapsed)
 	plane.PlaneFromPointNormal(&vDestPos, &vDir);
 	RwReal fDot = plane.DotProduct(&vNextPos); 
 						
-	// delta time µ¿¾È ÀÌµ¿ °Å¸®¸¦ ±¸ÇÑ´Ù.
+	// delta time ë™ì•ˆ ì´ë™ ê±°ë¦¬ë¥¼ êµ¬í•œë‹¤.
 	if(fDot >= 0.0f)
 	{
 		vDestPos.y += NtlRandomNumber(-0.5f, 0.5f);
@@ -942,7 +942,7 @@ void CNtlBehaviorProjSteal::Enter(void)
 		return;
 	}
 
-	// hissidan projectile ¹æÇâ ³ëÀÌÁî.
+	// hissidan projectile ë°©í–¥ ë…¸ì´ì¦ˆ.
 	CNtlSobProjectile *pSobProj = reinterpret_cast<CNtlSobProjectile*>(m_pActor);
 	RwV3d vDir = pSobProj->GetDirection();
 	pSobProj->SetSpeed(STEAL_DEFAULT_SPEED);
@@ -1019,7 +1019,7 @@ void CNtlBehaviorProjSteal::UpdateLoop(RwReal fElapsed)
 	RwV3d vDir;
 	RwV3dSubMacro(&vDir, &vDestPos, &vPos); 
 
-	// ÇöÀç ³²Àº °Å¸®¸¦ ±¸ÇÑ´Ù.
+	// í˜„ì¬ ë‚¨ì€ ê±°ë¦¬ë¥¼ êµ¬í•œë‹¤.
 	RwReal fCurrLen = RwV3dLength(&vDir);
 	RwV3dNormalize(&vDir, &vDir);
 
@@ -1033,7 +1033,7 @@ void CNtlBehaviorProjSteal::UpdateLoop(RwReal fElapsed)
 
 	RwV3dNormalize(&vCurrDir, &vCurrDir);
 
-	// ÇöÀç ³²Àº °Å¸®¸¦ ±¸ÇÑ´Ù.
+	// í˜„ì¬ ë‚¨ì€ ê±°ë¦¬ë¥¼ êµ¬í•œë‹¤.
 	RwV3d vDelta;
 	CNtlMath::MathRwV3dAssign(&vDelta, vCurrDir.x*fElapsed*fSpeed, vCurrDir.y*fElapsed*fSpeed, vCurrDir.z*fElapsed*fSpeed);
 
@@ -1052,7 +1052,7 @@ void CNtlBehaviorProjSteal::UpdateLoop(RwReal fElapsed)
 	plane.PlaneFromPointNormal(&vDestPos, &vDir);
 	RwReal fDot = plane.DotProduct(&vNextPos); 
 						
-	// delta time µ¿¾È ÀÌµ¿ °Å¸®¸¦ ±¸ÇÑ´Ù.
+	// delta time ë™ì•ˆ ì´ë™ ê±°ë¦¬ë¥¼ êµ¬í•œë‹¤.
 	if(fDot >= 0.0f)
 	{
 		m_pActor->SetPosition(&vDestPos);

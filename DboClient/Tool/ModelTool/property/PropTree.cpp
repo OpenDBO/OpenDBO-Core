@@ -1,4 +1,4 @@
-// PropTree.cpp : ���� �����Դϴ�.
+// PropTree.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -67,13 +67,13 @@ END_MESSAGE_MAP()
 
 
 
-// CPropTree �޽��� ó�����Դϴ�.
+// CPropTree 메시지 처리기입니다.
 int CPropTree::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// TODO:  ���⿡ Ư��ȭ�� �ۼ� �ڵ带 �߰��մϴ�.
+	// TODO:  여기에 특수화된 작성 코드를 추가합니다.
 	DWORD dwStyle;
 	CRect rc;
 
@@ -116,7 +116,7 @@ void CPropTree::OnSize(UINT nType, int cx, int cy)
 {
 	CWnd::OnSize(nType, cx, cy);
 
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	ResizeChildWindows(cx, cy);
 }
 
@@ -124,7 +124,7 @@ void CPropTree::OnEnable(BOOL bEnable)
 {
 	CWnd::OnEnable(bEnable);
 
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	Invalidate();
 }
 
@@ -132,7 +132,7 @@ void CPropTree::OnSysColorChange()
 {
 	CWnd::OnSysColorChange();
 
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	Invalidate();	
 }
 

@@ -1,4 +1,4 @@
-// PaletteLightObject.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PaletteLightObject.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -14,7 +14,7 @@
 #include "NtlWorldPaletteDefine.h"
 #include "UpdateEvent.h"
 
-// CPaletteLightObject ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteLightObject ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPaletteLightObject, CDialog)
 
@@ -83,7 +83,7 @@ BEGIN_MESSAGE_MAP(CPaletteLightObject, CDialog)
 END_MESSAGE_MAP()
 
 
-// PaletteLightObject ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// PaletteLightObject ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 VOID CPaletteLightObject::InitializeWorldData()
 {

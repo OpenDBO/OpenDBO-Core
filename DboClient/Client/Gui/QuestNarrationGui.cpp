@@ -34,7 +34,7 @@
 #include "GUISoundDefine.h"
 
 #define QUEST_NARRATION_TEXT_INTERVAL	0.025f
-#define QUEST_NARRATION_TEXT_FONTNUM	1			// 3 -> 1 �� ���� -by Kell(09. 07. 15)
+#define QUEST_NARRATION_TEXT_FONTNUM	1			// 3 -> 1 占쏙옙 占쏙옙占쏙옙 -by Kell(09. 07. 15)
 
 #define QUEST_NARRATION_PCMESSAGE_MARGIN_X	60
 #define QUEST_NARRATION_PCMESSAGE_POS_Y		40
@@ -289,14 +289,14 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationDialog_Req* pData )
 		//m_pCinematicObject->GetPCMessage()->SetPosition( rect );
 
 
-		// ���� ��� �ݱ�.
+		// 선택 모드 닫기.
 		for( RwUInt8 i = 0 ; i < CINEMATIC_MAX_PC_SELECT ; ++i )
 			m_pCinematicObject->GetPCSelect( i )->Show( false );
 
 		m_pCinematicObject->GetPCSelectFocus()->Show( false );
 	}
 
-	// ǳ����ȭ ����.
+	// 풍占쏙옙占쏙옙화 占쏙옙占쏙옙.
 	if( eOwnerType == NPCMOB )
 	{
 		if( pData->eGUIType == eNARRATION_GUI_TYPE_NORMAL )
@@ -347,7 +347,7 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationDialog_Req* pData )
 		}
 	}
 
-	// ��ȭ �Է�
+	// 占쏙옙화 占쌉뤄옙
 	sQUEST_TEXT_DATA_TBLDAT* pTextData = reinterpret_cast<sQUEST_TEXT_DATA_TBLDAT*>( API_GetTableContainer()->GetQuestTextDataTable()->FindData( pData->uiDialog ) );
 	if( pTextData )
 	{
@@ -368,10 +368,10 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationDialog_Req* pData )
 				m_pCinematicObject->SetPCMessage( buf, wcslen( buf ) );
 		}		
 		else
-			m_pCinematicObject->GetBalloon()->Show( false );	// ��ȭ ���� ���� ��ǳ���� ǥ������ ����.
+			m_pCinematicObject->GetBalloon()->Show( false );	// 占쏙옙화 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙풍占쏙옙占쏙옙 표占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙.
 	}	
 
-	// �ð� �Է�
+	// 占시곤옙 占쌉뤄옙
 	m_uiMaxLifeTime = pData->uiMaxLifeTime - (RwUInt32)CINEMATIC_MOVETIME * 1000;	
 	m_uiCurrentTime = 0;
 }
@@ -382,7 +382,7 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationUserSelectDialog_Req*
 		return;		
 
 	m_eTSState = pData->eProgState;
-	// peessitemp: ���� ��½�Ÿ���� �����Ƿ� �ϴ� �̷���...
+	// peessitemp: 문자 출력스타일이 없으므로 일단 이렇게...
 	m_eTextOutType = eNARRATION_DIALOG_DIR_TYPE_INVALID;
 
 	if( m_eTSState == eNARRATION_PROGRESS_STATE_START || m_eTSState == eNARRATION_PROGRESS_STATE_SINGLE )
@@ -400,7 +400,7 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationUserSelectDialog_Req*
 
 	sQUEST_TEXT_DATA_TBLDAT* pTextData = NULL;
 
-	//// ��ǳ�� ���
+	//// 말풍선 출력
 	//if( pData->uiConv == INVALID_TBLIDX )
 	//{
 	//	m_bShowPCMessageOnPCSelect = FALSE;				
@@ -424,7 +424,7 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationUserSelectDialog_Req*
 	//	}		
 	//}
 
-	// ��ȭ���� ����.
+	// 占쏙옙화占쏙옙占쏙옙 占쏙옙占쏙옙.
 	for( RwUInt8 i = 0 ; i < CINEMATIC_MAX_PC_SELECT ; ++i )
 	{
 		if( i >= pData->nBranchCnt )
@@ -455,14 +455,14 @@ VOID CQuestNarrationGui::SetUIData( SNtlEventQuestNarrationUserSelectDialog_Req*
 		}	
 	}
 
-	RwInt32 nPCFrameTextRegionHeight = m_pCinematicObject->GetPCFrame()->GetHeight() - 19;	// MagicalNumber : �̹����� ������ �κ��� 19 pixel ��ŭ.
+	RwInt32 nPCFrameTextRegionHeight = m_pCinematicObject->GetPCFrame()->GetHeight() - 19;	// MagicalNumber : 占싱뱄옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占싸븝옙占쏙옙 19 pixel 占쏙옙큼.
 	m_pCinematicObject->SetPCSelectRegion( (RwUInt8)pData->nBranchCnt, (RwUInt8)nPCFrameTextRegionHeight, TRUE );
 
 	m_bySelectID = m_byPCSelectID[0];
 	m_pCinematicObject->SetPCSelectValue( 0 );
 	m_pCinematicObject->GetPCSelectFocus()->Show( true );
 
-	// �ð� �Է�
+	// 占시곤옙 占쌉뤄옙
 	m_uiMaxLifeTime = 0xFFFFFFFF;
 	m_uiCurrentTime = 0;
 }

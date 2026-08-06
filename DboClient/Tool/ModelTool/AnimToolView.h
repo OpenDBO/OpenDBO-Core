@@ -24,26 +24,26 @@ public:
 #endif
 
 public:
-    static CAnimToolView* GetInstance();                                ///< ½Ì±ÛÅæ ¹ÝÈ¯ÇÔ¼ö
+    static CAnimToolView* GetInstance();                                ///< ì‹±ê¸€í†¤ ë°˜í™˜í•¨ìˆ˜
 
     void    SetInit(CMTCharacter* pCharacter,STypeAnimData* pAnimData);
-    void    SetAnimTime(RwReal fCurrentTime, RwReal fTotalTime);       ///< ¾Ö´Ï¸ÞÀÌ¼ÇÀÇ ½Ã°£À» ¼³Á¤ÇÑ´Ù.
-    void    SetEnable(BOOL bEnable);                                   ///< È°¼ºÈ­ À¯¹«¸¦ ¼³Á¤ÇÑ´Ù.
-    void    Update();                                                  ///< ÇÃ·¹ÀÌ Å¸ÀÓÀ» ¾÷µ¥ÀÌÆ® ÇÑ´Ù.
-    void    SetMarkerPos(SEventAnim* pEventAnim);                      ///< ¸¶Ä¿ÀÇ À§Ä¡¸¦ º¯°æÇÑ´Ù.
-    void    ChangeAnimPlay();                                          ///< ¾Ö´Ï¸ÞÀÌ¼Ç ÇÃ·¹ÀÌ »óÅÂ¸¦ º¯°æÇÑ´Ù.
+    void    SetAnimTime(RwReal fCurrentTime, RwReal fTotalTime);       ///< ì• ë‹ˆë©”ì´ì…˜ì˜ ì‹œê°„ì„ ì„¤ì •í•œë‹¤.
+    void    SetEnable(BOOL bEnable);                                   ///< í™œì„±í™” ìœ ë¬´ë¥¼ ì„¤ì •í•œë‹¤.
+    void    Update();                                                  ///< í”Œë ˆì´ íƒ€ìž„ì„ ì—…ë°ì´íŠ¸ í•œë‹¤.
+    void    SetMarkerPos(SEventAnim* pEventAnim);                      ///< ë§ˆì»¤ì˜ ìœ„ì¹˜ë¥¼ ë³€ê²½í•œë‹¤.
+    void    ChangeAnimPlay();                                          ///< ì• ë‹ˆë©”ì´ì…˜ í”Œë ˆì´ ìƒíƒœë¥¼ ë³€ê²½í•œë‹¤.
    
 protected:
-    void    InitMarker();                                              ///< ½½¶óÀÌµå ºäÀÇ ¸¶Ä¿Ç¥½Ã¸¦ ¼³Á¤ÇÑ´Ù.
-    RwReal  PosToTime(int nPos);                                       ///< À§Ä¡°ªÀ» ½Ã°£°ªÀ¸·Î º¯°æÇÑ´Ù.
-    int     TimeToPos(RwReal fTime);                                   ///< Time°ªÀ» PosÀ§Ä¡·Î º¯È¯ÇÑ´Ù.
+    void    InitMarker();                                              ///< ìŠ¬ë¼ì´ë“œ ë·°ì˜ ë§ˆì»¤í‘œì‹œë¥¼ ì„¤ì •í•œë‹¤.
+    RwReal  PosToTime(int nPos);                                       ///< ìœ„ì¹˜ê°’ì„ ì‹œê°„ê°’ìœ¼ë¡œ ë³€ê²½í•œë‹¤.
+    int     TimeToPos(RwReal fTime);                                   ///< Timeê°’ì„ Posìœ„ì¹˜ë¡œ ë³€í™˜í•œë‹¤.
 
 protected:
     static CAnimToolView* m_pInstance;
     
-    CMTCharacter*       m_pCharacter;                                   ///< ¾Ö´Ï¸ÞÀÌ¼Ç ½Ã°£ ¾÷µ¥ÀÌÆ®½Ã¿¡ »ç¿ëÇÒ Ä³¸¯ÅÍ °´Ã¼
-    STypeAnimData*      m_pAnimData;                                    ///< Anim Data Æ÷ÀÎÅÍ
-    BOOL                m_bUpdate;                                      ///< Update À¯¹«
+    CMTCharacter*       m_pCharacter;                                   ///< ì• ë‹ˆë©”ì´ì…˜ ì‹œê°„ ì—…ë°ì´íŠ¸ì‹œì— ì‚¬ìš©í•  ìºë¦­í„° ê°ì²´
+    STypeAnimData*      m_pAnimData;                                    ///< Anim Data í¬ì¸í„°
+    BOOL                m_bUpdate;                                      ///< Update ìœ ë¬´
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support

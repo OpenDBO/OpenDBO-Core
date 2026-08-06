@@ -2,14 +2,14 @@
  *
  * File			: InputAction.h
  * Author		: HyungSuk, Jang
- * Copyright	: (��)NTL
+ * Copyright	: (占쏙옙)NTL
  * Date			: 2005. 8. 26	
  * Abstract		: Input action 
  *****************************************************************************
  * Desc         : 
  *
  * 1st Refactoring(2008. 1. 15 ~ 1. 20 ) : 
- * �ڷᱸ���� �Ŵ����� ���� �и�( InputActionMap <-> ActionMap )
+ * 占쌘료구占쏙옙占쏙옙 占신댐옙占쏙옙占쏙옙 占쏙옙占쏙옙 占싻몌옙( InputActionMap <-> ActionMap )
  *
  *****************************************************************************/
 
@@ -64,18 +64,18 @@ public:
 	void SetActive(RwBool bActive);
 
 public:
-	// CActionMap �������̽�
-	void			InitInputMode();					///< �Է� ��� ����
-	RwUInt32		GetInputMode();						///< � ACTION�� INPUTMODE����
-	void			SetInputMode( RwUInt32 nAction );	///< nAction�� �Է� ��� ����
+	// CActionMap 占쏙옙占쏙옙占쏙옙占싱쏙옙
+	void			InitInputMode();					///< 입력 모드 해제
+	RwUInt32		GetInputMode();						///< 占쏘떤 ACTION占쏙옙 INPUTMODE占쏙옙占쏙옙
+	void			SetInputMode( RwUInt32 nAction );	///< nAction에 입력 모드 지정
 
-	std::wstring	GetKeyName( RwUInt32 nAction );		///< �׼��� ������ �ִ� Ű�� �̸�
+	std::wstring	GetKeyName( RwUInt32 nAction );		///< 占쌓쇽옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쌍댐옙 키占쏙옙 占싱몌옙
 	unsigned short	FindKey( RwUInt32 nAction );
 
-	void			InitDefaultActionMap();				///< ����Ʈ �׼Ǹ����� ����
+	void			InitDefaultActionMap();				///< 占쏙옙占쏙옙트 占쌓션몌옙占쏙옙占쏙옙 占쏙옙占쏙옙
 
-	RwBool			ApplyActionMap();					///< �׼Ǹ��� ����(������ ��Ŷ ����)
-	void			CancleActionMap();					///< ���� ���
+	RwBool			ApplyActionMap();					///< 占쌓션몌옙占쏙옙 占쏙옙占쏙옙(占쏙옙占쏙옙占쏙옙 占쏙옙킷 占쏙옙占쏙옙)
+	void			CancleActionMap();					///< 적용 취소
 
 	// Ignore Key
 	RwBool			RegisterIgnoreKey( RwUInt8 byKey, int nRefCount );
@@ -94,7 +94,7 @@ protected:
 	void HitTestUpDbClickDashMap(SInputDashMap& sDashMap);
 	void CallDashMove(RwUInt32 uiServerDashMoveFlags);
 
-	// �׼�ID�� �Ѱ� ó���ϰ� ����� �Լ���
+	// 액션ID를 넘겨 처리하게 변경된 함수들
 	void ActionDownMoveHandler(RwUInt32 uiAction);		///< �׼ǿ� ���� �̵� �׼� �ڵ鷯
 	void ActionDownDashMoveHandler(RwUInt32 uiAction);	///< �׼ǿ� ���� �뽬 �׼� �ڵ鷯
 	void ActionDownBehaviorHandler(RwUInt32 uiAction);	///< �׼ǿ� ���� �ൿ �׼� �ڵ鷯
@@ -119,54 +119,54 @@ private:
 	INPUT_HANDLE m_hMouseDown;
 	INPUT_HANDLE m_hMouseUp;
 
-	CNtlCallbackParam1 *m_pCallKeyboardMove;		///< Ű���� �̵�
+	CNtlCallbackParam1 *m_pCallKeyboardMove;		///< 키占쏙옙占쏙옙 占싱듸옙
 	CNtlCallbackParam1 *m_pCallKeyboardDashMove;	///< Ű���� �뽬 �̵�
-	CNtlCallbackParam0 *m_pCallAvatarSelect;		///< �ƹ�Ÿ ����
-	CNtlCallbackParam1 *m_pCallJump;				///< ����
-	CNtlCallbackParam1 *m_pCallCharging;			///< �� ������
-	CNtlCallbackParam1 *m_pCallBlocking;			///< ���� ���
-	CNtlCallbackParam1 *m_pCallSitAndStand;			///< �ɾ� �Ͼ
-	CNtlCallbackParam0 *m_pCallAutoRun;				///< �ڵ� �޸���
-	CNtlCallbackParam1 *m_pCallSkillQuickSlotDown;	///< ������ �ٿ�
-	CNtlCallbackParam1 *m_pCallSkillQuickSlotUp;	///< ������ ��
+	CNtlCallbackParam0 *m_pCallAvatarSelect;		///< 占싣뱄옙타 占쏙옙占쏙옙
+	CNtlCallbackParam1 *m_pCallJump;				///< 占쏙옙占쏙옙
+	CNtlCallbackParam1 *m_pCallCharging;			///< 占쏙옙 占쏙옙占쏙옙占쏙옙
+	CNtlCallbackParam1 *m_pCallBlocking;			///< 블록 모드
+	CNtlCallbackParam1 *m_pCallSitAndStand;			///< 占심억옙 占싹어서
+	CNtlCallbackParam0 *m_pCallAutoRun;				///< 占쌘듸옙 占쌨몌옙占쏙옙
+	CNtlCallbackParam1 *m_pCallSkillQuickSlotDown;	///< 占쏙옙占쏙옙占쏙옙 占쌕울옙
+	CNtlCallbackParam1 *m_pCallSkillQuickSlotUp;	///< 占쏙옙占쏙옙占쏙옙 占쏙옙
 	CNtlCallbackParam1 *m_pCallSkillQuickSlotExDown;
 	CNtlCallbackParam1 *m_pCallSkillQuickSlotExUp;
 	CNtlCallbackParam1 *m_pCallSkillQuickSlotEx2Down;
 	CNtlCallbackParam1 *m_pCallSkillQuickSlotEx2Up;
-	CNtlCallbackParam1 *m_pCallSkillQuickSlotChange;///< ������ PREV, NEXT
+	CNtlCallbackParam1 *m_pCallSkillQuickSlotChange;///< 占쏙옙占쏙옙占쏙옙 PREV, NEXT
 	CNtlCallbackParam0 *m_pCallExit;				///< Exit
-	CNtlCallbackParam0 *m_pCallLooting;				///< ������ �ݱ�
-	CNtlCallbackParam1 *m_pCallDialogAction;		///< Dialog�� ���� �׼�
-	CNtlCallbackParam0 *m_pCallTabKey;				///< ���� �׼�
-	CNtlCallbackParam0 *m_pCallAutoTarget;			///< ����� �� ����
-	CNtlCallbackParam0 *m_pCallAutoAttack;			///< �ڵ� ����
-	CNtlCallbackParam0 *m_pCallAutoFollow;			///< �ڵ� ���󰡱�
-	CNtlCallbackParam1 *m_pCallPartySelect;			///< ��Ƽ�� ����
-	CNtlCallbackParam0 *m_pCallPartyAutoSelect;		///< ��Ƽ�� �ڵ� ����
-    CNtlCallbackParam0 *m_pCallScouterUse;          ///< ��ī���� ��� (by agebreak)
-	CNtlCallbackParam1 *m_pCallTargetMarking;		///< Ÿ�� ��ŷ
-	CNtlCallbackParam1 *m_pCallTargetSelecting;		///< Ÿ�� ������
-	CNtlCallbackParam1 *m_pCallChatPageChange;			///< ä�� ������ (0 UP 1 DOWN)
+	CNtlCallbackParam0 *m_pCallLooting;				///< 占쏙옙占쏙옙占쏙옙 占쌥깍옙
+	CNtlCallbackParam1 *m_pCallDialogAction;		///< Dialog占쏙옙 占쏙옙占쏙옙 占쌓쇽옙
+	CNtlCallbackParam0 *m_pCallTabKey;				///< 占쏙옙占쏙옙 占쌓쇽옙
+	CNtlCallbackParam0 *m_pCallAutoTarget;			///< 가까운 적 선택
+	CNtlCallbackParam0 *m_pCallAutoAttack;			///< 占쌘듸옙 占쏙옙占쏙옙
+	CNtlCallbackParam0 *m_pCallAutoFollow;			///< 占쌘듸옙 占쏙옙占쏢가깍옙
+	CNtlCallbackParam1 *m_pCallPartySelect;			///< 占쏙옙티占쏙옙 占쏙옙占쏙옙
+	CNtlCallbackParam0 *m_pCallPartyAutoSelect;		///< 占쏙옙티占쏙옙 占쌘듸옙 占쏙옙占쏙옙
+    CNtlCallbackParam0 *m_pCallScouterUse;          ///< 스카우터 사용 (by agebreak)
+	CNtlCallbackParam1 *m_pCallTargetMarking;		///< 타占쏙옙 占쏙옙킹
+	CNtlCallbackParam1 *m_pCallTargetSelecting;		///< 타占쏙옙 占쏙옙占쏙옙占쏙옙
+	CNtlCallbackParam1 *m_pCallChatPageChange;			///< 채占쏙옙 占쏙옙占쏙옙占쏙옙 (0 UP 1 DOWN)
 	
 
 	RwUInt32	m_uiKey1MoveValidFlags;
 	RwUInt32	m_uiKey2MoveValidFlags;
-	RwUInt32	m_uiMoveFlags;						///< Ŭ���̾�Ʈ���� ���Ǵ� Move Flags
+	RwUInt32	m_uiMoveFlags;						///< 클占쏙옙占싱억옙트占쏙옙占쏙옙 占쏙옙占실댐옙 Move Flags
 	RwBool		m_bRBtnDown;
-	RwUInt32	m_uiServerMoveFlags;				///< ������ ������ Move Flags
-	RwBool		m_bActive;							///< InputActionMap�� �۵��������� ����
-	RwBool		m_bAcceptServer;					///< ������ ������ ������ ����
+	RwUInt32	m_uiServerMoveFlags;				///< 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 Move Flags
+	RwBool		m_bActive;							///< InputActionMap占쏙옙 占쌜듸옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙
+	RwBool		m_bAcceptServer;					///< 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙
 
-	typedef std::map<RwUInt32, RwBool> FLAGMAP;		///< ���¸� ȸ��������� �� �׼ǵ�
+	typedef std::map<RwUInt32, RwBool> FLAGMAP;		///< 상태를 회복시켜줘야 할 액션들
 	FLAGMAP m_mapFlag;
 
-	typedef std::map<RwUInt8, RwUInt8>	IGNOREMAP;	///< ���õǴ� Ű�� ��Ƴ��� ��
+	typedef std::map<RwUInt8, RwUInt8>	IGNOREMAP;	///< 무시되는 키를 모아놓은 맵
 	IGNOREMAP m_mapIgnore;
 
-	typedef std::map<RwUInt16, RwUInt8> SPECMAP;	///< Ư���� ������ �ؾ��ϴ� �׼�
+	typedef std::map<RwUInt16, RwUInt8> SPECMAP;	///< 특占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쌔억옙占싹댐옙 占쌓쇽옙
 	SPECMAP	m_mapSpecialAction;
 
-	typedef std::map<RwUInt8, RwUInt8> UPDOWNREF;	///< Ű�� ��/�ٿ� �Ǵ� Ƚ���� üũ�Ѵ�.
+	typedef std::map<RwUInt8, RwUInt8> UPDOWNREF;	///< 키占쏙옙 占쏙옙/占쌕울옙 占실댐옙 횟占쏙옙占쏙옙 체크占싼댐옙.
 	UPDOWNREF m_mapUpdownRef;
 
 	SInputDashMap m_sFrontDashMap;
@@ -174,7 +174,7 @@ private:
 	SInputDashMap m_sRightDashMap;
 	SInputDashMap m_sBackDashMap;
 
-	// �׼Ǹ� Ŭ����(ActionMap.h) by Kell
+	// 占쌓션몌옙 클占쏙옙占쏙옙(ActionMap.h) by Kell
 	CActionMapManager m_ActionMapManager;
 
 public:

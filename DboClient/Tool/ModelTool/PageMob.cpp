@@ -39,7 +39,7 @@ BOOL CPageMob::OnInitDialog()
     sWorkFolder += L"\\TreeMOB.xml";
     m_treePC.LoadTree((LPWSTR)(LPCWSTR)sWorkFolder);
 
-    // SaveÇÒ Æú´õÀÌ¸§À» ¼³Á¤ÇÑ´Ù.
+    // Saveí•  í´ë”ì´ë¦„ì„ ì„¤ì •í•œë‹¤.
     m_sSaveFolderName = A2W(CModelToolApplication::GetInstance()->GetWorkDir());
     m_sSaveFolderName += L"\\Character\\";
 
@@ -49,7 +49,7 @@ BOOL CPageMob::OnInitDialog()
 
 void CPageMob::OnDestroy()
 {
-    // Ã¢ÀÌ ¾ø¾îÁö±â Àü¿¡ XML·Î ³»¿ëÀ» ÀúÀåÇÑ´Ù.
+    // ì°½ì´ ì—†ì–´ì§€ê¸° ì „ì— XMLë¡œ ë‚´ìš©ì„ ì €ìž¥í•œë‹¤.
     USES_CONVERSION;
 
     CString sWorkFolder = A2W(CModelToolApplication::GetInstance()->GetWorkDir());
@@ -61,12 +61,12 @@ void CPageMob::OnDestroy()
 
 BOOL CPageMob::OnSetActive()
 {
-    // È°¼ºÈ­ µÉ¶§ RightView¿¡ ÀÚ½ÅÀÇ Á¾·ù¸¦ ¾Ë·ÁÁà¾ß ÇÑ´Ù.
-    // RightView´Â °øÅëÀ¸·Î »ç¿ëµÇ°í, LeftViewÀÇ Á¾·ù¿¡ µû¶ó¼­
-    // ¾Ö´Ï¸ÞÀÌ¼Ç Á¾·ù°¡ ´Þ¶óÁ®¾ß ÇÏ±â ¶§¹®
+    // í™œì„±í™” ë ë•Œ RightViewì— ìžì‹ ì˜ ì¢…ë¥˜ë¥¼ ì•Œë ¤ì¤˜ì•¼ í•œë‹¤.
+    // RightViewëŠ” ê³µí†µìœ¼ë¡œ ì‚¬ìš©ë˜ê³ , LeftViewì˜ ì¢…ë¥˜ì— ë”°ë¼ì„œ
+    // ì• ë‹ˆë©”ì´ì…˜ ì¢…ë¥˜ê°€ ë‹¬ë¼ì ¸ì•¼ í•˜ê¸° ë•Œë¬¸
     CRightToolView::GetInstance()->SetActiveLeftView(CRightToolView::LEFT_PAGE_MOB);
 
-    // ¼±ÅÃµÈ ¾ÆÀÌÅÛÀ» ´Ù½ÃÇÑ¹ø ¼±ÅÃÇØ ÁØ´Ù. (¿À¸¥ÂÊ ÅøºäÀÇ È°¼ºÈ­¸¦ À§ÇØ)
+    // ì„ íƒëœ ì•„ì´í…œì„ ë‹¤ì‹œí•œë²ˆ ì„ íƒí•´ ì¤€ë‹¤. (ì˜¤ë¥¸ìª½ íˆ´ë·°ì˜ í™œì„±í™”ë¥¼ ìœ„í•´)
     HTREEITEM hSelectedItem = m_treePC.GetSelectedItem();
     if(hSelectedItem)
     {

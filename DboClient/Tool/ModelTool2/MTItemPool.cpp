@@ -24,11 +24,11 @@ CMTItemPool::~CMTItemPool(void)
 
 void CMTItemPool::AddItem( CMTItem* pItem ) 
 {
-    // Mesh NameÀ» Key·Î ÇÏ¿© Áßº¹µÈ µ¥ÀÌÅÍ´Â Ãß°¡ÇÏÁö ¾Ê´Â´Ù.
-    // NOTE : ¸¸¾à °°Àº Mesh¸¦ ¾²´Â µÎ°³ÀÇ ¼­·Î ´Ù¸¥ ItemÀÌ ÀÖ´Ù¸é ¹®Á¦°¡ ÀÖ´Ù. (ÇöÀç ±×·± °æ¿ì°¡ ¾ø±â¶§¹®¿¡, ¿ì¼± ÀÌ·¸°Ô °¡Á¤ÇÑ´Ù.-_-;)
+    // Mesh Nameì„ Keyë¡œ í•˜ì—¬ ì¤‘ë³µëœ ë°ì´í„°ëŠ” ì¶”ê°€í•˜ì§€ ì•ŠëŠ”ë‹¤.
+    // NOTE : ë§Œì•½ ê°™ì€ Meshë¥¼ ì“°ëŠ” ë‘ê°œì˜ ì„œë¡œ ë‹¤ë¥¸ Itemì´ ìžˆë‹¤ë©´ ë¬¸ì œê°€ ìžˆë‹¤. (í˜„ìž¬ ê·¸ëŸ° ê²½ìš°ê°€ ì—†ê¸°ë•Œë¬¸ì—, ìš°ì„  ì´ë ‡ê²Œ ê°€ì •í•œë‹¤.-_-;)
     if(m_mapItem.find(pItem->GetProperty()->GetName()) == m_mapItem.end())
     {
-        // Visual Manager¿¡ Ãß°¡ÇÑ´Ù.
+        // Visual Managerì— ì¶”ê°€í•œë‹¤.
         GetSceneManager()->AddPLEntity(pItem);
 
         m_mapItem[pItem->GetProperty()->GetName()] = pItem;

@@ -120,8 +120,8 @@ namespace RWS
    };
 
 
-   extern debug_buf s_DebugBuf;			// debug log ÆÄÀÏ¿ë stream buffer
-   extern debug_buf s_TraceBuf;			// tracd log ÆÄÀÏ¿ë stream buffer
+   extern debug_buf s_DebugBuf;			// debug log íŒŒì¼ìš© stream buffer
+   extern debug_buf s_TraceBuf;			// tracd log íŒŒì¼ìš© stream buffer
 
 
    /*
@@ -144,7 +144,7 @@ namespace RWS
 */
 #if defined(SN_TARGET_PS2) && !defined(_STLPORT_VERSION)
 
-// by agebreak : ±âÁ¸ stl °ú Ãæµ¹(TOOL ¿¡¼­)
+// by agebreak : ê¸°ì¡´ stl ê³¼ ì¶©ëŒ(TOOL ì—ì„œ)
 /*
 namespace std
 {

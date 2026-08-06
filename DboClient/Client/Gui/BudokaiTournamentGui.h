@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File: BudokaiTournamentGui.h
-// Desc: ÃµÇÏÁ¦ÀÏ¹«µµÈ¸ ´ëÀüÇ¥
+// Desc: ì²œí•˜ì œì¼ë¬´ë„íšŒ ëŒ€ì „í‘œ
 //
 // 2008.06.04 Peessi@hitel.net   
 //
@@ -15,7 +15,7 @@
 #include "NtlBudokai.h"
 #include "NtlTimeQuest.h"
 
-// Âü°¡ÀÚ 
+// ì°¸ê°€ì 
 class CBudokaiTournamentEntry
 {
 public:
@@ -25,12 +25,12 @@ public:
 	~CBudokaiTournamentEntry(VOID);
 
 	//! Operation
-	// 1. Âü°¡ÀÚ ÆĞÅ¶ ¹Ş¾ÒÀ»¶§ ÀüºÎ Ã¤¿öÁØ´Ù.
+	// 1. ì°¸ê°€ì íŒ¨í‚· ë°›ì•˜ì„ë•Œ ì „ë¶€ ì±„ì›Œì¤€ë‹¤.
 	VOID	SetEntry( const WCHAR* pName, RwUInt16 wJoinID );
 
 private:
 	//! Callback
-	// 1. Mouse Enter&Leave½Ã InfoWnd ¶ç¿ì±â
+	// 1. Mouse Enter&Leaveì‹œ InfoWnd ë„ìš°ê¸°
 	gui::CSlot	m_slotMouseEnter;
 	gui::CSlot	m_slotMouseLeave;
 	gui::CSlot	m_slotMove;
@@ -42,18 +42,18 @@ private:
 	VOID	OnPaint(VOID);
 
 	//! Variable
-	// 0. º»¼± Âü°¡ ¹øÈ£
+	// 0. ë³¸ì„  ì°¸ê°€ ë²ˆí˜¸
 	RwUInt8			m_byPos;
 	RwUInt16		m_wJoinID;
-	// 1. Âü°¡ÀÚ ÀÌ¸§.
+	// 1. ì°¸ê°€ì ì´ë¦„.
 	std::wstring	m_wstrName;
-	// 2. Âü°¡¹øÈ£ CPanel.
+	// 2. ì°¸ê°€ë²ˆí˜¸ CPanel.
 	gui::CPanel*	m_ppnlMark;
-	// 3. Æ÷Ä¿½º Surface 
+	// 3. í¬ì»¤ìŠ¤ Surface 
 	CSurfaceGui		m_surFocus;	
 };
 
-// ´ëÀüÁ¤º¸
+// ëŒ€ì „ì •ë³´
 class CBudokaiTournamentFightInfo
 {
 public:
@@ -81,16 +81,16 @@ public:
 	~CBudokaiTournamentFightInfo(VOID);
 
 	//! Operation
-	// 0. ¾÷µ¥ÀÌÆ®
+	// 0. ì—…ë°ì´íŠ¸
 	VOID	Update( RwReal fElapsedTime );		
 	VOID	UpdateInitVertical( RwReal fElapsedTime );
 	VOID	UpdateHorizontal( RwReal fElapsedTime );
 	VOID	UpdateVertical( RwReal fElapsedTime );
 
-	// 1. ´ëÀü °á°ú ¹Ş¾ÒÀ»¶§ Lineµ¥ÀÌÅÍ Ã¤¿ì±â, ÇÑ¹ø µé¾î¿Â °á°ú´Â ÇÃ·¡±×¸¦ ÄÑÁØ´Ù.	¾Ö´Ï¸ŞÀÌ¼Ç ÇÃ·¡±×µµ ¿Â~!!
+	// 1. ëŒ€ì „ ê²°ê³¼ ë°›ì•˜ì„ë•Œ Lineë°ì´í„° ì±„ìš°ê¸°, í•œë²ˆ ë“¤ì–´ì˜¨ ê²°ê³¼ëŠ” í”Œë˜ê·¸ë¥¼ ì¼œì¤€ë‹¤.	ì• ë‹ˆë©”ì´ì…˜ í”Œë˜ê·¸ë„ ì˜¨~!!
 	VOID	SetFightResult( RwUInt16 wWinnerJoinID, RwUInt16 wJoinID1, RwUInt16 wJoinID2, RwUInt8 byScore1, RwUInt8 byScore2 );
 
-	// 2. °¢ ÁøÃâÇßÀ»¶§, ¹Ø¿¡¼­ ¿Ã¶ó¿Â µ¥ÀÌÅÍ·Î Ã¤¿öÁØ´Ù. 
+	// 2. ê° ì§„ì¶œí–ˆì„ë•Œ, ë°‘ì—ì„œ ì˜¬ë¼ì˜¨ ë°ì´í„°ë¡œ ì±„ì›Œì¤€ë‹¤. 
 	VOID	SetEntryData( RwUInt8 byIdx, RwUInt16 wJoinID );
 		
 	//! Attribute
@@ -111,7 +111,7 @@ private:
 	RwBool	IsLeftNode(VOID);
 	
 	//! Callback
-	// 1. ¹öÆ° Å¬¸¯½Ã ´ëÀüÁ¤º¸ ¿äÃ»ÆĞÅ¶ º¸³»±â. 	
+	// 1. ë²„íŠ¼ í´ë¦­ì‹œ ëŒ€ì „ì •ë³´ ìš”ì²­íŒ¨í‚· ë³´ë‚´ê¸°. 	
 	gui::CSlot	m_slotClickInfoBtn;
 	gui::CSlot	m_slotMove;
 	gui::CSlot	m_slotPaint;
@@ -123,7 +123,7 @@ private:
 	//! Variable
 	// 1. CButton
 	gui::CButton*	m_pbtnBattleInfo;
-	// 2. Line Surface 3°³, ¸»´ÜÀÎ °æ¿ì 5°³, ±× ¸¸Å­ÀÇ RectÁ¤º¸, ¸»´ÜÀÎ °æ¿ì
+	// 2. Line Surface 3ê°œ, ë§ë‹¨ì¸ ê²½ìš° 5ê°œ, ê·¸ ë§Œí¼ì˜ Rectì •ë³´, ë§ë‹¨ì¸ ê²½ìš°
 	CSurfaceGui		m_surLeftInitVerticalLine;
 	CSurfaceGui		m_surRightInitVerticalLine;
 	CSurfaceGui		m_surLeftHorizontalLine;
@@ -139,35 +139,35 @@ private:
 	RwInt32			m_nOriginLeft;
 	RwInt32			m_nHorizontalOffset;
 	
-	// °¢ ¶óÀÎÀÇ ÀÌµ¿ ½Ã°£( °Å¸®(ÇÈ¼¿) / ¼Óµµ(ÇÈ¼¿/½Ã°£) )
+	// ê° ë¼ì¸ì˜ ì´ë™ ì‹œê°„( ê±°ë¦¬(í”½ì…€) / ì†ë„(í”½ì…€/ì‹œê°„) )
 	RwReal			m_fMoveTimeInitVertical;
 	RwReal			m_fMoveTimeHorizontal;
 	RwReal			m_fMoveTimeVertical;
 
-	// ÇöÀç ½Ã°£
+	// í˜„ì¬ ì‹œê°„
 	RwReal			m_fCurrentTime;
 
-	// 3. À§Ä¡ Á¤º¸( ¸î°­ ¸î¹øÂ° °æ±â )
-	RwUInt8			m_byMatchNumber;		// ¿ŞÂÊºÎÅÍ 0¹ø
-	RwUInt8			m_byMatchLevel;			// ¾Æ·¡ºÎÅÍ 0¹ø
-	RwUInt8			m_byServerMatchNumber;	// ¿ŞÂÊºÎÅÍ 0¹ø, ¼­¹ö³Ñ¹ö
-	RwUInt8			m_byServerMatchLevel;	// °á½ÂºÎÅÍ 0¹ø, ¼­¹ö³Ñ¹ö
-	// 4. ¾Ö´Ï¸ŞÀÌ¼ÇµÇ¾ßÇÏ´Â ÇÃ·¡±×( ÇÏÀ§ ³ëµå 2°³·Î ºÎÅÍ Á¾·á ½ÅÈ£¸¦ ¹Ş¾Æ¾ßÇÔ. Áï 2°¡ µÇ¾î¾ß ÇÔ
+	// 3. ìœ„ì¹˜ ì •ë³´( ëª‡ê°• ëª‡ë²ˆì§¸ ê²½ê¸° )
+	RwUInt8			m_byMatchNumber;		// ì™¼ìª½ë¶€í„° 0ë²ˆ
+	RwUInt8			m_byMatchLevel;			// ì•„ë˜ë¶€í„° 0ë²ˆ
+	RwUInt8			m_byServerMatchNumber;	// ì™¼ìª½ë¶€í„° 0ë²ˆ, ì„œë²„ë„˜ë²„
+	RwUInt8			m_byServerMatchLevel;	// ê²°ìŠ¹ë¶€í„° 0ë²ˆ, ì„œë²„ë„˜ë²„
+	// 4. ì• ë‹ˆë©”ì´ì…˜ë˜ì•¼í•˜ëŠ” í”Œë˜ê·¸( í•˜ìœ„ ë…¸ë“œ 2ê°œë¡œ ë¶€í„° ì¢…ë£Œ ì‹ í˜¸ë¥¼ ë°›ì•„ì•¼í•¨. ì¦‰ 2ê°€ ë˜ì–´ì•¼ í•¨
 	RwInt32			m_nEndOfBelowAnimation;	
-	// 5. ÀÏÁ¤ ½Ã°£ÀÌ Áö³¯¶§±îÁö ÆĞÅ¶À» ¸øº¸³»µµ·Ï ½Ã°£ÀúÀå.
+	// 5. ì¼ì • ì‹œê°„ì´ ì§€ë‚ ë•Œê¹Œì§€ íŒ¨í‚·ì„ ëª»ë³´ë‚´ë„ë¡ ì‹œê°„ì €ì¥.
 	RwUInt32		m_uiWaitTime;			
-	// 6. °¢ ´ëÀüÀÚÀÇ Âü°¡ ID
+	// 6. ê° ëŒ€ì „ìì˜ ì°¸ê°€ ID
 	stENTRYINFO		m_stEntry[2];			
-	// 7. ´ëÀü °á°ú
+	// 7. ëŒ€ì „ ê²°ê³¼
 	RwUInt16		m_wWinnerTeamJoinID;
 	RwUInt16		m_wLoserTeamJoinID;
-	// 8. ¾Ö´Ï¸ŞÀÌ¼Ç »óÅÂ
-	ANIMATIONSTATE	m_eAnimationState;		// °á°ú ¹Ş¾ÒÀ»¶§ 0ÀÌ¿ÜÀÇ °ªÀÌ µé¾î¿È.
-	// 9. »óÀ§ ³ëµå 
+	// 8. ì• ë‹ˆë©”ì´ì…˜ ìƒíƒœ
+	ANIMATIONSTATE	m_eAnimationState;		// ê²°ê³¼ ë°›ì•˜ì„ë•Œ 0ì´ì™¸ì˜ ê°’ì´ ë“¤ì–´ì˜´.
+	// 9. ìƒìœ„ ë…¸ë“œ 
 	CBudokaiTournamentFightInfo* m_pAboveFightInfo;
-	// 10. ºÎ¸ğ ÄÄÆ÷³ÍÆ®
+	// 10. ë¶€ëª¨ ì»´í¬ë„ŒíŠ¸
 	gui::CComponent*	m_pdlgParent;
-	// 11. ÆÄÆ¼ ¸ğµåÀÎ°¡
+	// 11. íŒŒí‹° ëª¨ë“œì¸ê°€
 	RwBool			m_bParty;	
 };
 
@@ -196,7 +196,7 @@ public:
 	CBudokaiTournamentFightInfoGroup( RwInt32 nPosOffset, RwInt32 nEntryCount, RwInt32 nOriginX, RwInt32 nOriginY, RwInt32 nVerticalOffset, RwInt32 nHorizontalOffset, RwInt32 nEndLineY, gui::CDialog* pDialog );
 	~CBudokaiTournamentFightInfoGroup(VOID);
 
-	VOID	CreateData( RwUInt8 byIndex, CBudokaiTournamentFightInfo* pAboveFightInfo, RwUInt8 byMatchLevel, RwUInt8 byMatchNumber, RwUInt8 byServerMatchLevel, RwUInt8 byServerMatchNumber, RwBool bParty );	// peessitemp : ±ÍÂú´Ù -_-
+	VOID	CreateData( RwUInt8 byIndex, CBudokaiTournamentFightInfo* pAboveFightInfo, RwUInt8 byMatchLevel, RwUInt8 byMatchNumber, RwUInt8 byServerMatchLevel, RwUInt8 byServerMatchNumber, RwBool bParty );	// peessitemp : ê·€ì°®ë‹¤ -_-
 	//RwBool	SetEntryData( RwUInt8 byServerMatchLevel, RwUInt8 byServerMatchNumber, RwUInt16 wJoinID1, RwUInt16 wJoinID2 );
 	//RwBool	SetResultData( RwUInt8 byServerMatchLevel, RwUInt8 byServerMatchNumber, RwUInt16 wWinnerJoinID );
 
@@ -263,23 +263,23 @@ private:
 	CBudokaiTournamentEntryGroup*		m_pEntryGroup[NUM_PAGE];
 	CBudokaiTournamentFightInfoGroup*	m_pFightInfoGroup[NUM_PAGE];
 	
-	RwUInt8							m_byMaxEntry;			// ÃÖ´ë ¸î°­. 
-	ePage							m_eCurrenctPage;		// ÇöÀç º¸ÀÌ´Â ÆäÀÌÁö.
-	RwUInt8							m_byIndividualFightInfoInputDoneCount;	// ÇöÀç ÀÔ·ÂµÈ FightInfo °¹¼ö.(¼­¹ö ¸®Äù½ºÆ® ¿ë) °³ÀÎÀü
-	RwUInt8							m_byTeamFightInfoInputDoneCount;		// ÇöÀç ÀÔ·ÂµÈ FightInfo °¹¼ö.(¼­¹ö ¸®Äù½ºÆ® ¿ë) ÆÄÆ¼Àü		
+	RwUInt8							m_byMaxEntry;			// ìµœëŒ€ ëª‡ê°•. 
+	ePage							m_eCurrenctPage;		// í˜„ì¬ ë³´ì´ëŠ” í˜ì´ì§€.
+	RwUInt8							m_byIndividualFightInfoInputDoneCount;	// í˜„ì¬ ì…ë ¥ëœ FightInfo ê°¯ìˆ˜.(ì„œë²„ ë¦¬í€˜ìŠ¤íŠ¸ ìš©) ê°œì¸ì „
+	RwUInt8							m_byTeamFightInfoInputDoneCount;		// í˜„ì¬ ì…ë ¥ëœ FightInfo ê°¯ìˆ˜.(ì„œë²„ ë¦¬í€˜ìŠ¤íŠ¸ ìš©) íŒŒí‹°ì „		
 
 	gui::CButton*					m_pbtnRightArrow;
 	gui::CButton*					m_pbtnLeftArrow;
 	gui::CStaticBox*				m_pstbIndividualGroupType;
 
-	gui::CButton*					m_pbtnParty;			// ToggleÇü½Ä ¹öÆ°. ÆÄÆ¼½Ã À§ÀÇ ¼¼ ÄÄÆ÷³ÍÆ®°¡ »ç¶óÁö°Å³ª, ºñÈ°¼ºÈ­
+	gui::CButton*					m_pbtnParty;			// Toggleí˜•ì‹ ë²„íŠ¼. íŒŒí‹°ì‹œ ìœ„ì˜ ì„¸ ì»´í¬ë„ŒíŠ¸ê°€ ì‚¬ë¼ì§€ê±°ë‚˜, ë¹„í™œì„±í™”
 	gui::CButton*					m_pbtnIndividual;
 	
-	gui::CPanel*					m_ppnlLineBack;			// ¶óÀÎ.
+	gui::CPanel*					m_ppnlLineBack;			// ë¼ì¸.
 	gui::CPanel*					m_ppnlQuestionMark;		// -_-;;
 	
 	gui::CStaticBox*				m_pstbTitle;			
-	gui::CStaticBox*				m_pstbInfomation;		// ¼³¸í.	
+	gui::CStaticBox*				m_pstbInfomation;		// ì„¤ëª….	
 
 	gui::CButton*					m_pbtnClose;
 

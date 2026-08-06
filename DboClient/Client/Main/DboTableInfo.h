@@ -2,11 +2,11 @@
  *
  * File			: DboTableInfo.h
  * Author		: Hong SungBock
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 11. 3
  * Abstract		: DBO Table Info for Client
  *****************************************************************************
- * Desc         : Å¬¶óÀÌ¾ðÆ®¿¡¼­¸¸ »ç¿ëµÇ´Â Å×ÀÌºíÀÇ Á¤º¸¸¦ Á¤ÀÇÇÑ´Ù
+ * Desc         : í´ë¼ì´ì–¸íŠ¸ì—ì„œë§Œ ì‚¬ìš©ë˜ëŠ” í…Œì´ë¸”ì˜ ì •ë³´ë¥¼ ì •ì˜í•œë‹¤
  *
  *****************************************************************************/
 
@@ -15,7 +15,7 @@
 #include "NtlBitFlag.h"
 
 
-///< ¿ùµå¸ÊÀÇ Á¾·ù¿¡ µû¶ó È­¸é¿¡ Ç¥½ÃµÊ
+///< ì›”ë“œë§µì˜ ì¢…ë¥˜ì— ë”°ë¼ í™”ë©´ì— í‘œì‹œë¨
 enum eLandMark_WorldMapType
 {
 	LT_NONE,
@@ -44,7 +44,7 @@ enum eLandMark_WorldMapType_BitFlag
 	NUM_LB
 };
 
-///< ¿ùµå¸Ê¿¡ Ç¥½ÃµÇ´Â ¹æ¹ý
+///< ì›”ë“œë§µì— í‘œì‹œë˜ëŠ” ë°©ë²•
 enum eLandMark_Display_Part
 {
 	LDT_NONE,

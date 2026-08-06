@@ -13,7 +13,7 @@ class CNaviMeshPane : public CXTResizeFormView
 	DECLARE_DYNCREATE(CNaviMeshPane)
 
 protected:
-	CNaviMeshPane();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CNaviMeshPane();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CNaviMeshPane();
 
 public:
@@ -26,28 +26,28 @@ public:
 #endif
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 
 public:
     static CNaviMeshPane* GetInstance() {return m_pInstance;}
 
-    void SetObject(CMTObject* pObject);                     ///< ¿ÀºêÁ§Æ®¸¦ ¼¼ÆÃÇÑ´Ù.
-    void Render();                                          ///< ¼±ÅÃµÈ ¸Ş½Ã¸¦ ·»´õ¸µÇÑ´Ù.
+    void SetObject(CMTObject* pObject);                     ///< ì˜¤ë¸Œì íŠ¸ë¥¼ ì„¸íŒ…í•œë‹¤.
+    void Render();                                          ///< ì„ íƒëœ ë©”ì‹œë¥¼ ë Œë”ë§í•œë‹¤.
 
     virtual void OnInitialUpdate();
 
 protected:
-    void CreateClump(CString& strFileName);                 ///< ³×ºñ°ÔÀÌ¼Ç ¸Ş½Ã¸¦ »ı¼ºÇÑ´Ù.
-    void RemoveAllClump();                                  ///< ³×ºñ°ÔÀÌ¼Ç ¸Ş½Ã ¸ğµÎ¸¦ »èÁ¦ÇÑ´Ù.
+    void CreateClump(CString& strFileName);                 ///< ë„¤ë¹„ê²Œì´ì…˜ ë©”ì‹œë¥¼ ìƒì„±í•œë‹¤.
+    void RemoveAllClump();                                  ///< ë„¤ë¹„ê²Œì´ì…˜ ë©”ì‹œ ëª¨ë‘ë¥¼ ì‚­ì œí•œë‹¤.
 
 protected:
     static CNaviMeshPane*   m_pInstance;
     
     CListBox m_listNavi;
     CListBox m_listObs;
-    std::vector<CMTClump*> m_vecClump;                     ///< »ı¼ºµÈ ³×ºñ°ÔÀÌ¼Ç ¸Ş½Ã¸¦ ´ã°í ÀÖ´Â º¤ÅÍ
+    std::vector<CMTClump*> m_vecClump;                     ///< ìƒì„±ëœ ë„¤ë¹„ê²Œì´ì…˜ ë©”ì‹œë¥¼ ë‹´ê³  ìˆëŠ” ë²¡í„°
     CMTObject* m_pObject;
 };
 

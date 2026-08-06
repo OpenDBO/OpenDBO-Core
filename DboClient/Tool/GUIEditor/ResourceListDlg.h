@@ -1,6 +1,6 @@
 #pragma once
 
-// CResourceListDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CResourceListDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 #include "Control/PropTree.h"
 
 class CResourceListDlg : public CDialog
@@ -8,10 +8,10 @@ class CResourceListDlg : public CDialog
 	DECLARE_DYNCREATE(CResourceListDlg)
 
 public:
-	CResourceListDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CResourceListDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CResourceListDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_RESOURCELISTDLG };
 	
 	enum PROPERTY_ID
@@ -21,7 +21,7 @@ public:
 		PROPERTY_CAPTION = 0,
 	};
 
-	void	DisplayList();					  // List¸¦ Ãâ·ÂÇÕ´Ï´Ù.
+	void	DisplayList();					  // Listë¥¼ ì¶œë ¥í•©ë‹ˆë‹¤.
 	INT		GetFocusID();					
 
 protected:
@@ -33,7 +33,7 @@ protected:
 	BOOL		m_bInitialized;
 		
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

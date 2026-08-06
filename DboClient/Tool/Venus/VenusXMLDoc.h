@@ -26,13 +26,13 @@ public:
 
 protected:
 	void Init();
-    bool SetIndent(WCHAR* szIndentFileName);           ///< XMLÆÄÀÏÀ» ÀúÀåÇÒ¶§ ¿­À» ¸ÂÃá´Ù.
+    bool SetIndent(WCHAR* szIndentFileName);           ///< XMLíŒŒì¼ì„ ì €ìž¥í• ë•Œ ì—´ì„ ë§žì¶˜ë‹¤.
 
 public:
 	bool Load(WCHAR* pwszFileName);
 	bool Load(char* pszFileName);
 
-	bool LoadXML(char* szXMLBuffer);					///< ¹öÆÛ·ÎºÎÅÍ XML ³»¿ëÀ» ÀÐ¾îµéÀÎ´Ù. (by agebreak)
+	bool LoadXML(char* szXMLBuffer);					///< ë²„í¼ë¡œë¶€í„° XML ë‚´ìš©ì„ ì½ì–´ë“¤ì¸ë‹¤. (by agebreak)
 	bool LoadXML(WCHAR* wszXMLBuffer);
 
 	IXMLDOMNode* SelectSingleNode(WCHAR* pwszXPath);

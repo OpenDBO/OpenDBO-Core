@@ -73,7 +73,7 @@ BEGIN_MESSAGE_MAP(CPathMeshFindDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CFieldSearchDlg �޽��� ó�����Դϴ�.
+// CFieldSearchDlg 占쌨쏙옙占쏙옙 처占쏙옙占쏙옙占쌉니댐옙.
 
 BOOL CPathMeshFindDlg::PreTranslateMessage(MSG* pMsg)
 {
@@ -1130,7 +1130,7 @@ BEGIN_MESSAGE_MAP(CPathMeshFindDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CFieldSearchDlg �޽��� ó�����Դϴ�.
+// CFieldSearchDlg 占쌨쏙옙占쏙옙 처占쏙옙占쏙옙占쌉니댐옙.
 
 BOOL CPathMeshFindDlg::PreTranslateMessage(MSG* pMsg)
 {

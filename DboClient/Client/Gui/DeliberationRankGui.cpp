@@ -162,7 +162,7 @@ VOID CDeliberationRankContainer::Destroy()
 
 VOID CDeliberationRankContainer::Update(RwReal fElapsed)
 {
-	// ÀÏÁ¤ ½Ã°£ÀÌ Áö³ª¸é Àá½Ãµ¿¾È µî±ŞÇ¥½Ã¸¦ ÇÑ´Ù
+	// ì¼ì • ì‹œê°„ì´ ì§€ë‚˜ë©´ ì ì‹œë™ì•ˆ ë“±ê¸‰í‘œì‹œë¥¼ í•œë‹¤
 	if( !m_tALARM_INFO.bGameStage )
 		return;
 

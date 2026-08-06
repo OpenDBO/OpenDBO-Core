@@ -11,7 +11,7 @@
 
 /**
  * \ingroup NtlPresentation
- * \brief ¾ÆÀÌÅÛ ½ºÅ©¸³Æ®(XML)À» Save/Load ÇÏ´Â Å¬·¡½º
+ * \brief ì•„ì´í…œ ìŠ¤í¬ë¦½íŠ¸(XML)ì„ Save/Load í•˜ëŠ” í´ë˜ìŠ¤
  * \date 2006-06-26
  * \author agebreak
  */
@@ -21,31 +21,31 @@ public:
     CNtlPLItemXMLScript(void);
     virtual ~CNtlPLItemXMLScript(void);
 
-    RwBool SaveItemScript(const char* strFileName, CNtlPLItemProperty* pProperty);      ///< ½ºÅ©¸³Æ® ÆÄÀÏÀ» ÀúÀåÇÑ´Ù.
-    RwBool LoadItemScript(const char* strFileName, CNtlPLItemProperty* pProperty);      ///< ½ºÅ©¸³Æ® ÆÄÀÏÀ» ·ÎµåÇÑ´Ù.
+    RwBool SaveItemScript(const char* strFileName, CNtlPLItemProperty* pProperty);      ///< ìŠ¤í¬ë¦½íŠ¸ íŒŒì¼ì„ ì €ì¥í•œë‹¤.
+    RwBool LoadItemScript(const char* strFileName, CNtlPLItemProperty* pProperty);      ///< ìŠ¤í¬ë¦½íŠ¸ íŒŒì¼ì„ ë¡œë“œí•œë‹¤.
 
 protected:
-    RwBool SaveHeader(CNtlPLItemProperty* pProperty);             ///< Çì´õ ºÎºĞÀ» ÀúÀåÇÑ´Ù.
-    RwBool SaveBody(CNtlPLItemProperty* pProperty);               ///< Body ºÎºĞÀ» ÀúÀåÇÑ´Ù.        
+    RwBool SaveHeader(CNtlPLItemProperty* pProperty);             ///< í—¤ë” ë¶€ë¶„ì„ ì €ì¥í•œë‹¤.
+    RwBool SaveBody(CNtlPLItemProperty* pProperty);               ///< Body ë¶€ë¶„ì„ ì €ì¥í•œë‹¤.        
 
-    RwBool LoadHeader(CNtlPLItemProperty* pProperty);             ///< Çì´õ ºÎºĞÀ» ·ÎµåÇÑ´Ù.
-    RwBool LoadBody(CNtlPLItemProperty* pProperty);               ///< Body ºÎºĞÀ» ÀúÀåÇÑ´Ù
+    RwBool LoadHeader(CNtlPLItemProperty* pProperty);             ///< í—¤ë” ë¶€ë¶„ì„ ë¡œë“œí•œë‹¤.
+    RwBool LoadBody(CNtlPLItemProperty* pProperty);               ///< Body ë¶€ë¶„ì„ ì €ì¥í•œë‹¤
 
 
-    RwBool SaveLinkEffect(CNtlPLItemProperty* pProperty);    ///< Link Effect Data ºÎºĞÀ» ÀúÀåÇÑ´Ù.
-    RwBool LoadLinkEffect(CNtlPLItemProperty* pProperty);    ///< Link Effect Data ºÎºĞÀ» ·ÎµåÇÑ´Ù.
+    RwBool SaveLinkEffect(CNtlPLItemProperty* pProperty);    ///< Link Effect Data ë¶€ë¶„ì„ ì €ì¥í•œë‹¤.
+    RwBool LoadLinkEffect(CNtlPLItemProperty* pProperty);    ///< Link Effect Data ë¶€ë¶„ì„ ë¡œë“œí•œë‹¤.
 
-    void   SaveTraceEvent(const SEventTrace* pEventTrace);  ///< Trace Event¸¦ Save ÇÑ´Ù.    
-    void   LoadTraceEvent(SEventTrace* pEventTrace);           ///< Trace Event¸¦ Load ÇÑ´Ù.
+    void   SaveTraceEvent(const SEventTrace* pEventTrace);  ///< Trace Eventë¥¼ Save í•œë‹¤.    
+    void   LoadTraceEvent(SEventTrace* pEventTrace);           ///< Trace Eventë¥¼ Load í•œë‹¤.
 
-    RwBool SaveAnimTable(CNtlPLItemProperty* pProperty);          ///< ItemÀÇ AnimTableÀ» ÀúÀåÇÑ´Ù.
-    RwBool LoadAnimTable(CNtlPLItemProperty* pProperty);          ///< ItemÀÇ AnimTableÀ» ·ÎµåÇÑ´Ù.  
+    RwBool SaveAnimTable(CNtlPLItemProperty* pProperty);          ///< Itemì˜ AnimTableì„ ì €ì¥í•œë‹¤.
+    RwBool LoadAnimTable(CNtlPLItemProperty* pProperty);          ///< Itemì˜ AnimTableì„ ë¡œë“œí•œë‹¤.  
 
-    RwBool SaveUpgradeEffect(CNtlPLItemProperty* pProperty);      ///< ItemÀÇ UpgradeEffect Proeprty¸¦ ÀúÀåÇÑ´Ù.
-    RwBool LoadUpgradeEffect(CNtlPLItemProperty* pProperty);      ///< ItemÀÇ UpgradeEffect Property¸¦ ·ÎµåÇÑ´Ù.
+    RwBool SaveUpgradeEffect(CNtlPLItemProperty* pProperty);      ///< Itemì˜ UpgradeEffect Proeprtyë¥¼ ì €ì¥í•œë‹¤.
+    RwBool LoadUpgradeEffect(CNtlPLItemProperty* pProperty);      ///< Itemì˜ UpgradeEffect Propertyë¥¼ ë¡œë“œí•œë‹¤.
 
 protected:
     IXMLDOMElement*     m_pElemRoot;                ///< Root Element
-    RwReal              m_fScriptVer;               ///< ÇöÀç ·ÎµåÇÏ°í ÀÖ´Â ½ºÅ©¸³Æ®ÀÇ ¹öÀü
+    RwReal              m_fScriptVer;               ///< í˜„ì¬ ë¡œë“œí•˜ê³  ìˆëŠ” ìŠ¤í¬ë¦½íŠ¸ì˜ ë²„ì „
     CNtlPLXMLScriptHelper m_XMLScriptHelper;        ///< DBO XML Script Helper
 };

@@ -2,7 +2,7 @@
  *
  * File			: NtlPatcher.h
  * Author		: HongHoDong
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2007. 2. 5.
  * Abstract		: 
  *****************************************************************************
@@ -55,7 +55,7 @@ public:
 	virtual BOOL Create() { return FALSE; };
 	virtual void Destroy();
 
-	virtual void DestroyInstance()							//Instance¿« ªË¡¶
+	virtual void DestroyInstance()							//InstanceÏùò ÏÇ≠Ï†ú
 	{
 		if(s_pInstance != NULL)
 		{
@@ -64,5 +64,5 @@ public:
 		}
 	}
 
-	static CNtlPatcher *GetInstance() { return NULL; }		//Instance¿« ª˝º∫
+	static CNtlPatcher *GetInstance() { return NULL; }		//InstanceÏùò ÏÉùÏÑ±
 };

@@ -2,7 +2,7 @@
  *
  * File			: NtlFSMVehicleActStateBase.h
  * Author		: JeongHo, Rho
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2006. 2. 13	
  * Abstract		: Finite state machine vehicle action base class
  *****************************************************************************

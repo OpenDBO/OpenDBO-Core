@@ -7,12 +7,12 @@
 struct sFriendMember : public sCommunityMember
 {
 	CHARACTERID		charID;			///< DB character id
-	RwUInt32		mapTblIdx;		///< ¸Ê Å×ÀÌºí ÀÎµ¦½º
-	RwUInt8			byLevel;		///< ·¹º§
-	RwUInt8			byClass;		///< Å¬·¡½º	
-	RwBool			bOnline;		///< °ÔÀÓ Á¢¼Ó ¿©ºÎ
-	RwUInt32        uiSerialID;     ///< ½Ã¸®¾óID (ÇÚµé)
-	RwUInt8			byChannel;      ///< Ã¤³Î
+	RwUInt32		mapTblIdx;		///< ë§µ í…Œì´ë¸” ì¸ë±ìŠ¤
+	RwUInt8			byLevel;		///< ë ˆë²¨
+	RwUInt8			byClass;		///< í´ëž˜ìŠ¤	
+	RwBool			bOnline;		///< ê²Œìž„ ì ‘ì† ì—¬ë¶€
+	RwUInt32        uiSerialID;     ///< ì‹œë¦¬ì–¼ID (í•¸ë“¤)
+	RwUInt8			byChannel;      ///< ì±„ë„
 };
 
 enum FriendDataType
@@ -21,7 +21,7 @@ enum FriendDataType
 	COMMUNITY_FRIEND_ONLINE,
 };
 
-/// Ä£±¸¸®½ºÆ®ÀÇ µ¥ÀÌÅÍ¸¦ °ü¸®ÇÏ´Â Å¬·¡½º
+/// ì¹œêµ¬ë¦¬ìŠ¤íŠ¸ì˜ ë°ì´í„°ë¥¼ ê´€ë¦¬í•˜ëŠ” í´ëž˜ìŠ¤
 /// by agebreak 2007.12.14
 class CNtlSLFriendList : public CNtlSLCommunityGroup, public RWS::CEventHandler
 {
@@ -34,7 +34,7 @@ public:
     virtual VOID	Leave();
     virtual	void	HandleEvents(RWS::CMsg &pMsg);
 
-	// Sort¸¦ ½ÇÇàÇÏ°í ³ª¼­´Â ÀÌÀü¿¡ GetMemberbyIndex()·Î ¹ÞÀº ¸É¹ö ±¸Á¶Ã¼¿Í ´Ù¸¦ ¼ö ÀÖ´Ù
+	// Sortë¥¼ ì‹¤í–‰í•˜ê³  ë‚˜ì„œëŠ” ì´ì „ì— GetMemberbyIndex()ë¡œ ë°›ì€ ë§´ë²„ êµ¬ì¡°ì²´ì™€ ë‹¤ë¥¼ ìˆ˜ ìžˆë‹¤
 	virtual VOID	Sort(RwUInt8 byDataType, RwBool bAscent);
     virtual RwBool	IsHaveGroup() {return TRUE;}
 

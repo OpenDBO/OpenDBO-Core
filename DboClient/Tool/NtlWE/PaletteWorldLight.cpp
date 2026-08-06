@@ -1,4 +1,4 @@
-// PaletteWorldLight.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PaletteWorldLight.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -13,7 +13,7 @@
 
 #include "PaletteWorldLight.h"
 
-// CPaletteWorldLight ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteWorldLight ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPaletteWorldLight, CDialog)
 
@@ -75,7 +75,7 @@ ON_LBN_SELCHANGE(IDC_LIST_WORLDLIGHT, &CPaletteWorldLight::OnLbnSelchangeListWor
 END_MESSAGE_MAP()
 
 
-// CPaletteWorldLight ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPaletteWorldLight ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 VOID CPaletteWorldLight::InitializeWorldData()
 {

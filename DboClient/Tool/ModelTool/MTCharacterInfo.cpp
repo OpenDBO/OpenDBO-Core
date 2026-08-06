@@ -21,7 +21,7 @@ MTCharacterInfo::~MTCharacterInfo(void)
 }
 
 //////////////////////////////////////////////////////////////////////////
-// CallBack ÇÔ¼ö ¼³Á¤
+// CallBack í•¨ìˆ˜ ì„¤ì •
 //////////////////////////////////////////////////////////////////////////
 RpAtomic* MTCharacterInfo::GetClumpAllAtomics(RpAtomic* pAtomic, void* pData)
 {
@@ -36,7 +36,7 @@ RpAtomic* MTCharacterInfo::GetClumpAllAtomics(RpAtomic* pAtomic, void* pData)
 		(*pTable)[chBuffer] = pAtomic;
 	}
 
-    // È­¸é¿¡ Ç¥½ÃµÉ Á¤º¸µéÀ» ¼³Á¤ÇÑ´Ù.
+    // í™”ë©´ì— í‘œì‹œë  ì •ë³´ë“¤ì„ ì„¤ì •í•œë‹¤.
     RpGeometry* pGeom = RpAtomicGetGeometry(pAtomic);
     if(pGeom)
     {
@@ -80,7 +80,7 @@ RpMaterial* MTCharacterInfo::GetAllMaterials(RpMaterial* material, void* pData)
 		{
 			pThisCharInfo->m_mapMaterialtable[chBuffer] = material;
 
-            // Material - Atomic MapÀ» ¸¸µç´Ù.
+            // Material - Atomic Mapì„ ë§Œë“ ë‹¤.
             pThisCharInfo->m_mapMaterialAtomicTable[material] = m_pTempAtomic;
 		}
 	}
@@ -90,9 +90,9 @@ RpMaterial* MTCharacterInfo::GetAllMaterials(RpMaterial* material, void* pData)
 
 
 /**
- * clumpÀÇ Á¤º¸ Å×ÀÌºíÀ» »ı¼ºÇÑ´Ù.
- * \param pClump Á¤º¸¸¦ »ı¼ºÇÒ clump
- * return ¼º°ø À¯¹«
+ * clumpì˜ ì •ë³´ í…Œì´ë¸”ì„ ìƒì„±í•œë‹¤.
+ * \param pClump ì •ë³´ë¥¼ ìƒì„±í•  clump
+ * return ì„±ê³µ ìœ ë¬´
  */
 RwBool MTCharacterInfo::Create(RpClump* pClump)
 {
@@ -100,9 +100,9 @@ RwBool MTCharacterInfo::Create(RpClump* pClump)
 
 	m_pTargetClump = pClump;
 
-	SetClumpInfo();     // Clump ³»ºÎ Á¤º¸ »ı¼º
+	SetClumpInfo();     // Clump ë‚´ë¶€ ì •ë³´ ìƒì„±
 
-    //CreateHierarchy();  // Hierarchy Á¤º¸ »ı¼º
+    //CreateHierarchy();  // Hierarchy ì •ë³´ ìƒì„±
 
 	return TRUE;
 }
@@ -122,12 +122,12 @@ void MTCharacterInfo::SetClumpInfo()
     m_nTotalTriangels = 0;
     m_nTotalVertices  = 0;
 
-	// ¸ğµç AtomicÀ» ¸Ê¿¡ ´ã´Â´Ù.
+	// ëª¨ë“  Atomicì„ ë§µì— ë‹´ëŠ”ë‹¤.
 	RpClumpForAllAtomics(m_pTargetClump, GetClumpAllAtomics, &m_mapAtomicTable);
-	// ¸ğµç FrameÀ» ¸Ê¿¡ ´ä´Â´Ù.
+	// ëª¨ë“  Frameì„ ë§µì— ë‹µëŠ”ë‹¤.
 	RwFrameForAllChildren(RpClumpGetFrame(m_pTargetClump), GetChildFrame, &m_mapFrameTable);
 
-	// ¸ğµç MaterialÀ» ¸Ê¿¡ ´ã´Â´Ù.
+	// ëª¨ë“  Materialì„ ë§µì— ë‹´ëŠ”ë‹¤.
 	RpGeometry* pGeom = NULL;
 	ATOMIC_TABLE_ITER mapIter;
 	for(mapIter = m_mapAtomicTable.begin(); mapIter != m_mapAtomicTable.end(); ++mapIter)
@@ -135,15 +135,15 @@ void MTCharacterInfo::SetClumpInfo()
 		pGeom = RpAtomicGetGeometry(mapIter->second);
 		if(pGeom)
 		{
-            // ÇöÀç Atomic Æ÷ÀÎÅÍ¸¦ ÀúÀåÇÑ´Ù.
+            // í˜„ì¬ Atomic í¬ì¸í„°ë¥¼ ì €ì¥í•œë‹¤.
             m_pTempAtomic = mapIter->second;
 
-            // Material - Atomic ¼¼Æ®¸¦ ¸¸µé±â À§ÇØ¼­ this Æ÷ÀÎÅÍ¸¦ ³Ñ°ÜÁØ´Ù.
+            // Material - Atomic ì„¸íŠ¸ë¥¼ ë§Œë“¤ê¸° ìœ„í•´ì„œ this í¬ì¸í„°ë¥¼ ë„˜ê²¨ì¤€ë‹¤.
 			RpGeometryForAllMaterials(pGeom, GetAllMaterials, this);
 		}
 	}
     
-    // ³ôÀÌ¿Í ³ĞÀÌ¸¦ °»½ÅÇÑ´Ù.
+    // ë†’ì´ì™€ ë„“ì´ë¥¼ ê°±ì‹ í•œë‹¤.
     UpdateHeightWidth();
 
 }
@@ -153,7 +153,7 @@ void MTCharacterInfo::UpdateHeightWidth()
     m_fClumpWidth  = 0.0f;
     m_fClumpHeight = 0.0f;
 
-    // ¹Ù¿îµù ¹Ú½º¸¦ ¸¸µé¾î¼­ °è»êÇÑ´Ù.
+    // ë°”ìš´ë”© ë°•ìŠ¤ë¥¼ ë§Œë“¤ì–´ì„œ ê³„ì‚°í•œë‹¤.
     RwBBox boundingBox;
     boundingBox.sup.x = boundingBox.sup.y = boundingBox.sup.z = -RwRealMAXVAL;
     boundingBox.inf.x = boundingBox.inf.y = boundingBox.inf.z = RwRealMAXVAL;
@@ -253,19 +253,19 @@ void MTCharacterInfo::DisplayInfo(RtCharset* pCharSet)
 
     RwChar caption[256] = {0,};
 
-    // Atomic °³¼ö
+    // Atomic ê°œìˆ˜
     RsSprintf(caption, RWSTRING("Atomics : %d"),m_mapAtomicTable.size());
     RsCharsetPrint(pCharSet, caption, 0, 0, rsPRINTPOSTOPLEFT);
 
-    // Triangle °³¼ö
+    // Triangle ê°œìˆ˜
     RsSprintf(caption, RWSTRING("Triangels : %d"), m_nTotalTriangels);
     RsCharsetPrint(pCharSet, caption, 0, 1, rsPRINTPOSTOPLEFT);
     
-    // vertices °³¼ö
+    // vertices ê°œìˆ˜
     RsSprintf(caption, RWSTRING("Vertices : %d"), m_nTotalVertices);
     RsCharsetPrint(pCharSet, caption, 0, 2, rsPRINTPOSTOPLEFT);
 
-    // ³ĞÀÌ¿Í ³ôÀÌ
+    // ë„“ì´ì™€ ë†’ì´
     RsSprintf(caption, RWSTRING("Hieght : %.2f (m)"), m_fClumpHeight);
     RsCharsetPrint(pCharSet, caption, 0, 3, rsPRINTPOSTOPLEFT);
     RsSprintf(caption, RWSTRING("Width : %.2f (m)"), m_fClumpWidth);

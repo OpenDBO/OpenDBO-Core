@@ -147,7 +147,7 @@ VOID CChatSender::Process_Send( const WCHAR* pText )
 	if( !pSobAvatar )
 		return;
 
-	// ¸í·É¾î ÇØ¼®
+	// ëª…ë ¹ì–´ í•´ì„
 	std::wstring strParseText;
 	eChatType ePostType = m_pChatGui->GetChatType();
 	RwUInt8  bySendWorkType = SEND_WORK_NORMAL;
@@ -294,14 +294,14 @@ RwBool CChatSender::HaveShortCut(std::wstring& wstrOutput, std::wstring& wstrOri
 
 			if( stringSize > 0 )
 			{
-				// ¼Ò¹®ÀÚ ºñ±³
+				// ì†Œë¬¸ì ë¹„êµ
 				if( wstrOriginal.compare(0, stringSize, pwcShortcut) == 0 )
 				{
 					wstrOutput = wstrOriginal.substr( stringSize, wstrOriginal.size() - 1 );
 					return TRUE;
 				}
 
-				// ´ë¹®ÀÚ ºñ±³
+				// ëŒ€ë¬¸ì ë¹„êµ
 				static WCHAR awcBuffer[64] = L"";
 				swprintf_s(awcBuffer, 64, L"%s", pwcShortcut);
 				wcsupr( awcBuffer );

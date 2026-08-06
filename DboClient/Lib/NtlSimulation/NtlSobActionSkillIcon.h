@@ -2,11 +2,11 @@
 *
 * File			: NtlSobActionSkillIcon.h
 * Author		: Peessi
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2006. 8. 30	
 * Abstract		: Simulation Actionskill icon object
 *****************************************************************************
-* Desc          : SkillIconø°º≠ ∫–∏Æ
+* Desc          : SkillIconÏóêÏÑú Î∂ÑÎ¶¨
 *
 *****************************************************************************/
 

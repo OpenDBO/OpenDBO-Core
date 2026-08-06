@@ -21,9 +21,9 @@ public:
 	static CNtlLauncherConfig *s_pInstance;
 
 	CString		m_strCaptionName;					//Launcher Name
-	CString		m_strPatchServerName;				//Server ¡÷º“
+	CString		m_strPatchServerName;				//Server Ï£ºÏÜå
 	CString		m_strPatchServerFilePath;			//Server Directory
-	CString		m_strHtmlInfoFullPathFileName;		//Html ¡§∫∏ πﬁ¿ª ¡÷º“
+	CString		m_strHtmlInfoFullPathFileName;		//Html Ï†ïÎ≥¥ Î∞õÏùÑ Ï£ºÏÜå
 
 	
 
@@ -33,7 +33,7 @@ public:
 	const char	*GetPatchServerFilePath();
 	const char	*GetHtmlInfoFullPathFileName();
 
-	void DestroyInstance()							//Instance¿« ªË¡¶
+	void DestroyInstance()							//InstanceÏùò ÏÇ≠Ï†ú
 	{
 		if(s_pInstance != NULL)
 		{

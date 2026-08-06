@@ -37,14 +37,14 @@ public:
     static CTreeItemPane* GetInstance() {return m_pInstance;}
 
     void SetItem(CMTItem* pItem);
-    void   OnDataChanged();                               ///< µ¥ÀÌÅÍ°¡ º¯°æµÇ¾úÀ½À» ¾Ë¸°´Ù.
-    void   OnShowSaveForChanges();                      ///< Á¾·áÇÏ±âÀü¿¡ º¯°æµÈ°ÍÀ» ÀúÀåÇÒ°ÍÀÎÁö ¹°¾îº»´Ù.
+    void   OnDataChanged();                               ///< ë°ì´í„°ê°€ ë³€ê²½ë˜ì—ˆìŒì„ ì•Œë¦°ë‹¤.
+    void   OnShowSaveForChanges();                      ///< ì¢…ë£Œí•˜ê¸°ì „ì— ë³€ê²½ëœê²ƒì„ ì €ìž¥í• ê²ƒì¸ì§€ ë¬¼ì–´ë³¸ë‹¤.
     
 
 protected:
-    void UpdateResFolder(CTreeCtrl* pTreeCtrl, LPCTSTR pstr, HTREEITEM hItemParent, BOOL bFile);                 ///< ¸®¼Ò½º Æú´õ ³»¿ëÀ» Æ®¸®¿¡ ¼³Á¤ÇÑ´Ù.
-    RwBool OnSaveScript(HTREEITEM hItem);               ///< ¾ÆÀÌÅÛÀÇ ½ºÅ©¸³Æ®¸¦ ÀúÀåÇÑ´Ù.    
-    void   OnSavePropertyList();                            ///< Property ¸®½ºÆ® ÆÄÀÏÀ» ÀúÀåÇÑ´Ù.
+    void UpdateResFolder(CTreeCtrl* pTreeCtrl, LPCTSTR pstr, HTREEITEM hItemParent, BOOL bFile);                 ///< ë¦¬ì†ŒìŠ¤ í´ë” ë‚´ìš©ì„ íŠ¸ë¦¬ì— ì„¤ì •í•œë‹¤.
+    RwBool OnSaveScript(HTREEITEM hItem);               ///< ì•„ì´í…œì˜ ìŠ¤í¬ë¦½íŠ¸ë¥¼ ì €ìž¥í•œë‹¤.    
+    void   OnSavePropertyList();                            ///< Property ë¦¬ìŠ¤íŠ¸ íŒŒì¼ì„ ì €ìž¥í•œë‹¤.
 
 public:
     CExTreeCtrl   m_treeScript;
@@ -53,18 +53,18 @@ public:
 protected:
     static CTreeItemPane* m_pInstance;
 
-    CString       m_strResPath;                             ///< ¸®¼Ò½º ÆÄÀÏÀÇ Root °æ·Î
-    CString       m_strScriptPath;                          ///< ½ºÅ©¸³Æ® ÆÄÀÏµéÀÌ ÀúÀåµÉ °æ·Î
-    CString       m_strTreeXMLPath;                         ///< Tree ÆÄÀÏÀÌ ÀúÀåµÉ °æ·Î
+    CString       m_strResPath;                             ///< ë¦¬ì†ŒìŠ¤ íŒŒì¼ì˜ Root ê²½ë¡œ
+    CString       m_strScriptPath;                          ///< ìŠ¤í¬ë¦½íŠ¸ íŒŒì¼ë“¤ì´ ì €ìž¥ë  ê²½ë¡œ
+    CString       m_strTreeXMLPath;                         ///< Tree íŒŒì¼ì´ ì €ìž¥ë  ê²½ë¡œ
     VWChar        m_vFilePath;
-    CString       m_strPrevFileName;                       ///< ÆÄÀÏ¸í º¯°æ½Ã¿¡ »ç¿ëÇÏ´Â º¯¼ö
+    CString       m_strPrevFileName;                       ///< íŒŒì¼ëª… ë³€ê²½ì‹œì— ì‚¬ìš©í•˜ëŠ” ë³€ìˆ˜
 
-    CImageList*   m_pImageList;                             ///< Æ®¸®¿¡ »ç¿ëÇÒ ÀÌ¹ÌÁö ¸®½ºÆ®
-    HTREEITEM     m_itemResRoot;                            ///< ¸®¼Ò½º Æ®¸® Root Item
-    HTREEITEM     m_itemScriptRoot;                         ///< Script Æ®¸® Root Item
+    CImageList*   m_pImageList;                             ///< íŠ¸ë¦¬ì— ì‚¬ìš©í•  ì´ë¯¸ì§€ ë¦¬ìŠ¤íŠ¸
+    HTREEITEM     m_itemResRoot;                            ///< ë¦¬ì†ŒìŠ¤ íŠ¸ë¦¬ Root Item
+    HTREEITEM     m_itemScriptRoot;                         ///< Script íŠ¸ë¦¬ Root Item
     
-    //VMTItem       m_vMTItem;                                ///< MTItem °´Ã¼ ¸®½ºÆ® (¸®¼Ò½º ºä¿¡¼­ »ý¼ºµÈ µ¥ÀÌÅÍ¸¸ ´ã´Â´Ù)
-    CMTItem*      m_pItem;                                  ///< ÇöÀç »ç¿ëµÇ°í ÀÖ´Â MTItem °´Ã¼
+    //VMTItem       m_vMTItem;                                ///< MTItem ê°ì²´ ë¦¬ìŠ¤íŠ¸ (ë¦¬ì†ŒìŠ¤ ë·°ì—ì„œ ìƒì„±ëœ ë°ì´í„°ë§Œ ë‹´ëŠ”ë‹¤)
+    CMTItem*      m_pItem;                                  ///< í˜„ìž¬ ì‚¬ìš©ë˜ê³  ìžˆëŠ” MTItem ê°ì²´
 
 public:
     virtual void OnInitialUpdate();

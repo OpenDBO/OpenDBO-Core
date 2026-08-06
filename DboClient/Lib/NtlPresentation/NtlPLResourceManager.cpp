@@ -63,7 +63,7 @@ RwImageSetPath(strImagePath.c_str());*/
 // 		}		
 // 		m_strImagePath += pInPath;
 // 
-// 		*ppOutPath		= const_cast<RwChar*>(m_strImagePath.c_str()); // ���������� �̷��� ����...
+// 		*ppOutPath		= const_cast<RwChar*>(m_strImagePath.c_str()); // 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占싱뤄옙占쏙옙 占쏙옙占쏙옙...
 // 		*pOutPathSize	= m_strImagePath.size();
 // 	}
 // 	return bResult;
@@ -133,7 +133,7 @@ CNtlPLResourceManager::CNtlPLResourceManager()
 }
 
 /**
-*  singleton CNtlPLResourceManager interface �Լ�.
+*  singleton CNtlPLResourceManager interface 占쌉쇽옙.
 *
 */
 CNtlPLResourceManager* CNtlPLResourceManager::GetInstance(void)
@@ -143,7 +143,7 @@ CNtlPLResourceManager* CNtlPLResourceManager::GetInstance(void)
 }
 
 /**
-* Initial �Լ�.
+* Initial 占쌉쇽옙.
 *
 */
 bool CNtlPLResourceManager::Crate(void)
@@ -153,7 +153,7 @@ bool CNtlPLResourceManager::Crate(void)
 
 
 /**
-*  Terminate �Լ�.
+*  Terminate 占쌉쇽옙.
 *
 */
 void CNtlPLResourceManager::Destroy(void)
@@ -172,7 +172,7 @@ void CNtlPLResourceManager::Destroy(void)
 
 
 /**
-*  Update �Լ�.
+*  Update 占쌉쇽옙.
 *
 */
 
@@ -189,8 +189,8 @@ void CNtlPLResourceManager::Update(RwReal fElapsed)
 }
 
 /**
-*  application�� ���� �Ǿ��� �� �������� ���� resource�� debugging�� ���� �Լ�.
-*  debugging ������ file or output window�� display �� �� �ֵ��� �Ѵ�.
+*  application占쏙옙 占쏙옙占쏙옙 占실억옙占쏙옙 占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 resource占쏙옙 debugging占쏙옙 占쏙옙占쏙옙 占쌉쇽옙.
+*  debugging 占쏙옙占쏙옙占쏙옙 file or output window占쏙옙 display 占쏙옙 占쏙옙 占쌍듸옙占쏙옙 占싼댐옙.
 *
 */
 void CNtlPLResourceManager::DebugResource(void)
@@ -205,11 +205,11 @@ void CNtlPLResourceManager::DebugResource(void)
 
 
 /**
-*  CNtlPLResource ��ü�� �����ϴ� �Լ�.
+*  CNtlPLResource 占쏙옙체占쏙옙 占쏙옙占쏙옙占싹댐옙 占쌉쇽옙.
 *
-*  \param pName resource name�� CNtlPLResource�� ��´�.
-*  \param iType renderware data�� type.
-*  \param iType renderware data�� pointer.
+*  \param pName resource name을 CNtlPLResource에 담는다.
+*  \param iType renderware data占쏙옙 type.
+*  \param iType renderware data占쏙옙 pointer.
 */
 CNtlPLResource* CNtlPLResourceManager::CreateResource(const char *pName, unsigned int uiType, bool bClone, void *pData)
 {
@@ -269,9 +269,9 @@ void CNtlPLResourceManager::RegisterResource(const CNtlPLResource *pResource)
 
 
 /**
-*  CNtlPLResource ��ü�� container���� �����ϴ� �Լ�.
+*  CNtlPLResource 占쏙옙체占쏙옙 container占쏙옙占쏙옙 占쏙옙占쏙옙占싹댐옙 占쌉쇽옙.
 *
-*  \param pResource container ������ resource pointer
+*  \param pResource container 占쏙옙占쏙옙占쏙옙 resource pointer
 */
 void CNtlPLResourceManager::UnRegisterResource(const CNtlPLResource *pResource)
 {
@@ -393,8 +393,8 @@ void CNtlPLResourceManager::UnRegisterResource(const CNtlPLResource *pResource)
 }
 
 /**
-*  RenderWare data�� �д� �Լ�.
-*  clump�� atomic�� ó�� �����ϴ��� clone clump �� atomic���� �ٽ� �����Ͽ� �����Ѵ�.
+*  RenderWare data占쏙옙 占싻댐옙 占쌉쇽옙.
+*  clump占쏙옙 atomic占쏙옙 처占쏙옙 占쏙옙占쏙옙占싹댐옙占쏙옙 clone clump 占쏙옙 atomic占쏙옙占쏙옙 占쌕쏙옙 占쏙옙占쏙옙占싹울옙 占쏙옙占쏙옙占싼댐옙.
 *
 *  \param pStrName file name
 *  \param pResourcePath resource path
@@ -524,10 +524,10 @@ CNtlPLResource* CNtlPLResourceManager::LoadDefault(const char *pStrName, const c
 		}
 	}
 
-	// clone ������ ���ؼ�..
+	// clone 占쏙옙占쏙옙占쏙옙 占쏙옙占쌔쇽옙..
 	pResource = Find(pFileName, uiType);
 
-	// clone ����.
+	// clone 占쏙옙占쏙옙.
 	if(uiType == rwID_CLUMP || uiType == rwID_ATOMIC)
 	{
 		pData = CreateCloneRwData( pResource->GetType(), (void*)pResource->GetData() );  
@@ -545,7 +545,7 @@ CNtlPLResource* CNtlPLResourceManager::LoadDefault(const char *pStrName, const c
 }
 
 /**
-*  RenderWare world data�� �д� �Լ�.
+*  RenderWare world data占쏙옙 占싻댐옙 占쌉쇽옙.
 *
 *  \param pStrName file name
 *  \param pResourcePath resource path
@@ -561,11 +561,11 @@ CNtlPLResource* CNtlPLResourceManager::LoadWorld(const char *pStrName, const cha
 }
 
 /**
-*  RenderWare data�� �д� �Լ�.
+*  RenderWare data占쏙옙 占싻댐옙 占쌉쇽옙.
 *
 *  \param pStrName file name
 *  \param pResourcePath resource path
-*  \param bClone clump�� clone���� ������ �������� �����ϴ� ����.
+*  \param bClone clump占쏙옙 clone占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싹댐옙 占쏙옙占쏙옙.
 */
 
 CNtlPLResource* CNtlPLResourceManager::LoadClump(const char *pStrName, const char * pResourcePath)
@@ -603,11 +603,11 @@ void CNtlPLResourceManager::LoadSchedulingClump(const char *pStrName, const char
 }
 
 /**
-*  RenderWare data�� �д� �Լ�.
+*  RenderWare data占쏙옙 占싻댐옙 占쌉쇽옙.
 *
 *  \param pStrName file name
 *  \param pResourcePath resource path
-*  \param bClone atomic�� clone���� ������ �������� �����ϴ� ����.
+*  \param bClone atomic占쏙옙 clone占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싹댐옙 占쏙옙占쏙옙.
 */
 
 CNtlPLResource* CNtlPLResourceManager::LoadAtomic(const char *pStrName, const char * pResourcePath)
@@ -634,14 +634,14 @@ CNtlPLResource* CNtlPLResourceManager::LoadAnimation(const char *pStrName)
 }
 
 /**
-*  RenderWare data�� �д� �Լ�.
+*  RenderWare data占쏙옙 占싻댐옙 占쌉쇽옙.
 *
 *  \param pStrName file name
 *  \param pResourcePath resource path
-*  \param eFilterMode texture�� filtering mode. renderware RwTextureFilterMode�� ����.
+*  \param eFilterMode texture占쏙옙 filtering mode. renderware RwTextureFilterMode占쏙옙 占쏙옙占쏙옙.
 *  \param EResDictType texture�� group���� ������ ������ ��쿡 group�� id�� �ȴ�.
-*         group���� �����ϴ� ������ �˻� �ӵ��� ������ �� �� �ִ�.     
-*         �Ϲ������� object, character, terrain, texture, ui���� group�� ������ �� �� �ִ�.
+*         group占쏙옙占쏙옙 占쏙옙占쏙옙占싹댐옙 占쏙옙占쏙옙占쏙옙 占싯삼옙 占쌈듸옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙 占쏙옙 占쌍댐옙.     
+*         占싹뱄옙占쏙옙占쏙옙占쏙옙 object, character, terrain, texture, ui占쏙옙占쏙옙 group占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙 占쏙옙 占쌍댐옙.
 */
 
 RwTexture* CNtlPLResourceManager::LoadTexture(const char *pStrName, const char * pResourcePath, EResDictType eType /*= RES_TEX_DEFAULT_DICT*/ , const char *pStrMaskName /*= NULL*/)
@@ -704,9 +704,9 @@ RwTexture* CNtlPLResourceManager::CreateTexture(const char *pStrName,
 
 
 /**
-*  resource�� unload �Ѵ�.
+*  resource占쏙옙 unload 占싼댐옙.
 *
-*  \param pResource unload�� resource pointer
+*  \param pResource unload占쏙옙 resource pointer
 */
 void CNtlPLResourceManager::UnLoad(CNtlPLResource *pResource)
 {
@@ -731,7 +731,7 @@ void CNtlPLResourceManager::UnLoad(CNtlPLResource *pResource)
 }
 
 /**
-*  scheduling�� ��ϵǾ� �ִ� entity�� �ش��ϴ� scheduling node�� �����Ѵ�.
+*  scheduling상에 등록되어 있는 entity에 해당하는 scheduling node를 삭제한다.
 *
 */
 void CNtlPLResourceManager::UnLoadScheduling(CNtlPLEntity *pPLEntity, CNtlPLResource *pResource)
@@ -749,7 +749,7 @@ void CNtlPLResourceManager::UnLoadScheduling(CNtlPLEntity *pPLEntity, CNtlPLReso
 }
 
 /**
-*  container���� name���� CNtlPLResource�� ã�´�.
+*  container占쏙옙占쏙옙 name占쏙옙占쏙옙 CNtlPLResource占쏙옙 찾占승댐옙.
 *
 *  \param pTexture texture pointer
 */
@@ -759,7 +759,7 @@ void CNtlPLResourceManager::UnLoadTexture(RwTexture *pTexture)
 }
 
 /**
-*  container���� name���� CNtlPLResource�� ã�´�.
+*  container占쏙옙占쏙옙 name占쏙옙占쏙옙 CNtlPLResource占쏙옙 찾占승댐옙.
 *
 *  \param pName name string
 *  \param uiType the resource type
@@ -842,7 +842,7 @@ CNtlPLResource* CNtlPLResourceManager::Find(const char *pName, unsigned int uiTy
 }
 
 /**
-*  renderware world�� �����ϴ� �Լ�.
+*  renderware world占쏙옙 占쏙옙占쏙옙占싹댐옙 占쌉쇽옙.
 *
 *  \param pStream world stream data
 */
@@ -862,7 +862,7 @@ RpWorld* CNtlPLResourceManager::WorldStreamRead (RwStream *pStream)
 
 
 /**
-*  renderware atomic�� �����ϴ� �Լ�.
+*  renderware atomic占쏙옙 占쏙옙占쏙옙占싹댐옙 占쌉쇽옙.
 *
 *  \param pStream atomic stream data
 */
@@ -883,7 +883,7 @@ RpAtomic* CNtlPLResourceManager::AtomicStreamRead (RwStream *pStream)
 
 
 /**
-*  renderware clump�� �����ϴ� �Լ�.
+*  renderware clump占쏙옙 占쏙옙占쏙옙占싹댐옙 占쌉쇽옙.
 *
 *  \param pStream clump stream data
 */
@@ -907,9 +907,9 @@ RpClump* CNtlPLResourceManager::ClumpStreamRead (RwStream *pStream)
 
 
 /**
-*  renderware data type�� �ش��ϴ� data�� �����ϴ� �Լ�.
+*  renderware data type占쏙옙 占쌔댐옙占싹댐옙 data占쏙옙 占쏙옙占쏙옙占싹댐옙 占쌉쇽옙.
 *
-*  \param pSteam stream ��ü pointer.
+*  \param pSteam stream 占쏙옙체 pointer.
 *  \param iType renderware data type.
 */
 
@@ -954,11 +954,11 @@ void* CNtlPLResourceManager::CreateRwData(RwStream *pStream, unsigned int iType)
 }
 
 /**
-*  renderware data�� �ش��ϴ� clone data�� �����Ѵ�.
-*  type�� ���Ͽ� ������ renderware clone �Լ��� �����Ѵ�.
+*  renderware data占쏙옙 占쌔댐옙占싹댐옙 clone data占쏙옙 占쏙옙占쏙옙占싼댐옙.
+*  type占쏙옙 占쏙옙占싹울옙 占쏙옙占쏙옙占쏙옙 renderware clone 占쌉쇽옙占쏙옙 占쏙옙占쏙옙占싼댐옙.
 *
 *  \param iType renderware data type.
-*  \param pData clone�� renderware data.
+*  \param pData clone占쏙옙 renderware data.
 */
 void* CNtlPLResourceManager::CreateCloneRwData(unsigned int iType, void *pData)
 {
@@ -982,10 +982,10 @@ void* CNtlPLResourceManager::CreateCloneRwData(unsigned int iType, void *pData)
 }
 
 /**
-*  renderware data�� �ش��ϴ� type�� �����ϰ� �����Ѵ�.
+*  renderware data占쏙옙 占쌔댐옙占싹댐옙 type占쏙옙 占쏙옙占쏙옙占싹곤옙 占쏙옙占쏙옙占싼댐옙.
 *
 *  \param iType renderware data type.
-*  \param pData ������ renderware data.
+*  \param pData 占쏙옙占쏙옙占쏙옙 renderware data.
 */
 void CNtlPLResourceManager::DestroyRwData(unsigned int iType, void *pData)
 {

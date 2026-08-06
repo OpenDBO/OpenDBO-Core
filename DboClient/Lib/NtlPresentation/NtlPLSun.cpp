@@ -11,7 +11,7 @@
 #include "NtlDNController.h"
 #include "ntlworldcommon.h"
 
-/// ¾ÈÀüÇÏ°Ô ½Ì±ÛÅæ °´Ã¼¸¦ °¡Á®¿À´Â ¸ÅÅ©·Î ÇÔ¼ö
+/// ì•ˆì „í•˜ê²Œ ì‹±ê¸€í†¤ ê°ì²´ë¥¼ ê°€ì ¸ì˜¤ëŠ” ë§¤í¬ë¡œ í•¨ìˆ˜
 #define GetSafeInstance(class) if(class::GetInstance()) class::GetInstance()
 
 
@@ -46,7 +46,7 @@ CNtlPLSun::CNtlPLSun(void)
 	SetLayer(PLENTITY_LAYER_SKY);
 	SetMinimapLayer(NTL_PLEFLAG_MINIMAP_LAYER_ONE);
 	SetClassType(PLENTITY_SUN);
-	// µğÆúÆ® °ªÀ» Not Visible·Î ¼¼ÆÃÇÑ´Ù. SceneManager¿¡¼­ ·£´õ¸µÇÏ´Â°Ô ¾Æ´Ï¶ó, CNtlPLSky¿¡¼­ µû·Î ·»´õ¸µ ÇÏ±â ¶§¹®ÀÌ´Ù.
+	// ë””í´íŠ¸ ê°’ì„ Not Visibleë¡œ ì„¸íŒ…í•œë‹¤. SceneManagerì—ì„œ ëœë”ë§í•˜ëŠ”ê²Œ ì•„ë‹ˆë¼, CNtlPLSkyì—ì„œ ë”°ë¡œ ë Œë”ë§ í•˜ê¸° ë•Œë¬¸ì´ë‹¤.
 	// 2007.08.06 by agebreak
 	SetFlags(NTL_PLEFLAG_NOT_ADD_WORLD | NTL_PLEFLAG_NOT_PROPERTY_USED  | NTL_PLEFLAG_ATTACH | NTL_PLEFLAG_NOT_VISIBLE);	
 }
@@ -80,7 +80,7 @@ RwBool CNtlPLSun::SetProperty( const CNtlPLProperty *pData )
 
 RwBool CNtlPLSun::Create( const SPLEntityCreateParam * pParam /*= NULL */ ) 
 {
-	// Vertex Buffer¸¦ »ı¼ºÇÑ´Ù.
+	// Vertex Bufferë¥¼ ìƒì„±í•œë‹¤.
 	CreateVertexBuffer();
 
 	if(pParam)
@@ -88,7 +88,7 @@ RwBool CNtlPLSun::Create( const SPLEntityCreateParam * pParam /*= NULL */ )
 		SPLSunCreateParam* pSunParam = (SPLSunCreateParam*)pParam;
 		if(pSunParam->bAttachLensFlare)
 		{
-			// LensFlare¸¦ »ı¼ºÇÑ´Ù.
+			// LensFlareë¥¼ ìƒì„±í•œë‹¤.
 			m_pLensFlare = NTL_NEW CNtlPLLensFlare();
 			m_pLensFlare->Create();
 			
@@ -163,7 +163,7 @@ RwBool CNtlPLSun::Update( RwReal fElapsed )
 
 	if(m_pLensFlare)
 	{
-		// SunÀÇ ½ÇÁ¦ À§Ä¡´Â Ä«¸Ş¶ó + Àı´ëÁÂÇ¥ °ªÀÌ´Ù. ±× °ª¿¡ ¸Â°Ô LensFlareÀÇ ±¤¿øÀ§Ä¡µµ ¼³Á¤ÇÑ´Ù.
+		// Sunì˜ ì‹¤ì œ ìœ„ì¹˜ëŠ” ì¹´ë©”ë¼ + ì ˆëŒ€ì¢Œí‘œ ê°’ì´ë‹¤. ê·¸ ê°’ì— ë§ê²Œ LensFlareì˜ ê´‘ì›ìœ„ì¹˜ë„ ì„¤ì •í•œë‹¤.
 		RwMatrix matLensFlare = m_matWorld;
 		RwV3d vPosCamera = *RwMatrixGetPos(RwFrameGetMatrix(RwCameraGetFrame(CNtlPLGlobal::m_RwCamera)));	
 		*RwMatrixGetPos(&matLensFlare) = vPosCamera + m_vPos;
@@ -177,15 +177,15 @@ RwBool CNtlPLSun::Update( RwReal fElapsed )
 
 RwBool CNtlPLSun::Render( void ) 
 {
-	// Ä«¸Ş¶óÀÇ Far Plane °ªÀ» º¯°æÇÑ´Ù. (ÅÂ¾çÀÌ ¸Ö¸® ÀÖ¾îµµ ÂïÈ÷°Ô)
+	// ì¹´ë©”ë¼ì˜ Far Plane ê°’ì„ ë³€ê²½í•œë‹¤. (íƒœì–‘ì´ ë©€ë¦¬ ìˆì–´ë„ ì°íˆê²Œ)
 	RwReal fOldFarPlane = RwCameraGetFarClipPlane(CNtlPLGlobal::m_RwCamera);
 /*
 	RwCameraEndUpdate(CNtlPLGlobal::m_RwCamera);
-	// 10000 ¹ÌÅÍ·Î Far PlaneÀ» ¼¼ÆÃÇÑ´Ù.
+	// 10000 ë¯¸í„°ë¡œ Far Planeì„ ì„¸íŒ…í•œë‹¤.
 	RwCameraSetFarClipPlane(CNtlPLGlobal::m_RwCamera, 5000.0f);
 	RwCameraBeginUpdate(CNtlPLGlobal::m_RwCamera);
 */
-	// ºôº¸µå¿Í À§Ä¡°ªÀ» Àû¿ëÇÑ´Ù.
+	// ë¹Œë³´ë“œì™€ ìœ„ì¹˜ê°’ì„ ì ìš©í•œë‹¤.
 	RwMatrix matRender = *RwFrameGetMatrix(RwCameraGetFrame(CNtlPLGlobal::m_RwCamera));	
 	
 	RwV3d vPosCamera = *RwMatrixGetPos(&matRender);				
@@ -215,7 +215,7 @@ RwBool CNtlPLSun::Render( void )
 	RwCameraSetFarClipPlane(CNtlPLGlobal::m_RwCamera, fOldFarPlane);
 	RwCameraBeginUpdate(CNtlPLGlobal::m_RwCamera);
 */
-	// LensFlareÀÇ Render´Â PostEffectCamera¿¡¼­ ÇÑ´Ù.	
+	// LensFlareì˜ RenderëŠ” PostEffectCameraì—ì„œ í•œë‹¤.	
 	
 	return TRUE;
 }
@@ -227,7 +227,7 @@ void CNtlPLSun::SetColor( RwRGBA color )
 	RwRGBAReal colorReal;
 	RwRGBARealFromRwRGBA(&colorReal, &color);
 
-	if(GetDnController()->IsDNEffectApplied())	// D&NÀÌ ÄÑÁ®ÀÖÀ¸¸é ¾ËÆÄ°ªÀ¸·Î ¿µÇâÀ» ¹Ş´Â´Ù
+	if(GetDnController()->IsDNEffectApplied())	// D&Nì´ ì¼œì ¸ìˆìœ¼ë©´ ì•ŒíŒŒê°’ìœ¼ë¡œ ì˜í–¥ì„ ë°›ëŠ”ë‹¤
 	{
 		RwReal TFactor = static_cast<RwReal>(dGET_WORLD_PARAM()->ClrDayAndNight & 0x000000ff) / 255.0f;
 		TFactor = 1.0f - TFactor * CNtlPLGlobal::m_fLensFlareForDNRatio;
@@ -308,7 +308,7 @@ void CNtlPLSun::UpdateFadeColor( RwReal fElapsedTime )
 	color = CNtlMath::Interpolation(m_OriginColor, m_FadeColor, fDeltaTime);
 	SetColor(color);
 
-	// ·»Áî ÇÃ·¹¾î Fade
+	// ë Œì¦ˆ í”Œë ˆì–´ Fade
 	if(m_pLensFlare)
 	{
 		RwReal fAlpha = color.alpha / 255.0f;
@@ -324,7 +324,7 @@ void CNtlPLSun::ReFreshLensFlareData()
 		NTL_DELETE(m_pLensFlare);		
 	}
 
-	// LensFlare¸¦ »ı¼ºÇÑ´Ù.
+	// LensFlareë¥¼ ìƒì„±í•œë‹¤.
 	m_pLensFlare = NTL_NEW CNtlPLLensFlare();
 	m_pLensFlare->Create();
 	m_pLensFlare->SetVisible(m_bVisible);

@@ -3,21 +3,21 @@
 #include "afxcmn.h"
 
 
-// CPalettePlantDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPalettePlantDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CPalettePlantDlg : public CDialog
 {
 	DECLARE_DYNAMIC(CPalettePlantDlg)
 
 public:
-	CPalettePlantDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CPalettePlantDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CPalettePlantDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_ORNAMENT_PLANT };
 
 protected:
-	virtual void	DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void	DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
 	virtual BOOL	PreTranslateMessage(MSG* pMsg);
 

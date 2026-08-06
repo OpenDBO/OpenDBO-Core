@@ -2,7 +2,7 @@
 //	File		:	NtlPostEffectCamera.h
 //	Desc		:	
 //	Begin		:	2006. 2.13
-//	Copyright	:	Ã¯Â¿Â½Ã¯Â¿Â½ 2006 by agebreak CO., Ltd
+//	Copyright	:	챦쩔쩍챦쩔쩍 2006 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -29,8 +29,8 @@ struct RpWorld;
 #define POST_EFFECT_FILTER_NONE		0
 #define POST_EFFECT_FILTER_HDR		1
 #define dMONO_POWER_DEFAULT (2.4f)
-#define RES_MESH_CNT 20                                     ///< View ÃˆÂ­Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½ Mesh Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½ (Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½ Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½)
-#define RES_VERTEX_CNT (RES_MESH_CNT * RES_MESH_CNT * 6)    ///< View ÃˆÂ­Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½ VertexÃ¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½ (Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½ Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½)
+#define RES_MESH_CNT 20                                     ///< View 횊짯챦쩔쩍챦쩔쩍챦쩔쩍챦쩔쩍 Mesh 챦쩔쩍챦쩔쩍챦쩔쩍챦쩔쩍 (챦쩔쩍챦쩔쩍챦쩔쩍챦쩔쩍 챦쩔쩍챦쩔쩍챦쩔쩍챦쩔쩍챦쩔쩍챦쩔쩍)
+#define RES_VERTEX_CNT (RES_MESH_CNT * RES_MESH_CNT * 6)    ///< View 횊짯챦쩔쩍챦쩔쩍챦쩔쩍챦쩔쩍 Vertex챦쩔쩍챦쩔쩍챦쩔쩍챦쩔쩍 (챦쩔쩍챦쩔쩍챦쩔쩍챦쩔쩍 챦쩔쩍챦쩔쩍챦쩔쩍챦쩔쩍챦쩔쩍챦쩔쩍)
 
 class CNtlPostEffectCamera : public CNtlCamera
 {
@@ -113,13 +113,13 @@ public:
 
     RwV2d       GetScreenSize();
 
-    // Post Effect System Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½ Ã¯Â¿Â½ÃžÂ¼Ã’ÂµÃ¯Â¿Â½
+    // Post Effect System 챦쩔쩍챦쩔쩍챦쩔쩍챦쩔쩍 챦쩔쩍횧쩌횘쨉챦쩔쩍
     void        AttachPostEffectSystem(CNtlInstancePostEffectSystem* pPostEffectSystem);
     void        DetachPostEffectSystem(CNtlInstancePostEffectSystem* pPostEffectSystem);
 
-	// LensFlare Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½ Ã¯Â¿Â½ÃžÂ¼Ã’ÂµÃ¯Â¿Â½
-	void		AttachLensFlare(CNtlPLLensFlare* pLensFlare);				///< LensFlare Ã¯Â¿Â½Ã¯Â¿Â½
-	void		DetachLensFlare(CNtlPLLensFlare* pLensFlare);				///< LensFlare Ã¯Â¿Â½Ã¯Â¿Â½
+	// LensFlare 챦쩔쩍챦쩔쩍챦쩔쩍챦쩔쩍 챦쩔쩍횧쩌횘쨉챦쩔쩍
+	void		AttachLensFlare(CNtlPLLensFlare* pLensFlare);				///< LensFlare 챦쩔쩍챦쩔쩍
+	void		DetachLensFlare(CNtlPLLensFlare* pLensFlare);				///< LensFlare 챦쩔쩍챦쩔쩍
 
 protected:
     RwBool		IsEnablePostEffect(void);
@@ -182,7 +182,7 @@ protected:
 	RwTexture*			m_pHeatHazeTexture;
 	CNtlPLHeatHaze*		m_pHeatHaze;
 
-    // Motion BlurÃ¯Â¿Â½Ã¯Â¿Â½ Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½ Ã„Â«Ã¯Â¿Â½ÃžÂ¶Ã¯Â¿Â½Ã¯Â¿Â½ Ã¯Â¿Â½Ã˜Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½ 
+    // Motion Blur챦쩔쩍챦쩔쩍 챦쩔쩍챦쩔쩍챦쩔쩍챦쩔쩍 횆짬챦쩔쩍횧쨋챦쩔쩍챦쩔쩍 챦쩔쩍횠쩍챦쩔쩍챦쩔쩍챦쩔쩍 
     RwCamera*			m_pMotionBlurCamera;
     RwTexture*			m_pMotionBlurTexture;
 
@@ -220,12 +220,12 @@ protected:
     RwIm2DVertex		m_PowerVertex[4];
     RwIm2DVertex		m_FinalVertex[4];
 
-    RwBool              m_bEnableBlur;                      ///< Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½ Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½ Enable Flag
-    RwReal              m_fBlurAlpha;                       ///< Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½ Blur AlphaÃ¯Â¿Â½Ã¯Â¿Â½
-    RwReal              m_fBlurFadeVelocity;                ///< BlurÃ¯Â¿Â½Ã¯Â¿Â½ Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½Ã‡Â´Ã¯Â¿Â½ Ã¯Â¿Â½Ã“ÂµÃ¯Â¿Â½
+    RwBool              m_bEnableBlur;                      ///< 챦쩔쩍챦쩔쩍챦쩔쩍 챦쩔쩍챦쩔쩍챦쩔쩍챦쩔쩍 Enable Flag
+    RwReal              m_fBlurAlpha;                       ///< 챦쩔쩍챦쩔쩍챦쩔쩍챦쩔쩍챦쩔쩍챦쩔쩍 Blur Alpha챦쩔쩍챦쩔쩍
+    RwReal              m_fBlurFadeVelocity;                ///< Blur챦쩔쩍챦쩔쩍 챦쩔쩍챦쩔쩍챦쩔쩍챦쩔쩍횉쨈챦쩔쩍 챦쩔쩍횙쨉챦쩔쩍
 
-    std::list<CNtlInstancePostEffectSystem*> m_listPostEffectSystem; ///< Ã„Â«Ã¯Â¿Â½ÃžÂ¶Ã¯Â¿Â½ Ã‡Â¥Ã¯Â¿Â½
-	std::list<CNtlPLLensFlare*> m_listLensFlare;			///< Ã„Â«Ã¯Â¿Â½ÃžÂ¶Ã¯Â¿Â½ Ã‡Â¥Ã¯Â¿Â½
+    std::list<CNtlInstancePostEffectSystem*> m_listPostEffectSystem; ///< 횆짬챦쩔쩍횧쨋챦쩔쩍 횉짜챦쩔쩍
+	std::list<CNtlPLLensFlare*> m_listLensFlare;			///< 횆짬챦쩔쩍횧쨋챦쩔쩍 횉짜챦쩔쩍
 
 	// TEST
 public:

@@ -26,7 +26,7 @@ public:
 	static CNtlPLObject*		pActiveMiniIndoorNew;
 };
 
-// RESTURN : TRUE(³»ºÎ), FALSE(¿ÜºÎ)
+// RESTURN : TRUE(ë‚´ë¶€), FALSE(ì™¸ë¶€)
 RwBool GetNtlWorldSpace(RwV3d* pvPos, CNtlPLEntity** ppPLEntity, RwReal* pfDist);
 
 // Evnet Check

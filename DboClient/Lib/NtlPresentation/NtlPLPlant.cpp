@@ -72,7 +72,7 @@ RwBool CNtlPLPlant::Update(RwReal fElapsed)
 	RwV3d		vNormal;
 	RwV3d		vPos = *RwMatrixGetPos(RwFrameGetMatrix(RwCameraGetFrame(pCamera)));
 
-	// Å¬¸³Æò¸éÀ» °è»êÇØ ³½´Ù.
+	// í´ë¦½í‰ë©´ì„ ê³„ì‚°í•´ ë‚¸ë‹¤.
 	RwV3dNegate(&vNormal, RwMatrixGetAt(RwFrameGetMatrix(RwCameraGetFrame(pCamera))));
 	RwV3dIncrementScaled(&vPos, RwMatrixGetAt(RwFrameGetMatrix(RwCameraGetFrame(pCamera))), m_fClipDistance);
 	m_planeCilp.PlaneFromPointNormal(&vPos, &vNormal);
@@ -99,7 +99,7 @@ RwBool CNtlPLPlant::Update(RwReal fElapsed)
 	GetSceneManager()->GetWorld()->GetWorldFieldMgr()->GetNeighborSectors(iCurIdx, vecNeighborSectorIndices);
 	vecNeighborSectorIndices.push_back(iCurIdx);
 
-	// ÁÖº¯¼½ÅÍ¸¦ °Ë»öÇÏ¿© °¡½Ã¿µ¿ª¿¡ Æ÷ÇÔµÈ ¿ÀºêÁ§Æ® ¸®½ºÆ®¸¦ ±¸ÇØ³½´Ù.
+	// ì£¼ë³€ì„¹í„°ë¥¼ ê²€ìƒ‰í•˜ì—¬ ê°€ì‹œì˜ì—­ì— í¬í•¨ëœ ì˜¤ë¸Œì íŠ¸ ë¦¬ìŠ¤íŠ¸ë¥¼ êµ¬í•´ë‚¸ë‹¤.
 	RwInt32 iNeighborSectorSize = vecNeighborSectorIndices.size();
 	if (vecNeighborSectorIndices.empty())
 	{
@@ -109,7 +109,7 @@ RwBool CNtlPLPlant::Update(RwReal fElapsed)
 	RwInt32 iNeighborSector = 0;
 	do 
 	{		
-		// ÀØ¾î¸ÔÁö ¸»ÀÚ. Sector´Â invalid ÀÏ¼öµµ ÀÖ´Ù.
+		// ìžŠì–´ë¨¹ì§€ ë§ìž. SectorëŠ” invalid ì¼ìˆ˜ë„ ìžˆë‹¤.
 		if (vecNeighborSectorIndices.at(iNeighborSector) == -1)
 		{
 			continue;
@@ -147,7 +147,7 @@ RwBool CNtlPLPlant::Update(RwReal fElapsed)
 			CNtlPLPlantProperty::sPLANT_PROP&	sProperty = itProp->second;
 			RwV3d								vTemp;
 
-			// Ã¹¹øÂ° Å¸ÀÏÀÇ Áß½ÉÁ¡À» ±¸ÇÑ´Ù.
+			// ì²«ë²ˆì§¸ íƒ€ì¼ì˜ ì¤‘ì‹¬ì ì„ êµ¬í•œë‹¤.
 			vTemp.x = pSector->DatumPoint.x - (dGET_WORLD_PARAM()->WorldSectorSize / 2) + (dGET_WORLD_PARAM()->WorldSectorTileSize / 2);
 			vTemp.y = 0.0f;
 			vTemp.z = pSector->DatumPoint.z - (dGET_WORLD_PARAM()->WorldSectorSize / 2) + (dGET_WORLD_PARAM()->WorldSectorTileSize / 2);
@@ -157,16 +157,16 @@ RwBool CNtlPLPlant::Update(RwReal fElapsed)
 				sSECTOR_PLANT_SET_ATTR::sSECTOR_PLANT_OBJ_ATTR*	pPlantObj = *itPlantObj;
 				RwSphere										sphereTile;
 
-				// ÇØ´ç ¿ÀºêÁ§Æ®ÀÇ Áß½ÉÁ¡À» °è»êÇØ ³½´Ù.
+				// í•´ë‹¹ ì˜¤ë¸Œì íŠ¸ì˜ ì¤‘ì‹¬ì ì„ ê³„ì‚°í•´ ë‚¸ë‹¤.
 				sphereTile.radius	= (RwReal)dGET_WORLD_PARAM()->WorldSectorTileSize;
 				sphereTile.center.x = vTemp.x + (RwReal)(((pPlantObj->iTileIdx % dGET_WORLD_PARAM()->WorldSectorTileNum)) * dGET_WORLD_PARAM()->WorldSectorTileSize);
 				sphereTile.center.y = 0.0f;
 				sphereTile.center.z = vTemp.z + (RwReal)(((pPlantObj->iTileIdx / dGET_WORLD_PARAM()->WorldSectorTileNum)) * dGET_WORLD_PARAM()->WorldSectorTileSize);
 
-				// ÇöÀç À§Ä¡ÀÇ ³ôÀÌ°ªÀ» ¾Ë¾Æ³½´Ù.
+				// í˜„ìž¬ ìœ„ì¹˜ì˜ ë†’ì´ê°’ì„ ì•Œì•„ë‚¸ë‹¤.
 				GetSceneManager()->GetTerrainHeight(&sphereTile.center, sphereTile.center.y);
 
-				// ÇöÀç Å¸ÀÏÀÌ °¡½Ã¿µ¿ª¾È¿¡ ÀÖ´ÂÁö È®ÀÎÇÑ´Ù.
+				// í˜„ìž¬ íƒ€ì¼ì´ ê°€ì‹œì˜ì—­ì•ˆì— ìžˆëŠ”ì§€ í™•ì¸í•œë‹¤.
 				if (!PlantFrustumTestSphere(&sphereTile))
 				{
 					continue;
@@ -186,7 +186,7 @@ RwBool CNtlPLPlant::Update(RwReal fElapsed)
 					std::string&													strResourceName	= sProperty.vecstrResourceName.at(iObjIdx);						
 					sSECTOR_PLANT_SET_ATTR::sSECTOR_PLANT_OBJ_ATTR::TRANSFORM_VEC*	pvecTransform	= pPlantObj->vecObjMatrix.at(iObjIdx);
 
-					// ÇØ´çÅ¸ÀÏÀÇ ¿ÀºêÁ§Æ® ¸®½ºÆ®ÀÇ Æ÷ÀÎÅÍ¸¦ ÅëÂ°·Î ¸®½ºÆ®¿¡ Æ÷ÇÔ ½ÃÅ²´Ù.
+					// í•´ë‹¹íƒ€ì¼ì˜ ì˜¤ë¸Œì íŠ¸ ë¦¬ìŠ¤íŠ¸ì˜ í¬ì¸í„°ë¥¼ í†µì§¸ë¡œ ë¦¬ìŠ¤íŠ¸ì— í¬í•¨ ì‹œí‚¨ë‹¤.
 					if (!pvecTransform->empty())
 					{
 						m_mapSector[pSector][strResourceName].push_back(pvecTransform);
@@ -201,14 +201,14 @@ RwBool CNtlPLPlant::Update(RwReal fElapsed)
 
 RwBool CNtlPLPlant::PlantFrustumTestSphere(const RwSphere* pSphere)
 {
-	// bacamera.c(void CameraBuildPerspClipPlanes(RwCamera) ÂüÁ¶)
+	// bacamera.c(void CameraBuildPerspClipPlanes(RwCamera) ì°¸ì¡°)
 	RwCamera* pCamera = CNtlPLGlobal::m_RwCamera;
 
-	// Far :: Å¬¸³Æò¸éÀ¸·Î ±âÁ¸ °¡½Ã¿µ¿ªÃ¼Å©¿Í´Â ´Þ¸® ÇÑ´Ù.
+	// Far :: í´ë¦½í‰ë©´ìœ¼ë¡œ ê¸°ì¡´ ê°€ì‹œì˜ì—­ì²´í¬ì™€ëŠ” ë‹¬ë¦¬ í•œë‹¤.
 	/*
-	*	renderware¿¡¼­ÀÇ Å¬¸³Æò¸éµéÀÇ ¹ý¼±Àº ¹ÛÀ» ÇâÇÏ°í ÀÖ´Ù.
-	*	DX renderstate¸¦ ¼³Á¤ÇÏ±â À§ÇØ Å¬¸³¸éÀÇ ¾ÈÀ» ÇâÇØ¾ß Á¤»óÀûÀÎ Ã³¸®°¡ °¡´ÉÇÏ´Ù.
-	*	Å¬¸³Æò¸é °Å¸®µµ ´Ù¸£°í ¹æÇâµµ ´Ù¸£±â ¶§¹®¿¡ FarClipPlane¿¡ ´ëÇØ¼­´Â Ã³¸®¸¦ ´Þ¸®ÇÑ´Ù.
+	*	renderwareì—ì„œì˜ í´ë¦½í‰ë©´ë“¤ì˜ ë²•ì„ ì€ ë°–ì„ í–¥í•˜ê³  ìžˆë‹¤.
+	*	DX renderstateë¥¼ ì„¤ì •í•˜ê¸° ìœ„í•´ í´ë¦½ë©´ì˜ ì•ˆì„ í–¥í•´ì•¼ ì •ìƒì ì¸ ì²˜ë¦¬ê°€ ê°€ëŠ¥í•˜ë‹¤.
+	*	í´ë¦½í‰ë©´ ê±°ë¦¬ë„ ë‹¤ë¥´ê³  ë°©í–¥ë„ ë‹¤ë¥´ê¸° ë•Œë¬¸ì— FarClipPlaneì— ëŒ€í•´ì„œëŠ” ì²˜ë¦¬ë¥¼ ë‹¬ë¦¬í•œë‹¤.
 	*/
 	if (RwV3dDotProduct(&pSphere->center, &m_planeCilp.GetNormal()) +
 		m_planeCilp.GetConstant() < -pSphere->radius)
@@ -291,8 +291,8 @@ RwBool CNtlPLPlant::RenderSector(CNtlWorldSector* pSector)
 		NTL_RETURN(TRUE);
 	}
 	/*
-	*	¸ðµç PLANT OBJ´Â ¶È°°Àº RenderState¸¦ »ç¿ëÇÏ±â·Î ÇÏ¿´À¸¹Ç·Î
-	*	±âÁ¸ Atomic¿¡ ¼³Á¤µÈ Flag¸¦ ¹«½ÃÇÏ°í RenderState¸¦ ¿ÜºÎ¿¡¼­ ¼¼ÆÃÇÑ´Ù.
+	*	ëª¨ë“  PLANT OBJëŠ” ë˜‘ê°™ì€ RenderStateë¥¼ ì‚¬ìš©í•˜ê¸°ë¡œ í•˜ì˜€ìœ¼ë¯€ë¡œ
+	*	ê¸°ì¡´ Atomicì— ì„¤ì •ëœ Flagë¥¼ ë¬´ì‹œí•˜ê³  RenderStateë¥¼ ì™¸ë¶€ì—ì„œ ì„¸íŒ…í•œë‹¤.
 	*/
 	RwRenderStateSet(rwRENDERSTATEALPHATESTFUNCTIONREF, (void *)0x90);
 	RwRenderStateSet(rwRENDERSTATEALPHATESTFUNCTION, (void *)rwALPHATESTFUNCTIONGREATEREQUAL);
@@ -370,9 +370,9 @@ RwBool CNtlPLPlant::SetProperty(const CNtlPLProperty *pProperty)
 }
 
 /*
-*	¼½ÅÍ°¡ ·Îµå µÇ¸é µ¿ÀÛµÈ´Ù.
-*	ÀÌ ¸Þ¼Òµå°¡ ½ÇÇàµÇ±â Àü¿¡ ÁöÇü ¼½ÅÍ Á¤Á¡ Á¤º¸°¡ Á¸ÀçÇØ¾ß ÇÑ´Ù.
-*	¼½ÅÍÀÇ Á¤º¸¸¦ ¹ÙÅÁÀ¸·Î ¸®¼Ò½º¸¦ ·Îµù(Á÷Á¢)ÇÑ´Ù.
+*	ì„¹í„°ê°€ ë¡œë“œ ë˜ë©´ ë™ìž‘ëœë‹¤.
+*	ì´ ë©”ì†Œë“œê°€ ì‹¤í–‰ë˜ê¸° ì „ì— ì§€í˜• ì„¹í„° ì •ì  ì •ë³´ê°€ ì¡´ìž¬í•´ì•¼ í•œë‹¤.
+*	ì„¹í„°ì˜ ì •ë³´ë¥¼ ë°”íƒ•ìœ¼ë¡œ ë¦¬ì†ŒìŠ¤ë¥¼ ë¡œë”©(ì§ì ‘)í•œë‹¤.
 */
 void CNtlPLPlant::OnLoad(CNtlWorldSector* pSector)
 {
@@ -387,8 +387,8 @@ void CNtlPLPlant::OnLoad(CNtlWorldSector* pSector)
 }
 
 /*
-*	¼½ÅÍ°¡ ¾ð·Îµå µÉ¶§ µ¿ÀÛÇÑ´Ù.
-*	¼½ÅÍÀÇ Á¤º¸¸¦ ¹ÙÅÁÀ¸·Î ¸®¼Ò½º¸¦ »èÁ¦ÇÑ´Ù.
+*	ì„¹í„°ê°€ ì–¸ë¡œë“œ ë ë•Œ ë™ìž‘í•œë‹¤.
+*	ì„¹í„°ì˜ ì •ë³´ë¥¼ ë°”íƒ•ìœ¼ë¡œ ë¦¬ì†ŒìŠ¤ë¥¼ ì‚­ì œí•œë‹¤.
 */
 void CNtlPLPlant::OnUnload(CNtlWorldSector* pSector)
 {
@@ -405,8 +405,8 @@ void CNtlPLPlant::OnUnload(CNtlWorldSector* pSector)
 }
 
 /*
-*	¼½ÅÍÁ¤º¸¿¡´Â Å¸ÀÏÀÎµ¦½º °ª¸¸ °¡Áö°í ÀÖÀ¸¹Ç·Î ¿©±â¼­ ÀÌ ¸Þ¼Òµå¿¡¼­
-*	¸ÅÆ®¸¯½º¸¦ ±¸¼ºÇØ ÁØ´Ù.
+*	ì„¹í„°ì •ë³´ì—ëŠ” íƒ€ì¼ì¸ë±ìŠ¤ ê°’ë§Œ ê°€ì§€ê³  ìžˆìœ¼ë¯€ë¡œ ì—¬ê¸°ì„œ ì´ ë©”ì†Œë“œì—ì„œ
+*	ë§¤íŠ¸ë¦­ìŠ¤ë¥¼ êµ¬ì„±í•´ ì¤€ë‹¤.
 */
 void CNtlPLPlant::OnGenerator(CNtlWorldSector* pSector, sSECTOR_PLANT_SET_ATTR* pPlantSet, sSECTOR_PLANT_SET_ATTR::sSECTOR_PLANT_OBJ_ATTR* pPlantObj)
 {
@@ -460,7 +460,7 @@ void CNtlPLPlant::OnGenerator(CNtlWorldSector* pSector, sSECTOR_PLANT_SET_ATTR* 
 			continue;
 		}
 
-		// ¸¸¾à ÁöÇü°ú ¼öÁ÷À¸·Î µÇµµ·Ï Flag°¡ Ã¼Å©µÈ ¼¼Æ®¶ó¸é ÀÌ Á¤º¸¸¦ ±âÁØÀ¸·Î ¿¬»êÇØÁØ´Ù.
+		// ë§Œì•½ ì§€í˜•ê³¼ ìˆ˜ì§ìœ¼ë¡œ ë˜ë„ë¡ Flagê°€ ì²´í¬ëœ ì„¸íŠ¸ë¼ë©´ ì´ ì •ë³´ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ì—°ì‚°í•´ì¤€ë‹¤.
 		if (sProperty.bIsRotationTerrain)
 		{
 			pmatRotate = &matRotate;

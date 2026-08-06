@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: NtlDojo.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2009. 4. 16
 * Abstract		: 
 *****************************************************************************
-* Desc			: µµ¿Â ¡§∫∏
+* Desc			: ÎèÑÏû• Ï†ïÎ≥¥
 *****************************************************************************/
 
 #pragma once
@@ -61,15 +61,15 @@ struct sSCRAMBLE_INFO
 {
 	eDBO_DOJO_STATUS	eDojoState;
 	eSCRAMBLE_TEAM		eAvatarTeam;
-	RwUInt32			uiScrambleDojoTableIndex;			///< µµ¿Â ¿Ô≈ª¿¸ ¥ÎªÛ¿Œ µµ¿Â¿« ≈◊¿Ã∫Ì ¿Œµ¶Ω∫
+	RwUInt32			uiScrambleDojoTableIndex;			///< ÎèÑÏû• ÏüÅÌÉàÏ†Ñ ÎåÄÏÉÅÏù∏ ÎèÑÏû•Ïùò ÌÖåÏù¥Î∏î Ïù∏Îç±Ïä§
 	RwUInt8				byTeleportProposalIndex;
 	MAP_SCRAMBLE_SEAL	mapScrambleSeal;
-	RwReal				fLeftTime;							///< «ˆ¿Á ªÛ≈¬ø°º≠ ¥Ÿ¿Ω ªÛ≈¬±Ó¡ˆ ≥≤¿∫ Ω√∞£
+	RwReal				fLeftTime;							///< ÌòÑÏû¨ ÏÉÅÌÉúÏóêÏÑú Îã§Ïùå ÏÉÅÌÉúÍπåÏßÄ ÎÇ®ÏùÄ ÏãúÍ∞Ñ
 };
 
 struct sDOJO_INFO
 {
-	// ±‚∫ª ¡§∫∏(º≠πˆøÕ «◊ªÛ µø±‚»≠ µ«æÓ ¿÷¥Ÿ)
+	// Í∏∞Î≥∏ Ï†ïÎ≥¥(ÏÑúÎ≤ÑÏôÄ Ìï≠ÏÉÅ ÎèôÍ∏∞Ìôî ÎêòÏñ¥ ÏûàÎã§)
 	RwUInt32			uiDojoTableIndex;
 	GUILDID				guildID;
 	RwUInt8				byLevel;

@@ -107,10 +107,10 @@ RwBool CQuestRewardGui::Create( CQuestGui* pQuestGui )
 
 	m_phbxConversation->SetLineSpace( 7 );
 
-	// º¸»ó¿µ¿ª ¼³Á¤.
+	// ë³´ìƒì˜ì—­ ì„¤ì •.
 	SetRewardRectHardcode();
 
-	// ±âº»¼³Á¤ ¼¼ÆÃ
+	// ê¸°ë³¸ì„¤ì • ì„¸íŒ…
 	SetBasicUISetting();
 
 	SelectIndex( -1 );
@@ -152,7 +152,7 @@ VOID CQuestRewardGui::HandleEvents( RWS::CMsg& msg )
 	{
 		SNtlEventQuestDirect_Forward* pData = reinterpret_cast<SNtlEventQuestDirect_Forward*>( msg.pData );
 
-		// peessi : Áßº¹ÇØ¼­ ProposalÀÌ ³¯¶ó¿À¸é »õ·Îµé¾î¿Â ³à¼®À» Fail ÀÀ´äÃ³¸®.		
+		// peessi : ì¤‘ë³µí•´ì„œ Proposalì´ ë‚ ë¼ì˜¤ë©´ ìƒˆë¡œë“¤ì–´ì˜¨ ë…€ì„ì„ Fail ì‘ë‹µì²˜ë¦¬.		
 		if( m_pTCUnit )
 		{
 			SNtlEventQuestDirect_Echo stEcho;
@@ -218,7 +218,7 @@ VOID CQuestRewardGui::SetBasicUISetting(VOID)
 
 VOID CQuestRewardGui::SetQuestData( SNtlEventQuestDirect_Forward* pData )
 {
-	// ´Ù½Ã º¸³»ÁÖ¾î¾ßÇÒ Data
+	// ë‹¤ì‹œ ë³´ë‚´ì£¼ì–´ì•¼í•  Data
 	m_pTCUnit = pData->pTCUnit;
 	m_TSKey = pData->sReward.sTSKey;
 

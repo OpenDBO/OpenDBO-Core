@@ -2,7 +2,7 @@
 *
 * File			: CNtlSobVehicleProxy
 * Author		: JeongHo, Rho
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 11. 4
 * Abstract		: Simulation vehicle Proxy
 *****************************************************************************
@@ -50,7 +50,7 @@ public:
 public:
 
 	/**
-	* transform¿¡ °üÇöµÈ ÇÔ¼ö.
+	* transformì— ê´€í˜„ëœ í•¨ìˆ˜.
 	*/
 
 	virtual void			SetPosition( const RwV3d* pPos );
@@ -62,7 +62,7 @@ public:
 	virtual void			SetAngleY( RwReal fAngle );
 
 	/**
-	* animation¿¡ °ü·ÃµÈ ÇÔ¼ö.
+	* animationì— ê´€ë ¨ëœ í•¨ìˆ˜.
 	*/
 
 	virtual void			SetBaseAnimation( RwUInt32 uiAnimKey, RwBool bLoop = TRUE, RwReal fStartTime = 0.0f );
@@ -77,7 +77,7 @@ public:
 	virtual RwReal          GetAnimSpeed( void );
 
 	/**
-	* entity¿¡ °ü·ÃµÈ ÇÔ¼ö.
+	* entityì— ê´€ë ¨ëœ í•¨ìˆ˜.
 	*/
 
 	virtual RwReal			GetPLEntityHeight( void );
@@ -87,7 +87,7 @@ public:
 	virtual RwReal			GetScale( void );
 
 	/**
-	* visible¿¡ °ü·ÃµÈ ÇÔ¼ö.
+	* visibleì— ê´€ë ¨ëœ í•¨ìˆ˜.
 	*/
 
 	virtual void			EnableVisible( RwBool bEnable );

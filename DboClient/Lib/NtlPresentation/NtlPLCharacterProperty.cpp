@@ -35,9 +35,9 @@ CNtlPLCharacterProperty::~CNtlPLCharacterProperty()
 }
 
 /**
- *  xml file·Î object property data¸¦ saveÇÏ´Â ÇÔ¼ö
- *  \param pDoc´Â xml wrapping class pointer.
- *  \param pNod´Â À¯È¿ÇÑ xml node.
+ *  xml fileë¡œ object property dataë¥¼ saveí•˜ëŠ” í•¨ìˆ˜
+ *  \param pDocëŠ” xml wrapping class pointer.
+ *  \param pNodëŠ” ìœ íš¨í•œ xml node.
  *
  */
 RwBool CNtlPLCharacterProperty::Save(CNtlXMLDoc *pDoc, IXMLDOMNode *pNode)
@@ -46,9 +46,9 @@ RwBool CNtlPLCharacterProperty::Save(CNtlXMLDoc *pDoc, IXMLDOMNode *pNode)
 }
 
 /**
-  *  xml file·ÎºÎÅÍ object property data¸¦ loadingÇÏ´Â ÇÔ¼ö
-  *  \param pDoc´Â xml wrapping class pointer.
-  *  \param pNod´Â À¯È¿ÇÑ xml node.
+  *  xml fileë¡œë¶€í„° object property dataë¥¼ loadingí•˜ëŠ” í•¨ìˆ˜
+  *  \param pDocëŠ” xml wrapping class pointer.
+  *  \param pNodëŠ” ìœ íš¨í•œ xml node.
   *
   */
 RwBool CNtlPLCharacterProperty::Load(CNtlXMLDoc *pDoc, IXMLDOMNode *pNode)

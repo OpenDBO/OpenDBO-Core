@@ -1,4 +1,4 @@
-// SaveDlg.cpp : ���� �����Դϴ�.
+// SaveDlg.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "SaveDlg.h"
 
 
-// CSaveDlg ��ȭ �����Դϴ�.
+// CSaveDlg 대화 상자입니다.
 
 IMPLEMENT_DYNAMIC(CSaveDlg, CDialog)
 
@@ -35,14 +35,14 @@ BEGIN_MESSAGE_MAP(CSaveDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CSaveDlg �޽��� ó�����Դϴ�.
+// CSaveDlg 메시지 처리기입니다.
 
 void CSaveDlg::OnBnClickedButtonSavePath()
 {
-	// TODO: ���⿡ ��Ʈ�� �˸� ó���� �ڵ带 �߰��մϴ�.
-	// TODO: ���⿡ ��Ʈ�� �˸� ó���� �ڵ带 �߰��մϴ�.
-	// TODO: ���⿡ ��Ʈ�� �˸� ó���� �ڵ带 �߰��մϴ�.
-	//// TODO: ���⿡ ���� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
+	//// TODO: 여기에 명령 처리기 코드를 추가합니다.
 	ITEMIDLIST        *pidlBrowse;
 	char    pszPathname[MAX_PATH];
 
@@ -53,15 +53,15 @@ void CSaveDlg::OnBnClickedButtonSavePath()
 	memset( &BrInfo, 0, sizeof(BrInfo) );
 	GetCurrentDirectory( MAX_PATH, pszPathname);
 	BrInfo.pszDisplayName = pszPathname;
-	BrInfo.lpszTitle = "���ε� �Ǵ� ���ø��� �� �ؽ��ĵ��� ��ġ�� ������ �����ϼ���.";
+	BrInfo.lpszTitle = "바인딩 또는 스플릿이 될 텍스쳐들이 위치할 폴더를 지정하세요.";
 	BrInfo.ulFlags = BIF_RETURNONLYFSDIRS;
 
-	// ���̾�α׸� ����
+	// 다이얼로그를 띄우기
 	pidlBrowse = ::SHBrowseForFolder(&BrInfo);   
 
 	if( pidlBrowse != NULL)
 	{
-		// �н��� ����
+		// 패스를 얻어옴
 		::SHGetPathFromIDList(pidlBrowse, pszPathname);   
 		m_szSavePath = pszPathname;
 
@@ -71,7 +71,7 @@ void CSaveDlg::OnBnClickedButtonSavePath()
 
 void CSaveDlg::OnCbnSelchangeComboSaveType()
 {
-	// TODO: ���⿡ ��Ʈ�� �˸� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	m_nSaveType = m_cbbSaveType.GetCurSel();
 }
 
@@ -79,7 +79,7 @@ BOOL CSaveDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ���⿡ �߰� �ʱ�ȭ �۾��� �߰��մϴ�.
+	// TODO:  여기에 추가 초기화 작업을 추가합니다.
 
 	m_cbbSaveType.AddString("128 X 128");
 	m_cbbSaveType.AddString("256 X 256");
@@ -94,5 +94,5 @@ BOOL CSaveDlg::OnInitDialog()
 
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ����: OCX �Ӽ� �������� FALSE�� ��ȯ�ؾ� �մϴ�.
+	// 예외: OCX 속성 페이지는 FALSE를 반환해야 합니다.
 }

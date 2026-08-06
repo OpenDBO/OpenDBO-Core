@@ -1,4 +1,4 @@
-// NtlWEFrm.cpp : CNtlWEFrm Å¬·¡½ºÀÇ ±¸Çö
+// NtlWEFrm.cpp : CNtlWEFrm í´ëž˜ìŠ¤ì˜ êµ¬í˜„
 //
 
 #include "stdafx.h"
@@ -78,7 +78,7 @@ IMPLEMENT_DYNCREATE(CNtlWEFrm, CFrameWnd)
 BEGIN_MESSAGE_MAP(CNtlWEFrm, CFrameWnd)
 	ON_WM_CREATE()
 	ON_WM_SIZE()
-	// Àü¿ª µµ¿ò¸» ¸í·É
+	// ì „ì—­ ë„ì›€ë§ ëª…ë ¹
 	//ON_COMMAND(ID_HELP_FINDER, CFrameWnd::OnHelpFinder)
 	//ON_COMMAND(ID_HELP, CFrameWnd::OnHelp)
 	//ON_COMMAND(ID_CONTEXT_HELP, CFrameWnd::OnContextHelp)
@@ -215,14 +215,14 @@ BEGIN_MESSAGE_MAP(CNtlWEFrm, CFrameWnd)
 
 static UINT indicators[] =
 {
-	ID_SEPARATOR,           // »óÅÂ ÁÙ Ç¥½Ã±â
+	ID_SEPARATOR,           // ìƒíƒœ ì¤„ í‘œì‹œê¸°
 	ID_INDICATOR_CAPS,
 	ID_INDICATOR_NUM,
 	ID_INDICATOR_SCRL,
 };
 
 
-// CNtlWEFrm »ý¼º/¼Ò¸ê
+// CNtlWEFrm ìƒì„±/ì†Œë©¸
 
 CNtlWEFrm::CNtlWEFrm()
 {
@@ -470,7 +470,7 @@ int CNtlWEFrm::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {/*
  // SplashScreen
  CSplashScreenFx *pSplash = new CSplashScreenFx();
- pSplash->Create(AfxGetMainWnd(), "¼¼ÀÌ¹ö 1.0 ", 0 ,CSS_FADE | CSS_CENTERSCREEN | CSS_SHADOW);
+ pSplash->Create(AfxGetMainWnd(), "ì„¸ì´ë²„ 1.0 ", 0 ,CSS_FADE | CSS_CENTERSCREEN | CSS_SHADOW);
 
  ::srand( (unsigned )time(NULL));
  if(rand() % 2 == 0)
@@ -519,32 +519,32 @@ int CNtlWEFrm::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (!m_wndToolBar.CreateEx(this) ||
 	!m_wndToolBar.LoadToolBar(IDR_MAINFRAME))
 	{
-	TRACE0("µµ±¸ ¸ðÀ½À» ¸¸µéÁö ¸øÇß½À´Ï´Ù.\n");
-	return -1;      // ¸¸µéÁö ¸øÇß½À´Ï´Ù.
+	TRACE0("ë„êµ¬ ëª¨ìŒì„ ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.\n");
+	return -1;      // ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.
 	}
 	if (!m_wndDlgBar.Create(this, IDR_MAINFRAME, 
 	CBRS_ALIGN_TOP, AFX_IDW_DIALOGBAR))
 	{
-	TRACE0("´ëÈ­ »óÀÚ ¸ðÀ½À» ¸¸µéÁö ¸øÇß½À´Ï´Ù.\n");
-	return -1;		// ¸¸µéÁö ¸øÇß½À´Ï´Ù.
+	TRACE0("ëŒ€í™” ìƒìž ëª¨ìŒì„ ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.\n");
+	return -1;		// ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.
 	}
 
 	if (!m_wndReBar.Create(this) ||
 	!m_wndReBar.AddBar(&m_wndToolBar) ||
 	!m_wndReBar.AddBar(&m_wndDlgBar))
 	{
-	TRACE0("Å©±â Á¶Á¤ ¸·´ë¸¦ ¸¸µéÁö ¸øÇß½À´Ï´Ù.\n");
-	return -1;      // ¸¸µéÁö ¸øÇß½À´Ï´Ù.
+	TRACE0("í¬ê¸° ì¡°ì • ë§‰ëŒ€ë¥¼ ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.\n");
+	return -1;      // ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.
 	}
 
 	if (!m_wndStatusBar.Create(this) ||
 	!m_wndStatusBar.SetIndicators(indicators,
 	sizeof(indicators)/sizeof(UINT)))
 	{
-	TRACE0("»óÅÂ Ç¥½ÃÁÙÀ» ¸¸µéÁö ¸øÇß½À´Ï´Ù.\n");
-	return -1;      // ¸¸µéÁö ¸øÇß½À´Ï´Ù.
+	TRACE0("ìƒíƒœ í‘œì‹œì¤„ì„ ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.\n");
+	return -1;      // ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.
 	}
-	// TODO: µµ±¸ ¼³¸íÀ» Ç¥½ÃÇÏÁö ¾ÊÀ¸·Á¸é ÀÌ ÁÙÀ» Á¦°ÅÇÏ½Ê½Ã¿À.
+	// TODO: ë„êµ¬ ì„¤ëª…ì„ í‘œì‹œí•˜ì§€ ì•Šìœ¼ë ¤ë©´ ì´ ì¤„ì„ ì œê±°í•˜ì‹­ì‹œì˜¤.
 	m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() |
 	CBRS_TOOLTIPS | CBRS_FLYBY);*/
 
@@ -555,7 +555,7 @@ int CNtlWEFrm::OnCreate(LPCREATESTRUCT lpCreateStruct)
 // {
 // 	CFrameWnd::OnSize(nType, cx, cy);
 // 
-// 	// TODO: ¿©±â¿¡ ¸Þ½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+// 	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 // 	RECT rc;
 // 	GetClientRect(&rc);
 // 
@@ -586,7 +586,7 @@ BOOL CNtlWEFrm::PreCreateWindow(CREATESTRUCT& cs)
 }
 
 
-// CNtlWEFrm Áø´Ü
+// CNtlWEFrm ì§„ë‹¨
 
 #ifdef _DEBUG
 void CNtlWEFrm::AssertValid() const
@@ -602,7 +602,7 @@ void CNtlWEFrm::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CNtlWEFrm ¸Þ½ÃÁö Ã³¸®±â
+// CNtlWEFrm ë©”ì‹œì§€ ì²˜ë¦¬ê¸°
 
 
 static RpClump *
@@ -1201,7 +1201,7 @@ void CNtlWEFrm::OnPaletteWater()
 
 void CNtlWEFrm::OnPaletteShadow()
 {
-	// ÀÎµµ¾î
+	// ì¸ë„ì–´
 	switch (GetSceneManager()->GetActiveWorldType())
 	{
 	case AW_HEGITHFIELD:
@@ -2193,7 +2193,7 @@ void CNtlWEFrm::OnInfoVersion()
 // 			RwBBox AABB = pNtlPLObj->GetTriggerAABBInfo(SRT[2], SRT[1], SRT[0]);
 // 
 // 			// direction
-// 			//¼­¹ö¿¡¼­ ÇÊ¿äÇÑ ¹æÇâº¤ÅÍ°¡ ¹«¾ùÀÎÁö¸¦ ¾Ë¾ÆºÁ¾ßÇÑ´Ù. ÀÏ´Ü 0,0,1·Î ÇÑ´Ù.
+// 			//ì„œë²„ì—ì„œ í•„ìš”í•œ ë°©í–¥ë²¡í„°ê°€ ë¬´ì—‡ì¸ì§€ë¥¼ ì•Œì•„ë´ì•¼í•œë‹¤. ì¼ë‹¨ 0,0,1ë¡œ í•œë‹¤.
 // 
 // 			if(SID != 0xffffffff && EnableTrigger)
 // 			{
@@ -2385,26 +2385,26 @@ void CNtlWEFrm::OnUpdateVisionProjectionshadow(CCmdUI *pCmdUI)
 
 void CNtlWEFrm::OnVisionFogactivation()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CNtlWorldObjVisionAnalyzer::GetInstance()->Toggle(eNWOVA_FOG_ACTIVATION);
 }
 
 void CNtlWEFrm::OnUpdateVisionFogactivation(CCmdUI *pCmdUI)
 {
-	// TODO: ¿©±â¿¡ ¸í·É ¾÷µ¥ÀÌÆ® UI Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì—…ë°ì´íŠ¸ UI ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	pCmdUI->Enable();
 	pCmdUI->SetCheck(CNtlWorldObjVisionAnalyzer::GetInstance()->GetCheck(eNWOVA_FOG_ACTIVATION));
 }
 
 void CNtlWEFrm::OnVisionPlant()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CNtlWorldObjVisionAnalyzer::GetInstance()->Toggle(eNWOVA_PLNAT);
 }
 
 void CNtlWEFrm::OnUpdateVisionPlant(CCmdUI *pCmdUI)
 {
-	// TODO: ¿©±â¿¡ ¸í·É ¾÷µ¥ÀÌÆ® UI Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì—…ë°ì´íŠ¸ UI ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	pCmdUI->Enable();
 	pCmdUI->SetCheck(CNtlWorldObjVisionAnalyzer::GetInstance()->GetCheck(eNWOVA_PLNAT));
 }
@@ -2495,7 +2495,7 @@ void CNtlWEFrm::OnUiObjectwireframe()
 
 void CNtlWEFrm::OnExportExportheightfieldpe()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	ITEMIDLIST*	pidlBrowse;
 	char		pszPathname[NTL_MAX_DIR_PATH];
@@ -2554,7 +2554,7 @@ void CNtlWEFrm::OnExportExportheightfieldpe()
 
 void CNtlWEFrm::OnExportExportmappropPe()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	ITEMIDLIST*	pidlBrowse;
 	char		pszPathname[NTL_MAX_DIR_PATH];
@@ -2707,7 +2707,7 @@ void CNtlWEFrm::OnSkyFloatDlg()
 
 void CNtlWEFrm::OnCameraPortal()
 {
-	// ÀÎµµ¾î
+	// ì¸ë„ì–´
 	if (dGETMGR()->GetActiveWorldType()/* == AW_HEGITHFIELD*/)
 	{
 		if(!((CNtlWEApp*)(AfxGetApp()))->m_NtlWEApplication.IsWorking())

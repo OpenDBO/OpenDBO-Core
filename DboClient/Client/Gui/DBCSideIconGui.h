@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: DBCSideIcon.h
 * Author		: agebreak
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 7. 27
 * Abstract		: 
 *****************************************************************************
-* Desc			: µå·¡°ïº¼ ¼öÁı °ü·Ã »çÀÌµå ¾ÆÀÌÄÜ
+* Desc			: ë“œë˜ê³¤ë³¼ ìˆ˜ì§‘ ê´€ë ¨ ì‚¬ì´ë“œ ì•„ì´ì½˜
 *****************************************************************************/
 
 #pragma once
@@ -41,20 +41,20 @@ protected:
 
 	VOID				SetIconImageType(eDBCSideIconType eType);
 	eDBCSideIconType	GetIconImageType();
-	RwBool			IsCollectComplete();			///< µå·¡°ïº¼À» ÀüºÎ´Ù ¼öÁıÇß´ÂÁö Ã¼Å©ÇÑ´Ù.
-	VOID			ResetSheduleInfo();				///< »óÅÂ¸¦ ¼­¹ö·Î ¹ŞÀº »óÅÂ·Î µÇµ¹¸°´Ù. (µå·¡°ïº¼ »ç¿ëÈÄ È£Ãâ)
+	RwBool			IsCollectComplete();			///< ë“œë˜ê³¤ë³¼ì„ ì „ë¶€ë‹¤ ìˆ˜ì§‘í–ˆëŠ”ì§€ ì²´í¬í•œë‹¤.
+	VOID			ResetSheduleInfo();				///< ìƒíƒœë¥¼ ì„œë²„ë¡œ ë°›ì€ ìƒíƒœë¡œ ë˜ëŒë¦°ë‹¤. (ë“œë˜ê³¤ë³¼ ì‚¬ìš©í›„ í˜¸ì¶œ)
 
 protected:			
 	gui::CSlot			m_slotNoSeasonButton;
 	gui::CSlot			m_slotSeasonButton;
 	gui::CSlot			m_slotCollectButton;
 
-	gui::CButton*		m_pBtnNoSeason;			///< µå·¡°ïº¼ ¼öÁı ±â°£ÀÌ ¾Æ´Ò¶§ÀÇ Ç¥½Ã ¾ÆÀÌÄÜ
-	gui::CButton*		m_pBtnSeason;			///< µå·¡°ïº¼ ¼öÁı ±â°£ÀÏ¶§ÀÇ Ç¥½Ã ¾ÆÀÌÄÜ
-	gui::CButton*		m_pBtnCollect;			///< µå·¡°ïº¼À» ´Ù ¸ğÀº °æ¿ìÀÇ Ç¥½Ã ¾ÆÀÌÄÜ
+	gui::CButton*		m_pBtnNoSeason;			///< ë“œë˜ê³¤ë³¼ ìˆ˜ì§‘ ê¸°ê°„ì´ ì•„ë‹ë•Œì˜ í‘œì‹œ ì•„ì´ì½˜
+	gui::CButton*		m_pBtnSeason;			///< ë“œë˜ê³¤ë³¼ ìˆ˜ì§‘ ê¸°ê°„ì¼ë•Œì˜ í‘œì‹œ ì•„ì´ì½˜
+	gui::CButton*		m_pBtnCollect;			///< ë“œë˜ê³¤ë³¼ì„ ë‹¤ ëª¨ì€ ê²½ìš°ì˜ í‘œì‹œ ì•„ì´ì½˜
 
 	eDBCSideIconType	m_eIconImageType;		
-	RwBool				m_bDBCComplete;			///< µå·¡°ïº¼À» ´Ù ¸ğ¾Ò´ÂÁö À¯¹«
+	RwBool				m_bDBCComplete;			///< ë“œë˜ê³¤ë³¼ì„ ë‹¤ ëª¨ì•˜ëŠ”ì§€ ìœ ë¬´
 };
 
 
@@ -90,9 +90,9 @@ protected:
 	gui::CSlot			m_slotMove;
 	gui::CSlot			m_slotResize;
 
-	CWindowby3			m_BackPanel;		///< ¹è°æ
+	CWindowby3			m_BackPanel;		///< ë°°ê²½
 
-	gui::CStaticBox*	m_pNotify;			///< ¾Ë¸² ¸Ş¼¼Áö
-	gui::CStaticBox*	m_pTitle;			///< Side View Á¦¸ñ	
-	gui::CButton*		m_pExitButton;		///< ´İ±â ¹öÆ°	
+	gui::CStaticBox*	m_pNotify;			///< ì•Œë¦¼ ë©”ì„¸ì§€
+	gui::CStaticBox*	m_pTitle;			///< Side View ì œëª©	
+	gui::CButton*		m_pExitButton;		///< ë‹«ê¸° ë²„íŠ¼	
 };

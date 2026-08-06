@@ -1,4 +1,4 @@
-// Attr_COND_SToCEvt.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_COND_SToCEvt.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_COND_SToCEvt.h"
 
 
-// CAttr_COND_SToCEvt ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_COND_SToCEvt ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_COND_SToCEvt, CAttr_Page, 1)
 
@@ -59,7 +59,7 @@ BOOL CAttr_COND_SToCEvt::OnInitDialog()
 {
 	CAttr_Page::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	int nIdx = m_ctrSvrEvtType.AddString( _T("Invalid") );
 	m_ctrSvrEvtType.SetItemData(  nIdx, eSTOC_EVT_DATA_TYPE_INVALID );
 	m_ctrSvrEvtType.SetItemData( m_ctrSvrEvtType.AddString( _T("Mob kill") ), eSTOC_EVT_DATA_TYPE_MOB_KILL_CNT );
@@ -74,7 +74,7 @@ BOOL CAttr_COND_SToCEvt::OnInitDialog()
 	if ( m_strData.GetLength() > 0 ) SetPageData( m_strData );
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 
@@ -82,4 +82,4 @@ BEGIN_MESSAGE_MAP(CAttr_COND_SToCEvt, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_COND_SToCEvt ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_COND_SToCEvt ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

@@ -1,4 +1,4 @@
-// WorldEditorView.cpp : CWorldEditorView Å¬·¡½ºÀÇ ±¸Çö
+// WorldEditorView.cpp : CWorldEditorView í´ëž˜ìŠ¤ì˜ êµ¬í˜„
 //
 
 #include "stdafx.h"
@@ -18,18 +18,18 @@
 IMPLEMENT_DYNCREATE(CWorldEditorView, CView)
 
 BEGIN_MESSAGE_MAP(CWorldEditorView, CView)
-	// Ç¥ÁØ ÀÎ¼â ¸í·ÉÀÔ´Ï´Ù.
+	// í‘œì¤€ ì¸ì‡„ ëª…ë ¹ìž…ë‹ˆë‹¤.
 	ON_COMMAND(ID_FILE_PRINT, CView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, CView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, CView::OnFilePrintPreview)
 	ON_WM_MOUSEWHEEL()
 END_MESSAGE_MAP()
 
-// CWorldEditorView »ý¼º/¼Ò¸ê
+// CWorldEditorView ìƒì„±/ì†Œë©¸
 
 CWorldEditorView::CWorldEditorView()
 {
-	// TODO: ¿©±â¿¡ »ý¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ìƒì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 
 }
@@ -40,13 +40,13 @@ CWorldEditorView::~CWorldEditorView()
 
 BOOL CWorldEditorView::PreCreateWindow(CREATESTRUCT& cs)
 {
-	// TODO: CREATESTRUCT cs¸¦ ¼öÁ¤ÇÏ¿© ¿©±â¿¡¼­
-	// Window Å¬·¡½º ¶Ç´Â ½ºÅ¸ÀÏÀ» ¼öÁ¤ÇÕ´Ï´Ù.
+	// TODO: CREATESTRUCT csë¥¼ ìˆ˜ì •í•˜ì—¬ ì—¬ê¸°ì—ì„œ
+	// Window í´ëž˜ìŠ¤ ë˜ëŠ” ìŠ¤íƒ€ì¼ì„ ìˆ˜ì •í•©ë‹ˆë‹¤.
 
 	return CView::PreCreateWindow(cs);
 }
 
-// CWorldEditorView ±×¸®±â
+// CWorldEditorView ê·¸ë¦¬ê¸°
 
 void CWorldEditorView::OnDraw(CDC* /*pDC*/)
 {
@@ -55,30 +55,30 @@ void CWorldEditorView::OnDraw(CDC* /*pDC*/)
 	if (!pDoc)
 		return;
 
-	// TODO: ¿©±â¿¡ ¿ø½Ã µ¥ÀÌÅÍ¿¡ ´ëÇÑ ±×¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì›ì‹œ ë°ì´í„°ì— ëŒ€í•œ ê·¸ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 
-// CWorldEditorView ÀÎ¼â
+// CWorldEditorView ì¸ì‡„
 
 BOOL CWorldEditorView::OnPreparePrinting(CPrintInfo* pInfo)
 {
-	// ±âº»ÀûÀÎ ÁØºñ
+	// ê¸°ë³¸ì ì¸ ì¤€ë¹„
 	return DoPreparePrinting(pInfo);
 }
 
 void CWorldEditorView::OnBeginPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
 {
-	// TODO: ÀÎ¼âÇÏ±â Àü¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì¸ì‡„í•˜ê¸° ì „ì— ì¶”ê°€ ì´ˆê¸°í™” ìž‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 void CWorldEditorView::OnEndPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
 {
-	// TODO: ÀÎ¼â ÈÄ Á¤¸® ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì¸ì‡„ í›„ ì •ë¦¬ ìž‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 
-// CWorldEditorView Áø´Ü
+// CWorldEditorView ì§„ë‹¨
 
 #ifdef _DEBUG
 void CWorldEditorView::AssertValid() const
@@ -91,7 +91,7 @@ void CWorldEditorView::Dump(CDumpContext& dc) const
 	CView::Dump(dc);
 }
 
-CWorldEditorDoc* CWorldEditorView::GetDocument() const // µð¹ö±×µÇÁö ¾ÊÀº ¹öÀüÀº ÀÎ¶óÀÎÀ¸·Î ÁöÁ¤µË´Ï´Ù.
+CWorldEditorDoc* CWorldEditorView::GetDocument() const // ë””ë²„ê·¸ë˜ì§€ ì•Šì€ ë²„ì „ì€ ì¸ë¼ì¸ìœ¼ë¡œ ì§€ì •ë©ë‹ˆë‹¤.
 {
 	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CWorldEditorDoc)));
 	return (CWorldEditorDoc*)m_pDocument;
@@ -99,11 +99,11 @@ CWorldEditorDoc* CWorldEditorView::GetDocument() const // µð¹ö±×µÇÁö ¾ÊÀº ¹öÀüÀº
 #endif //_DEBUG
 
 
-// CWorldEditorView ¸Þ½ÃÁö Ã³¸®±â
+// CWorldEditorView ë©”ì‹œì§€ ì²˜ë¦¬ê¸°
 
 BOOL CWorldEditorView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 {
-	// TODO: ¿©±â¿¡ ¸Þ½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	g_pEngineApp->OnMouseWheel( zDelta );
 	return CView::OnMouseWheel(nFlags, zDelta, pt);

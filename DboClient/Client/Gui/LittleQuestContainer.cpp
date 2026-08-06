@@ -107,7 +107,7 @@ VOID CLittleQuestContainer::InitQuestData()
 	CDboTSCQAgency* pQuestAgency = API_GetQuestAgency();
 	if ( NULL == pQuestAgency ) return;
 
-	// Cleint ´ÜÀÇ Gui¿¡¼­ ÁøÇàÁßÀÎ Äù½ºÆ® ¸®½ºÆ®¸¦ ¾ò¾î¿Â´Ù
+	// Cleint ë‹¨ì˜ Guiì—ì„œ ì§„í–‰ì¤‘ì¸ í€˜ìŠ¤íŠ¸ ë¦¬ìŠ¤íŠ¸ë¥¼ ì–»ì–´ì˜¨ë‹¤
 	pQuestListGui->GetQuestList(&listQuest);
 
 	for( std::list<stQUESTLISTDATA>::iterator it = listQuest.begin() ; it != listQuest.end() ; ++it )
@@ -134,7 +134,7 @@ VOID CLittleQuestContainer::InitQuestData()
 		}
 	}
 
-	// °ü·Ã Äù½ºÆ®°¡ ÇÏ³ª ÀÌ»ó ÀÖÀ» ¶§ °¡Àå Ã³À½ °ÍÀ» º¸¿©ÁØ´Ù
+	// ê´€ë ¨ í€˜ìŠ¤íŠ¸ê°€ í•˜ë‚˜ ì´ìƒ ìˆì„ ë•Œ ê°€ì¥ ì²˜ìŒ ê²ƒì„ ë³´ì—¬ì¤€ë‹¤
 	if( m_listQuestData.size() > 0 )
 	{
 		LIST_QUEST_ITER it = m_listQuestData.begin();
@@ -157,7 +157,7 @@ VOID CLittleQuestContainer::SetIndicator(sQuestData* pQuestData)
 	}
 
 
-	// ÇöÀç º¸¿©Áö°í ÀÖ´Â Äù½ºÆ® ID º¸°ü
+	// í˜„ì¬ ë³´ì—¬ì§€ê³  ìˆëŠ” í€˜ìŠ¤íŠ¸ ID ë³´ê´€
 	m_tID = pQuestData->sTSKey.tID;
 
 	RwUInt32 uiTextColor = 0;
@@ -171,7 +171,7 @@ VOID CLittleQuestContainer::SetIndicator(sQuestData* pQuestData)
 		return;
 	}	
 
-	// Äù½ºÆ® Á¦¸ñ
+	// í€˜ìŠ¤íŠ¸ ì œëª©
 	std::wstring wTitlestring = gui::GetHtmlFromMemoryString(pQUEST_TEXT_DATA_TBLDAT->wstrText.c_str(), pQUEST_TEXT_DATA_TBLDAT->wstrText.size());
 	m_pQuestTitle->Show(true);
 	m_pQuestTitle->SetText(wTitlestring.c_str());
@@ -373,7 +373,7 @@ VOID CLittleQuestContainer::SetIndicator(sQuestData* pQuestData)
 		}
 	}	
 
-	// ½Ã°£.
+	// ì‹œê°„.
 	if( pQuestData->uiTimeLimit != 0xffffffff )
 	{
 		if( iProgress < dMAX_QUEST_AIM )
@@ -441,15 +441,15 @@ CLittleQuestContainer::sQuestData* CLittleQuestContainer::NextData(NTL_TS_T_ID t
 
 			++it_next;
 
-			// ¸®½ºÆ®¿¡¼­ ´ÙÀ½ Äù½ºÆ®°¡ ¾øÀ¸¸é °¡Àå Ã³À½ µ¥ÀÌÅÍ¸¦ Ã£´Â´Ù
+			// ë¦¬ìŠ¤íŠ¸ì—ì„œ ë‹¤ìŒ í€˜ìŠ¤íŠ¸ê°€ ì—†ìœ¼ë©´ ê°€ì¥ ì²˜ìŒ ë°ì´í„°ë¥¼ ì°¾ëŠ”ë‹¤
 			if( it_next == m_listQuestData.end() )
 				it_next = m_listQuestData.begin();
 
-			// ´õ ÀÌ»ó ´ÙÀ½ Äù½ºÆ®°¡ ¾ø´Ù
+			// ë” ì´ìƒ ë‹¤ìŒ í€˜ìŠ¤íŠ¸ê°€ ì—†ë‹¤
 			if( it_next == m_listQuestData.end() )
 				return NULL;
 
-			// ¸®½ºÆ®ÀÇ Ã³À½¿¡ ÀÖ´Â Äù½ºÆ®°¡ ÀÔ·Â¹ŞÀº Äù½ºÆ® ¾ÆÀÌµğ¿Í °°´Ù
+			// ë¦¬ìŠ¤íŠ¸ì˜ ì²˜ìŒì— ìˆëŠ” í€˜ìŠ¤íŠ¸ê°€ ì…ë ¥ë°›ì€ í€˜ìŠ¤íŠ¸ ì•„ì´ë””ì™€ ê°™ë‹¤
 			if( (*it_next)->sTSKey.tID == tID_current )
 				return NULL;
 
@@ -468,10 +468,10 @@ VOID  CLittleQuestContainer::DelData(NTL_TS_T_ID& tID)
 		sQuestData* pQuestData = *it;
 		if( pQuestData->sTSKey.tID == tID )
 		{
-			// ´ÙÀ½¿¡ Ç¥½ÃµÉ Äù½ºÆ® µ¥ÀÌÅÍ¸¦ Ã£´Â´Ù
+			// ë‹¤ìŒì— í‘œì‹œë  í€˜ìŠ¤íŠ¸ ë°ì´í„°ë¥¼ ì°¾ëŠ”ë‹¤
 			CLittleQuestContainer::sQuestData* pNextQuestData = NextData(m_tID);
 
-			// ÇöÀç º¸¿©Áö°í ÀÖ´Â Äù½ºÆ® Á¤º¸ÀÇ ´ÙÀ½ Á¤º¸°¡ Áö¿öÁú Á¤º¸ÀÎÁö °Ë»ç
+			// í˜„ì¬ ë³´ì—¬ì§€ê³  ìˆëŠ” í€˜ìŠ¤íŠ¸ ì •ë³´ì˜ ë‹¤ìŒ ì •ë³´ê°€ ì§€ì›Œì§ˆ ì •ë³´ì¸ì§€ ê²€ì‚¬
 			if( pNextQuestData )
 			{
 				if( pNextQuestData->sTSKey.tID == tID )
@@ -480,8 +480,8 @@ VOID  CLittleQuestContainer::DelData(NTL_TS_T_ID& tID)
 				}
 			}
 
-			// avooo's comment : pNextQuestData°¡ NULL Æ÷ÀÎÅÍ¶óµµ SetIndicator()¸¦
-			//					 ÇÑ ¹ø È£ÃâÇÏ¿© GUI¸¦ ÃÊ±âÈ­ÇÏÀÚ
+			// avooo's comment : pNextQuestDataê°€ NULL í¬ì¸í„°ë¼ë„ SetIndicator()ë¥¼
+			//					 í•œ ë²ˆ í˜¸ì¶œí•˜ì—¬ GUIë¥¼ ì´ˆê¸°í™”í•˜ì
 			SetIndicator(pNextQuestData);
 
 			NTL_DELETE(pQuestData);
@@ -517,7 +517,7 @@ VOID CLittleQuestContainer::HandleEvents( RWS::CMsg &msg )
 
 				m_listQuestData.push_back(pQuestData);
 
-				// ¾÷µ¥ÀÌÆ® µÈ Äù½ºÆ® Á¤º¸¸¦ º¸¿©ÁØ´Ù
+				// ì—…ë°ì´íŠ¸ ëœ í€˜ìŠ¤íŠ¸ ì •ë³´ë¥¼ ë³´ì—¬ì¤€ë‹¤
 				SetIndicator(pQuestData);
 			}
 			else

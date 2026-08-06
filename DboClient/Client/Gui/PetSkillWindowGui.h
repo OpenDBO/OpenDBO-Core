@@ -2,12 +2,12 @@
 *
 * File			: PetSkillWindowGui.h
 * Author		: agebreak
-* Copyright	: (ÁÖ)NTL
+* Copyright	: (ì£¼)NTL
 * Date			: 2007. 8. 16	
 * Abstract		: DBO Pet Skill Window Gui
 *****************************************************************************
-* Desc         : Summon PetÀÇ Skill Window GUI¸¦ Ç¥½ÃÇÏ´Â Å¬·¡½º
-*              : º¯½Å Ãë¼Ò UIµµ ¿©±â¼­ °°ÀÌ Ç¥½ÃÇÑ´Ù.
+* Desc         : Summon Petì˜ Skill Window GUIë¥¼ í‘œì‹œí•˜ëŠ” í´ë˜ìŠ¤
+*              : ë³€ì‹  ì·¨ì†Œ UIë„ ì—¬ê¸°ì„œ ê°™ì´ í‘œì‹œí•œë‹¤.
 *****************************************************************************/
 
 #pragma once
@@ -23,7 +23,7 @@ class CNtlSobIcon;
 class CPetSkillWindowGui : public CNtlPLGui, public RWS::CEventHandler
 {
 public:
-    /// ¼ÒÈ¯ÇÑ ÆêÀÇ Å¸ÀÔÀ» ±¸º°ÇÏ±â À§ÇÑ ¿­°ÅÇü
+    /// ì†Œí™˜í•œ í«ì˜ íƒ€ì…ì„ êµ¬ë³„í•˜ê¸° ìœ„í•œ ì—´ê±°í˜•
     enum EPetType               
     {
         E_PET_TYPE_SUMMON   = 0x00000001,
@@ -46,10 +46,10 @@ public:
     static  CPetSkillWindowGui* GetInstance();
     static  void                DeleteInstance();
 
-    void    AdjustDialog();                                     ///< UIÀÇ À§Ä¡¸¦ °áÁ¤ÇÑ´Ù.
-    void    SetPetID(RwUInt32 uiSerialID, EPetType ePetType);   ///< ¼ÒÈ¯ÇÑ PetÀÇ Serial ID¸¦ ¼³Á¤ÇÑ´Ù.
-    void    SetTransformCancel(RwBool bEnable);                 ///< º¯½Å Ãë¼Ò ¾ÆÀÌÄÜÀ» Ç¥½ÃÇÑ´Ù.
-    void    UpdatePetInfo();                                    ///< petÀÇ Á¤º¸¸¦ UpdateÇÏ°í Ç¥½ÃÇÑ´Ù.
+    void    AdjustDialog();                                     ///< UIì˜ ìœ„ì¹˜ë¥¼ ê²°ì •í•œë‹¤.
+    void    SetPetID(RwUInt32 uiSerialID, EPetType ePetType);   ///< ì†Œí™˜í•œ Petì˜ Serial IDë¥¼ ì„¤ì •í•œë‹¤.
+    void    SetTransformCancel(RwBool bEnable);                 ///< ë³€ì‹  ì·¨ì†Œ ì•„ì´ì½˜ì„ í‘œì‹œí•œë‹¤.
+    void    UpdatePetInfo();                                    ///< petì˜ ì •ë³´ë¥¼ Updateí•˜ê³  í‘œì‹œí•œë‹¤.
 
 	RwUInt32 GetInfoFlag();
 
@@ -57,8 +57,8 @@ protected:
     VOID	OnPaint(VOID);
     VOID	OnClickSummonCloseBtn(gui::CComponent* pComponent);
     VOID    OnClickItemCloseBtn(gui::CComponent* pComponent);
-    VOID    OnClickSummonAttack(const CKey& key);               ///< ¼­¸ÕÆêÀÇ ¾îÅÃ¹öÆ°À» Å¬¸¯ÇÑ °æ¿ì
-    VOID    OnMouseDownSummonAttack(const CKey& key);           ///< ¼­¸ÕÆêÀÇ ¾îÅÃ¹öÆ°À» ¿ìÂÊ ¹öÆ°À¸·Î ´©¸¥°æ¿ì - ¹öÆ°ÀÇ ÀÌ¹ÌÁö¸¦ º¯°æÇÑ´Ù.
+    VOID    OnClickSummonAttack(const CKey& key);               ///< ì„œë¨¼í«ì˜ ì–´íƒë²„íŠ¼ì„ í´ë¦­í•œ ê²½ìš°
+    VOID    OnMouseDownSummonAttack(const CKey& key);           ///< ì„œë¨¼í«ì˜ ì–´íƒë²„íŠ¼ì„ ìš°ìª½ ë²„íŠ¼ìœ¼ë¡œ ëˆ„ë¥¸ê²½ìš° - ë²„íŠ¼ì˜ ì´ë¯¸ì§€ë¥¼ ë³€ê²½í•œë‹¤.
     VOID    OnClickTransformCancel(gui::CComponent* pComponent);
     VOID    OnMouseEnter(gui::CComponent* pComponent);
 	VOID	OnMove( RwInt32 iOldX, RwInt32 iOldY );
@@ -66,8 +66,8 @@ protected:
     VOID	OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY);
     VOID	OnMouseDialogLeave(gui::CComponent* pComponent);
 
-    void    SetSkillIcon();                                     ///< ½ºÅ³ ¾ÆÀÌÄÜÀÇ ÅØ½ºÃÄ¸¦ ¼³Á¤ÇÑ´Ù.
-    void    UpdateSkillIcon(RwReal fElapsedTime);               ///< ½ºÅ³ ¾ÆÀÌÄÜÀÇ »óÅÂ(ÄğÅ¸ÀÓ) ÀÌÆåÆ®¸¦ ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
+    void    SetSkillIcon();                                     ///< ìŠ¤í‚¬ ì•„ì´ì½˜ì˜ í…ìŠ¤ì³ë¥¼ ì„¤ì •í•œë‹¤.
+    void    UpdateSkillIcon(RwReal fElapsedTime);               ///< ìŠ¤í‚¬ ì•„ì´ì½˜ì˜ ìƒíƒœ(ì¿¨íƒ€ì„) ì´í™íŠ¸ë¥¼ ì—…ë°ì´íŠ¸í•œë‹¤.
 
 protected:
     static CPetSkillWindowGui*  m_pInstance;
@@ -92,21 +92,21 @@ protected:
     gui::CSlot      m_slotMouseMove;
     gui::CSlot      m_slotMouseDialogLeave;
 
-    CSurfaceGui     m_surFocus;                               ///< Attack ¹öÆ°ÀÌ Æ÷Ä¿½º¸¦ °¡Á³À»¶§ÀÇ Ç¥½Ã¿ë ¼­ÆäÀÌ½º
+    CSurfaceGui     m_surFocus;                               ///< Attack ë²„íŠ¼ì´ í¬ì»¤ìŠ¤ë¥¼ ê°€ì¡Œì„ë•Œì˜ í‘œì‹œìš© ì„œí˜ì´ìŠ¤
     RwBool          m_bVisibeFocus;
 
-    CSurfaceGui     m_surSummonSkill[SUMMON_PET_MAX_SKILL];   ///< Summon PetÀÇ ½ºÅ³ ¾ÆÀÌÄÜ ¼­ÆäÀÌ½º
-    gui::CRadarEffect m_CoolTimeEffect[SUMMON_PET_MAX_SKILL]; ///< Summon Pet ½ºÅ³ÀÇ ÄğÅ¸ÀÓ ¼­ÆäÀÌ½º
-    CNtlSobIcon*    m_pSobSkillIcon[SUMMON_PET_MAX_SKILL];    ///< Summon PetÀÇ ½ºÅ³ ¾ÆÀÌÄÜ °´Ã¼
+    CSurfaceGui     m_surSummonSkill[SUMMON_PET_MAX_SKILL];   ///< Summon Petì˜ ìŠ¤í‚¬ ì•„ì´ì½˜ ì„œí˜ì´ìŠ¤
+    gui::CRadarEffect m_CoolTimeEffect[SUMMON_PET_MAX_SKILL]; ///< Summon Pet ìŠ¤í‚¬ì˜ ì¿¨íƒ€ì„ ì„œí˜ì´ìŠ¤
+    CNtlSobIcon*    m_pSobSkillIcon[SUMMON_PET_MAX_SKILL];    ///< Summon Petì˜ ìŠ¤í‚¬ ì•„ì´ì½˜ ê°ì²´
 
-    RwUInt32        m_uiSummonPetID;                          ///< Summon PetÀÇ Serial ID
-    RwUInt32        m_uiItemPetID;                            ///< Item PetÀÇ Serial ID
-    RwUInt32        m_uiInfoFlag;                             ///< ¹«½¼ Á¤º¸µéÀ» Ç¥½ÃÇÒÁöÀÇ ÇÃ·¡±×
+    RwUInt32        m_uiSummonPetID;                          ///< Summon Petì˜ Serial ID
+    RwUInt32        m_uiItemPetID;                            ///< Item Petì˜ Serial ID
+    RwUInt32        m_uiInfoFlag;                             ///< ë¬´ìŠ¨ ì •ë³´ë“¤ì„ í‘œì‹œí• ì§€ì˜ í”Œë˜ê·¸
 
-    gui::CSurface   m_surAttackBtnUp;                         ///< Attack ¹öÆ°ÀÇ ¿ø·¡ »çÀÌÁî ¼­ÇÇ½º
-    gui::CSurface   m_surAttackBtnDown;                       ///< Attack ¹öÆ°ÀÇ ´Ù¿î »çÀÌÁî ¼­ÇÇ½º
-    gui::CSurface   m_surTransformNamek;                      ///< ³ª¸ŞÅ© º¯½Å Ãë¼Ò ¾ÆÀÌÄÜ
-    gui::CSurface   m_surTransformSaiya;                      ///< »çÀÌ¾ßÀÎ º¯½Å Ãë¼Ò ¾ÆÀÌÄÜ
-    gui::CSurface   m_surTransformMajin;                      ///< ¸¶ÀÎ º¯½Å Ãë¼Ò ¾ÆÀÌÄÜ
+    gui::CSurface   m_surAttackBtnUp;                         ///< Attack ë²„íŠ¼ì˜ ì›ë˜ ì‚¬ì´ì¦ˆ ì„œí”¼ìŠ¤
+    gui::CSurface   m_surAttackBtnDown;                       ///< Attack ë²„íŠ¼ì˜ ë‹¤ìš´ ì‚¬ì´ì¦ˆ ì„œí”¼ìŠ¤
+    gui::CSurface   m_surTransformNamek;                      ///< ë‚˜ë©”í¬ ë³€ì‹  ì·¨ì†Œ ì•„ì´ì½˜
+    gui::CSurface   m_surTransformSaiya;                      ///< ì‚¬ì´ì•¼ì¸ ë³€ì‹  ì·¨ì†Œ ì•„ì´ì½˜
+    gui::CSurface   m_surTransformMajin;                      ///< ë§ˆì¸ ë³€ì‹  ì·¨ì†Œ ì•„ì´ì½˜
 
 };

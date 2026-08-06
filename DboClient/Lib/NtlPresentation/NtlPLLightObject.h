@@ -18,8 +18,8 @@ struct SPLLightObjectCreateParam : public SPLEntityCreateParam
 	RwReal			fAngle;
 	RwBool			bRealLight;
 
-	RwBool			bDecal;			// DecalÀ» Ãâ·Â ÇÒÁö
-	RwBool			bWorldLight;	// WorldLightColor ¿¬»ê¿¡ Æ÷ÇÔ ½ÃÅ³Áö
+	RwBool			bDecal;			// Decalì„ ì¶œë ¥ í• ì§€
+	RwBool			bWorldLight;	// WorldLightColor ì—°ì‚°ì— í¬í•¨ ì‹œí‚¬ì§€
 };
 
 class CNtlPLLightObject : public CNtlPLAttach, public CNtlWorldRpLightProxy

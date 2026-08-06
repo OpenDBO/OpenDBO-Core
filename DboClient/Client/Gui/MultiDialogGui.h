@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File: MultiDialogGui.h
 // Desc: MultiDialogGui
-//		 ´ëÈ­¿Í ¿©·¯ ¼±ÅÃÀ» ÇÒ¼ö ÀÖ´Ù.
+//		 ëŒ€í™”ì™€ ì—¬ëŸ¬ ì„ íƒì„ í• ìˆ˜ ìˆë‹¤.
 //
 // 2006.10.11 Peessi@hitel.net   
 //
@@ -34,9 +34,9 @@ struct sMultiDialogData
 	RwInt32			eBalloonType;
 	RwBool			bTimeProc;
 	
-	// Quest Balloon ¿ë µ¥ÀÌÅÍ
+	// Quest Balloon ìš© ë°ì´í„°
 	RwUInt32		uiQuestID;
-	// Quest Balloon, NPC Balloon ¿ë µ¥ÀÌÅÍ
+	// Quest Balloon, NPC Balloon ìš© ë°ì´í„°
 	std::wstring	wstrText;	
 };
 
@@ -92,7 +92,7 @@ private:
 
 	//! Variables
 	CCommandList*	m_pCommandList;
-	gui::CStaticBox* m_pstbMsg;					// Å¸°ÙÀÌ ÁöÁ¤µÇÁö ¾ÊÀº °æ¿ì ¸Ş¼¼Áö Ãâ·Â.
+	gui::CStaticBox* m_pstbMsg;					// íƒ€ê²Ÿì´ ì§€ì •ë˜ì§€ ì•Šì€ ê²½ìš° ë©”ì„¸ì§€ ì¶œë ¥.
 	CWindowby3		m_MsgBackImage;	
 		
 	RwUInt32		m_hTargetSerialID;
@@ -165,10 +165,10 @@ public:
 	~CCommandList(VOID);
 
 	RwBool	Create( CRectangle& rect, gui::CComponent* pParent, RwInt32 nLineHeight, RwInt32 nLineMargin, RwInt32 nChildXMargin, RwInt32 nScrollBarWidth, CMultiDialogGui* pOwnerGui );
-	VOID	RegistCommand( RwInt32 nID, RwUInt8 ucJob = 0xFF );			// NPC Table¿¡¼­ ÀĞ¾î¿Ã Command
-	VOID	RegistQuestCommand( RwUInt32 nTextID, RwUInt32 nTCIDz );	// Quest¿¡¼­ ³¯¶ó¿Ã Command	
+	VOID	RegistCommand( RwInt32 nID, RwUInt8 ucJob = 0xFF );			// NPC Tableì—ì„œ ì½ì–´ì˜¬ Command
+	VOID	RegistQuestCommand( RwUInt32 nTextID, RwUInt32 nTCIDz );	// Questì—ì„œ ë‚ ë¼ì˜¬ Command	
 	VOID	RegistServerSelectCommand( RwInt32 nID, WCHAR* pText, RwUInt16 wCurrentUserCount );	// Server Select Command
-	VOID	RegistExitCommand( RwInt32 eNodeType );						// ¾î¶² °÷¿¡¼­µç ¾²ÀÏ Exit Command	
+	VOID	RegistExitCommand( RwInt32 eNodeType );						// ì–´ë–¤ ê³³ì—ì„œë“  ì“°ì¼ Exit Command	
 
 	//! Attribute
 	RwUInt32 GetID(VOID);
@@ -205,7 +205,7 @@ private:
 	
 
 	//! Callback
-	VOID	OnClear(VOID);			// Clear¸¦ À§ÇÔ.
+	VOID	OnClear(VOID);			// Clearë¥¼ ìœ„í•¨.
 
 	gui::CSlot	m_slotPaint;		
 

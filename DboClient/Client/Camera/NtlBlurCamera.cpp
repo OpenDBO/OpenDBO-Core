@@ -2,7 +2,7 @@
 //	File		:	NtlBlurCamera.cpp
 //	Desc		:	
 //	Begin		:	2006. 2.13
-//	Copyright	:	�� 2006 by Mahwang CO., Ltd
+//	Copyright	:	占쏙옙 2006 by Mahwang CO., Ltd
 //	Author		:	Mahwang
 //	Update		:	
 //***********************************************************************************
@@ -722,7 +722,7 @@ void CNtlBlurCamera::Update_ReductionFiltering(RwRGBA& color, HWND hWnd)
 
 
 	// ==========================================
-	// ���� ȭ�� Ȯ���ϱ�
+	// 占쏙옙占쏙옙 화占쏙옙 확占쏙옙占싹깍옙
 	// ==========================================
 	m_lpEffect->BeginPass(EFFECT_PASS_NONE);
 
@@ -804,7 +804,7 @@ void CNtlBlurCamera::Update_FakeHDRFiltering(RwRGBA& color, HWND hWnd)
 
 
 	// ==========================================
-	// ȭ�� Ȯ���ϱ�
+	// 화占쏙옙 확占쏙옙占싹깍옙
 	// ==========================================
 	m_lpEffect->BeginPass(EFFECT_PASS_NONE);
 	RwCameraClear(m_pTempCamera, &color, rwCAMERACLEARZ|rwCAMERACLEARIMAGE);
@@ -883,7 +883,7 @@ void CNtlBlurCamera::Update_Last(RwRGBA& color, HWND hWnd)
 	m_lpEffect->BeginPass(EFFECT_PASS_LASTDRAW);
 
 	// ==========================================
-	// ���������� �׸���
+	// 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쌓몌옙占쏙옙
 	// ==========================================
 	RwCameraClear(m_pBlurCamera, &color, rwCAMERACLEARZ|rwCAMERACLEARIMAGE);
 	if(RwCameraBeginUpdate(m_pBlurCamera))

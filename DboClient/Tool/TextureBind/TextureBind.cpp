@@ -1,4 +1,4 @@
-// TextureBind.cpp : ÀÀ¿ë ÇÁ·Î±×·¥¿¡ ´ëÇÑ Å¬·¡½º µ¿ÀÛÀ» Á¤ÀÇÇÕ´Ï´Ù.
+// TextureBind.cpp : ì‘ìš© í”„ë¡œê·¸ë¨ì— ëŒ€í•œ í´ë˜ìŠ¤ ë™ì‘ì„ ì •ì˜í•©ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -22,72 +22,72 @@
 
 BEGIN_MESSAGE_MAP(CTextureBindApp, CWinApp)
 	ON_COMMAND(ID_APP_ABOUT, &CTextureBindApp::OnAppAbout)
-	// Ç¥ÁØ ÆÄÀÏÀ» ±âÃÊ·Î ÇÏ´Â ¹®¼­ ¸í·ÉÀÔ´Ï´Ù.
+	// í‘œì¤€ íŒŒì¼ì„ ê¸°ì´ˆë¡œ í•˜ëŠ” ë¬¸ì„œ ëª…ë ¹ì…ë‹ˆë‹¤.
 	//ON_COMMAND(ID_FILE_NEW, &CWinApp::OnFileNew)
 	
-	// Ç¥ÁØ ÀÎ¼â ¼³Á¤ ¸í·ÉÀÔ´Ï´Ù.
+	// í‘œì¤€ ì¸ì‡„ ì„¤ì • ëª…ë ¹ì…ë‹ˆë‹¤.
 	ON_COMMAND(ID_FILE_PRINT_SETUP, &CWinApp::OnFilePrintSetup)
 	ON_COMMAND(ID_TB_OPEN, &CTextureBindApp::OnFileOpen)
 	ON_COMMAND(ID_TB_SAVE, &CTextureBindApp::OnFileSave)
 END_MESSAGE_MAP()
 
 
-// CTextureBindApp »ı¼º
+// CTextureBindApp ìƒì„±
 
 CTextureBindApp::CTextureBindApp()
 {
-	// TODO: ¿©±â¿¡ »ı¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
-	// InitInstance¿¡ ¸ğµç Áß¿äÇÑ ÃÊ±âÈ­ ÀÛ¾÷À» ¹èÄ¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ìƒì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
+	// InitInstanceì— ëª¨ë“  ì¤‘ìš”í•œ ì´ˆê¸°í™” ì‘ì—…ì„ ë°°ì¹˜í•©ë‹ˆë‹¤.
 }
 
 
-// À¯ÀÏÇÑ CTextureBindApp °³Ã¼ÀÔ´Ï´Ù.
+// ìœ ì¼í•œ CTextureBindApp ê°œì²´ì…ë‹ˆë‹¤.
 
 CTextureBindApp theApp;
 
 
-// CTextureBindApp ÃÊ±âÈ­
+// CTextureBindApp ì´ˆê¸°í™”
 
 BOOL CTextureBindApp::InitInstance()
 {
 	// Debuging
 	//_CrtSetBreakAlloc( 273 );
 
-	// ÀÀ¿ë ÇÁ·Î±×·¥ ¸Å´ÏÆä½ºÆ®°¡ ComCtl32.dll ¹öÀü 6 ÀÌ»óÀ» »ç¿ëÇÏ¿© ºñÁÖ¾ó ½ºÅ¸ÀÏÀ»
-	// »ç¿ëÇÏµµ·Ï ÁöÁ¤ÇÏ´Â °æ¿ì, Windows XP »ó¿¡¼­ ¹İµå½Ã InitCommonControlsEx()°¡ ÇÊ¿äÇÕ´Ï´Ù. 
-	// InitCommonControlsEx()¸¦ »ç¿ëÇÏÁö ¾ÊÀ¸¸é Ã¢À» ¸¸µé ¼ö ¾ø½À´Ï´Ù.
+	// ì‘ìš© í”„ë¡œê·¸ë¨ ë§¤ë‹ˆí˜ìŠ¤íŠ¸ê°€ ComCtl32.dll ë²„ì „ 6 ì´ìƒì„ ì‚¬ìš©í•˜ì—¬ ë¹„ì£¼ì–¼ ìŠ¤íƒ€ì¼ì„
+	// ì‚¬ìš©í•˜ë„ë¡ ì§€ì •í•˜ëŠ” ê²½ìš°, Windows XP ìƒì—ì„œ ë°˜ë“œì‹œ InitCommonControlsEx()ê°€ í•„ìš”í•©ë‹ˆë‹¤. 
+	// InitCommonControlsEx()ë¥¼ ì‚¬ìš©í•˜ì§€ ì•Šìœ¼ë©´ ì°½ì„ ë§Œë“¤ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 	INITCOMMONCONTROLSEX InitCtrls;
 	InitCtrls.dwSize = sizeof(InitCtrls);
-	// ÀÀ¿ë ÇÁ·Î±×·¥¿¡¼­ »ç¿ëÇÒ ¸ğµç °ø¿ë ÄÁÆ®·Ñ Å¬·¡½º¸¦ Æ÷ÇÔÇÏµµ·Ï
-	// ÀÌ Ç×¸ñÀ» ¼³Á¤ÇÏ½Ê½Ã¿À.
+	// ì‘ìš© í”„ë¡œê·¸ë¨ì—ì„œ ì‚¬ìš©í•  ëª¨ë“  ê³µìš© ì»¨íŠ¸ë¡¤ í´ë˜ìŠ¤ë¥¼ í¬í•¨í•˜ë„ë¡
+	// ì´ í•­ëª©ì„ ì„¤ì •í•˜ì‹­ì‹œì˜¤.
 	InitCtrls.dwICC = ICC_WIN95_CLASSES;
 	InitCommonControlsEx(&InitCtrls);
 
 	CWinApp::InitInstance();
 
-	// OLE ¶óÀÌºê·¯¸®¸¦ ÃÊ±âÈ­ÇÕ´Ï´Ù.
+	// OLE ë¼ì´ë¸ŒëŸ¬ë¦¬ë¥¼ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
 	//if (!AfxOleInit())
 	//{
 	//	AfxMessageBox(IDP_OLE_INIT_FAILED);
 	//	return FALSE;
 	//}
 	//AfxEnableControlContainer();
-	// Ç¥ÁØ ÃÊ±âÈ­
-	// ÀÌµé ±â´ÉÀ» »ç¿ëÇÏÁö ¾Ê°í ÃÖÁ¾ ½ÇÇà ÆÄÀÏÀÇ Å©±â¸¦ ÁÙÀÌ·Á¸é
-	// ¾Æ·¡¿¡¼­ ÇÊ¿ä ¾ø´Â Æ¯Á¤ ÃÊ±âÈ­
-	// ·çÆ¾À» Á¦°ÅÇØ¾ß ÇÕ´Ï´Ù.
-	// ÇØ´ç ¼³Á¤ÀÌ ÀúÀåµÈ ·¹Áö½ºÆ®¸® Å°¸¦ º¯°æÇÏ½Ê½Ã¿À.
-	// TODO: ÀÌ ¹®ÀÚ¿­À» È¸»ç ¶Ç´Â Á¶Á÷ÀÇ ÀÌ¸§°ú °°Àº
-	// ÀûÀıÇÑ ³»¿ëÀ¸·Î ¼öÁ¤ÇØ¾ß ÇÕ´Ï´Ù.
+	// í‘œì¤€ ì´ˆê¸°í™”
+	// ì´ë“¤ ê¸°ëŠ¥ì„ ì‚¬ìš©í•˜ì§€ ì•Šê³  ìµœì¢… ì‹¤í–‰ íŒŒì¼ì˜ í¬ê¸°ë¥¼ ì¤„ì´ë ¤ë©´
+	// ì•„ë˜ì—ì„œ í•„ìš” ì—†ëŠ” íŠ¹ì • ì´ˆê¸°í™”
+	// ë£¨í‹´ì„ ì œê±°í•´ì•¼ í•©ë‹ˆë‹¤.
+	// í•´ë‹¹ ì„¤ì •ì´ ì €ì¥ëœ ë ˆì§€ìŠ¤íŠ¸ë¦¬ í‚¤ë¥¼ ë³€ê²½í•˜ì‹­ì‹œì˜¤.
+	// TODO: ì´ ë¬¸ìì—´ì„ íšŒì‚¬ ë˜ëŠ” ì¡°ì§ì˜ ì´ë¦„ê³¼ ê°™ì€
+	// ì ì ˆí•œ ë‚´ìš©ìœ¼ë¡œ ìˆ˜ì •í•´ì•¼ í•©ë‹ˆë‹¤.
 	SetRegistryKey(_T("Texture Bind"));
-	LoadStdProfileSettings(4);  // MRU¸¦ Æ÷ÇÔÇÏ¿© Ç¥ÁØ INI ÆÄÀÏ ¿É¼ÇÀ» ·ÎµåÇÕ´Ï´Ù.
-	// ÀÀ¿ë ÇÁ·Î±×·¥ÀÇ ¹®¼­ ÅÛÇÃ¸´À» µî·ÏÇÕ´Ï´Ù. ¹®¼­ ÅÛÇÃ¸´Àº
-	//  ¹®¼­, ÇÁ·¹ÀÓ Ã¢ ¹× ºä »çÀÌÀÇ ¿¬°á ¿ªÇÒÀ» ÇÕ´Ï´Ù.
+	LoadStdProfileSettings(4);  // MRUë¥¼ í¬í•¨í•˜ì—¬ í‘œì¤€ INI íŒŒì¼ ì˜µì…˜ì„ ë¡œë“œí•©ë‹ˆë‹¤.
+	// ì‘ìš© í”„ë¡œê·¸ë¨ì˜ ë¬¸ì„œ í…œí”Œë¦¿ì„ ë“±ë¡í•©ë‹ˆë‹¤. ë¬¸ì„œ í…œí”Œë¦¿ì€
+	//  ë¬¸ì„œ, í”„ë ˆì„ ì°½ ë° ë·° ì‚¬ì´ì˜ ì—°ê²° ì—­í• ì„ í•©ë‹ˆë‹¤.
 	CSingleDocTemplate* pDocTemplate;
 	pDocTemplate = new CSingleDocTemplate(
 		IDR_MAINFRAME,
 		RUNTIME_CLASS(CTextureBindDoc),
-		RUNTIME_CLASS(CMainFrame),       // ÁÖ SDI ÇÁ·¹ÀÓ Ã¢ÀÔ´Ï´Ù.
+		RUNTIME_CLASS(CMainFrame),       // ì£¼ SDI í”„ë ˆì„ ì°½ì…ë‹ˆë‹¤.
 		RUNTIME_CLASS(CTextureBindView));
 	if (!pDocTemplate)
 		return FALSE;
@@ -95,21 +95,21 @@ BOOL CTextureBindApp::InitInstance()
 
 
 
-	// Ç¥ÁØ ¼Ğ ¸í·É, DDE, ÆÄÀÏ ¿­±â¿¡ ´ëÇÑ ¸í·ÉÁÙÀ» ±¸¹® ºĞ¼®ÇÕ´Ï´Ù.
+	// í‘œì¤€ ì…¸ ëª…ë ¹, DDE, íŒŒì¼ ì—´ê¸°ì— ëŒ€í•œ ëª…ë ¹ì¤„ì„ êµ¬ë¬¸ ë¶„ì„í•©ë‹ˆë‹¤.
 	CCommandLineInfo cmdInfo;
 	ParseCommandLine(cmdInfo);
 
 
-	// ¸í·ÉÁÙ¿¡ ÁöÁ¤µÈ ¸í·ÉÀ» µğ½ºÆĞÄ¡ÇÕ´Ï´Ù.
-	// ÀÀ¿ë ÇÁ·Î±×·¥ÀÌ /RegServer, /Register, /Unregserver ¶Ç´Â /Unregister·Î ½ÃÀÛµÈ °æ¿ì FALSE¸¦ ¹İÈ¯ÇÕ´Ï´Ù.
+	// ëª…ë ¹ì¤„ì— ì§€ì •ëœ ëª…ë ¹ì„ ë””ìŠ¤íŒ¨ì¹˜í•©ë‹ˆë‹¤.
+	// ì‘ìš© í”„ë¡œê·¸ë¨ì´ /RegServer, /Register, /Unregserver ë˜ëŠ” /Unregisterë¡œ ì‹œì‘ëœ ê²½ìš° FALSEë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
 	if (!ProcessShellCommand(cmdInfo))
 		return FALSE;
 
-	// Ã¢ ÇÏ³ª¸¸ ÃÊ±âÈ­µÇ¾úÀ¸¹Ç·Î ÀÌ¸¦ Ç¥½ÃÇÏ°í ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù.
+	// ì°½ í•˜ë‚˜ë§Œ ì´ˆê¸°í™”ë˜ì—ˆìœ¼ë¯€ë¡œ ì´ë¥¼ í‘œì‹œí•˜ê³  ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤.
 	m_pMainWnd->ShowWindow(SW_SHOW);
 	m_pMainWnd->UpdateWindow();
-	// Á¢¹Ì»ç°¡ ÀÖÀ» °æ¿ì¿¡¸¸ DragAcceptFiles¸¦ È£ÃâÇÕ´Ï´Ù.
-	//  SDI ÀÀ¿ë ÇÁ·Î±×·¥¿¡¼­´Â ProcessShellCommand ÈÄ¿¡ ÀÌ·¯ÇÑ È£ÃâÀÌ ¹ß»ıÇØ¾ß ÇÕ´Ï´Ù.
+	// ì ‘ë¯¸ì‚¬ê°€ ìˆì„ ê²½ìš°ì—ë§Œ DragAcceptFilesë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
+	//  SDI ì‘ìš© í”„ë¡œê·¸ë¨ì—ì„œëŠ” ProcessShellCommand í›„ì— ì´ëŸ¬í•œ í˜¸ì¶œì´ ë°œìƒí•´ì•¼ í•©ë‹ˆë‹¤.
 
 	HWND hWnd = ((CMainFrame*)AfxGetMainWnd())->GetActiveView()->GetSafeHwnd();
 
@@ -125,20 +125,20 @@ BOOL CTextureBindApp::InitInstance()
 
 
 
-// ÀÀ¿ë ÇÁ·Î±×·¥ Á¤º¸¿¡ »ç¿ëµÇ´Â CAboutDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// ì‘ìš© í”„ë¡œê·¸ë¨ ì •ë³´ì— ì‚¬ìš©ë˜ëŠ” CAboutDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CAboutDlg : public CDialog
 {
 public:
 	CAboutDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_ABOUTBOX };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
-// ±¸ÇöÀÔ´Ï´Ù.
+// êµ¬í˜„ì…ë‹ˆë‹¤.
 protected:
 	DECLARE_MESSAGE_MAP()
 };
@@ -155,7 +155,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
 END_MESSAGE_MAP()
 
-// ´ëÈ­ »óÀÚ¸¦ ½ÇÇàÇÏ±â À§ÇÑ ÀÀ¿ë ÇÁ·Î±×·¥ ¸í·ÉÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒìë¥¼ ì‹¤í–‰í•˜ê¸° ìœ„í•œ ì‘ìš© í”„ë¡œê·¸ë¨ ëª…ë ¹ì…ë‹ˆë‹¤.
 void CTextureBindApp::OnAppAbout()
 {
 	CAboutDlg aboutDlg;
@@ -163,14 +163,14 @@ void CTextureBindApp::OnAppAbout()
 }
 
 
-// CTextureBindApp ¸Ş½ÃÁö Ã³¸®±â
+// CTextureBindApp ë©”ì‹œì§€ ì²˜ë¦¬ê¸°
 
 /**
-* \brief Ç×»ó È£ÃâÇÏ±â À§ÇÏ¿© MFCÀÇ OnIdle¸¦ »ó¼Ó ¹Ş¾Æ Ç×»ó TRUE¸¦ ¸®ÅÏÇÏµµ·Ï ¼öÁ¤
+* \brief í•­ìƒ í˜¸ì¶œí•˜ê¸° ìœ„í•˜ì—¬ MFCì˜ OnIdleë¥¼ ìƒì† ë°›ì•„ í•­ìƒ TRUEë¥¼ ë¦¬í„´í•˜ë„ë¡ ìˆ˜ì •
 */
 BOOL CTextureBindApp::OnIdle(LONG lCount)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if( m_pMainWnd->IsIconic() )
 		return FALSE;
 
@@ -182,7 +182,7 @@ BOOL CTextureBindApp::OnIdle(LONG lCount)
 
 int CTextureBindApp::ExitInstance()
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	GetTBApp()->Destroy();
 
 	return CWinApp::ExitInstance();
@@ -190,7 +190,7 @@ int CTextureBindApp::ExitInstance()
 
 void CTextureBindApp::OnFileOpen()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CLoadDlg dlg;
 
 	if( dlg.DoModal() == IDOK )
@@ -216,14 +216,14 @@ void CTextureBindApp::OnFileOpen()
 
 BOOL CTextureBindApp::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	CTBApp::GetInstance()->PreTranslateMessage( pMsg->hwnd, pMsg->message, pMsg->wParam, pMsg->lParam );
 
 	return CWinApp::PreTranslateMessage(pMsg);
 }
 void CTextureBindApp::OnFileSave()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CSaveDlg dlg;
 	
 		if( dlg.DoModal() == IDOK )

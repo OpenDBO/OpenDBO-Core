@@ -357,7 +357,7 @@ VOID CQuestIndicatorGui::HandleEvents(RWS::CMsg& msg)
 		//{
 		//	SNtlEventShowIndicator_Nfy* pBackData = NULL;
 		//	pBackData = m_listData.back();
-		//	m_pQuestGui->GetQuestListGui()->CancelIndicator( pBackData->sTSKey, TRUE );	// ¸Þ½ÃÁö¸¦ ¶ç¿ìÁö ¾Ê±â À§ÇØ AutoÇÃ·¡±× ÀÓÀÇ TRUE¼¼ÆÃ.
+		//	m_pQuestGui->GetQuestListGui()->CancelIndicator( pBackData->sTSKey, TRUE );	// 메시지를 띄우지 않기 위해 Auto플래그 임의 TRUE세팅.
 		//}
 	}
 	else if (msg.Id == g_EventUpdateQuestState_Nfy)

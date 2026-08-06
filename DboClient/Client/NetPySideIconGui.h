@@ -12,7 +12,7 @@
 
 /**
  * \ingroup Client
- * \brief PC¹æ NetPy Á¤º¸/¾Ë¸²¹× »óÁ¡¿ë »çÀÌµå ¾ÆÀÌÄÜ
+ * \brief PCë°© NetPy ì •ë³´/ì•Œë¦¼ë° ìƒì ìš© ì‚¬ì´ë“œ ì•„ì´ì½˜
  *
  * \date 2009-04-20
  * \author agebreak

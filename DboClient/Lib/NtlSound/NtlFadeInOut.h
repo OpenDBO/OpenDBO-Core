@@ -2,14 +2,14 @@
 *
 * File			: NtlFadeInOut.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2006. 7. 12	
 * Abstract		: Fade In/Out Effect
 *****************************************************************************
-* Desc			: Channel, ChannelGroup¿¡ Effect¸¦ Àû¿ëÇÒ ¼ö ÀÖ´Ù
+* Desc			: Channel, ChannelGroupì— Effectë¥¼ ì ìš©í•  ìˆ˜ ìˆë‹¤
 *
-*				  FMOD System¿¡¼­ Fade In/Out Effect¸¦ Á¦°øÇÏÁö ¾Ê¾Æ¼­
-*				  µû·Î ±¸ÇöÇÏ¿´´Ù.
+*				  FMOD Systemì—ì„œ Fade In/Out Effectë¥¼ ì œê³µí•˜ì§€ ì•Šì•„ì„œ
+*				  ë”°ë¡œ êµ¬í˜„í•˜ì˜€ë‹¤.
 *****************************************************************************/
 
 #pragma once

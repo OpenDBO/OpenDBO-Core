@@ -88,7 +88,7 @@ void CNtlSobDynamicObjectProxy::HandleEvents( RWS::CMsg& msg )
 		CDynamicObjectTable* pDynamicObjectTbl = API_GetTableContainer()->GetDynamicObjectTable();
 		NTL_ASSERT(pDynamicObjectTbl, "CNtlSobDynamicObjectProxy::HandleEvents => Dynamic ObjectTable is null" );
 
-		// Index °¡Á®¿À±â
+		// Index ê°€ì ¸ì˜¤ê¸°
 		TBLIDX idxDynamicObject = INVALID_TBLIDX;
 		switch( pSobCreate->byType )
 		{
@@ -129,7 +129,7 @@ void CNtlSobDynamicObjectProxy::HandleEvents( RWS::CMsg& msg )
 
 		UpdateState( pSobCreate->byState );
 
-		//// ÀÌ¸§ »ı¼º
+		//// ì´ë¦„ ìƒì„±
 		CreatePLObjectName();
 	}
 	else if( msg.Id == g_EventSobTargetSelect )
@@ -158,7 +158,7 @@ void CNtlSobDynamicObjectProxy::HandleEvents( RWS::CMsg& msg )
 
 		if( pData->uiSerialId == m_pSobObj->GetSerialID() )
 		{
-			// Spawn ÀÌÈÄ ¾Ö´Ï¸ŞÀÌ¼Ç »óÅÂ°¡ ¾÷µ¥ÀÌÆ® µÇÁö ¾ÊÀ» ¶§
+			// Spawn ì´í›„ ì• ë‹ˆë©”ì´ì…˜ ìƒíƒœê°€ ì—…ë°ì´íŠ¸ ë˜ì§€ ì•Šì„ ë•Œ
 			sDYNAMIC_OBJECT_TBLDAT* pDynamicTbl = ((CNtlSobDynamicObjectAttr*)m_pSobObj->GetSobAttr())->GetDynamicObjectTbl();
 
 			if ( pData->uiBaseAnimKey == pDynamicTbl->spawnAnimation )
@@ -261,10 +261,10 @@ CNtlPLObject* CNtlSobDynamicObjectProxy::CreateDynamicObject( const RwV3d& vLoc,
 	sParam.bLoadMap = false;
 	sParam.pPos = &vLoc;
 
-	// ½ºÄÉÁì ·ÎµùÀ» ²ö´Ù.
+	// ìŠ¤ì¼€ì¥´ ë¡œë”©ì„ ëˆë‹¤.
 	GetNtlResourceManager()->SetLoadScheduling(FALSE);
 
-	// ÇÁ·ÎÆÛÆ¼°¡ ¾ø¾î¼­ ÀÓ½Ã·Î ÇÏµåÄÚµùµÈ ¸ğµ¨ µ¥ÀÌÅ¸¸¦ Ã¼Å©ÀÎÇÑ´Ù.
+	// í”„ë¡œí¼í‹°ê°€ ì—†ì–´ì„œ ì„ì‹œë¡œ í•˜ë“œì½”ë”©ëœ ëª¨ë¸ ë°ì´íƒ€ë¥¼ ì²´í¬ì¸í•œë‹¤.
 	pObject = (CNtlPLObject*)(GetSceneManager()->CreateEntity( PLENTITY_OBJECT, pTblDat->szModelName, &sParam ));
 
 	GetNtlResourceManager()->SetLoadScheduling(TRUE);
@@ -324,14 +324,14 @@ void CNtlSobDynamicObjectProxy::CreatePLTargetMark( void )
 {
 	DestroyPLTargetMark();
 
-	// SobObj °¡ Á¸ÀçÇÏ¸é Å¸°Ù¸¶Å©¸¦ »ı¼ºÇØÁÖ°í ¾Æ´Ï¶ó¸é »ı¼ºÇÏÁö ¾Ê´Â´Ù.
+	// SobObj ê°€ ì¡´ì¬í•˜ë©´ íƒ€ê²Ÿë§ˆí¬ë¥¼ ìƒì„±í•´ì£¼ê³  ì•„ë‹ˆë¼ë©´ ìƒì„±í•˜ì§€ ì•ŠëŠ”ë‹¤.
 
 	CNtlSobDynamicObjectAttr* pAttrObj = dynamic_cast< CNtlSobDynamicObjectAttr* > ( m_pSobObj->GetSobAttr() );
 	if ( NULL == pAttrObj ) return;
 
     if(m_pShareTargetMark && m_pShareTargetMark->IsShareTargeting())
     {
-        // °øÀ¯ Å¸°Ù ¼³Á¤ÀÌ µÇ¾î ÀÖÀ¸¸é ÀÏ¹İ ¸¶Å©´Â ¶ßÁö ¾Ê´Â´Ù.
+        // ê³µìœ  íƒ€ê²Ÿ ì„¤ì •ì´ ë˜ì–´ ìˆìœ¼ë©´ ì¼ë°˜ ë§ˆí¬ëŠ” ëœ¨ì§€ ì•ŠëŠ”ë‹¤.
         CreateShareTargetMark(m_pShareTargetMark->GetSlot(), CNtlShareTargetMark::SHARE_TARGET_TARGET);
         return;
     }
@@ -367,7 +367,7 @@ void CNtlSobDynamicObjectProxy::UpdateState( RwUInt8 byState )
 {
 	m_byMainState = byState;
 	
-	// State¿¡ ¾Ë¸ÂÀº AnimationÀ» Àû¿ëÇÑ´Ù.
+	// Stateì— ì•Œë§ì€ Animationì„ ì ìš©í•œë‹¤.
 	sDYNAMIC_OBJECT_TBLDAT* pDynamicTbl = ((CNtlSobDynamicObjectAttr*)m_pSobObj->GetSobAttr())->GetDynamicObjectTbl();
 
 	RwUInt32 uiAniKey = pDynamicTbl->idleAnimation;
@@ -413,7 +413,7 @@ void CNtlSobDynamicObjectProxy::SobShareTargetSelectHandler( RWS::CMsg& pMsg )
     SNtlEventShareTargetSelect* pData = (SNtlEventShareTargetSelect*)pMsg.pData;
     if(pData->hSerialId == m_pSobObj->GetSerialID())
     {
-        // ±âÁ¸ Å¸°Ù ¸¶Å©¸¦ »èÁ¦ÇÏ±â Àü¿¡ ÇöÀç »óÅÂ¸¦ ÀúÀåÇØµĞ´Ù        
+        // ê¸°ì¡´ íƒ€ê²Ÿ ë§ˆí¬ë¥¼ ì‚­ì œí•˜ê¸° ì „ì— í˜„ì¬ ìƒíƒœë¥¼ ì €ì¥í•´ë‘”ë‹¤        
         RwBool bTargetMode = m_pTargetMark ? TRUE : FALSE;
 
         DestroyPLTargetMark(); 

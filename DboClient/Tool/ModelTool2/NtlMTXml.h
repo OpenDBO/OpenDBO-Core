@@ -14,7 +14,7 @@ struct SItemNode
 	CString strNodeName;
     ENodeType eNodeType;
 	
-	std::vector<SItemNode*> vecChildList;		// ÀÚ½Ä ³ëµåµé 
+	std::vector<SItemNode*> vecChildList;		// ìì‹ ë…¸ë“œë“¤ 
 
 	SItemNode()
 	{
@@ -37,7 +37,7 @@ typedef std::vector<SItemNode*> VEC_ITEM_NODE;
 
 /** 
  * \ingroup NtlXMLLoader
- * \brief Æ®¸®¿¡ »ç¿ëµÉ XMLÀ» ´Ù·ç´Â Å¬·¡½º. ÆÄÀÏ»ı¼º/Ãß°¡¸¦ À§ÇØ¼­ ±âÁ¸ÀÇ Å¬·¡½º¿¡¼­ »ó¼Ó¹Ş¾Æ¼­ ¸¸µé¾ú´Ù.
+ * \brief íŠ¸ë¦¬ì— ì‚¬ìš©ë  XMLì„ ë‹¤ë£¨ëŠ” í´ë˜ìŠ¤. íŒŒì¼ìƒì„±/ì¶”ê°€ë¥¼ ìœ„í•´ì„œ ê¸°ì¡´ì˜ í´ë˜ìŠ¤ì—ì„œ ìƒì†ë°›ì•„ì„œ ë§Œë“¤ì—ˆë‹¤.
  * \date 2006-04-26
  * \author agebreak
  */
@@ -48,14 +48,14 @@ public:
     CNtlMTXml(void);
     virtual ~CNtlMTXml(void);
 
-    BOOL CreateXML(char* szRootNodeName);                                           ///< »õ·Î¿î XML °´Ã¼¸¦ ¸¸µç´Ù.
-    bool Save(char* szFileName);                                  ///< XMLÀ» ÆÄÀÏ·Î ÀúÀåÇÑ´Ù.    
-    bool LoadTreeXML(char* szFileName, SItemNode* itemNode);               ///< Æ®¸®±¸Á¶ÀÇ XMLÆÄÀÏ¿¡¼­ ¾ÆÀÌÅÛ º¤ÅÍ¸¦ ¹İÈ¯ÇÑ´Ù.
-    void AddFolderNode(char* szParentFolder,  char* szFolderName); ///< »õ·Î¿î Æú´õ³ëµå¸¦ Ãß°¡ÇÑ´Ù.
-    void AddScriptNode(char* szParentFolder,  char* szScriptName); ///< »õ·Î¿î ½ºÅ©¸³Æ® ³ëµå¸¦ Ãß°¡ÇÑ´Ù
+    BOOL CreateXML(char* szRootNodeName);                                           ///< ìƒˆë¡œìš´ XML ê°ì²´ë¥¼ ë§Œë“ ë‹¤.
+    bool Save(char* szFileName);                                  ///< XMLì„ íŒŒì¼ë¡œ ì €ì¥í•œë‹¤.    
+    bool LoadTreeXML(char* szFileName, SItemNode* itemNode);               ///< íŠ¸ë¦¬êµ¬ì¡°ì˜ XMLíŒŒì¼ì—ì„œ ì•„ì´í…œ ë²¡í„°ë¥¼ ë°˜í™˜í•œë‹¤.
+    void AddFolderNode(char* szParentFolder,  char* szFolderName); ///< ìƒˆë¡œìš´ í´ë”ë…¸ë“œë¥¼ ì¶”ê°€í•œë‹¤.
+    void AddScriptNode(char* szParentFolder,  char* szScriptName); ///< ìƒˆë¡œìš´ ìŠ¤í¬ë¦½íŠ¸ ë…¸ë“œë¥¼ ì¶”ê°€í•œë‹¤
 
 protected:
-	void LoadScipt(IXMLDOMNode* pNode, SItemNode* pParentItem, bool bRoot = FALSE);		///< ½ºÅ©¸³Æ®¸¦ ·ÎµåÇÏ´Â Àç±Í ÇÔ¼ö
+	void LoadScipt(IXMLDOMNode* pNode, SItemNode* pParentItem, bool bRoot = FALSE);		///< ìŠ¤í¬ë¦½íŠ¸ë¥¼ ë¡œë“œí•˜ëŠ” ì¬ê·€ í•¨ìˆ˜
 
 protected:
     IXMLDOMElement*     m_pRootElem;                            ///< Root Element

@@ -108,16 +108,16 @@ void CTreeObjectPane::OnInitialUpdate()
     m_strTreeXMLPath = (CModelToolApplication::GetInstance()->GetWorkDir());
     m_strTreeXMLPath += "\\Tool\\ModelTool\\";
 
-    // ÀÌ¹ÌÁö ¸®½ºÆ® ¼³Á¤
+    // ì´ë¯¸ì§€ ë¦¬ìŠ¤íŠ¸ ì„¤ì •
     m_pImageList = new CImageList();
     m_pImageList->Create(16, 16, ILC_COLOR32, 4, 4);
     m_pImageList->Add(AfxGetApp()->LoadIcon(IDI_ICON_OPEN));
-    m_pImageList->Add(AfxGetApp()->LoadIcon(IDI_ICON_OBJECT));      // ¸®¼Ò½º¿ë ¾ÆÀÌÄÜ
-    m_pImageList->Add(AfxGetApp()->LoadIcon(IDI_ICON_OBJECT_SCRIPT)); // ¿ÀºêÁ§Æ® ½ºÅ©¸³Æ®¿ë ¾ÆÀÌÄÜ
+    m_pImageList->Add(AfxGetApp()->LoadIcon(IDI_ICON_OBJECT));      // ë¦¬ì†ŒìŠ¤ìš© ì•„ì´ì½˜
+    m_pImageList->Add(AfxGetApp()->LoadIcon(IDI_ICON_OBJECT_SCRIPT)); // ì˜¤ë¸Œì íŠ¸ ìŠ¤í¬ë¦½íŠ¸ìš© ì•„ì´ì½˜
     m_treeScript.SetImageList(m_pImageList, TVSIL_NORMAL);
     m_treeRes.SetImageList(m_pImageList, TVSIL_NORMAL);
     
-    //  Root ¼³Á¤
+    //  Root ì„¤ì •
     TV_INSERTSTRUCT tvStruct;
     tvStruct.hParent      = NULL;
     tvStruct.hInsertAfter = TVI_LAST;
@@ -182,7 +182,7 @@ void CTreeObjectPane::UpdateResFolder(CTreeCtrl* pTreeCtrl, LPCTSTR pstr, HTREEI
 {
     USES_CONVERSION;
 
-    // Àç±Í·Î µ¹¸é¼­ ¸®¼Ò½º Æú´õÀÇ ³»¿ëÀ» ÀĞ¾î¿Í¼­ ¸®¼Ò½º Æ®¸®¿¡ ¼³Á¤ÇÑ´Ù. 
+    // ì¬ê·€ë¡œ ëŒë©´ì„œ ë¦¬ì†ŒìŠ¤ í´ë”ì˜ ë‚´ìš©ì„ ì½ì–´ì™€ì„œ ë¦¬ì†ŒìŠ¤ íŠ¸ë¦¬ì— ì„¤ì •í•œë‹¤. 
     CFileFind finder;
     CString strWildcard(pstr);   
     strWildcard += _T("\\*.*");   // start working for files       
@@ -212,7 +212,7 @@ void CTreeObjectPane::UpdateResFolder(CTreeCtrl* pTreeCtrl, LPCTSTR pstr, HTREEI
             tvStruct.item.iImage  = 0;                
             HTREEITEM hItem = pTreeCtrl->InsertItem(&tvStruct);
 
-            // ¾ÆÀÌÅÛ µ¥ÀÌÅÍ·Î °æ·Î¸¦ ¼³Á¤ÇÑ´Ù.            
+            // ì•„ì´í…œ ë°ì´í„°ë¡œ ê²½ë¡œë¥¼ ì„¤ì •í•œë‹¤.            
             CString strFilePath = finder.GetFilePath();              
             CHAR* szFilePath = new CHAR[256];
             sprintf(szFilePath, "%s", strFilePath);
@@ -263,12 +263,12 @@ void CTreeObjectPane::OnNMRclickTreeScript(NMHDR *pNMHDR, LRESULT *pResult)
         CMenu* subMenu = NULL;
         menuPopup.LoadMenu(IDR_MENU_POPUP);
 
-        if(nImage == 0)    // Æú´õ
+        if(nImage == 0)    // í´ë”
         {
             subMenu = menuPopup.GetSubMenu(4);            
             subMenu->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, this);        
         }               
-        else    // ½ºÅ©¸³Æ®
+        else    // ìŠ¤í¬ë¦½íŠ¸
         {
             subMenu = menuPopup.GetSubMenu(5);            
             subMenu->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, this);        
@@ -298,7 +298,7 @@ void CTreeObjectPane::OnNMRclickTreeResource(NMHDR *pNMHDR, LRESULT *pResult)
         CMenu* subMenu = NULL;
         menuPopup.LoadMenu(IDR_MENU_POPUP);
         
-        if(nImage == 1)    // ¸®¼Ò½º
+        if(nImage == 1)    // ë¦¬ì†ŒìŠ¤
         {
             subMenu = menuPopup.GetSubMenu(3);            
             subMenu->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, this);        
@@ -317,17 +317,17 @@ void CTreeObjectPane::OnTvnSelchangedTreeScript(NMHDR *pNMHDR, LRESULT *pResult)
     if(!hItem)
         return;
 
-    // ¼±ÅÃµÈ ¾ÆÀÌÅÛÀº Bold·Î ³ªÅ¸³»±â À§ÇØ¼­ ¼³Á¤    
+    // ì„ íƒëœ ì•„ì´í…œì€ Boldë¡œ ë‚˜íƒ€ë‚´ê¸° ìœ„í•´ì„œ ì„¤ì •    
     m_treeScript.SetItemBold(pNMTreeView->itemOld.hItem, FALSE);
     m_treeScript.SetItemBold(hItem, TRUE);
 
     int nImage, nSelectedImage;
     m_treeScript.GetItemImage(hItem, nImage, nSelectedImage);
 
-    if(nImage == 0)     // Æú´õ
+    if(nImage == 0)     // í´ë”
         return;
 
-    // ±âÁ¸¿¡ Object µ¥ÀÌÅÍ°¡ ÀÖÀ¸¸é È­¸é¿¡ º¸¿©ÁÖ°í, ¾øÀ¸¸é ·ÎµåÇÑ´Ù.
+    // ê¸°ì¡´ì— Object ë°ì´í„°ê°€ ìˆìœ¼ë©´ í™”ë©´ì— ë³´ì—¬ì£¼ê³ , ì—†ìœ¼ë©´ ë¡œë“œí•œë‹¤.
     if(m_treeScript.GetItemData(hItem))
     {
         CMTObject* pObject = (CMTObject*)m_treeScript.GetItemData(hItem);
@@ -351,7 +351,7 @@ void CTreeObjectPane::OnTvnSelchangedTreeScript(NMHDR *pNMHDR, LRESULT *pResult)
         CMTObject* pObject = new CMTObject();
         if(pObject->GetProperty()->LoadScript((strFilePath)))
         {
-            //UVAnim µ¥ÀÌÅÍ°¡ ÀÖÀ¸¸é Clump¸¦ LoadÇÏ±â Àü¿¡ Àû¿ëÇÑ´Ù.
+            //UVAnim ë°ì´í„°ê°€ ìˆìœ¼ë©´ Clumpë¥¼ Loadí•˜ê¸° ì „ì— ì ìš©í•œë‹¤.
             if(pObject->GetProperty()->m_strUVAnimFileName.size() > 0)
             {
                 pObject->SetUVAnim(pObject->GetProperty()->m_strUVAnimFileName.c_str());
@@ -368,7 +368,7 @@ void CTreeObjectPane::OnTvnSelchangedTreeScript(NMHDR *pNMHDR, LRESULT *pResult)
 
                    ::SetCurrentDirectoryA(CModelToolApplication::GetInstance()->GetWorkDir());
 
-                   // AnimÀÌ ÀÖÀ¸¸é Àû¿ëÇÑ´Ù.
+                   // Animì´ ìˆìœ¼ë©´ ì ìš©í•œë‹¤.
                    if(pObject->GetProperty()->m_strAnimFileName.size())
                    {
                        pObject->SetAnimation(pObject->GetProperty()->m_strAnimFileName.c_str());
@@ -404,17 +404,17 @@ void CTreeObjectPane::OnTvnSelchangedTreeResource(NMHDR *pNMHDR, LRESULT *pResul
     if(!hItem)
         return;
 
-    // ¼±ÅÃµÈ ¾ÆÀÌÅÛÀº Bold·Î ³ªÅ¸³»±â À§ÇØ¼­ ¼³Á¤
+    // ì„ íƒëœ ì•„ì´í…œì€ Boldë¡œ ë‚˜íƒ€ë‚´ê¸° ìœ„í•´ì„œ ì„¤ì •
     m_treeRes.SetItemBold(pNMTreeView->itemOld.hItem, FALSE);
     m_treeRes.SetItemBold(hItem, TRUE);
 
     int nImage, nSelectedImage;
     m_treeRes.GetItemImage(hItem, nImage, nSelectedImage);
     
-    if(nImage == 0) // Æú´õ
+    if(nImage == 0) // í´ë”
         return;
 
-    // ±âÁ¸¿¡ Object µ¥ÀÌÅÍ°¡ ÀÖÀ¸¸é È­¸é¿¡ º¸¿©ÁÖ°í, ¾øÀ¸¸é ·ÎµåÇÑ´Ù.
+    // ê¸°ì¡´ì— Object ë°ì´í„°ê°€ ìˆìœ¼ë©´ í™”ë©´ì— ë³´ì—¬ì£¼ê³ , ì—†ìœ¼ë©´ ë¡œë“œí•œë‹¤.
     if(m_treeRes.GetItemData(hItem))
     {
         CMTObject* pObject = (CMTObject*)m_treeRes.GetItemData(hItem);
@@ -464,7 +464,7 @@ void CTreeObjectPane::OnObjectresourceExporttoscript()
 
         if(!m_treeRes.GetItemData(hItem))
         {
-            // µ¥ÀÌÅÍ°¡ ¾øÀ¸¸é »ı¼ºÇÏ¿© ÁØ´Ù.
+            // ë°ì´í„°ê°€ ì—†ìœ¼ë©´ ìƒì„±í•˜ì—¬ ì¤€ë‹¤.
             pObject = new CMTObject();            
             m_vMTObject.push_back(pObject);
         }
@@ -475,17 +475,17 @@ void CTreeObjectPane::OnObjectresourceExporttoscript()
                 continue;
         }
 
-        //¸®¼Ò½ºÀÇ ÀÌ¸§À» È®ÀåÀÚ¸¸ ¹Ù²ã(DFF->XML) ½ºÅ©¸³Æ® ÀÌ¸§À¸·Î ÀúÀåÇÑ´Ù.
+        //ë¦¬ì†ŒìŠ¤ì˜ ì´ë¦„ì„ í™•ì¥ìë§Œ ë°”ê¿”(DFF->XML) ìŠ¤í¬ë¦½íŠ¸ ì´ë¦„ìœ¼ë¡œ ì €ì¥í•œë‹¤.
         CString strResName = m_treeRes.GetItemText(hItem);    
         strResName.MakeUpper();
 
         CString strKeyName = strResName;
-        strKeyName.Replace(".DFF", "");               ///< È®ÀåÀÚ¸¦ »«ÀÌ¸§ÀÌ keyNameÀÌ µÈ´Ù.
+        strKeyName.Replace(".DFF", "");               ///< í™•ì¥ìë¥¼ ëº€ì´ë¦„ì´ keyNameì´ ëœë‹¤.
 
         CString strScriptPath = m_strScriptPath + strResName;
         strScriptPath.Replace(".DFF", ".XML");
 
-        // ±âÁ¸ÀÇ ÆÄÀÏÀÌ Á¸ÀçÇÏ´ÂÁö È®ÀÎÇÑ´Ù.
+        // ê¸°ì¡´ì˜ íŒŒì¼ì´ ì¡´ì¬í•˜ëŠ”ì§€ í™•ì¸í•œë‹¤.
         HTREEITEM hExistItem = m_treeScript.FindItem(strKeyName,TRUE, TRUE, TRUE);
         if(hExistItem)
         {
@@ -494,13 +494,13 @@ void CTreeObjectPane::OnObjectresourceExporttoscript()
             return;
         }
 
-        // property¸¦ ¼³Á¤ÇÑ´Ù.
+        // propertyë¥¼ ì„¤ì •í•œë‹¤.
         pObject->GetProperty()->SetName((strKeyName));
         pObject->GetProperty()->SetDffName((strResName));
         pObject->GetProperty()->m_strMeshPath = (OBJECT_MESH_PATH);
         pObject->GetProperty()->m_strTexPath = (OBJECT_TEXTURE_PATH);
 
-        // ½ºÅ©¸³Æ®¸¦ ÀúÀåÇÏ°í, ½ºÅ©¸³Æ® Æ®¸®ÀÇ ·çÆ®Æú´õ¿¡ Ãß°¡ÇÑ´Ù.
+        // ìŠ¤í¬ë¦½íŠ¸ë¥¼ ì €ì¥í•˜ê³ , ìŠ¤í¬ë¦½íŠ¸ íŠ¸ë¦¬ì˜ ë£¨íŠ¸í´ë”ì— ì¶”ê°€í•œë‹¤.
         if(pObject->GetProperty()->SaveScript((LPSTR)(LPCSTR)(strScriptPath)))
         {
             TV_INSERTSTRUCT tvStruct;
@@ -561,7 +561,7 @@ void CTreeObjectPane::OnTvnEndlabeleditTreeScript(NMHDR *pNMHDR, LRESULT *pResul
         int nImage, nSelectedImage;
         m_treeScript.GetItemImage(hItem, nImage, nSelectedImage);
 
-        if(nImage == 2) // ½ºÅ©¸³Æ®¶ó¸é ÆÄÀÏ¸íµµ º¯°æÇÏ¿© ÁØ´Ù.
+        if(nImage == 2) // ìŠ¤í¬ë¦½íŠ¸ë¼ë©´ íŒŒì¼ëª…ë„ ë³€ê²½í•˜ì—¬ ì¤€ë‹¤.
         {
             CMTObject* pObject = (CMTObject*)m_treeScript.GetItemData(hItem);
             if(pObject)
@@ -576,7 +576,7 @@ void CTreeObjectPane::OnTvnEndlabeleditTreeScript(NMHDR *pNMHDR, LRESULT *pResul
                 pObject->GetProperty()->SetName((strText));                                
                 CModelToolApplication::GetInstance()->SetEditObject(pObject);
 
-                // ¿ø·¡ "*" ºÙ¾îÀÖ´Â°ÍÀº ÀÌ¸§ º¯°æÈÄ¿¡ ´Ù½Ã "*"¸¦ ºÙ¿©ÁØ´Ù.
+                // ì›ë˜ "*" ë¶™ì–´ìˆëŠ”ê²ƒì€ ì´ë¦„ ë³€ê²½í›„ì— ë‹¤ì‹œ "*"ë¥¼ ë¶™ì—¬ì¤€ë‹¤.
                 if(nModify > 0)
                 {
                     OnDataChanged();
@@ -613,7 +613,7 @@ void CTreeObjectPane::OnObjectfolderDelete()
             {
                 int nImage, nSelectedImage;
                 m_treeScript.GetItemImage(vItems[i], nImage, nSelectedImage);
-                if(nImage == 0)    // Æú´õ
+                if(nImage == 0)    // í´ë”
                     continue;
 
                 CString strItemName = m_treeScript.GetItemText(vItems[i]);
@@ -638,7 +638,7 @@ void CTreeObjectPane::OnObjectfolderImportscript()
         sLoadFileName.MakeUpper();
         sLoadFileName.Replace(".XML", "");
 
-        // Æ®¸®¿¡ Ç×¸ñÀ» Ãß°¡ÇÑ´Ù. (ÆÄÀÏ¸í¸¸ Ãß°¡ÇÏ¸é µÈ´Ù)
+        // íŠ¸ë¦¬ì— í•­ëª©ì„ ì¶”ê°€í•œë‹¤. (íŒŒì¼ëª…ë§Œ ì¶”ê°€í•˜ë©´ ëœë‹¤)
 
         TV_INSERTSTRUCT sTvStruct;
         sTvStruct.hParent = m_treeScript.GetSelectedItem();
@@ -701,7 +701,7 @@ void CTreeObjectPane::OnDestroy()
     CString strSaveFileName = m_strTreeXMLPath + SAVE_FILE_NAME;
     m_treeScript.SaveTree(strSaveFileName);
 
-    // ÇÁ·ÎÆÛÆ¼ ¸®½ºÆ®¸¦ ÀúÀåÇÑ´Ù.
+    // í”„ë¡œí¼í‹° ë¦¬ìŠ¤íŠ¸ë¥¼ ì €ì¥í•œë‹¤.
     OnSavePropertyList();
 
 
@@ -751,7 +751,7 @@ void CTreeObjectPane::OnObjectscriptSaveas()
     
     if(dlg.DoModal() == IDOK)
     {
-        //  ÆÄÀÏÀ» ÀúÀåÇÑ´Ù.
+        //  íŒŒì¼ì„ ì €ì¥í•œë‹¤.
         CString strSaveFileName = dlg.GetFileName();
         CString strSaveFilePath = dlg.GetPathName();
         
@@ -762,7 +762,7 @@ void CTreeObjectPane::OnObjectscriptSaveas()
         pObject->GetProperty()->SetName((strSaveFileName));
         if(pObject->GetProperty()->SaveScript((LPSTR)(LPCSTR)(strSaveFilePath)))
         {
-            // Æ®¸®¿¡ Ç×¸ñÀ» Ãß°¡ÇÑ´Ù. (ÆÄÀÏ¸í¸¸ Ãß°¡ÇÏ¸é µÈ´Ù)
+            // íŠ¸ë¦¬ì— í•­ëª©ì„ ì¶”ê°€í•œë‹¤. (íŒŒì¼ëª…ë§Œ ì¶”ê°€í•˜ë©´ ëœë‹¤)
             TV_INSERTSTRUCT sTvStruct;
             sTvStruct.hParent = m_treeScript.GetParentItem(hItem);
             sTvStruct.hInsertAfter = TVI_SORT;
@@ -788,7 +788,7 @@ void CTreeObjectPane::OnObjectscriptSaveall()
         int nImage, nSelectedImage;
         m_treeScript.GetItemImage(vItems[i], nImage, nSelectedImage);
 
-        if(nImage != 0) // ½ºÅ©¸³Æ®¸¸ ÀúÀåÇÑ´Ù.
+        if(nImage != 0) // ìŠ¤í¬ë¦½íŠ¸ë§Œ ì €ì¥í•œë‹¤.
         {
             OnSaveScript(vItems[i]);
         }
@@ -814,7 +814,7 @@ RwBool CTreeObjectPane::OnSaveScript(HTREEITEM hItem)
         
         if(pObject->GetProperty()->SaveScript((LPSTR)(LPCSTR)(strFileName)))
         {
-            // * Ç¥½Ã°¡ ÀÖÀ¸¸é ¾ø¾ÖÁØ´Ù.
+            // * í‘œì‹œê°€ ìˆìœ¼ë©´ ì—†ì• ì¤€ë‹¤.
             m_treeScript.SetItemText(hItem, scriptName);           
             return TRUE;
         }
@@ -825,11 +825,11 @@ RwBool CTreeObjectPane::OnSaveScript(HTREEITEM hItem)
 
 void CTreeObjectPane::OnObjectfolderSavetree()
 {
-    // ÇöÀç Æ®¸®±¸Á¶¸¦ ÀúÀåÇÑ´Ù.
+    // í˜„ì¬ íŠ¸ë¦¬êµ¬ì¡°ë¥¼ ì €ì¥í•œë‹¤.
     CString strSaveFileName = m_strTreeXMLPath + SAVE_FILE_NAME;
     m_treeScript.SaveTree(strSaveFileName);
 
-    // ÇÁ·ÎÆÛÆ¼ ¸®½ºÆ®µµ ÀúÀåÇÑ´Ù.
+    // í”„ë¡œí¼í‹° ë¦¬ìŠ¤íŠ¸ë„ ì €ì¥í•œë‹¤.
     OnSavePropertyList();
     
     MessageBox("Tree Save Complete");
@@ -847,7 +847,7 @@ void CTreeObjectPane::OnSavePropertyList()
 
 void CTreeObjectPane::OnDataChanged() 
 {
-    // µ¥ÀÌÅÍ°¡ º¯°æµÇ¸é ½ºÅ©¸³Æ®¸í¾Õ¿¡ '*'¸¦ ºÙ¿©Áà¼­ Ç¥½ÃÇÑ´Ù.
+    // ë°ì´í„°ê°€ ë³€ê²½ë˜ë©´ ìŠ¤í¬ë¦½íŠ¸ëª…ì•ì— '*'ë¥¼ ë¶™ì—¬ì¤˜ì„œ í‘œì‹œí•œë‹¤.
     HTREEITEM hSelectedItem = m_treeScript.GetSelectedItem();
     if(hSelectedItem)
     {
@@ -872,7 +872,7 @@ void CTreeObjectPane::OnShowSaveForChanges()
     TREEITEM_VECTOR vChangeItem;
     m_treeScript.GetAllChildNode(m_treeScript.GetRootItem(), vTreeItem);
 
-    // *Ç¥½Ã°¡ ÀÖ´Â ¾ÆÀÌÅÛµéÀ» ¸®½ºÆ®¿¡ ´ã´Â´Ù.
+    // *í‘œì‹œê°€ ìˆëŠ” ì•„ì´í…œë“¤ì„ ë¦¬ìŠ¤íŠ¸ì— ë‹´ëŠ”ë‹¤.
     for(UINT i = 0; i < vTreeItem.size(); ++i)
     {
         HTREEITEM hItem = vTreeItem[i];

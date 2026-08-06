@@ -4,7 +4,7 @@
 #include "Resource.h"
 
 
-// CAssetObjectDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAssetObjectDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CAssetObjectDlg : public CDialog
 {
@@ -15,14 +15,14 @@ public:
 	CAssetObjectTreeCtrl	m_TreeCtrl;
 
 public:
-	CAssetObjectDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CAssetObjectDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CAssetObjectDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_ASSETOBJECTDLG };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

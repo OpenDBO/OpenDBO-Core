@@ -180,7 +180,7 @@ void CNtlSobCharProxy::RegisterEventHandler(void)
     m_mapEventFunc[g_EventAnimPostEffect.Get_pEventId()] = &CNtlSobCharProxy::SobPostEffectEventHandler;
     m_mapEventFunc[g_EventAnimColorChange.Get_pEventId()] = &CNtlSobCharProxy::SobColorChangeEventHandler;
 
-    // µ¥ÄÚ·¹ÀÌ¼Ç¿¡¼­ Ã³¸®ÇÏ´Â ÀÌº¥Æ®µé
+    // ë°ì½”ë ˆì´ì…˜ì—ì„œ ì²˜ë¦¬í•˜ëŠ” ì´ë²¤íŠ¸ë“¤
     m_mapEventFunc[g_EventSobFainting.Get_pEventId()] =             &CNtlSobCharProxy::SobDecorationNotify;
     m_mapEventFunc[g_EventSobTargetSelect.Get_pEventId()] =         &CNtlSobCharProxy::SobDecorationNotify;
     m_mapEventFunc[g_EventSobAttackSelect.Get_pEventId()] =         &CNtlSobCharProxy::SobDecorationNotify;
@@ -386,7 +386,7 @@ void CNtlSobCharProxy::UpdateResourceLoadCheck(RwReal fElapsed)
 
 	ResourceLoadComplete(bVisible);
 
-	// 3D ÀÌ¸§°ú 2D ÀÌ¸§ÀÌ °°ÀÌ º¸ÀÌ´Â °Í ¶§¹®¿¡ ¼öÁ¤ -by Kell
+	// 3D ì´ë¦„ê³¼ 2D ì´ë¦„ì´ ê°™ì´ ë³´ì´ëŠ” ê²ƒ ë•Œë¬¸ì— ìˆ˜ì • -by Kell
 	if(m_pDecorationProxy)
 		m_pDecorationProxy->ResourceLoadComplete(bVisible);
 
@@ -617,7 +617,7 @@ void CNtlSobCharProxy::SobSubWeaponDeActiveEventHandler(RWS::CMsg &pMsg)
 
 void CNtlSobCharProxy::SobConvertClass(RWS::CMsg &pMsg)
 {
-    // ÀÌÆåÆ®¸¦ Ç¥½ÃÇÑ´Ù.
+    // ì´í™íŠ¸ë¥¼ í‘œì‹œí•œë‹¤.
     CNtlInstanceEffect* pEffect = (CNtlInstanceEffect*)GetSceneManager()->CreateEntity(PLENTITY_EFFECT, NTL_VID_CLASS_CHANGE);
     if(pEffect)
     {
@@ -627,10 +627,10 @@ void CNtlSobCharProxy::SobConvertClass(RWS::CMsg &pMsg)
 
 void CNtlSobCharProxy::SobChangeAdult( RWS::CMsg &pMsg ) 
 {
-    // ½ºÄÉÁì ·ÎµùÀ» ²ö´Ù.
+    // ìŠ¤ì¼€ì¥´ ë¡œë”©ì„ ëˆë‹¤.
 	GetNtlResourceManager()->SetLoadScheduling(FALSE);
 
-    // º¯½Å ÇØÁ¦µîÀ» À§ÇØ¼­ Ä³¸¯ÅÍ°¡ Ã¼ÀÎÁö µÇ±â Àü¿¡ È£ÃâÇÑ´Ù.
+    // ë³€ì‹  í•´ì œë“±ì„ ìœ„í•´ì„œ ìºë¦­í„°ê°€ ì²´ì¸ì§€ ë˜ê¸° ì „ì— í˜¸ì¶œí•œë‹¤.
     if(m_pDecorationProxy)
     {
 		m_pDecorationProxy->HandleEvents(pMsg);
@@ -685,7 +685,7 @@ void CNtlSobCharProxy::SobChangeAdult( RWS::CMsg &pMsg )
 
 	GetNtlResourceManager()->SetLoadScheduling(TRUE);
 
-    // ÀÌÆåÆ®¸¦ Ç¥½ÃÇÑ´Ù.
+    // ì´í™íŠ¸ë¥¼ í‘œì‹œí•œë‹¤.
 	CNtlInstanceEffect* pEffect = (CNtlInstanceEffect*)GetSceneManager()->CreateEntity(PLENTITY_EFFECT, NTL_VID_CLASS_CHANGE);
 	if(pEffect)
 	{
@@ -698,7 +698,7 @@ void CNtlSobCharProxy::SobChangeAdult( RWS::CMsg &pMsg )
 	}
 }
 
-// ¸ğµ¨ Æ÷ÀÎÅÍ¸¦ º¯°æÇÑ´Ù. ¿ø·¡ ¸ğµ¨À» »èÁ¦ÇÏÁö´Â ¾Ê´Â´Ù. 
+// ëª¨ë¸ í¬ì¸í„°ë¥¼ ë³€ê²½í•œë‹¤. ì›ë˜ ëª¨ë¸ì„ ì‚­ì œí•˜ì§€ëŠ” ì•ŠëŠ”ë‹¤. 
 void CNtlSobCharProxy::ChangeModel(CNtlPLCharacter* pCharacter, RwBool bEquipItem, RwBool bDeleteOrgModel)
 {
 	if(m_pCharacter)
@@ -706,7 +706,7 @@ void CNtlSobCharProxy::ChangeModel(CNtlPLCharacter* pCharacter, RwBool bEquipIte
 		m_pDecorationProxy->DetachConvertClassEquipItem();
 	}
 
-    // ¿ø·¡ ¸ğµ¨ »èÁ¦ À¯¹« 
+    // ì›ë˜ ëª¨ë¸ ì‚­ì œ ìœ ë¬´ 
     if(bDeleteOrgModel)
     {
 		GetSceneManager()->DeleteEntity(m_pCharacter);
@@ -726,7 +726,7 @@ void CNtlSobCharProxy::ChangeModel(CNtlPLCharacter* pCharacter, RwBool bEquipIte
 
     if(bEquipItem)
     {
-        // ¾ÆÀÌÅÛ ÀåÂø
+        // ì•„ì´í…œ ì¥ì°©
 		m_pEquipProxy->AttachConvertClassEquipItem(m_pCharacter);        
     }    
 }
@@ -857,7 +857,7 @@ void CNtlSobCharProxy::SetInkColor(RwUInt8 byRed, RwUInt8 byGreen, RwUInt8 byBlu
     if(!m_pCharacter)
         return;
 
-    // ÃÊ»çÀÌ¾ßÀÎ º¯½ÅÁßÀÌ¸é Ink Color´Â Èò»öÀÌ´Ù.
+    // ì´ˆì‚¬ì´ì•¼ì¸ ë³€ì‹ ì¤‘ì´ë©´ Ink ColorëŠ” í°ìƒ‰ì´ë‹¤.
     if(byRed + byGreen + byBlue == 0 && 
        Logic_GetPlayerRace((CNtlSobActor*)m_pSobObj) == RACE_HUMAN && Logic_IsTransform((CNtlSobActor*)m_pSobObj))
     {
@@ -935,7 +935,7 @@ CNtlPLEntity* CNtlSobCharProxy::CreatePLChildEffect(const RwChar* pKey, const Rw
 	return pPLEntity;
 }
 
-// offset position¿¡ attach½ÃÅ°¸é¼­ effect »ı¼º.
+// offset positionì— attachì‹œí‚¤ë©´ì„œ effect ìƒì„±.
 CNtlPLEntity* CNtlSobCharProxy::CreatePLChildEffect(const RwChar *pKey, RwV3d vOffset, RwBool bIgnoreVisible /* = FALSE */, RwBool bApplyRotate /* = FALSE */)
 {
 	CNtlPLEntity *pPLEntity = CNtlSobProxy::CreatePLChildEffect(pKey, bIgnoreVisible);
@@ -1198,7 +1198,7 @@ CNtlPLCharacter* CNtlSobCharProxy::CreatePLCharacter(RwBool bNotShading)
 	NTL_ASSERT(pPLCharacter, "Character proxy is NULL  : " << pModelKey);
 	pPLCharacter->SetSerialID(m_pSobObj->GetSerialID());
 
-	// MonsterÀÏ °æ¿ì resize picking box¸¦ flag¸¦ setting ÇØ ÁØ´Ù.
+	// Monsterì¼ ê²½ìš° resize picking boxë¥¼ flagë¥¼ setting í•´ ì¤€ë‹¤.
 	if(m_pSobObj->GetClassID() == SLCLASS_MONSTER)
 	{
 		RwUInt32 uiFlags = pPLCharacter->GetFlags();
@@ -1548,7 +1548,7 @@ RwV3d CNtlSobCharProxy::GetSubWeaponBonePosition(const RwChar *pBoneName)
 	return m_pEquipProxy->GetSubWeaponBonePosition(pBoneName);
 }
 
-// pl entityÀÇ ³ôÀÌ¸¦ ¾ò¾î¿Â´Ù.
+// pl entityì˜ ë†’ì´ë¥¼ ì–»ì–´ì˜¨ë‹¤.
 RwReal CNtlSobCharProxy::GetPLEntityHeight(void)
 {
 	if(m_pPrivateShopProxy)
@@ -1557,13 +1557,13 @@ RwReal CNtlSobCharProxy::GetPLEntityHeight(void)
 	return m_pCharacter->GetHeight();
 }
 
-// pl entityÀÇ ÆøÀ» ¾ò¾î¿Â´Ù.
+// pl entityì˜ í­ì„ ì–»ì–´ì˜¨ë‹¤.
 RwReal CNtlSobCharProxy::GetPLEntityWidth(void)
 {
 	return m_pCharacter->GetWidth();
 }
 
-// pl entityÀÇ ±íÀÌÀ» ¾ò¾î¿Â´Ù.
+// pl entityì˜ ê¹Šì´ì„ ì–»ì–´ì˜¨ë‹¤.
 RwReal CNtlSobCharProxy::GetPLEntityDepth(void)
 {
 	return m_pCharacter->GetDepth();
@@ -1577,7 +1577,7 @@ RwReal CNtlSobCharProxy::GetPLEntityBaseScale(void)
 
 void CNtlSobCharProxy::EnableVisible(RwBool bEnable)
 {
-    // Åõ¸í»óÅÂ Ã³¸®
+    // íˆ¬ëª…ìƒíƒœ ì²˜ë¦¬
     if(bEnable && Logic_IsCondition((CNtlSobActor*)m_pSobObj, CHARCOND_FLAG_TRANSPARENT))
     {
         if(m_pSobObj->GetClassID() == SLCLASS_PLAYER)
@@ -1588,7 +1588,7 @@ void CNtlSobCharProxy::EnableVisible(RwBool bEnable)
 
 	if(IsProxySystemVisible())
 	{
-		// Ä³¸¯ÅÍ´Â ·ÎµùµÇÁö ¾Ê¾Æµµ ±×¸²ÀÚ´Â ·ÎµùµÇ±â ±ú¹®¿¡, Ä³¸¯ÅÍ¿Í º°°³·Î Ã³¸®ÇÑ´Ù. (by agebreak)
+		// ìºë¦­í„°ëŠ” ë¡œë”©ë˜ì§€ ì•Šì•„ë„ ê·¸ë¦¼ìëŠ” ë¡œë”©ë˜ê¸° ê¹¨ë¬¸ì—, ìºë¦­í„°ì™€ ë³„ê°œë¡œ ì²˜ë¦¬í•œë‹¤. (by agebreak)
 		if(m_pDecorationProxy)
 			m_pDecorationProxy->SetVisible(bEnable);
 
@@ -1664,10 +1664,10 @@ void CNtlSobCharProxy::CreateElapsedController(RwReal fLifeTime, RwReal fWeightV
 		m_pDecorationProxy->CreateWeightElapsedController(fLifeTime, fWeightValue);
 
 	/*
-	// ÀÏ´ÜÀº attachµÈ entity¸¸ control Á¶Á¤ÇÑ´Ù.
-	// ¿©±â´Â attachµÈ entity¿Ü¿¡ attach µÇÁö ¾ÊÀ¸¸é¼­, character °¡ »ı¼ºÇÑ entityµµ Ã£À» ¼ö ÀÖ´Â ¹æ¹ıÀÎµ¥,
-	// attachµÈ entity¿Í °ãÄ¥ ¼ö ÀÖ´Ù... ¶ÇÇÑ ¸ğµç effect¸¦ °Ë»öÇÏ¹Ç·Î ¼Óµµ°¡ ÀúÇÏµÉ ¼ö ÀÖ´Ù. (Çü¼®)
-	// ±âÁ¸¿¡ Ãâ·ÂµÈ effect¿¡ elapsed control setting
+	// ì¼ë‹¨ì€ attachëœ entityë§Œ control ì¡°ì •í•œë‹¤.
+	// ì—¬ê¸°ëŠ” attachëœ entityì™¸ì— attach ë˜ì§€ ì•Šìœ¼ë©´ì„œ, character ê°€ ìƒì„±í•œ entityë„ ì°¾ì„ ìˆ˜ ìˆëŠ” ë°©ë²•ì¸ë°,
+	// attachëœ entityì™€ ê²¹ì¹  ìˆ˜ ìˆë‹¤... ë˜í•œ ëª¨ë“  effectë¥¼ ê²€ìƒ‰í•˜ë¯€ë¡œ ì†ë„ê°€ ì €í•˜ë  ìˆ˜ ìˆë‹¤. (í˜•ì„)
+	// ê¸°ì¡´ì— ì¶œë ¥ëœ effectì— elapsed control setting
 	if(GetNtlSobElapsedControlManager()->GetControlFactor(m_pSobObj, fLifeTime, fWeightValue))
 	{
 		SERIAL_HANDLE hSerialId = m_pSobObj->GetSerialID();
@@ -1705,10 +1705,10 @@ void CNtlSobCharProxy::DeleteElapsedController(void)
 }
 
 
-// mouse focus¸¦ ¹Ş¾ÒÀ» °æ¿ì.
+// mouse focusë¥¼ ë°›ì•˜ì„ ê²½ìš°.
 void CNtlSobCharProxy::SetFocus(void) 
 {
-	// input enable ÄÑ ÀÖÁö ¾ÊÀ¸¸é?
+	// input enable ì¼œ ìˆì§€ ì•Šìœ¼ë©´?
 	if(!m_pSobObj->IsInput())
 		return;
 
@@ -1719,10 +1719,10 @@ void CNtlSobCharProxy::SetFocus(void)
 	}
 }
 
-// mouse focus¸¦ ÀĞ¾î ¹ö·ÈÀ» °æ¿ì.
+// mouse focusë¥¼ ì½ì–´ ë²„ë ¸ì„ ê²½ìš°.
 void CNtlSobCharProxy::ReleaseFocus(void) 
 {
-	// input enable ÄÑ ÀÖÁö ¾ÊÀ¸¸é?
+	// input enable ì¼œ ìˆì§€ ì•Šìœ¼ë©´?
 	if(!m_pSobObj->IsInput())
 		return;
 
@@ -1889,13 +1889,13 @@ RwReal CNtlSobCharProxy::GetScale()
 
 void CNtlSobCharProxy::AttachRPBonusEffect() 
 {
-    // ÀÌÆåÆ® »ı¼º
+    // ì´í™íŠ¸ ìƒì„±
     m_pDecorationProxy->AttachRPBonusEffect();
 }
 
 void CNtlSobCharProxy::DetachRPBonusEffect() 
 {
-    // ÀÌÆåÆ® ÇØÁ¦
+    // ì´í™íŠ¸ í•´ì œ
     m_pDecorationProxy->DetachRPBonusEffect();    
 }
 
@@ -2111,7 +2111,7 @@ void CNtlSobCharProxy::SobPostEffectEventHandler( RWS::CMsg& pMsg )
     }
     else if(pEventPostEffect->eTarget == POST_EFFECT_TARGET_TYPE_TARGET)
     {
-        // Å¸°ÙÀÌ ´ë»óÀÎ °æ¿ì¿¡´Â Å¸°Ù¿¡ ÀÌÆåÆ® »ı¼º
+        // íƒ€ê²Ÿì´ ëŒ€ìƒì¸ ê²½ìš°ì—ëŠ” íƒ€ê²Ÿì— ì´í™íŠ¸ ìƒì„±
         CNtlSob* pSobTarget = GetNtlSobManager()->GetSobObject(Logic_GetActorTargetSerialId((CNtlSobActor*)m_pSobObj));
         if(!pSobTarget)
             return;

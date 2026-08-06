@@ -748,9 +748,9 @@ void CWorldViewDlg::RenderBlockBBox(RwBool bSelected, RwBBox bboxRender, RwUInt3
 	static RwImVertexIndex indicesTriangle[36] =
 	{
 		2, 6, 3,
-		3, 6, 7, // À­¸é
+		3, 6, 7, // ìœ—ë©´
 		4, 0, 5, 
-		5, 0, 1, // ¹Ø¸é
+		5, 0, 1, // ë°‘ë©´
  		5, 7, 4,
  		4, 7, 6, 
 		0, 2, 1,
@@ -840,9 +840,9 @@ void CWorldViewDlg::RenderSectorBBox(RwBool bSelected, RwBBox bboxRender, RwUInt
 	static RwImVertexIndex indicesTriangle[36] =
 	{
 		4, 0, 5, 
-		5, 0, 1, // ¹Ø¸é
+		5, 0, 1, // ë°‘ë©´
 		2, 6, 3,
-		3, 6, 7, // À­¸é
+		3, 6, 7, // ìœ—ë©´
 		5, 7, 4,
 		4, 7, 6, 
 		0, 2, 1,
@@ -924,9 +924,9 @@ void CWorldViewDlg::RenderFieldBBox(RwBool bSelected, RwBBox bboxRender, RwUInt3
 	static RwImVertexIndex indicesTriangle[36] =
 	{
 		4, 0, 5, 
-		5, 0, 1, // ¹Ø¸é
+		5, 0, 1, // ë°‘ë©´
 		2, 6, 3,
-		3, 6, 7, // À­¸é
+		3, 6, 7, // ìœ—ë©´
 		5, 7, 4,
 		4, 7, 6, 
 		0, 2, 1,

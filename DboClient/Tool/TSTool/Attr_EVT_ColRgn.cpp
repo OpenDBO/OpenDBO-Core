@@ -1,11 +1,11 @@
-// Attr_EVT_ColRgn.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_EVT_ColRgn.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
 #include "TSTool.h"
 #include "Attr_EVT_ColRgn.h"
 
-// CAttr_EVT_ColRgn ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_EVT_ColRgn ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_EVT_ColRgn, CAttr_Page, 1)
 
@@ -241,13 +241,13 @@ BOOL CAttr_EVT_ColRgn::OnInitDialog()
 {
 	CAttr_Page::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	m_ctrEnter.SetCheck( BST_UNCHECKED );
 	m_ctrLeave.SetCheck( BST_UNCHECKED );
 	m_ctrThrough.SetCheck( BST_UNCHECKED );
 
-	m_ctrCRType.SetItemData( m_ctrCRType.AddString( _T("»ç°¢ ¿µ¿ª µ¥ÀÌÅÍ") ), eEVENT_COL_RGN_TYPE_RECTANGLE );
-	int nIdx = m_ctrCRType.AddString( _T("¹İ°æ µ¥ÀÌÅÍ") );
+	m_ctrCRType.SetItemData( m_ctrCRType.AddString( _T("ì‚¬ê° ì˜ì—­ ë°ì´í„°") ), eEVENT_COL_RGN_TYPE_RECTANGLE );
+	int nIdx = m_ctrCRType.AddString( _T("ë°˜ê²½ ë°ì´í„°") );
 	m_ctrCRType.SetItemData( nIdx , eEVENT_COL_RGN_TYPE_RADIUS );
 	m_ctrCRType.SetCurSel( nIdx );
 
@@ -262,7 +262,7 @@ BOOL CAttr_EVT_ColRgn::OnInitDialog()
 	OnCbnSelchangeTsEvtAttrColRgnCrtCombo();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 BEGIN_MESSAGE_MAP(CAttr_EVT_ColRgn, CAttr_Page)
@@ -270,7 +270,7 @@ BEGIN_MESSAGE_MAP(CAttr_EVT_ColRgn, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_EVT_ColRgn ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_EVT_ColRgn ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CAttr_EVT_ColRgn::OnCbnSelchangeTsEvtAttrColRgnCrtCombo()
 {

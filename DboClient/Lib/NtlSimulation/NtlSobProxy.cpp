@@ -79,7 +79,7 @@ void CNtlSobProxy::Update(RwReal fElapsed)
 {
     if(!m_listProxySystemEffect.empty())
     {
-        // ProxySystemEffect ¾÷µ¥ÀÌÆ®
+        // ProxySystemEffect ì—…ë°ì´íŠ¸
         RwBool bIsCalcWeight[CNtlSobProxySystemEffect::PROXY_SYSTEM_EFFECT_COUNT];
         ZeroMemory(bIsCalcWeight, sizeof(RwBool) * CNtlSobProxySystemEffect::PROXY_SYSTEM_EFFECT_COUNT);
 
@@ -87,7 +87,7 @@ void CNtlSobProxy::Update(RwReal fElapsed)
         for(ListProxySystemEffect::iterator it = m_listProxySystemEffect.begin(); it != m_listProxySystemEffect.end();)
         {
             pSystemEffect = (*it);
-            if(pSystemEffect->IsFinish())       // Á¾·á½Ã¿¡´Â ÀÌÆåÆ®ÀÇ »èÁ¦ÈÄÀÇ °ªÀ» °è»êÇØ¾ß ÇÑ´Ù.
+            if(pSystemEffect->IsFinish())       // ì¢…ë£Œì‹œì—ëŠ” ì´í™íŠ¸ì˜ ì‚­ì œí›„ì˜ ê°’ì„ ê³„ì‚°í•´ì•¼ í•œë‹¤.
             {
                 if(pSystemEffect->GetType() != CNtlSobProxySystemEffect::PROXY_SYSTEM_EFFECT_SCALE)
                 {
@@ -202,7 +202,7 @@ void CNtlSobProxy::UpdateSystemEffectAlpha(RwReal fElapsed)
 		}
 	}
 
-	// Çü¼® ÀÛ¾÷(2008.03.10) - ¹Î±Ù ÀÌ ÄÚµù ÀÇ¹Ì ÀÖ½¿.
+	// í˜•ì„ ì‘ì—…(2008.03.10) - ë¯¼ê·¼ ì´ ì½”ë”© ì˜ë¯¸ ìˆìŠ´.
 	if(bAlphaEffectNum == 0)
 		return;
 
@@ -511,14 +511,14 @@ void CNtlSobProxy::RemoveVisualSystemEffectAlpha(CNtlSobProxySystemEffect *pSyst
 		}
 	}
 
-	// (Çü¼® - 2008.05.20)
-	// system effect alpha°¡ Á¸ÀçÇÏ´ÂÁö¸¦ ÆÇ´Ü. ¾øÀ¸¸é reset ÇØÁØ´Ù.
+	// (í˜•ì„ - 2008.05.20)
+	// system effect alphaê°€ ì¡´ì¬í•˜ëŠ”ì§€ë¥¼ íŒë‹¨. ì—†ìœ¼ë©´ reset í•´ì¤€ë‹¤.
 	if(!bRemoveSystemEffectAlpha)
 		return;
 
 	for(it = m_listProxySystemEffect.begin(); it != m_listProxySystemEffect.end(); it++)
 	{
-		// update¿¡¼­ alpha system effect°¡ Á¸ÀçÇÑ´Ù¸é?
+		// updateì—ì„œ alpha system effectê°€ ì¡´ì¬í•œë‹¤ë©´?
 		if((*it)->GetType() == CNtlSobProxySystemEffect::PROXY_SYSTEM_EFFECT_ALPHA_BLEND)
 		{
 			return;
@@ -666,8 +666,8 @@ void CNtlSobProxy::EnableWorldLight(RwBool bEnable, RwUInt8 byRed, RwUInt8 byGre
 }
 
 /**
- * Ä«¸Ş¶ó¿ÍÀÇ °Å¸®¿¡ µû¸¥ ¾ËÆÄ ÀÌÆåÆ® Àû¿ë½Ã¿¡ »ç¿ëÇÏ´Â ÇÔ¼ö
- * \param bEnable Àû¿ë À¯¹«
+ * ì¹´ë©”ë¼ì™€ì˜ ê±°ë¦¬ì— ë”°ë¥¸ ì•ŒíŒŒ ì´í™íŠ¸ ì ìš©ì‹œì— ì‚¬ìš©í•˜ëŠ” í•¨ìˆ˜
+ * \param bEnable ì ìš© ìœ ë¬´
  */
 void CNtlSobProxy::EnableCameraAlpha( RwBool bEnable ) 
 {
@@ -676,8 +676,8 @@ void CNtlSobProxy::EnableCameraAlpha( RwBool bEnable )
 
 	RwUInt32 uiFlags = m_pSobObj->GetFlags();
 
-	// Çü¼®.
-	// ÇöÀç camera¿Í Ãæµ¹ÇÑ object°¡ Community NPC ÀÌ¸é aplha¸¦ Àû¿ëÇÏÁö ¾Ê´À´Ù.
+	// í˜•ì„.
+	// í˜„ì¬ cameraì™€ ì¶©ëŒí•œ objectê°€ Community NPC ì´ë©´ aplhaë¥¼ ì ìš©í•˜ì§€ ì•ŠëŠë‹¤.
 	if(bEnable && uiFlags & SLFLAG_NOT_ALPHA_CAMERA_COLLI)
 		return;
 

@@ -44,7 +44,7 @@ public:
 protected:
 	RwUInt32		m_eShapeType;
 	RwV3d			m_vPos;
-	RwV3d			m_vSize;			// CIRCLE·Î »ç¿ë ½Ã m_vSize.x°¡ Radius¸¦ ¶æÇÑ´Ù.
+	RwV3d			m_vSize;			// CIRCLEë¡œ ì‚¬ìš© ì‹œ m_vSize.xê°€ Radiusë¥¼ ëœ»í•œë‹¤.
 	RwUInt32		m_uiProperty;
 
 #ifdef dNTL_WORLD_TOOL_MODE

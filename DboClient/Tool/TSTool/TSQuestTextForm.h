@@ -9,14 +9,14 @@
 class CTableContainer;
 
 
-// CTSQuestTextForm Æû ºäÀÔ´Ï´Ù.
+// CTSQuestTextForm í¼ ë·°ì…ë‹ˆë‹¤.
 
 class CTSQuestTextForm : public CFormView
 {
 	DECLARE_DYNCREATE(CTSQuestTextForm)
 
 protected:
-	CTSQuestTextForm();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CTSQuestTextForm();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CTSQuestTextForm();
 
 public:
@@ -29,7 +29,7 @@ public:
 #endif
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 

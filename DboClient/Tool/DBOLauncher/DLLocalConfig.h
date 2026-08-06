@@ -2,7 +2,7 @@
 *
 * File			: DLLocalConfig.h
 * Author		: 
-* Copyright		: (¡÷) NTL
+* Copyright		: (Ï£º) NTL
 * Date			:
 * Abstract		: 
 *****************************************************************************
@@ -24,9 +24,9 @@
 class CDLLocalConfig
 {
 protected:
-	CString					m_strInitConnectionIP;				// ∑±√≥ √ ±‚ ¡¢º” º≠πˆ IP
-	CString					m_strInitConnectionPath;			// ∑±√≥ √ ±‚ ¡¢º” º≠πˆ Path
-	CString					m_strInitConnectionFileName;		// ∑±√≥ √ ±‚ ¡¢º” º≠πˆ FileName
+	CString					m_strInitConnectionIP;				// Îü∞Ï≤ò Ï¥àÍ∏∞ Ï†ëÏÜç ÏÑúÎ≤Ñ IP
+	CString					m_strInitConnectionPath;			// Îü∞Ï≤ò Ï¥àÍ∏∞ Ï†ëÏÜç ÏÑúÎ≤Ñ Path
+	CString					m_strInitConnectionFileName;		// Îü∞Ï≤ò Ï¥àÍ∏∞ Ï†ëÏÜç ÏÑúÎ≤Ñ FileName
 
 public:
 	CDLLocalConfig( void ) { return; }

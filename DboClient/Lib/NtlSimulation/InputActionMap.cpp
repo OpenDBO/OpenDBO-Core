@@ -91,7 +91,7 @@ CInputActionMap::~CInputActionMap()
 }
 
 /**
-* \brief CInputActionMap�� �ν��Ͻ� ����(�̱���)
+* \brief CInputActionMap占쏙옙 占싸쏙옙占싹쏙옙 占쏙옙占쏙옙(占싱깍옙占쏙옙)
 */
 CInputActionMap* CInputActionMap::GetInstance(void)
 {
@@ -118,15 +118,15 @@ RwBool CInputActionMap::Create(void)
 	m_hMouseDown = CInputHandler::GetInstance()->LinkMouseDown( this, &CInputActionMap::MouseDownHandler);
 	m_hMouseUp = CInputHandler::GetInstance()->LinkMouseUp( this, &CInputActionMap::MouseUpHandler);
 
-	// ActionMapManager �ʱ�ȭ
+	// ActionMapManager 占십깍옙화
 	InitDefaultActionMap();
 	m_ActionMapManager.ClearInputAction();
 	m_ActionMapManager.ClearReleaseAction();
 	m_ActionMapManager.ClearResult();
 
-	RegisterFlagMap();	// ����ȸ���� ���� Ű�� ���
+	RegisterFlagMap();	// 상태회복을 위한 키를 등록
 
-	// ���ø����̼ǿ� ��Ű�� ����Ѵ�. print screen/sys rq Ű�� �̿��ϱ� ����
+	// 어플리케이션에 핫키를 등록한다. print screen/sys rq 키를 이용하기 위해
 	/*RegisterHotKey( CNtlApplication::GetInstance()->GetHWnd(), NTL_KEY_SNAPSHOT, 0, VK_SNAPSHOT );*/
 	
 	NTL_RETURN(TRUE);
@@ -188,11 +188,11 @@ void CInputActionMap::Destroy(void)
 
 /**
 * \brief Update
-* \param fElapsed	(RwReal) ���� Update���� ����� �ð�
+* \param fElapsed	(RwReal) 이전 Update에서 경과된 시간
 */
 void CInputActionMap::Update(RwReal fElapsed)
 {
-	// InputActionMap�� ��Ȱ��ȭ ���¶�� Update���� �ʴ´�.
+	// InputActionMap이 비활성화 상태라면 Update하지 않는다.
 	if(!m_bActive)
 		return;
 
@@ -216,7 +216,7 @@ void CInputActionMap::Update(RwReal fElapsed)
 
 /**
 * \brief HandleEvents
-* \param pMsg	(RWS::CMsg&) �̺�Ʈ�� �޽���
+* \param pMsg	(RWS::CMsg&) 占싱븝옙트占쏙옙 占쌨쏙옙占쏙옙
 */
 void CInputActionMap::HandleEvents(RWS::CMsg &pMsg)
 {
@@ -245,19 +245,19 @@ void CInputActionMap::HandleEvents(RWS::CMsg &pMsg)
 }
 
 /**
-* \brief ���ӿ� ������ �� �������� �����ִ� ����Ű ������ �޴´�.
+* \brief 占쏙옙占쌈울옙 占쏙옙占쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쌍댐옙 占쏙옙占쏙옙키 占쏙옙占쏙옙占쏙옙 占쌨는댐옙.
 */
 void CInputActionMap::HandleEventActionmapLoadInfo( RWS::CMsg& msg ) 
 {
 	SNtlEventActionMapLoadInfo* pPacket = (SNtlEventActionMapLoadInfo*)msg.pData;
 
-	// pPacket->byCount�� 0 �̸� ������ ����Ǿ� �ִ� ����Ű�� ���ٴ� ���̴�.
-	// Ŭ���̾�Ʈ�� �ϵ� �ڵ��Ǿ� �ִ� ����Ű�� �������ְ� ������ �����Ѵ�.
+	// pPacket->byCount가 0 이면 서버에 저장되어 있는 단축키가 없다는 것이다.
+	// 클占쏙옙占싱억옙트占쏙옙 占싹듸옙 占쌘듸옙占실억옙 占쌍댐옙 占쏙옙占쏙옙키占쏙옙 占쏙옙占쏙옙占쏙옙占쌍곤옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싼댐옙.
 	if( 0 == pPacket->byCount )
 	{
 		m_ActionMapManager.ClearActionMap();
 
-		// ActionMap�� ���ǵǾ� �ִ� �⺻ �׼Ǹ����� �����Ѵ�.
+		// ActionMap占쏙옙 占쏙옙占실되억옙 占쌍댐옙 占썩본 占쌓션몌옙占쏙옙占쏙옙 占쏙옙占쏙옙占싼댐옙.
 		m_ActionMapManager.InitDefaultActionMap();
 
 		// ��� Release Action�� ���õ� �����̳� ����� Ŭ����
@@ -265,27 +265,27 @@ void CInputActionMap::HandleEventActionmapLoadInfo( RWS::CMsg& msg )
 		m_ActionMapManager.ClearReleaseAction();
 		m_ActionMapManager.ClearInputAction();
 
-		// ������ ���� �� ����
+		// 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙
 		ApplyActionMap();
 
-		// ĸ��( byCount �� 0 �̶�� Ŭ���̾�Ʈ�� ����Ű�� �������� �ŷ� �Ѵ�. )
+		// 캡쳐( byCount 가 0 이라면 클라이언트의 단축키를 전적으로 신뢰 한다. )
 		m_ActionMapManager.CaptureActionMap();
 	}
 	else
 	{
 		m_ActionMapManager.ClearActionMap();
 
-		// �������� ����Ű�� �޾Ƽ� �׼Ǹ��� ����
+		// 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙키占쏙옙 占쌨아쇽옙 占쌓션몌옙占쏙옙 占쏙옙占쏙옙
 		for( int i=0; i<pPacket->byCount; ++i )
 			m_ActionMapManager.SetCombineKey( pPacket->asData[i].wKey, pPacket->asData[i].wActionID );
 
-		// ĸ��(������ �ִ� ��)
+		// 캡占쏙옙(占쏙옙占쏙옙占쏙옙 占쌍댐옙 占쏙옙)
 		m_ActionMapManager.CaptureActionMap();
 
 		// ������ ����Ǿ� �ִ� ����Ʈ ������ �ʱ�ȭ
 		m_ActionMapManager.InitDefaultActionMap();
 
-		// ����Ʈ �ʱ�ȭ �� �Ϳ� �ٽ� �ѹ� Setting
+		// 占쏙옙占쏙옙트 占십깍옙화 占쏙옙 占싶울옙 占쌕쏙옙 占싼뱄옙 Setting
 		for( int i=0; i<pPacket->byCount; ++i )
 			m_ActionMapManager.SetCombineKey( pPacket->asData[i].wKey, pPacket->asData[i].wActionID );
 
@@ -294,31 +294,31 @@ void CInputActionMap::HandleEventActionmapLoadInfo( RWS::CMsg& msg )
 		m_ActionMapManager.ClearReleaseAction();
 		m_ActionMapManager.ClearInputAction();
 
-		// �ٽ� ����
+		// 占쌕쏙옙 占쏙옙占쏙옙
 		ApplyActionMap();
 	}
 }
 
 /**
-* \breif ������ ����� ����Ű ������ ������ �� ���� ���
+* \breif 서버에 변경된 단축키 정보를 보내고 난 후의 결과
 */
 void CInputActionMap::HandleEventsActionMapUpdateRes( RWS::CMsg& msg ) 
 {
 	SNtlEventActionMapUpdateRes* pPacket = (SNtlEventActionMapUpdateRes*)msg.pData;
 
-	// ����
+	// 占쏙옙占쏙옙
 	if( pPacket->bSuccess )
 	{
-		// �������� ������ �����Ǿ����� �Ϻ��ϰ� ������ �ϰ�
-		// ������ ������ �� �ִ� ���·� �����д�.
+		// 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占실억옙占쏙옙占쏙옙 占싹븝옙占싹곤옙 占쏙옙占쏙옙占쏙옙 占싹곤옙
+		// 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙 占쌍댐옙 占쏙옙占승뤄옙 占쏙옙占쏙옙占싻댐옙.
 		m_ActionMapManager.CaptureActionMap();
 		m_bAcceptServer = TRUE;
 	}
-	// ����
+	// 占쏙옙占쏙옙
 	else
 	{
-		// �����Ͽ��ٸ� ������ ĸ�ĵ� ����Ű�� ����������
-		// ���Ӱ� �⺻ ����Ű�� �����Ͽ� �����Ѵ�.
+		// 占쏙옙占쏙옙占싹울옙占쌕몌옙 占쏙옙占쏙옙占쏙옙 캡占식듸옙 占쏙옙占쏙옙키占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙
+		// 占쏙옙占쌈곤옙 占썩본 占쏙옙占쏙옙키占쏙옙 占쏙옙占쏙옙占싹울옙 占쏙옙占쏙옙占싼댐옙.
 
 		m_ActionMapManager.InitDefaultActionMap();
 		m_bAcceptServer = TRUE;
@@ -352,13 +352,13 @@ void CInputActionMap::Reset(void)
 	}
 	SetFlagAction( ACTION_AVATAR_BLOCKING, FALSE );
 
-	// ������ ȸ��
+	// 占쏙옙占쏙옙占쏙옙 회占쏙옙
 	for( int i = ACTION_QUICK_1; i <= ACTION_QUICK_PLUS; ++i )
 	{
-		// �������� ������ �־��ٸ�(?)
+		// 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쌍억옙占쌕몌옙(?)
 		if( IsDownAction( i ) )
 		{
-			// 0 ~ 11 ( 12�� )
+			// 0 ~ 11 ( 12占쏙옙 )
 			m_pCallSkillQuickSlotUp->Call( i - ACTION_QUICK_1 );
 			SetFlagAction( i, FALSE );
 		}
@@ -405,12 +405,12 @@ void CInputActionMap::Reset(void)
 	//m_cActionMap.RemoveIgnoreKey();
 	m_mapUpdownRef.clear();
 
-	// ActionMap�� Up Down Reference�� Ŭ�����Ѵ�.
+	// ActionMap占쏙옙 Up Down Reference占쏙옙 클占쏙옙占쏙옙占싼댐옙.
 	m_ActionMapManager.ClearInputAction();
 }
 
 /**
-* \brief �̵��� ���õ� �ڷḸ Reset
+* \brief 占싱듸옙占쏙옙 占쏙옙占시듸옙 占쌘료만 Reset
 */
 void CInputActionMap::ResetMoveFlags( void ) 
 {
@@ -439,12 +439,12 @@ void CInputActionMap::ResetMoveFlags( void )
 	m_sBackDashMap.fTime = 0.0f;
 	m_sBackDashMap.uiMoveFlags = NTL_MOVE_B;
 
-	// ActionMap�� Up Down Reference�� Ŭ�����Ѵ�.
+	// ActionMap占쏙옙 Up Down Reference占쏙옙 클占쏙옙占쏙옙占싼댐옙.
 	m_ActionMapManager.ClearInputAction();
 }
 
 /**
-* \brief Key�� Down�� ���� ������ �ͼ� �׼��� ã�Ƴ���.
+* \brief Key占쏙옙 Down占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占싶쇽옙 占쌓쇽옙占쏙옙 찾占싣놂옙占쏙옙.
 */
 int CInputActionMap::KeyDownHandler(uintptr_t pKeyData)
 {
@@ -452,7 +452,7 @@ int CInputActionMap::KeyDownHandler(uintptr_t pKeyData)
 
 	unsigned short usAction = ACTION_INVALID;
 
-	// RepCount�� 1�϶��� �����Ѵٴ� ���� �ѹ��� �����Ѵٴ� ���̴�.
+	// RepCount占쏙옙 1占싹띰옙占쏙옙 占쏙옙占쏙옙占싼다댐옙 占쏙옙占쏙옙 占싼뱄옙占쏙옙 占쏙옙占쏙옙占싼다댐옙 占쏙옙占싱댐옙.
 	if(pData->uiRepCount == 1)
 	{
 		// TODO: The current tab key uses the hardcoded ACTION_TARGET_AUTO action ID
@@ -488,7 +488,7 @@ int CInputActionMap::KeyDownHandler(uintptr_t pKeyData)
 
 		int nKey = pData->uiChar & 0xFF;
 
-		// KeyRef ����
+		// KeyRef 占쏙옙占쏙옙
 		KeyReference( (unsigned char)(pData->uiChar & 0xFF) );
 
 		// Returns if the key is ignored.
@@ -513,7 +513,7 @@ int CInputActionMap::KeyDownHandler(uintptr_t pKeyData)
 }
 
 /**
-* \brief Ű�� Up �Ǿ��� �� Ű�� ������ �ͼ� �׼Ǹ��� ������ �´�.
+* \brief 키占쏙옙 Up 占실억옙占쏙옙 占쏙옙 키占쏙옙 占쏙옙占쏙옙占쏙옙 占싶쇽옙 占쌓션몌옙占쏙옙 占쏙옙占쏙옙占쏙옙 占승댐옙.
 */
 int CInputActionMap::KeyUpHandler(uintptr_t pKeyData)
 {
@@ -533,13 +533,13 @@ int CInputActionMap::KeyUpHandler(uintptr_t pKeyData)
 		}
 	}
 
-	// VK_JUNJA�� ALT�� ���� ���¿��� = �� �Է����� ��� ( �ϵ��ڵ����� ġȯ���ش�. )
+	// VK_JUNJA는 ALT를 누른 상태에서 = 를 입력했을 경우 ( 하드코딩으로 치환해준다. )
 	if ((pData->uiChar & 0xFF) == VK_JUNJA)
 	{
 		pData->uiChar = NTL_KEY_EQUAL;
 	}
 
-	// KeyRef ���� : ���� Down �Ǿ��� �ʴ� Ű��� ������ ���� ( Snap Shot ���� ���ܷ� �Ѵ�. )
+	// KeyRef 감소 : 만약 Down 되었지 않는 키라면 무조건 리턴 ( Snap Shot 만은 예외로 한다. )
 	if( !KeyReference( (unsigned char)(pData->uiChar & 0xFF), FALSE ) && ( (unsigned char)(pData->uiChar & 0xFF) ) != VK_SNAPSHOT )
 		return 1;
 
@@ -557,7 +557,7 @@ int CInputActionMap::KeyUpHandler(uintptr_t pKeyData)
 		// If there are no errors, it is the same as a normal INVALID.
 		if( byErr == SET_RESULT_INVALID )
 		{
-			// ���� ��������� �ϴ� Action���� List�� �ִٸ� ��� �������ش�.
+			// 만약 해제해줘야 하는 Action들의 List가 있다면 모두 해제해준다.
 			if( !uiActionUpList.empty() )
 			{
 				for each( unsigned short uiActionUp in uiActionUpList )
@@ -572,7 +572,7 @@ int CInputActionMap::KeyUpHandler(uintptr_t pKeyData)
 			return 1;
 		}
 
-		// ���������� ������ �Ǿ��ٸ� InputActionMap�� ���¸� ȸ�������ش�.
+		// 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占실억옙占쌕몌옙 InputActionMap占쏙옙 占쏙옙占승몌옙 회占쏙옙占쏙옙占쏙옙占쌔댐옙.
 		Reset();
 		
 		switch( byErr )
@@ -587,7 +587,7 @@ int CInputActionMap::KeyUpHandler(uintptr_t pKeyData)
 				CNtlSLEventGenerator::ActionMapClientNotify( SNtlEventActionMapClientNotify::ACTIONMAP_NOTCOMBINE );
 			}
 			break;
-			case SET_RESULT_ALREADY_KEY:			// ������ �ִ� Ű�� ������
+			case SET_RESULT_ALREADY_KEY:			// 占쏙옙占쏙옙占쏙옙 占쌍댐옙 키占쏙옙 占쏙옙占쏙옙占쏙옙
 			{
 				CNtlSLEventGenerator::ActionMapClientNotify( SNtlEventActionMapClientNotify::ACTIONMAP_RELEASE, m_ActionMapManager.GetLastReleaseAction() );
 			}
@@ -646,7 +646,7 @@ void CInputActionMap::SetActive(RwBool bActive)
 { 
 	m_bActive = bActive; 
 
-	// ��Ȱ��ȭ��� �̵� Flag�� Reset
+	// 비활성화라면 이동 Flag를 Reset
 	if( bActive == FALSE )
 		ResetMoveFlags();
 }
@@ -667,7 +667,7 @@ void CInputActionMap::SetInputMode( RwUInt32 nAction )
 	{
 		BYTE byErr = m_ActionMapManager.GetLastResult();
 
-		// ���� ����
+		// 占쏙옙占쏙옙 占쏙옙占쏙옙
 		if( byErr == SET_RESULT_OK )
 			return;
 	}
@@ -689,10 +689,10 @@ void CInputActionMap::InitDefaultActionMap()
 }
 
 /**
-* \brief �׼Ǹ��� ����
+* \brief 占쌓션몌옙占쏙옙 占쏙옙占쏙옙
 *
-* �ڷᱸ���� CActionMap���� ����� ���� üũ�ϰ� �װ��� ����Ͽ�
-* ������ ��Ŷ�� �����Ѵ�.
+* 자료구조인 CActionMap에서 변경된 점을 체크하고 그것을 기록하여
+* 占쏙옙占쏙옙占쏙옙 占쏙옙킷占쏙옙 占쏙옙占쏙옙占싼댐옙.
 */
 RwBool CInputActionMap::ApplyActionMap()
 {
@@ -704,7 +704,7 @@ RwBool CInputActionMap::ApplyActionMap()
 	if( m_ActionMapManager.GetUpdateData( pData , byCount ) )
 	{
 		// �ٲ� ���� �ִٸ� ��Ŷ�� ������ Result�ڵ尡 �������� ����Ǳ� ������ ������ ������ �� �� ����
-		// ���� �����Ѵ�.
+		// 占쏙옙占쏙옙 占쏙옙占쏙옙占싼댐옙.
 		API_GetSLPacketGenerator()->SendCharKeyUpdateReq( pData, byCount );
 
 		m_bAcceptServer = FALSE;
@@ -723,20 +723,20 @@ void CInputActionMap::CancleActionMap()
 
 /**
 * \brief ���õ� Ű�� ����Ѵ�.
-* \param byKey		(RwUInt8) Ű�� VK_CODE
-* \param nRefCount	(int) ���õ� Ƚ��, KeyUpHandler���� ī��Ʈ�� üũ�Ѵ�.
-* \return ��������
+* \param byKey		(RwUInt8) 키占쏙옙 VK_CODE
+* \param nRefCount	(int) 占쏙옙占시듸옙 횟占쏙옙, KeyUpHandler占쏙옙占쏙옙 카占쏙옙트占쏙옙 체크占싼댐옙.
+* \return 占쏙옙占쏙옙占쏙옙占쏙옙
 */
 RwBool CInputActionMap::RegisterIgnoreKey( RwUInt8 byKey, int nRefCount ) 
 {
 	IGNOREMAP::iterator it = m_mapIgnore.find( byKey );
-	// �̹� ������
+	// 占싱뱄옙 占쏙옙占쏙옙占쏙옙
 	if( it != m_mapIgnore.end() )
 	{
 		return FALSE;
 	}
 
-	// �������� �ʴ´ٸ� �߰��Ѵ�.
+	// 占쏙옙占쏙옙占쏙옙占쏙옙 占십는다몌옙 占쌩곤옙占싼댐옙.
 	m_mapIgnore[byKey] = (RwUInt8)nRefCount;
 	
 	return TRUE;
@@ -746,13 +746,13 @@ RwBool CInputActionMap::RemoveIgnoreKey( RwUInt8 byKey )
 {
 	IGNOREMAP::iterator it = m_mapIgnore.find( byKey );
 
-	// �������� ����
+	// 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙
 	if( it == m_mapIgnore.end() )
 	{
 		return FALSE;
 	}
 
-	// �����ϸ� ����
+	// 占쏙옙占쏙옙占싹몌옙 占쏙옙占쏙옙
 	m_mapIgnore.erase( it );
 
 	return TRUE;
@@ -762,19 +762,19 @@ RwBool CInputActionMap::IsIgnoreKey( RwUInt8 byKey, RwBool bRef /*= FALSE */ )
 {
 	IGNOREMAP::iterator it = m_mapIgnore.find( byKey );
 
-	// ���õǴ� Ű�� �ƴ�.
+	// 占쏙옙占시되댐옙 키占쏙옙 占싣댐옙.
 	if( it == m_mapIgnore.end() )
 		return FALSE;
 	
-	// BYTE���� INVALID��� REF�� �������� �ʰ� ����
+	// BYTE값이 INVALID라면 REF를 감소하지 않고 무시
 	if( it->second == 0xFF )
 		return TRUE;
 
-	// Ref Count ����
+	// Ref Count 占쏙옙占쏙옙
 	if( bRef )
 		(*it).second--;
 
-	// 0 ���� �۰ų� ������ ����
+	// 0 占쏙옙占쏙옙 占쌜거놂옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙
 	if( (*it).second <= 0 )
 		m_mapIgnore.erase( it );
 
@@ -932,7 +932,7 @@ void CInputActionMap::HitTestUpDbClickDashMap(SInputDashMap& sDashMap)
 
 void CInputActionMap::CallDashMove(RwUInt32 uiServerDashMoveFlags)
 {
-	// dash ������(0.1 �� �ȿ� �� �ٽ� ������). 
+	// dash 占쏙옙占쏙옙占쏙옙(0.1 占쏙옙 占싫울옙 占쏙옙 占쌕쏙옙 占쏙옙占쏙옙占쏙옙). 
 	if(!m_bActive || !m_pCallKeyboardDashMove)
 		return;
 
@@ -965,7 +965,7 @@ void CInputActionMap::ActionDownMoveHandler( RwUInt32 uiAction )
 		m_uiKey2MoveValidFlags = m_uiMoveFlags;
 	}
 
-	// ACTION�� ���� �ൿ ����
+	// ACTION占쏙옙 占쏙옙占쏙옙 占썅동 占쏙옙占쏙옙
 	switch( uiAction )
 	{
 	case ACTION_AVATAR_FORWARD:
@@ -1014,7 +1014,7 @@ void CInputActionMap::ActionDownMoveHandler( RwUInt32 uiAction )
 * \brief �뽬 �̵��� üũ�Ѵ�.
 *
 * ���� �׼ǿ� �´� �뽬�� �ߵ��� Ȯ���Ͽ� ������ ������ �뽬�� �����Ѵ�.
-* \param iAction (unsigned int)�׼�ID
+* \param iAction (unsigned int)占쌓쇽옙ID
 */
 void CInputActionMap::ActionDownDashMoveHandler( RwUInt32 uiAction ) 
 {
@@ -1064,13 +1064,13 @@ void CInputActionMap::ActionDownBehaviorHandler( RwUInt32 uiAction )
 			}
 			break;
 		}
-	case ACTION_AVATAR_LOOTING:		// ����
+	case ACTION_AVATAR_LOOTING:		// 占쏙옙占쏙옙
 		{
 			if( m_pCallLooting )
 				m_pCallLooting->Call();
 			break;
 		}
-	case ACTION_AVATAR_CHARGE:		// �� ������
+	case ACTION_AVATAR_CHARGE:		// 占쏙옙 占쏙옙占쏙옙占쏙옙
 		{
 			if( m_pCallCharging && IsDownAction( ACTION_AVATAR_CHARGE ) == FALSE  )
 			{
@@ -1092,11 +1092,11 @@ void CInputActionMap::ActionDownBehaviorHandler( RwUInt32 uiAction )
 }
 
 /**
-* \brief Ű�� ������ �� ó���Ǵ� GUI �׼ǵ�
+* \brief 키占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙 처占쏙옙占실댐옙 GUI 占쌓션듸옙
 *
-* Ű�� ���� ���¿��� �߻��� �� �ִ� GUI�׼ǵ��� �˻��Ͽ� �����ϰ� 
+* 키占쏙옙 占쏙옙占쏙옙 占쏙옙占승울옙占쏙옙 占쌩삼옙占쏙옙 占쏙옙 占쌍댐옙 GUI占쌓션듸옙占쏙옙 占싯삼옙占싹울옙 占쏙옙占쏙옙占싹곤옙 
 *
-* \param iAction (unsigned int)�׼�ID
+* \param iAction (unsigned int)占쌓쇽옙ID
 */
 void CInputActionMap::ActionDownGuiHandler( RwUInt32 uiAction ) 
 {
@@ -1105,14 +1105,14 @@ void CInputActionMap::ActionDownGuiHandler( RwUInt32 uiAction )
 
 	switch( uiAction )
 	{
-	case ACTION_TARGET_SELF:		// �ڱ� �ڽ� ����
+	case ACTION_TARGET_SELF:		// 占쌘깍옙 占쌘쏙옙 占쏙옙占쏙옙
 		{
 			if( m_pCallAvatarSelect )
 				m_pCallAvatarSelect->Call();
 			break;
 		}
 
-	case ACTION_QUICK_1:			// ������
+	case ACTION_QUICK_1:			// 占쏙옙占쏙옙占쏙옙
 		{
 			if( m_pCallSkillQuickSlotDown && IsDownAction( ACTION_QUICK_1 ) == FALSE )
 			{
@@ -1221,7 +1221,7 @@ void CInputActionMap::ActionDownGuiHandler( RwUInt32 uiAction )
 			break;
 		}
 
-		// Ȯ�� 1��
+		// 확占쏙옙 1占쏙옙
 	case ACTION_QUICK_1_EX:
 		{
 			if( m_pCallSkillQuickSlotExDown )
@@ -1331,7 +1331,7 @@ void CInputActionMap::ActionDownGuiHandler( RwUInt32 uiAction )
 			break;
 		}
 
-		// Ȯ�� 2��
+		// 확占쏙옙 2占쏙옙
 	case ACTION_QUICK_1_EX2:
 		{
 			if( m_pCallSkillQuickSlotEx2Down )
@@ -1441,28 +1441,28 @@ void CInputActionMap::ActionDownGuiHandler( RwUInt32 uiAction )
 			break;
 		}
 
-	case ACTION_TARGET_1STPARTY:		// ù��° ��Ƽ�� ����
+	case ACTION_TARGET_1STPARTY:		// 첫占쏙옙째 占쏙옙티占쏙옙 占쏙옙占쏙옙
 		{
 			if( m_pCallPartySelect )
 				m_pCallPartySelect->Call( 0 );
 
 			break;
 		}
-	case ACTION_TARGET_2NDPARTY:		//  �ι�° ��Ƽ�� ����
+	case ACTION_TARGET_2NDPARTY:		//  占싸뱄옙째 占쏙옙티占쏙옙 占쏙옙占쏙옙
 		{
 			if( m_pCallPartySelect )
 				m_pCallPartySelect->Call( 1 );
 
 			break;
 		}
-	case ACTION_TARGET_3RDPARTY:		// ����°
+	case ACTION_TARGET_3RDPARTY:		// 占쏙옙占쏙옙째
 		{
 			if( m_pCallPartySelect )
 				m_pCallPartySelect->Call( 2 );
 
 			break;
 		}
-	case ACTION_TARGET_4THPARTY:		// �׹�°
+	case ACTION_TARGET_4THPARTY:		// 占쌓뱄옙째
 		{
 			if( m_pCallPartySelect )
 				m_pCallPartySelect->Call( 3 );
@@ -1484,15 +1484,15 @@ void CInputActionMap::ActionDownGuiHandler( RwUInt32 uiAction )
 /**
 * \brief Ű���� ���� �̵��׼� �ڵ鷯
 *
-* Ű ���� ���� �߻��ϴ� �̵� �׼��� ó���Ѵ�.
+* 키 占쏙옙占쏙옙 占쏙옙占쏙옙 占쌩삼옙占싹댐옙 占싱듸옙 占쌓쇽옙占쏙옙 처占쏙옙占싼댐옙.
 *
-* \param iAction (unsigned int)�׼�ID
+* \param iAction (unsigned int)占쌓쇽옙ID
 */
 void CInputActionMap::ActionUpMoveHandler( RwUInt32 uiAction ) 
 {
 	switch( uiAction )
 	{
-		case ACTION_AVATAR_FORWARD:	// ����
+		case ACTION_AVATAR_FORWARD:	// 占쏙옙占쏙옙
 		{
 			m_uiMoveFlags &= (~NTL_BIT_FRONT_MOVE);
 
@@ -1510,7 +1510,7 @@ void CInputActionMap::ActionUpMoveHandler( RwUInt32 uiAction )
 
 			break;
 		}
-		case ACTION_AVATAR_LEFTTURN: // ��ȸ��
+		case ACTION_AVATAR_LEFTTURN: // 占쏙옙회占쏙옙
 		{
 			m_uiMoveFlags &= (~NTL_BIT_TURN_LEFT_MOVE);
 
@@ -1524,7 +1524,7 @@ void CInputActionMap::ActionUpMoveHandler( RwUInt32 uiAction )
 
 			break;
 		}
-		case ACTION_AVATAR_BACKWARD: // ����
+		case ACTION_AVATAR_BACKWARD: // 占쏙옙占쏙옙
 		{
 			m_uiMoveFlags &= (~NTL_BIT_BACK_MOVE);
 
@@ -1537,7 +1537,7 @@ void CInputActionMap::ActionUpMoveHandler( RwUInt32 uiAction )
 				m_pCallKeyboardMove->Call(m_uiServerMoveFlags);
 		}
 		break;
-		case ACTION_AVATAR_RIGHTTURN: // ��ȸ��
+		case ACTION_AVATAR_RIGHTTURN: // 占쏙옙회占쏙옙
 		{
 			m_uiMoveFlags &= (~NTL_BIT_TURN_RIGHT_MOVE);
 
@@ -1587,7 +1587,7 @@ void CInputActionMap::ActionUpMoveHandler( RwUInt32 uiAction )
 *
 * Ű���� ���� �̵� �׼ǿ� �뽬�� ó���ؾ� �ϴ� �κ����� Ȯ���ϰ� �����Ѵ�.
 *
-* \param iAction (unsigned int)�׼�ID
+* \param iAction (unsigned int)占쌓쇽옙ID
 */
 void CInputActionMap::ActionUpDashMoveHandler( RwUInt32 uiAction ) 
 {
@@ -1635,13 +1635,13 @@ void CInputActionMap::ActionUpBehaviorHandler( RwUInt32 uiAction )
 
 			break;
 		}
-	case ACTION_TARGET_AUTO:			// ����� �� ����
+	case ACTION_TARGET_AUTO:			// 가까운 적 선택
 		{
 			if( m_pCallAutoTarget )
 				m_pCallAutoTarget->Call();
 			break;
 		}
-	case ACTION_TARGET_AUTOATK:			// �ڵ� ����
+	case ACTION_TARGET_AUTOATK:			// 占쌘듸옙 占쏙옙占쏙옙
 		{
 			if( m_pCallAutoAttack )
 				m_pCallAutoAttack->Call();
@@ -1662,7 +1662,7 @@ void CInputActionMap::ActionUpBehaviorHandler( RwUInt32 uiAction )
 			}
 			break;
 		}
-	case ACTION_AVATAR_JUMP:		// ���� Flag ȸ��
+	case ACTION_AVATAR_JUMP:		// 占쏙옙占쏙옙 Flag 회占쏙옙
 		{
 			if( m_pCallJump )
 			{
@@ -1775,7 +1775,7 @@ void CInputActionMap::ActionUpBehaviorHandler( RwUInt32 uiAction )
 /**
 * \brief Ű���� ���� GUI �׼��� �ڵ鷯
 *
-* \param iAction (unsigned int)�׼�ID
+* \param iAction (unsigned int)占쌓쇽옙ID
 */
 void CInputActionMap::ActionUpGuiHandler( RwUInt32 uiAction ) 
 {
@@ -1899,7 +1899,7 @@ void CInputActionMap::ActionUpGuiHandler( RwUInt32 uiAction )
 			break;
 		}
 
-		// Ȯ�� 1��
+		// 확占쏙옙 1占쏙옙
 	case ACTION_QUICK_1_EX:
 		{
 			if( m_pCallSkillQuickSlotExUp )
@@ -2009,7 +2009,7 @@ void CInputActionMap::ActionUpGuiHandler( RwUInt32 uiAction )
 			break;
 		}
 
-	// Ȯ�� 2��
+	// 확占쏙옙 2占쏙옙
 	case ACTION_QUICK_1_EX2:
 		{
 			if( m_pCallSkillQuickSlotEx2Up )
@@ -2147,7 +2147,7 @@ void CInputActionMap::ActionUpGuiHandler( RwUInt32 uiAction )
 				m_pCallChatPageChange->Call( 1 );
 		}
 		break;
-	case ACTION_GLOBAL_SNAPSHOT:		// ��ũ�� ĸ�� ���
+	case ACTION_GLOBAL_SNAPSHOT:		// 스크린 캡쳐 기능
 		{
 			GetNtlGameCameraManager()->SetCaptureScreenShot();
 			break;
@@ -2166,11 +2166,11 @@ void CInputActionMap::ActionUpGuiHandler( RwUInt32 uiAction )
 */
 void CInputActionMap::RegisterFlagMap() 
 {
-	m_mapFlag[ACTION_AVATAR_CHARGE] = FALSE;		// �� ������
-	m_mapFlag[ACTION_AVATAR_BLOCKING] = FALSE;		// ����ŷ
+	m_mapFlag[ACTION_AVATAR_CHARGE] = FALSE;		// 占쏙옙 占쏙옙占쏙옙占쏙옙
+	m_mapFlag[ACTION_AVATAR_BLOCKING] = FALSE;		// 占쏙옙占쏙옙킹
 	m_mapFlag[ACTION_AVATAR_SITDOWN] = FALSE;		// sit/stand up & fly down
-	m_mapFlag[ACTION_AVATAR_JUMP] = FALSE;			// ����
-	m_mapFlag[ACTION_QUICK_1] = FALSE;				// ������ ����Ű��
+	m_mapFlag[ACTION_AVATAR_JUMP] = FALSE;			// 占쏙옙占쏙옙
+	m_mapFlag[ACTION_QUICK_1] = FALSE;				// 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙키占쏙옙
 	m_mapFlag[ACTION_QUICK_2] = FALSE;
 	m_mapFlag[ACTION_QUICK_3] = FALSE;
 	m_mapFlag[ACTION_QUICK_4] = FALSE;
@@ -2209,9 +2209,9 @@ void CInputActionMap::RegisterFlagMap()
 }
 
 /**
-* \brief ���� �׼��� ���¸� ������ �´�.
-* \param iAction	�׼�
-* \return �׼��� ���� ( ������ FALSE )
+* \brief 占쏙옙占쏙옙 占쌓쇽옙占쏙옙 占쏙옙占승몌옙 占쏙옙占쏙옙占쏙옙 占승댐옙.
+* \param iAction	占쌓쇽옙
+* \return 占쌓쇽옙占쏙옙 占쏙옙占쏙옙 ( 占쏙옙占쏙옙占쏙옙 FALSE )
 */
 RwBool CInputActionMap::IsDownAction( RwUInt32 uiAction ) 
 {
@@ -2225,10 +2225,10 @@ RwBool CInputActionMap::IsDownAction( RwUInt32 uiAction )
 }
 
 /**
-* \brief �׼��� �÷��׸� �����Ѵ�.
-* \param iAction	�׼��� NUMBER
-* \param bDown		�ٿ��� ����
-* \return ��������
+* \brief 占쌓쇽옙占쏙옙 占시뤄옙占쌓몌옙 占쏙옙占쏙옙占싼댐옙.
+* \param iAction	占쌓쇽옙占쏙옙 NUMBER
+* \param bDown		占쌕울옙占쏙옙 占쏙옙占쏙옙
+* \return 占쏙옙占쏙옙占쏙옙占쏙옙
 */
 RwBool CInputActionMap::SetFlagAction( RwUInt32 uiAction, RwBool bDown ) 
 {
@@ -2411,10 +2411,10 @@ void CInputActionMap::UnLinkChatPageChane( void )
 }
 
 /**
-* \brief Ű�� Up/Down Ƚ���� ����Ѵ�.
-* \param byChar		(RwUInt8) Ű�� ������
-* \param bDown		(RwBool) Ű�� Up/Down ����
-* \return Ű�� �̹� �ʿ� �����ؼ� Ref ��/���� �Ͼ�� ��� TRUE
+* \brief 키의 Up/Down 횟수를 기록한다.
+* \param byChar		(RwUInt8) 키占쏙옙 占쏙옙占쏙옙占쏙옙
+* \param bDown		(RwBool) 키占쏙옙 Up/Down 占쏙옙占쏙옙
+* \return 키가 이미 맵에 존재해서 Ref 증/감이 일어났을 경우 TRUE
 */
 RwBool CInputActionMap::KeyReference( RwUInt8 byChar, RwBool bDown /* = TRUE */)
 {
@@ -2422,14 +2422,14 @@ RwBool CInputActionMap::KeyReference( RwUInt8 byChar, RwBool bDown /* = TRUE */)
 	UPDOWNREF::iterator it = m_mapUpdownRef.find( byChar );
 	if( it != m_mapUpdownRef.end() )
 	{
-		// Ref ����
+		// Ref 占쏙옙占쏙옙
 		if( bDown )
 		{
 			(*it).second++;
 		}
 		else
 		{
-			// Ref ����
+			// Ref 占쏙옙占쏙옙
 			(*it).second--;
 			if( (*it).second <= 0 )
 				m_mapUpdownRef.erase( it );

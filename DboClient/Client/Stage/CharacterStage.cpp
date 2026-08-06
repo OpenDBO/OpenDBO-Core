@@ -325,7 +325,7 @@ void CCharacterStage::CreateDummyAvatar( BYTE byRace, BYTE byClass, BYTE byGende
 	pAvatarInfo->sCharPf.tblidx = pTblData->tblidx;	
 	
 	//Character Name
-	//wcscpy_s(pAvatarInfo->sCharPf.awchName, NTL_MAX_SIZE_CHAR_NAME_UNICODE, L"µ¿µ¿µ¿");
+	//wcscpy_s(pAvatarInfo->sCharPf.awchName, NTL_MAX_SIZE_CHAR_NAME_UNICODE, L"ë™ë™ë™");
 
 	pAvatarInfo->sCharPf.sPcShape.byFace = byFace;
 	pAvatarInfo->sCharPf.sPcShape.byHair = byHair;
@@ -422,7 +422,7 @@ void CCharacterStage::CreateDummyAvatar( BYTE byRace, BYTE byClass, BYTE byGende
 		pAvatarInfo->sItemPf[pAvatarInfo->byItemCount].byPos				= pNewbieTblData->abyPos[i];
 		pAvatarInfo->sItemPf[pAvatarInfo->byItemCount].byStackcount			= 1;
 		pAvatarInfo->sItemPf[pAvatarInfo->byItemCount].byRank				= ITEM_RANK_NORMAL;
-		pAvatarInfo->sItemPf[pAvatarInfo->byItemCount].byCurDur;			// ¿©±â´Â Ã¤¿ö ³ÖÀ¸½Ã¸é µË´Ï´Ù.
+		pAvatarInfo->sItemPf[pAvatarInfo->byItemCount].byCurDur;			// ì—¬ê¸°ëŠ” ì±„ì›Œ ë„£ìœ¼ì‹œë©´ ë©ë‹ˆë‹¤.
 		pAvatarInfo->sItemPf[pAvatarInfo->byItemCount].Option				= INVALID_TBLIDX;
 		pAvatarInfo->sItemPf[pAvatarInfo->byItemCount].bNeedToIdentify		= FALSE;
 		pAvatarInfo->sItemPf[pAvatarInfo->byItemCount].byGrade				= 0;	
@@ -565,7 +565,7 @@ void CCharacterStage::CreateDownLoadAvatar(sPC_SUMMARY *pCharInfo )
 		pAvatarInfo->sItemPf[pAvatarInfo->byItemCount].byPos				= i;
 		pAvatarInfo->sItemPf[pAvatarInfo->byItemCount].byStackcount			= 1;
 		pAvatarInfo->sItemPf[pAvatarInfo->byItemCount].byRank				= pCharInfo->sItem[i].byRank;
-		pAvatarInfo->sItemPf[pAvatarInfo->byItemCount].byCurDur;			// ¿©±â´Â Ã¤¿ö ³ÖÀ¸½Ã¸é µË´Ï´Ù.
+		pAvatarInfo->sItemPf[pAvatarInfo->byItemCount].byCurDur;			// ì—¬ê¸°ëŠ” ì±„ì›Œ ë„£ìœ¼ì‹œë©´ ë©ë‹ˆë‹¤.
 		pAvatarInfo->sItemPf[pAvatarInfo->byItemCount].Option				= pCharInfo->sItem[i].Option;
 		pAvatarInfo->sItemPf[pAvatarInfo->byItemCount].bNeedToIdentify		= FALSE;
 		pAvatarInfo->sItemPf[pAvatarInfo->byItemCount].byGrade				= pCharInfo->sItem[i].byGrade;

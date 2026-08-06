@@ -53,7 +53,7 @@ RwBool CFlashNotifyGui::Create()
 	m_pThis = (gui::CDialog*)GetComponent("dlgMain");
 	m_pThis->SetPriority(dDIALOGPRIORITY_NOTIFY);
 
-	// ÃøÁ¤½ÃÀÇ ¹è°æ
+	// ì¸¡ì •ì‹œì˜ ë°°ê²½
 	m_pFlashBackground = (gui::CFlash*)GetComponent("flaBackground");
 	
 	// sig	
@@ -405,7 +405,7 @@ VOID CFlashNotifyGui::HandleEvents( RWS::CMsg &msg )
 		}
 		else if( pEvent->uiState == WORLD_STATE_TMQ_ARRIVE )
 		{
-			// please wait ÇÃ·¡½¬¸¦ ²ö´Ù
+			// please wait í”Œëž˜ì‰¬ë¥¼ ëˆë‹¤
 			CDboEventGenerator::FlashNotifyString(NULL);
 		}
 		else if( pEvent->uiState == WORLD_STATE_TMQ_FAIL )
@@ -414,9 +414,9 @@ VOID CFlashNotifyGui::HandleEvents( RWS::CMsg &msg )
 			CDboEventGenerator::FlashNotify(0, 0, 3);
 		}
 	}
-    else if(msg.Id == g_EventSobConvertClass)       // Á÷¾÷ Ã¼ÀÎÁö½ÃÀÇ ÇÃ·¡½Ã ¿¬Ãâ
+    else if(msg.Id == g_EventSobConvertClass)       // ì§ì—… ì²´ì¸ì§€ì‹œì˜ í”Œëž˜ì‹œ ì—°ì¶œ
     {
-        // ÀÚ½ÅÀÇ ÀÌº¥Æ®ÀÏ °æ¿ì¿¡¸¸ ÇÃ·¡½Ã¸¦ Àç»ýÇÑ´Ù.
+        // ìžì‹ ì˜ ì´ë²¤íŠ¸ì¼ ê²½ìš°ì—ë§Œ í”Œëž˜ì‹œë¥¼ ìž¬ìƒí•œë‹¤.
         SNtlEventSobConvertClass* pData = (SNtlEventSobConvertClass*)msg.pData;
         if(pData->hSerialId == GetNtlSLGlobal()->GetSobAvatar()->GetSerialID())
         {
@@ -425,7 +425,7 @@ VOID CFlashNotifyGui::HandleEvents( RWS::CMsg &msg )
     }
     else if(msg.Id == g_EventSobInfoUpdate)
     {
-        // ·¹º§¾÷ ÇÃ·¡½Ã ¿¬Ãâ
+        // ë ˆë²¨ì—… í”Œëž˜ì‹œ ì—°ì¶œ
         SNtlEventSobInfoUpdate* pData = (SNtlEventSobInfoUpdate*)msg.pData;
         if(pData->hSerialId == GetNtlSLGlobal()->GetSobAvatar()->GetSerialID() &&
            pData->uiUpdateType == (EVENT_AIUT_ATTR | EVENT_AIUT_ATTR_LEVELUP))

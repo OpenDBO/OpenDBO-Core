@@ -19,7 +19,7 @@ public:
 	
 	CSurfaceManager(CResourceManager *pResourceManager);
 
-	//: component manager ¼Ò¸êÀÚ...	
+	//: component manager ì†Œë©¸ìž...	
 	virtual ~CSurfaceManager();
 
 //! Attributes:
@@ -31,14 +31,14 @@ public:
 	//: Surface page remove
 	VOID RemovePage(const std::string& str);
 
-	//: script »ç¿ëÇÏÁö ¾Ê°í, µ¿ÀûÀ¸·Î »ý¼ºÇÒ ¶§.
+	//: script ì‚¬ìš©í•˜ì§€ ì•Šê³ , ë™ì ìœ¼ë¡œ ìƒì„±í•  ë•Œ.
 	CSurface CreateSurface(const std::string& strTex);
 
-	//: script »ç¿ëÇÏÁö ¾Ê°í, µ¿ÀûÀ¸·Î »èÁ¦ÇÒ ¶§.
+	//: script ì‚¬ìš©í•˜ì§€ ì•Šê³ , ë™ì ìœ¼ë¡œ ì‚­ì œí•  ë•Œ.
 	VOID RemoveSurface(CSurface& surface);
 
 	//: strName => surface name
-	//: surface nameÀ¸·Î surface¸¦ Á¤º¸¸¦ ¾ò´Â´Ù.
+	//: surface nameìœ¼ë¡œ surfaceë¥¼ ì •ë³´ë¥¼ ì–»ëŠ”ë‹¤.
 	CSurface GetSurface(const std::string& strPage,const std::string& strName);
 
 	// Append By Peessi 

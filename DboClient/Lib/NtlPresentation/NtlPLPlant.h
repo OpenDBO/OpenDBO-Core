@@ -30,7 +30,7 @@ public:
 	void	OnLoad(CNtlWorldSector* pSector);
 	void	OnUnload(CNtlWorldSector* pSector);
 	
-	// World Editor¿¡¼­ »ç¿ëÇÏ±â À§ÇÑ ÇÔ¼ö.
+	// World Editorì—ì„œ ì‚¬ìš©í•˜ê¸° ìœ„í•œ í•¨ìˆ˜.
 #ifdef dNTL_WORLD_TOOL_MODE
 	void	OnCreate(CNtlWorldSector* pSector, RwInt32 iTileIdx, RwInt32 iSetIdx);
 	void	OnDelete(CNtlWorldSector* pSector, RwInt32 iTileIdx);

@@ -1,4 +1,4 @@
-// Attr_ACT_BroadMsg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_ACT_BroadMsg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_ACT_BroadMsg.h"
 
 
-// CAttr_ACT_BroadMsg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_ACT_BroadMsg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_ACT_BroadMsg, CAttr_Page, 1)
 
@@ -249,10 +249,10 @@ BOOL CAttr_ACT_BroadMsg::OnInitDialog()
 {
 	CAttr_Page::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
-	m_ctrExcutionType.SetItemData( m_ctrExcutionType.AddString( _T("½ÃÀÛ") ), eBROAD_MSG_EXCUTION_TYPE_START );
-	m_ctrExcutionType.SetItemData( m_ctrExcutionType.AddString( _T("Á¾·á") ), eBROAD_MSG_EXCUTION_TYPE_END );
-	int nIdx = m_ctrExcutionType.AddString( _T("½Ã°£") );
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
+	m_ctrExcutionType.SetItemData( m_ctrExcutionType.AddString( _T("ì‹œì‘") ), eBROAD_MSG_EXCUTION_TYPE_START );
+	m_ctrExcutionType.SetItemData( m_ctrExcutionType.AddString( _T("ì¢…ë£Œ") ), eBROAD_MSG_EXCUTION_TYPE_END );
+	int nIdx = m_ctrExcutionType.AddString( _T("ì‹œê°„") );
 	m_ctrExcutionType.SetItemData( nIdx, eBROAD_MSG_EXCUTION_TYPE_TIME );
 	m_ctrExcutionType.SetCurSel( nIdx );
 
@@ -304,7 +304,7 @@ BOOL CAttr_ACT_BroadMsg::OnInitDialog()
 	OnCbnSelchangeTsActAttrBroadmsgExcutionTypeCombo();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 
@@ -313,7 +313,7 @@ BEGIN_MESSAGE_MAP(CAttr_ACT_BroadMsg, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_ACT_BroadMsg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_ACT_BroadMsg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CAttr_ACT_BroadMsg::OnCbnSelchangeTsActAttrBroadmsgExcutionTypeCombo()
 {

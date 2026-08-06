@@ -52,7 +52,7 @@ RwBool CTimeNotifyGui::Create()
 
 	CRectangle rect;
 
-	// ºÐ
+	// ë¶„
 	m_MinuteNumber[DISPLAY_TYPE_NORMAL].Create(ND_LEFT, NVD_TOP, 0, dNCFLAG_NONE, 2);
 	m_MinuteNumber[DISPLAY_TYPE_NORMAL].SetSurface(0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CommonNumber.srf", "srfTimeLimit_0" ));
 	m_MinuteNumber[DISPLAY_TYPE_NORMAL].SetSurface(1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CommonNumber.srf", "srfTimeLimit_1" ));
@@ -79,11 +79,11 @@ RwBool CTimeNotifyGui::Create()
 	m_MinuteNumber[DISPLAY_TYPE_WARNING].SetSurface(9, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CommonNumber.srf", "srfTimeLimitWarning_9" ));
 	m_MinuteNumber[DISPLAY_TYPE_WARNING].SetNumGap(-5);
 
-	// Ã³À½¿¡ ÀÌ¹ÌÁöµéÀÌ ¹èÄ¡µÇÁö ¾ÊÀº »óÅÂ·Î È­¸é¿¡ ±×·ÁÁö´Â °æ¿ì°¡ ÀÖ¾î¼­ ÀÓÀÇÀÇ ¼ýÀÚ·Î ÃÊ±âÈ­ ÇØÁØ´Ù
+	// ì²˜ìŒì— ì´ë¯¸ì§€ë“¤ì´ ë°°ì¹˜ë˜ì§€ ì•Šì€ ìƒíƒœë¡œ í™”ë©´ì— ê·¸ë ¤ì§€ëŠ” ê²½ìš°ê°€ ìžˆì–´ì„œ ìž„ì˜ì˜ ìˆ«ìžë¡œ ì´ˆê¸°í™” í•´ì¤€ë‹¤
 	m_MinuteNumber[DISPLAY_TYPE_NORMAL].SetNumber(0);
 	m_MinuteNumber[DISPLAY_TYPE_WARNING].SetNumber(0);
 
-	// ÃÊ
+	// ì´ˆ
 	m_SecondNumber[DISPLAY_TYPE_NORMAL].Create(ND_RIGHT, NVD_TOP, 0, dNCFLAG_NONE, 2);
 	m_SecondNumber[DISPLAY_TYPE_NORMAL].SetSurface(0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CommonNumber.srf", "srfTimeLimit_0" ));
 	m_SecondNumber[DISPLAY_TYPE_NORMAL].SetSurface(1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CommonNumber.srf", "srfTimeLimit_1" ));
@@ -110,11 +110,11 @@ RwBool CTimeNotifyGui::Create()
 	m_SecondNumber[DISPLAY_TYPE_WARNING].SetSurface(9, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CommonNumber.srf", "srfTimeLimitWarning_9" ));
 	m_SecondNumber[DISPLAY_TYPE_WARNING].SetNumGap(-5);
 
-	// Ã³À½¿¡ ÀÌ¹ÌÁöµéÀÌ ¹èÄ¡µÇÁö ¾ÊÀº »óÅÂ·Î È­¸é¿¡ ±×·ÁÁö´Â °æ¿ì°¡ ÀÖ¾î¼­ ÀÓÀÇÀÇ ¼ýÀÚ·Î ÃÊ±âÈ­ ÇØÁØ´Ù
+	// ì²˜ìŒì— ì´ë¯¸ì§€ë“¤ì´ ë°°ì¹˜ë˜ì§€ ì•Šì€ ìƒíƒœë¡œ í™”ë©´ì— ê·¸ë ¤ì§€ëŠ” ê²½ìš°ê°€ ìžˆì–´ì„œ ìž„ì˜ì˜ ìˆ«ìžë¡œ ì´ˆê¸°í™” í•´ì¤€ë‹¤
 	m_SecondNumber[DISPLAY_TYPE_NORMAL].SetNumber(0);
 	m_SecondNumber[DISPLAY_TYPE_WARNING].SetNumber(0);
 
-	// ÄÝ·Ð
+	// ì½œë¡ 
 	m_srfColon[DISPLAY_TYPE_NORMAL].SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CommonNumber.srf", "srfTimeLimit_colon" ) );
 
 	m_srfColon[DISPLAY_TYPE_WARNING].SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CommonNumber.srf", "srfTimeLimitWarning_colon" ) );
@@ -463,7 +463,7 @@ VOID CTimeNotifyGui::HandleEvents( RWS::CMsg &msg )
 			m_TimeInfo.byType	= TIME_TYPE_BUDOKAI_LIMIT_TIME;
 			m_TimeInfo.fElapsed = (RwReal)( pData->dwRemainTime / 1000.f );
 
-			//// °üÀüÀÚÀÎÁö Âü°¡ÀÚÀÎÁö ÆÇº°
+			//// ê´€ì „ìžì¸ì§€ ì°¸ê°€ìžì¸ì§€ íŒë³„
 			//stTBudokaiMember* pMember = pTBWorldConcept->FindMember( Logic_GetAvatarHandle() );
 			//if( pMember )
 			//	m_TimeInfo.fElapsed = (RwReal)( pTBWorldConcept->GetMatchTbl()->dwStageReadyTime ) + 0.99f;
@@ -586,7 +586,7 @@ VOID CTimeNotifyGui::HandleEvents( RWS::CMsg &msg )
 		SNtlEventMajorMatchStageFinish* pData = reinterpret_cast<SNtlEventMajorMatchStageFinish*>( msg.pData );
 
 #ifndef BUDOKAI_TIME_DEBUG
-		// ¿ÉÀú¹ö ¸ðµåÀÏ °æ¿ì °æ±â Áß°£¿¡µµ ³ª¿Ã ¼ö ÀÖ´Ù.
+		// ì˜µì €ë²„ ëª¨ë“œì¼ ê²½ìš° ê²½ê¸° ì¤‘ê°„ì—ë„ ë‚˜ì˜¬ ìˆ˜ ìžˆë‹¤.
 		if( !pData->bIsObserver )
 		{
 			if( m_TimeInfo.byType == TIME_TYPE_BUDOKAI_LIMIT_TIME )

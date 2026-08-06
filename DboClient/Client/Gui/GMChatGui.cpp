@@ -39,7 +39,7 @@ RwBool CGMChatGui::Create()
 	m_pThis			= (gui::CDialog*)GetComponent("dlgMain");
 	m_pThis->SetPriority(dDIALOGPRIORITY_QUICKSLOT);
 
-	// ´ÙÀÌ¾ó·Î±× Á¦¸ñ
+	// ë‹¤ì´ì–¼ë¡œê·¸ ì œëª©
 	m_pDialogName	= (gui::CStaticBox*)GetComponent( "stbDialogName" );
 	m_pDialogName->SetPosition(DBOGUI_DIALOG_TITLE_X, DBOGUI_DIALOG_TITLE_Y);
 	WCHAR awcBuffer[256] = L"";
@@ -47,20 +47,20 @@ RwBool CGMChatGui::Create()
 	swprintf_s(awcBuffer, 256, L"%s : %s", pwcTitle, GetPetitionManager()->GetChattingGMName() );
 	m_pDialogName->SetText( awcBuffer );
 
-	// ´ëÈ­³»¿ë
+	// ëŒ€í™”ë‚´ìš©
 	m_pOutDisplay	= (gui::COutputBox*)GetComponent( "outputDisplay" );
 	m_pOutDisplay->SetLineSpace(CHAT_DISP_LINE_GAP);
 	m_pOutDisplay->SetMaxLine(CHAT_DISP_MAX_LINE);
 
-	// IME »óÅÂ
+	// IME ìƒíƒœ
 	m_pIME			= (gui::CStaticBox*)GetComponent( "stbIME" );
 	OnIMEChange( m_pInput->GetCurrentIMEState() );
 
-	// À¯Àú ÀÎÇ²Ã¢
+	// ìœ ì € ì¸í’‹ì°½
 	m_pInput		= (gui::CInputBox*)GetComponent( "inbChat" );
 	m_pInput->SetCaretSize(dINPUTBOX_CARET_WIDTH, dINPUTBOX_CARET_HEIGHT);
 
-	// ¹è°æ
+	// ë°°ê²½
 	m_BackPanel.SetType(CWindowby3::WT_VERTICAL);
 	m_BackPanel.SetSurface( 0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GMChat.srf", "srfBackPanelLeft" ) );
 	m_BackPanel.SetSurface( 1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GMChat.srf", "srfBackPanelCenter" ) );
@@ -68,7 +68,7 @@ RwBool CGMChatGui::Create()
 	m_BackPanel.SetSize(269, 305);
 	m_BackPanel.SetPositionfromParent(12, 45);
 
-	// ÀÎÇ² ¹è°æ
+	// ì¸í’‹ ë°°ê²½
 	m_InputBack.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GMChat.srf", "srfInputBack" ) );
 	m_InputBack.SetPositionfromParent(12, 359);
 
@@ -81,7 +81,7 @@ RwBool CGMChatGui::Create()
 	m_slotMove				= m_pThis->SigMove().Connect( this, &CGMChatGui::OnMove );
 	m_slotPaint				= m_pThis->SigPaint().Connect( this, &CGMChatGui::OnPaint );
 
-	// SurfaceµéÀ» À§Ä¡½ÃÅ°±â À§ÇØ
+	// Surfaceë“¤ì„ ìœ„ì¹˜ì‹œí‚¤ê¸° ìœ„í•´
 	CRectangle rtScreen = m_pThis->GetScreenRect();
 	OnMove(rtScreen.left, rtScreen.top);
 

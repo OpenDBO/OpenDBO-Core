@@ -2,7 +2,7 @@
  *
  * File			: NtlBehaviorDef.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2006. 2. 22	
  * Abstract		: actor behavior definition stuff
  *****************************************************************************
@@ -105,7 +105,7 @@
 #define NTL_BENAME_PROJ_MULTI_HISSHIDAN		"Behavior_ProjMultiHisshidan"
 #define NTL_BENAME_PROJ_MAGARE              "Behaviot_ProjMagare"
 
-// actor ¡¬«• ∫∏¡§ø° ¥Î«— ¡§∫∏
+// actor Ï¢åÌëú Î≥¥Ï†ïÏóê ÎåÄÌïú Ï†ïÎ≥¥
 #define NTL_POSITION_JUMPING_LIMIT		10.0f
 
 #endif

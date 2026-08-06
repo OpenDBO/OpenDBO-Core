@@ -2,13 +2,13 @@
  *
  * File			: NtlPLResouce.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 7. 21	
  * Abstract		: Presentation layer resource base class
  *****************************************************************************
  * Desc         : 
  * Adjust		: HuunSuk, Jang(2005. 7 29)
- *				    - dictory type º¯¼ö/ÇÔ¼ö Ãß°¡.
+ *				    - dictory type ë³€ìˆ˜/í•¨ìˆ˜ ì¶”ê°€.
  *
  *****************************************************************************/
 
@@ -22,10 +22,10 @@
 
 /**
  * \ingroup NtlPresentation
- * RenderWare resource wrapping classÀÌ´Ù.
- * RenderWare¿¡¼­´Â clump ¿Í atomic data´Â cloneÀ» ÇÒ ¼ö ÀÖ´Âµ¥, 
- * resourceÀÇ ÀÏ°ü¼º ÀÖ´Â °ü¸®¸¦ À§ÇÏ¿© °°Àº ÀÌ¸§ÀÇ data¸¦ »ç¿ëÇÒ °æ¿ì reference count¸¦ »ç¿ëÇÏ¿´À¸¸ç, 
- * clone resourceÀÏ °æ¿ì¿¡´Â original CNtlPLResource¿¡ clone list·Î CNtlPLReseource¸¦ link ÇÏ´Â ¹æ½ÄÀ» ¼±ÅÃÇÏ¿´´Ù.
+ * RenderWare resource wrapping classì´ë‹¤.
+ * RenderWareì—ì„œëŠ” clump ì™€ atomic dataëŠ” cloneì„ í•  ìˆ˜ ìˆëŠ”ë°, 
+ * resourceì˜ ì¼ê´€ì„± ìˆëŠ” ê´€ë¦¬ë¥¼ ìœ„í•˜ì—¬ ê°™ì€ ì´ë¦„ì˜ dataë¥¼ ì‚¬ìš©í•  ê²½ìš° reference countë¥¼ ì‚¬ìš©í•˜ì˜€ìœ¼ë©°, 
+ * clone resourceì¼ ê²½ìš°ì—ëŠ” original CNtlPLResourceì— clone listë¡œ CNtlPLReseourceë¥¼ link í•˜ëŠ” ë°©ì‹ì„ ì„ íƒí•˜ì˜€ë‹¤.
  */
 
 class CNtlPLResource
@@ -118,22 +118,22 @@ public:
       unsigned int GetRefCount(void) const {return m_uiRefCount;}
 
 	  /**
-      *  RpWorld pointer·Î casting ÇÑ´Ù.
+      *  RpWorld pointerë¡œ casting í•œë‹¤.
       */
 	  RpWorld* GetWorld(void) { return reinterpret_cast<RpWorld*>(const_cast<void*>(m_pData)); }
 
   	  /**
-      *  RpClump pointer·Î casting ÇÑ´Ù.
+      *  RpClump pointerë¡œ casting í•œë‹¤.
       */
 	  RpClump* GetClump(void) { return reinterpret_cast<RpClump*>(const_cast<void*>(m_pData)); }
 
 	  /**
-      *  RpAtomic pointer·Î casting ÇÑ´Ù.
+      *  RpAtomic pointerë¡œ casting í•œë‹¤.
       */
 	  RpAtomic* GetAtomic(void) { return reinterpret_cast<RpAtomic*>(const_cast<void*>(m_pData)); }
 
 	  /**
-      *  RtAnimAnimation pointer·Î casting ÇÑ´Ù.
+      *  RtAnimAnimation pointerë¡œ casting í•œë‹¤.
       */
 	  RtAnimAnimation* GetAnimation(void) { return reinterpret_cast<RtAnimAnimation*>(const_cast<void*>(m_pData)); }
 };

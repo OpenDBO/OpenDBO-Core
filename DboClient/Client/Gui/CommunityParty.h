@@ -1,13 +1,13 @@
 /******************************************************************************
 * File			: ScouterGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2006. 9. 13S
 * Abstract		: 
 *****************************************************************************
-* Desc			: Ä¿¹Â´ÏÆ¼ °ü·Ã ´ÙÀÌ¾ó·Î±× ÇüÆ²
-*				  °¢°¢ÀÇ ÆäÀÌÁö ³»¿ëÀº PageType¿¡ µû¶ó ¼¼ÆÃµÇ°í
-*				  ¸Ş¼¼Áö¿Í ÀÌº¥Æ®µµ È°¼ºÈ­µÈ Page¿¡ Àü´ŞµÈ´Ù.
+* Desc			: ì»¤ë®¤ë‹ˆí‹° ê´€ë ¨ ë‹¤ì´ì–¼ë¡œê·¸ í˜•í‹€
+*				  ê°ê°ì˜ í˜ì´ì§€ ë‚´ìš©ì€ PageTypeì— ë”°ë¼ ì„¸íŒ…ë˜ê³ 
+*				  ë©”ì„¸ì§€ì™€ ì´ë²¤íŠ¸ë„ í™œì„±í™”ëœ Pageì— ì „ë‹¬ëœë‹¤.
 *****************************************************************************/
 
 #pragma once
@@ -35,28 +35,28 @@ class CCommunityParty : public CCommunityBase
 public:
 	enum eZennyDivType
 	{
-		ZDT_PICKUP_PERSON,		///< ÁÖÀº »ç¶÷ÀÌ ÀÓÀÚ
-		ZDT_EQUAL,				///< °øµ¿ ºĞ¹è
+		ZDT_PICKUP_PERSON,		///< ì£¼ì€ ì‚¬ëŒì´ ì„ì
+		ZDT_EQUAL,				///< ê³µë™ ë¶„ë°°
 
 		NUM_ZDT
 	};
 
 	enum eItemDivType
 	{
-		IDT_PICKUP_PERSON,		///< ÁÖÀº »ç¶÷ÀÌ ÀÓÀÚ
-		IDT_ORDER,				///< ¼ø¼­µÇ·Î
-		IDT_GRADE_ITEM,			///< ¾ÆÀÌÅÛ µî±Ş¿¡ µû¶ó ±â¿©µµ ºĞ¹è
-		IDT_CONTIBUTION,		///< ±â¿©µµ ºĞ¹è
+		IDT_PICKUP_PERSON,		///< ì£¼ì€ ì‚¬ëŒì´ ì„ì
+		IDT_ORDER,				///< ìˆœì„œë˜ë¡œ
+		IDT_GRADE_ITEM,			///< ì•„ì´í…œ ë“±ê¸‰ì— ë”°ë¼ ê¸°ì—¬ë„ ë¶„ë°°
+		IDT_CONTIBUTION,		///< ê¸°ì—¬ë„ ë¶„ë°°
 
 		NUM_IDT
 	};
 
 	struct PartyMemberUI
 	{
-		SERIAL_HANDLE		hSerial;	///< ¸É¹öÀÇ ½Ã¸®¾ó
-		gui::CStaticBox*	pName;		///< ÆÄÆ¼¿ø ÀÌ¸§
-		gui::CStaticBox*	pScore;		///< ÆÄÆ¼¿ø ±â¿©Á¡¼ö
-		gui::CPanel*		pTributarySimbol;///< Á¾Á·°ú Á÷¾÷ ±×¸²
+		SERIAL_HANDLE		hSerial;	///< ë§´ë²„ì˜ ì‹œë¦¬ì–¼
+		gui::CStaticBox*	pName;		///< íŒŒí‹°ì› ì´ë¦„
+		gui::CStaticBox*	pScore;		///< íŒŒí‹°ì› ê¸°ì—¬ì ìˆ˜
+		gui::CPanel*		pTributarySimbol;///< ì¢…ì¡±ê³¼ ì§ì—… ê·¸ë¦¼
 
 		PartyMemberUI()
 		:pName(NULL)
@@ -65,7 +65,7 @@ public:
 		}
 	};
 
-	///< ÁÂ/Áß/¿ì·Î ºĞ¸®µÇ¾î °¢°¢ È®´ëµÇ´Â 3µîºĞ À©µµ¿ì
+	///< ì¢Œ/ì¤‘/ìš°ë¡œ ë¶„ë¦¬ë˜ì–´ ê°ê° í™•ëŒ€ë˜ëŠ” 3ë“±ë¶„ ìœˆë„ìš°
 	struct Windowby3						
 	{
 		CSurfaceGui			Left;
@@ -130,11 +130,11 @@ protected:
 	VOID		OnClicked_CPButton(gui::CComponent* pComponent);
 	VOID		OnClicked_ItemtoCPButton(gui::CComponent* pComponent);
 
-	VOID		LocateLeaderMark(RwInt32 iIndex);	///< ¸®´õÀÇ À§Ä¡¿¡ ¸¶Å©¸¦ Ç¥½ÃÇÑ´Ù. iIndex <= 0 ÀÌ¸é Ç¥½ÃÇÏÁö ¾Ê´Â´Ù.
+	VOID		LocateLeaderMark(RwInt32 iIndex);	///< ë¦¬ë”ì˜ ìœ„ì¹˜ì— ë§ˆí¬ë¥¼ í‘œì‹œí•œë‹¤. iIndex <= 0 ì´ë©´ í‘œì‹œí•˜ì§€ ì•ŠëŠ”ë‹¤.
 
 	VOID		CalcSurfacePosition();
 
-	VOID		AdjustSurface(gui::CSurface& surface);	///< ¹öÆ°¿¡¼­ ¾µ ÁÂÇ¥·Î surface¸¦ ÀÌµ¿½ÃÅ²´Ù
+	VOID		AdjustSurface(gui::CSurface& surface);	///< ë²„íŠ¼ì—ì„œ ì“¸ ì¢Œí‘œë¡œ surfaceë¥¼ ì´ë™ì‹œí‚¨ë‹¤
 
 protected:	
 	gui::CSlot			m_slotReturnInput;
@@ -152,56 +152,56 @@ protected:
 
 	CNtlPLGui*			m_pParent;					///< Owner class	
 
-	gui::CStaticBox*	m_pPartyName;				///< 'ÆÄÆ¼ÀÌ¸§'
-	CSurfaceGui			m_PartyNameBack;			///< ÆÄÆ¼ ÀÌ¸§ ¹éº¸µå
+	gui::CStaticBox*	m_pPartyName;				///< 'íŒŒí‹°ì´ë¦„'
+	CSurfaceGui			m_PartyNameBack;			///< íŒŒí‹° ì´ë¦„ ë°±ë³´ë“œ
 
-	gui::CStaticBox*	m_pMyPartyNameStatic;		///< ÇöÀç ÆÄÆ¼ ÀÌ¸§
-	gui::CInputBox*		m_pPartNameInput;			///< ÆÄÆ¼ ÀÌ¸§ ÀÔ·Â¶õ
-	gui::CButton*		m_pPartyButtonCreate;		///< ÆÄÆ¼ »ı¼º
-
-
-
-	CSurfaceGui			m_ZennySurface;				///< 'Zenny' ¼­ÆäÀÌ½º
-	CSurfaceGui			m_ZennyDivSurface[NUM_ZDT];	///< Á¦´Ï ºĞ¹è ¹æ½Ä
-	gui::CButton*		m_pSelectZennyDivButton;	///< Á¦´Ï ºĞ¹è ¹æ½Ä º¯°æ ¹öÆ°
-	CSurfaceGui			m_ZennyExplainPanel;		///< Á¦´Ï ºĞ¹è ¼³¸í ¹è°æ
-	gui::CStaticBox*	m_pZennyDivExplain;			///< Á¦´Ï ºĞ¹è ¼³¸í
-	gui::CButton*		m_pZennyLockButton;			///< Á¦´Ï ºĞ¹è Àá±İ ¹öÆ°
-
-	CSurfaceGui			m_ItemSurface;				///< 'Item' ¼­ÆäÀÌ½º
-	CSurfaceGui			m_ItemDivSurface[NUM_IDT];	///< ¾ÆÀÌÅÛ ºĞ¹è ¹æ½Ä
-	gui::CButton*		m_pSelectItemDivButton;		///< ¾ÆÀÌÅÛ ºĞ¹è ¹æ½Ä º¯°æ ¹öÆ°
-	CSurfaceGui			m_ItemExplainPanel;			///< ¾ÆÀÌÅÛ ºĞ¹è ¼³¸í ¹è°æ
-	gui::CStaticBox*	m_pItemDivExplain;			///< ¾ÆÀÌÅÛ ºĞ¹è ¼³¸í
-	gui::CButton*		m_pItemLockButton;			///< ¾ÆÀÌÅÛ ºĞ¹è Àá±İ ¹öÆ°
+	gui::CStaticBox*	m_pMyPartyNameStatic;		///< í˜„ì¬ íŒŒí‹° ì´ë¦„
+	gui::CInputBox*		m_pPartNameInput;			///< íŒŒí‹° ì´ë¦„ ì…ë ¥ë€
+	gui::CButton*		m_pPartyButtonCreate;		///< íŒŒí‹° ìƒì„±
 
 
-	CSurfaceGui			m_MemberHeadLine;			///< ÆÄÆ¼ ¸É¹ö ÇØµå¶óÀÎ
-	gui::CStaticBox*	m_MemberStatic;				///< 'ÆÄÆ¼ ¸É¹ö'
-	gui::CStaticBox*	m_ScoreStatic;				///< '±â¿©Á¡¼ö'
-	CSurfaceGui			m_LeaderMark;				///< ÆÄÆ¼Àå ¸¶Å©
-	CSurfaceGui			m_srfMemberboard;			///< ¸É¹ö ¸®½ºÆ® ¹è°æ
-	PartyMemberUI		m_PartyMemberInfo[NTL_MAX_MEMBER_IN_PARTY];	///< ÆÄÆ¼¿ø Á¤º¸	
+
+	CSurfaceGui			m_ZennySurface;				///< 'Zenny' ì„œí˜ì´ìŠ¤
+	CSurfaceGui			m_ZennyDivSurface[NUM_ZDT];	///< ì œë‹ˆ ë¶„ë°° ë°©ì‹
+	gui::CButton*		m_pSelectZennyDivButton;	///< ì œë‹ˆ ë¶„ë°° ë°©ì‹ ë³€ê²½ ë²„íŠ¼
+	CSurfaceGui			m_ZennyExplainPanel;		///< ì œë‹ˆ ë¶„ë°° ì„¤ëª… ë°°ê²½
+	gui::CStaticBox*	m_pZennyDivExplain;			///< ì œë‹ˆ ë¶„ë°° ì„¤ëª…
+	gui::CButton*		m_pZennyLockButton;			///< ì œë‹ˆ ë¶„ë°° ì ê¸ˆ ë²„íŠ¼
+
+	CSurfaceGui			m_ItemSurface;				///< 'Item' ì„œí˜ì´ìŠ¤
+	CSurfaceGui			m_ItemDivSurface[NUM_IDT];	///< ì•„ì´í…œ ë¶„ë°° ë°©ì‹
+	gui::CButton*		m_pSelectItemDivButton;		///< ì•„ì´í…œ ë¶„ë°° ë°©ì‹ ë³€ê²½ ë²„íŠ¼
+	CSurfaceGui			m_ItemExplainPanel;			///< ì•„ì´í…œ ë¶„ë°° ì„¤ëª… ë°°ê²½
+	gui::CStaticBox*	m_pItemDivExplain;			///< ì•„ì´í…œ ë¶„ë°° ì„¤ëª…
+	gui::CButton*		m_pItemLockButton;			///< ì•„ì´í…œ ë¶„ë°° ì ê¸ˆ ë²„íŠ¼
 
 
-	gui::CButton*		m_PartyInvenButton;			///< ÆÄÆ¼ ÀÎº¥ ¹öÆ°		
-	gui::CButton*		m_pCharmButton;				///< ºÎÀû ¹öÆ°
-	CSlotGui			m_PartyCharmSlot[NTL_PARTY_CHARM_INVENTORY_COUNT];	///< ÆÄÆ¼ ºÎÀû ½½·Ô
-	CSurfaceGui			m_CharmBackpanel;			///< ºÎÀû ÆĞ³Î
+	CSurfaceGui			m_MemberHeadLine;			///< íŒŒí‹° ë§´ë²„ í•´ë“œë¼ì¸
+	gui::CStaticBox*	m_MemberStatic;				///< 'íŒŒí‹° ë§´ë²„'
+	gui::CStaticBox*	m_ScoreStatic;				///< 'ê¸°ì—¬ì ìˆ˜'
+	CSurfaceGui			m_LeaderMark;				///< íŒŒí‹°ì¥ ë§ˆí¬
+	CSurfaceGui			m_srfMemberboard;			///< ë§´ë²„ ë¦¬ìŠ¤íŠ¸ ë°°ê²½
+	PartyMemberUI		m_PartyMemberInfo[NTL_MAX_MEMBER_IN_PARTY];	///< íŒŒí‹°ì› ì •ë³´	
+
+
+	gui::CButton*		m_PartyInvenButton;			///< íŒŒí‹° ì¸ë²¤ ë²„íŠ¼		
+	gui::CButton*		m_pCharmButton;				///< ë¶€ì  ë²„íŠ¼
+	CSlotGui			m_PartyCharmSlot[NTL_PARTY_CHARM_INVENTORY_COUNT];	///< íŒŒí‹° ë¶€ì  ìŠ¬ë¡¯
+	CSurfaceGui			m_CharmBackpanel;			///< ë¶€ì  íŒ¨ë„
 	
-	CSurfaceGui			m_CPHeadLine;				///< CP ÇØµå¶óÀÎ
-	gui::CStaticBox*	m_CPStatic;					///< 'CP º¯È¯'
-	gui::CStaticBox*	m_CPPoint;					///< ½ÇÁ¦ º¸À¯ CP
-	gui::CStaticBox*	m_CPExplain;				///< CP ¼³¸í
-	gui::CButton*		m_pCPButton;				///< CP ¹öÆ°
-	gui::CButton*		m_pItemtoCPButton;			///< ¾ÆÀÌÅÛÀ» CP·Î ÀüÈ¯ ¹öÆ°
+	CSurfaceGui			m_CPHeadLine;				///< CP í•´ë“œë¼ì¸
+	gui::CStaticBox*	m_CPStatic;					///< 'CP ë³€í™˜'
+	gui::CStaticBox*	m_CPPoint;					///< ì‹¤ì œ ë³´ìœ  CP
+	gui::CStaticBox*	m_CPExplain;				///< CP ì„¤ëª…
+	gui::CButton*		m_pCPButton;				///< CP ë²„íŠ¼
+	gui::CButton*		m_pItemtoCPButton;			///< ì•„ì´í…œì„ CPë¡œ ì „í™˜ ë²„íŠ¼
 	
-	RwInt32				m_iLeaderIndex;				///< ÆÄÆ¼Àå ÀÎµ¦½º
+	RwInt32				m_iLeaderIndex;				///< íŒŒí‹°ì¥ ì¸ë±ìŠ¤
 	RwInt8				m_byInfoWindowIndex;
 
-	RwUInt8				m_byItemDivisionType;		///< ÇöÀç ±×·ÁÁö°í ÀÖ´Â ¾ÆÀÌÅÛ ºĞ¹è ¹æ½Ä
-	RwUInt8				m_byZennyDivisionType;		///< ÇöÀç ±×·ÁÁö°í ÀÖ´Â Á¦´Ï ºĞ¹è ¹æ½Ä
+	RwUInt8				m_byItemDivisionType;		///< í˜„ì¬ ê·¸ë ¤ì§€ê³  ìˆëŠ” ì•„ì´í…œ ë¶„ë°° ë°©ì‹
+	RwUInt8				m_byZennyDivisionType;		///< í˜„ì¬ ê·¸ë ¤ì§€ê³  ìˆëŠ” ì œë‹ˆ ë¶„ë°° ë°©ì‹
 
-	RwUInt8				m_bySelectedItemDivisionType;	///< ÇöÀç ¾ÆÀÌÅÛ ºĞ¹è ¹æ½Ä
-	RwUInt8				m_bySelectedZennyDivisionType;	///< ÇöÀç Á¦´Ï ºĞ¹è ¹æ½Ä
+	RwUInt8				m_bySelectedItemDivisionType;	///< í˜„ì¬ ì•„ì´í…œ ë¶„ë°° ë°©ì‹
+	RwUInt8				m_bySelectedZennyDivisionType;	///< í˜„ì¬ ì œë‹ˆ ë¶„ë°° ë°©ì‹
 };

@@ -104,7 +104,7 @@ VOID CLobbyManager::SetServerInfo(sDBO_GAME_SERVER_FARM_INFO* pServerInfo)
 	CLobby* pLobby = GetLobby(pServerInfo->serverFarmId);
 	if( !pLobby )
 	{
-		// »õ·Î¿î Á¤º¸¸¦ ¹Ş¾Ò´Ù
+		// ìƒˆë¡œìš´ ì •ë³´ë¥¼ ë°›ì•˜ë‹¤
 		pLobby = NTL_NEW CLobby;
 		if( !pLobby->Create() )
 		{

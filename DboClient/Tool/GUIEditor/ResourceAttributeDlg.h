@@ -3,17 +3,17 @@
 #include "Control/PropTree.h"
 #include "GUIEditorDoc.h"
 
-// CResourceAttributeDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CResourceAttributeDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CResourceAttributeDlg : public CDialog
 {
 	DECLARE_DYNCREATE(CResourceAttributeDlg)
 
 public:
-	CResourceAttributeDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CResourceAttributeDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CResourceAttributeDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_RESOURCEATTRIBUTEDLG };
 
 	enum PROPERTY_ID
@@ -37,15 +37,15 @@ protected:
 
 protected:
 	// Internal Function
-	void	InitProperty();		// Ç×¸ñ ¼³Á¤.
+	void	InitProperty();		// í•­ëª© ì„¤ì •.
 
-	void	AddCaptionToList();	// List Ç¥±â
-	void	AddData();			// Data¸¦ ¸®½ºÆ®¿¡ Ãß°¡.
-	BOOL	InputData( RESOURCEDATA* pResourceData, BOOL bFix = FALSE );	// µ¥ÀÌÅÍ ÀÔ·Â.
-	BOOL	InputCheck( RESOURCEDATA* pResourceData, BOOL bFIX = FALSE );	// µ¥ÀÌÅÍ Ã¼Å©.
+	void	AddCaptionToList();	// List í‘œê¸°
+	void	AddData();			// Dataë¥¼ ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€.
+	BOOL	InputData( RESOURCEDATA* pResourceData, BOOL bFix = FALSE );	// ë°ì´í„° ì…ë ¥.
+	BOOL	InputCheck( RESOURCEDATA* pResourceData, BOOL bFIX = FALSE );	// ë°ì´í„° ì²´í¬.
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

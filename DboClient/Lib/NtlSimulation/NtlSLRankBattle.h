@@ -2,11 +2,11 @@
 *
 * File			: NtlRankBattle.h
 * Author		: Pee Sangjun
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 8. 10	
 * Abstract		: Simulation Rank Battle
 *****************************************************************************
-* Desc          : ·©Å© ¹èÆ².
+* Desc          : ë­í¬ ë°°í‹€.
 *****************************************************************************/
 
 #ifndef __NTL_RANK_BATTLE_H__
@@ -76,8 +76,8 @@ public:
 	RwInt32		GetBlueTeamStraightWinScore(VOID) { return m_nBlueTeamStraightWinScore; }
 	RwInt32		GetBlueTeamPerfectWinScore(VOID) { return m_nBlueTeamPerfectWinScore; }
 
-	RESULT		GetResult(void) { return m_eResult; }						// °ÔÀÓ °á°ú
-	RwBool		IsRoomOwner(void) { return m_bRoomOwner; }					// ¹æ ¼ÒÀ¯
+	RESULT		GetResult(void) { return m_eResult; }						// ê²Œì„ ê²°ê³¼
+	RwBool		IsRoomOwner(void) { return m_bRoomOwner; }					// ë°© ì†Œìœ 
 	RwBool		IsRedTeam(VOID) { return IsRoomOwner() ? FALSE : TRUE; }
 	RwBool		IsBlueTeam(VOID) { return IsRoomOwner() ? TRUE : FALSE; }
 	RwBool		IsRedTeamWin(VOID) { return ( IsRedTeam() && m_eResult == WIN ) ? TRUE : FALSE; }
@@ -102,17 +102,17 @@ protected:
 	MAP_RBMEMBER	m_mapMyTeam;
 	MAP_RBMEMBER	m_mapEnemyTeam;
 
-	std::wstring	m_MyTeamName;					// °³ÀÎÀüÀÎ °æ¿ì Ä³¸¯ÅÍÀÌ¸§
+	std::wstring	m_MyTeamName;					// ê°œì¸ì „ì¸ ê²½ìš° ìºë¦­í„°ì´ë¦„
 	std::wstring	m_EnemyTeamName;
 	
 	RwBool			m_bRoomOwner;					
 	RESULT			m_eResult;
 
-	RwInt32			m_nMyTeamWinScore;				// ÇöÀç °ÔÀÓ³»¿¡¼­ÀÇ ½ºÄÚ¾î
+	RwInt32			m_nMyTeamWinScore;				// í˜„ì¬ ê²Œì„ë‚´ì—ì„œì˜ ìŠ¤ì½”ì–´
 	RwInt32			m_nEnemyTeamWinScore;
 
-	RwInt32			m_nBlueTeamStraightWinScore;	// ¹æÁÖÀÎ ¿¬½ÂÁ¤º¸
-	RwInt32			m_nBlueTeamPerfectWinScore;		// ¹æÁÖÀÎ ¿Ï½ÂÁ¤º¸
+	RwInt32			m_nBlueTeamStraightWinScore;	// ë°©ì£¼ì¸ ì—°ìŠ¹ì •ë³´
+	RwInt32			m_nBlueTeamPerfectWinScore;		// ë°©ì£¼ì¸ ì™„ìŠ¹ì •ë³´
 
 	RwUInt32		m_eRequestState;				// REQUEST_STATE
 

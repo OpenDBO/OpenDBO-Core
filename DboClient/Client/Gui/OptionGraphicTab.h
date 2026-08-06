@@ -1,7 +1,7 @@
 /******************************************************************************
 * File			: OptionGraphicTab.h
 * Author		: Hae sung, Cho
-* Copyright		: (��)NTL
+* Copyright		: (占쏙옙)NTL
 * Date			: 2009. 3. 24
 * Abstract		: 
 *****************************************************************************
@@ -13,7 +13,7 @@
 
 #pragma once
 
-//// Video Mode ����Ʈ
+//// Video Mode 占쏙옙占쏙옙트
 typedef struct _SVideoModeInfo
 {
 	RwInt32 iWidth;
@@ -104,23 +104,23 @@ protected:
 	DEVICE_RESTORE_HANDLE m_hRestore;
 
 protected:
-	gui::CDialog*		m_pThis;			///< ���� Dialog
-	gui::CDialog*		m_pScrollDialog;	///< ��ũ�� �Ǵ� Dialog
+	gui::CDialog*		m_pThis;			///< 占쏙옙占쏙옙 Dialog
+	gui::CDialog*		m_pScrollDialog;	///< 占쏙옙크占쏙옙 占실댐옙 Dialog
 
 	gui::CSlot			m_slotAbsoluteMouseWheel;
 
-	gui::CStaticBox*	m_pStbResolutionTitle;	///< �ػ� ����
-	gui::CStaticBox*	m_pStbResolution;		///< �ػ�
-	gui::CComboBox*		m_pCbbResolution;		///< �ػ� ���� �޺��ڽ�
+	gui::CStaticBox*	m_pStbResolutionTitle;	///< 占쌔삼옙 占쏙옙占쏙옙
+	gui::CStaticBox*	m_pStbResolution;		///< 占쌔삼옙
+	gui::CComboBox*		m_pCbbResolution;		///< 占쌔삼옙 占쏙옙占쏙옙 占쌨븝옙占쌘쏙옙
 	gui::CSlot			m_slotListToggled;	
 
-	gui::CStaticBox*	m_pStbGamma;			///< ���
-	gui::CScrollBar*	m_pScbGamma;			///< ��� ���� ��ũ�ѹ�
+	gui::CStaticBox*	m_pStbGamma;			///< 밝기
+	gui::CScrollBar*	m_pScbGamma;			///< 밝기 설정 스크롤바
 	gui::CSlot			m_slotGammaSliderMoved;
 	gui::CSlot			m_slotGammaValueChanged;
 
 	gui::CStaticBox*	m_pStbFps;
-	gui::CScrollBar*	m_pScbFps;			///< FPS ���� ��ũ�ѹ�
+	gui::CScrollBar*	m_pScbFps;			///< FPS 占쏙옙占쏙옙 占쏙옙크占싼뱄옙
 	gui::CSlot			m_slotFpsSliderMoved;
 	gui::CSlot			m_slotFpsValueChanged;
 
@@ -132,20 +132,20 @@ protected:
 	gui::CSlot			m_slotSSAAChanged;
 	gui::CSlot			m_slotSSAASelected;
 
-	gui::CButton*		m_pBtnWindowMode;		///< ������ ��� ���� ��۹�
+	gui::CButton*		m_pBtnWindowMode;		///< 윈도우 모드 설정 토글바
 
-	gui::CStaticBox*	m_pStbEffectTitle;		///< ȿ�� Ÿ��Ʋ
-	gui::CStaticBox*	m_pStbGraphicQuality;	///< ��ü �׷��� ǰ��
-	gui::CStaticBox*	m_pStbGraphicQualityLow;	///< ����
-	gui::CStaticBox*	m_pStbGraphicQualityMiddle;	///< ����
-	gui::CStaticBox*	m_pStbGraphicQualityHigh;	///< ����
-	gui::CStaticBox*	m_pStbGraphicQualityUser;	///< ����� ����
-	gui::CScrollBar*	m_pScbGraphicQuality;		///< �׷��� ǰ�� ���� ��ũ�ѹ�
+	gui::CStaticBox*	m_pStbEffectTitle;		///< 효占쏙옙 타占쏙옙틀
+	gui::CStaticBox*	m_pStbGraphicQuality;	///< 占쏙옙체 占쌓뤄옙占쏙옙 품占쏙옙
+	gui::CStaticBox*	m_pStbGraphicQualityLow;	///< 占쏙옙占쏙옙
+	gui::CStaticBox*	m_pStbGraphicQualityMiddle;	///< 占쏙옙占쏙옙
+	gui::CStaticBox*	m_pStbGraphicQualityHigh;	///< 占쏙옙占쏙옙
+	gui::CStaticBox*	m_pStbGraphicQualityUser;	///< 사용자 설정
+	gui::CScrollBar*	m_pScbGraphicQuality;		///< 占쌓뤄옙占쏙옙 품占쏙옙 占쏙옙占쏙옙 占쏙옙크占싼뱄옙
 	gui::CSlot			m_slotQualitySliderMoved;
 	gui::CSlot			m_slotQualityValueChanged;
 
-	gui::CStaticBox*	m_pStbTerrainDist;		///< ���� �þ߰Ÿ�
-	gui::CScrollBar*	m_pScbTerrainDist;		///< ���� �þ߰Ÿ� ���� ��ũ�� ��
+	gui::CStaticBox*	m_pStbTerrainDist;		///< 占쏙옙占쏙옙 占시야거몌옙
+	gui::CScrollBar*	m_pScbTerrainDist;		///< 占쏙옙占쏙옙 占시야거몌옙 占쏙옙占쏙옙 占쏙옙크占쏙옙 占쏙옙
 	gui::CSlot			m_slotTerrainSliderMoved;
 	gui::CSlot			m_slotTerrainValueChanged;
 	
@@ -154,46 +154,46 @@ protected:
 	gui::CSlot			m_slotObjectSliderMoved;
 	gui::CSlot			m_slotObjectValueChanged;
 
-	gui::CButton*		m_pBtnTerrainShadow;	///< ���� �׸���
+	gui::CButton*		m_pBtnTerrainShadow;	///< 占쏙옙占쏙옙 占쌓몌옙占쏙옙
 	gui::CSlot			m_slotTerrainShadowToggled;
 
-	gui::CButton*		m_pBtnWaterEffect;		///< �� ȿ��
+	gui::CButton*		m_pBtnWaterEffect;		///< 占쏙옙 효占쏙옙
 	gui::CSlot			m_slotWaterEffectToggled;
 
-	/*gui::CStaticBox*	m_pStbCharacterDist;	///< ĳ���� �þ߰Ÿ�
-	gui::CScrollBar*	m_pScbCharacterDist;	///< ĳ���� �þ߰Ÿ� ���� ��ũ�� ��
+	/*gui::CStaticBox*	m_pStbCharacterDist;	///< 캐占쏙옙占쏙옙 占시야거몌옙
+	gui::CScrollBar*	m_pScbCharacterDist;	///< 캐占쏙옙占쏙옙 占시야거몌옙 占쏙옙占쏙옙 占쏙옙크占쏙옙 占쏙옙
 	gui::CSlot			m_slotCharacterDistSliderMoved;
 	gui::CSlot			m_slotCharacterDistValueChanged;*/
 
-	gui::CButton*		m_pBtnCharacterShadow;	///< ĳ���� �׸���
+	gui::CButton*		m_pBtnCharacterShadow;	///< 캐占쏙옙占쏙옙 占쌓몌옙占쏙옙
 	gui::CSlot			m_slotCharacterShadowToggled;
 
-	gui::CStaticBox*	m_pStbMagicEffect;		///< ���� ����ȿ��
-	gui::CScrollBar*	m_pScbMagicEffect;		///< ���� ����ȿ�� ���� ��ũ�� ��
+	gui::CStaticBox*	m_pStbMagicEffect;		///< 占쏙옙占쏙옙 占쏙옙占쏙옙효占쏙옙
+	gui::CScrollBar*	m_pScbMagicEffect;		///< 占쏙옙占쏙옙 占쏙옙占쏙옙효占쏙옙 占쏙옙占쏙옙 占쏙옙크占쏙옙 占쏙옙
 	gui::CSlot			m_slotMagicEffectSliderMoved;
 	gui::CSlot			m_slotMagicEffectValueChanged;
 
-	gui::CStaticBox*	m_pStbWeatherEffect;	///< ���� ȿ��
-	gui::CScrollBar*	m_pScbWeatherEffect;	///< ���� ȿ�� ���� ��ũ�� ��
+	gui::CStaticBox*	m_pStbWeatherEffect;	///< 占쏙옙占쏙옙 효占쏙옙
+	gui::CScrollBar*	m_pScbWeatherEffect;	///< 占쏙옙占쏙옙 효占쏙옙 占쏙옙占쏙옙 占쏙옙크占쏙옙 占쏙옙
 	gui::CSlot			m_slotWeatherEffectSliderMoved;
 	gui::CSlot			m_slotWeatherEffectValueChanged;
 
-	gui::CStaticBox*	m_pStbTextureQuality;	///< �ؽ��� �ػ�
-	gui::CScrollBar*	m_pScbTextureQuality;	///< �ؽ��� �ػ� ���� ��ũ�� ��
+	gui::CStaticBox*	m_pStbTextureQuality;	///< 占쌔쏙옙占쏙옙 占쌔삼옙
+	gui::CScrollBar*	m_pScbTextureQuality;	///< 占쌔쏙옙占쏙옙 占쌔삼옙 占쏙옙占쏙옙 占쏙옙크占쏙옙 占쏙옙
 	gui::CSlot			m_slotTextureQualitySliderMoved;
 	gui::CSlot			m_slotTextureQualityValueChanged;
 
-	gui::CStaticBox*	m_pStbCharacterEffectTitle;	///< ĳ���� ȿ�� Ÿ��Ʋ
-	gui::CButton*		m_pBtnCartoonEdge;			///< ī���� �ܰ���
-	/*gui::CButton*		m_pBtnUpgradeEffect;		///< ���׷��̵� ȿ��*/
+	gui::CStaticBox*	m_pStbCharacterEffectTitle;	///< 캐占쏙옙占쏙옙 효占쏙옙 타占쏙옙틀
+	gui::CButton*		m_pBtnCartoonEdge;			///< 카占쏙옙占쏙옙 占쌤곤옙占쏙옙
+	/*gui::CButton*		m_pBtnUpgradeEffect;		///< 占쏙옙占쌓뤄옙占싱듸옙 효占쏙옙*/
 	gui::CSlot			m_slotCartoonEdgeToggled;
 	/*gui::CSlot			m_slotUpgradeEffectToggled;*/
 
 	gui::CStaticBox*	m_pStbEtcTitle;				
-	gui::CButton*		m_pBtnHdrEffect;			///< HDR ȿ��
+	gui::CButton*		m_pBtnHdrEffect;			///< HDR 효占쏙옙
 	gui::CSlot			m_slotHdrEffectToggled;
 	
-	gui::CScrollBar*	m_pThisScrollBar;			///< ��ũ�� ��
+	gui::CScrollBar*	m_pThisScrollBar;			///< 占쏙옙크占쏙옙 占쏙옙
 	gui::CSlot			m_slotScrollBarChanged;
 	gui::CSlot			m_slotScrollBarSliderMoved;
 

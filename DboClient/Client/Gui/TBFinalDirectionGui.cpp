@@ -210,14 +210,14 @@ VOID CTBFinalDirectionGui::HandleEvents( RWS::CMsg& msg )
 				CNtlLuaState* pLuaState = GetLuaState();
 				pLuaState->RunString( GetTBFlashName()->GetLuaFinal() );				
 
-				// ¹Ì¸® ·Îµù
+				// ë¯¸ë¦¬ ë¡œë”©
 				m_stScore.LoadFlash( GetTBFlashName()->GetSpecialCounter() );
 			}			
 		}
 		else if( pData->byMatchState == BUDOKAI_FINALMATCH_STATE_AWARDING )
 		{
 			//m_stOneLine.pflaFirst->SigMovieEnd().Disconnect( m_slotWinLoseMovieEnd );	
-			// ÅÚ·¹Æ÷Æ® Å¸ÀÌ¹Ö°ú ¾È¸Â¾Æ¼­ ½Ã°£ Áö¿¬ÈÄ(2ÃÊ) Ãâ·Â.
+			// í…”ë ˆí¬íŠ¸ íƒ€ì´ë°ê³¼ ì•ˆë§žì•„ì„œ ì‹œê°„ ì§€ì—°í›„(2ì´ˆ) ì¶œë ¥.
 			//CNtlLuaState* pLuaState = GetLuaState();
 			//pLuaState->RunString( GetTBFlashName()->GetLuaAward() );
 			if( pData->bEnterState )

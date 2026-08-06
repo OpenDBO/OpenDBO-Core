@@ -105,7 +105,7 @@ void CNtlRankBattle::HandleEvents(RWS::CMsg& msg)
 		m_mapMyTeam.clear();
 		m_mapEnemyTeam.clear();
 
-		// peessitemp : ÀÓ½Ã. ³ªÁß¿¡ Myteam EnemyTeam ±¸Á¶ ÀÚÃ¼¸¦ ¹Ù²Û´Ù. 
+		// peessitemp : ì„ì‹œ. ë‚˜ì¤‘ì— Myteam EnemyTeam êµ¬ì¡° ìì²´ë¥¼ ë°”ê¾¼ë‹¤. 
 		m_bRoomOwner = FALSE;
 		for( RwInt32 i = 0 ; i < pData->byCount ; ++i )
 		{
@@ -460,14 +460,14 @@ void CNtlRankBattle::HandleEvents(RWS::CMsg& msg)
 //		CNtlSLEventGenerator::SysMsg( buf, SNtlEventSysStringMsg::ACTION_NOTIFY | SNtlEventSysStringMsg::TYPE_CHAT_WARN );
 //#endif	
 	}
-	// ·©Å© Æ÷ÀÎÆ® ÃÊ±âÈ­
+	// ë­í¬ í¬ì¸íŠ¸ ì´ˆê¸°í™”
 	else if( msg.Id == g_EventCharRankPointResetNfy )
 	{
 		m_myRankScore.fPoint = 0.0f;
 	}
 	//else if( msg.Id == g_EventRBBattleEnd )
 	//{
-	//	// ¹æÀÇ ½Â°è´Â ÀÌ°÷¿¡¼­ Á¤ÇÑ´Ù. 
+	//	// ë°©ì˜ ìŠ¹ê³„ëŠ” ì´ê³³ì—ì„œ ì •í•œë‹¤. 
 	//	SNtlEventRBBattleEnd* pData = reinterpret_cast<SNtlEventRBBattleEnd*>( msg.pData );
 
 	//	if( pData->byWinner == RANKBATTLE_MATCH_WIN_CHALLENGER )
@@ -478,7 +478,7 @@ void CNtlRankBattle::HandleEvents(RWS::CMsg& msg)
 	//			m_bRoomOwner = TRUE;
 	//	}		
 
-	//	// ÀÏ´Ü ¿äÃ»»óÅÂ·Î º¯°æ. ÁøÆÀÀº ÀÚµ¿À¸·Î RoomLeave¿¡¼­ ¸®¼ÂµÈ´Ù.
+	//	// ì¼ë‹¨ ìš”ì²­ìƒíƒœë¡œ ë³€ê²½. ì§„íŒ€ì€ ìë™ìœ¼ë¡œ RoomLeaveì—ì„œ ë¦¬ì…‹ëœë‹¤.
 	//	SetRBRequestState( RB_REQUEST_STATE_REQUEST );
 	//}
 }

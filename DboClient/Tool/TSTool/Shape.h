@@ -24,10 +24,10 @@ class CShape : public CObject
 
 // Member variables
 protected:
-	// ÀÚ½ÅÀÇ ¿µ¿ª
+	// ìì‹ ì˜ ì˜ì—­
 	CPoint								m_ptOrigin;
 
-	// Dragging °ü·Ã ¸â¹ö º¯¼öµé
+	// Dragging ê´€ë ¨ ë©¤ë²„ ë³€ìˆ˜ë“¤
 	bool								m_bDragging;
 	CPoint								m_ptDragPoint;
 	HSHAPE								m_hDragHandle;

@@ -58,18 +58,18 @@
 #define SPAWN_DELAY_TIME				2.0f
 #define SPAWN_DELAY_SPECIAL_TIME		0.2f
 
-// push data ¼Ó¼º.
+// push data ì†ì„±.
 #define MAX_PUSH_TIME					0.3f
 
-// sliding data ¼Ó¼º.
+// sliding data ì†ì„±.
 #define MAX_SLIDING_TIME				0.667f
 #define MAX_SLIDING_DIST				4.0f
 
-// hit shock data ¼Ó¼º.
+// hit shock data ì†ì„±.
 #define MAX_SHOCK_TIME					0.1f
 #define MAX_SHOCK_DIST					0.2f
 
-// knock donw data ¼Ó¼º.
+// knock donw data ì†ì„±.
 #define MAX_KNOCKDOWN_SLIDING_TIME		0.7f
 #define MAX_KNOCKDOWN_FALLDOWN_TIME		1.1f
 
@@ -149,7 +149,7 @@ void CNtlBehaviorCharSpawn::Enter(void)
 		EnterSpecialSpawn();
 	}
 	
-	// ³ªÁß¿¡ base class enter¸¦ È£ÃâÇÑ´Ù.
+	// ë‚˜ì¤‘ì— base class enterë¥¼ í˜¸ì¶œí•œë‹¤.
 	CNtlBehaviorBase::Enter(); 
 }
 
@@ -206,7 +206,7 @@ void CNtlBehaviorCharSpawn::UpdateNormalSpawn(RwReal fElapsed)
 		return;
 	}
 
-	// ÇöÀç pet ÀÌ¸é... 
+	// í˜„ì¬ pet ì´ë©´... 
 	if(m_pActor->GetClassID() == SLCLASS_PET)
 	{
 		m_fTime += fElapsed;
@@ -301,7 +301,7 @@ void CNtlBehaviorCharSpawn::SetNormalSpawnVisualEffect(void)
 {
 	if(m_pActor->GetClassID() != SLCLASS_PET && !m_bSpawnAnimExist)
 	{
-        // GM ÀÌ¸é ÀÌÆåÆ®¸¦ Ç¥½ÃÇÏÁö ¾Ê´Â´Ù.
+        // GM ì´ë©´ ì´í™íŠ¸ë¥¼ í‘œì‹œí•˜ì§€ ì•ŠëŠ”ë‹¤.
         if(m_pActor->GetClassID() == SLCLASS_PLAYER)
         {
             CNtlFSMCharActAgent* pAgent = (CNtlFSMCharActAgent*)m_pActor->GetFSMLayer()->GetFSMAgent();
@@ -317,7 +317,7 @@ void CNtlBehaviorCharSpawn::SetSpecialSpawnVisualEffect(void)
 {
 	if(m_pActor->GetClassID() != SLCLASS_PET && !m_bSpawnAnimExist)
 	{
-        // GM ÀÌ¸é ÀÌÆåÆ®¸¦ Ç¥½ÃÇÏÁö ¾Ê´Â´Ù.
+        // GM ì´ë©´ ì´í™íŠ¸ë¥¼ í‘œì‹œí•˜ì§€ ì•ŠëŠ”ë‹¤.
         if(m_pActor->GetClassID() == SLCLASS_PLAYER)
         {
             CNtlFSMCharActAgent* pAgent = (CNtlFSMCharActAgent*)m_pActor->GetFSMLayer()->GetFSMAgent();
@@ -372,13 +372,13 @@ void CNtlBehaviorSmoothHeading::Enter(void)
 
 	SetAnim(pCtrlStuff->uExtra.sRotate.fDeltaAngleY, pCtrlStuff->uExtra.sRotate.fDeltaAngleX);
 	
-	// ³ªÁß¿¡ base class enter¸¦ È£ÃâÇÑ´Ù.
+	// ë‚˜ì¤‘ì— base class enterë¥¼ í˜¸ì¶œí•œë‹¤.
 	CNtlBehaviorBase::Enter(); 
 }
 
 void CNtlBehaviorSmoothHeading::Exit(void)
 {
-	// ³ªÁß¿¡ base class exit¸¦ È£ÃâÇÑ´Ù.
+	// ë‚˜ì¤‘ì— base class exitë¥¼ í˜¸ì¶œí•œë‹¤.
 	CNtlBehaviorBase::Exit(); 
 }
 
@@ -595,7 +595,7 @@ void CNtlBehaviorCharNormalAttack::Enter(void)
 	}
 	
 	
-	// ³ªÁß¿¡ base class enter¸¦ È£ÃâÇÑ´Ù.
+	// ë‚˜ì¤‘ì— base class enterë¥¼ í˜¸ì¶œí•œë‹¤.
 	CNtlBehaviorBase::Enter(); 
 }
 
@@ -716,7 +716,7 @@ void CNtlBehaviorCharNormalAttack::SetAnim(const SAttackStuff *pAttackStuff)
 	if(pAttackStuff->uiType.bitChainAttack)
 	{
 		sITEM_TBLDAT *pItemTblData = Logic_GetEquipedWeaponItemTableData(m_pActor);
-        if(Logic_IsTransformGreatNamek(m_pActor))  // º¯½Å
+        if(Logic_IsTransformGreatNamek(m_pActor))  // ë³€ì‹ 
         {
             uiAnimId = TRANS_ATK_DEF_1 + NtlRandomNumber(0, 1);
         }
@@ -735,7 +735,7 @@ void CNtlBehaviorCharNormalAttack::SetAnim(const SAttackStuff *pAttackStuff)
 				uiAnimId = ATK_DEF_1 + pAttackStuff->byAttSeq - NTL_BATTLE_CHAIN_ATTACK_START_PLAYER;
 		}
 
-		// °ø°İ animation ¼Óµµ¸¦ setting ÇÑ´Ù.
+		// ê³µê²© animation ì†ë„ë¥¼ setting í•œë‹¤.
 		m_pActor->GetSobProxy()->SetAnimSpeed(Logic_GetAttackAnimSpeed(m_pActor));
 	}
 	else
@@ -745,7 +745,7 @@ void CNtlBehaviorCharNormalAttack::SetAnim(const SAttackStuff *pAttackStuff)
 		if(pAttackStuff->uiType.bitLogic == NTL_ATTACK_LOGIC_NORMAL)
 		{
 			sITEM_TBLDAT *pItemTblData = Logic_GetEquipedWeaponItemTableData(m_pActor);
-            if(Logic_IsTransformGreatNamek(m_pActor))  // º¯½Å
+            if(Logic_IsTransformGreatNamek(m_pActor))  // ë³€ì‹ 
             {
                 uiAnimId = TRANS_ATK_DEF_1 + NtlRandomNumber(0, 1);
             }
@@ -910,7 +910,7 @@ void CNtlBehaviorCharNormalAttack::CalcHitStuff(const SAttackStuff *pAttackStuff
 	if(pAnimPlayInfo == NULL)
 		return;
 	
-	// ÇöÀç animation ½Ã°£À» ±¸ÇÑ´Ù.
+	// í˜„ì¬ animation ì‹œê°„ì„ êµ¬í•œë‹¤.
 	m_fAnimTime = pPLCharacter->GetBaseDurationAnimTime();
 	m_iHitNum = pAnimPlayInfo->vecAnimHit.size();
 
@@ -932,7 +932,7 @@ void CNtlBehaviorCharNormalAttack::CalcHitStuff(const SAttackStuff *pAttackStuff
 		pTempHit->Reset();
 
 		//-------------------------------------------------------
-		// hit ¼Ó¼º data
+		// hit ì†ì„± data
 
 		pTempHit->hAttackerSerialId			= pAttackStuff->hAttackerSerialId;
 		pTempHit->hDefenderSerialId			= pAttackStuff->hDefenderSerialId;
@@ -973,7 +973,7 @@ void CNtlBehaviorCharNormalAttack::CalcHitStuff(const SAttackStuff *pAttackStuff
 		pTempHit->pProjExtData			= &pAnimHit->uEffectTypeExtraData;
 
 		//-------------------------------------------------------
-		// damage °è»ê.
+		// damage ê³„ì‚°.
 		//	pHitStuff[i].uiDamage = pAnimHit->uiDamage * pAttackStuff->uiDamage / 100;
 		if(i < m_iHitNum-1)
 		{
@@ -1011,7 +1011,7 @@ void CNtlBehaviorCharNormalAttack::CalcHitStuff(const SAttackStuff *pAttackStuff
 		}
 
 		//-------------------------------------------------------
-		// °ø°İ ¼Ó¼º Á¤ÀÇ.
+		// ê³µê²© ì†ì„± ì •ì˜.
 		pTempHit->uiAttr.bitResult		= pAttackStuff->uiType.bitResult;
 		pTempHit->uiAttr.bitCritical	= pAttackStuff->uiType.bitCritical;
 		pTempHit->uiAttr.bitPowerEffect = pAnimHit->bPowerEffect;
@@ -1026,12 +1026,12 @@ void CNtlBehaviorCharNormalAttack::CalcHitStuff(const SAttackStuff *pAttackStuff
 		{
 			pTempHit->uiAttr.bitPhysic = NTL_ATTACK_PHYSIC_MELEE;
 
-			// Çü¼®
+			// í˜•ì„
 			if(pAttackStuff->uiType.bitResult == NTL_ATTACK_RESULT_BLOCK)
 				strcpy_s(pTempHit->chTargetEffName, NTL_MAX_EFFECT_NAME, NTL_VID_TARGET_BLOCK);
 			else
 			{
-				// ½ºÅ³ °ø°İÀÌ ¾Æ´Ñ ÀÏ¹İ °ø°İ ÀÌ¸é...
+				// ìŠ¤í‚¬ ê³µê²©ì´ ì•„ë‹Œ ì¼ë°˜ ê³µê²© ì´ë©´...
 				if(pAttackStuff->uiType.bitLogic == NTL_ATTACK_LOGIC_NORMAL)
 				{
 					strcpy_s(pTempHit->chTargetEffName, Logic_GetVisualHitMark(m_pActor, pAnimHit->eAttackType, pTempHit->uiAttr.bitCritical, pTempHit->uiAttr.bitPowerEffect));
@@ -1040,7 +1040,7 @@ void CNtlBehaviorCharNormalAttack::CalcHitStuff(const SAttackStuff *pAttackStuff
 		}
 		else
 		{
-            // ¿¡³ÊÁö °ø°İÀº Å¸°Ù ÀÌÆåÆ®°¡ ¾øÀ»¶§¸¸ µğÆúÆ® ÀÌÆåÆ®¸¦ Ç¥½ÃÇÑ´Ù.
+            // ì—ë„ˆì§€ ê³µê²©ì€ íƒ€ê²Ÿ ì´í™íŠ¸ê°€ ì—†ì„ë•Œë§Œ ë””í´íŠ¸ ì´í™íŠ¸ë¥¼ í‘œì‹œí•œë‹¤.
             if(pAttackStuff->uiType.bitLogic == NTL_ATTACK_LOGIC_NORMAL && strlen(pAnimHit->chTargetEffectName) == 0)
             {
                 strcpy_s(pTempHit->chTargetEffName, Logic_GetVisualHitMark(m_pActor, pAnimHit->eAttackType, pTempHit->uiAttr.bitCritical, pTempHit->uiAttr.bitPowerEffect));
@@ -1050,7 +1050,7 @@ void CNtlBehaviorCharNormalAttack::CalcHitStuff(const SAttackStuff *pAttackStuff
 		}
 
 		//-------------------------------------------------------
-		// target behavior ¼³Á¤.
+		// target behavior ì„¤ì •.
 
 		RwUInt8 byAttResult = pAttackStuff->uiType.bitResult;
 
@@ -1092,7 +1092,7 @@ void CNtlBehaviorCharNormalAttack::CalcHitStuff(const SAttackStuff *pAttackStuff
 			else*/ if(pAnimHit->eTargetBehavior == TARGET_BEHAVIOR_KNOCK_DOWN)
 				pTempHit->uiAttr.bitBehavior = NTL_ATTACK_SLIDING;
 
-			// ÇÏµåÄÚµù...(HTB À» blockingÀ¸·Î ¸·¾ÒÀ» ¶§)
+			// í•˜ë“œì½”ë”©...(HTB ì„ blockingìœ¼ë¡œ ë§‰ì•˜ì„ ë•Œ)
 			if(pAttackStuff->uiType.bitBlocking == DBO_GUARD_TYPE_HTB)
 			{
 				if(i == m_iHitNum - 1)
@@ -1116,11 +1116,11 @@ void CNtlBehaviorCharNormalAttack::CalcHitStuff(const SAttackStuff *pAttackStuff
 		}*/
 
 		//-------------------------------------------------------
-		// push direction ¼³Á¤.
+		// push direction ì„¤ì •.
 		RwV3dAssignMacro(&pTempHit->vPushDir, &pAttackStuff->vPushDir);
 
 		//-------------------------------------------------------
-		// Ä«¸Ş¶ó ¼ÎÀÌÅ©
+		// ì¹´ë©”ë¼ ì…°ì´í¬
 		pTempHit->bCameraShake = pAnimHit->bCameraShake;
         pTempHit->fShakeFactor = pAnimHit->fCameraShakeFactor;
         pTempHit->fShakeMaxHeight = pAnimHit->fCameraShakeMaxHeight;
@@ -1155,7 +1155,7 @@ void CNtlBehaviorCharNormalAttack::CalcHitStuff(const SAttackStuff *pAttackStuff
 	}
 
 	//-------------------------------------------------------
-	// Sync Event ¿¬°á.
+	// Sync Event ì—°ê²°.
 	if(pAttackStuff->uiSyncEventId != INVALID_SYNCEVENT_ID)
 	{
 		CNtlSobStatusAnimSyncManager *pAnimSyncManager = GetNtlSobManager()->GetAnimSyncManager();
@@ -1215,7 +1215,7 @@ void CNtlBehaviorCharNormalAttack::DeletePushFollow(void)
 
 void CNtlBehaviorCharNormalAttack::EventProcPhysicHit(SHitStuff *pHitStuff, RwUInt8 byHitIdx)
 {
-	// Ä«¸Ş¶ó Èçµé±â.
+	// ì¹´ë©”ë¼ í”ë“¤ê¸°.
 	if(pHitStuff->uiAttr.bitResult != NTL_ATTACK_RESULT_DODGE)
 	{
 		if(pHitStuff->bCameraShake && m_pActor->GetFlags() & SLFLAG_CAMERASHAKE_ENABLE)
@@ -1229,7 +1229,7 @@ void CNtlBehaviorCharNormalAttack::EventProcPhysicHit(SHitStuff *pHitStuff, RwUI
 
 	// by daneos: Disabled the knockdown cinematic
 
-	// matrix ¿¬Ãâ.
+	// matrix ì—°ì¶œ.
 	//RwBool bMatrixDirect = FALSE;
 
 
@@ -1245,7 +1245,7 @@ void CNtlBehaviorCharNormalAttack::EventProcPhysicHit(SHitStuff *pHitStuff, RwUI
 		pHitStuff = m_ppHit[i][byHitIdx];
 		CNtlSLEventGenerator::SobHit(pHitStuff->hDefenderSerialId, pHitStuff);
 
-		// avatar°¡ °ø°İÇßÀ» °æ¿ì.
+		// avatarê°€ ê³µê²©í–ˆì„ ê²½ìš°.
 	//	if(bMatrixDirect)
 	//	{
 	//		CNtlSob *pSobObj = GetNtlSobManager()->GetSobObject(pHitStuff->hDefenderSerialId);
@@ -1255,7 +1255,7 @@ void CNtlBehaviorCharNormalAttack::EventProcPhysicHit(SHitStuff *pHitStuff, RwUI
 	//		}
 	//	}
 
-		// avatar°¡ ¸Â¾ÒÀ» °æ¿ì.
+		// avatarê°€ ë§ì•˜ì„ ê²½ìš°.
 		//if(pHitStuff->hDefenderSerialId == hAvatarSerialId && pHitStuff->uiAttr.bitBehavior == NTL_ATTACK_KNOCKDOWN)
 		//{
 			// by daneos: Disabled the knockdown animation
@@ -1289,7 +1289,7 @@ void CNtlBehaviorCharNormalAttack::EventProcHit(RwBool bOneStepFollow)
 		
 	SHitStuff *pHitStuff = m_ppHit[0][m_iHitIdx];
 
-	// avater³ª avatarÀÇ petÁ¾·ù°¡ ¾Æ´Ï¸é ? 
+	// avaterë‚˜ avatarì˜ petì¢…ë¥˜ê°€ ì•„ë‹ˆë©´ ? 
 	if( !(m_pActor->GetFlags() & SLFLAG_SERVER_SENDER) )
 	{
 		if( !Logic_IsCreateHitEffect() )
@@ -1298,7 +1298,7 @@ void CNtlBehaviorCharNormalAttack::EventProcHit(RwBool bOneStepFollow)
 		}
 	}
 
-	// status animation sync Ã³¸®.
+	// status animation sync ì²˜ë¦¬.
 	if(pHitStuff->hSyncEventId != INVALID_SYNCEVENT_ID)
 	{
 		CNtlSobStatusAnimSyncManager *pAnimSyncManager = GetNtlSobManager()->GetAnimSyncManager();
@@ -1318,8 +1318,8 @@ void CNtlBehaviorCharNormalAttack::EventProcHit(RwBool bOneStepFollow)
 
 		if(pHitStuff->byShotType == BONE_SUB_WEAPON)
 		{
-            // ³Ë´Ù¿î ¼Ó¼ºÀÎ°æ¿ì, ¼­ºê¿şÆù¿¡¼­µµ ¹ß»ıÇØ¹ö¸®¸é ³Ë´Ù¿îÀÌ Áßº¹µÇ¾î ½Ã°£ °è»êÀÌ Áßº¹µÈ´Ù.
-            // ¿©±â¼­ ³Ë´Ù¿î ¼Ó¼ºÀ» ¾ø¾Ö¾ß ÇÑ´Ù.
+            // ë„‰ë‹¤ìš´ ì†ì„±ì¸ê²½ìš°, ì„œë¸Œì›¨í°ì—ì„œë„ ë°œìƒí•´ë²„ë¦¬ë©´ ë„‰ë‹¤ìš´ì´ ì¤‘ë³µë˜ì–´ ì‹œê°„ ê³„ì‚°ì´ ì¤‘ë³µëœë‹¤.
+            // ì—¬ê¸°ì„œ ë„‰ë‹¤ìš´ ì†ì„±ì„ ì—†ì• ì•¼ í•œë‹¤.
             pHitStuff->uiAttr.bitBehavior = NTL_ATTACK_NORMAL;
 
 			if(pHitStuff->bySubWeaponShotFlag & SUB_WEAPON_PROJECTILE_2)
@@ -1380,7 +1380,7 @@ void CNtlBehaviorCharPushFollow::Enter(void)
 {
 	m_fCurrDist = 0.0f;
 
-	// ³ªÁß¿¡ base class enter¸¦ È£ÃâÇÑ´Ù.
+	// ë‚˜ì¤‘ì— base class enterë¥¼ í˜¸ì¶œí•œë‹¤.
 	CNtlBehaviorBase::Enter(); 
 }
 
@@ -1529,7 +1529,7 @@ void CNtlBehaviorCharPush::Enter(void)
 	// time sequence setting
 	CreateTimeSequence();
 				
-	// ³ªÁß¿¡ base class enter¸¦ È£ÃâÇÑ´Ù.
+	// ë‚˜ì¤‘ì— base class enterë¥¼ í˜¸ì¶œí•œë‹¤.
 	CNtlBehaviorBase::Enter(); 
 }
 
@@ -1553,7 +1553,7 @@ void CNtlBehaviorCharPush::Exit(void)
 
     if(m_pActor->GetClassID() == SLCLASS_AVATAR)
     {
-        // ¼­¹ö¿¡ ¸¶Áö¸· À§Ä¡¸¦ ¾Ë·ÁÁØ´Ù.
+        // ì„œë²„ì— ë§ˆì§€ë§‰ ìœ„ì¹˜ë¥¼ ì•Œë ¤ì¤€ë‹¤.
         API_GetSLPacketGenerator()->SendCharLocAfterPushNfy(m_pActor->GetPosition(), m_pActor->GetDirection());
     }
 }
@@ -1595,14 +1595,14 @@ void CNtlBehaviorCharPush::UpdatePosition(RwReal fElapsed)
     RwReal fDelta = (fDist - m_fPrevDist) * m_fDistScale;	    
     RwV3d vPos = m_pActor->GetPosition() + m_vPushDir * fDelta;
 
-    // Ãæµ¹ Ã¼Å©¸¦ ÇÑ´Ù
+    // ì¶©ëŒ ì²´í¬ë¥¼ í•œë‹¤
     RwBool bCollMoveImpossible = FALSE;
     Logic_CharacterCollisionEx(m_pActor, &vPos, fDelta / fElapsed, vPos, bCollMoveImpossible, fElapsed);
-    if(bCollMoveImpossible) // ¾îµò°¡¿¡ Ãæµ¹Çß´Ù. 
+    if(bCollMoveImpossible) // ì–´ë”˜ê°€ì— ì¶©ëŒí–ˆë‹¤. 
     {
         if(m_pActor->GetClassID() == SLCLASS_AVATAR)
         {
-            // ¼­¹ö¿¡ ÀÚ½ÅÀÌ Ãæµ¹Çß´Ù´Â ÆĞÅ¶À» º¸³½´Ù.
+            // ì„œë²„ì— ìì‹ ì´ ì¶©ëŒí–ˆë‹¤ëŠ” íŒ¨í‚·ì„ ë³´ë‚¸ë‹¤.
             API_GetSLPacketGenerator()->SendCharLocAfterPushNfy(vPos, m_pActor->GetDirection());
         }
     }
@@ -1639,7 +1639,7 @@ CNtlBehaviorCharSliding::~CNtlBehaviorCharSliding()
 
     if(m_pActor->GetClassID() == SLCLASS_AVATAR)
     {
-        // Á¾·á½Ã¿¡ ¼­¹ö¿¡ ÀÚ½ÅÀÇ À§Ä¡¸¦ ¾Ë·ÁÁØ´Ù.
+        // ì¢…ë£Œì‹œì— ì„œë²„ì— ìì‹ ì˜ ìœ„ì¹˜ë¥¼ ì•Œë ¤ì¤€ë‹¤.
         API_GetSLPacketGenerator()->SendCharLocAfterSlidingNfy(m_pActor->GetPosition(), m_pActor->GetDirection());
     }
 }
@@ -1732,14 +1732,14 @@ void CNtlBehaviorCharSliding::UpdatePosition(RwReal fElapsed)
 	RwReal fDelta = (fDist - m_fPrevDist) * m_fDistScale;
 	RwV3d vPos = m_pActor->GetPosition() + m_vPushDir * fDelta;
 
-    // Ãæµ¹ Ã¼Å©¸¦ ÇÑ´Ù
+    // ì¶©ëŒ ì²´í¬ë¥¼ í•œë‹¤
     RwBool bCollMoveImpossible = FALSE;
     Logic_CharacterCollisionEx(m_pActor, &vPos, fDelta / fElapsed, vPos, bCollMoveImpossible, fElapsed);
-    if(bCollMoveImpossible) // ¾îµò°¡¿¡ Ãæµ¹Çß´Ù. 
+    if(bCollMoveImpossible) // ì–´ë”˜ê°€ì— ì¶©ëŒí–ˆë‹¤. 
     {
         if(m_pActor->GetClassID() == SLCLASS_AVATAR)
         {
-            // ¼­¹ö¿¡ ÀÚ½ÅÀÌ Ãæµ¹Çß´Ù´Â ÆĞÅ¶À» º¸³½´Ù.
+            // ì„œë²„ì— ìì‹ ì´ ì¶©ëŒí–ˆë‹¤ëŠ” íŒ¨í‚·ì„ ë³´ë‚¸ë‹¤.
             API_GetSLPacketGenerator()->SendCharLocAfterSlidingNfy(vPos, m_pActor->GetDirection());
         }
     }
@@ -1781,7 +1781,7 @@ void CNtlBehaviorCharSliding::Enter(void)
 	CNtlMath::MathRwV3dAssign(&vOffset, 0.0f, 0.0f, 0.0f);
 	pSobProxy->CreatePLChildEffect(NTL_VID_TARGET_SLIDING, vOffset);
 
-	// ³ªÁß¿¡ base class enter¸¦ È£ÃâÇÑ´Ù.
+	// ë‚˜ì¤‘ì— base class enterë¥¼ í˜¸ì¶œí•œë‹¤.
 	CNtlBehaviorBase::Enter(); 
 }
 
@@ -1978,7 +1978,7 @@ void CNtlBehaviorCharShock::Enter(void)
 	// time sequence setting
 	CreateTimeSequence();
 				
-	// ³ªÁß¿¡ base class enter¸¦ È£ÃâÇÑ´Ù.
+	// ë‚˜ì¤‘ì— base class enterë¥¼ í˜¸ì¶œí•œë‹¤.
 	CNtlBehaviorBase::Enter(); 
 }
 
@@ -2146,7 +2146,7 @@ void CNtlBehaviorCharKnockDown::UpdateFallUp(RwReal fElapsed)
     CNtlMath::MathRwV2dAssign(&m_vPrevDist, ps2DDist->fX, ps2DDist->fY);	
     CNtlMath::MathRwV3dAdd(&vPos, m_vKnockDownDir.x * m_vFallDelta.x, 0.0f, m_vKnockDownDir.z * m_vFallDelta.x);
 
-    // Ãæµ¹ Ã¼Å©
+    // ì¶©ëŒ ì²´í¬
     vPos = UpdatePosition(fElapsed, vPos, m_vFallDelta.x / fElapsed);
 	
 	SWorldHeightStuff sHStuff;
@@ -2178,7 +2178,7 @@ void CNtlBehaviorCharKnockDown::UpdateFallDown(RwReal fElapsed)
 	vPos.x += m_vKnockDownDir.x * m_vFallDelta.x;
 	vPos.z += m_vKnockDownDir.z * m_vFallDelta.x;
 
-    // Ãæµ¹ Ã¼Å©
+    // ì¶©ëŒ ì²´í¬
     vPos = UpdatePosition(fElapsed, vPos, m_vFallDelta.x / fElapsed);
 
 	SWorldHeightStuff sHStuff;
@@ -2249,7 +2249,7 @@ void CNtlBehaviorCharKnockDown::CalcLanding(RwReal fElapsed)
 	vPos.x += m_vKnockDownDir.x * fDeltaX;
 	vPos.z += m_vKnockDownDir.z * fDeltaX;
 
-    // Ãæµ¹ Ã¼Å©
+    // ì¶©ëŒ ì²´í¬
     vPos = UpdatePosition(fElapsed, vPos, fDeltaX / fElapsed);
 
 	SWorldHeightStuff sHStuff;
@@ -2349,8 +2349,8 @@ void CNtlBehaviorCharKnockDown::ChangeKnockDownState(RwUInt32 uiState)
 
 void CNtlBehaviorCharKnockDown::Enter(void)
 {
-	// ground fly actorÀÌ¸é?
-	// knock downÀÏ °æ¿ì Àá½Ã •ûÁØ´Ù. (SLFLAG_CAN_GROUND_FLY)
+	// ground fly actorì´ë©´?
+	// knock downì¼ ê²½ìš° ì ì‹œ ëº´ì¤€ë‹¤. (SLFLAG_CAN_GROUND_FLY)
 	if(Logic_IsGroundFlyActor(m_pActor))
 	{
 		RwUInt32 uiFlags = m_pActor->GetFlags();
@@ -2378,14 +2378,14 @@ void CNtlBehaviorCharKnockDown::Enter(void)
         CNtlSLEventGenerator::KnockDownNfy();
     }
 				
-	// ³ªÁß¿¡ base class enter¸¦ È£ÃâÇÑ´Ù.
+	// ë‚˜ì¤‘ì— base class enterë¥¼ í˜¸ì¶œí•œë‹¤.
 	CNtlBehaviorBase::Enter(); 
 }
 
 void CNtlBehaviorCharKnockDown::Exit(void)
 {
-    // ground fly actorÀÌ¸é?
-    // »©ÁÖ¾ú´ø ground fly ±â´É(SLFLAG_CAN_GROUND_FLY)À» ´Ù½Ã ³Ö¾îÁØ´Ù.
+    // ground fly actorì´ë©´?
+    // ë¹¼ì£¼ì—ˆë˜ ground fly ê¸°ëŠ¥(SLFLAG_CAN_GROUND_FLY)ì„ ë‹¤ì‹œ ë„£ì–´ì¤€ë‹¤.
     if(Logic_IsGroundFlyActor(m_pActor))
     {
         RwUInt32 uiFlags = m_pActor->GetFlags();
@@ -2403,7 +2403,7 @@ void CNtlBehaviorCharKnockDown::Exit(void)
     {
         CNtlSLEventGenerator::KnockDownWakeUpNfy();
 
-        // ¼­¹ö¿¡ ÀÚ½ÅÀÌ Ãæµ¹Çß´Ù´Â ÆĞÅ¶À» º¸³½´Ù.
+        // ì„œë²„ì— ìì‹ ì´ ì¶©ëŒí–ˆë‹¤ëŠ” íŒ¨í‚·ì„ ë³´ë‚¸ë‹¤.
         API_GetSLPacketGenerator()->SendCharLocAfterKnockdownNfy(m_pActor->GetPosition(), m_pActor->GetDirection());
     }        
 }
@@ -2489,16 +2489,16 @@ RwV3d CNtlBehaviorCharKnockDown::UpdatePosition(RwReal fElapsed, RwV3d& vPos, Rw
 {
     RwReal fOrgPosY = vPos.y;
 
-    // Ãæµ¹ Ã¼Å©¸¦ ÇÑ´Ù
+    // ì¶©ëŒ ì²´í¬ë¥¼ í•œë‹¤
     RwBool bCollMoveImpossible = FALSE;
     Logic_CharacterCollisionEx(m_pActor, &vPos, fSpeed, vPos, bCollMoveImpossible, fElapsed);
     vPos.y = fOrgPosY;
 
-    if(bCollMoveImpossible) // ¾îµò°¡¿¡ Ãæµ¹Çß´Ù. 
+    if(bCollMoveImpossible) // ì–´ë”˜ê°€ì— ì¶©ëŒí–ˆë‹¤. 
     {
         if(m_pActor->GetClassID() == SLCLASS_AVATAR)
         {
-            // ¼­¹ö¿¡ ÀÚ½ÅÀÌ Ãæµ¹Çß´Ù´Â ÆĞÅ¶À» º¸³½´Ù.
+            // ì„œë²„ì— ìì‹ ì´ ì¶©ëŒí–ˆë‹¤ëŠ” íŒ¨í‚·ì„ ë³´ë‚¸ë‹¤.
             API_GetSLPacketGenerator()->SendCharLocAfterKnockdownNfy(vPos, m_pActor->GetDirection());
         }
     } 
@@ -2601,7 +2601,7 @@ void CNtlBehaviorCharHurt::Enter(void)
 	// animation
 	SetAnim(pHitStuff);
 
-	// ³ªÁß¿¡ base class enter¸¦ È£ÃâÇÑ´Ù.
+	// ë‚˜ì¤‘ì— base class enterë¥¼ í˜¸ì¶œí•œë‹¤.
 	CNtlBehaviorBase::Enter(); 
 }
 
@@ -2747,7 +2747,7 @@ void CNtlBehaviorCharHurtTossUp::Enter(void)
 	// animation setting
 	SetAnim();
 
-	// ³ªÁß¿¡ base class enter¸¦ È£ÃâÇÑ´Ù.
+	// ë‚˜ì¤‘ì— base class enterë¥¼ í˜¸ì¶œí•œë‹¤.
 	CNtlBehaviorBase::Enter(); 
 }
 
@@ -2755,13 +2755,13 @@ void CNtlBehaviorCharHurtTossUp::Exit(void)
 {
 	DeleteTimeSequence();
 
-	// ³ªÁß¿¡ base class exit¸¦ È£ÃâÇÑ´Ù.
+	// ë‚˜ì¤‘ì— base class exitë¥¼ í˜¸ì¶œí•œë‹¤.
 	CNtlBehaviorBase::Exit();
 }
 
 void CNtlBehaviorCharHurtTossUp::Update(RwReal fElapsed)
 {
-// HTB (toss up) - CNtlBehaviorCharHurtTossUp::CreateTimeSequence function table ÂüÁ¶.
+// HTB (toss up) - CNtlBehaviorCharHurtTossUp::CreateTimeSequence function table ì°¸ì¡°.
 	if(m_byTossUpState == TOSS_UP_UP)
 		UpdateUp(fElapsed);
 	else if(m_byTossUpState == TOSS_UP_IDLE)
@@ -2824,7 +2824,7 @@ void CNtlBehaviorCharHurtTossDown::SetAnim(void)
 
 void CNtlBehaviorCharHurtTossDown::UpdateDown(RwReal fElapsed)
 {
-	// HTB (toss down) - CNtlBehaviorCharHurtTossDown::CreateTimeSequence function table ÂüÁ¶.
+	// HTB (toss down) - CNtlBehaviorCharHurtTossDown::CreateTimeSequence function table ì°¸ì¡°.
 #define MAX_TOSS_DOWN_SPEED			46.0f
 
 	RwV3d vPos = m_pActor->GetPosition();
@@ -2854,8 +2854,8 @@ void CNtlBehaviorCharHurtTossDown::UpdateIdle(RwReal fElapsed)
 
 void CNtlBehaviorCharHurtTossDown::Enter(void)
 {
-    // ground fly actorÀÌ¸é?
-    // knock downÀÏ °æ¿ì Àá½Ã •ûÁØ´Ù. (SLFLAG_CAN_GROUND_FLY)
+    // ground fly actorì´ë©´?
+    // knock downì¼ ê²½ìš° ì ì‹œ ëº´ì¤€ë‹¤. (SLFLAG_CAN_GROUND_FLY)
     if(Logic_IsGroundFlyActor(m_pActor))
     {
         RwUInt32 uiFlags = m_pActor->GetFlags();
@@ -2865,14 +2865,14 @@ void CNtlBehaviorCharHurtTossDown::Enter(void)
 
 	SetAnim();
 
-	// ³ªÁß¿¡ base class enter¸¦ È£ÃâÇÑ´Ù.
+	// ë‚˜ì¤‘ì— base class enterë¥¼ í˜¸ì¶œí•œë‹¤.
 	CNtlBehaviorBase::Enter(); 
 }
 
 void CNtlBehaviorCharHurtTossDown::Exit(void)
 {
-    // ground fly actorÀÌ¸é?
-    // »©ÁÖ¾ú´ø ground fly ±â´É(SLFLAG_CAN_GROUND_FLY)À» ´Ù½Ã ³Ö¾îÁØ´Ù.
+    // ground fly actorì´ë©´?
+    // ë¹¼ì£¼ì—ˆë˜ ground fly ê¸°ëŠ¥(SLFLAG_CAN_GROUND_FLY)ì„ ë‹¤ì‹œ ë„£ì–´ì¤€ë‹¤.
     if(Logic_IsGroundFlyActor(m_pActor))
     {
         RwUInt32 uiFlags = m_pActor->GetFlags();
@@ -2880,7 +2880,7 @@ void CNtlBehaviorCharHurtTossDown::Exit(void)
         m_pActor->SetFlags(uiFlags);
     }
 
-	// ³ªÁß¿¡ base class enter¸¦ È£ÃâÇÑ´Ù.
+	// ë‚˜ì¤‘ì— base class enterë¥¼ í˜¸ì¶œí•œë‹¤.
 	CNtlBehaviorBase::Exit(); 
 }
 
@@ -2983,13 +2983,13 @@ void CNtlBehaviorCharHomingUp::Enter(void)
 		m_vOldTargetPos = pTargetSobObj->GetPosition();
 	}
 
-	// ³ªÁß¿¡ base class enter¸¦ È£ÃâÇÑ´Ù.
+	// ë‚˜ì¤‘ì— base class enterë¥¼ í˜¸ì¶œí•œë‹¤.
 	CNtlBehaviorBase::Enter(); 
 }
 
 void CNtlBehaviorCharHomingUp::Exit(void)
 {
-	// ³ªÁß¿¡ base class enter¸¦ È£ÃâÇÑ´Ù.
+	// ë‚˜ì¤‘ì— base class enterë¥¼ í˜¸ì¶œí•œë‹¤.
 	CNtlBehaviorBase::Exit(); 
 }
 
@@ -3133,7 +3133,7 @@ void CNtlBehaviorCharHomingDown::Enter(void)
 
 	SetAnim();
 
-	// ³ªÁß¿¡ base class enter¸¦ È£ÃâÇÑ´Ù.
+	// ë‚˜ì¤‘ì— base class enterë¥¼ í˜¸ì¶œí•œë‹¤.
 	CNtlBehaviorBase::Enter(); 
 }
 
@@ -3146,7 +3146,7 @@ void CNtlBehaviorCharHomingDown::Exit(void)
 	CNtlPLCharacter *pPLCharacter = reinterpret_cast<CNtlPLCharacter*>( pSobProxy->GetPLMainEntity() );
 	pPLCharacter->SetBlend(BLEND_TWEEN);
 
-	// ³ªÁß¿¡ base class enter¸¦ È£ÃâÇÑ´Ù.
+	// ë‚˜ì¤‘ì— base class enterë¥¼ í˜¸ì¶œí•œë‹¤.
 	CNtlBehaviorBase::Exit(); 
 }
 
@@ -3155,7 +3155,7 @@ void CNtlBehaviorCharHomingDown::UpdateHomingDown(RwReal fElapsed)
 	if(m_bLandingEnd)
 		return;
 
-	// HTB (homing down) - CNtlBehaviorCharHomingDown::CreateTimeSequence function table ÂüÁ¶.
+	// HTB (homing down) - CNtlBehaviorCharHomingDown::CreateTimeSequence function table ì°¸ì¡°.
 #define MAX_HOMMING_DOWN_TIME				0.866f
 
 	m_fTime += fElapsed;
@@ -3218,7 +3218,7 @@ void CNtlBehaviorCharHomingDown::UpdateHomingDown(RwReal fElapsed)
 
 void CNtlBehaviorCharHomingDown::UpdateIdleDown(RwReal fElapsed)
 {
-	// HTB (homing down) - CNtlBehaviorCharHomingDown::CreateTimeSequence function table ÂüÁ¶.
+	// HTB (homing down) - CNtlBehaviorCharHomingDown::CreateTimeSequence function table ì°¸ì¡°.
 #define MAX_HOMMING_DOWN_TIME				0.866f
 
 	RwReal fDist = *(reinterpret_cast<RwReal*>(m_pSeq->GetData(m_fTime)));
@@ -3349,7 +3349,7 @@ void CNtlBehaviorCharJumpingUp::Enter(void)
 
 	SetAnim();
 
-	// ³ªÁß¿¡ base class enter¸¦ È£ÃâÇÑ´Ù.
+	// ë‚˜ì¤‘ì— base class enterë¥¼ í˜¸ì¶œí•œë‹¤.
 	CNtlBehaviorBase::Enter(); 
 }
 
@@ -3357,7 +3357,7 @@ void CNtlBehaviorCharJumpingUp::Exit(void)
 {
 	DeleteTimeSequence();
 
-	// ³ªÁß¿¡ base class enter¸¦ È£ÃâÇÑ´Ù.
+	// ë‚˜ì¤‘ì— base class enterë¥¼ í˜¸ì¶œí•œë‹¤.
 	CNtlBehaviorBase::Exit(); 
 }
 
@@ -3433,7 +3433,7 @@ void CNtlBehaviorCharStretchAttack::Enter( void )
 
     m_pCharacter = (CNtlPLCharacter*)m_pActor->GetSobProxy()->GetPLMainEntity();    
 
-    // ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ¸ØÃá´Ù.    
+    // ì• ë‹ˆë©”ì´ì…˜ì„ ë©ˆì¶˜ë‹¤.    
     m_pCharacter->GetBoneData()->bBoneScale = TRUE;
     m_pCharacter->SetAnimUpdate(FALSE);
 
@@ -3489,7 +3489,7 @@ void CNtlBehaviorCharStretchAttack::Update( RwReal fElapsed )
         m_fStretchPullingSpeed = m_pStretchEvent->fStretchSpeed;
         m_bPulling = TRUE;
 
-        // Å¸°Ù ÀÌÆåÆ®
+        // íƒ€ê²Ÿ ì´í™íŠ¸
         if(strlen(m_pStretchEvent->szTargetEffect) > 0)
         {
             CNtlInstanceEffect* pEffect =(CNtlInstanceEffect*)GetSceneManager()->CreateEntity(PLENTITY_EFFECT, m_pStretchEvent->szTargetEffect);
@@ -3498,15 +3498,15 @@ void CNtlBehaviorCharStretchAttack::Update( RwReal fElapsed )
     }
 
 
-    m_fStretchPullingSpeed += m_fStretchPullingSpeed * m_pStretchEvent->fAccel * fElapsed;      // °¡¼Óµµ 
-    if(m_bPulling)              // ´ç°Ü¿À´Â »óÅÂ
+    m_fStretchPullingSpeed += m_fStretchPullingSpeed * m_pStretchEvent->fAccel * fElapsed;      // ê°€ì†ë„ 
+    if(m_bPulling)              // ë‹¹ê²¨ì˜¤ëŠ” ìƒíƒœ
     {
-        // NOTE : ¾î¸°¾Ö´Â ÀÌ¹Ì BoneÀÌ Á¶ÀıµÇ¾î ÀÖ±â ¶§¹®¿¡, ¾Æ¸¶ °ãÄ¡´Â ¹®Á¦°¡ »ı±æÁöµµ ¸ğ¸¥´Ù.
-        // ¿ì¼± ¼ºÀÎ Ä³¸¯ÅÍ¿ë ½ºÅ³·Î »ç¿ëÇÏ°í, Â÷ÈÄ¿¡ ¾î¸°»óÅÂ¿¡¼­µµ »ç¿ëÇÏ°Ô µÈ´Ù¸é ±×¶§ ¼öÁ¤À» »ı°¢ÇÑ´Ù. (by agebreak 08.10.20)
+        // NOTE : ì–´ë¦°ì• ëŠ” ì´ë¯¸ Boneì´ ì¡°ì ˆë˜ì–´ ìˆê¸° ë•Œë¬¸ì—, ì•„ë§ˆ ê²¹ì¹˜ëŠ” ë¬¸ì œê°€ ìƒê¸¸ì§€ë„ ëª¨ë¥¸ë‹¤.
+        // ìš°ì„  ì„±ì¸ ìºë¦­í„°ìš© ìŠ¤í‚¬ë¡œ ì‚¬ìš©í•˜ê³ , ì°¨í›„ì— ì–´ë¦°ìƒíƒœì—ì„œë„ ì‚¬ìš©í•˜ê²Œ ëœë‹¤ë©´ ê·¸ë•Œ ìˆ˜ì •ì„ ìƒê°í•œë‹¤. (by agebreak 08.10.20)
         if(fabs(fTargetDist) <= DBO_SYSTEM_EFFECT_PULL_DISTANCE || m_pCharacter->GetBoneData()->BoneScale[uiBone1].fLength <= 0.0f ||
             fTargetDist > 30.0f || m_pCharacter->GetBoneData()->BoneScale[uiBone2].fLength <= 0.0f)
         {
-            // ¸¶Áö¸· À§Ä¡´Â ÀÌµ¿ ½ÌÅ©¸¦ À§ÇØ¼­ °­Á¦·Î ¸ÂÃá´Ù.
+            // ë§ˆì§€ë§‰ ìœ„ì¹˜ëŠ” ì´ë™ ì‹±í¬ë¥¼ ìœ„í•´ì„œ ê°•ì œë¡œ ë§ì¶˜ë‹¤.
             RwV3d vTargetDir = posTarget - posActor;
             RwV3dNormalize(&vTargetDir, &vTargetDir);
             RwReal fActorRadius = max(m_pActor->GetSobProxy()->GetPLEntityWidth(), m_pActor->GetSobProxy()->GetPLEntityDepth());
@@ -3525,7 +3525,7 @@ void CNtlBehaviorCharStretchAttack::Update( RwReal fElapsed )
                
         if(m_pStretchEvent->eType == E_STRETCH_PULLING) // If hit, the target is not pulled.
         {
-            // Å¸°ÙÀÇ À§Ä¡
+            // íƒ€ê²Ÿì˜ ìœ„ì¹˜
             SWorldHeightStuff hStuff;
             RwV3d vHandPos = pMatHand->pos;
             Logic_GetWorldHeight(&vHandPos, hStuff);
@@ -3537,7 +3537,7 @@ void CNtlBehaviorCharStretchAttack::Update( RwReal fElapsed )
         m_pCharacter->GetBoneData()->BoneScale[uiBone2].fLength -= m_fStretchPullingSpeed * fElapsed;
         
     }
-    else    // »¸¾î³ª°¡´Â »óÅÂ                        
+    else    // ë»—ì–´ë‚˜ê°€ëŠ” ìƒíƒœ                        
     {
         m_pCharacter->GetBoneData()->BoneScale[uiBone1].fLength += m_fStretchPullingSpeed * fElapsed;
         m_pCharacter->GetBoneData()->BoneScale[uiBone1].fWidth = m_pStretchEvent->fWidth;
@@ -3563,7 +3563,7 @@ RwUInt32 CNtlBehaviorCharStretchAttack::HandleEvents( RWS::CMsg &pMsg )
             m_vTargetPos.y += pTargetActor->GetSobProxy()->GetPLEntityHeight() * 0.8f;
             m_pCharacter->SetSBoneStretchTargetPos(m_vTargetPos, m_pStretchEvent->szAxisBone);
 
-            // ±âÁ¸ Bone Á¤º¸ ÀúÀå            
+            // ê¸°ì¡´ Bone ì •ë³´ ì €ì¥            
             RwUInt32 uiScaleBoneIndex = m_pCharacter->GetBoneIndex(m_pStretchEvent->szScaleBone);
             RwUInt32 uiBone1 = m_pCharacter->GetBoneIndex(m_pStretchEvent->szBoneName[0]);
             RwUInt32 uiBone2 = m_pCharacter->GetBoneIndex(m_pStretchEvent->szBoneName[1]);
@@ -3591,7 +3591,7 @@ RwReal CNtlBehaviorCharStretchAttack::GetTargetDistance(CNtlSobActor* pTargetAct
     if(!pTargetActor)
         return 0.0f;
 
-    // ¼­¹ö¿¡¼­´Â »ì°ú»ì °Å¸®(Radius)¶ó°í °è»êÇÑ´Ù. Å¬¶óµµ ¸ÂÃç¼­ °è»êÇÑ´Ù.
+    // ì„œë²„ì—ì„œëŠ” ì‚´ê³¼ì‚´ ê±°ë¦¬(Radius)ë¼ê³  ê³„ì‚°í•œë‹¤. í´ë¼ë„ ë§ì¶°ì„œ ê³„ì‚°í•œë‹¤.
     RwReal fDistance = CNtlMath::GetLength(m_pActor->GetPosition(), pTargetActor->GetPosition());
     fDistance -= max(m_pActor->GetSobProxy()->GetPLEntityWidth(), m_pActor->GetSobProxy()->GetPLEntityDepth());
     fDistance -= max(m_pActor->GetSobProxy()->GetPLEntityWidth(), m_pActor->GetSobProxy()->GetPLEntityDepth());
@@ -3846,13 +3846,13 @@ RwUInt32 CNtlBehaviorCharTransform::HandleEvents( RWS::CMsg &pMsg )
 
         if(pAnimEnd->uiBaseAnimKey == m_uiAnimAction)
         {
-            // ÀÏ¹İ AnimÀÌ ³¡³ª¸é Loop AnimÀ» Àç»ıÇÑ´Ù.
+            // ì¼ë°˜ Animì´ ëë‚˜ë©´ Loop Animì„ ì¬ìƒí•œë‹¤.
             m_pActor->GetSobProxy()->SetBaseAnimation(m_uiAnimLoop);
         }        
     }
     else if(pMsg.Id == g_EventMobTransform)
     {
-        // º¯½Å ÆĞÅ¶ÀÌ ³¯¶ó¿À¸é »óÅÂ¸¦ Á¾·áÇÑ´Ù.         
+        // ë³€ì‹  íŒ¨í‚·ì´ ë‚ ë¼ì˜¤ë©´ ìƒíƒœë¥¼ ì¢…ë£Œí•œë‹¤.         
         Finish();
     }
 

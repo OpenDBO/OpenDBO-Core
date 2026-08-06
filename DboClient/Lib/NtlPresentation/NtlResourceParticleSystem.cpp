@@ -2,7 +2,7 @@
 //	File		:	NtlResourceParticleSystem.cpp
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	�� 2005 by agebreak CO., Ltd
+//	Copyright	:	占쏙옙 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -472,7 +472,7 @@ RwBool CNtlResourceParticleSystem::Load(FILE* pFile)
 		break;
 	}
 
-    // Trail Action �߰� (���� 6)
+    // Trail Action 占쌩곤옙 (占쏙옙占쏙옙 6)
     if(CNtlResourceEffect::m_nVersion >= 0x00000006 && IsEmitterDataFlag(rpPRTSTDEMITTERDATAFLAGTRAIL))
     {
 		if (CNtlResourceEffect::m_nVersion >= 0x00000067)
@@ -508,8 +508,8 @@ RwBool CNtlResourceParticleSystem::Load(FILE* pFile)
 	return TRUE;
 }
 
-// ��ƼŬ�� ������ġ�� ��Ÿ�ٴ��� Flag�� �����Ѵ�.
-// �� Flag�� ������ InstanceParticle Ŭ�����ȿ��� �����ȴ�(Update��)
+// 占쏙옙티클占쏙옙 占쏙옙占쏙옙占쏙옙치占쏙옙 占쏙옙타占쌕댐옙占쏙옙 Flag占쏙옙 占쏙옙占쏙옙占싼댐옙.
+// 占쏙옙 Flag占쏙옙 占쏙옙占쏙옙占쏙옙 InstanceParticle 클占쏙옙占쏙옙占싫울옙占쏙옙 占쏙옙占쏙옙占싫댐옙(Update占쏙옙)
 // �� Flag�� m_nPointEmitterDataFlag �ʵ忡 �����ȴ�.
 void CNtlResourceParticleSystem::SetFollowFlag(BOOL bFollow)
 {

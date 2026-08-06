@@ -102,10 +102,10 @@ RwBool CQuestProposalGui::Create( CQuestGui* pQuestGui )
 	m_phbxConversation->SetLineSpace( 7 );
 	m_phbxAim->SetLineSpace( 7 );
 
-	// º¸»ó¿µ¿ª ¼³Á¤.
+	// ë³´ìƒì˜ì—­ ì„¤ì •.
 	SetRewardRectHardcode();
 
-	// ±âº»¼³Á¤ ¼¼ÆÃ
+	// ê¸°ë³¸ì„¤ì • ì„¸íŒ…
 	SetBasicUISetting();
 	
 	Show( false );
@@ -160,7 +160,7 @@ VOID CQuestProposalGui::HandleEvents( RWS::CMsg& msg )
 	{
 		SNtlEventQuestDirect_Forward* pData = reinterpret_cast<SNtlEventQuestDirect_Forward*>( msg.pData );
 		
-		// peessi : Áßº¹ÇØ¼­ ProposalÀÌ ³¯¶ó¿À¸é »õ·Îµé¾î¿Â ³à¼®À» Fail ÀÀ´äÃ³¸®.		
+		// peessi : ì¤‘ë³µí•´ì„œ Proposalì´ ë‚ ë¼ì˜¤ë©´ ìƒˆë¡œë“¤ì–´ì˜¨ ë…€ì„ì„ Fail ì‘ë‹µì²˜ë¦¬.		
 		if( m_pTCUnit )
 		{
 			SNtlEventQuestDirect_Echo stEcho;
@@ -230,33 +230,33 @@ VOID CQuestProposalGui::SetBasicUISetting(VOID)
 
 VOID CQuestProposalGui::SetQuestData( SNtlEventQuestDirect_Forward* pData )
 {
-	// ´Ù½Ã º¸³»ÁÖ¾î¾ßÇÒ Data
+	// ë‹¤ì‹œ ë³´ë‚´ì£¼ì–´ì•¼í•  Data
 	m_pTCUnit = pData->pTCUnit;
 	m_TSKey = pData->sProposal.sTSKey;
 
 	SNtlEventQuestProposalDialog_Req* pProposalData = &pData->sProposal;
 
-	// Á¦¸ñ
+	// ì œëª©
 	SetQuestTitle( pProposalData->uiQuestTitle, pProposalData->uiQuestSort, pProposalData->eGradeType );
 
 	CQuestTextDataTable* pQuestTextTable = API_GetTableContainer()->GetQuestTextDataTable();
 	sQUEST_TEXT_DATA_TBLDAT* pQuestText;
 	
-	// ³»¿ë
+	// ë‚´ìš©
 	pQuestText = reinterpret_cast<sQUEST_TEXT_DATA_TBLDAT*>( pQuestTextTable->FindData( pProposalData->uiQuestContents ) );
 	if( pQuestText )
 		m_phbxConversation->SetHtmlFromMemory( pQuestText->wstrText.c_str(), pQuestText->wstrText.size() );
 	else
 		m_phbxConversation->Clear();
 
-	// ¸ñÇ¥
+	// ëª©í‘œ
 	pQuestText = reinterpret_cast<sQUEST_TEXT_DATA_TBLDAT*>( pQuestTextTable->FindData( pProposalData->uiQuestGoal ) );
 	if( pQuestText )
 		m_phbxAim->SetHtmlFromMemory( pQuestText->wstrText.c_str(), pQuestText->wstrText.size() );
 	else
 		m_phbxAim->Clear();
 
-	// º¸»óÁ¤º¸
+	// ë³´ìƒì •ë³´
 	for( RwInt32 i = 0 ; i < QUEST_MAX_REWARD_SLOT ; ++i )
 	{
 		SetRewardSlot( i, &pProposalData->sSelectReward[i]);

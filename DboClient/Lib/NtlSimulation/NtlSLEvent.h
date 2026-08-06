@@ -54,8 +54,8 @@ extern RWS::CEventId g_EventFormatSysStringMsg;
 
 extern RWS::CEventId g_EventNetSendError;		// network
 
-extern RWS::CEventId g_EventNotifySendPacket;			// packetÀ» º¸³¾¶§¹ß»ýÇÏ´Â ÀÌº¥Æ®(PacketTrace¿ë)
-extern RWS::CEventId g_EventNotifyReceivePacket;		// packetÀ» ¹ÞÀ»¶§¹ß»ýÇÏ´Â ÀÌº¥Æ®(PacketTrace¿ë)
+extern RWS::CEventId g_EventNotifySendPacket;			// packet을 보낼때발생하는 이벤트(PacketTrace용)
+extern RWS::CEventId g_EventNotifyReceivePacket;		// packet을 받을때발생하는 이벤트(PacketTrace용)
 
 //////////////////////////////////////////////
 /**
@@ -64,7 +64,7 @@ extern RWS::CEventId g_EventNotifyReceivePacket;		// packetÀ» ¹ÞÀ»¶§¹ß
 //////////////////////////////////////////////
 
 extern RWS::CEventId g_EventWorldChange;		
-extern RWS::CEventId g_EventCreateWorld;                 // ¿ùµå°¡ DestroyµÇ´ø°¡ CreateµÉ¶§
+extern RWS::CEventId g_EventCreateWorld;                 // 월드가 Destroy되던가 Create될때
 
 //////////////////////////////////////////////
 /**
@@ -80,13 +80,13 @@ extern RWS::CEventId g_EventCameraDB;					// dragon ball ¿¬Ãâ camera.
 extern RWS::CEventId g_EventCameraDTClear;				// camera direct node clear.
 extern RWS::CEventId g_EventCameraDTSplineNode;			// camera direct spline node.
 extern RWS::CEventId g_EventCameraFree;					// Free Camera
-extern RWS::CEventId g_EventCameraTimeMachine;			// Å¸ÀÓ¸Ó½Å Ãâ¹ß ¿¬Ãâ Ä«¸Þ¶ó ÀÌº¥Æ®
+extern RWS::CEventId g_EventCameraTimeMachine;			// 타임머신 출발 연출 카메라 이벤트
 extern RWS::CEventId g_EventCameraExplosion;			// Æø¹ß Ä«¸Þ¶ó ÀÌº¥Æ®
-extern RWS::CEventId g_EventCameraTimeMachineArrive;	// Å¸ÀÌ¸Ó½Å µµÂø Ä«¸Þ¶ó ÀÌº¥Æ®
+extern RWS::CEventId g_EventCameraTimeMachineArrive;	// 타이머신 도착 카메라 이벤트
 extern RWS::CEventId g_EventCameraKnockDownMatrix;		// knockdown matrix camera ¿¬Ãâ.
-extern RWS::CEventId g_EventCameraFPS;                  // 1ÀÎÄª Ä«¸Þ¶ó
+extern RWS::CEventId g_EventCameraFPS;                  // 1인칭 카메라
 extern RWS::CEventId g_EventCameraBus;					// ¹ö½º Ä«¸Þ¶ó
-extern RWS::CEventId g_EventCameraObserver;             // ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ¿ÉÀú¹ö Ä«¸Þ¶ó
+extern RWS::CEventId g_EventCameraObserver;             // 천하제일 무도회 옵저버 카메라
 extern RWS::CEventId g_EventCameraControlDelete;		// Ä«¸Þ¶ó »èÁ¦
 
 //////////////////////////////////////////////
@@ -109,15 +109,15 @@ extern RWS::CEventId g_EventActionMapCharging;			// charging »ç¿ë.
 extern RWS::CEventId g_EventActionMapBlocking;			// blocking »ç¿ë.
 extern RWS::CEventId g_EventActionMapAutoFollow;		// auto follow »ç¿ë.
 extern RWS::CEventId g_EventActionMapDice;				// ¾×¼Ç ÁÖ»çÀ§ »ç¿ë
-extern RWS::CEventId g_EventScreenShot;                 // ½ºÅ©¸°¼¦À» ÂïÀºÈÄ¿¡ ¹ß»ýÇÏ´Â ÀÌº¥Æ®
+extern RWS::CEventId g_EventScreenShot;                 // 스크린샷을 찍은후에 발생하는 이벤트
 
 extern RWS::CEventId g_EventSkillSelectMode;
 
-// ¾×¼Ç ½ºÅ³ ¾ÆÀÌÄÜÀ» ÀÌ¿ëÇÑ ¾×¼Ç (AvatarController¿¡¼­ ÇÑ¹ø °É·¯Á®¼­ ÀÌº¥Æ®¸¦ º¸³½´Ù)
-extern RWS::CEventId g_EventActionFuncBasicAttack;      ///< ±âº» °ø°Ý ¾ÆÀÌÄÜ
-extern RWS::CEventId g_EventActionFuncAssist;            ///< ¾î½Ã½ºÆ® ¾ÆÀÌÄÜ
-extern RWS::CEventId g_EventActionFuncGetItem;          ///< ¾ÆÀÌÅÛ ½Àµæ ¾ÆÀÌÄÜ
-extern RWS::CEventId g_EventActionFuncSitAndStand;      ///< ¾É±â ¾ÆÀÌÄÜ
+// 액션 스킬 아이콘을 이용한 액션 (AvatarController에서 한번 걸러져서 이벤트를 보낸다)
+extern RWS::CEventId g_EventActionFuncBasicAttack;      ///< 기본 공격 아이콘
+extern RWS::CEventId g_EventActionFuncAssist;            ///< 어시스트 아이콘
+extern RWS::CEventId g_EventActionFuncGetItem;          ///< 아이템 습득 아이콘
+extern RWS::CEventId g_EventActionFuncSitAndStand;      ///< 앉기 아이콘
 
 
 extern RWS::CEventId g_EventESCinNarrationMode;
@@ -135,16 +135,16 @@ extern RWS::CEventId g_EventESCinNarrationMode;
 extern RWS::CEventId g_EventSobShowNfy;
 
 //--------------------
-// input¿¡ °üÇÑ event
+// input에 관한 event
 //--------------------
 
-// mouse·Î terrainÀ» click ÇßÀ» °æ¿ì ¹ß»ýµÇ´Â eventÀÌ´Ù.
+// mouse로 terrain을 click 했을 경우 발생되는 event이다.
 extern RWS::CEventId g_EventTerrainClick;		
 
-// avatar¸¦ keyboard ÀÌµ¿½ÃÅ³¶§ ¹ß»ýÇÏ´Â event.
+// avatar를 keyboard 이동시킬때 발생하는 event.
 extern RWS::CEventId g_EventKeyboardMove;		
 
-// avatar¸¦ keyboard ÀÌµ¿À» ¸ØÃâ ¶§ ¹ß»ýÇÏ´Â event.
+// avatar를 keyboard 이동을 멈출 때 발생하는 event.
 extern RWS::CEventId g_EventKeyboardMoveStop;	
 
 // avatar¸¦ mouse dash move ÀÌµ¿.
@@ -156,45 +156,45 @@ extern RWS::CEventId g_EventKeyboardDashMove;
 extern RWS::CEventId g_EventAirDashMove;
 extern RWS::CEventId g_EventAirAccelMove;
 
-// avatar¸¦ headingÀ» ¹Ù²Ü¶§ ¹ß»ýÇÏ´Â event.
+// avatar를 heading을 바꿀때 발생하는 event.
 extern RWS::CEventId g_EventInputChangeHeading;
 
-// mouse·Î simulation object¸¦ click ÇßÀ» °æ¿ì ¹ß»ýµÇ´Â eventÀÌ´Ù.
+// mouse로 simulation object를 click 했을 경우 발생되는 event이다.
 extern RWS::CEventId g_EventSobTargetSelect;     
 
-// mouse·Î simulation object¸¦ click ÇØÁ¦ eventÀÌ´Ù.
+// mouse로 simulation object를 click 해제 event이다.
 extern RWS::CEventId g_EventSobTargetSelectRelease;     
 
-// mouse·Î simulation object¸¦ attack mark release ÇØÁ¦ eventÀÌ´Ù.
+// mouse로 simulation object를 attack mark release 해제 event이다.
 extern RWS::CEventId g_EventSobAttackMarkRelease;
 
-// mouse·Î simulation object¸¦ double click ÇßÀ» °æ¿ì ¹ß»ýµÇ´Â eventÀÌ´Ù.
+// mouse로 simulation object를 double click 했을 경우 발생되는 event이다.
 extern RWS::CEventId g_EventSobAttackSelect;     
 
-extern RWS::CEventId g_EventSobTargetMarkSelect;                    ///< Å¸°Ù ¸¶Å·ÇÒ ¿ÀºêÁ§Æ®¸¦ ¼±ÅÃÇÒ¶§ (¸Þ°¡ µµµ¿ÆÄ ½ºÅ³) 
+extern RWS::CEventId g_EventSobTargetMarkSelect;                    ///< 타겟 마킹할 오브젝트를 선택할때 (메가 도동파 스킬) 
 
-extern RWS::CEventId g_EventSobTargetMarkRelease;                   ///< Å¸°Ù ¸¶Å·ÇÒ ¿ÀºêÁ§Æ®¸¦ ¸±¸®Áî
+extern RWS::CEventId g_EventSobTargetMarkRelease;                   ///< 타겟 마킹할 오브젝트를 릴리즈
 
-// mouse·Î simulation object¿¡ mouse focus°¡ µé¾î¿ÔÀ» °æ¿ì.
+// mouse로 simulation object에 mouse focus가 들어왔을 경우.
 extern RWS::CEventId g_EventSobGotFocus;     
 
-// mouse·Î simulation object¿¡ mouse focus°¡ ÇØÁ¦ µÇ¾úÀ» °æ¿ì.
+// mouse로 simulation object에 mouse focus가 해제 되었을 경우.
 extern RWS::CEventId g_EventSobLostFocus;     
 
-extern RWS::CEventId g_EventCommuTargetSelect;      // Ä¿¹Â´ÏÆ¼ TargetÀ» ¼±ÅÃÇÒ¶§ÀÇ ÀÌº¥Æ®
-extern RWS::CEventId g_EventCommuTargetRelease;     // Ä¿¹Â´ÏÆ¼ TargetÀ» ÇØÁ¦ÇÒ¶§ÀÇ ÀÌº¥Æ®
+extern RWS::CEventId g_EventCommuTargetSelect;      // 커뮤니티 Target을 선택할때의 이벤트
+extern RWS::CEventId g_EventCommuTargetRelease;     // 커뮤니티 Target을 해제할때의 이벤트
 
 
-/// ¼±°ø¸÷ÀÌ ³¯ ´«Ä¡Ã«À»¶§ ¹ß»ýÇÏ´Â ÀÌº¥Æ®
+/// 선공몹이 날 눈치챘을때 발생하는 이벤트
 extern RWS::CEventId g_EventBotCaution_Nfy;
 
-/// ¸÷ÀÌ ÁÖÀ§ µ¿·á¿¡°Ô µµ¿òÀ» Ã»ÇÒ¶§ ¹ß»ýÇÏ´Â ÀÌº¥Æ®
+/// 몹이 주위 동료에게 도움을 청할때 발생하는 이벤트
 extern RWS::CEventId g_EventBotHelpMe_Nfy;
 
-/// °øÀ¯ Å¸°Ù ¸¶Å©¸¦ ÁöÁ¤ÇÏ´Â ÀÌº¥Æ®
+/// 공유 타겟 마크를 지정하는 이벤트
 extern RWS::CEventId g_EventShareTargetSelect;
 
-// °øÀ¯ Å¸°Ù ¸¶Å©¸¦ ¾ø¾Ö´Â ÀÌº¥Æ®
+// 공유 타겟 마크를 없애는 이벤트
 extern RWS::CEventId g_EventShareTargetRelease;
 
 extern RWS::CEventId g_EventTenkaichiMarking;
@@ -206,7 +206,7 @@ extern RWS::CEventId g_EventAvatarTargetStateChange;
 extern RWS::CEventId g_EventAvatarReset;
 
 //-----------------------------
-// create/delete¿¡ °üÇÑ ÇÔ¼ö.
+// create/delete에 관한 함수.
 //-----------------------------
 
 // simulatin object »ý¼º event.
@@ -219,15 +219,15 @@ extern RWS::CEventId g_EventSobDelete;
 extern RWS::CEventId g_EventSobSummonPetSpawnSync;
 
 //--------------------------------
-// Æê »ý¼º¿¡ °ü·ÃµÈ ÀÌº¥Æ®
+// 펫 생성에 관련된 이벤트
 //--------------------------------
-extern RWS::CEventId g_EventSobPetSkillInfo;	// Æê ½ºÅ³¿¡ ´ëÇÑ Á¤º¸
+extern RWS::CEventId g_EventSobPetSkillInfo;	// 펫 스킬에 대한 정보
 
 //-----------------------------
-// server µ¿±â °´Ã¼ÀÇ ÀÌµ¿¿¡ °üÇÑ ÇÔ¼ö.
+// server 동기 객체의 이동에 관한 함수.
 //-----------------------------
 extern RWS::CEventId g_EventSobMove;				// simulation object move event
-extern RWS::CEventId g_EventSobMoveSync;            // ¿òÁ÷ÀÓ µ¿±âÈ­ ÀÌº¥Æ®
+extern RWS::CEventId g_EventSobMoveSync;            // 움직임 동기화 이벤트
 extern RWS::CEventId g_EventSobSecondDestMove;		// simulation object second dest move event
 extern RWS::CEventId g_EventSobSplineMove;			// simulation object spline move event
 extern RWS::CEventId g_EventSobAdjustMovePosition;  // simulation object adjust move position event
@@ -236,14 +236,14 @@ extern RWS::CEventId g_EventSobMoveStop;			// simulation object move stop event
 extern RWS::CEventId g_EventSobDirectionFloat;		// simulation object direction float
 extern RWS::CEventId g_EventSobFollowMove;			// simulation object follow move
 extern RWS::CEventId g_EventSobAdjustMove;			// simulation object adjust move event
-extern RWS::CEventId g_EventSobPushingNfy;			///< È¸Àü °ø°ÝÀ» ¹Þ¾Æ¼­ ½½¶óÀÌµù µÇ´Â ÀÌº¥Æ®
-extern RWS::CEventId g_EventSobGuardCrush;			// simulation object guard crush¸¦ ´çÇÑ´Ù.
-extern RWS::CEventId g_EventSobMovePatternSync;		// ÇöÀç monster¸¸ »ç¿ëÇÏ°í ÀÖ½¿.
+extern RWS::CEventId g_EventSobPushingNfy;			///< 회전 공격을 받아서 슬라이딩 되는 이벤트
+extern RWS::CEventId g_EventSobGuardCrush;			// simulation object guard crush를 당한다.
+extern RWS::CEventId g_EventSobMovePatternSync;		// 현재 monster만 사용하고 있슴.
 extern RWS::CEventId g_EventSobAirJump;
 extern RWS::CEventId g_EventSobAirAccel;
 
 //-----------------------------
-// item ÀåÂø°ú ÇØÁ¦¿¡ °üÇÑ event.
+// item 장착과 해제에 관한 event.
 //-----------------------------
 
 // simulation item add event
@@ -288,7 +288,7 @@ extern RWS::CEventId g_EventSobEquippedItemUpgradeAll;
 // simulation avatar item cancel event
 extern RWS::CEventId g_EventSobItemCancel;
 
-// ItemUseRes °¡ ½ÇÆÐ·Î ³¯¶ó¿ÔÀ» ¶§ ¹ßµ¿µÇ´Â ÀÌº¥Æ®
+// ItemUseRes 가 실패로 날라왔을 때 발동되는 이벤트
 extern RWS::CEventId g_EventSobItemUseResFailed;
 
 // simulation avatar item casting event
@@ -308,18 +308,18 @@ extern RWS::CEventId g_EventItemSocketDestroyBead;
 //////////////////////////////////////////////////////////////////////////
 extern RWS::CEventId g_EventDynamicObjectUpdateState;
 extern RWS::CEventId g_EventHoipoiMixRecipeRegNfy;
-extern RWS::CEventId g_EventHoipoiMixItemRecipeInfo;	///< ¾ÆÀÌÅÛ ·¹½ÃÇÇ Á¤º¸
-extern RWS::CEventId g_EventHoipoiMixItemMakeExpNfy;	///< ¾ÆÀÌÅÛ ¸¸µé±â °æÇèÄ¡ Áõ°¡ ¾Ë¸²
-extern RWS::CEventId g_EventHoipoiMixInfoUpdate;			///< È£ÀÌÆ÷ÀÌ¹Í½º ÀÎÆ÷ ¾÷µ¥ÀÌÆ®
+extern RWS::CEventId g_EventHoipoiMixItemRecipeInfo;	///< 아이템 레시피 정보
+extern RWS::CEventId g_EventHoipoiMixItemMakeExpNfy;	///< 아이템 만들기 경험치 증가 알림
+extern RWS::CEventId g_EventHoipoiMixInfoUpdate;			///< 호이포이믹스 인포 업데이트
 
 
 // º¯½Å ÀÌº¥Æ®
 extern RWS::CEventId g_EventTransform;
-extern RWS::CEventId g_EventMobTransform;               ///< ¸÷ÀÌ º¯½ÅÇÒ¶§ÀÇ ÀÌº¥Æ®
-extern RWS::CEventId g_EventTransformCandy;             ///< »çÅÁÀ¸·Î º¯½ÅÇÏ´Â ÀÌº¥Æ®
-extern RWS::CEventId g_EventSobTransformSequela;        ///< º¯½Å ÈÞÀ¯Áõ
+extern RWS::CEventId g_EventMobTransform;               ///< 몹이 변신할때의 이벤트
+extern RWS::CEventId g_EventTransformCandy;             ///< 사탕으로 변신하는 이벤트
+extern RWS::CEventId g_EventSobTransformSequela;        ///< 변신 휴유증
 
-// ÄÁµð¼Ç ÀÌº¥Æ®
+// 컨디션 이벤트
 extern RWS::CEventId g_EventAfterEffectRemainTimeNfy;
 extern RWS::CEventId g_EventSobCondTerror;
 extern RWS::CEventId g_EventSobCondConfused;
@@ -344,7 +344,7 @@ extern RWS::CEventId g_EventBattleDungeonRewardFinish;
 
 
 //-----------------------------
-// QuickSlot¿¡ °ü·ÃµÈ event
+// QuickSlot에 관련된 event
 //-----------------------------
 extern RWS::CEventId g_EventSobDeleteQuickSlotIcon;
 
@@ -365,7 +365,7 @@ extern RWS::CEventId g_EventSobWarehouseItemMove;
 extern RWS::CEventId g_EventSobWarehouseItemStackMove;
 
 //-----------------------------
-// quest item ÀåÂø°ú ÇØÁ¦¿¡ °üÇÑ event.
+// quest item 장착과 해제에 관한 event.
 //-----------------------------
 
 extern RWS::CEventId g_EventSobQuestItemAdd;
@@ -378,7 +378,7 @@ extern RWS::CEventId g_EventSobQuestItemUpdate;
 
 
 //-----------------------------
-// server µ¿±â¿¡ ´ëÇÑ actionµé¿¡ °üÇÑ event.
+// server 동기에 대한 action들에 관한 event.
 //-----------------------------
 
 // simulation object °¡ knockdown¿¡¼­ stand·Î º¯ÇÒ ¶§ º¸³»´Â ÀÌº¥Æ®.
@@ -387,20 +387,20 @@ extern RWS::CEventId g_EventSobStanding;
 // simulation object fighting mode
 extern RWS::CEventId g_EventSobFightingMode;
 
-// simulation object attack event(target¿¡ °ø°ÝÀ» ½ÃÀÛ½ÃÅ°´Â ÀÌº¥Æ®)
+// simulation object attack event(target에 공격을 시작시키는 이벤트)
 extern RWS::CEventId g_EventSobAttack;
 
 extern RWS::CEventId g_EventSobSpecialAttack;
 
 extern RWS::CEventId g_EventSobBattleNotification;
 
-// simulation object attacked event(°ø°Ý½ÃÀÛÀº ¹Ý´ë·Î °ø°Ý´çÇßÀ»¶§ ÀÇ¹Ì -> g_EventSobAttackÀÇ ¹Ý´ë ÀÌº¥Æ®)
+// simulation object attacked event(공격시작은 반대로 공격당했을때 의미 -> g_EventSobAttack의 반대 이벤트)
 extern RWS::CEventId g_EventSobAttacked;
 
-// simulation object attack event(target¿¡ °ø°ÝÀ» ½ÃÀÛ½ÃÅ°´Â ÀÌº¥Æ®)
+// simulation object attack event(target에 공격을 시작시키는 이벤트)
 extern RWS::CEventId g_EventSobPetBeginAttack;
 
-// simulation object hit event(attackÀÌ ½ÃÀÛµÈÈÄ target¿¡°Ô damage¸¦ Àü´ÞÇØ ÁÖ´Â event)
+// simulation object hit event(attack이 시작된후 target에게 damage를 전달해 주는 event)
 extern RWS::CEventId g_EventSobHit;
 
 // simulation object attack follow event
@@ -409,7 +409,7 @@ extern RWS::CEventId g_EventSobAttackFollow;
 // simulation object attack mode event
 extern RWS::CEventId g_EventSobAttackMode;
 
-extern RWS::CEventId g_EventSobSendAttackEnd;           ///< ¾îÅÃ¸ðµå Á¾·á¸¦ ¼­¹ö¿¡ ¾Ë¸®´Â ÀÌº¥Æ®
+extern RWS::CEventId g_EventSobSendAttackEnd;           ///< 어택모드 종료를 서버에 알리는 이벤트
 
 // simulation object jump event
 extern RWS::CEventId g_EventSobJump;
@@ -427,8 +427,8 @@ extern RWS::CEventId g_EventSobSit;
 extern RWS::CEventId g_EventSobPrivateShop;
 
 // simulation player convert class
-extern RWS::CEventId g_EventSobConvertClass;            ///< ÀüÁ÷ ÀÌº¥Æ®
-extern RWS::CEventId g_EventSobChangeAdult;             ///< ¸ðµ¨À» ¹Ù²Ù´Â ÀÌº¥Æ® (¼ºÀÎ <-> ¾î¸°ÀÌ)
+extern RWS::CEventId g_EventSobConvertClass;            ///< 전직 이벤트
+extern RWS::CEventId g_EventSobChangeAdult;             ///< 모델을 바꾸는 이벤트 (성인 <-> 어린이)
 
 extern RWS::CEventId g_EventCharTitleSelectNfy;
 
@@ -536,7 +536,7 @@ extern RWS::CEventId g_EventSobServerUpdateState;
 extern RWS::CEventId g_EventSobServerUpdateCondition;
 extern RWS::CEventId g_EventSobServerUpdateAspect;
 extern RWS::CEventId g_EventSobFainting;
-extern RWS::CEventId g_EventSobUpdateLPStatusNfy;           ///< SobÀÌ ºó»ç »óÅÂ¿¡ ºü ºÀ»¶§ÀÇ ÀÌº¥Æ®
+extern RWS::CEventId g_EventSobUpdateLPStatusNfy;           ///< Sob이 빈사 상태에 빠졋을때의 이벤트
 
 //-----------------------------
 // party event
@@ -558,8 +558,8 @@ extern RWS::CEventId g_EventPartyUpdateValue;
 
 extern RWS::CEventId g_EventPartyMemberLocation;
 
-extern RWS::CEventId g_EventPartyShareTargetRes;            ///< °øÀ¯ Å¸°Ù ¼±ÅÃ¿¡ ´ëÇÑ ¼­¹ö ÀÀ´ä
-extern RWS::CEventId g_EventPartyShareTargetNfy;            ///< °øÀ¯ Å¸°Ù ¼±ÅÃ¿¡ ´ëÇÑ ¼­¹ö ¾Ë¸²
+extern RWS::CEventId g_EventPartyShareTargetRes;            ///< 공유 타겟 선택에 대한 서버 응답
+extern RWS::CEventId g_EventPartyShareTargetNfy;            ///< 공유 타겟 선택에 대한 서버 알림
 
 //-----------------------------
 // Guild event
@@ -608,7 +608,7 @@ extern RWS::CEventId g_EventBlackListAdd_Res;
 extern RWS::CEventId g_EventBlackListDel_Res;
 extern RWS::CEventId g_EventFriendInfo;
 extern RWS::CEventId g_EventFriendInfoChange;
-extern RWS::CEventId g_EventFriendInfoNotify;           ///< UI¸¦ ¾÷µ¥ÀÌÆ® ÇÏ±â À§ÇÑ ÀÌº¥Æ® (µ¥ÀÌÅÍ->UI)
+extern RWS::CEventId g_EventFriendInfoNotify;           ///< UI를 업데이트 하기 위한 이벤트 (데이터->UI)
 
 
 //-----------------------------
@@ -659,24 +659,24 @@ extern RWS::CEventId g_EventBroadMsgEndNfy;
 // RankBattle
 //_____________________________
 
-extern RWS::CEventId g_EventRBBoardInfo;		// ·©Å©¹èÆ² °Ô½ÃÆÇ °»½Å
+extern RWS::CEventId g_EventRBBoardInfo;		// 랭크배틀 게시판 갱신
 extern RWS::CEventId g_EventRBJoin;				// ·©Å©¹èÆ² ½ÅÃ»°ü·Ã.
 
-//extern RWS::CEventId g_EventRBBoardUpdate;	// ·©Å©¹èÆ² °Ô½ÃÆÇ °»½Å
-//extern RWS::CEventId g_EventRBRoomInfo;		// ¹æÀÇ »ó¼¼ Á¤º¸
+//extern RWS::CEventId g_EventRBBoardUpdate;	// 랭크배틀 게시판 갱신
+//extern RWS::CEventId g_EventRBRoomInfo;		// 방의 상세 정보
 //extern RWS::CEventId g_EventRBRoom;			// ·©Å©¹èÆ² ½ÅÃ» Ãë¼Ò
-//extern RWS::CEventId g_EventRBMatch;			// ·©Å©¹èÆ² ÁØºñ ½ÃÀÛ Ãë¼Ò
+//extern RWS::CEventId g_EventRBMatch;			// 랭크배틀 준비 시작 취소
 
-extern RWS::CEventId g_EventRBBattleStateUpdate;	// ·©Å©¹èÆ² °æ±âÀå »óÅÂÁ¤º¸
+extern RWS::CEventId g_EventRBBattleStateUpdate;	// 랭크배틀 경기장 상태정보
 extern RWS::CEventId g_EventRBBattleTeamInfo;		// ÆÀ Á¤º¸ ¾Ë¸²
-extern RWS::CEventId g_EventRBBattlePlayerState;	// ÇÃ·¹ÀÌ¾î »óÅÂ
-extern RWS::CEventId g_EventRBBattleKillScoreUpdate;// Å³ ½ºÄÚ¾î ¾÷µ¥ÀÌÆ®
-extern RWS::CEventId g_EventRBBattleStageFinish;	// ½ºÅ×ÀÌÁö ¸¶Ä§
+extern RWS::CEventId g_EventRBBattlePlayerState;	// 플레이어 상태
+extern RWS::CEventId g_EventRBBattleKillScoreUpdate;// 킬 스코어 업데이트
+extern RWS::CEventId g_EventRBBattleStageFinish;	// 스테이지 마침
 extern RWS::CEventId g_EventRBBattleMatchFinish;	// °æ±â ¸¶Ä§
-extern RWS::CEventId g_EventRBBattleEnd;			// RBBattle ¿ùµå ³ª°¡±â Á÷Àü
-extern RWS::CEventId g_EventRBForcedEnd;			// ¼­¹öÂÊ¿¡¼­ÀÇ ·©Å©¹èÆ² °­Á¦Á¾·á
+extern RWS::CEventId g_EventRBBattleEnd;			// RBBattle 월드 나가기 직전
+extern RWS::CEventId g_EventRBForcedEnd;			// 서버쪽에서의 랭크배틀 강제종료
 
-extern RWS::CEventId g_EventRBTotalScoreUpdate;		// °³ÀÎ ÀüÀû ¾÷µ¥ÀÌÆ®
+extern RWS::CEventId g_EventRBTotalScoreUpdate;		// 개인 전적 업데이트
 
 //-----------------------------
 // MailSystem
@@ -721,10 +721,10 @@ extern RWS::CEventId g_EventActionMapClientNotify;
 //_____________________________
 // Portal System
 //_____________________________
-extern RWS::CEventId g_EventPortalInfoRes;          ///< Æ÷Å» Á¤º¸¸¦ ¹ÞÀ»¶§
+extern RWS::CEventId g_EventPortalInfoRes;          ///< 포탈 정보를 받을때
 extern RWS::CEventId g_EventPortalAddReq;
-extern RWS::CEventId g_EventPortalAddRes;           ///< Æ÷Å»À» µî·Ï Ãß°¡ÇßÀ» ¶§ÀÇ ÀÀ´ä
-extern RWS::CEventId g_EventPortalRes;              ///< Æ÷Å»À» ÀÌµ¿¿äÃ» ÇßÀ» ¶§ÀÇ ÀÀ´ä
+extern RWS::CEventId g_EventPortalAddRes;           ///< 포탈을 등록 추가했을 때의 응답
+extern RWS::CEventId g_EventPortalRes;              ///< 포탈을 이동요청 했을 때의 응답
 
 //_____________________________
 // Popo Icon String Notify
@@ -745,7 +745,7 @@ extern RWS::CEventId g_EventSobVehicleStunt;
 extern RWS::CEventId g_EventBusMove;
 
 //////////////////////////////////////////////////////////////////////////
-// Client ¿Í TS °£ÀÇ ¿¬µ¿ ¸Þ½ÃÁöµé
+// Client 와 TS 간의 연동 메시지들
 //////////////////////////////////////////////////////////////////////////
 
 // TS => Client
@@ -804,7 +804,7 @@ extern RWS::CEventId g_EventTSRemovingTMQQuest_Nfy;	// TMQ Äù½ºÆ® Á¦°Å
 
 extern RWS::CEventId g_EventTSPCDialog_Nfy;
 
-extern RWS::CEventId g_EventTSMudosaTeleport_Req;	// ¹«µµ»ç ÅÚ·¹Æ÷Æ®
+extern RWS::CEventId g_EventTSMudosaTeleport_Req;	// 무도사 텔레포트
 
 extern RWS::CEventId g_EventTSMudosaTeleport_Res;
 
@@ -819,25 +819,25 @@ extern RWS::CEventId g_EventTSSkipContainer;
 
 // Client => TS
 
-extern RWS::CEventId g_EventTSItemUse;			// ¾ÆÀÌÅÛ »ç¿ë
-extern RWS::CEventId g_EventTSItemGet;			// ¾ÆÀÌÅÛ È¹µæ
-extern RWS::CEventId g_EventTSItemEquip;		// ¾ÆÀÌÅÛ ÀåÂø
-extern RWS::CEventId g_EventTSScoutUse;			// ½ºÄ«¿ìÅÍ »ç¿ë
+extern RWS::CEventId g_EventTSItemUse;			// 아이템 사용
+extern RWS::CEventId g_EventTSItemGet;			// 아이템 획득
+extern RWS::CEventId g_EventTSItemEquip;		// 아이템 장착
+extern RWS::CEventId g_EventTSScoutUse;			// 스카우터 사용
 extern RWS::CEventId g_EventTSSkillUse;			// ½ºÅ³ »ç¿ë
 extern RWS::CEventId g_EventTSRankBattle;		// ·©Å©¹èÆ²
-extern RWS::CEventId g_EventTSColTriggerObject;	// Æ®¸®°Å ¿ÀºêÁ§Æ® Ãæµ¹
-extern RWS::CEventId g_EventTSBindStone;		// ¹ÙÀÎµå ½ºÅæ¿¡ ¹ÙÀÎµå ½Ã
-extern RWS::CEventId g_EventTSSearchQuest;		// ½ºÄ«¿ìÅÍ¿¡¼­ Äù½ºÆ® Ã£±â ½Ã
-extern RWS::CEventId g_EventTSItemUpgrade;		// ¾ÆÀÌÅÛ ¾÷±×·¡ÀÌµå ½Ã
-extern RWS::CEventId g_EventTSTeleport;			// ÅÚ·¹Æ÷Æ® ½Ã
-extern RWS::CEventId g_EventTSBudokai;			// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸
+extern RWS::CEventId g_EventTSColTriggerObject;	// 트리거 오브젝트 충돌
+extern RWS::CEventId g_EventTSBindStone;		// 바인드 스톤에 바인드 시
+extern RWS::CEventId g_EventTSSearchQuest;		// 스카우터에서 퀘스트 찾기 시
+extern RWS::CEventId g_EventTSItemUpgrade;		// 아이템 업그래이드 시
+extern RWS::CEventId g_EventTSTeleport;			// 텔레포트 시
+extern RWS::CEventId g_EventTSBudokai;			// 천하제일 무도회
 extern RWS::CEventId g_EventTSSlotMachine;		// ½½·Ô ¸Ó½Å
-extern RWS::CEventId g_EventTSHoipoiMix;		// È£ÀÌÆ÷ÀÌ ¹Í½º
+extern RWS::CEventId g_EventTSHoipoiMix;		// 호이포이 믹스
 extern RWS::CEventId g_EventTSPrivateShop;		// °³ÀÎ»óÁ¡
-extern RWS::CEventId g_EventTSFreeBattle;		// ÀüÅõ
-extern RWS::CEventId g_EventTSItemIdentity;		// ¾ÆÀÌÅÛ ÀÎÁõ
-extern RWS::CEventId g_EventTSUseMail;			// ¸ÞÀÏ »ç¿ë
-extern RWS::CEventId g_EventTSParty;			// ÆÄÆ¼
+extern RWS::CEventId g_EventTSFreeBattle;		// 전투
+extern RWS::CEventId g_EventTSItemIdentity;		// 아이템 인증
+extern RWS::CEventId g_EventTSUseMail;			// 메일 사용
+extern RWS::CEventId g_EventTSParty;			// 파티
 
 extern RWS::CEventId g_EventTSClickSideIcon;	// 
 extern RWS::CEventId g_EventTSLevelCheck;		// 
@@ -845,7 +845,7 @@ extern RWS::CEventId g_EventTSQuest;			//
 extern RWS::CEventId g_EventTSDialogOpen;		// 
 
 //////////////////////////////////////////////////////////////////////////
-// Server ¿Í TS °£ÀÇ ¿¬µ¿ ¸Þ½ÃÁöµé
+// Server 와 TS 간의 연동 메시지들
 //////////////////////////////////////////////////////////////////////////
 
 
@@ -874,14 +874,14 @@ extern RWS::CEventId  g_EventTObjectUpdateState;
 * DragonBall Collection
 */
 //////////////////////////////////////////////////////////////////////////
-extern RWS::CEventId  g_EventNightEffect;				// ¿ë½Å µîÀå½Ã È­¸éÀÌ ¾îµÎ¿öÁö´Â È¿°ú 
-extern RWS::CEventId  g_EventDBCNarration;				// ¿ë½Å ³ª·¹ÀÌ¼Ç¿ë ÀÌº¥Æ®
+extern RWS::CEventId  g_EventNightEffect;				// 용신 등장시 화면이 어두워지는 효과 
+extern RWS::CEventId  g_EventDBCNarration;				// 용신 나레이션용 이벤트
 extern RWS::CEventId  g_EventDBCNarrationEnd;			// ¿ë½Å ³ª·¹ÀÌ¼Ç Á¾·á ÀÌº¥Æ®
-extern RWS::CEventId  g_EventDBCCheck_Res;				// Check ÀÀ´ä ÆÐÅ¶
-extern RWS::CEventId  g_EventDBCReward_Res;				// º¸»ó ÀÀ´ä ÆÐÅ¶
-extern RWS::CEventId  g_EventDBCCollect_Nfy;			// ¼­¹ö¿¡¼­ ÀÏ¹æÀûÀ¸·Î ³¡³¾¶§ ÆÐÅ¶
-extern RWS::CEventId  g_EventDBCShedule_Info;			// DBCÀÇ ½ºÄÉÁì Á¤º¸ ÆÐÅ¶
-extern RWS::CEventId  g_EventDBCScatter;                 // µå·¡°ïº¼ÀÌ Èð¾îÁö´Â ¿¬Ãâ ½ÃÀÛÀ» ¾Ë¸®´Â ÀÌº¥Æ®
+extern RWS::CEventId  g_EventDBCCheck_Res;				// Check 응답 패킷
+extern RWS::CEventId  g_EventDBCReward_Res;				// 보상 응답 패킷
+extern RWS::CEventId  g_EventDBCCollect_Nfy;			// 서버에서 일방적으로 끝낼때 패킷
+extern RWS::CEventId  g_EventDBCShedule_Info;			// DBC의 스케쥴 정보 패킷
+extern RWS::CEventId  g_EventDBCScatter;                 // 드래곤볼이 흩어지는 연출 시작을 알리는 이벤트
 
 //////////////////////////////////////////////
 /**
@@ -903,12 +903,12 @@ extern RWS::CEventId g_EventSobTargetChanged;
 extern RWS::CEventId g_EventSobPickWorldItem;
 extern RWS::CEventId g_EventSobCastingDirect;
 extern RWS::CEventId g_EventSobRevivalNotify;
-extern RWS::CEventId g_EventNPCCommuExit;              // Ä¿¹Â´ÏÆ¼ »óÅÂ¸¦ ºüÁ®³ª¿À´Â ÀÌº¥Æ®
+extern RWS::CEventId g_EventNPCCommuExit;              // 커뮤니티 상태를 빠져나오는 이벤트
 
 
 //////////////////////////////////////////////
 /**
-* Á¤º¸ ¾ò¾î¿À±â.
+* 정보 얻어오기.
 */
 //////////////////////////////////////////////
 
@@ -920,11 +920,11 @@ extern RWS::CEventId g_EventSobGetAirMode;
 
 //////////////////////////////////////////////
 /**
-* Æ®¸®°Å ¿ÀºêÁ§Æ® ½ºÄ«¿ìÅÍ ¿¬Ãâ °ü·Ã
+* 트리거 오브젝트 스카우터 연출 관련
 */
 //////////////////////////////////////////////
 
-extern RWS::CEventId g_EventScouter;				// ½ºÄ«¿ìÅÍ ÀÌº¥Æ®
+extern RWS::CEventId g_EventScouter;				// 스카우터 이벤트
 
 //////////////////////////////////////////////
 /**
@@ -932,7 +932,7 @@ extern RWS::CEventId g_EventScouter;				// ½ºÄ«¿ìÅÍ ÀÌº¥Æ®
 */
 //////////////////////////////////////////////
 
-extern RWS::CEventId g_EventCharReady;								// ¿ùµå ·Îµå°¡ ³¡³­ ½ÃÁ¡¿¡ ¹ß»ý
+extern RWS::CEventId g_EventCharReady;								// 월드 로드가 끝난 시점에 발생
 
 //////////////////////////////////////////////
 /**
@@ -1036,13 +1036,13 @@ extern RWS::CEventId g_EventFinalMatchStageFinish;
 extern RWS::CEventId g_EventFinalMatchMatchFinish;
 extern RWS::CEventId g_EventAwardInfo;
 
-extern RWS::CEventId g_EventBudokaiNoticeNfy;					///< ÃµÇÏÁ¦ÀÏ¹«µµÈ¸ °øÁö
-extern RWS::CEventId g_EventBudokaiStateInfoNfy;				///< ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ÀÇ ÇöÀç »óÅÂ¸¦ Àü¼Û
-extern RWS::CEventId g_EventBudokaiUpdateStateNfy;				///< ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ Main State update
-extern RWS::CEventId g_EventBudokaiUpdateMatchStateNfy;			///< ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ Match State Update
+extern RWS::CEventId g_EventBudokaiNoticeNfy;					///< 천하제일무도회 공지
+extern RWS::CEventId g_EventBudokaiStateInfoNfy;				///< 천하제일 무도회의 현재 상태를 전송
+extern RWS::CEventId g_EventBudokaiUpdateStateNfy;				///< 천하제일 무도회 Main State update
+extern RWS::CEventId g_EventBudokaiUpdateMatchStateNfy;			///< 천하제일 무도회 Match State Update
 extern RWS::CEventId g_EventBudokaiJoinIndividualRes;			///< °³ÀÎ µî·Ï
 extern RWS::CEventId g_EventBudokaiLeaveIndividualRes;			///< °³ÀÎ Ãë¼Ò
-extern RWS::CEventId g_EventBudokaiJoinTeamInfoRes;				///< ÆÀ Æ÷ÀÎÆ®
+extern RWS::CEventId g_EventBudokaiJoinTeamInfoRes;				///< 팀 포인트
 extern RWS::CEventId g_EventBudokaiJoinTeamRes;					///< ÆÀ µî·Ï
 extern RWS::CEventId g_EventBudokaiJoinTeamNfy;					///< ÆÀ µî·Ï ¾Ë¸²
 extern RWS::CEventId g_EventBudokaiLeaveTeamRes;				///< ÆÀ µî·Ï Ãë¼Ò
@@ -1050,14 +1050,14 @@ extern RWS::CEventId g_EventBudokaiLeaveTeamNfy;				///< ÆÀ µî·Ï Ãë¼Ò 
 extern RWS::CEventId g_EventBudokaiLeaveTeamMemberRes;			///< ÆÀ ¸â¹ö Ãë¼Ò
 extern RWS::CEventId g_EventBudokaiLeaveTeamMemberNfy;			///< ÆÀ ¸â¹ö Ãë¼Ò ¾Ë¸²
 extern RWS::CEventId g_EventBudokaiJoinInfoRes;					///< ÆÀ µî·Ï Á¤º¸
-extern RWS::CEventId g_EventBudokaiMudosaInfoRes;				///< ¹«µµ»ç ÅÚ·¹Æ÷Æ® Á¤º¸
-extern RWS::CEventId g_EventBudokaiJoinStateNfy;				///< ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ Âü°¡»óÅÂ
-extern RWS::CEventId g_EventBudokaiJoinStateRes;				///< Âü°¡ »óÅÂ Á¤º¸ °á°ú
+extern RWS::CEventId g_EventBudokaiMudosaInfoRes;				///< 무도사 텔레포트 정보
+extern RWS::CEventId g_EventBudokaiJoinStateNfy;				///< 천하제일 무도회 참가상태
+extern RWS::CEventId g_EventBudokaiJoinStateRes;				///< 참가 상태 정보 결과
 
-extern RWS::CEventId g_EventBudokaiProgressMessageNfy;			///< ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ÁøÇà »óÅÂ ¸Þ½ÃÁö Ãâ·Â
+extern RWS::CEventId g_EventBudokaiProgressMessageNfy;			///< 천하제일 무도회 진행 상태 메시지 출력
 
 // Cinematic Command
-extern RWS::CEventId g_EventCinematicGuiCommand;					///< ½Ã³×¸¶Æ½ Ä¿¸Çµå
+extern RWS::CEventId g_EventCinematicGuiCommand;					///< 시네마틱 커맨드
 
 // Dialog Moveable Option
 extern RWS::CEventId g_EventDialogMove;
@@ -1084,14 +1084,14 @@ extern RWS::CEventId g_EventGameChatOption;
 // Naming
 extern RWS::CEventId g_EventChangeCharName;
 
-extern RWS::CEventId g_EventChangeNickName;				///< º°¸í ¹Ù²Ù±â
+extern RWS::CEventId g_EventChangeNickName;				///< 별명 바꾸기
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 // Change Class Authority Changed
-extern RWS::CEventId g_EventChangeClassAuthorityChangedNfy;	///< ¾Æ¹ÙÅ¸ »ý¼ºµÚ¿¡µµ ³¯¶ó¿Â´Ù. 
+extern RWS::CEventId g_EventChangeClassAuthorityChangedNfy;	///< 아바타 생성뒤에도 날라온다. 
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-// BattleAttribute refresh ( Å¸°ÙÆÃµÈ »ó´ëÀÇ ´ëÇÑ Á¤º¸ )
+// BattleAttribute refresh ( 타겟팅된 상대의 대한 정보 )
 extern RWS::CEventId g_EventCharRefreshBattleAttributeModifier;
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -1213,19 +1213,19 @@ struct SNtlEventCameraDB
 
 struct SNtlEventCameraTimeMachine
 {
-	void            *pObject;           ///< Å¸ÀÓ¸Ó½Å ¿ÀºêÁ§Æ®ÀÇ Æ÷ÀÎÅÍ
+	void            *pObject;           ///< 타임머신 오브젝트의 포인터
 };
 
 struct SNtlEventCameraExplosion
 {
-	void            *pObject;           ///< Æø¹ßµÇ´Â °´Ã¼ÀÇ Æ÷ÀÎÅÍ
-	unsigned int	uiExplosionId;		///< Æø¹ß ¾ÆÀÌµð "ENtlPLExplosionEventType" ¿¡ ÇØ´ç
+	void            *pObject;           ///< 폭발되는 객체의 포인터
+	unsigned int	uiExplosionId;		///< 폭발 아이디 "ENtlPLExplosionEventType" 에 해당
 };
 
 struct SNtlEventCameraTimeMachineArrive
 {
-	RwBool			bStart;				///< TRUE : ½ÃÀÛ, FALSE : Á¾·á
-	void            *pObject;           ///< Å¸ÀÌ¸Ó½Å ¿ÀºêÁ§Æ® °´Ã¼ÀÇ Æ÷ÀÎÅÍ
+	RwBool			bStart;				///< TRUE : 시작, FALSE : 종료
+	void            *pObject;           ///< 타이머신 오브젝트 객체의 포인터
 };
 
 struct SNtlEventCameraKnockDownMatrix	// camera knockdown matrix ¿¬Ãâ event data structer.
@@ -1255,11 +1255,11 @@ struct SNtlEventCameraControlBus
 	CNtlSobActor*	pActor;
 };
 
-/// ¿ÉÀú¹ö Ä«¸Þ¶ó Å¸ÀÔ
+/// 옵저버 카메라 타입
 enum EObserverCameraType
 {
-    E_OBSERVER_TYPE_STATIC,     ///< Á¤Àû Ä«¸Þ¶ó À§Ä¡
-    E_OBSERVER_TYPE_NODE,       ///< DTEditor¿¡¼­ ¸¸µç µ¥ÀÌÅÍ
+    E_OBSERVER_TYPE_STATIC,     ///< 정적 카메라 위치
+    E_OBSERVER_TYPE_NODE,       ///< DTEditor에서 만든 데이터
 };
 
 struct SNtlEventCameraObserver
@@ -1278,7 +1278,7 @@ struct SNtlEventCameraObserver
 *simulation object event
 */
 
-/// Sob¿¡ º¸³»´Â ÀÌº¥Æ®µéÀÇ »óÀ§ ±¸Á¶Ã¼
+/// Sob에 보내는 이벤트들의 상위 구조체
 struct SNtlEventSob
 {
     SERIAL_HANDLE hSerialId;
@@ -1411,7 +1411,7 @@ struct SNtlEventSobPlayerCreate : public SNtlEventSobCharCreate	// simulation pl
 	RwV3d			vLoc;
 	RwV3d			vDir;
 	sPC_BRIEF		*pPcBrief;
-	RwBool          bIsClientCreate;     // ¼­¹ö°¡ ¾Æ´Ñ Å¬¶óÀÌ¾ðÆ® ÀÚÃ¼¿¡¼­ »ý¼ºÇß´ÂÁö À¯¹« (ex.½Ã³×¸¶Æ½)
+	RwBool          bIsClientCreate;     // 서버가 아닌 클라이언트 자체에서 생성했는지 유무 (ex.시네마틱)
 };
 
 struct SNtlEventSobMonsterCreate : public SNtlEventSobCharCreate	// simulation monster object create
@@ -1419,7 +1419,7 @@ struct SNtlEventSobMonsterCreate : public SNtlEventSobCharCreate	// simulation m
 	RwV3d			vLoc;
 	RwV3d			vDir;
 	sMOB_BRIEF		*pMobBrief;
-	RwBool          bIsClientCreate;    // ¼­¹ö°¡ ¾Æ´Ñ Å¬¶óÀÌ¾ðÆ® ÀÚÃ¼¿¡¼­ »ý¼ºÇß´ÂÁö À¯¹« (ex.½Ã³×¸¶Æ½)
+	RwBool          bIsClientCreate;    // 서버가 아닌 클라이언트 자체에서 생성했는지 유무 (ex.시네마틱)
 };
 
 struct SNtlEventSobNpcCreate : public SNtlEventSobCharCreate	// simulation npc object create
@@ -1428,7 +1428,7 @@ struct SNtlEventSobNpcCreate : public SNtlEventSobCharCreate	// simulation npc o
 	RwV3d			vDir;
 	sNPC_BRIEF		*pNpcBrief;
 	RwBool			bCreateName;
-	RwBool          bIsClientCreate;    // ¼­¹ö°¡ ¾Æ´Ñ Å¬¶óÀÌ¾ðÆ® ÀÚÃ¼¿¡¼­ »ý¼ºÇß´ÂÁö À¯¹« (ex.½Ã³×¸¶Æ½)
+	RwBool          bIsClientCreate;    // 서버가 아닌 클라이언트 자체에서 생성했는지 유무 (ex.시네마틱)
 };
 
 struct SNtlEventSobVehicleCreate : public SNtlEventSobCharCreate	// simulation vehicle object create
@@ -1436,8 +1436,8 @@ struct SNtlEventSobVehicleCreate : public SNtlEventSobCharCreate	// simulation v
 	RwV3d			vLoc;
 	RwV3d			vDir;
 	RwUInt32		uiVehicleTblIdx;
-	// g_EventSobCreate ÀÌº¥Æ®ÀÇ ±¸Á¶Ã¼ÀÎ °æ¿ì´Â Vehicle Å×ÀÌºí ÀÎµ¦½º
-	// g_EventSobVehicleEngine ÀÌº¥Æ®ÀÇ ±¸Á¶Ã¼ÀÎ °æ¿ì´Â Sob Item ÇÚµé
+	// g_EventSobCreate 이벤트의 구조체인 경우는 Vehicle 테이블 인덱스
+	// g_EventSobVehicleEngine 이벤트의 구조체인 경우는 Sob Item 핸들
 	RwBool			bForChild;
 	RwBool			bOwnerAvatar;
 };
@@ -1509,12 +1509,12 @@ struct SNtlEventSobQuestItemCreate : public SNtlEventSobBaseCreate
 
 enum eNtlEventSobWarehouseUpdateType
 {
-	NESWUT_RECIEVE_DATA,		///< ¼­¹ö·Î ºÎÅÍ Ã¢°í µ¥ÀÌÅÍ¸¦ ¹Þ¾Ò´Ù
+	NESWUT_RECIEVE_DATA,		///< 서버로 부터 창고 데이터를 받았다
 	NESWUT_WAREHOUSE_START,		///< Ã¢°í¸¦ ¿¬´Ù
-	NESWUT_BUY_SLOT,			///< Ã¢°í¸¦ ±¸ÀÔÇÑ´Ù
-	NESWUT_ADD_ZENNY,			///< Ã¢°í¿¡ Á¦´Ï¸¦ ³Ö´Â´Ù
+	NESWUT_BUY_SLOT,			///< 창고를 구입한다
+	NESWUT_ADD_ZENNY,			///< 창고에 제니를 넣는다
 	NESWUT_SUB_ZENNY,			///< Ã¢°í¿¡¼­ Á¦´Ï¸¦ »«´Ù
-	NESWUT_CLOSE,				///< Ã¢°í¸¦ ´Ý´Â´Ù
+	NESWUT_CLOSE,				///< 창고를 닫는다
 };
 
 struct SNtlEventSobWarehouseUpdate
@@ -1527,8 +1527,8 @@ struct SNtlEventSobWarehouseUpdate
 
 struct SNtlEventSobWarehouseItemCreate
 {
-	RwUInt8			byItemCount;	///< À¯È¿ ¾ÆÀÌÅÛ °¹¼ö
-	void*			pData;			///< ½ÇÁ¦ µ¥ÀÌÅÍ
+	RwUInt8			byItemCount;	///< 유효 아이템 갯수
+	void*			pData;			///< 실제 데이터
 };
 
 struct SNtlEventSobStatusCreate : public SNtlEventSobBaseCreate
@@ -1639,7 +1639,7 @@ struct SNtlEventSobMove : public SNtlEventSob
 	RwV3d			*pPathNode;
 };
 
-/// ÀÌµ¿ ½ÌÅ© ÀÌº¥Æ® ±¸Á¶Ã¼
+/// 이동 싱크 이벤트 구조체
 struct SNtlEventSobMoveSync : public SNtlEventSob
 {
     RwV3d vLoc;
@@ -2046,16 +2046,16 @@ struct SNtlEventSobPrivateShop : public SNtlEventSob
 	RwUInt8			byShopState;
 };
 
-/// ÀüÁ÷ ÀÌº¥Æ® ±¸Á¶Ã¼
+/// 전직 이벤트 구조체
 struct SNtlEventSobConvertClass : public SNtlEventSob
 {
 	RwUInt8			byClass;
 };
 
-/// ¸ðµ¨ Ã¼ÀÎÁö ÀÌº¥Æ® ±¸Á¶Ã¼
+/// 모델 체인지 이벤트 구조체
 struct SNtlEventSobChangeAdult : public SNtlEventSob
 {
-    RwBool          bAdult;             /// True¸é ¼ºÀÎ, False¸é ¾î¸°ÀÌ·Î ¹Ù²Û´Ù.
+    RwBool          bAdult;             /// True면 성인, False면 어린이로 바꾼다.
 };
 
 struct SDboEventCharTitleSelectNfy : public SNtlEventSob
@@ -2308,7 +2308,7 @@ struct SNtlEventSobFainting : public SNtlEventSob
 
 struct SNtlEventSobUpdateLPStatusNfy : public SNtlEventSob
 {
-    RwBool bEmergency;      // TRUE : ºó»ç »óÅÂ, FALSE : ÀÏ¹Ý »óÅÂ
+    RwBool bEmergency;      // TRUE : 빈사 상태, FALSE : 일반 상태
 };
 
 struct SNtlEventNightEffect
@@ -2330,8 +2330,8 @@ enum EEventAvatarInfoUpdateType
 	EVENT_AIUT_ATTR_LEVELUP			= 0x0002,
 	EVENT_AIUT_ITEM					= 0x0004,
 	EVENT_AIUT_QUESTITEM			= 0x0008,
-	EVENT_AIUT_SKILL				= 0x0010,	/** avatar°¡ ÃÖÃÊ »ý¼º½Ã ½ºÅ³ÀÌ ¿ÕÃ¢ »õ·ÎÀÌ »ý¼ºµÈ´Ù */
-	EVENT_AIUT_SKILL_LEARN			= 0x0020,	/** ½ºÅ³ ¹è¿ì±â */
+	EVENT_AIUT_SKILL				= 0x0010,	/** avatar가 최초 생성시 스킬이 왕창 새로이 생성된다 */
+	EVENT_AIUT_SKILL_LEARN			= 0x0020,	/** 스킬 배우기 */
 	EVENT_AIUT_SKILL_LEVELUP		= 0x0040,	/** ½ºÅ³ level up*/
 	EVENT_AIUT_SKILL_SP				= 0x0080,	/** ½ºÅ³ SP */
 	EVENT_AIUT_SKILL_COOLING_START	= 0x0100,	/** ½ºÅ³ cooling start => uiParam1 : icon serial*/
@@ -2339,14 +2339,14 @@ enum EEventAvatarInfoUpdateType
 	EVENT_AIUT_BUFF					= 0x0400,
 	EVENT_AIUT_DIE					= 0x0800,
 	EVENT_AIUT_ZENNY				= 0x1000,
-	EVENT_AIUT_HTBSKILL_LEARN		= 0x2000,	/** HTB ¹è¿ì±â **/
-	EVENT_AIUT_WAREHOUSE			= 0x4000,	/** ¾ÆÀÌÅÛÀ» Á¦¿ÜÇÑ Ã¢°í ³»ºÎ¿¡¼­ÀÇ º¯È­ **/	
+	EVENT_AIUT_HTBSKILL_LEARN		= 0x2000,	/** HTB 배우기 **/
+	EVENT_AIUT_WAREHOUSE			= 0x4000,	/** 아이템을 제외한 창고 내부에서의 변화 **/	
 	EVENT_AIUT_SKILL_RPBONUS		= 0x8000,	/** RPTypeº¯È­ **/
-	EVENT_AIUT_SKILL_UI_INIT		= 0x00010000, /** ½ºÅ³ UI ÃÊ±âÈ­(¼­¹öÀÌµ¿) **/
+	EVENT_AIUT_SKILL_UI_INIT		= 0x00010000, /** 스킬 UI 초기화(서버이동) **/
 	EVENT_AIUT_SKILL_INIT			= 0x00020000, /** ½ºÅ³ HTB ÃÊ±âÈ­(SP ¹ÝÈ¯) **/
-	EVENT_AIUT_POINT_HONOR			= 0x00040000, /** ¸í¿¹ Æ÷ÀÎÆ® */
-	EVENT_AIUT_POINT_MUDOSA			= 0x00080000, /** ¹«µµ»ç Æ÷ÀÎÆ® */
-    EVENT_AIUT_NETPY                = 0x00100000, ///< PC¹æ¿ë NetPy Æ÷ÀÎÆ®
+	EVENT_AIUT_POINT_HONOR			= 0x00040000, /** 명예 포인트 */
+	EVENT_AIUT_POINT_MUDOSA			= 0x00080000, /** 무도사 포인트 */
+    EVENT_AIUT_NETPY                = 0x00100000, ///< PC방용 NetPy 포인트
 	EVENT_AIUT_SKILL_RESET_ONE		= 0x00200000,
 	EVENT_AIUT_SKILL_CHECK_UPGRADABLE = 0x00400000,
 };
@@ -2404,40 +2404,40 @@ struct SNtlEventSobCastingDirect
 	RwBool bStartOrEnd;			// TRUE : start, FALSE : end
 };
 
-enum ePartyMesssageType			///< ÆÄÆ¼ ¸Þ¼¼Áö(SNtlEventPartyUpdate, SNtlEventPartyUpdateValueÀÌ °°Àº °ÍÀ» ¾´´Ù)
+enum ePartyMesssageType			///< 파티 메세지(SNtlEventPartyUpdate, SNtlEventPartyUpdateValue이 같은 것을 쓴다)
 {
-	PMT_PARTY_CREATE,			///< ÆÄÆ¼ »ý¼º	
-	PMT_PARTY_LEAVE,			///< ÆÄÆ¼ Å»Åð
-	PMT_PARTY_MEMBER_ADD,		///< ÆÄÆ¼¿ø Ãß°¡
-	PMT_PARTY_MEMBER_DEL,		///< ÆÄÆ¼¿ø Å»Åð
-	PMT_PARTY_LEADER_CHANGE,	///< ÆÄÆ¼Àå º¯°æ
+	PMT_PARTY_CREATE,			///< 파티 생성	
+	PMT_PARTY_LEAVE,			///< 파티 탈퇴
+	PMT_PARTY_MEMBER_ADD,		///< 파티원 추가
+	PMT_PARTY_MEMBER_DEL,		///< 파티원 탈퇴
+	PMT_PARTY_LEADER_CHANGE,	///< 파티장 변경
 
-	PMT_ZENNY_DIVISION,			///< Á¦´Ï ºÐ¹è ¹æ½ÄÀÌ º¯°æ µÇ¾ú´Ù
-	PMT_ITEM_DIVISION,			///< ¾ÆÀÌÅÛ ºÐ¹è ¹æ½ÄÀÌ º¯°æ µÇ¾ú´Ù
+	PMT_ZENNY_DIVISION,			///< 제니 분배 방식이 변경 되었다
+	PMT_ITEM_DIVISION,			///< 아이템 분배 방식이 변경 되었다
 
-	PMT_LP,						///< LP ¾÷µ¥ÀÌÆ®
-	PMT_EP,						///< EP ¾÷µ¥ÀÌÆ®
-	PMT_LEVEL,					///< Level ¾÷µ¥ÀÌÆ®
+	PMT_LP,						///< LP 업데이트
+	PMT_EP,						///< EP 업데이트
+	PMT_LEVEL,					///< Level 업데이트
 	PMT_CLASS,					///< Å¬·¡½º º¯°æ
 
-	PMT_MEMBER_LOCATION,		///< ¸É¹ö À§Ä¡
+	PMT_MEMBER_LOCATION,		///< 맴버 위치
 
-	PMT_PARTY_DUNGEON_STATE,	///< ÆÄÆ¼ ´øÀü »óÅÂ
-	PMT_PARTY_DUNGEON_INITIALIZE,///< ÆÄÆ¼ ÃÊ±âÈ­
+	PMT_PARTY_DUNGEON_STATE,	///< 파티 던전 상태
+	PMT_PARTY_DUNGEON_INITIALIZE,///< 파티 초기화
 };
 
-struct SNtlEventPartyUpdate		///< ½Ã¹Ä·¹ÀÌ¼Ç¿ë ÆÄÆ¼ ¸Þ¼¼Áö
+struct SNtlEventPartyUpdate		///< 시뮬레이션용 파티 메세지
 {
-	RwInt32			iMessage;		///< ÆÄÆ¼ ¸Þ¼¼Áö
-	SERIAL_HANDLE	hSerialId;		///< ÇØ´ç ¸É¹öÀÇ ½Ã¸®¾ó
+	RwInt32			iMessage;		///< 파티 메세지
+	SERIAL_HANDLE	hSerialId;		///< 해당 맴버의 시리얼
 	RwUInt32		uiValue;		///< ¸Þ¼¼Áö¿¡ µû¸¥ ¼öÄ¡
 	RwInt32			iValue2;		///< ¸Þ¼¼Áö¿¡ µû¸¥ ¼öÄ¡
 };
 
-struct SNtlEventPartyUpdateValue	///< Å¬¶óÀÌ¾ðÆ®¿ë ÆÄÆ¼ ¸Þ¼¼Áö
+struct SNtlEventPartyUpdateValue	///< 클라이언트용 파티 메세지
 {
 	RwInt32			iValueType;		///< PartyUpdateValue Type
-	SERIAL_HANDLE	hSerial;		///< ÇØ´ç ¸É¹öÀÇ ½Ã¸®¾ó
+	SERIAL_HANDLE	hSerial;		///< 해당 맴버의 시리얼
 	RwUInt32		uiValue;		///< ¸Þ¼¼Áö¿¡ µû¸¥ ¼öÄ¡
 	RwInt32			iValue2;		///< ¸Þ¼¼Áö¿¡ µû¸¥ ¼öÄ¡
 };
@@ -2445,14 +2445,14 @@ struct SNtlEventPartyUpdateValue	///< Å¬¶óÀÌ¾ðÆ®¿ë ÆÄÆ¼ ¸Þ¼¼
 struct SNtlEventPartyMemberLocation
 {
 	RwUInt32		uiSerial;		///< ¸É¹ö ½Ã¸®¾ó
-	RwUInt32		uiWorldID;		///< ¿ùµå ¾ÆÀÌµð
-	RwUInt32		uiWorldTbl;		///< ¿ùµå Å×ÀÌºí ¾ÆÀÌµð
-	RwV3d			vCurLoc;		///< À§Ä¡
+	RwUInt32		uiWorldID;		///< 월드 아이디
+	RwUInt32		uiWorldTbl;		///< 월드 테이블 아이디
+	RwV3d			vCurLoc;		///< 위치
 };
 
 struct SNtlEventPartyCreate
 {
-	WCHAR*		pcName;			///< ÆÄÆ¼ ÀÌ¸§
+	WCHAR*		pcName;			///< 파티 이름
 };
 
 struct SNtlEventPartyAdd
@@ -2473,38 +2473,38 @@ struct SNtlEventPartyAdd
 
 enum eSLGuildEvent
 {
-	SLGE_GUILD_INFO,				///< ±æµå Á¤º¸¸¦ ¹Þ´Â´Ù
+	SLGE_GUILD_INFO,				///< 길드 정보를 받는다
 
-	SLGE_ADD_MEMBER,				///< ±æµå ¸É¹ö ÇÑ¸íÀÇ Á¤º¸¸¦ ¹Þ´Â´Ù
-	SLGE_DEL_MEMBER,				///< ±æµå ¸É¹ö ÇÑ¸íÀÇ Á¤º¸¸¦ Áö¿î´Ù
+	SLGE_ADD_MEMBER,				///< 길드 맴버 한명의 정보를 받는다
+	SLGE_DEL_MEMBER,				///< 길드 맴버 한명의 정보를 지운다
 
-	SLGE_APPOINT_MASTER,			///< ±æµåÀå ÀÓ¸í
-	SLGE_APPOINT_SECOND_MASTER,		///< ºÎ±æµåÀå ÀÓ¸í
-	SLGE_DISMISS_SECOND_MASTER,		///< ºÎ±æµåÀå Á÷À§ ÇØÁ¦
-	SLGE_APPOINT_MEMBER,			///< ÀÏ¹Ý ±æµå¿øÀ¸·Î ÀÓ¸í
+	SLGE_APPOINT_MASTER,			///< 길드장 임명
+	SLGE_APPOINT_SECOND_MASTER,		///< 부길드장 임명
+	SLGE_DISMISS_SECOND_MASTER,		///< 부길드장 직위 해제
+	SLGE_APPOINT_MEMBER,			///< 일반 길드원으로 임명
 
 	SLGE_BEING_DISBAND,				///< ±æµå ÇØ»ê ´ë±â
 	SLGE_CANCLE_DISBAND,			///< ÇØ»ê Ãë¼Ò
 	SLGE_DISBAND,					///< ±æµå ÇØ»ê
 
-	SLGE_MEM_POS,					///< ¸É¹ö À§Ä¡ º¯°æ
+	SLGE_MEM_POS,					///< 맴버 위치 변경
 	SLGE_MEM_CLASS,					///< ¸É¹ö Å¬·¡½º º¯°æ
 	SLGE_MEM_LEVEL,					///< ¸É¹ö ·¹º§ º¯°æ
-	SLGE_MEM_REPUTATION,			///< ¸É¹ö ÆòÆÇ º¯°æ
+	SLGE_MEM_REPUTATION,			///< 맴버 평판 변경
 	SLGE_MEM_NAME,					///< 
 
-	SLGE_MEM_ONLINE,				///< ¸É¹ö °ÔÀÓ Á¢¼Ó
-	SLGE_MEM_OFFLINE,				///< ¸É¹ö °ÔÀÓ ³ª°¨
+	SLGE_MEM_ONLINE,				///< 맴버 게임 접속
+	SLGE_MEM_OFFLINE,				///< 맴버 게임 나감
 
-	SLGE_CHANGE_GUILD_NAME,			///< ±æµåÀÇ ÀÌ¸§ÀÌ ¹Ù²î¾ú´Ù
-	SLGE_CHANGE_GUILD_EMBLEM,		///< ±æµåÀÇ ¹®ÀåÀÌ ¹Ù²î¾ú´Ù
+	SLGE_CHANGE_GUILD_NAME,			///< 길드의 이름이 바뀌었다
+	SLGE_CHANGE_GUILD_EMBLEM,		///< 길드의 문장이 바뀌었다
 	SLGE_CHANGE_FUNCTION,			///< ±æµå ±â´É º¯°æ
 	SLGE_CHANGE_REPUTATION,			///< ±æµå ¸í¼º º¯°æ
-	SLGE_CHANGE_INVEST_ZENNY,		///< ±æµå¸¦ À§ÇØ Á¦´Ï¸¦ ÅõÀÚÇÏ¿´´Ù
+	SLGE_CHANGE_INVEST_ZENNY,		///< 길드를 위해 제니를 투자하였다
 
-	SLGE_NOTICE,					///< ±æµå °øÁö º¯°æ
+	SLGE_NOTICE,					///< 길드 공지 변경
 	SLGE_DOGI,						///< µµº¹ »ö»ó º¯°æ
-	SLGE_DOGI_NFY,					///< µµº¹ »ö»ó º¯°æµÈ µ¥ÀÌÅÍ
+	SLGE_DOGI_NFY,					///< 도복 색상 변경된 데이터
 };
 
 struct SNtlEventGuild
@@ -2539,24 +2539,24 @@ struct SNtlEventChangleGuildEmblem
 
 enum eDojoEventType
 {
-	DOJO_EVENT_DOJO_INFO,							///< µµÀå ±âº» Á¤º¸¸¦ ¹Þ¾Ò´Ù
-	DOJO_EVENT_CHANGE_LEVEL,						///< µµÀåÀÇ ·¹º§ º¯°æ
-	DOJO_EVENT_CHANGE_TENKAI_SEED_PLAYER,			///< µµÀåÀ» ¼ÒÀ¯ÇÑ À¯ÆÄÀÇ ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ½Ãµå ÃâÀüÀÚ º¯°æ
-	DOJO_EVENT_CHANGE_DOJO_NOTICE,					///< µµÀå °øÁö
+	DOJO_EVENT_DOJO_INFO,							///< 도장 기본 정보를 받았다
+	DOJO_EVENT_CHANGE_LEVEL,						///< 도장의 레벨 변경
+	DOJO_EVENT_CHANGE_TENKAI_SEED_PLAYER,			///< 도장을 소유한 유파의 천하제일 무도회 시드 출전자 변경
+	DOJO_EVENT_CHANGE_DOJO_NOTICE,					///< 도장 공지
 	DOJO_EVENT_NPC_GUI_INFO,						///< GUI Ç¥½Ã Á¤º¸
-	DOJO_EVENT_LOST_DOJO,							///< µµÀåÀÇ ¼ÒÀ¯±ÇÀ» ÀÒ¾ú´Ù
+	DOJO_EVENT_LOST_DOJO,							///< 도장의 소유권을 잃었다
 
-	DOJO_EVENT_SCRAMBLE_ACCEPT,						///< µµÀå ÀïÅ»Àü ¼ö¶ô
-	DOJO_EVENT_SCRAMBLE_TELEPORT_PROPOSAL,			///< µµÀå ÀïÅ»Àü ÅÚ·¹Æ÷Æ®¸¦ ÇÒ ¼ö ÀÖ´Ù´Â ¼­¹öÀÇ ¾Ë¸²
+	DOJO_EVENT_SCRAMBLE_ACCEPT,						///< 도장 쟁탈전 수락
+	DOJO_EVENT_SCRAMBLE_TELEPORT_PROPOSAL,			///< 도장 쟁탈전 텔레포트를 할 수 있다는 서버의 알림
 
-	DOJO_EVENT_SEAL_ATTACK_STATE,					///< µµÀå ÀïÅ»ÀüÁß ÀÎÀå À§Ä¡, »óÅÂ Á¤º¸
-	DOJO_EVENT_SEAL_ATTACK_BEGIN,					///< µµÀå ÀïÅ»ÀüÁß ÀÎÀåÀ» »¯±â À§ÇÑ Ä³½ºÆÃÀ» ½ÃÀÛÇÑ´Ù
-	DOJO_EVENT_SEAL_ATTACK_END,						///< µµÀå ÀïÅ»ÀüÁß ÀÎÀåÀ» »¯±â À§ÇÑ Ä³½ºÆÃÀ» Á¾·áÇÑ´Ù
-	DOJO_EVENT_SCRAMBLE_SCORE,						///< µµÀå ÀïÅ»Àü Á¡¼ö
-	DOJO_EVENT_SCRAMBLE_CHANGE_SEAL_OWNER,			///< µµÀå ÀÎÀå ¼ÒÀ¯ À¯ÆÄ º¯°æ
+	DOJO_EVENT_SEAL_ATTACK_STATE,					///< 도장 쟁탈전중 인장 위치, 상태 정보
+	DOJO_EVENT_SEAL_ATTACK_BEGIN,					///< 도장 쟁탈전중 인장을 뺏기 위한 캐스팅을 시작한다
+	DOJO_EVENT_SEAL_ATTACK_END,						///< 도장 쟁탈전중 인장을 뺏기 위한 캐스팅을 종료한다
+	DOJO_EVENT_SCRAMBLE_SCORE,						///< 도장 쟁탈전 점수
+	DOJO_EVENT_SCRAMBLE_CHANGE_SEAL_OWNER,			///< 도장 인장 소유 유파 변경
 
-	DOJO_EVENT_SCRAMBLE_RESULT,						///< µµÀå ÀïÅ»Àü °á°ú
-	DOJO_EVENT_SCRAMBLE_REWARD,						///< µµÀå ÀïÅ»Àü º¸»ó
+	DOJO_EVENT_SCRAMBLE_RESULT,						///< 도장 쟁탈전 결과
+	DOJO_EVENT_SCRAMBLE_REWARD,						///< 도장 쟁탈전 보상
 };
 
 struct SNtlEventDojo
@@ -2650,12 +2650,12 @@ struct SNtlEventHelpHint
 
 enum eTMQEventType
 {
-	TBT_COUNTDOWN,					///< TMQ Play time °è»ê ÁøÇà ¿©ºÎ
+	TBT_COUNTDOWN,					///< TMQ Play time 계산 진행 여부
 	TET_REWARD,						///< TMQ º¸»ó
 	TET_INFOMATION_NFY,				///< Á¤º¸ Å¸ÀÔ eTIMEQUEST_INFORMATION_TYPE
-	TET_COUPON_COUNT,				///< TMQ ÄíÆù Á¤º¸
-	TET_TMQ_POINT,					///< TMQ Æ÷ÀÎÆ®
-	TET_GAME_TIME,					///< TMQ °ÔÀÓ ½Ã°£
+	TET_COUPON_COUNT,				///< TMQ 쿠폰 정보
+	TET_TMQ_POINT,					///< TMQ 포인트
+	TET_GAME_TIME,					///< TMQ 게임 시간
 	TET_CLEAR_TIME,
 	TET_BONUS_TIME,
 	TET_DAY_RECORD,
@@ -2800,7 +2800,7 @@ struct SNtlEventRBTotalScoreUpdate
 
 //////////////////////////////////////////////
 /**
-* Á¤º¸ ¾ò¾î¿À±â.
+* 정보 얻어오기.
 */
 
 struct SNtlEventSobGetState : public SNtlEventSob
@@ -2833,13 +2833,13 @@ struct SNtlEventRegQuest_Nfy
 {
 	sTS_KEY				sTSKey;					// TS Å°
 
-	bool				bNewRegister;			// Äù½ºÆ® µî·Ï½Ã New typeÀÇ µî·Ï ¿©ºÎ
+	bool				bNewRegister;			// 퀘스트 등록시 New type의 등록 여부
 	bool				bQuestShare;			// Äù½ºÆ® °øÀ¯
 	RwUInt32			uiQuestAreaName;		// Äù½ºÆ® Áö¿ª ÀÌ¸§
-	RwUInt32			uiQuestState;			// Äù½ºÆ® »óÅÂ
+	RwUInt32			uiQuestState;			// 퀘스트 상태
 	RwUInt32			uiQuestTitle;			// Äù½ºÆ® Á¦¸ñ
-	RwUInt32			uiQuestGoal;			// Äù½ºÆ® ¸ñÀû
-	eQUEST_SORT_TYPE	eQuestSortType;			// Äù½ºÆ® Á¾·ùÀÇ Å¸ÀÔ
+	RwUInt32			uiQuestGoal;			// 퀘스트 목적
+	eQUEST_SORT_TYPE	eQuestSortType;			// 퀘스트 종류의 타입
 };
 
 struct SNtlEventUnregQuest_Nfy
@@ -2867,10 +2867,10 @@ struct SNtlEventShowQuestWindow_Nfy
 	sREWARD_INFO		sSelectReward[MAX_SELECTION_REWARD];		// Äù½ºÆ® º¸»ó Á¤º¸ - ¼±ÅÃ º¸»ó
 	unsigned int			uiRewardExp;
 	unsigned int			uiRewardZeni;
-	eSTOC_EVT_DATA_TYPE	eEvtInfoType;			// ¼­¹ö ÀÌº¥Æ® Á¤º¸ - µ¥ÀÌÅÍ Å¸ÀÔ
-	uSTOC_EVT_DATA		uEvtInfoData;			// ¼­¹ö ÀÌº¥Æ® Á¤º¸ - µ¥ÀÌÅÍ
+	eSTOC_EVT_DATA_TYPE	eEvtInfoType;			// 서버 이벤트 정보 - 데이터 타입
+	uSTOC_EVT_DATA		uEvtInfoData;			// 서버 이벤트 정보 - 데이터
 	RwUInt32			uiTimeLimit;			// Å¸ÀÓ Á¦ÇÑ Á¤º¸
-	RwUInt32			uiEventType;			// eEVENT_GEN_TYPE ( ÇöÀç´Â eEVENT_GEN_TYPE_CLICK_NPC ¸¸ »ç¿ëÇÔ )
+	RwUInt32			uiEventType;			// eEVENT_GEN_TYPE ( 현재는 eEVENT_GEN_TYPE_CLICK_NPC 만 사용함 )
 	RwUInt32			uiEventID;				// uiEventType ¿¡ µû¸¥ ÀÎµ¦½º eEVENT_GEN_TYPE_CLICK_NPC	: Mob table index
 	RwBool				bIsEventStarter;		// Event type [ True : Starter, False : Reward ]
 };
@@ -2879,15 +2879,15 @@ struct SNtlEventUpdateQuestState_Nfy
 {
 	sTS_KEY				sTSKey;					// TS Å°
 
-	RwBool				bOutStateMsg;			// Äù½ºÆ® »óÅÂ ¸Þ½ÃÁö Ãâ·Â ¿©ºÎ
-	RwUInt32			uiUpdatedQuestFlag;		// °»½ÅµÈ Äù½ºÆ® »óÅÂ ÇÃ·¡±×
-	RwUInt32			uiQuestState;			// Äù½ºÆ® »óÅÂ
+	RwBool				bOutStateMsg;			// 퀘스트 상태 메시지 출력 여부
+	RwUInt32			uiUpdatedQuestFlag;		// 갱신된 퀘스트 상태 플래그
+	RwUInt32			uiQuestState;			// 퀘스트 상태
 
 	RwUInt32			uiQuestTitle;			// Äù½ºÆ® Á¦¸ñ
-	eSTOC_EVT_DATA_TYPE	eEvtInfoType;			// ¼­¹ö ÀÌº¥Æ® Á¤º¸ - µ¥ÀÌÅÍ Å¸ÀÔ
-	uSTOC_EVT_DATA		uEvtInfoData;			// ¼­¹ö ÀÌº¥Æ® Á¤º¸ - µ¥ÀÌÅÍ
+	eSTOC_EVT_DATA_TYPE	eEvtInfoType;			// 서버 이벤트 정보 - 데이터 타입
+	uSTOC_EVT_DATA		uEvtInfoData;			// 서버 이벤트 정보 - 데이터
 
-	RwUInt32			uiEventType;			// eEVENT_GEN_TYPE ( ÇöÀç´Â eEVENT_GEN_TYPE_CLICK_NPC ¸¸ »ç¿ëÇÔ )
+	RwUInt32			uiEventType;			// eEVENT_GEN_TYPE ( 현재는 eEVENT_GEN_TYPE_CLICK_NPC 만 사용함 )
 	RwUInt32			uiEventID;				// uiEventType ¿¡ µû¸¥ ÀÎµ¦½º eEVENT_GEN_TYPE_CLICK_NPC	: Mob table index
 	RwBool				bIsEventStarter;		// Event type [ True : Starter, False : Reward ]
 	RwV3d 				indicatorTargetPos;
@@ -2899,8 +2899,8 @@ struct SNtlEventUpdateQuestProgressInfo_Nfy
 {
 	sTS_KEY				sTSKey;				// TS Å°
 
-	eSTOC_EVT_DATA_TYPE	eEvtInfoType;		// ¼­¹ö ÀÌº¥Æ® Á¤º¸ - µ¥ÀÌÅÍ Å¸ÀÔ
-	uSTOC_EVT_DATA		uEvtInfoData;		// ¼­¹ö ÀÌº¥Æ® Á¤º¸ - µ¥ÀÌÅÍ
+	eSTOC_EVT_DATA_TYPE	eEvtInfoType;		// 서버 이벤트 정보 - 데이터 타입
+	uSTOC_EVT_DATA		uEvtInfoData;		// 서버 이벤트 정보 - 데이터
 	RwUInt32			uiTimeLimit;		// Å¸ÀÓ Á¦ÇÑ Á¤º¸
 };
 
@@ -2924,11 +2924,11 @@ struct SNtlEventShowIndicator_Nfy
 {
 	sTS_KEY				sTSKey;				// TS Å°
 
-	RwUInt32			uiQState;			// Äù½ºÆ® »óÅÂ
+	RwUInt32			uiQState;			// 퀘스트 상태
 	RwUInt32			uiQuestTitle;		// Äù½ºÆ® Á¦¸ñ
-	RwUInt32			uiQuestGoal;		// Äù½ºÆ® ¸ñÀû
-	eSTOC_EVT_DATA_TYPE	eEvtInfoType;		// ¼­¹ö ÀÌº¥Æ® Á¤º¸ - µ¥ÀÌÅÍ Å¸ÀÔ
-	uSTOC_EVT_DATA		uEvtInfoData;		// ¼­¹ö ÀÌº¥Æ® Á¤º¸ - µ¥ÀÌÅÍ
+	RwUInt32			uiQuestGoal;		// 퀘스트 목적
+	eSTOC_EVT_DATA_TYPE	eEvtInfoType;		// 서버 이벤트 정보 - 데이터 타입
+	uSTOC_EVT_DATA		uEvtInfoData;		// 서버 이벤트 정보 - 데이터
 	RwUInt32			uiTimeLimit;		// Å¸ÀÓ Á¦ÇÑ Á¤º¸
 	RwBool				bAuto;
 	RwV3d 				indicatorTargetPos;
@@ -2942,7 +2942,7 @@ struct SNtlEventDoQuest
 	sQUEST_INFO			sQuestInfo;				// Quest Á¤º¸
 	eEVENT_GEN_TYPE		eEventGenType;			// Event Á¾·ù
 	RwUInt32			uiOwnerID;				// Owner ID
-	RwBool				bTransCameraCtrlRight;	// Ä«¸Þ¶ó Á¦¾î±ÇÀ» ³Ñ±â´Â °æ¿ì TRUE
+	RwBool				bTransCameraCtrlRight;	// 카메라 제어권을 넘기는 경우 TRUE
 };
 
 struct SNtlEventQuestProposalDialog_Req
@@ -2964,7 +2964,7 @@ struct SNtlEventQuestProposalDialog_Req
 
 struct SNtlEventQuestProposalDialog_Res
 {
-	bool			bResult;					// Äù½ºÆ® ¼ö¶ô(true) ¶Ç´Â °ÅÀý(false)
+	bool			bResult;					// 퀘스트 수락(true) 또는 거절(false)
 
 	sTS_KEY			sTSKey;						// TS Å°
 };
@@ -2973,11 +2973,11 @@ struct SNtlEventQuestUserSelectDialog_Req
 {
 	sTS_KEY			sTSKey;						// TS Å°
 
-	RwUInt32		uiTargetType;				// Å¸°ÙÀÇ Á¾·ù ( eUSER_SEL_TARGET_TYPE -> eUSER_SEL_TARGET_TYPE_NPC, eUSER_SEL_TARGET_TYPE_OBJECT, eUSER_SEL_TARGET_TYPE_INVALID )
-	RwUInt32		uiTargetTblIdx;				// Å¸°ÙÀÇ Å×ÀÌºí ÀÎµ¦½º 
+	RwUInt32		uiTargetType;				// 타겟의 종류 ( eUSER_SEL_TARGET_TYPE -> eUSER_SEL_TARGET_TYPE_NPC, eUSER_SEL_TARGET_TYPE_OBJECT, eUSER_SEL_TARGET_TYPE_INVALID )
+	RwUInt32		uiTargetTblIdx;				// 타겟의 테이블 인덱스 
 	RwUInt32		uiQuestTitle;				// Äù½ºÆ® Á¦¸ñ
 	RwUInt32		uiConv;						// ´ëÈ­
-	RwInt32			nBranchCnt;					// ÇöÀç »ç¿ëÁßÀÎ BranchÀÇ °³¼ö
+	RwInt32			nBranchCnt;					// 현재 사용중인 Branch의 개수
 	sTS_BRANCH_INFO asBranchInfo[eBRANCH_INFO_MAX];	// Branch info
 };
 
@@ -2986,16 +2986,16 @@ struct SNtlEventQuestUserSelectDialog_Res
 	bool			bResult;					// Ok(true) ¶Ç´Â Cancel(false)
 
 	sTS_KEY			sTSKey;						// TS Å°
-	NTL_TS_TC_ID	tcSelID;					// ¼±ÅÃµÈ Äù½ºÆ® ¾ÆÀÌµð
+	NTL_TS_TC_ID	tcSelID;					// 선택된 퀘스트 아이디
 };
 
 struct SNtlEventQuestNarrationUserSelectDialog_Req
 {
 	sTS_KEY						sTSKey;							// TS Å°
 
-	eUSER_SEL_PROGRESS_STATE	eProgState;						// Narration ÁøÇà »óÅÂ
+	eUSER_SEL_PROGRESS_STATE	eProgState;						// Narration 진행 상태
 	RwUInt32					uiConv;							// ´ëÈ­
-	RwInt32						nBranchCnt;						// ÇöÀç »ç¿ëÁßÀÎ BranchÀÇ °³¼ö
+	RwInt32						nBranchCnt;						// 현재 사용중인 Branch의 개수
 	sTS_BRANCH_INFO				asBranchInfo[eBRANCH_INFO_MAX];	// Branch info
 };
 
@@ -3004,13 +3004,13 @@ struct SNtlEventQuestNarrationUserSelectDialog_Res
 	bool			bResult;					// Ok(true) ¶Ç´Â Cancel(false)
 
 	sTS_KEY			sTSKey;						// TS Å°
-	NTL_TS_TC_ID	tcSelID;					// ¼±ÅÃµÈ Äù½ºÆ® ¾ÆÀÌµð
+	NTL_TS_TC_ID	tcSelID;					// 선택된 퀘스트 아이디
 };
 
 struct SNtlEventTSFinished
 {
 	unsigned char	byTSType;					// Trigger type ( TS_TYPE_QUEST_CS, TS_TYPE_PC_TRIGGER_CS )
-	NTL_TS_T_ID		tID;						// Á¾·áµÇ´Â Æ®¸®°Å ¾ÆÀÌµð
+	NTL_TS_T_ID		tID;						// 종료되는 트리거 아이디
 };
 
 struct SNtlEventTSSkipContainer
@@ -3042,21 +3042,21 @@ struct SNtlEventQuestRewardDialog_Res
 	bool			bResult;					// Ok(true) ¶Ç´Â Cancel(false)
 
 	sTS_KEY			sTSKey;						// TS Å°
-	int				nSelRwdIdx;					// ¼±ÅÃ º¸»óÀÇ ¼±ÅÃµÈ ÀÎµ¦½º
+	int				nSelRwdIdx;					// 선택 보상의 선택된 인덱스
 };
 
 struct SNtlEventQuestNarrationDialog_Req
 {
 	sTS_KEY						sTSKey;			// TS Å°
 
-	eNARRATION_PROGRESS_STATE	eProgState;		// Narration ÁøÇà »óÅÂ
+	eNARRATION_PROGRESS_STATE	eProgState;		// Narration 진행 상태
 	eNARRATION_OWNER_TYPE		eOwnerType;		// OwnerÀÇ Á¾·ù
-	RwUInt32					uiOwnerIdx;		// OwnerÀÇ Å×ÀÌºí ÀÎµ¦½º
-	eNARRATION_OWNER_STATE		eOwnerState;	// OwnerÀÇ »óÅÂ
+	RwUInt32					uiOwnerIdx;		// Owner의 테이블 인덱스
+	eNARRATION_OWNER_STATE		eOwnerState;	// Owner의 상태
 	eNARRATION_DIALOG_DIR_TYPE	eDialogDirType;	// ´ëÈ­ ¿¬Ãâ Á¾·ù
 	RwUInt32					uiDialog;		// ´ëÈ­ ³»¿ë
 	eNARRATION_GUI_TYPE			eGUIType;		// GUI Á¾·ù
-	RwUInt32					uiMaxLifeTime;	// ÀÌ ½Ã°£ ÀÌ»ó ³ª·¹ÀÌ¼Ç Ã¢ÀÌ À¯Áö µÇ´Â °æ¿ì ÀÚµ¿À¸·Î Next·Î ³Ñ¾î°¡¾ß ÇÑ´Ù.
+	RwUInt32					uiMaxLifeTime;	// 이 시간 이상 나레이션 창이 유지 되는 경우 자동으로 Next로 넘어가야 한다.
 };
 
 struct SNtlEventQuestNarrationDialog_Res
@@ -3094,7 +3094,7 @@ struct SNtlEventQuestAcceptReward_Nfy
 {
 	sTS_KEY			sTSKey;						// TS Å°
 	unsigned int	uiQTitle;					// Quest Á¦¸ñ
-	RwBool			bOutStateMsg;				// Äù½ºÆ® »óÅÂ ¸Þ½ÃÁö Ãâ·Â ¿©ºÎ
+	RwBool			bOutStateMsg;				// 퀘스트 상태 메시지 출력 여부
 };
 
 struct SNtlEventQuestAcceptGiveUp_Nfy
@@ -3121,14 +3121,14 @@ struct SNtlEventQuestObjDialog_Res
 struct SNtlEventShowTutorialHint_Nfy
 {
 	sTS_KEY			sTSKey;						// TS Å°
-	bool			bShow;						// Æ©Åä¸®¾ó ÈùÆ®Ã¢ ¿­°í ´Ý±â
+	bool			bShow;						// 튜토리얼 힌트창 열고 닫기
 	TBLIDX			tblidx;						// Guide hint table index
 };
 
 struct SNtlEventShowHelp_Nfy
 {
 	sTS_KEY			sTSKey;						// TS Å°
-	bool			bShow;						// ÇïÇÁÃ¢ ¿­°í ´Ý±â
+	bool			bShow;						// 헬프창 열고 닫기
 };
 
 struct SNtlEventShowInventory_Nfy
@@ -3140,7 +3140,7 @@ struct SNtlEventShowInventory_Nfy
 struct SNtlEventShowSkill_Nfy
 {
 	sTS_KEY			sTSKey;						// TS Å°
-	bool			bShow;						// ½ºÅ³Ã¢ ¿­°í ´Ý±â
+	bool			bShow;						// 스킬창 열고 닫기
 };
 
 struct SNtlEventShowCharInfo_Nfy
@@ -3151,11 +3151,11 @@ struct SNtlEventShowCharInfo_Nfy
 
 enum eTutorialNfyType
 {
-	TUTORIAL_HINT,								// Æ©Åä¸®¾ó ÈùÆ®
-	TUTORIAL_HELP_DIALOG_SWITCH,				// Æ©Åä¸®¾ó ÇïÇÁ ´ÙÀÌ¾ó·Î±× ¿­°í ´Ý±â
+	TUTORIAL_HINT,								// 튜토리얼 힌트
+	TUTORIAL_HELP_DIALOG_SWITCH,				// 튜토리얼 헬프 다이얼로그 열고 닫기
 	TUTORIAL_BAG_SWITCH,						// °¡¹æ ¿­°í ´Ý±â
-	TUTORIAL_SKILL_DIALOG_SWITCH,				// ½ºÅ³ ´ÙÀÌ¾ó·Î±× ¿­°í ´Ý±â
-	TUTORIAL_CHARINFO_DIALOG_SWITCH,			// Ä³¸¯ÅÍ Á¤º¸ ´ÙÀÌ¾ó·Î±× ¿­°í ´Ý±â
+	TUTORIAL_SKILL_DIALOG_SWITCH,				// 스킬 다이얼로그 열고 닫기
+	TUTORIAL_CHARINFO_DIALOG_SWITCH,			// 캐릭터 정보 다이얼로그 열고 닫기
 };
 
 struct SNtlEventTutorialNfy
@@ -3301,26 +3301,26 @@ struct SNtlEventTSDialogOpen
 
 //////////////////////////////////////////////
 /**
-* Äù½ºÆ® À§Ä¡ ¸¶Å©
+* 퀘스트 위치 마크
 */
 //////////////////////////////////////////////
 
 struct SNtlEventRegisterQuestPosMark
 {
-	QM_KEY				QMKey;						// Quest mark key - Key °ª Áßº¹ °¡´ÉÇÔ
+	QM_KEY				QMKey;						// Quest mark key - Key 값 중복 가능함
 
 	eQMI_TARGET_TYPE	eTargetType;				// Å¸°Ù ¸¶Å© Á¾·ù
-	unsigned int		uiTargetWorldTblIdx;		// Å¸°ÙÀÌ ¼Ò¼ÓµÈ ¿ùµå Å×ÀÌºí ÀÎµ¦½º
-	unsigned int		uiTargetTableIdx;			// Å¸°ÙÀÇ Å×ÀÌºí ÀÎµ¦½º
-	float				fTargetPosX;				// Å¸°ÙÀÇ À§Ä¡ ( x, y, z )
+	unsigned int		uiTargetWorldTblIdx;		// 타겟이 소속된 월드 테이블 인덱스
+	unsigned int		uiTargetTableIdx;			// 타겟의 테이블 인덱스
+	float				fTargetPosX;				// 타겟의 위치 ( x, y, z )
 	float				fTargetPosY;
 	float				fTargetPosZ;
-	unsigned int		uiTooltipTblIdx;			// ÅøÆÁ¿¡ Ãâ·ÂÇÒ Å×ÀÌºí ÀÎµ¦½º
+	unsigned int		uiTooltipTblIdx;			// 툴팁에 출력할 테이블 인덱스
 };
 
 struct SNtlEventUnregisterQuestPosMark
 {
-	QM_KEY			QMKey;						// Quest mark key - Key °ª Áßº¹ °¡´ÉÇÏ¹Ç·Î ÇØ´ç Key °ª¿¡ ÇØ´çÇÏ´Â µ¥ÀÌÅÍ ´Ù Áö¿ö Áà¾ß ÇÔ
+	QM_KEY			QMKey;						// Quest mark key - Key 값 중복 가능하므로 해당 Key 값에 해당하는 데이터 다 지워 줘야 함
 };
 
 struct SNtlEventShowQuestPosMark
@@ -3336,7 +3336,7 @@ struct SNtlEventShowQuestPosMark
 
 struct SNtlEventQuestDirect_Forward
 {
-	CNtlTCUnit			*pTCUnit;				// ÀÌ º¯¼ö´Â º¸°£ÇÏ°í ÀÖ´Ù°¡ Echo ½ÃÄÑÁÖ¾î¾ß ÇÑ´Ù.
+	CNtlTCUnit			*pTCUnit;				// 이 변수는 보간하고 있다가 Echo 시켜주어야 한다.
 	ETriggerDirectType	eTDType;			// ¿¬Ãâ type
 	union
 	{
@@ -3351,7 +3351,7 @@ struct SNtlEventQuestDirect_Forward
 
 struct SNtlEventQuestDirect_Echo
 {
-	CNtlTCUnit			*pTCUnit;				// SNtlEventQuestDirect_Forward ±¸Á¶Ã¼ÀÇ pTCUnit °ªÀ» ±×´ë·Î echo ½ÃÄÑÁØ´Ù.
+	CNtlTCUnit			*pTCUnit;				// SNtlEventQuestDirect_Forward 구조체의 pTCUnit 값을 그대로 echo 시켜준다.
 	ETriggerDirectType	eTDType;			// ¿¬Ãâ type
 	union
 	{
@@ -3387,7 +3387,7 @@ struct SNtlEventTObjectUpdateState : public SNtlEventSob
 
 //////////////////////////////////////////////
 /**
-* Æ®¸®°Å ¿ÀºêÁ§Æ® ½ºÄ«¿ìÅÍ ¿¬Ãâ °ü·Ã
+* 트리거 오브젝트 스카우터 연출 관련
 */
 //////////////////////////////////////////////
 
@@ -3418,22 +3418,22 @@ struct SNtlEventDBCNarration
 	RwInt32			eNarrationState;
 };
 
-// ¼­¹ö·Î ¹ÞÀº ÀÀ´äÀ» ´ãÀ» ±¸Á¶Ã¼ (°ø¿ë)
+// 서버로 받은 응답을 담을 구조체 (공용)
 struct SNtlEventDBC_Res
 {
 	RwUInt32		uiAltarID;
 	WORD			wResultCode;
 };
 
-// µå·¡°ïº¼ ¼öÀÔ ½ºÄÉÁì ÆÐÅ¶ ±¸Á¶Ã¼
+// 드래곤볼 수입 스케쥴 패킷 구조체
 struct SNtlEventDBCSchedule_Info
 {
-	bool						bIsAlive;			// ±â°£ À¯¹« false: ±â°£ÀÌ ¾Æ´Ï´Ù
+	bool						bIsAlive;			// 기간 유무 false: 기간이 아니다
 	BYTE						byEventType;		// eSCHEDULE_EVENT_TYPE
-	__int64						nStartTime;			// ÃÖÃÊ±â°£ ½ÃÀÛ
+	__int64						nStartTime;			// 최초기간 시작
 	__int64						nEndTime;           // ¸¶Áö¸· ±â°£ ³¡³ª´Â ½Ã°£
-	DWORD						dwMainTerm;			// ±â°£ ´ÜÀ§ (´ÞÀº ½ÃÀÛÀÏ ³ª¸ÓÁö´Â ÃÊ) 
-	DWORD						dwSubTerm;			// ±â°£ ´ÜÀ§ (´ÞÀº ¸¸·áÀÏ ³ª¸ÓÁö´Â ÃÊ) 
+	DWORD						dwMainTerm;			// 기간 단위 (달은 시작일 나머지는 초) 
+	DWORD						dwSubTerm;			// 기간 단위 (달은 만료일 나머지는 초) 
 	BYTE						byTermType;			// 0: ´Þ 1: ÀÏ 2: ½Ã
 };
 
@@ -3454,7 +3454,7 @@ struct SNtlEventRegSideHintIcon
 // Private Shop
 //////////////////////////////////////////////////////////////////////////////////
 
-// ÆÇ¸ÅÀÚ ÀÌº¥Æ® Å¸ÀÔ
+// 판매자 이벤트 타입
 enum ePrivateShopStateEventType
 {
 	PRIVATESHOP_EVENT_CREATE,
@@ -3463,7 +3463,7 @@ enum ePrivateShopStateEventType
 	PRIVATESHOP_EVENT_CLOSE,
 };
 
-// ±¸¸ÅÀÚ ÀÌº¥Æ® Å¸ÀÔ
+// 구매자 이벤트 타입
 enum ePrivateShopStateVisitorEventType
 {
 	PRIVATESHOP_EVENT_ENTER,
@@ -3674,13 +3674,13 @@ struct SNtlEventPrivateShopNameTag
 	//	WCHAR			awcPrivateShopName[NTL_MAX_PRIVATESHOP_NAME_IN_UNICODE + 1];
 };
 
-// Tool Tip UI¸¦ Ç¥½ÃÇÑ´Ù.
+// Tool Tip UI를 표시한다.
 struct SNtlEventToolTip
 {
-	RwBool          bShow;      ///< ÅøÆÁ Ç¥½Ã À¯¹«
-	RwInt32         nX;         ///< Ç¥½ÃÇÒ X ÁÂÇ¥
-	RwInt32         nY;         ///< Ç¥½ÃÇÒ Y ÁÂÇ¥
-	std::wstring    wstrText;    ///< Ç¥½ÃÇÒ ÅØ½ºÆ®
+	RwBool          bShow;      ///< 툴팁 표시 유무
+	RwInt32         nX;         ///< 표시할 X 좌표
+	RwInt32         nY;         ///< 표시할 Y 좌표
+	std::wstring    wstrText;    ///< 표시할 텍스트
 };
 
 struct SNtlEventBind
@@ -3703,17 +3703,17 @@ struct SNtlEventActionMapUpdateRes
 };
 
 /**
-* \brief ¾×¼Ç¸Ê »óÅÂ º¯°æ ( Client ´Ü°úÀÇ Åë½Å )
+* \brief 액션맵 상태 변경 ( Client 단과의 통신 )
 */
 struct SNtlEventActionMapClientNotify
 {
 	enum eTYPE 
 	{ 
-		ACTIONMAP_OK = 0,				///< ¾×¼Ç¸ÊÀÌ Á¤»óÀûÀ¸·Î ÁöÁ¤µÊ
-		ACTIONMAP_RELEASE,				///< Å°°¡ ÇØÁ¦µÈ ¾×¼ÇÀÌ ÀÖÀ½
-		ACTIONMAP_FIXEDKEY,				///< ÇöÀç Å°´Â À¯Àú°¡ ÀÓÀÇ·Î »ç¿ëÇÒ ¼ö ¾ø´Â Å°ÀÔ´Ï´Ù.
-		ACTIONMAP_NOTCOMBINE,			///< Á¶ÇÕÅ°·Î »ç¿ëÇÏÁö ¸øÇÏ´Â ¾×¼ÇÀÔ´Ï´Ù.
-		ACTIONMAP_SAMEKEY				///< Å°°¡ Áßº¹µÇ¾î ÀÖ½À´Ï´Ù.
+		ACTIONMAP_OK = 0,				///< 액션맵이 정상적으로 지정됨
+		ACTIONMAP_RELEASE,				///< 키가 해제된 액션이 있음
+		ACTIONMAP_FIXEDKEY,				///< 현재 키는 유저가 임의로 사용할 수 없는 키입니다.
+		ACTIONMAP_NOTCOMBINE,			///< 조합키로 사용하지 못하는 액션입니다.
+		ACTIONMAP_SAMEKEY				///< 키가 중복되어 있습니다.
 	};
 
 	RwUInt8		byType;
@@ -3723,8 +3723,8 @@ struct SNtlEventActionMapClientNotify
 
 struct SNtlEventPortalInfoRes
 {
-	BYTE           byCount;         ///< Æ÷Å»ÀÇ °³¼ö
-	BYTE*          paPortalID;      ///< Æ÷Å» ÀÎµ¦½ºÀÇ ¹è¿­
+	BYTE           byCount;         ///< 포탈의 개수
+	BYTE*          paPortalID;      ///< 포탈 인덱스의 배열
 };
 
 struct SNtlEventPortalAddReq
@@ -3739,16 +3739,16 @@ struct SNtlEventPortalAddRes
 
 struct SNtlEventPortalRes
 {
-	BYTE           byPoint;        ///< Æ÷Å»ÀÇ Æ÷ÀÎÆ® (Å×ÀÌºíÀÇ Æ÷ÀÎÆ® ¹øÈ£)
+	BYTE           byPoint;        ///< 포탈의 포인트 (테이블의 포인트 번호)
 };
 
 struct SNtlEventOperateObjectTimeBar
 {
-	bool			bShow;			// true : Å¸ÀÓ¹Ù º¸¿©ÁÖ±â, false : Å¸ÀÓ¹Ù ¼û±â±â
+	bool			bShow;			// true : 타임바 보여주기, false : 타임바 숨기기
 	RwUInt32		uiPlayTime;		// Å¸ÀÓ¹Ù Ãâ·Â ½Ã°£
 };
 
-// ¹æ¼Û ´ë»ç¸¦ ¾î´À ÅØ½ºÆ® Å×ÀÌºí¿¡¼­ °¡Á®¿ÃÁö 
+// 방송 대사를 어느 텍스트 테이블에서 가져올지 
 enum ETelecastTextTable
 {
 	E_TELECAST_TEXT_NPC_SPEECH,
@@ -3757,19 +3757,19 @@ enum ETelecastTextTable
 
 struct SNtlEventTeleCastBegNfy
 {
-	TBLIDX					npcTblidx;				// ¹æ¼ÛÀ» ÇÏ´Â NPC Å×ÀÌºí ÀÎµ¦½º
+	TBLIDX					npcTblidx;				// 방송을 하는 NPC 테이블 인덱스
 	BYTE					byTelecastType;			// ¹æ¼Û Å¸ÀÔ eTELECAST_MESSAGE_TYPE
-	ETelecastTextTable      eTextTable;             // ´ë»ç¸¦ ´ã°í ÀÖ´Â ÅØ½ºÆ® Å×ÀÌºí Á¾·ù
-	TBLIDX					speechTblidx;			// ¹æ¼Û³»¿ëÀ» ´ãÀº Speech Å×ÀÌºí ÀÎµ¦½º
-	std::wstring            wstrNotifyMsg;           // ¼­¹ö¿¡¼­ ³»·Á¿À´Â ¾Ë¸² ¸Þ½ÃÁö (Notify Å¸ÀÔÀÏ¶§¸¸ À¯È¿)
-	DWORD					dwDisplayTime;			// ¹æ¼Û½Ã°£À» ³ªÅ¸³»´Â millisec ( INVALID_DWORD ÀÌ¸é telecast¸¦ °è¼Ó ¶ç¿ì°í, ¾Æ´Ï¸é ÀÌ ½Ã°£ÀÌ Áö³ª¸é ¾ø¾Ù °Í )    
+	ETelecastTextTable      eTextTable;             // 대사를 담고 있는 텍스트 테이블 종류
+	TBLIDX					speechTblidx;			// 방송내용을 담은 Speech 테이블 인덱스
+	std::wstring            wstrNotifyMsg;           // 서버에서 내려오는 알림 메시지 (Notify 타입일때만 유효)
+	DWORD					dwDisplayTime;			// 방송시간을 나타내는 millisec ( INVALID_DWORD 이면 telecast를 계속 띄우고, 아니면 이 시간이 지나면 없앨 것 )    
 };
 
-/// ¹æÇâ Áö½Ã¿ë ¿ÀºêÁ§Æ® »ý¼º ÀÌº¥Æ®
+/// 방향 지시용 오브젝트 생성 이벤트
 struct SNtlEventDirectionNfy
 {
 	RwBool                  bCreate;                // TRUE : Ç¥½Ã »ý¼º, FALSE : Ç¥½Ã »èÁ¦
-	RwV3d			    	vLoc;					// ÁöÁ¤µÈ À§Ä¡ (¿ÀºêÁ§Æ®°¡ »ý¼ºµÇÁö ¾Ê¾ÒÀ» °æ¿ì ÂüÁ¶ÇÒ °Í)
+	RwV3d			    	vLoc;					// 지정된 위치 (오브젝트가 생성되지 않았을 경우 참조할 것)
 };
 
 struct SNtlEventBroadMsgBegNfy
@@ -3786,7 +3786,7 @@ struct SNtlEventBroadMsgEndNfy
 // Skill RpBonus Setup Result
 struct SNtlEventRpBonusSetupRes
 {
-	TBLIDX			skillId;			// SkillÀÇ Å×ÀÌºí ID
+	TBLIDX			skillId;			// Skill의 테이블 ID
 	BYTE			bySlotIndex;		// ¾Æ¹ÙÅ¸°¡ °¡Áö°í ÀÖ´Â °íÀ¯ÀÇ Skill ½½·Ô Index
 	BYTE			byRpBonusType;		// eDBO_RP_BONUS_TYPE
 	RwBool			bRpBonusAutoMode;			
@@ -3796,7 +3796,7 @@ struct SNtlEventRpBonusSetupRes
 struct SNtlEventFriendAddRes
 {
 	WORD            wResultCode;        ///< °á°ú ÄÚµå    
-	WCHAR           wchName[NTL_MAX_SIZE_CHAR_NAME + 1];    ///< Ä³¸¯ÅÍ ³×ÀÓ
+	WCHAR           wchName[NTL_MAX_SIZE_CHAR_NAME + 1];    ///< 캐릭터 네임
 	RwUInt32        uiTargetID;         ///< Å¸°ÙID
 };
 
@@ -3810,8 +3810,8 @@ struct SNtlEventFriendMoveRes
 {
 	WORD            wResultCode;    
 	RwUInt32        uiTargetID;
-	WCHAR           wchName[NTL_MAX_SIZE_CHAR_NAME + 1];    ///< Ä³¸¯ÅÍ ³×ÀÓ 
-	// Å¬¶óÀÌ¾ðÆ® ±¸Á¶»ó ÇÊ¿äÇØ¼­, Å¬¶óÀÌ¾ðÆ® ±¸Á¶Ã¼¿¡¸¸ NameÀ» Ãß°¡ÇÑ´Ù.
+	WCHAR           wchName[NTL_MAX_SIZE_CHAR_NAME + 1];    ///< 캐릭터 네임 
+	// 클라이언트 구조상 필요해서, 클라이언트 구조체에만 Name을 추가한다.
 };
 
 struct SNtlEventFriendListInfo
@@ -3836,7 +3836,7 @@ struct SNtlEventBlackListDelRes
 struct SNtlEventFriendInfo
 {
 	sFRIEND_INFO	sInfo;  
-	bool			bIsFirst;		// true : Ã³À½ false : ³ªÁß 
+	bool			bIsFirst;		// true : 처음 false : 나중 
 };
 
 struct SNtlEventFriendInfoChange
@@ -3846,10 +3846,10 @@ struct SNtlEventFriendInfoChange
 	DWORD						dwChangeValue;	// Online 1:On 2:Off , Class , Level , Channel, PositionMapTblidx
 };
 
-// Ä£±¸ ¸®½ºÆ® °ü·Ã Ãß°¡ ¸Þ½ÃÁö (¼­¹ö¿¡¼­ ³¯¶ó¿À´Â ¸Þ½ÃÁö ÀÌ¿ÜÀÇ Å¬¶óÀÌ¾ðÆ®¿¡¼­¸¸ ÇÊ¿ä¿¡ µû¶ó Ãß°¡ÇÏ´Â ¸Þ¼¼Áö)
+// 친구 리스트 관련 추가 메시지 (서버에서 날라오는 메시지 이외의 클라이언트에서만 필요에 따라 추가하는 메세지)
 enum eFriendExtraEvent
 {
-	SLFE_FRIEND_LOGIN,              ///< Ä£±¸°¡ ·Î±×ÀÎ½Ã¿¡ ¹Þ´Â ¸Þ½ÃÁö
+	SLFE_FRIEND_LOGIN,              ///< 친구가 로그인시에 받는 메시지
 };
 
 struct SNtlEventFriendInfoNotify
@@ -3870,7 +3870,7 @@ struct SNtlEventChargingNfy
 };
 
 
-// Ä¿¹Â´ÏÄÉÀÌ¼Ç Å¸°ÙÀ» ¼³Á¤ÇÏ´Â Å¸ÀÔ
+// 커뮤니케이션 타겟을 설정하는 타입
 enum ECommuTargetType
 {
 	COMMU_TARGET_FRIEND,
@@ -3880,7 +3880,7 @@ enum ECommuTargetType
 
 struct SNtlEventCommuTargetSelect
 {
-	CHARACTERID     uiCharID;               ///< Ä³¸¯ÅÍ ID (Ä¿¹Â´ÏÆ¼ ¼­¹ö·ÎºÎÅÍ ¹ÞÀº ID)
+	CHARACTERID     uiCharID;               ///< 캐릭터 ID (커뮤니티 서버로부터 받은 ID)
 	SERIAL_HANDLE   uiSerialID;             ///< ½Ã¸®¾ó ID
 	WCHAR           wchName[NTL_MAX_SIZE_CHAR_NAME + 1];
 	ECommuTargetType eTargetType;
@@ -3892,14 +3892,14 @@ struct SNtlEventCommuTargetRelease
 };
 
 /**
-* \brief Æ÷Æ÷ ¾ÆÀÌÄÜ ¹®ÀÚ¿­ Notify
+* \brief 포포 아이콘 문자열 Notify
 */
 struct SNtlEventPopoNotify
 {
-	const WCHAR* pwcTitle;			///< NotifyÀÇ Á¦¸ñ ( ÃÖ´ë 32±ÛÀÚ ) ( ³ë¶õ»ö Ç¥½Ã )
-	const WCHAR* pwcBuffer;			///< NotifyÀÇ ³»¿ë ( ÃÖ´ë 64±ÛÀÚ )
-	RwBool		 bImmediate;		///< TRUE : Áï½Ã Ç¥½Ã , FALSE : Æ÷Æ÷¾ÆÀÌÄÜÀÇ ½ºÅÃ¿¡ ÀúÀå
-	RwReal		 fLifeTime;			///< Áï½Ã Ç¥½Ã¶ó¸é ¾ó¸¶ µ¿¾È Ãâ·ÂµÉ °ÍÀÎ°¡? ( 0.0f = ÀÚµ¿À¸·Î ´ÝÈ÷Áö ¾ÊÀ½ )
+	const WCHAR* pwcTitle;			///< Notify의 제목 ( 최대 32글자 ) ( 노란색 표시 )
+	const WCHAR* pwcBuffer;			///< Notify의 내용 ( 최대 64글자 )
+	RwBool		 bImmediate;		///< TRUE : 즉시 표시 , FALSE : 포포아이콘의 스택에 저장
+	RwReal		 fLifeTime;			///< 즉시 표시라면 얼마 동안 출력될 것인가? ( 0.0f = 자동으로 닫히지 않음 )
 };
 
 /// º¯½Å ÀÌº¥Æ®
@@ -3911,7 +3911,7 @@ struct SNtlEventTransform : public SNtlEventSob
 /// ¸÷ º¯½Å ÀÌº¥Æ®
 struct SNtlEventMobTransform : public SNtlEventSob
 {
-    TBLIDX          tblTransformMobID;  ///< º¯½Å ÈÄÀÇ ¸÷ Å×ÀÌºí ÀÎµ¦½º
+    TBLIDX          tblTransformMobID;  ///< 변신 후의 몹 테이블 인덱스
 };
 
 /// Äµµð º¯½Å ÀÌº¥Æ®
@@ -3952,7 +3952,7 @@ enum eScouterEventType
 
 struct SDboEventScouter
 {
-	int			iType;			///< Scouter¿¡ Àü´ÞµÇ´Â µ¥ÀÌÅÍ Å¸ÀÔ
+	int			iType;			///< Scouter에 전달되는 데이터 타입
 
 	RwUInt32	uiUserData;
 	int			iUserData2;
@@ -3964,13 +3964,13 @@ struct SDboEventScouter
 	int			iUserData8;
 };
 
-/// ÆÄÆ¼ °øÀ¯ Å¸°Ù¿¡ ´ëÇÑ ÀÀ´ä
+/// 파티 공유 타겟에 대한 응답
 struct SNtlEventPartyShareTargetRes
 {
 	WORD            wResultCode;
 };
 
-/// ÆÄÆ¼ °øÀ¯ Å¸°Ù¿¡ ´ëÇÑ ¾Ë¸²
+/// 파티 공유 타겟에 대한 알림
 struct SNtlEventPartyShareTargetNfy
 {
 	sSHARETARGET_INFO		sharetargetInfo[NTL_MAX_SHARETARGET_COUNT];    
@@ -3978,7 +3978,7 @@ struct SNtlEventPartyShareTargetNfy
 
 struct SNtlEventShareTargetSelect : public SNtlEventSob
 {
-	RwUInt8         bySlot;             ///< Å¸°ÙÀÌ ¸î¹ø °øÀ¯ Å¸°ÙÀÎÁöÀÇ ½½·Ô
+	RwUInt8         bySlot;             ///< 타겟이 몇번 공유 타겟인지의 슬롯
 };
 
 struct SNtlEventShareTargetRelease : public SNtlEventSob
@@ -3988,7 +3988,7 @@ struct SNtlEventShareTargetRelease : public SNtlEventSob
 // Passenger
 struct SNtlEventSobOnBus : public SNtlEventSob
 {
-	RwBool				bRideOn;            ///< ¹ö½º Å¾½Â½Ã¿¡´Â True, ÇÏÂ÷½Ã¿¡´Â False
+	RwBool				bRideOn;            ///< 버스 탑승시에는 True, 하차시에는 False
 	SERIAL_HANDLE		hBusSerialId;       ///< ¹ö½ºÀÇ ½Ã¸®¾ó ID        
 };
 
@@ -4179,25 +4179,25 @@ struct SNtlEventTLEnableSkip
 struct SNtlEventCondTerror
 {
 	RwBool                  bAffect;                    ///< Àû¿ë À¯¹«
-	RwUInt32                hSubject;                   ///< È¿°ú¸¦ ´çÇÑ ´ë»ó (¾Æ¹ÙÅ¸ or Æê)
-	RwUInt32                hAttackerSerialId;          ///< °ø°ÝÇÑ Å¸°ÙÀÇ ½Ã¸®¾ó ID    
+	RwUInt32                hSubject;                   ///< 효과를 당한 대상 (아바타 or 펫)
+	RwUInt32                hAttackerSerialId;          ///< 공격한 타겟의 시리얼 ID    
 };
 
 struct SNtlEventCondConfused
 {
 	RwBool                  bAffect;                    ///< Àû¿ë À¯¹«
-	RwUInt32                hSubject;                   ///< È¿°ú¸¦ ´çÇÑ ´ë»ó (¾Æ¹ÙÅ¸ or Æê)
-	RwUInt32                hTargetSerialId;            ///< °ø°ÝÇÒ Å¸°ÙÀÇ ½Ã¸®¾ó ID
+	RwUInt32                hSubject;                   ///< 효과를 당한 대상 (아바타 or 펫)
+	RwUInt32                hTargetSerialId;            ///< 공격할 타겟의 시리얼 ID
 };
 
-/// ±â¼û±â±â ÀÌº¥Æ® ±¸Á¶Ã¼
+/// 기숨기기 이벤트 구조체
 struct SNtlEventCondHidingKi
 {
     SERIAL_HANDLE           hSerialID;                  
     RwBool                  bAffect;                    ///< Àû¿ë À¯¹«    
 };
 
-// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ 
+// 천하제일 무도회 
 struct SNtlEventMinorMatchStateUpdate
 {
 	RwUInt8		byMatchState;
@@ -4347,7 +4347,7 @@ struct SNtlEventAwardInfo
 };
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ÀÇ ÇöÀç »óÅÂ
+* \brief 천하제일 무도회의 현재 상태
 */
 struct sNtlEventBudokaiStateInfoNfy
 {
@@ -4361,7 +4361,7 @@ struct sNtlEventBudokaiStateInfoNfy
 };
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ÀÇ Main State Update
+* \brief 천하제일 무도회의 Main State Update
 */
 struct sNtlEventBudokaiUpdateStateNfy
 {
@@ -4369,7 +4369,7 @@ struct sNtlEventBudokaiUpdateStateNfy
 };
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ÀÇ Match State update
+* \brief 천하제일 무도회의 Match State update
 */
 struct sNtlEventBudokaiUpdateMatchStateNfy
 {
@@ -4378,7 +4378,7 @@ struct sNtlEventBudokaiUpdateMatchStateNfy
 };
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ °³ÀÎÀü µî·Ï °á°ú
+* \brief 천하제일 무도회 개인전 등록 결과
 */
 struct SNtlEventBudokaiJoinIndividualRes
 {
@@ -4388,7 +4388,7 @@ struct SNtlEventBudokaiJoinIndividualRes
 };
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ °³ÀÎÀü Ãë¼Ò °á°ú
+* \brief 천하제일 무도회 개인전 취소 결과
 */
 struct SNtlEventBudokaiLeaveIndividualRes
 {
@@ -4396,7 +4396,7 @@ struct SNtlEventBudokaiLeaveIndividualRes
 };
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ÆÀ Á¤º¸ °á°ú
+* \brief 천하제일 무도회 팀 정보 결과
 */
 struct SNtlEventBudokaiJoinTeamInfoRes
 {
@@ -4407,7 +4407,7 @@ struct SNtlEventBudokaiJoinTeamInfoRes
 };
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ÆÄÆ¼Àü µî·Ï °á°ú
+* \brief 천하제일 무도회 파티전 등록 결과
 */
 struct SNtlEventBudokaiJoinTeamRes
 {
@@ -4422,7 +4422,7 @@ struct SNtlEventBudokaiJoinTeamRes
 };
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ÆÄÆ¼Àü µî·Ï ¾Ë¸²
+* \brief 천하제일 무도회 파티전 등록 알림
 */
 struct SNtlEventBudokaiJoinTeamNfy
 {
@@ -4435,7 +4435,7 @@ struct SNtlEventBudokaiJoinTeamNfy
 };
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ÆÄÆ¼Àü Ãë¼Ò °á°ú
+* \brief 천하제일 무도회 파티전 취소 결과
 */
 struct SNtlEventBudokaiLeaveTeamRes
 {
@@ -4443,7 +4443,7 @@ struct SNtlEventBudokaiLeaveTeamRes
 };
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ÆÄÆ¼Àü ¸â¹ö Ãë¼Ò °á°ú
+* \brief 천하제일 무도회 파티전 멤버 취소 결과
 */
 struct SNtlEventBudokaiLeaveTeamMemberRes
 {
@@ -4451,7 +4451,7 @@ struct SNtlEventBudokaiLeaveTeamMemberRes
 };
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ÆÄÆ¼Àü ¸â¹ö Ãë¼Ò ¾Ë¸²
+* \brief 천하제일 무도회 파티전 멤버 취소 알림
 */
 struct SNtlEventBudokaiLeaveTeamMemberNfy
 {
@@ -4459,7 +4459,7 @@ struct SNtlEventBudokaiLeaveTeamMemberNfy
 };
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ µî·Ï Á¤º¸
+* \brief 천하제일 무도회 등록 정보
 */
 struct SNtlEventBudokaiJoinInfoRes
 {
@@ -4475,7 +4475,7 @@ struct SNtlEventBudokaiJoinInfoRes
 };
 
 /**
-* \brief ¹«µµ»ç ÅÚ·¹Æ÷Æ® Á¤º¸
+* \brief 무도사 텔레포트 정보
 */
 struct SNtlEventBudokaiMudosaInfoRes
 {
@@ -4484,10 +4484,10 @@ struct SNtlEventBudokaiMudosaInfoRes
 	sBUDOKAI_MUDOSA_INFO	aMudosaInfo[BUDOKAI_MAX_MUDOSA_INFO_COUNT];
 };
 
-/// ½ºÅ©¸°¼¦ ÂïÀºÈÄÀÇ ÀÌº¥Æ®
+/// 스크린샷 찍은후의 이벤트
 struct SNtlEventScreenShot
 {
-	std::string             strFileName;            ///< ½ºÅ©¸°¼¦ ÂïÀº ÆÄÀÏÀÇ ÀÌ¸§ (È®ÀåÀÚ Á¦¿Ü)
+	std::string             strFileName;            ///< 스크린샷 찍은 파일의 이름 (확장자 제외)
 };
 
 struct SNtlEventSkillSelectMode
@@ -4497,7 +4497,7 @@ struct SNtlEventSkillSelectMode
 };
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ Âü°¡ »óÅÂ
+* \brief 천하제일 무도회 참가 상태
 */
 struct SNtlEventBudokaiJoinStateNfy
 {
@@ -4515,7 +4515,7 @@ struct SNtlEventBudokaiJoinStateRes
 };
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ »çÀÌµå ¾ÆÀÌÄÜ °øÁö ±¸Á¶Ã¼
+* \brief 천하제일 무도회 사이드 아이콘 공지 구조체
 */
 struct SNtlEventBudokaiNoticeNfy
 {
@@ -4525,7 +4525,7 @@ struct SNtlEventBudokaiNoticeNfy
 };
 
 /**
-* \brief ½Ã³×¸¶Æ½ Ä¿¸Çµå 
+* \brief 시네마틱 커맨드 
 */
 
 struct SNtlEventCinematicGuiCommand
@@ -4536,9 +4536,9 @@ struct SNtlEventCinematicGuiCommand
 
 enum eDialogMoveType
 {
-	TRM_DIALOG_DIALOG_MOVABLE_DEFAULT_POSITION,	///< ´ÙÀÌ¾ó·Î±×°¡ ¿òÁ÷ÀÏ ¼ö ÀÖÀ» ¶§ ±âº» À§Ä¡ ¼¼ÆÃ
-	TRM_DIALOG_DIALOG_MOVABLE,			///< ´ÙÀÌ¾ó·Î±×¸¦ ¿òÁ÷ÀÏ ¼ö ÀÖ´Â ¸ðµå·Î ÀüÈ¯
-	TRM_DIALOG_DIALOG_DISMOVABLE,		///< ´ÙÀÌ¾ó·Î±×¸¦ ¿òÁ÷ÀÏ ¼ö ¾ø´Â ¸ðµå·Î ÀüÈ¯
+	TRM_DIALOG_DIALOG_MOVABLE_DEFAULT_POSITION,	///< 다이얼로그가 움직일 수 있을 때 기본 위치 세팅
+	TRM_DIALOG_DIALOG_MOVABLE,			///< 다이얼로그를 움직일 수 있는 모드로 전환
+	TRM_DIALOG_DIALOG_DISMOVABLE,		///< 다이얼로그를 움직일 수 없는 모드로 전환
 };
 
 struct SNtlEventDialogMove
@@ -4603,7 +4603,7 @@ struct SNtlEventBudokaiProgressMessageNfy
 	RwUInt8			byMsgId;
 };
 
-/// È¸Àü °ø°ÝÀ» ¹Þ¾Æ¼­ ½½¶óÀÌµù µÇ´Â ÀÌº¥Æ®
+/// 회전 공격을 받아서 슬라이딩 되는 이벤트
 struct SNtlEventSobPushingNfy : public SNtlEventSob
 {
     BYTE                byAttackResult;
@@ -4745,7 +4745,7 @@ struct SNtlEventMobDie
 	SERIAL_HANDLE m_hSerialID;
 };
 
-/// ¾îÅÃ »óÅÂ Á¾·á¸¦ ¼­¹ö¿¡ ¾Ë·ÁÁÖ´Â ÀÌº¥Æ®
+/// 어택 상태 종료를 서버에 알려주는 이벤트
 struct SNtlEventSobSendAttackEnd : public SNtlEventSob
 {
     

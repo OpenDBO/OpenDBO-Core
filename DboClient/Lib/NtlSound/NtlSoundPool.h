@@ -2,7 +2,7 @@
  *
  * File			: DboEvent.h
  * Author		: Hong Sungbock
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2007. 5. 29
  * Abstract		: Ntl sound event.
  *****************************************************************************
@@ -14,19 +14,19 @@
 
 #include "ceventhandler.h"
 
-extern RWS::CEventId g_EventSoundReleaseSound;				// ÇÑ °³ Ã¤³ÎÀÇ »ç¿îµå°¡ ÇØÁ¦µÇ¾ú´Ù
+extern RWS::CEventId g_EventSoundReleaseSound;				// í•œ ê°œ ì±„ë„ì˜ ì‚¬ìš´ë“œê°€ í•´ì œë˜ì—ˆë‹¤
 
-extern RWS::CEventId g_EventSoundFinishFade;				// ÆäÀÌµå ÀÎ/¾Æ¿ôÀÌ ³¡³µ´Ù
+extern RWS::CEventId g_EventSoundFinishFade;				// í˜ì´ë“œ ì¸/ì•„ì›ƒì´ ëë‚¬ë‹¤
 
-extern RWS::CEventId g_EventSoundDSP;						// È¿°úÀ½ °ü·Ã ÀÌº¥Æ®
+extern RWS::CEventId g_EventSoundDSP;						// íš¨ê³¼ìŒ ê´€ë ¨ ì´ë²¤íŠ¸
 
-extern RWS::CEventId g_EventSoundEventMusic;				// ÀÌº¥Æ®À½¾Ç Ã¤³Î ÀÌº¥Æ®
+extern RWS::CEventId g_EventSoundEventMusic;				// ì´ë²¤íŠ¸ìŒì•… ì±„ë„ ì´ë²¤íŠ¸
 
-extern RWS::CEventId g_EventSoundRestTime;					// ¹İº¹µÇ´Â À½¾ÇÀÇ ´ÙÀ½ ÇÃ·¹ÀÌ±îÁö ÈŞ½Ä ½Ã°£
+extern RWS::CEventId g_EventSoundRestTime;					// ë°˜ë³µë˜ëŠ” ìŒì•…ì˜ ë‹¤ìŒ í”Œë ˆì´ê¹Œì§€ íœ´ì‹ ì‹œê°„
 
-extern RWS::CEventId g_EventSoundKnockdown;					// ³Ë´Ù¿î µÉ ¶§
+extern RWS::CEventId g_EventSoundKnockdown;					// ë„‰ë‹¤ìš´ ë  ë•Œ
 
-extern RWS::CEventId g_EventSoundMinMaxRate;				// 3D »ç¿îµåÀÇ ÀüÃ¼ Min, Max°ªÀ» ¹Ù²Û´Ù
+extern RWS::CEventId g_EventSoundMinMaxRate;				// 3D ì‚¬ìš´ë“œì˜ ì „ì²´ Min, Maxê°’ì„ ë°”ê¾¼ë‹¤
 
 //////////////////////////////////////////////////////////////////////////
 //	Structure
@@ -34,9 +34,9 @@ extern RWS::CEventId g_EventSoundMinMaxRate;				// 3D »ç¿îµåÀÇ ÀüÃ¼ Min, Max°ªÀ»
 
 enum eDSPEvent
 {
-	DSP_ADD_REVERV,							///< Æ¯Á¤ Ã¤³Î±×·ì¿¡ reverv È¿°ú¸¦ Àû¿ëÇÑ´Ù
-	DSP_REMOVE_REVERV,						///< Æ¯Á¤ Ã¤³Î±×·ì¿¡ reverv È¿°ú¸¦ ÇØÁ¦Èù´Ù
-	DSP_REMOVE_ALL,							///< Æ¯Á¤ Ã¤³Î±×·ì¿¡ ¸ğµç È¿°ú¸¦ ÇØÁ¦ÇÑ´Ù
+	DSP_ADD_REVERV,							///< íŠ¹ì • ì±„ë„ê·¸ë£¹ì— reverv íš¨ê³¼ë¥¼ ì ìš©í•œë‹¤
+	DSP_REMOVE_REVERV,						///< íŠ¹ì • ì±„ë„ê·¸ë£¹ì— reverv íš¨ê³¼ë¥¼ í•´ì œíŒë‹¤
+	DSP_REMOVE_ALL,							///< íŠ¹ì • ì±„ë„ê·¸ë£¹ì— ëª¨ë“  íš¨ê³¼ë¥¼ í•´ì œí•œë‹¤
 };
 
 struct SNtlEventDSP
@@ -46,8 +46,8 @@ struct SNtlEventDSP
 
 enum eEventMusic
 {
-	EVENT_MUSIC_EVENT_MUSIC_HAD_PLAY,		///< Event À½¾ÇÀÌ ÇÃ·¹ÀÌ¸¦ ½ÃÀÛÇß´Ù
-	EVENT_MUSIC_ALL_EVENT_MUSIC_FINISH,		///< ¸ğµç Event À½¾ÇÀÌ ÇÃ·¹ÀÌ¸¦ Á¾·áÇß´Ù
+	EVENT_MUSIC_EVENT_MUSIC_HAD_PLAY,		///< Event ìŒì•…ì´ í”Œë ˆì´ë¥¼ ì‹œì‘í–ˆë‹¤
+	EVENT_MUSIC_ALL_EVENT_MUSIC_FINISH,		///< ëª¨ë“  Event ìŒì•…ì´ í”Œë ˆì´ë¥¼ ì¢…ë£Œí–ˆë‹¤
 };
 
 struct SNtlEeventMusic
@@ -58,7 +58,7 @@ struct SNtlEeventMusic
 struct SNtlEventMusicRestTime
 {
 	RwUInt8			byChannelGroup;
-	RwReal			fRestTime;				///< ´ÜÀ§ : ÃÊ
+	RwReal			fRestTime;				///< ë‹¨ìœ„ : ì´ˆ
 };
 
 struct SNtlEventKnockdown

@@ -181,7 +181,7 @@ eStoreResult CNtlBGMGroup::StoreSound(CNtlSound* pSound, sNtlSoundPlayParameta* 
 	
 	if( STORE_READY_TO_PLAY == eResult )
 	{
-		// µû·Î ÀÌº¥Æ®·Î ¹Þ¾ÒÀ» ¶§¸¸ ±â·Ï
+		// ë”°ë¡œ ì´ë²¤íŠ¸ë¡œ ë°›ì•˜ì„ ë•Œë§Œ ê¸°ë¡
 		if( BGM_TYPE_SHARE_THEME != pParameta->eBGM_Type )
 			m_pBGMPlayList->AddBGMList(pParameta->eBGM_Type, pParameta->pcFileName);
 
@@ -204,7 +204,7 @@ bool CNtlBGMGroup::Stop(SOUND_HANDLE hHandle)
 
 	if( hHandle == m_tPostSound.hHandle )
 	{
-		// Áï°¢ ÇØÁ¦
+		// ì¦‰ê° í•´ì œ
 		CNtlChannelGroup::Stop(m_tPostSound.hHandle);
 		ClearBGMList(m_tPostSound.hHandle);
 		return true;
@@ -216,7 +216,7 @@ bool CNtlBGMGroup::Stop(SOUND_HANDLE hHandle)
 	ClearBGMList(m_tPlaySound.hHandle);
 
 
-	// ¹«ÇÑ·çÇÁ ¹«Á¶°Ç ÇØÁ¦ÈÄ Fade out
+	// ë¬´í•œë£¨í”„ ë¬´ì¡°ê±´ í•´ì œí›„ Fade out
 	FMOD_MODE mode;
 	pSound->m_pFMODSound->getMode(&mode);
 	mode &= !FMOD_LOOP_NORMAL;
@@ -278,10 +278,10 @@ void CNtlBGMGroup::ReleaseFinishedSound(float fElapsed)
 			pSound->m_pFMODChannel->getMode(&mode);
 
 			if( mode ^ FMOD_LOOP_NORMAL )
-			{	// ¹«ÇÑ¹Ýº¹ÀÌ ¾Æ´Ò ¶§
+			{	// ë¬´í•œë°˜ë³µì´ ì•„ë‹ ë•Œ
 				bool bPlaying;
 
-				// paused µÈ »ç¿îµåµµ true °ªÀÌ ¸®ÅÏµÈ´Ù
+				// paused ëœ ì‚¬ìš´ë“œë„ true ê°’ì´ ë¦¬í„´ëœë‹¤
 				pSound->m_pFMODChannel->isPlaying(&bPlaying);
 
 				if(!bPlaying)

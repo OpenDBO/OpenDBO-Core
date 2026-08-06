@@ -2,7 +2,7 @@
  *
  * File			: ChatGui.h
  * Author		: Peessi
- * Copyright	: (��)NTL
+ * Copyright	: (占쏙옙)NTL
  * Date			: 2007. 5. 10	
  * Abstract		: DBO chatting gui.
  *****************************************************************************
@@ -42,7 +42,7 @@ public:
 
 	struct sPositionInfo
 	{
-		RwInt32				iOldScreenHeight;			///< Ŭ���̾�Ʈ Resize�� �ϴܿ��� ������ �Ÿ� ���� ����
+		RwInt32				iOldScreenHeight;			///< 클占쏙옙占싱억옙트 Resize占쏙옙 占싹단울옙占쏙옙 占쏙옙占쏙옙占쏙옙 占신몌옙 占쏙옙占쏙옙 占쏙옙占쏙옙
 	};
 
 
@@ -96,7 +96,7 @@ private:
 	VOID	Option_Alpha(RwUInt8 byAlpha);
 	VOID	Option_DisplayChatLogType(RwUInt8 byDisplayIndex, eChatType eType, RwBool bEnable);
 
-	// Option_DisplayChatLogType �Լ��� ��� ȣ���� �ڿ� �� ����� �����ϱ� ���� �Լ�
+	// Option_DisplayChatLogType 함수를 모두 호출한 뒤에 그 결과를 적용하기 위한 함수
 	VOID	Option_RefreshDisplayChatLog(RwUInt8 byDisplayIndex);
 
 	//! Callbacks
@@ -152,7 +152,7 @@ protected:
 
 	RwBool				m_bChatModeEndReturn;
 	RwBool				m_bRenderBackground;
-	RwBool				m_bInitializedOption;			/// �ɼǿ� ���� �ʱ�ȭ�� �ߴ�
+	RwBool				m_bInitializedOption;			/// 占심션울옙 占쏙옙占쏙옙 占십깍옙화占쏙옙 占쌩댐옙
 	eChatType			m_eChatType;
 	sChatOption			m_ChatOption;
 	sPositionInfo		m_tPositionInfo;	

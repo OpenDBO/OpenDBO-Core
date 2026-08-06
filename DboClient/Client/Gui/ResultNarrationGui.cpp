@@ -46,7 +46,7 @@ RwBool CResultNarrationGui::Create(VOID)
 
 VOID CResultNarrationGui::Destroy(VOID)
 {
-	// È¤½Ã³ª...
+	// í˜¹ì‹œë‚˜...
 	GetNtlGuiManager()->RemoveUpdateFunc( this );
 
 	UnLinkMsg( g_EventResize );
@@ -81,7 +81,7 @@ VOID CResultNarrationGui::Show( bool bShow )
 
 VOID CResultNarrationGui::SetData( const RwChar* szFileName, const WCHAR* szMessage )
 {
-	// Peessi: Resource¹®Á¦¿¡ µû¸¥ ÀÓ½Ã´ëÀÀ.
+	// Peessi: Resourceë¬¸ì œì— ë”°ë¥¸ ìž„ì‹œëŒ€ì‘.
 	if( strcmp( szFileName, "TB_MatchFinish_npc.swf" ) == 0 )
 		m_phbxMessage->SetPosition( 170, 580 );
 	else

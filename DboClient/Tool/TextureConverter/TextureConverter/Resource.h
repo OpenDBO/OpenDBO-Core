@@ -8,7 +8,7 @@
 #define IDR_TextureConverteTYPE				129
 #define IDR_MANIFEST				CREATEPROCESS_MANIFEST_RESOURCE_ID
 
-// ´ÙÀ½Àº »õ °³Ã¼¿¡ »ç¿ëÇÒ ±âº»°ªÀÔ´Ï´Ù.
+// ë‹¤ìŒì€ ìƒˆ ê°œì²´ì— ì‚¬ìš©í•  ê¸°ë³¸ê°’ìž…ë‹ˆë‹¤.
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS

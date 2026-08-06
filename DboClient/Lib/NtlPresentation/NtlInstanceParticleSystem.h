@@ -2,7 +2,7 @@
 //	File		:	NtlInstanceParticleSystem.h
 //	Desc		:	
 //	Begin		:	2006. 7.28
-//	Copyright	:	¨Ï 2006 by NTL CO., Ltd
+//	Copyright	:	â“’ 2006 by NTL CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -16,7 +16,7 @@
 #include "NtlInstanceTrailSystem.h"
 /**
  * \ingroup NtlPresentation
- * \brief Particle Instance¸¦ ±¸¼ºÇÏ´Â Å¬·¡½º
+ * \brief Particle Instanceë¥¼ êµ¬ì„±í•˜ëŠ” í´ë˜ìŠ¤
  * \date 2006-08-28
  * \author agebreak
  */
@@ -45,14 +45,14 @@ public:
     CNtlInstanceTrailSystem*    m_pTrailSystem;
 
 protected:
-    // Matrix ActionÀÌ Àû¿ëµÇ¾úÀ»¶§ Rotation °ü·Ã
+    // Matrix Actionì´ ì ìš©ë˜ì—ˆì„ë•Œ Rotation ê´€ë ¨
     RpPrtStdEmitterPrtMatrix*   m_pEmitterPrtMatrix;
-    RwV3d                       m_vOrgAt;           ///< ¿ø·¡ ¼³Á¤µÈ At°ª
-    RwV3d                       m_vOrgUp;           ///< ¿ø·¡ ¼³Á¤µÈ Up°ª    
+    RwV3d                       m_vOrgAt;           ///< ì›ë˜ ì„¤ì •ëœ Atê°’
+    RwV3d                       m_vOrgUp;           ///< ì›ë˜ ì„¤ì •ëœ Upê°’    
 
-    // Follow Particle °ü·Ã (ÆÄÆ¼Å¬ »ı¼º°´Ã¼¸¦ µû¶ó´Ù´Ï´Â ÆÄÆ¼Å¬)
-    RwV3d                       m_vPosPrev;         ///< »ı¼º °´Ã¼ÀÇ ÀÌÀü À§Ä¡
-    RwV3d                       m_vPosDelta;        ///< ÀÌÀü À§Ä¡·Î ºÎÅÍ º¯°æµÈ À§Ä¡    
+    // Follow Particle ê´€ë ¨ (íŒŒí‹°í´ ìƒì„±ê°ì²´ë¥¼ ë”°ë¼ë‹¤ë‹ˆëŠ” íŒŒí‹°í´)
+    RwV3d                       m_vPosPrev;         ///< ìƒì„± ê°ì²´ì˜ ì´ì „ ìœ„ì¹˜
+    RwV3d                       m_vPosDelta;        ///< ì´ì „ ìœ„ì¹˜ë¡œ ë¶€í„° ë³€ê²½ëœ ìœ„ì¹˜    
 
 public:
 	CNtlInstanceParticleSystem(void);
@@ -74,13 +74,13 @@ public:
 	virtual RwBool	Render();
 
 	virtual void	SetWorldMatrix(const RwMatrix& matWorld);
-	virtual void	SetScale(RwReal fScale);					///< ÆÄÆ¼Å¬ÀÇ ScaleÀ» ¼³Á¤ÇÑ´Ù.
-    virtual void    SetAlpha(RwUInt8 byValue);                  ///< ÆÄÆ¼Å¬ÀÇ Alpha¸¦ ¼³Á¤ÇÑ´Ù.
+	virtual void	SetScale(RwReal fScale);					///< íŒŒí‹°í´ì˜ Scaleì„ ì„¤ì •í•œë‹¤.
+    virtual void    SetAlpha(RwUInt8 byValue);                  ///< íŒŒí‹°í´ì˜ Alphaë¥¼ ì„¤ì •í•œë‹¤.
 
 			void	BuildHurricanePoint(RwV3d& vPosition, RwReal fLifeTime);
 
 protected:
-            void    UpdateFollow();                             ///< Follow ÆÄÆ¼Å¬ÀÇ À§Ä¡¸¦ ¾÷µ¥ÀÌÆ®ÇÑ´Ù.    
-            void    UpdateBillboard();                          ///< ºôº¸µå°¡ ¼³Á¤µÈ°æ¿ì ºôº¸µå¸¦ Àû¿ëÇÑ´Ù.
-            void    UpdateRotate();                             ///< EmitterÀÇ Rotate°ªÀ» Àû¿ëÇÑ´Ù.
+            void    UpdateFollow();                             ///< Follow íŒŒí‹°í´ì˜ ìœ„ì¹˜ë¥¼ ì—…ë°ì´íŠ¸í•œë‹¤.    
+            void    UpdateBillboard();                          ///< ë¹Œë³´ë“œê°€ ì„¤ì •ëœê²½ìš° ë¹Œë³´ë“œë¥¼ ì ìš©í•œë‹¤.
+            void    UpdateRotate();                             ///< Emitterì˜ Rotateê°’ì„ ì ìš©í•œë‹¤.
 };

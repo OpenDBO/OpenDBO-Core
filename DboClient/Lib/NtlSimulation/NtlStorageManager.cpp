@@ -136,13 +136,13 @@ void CNtlStorageManager::Destroy()
 
 bool CNtlStorageManager::Load( eNTL_STORAGE_GROUP_TYPE eType, const char* filename )
 {
-	// ÆÄÀÏÀÌ ¾øÀ¸¸é Default °ªÀ¸·Î ·Îµå
+	// íŒŒì¼ì´ ì—†ìœ¼ë©´ Default ê°’ìœ¼ë¡œ ë¡œë“œ
 	CNtlStorageGroup* pGroup = GetStorageGroup( eType );
 	if( pGroup )
 	{
 		NtlFileAttrReadOnlyRelease((RwChar*)filename);
 
-		// Text ·Î ·ÎµåÇÒ °Íµé
+		// Text ë¡œ ë¡œë“œí•  ê²ƒë“¤
 		if( eType == eNTL_STORAGE_ACCOUNT ||
 			eType == eNTL_STORAGE_GROUP_SYSTEM ||
 			eType == eNTL_STORAGE_GROUP_GAMEINFO ||
@@ -229,7 +229,7 @@ bool CNtlStorageManager::Load( eNTL_STORAGE_GROUP_TYPE eType, const char* filena
 	}
 	else
 	{
-		// ±×·ìÀ» Ã£Áö ¸øÇÔ
+		// ê·¸ë£¹ì„ ì°¾ì§€ ëª»í•¨
 		return false;
 	}
 }
@@ -288,7 +288,7 @@ bool CNtlStorageManager::Save( eNTL_STORAGE_GROUP_TYPE eType, const char* filena
 	}
 	else
 	{
-		// ±×·ìÀ» Ã£Áö ¸øÇÔ
+		// ê·¸ë£¹ì„ ì°¾ì§€ ëª»í•¨
 		return false;
 	}
 }
@@ -311,7 +311,7 @@ CNtlStorageGroup* CNtlStorageManager::GetStorageGroup(eNTL_STORAGE_GROUP_TYPE eT
 	GROUPMAP::iterator it = m_mapStorageGroup.find( eType );
 	if( it == m_mapStorageGroup.end() )
 	{
-		// ¸ø Ã£À½
+		// ëª» ì°¾ìŒ
 		return NULL;
 	}
 
@@ -409,7 +409,7 @@ float CNtlStorageManager::GetFloatData( unsigned int uiKey )
 
 bool CNtlStorageManager::SetData( unsigned int uiKey, std::string strData )
 {
-	// ¹ÞÀº KeyÀÇ TypeÀ» Ã£´Â´Ù.
+	// ë°›ì€ Keyì˜ Typeì„ ì°¾ëŠ”ë‹¤.
 	eNTL_STORAGE_TYPE eType = GetNtlStorageMTContainer()->GetStorageType( uiKey );
 	for each( std::pair<eNTL_STORAGE_GROUP_TYPE, CNtlStorageGroup*> pair in m_mapStorageGroup )
 	{

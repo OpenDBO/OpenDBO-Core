@@ -1,4 +1,4 @@
-// NaviMeshPane.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// NaviMeshPane.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -35,7 +35,7 @@ BEGIN_MESSAGE_MAP(CNaviMeshPane, CXTResizeFormView)
 END_MESSAGE_MAP()
 
 
-// CNaviMeshPane Áø´ÜÀÔ´Ï´Ù.
+// CNaviMeshPane ì§„ë‹¨ì…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CNaviMeshPane::AssertValid() const
@@ -52,7 +52,7 @@ void CNaviMeshPane::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CNaviMeshPane ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CNaviMeshPane ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CNaviMeshPane::OnInitialUpdate()
 {

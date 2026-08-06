@@ -144,8 +144,8 @@ void CNtlSobStatusAnimSync::PopAnimSyncUnit(void)
 	ListAnimSyncUnit::iterator it = m_listAnimSyncUnit.begin();
 	CNtlSobStatusAnimSyncUnit *pSyncUnit = (*it);
 
-	// ¿©±â¿¡¼­ º¸³½´Ù.
-	// Event¸¦ º¸³½´Ù. 
+	// ì—¬ê¸°ì—ì„œ ë³´ë‚¸ë‹¤.
+	// Eventë¥¼ ë³´ë‚¸ë‹¤. 
 	CNtlSob *pSobObj = GetNtlSobManager()->GetSobObject(m_hSerialId);
 	if(pSobObj)
 	{
@@ -238,7 +238,7 @@ void CNtlSobStatusAnimSyncContainer::Update(RwReal fElapsed)
 		pAnimSync->Update(fElapsed);
 		if(pAnimSync->IsFinish())
 		{
-			// ¼­¹ö µ¿±â Ã³¸®¸¦ ÇÑ´Ù.
+			// ì„œë²„ ë™ê¸° ì²˜ë¦¬ë¥¼ í•œë‹¤.
 			if(bFinialServerSync)
 			{
 				pAnimSync->ProcFinialServerSyncUnit();
@@ -325,7 +325,7 @@ void CNtlSobStatusAnimSyncContainer::PopAnimSyncUnit(SYNCEVENT_HANDLE hSyncStatu
 			pAnimSync->PopAnimSyncUnit();
 			if(pAnimSync->IsFinish())
 			{
-				// ¼­¹ö µ¿±â Ã³¸®¸¦ ÇÑ´Ù.
+				// ì„œë²„ ë™ê¸° ì²˜ë¦¬ë¥¼ í•œë‹¤.
 				if(bFinialServerSync)
 				{
 					pAnimSync->ProcFinialServerSyncUnit();
@@ -369,7 +369,7 @@ void CNtlSobStatusAnimSyncContainer::PopAnimSyncUnitAll(SYNCEVENT_HANDLE hSyncSt
 			pAnimSync->PopAnimSyncUnitAll();
 			if(pAnimSync->IsFinish())
 			{
-				// ¼­¹ö µ¿±â Ã³¸®¸¦ ÇÑ´Ù.
+				// ì„œë²„ ë™ê¸° ì²˜ë¦¬ë¥¼ í•œë‹¤.
 				if(bFinialServerSync)
 				{
 					pAnimSync->ProcFinialServerSyncUnit();

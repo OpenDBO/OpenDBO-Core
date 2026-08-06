@@ -4,14 +4,14 @@
 #include "ExTreeCtrl.h"
 
 
-// CVehicleViewPane Æû ºäÀÔ´Ï´Ù.
+// CVehicleViewPane í¼ ë·°ì…ë‹ˆë‹¤.
 
 class CVehicleViewPane : public CXTResizeFormView
 {
 	DECLARE_DYNCREATE(CVehicleViewPane)
 
 protected:
-	CVehicleViewPane();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CVehicleViewPane();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CVehicleViewPane();
 
 public:
@@ -24,7 +24,7 @@ public:
 #endif
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:
@@ -38,18 +38,18 @@ public:
     void    SetVehicleAnimation(RwUInt32 uiAnimID);
 
 protected:
-    void    UpdateTree();                               ///< Æ®¸®ÀÇ ³»¿ëÀ» ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
-    void    AttachVehicle(HTREEITEM hItem);             ///< ºñÅ¬¿¡ Ä³¸¯ÅÍ¸¦ Å¾½Â½ÃÅ²´Ù.
+    void    UpdateTree();                               ///< íŠ¸ë¦¬ì˜ ë‚´ìš©ì„ ì—…ë°ì´íŠ¸í•œë‹¤.
+    void    AttachVehicle(HTREEITEM hItem);             ///< ë¹„í´ì— ìºë¦­í„°ë¥¼ íƒ‘ìŠ¹ì‹œí‚¨ë‹¤.
 
 public:
-    CImageList*   m_pImageList;                        ///< Æ®¸®¿¡ »ç¿ëÇÒ ÀÌ¹ÌÁö ¸®½ºÆ®
+    CImageList*   m_pImageList;                        ///< íŠ¸ë¦¬ì— ì‚¬ìš©í•  ì´ë¯¸ì§€ ë¦¬ìŠ¤íŠ¸
     CExTreeCtrl   m_treeVehicle;    
     
 protected:
     static CVehicleViewPane* m_pInstance;
 
-    CMTCharacter*   m_pCharacter;                       ///< ÇöÀç AttachµÇ¾î ÀÖ´Â Ä³¸¯ÅÍ
-    CMTCharacter*   m_pVehicle;                         ///< ÇöÀç AttachÇÏ´Â Vehicle
+    CMTCharacter*   m_pCharacter;                       ///< í˜„ì¬ Attachë˜ì–´ ìˆëŠ” ìºë¦­í„°
+    CMTCharacter*   m_pVehicle;                         ///< í˜„ì¬ Attachí•˜ëŠ” Vehicle
     
 };
 

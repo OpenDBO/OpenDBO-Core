@@ -1,19 +1,19 @@
 /******************************************************************************
 * File			: DialogDefine.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2006. 8. 11
 * Abstract		: 
 *****************************************************************************
-* Desc			: Dialog ∞¸∑√ ¡§¿«
+* Desc			: Dialog Í¥ÄÎ†® Ï†ïÏùò
 *****************************************************************************/
 
 #pragma once
 
 enum eDialogVisible
 {
-	DIALOGVISIBLE_FALSE,					///< ¥Ÿ¿ÃæÛ∑Œ±◊∏¶ ¥›¥¬¥Ÿ.
-	DIALOGVISIBLE_TRUE						///< ¥Ÿ¿ÃæÛ∑Œ±◊∏¶ ø¨¥Ÿ.
+	DIALOGVISIBLE_FALSE,					///< Îã§Ïù¥ÏñºÎ°úÍ∑∏Î•º Îã´ÎäîÎã§.
+	DIALOGVISIBLE_TRUE						///< Îã§Ïù¥ÏñºÎ°úÍ∑∏Î•º Ïó∞Îã§.
 };
 
 // Be careful not to overlap the SideDilaog index
@@ -34,21 +34,21 @@ enum eDialogType
 
 	DIALOG_DEFAULT_FIRST,
 
-	DIALOG_HP = DIALOG_DEFAULT_FIRST,		///< HP ¿©µµøÏ
-	DIALOG_EXP,								///< EXP √¢(∞Ê«Ëƒ°)
-	DIALOG_CHAT,							///< √§∆√√¢
-	DIALOG_QUICKSLOT,						///< ƒ¸ΩΩ∑‘ √¢	
-	DIALOG_BAGSLOT,							///< ƒ∏Ω∂ ΩΩ∑‘	
-	DIALOG_MINIMAP,							///< πÃ¥œ∏ 	
-	DIALOG_MAINMENUBUTTON,					///< ∏ﬁ¿Œ ∏ﬁ¥∫ πˆ∆∞
-	DIALOG_SIDEICON,						///< ªÁ¿ÃµÂ æ∆¿Ãƒ‹
-	DIALOG_SIDEDIALOG_MANAGER,				///< ªÁ¿ÃµÂ ¥Ÿ¿ÃæÛ∑Œ±◊ ∏≈¥œ¿˙	
+	DIALOG_HP = DIALOG_DEFAULT_FIRST,		///< HP ÏúàÎèÑÏö∞
+	DIALOG_EXP,								///< EXP Ï∞Ω(Í≤ΩÌóòÏπò)
+	DIALOG_CHAT,							///< Ï±ÑÌåÖÏ∞Ω
+	DIALOG_QUICKSLOT,						///< ÌÄµÏä¨Î°Ø Ï∞Ω	
+	DIALOG_BAGSLOT,							///< Ï∫°Ïäê Ïä¨Î°Ø	
+	DIALOG_MINIMAP,							///< ÎØ∏ÎãàÎßµ	
+	DIALOG_MAINMENUBUTTON,					///< Î©îÏù∏ Î©îÎâ¥ Î≤ÑÌäº
+	DIALOG_SIDEICON,						///< ÏÇ¨Ïù¥Îìú ÏïÑÏù¥ÏΩò
+	DIALOG_SIDEDIALOG_MANAGER,				///< ÏÇ¨Ïù¥Îìú Îã§Ïù¥ÏñºÎ°úÍ∑∏ Îß§ÎãàÏ†Ä	
 	DIALOG_SIDEDIALOG_CONTROLLER,			///< Side dialog controller
-	DIALOG_PARTYMENU,						///< ∆ƒ∆º ∏ﬁ¥∫(∆ƒ∆º ∏…πˆ√¢¿ª ¿⁄Ωƒ¿∏∑Œ ∞Æ¥¬¥Ÿ)
-	DIALOG_GM_CHATTING,						///< GM √§∆√
-	DIALOG_GROUP_CHAT_MANAGER,				///< Group √§∆√ ∏≈¥œ¿˙
-	DIALOG_DICE_MANAGER,					///< ¡÷ªÁ¿ß ∏≈¥œ¿˙
-	DIALOG_VEHICLE,							///< ≈ª ∞Õ ¡∂¿€√¢
+	DIALOG_PARTYMENU,						///< ÌååÌã∞ Î©îÎâ¥(ÌååÌã∞ Îß¥Î≤ÑÏ∞ΩÏùÑ ÏûêÏãùÏúºÎ°ú Í∞ñÎäîÎã§)
+	DIALOG_GM_CHATTING,						///< GM Ï±ÑÌåÖ
+	DIALOG_GROUP_CHAT_MANAGER,				///< Group Ï±ÑÌåÖ Îß§ÎãàÏ†Ä
+	DIALOG_DICE_MANAGER,					///< Ï£ºÏÇ¨ÏúÑ Îß§ÎãàÏ†Ä
+	DIALOG_VEHICLE,							///< ÌÉà Í≤É Ï°∞ÏûëÏ∞Ω
 
 	DIALOG_DEFAULT_LAST = DIALOG_VEHICLE,
 	
@@ -57,42 +57,42 @@ enum eDialogType
 
 	DIALOG_EVENT_FIRST,
 
-	DIALOG_TARGER_UI = DIALOG_EVENT_FIRST,	///< ≈∏∞Ÿ UI	// 19 in TW client
-	DIALOG_SCOUTER_MEASURE,					///< Ω∫ƒ´øÏ≈Õ ¿¸≈ı∑¬ √¯¡§
-	DIALOG_SHOPING_CART,					///< ªÛ¡°¿« ƒ´∆Æ
-	DIALOG_TRADECART,						///< ∆Æ∑π¿ÃµÂ ƒ´∆Æ
-	DIALOG_PRIVATESHOP_CART,				///< ∞≥¿ŒªÛ¡° ƒ´∆Æ
+	DIALOG_TARGER_UI = DIALOG_EVENT_FIRST,	///< ÌÉÄÍ≤ü UI	// 19 in TW client
+	DIALOG_SCOUTER_MEASURE,					///< Ïä§Ïπ¥Ïö∞ÌÑ∞ Ï†ÑÌà¨Î†• Ï∏°Ï†ï
+	DIALOG_SHOPING_CART,					///< ÏÉÅÏ†êÏùò Ïπ¥Ìä∏
+	DIALOG_TRADECART,						///< Ìä∏Î†àÏù¥Îìú Ïπ¥Ìä∏
+	DIALOG_PRIVATESHOP_CART,				///< Í∞úÏù∏ÏÉÅÏ†ê Ïπ¥Ìä∏
 	DIALOG_NETPYSHOP_TRADE,					///< NetPy Shop Trade Cart
-	DIALOG_WAREHOUSE_1,						///< 1π¯ √¢∞Ì
-	DIALOG_WAREHOUSE_2,						///< 2π¯ √¢∞Ì
-	DIALOG_WAREHOUSE_3,						///< 3π¯ √¢∞Ì
-	DIALOG_WAREHOUSE_COMMON,				///< ∞¯¿Ø √¢∞Ì
-	DIALOG_DBC_REWARD,						///< µÂ∑°∞Ô∫º ∫∏ªÛ GUI
-	DIALOG_DBC_DRAGON_DIALOG,				///< øÎΩ≈¿« ¥Î»≠ ∏ª«≥º± GUI
-	DIALOG_DROPITEM_INFO,					///< µÂ∑”æ∆¿Ã≈€ ¡§∫∏√¢
-	DIALOG_TMQ_REWARD,						///< ≈∏¿”∏”ΩÆ ƒ˘Ω∫∆Æ ∫∏ªÛ√¢
-	DIALOG_BACKBOARD,						///< »≠∏È¿¸√º∏¶ ∞°∏Æ¥¬ πÈ∫∏µÂ√¢	
-	DIALOG_FLASH_NOTIFY,					///< Flash∏¶ ¿ÃøÎ«— Notify æÀ∏≤√¢
+	DIALOG_WAREHOUSE_1,						///< 1Î≤à Ï∞ΩÍ≥†
+	DIALOG_WAREHOUSE_2,						///< 2Î≤à Ï∞ΩÍ≥†
+	DIALOG_WAREHOUSE_3,						///< 3Î≤à Ï∞ΩÍ≥†
+	DIALOG_WAREHOUSE_COMMON,				///< Í≥µÏú† Ï∞ΩÍ≥†
+	DIALOG_DBC_REWARD,						///< ÎìúÎûòÍ≥§Î≥º Î≥¥ÏÉÅ GUI
+	DIALOG_DBC_DRAGON_DIALOG,				///< Ïö©Ïã†Ïùò ÎåÄÌôî ÎßêÌíçÏÑ† GUI
+	DIALOG_DROPITEM_INFO,					///< ÎìúÎ°≠ÏïÑÏù¥ÌÖú Ï†ïÎ≥¥Ï∞Ω
+	DIALOG_TMQ_REWARD,						///< ÌÉÄÏûÑÎ®∏Ïâ∞ ÌÄòÏä§Ìä∏ Î≥¥ÏÉÅÏ∞Ω
+	DIALOG_BACKBOARD,						///< ÌôîÎ©¥Ï†ÑÏ≤¥Î•º Í∞ÄÎ¶¨Îäî Î∞±Î≥¥ÎìúÏ∞Ω	
+	DIALOG_FLASH_NOTIFY,					///< FlashÎ•º Ïù¥Ïö©Ìïú Notify ÏïåÎ¶ºÏ∞Ω
 	DIALOG_INTERFACE_SHAKE,					///< Window to speed up recovery by manipulating the interface at the time of knockdown
-    DIALOG_NET_CONNECT_BOX,                 ///< º≠πˆ ø¨∞· Ω«∆–Ω√ ªÛ≈¬∏¶ «•Ω√«œ¥¬ ¥Ÿ¿ÃæÛ∑Œ±◊ π⁄Ω∫
+    DIALOG_NET_CONNECT_BOX,                 ///< ÏÑúÎ≤Ñ Ïó∞Í≤∞ Ïã§Ìå®Ïãú ÏÉÅÌÉúÎ•º ÌëúÏãúÌïòÎäî Îã§Ïù¥ÏñºÎ°úÍ∑∏ Î∞ïÏä§
     DIALOG_TELECAST,                        ///< Broadcasting window // by daneos: is this required?? 
-	DIALOG_TIME_NOTIFY,						///< Ω√∞£ æÀ∏≤ «•Ω√√¢
-	DIALOG_GUILD_WAREHOUSE_1,				///< ±ÊµÂ 1π¯ √¢∞Ì
-	DIALOG_GUILD_WAREHOUSE_2,				///< ±ÊµÂ 2π¯ √¢∞Ì
-	DIALOG_GUILD_WAREHOUSE_3,				///< ±ÊµÂ 3π¯ √¢∞Ì
-	DIALOG_TUTORIAL_DIALOG_FOCUS,			///< ∆©≈‰∏ÆæÛ ¥Ÿ¿ÃæÛ∑Œ±◊ ∆˜ƒøΩ∫√¢
-	DIALOG_TUTORIAL_EXAMPLE,				///< ∆©≈‰∏ÆæÛ øπΩ√√¢
-	DIALOG_TUTORIAL_MESSAGE,				///< ∆©≈‰∏ÆæÛ ∏ﬁºº¡ˆ
-	DIALOG_TUTORIAL_CONFIRM,				///< ∆©≈‰∏ÆæÛ »Æ¿Œ ∏ﬁºº¡ˆ
-	DIALOG_PETITION_SATISFACTION,			///< GM ªÛ¥„ ∏∏¡∑µµ ¡∂ªÁ√¢
+	DIALOG_TIME_NOTIFY,						///< ÏãúÍ∞Ñ ÏïåÎ¶º ÌëúÏãúÏ∞Ω
+	DIALOG_GUILD_WAREHOUSE_1,				///< Í∏∏Îìú 1Î≤à Ï∞ΩÍ≥†
+	DIALOG_GUILD_WAREHOUSE_2,				///< Í∏∏Îìú 2Î≤à Ï∞ΩÍ≥†
+	DIALOG_GUILD_WAREHOUSE_3,				///< Í∏∏Îìú 3Î≤à Ï∞ΩÍ≥†
+	DIALOG_TUTORIAL_DIALOG_FOCUS,			///< ÌäúÌÜ†Î¶¨Ïñº Îã§Ïù¥ÏñºÎ°úÍ∑∏ Ìè¨Ïª§Ïä§Ï∞Ω
+	DIALOG_TUTORIAL_EXAMPLE,				///< ÌäúÌÜ†Î¶¨Ïñº ÏòàÏãúÏ∞Ω
+	DIALOG_TUTORIAL_MESSAGE,				///< ÌäúÌÜ†Î¶¨Ïñº Î©îÏÑ∏ÏßÄ
+	DIALOG_TUTORIAL_CONFIRM,				///< ÌäúÌÜ†Î¶¨Ïñº ÌôïÏù∏ Î©îÏÑ∏ÏßÄ
+	DIALOG_PETITION_SATISFACTION,			///< GM ÏÉÅÎã¥ ÎßåÏ°±ÎèÑ Ï°∞ÏÇ¨Ï∞Ω
 	DIALOG_BROADCAST,
 	DIALOG_BROADCAST_SYSTEM,
-	DIALOG_PET_STATUSBAR,					///< ∆Í ªÛ≈¬ √¢    
-	DIALOG_PET_SKILL_SLOT,                ///< ∆Í¿ª º“»Ø«ﬂ¿ª∂ß ≥™≈∏≥™¥¬ Ω∫≈≥ ΩΩ∑‘√¢
+	DIALOG_PET_STATUSBAR,					///< Ìé´ ÏÉÅÌÉú Ï∞Ω    
+	DIALOG_PET_SKILL_SLOT,                ///< Ìé´ÏùÑ ÏÜåÌôòÌñàÏùÑÎïå ÎÇòÌÉÄÎÇòÎäî Ïä§ÌÇ¨ Ïä¨Î°ØÏ∞Ω
 
 	DIALOG_ITEM_EXCHANGE_CART,
 
-	DIALOG_SCRAMBLE_NOTIFY,					///< µµ¿Â ¿Ô≈ª¿¸ ¡¯«‡ æÀ∏≤√¢
+	DIALOG_SCRAMBLE_NOTIFY,					///< ÎèÑÏû• ÏüÅÌÉàÏ†Ñ ÏßÑÌñâ ÏïåÎ¶ºÏ∞Ω
 	DIALOG_CCBD_NOTIFY,
 	DIALOG_CCBD_REWARD,
 
@@ -103,26 +103,26 @@ enum eDialogType
 
 	DIALOG_NORMAL_FIRST, 
 
-	DIALOG_MAINMENU = DIALOG_NORMAL_FIRST,	///< ∏ﬁ¿Œ ∏ﬁ¥∫	
+	DIALOG_MAINMENU = DIALOG_NORMAL_FIRST,	///< Î©îÏù∏ Î©îÎâ¥	
 	DIALOG_ESCMENU,							///< ESC Menu			// 83 IN TW
-	DIALOG_STATUS,							///< Ω∫≈◊¿Ã≈ÕΩ∫ ¿©µµøÏ			
-	DIALOG_SKILL,							///< Ω∫≈≥√¢
-	DIALOG_CHAT_LOG,						///< √§∆√∑Œ±◊√¢
-    DIALOG_COMMUNITY,						///< ƒøπ¬¥œ∆º ¥Ÿ¿ÃæÛ∑Œ±◊
-    DIALOG_FRIEND_LIST,                     ///< ƒ£±∏ ∏ÆΩ∫∆Æ/∫Ì∑¢ ∏ÆΩ∫∆Æ
-	DIALOG_WORLDMAP,						///< ø˘µÂ∏ 
-	DIALOG_OPTIONWND,						///< ø…º« ¿©µµøÏ
-	DIALOG_HELPWND,							///< «Ô«¡ ¿©µµøÏ	
-	DIALOG_PRIVATESHOP,						///< ∞≥¿ŒªÛ¡°
-	DIALOG_MAILSYSTEM,						///< ∏ﬁ¿œ Ω√Ω∫≈€
-	DIALOG_MAILSYSTEM_READ,					///< ∏ﬁ¿œ Ω√Ω∫≈€ : ∏ﬁ¿œ ¿–±‚
-	DIALOG_DBC_ALTAR,						///< µÂ∑°∞Ô∫º ƒ√∑∫º« ¡¶¥‹ ¿©µµøÏ
-    DIALOG_COMMU_TARGET,                    ///< ƒøπ¬¥œ∆º ≈∏∞Ÿ√¢
+	DIALOG_STATUS,							///< Ïä§ÌÖåÏù¥ÌÑ∞Ïä§ ÏúàÎèÑÏö∞			
+	DIALOG_SKILL,							///< Ïä§ÌÇ¨Ï∞Ω
+	DIALOG_CHAT_LOG,						///< Ï±ÑÌåÖÎ°úÍ∑∏Ï∞Ω
+    DIALOG_COMMUNITY,						///< Ïª§ÎÆ§ÎãàÌã∞ Îã§Ïù¥ÏñºÎ°úÍ∑∏
+    DIALOG_FRIEND_LIST,                     ///< ÏπúÍµ¨ Î¶¨Ïä§Ìä∏/Î∏îÎûô Î¶¨Ïä§Ìä∏
+	DIALOG_WORLDMAP,						///< ÏõîÎìúÎßµ
+	DIALOG_OPTIONWND,						///< ÏòµÏÖò ÏúàÎèÑÏö∞
+	DIALOG_HELPWND,							///< Ìó¨ÌîÑ ÏúàÎèÑÏö∞	
+	DIALOG_PRIVATESHOP,						///< Í∞úÏù∏ÏÉÅÏ†ê
+	DIALOG_MAILSYSTEM,						///< Î©îÏùº ÏãúÏä§ÌÖú
+	DIALOG_MAILSYSTEM_READ,					///< Î©îÏùº ÏãúÏä§ÌÖú : Î©îÏùº ÏùΩÍ∏∞
+	DIALOG_DBC_ALTAR,						///< ÎìúÎûòÍ≥§Î≥º Ïª¨Î†âÏÖò Ï†úÎã® ÏúàÎèÑÏö∞
+    DIALOG_COMMU_TARGET,                    ///< Ïª§ÎÆ§ÎãàÌã∞ ÌÉÄÍ≤üÏ∞Ω
 
 	DIALOG_HOIPOIMIX_RECIPE,
 	DIALOG_HOIPOIMIX_CRAFT,
 
-	DIALOG_CAPSULE_1,						///< ∞°πÊ
+	DIALOG_CAPSULE_1,						///< Í∞ÄÎ∞©
 	DIALOG_CAPSULE_2,
 	DIALOG_CAPSULE_3,
 	DIALOG_CAPSULE_4,
@@ -131,10 +131,10 @@ enum eDialogType
 
 	//DIALOG_MSGBOX,							///< Message box (center alignment)
 	
-	DIALOG_QUESTLIST,						///< ƒ˘Ω∫∆Æ∏ÆΩ∫∆Æ 
-	DIALOG_QUESTPROGRESS,					///< ƒ˘Ω∫∆Æ¡¯«‡	
+	DIALOG_QUESTLIST,						///< ÌÄòÏä§Ìä∏Î¶¨Ïä§Ìä∏ 
+	DIALOG_QUESTPROGRESS,					///< ÌÄòÏä§Ìä∏ÏßÑÌñâ	
 	
-	DIALOG_SKILL_RPBONUS,					///< RP BONUS Ω∫≈≥ ªÁøÎ GUI
+	DIALOG_SKILL_RPBONUS,					///< RP BONUS Ïä§ÌÇ¨ ÏÇ¨Ïö© GUI
 	DIALOG_SKILL_RPBONUS_AUTO,
 
 	DIALOG_RANKBOARD,						///< Ranking Board
@@ -145,16 +145,16 @@ enum eDialogType
 	DIALOG_MASCOT_SKILL_REMAKE,
 	DIALOG_MASCOT_STATUS_BAR,
 
-	DIALOG_BUDOKAI_NEWS,					///< √µ«œ¡¶¿œ π´µµ»∏ º“Ωƒ¡ˆ
-	DIALOG_BUDOKAI_REQUEST,					///< √µ«œ¡¶¿œ π´µµ»∏ Ω≈√ªº≠
+	DIALOG_BUDOKAI_NEWS,					///< Ï≤úÌïòÏ†úÏùº Î¨¥ÎèÑÌöå ÏÜåÏãùÏßÄ
+	DIALOG_BUDOKAI_REQUEST,					///< Ï≤úÌïòÏ†úÏùº Î¨¥ÎèÑÌöå Ïã†Ï≤≠ÏÑú
 	DIALOG_BUDOKAI_TOURNAMENT,
-	DIALOG_BUDOKAI_TOURNAMENT_MATCHINFO,	///< ≈‰≥ ∏’∆Æ MatchInfo
+	DIALOG_BUDOKAI_TOURNAMENT_MATCHINFO,	///< ÌÜ†ÎÑàÎ®ºÌä∏ MatchInfo
 
-	DIALOG_TBGAMBLERESULT,					///< ∞◊∫Ì ƒ∏Ω∂ »Æ¿Œ √¢
-	DIALOG_CHANNGEL_CHANGE,					///< ∞‘¿”¡ﬂ √§≥Œ ∫Ø∞Ê √¢		// 137 in tw
-	DIALOG_PETITION,						///< GM ªÛ¥„ ø‰√ª√¢
+	DIALOG_TBGAMBLERESULT,					///< Í≤úÎ∏î Ï∫°Ïäê ÌôïÏù∏ Ï∞Ω
+	DIALOG_CHANNGEL_CHANGE,					///< Í≤åÏûÑÏ§ë Ï±ÑÎÑê Î≥ÄÍ≤Ω Ï∞Ω		// 137 in tw
+	DIALOG_PETITION,						///< GM ÏÉÅÎã¥ ÏöîÏ≤≠Ï∞Ω
 
-	DIALOG_SKILLABILITYSET,					///< Skill Ability º≥¡§ GUI
+	DIALOG_SKILLABILITYSET,					///< Skill Ability ÏÑ§Ï†ï GUI
 	DIALOG_SKILLABILITYUSE,
 
 	DIALOG_SKILL_HTB_RPUSE,					///< HTB Skill Rp Use Gui
@@ -170,25 +170,25 @@ enum eDialogType
 
 	DIALOG_NPCDIALOG_FIRST,
 
-	DIALOG_MULTIDIALOG = DIALOG_NPCDIALOG_FIRST,///< NPC ∏÷∆º¥Ÿ¿ÃæÛ∑Œ±◊
+	DIALOG_MULTIDIALOG = DIALOG_NPCDIALOG_FIRST,///< NPC Î©ÄÌã∞Îã§Ïù¥ÏñºÎ°úÍ∑∏
 	
-	DIALOG_QUESTMESSAGE,					///< ƒ˘Ω∫∆Æ∏ﬁºº¡ˆ	
-	DIALOG_QUESTPROPOSAL,					///< ƒ˘Ω∫∆Æ¡¶æ»	
-	DIALOG_QUESTREWARD,						///< ƒ˘Ω∫∆Æ∫∏ªÛ
-	DIALOG_ITEMUPGRADE,						///< æ∆¿Ã≈€ æ˜±◊∑π¿ÃµÂ	
+	DIALOG_QUESTMESSAGE,					///< ÌÄòÏä§Ìä∏Î©îÏÑ∏ÏßÄ	
+	DIALOG_QUESTPROPOSAL,					///< ÌÄòÏä§Ìä∏Ï†úÏïà	
+	DIALOG_QUESTREWARD,						///< ÌÄòÏä§Ìä∏Î≥¥ÏÉÅ
+	DIALOG_ITEMUPGRADE,						///< ÏïÑÏù¥ÌÖú ÏóÖÍ∑∏Î†àÏù¥Îìú	
 	DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE,
-	DIALOG_RBBOARD,							///< ∑©≈©πË∆≤ ∞‘Ω√∆«
-	DIALOG_RBCHALLENGE,						///< ∑©≈©πË∆≤ µµ¿¸¡§∫∏
-	DIALOG_NPCSHOP,							///< NPC ªÛ¡°	
-	DIALOG_TMQBOARD,						///< ≈∏¿”∏”Ω≈ ƒ˘Ω∫∆Æ ∞‘Ω√∆«	
+	DIALOG_RBBOARD,							///< Îû≠ÌÅ¨Î∞∞ÌãÄ Í≤åÏãúÌåê
+	DIALOG_RBCHALLENGE,						///< Îû≠ÌÅ¨Î∞∞ÌãÄ ÎèÑÏ†ÑÏ†ïÎ≥¥
+	DIALOG_NPCSHOP,							///< NPC ÏÉÅÏ†ê	
+	DIALOG_TMQBOARD,						///< ÌÉÄÏûÑÎ®∏Ïã† ÌÄòÏä§Ìä∏ Í≤åÏãúÌåê	
 	DIALOG_ULTIMATEDUNGEON,
-	DIALOG_WAREHOUSEBAR,					///< √¢∞Ì ƒ¡∆Æ∑— πŸ	
-    DIALOG_PORTAL,                          ///< ∆˜≈ª NPC 
-	DIALOG_OBJECT_CLICK,					///< ø¿∫Í¡ß∆Æ ≈¨∏Ø
-	DIALOG_GUILD_WAREHOUSEBAR,				///< ±ÊµÂ √¢∞Ì ƒ¡∆Æ∑— πŸ
-	DIALOG_DOJO_INFO,						///< µµ¿Â ¡§∫∏√¢
-	DIALOG_DOJO_ACCOUNT,					///< µµ¿Â √¢∞Ì ªÁøÎ≥ªø™
-	DIALOG_DOGI,							///< µµ∫π ¥Ÿ¿ÃæÛ∑Œ±◊
+	DIALOG_WAREHOUSEBAR,					///< Ï∞ΩÍ≥† Ïª®Ìä∏Î°§ Î∞î	
+    DIALOG_PORTAL,                          ///< Ìè¨ÌÉà NPC 
+	DIALOG_OBJECT_CLICK,					///< Ïò§Î∏åÏ†ùÌä∏ ÌÅ¥Î¶≠
+	DIALOG_GUILD_WAREHOUSEBAR,				///< Í∏∏Îìú Ï∞ΩÍ≥† Ïª®Ìä∏Î°§ Î∞î
+	DIALOG_DOJO_INFO,						///< ÎèÑÏû• Ï†ïÎ≥¥Ï∞Ω
+	DIALOG_DOJO_ACCOUNT,					///< ÎèÑÏû• Ï∞ΩÍ≥† ÏÇ¨Ïö©ÎÇ¥Ïó≠
+	DIALOG_DOGI,							///< ÎèÑÎ≥µ Îã§Ïù¥ÏñºÎ°úÍ∑∏
 	DIALOG_DOJO_UPGRADE,					///< Painting Upgrade Dialog
 
 	DIALOG_BIND_SEALING,
@@ -213,20 +213,20 @@ enum eDialogType
 
 	DIALOG_LAST = DIALOG_NPCDIALOG_LAST,
 
-	DIALOG_UNKNOWN = 0xFF,					///< ¿ﬂ∏¯µ» ¥Ÿ¿ÃæÛ∑Œ±◊ ¿Œµ¶Ω∫
+	DIALOG_UNKNOWN = 0xFF,					///< ÏûòÎ™ªÎêú Îã§Ïù¥ÏñºÎ°úÍ∑∏ Ïù∏Îç±Ïä§
 };
 
 enum eDialogMode
 {	
-	DIALOGMODE_ITEM_REPAIR,					///< æ∆¿Ã≈€ ºˆ∏Æ ∏µÂ
-	DIALOGMODE_ITEM_IDENTIFICATION,			///< πÃ»Æ¿Œ æ∆¿Ã≈€ ∞®¡§
-	DIALOGMODE_NPCSHOP_ITEM_IDENTIFICATION,	///< ªÛ¡°ø°º≠ πÃ»Æ¿Œ æ∆¿Ã≈€ ∞®¡§
-	DIALOGMODE_NARRATION,					///< ≥ª∑π¿Ãº« ∏µÂ
+	DIALOGMODE_ITEM_REPAIR,					///< ÏïÑÏù¥ÌÖú ÏàòÎ¶¨ Î™®Îìú
+	DIALOGMODE_ITEM_IDENTIFICATION,			///< ÎØ∏ÌôïÏù∏ ÏïÑÏù¥ÌÖú Í∞êÏ†ï
+	DIALOGMODE_NPCSHOP_ITEM_IDENTIFICATION,	///< ÏÉÅÏ†êÏóêÏÑú ÎØ∏ÌôïÏù∏ ÏïÑÏù¥ÌÖú Í∞êÏ†ï
+	DIALOGMODE_NARRATION,					///< ÎÇ¥Î†àÏù¥ÏÖò Î™®Îìú
 
-	DIALOGMODE_CHATTING_RESIZE_HORI,		///< √§∆√ µΩ∫«√∑π¿Ã√¢ ºˆ¡˜ ∏ÆªÁ¿Ã¡Ó
-	DIALOGMODE_CHATTING_RESIZE_RIGHTUP,		///< √§∆√ µΩ∫«√∑π¿Ã√¢ øÏªÛ¥‹ ∏ÆªÁ¿Ã¡Ó
-	DIALOGMODE_CHATTING_RESIZE_RIGHTDOWN,	///< √§∆√ µΩ∫«√∑π¿Ã√¢ øÏ«œ¥‹ ∏ÆªÁ¿Ã¡Ó
-	DIALOGMODE_CHATTING_RESIZE_VERT,		///< √§∆√ µΩ∫«√∑π¿Ã√¢ ºˆ∆Ú ∏ÆªÁ¿Ã¡Ó
+	DIALOGMODE_CHATTING_RESIZE_HORI,		///< Ï±ÑÌåÖ ÎîîÏä§ÌîåÎ†àÏù¥Ï∞Ω ÏàòÏßÅ Î¶¨ÏÇ¨Ïù¥Ï¶à
+	DIALOGMODE_CHATTING_RESIZE_RIGHTUP,		///< Ï±ÑÌåÖ ÎîîÏä§ÌîåÎ†àÏù¥Ï∞Ω Ïö∞ÏÉÅÎã® Î¶¨ÏÇ¨Ïù¥Ï¶à
+	DIALOGMODE_CHATTING_RESIZE_RIGHTDOWN,	///< Ï±ÑÌåÖ ÎîîÏä§ÌîåÎ†àÏù¥Ï∞Ω Ïö∞ÌïòÎã® Î¶¨ÏÇ¨Ïù¥Ï¶à
+	DIALOGMODE_CHATTING_RESIZE_VERT,		///< Ï±ÑÌåÖ ÎîîÏä§ÌîåÎ†àÏù¥Ï∞Ω ÏàòÌèâ Î¶¨ÏÇ¨Ïù¥Ï¶à
 
 	DIALOGMODE_ITEM_DISASSEMBLE,
 	DIALOGMODE_ITEM_BEAD,
@@ -243,7 +243,7 @@ enum eDialogMode
 // Regular dialog attribute
 #define dRDA_NORMAL							0x00000000
 #define dRDA_EXCLUSIVE						0x00000001	///< Do not yield when another regular dialog opens
-#define dRDA_HALFSIZE						0x00000002	///< ¥Ÿ∏• ∑π±÷∑Ø ¥Ÿ¿ÃæÛ∑Œ±◊∫∏¥Ÿ ¿˝π› ¡§µµ¿« ≈©±‚∑Œ æ∆∑°¬  ¡§∑ƒµ»¥Ÿ
+#define dRDA_HALFSIZE						0x00000002	///< Îã§Î•∏ Î†àÍ∑§Îü¨ Îã§Ïù¥ÏñºÎ°úÍ∑∏Î≥¥Îã§ Ï†àÎ∞ò Ï†ïÎèÑÏùò ÌÅ¨Í∏∞Î°ú ÏïÑÎûòÏ™Ω Ï†ïÎ†¨ÎêúÎã§
 #define dRDA_NOT_ESC						0x00000004	///< It is not affected by the ESC key
 
 // Entire focusing dialog attribute
@@ -337,7 +337,7 @@ enum eDialogMode
 // Item Duration warning
 #define ITEM_DURATION_WARNING	0.3f
 
-// Dialog∏¶ ≈¨∏Ø«ﬂ¿ª Ω√ «ÿ¥Áø° Linkµ» DialogøÕ ¿⁄Ω≈¿ª √÷ªÛ¥‹ø° ±◊∏Æ±‚ ¿ß«— ∏≈≈©∑Œ
+// DialogÎ•º ÌÅ¥Î¶≠ÌñàÏùÑ Ïãú Ìï¥ÎãπÏóê LinkÎêú DialogÏôÄ ÏûêÏã†ÏùÑ ÏµúÏÉÅÎã®Ïóê Í∑∏Î¶¨Í∏∞ ÏúÑÌïú Îß§ÌÅ¨Î°ú
 #define CAPTURE_MOUSEDOWN_RAISE(eDialog, PosX, PosY)	\
 	if( m_pThis->GetParent()->GetChildComponentReverseAt((RwInt32)PosX, (RwInt32)PosY) != m_pThis ) \
 	return; \
@@ -351,8 +351,8 @@ enum eDialogMode
 	}
 
 
-// Dialog∏¶ ≈¨∏Ø«ﬂ¿ª Ω√ «ÿ¥Á Dialog∏¶ Link«œ∞Ì ¿÷¥¬ DialogøÕ ±◊ Dialogø° Linkµ» DialogµÈ¿ª
-// √÷ªÛ¥‹ø° ±◊∏Æ±‚ ¿ß«— ∏≈≈©∑Œ
+// DialogÎ•º ÌÅ¥Î¶≠ÌñàÏùÑ Ïãú Ìï¥Îãπ DialogÎ•º LinkÌïòÍ≥† ÏûàÎäî DialogÏôÄ Í∑∏ DialogÏóê LinkÎêú DialogÎì§ÏùÑ
+// ÏµúÏÉÅÎã®Ïóê Í∑∏Î¶¨Í∏∞ ÏúÑÌïú Îß§ÌÅ¨Î°ú
 #define CAPTURE_MOUSEDOWN_RAISE_TOP_LINKED(TopLinkedDialog, PosX, PosY)	\
 	if( m_pThis->GetParent()->GetChildComponentReverseAt((RwInt32)PosX, (RwInt32)PosY) != m_pThis ) \
 		return; \

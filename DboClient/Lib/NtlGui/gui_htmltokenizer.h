@@ -3,7 +3,7 @@
 
 #include "gui_define.h"
 
-// Pack ¹öÀü¿ë ÇÔ¼ö
+// Pack ë²„ì „ìš© í•¨ìˆ˜
 typedef void (*CallHtmlTokenPack)(const RwChar* pFileName, void **pData, int *iSize );
 extern CallHtmlTokenPack g_fnHtmlCallPack;
 

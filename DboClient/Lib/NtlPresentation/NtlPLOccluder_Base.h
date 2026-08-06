@@ -14,12 +14,12 @@ enum EPLOccluderPlaneType
 {
 	EPLOCCLUDER_PLANE_ONESIDE	= 0,
 	EPLOCCLUDER_PLANE_TWOSIDE,
-	EPLOCCLUDER_PLANE_BILLBOARD, // ½ÇÁ¦ ºôº¸µå´Â ¾Æ´Ï´Ù. Ä«¸Ş¶ó Æ÷Áö¼Ç ¹æÇâ(Y)·Î È¸ÀüÇÑ´Ù.
+	EPLOCCLUDER_PLANE_BILLBOARD, // ì‹¤ì œ ë¹Œë³´ë“œëŠ” ì•„ë‹ˆë‹¤. ì¹´ë©”ë¼ í¬ì§€ì…˜ ë°©í–¥(Y)ë¡œ íšŒì „í•œë‹¤.
 };
 
 enum EPLOccluderFuncFlag
 {
-	EPLOCCLUDER_FUNC_PVS		= 0x00000001, // PVS ÀÏ °æ¿ì´Â ¾Æ·¡ ÇÃ·¡±×¿Í´Â »ó°ü ¾øÀÌ µ¿ÀÛÇÑ´Ù.
+	EPLOCCLUDER_FUNC_PVS		= 0x00000001, // PVS ì¼ ê²½ìš°ëŠ” ì•„ë˜ í”Œë˜ê·¸ì™€ëŠ” ìƒê´€ ì—†ì´ ë™ì‘í•œë‹¤.
 	EPLOCCLUDER_FUNC_TERRAIN	= 0x00000002,
 	EPLOCCLUDER_FUNC_OBJECT		= 0x00000004,
 	EPLOCCLUDER_FUNC_CHARACTER	= 0x00000008,
@@ -37,7 +37,7 @@ public:
 
 	virtual RwBool					Update(RwReal fElapsed);
 
-	// ¸éÀÇ ¼ºÁú¿¡ µû¸¥ ¾÷µ¥ÀÌÆ®
+	// ë©´ì˜ ì„±ì§ˆì— ë”°ë¥¸ ì—…ë°ì´íŠ¸
 	virtual RwBool					UpdateOneside(RwReal fElapsed)						= 0;
 	virtual RwBool					UpdateTwoside(RwReal fElapsed)						= 0;
 	virtual RwBool					UpdateBillboard(RwReal fElapsed)					= 0;
@@ -51,7 +51,7 @@ public:
 	virtual RwBool					OccluderTestSphere(RwSphere* pSphere)				= 0;
 	virtual RwBool					OccluderTestBox(RwBBox* pBox)						= 0;
 
-	// VisibilityTest¸¦ Åë°ú ÇÑ´Ù¸é Update¿¡¼­ Manager¿¡ µî·ÏÇÏ°Ô µÈ´Ù.
+	// VisibilityTestë¥¼ í†µê³¼ í•œë‹¤ë©´ Updateì—ì„œ Managerì— ë“±ë¡í•˜ê²Œ ëœë‹¤.
 	virtual RwBool					VisibilityTest()									= 0;
 
 	virtual RwBool					Pick(RwReal* pfDist, RwInt32* piIndex = NULL)		= 0;

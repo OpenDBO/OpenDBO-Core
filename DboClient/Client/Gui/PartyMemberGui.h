@@ -1,15 +1,15 @@
 /******************************************************************************
 * File			: PartyMemberGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Abstract		: 2006. 10. 13
 *****************************************************************************
-* Desc			: CPartyMemberBuffGui : ÆÄÆ¼¿øÀÇ ¹öÇÁ¸¦ º¸¿©ÁØ´Ù.
+* Desc			: CPartyMemberBuffGui : íŒŒí‹°ì›ì˜ ë²„í”„ë¥¼ ë³´ì—¬ì¤€ë‹¤.
 *
-*				  CPartyMemberGui : ÆÄÆ¼¿øÀÇ Á¤º¸¸¦ º¸¿©ÁØ´Ù.
-*									CPartyMemberBuffGui°´Ã¼¸¦ µÎ°³¸¦
-*									°¡Áö°í¼­ À§¾Æ·¡ 2ÃşÀ¸·Î ±¸¼ºµÈ ¹öÇÁ¸¦
-*									º¸¿©ÁØ´Ù.
+*				  CPartyMemberGui : íŒŒí‹°ì›ì˜ ì •ë³´ë¥¼ ë³´ì—¬ì¤€ë‹¤.
+*									CPartyMemberBuffGuiê°ì²´ë¥¼ ë‘ê°œë¥¼
+*									ê°€ì§€ê³ ì„œ ìœ„ì•„ë˜ 2ì¸µìœ¼ë¡œ êµ¬ì„±ëœ ë²„í”„ë¥¼
+*									ë³´ì—¬ì¤€ë‹¤.
 *****************************************************************************/
 
 #pragma once
@@ -76,13 +76,13 @@ public:
 	VOID		Destroy();
 	CPartyMemberBuffGui* GetBuffsGui() { return m_pBuff; }; //Export BUFF GUI
 
-	SERIAL_HANDLE GetHandle();						///< ¸É¹öÀÇ ÇÚµé ¹İÈ¯
+	SERIAL_HANDLE GetHandle();						///< ë§´ë²„ì˜ í•¸ë“¤ ë°˜í™˜
 
-	VOID		SetLP(RwInt32 iValue, RwInt32 iMaxValue);	///< LP ¼³Á¤
-	VOID		SetEP(RwInt32 iValue, RwInt32 iMaxValue);	///< EP ¼³Á¤
-	VOID		SetLevel(RwInt8 byLevel);			///< Level ¼³Á¤
-	VOID		SetClass(RwUInt8 byClass);			///< Class ¼³Á¤
-	VOID		SetLeader(RwBool bLeader);			///< ÆÄÆ¼ ¸®´õ¶ó¸é ¼³Á¤
+	VOID		SetLP(RwInt32 iValue, RwInt32 iMaxValue);	///< LP ì„¤ì •
+	VOID		SetEP(RwInt32 iValue, RwInt32 iMaxValue);	///< EP ì„¤ì •
+	VOID		SetLevel(RwInt8 byLevel);			///< Level ì„¤ì •
+	VOID		SetClass(RwUInt8 byClass);			///< Class ì„¤ì •
+	VOID		SetLeader(RwBool bLeader);			///< íŒŒí‹° ë¦¬ë”ë¼ë©´ ì„¤ì •
 	VOID		SetOtherWorld(RwBool bOtherWorld);
 	VOID		SetCurEmergencyPulse(RwReal fPulse);
 	VOID		SetEmergencyState(RwBool bState);
@@ -114,38 +114,38 @@ protected:
 	gui::CSlot			m_slotPaint;
 	gui::CSlot			m_slotPostPaint;
 
-	gui::CPanel*		m_pTributarySimbol;			///< Á¾Á·°ú Á÷¾÷ ±×¸²
+	gui::CPanel*		m_pTributarySimbol;			///< ì¢…ì¡±ê³¼ ì§ì—… ê·¸ë¦¼
 
-	gui::CStaticBox*	m_pNameStatic;				///<  ¸É¹ö ÀÌ¸§
+	gui::CStaticBox*	m_pNameStatic;				///<  ë§´ë²„ ì´ë¦„
 
-	gui::CProgressBar*	m_pLPGauge;					///< LP °ÔÀÌÁö
+	gui::CProgressBar*	m_pLPGauge;					///< LP ê²Œì´ì§€
 	/*
-	gui::CStaticBox*	m_pLPStatic;				///< LP ½ºÅÂÆ½
-	gui::CStaticBox*	m_pLPSlachStatic;			///< ½½·¡½¬ ½ºÅÂÆ½
-	gui::CStaticBox*	m_pMaxLPStatic;				///< MaxLP ½ºÅÂÆ½
+	gui::CStaticBox*	m_pLPStatic;				///< LP ìŠ¤íƒœí‹±
+	gui::CStaticBox*	m_pLPSlachStatic;			///< ìŠ¬ë˜ì‰¬ ìŠ¤íƒœí‹±
+	gui::CStaticBox*	m_pMaxLPStatic;				///< MaxLP ìŠ¤íƒœí‹±
 */
-	gui::CProgressBar*	m_pEPGauge;					///< EP °ÔÀÌÁö
+	gui::CProgressBar*	m_pEPGauge;					///< EP ê²Œì´ì§€
 	/*
-	gui::CStaticBox*	m_pEPStatic;				///< EP ½ºÅÂÆ½
-	gui::CStaticBox*	m_pEPSlachStatic;			///< ½½·¡½¬ ½ºÅÂÆ½
-	gui::CStaticBox*	m_pMaxEPStatic;				///< MAxEP ½ºÅÂÆ½
+	gui::CStaticBox*	m_pEPStatic;				///< EP ìŠ¤íƒœí‹±
+	gui::CStaticBox*	m_pEPSlachStatic;			///< ìŠ¬ë˜ì‰¬ ìŠ¤íƒœí‹±
+	gui::CStaticBox*	m_pMaxEPStatic;				///< MAxEP ìŠ¤íƒœí‹±
 */
 	gui::CStaticBox*	m_pLevel;					///< Level
 
-	CSurfaceGui			m_srfOtherWorldPanel;		///< ´Ù¸¥ ¿ùµå¿¡ ÀÖ´Â ÆÄÆ¼¿øÀÇ ÆĞ³Î
-	CSurfaceGui			m_srfDeathPanel;			///< »ç¸Á½Ã ÆĞ³Î
+	CSurfaceGui			m_srfOtherWorldPanel;		///< ë‹¤ë¥¸ ì›”ë“œì— ìˆëŠ” íŒŒí‹°ì›ì˜ íŒ¨ë„
+	CSurfaceGui			m_srfDeathPanel;			///< ì‚¬ë§ì‹œ íŒ¨ë„
 
-	CSurfaceGui			m_srfLeaderMark;			///< ¸®´õ ¸¶Å©
-	CSurfaceGui			m_srfDeathMark;				///< »ç¸Á ¸¶Å©
-	CSurfaceGui			m_srfTooFarMark;			///< ¸Ö¸® ¶³¾îÁø ÆÄÆ¼¿ø
+	CSurfaceGui			m_srfLeaderMark;			///< ë¦¬ë” ë§ˆí¬
+	CSurfaceGui			m_srfDeathMark;				///< ì‚¬ë§ ë§ˆí¬
+	CSurfaceGui			m_srfTooFarMark;			///< ë©€ë¦¬ ë–¨ì–´ì§„ íŒŒí‹°ì›
 
-	gui::CFlickerEffect	m_feEmergency;				///< LP °æ°í Ç¥½Ãµî
+	gui::CFlickerEffect	m_feEmergency;				///< LP ê²½ê³  í‘œì‹œë“±
 
-	SERIAL_HANDLE		m_hSerial;					///< ¸É¹öÀÇ ½Ã¸®¾ó
-	RwUInt8				m_byClass;					///< Å¬·¡½º
-	RwInt8				m_byMouse;					///< ¸É¹öÃ¢ÀÌ ´­·È´ÂÁö ¿©ºÎ
+	SERIAL_HANDLE		m_hSerial;					///< ë§´ë²„ì˜ ì‹œë¦¬ì–¼
+	RwUInt8				m_byClass;					///< í´ë˜ìŠ¤
+	RwInt8				m_byMouse;					///< ë§´ë²„ì°½ì´ ëˆŒë ¸ëŠ”ì§€ ì—¬ë¶€
 
 	RwUInt8				m_byDisplayFlag;
 
-	CPartyMemberBuffGui*	m_pBuff;				///< ¹öÇÁÀ©µµ¿ì
+	CPartyMemberBuffGui*	m_pBuff;				///< ë²„í”„ìœˆë„ìš°
 };

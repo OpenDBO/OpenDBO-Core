@@ -3,22 +3,22 @@
 #include <GdiPlus.h>
 using namespace Gdiplus;
 
-// GDI+¿ë ´õºí ¹öÆÛ¸µ Å¬·¡½º
+// GDI+ìš© ë”ë¸” ë²„í¼ë§ í´ëž˜ìŠ¤
 class CGDIPlusDBuffer
 {
-    HWND			m_hWnd;				// ´õºí ¹öÆÛ¸µÀ» ½ÇÇàÇÒ À©µµ¿ì ÇÚµé
-    Graphics*		m_pGraphics;		// ´õºí ¹öÆÛ¸µ¿ë Graphics Æ÷ÀÎÅÍ
-    Bitmap*			m_pMemBmp;			// ¸Þ¸ð¸® ºñÆ®¸Ê Æ÷ÀÎÅÍ
+    HWND			m_hWnd;				// ë”ë¸” ë²„í¼ë§ì„ ì‹¤í–‰í•  ìœˆë„ìš° í•¸ë“¤
+    Graphics*		m_pGraphics;		// ë”ë¸” ë²„í¼ë§ìš© Graphics í¬ì¸í„°
+    Bitmap*			m_pMemBmp;			// ë©”ëª¨ë¦¬ ë¹„íŠ¸ë§µ í¬ì¸í„°
 
 public:
-    // »ý¼ºÀÚ : ¹Ýµå½Ã À©µµ¿ì ÇÚµéÀ» ÀÎÀÚ·Î ¼³Á¤ÇØ¾ß ÇÑ´Ù
+    // ìƒì„±ìž : ë°˜ë“œì‹œ ìœˆë„ìš° í•¸ë“¤ì„ ì¸ìžë¡œ ì„¤ì •í•´ì•¼ í•œë‹¤
     CGDIPlusDBuffer(HWND hWnd);
 
 
-    // ¼Ò¸êÀÚ : ¹öÆÛ¿¡ Ãâ·ÂµÈ ±×·¡ÇÈÀ» È­¸é¿¡ Ãâ·ÂÇÑ´Ù
+    // ì†Œë©¸ìž : ë²„í¼ì— ì¶œë ¥ëœ ê·¸ëž˜í”½ì„ í™”ë©´ì— ì¶œë ¥í•œë‹¤
     virtual ~CGDIPlusDBuffer();	
 
 
-    // ´õºí ¹öÆÛ¸µ¿ë Graphics Æ÷ÀÎÅÍ¸¦ ¸®ÅÏÇÏ´Â ÇÔ¼ö
+    // ë”ë¸” ë²„í¼ë§ìš© Graphics í¬ì¸í„°ë¥¼ ë¦¬í„´í•˜ëŠ” í•¨ìˆ˜
     Graphics* GetGraphics()		{ return m_pGraphics; }
 };

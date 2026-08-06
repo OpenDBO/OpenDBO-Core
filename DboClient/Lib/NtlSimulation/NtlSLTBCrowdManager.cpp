@@ -172,7 +172,7 @@ void CNtlSLTBCrowdManager::HandleEvents( RWS::CMsg &pMsg )
 
 RwBool CNtlSLTBCrowdManager::Save( const RwChar* szFileName ) 
 {
-    CNtlFileSerializer nsl(1024 * 1024, 1024 * 1024);	// ±âº» ¹öÆÛ¸¦ 1¸Ş°¡·Î Àâ´Â´Ù.
+    CNtlFileSerializer nsl(1024 * 1024, 1024 * 1024);	// ê¸°ë³¸ ë²„í¼ë¥¼ 1ë©”ê°€ë¡œ ì¡ëŠ”ë‹¤.
 
     nsl<<CNtlSLCENode::m_Version.fLastestVersion;
     nsl<<m_mapControllerContainer.size();
@@ -190,7 +190,7 @@ RwBool CNtlSLTBCrowdManager::Save( const RwChar* szFileName )
 
 RwBool CNtlSLTBCrowdManager::Load( const RwChar* szFileName ) 
 {
-    CNtlFileSerializer nsl(1024 * 1024, 1024 * 1024);	// ±âº» ¹öÆÛ¸¦ 1¸Ş°¡·Î Àâ´Â´Ù.
+    CNtlFileSerializer nsl(1024 * 1024, 1024 * 1024);	// ê¸°ë³¸ ë²„í¼ë¥¼ 1ë©”ê°€ë¡œ ì¡ëŠ”ë‹¤.
     if(!nsl.LoadFile((char*)szFileName))
         return FALSE;
 
@@ -216,7 +216,7 @@ RwBool CNtlSLTBCrowdManager::Load(CNtlFileSerializer& rSerializer)
 
 void CNtlSLTBCrowdManager::AddStep( ETBCrowdStepType eStep ) 
 {
-	// ·ç¾Æ¿¡¼­ ÇÊ¿äÇÑ Controller¸¦ ºÒ·¯¿À´Â ÄÚµå
+	// ë£¨ì•„ì—ì„œ í•„ìš”í•œ Controllerë¥¼ ë¶ˆëŸ¬ì˜¤ëŠ” ì½”ë“œ
 	char pcStepName[128];
 	GetLuaFuncName(eStep, pcStepName, 128);
 	LuaExec_DirectionStep(pcStepName);
@@ -230,7 +230,7 @@ void CNtlSLTBCrowdManager::ChangeStep( ETBCrowdStepType eStep )
 	} 
     m_listCurController.clear();	
 
-	// ·ç¾Æ¿¡¼­ ÇÊ¿äÇÑ Controller¸¦ ºÒ·¯¿À´Â ÄÚµå
+	// ë£¨ì•„ì—ì„œ í•„ìš”í•œ Controllerë¥¼ ë¶ˆëŸ¬ì˜¤ëŠ” ì½”ë“œ
 	char pcStepName[128];
 	GetLuaFuncName(eStep, pcStepName, 128);
 	LuaExec_DirectionStep(pcStepName);
@@ -251,21 +251,21 @@ ETBCrowdStepType CNtlSLTBCrowdManager::ConvertServerState( SNtlEventMinorMatchSt
 
     switch(pData->byMatchState)
     {
-    case BUDOKAI_MINORMATCH_STATE_NONE:			// ÃÊ±â »óÅÂ
+    case BUDOKAI_MINORMATCH_STATE_NONE:			// ì´ˆê¸° ìƒíƒœ
         return E_STEP_BASIC;        
-    case BUDOKAI_MINORMATCH_STATE_WAIT:			// ´ëÀüÀÚµéÀ» ±â´Ù¸²
+    case BUDOKAI_MINORMATCH_STATE_WAIT:			// ëŒ€ì „ìë“¤ì„ ê¸°ë‹¤ë¦¼
         return E_STEP_BASIC;
-    case BUDOKAI_MINORMATCH_STATE_DIRECTION:		// ¿¬Ãâ
+    case BUDOKAI_MINORMATCH_STATE_DIRECTION:		// ì—°ì¶œ
         return E_STEP_BASIC;
-    case BUDOKAI_MINORMATCH_STATE_MATCH_READY:	// °æ±â ÁØºñ
+    case BUDOKAI_MINORMATCH_STATE_MATCH_READY:	// ê²½ê¸° ì¤€ë¹„
         return E_STEP_MATCH_READY;
-    case BUDOKAI_MINORMATCH_STATE_STAGE_READY:	// ½ºÅ×ÀÌÁö ÁØºñ
+    case BUDOKAI_MINORMATCH_STATE_STAGE_READY:	// ìŠ¤í…Œì´ì§€ ì¤€ë¹„
         return E_STEP_STAGE_READY;
-    case BUDOKAI_MINORMATCH_STATE_STAGE_RUN:		// ½ºÅ×ÀÌÁö ÁøÇà
+    case BUDOKAI_MINORMATCH_STATE_STAGE_RUN:		// ìŠ¤í…Œì´ì§€ ì§„í–‰
         return E_STEP_STAGE_RUN;
-    case BUDOKAI_MINORMATCH_STATE_STAGE_FINISH:	// ½ºÅ×ÀÌÁö Á¾·á
+    case BUDOKAI_MINORMATCH_STATE_STAGE_FINISH:	// ìŠ¤í…Œì´ì§€ ì¢…ë£Œ
         return E_STEP_STAGE_FINISH;
-    case BUDOKAI_MINORMATCH_STATE_MATCH_FINISH:	// °æ±â Á¾·á
+    case BUDOKAI_MINORMATCH_STATE_MATCH_FINISH:	// ê²½ê¸° ì¢…ë£Œ
         return E_STEP_MATCH_FINISH;
     case BUDOKAI_MINORMATCH_STATE_END:
         return E_STEP_BATTLE_END;
@@ -281,23 +281,23 @@ ETBCrowdStepType CNtlSLTBCrowdManager::ConvertServerState( SNtlEventMajorMatchSt
 
     switch(pData->byMatchState)
     {
-    case BUDOKAI_MAJORMATCH_STATE_NONE:			// ÃÊ±â »óÅÂ
+    case BUDOKAI_MAJORMATCH_STATE_NONE:			// ì´ˆê¸° ìƒíƒœ
         return E_STEP_BASIC;
-    case BUDOKAI_MAJORMATCH_STATE_WAIT:			// ´ëÀüÀÚµéÀ» ±â´Ù¸²
+    case BUDOKAI_MAJORMATCH_STATE_WAIT:			// ëŒ€ì „ìë“¤ì„ ê¸°ë‹¤ë¦¼
         return E_STEP_BASIC;
-    case BUDOKAI_MAJORMATCH_STATE_DIRECTION:		// ¿¬Ãâ
+    case BUDOKAI_MAJORMATCH_STATE_DIRECTION:		// ì—°ì¶œ
         return E_STEP_BASIC;
-    case BUDOKAI_MAJORMATCH_STATE_MATCH_READY:	// °æ±â ÁØºñ
+    case BUDOKAI_MAJORMATCH_STATE_MATCH_READY:	// ê²½ê¸° ì¤€ë¹„
         return E_STEP_MATCH_READY;
-    case BUDOKAI_MAJORMATCH_STATE_STAGE_READY:	// ½ºÅ×ÀÌÁö ÁØºñ
+    case BUDOKAI_MAJORMATCH_STATE_STAGE_READY:	// ìŠ¤í…Œì´ì§€ ì¤€ë¹„
         return E_STEP_STAGE_READY;
-    case BUDOKAI_MAJORMATCH_STATE_STAGE_RUN:		// ½ºÅ×ÀÌÁö ÁøÇà
+    case BUDOKAI_MAJORMATCH_STATE_STAGE_RUN:		// ìŠ¤í…Œì´ì§€ ì§„í–‰
         return E_STEP_STAGE_RUN;
-    case BUDOKAI_MAJORMATCH_STATE_STAGE_FINISH:	// ½ºÅ×ÀÌÁö Á¾·á
+    case BUDOKAI_MAJORMATCH_STATE_STAGE_FINISH:	// ìŠ¤í…Œì´ì§€ ì¢…ë£Œ
         return E_STEP_STAGE_FINISH;
-    case BUDOKAI_MAJORMATCH_STATE_MATCH_FINISH:	// °æ±â Á¾·á
+    case BUDOKAI_MAJORMATCH_STATE_MATCH_FINISH:	// ê²½ê¸° ì¢…ë£Œ
         return E_STEP_MATCH_FINISH;
-    case BUDOKAI_MAJORMATCH_STATE_END:			// Á¾·á
+    case BUDOKAI_MAJORMATCH_STATE_END:			// ì¢…ë£Œ
         return E_STEP_BATTLE_END;
     }
 
@@ -365,7 +365,7 @@ void CNtlSLTBCrowdManager::RemoveController( const std::string& keyName )
 			NTL_DELETE(pController);
 			m_mapControllerContainer.erase(it_mapController);
 
-			// ÄÁÆ®·Ñ·¯°¡ ÇÏ³ªµµ ¾øÀ¸¸é ÇöÀç ¹öÀüÀº ÃÖ½Å ¹öÀüÀ¸·Î....
+			// ì»¨íŠ¸ë¡¤ëŸ¬ê°€ í•˜ë‚˜ë„ ì—†ìœ¼ë©´ í˜„ì¬ ë²„ì „ì€ ìµœì‹  ë²„ì „ìœ¼ë¡œ....
 			if( m_mapControllerContainer.size() == 0 )
 				CNtlSLCENode::m_Version.fCurrentWorkVerstion = CNtlSLCENode::m_Version.fLastestVersion;
 
@@ -436,7 +436,7 @@ void CNtlSLTBCrowdManager::CreateSobRefree()
     if(m_pRefreeActor)
         return;
 
-    // ½ÉÆÇ °´Ã¼ »ı¼º
+    // ì‹¬íŒ ê°ì²´ ìƒì„±
     SERIAL_HANDLE hSerialId = CNtlSobFactory::AcquireSerailId();
     sNPC_BRIEF sNPCBrief;
     sCHARSTATE sCharState;

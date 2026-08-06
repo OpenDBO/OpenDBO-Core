@@ -4,7 +4,7 @@ NCDeclareSGT(ERSMCore);
 
 /**
  * \ingroup ERSManager
- * \brief ERSManagerÀÇ ¸ŞÀÎ Ã³¸®¸¦ ÇÏ´Â Core Å¬·¡½º
+ * \brief ERSManagerì˜ ë©”ì¸ ì²˜ë¦¬ë¥¼ í•˜ëŠ” Core í´ë˜ìŠ¤
  * \date 2007-01-26
  * \author agebreak
  */
@@ -14,16 +14,16 @@ public:
     ERSMCore(void);
     virtual ~ERSMCore(void);
 
-    bool   Init();                                          ///< ÃÊ±âÈ­ ÀÛ¾÷À» ¼öÇàÇÑ´Ù.
-    void   Destroy();                                       ///< ¸¶¹«¸® ÀÛ¾÷À» ¼öÇàÇÑ´Ù.
-    bool   Run();                                           ///< ½º·¹µå¸¦ »ı¼ºÇÏ¿©, ÀÛ¾÷À» ¼öÇàÇÑ´Ù.
+    bool   Init();                                          ///< ì´ˆê¸°í™” ì‘ì—…ì„ ìˆ˜í–‰í•œë‹¤.
+    void   Destroy();                                       ///< ë§ˆë¬´ë¦¬ ì‘ì—…ì„ ìˆ˜í–‰í•œë‹¤.
+    bool   Run();                                           ///< ìŠ¤ë ˆë“œë¥¼ ìƒì„±í•˜ì—¬, ì‘ì—…ì„ ìˆ˜í–‰í•œë‹¤.
 
 protected:
-	static DWORD WINAPI WorkThread(LPVOID pParam);			///< ½ÇÁ¦ ÀÛ¾÷À» ¼öÇàÇÏ´Â ½º·¹µå
-	std::string GetModulePath();							///< ÇöÀç ¼­ºñ½º ÇÁ·Î±×·¥ ÆÄÀÏÀÇ °æ·Î¸¦ °¡Á®¿Â´Ù.
+	static DWORD WINAPI WorkThread(LPVOID pParam);			///< ì‹¤ì œ ì‘ì—…ì„ ìˆ˜í–‰í•˜ëŠ” ìŠ¤ë ˆë“œ
+	std::string GetModulePath();							///< í˜„ì¬ ì„œë¹„ìŠ¤ í”„ë¡œê·¸ë¨ íŒŒì¼ì˜ ê²½ë¡œë¥¼ ê°€ì ¸ì˜¨ë‹¤.
 
 public:
-	static bool	m_bEndFlag;									///< ½º·¹µå¸¦ ³¡³»±â À§ÇÑ ÇÃ·¡±×
+	static bool	m_bEndFlag;									///< ìŠ¤ë ˆë“œë¥¼ ëë‚´ê¸° ìœ„í•œ í”Œë˜ê·¸
 	static CTime m_prevRunTime;
 
 };

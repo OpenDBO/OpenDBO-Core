@@ -1,4 +1,4 @@
-// SpawnMergeDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// SpawnMergeDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -21,7 +21,7 @@
 
 #include "SpawnMergeDlg.h"
 
-// CSpawnMergeDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CSpawnMergeDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CSpawnMergeDlg, CDialog)
 
@@ -56,7 +56,7 @@ BEGIN_MESSAGE_MAP(CSpawnMergeDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CSpawnMergeDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CSpawnMergeDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CSpawnMergeDlg::PreTranslateMessage(MSG* pMsg)
 {
@@ -98,7 +98,7 @@ BOOL CSpawnMergeDlg::OnInitDialog()
 	}
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 
@@ -246,7 +246,7 @@ BOOL CSpawnMergeDlg::TestSpawnMergeFileExist(CString& strFolderName, CString& st
 
 void CSpawnMergeDlg::OnBnClickedCancel()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	OnCancel();
 }
 
@@ -407,7 +407,7 @@ void CSpawnMergeDlg::OnBnClickedOk()
 
 	GetCurrentDirectory(NTL_MAX_DIR_PATH, acDirOld);
 
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	
 	WndProgress.SetText("Done...");
 	WndProgress.StepIt();

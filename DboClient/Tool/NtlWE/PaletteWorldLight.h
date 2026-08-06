@@ -8,7 +8,7 @@
 #include "NtlPLWorldLight_Sphere.h"
 #include "NtlPLWorldLight_Box.h"
 
-// CPaletteWorldLight ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteWorldLight ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 #define PWL_PROP_COLOR	0x00000001
 #define PWL_PROP_POS	0x00000002
@@ -24,14 +24,14 @@ class CPaletteWorldLight : public CDialog
 	DECLARE_DYNAMIC(CPaletteWorldLight)
 
 public:
-	CPaletteWorldLight(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CPaletteWorldLight(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CPaletteWorldLight();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_WORLDLIGHT };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 

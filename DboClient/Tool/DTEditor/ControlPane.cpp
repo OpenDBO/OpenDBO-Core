@@ -1,4 +1,4 @@
-// ControlPane.cpp : ���� �����Դϴ�.
+// ControlPane.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -39,7 +39,7 @@ LRESULT CControlPane::CControlEdit::WindowProc(UINT message,WPARAM wParam,LPARAM
 	return CEdit::WindowProc(message, wParam, lParam);
 }
 
-// CControlPane ��ȭ �����Դϴ�.
+// CControlPane 대화 상자입니다.
 
 IMPLEMENT_DYNAMIC(CControlPane, CDialog)
 
@@ -298,14 +298,14 @@ BEGIN_MESSAGE_MAP(CControlPane, CDialog)
 END_MESSAGE_MAP()
 
 
-// CControlPane �޽��� ó�����Դϴ�.
+// CControlPane 메시지 처리기입니다.
 
 int CControlPane::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CXTResizeDialog::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// TODO:  ���⿡ Ư��ȭ�� �ۼ� �ڵ带 �߰��մϴ�.
+	// TODO:  여기에 특수화된 작성 코드를 추가합니다.
 
 	
 
@@ -316,7 +316,7 @@ BOOL CControlPane::OnInitDialog()
 {
 	CXTResizeDialog::OnInitDialog();
 
-	// TODO:  ���⿡ �߰� �ʱ�ȭ �۾��� �߰��մϴ�.
+	// TODO:  여기에 추가 초기화 작업을 추가합니다.
 
 	XTPImageManager()->SetMaskColor(RGB(0, 0xFF, 0));
 	VERIFY(m_wndToolBar.CreateToolBar(WS_VISIBLE | WS_CHILD | CBRS_TOOLTIPS, this));
@@ -367,7 +367,7 @@ BOOL CControlPane::OnInitDialog()
 	m_PointRotateDlg.ShowWindow(SW_HIDE);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ����: OCX �Ӽ� �������� FALSE�� ��ȯ�ؾ� �մϴ�.
+	// 예외: OCX 속성 페이지는 FALSE를 반환해야 합니다.
 }
 
 
@@ -376,7 +376,7 @@ void CControlPane::OnSize(UINT nType, int cx, int cy)
 {
 	CXTResizeDialog::OnSize(nType, cx, cy);
 
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 
 	CSize sz(0);
 	if (m_wndToolBar.GetSafeHwnd())
@@ -407,7 +407,7 @@ void CControlPane::OnDestroy()
 {
 	CXTResizeDialog::OnDestroy();
 
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 
 	if (::IsWindow(m_pCtrlPointSheet->GetSafeHwnd()))
 		m_pCtrlPointSheet->DestroyWindow();
@@ -443,8 +443,8 @@ void CControlPane::OnPaint()
 
 	/*
 	CPaintDC dc(this); // device context for painting
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰��մϴ�.
-	// �׸��� �޽����� ���ؼ��� CXTResizeDialog::OnPaint()��(��) ȣ������ ���ʽÿ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
+	// 그리기 메시지에 대해서는 CXTResizeDialog::OnPaint()을(를) 호출하지 마십시오.
 	*/
 }
 

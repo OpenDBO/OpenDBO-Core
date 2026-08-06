@@ -115,7 +115,7 @@ RwBool CNtlSpawnMergeContainer::LoadSpawnParty(FILE* pFile)
 		pSpawnParty->Load(pFile);
 		DBO_ASSERT(InsertSpawnParty(pSpawnParty), "merge spawn party insert failed.");
 
-		// »§Ω√≥™ ∏∏£¥¬ ªÛ»≤¿ª øπø‹√≥∏Æ «œ¿⁄.
+		// ÌòπÏãúÎÇò Î™®Î•¥Îäî ÏÉÅÌô©ÏùÑ ÏòàÏô∏Ï≤òÎ¶¨ ÌïòÏûê.
 		if (pSpawnParty->dwPartyIdx > m_dwPartyIdx)
 		{
 			m_dwPartyIdx = pSpawnParty->dwPartyIdx;
@@ -272,7 +272,7 @@ RwBool CNtlSpawnMergeContainer::MergePathUnlinkedSpawn(RwBBox* pBBoxDst, RwBBox*
 		return FALSE;
 	}
 	
-	// ªË¡¶
+	// ÏÇ≠Ï†ú
 	{
 		// Party Delete
 		SPAWN_PARTY_ITER itSpawnParty = m_mapSpawnParty.begin();
@@ -308,7 +308,7 @@ RwBool CNtlSpawnMergeContainer::MergePathUnlinkedSpawn(RwBBox* pBBoxDst, RwBBox*
 				{
 					CMergeSpawn* pSpawn = *itSpawn;
 
-					// º”µµ∏¶ ¿ß«ÿ ø©±‚º≠ ªË¡¶ «œ¡ˆ æ ∞Ì NonParty∏¶ √≥∏Æ «“∂ß ¡ˆøÏ¿⁄.
+					// ÏÜçÎèÑÎ•º ÏúÑÌï¥ Ïó¨Í∏∞ÏÑú ÏÇ≠Ï†ú ÌïòÏßÄ ÏïäÍ≥† NonPartyÎ•º Ï≤òÎ¶¨ Ìï†Îïå ÏßÄÏö∞Ïûê.
 					pSpawn->uiMergeTemp = dSPAWN_MERGE_TEMP_FLAG_SPAWN_POST_DELETE;
 				}
 
@@ -317,7 +317,7 @@ RwBool CNtlSpawnMergeContainer::MergePathUnlinkedSpawn(RwBBox* pBBoxDst, RwBBox*
 			}			
 			else
 			{
-				// ∑Œ±◊ √‚∑¬
+				// Î°úÍ∑∏ Ï∂úÎ†•
 				if (iInnerCnt > 0 && !bPath)
 				{
 					for (SPAWN_VEC_ITER itSpawn = pSpawnParty->vecSpawn.begin(); itSpawn != pSpawnParty->vecSpawn.end(); ++itSpawn)
@@ -348,7 +348,7 @@ RwBool CNtlSpawnMergeContainer::MergePathUnlinkedSpawn(RwBBox* pBBoxDst, RwBBox*
 		{
 			CMergeSpawn* pSpawn = *itSpawn;
 
-			// Party Check Ω√ ªË¡¶µ» Spawn
+			// Party Check Ïãú ÏÇ≠Ï†úÎêú Spawn
 			if (pSpawn->uiMergeTemp == dSPAWN_MERGE_TEMP_FLAG_SPAWN_POST_DELETE)
 			{
 				itSpawn = m_vecSpawn.erase(itSpawn);
@@ -386,7 +386,7 @@ RwBool CNtlSpawnMergeContainer::MergePathUnlinkedSpawn(RwBBox* pBBoxDst, RwBBox*
 	}
 
 
-	// √ﬂ∞° : Src¿« Data∏¶ Dst∑Œ ø≈±‰¥Ÿ. ∫πªÁ«“ « ø‰∞° ¿÷¥Ÿ∏È, ≥™¡ﬂø° ∫πªÁ∑Œ ∫Ø∞Ê«œ¿⁄.
+	// Ï∂îÍ∞Ä : SrcÏùò DataÎ•º DstÎ°ú ÏòÆÍ∏¥Îã§. Î≥µÏÇ¨Ìï† ÌïÑÏöîÍ∞Ä ÏûàÎã§Î©¥, ÎÇòÏ§ëÏóê Î≥µÏÇ¨Î°ú Î≥ÄÍ≤ΩÌïòÏûê.
 	{
 		// Party Insert
 		SPAWN_PARTY_ITER itSpawnParty = pContainerSrc->m_mapSpawnParty.begin();
@@ -422,7 +422,7 @@ RwBool CNtlSpawnMergeContainer::MergePathUnlinkedSpawn(RwBBox* pBBoxDst, RwBBox*
 
 				pSpawnParty->dwCurPartyIdx = pSpawnParty->dwPartyIdx = ++m_dwPartyIdx;
 
-				// ∑Œ±◊ √‚∑¬
+				// Î°úÍ∑∏ Ï∂úÎ†•
 				fprintf_s(pLogFile, "[path is not linked spawn-insert] Party_Old_Index(%u) Party_New_Index(%u)\n", dwPartyIdxOld, pSpawnParty->dwPartyIdx);
 				
 				for (SPAWN_VEC_ITER itSpawn = pSpawnParty->vecSpawn.begin(); itSpawn != pSpawnParty->vecSpawn.end(); ++itSpawn)
@@ -431,7 +431,7 @@ RwBool CNtlSpawnMergeContainer::MergePathUnlinkedSpawn(RwBBox* pBBoxDst, RwBBox*
 
 					pSpawn->iPartyIndex = pSpawnParty->dwPartyIdx;
 
-					// º”µµ∏¶ ¿ß«ÿ ø©±‚º≠ ª¿‘ «œ¡ˆ æ ∞Ì NonParty∏¶ √≥∏Æ «“∂ß ª¿‘ «œ¿⁄.
+					// ÏÜçÎèÑÎ•º ÏúÑÌï¥ Ïó¨Í∏∞ÏÑú ÏÇΩÏûÖ ÌïòÏßÄ ÏïäÍ≥† NonPartyÎ•º Ï≤òÎ¶¨ Ìï†Îïå ÏÇΩÏûÖ ÌïòÏûê.
 					pSpawn->uiMergeTemp = dSPAWN_MERGE_TEMP_FLAG_SPAWN_POST_INSERT;
 				}
 
@@ -441,7 +441,7 @@ RwBool CNtlSpawnMergeContainer::MergePathUnlinkedSpawn(RwBBox* pBBoxDst, RwBBox*
 			}			
 			else
 			{
-				// ∑Œ±◊ √‚∑¬
+				// Î°úÍ∑∏ Ï∂úÎ†•
 				if (iInnerCnt > 0 && !bPath)
 				{
 					for (SPAWN_VEC_ITER itSpawn = pSpawnParty->vecSpawn.begin(); itSpawn != pSpawnParty->vecSpawn.end(); ++itSpawn)
@@ -472,7 +472,7 @@ RwBool CNtlSpawnMergeContainer::MergePathUnlinkedSpawn(RwBBox* pBBoxDst, RwBBox*
 		{
 			CMergeSpawn* pSpawn = *itSpawn;
 
-			// Party Check Ω√ ªË¡¶µ» Spawn
+			// Party Check Ïãú ÏÇ≠Ï†úÎêú Spawn
 			if (pSpawn->uiMergeTemp == dSPAWN_MERGE_TEMP_FLAG_SPAWN_POST_INSERT)
 			{
 				itSpawn = pContainerSrc->m_vecSpawn.erase(itSpawn);
@@ -520,7 +520,7 @@ RwBool CNtlSpawnMergeContainer::MergePathLinkedSpawn(std::vector<RwInt32>* pvecD
 		return FALSE;
 	}
 
-	// ªË¡¶
+	// ÏÇ≠Ï†ú
 	{
 		// Party Delete
 		SPAWN_PARTY_ITER itSpawnParty = m_mapSpawnParty.begin();
@@ -546,7 +546,7 @@ RwBool CNtlSpawnMergeContainer::MergePathLinkedSpawn(std::vector<RwInt32>* pvecD
 				{
 					CMergeSpawn* pSpawn = *itSpawn;
 
-					// º”µµ∏¶ ¿ß«ÿ ø©±‚º≠ ªË¡¶ «œ¡ˆ æ ∞Ì NonParty∏¶ √≥∏Æ «“∂ß ¡ˆøÏ¿⁄.
+					// ÏÜçÎèÑÎ•º ÏúÑÌï¥ Ïó¨Í∏∞ÏÑú ÏÇ≠Ï†ú ÌïòÏßÄ ÏïäÍ≥† NonPartyÎ•º Ï≤òÎ¶¨ Ìï†Îïå ÏßÄÏö∞Ïûê.
 					pSpawn->uiMergeTemp = dSPAWN_MERGE_TEMP_FLAG_SPAWN_POST_DELETE;
 				}
 
@@ -565,7 +565,7 @@ RwBool CNtlSpawnMergeContainer::MergePathLinkedSpawn(std::vector<RwInt32>* pvecD
 		{
 			CMergeSpawn* pSpawn = *itSpawn;
 
-			// Party Check Ω√ ªË¡¶µ» Spawn
+			// Party Check Ïãú ÏÇ≠Ï†úÎêú Spawn
 			if (pSpawn->uiMergeTemp == dSPAWN_MERGE_TEMP_FLAG_SPAWN_POST_DELETE)
 			{
 				itSpawn = m_vecSpawn.erase(itSpawn);
@@ -591,7 +591,7 @@ RwBool CNtlSpawnMergeContainer::MergePathLinkedSpawn(std::vector<RwInt32>* pvecD
 	}
 
 
-	// √ﬂ∞° : Src¿« Data∏¶ Dst∑Œ ø≈±‰¥Ÿ. ∫πªÁ«“ « ø‰∞° ¿÷¥Ÿ∏È, ≥™¡ﬂø° ∫πªÁ∑Œ ∫Ø∞Ê«œ¿⁄.
+	// Ï∂îÍ∞Ä : SrcÏùò DataÎ•º DstÎ°ú ÏòÆÍ∏¥Îã§. Î≥µÏÇ¨Ìï† ÌïÑÏöîÍ∞Ä ÏûàÎã§Î©¥, ÎÇòÏ§ëÏóê Î≥µÏÇ¨Î°ú Î≥ÄÍ≤ΩÌïòÏûê.
 	{
 		// Party Insert
 		SPAWN_PARTY_ITER itSpawnParty = pContainerSrc->m_mapSpawnParty.begin();
@@ -617,7 +617,7 @@ RwBool CNtlSpawnMergeContainer::MergePathLinkedSpawn(std::vector<RwInt32>* pvecD
 				
 				pSpawnParty->dwCurPartyIdx = pSpawnParty->dwPartyIdx = ++m_dwPartyIdx;
 
-				// ∑Œ±◊ √‚∑¬
+				// Î°úÍ∑∏ Ï∂úÎ†•
 				fprintf_s(pLogFile, "[path is not linked spawn-insert] Party_Old_Index(%u) Party_New_Index(%u)\n", dwPartyIdxOld, pSpawnParty->dwPartyIdx);
 
 				for (SPAWN_VEC_ITER itSpawn = pSpawnParty->vecSpawn.begin(); itSpawn != pSpawnParty->vecSpawn.end(); ++itSpawn)
@@ -626,7 +626,7 @@ RwBool CNtlSpawnMergeContainer::MergePathLinkedSpawn(std::vector<RwInt32>* pvecD
 
 					pSpawn->iPartyIndex = pSpawnParty->dwPartyIdx;
 
-					// º”µµ∏¶ ¿ß«ÿ ø©±‚º≠ ª¿‘ «œ¡ˆ æ ∞Ì NonParty∏¶ √≥∏Æ «“∂ß ª¿‘ «œ¿⁄.
+					// ÏÜçÎèÑÎ•º ÏúÑÌï¥ Ïó¨Í∏∞ÏÑú ÏÇΩÏûÖ ÌïòÏßÄ ÏïäÍ≥† NonPartyÎ•º Ï≤òÎ¶¨ Ìï†Îïå ÏÇΩÏûÖ ÌïòÏûê.
 					pSpawn->uiMergeTemp = dSPAWN_MERGE_TEMP_FLAG_SPAWN_POST_INSERT;
 				}
 
@@ -646,7 +646,7 @@ RwBool CNtlSpawnMergeContainer::MergePathLinkedSpawn(std::vector<RwInt32>* pvecD
 		{
 			CMergeSpawn* pSpawn = *itSpawn;
 
-			// Party Check Ω√ ªË¡¶µ» Spawn
+			// Party Check Ïãú ÏÇ≠Ï†úÎêú Spawn
 			if (pSpawn->uiMergeTemp == dSPAWN_MERGE_TEMP_FLAG_SPAWN_POST_INSERT)
 			{
 				itSpawn = pContainerSrc->m_vecSpawn.erase(itSpawn);
@@ -678,7 +678,7 @@ RwBool CNtlSpawnMergeContainer::GetPathIdxListFromPathLinkedSpawnParty(std::vect
 {
 	RwBool bResult = TRUE;
 
-	// Party ø°º≠ pvecPathIdxListøÕ µø¿œ«— Path∏¶ ∞°¡¯ SpawnµÈ¿ª ∞Ò∂Û≥Ω¥Ÿ.
+	// Party ÏóêÏÑú pvecPathIdxListÏôÄ ÎèôÏùºÌïú PathÎ•º Í∞ÄÏßÑ SpawnÎì§ÏùÑ Í≥®ÎùºÎÇ∏Îã§.
 	SPAWN_PARTY_ITER itSpawnParty = m_mapSpawnParty.begin();
 	while (itSpawnParty != m_mapSpawnParty.end())
 	{
@@ -715,7 +715,7 @@ RwBool CNtlSpawnMergeContainer::GetPathIdxListFromPathLinkedSpawnParty(std::vect
 				}
 			}
 
-			// ∑Œ±◊ √‚∑¬
+			// Î°úÍ∑∏ Ï∂úÎ†•
 			if (!bResult)
 			{
 				for (SPAWN_VEC_ITER itSpawn = pSpawnParty->vecSpawn.begin(); itSpawn != pSpawnParty->vecSpawn.end(); ++itSpawn)

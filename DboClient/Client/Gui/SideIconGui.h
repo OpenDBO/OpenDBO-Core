@@ -1,22 +1,22 @@
 /******************************************************************************
 * File			: SideIconGui.h
 * Author		: Kim JinSung -> Cho HaeSung
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 6. 11
 * Abstract		: 
 *****************************************************************************
-* Desc			: DBO »çÀÌµå ¾ÆÀÌÄÜ GUI
+* Desc			: DBO ì‚¬ì´ë“œ ì•„ì´ì½˜ GUI
 *****************************************************************************/
 
 #pragma once
 
 #include "SideIconDefine.h"
 
-// SideIconµéÀÇ °£°İ
+// SideIconë“¤ì˜ ê°„ê²©
 #define dSIDEICON_MARGIN_WIDTH	5
 #define dSIDEICON_MARGIN_HEIGHT	5
 
-// Class Àü¹æ ¼±¾ğ
+// Class ì „ë°© ì„ ì–¸
 class CSideIconGui;
 class CSideIconBase;
 class CSideViewBase;
@@ -64,7 +64,7 @@ class CNetPySideViewGui;
 
 /**
 * \ingroup client
-* \brief DBO»óÀÇ »çÀÌµå ¾ÆÀÌÄÜµéÀ» »ı¼º ¹× °ü¸®ÇÑ´Ù. (½Ì±ÛÅæ)
+* \brief DBOìƒì˜ ì‚¬ì´ë“œ ì•„ì´ì½˜ë“¤ì„ ìƒì„± ë° ê´€ë¦¬í•œë‹¤. (ì‹±ê¸€í†¤)
 */
 class CSideIconGui : public CNtlPLGui, public RWS::CEventHandler
 {
@@ -119,14 +119,14 @@ public:
 	static CSideIconGui* GetInstance() { return s_pSideIconGui; }
 	
 protected:
-	SIDEICONVEC			m_vecSideIcon;		// Number¸¦ ÅëÇØ Á¤·Ä ÇÑ´Ù.
+	SIDEICONVEC			m_vecSideIcon;		// Numberë¥¼ í†µí•´ ì •ë ¬ í•œë‹¤.
 	SIDEICONMAP			m_mapSideIcon;
 	SIDEVIEWMAP			m_mapSideView;
 
 	CSideIconBase*		m_pPresentIcon;
 	CSideViewBase*		m_pPresentView;
 
-	eSideViewType		m_nPresentViewType;	// ÇöÀç º¸¿©Áö°í ÀÖ´Â ºäÀÇ Enum
+	eSideViewType		m_nPresentViewType;	// í˜„ì¬ ë³´ì—¬ì§€ê³  ìˆëŠ” ë·°ì˜ Enum
 
 	gui::CSlot			m_slotMove;
 
@@ -184,7 +184,7 @@ public:
 	virtual ~CSideIconBase();
 
 	virtual void	Show(bool bShow);
-	void			SetNumber(const RwUInt32& uiNumber); // uiNumber°¡ ÀÛÀ» ¼ö·Ï »çÀÌµå ¿À¸¥ÂÊ¿¡ Ãâ·Â
+	void			SetNumber(const RwUInt32& uiNumber); // uiNumberê°€ ì‘ì„ ìˆ˜ë¡ ì‚¬ì´ë“œ ì˜¤ë¥¸ìª½ì— ì¶œë ¥
 	RwUInt32		GetNumber();
 
 	bool			IsDisplay()	{ return m_bDisplay; }

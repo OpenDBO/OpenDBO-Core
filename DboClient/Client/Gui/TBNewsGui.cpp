@@ -30,7 +30,7 @@
 
 /**
 * \brief Construction
-* \param pName	(const RwChar*) GUIÀÇ ÀÌ¸§
+* \param pName	(const RwChar*) GUIì˜ ì´ë¦„
 */
 CTBNewsGui::CTBNewsGui( const RwChar* pName )
 : CNtlPLGui(pName)
@@ -202,8 +202,8 @@ void CTBNewsGui::Update( RwReal fElapsed )
 		sBUDOKAI_UPDATE_MATCH_STATE_INFO* pIndividualMatch;
 		sBUDOKAI_UPDATE_MATCH_STATE_INFO* pTeamMatch;
 
-		// NULL ÀÏ ¶§´Â ¾Æ¹ÙÅ¸ »ý¼º Àü¿¡ Á¤º¸°¡ µé¾î¿ÔÀ» °æ¿ì
-		// NULLÀÌ ¾Æ´Ò ¶§´Â Á¤»óÀûÀ¸·Î µ¥ÀÌÅÍ°¡ ¼ÂÆÃ µÇ¾úÀ» °æ¿ì
+		// NULL ì¼ ë•ŒëŠ” ì•„ë°”íƒ€ ìƒì„± ì „ì— ì •ë³´ê°€ ë“¤ì–´ì™”ì„ ê²½ìš°
+		// NULLì´ ì•„ë‹ ë•ŒëŠ” ì •ìƒì ìœ¼ë¡œ ë°ì´í„°ê°€ ì…‹íŒ… ë˜ì—ˆì„ ê²½ìš°
 		if( pSobAvatar == NULL )
 		{
 			pMainStateInfo = &GetNtlSLGlobal()->GetTBudokaiStateInfo()->sStateInfo;
@@ -223,7 +223,7 @@ void CTBNewsGui::Update( RwReal fElapsed )
 			pTeamMatch->byState == BUDOKAI_MATCHSTATE_MATCH_END &&
 			IsBudokaiOpen( pMainStateInfo->byState ) )
 		{
-			// ¹«µµ»ç ¸¶À» ÀÔÀå Á¾·á : %s ³²¾Ò½À´Ï´Ù.
+			// ë¬´ë„ì‚¬ ë§ˆì„ ìž…ìž¥ ì¢…ë£Œ : %s ë‚¨ì•˜ìŠµë‹ˆë‹¤.
 			WCHAR awcBuffer[128];
 			swprintf_s( awcBuffer, 128, GetDisplayStringManager()->GetString( "DST_BUDOKAI_NEWS_MUDOSA_ENTER_LEFT_TIME" ), 
 				pIndividualMatch->tmRemainTime > pTeamMatch->tmRemainTime ? Logic_GetTBRemainTimeString( pIndividualMatch->tmRemainTime ) : Logic_GetTBRemainTimeString( pTeamMatch->tmRemainTime ) );
@@ -244,12 +244,12 @@ RwInt32 CTBNewsGui::SwitchDialog( bool bOpen )
 		UpdateInterface();
 		UpdateButtons();
 		
-		// Á¤º¸ ¹Ú½ºÀÇ Á¤º¸°¡ ¾÷µ¥ÀÌÆ® µÇ´ÂÁö ¾ÈµÇ´ÂÁöÀÇ ¿©ºÎ
+		// ì •ë³´ ë°•ìŠ¤ì˜ ì •ë³´ê°€ ì—…ë°ì´íŠ¸ ë˜ëŠ”ì§€ ì•ˆë˜ëŠ”ì§€ì˜ ì—¬ë¶€
 		UpdateInstanceInfo();
 	}
 	else
 	{
-		// ¼Ò½ÄÁö¸¦ ´ÝÀ¸¸é ¶§ ½ÅÃ»¼­µµ °°ÀÌ ´Ý±ä´Ù.
+		// ì†Œì‹ì§€ë¥¼ ë‹«ìœ¼ë©´ ë•Œ ì‹ ì²­ì„œë„ ê°™ì´ ë‹«ê¸´ë‹¤.
 		if( GetDialogManager()->IsOpenDialog( DIALOG_BUDOKAI_REQUEST ) )
 			GetDialogManager()->CloseDialog( DIALOG_BUDOKAI_REQUEST );
 	}
@@ -275,7 +275,7 @@ void CTBNewsGui::HandleEvents( RWS::CMsg& msg )
 			UpdateButtons();
 		}
 	}
-	// MatchÀÇ State°¡ º¯°æµÇ¾úÀ» ¶§´Â ´º½º¸¦ SettingÇØÁÖ°í UpdateÇØÁØ´Ù.
+	// Matchì˜ Stateê°€ ë³€ê²½ë˜ì—ˆì„ ë•ŒëŠ” ë‰´ìŠ¤ë¥¼ Settingí•´ì£¼ê³  Updateí•´ì¤€ë‹¤.
 	else if( msg.Id == g_EventBudokaiUpdateMatchStateNfy )
 	{
 	
@@ -300,7 +300,7 @@ void CTBNewsGui::HandleEvents( RWS::CMsg& msg )
 	}
 	else if( msg.Id == g_EventBudokaiLeaveTeamNfy )
 	{
-		// ÆÀÀÇ ¸®´õ°¡ ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ½ÅÃ»À» Ãë¼ÒÇÏ¿´½À´Ï´Ù.
+		// íŒ€ì˜ ë¦¬ë”ê°€ ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì‹ ì²­ì„ ì·¨ì†Œí•˜ì˜€ìŠµë‹ˆë‹¤.
 		GetAlarmManager()->AlarmMessage( "DST_BUDOKAI_TEAM_LEAVE_NOTIFY" );
 
 		if( GetDialogManager()->IsOpenDialog( DIALOG_BUDOKAI_NEWS ) )
@@ -334,11 +334,11 @@ void CTBNewsGui::HandleEvents( RWS::CMsg& msg )
 		// get sVARIABLE_DATA
 		sVARIABLE_DATA* pVarData = reinterpret_cast<sVARIABLE_DATA*>(pData->pData);
 
-		// ¿ì½ÂÀÚ
+		// ìš°ìŠ¹ìž
 		int nWinnerSize = pVarData->GetSize( pData->wWinner );
 		::CopyMemory( awcWinnerName, pVarData->Read( pData->wWinner ), nWinnerSize );
 
-		// ÁØ¿ì½ÂÀÚ ÀÌ¸§
+		// ì¤€ìš°ìŠ¹ìž ì´ë¦„
 		int nSecondWinnerSize = pVarData->GetSize( pData->wSecondWinner );
 		::CopyMemory( awcSecondWinnerName, pVarData->Read( pData->wSecondWinner ), nSecondWinnerSize );
 
@@ -349,8 +349,8 @@ void CTBNewsGui::HandleEvents( RWS::CMsg& msg )
 		sBUDOKAI_UPDATE_MATCH_STATE_INFO* pIndividualMatch;
 		sBUDOKAI_UPDATE_MATCH_STATE_INFO* pTeamMatch;
 
-		// NULL ÀÏ ¶§´Â ¾Æ¹ÙÅ¸ »ý¼º Àü¿¡ Á¤º¸°¡ µé¾î¿ÔÀ» °æ¿ì
-		// NULLÀÌ ¾Æ´Ò ¶§´Â Á¤»óÀûÀ¸·Î µ¥ÀÌÅÍ°¡ ¼ÂÆÃ µÇ¾úÀ» °æ¿ì
+		// NULL ì¼ ë•ŒëŠ” ì•„ë°”íƒ€ ìƒì„± ì „ì— ì •ë³´ê°€ ë“¤ì–´ì™”ì„ ê²½ìš°
+		// NULLì´ ì•„ë‹ ë•ŒëŠ” ì •ìƒì ìœ¼ë¡œ ë°ì´í„°ê°€ ì…‹íŒ… ë˜ì—ˆì„ ê²½ìš°
 		if( pSobAvatar == NULL )
 		{
 			pMainStateInfo = &GetNtlSLGlobal()->GetTBudokaiStateInfo()->sStateInfo;
@@ -395,7 +395,7 @@ void CTBNewsGui::HandleEvents( RWS::CMsg& msg )
 }
 
 /**
-* \brief À¯Àú ÀÎÅÍÆäÀÌ½º ¼¼ÆÃ
+* \brief ìœ ì € ì¸í„°íŽ˜ì´ìŠ¤ ì„¸íŒ…
 */
 void CTBNewsGui::UpdateInterface()
 {
@@ -409,8 +409,8 @@ void CTBNewsGui::UpdateInterface()
 	sBUDOKAI_UPDATE_MATCH_STATE_INFO* pIndividualMatch;
 	sBUDOKAI_UPDATE_MATCH_STATE_INFO* pTeamMatch;
 	
-	// NULL ÀÏ ¶§´Â ¾Æ¹ÙÅ¸ »ý¼º Àü¿¡ Á¤º¸°¡ µé¾î¿ÔÀ» °æ¿ì
-	// NULLÀÌ ¾Æ´Ò ¶§´Â Á¤»óÀûÀ¸·Î µ¥ÀÌÅÍ°¡ ¼ÂÆÃ µÇ¾úÀ» °æ¿ì
+	// NULL ì¼ ë•ŒëŠ” ì•„ë°”íƒ€ ìƒì„± ì „ì— ì •ë³´ê°€ ë“¤ì–´ì™”ì„ ê²½ìš°
+	// NULLì´ ì•„ë‹ ë•ŒëŠ” ì •ìƒì ìœ¼ë¡œ ë°ì´í„°ê°€ ì…‹íŒ… ë˜ì—ˆì„ ê²½ìš°
 	if( pSobAvatar == NULL )
 	{
 		pMainStateInfo = &GetNtlSLGlobal()->GetTBudokaiStateInfo()->sStateInfo;
@@ -426,12 +426,12 @@ void CTBNewsGui::UpdateInterface()
 		pTeamMatch = pSobAvatar->GetTenkaichiBudokai()->GetTeamMatchStateInfo();
 	}
 
-	// Á¦ %d È¸ ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸
+	// ì œ %d íšŒ ì²œí•˜ì œì¼ ë¬´ë„íšŒ
 	WCHAR awcBuffer[128];
 	swprintf_s( awcBuffer, 128, GetDisplayStringManager()->GetString( "DST_BUDOKAI_NEWS_TITLE" ), pMainStateInfo->wSeasonCount );
 	m_pStbTitle->SetText( awcBuffer );
 
-	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ Å×ÀÌºí
+	// ì²œí•˜ì œì¼ ë¬´ë„íšŒ í…Œì´ë¸”
 	CBudokaiTable* pBudokaiTable = API_GetTableContainer()->GetBudokaiTable();
 	if( !pBudokaiTable )
 	{
@@ -439,7 +439,7 @@ void CTBNewsGui::UpdateInterface()
 		return;
 	}
 	
-	// ºÎµµÄ«ÀÌ Å×ÀÌºí Á¤º¸
+	// ë¶€ë„ì¹´ì´ í…Œì´ë¸” ì •ë³´
 	sBUDOKAI_TBLINFO* pBudokaiTblInfo = pBudokaiTable->GetBudokaiTblInfo();
 	if( !pBudokaiTblInfo )
 	{
@@ -447,7 +447,7 @@ void CTBNewsGui::UpdateInterface()
 		return;
 	}
 
-	// ¸ÞÀÎ ½ºÅ×ÀÌÆ®¿¡ µû¸¥ ¾÷µ¥ÀÌÆ®
+	// ë©”ì¸ ìŠ¤í…Œì´íŠ¸ì— ë”°ë¥¸ ì—…ë°ì´íŠ¸
 	switch( pMainStateInfo->byState )
 	{
 		// Notice
@@ -456,7 +456,7 @@ void CTBNewsGui::UpdateInterface()
 		{
 			UpdateNoticeImage( NIT_STATE_GUIDE );
 
-			// ¿¹¼± ½ÅÃ» ±â°£ ±¸ÇÏ±â
+			// ì˜ˆì„  ì‹ ì²­ ê¸°ê°„ êµ¬í•˜ê¸°
 			tm tmMinorStart;
 			tm tmMinorEnd;
 			tm tmDojoStart;
@@ -491,11 +491,11 @@ void CTBNewsGui::UpdateInterface()
 				DBO_FAIL( "UpdateuserInterface - " << timeMinorEnd );
 			}
 
-			// µµÀå ÃßÃµ ±â°£
+			// ë„ìž¥ ì¶”ì²œ ê¸°ê°„
 			m_pStbNoticeText[TL_1]->SetText( GetDisplayStringManager()->GetString( "DST_BUDOKAI_NEWS_NOTICE_GUIDE_DOJO_TITLE" ) );
 			m_pStbNoticeText[TL_2]->SetText( Logic_GetTBDateToDateString( tmDojoStart, tmDojoEnd ) );
 
-			// ¿¹¼± ½ÅÃ» ±â°£
+			// ì˜ˆì„  ì‹ ì²­ ê¸°ê°„
 			m_pStbNoticeText[TL_3]->SetText( GetDisplayStringManager()->GetString( "DST_BUDOKAI_NEWS_NOTICE_GUIDE_MINOR_TITLE" ) );
 			m_pStbNoticeText[TL_4]->SetText( Logic_GetTBDateToDateString( tmMinorStart, tmMinorEnd ) );
 		}
@@ -546,11 +546,11 @@ void CTBNewsGui::UpdateInterface()
 				DBO_FAIL( "UpdateInterface - "<< timeMinorEnd );
 			}
 
-			// µµÀå ÃßÃµ ±â°£
+			// ë„ìž¥ ì¶”ì²œ ê¸°ê°„
 			m_pStbNoticeText[TL_1]->SetText( GetDisplayStringManager()->GetString( "DST_BUDOKAI_NEWS_NOTICE_GUIDE_DOJO_TITLE" ) );
 			m_pStbNoticeText[TL_2]->SetText( Logic_GetTBDateToDateString( tmDojoStart, tmDojoEnd ) );
 
-			// ¿¹¼± ½ÅÃ» ±â°£
+			// ì˜ˆì„  ì‹ ì²­ ê¸°ê°„
 			m_pStbNoticeText[TL_3]->SetText( GetDisplayStringManager()->GetString( "DST_BUDOKAI_NEWS_NOTICE_GUIDE_MINOR_TITLE" ) );
 			m_pStbNoticeText[TL_4]->SetText( Logic_GetTBDateToDateString( tmMinorStart, tmMinorEnd ) );
 		}
@@ -579,7 +579,7 @@ void CTBNewsGui::UpdateInterface()
 	if( GetBudokaiType(pMainStateInfo->byState) == BUDOKAI_TYPE_ADULT )
 	{
 		m_pStbNewsMark->AddSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface("TBNewsGui.srf", "srfTBNewsAdultTab" ) );
-		// ¸®¼Ò½º ÀÛ¾÷ÀÌ ³¡³ª¸é »ö»óÀ» ¸ÂÃç¼­ ¾÷µ¥ÀÌÆ® ÇÏµµ·Ï ÇÑ´Ù.
+		// ë¦¬ì†ŒìŠ¤ ìž‘ì—…ì´ ëë‚˜ë©´ ìƒ‰ìƒì„ ë§žì¶°ì„œ ì—…ë°ì´íŠ¸ í•˜ë„ë¡ í•œë‹¤.
 		/*m_pStbNewsMark->SetText( GetDisplayStringManager()->GetString( DST_BUDOKAI_TYPE_ADULT_TITLE ) ); */
 	}
 	else
@@ -590,7 +590,7 @@ void CTBNewsGui::UpdateInterface()
 }
 
 /**
-* \brief ÇöÀçÀÇ »óÅÂ¿¡¼­ ¾Ë¸ÂÀº ¹öÆ°À» Ãâ·ÂÇÑ´Ù.
+* \brief í˜„ìž¬ì˜ ìƒíƒœì—ì„œ ì•Œë§žì€ ë²„íŠ¼ì„ ì¶œë ¥í•œë‹¤.
 */
 void CTBNewsGui::UpdateButtons()
 {
@@ -614,7 +614,7 @@ void CTBNewsGui::UpdateButtons()
 		pMainStateInfo->byState != BUDOKAI_STATE_JUNIOR_OPEN )
 		return;
 	
-	// ½ÅÃ» ¹öÆ° ¹× Á¢¼öÁõ ¹öÆ°
+	// ì‹ ì²­ ë²„íŠ¼ ë° ì ‘ìˆ˜ì¦ ë²„íŠ¼
 	if( pJoinInfo->byJoinState == BUDOKAI_JOIN_STATE_PLAY )
 	{
 		if( pIndividualMatch->byState != BUDOKAI_MATCHSTATE_MATCH_END &&
@@ -632,7 +632,7 @@ void CTBNewsGui::UpdateButtons()
 			m_pBtnPartyRequest->Show( true );
 	}
 
-	// ´ëÁøÇ¥ ¹öÆ°
+	// ëŒ€ì§„í‘œ ë²„íŠ¼
 	if( pIndividualMatch->byState >= BUDOKAI_MATCHSTATE_MAJORMATCH_32 &&
 		pIndividualMatch->byState <= BUDOKAI_MATCHSTATE_MATCH_END)
 	{
@@ -646,7 +646,7 @@ void CTBNewsGui::UpdateButtons()
 }
 
 /**
-* \brief ´Ý±â
+* \brief ë‹«ê¸°
 */
 void CTBNewsGui::OnClickedBtnClose( gui::CComponent* pComponent )
 {
@@ -654,7 +654,7 @@ void CTBNewsGui::OnClickedBtnClose( gui::CComponent* pComponent )
 }
 
 /**
-* \brief ½ÅÃ»¼­ GUI ¿­±â
+* \brief ì‹ ì²­ì„œ GUI ì—´ê¸°
 */
 void CTBNewsGui::OnClickedBtnSoloRequest( gui::CComponent* pComponent )
 {
@@ -674,7 +674,7 @@ void CTBNewsGui::OnClickedBtnPartyRequest( gui::CComponent* pComponent )
 {
 	if( !Logic_I_am_PartyLeader() )
 	{
-		// ÆÄÆ¼¸®´õ¸¸ ½ÅÃ»ÇÒ ¼ö ÀÖ½À´Ï´Ù.
+		// íŒŒí‹°ë¦¬ë”ë§Œ ì‹ ì²­í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
 		GetAlarmManager()->AlarmMessage( "DST_BUDOKAI_NEWS_CAN_ONLY_LEADER" );
 		return;
 	}
@@ -713,7 +713,7 @@ void CTBNewsGui::OnClickedBtnLicense( gui::CComponent* pComponent )
 }
 
 /**
-* \brief ´ëÁøÇ¥ GUI ¿­±â
+* \brief ëŒ€ì§„í‘œ GUI ì—´ê¸°
 */
 void CTBNewsGui::OnClickedBtnTournenment( gui::CComponent* pComponent )
 {
@@ -721,13 +721,13 @@ void CTBNewsGui::OnClickedBtnTournenment( gui::CComponent* pComponent )
 }
 
 /**
-* \brief Info BoxÀÇ À§Ä¡¸¦ ÃÊ±âÈ­ÇÑ´Ù.
+* \brief Info Boxì˜ ìœ„ì¹˜ë¥¼ ì´ˆê¸°í™”í•œë‹¤.
 */
 void CTBNewsGui::InitInfoBox()
 {
 	CRectangle rtScreen = m_pDlgInfo->GetScreenRect();
 
-	// StaticBox  À§Ä¡ÀÇ ÃÊ±âÈ­
+	// StaticBox  ìœ„ì¹˜ì˜ ì´ˆê¸°í™”
 	m_fBoxPresentPosX[0] = (RwReal)rtScreen.GetWidth();
 	m_paStbInfoBox[0]->SetPosition( (RwInt32)m_fBoxPresentPosX[0], 0 );
 	m_paStbInfoBox[0]->GetFitWidthToString();
@@ -737,7 +737,7 @@ void CTBNewsGui::InitInfoBox()
 }
 
 /**
-* \brief ´ÙÀ½ »óÅÂ¿¡ ´ëÇÑ ¸Þ½ÃÁö¸¦ °¡Á®¿Â´Ù.
+* \brief ë‹¤ìŒ ìƒíƒœì— ëŒ€í•œ ë©”ì‹œì§€ë¥¼ ê°€ì ¸ì˜¨ë‹¤.
 */
 WCHAR* CTBNewsGui::GetNextStepString( RwUInt8 byMatchType )
 {
@@ -851,9 +851,9 @@ WCHAR* CTBNewsGui::GetNextStepString( RwUInt8 byMatchType )
 }
 
 /**
-* \brief InfoBoxÀÇ ¹øÈ£¿Í ÄÄÆ÷³ÍÆ®·Î ÀÎÆ÷¹Ú½ºÀÇ ÇöÀç »óÅÂ¿¡ ¸Â´Â ÅØ½ºÆ®¸¦ Ãâ·ÂÇÑ´Ù.
-* \param byInfoBoxNum			(RwUInt8) Á¤º¸ ¹Ú½ºÀÇ ¹øÈ£
-* \param pStbInfoBox			(gui::CStaticBox*) ÄÄÆ÷³ÍÆ®ÀÇ Æ÷ÀÎÅÍ
+* \brief InfoBoxì˜ ë²ˆí˜¸ì™€ ì»´í¬ë„ŒíŠ¸ë¡œ ì¸í¬ë°•ìŠ¤ì˜ í˜„ìž¬ ìƒíƒœì— ë§žëŠ” í…ìŠ¤íŠ¸ë¥¼ ì¶œë ¥í•œë‹¤.
+* \param byInfoBoxNum			(RwUInt8) ì •ë³´ ë°•ìŠ¤ì˜ ë²ˆí˜¸
+* \param pStbInfoBox			(gui::CStaticBox*) ì»´í¬ë„ŒíŠ¸ì˜ í¬ì¸í„°
 */
 void CTBNewsGui::SetInfoBox( RwUInt8 byInfoBoxNum, gui::CStaticBox* pStbInfoBox )
 {
@@ -863,15 +863,15 @@ void CTBNewsGui::SetInfoBox( RwUInt8 byInfoBoxNum, gui::CStaticBox* pStbInfoBox 
 		{
 			CNtlSobAvatar* pSobAvatar = GetNtlSLGlobal()->GetSobAvatar();
 			
-			// NULL ÀÏ ¶§´Â ¾Æ¹ÙÅ¸ »ý¼º Àü¿¡ Á¤º¸°¡ µé¾î¿ÔÀ» °æ¿ì
-			// NULLÀÌ ¾Æ´Ò ¶§´Â Á¤»óÀûÀ¸·Î µ¥ÀÌÅÍ°¡ ¼ÂÆÃ µÇ¾úÀ» °æ¿ì
+			// NULL ì¼ ë•ŒëŠ” ì•„ë°”íƒ€ ìƒì„± ì „ì— ì •ë³´ê°€ ë“¤ì–´ì™”ì„ ê²½ìš°
+			// NULLì´ ì•„ë‹ ë•ŒëŠ” ì •ìƒì ìœ¼ë¡œ ë°ì´í„°ê°€ ì…‹íŒ… ë˜ì—ˆì„ ê²½ìš°
 			sBUDOKAI_JOIN_INFO* pJoinInfo = pSobAvatar->GetTenkaichiBudokai()->GetBudokaiJoinInfo();
 			if( pSobAvatar == NULL )
 				pJoinInfo = &GetNtlSLGlobal()->GetTBudokaiStateInfo()->sJoinInfo;
 			else
 				pJoinInfo = pSobAvatar->GetTenkaichiBudokai()->GetBudokaiJoinInfo();	
 
-			// ½ÅÃ» ¹öÆ°
+			// ì‹ ì²­ ë²„íŠ¼
 			if( pJoinInfo->byJoinState == INVALID_BUDOKAI_JOIN_STATE )
 			{
 				pStbInfoBox->SetText( GetDisplayStringManager()->GetString( "DST_BUDOKAI_NEWS_YOU_ARE_NOT_ENTRANT" ) );
@@ -919,7 +919,7 @@ void CTBNewsGui::SetInfoBox( RwUInt8 byInfoBoxNum, gui::CStaticBox* pStbInfoBox 
 }
 
 /**
-* \brief Áö±Ý ÇöÀç ¶ß°í ÀÖ´Â Á¤º¸ÀÇ ÅØ½ºÆ®°¡ º¯°æµÇ¾î¾ß ÇÑ´Ù¸é º¯°æÇØÁÖ°í À§Ä¡¸¦ ¸ÂÃçÁØ´Ù.
+* \brief ì§€ê¸ˆ í˜„ìž¬ ëœ¨ê³  ìžˆëŠ” ì •ë³´ì˜ í…ìŠ¤íŠ¸ê°€ ë³€ê²½ë˜ì–´ì•¼ í•œë‹¤ë©´ ë³€ê²½í•´ì£¼ê³  ìœ„ì¹˜ë¥¼ ë§žì¶°ì¤€ë‹¤.
 */
 void CTBNewsGui::UpdateInstanceInfo()
 {
@@ -928,7 +928,7 @@ void CTBNewsGui::UpdateInstanceInfo()
 		RwInt32 nOldWidth = m_paStbInfoBox[i]->GetScreenRect().GetWidth();
 		SetInfoBox( m_aBoxPresentInfo[i], m_paStbInfoBox[i] );
 
-		// ¸¸¾à Å©±â°¡ º¯°æµÇ¾ú´Âµ¥ ÇöÀçÀÇ ¹Ú½º°¡ Ã¹¹øÂ° ¹Ú½º¶ó¸é µÚ¿¡ ÀÖ´Â ¹Ú½ºÀÇ À§Ä¡¸¦ ¸ÂÃçÁØ´Ù.
+		// ë§Œì•½ í¬ê¸°ê°€ ë³€ê²½ë˜ì—ˆëŠ”ë° í˜„ìž¬ì˜ ë°•ìŠ¤ê°€ ì²«ë²ˆì§¸ ë°•ìŠ¤ë¼ë©´ ë’¤ì— ìžˆëŠ” ë°•ìŠ¤ì˜ ìœ„ì¹˜ë¥¼ ë§žì¶°ì¤€ë‹¤.
 		if( nOldWidth != m_paStbInfoBox[i]->GetScreenRect().GetWidth() )
 		{
 			RwInt32 nOtherBox = (i+1) % dTBNEWS_INFO_BOX_NUMS;
@@ -949,7 +949,7 @@ void CTBNewsGui::UpdateInstanceInfo()
 
 void CTBNewsGui::SetNews( RwUInt8 byIndiMatchState, RwUInt8 byTeamMatchState )
 {
-	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ Å×ÀÌºí
+	// ì²œí•˜ì œì¼ ë¬´ë„íšŒ í…Œì´ë¸”
 	CBudokaiTable* pBudokaiTable = API_GetTableContainer()->GetBudokaiTable();
 	if( !pBudokaiTable )
 	{
@@ -957,7 +957,7 @@ void CTBNewsGui::SetNews( RwUInt8 byIndiMatchState, RwUInt8 byTeamMatchState )
 		return;
 	}
 
-	// ºÎµµÄ«ÀÌ Å×ÀÌºí Á¤º¸
+	// ë¶€ë„ì¹´ì´ í…Œì´ë¸” ì •ë³´
 	sBUDOKAI_TBLINFO* pBudokaiTblInfo = pBudokaiTable->GetBudokaiTblInfo();
 	if( !pBudokaiTblInfo )
 	{
@@ -989,10 +989,10 @@ void CTBNewsGui::SetNews( RwUInt8 byIndiMatchState, RwUInt8 byTeamMatchState )
 		}
 		else
 		{
-			// Set Çìµå¶óÀÎ
+			// Set í—¤ë“œë¼ì¸
 			m_pStbHeadLine->SetText( GetDisplayStringManager()->GetString( "DST_BUDOKAI_NEWS_HEADLINE_MAJOR" ) );
 
-			// ·£´ý Html
+			// ëžœë¤ Html
 			RwUInt8 byRandomNews = (RwUInt8)gui::RandomNumber( 0, BUDOKAI_NEW_FILE_COUNT-1 );
 
 			CHAR acBuffer[256];
@@ -1015,8 +1015,8 @@ void CTBNewsGui::SetMatchNotice( RwUInt8 byIndiMatchState, RwUInt8 byTeamMatchSt
 	sBUDOKAI_UPDATE_MATCH_STATE_INFO* pIndividualMatch;
 	sBUDOKAI_UPDATE_MATCH_STATE_INFO* pTeamMatch;
 
-	// NULL ÀÏ ¶§´Â ¾Æ¹ÙÅ¸ »ý¼º Àü¿¡ Á¤º¸°¡ µé¾î¿ÔÀ» °æ¿ì
-	// NULLÀÌ ¾Æ´Ò ¶§´Â Á¤»óÀûÀ¸·Î µ¥ÀÌÅÍ°¡ ¼ÂÆÃ µÇ¾úÀ» °æ¿ì
+	// NULL ì¼ ë•ŒëŠ” ì•„ë°”íƒ€ ìƒì„± ì „ì— ì •ë³´ê°€ ë“¤ì–´ì™”ì„ ê²½ìš°
+	// NULLì´ ì•„ë‹ ë•ŒëŠ” ì •ìƒì ìœ¼ë¡œ ë°ì´í„°ê°€ ì…‹íŒ… ë˜ì—ˆì„ ê²½ìš°
 	if( pSobAvatar == NULL )
 	{
 		pMainStateInfo = &GetNtlSLGlobal()->GetTBudokaiStateInfo()->sStateInfo;
@@ -1032,7 +1032,7 @@ void CTBNewsGui::SetMatchNotice( RwUInt8 byIndiMatchState, RwUInt8 byTeamMatchSt
 		pTeamMatch = pSobAvatar->GetTenkaichiBudokai()->GetTeamMatchStateInfo();
 	}
 
-	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ Å×ÀÌºí
+	// ì²œí•˜ì œì¼ ë¬´ë„íšŒ í…Œì´ë¸”
 	CBudokaiTable* pBudokaiTable = API_GetTableContainer()->GetBudokaiTable();
 	if( !pBudokaiTable )
 	{
@@ -1040,7 +1040,7 @@ void CTBNewsGui::SetMatchNotice( RwUInt8 byIndiMatchState, RwUInt8 byTeamMatchSt
 		return;
 	}
 
-	// ºÎµµÄ«ÀÌ Å×ÀÌºí Á¤º¸
+	// ë¶€ë„ì¹´ì´ í…Œì´ë¸” ì •ë³´
 	sBUDOKAI_TBLINFO* pBudokaiTblInfo = pBudokaiTable->GetBudokaiTblInfo();
 	if( !pBudokaiTblInfo )
 	{
@@ -1092,7 +1092,7 @@ void CTBNewsGui::SetMatchNotice( RwUInt8 byIndiMatchState, RwUInt8 byTeamMatchSt
 		return;
 	}
 
-	// Upper °øÁö´Â °³ÀÎÀü »óÅÂ¿¡ µû¶ó ÀÏÁ¤À» °øÁöÇÑ´Ù.
+	// Upper ê³µì§€ëŠ” ê°œì¸ì „ ìƒíƒœì— ë”°ë¼ ì¼ì •ì„ ê³µì§€í•œë‹¤.
 	if( byIndiMatchState == BUDOKAI_MATCHSTATE_REGISTER )
 	{
 		UpdateNoticeImage( NIT_STATE_GUIDE );
@@ -1105,7 +1105,7 @@ void CTBNewsGui::SetMatchNotice( RwUInt8 byIndiMatchState, RwUInt8 byTeamMatchSt
 		}
 		else
 		{
-			// °³ÀÎÀü ¿¹¼± ½ÅÃ» ¾È³»
+			// ê°œì¸ì „ ì˜ˆì„  ì‹ ì²­ ì•ˆë‚´
 			tm tmWaitStart;
 			tm tmWaitEnd;
 
@@ -1129,7 +1129,7 @@ void CTBNewsGui::SetMatchNotice( RwUInt8 byIndiMatchState, RwUInt8 byTeamMatchSt
 	{
 		switch( byIndiMatchState )
 		{
-		case BUDOKAI_MATCHSTATE_WAIT_MINOR_MATCH:		// ¿¹¼±Àü ´ë±â			
+		case BUDOKAI_MATCHSTATE_WAIT_MINOR_MATCH:		// ì˜ˆì„ ì „ ëŒ€ê¸°			
 			{
 				UpdateNoticeImage( NIT_STATE_GUIDE );
 
@@ -1202,8 +1202,8 @@ void CTBNewsGui::SetMatchNotice( RwUInt8 byIndiMatchState, RwUInt8 byTeamMatchSt
 				}
 			}
 			break;
-		case BUDOKAI_MATCHSTATE_WAIT_SEMIFINAL_MATCH:	// ÁØ°á½Â ´ë±â
-		case BUDOKAI_MATCHSTATE_WAIT_FINAL_MATCH:		// °á½Â ´ë±â : »ç¿ëÇÏÁö ¾ÊÀ½
+		case BUDOKAI_MATCHSTATE_WAIT_SEMIFINAL_MATCH:	// ì¤€ê²°ìŠ¹ ëŒ€ê¸°
+		case BUDOKAI_MATCHSTATE_WAIT_FINAL_MATCH:		// ê²°ìŠ¹ ëŒ€ê¸° : ì‚¬ìš©í•˜ì§€ ì•ŠìŒ
 			{
 				UpdateNoticeImage( NIT_STATE_GUIDE );
 
@@ -1241,9 +1241,9 @@ void CTBNewsGui::SetMatchNotice( RwUInt8 byIndiMatchState, RwUInt8 byTeamMatchSt
 		case BUDOKAI_MATCHSTATE_MAJORMATCH_08:
 		case BUDOKAI_MATCHSTATE_MAJORMATCH_16:
 		case BUDOKAI_MATCHSTATE_MAJORMATCH_32:
-		case BUDOKAI_MATCHSTATE_SEMIFINAL_MATCH:		// ÁØ°á½Â
-		case BUDOKAI_MATCHSTATE_MINOR_MATCH:			// ¿¹¼±Àü 
-		case BUDOKAI_MATCHSTATE_FINAL_MATCH:			// °á½Â
+		case BUDOKAI_MATCHSTATE_SEMIFINAL_MATCH:		// ì¤€ê²°ìŠ¹
+		case BUDOKAI_MATCHSTATE_MINOR_MATCH:			// ì˜ˆì„ ì „ 
+		case BUDOKAI_MATCHSTATE_FINAL_MATCH:			// ê²°ìŠ¹
 			{
 				UpdateNoticeImage( NIT_STATE_GUIDE );
 
@@ -1251,10 +1251,10 @@ void CTBNewsGui::SetMatchNotice( RwUInt8 byIndiMatchState, RwUInt8 byTeamMatchSt
 				m_pStbNoticeText[TL_2]->SetText( Logic_GetStringTBMatchState( byIndiMatchState ) );
 			}
 			break;
-		case BUDOKAI_MATCHSTATE_MATCH_END:				// ³¡. À¯¿¹½Ã°£
+		case BUDOKAI_MATCHSTATE_MATCH_END:				// ë. ìœ ì˜ˆì‹œê°„
 			m_pStbNoticeText[TL_1]->SetText( GetDisplayStringManager()->GetString("DST_BUDOKAI_NEWS_NOTICE_INDI_WINNER") );
 			m_pStbNoticeText[TL_2]->Clear();
-			//  ÆÐÅ¶ ¿äÃ»
+			//  íŒ¨í‚· ìš”ì²­
 			GetDboGlobal()->GetGamePacketGenerator()->SendBudokaiPrizeWinnerNameReq();
 			break;
 		}
@@ -1272,7 +1272,7 @@ void CTBNewsGui::SetMatchNotice( RwUInt8 byIndiMatchState, RwUInt8 byTeamMatchSt
 		}
 		else
 		{
-			// °³ÀÎÀü ¿¹¼± ½ÅÃ» ¾È³»
+			// ê°œì¸ì „ ì˜ˆì„  ì‹ ì²­ ì•ˆë‚´
 			tm tmWaitStart;
 			tm tmWaitEnd;
 
@@ -1296,7 +1296,7 @@ void CTBNewsGui::SetMatchNotice( RwUInt8 byIndiMatchState, RwUInt8 byTeamMatchSt
 	{
 		switch( byTeamMatchState )
 		{
-		case BUDOKAI_MATCHSTATE_WAIT_MINOR_MATCH:		// ¿¹¼±Àü ´ë±â
+		case BUDOKAI_MATCHSTATE_WAIT_MINOR_MATCH:		// ì˜ˆì„ ì „ ëŒ€ê¸°
 			{
 				UpdateNoticeImage( NIT_STATE_GUIDE );
 
@@ -1368,8 +1368,8 @@ void CTBNewsGui::SetMatchNotice( RwUInt8 byIndiMatchState, RwUInt8 byTeamMatchSt
 				}
 			}
 			break;
-		case BUDOKAI_MATCHSTATE_WAIT_SEMIFINAL_MATCH:	// ÁØ°á½Â ´ë±â
-		case BUDOKAI_MATCHSTATE_WAIT_FINAL_MATCH:		// °á½Â ´ë±â : »ç¿ëÇÏÁö ¾ÊÀ½
+		case BUDOKAI_MATCHSTATE_WAIT_SEMIFINAL_MATCH:	// ì¤€ê²°ìŠ¹ ëŒ€ê¸°
+		case BUDOKAI_MATCHSTATE_WAIT_FINAL_MATCH:		// ê²°ìŠ¹ ëŒ€ê¸° : ì‚¬ìš©í•˜ì§€ ì•ŠìŒ
 			{
 				UpdateNoticeImage( NIT_STATE_GUIDE );
 
@@ -1404,11 +1404,11 @@ void CTBNewsGui::SetMatchNotice( RwUInt8 byIndiMatchState, RwUInt8 byTeamMatchSt
 				}
 			}
 			break;
-		case BUDOKAI_MATCHSTATE_MINOR_MATCH:				// ¿¹¼±Àü 
+		case BUDOKAI_MATCHSTATE_MINOR_MATCH:				// ì˜ˆì„ ì „ 
 		case BUDOKAI_MATCHSTATE_MAJORMATCH_16:
 		case BUDOKAI_MATCHSTATE_MAJORMATCH_08:
-		case BUDOKAI_MATCHSTATE_SEMIFINAL_MATCH:			// ÁØ°á½Â
-		case BUDOKAI_MATCHSTATE_FINAL_MATCH:				// °á½Â
+		case BUDOKAI_MATCHSTATE_SEMIFINAL_MATCH:			// ì¤€ê²°ìŠ¹
+		case BUDOKAI_MATCHSTATE_FINAL_MATCH:				// ê²°ìŠ¹
 			{
 				UpdateNoticeImage( NIT_STATE_GUIDE );
 
@@ -1416,7 +1416,7 @@ void CTBNewsGui::SetMatchNotice( RwUInt8 byIndiMatchState, RwUInt8 byTeamMatchSt
 				m_pStbNoticeText[TL_4]->SetText( Logic_GetStringTBMatchState( byTeamMatchState ) );
 			}
 			break;
-		case BUDOKAI_MATCHSTATE_MATCH_END:				// ³¡. À¯¿¹½Ã°£
+		case BUDOKAI_MATCHSTATE_MATCH_END:				// ë. ìœ ì˜ˆì‹œê°„
 			UpdateNoticeImage( NIT_STATE_GUIDE );
 
 			m_pStbNoticeText[TL_3]->SetText( GetDisplayStringManager()->GetString("DST_BUDOKAI_NEWS_NOTICE_TEAM_WINNER") );
@@ -1447,7 +1447,7 @@ void CTBNewsGui::SetPrizeText( eNoticeType eNitType, RwUInt8 byMatchType, gui::C
 
 		if( uiWinnerLength > 0 && uiSecondWinnerLength > 0 )
 		{
-			// ¸ðµÎ Ãâ·Â
+			// ëª¨ë‘ ì¶œë ¥
 			WCHAR awcPrizeWinner[128];
 			swprintf_s( awcPrizeWinner, 128, GetDisplayStringManager()->GetString( uiStrPrizeWinner ), awcWinner );
 
@@ -1461,15 +1461,15 @@ void CTBNewsGui::SetPrizeText( eNoticeType eNitType, RwUInt8 byMatchType, gui::C
 		}
 		else if( uiWinnerLength > 0 )
 		{
-			// ¿ì½ÂÀÚ¸¸ Ãâ·Â
-			// ¸ðµÎ Ãâ·Â
+			// ìš°ìŠ¹ìžë§Œ ì¶œë ¥
+			// ëª¨ë‘ ì¶œë ¥
 			WCHAR awcPrizeWinner[128];
 			swprintf_s( awcPrizeWinner, 128, GetDisplayStringManager()->GetString( uiStrPrizeWinner ), awcWinner );
 			pComponent->SetText( awcPrizeWinner );
 		}
 		else
 		{
-			// ¼ö»óÀÚ°¡ ¾ø½À´Ï´Ù.
+			// ìˆ˜ìƒìžê°€ ì—†ìŠµë‹ˆë‹¤.
 			pComponent->SetText( GetDisplayStringManager()->GetString( uiStrNotPrize ) );
 		}
 	}
@@ -1488,7 +1488,7 @@ void CTBNewsGui::SetPrizeText( eNoticeType eNitType, RwUInt8 byMatchType, gui::C
 			uiMatchType = "DST_BUDOKAI_NOTICE_PARTY";
 		}
 
-		// °³ÀÎÀü : ¿ì½ÂÀÚ / ÀÌ¸§, ÁØ ¿ì½ÂÀÚ / ÀÌ¸§
+		// ê°œì¸ì „ : ìš°ìŠ¹ìž / ì´ë¦„, ì¤€ ìš°ìŠ¹ìž / ì´ë¦„
 		// %s: %s / %s, %s / %s
 		if( uiWinnerLength > 0 && uiSecondWinnerLength > 0 )
 		{

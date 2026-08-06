@@ -2,11 +2,11 @@
 *
 * File			: DBODirectorIndicate
 * Author		: agebreak
-* Copyright	: (ÁÖ)NTL
+* Copyright	: (ì£¼)NTL
 * Date			: 2007. 11. 20	
 * Abstract		: 
 *****************************************************************************
-* Desc         : TS/TMQ¿¡ »ç¿ëµÇ´Â ¹æÇâ Áö½Ã ½Ã½ºÅÛ ±¸Çö Å¬·¡½º
+* Desc         : TS/TMQì— ì‚¬ìš©ë˜ëŠ” ë°©í–¥ ì§€ì‹œ ì‹œìŠ¤í…œ êµ¬í˜„ í´ë˜ìŠ¤
 *
 *****************************************************************************/
 #pragma once
@@ -18,7 +18,7 @@
 class CNtlPLCharacter;
 class CNtlInstanceEffect;
 
-/// TS/TMQ¿¡ »ç¿ëµÇ´Â ¹æÇâ Áö½Ã ½Ã½ºÅÛ ±¸Çö Å¬·¡½º
+/// TS/TMQì— ì‚¬ìš©ë˜ëŠ” ë°©í–¥ ì§€ì‹œ ì‹œìŠ¤í…œ êµ¬í˜„ í´ë˜ìŠ¤
 class CDBODirectorIndicate
 {
 public:
@@ -32,17 +32,17 @@ public:
     VOID   SetCharacter(CNtlPLCharacter* pPLCharacter) {m_pCharacter = pPLCharacter;}
 
 protected:
-    RwBool      CreateDirector();        ///< ¹æÇâ Áö½Ã ¿ÀºêÁ§Æ®¸¦ »ı¼ºÇÑ´Ù.
-    RwBool      CreateTargetEffect();    ///< Å¸°ÔÆÃ ÀÌÆåÆ®¸¦ »ı¼ºÇÑ´Ù.       
-    RwBool      CalcDistance();          ///< °Å¸®¸¦ °è»êÇÑ´Ù.
-    VOID        UpdateDirection();       ///< ¿ÀºêÁ§Æ®ÀÇ ¹æÇâÀ» ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
-    VOID        SetVisibleEffect(RwBool bVisible);  ///< ÀÌÆåÆ®µéÀÇ Ç¥Çö À¯¹«¸¦ ¼³Á¤ÇÑ´Ù.                
-    VOID        SetTargetEffectPos(RwV3d vPos);    ///< Å¸°Ù ÀÌÆåÆ®¸¦ Å¸°Ù À§Ä¡¿¡ À§Ä¡½ÃÅ²´Ù.
+    RwBool      CreateDirector();        ///< ë°©í–¥ ì§€ì‹œ ì˜¤ë¸Œì íŠ¸ë¥¼ ìƒì„±í•œë‹¤.
+    RwBool      CreateTargetEffect();    ///< íƒ€ê²ŒíŒ… ì´í™íŠ¸ë¥¼ ìƒì„±í•œë‹¤.       
+    RwBool      CalcDistance();          ///< ê±°ë¦¬ë¥¼ ê³„ì‚°í•œë‹¤.
+    VOID        UpdateDirection();       ///< ì˜¤ë¸Œì íŠ¸ì˜ ë°©í–¥ì„ ì—…ë°ì´íŠ¸í•œë‹¤.
+    VOID        SetVisibleEffect(RwBool bVisible);  ///< ì´í™íŠ¸ë“¤ì˜ í‘œí˜„ ìœ ë¬´ë¥¼ ì„¤ì •í•œë‹¤.                
+    VOID        SetTargetEffectPos(RwV3d vPos);    ///< íƒ€ê²Ÿ ì´í™íŠ¸ë¥¼ íƒ€ê²Ÿ ìœ„ì¹˜ì— ìœ„ì¹˜ì‹œí‚¨ë‹¤.
 
 protected:
-    CNtlPLCharacter*                    m_pCharacter;             ///< ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ    
-    CNtlInstanceEffect*                 m_pDirectorEffect;        ///< ¹æÇâ Áö½Ã¸¦ Ç¥½ÃÇÏ´Â ÀÌÆåÆ®
-    CNtlInstanceEffect*                 m_pTargetEffect;          ///< Å¸°ÙÀ» ³ªÅ¸³»´Â ÀÌÆåÆ®            
-    RwV3d                               m_vTargetPos;             ///< Å¸°ÙÀÇ À§Ä¡
-    RwBool                              m_bUpdate;                ///< ¾÷µ¥ÀÌÆ® À¯¹« ÇÃ·¡±×
+    CNtlPLCharacter*                    m_pCharacter;             ///< í”Œë ˆì´ì–´ ìºë¦­í„°    
+    CNtlInstanceEffect*                 m_pDirectorEffect;        ///< ë°©í–¥ ì§€ì‹œë¥¼ í‘œì‹œí•˜ëŠ” ì´í™íŠ¸
+    CNtlInstanceEffect*                 m_pTargetEffect;          ///< íƒ€ê²Ÿì„ ë‚˜íƒ€ë‚´ëŠ” ì´í™íŠ¸            
+    RwV3d                               m_vTargetPos;             ///< íƒ€ê²Ÿì˜ ìœ„ì¹˜
+    RwBool                              m_bUpdate;                ///< ì—…ë°ì´íŠ¸ ìœ ë¬´ í”Œë˜ê·¸
 };

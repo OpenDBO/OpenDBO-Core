@@ -1,4 +1,4 @@
-// TSEvtMaker.cpp : ÀÀ¿ë ÇÁ·Î±×·¥¿¡ ´ëÇÑ ÁøÀÔÁ¡À» Á¤ÀÇÇÕ´Ï´Ù.
+// TSEvtMaker.cpp : ì‘ìš© í”„ë¡œê·¸ëž¨ì— ëŒ€í•œ ì§„ìž…ì ì„ ì •ì˜í•©ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -152,7 +152,7 @@ int APIENTRY _tWinMain( HINSTANCE hInstance,
 	std::string strOutputName = strOutputFolder + "evt.e";
 
 	{
-		// ÆÄÀÏ ·Îµù
+		// íŒŒì¼ ë¡œë”©
 		FILE* pFile;
 		fopen_s( &pFile, strZipName.c_str(), "rb" );
 
@@ -171,7 +171,7 @@ int APIENTRY _tWinMain( HINSTANCE hInstance,
 
 		fclose( pFile );
 
-		// ¾ÏÈ£È­
+		// ì•”í˜¸í™”
 		std::string strKey = "dnfldbofmftkfkdgowntpdy";
 		CNtlCipher Cipher;
 		Cipher.SetKey( DES_CIPHER, strKey.c_str(), strKey.size() );
@@ -179,7 +179,7 @@ int APIENTRY _tWinMain( HINSTANCE hInstance,
 		ZeroMemory( pEncryptBuf, nReadSize+256 );
 		int nEncSize = Cipher.Encrypt( pReadBuf, nReadSize, pEncryptBuf, nReadSize+256 );
 
-		// ÆÄÀÏ¿¡ ±â·Ï
+		// íŒŒì¼ì— ê¸°ë¡
 		fopen_s( &pFile, strOutputName.c_str(), "wb" );
 
 		if ( NULL == pFile )
@@ -207,14 +207,14 @@ int APIENTRY _tWinMain( HINSTANCE hInstance,
 	std::string strDestFile = strCopyFoler + "evt.e";
 	std::string strSrcFile = strOutputFolder + "evt.e";
 
-	// º¹»ç ½Ãµµ
+	// ë³µì‚¬ ì‹œë„
 	bool bCopyFailed = true;
 	int nCopyCnt = 10;
 	while ( nCopyCnt-- > 0 )
 	{
 		if ( !::CopyFile( strSrcFile.c_str(), strDestFile.c_str(), FALSE ) )
 		{
-			// Read only ¼Ó¼ºÀ» ¾ø¾Ö°í º¹»ç¸¦ ½ÃµµÇØµµ º¹»ç°¡ ½ÇÆÐÇÑ °æ¿ì
+			// Read only ì†ì„±ì„ ì—†ì• ê³  ë³µì‚¬ë¥¼ ì‹œë„í•´ë„ ë³µì‚¬ê°€ ì‹¤íŒ¨í•œ ê²½ìš°
 			CNtlTSLog::Log( "Can not copy the file[%u]. %s => %s", GetLastError(), strSrcFile.c_str(), strDestFile.c_str() );
 
 			Sleep( 100 );

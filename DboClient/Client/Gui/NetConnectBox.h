@@ -1,10 +1,10 @@
 ///******************************************************************************
 //* File			: NetConnectBox.h
 //* Author		: Hong SungBock
-//* Copyright		: (ÁÖ)NTL
+//* Copyright		: (ì£¼)NTL
 //* Date			: 2007. 1. 4
 //* Update		: 2007. 10. 15
-//* Abstract		: network connect Àü¿ë box
+//* Abstract		: network connect ì „ìš© box
 //*****************************************************************************
 //* Desc			: CNetConnectBox
 //*****************************************************************************/
@@ -38,7 +38,7 @@
 //	CNetConnectBox() {}
 //	VOID			HandleEvents( RWS::CMsg &msg );	
 //	
-//	VOID			CalcBoxSize();				///< ÁÖ¾îÁø ¸Þ¼¼Áö¿¡ ¸Â´Â ¹Ú½º¸¦ ¸¸µç´Ù
+//	VOID			CalcBoxSize();				///< ì£¼ì–´ì§„ ë©”ì„¸ì§€ì— ë§žëŠ” ë°•ìŠ¤ë¥¼ ë§Œë“ ë‹¤
 //	VOID			SetText();
 //	VOID			ProcessCancel();
 //	VOID			SwitchDialog(bool bSwitch);
@@ -53,20 +53,20 @@
 //	gui::CSlot			m_slotOk;
 //	gui::CSlot			m_slotCencle;
 //
-//	CWindowby3			m_Backboard;			///< ¹è°æ 
-//	CWindowby3			m_Panel;				///< ±ÛÀÚ ¹è°æ Æ²
+//	CWindowby3			m_Backboard;			///< ë°°ê²½ 
+//	CWindowby3			m_Panel;				///< ê¸€ìž ë°°ê²½ í‹€
 //
 //	gui::CButton*		m_pOkBtn;
 //	gui::CButton*		m_pCancelBtn;
 //
-//	gui::CStaticBox*	m_pMessage;				///< ¸Þ¼¼Áö ³»¿ë
+//	gui::CStaticBox*	m_pMessage;				///< ë©”ì„¸ì§€ ë‚´ìš©
 //
-//	std::wstring		m_wstrString;			///< ¿øº» ¸Þ¼¼Áö
-//	RwUInt8				m_byMsgBoxType;			///< ¸Þ¼¼Áö ¹Ú½º ¸ð¾ç Å¸ÀÔ
-//	RwUInt32			m_uiMsgProcessType;		///< ¸Þ¼¼Áö Ã³¸® Å¸ÀÔ
-//	RwReal				m_fRemainTime;			///< ¾÷µ¥ÀÌÆ® Å¸ÀÓ
-//	sMsgBoxData			m_ExData;				///< ¸Þ¼¼Áö È®Àå µ¥ÀÌÅ¸
+//	std::wstring		m_wstrString;			///< ì›ë³¸ ë©”ì„¸ì§€
+//	RwUInt8				m_byMsgBoxType;			///< ë©”ì„¸ì§€ ë°•ìŠ¤ ëª¨ì–‘ íƒ€ìž…
+//	RwUInt32			m_uiMsgProcessType;		///< ë©”ì„¸ì§€ ì²˜ë¦¬ íƒ€ìž…
+//	RwReal				m_fRemainTime;			///< ì—…ë°ì´íŠ¸ íƒ€ìž„
+//	sMsgBoxData			m_ExData;				///< ë©”ì„¸ì§€ í™•ìž¥ ë°ì´íƒ€
 //
-//	RwBool				m_bRemainTime;			///< ¸Þ¼¼Áö ¹Ú½º¸¦ º¸¿©ÁÖ´Â Á¦ÇÑ ½Ã°£ÀÌ ÀÖ´ÂÁö ¿©ºÎ
-//	const WCHAR*		m_pwcText;				///< ¸¶Áö¸·¿¡ º¸¿©ÁÖ¾ú´ø ½ºÆ®¸µ Å×ÀÌºí ÀÎµ¦½º
+//	RwBool				m_bRemainTime;			///< ë©”ì„¸ì§€ ë°•ìŠ¤ë¥¼ ë³´ì—¬ì£¼ëŠ” ì œí•œ ì‹œê°„ì´ ìžˆëŠ”ì§€ ì—¬ë¶€
+//	const WCHAR*		m_pwcText;				///< ë§ˆì§€ë§‰ì— ë³´ì—¬ì£¼ì—ˆë˜ ìŠ¤íŠ¸ë§ í…Œì´ë¸” ì¸ë±ìŠ¤
 //};

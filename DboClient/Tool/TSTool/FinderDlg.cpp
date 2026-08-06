@@ -1,4 +1,4 @@
-// FinderDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// FinderDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -110,7 +110,7 @@
 #include "Attr_ACT_Dojo.h"
 
 
-// CFinderDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CFinderDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CFinderDlg, CDialog)
 
@@ -240,7 +240,7 @@ BEGIN_MESSAGE_MAP(CFinderDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CFinderDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CFinderDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CFinderDlg::OnBnClickedFinderFindBtn()
 {
@@ -424,5 +424,5 @@ BOOL CFinderDlg::OnInitDialog()
 	}
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }

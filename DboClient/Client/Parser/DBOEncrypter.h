@@ -2,7 +2,7 @@
 
 #include "DboGlobal.h"
 
-/// DBO °ü·Ã ÄÁÇÇ±×¹× ½ºÅ©¸³Æ® ÆÄÀÏµéÀ» ¾ÏÈ£È­/º¹È£È­ ÇÏ´Â Å¬·¡½º
+/// DBO ê´€ë ¨ ì»¨í”¼ê·¸ë° ìŠ¤í¬ë¦½íŠ¸ íŒŒì¼ë“¤ì„ ì•”í˜¸í™”/ë³µí˜¸í™” í•˜ëŠ” í´ëž˜ìŠ¤
 class CDBOEncrypter
 {
 public:
@@ -10,17 +10,17 @@ public:
     ~CDBOEncrypter();    
 
     // ConfigOptions.Xml 
-    RwBool  EncryptConfig(const RwChar* szFilePath);                 ///< Config ÆÄÀÏÀ» EncryptÇÑ´Ù.
-    RwBool  DecryptConfig(OUT SConfigData* pConfigData, const RwChar* szFilePath);                 ///< Config ÆÄÀÏÀ» DecryptÇÑ´Ù.
+    RwBool  EncryptConfig(const RwChar* szFilePath);                 ///< Config íŒŒì¼ì„ Encryptí•œë‹¤.
+    RwBool  DecryptConfig(OUT SConfigData* pConfigData, const RwChar* szFilePath);                 ///< Config íŒŒì¼ì„ Decryptí•œë‹¤.
 
-    // Lua ÄÄÆÄÀÏ 
-    RwBool  CompileLuaFiles();                                      ///< Script Æú´õ¾È¿¡ ÀÖ´Â ¸ðµç Lua ÆÄÀÏµéÀ» ÄÄÆÄÀÏÇÑ´Ù.
+    // Lua ì»´íŒŒì¼ 
+    RwBool  CompileLuaFiles();                                      ///< Script í´ë”ì•ˆì— ìžˆëŠ” ëª¨ë“  Lua íŒŒì¼ë“¤ì„ ì»´íŒŒì¼í•œë‹¤.
 
 protected:    
     
 
     // ConfigOptions.Xml 
-    RwBool LoadConfigOptions(OUT SConfigData* pConfigData, const RwChar* szFilePath);             ///< Config ÆÄÀÏÀ» Load ÇÑ´Ù.
+    RwBool LoadConfigOptions(OUT SConfigData* pConfigData, const RwChar* szFilePath);             ///< Config íŒŒì¼ì„ Load í•œë‹¤.
     RwBool SaveConfigOptions(SConfigData* pConfigData, const RwChar* szDestPath, const RwChar* szCryptPassword);
 
 protected:

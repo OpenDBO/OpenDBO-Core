@@ -398,7 +398,7 @@ VOID CListBox_Generic::SelectItem( INT nIndex, bool bSelect )
 	}
 	else
 	{
-		// ���� �Ⱥ��̴� �ε����� �������� ���, �� �ε����� ù �ε����� �ϰ� ���.
+		// 현재 안보이는 인덱스를 선택했을 경우, 그 인덱스를 첫 인덱스로 하고 출력.
 		if( bSelect )
 			SetTopItem( nIndex );	
 	}	
@@ -508,7 +508,7 @@ VOID CListBox_Generic::SetBkMode( INT nBkMode )
 
 VOID CListBox_Generic::Sort( bool bAscending )
 {
-	// �̱���.
+	// 占싱깍옙占쏙옙.
 }
 
 VOID CListBox_Generic::ClearAll(VOID)
@@ -693,7 +693,7 @@ VOID CListBox_Generic::ReviseItem()
 	}
 }
 
-// ���̶���Ʈ, �ؽ�Ʈ ��°���.
+// 하이라이트, 텍스트 출력관련.
 VOID CListBox_Generic::DrawItem(VOID)
 {
 	ClearSelectionMasks();
@@ -1245,7 +1245,7 @@ VOID CListBox_Generic::OnResize(int nOldWidth, int nOldHeight)
 	CRectangle rect = m_pListBox->GetScreenRect();
 	std::list<CSurface>::iterator it;
 
-	// ListBox�� ����� �þ��. 
+	// ListBox의 배경은 늘어난다. 
 	for( it = m_listSurface.begin() ; it != m_listSurface.end() ; ++it )
 	{
 		(*it).m_SnapShot.rtRect.left = rect.left;

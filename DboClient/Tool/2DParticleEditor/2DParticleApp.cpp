@@ -29,14 +29,14 @@ gui::CGUIManager*			g_pGuiMgr;			///< Gui Manager
 C2DParticleApplication* C2DParticleApplication::m_pInstance = NULL;
 
 /**
-* \brief NTL ApplicationÀ» »ó¼Ó¹Ş¾Æ Particle EditorÀÇ ¾Ë¸ÂÀº ApplicationÀ» ±¸¼ºÇÑ´Ù.
+* \brief NTL Applicationì„ ìƒì†ë°›ì•„ Particle Editorì˜ ì•Œë§ì€ Applicationì„ êµ¬ì„±í•œë‹¤.
 */
 C2DParticleApplication::C2DParticleApplication() 
 : m_pCharset(NULL)
 {
 	m_pInstance = this;
 
-	// ¹è°æ »ö±ò
+	// ë°°ê²½ ìƒ‰ê¹”
 	m_BackgroundColor.red   = 90;
 	m_BackgroundColor.green = 90;
 	m_BackgroundColor.blue  = 90;
@@ -64,7 +64,7 @@ C2DParticleApplication::~C2DParticleApplication()
 }
 
 /**
-* \brief ÇÏÀ§ ½Ã½ºÅÛ »ı¼º
+* \brief í•˜ìœ„ ì‹œìŠ¤í…œ ìƒì„±
 */
 RwBool C2DParticleApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, RwBool zBuffer)
 {
@@ -104,15 +104,15 @@ RwBool C2DParticleApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight
 	m_pResMgr->AddPage( strResFile );
 	m_pSurMgr->AddPage( strSurFile );
 
-	// Particle Box »ı¼º
+	// Particle Box ìƒì„±
 	m_pPbComp = NTL_NEW gui::CParticleBox( CRectangle( 0, 0, 0, 0 ),
 		g_pGuiMgr, m_pSurMgr );
 
-	// ÃÊ±âÈ­ ¹× Infomation¿¡ Á¤º¸ ³¯·ÁÁÖ±â
+	// ì´ˆê¸°í™” ë° Infomationì— ì •ë³´ ë‚ ë ¤ì£¼ê¸°
 	GetInfomationPane()->SetResolution( m_iScreenWidth, m_iWindowHeight );
 	GetInfomationPane()->UpdateData( FALSE );
 
-	// Guide Line Áß¾Ó¿¡ ±×¸®±â
+	// Guide Line ì¤‘ì•™ì— ê·¸ë¦¬ê¸°
 	GetEditorView()->SetViewCenterPbOffset();
 
 	NTL_RETURN(TRUE);
@@ -131,7 +131,7 @@ RwBool C2DParticleApplication::Resize(RwUInt32 iWidth, RwUInt32 iHeight, RwBool 
 
 	CNtlApplication::Resize(iWidth, iHeight, zBuffer, bRestore_from_Minimize);
 
-	// ÃÊ±âÈ­ ¹× Infomation¿¡ Á¤º¸ ³¯·ÁÁÖ±â
+	// ì´ˆê¸°í™” ë° Infomationì— ì •ë³´ ë‚ ë ¤ì£¼ê¸°
 	GetInfomationPane()->SetResolution( iWidth, iHeight );
 
 	if(m_pCamera != NULL)
@@ -186,11 +186,11 @@ LRESULT C2DParticleApplication::PreTranslateMessage(HWND window, UINT message, W
 				INT nX = LOWORD(lParam);
 				INT nY = HIWORD(lParam);
 
-				// »õ ÁÂÇ¥ - ÀÌÀü ÁÂÇ¥
+				// ìƒˆ ì¢Œí‘œ - ì´ì „ ì¢Œí‘œ
 				INT nMovedX = nX - m_nOldX;
 				INT nMovedY = nY - m_nOldY;
 
-				// ÁÂÇ¥ °»½Å
+				// ì¢Œí‘œ ê°±ì‹ 
 				m_nOldX = nX;
 				m_nOldY = nY;
 
@@ -199,7 +199,7 @@ LRESULT C2DParticleApplication::PreTranslateMessage(HWND window, UINT message, W
 					SetParticleBoxMoveXY( nMovedX, nMovedY );
 				}
 				
-				// ¸¶¿ì½º ÁÂÇ¥ ¾÷µ¥ÀÌÆ®
+				// ë§ˆìš°ìŠ¤ ì¢Œí‘œ ì—…ë°ì´íŠ¸
 				GetInfomationPane()->SetClientMouse( nX, nY );
 				GetInfomationPane()->SetParticleMouse( nX - GetPBOffsetX(), nY - GetPBOffsetY() );
 			}
@@ -242,7 +242,7 @@ RwBool C2DParticleApplication::Update(RwReal fTime, RwReal fElapsedTime)
 
 	CEventTimer::KeepAlive();
 
-	// ÆÄÆ¼Å¬ ¹Ú½º ¾÷µ¥ÀÌÆ®
+	// íŒŒí‹°í´ ë°•ìŠ¤ ì—…ë°ì´íŠ¸
 	m_pPbComp->Update( fElapsedTime );
 
 	// Render
@@ -251,26 +251,26 @@ RwBool C2DParticleApplication::Update(RwReal fTime, RwReal fElapsedTime)
 		//Ready to render scene.
 		if( RwCameraBeginUpdate(m_pCamera->GetCamera()) )
 		{
-			// ·»´õ¸µ Àü¿¡ È£ÃâÇØÁà¾ß ÇÑ´Ù.
+			// ë Œë”ë§ ì „ì— í˜¸ì¶œí•´ì¤˜ì•¼ í•œë‹¤.
 			PreRender();
 
 			// Gui
 			g_GuiRenderer.ResetRender();
 
-			// ¹è°æ ·»´õ¸µ
+			// ë°°ê²½ ë Œë”ë§
 			GetBackManager()->Render();	
 
 			// Guide Line
 			GetGuideManager()->Render();
 			GetPathManager()->Render();
 
-			// Buffer¾È¿¡ ÀÖ´Â °ÍµéÀ» ·»´õ¸µ ÇÑ´Ù.
+			// Bufferì•ˆì— ìˆëŠ” ê²ƒë“¤ì„ ë Œë”ë§ í•œë‹¤.
 			g_GuiRenderer.Render();
 
 			if( g_pGuiMgr )
 				g_pGuiMgr->Show();
 
-			// ·»´õ¸µ ÈÄ¿¡ È£Ãâ
+			// ë Œë”ë§ í›„ì— í˜¸ì¶œ
 			AfterRender();
 
 			DisplayInfo();
@@ -288,10 +288,10 @@ void C2DParticleApplication::Destroy()
 {
 	NTL_FUNCTION("CDboApplication::Destroy" );
 
-	// ÆĞ½º ¸Å´ÏÀú ¸®¼Ò½º Á¦°Å
+	// íŒ¨ìŠ¤ ë§¤ë‹ˆì € ë¦¬ì†ŒìŠ¤ ì œê±°
 	CPathManager::GetInstance()->Destroy();
 
-	// ÆÄÆ¼Å¬ ¹Ú½º ÇØÁ¦
+	// íŒŒí‹°í´ ë°•ìŠ¤ í•´ì œ
 	NTL_DELETE(m_pPbComp);
 
 	// Gui Managers destroy
@@ -344,7 +344,7 @@ void C2DParticleApplication::SetParticleBoxOffsetXY( int nOffsetX, int nOffsetY 
 	{
 		m_pPbComp->SetPosition( nOffsetX, nOffsetY );
 
-		// GuideLine°ú PathManagerÀÇ Offset ¶ÇÇÑ ¼öÁ¤ÇÑ´Ù.
+		// GuideLineê³¼ PathManagerì˜ Offset ë˜í•œ ìˆ˜ì •í•œë‹¤.
 		GetGuideManager()->SetCenter( (float)nOffsetX, (float)nOffsetY );
 		GetPathManager()->RefreshOffsetData();
 	}
@@ -379,7 +379,7 @@ int C2DParticleApplication::GetPBOffsetY()
 }
 
 /**
-* \brief Rendering Àü¿¡ È£Ãâ
+* \brief Rendering ì „ì— í˜¸ì¶œ
 */
 void C2DParticleApplication::PreRender()
 {
@@ -407,7 +407,7 @@ void C2DParticleApplication::PreRender()
 }
 
 /**
-* \brief Rendering ÈÄ¿¡ È£Ãâ
+* \brief Rendering í›„ì— í˜¸ì¶œ
 */
 void C2DParticleApplication::AfterRender()
 {

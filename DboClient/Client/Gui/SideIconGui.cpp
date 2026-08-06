@@ -80,7 +80,7 @@
 	pSideView->GetDialog()->SetPriority( dDIALOGPRIORITY_SIDEICON_VIEW ); \
 	}
 
-// SideIcon�� ���� & �Ҹ�
+// SideIcon占쏙옙 占쏙옙占쏙옙 & 占쌀몌옙
 #define UnRegisterSideIcon( pSideIcon, id ) \
 	{ \
 	if( pSideIcon ) \
@@ -92,7 +92,7 @@
 	RocateSideIcon(); \
 	}
 
-// SideView�� ���� & �Ҹ�
+// SideView占쏙옙 占쏙옙占쏙옙 & 占쌀몌옙
 #define UnRegisterSideView( pSideView, id ) \
 	{ \
 	if( pSideView ) \
@@ -514,7 +514,7 @@ RwInt32 CSideIconGui::SwitchDialog(bool bOpen)
 
 void CSideIconGui::RocateSideIcon()
 {
-	// ����
+	// 占쏙옙占쏙옙
 	SortSideIcon();
 
 	RwInt32 iPosX		= s_pSideIconGui->GetPosition().left;

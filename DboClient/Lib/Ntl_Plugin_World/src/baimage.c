@@ -2085,7 +2085,7 @@ RwImageWrite(RwImage * image, const RwChar * imageName)
  * modules, which have been registered using \ref RwImageRegisterImageFormat ,
  * determine the types of image files that are supported. Note
  * that the filename must include the file's extension, as this identifies the
- * image’s type for dispatch to the correct loader module.
+ * imageë­© type for dispatch to the correct loader module.
  *
  * No gamma correction is applied to the images.
  *

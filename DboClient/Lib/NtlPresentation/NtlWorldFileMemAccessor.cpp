@@ -1875,7 +1875,7 @@ VOID CNtlWorldFileMemAccessor::Save_Doodads_Trigger(BYTE* _pFileMem, FILE* _pFil
 			fwrite(&PosScaling, sizeof(RwV3d), 1, _pFile);
 			fwrite(&PosRotation, sizeof(RwV3d), 1, _pFile);
 
-			// relative coordinates : Dest ÀúÀåÀÏ °æ¿ì´Â PositionÀÌ ÀÌµ¿ µÇ¸é ¾ÈµÈ´Ù.
+			// relative coordinates : Dest ì €ì¥ì¼ ê²½ìš°ëŠ” Positionì´ ì´ë™ ë˜ë©´ ì•ˆëœë‹¤.
 // 			if(pFieldMgr)
 // 			{
 // 				CNtlWorldField*	pFields	= const_cast<CNtlWorldField*>(pFieldMgr->GetFields());

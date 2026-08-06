@@ -354,7 +354,7 @@ static void *NtlWorldGlobalDataConstructor(void *unused, RwInt32 offset __RWUNUS
 	dNTL_WORLD_GLOBAL(WorldSectorCBRender) = RpNtlWorldSectorRender;
 	dNTL_WORLD_GLOBAL(pSectorFreelist) = RwFreeListCreateAndPreallocateSpace(sizeof(sNtlWorldSector), dGET_WORLD_PARAM()->WorldSectorNum * dGET_WORLD_PARAM()->WorldSectorNum, 4, 1, NULL, rwMEMHINTDUR_EVENT);
 
-	/* create a world sector pipeline ¸Þ¸ð¸® Á¶½É */
+	/* create a world sector pipeline ë©”ëª¨ë¦¬ ì¡°ì‹¬ */
 	rpNtlWorldSectorPipeLineCreate();
 
     return unused;

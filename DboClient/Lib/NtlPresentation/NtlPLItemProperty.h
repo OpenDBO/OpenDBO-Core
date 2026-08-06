@@ -6,7 +6,7 @@
 #include "NtlPLItemData.h"
 #include "NtlTypeAnimData.h"
 
-// Item Flagµé
+// Item Flagë“¤
 #define ITEM_FLAG_APPLY_EMBLEM        0x00000001
 
 class CNtlPLItemProperty : public CNtlPLProperty
@@ -15,7 +15,7 @@ public:
 	static unsigned int m_strVer;				///< Property File Version
 	static std::string m_strItemDataPath;		///< Item Data File Path
 
-    std::vector<SEventLinkEffect*> m_vLinkEffect;     ///< Link EffectÀÇ ¸®½ºÆ®     
+    std::vector<SEventLinkEffect*> m_vLinkEffect;     ///< Link Effectì˜ ë¦¬ìŠ¤íŠ¸     
     SEventTrace        m_eventTrace;            //< Trajectory Effect Properties
 
 protected:
@@ -36,17 +36,17 @@ public:
 	CNtlPLItemProperty();
 	virtual ~CNtlPLItemProperty();
 
-	// 'ItemPropertyList.xml'¿¡¼­ ÇÁ·ÎÆÛÆ¼ ¸ñ·ÏµéÀ» °¡Á®¿À´Â ÇÔ¼ö
+	// 'ItemPropertyList.xml'ì—ì„œ í”„ë¡œí¼í‹° ëª©ë¡ë“¤ì„ ê°€ì ¸ì˜¤ëŠ” í•¨ìˆ˜
 	virtual RwBool	Load(CNtlXMLDoc *pDoc, IXMLDOMNode *pNode);
 	virtual RwBool	Save(CNtlXMLDoc *pDoc, IXMLDOMNode *pNode );
 
-    RwBool	LoadScript(const std::string &strFileName);							    	///< XML Script ·Îµå
+    RwBool	LoadScript(const std::string &strFileName);							    	///< XML Script ë¡œë“œ
     RwBool  SaveScript(const std::string &strFileName);                                 ///< XML Script Save    
 
-	virtual void	SaveSerialize(CNtlSerializer& sOut);											///< Serialize¿¡ µ¥ÀÌÅÍ¸¦ ÀúÀåÇÏ´Â ÇÔ¼ö
-	virtual void	LoadSerialize(CNtlSerializer& sIn);												///< Serialize·ÎºÎÅÍ µ¥ÀÌÅÍ¸¦ °¡Á®¿À´Â ÇÔ¼ö
+	virtual void	SaveSerialize(CNtlSerializer& sOut);											///< Serializeì— ë°ì´í„°ë¥¼ ì €ìž¥í•˜ëŠ” í•¨ìˆ˜
+	virtual void	LoadSerialize(CNtlSerializer& sIn);												///< Serializeë¡œë¶€í„° ë°ì´í„°ë¥¼ ê°€ì ¸ì˜¤ëŠ” í•¨ìˆ˜
 
-    CNtlTypeAnimTable* GetAnimTable() {return &m_TypeAnimTable;}                        ///< AnimTableÀ» ¹ÝÈ¯ÇÑ´Ù.
+    CNtlTypeAnimTable* GetAnimTable() {return &m_TypeAnimTable;}                        ///< AnimTableì„ ë°˜í™˜í•œë‹¤.
 	
 	std::string	&GetMeshFileName()	{ return m_TypeMeshFileName; }						///< Get Mesh Name
 	void SetMeshFileName(const std::string &strName) { m_TypeMeshFileName = strName; }	///< Set Mesh Name
@@ -60,16 +60,16 @@ public:
 	void SetEquipSlotType(EItemEquipSlotType eEquipSlotType) { m_TypeEquipSlotType = eEquipSlotType; }
 	EItemEquipSlotType GetEquipSlotType() { return m_TypeEquipSlotType; }
 
-    void SetAttachOffset(const RwV3d& v3dOffset) {m_v3dAttachOffset = v3dOffset;}       ///< ItemÀÇ Attach Offset°ªÀ» ¼³Á¤ÇÑ´Ù.
-    RwV3d GetAttachOffset() {return m_v3dAttachOffset;}                                 ///< ItemÀÇ Attach Offset°ªÀ» ¹ÝÈ¯ÇÑ´Ù.
+    void SetAttachOffset(const RwV3d& v3dOffset) {m_v3dAttachOffset = v3dOffset;}       ///< Itemì˜ Attach Offsetê°’ì„ ì„¤ì •í•œë‹¤.
+    RwV3d GetAttachOffset() {return m_v3dAttachOffset;}                                 ///< Itemì˜ Attach Offsetê°’ì„ ë°˜í™˜í•œë‹¤.
 
-    void    SetTraceEnableDefault(const RwBool bEnable) {m_bTraceEnableDefault = bEnable;}  ///< ±ËÀû Ç¥½Ã À¯¹« Default°ªÀ» ¼³Á¤ÇÑ´Ù.
-    RwBool  GetTraceEnableDefault() {return m_bTraceEnableDefault;}                         ///< ±ËÀû Ç¥½Ã À¯¹« Default°ªÀ» ¹ÝÈ¯ÇÑ´Ù.
+    void    SetTraceEnableDefault(const RwBool bEnable) {m_bTraceEnableDefault = bEnable;}  ///< ê¶¤ì  í‘œì‹œ ìœ ë¬´ Defaultê°’ì„ ì„¤ì •í•œë‹¤.
+    RwBool  GetTraceEnableDefault() {return m_bTraceEnableDefault;}                         ///< ê¶¤ì  í‘œì‹œ ìœ ë¬´ Defaultê°’ì„ ë°˜í™˜í•œë‹¤.
 
-    SUpgradeEffectProperty* GetUpgradeEffectProperty() {return &m_UpgradeEffectProp;}    ///< Upgrade EffectÀÇ Property¸¦ ¹ÝÈ¯ÇÑ´Ù.
+    SUpgradeEffectProperty* GetUpgradeEffectProperty() {return &m_UpgradeEffectProp;}    ///< Upgrade Effectì˜ Propertyë¥¼ ë°˜í™˜í•œë‹¤.
 
-    // Flag ºñ±³ ÇÔ¼öµé
-    RwBool  IsApplyEmblem() {return (GetFlag() & ITEM_FLAG_APPLY_EMBLEM);}                ///< Emblem Àû¿ë ¾ÆÀÌÅÛÀÎÁö ¹ÝÈ¯ÇÑ´Ù.
+    // Flag ë¹„êµ í•¨ìˆ˜ë“¤
+    RwBool  IsApplyEmblem() {return (GetFlag() & ITEM_FLAG_APPLY_EMBLEM);}                ///< Emblem ì ìš© ì•„ì´í…œì¸ì§€ ë°˜í™˜í•œë‹¤.
 };
 
 #endif

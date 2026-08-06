@@ -1,4 +1,4 @@
-// PointAttrDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PointAttrDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -16,7 +16,7 @@
 
 
 
-// CPointAttrDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPointAttrDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPointAttrDlg, CDialog)
 
@@ -73,11 +73,11 @@ void CPointAttrDlg::OnPropSelectUpdate(int nSx, int nEx)
 }
 
 
-// CPointAttrDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPointAttrDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CPointAttrDlg::OnBnClickedPointattrPointPos()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	int nSelSx, nSelEx;
 	GetActiveSelectControlPoint(nSelSx, nSelEx);
@@ -119,7 +119,7 @@ void CPointAttrDlg::OnBnClickedPointattrPointPos()
 
 void CPointAttrDlg::OnBnClickedPointattrAddPointPos()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	CNtlDTProp *pDTProp = GetActiveDTProp();
 	if(pDTProp == NULL)
@@ -158,7 +158,7 @@ void CPointAttrDlg::OnBnClickedPointattrAddPointPos()
 
 void CPointAttrDlg::OnBnClickedPointattrPointSelectedInterpolation()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	int nSelSx, nSelEx;
 	GetActiveSelectControlPoint(nSelSx, nSelEx);
 	if(nSelSx < 0)
@@ -181,7 +181,7 @@ BOOL CPointAttrDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	m_fOffsetY = 1.0f;
 
@@ -216,25 +216,25 @@ BOOL CPointAttrDlg::OnInitDialog()
 	UpdateData(FALSE);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 
 void CPointAttrDlg::OnCbnSelchangePointattrComboType()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	m_nEditType = m_comboType.GetCurSel();
 }
 
 void CPointAttrDlg::OnEnChangePointattrCameraSpeed()
 {
-	// TODO:  RICHEDIT ÄÁÆ®·ÑÀÎ °æ¿ì, ÀÌ ÄÁÆ®·ÑÀº
-	// CDialog::OnInitDialog() ÇÔ¼ö¸¦ ÀçÁöÁ¤ÇÏ°í  ¸¶½ºÅ©¿¡ OR ¿¬»êÇÏ¿© ¼³Á¤µÈ
-	// ENM_CHANGE ÇÃ·¡±×¸¦ ÁöÁ¤ÇÏ¿© CRichEditCtrl().SetEventMask()¸¦ È£ÃâÇØ¾ß¸¸
-	// ÇØ´ç ¾Ë¸² ¸Ş½ÃÁö¸¦ º¸³À´Ï´Ù.
+	// TODO:  RICHEDIT ì»¨íŠ¸ë¡¤ì¸ ê²½ìš°, ì´ ì»¨íŠ¸ë¡¤ì€
+	// CDialog::OnInitDialog() í•¨ìˆ˜ë¥¼ ì¬ì§€ì •í•˜ê³   ë§ˆìŠ¤í¬ì— OR ì—°ì‚°í•˜ì—¬ ì„¤ì •ëœ
+	// ENM_CHANGE í”Œë˜ê·¸ë¥¼ ì§€ì •í•˜ì—¬ CRichEditCtrl().SetEventMask()ë¥¼ í˜¸ì¶œí•´ì•¼ë§Œ
+	// í•´ë‹¹ ì•Œë¦¼ ë©”ì‹œì§€ë¥¼ ë³´ëƒ…ë‹ˆë‹¤.
 
-	// TODO:  ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	CString strValue;
 	GetDlgItemText(IDC_POINTATTR_CAMERA_SPEED, strValue);
@@ -245,26 +245,26 @@ void CPointAttrDlg::OnEnChangePointattrCameraSpeed()
 
 void CPointAttrDlg::OnBnClickedPointattrCheckPos()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	EnableChangePointPosition(m_btnCheckPos.GetCheck());
 }
 
 void CPointAttrDlg::OnBnClickedPointattrCheckDir()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	EnableChangePointDirection(m_btnCheckDir.GetCheck());
 }
 
 void CPointAttrDlg::OnEnChangePointattrPointBox()
 {
-	// TODO:  RICHEDIT ÄÁÆ®·ÑÀÎ °æ¿ì, ÀÌ ÄÁÆ®·ÑÀº
-	// CDialog::OnInitDialog() ÇÔ¼ö¸¦ ÀçÁöÁ¤ÇÏ°í  ¸¶½ºÅ©¿¡ OR ¿¬»êÇÏ¿© ¼³Á¤µÈ
-	// ENM_CHANGE ÇÃ·¡±×¸¦ ÁöÁ¤ÇÏ¿© CRichEditCtrl().SetEventMask()¸¦ È£ÃâÇØ¾ß¸¸
-	// ÇØ´ç ¾Ë¸² ¸Ş½ÃÁö¸¦ º¸³À´Ï´Ù.
+	// TODO:  RICHEDIT ì»¨íŠ¸ë¡¤ì¸ ê²½ìš°, ì´ ì»¨íŠ¸ë¡¤ì€
+	// CDialog::OnInitDialog() í•¨ìˆ˜ë¥¼ ì¬ì§€ì •í•˜ê³   ë§ˆìŠ¤í¬ì— OR ì—°ì‚°í•˜ì—¬ ì„¤ì •ëœ
+	// ENM_CHANGE í”Œë˜ê·¸ë¥¼ ì§€ì •í•˜ì—¬ CRichEditCtrl().SetEventMask()ë¥¼ í˜¸ì¶œí•´ì•¼ë§Œ
+	// í•´ë‹¹ ì•Œë¦¼ ë©”ì‹œì§€ë¥¼ ë³´ëƒ…ë‹ˆë‹¤.
 
-	// TODO:  ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	CString strValue;
 	GetDlgItemText(IDC_POINTATTR_POINT_BOX, strValue);
@@ -275,13 +275,13 @@ void CPointAttrDlg::OnEnChangePointattrPointBox()
 
 void CPointAttrDlg::OnBnClickedPointattrCheckCameraMove()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	EnableCameraMovePointClick(m_btnCameraMovePointClick.GetCheck());
 }
 
 void CPointAttrDlg::OnBnClickedPointattrCheckCameraCollision()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	if(m_btnCameraColli.GetCheck())
 	{
@@ -296,7 +296,7 @@ void CPointAttrDlg::OnBnClickedPointattrCheckCameraCollision()
 
 void CPointAttrDlg::OnBnClickedPointattrCheckAvatarCollision()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	RwUInt32 uiFlags = GetNtlSLGlobal()->GetSobAvatar()->GetFlags();
 
@@ -312,7 +312,7 @@ void CPointAttrDlg::OnBnClickedPointattrCheckAvatarCollision()
 
 void CPointAttrDlg::OnBnClickedPointattrResetAvatarDir()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	RwV3d vDir;
 	CNtlMath::MathRwV3dAssign(&vDir, 0.0f, 0.0f, 1.0f);
@@ -322,7 +322,7 @@ void CPointAttrDlg::OnBnClickedPointattrResetAvatarDir()
 
 void CPointAttrDlg::OnBnClickedPointCustomDialog()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	m_CustomDlg.ShowWindow(SW_SHOW);
 }

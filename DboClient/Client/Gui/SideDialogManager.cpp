@@ -20,7 +20,7 @@
 #include "DboEventGenerator.h"
 
 
-#define dVELOCITY_MOVE			1500.f			///< Side dialog°¡ open/close µÇ´Â ¼Óµµ
+#define dVELOCITY_MOVE			1500.f			///< Side dialogê°€ open/close ë˜ëŠ” ì†ë„
 
 CSideDialogManager* CSideDialogManager::m_pInstance = NULL;
 
@@ -135,7 +135,7 @@ VOID CSideDialogManager::OpenDefaultDialog()
 
 RwBool CSideDialogManager::OpenDialog(RwInt32 iSideDialog, RwBool bPlaySound /* = TRUE */)
 {
-	// Äù½ºÆ® ³ª·¹ÀÌ¼ÇÀÌ Èå¸£¸é ¸®ÅÏ
+	// í€˜ìŠ¤íŠ¸ ë‚˜ë ˆì´ì…˜ì´ íë¥´ë©´ ë¦¬í„´
 	if( GetDialogManager()->IsMode( DIALOGMODE_NARRATION ) )
 		return FALSE;
 
@@ -150,16 +150,16 @@ RwBool CSideDialogManager::OpenDialog(RwInt32 iSideDialog, RwBool bPlaySound /* 
 	{		
 		if( it_presentation_find->second.eSDialog == (eSideDialogType)iSideDialog )
 		{
-			// ÇöÀç ¿äÃ»ÇÑ »çÀÌµå ´ÙÀÌ¾ó·Î±×°¡ È°¼ºÈ­µÈ ¸ñ·Ï¿¡ ÀÖ´ÂÁö Ã£¾Æº»´Ù
+			// í˜„ìž¬ ìš”ì²­í•œ ì‚¬ì´ë“œ ë‹¤ì´ì–¼ë¡œê·¸ê°€ í™œì„±í™”ëœ ëª©ë¡ì— ìžˆëŠ”ì§€ ì°¾ì•„ë³¸ë‹¤
 			it_presentation = it_presentation_find;
 		}
 		else
 		{
-			// ±âÁ¸¿¡ OPEN »óÅÂÀÎ »çÀÌµå ´ÙÀÌ¾ó·Î±×¸¦ Ã£´Â´Ù
+			// ê¸°ì¡´ì— OPEN ìƒíƒœì¸ ì‚¬ì´ë“œ ë‹¤ì´ì–¼ë¡œê·¸ë¥¼ ì°¾ëŠ”ë‹¤
 			if( it_presentation_find->second.openType == OPENTYPE_OPEN ||
 				it_presentation_find->second.openType == OPENTYPE_MINIMAM )
 			{
-				// ´Ù¸¥ »çÀÌµå ´ÙÀÌ¾ó·Î±×¿Í °ãÄ¥ ¼ö ¾ø´Â °ÍÀÌ¶ó¸é..
+				// ë‹¤ë¥¸ ì‚¬ì´ë“œ ë‹¤ì´ì–¼ë¡œê·¸ì™€ ê²¹ì¹  ìˆ˜ ì—†ëŠ” ê²ƒì´ë¼ë©´..
 				if( IsAttribute(it_presentation_find->second.eSDialog, dSDA_INDEPENDENTLY) == FALSE )
 					it_presentation_Open = it_presentation_find;
 			}
@@ -170,7 +170,7 @@ RwBool CSideDialogManager::OpenDialog(RwInt32 iSideDialog, RwBool bPlaySound /* 
 			break;
 	}
 
-	// ±âÁ¸ È°¼ºÈ­µÈ ¸ñ·Ï¿¡ ÀÖ´Â °ÍÀÌ¶ó¸é...
+	// ê¸°ì¡´ í™œì„±í™”ëœ ëª©ë¡ì— ìžˆëŠ” ê²ƒì´ë¼ë©´...
 	if( it_presentation != m_mapPresentDialog.end() )
 	{
 		sPresentationDialog& rPresentaionDialog = it_presentation->second;
@@ -187,7 +187,7 @@ RwBool CSideDialogManager::OpenDialog(RwInt32 iSideDialog, RwBool bPlaySound /* 
 				rPresentaionDialog.openType = OPENTYPE_OPEN;
 				rPresentaionDialog.pDialogInfo->pDialog->Show(true);
 
-				// ±âÁ¸¿¡ Open »óÅÂÀÎ °ÍÀ» °¨Ãá´Ù
+				// ê¸°ì¡´ì— Open ìƒíƒœì¸ ê²ƒì„ ê°ì¶˜ë‹¤
 				if( it_presentation_Open != m_mapPresentDialog.end() )
 				{
 					it_presentation_Open->second.openType = OPENTYPE_CONCEAL;
@@ -200,7 +200,7 @@ RwBool CSideDialogManager::OpenDialog(RwInt32 iSideDialog, RwBool bPlaySound /* 
 		}
 	}
 
-	// »õ·ÎÀÌ ¿­¸®´Â °¢ Å¬·¡½ºÀÇ SwitcDialog()¸¦ È£ÃâÇÑ´Ù.
+	// ìƒˆë¡œì´ ì—´ë¦¬ëŠ” ê° í´ëž˜ìŠ¤ì˜ SwitcDialog()ë¥¼ í˜¸ì¶œí•œë‹¤.
 	if( pDialogInfo->pCallSwitch->Call(true) < 0 )
 		return FALSE;
 
@@ -211,10 +211,10 @@ RwBool CSideDialogManager::OpenDialog(RwInt32 iSideDialog, RwBool bPlaySound /* 
 	newPresentaionDialog.pDialogInfo		= pDialogInfo;
 	newPresentaionDialog.openType			= OPENTYPE_OPEN;
 
-	// ´Ù¸¥ »çÀÌµå ´ÙÀÌ¾ó·Î±×¿Í µ¿½Ã¿¡ ¶ã ¼ö ¾ø´Â °ÍÀÌ¶ó¸é
+	// ë‹¤ë¥¸ ì‚¬ì´ë“œ ë‹¤ì´ì–¼ë¡œê·¸ì™€ ë™ì‹œì— ëœ° ìˆ˜ ì—†ëŠ” ê²ƒì´ë¼ë©´
 	if( IsAttribute(iSideDialog, dSDA_INDEPENDENTLY) == FALSE )
 	{
-		// ±âÁ¸¿¡ Open »óÅÂÀÎ °ÍÀ» °¨Ãá´Ù
+		// ê¸°ì¡´ì— Open ìƒíƒœì¸ ê²ƒì„ ê°ì¶˜ë‹¤
 		if( it_presentation_Open != m_mapPresentDialog.end() )
 		{
 			it_presentation_Open->second.openType = OPENTYPE_CONCEAL;
@@ -222,7 +222,7 @@ RwBool CSideDialogManager::OpenDialog(RwInt32 iSideDialog, RwBool bPlaySound /* 
 		}
 	}
 
-	// »çÀÌµå ´ÙÀÌ¾ó·Î±×ÀÇ ÁÂÇ¥ ¼³Á¤
+	// ì‚¬ì´ë“œ ë‹¤ì´ì–¼ë¡œê·¸ì˜ ì¢Œí‘œ ì„¤ì •
 	RwInt32 iXPos = GetDboGlobal()->GetScreenWidth() - newPresentaionDialog.pDialogInfo->pDialog->GetWidth() - dDIALOG_CLEINT_EDGE_GAP;
 	RwInt32 iYPos;
 	if( IsAttribute(iSideDialog, dSDA_FREE_Y_POSITION) )
@@ -248,7 +248,7 @@ RwBool CSideDialogManager::OpenDialog(RwInt32 iSideDialog, RwBool bPlaySound /* 
 
 RwBool CSideDialogManager::CloseDialog(RwInt32 iSideDialog, RwBool bPlaySound /* = TRUE */)
 {
-	// ÀÌ¹Ì ´ÝÇô ÀÖ´Ù¸é ¸®ÅÏ
+	// ì´ë¯¸ ë‹«í˜€ ìžˆë‹¤ë©´ ë¦¬í„´
 	MAP_PRESENTATION_ITER it_presentation = m_mapPresentDialog.find(iSideDialog);
 	if( it_presentation == m_mapPresentDialog.end() )
 		return FALSE;
@@ -257,8 +257,8 @@ RwBool CSideDialogManager::CloseDialog(RwInt32 iSideDialog, RwBool bPlaySound /*
 	if(!pDialogInfo)
 		return FALSE;
 
-	// °¢ Å¬·¡½ºÀÇ SwithDialog()¸¦ È£ÃâÇÑ´Ù. ÀÌ ÇÔ¼ö³»¿¡¼­ Show(false)¸¦ È£ÃâÇØ¼­´Â ¾ÈµÈ´Ù
-	// Show(false)´Â CSideDialogManager::Update()¿¡¼­ Close effect°¡ ¸¶¹«¸® µÇ¸é ÀÚµ¿ È£ÃâµÈ´Ù
+	// ê° í´ëž˜ìŠ¤ì˜ SwithDialog()ë¥¼ í˜¸ì¶œí•œë‹¤. ì´ í•¨ìˆ˜ë‚´ì—ì„œ Show(false)ë¥¼ í˜¸ì¶œí•´ì„œëŠ” ì•ˆëœë‹¤
+	// Show(false)ëŠ” CSideDialogManager::Update()ì—ì„œ Close effectê°€ ë§ˆë¬´ë¦¬ ë˜ë©´ ìžë™ í˜¸ì¶œëœë‹¤
 	if( pDialogInfo->pCallSwitch->Call(false) < 0 )
 		return FALSE;
 
@@ -393,7 +393,7 @@ VOID CSideDialogManager::RegisterAttribute()
 	for( RwInt32 i = SDIALOG_FIRST ; i <= SDIALOG_LAST ; ++i )
 		m_mapAttribute[i] = dSDA_NONE;
 
-	// Æ¯º°ÇÑ °æ¿ìÀÇ »çÀÌµå ´ÙÀÌ¾ó·Î±×ÀÇ ¼Ó¼ºÀ» Á¤ÀÇÇÑ´Ù
+	// íŠ¹ë³„í•œ ê²½ìš°ì˜ ì‚¬ì´ë“œ ë‹¤ì´ì–¼ë¡œê·¸ì˜ ì†ì„±ì„ ì •ì˜í•œë‹¤
 }
 
 VOID CSideDialogManager::HandleEvents( RWS::CMsg &msg )
@@ -427,7 +427,7 @@ VOID CSideDialogManager::HandleEvents( RWS::CMsg &msg )
 CNtlPLGui* const CSideDialogManager::GetpDialogTEST(const char* szFrmFileName)
 {
 	CNtlPLGui* pDialog;
-	MAP_SDIALOG::iterator it = m_mapDialog.begin();	/// µî·ÏµÈ dialog °Ë»ö
+	MAP_SDIALOG::iterator it = m_mapDialog.begin();	/// ë“±ë¡ëœ dialog ê²€ìƒ‰
 	for( ; it != m_mapDialog.end(); ++it)
 	{
 		pDialog = it->second.pDialog;
@@ -443,9 +443,9 @@ CNtlPLGui* const CSideDialogManager::GetpDialogTEST(const char* szFrmFileName)
 
 RwBool CSideDialogManager::ShowDialogTEST(RwInt32 iDialog, bool bOpen)
 {
-	/// OpenDialog ¾Æ´Ñ ´Ü¼ø Show·Î.....
+	/// OpenDialog ì•„ë‹Œ ë‹¨ìˆœ Showë¡œ.....
 	CNtlPLGui* pDialog;
-	MAP_SDIALOG::iterator it = m_mapDialog.find(iDialog);	/// µî·ÏµÈ dialog °Ë»ö
+	MAP_SDIALOG::iterator it = m_mapDialog.find(iDialog);	/// ë“±ë¡ëœ dialog ê²€ìƒ‰
 	if( it != m_mapDialog.end() )
 	{
 		pDialog = it->second.pDialog;
@@ -459,12 +459,12 @@ RwBool CSideDialogManager::ShowDialogTEST(RwInt32 iDialog, bool bOpen)
 	return FALSE;
 }
 
-VOID CSideDialogManager::ShowAllDialogTEST(bool bOpen)	///< SideDialogManager¿¡ µî·ÏµÈ ¸ðµç dialog open/close
+VOID CSideDialogManager::ShowAllDialogTEST(bool bOpen)	///< SideDialogManagerì— ë“±ë¡ëœ ëª¨ë“  dialog open/close
 {
 	CNtlPLGui* pDialog;
 	for(RwInt32 i = SDIALOG_FIRST + 1 ; i < SDIALOG_UNKNOWN ; ++i )
-	{	/// OpenDialog ¾Æ´Ñ ´Ü¼ø Show·Î.....
-		MAP_SDIALOG::iterator it = m_mapDialog.find(i);	/// µî·ÏµÈ dialog °Ë»ö
+	{	/// OpenDialog ì•„ë‹Œ ë‹¨ìˆœ Showë¡œ.....
+		MAP_SDIALOG::iterator it = m_mapDialog.find(i);	/// ë“±ë¡ëœ dialog ê²€ìƒ‰
 		if( it != m_mapDialog.end() )
 		{
 			pDialog = it->second.pDialog;

@@ -73,7 +73,7 @@ public:
 	INT				m_nInterval;
 	DWORD			m_dwDefaultFont;
 
-	INT				m_nCursorX;		// ´ÙÀ½¿¡ ÂïÈú ¼ö ÀÖ´Â ÁÂÇ¥.
+	INT				m_nCursorX;		// ë‹¤ìŒì— ì°í ìˆ˜ ìˆëŠ” ì¢Œí‘œ.
 	INT				m_nCursorY;		
 	INT				m_nMaxWidth;
 	INT				m_nMaxHeight;

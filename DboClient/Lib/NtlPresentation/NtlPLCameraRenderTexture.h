@@ -2,7 +2,7 @@
  *
  * File			: NtlPLCameraRenderTexture.h
  * Author		: HongHoDong
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2006. 8. 19.	
  * Abstract		: NtlPLCameraRenderTexture
  *****************************************************************************
@@ -12,11 +12,11 @@
 
 /**
  * \ingroup NtlPresentation
- * RenderWareÀÇ RenderToTexture ±â´ÉÀ» Wrapping ÇÑ Class ÀÌ´Ù.
- * Texture¸¦ »ı¼ºÇØ¼­ »ç¿ëÀ» ÇÏ¹Ç·Î »ç¿ëÇÏ´ÂÂÊ¿¡¼­´Â Texture¸¦ ¹Ş¾Æ¼­ Rendering
- * À» ÇÏ¸é µÈ´Ù.
- * CameraRenderTexture¸¦ °¢,°¢ »ı¼º½Ã CameraÀÇ ZBuffer¸¦ °è¼Ó »ı¼ºÀ» ÇÏ±â ¶§¹®¿¡
- * ZBuffer¿ë Memory°¡ Á»´õ »ç¿ëÀÌ µÉ°Å °°´Ù.
+ * RenderWareì˜ RenderToTexture ê¸°ëŠ¥ì„ Wrapping í•œ Class ì´ë‹¤.
+ * Textureë¥¼ ìƒì„±í•´ì„œ ì‚¬ìš©ì„ í•˜ë¯€ë¡œ ì‚¬ìš©í•˜ëŠ”ìª½ì—ì„œëŠ” Textureë¥¼ ë°›ì•„ì„œ Rendering
+ * ì„ í•˜ë©´ ëœë‹¤.
+ * CameraRenderTextureë¥¼ ê°,ê° ìƒì„±ì‹œ Cameraì˜ ZBufferë¥¼ ê³„ì† ìƒì„±ì„ í•˜ê¸° ë•Œë¬¸ì—
+ * ZBufferìš© Memoryê°€ ì¢€ë” ì‚¬ìš©ì´ ë ê±° ê°™ë‹¤.
  */
 
 #ifndef __NTL_CAMERA_RENDER_TEXTURE_
@@ -30,8 +30,8 @@
 class CNtlPLCameraRenderTexture
 {
 protected:
-	RwCamera	*m_pCamera;																///< RenderToTexture¿ë Camera
-	RwTexture	*m_pRenderTexture;														///< RenderToTexture¿ë Texture
+	RwCamera	*m_pCamera;																///< RenderToTextureìš© Camera
+	RwTexture	*m_pRenderTexture;														///< RenderToTextureìš© Texture
 	RwBool		m_IsCamInWorld;
 	
 protected:
@@ -41,7 +41,7 @@ public:
 	CNtlPLCameraRenderTexture() : m_pCamera(NULL), m_pRenderTexture(NULL) {} ;
 	~CNtlPLCameraRenderTexture() {};
 
-	void Create( RwInt32	nTexWidth,														///< RenderTexture¸¦ »ı¼º(nWidth:°¡·Î, nHeight; ¼¼·Î) 
+	void Create( RwInt32	nTexWidth,														///< RenderTextureë¥¼ ìƒì„±(nWidth:ê°€ë¡œ, nHeight; ì„¸ë¡œ) 
 		         RwInt32	nTexHeight, 
 				 RwInt32	nRealWidth, 
 				 RwInt32	nRealHeight,
@@ -51,18 +51,18 @@ public:
 	void SetNear(RwReal _Near);
 	void SetFar(RwReal _Far);
 	RwCamera* GetCamera() { return m_pCamera; }
-																						///< Texture Size¿Í´Â º°µµ·Î Âï´Â ¿µ¿ªÀÌ ÀÖ´Â °æ¿ì´Â?
+																						///< Texture Sizeì™€ëŠ” ë³„ë„ë¡œ ì°ëŠ” ì˜ì—­ì´ ìˆëŠ” ê²½ìš°ëŠ”?
 	void Destroy();
 	
 	void RenderTexture();																// Render NTL World
-	void RenderTexture(CNtlPLEntity *pEntity);											///< Entity¸¦ Texture¿¡ RenderingÀ» ÇÑ´Ù.
+	void RenderTexture(CNtlPLEntity *pEntity);											///< Entityë¥¼ Textureì— Renderingì„ í•œë‹¤.
 	void RenderTexture(std::list<CNtlPLEntity*>& listEntity);
-																						///< Texture¿¡ RenderingÀ» ÇÏ´Â TimingÀ» ¾î¶»°Ô ÇÒ °ÍÀÎ°¡?
-																						///< Ui¸¦ Update¸¦ ÇÒ ¶§ RenderingÀ» ÇÒ °æ¿ì ¹®Á¦´Â ¾ø±ä ÇÏ´Ù.
+																						///< Textureì— Renderingì„ í•˜ëŠ” Timingì„ ì–´ë–»ê²Œ í•  ê²ƒì¸ê°€?
+																						///< Uië¥¼ Updateë¥¼ í•  ë•Œ Renderingì„ í•  ê²½ìš° ë¬¸ì œëŠ” ì—†ê¸´ í•˜ë‹¤.
 	
-	void Render(RwCamera *pRenderTarget, RwV2d fPos, RwV2d fSize);	    				///< Test¿ë m_pRenderTexture¸¦ Rendering
+	void Render(RwCamera *pRenderTarget, RwV2d fPos, RwV2d fSize);	    				///< Testìš© m_pRenderTextureë¥¼ Rendering
 	
-	RwTexture *GetTexture() { NTL_ASSERTE(m_pRenderTexture); return m_pRenderTexture; } ///< Texture Return(Reference °ü¸®¸¦ ÇÒ±î °í¹ÎÁß)
+	RwTexture *GetTexture() { NTL_ASSERTE(m_pRenderTexture); return m_pRenderTexture; } ///< Texture Return(Reference ê´€ë¦¬ë¥¼ í• ê¹Œ ê³ ë¯¼ì¤‘)
 	void SetCameraPosition(const RwV3d *pCameraPos, const RwV3d *pLookAt);				///< Camera Transform
 };
 

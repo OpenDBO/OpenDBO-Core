@@ -1,4 +1,4 @@
-// PropTreeItemColor.cpp : ���� �����Դϴ�.
+// PropTreeItemColor.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -122,14 +122,14 @@ END_MESSAGE_MAP()
 
 
 
-// CPropTreeItemColor �޽��� ó�����Դϴ�.
+// CPropTreeItemColor 메시지 처리기입니다.
 
 
 void CPropTreeItemColor::OnKillFocus(CWnd* pNewWnd)
 {
 	CWnd::OnKillFocus(pNewWnd);
 
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	if (!m_bInDialog)
 		CommitChanges();
 }
@@ -137,8 +137,8 @@ void CPropTreeItemColor::OnKillFocus(CWnd* pNewWnd)
 void CPropTreeItemColor::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰��մϴ�.
-	// �׸��� �޽����� ���ؼ��� CWnd::OnPaint()��(��) ȣ������ ���ʽÿ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
+	// 그리기 메시지에 대해서는 CWnd::OnPaint()을(를) 호출하지 마십시오.
 	CPoint pt;
 	
 	for (LONG i=0; i<40; i++)
@@ -164,14 +164,14 @@ void CPropTreeItemColor::OnPaint()
 
 void CPropTreeItemColor::OnClose()
 {
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	CommitChanges();
 //	CWnd::OnClose();
 }
 
 void CPropTreeItemColor::OnMouseMove(UINT nFlags, CPoint point)
 {
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	BOOL bButton;
 	LONG nSpot;
 
@@ -194,7 +194,7 @@ void CPropTreeItemColor::OnMouseMove(UINT nFlags, CPoint point)
 
 BOOL CPropTreeItemColor::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
 {
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	if (nHitTest==HTCLIENT)
 	{
 		CPoint point;
@@ -214,7 +214,7 @@ BOOL CPropTreeItemColor::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
 
 void CPropTreeItemColor::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	if (m_nSpot!=-1)
 	{
 		m_cColor = _crColors[m_nSpot].color;

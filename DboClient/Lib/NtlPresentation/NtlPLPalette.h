@@ -2,11 +2,11 @@
 *
 * File			: NtlPLPalette.h
 * Author		: Hong sungbock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 3. 13
 * Abstract		: Presentation layer palette info
 *****************************************************************************
-* Desc          : Dbo¿¡¼­ ¾²ÀÌ´Â ÆÈ·¹Æ® Á¤º¸¸¦ °¡Áö°í ÀÖ´Ù
+* Desc          : Dboì—ì„œ ì“°ì´ëŠ” íŒ”ë ˆíŠ¸ ì •ë³´ë¥¼ ê°€ì§€ê³  ìˆë‹¤
 *****************************************************************************/
 
 #ifndef __NTL_PLPALETTE_H__
@@ -32,10 +32,10 @@ enum eLOAD_RESULT
 {
 	LOAD_RESULT_OK,
 
-	LOAD_RESULT_FAIL_LOAD_FILE,						///< ÆÄÀÏÀ» ÀĞÁö ¸øÇß´Ù
-	LOAD_RESULT_NOT_EXIST_PALETTE,					///< ÇØ´ç ÆÈ·¹Æ®°¡ ¾ø´Ù
-	LOAD_RESULT_LESS_ELEMENT_COUNT,					///< ÆÈ·¹Æ®ÀÇ ±¸¼º °¹¼ö°¡ dEMBLEM_PALETTE_COUNTº¸´Ù ÀÛ´Ù
-	LOAD_RESULT_MORE_ELEMENT_COUNT,					///< ÆÈ·¹Æ®ÀÇ ±¸¼º °¹¼ö°¡ dEMBLEM_PALETTE_COUNTº¸´Ù ¸¹´Ù
+	LOAD_RESULT_FAIL_LOAD_FILE,						///< íŒŒì¼ì„ ì½ì§€ ëª»í–ˆë‹¤
+	LOAD_RESULT_NOT_EXIST_PALETTE,					///< í•´ë‹¹ íŒ”ë ˆíŠ¸ê°€ ì—†ë‹¤
+	LOAD_RESULT_LESS_ELEMENT_COUNT,					///< íŒ”ë ˆíŠ¸ì˜ êµ¬ì„± ê°¯ìˆ˜ê°€ dEMBLEM_PALETTE_COUNTë³´ë‹¤ ì‘ë‹¤
+	LOAD_RESULT_MORE_ELEMENT_COUNT,					///< íŒ”ë ˆíŠ¸ì˜ êµ¬ì„± ê°¯ìˆ˜ê°€ dEMBLEM_PALETTE_COUNTë³´ë‹¤ ë§ë‹¤
 };
 
 class CNtlPLPalette
@@ -52,9 +52,9 @@ public:
 	COLORREF		GetColor(ePaletteType eType, RwUInt32 uiColorIndex);
 	RwUInt8			GetIndex(ePaletteType eType, const COLORREF* pColor);
 
-	///< ÆÈ·¹Æ®¸¦ ´Ù½Ã ÀĞ¾îµéÀÌ´Â °³¹ß¿ë ÇÔ¼ö
-	///< Àı´ë·Î! ½ÇÁ¦ °ÔÀÓ¿¡¼­ ¿ÜºÎ µ¥ÀÌÅÍ¸¦ ÀĞ¾î »ç¿ëÇÏÁö ¸»ÀÚ.
-	///< ÆÈ·¹Æ® °ü·Ã ´ã´çÀÚ°¡ ÆÈ·¹Æ®¸¸ ¹Ù²Ù°í °ü·Ã GUI µîÀÌ ¹Ù²îÁö ¾ÊÀ» À§ÇèÀÌ ÀÖ´Ù
+	///< íŒ”ë ˆíŠ¸ë¥¼ ë‹¤ì‹œ ì½ì–´ë“¤ì´ëŠ” ê°œë°œìš© í•¨ìˆ˜
+	///< ì ˆëŒ€ë¡œ! ì‹¤ì œ ê²Œì„ì—ì„œ ì™¸ë¶€ ë°ì´í„°ë¥¼ ì½ì–´ ì‚¬ìš©í•˜ì§€ ë§ì.
+	///< íŒ”ë ˆíŠ¸ ê´€ë ¨ ë‹´ë‹¹ìê°€ íŒ”ë ˆíŠ¸ë§Œ ë°”ê¾¸ê³  ê´€ë ¨ GUI ë“±ì´ ë°”ë€Œì§€ ì•Šì„ ìœ„í—˜ì´ ìˆë‹¤
 	eLOAD_RESULT	LoadPalette_forDeveloper();
 
 protected:

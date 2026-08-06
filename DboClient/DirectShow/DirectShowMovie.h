@@ -2,7 +2,7 @@
  *
  * File			: DShowMoviePlay.h
  * Author		: HongHoDong
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2007. 6. 24	
  * Abstract		: NTl DShowMoviePlay
  *****************************************************************************
@@ -11,11 +11,11 @@
  *****************************************************************************/
 
 /**
- * MSÀÇ DirectShow¸¦ wrapping ÇÑ class ÀÌ´Ù.
- * Play°¡ ³¡³µÀ» ¶§ ApplicationÂÊÀ¸·Î CallBackÀ¸·Î Event¸¦ º¸³½´Ù. ÇöÀç´Â Movie
- * ÀÇ End ±îÁö Play°¡ µÇ¾úÀ» °æ¿ì¸¸ Ã³¸®¸¦ ÇÑ´Ù.
- * DirectX Rendering½Ã È­¸é ¶³¸®´Â ¹®Á¦(µ¿¿µ»ó Play½Ã RenderingÀ» ¾ÈµÇ°Ô ÇÑ´Ù.)
- * ÀüÃ¼ È­¸é Toggle ½ÃÀÇ ¹®Á¦(µ¿¿µ»ó Play½Ã´Â ToggleÀÌ ¾ÈµÇ°Ô ÇÑ´Ù.)
+ * MSì˜ DirectShowë¥¼ wrapping í•œ class ì´ë‹¤.
+ * Playê°€ ëë‚¬ì„ ë•Œ Applicationìª½ìœ¼ë¡œ CallBackìœ¼ë¡œ Eventë¥¼ ë³´ë‚¸ë‹¤. í˜„ì¬ëŠ” Movie
+ * ì˜ End ê¹Œì§€ Playê°€ ë˜ì—ˆì„ ê²½ìš°ë§Œ ì²˜ë¦¬ë¥¼ í•œë‹¤.
+ * DirectX Renderingì‹œ í™”ë©´ ë–¨ë¦¬ëŠ” ë¬¸ì œ(ë™ì˜ìƒ Playì‹œ Renderingì„ ì•ˆë˜ê²Œ í•œë‹¤.)
+ * ì „ì²´ í™”ë©´ Toggle ì‹œì˜ ë¬¸ì œ(ë™ì˜ìƒ Playì‹œëŠ” Toggleì´ ì•ˆë˜ê²Œ í•œë‹¤.)
  */
 #ifndef __DSHOW_MOVIE_PLAY_H__
 #define __DSHOW_MOVIE_PLAY_H__
@@ -49,13 +49,13 @@ protected:
 	IBasicVideo		*m_pBV;
 
 	HANDLE			m_hInstance;
-	static HWND		m_hMainWindow;							// Window Mode Movie Play ¿ë
+	static HWND		m_hMainWindow;							// Window Mode Movie Play ìš©
 	
 	bool			m_bPlay;
 	bool			m_bFullScreen;
 	EMoveSize		m_eSize;
 
-	CNtlCallbackParam0 *m_pCallMovieEvent;					///< ÇöÀç´Â Movie°¡ Á¾·á¸¸ Ã³¸®
+	CNtlCallbackParam0 *m_pCallMovieEvent;					///< í˜„ì¬ëŠ” Movieê°€ ì¢…ë£Œë§Œ ì²˜ë¦¬
 
 protected:
 	bool	PlayWindow();

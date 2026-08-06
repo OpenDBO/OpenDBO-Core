@@ -2,7 +2,7 @@
  *
  * File			: NtlPLCharacterProperty.h
  * Author		: HongHoDong
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 9. 27	
  * Abstract		: Presentation layer object property class
  *****************************************************************************
@@ -19,8 +19,8 @@
 #include "NtlTypeAnimData.h"
 #include "NtlPLEntityRenderHelpers.h"
 
-// Ä³¸¯ÅÍ ÇÃ·¡±×
-#define CHAR_FLAG_APPLY_NORMAL       0x00000001            ///< ÁöÇü ±¼°î¿¡ ¿µÇâÀ» ¹Þ´Â´Ù.
+// ìºë¦­í„° í”Œëž˜ê·¸
+#define CHAR_FLAG_APPLY_NORMAL       0x00000001            ///< ì§€í˜• êµ´ê³¡ì— ì˜í–¥ì„ ë°›ëŠ”ë‹¤.
 
 struct sUNKNOWN_CHAR_PROP
 {
@@ -31,8 +31,8 @@ struct sUNKNOWN_CHAR_PROP
 
 /**
  * \ingroup NtlPresentation
- * CNtlPLCharacter¿¡ ÇØ´çÇÏ´Â property classÀÌ´Ù.
- * property data´Â xml file·Î ÀÛ¼ºµÇ¾îÁ® ÀÖ´Ù.
+ * CNtlPLCharacterì— í•´ë‹¹í•˜ëŠ” property classì´ë‹¤.
+ * property dataëŠ” xml fileë¡œ ìž‘ì„±ë˜ì–´ì ¸ ìžˆë‹¤.
  *
  */
 class CNtlPLCharacterProperty : public CNtlPLProperty
@@ -46,33 +46,33 @@ public:
     std::string			m_TypeMeshFileName;					///< Base Mesh(Bone)	TypeData
     std::string         m_strMeshPath;                      ///< Base Mesh Path
 
-	std::vector<SEventLinkEffect*> m_vLinkEffect;                 ///< Link EffectÀÇ ¸®½ºÆ® 
+	std::vector<SEventLinkEffect*> m_vLinkEffect;                 ///< Link Effectì˜ ë¦¬ìŠ¤íŠ¸ 
 
 	std::vector<sUNKNOWN_CHAR_PROP*> m_vLinkUnknownProp;
 
 protected:	
 	CNtlTypeAnimTable	m_TypeAnimTable;					///< Animation Resource TypeData
 	STypeBoneData		m_TypeBoneData;						///< Bone Scale Data    TypeData
-    RwBBox              m_bboxAnim;                         ///< AnimationÀÇ BBox    
+    RwBBox              m_bboxAnim;                         ///< Animationì˜ BBox    
     RwV3d               m_vFaceCameraPos;                   ///< Face Camera Position
     RwV3d               m_vFaceCameraLookAt;                ///< Face Camera LookAt Vector	
 	RwReal				m_fInitWalkFrontAnimSpeed;		
 	RwReal				m_fInitRunFrontAnimSpeed;    
-    RwReal              m_fAlphaDistance;                   ///< ¾ËÆÄ°¡ ¸ÔÀ» Ä«¸Þ¶ó¿ÍÀÇ °Å¸® ¼³Á¤
+    RwReal              m_fAlphaDistance;                   ///< ì•ŒíŒŒê°€ ë¨¹ì„ ì¹´ë©”ë¼ì™€ì˜ ê±°ë¦¬ ì„¤ì •
 
 public:
 	CNtlPLCharacterProperty();
 	virtual ~CNtlPLCharacterProperty();
 	
-	// 'CharacterPropertyList.xml'¿¡¼­ ÇÁ·ÎÆÛÆ¼ ¸ñ·ÏµéÀ» °¡Á®¿À´Â ÇÔ¼ö
+	// 'CharacterPropertyList.xml'ì—ì„œ í”„ë¡œí¼í‹° ëª©ë¡ë“¤ì„ ê°€ì ¸ì˜¤ëŠ” í•¨ìˆ˜
 	virtual RwBool	Load(CNtlXMLDoc *pDoc, IXMLDOMNode *pNode);
 	virtual RwBool	Save(CNtlXMLDoc *pDoc, IXMLDOMNode *pNode );
 
-	RwBool	LoadScript(const std::string &strFileName);										///< XML Script ·Îµå
+	RwBool	LoadScript(const std::string &strFileName);										///< XML Script ë¡œë“œ
     RwBool  SaveScript(const std::string &strFileName);                                     ///< XML Script Save
 	
-	virtual void	SaveSerialize(CNtlSerializer& sOut);											///< Serialize¿¡ µ¥ÀÌÅÍ¸¦ ÀúÀåÇÏ´Â ÇÔ¼ö
-	virtual void	LoadSerialize(CNtlSerializer& sIn);												///< Serialize·ÎºÎÅÍ µ¥ÀÌÅÍ¸¦ °¡Á®¿À´Â ÇÔ¼ö
+	virtual void	SaveSerialize(CNtlSerializer& sOut);											///< Serializeì— ë°ì´í„°ë¥¼ ì €ìž¥í•˜ëŠ” í•¨ìˆ˜
+	virtual void	LoadSerialize(CNtlSerializer& sIn);												///< Serializeë¡œë¶€í„° ë°ì´í„°ë¥¼ ê°€ì ¸ì˜¤ëŠ” í•¨ìˆ˜
 	
 	STypeBoneData		*GetBoneScaleData()	{ return &m_TypeBoneData; }						///< Get BoneScale Data
 	CNtlTypeAnimTable	*GetAnimTable()		{ return &m_TypeAnimTable; }					///< Get Anim Table
@@ -109,8 +109,8 @@ public:
     void    SetAlphaDistance(RwReal fAlphaDist) {m_fAlphaDistance = fAlphaDist;}
     RwReal  GetAlphaDistance() {return m_fAlphaDistance;}
 
-    // Flag °ü·Ã ÇÔ¼öµé
-    RwBool  IsApplyNormal() {return (GetFlag() & CHAR_FLAG_APPLY_NORMAL);}                  ///< ÁöÇü ±¼°î¿¡ ¿µÇâÀ» ¹Þ´ÂÁö ¹ÝÈ¯ÇÑ´Ù.
+    // Flag ê´€ë ¨ í•¨ìˆ˜ë“¤
+    RwBool  IsApplyNormal() {return (GetFlag() & CHAR_FLAG_APPLY_NORMAL);}                  ///< ì§€í˜• êµ´ê³¡ì— ì˜í–¥ì„ ë°›ëŠ”ì§€ ë°˜í™˜í•œë‹¤.
 };
 
 #endif

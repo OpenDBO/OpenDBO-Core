@@ -364,19 +364,19 @@ void CTSDoc::OnShapeChange( CShape* pShape /*= NULL*/ )
 
 void CTSDoc::OnCreateProject( void )
 {
-	// ÀÌÀü¿¡ ¿­·Á ÀÖ´ø ÇÁ·ÎÁ§Æ®¸¦ ÀúÀåÇÑ´Ù
+	// ì´ì „ì— ì—´ë ¤ ìˆë˜ í”„ë¡œì íŠ¸ë¥¼ ì €ì¥í•œë‹¤
 	if ( IsModified() )
 	{
-		int nRet = AfxMessageBox( _T("ÀÌÀü¿¡ ¿­¸° ÇÁ·ÎÁ§Æ®°¡ ¼öÁ¤µÇ¾ú½À´Ï´Ù.\nÀúÀåÇÏ½Ã°Ú½À´Ï±î?"), MB_OKCANCEL );
+		int nRet = AfxMessageBox( _T("ì´ì „ì— ì—´ë¦° í”„ë¡œì íŠ¸ê°€ ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤.\nì €ì¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?"), MB_OKCANCEL );
 		if ( IDCANCEL == nRet ) return;
 
 		DoFileSave();
 	}
 
-	// Document¸¦ ÃÊ±âÈ­ÇÑ´Ù
+	// Documentë¥¼ ì´ˆê¸°í™”í•œë‹¤
 	OnNewDocument();
 
-	// Project¸¦ »ı¼ºÇÑ´Ù
+	// Projectë¥¼ ìƒì„±í•œë‹¤
 	CTSProjectProperty clProjProperty;
 	if ( IDOK == clProjProperty.DoModal() )
 	{
@@ -388,7 +388,7 @@ void CTSDoc::OnCreateProject( void )
 		Unselect();
 		UpdateAllViews( NULL );
 
-		// Main menu ÃÊ±âÈ­
+		// Main menu ì´ˆê¸°í™”
 		g_pProjMainMenuForm->m_ctrTriggerList.ClearAll();
 		int nSize = (int)m_TSProject.GetTriggerList().GetSize();
 		for ( int i = 0; i < nSize; ++i )
@@ -400,19 +400,19 @@ void CTSDoc::OnCreateProject( void )
 
 void CTSDoc::OnOpenProject( void )
 {
-	// ÀÌÀü¿¡ ¿­·Á ÀÖ´ø ÇÁ·ÎÁ§Æ®¸¦ ÀúÀåÇÑ´Ù
+	// ì´ì „ì— ì—´ë ¤ ìˆë˜ í”„ë¡œì íŠ¸ë¥¼ ì €ì¥í•œë‹¤
 	if ( IsModified() )
 	{
-		int nRet = AfxMessageBox( _T("ÀÌÀü¿¡ ¿­¸° ÇÁ·ÎÁ§Æ®°¡ ¼öÁ¤µÇ¾ú½À´Ï´Ù.\nÀúÀåÇÏ½Ã°Ú½À´Ï±î?"), MB_OKCANCEL );
+		int nRet = AfxMessageBox( _T("ì´ì „ì— ì—´ë¦° í”„ë¡œì íŠ¸ê°€ ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤.\nì €ì¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?"), MB_OKCANCEL );
 		if ( IDCANCEL == nRet ) return;
 
 		DoFileSave();
 	}
 
-	// Document¸¦ ÃÊ±âÈ­ÇÑ´Ù
+	// Documentë¥¼ ì´ˆê¸°í™”í•œë‹¤
 	OnNewDocument();
 
-	// ÇÁ·ÎÁ§Æ®¸¦ ¿¬´Ù
+	// í”„ë¡œì íŠ¸ë¥¼ ì—°ë‹¤
 	CFileDialog clFile( TRUE, NULL, NULL, OFN_HIDEREADONLY|OFN_OVERWRITEPROMPT, "TS Project files (*.pro)|*.pro||", NULL, 0 );
 	if ( IDOK == clFile.DoModal() )
 	{
@@ -426,7 +426,7 @@ void CTSDoc::OnOpenProject( void )
 		Unselect();
 		UpdateAllViews( NULL );
 
-		// Main menu ÃÊ±âÈ­
+		// Main menu ì´ˆê¸°í™”
 		g_pProjMainMenuForm->m_ctrTriggerList.ClearAll();
 		int nSize = (int)m_TSProject.GetTriggerList().GetSize();
 		for ( int i = 0; i < nSize; ++i )
@@ -450,7 +450,7 @@ void CTSDoc::OnCloseProject( void )
 	Unselect();
 	UpdateAllViews( NULL );
 
-	// Main menu ÃÊ±âÈ­
+	// Main menu ì´ˆê¸°í™”
 	g_pProjMainMenuForm->m_ctrMainMenu.ClearAll();
 	g_pProjMainMenuForm->m_ctrTriggerList.ClearAll();
 }
@@ -477,10 +477,10 @@ void CTSDoc::OnExportTrigger( void )
 
 void CTSDoc::OnExportTriggerAll( void )
 {
-	// ÀÌÀü¿¡ ¼öÁ¤µÈ Æ®¸®°Å Á¤º¸´Â ÀúÀåÇÑ´Ù
+	// ì´ì „ì— ìˆ˜ì •ëœ íŠ¸ë¦¬ê±° ì •ë³´ëŠ” ì €ì¥í•œë‹¤
 	if ( IsModified() )
 	{
-		int nRet = AfxMessageBox( _T("ÀÌÀü¿¡ ¼öÁ¤ÁßÀÎ Æ®¸®°Å°¡ Á¸ÀçÇÕ´Ï´Ù.\nÀúÀåÇÏ½Ã°Ú½À´Ï±î?"), MB_OKCANCEL );
+		int nRet = AfxMessageBox( _T("ì´ì „ì— ìˆ˜ì •ì¤‘ì¸ íŠ¸ë¦¬ê±°ê°€ ì¡´ì¬í•©ë‹ˆë‹¤.\nì €ì¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?"), MB_OKCANCEL );
 		if ( IDCANCEL == nRet ) return;
 
 		DoFileSave();
@@ -497,7 +497,7 @@ void CTSDoc::OnExportTriggerAll( void )
 	int nSize = (int)clArray.GetCount();
 	for ( int i = 0; i < nSize; ++i )
 	{
-		// ÅøÀÇ TS µ¥ÀÌÅÍ¸¦ ÀĞ¾î µéÀÎ´Ù
+		// íˆ´ì˜ TS ë°ì´í„°ë¥¼ ì½ì–´ ë“¤ì¸ë‹¤
 		strPath.Format( _T("%s\\%s"), m_TSProject.GetProjectPath(), clArray[i] );
 
 		CFile clFile( strPath.GetString(), CFile::modeRead|CFile::shareDenyWrite );
@@ -506,7 +506,7 @@ void CTSDoc::OnExportTriggerAll( void )
 		CTSTrigger clTrigger;
 		clTrigger.Load( ar );
 
-		// µ¥ÀÌÅÍ¸¦ ÀÍ½ºÆ÷Æ®ÇÑ´Ù
+		// ë°ì´í„°ë¥¼ ìµìŠ¤í¬íŠ¸í•œë‹¤
 		m_clTSMng.Create();
 
 		CNtlTSTrigger* pTrigger = m_clTSMng.CreateTrigger( &clTrigger );
@@ -528,21 +528,21 @@ void CTSDoc::OnExportTriggerAll( void )
 
 void CTSDoc::OnEncryptionTrigger( void )
 {
-	// ÀÌÀü¿¡ ¼öÁ¤µÈ Æ®¸®°Å Á¤º¸´Â ÀúÀåÇÑ´Ù
+	// ì´ì „ì— ìˆ˜ì •ëœ íŠ¸ë¦¬ê±° ì •ë³´ëŠ” ì €ì¥í•œë‹¤
 	if ( IsModified() )
 	{
-		int nRet = AfxMessageBox( _T("ÀÌÀü¿¡ ¼öÁ¤ÁßÀÎ Æ®¸®°Å°¡ Á¸ÀçÇÕ´Ï´Ù.\nÀúÀåÇÏ½Ã°Ú½À´Ï±î?"), MB_OKCANCEL );
+		int nRet = AfxMessageBox( _T("ì´ì „ì— ìˆ˜ì •ì¤‘ì¸ íŠ¸ë¦¬ê±°ê°€ ì¡´ì¬í•©ë‹ˆë‹¤.\nì €ì¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?"), MB_OKCANCEL );
 		if ( IDCANCEL == nRet ) return;
 
 		DoFileSave();
 	}
 
-	CFileDialog clFile( TRUE, NULL, NULL, OFN_HIDEREADONLY|OFN_OVERWRITEPROMPT, "TS Zip ÆÄÀÏ files (*.t)|*.t||", NULL, 0 );
+	CFileDialog clFile( TRUE, NULL, NULL, OFN_HIDEREADONLY|OFN_OVERWRITEPROMPT, "TS Zip íŒŒì¼ files (*.t)|*.t||", NULL, 0 );
 	if ( IDOK == clFile.DoModal() )
 	{
 		CString strPath = clFile.GetPathName();
 
-		// ÆÄÀÏ ·Îµù
+		// íŒŒì¼ ë¡œë”©
 		FILE* pFile;
 		fopen_s( &pFile, strPath, "rb" );
 		fseek( pFile, 0, SEEK_END );
@@ -552,7 +552,7 @@ void CTSDoc::OnEncryptionTrigger( void )
 		fread( pReadBuf, 1, nReadSize, pFile );
 		fclose( pFile );
 
-		// ¾ÏÈ£È­
+		// ì•”í˜¸í™”
 		CString strKey = "dnfldbofmftkfkdgowntpdy";
 		CNtlCipher Cipher;
 		Cipher.SetKey( DES_CIPHER, strKey, strKey.GetLength() );
@@ -560,7 +560,7 @@ void CTSDoc::OnEncryptionTrigger( void )
 		ZeroMemory( pEncryptBuf, nReadSize+256 );
 		int nEncSize = Cipher.Encrypt( pReadBuf, nReadSize, pEncryptBuf, nReadSize+256 );
 
-		// ÆÄÀÏ¿¡ ±â·Ï
+		// íŒŒì¼ì— ê¸°ë¡
 		static char szDir[1024];
 		static char szPath[1024];
 		static char szName[1024];

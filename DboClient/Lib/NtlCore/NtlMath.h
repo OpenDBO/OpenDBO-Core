@@ -2,9 +2,9 @@
  *
  * File			: NtlMath.h
  * Author		: HongHoDong
- * Copyright	: (��)NTL
+ * Copyright	: (占쏙옙)NTL
  * Date			: 2005. 9. 21	
- * Abstract		: Math���� �Լ���
+ * Abstract		: Math占쏙옙占쏙옙 占쌉쇽옙占쏙옙
  *****************************************************************************
  * Desc         : 
  *
@@ -129,7 +129,7 @@ public:
 
 /**
  * \ingroup Core
- * Math���� �Լ����� ����
+ * Math占쏙옙占쏙옙 占쌉쇽옙占쏙옙占쏙옙 占쏙옙占쏙옙
  * 
  */
 class CNtlMath
@@ -173,28 +173,28 @@ public:
 	static RwReal	DWtoF(DWORD w) { RwReal f; memcpy(&f, &w, sizeof(RwReal)); return f; }
 
     
-    static RwRGBA Interpolation(const RwRGBA& startColor, const RwRGBA& endColor, const RwReal fDelta);    // RwRGBA���� �������� ���Ѵ� (delta : 0.0 ~ 1.0 ������ ��)
-    static RwReal Interpolation(const RwReal fStart, const RwReal fEnd, const RwReal fDelta);               // Real���� �������� ���Ѵ�. (delta : 0.0 ~ 1.0 ������ ��)
-    static RwV3d  Interpolation(const RwV3d& vStart, const RwV3d& vEnd, const RwReal fDelta);               // RwV3d���� ���� �������� ���Ѵ�.
+    static RwRGBA Interpolation(const RwRGBA& startColor, const RwRGBA& endColor, const RwReal fDelta);    // RwRGBA占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占싼댐옙 (delta : 0.0 ~ 1.0 占쏙옙占쏙옙占쏙옙 占쏙옙)
+    static RwReal Interpolation(const RwReal fStart, const RwReal fEnd, const RwReal fDelta);               // Real占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占싼댐옙. (delta : 0.0 ~ 1.0 占쏙옙占쏙옙占쏙옙 占쏙옙)
+    static RwV3d  Interpolation(const RwV3d& vStart, const RwV3d& vEnd, const RwReal fDelta);               // RwV3d占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占싼댐옙.
 
 	static RwBool LineSphereCollisionTestPixelRay(RwCamera *pCamera, RwSphere *pSphere, RwInt32 iPixelX, RwInt32 iPixelY, RwReal fRayDist, RwReal& fDistance); 
 
 	static RwBool BBoxBBoxCollision(const RwBBox *pBox1, const RwBBox *pBox2);
 
-    // ���� �������� �߶� ��ȯ�Ѵ�. 
+    // 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쌩띰옙 占쏙옙환占싼댐옙. 
     static RwReal Range(const RwReal fValue, const RwReal fMin, const RwReal fMax);
 
     // ��ķκ��� �����ϰ��� �����Ѵ�. (�յ� �������ΰ�쿡�� ����ȴ�)
     static RwReal ScaleFromRwMatrix(const RwMatrix& matrix);
     
-    // ����V��  1 / V�� ����Ѵ�.
+    // 벡터V의  1 / V를 계산한다.
     static RwV3d RwV3dInverse(const RwV3d& v3d);
 
 	static RwInt32 GetSafeIdx3D(RwV3d& vPos, RwInt32 iHalfSize, RwInt32 iChunkSize, RwInt32 iChunkNum);
 };
 
 //////////////////////////////////////////////////////////////////////////
-// ������ �����ε� (2006.09.13 by agebreak)
+// 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싸듸옙 (2006.09.13 by agebreak)
 //////////////////////////////////////////////////////////////////////////
 const RwV3d operator+(const RwV3d& lhs, const RwV3d& rhs);
 const RwV3d operator-(const RwV3d& lhs, const RwV3d& rhs);
@@ -217,13 +217,13 @@ const RwV2d operator/(const RwV2d& lhs, const RwReal& rhs);
 const void	operator*=(RwV2d& lhs, const RwReal& rhs);
 
 /************************************************************************/
-/* Spline ���� ��� �Լ�                                                */
+/* Spline 보간 계산 함수                                                */
 /************************************************************************/
 
-// u : Weight ��
-// u2 : Weight�� ������
-// u3 : Weight�� ��������
-// Cntrl : ��Ʈ�� ����Ʈ�� 
+// u : Weight 占쏙옙
+// u2 : Weight占쏙옙 占쏙옙占쏙옙占쏙옙
+// u3 : Weight占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙
+// Cntrl : 占쏙옙트占쏙옙 占쏙옙占쏙옙트占쏙옙 
 
 #define _XSL_B_SPLINE(u, u_2, u_3, cntrl0, cntrl1, cntrl2, cntrl3)		\
     (																	\

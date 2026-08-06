@@ -1,4 +1,4 @@
-// FieldNamePropDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// FieldNamePropDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -16,7 +16,7 @@
 #include "WorldViewDlg.h"
 
 
-// CFieldNamePropDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CFieldNamePropDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CFieldNamePropDlg, CDialog)
 
@@ -44,7 +44,7 @@ BEGIN_MESSAGE_MAP(CFieldNamePropDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CFieldNamePropDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CFieldNamePropDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CFieldNamePropDlg::PreTranslateMessage(MSG* pMsg)
 {
@@ -187,5 +187,5 @@ BOOL CFieldNamePropDlg::OnInitDialog()
 // 	}
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }

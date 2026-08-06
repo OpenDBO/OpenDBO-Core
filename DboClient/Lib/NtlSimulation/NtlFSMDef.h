@@ -2,7 +2,7 @@
  *
  * File			: NtlFSMDef.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 8. 18	
  * Abstract		: Finite state machine definition
  *****************************************************************************
@@ -14,7 +14,7 @@
 #define __NTL_FSM_DEF_H__
 
 
-// FSMSN => finite state machine state nameÀÇ ¾à¾î.
+// FSMSN => finite state machine state nameì˜ ì•½ì–´.
 
 #define NTL_FSMSID_INVALID			0
 #define NTL_FSMSID_CREATE			1
@@ -63,14 +63,14 @@
 #define NTL_FSMSID_DIRECTION		44
 #define NTL_FSMSID_DESPAWN			45
 #define NTL_FSMSID_LEAVING			46
-#define NTL_FSMSID_ONBUS            49                          ///< ¹ö½º Å¾½Â »óÅÂ
-#define NTL_FSMSID_ONVEHICLE        50                          ///< Å»°Í Å¾½Â »óÅÂ
-#define NTL_FSMSID_TURNING          51                          ///< ¹ö½º°¡ È¸ÀüÇÏ´Â »óÅÂ
-#define NTL_FSMSID_SEQUELA          52                          ///< ÃÊ»çÀÌ¾ßÀÎ º¯½Å ÈŞÀ¯Áõ »óÅÂ // 52 in tw
-#define NTL_FSMSID_SPIN_ATTACK      53                          ///< È¸Àü °ø°İÁßÀÎ »óÅÂ
-#define NTL_FSMSID_PUSHING          54                          ///< È¸Àü °ø°İÀ» ´çÇØ¼­ Pushing »óÅÂ
-#define NTL_FSMSID_RIDEONOFF        55                          ///< Å»°Í¿¡ Å¸°Å³ª ³»¸®´Â »óÅÂ
-#define NTL_FSMSID_KEEPING_EFFECT   56                          ///< ½ºÅ³ Action Loop »óÅÂ
+#define NTL_FSMSID_ONBUS            49                          ///< ë²„ìŠ¤ íƒ‘ìŠ¹ ìƒíƒœ
+#define NTL_FSMSID_ONVEHICLE        50                          ///< íƒˆê²ƒ íƒ‘ìŠ¹ ìƒíƒœ
+#define NTL_FSMSID_TURNING          51                          ///< ë²„ìŠ¤ê°€ íšŒì „í•˜ëŠ” ìƒíƒœ
+#define NTL_FSMSID_SEQUELA          52                          ///< ì´ˆì‚¬ì´ì•¼ì¸ ë³€ì‹  íœ´ìœ ì¦ ìƒíƒœ // 52 in tw
+#define NTL_FSMSID_SPIN_ATTACK      53                          ///< íšŒì „ ê³µê²©ì¤‘ì¸ ìƒíƒœ
+#define NTL_FSMSID_PUSHING          54                          ///< íšŒì „ ê³µê²©ì„ ë‹¹í•´ì„œ Pushing ìƒíƒœ
+#define NTL_FSMSID_RIDEONOFF        55                          ///< íƒˆê²ƒì— íƒ€ê±°ë‚˜ ë‚´ë¦¬ëŠ” ìƒíƒœ
+#define NTL_FSMSID_KEEPING_EFFECT   56                          ///< ìŠ¤í‚¬ Action Loop ìƒíƒœ
 #define NTL_FSMSID_AIR_JUMP			57
 #define NTL_FSMSID_AIR_ACCEL		58
 #define NTL_FSMSID_ROLLING_ATTACK   59
@@ -133,7 +133,7 @@
 #define NTL_FSMSN_AIR_ACCEL			"State_AirAccel"
 #define NTL_FSMSN_ROLLING_ATTACK	"State_Rolling_Attack"
 
-// FSMSF => finite state machine state flagÀÇ ¾à¾î.
+// FSMSF => finite state machine state flagì˜ ì•½ì–´.
 #define NTL_FSMSF_NOT_MOVE				0x00000001	// No mouse movement.
 #define NTL_FSMSF_NOT_ATTACK_STATE		0x00000002	// Can not switch attack state.
 #define NTL_FSMSF_NOT_HURT_STATE		0x00000004	// hurt status can not be switched.
@@ -150,15 +150,15 @@
 #define NTL_FSMSF_NOT_INPUT				0x00002000	// You can not handle events related to input.
 #define NTL_FSMSF_NOT_GROUNDMOVE		0x00004000	// It does not move along the height of the world.
 
-#define NTL_FSMSF_SKIP_SITDOWN			0x01000000	// sit down »ç¿ë skip.	
-#define NTL_FSMSF_SKIP_STANDUP			0x02000000  // stand up »ç¿ë skip.
-#define NTL_FSMSF_SKIP_ATTACK_CLICK		0x04000000  // attack click »ç¿ë skip.
+#define NTL_FSMSF_SKIP_SITDOWN			0x01000000	// sit down ì‚¬ìš© skip.	
+#define NTL_FSMSF_SKIP_STANDUP			0x02000000  // stand up ì‚¬ìš© skip.
+#define NTL_FSMSF_SKIP_ATTACK_CLICK		0x04000000  // attack click ì‚¬ìš© skip.
 
 
 #define NTL_FSMSF_NOT_ALL				0x07007fff
 
-// ºñÁê¾ó °ü·Ã FSM ÇÃ·¡±× (ÀÌ ÇÃ·¡±×µéÀº NOT_ALL¿¡ Æ÷ÇÔµÇÁö ¾Ê´Â´Ù)
-#define NTL_FSMSF_VISUAL_RPBOUNS             0x10000000  // RP Bonus Effect Ç¥½Ã °¡´É ÇÃ·¡±×
+// ë¹„ì¥¬ì–¼ ê´€ë ¨ FSM í”Œë˜ê·¸ (ì´ í”Œë˜ê·¸ë“¤ì€ NOT_ALLì— í¬í•¨ë˜ì§€ ì•ŠëŠ”ë‹¤)
+#define NTL_FSMSF_VISUAL_RPBOUNS             0x10000000  // RP Bonus Effect í‘œì‹œ ê°€ëŠ¥ í”Œë˜ê·¸
 
 
 // FSM controller type
@@ -167,7 +167,7 @@
 #define NTL_FSM_SERVER_CONTROLLER	0x00000004
 
 
-// FSM event¿¡ ´ëÇÑ Ã³¸® °á°ú.
+// FSM eventì— ëŒ€í•œ ì²˜ë¦¬ ê²°ê³¼.
 #define NTL_FSM_EVENTRES_PASS				0x00000001
 #define NTL_FSM_EVENTRES_BLOCK				0x00000002
 #define NTL_FSM_EVENTRES_CHANGE_STATE		0x00000003

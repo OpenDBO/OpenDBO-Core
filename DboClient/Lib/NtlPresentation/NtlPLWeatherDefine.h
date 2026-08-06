@@ -94,7 +94,7 @@ enum EPLWATHER_PARTICLE_EVENT_TYPE
 
 struct SPLWeatherEmitter
 {
-	std::string							strName;				// World Editor¿¡¼­ Ç¥½ÃµÇ´Â ÀÌ¸§.
+	std::string							strName;				// World Editorì—ì„œ í‘œì‹œë˜ëŠ” ì´ë¦„.
 
 	RwUInt32							eEmitterPlaceType;	// EPLWEATHER_EMITTER_PLACE_TYPE		
 	RwV3d								vEmitterPos;
@@ -145,7 +145,7 @@ struct SPLWeatherEmitter
 	RwUInt32							eParticleCreateEventType;
 
 	RwReal								fParticleFrustumLengthSquared;
-	RwReal								fParticleFrustumFast;		// º¸ÀÌÁö ¾Ê´Â ÆÄÆ¼Å¬¿¡ ´ëÇÑ ¾÷µ¥ÀÌÆ® °¡ÁßÄ¡
+	RwReal								fParticleFrustumFast;		// ë³´ì´ì§€ ì•ŠëŠ” íŒŒí‹°í´ì— ëŒ€í•œ ì—…ë°ì´íŠ¸ ê°€ì¤‘ì¹˜
 
 
 	RwUInt32							eParticleBillboardType; // EPLWEATHER_PARTICLE_BILLBOARD_TYPE
@@ -180,7 +180,7 @@ struct SPLWeatherParticle
 	RwReal		fTimeEnd;
 	RwReal		fTimeDelta;
 
-	RwReal		fTimeMoveCur; // TSnap ÀÌ³ª Spline¿¡¼­ »ç¿ëÇÒ ÀÓ½Ã ½Ã°£°ª.
+	RwReal		fTimeMoveCur; // TSnap ì´ë‚˜ Splineì—ì„œ ì‚¬ìš©í•  ì„ì‹œ ì‹œê°„ê°’.
 	RwReal		fTimeMoveEnd;
 
 	// Collision Data

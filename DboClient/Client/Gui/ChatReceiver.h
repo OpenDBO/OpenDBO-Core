@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: ChatLog.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2008. 7. 2
 * Abstract		: 
 *****************************************************************************
-* Desc			: √§∆√ ∑Œ±◊∏¶ ±‚∑œ
+* Desc			: Ï±ÑÌåÖ Î°úÍ∑∏Î•º Í∏∞Î°ù
 *****************************************************************************/
 
 #pragma once
@@ -63,6 +63,6 @@ private:
 protected:
 	CChatGui*			m_pChatGui;
 
-	LIST_CHATLOG		m_listChatLog;			///< √§∆√ ∑Œ±◊
-	LIST_NOTIFY			m_listNotify;			///< √§∆√ ≥ªøÎ¿Ã ∞ªΩ≈µ«∞≈≥™ «ﬂ¿ª ∂ß¿« æÀ∏≤
+	LIST_CHATLOG		m_listChatLog;			///< Ï±ÑÌåÖ Î°úÍ∑∏
+	LIST_NOTIFY			m_listNotify;			///< Ï±ÑÌåÖ ÎÇ¥Ïö©Ïù¥ Í∞±Ïã†ÎêòÍ±∞ÎÇò ÌñàÏùÑ ÎïåÏùò ÏïåÎ¶º
 };

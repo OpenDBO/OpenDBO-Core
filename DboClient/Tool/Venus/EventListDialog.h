@@ -1,7 +1,7 @@
 #pragma once
 
 
-// CEventListDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CEventListDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 #include "EventListCtrl.h"
 
 #include "rwcore.h"
@@ -11,7 +11,7 @@ class CEventListDialog : public CDialog
 	DECLARE_DYNCREATE(CEventListDialog)
 
 public:
-	CEventListDialog(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CEventListDialog(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CEventListDialog();
 
 
@@ -21,11 +21,11 @@ public:
 	BOOL					m_Initialized;
 	CEventListCtrl			m_List;
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_EVENT_LIST };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

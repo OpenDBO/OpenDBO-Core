@@ -252,16 +252,16 @@ WCHAR& CUniBuffer::operator[]( int n )  // No param checking
 
 VOID CUniBuffer::SetFont( const CGuiFont *pFont )
 {
-	// ¸¸¾à ÀÌÀüÀÇ ÆùÆ®°¡ ÀÖ¾ú´Ù¸é Uniscribe¿Í µ¿±â¸¦ ¸ÂÃçÁà¾ß ÇÑ´Ù.
+	// ë§Œì•½ ì´ì „ì˜ í°íŠ¸ê°€ ìžˆì—ˆë‹¤ë©´ Uniscribeì™€ ë™ê¸°ë¥¼ ë§žì¶°ì¤˜ì•¼ í•œë‹¤.
 	if( m_pFont )
 	{
 		m_bAnalyseRequired = true;
 	
-		// ÆùÆ®¸¦ Àû¿ëÇÏ°í,
+		// í°íŠ¸ë¥¼ ì ìš©í•˜ê³ ,
 		m_pFont = (CGuiFont*)pFont;
 
-		// Uniscribe¸»°íµµ UI Library³»ºÎÀÇ º¸°üÇÏ°í ÀÖ´Â ÆùÆ® Size¸¦
-		// ¿©±â¼­ °è»êÇÑ´Ù. ( m_bSizeCalc ¸ðµåÀÏ °æ¿ì. )
+		// Uniscribeë§ê³ ë„ UI Libraryë‚´ë¶€ì˜ ë³´ê´€í•˜ê³  ìžˆëŠ” í°íŠ¸ Sizeë¥¼
+		// ì—¬ê¸°ì„œ ê³„ì‚°í•œë‹¤. ( m_bSizeCalc ëª¨ë“œì¼ ê²½ìš°. )
 		if( m_bSizeCalc )
 		{
 			SIZE size;
@@ -281,7 +281,7 @@ VOID CUniBuffer::SetFont( const CGuiFont *pFont )
 			SelectObject(m_pFont->GetHdc(), hFont);
 		}
 	}
-	// °¡Àå Ã³À½ ½ÇÇàÀÌ¶ó¸é ±×³É Font ¼ÂÆÃ.
+	// ê°€ìž¥ ì²˜ìŒ ì‹¤í–‰ì´ë¼ë©´ ê·¸ëƒ¥ Font ì…‹íŒ….
 	else
 		m_pFont = (CGuiFont*)pFont;
 }

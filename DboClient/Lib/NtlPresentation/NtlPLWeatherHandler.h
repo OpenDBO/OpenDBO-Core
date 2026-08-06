@@ -36,10 +36,10 @@ public:
 	void			InitWeather();
 	void			RefreshWeather();
 
-	void			LoadWeatherReal(sNTL_FIELD_PROP* pNtlFieldProp, RwReal fFadeTime);	// Field·Î ºÎÅÍ Weather¸¦ Ãß°¡ÇÑ´Ù.
-	void			LoadWeatherDumm(RwReal fFadeTime);									// WeatherReal·Î ºÎÅÍ Dumm¸¦ Ãß°¡ÇÑ´Ù.
-	void			UnLoadWeatherReal();												// Real List¸¦ UnLoad ÇÑ´Ù.
-	void			UnLoadWeatherDumm();												// Dumm List¸¦ UnLoad ÇÑ´Ù.
+	void			LoadWeatherReal(sNTL_FIELD_PROP* pNtlFieldProp, RwReal fFadeTime);	// Fieldë¡œ ë¶€í„° Weatherë¥¼ ì¶”ê°€í•œë‹¤.
+	void			LoadWeatherDumm(RwReal fFadeTime);									// WeatherRealë¡œ ë¶€í„° Dummë¥¼ ì¶”ê°€í•œë‹¤.
+	void			UnLoadWeatherReal();												// Real Listë¥¼ UnLoad í•œë‹¤.
+	void			UnLoadWeatherDumm();												// Dumm Listë¥¼ UnLoad í•œë‹¤.
 
 
 

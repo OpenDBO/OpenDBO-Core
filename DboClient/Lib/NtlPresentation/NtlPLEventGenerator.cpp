@@ -4,7 +4,7 @@
 #include "NtlEventQueue.h"
 #include "NtlPLEvent.h"
 
-// ÀÌº¥Æ® Send¸¦ °£ÆíÈ÷ »ç¿ëÇÏ±â À§ÇÑ ¸ÅÅ©·Î (by agebrak 2007.10.29)
+// ì´ë²¤íŠ¸ Sendë¥¼ ê°„í¸íˆ ì‚¬ìš©í•˜ê¸° ìœ„í•œ ë§¤í¬ë¡œ (by agebrak 2007.10.29)
 #define SEND_MSG(event, data)   \
     RWS::CMsg msg; \
     msg.Id = event;\

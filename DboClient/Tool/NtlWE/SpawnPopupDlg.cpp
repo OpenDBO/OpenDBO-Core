@@ -1,4 +1,4 @@
-// SpawnPopupDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// SpawnPopupDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -12,7 +12,7 @@
 #include "SpawnManager.h"
 
 
-// CSpawnPopupDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CSpawnPopupDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CSpawnPopupDlg, CDialog)
 
@@ -63,7 +63,7 @@ BEGIN_MESSAGE_MAP(CSpawnPopupDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CSpawnPopupDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CSpawnPopupDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CSpawnPopupDlg::OnInitDialog()
 {
@@ -110,7 +110,7 @@ BOOL CSpawnPopupDlg::OnInitDialog()
 	UpdateData(FALSE);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 BOOL CSpawnPopupDlg::PreTranslateMessage(MSG* pMsg)
@@ -153,7 +153,7 @@ LRESULT CSpawnPopupDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 
 void CSpawnPopupDlg::OnBnClickedOk()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	UpdateData(TRUE);
 	
 	const std::vector<CSpawn*>*	pvecSpawnList	= GetSpawnInstance()->GetSpawnSelected();

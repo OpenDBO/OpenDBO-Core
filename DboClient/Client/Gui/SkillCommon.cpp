@@ -83,7 +83,7 @@ namespace SkillCommonLogic
 			{
 				if( !pAvatarAttr->m_bCanChangeClass )
 					eResult |= SRQ_FLAG_NOT_LEARN_CHANGECLASSRIGHT;
-				// else ¹ØÀ¸·Î ³»·Á°¡»ç »ç¿ë°¡´É °Ë»ç.
+				// else ë°‘ìœ¼ë¡œ ë‚´ë ¤ê°€ì‚¬ ì‚¬ìš©ê°€ëŠ¥ ê²€ì‚¬.
 			}
 			else 
 			{
@@ -162,9 +162,9 @@ namespace SkillCommonLogic
 
 	RwUInt32 ExmineRQByHTB( sTBLDAT* pItemTblData )		
 	{
-		//SRQ_FLAG_NOT_LEARN_LEVEL = 0x02,					// ·¹º§ÀÌ ³·¾Æ ½ºÅ³À» ¹è¿ï ¼ö ¾ø´Ù.
-		//SRQ_FLAG_CAN_LEARN_BY_SKILLMASTER = 0x04,			// ½ºÅ³¸¶½ºÅÍ¿¡°Ô ½ºÅ³À» ¹è¿ï ¼ö ÀÖ´Ù.
-		//SRQ_FLAG_LEARNED	= 0x0100,						// ÀÌ¹Ì ¹è¿î ½ºÅ³ÀÌ´Ù. 	
+		//SRQ_FLAG_NOT_LEARN_LEVEL = 0x02,					// ë ˆë²¨ì´ ë‚®ì•„ ìŠ¤í‚¬ì„ ë°°ìš¸ ìˆ˜ ì—†ë‹¤.
+		//SRQ_FLAG_CAN_LEARN_BY_SKILLMASTER = 0x04,			// ìŠ¤í‚¬ë§ˆìŠ¤í„°ì—ê²Œ ìŠ¤í‚¬ì„ ë°°ìš¸ ìˆ˜ ìžˆë‹¤.
+		//SRQ_FLAG_LEARNED	= 0x0100,						// ì´ë¯¸ ë°°ìš´ ìŠ¤í‚¬ì´ë‹¤. 	
 
 		CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
 		CNtlSobAvatarAttr* pAvatarAttr = reinterpret_cast<CNtlSobAvatarAttr*>( pAvatar->GetSobAttr() );

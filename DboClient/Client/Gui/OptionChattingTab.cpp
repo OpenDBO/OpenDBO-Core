@@ -30,13 +30,13 @@
 /////////////////////////////////////////////////////////////////////////////
 // class : COptionChattingCategoryNode
 
-// Option Chatting List ÀÇ Ä«Å×°í¸®ÀÇ +, - ¹öÆ° ÀÌÁî
+// Option Chatting List ì˜ ì¹´í…Œê³ ë¦¬ì˜ +, - ë²„íŠ¼ ì´ì¦ˆ
 #define dOPTIONCHATTING_CATEGORY_BUTTON_X		0
 #define dOPTIONCHATTING_CATEGORY_BUTTON_Y		0
 #define dOPTIONCHATTING_CATEGORY_BUTTON_WIDTH	140
 #define dOPTIONCHATTING_CATEGORY_BUTTON_HEIGHT	20
 
-// Option Chatting List ÀÇ Ä«Å×°í¸® ¼Ó¼º
+// Option Chatting List ì˜ ì¹´í…Œê³ ë¦¬ ì†ì„±
 #define dOPTIONCHATTING_CATEGORY_TITLE_X 30
 #define dOPTIONCHATTING_CATEGORY_TITLE_Y 0
 #define dOPTIONCHATTING_CATEGORY_TITLE_WIDTH		100
@@ -47,16 +47,16 @@
 
 /**
 * \brief Contruction
-* \param pMgr		(CGuiLineTree*) CGuiLineTreeÀÇ Æ÷ÀÎÅÍ
-* \param strTitle	(std::wstring) Ä«Å×°í¸®ÀÇ ÅØ½ºÆ®
-* \param nID		(RwInt32) ÇöÀç ³ëµåÀÇ ID
+* \param pMgr		(CGuiLineTree*) CGuiLineTreeì˜ í¬ì¸í„°
+* \param strTitle	(std::wstring) ì¹´í…Œê³ ë¦¬ì˜ í…ìŠ¤íŠ¸
+* \param nID		(RwInt32) í˜„ìž¬ ë…¸ë“œì˜ ID
 */
 COptionChattingCategoryNode::COptionChattingCategoryNode( CGuiLineTree* pMgr, std::wstring strTitle, RwInt32 nID )
 : CGuiLineTreeNode( pMgr, nID )
 , m_pBtnExpand( NULL )
 , m_pBtnReduce( NULL )
 {
-	// +¹öÆ°
+	// +ë²„íŠ¼
 	CRectangle rect;
 	rect.SetRectWH(dOPTIONCHATTING_CATEGORY_BUTTON_X, dOPTIONCHATTING_CATEGORY_BUTTON_Y, dOPTIONCHATTING_CATEGORY_BUTTON_WIDTH, dOPTIONCHATTING_CATEGORY_BUTTON_HEIGHT);
 	m_pBtnExpand = NTL_NEW gui::CButton( rect, std::string(),pMgr->GetParentGui(), GetNtlGuiManager()->GetSurfaceManager());
@@ -70,7 +70,7 @@ COptionChattingCategoryNode::COptionChattingCategoryNode( CGuiLineTree* pMgr, st
 	m_pBtnExpand->SetTextDownColor( dOPTIONCHATTING_CATEGORY_TITLE_COLOR_DOWN );
 	m_pBtnExpand->SetText( strTitle.c_str() );
 
-	// -¹öÆ°
+	// -ë²„íŠ¼
 	m_pBtnReduce = NTL_NEW gui::CButton(rect, std::string(),pMgr->GetParentGui(), GetNtlGuiManager()->GetSurfaceManager());
 	m_pBtnReduce->AddSurfaceUp(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("QuestList.srf", "srfReduceBtnUp"));
 	m_pBtnReduce->AddSurfaceFocus(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("QuestList.srf", "srfReduceBtnFoc"));
@@ -82,7 +82,7 @@ COptionChattingCategoryNode::COptionChattingCategoryNode( CGuiLineTree* pMgr, st
 	m_pBtnReduce->SetTextDownColor( dOPTIONCHATTING_CATEGORY_TITLE_COLOR_DOWN );
 	m_pBtnReduce->SetText( strTitle.c_str() );
 
-	// ButtonÀÇ Signal ¿¬°á
+	// Buttonì˜ Signal ì—°ê²°
 	m_slotClickedBtnExpand = m_pBtnExpand->SigClicked().Connect(this, &COptionChattingCategoryNode::OnClickBtnExpand);
 	m_slotClickedBtnReduce = m_pBtnReduce->SigClicked().Connect(this, &COptionChattingCategoryNode::OnClickBtnReduce);
 }
@@ -97,7 +97,7 @@ COptionChattingCategoryNode::~COptionChattingCategoryNode()
 }
 
 /**
-* \brief GuiLineTreeÀÇ ShowProcÀ» ¿À¹ö¶óÀÌµå
+* \brief GuiLineTreeì˜ ShowProcì„ ì˜¤ë²„ë¼ì´ë“œ
 */
 void COptionChattingCategoryNode::ShowProc()
 {
@@ -114,13 +114,13 @@ void COptionChattingCategoryNode::ShowProc()
 		m_pBtnReduce->Show(false);
 	}
 
-	// Ä«Å×°í¸® ³ëµåµéÀÇ À§Ä¡¸¦ Àç °è»ê
+	// ì¹´í…Œê³ ë¦¬ ë…¸ë“œë“¤ì˜ ìœ„ì¹˜ë¥¼ ìž¬ ê³„ì‚°
 	m_pBtnExpand->SetPosition(m_nPosX + dOPTIONCHATTING_CATEGORY_BUTTON_X, m_nPosY + dOPTIONCHATTING_CATEGORY_BUTTON_Y);
 	m_pBtnReduce->SetPosition(m_nPosX + dOPTIONCHATTING_CATEGORY_BUTTON_X, m_nPosY + dOPTIONCHATTING_CATEGORY_BUTTON_Y);
 }
 
 /**
-* \brief GuiLineTreeÀÇ HideProcÀ» ¿À¹ö¶óÀÌµå
+* \brief GuiLineTreeì˜ HideProcì„ ì˜¤ë²„ë¼ì´ë“œ
 */
 void COptionChattingCategoryNode::HideProc()
 {
@@ -131,8 +131,8 @@ void COptionChattingCategoryNode::HideProc()
 }
 
 /**
-* \brief È®Àå ¹öÆ°À» Å¬¸¯ÇÏ¿´À» ¶§
-* \param pComponent (gui::CComponent*) singalÀ» º¸³½ Component
+* \brief í™•ìž¥ ë²„íŠ¼ì„ í´ë¦­í•˜ì˜€ì„ ë•Œ
+* \param pComponent (gui::CComponent*) singalì„ ë³´ë‚¸ Component
 */
 void COptionChattingCategoryNode::OnClickBtnExpand( gui::CComponent* pComponent )
 {
@@ -140,8 +140,8 @@ void COptionChattingCategoryNode::OnClickBtnExpand( gui::CComponent* pComponent 
 }
 
 /**
-* \brief °¨¼Ò ¹öÆ°À» Å¬¸¯ÇÏ¿´À» ¶§
-* \param pComponent (gui::CComponent*) singalÀ» º¸³½ Component
+* \brief ê°ì†Œ ë²„íŠ¼ì„ í´ë¦­í•˜ì˜€ì„ ë•Œ
+* \param pComponent (gui::CComponent*) singalì„ ë³´ë‚¸ Component
 */
 void COptionChattingCategoryNode::OnClickBtnReduce( gui::CComponent* pComponent )
 {
@@ -151,13 +151,13 @@ void COptionChattingCategoryNode::OnClickBtnReduce( gui::CComponent* pComponent 
 /////////////////////////////////////////////////////////////////////////////
 // class : CCheckBoxNode
 
-// CheckBoxÀÇ Ã¼Å©¹Ú½º Å©±â
+// CheckBoxì˜ ì²´í¬ë°•ìŠ¤ í¬ê¸°
 #define dOPTIONCHATTING_CHECKNODE_CHECKBOX_X		5
 #define dOPTIONCHATTING_CHECKNODE_CHECKBOX_Y		5
 #define dOPTIONCHATTING_CHECKNODE_CHECKBOX_WIDTH	16
 #define dOPTIONCHATTING_CHECKNODE_CHECKBOX_HEIGHT	16
 
-// CheckBoxÀÇ Å¸ÀÌÆ² Å©±â
+// CheckBoxì˜ íƒ€ì´í‹€ í¬ê¸°
 #define dOPTIONCHATTING_CHECKNODE_TITLE_X			30
 #define dOPTIONCHATTING_CHECKNODE_TITLE_Y			0
 #define dOPTIONCHATTING_CHECKNODE_TITLE_WIDTH		200
@@ -347,7 +347,7 @@ COptionChattingList::~COptionChattingList()
 }
 
 /**
-* \brief »ó¼Ó¹ÞÀº CGuiLineTreeÀÇ Create¸¦ È£ÃâÇÏ°í ½ºÅ©·Ñ ¹Ù ¼¼ÆÃ, »ý¼º¿¡ ÇÊ¿äÇÑ ÀÛ¾÷µéÀ» ÇÑ´Ù.
+* \brief ìƒì†ë°›ì€ CGuiLineTreeì˜ Createë¥¼ í˜¸ì¶œí•˜ê³  ìŠ¤í¬ë¡¤ ë°” ì„¸íŒ…, ìƒì„±ì— í•„ìš”í•œ ìž‘ì—…ë“¤ì„ í•œë‹¤.
 */
 RwBool COptionChattingList::Create( CRectangle& rect, gui::CComponent* pParent, RwInt32 nLineHeight, RwInt32 nLineMargin, RwInt32 nChildXMargin, RwInt32 nScrollBarWidth, COptionChatting* pOptionChatting /*= NULL*/ )
 {
@@ -376,14 +376,14 @@ void COptionChattingList::CreateTree()
 {
 #define OCLGDS(stringid) GetDisplayStringManager()->GetString(stringid)
 
-	// °øÅë ¿É¼ÇÀÇ Ä«Å×°í¸®
+	// ê³µí†µ ì˜µì…˜ì˜ ì¹´í…Œê³ ë¦¬
 	CGuiLineTreeNode* pNode = NTL_NEW COptionChattingCategoryNode( this,
 		OCLGDS("DST_OPTION_CHATTING_TITLE_COMMON"),
 		dOPTIONCHATTING_CATEGORY_COMMON );
 	CGuiLineTree::AddNode( pNode, GUILINETREE_ROOTNODE_ID );
 	pNode->Expand( true );
 
-	// °øÅë ¿É¼ÇÀÇ ¼¼ºÎ ¿É¼Çµé
+	// ê³µí†µ ì˜µì…˜ì˜ ì„¸ë¶€ ì˜µì…˜ë“¤
 	pNode = NTL_NEW CCheckBoxNode( this, eCHAT_INPUTMODE, OCLGDS("DST_OPTION_CHATTING_COMMON_INPUTMODE")
 		, OCLGDS("DST_OPTION_TOOLTIP_CHAT_INPUTMODE"));
 	CGuiLineTree::AddNode( pNode, dOPTIONCHATTING_CATEGORY_COMMON );
@@ -415,7 +415,7 @@ void COptionChattingList::CreateTree()
 	CGuiLineTree::AddNode( pNode, GUILINETREE_ROOTNODE_ID );
 	pNode->Expand( true );
 
-	// ±âº» Ã¤ÆÃÃ¢ ¿É¼ÇÀÇ ¼¼ºÎ ¿É¼Çµé
+	// ê¸°ë³¸ ì±„íŒ…ì°½ ì˜µì…˜ì˜ ì„¸ë¶€ ì˜µì…˜ë“¤
 	pNode = NTL_NEW CCheckBoxNode( this, eCHAT_BASIC_NORMAL, OCLGDS("DST_OPTION_CHATTING_BASIC_NORMAL"),
 		OCLGDS("DST_OPTION_TOOLTIP_CHAT_NORMAL"));
 	CGuiLineTree::AddNode( pNode, dOPTIONCHATTING_CATEGORY_BASIC );
@@ -455,7 +455,7 @@ void COptionChattingList::CreateTree()
 	CGuiLineTree::AddNode( pNode, GUILINETREE_ROOTNODE_ID );
 	pNode->Expand( true );
 
-	// Ãß°¡ Ã¤ÆÃÃ¢ ¿É¼ÇÀÇ ¼¼ºÎ ¿É¼Çµé
+	// ì¶”ê°€ ì±„íŒ…ì°½ ì˜µì…˜ì˜ ì„¸ë¶€ ì˜µì…˜ë“¤
 	pNode = NTL_NEW CCheckBoxNode( this, eCHAT_ADDED_NORMAL, OCLGDS("DST_OPTION_CHATTING_ADDED_NORMAL"),
 		OCLGDS("DST_OPTION_TOOLTIP_CHAT_NORMAL"));
 	CGuiLineTree::AddNode( pNode, dOPTIONCHATTING_CATEGORY_ADDED );
@@ -579,13 +579,13 @@ RwBool COptionChatting::Create( COptionWindowGui* pOptionWindow )
 
 	m_pOptionChattingList = NTL_NEW COptionChattingList;
 	if( !m_pOptionChattingList->Create( rect, m_pDlgChattingList,
-		dOPTIONCHATTING_LINE_HEIGHT,			// °¢ ¶óÀÎÀÇ ³ôÀÌ
-		dOPTIONCHATTING_LINE_MARGIN,			// °¢ ¶óÀÎÀÇ °£°Ý
-		dOPTIONCHATTING_CHILD_MARGIN_WIDTH,	// ÀÚ½ÄµéÀÇ °£°Ý
-		dOPTIONCHATTING_LIST_SLIDER_WIDTH, this))	// ½½¶óÀÌ´õÀÇ ³ÐÀÌ
+		dOPTIONCHATTING_LINE_HEIGHT,			// ê° ë¼ì¸ì˜ ë†’ì´
+		dOPTIONCHATTING_LINE_MARGIN,			// ê° ë¼ì¸ì˜ ê°„ê²©
+		dOPTIONCHATTING_CHILD_MARGIN_WIDTH,	// ìžì‹ë“¤ì˜ ê°„ê²©
+		dOPTIONCHATTING_LIST_SLIDER_WIDTH, this))	// ìŠ¬ë¼ì´ë”ì˜ ë„“ì´
 		return FALSE;
 
-	// Á¶ÀÛÅ°¸¦ ÁöÁ¤ÇÒ ¼ö ÀÖ´Â ¾ÆÀÌÅÛµéÀ» »ý¼º
+	// ì¡°ìž‘í‚¤ë¥¼ ì§€ì •í•  ìˆ˜ ìžˆëŠ” ì•„ì´í…œë“¤ì„ ìƒì„±
 	m_pOptionChattingList->CreateTree();
 
 	NTL_RETURN(TRUE);
@@ -635,7 +635,7 @@ void COptionChatting::OnReset()
 void COptionChatting::OnOk()
 {
 	SaveSerializer();
-	// Àû¿ë
+	// ì ìš©
 	GetNtlStorageManager()->ApplyStorageType( eNTL_STORAGE_CHAT, eNTL_STORAGE_APPLY_ALL );
 }
 

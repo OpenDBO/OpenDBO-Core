@@ -1,4 +1,4 @@
-// WorldEditorView.h : iCWorldEditorView Å¬·¡½ºÀÇ ÀÎÅÍÆäÀÌ½º
+// WorldEditorView.h : iCWorldEditorView í´ë˜ìŠ¤ì˜ ì¸í„°í˜ì´ìŠ¤
 //
 
 
@@ -7,27 +7,27 @@
 
 class CWorldEditorView : public CView
 {
-protected: // serialization¿¡¼­¸¸ ¸¸µé¾îÁı´Ï´Ù.
+protected: // serializationì—ì„œë§Œ ë§Œë“¤ì–´ì§‘ë‹ˆë‹¤.
 	CWorldEditorView();
 	DECLARE_DYNCREATE(CWorldEditorView)
 
-// Æ¯¼º
+// íŠ¹ì„±
 public:
 	CWorldEditorDoc* GetDocument() const;
 
-// ÀÛ¾÷
+// ì‘ì—…
 public:
 
-// ÀçÁ¤ÀÇ
+// ì¬ì •ì˜
 	public:
-	virtual void OnDraw(CDC* pDC);  // ÀÌ ºä¸¦ ±×¸®±â À§ÇØ ÀçÁ¤ÀÇµÇ¾ú½À´Ï´Ù.
+	virtual void OnDraw(CDC* pDC);  // ì´ ë·°ë¥¼ ê·¸ë¦¬ê¸° ìœ„í•´ ì¬ì •ì˜ë˜ì—ˆìŠµë‹ˆë‹¤.
 virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 protected:
 	virtual BOOL OnPreparePrinting(CPrintInfo* pInfo);
 	virtual void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
 	virtual void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
 
-// ±¸Çö
+// êµ¬í˜„
 public:
 	virtual ~CWorldEditorView();
 #ifdef _DEBUG
@@ -37,14 +37,14 @@ public:
 
 protected:
 
-// ¸Ş½ÃÁö ¸Ê ÇÔ¼ö¸¦ »ı¼ºÇß½À´Ï´Ù.
+// ë©”ì‹œì§€ ë§µ í•¨ìˆ˜ë¥¼ ìƒì„±í–ˆìŠµë‹ˆë‹¤.
 protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
 };
 
-#ifndef _DEBUG  // WorldEditorView.cppÀÇ µğ¹ö±× ¹öÀü
+#ifndef _DEBUG  // WorldEditorView.cppì˜ ë””ë²„ê·¸ ë²„ì „
 inline CWorldEditorDoc* CWorldEditorView::GetDocument() const
    { return reinterpret_cast<CWorldEditorDoc*>(m_pDocument); }
 #endif

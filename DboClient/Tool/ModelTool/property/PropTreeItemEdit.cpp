@@ -1,4 +1,4 @@
-// PropTreeItemEdit.cpp : ���� �����Դϴ�.
+// PropTreeItemEdit.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -29,18 +29,18 @@ END_MESSAGE_MAP()
 
 
 
-// CPropTreeItemEdit �޽��� ó�����Դϴ�.
+// CPropTreeItemEdit 메시지 처리기입니다.
 
 
 UINT CPropTreeItemEdit::OnGetDlgCode()
 {
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	return CEdit::OnGetDlgCode()|DLGC_WANTALLKEYS;
 }
 
 void CPropTreeItemEdit::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	if (nChar==VK_RETURN)
 		CommitChanges();
 
@@ -49,7 +49,7 @@ void CPropTreeItemEdit::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CPropTreeItemEdit::OnEnKillfocus()
 {
-	// TODO: ���⿡ ��Ʈ�� �˸� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	CommitChanges();	
 }
 

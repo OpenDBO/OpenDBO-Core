@@ -222,7 +222,7 @@ RwBool CSkillHtbRpUse::Create( VOID )
 	m_pPnlGaugeBack = (gui::CPanel*)GetComponent( "pnlTimeBack" );
 	m_pPgbGaugeTime = (gui::CProgressBar*)GetComponent( "pgbLP" );
 
-	// 7°³ÀÇ Rp »ç¿ë ¾ÆÀÌÄÜ°ú 1°³ÀÇ NONE ¾ÆÀÌÄÜÀ» »ı¼º
+	// 7ê°œì˜ Rp ì‚¬ìš© ì•„ì´ì½˜ê³¼ 1ê°œì˜ NONE ì•„ì´ì½˜ì„ ìƒì„±
 	for( RwUInt8 i=0; i < dSKILL_HTB_RP_ICON_NUMS; ++i )
 	{
 		m_aRpuseIcon[i].Create( this, dSKILL_HTB_RP_FLASH_BALL, i );
@@ -303,16 +303,16 @@ RwInt32 CSkillHtbRpUse::SwitchDialog( bool bOpen )
 
 VOID CSkillHtbRpUse::HandleEvents( RWS::CMsg& msg )
 {
-	// HTB ¾´´Ù´Â °ÍÀ» ¾Ë·ÁÁÖ´Â ÀÌº¥Æ®
+	// HTB ì“´ë‹¤ëŠ” ê²ƒì„ ì•Œë ¤ì£¼ëŠ” ì´ë²¤íŠ¸
 	if( msg.Id == g_EventHTBRPStock )
 	{
-		// °¡Áö°í ÀÖ´Â Rp
+		// ê°€ì§€ê³  ìˆëŠ” Rp
 		m_uiCurRpStock = Logic_GetRpStock(GetNtlSLGlobal()->GetSobAvatar());
 
-		// ¸Æ½º RP
+		// ë§¥ìŠ¤ RP
 		RwUInt32 uiMaxRPStock = Logic_GetMaxRpStock(GetNtlSLGlobal()->GetSobAvatar());
 
-		// Dialog¸¦ ¿­°í ¸ğµç Component¸¦ ¾È º¸¿©ÁØ´Ù.
+		// Dialogë¥¼ ì—´ê³  ëª¨ë“  Componentë¥¼ ì•ˆ ë³´ì—¬ì¤€ë‹¤.
 		if( GetDialogManager()->IsOpenDialog( DIALOG_SKILL_HTB_RPUSE ) )
 			GetDialogManager()->CloseDialog( DIALOG_SKILL_HTB_RPUSE );
 
@@ -323,13 +323,13 @@ VOID CSkillHtbRpUse::HandleEvents( RWS::CMsg& msg )
 		InitAllIcon();
 		ShowAllIcon( FALSE );
 
-		// ÇöÀçÀÇ DialogÀÇ Å©±â¸¦ ¼¼ÆÃÇØÁÖ°í ÁÂÇ¥¸¦ ¼¼ÆÃ
+		// í˜„ì¬ì˜ Dialogì˜ í¬ê¸°ë¥¼ ì„¸íŒ…í•´ì£¼ê³  ì¢Œí‘œë¥¼ ì„¸íŒ…
 		m_pThis->SetSize( (uiMaxRPStock * dSKILL_HTB_RP_WIDTH_OFFSET) + dSKILL_HTB_RP_WIDTH_OFFSET, dSKILL_HTB_RP_HEIGHT );
 		m_pThis->SetPosition( (GetDboGlobal()->GetScreenWidth()/2) - (m_pThis->GetScreenRect().GetWidth()/2),
 			(RwInt32)((RwReal)GetDboGlobal()->GetScreenHeight() * 0.7f) );
 		
-		// Max ¸¸Å­ Show¸¦ ÇÏ°í
-		// °¡Áö°í ÀÖ´Â °Í¸¸Å­ Play
+		// Max ë§Œí¼ Showë¥¼ í•˜ê³ 
+		// ê°€ì§€ê³  ìˆëŠ” ê²ƒë§Œí¼ Play
 		for( RwUInt32 i=0; i <m_uiCurRpStock; ++i )
 		{
 			m_aRpuseIcon[i].Show( true );
@@ -365,8 +365,8 @@ VOID CSkillHtbRpUse::HandleEvents( RWS::CMsg& msg )
 		m_RpUseIconNone.PlayMovie( TRUE );
 		m_RpUseIconNone.GotoStartFrame();
 
-		// Progress Bar ¼¼ÆÃ
-		// À§Ä¡
+		// Progress Bar ì„¸íŒ…
+		// ìœ„ì¹˜
 		RwInt32 nPgbX = (m_pThis->GetScreenRect().GetWidth()/2) - (m_pPnlGaugeBack->GetScreenRect().GetWidth()/2);
 		RwInt32 nPgbY = dSKILL_HTP_RP_TIME_OFFSET_Y;
 
@@ -375,7 +375,7 @@ VOID CSkillHtbRpUse::HandleEvents( RWS::CMsg& msg )
 		m_pPgbGaugeTime->SetRange( 0, 1000 );
 		m_pPgbGaugeTime->SetPos( 1000 );
 
-		// ÀÔ·ÂÀ» ¹Ş°Ú´Ù.
+		// ì…ë ¥ì„ ë°›ê² ë‹¤.
 		m_bInput = TRUE;
 		m_bActive = TRUE;
 		m_fPlayTime = 0.0f;
@@ -391,12 +391,12 @@ VOID CSkillHtbRpUse::HandleEvents( RWS::CMsg& msg )
 		if( !m_bActive )
 			return;
 
-		// Attribute °ü·Ã Update
+		// Attribute ê´€ë ¨ Update
 		if( pUpdate->uiUpdateType & EVENT_AIUT_ATTR )
 		{
 			CNtlSobAvatar* pSobAvatar = GetNtlSLGlobal()->GetSobAvatar();
 
-			// ÀúÀåÇÏ°í ÀÖ´Â °ª°ú ÇöÀç RP°¡ ´Ù¸£´Ù¸é
+			// ì €ì¥í•˜ê³  ìˆëŠ” ê°’ê³¼ í˜„ì¬ RPê°€ ë‹¤ë¥´ë‹¤ë©´
 			if( Logic_GetRpStock( pSobAvatar ) != m_uiCurRpStock && m_bSelect == FALSE )
 			{
 				m_uiCurRpStock = Logic_GetRpStock( pSobAvatar );
@@ -424,7 +424,7 @@ VOID CSkillHtbRpUse::OnKeyDown( gui::CComponent* pComponent, CInputDevice* pDevi
 
 	for( RwInt32 i=0; i < dSKILL_HTB_RP_ICON_NUMS; ++i )
 	{
-		// »ç¿ë°¡´ÉÇÑ RP
+		// ì‚¬ìš©ê°€ëŠ¥í•œ RP
 		if( m_aRpuseIcon[i].IsEnable() )
 		{
 			if( ( key.m_dwVKey - (m_aRpuseIcon[i].GetIndex()+49) ) == 0 )
@@ -436,17 +436,17 @@ VOID CSkillHtbRpUse::OnKeyDown( gui::CComponent* pComponent, CInputDevice* pDevi
 				return;
 			}
 		}
-		// ÇöÀç DisableµÅ¾î¼­ ´©¸£¸é MaxÄ¡¸¸Å­ ¼±ÅÃÇÏ´Â Icon
+		// í˜„ì¬ Disableë¼ì–´ì„œ ëˆ„ë¥´ë©´ Maxì¹˜ë§Œí¼ ì„ íƒí•˜ëŠ” Icon
 		//else
 		//{
 		//	if( ( key.m_dwVKey - (m_aRpuseIcon[i].GetIndex()+49) ) == 0 )
 		//	{
 		//		GetInputActionMap()->RegisterIgnoreKey( (RwUInt8)key.m_dwVKey, 1 );
 
-		//		// °¡Áö°í ÀÖ´Â Rp
+		//		// ê°€ì§€ê³  ìˆëŠ” Rp
 		//		m_uiCurRpStock = Logic_GetRpStock(GetNtlSLGlobal()->GetSobAvatar());
 
-		//		// °¡Áö°í ÀÖ´Â°Ô ¾ø´Ù¸é ¹«¸¦ ¼±ÅÃ
+		//		// ê°€ì§€ê³  ìˆëŠ”ê²Œ ì—†ë‹¤ë©´ ë¬´ë¥¼ ì„ íƒ
 		//		if( m_uiCurRpStock == 0 )
 		//		{
 		//			m_RpUseIconNone.OnFSCallBack( "push", "" );
@@ -455,7 +455,7 @@ VOID CSkillHtbRpUse::OnKeyDown( gui::CComponent* pComponent, CInputDevice* pDevi
 		//		}
 		//		else
 		//		{
-		//			// °¡Áö°í ÀÖ´Â°Ô ÀÖ´Ù¸é ÃÖ´ëÄ¡¸¦ ¼±ÅÃ
+		//			// ê°€ì§€ê³  ìˆëŠ”ê²Œ ìˆë‹¤ë©´ ìµœëŒ€ì¹˜ë¥¼ ì„ íƒ
 		//			m_aRpuseIcon[ m_uiCurRpStock-1 ].OnFSCallBack( "push", "" );
 		//			m_bInput = FALSE;
 		//			return;
@@ -480,7 +480,7 @@ VOID CSkillHtbRpUse::OnKeyDown( gui::CComponent* pComponent, CInputDevice* pDevi
 
 VOID CSkillHtbRpUse::SelectedHtpRpUse( RwUInt8 byIndex )
 {
-	// 0À» »ç¿ëÇÏ°Ú´Ù!
+	// 0ì„ ì‚¬ìš©í•˜ê² ë‹¤!
 	if( byIndex >= dSKILL_HTB_RP_ICON_NUMS )
 	{	
 		API_GetSLPacketGenerator()->SendHTBRPBallUseReq(0);
@@ -511,7 +511,7 @@ VOID CSkillHtbRpUse::SelectedHtpRpUse( RwUInt8 byIndex )
 		m_RpUseIconNone.Show( false );
 	}
 
-	// Selected¸¦ ÇÏ°Ô µÇ¸é
+	// Selectedë¥¼ í•˜ê²Œ ë˜ë©´
 	m_bSelect = TRUE;
 
 	//// Clsoe Dialog

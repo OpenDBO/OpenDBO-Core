@@ -139,7 +139,7 @@ VOID CTBMajorDirectionGui::HandleEvents( RWS::CMsg& msg )
 				CNtlLuaState* pLuaState = GetLuaState();
 				pLuaState->RunString( GetTBFlashName()->GetLuaPreFinal() );
 
-				// ¿Ã∏ß ¿‘∑¬
+				// Ïù¥Î¶Ñ ÏûÖÎ†•
 				CNtlWorldConceptTB* pTBWorldConcept = reinterpret_cast<CNtlWorldConceptTB*>( GetNtlWorldConcept()->GetWorldConceptController( WORLD_PLAY_T_BUDOKAI ) );
 				NTL_ASSERT( pTBWorldConcept, "CNtlTBudokai::HandleEvents : must World concept is valid" );		
 
@@ -238,7 +238,7 @@ VOID CTBMajorDirectionGui::HandleEvents( RWS::CMsg& msg )
 	}
 	else if( msg.Id == g_EventMajorMatchTeamInfo )
 	{
-		// ∆¿ ¡§∫∏∏¶ ±∏√‡
+		// ÌåÄ Ï†ïÎ≥¥Î•º Íµ¨Ï∂ï
 		CNtlWorldConceptTB* pTBWorldConcept = reinterpret_cast<CNtlWorldConceptTB*>( GetNtlWorldConcept()->GetWorldConceptController( WORLD_PLAY_T_BUDOKAI ) );
 		NTL_ASSERT( pTBWorldConcept, "CNtlTBudokai::HandleEvents : must World concept is valid" );				
 

@@ -7,8 +7,8 @@
 
 /**
 * \ingroup NtlPresentation
-* \brief Model Tool¿¡ »ç¿ëµÇ´Â XML ScriptÁß EventµéÀº ¼­·Î °øÅëµÈ´Ù.
-*        ÀÌ·¯ÇÑ °øÅëµÈ ÀÌº¥Æ®¸¦ ÀúÀåÇÏ±â À§ÇÑ °øÅëµÈ ÄÚµå¸¦ ¸ğ¾Æ³õ±â À§ÇÑ Helper Å¬·¡½º 
+* \brief Model Toolì— ì‚¬ìš©ë˜ëŠ” XML Scriptì¤‘ Eventë“¤ì€ ì„œë¡œ ê³µí†µëœë‹¤.
+*        ì´ëŸ¬í•œ ê³µí†µëœ ì´ë²¤íŠ¸ë¥¼ ì €ì¥í•˜ê¸° ìœ„í•œ ê³µí†µëœ ì½”ë“œë¥¼ ëª¨ì•„ë†“ê¸° ìœ„í•œ Helper í´ë˜ìŠ¤ 
 * \date 2007-10-25
 * \author agebreak
 */
@@ -18,32 +18,32 @@ public:
     CNtlPLXMLScriptHelper(void);
     ~CNtlPLXMLScriptHelper(void);
 
-    // °øÅëµÇ´Â ÀÌº¥Æ® ÀúÀå/·Îµå ÇïÆÛ ÇÔ¼öµé
-    RwBool  SaveTMQEvent(IXMLDOMElement* pElemEvent, const SEventAnimCinematic* pEventTMQ);               ///< TMQ Event¸¦ Save ÇÑ´Ù.
+    // ê³µí†µë˜ëŠ” ì´ë²¤íŠ¸ ì €ì¥/ë¡œë“œ í—¬í¼ í•¨ìˆ˜ë“¤
+    RwBool  SaveTMQEvent(IXMLDOMElement* pElemEvent, const SEventAnimCinematic* pEventTMQ);               ///< TMQ Eventë¥¼ Save í•œë‹¤.
     RwBool  LoadTMQEvent(IXMLDOMNode* pNodeEvent, SEventAnimCinematic* pEventTMQ);
 
-    RwBool  SaveAlphaEvent(IXMLDOMElement* pElemEvent, const SEventAlpha* pEventAlpha);         ///< Alpha Event¸¦ Save ÇÑ´Ù.
-    RwBool  LoadAlphaEvent(IXMLDOMNode* pNodeEvent, SEventAlpha* pEventAlpha);                  ///< Alpha Event¸¦ Load ÇÑ´Ù.
+    RwBool  SaveAlphaEvent(IXMLDOMElement* pElemEvent, const SEventAlpha* pEventAlpha);         ///< Alpha Eventë¥¼ Save í•œë‹¤.
+    RwBool  LoadAlphaEvent(IXMLDOMNode* pNodeEvent, SEventAlpha* pEventAlpha);                  ///< Alpha Eventë¥¼ Load í•œë‹¤.
 
-    RwBool  SaveExplosionEvent(IXMLDOMElement* pElemEvent, const SEventExplosion* pEventExplosion); ///< Æø¹ß ÀÌº¥Æ®¸¦ SaveÇÑ´Ù.
-    RwBool  LoadExplosionEvent(IXMLDOMNode* pNodeEvent, SEventExplosion* pEventExplosion);          ///< Æø¹ß ÀÌº¥Æ®¸¦ LoadÇÑ´Ù.
+    RwBool  SaveExplosionEvent(IXMLDOMElement* pElemEvent, const SEventExplosion* pEventExplosion); ///< í­ë°œ ì´ë²¤íŠ¸ë¥¼ Saveí•œë‹¤.
+    RwBool  LoadExplosionEvent(IXMLDOMNode* pNodeEvent, SEventExplosion* pEventExplosion);          ///< í­ë°œ ì´ë²¤íŠ¸ë¥¼ Loadí•œë‹¤.
 
-    RwBool  SaveSoundEvent(IXMLDOMElement* pElemEvent, const SEventSound* pEventSound);         ///< Sound Event¸¦ ÀúÀåÇÑ´Ù.
-    RwBool  LoadSoundEvent(IXMLDOMNode* pNodeEvent, SEventSound* pEventSound);                  ///< Sound Event¸¦ ·ÎµåÇÑ´Ù.
+    RwBool  SaveSoundEvent(IXMLDOMElement* pElemEvent, const SEventSound* pEventSound);         ///< Sound Eventë¥¼ ì €ì¥í•œë‹¤.
+    RwBool  LoadSoundEvent(IXMLDOMNode* pNodeEvent, SEventSound* pEventSound);                  ///< Sound Eventë¥¼ ë¡œë“œí•œë‹¤.
 
-    RwBool  SaveEffectEvent(IXMLDOMElement* pElemEvent, const SEventVisualEffect* pEventEffect);    ///< ºñÁÖ¾ó ÀÌÆåÆ® ÀÌº¥Æ®¸¦ ÀúÀåÇÑ´Ù.
-    RwBool  LoadEffectEvent(IXMLDOMNode* pNodeEvent, SEventVisualEffect* pEventEffect);             ///< ºñÁÖ¾ó ÀÌÆåÆ® ÀÌº¥Æ®¸¦ ·ÎµåÇÑ´Ù.
+    RwBool  SaveEffectEvent(IXMLDOMElement* pElemEvent, const SEventVisualEffect* pEventEffect);    ///< ë¹„ì£¼ì–¼ ì´í™íŠ¸ ì´ë²¤íŠ¸ë¥¼ ì €ì¥í•œë‹¤.
+    RwBool  LoadEffectEvent(IXMLDOMNode* pNodeEvent, SEventVisualEffect* pEventEffect);             ///< ë¹„ì£¼ì–¼ ì´í™íŠ¸ ì´ë²¤íŠ¸ë¥¼ ë¡œë“œí•œë‹¤.
 
-    RwBool  SaveAnimData(IXMLDOMElement* pElemAnimData, const STypeAnimData* pAnimData);        ///< ¾Ö´Ï¸ŞÀÌ¼Ç µ¥ÀÌÅÍ¸¦ ÀúÀåÇÑ´Ù.    
-    RwBool  LoadAnimData(IXMLDOMNode* pNodeAnimData, STypeAnimData* pAnimData);                 ///< ¾Ö´Ï¸ŞÀÌ¼Ç µ¥ÀÌÅÍ¸¦ ·ÎµåÇÑ´Ù.
+    RwBool  SaveAnimData(IXMLDOMElement* pElemAnimData, const STypeAnimData* pAnimData);        ///< ì• ë‹ˆë©”ì´ì…˜ ë°ì´í„°ë¥¼ ì €ì¥í•œë‹¤.    
+    RwBool  LoadAnimData(IXMLDOMNode* pNodeAnimData, STypeAnimData* pAnimData);                 ///< ì• ë‹ˆë©”ì´ì…˜ ë°ì´í„°ë¥¼ ë¡œë“œí•œë‹¤.
 
-    // ³»ºÎ ÇïÆÛ ÇÔ¼öµé
-    static void SaveAttribute(IXMLDOMElement* pElem, WCHAR* szKey, RwInt32 nInt);                ///< IntÇüÀ» Attribute¿¡ ÀúÀåÇÑ´Ù.
-    static void SaveAttribute(IXMLDOMElement* pElem, WCHAR* szKey, RwUInt32 nInt);               ///< IntÇüÀ» Attribute¿¡ ÀúÀåÇÑ´Ù.
-    static void SaveAttribute(IXMLDOMElement* pElem, WCHAR* szKey, RwReal fFloat);               ///< floatÇüÀ» Attribute¿¡ ÀúÀåÇÑ´Ù.
-    static void SaveAttribute(IXMLDOMElement* pElem, WCHAR* szKey, const char* szChar);          ///< charÇüÀ» Attribute¿¡ ÀúÀåÇÑ´Ù.
-    static void SaveAttribute(IXMLDOMElement* pElem, WCHAR* szKey, const RwV3d& v3d);            ///< RwV3dÇüÀ» Attribute¿¡ ÀúÀåÇÑ´Ù.
-    static void SaveAttribute(IXMLDOMElement* pElem, WCHAR* szKey, const RwV2d& v2d);            ///< RwV2dÇüÀ» Attribute¿¡ ÀúÀåÇÑ´Ù.
+    // ë‚´ë¶€ í—¬í¼ í•¨ìˆ˜ë“¤
+    static void SaveAttribute(IXMLDOMElement* pElem, WCHAR* szKey, RwInt32 nInt);                ///< Intí˜•ì„ Attributeì— ì €ì¥í•œë‹¤.
+    static void SaveAttribute(IXMLDOMElement* pElem, WCHAR* szKey, RwUInt32 nInt);               ///< Intí˜•ì„ Attributeì— ì €ì¥í•œë‹¤.
+    static void SaveAttribute(IXMLDOMElement* pElem, WCHAR* szKey, RwReal fFloat);               ///< floatí˜•ì„ Attributeì— ì €ì¥í•œë‹¤.
+    static void SaveAttribute(IXMLDOMElement* pElem, WCHAR* szKey, const char* szChar);          ///< charí˜•ì„ Attributeì— ì €ì¥í•œë‹¤.
+    static void SaveAttribute(IXMLDOMElement* pElem, WCHAR* szKey, const RwV3d& v3d);            ///< RwV3dí˜•ì„ Attributeì— ì €ì¥í•œë‹¤.
+    static void SaveAttribute(IXMLDOMElement* pElem, WCHAR* szKey, const RwV2d& v2d);            ///< RwV2dí˜•ì„ Attributeì— ì €ì¥í•œë‹¤.
     static void SaveAttribute(IXMLDOMElement* pElem, WCHAR* szKey, const RwRGBA& rgba);
 
 protected:    

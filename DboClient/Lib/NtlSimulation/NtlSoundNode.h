@@ -1,7 +1,7 @@
 /*****************************************************************************
 * File			: NtlSoundNode.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 
 * Update		: 2009. 7. 10
 * Abstract		: Simulation sound Node

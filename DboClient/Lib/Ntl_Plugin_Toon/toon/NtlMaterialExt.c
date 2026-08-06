@@ -2,7 +2,7 @@
  *
  * File			: toonmultitex.c
  * Author		: HongHoDong
- * Copyright	: (��)NTL
+ * Copyright	: (占쏙옙)NTL
  * Date			: 2005. 8. 12	
  * Abstract		: NTl Application
  *****************************************************************************

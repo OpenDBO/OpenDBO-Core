@@ -1,11 +1,11 @@
 /*****************************************************************************
 * File			: DboPackethandler_TURankingBoard.cpp
 * Author		: Cho Haesung
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 4. 8
 * Abstract		: 
 *****************************************************************************
-* Desc         : ·©Å·º¸µå¿¡ °ü·ÃµÈ ÆĞÅ¶
+* Desc         : ë­í‚¹ë³´ë“œì— ê´€ë ¨ëœ íŒ¨í‚·
 *****************************************************************************/
 
 #include "precomp_dboclient.h"
@@ -19,7 +19,7 @@
 #include "NtlCameraController.h"
 
 /**
-* \brief ·©Å·º¸µå : ·©Å©¹èÆ²ÀÇ ¼øÀ§±ÇÀÇ ¿äÃ»ÇÑ ÆäÀÌÁöÀÇ ¸®½ºÆ®¸¦ ¹Ş´Â´Ù.
+* \brief ë­í‚¹ë³´ë“œ : ë­í¬ë°°í‹€ì˜ ìˆœìœ„ê¶Œì˜ ìš”ì²­í•œ í˜ì´ì§€ì˜ ë¦¬ìŠ¤íŠ¸ë¥¼ ë°›ëŠ”ë‹¤.
 */
 void PacketHandler_TURankBattle_Rank_List_Res(void* pPacket)
 {
@@ -60,7 +60,7 @@ void PacketHandler_TURankBattle_Rank_Find_Character_Res(void* pPacket)
 }
 
 /**
-* \brief ·©Å·º¸µå : ·©Å©¹èÆ²ÀÇ ¼øÀ§±ÇÀÇ ¿äÃ»ÇÑ ºñ±³³¯Â¥ÀÇ ÆäÀÌÁö ¸®½ºÆ®¸¦ ¹Ş´Â´Ù.
+* \brief ë­í‚¹ë³´ë“œ : ë­í¬ë°°í‹€ì˜ ìˆœìœ„ê¶Œì˜ ìš”ì²­í•œ ë¹„êµë‚ ì§œì˜ í˜ì´ì§€ ë¦¬ìŠ¤íŠ¸ë¥¼ ë°›ëŠ”ë‹¤.
 */
 void PacketHandler_TURankBattle_Rank_Compare_Day_Res(void* pPacket)
 {

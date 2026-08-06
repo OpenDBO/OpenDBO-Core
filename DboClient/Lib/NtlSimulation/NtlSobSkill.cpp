@@ -36,7 +36,7 @@ RwBool CNtlSobSkill::Create(void)
 		NTL_RETURN(FALSE);
 	}
 
-	// class name ¼³Á¤.
+	// class name ì„¤ì •.
 	SetClassName(SLCLASS_NAME_SKILL);
 
 	m_pIcon->Create(); 

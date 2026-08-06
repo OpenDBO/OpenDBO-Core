@@ -4,8 +4,8 @@
 //#include "NtlToonMaterial.h"
 
 /**
- * Plugin ���� ID �ٸ� Plugin�� ���� ID�� ������ �ȵȴ�.
- * ������ Renderware�� ������ �ϰ� ������ �Ѵ�.
+ * Plugin 占쏙옙占쏙옙 ID 占쌕몌옙 Plugin占쏙옙 占쏙옙占쏙옙 ID占쏙옙 占쏙옙占쏙옙占쏙옙 占싫된댐옙.
+ * 占쏙옙占쏙옙占쏙옙 Renderware占쏙옙 占쏙옙占쏙옙占쏙옙 占싹곤옙 占쏙옙占쏙옙占쏙옙 占싼댐옙.
  */
 const RwUInt32 PluginID = 0xFE;
 
@@ -20,7 +20,7 @@ const RwUInt16 NTL_ATOMIC_SAVE_VER = 1;
 const RwUInt16 NTL_ATOMIC_SAVE_VER1 = 2;
 
 /**
- * �߰� Data
+ * 占쌩곤옙 Data
  */
 struct NtlAtomicPluginData
 {
@@ -29,8 +29,8 @@ struct NtlAtomicPluginData
 	RwUInt16	uiVersion;			//Save Version
 	RwUInt32	uiFlag;				//Atomic Flag
 
-	// ���� pUser�� �޸𸮻󿡼� ���������� ���ϼ� �ֵ��� ������� ������ ������Ʈ �������ʿ��� ����ϰ� �ֽ��ϴ�.
-	// NtlPLObj���� ������Ʈ ������ �÷��װ� ���ٸ� �� Pointer�� �������� ����ϼŵ� �˴ϴ�
+	// 현재 pUser는 메모리상에서 범용적으로 쓰일수 있도록 만들어져 있으면 오브젝트 쉐도우쪽에서 사용하고 있습니다.
+	// NtlPLObj에서 오브젝트 쉐도우 플래그가 없다면 이 Pointer를 공용으로 사용하셔도 됩니다
 	// ���� �� ������ �������� ���̱� ������ ����, ������ ���� å���� ������ ���쿡�� �ذ��ؾ� �մϴ�.
 	// �÷����� ��Ʈ��Ʈ���� ��쿡 �´� �Ҹ깮���� ����ϴ�. �̰��� Ŭ�е��� �ʽ��ϴ�.  - ���
 	void* pUserDat;				
@@ -41,22 +41,22 @@ struct NtlAtomicPluginData
 	// �� ������ ������Ʈ ������ ���� ���� �Դϴ�. ���� ���������� �÷��װ� ���ٸ� �� ������ �������� ��� �ϽǼ� �ֽ��ϴ�. �̰��� Ŭ�е˴ϴ�. �����ϼ���. - ���
 	RwReal _UserDatReal;
 
-	// Atomic�� Modulate�� Alpha��
+	// Atomic占쏙옙 Modulate占쏙옙 Alpha占쏙옙
 	RwUInt8		alpha;
 
 	RpAtomicCallBackRender atomicRenderCallBack;
 
-	// �� ������ ȯ��� ���� ���� �Դϴ�. ���� ���������� �÷��װ� ���ٸ� �� ������ �������� ��� �ϽǼ� �ֽ��ϴ�. �̰��� Ŭ�е˴ϴ�. �����ϼ���. - ���
+	// 이 변수는 환경맵 전용 변수 입니다. 위와 마찬가지로 플래그가 없다면 이 변수를 공용으로 사용 하실수 있습니다. 이값은 클론됩니다. 주의하세여. - 우디
 	RwUInt16 _EnvTexName;
 };
 
 /**
- * Ȯ�� �� Offset Memory �ּ�
+ * 확占쏙옙 占쏙옙 Offset Memory 占쌍쇽옙
  */
 unsigned int iPlugin_Offset = 0;
 
 /**
- * Ȯ�� Offset ���� �Լ�
+ * 확占쏙옙 Offset 占쏙옙占쏙옙 占쌉쇽옙
  */
 inline NtlAtomicPluginData* NtlGetPluginData( RpAtomic* pAtomic)
 {
@@ -71,7 +71,7 @@ inline NtlAtomicPluginData* NtlGetPluginData( RpAtomic* pAtomic)
 }
 
 /**
- * Ȯ�� Offset ���� �Լ�
+ * 확占쏙옙 Offset 占쏙옙占쏙옙 占쌉쇽옙
  */
 inline const NtlAtomicPluginData *NtlGetPluginData( const RpAtomic* pAtomic )
 {
@@ -138,7 +138,7 @@ void *Plugin_Copy(void* pDestObject, const void* pSrcObject, RwInt32 offset, RwI
 	NTL_PRE(pDestObject);
 	NTL_PRE(pSrcObject);
 
-	//void Data�� Copy�� ���� �ʴ´�. Pointer�� �߸� �Ǿ Error�� ������ �ִ�.	
+	//void Data占쏙옙 Copy占쏙옙 占쏙옙占쏙옙 占십는댐옙. Pointer占쏙옙 占쌩몌옙 占실어서 Error占쏙옙 占쏙옙占쏙옙占쏙옙 占쌍댐옙.	
 	NtlAtomicPluginData* pSrcData  = NtlGetPluginData((RpAtomic*)pSrcObject);
 	NtlAtomicPluginData* pDestData = NtlGetPluginData((RpAtomic*)pDestObject);
 
@@ -269,7 +269,7 @@ static RwInt32 Plugin_StreamGetSize( const void *pAtomic,
 {
 	NtlAtomicPluginData* pPluginData = NtlGetPluginData((RpAtomic*)pAtomic);
 	
-	// �׻� �ֽ� ������ ���� �Ѵ�.(NTL_ATOMIC_SAVE_VER)
+	// 占쌓삼옙 占쌍쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占싼댐옙.(NTL_ATOMIC_SAVE_VER)
 	//pPluginData->uiVersion = NTL_ATOMIC_SAVE_VER;
 	//return (sizeof(pPluginData->uiVersion) + sizeof(pPluginData->uiFlag) + sizeof(pPluginData->UserDat) + sizeof(pPluginData->_UserDatReal) );
 
@@ -284,7 +284,7 @@ RwBool RpNtlAtomicPluginAttach(void)
 {
     NTL_FUNCTION("RpNtlAtomicPluginAttach");
 
-	//Atomic Ȯ���� �Ұ�� �Ѿ���� ���� ������ Ȯ���� �� Offset �ּ� �̴�.
+	//Atomic 확장을 할경우 넘어오는 값이 실제로 확장이 된 Offset 주소 이다.
     iPlugin_Offset = RpAtomicRegisterPlugin (sizeof(NtlAtomicPluginData),
 											 MAKECHUNKID(rwVENDORID_CRITERIONRM, PluginID),
 											 Plugin_Constructor,  
@@ -307,7 +307,7 @@ RwBool RpNtlAtomicPluginAttach(void)
 }
 
 /**
- * Plugin Ȯ�� ���� �Լ�
+ * Plugin 확占쏙옙 占쏙옙占쏙옙 占쌉쇽옙
  */   
 void RpNtlAtomicSetData( RpAtomic* pAtomic, void *pData)
 {

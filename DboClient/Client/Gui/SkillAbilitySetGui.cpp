@@ -50,7 +50,7 @@ RwBool CSkillAbilitySetGui::Create()
 	m_pStbTitle	= (gui::CStaticBox*)GetComponent( "stbTitle" );
 	m_pBtnClose	= (gui::CButton*)GetComponent( "btnClose" );
 
-	// Sklill Ability Typeµé
+	// Sklill Ability Typeë“¤
 	m_paBtn[DBO_RP_BONUS_TYPE_KNOCKDOWN]		= (gui::CButton*)GetComponent("btnKnockDown");
 	m_paBtn[DBO_RP_BONUS_TYPE_RESULT_PLUS]		= (gui::CButton*)GetComponent("btnResult");
 	m_paBtn[DBO_RP_BONUS_TYPE_EP_MINUS]			= (gui::CButton*)GetComponent("btnEp");
@@ -67,7 +67,7 @@ RwBool CSkillAbilitySetGui::Create()
 	m_pBtnAccept	= (gui::CButton*)GetComponent("btnAccept");
 	m_pBtnCancel	= (gui::CButton*)GetComponent("btnCancel");
 
-	// IconÀÇ À§Ä¡µé
+	// Iconì˜ ìœ„ì¹˜ë“¤
 	m_aIconPosX[ICONPOS_FIRST_LEFT]		= 12;
 	m_aIconPosX[ICONPOS_FIRST_CENTER]	= 66;
 	m_aIconPosX[ICONPOS_FIRST_RIGHT]	= 120;
@@ -145,34 +145,34 @@ VOID CSkillAbilitySetGui::HandleEvents( RWS::CMsg& msg )
 		m_bySlotIdx = pSkill->GetSlotIdx();
 		
 
-		// ¸¸¾à ¿­·Á ÀÖ¾ú´Ù¸é ´İ¾ÆÁÖ°í ´Ù½Ã ¿¬´Ù. ( Show / Hide ¸¦ Á¦´ë·Î Àû¿ëÇÏ±â À§ÇÏ¿© )
+		// ë§Œì•½ ì—´ë ¤ ìˆì—ˆë‹¤ë©´ ë‹«ì•„ì£¼ê³  ë‹¤ì‹œ ì—°ë‹¤. ( Show / Hide ë¥¼ ì œëŒ€ë¡œ ì ìš©í•˜ê¸° ìœ„í•˜ì—¬ )
 		if( GetDialogManager()->IsOpenDialog( DIALOG_SKILLABILITYSET ) )
 			GetDialogManager()->CloseDialog( DIALOG_SKILLABILITYSET );
 
 		GetDialogManager()->OpenDialog( DIALOG_SKILLABILITYSET );
 
-		// Å¸ÀÔ ¼¼ÆÃ
+		// íƒ€ì… ì„¸íŒ…
 		ShowAllAbility( false );
 
-		// Tooltip Á¤º¸ ÃÊ±âÈ­
+		// Tooltip ì •ë³´ ì´ˆê¸°í™”
 		SetMoveToolTipPos();
 		memset( m_asTooltipType, 0xFF, sizeof( SAbilityInfo ) * ICONPOS_NUMS );
 
 		for(int i=0; i < ICONPOS_NUMS; ++i )
 			SetAbility( (eICONPOS)i, pSkillTbl->abyRpEffect[i], pSkillTbl->afRpEffectValue[i], pSkillTbl );
 
-		// Focus ¼¼ÆÃ
+		// Focus ì„¸íŒ…
 		m_pPanFocus->Show( false );
 		if( !pSkillAttr->m_bRPBonusAutoMode )
 		{
-			// ¼öµ¿ ¸ğµå
+			// ìˆ˜ë™ ëª¨ë“œ
 			m_pBtnManual->ClickEnable( false );
 		}
 		else
 		{
 			if( pSkillAttr->m_byRPBonusType == DBO_RP_BONUS_TYPE_INVALID )
 			{
-				// »ç¿ë ¾ÈÇÔ
+				// ì‚¬ìš© ì•ˆí•¨
 				m_pBtnDisable->ClickEnable( false );
 			}
 			else
@@ -247,12 +247,12 @@ VOID CSkillAbilitySetGui::SetAbility( eICONPOS eIconPos, RwUInt8 byAbilityType, 
 			return;
 		}
 
-		// ¸¸¾à RPBONUS TYPEÀÌ INVALID°ªÀÌ¶ó¸é ´ÙÀ½ Å×ÀÌºíÀÇ ÀÎµ¦½º¸¦ ÂüÁ¶ÇÑ´Ù.
+		// ë§Œì•½ RPBONUS TYPEì´ INVALIDê°’ì´ë¼ë©´ ë‹¤ìŒ í…Œì´ë¸”ì˜ ì¸ë±ìŠ¤ë¥¼ ì°¸ì¡°í•œë‹¤.
 		sSKILL_TBLDAT* pNextSkillTbl = Logic_GetSkillDataFromTable( pSkillTbl->dwNextSkillTblidx );
 
-		// ´ÙÀ½ ½ºÅ³ Å×ÀÌºí¿¡ ÀÖ´Â ¹è¿­ ÀÎµ¦½ºÀÇ °ªµµ INVALID¶ó¸é ±× ´ÙÀ½ °ªÀ» °Ë»çÇÏ°Ô ÇØÁØ´Ù.
-		// ±×¸®°í ÀÌ¶§ºÎÅÍ ÂüÁ¶ÇÏ´Â °ÍÀº ¹«Á¶°Ç ÇöÀç ·¹º§ÀÇ ½ºÅ³ÀÌ ¾Æ´Ï±â ¶§¹®¿¡ Disable»óÅÂ·Î
-		// Ç¥½ÃÇÑ´Ù.
+		// ë‹¤ìŒ ìŠ¤í‚¬ í…Œì´ë¸”ì— ìˆëŠ” ë°°ì—´ ì¸ë±ìŠ¤ì˜ ê°’ë„ INVALIDë¼ë©´ ê·¸ ë‹¤ìŒ ê°’ì„ ê²€ì‚¬í•˜ê²Œ í•´ì¤€ë‹¤.
+		// ê·¸ë¦¬ê³  ì´ë•Œë¶€í„° ì°¸ì¡°í•˜ëŠ” ê²ƒì€ ë¬´ì¡°ê±´ í˜„ì¬ ë ˆë²¨ì˜ ìŠ¤í‚¬ì´ ì•„ë‹ˆê¸° ë•Œë¬¸ì— Disableìƒíƒœë¡œ
+		// í‘œì‹œí•œë‹¤.
 		SetAbility( eIconPos, pNextSkillTbl->abyRpEffect[ eIconPos ],
 			pNextSkillTbl->afRpEffectValue[ eIconPos ], pNextSkillTbl, FALSE );
 	}
@@ -272,11 +272,11 @@ VOID CSkillAbilitySetGui::SetAbility( eICONPOS eIconPos, RwUInt8 byAbilityType, 
 		
 		m_abyAbilityIconPos[ byAbilityType ] = (RwUInt8)eIconPos;
 
-		// ButtonÀÇ Position
+		// Buttonì˜ Position
 		m_paBtn[ byAbilityType ]->SetPosition( m_aIconPosX[ eIconPos ], m_aIconPosY[ eIconPos ] );
 		CRectangle rect = m_paBtn[ byAbilityType ]->GetScreenRect();
 
-		// ToolTipÀÇ Info ÀúÀå
+		// ToolTipì˜ Info ì €ì¥
 		m_asTooltipType[eIconPos].byAbilityType = byAbilityType;
 		m_asTooltipType[eIconPos].fValue = fValue;
 		m_asTooltipType[eIconPos].byEffectType = pSkillTbl->bySkill_Effect_Type[NTL_SYSTEM_EFFECT_1];
@@ -287,7 +287,7 @@ VOID CSkillAbilitySetGui::SetAbility( eICONPOS eIconPos, RwUInt8 byAbilityType, 
 			m_paBtn[ byAbilityType ]->ClickEnable( false );
 
 		m_paBtn[ byAbilityType ]->Show( true );
-		// uiValue ¸¦ ÂüÁ¶ÇÏ¿© ToolTipÀ» ´Ş¾ÆÁØ´Ù.
+		// uiValue ë¥¼ ì°¸ì¡°í•˜ì—¬ ToolTipì„ ë‹¬ì•„ì¤€ë‹¤.
 	}
 }
 
@@ -376,7 +376,7 @@ VOID CSkillAbilitySetGui::OnMouseMove( RwInt32 nFlags, RwInt32 nX, RwInt32 nY )
 
 	for( int i=0; i < ICONPOS_NUMS; ++i )
 	{
-		// ¸¶¿ì½º°¡ Á¤ÇØÁø À§Ä¡¿¡ ¿Ã¶ó¿À°Ô µÇ¸é ±×¿¡ ¾Ë¸ÂÀº ÀÎÆ÷À©µµ¿ì¸¦ ¶ç¿öÁÖ°Ô µÈ´Ù.
+		// ë§ˆìš°ìŠ¤ê°€ ì •í•´ì§„ ìœ„ì¹˜ì— ì˜¬ë¼ì˜¤ê²Œ ë˜ë©´ ê·¸ì— ì•Œë§ì€ ì¸í¬ìœˆë„ìš°ë¥¼ ë„ì›Œì£¼ê²Œ ëœë‹¤.
 		if( m_rtIconPos[i].PtInRect( nX, nY ) && m_asTooltipType[i].byAbilityType != DBO_RP_BONUS_TYPE_INVALID )
 		{
 			SetToolTip( m_asTooltipType[i].nX,

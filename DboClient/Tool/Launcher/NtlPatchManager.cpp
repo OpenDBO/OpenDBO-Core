@@ -101,9 +101,9 @@ void CNtlPatchManager::SendEvent(unsigned int uiEventID, void *pParam)
 
 void CNtlPatchManager::DoAction()
 {
-    CreateDirectory(PATCH_CLIENT_FILE_TEMP_PATH,NULL);          // ÀÓ½Ã Æú´õ¸¦ »ý¼ºÇÑ´Ù.
+    CreateDirectory(PATCH_CLIENT_FILE_TEMP_PATH,NULL);          // ìž„ì‹œ í´ë”ë¥¼ ìƒì„±í•œë‹¤.
 
-    // ÆÐÄ¡°¡ °¡´ÉÇÑ »óÅÂÀÎÁö È®ÀÎÇÑ´Ù.
+    // íŒ¨ì¹˜ê°€ ê°€ëŠ¥í•œ ìƒíƒœì¸ì§€ í™•ì¸í•œë‹¤.
     if(!CheckPatchEnable())
     {
         SetAbort(TRUE);        
@@ -114,7 +114,7 @@ void CNtlPatchManager::DoAction()
 	SetActive(TRUE);
     m_setErrFiles.clear();
 	
-	//ÇöÀç Version ÆÄÀÏÀ» ÀÐ¾î µéÀÎ´Ù.
+	//í˜„ìž¬ Version íŒŒì¼ì„ ì½ì–´ ë“¤ì¸ë‹¤.
 	m_pPatchHistory->LoadCurVersion(PATCH_CUR_VER_FILE_NAME);
 
 	SendEvent(EVENT_PM_START, NULL);
@@ -184,10 +184,10 @@ void CNtlPatchManager::DoAction()
 		{
 			CNtlPatchData *pPatchData = m_pPatchHistory->GetNewVerClientRtDiff();
 
-            // ½ÇÁ¦ ÆÐÄ¡ÀÛ¾÷À» ½ÇÇàÇÑ´Ù.
+            // ì‹¤ì œ íŒ¨ì¹˜ìž‘ì—…ì„ ì‹¤í–‰í•œë‹¤.
 			while(pPatchData != NULL)
 			{
-                // 1. ÆÐÄ¡ ÆÄÀÏ(rtp)À» ´Ù¿î ¹Þ´Â´Ù.
+                // 1. íŒ¨ì¹˜ íŒŒì¼(rtp)ì„ ë‹¤ìš´ ë°›ëŠ”ë‹¤.
 				if( m_pDownLoader->RequestFile( CNtlLauncherConfig::GetInstance()->GetPatchServerName(), 
 												CNtlLauncherConfig::GetInstance()->GetPatchServerFilePath(), 
 												pPatchData->GetServerFileName(), 
@@ -204,18 +204,18 @@ void CNtlPatchManager::DoAction()
 						break;
 				}
 
-                // 2. ´Ù¿î¹ÞÀº ÆÐÄ¡ ÆÄÀÏÀ» ÆÐÄ¡ÇÑ´Ù.
+                // 2. ë‹¤ìš´ë°›ì€ íŒ¨ì¹˜ íŒŒì¼ì„ íŒ¨ì¹˜í•œë‹¤.
 				if( m_pPatcher->DoAction(PATCH_CLIENT_FILE_PATH, pPatchData->GetClientFullPathFileName() ) == TRUE)
 				{
 					if(m_pPatcher->GetPendingDestroy() == FALSE)
 					{
                         m_pPatchHistory->SetPatchFileDate(pPatchData->GetDate());
-						m_pPatchHistory->SetCurVerClient(pPatchData->GetVersion()); // ÀÌ¶§ ÀúÀåÇÑ´Ù.
+						m_pPatchHistory->SetCurVerClient(pPatchData->GetVersion()); // ì´ë•Œ ì €ìž¥í•œë‹¤.
 					}
 				}
 				else
 				{
-                    // ÆÐÄ¡¿¡ ½ÇÆÐÇÏ¸é Ç® ¹öÀüÀ» ´Ù¿î¹Þ¾Æ¼­ ÆÐÄ¡ÇÑ´Ù.
+                    // íŒ¨ì¹˜ì— ì‹¤íŒ¨í•˜ë©´ í’€ ë²„ì „ì„ ë‹¤ìš´ë°›ì•„ì„œ íŒ¨ì¹˜í•œë‹¤.
 					pPatchData = m_pPatchHistory->GetNewVerClientRtFull();
 					if(pPatchData != NULL)
 					{
@@ -250,9 +250,9 @@ void CNtlPatchManager::DoAction()
 		}
 	}
     
-    if(!m_bAbort && !m_setErrFiles.empty())     // ÆÐÄ¡Áß¿¡ ¿¡·¯³­ ÆÄÀÏµéÀÌ ÀÖÀ¸¸é...
+    if(!m_bAbort && !m_setErrFiles.empty())     // íŒ¨ì¹˜ì¤‘ì— ì—ëŸ¬ë‚œ íŒŒì¼ë“¤ì´ ìžˆìœ¼ë©´...
     {
-        // ¿¡·¯³­ ÆÄÀÏµéÀ» Ç®¹öÀüÀÌ ÀÖ´Â ¼­¹ö¿¡¼­ ´Ù¿î¹Þ´Â´Ù.
+        // ì—ëŸ¬ë‚œ íŒŒì¼ë“¤ì„ í’€ë²„ì „ì´ ìžˆëŠ” ì„œë²„ì—ì„œ ë‹¤ìš´ë°›ëŠ”ë‹¤.
         //ProcessMissingFiles();        
     }
 
@@ -293,7 +293,7 @@ BOOL CNtlPatchManager::CheckPatchEnable()
             }
             else
             {
-                // ¸Þ¼¼Áö ¹Ú½º¸¦ ¶Ù¿î´Ù.                
+                // ë©”ì„¸ì§€ ë°•ìŠ¤ë¥¼ ë›°ìš´ë‹¤.                
                 AfxMessageBox(CNtlPatchServerConfig::GetInstance()->GetPatchErrMsg().c_str());                
             }
         }        
@@ -333,14 +333,14 @@ int CNtlPatchManager::PatcherCallBack(unsigned int uiEventID, unsigned int pPara
 {
     switch(uiEventID)
     {
-    case EVENT_PH_RT_FILE_PATCH_START:              // ÆÄÀÏ´ç ÆÐÄ¡°¡ ½ÃÀÛµÉ¶§¸¶´Ù µé¾î¿À´Â ¸Þ½ÃÁö
+    case EVENT_PH_RT_FILE_PATCH_START:              // íŒŒì¼ë‹¹ íŒ¨ì¹˜ê°€ ì‹œìž‘ë ë•Œë§ˆë‹¤ ë“¤ì–´ì˜¤ëŠ” ë©”ì‹œì§€
         {
             EventPHTextMsg* pMsg = (EventPHTextMsg*)pParam;
-            m_strCurrentPatchFileName = pMsg->pszMessage;  // ¿¡·¯³µÀ»°æ¿ì ÆÄÀÏ¸íÀ» ¾Ë±âÀ§ÇØ¼­ ÀúÀåÇØµÐ´Ù. (¿¡·¯¸Þ½ÃÁö¿¡¼­´Â ÆÄÀÏ¸íÀ» ¾Ë¼ö°¡ ¾ø´Ù)
+            m_strCurrentPatchFileName = pMsg->pszMessage;  // ì—ëŸ¬ë‚¬ì„ê²½ìš° íŒŒì¼ëª…ì„ ì•Œê¸°ìœ„í•´ì„œ ì €ìž¥í•´ë‘”ë‹¤. (ì—ëŸ¬ë©”ì‹œì§€ì—ì„œëŠ” íŒŒì¼ëª…ì„ ì•Œìˆ˜ê°€ ì—†ë‹¤)
         }
         break;
-    case EVENT_PH_RT_WARNING_MESSAGE_HEADER:        // ÆÄÀÏÀÌ ¿¡·¯³­ °æ¿ì Set¾È¿¡ ³Ö´Â´Ù. (ÆÄÀÏ¸íÀÌ Áßº¹µÇÁö ¾Ê°Ô)
-        m_setErrFiles.insert(m_strCurrentPatchFileName);    // ¿©·¯ ÆÐÄ¡µé Áß°£¿¡ Add°¡ ÀÖÀ¸¸é ±× ÈÄ·Î Á¤»óÀûÀ¸·Î ÆÐÄ¡°¡ µÇ´Âµ¥ ÀÌ¶§´Â ¿¡·¯ ¸®½ºÆ®¿¡¼­ Á¦°ÅÇØ¾ß ÇÑ´Ù.
+    case EVENT_PH_RT_WARNING_MESSAGE_HEADER:        // íŒŒì¼ì´ ì—ëŸ¬ë‚œ ê²½ìš° Setì•ˆì— ë„£ëŠ”ë‹¤. (íŒŒì¼ëª…ì´ ì¤‘ë³µë˜ì§€ ì•Šê²Œ)
+        m_setErrFiles.insert(m_strCurrentPatchFileName);    // ì—¬ëŸ¬ íŒ¨ì¹˜ë“¤ ì¤‘ê°„ì— Addê°€ ìžˆìœ¼ë©´ ê·¸ í›„ë¡œ ì •ìƒì ìœ¼ë¡œ íŒ¨ì¹˜ê°€ ë˜ëŠ”ë° ì´ë•ŒëŠ” ì—ëŸ¬ ë¦¬ìŠ¤íŠ¸ì—ì„œ ì œê±°í•´ì•¼ í•œë‹¤.
         break;    
     }
 

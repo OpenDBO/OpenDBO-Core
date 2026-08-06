@@ -169,7 +169,7 @@ void NtlLogFilePrintArgs(RwChar *fmt, ... )
 	fclose(fp);
 }
 
-// Trace�� ���� ���ο� ������ �����Ͽ� ����Ѵ�
+// Trace는 매일 새로운 파일을 생성하여 기록한다
 RwChar g_chTracePath[MAX_PATH]	= "";
 
 void NtlTraceEnable_inRelease(bool bEnable)

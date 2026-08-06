@@ -2,9 +2,9 @@
 *
 * File			: NtlTBudokai.h
 * Author		: Pee Sangjun
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2008. 5. 9	
-* Abstract		: Simulation √µ«œ¡¶¿œ π´µµ»∏
+* Abstract		: Simulation Ï≤úÌïòÏ†úÏùº Î¨¥ÎèÑÌöå
 *****************************************************************************
 * Desc          : 
 *****************************************************************************/
@@ -48,14 +48,14 @@ public:
 	BUDOKAITIME							GetBudokaiMainStateRemainTime()	{ return m_sStateInfo.tmRemainTime; }
 	
 private:
-	RwUInt16							m_wSeasonCount;								///< √µ«œ¡¶¿œ π´µµ»∏ »Ωºˆ
+	RwUInt16							m_wSeasonCount;								///< Ï≤úÌïòÏ†úÏùº Î¨¥ÎèÑÌöå ÌöüÏàò
 	
 	sBUDOKAI_UPDATE_STATE_INFO			m_sStateInfo;								///< MainState
 	sBUDOKAI_UPDATE_MATCH_STATE_INFO	m_aMatchStateInfo[MAX_BUDOKAI_MATCH_TYPE];	///< MatchState
 
-	sBUDOKAI_JOIN_INFO					m_sJoinInfo;								///< æ∆πŸ≈∏¿« √µ«œ¡¶¿œ π´µµ»∏ ∞¸∑√ ¡§∫∏
+	sBUDOKAI_JOIN_INFO					m_sJoinInfo;								///< ÏïÑÎ∞îÌÉÄÏùò Ï≤úÌïòÏ†úÏùº Î¨¥ÎèÑÌöå Í¥ÄÎ†® Ï†ïÎ≥¥
 
-	sBUDOKAI_TBLINFO*					m_pBudokaiTblDat;							// π´µµ»∏ ≈◊¿Ã∫Ì
+	sBUDOKAI_TBLINFO*					m_pBudokaiTblDat;							// Î¨¥ÎèÑÌöå ÌÖåÏù¥Î∏î
 
 	RwReal								m_fCurrentTime;
 };

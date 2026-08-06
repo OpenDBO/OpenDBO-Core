@@ -1,12 +1,12 @@
 /*****************************************************************************
 * File			: NtlThemeBGM.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 
 * Update		: 2009. 7. 10
 * Abstract		: Simulation sound theme BGM
 *****************************************************************************
-* Desc         : ∆Ø¡§ NPC, MOB¿« µÓ¿ÂΩ√ «√∑π¿Ã µ«¥¬ BGM
+* Desc         : ÌäπÏ†ï NPC, MOBÏùò Îì±Ïû•Ïãú ÌîåÎ†àÏù¥ ÎêòÎäî BGM
 *****************************************************************************/
 
 #ifndef __NTL_THEME_BGM_H__
@@ -91,7 +91,7 @@ protected:
 
 protected:
 	MAP_THEME_BGM_LIST		m_mapTHEME_BGM_List[NUM_WORLD_TYPE];
-	MAP_THEME_BGM_SUBJECT	m_mapSubjectBGMObejct;		///< «ˆ¿Á æ∆πŸ≈∏ ±Ÿ√≥ø° THEME BGM¿ª ∞°¡ˆ∞Ì ¿÷¥¬ ¥ÎªÛ
+	MAP_THEME_BGM_SUBJECT	m_mapSubjectBGMObejct;		///< ÌòÑÏû¨ ÏïÑÎ∞îÌÉÄ Í∑ºÏ≤òÏóê THEME BGMÏùÑ Í∞ÄÏßÄÍ≥† ÏûàÎäî ÎåÄÏÉÅ
 	eWORLD_TYPE				m_eCurWorldType;
 	SERIAL_HANDLE			m_hPlayOjbectHandle;
 	SOUND_HANDLE			m_hSound;

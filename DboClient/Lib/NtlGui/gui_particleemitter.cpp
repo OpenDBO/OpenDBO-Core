@@ -61,26 +61,26 @@ CParticleEmitter::~CParticleEmitter()
 }
 
 /**
-* \brief Emitter¸¦ ¾÷µ¥ÀÌÆ® ÇÑ´Ù. ( ÆÄÆ¼Å¬À» »ı¼ºÇÏ°Å³ª EmitterÀÇ Çàµ¿À» °áÁ¤ÇÑ´Ù. )
-* \param fElapsed		(float) ÀÌÀü ÇÁ·¹ÀÓ¿¡¼­ÀÇ °æ°ú½Ã°£
-* \return Emitter°¡ ÆÄÆ¼Å¬À» ÇÏ³ª Ãß°¡ÇÏ¿´À» ¶§ TRUE, ¾Æ¹« Çàµ¿µµ ÇÏÁö ¾Ê¾ÒÀ» ¶§ FALSE
+* \brief Emitterë¥¼ ì—…ë°ì´íŠ¸ í•œë‹¤. ( íŒŒí‹°í´ì„ ìƒì„±í•˜ê±°ë‚˜ Emitterì˜ í–‰ë™ì„ ê²°ì •í•œë‹¤. )
+* \param fElapsed		(float) ì´ì „ í”„ë ˆì„ì—ì„œì˜ ê²½ê³¼ì‹œê°„
+* \return Emitterê°€ íŒŒí‹°í´ì„ í•˜ë‚˜ ì¶”ê°€í•˜ì˜€ì„ ë•Œ TRUE, ì•„ë¬´ í–‰ë™ë„ í•˜ì§€ ì•Šì•˜ì„ ë•Œ FALSE
 */
 void CParticleEmitter::Update( float fElapsed )
 {
-	// ¹æ»çÀ² °è»ê
+	// ë°©ì‚¬ìœ¨ ê³„ì‚°
 	// m_fEmissivity per sec
 	m_fEmissivityRate += m_fEmissivity * fElapsed;
 
-	// ¹æ»çÀ²ÀÌ 1 ÀÌ»óÀÌ¶ó¸é. ÃÖ¼Ò °¹¼ö 1°³ ÀÌ»ó ÆÄÆ¼Å¬ »ı¼º
+	// ë°©ì‚¬ìœ¨ì´ 1 ì´ìƒì´ë¼ë©´. ìµœì†Œ ê°¯ìˆ˜ 1ê°œ ì´ìƒ íŒŒí‹°í´ ìƒì„±
 	if( m_fEmissivityRate >= 1.0f )
 	{
-		// ¼Ò¼ıÁ¡ ÀÌÇÏ ¹ö¸®°í »ı¼ºµÉ ÆÄÆ¼Å¬ÀÇ °¹¼ö¸¦ ±¸ÇÑ´Ù.
+		// ì†Œìˆ«ì  ì´í•˜ ë²„ë¦¬ê³  ìƒì„±ë  íŒŒí‹°í´ì˜ ê°¯ìˆ˜ë¥¼ êµ¬í•œë‹¤.
 		int nEmitNums = (int)m_fEmissivityRate;
 
-		// ±× Á¤¼ö¸¦ ´Ù½Ã ¹æ»çÀ²¿¡ °¨¼Ò½ÃÄÑÁà¼­ 1 ÀÌÇÏ·Î ¸¸µç´Ù.
+		// ê·¸ ì •ìˆ˜ë¥¼ ë‹¤ì‹œ ë°©ì‚¬ìœ¨ì— ê°ì†Œì‹œì¼œì¤˜ì„œ 1 ì´í•˜ë¡œ ë§Œë“ ë‹¤.
 		m_fEmissivityRate -= (float)nEmitNums;
 		
-		// ¹æ»ç °¹¼ö¸¸Å­ ÆÄÆ¼Å¬À» Ãß°¡ÇÑ´Ù.
+		// ë°©ì‚¬ ê°¯ìˆ˜ë§Œí¼ íŒŒí‹°í´ì„ ì¶”ê°€í•œë‹¤.
 		AddParticle( nEmitNums );
 	}
 }
@@ -187,7 +187,7 @@ void CPointEmitter::AddParticle( int nEmitNums )
 		float fLife		= RandomNumber( m_fLifeMin, m_fLifeMax );
 		float fVel		= RandomNumber( m_fVelMin, m_fVelMax );
 
-		// ¹æÇâÀº ¹æÇâ º¤ÅÍ¸¦ ±âÁØÀ¸·Î ¹æ»ç°¢¿¡¼­ ·£´ıÀ¸·Î ÇÏ³ªÀÇ º¤ÅÍ¸¦ ³Ö´Â´Ù.
+		// ë°©í–¥ì€ ë°©í–¥ ë²¡í„°ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ë°©ì‚¬ê°ì—ì„œ ëœë¤ìœ¼ë¡œ í•˜ë‚˜ì˜ ë²¡í„°ë¥¼ ë„£ëŠ”ë‹¤.
 		RwV2d v2dDir;
 		float fRadiationAngle = RandomNumber( -(m_fAngle/2.0f), (m_fAngle/2.0f) );
 
@@ -196,11 +196,11 @@ void CPointEmitter::AddParticle( int nEmitNums )
 		v2dDir.x = ( RwCos(fDeg2Rad)*m_v2dDir.x ) + ( RwSin(fDeg2Rad)*m_v2dDir.y );
 		v2dDir.y = ( -(RwSin(fDeg2Rad)*m_v2dDir.x) ) + ( RwCos(fDeg2Rad)*m_v2dDir.y );
 
-		// È¸Àü°ú È®´ë ¼Ó¼º
+		// íšŒì „ê³¼ í™•ëŒ€ ì†ì„±
 		float fRotateAngle = RandomNumber( m_fRotateAngleMin, m_fRotateAngleMax );
 		float fScale = RandomNumber( m_fScaleMin, m_fScaleMax );
 
-		// »ö»ó ¿É¼Ç
+		// ìƒ‰ìƒ ì˜µì…˜
 		unsigned char uRed = RandomNumber( m_uRedMin, m_uRedMax );
 		unsigned char uGreen = RandomNumber( m_uGreenMin, m_uGreenMax );
 		unsigned char uBlue = RandomNumber( m_uBlueMin, m_uBlueMax );
@@ -245,7 +245,7 @@ void CBoxEmitter::AddParticle( int nEmitNums )
 		float fLife		= RandomNumber( m_fLifeMin, m_fLifeMax );
 		float fVel		= RandomNumber( m_fVelMin, m_fVelMax );
 
-		// ¹æÇâÀº ¹æÇâ º¤ÅÍ¸¦ ±âÁØÀ¸·Î ¹æ»ç°¢¿¡¼­ ·£´ıÀ¸·Î ÇÏ³ªÀÇ º¤ÅÍ¸¦ ³Ö´Â´Ù.
+		// ë°©í–¥ì€ ë°©í–¥ ë²¡í„°ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ë°©ì‚¬ê°ì—ì„œ ëœë¤ìœ¼ë¡œ í•˜ë‚˜ì˜ ë²¡í„°ë¥¼ ë„£ëŠ”ë‹¤.
 		RwV2d v2dDir;
 		float fRadiationAngle = RandomNumber( -(m_fAngle/2.0f), (m_fAngle/2.0f) );
 
@@ -254,11 +254,11 @@ void CBoxEmitter::AddParticle( int nEmitNums )
 		v2dDir.x = ( RwCos(fDeg2Rad)*m_v2dDir.x ) + ( RwSin(fDeg2Rad)*m_v2dDir.y );
 		v2dDir.y = ( -(RwSin(fDeg2Rad)*m_v2dDir.x) ) + ( RwCos(fDeg2Rad)*m_v2dDir.y );
 
-		// È¸Àü°ú È®´ë ¼Ó¼º
+		// íšŒì „ê³¼ í™•ëŒ€ ì†ì„±
 		float fRotateAngle = RandomNumber( m_fRotateAngleMin, m_fRotateAngleMax );
 		float fScale = RandomNumber( m_fScaleMin, m_fScaleMax );
 
-		// »ö»ó ¿É¼Ç
+		// ìƒ‰ìƒ ì˜µì…˜
 		unsigned char uRed = RandomNumber( m_uRedMin, m_uRedMax );
 		unsigned char uGreen = RandomNumber( m_uGreenMin, m_uGreenMax );
 		unsigned char uBlue = RandomNumber( m_uBlueMin, m_uBlueMax );

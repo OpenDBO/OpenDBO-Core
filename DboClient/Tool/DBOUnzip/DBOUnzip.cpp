@@ -7,8 +7,8 @@
 #include <stdlib.h>
 
 
-// Ã¹¹øÂ° ÀÎÀÚ : ¾ÐÃàÆÄÀÏ¸í (*.zip)
-// µÎ¹øÂ° ÀÎÀÚ : ¾ÐÃàÀ» Ç® Æú´õ
+// ì²«ë²ˆì§¸ ì¸ìž : ì••ì¶•íŒŒì¼ëª… (*.zip)
+// ë‘ë²ˆì§¸ ì¸ìž : ì••ì¶•ì„ í’€ í´ë”
 
 int main(int argc, char* argv[])
 {

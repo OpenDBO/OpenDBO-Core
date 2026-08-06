@@ -1,7 +1,7 @@
 #pragma once
 
 
-// CPathLayer ºäÀÔ´Ï´Ù.
+// CPathLayer ë·°ì…ë‹ˆë‹¤.
 #include "RollupCtrl.h"
 
 class CPathLayer : public CView
@@ -9,7 +9,7 @@ class CPathLayer : public CView
 	DECLARE_DYNCREATE(CPathLayer)
 
 protected:
-	CPathLayer();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CPathLayer();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CPathLayer();
 
 public:
@@ -29,7 +29,7 @@ public:
 	void	ResetProperties();
 
 public:
-	virtual void OnDraw(CDC* pDC);      // ÀÌ ºä¸¦ ±×¸®±â À§ÇØ ÀçÁ¤ÀÇµÇ¾ú½À´Ï´Ù.
+	virtual void OnDraw(CDC* pDC);      // ì´ ë·°ë¥¼ ê·¸ë¦¬ê¸° ìœ„í•´ ì¬ì •ì˜ë˜ì—ˆìŠµë‹ˆë‹¤.
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;

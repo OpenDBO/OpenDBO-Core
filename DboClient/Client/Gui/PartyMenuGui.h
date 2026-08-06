@@ -1,7 +1,7 @@
 /******************************************************************************
 * File			: PartyMenu.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Abstract		: 2006. 10. 13
 *****************************************************************************
 *
@@ -51,9 +51,9 @@ public:
 	VOID		Destroy();
 	VOID		Update(RwReal fElapsed);
 
-	RwInt32		SwitchDialog(bool bOpen);			///< DialogManagerø°º≠¿« Open/Close
+	RwInt32		SwitchDialog(bool bOpen);			///< DialogManagerÏóêÏÑúÏùò Open/Close
 
-	VOID		ResetPartyMenu();					///< PartyMenu ∏¶ √ ±‚»≠ «—¥Ÿ
+	VOID		ResetPartyMenu();					///< PartyMenu Î•º Ï¥àÍ∏∞Ìôî ÌïúÎã§
 
 protected:
 	CPartyMenu() {}
@@ -61,12 +61,12 @@ protected:
 
 	VOID		Clear();
 
-	VOID		AddMember(sPartyMember* pMember);				///< ∏…πˆ√¢¿ª «œ≥™ ¥√∏∞¥Ÿ.
-	VOID		DelMember(SERIAL_HANDLE hSerial);				///< ∏…πˆ√¢¿ª «œ≥™ ¡Ÿ¿Œ¥Ÿ.
+	VOID		AddMember(sPartyMember* pMember);				///< Îß¥Î≤ÑÏ∞ΩÏùÑ ÌïòÎÇò ÎäòÎ¶∞Îã§.
+	VOID		DelMember(SERIAL_HANDLE hSerial);				///< Îß¥Î≤ÑÏ∞ΩÏùÑ ÌïòÎÇò Ï§ÑÏù∏Îã§.
 
-	CPartyMemberGui* GetPartyMemberGui(SERIAL_HANDLE hSerial);	///< ∏…πˆ√¢¿ª π›»Ø«—¥Ÿ.
+	CPartyMemberGui* GetPartyMemberGui(SERIAL_HANDLE hSerial);	///< Îß¥Î≤ÑÏ∞ΩÏùÑ Î∞òÌôòÌïúÎã§.
 	
-	VOID		SetOtherWorld(); // æ∆πŸ≈∏∞° ¡∏¿Á«œ¥¬ ø˘µÂ¿« ∑Í∞˙ ¥Ÿ∏• ∑Í¿« ø˘µÂø° ¡∏¿Á«œ¥¬ ∏…πˆ¿« GUI∏¶ «•Ω√«—¥Ÿ
+	VOID		SetOtherWorld(); // ÏïÑÎ∞îÌÉÄÍ∞Ä Ï°¥Ïû¨ÌïòÎäî ÏõîÎìúÏùò Î£∞Í≥º Îã§Î•∏ Î£∞Ïùò ÏõîÎìúÏóê Ï°¥Ïû¨ÌïòÎäî Îß¥Î≤ÑÏùò GUIÎ•º ÌëúÏãúÌïúÎã§
 
 	VOID		NoPartyButtons();
 	VOID		SpreadButtons();
@@ -107,14 +107,14 @@ protected:
 
 	gui::CStaticBox*	m_pPartyName;
 
-	gui::CButton*		m_pSpreadMenuButton;		///< ∏ﬁ¥∫ ∆Óƒ°±‚ πˆ∆∞
-	gui::CButton*		m_pFoldMenuButton;			///< ∏ﬁ¥∫ ¡¢±‚ πˆ∆∞
+	gui::CButton*		m_pSpreadMenuButton;		///< Î©îÎâ¥ ÌéºÏπòÍ∏∞ Î≤ÑÌäº
+	gui::CButton*		m_pFoldMenuButton;			///< Î©îÎâ¥ Ï†ëÍ∏∞ Î≤ÑÌäº
 
-	gui::CButton*		m_pMemberMenuButton;		///< ∆ƒ∆ºø¯ ∞¸∏Æ πˆ∆∞	
-	gui::CButton*		m_pDivideZennyButton;		///< ¡¶¥œ ∫–πË πÊΩƒ πˆ∆∞
-	gui::CButton*		m_pDivideItemButton;		///< æ∆¿Ã≈€ ∫–πË πÊΩƒ πˆ∆∞
-	gui::CButton*		m_pDungeonButton;			///< ¥¯¿¸ πˆ∆∞
-	gui::CButton*		m_pSwitchButton;			///< ∆ƒ∆º ∏ﬁ¥∫/∏…πˆ √¢¿« switch πˆ∆∞
+	gui::CButton*		m_pMemberMenuButton;		///< ÌååÌã∞Ïõê Í¥ÄÎ¶¨ Î≤ÑÌäº	
+	gui::CButton*		m_pDivideZennyButton;		///< Ï†úÎãà Î∂ÑÎ∞∞ Î∞©Ïãù Î≤ÑÌäº
+	gui::CButton*		m_pDivideItemButton;		///< ÏïÑÏù¥ÌÖú Î∂ÑÎ∞∞ Î∞©Ïãù Î≤ÑÌäº
+	gui::CButton*		m_pDungeonButton;			///< ÎçòÏ†Ñ Î≤ÑÌäº
+	gui::CButton*		m_pSwitchButton;			///< ÌååÌã∞ Î©îÎâ¥/Îß¥Î≤Ñ Ï∞ΩÏùò switch Î≤ÑÌäº
 
 	CSurfaceGui			m_srfPartyNameBackground;
 
@@ -122,5 +122,5 @@ protected:
 	
 	RwReal				m_fUpdateTimeAbsentee;
 
-	PARTYMEMBER_LIST	m_listPartyMember;			///< ∆ƒ∆º ∏…πˆ√¢ ∏ÆΩ∫∆Æ
+	PARTYMEMBER_LIST	m_listPartyMember;			///< ÌååÌã∞ Îß¥Î≤ÑÏ∞Ω Î¶¨Ïä§Ìä∏
 };

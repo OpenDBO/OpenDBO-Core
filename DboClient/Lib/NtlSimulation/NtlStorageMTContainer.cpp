@@ -6,7 +6,7 @@
 
 /**
 * \brief NTL Storage Define Mapping Table
-* 1���� ī�װ����� ������ ���� ī�װ������� �˸���.
+* 1占쏙옙占쏙옙 카占쌓곤옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 카占쌓곤옙占쏙옙占쏙옙占쏙옙 占싯몌옙占쏙옙.
 */
 SNtlStorageMappingTableData CNtlStorageMTContainer::m_StorageMappingTable[] = {
 // Table rule
@@ -131,7 +131,7 @@ SNtlStorageMappingTableData CNtlStorageMTContainer::m_StorageMappingTable[] = {
 
 
 // You have to insert the table data after the current line. 
-// �ݵ�� ���� ���� ������ �߰��Ͽ��� �մϴ�.
+// 반드시 현재 라인 다음에 추가하여야 합니다.
 
 // Table End ----------------------------------------------------------------------------
 };
@@ -148,7 +148,7 @@ CNtlStorageMTContainer::~CNtlStorageMTContainer(void)
 }
 
 /**
-* \brief �̸� ���̺��� �ѹ� ��ȸ�Ͽ� ī�װ�����, ID�� �����͸� �����ϰ� �ִ´�.
+* \brief 占싱몌옙 占쏙옙占싱븝옙占쏙옙 占싼뱄옙 占쏙옙회占싹울옙 카占쌓곤옙占쏙옙占쏙옙, ID占쏙옙 占쏙옙占쏙옙占싶몌옙 占쏙옙占쏙옙占싹곤옙 占쌍는댐옙.
 */
 bool CNtlStorageMTContainer::SortTable()
 {
@@ -162,12 +162,12 @@ bool CNtlStorageMTContainer::SortTable()
 			std::make_pair( m_StorageMappingTable[i].byCategoryType,
 			&m_StorageMappingTable[i] ));
 
-		// KEY ID�� Key�� �Ͽ� ���
+		// KEY ID를 Key로 하여 등록
 		m_mapTable.insert(
 			std::make_pair( m_StorageMappingTable[i].uiKey,
 			&m_StorageMappingTable[i] ));
 
-		// STRING�� Key�� ���
+		// STRING을 Key로 등록
 		std::string strKey;
 		strKey.append(m_StorageMappingTable[i].acKeyName);
 		
@@ -191,7 +191,7 @@ bool CNtlStorageMTContainer::SetUnitCheckFunc( unsigned int uiKey, NtlStorageUni
 		return false;
 	}
 
-	// ���ο� �Լ� ������ ����
+	// 占쏙옙占싸울옙 占쌉쇽옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙
 	SNtlStorageMappingTableData* pData = it->second;
 	pData->ntlStorageFunc = funcApply;
 

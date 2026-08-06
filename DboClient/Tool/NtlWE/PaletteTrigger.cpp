@@ -1,4 +1,4 @@
-// PaletteTrigger.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PaletteTrigger.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "PaletteTrigger.h"
 
 
-// CPaletteTrigger ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteTrigger ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPaletteTrigger, CDialog)
 CPaletteTrigger::CPaletteTrigger(CWnd* pParent /*=NULL*/)
@@ -31,4 +31,4 @@ BEGIN_MESSAGE_MAP(CPaletteTrigger, CDialog)
 END_MESSAGE_MAP()
 
 
-// CPaletteTrigger ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPaletteTrigger ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

@@ -149,9 +149,9 @@ struct sNtlWorldParam
 	RwInt32		WorldTexAddr;
 	RwInt32		WorldPolyCnt;
 
-	// �ε���
+	// 占싸듸옙占쏙옙
 	RwInt32		WorldBlockSize;
-	// �ε���
+	// 占싸듸옙占쏙옙
 	RwInt32		WorldBlockNum;
 
 	RwReal		WorldNearPlane;
@@ -167,12 +167,12 @@ struct sNtlWorldParam
 	RwChar		CurDefaultTexPath[NTL_MAX_DIR_PATH];
 	RwChar		WorldChar64Buf[64];
 
-	// �ε���
+	// 占싸듸옙占쏙옙
 	RwInt32		WorldType; // 0:HeightWorld // 1:IndoorWorld(RwWorld)
 
 	RwChar		WorldRAW[64];
 
-	// �ε���
+	// 占싸듸옙占쏙옙
 	RwChar		WorldBSP[64];
 
 	RwBool		LODEnable;

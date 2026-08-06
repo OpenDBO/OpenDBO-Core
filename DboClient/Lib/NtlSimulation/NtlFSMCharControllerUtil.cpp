@@ -55,7 +55,7 @@ void CNtlFSMSyncMsgAttackBegin::SetTargetSerialId( SERIAL_HANDLE hTargetSerialId
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : attack range¸¦ °Ë»çÇÏ¿© attack begin or end packetÀ» º¸³½´Ù.
+//  des : attack rangeë¥¼ ê²€ì‚¬í•˜ì—¬ attack begin or end packetì„ ë³´ë‚¸ë‹¤.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : delta time.
@@ -63,7 +63,7 @@ void CNtlFSMSyncMsgAttackBegin::SetTargetSerialId( SERIAL_HANDLE hTargetSerialId
 
 void CNtlFSMSyncMsgAttackBegin::Update(CNtlSobActor *pActor, RwReal fElapsed)
 {
-	// ¼­¹ö·Î attack end protocolÀ» º¸³½´Ù.
+	// ì„œë²„ë¡œ attack end protocolì„ ë³´ë‚¸ë‹¤.
 	if(m_hTargetSerialId == INVALID_SERIAL_ID)
 	{
 		if(m_bAttackBegin)

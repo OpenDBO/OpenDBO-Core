@@ -87,7 +87,7 @@ void CNtlPLWorldLight_Sphere::SetRadius(RwReal fRadius)
 
 	if(m_pNtlPLObj)
 	{
-		// Sphere ModelÀÌ Áö¸§ÀÌ 1ÀÌ±â ¶§¹®¿¡ ¿¬»êÇØ ÁÖÀÚ.
+		// Sphere Modelì´ ì§€ë¦„ì´ 1ì´ê¸° ë•Œë¬¸ì— ì—°ì‚°í•´ ì£¼ìž.
 		RwV3d vScale;
 		vScale.x = vScale.y = vScale.z = fRadius * 2.0f;
 		m_pNtlPLObj->SetScale(&vScale);		

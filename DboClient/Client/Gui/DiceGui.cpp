@@ -19,7 +19,7 @@
 
 #define dDICE_FLASH_NAME		"Dice_play.swf"
 #define dDICE_LIMIT_TIME		((RwReal)(DBO_MAX_TIME_PARTY_DICE_ITEM/1000))
-#define dDICE_WAIT_FOR_DISAPPEAR	3.f		///< ÁÖ»çÀ§ ¼ýÀÚ°¡ Ç¥½ÃµÇ°í ³ª¼­ »ç¶óÁö±â ±îÁöÀÇ ½Ã°£
+#define dDICE_WAIT_FOR_DISAPPEAR	3.f		///< ì£¼ì‚¬ìœ„ ìˆ«ìžê°€ í‘œì‹œë˜ê³  ë‚˜ì„œ ì‚¬ë¼ì§€ê¸° ê¹Œì§€ì˜ ì‹œê°„
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -42,23 +42,23 @@ RwBool CActionDiceGui::Create(RwUInt8 byFunctionFlag)
 
 	m_pThis = (gui::CDialog*)GetComponent("dlgMain");
 
-	// Ã¢´Ý±â ¹öÆ°
+	// ì°½ë‹«ê¸° ë²„íŠ¼
 	m_pExitButton = (gui::CButton*)GetComponent( "btnExit" );
 	m_slotCloseButton = m_pExitButton->SigClicked().Connect(this, &CActionDiceGui::OnClicked_CloseButton);
 
-	// ÁÖ»çÀ§ ÇÃ·¡½¬
+	// ì£¼ì‚¬ìœ„ í”Œëž˜ì‰¬
 	m_pflashDice = (gui::CFlash*)GetComponent("flaDice");
 	m_slotMovieEnd = m_pflashDice->SigMovieEnd().Connect( this, &CActionDiceGui::OnMovieEnd );
 	m_slotFSCallback = m_pflashDice->SigFSCallBack().Connect( this, &CActionDiceGui::OnFSCallback );
 
-	// ¾×¼Ç ÁÖ»çÀ§ ¼³¸í
+	// ì•¡ì…˜ ì£¼ì‚¬ìœ„ ì„¤ëª…
 	m_pActionDiceExplain = (gui::CStaticBox*)GetComponent("stbActionDiceExplain");	
 
-	// ¾×¼Ç ÁÖ»çÀ§ ¼³¸í2
+	// ì•¡ì…˜ ì£¼ì‚¬ìœ„ ì„¤ëª…2
 	m_pActionDiceExplain2 = (gui::CStaticBox*)GetComponent("stbActionDiceExplain2");
 	m_pActionDiceExplain2->SetTextColor( RGB(255, 192, 0) );
 
-	// ÁÖ»çÀ§¸¦ ±¼¸° ¼ýÀÚ
+	// ì£¼ì‚¬ìœ„ë¥¼ êµ´ë¦° ìˆ«ìž
 	m_pResultNum = (gui::CStaticBox*)GetComponent("stbResultNum");
 	m_pResultNum->CreateFontStd(DEFAULT_FONT, 300, DEFAULT_FONT_ATTR);
 
@@ -155,10 +155,10 @@ VOID CActionDiceGui::OnClicked_CloseButton(gui::CComponent* pComponent)
 
 VOID CActionDiceGui::OnMovieEnd(gui::CComponent* pComponent)
 {
-	// ÁÖ»çÀ§°¡ µ¹¾Æ°¡´Ù°¡ ¸ØÃß¾úÀ» ¶§
+	// ì£¼ì‚¬ìœ„ê°€ ëŒì•„ê°€ë‹¤ê°€ ë©ˆì¶”ì—ˆì„ ë•Œ
 	m_pResultNum->SetText(m_byResultNum);
 
-	// ´Ù½Ã ÁÖ»çÀ§¸¦ µ¹¸®±â À§ÇÑ ÃÊ±âÈ­
+	// ë‹¤ì‹œ ì£¼ì‚¬ìœ„ë¥¼ ëŒë¦¬ê¸° ìœ„í•œ ì´ˆê¸°í™”
 	ReadyDice();
 
 	if( false == BIT_FLAG_TEST(m_byFunctionFlag, dDICE_FUNCTION_DISABLE_CLICK_DICE) )
@@ -176,7 +176,7 @@ VOID CActionDiceGui::OnFSCallback(const char* pcString, const char* pcString2)
 	if( !pcString )
 		return;
 
-	// ÁÖ»çÀ§¸¦ Å¬¸¯ÇßÀ» ¶§
+	// ì£¼ì‚¬ìœ„ë¥¼ í´ë¦­í–ˆì„ ë•Œ
 	CDboEventGenerator::DiceRequestResulttoServer(m_byWorkID);	
 
 	m_pResultNum->Clear();
@@ -195,8 +195,8 @@ VOID CActionDiceGui::Switch(bool bOpen)
 	{
 		if( m_bGenerateResultEvent )
 		{
-			// ÁÖ»çÀ§ ÇÃ·¡½¬ ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ ³¡³ª °á°ú¸¦ º¸¿©ÁÖ±â Àü¿¡ ÁÖ»çÀ§ GUI¸¦ ´Ý¾Ò´Ù
-			// ÁÖ»çÀ§ GUI ¿Ü¿¡ ÁÖ»çÀ§ °á°ú¸¦ º¸¿©ÁÖ´Â °÷(Ã¤ÆÃ, ¸»Ç³¼± µî)À» À§ÇØ ÀÌº¥Æ®¸¦ º¸³½´Ù
+			// ì£¼ì‚¬ìœ„ í”Œëž˜ì‰¬ ì• ë‹ˆë©”ì´ì…˜ì´ ëë‚˜ ê²°ê³¼ë¥¼ ë³´ì—¬ì£¼ê¸° ì „ì— ì£¼ì‚¬ìœ„ GUIë¥¼ ë‹«ì•˜ë‹¤
+			// ì£¼ì‚¬ìœ„ GUI ì™¸ì— ì£¼ì‚¬ìœ„ ê²°ê³¼ë¥¼ ë³´ì—¬ì£¼ëŠ” ê³³(ì±„íŒ…, ë§í’ì„  ë“±)ì„ ìœ„í•´ ì´ë²¤íŠ¸ë¥¼ ë³´ë‚¸ë‹¤
 			CDboEventGenerator::DiceResultShow(Logic_GetAvatarHandle(), m_byWorkID, m_byResultNum);
 		}
 
@@ -242,34 +242,34 @@ RwBool CItemDiceGui::Create(RwUInt8 byFunctionFlag)
 
 	m_pThis = (gui::CDialog*)GetComponent("dlgMain");
 
-	// Ã¢´Ý±â ¹öÆ°
+	// ì°½ë‹«ê¸° ë²„íŠ¼
 	m_pExitButton = (gui::CButton*)GetComponent( "btnExit" );
 	m_slotCloseButton = m_pExitButton->SigClicked().Connect(this, &CItemDiceGui::OnClicked_CloseButton);
 
-	// ÁÖ»çÀ§ ÇÃ·¡½¬
+	// ì£¼ì‚¬ìœ„ í”Œëž˜ì‰¬
 	m_pflashDice = (gui::CFlash*)GetComponent("flaDice");
 	m_slotMovieEnd = m_pflashDice->SigMovieEnd().Connect( this, &CItemDiceGui::OnMovieEnd );
 	m_slotFSCallback = m_pflashDice->SigFSCallBack().Connect( this, &CItemDiceGui::OnFSCallback );
 
-	// ÀÚµ¿ ÁÖ»çÀ§ ¼³¸í
+	// ìžë™ ì£¼ì‚¬ìœ„ ì„¤ëª…
 	m_pAutoDiceExplain = (gui::CStaticBox*)GetComponent("stbAutoDiceExplain");
 	
-	// ÁÖ»çÀ§¸¦ ±¼¸° ¼ýÀÚ
+	// ì£¼ì‚¬ìœ„ë¥¼ êµ´ë¦° ìˆ«ìž
 	m_pResultNum = (gui::CStaticBox*)GetComponent("stbResultNum");
 	m_pResultNum->CreateFontStd(DEFAULT_FONT, 300, DEFAULT_FONT_ATTR);
 
-	// ¾ÆÀÌÅÛ ½½·Ô ¹è°æ
+	// ì•„ì´í…œ ìŠ¬ë¡¯ ë°°ê²½
 	m_srfItemSlot.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Dice.srf", "srfItemSlot" ) );
 	m_srfItemSlot.SetPositionfromParent(228, 18);
 
-	// ÁÖ»çÀ§ ±¼¸®±â ½Ã°£ Á¦ÇÑ ¹è°æ
+	// ì£¼ì‚¬ìœ„ êµ´ë¦¬ê¸° ì‹œê°„ ì œí•œ ë°°ê²½
 	m_srfTimeGaugeBack.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Dice.srf", "srfTimeGaugeBack" ) );
 	m_srfTimeGaugeBack.SetPositionfromParent(21, 73);
 
 	m_slot.Create(m_pThis, DIALOG_DICE_MANAGER, REGULAR_SLOT_ITEM_TABLE);
 	m_slot.SetPosition_fromParent(230, 34);
 
-	// ÁÖ»çÀ§ ±¼¸®±â ½Ã°£ Á¦ÇÑ
+	// ì£¼ì‚¬ìœ„ êµ´ë¦¬ê¸° ì‹œê°„ ì œí•œ
 	m_pTimeGauge = (gui::CProgressBar*)GetComponent("TimeGauge");	
 
 	// default value
@@ -345,7 +345,7 @@ VOID CItemDiceGui::Update(RwReal fElapsed)
 
 	RwInt32 iMaxRange, iPos;
 
-	m_pTimeGauge->GetRange(iPos, iMaxRange); // iPos´Â ¿©±â¼­´Â ´õ¹Ì·Î ¾²ÀÎ´Ù
+	m_pTimeGauge->GetRange(iPos, iMaxRange); // iPosëŠ” ì—¬ê¸°ì„œëŠ” ë”ë¯¸ë¡œ ì“°ì¸ë‹¤
 
 	iPos = (RwInt32)CNtlMath::Interpolation((RwReal)iMaxRange, 0.f, m_fElapsed/dDICE_LIMIT_TIME);
 	m_pTimeGauge->SetPos(iPos);
@@ -431,7 +431,7 @@ VOID CItemDiceGui::OnClicked_CloseButton(gui::CComponent* pComponent)
 
 VOID CItemDiceGui::OnMovieEnd(gui::CComponent* pComponent)
 {
-	// ÁÖ»çÀ§°¡ µ¹¾Æ°¡´Ù°¡ ¸ØÃß¾úÀ» ¶§
+	// ì£¼ì‚¬ìœ„ê°€ ëŒì•„ê°€ë‹¤ê°€ ë©ˆì¶”ì—ˆì„ ë•Œ
 	m_pResultNum->SetText(m_byResultNum);
 
 	if( false == BIT_FLAG_TEST(m_byFunctionFlag, dDICE_FUNCTION_DISABLE_CLICK_DICE) )
@@ -531,8 +531,8 @@ VOID CItemDiceGui::Switch(bool bOpen)
 	{
 		if( m_bGenerateResultEvent )
 		{
-			// ÁÖ»çÀ§ ÇÃ·¡½¬ ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ ³¡³ª °á°ú¸¦ º¸¿©ÁÖ±â Àü¿¡ ÁÖ»çÀ§ GUI¸¦ ´Ý¾Ò´Ù
-			// ÁÖ»çÀ§ GUI ¿Ü¿¡ ÁÖ»çÀ§ °á°ú¸¦ º¸¿©ÁÖ´Â °÷(Ã¤ÆÃ, ¸»Ç³¼± µî)À» À§ÇØ ÀÌº¥Æ®¸¦ º¸³½´Ù
+			// ì£¼ì‚¬ìœ„ í”Œëž˜ì‰¬ ì• ë‹ˆë©”ì´ì…˜ì´ ëë‚˜ ê²°ê³¼ë¥¼ ë³´ì—¬ì£¼ê¸° ì „ì— ì£¼ì‚¬ìœ„ GUIë¥¼ ë‹«ì•˜ë‹¤
+			// ì£¼ì‚¬ìœ„ GUI ì™¸ì— ì£¼ì‚¬ìœ„ ê²°ê³¼ë¥¼ ë³´ì—¬ì£¼ëŠ” ê³³(ì±„íŒ…, ë§í’ì„  ë“±)ì„ ìœ„í•´ ì´ë²¤íŠ¸ë¥¼ ë³´ë‚¸ë‹¤
 			CDboEventGenerator::DiceResultShow(Logic_GetAvatarHandle(), m_byWorkID, m_byResultNum);
 		}
 

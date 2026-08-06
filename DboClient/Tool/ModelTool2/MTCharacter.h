@@ -12,9 +12,9 @@ typedef std::map<int, std::string>      BONENAME_MAP;
 
 /*!
  * \brief
- * Model Tool Character °ü·Ã Å¬·¡½º
+ * Model Tool Character ê´€ë ¨ í´ë˜ìŠ¤
  * 
- * CNtlPLCharacter¸¦ »ó¼Ó¹Ş¾Æ¼­ ÇÊ¿äÇÑ ºÎºĞÀ» ¿À¹ö¶óÀÌµùÇÏ¿© »ç¿ëÇÑ´Ù.
+ * CNtlPLCharacterë¥¼ ìƒì†ë°›ì•„ì„œ í•„ìš”í•œ ë¶€ë¶„ì„ ì˜¤ë²„ë¼ì´ë”©í•˜ì—¬ ì‚¬ìš©í•œë‹¤.
  * 
  * \remarks
  * Write remarks for CMTCharacter here.
@@ -26,15 +26,15 @@ class CMTCharacter : public CNtlPLCharacter
 {
 public:
 
-	// CNtlPLCharacter Å¬·¡½ºÀÇ ¸Ş¸ğ¸®Ç®¿¡ ¹®Á¦°¡ ÀÖ¾î¼­. °­Á¦·Î ¿À¹ö¶óÀÌµù Á™´Ù.-_-a
+	// CNtlPLCharacter í´ë˜ìŠ¤ì˜ ë©”ëª¨ë¦¬í’€ì— ë¬¸ì œê°€ ìˆì–´ì„œ. ê°•ì œë¡œ ì˜¤ë²„ë¼ì´ë”© í—€ë‹¤.-_-a
 	void* operator new(size_t size);
 	void operator delete(void *pObj);
 
 	CMTCharacter(void);
 	virtual ~CMTCharacter(void);
 	
-	//--- ¿À¹ö¶óÀÌµù
-	virtual RwBool Create(const SPLEntityCreateParam *pParam  = NULL );		///< ÃÊ±âÈ­ ÀÛ¾÷À» ÇØÁØ´Ù.
+	//--- ì˜¤ë²„ë¼ì´ë”©
+	virtual RwBool Create(const SPLEntityCreateParam *pParam  = NULL );		///< ì´ˆê¸°í™” ì‘ì—…ì„ í•´ì¤€ë‹¤.
     virtual void   Destroy();
 	virtual RwBool Update(RwReal fElapsed);
 	virtual RwBool Render(void);        
@@ -42,117 +42,117 @@ public:
     virtual RwBool	CullingTest(RwCamera* pRwCamera) {return !IsVisible();}
 	//--------------------------------------------------------------------
 
-	RwBool  LoadClump(RwChar* filename);				                	///< clump ÆÄÀÏÀ» ·ÎµùÇÑ´Ù.	    
-    RwBool  SaveClump(RwChar* fileName);                                    ///< Clump ÆÄÀÏÀ» ÀúÀåÇÑ´Ù.    	
-    void    UpdateClumpInfo();                                              ///< ClumpÀÇ Á¤º¸¸¦ »õ·Î °»½ÅÇÑ´Ù.
+	RwBool  LoadClump(RwChar* filename);				                	///< clump íŒŒì¼ì„ ë¡œë”©í•œë‹¤.	    
+    RwBool  SaveClump(RwChar* fileName);                                    ///< Clump íŒŒì¼ì„ ì €ì¥í•œë‹¤.    	
+    void    UpdateClumpInfo();                                              ///< Clumpì˜ ì •ë³´ë¥¼ ìƒˆë¡œ ê°±ì‹ í•œë‹¤.
     
-    void    DisplayInfo(RtCharset* pCharSet);                               ///< È­¸é¿¡ Á¤º¸¸¦ Ç¥½ÃÇÑ´Ù.
-    CMTClump* GetClumpInfo() {return &m_charInfo;}                           ///< CharInfo °´Ã¼¸¦ ¹İÈ¯ÇÑ´Ù.    
-    ENTITY_ATOMIC_VEC   GetAtomicList() {return m_vecAtomicList;}           ///< Atomic List¸¦ ¹İÈ¯ÇÑ´Ù.      (Alpha Event¿¡¼­ Atomic Index ¼ø¼­¸¦ ¸ÂÃß±â À§ÇØ¼­ Ãß°¡)
+    void    DisplayInfo(RtCharset* pCharSet);                               ///< í™”ë©´ì— ì •ë³´ë¥¼ í‘œì‹œí•œë‹¤.
+    CMTClump* GetClumpInfo() {return &m_charInfo;}                           ///< CharInfo ê°ì²´ë¥¼ ë°˜í™˜í•œë‹¤.    
+    ENTITY_ATOMIC_VEC   GetAtomicList() {return m_vecAtomicList;}           ///< Atomic Listë¥¼ ë°˜í™˜í•œë‹¤.      (Alpha Eventì—ì„œ Atomic Index ìˆœì„œë¥¼ ë§ì¶”ê¸° ìœ„í•´ì„œ ì¶”ê°€)
 
-    // Clump ¼Ó¼º °ü·Ã
-    char*   GetClumpName() {return m_strClumpPathName;};                     ///< ClumpÀÇ NameÀ» ¹İÈ¯ÇÑ´Ù. (ÀüÃ¼ °æ·Î)    
-    void    SetVisible(RwBool bVisible);                                    ///< È­¸é¿¡ ¸ğµ¨ÀÇ Ç¥½Ã À¯¹«¸¦ ¼³Á¤ÇÑ´Ù.
-    void    SetAlpha(RwUInt8 byValue);                                      ///< ¾ËÆÄ¸¦ ¼³Á¤ÇÑ´Ù.
+    // Clump ì†ì„± ê´€ë ¨
+    char*   GetClumpName() {return m_strClumpPathName;};                     ///< Clumpì˜ Nameì„ ë°˜í™˜í•œë‹¤. (ì „ì²´ ê²½ë¡œ)    
+    void    SetVisible(RwBool bVisible);                                    ///< í™”ë©´ì— ëª¨ë¸ì˜ í‘œì‹œ ìœ ë¬´ë¥¼ ì„¤ì •í•œë‹¤.
+    void    SetAlpha(RwUInt8 byValue);                                      ///< ì•ŒíŒŒë¥¼ ì„¤ì •í•œë‹¤.
     void    SetWeightAlpha(RwReal fWeightValue);							///< Weight Alpha
 
-    // ¹Ù¿îµù ¹Ú½º °ü·Ã
-    void    RenderAnimBBox();                                               ///< Ä³¸¯ÅÍÀÇ Animation BBox¸¦ ·»´õ¸µÇÑ´Ù.
-    RwBBox  CreateDefaultAnimBBox();                                        ///< Ä³¸¯ÅÍÀÇ ±âº» Animation BBox¸¦ ¸¸µç´Ù.
+    // ë°”ìš´ë”© ë°•ìŠ¤ ê´€ë ¨
+    void    RenderAnimBBox();                                               ///< ìºë¦­í„°ì˜ Animation BBoxë¥¼ ë Œë”ë§í•œë‹¤.
+    RwBBox  CreateDefaultAnimBBox();                                        ///< ìºë¦­í„°ì˜ ê¸°ë³¸ Animation BBoxë¥¼ ë§Œë“ ë‹¤.
     
-    // WireFrame ·»´õ¸µ °ü·Ã
-    void              RenderWireFrame(void);                                ///< WireFrameÀ» ·»´õ¸µ ÇÑ´Ù.    
+    // WireFrame ë Œë”ë§ ê´€ë ¨
+    void              RenderWireFrame(void);                                ///< WireFrameì„ ë Œë”ë§ í•œë‹¤.    
 
-    // Hierarchy ·»´õ¸µ °ü·Ã
-    void             RenderHierarchy(void);                                 ///< Hierarchy¸¦ ·»´õ¸µ ÇÑ´Ù.
+    // Hierarchy ë Œë”ë§ ê´€ë ¨
+    void             RenderHierarchy(void);                                 ///< Hierarchyë¥¼ ë Œë”ë§ í•œë‹¤.
     static RpAtomic* AtomicRenderSkeleton(RpAtomic *atomic, void * data);
     static RwFrame*  HierarchyRender(RwFrame *frame, void * data);
     static void      SkeletonRender(RwMatrix *LTM, RpHAnimHierarchy *hier);
 
-    // Bone °ü·Ã
-    RwInt32          GetBoneNum() {return m_nBoneCount;};                      ///< BoneÀÇ °³¼ö¸¦ ¹İÈ¯ÇÑ´Ù.        
-    RwBool           SetSelectBone(int nBoneIndex);                             ///< ·»´õ¸µÇÒ BoneÀ» ¼±ÅÃÇÑ´Ù.
-    void             SetRenderBone(RwBool bRender) {m_bRenderBone = bRender;}; ///< BoneÀÇ ·»´õ¸µ À¯¹«¸¦ °áÁ¤ÇÑ´Ù.
+    // Bone ê´€ë ¨
+    RwInt32          GetBoneNum() {return m_nBoneCount;};                      ///< Boneì˜ ê°œìˆ˜ë¥¼ ë°˜í™˜í•œë‹¤.        
+    RwBool           SetSelectBone(int nBoneIndex);                             ///< ë Œë”ë§í•  Boneì„ ì„ íƒí•œë‹¤.
+    void             SetRenderBone(RwBool bRender) {m_bRenderBone = bRender;}; ///< Boneì˜ ë Œë”ë§ ìœ ë¬´ë¥¼ ê²°ì •í•œë‹¤.
     
-    // Animation °ü·Ã   
-    RwBool          SetAnim(RwUInt32 uiKey);                                 ///< ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ¸ğµ¨¿¡ Àû¿ëÇÑ´Ù.    
-    RwUInt32        GetCurrentAnimKey() {return m_uiCurrentAnimKey;}         ///< ÇöÀç PlayµÇ°í ÀÖ´Â Anim Key¸¦ ¹İÈ¯ÇÑ´Ù,.
+    // Animation ê´€ë ¨   
+    RwBool          SetAnim(RwUInt32 uiKey);                                 ///< ì• ë‹ˆë©”ì´ì…˜ì„ ëª¨ë¸ì— ì ìš©í•œë‹¤.    
+    RwUInt32        GetCurrentAnimKey() {return m_uiCurrentAnimKey;}         ///< í˜„ì¬ Playë˜ê³  ìˆëŠ” Anim Keyë¥¼ ë°˜í™˜í•œë‹¤,.
 
-    // ½ºÅ©¸³Æ® °ü·Ã
-    void            ResetProperty();                                        ///< Ä³¸¯ÅÍ ÇÁ·ÎÆÛÆ¼ÀÇ ¸ğµç ³»¿ëÀ» ¸®¼ÂÇÑ´Ù.
-    CNtlPLCharacterProperty* GetProperty() {return m_pProperty;};           ///< Ä³¸¯ÅÍÀÇ ÇÁ·ÎÆÛÆ¼ÀÇ Æ÷ÀÎÅÍ¸¦ ¹İÈ¯ÇÑ´Ù.
+    // ìŠ¤í¬ë¦½íŠ¸ ê´€ë ¨
+    void            ResetProperty();                                        ///< ìºë¦­í„° í”„ë¡œí¼í‹°ì˜ ëª¨ë“  ë‚´ìš©ì„ ë¦¬ì…‹í•œë‹¤.
+    CNtlPLCharacterProperty* GetProperty() {return m_pProperty;};           ///< ìºë¦­í„°ì˜ í”„ë¡œí¼í‹°ì˜ í¬ì¸í„°ë¥¼ ë°˜í™˜í•œë‹¤.
 
-    // Item °ü·Ã    
-    CNtlPLItem*	    SetChangeEquipItemForTool(CNtlPLItem *pItem);           ///< ItemÀ» ÀåÂøÇÑ´Ù.
-    virtual RwBool	SetRemoveEquipItem(CNtlPLItem *pItem);                  ///< ItemÀ» ÇØÁ¦ÇÑ´Ù.
+    // Item ê´€ë ¨    
+    CNtlPLItem*	    SetChangeEquipItemForTool(CNtlPLItem *pItem);           ///< Itemì„ ì¥ì°©í•œë‹¤.
+    virtual RwBool	SetRemoveEquipItem(CNtlPLItem *pItem);                  ///< Itemì„ í•´ì œí•œë‹¤.
 
-    // Link Effect °ü·Ã
-    CNtlInstanceEffect* GetLinkEffectFromName(RwChar* szName);              ///< Name¿¡ ÇØ´çÇÏ´Â LinkEffect¸¦ ¹İÈ¯ÇÑ´Ù.
+    // Link Effect ê´€ë ¨
+    CNtlInstanceEffect* GetLinkEffectFromName(RwChar* szName);              ///< Nameì— í•´ë‹¹í•˜ëŠ” LinkEffectë¥¼ ë°˜í™˜í•œë‹¤.
 
-    // Hissidian ·»´õ¸µ °ü·Ã
-    void            SetRenderHissidian(SEventAnimHit* pEventHissidan) {m_pEventHissidianDir = pEventHissidan;}      ///< HissidanÀ»  ·»´õ¸µÇÏ±â À§ÇÑ ÀÌº¥Æ®¸¦ ¼³Á¤ÇÑ´Ù.
+    // Hissidian ë Œë”ë§ ê´€ë ¨
+    void            SetRenderHissidian(SEventAnimHit* pEventHissidan) {m_pEventHissidianDir = pEventHissidan;}      ///< Hissidanì„  ë Œë”ë§í•˜ê¸° ìœ„í•œ ì´ë²¤íŠ¸ë¥¼ ì„¤ì •í•œë‹¤.
 
-    // Color ¼³Á¤
+    // Color ì„¤ì •
     virtual void SetSkinColor(RwUInt8 byRed, RwUInt8 byGreen, RwUInt8 byBlue);							///< Skin Color
     virtual void SetHeadColor(RwUInt8 byRed, RwUInt8 byGreen, RwUInt8 byBlue);							///< Head Color
 
-	// ¸ğµ¨Åø¿¡¼­ ÀÓ½ÃÀûÀ¸·Î È¯°æ¸ÊÀ» º¸¿©ÁÖ±â À§ÇÑ method
+	// ëª¨ë¸íˆ´ì—ì„œ ì„ì‹œì ìœ¼ë¡œ í™˜ê²½ë§µì„ ë³´ì—¬ì£¼ê¸° ìœ„í•œ method
 	void SetEnvMap(RwChar* _pName);
 
 protected:
-	//--- ¿À¹ö¶óÀÌµù	
-	virtual RwBool CreateMesh(const char *szDffName);		///< Mesh¸¦ ·ÎµùÇÑ´Ù
+	//--- ì˜¤ë²„ë¼ì´ë”©	
+	virtual RwBool CreateMesh(const char *szDffName);		///< Meshë¥¼ ë¡œë”©í•œë‹¤
     virtual RwBool SetBaseAnimation(RwUInt32 uiAnimKey, RwReal fStartTime = 0.f , RwBool bLoop = TRUE );
 	//----------------------------------------------------------------------
 
-    // Bone °ü·Ã    
-    void   RenderSelectedBoneScale(RpHAnimHierarchy *pHierarchy, RwInt32 nCurrentBone);    ///< BoneÀ» ·»´õ¸µ ÇÑ´Ù.
+    // Bone ê´€ë ¨    
+    void   RenderSelectedBoneScale(RpHAnimHierarchy *pHierarchy, RwInt32 nCurrentBone);    ///< Boneì„ ë Œë”ë§ í•œë‹¤.
     
 	virtual int	   CallBackBaseAnim(void* pEventData);
 
-    // Event Ã³¸® °ü·Ã ¿À¹ö¶óÀÌµù
+    // Event ì²˜ë¦¬ ê´€ë ¨ ì˜¤ë²„ë¼ì´ë”©
     virtual void   OnEventHit(SEventAnimHit* pEventHit);    
     virtual void   OnEventWeightTime(SEventWeightTime* pEventTime);
     virtual void   OnEventAlphaFade(SEventAlpha* pEventAlpha);    
     virtual void   OnEventPostEffect(SEventPostEffect* pEventPostEffect);
-    virtual void   OnEventColorChange(SEventColorChange* pEventColorChange);                    ///< »ö»ó º¯°æ ÀÌº¥Æ® Ã³¸®
-    virtual void   OnEventStretch(SEventStretch* pEventStretch);                                ///< ÆÈ ´Ã¾î³ª´Â ÀÌº¥Æ® Ã³¸®
+    virtual void   OnEventColorChange(SEventColorChange* pEventColorChange);                    ///< ìƒ‰ìƒ ë³€ê²½ ì´ë²¤íŠ¸ ì²˜ë¦¬
+    virtual void   OnEventStretch(SEventStretch* pEventStretch);                                ///< íŒ” ëŠ˜ì–´ë‚˜ëŠ” ì´ë²¤íŠ¸ ì²˜ë¦¬
 
-    void   RenderHissidainDir();                        ///< Hissidan ¹æÇâÀ» ·»´õ¸µÇÑ´Ù.
-    void   UpdateAtomicsColor();                        ///< Color °ü·Ã
-    void   UpdateStretch(RwReal fElapsed);              ///< Stretch ÀÌº¥Æ® °ü·Ã
-    void   UpdateCameraShake(RwReal fElapse);           ///< Ä«¸Ş¶ó ¼ÎÀÌÅ© ÀÌº¥Æ®¸¦ Ã³¸®ÇÑ´Ù. 
+    void   RenderHissidainDir();                        ///< Hissidan ë°©í–¥ì„ ë Œë”ë§í•œë‹¤.
+    void   UpdateAtomicsColor();                        ///< Color ê´€ë ¨
+    void   UpdateStretch(RwReal fElapsed);              ///< Stretch ì´ë²¤íŠ¸ ê´€ë ¨
+    void   UpdateCameraShake(RwReal fElapse);           ///< ì¹´ë©”ë¼ ì…°ì´í¬ ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•œë‹¤. 
 
 protected:
-	CMTClump		    m_charInfo;							///< Ä³¸¯ÅÍ ¸®¼Ò½º Á¤º¸¸¦ °ü¸®ÇÏ´Â °´Ã¼	
+	CMTClump		    m_charInfo;							///< ìºë¦­í„° ë¦¬ì†ŒìŠ¤ ì •ë³´ë¥¼ ê´€ë¦¬í•˜ëŠ” ê°ì²´	
     
-    bool                m_bAnim;                            ///< ¾Ö´Ï¸ŞÀÌ¼ÇÀÇ Àû¿ë À¯¹«
-    RtAnimAnimation*    m_pAnimation;                       ///< Ä³¸¯ÅÍ¿¡ Àû¿ëÇÏ´Â ¾Ö´Ï¸ŞÀÌ¼Ç
+    bool                m_bAnim;                            ///< ì• ë‹ˆë©”ì´ì…˜ì˜ ì ìš© ìœ ë¬´
+    RtAnimAnimation*    m_pAnimation;                       ///< ìºë¦­í„°ì— ì ìš©í•˜ëŠ” ì• ë‹ˆë©”ì´ì…˜
 	RwUInt32			m_uiCurBaseAnimKey;
 
-    RwBool              m_bRemoveColorChange;               ///< ÄÃ·¯º¯°æ ÀÌº¥Æ®¸¦ ¾ø¾ÙÁöÀÇ ÇÃ·¡±×    
+    RwBool              m_bRemoveColorChange;               ///< ì»¬ëŸ¬ë³€ê²½ ì´ë²¤íŠ¸ë¥¼ ì—†ì•¨ì§€ì˜ í”Œë˜ê·¸    
 
-    // Bone °ü·Ã    
-    RwInt32             m_nCurrentSelectBoneIndex;          ///< ÇöÀç ¼±ÅÃµÈ BoneÀÇ Index;
-    RwBool              m_bRenderBone;                      ///< BoneÀÇ ·»´õ¸µ À¯¹«        
-    char                m_strClumpPathName[1024];            ///< ClumpÀÇ ÀüÃ¼ PathName
-    RwUInt32            m_uiCurrentAnimKey;                  ///< ÇöÀç Play µÇ°í ÀÖ´Â Anim Key
+    // Bone ê´€ë ¨    
+    RwInt32             m_nCurrentSelectBoneIndex;          ///< í˜„ì¬ ì„ íƒëœ Boneì˜ Index;
+    RwBool              m_bRenderBone;                      ///< Boneì˜ ë Œë”ë§ ìœ ë¬´        
+    char                m_strClumpPathName[1024];            ///< Clumpì˜ ì „ì²´ PathName
+    RwUInt32            m_uiCurrentAnimKey;                  ///< í˜„ì¬ Play ë˜ê³  ìˆëŠ” Anim Key
 
-    SEventAnimHit*      m_pEventHissidianDir;               ///< HissidianÀÇ ¹æÇâÀ» ·»´õ¸µÇÏ±â À§ÇÑ ÀÌº¥Æ® Æ÷ÀÎÅÍ
+    SEventAnimHit*      m_pEventHissidianDir;               ///< Hissidianì˜ ë°©í–¥ì„ ë Œë”ë§í•˜ê¸° ìœ„í•œ ì´ë²¤íŠ¸ í¬ì¸í„°
 
-    CNtlPLEntityAlphaWeightBlend* m_pAlphaBlend;              ///< Ä«¸Ş¶ó °Å¸®Ã¼Å© ¾ËÆÄ Àû¿ëÀ» À§ÇÑ °´Ã¼
+    CNtlPLEntityAlphaWeightBlend* m_pAlphaBlend;              ///< ì¹´ë©”ë¼ ê±°ë¦¬ì²´í¬ ì•ŒíŒŒ ì ìš©ì„ ìœ„í•œ ê°ì²´
 
-    // Stretch Event °ü·Ã
-    RwBool              m_bStretchUpdate;                   ///< Stretch ÀÌº¥Æ®¸¦ À§ÇÑ ÇÃ·¡±×
-    RwBool              m_bStretchPulling;                  ///< Stretch ÀÌº¥Æ®¸¦ À§ÇÑ ÇÃ·¡±×
-    SEventStretch*      m_pStretchEvent;                    ///< Stretch ÀÌº¥Æ®
-    RwReal              m_fStretchPullingSpeed;             ///< Stretch ÀÌº¥Æ®
-    RwBool              m_bOrgBoneScale;                    ///< ¿ø·¡ÀÇ º» ½ºÄÉÀÏ ÇÃ·¡±×
-    RwReal              m_fOrgBoneLength[3];                ///< ¿ø·¡ÀÇ º» ±æÀÌ
-    RwReal              m_fOrgBoneWidth[3];                 ///< ¿ø·¡ÀÇ º» µÎ²²
+    // Stretch Event ê´€ë ¨
+    RwBool              m_bStretchUpdate;                   ///< Stretch ì´ë²¤íŠ¸ë¥¼ ìœ„í•œ í”Œë˜ê·¸
+    RwBool              m_bStretchPulling;                  ///< Stretch ì´ë²¤íŠ¸ë¥¼ ìœ„í•œ í”Œë˜ê·¸
+    SEventStretch*      m_pStretchEvent;                    ///< Stretch ì´ë²¤íŠ¸
+    RwReal              m_fStretchPullingSpeed;             ///< Stretch ì´ë²¤íŠ¸
+    RwBool              m_bOrgBoneScale;                    ///< ì›ë˜ì˜ ë³¸ ìŠ¤ì¼€ì¼ í”Œë˜ê·¸
+    RwReal              m_fOrgBoneLength[3];                ///< ì›ë˜ì˜ ë³¸ ê¸¸ì´
+    RwReal              m_fOrgBoneWidth[3];                 ///< ì›ë˜ì˜ ë³¸ ë‘ê»˜
 
-    // Ä«¸Ş¶ó ¼ÎÀÌÅ© °ü·Ã
-    RwReal              m_fShakeFactor;                     ///< Ä«¸Ş¶ó ¼ÎÀÌÅ© ÆÑÅÍ
-    RwReal              m_fShakeMaxHeight;                  ///< Ä«¸Ş¶ó ¼ÎÀÌÅ© ÃÖ´ë°ª ÆÑÅÍ
-    RwReal              m_fShakeElapsedTime;                ///< Ä«¸Ş¶ó ¼ÎÀÌÅ©¿ë ElapsedTime    
+    // ì¹´ë©”ë¼ ì…°ì´í¬ ê´€ë ¨
+    RwReal              m_fShakeFactor;                     ///< ì¹´ë©”ë¼ ì…°ì´í¬ íŒ©í„°
+    RwReal              m_fShakeMaxHeight;                  ///< ì¹´ë©”ë¼ ì…°ì´í¬ ìµœëŒ€ê°’ íŒ©í„°
+    RwReal              m_fShakeElapsedTime;                ///< ì¹´ë©”ë¼ ì…°ì´í¬ìš© ElapsedTime    
 };

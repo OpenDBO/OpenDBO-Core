@@ -2,24 +2,24 @@
 #include "afxwin.h"
 
 
-// CAttrRenameDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttrRenameDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CAttrRenameDlg : public CDialog
 {
 	DECLARE_DYNAMIC(CAttrRenameDlg)
 
 public:
-	CAttrRenameDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CAttrRenameDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CAttrRenameDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_ATTR_RENAME };
 
 	void	SetPrePosition( LPRECT rect );
 	CRect	m_rect;
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

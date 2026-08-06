@@ -2,39 +2,39 @@
 
   MemoryDC Class
   ==============
-  - MFC/GDI ±â¹İÀÇ Memory DC ´Ù·ç±â Å¬·¡½º
+  - MFC/GDI ê¸°ë°˜ì˜ Memory DC ë‹¤ë£¨ê¸° í´ë˜ìŠ¤
 
-  - ºñ¾îÀÖ´Â / Bitmap in Resource / ¿ÜºÎ Bitmap ÆÄÀÏ 
-    HBITMAP ÇüÅÂ Áö¿ø
+  - ë¹„ì–´ìˆëŠ” / Bitmap in Resource / ì™¸ë¶€ Bitmap íŒŒì¼ 
+    HBITMAP í˜•íƒœ ì§€ì›
 
-  - Æ¯Á¤ ÇÔ¼ö ¶§¹®¿¡ msimg32.lib ¸¦ º°µµ·Î Æ÷ÇÔ½ÃÄÑÁà¾ß ÇÔ.
-    --> #pragma ÀÌ¿ëÇØ¼­ ÀÚµ¿À¸·Î ·ÎµùÇÏµµ·Ï ¼öÁ¤.
+  - íŠ¹ì • í•¨ìˆ˜ ë•Œë¬¸ì— msimg32.lib ë¥¼ ë³„ë„ë¡œ í¬í•¨ì‹œì¼œì¤˜ì•¼ í•¨.
+    --> #pragma ì´ìš©í•´ì„œ ìë™ìœ¼ë¡œ ë¡œë”©í•˜ë„ë¡ ìˆ˜ì •.
 
-  - Æ¯Á¤ ÇÔ¼ö ¶§¹®¿¡ Win9x ¿¡¼­´Â ¹®Á¦ »ı±æ ¼ö ÀÖÀ½.
-    Å×½ºÆ®´Â Win2k ¿¡¼­¸¸ ÇØºÃÀ½.
+  - íŠ¹ì • í•¨ìˆ˜ ë•Œë¬¸ì— Win9x ì—ì„œëŠ” ë¬¸ì œ ìƒê¸¸ ìˆ˜ ìˆìŒ.
+    í…ŒìŠ¤íŠ¸ëŠ” Win2k ì—ì„œë§Œ í•´ë´¤ìŒ.
 
-  - MFCÀÇ Æ¯¼º»ó MFCMemDC.cpp ÆÄÀÏÀÇ include¸¦ Á¶Á¤ÇÒ ÇÊ¿ä°¡ ÀÖÀ» °ÍÀÓ.
+  - MFCì˜ íŠ¹ì„±ìƒ MFCMemDC.cpp íŒŒì¼ì˜ includeë¥¼ ì¡°ì •í•  í•„ìš”ê°€ ìˆì„ ê²ƒì„.
 
 
   * Update
 
     2003.07.15 / klayman@gs
-	- ÃÖÃÊÀÛ¾÷
+	- ìµœì´ˆì‘ì—…
 
     2004.08.17 / klayman@gs
-	- ±â´Éº¸¿Ï --> ÀÌÁ¦ºÎÅÏ ÇÔ¼ö¸¶´Ù ¼³¸í ¶È¹Ù·Î ºÙÀÏ °Í!
+	- ê¸°ëŠ¥ë³´ì™„ --> ì´ì œë¶€í„´ í•¨ìˆ˜ë§ˆë‹¤ ì„¤ëª… ë˜‘ë°”ë¡œ ë¶™ì¼ ê²ƒ!
 
     2005.06.02 / thkim@mcres.co.kr
-	- Å¬·¡½º ÀÌ¸§ ¼öÁ¤. (³Ê¹« ±æ¾î¼­¸®...)
-	- ¼±ÅÃ¿µ¿ª °ü·ÃÇÔ¼ö Ãß°¡.
+	- í´ë˜ìŠ¤ ì´ë¦„ ìˆ˜ì •. (ë„ˆë¬´ ê¸¸ì–´ì„œë¦¬...)
+	- ì„ íƒì˜ì—­ ê´€ë ¨í•¨ìˆ˜ ì¶”ê°€.
 
     2005.06.10 / thkim@mcres.co.kr
-	- Thumbnail Áö¿øÇÔ¼ö Ãß°¡. / HBITMAPÀÌ³ª MemDC ¹öÀüµµ ÇÊ¿äÇÒ µí.
+	- Thumbnail ì§€ì›í•¨ìˆ˜ ì¶”ê°€. / HBITMAPì´ë‚˜ MemDC ë²„ì „ë„ í•„ìš”í•  ë“¯.
 
 
   * To Do
-    - º¹»ç»ı¼ºÀÚ, °¢Á¾ ¿¬»êÀÚ Ã³¸®
-	- ¿¡·¯Ã³¸®
+    - ë³µì‚¬ìƒì„±ì, ê°ì¢… ì—°ì‚°ì ì²˜ë¦¬
+	- ì—ëŸ¬ì²˜ë¦¬
 			   
 ******************************************************************************/
 
@@ -99,9 +99,9 @@ public:
 	int CreateFromHBM ( CWnd* pSrcWnd, HBITMAP hBitmap, 
 						BITMAP* pBMInfo = NULL );
 
-public: //// È­¸é Âï±â ÇÔ¼ö
+public: //// í™”ë©´ ì°ê¸° í•¨ìˆ˜
 
-	// 1:1 Âï±â
+	// 1:1 ì°ê¸°
 	int  BltTo			( CDC* pDestDC, 
 						  int dx, int dy,
 						  DWORD dwROP = SRCCOPY );
@@ -116,7 +116,7 @@ public: //// È­¸é Âï±â ÇÔ¼ö
 						  int dx, int dy,
 						  DWORD dwROP = SRCCOPY );
 	
-	// ´Ã·Á¼­/ÁÙ¿©¼­ Âï±â
+	// ëŠ˜ë ¤ì„œ/ì¤„ì—¬ì„œ ì°ê¸°
 	int  StretchBltTo	( CDC* pDestDC, 
 						  int dx, int dy, int dw, int dh,
 						  DWORD dwROP = SRCCOPY );
@@ -132,7 +132,7 @@ public: //// È­¸é Âï±â ÇÔ¼ö
 						  DWORD dwROP = SRCCOPY );
 
 
-	// Åõ¸í°ª Àû¿ë / ¼³Á¤µÈ Colokey : Ãß°¡ library ÇÊ¿äÇÔ ( msimg32.lib )
+	// íˆ¬ëª…ê°’ ì ìš© / ì„¤ì •ëœ Colokey : ì¶”ê°€ library í•„ìš”í•¨ ( msimg32.lib )
 	int  TransBltTo		( CDC* pDestDC, 
 						  int dx, int dy );
 
@@ -144,7 +144,7 @@ public: //// È­¸é Âï±â ÇÔ¼ö
 						  CDC* pDestDC, 
 						  int dx, int dy, int dw, int dh );
 
-	// Åõ¸í°ª Àû¿ë / Colokey ÁöÁ¤ : Ãß°¡ library ÇÊ¿äÇÔ ( msimg32.lib )
+	// íˆ¬ëª…ê°’ ì ìš© / Colokey ì§€ì • : ì¶”ê°€ library í•„ìš”í•¨ ( msimg32.lib )
 	int  TransBltTo		( CDC* pDestDC, 
 						  int dx, int dy,
 						  COLORREF clrKey );
@@ -160,7 +160,7 @@ public: //// È­¸é Âï±â ÇÔ¼ö
 						  COLORREF clrKey );
 
 
-	// ¹İÅõ¸í Àû¿ë
+	// ë°˜íˆ¬ëª… ì ìš©
 	int  AlphaBltTo		( CDC* pDestDC, 
 						  int dx, int dy,
 						  BYTE alpha = 128 ); // alpha = 0 ~ 255
@@ -176,37 +176,37 @@ public: //// È­¸é Âï±â ÇÔ¼ö
 						  BYTE alpha = 128 ); // alpha = 0 ~ 255
 
 
-	// ´Ü¼ø »öÃ¤¿ì±â
+	// ë‹¨ìˆœ ìƒ‰ì±„ìš°ê¸°
 	int FillColor		( COLORREF clr = 0x00ffffff );
 	int FillColor		( COLORREF clr, CRect rc );
 	int FillColor		( COLORREF clr, int x, int y, int w, int h );
 
 
-	// °İÀÚ ±×¸®±â.
+	// ê²©ì ê·¸ë¦¬ê¸°.
 	int DrawGrid		( int gridX, int gridY, COLORREF clr, int penWidth=1 );
 
 
 public: ////
 
-	// Colorkey ¼³Á¤.
+	// Colorkey ì„¤ì •.
 	void SetColorkey	( BYTE r, BYTE g, BYTE b );
 	void SetColorkey	( COLORREF colorkey );
 	void SetColorkey	( int pixelX, int pixelY );
 
-	// Colorkey¿Í ºñ±³.
+	// Colorkeyì™€ ë¹„êµ.
 	BOOL IsColorkey		( BYTE r, BYTE g, BYTE b );
 	BOOL IsColorkey		( COLORREF color );
 
-	// Colorkey¿Í ºñ±³ÇÏ¿© ÃÖÀûÈ­.
+	// Colorkeyì™€ ë¹„êµí•˜ì—¬ ìµœì í™”.
 	BOOL SelectFix_Optimize	( CRect& rcSelect );
 
-	// MemDCÀÇ Æø/³ôÀÌ¿Í ºñ±³ÇÏ¿© ¼öÁ¤.
+	// MemDCì˜ í­/ë†’ì´ì™€ ë¹„êµí•˜ì—¬ ìˆ˜ì •.
 	BOOL SelectFix_Bound	( CRect& rcSelect );
 
-	// Grid°£°İÀ¸·Î ¼öÁ¤.
+	// Gridê°„ê²©ìœ¼ë¡œ ìˆ˜ì •.
 	BOOL SelectFix_Grid		( int gridX, int gridY, CRect& rcSelect );
 
-	// RECT ¿µ¿ª¾È¿¡ À§Ä¡ÇÏ°í ÀÖ´Â°¡? / Clipping °Ë»ç(?)
+	// RECT ì˜ì—­ì•ˆì— ìœ„ì¹˜í•˜ê³  ìˆëŠ”ê°€? / Clipping ê²€ì‚¬(?)
 	BOOL IsInRect ( CPoint pt, CRect* pRect );
 
 
@@ -221,7 +221,7 @@ public: ////
 
 
 public:
-	// ´Ü¼ø °ª µ¹·ÁÁÖ±â ÇÔ¼öµé ¸ğÀ½
+	// ë‹¨ìˆœ ê°’ ëŒë ¤ì£¼ê¸° í•¨ìˆ˜ë“¤ ëª¨ìŒ
 	inline int  GetWidth()	{ return m_nWidth; }
 	inline int  GetHeight()	{ return m_nHeight; }
 

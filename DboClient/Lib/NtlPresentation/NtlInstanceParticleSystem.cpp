@@ -282,7 +282,7 @@ RwBool CNtlInstanceParticleSystem::Create(CNtlResourceEffect* pResourceEffect, C
 //------------------------------------------------------------------
 void CNtlInstanceParticleSystem::Stop()
 {
-	// update °¡ ´õ ÀÌ»ó ÇÊ¿ä ¾øÀ¸¸é »ı¼ºµÇ´Â ÆÄÆ¼Å¬°¹¼ö¸¦ 0À¸·Î ÇØ ¹ö¸°´Ù
+	// update ê°€ ë” ì´ìƒ í•„ìš” ì—†ìœ¼ë©´ ìƒì„±ë˜ëŠ” íŒŒí‹°í´ê°¯ìˆ˜ë¥¼ 0ìœ¼ë¡œ í•´ ë²„ë¦°ë‹¤
 	m_pEmitterStandard->emtPrtEmit = 0;
 	m_pEmitterStandard->emtPrtEmitBias = 0;
 	m_fFadeOutTime = 0.f;
@@ -358,7 +358,7 @@ RwBool CNtlInstanceParticleSystem::Update(RwReal fElapsedTime)
 			m_bReady	= TRUE;
 			m_bUpdate	= TRUE;
 
-			// ½ºÅ¸Æ®°¡ µÇ¸é ¶óÀÌÇÁ Å¸ÀÓÀ» ÃÊ±âÈ­ ÇÑ´Ù.
+			// ìŠ¤íƒ€íŠ¸ê°€ ë˜ë©´ ë¼ì´í”„ íƒ€ì„ì„ ì´ˆê¸°í™” í•œë‹¤.
 			m_fLifeTime = fElapsedTime;
 		}
 		else
@@ -469,7 +469,7 @@ RwBool CNtlInstanceParticleSystem::Update(RwReal fElapsedTime)
         }
     }
 
-    // ¹Ù¿îµù ¹Ú½º °è»ê    
+    // ë°”ìš´ë”© ë°•ìŠ¤ ê³„ì‚°    
     if(CNtlResourceEffect::m_bUpdateBoundingSphere)
     {
         m_pResourceParticleSystem->SetBoundingSphereRadius(RpAtomicGetWorldBoundingSphere(m_pAtomic)->radius);
@@ -579,7 +579,7 @@ void CNtlInstanceParticleSystem::BuildHurricanePoint(RwV3d& vPosition, RwReal fL
 }
 
 /**
- * Follow ÆÄÆ¼Å¬ÀÇ À§Ä¡¸¦ °»½ÅÇÑ´Ù. 
+ * Follow íŒŒí‹°í´ì˜ ìœ„ì¹˜ë¥¼ ê°±ì‹ í•œë‹¤. 
  */
 void CNtlInstanceParticleSystem::UpdateFollow()
 {
@@ -648,7 +648,7 @@ void CNtlInstanceParticleSystem::UpdateBillboard()
                 RwV3dCrossProduct(&vRightParticle, &vAtParticle, &YAxis);
                 RwV3dNormalize(&vRightParticle, &vRightParticle);
 
-                // ÆÄÆ¼Å¬ÀÇ At ¹æÇâÀ» °¡Áö°í ÆÄÆ¼Å¬ÀÇ ±âº»Ãà Çà·ÄÀ» ¸¸µç´Ù.
+                // íŒŒí‹°í´ì˜ At ë°©í–¥ì„ ê°€ì§€ê³  íŒŒí‹°í´ì˜ ê¸°ë³¸ì¶• í–‰ë ¬ì„ ë§Œë“ ë‹¤.
                 matParticle = *pMatParticle;
                 *RwMatrixGetAt(&matParticle) = vAtParticle;
                 *RwMatrixGetRight(&matParticle) = vRightParticle;
@@ -682,7 +682,7 @@ void CNtlInstanceParticleSystem::UpdateBillboard()
                 RwV3dCrossProduct(&vRightParticle, &vAtParticle, &XAxis);
                 RwV3dNormalize(&vRightParticle, &vRightParticle);
 
-                // ÆÄÆ¼Å¬ÀÇ At ¹æÇâÀ» °¡Áö°í ÆÄÆ¼Å¬ÀÇ ±âº»Ãà Çà·ÄÀ» ¸¸µç´Ù.
+                // íŒŒí‹°í´ì˜ At ë°©í–¥ì„ ê°€ì§€ê³  íŒŒí‹°í´ì˜ ê¸°ë³¸ì¶• í–‰ë ¬ì„ ë§Œë“ ë‹¤.
                 matParticle = *pMatParticle;
                 *RwMatrixGetAt(&matParticle) = vAtParticle;
                 *RwMatrixGetRight(&matParticle) = vRightParticle;
@@ -716,7 +716,7 @@ void CNtlInstanceParticleSystem::UpdateBillboard()
                 RwV3dCrossProduct(&vRightParticle, &vAtParticle, &ZAxis);
                 RwV3dNormalize(&vRightParticle, &vRightParticle);
 
-                // ÆÄÆ¼Å¬ÀÇ At ¹æÇâÀ» °¡Áö°í ÆÄÆ¼Å¬ÀÇ ±âº»Ãà Çà·ÄÀ» ¸¸µç´Ù.
+                // íŒŒí‹°í´ì˜ At ë°©í–¥ì„ ê°€ì§€ê³  íŒŒí‹°í´ì˜ ê¸°ë³¸ì¶• í–‰ë ¬ì„ ë§Œë“ ë‹¤.
                 matParticle = *pMatParticle;
                 *RwMatrixGetAt(&matParticle) = vAtParticle;
                 *RwMatrixGetRight(&matParticle) = vRightParticle;
@@ -746,13 +746,13 @@ void CNtlInstanceParticleSystem::UpdateBillboard()
 
             // A * M = B
             // M = A(-1) * B
-            // ±âº»Ãà Çà·ÄÀ» ºôº¸µå Çà·Ä·Î º¯È¯ÇÏ´Â º¯È¯Çà·ÄÀ» ±¸ÇÑ´Ù.
+            // ê¸°ë³¸ì¶• í–‰ë ¬ì„ ë¹Œë³´ë“œ í–‰ë ¬ë¡œ ë³€í™˜í•˜ëŠ” ë³€í™˜í–‰ë ¬ì„ êµ¬í•œë‹¤.
             RwMatrix matTemp = matParticle;
             RwMatrixInvert(&matParticle, &matTemp);            
             RwMatrix matResult;            
             RwMatrixMultiply(&matResult, &matParticle, &matBillboard);
 
-            // º¯È¯Çà·ÄÀ» ¿ø·¡ ÆÄÆ¼Å¬ÀÇ Çà·Ä¿¡ Àû¿ëÇÑ´Ù.
+            // ë³€í™˜í–‰ë ¬ì„ ì›ë˜ íŒŒí‹°í´ì˜ í–‰ë ¬ì— ì ìš©í•œë‹¤.
             matTemp = *pMatParticle;
             RwMatrixMultiply(pMatParticle, &matTemp, &matResult);
             *RwMatrixGetPos(pMatParticle) = vParticlePos;
@@ -766,7 +766,7 @@ void CNtlInstanceParticleSystem::UpdateBillboard()
 
 void CNtlInstanceParticleSystem::UpdateRotate() 
 {
-    // Matrix ActionÀÌ Àû¿ëµÇ¾î ÀÖÁö ¾Ê°Å³ª, ºôº¸µå°¡ Àû¿ëµÇ¾î ÀÖÀ¸¸é Rotate¸¦ ¸ÔÁö ¾Ê´Â´Ù.
+    // Matrix Actionì´ ì ìš©ë˜ì–´ ìˆì§€ ì•Šê±°ë‚˜, ë¹Œë³´ë“œê°€ ì ìš©ë˜ì–´ ìˆìœ¼ë©´ Rotateë¥¼ ë¨¹ì§€ ì•ŠëŠ”ë‹¤.
     if(!m_pEmitterPrtMatrix || m_pResourceParticleSystem->IsEmitterDataFlag(NTLrpPRTSTDEMITTERDATAFLAGPRTYBILLBOARD) ||
                                m_pResourceParticleSystem->IsEmitterDataFlag(NTLrpPRTSTDEMITTERDATAFLAGPRTXBILLBOARD) || 
                                m_pResourceParticleSystem->IsEmitterDataFlag(NTLrpPRTSTDEMITTERDATAFLAGPRTZBILLBOARD))
@@ -781,9 +781,9 @@ void CNtlInstanceParticleSystem::UpdateRotate()
 
 void CNtlInstanceParticleSystem::SetScale( RwReal fScale ) 
 {
-    RwReal fFinalScale = fScale / m_fScale;         // ScaleÀÇ ´©ÀûÀ» ¸·±âÀ§ÇØ, ÇöÀç ½ºÄÉÀÏ°ªÀ» ³ª´«ÈÄ¿¡ ´Ù½Ã °öÇØÁØ´Ù.
+    RwReal fFinalScale = fScale / m_fScale;         // Scaleì˜ ëˆ„ì ì„ ë§‰ê¸°ìœ„í•´, í˜„ì¬ ìŠ¤ì¼€ì¼ê°’ì„ ë‚˜ëˆˆí›„ì— ë‹¤ì‹œ ê³±í•´ì¤€ë‹¤.
 
-    // ±âº» Size
+    // ê¸°ë³¸ Size
     m_pEmitterStandard->emtSize *= fFinalScale;
     m_pEmitterStandard->prtSize *= fFinalScale;
 	
@@ -844,8 +844,8 @@ static RpPrtStdParticleBatch* NtlStdParticleUpdateCB(RpPrtStdEmitter *emt, RpPrt
 
     RwV3d*						prtVelIn;
 
-    // emPTank´Â ÀÎ½ºÅÏ½ºÀÇ EmitterPTank Æ÷ÀÎÅÍÀÌ´Ù.
-    // Static ¸Ş¼Òµå ÀÌ±â¶§¹®¿¡ Static º¯¼ö¿¡´Ù ÇÒ´çÇØ¼­ »ç¿ëÇÑ´Ù.
+    // emPTankëŠ” ì¸ìŠ¤í„´ìŠ¤ì˜ EmitterPTank í¬ì¸í„°ì´ë‹¤.
+    // Static ë©”ì†Œë“œ ì´ê¸°ë•Œë¬¸ì— Static ë³€ìˆ˜ì—ë‹¤ í• ë‹¹í•´ì„œ ì‚¬ìš©í•œë‹¤.
 	if (emtPTank)
 	{
 		i = 0;
@@ -916,8 +916,8 @@ static RpPrtStdParticleBatch* NtlStdParticleUpdateCB(RpPrtStdEmitter *emt, RpPrt
 		pTankPosIn += nTankPosStride;
     }
 
-    // Àü¿ª º¯¼öµéÀÎµ¥ UpdateÇÒ¶§¸¶´Ù »õ·Î °»½ÅµÇ±â ¶§¹®¿¡
-    // Ã³¸®°¡ ³¡³­ÈÄ¿¡ NULLÀ» ³Ö¾îÁØ´Ù.
+    // ì „ì—­ ë³€ìˆ˜ë“¤ì¸ë° Updateí• ë•Œë§ˆë‹¤ ìƒˆë¡œ ê°±ì‹ ë˜ê¸° ë•Œë¬¸ì—
+    // ì²˜ë¦¬ê°€ ëë‚œí›„ì— NULLì„ ë„£ì–´ì¤€ë‹¤.
     emtPTank = NULL;
     emtStd   = NULL;
 

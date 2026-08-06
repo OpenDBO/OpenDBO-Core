@@ -1,4 +1,4 @@
-// Attr_CONT_UserSel.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_CONT_UserSel.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_CONT_UserSel.h"
 
 
-// CAttr_CONT_UserSel ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_CONT_UserSel ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_CONT_UserSel, CAttr_Page, 1)
 
@@ -130,7 +130,7 @@ BOOL CAttr_CONT_UserSel::OnInitDialog()
 {
 	CAttr_Page::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	m_ctrWndType.SetItemData( m_ctrWndType.AddString( _T("Narration") ), eUSER_SEL_TYPE_NARRATION );
 	int nSel = m_ctrWndType.AddString( _T("General") );
 	m_ctrWndType.SetItemData( nSel, eUSER_SEL_TYPE_GENERAL );
@@ -161,7 +161,7 @@ BOOL CAttr_CONT_UserSel::OnInitDialog()
 	OnCbnSelchangeTsContAttrUsrsellWindowTypeCombo();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 
@@ -170,7 +170,7 @@ BEGIN_MESSAGE_MAP(CAttr_CONT_UserSel, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_CONT_UserSel ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_CONT_UserSel ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CAttr_CONT_UserSel::OnCbnSelchangeTsContAttrUsrsellWindowTypeCombo()
 {

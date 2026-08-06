@@ -1,4 +1,4 @@
-// ResourceListDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// ResourceListDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -10,7 +10,7 @@
 #include "ResourceLayer.h"
 #include "LayerMisc.h"
 
-// CResourceListDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CResourceListDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNCREATE(CResourceListDlg, CDialog)
 CResourceListDlg::CResourceListDlg(CWnd* pParent /*=NULL*/)
@@ -38,13 +38,13 @@ BEGIN_MESSAGE_MAP(CResourceListDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CResourceListDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CResourceListDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CResourceListDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	DWORD dwStyle;
 	CRect rc;
@@ -72,14 +72,14 @@ BOOL CResourceListDlg::OnInitDialog()
 	m_bInitialized = TRUE;
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CResourceListDlg::OnSize(UINT nType, int cx, int cy)
 {
 	CDialog::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if( m_bInitialized )
 	{
 		CWnd* pWindow = GetDlgItem( IDC_PROPERTY_STATIC );
@@ -134,7 +134,7 @@ void CResourceListDlg::AddItem( CString strCaption, INT nIndex, CPropTreeItem* p
 
 void CResourceListDlg::OnBnClickedRemoveResourcelist()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CPropTreeItem* pFocusedItem = m_PropertyTree.GetFocusedItem();
 
 	if( pFocusedItem == NULL )

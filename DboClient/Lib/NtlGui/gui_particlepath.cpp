@@ -56,10 +56,10 @@ void CParticlePath::SetPath( SPathInfo& sInfo, SCtrlPoint* pCtrlPoint )
 }
 
 /**
-* \brief ÇöÀç time¿¡ ¾Ë¸Â´Â À§Ä¡¸¦ °¡Áö°í ¿Â´Ù.
-* \param fTime		(float) ÇöÀçÀÇ time
-* \param v2dPos		(RwV2d&) À§Ä¡°¡ Ãâ·ÂµÉ º¤ÅÍ Æ÷ÀÎÅÍ
-* \param bLoop		(BOOL) ·çÇÁ ¿©ºÎ
+* \brief í˜„ì¬ timeì— ì•Œë§ëŠ” ìœ„ì¹˜ë¥¼ ê°€ì§€ê³  ì˜¨ë‹¤.
+* \param fTime		(float) í˜„ì¬ì˜ time
+* \param v2dPos		(RwV2d&) ìœ„ì¹˜ê°€ ì¶œë ¥ë  ë²¡í„° í¬ì¸í„°
+* \param bLoop		(BOOL) ë£¨í”„ ì—¬ë¶€
 */
 void CParticlePath::FrameMove( float fTime, RwV2d* pV2dPos, BOOL bLoop )
 {
@@ -91,7 +91,7 @@ void CParticlePath::FrameMove( float fTime, RwV2d* pV2dPos, BOOL bLoop )
 		}
 		else
 		{
-			// ÇöÀç Å¸ÀÓÀÌ nPrevPos¿Í nNextPos ¿¡¼­ °¡Áö´Â º¸°£ ºñÀ²À» °è»ê
+			// í˜„ì¬ íƒ€ì„ì´ nPrevPosì™€ nNextPos ì—ì„œ ê°€ì§€ëŠ” ë³´ê°„ ë¹„ìœ¨ì„ ê³„ì‚°
 			float fLerpValue = (float)(fTime - m_pCurvePoint[nPrevPos].fTime)  / (float)(m_pCurvePoint[nNextPos].fTime - m_pCurvePoint[nPrevPos].fTime);
 			
 			RwV2dLineInterpolation( pV2dPos, &m_pCurvePoint[nPrevPos].vPos, &m_pCurvePoint[nNextPos].vPos, fLerpValue, 1.0f );

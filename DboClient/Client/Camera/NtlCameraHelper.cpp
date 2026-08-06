@@ -3,11 +3,11 @@
 #include "NtlDebug.h"
 
 /**
- * Camera ÀÚ½ÅÀ» ÁÂ,¿ì »ó,ÇÏ·Î ¿òÁ÷ÀÎ´Ù.
- * \param *pCamera È¸ÀüÇÏ°íÀÚ ÇÏ´Â Camera
+ * Camera ìì‹ ì„ ì¢Œ,ìš° ìƒ,í•˜ë¡œ ì›€ì§ì¸ë‹¤.
+ * \param *pCamera íšŒì „í•˜ê³ ì í•˜ëŠ” Camera
  * \param turn Yaw
  * \param tilt Pitch
- * \return ¼º°ø À¯¹«
+ * \return ì„±ê³µ ìœ ë¬´
  */
 RwBool CNtlCameraHelper::CameraRotation(const RwCamera *pCamera, RwReal turn, RwReal tilt)
 {
@@ -70,10 +70,10 @@ RwBool CNtlCameraHelper::CameraRotation(const RwCamera *pCamera, RwReal turn, Rw
 
 
 /**
- * CameraÀÇ AtVector ¹æÇâÀ¸·Î ÀÌµ¿À» ½ÃÅ²´Ù
- * \param *pCamera ÀÌµ¿ÇÏ°íÀÚ ÇÏ´Â Camera
- * \param delta È¸Àü °¢µµ
- * \return ¼º°øÀ¯¹«
+ * Cameraì˜ AtVector ë°©í–¥ìœ¼ë¡œ ì´ë™ì„ ì‹œí‚¨ë‹¤
+ * \param *pCamera ì´ë™í•˜ê³ ì í•˜ëŠ” Camera
+ * \param delta íšŒì „ ê°ë„
+ * \return ì„±ê³µìœ ë¬´
  */
 RwBool CNtlCameraHelper::CameraTranslateAt(const RwCamera *pCamera, RwReal delta)
 {
@@ -97,10 +97,10 @@ RwBool CNtlCameraHelper::CameraTranslateAt(const RwCamera *pCamera, RwReal delta
 
 
 /**
- * Camera¸¦ Vector¸¸Å­ ÀÌµ¿À» ½ÃÅ²´Ù.
- * \param *pCamera ÀÌµ¿ÇÏ°íÀÚ ÇÏ´Â Camera
- * \param *pDelta CameraÀÇ ÀÌµ¿°ª.
- * \return ¼º°øÀ¯¹«
+ * Cameraë¥¼ Vectorë§Œí¼ ì´ë™ì„ ì‹œí‚¨ë‹¤.
+ * \param *pCamera ì´ë™í•˜ê³ ì í•˜ëŠ” Camera
+ * \param *pDelta Cameraì˜ ì´ë™ê°’.
+ * \return ì„±ê³µìœ ë¬´
  */
 RwBool CNtlCameraHelper::CameraTranslate(const RwCamera *pCamera, const RwV3d *delta)
 {

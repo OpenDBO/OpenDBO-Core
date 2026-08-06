@@ -1,4 +1,4 @@
-// InstanceEffectDialog.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// InstanceEffectDialog.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -12,7 +12,7 @@
 #include "NtlDebug.h"
 #include "NtlInstanceEffect.h"
 
-// CInstanceEffectDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CInstanceEffectDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CInstanceEffectDialog, CDialog)
 CInstanceEffectDialog::CInstanceEffectDialog(CWnd* pParent /*=NULL*/)
@@ -37,7 +37,7 @@ BEGIN_MESSAGE_MAP(CInstanceEffectDialog, CDialog)
 END_MESSAGE_MAP()
 
 
-// CInstanceEffectDialog ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CInstanceEffectDialog ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 CInstanceEffectDialog& CInstanceEffectDialog::GetInstance()
 {
 	static CInstanceEffectDialog dlg;
@@ -48,7 +48,7 @@ BOOL CInstanceEffectDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CRect rect;
 	GetWindowRect(&rect);
 	CPoint posStart;
@@ -62,19 +62,19 @@ BOOL CInstanceEffectDialog::OnInitDialog()
 	MoveWindow(rect);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CInstanceEffectDialog::OnSize(UINT nType, int cx, int cy)
 {
 	CDialog::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 BOOL CInstanceEffectDialog::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if (pMsg->message == WM_KEYDOWN) 
 	{
 	}
@@ -88,7 +88,7 @@ void CInstanceEffectDialog::BuildInstanceEffect()
 
 void CInstanceEffectDialog::OnLbnSelchangeEffectList()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CVenusVisualManager::GetInstance().m_svSelectInstanceEffect.clear();
 
 	int nSelectCount = m_EffectList.GetSelCount();

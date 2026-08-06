@@ -2,14 +2,14 @@
 #include "afxwin.h"
 
 
-// CUpdateNewsDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CUpdateNewsDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CUpdateNewsDialog : public CDialog
 {
 	DECLARE_DYNAMIC(CUpdateNewsDialog)
 
 public:
-	CUpdateNewsDialog(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CUpdateNewsDialog(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CUpdateNewsDialog();
 
 	static CUpdateNewsDialog& GetInstance();
@@ -18,11 +18,11 @@ public:
 
 	void	LoadUpdateNews();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_UPDATE_NEWS };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

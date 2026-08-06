@@ -13,7 +13,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// ÇÑ±¹¾î resources
+// í•œêµ­ì–´ resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 #ifdef _WIN32
@@ -48,8 +48,8 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)\r\n"
     "LANGUAGE 18, 1\r\n"
     "#pragma code_page(949)\r\n"
-    "#include ""res\\TextureBuild.rc2""  // Microsoft Visual C++ ÀÌ¿ÜÀÇ ´Ù¸¥ µµ±¸¿¡¼­ ÆíÁıÇÑ ¸®¼Ò½ºÀÔ´Ï´Ù.\r\n"
-    "#include ""afxres.rc""     // Ç¥ÁØ ±¸¼º ¿ä¼ÒÀÔ´Ï´Ù.\r\n"
+    "#include ""res\\TextureBuild.rc2""  // Microsoft Visual C++ ì´ì™¸ì˜ ë‹¤ë¥¸ ë„êµ¬ì—ì„œ í¸ì§‘í•œ ë¦¬ì†ŒìŠ¤ì…ë‹ˆë‹¤.\r\n"
+    "#include ""afxres.rc""     // í‘œì¤€ êµ¬ì„± ìš”ì†Œì…ë‹ˆë‹¤.\r\n"
     "#endif\r\n"
     "\0"
 END
@@ -75,7 +75,7 @@ IDD_TEXTUREBUILD_DIALOG DIALOGEX 0, 0, 319, 257
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_APPWINDOW
 CAPTION "TextureBuild"
-FONT 9, "±¼¸²", 400, 0, 0x81
+FONT 9, "êµ´ë¦¼", 400, 0, 0x81
 BEGIN
     CONTROL         "",IDC_TREE_FILE,"SysTreeView32",TVS_HASBUTTONS | TVS_HASLINES | TVS_LINESATROOT | TVS_SHOWSELALWAYS | TVS_NOTOOLTIPS | WS_BORDER | WS_TABSTOP,7,7,305,226
     CONTROL         "",IDC_PROGRESS1,"msctls_progress32",WS_BORDER,7,237,305,14
@@ -104,13 +104,13 @@ BEGIN
     BEGIN
         BLOCK "041203b5"
         BEGIN
-            VALUE "CompanyName", "TODO: <È¸»ç ÀÌ¸§>"
-            VALUE "FileDescription", "TODO: <ÆÄÀÏ ¼³¸í>"
+            VALUE "CompanyName", "TODO: <íšŒì‚¬ ì´ë¦„>"
+            VALUE "FileDescription", "TODO: <íŒŒì¼ ì„¤ëª…>"
             VALUE "FileVersion", "1.0.0.1"
             VALUE "InternalName", "TextureBuild.exe"
-            VALUE "LegalCopyright", "TODO: (c) <È¸»ç ÀÌ¸§>.  All rights reserved."
+            VALUE "LegalCopyright", "TODO: (c) <íšŒì‚¬ ì´ë¦„>.  All rights reserved."
             VALUE "OriginalFilename", "TextureBuild.exe"
-            VALUE "ProductName", "TODO: <Á¦Ç° ÀÌ¸§>"
+            VALUE "ProductName", "TODO: <ì œí’ˆ ì´ë¦„>"
             VALUE "ProductVersion", "1.0.0.1"
         END
     END
@@ -167,7 +167,7 @@ BEGIN
     END
 END
 
-#endif    // ÇÑ±¹¾î resources
+#endif    // í•œêµ­ì–´ resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -185,8 +185,8 @@ END
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 LANGUAGE 18, 1
 #pragma code_page(949)
-#include "res\TextureBuild.rc2"  // Microsoft Visual C++ ÀÌ¿ÜÀÇ ´Ù¸¥ µµ±¸¿¡¼­ ÆíÁıÇÑ ¸®¼Ò½ºÀÔ´Ï´Ù.
-#include "afxres.rc"     // Ç¥ÁØ ±¸¼º ¿ä¼ÒÀÔ´Ï´Ù.
+#include "res\TextureBuild.rc2"  // Microsoft Visual C++ ì´ì™¸ì˜ ë‹¤ë¥¸ ë„êµ¬ì—ì„œ í¸ì§‘í•œ ë¦¬ì†ŒìŠ¤ì…ë‹ˆë‹¤.
+#include "afxres.rc"     // í‘œì¤€ êµ¬ì„± ìš”ì†Œì…ë‹ˆë‹¤.
 #endif
 
 /////////////////////////////////////////////////////////////////////////////

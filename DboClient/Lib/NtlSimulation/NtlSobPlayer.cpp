@@ -165,7 +165,7 @@ RwBool CNtlSobPlayer::Create(void)
 
 	m_pEquipInventory = NTL_NEW CNtlInventoryBase;
 
-	// proxy ¼³Á¤
+	// proxy ì„¤ì •
 	m_pSobProxy = NTL_NEW CNtlSobCharProxy;
 	m_pSobProxy->Create(NTL_SLPROXY_COMP_EQUIP_ITEM);
 	m_pSobProxy->SetSobObj(this);
@@ -178,7 +178,7 @@ RwBool CNtlSobPlayer::Create(void)
 		NTL_RETURN(FALSE);
 	}
 
-	// class name ¼³Á¤.
+	// class name ì„¤ì •.
 	SetClassName(SLCLASS_NAME_PLAYER);
 
 	NTL_RETURN(TRUE);
@@ -250,7 +250,7 @@ void CNtlSobPlayer::HandleEvents(RWS::CMsg &pMsg)
 		// proxy setting
 		GetSobProxy()->HandleEvents(pMsg);
 
-		// ÁÂÇ¥¿Í ¹æÇâ ¼¼ÆÃ.
+		// ì¢Œí‘œì™€ ë°©í–¥ ì„¸íŒ….
 		RwV3d vLoc, vDir;
 		RwV3dAssignMacro(&vLoc, &pSobPlayerCreate->vLoc); 
 		RwV3dAssignMacro(&vDir, &pSobPlayerCreate->vDir); 
@@ -310,7 +310,7 @@ void CNtlSobPlayer::HandleEvents(RWS::CMsg &pMsg)
 		return;
 	}
 
-	//feeling actor·Î Eventµµ º¸³»ÁØ´Ù.
+	//feeling actorë¡œ Eventë„ ë³´ë‚´ì¤€ë‹¤.
 	CNtlSobFeelingActor::HandleEvents(pMsg); 
 
 	NTL_RETURNVOID();

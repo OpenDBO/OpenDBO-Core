@@ -44,7 +44,7 @@ void CDTServer::PacketProcTargetSelect(void *pPacket)
 
 void CDTServer::PacketProcHTBReq(void *pPacket)
 {
-	// »óÅÂ¸¦ ¾÷µ¥ÀÌÆ® ÇÑ´Ù.
+	// ìƒíƒœë¥¼ ì—…ë°ì´íŠ¸ í•œë‹¤.
 
 	sUG_HTB_START_REQ *pCharHTBSkillReq = (sUG_HTB_START_REQ*)pPacket;
 

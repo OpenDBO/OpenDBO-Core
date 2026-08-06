@@ -14,7 +14,7 @@ struct SEquipItem;
 
 /**
 * \ingroup NtlSimulation
-* \brief º¯½Å°ü·Ã ºñÁê¾óÀ» Ã³¸®ÇÏ´Â Å¬·¡½º
+* \brief ë³€ì‹ ê´€ë ¨ ë¹„ì¥¬ì–¼ì„ ì²˜ë¦¬í•˜ëŠ” í´ë˜ìŠ¤
 *
 * \date 2008-10-07
 * \author agebreak
@@ -29,90 +29,90 @@ public:
     void	        HandleEvents(RWS::CMsg &pMsg);
     void            Destory();
 
-    void            SetActor(CNtlSobActor* pActor, CNtlPLCharacter* pPLCharacter);          ///< Ä³¸¯ÅÍ¸¦ ¼³Á¤ÇÑ´Ù. (Æ÷ÀÎÅÍ°¡ º¯°æµÈ °æ¿ì)        
-    void            PostChangeAdult();                                                      ///< ¾î¸¥/¾ÆÀÌ·Î º¯°æÈÄ È£ÃâµÇ´Â ÇÔ¼ö
-    RwBool          IsTransform()   {return m_bIsTransform;}        ///< º¯½ÅÇß´ÂÁö ¿©ºÎ¸¦ ¹İÈ¯ÇÑ´Ù.    
+    void            SetActor(CNtlSobActor* pActor, CNtlPLCharacter* pPLCharacter);          ///< ìºë¦­í„°ë¥¼ ì„¤ì •í•œë‹¤. (í¬ì¸í„°ê°€ ë³€ê²½ëœ ê²½ìš°)        
+    void            PostChangeAdult();                                                      ///< ì–´ë¥¸/ì•„ì´ë¡œ ë³€ê²½í›„ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜
+    RwBool          IsTransform()   {return m_bIsTransform;}        ///< ë³€ì‹ í–ˆëŠ”ì§€ ì—¬ë¶€ë¥¼ ë°˜í™˜í•œë‹¤.    
 
-    // ¿ùµå ÁøÀÔ/»èÁ¦½ÃÀÇ ÀÌº¥Æ® ÇÔ¼ö
+    // ì›”ë“œ ì§„ì…/ì‚­ì œì‹œì˜ ì´ë²¤íŠ¸ í•¨ìˆ˜
     void            AddWorld();
     void            RemoveWorld();
 
 protected:
     // Event
-    void            EventSobTransform(SNtlEventTransform* pData);     ///< º¯½Å ÀÌº¥Æ® Ã³¸®
-    void            EventSobSkillAction(RWS::CMsg& pMsg);             ///< ½ºÅ³ »ç¿ë ÀÌº¥Æ®¸¦ Ã³¸®ÇÑ´Ù.
-    void            EventSobChangeAdult(RWS::CMsg& pMsg);             ///< ¼ºÀÎÀ¸·Î º¯½ÅÀ» Ã³¸®ÇÑ´Ù.
+    void            EventSobTransform(SNtlEventTransform* pData);     ///< ë³€ì‹  ì´ë²¤íŠ¸ ì²˜ë¦¬
+    void            EventSobSkillAction(RWS::CMsg& pMsg);             ///< ìŠ¤í‚¬ ì‚¬ìš© ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•œë‹¤.
+    void            EventSobChangeAdult(RWS::CMsg& pMsg);             ///< ì„±ì¸ìœ¼ë¡œ ë³€ì‹ ì„ ì²˜ë¦¬í•œë‹¤.
 
     // Transform
-    void            OnTransform_SuperSaiyan(RwBool bTransform);     ///< ÃÊ»çÀÌ¾îÀÎ º¯½Å Ã³¸®
-    void            OnTransform_KaiOuKen(RwBool bTransform, BYTE byLevel);        ///< °è¿Õ±Ç º¯½Å Ã³¸®
-    void            OnTransform_BigNamek(RwBool bTransform);        ///< °Å´ë ³ª¸ŞÅ© º¯½Å Ã³¸®
-    void            OnTransform_PureMajin(RwBool bTransform);       ///< ¼ø¼ö ¸¶ÀÎ º¯½Å Ã³¸®
-    void            OnTransform_Mob(RwUInt32 tblIdx);               ///< ¸÷ º¯½Å Ã³¸®
-    void            OnTransform_Candy(RwBool bTransform);           ///< Äµµğ ½ºÅ³ º¯½Å Ã³¸®
-    void            DetachEffect();                                 ///< º¯½Å½ÃÀÇ ºÎÂø ÀÌÆåÆ® ÇØÁ¦
+    void            OnTransform_SuperSaiyan(RwBool bTransform);     ///< ì´ˆì‚¬ì´ì–´ì¸ ë³€ì‹  ì²˜ë¦¬
+    void            OnTransform_KaiOuKen(RwBool bTransform, BYTE byLevel);        ///< ê³„ì™•ê¶Œ ë³€ì‹  ì²˜ë¦¬
+    void            OnTransform_BigNamek(RwBool bTransform);        ///< ê±°ëŒ€ ë‚˜ë©”í¬ ë³€ì‹  ì²˜ë¦¬
+    void            OnTransform_PureMajin(RwBool bTransform);       ///< ìˆœìˆ˜ ë§ˆì¸ ë³€ì‹  ì²˜ë¦¬
+    void            OnTransform_Mob(RwUInt32 tblIdx);               ///< ëª¹ ë³€ì‹  ì²˜ë¦¬
+    void            OnTransform_Candy(RwBool bTransform);           ///< ìº”ë”” ìŠ¤í‚¬ ë³€ì‹  ì²˜ë¦¬
+    void            DetachEffect();                                 ///< ë³€ì‹ ì‹œì˜ ë¶€ì°© ì´í™íŠ¸ í•´ì œ
 
 	void            OnTransform_CinematicScale(float fScale, float fTime);
 
     // Super Saiyan
-    void            AttachEffectSuperSaiyan(CNtlPLCharacter* pPLCharacter);                      ///< ÃÊ»çÀÌ¾îÀÎ ÀÌÆåÆ® ºÎÂø
-    CNtlPLItem*     GetTransformItem();                             ///< ÃÊ»çÀÌ¾îÀÎ º¯½Å ¾ÆÀÌÅÛÀ» ¹İÈ¯ÇÑ´Ù.
+    void            AttachEffectSuperSaiyan(CNtlPLCharacter* pPLCharacter);                      ///< ì´ˆì‚¬ì´ì–´ì¸ ì´í™íŠ¸ ë¶€ì°©
+    CNtlPLItem*     GetTransformItem();                             ///< ì´ˆì‚¬ì´ì–´ì¸ ë³€ì‹  ì•„ì´í…œì„ ë°˜í™˜í•œë‹¤.
 
-    // °è¿Õ±Ç
-    void            AttachEffectKaiouKen(CNtlPLCharacter* pPLCharacter, BYTE byLevel);    ///< °è¿Õ±Ç ÀÌÆåÆ® »ı¼º    
+    // ê³„ì™•ê¶Œ
+    void            AttachEffectKaiouKen(CNtlPLCharacter* pPLCharacter, BYTE byLevel);    ///< ê³„ì™•ê¶Œ ì´í™íŠ¸ ìƒì„±    
 
-    // °Å´ë ³ª¸ß
-    void            DetachWeapon();                         ///< ¿ø·¡ ÀåÂøÇÏ°í ÀÖ´Â ¹«±â¸¦ ÇØÁ¦ÇÑ´Ù.
-    void            AttachWeapon();                         ///< ¿ø·¡ ÀåÂøÇÏ°í ÀÖ´ø ¹«±â¸¦ ÀåÂøÇÑ´Ù.
-    void            ChangeWeapon(RWS::CMsg& pMsg);          ///< º¯½Å »óÅÂ¿¡¼­ ¹«±â¸¦ º¯°æÇÏ¿´À»¶§
+    // ê±°ëŒ€ ë‚˜ë©•
+    void            DetachWeapon();                         ///< ì›ë˜ ì¥ì°©í•˜ê³  ìˆëŠ” ë¬´ê¸°ë¥¼ í•´ì œí•œë‹¤.
+    void            AttachWeapon();                         ///< ì›ë˜ ì¥ì°©í•˜ê³  ìˆë˜ ë¬´ê¸°ë¥¼ ì¥ì°©í•œë‹¤.
+    void            ChangeWeapon(RWS::CMsg& pMsg);          ///< ë³€ì‹  ìƒíƒœì—ì„œ ë¬´ê¸°ë¥¼ ë³€ê²½í•˜ì˜€ì„ë•Œ
 
-    // ¼ø¼ö ¸¶ÀÎ
-    CNtlPLCharacter* CreatePureMajinModel();                ///< ¼ø¼ö ¸¶ÀÎ ¸ğµ¨À» »ı¼ºÇÏ°í ¹İÈ¯ÇÑ´Ù.
+    // ìˆœìˆ˜ ë§ˆì¸
+    CNtlPLCharacter* CreatePureMajinModel();                ///< ìˆœìˆ˜ ë§ˆì¸ ëª¨ë¸ì„ ìƒì„±í•˜ê³  ë°˜í™˜í•œë‹¤.
 
-    // Äµµğ º¯½Å
-    CNtlPLCharacter* CreateCandyModel();                    ///< Äµµğ ¸ğµ¨À» »ı¼ºÇÏ°í ¹İÈ¯ÇÑ´Ù.
+    // ìº”ë”” ë³€ì‹ 
+    CNtlPLCharacter* CreateCandyModel();                    ///< ìº”ë”” ëª¨ë¸ì„ ìƒì„±í•˜ê³  ë°˜í™˜í•œë‹¤.
 
 protected:
-    CNtlSobActor*       m_pActor;                           ///< Actor °´Ã¼
-    CNtlPLCharacter*    m_pPLCharacter;                     ///< ActorÀÇ PLEntity
-    SNtlEventTransform  m_transFormData;                    ///< º¯½Å Á¤º¸ ±¸Á¶Ã¼
-    CNtlPLCharacter*    m_pPLCharacterUI;                   ///< UI¿¡ Ç¥ÇöµÇ´Â Ä³¸¯ÅÍ (¾Æ¹ÙÅ¸¸¸ »ç¿ë)
-	CNtlPLCharacter*    m_pPLCharacterUI_Dogi;              ///< Dogi UI¿¡ Ç¥ÇöµÇ´Â Ä³¸¯ÅÍ (¾Æ¹ÙÅ¸¸¸ »ç¿ë)
-    RwBool              m_bIsTransform;                     ///< º¯½ÅÇß´ÂÁö ¿©ºÎ ÇÃ·¡±×    
-    RwUInt32            m_uiTransformId;                    ///< ¹«¾ùÀ¸·Î º¯½ÅÇß´ÂÁöÀÇ ID
-    RwBool              m_bReadyTransform;                  ///< º¯½Å ½ºÅ³À» »ç¿ëÇß´Ù
-    RwBool              m_bScheduleLoadingCheck;            ///< ½ºÄÉÁì ·Îµù Ã¼Å© ÇÃ·¡±×
-    BYTE                m_byTransformLevel;                 ///< º¯½Å ·¹º§    
-    std::vector<CNtlInstanceEffect*> m_vecEffect;           ///< º¯½Å½ÃÀÇ ÀÌÆåÆ®    
+    CNtlSobActor*       m_pActor;                           ///< Actor ê°ì²´
+    CNtlPLCharacter*    m_pPLCharacter;                     ///< Actorì˜ PLEntity
+    SNtlEventTransform  m_transFormData;                    ///< ë³€ì‹  ì •ë³´ êµ¬ì¡°ì²´
+    CNtlPLCharacter*    m_pPLCharacterUI;                   ///< UIì— í‘œí˜„ë˜ëŠ” ìºë¦­í„° (ì•„ë°”íƒ€ë§Œ ì‚¬ìš©)
+	CNtlPLCharacter*    m_pPLCharacterUI_Dogi;              ///< Dogi UIì— í‘œí˜„ë˜ëŠ” ìºë¦­í„° (ì•„ë°”íƒ€ë§Œ ì‚¬ìš©)
+    RwBool              m_bIsTransform;                     ///< ë³€ì‹ í–ˆëŠ”ì§€ ì—¬ë¶€ í”Œë˜ê·¸    
+    RwUInt32            m_uiTransformId;                    ///< ë¬´ì—‡ìœ¼ë¡œ ë³€ì‹ í–ˆëŠ”ì§€ì˜ ID
+    RwBool              m_bReadyTransform;                  ///< ë³€ì‹  ìŠ¤í‚¬ì„ ì‚¬ìš©í–ˆë‹¤
+    RwBool              m_bScheduleLoadingCheck;            ///< ìŠ¤ì¼€ì¥´ ë¡œë”© ì²´í¬ í”Œë˜ê·¸
+    BYTE                m_byTransformLevel;                 ///< ë³€ì‹  ë ˆë²¨    
+    std::vector<CNtlInstanceEffect*> m_vecEffect;           ///< ë³€ì‹ ì‹œì˜ ì´í™íŠ¸    
 
-    // ÃÊ»çÀÌ¾ßÀÎ
-    CNtlPLItem*         m_pItemTransform;                   ///< ÃÊ»çÀÌ¾ßÀÎ º¯½Å½ÃÀÇ Çì¾î
-	CNtlPLItem*         m_pItemTransformUI;                 ///< UI¿ë ¾ÆÀÌÅÛ
-    CNtlPLItem*         m_pItemTransformUI_Dogi;            ///< Dogi UI¿ë ¾ÆÀÌÅÛ
-    RwTexture*          m_pFaceTransform;                   ///< ÃÊ»çÀÌ¾ßÀÎ º¯½Å ¾ó±¼ ÅØ½ºÃÄ
-    CNtlSobProxySystemEffect* m_pSystemEffectColor[2];      ///< ÃÊ»çÀÌ¾îÀÎ º¯½Å½Ã Effect Color ÄÁÆ®·Ñ·¯
+    // ì´ˆì‚¬ì´ì•¼ì¸
+    CNtlPLItem*         m_pItemTransform;                   ///< ì´ˆì‚¬ì´ì•¼ì¸ ë³€ì‹ ì‹œì˜ í—¤ì–´
+	CNtlPLItem*         m_pItemTransformUI;                 ///< UIìš© ì•„ì´í…œ
+    CNtlPLItem*         m_pItemTransformUI_Dogi;            ///< Dogi UIìš© ì•„ì´í…œ
+    RwTexture*          m_pFaceTransform;                   ///< ì´ˆì‚¬ì´ì•¼ì¸ ë³€ì‹  ì–¼êµ´ í…ìŠ¤ì³
+    CNtlSobProxySystemEffect* m_pSystemEffectColor[2];      ///< ì´ˆì‚¬ì´ì–´ì¸ ë³€ì‹ ì‹œ Effect Color ì»¨íŠ¸ë¡¤ëŸ¬
 
-    // °è¿Õ±Ç
-    CNtlSobProxySystemEffect* m_pKaiOuKenColor[2];          ///< °è¿Õ±Ç º¯½Å½Ã ÄÃ·¯ ÄÁÆ®·Ñ·¯
+    // ê³„ì™•ê¶Œ
+    CNtlSobProxySystemEffect* m_pKaiOuKenColor[2];          ///< ê³„ì™•ê¶Œ ë³€ì‹ ì‹œ ì»¬ëŸ¬ ì»¨íŠ¸ë¡¤ëŸ¬
 
-    // °Å´ë ³ª¸ß
-    SEquipItem*         m_pItemOrgWeapon;                   ///< ³ª¸ŞÅ© º¯½Å½Ã¿¡ ¿ø·¡ Â÷°í ÀÖ´ø ¹«±â 
-    SEquipItem*         m_pItemOrgSubWeapon;                ///< ³ª¸ŞÅ© º¯½Å½Ã¿¡ ¿ø·¡ Â÷°í ÀÖ´ø ¼­ºê ¿şÆù
-    RwReal              m_fOrgAttackRange;                  ///< º¯½ÅÀüÀÇ ¿ø·¡ °ø°İ ¹üÀ§
+    // ê±°ëŒ€ ë‚˜ë©•
+    SEquipItem*         m_pItemOrgWeapon;                   ///< ë‚˜ë©”í¬ ë³€ì‹ ì‹œì— ì›ë˜ ì°¨ê³  ìˆë˜ ë¬´ê¸° 
+    SEquipItem*         m_pItemOrgSubWeapon;                ///< ë‚˜ë©”í¬ ë³€ì‹ ì‹œì— ì›ë˜ ì°¨ê³  ìˆë˜ ì„œë¸Œ ì›¨í°
+    RwReal              m_fOrgAttackRange;                  ///< ë³€ì‹ ì „ì˜ ì›ë˜ ê³µê²© ë²”ìœ„
 
-    // ¼ø¼ö ¸¶ÀÎ    
-    CNtlPLCharacter*    m_pMajinOrgModel;                   ///< ¿ø·¡ ¸¶ÀÎ ¸ğµ¨
-    CNtlPLCharacter*    m_pMajinOrgModelUI;                 ///< UI¿ë ¿ø·¡ ¸¶ÀÎ ¸ğµ¨
-	CNtlPLCharacter*    m_pMajinOrgModelUI_Dogi;            ///< Dogi UI¿ë ¿ø·¡ ¸¶ÀÎ ¸ğµ¨
-    CNtlPLCharacter*    m_pMajinPureModel;                  ///< º¯½ÅÇÑ ¼ø¼ö ¸¶ÀÎ ¸ğµ¨    
-    CNtlPLCharacter*    m_pMajinPureModelUI;                ///< UI¿ë ¼ø¼ö ¸¶ÀÎ ¸ğµ¨    
-	CNtlPLCharacter*    m_pMajinPureModelUI_Dogi;           ///< Dogi UI¿ë ¼ø¼ö ¸¶ÀÎ ¸ğµ¨    
+    // ìˆœìˆ˜ ë§ˆì¸    
+    CNtlPLCharacter*    m_pMajinOrgModel;                   ///< ì›ë˜ ë§ˆì¸ ëª¨ë¸
+    CNtlPLCharacter*    m_pMajinOrgModelUI;                 ///< UIìš© ì›ë˜ ë§ˆì¸ ëª¨ë¸
+	CNtlPLCharacter*    m_pMajinOrgModelUI_Dogi;            ///< Dogi UIìš© ì›ë˜ ë§ˆì¸ ëª¨ë¸
+    CNtlPLCharacter*    m_pMajinPureModel;                  ///< ë³€ì‹ í•œ ìˆœìˆ˜ ë§ˆì¸ ëª¨ë¸    
+    CNtlPLCharacter*    m_pMajinPureModelUI;                ///< UIìš© ìˆœìˆ˜ ë§ˆì¸ ëª¨ë¸    
+	CNtlPLCharacter*    m_pMajinPureModelUI_Dogi;           ///< Dogi UIìš© ìˆœìˆ˜ ë§ˆì¸ ëª¨ë¸    
 
-    // Äµµğ º¯½Å
-    CNtlPLCharacter*    m_pCandyOrgModel;                   ///< Äµµğ·Î º¯½ÅÇÏ±âÀü ¿ø·¡ ¸ğµ¨
-    CNtlPLCharacter*    m_pCandyOrgModelUI;                 ///< UI¿ë ¿ø·¡ ¸ğµ¨
-	CNtlPLCharacter*    m_pCandyOrgModelUI_Dogi;            ///< Dogi UI¿ë ¿ø·¡ ¸ğµ¨
-    CNtlPLCharacter*    m_pCandyModel;                      ///< Äµµğ º¯½Å ¸ğµ¨
-	CNtlPLCharacter*    m_pCandyModelUI;                    ///< UI¿ë Äµµğ ¸ğµ¨
-	CNtlPLCharacter*    m_pCandyModelUI_Dogi;               ///< Dogi UI¿ë Äµµğ ¸ğµ¨
+    // ìº”ë”” ë³€ì‹ 
+    CNtlPLCharacter*    m_pCandyOrgModel;                   ///< ìº”ë””ë¡œ ë³€ì‹ í•˜ê¸°ì „ ì›ë˜ ëª¨ë¸
+    CNtlPLCharacter*    m_pCandyOrgModelUI;                 ///< UIìš© ì›ë˜ ëª¨ë¸
+	CNtlPLCharacter*    m_pCandyOrgModelUI_Dogi;            ///< Dogi UIìš© ì›ë˜ ëª¨ë¸
+    CNtlPLCharacter*    m_pCandyModel;                      ///< ìº”ë”” ë³€ì‹  ëª¨ë¸
+	CNtlPLCharacter*    m_pCandyModelUI;                    ///< UIìš© ìº”ë”” ëª¨ë¸
+	CNtlPLCharacter*    m_pCandyModelUI_Dogi;               ///< Dogi UIìš© ìº”ë”” ëª¨ë¸
 };

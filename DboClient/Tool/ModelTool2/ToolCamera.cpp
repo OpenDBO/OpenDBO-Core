@@ -243,7 +243,7 @@ void CNtlGameCamera::Update(RwReal fElapsed)
     m_vLookAtDelta.y = 0.0f;
     m_vLookAtDelta.z = 0.0f;
 	
-    // д╚╦ч╤С ╪нюле╘©К ©юга╪б
+    // Л╧╢К╘■К²╪ Л┘╟Л²╢М│╛Л ╘ Л≤╓М■└Л┘▀
     camPos += m_vCamOffset;
     RwV3d vLookAt = m_vLookAt + m_vLookAtOffset;
 	RwV3d eyeVector = { 0.f, -1.f, 0.f };    

@@ -15,7 +15,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	soundInfo.Destory();
 
-	printf("\n╬ф╧╚е╟Ё╙ ╢╜╥╞╪╜ га╥н╠в╥╔ю╩ а╬╥Аго©╘ аж╫й╫ц©Д\n");
+	printf("\nЛ∙└К╛╢М┌╓К┌≤ К┬▄К÷╛Л└° М■└К║°Й╥╦К·╗Л²└ Л╒┘Кё▄М∙≤Л≈╛ Лё╪Л▀╜Л▀°Л ■\n");
 	getch();
 
 	return 0;

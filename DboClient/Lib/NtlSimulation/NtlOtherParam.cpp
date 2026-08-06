@@ -201,7 +201,7 @@ VOID CNtlOtherParam::HandleEvents(RWS::CMsg &pMsg)
 
 				if(!nextQuest.pNPC_TBLDAT)
 				{
-					// Release �������� ������ ���� �����ϱ� ����
+					// Release 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占싹깍옙 占쏙옙占쏙옙
 					char acBuffer[256] = "";
 					WCHAR awcBuffer[256] = L"";
 					sprintf_s(acBuffer, 256, "preparation NPC table of index : %d", nextQuest.Tblidx);
@@ -225,7 +225,7 @@ VOID CNtlOtherParam::HandleEvents(RWS::CMsg &pMsg)
 
 				if(!pOBJECT_TBLDAT)
 				{
-					// Release �������� ������ ���� �����ϱ� ����
+					// Release 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占싹깍옙 占쏙옙占쏙옙
 					char acBuffer[128] = "";
 					WCHAR awcBuffer[256] = L"";
 					sprintf_s(acBuffer, 128, "preparation Object table of index : %d", nextQuest.Tblidx);
@@ -249,7 +249,7 @@ VOID CNtlOtherParam::HandleEvents(RWS::CMsg &pMsg)
 
 				if(!pQUEST_TEXT_DATA_TBLDAT)
 				{
-					// Release �������� ������ ���� �����ϱ� ����
+					// Release 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占싹깍옙 占쏙옙占쏙옙
 					char acBuffer[128] = "";
 					WCHAR awcBuffer[256] = L"";
 					sprintf_s(acBuffer, 128, "preparation quest text table of index : %d", nextQuest.Tblidx);

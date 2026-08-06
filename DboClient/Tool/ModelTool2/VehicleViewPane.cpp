@@ -1,4 +1,4 @@
-// VehicleViewPane.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// VehicleViewPane.cpp : êµ¬í˜„ íŒŒì¼ìž…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -40,7 +40,7 @@ BEGIN_MESSAGE_MAP(CVehicleViewPane, CXTResizeFormView)
 END_MESSAGE_MAP()
 
 
-// CVehicleViewPane Áø´ÜÀÔ´Ï´Ù.
+// CVehicleViewPane ì§„ë‹¨ìž…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CVehicleViewPane::AssertValid() const
@@ -57,7 +57,7 @@ void CVehicleViewPane::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CVehicleViewPane ¸Þ½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CVehicleViewPane ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ìž…ë‹ˆë‹¤.
 
 void CVehicleViewPane::OnInitialUpdate()
 {
@@ -65,12 +65,12 @@ void CVehicleViewPane::OnInitialUpdate()
 
     SetResize(IDC_TREE_VEHICLE, SZ_TOP_LEFT, SZ_BOTTOM_RIGHT);    
 
-    // ÀÌ¹ÌÁö ¸®½ºÆ® ¼³Á¤
+    // ì´ë¯¸ì§€ ë¦¬ìŠ¤íŠ¸ ì„¤ì •
     m_pImageList = new CImageList();
     m_pImageList->Create(16, 16, ILC_COLOR32, 4, 4);
     m_pImageList->Add(AfxGetApp()->LoadIcon(IDI_ICON_OPEN));
-    m_pImageList->Add(AfxGetApp()->LoadIcon(IDI_ICON_ITEM));      // ¸®¼Ò½º¿ë ¾ÆÀÌÄÜ
-    m_pImageList->Add(AfxGetApp()->LoadIcon(IDI_ICON_OBJECT_SCRIPT)); // ½ºÅ©¸³Æ®¿ë ¾ÆÀÌÄÜ
+    m_pImageList->Add(AfxGetApp()->LoadIcon(IDI_ICON_ITEM));      // ë¦¬ì†ŒìŠ¤ìš© ì•„ì´ì½˜
+    m_pImageList->Add(AfxGetApp()->LoadIcon(IDI_ICON_OBJECT_SCRIPT)); // ìŠ¤í¬ë¦½íŠ¸ìš© ì•„ì´ì½˜
     m_treeVehicle.SetImageList(m_pImageList, TVSIL_NORMAL);    
 }
 
@@ -81,7 +81,7 @@ void CVehicleViewPane::OnShowWindow(BOOL bShow, UINT nStatus)
     if(!bShow)
         return;
 
-    // À©µµ¿ì°¡ ³ªÅ¸³¯¶§ ³»¿ëÀ» °»½ÅÇÑ´Ù.
+    // ìœˆë„ìš°ê°€ ë‚˜íƒ€ë‚ ë•Œ ë‚´ìš©ì„ ê°±ì‹ í•œë‹¤.
     UpdateTree();
 
     if(CModelToolApplication::GetInstance()->GetAppMode() == MT_MODE_VEHICLE)

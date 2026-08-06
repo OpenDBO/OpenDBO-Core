@@ -347,7 +347,7 @@ void CNtlPLAtomicSorterContainter::Push(EPlSortType eType, void *pRenderEntity, 
 // 			{
 			RwV3d vPos = pPLEntity->GetPosition();
 
-			// water height ºü¸£°Ô ±¸ÇÏ´Â ¹æ½ÄÀ» ½á¾ß ÇÑ´Ù.
+			// water height ë¹ ë¥´ê²Œ êµ¬í•˜ëŠ” ë°©ì‹ì„ ì¨ì•¼ í•œë‹¤.
 			RwReal fWaterHeight = GetSceneManager()->GetWorldWaterHeight(vPos);
 
 			if(fWaterHeight > vPos.y)

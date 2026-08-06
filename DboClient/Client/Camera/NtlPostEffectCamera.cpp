@@ -2,7 +2,7 @@
 //	File		:	NtlBlurCamera.cpp
 //	Desc		:	
 //	Begin		:	2006. 2.13
-//	Copyright	:	�� 2006 by Mahwang CO., Ltd
+//	Copyright	:	占쏙옙 2006 by Mahwang CO., Ltd
 //	Author		:	Mahwang
 //	Update		:	
 //***********************************************************************************
@@ -632,7 +632,7 @@ void CNtlPostEffectCamera::Update_FakeHDRFiltering(RwRGBA& color)
 
 
 	// ==========================================
-	// ȭ�� Ȯ���ϱ�
+	// 화占쏙옙 확占쏙옙占싹깍옙
 	// ==========================================
 	m_lpEffect->BeginPass(EFFECT_PASS_NONE);
 	RwCameraClear(m_pTempCamera, &color, rwCAMERACLEARZ|rwCAMERACLEARIMAGE);
@@ -661,7 +661,7 @@ void CNtlPostEffectCamera::Update_FakeHDRFiltering(RwRGBA& color)
 RwBool CNtlPostEffectCamera::BeginCameraUpdate(RwRGBA& color)
 {
 	// ==========================================
-	// ���������� �׸���
+	// 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쌓몌옙占쏙옙
 	// ==========================================
 	RwCameraClear(m_pBlurCamera, &color, rwCAMERACLEARZ|rwCAMERACLEARIMAGE);
 	if(RwCameraBeginUpdate(m_pBlurCamera))
@@ -761,7 +761,7 @@ void CNtlPostEffectCamera::EndCameraUpdate(RwRGBA& color)
 
 //-------------------------------------------------------------
 // Name: CreateReductionTexture()
-// Desc: ����ġ ���
+// Desc: 가중치 계산
 //-------------------------------------------------------------
 void CNtlPostEffectCamera::CreateReductionTexture(RwInt32 nTextureSize)
 {

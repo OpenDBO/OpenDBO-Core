@@ -2,7 +2,7 @@
 //	File		:	StringManager.cpp
 //	Desc		:	
 //	Begin		:	2005. 1.20
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -90,13 +90,13 @@ RwBool CStringManager::LoadString(std::ifstream& inFile, std::string& strData, R
 
 	if( '@' == c ) return TRUE;
 
-	//; cDeli ·Î ½ÃÀÛÇØ¾ß ÇÑ´Ù
+	//; cDeli ë¡œ ì‹œì‘í•´ì•¼ í•œë‹¤
 	if( c != cDeli ) return FALSE;
 
-	//; ¹®ÀÚ¸¦ ÀĞ¾î µéÀÎ´Ù
+	//; ë¬¸ìë¥¼ ì½ì–´ ë“¤ì¸ë‹¤
 	while( inFile.get( c ) )
 	{
-		//; cDeli·Î ³¡³ª¾ßÇÑ´Ù
+		//; cDelië¡œ ëë‚˜ì•¼í•œë‹¤
 		if( cDeli == c ) return TRUE;
 		strData += c;
 	}

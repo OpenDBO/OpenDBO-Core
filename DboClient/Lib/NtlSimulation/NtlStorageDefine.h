@@ -1,7 +1,7 @@
 #ifndef __NTL_STORAGE_DEFINE_H__
 #define __NTL_STORAGE_DEFINE_H__
 
-// ���� �ϴ� Flags
+// 占쏙옙占쏙옙 占싹댐옙 Flags
 enum eNTL_STORAGE_APPLY
 {
 	eNTL_STORAGE_APPLY_PRESENTATION				= 0x00000001,
@@ -12,16 +12,16 @@ enum eNTL_STORAGE_APPLY
 };
 
 /**
-* \brief NTL_STORAGE UNIT���� GROUP TYPE( �ϳ��� File �� 1:1 ��Ī�ȴ�. )
+* \brief NTL_STORAGE UNIT占쏙옙占쏙옙 GROUP TYPE( 占싹놂옙占쏙옙 File 占쏙옙 1:1 占쏙옙칭占싫댐옙. )
 */
 enum eNTL_STORAGE_GROUP_TYPE
 {
-	eNTL_STORAGE_GROUP_ACCOUNT,		///< ���� ����
-	eNTL_STORAGE_GROUP_SYSTEM,		///< �ý���
-	eNTL_STORAGE_GROUP_GAMEINFO,	///< ���� ����
-	eNTL_STORAGE_GROUP_SCOUTER,		///< ĳ���� ��ī���� ����
-	eNTL_STORAGE_GROUP_QUEST,		///< ����Ʈ �ε������� ����
-	eNTL_STORAGE_GROUP_CHARACTER,	///< ĳ���� ���� ����
+	eNTL_STORAGE_GROUP_ACCOUNT,		///< 占쏙옙占쏙옙 占쏙옙占쏙옙
+	eNTL_STORAGE_GROUP_SYSTEM,		///< 占시쏙옙占쏙옙
+	eNTL_STORAGE_GROUP_GAMEINFO,	///< 占쏙옙占쏙옙 占쏙옙占쏙옙
+	eNTL_STORAGE_GROUP_SCOUTER,		///< 캐占쏙옙占쏙옙 占쏙옙카占쏙옙占쏙옙 占쏙옙占쏙옙
+	eNTL_STORAGE_GROUP_QUEST,		///< 占쏙옙占쏙옙트 占싸듸옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙
+	eNTL_STORAGE_GROUP_CHARACTER,	///< 캐占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙
 	eNTL_STORAGE_GROUP_EXTRA,		///< New Extra group
 
 	eNTL_STORAGE_GROUP_NUMS,
@@ -29,19 +29,19 @@ enum eNTL_STORAGE_GROUP_TYPE
 };
 
 /**
-* \brief NtlStorageUnit ���� Type
+* \brief NtlStorageUnit 占쏙옙占쏙옙 Type
 */
 enum eNTL_STORAGE_TYPE
 {
-	eNTL_STORAGE_ACCOUNT,			///< ����
-	eNTL_STORAGE_GRAPHIC,			///< �׷���
-	eNTL_STORAGE_SOUND,				///< �Ҹ�
-	eNTL_STORAGE_GAMEINFO,			///< ���� ����
-	eNTL_STORAGE_ETC,				///< ��Ÿ
-	eNTL_STORAGE_CHAT,				///< ä��
-	eNTL_STORAGE_SCOUTER,			///< ���� ��ī���� �� ĳ���� ��ī���� ����(������ ����)
-	eNTL_STORAGE_QUEST,				///< ����Ʈ
-	eNTL_STORAGE_CHARACTER,			///< ĳ���ͺ� ����
+	eNTL_STORAGE_ACCOUNT,			///< 占쏙옙占쏙옙
+	eNTL_STORAGE_GRAPHIC,			///< 占쌓뤄옙占쏙옙
+	eNTL_STORAGE_SOUND,				///< 占쌀몌옙
+	eNTL_STORAGE_GAMEINFO,			///< 占쏙옙占쏙옙 占쏙옙占쏙옙
+	eNTL_STORAGE_ETC,				///< 占쏙옙타
+	eNTL_STORAGE_CHAT,				///< 채占쏙옙
+	eNTL_STORAGE_SCOUTER,			///< 占쏙옙占쏙옙 占쏙옙카占쏙옙占쏙옙 占쏙옙 캐占쏙옙占쏙옙 占쏙옙카占쏙옙占쏙옙 占쏙옙占쏙옙(占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙)
+	eNTL_STORAGE_QUEST,				///< 占쏙옙占쏙옙트
+	eNTL_STORAGE_CHARACTER,			///< 캐占쏙옙占싶븝옙 占쏙옙占쏙옙
 	eNTL_STORAGE_CHARACTER_ETC,
 	eNTL_STORAGE_CHARACTER_SCOUTER,
 	eNTL_STORAGE_SYSTEM_ETC,
@@ -51,38 +51,38 @@ enum eNTL_STORAGE_TYPE
 	eNTL_STORAGE_INVALID = 0xFF
 };
 
-// eNTL_STORAGE_TYPE�� ��ġ�Ͽ��� ��
+// eNTL_STORAGE_TYPE占쏙옙 占쏙옙치占싹울옙占쏙옙 占쏙옙
 extern const char* g_acNtlStorageTypeString[eNTL_STORAGE_NUMS];
 
 /**
-* \brief NtlStorageValue�� ������ Data Type��
+* \brief NtlStorageValue占쏙옙 占쏙옙占쏙옙占쏙옙 Data Type占쏙옙
 */
 enum eNTL_STORAGE_VARIABLE_TYPE
 {
-	eINT,			// INT ��
-	eFLOAT,			// FLOAT ��
-	eBOOL,			// bool ��
-	eSTRING,		// ���ڿ� ��
-	eUSER,			// ����� ���� ��
+	eINT,			// INT 占쏙옙
+	eFLOAT,			// FLOAT 占쏙옙
+	eBOOL,			// bool 占쏙옙
+	eSTRING,		// 占쏙옙占쌘울옙 占쏙옙
+	eUSER,			// 사용자 정의 형
 
 	eNTL_STORAGE_VARIABLE_NUMS,
 	eNTL_STORAGE_VARIABLE_INVALID = 0xFF
 };
 
-// Check �Լ� ������ ( Ű�� ����� ���� ����üũ�� ���ȴ�. )
+// Check 함수 포인터 ( 키와 연결된 값의 범위체크에 사용된다. )
 typedef bool (*NtlStorageUnitCheckFunc)(unsigned int uiKey);
 
-// Apply �Լ� ������ ( ���ְ� ����Ǿ� ���� ������ Apply �Ѵ�. )
+// Apply 함수 포인터 ( 유닛과 연결되어 유닛 단위로 Apply 한다. )
 class CNtlStorageUnit;
 typedef bool (*NtlStorageUnitApplyFunc)(CNtlStorageUnit* pUnit, unsigned int uiFlags);
 
-// NTL_STORAGE Ű ������ ����
+// NTL_STORAGE 키 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙
 #define dNTL_STORAGE_MAX_KEY_NAME_LENGTH	(32+1)
 
-// NTL_STORAGE VALUE �� ����
+// NTL_STORAGE VALUE 占쏙옙 占쏙옙占쏙옙
 #define dNTL_STORAGE_MAX_VALUE_LENGTH		(128+1)
 
-// ���� ���̺�
+// 占쏙옙占쏙옙 占쏙옙占싱븝옙
 struct SNtlStorageMappingTableData
 {
 	unsigned int		uiKey;
@@ -90,8 +90,8 @@ struct SNtlStorageMappingTableData
 	unsigned char		byCategoryType;
 	char				acKeyName[dNTL_STORAGE_MAX_KEY_NAME_LENGTH];
 	
-	// ���Ϻ��͸� ���� ����
-	NtlStorageUnitCheckFunc		ntlStorageFunc;		///< Check �Լ� ������
+	// 占쏙옙占싹븝옙占싶몌옙 占쏙옙占쏙옙 占쏙옙占쏙옙
+	NtlStorageUnitCheckFunc		ntlStorageFunc;		///< Check 占쌉쇽옙 占쏙옙占쏙옙占쏙옙
 	char						acDefaultValue[dNTL_STORAGE_MAX_VALUE_LENGTH];
 };
 
@@ -99,7 +99,7 @@ struct SNtlStorageMappingTableData
 #define dSTORAGE_TRUE		"true"
 #define dSTORAGE_FALSE		"false"
 
-// ��ī���� ���� ����
+// 占쏙옙카占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙
 typedef struct _SMemoryScouterData
 {
 	_SMemoryScouterData::_SMemoryScouterData(VOID)
@@ -107,11 +107,11 @@ typedef struct _SMemoryScouterData
 		uiPower = 0;
 	}
 
-	unsigned int uiPower;				// ������
+	unsigned int uiPower;				// 占쏙옙占쏙옙占쏙옙
 
 }SMemoryScouterData;
 
-// ����Ʈ ����
+// 占쏙옙占쏙옙트 占쏙옙占쏙옙
 typedef struct _SMemoryQuestData
 {
 	_SMemoryQuestData::_SMemoryQuestData(VOID)
@@ -132,72 +132,72 @@ typedef struct _SMemoryQuestData
 #define dSTORAGE_CATEGORY						0
 
 // Account
-#define dSTORAGE_ACCOUNT_LASTCHAR				1000		// ���������� �÷��� �� ĳ���� �̸�
+#define dSTORAGE_ACCOUNT_LASTCHAR				1000		// 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占시뤄옙占쏙옙 占쏙옙 캐占쏙옙占쏙옙 占싱몌옙
 
 // Graphic
-#define dSTORAGE_GRAPHIC_SELECT_VIDEOWIDTH		2000		// �ػ� WIDTH
+#define dSTORAGE_GRAPHIC_SELECT_VIDEOWIDTH		2000		// 占쌔삼옙 WIDTH
 #define dSTORAGE_GRAPHIC_SELECT_VIDEOHEIGHT		2001
-#define dSTORAGE_GRAPHIC_SELECT_VIDEODEPTH		2002		// ����
-#define dSTORAGE_GRAPHIC_GAMMA					2003		// ���
-#define dSTORAGE_GRAPHIC_WINDOW_MODE			2004		// â���
-#define dSTORAGE_GRAPHIC_PRESET					2005		// ������ ���� 0~3, 4 = ����� ����
-#define dSTORAGE_GRAPHIC_TERRAIN_RANGE			2006		// ���� �þ߰Ÿ�
+#define dSTORAGE_GRAPHIC_SELECT_VIDEODEPTH		2002		// 占쏙옙占쏙옙
+#define dSTORAGE_GRAPHIC_GAMMA					2003		// 밝기
+#define dSTORAGE_GRAPHIC_WINDOW_MODE			2004		// 창모드
+#define dSTORAGE_GRAPHIC_PRESET					2005		// 프리셋 레벨 0~3, 4 = 사용자 설정
+#define dSTORAGE_GRAPHIC_TERRAIN_RANGE			2006		// 占쏙옙占쏙옙 占시야거몌옙
 #define dSTORAGE_GRAPHIC_OBJECT_RANGE			2007		// �繰 �þ߰Ÿ�
-#define dSTORAGE_GRAPHIC_TERRAIN_SHADOW			2010		// ���� �׸���
-#define dSTORAGE_GRAPHIC_WATER_EFFECT			2011		// ��ȿ��
-#define dSTORAGE_GRAPHIC_CHARACTER_RANGE		2012		// ĳ���� �þ߰Ÿ�
-#define dSTORAGE_GRAPHIC_CHARACTER_EFFECT		2013		// ĳ���� ���׷��̵� ȿ�� 
-#define dSTORAGE_GRAPHIC_CHARACTER_SHADOW		2014		// ĳ���� �׸���
-#define dSTORAGE_GRAPHIC_MAGIC_EFFECT			2015		// ���� ����ȿ��
-#define dSTORAGE_GRAPHIC_WEATHER_EFFECT			2016		// ���� ȿ��
-#define dSTORAGE_GRAPHIC_TEXTURE_LEVEL			2017		// �ؽ��� �ػ�
-#define dSTORAGE_GRAPHIC_SHADER_HDR				2018		// HDR ȿ��
-#define dSTORAGE_GRAPHIC_CHARACTER_EDGE			2019		// ī�� �ܰ���
+#define dSTORAGE_GRAPHIC_TERRAIN_SHADOW			2010		// 占쏙옙占쏙옙 占쌓몌옙占쏙옙
+#define dSTORAGE_GRAPHIC_WATER_EFFECT			2011		// 占쏙옙효占쏙옙
+#define dSTORAGE_GRAPHIC_CHARACTER_RANGE		2012		// 캐占쏙옙占쏙옙 占시야거몌옙
+#define dSTORAGE_GRAPHIC_CHARACTER_EFFECT		2013		// 캐占쏙옙占쏙옙 占쏙옙占쌓뤄옙占싱듸옙 효占쏙옙 
+#define dSTORAGE_GRAPHIC_CHARACTER_SHADOW		2014		// 캐占쏙옙占쏙옙 占쌓몌옙占쏙옙
+#define dSTORAGE_GRAPHIC_MAGIC_EFFECT			2015		// 占쏙옙占쏙옙 占쏙옙占쏙옙효占쏙옙
+#define dSTORAGE_GRAPHIC_WEATHER_EFFECT			2016		// 占쏙옙占쏙옙 효占쏙옙
+#define dSTORAGE_GRAPHIC_TEXTURE_LEVEL			2017		// 占쌔쏙옙占쏙옙 占쌔삼옙
+#define dSTORAGE_GRAPHIC_SHADER_HDR				2018		// HDR 효占쏙옙
+#define dSTORAGE_GRAPHIC_CHARACTER_EDGE			2019		// 카占쏙옙 占쌤곤옙占쏙옙
 #define dSTORAGE_GRAPHIC_SHOW_FPS				2020
 #define dSTORAGE_GRAPHIC_FPS					2021
 #define dSTORAGE_GRAPHIC_SSAA					2022
 
 // Sound
-#define dSTORAGE_SOUND_MAIN_VOLUME				4000	// ���� ����
-#define dSTORAGE_SOUND_BACK_VOLUME				4001	// ����� ����
-#define dSTORAGE_SOUND_EFFECT_VOLUME			4002	// ȿ���� ����
-#define dSTORAGE_SOUND_ENV_VOLUME				4003	// ȯ���� ����
+#define dSTORAGE_SOUND_MAIN_VOLUME				4000	// 占쏙옙占쏙옙 占쏙옙占쏙옙
+#define dSTORAGE_SOUND_BACK_VOLUME				4001	// 배경음 볼륨
+#define dSTORAGE_SOUND_EFFECT_VOLUME			4002	// 효占쏙옙占쏙옙 占쏙옙占쏙옙
+#define dSTORAGE_SOUND_ENV_VOLUME				4003	// 환占쏙옙占쏙옙 占쏙옙占쏙옙
 
 // GameInfo
-#define dSTORAGE_GAMEINFO_GUILD_EMBLEM			5000	// ���� ������
-#define dSTORAGE_GAMEINFO_DOJO_MARK				5001	// ���� ��ũ
-#define dSTORAGE_GAMEINFO_SCOUTER_VISIBLE		5002	// ��ī���� ǥ��
+#define dSTORAGE_GAMEINFO_GUILD_EMBLEM			5000	// 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
+#define dSTORAGE_GAMEINFO_DOJO_MARK				5001	// 占쏙옙占쏙옙 占쏙옙크
+#define dSTORAGE_GAMEINFO_SCOUTER_VISIBLE		5002	// 占쏙옙카占쏙옙占쏙옙 표占쏙옙
 #define dSTORAGE_GAMEINFO_ITEM_DROP				5003	// show item drop
 // Etc
-#define dSTORAGE_ETC_FRIEND_NOTIFY				6000	// ģ�� ���� �˸�
-#define dSTORAGE_ETC_GUILD_MEMBER_NOTIFY		6001	// ���ϻ� ���� �˸�
-#define dSTORAGE_ETC_QUESTTEXT_EFFECT			6002	// ����Ʈ �ؽ�Ʈ ȿ��
-#define dSTORAGE_ETC_USER_TRADE					6003	// �ŷ�
-#define dSTORAGE_ETC_MOVEABLEWINDOW				6004	// ������ �̵� ���� ����
+#define dSTORAGE_ETC_FRIEND_NOTIFY				6000	// 친占쏙옙 占쏙옙占쏙옙 占싯몌옙
+#define dSTORAGE_ETC_GUILD_MEMBER_NOTIFY		6001	// 占쏙옙占싹삼옙 占쏙옙占쏙옙 占싯몌옙
+#define dSTORAGE_ETC_QUESTTEXT_EFFECT			6002	// 占쏙옙占쏙옙트 占쌔쏙옙트 효占쏙옙
+#define dSTORAGE_ETC_USER_TRADE					6003	// 占신뤄옙
+#define dSTORAGE_ETC_MOVEABLEWINDOW				6004	// 占쏙옙占쏙옙占쏙옙 占싱듸옙 占쏙옙占쏙옙 占쏙옙占쏙옙
 #define dSTORAGE_ETC_MOUSE_DASH					6005	// ���콺 ��� ����
 #define dSTORAGE_ETC_MOUSE_FOV					6006
 #define dSTORAGE_ETC_MOUSE_VIEW_POINT			6007
 
 // Chatting
-#define dSTORAGE_CHAT_INPUTMODE					7000	// ä��â �Է¸��
-#define dSTORAGE_CHAT_WINDOW_LOCK				7001	// ä��â ���
+#define dSTORAGE_CHAT_INPUTMODE					7000	// 채팅창 입력모드
+#define dSTORAGE_CHAT_WINDOW_LOCK				7001	// 채팅창 잠금
 #define dSTORAGE_CHAT_MOUSE_SCROLL				7002	// ���콺 ��ũ��
-#define dSTORAGE_CHAT_EXTEND_WINDOW				7003	// Ȯ�� ä��â
-#define dSTORAGE_CHAT_WINDOW_OPACITY			7004	// ������ ������
-#define dSTORAGE_CHAT_BASIC_NORMAL				7005	// �⺻ ������ : �Ϲݴ�ȭ
-#define dSTORAGE_CHAT_BASIC_WISPHER				7006	// �⺻ ������ : �ӼӸ�
-#define dSTORAGE_CHAT_BASIC_PARTY				7007	// �⺻ ������ : ��Ƽ
-#define dSTORAGE_CHAT_BASIC_GUILD				7008	// �⺻ ������ : ����
-#define dSTORAGE_CHAT_BASIC_TRADE				7009	// �⺻ ������ : �ŷ�
-#define dSTORAGE_CHAT_BASIC_SHOUT				7010	// �⺻ ������ : ��ġ��
-#define dSTORAGE_CHAT_BASIC_SYSTEM				7011	// �⺻ ������ : �ý���
-#define dSTORAGE_CHAT_EXTEND_NORMAL				7012	// Ȯ�� ������ : �Ϲݴ�ȭ
-#define dSTORAGE_CHAT_EXTEND_WISPHER			7013	// Ȯ�� ������ : �ӼӸ�
-#define dSTORAGE_CHAT_EXTEND_PARTY				7014	// Ȯ�� ������ : ��Ƽ
-#define dSTORAGE_CHAT_EXTEND_GUILD				7015	// Ȯ�� ������ : ����
-#define dSTORAGE_CHAT_EXTEND_TRADE				7016	// Ȯ�� ������ : �ŷ�
-#define dSTORAGE_CHAT_EXTEND_SHOUT				7017	// Ȯ�� ������ : ��ġ��
-#define dSTORAGE_CHAT_EXTEND_SYSTEM				7018	// Ȯ�� ������ : �ý���
+#define dSTORAGE_CHAT_EXTEND_WINDOW				7003	// 확占쏙옙 채占쏙옙창
+#define dSTORAGE_CHAT_WINDOW_OPACITY			7004	// 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
+#define dSTORAGE_CHAT_BASIC_NORMAL				7005	// 占썩본 占쏙옙占쏙옙占쏙옙 : 占싹반댐옙화
+#define dSTORAGE_CHAT_BASIC_WISPHER				7006	// 占썩본 占쏙옙占쏙옙占쏙옙 : 占쌈속몌옙
+#define dSTORAGE_CHAT_BASIC_PARTY				7007	// 占썩본 占쏙옙占쏙옙占쏙옙 : 占쏙옙티
+#define dSTORAGE_CHAT_BASIC_GUILD				7008	// 占썩본 占쏙옙占쏙옙占쏙옙 : 占쏙옙占쏙옙
+#define dSTORAGE_CHAT_BASIC_TRADE				7009	// 占썩본 占쏙옙占쏙옙占쏙옙 : 占신뤄옙
+#define dSTORAGE_CHAT_BASIC_SHOUT				7010	// 占썩본 占쏙옙占쏙옙占쏙옙 : 占쏙옙치占쏙옙
+#define dSTORAGE_CHAT_BASIC_SYSTEM				7011	// 占썩본 占쏙옙占쏙옙占쏙옙 : 占시쏙옙占쏙옙
+#define dSTORAGE_CHAT_EXTEND_NORMAL				7012	// 확占쏙옙 占쏙옙占쏙옙占쏙옙 : 占싹반댐옙화
+#define dSTORAGE_CHAT_EXTEND_WISPHER			7013	// 확占쏙옙 占쏙옙占쏙옙占쏙옙 : 占쌈속몌옙
+#define dSTORAGE_CHAT_EXTEND_PARTY				7014	// 확占쏙옙 占쏙옙占쏙옙占쏙옙 : 占쏙옙티
+#define dSTORAGE_CHAT_EXTEND_GUILD				7015	// 확占쏙옙 占쏙옙占쏙옙占쏙옙 : 占쏙옙占쏙옙
+#define dSTORAGE_CHAT_EXTEND_TRADE				7016	// 확占쏙옙 占쏙옙占쏙옙占쏙옙 : 占신뤄옙
+#define dSTORAGE_CHAT_EXTEND_SHOUT				7017	// 확占쏙옙 占쏙옙占쏙옙占쏙옙 : 占쏙옙치占쏙옙
+#define dSTORAGE_CHAT_EXTEND_SYSTEM				7018	// 확占쏙옙 占쏙옙占쏙옙占쏙옙 : 占시쏙옙占쏙옙
 #define dSTORAGE_CHAT_BASIC_FIND_PARTY			7019
 #define dSTORAGE_CHAT_EXTEND_FIND_PARTY			7020
 #define dSTORAGE_CHAT_EXTEND2_NORMAL			7021
@@ -240,9 +240,9 @@ typedef struct _SMemoryQuestData
 #define dSTORAGE_QUEST_INFO_INDICATE					7003
 
 // Character Info
-#define dSTORAGE_ETC_EX_QUICKSLOT1						8000	// �߰� ������ 1
-#define dSTORAGE_ETC_EX_QUICKSLOT2						8001	// �߰� ������ 2
-#define dSTORAGE_ETC_QUICKSLOT_LOCK						8002	// ������ ��ױ�
+#define dSTORAGE_ETC_EX_QUICKSLOT1						8000	// 占쌩곤옙 占쏙옙占쏙옙占쏙옙 1
+#define dSTORAGE_ETC_EX_QUICKSLOT2						8001	// 占쌩곤옙 占쏙옙占쏙옙占쏙옙 2
+#define dSTORAGE_ETC_QUICKSLOT_LOCK						8002	// 퀵슬롯 잠그기
 
 #define dSTORAGE_CHARACTER_ETC_DISCORD_HIDE_NAME		9000	// show character name in discord 
 

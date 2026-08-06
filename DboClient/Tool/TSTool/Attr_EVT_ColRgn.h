@@ -5,7 +5,7 @@
 #include "afxwin.h"
 
 
-// CAttr_EVT_ColRgn ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_EVT_ColRgn ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CAttr_EVT_ColRgn : public CAttr_Page
 {
@@ -20,10 +20,10 @@ protected:
 	int m_nCurSelIndex;
 
 public:
-	CAttr_EVT_ColRgn(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CAttr_EVT_ColRgn(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CAttr_EVT_ColRgn();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_TS_EVT_COL_RGN_ATTR_DIAG };
 
 	void InitData( void );
@@ -32,7 +32,7 @@ public:
 	virtual void	UnPakingPageData( CString& strKey, CString& strValue );
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual BOOL OnInitDialog();
 
 	DECLARE_MESSAGE_MAP()

@@ -2,7 +2,7 @@
 //	File		:	StringManager.h
 //	Desc		:	
 //	Begin		:	2005. 1.20
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -13,7 +13,7 @@
 #include <string>
 #include "NtlDebug.h"
 
-// °ÔÀÓ ¹®ÀÚ¿­ Á¾·ù
+// ê²Œì„ ë¬¸ìì—´ ì¢…ë¥˜
 #define STRING_DATA(p)		p,
 
 enum STRING_TYPE

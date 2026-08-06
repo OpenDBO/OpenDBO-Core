@@ -91,7 +91,7 @@ RwBool CModelToolApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight,
 		NTL_RETURN(FALSE);
 	}
     
-	// Active Camera�� �����Ѵ�.
+	// Active Camera占쏙옙 占쏙옙占쏙옙占싼댐옙.
 	CNtlPLGlobal::SetActiveCamera(m_pCamera->GetCamera());
 
     RwRGBA colorTextForeGround = {255, 255, 255, 255};
@@ -100,36 +100,36 @@ RwBool CModelToolApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight,
 	if(!m_pCharset)
 		NTL_RETURN(FALSE);
 
-    // Hit Time ǥ�ÿ� Charset�� �����Ѵ�.
+    // Hit Time 표占시울옙 Charset占쏙옙 占쏙옙占쏙옙占싼댐옙.
     RwRGBA colorHitForeGround = {255, 255, 255, 255};
     RwRGBA colorHitBackGround = {255, 0, 0, 255};
     m_pCharsetHitTime = RtCharsetCreate(&colorHitForeGround, &colorHitBackGround);
 
-	// Visual Manager�� �����Ѵ�.
+	// Visual Manager占쏙옙 占쏙옙占쏙옙占싼댐옙.
 	m_pVisualManager = NTL_NEW CNtlPLVisualManager();
 	if(!m_pVisualManager->Create())
 	{
 		NTL_RETURN(FALSE);
 	}
 
-	// Active Scene Manager�� setting �Ѵ�.
+	// Active Scene Manager占쏙옙 setting 占싼댐옙.
 	CNtlPLSceneManagerFactory::ActiveSceneManager(m_pVisualManager);
 
-	// Property Container�� �����ϰ�, �����͸� Load �Ѵ�.	
+	// Property Container占쏙옙 占쏙옙占쏙옙占싹곤옙, 占쏙옙占쏙옙占싶몌옙 Load 占싼댐옙.	
 	//if(!m_PropContainer.Load(""))
 	//{
 	//	NTL_ASSERTFAIL("Property Container Load Fail!");
 	//	NTL_RETURN(FALSE);
 	//}
 
-	// RpWorld�� Create �Ѵ�.
+	// RpWorld占쏙옙 Create 占싼댐옙.
 	RwBBox bb;
 	bb.inf.x = -1000.0f; bb.inf.y = -1000.0f; bb.inf.z = -1000.0f;
 	bb.sup.x = bb.sup.y = bb.sup.z = 1000.0f;
 	m_pWorld = RpWorldCreate(&bb);
 	CNtlPLGlobal::SetActiveWorld(m_pWorld);
 
-	// RpWorld�� Camea�� Add�Ѵ�.
+	// RpWorld占쏙옙 Camea占쏙옙 Add占싼댐옙.
 	RpWorldAddCamera(CNtlPLGlobal::m_pRpWorld, CNtlPLGlobal::m_RwCamera);
 
 	// Ambient Light Create
@@ -142,7 +142,7 @@ RwBool CModelToolApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight,
 	m_pLtDirectional = RpLightCreate(rpLIGHTDIRECTIONAL);
 	if(m_pLtDirectional)
 	{
-		RwFrame* pFrame = NULL;		// Directional Light�� ���� Frame
+		RwFrame* pFrame = NULL;		// Directional Light占쏙옙 占쏙옙占쏙옙 Frame
 		RpLightSetColor(m_pLtDirectional, &color);
 
 		pFrame = RwFrameCreate();
@@ -160,7 +160,7 @@ RwBool CModelToolApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight,
 	m_pCharacter = new CMTCharacter;
 	m_pCharacter->Create();
 
-    // ����� �����Ѵ�.
+    // 배경을 생성한다.
     CreateWorld();
 
     // �޸� ��볻���� ���ϱ� ���ؼ� DirectX7 ��ü�� �����Ѵ�.
@@ -199,7 +199,7 @@ void CModelToolApplication::Destroy()
 
 	m_ResoureManager.Destroy();
 
-	// Light destroy (todo. Light�� Class Wrapping�ϸ� �ȵɱ�?)
+	// Light destroy (todo. Light占쏙옙 Class Wrapping占싹몌옙 占싫될깍옙?)
 	RpWorldRemoveLight(CNtlPLGlobal::m_pRpWorld, m_pLtAmbient);
 	RpWorldRemoveLight(CNtlPLGlobal::m_pRpWorld, m_pLtDirectional);
 
@@ -353,7 +353,7 @@ void CModelToolApplication::DisplayInfo()
     RsSprintf(caption, RWSTRING("FPS : %4.2f"), GetFps());
     RsCharsetPrint(m_pCharset, caption, 0, 0, rsPRINTPOSTOPRIGHT); 
 
-    // ���� �޸𸮸� ���Ѵ�.    
+    // 占쏙옙占쏙옙 占쌨모리몌옙 占쏙옙占싼댐옙.    
     DDSCAPS2      ddsCaps2; 
     DWORD         dwTotal; 
     DWORD         dwFree;
@@ -369,7 +369,7 @@ void CModelToolApplication::DisplayInfo()
     float fTotalVideoMem = (float)dwTotal / (1024.0f * 1024.0f);
     float fUseVideoMem = (float)(dwTotal - dwFree) / (1024.0f * 1024.0f);
 
-    // �ý��� �޸𸮸� ���Ѵ�.
+    // 占시쏙옙占쏙옙 占쌨모리몌옙 占쏙옙占싼댐옙.
     MEMORYSTATUSEX MemStatus;
     MemStatus.dwLength=sizeof(MemStatus);
     GlobalMemoryStatusEx(&MemStatus);
@@ -398,7 +398,7 @@ void CModelToolApplication::DisplayHitTime()
     //if(!pAnimData)
     //    return;
 
-    //// �ִϸ��̼��� ���� �ð�
+    //// 占쌍니몌옙占싱쇽옙占쏙옙 占쏙옙占쏙옙 占시곤옙
     //RwReal fCurrentAnimTime = m_pAnimEditChar->GetBaseCurrentAnimTime();
     //RwBool bVisible = FALSE;
 
@@ -409,7 +409,7 @@ void CModelToolApplication::DisplayHitTime()
     //   {
     //       if(pEventAnim->eEventID == EVENT_ANIM_HIT && pEventAnim->fTime != 0.00f)
     //       {
-    //           // �̺�Ʈ Ÿ�ӿ��� 0.5�� ���� ǥ���Ѵ�.
+    //           // 占싱븝옙트 타占쌈울옙占쏙옙 0.5占쏙옙 占쏙옙占쏙옙 표占쏙옙占싼댐옙.
     //           if(fCurrentAnimTime >= pEventAnim->fTime && fCurrentAnimTime < (pEventAnim->fTime + 0.5f))
     //           {
     //                bVisible = TRUE;
@@ -462,14 +462,14 @@ RwBool CModelToolApplication::Update(RwReal fTime, RwReal fElapsedTime)
         }
 
 
-        // Wireframe ǥ��
+        // Wireframe 표占쏙옙
         if(m_bViewWire)
         {
             if(m_pAnimEditChar)
                 m_pAnimEditChar->RenderWireFrame();
         }
 
-        // World ǥ��
+        // World 표占쏙옙
         if(m_bViewWorld)
         {
             if(m_pResWorld)
@@ -478,7 +478,7 @@ RwBool CModelToolApplication::Update(RwReal fTime, RwReal fElapsedTime)
                 RpClumpRender(m_pResSky->GetClump());
         }
 
-        // Hierarchy ǥ��
+        // Hierarchy 표占쏙옙
         if(m_bViewHierarchy)
         {
             if(m_pCharacter)
@@ -501,7 +501,7 @@ RwBool CModelToolApplication::Update(RwReal fTime, RwReal fElapsedTime)
 
 	RwCameraShowRaster(m_pCamera->GetCamera(), GetHWnd(), 0);
     
-    // �ִϸ��̼� ���� ������Ʈ
+    // 占쌍니몌옙占싱쇽옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙트
     CAnimToolView::GetInstance()->Update();
 
 	NTL_RETURN(TRUE);
@@ -587,7 +587,7 @@ RwBool CModelToolApplication::CreateWorld()
     if(!m_pResWorld)
         return FALSE;
 
-    //todo. �׽�Ʈ�� �ӽ� ��ġ
+    //todo. 占쌓쏙옙트占쏙옙 占쌈쏙옙 占쏙옙치
     //RwV3d vTrans;
     //vTrans.x = 305.0f;
     //vTrans.y = 26.4f;

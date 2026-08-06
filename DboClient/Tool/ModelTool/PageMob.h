@@ -4,7 +4,7 @@
 
 /**
  * \ingroup ModelTool
- * \brief MOB °ü·Ã Edit Left Tree View (CPagePC¿¡¼­ »ó¼Ó¹Ş¾Æ¼­ ¸¸µé¾îÁø´Ù)
+ * \brief MOB ê´€ë ¨ Edit Left Tree View (CPagePCì—ì„œ ìƒì†ë°›ì•„ì„œ ë§Œë“¤ì–´ì§„ë‹¤)
  * \date 2006-04-28
  * \author agebreak
  */

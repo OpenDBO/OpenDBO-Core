@@ -40,7 +40,7 @@ bool Logic_ApplyNtlStorageUnit( CNtlStorageUnit* pUnit, unsigned int uiFlags )
 			// This flag is not checked by eNTL_STRORAG_APPLY_ALL.
 			if( uiFlags & eNTL_STORAGE_APPLY_PRESENTATION_INITONCE )
 			{
-				// �ؽ��� �ػ� ����
+				// 占쌔쏙옙占쏙옙 占쌔삼옙 占쏙옙占쏙옙
 
 				RwInt32 nTextureLevel = pUnit->GetIntData( dSTORAGE_GRAPHIC_TEXTURE_LEVEL );
 				RwUInt32 uiTextureQualityFactor = 0 /* Default value */ ;
@@ -67,7 +67,7 @@ bool Logic_ApplyNtlStorageUnit( CNtlStorageUnit* pUnit, unsigned int uiFlags )
 				else
 					CNtlPostEffectCamera::SetPostEffectFilters(POST_EFFECT_FILTER_NONE);
 
-				// ���� �þ߰Ÿ� ( 1lv : 200, 2lv : 300, 3lv : 400, 4lv : 512 )
+				// 占쏙옙占쏙옙 占시야거몌옙 ( 1lv : 200, 2lv : 300, 3lv : 400, 4lv : 512 )
 				RwInt32 nTerrainRangeLevel = pUnit->GetIntData( dSTORAGE_GRAPHIC_TERRAIN_RANGE );
 				RwReal fTerranRange = 512.f;
 				switch( nTerrainRangeLevel )
@@ -99,21 +99,21 @@ bool Logic_ApplyNtlStorageUnit( CNtlStorageUnit* pUnit, unsigned int uiFlags )
 					GetNtlPLOptionManager()->SetObjectFar( fObjectRange );
 
 
-				// ���� �׸���
+				// 占쏙옙占쏙옙 占쌓몌옙占쏙옙
 				RwBool bTerrainShadow = pUnit->GetBoolData( dSTORAGE_GRAPHIC_TERRAIN_SHADOW );
 				if( GetNtlPLOptionManager()->GetTerrainShadow() != bTerrainShadow )
 					GetNtlPLOptionManager()->SetTerrainShadow( bTerrainShadow );
 
-				// �� ȿ��
+				// 占쏙옙 효占쏙옙
 				RwBool bWaterEffect = pUnit->GetBoolData( dSTORAGE_GRAPHIC_WATER_EFFECT );
 				if( GetNtlPLOptionManager()->GetWaterSpecular() != bWaterEffect )
 					GetNtlPLOptionManager()->SetWaterSpecular( bWaterEffect );
 
-				// ĳ���� ���׷��̵� ȿ��
+				// 캐占쏙옙占쏙옙 占쏙옙占쌓뤄옙占싱듸옙 효占쏙옙
 				/*RwBool bCharacterUpgrade = pUnit->GetBoolData( dSTORAGE_GRAPHIC_CHARACTER_EFFECT );
 				CNtlPLCharacter::ToggleEMUVAni(bCharacterUpgrade);*/
 
-				// ĳ���� �ܰ���
+				// 캐占쏙옙占쏙옙 占쌤곤옙占쏙옙
 				RwBool bCharacterEdge = pUnit->GetBoolData( dSTORAGE_GRAPHIC_CHARACTER_EDGE );
 				if( bCharacterEdge )
 					CNtlPLCharacter::SetSkipEdge( FALSE );
@@ -158,7 +158,7 @@ bool Logic_ApplyNtlStorageUnit( CNtlStorageUnit* pUnit, unsigned int uiFlags )
 
 			if( uiFlags & eNTL_STORAGE_APPLY_SIMULATION )
 			{
-				//// ĳ���� �þ߰Ÿ� ( 20, 60, 100, 150 )
+				//// 캐占쏙옙占쏙옙 占시야거몌옙 ( 20, 60, 100, 150 )
 				//RwInt32 nCharacterRangeLevel = pUnit->GetIntData( dSTORAGE_GRAPHIC_CHARACTER_RANGE );
 				//RwReal fCharacterRange = 150.f;
 				//switch( nCharacterRangeLevel )
@@ -339,7 +339,7 @@ bool Logic_ApplyNtlStorageUnit( CNtlStorageUnit* pUnit, unsigned int uiFlags )
 				CNtlSLEventGenerator::GameChatOption(OPTION_CHAT_SHOUT, 2, pUnit->GetBoolData(dSTORAGE_CHAT_EXTEND2_SHOUT));
 				CNtlSLEventGenerator::GameChatOption(OPTION_CHAT_SYSTEM, 2, pUnit->GetBoolData(dSTORAGE_CHAT_EXTEND2_SYSTEM));
 
-				// Chat Option�� ���������϶�.
+				// Chat Option占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙占싹띰옙.
 				CNtlSLEventGenerator::GameChatOption( OPTION_CHAT_REFRESH, OPTION_CHAT_REFRESH );
 			}
 		}
@@ -374,7 +374,7 @@ bool Logic_ApplyNtlStorageUnit( CNtlStorageUnit* pUnit, unsigned int uiFlags )
 		{
 			if( uiFlags & eNTL_STORAGE_APPLY_CLIENT )
 			{
-				// ������ ���� �̺�Ʈ
+				// 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占싱븝옙트
 				CNtlSLEventGenerator::QuickSlotGuiMode( pUnit->GetBoolData( dSTORAGE_ETC_EX_QUICKSLOT1 ), pUnit->GetBoolData( dSTORAGE_ETC_EX_QUICKSLOT2 ) );
 				CNtlSLEventGenerator::QuickSlotLockMode( pUnit->GetBoolData( dSTORAGE_ETC_QUICKSLOT_LOCK ) );
 			}

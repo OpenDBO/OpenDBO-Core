@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: ScouterGui.h
 * Author		: Hong SungBock
-* Copyright		: (��)NTL
+* Copyright		: (占쏙옙)NTL
 * Date			: 2008. 11. 17
 * Abstract		: 
 *****************************************************************************
-* Desc			: GM ���� ���� �޴� �������̽�
+* Desc			: GM 占쏙옙占쏙옙 占쏙옙占쏙옙 占쌨댐옙 占쏙옙占쏙옙占쏙옙占싱쏙옙
 *****************************************************************************/
 
 #pragma once
@@ -91,26 +91,26 @@ protected:
 	gui::CSlot			m_slotReturn;
 	gui::CSlot			m_slotMove;
 
-	gui::CButton*		m_pCharShowButton;				///< GM ĳ���� ���̱� ��ư
-	gui::CButton*		m_pCharHideButton;				///< GM ĳ���� ����� ��ư
-	gui::CButton*		m_pTenkaichiButton;				///< õ������ ����ȸ �޴� ���� ��ư
-	gui::CButton*		m_pPortalButton;				///< �ƹ�Ÿ �̵� ��ư
-	gui::CButton*		m_pFreeCameraButton;			///< ���� ī�޶� ��ư
-	gui::CButton*		m_pNormalCameraButton;			///< 3��Ī ī�޶� ��ư
+	gui::CButton*		m_pCharShowButton;				///< GM 캐占쏙옙占쏙옙 占쏙옙占싱깍옙 占쏙옙튼
+	gui::CButton*		m_pCharHideButton;				///< GM 캐릭터 숨기기 버튼
+	gui::CButton*		m_pTenkaichiButton;				///< 천占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙회 占쌨댐옙 占쏙옙占쏙옙 占쏙옙튼
+	gui::CButton*		m_pPortalButton;				///< 占싣뱄옙타 占싱듸옙 占쏙옙튼
+	gui::CButton*		m_pFreeCameraButton;			///< 占쏙옙占쏙옙 카占쌨띰옙 占쏙옙튼
+	gui::CButton*		m_pNormalCameraButton;			///< 3占쏙옙칭 카占쌨띰옙 占쏙옙튼
 
-	gui::CButton*		m_pTenkaichi_CameraLocButton;	///< õ������ ����ȸ ī�޶� ��ġ ���� ��ư
-	gui::CButton*		m_pTenkaichi_CameraMoveButton;	///< õ������ ����ȸ ī�޶� �̵� ��ư
-	gui::CButton*		m_pTenkaichi_MenuShowButton;	///< õ������ ����ȸ ������ �޴� Show ��ư
-	gui::CButton*		m_pTenkaichi_MenuHideButton;	///< õ������ ����ȸ ������ �޴� Hide ��ư
-	gui::CButton*		m_pTenkaichi_PlayerButton;		///< õ������ ����ȸ ���� ���� ��ư
-	gui::CButton*		m_pTenkaichi_TournamentButton;	///< õ������ ����ȸ ����ǥ ���� ��ư
-	gui::CButton*		m_pReturnButton;				///< ���ư��� ��ư
+	gui::CButton*		m_pTenkaichi_CameraLocButton;	///< 천占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙회 카占쌨띰옙 占쏙옙치 占쏙옙占쏙옙 占쏙옙튼
+	gui::CButton*		m_pTenkaichi_CameraMoveButton;	///< 천占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙회 카占쌨띰옙 占싱듸옙 占쏙옙튼
+	gui::CButton*		m_pTenkaichi_MenuShowButton;	///< 천占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙회 占쏙옙占쏙옙占쏙옙 占쌨댐옙 Show 占쏙옙튼
+	gui::CButton*		m_pTenkaichi_MenuHideButton;	///< 천占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙회 占쏙옙占쏙옙占쏙옙 占쌨댐옙 Hide 占쏙옙튼
+	gui::CButton*		m_pTenkaichi_PlayerButton;		///< 천占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙회 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙튼
+	gui::CButton*		m_pTenkaichi_TournamentButton;	///< 천占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙회 占쏙옙占쏙옙표 占쏙옙占쏙옙 占쏙옙튼
+	gui::CButton*		m_pReturnButton;				///< 占쏙옙占싣곤옙占쏙옙 占쏙옙튼
 
-	CGMPopupGui*		m_pPopupGui;					///< GM Popup �޴�
+	CGMPopupGui*		m_pPopupGui;					///< GM Popup 占쌨댐옙
 
 	eMenuGroup			m_eMenuGroup;
 	RwBool				m_bAvatarShow;
-	RwInt8				m_byPopupSlot;					///< �˾� �޴��� ���� ������ �ε���
+	RwInt8				m_byPopupSlot;					///< 占싯억옙 占쌨댐옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占싸듸옙占쏙옙
 
 	MAP_POPUP			m_mapPlayerInfo;
 };

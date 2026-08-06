@@ -2,7 +2,7 @@
  *
  * File			: AvatarController.h
  * Author		: HongHoDong
- * Copyright	: (��)NTL
+ * Copyright	: (占쏙옙)NTL
  * Date			: 2005. 11. 13	
  * Abstract		: NTl CAvatarController
  *****************************************************************************
@@ -36,9 +36,9 @@ enum ECameraRotateFlag
 
 /**
 * \ingroup Client
-* Keyboard �� Mouse�� �Է����� Camera�� ���� �ϸ�, Camera�� �̵� �� ȸ����
-* �� ���ؼ� Avatar���� Event�� ������ ����� �Ѵ�. �׸��� Keyboard�� Mouse��
-* ���ÿ� ������ ���� ó�� ���� �ϸ� ActionMap�� ���� Event�� �̰����� ������
+* Keyboard 占쏙옙 Mouse占쏙옙 占쌉뤄옙占쏙옙占쏙옙 Camera占쏙옙 占쏙옙占쏙옙 占싹몌옙, Camera占쏙옙 占싱듸옙 占쏙옙 회占쏙옙占쏙옙
+* 에 대해서 Avatar에게 Event를 보내는 기능을 한다. 그리고 Keyboard와 Mouse가
+* 占쏙옙占시울옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 처占쏙옙 占쏙옙占쏙옙 占싹몌옙 ActionMap占쏙옙 占쏙옙占쏙옙 Event占쏙옙 占싱곤옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
 * 
 */
 class CAvatarController : public RWS::CEventHandler
@@ -55,7 +55,7 @@ public:
 	void HandleEvents(RWS::CMsg &pMsg);
 	
 	/**
-	* mouse and keyboard hander �Լ�.	
+	* mouse and keyboard hander 占쌉쇽옙.	
 	*/
 
 	int	MouseWheelHandler(uintptr_t uiMouseData);
@@ -66,10 +66,10 @@ public:
 	int	KeyboardDownHandler(uintptr_t uiKeyData);
 	int KeyboardUpHandler(uintptr_t uiKeyData);
 	
-	int RestoreHandler(void);		///< Device Restore ó�� �Լ�
+	int RestoreHandler(void);		///< Device Restore 처占쏙옙 占쌉쇽옙
 		
 	/**
-	*	input action map ó�� �Լ�.
+	*	input action map 처占쏙옙 占쌉쇽옙.
 	*/ 
 	int ActionMapKeyboardMove(uintptr_t uiMoveFlags);
 	int ActionMapKeyboardDashMove(uintptr_t uiMoveFlags);
@@ -110,44 +110,44 @@ private:
 	RwUInt8 ConvertStraightMoveFlags(RwUInt8 uiMoveFlags);
 
 	/**
-	* avatar�� ī�޶� ������ �����Ͽ�(���� move flag�� �����Ͽ�) �ٷ� ȸ���Ѵ�.
+	* avatar占쏙옙 카占쌨띰옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싹울옙(占쏙옙占쏙옙 move flag占쏙옙 占쏙옙占쏙옙占싹울옙) 占쌕뤄옙 회占쏙옙占싼댐옙.
 	*/
 	RwReal CalcAvatarStraightRotate(RwUInt32 uiMoveFlags);
 
 	/**
-	* ī�޶� ȸ�� ������ ���Ѵ�.
+	* 카占쌨띰옙 회占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占싼댐옙.
 	*/
 	void CalcCameraRotateSensitivity(int iPosX, int iPosY, int iMouseDeltaX, int iMouseDeltaY);
 
 	/**
 	* ���콺 ��ư�� �ƹ��͵� ������ �ʰ�,  keyboard�� ĳ���Ͱ� front and back ���� ������ ���
-	* ĳ���� �������� ī�޶� ȸ����ų delta angle�� ����Ѵ�.
+	* 캐릭터 뒷편으로 카메라를 회전시킬 delta angle을 계산한다.
 	*/
 	void CalcCameraRotateToCharBack(void);
 
 	/**
 	* ���콺 ��ư�� �ƹ��͵� ������ �ʰ�,  keyboard�� ĳ���Ͱ� front and back ���� ������ ���
-	* ĳ���� �������� ī�޶� ȸ�������ش�.
+	* 캐占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 카占쌨띰옙 회占쏙옙占쏙옙占쏙옙占쌔댐옙.
 	*/
 	void UpdateCameraRotateToCharBack(RwReal fElapsed);
 
 	/**
-	* auto run�� ���.
+	* auto run일 경우.
 	*/
 	void UpdateAutoRun(RwReal fElapsed);
 
 	/**
-	* move mark effect create �Լ�.
+	* move mark effect create 占쌉쇽옙.
 	*/
 	void CreateMoveMark(const RwV3d *pPos);
 
 	/**
-	* move mark effect delete �Լ�.
+	* move mark effect delete 占쌉쇽옙.
 	*/
 	void DeleteMoveMark(void);
 
 	/**
-	* move mark effect update �Լ�.
+	* move mark effect update 占쌉쇽옙.
 	*/
 	void UpdateMoveMark(RwReal fElapsed);
 
@@ -156,7 +156,7 @@ private:
 	void UpdateMouse(RwReal fElapsed);
 	
 	/**
-	* move mark effect update �Լ�.
+	* move mark effect update 占쌉쇽옙.
 	*/
 	void UpdateChangeHeading(RwReal fElapsed);
 
@@ -166,27 +166,27 @@ private:
 	void UpdateFlightAngle(float fElapsed);
 
 	/**
-	* picking focus update �Լ�.
+	* picking focus update 占쌉쇽옙.
 	*/
 	void UpdatePickFocus(RwReal fElapsed);
 
 	/**
-	* mouse left button up �϶� ó�� �Լ�.
+	* mouse left button up 占싹띰옙 처占쏙옙 占쌉쇽옙.
 	*/
 	void MouseUpLBtnHandler(const SMouseData *pData);
 
 	/**
-	* mouse right button up �϶� ó�� �Լ�.
+	* mouse right button up 占싹띰옙 처占쏙옙 占쌉쇽옙.
 	*/
 	void MouseUpRBtnHandler(const SMouseData *pData);
 
 	/**
-	* mouse move left button down �϶� ó�� �Լ�.
+	* mouse move left button down 占싹띰옙 처占쏙옙 占쌉쇽옙.
 	*/
 	void MouseMoveLBtnHandler(int iPosX, int iPosY);
 
 	/**
-	* mouse move right button down �϶� ó�� �Լ�.
+	* mouse move right button down 占싹띰옙 처占쏙옙 占쌉쇽옙.
 	*/
 	void MouseMoveRBtnHandler(int iPosX, int iPosY);
 

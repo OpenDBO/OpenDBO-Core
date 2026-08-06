@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: NPCShop.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2006. 8. 1
 * Abstract		:
 *****************************************************************************
-* Desc			: NPC ªÛ¡°
+* Desc			: NPC ÏÉÅÏ†ê
 *****************************************************************************/
 
 #pragma once
@@ -34,7 +34,7 @@ class CNtlSobActor;
 
 class CItemSwapGui : public CNtlPLGui, public RWS::CEventHandler
 {
-#define dMAX_ITEM_PANEL		6			///< Shop¿« æ∆¿Ã≈€ ∆–≥Œ ∞πºˆ
+#define dMAX_ITEM_PANEL		6			///< ShopÏùò ÏïÑÏù¥ÌÖú Ìå®ÎÑê Í∞ØÏàò
 
 public:
 	CItemSwapGui(const RwChar* pName);
@@ -50,8 +50,8 @@ public:
 	{
 		CRegularSlotGui		slot;			///< slot
 		gui::CPanel*		pItemPanel;		///< Item panel
-		gui::CStaticBox*	pItemName;		///< ¿Ã∏ß
-		gui::CStaticBox*	pPoint;			///< « ø‰«— ∆˜¿Œ∆Æ(∞°∞›, √µ«œ¡¶¿œ π´µµ»∏ ∆˜¿Œ∆Æ µÓ...)
+		gui::CStaticBox*	pItemName;		///< Ïù¥Î¶Ñ
+		gui::CStaticBox*	pPoint;			///< ÌïÑÏöîÌïú Ìè¨Ïù∏Ìä∏(Í∞ÄÍ≤©, Ï≤úÌïòÏ†úÏùº Î¨¥ÎèÑÌöå Ìè¨Ïù∏Ìä∏ Îì±...)
 
 		gui::CStaticBox*	pstbNeedItemCount;
 		CRegularSlotGui		slotNeedItem;
@@ -74,7 +74,7 @@ public:
 	RwBool			Create();
 	VOID			Destroy();
 
-	RwInt32			SwitchDialog(bool bOpen);		///< DialogManagerø°º≠¿« Open/Close
+	RwInt32			SwitchDialog(bool bOpen);		///< DialogManagerÏóêÏÑúÏùò Open/Close
 
 	SERIAL_HANDLE	GetNPCSerial();
 
@@ -84,22 +84,22 @@ protected:
 
 	VOID			ResetCartTexture();
 
-	VOID			OpenShop(SERIAL_HANDLE hNPC, sNPC_TBLDAT* pNPC_TBLDAT);	///< NPC ªÛ¡°¿ª ø¨¥Ÿ
-	VOID			CloseShop();						///< NPC ªÛ¡°¿ª ¥›¥¬¥Ÿ.	
+	VOID			OpenShop(SERIAL_HANDLE hNPC, sNPC_TBLDAT* pNPC_TBLDAT);	///< NPC ÏÉÅÏ†êÏùÑ Ïó∞Îã§
+	VOID			CloseShop();						///< NPC ÏÉÅÏ†êÏùÑ Îã´ÎäîÎã§.	
 
-	VOID			ClearShop();						///< Shop¿« ¡§∫∏∏¶ √ ±‚»≠ «—¥Ÿ.
-	VOID			ClearPanels();						///< ∆–≥Œ ≥ªøÎ ¿¸∫Œ √ ±‚»≠ «—¥Ÿ.
+	VOID			ClearShop();						///< ShopÏùò Ï†ïÎ≥¥Î•º Ï¥àÍ∏∞Ìôî ÌïúÎã§.
+	VOID			ClearPanels();						///< Ìå®ÎÑê ÎÇ¥Ïö© Ï†ÑÎ∂Ä Ï¥àÍ∏∞Ìôî ÌïúÎã§.
 
-	VOID			UpdateTabContent(RwUInt8 byIndex);	///< ≈«ø° ∏¬¥¬ ≥ªøÎ¿ª ∞ªΩ≈«—¥Ÿ
-	RwBool			SetPage(RwInt32 iPage);				///< «ˆ¿Á ∆‰¿Ã¡ˆ º≥¡§
-	VOID			SetPanel(RwInt32 iPage);			///< «ˆ¿Á ∆‰¿Ã¡ˆø° ∏¬¥¬ æ∆¿Ã≈€ ∏ÆΩ∫∆Æ∏¶ ∫∏ø©¡ÿ¥Ÿ.
+	VOID			UpdateTabContent(RwUInt8 byIndex);	///< ÌÉ≠Ïóê ÎßûÎäî ÎÇ¥Ïö©ÏùÑ Í∞±Ïã†ÌïúÎã§
+	RwBool			SetPage(RwInt32 iPage);				///< ÌòÑÏû¨ ÌéòÏù¥ÏßÄ ÏÑ§Ï†ï
+	VOID			SetPanel(RwInt32 iPage);			///< ÌòÑÏû¨ ÌéòÏù¥ÏßÄÏóê ÎßûÎäî ÏïÑÏù¥ÌÖú Î¶¨Ïä§Ìä∏Î•º Î≥¥Ïó¨Ï§ÄÎã§.
 	VOID			SetPageButton();
 
-	VOID			SetZenny();							///< ¿⁄Ω≈¿« º“¡ˆ±› ¡§∫∏∏¶ æ˜µ•¿Ã∆Æ «—¥Ÿ.
+	VOID			SetZenny();							///< ÏûêÏã†Ïùò ÏÜåÏßÄÍ∏à Ï†ïÎ≥¥Î•º ÏóÖÎç∞Ïù¥Ìä∏ ÌïúÎã§.
 
-	VOID			SetRepairAllTooltip();				///< «ˆ¿Á ¿¸√º ºˆ∏Æ∫ÒøÎ¿ª ∞ËªÍ«œø© ¡§∫∏∏¶ «•Ω√«—¥Ÿ
+	VOID			SetRepairAllTooltip();				///< ÌòÑÏû¨ Ï†ÑÏ≤¥ ÏàòÎ¶¨ÎπÑÏö©ÏùÑ Í≥ÑÏÇ∞ÌïòÏó¨ Ï†ïÎ≥¥Î•º ÌëúÏãúÌïúÎã§
 
-	RwUInt8			GetPageCount_of_CurTab();			///< «ˆ¿Á ≈«ø° º”«— ∆‰¿Ã¡ˆ¿« ∞πºˆ∏¶ π›»Ø«—¥Ÿ
+	RwUInt8			GetPageCount_of_CurTab();			///< ÌòÑÏû¨ ÌÉ≠Ïóê ÏÜçÌïú ÌéòÏù¥ÏßÄÏùò Í∞ØÏàòÎ•º Î∞òÌôòÌïúÎã§
 
 	RwBool			IsFirstPage();
 	RwBool			IsLastPage();
@@ -113,14 +113,14 @@ protected:
 	VOID			OnPaint();
 	VOID			OnPostPaint();
 
-	VOID			OnSelectChangeTabButton(INT nCurIndex, INT nPrevIndex);	///< ≈« πˆ∆∞¿ª ¥≠∑∂¥Ÿ
+	VOID			OnSelectChangeTabButton(INT nCurIndex, INT nPrevIndex);	///< ÌÉ≠ Î≤ÑÌäºÏùÑ ÎàåÎ†ÄÎã§
 
-	VOID			ClickedPrePageButton(gui::CComponent* pComponent);	///< ¿Ã¿¸ πˆ∆∞¿ª ¥≠∑∂¥Ÿ.
-	VOID			ClickedNextPageButton(gui::CComponent* pComponent);	///< ¥Ÿ¿Ω πˆ∆∞¿ª ¥≠∑∂¥Ÿ.
-	VOID			ClickedCloseButton(gui::CComponent* pComponent);	///< ¥›±‚ πˆ∆∞¿ª ¥≠∑∂¥Ÿ.
-	VOID			ClickedRepairButton(gui::CComponent* pComponent);	///< ºˆ∏Æ πˆ∆∞¿ª ¥≠∑∂¥Ÿ.
-	VOID			ClickedRepairAllButton(gui::CComponent* pComponent);///< ¿¸√º ºˆ∏Æ πˆ∆∞¿ª ¥≠∑∂¥Ÿ.
-	VOID			ClickedIdentifyButton(gui::CComponent* pComponent);	///< æ∆¿Ã≈€ ∞®¡§ πˆ∆∞¿ª ¥≠∑∂¥Ÿ.
+	VOID			ClickedPrePageButton(gui::CComponent* pComponent);	///< Ïù¥Ï†Ñ Î≤ÑÌäºÏùÑ ÎàåÎ†ÄÎã§.
+	VOID			ClickedNextPageButton(gui::CComponent* pComponent);	///< Îã§Ïùå Î≤ÑÌäºÏùÑ ÎàåÎ†ÄÎã§.
+	VOID			ClickedCloseButton(gui::CComponent* pComponent);	///< Îã´Í∏∞ Î≤ÑÌäºÏùÑ ÎàåÎ†ÄÎã§.
+	VOID			ClickedRepairButton(gui::CComponent* pComponent);	///< ÏàòÎ¶¨ Î≤ÑÌäºÏùÑ ÎàåÎ†ÄÎã§.
+	VOID			ClickedRepairAllButton(gui::CComponent* pComponent);///< Ï†ÑÏ≤¥ ÏàòÎ¶¨ Î≤ÑÌäºÏùÑ ÎàåÎ†ÄÎã§.
+	VOID			ClickedIdentifyButton(gui::CComponent* pComponent);	///< ÏïÑÏù¥ÌÖú Í∞êÏ†ï Î≤ÑÌäºÏùÑ ÎàåÎ†ÄÎã§.
 
 	VOID			OnMouseDown(const CKey& key);
 	VOID			OnMouseUp(const CKey& key);
@@ -148,40 +148,40 @@ protected:
 	gui::CSlot			m_slotCaptureMouseDown;
 
 	RwInt8				m_byInfoWindowIndex;
-	RwInt32				m_iMouseDownSlot;	///< ∏∂øÏΩ∫∑Œ ¥≠∏∞ ΩΩ∑‘¿« ¿Œµ¶Ω∫
-	RwInt32				m_iSelectedSlot;	///< ºø∑∫∆Æ ¿Ã∆Â∆Æ ΩΩ∑‘
+	RwInt32				m_iMouseDownSlot;	///< ÎßàÏö∞Ïä§Î°ú ÎàåÎ¶∞ Ïä¨Î°ØÏùò Ïù∏Îç±Ïä§
+	RwInt32				m_iSelectedSlot;	///< ÏÖÄÎ†âÌä∏ Ïù¥ÌéôÌä∏ Ïä¨Î°Ø
 	RwInt32				m_iClickEffectedSlot;
 
-	gui::CTabButton*	m_pTabButton;		//< ≈« πˆ∆∞
+	gui::CTabButton*	m_pTabButton;		//< ÌÉ≠ Î≤ÑÌäº
 
 	ItemPanel			m_ItemPanel[dMAX_ITEM_PANEL];	///< ItemPanel
 
-	CWindowby3			m_BackLineSurface;	///< πÈ∂Û¿Œ
+	CWindowby3			m_BackLineSurface;	///< Î∞±ÎùºÏù∏
 
-	CSurfaceGui			m_FocusEffect;		///< ΩΩ∑‘ ∆˜ƒøΩ∫ ¿Ã∆Â∆Æ
-	CSurfaceGui			m_SelectEffect;		///< ΩΩ∑‘ ºø∑∫∆Æ ¿Ã∆Â∆Æ
-	CSurfaceGui			m_MoneyBackPanel;	///< º“¡ˆ±› πË∞Ê
-	CSurfaceGui			m_PageBackPanel;	///< ∆‰¿Ã¡ˆ πË∞Ê
+	CSurfaceGui			m_FocusEffect;		///< Ïä¨Î°Ø Ìè¨Ïª§Ïä§ Ïù¥ÌéôÌä∏
+	CSurfaceGui			m_SelectEffect;		///< Ïä¨Î°Ø ÏÖÄÎ†âÌä∏ Ïù¥ÌéôÌä∏
+	CSurfaceGui			m_MoneyBackPanel;	///< ÏÜåÏßÄÍ∏à Î∞∞Í≤Ω
+	CSurfaceGui			m_PageBackPanel;	///< ÌéòÏù¥ÏßÄ Î∞∞Í≤Ω
 
-	gui::CButton*		m_pExitButton;		///< √¢¥›±‚ πˆ∆∞
-	gui::CButton*		m_pRepairButton;	///< ºˆ∏Æ πˆ∆∞
-	gui::CButton*		m_pRepairAllButton;	///< ¿¸√º ºˆ∏Æ πˆ∆∞
-	gui::CButton*		m_pIdentifyButton;	///< æ∆¿Ã≈€ ∞®¡§ πˆ∆∞	
-	gui::CButton*		m_pPrePageButton;	///< ¿Ã¿¸ ∆‰¿Ã¡ˆ ≥—æÓ∞°±‚ πˆ∆∞
-	gui::CButton*		m_pNextPageButton;	///< ¥Ÿ¿Ω ∆‰¿Ã¡ˆ ≥—æÓ∞°±‚ πˆ∆∞
+	gui::CButton*		m_pExitButton;		///< Ï∞ΩÎã´Í∏∞ Î≤ÑÌäº
+	gui::CButton*		m_pRepairButton;	///< ÏàòÎ¶¨ Î≤ÑÌäº
+	gui::CButton*		m_pRepairAllButton;	///< Ï†ÑÏ≤¥ ÏàòÎ¶¨ Î≤ÑÌäº
+	gui::CButton*		m_pIdentifyButton;	///< ÏïÑÏù¥ÌÖú Í∞êÏ†ï Î≤ÑÌäº	
+	gui::CButton*		m_pPrePageButton;	///< Ïù¥Ï†Ñ ÌéòÏù¥ÏßÄ ÎÑòÏñ¥Í∞ÄÍ∏∞ Î≤ÑÌäº
+	gui::CButton*		m_pNextPageButton;	///< Îã§Ïùå ÌéòÏù¥ÏßÄ ÎÑòÏñ¥Í∞ÄÍ∏∞ Î≤ÑÌäº
 
-	gui::CStaticBox*	m_pShopTitle;		///< ªÛ¡° ¿Ã∏ß	
+	gui::CStaticBox*	m_pShopTitle;		///< ÏÉÅÏ†ê Ïù¥Î¶Ñ	
 
-	gui::CStaticBox*	m_pPocketMoneytitle;///< º“¡ˆ±› ¡¶∏Ò
-	gui::CStaticBox*	m_pPocketMoney;		///< º“¡ˆ±›	
-	gui::CStaticBox*	m_pCurrentPage;		///< «ˆ¿Á ∆‰¿Ã¡ˆ «•Ω√
+	gui::CStaticBox*	m_pPocketMoneytitle;///< ÏÜåÏßÄÍ∏à Ï†úÎ™©
+	gui::CStaticBox*	m_pPocketMoney;		///< ÏÜåÏßÄÍ∏à	
+	gui::CStaticBox*	m_pCurrentPage;		///< ÌòÑÏû¨ ÌéòÏù¥ÏßÄ ÌëúÏãú
 
-	ShopItem			m_aShopItem[NTL_MAX_MERCHANT_TAB_COUNT][NTL_MAX_MERCHANT_COUNT];	/// ∞¢ ≈«∫∞∑Œ ∆» ºˆ ¿÷¥¬ æ∆¿Ã≈€ ¡§∫∏
+	ShopItem			m_aShopItem[NTL_MAX_MERCHANT_TAB_COUNT][NTL_MAX_MERCHANT_COUNT];	/// Í∞Å ÌÉ≠Î≥ÑÎ°ú Ìåî Ïàò ÏûàÎäî ÏïÑÏù¥ÌÖú Ï†ïÎ≥¥
 
-	SERIAL_HANDLE		m_hNPCSerial;		///< NPC π¯»£
+	SERIAL_HANDLE		m_hNPCSerial;		///< NPC Î≤àÌò∏
 
-	RwInt32				m_iCurTab;			///< «ˆ¿Á ≈« ¿Œµ¶Ω∫
-	RwInt32				m_iCurPage;			///< «ˆ¿Á ∆‰¿Ã¡ˆ
+	RwInt32				m_iCurTab;			///< ÌòÑÏû¨ ÌÉ≠ Ïù∏Îç±Ïä§
+	RwInt32				m_iCurPage;			///< ÌòÑÏû¨ ÌéòÏù¥ÏßÄ
 
-	RwBool				m_bFocus;			///< ∆˜ƒøΩ∫∏¶ æÚæ˙¥Ÿ.
+	RwBool				m_bFocus;			///< Ìè¨Ïª§Ïä§Î•º ÏñªÏóàÎã§.
 };

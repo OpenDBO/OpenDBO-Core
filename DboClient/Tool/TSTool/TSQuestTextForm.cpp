@@ -1,4 +1,4 @@
-// TSQuestTextForm.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// TSQuestTextForm.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -51,7 +51,7 @@ BEGIN_MESSAGE_MAP(CTSQuestTextForm, CFormView)
 END_MESSAGE_MAP()
 
 
-// CTSQuestTextForm Áø´ÜÀÔ´Ï´Ù.
+// CTSQuestTextForm ì§„ë‹¨ì…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CTSQuestTextForm::AssertValid() const
@@ -68,7 +68,7 @@ void CTSQuestTextForm::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CTSQuestTextForm ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CTSQuestTextForm ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 void CTSQuestTextForm::OnSize(UINT nType, int cx, int cy)
 {
 	CSize size( cx, cy );
@@ -251,7 +251,7 @@ void CTSQuestTextForm::OnEnChangeQuestTextQidFilterCurQidEditor()
 {
 	if ( NULL == m_pTableMng )
 	{
-		AfxMessageBox( _T("Quest text tableÀÌ ·ÎµùµÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù") );
+		AfxMessageBox( _T("Quest text tableì´ ë¡œë”©ë˜ì–´ ìˆì§€ ì•ŠìŠµë‹ˆë‹¤") );
 		return;
 	}
 
@@ -259,7 +259,7 @@ void CTSQuestTextForm::OnEnChangeQuestTextQidFilterCurQidEditor()
 
 	if ( NULL == pQTbl )
 	{
-		AfxMessageBox( _T("Quest text tableÀÌ ·ÎµùµÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù") );
+		AfxMessageBox( _T("Quest text tableì´ ë¡œë”©ë˜ì–´ ìˆì§€ ì•ŠìŠµë‹ˆë‹¤") );
 		return;
 	}
 
@@ -268,7 +268,7 @@ void CTSQuestTextForm::OnEnChangeQuestTextQidFilterCurQidEditor()
 
 	if ( !IsNumeric( strText ) )
 	{
-		AfxMessageBox( _T("¼ıÀÚ¸¸ ÀÔ·ÂÀÌ °¡´ÉÇÕ´Ï´Ù") );
+		AfxMessageBox( _T("ìˆ«ìë§Œ ì…ë ¥ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤") );
 		return;
 	}
 
@@ -303,7 +303,7 @@ void CTSQuestTextForm::OnEnChangeQuestTextQidFinderFindQidEditor()
 {
 	if ( NULL == m_pTableMng )
 	{
-		AfxMessageBox( _T("Quest text tableÀÌ ·ÎµùµÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù") );
+		AfxMessageBox( _T("Quest text tableì´ ë¡œë”©ë˜ì–´ ìˆì§€ ì•ŠìŠµë‹ˆë‹¤") );
 		return;
 	}
 
@@ -311,7 +311,7 @@ void CTSQuestTextForm::OnEnChangeQuestTextQidFinderFindQidEditor()
 
 	if ( NULL == pQTbl )
 	{
-		AfxMessageBox( _T("Quest text tableÀÌ ·ÎµùµÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù") );
+		AfxMessageBox( _T("Quest text tableì´ ë¡œë”©ë˜ì–´ ìˆì§€ ì•ŠìŠµë‹ˆë‹¤") );
 		return;
 	}
 
@@ -320,7 +320,7 @@ void CTSQuestTextForm::OnEnChangeQuestTextQidFinderFindQidEditor()
 
 	if ( !IsNumeric( strText ) )
 	{
-		AfxMessageBox( _T("¼ıÀÚ¸¸ ÀÔ·ÂÀÌ °¡´ÉÇÕ´Ï´Ù") );
+		AfxMessageBox( _T("ìˆ«ìë§Œ ì…ë ¥ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤") );
 		return;
 	}
 

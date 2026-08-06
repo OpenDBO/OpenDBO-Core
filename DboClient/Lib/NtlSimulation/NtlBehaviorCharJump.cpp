@@ -53,7 +53,7 @@ void CNtlBehaviorCharJump::Enter(void)
 {
     ChangeJumpState(JUMPSTATE_START);
 
-    // ���߿� base class enter�� ȣ���Ѵ�.
+    // 占쏙옙占쌩울옙 base class enter占쏙옙 호占쏙옙占싼댐옙.
     CNtlBehaviorBase::Enter(); 
 }
 
@@ -159,7 +159,7 @@ void CNtlBehaviorCharJump::UpdatePositionMove(SMoveStuff *pMoveStuff, SJumpStuff
         CNtlMath::MathRwV3dAssign(&vNewDir, vHeading.x, 0.0f, vHeading.z); 
         m_pActor->SetDirection(&vNewDir);
 
-        // ���ڸ� ������� ��ġ �̵��� ���´�.
+        // 제자리 점프라면 위치 이동은 막는다.
         if(m_bNoneDirJump)
             return;
 
@@ -172,7 +172,7 @@ void CNtlBehaviorCharJump::UpdatePositionMove(SMoveStuff *pMoveStuff, SJumpStuff
         //{
         //    UpdateMoveSync(vPos, fElapsed);        
         //    
-        //    // ����� ����� �����Ѵ�.
+        //    // 계산한 결과를 적용한다.
         //    vPos = m_pActor->GetPosition();            
         //    return;
         //}
@@ -201,7 +201,7 @@ void CNtlBehaviorCharJump::UpdatePositionMove(SMoveStuff *pMoveStuff, SJumpStuff
             }
         }
     }
-    else // ���ڸ� ���� 
+    else // 占쏙옙占쌘몌옙 占쏙옙占쏙옙 
     {
         if((m_pActor->GetFlags() & SLFLAG_OBJECT_COLLISION) && m_fJumpUpSpeed > 0.0f)
         {
@@ -233,25 +233,25 @@ RwBool CNtlBehaviorCharJump::UpdateMoveSync(RwV3d vPos, RwReal fElapsedTime)
 
     if(pMoveSyncStuff->m_pMoveSyncCurr == NULL)
     {
-        if(pMoveSyncStuff->Next() == NULL)         // ���� ��Ŷ�� ���޾Ҵ�        
+        if(pMoveSyncStuff->Next() == NULL)         // 占쏙옙占쏙옙 占쏙옙킷占쏙옙 占쏙옙占쌨았댐옙        
             return FALSE;
     }
     else
     {
-        if(!pMoveSyncStuff->m_MoveSyncQ.empty())        // ���� ��Ŷ�� �޾Ƽ� ó���Ѵ�.
+        if(!pMoveSyncStuff->m_MoveSyncQ.empty())        // 占쏙옙占쏙옙 占쏙옙킷占쏙옙 占쌨아쇽옙 처占쏙옙占싼댐옙.
         {
             pMoveSyncStuff->Next();
         }
     }    
     
-    // ���� MoveSync�� ���� �־���� ��ġ�� ����� ��, �� ��ġ�� �������� ������ �����Ѵ�.        
+    // 원래 MoveSync에 맞춰 있어야할 위치를 계산한 후, 그 위치로 가기위한 포스를 결정한다.        
     RwV3d vSyncDir = pMoveSyncStuff->m_pMoveSyncCurr->vLoc - vPos;    
     vSyncDir.y = 0.0f;
     RwReal vSyncDistance = RwV3dLength(&vSyncDir);
     RwV3dNormalize(&vSyncDir, &vSyncDir);    
     vPos += vSyncDir * (vSyncDistance / MOVE_SYNC_SPEED) * fElapsedTime * 2.0f;    
 
-    // ���� ��ġ
+    // 占쏙옙占쏙옙 占쏙옙치
     m_pActor->SetPosition(&vPos);
     //m_pActor->SetPosition(&pMoveSyncStuff->m_pMoveSyncCurr->vLoc);
 
@@ -396,7 +396,7 @@ void CNtlBehaviorCharJump::UpdateJumpStandLanding(SMoveStuff *pMoveStuff, SJumpS
 
 			GetSoundManager()->Play(&tSoundParam);
 
-            // visual effect�� �ִ´�.
+            // visual effect占쏙옙 占쌍는댐옙.
             CNtlSobProxy *pSobProxy = m_pActor->GetSobProxy();
             pSobProxy->CreatePLEffect(NTL_VID_JUMP_LANDING, &vPosOrg);
 
@@ -456,7 +456,7 @@ void CNtlBehaviorCharJump::UpdateJumpMoveLanding(SMoveStuff *pMoveStuff, SJumpSt
 
 			 GetSoundManager()->Play(&tSoundParam);
 
-            // visual effect�� �ִ´�.
+            // visual effect占쏙옙 占쌍는댐옙.
             CNtlSobProxy *pSobProxy = m_pActor->GetSobProxy();
             //pSobProxy->CreatePLEffect(NTL_VID_JUMP_LANDING, &vPosOrg);
             pSobProxy->CreatePLEffect(NTL_VID_JUMP_LANDING, &vPos);
@@ -508,7 +508,7 @@ void CNtlBehaviorCharJump::UpdateJumpWaterLanding(SMoveStuff *pMoveStuff, SJumpS
                 vPos.z = vDest.z;
             }
 
-            // ��ǰ ����Ʈ�� ǥ���Ѵ�.
+            // 占쏙옙품 占쏙옙占쏙옙트占쏙옙 표占쏙옙占싼댐옙.
             if(!m_bCreateBubbleEffect)
             {
                 m_pWaterBubbleEffect = (CNtlInstanceEffect*)GetSceneManager()->CreateEntity(PLENTITY_EFFECT, NTL_VID_SWIM_BUBBLE);
@@ -536,7 +536,7 @@ void CNtlBehaviorCharJump::UpdateJumpWaterLanding(SMoveStuff *pMoveStuff, SJumpS
             vPos.y = fSwimmingHeight;            
             Finish();
 
-            // ��ǰ ����Ʈ�� ���ش�.
+            // 占쏙옙품 占쏙옙占쏙옙트占쏙옙 占쏙옙占쌔댐옙.
             if(m_pWaterBubbleEffect)
             {
                 m_pWaterBubbleEffect->Finish();
@@ -607,7 +607,7 @@ void CNtlBehaviorCharJump::ChangeJumpState(RwUInt8 byJumpState)
     }
     else if(byJumpState == JUMPSTATE_WATER_LANDING)
     {
-        // �� effect�� ǥ���Ѵ�. 
+        // 占쏙옙 effect占쏙옙 표占쏙옙占싼댐옙. 
         RwV3d vPos = m_pActor->GetPosition();
         vPos.y = m_sHStuff.fWaterHeight;
         CNtlSobProxy *pSobProxy = m_pActor->GetSobProxy();
@@ -627,7 +627,7 @@ void CNtlBehaviorCharJump::ChangeJumpState(RwUInt8 byJumpState)
     pJumpStuff->eState = (ECharJumpState)byJumpState;
 }
 
-/// ������ MoveSync ��Ŷ�� ������ ���⸦ �����
+/// 서버에 MoveSync 패킷을 보내서 동기를 맞춘다
 void CNtlBehaviorCharJump::UpdateSendSyncCheck( RwReal fElapsedTime ) 
 {
     if(m_pActor->GetClassID() != SLCLASS_AVATAR)

@@ -78,12 +78,12 @@ public:
 	INT				m_nTextEffectMode;		// Default Text Effect mode;
 	INT				m_nTextEffectValue;		// Default Text Effect Value;
 	INT				m_nMaxLine;				// max text line count
-	INT				m_nMarginX,m_nMarginY;	// X,Y ¿©¹é.
+	INT				m_nMarginX,m_nMarginY;	// X,Y ì—¬ë°±.
 	INT				m_nInterval;
-	INT				m_nScrollLine;			// ¹®ÀÚ¿­À» ÂïÀ» ½ÃÀÛ line.
-	INT				m_nRowLimit;			// È­¸é¿¡ Ãâ·ÂÇÑ ¶óÀÎÀÇ °¹¼ö.
-	std::string		m_strFont;				// font ÀÌ¸§.
-	INT				m_nFontH;				// font ³ôÀÌ.
+	INT				m_nScrollLine;			// ë¬¸ìì—´ì„ ì°ì„ ì‹œì‘ line.
+	INT				m_nRowLimit;			// í™”ë©´ì— ì¶œë ¥í•œ ë¼ì¸ì˜ ê°¯ìˆ˜.
+	std::string		m_strFont;				// font ì´ë¦„.
+	INT				m_nFontH;				// font ë†’ì´.
 	INT				m_nFontAttribute;		// font attribute
 
 	bool			m_bScrollbarLeftLine;	// scrollbar left in line
@@ -91,17 +91,17 @@ public:
 	INT				m_nScrollBarMarginTop;	// Scrollbar MarginTop
 	INT				m_nScrollBarMarginBottom;	// Scrollbar MarginBottom
 	bool			m_bDynamicScrollBar;		
-	bool			m_bNeedDrawItem;		// Texture¿¡ DrawItem()À» ´Ù½Ã ÇØ¾ß µÈ´Ù´Â °ÍÀ» ¾Ë¸²
+	bool			m_bNeedDrawItem;		// Textureì— DrawItem()ì„ ë‹¤ì‹œ í•´ì•¼ ëœë‹¤ëŠ” ê²ƒì„ ì•Œë¦¼
 
 	INT				m_nDrawItemNum;
-	INT				m_nDrawOffset;			// ¹Ì¸® ¼±¾ğµÈ ¿¹¾à ºÎºĞ¿¡¼­ ¾ó¸¶³ª offsetµÇ¾î¾ß ÇÏ´ÂÁö¿¡ ´ëÇÑ ºÎºĞ
+	INT				m_nDrawOffset;			// ë¯¸ë¦¬ ì„ ì–¸ëœ ì˜ˆì•½ ë¶€ë¶„ì—ì„œ ì–¼ë§ˆë‚˜ offsetë˜ì–´ì•¼ í•˜ëŠ”ì§€ì— ëŒ€í•œ ë¶€ë¶„
 
 	std::list<COutputBox_Item*> m_listDrawItem;
-	std::list<COutputBox_Item*> m_listCrudeItem;	// LineFeed¸¦ ÇÏÁö ¾Ê´Â Item
+	std::list<COutputBox_Item*> m_listCrudeItem;	// LineFeedë¥¼ í•˜ì§€ ì•ŠëŠ” Item
 
-	std::list<COutputBox_Item*> m_listOriginalItem;	// ¿ø·¡´ë·ÎÀÇ ÀÚ·á
+	std::list<COutputBox_Item*> m_listOriginalItem;	// ì›ë˜ëŒ€ë¡œì˜ ìë£Œ
 
-	std::list<COutputBox_Item*>::iterator m_itDrawItem;	// DrawItemÀÇ ÀÎµ¦½º ¹İº¹ÀÚ
+	std::list<COutputBox_Item*>::iterator m_itDrawItem;	// DrawItemì˜ ì¸ë±ìŠ¤ ë°˜ë³µì
 private:	
 	COutputBox *m_pOutputBox;
 };

@@ -1,4 +1,4 @@
-// AttributePane.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// AttributePane.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -20,7 +20,7 @@
 
 LRESULT CAttributePane::CAttributeTree::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	switch( message )
 	{
 	case WM_NCPAINT:
@@ -46,7 +46,7 @@ BOOL CAttributePane::CAttributeTree::IsName( CString szName, HTREEITEM hSelected
 	if( !hSelectedItem  )
 		return FALSE;
 
-	// Áßº¹ ÀÌ¸§ °Ë»ç
+	// ì¤‘ë³µ ì´ë¦„ ê²€ì‚¬
 	HTREEITEM hParentItem = GetParentItem( hSelectedItem );
 
 	HTREEITEM hSiblingItem = GetChildItem( hParentItem );
@@ -63,7 +63,7 @@ BOOL CAttributePane::CAttributeTree::IsName( CString szName, HTREEITEM hSelected
 	return FALSE;
 }
 
-// CAttributePane::CAttrButeTree ¸Ş½ÃÁö Ã³¸®±â
+// CAttributePane::CAttrButeTree ë©”ì‹œì§€ ì²˜ë¦¬ê¸°
 BEGIN_MESSAGE_MAP(CAttributePane::CAttributeTree, CTreeCtrl)
 	ON_NOTIFY_REFLECT(TVN_SELCHANGED, &CAttributeTree::OnTvnSelchanged)
 	ON_NOTIFY_REFLECT(NM_DBLCLK, &CAttributeTree::OnNMDblclk)
@@ -71,12 +71,12 @@ BEGIN_MESSAGE_MAP(CAttributePane::CAttributeTree, CTreeCtrl)
 END_MESSAGE_MAP()
 
 /**
-* \brief Æ®¸®ÀÇ ´Ù¸¥ Ç×¸ñÀ» ¼±ÅÃÇßÀ» ¶§ ¹ß»ı
+* \brief íŠ¸ë¦¬ì˜ ë‹¤ë¥¸ í•­ëª©ì„ ì„ íƒí–ˆì„ ë•Œ ë°œìƒ
 */
 void CAttributePane::CAttributeTree::OnTvnSelchanged(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMTREEVIEW pNMTreeView = reinterpret_cast<LPNMTREEVIEW>(pNMHDR);
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	CMainFrame* pMainFrame = (CMainFrame*)AfxGetMainWnd();
 	CPropertiesPane *pPropertyPane = pMainFrame->GetPropertiesPane();
@@ -84,7 +84,7 @@ void CAttributePane::CAttributeTree::OnTvnSelchanged(NMHDR *pNMHDR, LRESULT *pRe
 	HTREEITEM hItem = GetSelectedItem();
 	if( hItem )
 	{
-		// Ç×¸ñÀ» ¼±ÅÃ ÇßÀ» °æ¿ì ÇöÀç Ç×¸ñÀÌ ATTR_TREE_PARTICLE ÀÌ¶ó¸é ÇÁ·ÎÆÛÆ¼¿¡ Active ÇÁ·ÎÆÛÆ¼ Æ÷ÀÎÅÍ·Î º¸³»ÁØ´Ù.
+		// í•­ëª©ì„ ì„ íƒ í–ˆì„ ê²½ìš° í˜„ì¬ í•­ëª©ì´ ATTR_TREE_PARTICLE ì´ë¼ë©´ í”„ë¡œí¼í‹°ì— Active í”„ë¡œí¼í‹° í¬ì¸í„°ë¡œ ë³´ë‚´ì¤€ë‹¤.
 		SAttrTreeData* pData = (SAttrTreeData*)GetItemData( hItem );
 		if( pData )
 		{
@@ -112,11 +112,11 @@ void CAttributePane::CAttributeTree::OnTvnSelchanged(NMHDR *pNMHDR, LRESULT *pRe
 }
 
 /**
-* \brief Æ®¸®¸¦ ´õºí Å¬¸¯ ÇßÀ» ¶§ ¹ß»ı
+* \brief íŠ¸ë¦¬ë¥¼ ë”ë¸” í´ë¦­ í–ˆì„ ë•Œ ë°œìƒ
 */
 void CAttributePane::CAttributeTree::OnNMDblclk(NMHDR *pNMHDR, LRESULT *pResult)
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	HTREEITEM hSelectedItem = GetSelectedItem();
 	if( hSelectedItem )
 	{
@@ -138,7 +138,7 @@ void CAttributePane::CAttributeTree::OnNMDblclk(NMHDR *pNMHDR, LRESULT *pResult)
 		{
 			if( dlg.m_strRename.Compare( GetItemText( hSelectedItem ).GetBuffer() ) != 0 )
 			{
-				// ÀÌ¸§ Áßº¹ °Ë»ç
+				// ì´ë¦„ ì¤‘ë³µ ê²€ì‚¬
 				if( IsName( dlg.m_strRename, hSelectedItem ) )
 				{
 					AfxMessageBox( _T("There is currently the same name in depth."), MB_OK );
@@ -158,12 +158,12 @@ void CAttributePane::CAttributeTree::OnNMDblclk(NMHDR *pNMHDR, LRESULT *pResult)
 				}
 			}
 
-			// ÇöÀç Doc¿¡¼­ ¼¿·ºÆ®µÈ ¾ÆÀÌÅÛÀ» ²¨³»¿Â´Ù.
+			// í˜„ì¬ Docì—ì„œ ì…€ë ‰íŠ¸ëœ ì•„ì´í…œì„ êº¼ë‚´ì˜¨ë‹¤.
 			SAttrTreeData* pData = (SAttrTreeData*)GetItemData( hSelectedItem );
 			if( pData == NULL )
 				return;
 
-			// ±×·ìÀÇ ÀÌ¸§ º¯°æ
+			// ê·¸ë£¹ì˜ ì´ë¦„ ë³€ê²½
 			if( pData->byType == ATTR_TREE_GROUP )
 			{	
 				gui::CParticleGroup *pGroup = gui::GetParticleDoc()->GetReplaceGroupKey( GetItemText( hSelectedItem ), dlg.m_strRename );
@@ -172,7 +172,7 @@ void CAttributePane::CAttributeTree::OnNMDblclk(NMHDR *pNMHDR, LRESULT *pResult)
 					ASSERT( 0 && "void CAttributePane::CAttributeTree::OnNMDblclk " );
 				}
 			}
-			// ÆÄÆ¼Å¬ÀÇ ÀÌ¸§ º¯°æ
+			// íŒŒí‹°í´ì˜ ì´ë¦„ ë³€ê²½
 			else if( pData->byType == ATTR_TREE_PARTICLE )
 			{
 				HTREEITEM hParentItem = GetParentItem( hSelectedItem );
@@ -193,7 +193,7 @@ void CAttributePane::CAttributeTree::OnDestroy()
 {
 	CTreeCtrl::OnDestroy();
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 
@@ -208,7 +208,7 @@ CAttributePane::~CAttributePane()
 {
 }
 
-// CAttributePane ¸Ş½ÃÁö Ã³¸®±â
+// CAttributePane ë©”ì‹œì§€ ì²˜ë¦¬ê¸°
 BEGIN_MESSAGE_MAP(CAttributePane, CWnd)
 	ON_WM_CREATE()
 	ON_WM_DESTROY()
@@ -230,7 +230,7 @@ void CAttributePane::LoadTree( gui::CParticleDoc* pDoc )
 	if( pDoc == NULL )
 		return;
 
-	// ÆÄÆ¼Å¬ ±×·ìÀ» ÀĞ¾î¿Â´Ù.
+	// íŒŒí‹°í´ ê·¸ë£¹ì„ ì½ì–´ì˜¨ë‹¤.
 	gui::CParticleGroup* pGroup = pDoc->GetFirstGroup();
 	HTREEITEM hCurrentGroup;
 	while( pGroup )
@@ -242,7 +242,7 @@ void CAttributePane::LoadTree( gui::CParticleDoc* pDoc )
 		hCurrentGroup = m_WndTreeCtrl.InsertItem( pGroup->GetName().c_str(), 0, 0, TVI_ROOT );
 		m_WndTreeCtrl.SetItemData( hCurrentGroup, (DWORD_PTR)pData );
 		
-		// ÆÄÆ¼Å¬ ±×·ì¿¡ ÀÖ´Â ÆÄÆ¼Å¬µéÀ» ¼øÈ¸ÇÏ¸ç °¢Á¾ ¼Ó¼ºµéÀ» ÀĞ¾î¿Â´Ù. :: µ¿ÀÛÇÏ´ÂÁö È®ÀÎ ÇØ¾ßÇÔ
+		// íŒŒí‹°í´ ê·¸ë£¹ì— ìˆëŠ” íŒŒí‹°í´ë“¤ì„ ìˆœíšŒí•˜ë©° ê°ì¢… ì†ì„±ë“¤ì„ ì½ì–´ì˜¨ë‹¤. :: ë™ì‘í•˜ëŠ”ì§€ í™•ì¸ í•´ì•¼í•¨
 		gui::CParticleItem* pItem = pGroup->GetFirstParticle();
 		while( pItem )
 		{
@@ -264,20 +264,20 @@ int CAttributePane::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// ÀÍ½ºÆ®¸² ÅøÅ¶ Åø¹Ù¸¦ »ı¼º
+	// ìµìŠ¤íŠ¸ë¦¼ íˆ´í‚· íˆ´ë°”ë¥¼ ìƒì„±
 	m_wndToolBar.CreateToolBar(WS_VISIBLE | WS_CHILD | CBRS_TOOLTIPS, this );
 	m_wndToolBar.LoadToolBar( IDR_ATTRIBUTE );
 
-	// ¾ÆÀÌÄÜ ºñÆ®¸Ê ·Îµå
+	// ì•„ì´ì½˜ ë¹„íŠ¸ë§µ ë¡œë“œ
 	CBitmap bmp;
 	bmp.LoadBitmap(IDB_BITMAP_ICONS);
 
-	// Æ®¸®¿¡ ÀÔÈú BMP »ı¼º
+	// íŠ¸ë¦¬ì— ì…í BMP ìƒì„±
 	m_ilTreeIcons.Create( 16, 16, ILC_MASK | ILC_COLOR24, 0, 0 );
 	m_ilTreeIcons.Add( &bmp, RGB( 0, 255, 0 ) );
 
-	// Æ®¸® »ı¼º
-	// TODO:  ¿©±â¿¡ Æ¯¼öÈ­µÈ ÀÛ¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// íŠ¸ë¦¬ ìƒì„±
+	// TODO:  ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì‘ì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if( !m_WndTreeCtrl.Create( WS_CLIPCHILDREN | WS_CLIPSIBLINGS | WS_VISIBLE | TVS_HASLINES |
 		TVS_LINESATROOT | TVS_HASBUTTONS | TVS_SHOWSELALWAYS,
 		CRect( 0, 0, 0, 0 ), this,
@@ -287,7 +287,7 @@ int CAttributePane::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;
 	}
 
-	// Æ®¸®¿¡ BMP ÀÔÈû
+	// íŠ¸ë¦¬ì— BMP ì…í˜
 	m_WndTreeCtrl.ModifyStyleEx( 0, WS_EX_STATICEDGE );
 	m_WndTreeCtrl.SetImageList( &m_ilTreeIcons, TVSIL_NORMAL );
 	
@@ -298,7 +298,7 @@ void CAttributePane::OnDestroy()
 {
 	CWnd::OnDestroy();
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	DeleteAllTreeItemData();
 }
@@ -307,9 +307,9 @@ void CAttributePane::OnSize(UINT nType, int cx, int cy)
 {
 	CWnd::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
-	// Åø¹Ù¸¦ ±×¸®°í ±× ¹Ø¿¡ Æ®¸®°¡ À§Ä¡ÇÏ°Ô ÇÑ´Ù.
+	// íˆ´ë°”ë¥¼ ê·¸ë¦¬ê³  ê·¸ ë°‘ì— íŠ¸ë¦¬ê°€ ìœ„ì¹˜í•˜ê²Œ í•œë‹¤.
 	CSize sz(0);
 	if( m_wndToolBar.GetSafeHwnd() )
 	{
@@ -393,7 +393,7 @@ void CAttributePane::DeleteAllTreeItemData( void )
 }
 
 /**
-* \brief ÆÄÆ¼Å¬ ±×·ìÀ» Ãß°¡ÇÑ´Ù.
+* \brief íŒŒí‹°í´ ê·¸ë£¹ì„ ì¶”ê°€í•œë‹¤.
 */
 void CAttributePane::OnAttrGAdd()
 {
@@ -429,7 +429,7 @@ void CAttributePane::OnUpdateAttrGAdd(CCmdUI* pCmdUI)
 }
 
 /**
-* \brief ÆÄÆ¼Å¬ ±×·ì¿¡ ÆÄÆ¼Å¬À» Ãß°¡ÇÑ´Ù.
+* \brief íŒŒí‹°í´ ê·¸ë£¹ì— íŒŒí‹°í´ì„ ì¶”ê°€í•œë‹¤.
 */
 void CAttributePane::OnAttrPAdd()
 {
@@ -547,7 +547,7 @@ void CAttributePane::OnUpdateAttrDel( CCmdUI* pCmdUI )
 }
 
 /**
-* \brief DOC¿¡ ÆÄÆ¼Å¬µéÀ» ÀúÀåÇÑ´Ù.
+* \brief DOCì— íŒŒí‹°í´ë“¤ì„ ì €ì¥í•œë‹¤.
 */
 void CAttributePane::OnAttrPlay()
 {
@@ -559,11 +559,11 @@ void CAttributePane::OnAttrPlay()
 		{
 			if( pData->byType == ATTR_TREE_GROUP )
 			{
-				// ÇöÀç ÀÖ´Â ¾ÆÀÌÅÛÀ¸·Î Particle Box¿¡ ¼ÂÆÃÀ» ÇÏ°í ÇÃ·¹ÀÌ ÇÏ´Â ÇÔ¼ö·Î º¯°æ
+				// í˜„ì¬ ìˆëŠ” ì•„ì´í…œìœ¼ë¡œ Particle Boxì— ì…‹íŒ…ì„ í•˜ê³  í”Œë ˆì´ í•˜ëŠ” í•¨ìˆ˜ë¡œ ë³€ê²½
 				GetParticleApp()->Load( m_WndTreeCtrl.GetItemText( hSelectedItem ).GetBuffer() );
 				GetParticleApp()->Play( false );
 			}
-			// ±×·ìÀÌ ¾Æ´Ñ ÆÄÆ¼Å¬ÀÎ °æ¿ì ÇöÀç ¼ÓÇÑ GroupÀ» ÇÃ·¹ÀÌ
+			// ê·¸ë£¹ì´ ì•„ë‹Œ íŒŒí‹°í´ì¸ ê²½ìš° í˜„ì¬ ì†í•œ Groupì„ í”Œë ˆì´
 			else if( pData->byType == ATTR_TREE_PARTICLE )
 			{
 				HTREEITEM hParentItem = m_WndTreeCtrl.GetParentItem( hSelectedItem );
@@ -573,7 +573,7 @@ void CAttributePane::OnAttrPlay()
 				{
 					if( pGroupData->byType == ATTR_TREE_GROUP )
 					{
-						// ÇöÀç ÀÖ´Â ¾ÆÀÌÅÛÀ¸·Î Particle Box¿¡ ¼ÂÆÃÀ» ÇÏ°í ÇÃ·¹ÀÌ ÇÏ´Â ÇÔ¼ö·Î º¯°æ
+						// í˜„ì¬ ìˆëŠ” ì•„ì´í…œìœ¼ë¡œ Particle Boxì— ì…‹íŒ…ì„ í•˜ê³  í”Œë ˆì´ í•˜ëŠ” í•¨ìˆ˜ë¡œ ë³€ê²½
 						GetParticleApp()->Load( m_WndTreeCtrl.GetItemText( hParentItem ).GetBuffer() );
 						GetParticleApp()->Play( false );
 					}

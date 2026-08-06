@@ -157,13 +157,13 @@ void CModelTool2App::OnAppAbout()
 
 BOOL CModelTool2App::OnIdle(LONG lCount)
 {
-    // À©µµ¿ì°¡ ÃÖ¼ÒÈ­ µÇ¾îÀÖÀ¸¸é °»½ÅÇÏÁö ¾Ê´Â´Ù.
+    // ìœˆë„ìš°ê°€ ìµœì†Œí™” ë˜ì–´ìˆìœ¼ë©´ ê°±ì‹ í•˜ì§€ ì•ŠëŠ”ë‹¤.
     if(m_pMainWnd->IsIconic())
         return FALSE;
 
     m_ModelToolApplication.OnIdle();
 
-    // ¸ÅÇÁ·¹ÀÓ °»½ÅÀ» À§ÇØ¼­ ÇÊ¿äÇÏ´Ù.
+    // ë§¤í”„ë ˆì„ ê°±ì‹ ì„ ìœ„í•´ì„œ í•„ìš”í•˜ë‹¤.
     __super::OnIdle(lCount);
     return TRUE;
 }

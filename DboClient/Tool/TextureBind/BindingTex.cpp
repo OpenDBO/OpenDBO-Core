@@ -69,13 +69,13 @@ void CBindingTex::Render()
 }
 
 /**
-* \brief Á÷±³ Åõ¿µÀ» ÇÒ ¶§ nCenter nWidth, nHeightÀ» ±âÁØÀ¸·Î ·»´õ°¡ ÇÊ¿äÇÏ´Ù¸é ÇÏ°í ÇÊ¿äÇÏÁö ¾Ê´Â´Ù¸é ( Á÷±³Åõ¿µ¿¡¼­ ¹ş¾î³­´Ù¸é ÇÏÁö ¾Ê´Â´Ù. )
+* \brief ì§êµ íˆ¬ì˜ì„ í•  ë•Œ nCenter nWidth, nHeightì„ ê¸°ì¤€ìœ¼ë¡œ ë Œë”ê°€ í•„ìš”í•˜ë‹¤ë©´ í•˜ê³  í•„ìš”í•˜ì§€ ì•ŠëŠ”ë‹¤ë©´ ( ì§êµíˆ¬ì˜ì—ì„œ ë²—ì–´ë‚œë‹¤ë©´ í•˜ì§€ ì•ŠëŠ”ë‹¤. )
 */
 void CBindingTex::RenderParallel( RwCamera* pRwCamera )
 {
 	if( m_pTexture )
 	{
-		// ÇÁ·¯½ºÅÒ¿¡ °ÉÄ¡´Â ºÎºĞÀÌ Á¶±İÀÌ¶óµµ ÀÖÀ¸¸é Âï´Â´Ù.
+		// í”„ëŸ¬ìŠ¤í…€ì— ê±¸ì¹˜ëŠ” ë¶€ë¶„ì´ ì¡°ê¸ˆì´ë¼ë„ ìˆìœ¼ë©´ ì°ëŠ”ë‹¤.
 		RwSphere sph[4];
 		RwBool bBound = FALSE;
 		for( int i=0; i < 4; ++i )
@@ -115,7 +115,7 @@ void CBindingTex::RenderPerspective( RwCamera* pRwCamera )
 {
 	if( m_pTexture )
 	{
-		// ÇÁ·¯½ºÅÒ¿¡ ¸ğµç ÁÂÇ¥°¡ µé¾î¿ÀÁö ¾Ê´Â ÀÌ»ó Ãâ·ÂÇÏÁö ¾Ê´Â ´Ù. ( ¼Óµµ¸¦ À§ÇÏ¿© )
+		// í”„ëŸ¬ìŠ¤í…€ì— ëª¨ë“  ì¢Œí‘œê°€ ë“¤ì–´ì˜¤ì§€ ì•ŠëŠ” ì´ìƒ ì¶œë ¥í•˜ì§€ ì•ŠëŠ” ë‹¤. ( ì†ë„ë¥¼ ìœ„í•˜ì—¬ )
 		RwSphere sph[4];
 		for( int i=0; i < 4; ++i )
 		{
@@ -198,7 +198,7 @@ BOOL CBindingTexManager::LoadTexFromPath( eType type, eSize size, const CString 
 
 	CFileInfoArray fia;
 
-	// µğ·ºÅä¸®¿¡¼­ ÆÄÀÏÀ» ÀĞ¾î¿À¸é¼­ Á¤·ÄÀ» ÇÑ´Ù.
+	// ë””ë ‰í† ë¦¬ì—ì„œ íŒŒì¼ì„ ì½ì–´ì˜¤ë©´ì„œ ì •ë ¬ì„ í•œë‹¤.
 	int nCount = fia.AddDir(strPath + CString("\\"),			// Path
 		CString("*.bmp"),	// Mask
 		FALSE,
@@ -207,7 +207,7 @@ BOOL CBindingTexManager::LoadTexFromPath( eType type, eSize size, const CString 
 
 	if( fia.GetSize() == 0 )
 	{
-		// ÆĞ½º°¡ Àß¸øµÇ¾ú°Å³ª bmp ÆÄÀÏµéÀÌ ÇÏ³ªµµ ¾ø´Ù.
+		// íŒ¨ìŠ¤ê°€ ì˜ëª»ë˜ì—ˆê±°ë‚˜ bmp íŒŒì¼ë“¤ì´ í•˜ë‚˜ë„ ì—†ë‹¤.
 		return FALSE;
 	}
 
@@ -217,7 +217,7 @@ BOOL CBindingTexManager::LoadTexFromPath( eType type, eSize size, const CString 
 	m_nColumns = nType;
 	m_nRows = nType;
 
-	// TexÀÇ °¡·Î °¹¼ö¿Í ¼¼·Î °¹¼ö Ã¼Å©
+	// Texì˜ ê°€ë¡œ ê°¯ìˆ˜ì™€ ì„¸ë¡œ ê°¯ìˆ˜ ì²´í¬
 	m_pBindingTex = new CBindingTex[m_nCount];
 
 	int i = 0;
@@ -229,26 +229,26 @@ BOOL CBindingTexManager::LoadTexFromPath( eType type, eSize size, const CString 
 	while( i < m_nCount )
 
 	{
-		// Index¿Í ºñ±³ÇØ¼­ ÇöÀç ¼ø¼­¿Í ¸ÂÁö ¾Ê´Â ÀÎµ¦½º¶ó¸é ·Îµå°Å³ª ¹öÅØ½º¸¦ Á¤·ÄÇÏÁö ¾Ê´Â´Ù.
+		// Indexì™€ ë¹„êµí•´ì„œ í˜„ì¬ ìˆœì„œì™€ ë§ì§€ ì•ŠëŠ” ì¸ë±ìŠ¤ë¼ë©´ ë¡œë“œê±°ë‚˜ ë²„í…ìŠ¤ë¥¼ ì •ë ¬í•˜ì§€ ì•ŠëŠ”ë‹¤.
 		CString strFilename = fia[nFileCount].GetFileTitle();
 
 		RwInt32 nIndex = atoi(strFilename.GetBuffer());
 
-		// ¹öÅØ½ºÀÇ À§Ä¡ ÃÊ±âÈ­
+		// ë²„í…ìŠ¤ì˜ ìœ„ì¹˜ ì´ˆê¸°í™”
 		m_pBindingTex[i].VertexAssign( 
 			CRect( nX+nSize,
 			nY+nSize,
 			nX, 
 			nY ) );
 
-		// ³ĞÀÌ ÁøÇà
+		// ë„“ì´ ì§„í–‰
 		if (ixCol < m_nColumns)
 		{
 			nX += nSize;
 			ixCol++;
 		}
 
-		// ³ôÀÌ ÁøÇà
+		// ë†’ì´ ì§„í–‰
 		if (ixCol == m_nColumns) 
 		{
 			nY += nSize;
@@ -262,7 +262,7 @@ BOOL CBindingTexManager::LoadTexFromPath( eType type, eSize size, const CString 
 			continue;	
 		}
 		
-		// ÀÎµ¦½º°¡ ÀÏÄ¡ÇÏ´Ù¸é ÅØ½ºÃÄ ·Îµù
+		// ì¸ë±ìŠ¤ê°€ ì¼ì¹˜í•˜ë‹¤ë©´ í…ìŠ¤ì³ ë¡œë”©
 		sprintf_s( acFileBuffer, MAX_PATH, _T("%s"), fia[nFileCount].GetFileName().GetBuffer() );
 		sprintf_s( acPathBuffer, MAX_PATH, _T("%s"), fia[nFileCount].GetFileRoot().GetBuffer() );
 
@@ -323,7 +323,7 @@ void CBindingTexManager::Destroy()
 
 void CBindingTexManager::Render()
 {
-	// °úºÎÇÏ, ÄÃ¸µÀ» ÇÒ±î?
+	// ê³¼ë¶€í•˜, ì»¬ë§ì„ í• ê¹Œ?
 	if( m_nWidth >= 1024*16 ||
 		m_nHeight >= 1024*16 )
 		return;
@@ -369,7 +369,7 @@ BOOL CBindingTexManager::SaveTexCurrentData( eSize size, RwCamera* pRwCamera, co
 	backColor.blue = 89;
 	backColor.alpha = 255;
 
-	// ÀÌÀü Ä«¸Ş¶ó ÀúÀå
+	// ì´ì „ ì¹´ë©”ë¼ ì €ì¥
 	
 	RwCamera rwCamera;
 	memcpy( &rwCamera, pRwCamera, sizeof(RwCamera));
@@ -394,7 +394,7 @@ BOOL CBindingTexManager::SaveTexCurrentData( eSize size, RwCamera* pRwCamera, co
 	RwCameraSetRaster(pRwCamera, pMiniMapRaster);
 	RwCameraSetZRaster(pRwCamera, pMiniMapRasterZ);
 
-	// Ä«¸Ş¶ó¸¦ ¿Å°Ü°¡¸ç Âï´Â´Ù.
+	// ì¹´ë©”ë¼ë¥¼ ì˜®ê²¨ê°€ë©° ì°ëŠ”ë‹¤.
 	int i=0;
 	int nCol = 0, nRow = 0;
 	int nX = (nSize/2), nY = (nSize/2);
@@ -408,12 +408,12 @@ BOOL CBindingTexManager::SaveTexCurrentData( eSize size, RwCamera* pRwCamera, co
 	{
 		if (RwCameraClear(pRwCamera, &backColor , rwCAMERACLEARZ | rwCAMERACLEARIMAGE))
 		{
-			// ÀÏ´Ü ÇÑ¹ø¿¡ ´Ù Âï°í
+			// ì¼ë‹¨ í•œë²ˆì— ë‹¤ ì°ê³ 
 			if(RwCameraBeginUpdate(pRwCamera))
 			{	
 				for(int i=0; i<m_nCount; ++i )
 				{
-					// ÇÊ¿ä°¡ ¾øÀ¸¸é ÂïÁö ¾Ê´Â´Ù.
+					// í•„ìš”ê°€ ì—†ìœ¼ë©´ ì°ì§€ ì•ŠëŠ”ë‹¤.
 					/*m_pBindingTex[i].RenderParallel( pRwCamera );*/
 					m_pBindingTex[i].Render();
 				}
@@ -425,7 +425,7 @@ BOOL CBindingTexManager::SaveTexCurrentData( eSize size, RwCamera* pRwCamera, co
 		RwChar Buffer[256];
 		sprintf_s(Buffer, 256, "%s\\%.4d.bmp", strPath, i);
 
-		// ÇÑ¹ø Á÷°í
+		// í•œë²ˆ ì§ê³ 
 		RwImage *image;
 		RwInt32 x, y;
 
@@ -443,10 +443,10 @@ BOOL CBindingTexManager::SaveTexCurrentData( eSize size, RwCamera* pRwCamera, co
 			}
 		}
 
-		// x, y ¾÷µ¥ÀÌÆ®
+		// x, y ì—…ë°ì´íŠ¸
 		if( nCol < nSaveCol )
 		{
-			// x, y ¾÷µ¥ÀÌÆ®
+			// x, y ì—…ë°ì´íŠ¸
 			RwMatrixGetPos(RwFrameGetMatrix(RwCameraGetFrame(pRwCamera)))->x += nSize;
 			nCol++;
 		}
@@ -470,7 +470,7 @@ BOOL CBindingTexManager::SaveTexCurrentData( eSize size, RwCamera* pRwCamera, co
 
 	memcpy( pRwCamera, &rwCamera, sizeof(RwCamera));
 
-	//// º¹±¸
+	//// ë³µêµ¬
 	RwMatrixGetPos(RwFrameGetMatrix(RwCameraGetFrame(pRwCamera)))->x = (RwReal)(m_nWidth/2);
 	RwMatrixGetPos(RwFrameGetMatrix(RwCameraGetFrame(pRwCamera)))->y = (RwReal)(m_nHeight/2);
 	RwMatrixUpdate(RwFrameGetMatrix(RwCameraGetFrame(pRwCamera)));

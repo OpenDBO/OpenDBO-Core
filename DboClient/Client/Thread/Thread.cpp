@@ -43,7 +43,7 @@ bool CThread::Create( void )
 {
 	if ( m_hThread ) return false;
 
-	// Thread ¸¦ »ı¼ºÇÑ´Ù
+	// Thread ë¥¼ ìƒì„±í•œë‹¤
 	m_hThread = (HANDLE)_beginthreadex( NULL, 0, &ThreaFuncCB, this, CREATE_SUSPENDED, &m_uiThreaID );
 	if ( 0 == m_hThread ) return false;
 
@@ -56,13 +56,13 @@ void CThread::Delete( void )
 {
 	if ( m_hThread )
 	{
-		// Thread °¡ Á¾·áÇÏ±âÀü¿¡ ÀÌ °´Ã¼°¡ ¼Ò¸ê µÇ¸é
-		// ¾ÊµÇ¹Ç·Î Thread°¡ Á¤»óÀûÀÎ Á¾·á¸¦ ¼öÇà ÇÒ ¼ö
-		// ÀÖµµ·Ï ´ë±âÈÄ Á¾·áÇÑ´Ù
+		// Thread ê°€ ì¢…ë£Œí•˜ê¸°ì „ì— ì´ ê°ì²´ê°€ ì†Œë©¸ ë˜ë©´
+		// ì•Šë˜ë¯€ë¡œ Threadê°€ ì •ìƒì ì¸ ì¢…ë£Œë¥¼ ìˆ˜í–‰ í•  ìˆ˜
+		// ìˆë„ë¡ ëŒ€ê¸°í›„ ì¢…ë£Œí•œë‹¤
 		SetExit( true );
 		WaitForSingleObject( m_hThread, INFINITE );
 
-		// Thread ÇÚµéÀ» ´İ´Â´Ù
+		// Thread í•¸ë“¤ì„ ë‹«ëŠ”ë‹¤
 		CloseHandle( m_hThread );
 
 		g_clWorkThreadMgr.RemoveTread( m_hThread );

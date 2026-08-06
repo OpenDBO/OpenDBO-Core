@@ -2,7 +2,7 @@
  *
  * File			: DumpTargetGui.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 12. 26	
  * Abstract		: DBO dump target graphic user interface
  *****************************************************************************

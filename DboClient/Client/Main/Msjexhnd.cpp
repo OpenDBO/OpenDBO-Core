@@ -104,7 +104,7 @@ LONG WINAPI MSJExceptionHandler::MSJUnhandledExceptionFilter(PEXCEPTION_POINTERS
 	if ( m_pApplicationFilter )
 		m_pApplicationFilter( pExceptionInfo );
 
-	// file ����� �ӽ������� ����(����)
+	// file 기록은 임시적으로 뺀다(형석)
 	/*
     if ( bResult )
     {

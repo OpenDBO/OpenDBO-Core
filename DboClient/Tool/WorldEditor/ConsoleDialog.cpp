@@ -1,4 +1,4 @@
-// ConsoleDialog.cpp : ���� �����Դϴ�.
+// ConsoleDialog.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -9,7 +9,7 @@
 #include "ConsoleDialog.h"
 
 
-// CConsoleDialog ��ȭ �����Դϴ�.
+// CConsoleDialog 대화 상자입니다.
 
 IMPLEMENT_DYNAMIC(CConsoleDialog, CDialog)
 CConsoleDialog::CConsoleDialog(CWnd* pParent /*=NULL*/)
@@ -33,7 +33,7 @@ BEGIN_MESSAGE_MAP(CConsoleDialog, CDialog)
 END_MESSAGE_MAP()
 
 
-// CConsoleDialog �޽��� ó�����Դϴ�.
+// CConsoleDialog 메시지 처리기입니다.
 
 BOOL CConsoleDialog::OnInitDialog()
 {

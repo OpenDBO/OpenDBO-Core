@@ -1,4 +1,4 @@
-// TextureBuildDlg.h : Çì´õ ÆÄÀÏ
+// TextureBuildDlg.h : í—¤ë” íŒŒì¼
 //
 
 #pragma once
@@ -7,26 +7,26 @@
 #include "GlobalDef.h"
 #include "FileTreeCtrl.h"
 
-// CTextureBuildDlg ´ëÈ­ »óÀÚ
+// CTextureBuildDlg ëŒ€í™” ìƒì
 class CTextureBuildDlg : public CDialog
 {
-// »ı¼ºÀÔ´Ï´Ù.
+// ìƒì„±ì…ë‹ˆë‹¤.
 public:
-	CTextureBuildDlg(CWnd* pParent = NULL);	// Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CTextureBuildDlg(CWnd* pParent = NULL);	// í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_TEXTUREBUILD_DIALOG };
 
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	
-// ±¸ÇöÀÔ´Ï´Ù.
+// êµ¬í˜„ì…ë‹ˆë‹¤.
 protected:
 	HICON			m_hIcon;
 	CFileTreeCtrl	m_treeFile;
 	CProgressCtrl	m_proAllItems;
 
-	// »ı¼ºµÈ ¸Ş½ÃÁö ¸Ê ÇÔ¼ö
+	// ìƒì„±ëœ ë©”ì‹œì§€ ë§µ í•¨ìˆ˜
 	virtual BOOL OnInitDialog();
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();

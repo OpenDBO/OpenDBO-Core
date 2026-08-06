@@ -1278,7 +1278,7 @@ void COptionSheet::ListSelectionChanging(NMHDR *pNMHDR, LRESULT *pResult)
 void COptionSheet::OnOK()
 {
 	// lleo52
-	// Active ÆäÀÌÁö¿¡ ÇÑÇØ¼­ ¿ÀÄÉÀÌ ¸í·ÉÀ» ³»·ÁÁØ´Ù
+	// Active íŽ˜ì´ì§€ì— í•œí•´ì„œ ì˜¤ì¼€ì´ ëª…ë ¹ì„ ë‚´ë ¤ì¤€ë‹¤
 //	for(int i = 0; i < GetPageCount(); i++) {
 //		GetPage(i)->OnOK();
 //	}

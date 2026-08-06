@@ -161,7 +161,7 @@ VOID CItemChangeBattleAttributeGui::DestroyResultDialog(VOID)
 	m_pdlgResult->Show(false);
 	m_pflsResult->PlayMovie(FALSE);
 }
-// ����
+// 占쏙옙占쏙옙
 VOID CItemChangeBattleAttributeGui::Update(RwReal fElapsed)
 {
 	if (m_eState == STATE_RESULT)
@@ -182,7 +182,7 @@ VOID CItemChangeBattleAttributeGui::Update(RwReal fElapsed)
 	//m_BackFocus.Update( fElapsed );
 }
 
-// �Ի��򿪹�
+// 占쌉삼옙占쏠역뱄옙
 RwInt32 CItemChangeBattleAttributeGui::SwitchDialog(bool bOpen)
 {
 	if (bOpen)
@@ -258,7 +258,7 @@ VOID CItemChangeBattleAttributeGui::HandleEvents(RWS::CMsg& msg)
 		GetDialogManager()->SwitchBag(TRUE);
 		m_hNPCSerial = pData->hSerialId;
 	}
-	else if (msg.Id == g_EventDialog) // ��UI�Ի�
+	else if (msg.Id == g_EventDialog) // 占쏙옙UI占쌉삼옙
 	{
 		SDboEventDialog* pData = reinterpret_cast<SDboEventDialog*>(msg.pData);
 		if (pData->iType == DIALOGEVENT_NPC_BYEBYE && pData->iDestDialog == DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE)
@@ -266,7 +266,7 @@ VOID CItemChangeBattleAttributeGui::HandleEvents(RWS::CMsg& msg)
 			GetDialogManager()->CloseDialog(DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE);
 		}
 	}
-	else if (msg.Id == g_EventSobInfoUpdate) // ���µ��ߵ���Ϣ
+	else if (msg.Id == g_EventSobInfoUpdate) // 占쏙옙占승듸옙占쌩듸옙占쏙옙口
 	{
 		SNtlEventSobInfoUpdate* pData = reinterpret_cast<SNtlEventSobInfoUpdate*>(msg.pData);
 
@@ -278,7 +278,7 @@ VOID CItemChangeBattleAttributeGui::HandleEvents(RWS::CMsg& msg)
 			UpdateSlotIcon();
 		}
 	}
-	else if (msg.Id == g_EventIconMoveClick) // �������ICON �ƶ�
+	else if (msg.Id == g_EventIconMoveClick) // 占쏙옙占쏙옙占쏙옙占폠CON 占싣띰옙
 	{
 		RwBool bPickUpState = (RwBool)msg.pData;
 		ShowIconDestination(bPickUpState);
@@ -293,7 +293,7 @@ VOID CItemChangeBattleAttributeGui::HandleEvents(RWS::CMsg& msg)
 				DeleteOfferItem();
 		}
 	}
-	else if (msg.Id == g_EventRegisterItemChangeBattleAttribute) // �ѵ��߷ŵ�GUI��
+	else if (msg.Id == g_EventRegisterItemChangeBattleAttribute) // 占싼듸옙占쌩렴듸옙GUI占쏙옙
 	{
 		SDboRegisterItemUpgrade* pData = reinterpret_cast<SDboRegisterItemUpgrade*>(msg.pData);
 
@@ -306,7 +306,7 @@ VOID CItemChangeBattleAttributeGui::HandleEvents(RWS::CMsg& msg)
 			// �жϷ������������������������
 			if (m_pUpgradeItem == NULL)
 			{
-				if (IsUpgradableItem(pItemAttr)) // �ж��Ƿ�������ǿ���ĵ���
+				if (IsUpgradableItem(pItemAttr)) // 占싻띰옙占실뤄옙占쏙옙占쏙옙占쏙옙퓻占쏙옙占식듸옙占쏙옙
 				{
 					if (SetItemSlot(pData->hSrcSerial, pData->eSrcPlace, pData->uiSrcSlotIdx, SLOT_ITEM, TRUE))
 						RaiseTop();
@@ -356,11 +356,11 @@ VOID CItemChangeBattleAttributeGui::SetSlotRectHardCode(VOID)
 {
 	CRectangle rtScreen = m_pThis->GetScreenRect();
 
-	// ����ͼ
+	// 占쏙옙占쏙옙暠
 	m_BackFocus.m_rtEffectSlot.SetRectWH(15, 152, 290, 276);
 	m_BackFocus.m_surSlotEffect.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("ItemChangeBattleAtt.srf", "srfSlotBack"));
 
-	// ������ͼ��
+	// 占쏙옙占쏙옙占쏙옙暠占쏙옙
 	m_rtSlot[SLOT_ITEM].SetRectWH(144, 267, DBOGUI_ICON_SIZE, DBOGUI_ICON_SIZE);
 	m_rtSlot[SLOT_HONEST].SetRectWH(144, 201, DBOGUI_ICON_SIZE, DBOGUI_ICON_SIZE);
 	m_rtSlot[SLOT_STRANGE].SetRectWH(179, 327, DBOGUI_ICON_SIZE, DBOGUI_ICON_SIZE);
@@ -369,7 +369,7 @@ VOID CItemChangeBattleAttributeGui::SetSlotRectHardCode(VOID)
 	m_rtSlot[SLOT_FUNNY].SetRectWH(76, 263, DBOGUI_ICON_SIZE, DBOGUI_ICON_SIZE);
 
 
-	// װ��������Ч��
+	// 陋占쏙옙占쏙옙占쏙옙占쏙옙槻占쏙옙
 	m_aSlotEffect[SLOT_ITEM].m_rtEffectSlot.SetRectWH(110, 236, 101, 92);
 	m_aSlotEffect[SLOT_HONEST].m_rtEffectSlot.SetRectWH(126, 171, 64, 72);
 	m_aSlotEffect[SLOT_STRANGE].m_rtEffectSlot.SetRectWH(168, 317, 93, 76);
@@ -414,7 +414,7 @@ RwInt32 CItemChangeBattleAttributeGui::GetChildSlotIdx(RwInt32 nX, RwInt32 nY)
 	return -1;
 }
 
-// Error Notify�� ���⼭ ó��.
+// Error Notify占쏙옙 占쏙옙占썩서 처占쏙옙.
 bool CItemChangeBattleAttributeGui::SetItemSlot(RwUInt32 hSerialID, RwUInt32 eSrcplace, RwUInt32 uiSrcSlotIdx, RwUInt32 uiDestSlotIdx, RwBool bNeedToIconMoveEnd)
 {
 	if (m_eState == STATE_UPGRADE_PROCESS ||
@@ -543,7 +543,7 @@ bool CItemChangeBattleAttributeGui::SetItemSlot(RwUInt32 hSerialID, RwUInt32 eSr
 	// 
 	UpdateSlotIcon();
 
-	// ������ ���� �Ϸ�
+	// 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占싹뤄옙
 	if (bNeedToIconMoveEnd)
 		GetIconMoveManager()->IconMoveEnd();
 
@@ -552,7 +552,7 @@ bool CItemChangeBattleAttributeGui::SetItemSlot(RwUInt32 hSerialID, RwUInt32 eSr
 
 VOID CItemChangeBattleAttributeGui::UpdateSlotIcon(VOID)
 {
-	// Info Wnd ����
+	// Info Wnd 占쏙옙占쏙옙
 	if (m_nMouseOnIdx >= 0 && GetInfoWndManager()->GetRequestGui() == DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE)
 	{
 		ShowInfoWnd(TRUE, m_nMouseOnIdx);
@@ -565,7 +565,7 @@ VOID CItemChangeBattleAttributeGui::UpdateSlotIcon(VOID)
 	}
 }
 
-// ���õ���icon
+// 占쏙옙占시듸옙占쏙옙icon
 VOID CItemChangeBattleAttributeGui::SetUpgradeItem(CNtlSobItem* pUpgradeItem)
 {
 	if (!pUpgradeItem)
@@ -818,7 +818,7 @@ VOID CItemChangeBattleAttributeGui::ShowInfoWnd(RwBool bShow, RwInt32 nMouseOnId
 				}
 				else
 				{
-					// �˴���ʾ���߸�ħ������
+					// 占싯댐옙占쏙옙刻占쏙옙占쌩몌옙침占쏙옙占쏙옙占쏙옙
 					stINFOWND_BATTLEATTR sBattleAttr;
 					sBattleAttr.eBattleAttrInfoType = stINFOWND_BATTLEATTR::TYPE_ATTR_UPGRADE;
 
@@ -911,7 +911,7 @@ VOID CItemChangeBattleAttributeGui::ShowIconDestination(RwBool isPick)
 				return;
 			else
 			{
-				// Item �� �������Ŀ��� Pickup�� ���� �ʴ´�.
+				// Item 占쏙옙 占쏙옙占쏙옙占쏙옙占식울옙占쏙옙 Pickup占쏙옙 占쏙옙占쏙옙 占십는댐옙.
 				for (RwInt32 i = 0; i < NUM_SLOTEFFECT; ++i)
 				{
 					m_anFocusEffect[i] = m_anFocusEffect[i] | SLOT_FOCUS_CAN_MOVE;
@@ -954,7 +954,7 @@ VOID CItemChangeBattleAttributeGui::ClickEffect(RwBool bPush, RwInt32 nSlotIdx /
 	m_nPushDownIndex = nSlotIdx;
 }
 
-// �������Բ۵�Ч��
+// 占쏙옙占쏙옙占쏙옙占쌉꾼듸옙槻占쏙옙
 VOID CItemChangeBattleAttributeGui::SetAttributeSlotEffect(RwInt32 nSlotIdx, RwBool bInSlot)
 {
 	if (nSlotIdx >= NUM_SLOT)
@@ -1037,7 +1037,7 @@ VOID CItemChangeBattleAttributeGui::SetAttributeSlotEffect(RwInt32 nSlotIdx, RwB
 	}
 }
 
-// �жϵ����Ƿ��ǿ��Ը�ħ������
+// 占싻뙤듸옙占쏙옙占실뤄옙占실울옙占쌉몌옙침占쏙옙占쏙옙占쏙옙
 RwBool CItemChangeBattleAttributeGui::IsUpgradableItem(CNtlSobItemAttr* pItemAttr)
 {
 	if (pItemAttr->IsNeedToIdentify())
@@ -1058,7 +1058,7 @@ RwBool CItemChangeBattleAttributeGui::IsUpgradableItem(CNtlSobItemAttr* pItemAtt
 	return FALSE;
 }
 
-// �ж��ṩ��װ���Ƿ���Ч
+// 占싻띰옙占써묩占쏙옙陋占쏙옙占실뤄옙占쏙옙槻
 RwBool CItemChangeBattleAttributeGui::IsValidOfferItem(CNtlSobItemAttr* pItemAttr)
 {
 	sITEM_TBLDAT* pData = pItemAttr->GetItemTbl();
@@ -1294,7 +1294,7 @@ VOID CItemChangeBattleAttributeGui::OnMouseUp(const CKey& key)
 				else
 					DeleteOfferItem();
 
-				// Info Wnd ����
+				// Info Wnd 占쏙옙占쏙옙
 				if (m_nMouseOnIdx >= 0 && GetInfoWndManager()->GetRequestGui() == DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE)
 				{
 					ShowInfoWnd(TRUE, m_nMouseOnIdx);
@@ -1352,7 +1352,7 @@ VOID CItemChangeBattleAttributeGui::OnMouseOut(gui::CComponent* pComponent)
 	}
 }
 
-// �˴���Ⱦ �޸�λ�ڵ��µ�ģ��
+// 占싯댐옙占쏙옙횡 占쌨몌옙貫占쌘듸옙占승듸옙친占쏙옙
 VOID CItemChangeBattleAttributeGui::OnPaint(VOID)
 {
 	m_BackFocus.m_surSlotEffect.Render();

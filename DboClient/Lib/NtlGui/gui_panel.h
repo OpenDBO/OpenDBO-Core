@@ -53,7 +53,7 @@ public:
 
 	VOID SetBlending(DWORD dwBlend);
 
-	//: panel alpha ¿øº»À¸·Î º¹±Í...
+	//: panel alpha ì›ë³¸ìœ¼ë¡œ ë³µê·€...
 	VOID RestoreAlpha(VOID);
 
 	//: Enable Fill

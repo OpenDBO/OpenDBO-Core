@@ -13,7 +13,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// «—±πæÓ resources
+// ÌïúÍµ≠Ïñ¥ resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 #ifdef _WIN32
@@ -339,17 +339,17 @@ END
 
 IDD_CONTROL_POINT DIALOGEX 0, 0, 320, 61
 STYLE DS_SETFONT | WS_CHILD
-FONT 9, "MS Sans Serif, ±º∏≤", 0, 0, 0x0
+FONT 9, "MS Sans Serif, Íµ¥Î¶º", 0, 0, 0x0
 BEGIN
 END
 
 IDD_CONTROLPANE DIALOG  0, 0, 186, 95
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "¥Î»≠ ªÛ¿⁄"
-FONT 9, "MS Sans Serif, ±º∏≤"
+CAPTION "ÎåÄÌôî ÏÉÅÏûê"
+FONT 9, "MS Sans Serif, Íµ¥Î¶º"
 BEGIN
-    DEFPUSHBUTTON   "»Æ¿Œ",IDOK,129,7,50,16
-    PUSHBUTTON      "√Îº“",IDCANCEL,129,26,50,16
+    DEFPUSHBUTTON   "ÌôïÏù∏",IDOK,129,7,50,16
+    PUSHBUTTON      "Ï∑®ÏÜå",IDCANCEL,129,26,50,16
 END
 
 IDD_SEQUENCE_GRAPH DIALOGEX 0, 0, 600, 243
@@ -364,10 +364,10 @@ END
 IDD_POINTSHAPE DIALOGEX 0, 0, 290, 184
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Point Shape"
-FONT 8, "±º∏≤", 400, 0, 0x81
+FONT 8, "Íµ¥Î¶º", 400, 0, 0x81
 BEGIN
-    DEFPUSHBUTTON   "»Æ¿Œ",IDOK,177,161,50,16
-    PUSHBUTTON      "√Îº“",IDCANCEL,233,161,50,16
+    DEFPUSHBUTTON   "ÌôïÏù∏",IDOK,177,161,50,16
+    PUSHBUTTON      "Ï∑®ÏÜå",IDCANCEL,233,161,50,16
 END
 
 IDD_RENAME_PROP DIALOGEX 0, 0, 163, 58
@@ -386,8 +386,8 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSM
 CAPTION "Viewer Control"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "»Æ¿Œ",IDOK,75,273,50,14
-    PUSHBUTTON      "√Îº“",IDCANCEL,137,273,50,14
+    DEFPUSHBUTTON   "ÌôïÏù∏",IDOK,75,273,50,14
+    PUSHBUTTON      "Ï∑®ÏÜå",IDCANCEL,137,273,50,14
     GROUPBOX        "World Change",IDC_STATIC,7,7,183,103
     GROUPBOX        "Avatar",IDC_STATIC,7,120,183,149
     LTEXT           "Teleport(x,z) : ",IDC_STATIC,17,201,63,8
@@ -495,8 +495,8 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSM
 CAPTION "Add node"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "»Æ¿Œ",IDOK,18,30,50,14
-    PUSHBUTTON      "√Îº“",IDCANCEL,90,30,50,14
+    DEFPUSHBUTTON   "ÌôïÏù∏",IDOK,18,30,50,14
+    PUSHBUTTON      "Ï∑®ÏÜå",IDCANCEL,90,30,50,14
     LISTBOX         IDC_LIST1,6,7,144,18,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
 END
 
@@ -532,10 +532,10 @@ END
 
 IDD_SOUND_OPTION DIALOGEX 0, 0, 250, 121
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "ªÁøÓµÂ ø…º«"
+CAPTION "ÏÇ¨Ïö¥Îìú ÏòµÏÖò"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "»Æ¿Œ",IDOK,101,102,50,14
+    DEFPUSHBUTTON   "ÌôïÏù∏",IDOK,101,102,50,14
     CONTROL         "",IDC_SLIDER_WEATHER_EFFECT,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,60,42,168,18
     LTEXT           "Weather Effect",IDC_STATIC,6,46,54,8
     CONTROL         "",IDC_CHECK_WEATHER_EFFECT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,228,43,12,12
@@ -865,8 +865,8 @@ END
 
 STRINGTABLE 
 BEGIN
-    ID_PANE_OBJ_ADD         "√ﬂ∞°"
-    ID_PANE_OBJ_DELETE      "ªË¡¶"
+    ID_PANE_OBJ_ADD         "Ï∂îÍ∞Ä"
+    ID_PANE_OBJ_DELETE      "ÏÇ≠Ï†ú"
     ID_OBJ_PANE_ADD         "Create a new direct prop\nAdd"
     ID_OBJ_PANE_DELETE      "Delete a direct prop\nRemove"
     ID_SCRIPT_PANE_COMPILE  "Build lua script\nBuild"
@@ -943,7 +943,7 @@ BEGIN
     ID_BUTTON_DIRECTION_STOP "stop\nstop"
 END
 
-#endif    // «—±πæÓ resources
+#endif    // ÌïúÍµ≠Ïñ¥ resources
 /////////////////////////////////////////////////////////////////////////////
 
 

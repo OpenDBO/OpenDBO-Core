@@ -89,7 +89,7 @@ public:
 		<ul>
 			<li>The page has been added to a option sheet using
 				CPropertySheet::AddPage.
-			<li>The option sheet’s DoModal or Create function has been called.
+			<li>The option sheetë­© DoModal or Create function has been called.
 			<li>The user has selected (tabbed to) this page.
 		</ul>
 
@@ -109,7 +109,7 @@ public:
 		<ul>
 			<li>The page has been added to a option sheet using
 				CPropertySheet::AddPage.
-			<li>The option sheet’s DoModal or Create function has been called.
+			<li>The option sheetë­© DoModal or Create function has been called.
 			<li>The user has selected (tabbed to) this page.
 		</ul>
 
@@ -260,7 +260,7 @@ public:
 		validation (DDV) error, the page retains focus.
 
 		After this member function returns successfully, the framework will call
-		the page’s OnOK function.
+		the pageë­© OnOK function.
 	*/
 	virtual BOOL OnKillActive();
 

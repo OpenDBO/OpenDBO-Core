@@ -60,7 +60,7 @@ RwBool CChatDisplayGui::Create(CChatGui* pChatGui)
 	m_pOutDisplay->SetLineSpace(CHAT_DISP_LINE_GAP);
 	m_pOutDisplay->SetMaxLine(CHAT_DISP_MAX_LINE);
 
-	// ���ϴ� ���� ���� ��ư
+	// 占쏙옙占싹댐옙 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙튼
 	m_pLastButton = (gui::CButton*)GetComponent("btnLastButton");
 	m_slotLastButton = m_pLastButton->SigClicked().Connect(this, &CChatDisplayGui::OnClicked_LastButton);	
 
@@ -283,7 +283,7 @@ CChatDisplayGui::eResizeType CChatDisplayGui::CheckResizePosition(RwInt32 iX, Rw
 	CRectangle rtScreen = m_pThis->GetScreenRect();
 	CRectangle rtRect;
 
-	// ����
+	// 占쏙옙占쏙옙
 	rtRect = rtScreen;
 	rtRect.left = rtRect.right - dMOUSE_CHECK_SIZE;
 	rtRect.bottom = rtScreen.top + dMOUSE_CHECK_SIZE;	
@@ -291,7 +291,7 @@ CChatDisplayGui::eResizeType CChatDisplayGui::CheckResizePosition(RwInt32 iX, Rw
 	if( rtRect.PtInRect(iX, iY) )
 		return RESIZE_TYPE_RIGHT_TOP;
 
-	// ���ϴ�
+	// 占쏙옙占싹댐옙
 	rtRect = rtScreen;
 	rtRect.left = rtRect.right - dMOUSE_CHECK_SIZE;
 	rtRect.top = rtScreen.bottom - dMOUSE_CHECK_SIZE;
@@ -306,14 +306,14 @@ CChatDisplayGui::eResizeType CChatDisplayGui::CheckResizePosition(RwInt32 iX, Rw
 	if( rtRect.PtInRect(iX, iY) )
 		return RESIZE_TYPE_TOP;
 
-	// �ϴ�
+	// 占싹댐옙
 	rtRect = rtScreen;
 	rtRect.top = rtScreen.bottom - dMOUSE_CHECK_SIZE;
 
 	if( rtRect.PtInRect(iX, iY) )
 		return RESIZE_TYPE_BOTTOM;
 
-	// ����
+	// 占쏙옙占쏙옙
 	rtRect = rtScreen;
 	rtRect.left = rtScreen.right - dMOUSE_CHECK_SIZE;
 
@@ -346,7 +346,7 @@ VOID CChatDisplayGui::ResizeDisplay(RwInt32 iCurMouseX, RwInt32 iCurMouseY)
 	RwInt32 iNewX = iCurMouseX - m_ResizingInfo.iConfirmXPos;
 	RwInt32 iNewY = iCurMouseY - m_ResizingInfo.iConfirmYPos;
 
-	// ���� ����
+	// 占쏙옙占쏙옙 占쏙옙占쏙옙
 	if( m_ResizingInfo.eType == RESIZE_TYPE_TOP ||
 		m_ResizingInfo.eType == RESIZE_TYPE_RIGHT_TOP )
 	{
@@ -354,14 +354,14 @@ VOID CChatDisplayGui::ResizeDisplay(RwInt32 iCurMouseX, RwInt32 iCurMouseY)
 
 		if( (rtScreen.bottom - rtScreen.top) < CHAT_DISP_MINIMUM_HEIGHT )
 		{
-			// �ּ� ũ��
+			// 占쌍쇽옙 크占쏙옙
 			RwInt32 iRealTop = rtScreen.bottom - CHAT_DISP_MINIMUM_HEIGHT;
 			iNewY += iRealTop - rtScreen.top;
 			rtScreen.top = iRealTop;
 		}
 		else if( (rtScreen.bottom - rtScreen.top) > CHAT_DISP_MAXIMUM_HEIGHT )
 		{
-			// �ִ� ũ��
+			// 占쌍댐옙 크占쏙옙
 			RwInt32 iRealTop = rtScreen.bottom - CHAT_DISP_MAXIMUM_HEIGHT;
 			iNewY += iRealTop - rtScreen.top;
 			rtScreen.top = iRealTop;
@@ -374,21 +374,21 @@ VOID CChatDisplayGui::ResizeDisplay(RwInt32 iCurMouseX, RwInt32 iCurMouseY)
 
 		if( (rtScreen.bottom - rtScreen.top) < CHAT_DISP_MINIMUM_HEIGHT )
 		{
-			// �ּ� ũ��
+			// 占쌍쇽옙 크占쏙옙
 			RwInt32 iRealBottom = rtScreen.top + CHAT_DISP_MINIMUM_HEIGHT;
 			iNewY += iRealBottom - rtScreen.bottom;
 			rtScreen.bottom = iRealBottom;
 		}
 		else if( (rtScreen.bottom - rtScreen.top) > CHAT_DISP_MAXIMUM_HEIGHT )
 		{
-			// �ִ� ũ��
+			// 占쌍댐옙 크占쏙옙
 			RwInt32 iRealBottom = rtScreen.top + CHAT_DISP_MAXIMUM_HEIGHT;
 			iNewY += iRealBottom - rtScreen.bottom;
 			rtScreen.bottom = iRealBottom;
 		}
 	}
 
-	// ���� ����
+	// 占쏙옙占쏙옙 占쏙옙占쏙옙
 	if( m_ResizingInfo.eType == RESIZE_TYPE_RIGHT_TOP ||
 		m_ResizingInfo.eType == RESIZE_TYPE_RIGHT ||
 		m_ResizingInfo.eType == RESIZE_TYPE_RIGHT_BOTTOM )
@@ -397,26 +397,26 @@ VOID CChatDisplayGui::ResizeDisplay(RwInt32 iCurMouseX, RwInt32 iCurMouseY)
 
 		if( (rtScreen.right - rtScreen.left) < CHAT_DISP_MINIMUM_WIDTH )
 		{
-			// �ּ� ũ��
+			// 占쌍쇽옙 크占쏙옙
 			RwInt32 iRealRight = rtScreen.left + CHAT_DISP_MINIMUM_WIDTH;
 			iNewX += iRealRight - rtScreen.right;
 			rtScreen.right = iRealRight;
 		}
 		else if( (rtScreen.right - rtScreen.left) > CHAT_DISP_MAXIMUM_WIDTH )
 		{
-			// �ִ� ũ��
+			// 占쌍댐옙 크占쏙옙
 			RwInt32 iRealRight = rtScreen.left + CHAT_DISP_MAXIMUM_WIDTH;
 			iNewX += iRealRight - rtScreen.right;
 			rtScreen.right = iRealRight;
 		}
 	}
 
-	// ����� ������ �Ǿ��°�
+	// 占쏙옙占쏙옙占쏘가 占쏙옙占쏙옙占쏙옙 占실억옙占승곤옙
 	if( GetPosition() != rtScreen )
 	{
 		if( m_byDisplayGuiIndex == 0 )
 		{
-			// ä�� �Է�â�� ����� ���� �����Ѵ�
+			// 채占쏙옙 占쌉뤄옙창占쏙옙 占쏙옙占쏙옙占쏘를 占쏙옙占쏙옙 占쏙옙占쏙옙占싼댐옙
 			CChatGui* pChatGui = reinterpret_cast<CChatGui*>( GetDialogManager()->GetDialog(DIALOG_CHAT) );
 			CRectangle rtChatScreen = pChatGui->GetPosition();
 
@@ -467,8 +467,8 @@ VOID CChatDisplayGui::OnClicked_LastButton(gui::CComponent* pComponent)
 
 RwInt32	CChatDisplayGui::MouseMoveHandler(uintptr_t uiMouseData)
 {
-	// GUI�� ��Ŀ���� ���ų� ä��â�� Enable ���¿��� ������ �����ϵ���
-	// InputHandler���� ���� �̺�Ʈ�� �޾Ƶ��δ�
+	// GUI占쏙옙 占쏙옙커占쏙옙占쏙옙 占쏙옙占신놂옙 채占쏙옙창占쏙옙 Enable 占쏙옙占승울옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싹듸옙占쏙옙
+	// InputHandler占쏙옙占쏙옙 占쏙옙占쏙옙 占싱븝옙트占쏙옙 占쌨아듸옙占싸댐옙
 	if( !IsShow() )
 		return 1;
 
@@ -575,7 +575,7 @@ VOID CChatDisplayGui::OnMouseDown(const CKey& key)
 	{
 	case RESIZE_TYPE_RIGHT_TOP:
 		{
-			// ����
+			// 占쏙옙占쏙옙
 			m_ResizingInfo.eType = RESIZE_TYPE_RIGHT_TOP;
 			m_pThis->CaptureMouse();
 			GetDialogManager()->OnMode(DIALOGMODE_CHATTING_RESIZE_RIGHTUP);
@@ -583,7 +583,7 @@ VOID CChatDisplayGui::OnMouseDown(const CKey& key)
 		}
 	case RESIZE_TYPE_RIGHT_BOTTOM:
 		{
-			// ���ϴ�
+			// 占쏙옙占싹댐옙
 			if( m_byDisplayGuiIndex == 0 )
 				return;
 
@@ -602,7 +602,7 @@ VOID CChatDisplayGui::OnMouseDown(const CKey& key)
 		}
 	case RESIZE_TYPE_BOTTOM:
 		{
-			// �ϴ�
+			// 占싹댐옙
 			if( m_byDisplayGuiIndex == 0 )
 				return;
 
@@ -613,7 +613,7 @@ VOID CChatDisplayGui::OnMouseDown(const CKey& key)
 		}
 	case RESIZE_TYPE_RIGHT:
 		{
-			// ����
+			// 占쏙옙占쏙옙
 			m_ResizingInfo.eType = RESIZE_TYPE_RIGHT;
 			m_pThis->CaptureMouse();
 			GetDialogManager()->OnMode(DIALOGMODE_CHATTING_RESIZE_VERT);
@@ -628,7 +628,7 @@ VOID CChatDisplayGui::OnMouseDown(const CKey& key)
 	}
 
 
-	// ChatDisplay�� ������ �� �ִ���...
+	// ChatDisplay占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙 占쌍댐옙占쏙옙...
 	if( !m_bLock )
 	{
 		m_Tracking.bTracking = TRUE;
@@ -754,7 +754,7 @@ VOID CChatDisplayGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 				if( !pChatGui )
 					return;
 
-				// ä���� �Է��ϴ� â�� ���� �����δ�
+				// 채占쏙옙占쏙옙 占쌉뤄옙占싹댐옙 창占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占싸댐옙
 				CRectangle rtChatScreen = pChatGui->GetPosition();
 				RwInt32 iX = rtChatScreen.left + (CMouse::m_nX - m_Tracking.iCapturedX);
 				RwInt32 iY = rtChatScreen.top + (CMouse::m_nY - m_Tracking.iCapturedY);

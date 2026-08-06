@@ -227,9 +227,9 @@ RwBool CNtlWorldFieldManager::CreateSky(void) // �������
 	// 1. Sphere type only for multi fields including no prop. interpolation effect
 	// 2. Hemisphere type including prop. interpolation effect
 
-	//������sky���ͣ���ȡ����dGET_WORLD_PARAM��sky��������  
-	// 1�� ����ֻ�����ڶೡ������֧���� ��ֵЧ��
-	// 2�� ����ʽ����֧���� ��ֵЧ��
+	//占쏙옙占쏙옙占쏙옙sky占쏙옙占싶ｏ옙占쏙옙혤占쏙옙占쏙옙dGET_WORLD_PARAM占쏙옙sky占쏙옙占쏙옙占쏙옙占쏙옙  
+	// 1占쏙옙 占쏙옙占쏙옙怜占쏙옙占쏙옙占쌘뜩끝占쏙옙占쏙옙占쏙옙連占쏙옙占쏙옙 占쏙옙令槻占쏙옙
+	// 2占쏙옙 占쏙옙占쏙옙駕占쏙옙占쏙옙連占쏙옙占쏙옙 占쏙옙令槻占쏙옙
 
 	SPLEntityCreateParam	Param;
 	RwInt32					SkyTypeIdx;
@@ -457,7 +457,7 @@ RpLight* NtlWorldRemoveLightWhenWorldDestroy(RpLight* light, void* data)
 
 RpAtomic* NtlWorldLogAtmoicWhenWorldDestroy(RpAtomic* atomic, void* data)
 {
-	// Destroy �� Atomic�� ���� �ִ� Class �����Ͽ� �̸��� �˾ƿ´�.
+	// Destroy 占쏙옙 Atomic占쏙옙 占쏙옙占쏙옙 占쌍댐옙 Class 占쏙옙占쏙옙占싹울옙 占싱몌옙占쏙옙 占싯아온댐옙.
 	if (RpNtlAtomicGetData(atomic))
 	{
 		CNtlPLEntity* pPLEntity = static_cast<CNtlPLEntity*>(RpNtlAtomicGetData(atomic));
@@ -515,7 +515,7 @@ void CNtlWorldFieldManager::Init(RpWorld* pNtlWorld, RwV3d& SpawnPos)
 
 	InitSingleInstance();
 
-	// �ε���
+	// 占싸듸옙占쏙옙
 	CNtlWorldSectorManager::Init();
 
 	RwD3D9SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
@@ -547,13 +547,13 @@ void CNtlWorldFieldManager::Init(RpWorld* pNtlWorld, RwV3d& SpawnPos)
 		}
 	}
 
-	// generate world sector pointer array ������������ָ������
+	// generate world sector pointer array 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙寧占쏙옙占쏙옙占쏙옙
 	CreateSectorMap(m_pRpWorld);
 
 	// load PVS data
 	LoadPVS();
 
-	// initialize spawning position such as avatar, datum index, move flags ��ʼ������λ�ã���ͷ�������������ƶ���־
+	// initialize spawning position such as avatar, datum index, move flags 占쏙옙迦占쏙옙占쏙옙占쏙옙貫占시ｏ옙占쏙옙庫占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占싣띰옙占쏙옙羚
 	RwInt32 CurFieldIdx = GetFieldIdx(SpawnPos);
 	NTL_ASSERTE(CurFieldIdx != -1);
 
@@ -572,10 +572,10 @@ void CNtlWorldFieldManager::Init(RpWorld* pNtlWorld, RwV3d& SpawnPos)
 	CreateSky();
 	CreateDragonSky();
 	GetSceneManager()->SetActiveSky(m_pSkyEntity);
-	CreateFog(); //������
+	CreateFog(); //占쏙옙占쏙옙占쏙옙
 	CreatePlant();
-	CreateWater();	//����ˮ
-	CreateLight();	//��������
+	CreateWater();	//占쏙옙占쏙옙彊
+	CreateLight();	//占쏙옙占쏙옙占쏙옙占쏙옙
 	CreateBloom();	// �������䣿
 
 	m_pPlanetHandler = NTL_NEW CNtlPLPlanetHandler;
@@ -593,7 +593,7 @@ void CNtlWorldFieldManager::Free(void)
 
 	DBO_TRACE(m_iCzTestCnt == 0, "CNtlWorldFieldManager Free Cnt Test : " << m_iCzTestCnt);
 
-	// �ε���
+	// 占싸듸옙占쏙옙
 	CNtlWorldSectorManager::Free();
 
 	DestroySky();
@@ -649,11 +649,11 @@ void CNtlWorldFieldManager::InitSingleInstance()
 
 	if (fopen_s(&pFile, strPath.c_str(), "r"))
 	{
-		DBO_WARNING_MESSAGE("·�������ļ��򿪴���");
+		DBO_WARNING_MESSAGE("쨌占쏙옙占쏙옙占쏙옙占식쇽옙占쏠역댐옙占쏙옙");
 	}
 	else
 	{
-		// ����ÿ�ε��ѡ�еĿ��С
+		// 占쏙옙占쏙옙첼占싸듸옙占싼∽옙筠커占쏙옙鬼
 		RwInt32 iCunkSize;
 		fscanf(pFile, "%d", &iCunkSize);
 		if (iCunkSize > 0)
@@ -883,7 +883,7 @@ void CNtlWorldFieldManager::UpdateDatumDir()
 	}
 	else
 	{
-		// ���� �� Brack�� �ɰ� �����̵�(������)�� �ϰ� �Ǹ� m_eMove2�� ���� ����
+		// 占쏙옙占쏙옙 占쏙옙 Brack占쏙옙 占심곤옙 占쏙옙占쏙옙占싱듸옙(占쏙옙占쏙옙占쏙옙)占쏙옙 占싹곤옙 占실몌옙 m_eMove2占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙
 		// �ʴ� ��찡 �߻� �Ѵ�. �� ��� ePORTAL ó���� �����Ѵ�.
 		// exception; Sync. wasn't matched
 		m_eMoved2 = ePORTAL;
@@ -3668,7 +3668,7 @@ RwBool CNtlWorldFieldManager::GetAFieldProp(RwV3d& Pos, sNTL_FIELD_PROP& NtlFiel
 {
 	/*
 	WorldFileFormat - FieldProperty
-	Field Property�� File �Ǵ� Memory�� ���� ������ �����´�.
+	Field Property占쏙옙 File 占실댐옙 Memory占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占승댐옙.
 	*/
 
 	RwInt32 Idx = GetFieldIdx(Pos);
@@ -4172,7 +4172,7 @@ RwBool CNtlWorldFieldManager::SaveCurFieldsBeforeExit()
 	// 	}
 	// #endif
 
-		// FieldManager�� �ʱ�ȭ �ϴ� �ų� ���������� m_eMove2�� eC�� ���� WorldEeady ���¸� ���� �Ѵ�.
+		// FieldManager占쏙옙 占십깍옙화 占싹댐옙 占신놂옙 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 m_eMove2占쏙옙 eC占쏙옙 占쏙옙占쏙옙 WorldEeady 占쏙옙占승몌옙 占쏙옙占쏙옙 占싼댐옙.
 	m_eMoved2 = eC;
 	for (RwInt32 i = 0; i < 49; ++i)
 	{
@@ -5002,7 +5002,7 @@ void CNtlWorldFieldManager::UpdateMsg(RwV3d& Pos)
 	if (GetFieldPropVariationStarting())
 	{
 		// Update current map name
-		UpdateCurMapName(Pos); // ���µ�ǰ��ͼ������
+		UpdateCurMapName(Pos); // 占쏙옙占승듸옙품占쏙옙暠占쏙옙占쏙옙占쏙옙
 
 		sNTL_FIELD_PROP NtlFieldProp;
 		GetAFieldProp(Pos, NtlFieldProp);
@@ -5497,7 +5497,7 @@ RwBool CNtlWorldFieldManager::GetWorldLightColor(RwV3d& Pos, RwRGBA* pOutColor, 
 	RwRGBAReal	clrfResult;
 	RwBool		bResult = FALSE;
 
-	// Box �˻�.
+	// Box 占싯삼옙.
 	for (int i = 0; i < 9; ++i)
 	{
 		if (vecNeighborSectors.at(i) == -1)
@@ -5524,7 +5524,7 @@ RwBool CNtlWorldFieldManager::GetWorldLightColor(RwV3d& Pos, RwRGBA* pOutColor, 
 		}
 	}
 
-	// Box���� üũ���� �ʾҴٸ� ���� �˻� �Ѵ�.
+	// Box占쏙옙占쏙옙 체크占쏙옙占쏙옙 占십았다몌옙 占쏙옙占쏙옙 占싯삼옙 占싼댐옙.
 	if (!bResult)
 	{
 		// WorldLight
@@ -6634,7 +6634,7 @@ RpLight* NtlWorldRemoveLightWhenWorldDestroy(RpLight* light, void* data)
 
 RpAtomic* NtlWorldLogAtmoicWhenWorldDestroy(RpAtomic* atomic, void* data)
 {
-	// Destroy �� Atomic�� ���� �ִ� Class �����Ͽ� �̸��� �˾ƿ´�.
+	// Destroy 占쏙옙 Atomic占쏙옙 占쏙옙占쏙옙 占쌍댐옙 Class 占쏙옙占쏙옙占싹울옙 占싱몌옙占쏙옙 占싯아온댐옙.
 	if (RpNtlAtomicGetData(atomic))
 	{
 		CNtlPLEntity* pPLEntity = static_cast<CNtlPLEntity*>(RpNtlAtomicGetData(atomic));
@@ -6690,7 +6690,7 @@ void CNtlWorldFieldManager::Init(RpWorld* pNtlWorld, RwV3d& SpawnPos)
 
 	InitSingleInstance();
 
-	// �ε���
+	// 占싸듸옙占쏙옙
 	CNtlWorldSectorManager::Init();
 
 	RwD3D9SetRenderState(D3DRS_FILLMODE, D3DFILL_SOLID);
@@ -6766,7 +6766,7 @@ void CNtlWorldFieldManager::Free(void)
 {
 	NTL_FUNCTION("CNtlWorldFieldManager::Free");
 
-	// �ε���
+	// 占싸듸옙占쏙옙
 	CNtlWorldSectorManager::Free();
 
 	DestroySky();
@@ -7042,7 +7042,7 @@ void CNtlWorldFieldManager::UpdateDatumDir()
 	}
 	else
 	{
-		// ���� �� Brack�� �ɰ� �����̵�(������)�� �ϰ� �Ǹ� m_eMove2�� ���� ����
+		// 占쏙옙占쏙옙 占쏙옙 Brack占쏙옙 占심곤옙 占쏙옙占쏙옙占싱듸옙(占쏙옙占쏙옙占쏙옙)占쏙옙 占싹곤옙 占실몌옙 m_eMove2占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙
 		// �ʴ� ��찡 �߻� �Ѵ�. �� ��� ePORTAL ó���� �����Ѵ�.
 		// exception; Sync. wasn't matched
 		m_eMoved2 = ePORTAL;
@@ -9531,7 +9531,7 @@ RwBool CNtlWorldFieldManager::SetAFieldProp(RwV3d& Pos, sNTL_FIELD_PROP& NtlFiel
 {
 	/*
 	WorldFileFormat - FieldProperty
-	Field Property�� File �Ǵ� Memory ������ �����Ѵ�.
+	Field Property占쏙옙 File 占실댐옙 Memory 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싼댐옙.
 	*/
 
 	RwInt32 NumSectorTile = (dGET_WORLD_PARAM()->WorldSectorTileNum * 2) * (dGET_WORLD_PARAM()->WorldSectorTileNum * 2);
@@ -9824,7 +9824,7 @@ RwBool CNtlWorldFieldManager::GetAFieldProp(RwV3d& Pos, sNTL_FIELD_PROP& NtlFiel
 {
 	/*
 	WorldFileFormat - FieldProperty
-	Field Property�� File �Ǵ� Memory�� ���� ������ �����´�.
+	Field Property占쏙옙 File 占실댐옙 Memory占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占승댐옙.
 	*/
 
 	RwInt32 Idx = GetFieldIdx(Pos);
@@ -10320,7 +10320,7 @@ RwBool CNtlWorldFieldManager::SaveCurFieldsBeforeExit()
 	SaveCurWorldState();
 #endif
 
-	// FieldManager�� �ʱ�ȭ �ϴ� �ų� ���������� m_eMove2�� eC�� ���� WorldEeady ���¸� ���� �Ѵ�.
+	// FieldManager占쏙옙 占십깍옙화 占싹댐옙 占신놂옙 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 m_eMove2占쏙옙 eC占쏙옙 占쏙옙占쏙옙 WorldEeady 占쏙옙占승몌옙 占쏙옙占쏙옙 占싼댐옙.
 	m_eMoved2 = eC;
 	for (RwInt32 i = 0; i < 49; ++i)
 	{
@@ -10805,7 +10805,7 @@ RwBool CNtlWorldFieldManager::CreateFieldFromFile(RwInt32 FieldIdx)
 	RwV3d SectorSPos;
 
 	//-------------------------------------------------------------------
-	// 2007.03.23 (����)
+	// 2007.03.23 (占쏙옙占쏙옙)
 	// Pack file ��� �߰�
 
 	FILE* pFile = NULL;
@@ -11637,7 +11637,7 @@ RwBool CNtlWorldFieldManager::GetWorldLightColor(RwV3d& Pos, RwRGBA* pOutColor, 
 	RwRGBAReal	clrfResult;
 	RwBool		bResult = FALSE;
 
-	// Box �˻�.
+	// Box 占싯삼옙.
 	for (int i = 0; i < 9; ++i)
 	{
 		if (vecNeighborSectors.at(i) == -1)
@@ -11664,7 +11664,7 @@ RwBool CNtlWorldFieldManager::GetWorldLightColor(RwV3d& Pos, RwRGBA* pOutColor, 
 		}
 	}
 
-	// Box���� üũ���� �ʾҴٸ� ���� �˻� �Ѵ�.
+	// Box占쏙옙占쏙옙 체크占쏙옙占쏙옙 占십았다몌옙 占쏙옙占쏙옙 占싯삼옙 占싼댐옙.
 	if (!bResult)
 	{
 		// WorldLight

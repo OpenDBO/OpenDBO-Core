@@ -2,21 +2,21 @@
 #include "afxcmn.h"
 
 
-// CPaletteWaterTab ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteWaterTab ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CPaletteWaterTab : public CDialog
 {
 	DECLARE_DYNAMIC(CPaletteWaterTab)
 
 public:
-	CPaletteWaterTab(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CPaletteWaterTab(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CPaletteWaterTab();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_WATER_TAB };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 

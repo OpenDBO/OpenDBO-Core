@@ -1,4 +1,4 @@
-// MPPSetItemPane.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// MPPSetItemPane.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -59,7 +59,7 @@ BEGIN_MESSAGE_MAP(CMPPSetItemPane, CXTResizeFormView)
 END_MESSAGE_MAP()
 
 
-// CMPPSetItemPane Áø´ÜÀÔ´Ï´Ù.
+// CMPPSetItemPane ì§„ë‹¨ì…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CMPPSetItemPane::AssertValid() const
@@ -80,27 +80,27 @@ void CMPPSetItemPane::OnInitialUpdate()
 {
     CXTResizeFormView::OnInitialUpdate();
 
-    m_cbTeleSelect.InsertString(MPP_TELE_YAHOI, L"¾ßÈ£ÀÌ ¸¶À»");
-    m_cbTeleSelect.InsertString(MPP_TELE_YUREKA, L"À¯·¹Ä« °ø¿ø");
-    m_cbTeleSelect.InsertString(MPP_TELE_DALPANG, L"´ŞÆØÀÌ ¸¶À»");
-    m_cbTeleSelect.InsertString(MPP_TELE_DRAGON, L"¿ëÀÇ ÄÚ°ñÀÌ");
-    m_cbTeleSelect.InsertString(MPP_TELE_BAEE, L"¹è¿¡ ºô¸®Áö");
-    m_cbTeleSelect.InsertString(MPP_TELE_AJIRANG, L"¾ÆÁö¶ûÀÌ »ù");
-    m_cbTeleSelect.InsertString(MPP_TELE_KARINGA_1, L"Ä«¸°°¡ÀÇ ¸¶À»1");
-    m_cbTeleSelect.InsertString(MPP_TELE_KARINGA_2, L"Ä«¸°°¡ÀÇ ¸¶À»2");
-    m_cbTeleSelect.InsertString(MPP_TELE_GREAT_TREE, L"±×·¹ÀÌÆ® Æ®¸®");
-    m_cbTeleSelect.InsertString(MPP_TELE_KARINGA_3, L"Ä«¸°°¡ÀÇ ¾îÃÌ");
-    m_cbTeleSelect.InsertString(MPP_TELE_MERMAID, L"ÀÎ¾î»ó");
-    m_cbTeleSelect.InsertString(MPP_TELE_GANNET, L"°¡³İ Ãµ¹®´ë");
-    m_cbTeleSelect.InsertString(MPP_TELE_EMERALD, L"¿¡¸Ş¶ûµå ºñÄ¡");
-    m_cbTeleSelect.InsertString(MPP_TELE_TEMBARIN, L"ÅÛ¹ö¸° Ä·ÇÁ");
-    m_cbTeleSelect.InsertString(MPP_TELE_CELL, L"¼¿ ¸µ");
-    m_cbTeleSelect.InsertString(MPP_TELE_BUU, L"ºÎ¿ì ±â³ä°ü");
-    m_cbTeleSelect.InsertString(MPP_TELE_CC, L"CC ¿ª»ç ¹Ú¹°°ü");
-    m_cbTeleSelect.InsertString(MPP_TELE_MUSHROOM, L"¹ö¼¸ÃÌ");
+    m_cbTeleSelect.InsertString(MPP_TELE_YAHOI, L"ì•¼í˜¸ì´ ë§ˆì„");
+    m_cbTeleSelect.InsertString(MPP_TELE_YUREKA, L"ìœ ë ˆì¹´ ê³µì›");
+    m_cbTeleSelect.InsertString(MPP_TELE_DALPANG, L"ë‹¬íŒ½ì´ ë§ˆì„");
+    m_cbTeleSelect.InsertString(MPP_TELE_DRAGON, L"ìš©ì˜ ì½”ê³¨ì´");
+    m_cbTeleSelect.InsertString(MPP_TELE_BAEE, L"ë°°ì— ë¹Œë¦¬ì§€");
+    m_cbTeleSelect.InsertString(MPP_TELE_AJIRANG, L"ì•„ì§€ë‘ì´ ìƒ˜");
+    m_cbTeleSelect.InsertString(MPP_TELE_KARINGA_1, L"ì¹´ë¦°ê°€ì˜ ë§ˆì„1");
+    m_cbTeleSelect.InsertString(MPP_TELE_KARINGA_2, L"ì¹´ë¦°ê°€ì˜ ë§ˆì„2");
+    m_cbTeleSelect.InsertString(MPP_TELE_GREAT_TREE, L"ê·¸ë ˆì´íŠ¸ íŠ¸ë¦¬");
+    m_cbTeleSelect.InsertString(MPP_TELE_KARINGA_3, L"ì¹´ë¦°ê°€ì˜ ì–´ì´Œ");
+    m_cbTeleSelect.InsertString(MPP_TELE_MERMAID, L"ì¸ì–´ìƒ");
+    m_cbTeleSelect.InsertString(MPP_TELE_GANNET, L"ê°€ë„· ì²œë¬¸ëŒ€");
+    m_cbTeleSelect.InsertString(MPP_TELE_EMERALD, L"ì—ë©”ë‘ë“œ ë¹„ì¹˜");
+    m_cbTeleSelect.InsertString(MPP_TELE_TEMBARIN, L"í…œë²„ë¦° ìº í”„");
+    m_cbTeleSelect.InsertString(MPP_TELE_CELL, L"ì…€ ë§");
+    m_cbTeleSelect.InsertString(MPP_TELE_BUU, L"ë¶€ìš° ê¸°ë…ê´€");
+    m_cbTeleSelect.InsertString(MPP_TELE_CC, L"CC ì—­ì‚¬ ë°•ë¬¼ê´€");
+    m_cbTeleSelect.InsertString(MPP_TELE_MUSHROOM, L"ë²„ì„¯ì´Œ");
 }
 
-// CMPPSetItemPane ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CMPPSetItemPane ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CMPPSetItemPane::OnBnClickedBtnCreateitem()
 {

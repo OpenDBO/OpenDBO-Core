@@ -2,7 +2,7 @@
 *
 * File			: NtlPLHelpers.h
 * Author		: All Author
-* Copyright	: (ÁÖ)NTL
+* Copyright	: (ì£¼)NTL
 * Date			: 2005. 8. 11	
 * Abstract		: Presentation layer helper function.
 *****************************************************************************
@@ -32,39 +32,39 @@ ENtlPLEntityType Helper_PLEntityTypeToName(const RwChar* pName);
 
 const RwChar* Helper_PLEntityNameToType(const ENtlPLEntityType eType);
 
-/// »ó´ë°æ·Î,Àı´ë°æ·Î¿¡¼­ ÆÄÀÏ ÀÌ¸§¸¸À» ÃßÃâÇÑ´Ù.
+/// ìƒëŒ€ê²½ë¡œ,ì ˆëŒ€ê²½ë¡œì—ì„œ íŒŒì¼ ì´ë¦„ë§Œì„ ì¶”ì¶œí•œë‹¤.
 RwChar* Helper_AbstractFileName(RwChar *pPathName);
 
-/// ¹®ÀÚ¿­À» ÆÄ½ÌÇÑ´Ù. (by agebreak 2006.06.26)
+/// ë¬¸ìì—´ì„ íŒŒì‹±í•œë‹¤. (by agebreak 2006.06.26)
 void Helper_StringSplit(const RwChar* szInput, RwChar* szOutput, size_t sizeOutPut, const RwChar* szSplit, RwInt32 nCount);
 
 //////////////////////////////////////////////////////////////////////////
-// ±âº» ±¸Á¶Ã¼µéÀÇ ³»¿ëÀ» L"x;y;z;" ÇüÅÂµéÀÇ ¹®ÀÚ¿­·Î º¯°æÇÑ´Ù.
+// ê¸°ë³¸ êµ¬ì¡°ì²´ë“¤ì˜ ë‚´ìš©ì„ L"x;y;z;" í˜•íƒœë“¤ì˜ ë¬¸ìì—´ë¡œ ë³€ê²½í•œë‹¤.
 //////////////////////////////////////////////////////////////////////////
 
-/// RwV3d ±¸Á¶Ã¼ ³»¿ëÀ» L"x;y;z" ÇüÅÂÀÇ ¹®ÀÚ¿­·Î º¯°æÇÑ´Ù. (by agebreak 2006.08.16)
+/// RwV3d êµ¬ì¡°ì²´ ë‚´ìš©ì„ L"x;y;z" í˜•íƒœì˜ ë¬¸ìì—´ë¡œ ë³€ê²½í•œë‹¤. (by agebreak 2006.08.16)
 #define  Helper_V3D2StringU(buf, vPos)   swprintf_s(buf, L"%.2f;%.2f;%.2f", vPos.x, vPos.y, vPos.z);
-RwV3d Helper_String2V3D(const RwChar* buf); // "x;y;z;"ÇüÅÂÀÇ ¹®ÀÚ¿­À» RwV3dÇüÅÂ·Î º¯È¯ÇÏ¿© ¹İÈ¯ÇÑ´Ù.
+RwV3d Helper_String2V3D(const RwChar* buf); // "x;y;z;"í˜•íƒœì˜ ë¬¸ìì—´ì„ RwV3dí˜•íƒœë¡œ ë³€í™˜í•˜ì—¬ ë°˜í™˜í•œë‹¤.
 
-// RwV2d ±¸Á¶Ã¼ ³»¿ëÀ» L"x;y"ÇüÅÂÀÇ ¹®ÀÚ¿­·Î º¯°æÇÑ´Ù. (by agebreak 2006.08.16)
+// RwV2d êµ¬ì¡°ì²´ ë‚´ìš©ì„ L"x;y"í˜•íƒœì˜ ë¬¸ìì—´ë¡œ ë³€ê²½í•œë‹¤. (by agebreak 2006.08.16)
 #define  Helper_V2D2StringU(buf, vPos)   swprintf_s(buf, L"%.2f;%.2f", vPos.x, vPos.y);
 
-// "x;y"ÇüÅÂÀÇ ¹®ÀÚ¿­À» RwV2dÇüÅÂ·Î º¯È¯ÇÏ¿© ¹İÈ¯ÇÑ´Ù.
+// "x;y"í˜•íƒœì˜ ë¬¸ìì—´ì„ RwV2dí˜•íƒœë¡œ ë³€í™˜í•˜ì—¬ ë°˜í™˜í•œë‹¤.
 RwV2d Helper_String2V2D(const RwChar* buf);
 RwV2d Helper_String2V2D(const WCHAR* buf);
 
-// "r;g;b;a;" ÇüÅÂÀÇ ¹®ÀÚ¿­À» RwRGBAÇüÅÂ·Î º¯È¯ÇÏ¿© ¹İÈ¯ÇÑ´Ù.
+// "r;g;b;a;" í˜•íƒœì˜ ë¬¸ìì—´ì„ RwRGBAí˜•íƒœë¡œ ë³€í™˜í•˜ì—¬ ë°˜í™˜í•œë‹¤.
 RwRGBA Helper_String2RGBA(const RwChar* buf);
 #define Helper_RGBA2String(buf, rgba) swprintf_s(buf, L"%d;%d;%d;%d", rgba.red, rgba.green, rgba.blue, rgba.alpha);
 
-// RGB Á¤º¸¸¦ Gray Color·Î º¯È¯ÇÑ´Ù.
+// RGB ì •ë³´ë¥¼ Gray Colorë¡œ ë³€í™˜í•œë‹¤.
 RwUInt8 Helper_RGB2Gray(RwUInt8& _R, RwUInt8& _G, RwUInt8& _B);
 
 //////////////////////////////////////////////////////////////////////////
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// presentation entity »ı¼º.
+// presentation entity ìƒì„±.
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //CNtlPLPlayerName* Helper_CreatePlayerName(const RwV3d *pPos, COLORREF Color, const WCHAR *pName);
@@ -78,12 +78,12 @@ CNtlPLPlayerName* Helper_CreatePlayerName(const RwV3d *pPos, COLORREF Color, con
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void Helper_AttachWorldPos(CNtlPLEntity *pSource, CNtlPLEntity *pTarget, RwV3d vOffset = ZeroAxis, RwBool bApplyRotate = FALSE);
-void Helper_AttachWorldPosHeight(CNtlPLEntity* pSource, CNtlPLEntity* pTarget);           ///< ¿ùµå À§Ä¡¿¡ ºÙÀÌ´Âµ¥ ³ôÀÌ´Â ±× À§Ä¡ÀÇ World Height °ªÀ» Àû¿ëÇÑ´Ù.
+void Helper_AttachWorldPosHeight(CNtlPLEntity* pSource, CNtlPLEntity* pTarget);           ///< ì›”ë“œ ìœ„ì¹˜ì— ë¶™ì´ëŠ”ë° ë†’ì´ëŠ” ê·¸ ìœ„ì¹˜ì˜ World Height ê°’ì„ ì ìš©í•œë‹¤.
 void Helper_AttachBone(CNtlPLEntity* pSource, CNtlPLEntity* pTarget, const RwChar* pBoneName, RwV3d vOffset = ZeroAxis, RwV3d vScale = ZeroAxis);
 void Helper_DetachPLEntity(CNtlPLEntity *pSource, CNtlPLEntity *pTarget);
 
 //////////////////////////////////////////////////////////////////////////
-// Bit Flag ¼³Á¤ °ü·Ã
+// Bit Flag ì„¤ì • ê´€ë ¨
 //////////////////////////////////////////////////////////////////////////
 
 __inline void Helper_SetBigFlag(BITFLAG* bitFlag, int index, BOOL bBool)
@@ -111,7 +111,7 @@ __inline BOOL Helper_GetBitFlag(BITFLAG bitFlag, int index)
 
 
 //////////////////////////////////////////////////////////////////////////
-// Callback ÇÔ¼ö
+// Callback í•¨ìˆ˜
 //////////////////////////////////////////////////////////////////////////
 
 typedef RwUInt8 (*Callback_GetDogiColorIndex)(RwUInt32 uiSerialID);

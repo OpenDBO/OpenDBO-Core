@@ -95,7 +95,7 @@ BOOL CPagePC::OnInitDialog()
     sWorkFolder += L"\\TreePC.xml";
     m_treePC.LoadTree((LPWSTR)(LPCWSTR)sWorkFolder);
 
-    // SaveÇÒ Æú´õÀÌ¸§À» ¼³Á¤ÇÑ´Ù.
+    // Saveí•  í´ë”ì´ë¦„ì„ ì„¤ì •í•œë‹¤.
     m_sSaveFolderName = A2W(CModelToolApplication::GetInstance()->GetWorkDir());
     m_sSaveFolderName += L"\\Character\\";
 
@@ -114,7 +114,7 @@ void CPagePC::OnTvnSelchangedTreePc(NMHDR *pNMHDR, LRESULT *pResult)
 
     LPNMTREEVIEW pNMTreeView = reinterpret_cast<LPNMTREEVIEW>(pNMHDR);
     
-    // ¸ñ·Ï º¯È¯½Ã ±âÁ¸ÀÇ ³»¿ëÀ» ÀúÀåÇÑ´Ù.
+    // ëª©ë¡ ë³€í™˜ì‹œ ê¸°ì¡´ì˜ ë‚´ìš©ì„ ì €ì¥í•œë‹¤.
     HTREEITEM hItem =  pNMTreeView->itemOld.hItem;
     int nImage = 0, nSelectedImage = 0;
     m_treePC.GetItemImage(hItem, nImage, nSelectedImage);
@@ -127,7 +127,7 @@ void CPagePC::OnTvnSelchangedTreePc(NMHDR *pNMHDR, LRESULT *pResult)
         //    OnSaveScript(oldScriptName, FALSE);
         //}
 
-        // ±âÁ¸ÀÇ Ä³¸¯ÅÍ¸¦ È­¸é¿¡¼­ Á¦°ÅÇÑ´Ù.
+        // ê¸°ì¡´ì˜ ìºë¦­í„°ë¥¼ í™”ë©´ì—ì„œ ì œê±°í•œë‹¤.
         CMTCharacter* pCharacter = (CMTCharacter*)m_treePC.GetItemData(hItem);
         if(pCharacter)
         {
@@ -135,7 +135,7 @@ void CPagePC::OnTvnSelchangedTreePc(NMHDR *pNMHDR, LRESULT *pResult)
         }
     }
     
-    // ½ºÅ©¸³Æ® ³ëµå°¡ ¼±ÅÃµÇ¾úÀ»¶§ ÆÄÀÏ³»¿ëÀ» Ç¥½ÃÇÑ´Ù.
+    // ìŠ¤í¬ë¦½íŠ¸ ë…¸ë“œê°€ ì„ íƒë˜ì—ˆì„ë•Œ íŒŒì¼ë‚´ìš©ì„ í‘œì‹œí•œë‹¤.
     CString sScriptFileName = m_treePC.SelectScriptName();
     if(sScriptFileName != L"")
     {
@@ -144,7 +144,7 @@ void CPagePC::OnTvnSelchangedTreePc(NMHDR *pNMHDR, LRESULT *pResult)
 
         if(!m_treePC.GetItemData(m_treePC.GetSelectedItem()) && sScriptFileName == L"New Script")
         {
-            // ÃÊ±âÈ­            
+            // ì´ˆê¸°í™”            
             CBottomToolView::GetInstance()->SetInit(NULL);
             CRightToolView::GetInstance()->SetInit(NULL);
             CAnimToolView::GetInstance()->SetInit(NULL, NULL); 
@@ -172,7 +172,7 @@ BOOL CPagePC::OnDisplayScriptInfo(CString strFileName)
 {
     USES_CONVERSION;
 
-    // ±âÁ¸¿¡ Æ®¸®¿¡ ¼³Á¤µÈ Ä³¸¯ÅÍ°¡ ÀÖ´ÂÁö È®ÀÎÇÑ´Ù
+    // ê¸°ì¡´ì— íŠ¸ë¦¬ì— ì„¤ì •ëœ ìºë¦­í„°ê°€ ìˆëŠ”ì§€ í™•ì¸í•œë‹¤
     CMTCharacter* pCharacter = NULL;
     pCharacter = (CMTCharacter*)m_treePC.GetItemData(m_treePC.GetSelectedItem());
     if(pCharacter)
@@ -186,7 +186,7 @@ BOOL CPagePC::OnDisplayScriptInfo(CString strFileName)
         strFilePath += "\\Character\\";
         strFilePath += W2A(strFileName);
 
-        // ±âÁ¸¿¡ ¼³Á¤µÈ Ä³¸¯ÅÍ ÀÎ½ºÅÏ°¡ ¾øÀ¸¸é Ãß°¡ÇÏ¿© ÁØ´Ù.
+        // ê¸°ì¡´ì— ì„¤ì •ëœ ìºë¦­í„° ì¸ìŠ¤í„´ê°€ ì—†ìœ¼ë©´ ì¶”ê°€í•˜ì—¬ ì¤€ë‹¤.
         pCharacter = new CMTCharacter;
         pCharacter->Create();
         m_treePC.SetItemData(m_treePC.GetSelectedItem(), (DWORD_PTR)pCharacter);   
@@ -217,12 +217,12 @@ BOOL CPagePC::OnDisplayScriptInfo(CString strFileName)
     m_edClumpFileName.SetWindowText(strMeshName);
 
 
-    // ÇÏ´Üºä¿Í ¿À¸¥ÂÊºä¿¡ ³»¿ëÀ» ¼³Á¤ÇÑ´Ù.
+    // í•˜ë‹¨ë·°ì™€ ì˜¤ë¥¸ìª½ë·°ì— ë‚´ìš©ì„ ì„¤ì •í•œë‹¤.
     CBottomToolView::GetInstance()->SetInit(pCharacter);
     CRightToolView::GetInstance()->SetInit(pCharacter);
 
 
-    // ¿À¸¥ÂÊ UI º¯°æºÎºĞ Ãß°¡
+    // ì˜¤ë¥¸ìª½ UI ë³€ê²½ë¶€ë¶„ ì¶”ê°€
     CRightToolView::GetInstance()->SetEnable(CRightToolView::ENABLE_ANIMSET);
     m_btSaveScript.EnableWindow(TRUE);
     m_btSaveAll.EnableWindow(TRUE);
@@ -233,7 +233,7 @@ BOOL CPagePC::OnDisplayScriptInfo(CString strFileName)
 
 void CPagePC::OnBnClickedBtSetClump()
 {
-    // Clump ÆÄÀÏÀ» ·ÎµåÇÑ´Ù.
+    // Clump íŒŒì¼ì„ ë¡œë“œí•œë‹¤.
     USES_CONVERSION;
 
     WCHAR szOpenFilter[] = L"Clump File (*.dff)|*.dff||";
@@ -248,7 +248,7 @@ void CPagePC::OnBnClickedBtSetClump()
         pCharacter = (CMTCharacter*)m_treePC.GetItemData(m_treePC.GetSelectedItem());
         if(!pCharacter)
         {
-            // ¾øÀ¸¸é Ãß°¡ÇØÁØ´Ù.
+            // ì—†ìœ¼ë©´ ì¶”ê°€í•´ì¤€ë‹¤.
             pCharacter = new CMTCharacter;
             pCharacter->Create();
             m_treePC.SetItemData(m_treePC.GetSelectedItem(), (DWORD_PTR)pCharacter);
@@ -260,7 +260,7 @@ void CPagePC::OnBnClickedBtSetClump()
         {
             m_edClumpFileName.SetWindowText(sLoadFileName);
 
-            //  Á¤º¸¸¦ ±¸Á¶Ã¼¿¡ ¼³Á¤ÇÑ´Ù.
+            //  ì •ë³´ë¥¼ êµ¬ì¡°ì²´ì— ì„¤ì •í•œë‹¤.
             CMTCharacter* pCharacter = (CMTCharacter*)m_treePC.GetItemData(m_treePC.GetSelectedItem());
             if(pCharacter)
             {
@@ -279,7 +279,7 @@ void CPagePC::OnBnClickedBtSetClump()
                 sLoadFileName = sLoadFilePath + sLoadFileName;
                 m_pCharacterProperty->SetBaseMeshFileName(W2A(sLoadFileName));
 
-                // ÇÏ´Üºä¿Í ¿À¸¥ÂÊºä¿¡ ³»¿ëÀ» ¼³Á¤ÇÑ´Ù.
+                // í•˜ë‹¨ë·°ì™€ ì˜¤ë¥¸ìª½ë·°ì— ë‚´ìš©ì„ ì„¤ì •í•œë‹¤.
                 CBottomToolView::GetInstance()->SetInit(pCharacter);
                 CRightToolView::GetInstance()->SetInit(pCharacter);
 
@@ -297,12 +297,12 @@ void CPagePC::OnBnClickedBtSetClump()
 
 BOOL CPagePC::OnSetActive()
 {
-    // È°¼ºÈ­ µÉ¶§ RightView¿¡ ÀÚ½ÅÀÇ Á¾·ù¸¦ ¾Ë·ÁÁà¾ß ÇÑ´Ù.
-    // RightView´Â °øÅëÀ¸·Î »ç¿ëµÇ°í, LeftViewÀÇ Á¾·ù¿¡ µû¶ó¼­
-    // ¾Ö´Ï¸ŞÀÌ¼Ç Á¾·ù°¡ ´Ş¶óÁ®¾ß ÇÏ±â ¶§¹®
+    // í™œì„±í™” ë ë•Œ RightViewì— ìì‹ ì˜ ì¢…ë¥˜ë¥¼ ì•Œë ¤ì¤˜ì•¼ í•œë‹¤.
+    // RightViewëŠ” ê³µí†µìœ¼ë¡œ ì‚¬ìš©ë˜ê³ , LeftViewì˜ ì¢…ë¥˜ì— ë”°ë¼ì„œ
+    // ì• ë‹ˆë©”ì´ì…˜ ì¢…ë¥˜ê°€ ë‹¬ë¼ì ¸ì•¼ í•˜ê¸° ë•Œë¬¸
     CRightToolView::GetInstance()->SetActiveLeftView(CRightToolView::LEFT_PAGE_PC);
 
-    // ¼±ÅÃµÈ ¾ÆÀÌÅÛÀ» ´Ù½ÃÇÑ¹ø ¼±ÅÃÇØ ÁØ´Ù. (¿À¸¥ÂÊ ÅøºäÀÇ È°¼ºÈ­¸¦ À§ÇØ)
+    // ì„ íƒëœ ì•„ì´í…œì„ ë‹¤ì‹œí•œë²ˆ ì„ íƒí•´ ì¤€ë‹¤. (ì˜¤ë¥¸ìª½ íˆ´ë·°ì˜ í™œì„±í™”ë¥¼ ìœ„í•´)
     HTREEITEM hSelectedItem = m_treePC.GetSelectedItem();
     if(hSelectedItem)
     {
@@ -318,7 +318,7 @@ BOOL CPagePC::OnKillActive()
 {
     CRightToolView::GetInstance()->SetEnable(CRightToolView::DISABLE_ALL);
 
-    // ÇöÀç È­¸é¿¡ ÀÖ´Â ¸ğµ¨À» È­¸é¿¡¼­ Áö¿î´Ù.
+    // í˜„ì¬ í™”ë©´ì— ìˆëŠ” ëª¨ë¸ì„ í™”ë©´ì—ì„œ ì§€ìš´ë‹¤.
     CMTCharacter* pCharacter = (CMTCharacter*)m_treePC.GetItemData(m_treePC.GetSelectedItem());
     if(pCharacter)
     {
@@ -381,12 +381,12 @@ void CPagePC::OnSaveScript(const WCHAR* szScriptName, BOOL bVisible)
                 CString sSaveFilePath = fileDlg.GetPathName();
                 CString sSaveFileName = fileDlg.GetFileName();
 
-                sSaveFileName.Replace(L".XML", L""); // ÇÁ·ÎÆÛÆ¼¿¡ ³×ÀÓ¿¡¼­´Â È®ÀåÀÚ¸¦ Á¦¿ÜÇÑ´Ù.
+                sSaveFileName.Replace(L".XML", L""); // í”„ë¡œí¼í‹°ì— ë„¤ì„ì—ì„œëŠ” í™•ì¥ìë¥¼ ì œì™¸í•œë‹¤.
                 pCharacter->GetProperty()->SetName(W2A(sSaveFileName));                
                 RwBool bReturn = pCharacter->GetProperty()->SaveScript(W2A(sSaveFilePath));
                 if(bReturn)
                 {
-                    sSaveFileName += L".XML";   // ´Ù½Ã È®ÀåÀÚ¸¦ ºÙ¿©ÁØ´Ù.
+                    sSaveFileName += L".XML";   // ë‹¤ì‹œ í™•ì¥ìë¥¼ ë¶™ì—¬ì¤€ë‹¤.
                     m_edScriptFileName.SetWindowText(sSaveFileName);   
                     m_treePC.SetScriptName(sSaveFileName);
                 }
@@ -407,7 +407,7 @@ void CPagePC::OnBnClickedBtSaveAll()
 {
     USES_CONVERSION;
 
-    // ¸ğµç ½ºÅ©¸³Æ®¸¦ ÀúÀåÇÑ´Ù.
+    // ëª¨ë“  ìŠ¤í¬ë¦½íŠ¸ë¥¼ ì €ì¥í•œë‹¤.
     TREEITEM_VECTOR vAllITem;
     m_treePC.GetAllChildNode(m_treePC.GetRootItem(), vAllITem);
     for(size_t i = 0; i < vAllITem.size(); ++i)
@@ -435,7 +435,7 @@ void CPagePC::OnBnClickedBtSaveAll()
 void CPagePC::OnMenuLoadScript()
 {
     USES_CONVERSION;
-    // ½ºÅ©¸³Æ® ÆÄÀÏÀ» ·Îµå ÇÑ´Ù. (½ºÅ©¸³Æ® ÆÄÀÏÀº .\Character\ Æú´õ¿¡ ÀÖ¾î¾ß¸¸ ÇÑ´Ù.)
+    // ìŠ¤í¬ë¦½íŠ¸ íŒŒì¼ì„ ë¡œë“œ í•œë‹¤. (ìŠ¤í¬ë¦½íŠ¸ íŒŒì¼ì€ .\Character\ í´ë”ì— ìˆì–´ì•¼ë§Œ í•œë‹¤.)
     WCHAR sLoadFilter[] = L"Character Script File (*.xml)|*.xml||";
     CString workDir = A2W(CModelToolApplication::GetInstance()->GetWorkDir());
     workDir += L"\\Character\\*.xml";    
@@ -445,20 +445,20 @@ void CPagePC::OnMenuLoadScript()
         CString sLoadFileName = fileDlg.GetFileName();
         //OnDisplayScriptInfo(sLoadFileName);        
 
-        // Æ®¸®¿¡ Ç×¸ñÀ» Ãß°¡ÇÑ´Ù.
+        // íŠ¸ë¦¬ì— í•­ëª©ì„ ì¶”ê°€í•œë‹¤.
         m_treePC.AddItem(W2A(sLoadFileName));
     }
 }
 
 void CPagePC::OnMenuNewScript()
 {
-    // »õ·Î¿î ½ºÅ©¸³Æ®¸¦ »ı¼º½Ã, DFF ÆÄÀÏµµ °°ÀÌ ¼±ÅÃÇÑ´Ù.
+    // ìƒˆë¡œìš´ ìŠ¤í¬ë¦½íŠ¸ë¥¼ ìƒì„±ì‹œ, DFF íŒŒì¼ë„ ê°™ì´ ì„ íƒí•œë‹¤.
     OnBnClickedBtSetClump();
 }
 
 void CPagePC::OnDestroy()
 {
-    // Ã¢ÀÌ ¾ø¾îÁö±â Àü¿¡ XML·Î ³»¿ëÀ» ÀúÀåÇÑ´Ù.
+    // ì°½ì´ ì—†ì–´ì§€ê¸° ì „ì— XMLë¡œ ë‚´ìš©ì„ ì €ì¥í•œë‹¤.
     USES_CONVERSION;
 
     CString sWorkFolder = A2W(CModelToolApplication::GetInstance()->GetWorkDir());
@@ -470,15 +470,15 @@ void CPagePC::OnDestroy()
 
 void CPagePC::OnMenuScriptSave()
 {
-    // ÇöÀç ¼±ÅÃµÈ ½ºÅ©¸³Æ®¸¦ ÀúÀåÇÑ´Ù.
-    // NewScript¶ó¸é »õ·Î ÀúÀåÀ» ÇÏ°í, ±âÁ¸ ½ºÅ©¸³Æ®¶ó¸é µ¤¾î ¾´´Ù.
+    // í˜„ì¬ ì„ íƒëœ ìŠ¤í¬ë¦½íŠ¸ë¥¼ ì €ì¥í•œë‹¤.
+    // NewScriptë¼ë©´ ìƒˆë¡œ ì €ì¥ì„ í•˜ê³ , ê¸°ì¡´ ìŠ¤í¬ë¦½íŠ¸ë¼ë©´ ë®ì–´ ì“´ë‹¤.
     CString sScriptName = m_treePC.GetItemText(m_treePC.GetSelectedItem());
     OnSaveScript(sScriptName, TRUE); 
 }
 
 void CPagePC::OnMenuScriptSaveas()
 {
-    // »õ·Î¿î ÀÌ¸§À¸·Î ½ºÅ©¸³Æ®¸¦ ÀúÀåÇÑ´Ù.
+    // ìƒˆë¡œìš´ ì´ë¦„ìœ¼ë¡œ ìŠ¤í¬ë¦½íŠ¸ë¥¼ ì €ì¥í•œë‹¤.
     OnSaveScript(L"New Script", TRUE);
 }
 
@@ -486,8 +486,8 @@ void CPagePC::OnMenuScriptRename(CString sOrgScriptName, CString sNewScriptName)
 {
     USES_CONVERSION;
 
-    // ½ºÅ©¸³Æ® ÆÄÀÏ¸íÀ» º¯°æÇÑ´Ù.    
-    // »õ ½ºÅ©¸³Æ®ÀÎ °æ¿ì¿¡´Â ±×ÆÄÀÏÀÌ¸§À¸·Î ÀúÀåÇÑ´Ù.
+    // ìŠ¤í¬ë¦½íŠ¸ íŒŒì¼ëª…ì„ ë³€ê²½í•œë‹¤.    
+    // ìƒˆ ìŠ¤í¬ë¦½íŠ¸ì¸ ê²½ìš°ì—ëŠ” ê·¸íŒŒì¼ì´ë¦„ìœ¼ë¡œ ì €ì¥í•œë‹¤.
     if(sOrgScriptName == L"New Script")
     {
         OnSaveScript(sNewScriptName, FALSE);

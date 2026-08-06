@@ -3,7 +3,7 @@
 //	Desc		:	
 //	Begin		:	2005. 7.28
 //                  2006. 8.17
-//	Copyright	:	®œ 2005 by agebreak CO., Ltd
+//	Copyright	:	‚ìí 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //                  HoDong
 //	Update		:	
@@ -21,7 +21,7 @@
 
 /**
  * \ingroup Effect
- * Effect Entity Class(NtlInstanceComponentSystemµÈ¿« Container Class ¿Ã¥Ÿ.)
+ * Effect Entity Class(NtlInstanceComponentSystemÎì§Ïùò Container Class Ïù¥Îã§.)
  * 
  */
 class CNtlInstanceEffect : public CNtlPLAttach
@@ -33,8 +33,8 @@ public:
 	CNtlResourceEffect* m_pResourceEffect;
 
 	RwMatrix			m_matWorld;						///< Effect World Matrix (m_vModelScale * m_vModelAngle * m_vWorldPosition)
-														///< SetMatrix()∑Œ Matrix ∞™¿ª ¡˜¡¢ ¿‘∑¬Ω√ m_vWorldPosition ∞™∏∏ »•øÎ«ÿº≠ æµºˆ∞° ¿÷¥Ÿ.
-														///< Rotation∞˙ Scale¿∫ Matrixø° ¿‘∑¬µ» ∞™∞˙ √Êµπ¿Ã ª˝±Ê ºˆµµ ¿÷¥Ÿ.
+														///< SetMatrix()Î°ú Matrix Í∞íÏùÑ ÏßÅÏ†ë ÏûÖÎ†•Ïãú m_vWorldPosition Í∞íÎßå ÌòºÏö©Ìï¥ÏÑú Ïì∏ÏàòÍ∞Ä ÏûàÎã§.
+														///< RotationÍ≥º ScaleÏùÄ MatrixÏóê ÏûÖÎ†•Îêú Í∞íÍ≥º Ï∂©ÎèåÏù¥ ÏÉùÍ∏∏ ÏàòÎèÑ ÏûàÎã§.
 
 	RwV3d				m_vModelScale;					///< Model Scale
 	RwV3d				m_vModelAngle;					///< Model Angle (Degree - 360 - 360)
@@ -46,20 +46,20 @@ public:
 	RwBool				m_bAutoDelete;
     RwBool              m_bApplyScale;
 
-    // Sound ∞¸∑√ ¿ŒΩ∫≈œΩ∫
-    CNtlPLSound         m_PLSound;                      ///< Sound ∞¥√º   
+    // Sound Í¥ÄÎ†® Ïù∏Ïä§ÌÑ¥Ïä§
+    CNtlPLSound         m_PLSound;                      ///< Sound Í∞ùÏ≤¥   
 
 protected:
     RwReal						m_fAnimSpeed;			///< Anim Speed
-    CNtlPLResource *			m_pVisibleBVClump;		///< Bounding Volume Clump //Toolø°º≠ Picking¿ª «œ±‚ ¿ß«— øÎµµ∑Œ∏∏	
+    CNtlPLResource *			m_pVisibleBVClump;		///< Bounding Volume Clump //ToolÏóêÏÑú PickingÏùÑ ÌïòÍ∏∞ ÏúÑÌïú Ïö©ÎèÑÎ°úÎßå	
     RwSphere                    m_BoundingSphere;       ///< Bounding Sphere
-    RwBool                      m_bIsCulling;           ///< πŸøÓµ˘ Ω∫««æÓø° ¿««ÿº≠ ƒ√∏µµ«æ˙¥¬¡ˆ ¿Øπ´ «√∑°±◊
-    RwReal                      m_fNotUpdateTime;       ///< ƒ√∏µµ«∞≈≥™ Not Visibleµ«æÓº≠ æ˜µ•¿Ã∆Æ æ»µ» Ω√∞£    
+    RwBool                      m_bIsCulling;           ///< Î∞îÏö¥Îî© Ïä§ÌîºÏñ¥Ïóê ÏùòÌï¥ÏÑú Ïª¨ÎßÅÎêòÏóàÎäîÏßÄ Ïú†Î¨¥ ÌîåÎûòÍ∑∏
+    RwReal                      m_fNotUpdateTime;       ///< Ïª¨ÎßÅÎêòÍ±∞ÎÇò Not VisibleÎêòÏñ¥ÏÑú ÏóÖÎç∞Ïù¥Ìä∏ ÏïàÎêú ÏãúÍ∞Ñ    
     
-    static  RwBool              m_bLowSpec;             ///< ¿Ã∆Â∆Æ ∑ŒøÏ Ω∫∆Â ¿˚øÎ ¿Øπ´ «√∑°±◊
-    static  RwReal              m_fLowSpecRatio;        ///< ¿Ã∆Â∆Æ ∑ŒøÏ Ω∫∆ÂøÎ ∫Ò¿≤
-    static  RwBool              m_bRenderMeshSystem;    ///< ∏ﬁΩ√ Ω√Ω∫≈€ ∑ª¥ı∏µ On/Off «√∑°±◊
-    static  RwBool              m_bRenderDecalSystem;   ///< µ•ƒÆ Ω√Ω∫≈€ ∑ª¥ı∏µ On/Off «√∑°±◊
+    static  RwBool              m_bLowSpec;             ///< Ïù¥ÌéôÌä∏ Î°úÏö∞ Ïä§Ìéô Ï†ÅÏö© Ïú†Î¨¥ ÌîåÎûòÍ∑∏
+    static  RwReal              m_fLowSpecRatio;        ///< Ïù¥ÌéôÌä∏ Î°úÏö∞ Ïä§ÌéôÏö© ÎπÑÏú®
+    static  RwBool              m_bRenderMeshSystem;    ///< Î©îÏãú ÏãúÏä§ÌÖú Î†åÎçîÎßÅ On/Off ÌîåÎûòÍ∑∏
+    static  RwBool              m_bRenderDecalSystem;   ///< Îç∞Ïπº ÏãúÏä§ÌÖú Î†åÎçîÎßÅ On/Off ÌîåÎûòÍ∑∏
 
 public:
 	CNtlInstanceEffect(void);
@@ -70,7 +70,7 @@ public:
 
 	virtual RwBool	Create(const SPLEntityCreateParam *pParam);
 	virtual void	Destroy();
-    virtual void    Finish();                                   ///< ¿Ã∆Â∆Æ∏¶ πŸ∑Œ ¡æ∑·«œ¡ˆ æ ∞Ì, ¡æ∑·¿€æ˜¿ª »£√‚«“∂ß ªÁøÎ«œ¥¬ ∏ﬁº“µÂ 	    
+    virtual void    Finish();                                   ///< Ïù¥ÌéôÌä∏Î•º Î∞îÎ°ú Ï¢ÖÎ£åÌïòÏßÄ ÏïäÍ≥†, Ï¢ÖÎ£åÏûëÏóÖÏùÑ Ìò∏Ï∂úÌï†Îïå ÏÇ¨Ïö©ÌïòÎäî Î©îÏÜåÎìú 	    
 	virtual RwBool	Update(RwReal fElapsedTime);
 	virtual RwBool	Render();
 	virtual RwBool  RenderToTexture(void);
@@ -79,37 +79,37 @@ public:
 
     void    AddComponentSystem(CNtlInstanceComponentSystem* pComponentSystem);
 
-	virtual RwBool IsAutoDelete()	{ return m_bAutoDelete; }						///< ¿⁄µø¿∏∑Œ ªË¡¶∞° µ«¥¬ Effect ¿Œ¡ˆ æ∆¥—¡ˆ
+	virtual RwBool IsAutoDelete()	{ return m_bAutoDelete; }						///< ÏûêÎèôÏúºÎ°ú ÏÇ≠Ï†úÍ∞Ä ÎêòÎäî Effect Ïù∏ÏßÄ ÏïÑÎãåÏßÄ
 	
-	void	SetMatrix(RwMatrix& matWorld);											///< Effect¿« World Matrix∏¶ º≥¡§«—¥Ÿ.
-	RwMatrix &GetMatrix(void);														///< Effect¿« World Matrix∏¶ æÚ¥¬¥Ÿ.
+	void	SetMatrix(RwMatrix& matWorld);											///< EffectÏùò World MatrixÎ•º ÏÑ§Ï†ïÌïúÎã§.
+	RwMatrix &GetMatrix(void);														///< EffectÏùò World MatrixÎ•º ÏñªÎäîÎã§.
 	
-	void	SetPosition(const RwV3d *pPos);											///< Effect∏¶ World¿« ¿ßƒ°∑Œ ¿Ãµø Ω√≈≤¥Ÿ.
-	RwV3d	GetPosition(void);														///< Effect¿« World¿« ¿ßƒ°∏¶ æÚ¥¬¥Ÿ.
+	void	SetPosition(const RwV3d *pPos);											///< EffectÎ•º WorldÏùò ÏúÑÏπòÎ°ú Ïù¥Îèô ÏãúÌÇ®Îã§.
+	RwV3d	GetPosition(void);														///< EffectÏùò WorldÏùò ÏúÑÏπòÎ•º ÏñªÎäîÎã§.
 	
-	void	SetRotate(RwReal fXAngle, RwReal fYAngle, RwReal fZAngle);				///< Effect¿« Model ∞¯∞£ »∏¿¸∞™(degree)
-	const	RwV3d* GetRotate(void) const;											///< Effect¿« Model ∞¯∞£ »∏¿¸∞™ æÚ±‚
+	void	SetRotate(RwReal fXAngle, RwReal fYAngle, RwReal fZAngle);				///< EffectÏùò Model Í≥µÍ∞Ñ ÌöåÏ†ÑÍ∞í(degree)
+	const	RwV3d* GetRotate(void) const;											///< EffectÏùò Model Í≥µÍ∞Ñ ÌöåÏ†ÑÍ∞í ÏñªÍ∏∞
 
-	void	SetScale( RwReal fScale );												///< Effect¿« Model ∞¯∞£ Scale∞™
-	RwReal	GetScale(void);															///< Effect¿« Model ∞¯∞£ Scale∞™ æÚæÓø¿±‚
-    void    SetApplyScale(RwBool bApply);                                           ///< Ω∫ƒ…¿œ ¿˚øÎ ¿Øπ´∏¶ º≥¡§«—¥Ÿ.
+	void	SetScale( RwReal fScale );												///< EffectÏùò Model Í≥µÍ∞Ñ ScaleÍ∞í
+	RwReal	GetScale(void);															///< EffectÏùò Model Í≥µÍ∞Ñ ScaleÍ∞í ÏñªÏñ¥Ïò§Í∏∞
+    void    SetApplyScale(RwBool bApply);                                           ///< Ïä§ÏºÄÏùº Ï†ÅÏö© Ïú†Î¨¥Î•º ÏÑ§Ï†ïÌïúÎã§.
 
-    inline RwSphere* GetBoundingSphere();                                           ///< ¿Ã∆Â∆Æ¿« πŸøÓµ˘ Ω∫««æÓ∏¶ π›»Ø«—¥Ÿ. (πŸøÓµ˘ Ω∫««æÓ∞° æ¯¿∏∏È NULL¿ª π›»Ø)
+    inline RwSphere* GetBoundingSphere();                                           ///< Ïù¥ÌéôÌä∏Ïùò Î∞îÏö¥Îî© Ïä§ÌîºÏñ¥Î•º Î∞òÌôòÌïúÎã§. (Î∞îÏö¥Îî© Ïä§ÌîºÏñ¥Í∞Ä ÏóÜÏúºÎ©¥ NULLÏùÑ Î∞òÌôò)
     void			 RenderBoundingSphere();                                        ///< Renders the shape of the bounding sphere. (Venus only)
 
-    virtual void	SetAlpha(RwUInt8 byValue);                                      ///< Effect¿« Alpha∞™¿ª º≥¡§«—¥Ÿ.
-    virtual void	SetVisible(RwBool bVisible);                                    ///< Effect¿« Visible ¿Øπ´∏¶ º≥¡§«—¥Ÿ
-    virtual RwBool	IsVisible(RwUInt32 uiFlags = 0xFFFFFFFF);                       ///< Effect¿« Visible ¿Øπ´∏¶ π›»Ø«—¥Ÿ.
+    virtual void	SetAlpha(RwUInt8 byValue);                                      ///< EffectÏùò AlphaÍ∞íÏùÑ ÏÑ§Ï†ïÌïúÎã§.
+    virtual void	SetVisible(RwBool bVisible);                                    ///< EffectÏùò Visible Ïú†Î¨¥Î•º ÏÑ§Ï†ïÌïúÎã§
+    virtual RwBool	IsVisible(RwUInt32 uiFlags = 0xFFFFFFFF);                       ///< EffectÏùò Visible Ïú†Î¨¥Î•º Î∞òÌôòÌïúÎã§.
 
 	RwBool			SetPlayAnimSpeed(RwReal fAnimSpeed);									///< Animaiton Speed (1.f: Default )
-	void			SetVisibleBoundingVolume(RwBool bVisible);								///< World EditorøÎ Picking Bounding Volume
-    void			SetPostEffect_CenterFixEnable(RwBool bEnable);                          ///< ∆˜«‘µ» Post Effect¿« Center Fix±‚¥…¿ª º≥¡§«—¥Ÿ.
-    void			SetCulling(RwBool bCulling) {m_bIsCulling = bCulling;}                  ///< ∞≠¡¶∑Œ ƒ√∏µ ¿Øπ´∏¶ º≥¡§«—¥Ÿ.
-    RwBool			IsCulling() {return m_bIsCulling;}                                      ///< ƒ√∏µ ¿Øπ´ «√∑°±◊∏¶ π›»Ø«—¥Ÿ.
-    RwUInt32        GetMemoryUseSize();                                                     ///< ¿Ã∆Â∆Æ¿« ∏ﬁ∏∏Æ ªÁøÎ∑Æ¿ª π›»Ø«—¥Ÿ.
+	void			SetVisibleBoundingVolume(RwBool bVisible);								///< World EditorÏö© Picking Bounding Volume
+    void			SetPostEffect_CenterFixEnable(RwBool bEnable);                          ///< Ìè¨Ìï®Îêú Post EffectÏùò Center FixÍ∏∞Îä•ÏùÑ ÏÑ§Ï†ïÌïúÎã§.
+    void			SetCulling(RwBool bCulling) {m_bIsCulling = bCulling;}                  ///< Í∞ïÏ†úÎ°ú Ïª¨ÎßÅ Ïú†Î¨¥Î•º ÏÑ§Ï†ïÌïúÎã§.
+    RwBool			IsCulling() {return m_bIsCulling;}                                      ///< Ïª¨ÎßÅ Ïú†Î¨¥ ÌîåÎûòÍ∑∏Î•º Î∞òÌôòÌïúÎã§.
+    RwUInt32        GetMemoryUseSize();                                                     ///< Ïù¥ÌéôÌä∏Ïùò Î©îÎ™®Î¶¨ ÏÇ¨Ïö©ÎüâÏùÑ Î∞òÌôòÌïúÎã§.
     
 #ifndef dNTL_WORLD_CULLING_NEW
-	virtual RwBool  CullingTest(RwCamera* pCamera);                                         ///< ƒ√∏µ ¿Øπ´∏¶ ∞ÀªÁ«—¥Ÿ.
+	virtual RwBool  CullingTest(RwCamera* pCamera);                                         ///< Ïª¨ÎßÅ Ïú†Î¨¥Î•º Í≤ÄÏÇ¨ÌïúÎã§.
 #endif
 
     //-- Flag settings for Low Spec

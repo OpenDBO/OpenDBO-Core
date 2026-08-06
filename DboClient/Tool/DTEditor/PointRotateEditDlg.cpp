@@ -1,4 +1,4 @@
-// PointRotateEditDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PointRotateEditDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -81,7 +81,7 @@ RpAtomic* PickEdit_IntersectionLineAtomicCB( RpIntersection* pIntersection, RpWo
 }
 
 
-// CPointRotateEditDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPointRotateEditDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPointRotateEditDlg, CDialog)
 
@@ -135,7 +135,7 @@ BEGIN_MESSAGE_MAP(CPointRotateEditDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CPointRotateEditDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPointRotateEditDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 
 void CPointRotateEditDlg::CreateResouce(void)
@@ -281,7 +281,7 @@ RpClump* CPointRotateEditDlg::CreateClump(const RwChar *filename)
 
 void CPointRotateEditDlg::CreateBoxPlane(void)
 {
-	// ¾ÕµÚ
+	// ì•ë’¤
 	RwV3d vPoint, vNormal;
 
 	CNtlMath::MathRwV3dAssign(&vPoint, 0.0f, 0.0f, -1.0f);
@@ -370,7 +370,7 @@ void CPointRotateEditDlg::AddYaw(RwReal fDeltaYaw)
 {
 	m_fYaw += fDeltaYaw;
 		
-	// Ä«¸Ş¶ó °¢µµ´Â 0 ~ 360 À» »ç¿ëÇÑ´Ù. 
+	// ì¹´ë©”ë¼ ê°ë„ëŠ” 0 ~ 360 ì„ ì‚¬ìš©í•œë‹¤. 
 	if(m_fYaw >= 360.0f)
 		m_fYaw -= 360.0f;
 
@@ -676,7 +676,7 @@ void CPointRotateEditDlg::GridRender(void)
 			RwIm3DVertexSetRGBA(&Vertex[1], 150, 150, 150, 255);
 		}
 
-		// ÀüÈÄ¸é (°¡·Î)
+		// ì „í›„ë©´ (ê°€ë¡œ)
 		RwIm3DVertexSetPos(&Vertex[0], -fAxisScale, fAxisScale*i/(RwReal)m_nGridNum, fAxisScale);
 		RwIm3DVertexSetPos(&Vertex[1], fAxisScale,  fAxisScale*i/(RwReal)m_nGridNum, fAxisScale);
 
@@ -695,7 +695,7 @@ void CPointRotateEditDlg::GridRender(void)
 			RwIm3DEnd();
 		}
 
-		// ÁÂ¿ì¸é (°¡·Î)
+		// ì¢Œìš°ë©´ (ê°€ë¡œ)
 
 		RwIm3DVertexSetPos(&Vertex[0], -fAxisScale, fAxisScale*i/(RwReal)m_nGridNum, -fAxisScale);
 		RwIm3DVertexSetPos(&Vertex[1], -fAxisScale,  fAxisScale*i/(RwReal)m_nGridNum, fAxisScale);
@@ -715,7 +715,7 @@ void CPointRotateEditDlg::GridRender(void)
 			RwIm3DEnd();
 		}
 
-		// »óÇÏ¸é (°¡·Î)
+		// ìƒí•˜ë©´ (ê°€ë¡œ)
 
 		RwIm3DVertexSetPos(&Vertex[0], -fAxisScale, fAxisScale, fAxisScale*i/(RwReal)m_nGridNum);
 		RwIm3DVertexSetPos(&Vertex[1], fAxisScale,  fAxisScale, fAxisScale*i/(RwReal)m_nGridNum);
@@ -735,7 +735,7 @@ void CPointRotateEditDlg::GridRender(void)
 			RwIm3DEnd();
 		}
 
-		// ÀüÈÄ¸é (¼¼·Î)
+		// ì „í›„ë©´ (ì„¸ë¡œ)
 		RwIm3DVertexSetPos(&Vertex[0], fAxisScale*i/(RwReal)m_nGridNum, -fAxisScale, fAxisScale);
 		RwIm3DVertexSetPos(&Vertex[1], fAxisScale*i/(RwReal)m_nGridNum, fAxisScale, fAxisScale);
 
@@ -754,7 +754,7 @@ void CPointRotateEditDlg::GridRender(void)
 			RwIm3DEnd();
 		}
 
-		// ÁÂ¿ì¸é (¼¼·Î)
+		// ì¢Œìš°ë©´ (ì„¸ë¡œ)
 		RwIm3DVertexSetPos(&Vertex[0], fAxisScale, -fAxisScale, fAxisScale*i/(RwReal)m_nGridNum);
 		RwIm3DVertexSetPos(&Vertex[1], fAxisScale, fAxisScale, fAxisScale*i/(RwReal)m_nGridNum);
 
@@ -773,7 +773,7 @@ void CPointRotateEditDlg::GridRender(void)
 			RwIm3DEnd();
 		}
 
-		// »óÇÏ¸é (¼¼·Î)
+		// ìƒí•˜ë©´ (ì„¸ë¡œ)
 		RwIm3DVertexSetPos(&Vertex[0], fAxisScale*i/(RwReal)m_nGridNum, fAxisScale, -fAxisScale);
 		RwIm3DVertexSetPos(&Vertex[1], fAxisScale*i/(RwReal)m_nGridNum, fAxisScale, fAxisScale);
 
@@ -862,7 +862,7 @@ void CPointRotateEditDlg::SelectPointRender(void)
 
 	RwV3d vAt = pDTSpline->GetSplineControlPointRotate(nSelSx);
 
-	// 6°³ plane
+	// 6ê°œ plane
 
 	RwV3d vSplit;
 	FindRotatePlaneSplitPoint(vAt, vSplit);
@@ -887,7 +887,7 @@ void CPointRotateEditDlg::PointBoxRender(const RwV3d *pPos, const RwRGBA *pColor
 
 	RwRenderStateSet(rwRENDERSTATETEXTURERASTER, (void *)NULL);
 
-	// ¹Ú½º ¶óÀÎ 1.
+	// ë°•ìŠ¤ ë¼ì¸ 1.
 	RwIm3DVertexSetPos(&LineVertex[0], pPos->x-fOffset, pPos->y+fOffset, pPos->z+fOffset);
 	RwIm3DVertexSetRGBA(&LineVertex[0], pColor->red, pColor->green, pColor->blue, pColor->alpha);
 
@@ -1007,7 +1007,7 @@ int CPointRotateEditDlg::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CDialog::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// TODO:  ¿©±â¿¡ Æ¯¼öÈ­µÈ ÀÛ¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì‘ì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	
 
@@ -1018,7 +1018,7 @@ void CPointRotateEditDlg::OnSize(UINT nType, int cx, int cy)
 {
 	CDialog::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	if (m_pCamera)
 	{
@@ -1045,7 +1045,7 @@ void CPointRotateEditDlg::OnLButtonDown(UINT nFlags, CPoint point)
 		CRect rtClient;
 		GetDlgItem(IDC_ROTATE_VIEW)->GetClientRect(rtClient);
 
-		// ÁÂÇ¥ ±¸ÇÏ±â.
+		// ì¢Œí‘œ êµ¬í•˜ê¸°.
 		CPoint ptDlg, ptEdit;
 		ClientToScreen(&ptDlg);
 		GetDlgItem(IDC_ROTATE_VIEW)->ClientToScreen(&ptEdit);
@@ -1076,7 +1076,7 @@ void CPointRotateEditDlg::OnLButtonDown(UINT nFlags, CPoint point)
 		SetCapture();
 	}
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	CDialog::OnLButtonDown(nFlags, point);
 }
@@ -1088,7 +1088,7 @@ void CPointRotateEditDlg::OnLButtonUp(UINT nFlags, CPoint point)
 
 	m_bLBtnClick = FALSE;
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	CDialog::OnLButtonUp(nFlags, point);
 }
@@ -1108,7 +1108,7 @@ void CPointRotateEditDlg::OnMouseMove(UINT nFlags, CPoint point)
 		m_ptOldLBtnMouse = point;
 	}
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	CDialog::OnMouseMove(nFlags, point);
 }
@@ -1121,33 +1121,33 @@ BOOL CPointRotateEditDlg::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 
 	ZoomInOut(fDelta);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	return CDialog::OnMouseWheel(nFlags, zDelta, pt);
 }
 
 void CPointRotateEditDlg::OnBnClickedPointrotateeditResetCamera()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	ResetCamera();
 }
 
 void CPointRotateEditDlg::OnEnChangePointrotateeditGridNum()
 {
-	// TODO:  RICHEDIT ÄÁÆ®·ÑÀÎ °æ¿ì, ÀÌ ÄÁÆ®·ÑÀº
-	// CDialog::OnInitDialog() ÇÔ¼ö¸¦ ÀçÁöÁ¤ÇÏ°í  ¸¶½ºÅ©¿¡ OR ¿¬»êÇÏ¿© ¼³Á¤µÈ
-	// ENM_CHANGE ÇÃ·¡±×¸¦ ÁöÁ¤ÇÏ¿© CRichEditCtrl().SetEventMask()¸¦ È£ÃâÇØ¾ß¸¸
-	// ÇØ´ç ¾Ë¸² ¸Ş½ÃÁö¸¦ º¸³À´Ï´Ù.
+	// TODO:  RICHEDIT ì»¨íŠ¸ë¡¤ì¸ ê²½ìš°, ì´ ì»¨íŠ¸ë¡¤ì€
+	// CDialog::OnInitDialog() í•¨ìˆ˜ë¥¼ ì¬ì§€ì •í•˜ê³   ë§ˆìŠ¤í¬ì— OR ì—°ì‚°í•˜ì—¬ ì„¤ì •ëœ
+	// ENM_CHANGE í”Œë˜ê·¸ë¥¼ ì§€ì •í•˜ì—¬ CRichEditCtrl().SetEventMask()ë¥¼ í˜¸ì¶œí•´ì•¼ë§Œ
+	// í•´ë‹¹ ì•Œë¦¼ ë©”ì‹œì§€ë¥¼ ë³´ëƒ…ë‹ˆë‹¤.
 
-	// TODO:  ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	UpdateData(TRUE);
 }
 
 void CPointRotateEditDlg::OnEnKillfocusPointrotateeditGridNum()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	UpdateData(TRUE);
 
@@ -1157,7 +1157,7 @@ void CPointRotateEditDlg::OnEnKillfocusPointrotateeditGridNum()
 
 void CPointRotateEditDlg::OnBnClickedPointrotateeditBack()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	CNtlDTProp *pDTProp = GetActiveDTProp();
 	if(pDTProp == NULL)
@@ -1195,7 +1195,7 @@ void CPointRotateEditDlg::OnBnClickedPointrotateeditBack()
 
 void CPointRotateEditDlg::OnBnClickedPointrotateeditPointDirection()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	CNtlDTProp *pDTProp = GetActiveDTProp();
 	if(pDTProp == NULL)
@@ -1214,7 +1214,7 @@ void CPointRotateEditDlg::OnBnClickedPointrotateeditPointDirection()
 
 void CPointRotateEditDlg::OnBnClickedPointrotateeditInterpolation()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	CNtlDTProp *pDTProp = GetActiveDTProp();
 	if(pDTProp == NULL)

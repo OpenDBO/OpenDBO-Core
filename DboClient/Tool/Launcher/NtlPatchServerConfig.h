@@ -2,30 +2,30 @@
 *
 * File			: NtlPatchServerConfig.h
 * Author		: agebreak
-* Copyright	: (ÁÖ)NTL
+* Copyright	: (ì£¼)NTL
 * Date			: 2007. 10. 4.
 * Abstract		: 
 *****************************************************************************
-* Desc         : Patch Server¿¡ Á¸ÀçÇÏ´Â PatchServerConfig.XMLÆÄÀÏÀÇ ³»¿ëÀ» ÀĞ¾î¼­ ºĞ¼®ÇÏ´Â Å¬·¡½º
+* Desc         : Patch Serverì— ì¡´ì¬í•˜ëŠ” PatchServerConfig.XMLíŒŒì¼ì˜ ë‚´ìš©ì„ ì½ì–´ì„œ ë¶„ì„í•˜ëŠ” í´ë˜ìŠ¤
 *
 *****************************************************************************/
 #pragma once
 
 #include <string>
 
-/// ÆĞÄ¡¼­¹ö¿¡ Á¸ÀçÇÏ´Â PatchServerConfig.XML ÆÄÀÏÀÇ ³»¿ëÀ» ÀĞ¾î¼­ ºĞ¼®ÇÏ´Â ÆÄÀÏ
+/// íŒ¨ì¹˜ì„œë²„ì— ì¡´ì¬í•˜ëŠ” PatchServerConfig.XML íŒŒì¼ì˜ ë‚´ìš©ì„ ì½ì–´ì„œ ë¶„ì„í•˜ëŠ” íŒŒì¼
 class CNtlPatchServerConfig
 {
 public:    
     static CNtlPatchServerConfig* GetInstance();
     static void                   DeleteInstance();
 
-    BOOL LoadServerConfigFile(const char* pszXMLFileName);              ///< XML ÆÄÀÏÀ» ·ÎµùÇÑ´Ù.
+    BOOL LoadServerConfigFile(const char* pszXMLFileName);              ///< XML íŒŒì¼ì„ ë¡œë”©í•œë‹¤.
 
-    BOOL            GetPatchEnable() {return m_bPatchEnable;}           ///< ÆĞÄ¡ °¡´É À¯¹«¸¦ ¹İÈ¯ÇÑ´Ù.
-    std::string&    GetPatchErrMsg()    {return m_strErrorMsg;}         ///< ¿¡·¯¸Ş½ÃÁö¸¦ ¹İÈ¯ÇÑ´Ù.
-    std::string&    GetFullVerServerIP() {return m_strFullVerServerIP;} ///< Ç®¹öÀüÀÌ ÀÖ´Â ¼­¹öÀÇ IP¸¦ ¹İÈ¯ÇÑ´Ù.
-    std::string&    GetFullVerServerFolder() {return m_strFullVerServerFolder;} ///< Ç®¹öÀüÀÌ ÀÖ´Â ¼­¹öÀÇ Æú´õ°æ·Î¸¦ ¹İÈ¯ÇÑ´Ù.
+    BOOL            GetPatchEnable() {return m_bPatchEnable;}           ///< íŒ¨ì¹˜ ê°€ëŠ¥ ìœ ë¬´ë¥¼ ë°˜í™˜í•œë‹¤.
+    std::string&    GetPatchErrMsg()    {return m_strErrorMsg;}         ///< ì—ëŸ¬ë©”ì‹œì§€ë¥¼ ë°˜í™˜í•œë‹¤.
+    std::string&    GetFullVerServerIP() {return m_strFullVerServerIP;} ///< í’€ë²„ì „ì´ ìˆëŠ” ì„œë²„ì˜ IPë¥¼ ë°˜í™˜í•œë‹¤.
+    std::string&    GetFullVerServerFolder() {return m_strFullVerServerFolder;} ///< í’€ë²„ì „ì´ ìˆëŠ” ì„œë²„ì˜ í´ë”ê²½ë¡œë¥¼ ë°˜í™˜í•œë‹¤.
 
 protected:
     CNtlPatchServerConfig();

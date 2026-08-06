@@ -169,7 +169,7 @@ RwUInt8 CLobby::RemoveCharacter(CHARACTERID charID)
 	if( INVALID_BYTE == byDeletedIndex )
 		return INVALID_BYTE;
 
-	// ¸¶Á÷¸· ½½·ÔÀº Ç×»ó ºñ¿î´Ù
+	// ë§ˆì§ë§‰ ìŠ¬ë¡¯ì€ í•­ìƒ ë¹„ìš´ë‹¤
 	atLobbyCharacter[NTL_MAX_COUNT_USER_CHAR_SLOT-1].tSummary.charId = INVALID_CHARACTERID;
 
 	return byDeletedIndex;	

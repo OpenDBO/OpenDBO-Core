@@ -199,7 +199,7 @@ void CClumpPane::SetEnable(BOOL bEnable)
     m_btSaveClump.EnableWindow(bEnable);
  
 
-    // AtomicÀ» ¼±ÅÃÇÏ±âÀü±îÁö ¸ğµç ¹öÆ°Àº Disable ½ÃÄÑµĞ´Ù.
+    // Atomicì„ ì„ íƒí•˜ê¸°ì „ê¹Œì§€ ëª¨ë“  ë²„íŠ¼ì€ Disable ì‹œì¼œë‘”ë‹¤.
     m_btDelete.EnableWindow(bEnable);
     m_btSave.EnableWindow(bEnable);    
 
@@ -280,7 +280,7 @@ void CClumpPane::DisplayAtomics()
     
 	SetEnableAllButtons(FALSE);
 
-    // È¯°æ¸Ê ¼³Á¤
+    // í™˜ê²½ë§µ ì„¤ì •
     SetEnvMap();    
 }
 
@@ -288,7 +288,7 @@ void CClumpPane::OnEnChangeEditClumpName()
 {
     USES_CONVERSION;
 
-    // ´Ù¸¥Å¬·¡½º¿¡¼­ ÅØ½ºÆ®¸¦ ¹Ù²Û °æ¿ì¿¡´Â ¸ğµ¨À» ·ÎµåÇÏÁö ¾Ê´Â´Ù.
+    // ë‹¤ë¥¸í´ë˜ìŠ¤ì—ì„œ í…ìŠ¤íŠ¸ë¥¼ ë°”ê¾¼ ê²½ìš°ì—ëŠ” ëª¨ë¸ì„ ë¡œë“œí•˜ì§€ ì•ŠëŠ”ë‹¤.
     if(m_bFlagSetModel)
     {
         m_bFlagSetModel = FALSE;        
@@ -307,7 +307,7 @@ void CClumpPane::OnEnChangeEditClumpName()
 
 void CClumpPane::OnLbnSelchangeListAtomic()
 {
-    // ListBoxÀÇ AtomicÀ» ¼±ÅÃÇŞÀ»¶§ ¹Ù¿îµù¹Ú½º¸¦ ±×·ÁÁØ´Ù.
+    // ListBoxì˜ Atomicì„ ì„ íƒí–‡ì„ë•Œ ë°”ìš´ë”©ë°•ìŠ¤ë¥¼ ê·¸ë ¤ì¤€ë‹¤.
     USES_CONVERSION;
 
     if(!m_pMTClump)
@@ -315,7 +315,7 @@ void CClumpPane::OnLbnSelchangeListAtomic()
 
     m_pMTClump->ClearBB();
 
-    // Ã³À½¿£ ¸ğµç Ã¼Å© ¹öÆ°À» UnCheckÇÑ´Ù
+    // ì²˜ìŒì—” ëª¨ë“  ì²´í¬ ë²„íŠ¼ì„ UnCheckí•œë‹¤
     for(int i = 0; i < CLUMP_CKBTN_CNT; ++i)
     {
         m_bFlagCkBtn[i] = FALSE;
@@ -386,7 +386,7 @@ void CClumpPane::OnSetCheckButtons(CHAR* szAtomicName)
     if(!pAtomic)
         return;
 
-    // Toon ÀÌ Àû¿ëµÇ¾îÀÖ´ÂÁö Check ÇÑ´Ù.
+    // Toon ì´ ì ìš©ë˜ì–´ìˆëŠ”ì§€ Check í•œë‹¤.
     RpToonGeo *g = NULL;
     g = RpToonGeometryGetToonGeo( RpAtomicGetGeometry(pAtomic) );
     if(g == NULL)
@@ -550,7 +550,7 @@ void CClumpPane::OnBnClickedBtDelete()
     USES_CONVERSION;
 
     
-    // ¼±ÅÃµÇÁö ¾ÊÀº AtomicÀ» °ñ¶ó¼­ »èÁ¦ÇÑ´Ù.
+    // ì„ íƒë˜ì§€ ì•Šì€ Atomicì„ ê³¨ë¼ì„œ ì‚­ì œí•œë‹¤.
     std::vector<CString> vDeleteItems;
     int nCount = m_listAtomic.GetSelCount();
     int nTotalCount = m_listAtomic.GetCount();
@@ -593,7 +593,7 @@ void CClumpPane::OnBnClickedBtClumpSave()
 
     SaveEnvMap();
 
-    // ¼±ÅÃÇÑ Atomicµé¸¸ SaveÇÑ´Ù.
+    // ì„ íƒí•œ Atomicë“¤ë§Œ Saveí•œë‹¤.
 
     CString strClumpName = (m_pMTClump->GetClumpName());
 
@@ -614,7 +614,7 @@ void CClumpPane::OnBnClickedBtClumpSave()
 
         if(CModelToolApplication::GetInstance()->GetAppMode() == MT_MODE_CLUMP)
         {
-            // ÆÄÃ÷¸¦ SaveÈÄ ¿ø·¡ ¸ğµ¨À» ´Ù½Ã ·ÎµåÇÑ´Ù.
+            // íŒŒì¸ ë¥¼ Saveí›„ ì›ë˜ ëª¨ë¸ì„ ë‹¤ì‹œ ë¡œë“œí•œë‹¤.
             m_pMTClump->Load((LPSTR)(LPCSTR)(strClumpName));   
             DisplayAtomics();
         }        
@@ -624,7 +624,7 @@ void CClumpPane::OnBnClickedBtClumpSave()
 void CClumpPane::OnBnClickedBtClumpSaveAll()
 {
     USES_CONVERSION;
-    // ¸ğµç ÆÄÃ÷¸¦ ÀúÀåÇÑ´Ù.
+    // ëª¨ë“  íŒŒì¸ ë¥¼ ì €ì¥í•œë‹¤.
     if(!m_pMTClump)
         return;
 
@@ -672,13 +672,13 @@ void CClumpPane::SetChangeAtomicFlag( ENtlAtomicFlag eFlag, RwBool bEnable )
 			m_listAtomic.GetText(arrIndex[i], szAtomicName); 			
 			m_pMTClump->SetAtomicFlag(eFlag, (szAtomicName), bEnable);                
 
-			// Flag¿¡ µû¸¥ Ãß°¡ ÀÛ¾÷
+			// Flagì— ë”°ë¥¸ ì¶”ê°€ ì‘ì—…
 			switch(eFlag)
 			{
-			case NTL_COLLISION:			// Collision Tree¸¦ ºôµåÇÑ´Ù.
+			case NTL_COLLISION:			// Collision Treeë¥¼ ë¹Œë“œí•œë‹¤.
 				m_pMTClump->CollisionDataBuild((szAtomicName));
 				break;
-			case NTL_SHADOW_MAP:		// ¼³Á¤µÈ ¸ÖÆ¼ÅØ½ºÃÄÀÇ Å©±â¸¦ ¼³Á¤ÇÑ´Ù.
+			case NTL_SHADOW_MAP:		// ì„¤ì •ëœ ë©€í‹°í…ìŠ¤ì³ì˜ í¬ê¸°ë¥¼ ì„¤ì •í•œë‹¤.
 				if(bEnable)
 				{
 					SetShadowMapSize(szAtomicName);
@@ -781,7 +781,7 @@ void CClumpPane::OnBnClickedCheckAlpha2()
 
 void CClumpPane::OnBnClickedCheckAlpha3()
 {
-    // 2Side ¼³Á¤ (Toon ¸»°í ÀÏ¹İ)    
+    // 2Side ì„¤ì • (Toon ë§ê³  ì¼ë°˜)    
 	SetChangeAtomicFlag(NTL_TWOSIDE, m_ckRender2Side.GetCheck());    
 }
 
@@ -791,14 +791,14 @@ void CClumpPane::OnBnClickedCheckEmblemMark()
 }
 
 /**
- * Collision ¼³Á¤ 
+ * Collision ì„¤ì • 
  */
 void CClumpPane::OnBnClickedCheckCollision()
 {
 	SetChangeAtomicFlag(NTL_COLLISION, m_ckCollision.GetCheck());	
 }
 
-// Not Visible ¹öÆ°À» Ã¼Å©ÇßÀ»¶§
+// Not Visible ë²„íŠ¼ì„ ì²´í¬í–ˆì„ë•Œ
 void CClumpPane::OnBnClickedCheckNotVisible()
 {
     SetChangeAtomicFlag(NTL_NOT_VISIBLE, m_ckNotVisible.GetCheck());
@@ -816,7 +816,7 @@ void CClumpPane::OnBnClickedCheckShadowmap()
 }
 
 
-// Camera Collision Ã¼Å© ¹Ú½º°¡ Å¬¸¯ µÇ¾úÀ»¶§
+// Camera Collision ì²´í¬ ë°•ìŠ¤ê°€ í´ë¦­ ë˜ì—ˆì„ë•Œ
 void CClumpPane::OnBnClickedCheckCameraCollision()
 {
     SetChangeAtomicFlag(NTL_CAMERA_COLLISION, m_ckCameraCollision.GetCheck());
@@ -856,7 +856,7 @@ void CClumpPane::Render()
     if(!m_pMTClump)
         return;
 
-    // ¼±ÅÃµÈ AtomicµéÀÇ BB¸¦ RenderÇÑ´Ù.
+    // ì„ íƒëœ Atomicë“¤ì˜ BBë¥¼ Renderí•œë‹¤.
     RenderAtomicBB();
 
 }
@@ -906,7 +906,7 @@ void CClumpPane::SetShadowMapSize( CHAR* szAtomicName )
 	RwUInt32 uiSize = RpNtlAtomicGetUserDatU16(m_pMTClump->GetAtomicByName((szAtomicName)));
 	if(uiSize <= 0)
 	{
-		// °ªÀÌ ¼³Á¤µÇ¾î ÀÖÁö ¾ÊÀ¸¸é µğÆúÆ®·Î 256À» ¼³Á¤ÇÑ´Ù.
+		// ê°’ì´ ì„¤ì •ë˜ì–´ ìˆì§€ ì•Šìœ¼ë©´ ë””í´íŠ¸ë¡œ 256ì„ ì„¤ì •í•œë‹¤.
 		uiSize = 256;
 		RpNtlAtomicSetUserDatU16(m_pMTClump->GetAtomicByName((szAtomicName)), (RwUInt16)uiSize);
 	}
@@ -1014,7 +1014,7 @@ void CClumpPane::SaveEnvMap()
     RwUInt16 uiTexture = (RwUInt16)atoi(strEnvTex);
     if(uiTexture > 0)
     {
-        // ±âÁ¸¿¡ ¼³Á¤µÈ°Ô ÀÖÀ¸¸é Áö¿ö¾ß ÇÑ´Ù.
+        // ê¸°ì¡´ì— ì„¤ì •ëœê²Œ ìˆìœ¼ë©´ ì§€ì›Œì•¼ í•œë‹¤.
         RpAtomic* pAtomic = Helper_GetEnvMapAtomic(m_pMTClump->GetClump());
         if(pAtomic)
             m_pMTClump->SetAtomicFlag(NTL_ENVMAP_TEX, pAtomic, FALSE);

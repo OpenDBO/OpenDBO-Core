@@ -6,8 +6,8 @@ START_GUI
 
 /**
 * \brief Contruction
-* \param pParent			(CComponent*) ºÎ¸ğ Component
-* \param pSurfaceManager	(pSurfaceManager*) ¼­ÆäÀÌ½º ¸Å´ÏÀú
+* \param pParent			(CComponent*) ë¶€ëª¨ Component
+* \param pSurfaceManager	(pSurfaceManager*) ì„œí˜ì´ìŠ¤ ë§¤ë‹ˆì €
 */
 CHtmlBox::CHtmlBox( CComponent *pParent, CSurfaceManager* pSurfaceManager )
 :CComponent( pParent, pSurfaceManager ), m_pImpl( NULL )
@@ -48,8 +48,8 @@ CHtmlBox::~CHtmlBox()
 }
 
 /**
-* \brief File¿¡¼­ Html Tag¸¦ ÀĞ¾î¿Í ÆÄ½ÌÇÑ´Ù.
-* \param pFileName	(CHAR*) ÆÄÀÏ ÀÌ¸§
+* \brief Fileì—ì„œ Html Tagë¥¼ ì½ì–´ì™€ íŒŒì‹±í•œë‹¤.
+* \param pFileName	(CHAR*) íŒŒì¼ ì´ë¦„
 */
 VOID CHtmlBox::SetHtmlFromFile(const CHAR *pFileName)
 {
@@ -64,22 +64,22 @@ VOID CHtmlBox::SetHtmlFromFile( const WCHAR* pFileName )
 }
 
 /**
-* \brief Memory¿¡¼­ Html Tag¸¦ ÀĞ¾î¿Í ÆÄ½ÌÇÑ´Ù. (¸ÖÆ¼¹ÙÀÌÆ®¿ë)
-* \param pMemory	(CHAR*) ¹®ÀÚ¿­
-* \param nSize		(INT) ¸Ş¸ğ¸®ÀÇ »çÀÌÁî
+* \brief Memoryì—ì„œ Html Tagë¥¼ ì½ì–´ì™€ íŒŒì‹±í•œë‹¤. (ë©€í‹°ë°”ì´íŠ¸ìš©)
+* \param pMemory	(CHAR*) ë¬¸ìì—´
+* \param nSize		(INT) ë©”ëª¨ë¦¬ì˜ ì‚¬ì´ì¦ˆ
 */
 VOID CHtmlBox::SetHtmlFromMemory(const CHAR *pMemory, INT nSize)
 {
-	// Multibyte ¹®ÀÚ¿­À» Unicode ·Î º¯È¯ÇÏ¿© Unicode¿ë ÇÔ¼ö¸¦ È£ÃâÇÑ´Ù.
+	// Multibyte ë¬¸ìì—´ì„ Unicode ë¡œ ë³€í™˜í•˜ì—¬ Unicodeìš© í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•œë‹¤.
 	WCHAR awcBuffer[1024] = L" ";
 	::MultiByteToWideChar( GetACP(), 0, pMemory, -1, awcBuffer, 1024 );
 	m_pImpl->SetHtmlFromMemory( awcBuffer, (INT)wcslen(awcBuffer) );
 }
 
 /**
-* \brief Memory¿¡¼­ Html Tag¸¦ ÀĞ¾î¿Í ÆÄ½ÌÇÑ´Ù. (À¯´ÏÄÚµå¿ë)
-* \param pMemory	(WCHAR*) ¹®ÀÚ¿­
-* \param nSize		(INT) ¸Ş¸ğ¸®ÀÇ »çÀÌÁî
+* \brief Memoryì—ì„œ Html Tagë¥¼ ì½ì–´ì™€ íŒŒì‹±í•œë‹¤. (ìœ ë‹ˆì½”ë“œìš©)
+* \param pMemory	(WCHAR*) ë¬¸ìì—´
+* \param nSize		(INT) ë©”ëª¨ë¦¬ì˜ ì‚¬ì´ì¦ˆ
 */
 VOID CHtmlBox::SetHtmlFromMemory(const WCHAR *pMemory, INT nSize)
 {
@@ -141,7 +141,7 @@ CScrollBar* CHtmlBox::GetScrollBar(VOID) const
 }
 
 ///////////////////////////////////////////////////////////////////////
-// Interval Text ÀÎÅÍÆäÀÌ½º
+// Interval Text ì¸í„°í˜ì´ìŠ¤
 ///////////////////////////////////////////////////////////////////////
 
 VOID CHtmlBox::SetIntervalTextEnable( float fIntervalTime ) 

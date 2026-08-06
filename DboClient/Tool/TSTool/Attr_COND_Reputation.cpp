@@ -1,4 +1,4 @@
-// Attr_COND_Reputation.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_COND_Reputation.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_COND_Reputation.h"
 
 
-// CAttr_COND_Reputation ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_COND_Reputation ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_COND_Reputation, CAttr_Page, 1)
 
@@ -58,4 +58,4 @@ BEGIN_MESSAGE_MAP(CAttr_COND_Reputation, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_COND_Reputation ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_COND_Reputation ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

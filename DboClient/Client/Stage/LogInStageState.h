@@ -3,7 +3,7 @@
  *
  * File			: LogInStageState.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2006. 12. 11	
  * Abstract		: Login stage state
  *****************************************************************************
@@ -29,8 +29,8 @@ private:
 
 	enum
 	{
-		LSS_TIME_SERVER_CONNECT = 30000,	// 3∫–.
-		LSS_TIMER_LOGIN_REQ		= 180000,	// 3∫–.
+		LSS_TIME_SERVER_CONNECT = 30000,	// 3Î∂Ñ.
+		LSS_TIMER_LOGIN_REQ		= 180000,	// 3Î∂Ñ.
 	};
 
 	struct sCHAR_SERVER_LOGIN

@@ -55,7 +55,7 @@ bool CLogInStage::Create(void)
 {
 	NTL_FUNCTION("CLogInStage::Create" );
 
-	// event µÓ∑œ.
+	// event Îì±Î°ù.
 	LinkMsg(g_EventUpdateTick, 0);
 	LinkMsg(g_EventLogInServerConnect, 0);
 	LinkMsg(g_EventLobbyServerConnect, 0);
@@ -116,7 +116,7 @@ void CLogInStage::Destroy(void)
 
 	CNtlPostEffectCamera::SetPostEffectFilters(POST_EFFECT_FILTER_NONE);
 
-	// event «ÿ¡¶.
+	// event Ìï¥Ï†ú.
 	UnLinkMsg(g_EventUpdateTick);
 	UnLinkMsg(g_EventLogInServerConnect);
 	UnLinkMsg(g_EventLobbyServerConnect);

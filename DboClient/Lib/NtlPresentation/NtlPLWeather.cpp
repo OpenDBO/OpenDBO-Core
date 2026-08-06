@@ -37,8 +37,8 @@ RwBool CNtlPLWeather::Create(const SPLEntityCreateParam* pParam)
 		NTL_RETURN(FALSE);
 	}
 
-	// Texture°¡ ¾øÀ» °æ¿ì VisualÀÌ ¾ø´Â °ÍÀ¸·Î ÆÇ´Ü
-	// ±âº» Controller¸¦ »ç¿ëÇÑ´Ù.
+	// Textureê°€ ì—†ì„ ê²½ìš° Visualì´ ì—†ëŠ” ê²ƒìœ¼ë¡œ íŒë‹¨
+	// ê¸°ë³¸ Controllerë¥¼ ì‚¬ìš©í•œë‹¤.
 
 	SPLWeatherEmitter& sPLWeatherEmitter = itEmitter->second;
 	if (sPLWeatherEmitter.strParticleTextureName.length())

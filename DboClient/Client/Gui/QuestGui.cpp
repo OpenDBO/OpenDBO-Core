@@ -77,7 +77,7 @@ RwBool CQuestGui::Create(VOID)
 	LinkMsg( g_EventMsgBoxResult );
 	LinkMsg( g_EventGameServerChangeOut );
 	
-	// Quest Indicator Å¸ÀÌ¹Ö
+	// Quest Indicator íƒ€ì´ë°
 	LinkMsg( g_EventChangeWorldConceptState, 0 ); // QuestIndicator show
 	//LinkMsg( g_EventRBMatch, 0 );				  // QuestIndicator hide
 	LinkMsg(g_EventResize);
@@ -187,7 +187,7 @@ VOID CQuestGui::Destroy(VOID)
 	UnLinkMsg( g_EventMsgBoxResult );
 	UnLinkMsg( g_EventGameServerChangeOut );
 
-	// Quest Indicator Å¸ÀÌ¹Ö
+	// Quest Indicator íƒ€ì´ë°
 	UnLinkMsg( g_EventChangeWorldConceptState );
 	//UnLinkMsg( g_EventRBMatch );
 	UnLinkMsg(g_EventResize);
@@ -263,7 +263,7 @@ VOID CQuestGui::HandleEvents( RWS::CMsg &msg )
 		m_pQuestList->HandleEvents( msg );
 		m_pQuestIndicator->HandleEvents( msg );
 
-		// ¶°ÀÖ´Â Äù½ºÆ® °ü·Ã À©µµ¿ì »èÁ¦
+		// ë– ìˆëŠ” í€˜ìŠ¤íŠ¸ ê´€ë ¨ ìœˆë„ìš° ì‚­ì œ
 		m_pQuestProposal->HandleEvents( msg );
 		m_pQuestProgress->HandleEvents( msg );
 		m_pQuestReward->HandleEvents( msg );
@@ -271,7 +271,7 @@ VOID CQuestGui::HandleEvents( RWS::CMsg &msg )
 	}
 	else if( msg.Id == g_EventTSRemovingTMQQuest_Nfy )
 	{
-		// TMQ Quest( List¿¡ µî·ÏµÇÁö ¾Ê´Â )½Ã À©µµ¿ì Á¾·á
+		// TMQ Quest( Listì— ë“±ë¡ë˜ì§€ ì•ŠëŠ” )ì‹œ ìœˆë„ìš° ì¢…ë£Œ
 		m_pQuestProposal->HandleEvents( msg );
 		m_pQuestReward->HandleEvents( msg );
 		m_pMultiDialog->HandleEvents( msg );

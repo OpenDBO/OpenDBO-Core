@@ -34,7 +34,7 @@ CGameLoadingThread::CGameLoadingThread( CGameStage* pGameStage )
 
 	if(bThreadLoad)
 	{
-		// Thread ½ÃÀÛ
+		// Thread ì‹œìž‘
 		Create();
 		ResumeThread();
 	}
@@ -49,7 +49,7 @@ CGameLoadingThread::CGameLoadingThread( CGameStage* pGameStage )
 
 CGameLoadingThread::~CGameLoadingThread( void )
 {
-	// Thread Á¾·á
+	// Thread ì¢…ë£Œ
 	Delete();
 
 	CNtlLoadingController::GetInstance()->Delete();

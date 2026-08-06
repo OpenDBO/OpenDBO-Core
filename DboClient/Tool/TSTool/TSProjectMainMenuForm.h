@@ -7,14 +7,14 @@
 #include "MainMenuListCtrl.h"
 
 
-// CTSProjectMainMenuForm Æû ºäÀÔ´Ï´Ù.
+// CTSProjectMainMenuForm í¼ ë·°ì…ë‹ˆë‹¤.
 
 class CTSProjectMainMenuForm : public CFormView
 {
 	DECLARE_DYNCREATE(CTSProjectMainMenuForm)
 
 protected:
-	CTSProjectMainMenuForm();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CTSProjectMainMenuForm();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CTSProjectMainMenuForm();
 
 public:
@@ -27,7 +27,7 @@ public:
 #endif
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 

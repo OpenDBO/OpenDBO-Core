@@ -1,4 +1,4 @@
-// VisibilityDistPropDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// VisibilityDistPropDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -12,7 +12,7 @@
 #include "NtlWEFrm.h"
 
 
-// CVisibilityDistPropDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CVisibilityDistPropDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CVisibilityDistPropDlg, CDialog)
 
@@ -79,10 +79,10 @@ BOOL CVisibilityDistPropDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CVisibilityDistPropDlg::OnBnClickedOk()

@@ -2,7 +2,7 @@
  *
  * File			: NTLCamera.h
  * Author		: agebreak
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 7. 14	
  * Abstract		: NTl Camera
  *****************************************************************************
@@ -48,27 +48,27 @@ public:
 	int		MouseWheelHandler(unsigned int uiMouseData);
 	int		KeyboardDownHandler(unsigned int uiKeyData);
 
-    void    SetLeftView();                          ///< ∏µ®¿« øﬁ¬ ¿ª ∫Ò√·¥Ÿ.
-    void    SetFrontView();                         ///< ∏µ®¿« ¡§∏È¿ª ∫Ò√·¥Ÿ.
-    void    SetTopView();                           ///< ∏µ®¿« ¿ß¬ ¿ª ∫Ò√·¥Ÿ.
-    void    SetRightView();                         ///< ∏µ®¿« ø¿∏•¬ ¿ª ∫Ò√·¥Ÿ.
-    void    SetRearView();                          ///< ∏µ®¿« µ⁄¬ ¿ª ∫Ò√·¥Ÿ.
-    void    SetBottomView();                        ///< ∏µ®¿« πÿ¿ª ∫Ò√·¥Ÿ.
-    void    SetEnableFreeCamera(RwBool bEnable);    ///< «¡∏Æ ƒ´∏ﬁ∂Û On/Off
+    void    SetLeftView();                          ///< Î™®Îç∏Ïùò ÏôºÏ™ΩÏùÑ ÎπÑÏ∂òÎã§.
+    void    SetFrontView();                         ///< Î™®Îç∏Ïùò Ï†ïÎ©¥ÏùÑ ÎπÑÏ∂òÎã§.
+    void    SetTopView();                           ///< Î™®Îç∏Ïùò ÏúÑÏ™ΩÏùÑ ÎπÑÏ∂òÎã§.
+    void    SetRightView();                         ///< Î™®Îç∏Ïùò Ïò§Î•∏Ï™ΩÏùÑ ÎπÑÏ∂òÎã§.
+    void    SetRearView();                          ///< Î™®Îç∏Ïùò Îí§Ï™ΩÏùÑ ÎπÑÏ∂òÎã§.
+    void    SetBottomView();                        ///< Î™®Îç∏Ïùò Î∞ëÏùÑ ÎπÑÏ∂òÎã§.
+    void    SetEnableFreeCamera(RwBool bEnable);    ///< ÌîÑÎ¶¨ Ïπ¥Î©îÎùº On/Off
     RwBool  GetEnableFreeCamera() {return m_bFreeCamera;}
 
-    void    SetDistance(RwReal fDistance);          ///< ∞≈∏Æ∏¶ º≥¡§«—¥Ÿ.
+    void    SetDistance(RwReal fDistance);          ///< Í±∞Î¶¨Î•º ÏÑ§Ï†ïÌïúÎã§.
     RwReal  GetDistance() {return m_fDistance;}
 
-    RwReal  GetRatioDistance() {return m_fRatioDistance;} ///< ∞≈∏Æ ∫Ò¿≤¿ª π›»Ø«—¥Ÿ.
-    void    SetRatioDistance(RwReal fRatioDistance) {m_fRatioDistance = fRatioDistance;} ///< ∞≈∏Æ ∫Ò¿≤¿ª º≥¡§«—¥Ÿ
+    RwReal  GetRatioDistance() {return m_fRatioDistance;} ///< Í±∞Î¶¨ ÎπÑÏú®ÏùÑ Î∞òÌôòÌïúÎã§.
+    void    SetRatioDistance(RwReal fRatioDistance) {m_fRatioDistance = fRatioDistance;} ///< Í±∞Î¶¨ ÎπÑÏú®ÏùÑ ÏÑ§Ï†ïÌïúÎã§
 
     void    SetCameraOffset(const RwV3d& vOffset); 
     void    SetCameraLookAtOffset(const RwV3d& vOffset); 
 
 private:
-    RwReal	m_fDistance;		//CameraøÕ Target∞˙¿« ∞≈∏Æ
-    RwBool  m_bFreeCamera;      // «¡∏Æ ƒ´∏ﬁ∂Û «√∑°±◊
+    RwReal	m_fDistance;		//CameraÏôÄ TargetÍ≥ºÏùò Í±∞Î¶¨
+    RwBool  m_bFreeCamera;      // ÌîÑÎ¶¨ Ïπ¥Î©îÎùº ÌîåÎûòÍ∑∏
 
     RwReal	m_fMaxDistance;
     RwReal	m_fMinDistance;
@@ -94,7 +94,7 @@ private:
     RwV3d	m_vLookAt; 
     RwV3d   m_vLookAtDelta;
     RwReal	m_fLookAtHeight;
-    // ƒ´∏ﬁ∂Û ºŒ¿Ã≈© ¿˚øÎ
+    // Ïπ¥Î©îÎùº ÏÖ∞Ïù¥ÌÅ¨ Ï†ÅÏö©
     RwV3d   m_vCamOffset;
     RwV3d   m_vLookAtOffset;
 

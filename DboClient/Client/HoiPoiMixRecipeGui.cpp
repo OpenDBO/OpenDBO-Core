@@ -36,10 +36,10 @@
 #include "HoiPoiMixCraftGui.h"
 
 
-#define dRECIPE_DLG_ITEM_OFFSET_TOP		10		// ·¹½ÃÇÇ ¸ñ·ÏÀÇ °¡Àå À­ÂÊ ¿ÀÇÁ¼Â
-#define dRECIPE_DLG_ITEM_HEIGHT			72		// ·¹½ÃÇÇ ¸ñ·ÏÀÇ ³ôÀÌ
-#define dRECIPE_DLG_ITEM_HEIGHT_MARGIN	10		// ·¹½ÃÇÇ ¸ñ·ÏÀÇ ¸¶Áø
-#define dRECIPE_DLG_ITEM_VIEW_NUM		5		// ÇÑ È­¸é¿¡ º¸ÀÌ´Â ·¹½ÃÇÇ °¹¼ö
+#define dRECIPE_DLG_ITEM_OFFSET_TOP		10		// ë ˆì‹œí”¼ ëª©ë¡ì˜ ê°€ìž¥ ìœ—ìª½ ì˜¤í”„ì…‹
+#define dRECIPE_DLG_ITEM_HEIGHT			72		// ë ˆì‹œí”¼ ëª©ë¡ì˜ ë†’ì´
+#define dRECIPE_DLG_ITEM_HEIGHT_MARGIN	10		// ë ˆì‹œí”¼ ëª©ë¡ì˜ ë§ˆì§„
+#define dRECIPE_DLG_ITEM_VIEW_NUM		5		// í•œ í™”ë©´ì— ë³´ì´ëŠ” ë ˆì‹œí”¼ ê°¯ìˆ˜
 
 //////////////////////////////////////////////////////////////////////////
 // CRecipeDlgItem

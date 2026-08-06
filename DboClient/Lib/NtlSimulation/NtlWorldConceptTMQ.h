@@ -8,7 +8,7 @@
 
 /**
  * \ingroup NtlSimulation
- * \brief Time machine quest ½ÃÀÇ Á¦¾î Å¬·¡½º
+ * \brief Time machine quest ì‹œì˜ ì œì–´ í´ë˜ìŠ¤
  * \date 2007-07-20
  * \author avooo
  */
@@ -28,8 +28,8 @@ public:
 	RwBool				IsAfterLoadingDirect(void);
 
 	
-	void					SetTMQState(eTIMEQUEST_GAME_STATE eState);	// ¼­¹ö·Î ºÎÅÍ »óÅÂ°¡ ³»·Á¿Â´Ù	
-	void					SetTMQState_from_Cleint(RwUInt8 byState);	// Å¬¶óÀÌ¾ğÆ® ÀÚÃ¼ÀûÀ¸·Î »óÅÂ¸¦ º¯°æÇÑ´Ù
+	void					SetTMQState(eTIMEQUEST_GAME_STATE eState);	// ì„œë²„ë¡œ ë¶€í„° ìƒíƒœê°€ ë‚´ë ¤ì˜¨ë‹¤	
+	void					SetTMQState_from_Cleint(RwUInt8 byState);	// í´ë¼ì´ì–¸íŠ¸ ìì²´ì ìœ¼ë¡œ ìƒíƒœë¥¼ ë³€ê²½í•œë‹¤
 
 	void					NotifyTMQStateUpdate();
 	RwUInt8					GetTMQState();

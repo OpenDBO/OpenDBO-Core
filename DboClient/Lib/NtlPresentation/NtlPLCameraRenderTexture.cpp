@@ -5,9 +5,9 @@
 #include "NtlPLCameraRenderTexture.h"
 
 /**
- * °´Ã¼ »ı¼º
- * \param nWidth: TextureÀÇ °¡·Î »çÀÌÁî
- * \param nHeight; TextureÀÇ ¼¼·Î »çÀÌÁî
+ * ê°ì²´ ìƒì„±
+ * \param nWidth: Textureì˜ ê°€ë¡œ ì‚¬ì´ì¦ˆ
+ * \param nHeight; Textureì˜ ì„¸ë¡œ ì‚¬ì´ì¦ˆ
  */
 void CNtlPLCameraRenderTexture::Create( RwInt32 nTexWidth, RwInt32 nTexHeight, RwInt32 nRealWidth, RwInt32 nRealHeight, RwReal fFov, RwBool _IsCamInWorld)
 {
@@ -40,7 +40,7 @@ void CNtlPLCameraRenderTexture::Create( RwInt32 nTexWidth, RwInt32 nTexHeight, R
 }
 
 /**
- * °´Ã¼ ¼Ò¸ê
+ * ê°ì²´ ì†Œë©¸
  */
 void CNtlPLCameraRenderTexture::Destroy()
 {
@@ -99,7 +99,7 @@ void CNtlPLCameraRenderTexture::SetFar(RwReal _Far)
 }
 
 /**
- * Fov¸¦ ±¸ÇÏ±â À§ÇÑ ÇÔ¼ö
+ * Fovë¥¼ êµ¬í•˜ê¸° ìœ„í•œ í•¨ìˆ˜
  * \param fFov: Fov
  */
 void CNtlPLCameraRenderTexture::SetCalcFov(RwReal fFov, RwInt32 nWidth, RwInt32 nHeight)
@@ -117,8 +117,8 @@ void CNtlPLCameraRenderTexture::SetCalcFov(RwReal fFov, RwInt32 nWidth, RwInt32 
 }
 
 /**
- * Texture¿¡ Entity¸¦ RenderingÀ» ÇÑ´Ù.
- * \param pEntity RenderingÀ» ÇÒ Entity
+ * Textureì— Entityë¥¼ Renderingì„ í•œë‹¤.
+ * \param pEntity Renderingì„ í•  Entity
  */
 void CNtlPLCameraRenderTexture::RenderTexture(CNtlPLEntity *pEntity)
 {
@@ -141,8 +141,8 @@ void CNtlPLCameraRenderTexture::RenderTexture(CNtlPLEntity *pEntity)
 
 
 /**
- * Texture¿¡ Entity¸¦ RenderingÀ» ÇÑ´Ù.
- * \param pEntity RenderingÀ» ÇÒ Entity
+ * Textureì— Entityë¥¼ Renderingì„ í•œë‹¤.
+ * \param pEntity Renderingì„ í•  Entity
  */
 void CNtlPLCameraRenderTexture::RenderTexture(std::list<CNtlPLEntity*>& listEntity)
 {
@@ -185,10 +185,10 @@ void CNtlPLCameraRenderTexture::SetCameraPosition(const RwV3d *pCameraPos, const
 
 
 /**
- * Target Ä«¸Ş¶ó¿¡ Rendered Texture¸¦ RenderÇÑ´Ù.
- * \param pRenderTarget TextureÀ» ·»´õ¸µÇÒ Ä«¸Ş¶ó
- * \param fPos Texture°¡ Ç¥½ÃµÉ À§Ä¡
- * \param fSize TextureÀÇ Size 
+ * Target ì¹´ë©”ë¼ì— Rendered Textureë¥¼ Renderí•œë‹¤.
+ * \param pRenderTarget Textureì„ ë Œë”ë§í•  ì¹´ë©”ë¼
+ * \param fPos Textureê°€ í‘œì‹œë  ìœ„ì¹˜
+ * \param fSize Textureì˜ Size 
  */
 void CNtlPLCameraRenderTexture::Render(RwCamera *pRenderTarget, RwV2d fPos, RwV2d fSize)
 {

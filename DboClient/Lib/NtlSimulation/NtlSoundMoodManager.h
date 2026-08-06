@@ -2,12 +2,12 @@
 *
 * File			: NtlSoundMoodManager.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 
 * Update		: 2009. 3. 11
 * Abstract		: Simulation sound mood manager
 *****************************************************************************
-* Desc         : »ç¿îµåÀÇ ´Ü¼ø play°¡ ¾Æ´Ñ µ¥ÀÌÅÍ¿¡ µû¸¥ »óÈ² ¿¬ÃâÀ» °ü¸®ÇÑ´Ù
+* Desc         : ì‚¬ìš´ë“œì˜ ë‹¨ìˆœ playê°€ ì•„ë‹Œ ë°ì´í„°ì— ë”°ë¥¸ ìƒí™© ì—°ì¶œì„ ê´€ë¦¬í•œë‹¤
 *****************************************************************************/
 
 #ifndef __NTL_SOUND_MOOD_MANAGER_H__

@@ -98,7 +98,7 @@ void CNtlBehaviorCharSwimmingMove::SetAnim(void)
 
         CreateSwimFrontEffect();
 
-        // µÚ¿¡ ºÙ´Â ¹°Àå±¸(?) ÀÌÆåÆ®
+        // ë’¤ì— ë¶™ëŠ” ë¬¼ì¥êµ¬(?) ì´í™íŠ¸
         if(uiNextAnimKey == SWIM_FRONT)
         {
             CreateSwimBackEffect();
@@ -246,7 +246,7 @@ void CNtlBehaviorCharSwimmingMove::Enter(void)
     SetTransform();
     SetAnim();    
 
-    // ³ªÁß¿¡ base class enter¸¦ È£ÃâÇÑ´Ù.
+    // ë‚˜ì¤‘ì— base class enterë¥¼ í˜¸ì¶œí•œë‹¤.
     CNtlBehaviorBase::Enter(); 
 }
 
@@ -260,7 +260,7 @@ void CNtlBehaviorCharSwimmingMove::Exit(void)
     CNtlPLCharacter *pPLCharacter = reinterpret_cast<CNtlPLCharacter*>( pSobProxy->GetPLMainEntity() );
     pPLCharacter->SetBlend(BLEND_TWEEN);
 
-    // ³ªÁß¿¡ base class enter¸¦ È£ÃâÇÑ´Ù.
+    // ë‚˜ì¤‘ì— base class enterë¥¼ í˜¸ì¶œí•œë‹¤.
     CNtlBehaviorBase::Exit(); 
 }
 
@@ -272,7 +272,7 @@ RwBool CNtlBehaviorCharSwimmingMove::UpdateDirectionMove(RwReal fElapsed)
     RwReal fSpeed	= Logic_GetFrontRunSpeed(m_pActor);
     fSpeed			= fSpeed * DBO_SWIMMING_SPEED_RATIO;
 
-    //keyboard ÀÌµ¿À» Ã³¸®ÇÑ´Ù
+    //keyboard ì´ë™ì„ ì²˜ë¦¬í•œë‹¤
     CNtlVector vHeading, vDest;
     NtlGetDestination_Keyboard(vDir.x, vDir.y, vDir.z, fSpeed, vPos.x, vPos.y, vPos.z, m_MoveStuff.byMoveFlags, fElapsed * 1000.f, 0.5f, &vHeading, &vDest);
 
@@ -301,7 +301,7 @@ RwBool CNtlBehaviorCharSwimmingMove::UpdateDirectionMove(RwReal fElapsed)
                 vNewPos.y = m_sHStuff.fFinialHeight;
             }
 
-            // Ãæµ¹ Çß´Âµ¥ ¾î´ÀÂÊÀ¸·Îµµ ÀÌµ¿ÀÌ ºÒ°¡´ÉÇÒ °æ¿ì ¸ØÃçÁØ´Ù.
+            // ì¶©ëŒ í–ˆëŠ”ë° ì–´ëŠìª½ìœ¼ë¡œë„ ì´ë™ì´ ë¶ˆê°€ëŠ¥í•  ê²½ìš° ë©ˆì¶°ì¤€ë‹¤.
             if(m_byCollMoveImpossCnt >= COLLISION_MOVE_IMPOSSIBLE_COUNT)
             {
                 CNtlBeCharData *pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData()); 
@@ -316,7 +316,7 @@ RwBool CNtlBehaviorCharSwimmingMove::UpdateDirectionMove(RwReal fElapsed)
     m_pActor->SetPosition(&vNewPos);
     m_pActor->SetDirection(&vNewDir);
 
-    // ÀÏÁ¤ ½Ã°£ µ¿¾È ÀÌµ¿ÇÑ °Å¸®°¡ limit °Å¸® ¾È¿¡ ÀÖÀ¸¸é? ¸ØÃá´Ù.
+    // ì¼ì • ì‹œê°„ ë™ì•ˆ ì´ë™í•œ ê±°ë¦¬ê°€ limit ê±°ë¦¬ ì•ˆì— ìˆìœ¼ë©´? ë©ˆì¶˜ë‹¤.
     if( !(m_MoveStuff.byMoveFlags == NTL_MOVE_TURN_L ||  m_MoveStuff.byMoveFlags == NTL_MOVE_TURN_R) )
         LimitPositionChangeCheck(fElapsed);
 
@@ -333,7 +333,7 @@ RwBool CNtlBehaviorCharSwimmingMove::UpdateLocationMove(RwReal fElapsed)
     RwV3dSubMacro(&vDir, &vDestPos, &vPos); 
     vDir.y = 0.0f;
 
-    // ÇöÀç ³²Àº °Å¸®¸¦ ±¸ÇÑ´Ù.
+    // í˜„ì¬ ë‚¨ì€ ê±°ë¦¬ë¥¼ êµ¬í•œë‹¤.
     RwReal fCurrLen = RwV3dLength(&vDir);
 
     RwReal fSpeed	= Logic_GetFrontRunSpeed(m_pActor);
@@ -343,7 +343,7 @@ RwBool CNtlBehaviorCharSwimmingMove::UpdateLocationMove(RwReal fElapsed)
     RwV3dNormalize(&vDir, &vDir);
     CNtlMath::MathRwV3dAssign(&vDelta, vDir.x*fElapsed*fSpeed, vDir.y*fElapsed*fSpeed, vDir.z*fElapsed*fSpeed);
 
-    // ÇöÀç ³²¾Æ ÀÖ´Â °Å¸®°¡ ´ÙÀ½ ÀÌµ¿ÇÒ °Å¸®º¸´Ù ÀÛÀ» °æ¿ì.
+    // í˜„ì¬ ë‚¨ì•„ ìˆëŠ” ê±°ë¦¬ê°€ ë‹¤ìŒ ì´ë™í•  ê±°ë¦¬ë³´ë‹¤ ì‘ì„ ê²½ìš°.
     if(fCurrLen <= RwV3dLength(&vDelta))
     {
         RwUInt8 byColliResult = NTL_CHARACTER_COLLI_NONE;
@@ -370,7 +370,7 @@ RwBool CNtlBehaviorCharSwimmingMove::UpdateLocationMove(RwReal fElapsed)
 
         if(byColliResult == NTL_CHARACTER_COLLI_OBJECT)
         {
-            // Ãæµ¹ Çß´Âµ¥ ¾î´ÀÂÊÀ¸·Îµµ ÀÌµ¿ÀÌ ºÒ°¡´ÉÇÒ °æ¿ì ¸ØÃçÁØ´Ù.
+            // ì¶©ëŒ í–ˆëŠ”ë° ì–´ëŠìª½ìœ¼ë¡œë„ ì´ë™ì´ ë¶ˆê°€ëŠ¥í•  ê²½ìš° ë©ˆì¶°ì¤€ë‹¤.
             if(m_byCollMoveImpossCnt >= COLLISION_MOVE_IMPOSSIBLE_COUNT)
             {
                 CNtlBeCharData *pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData()); 
@@ -390,7 +390,7 @@ RwBool CNtlBehaviorCharSwimmingMove::UpdateLocationMove(RwReal fElapsed)
 
         return TRUE;
     }
-    else // ÇöÀç ³²¾Æ ÀÖ´Â °Å¸®°¡ ´ÙÀ½ ÀÌµ¿ÇÒ °Å¸®º¸´Ù ÀÛÁö ¾ÊÀ» °æ¿ì.
+    else // í˜„ì¬ ë‚¨ì•„ ìˆëŠ” ê±°ë¦¬ê°€ ë‹¤ìŒ ì´ë™í•  ê±°ë¦¬ë³´ë‹¤ ì‘ì§€ ì•Šì„ ê²½ìš°.
     {
         vPos.x += vDelta.x;
         vPos.z += vDelta.z;
@@ -398,7 +398,7 @@ RwBool CNtlBehaviorCharSwimmingMove::UpdateLocationMove(RwReal fElapsed)
         Logic_GetWorldHeight(m_pActor, &vPos, m_sHStuff);
         vPos.y = m_sHStuff.fFinialHeight;
 
-        // object Ãæµ¹ Ã³¸®.
+        // object ì¶©ëŒ ì²˜ë¦¬.
         RwUInt8 byColliResult = NTL_CHARACTER_COLLI_NONE;
         if(m_pActor->GetFlags() & SLFLAG_OBJECT_COLLISION)
         {
@@ -415,7 +415,7 @@ RwBool CNtlBehaviorCharSwimmingMove::UpdateLocationMove(RwReal fElapsed)
                 vPos.y = m_sHStuff.fFinialHeight;
             }
         }
-        // Ãæµ¹ Çß´Âµ¥ ¾î´ÀÂÊÀ¸·Îµµ ÀÌµ¿ÀÌ ºÒ°¡´ÉÇÒ °æ¿ì ¸ØÃçÁØ´Ù.
+        // ì¶©ëŒ í–ˆëŠ”ë° ì–´ëŠìª½ìœ¼ë¡œë„ ì´ë™ì´ ë¶ˆê°€ëŠ¥í•  ê²½ìš° ë©ˆì¶°ì¤€ë‹¤.
         if(m_byCollMoveImpossCnt >= COLLISION_MOVE_IMPOSSIBLE_COUNT)
         {
             CNtlBeCharData *pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData()); 
@@ -428,7 +428,7 @@ RwBool CNtlBehaviorCharSwimmingMove::UpdateLocationMove(RwReal fElapsed)
         m_pActor->SetDirection(&vDir);
         m_pActor->SetPosition(&vPos);
 
-        // ÀÏÁ¤ ½Ã°£ µ¿¾È ÀÌµ¿ÇÑ °Å¸®°¡ limit °Å¸® ¾È¿¡ ÀÖÀ¸¸é? ¸ØÃá´Ù.
+        // ì¼ì • ì‹œê°„ ë™ì•ˆ ì´ë™í•œ ê±°ë¦¬ê°€ limit ê±°ë¦¬ ì•ˆì— ìˆìœ¼ë©´? ë©ˆì¶˜ë‹¤.
         if(byColliResult != NTL_CHARACTER_COLLI_WORLD_ATTR_TERRAIN_SLANT)
         {
             LimitPositionChangeCheck(fElapsed);
@@ -451,40 +451,40 @@ RwBool CNtlBehaviorCharSwimmingMove::UpdateTargetMove( RwReal fElapsed )
     RwReal fFollowRange = m_MoveStuff.fFollowRange * FOLLOW_ERROR_RANGE;
     RwBool bInRange = FALSE;
 
-    // Ä³¸¯ÅÍÀÇ ¹æÇâ ¼³Á¤
+    // ìºë¦­í„°ì˜ ë°©í–¥ ì„¤ì •
     vDir.y = 0.0f;
     RwV3dNormalize(&vDir, &vDir);
     m_pActor->SetDirection(&vDir);
 
-    if(fCurrLen < fFollowRange)     // »çÁ¤°Å¸® ÀÌ³»¿¡ ÀÖÀ»¶§
+    if(fCurrLen < fFollowRange)     // ì‚¬ì •ê±°ë¦¬ ì´ë‚´ì— ìˆì„ë•Œ
     {
         bInRange = TRUE;
     }
-    else // »çÁ¤°Å¸®ÀÌ³»¿¡ ¾øÀ»¶§
+    else // ì‚¬ì •ê±°ë¦¬ì´ë‚´ì— ì—†ì„ë•Œ
     {
 
         RwReal fSpeed	= Logic_GetFrontRunSpeed(m_pActor);
         fSpeed			= fSpeed * DBO_SWIMMING_SPEED_RATIO;
         RwV3d vDelta = vDir * fSpeed * fElapsed;
 
-        // ÇöÀç ³²Àº °Å¸®°¡ ÀÌµ¿ delta °Å¸®º¸´Ù ÀÛÀº°æ¿ì
+        // í˜„ì¬ ë‚¨ì€ ê±°ë¦¬ê°€ ì´ë™ delta ê±°ë¦¬ë³´ë‹¤ ì‘ì€ê²½ìš°
         if(fCurrLen < RwV3dLength(&vDelta) + fFollowRange)
         {
             bInRange = TRUE;
         }
-        else // Å¸°Ù ¹æÇâÀ¸·Î ÀÌµ¿
+        else // íƒ€ê²Ÿ ë°©í–¥ìœ¼ë¡œ ì´ë™
         {
             vPos += vDelta;
             Logic_GetWorldHeight(m_pActor, &vPos, m_sHStuff);
             vPos.y = m_sHStuff.fFinialHeight;
 
-            // TODO: Ãæµ¹Ã¼Å©
+            // TODO: ì¶©ëŒì²´í¬
 
             m_pActor->SetPosition(&vPos);
         }
     }
 
-    if(bInRange) // ¹üÀ§³»¿¡ µé¾î¿À¸é ¹üÀ§ À§Ä¡¿¡ À§Ä¡½ÃÅ²´Ù.
+    if(bInRange) // ë²”ìœ„ë‚´ì— ë“¤ì–´ì˜¤ë©´ ë²”ìœ„ ìœ„ì¹˜ì— ìœ„ì¹˜ì‹œí‚¨ë‹¤.
     {
         vPos.x = vDestPos.x - vDir.x * fFollowRange;
         vPos.z = vDestPos.z - vDir.z * fFollowRange;

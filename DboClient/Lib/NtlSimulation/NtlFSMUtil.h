@@ -2,7 +2,7 @@
 *
 * File			: NtlFSMUtil.h
 * Author		: HyungSuk, Jang
-* Copyright	: (ÁÖ)NTL
+* Copyright	: (ì£¼)NTL
 * Date			: 2006. 11. 28	
 * Abstract		: fsm utility
 *****************************************************************************
@@ -16,37 +16,37 @@
 class CNtlFSMStateBase;
 class CNtlSobActor;
 
-// ÀÌµ¿ÀÌ °¡´ÉÇÑ »óÅÂÀÎ°¡?
+// ì´ë™ì´ ê°€ëŠ¥í•œ ìƒíƒœì¸ê°€?
 RwBool FSMUtil_CanMoveState(CNtlFSMStateBase *pStateBase);
 
-// °ø°İÀÌ °¡´ÉÇÑ »óÅÂÀÎ°¡?
+// ê³µê²©ì´ ê°€ëŠ¥í•œ ìƒíƒœì¸ê°€?
 RwBool FSMUtil_CanAttackState(CNtlFSMStateBase *pStateBase);
 
-// °ø°İÀ» ¹ŞÀ» ¼ö ÀÖ´Â »óÅÂÀÎ°¡?
+// ê³µê²©ì„ ë°›ì„ ìˆ˜ ìˆëŠ” ìƒíƒœì¸ê°€?
 RwBool FSMUtil_CanHurtState(CNtlFSMStateBase *pStateBase);
 
-// skillÀ» »ç¿ë °¡´ÉÇÑ »óÅÂÀÎ°¡?
+// skillì„ ì‚¬ìš© ê°€ëŠ¥í•œ ìƒíƒœì¸ê°€?
 RwBool FSMUtil_CanSkillUse(CNtlFSMStateBase *pStateBase);
 
-// idle »óÅÂÀÎ°¡?
+// idle ìƒíƒœì¸ê°€?
 RwBool FSMUtil_IsIdle(CNtlFSMStateBase *pStateBase);	
 
-// ÀÌµ¿ »óÅÂÀÎ°¡?
+// ì´ë™ ìƒíƒœì¸ê°€?
 RwBool FSMUtil_IsMove(CNtlFSMStateBase *pStateBase);		
 
-// °³ÀÎ »óÁ¡ »óÅÂÀÎ°¡?
+// ê°œì¸ ìƒì  ìƒíƒœì¸ê°€?
 RwBool FSMUtil_IsPrivateShopping(CNtlFSMStateBase *pStateBase);
 
-// charging »óÅÂÀÎ°¡?
+// charging ìƒíƒœì¸ê°€?
 RwBool FSMUtil_IsCharging(CNtlFSMStateBase *pStateBase);
 
-// teleporting »óÅÂÀÎ°¡?
+// teleporting ìƒíƒœì¸ê°€?
 RwBool FSMUtil_IsTeleporting(CNtlFSMStateBase *pStateBase);
 
-// ¹ö½º¿¡ Å¾½Â »óÅÂÀÎ°¡?
+// ë²„ìŠ¤ì— íƒ‘ìŠ¹ ìƒíƒœì¸ê°€?
 RwBool FSMUtil_IsOnBus(CNtlFSMStateBase* pStateBase);
 
-// Å» °Í¿¡ Å¾½Â »óÅÂÀÎ°¡?
+// íƒˆ ê²ƒì— íƒ‘ìŠ¹ ìƒíƒœì¸ê°€?
 RwBool FSMUtil_IsOnVehicle(CNtlFSMStateBase* pStateBase);
 
 

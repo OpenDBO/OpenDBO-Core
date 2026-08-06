@@ -2,7 +2,7 @@
  *
  * File			: NtlCameraManager.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2006. 8. 08	
  * Abstract		: simulation layer camera manager
  *****************************************************************************
@@ -93,7 +93,7 @@ private:
 	// camera control attribute
 	RwReal m_fMinDist;			// minimun distance.
 	RwReal m_fMaxDist;			// maximun distance.	
-	RwReal m_fDist;				// camera ÇöÀç °Å¸®.
+	RwReal m_fDist;				// camera í˜„ìž¬ ê±°ë¦¬.
 
 	RwReal m_fMinPitch;			// camera min pitch.
 	RwReal m_fMaxPitch;			// camera max pitch.	
@@ -149,7 +149,7 @@ private:
 
 	void CollisionActor(RwV3d& vCamPos, RwV3d& vLookAt);
     void CollisionObj();
-//    void CullingEffect();                                       ///< ÀÌÆåÆ® ÄÃ¸µ À¯¹«¸¦ Å×½ºÆ®ÇÑ´Ù.
+//    void CullingEffect();                                       ///< ì´íŽ™íŠ¸ ì»¬ë§ ìœ ë¬´ë¥¼ í…ŒìŠ¤íŠ¸í•œë‹¤.
 	
 public:
 
@@ -166,7 +166,7 @@ public:
 	void					SetActiveActor(const CNtlSobActor *pSobActor);
 	CNtlCameraController*	FindController(RwUInt8 byType);
 
-    // Free Camera¸¦ À§ÇÑ ÀÎÅÍÆäÀÌ½º
+    // Free Cameraë¥¼ ìœ„í•œ ì¸í„°íŽ˜ì´ìŠ¤
     RwBool                  IsActiveFreeCamera();
     void                    FreeCameraMove(RwUInt32 moveType, RwReal fSpeed = 0.0f);    
     void                    FreeCameraMoveStop();
@@ -294,7 +294,7 @@ public:
 
 	RwBool			IsFinishLock(void);
 
-// Explosion camera °ü·Ã ÇÔ¼öµé
+// Explosion camera ê´€ë ¨ í•¨ìˆ˜ë“¤
 public:
 	
 	void			AddSinExplosionAlgorithm_XAxis( RwUInt32 uiExcuteID, RwReal fLifeTime, RwReal fFrequancy, RwReal fPhase, RwReal fAmp, RwReal fDescFactor );

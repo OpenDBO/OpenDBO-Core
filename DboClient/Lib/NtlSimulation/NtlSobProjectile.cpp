@@ -49,7 +49,7 @@ RwBool CNtlSobProjectile::Create(void)
 {
 	NTL_FUNCTION("CNtlSobProjectile::Create");
 	
-	// proxy ¼³Á¤
+	// proxy ì„¤ì •
 	m_pSobProxy = NTL_NEW CNtlSobProxy;
 	m_pSobProxy->Create(0);
 	m_pSobProxy->SetSobObj(this);
@@ -59,7 +59,7 @@ RwBool CNtlSobProjectile::Create(void)
 		NTL_RETURN(FALSE);
 	}
 
-	// class name ¼³Á¤.
+	// class name ì„¤ì •.
 	SetClassName(SLCLASS_NAME_PROJECTILE);
 		
 	NTL_RETURN(TRUE);
@@ -108,7 +108,7 @@ RwBool CNtlSobProjectile::IsFinish(void)
 
 void CNtlSobProjectile::HandleEvents(RWS::CMsg &pMsg)
 {
-	//Fsm Handler·Î Eventµµ º¸³»ÁØ´Ù.
+	//Fsm Handlerë¡œ Eventë„ ë³´ë‚´ì¤€ë‹¤.
 	CNtlSobActor::HandleEvents(pMsg); 
 
 	if(pMsg.Id == g_EventSobCreate)
@@ -170,7 +170,7 @@ void CNtlSobProjectile::CreateEventHandler(RWS::CMsg &pMsg)
 		return;
 
 	//-----------------------------------------
-	// attribute ¼³Á¤.
+	// attribute ì„¤ì •.
 
 	SetOwnerID(pSobCreate->hOwnerSerialId);
 	SetTargetID(pSobCreate->hTargetSerialId); 
@@ -230,8 +230,8 @@ void CNtlSobProjectile::CreateEventHandler(RWS::CMsg &pMsg)
 	
 	if(pTarSobObj && pSobCreate->uiBehavior == NTL_BEID_PROJ_BEAM)
 	{
-		// beam ÇüÅÂÀÇ ¹ß»çÃ¼´Â °Å¸®°¡ °¡±îÀÌ ÀÖÀ» ¶§ target Áß½ÉÀ» ÇâÇÒ °æ¿ì beamÀÌ ²©¿©¼­ 
-		// ÀÌ»óÇÏ°Ô º¸ÀÏ ¼ö ÀÖ´Ù. ÀÌ°Í¿¡ ´ëÇÑ º¸Á¤.
+		// beam í˜•íƒœì˜ ë°œì‚¬ì²´ëŠ” ê±°ë¦¬ê°€ ê°€ê¹Œì´ ìžˆì„ ë•Œ target ì¤‘ì‹¬ì„ í–¥í•  ê²½ìš° beamì´ êº½ì—¬ì„œ 
+		// ì´ìƒí•˜ê²Œ ë³´ì¼ ìˆ˜ ìžˆë‹¤. ì´ê²ƒì— ëŒ€í•œ ë³´ì •.
 		RwV3dSubMacro(&vDir, &vTarPos, &vPos);
 		vDir.y = 0.0f;
 		RwReal fLen = RwV3dLength(&vDir);
@@ -343,7 +343,7 @@ void CNtlSobProjectile::CreateEventHandler(RWS::CMsg &pMsg)
 	}
 
 	//-----------------------------------------
-	// effect ¼³Á¤.
+	// effect ì„¤ì •.
 
 	if( pSobCreate->fWeightElapsedValue < 0.95f || pSobCreate->fWeightElapsedValue > 1.05f )
 	{
@@ -377,7 +377,7 @@ void CNtlSobProjectile::DamageProc(void)
 	{
 		SHitStuff sHit = (*it);
 
-		//// matrix ¿¬Ãâ.
+		//// matrix ì—°ì¶œ.
 		//if(iIdx == 0)
 		//{
 		//	CNtlSob *pOwnerSobObj = GetNtlSobManager()->GetSobObject(GetOwnerID());
@@ -388,7 +388,7 @@ void CNtlSobProjectile::DamageProc(void)
 		//	}
 		//}
 
-		//// avatar°¡ °ø°Ý ÇßÀ» °æ¿ì.
+		//// avatarê°€ ê³µê²© í–ˆì„ ê²½ìš°.
 		//if(bMatrixDirect)
 		//{
 		//	CNtlSob *pSobTarObj = GetNtlSobManager()->GetSobObject(sHit.hDefenderSerialId);
@@ -398,14 +398,14 @@ void CNtlSobProjectile::DamageProc(void)
 		//	}
 		//}
 
-		//// avatar°¡ ¸Â¾ÒÀ» °æ¿ì.
+		//// avatarê°€ ë§žì•˜ì„ ê²½ìš°.
 		//if(sHit.hDefenderSerialId == hAvatarSerialId && sHit.uiAttr.bitBehavior == NTL_ATTACK_KNOCKDOWN &&
   //         sHit.uiAttr.bitResult != NTL_ATTACK_RESULT_STEAL)
 		//{
 		//	Logic_ProcKnockdownMatrixDirection(Logic_GetAvatarActor(), hAvatarSerialId, &sHit);
 		//}
 
-		// Ä«¸Þ¶ó Èçµé±â.
+		// ì¹´ë©”ë¼ í”ë“¤ê¸°.
 		CNtlSob *pSobObj = GetNtlSobManager()->GetSobObject(sHit.hAttackerSerialId);
 		if(pSobObj && sHit.uiAttr.bitResult != NTL_ATTACK_RESULT_DODGE)
 		{

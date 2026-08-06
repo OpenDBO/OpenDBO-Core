@@ -195,26 +195,26 @@ VOID CSkillCustomizeItem::SetInitSkillOne(VOID)
 
 VOID CSkillCustomizeItem::SetSobIcon( CNtlSobIcon* pSobIcon, sTBLDAT* pData )
 {
-	// ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ ¼¼ÆÃ, Å×ÀÌºí ¼¼ÆÃ.
+	// ì•„ì´í…œ ì•„ì´ì½˜ ì„¸íŒ…, í…Œì´ë¸” ì„¸íŒ….
 	m_pSobIcon = pSobIcon;
 	m_pItem->SetSkillData( pData );
 
-	// ±âÁ¸ ¾ÆÀÌÄÜ ÅØ½ºÃÄ ÇØÁ¦ ¹× ¾ÆÀÌÄÜÀÇ ÅØ½ºÃÄ·Î ±³Ã¼.
+	// ê¸°ì¡´ ì•„ì´ì½˜ í…ìŠ¤ì³ í•´ì œ ë° ì•„ì´ì½˜ì˜ í…ìŠ¤ì³ë¡œ êµì²´.
 	m_pItem->SetIconTexture( reinterpret_cast<gui::CTexture*>( pSobIcon->GetImage() ) );
 
-	// ÄğÅ¸ÀÓ Ã¼Å©.
+	// ì¿¨íƒ€ì„ ì²´í¬.
 	if( m_pSobIcon->GetIconState() == CNtlSobIcon::ICON_STATE_COOLING )
 		CoolTimeEffect( TRUE );	
 
-	// ÀÌ¹ÌÁö 
+	// ì´ë¯¸ì§€ 
 	SetActive( TRUE );
 	m_pItem->SetLineActive( TRUE, LINE_TYPE_OPTION );	
 
-	// RPButton È°¼ºÈ­
+	// RPButton í™œì„±í™”
 	if( m_pItem->GetRPButton() )
 		m_pItem->GetRPButton()->ClickEnable( TRUE );	
 
-	// RPMode °»½Å
+	// RPMode ê°±ì‹ 
 	if( m_pItem->GetSkillType() == CSkillCustomizeSkillItem::SKILL )
 	{
 		CNtlSobSkillAttr* pSobAttr = reinterpret_cast<CNtlSobSkillAttr*>( m_pSobIcon->GetSobObj()->GetSobAttr() );
@@ -223,21 +223,21 @@ VOID CSkillCustomizeItem::SetSobIcon( CNtlSobIcon* pSobIcon, sTBLDAT* pData )
 
 	SetColor( SKILLWND_ITEM_LEARN_COLOR_RED, SKILLWND_ITEM_LEARN_COLOR_GREEN, SKILLWND_ITEM_LEARN_COLOR_BLUE );
 
-	// SP ¹öÆ° Ã¼Å©, ¾÷±×·¹ÀÌµå ½ºÅ³ ¶óÀÎÇ¥½Ã´Â ´Ù¸¥ ÇÔ¼ö¿¡¼­ ÀÏ°ıÀûÀ¸·Î È£ÃâµÇ°Ô µÈ´Ù.
+	// SP ë²„íŠ¼ ì²´í¬, ì—…ê·¸ë ˆì´ë“œ ìŠ¤í‚¬ ë¼ì¸í‘œì‹œëŠ” ë‹¤ë¥¸ í•¨ìˆ˜ì—ì„œ ì¼ê´„ì ìœ¼ë¡œ í˜¸ì¶œë˜ê²Œ ëœë‹¤.
 
-	// ±âÁ¸ ÀÎÆ÷À©µµ¿ì Ã¼Å©
+	// ê¸°ì¡´ ì¸í¬ìœˆë„ìš° ì²´í¬
 	if( GetInfoWndManager()->GetRequestGui() == DIALOG_SKILL )
 	{
 		if( GetInfoWndManager()->GetInfoWndState() == CInfoWndManager::INFOWND_SKILL_SPUPGRADE )
 		{
-			CheckSkillUpgrade();	// ³ªÁß¿¡ ÇÑ¹ø ´õ ºÒ·ÁÁö°ÚÁö¸¸ ShowSPInfownd µÇ±âÀü¿¡ ¼öÇàµÇ¾î¾ß ÇÑ´Ù. 
+			CheckSkillUpgrade();	// ë‚˜ì¤‘ì— í•œë²ˆ ë” ë¶ˆë ¤ì§€ê² ì§€ë§Œ ShowSPInfownd ë˜ê¸°ì „ì— ìˆ˜í–‰ë˜ì–´ì•¼ í•œë‹¤. 
 			ShowSPInfownd( TRUE );		
 		}
 		else
 			ShowSkillInfownd( TRUE );
 	}
 
-	// ¾Èº¸ÀÌ´ø ½ºÅ³ÀÇ °æ¿ì º¸¿©¾ßÇÔ
+	// ì•ˆë³´ì´ë˜ ìŠ¤í‚¬ì˜ ê²½ìš° ë³´ì—¬ì•¼í•¨
 	Show( true );
 }
 
@@ -261,18 +261,18 @@ VOID CSkillCustomizeItem::CheckSkillUpgrade(VOID)
 	if( m_pItem->GetSkillType() != CSkillCustomizeSkillItem::SKILL )
 		return;
 
-	// ¾÷±×·¹ÀÌµå °¡´ÉÇÏ°Å³ª, ¼¿ÇÁ Æ®·¹ÀÎÀÌ ¾Æ´Ñ °æ¿ì ¸®ÅÏ.
+	// ì—…ê·¸ë ˆì´ë“œ ê°€ëŠ¥í•˜ê±°ë‚˜, ì…€í”„ íŠ¸ë ˆì¸ì´ ì•„ë‹Œ ê²½ìš° ë¦¬í„´.
 	if( !m_pItem->GetSPButton() )
 		return;
 
-	// µ¥ÀÌÅÍ ÃÊ±âÈ­
+	// ë°ì´í„° ì´ˆê¸°í™”
 	m_stSkillUpgradeInfo.Init();
 
-	// SP ¹öÆ° È°¼ºÈ­ ¿©ºÎ.
-	// 0. ¸¶½ºÅÍ Çß´Â°¡.
-	// 1. SP°¡ ÃæºĞÇÑ°¡.
-	// 2. ¹è¿ö¾ßÇÒ ½ºÅ³À» ¹è¿ì°í ÀÖ´Â°¡.
-	// 3. ¹è¿ü´Â°¡.
+	// SP ë²„íŠ¼ í™œì„±í™” ì—¬ë¶€.
+	// 0. ë§ˆìŠ¤í„° í–ˆëŠ”ê°€.
+	// 1. SPê°€ ì¶©ë¶„í•œê°€.
+	// 2. ë°°ì›Œì•¼í•  ìŠ¤í‚¬ì„ ë°°ìš°ê³  ìˆëŠ”ê°€.
+	// 3. ë°°ì› ëŠ”ê°€.
 	// 4. 	
 
 	RwBool bActivateSPBtn = TRUE;
@@ -292,7 +292,7 @@ VOID CSkillCustomizeItem::CheckSkillUpgrade(VOID)
 		{
 			m_stSkillUpgradeInfo.bMaster = TRUE;		
 
-			// °á°ú Àû¿ë.
+			// ê²°ê³¼ ì ìš©.
 			m_pItem->GetSPButton()->ClickEnable( FALSE );	
 
 			return;
@@ -321,7 +321,7 @@ VOID CSkillCustomizeItem::CheckSkillUpgrade(VOID)
 		pTestTblData = pSkillData;
 	}
 
-	// SP °Ë»ç.
+	// SP ê²€ì‚¬.
 	if( pTestTblData->wRequireSP > Logic_GetSp() )
 	{
 		bActivateSPBtn = FALSE;
@@ -330,7 +330,7 @@ VOID CSkillCustomizeItem::CheckSkillUpgrade(VOID)
 	else
 		m_stSkillUpgradeInfo.bSPOK = TRUE;
 
-	// ½ºÅ³ °Ë»ç
+	// ìŠ¤í‚¬ ê²€ì‚¬
 	CNtlSkillContainer* pSkillContainer = GetNtlSLGlobal()->GetSobAvatar()->GetSkillContainer();
 
 	if (pTestTblData->uiRequire_Skill_Tblidx_Min_1 == INVALID_TBLIDX ||
@@ -365,7 +365,7 @@ VOID CSkillCustomizeItem::CheckSkillUpgrade(VOID)
 		}			
 	}
 
-	// ·¹º§ °Ë»ç.
+	// ë ˆë²¨ ê²€ì‚¬.
 	if( pTestTblData->byRequire_Train_Level > Logic_GetLevel( GetNtlSLGlobal()->GetSobAvatar() ) )
 	{
 		//m_stSkillUpgradeInfo.bAvatarLevelOK = FALSE;
@@ -376,7 +376,7 @@ VOID CSkillCustomizeItem::CheckSkillUpgrade(VOID)
 		m_stSkillUpgradeInfo.bAvatarLevelOK = TRUE;
 	}
 
-	// Å¬·¡½º °Ë»ç
+	// í´ë˜ìŠ¤ ê²€ì‚¬
 	CNtlSobAvatarAttr* pAttr = reinterpret_cast<CNtlSobAvatarAttr*>( GetNtlSLGlobal()->GetSobAvatar()->GetSobAttr() );
 
 	if( !( pAttr->GetRaceFlag() & pTestTblData->dwPC_Class_Bit_Flag ) )
@@ -385,7 +385,7 @@ VOID CSkillCustomizeItem::CheckSkillUpgrade(VOID)
 		bActivateSPBtn = FALSE;
 	}
 
-	// ¸¶½ºÅÍ¸® °Ë»ç
+	// ë§ˆìŠ¤í„°ë¦¬ ê²€ì‚¬
 	if( pTestTblData->byPC_Class_Change != INVALID_BYTE ) 
 	{
 		if( Logic_IsFirstClass( GetNtlSLGlobal()->GetSobAvatar() ) )
@@ -408,7 +408,7 @@ VOID CSkillCustomizeItem::CheckSkillUpgrade(VOID)
 		}
 	}	
 
-	// °á°ú Àû¿ë.
+	// ê²°ê³¼ ì ìš©.
 	if( bActivateSPBtn )
 	{
 		m_pItem->GetSPButton()->ClickEnable( TRUE );	
@@ -505,7 +505,7 @@ void CSkillCustomizeItem::SelectEffect(bool bStart)
 
 VOID CSkillCustomizeItem::ClickEffect( RwBool bPush, RwBool bStillPush /* = TRUE  */ )
 {
-	// Icon Surface´Â ÇÏ³ª»Ó.
+	// Icon SurfaceëŠ” í•˜ë‚˜ë¿.
 	CRectangle rtScreen = m_pItem->GetSkillIcon()->GetScreenRect();
 	gui::CSurface* pSurface = &(m_pItem->GetSkillIcon()->GetSurface()->front());
 	CRectangle* rtSnapShot = &pSurface->m_SnapShot.rtRect;
@@ -555,7 +555,7 @@ RwBool CSkillCustomizeItem::IsTrainableSkill()
 	{
 		sTBLDAT* pItemTblData = m_pItem->GetSkillData();
 
-		if( false == ((sSKILL_TBLDAT*)pItemTblData)->bSelfTrain )	/// Master¿¡°Ô ¹è¿ì´Â ½ºÅ³¸¸ °Ë»ç
+		if( false == ((sSKILL_TBLDAT*)pItemTblData)->bSelfTrain )	/// Masterì—ê²Œ ë°°ìš°ëŠ” ìŠ¤í‚¬ë§Œ ê²€ì‚¬
 			if( SkillCommonLogic::IsLearnable( (CSkillGuiItem::TYPE) m_pItem->GetSkillType(), pItemTblData ) )
 			{
 				return TRUE;
@@ -571,7 +571,7 @@ RwBool CSkillCustomizeItem::IsSelfTrainableSkill()
 	{
 		sTBLDAT* pItemTblData = m_pItem->GetSkillData();
 
-		if( true == ((sSKILL_TBLDAT*)pItemTblData)->bSelfTrain )	/// Self Trainning ½ºÅ³¸¸ °Ë»ç
+		if( true == ((sSKILL_TBLDAT*)pItemTblData)->bSelfTrain )	/// Self Trainning ìŠ¤í‚¬ë§Œ ê²€ì‚¬
 			if( SkillCommonLogic::IsLearnable( (CSkillGuiItem::TYPE) m_pItem->GetSkillType(), m_pItem->GetSkillData() ) )
 			{
 				return TRUE;
@@ -792,7 +792,7 @@ VOID CSkillCustomizeItem::OnIconMouseEnter( gui::CComponent* pComponent )
 {
 	ShowSkillInfownd( TRUE );
 
-	// ¿Ö µé¾î°¡´ÂÁö Å×½ºÆ®.
+	// ì™œ ë“¤ì–´ê°€ëŠ”ì§€ í…ŒìŠ¤íŠ¸.
 	if( m_bPushDownIcon )
 		ClickEffect( TRUE );
 
@@ -911,7 +911,7 @@ VOID CSkillCustomizeItem::OnSPButtonLeave( gui::CComponent* pComponent )
 VOID CSkillCustomizeItem::OnSPButtonClick( gui::CComponent* pComponent )
 {
 	if( m_pSobIcon )
-	{// ½ºÅ³ ¾÷±×·¹ÀÌµå ÇÏ´Â °æ¿ì.
+	{// ìŠ¤í‚¬ ì—…ê·¸ë ˆì´ë“œ í•˜ëŠ” ê²½ìš°.
 		CNtlSkillContainer* pSkillContainer = GetNtlSLGlobal()->GetSobAvatar()->GetSkillContainer();
 		RwInt32 nSlotIdx = pSkillContainer->GetSkillSlotIdx( m_pSobIcon->GetSobObj()->GetSerialID() );
 		NTL_ASSERT( nSlotIdx >= 0, "CSkillWindowItemDlg::OnUpgradeButtonClick : Invalid Skill Object" );
@@ -919,7 +919,7 @@ VOID CSkillCustomizeItem::OnSPButtonClick( gui::CComponent* pComponent )
 		GetDboGlobal()->GetGamePacketGenerator()->SendSkillUpgradeReq( (RwUInt8)nSlotIdx );	
 	}	
 	else
-	{// SelfTrain ½ºÅ³À» ¹è¿ì´Â °æ¿ì.
+	{// SelfTrain ìŠ¤í‚¬ì„ ë°°ìš°ëŠ” ê²½ìš°.
 		GetDboGlobal()->GetGamePacketGenerator()->SendSkillLearnReq( m_pItem->GetSkillData()->tblidx );
 	}
 }
@@ -1088,7 +1088,7 @@ VOID CSkillCustomizeItemGroup::CheckUpgradebleSkill(VOID)
 		pItem->CheckSkillUpgrade();
 	}
 
-	// Á¶°Ç ¸¸Á·½Ã º¸¿©Á®¾ß ÇÏ´Â ³à¼®ÀÌ ÀÖ´Ù¸é ÀÌ ¹Ø¿¡ ÁÖ¼®À» Ç¬´Ù.
+	// ì¡°ê±´ ë§Œì¡±ì‹œ ë³´ì—¬ì ¸ì•¼ í•˜ëŠ” ë…€ì„ì´ ìˆë‹¤ë©´ ì´ ë°‘ì— ì£¼ì„ì„ í‘¼ë‹¤.
 	// CheckSkillGroupShowAndSize();
 }
 

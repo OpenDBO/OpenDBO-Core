@@ -101,7 +101,7 @@ void CNtlWorldPropMaterialController::UpdatePropertyPosInUnloadedWorld(RwV3d& vP
 			::CopyMemory(&bBool, pFileMem, sizeof(RwBool));
 			pFileMem += (sizeof(RwBool));
 
-			if (bBool) // detail layer 蜡公
+			if (bBool) // detail layer 鞙犽
 			{
 				::CopyMemory(m_acDTextureName[j], pFileMem, sizeof(RwChar) * rwTEXTUREBASENAMELENGTH);
 				pFileMem += (sizeof(RwChar) * rwTEXTUREBASENAMELENGTH);
@@ -109,7 +109,7 @@ void CNtlWorldPropMaterialController::UpdatePropertyPosInUnloadedWorld(RwV3d& vP
 				::CopyMemory(&bBool, pFileMem, sizeof(RwBool));
 				pFileMem += (sizeof(RwBool));
 
-				if (bBool) // alpha layer 蜡公
+				if (bBool) // alpha layer 鞙犽
 				{
 					pFileMem += (sizeof(RwChar) * rwTEXTUREBASENAMELENGTH);
 					
@@ -500,7 +500,7 @@ void CNtlWorldPropMaterialController::UpdatePropertyPosInUnloadedWorld(RwV3d& vP
 			::CopyMemory(&bBool, pFileMem, sizeof(RwBool));
 			pFileMem += (sizeof(RwBool));
 
-			if (bBool) // detail layer 蜡公
+			if (bBool) // detail layer 鞙犽
 			{
 				::CopyMemory(m_acDTextureName[j], pFileMem, sizeof(RwChar) * rwTEXTUREBASENAMELENGTH);
 				pFileMem += (sizeof(RwChar) * rwTEXTUREBASENAMELENGTH);
@@ -508,7 +508,7 @@ void CNtlWorldPropMaterialController::UpdatePropertyPosInUnloadedWorld(RwV3d& vP
 				::CopyMemory(&bBool, pFileMem, sizeof(RwBool));
 				pFileMem += (sizeof(RwBool));
 
-				if (bBool) // alpha layer 蜡公
+				if (bBool) // alpha layer 鞙犽
 				{
 					pFileMem += (sizeof(RwChar) * rwTEXTUREBASENAMELENGTH);
 

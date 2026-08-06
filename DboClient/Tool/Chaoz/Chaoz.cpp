@@ -17,31 +17,31 @@ BEGIN_MESSAGE_MAP(CChaozApp, CWinApp)
 END_MESSAGE_MAP()
 
 
-// CChaozApp »ý¼º
+// CChaozApp ìƒì„±
 
 CChaozApp::CChaozApp()
 {
-	// TODO: ¿©±â¿¡ »ý¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
-	// InitInstance¿¡ ¸ðµç Áß¿äÇÑ ÃÊ±âÈ­ ÀÛ¾÷À» ¹èÄ¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ìƒì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
+	// InitInstanceì— ëª¨ë“  ì¤‘ìš”í•œ ì´ˆê¸°í™” ìž‘ì—…ì„ ë°°ì¹˜í•©ë‹ˆë‹¤.
 }
 
 
-// À¯ÀÏÇÑ CChaozApp °³Ã¼ÀÔ´Ï´Ù.
+// ìœ ì¼í•œ CChaozApp ê°œì²´ìž…ë‹ˆë‹¤.
 
 CChaozApp theApp;
 
 
-// CChaozApp ÃÊ±âÈ­
+// CChaozApp ì´ˆê¸°í™”
 
 BOOL CChaozApp::InitInstance()
 {
-	// ÀÀ¿ë ÇÁ·Î±×·¥ ¸Å´ÏÆä½ºÆ®°¡ ComCtl32.dll ¹öÀü 6 ÀÌ»óÀ» »ç¿ëÇÏ¿© ºñÁÖ¾ó ½ºÅ¸ÀÏÀ»
-	// »ç¿ëÇÏµµ·Ï ÁöÁ¤ÇÏ´Â °æ¿ì, Windows XP »ó¿¡¼­ ¹Ýµå½Ã InitCommonControlsEx()°¡ ÇÊ¿äÇÕ´Ï´Ù.
-	// InitCommonControlsEx()¸¦ »ç¿ëÇÏÁö ¾ÊÀ¸¸é Ã¢À» ¸¸µé ¼ö ¾ø½À´Ï´Ù.
+	// ì‘ìš© í”„ë¡œê·¸ëž¨ ë§¤ë‹ˆíŽ˜ìŠ¤íŠ¸ê°€ ComCtl32.dll ë²„ì „ 6 ì´ìƒì„ ì‚¬ìš©í•˜ì—¬ ë¹„ì£¼ì–¼ ìŠ¤íƒ€ì¼ì„
+	// ì‚¬ìš©í•˜ë„ë¡ ì§€ì •í•˜ëŠ” ê²½ìš°, Windows XP ìƒì—ì„œ ë°˜ë“œì‹œ InitCommonControlsEx()ê°€ í•„ìš”í•©ë‹ˆë‹¤.
+	// InitCommonControlsEx()ë¥¼ ì‚¬ìš©í•˜ì§€ ì•Šìœ¼ë©´ ì°½ì„ ë§Œë“¤ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 	INITCOMMONCONTROLSEX InitCtrls;
 	InitCtrls.dwSize = sizeof(InitCtrls);
-	// ÀÀ¿ë ÇÁ·Î±×·¥¿¡¼­ »ç¿ëÇÒ ¸ðµç °ø¿ë ÄÁÆ®·Ñ Å¬·¡½º¸¦ Æ÷ÇÔÇÏµµ·Ï
-	// ÀÌ Ç×¸ñÀ» ¼³Á¤ÇÏ½Ê½Ã¿À.
+	// ì‘ìš© í”„ë¡œê·¸ëž¨ì—ì„œ ì‚¬ìš©í•  ëª¨ë“  ê³µìš© ì»¨íŠ¸ë¡¤ í´ëž˜ìŠ¤ë¥¼ í¬í•¨í•˜ë„ë¡
+	// ì´ í•­ëª©ì„ ì„¤ì •í•˜ì‹­ì‹œì˜¤.
 	InitCtrls.dwICC = ICC_WIN95_CLASSES;
 	InitCommonControlsEx(&InitCtrls);
 
@@ -56,7 +56,7 @@ BOOL CChaozApp::InitInstance()
 		// Change the registry key where those settings are stored.
 		// TODO: This string is the same as the name of your company or organization.
 		// You need to modify it with the appropriate content.
-	//SetRegistryKey(_T("·ÎÄÃ ÀÀ¿ë ÇÁ·Î±×·¥ ¸¶¹ý»ç¿¡¼­ »ý¼ºµÈ ÀÀ¿ë ÇÁ·Î±×·¥"));
+	//SetRegistryKey(_T("ë¡œì»¬ ì‘ìš© í”„ë¡œê·¸ëž¨ ë§ˆë²•ì‚¬ì—ì„œ ìƒì„±ëœ ì‘ìš© í”„ë¡œê·¸ëž¨"));
 
 	CChaozDlg dlg;
 	m_pMainWnd = &dlg;

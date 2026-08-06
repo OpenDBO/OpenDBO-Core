@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: ChatOptionGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 7. 1
 * Abstract		: 
 *****************************************************************************
-* Desc			: Ã¤ÆÃ¿¡ °ü·ÃµÈ ¿É¼ÇÀ» Á¦°øÇÏ´Â GUI
+* Desc			: ì±„íŒ…ì— ê´€ë ¨ëœ ì˜µì…˜ì„ ì œê³µí•˜ëŠ” GUI
 *****************************************************************************/
 
 #pragma once
@@ -52,15 +52,15 @@ protected:
 	gui::CSlot			m_slotCommand;
 
 	gui::CButton*		m_pCloseButton;
-	gui::CButton*		m_pChatTypeButton[NUM_NET_CHAT_TYPE];		///< Ã¤ÆÃ Å¸ÀÔ ¼±ÅÃ ¹öÆ°
-	gui::CButton*		m_pToggleQuickButton[NUM_NET_CHAT_TYPE];	///< Äü¹öÆ° µî·Ï ¹öÆ°
-	gui::CButton*		m_pCommandButton;							///< ¸í·É¾î ¹öÆ°
+	gui::CButton*		m_pChatTypeButton[NUM_NET_CHAT_TYPE];		///< ì±„íŒ… íƒ€ì… ì„ íƒ ë²„íŠ¼
+	gui::CButton*		m_pToggleQuickButton[NUM_NET_CHAT_TYPE];	///< í€µë²„íŠ¼ ë“±ë¡ ë²„íŠ¼
+	gui::CButton*		m_pCommandButton;							///< ëª…ë ¹ì–´ ë²„íŠ¼
 
-	gui::CStaticBox*	m_pTitle;									///< ´ÙÀÌ¾ó·Î±× Á¦¸ñ
-	gui::CStaticBox*	m_pShoutcut[NUM_NET_CHAT_TYPE];				///< ´ÜÃàÅ° Ç¥½Ã
-	gui::CStaticBox*	m_pShoutcutExplain[NUM_NET_CHAT_TYPE];		///< ´ÜÃàÅ° ¼³¸í
+	gui::CStaticBox*	m_pTitle;									///< ë‹¤ì´ì–¼ë¡œê·¸ ì œëª©
+	gui::CStaticBox*	m_pShoutcut[NUM_NET_CHAT_TYPE];				///< ë‹¨ì¶•í‚¤ í‘œì‹œ
+	gui::CStaticBox*	m_pShoutcutExplain[NUM_NET_CHAT_TYPE];		///< ë‹¨ì¶•í‚¤ ì„¤ëª…
 	gui::CStaticBox*	m_pstbCommandShortcutExplain;
-	gui::CStaticBox*	m_pCommand;			///< ¸í·É¾î ¼³¸í
+	gui::CStaticBox*	m_pCommand;			///< ëª…ë ¹ì–´ ì„¤ëª…
 
 	CChatGui*			m_pChatGui;
 };

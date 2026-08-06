@@ -209,7 +209,7 @@ void CGameStage::Destroy(void)
 		NTL_DELETE(m_pTeleportScene);
 	}
 	
-	// ���̺� ��� ���� ( ���� �� �޸� ���� )
+	// 세이브 방식 변경 ( 저장 후 메모리 삭제 )
 	Logic_SaveScouterOption();
 	Logic_SaveQuestOption();
 	Logic_SaveCharacterOption();
@@ -254,7 +254,7 @@ void CGameStage::Destroy(void)
 	// unlink keyboard/mouse down
 	CInputHandler::GetInstance()->UnLinkKeyDown(m_hKeyboardDown);
 	
-	// ������ �����ٰ� �˸�.
+	// 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쌕곤옙 占싯몌옙.
 	CGamePacketGenerator *pGameNetSender = CDboGlobal::GetInstance()->GetGamePacketGenerator();  
 	pGameNetSender->SendGameLeaveReq(); 
 	
@@ -277,7 +277,7 @@ void CGameStage::Destroy(void)
 	// Destroy TextureCamera
 	CMapItem::DestroyCamera();
 
-	// world���� camera remove
+	// world占쏙옙占쏙옙 camera remove
 	if(CNtlPLGlobal::m_pRpWorld)
 		RpWorldRemoveCamera(CNtlPLGlobal::m_pRpWorld, CNtlPLGlobal::m_RwCamera);
 
@@ -367,18 +367,18 @@ void CGameStage::UpdateLoadingScene(RwReal fElapsed)
 
 RwBool CGameStage::UpdateLoadingThread(RwReal fElapsed)
 {
-	// Multi-thread�� �����ϰ� ���� �ʴ� ����
+	// Multi-thread占쏙옙 占쏙옙占쏙옙占싹곤옙 占쏙옙占쏙옙 占십댐옙 占쏙옙占쏙옙
 	if(m_pLoadingThread == NULL)
 		return FALSE;
 
-	// Multi-thread loading �Ϸ�
+	// Multi-thread loading 占싹뤄옙
 	if(m_pLoadingThread->GetLoadState() == CGameLoadingThread::eGAME_LOAD_STATE_LOADED)
 	{
 		PostMutiThreadLoading();
 		return TRUE;
 	}
 
-	// Multi-thread loading ��...
+	// Multi-thread loading 占쏙옙...
 
 	GetSoundManager()->Update(fElapsed);
 
@@ -487,11 +487,11 @@ void CGameStage::UpdateGameEnterLoadingSchedulingWorld(RwReal fElapsed)
 		}
 	}
 
-	// avatar�� ���� �������� �ʾ�����?
+	// avatar占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占십억옙占쏙옙占쏙옙?
 	if(!IsAvatarCreate())
 		return;
 
-	// avatar�� ready �Ǿ��°�?
+	// avatar占쏙옙 ready 占실억옙占승곤옙?
 	if(!m_bAvatarReady)
 	{
 		if(m_pAvatar->IsAvatarReady())
@@ -516,14 +516,14 @@ void CGameStage::UpdateTeleportLoadingReadyScene(RwReal fElapsed)
 {
 	RwV3d vAvatarPos = m_pAvatar->GetPosition();
 		
-	// ���� ���� �� �ٽ� ����.(update �Ѵ�.)
+	// 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙 占쌕쏙옙 占쏙옙占쏙옙.(update 占싼댐옙.)
 	if(m_bWorldChange)
 	{
 		RwFrameListSetAutoUpdate(FALSE);
 		
 		RpWorldRemoveCamera(CNtlPLGlobal::m_pRpWorld, CNtlPLGlobal::m_RwCamera);
 
-        CNtlSLEventGenerator::CreateWorld(FALSE);       // �̺�Ʈ �߻�
+        CNtlSLEventGenerator::CreateWorld(FALSE);       // 占싱븝옙트 占쌩삼옙
 
 		DeleteWorld();
 
@@ -553,11 +553,11 @@ void CGameStage::UpdateTeleportLoadingReadyScene(RwReal fElapsed)
 
 		RpWorldAddCamera(CNtlPLGlobal::m_pRpWorld, CNtlPLGlobal::m_RwCamera);
 
-        CNtlSLEventGenerator::CreateWorld(TRUE);        // �̺�Ʈ �߻�
+        CNtlSLEventGenerator::CreateWorld(TRUE);        // 占싱븝옙트 占쌩삼옙
 
 		RwFrameListSetAutoUpdate(TRUE);
 
-		// world�� �ѹ� ������Ʈ �Ѵ�.
+		// world占쏙옙 占싼뱄옙 占쏙옙占쏙옙占쏙옙트 占싼댐옙.
 		if(m_pWorldEntity)
 		{
 			//RwBool bEnable = GetLoadObjectSeamlessScheduling();
@@ -594,11 +594,11 @@ void CGameStage::UpdateTeleportLoadingReadyScene(RwReal fElapsed)
 
 		GetNtlGameCameraManager()->ResetCamera();
 
-		// ���� ���� teleport �Ѵ�.
+		// 占쏙옙占쏙옙 占쏙옙占쏙옙 teleport 占싼댐옙.
 		if(m_pWorldEntity)
 			m_pWorldEntity->SetPortalPosition(vAvatarPos);
 
-		// world�� �ѹ� ������Ʈ �Ѵ�.
+		// world占쏙옙 占싼뱄옙 占쏙옙占쏙옙占쏙옙트 占싼댐옙.
 		if(m_pWorldEntity)
 		{
 			m_pWorldEntity->SetPlayerPosition(vAvatarPos);
@@ -617,7 +617,7 @@ void CGameStage::UpdateTeleportLoadingTeleportScene(RwReal fElapsed)
 	RwV3d vWorldUpdatePos = GetUpdateWorldPosition();
 	UpdateWorld(vWorldUpdatePos);
 
-	// world�� loading �Ǿ��°�?
+	// world占쏙옙 loading 占실억옙占승곤옙?
 	if(!m_bWorldReady)
 	{
 		if(!m_pWorldEntity->GetWorldReady())
@@ -637,13 +637,13 @@ void CGameStage::UpdateTeleportLoadingTeleportScene(RwReal fElapsed)
 				AvatarCreate();
 			}
 
-			// avatar�� ������ؾ� �ϴ°�?
+			// avatar를 재생성해야 하는가?
 			if(IsAvatarReCreate())
 			{
 				AvatarReCreate();
 			}
 
-			// ��Ʈ�� �����͸� �޾Ƶ��δ�.
+			// 占쏙옙트占쏙옙 占쏙옙占쏙옙占싶몌옙 占쌨아듸옙占싸댐옙.
 //			GetSceneManager()->SetThreadLoad( FALSE );
 			m_pTeleportScene->SetState(CHAR_TELEPORT_LOAD_END);
 			CPacketProc::GetInstance()->ActivePop(TRUE);
@@ -677,7 +677,7 @@ void CGameStage::UpdateTeleportLoadingSpawnReadyScene(RwReal fElapsed)
 	RwV3d vWorldUpdatePos = GetUpdateWorldPosition();
 	UpdateWorld(vWorldUpdatePos);
 
-	// avatar�� ready �Ǿ��°�?
+	// avatar占쏙옙 ready 占실억옙占승곤옙?
 	if(!m_bAvatarReady)
 	{
 		if(m_pAvatar->IsAvatarReady())
@@ -867,10 +867,10 @@ void CGameStage::EventProcUpdateTick(RwReal fElapsed)
 		UpdateGameIdle(fElapsed);
 	}
 
-    // ��Ȳ�� ���� ���� �����ʸ� �����Ѵ�.
+    // 占쏙옙황占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占십몌옙 占쏙옙占쏙옙占싼댐옙.
     UpdateSoundListener();
 	
-	// avatar�� �����Ǿ� ���� ������?
+	// avatar占쏙옙 占쏙옙占쏙옙占실억옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙?
 	if(!IsAvatarCreate())
 		return;
 
@@ -888,7 +888,7 @@ void CGameStage::EventProcUpdateTick(RwReal fElapsed)
 
 void CGameStage::EventProcWorldChange(RwBool bWorldChange)
 {
-	// loading�� �����Ѵ�.
+	// loading占쏙옙 占쏙옙占쏙옙占싼댐옙.
 	
 	m_pTeleportScene = NTL_NEW CGameTeleportScene(bWorldChange);
 
@@ -911,7 +911,7 @@ void CGameStage::EventProcWorldChange(RwBool bWorldChange)
 	m_eUpdageType = EGUT_GAME_TELEPORT_LOADING;
 
 	//---------------------------------------------------
-	// teleport �� world �� �ٸ� ���.
+	// teleport 할 world 가 다를 경우.
 	// avatar resource�� ���忡�� ����.
 	if(m_bWorldChange)
 	{
@@ -978,8 +978,8 @@ void CGameStage::MutiThreadLoading( void )
 		NTL_DELETE(m_pGuiGroup);
 	}
 
-	// height field world�� �����Ѵ�.
-	// avatar ��ǥ ������.
+	// height field world占쏙옙 占쏙옙占쏙옙占싼댐옙.
+	// avatar 占쏙옙표 占쏙옙占쏙옙占쏙옙.
 	SAvatarInfo *pAvatarInfo = GetNtlSLGlobal()->GetAvatarInfo();
 	RwV3d vAvatarPos;
 	CNtlMath::MathRwV3dAssign(&vAvatarPos,	
@@ -1023,7 +1023,7 @@ void CGameStage::MutiThreadLoading( void )
 
 void CGameStage::PostMutiThreadLoading( void )
 {
-	// �ε� Thread�� �����Ѵ�
+	// 占싸듸옙 Thread占쏙옙 占쏙옙占쏙옙占싼댐옙
 	if ( m_pLoadingThread )
 	{
 		NTL_DELETE(m_pLoadingThread);
@@ -1039,7 +1039,7 @@ void CGameStage::PostMutiThreadLoading( void )
 
 	GetNtlSobManager()->SetActive( TRUE );
 	
-	// Effect ����
+	// Effect 占쏙옙占쏙옙
 	if(GetNtlStorageManager()->GetBoolData( dSTORAGE_GRAPHIC_SHADER_HDR ))
 		CNtlPostEffectCamera::SetPostEffectFilters(POST_EFFECT_FILTER_HDR);
 	else

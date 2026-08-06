@@ -122,7 +122,7 @@ gui::CButton* CGMPopupGui::AddButton(sPopButton* pPopButton, const WCHAR* pwcTex
 	pPopButton->pButton->SetText(pwcText);
 	pPopButton->slotButton = pPopButton->pButton->SigClicked().Connect(this, &CGMPopupGui::OnClicked_Buttons);
 
-	// ¹ÝÈ¯ÇÏÁö ¾Ê¾Æµµ µÇÁö¸¸ ±×³É ;;
+	// ë°˜í™˜í•˜ì§€ ì•Šì•„ë„ ë˜ì§€ë§Œ ê·¸ëƒ¥ ;;
 	return pPopButton->pButton;
 }
 
@@ -130,7 +130,7 @@ VOID CGMPopupGui::AddCancelButton()
 {
 	sPopButton* pPopButton = NTL_NEW sPopButton;
 	pPopButton->pButton			= AddButton(pPopButton, GetDisplayStringManager()->GetString("DST_LOBBY_CANCLE2") );
-	pPopButton->uiCount			= 100;			// ÀÇ¹Ì ¾ø´Ù
+	pPopButton->uiCount			= 100;			// ì˜ë¯¸ ì—†ë‹¤
 	pPopButton->bCancelButton	= TRUE;
 	m_listButtons.push_back(pPopButton);
 }
@@ -192,7 +192,7 @@ VOID CGMPopupGui::SetMenu_Portal()
 	sWORLD_INFO* pWORLD_INFO = Logic_GetActiveWorldInfo();
 	RwUInt32 uiCount = 0;
 
-	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸Àå È¤Àº º»·¡ÀÇ ¿ùµå·Î....
+	// ì²œí•˜ì œì¼ ë¬´ë„íšŒìž¥ í˜¹ì€ ë³¸ëž˜ì˜ ì›”ë“œë¡œ....
 	if( pWORLD_INFO->sRuleInfo.byRuleType == GAMERULE_MINORMATCH ||
 		pWORLD_INFO->sRuleInfo.byRuleType == GAMERULE_MAJORMATCH ||
 		pWORLD_INFO->sRuleInfo.byRuleType == GAMERULE_FINALMATCH ||
@@ -212,7 +212,7 @@ VOID CGMPopupGui::SetMenu_Portal()
 
 	++uiCount;
 
-	// ±âÅ¸ Áö¿ª
+	// ê¸°íƒ€ ì§€ì—­
 	for( RwUInt8 i = 0 ; i < dADDITIONAL_LOCATION ; ++i )
 	{
 		sPopButton* pPopButtonNew = NTL_NEW sPopButton;

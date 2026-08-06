@@ -83,7 +83,7 @@ RwReal CNtlSoundDSP::GetParameta(FMOD_DSP_TYPE eType, RwUInt8 byParametaType)
 		return 0.f;
 	}	
 
-	// FMOD ¹®¼­ Âü°í : getParameterÀÇ 3¹øÂ° ÀÎÀÚ Áï ¹öÆÛ·Î µé¾î¿À´Â ¹®ÀÚ´Â 16ÀÚ¸¦ ³ÑÁö ¾Ê´Â´Ù
+	// FMOD ë¬¸ì„œ ì°¸ê³  : getParameterì˜ 3ë²ˆì§¸ ì¸ìž ì¦‰ ë²„í¼ë¡œ ë“¤ì–´ì˜¤ëŠ” ë¬¸ìžëŠ” 16ìžë¥¼ ë„˜ì§€ ì•ŠëŠ”ë‹¤
 	RwReal fValue;
 	char acBuffer[17] = "";
 	FMOD::DSP* pDSP = it->second;

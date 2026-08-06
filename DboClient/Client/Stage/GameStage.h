@@ -2,7 +2,7 @@
  *
  * File			: GameStage.h
  * Author		: HyungSuk, Jang
- * Copyright	: (��)NTL
+ * Copyright	: (占쏙옙)NTL
  * Date			: 2005. 8. 17	
  * Abstract		: Game stage class
  *****************************************************************************
@@ -136,7 +136,7 @@ protected:
 	void	UpdateTeleportLoadingSpawnReadyScene(RwReal fElapsed);
 	void	UpdateTeleportLoadingLoadFinishScene(RwReal fElapsed);
 
-    void    UpdateSoundListener();                              ///< ��Ȳ�� ���� ���� �����ʸ� �����Ѵ�.
+    void    UpdateSoundListener();                              ///< 占쏙옙황占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占십몌옙 占쏙옙占쏙옙占싼댐옙.
 	
 	void	UpdateDebugDisplay(RwReal fElapsed);
 

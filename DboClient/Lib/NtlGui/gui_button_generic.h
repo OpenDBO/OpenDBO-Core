@@ -37,22 +37,22 @@ public:
 	bool m_bToggled;
 	bool m_bToggleMode;
 	BOOL m_bMouseEnter;
-	BOOL m_bClickEnable;							// Component ÀÚÃ¼ÀÇ EnableÀÌ ¾Æ´Ñ button¸¸ÀÇ Enable ¸ğµç ¸Ş¼¼Áö´Â Çã¿ëÇÏ³ª ´ÜÁö Å¬¸¯¸¸ µÇÁö ¾Ê´Â´Ù. 
-	BOOL m_bEnableMouseCapture;						// MouseDown½Ã MouseCapture¸¦ ÇÒÁö ¿©ºÎ.
+	BOOL m_bClickEnable;							// Component ìì²´ì˜ Enableì´ ì•„ë‹Œ buttonë§Œì˜ Enable ëª¨ë“  ë©”ì„¸ì§€ëŠ” í—ˆìš©í•˜ë‚˜ ë‹¨ì§€ í´ë¦­ë§Œ ë˜ì§€ ì•ŠëŠ”ë‹¤. 
+	BOOL m_bEnableMouseCapture;						// MouseDownì‹œ MouseCaptureë¥¼ í• ì§€ ì—¬ë¶€.
 		
-	COLORREF m_colorTextUpColor;					// °¢ ÅØ½ºÆ® »ö.
+	COLORREF m_colorTextUpColor;					// ê° í…ìŠ¤íŠ¸ ìƒ‰.
 	COLORREF m_colorTextDownColor;
 	COLORREF m_colorTextFocusColor;
 	COLORREF m_colorTextDisableColor;
-	BYTE	 m_ucTextUpAlpha;						// °¢ ÅØ½ºÆ® ¾ËÆÄ.
+	BYTE	 m_ucTextUpAlpha;						// ê° í…ìŠ¤íŠ¸ ì•ŒíŒŒ.
 	BYTE	 m_ucTextDownAlpha;
 	BYTE	 m_ucTextFocusAlpha;
 	BYTE	 m_ucTextDisableAlpha;
 
-	INT		m_nTextDownCoordDiffX;					// ¹öÆ°´Ù¿î½Ã ÅØ½ºÆ® º¯È­.
+	INT		m_nTextDownCoordDiffX;					// ë²„íŠ¼ë‹¤ìš´ì‹œ í…ìŠ¤íŠ¸ ë³€í™”.
 	INT		m_nTextDownCoordDiffY;
 
-	INT		m_nTextCoordX;							// ¹öÆ° ³» TextÀ§Ä¡
+	INT		m_nTextCoordX;							// ë²„íŠ¼ ë‚´ Textìœ„ì¹˜
 	INT		m_nTextCoordY;							
 
 	std::string	m_strFocusSound;					
@@ -80,7 +80,7 @@ public:
 
 	RwImage *m_pMaskImage;
 
-	// mask ±×¸²¿¡¼­ À¯È¿ÇÏÁö ¾ÊÀº ¿µ¿ªÀÌ°¡?
+	// mask ê·¸ë¦¼ì—ì„œ ìœ íš¨í•˜ì§€ ì•Šì€ ì˜ì—­ì´ê°€?
 	bool PtInMask(int nX, int nY);
 	BOOL PtInValidRegion( INT nX, INT nY );
 	VOID CreateMaskImage(const char *pFileName);

@@ -1,4 +1,4 @@
-// TextureConverterDoc.cpp : CTextureConverterDoc Å¬·¡½ºÀÇ ±¸Çö
+// TextureConverterDoc.cpp : CTextureConverterDoc í´ë˜ìŠ¤ì˜ êµ¬í˜„
 //
 
 #include "stdafx.h"
@@ -20,11 +20,11 @@ BEGIN_MESSAGE_MAP(CTextureConverterDoc, CDocument)
 END_MESSAGE_MAP()
 
 
-// CTextureConverterDoc »ı¼º/¼Ò¸ê
+// CTextureConverterDoc ìƒì„±/ì†Œë©¸
 
 CTextureConverterDoc::CTextureConverterDoc()
 {
-	// TODO: ¿©±â¿¡ ÀÏÈ¸¼º »ı¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì¼íšŒì„± ìƒì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	m_sConverFlag.ReadFromIni( _T( "Convert.ini" ) ); 
 	
@@ -42,8 +42,8 @@ BOOL CTextureConverterDoc::OnNewDocument()
 	if (!CDocument::OnNewDocument())
 		return FALSE;
 
-	// TODO: ¿©±â¿¡ ´Ù½Ã ÃÊ±âÈ­ ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
-	// SDI ¹®¼­´Â ÀÌ ¹®¼­¸¦ ´Ù½Ã »ç¿ëÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë‹¤ì‹œ ì´ˆê¸°í™” ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
+	// SDI ë¬¸ì„œëŠ” ì´ ë¬¸ì„œë¥¼ ë‹¤ì‹œ ì‚¬ìš©í•©ë‹ˆë‹¤.
 
 	CFileFind		FileFinder;
 
@@ -70,16 +70,16 @@ void CTextureConverterDoc::Serialize(CArchive& ar)
 {
 	if (ar.IsStoring())
 	{
-		// TODO: ¿©±â¿¡ ÀúÀå ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+		// TODO: ì—¬ê¸°ì— ì €ì¥ ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	}
 	else
 	{
-		// TODO: ¿©±â¿¡ ·Îµù ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+		// TODO: ì—¬ê¸°ì— ë¡œë”© ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	}
 }
 
 
-// CTextureConverterDoc Áø´Ü
+// CTextureConverterDoc ì§„ë‹¨
 
 #ifdef _DEBUG
 void CTextureConverterDoc::AssertValid() const
@@ -94,7 +94,7 @@ void CTextureConverterDoc::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CTextureConverterDoc ¸í·É
+// CTextureConverterDoc ëª…ë ¹
 
 BOOL CTextureConverterDoc::ConvertFile(CString & rcFileName)
 {

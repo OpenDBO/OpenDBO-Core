@@ -2,7 +2,7 @@
 *
 * File			: CNtlSobWorldItemProxy
 * Author		: Peessi
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2006. 7. 12	
 * Abstract		: Simulation World Item Proxy
 *****************************************************************************
@@ -31,7 +31,7 @@ private:
 protected:
 
 	/** 
-	* character »ı¼º
+	* character ìƒì„±
 	*/
 	VOID CreatePLWorldItem( RWS::CMsg& msg );
 	VOID DeletePLWorldItem(VOID);
@@ -48,18 +48,18 @@ public:
 public:
 
 	//---------------------------------------------------
-	// main presentation entity¿¡ °ü·ÃµÈ ÇÔ¼ö 
+	// main presentation entityì— ê´€ë ¨ëœ í•¨ìˆ˜ 
 	//---------------------------------------------------
 
 	/**
-	* world¿¡ add ¹× remove °ü·ÃµÈ ÇÔ¼ö.
+	* worldì— add ë° remove ê´€ë ¨ëœ í•¨ìˆ˜.
 	*/
 
 	virtual void	AddWorld(void);
 	virtual void	RemoveWorld(void);
 
 	/**
-	* transform¿¡ °üÇöµÈ ÇÔ¼ö.
+	* transformì— ê´€í˜„ëœ í•¨ìˆ˜.
 	*/
 
 	virtual void	SetPosition(const RwV3d *pPos);

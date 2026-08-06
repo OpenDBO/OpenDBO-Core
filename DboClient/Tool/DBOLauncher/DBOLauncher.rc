@@ -13,7 +13,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// ÇÑ±¹¾î resources
+// í•œêµ­ì–´ resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 #ifdef _WIN32
@@ -82,7 +82,7 @@ BEGIN
     CONTROL         "Cancel",IDC_DEV_CANCEL,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,99,204,59,14
     RTEXT           "Download",IDC_DEV_DOWNLOAD,22,129,32,11,0,WS_EX_TRANSPARENT
     LTEXT           "Patch",IDC_DEV_PATCH,22,145,31,9,NOT WS_VISIBLE
-    RTEXT           "Download Á¤º¸",IDC_DEV_DOWNLOAD_INFO,21,164,50,13,0,WS_EX_TRANSPARENT
+    RTEXT           "Download ì •ë³´",IDC_DEV_DOWNLOAD_INFO,21,164,50,13,0,WS_EX_TRANSPARENT
     CTEXT           "Log",IDC_DEV_LOG,19,183,18,9
     CONTROL         "Integrity",IDC_DEV_GAME_TEST,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,100,175,59,14
 END
@@ -98,7 +98,7 @@ BEGIN
     CONTROL         "Cancel",IDC_CJI_KOR_CANCEL,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,99,204,59,14
     RTEXT           "Download",IDC_CJI_KOR_DOWNLOAD,22,129,32,11,0,WS_EX_TRANSPARENT
     LTEXT           "Patch",IDC_CJI_KOR_PATCH,22,145,31,9,NOT WS_VISIBLE
-    RTEXT           "Download Á¤º¸",IDC_CJI_KOR_DOWNLOAD_INFO,21,164,50,13,0,WS_EX_TRANSPARENT
+    RTEXT           "Download ì •ë³´",IDC_CJI_KOR_DOWNLOAD_INFO,21,164,50,13,0,WS_EX_TRANSPARENT
     CTEXT           "Log",IDC_CJI_KOR_LOG,19,183,18,9
     CONTROL         "Integrity",IDC_CJI_KOR_GAME_TEST,"Button",BS_OWNERDRAW | BS_FLAT | WS_TABSTOP,100,175,59,14
 END
@@ -198,7 +198,7 @@ IDB_DEV_INTEGRITY_UP    BITMAP                  "res\\TestBtnUp.bmp"
 IDB_DEV_INTEGRITY_FOC   BITMAP                  "res\\TestBtnFocus.bmp"
 IDB_DEV_INTEGRITY_DOWN  BITMAP                  "res\\TestBtnDown.bmp"
 IDB_DEV_INTEGRITY_DISABLE BITMAP                  "res\\TestBtnStand.bmp"
-#endif    // ÇÑ±¹¾î resources
+#endif    // í•œêµ­ì–´ resources
 /////////////////////////////////////////////////////////////////////////////
 
 

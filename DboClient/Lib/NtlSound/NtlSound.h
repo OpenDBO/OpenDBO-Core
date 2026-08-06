@@ -2,11 +2,11 @@
 *
 * File			: NtlSound.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 4. 3
 * Abstract		: 
 *****************************************************************************
-* Desc			: Dbo¿¡¼­ ¾²ÀÌ´Â °³º° »ç¿îµå¸¦ ´Ù·é´Ù
+* Desc			: Dboì—ì„œ ì“°ì´ëŠ” ê°œë³„ ì‚¬ìš´ë“œë¥¼ ë‹¤ë£¬ë‹¤
 *****************************************************************************/
 
 #pragma once
@@ -39,7 +39,7 @@ public:
 	std::string			m_strName;
 	eSoundPlayState		m_eState;
 	bool				m_bLoop;
-	bool				m_bCreatedfromSoundPool;	///< Sound pool¿¡¼­ FMOD::Sound¸¦ °¡Áö°í ¿Ô´Ù
+	bool				m_bCreatedfromSoundPool;	///< Sound poolì—ì„œ FMOD::Soundë¥¼ ê°€ì§€ê³  ì™”ë‹¤
 	sNtlVolume			m_tVolume;
 	sNtlMinMax			m_tMinMax;
 	float				m_fXPos;

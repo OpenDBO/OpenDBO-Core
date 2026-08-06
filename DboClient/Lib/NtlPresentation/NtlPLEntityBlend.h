@@ -2,7 +2,7 @@
  *
  * File			: NtlPLEntityBlend.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2007. 11. 05	
  * Abstract		: Presentation object entity blend class
  *****************************************************************************
@@ -16,15 +16,15 @@
 
 class CNtlPLEntity;
 
-// Alpha BlendÀÇ °¡ÁßÄ¡ Á¤º¸¸¦ °ü¸®ÇÏ´Â Å¬·¡½º
+// Alpha Blendì˜ ê°€ì¤‘ì¹˜ ì •ë³´ë¥¼ ê´€ë¦¬í•˜ëŠ” í´ë˜ìŠ¤
 class CNtlPLEntityAlphaWeightBlend
 {
 private:
 
 	enum 
 	{
-		PLEAW_BLEND,                    // ºí·»µå Áß
-		PLEAW_END                       // ºí·»µå°¡ ³¡³­ »óÅÂ
+		PLEAW_BLEND,                    // ë¸”ë Œë“œ ì¤‘
+		PLEAW_END                       // ë¸”ë Œë“œê°€ ëë‚œ ìƒíƒœ
 	};
 
 	RwUInt8	m_byBlendType;
@@ -87,7 +87,7 @@ inline std::string& CNtlPLAtomicAlphaWeightBlend::GetAtomicName(void)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-// ¾ËÆÄ ºí·»µå °¡ÁßÄ¡ °´Ã¼µéÀ» °ü¸®ÇÏ´Â ÄÁÆ®·Ñ·¯
+// ì•ŒíŒŒ ë¸”ë Œë“œ ê°€ì¤‘ì¹˜ ê°ì²´ë“¤ì„ ê´€ë¦¬í•˜ëŠ” ì»¨íŠ¸ë¡¤ëŸ¬
 class CNtlPLEntityBlendController
 {
 
@@ -103,7 +103,7 @@ public:
 	CNtlPLAtomicAlphaWeightBlend*  AddAtomicAlpha(const RwChar *pAtomicName, RwReal fWeightAlpha, RwReal fLifeTime = 0.0f, RwBool bLoop = TRUE);
     CNtlPLAtomicAlphaWeightBlend*  AddAtomicAlpha(const RwChar *pAtomicName, RwReal fStartWeightAlpha, RwReal fEndWeightAlpha, RwReal fBlendTime, RwReal fLifeTime, RwBool bLoop);    
     
-    void AddAlphaBlend(CNtlPLEntityAlphaWeightBlend* pAlphaBlend);              ///< ÀÓÀÇÀÇ ¾ËÆÄ ºí·»µù °´Ã¼¸¦ ¸®½ºÆ®¿¡ Ãß°¡ÇÑ´Ù.
+    void AddAlphaBlend(CNtlPLEntityAlphaWeightBlend* pAlphaBlend);              ///< ì„ì˜ì˜ ì•ŒíŒŒ ë¸”ë Œë”© ê°ì²´ë¥¼ ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€í•œë‹¤.
     void RemoveAlpha(CNtlPLEntityAlphaWeightBlend* pAlphaBlend);
 	void RemoveAtomicAlpha(CNtlPLAtomicAlphaWeightBlend *pAtomicAlphaBlend);
 

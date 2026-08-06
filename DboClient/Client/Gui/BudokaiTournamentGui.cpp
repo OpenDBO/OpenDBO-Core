@@ -38,7 +38,7 @@ CBudokaiTournamentEntry::CBudokaiTournamentEntry( gui::CComponent* pParent, RwUI
 {
 	gui::CSurfaceManager* pSurfaceManager = GetNtlGuiManager()->GetSurfaceManager();
 
-	// Æ÷Áö¼Ç À§Ä¡Á¤º¸¿Í ¼­ÇÇ½º¸¦ ¼±ÅÃ.
+	// í¬ì§€ì…˜ ìœ„ì¹˜ì •ë³´ì™€ ì„œí”¼ìŠ¤ë¥¼ ì„ íƒ.
 	CRectangle rtMark;
 	rtMark.SetRectWH( nMark1Left + byPos * nOffset, nMark1Top, nWidth, nHeight );					  
 
@@ -64,7 +64,7 @@ CBudokaiTournamentEntry::~CBudokaiTournamentEntry(VOID)
 
 VOID CBudokaiTournamentEntry::SetEntry( const WCHAR* pName, RwUInt16 wJoinID )
 {
-	// ÀÌ¸§ ¼¼ÆÃ
+	// ì´ë¦„ ì„¸íŒ…
 	m_wstrName = pName;
 	m_wJoinID = wJoinID;
 }
@@ -76,17 +76,17 @@ VOID CBudokaiTournamentEntry::OnMouseEnter( gui::CComponent* pComponent )
 	// Focus
 	m_surFocus.Show( TRUE );
 
-	// ÆË¾÷
+	// íŒì—…
 	if( m_wstrName.size() )
 		GetInfoWndManager()->ShowInfoWindow( TRUE, CInfoWndManager::INFOWND_JUST_WTEXT, rect.right, rect.bottom, (VOID*)m_wstrName.c_str(), DIALOG_BUDOKAI_TOURNAMENT );
 }
 
 VOID CBudokaiTournamentEntry::OnMouseLeave( gui::CComponent* pComponent )
 {
-	// Focus Á¾·á
+	// Focus ì¢…ë£Œ
 	m_surFocus.Show( FALSE );
 
-	// ÆË¾÷ Á¾·á
+	// íŒì—… ì¢…ë£Œ
 	if( GetInfoWndManager()->GetRequestGui() == DIALOG_BUDOKAI_TOURNAMENT )
 		GetInfoWndManager()->ShowInfoWindow( FALSE );
 }
@@ -126,7 +126,7 @@ CBudokaiTournamentFightInfo::CBudokaiTournamentFightInfo( CBudokaiTournamentFigh
 {
 	gui::CSurfaceManager* pSurfaceManager = GetNtlGuiManager()->GetSurfaceManager();
 
-	// Æ÷Áö¼Ç À§Ä¡Á¤º¸¿Í ¼­ÇÇ½º¸¦ ¼±ÅÃ.
+	// í¬ì§€ì…˜ ìœ„ì¹˜ì •ë³´ì™€ ì„œí”¼ìŠ¤ë¥¼ ì„ íƒ.
 	CRectangle rtMark;
 	rtMark.SetRectWH( GetHorizontalOrigin() + byMatchNumber * GetHorizontalOffset(), nOriginTop - ( byMatchLevel * nVerticalOffset ), nWidth, nHeight );
 		
@@ -135,12 +135,12 @@ CBudokaiTournamentFightInfo::CBudokaiTournamentFightInfo( CBudokaiTournamentFigh
 	m_pbtnBattleInfo->AddSurfaceDown( pSurfaceManager->GetSurface( "BudokaiTournament.srf", "srfFightInfoDown" ) );
 	m_pbtnBattleInfo->AddSurfaceUp( pSurfaceManager->GetSurface( "BudokaiTournament.srf", "srfFightInfoUp" ) );
 
-	// Bar À§Ä¡ ÀúÀå
+	// Bar ìœ„ì¹˜ ì €ìž¥
 	RwInt32 nMarkCenterX, nMarkCenterY;
 	gui::CSurface surLine = pSurfaceManager->GetSurface( "BudokaiTournament.srf", "srfRedLine" );
 	rtMark.GetCenterPosition( &nMarkCenterX, &nMarkCenterY );
 
-	// ¸Ç ¹Ø´Ü¿¡´Â LineÀÌ ÇÏ³ª ´õ ÀÖÀ½.
+	// ë§¨ ë°‘ë‹¨ì—ëŠ” Lineì´ í•˜ë‚˜ ë” ìžˆìŒ.
 	if( byMatchLevel == 0 )
 	{
 		m_surLeftInitVerticalLine.SetSurface( surLine );
@@ -390,7 +390,7 @@ RwBool CBudokaiTournamentFightInfo::IsLeftNode(VOID)
 
 VOID CBudokaiTournamentFightInfo::OnClickInfoBtn( gui::CComponent* pComponent )
 {
-	// ¿¬¼ÓÅ¬¸¯¹æÁö ½Ã°£ ÀúÀå ¹× ½Ã°£ Á¤º¸ À¯È¿ È®ÀÎ
+	// ì—°ì†í´ë¦­ë°©ì§€ ì‹œê°„ ì €ìž¥ ë° ì‹œê°„ ì •ë³´ ìœ íš¨ í™•ì¸
 	RwUInt32 uiCurrentTime = GetTickCount();
 
 	if( m_uiWaitTime - uiCurrentTime > BUDOKAI_TOURNAMENT_ENTRY_FIGHTINFO_CLICK_WAIT_TIME )
@@ -677,7 +677,7 @@ RwBool CBudokaiTournamentGui::Create(VOID)
 	m_slotClickPartyBtn = m_pbtnParty->SigToggled().Connect( this, &CBudokaiTournamentGui::OnToggledPartyBtn );
 	m_slotClickIndividualBtn = m_pbtnIndividual->SigToggled().Connect( this, &CBudokaiTournamentGui::OnToggledIndividualBtn );
 
-	// Åä³Ê¸ÕÆ® ÄÄÆ÷³ÍÆ® »ý¼º.
+	// í† ë„ˆë¨¼íŠ¸ ì»´í¬ë„ŒíŠ¸ ìƒì„±.
 	CreateDataGroup();
 
 	Show( false );
@@ -694,7 +694,7 @@ RwBool CBudokaiTournamentGui::Create(VOID)
 
 VOID CBudokaiTournamentGui::Destroy(VOID)
 {
-	// È¤½Ã³ª.
+	// í˜¹ì‹œë‚˜.
 	m_mapIndividualEntryData.clear();
 	m_mapTeamEntryData.clear();
 
@@ -765,7 +765,7 @@ VOID CBudokaiTournamentGui::HandleEvents( RWS::CMsg& msg )
 					continue;
 			}
 			
-			// ¸Ç ¹Ø´Ü¿¡¸¸ ÀÏ´Ü ID¸¦ ÀüÇØÁØ´Ù.
+			// ë§¨ ë°‘ë‹¨ì—ë§Œ ì¼ë‹¨ IDë¥¼ ì „í•´ì¤€ë‹¤.
 			RwUInt8 byDepth = (RwUInt8)( log( (RwReal)( BUDOKAI_MAJOR_MATCH_PLAYER_NUMBER ) ) / log( 2.0f ) ) - 1;
 			if( pCurrentMatchData->byDepth == byDepth )
 			{
@@ -797,7 +797,7 @@ VOID CBudokaiTournamentGui::HandleEvents( RWS::CMsg& msg )
 			if( !pFightInfo )
 				continue;
 
-			// ¸Ç ¹Ø´Ü¿¡¸¸ ÀÏ´Ü ID¸¦ ÀüÇØÁØ´Ù.
+			// ë§¨ ë°‘ë‹¨ì—ë§Œ ì¼ë‹¨ IDë¥¼ ì „í•´ì¤€ë‹¤.
 			RwUInt8 byDepth = (RwUInt8)( log( (RwReal)( BUDOKAI_MAJOR_MATCH_TEAM_NUMBER ) ) / log( 2.0f ) ) - 1;
 			if( pCurrentMatchData->byDepth == byDepth )
 			{
@@ -890,7 +890,7 @@ VOID CBudokaiTournamentGui::CreateDataGroup(VOID)
 	for( RwInt32 i = 0 ; i < NUM_PAGE ; ++i )
 	{
 		m_pPageDialog[i] = NTL_NEW gui::CDialog( CRectangle( 0, 0, m_pThis->GetWidth(), m_pThis->GetHeight() ), m_pThis, GetNtlGuiManager()->GetSurfaceManager() );
-		m_pPageDialog[i]->SetPriority( 0x7000 );	// ³·Àº Priority		
+		m_pPageDialog[i]->SetPriority( 0x7000 );	// ë‚®ì€ Priority		
 	}	
 
 	m_pEntryGroup[TOURNAMENT_INDIVIDUAL_A] = NTL_NEW CBudokaiTournamentEntryGroup( 0, BUDOKAI_MAJOR_MATCH_PLAYER_NUMBER / 2, BUDOKAI_TOURNAMENT_ENTRY_MARK_1_LEFT, BUDOKAI_TOURNAMENT_ENTRY_MARK_1_TOP, BUDOKAI_TOURNAMENT_ENTRY_MARK_OFFSET, m_pPageDialog[TOURNAMENT_INDIVIDUAL_A] );
@@ -963,7 +963,7 @@ VOID CBudokaiTournamentGui::SetPage( ePage ePageType )
 		m_pstbIndividualGroupType->Show( false );		
 		m_pPageDialog[TOURNAMENT_PARTY]->Show( true );
 
-		// ¹öÆ° ¼¼ÆÃ
+		// ë²„íŠ¼ ì„¸íŒ…
 		m_pbtnParty->ClickEnable( FALSE );
 		m_pbtnIndividual->ClickEnable( TRUE );
 		m_pbtnIndividual->SetDown( false );	
@@ -987,7 +987,7 @@ VOID CBudokaiTournamentGui::SetPage( ePage ePageType )
 			m_pPageDialog[TOURNAMENT_INDIVIDUAL_B]->Show( true );
 		}
 
-		// ¹öÆ° ¼¼ÆÃ
+		// ë²„íŠ¼ ì„¸íŒ…
 		m_pbtnIndividual->ClickEnable( FALSE );
 		m_pbtnParty->ClickEnable( TRUE );
 		m_pbtnParty->SetDown( false );

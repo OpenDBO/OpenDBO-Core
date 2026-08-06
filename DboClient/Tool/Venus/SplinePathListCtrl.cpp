@@ -1,4 +1,4 @@
-// SplinePathListCtrl.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// SplinePathListCtrl.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -44,7 +44,7 @@ END_MESSAGE_MAP()
 
 
 
-// CSplinePathListCtrl ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CSplinePathListCtrl ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 
 int CSplinePathListCtrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
@@ -52,7 +52,7 @@ int CSplinePathListCtrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CVenusGridCtrl::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// TODO:  ¿©±â¿¡ Æ¯¼öÈ­µÈ ÀÛ¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì‘ì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if(!m_image.Create(IDB_EFFECT_LIST_IMAGE,16,1,RGB(0, 255, 255)))
 		return -1;
 
@@ -96,7 +96,7 @@ void CSplinePathListCtrl::InitializeGrid()
 }
 void CSplinePathListCtrl::OnContextMenu(CWnd* /*pWnd*/, CPoint point)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CMenu menu;
 	menu.CreatePopupMenu();
 
@@ -135,7 +135,7 @@ void CSplinePathListCtrl::OnContextMenu(CWnd* /*pWnd*/, CPoint point)
 
 void CSplinePathListCtrl::OnCreatePath()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CString strName, strSrcName;
 	RwInt32 count = 0;
 	do {
@@ -162,7 +162,7 @@ void CSplinePathListCtrl::OnCreatePath()
 
 void CSplinePathListCtrl::OnDeletePath()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if (AfxMessageBox("really ?", MB_OKCANCEL) != IDOK) return;
 
 	int nItem = GetSelectedItem();
@@ -189,7 +189,7 @@ void CSplinePathListCtrl::OnDeletePath()
 void CSplinePathListCtrl::OnLvnItemchanged(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	int nItem = GetSelectedItem();
 	if(nItem == -1)
 	{
@@ -227,7 +227,7 @@ void CSplinePathListCtrl::RebuildSplinePath()
 	DeleteAllItems();
 	DeleteAll();
 
-    // MergeÀÇ ¹ö±×·Î »ı±ä 00ÀÌ µé¾î°£ SplineµéÀ» ¸®½ºÆ®¿Í ¸Ê¿¡¼­ Á¦°ÅÇØÁØ´Ù.
+    // Mergeì˜ ë²„ê·¸ë¡œ ìƒê¸´ 00ì´ ë“¤ì–´ê°„ Splineë“¤ì„ ë¦¬ìŠ¤íŠ¸ì™€ ë§µì—ì„œ ì œê±°í•´ì¤€ë‹¤.
 	CVenusPropertyContainer::svdef_Property::iterator it;
     it = CVenusPropertyContainer::GetInstance().m_svSplinePathProperty.begin();
 
@@ -238,10 +238,10 @@ void CSplinePathListCtrl::RebuildSplinePath()
         CString strPathName = pEffectSplinePath->GetName();
         if(strPathName.Find("00") > 0)
         {
-            // ¸®½ºÆ®¿¡¼­ Á¦°ÅÇÑ´Ù.
+            // ë¦¬ìŠ¤íŠ¸ì—ì„œ ì œê±°í•œë‹¤.
             it = CVenusPropertyContainer::GetInstance().m_svSplinePathProperty.erase(it);            
 
-            // Map¿¡¼­ Á¦°ÅÇÑ´Ù.
+            // Mapì—ì„œ ì œê±°í•œë‹¤.
             CNtlPLPropertyContainer::MapProp& PropertyList = CVenusPropertyContainer::GetInstance().Gets(PLENTITY_SPLINE);            
             if (!PropertyList.empty())
             {
@@ -263,7 +263,7 @@ void CSplinePathListCtrl::RebuildSplinePath()
 
 void CSplinePathListCtrl::OnNMDblclk(NMHDR *pNMHDR, LRESULT *pResult)
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	int nItem = GetSelectedItem();
 	if(nItem == -1)
 	{
@@ -301,21 +301,21 @@ void CSplinePathListCtrl::OnNMDblclk(NMHDR *pNMHDR, LRESULT *pResult)
 
 void CSplinePathListCtrl::OnEditCopy()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if (CVenusPropertyContainer::GetInstance().m_pEffectSplinePath)
 		CVenusPropertyContainer::GetInstance().SetCopySplinePath(TRUE, CVenusPropertyContainer::GetInstance().m_pEffectSplinePath);
 }
 
 void CSplinePathListCtrl::OnEditCut()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if (CVenusPropertyContainer::GetInstance().m_pEffectSplinePath)
 		CVenusPropertyContainer::GetInstance().SetCopySplinePath(FALSE, CVenusPropertyContainer::GetInstance().m_pEffectSplinePath);
 }
 
 void CSplinePathListCtrl::OnEditPaste()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	NTL_ASSERTE(CVenusPropertyContainer::GetInstance().m_pCopySplinePath != NULL);
 
 	CString strName;
@@ -337,7 +337,7 @@ void CSplinePathListCtrl::OnEditPaste()
 
 void CSplinePathListCtrl::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	switch(nChar)
 	{
 	case VK_CONTROL:

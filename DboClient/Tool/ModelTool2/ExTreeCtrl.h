@@ -5,7 +5,7 @@
 
 /**
  * \ingroup ModelTool2
- * \brief Drag&Drop ±‚¥…¿ª √ﬂ∞°«— ∆Æ∏Æ ƒ¡∆Æ∑—
+ * \brief Drag&Drop Í∏∞Îä•ÏùÑ Ï∂îÍ∞ÄÌïú Ìä∏Î¶¨ Ïª®Ìä∏Î°§
  * \date 2006-06-08
  * \author agebreak
  */
@@ -18,13 +18,13 @@ public:
 
 public:
     void    OnMoveItem(HTREEITEM hItem, HTREEITEM hParentItem, BOOL bRecrusive = FALSE);
-    void    GetAllChildNode(HTREEITEM hItem, TREEITEM_VECTOR& vTreeItem);   ///< ∏µÁ æ∆¿Ã≈€¿ª ∞Àªˆ«œø© ∫§≈Õø° ¥„¥¬¥Ÿ.
+    void    GetAllChildNode(HTREEITEM hItem, TREEITEM_VECTOR& vTreeItem);   ///< Î™®Îì† ÏïÑÏù¥ÌÖúÏùÑ Í≤ÄÏÉâÌïòÏó¨ Î≤°ÌÑ∞Ïóê Îã¥ÎäîÎã§.
     void    ResetBoldColor();
 
-    void    SaveTree(const char* szFileName);     ///< ∆Æ∏Æ≥ªøÎ¿ª XML∆ƒ¿œ∑Œ ¿˙¿Â«—¥Ÿ.
-    void    LoadTree(const char* szFileName);     ///< ∆Æ∏Æ≥ªøÎ¿ª XML∆ƒ¿œø°º≠ ∫“∑Øø¬¥Ÿ.    
+    void    SaveTree(const char* szFileName);     ///< Ìä∏Î¶¨ÎÇ¥Ïö©ÏùÑ XMLÌååÏùºÎ°ú Ï†ÄÏû•ÌïúÎã§.
+    void    LoadTree(const char* szFileName);     ///< Ìä∏Î¶¨ÎÇ¥Ïö©ÏùÑ XMLÌååÏùºÏóêÏÑú Î∂àÎü¨Ïò®Îã§.    
 
-    ///----- ø¿πˆ ∂Û¿Ãµ˘ (æ∆¿Ã≈€ ¿Â¬¯ »≠∏È¿ª ¿ß«ÿº≠ º≥¡§«—¥Ÿ)
+    ///----- Ïò§Î≤Ñ ÎùºÏù¥Îî© (ÏïÑÏù¥ÌÖú Ïû•Ï∞© ÌôîÎ©¥ÏùÑ ÏúÑÌï¥ÏÑú ÏÑ§Ï†ïÌïúÎã§)
     virtual void SetItemBold(HTREEITEM hItem, BOOL bBold = TRUE);
     virtual void SetItemColor(HTREEITEM hItem, COLORREF color);
 
@@ -32,10 +32,10 @@ protected:
 	void	InsertItemRecursive(SItemNode* pItemNode, HTREEITEM hParentItem);
 
 protected:
-    BOOL            m_bDrag;                ///< µÂ∑°±◊ «√∑°±◊    
-    HTREEITEM       m_hCurItem;             ///< ƒøº≠∞° ¿ßƒ°«— æ∆¿Ã≈€
-    TREEITEM_VECTOR     m_vBoldColorItem;       ///< Bold≥™ Color∞° ¿˚øÎµ» ItemµÈ¿« ∏ÆΩ∫∆Æ
-	SItemNode		m_itemNode;				///< Ω∫≈©∏≥∆Æπ◊ ∆˙¥ı æ∆¿Ã≈€ ¡§∫∏∏¶ ∞°¡ˆ∞Ì ¿÷¥¬ ∞¥√º
+    BOOL            m_bDrag;                ///< ÎìúÎûòÍ∑∏ ÌîåÎûòÍ∑∏    
+    HTREEITEM       m_hCurItem;             ///< Ïª§ÏÑúÍ∞Ä ÏúÑÏπòÌïú ÏïÑÏù¥ÌÖú
+    TREEITEM_VECTOR     m_vBoldColorItem;       ///< BoldÎÇò ColorÍ∞Ä Ï†ÅÏö©Îêú ItemÎì§Ïùò Î¶¨Ïä§Ìä∏
+	SItemNode		m_itemNode;				///< Ïä§ÌÅ¨Î¶ΩÌä∏Î∞è Ìè¥Îçî ÏïÑÏù¥ÌÖú Ï†ïÎ≥¥Î•º Í∞ÄÏßÄÍ≥† ÏûàÎäî Í∞ùÏ≤¥
 
 public:
     DECLARE_MESSAGE_MAP()

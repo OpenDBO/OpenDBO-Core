@@ -2,14 +2,14 @@
 
 
 
-// CGUIDebugView ºäÀÔ´Ï´Ù.
+// CGUIDebugView ë·°ì…ë‹ˆë‹¤.
 
 class CGUIDebugView : public CScrollView
 {
 	DECLARE_DYNCREATE(CGUIDebugView)
 
 protected:
-	CGUIDebugView();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CGUIDebugView();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CGUIDebugView();
 
 public:
@@ -19,8 +19,8 @@ public:
 #endif
 
 protected:
-	virtual void OnDraw(CDC* pDC);      // ÀÌ ºä¸¦ ±×¸®±â À§ÇØ ÀçÁ¤ÀÇµÇ¾ú½À´Ï´Ù.
-	virtual void OnInitialUpdate();     // »ı¼ºµÈ ÈÄ Ã³À½ÀÔ´Ï´Ù.
+	virtual void OnDraw(CDC* pDC);      // ì´ ë·°ë¥¼ ê·¸ë¦¬ê¸° ìœ„í•´ ì¬ì •ì˜ë˜ì—ˆìŠµë‹ˆë‹¤.
+	virtual void OnInitialUpdate();     // ìƒì„±ëœ í›„ ì²˜ìŒì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

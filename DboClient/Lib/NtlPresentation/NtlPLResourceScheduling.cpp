@@ -21,7 +21,7 @@
 
 #define MAX_DELETE_SCHEDULING_TIME					0.1f
 
-// �� �ð��� �ѱ�� rest time �� ��Ƣ�� �Ѵ�.
+// 이 시간을 넘기면 rest time 을 뻥튀기 한다.
 #define MAX_LOAD_CHARACTER_OVER_WEIGHT				0.07f
 #define MAX_LOAD_OBJECT_OVER_WEIGHT					0.05f
 
@@ -49,7 +49,7 @@ CNtlResourceScheduleUnit::CNtlResourceScheduleUnit()
 */
 CNtlResourceScheduleUnit::~CNtlResourceScheduleUnit()
 {
-	// Delete Schedule�� �ִ� clump �� �����Ѵ�.
+	// Delete Schedule占쏙옙 占쌍댐옙 clump 占쏙옙 占쏙옙占쏙옙占싼댐옙.
 	CNtlPLResource *pResource;
 	ListScheduling::iterator itDelete;
 	for(itDelete = m_listClumpDeleteSchedule.begin(); itDelete != m_listClumpDeleteSchedule.end(); itDelete++)
@@ -59,7 +59,7 @@ CNtlResourceScheduleUnit::~CNtlResourceScheduleUnit()
 	}
 	m_listClumpDeleteSchedule.clear();
 
-	// Load Schedule�� �ִ� clump ����Ʈ�� �����Ѵ�.
+	// Load Schedule占쏙옙 占쌍댐옙 clump 占쏙옙占쏙옙트占쏙옙 占쏙옙占쏙옙占싼댐옙.
 	MapScheduling::iterator it;
 	for(it = m_mapClumpLoadSchedule.begin(); it != m_mapClumpLoadSchedule.end(); it++)
 	{
@@ -136,7 +136,7 @@ void CNtlResourceScheduleUnit::UpdateObjectLoadScheduling(RwReal fElapsed)
 }
 
 /**
-* \brief Object ���� clump���� Seamless �ε� ( ���� ���� �ɸ��� ������ �ε� )
+* \brief Object 占쏙옙占쏙옙 clump占쏙옙占쏙옙 Seamless 占싸듸옙 ( 占쏙옙占쏙옙 占쏙옙占쏙옙 占심몌옙占쏙옙 占쏙옙占쏙옙占쏙옙 占싸듸옙 )
 * \param fElapsed	(RwReal) ���� ������Ʈ���� ����� �ð�
 */
 void CNtlResourceScheduleUnit::UpdateObjectLoadSeamlessScheduling(RwReal fElapsed)
@@ -178,7 +178,7 @@ void CNtlResourceScheduleUnit::UpdateObjectLoadSeamlessScheduling(RwReal fElapse
 		dwCount++;
 #endif
 
-		// �ʴ� 20 frm
+		// 占십댐옙 20 frm
 		fSum += (RwReal)(GetTickCount() - dwTime)/1000.0f;
 		if(fSum > g_fLoadObjectSeamlessTime)
 			break;
@@ -217,7 +217,7 @@ void CNtlResourceScheduleUnit::UpdateLoadScheduling(RwReal fElapsed)
 	if(m_mapClumpLoadSchedule.empty())
 		return;
 
-	// ������Ʈ �� ������Ʈ �Ѵ�.
+	// 占쏙옙占쏙옙占쏙옙트 占쏙옙 占쏙옙占쏙옙占쏙옙트 占싼댐옙.
 	UpdateObjectLoadScheduling(fElapsed);
 }
 
@@ -275,7 +275,7 @@ void CNtlResourceScheduleUnit::UpdateDeleteScheduling(RwReal fElapsed)
 
 /**
 * \brief Unit�� �����층 �ε��� Entity�� Type�� ����
-* \param byEntityType	(RwUInt8) ��ƼƼ�� Ÿ��
+* \param byEntityType	(RwUInt8) 占쏙옙티티占쏙옙 타占쏙옙
 */
 void CNtlResourceScheduleUnit::SetEntityType(RwUInt8 byEntityType)
 {
@@ -350,7 +350,7 @@ CNtlResourceScheduleCharUnit::~CNtlResourceScheduleCharUnit()
 
 /**
 * \brief Update
-* \param fElapsed	(RwReal) ���� �����ӿ����� ������Ʈ Time
+* \param fElapsed	(RwReal) 占쏙옙占쏙옙 占쏙옙占쏙옙占쌈울옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙트 Time
 */
 void CNtlResourceScheduleCharUnit::Update( RwReal fElapsed ) 
 {
@@ -362,7 +362,7 @@ void CNtlResourceScheduleCharUnit::Update( RwReal fElapsed )
 
 /**
 * \brief �����층 �ε��� Node�� ����Ѵ�.
-* \param pPLEntity	(CNtlPLEntity*) Entity�� �ּ�
+* \param pPLEntity	(CNtlPLEntity*) Entity占쏙옙 占쌍쇽옙
 * \param pNode		(SResourceScheduleNode*) ResourceNode
 */
 void CNtlResourceScheduleCharUnit::AddSchedulingNode(CNtlPLEntity *pPLEntity, SResourceScheduleNode *pNode ) 
@@ -372,25 +372,25 @@ void CNtlResourceScheduleCharUnit::AddSchedulingNode(CNtlPLEntity *pPLEntity, SR
 	sCharUnit.pPLEntity = pPLEntity;
 	sCharUnit.pNode = pNode;
 
-	// ����Ʈ�� �߰��Ѵ�.
+	// 占쏙옙占쏙옙트占쏙옙 占쌩곤옙占싼댐옙.
 	m_listCharClumpLoadSchedule.push_back( sCharUnit );
 }
 
 /**
 * \brief �����층 �ε����� Node�� �����Ѵ�.
-* \param pPLEntity	(CNtlPLEntity*) ������ Entity�� ������
-* \param pResource	(CNtlPLResource*) ������ ���ҽ��� ������
+* \param pPLEntity	(CNtlPLEntity*) 占쏙옙占쏙옙占쏙옙 Entity占쏙옙 占쏙옙占쏙옙占쏙옙
+* \param pResource	(CNtlPLResource*) 占쏙옙占쏙옙占쏙옙 占쏙옙占쌀쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
 */
 void CNtlResourceScheduleCharUnit::UnLoadScheduling( CNtlPLEntity *pPLEntity, CNtlPLResource *pResource ) 
 {
-	// pResource�� NULL�� ���´ٸ� ����Ʈ���� �����ؾ� �Ѵ�.
-	// multimap���� �ڷᱸ���� �ٲ����
+	// pResource占쏙옙 NULL占쏙옙 占쏙옙占승다몌옙 占쏙옙占쏙옙트占쏙옙占쏙옙 占쏙옙占쏙옙占쌔억옙 占싼댐옙.
+	// multimap으로 자료구조를 바꿔야함
 	if(pResource == NULL)
 	{
 		ListCharScheduling::iterator it = m_listCharClumpLoadSchedule.begin();
 		while(it != m_listCharClumpLoadSchedule.end())
 		{
-			// ����Ʈ���� �˻��Ͽ� ����
+			// 占쏙옙占쏙옙트占쏙옙占쏙옙 占싯삼옙占싹울옙 占쏙옙占쏙옙
 			if( (*it).pPLEntity == pPLEntity )
 			{
 				CNtlResourceScheduleManager::FreeListFree((void*)(*it).pNode);
@@ -405,14 +405,14 @@ void CNtlResourceScheduleCharUnit::UnLoadScheduling( CNtlPLEntity *pPLEntity, CN
 	}
 	else
 	{
-		// ������ ����Ʈ�� ����Ѵ�.
+		// 삭제할 리스트를 등록한다.
 		m_listClumpDeleteSchedule.push_back(pResource);
 	}
 }
 
 /**
 * \brief �����층 �ε� �� ����Ʈ�� ����ִ°�?
-* \returns ����ִ��� ����
+* \returns 비어있는지 여부
 */
 RwBool CNtlResourceScheduleCharUnit::IsEmptyLoadScheduling( void ) 
 {
@@ -430,13 +430,13 @@ void CNtlResourceScheduleCharUnit::UpdateCharacterLoadScheduling(RwReal fElapsed
 {
 	m_fLoadCurrTime += fElapsed;
 
-	// ������ �ɷȴ� �ð���ŭ ������ �ʾҴٸ� �����Ѵ�.
+	// 占쏙옙占쏙옙占쏙옙 占심렸댐옙 占시곤옙占쏙옙큼 占쏙옙占쏙옙占쏙옙 占십았다몌옙 占쏙옙占쏙옙占싼댐옙.
 	if(m_fLoadCurrTime <= m_fLoadSchedulingTime)
 		return;
 
 	m_fLoadCurrTime = 0.0f;
 
-	// ���ٸ� ����
+	// 占쏙옙占쌕몌옙 占쏙옙占쏙옙
 	if( IsEmptyLoadScheduling() )
 		return;
 
@@ -451,14 +451,14 @@ void CNtlResourceScheduleCharUnit::UpdateCharacterLoadScheduling(RwReal fElapsed
 	pPLEntity = (*it).pPLEntity;
 	pNode = (*it).pNode;
 
-	// Entity���� Resource�� �ε��ϱ� ���� �˷��ش�.
+	// Entity占쏙옙占쏙옙 Resource占쏙옙 占싸듸옙占싹깍옙 占쏙옙占쏙옙 占싯뤄옙占쌔댐옙.
 	if(pPLEntity)
 		pPLEntity->CallPreSchedulingResource();
 
-	// ���ҽ��� ������ �ͼ�
+	// 占쏙옙占쌀쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占싶쇽옙
 	pResource = GetNtlResourceManager()->LoadClump(pNode->chFileName, pNode->chResourcePath);
 
-	// ���ҽ��� �ε�
+	// 占쏙옙占쌀쏙옙占쏙옙 占싸듸옙
 	if(pPLEntity)
 	{	
 		pPLEntity->CallSchedulingResource(pResource);
@@ -466,7 +466,7 @@ void CNtlResourceScheduleCharUnit::UpdateCharacterLoadScheduling(RwReal fElapsed
 	}
 
 	m_listCharClumpLoadSchedule.erase(it);
-	// ���ҽ��� �ε����Ŀ��� �ݺ��ڸ� �����ش�.
+	// 占쏙옙占쌀쏙옙占쏙옙 占싸듸옙占쏙옙占식울옙占쏙옙 占쌥븝옙占쌘몌옙 占쏙옙占쏙옙占쌔댐옙.
 	CNtlResourceScheduleManager::FreeListFree((void*)pNode);
 
 	dwTime = GetTickCount() - dwTime;
@@ -476,20 +476,20 @@ void CNtlResourceScheduleCharUnit::UpdateCharacterLoadScheduling(RwReal fElapsed
 }
 
 /**
-* \brief Cash �� �������� �ε� �ӵ��� ����Ű�� ���� ������Ʈ �Լ�
+* \brief Cash 占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占싸듸옙 占쌈듸옙占쏙옙 占쏙옙占쏙옙키占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙트 占쌉쇽옙
 * \param fElapsed	(RwReal) ���� ������Ʈ���� ����� �ð�
 */
 void CNtlResourceScheduleCharUnit::UpdateCharacterLoadSeamlessScheduling( RwReal fElapsed ) 
 {
 	m_fLoadCurrTime += fElapsed;
 
-	// ������ �ɷȴ� �ð���ŭ ������ �ʾҴٸ� �����Ѵ�.
+	// 占쏙옙占쏙옙占쏙옙 占심렸댐옙 占시곤옙占쏙옙큼 占쏙옙占쏙옙占쏙옙 占십았다몌옙 占쏙옙占쏙옙占싼댐옙.
 	if(m_fLoadCurrTime <= m_fLoadSchedulingTime)
 		return;
 
 	m_fLoadCurrTime = 0.0f;
 
-	// ���ٸ� ����
+	// 占쏙옙占쌕몌옙 占쏙옙占쏙옙
 	if( IsEmptyLoadScheduling() )
 		return;
 
@@ -513,14 +513,14 @@ void CNtlResourceScheduleCharUnit::UpdateCharacterLoadSeamlessScheduling( RwReal
 		pPLEntity = (*it).pPLEntity;
 		pNode = (*it).pNode;
 
-		// Entity���� Resource�� �ε��ϱ� ���� �˷��ش�.
+		// Entity占쏙옙占쏙옙 Resource占쏙옙 占싸듸옙占싹깍옙 占쏙옙占쏙옙 占싯뤄옙占쌔댐옙.
 		if(pPLEntity)
 			pPLEntity->CallPreSchedulingResource();
 
-		// ���ҽ��� ������ �ͼ�
+		// 占쏙옙占쌀쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占싶쇽옙
 		pResource = GetNtlResourceManager()->LoadClump(pNode->chFileName, pNode->chResourcePath);
 
-		// ���ҽ��� �ε�
+		// 占쏙옙占쌀쏙옙占쏙옙 占싸듸옙
 		if(pPLEntity)
 		{	
 			pPLEntity->CallSchedulingResource(pResource);
@@ -641,7 +641,7 @@ void CNtlResourceScheduleManager::AddSchedulingClump(const char *pStrName, const
 
 	RwUInt8 byEntityType = (RwUInt8)pEntity->GetClassType();
 
-	// Ȯ�� by Kell
+	// 확占쏙옙 by Kell
 	// ĳ���Ϳ� �������� �ٸ� ����� �����층 �ε��� ����Ѵ�.
 	CNtlResourceScheduleUnit *pUnit = FindUnit(byEntityType);
 	if(pUnit == NULL)

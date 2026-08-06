@@ -27,7 +27,7 @@ bool CNtlStorageGroupQuest::Load( CNtlStorageSerializer* pS )
 	int nCount = 0;
 	for(;;)
 	{
-		// ¹«ÇÑ·çÇÁ ¹æÁö
+		// ë¬´í•œë£¨í”„ ë°©ì§€
 		if( nCount++ > 1000000 )
 			return false;
 

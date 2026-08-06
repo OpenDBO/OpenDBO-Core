@@ -2,7 +2,7 @@
  *
  * File			: NtlCoreStruct.h
  * Author		: Hong Sungbock
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2008. 9. 16	
  * Abstract		: 
  *****************************************************************************

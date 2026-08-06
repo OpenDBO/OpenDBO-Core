@@ -45,7 +45,7 @@ CNtlPLDecal::CNtlPLDecal()
 	m_vSize = ZeroAxis;
 	m_fIntersectionRadius = 3.0f;
 	m_fScale = 1.0f;
-	m_fVisibleSquaredDist = 1600.f;	//Camera���� ���̴� �Ÿ�(40m)
+	m_fVisibleSquaredDist = 1600.f;	//Camera占쏙옙占쏙옙 占쏙옙占싱댐옙 占신몌옙(40m)
 	m_pTexture = NULL;
 	m_pCurrentTexture = NULL;
 	m_ppMultiTextures = NULL;
@@ -146,15 +146,15 @@ RwBool CNtlPLDecal::Create( const SPLEntityCreateParam * pParam /*= NULL*/ )
 		}
 	}
 
-    // ���ؽ� ���� ����
+    // 占쏙옙占쌔쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙
     m_pIm3DBuffer = (RwIm3DVertex*)CNtlEffectSystemFreeList::Alloc(CNtlResourceComponentSystem::RESOURCE_VERTEX_1024);
     m_nMaxVertexCnt = DECAL_VB_SMALL_SIZE;    
     m_uiMemoryUseSize += sizeof(RwIm3DVertex) * 1024;
 
-    // ���۽� Fade ���¸� üũ�Ѵ�.
+    // 占쏙옙占쌜쏙옙 Fade 占쏙옙占승몌옙 체크占싼댐옙.
     if(m_eDecalType == DECAL_EFFECT)
     {
-        m_eFadeStatus = FADE_STATUS_IN;      // ����Ʈ ��Į�� ������ Fade In���� �����Ѵ�.        
+        m_eFadeStatus = FADE_STATUS_IN;      // 占쏙옙占쏙옙트 占쏙옙칼占쏙옙 占쏙옙占쏙옙占쏙옙 Fade In占쏙옙占쏙옙 占쏙옙占쏙옙占싼댐옙.        
     }
     else
     {
@@ -241,7 +241,7 @@ RwBool CNtlPLDecal::Update(RwReal fElapsed)
 	if(!IsVisble())
 		return TRUE;
 
-	// ������ Action�� Vertex�� ����� ���� �����ؾ� �Ѵ�.
+	// 스케일 Action은 Vertex를 만들기 전에 적용해야 한다.
 	if(m_nFlagEffect & rpPRTADVEMITTERDATAFLAGMULTISIZE)
 	{
 		UpdateMultiSize(m_fElapsedTime);
@@ -276,7 +276,7 @@ RwBool CNtlPLDecal::Update(RwReal fElapsed)
 	{
 		SetVertexColor(m_color);
 	}
-    else if(GetWeightAlpha() != 1.0f)           // Weight Alpha�� ����Ǿ�����
+    else if(GetWeightAlpha() != 1.0f)           // Weight Alpha가 적용되었을때
     {
         SetVertexColor(m_color);
     }
@@ -409,16 +409,16 @@ RwBool CNtlPLDecal::UpdateVertices()
 
 	if(m_nFlagEffect & E_FLAG_DECAL_WATER)
 	{
-		GetWaterDecalVertex();		// �� ���� �׷����� Decal�� ����Ѵ�.
+		GetWaterDecalVertex();		// 물 위에 그려지는 Decal을 계산한다.
 	}
 	else if(m_nFlagEffect & E_FLAG_DECAL_RENDER_WORLD)
 	{
-		// World�� Decal ���
+		// World의 Decal 계산
 		CNtlPLWorldEntity *pWorldEntity = reinterpret_cast<CNtlPLVisualManager*>( GetSceneManager() )->GetWorld();
 		if(!pWorldEntity)
 			return FALSE;
 
-		// Decal ���ܺ� ����.
+		// Decal 占쏙옙占쌤븝옙 占쏙옙占쏙옙.
 		if (!GetNtlWorldSpace(&m_vPos, NULL, NULL))
 		{
 			RwV3d vResutSize = m_vSize * m_fScale;
@@ -440,7 +440,7 @@ RwBool CNtlPLDecal::UpdateVertices()
 				}
 			}
 
-			// ������ Vertex�� ������ ������ ���
+			// 생성된 Vertex의 중점과 반지름 계산
 			m_vOriginPos = m_vPos;
 			m_vOriginPos.y = 0.0f;
 
@@ -450,7 +450,7 @@ RwBool CNtlPLDecal::UpdateVertices()
 
 	if(m_nFlagEffect & E_FLAG_DECAL_RENDER_OBJECT)
 	{
-		// ������Ʈ���� Decal ���
+		// 오브젝트들의 Decal 계산
 		GetObjectDecalVertex();
 	}
 
@@ -463,7 +463,7 @@ RwBool CNtlPLDecal::UpdateVertices()
 RwBool CNtlPLDecal::GetWaterDecalVertex() 
 {
 	RwReal fWaterHeight = GetSceneManager()->GetWorldWaterHeight(m_vPos);
-	if(fWaterHeight < -998.0f)			// ���� �ƴϸ� -999.0f �� �����Ѵ�.
+	if(fWaterHeight < -998.0f)			// 占쏙옙占쏙옙 占싣니몌옙 -999.0f 占쏙옙 占쏙옙占쏙옙占싼댐옙.
 		return FALSE;
 
 
@@ -498,7 +498,7 @@ void CNtlPLDecal::SetVertexColor(const RwRGBA& color)
 {
 	for(int i = 0; i < m_nRenderVertexCnt; ++i)
 	{
-		// Day and Night�� ������ �޴� �÷��װ� ���������� ������ �޴´�.
+		// Day and Night占쏙옙 占쏙옙占쏙옙占쏙옙 占쌨댐옙 占시뤄옙占쌓곤옙 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쌨는댐옙.
 		if(m_nFlagEffect & E_FLAG_DECAL_DAYNIGHT)
 		{
 			RwRGBA colDayNight = color;
@@ -521,7 +521,7 @@ void CNtlPLDecal::UpdateUV()
 	if(m_nRenderVertexCnt <= 0)
 		return;
 
-	// �߽������� �Ÿ��� ����ؼ� UV�� ����Ѵ�.
+	// 중심점과의 거리를 계산해서 UV를 계산한다.
 	RwReal fU, fV;
 	RwV3d v3dPos = m_vPos;
 	v3dPos.y = 0.0f;	
@@ -545,10 +545,10 @@ void CNtlPLDecal::UpdateUV()
 
 	RwMatrixSetIdentity(&m_matTexture);
 
-	// Rotate ���� �����Ѵ�. (Rotate Action���� Matrix���� Rotate)
+	// Rotate 占쏙옙占쏙옙 占쏙옙占쏙옙占싼댐옙. (Rotate Action占쏙옙占쏙옙 Matrix占쏙옙占쏙옙 Rotate)
 	RwMatrixRotate(&m_matTexture, &ZAxis, m_fDegree, rwCOMBINEPOSTCONCAT);	
 
-	// ���� ���õ� UV ��ġ���� Rotate Action�� �����Ѵ�.
+	// 占쏙옙占쏙옙 占쏙옙占시듸옙 UV 占쏙옙치占쏙옙占쏙옙 Rotate Action占쏙옙 占쏙옙占쏙옙占싼댐옙.
 	if(m_nFlagEffect & rpPRTSTDEMITTERDATAFLAGPRT2DROTATE)
 	{
 		UpdateRoate(m_fTotalElapsedTime);				
@@ -586,7 +586,7 @@ ShadowRenderAtomicObjectTriangleCB( RpIntersection * intersection __RWUNUSED__,
 
 	RwInt32 nBuffCnt = *(pDecalParam->pBufferCnt);  
 
-	// �ִ� ������ ������ Vertex�� �������� �ʰ� ĵ���Ѵ�.
+	// 占쌍댐옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 Vertex占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占십곤옙 캔占쏙옙占싼댐옙.
 	if(nBuffCnt + 2 >= pDecalParam->nMaxVertextCnt)			
 		return collTriangle;
 
@@ -613,7 +613,7 @@ ShadowRenderAtomicObjectTriangleCB( RpIntersection * intersection __RWUNUSED__,
 // 
 // 	RwInt32 nBuffCnt = *(pDecalParam->pBufferCnt);  
 // 	
-// 	// �ִ� ������ ������ Vertex�� �������� �ʰ� ĵ���Ѵ�.
+// 	// 占쌍댐옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 Vertex占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占십곤옙 캔占쏙옙占싼댐옙.
 // 	if(nBuffCnt + 2 >= pDecalParam->nMaxVertextCnt)			
 // 		return collTriangle;
 // 
@@ -682,11 +682,11 @@ void CNtlPLDecal::GetObjectDecalVertex()
     if(!CNtlPLGlobal::m_pRpWorld)
         return;
 
-	// decal ���ϱ�		
+	// decal 占쏙옙占싹깍옙		
 
 	DecalCallbackParam param;		
 	param.vPos = m_vPos;
-	param.pBufferCnt = (RwInt32*)&m_nRenderVertexCnt; ///< ������� ������ Vertex ������ �������� ��´�.
+	param.pBufferCnt = (RwInt32*)&m_nRenderVertexCnt; ///< 현재까지 생성된 Vertex 버퍼의 다음부터 담는다.
 	param.pVertices = m_pIm3DBuffer;			
 	param.fIntersectionRadius =  max(m_vSize.x, m_vSize.z) * m_fScale * 0.5f;
 	param.fScale = m_fScale;
@@ -800,10 +800,10 @@ void CNtlPLDecal::SetTextureMatrix(RwIm3DVertex* pVertices, RwInt32 nVertCnt, Rw
 	for(int i = 0; i < nVertCnt; ++i)
 	{
 		
-		// Texture�� ����(0,0)�� ���ϴ� ����(0.5, 0.5)�� ���� �ٸ��� ������, uv��ǥ�� 0.5���� �����ش�.
-		// ������ ����� ���� ����(0,0)�� �������� �ؾ� �ϱ� ������, ��������� �ٽ� 0.5���� ���ش�.		
-		// ����) �̷��� ������ �ؽ��İ� ��������(0, 0)���� ȸ���Ѵ�. 
-		// Note: ���� ���� ���� �����ϰ� ������� ����ص� ������, �޸𸮸� �Ƴ��� ���� �׳� ����Ѵ�.
+		// Texture占쏙옙 占쏙옙占쏙옙(0,0)占쏙옙 占쏙옙占싹댐옙 占쏙옙占쏙옙(0.5, 0.5)占쏙옙 占쏙옙占쏙옙 占쌕몌옙占쏙옙 占쏙옙占쏙옙占쏙옙, uv占쏙옙표占쏙옙 0.5占쏙옙占쏙옙 占쏙옙占쏙옙占쌔댐옙.
+		// 하지만 계산은 원래 원점(0,0)을 기준으로 해야 하기 때문에, 계산전에는 다시 0.5씩을 빼준다.		
+		// 占쏙옙占쏙옙) 占싱뤄옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쌔쏙옙占식곤옙 占쏙옙占쏙옙占쏙옙占쏙옙(0, 0)占쏙옙占쏙옙 회占쏙옙占싼댐옙. 
+		// Note: 원래 값을 따로 보관하고 결과값을 사용해도 되지만, 메모리를 아끼기 위해 그냥 계산한다.
 		pVertices[i].u -= 0.5f;
 		pVertices[i].v -= 0.5f;		
 
@@ -847,11 +847,11 @@ void CNtlPLDecal::UpdateColor(RwReal fElapsedTime)
 	RwInt32 odd = ((RwInt32)m_fTotalElapsedTime / (RwInt32)m_fColorActionTime) % 2;
 
 	RwRGBA color;
-	if(odd == 0) // �������� ¦���̸� end������ ����
+	if(odd == 0) // 占쏙옙占쏙옙占쏙옙占쏙옙 짝占쏙옙占싱몌옙 end占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙
 	{
 		color = CNtlMath::Interpolation(m_colStart, m_colEnd, fDeltaTime);
 	}
-	else // �������� Ȧ���̸� start ������ ����
+	else // 占쏙옙占쏙옙占쏙옙占쏙옙 홀占쏙옙占싱몌옙 start 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙
 	{
 		color = CNtlMath::Interpolation(m_colEnd, m_colStart, fDeltaTime);
 	}
@@ -979,7 +979,7 @@ void CNtlPLDecal::UpdateMultiTexture(RwReal fElapsedTime)
 			{
 				m_nCurrentTexture = 0;
 			}
-			else	// ������ �ƴϸ� ������ �ؽ��ĸ� ��� �����ش�.
+			else	// 루프가 아니면 마지막 텍스쳐를 계속 보여준다.
 			{
 				--m_nCurrentTexture;
 			}			
@@ -1029,10 +1029,10 @@ void CNtlPLDecal::UpdateMultiSize( RwReal fElapsedTime )
 	if(m_EmitterPrtMultiSize.numSize <= 0)
 		return ;
 
-	// Multi Size�� Time�� �� �����ۻ��̰��� Gap Time�� �ǹ��Ѵ�. 
-	// ���� Decal�� EndTime�� ���� ��ƼŬó�� �ð��� %�� �ǹ��� ���� ��� Gap���� ����ߴ�.
-	// ��, [1] 0.5�� [2] 0.3��  �̷������� 0.5�ʿ� ���� 1��° ���������� �����ϰ�, �� 0.3�� ����
-	// �ι�° ���������� �����ϴ� ���̴�. (by agebreak 2007.03.26)
+	// Multi Size占쏙옙 Time占쏙옙 占쏙옙 占쏙옙占쏙옙占쌜삼옙占싱곤옙占쏙옙 Gap Time占쏙옙 占실뱄옙占싼댐옙. 
+	// 지형 Decal은 EndTime이 없어 파티클처럼 시간의 %로 의미할 수가 없어서 Gap으로 사용했다.
+	// 占쏙옙, [1] 0.5占쏙옙 [2] 0.3占쏙옙  占싱뤄옙占쏙옙占쏙옙占쏙옙 0.5占십울옙 占쏙옙占쏙옙 1占쏙옙째 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싹곤옙, 占쏙옙 0.3占쏙옙 占쏙옙占쏙옙
+	// 占싸뱄옙째 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싹댐옙 占쏙옙占싱댐옙. (by agebreak 2007.03.26)
 
 	m_fMultiSizeDeltaTime += fElapsedTime;
 
@@ -1070,7 +1070,7 @@ void CNtlPLDecal::SetMatrix(RwMatrix& matWorld )
 {
 	m_matWorld = matWorld;
 
-	// NOTE: Rotate ���� ���� UpdateUV()�Ҷ� ����ȴ�.
+	// NOTE: Rotate 값은 이후 UpdateUV()할때 적용된다.
 
 	RwV3d* pPos = RwMatrixGetPos(&m_matWorld);		
 	SetPosition(pPos);
@@ -1088,11 +1088,11 @@ void CNtlPLDecal::UpdateUVAnim( RwReal fElapsedTime )
 		RwInt32 nOdd = (RwInt32)(m_fTotalElapsedTime / fOffsetTime);
 		RwReal fTime = fmod(m_fTotalElapsedTime, fOffsetTime);
 		
-		if(nOdd % 2 == 0)	// ����
+		if(nOdd % 2 == 0)	// 占쏙옙占쏙옙
 		{
 			fVelocity = m_EmitterPrtUVAnim.fVelocity * fTime;
 		}
-		else				// ����
+		else				// 占쏙옙占쏙옙
 		{
 			fVelocity = m_EmitterPrtUVAnim.fVelocity * (fOffsetTime - fTime);
 		}		

@@ -3,7 +3,7 @@
 
 /**
  * \ingroup MrPoPo
- * \brief Å¬¶óÀÌ¾ğÆ®ÀÇ Ä¡Æ®Å°µéÀ» ½ÇÇà½ÃÅ°´Â Å¬·¡½º
+ * \brief í´ë¼ì´ì–¸íŠ¸ì˜ ì¹˜íŠ¸í‚¤ë“¤ì„ ì‹¤í–‰ì‹œí‚¤ëŠ” í´ë˜ìŠ¤
  *
  * \date 2008-09-04
  * \author agebreak
@@ -13,7 +13,7 @@ class CMPPClientCheat : public CXTResizeFormView
 	DECLARE_DYNCREATE(CMPPClientCheat)
 
 protected:
-	CMPPClientCheat();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CMPPClientCheat();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CMPPClientCheat();
 
 public:
@@ -26,7 +26,7 @@ public:
 #endif
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

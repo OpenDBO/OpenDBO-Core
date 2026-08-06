@@ -2,7 +2,7 @@
  *
  * File			: NtlSLApi.h
  * Author		: HyungSuk, Jang
- * Copyright	: (��)NTL
+ * Copyright	: (占쏙옙)NTL
  * Date			: 2006. 10. 25	
  * Abstract		: Simulation layer API Function
  *****************************************************************************
@@ -44,11 +44,11 @@ class CNtlDTContainer;
 
 typedef struct _SDevMasterInfo
 {
-	RwBool	bDevUser;				// ���Ͱ� ������ �ΰ�?
+	RwBool	bDevUser;				// 占쏙옙占싶곤옙 占쏙옙占쏙옙占쏙옙 占싸곤옙?
 	RwReal	fCoolingTimeFactor;		// cooling update time factor
 	RwBool	bLoadDataXml;			// loading data type xml
 	RwBool	bPackFileUse;			// pack file use
-	RwBool	bThreadLoading;			// thread loading�� �� ���ΰ�?
+	RwBool	bThreadLoading;			// thread loading占쏙옙 占쏙옙 占쏙옙占싸곤옙?
 	RwReal	fCameraFov;				// camera fov
 	RwReal	fCameraNear;			// camera near
 	RwReal	fCameraFar;				// camera far

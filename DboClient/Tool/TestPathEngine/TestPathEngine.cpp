@@ -51,7 +51,7 @@ int main( void )
 
 		GetNtlPathEngine()->Update( m_fElapsedTime );
 
-		// Update ÈÄÀÇ Keyboard ÀÎÇ²
+		// Update í›„ì˜ Keyboard ì¸í’‹
 		if( _kbhit() )
 		{
 			switch(_getch())

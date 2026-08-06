@@ -11,12 +11,12 @@ class CBottomToolView : public CFormView
 	DECLARE_DYNCREATE(CBottomToolView)
 
 public:
-    /// ÇöÀç BoneÀÇ ÀÛ¾÷ ¸ğµå
+    /// í˜„ì¬ Boneì˜ ì‘ì—… ëª¨ë“œ
     enum EBoneEditMode
     {
-        BONE_EDIT_NONE,         ///< ¾Æ¹« ÀÛ¾÷µµ ¾ÈÇÏ´Â ¸ğµå
-        BONE_EDIT_SCALE,        ///< Scale ÀÛ¾÷ ¸ğµå
-        BONE_EDIT_MOVE,         ///< Move ÀÛ¾÷ ¸ğµå
+        BONE_EDIT_NONE,         ///< ì•„ë¬´ ì‘ì—…ë„ ì•ˆí•˜ëŠ” ëª¨ë“œ
+        BONE_EDIT_SCALE,        ///< Scale ì‘ì—… ëª¨ë“œ
+        BONE_EDIT_MOVE,         ///< Move ì‘ì—… ëª¨ë“œ
     };
 
 protected:
@@ -33,24 +33,24 @@ public:
 #endif
 
 public:        
-    static CBottomToolView* GetInstance() {return m_Instance;}; ///< ½Ì±ÛÅæ ¹İÈ¯ 
-    void   SetInit(CMTCharacter* pCharacter);                   ///< ¿¡µğÆ®¿¡ »ç¿ëÇÒ Ä³¸¯ÅÍ°´Ã¼¸¦ ¼³Á¤ÇÏ°í °ü·Ã UI¸¦ ÃÊ±âÈ­ÇÑ´Ù.
-    void   SetBoneEditEnable(BOOL bEnable);                     ///< Bone EditÀÇ È°¼ºÈ­ À¯¹«¸¦ ¼³Á¤ÇÑ´Ù.
+    static CBottomToolView* GetInstance() {return m_Instance;}; ///< ì‹±ê¸€í†¤ ë°˜í™˜ 
+    void   SetInit(CMTCharacter* pCharacter);                   ///< ì—ë””íŠ¸ì— ì‚¬ìš©í•  ìºë¦­í„°ê°ì²´ë¥¼ ì„¤ì •í•˜ê³  ê´€ë ¨ UIë¥¼ ì´ˆê¸°í™”í•œë‹¤.
+    void   SetBoneEditEnable(BOOL bEnable);                     ///< Bone Editì˜ í™œì„±í™” ìœ ë¬´ë¥¼ ì„¤ì •í•œë‹¤.
 
 protected:
-    void   OnSelectBone(int nBoneIndex);                        ///< ¼±ÅÃÇÑ BoneÀÇ Á¤º¸¸¦ Ç¥½ÃÇÑ´Ù.
-    void   OnChangeBoneLength(BOOL bPlus);                      ///< ¼±ÅÃÇÑ BoneÀÇ Length¸¦ º¯°æÇÑ´Ù.
-    void   OnChangeBoneWidth(BOOL bPlus);                       ///< ¼±ÅÃÇÑ BoneÀÇ Width¸¦ º¯°æÇÑ´Ù.
-    void   OnChangeBoneMove(BOOL bPlus);                        ///< ¼±ÅÃÇÑ BoneÀÇ À§Ä¡¸¦ º¯°æÇÑ´Ù.
-    void   OnChangeSensitive(BOOL bPlus);                       ///< BoneÀ» º¯°æÇÒ Sensitive¸¦ º¯°æÇÑ´Ù.
-    void   OnChangeBaseScale(BOOL bPlus);                       ///< BoneÀÇ Base ScaleÀ» º¯°æÇÑ´Ù.
+    void   OnSelectBone(int nBoneIndex);                        ///< ì„ íƒí•œ Boneì˜ ì •ë³´ë¥¼ í‘œì‹œí•œë‹¤.
+    void   OnChangeBoneLength(BOOL bPlus);                      ///< ì„ íƒí•œ Boneì˜ Lengthë¥¼ ë³€ê²½í•œë‹¤.
+    void   OnChangeBoneWidth(BOOL bPlus);                       ///< ì„ íƒí•œ Boneì˜ Widthë¥¼ ë³€ê²½í•œë‹¤.
+    void   OnChangeBoneMove(BOOL bPlus);                        ///< ì„ íƒí•œ Boneì˜ ìœ„ì¹˜ë¥¼ ë³€ê²½í•œë‹¤.
+    void   OnChangeSensitive(BOOL bPlus);                       ///< Boneì„ ë³€ê²½í•  Sensitiveë¥¼ ë³€ê²½í•œë‹¤.
+    void   OnChangeBaseScale(BOOL bPlus);                       ///< Boneì˜ Base Scaleì„ ë³€ê²½í•œë‹¤.
 
 protected:
-    static CBottomToolView* m_Instance;                         ///< ½Ì±ÛÅæ ÀÎ½ºÅÏ½º
-    int    m_nSelectBoneIndex;                                  ///< ÇöÀç ¼±ÅÃµÈ Bone Index;
-    CMTCharacter*            m_pCharacter;                      ///< ¿¡µğÆ®¿¡ »ç¿ëÇÒ Ä³¸¯ÅÍÀÇ Æ÷ÀÎÅÍ
-    CNtlPLCharacterProperty* m_pProperty;                       ///< ¿¡µğÆ®¿¡ »ç¿ëÇÒ ¸ğµ¨ÀÇ ÇÁ·ÎÆÛÆ¼ Æ÷ÀÎÅÍ    
-    EBoneEditMode            m_eBoneEditMode;                   ///< ÇöÀç BoneÀÇ ÀÛ¾÷ ¸ğµå
+    static CBottomToolView* m_Instance;                         ///< ì‹±ê¸€í†¤ ì¸ìŠ¤í„´ìŠ¤
+    int    m_nSelectBoneIndex;                                  ///< í˜„ì¬ ì„ íƒëœ Bone Index;
+    CMTCharacter*            m_pCharacter;                      ///< ì—ë””íŠ¸ì— ì‚¬ìš©í•  ìºë¦­í„°ì˜ í¬ì¸í„°
+    CNtlPLCharacterProperty* m_pProperty;                       ///< ì—ë””íŠ¸ì— ì‚¬ìš©í•  ëª¨ë¸ì˜ í”„ë¡œí¼í‹° í¬ì¸í„°    
+    EBoneEditMode            m_eBoneEditMode;                   ///< í˜„ì¬ Boneì˜ ì‘ì—… ëª¨ë“œ
     
 
 protected:

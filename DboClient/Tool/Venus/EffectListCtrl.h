@@ -8,7 +8,7 @@
 #include "NtlResourceComponentSystem.h"
 #include "NtlTreeXml.h"
 
-// ∆Æ∏Æ æ∆¿Ã≈€ ∑π∫ß
+// Ìä∏Î¶¨ ÏïÑÏù¥ÌÖú Î†àÎ≤®
 enum ETreeItemLevel
 {
     E_ITEM_LEVEL_FOLDER,
@@ -49,7 +49,7 @@ public:
 
 	RwInt32 GetImageIndexFromSystemType(RwInt32 nSystemType);
 	void	RebuildResourceEffect();
-    RwBool  SaveXMLTree(RwChar* szFileName);                                        ///< ¿Ã∆Â∆Æ ∆Æ∏Æ∏¶ XML ∆ƒ¿œ∑Œ ¿˙¿Â«—¥Ÿ.
+    RwBool  SaveXMLTree(RwChar* szFileName);                                        ///< Ïù¥ÌéôÌä∏ Ìä∏Î¶¨Î•º XML ÌååÏùºÎ°ú Ï†ÄÏû•ÌïúÎã§.
 
 	CNtlResourceEffect*				GetRootResourceEffect();
 	CNtlResourceEffect*				GetSelectResourceEffect();
@@ -60,7 +60,7 @@ public:
 	void							CreateResourceSystem(RwInt32 nType, CNtlResourceComponentSystem* pSrcResourceSystem = NULL);
     void                            DeleteItemEx(CTreeItem *pSelItem, int nItem, BOOL bUpdate = TRUE);
 
-    // ¿Ã∫•∆Æ √≥∏Æ
+    // Ïù¥Î≤§Ìä∏ Ï≤òÎ¶¨
     afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnContextMenu(CWnd* /*pWnd*/, CPoint /*point*/);
 	afx_msg void OnCreateEffect();
@@ -94,14 +94,14 @@ public:
 
 protected:
     DECLARE_MESSAGE_MAP()
-    void                SetAllChildCheck();                                         ///< ∏µÁ ¿⁄Ωƒ NodeµÈµµ ∞∞¿Ã Check/UnCheck«œ∞‘ ∏∏µÁ¥Ÿ.
+    void                SetAllChildCheck();                                         ///< Î™®Îì† ÏûêÏãù NodeÎì§ÎèÑ Í∞ôÏù¥ Check/UnCheckÌïòÍ≤å ÎßåÎì†Îã§.
     ETreeItemLevel		GetTreeItemLevel(CTreeItem* pItem);
 
-    RwBool  LoadXMLTree();                                                          ///< XML Tree∆ƒ¿œ¿ª ¿–æÓµÈ¿Œ¥Ÿ.    
-    void    CreateDefaultXMLTree();                                                 ///< ±‚∫ª Tree «¸Ωƒ¿ª ∏∏µÁ¥Ÿ.
+    RwBool  LoadXMLTree();                                                          ///< XML TreeÌååÏùºÏùÑ ÏùΩÏñ¥Îì§Ïù∏Îã§.    
+    void    CreateDefaultXMLTree();                                                 ///< Í∏∞Î≥∏ Tree ÌòïÏãùÏùÑ ÎßåÎì†Îã§.
     void    InsertItemRecursive(SItemNode* pItemNode, CSuperGridCtrl::CTreeItem* pParentItem, RwBool bUpdate);
-    void    DeleteItemRecursive(SItemNode* pItemNode);                              ///< «œ¿ß æ∆¿Ã≈€µÈ¿ª ¿¸∫Œ ªË¡¶«—¥Ÿ (¿Ã∆Â∆Æ «¡∑Œ∆€∆º ∆˜«‘)    
-    void    BuildChildScript(CTreeItem* pParentItem);                               ///< ¿⁄Ωƒ æ∆¿Ã≈€µÈ¿ª ª˝º∫«—¥Ÿ.
+    void    DeleteItemRecursive(SItemNode* pItemNode);                              ///< ÌïòÏúÑ ÏïÑÏù¥ÌÖúÎì§ÏùÑ Ï†ÑÎ∂Ä ÏÇ≠Ï†úÌïúÎã§ (Ïù¥ÌéôÌä∏ ÌîÑÎ°úÌçºÌã∞ Ìè¨Ìï®)    
+    void    BuildChildScript(CTreeItem* pParentItem);                               ///< ÏûêÏãù ÏïÑÏù¥ÌÖúÎì§ÏùÑ ÏÉùÏÑ±ÌïúÎã§.
     
 public:
     std::string			m_strInstanceEffectName;
@@ -109,9 +109,9 @@ public:
 
 protected:
     SItemNode           m_sItemNode;       
-    CTreeItem*          m_pCopyResourceFolder;  ///< ∆˙¥ı¿« ƒ´««&∆‰¿ÃΩ∫∆Æ∏¶ ¿ß«— µ•¿Ã≈Õ
-    RwBool              m_bDrag;                ///< µÂ∑°±◊ø£ µÂ∑”¡ﬂ¿Œ¡ˆ ∆«¥‹ «√∑°±◊           
-    RwBool              m_bNotSelChange;        ///< SelChange Event∏¶ πﬂª˝Ω√≈∞¡ˆ æ ¿ª∞ÊøÏºº ªÁøÎ«œ¥¬ «√∑°±◊(Ex.Sort)
+    CTreeItem*          m_pCopyResourceFolder;  ///< Ìè¥ÎçîÏùò Ïπ¥Ìîº&ÌéòÏù¥Ïä§Ìä∏Î•º ÏúÑÌïú Îç∞Ïù¥ÌÑ∞
+    RwBool              m_bDrag;                ///< ÎìúÎûòÍ∑∏Ïóî ÎìúÎ°≠Ï§ëÏù∏ÏßÄ ÌåêÎã® ÌîåÎûòÍ∑∏           
+    RwBool              m_bNotSelChange;        ///< SelChange EventÎ•º Î∞úÏÉùÏãúÌÇ§ÏßÄ ÏïäÏùÑÍ≤ΩÏö∞ÏÑ∏ ÏÇ¨Ïö©ÌïòÎäî ÌîåÎûòÍ∑∏(Ex.Sort)
 
 };
 

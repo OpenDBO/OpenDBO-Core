@@ -205,7 +205,7 @@ VOID CMultiDialogGui::Destroy(VOID)
 
 RwInt32 CMultiDialogGui::SwitchDialog( bool bOpen )
 {
-	// ¹«Á¶°Ç ´İ´Â´Ù.
+	// ë¬´ì¡°ê±´ ë‹«ëŠ”ë‹¤.
 	m_pstbMsg->Show( false );	
 	m_MsgBackImage.Show( false );
 
@@ -324,7 +324,7 @@ RwInt32 CMultiDialogGui::SwitchDialog( bool bOpen )
 					GetBalloonManager()->FadeOutBalloon( pSobObject, CBalloonGui::FIRST_TYPE_LAYER );
 			}			
 		}
-		// Gamble ÀÏ °æ¿ì °×ºí È®ÀÎ Ã¢À» ´İ¾ÆÁØ´Ù.
+		// Gamble ì¼ ê²½ìš° ê²œë¸” í™•ì¸ ì°½ì„ ë‹«ì•„ì¤€ë‹¤.
 		else if( m_eDlgType == TYPE_GAMBLE )
 		{
 			if( pSobObject )
@@ -481,7 +481,7 @@ VOID CMultiDialogGui::HandleEvents( RWS::CMsg& msg )
 				}
 			}
 
-			// Á¦Á¶ ±â¼ú ÃÊ±âÈ­
+			// ì œì¡° ê¸°ìˆ  ì´ˆê¸°í™”
 
 			if (pTableData->byJob == NPC_JOB_VENDING_MACHINE)
 			{
@@ -588,19 +588,19 @@ VOID CMultiDialogGui::HandleEvents( RWS::CMsg& msg )
 				m_pCommandList->RegistCommand( CCommandList::GUILD_COMMAND );				
 			}
 
-			if(pTableData->dwFunc_Bit_Flag & NPC_FUNC_FLAG_PORTAL)       // Æ÷Å»¸Ç
+			if(pTableData->dwFunc_Bit_Flag & NPC_FUNC_FLAG_PORTAL)       // í¬íƒˆë§¨
 			{
 				m_pCommandList->RegistCommand( CCommandList::PORTAL_COMMAND );	
 			}
 			
-			// Gamble ºñ¿ëÀº Merchant TableÀÇ Need_Mileage ÇÊµåÀÇ °ªÀ» ÂüÁ¶ÇÏ´Â °ÍÀ¸·Î º¯°æÇÑ´Ù.
+			// Gamble ë¹„ìš©ì€ Merchant Tableì˜ Need_Mileage í•„ë“œì˜ ê°’ì„ ì°¸ì¡°í•˜ëŠ” ê²ƒìœ¼ë¡œ ë³€ê²½í•œë‹¤.
 			// -by Kell ( 09. 07. 22 )
 			if(pTableData->dwFunc_Bit_Flag & NPC_FUNC_FLAG_GAMBLE_MERCHANT )
 			{
 				m_pCommandList->RegistCommand( CCommandList::GAMBLE_BUY_COMMNAD );	
 				m_pCommandList->RegistCommand( CCommandList::EXIT_COMMAND );
 
-				// Merchant TableÀÇ °¡Àå Ã¹¹øÂ° Index¸¦ ÂüÁ¶ÇÑ´Ù.
+				// Merchant Tableì˜ ê°€ì¥ ì²«ë²ˆì§¸ Indexë¥¼ ì°¸ì¡°í•œë‹¤.
 				if( pTableData->amerchant_Tblidx[0] == INVALID_TBLIDX )
 				{
 					DBO_FAIL( "[GAMBLE] NPC Table havn't merchant table index." << pTableData->tblidx );
@@ -633,7 +633,7 @@ VOID CMultiDialogGui::HandleEvents( RWS::CMsg& msg )
 					CNtlSLEventGenerator::CameraNpc( pData->hSerialId );
 					GetNtlWorldConcept()->AddWorldPlayConcept( WORLD_PLAY_NPC_COMMU );
 
-					// Npc handle ÀúÀå( FSM ¿¡¼­ »ç¿ë )
+					// Npc handle ì €ì¥( FSM ì—ì„œ ì‚¬ìš© )
 					CNtlBeCharData *pBeData = reinterpret_cast<CNtlBeCharData*>(GetNtlSLGlobal()->GetSobAvatar()->GetBehaviorData()); 
 					SCtrlStuff *pCtrlStuff = pBeData->GetCtrlStuff();
 					pCtrlStuff->uExtra.sGamble.hGambleNpc = pData->hSerialId;
@@ -645,7 +645,7 @@ VOID CMultiDialogGui::HandleEvents( RWS::CMsg& msg )
 			// exit
 			m_pCommandList->RegistCommand( CCommandList::EXIT_COMMAND );
 
-			// Dialog³»¿ëÀ» ÀÔ·Â.
+			// Dialogë‚´ìš©ì„ ì…ë ¥.
 			CTextTable* pNPCText = API_GetTableContainer()->GetTextAllTable()->GetNPCTbl();
 			std::wstring wstrText;
 			pNPCText->GetText( pTableData->Dialog_Script_Index, &wstrText );
@@ -766,7 +766,7 @@ VOID CMultiDialogGui::HandleEvents( RWS::CMsg& msg )
 
 			if( pGetTriggerList->dwType & eDBO_TRIGGER_OBJECT_FUNC_PORTAL )
 			{
-				// Æ÷Å»
+				// í¬íƒˆ
 			}
 
 			if( pGetTriggerList->dwType & eDBO_TRIGGER_OBJECT_FUNC_SCOUTER )
@@ -797,7 +797,7 @@ VOID CMultiDialogGui::HandleEvents( RWS::CMsg& msg )
 			if((pGetTriggerList->dwType & eDBO_TRIGGER_OBJECT_FUNC_NORMAL_DRAGONBALL) ||
 				(pGetTriggerList->dwType & eDBO_TRIGGER_OBJECT_FUNC_RAID_DRAGONBALL))
 			{
-				// µå·¡°ïº¼ ¿ë½Å ¼ÒÈ¯
+				// ë“œë˜ê³¤ë³¼ ìš©ì‹  ì†Œí™˜
 				GetNtlWorldConcept()->AddWorldPlayConcept(WORLD_PLAY_DRAGONBALL_COLLECT);
 				CNtlWorldConceptDBC* pWorldConceptDBC = (CNtlWorldConceptDBC*)GetNtlWorldConcept()->GetWorldConceptController(WORLD_PLAY_DRAGONBALL_COLLECT);
 				pWorldConceptDBC->SetAltarSerialID(pData->hSerialId);
@@ -814,17 +814,17 @@ VOID CMultiDialogGui::HandleEvents( RWS::CMsg& msg )
 
 				m_pCommandList->RegistCommand( CCommandList::HOIPOIMIX_CREATE_COMMAND );
 
-				// ³ª°¡±â´Â ±âº».
+				// ë‚˜ê°€ê¸°ëŠ” ê¸°ë³¸.
 				m_pCommandList->RegistCommand( CCommandList::EXIT_COMMAND );
 
-				// Dialog Ãâ·Â
+				// Dialog ì¶œë ¥
 				SetDialogType( TYPE_NPCTALK );
 				if( GetDialogManager()->OpenDialog( DIALOG_MULTIDIALOG, GetNtlSLGlobal()->GetSobAvatar()->GetSerialID() ) )
 				{
 					CNtlSLEventGenerator::CameraNpc( pData->hSerialId );
 					GetNtlWorldConcept()->AddWorldPlayConcept( WORLD_PLAY_NPC_COMMU );
 
-					// npc handle ÀúÀå(FSM¿¡¼­ »ç¿ë - Çü¼®)
+					// npc handle ì €ì¥(FSMì—ì„œ ì‚¬ìš© - í˜•ì„)
 					CNtlBeCharData *pBeData = reinterpret_cast<CNtlBeCharData*>(GetNtlSLGlobal()->GetSobAvatar()->GetBehaviorData()); 
 					SCtrlStuff *pCtrlStuff = pBeData->GetCtrlStuff();
 					pCtrlStuff->uExtra.sTeleport.hTeleportNpc = pData->hSerialId;
@@ -839,12 +839,12 @@ VOID CMultiDialogGui::HandleEvents( RWS::CMsg& msg )
 	}
 	else if( msg.Id == g_EventQuestDirectForward )
 	{
-		// peessi : User SelectÀÎ °æ¿ì¿¡¸¸ µé¾î¿Â´Ù.
+		// peessi : User Selectì¸ ê²½ìš°ì—ë§Œ ë“¤ì–´ì˜¨ë‹¤.
 
 		SNtlEventQuestDirect_Forward* pData = reinterpret_cast<SNtlEventQuestDirect_Forward*>( msg.pData );
 		SNtlEventQuestUserSelectDialog_Req* pReqData = &pData->sUserSelect;
 
-		// peessi : MultiDialog°¡ ¿­·ÁÀÖ´Ù¸é, Ä¿¹Â´ÏÆ¼ »óÅÂ ÀÌ°Å³ª, Äù½ºÆ® ´ÙÀÌ¾ó·Î±×, À¯Àú ¼±ÅÃÁß ÇÏ³ª ÀÌ¹Ç·Î Ãë¼Ò.
+		// peessi : MultiDialogê°€ ì—´ë ¤ìˆë‹¤ë©´, ì»¤ë®¤ë‹ˆí‹° ìƒíƒœ ì´ê±°ë‚˜, í€˜ìŠ¤íŠ¸ ë‹¤ì´ì–¼ë¡œê·¸, ìœ ì € ì„ íƒì¤‘ í•˜ë‚˜ ì´ë¯€ë¡œ ì·¨ì†Œ.
 		if( IsShow() )
 		{
 			SNtlEventQuestDirect_Echo stEcho;
@@ -857,13 +857,13 @@ VOID CMultiDialogGui::HandleEvents( RWS::CMsg& msg )
 			return;
 		}
 
-		// Serial ÀÔ·Â.
+		// Serial ì…ë ¥.
 		if( pReqData->uiTargetType == eUSER_SEL_TARGET_TYPE_NPC )
 			m_hTargetSerialID = GetNtlSobManager()->GetNpcTriggerSerialFromId( pReqData->uiTargetTblIdx );
 		else if( pReqData->uiTargetType == eUSER_SEL_TARGET_TYPE_OBJECT )
 			m_hTargetSerialID = GetNtlSobManager()->GetObjectTriggerSerialFromId( pReqData->uiTargetTblIdx );
 
-		// ¸ğµå
+		// ëª¨ë“œ
 		m_pCommandList->ClearNodes();
 		m_pCommandList->SetTCUnit( pData->pTCUnit );
 		m_pCommandList->SetTSKey( pReqData->sTSKey );
@@ -1058,7 +1058,7 @@ VOID CMultiDialogGui::HandleEvents( RWS::CMsg& msg )
 			break;
 		case TYPE_QUESTCAT:
 			{
-				// ¸®½ºÆ® ÀçÃâ·Â
+				// ë¦¬ìŠ¤íŠ¸ ì¬ì¶œë ¥
 				m_pCommandList->SendQuest();
 			}
 			break;
@@ -1084,7 +1084,7 @@ VOID CMultiDialogGui::HandleEvents( RWS::CMsg& msg )
 			break;
 		case TYPE_QUESTCAT:
 			{
-				// ¸®½ºÆ® ÀçÃâ·Â
+				// ë¦¬ìŠ¤íŠ¸ ì¬ì¶œë ¥
 				m_pCommandList->SendQuest();
 			}
 			break;
@@ -1092,7 +1092,7 @@ VOID CMultiDialogGui::HandleEvents( RWS::CMsg& msg )
 	}
 	else if( msg.Id == g_EventTSMudosaTeleport_Req )
 	{
-		// ¹«µµ»ç ¸®½ºÆ® ¾È³» ÆĞÅ¶ ½ÇÇà ¹«µµ»ç ÆĞÅ¶ ¹Ş°í ±×°É·Î ½ÇÇà
+		// ë¬´ë„ì‚¬ ë¦¬ìŠ¤íŠ¸ ì•ˆë‚´ íŒ¨í‚· ì‹¤í–‰ ë¬´ë„ì‚¬ íŒ¨í‚· ë°›ê³  ê·¸ê±¸ë¡œ ì‹¤í–‰
 		SNtlEventTSMudosaTeleport_Req* pData = reinterpret_cast<SNtlEventTSMudosaTeleport_Req*>( msg.pData );
 		m_pCommandList->SetTSKey( pData->sTSKey );
 
@@ -1117,7 +1117,7 @@ VOID CMultiDialogGui::HandleEvents( RWS::CMsg& msg )
 		ReserveDialog( std::wstring( GetDisplayStringManager()->GetString( "DST_BUDOKAI_MUDOSA_TELEPOR_INFO" ) ), sMultiDialogData::TYPE_JUST_MSG, FALSE );
 		GetDialogManager()->OpenDialog( DIALOG_MULTIDIALOG, GetNtlSLGlobal()->GetSobAvatar()->GetSerialID() );
 	}
-	// °×ºí NPCÀÇ ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ³¡³µÀ» °æ¿ì ÀÌÁ¦ ¼­¹öÂÊÀ¸·Î ÆĞÅ¶À» ¿äÃ»ÇØ¾ß ÇÑ´Ù.
+	// ê²œë¸” NPCì˜ ì• ë‹ˆë©”ì´ì…˜ì´ ëë‚¬ì„ ê²½ìš° ì´ì œ ì„œë²„ìª½ìœ¼ë¡œ íŒ¨í‚·ì„ ìš”ì²­í•´ì•¼ í•œë‹¤.
 	else if( msg.Id == g_EventGambleAniEnd )
 	{
 		SNtlEventGambleAniEnd* pData = reinterpret_cast<SNtlEventGambleAniEnd*>( msg.pData );
@@ -1140,7 +1140,7 @@ VOID CMultiDialogGui::HandleEvents( RWS::CMsg& msg )
 		CNtlSobNpcAttr* pNPCAttr = reinterpret_cast<CNtlSobNpcAttr*>( pNPC->GetSobAttr() );
 		sNPC_TBLDAT* pTableData = pNPCAttr->GetNpcTbl();
 
-		// Merchant TableÀÇ °¡Àå Ã¹¹øÂ° Index¸¦ ÂüÁ¶ÇÑ´Ù.
+		// Merchant Tableì˜ ê°€ì¥ ì²«ë²ˆì§¸ Indexë¥¼ ì°¸ì¡°í•œë‹¤.
 		if( pTableData->amerchant_Tblidx[0] == INVALID_TBLIDX )
 		{
 			DBO_FAIL( "[GAMBLE] NPC Table havn't merchant table index." << pTableData->tblidx );
@@ -1186,8 +1186,8 @@ VOID CMultiDialogGui::HandleEvents( RWS::CMsg& msg )
 	{
 		SNtlEventSobDynamicObjCommunity* pData = reinterpret_cast<SNtlEventSobDynamicObjCommunity*>( msg.pData );
 
-		// ¸ğµç Æ®¸®°Å °ü·Ã Ã¢ÀÌ ÄÑÁ® ÀÖÀ»¶§ ½Ã¹ßÁ¡ÀÎ ¸ÖÆ¼´ÙÀÌ¾ó·Î±×¿¡¼­ ¸·´Â´Ù. 
-		// Ã¢ÀÌ ¿­¸®±â Àü¿¡ ¿¬¼Ó Å¬¸¯µÇ´Â °ÍÀ» ¹æÁö
+		// ëª¨ë“  íŠ¸ë¦¬ê±° ê´€ë ¨ ì°½ì´ ì¼œì ¸ ìˆì„ë•Œ ì‹œë°œì ì¸ ë©€í‹°ë‹¤ì´ì–¼ë¡œê·¸ì—ì„œ ë§‰ëŠ”ë‹¤. 
+		// ì°½ì´ ì—´ë¦¬ê¸° ì „ì— ì—°ì† í´ë¦­ë˜ëŠ” ê²ƒì„ ë°©ì§€
 		if( GetDialogManager()->IsTriggerSystemDialogOpen() || m_hTargetSerialID == pData->hSerialId )
 			return;
 
@@ -1226,17 +1226,17 @@ VOID CMultiDialogGui::HandleEvents( RWS::CMsg& msg )
 			break;
 		}
 			
-		// ³ª°¡±â´Â ±âº».
+		// ë‚˜ê°€ê¸°ëŠ” ê¸°ë³¸.
 		m_pCommandList->RegistCommand( CCommandList::EXIT_COMMAND );
 
-		// Dialog Ãâ·Â
+		// Dialog ì¶œë ¥
 		SetDialogType( TYPE_NPCTALK );
 		if( GetDialogManager()->OpenDialog( DIALOG_MULTIDIALOG, GetNtlSLGlobal()->GetSobAvatar()->GetSerialID() ) )
 		{
 			CNtlSLEventGenerator::CameraNpc( pData->hSerialId );
 			GetNtlWorldConcept()->AddWorldPlayConcept( WORLD_PLAY_NPC_COMMU );
 
-			// npc handle ÀúÀå(FSM¿¡¼­ »ç¿ë - Çü¼®)
+			// npc handle ì €ì¥(FSMì—ì„œ ì‚¬ìš© - í˜•ì„)
 			CNtlBeCharData *pBeData = reinterpret_cast<CNtlBeCharData*>(GetNtlSLGlobal()->GetSobAvatar()->GetBehaviorData()); 
 			SCtrlStuff *pCtrlStuff = pBeData->GetCtrlStuff();
 			pCtrlStuff->uExtra.sTeleport.hTeleportNpc = pData->hSerialId;
@@ -1346,7 +1346,7 @@ VOID CCommandList::RegistCommand( RwInt32 nID, RwUInt8 ucJob /* = 0xFF  */)
 				case NPC_JOB_DOJO_MANAGER: surface = GetNtlGuiManager()->GetSurfaceManager()->GetSurface("MultiDialog.srf", "srfSubWeaponMerchantIcon"); break;
 				case NPC_JOB_DOJO_MERCHANT: surface = GetNtlGuiManager()->GetSurfaceManager()->GetSurface("MultiDialog.srf", "srfSubWeaponMerchantIcon"); break;
 				case NPC_JOB_DOJO_SEAL: surface = GetNtlGuiManager()->GetSurfaceManager()->GetSurface("MultiDialog.srf", "srfSubWeaponMerchantIcon"); break;
-				case NPC_JOB_MIX_MASTER: surface = GetNtlGuiManager()->GetSurfaceManager()->GetSurface("MultiDialog.srf", "srfSubWeaponMerchantIcon"); break; ///< º¯°æÇØ¾ßÇÔ
+				case NPC_JOB_MIX_MASTER: surface = GetNtlGuiManager()->GetSurfaceManager()->GetSurface("MultiDialog.srf", "srfSubWeaponMerchantIcon"); break; ///< ë³€ê²½í•´ì•¼í•¨
 
 				case NPC_JOB_VEHICLE_MERCHANT: surface = GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfVehicle_Merchant"); break;
 
@@ -1843,8 +1843,8 @@ VOID CCommandList::ClearState_ClearAndMakeBuyBankMenu(VOID)
 
 	CNtlWarehouse* pWarehouse = GetNtlSLGlobal()->GetSobAvatar()->GetWarehouse();
 
-	// °ÔÀÓ¿¡ Ã³À½ µé¾î°¡¼­ Ã¢°íNPC¸¦ Å¬¸¯ÇÏ¸é ¼­¹ö·ÎºÎÅÍ Ã¢°í µ¥ÀÌÅÍ¸¦ ¹Ş´Â´Ù.
-	// ±× µ¥ÀÌÅÍ¸¦ ÀüºÎ ¹Ş±â Àü¿¡ ÀÌ ÄÚµå·Î µé¾î¿Â´Ù¸é ºÎÁ¤È®ÇÑ Á¤º¸·Î ÇÏÀ§ÄÚµå¸¦ ½ÇÇàÇÏÁö ¾Êµµ·Ï ÇÏÀÚ
+	// ê²Œì„ì— ì²˜ìŒ ë“¤ì–´ê°€ì„œ ì°½ê³ NPCë¥¼ í´ë¦­í•˜ë©´ ì„œë²„ë¡œë¶€í„° ì°½ê³  ë°ì´í„°ë¥¼ ë°›ëŠ”ë‹¤.
+	// ê·¸ ë°ì´í„°ë¥¼ ì „ë¶€ ë°›ê¸° ì „ì— ì´ ì½”ë“œë¡œ ë“¤ì–´ì˜¨ë‹¤ë©´ ë¶€ì •í™•í•œ ì •ë³´ë¡œ í•˜ìœ„ì½”ë“œë¥¼ ì‹¤í–‰í•˜ì§€ ì•Šë„ë¡ í•˜ì
 	if( pWarehouse->IsRecieveData_from_Server() == FALSE )
 	{
 		GetAlarmManager()->AlarmMessage("DST_PLEASE_RETRY");
@@ -1897,7 +1897,7 @@ VOID CCommandList::OnClear(VOID)
 CCommandNode::CCommandNode( CGuiLineTree* pTree, RwInt32 nID, gui::CSurface surface, std::string strText, NODE_TYPE eType )
 : CGuiLineTreeNode( pTree, nID ), m_pbtnCommand( NULL ), m_ppnlIcon( NULL ), m_eNodeType( eType )
 {
-	// gui component¼³Á¤ ¹× surface ¼³Á¤.
+	// gui componentì„¤ì • ë° surface ì„¤ì •.
 	CRectangle rect;
 	rect.SetRectWH( COMMANDNODE_X ,COMMANDNODE_Y, COMMANDNODE_WIDTH, COMMANDNODE_HEIGHT );
 	m_pbtnCommand = NTL_NEW gui::CButton( rect, strText, pTree->GetParentGui(), GetNtlGuiManager()->GetSurfaceManager() );
@@ -1924,7 +1924,7 @@ CCommandNode::CCommandNode( CGuiLineTree* pTree, RwInt32 nID, gui::CSurface surf
 CCommandNode::CCommandNode( CGuiLineTree* pTree, RwInt32 nID, gui::CSurface surface, std::wstring wstrText, NODE_TYPE eType )
 : CGuiLineTreeNode( pTree, nID ), m_pbtnCommand( NULL ), m_ppnlIcon( NULL ), m_eNodeType( eType )
 {
-	// gui component¼³Á¤ ¹× surface ¼³Á¤.
+	// gui componentì„¤ì • ë° surface ì„¤ì •.
 	CRectangle rect;
 	rect.SetRectWH( COMMANDNODE_X ,COMMANDNODE_Y, COMMANDNODE_WIDTH, COMMANDNODE_HEIGHT );
 	m_pbtnCommand = NTL_NEW gui::CButton( rect, wstrText, pTree->GetParentGui(), GetNtlGuiManager()->GetSurfaceManager() );
@@ -1951,7 +1951,7 @@ CCommandNode::CCommandNode( CGuiLineTree* pTree, RwInt32 nID, gui::CSurface surf
 CCommandNode::CCommandNode( CGuiLineTree* pTree, RwInt32 nID, gui::CSurface surface, RwInt32 nTextID )
 : CGuiLineTreeNode( pTree, nID ), m_pbtnCommand( NULL ), m_ppnlIcon( NULL )
 {
-	// gui component¼³Á¤ ¹× surface ¼³Á¤.
+	// gui componentì„¤ì • ë° surface ì„¤ì •.
 	CQuestTextDataTable* pQuestTextTable = API_GetTableContainer()->GetQuestTextDataTable();
 	sQUEST_TEXT_DATA_TBLDAT* pQuestText = reinterpret_cast<sQUEST_TEXT_DATA_TBLDAT*>( pQuestTextTable->FindData( nTextID ) );
 	std::wstring wstrText;
@@ -1988,14 +1988,14 @@ CCommandNode::CCommandNode( CGuiLineTree* pTree, RwInt32 nID, gui::CSurface surf
 	m_slotPressedCommand = m_pbtnCommand->SigPressed().Connect( this, &CCommandNode::OnPressedCommand );
 	m_slotReleasedCommand = m_pbtnCommand->SigReleased().Connect( this, &CCommandNode::OnReleasedCommand );
 
-	// Type¼³Á¤.
+	// Typeì„¤ì •.
 	m_eNodeType = BRANCHDIALOG_NODE;
 }
 
 CCommandNode::CCommandNode( CGuiLineTree* pTree, RwInt32 nID, gui::CSurface surface, sQUEST_INFO sData )
 : CGuiLineTreeNode( pTree, nID ), m_pbtnCommand( NULL ), m_ppnlIcon( NULL )
 {
-	// gui component¼³Á¤ ¹× surface ¼³Á¤.
+	// gui componentì„¤ì • ë° surface ì„¤ì •.
 	CQuestTextDataTable* pQuestTextTable = API_GetTableContainer()->GetQuestTextDataTable();
 	sQUEST_TEXT_DATA_TBLDAT* pQuestText = reinterpret_cast<sQUEST_TEXT_DATA_TBLDAT*>( pQuestTextTable->FindData( sData.dwQuestTitle ) );
 	std::wstring wstrText;
@@ -2032,7 +2032,7 @@ CCommandNode::CCommandNode( CGuiLineTree* pTree, RwInt32 nID, gui::CSurface surf
 	m_slotPressedCommand = m_pbtnCommand->SigPressed().Connect( this, &CCommandNode::OnPressedCommand );
 	m_slotReleasedCommand = m_pbtnCommand->SigReleased().Connect( this, &CCommandNode::OnReleasedCommand );
 
-	// Type¼³Á¤.
+	// Typeì„¤ì •.
 	m_eNodeType = QUESTCATALOG_NODE;
 	m_sData		= sData;
 }
@@ -2170,7 +2170,7 @@ VOID CCommandNode::OnClickCommand( gui::CComponent* pComponent )
 					CNtlSobNpcAttr* pNPCAttr = reinterpret_cast<CNtlSobNpcAttr*>( pNPC->GetSobAttr() );
 					sNPC_TBLDAT* pTableData = pNPCAttr->GetNpcTbl();
 
-					// Merchant TableÀÇ °¡Àå Ã¹¹øÂ° Index¸¦ ÂüÁ¶ÇÑ´Ù.
+					// Merchant Tableì˜ ê°€ì¥ ì²«ë²ˆì§¸ Indexë¥¼ ì°¸ì¡°í•œë‹¤.
 					if( pTableData->amerchant_Tblidx[0] == INVALID_TBLIDX )
 					{
 						DBO_FAIL( "[GAMBLE] NPC Table havn't merchant table index." << pTableData->tblidx );
@@ -2518,13 +2518,13 @@ VOID CCommandNode::OnClickCommand( gui::CComponent* pComponent )
 				sMERCHANT_TBLDAT* pMERCHANT_TBLDAT = Logic_GetMerchantDataFromTable( pNPC_TBLDAT->amerchant_Tblidx[0] );
 				DBO_ASSERT( pMERCHANT_TBLDAT, "Not exist merchant index in NPC table");
 
-				// avooo's comment : ¾ÆÀÌÅÛ Å×ÀÌºí »óÀÇ °øÀ¯ Ã¢°í´Â 3À» °¡¸®Å²´Ù
+				// avooo's comment : ì•„ì´í…œ í…Œì´ë¸” ìƒì˜ ê³µìœ  ì°½ê³ ëŠ” 3ì„ ê°€ë¦¬í‚¨ë‹¤
 				sITEM_TBLDAT* pITEM_TBLDAT = Logic_GetItemDataFromTable( pMERCHANT_TBLDAT->aitem_Tblidx[3] );
 				DBO_ASSERT( pITEM_TBLDAT, "Not exist item index in Merchant table");
 
 				SERIAL_HANDLE hNPCHandle = pNodeMgr->GetOwnerGui()->GetTargetSerial();
 
-				// °øÀ¯ Ã¢°í(%d Á¦´Ï)¸¦ ±¸ÀÔÇÏ½Ã°Ú½À´Ï±î?
+				// ê³µìœ  ì°½ê³ (%d ì œë‹ˆ)ë¥¼ êµ¬ì…í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
 				sMsgBoxData data;
 				data.hHandle = hNPCHandle;
 				GetAlarmManager()->FormattedAlarmMessage( "DST_WAREHOUSE_WANT_YOU_BUY_COMMON", FALSE, &data, Logic_FormatZeni(pITEM_TBLDAT->dwCost) );
@@ -2560,7 +2560,7 @@ VOID CCommandNode::OnClickCommand( gui::CComponent* pComponent )
 	}
 	else if( m_eNodeType == SERVERSELECT_MODE )
 	{
-		// ¼­¹öÀÌµ¿Àº ServerSelectNode¿¡¼­ Ã³¸®.
+		// ì„œë²„ì´ë™ì€ ServerSelectNodeì—ì„œ ì²˜ë¦¬.
 		if( GetID() == CCommandList::EXIT_COMMAND )
 		{
 			CNtlSLEventGenerator::TSMudosaTeleport_Res( pNodeMgr->GetTSKey(), (RwUInt8)GetID(), TRUE );
@@ -2597,7 +2597,7 @@ VOID CCommandNode::OnReleasedCommand( gui::CComponent* pComponent )
 CServerSelectNode::CServerSelectNode( CGuiLineTree* pTree, RwInt32 nID, WCHAR* pText, RwInt32 nCurrentUserCount )
 : CGuiLineTreeNode( pTree, nID ), m_pbtnCommand( NULL ), m_ppnlIcon( NULL ), m_ppnlUserCountBack( NULL ), m_ppgbUserCount( NULL )
 {
-	// gui component¼³Á¤ ¹× surface ¼³Á¤.
+	// gui componentì„¤ì • ë° surface ì„¤ì •.
 	CRectangle rect;
 	rect.SetRectWH( COMMANDNODE_X ,COMMANDNODE_Y, COMMANDNODE_WIDTH, COMMANDNODE_HEIGHT );
 	m_pbtnCommand = NTL_NEW gui::CButton( rect, pText, pTree->GetParentGui(), GetNtlGuiManager()->GetSurfaceManager() );

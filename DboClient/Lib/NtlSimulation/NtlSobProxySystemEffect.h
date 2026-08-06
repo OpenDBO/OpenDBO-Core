@@ -34,12 +34,12 @@ public:
 
     virtual EProxySystemEffectType GetType()    {return m_eType;}
 
-    void            SetExtraSound(SOUND_HANDLE hSound) {m_hSound = hSound;}             ///< Ãß°¡ »ç¿îµå ÇÚµéÀ» ¼³Á¤ÇÑ´Ù.
+    void            SetExtraSound(SOUND_HANDLE hSound) {m_hSound = hSound;}             ///< ì¶”ê°€ ì‚¬ìš´ë“œ í•¸ë“¤ì„ ì„¤ì •í•œë‹¤.
 
 protected:
     CNtlSobProxy*           m_pSobProxy;
     EProxySystemEffectType  m_eType; 
-    SOUND_HANDLE            m_hSound;                          ///< Ãß°¡ »ç¿îµå ÇÚµé
+    SOUND_HANDLE            m_hSound;                          ///< ì¶”ê°€ ì‚¬ìš´ë“œ í•¸ë“¤
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -87,7 +87,7 @@ protected:
 
     RwUInt8		m_byUpdateCount;
 
-    RwBool      m_bAddColorFlag;                    ///< »ö»óÀ» ºí·»µå°¡ ¾Æ´Ñ ´õÇÒÁö À¯¹« ÇÃ·¡±×    
+    RwBool      m_bAddColorFlag;                    ///< ìƒ‰ìƒì„ ë¸”ë Œë“œê°€ ì•„ë‹Œ ë”í• ì§€ ìœ ë¬´ í”Œëž˜ê·¸    
 
 protected:
     void			SetWeightValue(RwReal fWeightRed, RwReal fWeightGreen, RwReal fWeightBlue);
@@ -137,7 +137,7 @@ public:
 };
 
 //////////////////////////////////////////////////////////////////////////
-/// Å©±â¸¦ º¯°æÇÏ´Â ÀÌÆåÆ®
+/// í¬ê¸°ë¥¼ ë³€ê²½í•˜ëŠ” ì´íŽ™íŠ¸
 class CNtlSobProxySystemEffectScale : public CNtlSobProxySystemEffect
 {
 public:
@@ -153,14 +153,14 @@ public:
     virtual RwBool	IsCalcWeightValue(void);
 
     RwReal          GetWeightValue();
-    void            SetData(RwReal fEndScale, RwReal fTime);            ///< ½ºÄÉÀÏ º¯°æ°ú ½Ã°£À» ¼³Á¤ÇÑ´Ù.
+    void            SetData(RwReal fEndScale, RwReal fTime);            ///< ìŠ¤ì¼€ì¼ ë³€ê²½ê³¼ ì‹œê°„ì„ ì„¤ì •í•œë‹¤.
 
 protected:
-    RwReal          m_fWeightValue;                                     ///< ÇöÀç°ª
-    RwReal          m_fStartValue;                                      ///< ½ÃÀÛ°ª
-    RwReal          m_fEndValue;                                        ///< ³¡°ª
-    RwReal          m_fTime;                                            ///< ½Ã°£
-    RwReal          m_fElapsedTime;                                     ///< ÃÑ °æ°úÇÑ ½Ã°£
-    RwBool          m_bFinish;                                          ///< Àû¿ëÀÌ ³¡³µ´ÂÁö ¿©ºÎ
+    RwReal          m_fWeightValue;                                     ///< í˜„ìž¬ê°’
+    RwReal          m_fStartValue;                                      ///< ì‹œìž‘ê°’
+    RwReal          m_fEndValue;                                        ///< ëê°’
+    RwReal          m_fTime;                                            ///< ì‹œê°„
+    RwReal          m_fElapsedTime;                                     ///< ì´ ê²½ê³¼í•œ ì‹œê°„
+    RwBool          m_bFinish;                                          ///< ì ìš©ì´ ëë‚¬ëŠ”ì§€ ì—¬ë¶€
 };
 

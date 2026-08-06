@@ -39,23 +39,23 @@ RwBool CGMChatGui::Create()
 	m_pThis			= (gui::CDialog*)GetComponent("dlgMain");
 	m_pThis->SetPriority(dDIALOGPRIORITY_CHATTING);
 
-	// ´ÙÀÌ¾ó·Î±× Á¦¸ñ
+	// ë‹¤ì´ì–¼ë¡œê·¸ ì œëª©
 	m_pDialogName	= (gui::CStaticBox*)GetComponent( "stbDialogName" );
 	m_pDialogName->SetPosition(DBOGUI_DIALOG_TITLE_X, DBOGUI_DIALOG_TITLE_Y);
 	WCHAR awcBuffer[256] = L"";
-	swprintf_s(awcBuffer, 256, L"GM ´ëÈ­Ã¢ : ", GetPetitionManager()->GetChattingGMName() );
+	swprintf_s(awcBuffer, 256, L"GM ëŒ€í™”ì°½ : ", GetPetitionManager()->GetChattingGMName() );
 	m_pDialogName->SetText( awcBuffer );
 
-	// ´ëÈ­³»¿ë
+	// ëŒ€í™”ë‚´ìš©
 	m_pOutDisplay	= (gui::COutputBox*)GetComponent( "outputDisplay" );
 	m_pOutDisplay->SetLineSpace(CHAT_DISP_LINE_GAP);
 	m_pOutDisplay->SetMaxLine(CHAT_DISP_MAX_LINE);
 
-	// IME »óÅÂ
+	// IME ìƒíƒœ
 	m_pIME			= (gui::CStaticBox*)GetComponent( "stbIME" );
 	OnIMEChange( m_pInput->GetCurrentIMEState() );
 
-	// À¯Àú ÀÎÇ²Ã¢
+	// ìœ ì € ì¸í’‹ì°½
 	m_pInput		= (gui::CInputBox*)GetComponent( "inbChat" );
 
 	// sig

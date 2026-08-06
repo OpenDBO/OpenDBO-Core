@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Name: class gui::CScrollBar
-// Desc: Text¸¦ Ç¥ÇöÇÑ´Ù.
+// Desc: Textë¥¼ í‘œí˜„í•œë‹¤.
 //
 // Created by jhssugi@ntl-inc.com	
 //
@@ -181,7 +181,7 @@ public:
 private:
 //! Implementation:
 
-	//: thumb track or slider bar¸¦ Àâ°í ÀÌµ¿ÇßÀ» °æ¿ì È£ÃâµÇ´Â function
+	//: thumb track or slider barë¥¼ ì¡ê³  ì´ë™í–ˆì„ ê²½ìš° í˜¸ì¶œë˜ëŠ” function
 	VOID SliderMovePaint(VOID);
 	
 
@@ -207,7 +207,7 @@ private:
 	CButton *m_pBtnInc;
 	CButton *m_pBtnDec;
 
-	//: slider bar rendering position °è»ê.
+	//: slider bar rendering position ê³„ì‚°.
 	CRectangle CalculateSliderPaint(VOID);
 	
 	CScrollBar(const CScrollBar &copy) : CComponent(NULL,NULL) { return; } // disallow copy construction.

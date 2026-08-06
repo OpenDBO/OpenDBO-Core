@@ -46,7 +46,7 @@ RwBool CNtlSobQuestItem::Create(void)
 		NTL_RETURN(FALSE);
 	}
 
-	// class name ¼³Á¤.
+	// class name ì„¤ì •.
 	SetClassName(SLCLASS_NAME_SLOT_QUESTITEM);
 
 	m_pIcon->Create(); 
@@ -85,7 +85,7 @@ void CNtlSobQuestItem::CreateEventHandler(RWS::CMsg &pMsg)
 	SNtlEventSobItemCreate *pSobItemCreate = reinterpret_cast<SNtlEventSobItemCreate*>(pMsg.pData);
 	CNtlSobQuestItemAttr *pItemAttr = reinterpret_cast<CNtlSobQuestItemAttr*>( GetSobAttr() );
 
-	// ÇöÀç ¾ÆÀÌÅÛÀÌ Child SlotÀ» °¡Áö´Â ¾ÆÀÌÅÛÀÌ¸é
+	// í˜„ìž¬ ì•„ì´í…œì´ Child Slotì„ ê°€ì§€ëŠ” ì•„ì´í…œì´ë©´
 	if(pItemAttr->IsContainerItem())
 		AllocateChild(pItemAttr->GetChildSlotSize());
 

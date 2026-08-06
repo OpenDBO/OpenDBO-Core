@@ -76,7 +76,7 @@ public:
 		return (*it).second; 
 	}
 
-	//: option_name¿¡ ÇØ´çÇÏ´Â data factor¸¦ ¼öÁ¤ÇÏ±â À§ÇÏ¿© ¾´´Ù... (Á¶½É)
+	//: option_nameì— í•´ë‹¹í•˜ëŠ” data factorë¥¼ ìˆ˜ì •í•˜ê¸° ìœ„í•˜ì—¬ ì“´ë‹¤... (ì¡°ì‹¬)
 	std::string& GetValueFactor(const std::string& option_name,int offset=0) 
 	{
 		std::multimap<std::string, std::string>::iterator it = m_stlOptions.find(option_name);

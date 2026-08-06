@@ -6,7 +6,7 @@
 
 /*
 WorldFileFormat - Schedule
-WorldData°¡ º¯°æµÇ¸é Schedule Loading ºÎºĞ ¶ÇÇÑ ±ÔÄ¢¿¡ ¸Â°Ô º¯°æÇØÁÖ¾î¾ß ÇÑ´Ù.
+WorldDataê°€ ë³€ê²½ë˜ë©´ Schedule Loading ë¶€ë¶„ ë˜í•œ ê·œì¹™ì— ë§ê²Œ ë³€ê²½í•´ì£¼ì–´ì•¼ í•œë‹¤.
 */
 
 class CNtlSCDEField;
@@ -47,7 +47,7 @@ enum ESCHEDULE_FREELIST_TYPE
 class CNtlWorldSchedulerFreeList
 {
 	static RwFreeList*	m_pFreeList[ESCHEDULE_FREELIST_NUM];
-	static RwInt32		m_iRefCount; // AllocFreeList³ª DeAllocFreeList°¡ 2¹ø È£Ãâ µÇ´Â°É ¸·´Â´Ù.
+	static RwInt32		m_iRefCount; // AllocFreeListë‚˜ DeAllocFreeListê°€ 2ë²ˆ í˜¸ì¶œ ë˜ëŠ”ê±¸ ë§‰ëŠ”ë‹¤.
 
 public:
 	static RwBool	AllocFreeList();

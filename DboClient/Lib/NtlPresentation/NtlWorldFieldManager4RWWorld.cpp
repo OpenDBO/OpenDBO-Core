@@ -913,7 +913,7 @@ void CNtlWorldFieldManager4RWWorld::SetAnotherField(RwBool ChangeStraightAway)
 
 void CNtlWorldFieldManager4RWWorld::UpdateMsg(RwV3d& Pos)
 {
-	// world field switching effect : �ε������ FieldChanged Message�� ������ �ʴ´�.
+	// world field switching effect : 占싸듸옙占쏘에占쏙옙占쏙옙 FieldChanged Message占쏙옙 占쏙옙占쏙옙占쏙옙 占십는댐옙.
 // 	if(GetFieldPropVariationStarting())
 // 	{
 // 		// Update current map name
@@ -958,7 +958,7 @@ RwBool CNtlWorldFieldManager4RWWorld::UpdateFieldMap(RwV3d& Pos)
 	// update old datum index
 	m_OldDatumIdx = m_NewDatumIdx;
 
-	// send msgs right after another fields : �ε��� ������ FieldChagedMessage�� ������ �ʴ´�.
+	// send msgs right after another fields : 占싸듸옙占쏙옙 占쏙옙占쏙옙占쏙옙 FieldChagedMessage占쏙옙 占쏙옙占쏙옙占쏙옙 占십는댐옙.
 	// CNtlPLEventGenerator::IsAnotherFieldChangedWithoutDelay();
 
 	return TRUE;
@@ -1213,7 +1213,7 @@ RpWorldSector* CollisionWorldSectorDecalIndoor(RpIntersection * pIntersection, R
 			DecalCallbackParam*	pDecalParam = (DecalCallbackParam*)pData;
 			RwInt32				nBuffCnt	= *pDecalParam->pBufferCnt;
 
-			// �ִ� ������ ������ Vertex�� �������� �ʰ� ĵ���Ѵ�.
+			// 占쌍댐옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 Vertex占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占십곤옙 캔占쏙옙占싼댐옙.
 			if(nBuffCnt + 2 >= pDecalParam->nMaxVertextCnt)	
 			{
 				*(pDecalParam->pBufferCnt) += 3;
@@ -1252,7 +1252,7 @@ RpCollisionTriangle* CollisionWorldSectorDecalIndoor(RpIntersection *pIntersecti
 	DecalCallbackParam*	pDecalParam = (DecalCallbackParam*)pData;
 	RwInt32				nBuffCnt	= *pDecalParam->pBufferCnt;
 
-	// �ִ� ������ ������ Vertex�� �������� �ʰ� ĵ���Ѵ�.
+	// 占쌍댐옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 Vertex占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占십곤옙 캔占쏙옙占싼댐옙.
 	if(nBuffCnt + 2 >= pDecalParam->nMaxVertextCnt)
 	{
 		*(pDecalParam->pBufferCnt) += 3;
@@ -1304,7 +1304,7 @@ RwBool CNtlWorldFieldManager4RWWorld::GetWorldDecal(RwV3d& vPosition, RwV3d& vSi
 
 	DecalCallbackParam decalCallbackParam;		
 	decalCallbackParam.vPos					= vPosition;
-	decalCallbackParam.pBufferCnt			= (RwInt32*)&nRenderVertexCount; ///< ������� ������ Vertex ������ �������� ��´�.
+	decalCallbackParam.pBufferCnt			= (RwInt32*)&nRenderVertexCount; ///< 현재까지 생성된 Vertex 버퍼의 다음부터 담는다.
 	decalCallbackParam.pVertices			= pVertices;			
 	decalCallbackParam.fIntersectionRadius	= sqrtf(vSize.x * vSize.x + vSize.z * vSize.z) * 0.5f;
 	decalCallbackParam.fScale				= 1.0f;

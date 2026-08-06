@@ -1,4 +1,4 @@
-// Attr_Link.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_Link.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -7,7 +7,7 @@
 #include "Shape_Link.h"
 
 
-// CAttr_Link ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_Link ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_Link, CAttr_Page, 1)
 
@@ -53,4 +53,4 @@ BEGIN_MESSAGE_MAP(CAttr_Link, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_Link ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_Link ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

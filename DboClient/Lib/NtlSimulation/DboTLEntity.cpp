@@ -725,7 +725,7 @@ CDboTLSoundOnOff::CDboTLSoundOnOff( void )
 
 void CDboTLSoundOnOff::Enter( void )
 {
-	// ¸Õ°¡ »ç¿îµå ¿¬ÃâÀ» ÇÊ¿ä·Î ÇÒ ¶§±îÁö ¹«Á¶°Ç ´Ù ²ô°í Å²´Ù
+	// ë¨¼ê°€ ì‚¬ìš´ë“œ ì—°ì¶œì„ í•„ìš”ë¡œ í•  ë•Œê¹Œì§€ ë¬´ì¡°ê±´ ë‹¤ ë„ê³  í‚¨ë‹¤
 	if( m_bSoundOn )
 	{
 		for( RwUInt8 i = 0 ; i < NUM_CHANNEL_GROUP ; ++i )

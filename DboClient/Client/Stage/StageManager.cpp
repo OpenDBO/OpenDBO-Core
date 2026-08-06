@@ -35,8 +35,8 @@ CStageManager* CStageManager::GetInstance(void)
 
 /**
 * 
-*  \return stage name¿¡ ÇØ´çÇÏ´Â stage¸¦ »ı¼ºÇÏ¿© ¸®ÅÏÇÑ´Ù. 
-*  \param pSatgeNameÀº stage nameÀÌ´Ù.
+*  \return stage nameì— í•´ë‹¹í•˜ëŠ” stageë¥¼ ìƒì„±í•˜ì—¬ ë¦¬í„´í•œë‹¤. 
+*  \param pSatgeNameì€ stage nameì´ë‹¤.
 */
 CNtlStage* CStageManager::CreateStage(const char *pStageName)
 {

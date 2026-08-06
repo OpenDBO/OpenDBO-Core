@@ -8,24 +8,24 @@
 
 
 
-// Projectile Type¿¡ µû¸¥ Ãß°¡ ÆÄ¶ó¹ÌÅÍµéÀ» Á¤ÀÇÇÏ±â À§ÇÑ Union
-struct SHissidanData        /// Hissidan Å¸ÀÔÀ» À§ÇÑ Ãß°¡ µ¥ÀÌÅÍ
+// Projectile Typeì— ë”°ë¥¸ ì¶”ê°€ íŒŒë¼ë¯¸í„°ë“¤ì„ ì •ì˜í•˜ê¸° ìœ„í•œ Union
+struct SHissidanData        /// Hissidan íƒ€ì…ì„ ìœ„í•œ ì¶”ê°€ ë°ì´í„°
 {
-	RwBool      bApplyAngle;                              ///< °¢µµ Àû¿ë/ºñÀû¿ë À¯¹« (ºñÀû¿ëÀ» ÇÏ¸é Hand Type¿¡ µû¶ó¼­ ¹æÇâÀÌ ÈØ´Ù)
-	RwV2d       v2dAngle;                                   ///< ¹ß»ç °¢µµ (XÃà, YÃà)
+	RwBool      bApplyAngle;                              ///< ê°ë„ ì ìš©/ë¹„ì ìš© ìœ ë¬´ (ë¹„ì ìš©ì„ í•˜ë©´ Hand Typeì— ë”°ë¼ì„œ ë°©í–¥ì´ íœœë‹¤)
+	RwV2d       v2dAngle;                                   ///< ë°œì‚¬ ê°ë„ (Xì¶•, Yì¶•)
 };
 
-struct SMultiHissidanData   /// Multi Hissidan Å¸ÀÔÀ» À§ÇÑ Ãß°¡ µ¥ÀÌÅÍ
+struct SMultiHissidanData   /// Multi Hissidan íƒ€ì…ì„ ìœ„í•œ ì¶”ê°€ ë°ì´í„°
 {
-	RwInt32     nCount;                                   ///< Hissidan °³¼ö
-	RwV2d*      pArrayAngle;                              ///< ¹ß»ç °¢µµµéÀÇ ¹è¿­ (µ¿Àû ÇÒ´çÇÑ´Ù)
+	RwInt32     nCount;                                   ///< Hissidan ê°œìˆ˜
+	RwV2d*      pArrayAngle;                              ///< ë°œì‚¬ ê°ë„ë“¤ì˜ ë°°ì—´ (ë™ì  í• ë‹¹í•œë‹¤)
 };
 
-struct SHellZoneData        /// ¸¶°ø Æ÷À§ÅºÇü Å¸ÀÔÀ» À§ÇÑ Ãß°¡ µ¥ÀÌÅÍ
+struct SHellZoneData        /// ë§ˆê³µ í¬ìœ„íƒ„í˜• íƒ€ì…ì„ ìœ„í•œ ì¶”ê°€ ë°ì´í„°
 {
-	RwV3d				vTargetEffectOffset;						///< Target¿¡¼­ÀÇ Offset °Å¸®
-	RwReal				fTargetEffectStartWaitTime;					///< Target¿¡ ³¯¾Æ°¡±â Àü¿¡ ±â´Ù¸®´Â ½Ã°£
-	RwReal				fTargetEffectSpeed;							///< Target¿¡ ³¯¾Æ°¡´Â ¼Óµµ
+	RwV3d				vTargetEffectOffset;						///< Targetì—ì„œì˜ Offset ê±°ë¦¬
+	RwReal				fTargetEffectStartWaitTime;					///< Targetì— ë‚ ì•„ê°€ê¸° ì „ì— ê¸°ë‹¤ë¦¬ëŠ” ì‹œê°„
+	RwReal				fTargetEffectSpeed;							///< Targetì— ë‚ ì•„ê°€ëŠ” ì†ë„
 };
 
 union UEffectTypeExtraData
@@ -41,31 +41,31 @@ struct SEventAnimHit : public SEventAnim
 	RwBool				bPowerEffect;
 	EAttackType			eAttackType;								///< Attack Type
 	ETargetBehavior		eTargetBehavior;
-	RwBool              bKB2Push;                                   ///< ³Ë´Ù¿îÀ» ÇÏÁö ¾ÊÀ¸¸é Push·Î Ã³¸®ÇÒÁö À¯¹« ÇÃ·¡±×
+	RwBool              bKB2Push;                                   ///< ë„‰ë‹¤ìš´ì„ í•˜ì§€ ì•Šìœ¼ë©´ Pushë¡œ ì²˜ë¦¬í• ì§€ ìœ ë¬´ í”Œë˜ê·¸
 	EHandType			eHandType;									///< HandType
 	EProjectileEffectType uiProjectileEffectType;					///< Ball, Beam, Hissidan, hell zone, Multi Hissidan
 
-	EBoneType			eProjectileShotType;						///< ¾î´À Bone¿¡¼­ ProjectileÀÌ ³¯¶ó°¡´ÂÁö ¼³Á¤
-	RwInt32             nSubWeaponFlag;                             ///< SubWeaponÀÇ ¾î´À Bone¿¡¼­ ³ª°¥Áö Ã¼Å©ÇÑ ÇÃ·¡±×
+	EBoneType			eProjectileShotType;						///< ì–´ëŠ Boneì—ì„œ Projectileì´ ë‚ ë¼ê°€ëŠ”ì§€ ì„¤ì •
+	RwInt32             nSubWeaponFlag;                             ///< SubWeaponì˜ ì–´ëŠ Boneì—ì„œ ë‚˜ê°ˆì§€ ì²´í¬í•œ í”Œë˜ê·¸
 
 	RwChar				chBoneName[MAX_DEFAULT_NAME];				///< Character Bone Name	
-	RwChar              chProjectileEffectName[MAX_DEFAULT_NAME];	///< ³¯¶ó°¡´Â Effect Name
+	RwChar              chProjectileEffectName[MAX_DEFAULT_NAME];	///< ë‚ ë¼ê°€ëŠ” Effect Name
 	RwReal				fProjectileSpeed;							///< projectile speed
-	RwBool              bTargetAttach;								///< Effect¸¦ Target¿¡ Attach¸¦ ÇÒÁöÀÇ À¯¹«
-	RwReal              fTargetHeight;								///< Target Effect°¡ ³ª¿Ã À§Ä¡ (1ÀÌ ±âº» 100%)
+	RwBool              bTargetAttach;								///< Effectë¥¼ Targetì— Attachë¥¼ í• ì§€ì˜ ìœ ë¬´
+	RwReal              fTargetHeight;								///< Target Effectê°€ ë‚˜ì˜¬ ìœ„ì¹˜ (1ì´ ê¸°ë³¸ 100%)
 
-	RwChar              chTargetEffectName[MAX_DEFAULT_NAME];		///< Target¿¡ Ç¥½ÃµÉ Effect Name
-	ETargetEffectType	eTargetEffectType;							///< Target EffctÀÇ ÁøÇà ¹æÇâ Å¸ÀÔ
-	RwChar              chSubTargetEffect[MAX_DEFAULT_NAME];        ///< ¹üÀ§ °ø°İ½Ã ÁÖÀ§ Å¸°Ù¿¡°Ô Ç¥½ÃµÉ ÀÌÆåÆ®
-	RwChar              chTargetSoundName[MAX_DEFAULT_NAME];		///< Target¿¡ ¸Â¾ÒÀ» °æ¿ì ³ª¿À´Â Sound File Name
+	RwChar              chTargetEffectName[MAX_DEFAULT_NAME];		///< Targetì— í‘œì‹œë  Effect Name
+	ETargetEffectType	eTargetEffectType;							///< Target Effctì˜ ì§„í–‰ ë°©í–¥ íƒ€ì…
+	RwChar              chSubTargetEffect[MAX_DEFAULT_NAME];        ///< ë²”ìœ„ ê³µê²©ì‹œ ì£¼ìœ„ íƒ€ê²Ÿì—ê²Œ í‘œì‹œë  ì´í™íŠ¸
+	RwChar              chTargetSoundName[MAX_DEFAULT_NAME];		///< Targetì— ë§ì•˜ì„ ê²½ìš° ë‚˜ì˜¤ëŠ” Sound File Name
 	eChannelGroupType	eSoundType;									///< Sound type(CHANNEL_GROUP_VOICE_SOUND or CHANNEL_GROUP_EFFECT_SOUND)    
-	RwBool              bHitSoundEcho;                              ///< Hit½Ã »ç¿îµå°¡ Echo Àû¿ëµÉÁö À¯¹«
-	RwBool              bCameraShake;                               ///< Target Hit½Ã Camera ShakeÀ¯¹«
-	RwReal              fCameraShakeFactor;                         ///< Ä«¸Ş¶ó ¼ÎÀÌÅ© ÆÑÅÍ
-	RwReal              fCameraShakeMaxHeight;                      ///< Ä«¸Ş¶ó ¼ÎÀÌÅ© ÃÖ´ë°ª ÆÑÅÍ
-	RwChar              chWordEffect[MAX_DEFAULT_NAME];             ///< Target Hit½Ã ³ªÅ¸³¯ Word Effect (ex. ÆÄÆÅ)
+	RwBool              bHitSoundEcho;                              ///< Hitì‹œ ì‚¬ìš´ë“œê°€ Echo ì ìš©ë ì§€ ìœ ë¬´
+	RwBool              bCameraShake;                               ///< Target Hitì‹œ Camera Shakeìœ ë¬´
+	RwReal              fCameraShakeFactor;                         ///< ì¹´ë©”ë¼ ì…°ì´í¬ íŒ©í„°
+	RwReal              fCameraShakeMaxHeight;                      ///< ì¹´ë©”ë¼ ì…°ì´í¬ ìµœëŒ€ê°’ íŒ©í„°
+	RwChar              chWordEffect[MAX_DEFAULT_NAME];             ///< Target Hitì‹œ ë‚˜íƒ€ë‚  Word Effect (ex. íŒŒíŒ)
 
-	UEffectTypeExtraData uEffectTypeExtraData;                      ///< Effect Type¿¡ µû¸¥ Ãß°¡ µ¥ÀÌÅÍ Union
+	UEffectTypeExtraData uEffectTypeExtraData;                      ///< Effect Typeì— ë”°ë¥¸ ì¶”ê°€ ë°ì´í„° Union
 
 
 	SEventAnimHit() : eAttackType(ATTACK_TYPE_PHYSICAL),
@@ -101,7 +101,7 @@ struct SEventAnimHit : public SEventAnim
 	{
 		if (uiProjectileEffectType == BEID_PROJ_MULTI_HISSIDAN)
 		{
-			NTL_ARRAY_DELETE(uEffectTypeExtraData.multiHissidanData.pArrayAngle); // µ¿ÀûÀ¸·Î ÇÒ´çÇÑ°ÍÀÌ¶ó DeleteÇØÁà¾ß ÇÑ´Ù.
+			NTL_ARRAY_DELETE(uEffectTypeExtraData.multiHissidanData.pArrayAngle); // ë™ì ìœ¼ë¡œ í• ë‹¹í•œê²ƒì´ë¼ Deleteí•´ì¤˜ì•¼ í•œë‹¤.
 		}
 	}
 
@@ -120,13 +120,13 @@ struct SEventAnimEnd : public SEventAnim
 struct SEventVisualEffect : public SEventAnim
 {
 	RwChar  chEffectName[MAX_DEFAULT_NAME];     ///< Effect Name;
-	EBoneType eBoneType;                        ///< Effect°¡ ºÙÀ» Bone Type
-	RwChar  chBoneName[MAX_DEFAULT_NAME];       ///< Attach°¡ µÉ Bone Name
+	EBoneType eBoneType;                        ///< Effectê°€ ë¶™ì„ Bone Type
+	RwChar  chBoneName[MAX_DEFAULT_NAME];       ///< Attachê°€ ë  Bone Name
 	RwV3d   vOffSetPos;                         //<  Offset;    
-	RwBool  bAttach;                            ///< ¸ğµ¨¿¡ Attach ÇÒÁö À¯¹«
-	RwBool  bAttachBone;                        ///< Bone¿¡ Attach ÇÒÁö À¯¹« (TRUE = Bone Attach, FALSE = Pos Attach)
-	RwBool  bApplyScale;                        ///< ºÎ¸ğ EntityÀÇ ScaleÀ» Àû¿ëÇÒÁö À¯¹«
-	RwBool  bProjectileType;                    ///< ¹ß»çÃ¼Å¸ÀÔÀÎÁö À¯¹«
+	RwBool  bAttach;                            ///< ëª¨ë¸ì— Attach í• ì§€ ìœ ë¬´
+	RwBool  bAttachBone;                        ///< Boneì— Attach í• ì§€ ìœ ë¬´ (TRUE = Bone Attach, FALSE = Pos Attach)
+	RwBool  bApplyScale;                        ///< ë¶€ëª¨ Entityì˜ Scaleì„ ì ìš©í• ì§€ ìœ ë¬´
+	RwBool  bProjectileType;                    ///< ë°œì‚¬ì²´íƒ€ì…ì¸ì§€ ìœ ë¬´
 
 	unsigned int uiUnknown;
 
@@ -149,17 +149,17 @@ struct SEventVisualEffect : public SEventAnim
 
 struct SEventSound : public SEventAnim
 {
-	RwChar	chSoundName[MAX_DEFAULT_NAME * 2]; ///< Sound ÆÄÀÏ¸í (Sound Æú´õ¹× °æ·Î¸í Æ÷ÇÔ)
-	RwChar	chSoundName2[MAX_DEFAULT_NAME * 2]; ///< Sound ÆÄÀÏ¸í (Sound Æú´õ¹× °æ·Î¸í Æ÷ÇÔ)
-	RwChar	chSoundName3[MAX_DEFAULT_NAME * 2]; ///< Sound ÆÄÀÏ¸í (Sound Æú´õ¹× °æ·Î¸í Æ÷ÇÔ)
-	RwChar	chSoundName4[MAX_DEFAULT_NAME * 2]; ///< Sound ÆÄÀÏ¸í (Sound Æú´õ¹× °æ·Î¸í Æ÷ÇÔ)
+	RwChar	chSoundName[MAX_DEFAULT_NAME * 2]; ///< Sound íŒŒì¼ëª… (Sound í´ë”ë° ê²½ë¡œëª… í¬í•¨)
+	RwChar	chSoundName2[MAX_DEFAULT_NAME * 2]; ///< Sound íŒŒì¼ëª… (Sound í´ë”ë° ê²½ë¡œëª… í¬í•¨)
+	RwChar	chSoundName3[MAX_DEFAULT_NAME * 2]; ///< Sound íŒŒì¼ëª… (Sound í´ë”ë° ê²½ë¡œëª… í¬í•¨)
+	RwChar	chSoundName4[MAX_DEFAULT_NAME * 2]; ///< Sound íŒŒì¼ëª… (Sound í´ë”ë° ê²½ë¡œëª… í¬í•¨)
 	eChannelGroupType eSoundType;				///< Sound Type (CHANNEL_GROUP_VOICE_SOUND or CHANNEL_GROUP_EFFECT_SOUND)    
-	RwBool  bLoop;                              ///< Sound Loop À¯¹«
+	RwBool  bLoop;                              ///< Sound Loop ìœ ë¬´
 	RwReal  fSoundVolume;                       ///< Sound Volume
-	RwReal  fSoundDist;                         ///< À¯È¿ °Å¸®
-	RwReal  fSoundDecayDist;                    ///< »ç¿îµå °¨¼è °Å¸®
-	RwReal  fSoundPitchMin;                     ///< »ç¿îµå ÇÇÄ¡ ÃÖ¼Ò°ª
-	RwReal  fSoundPitchMax;                     ///< »ç¿îµå ÇÇÄ¡ ÃÖ´ë°ª
+	RwReal  fSoundDist;                         ///< ìœ íš¨ ê±°ë¦¬
+	RwReal  fSoundDecayDist;                    ///< ì‚¬ìš´ë“œ ê°ì‡  ê±°ë¦¬
+	RwReal  fSoundPitchMin;                     ///< ì‚¬ìš´ë“œ í”¼ì¹˜ ìµœì†Œê°’
+	RwReal  fSoundPitchMax;                     ///< ì‚¬ìš´ë“œ í”¼ì¹˜ ìµœëŒ€ê°’
 
 	SEventSound()
 	{
@@ -213,8 +213,8 @@ struct SEventLinkEffect : public SEventAnim
 //////////////////////////////////////////////////////////////////////////
 struct SEventWeightTime : public SEventAnim
 {
-	RwReal fLifeTime;       ///< Slow È¿°ú°¡ ¹ßÈÖµÉ ½Ã°£
-	RwReal fWeightValue;    ///< ¾ó¸¶³ª ´À·ÁÁúÁö¿¡ ´ëÇÑ Weight°ª
+	RwReal fLifeTime;       ///< Slow íš¨ê³¼ê°€ ë°œíœ˜ë  ì‹œê°„
+	RwReal fWeightValue;    ///< ì–¼ë§ˆë‚˜ ëŠë ¤ì§ˆì§€ì— ëŒ€í•œ Weightê°’
 
 	SEventWeightTime()
 	{
@@ -227,38 +227,38 @@ struct SEventWeightTime : public SEventAnim
 
 struct SEventTrace : public SEventAnim
 {
-	/// Trace°¡ ¾îµğ¿¡ ºÙÀ»ÁöÀÇ Å¸ÀÔ
+	/// Traceê°€ ì–´ë””ì— ë¶™ì„ì§€ì˜ íƒ€ì…
 	enum EAttachType
 	{
-		CHARACTER_BONE,     ///< Ä³¸¯ÅÍ º»¿¡ ºÙ´Â´Ù.
-		WEAPONE_BONE,       ///< ¹«±â º»¿¡ ºÙ´Â´Ù.
-		SUB_WEAPON_BONE,    ///< º¸Á¶¹«±â º»¿¡ ºÙ´Â´Ù.
+		CHARACTER_BONE,     ///< ìºë¦­í„° ë³¸ì— ë¶™ëŠ”ë‹¤.
+		WEAPONE_BONE,       ///< ë¬´ê¸° ë³¸ì— ë¶™ëŠ”ë‹¤.
+		SUB_WEAPON_BONE,    ///< ë³´ì¡°ë¬´ê¸° ë³¸ì— ë¶™ëŠ”ë‹¤.
 	};
 
-	/// ±ËÀû ¼³Á¤ÀÌ ÀÌº¥Æ® ¼³Á¤°ªÀ» µû¸¦Áö, Weapon ¼³Á¤°ªÀ» µû¸¦Áö °á°Ï
+	/// ê¶¤ì  ì„¤ì •ì´ ì´ë²¤íŠ¸ ì„¤ì •ê°’ì„ ë”°ë¥¼ì§€, Weapon ì„¤ì •ê°’ì„ ë”°ë¥¼ì§€ ê²°ê²…
 	enum ETraceKind
 	{
-		EVENT_TRACE,        ///< EventÀÇ ¼³Á¤°ªÀ» µû¸¥´Ù.
-		ITEM_TRACE,         ///< ItemÀÇ ¼³Á¤°ªÀ» µû¸¥´Ù.
+		EVENT_TRACE,        ///< Eventì˜ ì„¤ì •ê°’ì„ ë”°ë¥¸ë‹¤.
+		ITEM_TRACE,         ///< Itemì˜ ì„¤ì •ê°’ì„ ë”°ë¥¸ë‹¤.
 	};
 
-	RwReal  fLifeTime;           ///< ±ËÀûÀÇ Ç¥½Ã ½Ã°£
-	RwReal  fEdgeLifeTime;       ///< EdgeÀÇ Life Time    
-	EAttachType eAttachType;     ///< ±ËÀûÀÌ ¾îµğ¿¡ ºÙÀ»Áö 
-	ETraceKind  eTraceKind;      ///< ±ËÀûÀÌ Item ¼³Á¤À» µû¸¦Áö
-	RwChar  strStartBoneName[MAX_DEFAULT_NAME];    ///< Ã¹¹øÂ° BoneÀÇ ÀÌ¸§
-	RwChar  strEndBoneName[MAX_DEFAULT_NAME];      ///< µÎ¹øÂ° BoneÀÇ ÀÌ¸§
+	RwReal  fLifeTime;           ///< ê¶¤ì ì˜ í‘œì‹œ ì‹œê°„
+	RwReal  fEdgeLifeTime;       ///< Edgeì˜ Life Time    
+	EAttachType eAttachType;     ///< ê¶¤ì ì´ ì–´ë””ì— ë¶™ì„ì§€ 
+	ETraceKind  eTraceKind;      ///< ê¶¤ì ì´ Item ì„¤ì •ì„ ë”°ë¥¼ì§€
+	RwChar  strStartBoneName[MAX_DEFAULT_NAME];    ///< ì²«ë²ˆì§¸ Boneì˜ ì´ë¦„
+	RwChar  strEndBoneName[MAX_DEFAULT_NAME];      ///< ë‘ë²ˆì§¸ Boneì˜ ì´ë¦„
 	RwChar  strTexture[MAX_DEFAULT_NAME];          ///< Texture File Name
-	RwV3d   v3dStartBoneOffset;  ///< Ã¹¹øÂ° BoneÀÇ Offset
-	RwV3d   v3dEndBoneOffset;    ///< µÎ¹øÂ° BoneÀÇ Offset
-	RwReal  fEdgeGap;             ///< ¸îÃÊ¸¶´Ù EdgeÀ» »ı¼ºÇÒÁöÀÇ °ª
-	RwInt32 nSplinePointCount;   ///< SplineÀ¸·Î »ı¼ºÇÏ´Â ¹öÅØ½ºÀÇ °¹¼ö (µÎ°³ÀÇ Edge»çÀÌ¿¡ »ı¼ºµÇ´Â ¹öÅØ½ºÀÇ °³¼öÀÌ´Ù)
-	RwInt32 nMaxEdgeCount;       ///< ÃÖ´ë Edge Count
-	RwReal  fMaxLength;          ///< ±ËÀûÀÇ ÃÖ´ë ±æÀÌ
+	RwV3d   v3dStartBoneOffset;  ///< ì²«ë²ˆì§¸ Boneì˜ Offset
+	RwV3d   v3dEndBoneOffset;    ///< ë‘ë²ˆì§¸ Boneì˜ Offset
+	RwReal  fEdgeGap;             ///< ëª‡ì´ˆë§ˆë‹¤ Edgeì„ ìƒì„±í• ì§€ì˜ ê°’
+	RwInt32 nSplinePointCount;   ///< Splineìœ¼ë¡œ ìƒì„±í•˜ëŠ” ë²„í…ìŠ¤ì˜ ê°¯ìˆ˜ (ë‘ê°œì˜ Edgeì‚¬ì´ì— ìƒì„±ë˜ëŠ” ë²„í…ìŠ¤ì˜ ê°œìˆ˜ì´ë‹¤)
+	RwInt32 nMaxEdgeCount;       ///< ìµœëŒ€ Edge Count
+	RwReal  fMaxLength;          ///< ê¶¤ì ì˜ ìµœëŒ€ ê¸¸ì´
 	RwBlendFunction eSrcBlend;  ///< Src Blend State
 	RwBlendFunction eDestBlend; ///< Dest Blend State
-	RwRGBA  colStartColor;       ///< ½ÃÀÛ Color°ª
-	RwRGBA  colEndColor;         ///< ³¡ Color°ª   
+	RwRGBA  colStartColor;       ///< ì‹œì‘ Colorê°’
+	RwRGBA  colEndColor;         ///< ë Colorê°’   
 
 	SEventTrace() : fLifeTime(1.0f),
 		fEdgeLifeTime(0.3f),
@@ -285,7 +285,7 @@ struct SEventTrace : public SEventAnim
 
 };
 
-/// Sub Weapon È°¼ºÈ­ ÀÌº¥Æ®
+/// Sub Weapon í™œì„±í™” ì´ë²¤íŠ¸
 struct SEventSubWeapon : SEventAnim
 {
 	ESubWeaponActiveFlag    eSubWeaponActiveFlag;
@@ -297,15 +297,15 @@ struct SEventSubWeapon : SEventAnim
 
 };
 
-/// Post Effect ÀÌº¥Æ® (È­¸éÀ§¿¡ Áß½É¼± Ç¥½Ã ÀÌº¥Æ®)
+/// Post Effect ì´ë²¤íŠ¸ (í™”ë©´ìœ„ì— ì¤‘ì‹¬ì„  í‘œì‹œ ì´ë²¤íŠ¸)
 struct SEventPostEffect : SEventAnim
 {
-	RwChar                   szPostEffectName[MAX_DEFAULT_NAME];          ///< »ç¿ëµÉ PostEffectÀÇ ÀÌ¸§
-	EPostEffectTypeFlag      eTarget;                                     ///< PostEffectÀÇ Target Á¾·ù
-	RwV3d                    v3dOffset;                                   ///< PostEffect°¡ ºÙÀ» À§Ä¡ÀÇ Offset°ª
-	RwBool                   bCenterFixEnable;                            ///< Áß½ÉÁ¡ °íÁ¤ ±â´É
-	RwReal                   fTargetHeight;                               ///< ´ë»óÀ» Å¸°ÙÀ¸·Î ¼³Á¤ÇÑ°æ¿ì ³ôÀÌ°ª(¹Ù¿îµù¹Ú½º »ó´ë°ª)
-	RwChar                   szPCBoneName[MAX_DEFAULT_NAME];              ///< ´ë»óÀ» PC·Î ¼³Á¤ÇÑ°æ¿ì AttachÇÒ BoneÀÇ ÀÌ¸§
+	RwChar                   szPostEffectName[MAX_DEFAULT_NAME];          ///< ì‚¬ìš©ë  PostEffectì˜ ì´ë¦„
+	EPostEffectTypeFlag      eTarget;                                     ///< PostEffectì˜ Target ì¢…ë¥˜
+	RwV3d                    v3dOffset;                                   ///< PostEffectê°€ ë¶™ì„ ìœ„ì¹˜ì˜ Offsetê°’
+	RwBool                   bCenterFixEnable;                            ///< ì¤‘ì‹¬ì  ê³ ì • ê¸°ëŠ¥
+	RwReal                   fTargetHeight;                               ///< ëŒ€ìƒì„ íƒ€ê²Ÿìœ¼ë¡œ ì„¤ì •í•œê²½ìš° ë†’ì´ê°’(ë°”ìš´ë”©ë°•ìŠ¤ ìƒëŒ€ê°’)
+	RwChar                   szPCBoneName[MAX_DEFAULT_NAME];              ///< ëŒ€ìƒì„ PCë¡œ ì„¤ì •í•œê²½ìš° Attachí•  Boneì˜ ì´ë¦„
 
 	SEventPostEffect()
 	{
@@ -352,12 +352,12 @@ struct SEventAlpha : SEventAnim
 	};
 	//////////////////////////////////////////////////////////////////////////
 
-	RwInt32       nStartAlpha;              ///< Fade ½ÃÀÛ ¾ËÆÄ°ª (0~255)
-	RwInt32       nDestAlpha;               ///< Fade Dest ¾ËÆÄ°ª (0~255)    
-	RwReal        fFadeTime;                ///< Fade µÇ´Â ½Ã°£
-	RwReal        fLifeTime;                ///< ÀÌº¥Æ®°¡ À¯ÁöµÇ´Â Life Time
-	EAlphaEventType eAlphaEventType;        ///< ¾ËÆÄ ÀÌº¥Æ® Àû¿ë Å¸ÀÔ
-	BITFLAG       bfAtomicList;             ///< ¾ËÆÄ°¡ Àû¿ëµÉ ¾ÆÅä¹ÍµéÀÇ Index ÇÃ·¡±×
+	RwInt32       nStartAlpha;              ///< Fade ì‹œì‘ ì•ŒíŒŒê°’ (0~255)
+	RwInt32       nDestAlpha;               ///< Fade Dest ì•ŒíŒŒê°’ (0~255)    
+	RwReal        fFadeTime;                ///< Fade ë˜ëŠ” ì‹œê°„
+	RwReal        fLifeTime;                ///< ì´ë²¤íŠ¸ê°€ ìœ ì§€ë˜ëŠ” Life Time
+	EAlphaEventType eAlphaEventType;        ///< ì•ŒíŒŒ ì´ë²¤íŠ¸ ì ìš© íƒ€ì…
+	BITFLAG       bfAtomicList;             ///< ì•ŒíŒŒê°€ ì ìš©ë  ì•„í† ë¯¹ë“¤ì˜ Index í”Œë˜ê·¸
 
 
 	SEventAlpha()
@@ -372,7 +372,7 @@ struct SEventAlpha : SEventAnim
 	}
 };
 
-// Æø¹ß ÀÌº¥Æ®
+// í­ë°œ ì´ë²¤íŠ¸
 struct SEventExplosion : SEventAnim
 {
 	ENtlPLExplosionEventType  eType;
@@ -384,7 +384,7 @@ struct SEventExplosion : SEventAnim
 	}
 };
 
-// ¿¬Ãâ ÀÌº¥Æ®
+// ì—°ì¶œ ì´ë²¤íŠ¸
 struct SEventDirect : SEventAnim
 {
 	ENtlPLDirectEventType eType;
@@ -396,7 +396,7 @@ struct SEventDirect : SEventAnim
 	}
 };
 
-// Ä®¶ó Ã¼ÀÎÁö ÀÌº¥Æ®
+// ì¹¼ë¼ ì²´ì¸ì§€ ì´ë²¤íŠ¸
 struct SEventColorChange : SEventAnim
 {
 	EColorChangeType eType;
@@ -415,7 +415,7 @@ struct SEventColorChange : SEventAnim
 	}
 };
 
-/// ´Ã¾î³¯ BONE¿¡ ´ëÇÑ Á¤º¸
+/// ëŠ˜ì–´ë‚  BONEì— ëŒ€í•œ ì •ë³´
 struct StretchBoneInfo
 {
 	RwChar szBoneName[MAX_DEFAULT_NAME];
@@ -430,7 +430,7 @@ struct StretchBoneInfo
 	}
 };
 
-/// BONEÀ» ´Ã¸®´Â ÀÌº¥Æ®
+/// BONEì„ ëŠ˜ë¦¬ëŠ” ì´ë²¤íŠ¸
 struct SEventStretch : SEventAnim
 {
 	EStretchEventType eType;
@@ -459,7 +459,7 @@ struct SEventStretch : SEventAnim
 	}
 };
 
-/// ½ºÅ³µî¿¡¼­ »ç¿ëµÇ´Â Æ®¸®°Å ÀÌº¥Æ®
+/// ìŠ¤í‚¬ë“±ì—ì„œ ì‚¬ìš©ë˜ëŠ” íŠ¸ë¦¬ê±° ì´ë²¤íŠ¸
 struct SEventTrigger : SEventAnim
 {
 	SEventTrigger()
@@ -468,7 +468,7 @@ struct SEventTrigger : SEventAnim
 	}
 };
 
-/// ½ºÅ³ Äµ½½¿¡ »ç¿ëµÇ´Â ÀÌº¥Æ®
+/// ìŠ¤í‚¬ ìº”ìŠ¬ì— ì‚¬ìš©ë˜ëŠ” ì´ë²¤íŠ¸
 struct SEventSkillCancel : SEventAnim
 {
 	SEventSkillCancel()
@@ -477,7 +477,7 @@ struct SEventSkillCancel : SEventAnim
 	}
 };
 
-/// °¢ ÀÌº¥Æ® ±¸Á¶Ã¼ÀÇ »çÀÌÁî¸¦ ¹İÈ¯ÇÑÇÏ´Â ÇÔ¼ö
+/// ê° ì´ë²¤íŠ¸ êµ¬ì¡°ì²´ì˜ ì‚¬ì´ì¦ˆë¥¼ ë°˜í™˜í•œí•˜ëŠ” í•¨ìˆ˜
 static RwUInt32 GetAnimEventSize(EAnimEventType eType)
 {
     switch(eType)

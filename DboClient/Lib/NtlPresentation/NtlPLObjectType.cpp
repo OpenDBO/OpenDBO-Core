@@ -86,7 +86,7 @@ void CNtlPLObjectTypeHasProperty::Update(RwReal fElapsed)
 		return;
 	}
 
-	// WorldState¿¡¼­ ÇÑ¹ø Ã³¸® ÇØµµ µÉ °Í °°´Ù.
+	// WorldStateì—ì„œ í•œë²ˆ ì²˜ë¦¬ í•´ë„ ë  ê²ƒ ê°™ë‹¤.
 	if (m_fObjectPropVariationRestTime == dMINI_INDOOR_EFFECT_SWITCHING_TIME)
 	{
 		// send change world space without delay

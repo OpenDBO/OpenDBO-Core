@@ -6,7 +6,7 @@
 
 /*!
  * \Animation
- * Animation Channel(ÇÏ³ª)¸¦ Ã³¸® ÇÑ´Ù.
+ * Animation Channel(í•˜ë‚˜)ë¥¼ ì²˜ë¦¬ í•œë‹¤.
  * 
  */
 class CNtlAnimChannel
@@ -20,7 +20,7 @@ protected:
 	SInstanceAnimData	*m_pAnimData;							///< Animation Instance Data Reference
 
 	RwBool				m_bLoop;								///< Loop Animation
-	RwBool				m_bAnimEnd;								///< Loop°¡ ¾Æ´Ò°æ¿ì AnimationÀÌ ³¡³µ´ÂÁö
+	RwBool				m_bAnimEnd;								///< Loopê°€ ì•„ë‹ê²½ìš° Animationì´ ëë‚¬ëŠ”ì§€
 
 public:
 	RwBool	Create(RpHAnimHierarchy *pBaseHierarchy);

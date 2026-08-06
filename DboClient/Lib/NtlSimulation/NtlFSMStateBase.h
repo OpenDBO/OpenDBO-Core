@@ -2,7 +2,7 @@
  *
  * File			: NtlFSMStateBase.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2006. 2. 9	
  * Abstract		: Finite state machine base class
  *****************************************************************************
@@ -25,7 +25,7 @@ class CNtlFSMAgent;
 class CNtlBehaviorBase;
 class CNtlPLEntity;
 
-// ¾Æ·¡ÀÇ new class_name °ú delete pState¸¦ NTL_NEW ¿Í NTL_DELETE·Î ¹Ù²ÙÁö ¸»¾Æ ÁÖ¼¼¿ä
+// ì•„ë˜ì˜ new class_name ê³¼ delete pStateë¥¼ NTL_NEW ì™€ NTL_DELETEë¡œ ë°”ê¾¸ì§€ ë§ì•„ ì£¼ì„¸ìš”
 // by Jang HyungSuk.
 
 #define DECLEAR_FSMSTATE_FACTROY(class_name) \
@@ -51,7 +51,7 @@ public: \
 
 #define MAX_FSMS_NAME	32
 
-///< FSM State Å¬·¡½ºµéÀÇ ºÎ¸ğ Ãß»ó Å¬·¡½º
+///< FSM State í´ë˜ìŠ¤ë“¤ì˜ ë¶€ëª¨ ì¶”ìƒ í´ë˜ìŠ¤
 class CNtlFSMStateBase
 {
 protected:
@@ -79,19 +79,19 @@ public:
 	virtual ~CNtlFSMStateBase();
 
 	/**
-    *  stateÀÇ »ı¼º/¼Ò¸êÀÇ factory ÇÔ¼ö.
+    *  stateì˜ ìƒì„±/ì†Œë©¸ì˜ factory í•¨ìˆ˜.
     */
 	virtual CNtlFSMStateBase* CreateStateFactory(void) = 0;
 	virtual	void DestroyStateFactory(CNtlFSMStateBase *pState) = 0;
 
 	/**
-    *  stateÀÇ »ı¼º/¼Ò¸ê½Ã È£ÃâµÇ´Â ÇÔ¼ö.
+    *  stateì˜ ìƒì„±/ì†Œë©¸ì‹œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜.
     */
 	virtual RwBool Create(void) { return TRUE; }
 	virtual void Destroy(void);
 
 	/**
-    *  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+    *  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
     */
 	virtual void Enter(void);
 	virtual void Exit(void);
@@ -118,21 +118,21 @@ public:
 	CNtlSobActor*   GetActor(void) const;
 
 	/**
-    *  ÇöÀçÀÇ state°¡ ³¡³ª°í, ¿¹Àü state·Î º¹±ÍÇÒ ¶§ »ç¿ëÇÏ´Â ÇÔ¼ö.(move => jump°¡ µé¾î¿À¸é move »óÅÂ¸¦ queuing ½ÃÅ²´Ù.)
+    *  í˜„ì¬ì˜ stateê°€ ëë‚˜ê³ , ì˜ˆì „ stateë¡œ ë³µê·€í•  ë•Œ ì‚¬ìš©í•˜ëŠ” í•¨ìˆ˜.(move => jumpê°€ ë“¤ì–´ì˜¤ë©´ move ìƒíƒœë¥¼ queuing ì‹œí‚¨ë‹¤.)
     */
 	void                SetQueued(const CNtlFSMStateBase *pQueuedState);
 	CNtlFSMStateBase*   GetQueued(void) const;
 	void                ReleaseQueued(void);
 
     /**
-    *  ÇöÀçÀÇ state°¡ ³¡³µ´ÂÁö¸¦ °Ë»çÇÏ´Â ÇÔ¼ö.
+    *  í˜„ì¬ì˜ stateê°€ ëë‚¬ëŠ”ì§€ë¥¼ ê²€ì‚¬í•˜ëŠ” í•¨ìˆ˜.
     */
     void    ResetFinish(void);
     void    Finish(void);
     RwBool  IsFinish(void) const;
 
 	/**
-    *  ÇöÀçÀÇ state¿¡¼­ avtiveµÈ behavior¸¦ ¼³Á¤ÇÏ´Â ÇÔ¼ö.
+    *  í˜„ì¬ì˜ stateì—ì„œ avtiveëœ behaviorë¥¼ ì„¤ì •í•˜ëŠ” í•¨ìˆ˜.
     */
 	void                AddBehavior(CNtlBehaviorBase *pBehavior);
 	RwInt32             GetBehaviorCount(void) const;
@@ -140,9 +140,9 @@ public:
 	void                RemoveAllBehavior(void);
 	void                UpdateBehavior(void);
 
-	void                AddPLEntity(CNtlPLEntity *pPLEntity);   ///< Visual Ãß°¡ÇÑ´Ù.	
-	CNtlFSMAgent*       GetFSMAgent(void);                      ///< ÇöÀç Agent¸¦ ¾ò¾î¿Â´Ù.
-	virtual RwBool      IsActorActiveState(void);               ///< °´Ã¼°¡ Active °¡´ÉÇÑ »óÅÂÀÎ°¡?
+	void                AddPLEntity(CNtlPLEntity *pPLEntity);   ///< Visual ì¶”ê°€í•œë‹¤.	
+	CNtlFSMAgent*       GetFSMAgent(void);                      ///< í˜„ì¬ Agentë¥¼ ì–»ì–´ì˜¨ë‹¤.
+	virtual RwBool      IsActorActiveState(void);               ///< ê°ì²´ê°€ Active ê°€ëŠ¥í•œ ìƒíƒœì¸ê°€?
 
 	static void Terminate(RwBool bTerminate);
 };

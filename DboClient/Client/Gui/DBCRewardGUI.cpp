@@ -26,7 +26,7 @@
 
 #include "DBCDragonDialogGUI.h"
 
-#define TIME_HURRYUP	60 * 1000				// 1ºĞ
+#define TIME_HURRYUP	60 * 1000				// 1ë¶„
 
 #define REWARD_LIST_X		26
 #define REWARD_LIST_Y		48
@@ -134,7 +134,7 @@ RwBool CDBCRewardGUI::Create()
 
 	m_pWorldConceptDBC = (CNtlWorldConceptDBC*)GetNtlWorldConcept()->GetWorldConceptController(WORLD_PLAY_DRAGONBALL_COLLECT);
 
-	// °ü·Ã Å×ÀÌºí
+	// ê´€ë ¨ í…Œì´ë¸”
 	m_pDBRewardTextTable = API_GetTableContainer()->GetTextAllTable()->GetDBRewardTbl();
 	m_pDragonBallTable	 = API_GetTableContainer()->GetDragonBallTable();
 	m_pDragonBallRewardTable = API_GetTableContainer()->GetDragonBallRewardTable();
@@ -196,7 +196,7 @@ VOID CDBCRewardGUI::Update( RwReal fElapsed )
 		return;
     }
 
-	// Á¦ÇÑ ½Ã°£À» Ç¥½ÃÇÑ´Ù.
+	// ì œí•œ ì‹œê°„ì„ í‘œì‹œí•œë‹¤.
 	RwInt32 nMinute = (RwInt32)(uiRemainTime / (60 * 1000));
 	RwInt32 nSecond = (RwInt32)((uiRemainTime - nMinute * 60 * 1000) / 1000);
 	
@@ -205,7 +205,7 @@ VOID CDBCRewardGUI::Update( RwReal fElapsed )
 
 	if(!m_bDisplayHurryUp && uiRemainTime <= TIME_HURRYUP)
 	{
-		//µå·¡°ïÀÇ ´ë»ç (½Ã°£ÀÌ ¾ø´Ù. »¡¸® ¼±ÅÃÇØ¶ó)		
+		//ë“œë˜ê³¤ì˜ ëŒ€ì‚¬ (ì‹œê°„ì´ ì—†ë‹¤. ë¹¨ë¦¬ ì„ íƒí•´ë¼)		
 		sDRAGONBALL_TBLDAT* pData = (sDRAGONBALL_TBLDAT*)m_pDragonBallTable->GetDBTbldat((BYTE)m_pWorldConceptDBC->GetDBKind());
 		if(pData)
 		{
@@ -237,16 +237,16 @@ VOID CDBCRewardGUI::HandleEvents( RWS::CMsg &pMsg )
 {
 	if(pMsg.Id == g_EventDBCNarrationEnd)
 	{
-		// ³ª·¹ÀÌ¼ÇÀÌ ³¡³­ÈÄ º¸»ó UI µîÀå
+		// ë‚˜ë ˆì´ì…˜ì´ ëë‚œí›„ ë³´ìƒ UI ë“±ì¥
         RwInt32 nDBCState = GetNtlWorldConcept()->GetWorldConceptController(WORLD_PLAY_DRAGONBALL_COLLECT)->GetState();
 
 		if(nDBCState == WORLD_DBC_REWARD_UI ||
-           nDBCState == WORLD_DBC_NARRATION_START)                  /// ESC·Î Äµ½½ÇßÀ»¶§
+           nDBCState == WORLD_DBC_NARRATION_START)                  /// ESCë¡œ ìº”ìŠ¬í–ˆì„ë•Œ
 		{
 			GetDialogManager()->OpenDialog(DIALOG_DBC_REWARD);
 		}
 	}
-	else if(pMsg.Id == g_EventDBCReward_Res)	// º¸»ó ¼±ÅÃ
+	else if(pMsg.Id == g_EventDBCReward_Res)	// ë³´ìƒ ì„ íƒ
 	{
 		SNtlEventDBC_Res* pData = (SNtlEventDBC_Res*)pMsg.pData;
 		if(pData)
@@ -271,7 +271,7 @@ VOID CDBCRewardGUI::HandleEvents( RWS::CMsg &pMsg )
 				break;
 			case GAME_ITEM_INVEN_FULL:
 				{
-					// ¿ë½Å ´ë»ç "ÀÎº¥ÀÌ °¡µæÃ¡´Ù ÀÎº¥À» ºñ¿ö¶ó"					
+					// ìš©ì‹  ëŒ€ì‚¬ "ì¸ë²¤ì´ ê°€ë“ì°¼ë‹¤ ì¸ë²¤ì„ ë¹„ì›Œë¼"					
 					sDRAGONBALL_TBLDAT* pDBData = (sDRAGONBALL_TBLDAT*)m_pDragonBallTable->GetDBTbldat((BYTE)m_pWorldConceptDBC->GetDBKind());
 					CDBCDragonDialogGUI::GetInstance()->SetText(pDBData->inventoryFullDialog, CDBCDragonDialogGUI::E_DIALOG_WARN);					
 				}
@@ -303,10 +303,10 @@ VOID CDBCRewardGUI::HandleEvents( RWS::CMsg &pMsg )
 			}
 		}
 	}
-	else if(pMsg.Id == g_EventDBCCollect_Nfy)	// Á¦ÇÑ ½Ã°£ ÃÊ°ú
+	else if(pMsg.Id == g_EventDBCCollect_Nfy)	// ì œí•œ ì‹œê°„ ì´ˆê³¼
 	{
-		// ½Ã°£ÀÌ °æ°úÇÏ¸é º¸»ó UI¸¦ ¾ø¾Ö°í, ´ë»ç Ç¥½ÃÈÄ ¿ë½Å ¼Ò¸ê »óÅÂ·Î ÀüÀÌÇÑ´Ù.
-		// µå·¡°ïÀÇ ´ë»ç (½Ã°£ÀÌ ³Ê¹« °É¸®´Â±º. ±×³É °¡°Ú´Ù)
+		// ì‹œê°„ì´ ê²½ê³¼í•˜ë©´ ë³´ìƒ UIë¥¼ ì—†ì• ê³ , ëŒ€ì‚¬ í‘œì‹œí›„ ìš©ì‹  ì†Œë©¸ ìƒíƒœë¡œ ì „ì´í•œë‹¤.
+		// ë“œë˜ê³¤ì˜ ëŒ€ì‚¬ (ì‹œê°„ì´ ë„ˆë¬´ ê±¸ë¦¬ëŠ”êµ°. ê·¸ëƒ¥ ê°€ê² ë‹¤)
 		sDRAGONBALL_TBLDAT* pData = (sDRAGONBALL_TBLDAT*)m_pDragonBallTable->GetDBTbldat((BYTE)m_pWorldConceptDBC->GetDBKind());
 		CDBCDragonDialogGUI::GetInstance()->SetText(pData->timeoverDialog, CDBCDragonDialogGUI::E_DIALOG_WARN);
 		CDBCDragonDialogGUI::GetInstance()->ShowNormalDialog(FALSE);
@@ -319,7 +319,7 @@ VOID CDBCRewardGUI::HandleEvents( RWS::CMsg &pMsg )
 
 void CDBCRewardGUI::CreateInstance() 
 {
-	// ½Ì±ÛÅæ »ı¼º°ú ÇÔ²² ´ÙÀÌ¾ó·Î±× ¸Å´ÏÀú¿¡ µî·ÏÇÑ´Ù.
+	// ì‹±ê¸€í†¤ ìƒì„±ê³¼ í•¨ê»˜ ë‹¤ì´ì–¼ë¡œê·¸ ë§¤ë‹ˆì €ì— ë“±ë¡í•œë‹¤.
 	if(!m_pInstance)
 	{
 		m_pInstance = NTL_NEW CDBCRewardGUI("DBCRewardGUI");
@@ -329,7 +329,7 @@ void CDBCRewardGUI::CreateInstance()
 			NTL_DELETE(m_pInstance);
 		}
 
-		// Gui Manager¿¡ Ãß°¡ÇÑ´Ù.
+		// Gui Managerì— ì¶”ê°€í•œë‹¤.
 		GetNtlGuiManager()->AddGui(m_pInstance);
 		GetDialogManager()->RegistDialog(DIALOG_DBC_REWARD, m_pInstance, &CDBCRewardGUI::SwitchDialog);
 
@@ -350,7 +350,7 @@ void CDBCRewardGUI::DeleteInstance()
 
 VOID CDBCRewardGUI::OnClickBackBtn( gui::CComponent* pComponent ) 
 {
-	// »óÀ§ ´Ü°è·Î µ¹¾Æ°£´Ù.
+	// ìƒìœ„ ë‹¨ê³„ë¡œ ëŒì•„ê°„ë‹¤.
 	if(m_pPrevItem)
 	{
 		ShowList(m_pPrevItem, 0);
@@ -360,11 +360,11 @@ VOID CDBCRewardGUI::OnClickBackBtn( gui::CComponent* pComponent )
 
 VOID CDBCRewardGUI::OnClickOkBtn( gui::CComponent* pComponent ) 
 {
-	// º¸»óÀ» ¼±ÅÃÇß´Ù
+	// ë³´ìƒì„ ì„ íƒí–ˆë‹¤
 	if(!m_pRewardItem)
 		return;
 
-	// ÀÏ¹İ ´ëÈ­Ã¢À» ¾ø¾Ø´Ù
+	// ì¼ë°˜ ëŒ€í™”ì°½ì„ ì—†ì•¤ë‹¤
 	CDBCDragonDialogGUI::GetInstance()->ShowNormalDialog(FALSE);
 
     if(!m_pDragonBallRewardTable->FindData(m_pRewardItem->pData->tblidx))
@@ -373,7 +373,7 @@ VOID CDBCRewardGUI::OnClickOkBtn( gui::CComponent* pComponent )
         return;
     }
 
-	// ¼­¹ö¿¡ º¸»ó ÆĞÅ¶À» º¸³½´Ù.
+	// ì„œë²„ì— ë³´ìƒ íŒ¨í‚·ì„ ë³´ë‚¸ë‹¤.
 	GetDboGlobal()->GetGamePacketGenerator()->SendDBCRewardReq(m_pWorldConceptDBC->GetAltarSerialID(), m_pRewardItem->pData->tblidx);
 }
 
@@ -430,17 +430,17 @@ void CDBCRewardGUI::OnClickedItem( RwInt32 iIndex )
 	
 	if(pRewardItem->itemChild.size() == 0)
 	{
-		if(pRewardItem->pData->byRewardType == DRAGONBALL_REWARD_TYPE_SKILL) // ÀÌ¹Ì °¡Áö°í ÀÖ´Â ½ºÅ³ÀÌ¸é ¼±ÅÃÇÏÁö ¸ø ÇÑ´Ù.
+		if(pRewardItem->pData->byRewardType == DRAGONBALL_REWARD_TYPE_SKILL) // ì´ë¯¸ ê°€ì§€ê³  ìˆëŠ” ìŠ¤í‚¬ì´ë©´ ì„ íƒí•˜ì§€ ëª» í•œë‹¤.
 		{
 			if(IsExistSkill(pRewardItem->pData->rewardLinkTblidx))
 				return;
 		}
 
 		m_pPrevItem = pRewardItem->pParent;
-		// ÀÚ½Ä ³ëµå°¡ ¾øÀ¸¸é ¸¶Áö¸· ³ëµå, Áï º¸»ó Ç×¸ñÀÌ´Ù.
+		// ìì‹ ë…¸ë“œê°€ ì—†ìœ¼ë©´ ë§ˆì§€ë§‰ ë…¸ë“œ, ì¦‰ ë³´ìƒ í•­ëª©ì´ë‹¤.
 		SetStatus(E_REWARD_STATUS_CONFIRM);
 
-		// ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ°ú NameÀ» Ç¥½ÃÇÑ´Ù.
+		// ì•„ì´í…œ ì•„ì´ì½˜ê³¼ Nameì„ í‘œì‹œí•œë‹¤.
 		ShowItemInfo(pRewardItem);
 	}
 	else
@@ -455,17 +455,17 @@ void CDBCRewardGUI::ShowList(SRewardItem* pItem, RwInt32 nPos)
 {
 	m_ButtonList.ClearItem();
 
-	//  ¿ë½ÅÀÇ ÄÚ¸àÆ® Ç¥½Ã (¸»Ç³¼±)
+	//  ìš©ì‹ ì˜ ì½”ë©˜íŠ¸ í‘œì‹œ (ë§í’ì„ )
 	std::wstring strComment = L"";
 	if(pItem->pData && m_pDBRewardTextTable->GetText(pItem->pData->rewardCategoryDialog, &strComment))
 	{
 		CDBCDragonDialogGUI::GetInstance()->SetText(strComment);
 	}	
 
-	// Ç×¸ñ Ç¥½Ã
+	// í•­ëª© í‘œì‹œ
 	for each(SRewardItem* pItemChild in pItem->itemChild)
 	{
-		// º¸»óÀÌ ½ºÅ³ÀÎ °æ¿ì¿¡´Â ÀÚ½ÅÀÇ Å¬·¡½º¿¡ ÇØ´çÇÏ´Â ½ºÅ³¸¸ º¸»ó ¸®½ºÆ®¿¡ Ç¥½ÃÇÑ´Ù.
+		// ë³´ìƒì´ ìŠ¤í‚¬ì¸ ê²½ìš°ì—ëŠ” ìì‹ ì˜ í´ë˜ìŠ¤ì— í•´ë‹¹í•˜ëŠ” ìŠ¤í‚¬ë§Œ ë³´ìƒ ë¦¬ìŠ¤íŠ¸ì— í‘œì‹œí•œë‹¤.
 		if(pItemChild->pData->byRewardType == DRAGONBALL_REWARD_TYPE_SKILL)
 		{
 			sSKILL_TBLDAT* pData = (sSKILL_TBLDAT*)API_GetTableContainer()->GetSkillTable()->FindData(pItemChild->pData->rewardLinkTblidx);
@@ -586,7 +586,7 @@ void CDBCRewardGUI::ShowItemInfo( SRewardItem* pItem )
 
 	if(pItem->pData->byRewardType == DRAGONBALL_REWARD_TYPE_ITEM)
 	{
-		// ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ
+		// ì•„ì´í…œ ì•„ì´ì½˜
 		m_pRewardItemTblData = API_GetTableContainer()->GetItemTable()->FindData(pItem->pData->rewardLinkTblidx);
 		if(m_pRewardItemTblData)
 		{
@@ -597,7 +597,7 @@ void CDBCRewardGUI::ShowItemInfo( SRewardItem* pItem )
 	else if(pItem->pData->byRewardType == DRAGONBALL_REWARD_TYPE_SKILL ||
             pItem->pData->byRewardType == DRAGONBALL_REWARD_TYPE_HTB)
 	{
-		// ½ºÅ³ ¾ÆÀÌÄÜ
+		// ìŠ¤í‚¬ ì•„ì´ì½˜
 		m_pRewardItemTblData = API_GetTableContainer()->GetSkillTable()->FindData(pItem->pData->rewardLinkTblidx);
 		if(m_pRewardItemTblData)
 		{
@@ -607,7 +607,7 @@ void CDBCRewardGUI::ShowItemInfo( SRewardItem* pItem )
 	}
 	else if(pItem->pData->byRewardType == DRAGONBALL_REWARD_TYPE_ZENNY)
 	{
-		// Á¦´Ï ¾ÆÀÌÄÜ (º¸»ó Á¦´Ï´Â Å×ÀÌºí ¾×¼ö * ·¹º§)
+		// ì œë‹ˆ ì•„ì´ì½˜ (ë³´ìƒ ì œë‹ˆëŠ” í…Œì´ë¸” ì•¡ìˆ˜ * ë ˆë²¨)
 		m_sufItem.SetTexture(Logic_CreateTexture("money.PNG"));
         DWORD dwRewardZenny = pItem->pData->dwRewardZenny * Logic_GetLevel(GetNtlSLGlobal()->GetSobAvatar());
         WCHAR szZenny[64] = {0,};
@@ -619,10 +619,10 @@ void CDBCRewardGUI::ShowItemInfo( SRewardItem* pItem )
 		NTL_ASSERTFAIL("Not Define Reward Type");
 	}
 
-	// ÅØ½ºÆ®
+	// í…ìŠ¤íŠ¸
 	m_pSttItemName->SetText(strRewardName.c_str());
 
-	// ¿ë½Å ´ëÈ­
+	// ìš©ì‹  ëŒ€í™”
 	CDBCDragonDialogGUI::GetInstance()->SetText(m_pDBRewardTextTable->GetText(pItem->pData->rewardCategoryDialog));
 
 	m_pRewardItem = pItem;
@@ -665,7 +665,7 @@ VOID CDBCRewardGUI::OnMouseMove( RwInt32 nFlags, RwInt32 nX, RwInt32 nY )
 
 VOID CDBCRewardGUI::OnMouseLeave( gui::CComponent* pComponent ) 
 {
-	// Ä¿¼­°¡ UI¹ÛÀ¸·Î ³ª°¡¸é ÅøÆÁÀ» Áö¿î´Ù.
+	// ì»¤ì„œê°€ UIë°–ìœ¼ë¡œ ë‚˜ê°€ë©´ íˆ´íŒì„ ì§€ìš´ë‹¤.
 	if(GetInfoWndManager()->GetRequestGui() == DIALOG_DBC_REWARD)
 	{
 		GetInfoWndManager()->ShowInfoWindow(FALSE);
@@ -690,7 +690,7 @@ RwBool CDBCRewardGUI::IsExistSkill( RwUInt32 nTblIdx )
 {
 	if(GetNtlSLGlobal()->GetSobAvatar()->GetSkillContainer()->GetSkillFromTableId(nTblIdx))
 	{
-		// ¿ë½ÅÀÇ ´ë»ç Ãâ·Â (±× ½ºÅ³Àº ÀÌ¹Ì °¡Áö°í ÀÖ¾î¼­ ¼±ÅÃÇÒ ¼ö ¾ø´Ù)
+		// ìš©ì‹ ì˜ ëŒ€ì‚¬ ì¶œë ¥ (ê·¸ ìŠ¤í‚¬ì€ ì´ë¯¸ ê°€ì§€ê³  ìˆì–´ì„œ ì„ íƒí•  ìˆ˜ ì—†ë‹¤)
 		sDRAGONBALL_TBLDAT* pData = (sDRAGONBALL_TBLDAT*)m_pDragonBallTable->GetDBTbldat((BYTE)m_pWorldConceptDBC->GetDBKind());
 		CDBCDragonDialogGUI::GetInstance()->SetText(pData->noRepeatDialog);
 		return TRUE;

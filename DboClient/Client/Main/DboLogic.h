@@ -2,7 +2,7 @@
 *
 * File			: DboLogic.h
 * Author		: HyungSuk, Jang
-* Copyright	: (ÁÖ)NTL
+* Copyright	: (ì£¼)NTL
 * Date			: 2005. 11. 08	
 * Abstract		: DBO logic.h
 *****************************************************************************
@@ -44,7 +44,7 @@ extern RwReal	g_fElapsedWeightValue;
 BYTE Logic_GetCurrentChannel();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//	IconMoveManager °ü·Ã procedure ·ÎÁ÷
+//	IconMoveManager ê´€ë ¨ procedure ë¡œì§
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //RwBool Logic_ItemMoveProc(EDragDropType eSrcType, RwInt32 iSrcSlotIdx, RwUInt32 uiSrcSerialId, 
@@ -52,11 +52,11 @@ BYTE Logic_GetCurrentChannel();
 
 RwBool Logic_ItemMoveProc( SERIAL_HANDLE hSrcSerial, EPlace eSrcPlace, RwUInt8 ucSrcSlotIdx, EPlace eDestPlace, SERIAL_HANDLE hDestParentSerial, RwUInt8 ucDestSlotIdx, RwUInt32 uiStackCount = 1);
 
-// peessi	: Logic_ItemMoveSubProc Return value ¼öÁ¤
-// desc		: ´ÜÁ¶·Î¿î ¸Ş½ÃÁö Ãâ·ÂÀÇ ´Ù¾çÈ­¸¦ À§ÇØ RwBool->RwUInt32(EDispStingType)·Î º¯°æ. 
-//			: ¶ÇÇÑ, ¾ÆÀÌÅÛ °Ë»ç ·çÆ¾ÀÇ ÀÏ¿øÈ­¸¦ À§ÇØ Áßº¹µÈ ¿ä¼Ò´Â ÀüºÎ Á¦°ÅÇÏ°í ÀÌ°÷À¸·Î ¸ğÀº´Ù.
-//			: INVALID_DWORD ( ¸Ş½ÃÁö Ãâ·Â¾øÀ½, Á¤»óÀÛµ¿ È¤Àº PacketLock )
-//			: ½ºÄ«¿ìÅÍ ½½·Ô °ü·Ã ¼­ºêÇÔ¼öµéÀº »èÁ¦, EquipÀÇ ScouterSlotÀ¸·Î Àû¿ëÇÑ´Ù.
+// peessi	: Logic_ItemMoveSubProc Return value ìˆ˜ì •
+// desc		: ë‹¨ì¡°ë¡œìš´ ë©”ì‹œì§€ ì¶œë ¥ì˜ ë‹¤ì–‘í™”ë¥¼ ìœ„í•´ RwBool->RwUInt32(EDispStingType)ë¡œ ë³€ê²½. 
+//			: ë˜í•œ, ì•„ì´í…œ ê²€ì‚¬ ë£¨í‹´ì˜ ì¼ì›í™”ë¥¼ ìœ„í•´ ì¤‘ë³µëœ ìš”ì†ŒëŠ” ì „ë¶€ ì œê±°í•˜ê³  ì´ê³³ìœ¼ë¡œ ëª¨ì€ë‹¤.
+//			: INVALID_DWORD ( ë©”ì‹œì§€ ì¶œë ¥ì—†ìŒ, ì •ìƒì‘ë™ í˜¹ì€ PacketLock )
+//			: ìŠ¤ì¹´ìš°í„° ìŠ¬ë¡¯ ê´€ë ¨ ì„œë¸Œí•¨ìˆ˜ë“¤ì€ ì‚­ì œ, Equipì˜ ScouterSlotìœ¼ë¡œ ì ìš©í•œë‹¤.
 
 std::string Logic_ItemMoveSubProcEquipToEquip( SERIAL_HANDLE hSrcSerial, RwUInt8 ucSrcSlotIdx, RwUInt8 ucDestSlotIdx, RwUInt32 uiStackCount );
 std::string Logic_ItemMoveSubProcEquipToBagSlot( SERIAL_HANDLE hSrcSerial, RwUInt8 ucSrcSlotIdx, RwUInt8 ucDestSlotIdx, RwUInt32 uiStackCount );
@@ -89,7 +89,7 @@ std::string Logic_ItemMoveSubProcGuildWarehouseToBagChild(SERIAL_HANDLE hSrcSeri
 //RwUInt32 Logic_ItemMoveSubProcGuildWarehouseToScouterSlot(SERIAL_HANDLE hSrcSerial, EPlace eSrcPlace, RwUInt8 ucSrcSlotIdx, EPlace eDestPlace, SERIAL_HANDLE hDestParentSerial, RwUInt8 ucDestSlotIdx, RwUInt32 uiStackCount = 1);
 std::string Logic_ItemMoveSubProcGuildWarehouseToGuildWarehouse(SERIAL_HANDLE hSrcSerial, RwUInt8 ucSrcSlotIdx, SERIAL_HANDLE hDestParentSerial, RwUInt8 ucDestSlotIdx, RwUInt32 uiStackCount = 1);
 
-// Á¦´Ï °ü·Ã.
+// ì œë‹ˆ ê´€ë ¨.
 std::string Logic_ItemMoveSubProcSubBagZennyToWarehouseZenny(SERIAL_HANDLE hDestParentSerial, RwUInt32 uiZenny);
 std::string Logic_ItemMoveSubProcSubBagZennyToGuildWarehouseZenny(SERIAL_HANDLE hDestParentSerial, RwUInt32 uiZenny);
 std::string Logic_ItemMoveSubProcSubBagZennyToTradeCartZenny(SERIAL_HANDLE hTargetHandle, RwUInt32 uiZenny);
@@ -100,7 +100,7 @@ std::string Logic_ItemMoveSubProcTradeCartZennyToSubBagZenny(RwUInt32 uiZenny);
 std::string Logic_ItemMoveSubProcMailSystemZennyToSubBagZenny(RwUInt32 uiZenny);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//	±âÅ¸ procedure ·ÎÁ÷
+//	ê¸°íƒ€ procedure ë¡œì§
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 RwBool Logic_ItemRepairProc( RwUInt8 ucPlace, RwUInt8 ucSrcSlotIdx );
@@ -124,12 +124,12 @@ RwInt32 Logic_ItemGetGUI_EXTEND_MODEByCommonPointType( RwUInt8 byCommonPointType
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//	Event °ü·Ã ·ÎÁ÷
+//	Event ê´€ë ¨ ë¡œì§
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// ÇØ´ç iTypeÀÇ ¾÷µ¥ÀÌÆ®ÀÎ°¡¸¦ °Ë»ç
-// iType : NtlSLEvent.hÆÄÀÏ¾ÈÀÇ EEventAvatarInfoUpdateType ÇüÀÇ Å¸ÀÔ
-// pData : CMsgÀÇ pData
+// í•´ë‹¹ iTypeì˜ ì—…ë°ì´íŠ¸ì¸ê°€ë¥¼ ê²€ì‚¬
+// iType : NtlSLEvent.híŒŒì¼ì•ˆì˜ EEventAvatarInfoUpdateType í˜•ì˜ íƒ€ì…
+// pData : CMsgì˜ pData
 RwBool Logic_IsUpdateType(RwInt32 iType, void* pData);
 
 
@@ -150,7 +150,7 @@ gui::CSurface& Logic_GetSmallRPTypeMark( RwInt32 eRpType );
 gui::CSurface& Logic_GetBattleAttributeIconSurface(RwUInt8 byAttribute, RwBool bOutLine = TRUE );
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Passive skill »ç¿ë °¡´É À¯¹« °Ë»ç
+// Passive skill ì‚¬ìš© ê°€ëŠ¥ ìœ ë¬´ ê²€ì‚¬
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 RwBool Logic_IsPassiveDashUsePossible(void);
@@ -168,11 +168,11 @@ bool	Logic_IsPassiveAirPossible(); // check if we can start air-jump
 bool	Logic_IsPassiveAirPossibleUi();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//	±âÅ¸ ·ÎÁ÷
+//	ê¸°íƒ€ ë¡œì§
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-RwInt32				Logic_GetPCClassFlagFromPCClass( RwUInt8 ucClass );					// 1Â÷, 2Â÷Á÷À» Æ÷ÇÔÇÑ Flag
-RwInt32				Logic_GetExplicitPCClassFlagFromPCClass( RwUInt8 ucClass );			// ÇöÀç Å¬·¡½º¸¸À» Ç¥½ÃÇÏ´Â Flag
+RwInt32				Logic_GetPCClassFlagFromPCClass( RwUInt8 ucClass );					// 1ì°¨, 2ì°¨ì§ì„ í¬í•¨í•œ Flag
+RwInt32				Logic_GetExplicitPCClassFlagFromPCClass( RwUInt8 ucClass );			// í˜„ì¬ í´ë˜ìŠ¤ë§Œì„ í‘œì‹œí•˜ëŠ” Flag
 
 eCONTAINER_TYPE		Logic_ConvertBagIdxToContainerType	( RwUInt8 ucBagIndex );
 RwInt8				Logic_ConvertContainerTypeToBagIdx ( RwUInt8 ucContainerType );
@@ -181,7 +181,7 @@ RwUInt8				Logic_ConvertEquipTypeToSlotIdx	( eEQUIP_SLOT_TYPE eEquipType );
 RwBool				Logic_EquipSlotTypeFlagCheck		(RwUInt32 usTypeFlag1, RwUInt32 usTypeFlag2 );
 RwUInt32			Logic_ConvertEquipSlotIdxToFlag	( RwUInt8 ucEquipSlotIdx );
 
-// ¼­¹öÀÇ Container ¹øÈ£¿Í Pos ¸¦ °¡Áö°í HANDLEÀ» ¾Ë¾Æ³»´Â ·ÎÁ÷
+// ì„œë²„ì˜ Container ë²ˆí˜¸ì™€ Pos ë¥¼ ê°€ì§€ê³  HANDLEì„ ì•Œì•„ë‚´ëŠ” ë¡œì§
 SERIAL_HANDLE		Logic_GetItemHandleFromContainerPos( RwUInt8 ucContainerType, RwUInt8 byPos );
 
 bool				Logic_GetItemContainerPosFromHandle(SERIAL_HANDLE hHandle, RwUInt8& rbyPlace, RwUInt8& rbyPos);
@@ -206,7 +206,7 @@ RwBool Logic_FindEmptyItemSlot();
 
 RwBool Logic_WorldItemLooting( CNtlSob* pWorldItem );
 
-RwInt32 Logic_WhichBagHasItem( SERIAL_HANDLE hItemSerial );	// ¾ÆÀÌÅÛ ½Ã¸®¾ó·Î ¾î´À¹é¿¡ µé¾îÀÖ´ÂÁö ¸®ÅÏ. ¿¡·¯ = -1
+RwInt32 Logic_WhichBagHasItem( SERIAL_HANDLE hItemSerial );	// ì•„ì´í…œ ì‹œë¦¬ì–¼ë¡œ ì–´ëŠë°±ì— ë“¤ì–´ìˆëŠ”ì§€ ë¦¬í„´. ì—ëŸ¬ = -1
 CNtlSobItem* Logic_FindInventoryItemByTableId( RwUInt32 tblidx );
 RwUInt32	 Logic_FindInventoryItemCountByTableId( RwUInt32 tblidx );
 CNtlSobItem* Logic_FindEquipItemByTableId( RwUInt32 tblidx );
@@ -220,7 +220,7 @@ public:
 };
 VOID	Logic_CaculDayHourMinSecond( RwUInt32 uiInSecond, CRetCaculDayHourMinSecond* pOut);
 
-VOID	Logic_EnableIcon( RwBool bEnable, RwUInt8 byPlace, RwUInt8 byPos ); // ÆĞÅ¶ÇÚµé·¯¿¡¼­ ÁÖ·Î »ç¿ëÇÒ ¾ÆÀÌÄÜ¶ô.
+VOID	Logic_EnableIcon( RwBool bEnable, RwUInt8 byPlace, RwUInt8 byPos ); // íŒ¨í‚·í•¸ë“¤ëŸ¬ì—ì„œ ì£¼ë¡œ ì‚¬ìš©í•  ì•„ì´ì½˜ë½.
 
 RwBool IsV2LessLength(const RwV2d* vPos, const RwV2d* vPos2, RwReal fLength);
 RwBool IsV2LessorEqualLength(const RwV2d* vPos, const RwV2d* vPos2, RwReal fLength);
@@ -264,26 +264,26 @@ void Logic_LoadExtraOption(void);		// New save logic for the EXTRA tab added in 
 void Logic_SaveExtraOption(void);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//	gameÀÇ °¢Á¾ callback ÇÔ¼ö.
+//	gameì˜ ê°ì¢… callback í•¨ìˆ˜.
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void Logic_CallbackHtmlUserTag(const WCHAR *pTag, RwUInt32 uiId, std::wstring& strOut);
 void Logic_CallbackHtmlLinkTag(gui::CComponent* pComponent, RwUInt8 byType, RwUInt32 uiIndex, std::wstring& strFilename);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//	½ºÆ®¸µ °ü·Ã
+//	ìŠ¤íŠ¸ë§ ê´€ë ¨
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const WCHAR* Logic_GetClassName(RwUInt8 byClass);	// Å¬·¡½º ÀÌ¸§ ¹İÈ¯
-const WCHAR* Logic_GetNPCJobName(RwUInt8 byJob);	// NPC Á÷¾÷ ÀÌ¸§ ¹İÈ¯
-const WCHAR* Logic_GetPlayerRaceName(RwUInt8 byRace);	// Player Á¾Á· ÀÌ¸§ ¹İÈ¯
-const WCHAR* Logic_GetNPCRaceName(RwUInt8 byRace);	// NPC Á¾Á· ÀÌ¸§ ¹İÈ¯
-const WCHAR* Logic_GetMobRaceName(RwUInt8 byRace);	// ¸÷ Á¾Á· ÀÌ¸§ ¹İÈ¯
+const WCHAR* Logic_GetClassName(RwUInt8 byClass);	// í´ë˜ìŠ¤ ì´ë¦„ ë°˜í™˜
+const WCHAR* Logic_GetNPCJobName(RwUInt8 byJob);	// NPC ì§ì—… ì´ë¦„ ë°˜í™˜
+const WCHAR* Logic_GetPlayerRaceName(RwUInt8 byRace);	// Player ì¢…ì¡± ì´ë¦„ ë°˜í™˜
+const WCHAR* Logic_GetNPCRaceName(RwUInt8 byRace);	// NPC ì¢…ì¡± ì´ë¦„ ë°˜í™˜
+const WCHAR* Logic_GetMobRaceName(RwUInt8 byRace);	// ëª¹ ì¢…ì¡± ì´ë¦„ ë°˜í™˜
 const WCHAR* Logic_GetBattleAttributeName(RwUInt8 byAttr);
 const WCHAR* Logic_GetSkillName(RwUInt32 tblidx);
 const WCHAR* Logic_GetHTBName(RwUInt32 tblidx);
 const WCHAR* Logic_GetItemName(RwUInt32 tblidx);
-const WCHAR* Logic_GetHoipoiMixSkillName(RwUInt8 byType);	// È£ÀÌÆ÷ÀÌ¹Í½º ½ºÅ³ ÀÌ¸§ ¹İÈ¯
+const WCHAR* Logic_GetHoipoiMixSkillName(RwUInt8 byType);	// í˜¸ì´í¬ì´ë¯¹ìŠ¤ ìŠ¤í‚¬ ì´ë¦„ ë°˜í™˜
 const WCHAR* Logic_GetHoipoiMixRecipeName(RwUInt32 tblIdx);
 const WCHAR* Logic_GetTeleportTypeName(RwUInt32 uiTeleportType);
 const WCHAR* Logic_GetPartyItemLootingMethod(BYTE byLootingMethod);
@@ -313,13 +313,13 @@ WCHAR* Logic_GetTimeStringWithMillisecond(RwReal fSecond);
 WCHAR* Logic_GetTimeRemainString(DBOTIME timeRemain);
 WCHAR* Logic_GetTimeTotalString(DWORD timeSeconds);
 
-// ½Ã°£ÀÇ ÃÑ·®ÀÌ ¾Æ´Ñ Ã¼°¨ ½Ã°£¿¡ ÃÊÁ¡À» ¸ÂÃß¾î Ç¥½ÃÇÑ´Ù.
+// ì‹œê°„ì˜ ì´ëŸ‰ì´ ì•„ë‹Œ ì²´ê° ì‹œê°„ì— ì´ˆì ì„ ë§ì¶”ì–´ í‘œì‹œí•œë‹¤.
 WCHAR* Logic_GetCoolTimeString(RwReal fSecond);
 
-///< Å×ÀÌºí ÀÎµ¦½º·Î ÇØ´ç Áö¿ªÀÇ ÀÌ¸§À» °¡Á®¿Â´Ù.
+///< í…Œì´ë¸” ì¸ë±ìŠ¤ë¡œ í•´ë‹¹ ì§€ì—­ì˜ ì´ë¦„ì„ ê°€ì ¸ì˜¨ë‹¤.
 RwBool Logic_GetAreaNameFromTblIDX(TBLIDX tblIdx, std::wstring* pstrString);
 
-///< ¹İÈ¯µÇ´Â ½ºÆ®¸µÀº ¹İµå½Ã ´Ù¸¥ ¸Ş¸ğ¸® °ø°£¿¡ ÀúÀåÇÏµµ·Ï ÇÑ´Ù
+///< ë°˜í™˜ë˜ëŠ” ìŠ¤íŠ¸ë§ì€ ë°˜ë“œì‹œ ë‹¤ë¥¸ ë©”ëª¨ë¦¬ ê³µê°„ì— ì €ì¥í•˜ë„ë¡ í•œë‹¤
 RwChar* Logic_GetFormatString(const RwChar* pcFormat, ...);
 WCHAR* Logic_GetFormatWideString(const WCHAR* pwcFormat, ...);
 
@@ -332,13 +332,13 @@ WCHAR* Logic_NumToWchar(RwUInt32 dwNumber);
 WCHAR*	Logic_FormatZeni(DWORD dwZeni);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//	Á¦´Ï °ü·Ã
+//	ì œë‹ˆ ê´€ë ¨
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 RwUInt32 Logic_AllRepairCost();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//	World Item °ü·Ã.
+//	World Item ê´€ë ¨.
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void Logic_WorldItemPick(SERIAL_HANDLE hPickSerial);
@@ -353,38 +353,38 @@ bool Logic_SobTarget(RwUInt32 hTargetSerial, BYTE byFollow);
 bool Logic_AvatarTarget(void);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//  ½ºÅ³ °ü·Ã
+//  ìŠ¤í‚¬ ê´€ë ¨
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 RwReal Logic_GetHTBTotalPower( sHTB_SET_TBLDAT* pHTBData );
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//	¹èÆ² ¼Ó¼º ¾ÆÀÌÄÜ ¹× ÅøÆÁ ¼³Á¤
+//	ë°°í‹€ ì†ì„± ì•„ì´ì½˜ ë° íˆ´íŒ ì„¤ì •
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void Logic_SetBattleAttributeMark( gui::CPanel* pComponent, RwUInt8 byBattleAttribute, RwBool bOutLine = TRUE );
 RwUInt32 Logic_GetBattleAttributeColor( RwUInt8 byBattleAttribute );
 
-// µÎ °³Ã¼°£ÀÇ µî±Ş Â÷ÀÌ
+// ë‘ ê°œì²´ê°„ì˜ ë“±ê¸‰ ì°¨ì´
 enum eCounterpartGradeType { CGT_STRONG_1, CGT_SIMILAR, CGT_WEAK_1 };
 RwUInt8 Logic_GetCounterpartGradeType(CNtlSobAttr* pOriginalSobAttr, CNtlSobAttr* pCounterpartSobAttr);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//	´ÙÀÌ¾ó·Î±× °ü·Ã
+//	ë‹¤ì´ì–¼ë¡œê·¸ ê´€ë ¨
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Å¬¶óÀÌ¾ğÆ®ÀÇ »çÀÌÁî°¡ ÁÙ¾úÀ» ¶§ Å¬¶óÀÌ¾ğÆ® À©µµ¿ì¸¦ ¹ş¾î³ª¸ç
-// ´ÙÀÌ¾ó·Î±× ¸Å´ÏÀú, »çÀÌµå ´ÙÀÌ¾ó·Î±× ¸Å´ÏÀú, »çÀÌµå ¾ÆÀÌÄÜ ¸Å´ÏÀúÀÇ
-// °ü¸®¸¦ ¹ŞÁö ¾Ê´Â ´ÙÀÌ¾ó·Î±×µéÀÇ À§Ä¡¸¦ ÀçÁ¶Á¤ÇÑ´Ù.
+// í´ë¼ì´ì–¸íŠ¸ì˜ ì‚¬ì´ì¦ˆê°€ ì¤„ì—ˆì„ ë•Œ í´ë¼ì´ì–¸íŠ¸ ìœˆë„ìš°ë¥¼ ë²—ì–´ë‚˜ë©°
+// ë‹¤ì´ì–¼ë¡œê·¸ ë§¤ë‹ˆì €, ì‚¬ì´ë“œ ë‹¤ì´ì–¼ë¡œê·¸ ë§¤ë‹ˆì €, ì‚¬ì´ë“œ ì•„ì´ì½˜ ë§¤ë‹ˆì €ì˜
+// ê´€ë¦¬ë¥¼ ë°›ì§€ ì•ŠëŠ” ë‹¤ì´ì–¼ë¡œê·¸ë“¤ì˜ ìœ„ì¹˜ë¥¼ ì¬ì¡°ì •í•œë‹¤.
 void Logic_LocateDialog_in_CleintRect(CNtlPLGui* pGui, RwBool bForce = FALSE);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ °ü·Ã
+// ì²œí•˜ì œì¼ ë¬´ë„íšŒ ê´€ë ¨
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const WCHAR* Logic_GetTBTypeString( RwUInt8 byMainState );
 const WCHAR* Logic_GetStringTBMatchType( RwUInt8 byTBMatchType );
 const WCHAR* Logic_GetStringTBMatchState( RwUInt8 byTBMatchState );
-const WCHAR* Logic_GetAvatarTBJoinState();								// ÇöÀç ¾Æ¹ÙÅ¸ÀÇ Âü°¡ »óÅÂ
+const WCHAR* Logic_GetAvatarTBJoinState();								// í˜„ì¬ ì•„ë°”íƒ€ì˜ ì°¸ê°€ ìƒíƒœ
 const WCHAR* Logic_GetTBRemainTimeString( BUDOKAITIME tmTime );
 const WCHAR* Logic_GetTBDateToDateString( tm tmAtTime, tm tmToTime );
 const WCHAR* Logic_GetTBDateString( tm tmTime );
@@ -398,18 +398,18 @@ RwInt32		 Logic_IsMailRemainTimeOverDay( DBOTIME tmTime );
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// ºÎÈ°¸Ş½ÃÁö ¹Ú½º 
+// ë¶€í™œë©”ì‹œì§€ ë°•ìŠ¤ 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Logic_ShowRegenBox(void);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// µ¿¿µ»ó °ü·Ã
+// ë™ì˜ìƒ ê´€ë ¨
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Logic_SetOptionMoviePlay();
 void Logic_SetOptionMovieStop();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// »ö»ó °ü·Ã
+// ìƒ‰ìƒ ê´€ë ¨
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 RwUInt32 Logic_GetItemRankColor( RwUInt8 byRank );
 

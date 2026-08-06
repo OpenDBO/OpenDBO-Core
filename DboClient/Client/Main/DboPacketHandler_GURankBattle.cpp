@@ -1,9 +1,9 @@
 /*****************************************************************************
 * File			: DboPackethandler_GURankBattle.cpp
 * Author		: Hong sungbock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 1. 16
-* Abstract		: ·©Å© ¹èÆ² °ü·Ã ÆÐÅ¶ ÇÚµé
+* Abstract		: ëž­í¬ ë°°í‹€ ê´€ë ¨ íŒ¨í‚· í•¸ë“¤
 *****************************************************************************
 * Desc         : 
 *****************************************************************************/
@@ -54,7 +54,7 @@
 //
 //	sGU_RANKBATTLE_ROOM_CREATE_RES* pResult = (sGU_RANKBATTLE_ROOM_CREATE_RES*)pPacket;
 //
-//	// »ý¼ºµÇÁö ¾Ê¾ÒÀ»¶§ ¸Þ¼¼Áö Ç¥½Ã, ÆÄÆ¼¿ø ´©±¸¶§¹®ÀÎÁöµµ Ç¥½Ã.
+//	// ìƒì„±ë˜ì§€ ì•Šì•˜ì„ë•Œ ë©”ì„¸ì§€ í‘œì‹œ, íŒŒí‹°ì› ëˆ„êµ¬ë•Œë¬¸ì¸ì§€ë„ í‘œì‹œ.
 //	if( pResult->wResultCode != GAME_SUCCESS )
 //	{
 //		CNtlSLEventGenerator::SysMsg(INVALID_SERIAL_ID, pResult->wResultCode);
@@ -86,7 +86,7 @@
 //		return;
 //	}
 //	
-//	// »çÀÌµå ¾ÆÀÌÄÜ Ç¥½Ã
+//	// ì‚¬ì´ë“œ ì•„ì´ì½˜ í‘œì‹œ
 //	//CNtlSLEventGenerator::RBRoomEvent(SNtlEventRBRoom::ROOM_CREATE, pResult->rankBattleTblidx, pResult->roomId);
 //}
 
@@ -94,14 +94,14 @@
 //{
 //	sGU_RANKBATTLE_ROOM_CREATE_NFY* pResult = (sGU_RANKBATTLE_ROOM_CREATE_NFY*)pPacket;
 //
-//	// »ý¼ºµÇÁö ¾Ê¾ÒÀ»¶§ ¸Þ¼¼Áö Ç¥½Ã
+//	// ìƒì„±ë˜ì§€ ì•Šì•˜ì„ë•Œ ë©”ì„¸ì§€ í‘œì‹œ
 //	if( pResult->wResultCode != GAME_SUCCESS )
 //	{
 //		CNtlSLEventGenerator::SysMsg(INVALID_SERIAL_ID, pResult->wResultCode);
 //		return;
 //	}
 //
-//	// »çÀÌµå ¾ÆÀÌÄÜ Ç¥½Ã
+//	// ì‚¬ì´ë“œ ì•„ì´ì½˜ í‘œì‹œ
 //	//CNtlSLEventGenerator::RBRoomEvent(SNtlEventRBRoom::ROOM_CREATE, pResult->rankBattleTblidx, pResult->roomId);
 //}
 
@@ -117,7 +117,7 @@
 //		return;
 //	}
 //
-//	// ¹æ¿¡¼­ ³ª°¬´Ù´Â ¸Þ¼¼Áö¸¦ ¸Þ¼¼Áö ¹Ú½º·Î Ç¥Çö
+//	// ë°©ì—ì„œ ë‚˜ê°”ë‹¤ëŠ” ë©”ì„¸ì§€ë¥¼ ë©”ì„¸ì§€ ë°•ìŠ¤ë¡œ í‘œí˜„
 //	//CNtlSLEventGenerator::RBRoomEvent(SNtlEventRBRoom::ROOM_LEAVE);
 //}
 //
@@ -125,7 +125,7 @@
 //{
 //	sGU_RANKBATTLE_ROOM_LEAVE_NFY* pResult = (sGU_RANKBATTLE_ROOM_LEAVE_NFY*)pPacket;
 //
-//	// ¹æ¿¡¼­ ³ª°¬´Ù´Â ¸Þ¼¼Áö¸¦ ¸Þ¼¼Áö ¹Ú½º·Î Ç¥Çö
+//	// ë°©ì—ì„œ ë‚˜ê°”ë‹¤ëŠ” ë©”ì„¸ì§€ë¥¼ ë©”ì„¸ì§€ ë°•ìŠ¤ë¡œ í‘œí˜„
 //	//CNtlSLEventGenerator::RBRoomEvent(SNtlEventRBRoom::ROOM_LEAVE);
 //}
 //
@@ -138,7 +138,7 @@
 //	//else if( pResult->byTeamType == RANKBATTLE_TEAM_CHALLENGER )
 //	//	CNtlSLEventGenerator::RBRoomEvent(SNtlEventRBRoom::ROOM_JOIN_CHALLENGE, pResult->rankBattleTblidx, pResult->roomId);
 //	
-//	// ´Ù¸¥ °æ¿ì´Â ¹«½Ã.
+//	// ë‹¤ë¥¸ ê²½ìš°ëŠ” ë¬´ì‹œ.
 //}
 
 //void PacketHandler_GSRBRoomChallengeRes(void* pPacket)
@@ -147,7 +147,7 @@
 //
 //	sGU_RANKBATTLE_ROOM_CHALLENGE_RES* pResult = (sGU_RANKBATTLE_ROOM_CHALLENGE_RES*)pPacket;
 //
-//	// »ý¼ºµÇÁö ¾Ê¾ÒÀ»¶§ ¸Þ¼¼Áö Ç¥½Ã, ÆÄÆ¼¿ø ´©±¸¶§¹®ÀÎÁöµµ Ç¥½Ã.
+//	// ìƒì„±ë˜ì§€ ì•Šì•˜ì„ë•Œ ë©”ì„¸ì§€ í‘œì‹œ, íŒŒí‹°ì› ëˆ„êµ¬ë•Œë¬¸ì¸ì§€ë„ í‘œì‹œ.
 //	if( pResult->wResultCode != GAME_SUCCESS )
 //	{
 //		CNtlSLEventGenerator::SysMsg(INVALID_SERIAL_ID, pResult->wResultCode);
@@ -181,7 +181,7 @@
 //		return;
 //	}
 //
-//	// »çÀÌµå ¾ÆÀÌÄÜ »ý¼º
+//	// ì‚¬ì´ë“œ ì•„ì´ì½˜ ìƒì„±
 //	//CNtlSLEventGenerator::RBRoomEvent(SNtlEventRBRoom::ROOM_CHALLENGE, pResult->rankBattleTblidx, pResult->roomId);
 //}
 //	 
@@ -189,14 +189,14 @@
 //{
 //	sGU_RANKBATTLE_ROOM_CHALLENGE_NFY* pResult = (sGU_RANKBATTLE_ROOM_CHALLENGE_NFY*)pPacket;
 //
-//	// »ý¼ºµÇÁö ¾Ê¾ÒÀ»¶§ ¸Þ¼¼Áö Ç¥½Ã
+//	// ìƒì„±ë˜ì§€ ì•Šì•˜ì„ë•Œ ë©”ì„¸ì§€ í‘œì‹œ
 //	if( pResult->wResultCode != GAME_SUCCESS )
 //	{
 //		CNtlSLEventGenerator::SysMsg(INVALID_SERIAL_ID, pResult->wResultCode);
 //		return;
 //	}
 //
-//	// »çÀÌµå ¾ÆÀÌÄÜ »ý¼º
+//	// ì‚¬ì´ë“œ ì•„ì´ì½˜ ìƒì„±
 //	//CNtlSLEventGenerator::RBRoomEvent(SNtlEventRBRoom::ROOM_CHALLENGE, pResult->rankBattleTblidx, pResult->roomId);
 //}
 //
@@ -209,7 +209,7 @@
 //		CNtlSLEventGenerator::SysMsg(INVALID_SERIAL_ID, pResult->wResultCode);		
 //	}
 //
-//	// ÁøÀÔ ´ë±âÃ¢ ¶ç¿ì±â
+//	// ì§„ìž… ëŒ€ê¸°ì°½ ë„ìš°ê¸°
 //	//CNtlSLEventGenerator::RBMatchEvent(SNtlEventRBMatch::MATCH_READY, pResult->asMemberResult, pResult->byMemberCount);
 //}
 //
@@ -234,7 +234,7 @@
 //		return;
 //	}	
 //
-//	// »çÀÌµå ¾ÆÀÌÄÜ ¿ø·¡ »óÅÂ·Î µÇµ¹¸². ¸Þ¼¼Áö Ãâ·Â
+//	// ì‚¬ì´ë“œ ì•„ì´ì½˜ ì›ëž˜ ìƒíƒœë¡œ ë˜ëŒë¦¼. ë©”ì„¸ì§€ ì¶œë ¥
 //	//CNtlSLEventGenerator::RBMatchEvent( SNtlEventRBMatch::MATCH_CANCEL );
 //	GetAlarmManager()->AlarmMessage( DST_RANKBATTLE_CANCELED );
 //}
@@ -342,7 +342,7 @@ void PacketHandler_GSRBBattlePlayerStateNfy(void* pPacket)
 {
 	sGU_RANKBATTLE_BATTLE_PLAYER_STATE_NFY* pResult = (sGU_RANKBATTLE_BATTLE_PLAYER_STATE_NFY*)pPacket;
 //	DBO_WARNING_MESSAGE("sGU_RANKBATTLE_BATTLE_PLAYER_STATE_NFY: pResult->byPCState = " << (int)pResult->byPCState);
-	// Á¡¼ö ¾÷µ¥ÀÌÆ®.
+	// ì ìˆ˜ ì—…ë°ì´íŠ¸.
 	CNtlSLEventGenerator::RBBattlePlayerState( pResult->hPc, pResult->byPCState );
 }
 
@@ -350,7 +350,7 @@ void PacketHandler_GSRBBattleKillScoreUpdateNfy(void* pPacket)
 {
 	sGU_RANKBATTLE_BATTLE_KILLSCORE_UPDATE_NFY* pResult = (sGU_RANKBATTLE_BATTLE_KILLSCORE_UPDATE_NFY*)pPacket;
 //	DBO_WARNING_MESSAGE("sGU_RANKBATTLE_BATTLE_KILLSCORE_UPDATE_NFY");
-	// Å³¼ö ¾÷µ¥ÀÌÆ®.
+	// í‚¬ìˆ˜ ì—…ë°ì´íŠ¸.
 	CNtlSLEventGenerator::RBBattleKillScoreUpdate( pResult->byOwnerKillScore, pResult->byChallengerKillScore );	
 }
 
@@ -358,7 +358,7 @@ void PacketHandler_GSRBBattleStageFinishNfy(void* pPacket)
 {
 	sGU_RANKBATTLE_BATTLE_STAGE_FINISH_NFY* pResult = (sGU_RANKBATTLE_BATTLE_STAGE_FINISH_NFY*)pPacket;
 //	DBO_WARNING_MESSAGE("sGU_RANKBATTLE_BATTLE_STAGE_FINISH_NFY");
-	// Á¡¼ö ¾÷µ¥ÀÌÆ®.
+	// ì ìˆ˜ ì—…ë°ì´íŠ¸.
 	CNtlSLEventGenerator::RBBattleStageFinish( pResult->byBattleResult, (void*)&pResult->sStageScore );	
 }
 
@@ -366,7 +366,7 @@ void PacketHandler_GSRBBattleMatchFinishNfy(void* pPacket)
 {
 	sGU_RANKBATTLE_BATTLE_MATCH_FINISH_NFY* pResult = (sGU_RANKBATTLE_BATTLE_MATCH_FINISH_NFY*)pPacket;
 //	DBO_WARNING_MESSAGE("sGU_RANKBATTLE_BATTLE_MATCH_FINISH_NFY");
-	// Á¡¼ö ¾÷µ¥ÀÌÆ®.
+	// ì ìˆ˜ ì—…ë°ì´íŠ¸.
 	CNtlSLEventGenerator::RBBattleMatchFinish( (void*)&pResult->sMatchResult );
 }
 
@@ -387,6 +387,6 @@ void PacketHandler_GSRBTotalScoreUpdateNfy(void* pPacket)
 {
 	sGU_RANKBATTLE_TOTAL_SCORE_UPDATE_NFY* pResult = (sGU_RANKBATTLE_TOTAL_SCORE_UPDATE_NFY*)pPacket;
 //	DBO_WARNING_MESSAGE("sGU_RANKBATTLE_TOTAL_SCORE_UPDATE_NFY");
-	// ÅäÅ» Á¡¼ö ¾÷µ¥ÀÌÆ®. 
+	// í† íƒˆ ì ìˆ˜ ì—…ë°ì´íŠ¸. 
 	CNtlSLEventGenerator::RBTotalScoreUpdate( pResult->byBattlemode, (void*)&pResult->sTotalScore );	
 }

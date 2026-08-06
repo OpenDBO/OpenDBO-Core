@@ -1,4 +1,4 @@
-// VenusDoc.cpp : CVenusDoc Å¬·¡½ºÀÇ ±¸Çö
+// VenusDoc.cpp : CVenusDoc í´ë˜ìŠ¤ì˜ êµ¬í˜„
 //
 
 #include "stdafx.h"
@@ -19,11 +19,11 @@ BEGIN_MESSAGE_MAP(CVenusDoc, CDocument)
 END_MESSAGE_MAP()
 
 
-// CVenusDoc »ı¼º/¼Ò¸ê
+// CVenusDoc ìƒì„±/ì†Œë©¸
 
 CVenusDoc::CVenusDoc()
 {
-	// TODO: ¿©±â¿¡ ÀÏÈ¸¼º »ı¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì¼íšŒì„± ìƒì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 }
 
@@ -36,8 +36,8 @@ BOOL CVenusDoc::OnNewDocument()
 	if (!CDocument::OnNewDocument())
 		return FALSE;
 
-	// TODO: ¿©±â¿¡ ´Ù½Ã ÃÊ±âÈ­ ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
-	// SDI ¹®¼­´Â ÀÌ ¹®¼­¸¦ ´Ù½Ã »ç¿ëÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë‹¤ì‹œ ì´ˆê¸°í™” ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
+	// SDI ë¬¸ì„œëŠ” ì´ ë¬¸ì„œë¥¼ ë‹¤ì‹œ ì‚¬ìš©í•©ë‹ˆë‹¤.
 
 	return TRUE;
 }
@@ -51,16 +51,16 @@ void CVenusDoc::Serialize(CArchive& ar)
 {
 	if (ar.IsStoring())
 	{
-		// TODO: ¿©±â¿¡ ÀúÀå ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+		// TODO: ì—¬ê¸°ì— ì €ì¥ ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	}
 	else
 	{
-		// TODO: ¿©±â¿¡ ·Îµù ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+		// TODO: ì—¬ê¸°ì— ë¡œë”© ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	}
 }
 
 
-// CVenusDoc Áø´Ü
+// CVenusDoc ì§„ë‹¨
 
 #ifdef _DEBUG
 void CVenusDoc::AssertValid() const
@@ -75,4 +75,4 @@ void CVenusDoc::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CVenusDoc ¸í·É
+// CVenusDoc ëª…ë ¹

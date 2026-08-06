@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File: QuestCommonGui.h
-// Desc: QuestÀÇ Proposal, Progress, Reward¿¡ ¾²ÀÌ´Â °øÅëÀûÀÎ ¿ä¼ÒÀÇ Ãß»óÈ­ Å¬·¡½º.
-//		 QuestReward¸¦ °øÅëÈ­ÇÏ°í, 
+// Desc: Questì˜ Proposal, Progress, Rewardì— ì“°ì´ëŠ” ê³µí†µì ì¸ ìš”ì†Œì˜ ì¶”ìƒí™” í´ë˜ìŠ¤.
+//		 QuestRewardë¥¼ ê³µí†µí™”í•˜ê³ , 
 //
 // 2006.12.13 Peessi@hitel.net   
 //

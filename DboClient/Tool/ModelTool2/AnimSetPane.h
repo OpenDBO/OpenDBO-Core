@@ -29,13 +29,13 @@ public:
         ITEM_ANIM_SET = 0,	        
     };
 
-    /// AnimSet PaneÀÇ ¸ğµå
+    /// AnimSet Paneì˜ ëª¨ë“œ
     enum EAnimSetMode
     {
-        ANIMSET_CHARACTER,      ///< Ä³¸¯ÅÍ ¾Ö´Ï¸ŞÀÌ¼Ç ¼³Á¤ ¸ğµå
-        ANIMSET_ITEM,           ///< Item ¾Ö´Ï¸ŞÀÌ¼Ç ¼³Á¤ ¸ğµå
-		ANIMSET_OBJECT,			///< Object Animation ¼³Á¤ ¸ğµå (Æ®¸®°Å Object ¿ë)
-        ANIMSET_VEHICLE,        ///< Å»°Í ¾Ö´Ï¸ŞÀÌ¼Ç ¼³Á¤
+        ANIMSET_CHARACTER,      ///< ìºë¦­í„° ì• ë‹ˆë©”ì´ì…˜ ì„¤ì • ëª¨ë“œ
+        ANIMSET_ITEM,           ///< Item ì• ë‹ˆë©”ì´ì…˜ ì„¤ì • ëª¨ë“œ
+		ANIMSET_OBJECT,			///< Object Animation ì„¤ì • ëª¨ë“œ (íŠ¸ë¦¬ê±° Object ìš©)
+        ANIMSET_VEHICLE,        ///< íƒˆê²ƒ ì• ë‹ˆë©”ì´ì…˜ ì„¤ì •
     };
 
 protected:
@@ -56,27 +56,27 @@ protected:
 
 public:
     static CAnimSetPane* GetInstance() {return m_pInstance;};
-    void    SetModel(CNtlPLAttach* pModel);         ///< »ç¿ëÇÒ ¸ğµ¨À» Àû¿ëÇÑ´Ù.
+    void    SetModel(CNtlPLAttach* pModel);         ///< ì‚¬ìš©í•  ëª¨ë¸ì„ ì ìš©í•œë‹¤.
     
-    void    SetEnable(BOOL bEnable);                    ///< UI È°¼ºÈ­ À¯¹«¸¦ ¼±ÅÃÇÑ´Ù
-    void    SetAnimData(RwUInt32 uiKey);                ///< ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ¼³Á¤ÇÑ´Ù.
-    EAnimSet GetAnimSetMode() {return (EAnimSet)m_cbAnimSet.GetCurSel();} ///< ÇöÀç ¼±ÅÃÁßÀÎ Animation SetÀ» ¹İÈ¯ÇÑ´Ù.
+    void    SetEnable(BOOL bEnable);                    ///< UI í™œì„±í™” ìœ ë¬´ë¥¼ ì„ íƒí•œë‹¤
+    void    SetAnimData(RwUInt32 uiKey);                ///< ì• ë‹ˆë©”ì´ì…˜ì„ ì„¤ì •í•œë‹¤.
+    EAnimSet GetAnimSetMode() {return (EAnimSet)m_cbAnimSet.GetCurSel();} ///< í˜„ì¬ ì„ íƒì¤‘ì¸ Animation Setì„ ë°˜í™˜í•œë‹¤.
 
 protected:
     static CAnimSetPane* m_pInstance;
 
-    EAnimSetMode         m_eAnimSetMode;                ///< ÇöÀç AnimSet PaneÀÇ ¸ğµå
+    EAnimSetMode         m_eAnimSetMode;                ///< í˜„ì¬ AnimSet Paneì˜ ëª¨ë“œ
 
-    // Character °ü·Ã
-    CMTCharacter*        m_pCharacter;                  ///< ÇöÀç ¼³Á¤µÈ Ä³¸¯ÅÍ °´Ã¼
-    CNtlTypeAnimTable*   m_pAnimTable;                  ///< Edit¿¡ »ç¿ëÇÒ AnimTable;
-    CNtlPLCharacterParser   m_CharacterPaser;           ///< Ä³¸¯ÅÍ ÆÄ¼­ (¾Ö´Ï¸ŞÀÌ¼Ç Set ¶§¹®¿¡ »ç¿ë)
+    // Character ê´€ë ¨
+    CMTCharacter*        m_pCharacter;                  ///< í˜„ì¬ ì„¤ì •ëœ ìºë¦­í„° ê°ì²´
+    CNtlTypeAnimTable*   m_pAnimTable;                  ///< Editì— ì‚¬ìš©í•  AnimTable;
+    CNtlPLCharacterParser   m_CharacterPaser;           ///< ìºë¦­í„° íŒŒì„œ (ì• ë‹ˆë©”ì´ì…˜ Set ë•Œë¬¸ì— ì‚¬ìš©)
 
-    // Item °ü·Ã
-    CMTItem*             m_pItem;                       ///< ÇöÀç ¼³Á¤µÈ ¾ÆÀÌÅÛ °´Ã¼
-    CNtlPLItemParser     m_ItemParser;                  ///< ¾ÆÀÌÅÛ ÆÄ¼­
+    // Item ê´€ë ¨
+    CMTItem*             m_pItem;                       ///< í˜„ì¬ ì„¤ì •ëœ ì•„ì´í…œ ê°ì²´
+    CNtlPLItemParser     m_ItemParser;                  ///< ì•„ì´í…œ íŒŒì„œ
 
-	// Object °ü·Ã
+	// Object ê´€ë ¨
 	CMTObject*			 m_pObject;
 
 protected:

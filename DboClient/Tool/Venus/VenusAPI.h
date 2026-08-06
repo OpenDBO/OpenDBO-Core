@@ -2,7 +2,7 @@
 //	File		:	VenusAPI.cpp
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -28,7 +28,7 @@ RwBool	API_IntersectionPlane(const RwV3d* pRayPos, const RwV3d* pRayDir, RwV3d* 
 void	API_CalculationShpere(RwSphere& sphere, RpClump* pClump);
 
 
-RwBool  API_GetAtUpVecApplyAngle(RwV3d* outLookAtVec, RwV3d* outLookUpVec, const RwV3d vAngle); ///< ÁÖ¾îÁø °¢µµ·Î LookAt,LookUp Vector¸¦ ±¸ÇÑ´Ù.
-RwV3d   API_GetAngle(RwV3d vUpVec, RwV3d vAtVec);                    ///< ÁÖ¾îÁø vector·Î AngleÀ» ±¸ÇÑ´Ù.   
+RwBool  API_GetAtUpVecApplyAngle(RwV3d* outLookAtVec, RwV3d* outLookUpVec, const RwV3d vAngle); ///< ì£¼ì–´ì§„ ê°ë„ë¡œ LookAt,LookUp Vectorë¥¼ êµ¬í•œë‹¤.
+RwV3d   API_GetAngle(RwV3d vUpVec, RwV3d vAtVec);                    ///< ì£¼ì–´ì§„ vectorë¡œ Angleì„ êµ¬í•œë‹¤.   
 
 #endif

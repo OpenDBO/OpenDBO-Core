@@ -1,7 +1,7 @@
 #ifndef _PATHPOINT_H_
 #define _PATHPOINT_H_
 
-// ÆĞ½º Æ÷ÀÎÆ®ÀÇ Size
+// íŒ¨ìŠ¤ í¬ì¸íŠ¸ì˜ Size
 #define dPATH_POINT_WIDTH			15
 #define dPATH_POINT_HEIGHT			15
 
@@ -63,11 +63,11 @@ public:
 
 
 protected:
-	CPos				m_Pos;			///< ÇöÀç Á¡ÀÇ À§Ä¡
+	CPos				m_Pos;			///< í˜„ì¬ ì ì˜ ìœ„ì¹˜
 	float				m_fTime;
 	int					m_nIndex;
 
-	gui::CPanel*		m_pPanPoint;	///< Á¡À» Ç¥ÇöÇÒ Panel
+	gui::CPanel*		m_pPanPoint;	///< ì ì„ í‘œí˜„í•  Panel
 	gui::CStaticBox*	m_pStbNum;
 
 	gui::CSlot			m_slotMouseEnter;

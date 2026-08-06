@@ -2,7 +2,7 @@
 *
 * File			: NTLPLCharacter.h
 * Author		: HongHoDong
-* Copyright	: (ÁÖ)NTL
+* Copyright	: (ì£¼)NTL
 * Date			: 2005. 8. 20.
 * Abstract		: NTL PLCharacter
 *****************************************************************************
@@ -55,7 +55,7 @@ enum ECharacterAnimLayer
 };
 
 /*
-* PlayÀÌ µÇ°í ÀÖ´Â AnimationÀÇ Á¤º¸
+* Playì´ ë˜ê³  ìˆëŠ” Animationì˜ ì •ë³´
 */
 struct SAnimPlayInfo
 {
@@ -68,7 +68,7 @@ struct SAnimPlayInfo
 
 /**
 * \ingroup NtlPresentation
-* \brief Character °ü·Ã Å¬·¡½º
+* \brief Character ê´€ë ¨ í´ë˜ìŠ¤
 * \date 2006-08-21
 * \author Hodong
 */
@@ -80,35 +80,35 @@ public:
 	virtual ~CNtlPLCharacter();
 
 protected:
-//	RwSphere				m_BSphere;								///< PositionÀÌ ¿¬»êµÇÁö ¾ÊÀº BoundSphere
-	RwSphere				m_BSphereCur;							///< PositionÀÌ ¿¬»êµÈ BoundingSphere : GetBoundingSphere¸¦ È£ÃâÇÏ°Ô µÇ¸é ¾÷µ¥ÀÌÆ® µÈ´Ù.
+//	RwSphere				m_BSphere;								///< Positionì´ ì—°ì‚°ë˜ì§€ ì•Šì€ BoundSphere
+	RwSphere				m_BSphereCur;							///< Positionì´ ì—°ì‚°ëœ BoundingSphere : GetBoundingSphereë¥¼ í˜¸ì¶œí•˜ê²Œ ë˜ë©´ ì—…ë°ì´íŠ¸ ëœë‹¤.
 	CNtlPLCharacterProperty	*m_pProperty;							///< Character Property
 	CNtlPLResource			*m_pResourceClump;						///< Target Clump Resource Reference
-	ENTITY_ATOMIC_VEC	    m_vecAtomicList;                        ///< ÇöÀç Clump¸¦ ±¸¼ºÇÏ°í ÀÖ´Â AtomicµéÀÇ ¸®½ºÆ®
+	ENTITY_ATOMIC_VEC	    m_vecAtomicList;                        ///< í˜„ì¬ Clumpë¥¼ êµ¬ì„±í•˜ê³  ìˆëŠ” Atomicë“¤ì˜ ë¦¬ìŠ¤íŠ¸
 
 	SCharScheduleResInfo	m_sScheduleResInfo;
 	RwBool					m_bRunTimeAlpha;
 
 	RpHAnimHierarchy		*m_pBaseHierarchy;						///< Base Hierarchy
     
-	CNtlAnimLayer			m_AnimLayer[CHARACTER_ANIM_LAYER_END];	///< AnimationLayer(»ó, ÇÏÃ¼)
+	CNtlAnimLayer			m_AnimLayer[CHARACTER_ANIM_LAYER_END];	///< AnimationLayer(ìƒ, í•˜ì²´)
 	CNtlInstanceAnimTable	m_InstanceAnimTable;					///< Animation Resource InstanceData
 
-	SAnimPlayInfo			m_sBaseAnimPlayInfo;					///< ÇöÀç PlayÁßÀÎ AnimationÀÇ Á¤º¸µé
+	SAnimPlayInfo			m_sBaseAnimPlayInfo;					///< í˜„ì¬ Playì¤‘ì¸ Animationì˜ ì •ë³´ë“¤
 	FRAME_MAP				m_mapFrame;								///< Bone Info
 	SToonData				m_ToonData;								///< Toon Ink, Toon Paint, Toon Resource
 	
     STypeBoneData			*m_pTypeBoneData;						///< Bone Data Reference
-	RwInt32				    m_nBoneCount;							///< BoneÀÇ °¹¼ö
-    RwV3d                   m_vBoneStretchTargetPos;                ///< Bone Stretch Target À§Ä¡
-    RwChar                  m_szBoneStretchAxisBone[MAX_DEFAULT_NAME];                ///< Bone Stretch ÀÌº¥Æ®¿¡¼­ È¸ÀüÃàÀÌ µÇ´Â º»
+	RwInt32				    m_nBoneCount;							///< Boneì˜ ê°¯ìˆ˜
+    RwV3d                   m_vBoneStretchTargetPos;                ///< Bone Stretch Target ìœ„ì¹˜
+    RwChar                  m_szBoneStretchAxisBone[MAX_DEFAULT_NAME];                ///< Bone Stretch ì´ë²¤íŠ¸ì—ì„œ íšŒì „ì¶•ì´ ë˜ëŠ” ë³¸
 
 
-	RwV3d					m_vCurPos;								///< CharacterÀÇ ÇöÀç À§Ä¡
-	RwV3d					m_vScale;								///< CharacterÀÇ Scale¸¦ º¯°æÇÏ°íÀÚ ÇÒ¶§(Instance)
+	RwV3d					m_vCurPos;								///< Characterì˜ í˜„ì¬ ìœ„ì¹˜
+	RwV3d					m_vScale;								///< Characterì˜ Scaleë¥¼ ë³€ê²½í•˜ê³ ì í• ë•Œ(Instance)
 	RwV3d					m_vAngle;								///< Angle					
 
-	RwBool					m_bAnimUpdate;							///< Animation¸¦ Update¸¦ ÇÏ´ÂÁö
+	RwBool					m_bAnimUpdate;							///< Animationë¥¼ Updateë¥¼ í•˜ëŠ”ì§€
 	RwReal					m_fAnimSpeed;							///< Anim Speed
 	RwReal					m_fFastMaxExtent;						///< fast max extent
 
@@ -122,16 +122,16 @@ protected:
 
 	RwRGBA					m_sInkColor;							///< Ink Color;
 
-	CNtlPLLinkEffect        m_LinkEffectInstance;                   ///< LinkEffect InstanceµéÀ» °ü¸®ÇÏ´Â °´Ã¼
-	ListLoopEffect          m_listLoopEffect;                       ///< LoopEffectÀÇ list
-	ListSoundHandle         m_listLoopSound;                        ///< LoopSoundµéÀÇ HANDLE List
+	CNtlPLLinkEffect        m_LinkEffectInstance;                   ///< LinkEffect Instanceë“¤ì„ ê´€ë¦¬í•˜ëŠ” ê°ì²´
+	ListLoopEffect          m_listLoopEffect;                       ///< LoopEffectì˜ list
+	ListSoundHandle         m_listLoopSound;                        ///< LoopSoundë“¤ì˜ HANDLE List
 
 	RwBool					m_ToonEdgeVisibility;
 
-	// NPC³ª MOBÀÇ °æ¿ì m_pResourceClump¸¦ ¾²´Âµ¥ ÀÌ°æ¿ì PLItem¿¡¸¸ ÇØ´çÇÏ´Â SimpleMaterial¸¦ ¾µ¼ö°¡ ¾ø´Ù.
+	// NPCë‚˜ MOBì˜ ê²½ìš° m_pResourceClumpë¥¼ ì“°ëŠ”ë° ì´ê²½ìš° PLItemì—ë§Œ í•´ë‹¹í•˜ëŠ” SimpleMaterialë¥¼ ì“¸ìˆ˜ê°€ ì—†ë‹¤.
 	RwBool m_SimpleMaterial;
 
-	// Character°¡ ¸Ö¸® ÀÖÀ»¶§ performance ÁõÁøÀ» À§ÇØ animation updateÀ» skipÇÑ´Ù.
+	// Characterê°€ ë©€ë¦¬ ìˆì„ë•Œ performance ì¦ì§„ì„ ìœ„í•´ animation updateì„ skipí•œë‹¤.
 	RwReal m_SkipAnimUpdateTime;
 	RwReal m_SkipAnimUpdateElapsedTime;
 
@@ -160,33 +160,33 @@ protected:
 	void	UpdatePreBoneScale();
 	void	UpdatePostBoneScale();
 
-	// Loop Effect °ü·Ã
-	void    AddLoopEffect(SLoopEffect* pLoopEffect) {m_listLoopEffect.push_back(pLoopEffect);} ///< LoopEffect List¿¡ LoopEffect¸¦ Ãß°¡ÇÑ´Ù.
-	void    ClearLoopEffect();                                                                 ///< LoopEffect List¿¡ µé¾îÀÖ´Â EffectInstanceµéÀ» ¼Ò¸ê½ÃÅ²´Ù.
-	RwBool  IsExistLoopEffect(const RwChar* szEffectName, const RwChar* szBoneName);           ///< LoopEffect List¾È¿¡ ÀÌ¸§-Bone ½ÖÀÇ LoopEffect°¡ ÀÖ´ÂÁö È®ÀÎÇÑ´Ù.
+	// Loop Effect ê´€ë ¨
+	void    AddLoopEffect(SLoopEffect* pLoopEffect) {m_listLoopEffect.push_back(pLoopEffect);} ///< LoopEffect Listì— LoopEffectë¥¼ ì¶”ê°€í•œë‹¤.
+	void    ClearLoopEffect();                                                                 ///< LoopEffect Listì— ë“¤ì–´ìˆëŠ” EffectInstanceë“¤ì„ ì†Œë©¸ì‹œí‚¨ë‹¤.
+	RwBool  IsExistLoopEffect(const RwChar* szEffectName, const RwChar* szBoneName);           ///< LoopEffect Listì•ˆì— ì´ë¦„-Bone ìŒì˜ LoopEffectê°€ ìˆëŠ”ì§€ í™•ì¸í•œë‹¤.
 
-	// Loop Sound °ü·Ã
-	void    AddLoopSound(SOUND_HANDLE hSound) {m_listLoopSound.push_back(hSound);}             ///< LoopSound List¿¡ SoundHandleÀ» Ãß°¡ÇÑ´Ù.
-	void    ClearLoopSound();                                                                  ///< LoopSound List¿¡ µé¾îÀÖ´Â LoopSoundµéÀ» ¼Ò¸êÇÑ´Ù.
-	RwBool  IsExistLoopSound(RwChar* szSoundName);                                             ///< LoopSound List¿¡ µ¿ÀÏÇÑ SoundHandleÀÌ ÀÖ´ÂÁö È®ÀÎÇÑ´Ù.
+	// Loop Sound ê´€ë ¨
+	void    AddLoopSound(SOUND_HANDLE hSound) {m_listLoopSound.push_back(hSound);}             ///< LoopSound Listì— SoundHandleì„ ì¶”ê°€í•œë‹¤.
+	void    ClearLoopSound();                                                                  ///< LoopSound Listì— ë“¤ì–´ìˆëŠ” LoopSoundë“¤ì„ ì†Œë©¸í•œë‹¤.
+	RwBool  IsExistLoopSound(RwChar* szSoundName);                                             ///< LoopSound Listì— ë™ì¼í•œ SoundHandleì´ ìˆëŠ”ì§€ í™•ì¸í•œë‹¤.
 
-	// Animation Event °ü·Ã    
-	virtual void   OnEventAnimEnd(SEventAnimEnd* pEventAnimEnd);                               ///< Anim End Event¸¦ Ã³¸®ÇÑ´Ù.
+	// Animation Event ê´€ë ¨    
+	virtual void   OnEventAnimEnd(SEventAnimEnd* pEventAnimEnd);                               ///< Anim End Eventë¥¼ ì²˜ë¦¬í•œë‹¤.
 	virtual void   OnEventHit(SEventAnimHit* pEventHit);    
 	virtual void   OnEventWeightTime(SEventWeightTime* pEventTime);
 	virtual void   OnEventVisualSound(SEventSound* pEventSound);
-	virtual void   OnEventTraceEffect(SEventTrace* pEventTrace);                                ///< Trace Effect¸¦ »ı¼ºÇÑ´Ù.
-	virtual void   OnEventVisualEffect(SEventVisualEffect* pEventVisualEffect);                 ///< Visual Effect Event¸¦ Ã³¸®ÇÏ°í, Visual Effect¸¦ »ı¼ºÇÑ´Ù.
-	virtual void   OnEventSubWeapon(SEventSubWeapon* pEventSubWeapon);                          ///< SubWeapon Event¸¦ Ã³¸®ÇÑ´Ù.
-	virtual void   OnEventPostEffect(SEventPostEffect* pEventPostEffect);						///< Post Effect Event¸¦ Ã³¸®ÇÑ´Ù.
-	virtual void   OnEventSummonPet(SEventSummonPet* pEventSummonPet);							///< Summon Pet Event¸¦ Ã³¸®ÇÑ´Ù.
-	virtual void   OnEventAlphaFade(SEventAlpha* pEventAlpha);                                  ///< Alpha Fade Event¸¦ Ã³¸®ÇÑ´Ù.
+	virtual void   OnEventTraceEffect(SEventTrace* pEventTrace);                                ///< Trace Effectë¥¼ ìƒì„±í•œë‹¤.
+	virtual void   OnEventVisualEffect(SEventVisualEffect* pEventVisualEffect);                 ///< Visual Effect Eventë¥¼ ì²˜ë¦¬í•˜ê³ , Visual Effectë¥¼ ìƒì„±í•œë‹¤.
+	virtual void   OnEventSubWeapon(SEventSubWeapon* pEventSubWeapon);                          ///< SubWeapon Eventë¥¼ ì²˜ë¦¬í•œë‹¤.
+	virtual void   OnEventPostEffect(SEventPostEffect* pEventPostEffect);						///< Post Effect Eventë¥¼ ì²˜ë¦¬í•œë‹¤.
+	virtual void   OnEventSummonPet(SEventSummonPet* pEventSummonPet);							///< Summon Pet Eventë¥¼ ì²˜ë¦¬í•œë‹¤.
+	virtual void   OnEventAlphaFade(SEventAlpha* pEventAlpha);                                  ///< Alpha Fade Eventë¥¼ ì²˜ë¦¬í•œë‹¤.
 	virtual void   OnEventFootStep(SEventFootStep* pEventFootStep);
-	virtual void   OnEventDirect(SEventDirect* pEventDirect);                                   ///< ¿¬Ãâ¿ë ÀÌº¥Æ®
-    virtual void   OnEventColorChange(SEventColorChange* pEventColorChange);                    ///< »ö»ó º¯°æ ÀÌº¥Æ® Ã³¸®
-    virtual void   OnEventStretch(SEventStretch* pEventStretch);                                ///< º» ´Ã¸®±â ÀÌº¥Æ®
-    virtual void   OnEventTrigger(SEventTrigger* pEventTrigger);                                ///< Æ®¸®°Å ÀÌº¥Æ®
-    virtual void   OnEventSkillCancel(SEventSkillCancel* pEventSkillCancel);                    ///< ½ºÅ³ Äµ½½ ÀÌº¥Æ®
+	virtual void   OnEventDirect(SEventDirect* pEventDirect);                                   ///< ì—°ì¶œìš© ì´ë²¤íŠ¸
+    virtual void   OnEventColorChange(SEventColorChange* pEventColorChange);                    ///< ìƒ‰ìƒ ë³€ê²½ ì´ë²¤íŠ¸ ì²˜ë¦¬
+    virtual void   OnEventStretch(SEventStretch* pEventStretch);                                ///< ë³¸ ëŠ˜ë¦¬ê¸° ì´ë²¤íŠ¸
+    virtual void   OnEventTrigger(SEventTrigger* pEventTrigger);                                ///< íŠ¸ë¦¬ê±° ì´ë²¤íŠ¸
+    virtual void   OnEventSkillCancel(SEventSkillCancel* pEventSkillCancel);                    ///< ìŠ¤í‚¬ ìº”ìŠ¬ ì´ë²¤íŠ¸
 
 public:
 	void* operator new(size_t size);
@@ -198,7 +198,7 @@ public:
 	virtual RwBool	RenderToTexture();
 	
 
-	// Occluder Proxy »ı¼º °ü·Ã.
+	// Occluder Proxy ìƒì„± ê´€ë ¨.
 	virtual RwBool CreateOccluderProxy();
 
 #ifdef dNTL_WORLD_CULLING_NEW
@@ -206,7 +206,7 @@ public:
 #else
 	virtual RwBool	CullingTest(RwCamera* pRwCamera);
 #endif
-    virtual RwBool  IsCullingTestAllAtomic();                                       ///< ÇöÀç ¼³Á¤µÈ ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ Culling Atomic Ã¼Å©ÀÎÁö ¹İÈ¯ÇÑ´Ù.
+    virtual RwBool  IsCullingTestAllAtomic();                                       ///< í˜„ì¬ ì„¤ì •ëœ ì• ë‹ˆë©”ì´ì…˜ì´ Culling Atomic ì²´í¬ì¸ì§€ ë°˜í™˜í•œë‹¤.
 
 	virtual RwBool	SetProperty(const CNtlPLProperty *pData);
 	virtual void	Destroy();
@@ -231,15 +231,15 @@ public:
     RpClump*            GetClump();
     RpAtomic*           GetAtomic(const std::string& strName);
     RpHAnimHierarchy*   GetBaseHierarchy();
-    void                UpdateMaterialSkinInfo();                                               ///< AtomicÀÇ Material Á¤º¸¸¦ °»½ÅÇÑ´Ù. (¼ø¼ö¸¶ÀÎ½Ã »ç¿ë)
+    void                UpdateMaterialSkinInfo();                                               ///< Atomicì˜ Material ì •ë³´ë¥¼ ê°±ì‹ í•œë‹¤. (ìˆœìˆ˜ë§ˆì¸ì‹œ ì‚¬ìš©)
 
-    // º» °ü·Ã
+    // ë³¸ ê´€ë ¨
     RwMatrix*       GetBoneMatrix(const RwChar *pBoneName);
     RwFrame *       GetBoneByName(const RwChar *pBoneName);
     RwUInt32        GetBoneIndex(const RwChar* pBoneName);
     STypeBoneData*  GetBoneData() {return m_pTypeBoneData;}
-    RwChar*         GetBoneName(int nBoneIndex);                                                ///< BoneÀÇ ÀÌ¸§À» ¹İÈ¯ÇÑ´Ù.
-    void            SetSBoneStretchTargetPos(const RwV3d& vTargetPos, const RwChar* szAxisBone);///< Bone StretchÀÌº¥Æ®ÀÇ Å¸°ÙÀ» ¼³Á¤ÇÑ´Ù
+    RwChar*         GetBoneName(int nBoneIndex);                                                ///< Boneì˜ ì´ë¦„ì„ ë°˜í™˜í•œë‹¤.
+    void            SetSBoneStretchTargetPos(const RwV3d& vTargetPos, const RwChar* szAxisBone);///< Bone Stretchì´ë²¤íŠ¸ì˜ íƒ€ê²Ÿì„ ì„¤ì •í•œë‹¤
 
 	virtual void SetPosition(const RwV3d *pPos);
 	RwV3d	GetPosition();
@@ -257,29 +257,29 @@ public:
 	void    SetAngleX(const RwReal fAngleX);
 	RwReal	GetAngleX() { return m_vAngle.x; }
 
-	virtual void   SetScale(RwReal fScale);														///< ÀÓÀÇ·Î Scale¸¦ º¯°æ(Instance)
-	virtual RwReal GetScale();                                                                  ///< ÀÓÀÇ·Î Á¶Á¤ÇÑ ScaleÀ» ¹İÈ¯
+	virtual void   SetScale(RwReal fScale);														///< ì„ì˜ë¡œ Scaleë¥¼ ë³€ê²½(Instance)
+	virtual RwReal GetScale();                                                                  ///< ì„ì˜ë¡œ ì¡°ì •í•œ Scaleì„ ë°˜í™˜
 
-	void	SetBaseScale(RwReal fBaseScale);													///< BaseScale º¯°æ
-	RwReal  GetBaseScale();                                                                     ///< ¼³Á¤µÈ BaseScaleÀ» ¹İÈ¯ÇÑ´Ù.
-	void	SetPosOffset(RwV3d *pPos);															///< Bone Scale ÇßÀ»°æ¿ì ¹ßÀÌ ¶³¾îÁö¸é º¸Á¤ÇÏ´Â ÇÔ¼ö
+	void	SetBaseScale(RwReal fBaseScale);													///< BaseScale ë³€ê²½
+	RwReal  GetBaseScale();                                                                     ///< ì„¤ì •ëœ BaseScaleì„ ë°˜í™˜í•œë‹¤.
+	void	SetPosOffset(RwV3d *pPos);															///< Bone Scale í–ˆì„ê²½ìš° ë°œì´ ë–¨ì–´ì§€ë©´ ë³´ì •í•˜ëŠ” í•¨ìˆ˜
 
 	RwBool	SetAllAnimation(RwUInt32 uiAnimKey, RwReal fStartTime = 0.f, RwBool	bLoop = TRUE);  ///< Set All Animation
-	RwBool	SetBaseAnimation(RwUInt32 uiAnimKey, RwReal fStartTime = 0.f, RwBool bLoop = TRUE); ///< Set Base Animation(Client Àü¿ë)
-	RwUInt32 GetCurBaseAnimKey() {return m_sBaseAnimPlayInfo.m_uiAnimKey;};                     ///< ÇöÀç ÇÃ·¹ÀÌµÇ°í ÀÖ´Â Anim Key¸¦ ¹İÈ¯ÇÑ´Ù.    
-	RwBool	IsExistAnim(RwUInt32 uiAnimKey);													///< uiAnimKeyÀÇ AnimationÀÌ ÀÖ´ÂÁö
-	RwBool	SetBlend(EBlendType eBlendType, RwReal fBlendAllpha = 0.f, RwReal fBlendInterval = 0.1f);///< Animation Blend (fBlendAlpha = 1.f ÀÌ¸é Blend°¡ ¾ÈµÈ´Ù.)
-	void	SetAnimSpeed(RwReal fSpeed);														///< AnimationÀÇ Speed Default(1.f)
-	RwReal  GetAnimSpeed();                                                                     ///< AnimationÀÇ Speed¸¦ ¹İÈ¯ÇÑ´Ù.
-	void	SetAnimUpdate(RwBool bAnimUpdate);													///< Animation¸¦ Update¸¦ ÇÒÁö ¸»Áö
-	RwBool	GetAnimUpdate();																	///< Animation¸¦ Update¸¦ ÇÏ´ÂÁö °Ë»çÇÏ´Â ÇÔ¼ö
-	RwReal	GetBaseCurrentAnimTime();															///< ÇöÀç Base Layer AnimationÀÇ ½Ã°£À» ¾ò´Â ÇÔ¼ö
-	RwReal	GetBaseDurationAnimTime();															///< ÇöÀç Base Layer AnimationÀÇ ÀüÃ¼ ½Ã°£À» ¾ò´Â ÇÔ¼ö
-	void    SetBaseCurrentAnimTime(RwReal fCurrTime);								    		///< ½Ã°£À» °­Á¦·Î ³Ö´Â ÇÔ¼öµµ ÇÊ¿ä
+	RwBool	SetBaseAnimation(RwUInt32 uiAnimKey, RwReal fStartTime = 0.f, RwBool bLoop = TRUE); ///< Set Base Animation(Client ì „ìš©)
+	RwUInt32 GetCurBaseAnimKey() {return m_sBaseAnimPlayInfo.m_uiAnimKey;};                     ///< í˜„ì¬ í”Œë ˆì´ë˜ê³  ìˆëŠ” Anim Keyë¥¼ ë°˜í™˜í•œë‹¤.    
+	RwBool	IsExistAnim(RwUInt32 uiAnimKey);													///< uiAnimKeyì˜ Animationì´ ìˆëŠ”ì§€
+	RwBool	SetBlend(EBlendType eBlendType, RwReal fBlendAllpha = 0.f, RwReal fBlendInterval = 0.1f);///< Animation Blend (fBlendAlpha = 1.f ì´ë©´ Blendê°€ ì•ˆëœë‹¤.)
+	void	SetAnimSpeed(RwReal fSpeed);														///< Animationì˜ Speed Default(1.f)
+	RwReal  GetAnimSpeed();                                                                     ///< Animationì˜ Speedë¥¼ ë°˜í™˜í•œë‹¤.
+	void	SetAnimUpdate(RwBool bAnimUpdate);													///< Animationë¥¼ Updateë¥¼ í• ì§€ ë§ì§€
+	RwBool	GetAnimUpdate();																	///< Animationë¥¼ Updateë¥¼ í•˜ëŠ”ì§€ ê²€ì‚¬í•˜ëŠ” í•¨ìˆ˜
+	RwReal	GetBaseCurrentAnimTime();															///< í˜„ì¬ Base Layer Animationì˜ ì‹œê°„ì„ ì–»ëŠ” í•¨ìˆ˜
+	RwReal	GetBaseDurationAnimTime();															///< í˜„ì¬ Base Layer Animationì˜ ì „ì²´ ì‹œê°„ì„ ì–»ëŠ” í•¨ìˆ˜
+	void    SetBaseCurrentAnimTime(RwReal fCurrTime);								    		///< ì‹œê°„ì„ ê°•ì œë¡œ ë„£ëŠ” í•¨ìˆ˜ë„ í•„ìš”
 	RwBool	GetBaseCurrentAnimEnd();
-	SAnimPlayInfo	*GetBaseAnimPlayInfo();														///< ÇöÀç AnimationÀÇ °£·« Á¤º¸¸¦ ¾ò´Â´Ù.
-	RwReal  GetDurationAnimTime(RwUInt32 uiAnimKey);											///< uiAnimKey¿¡ ÇØ´çÇÑ´Â AnimationÀÇ ½Ã°£À» ¾ò´Â´Ù.
-    void    OnAfterAnimEventRun();                                                              ///< ÇöÀç ½Ã°£ ÀÌÈÄÀÇ ¸ğµç Anim Event¸¦ ½ÇÇà½ÃÅ²´Ù.
+	SAnimPlayInfo	*GetBaseAnimPlayInfo();														///< í˜„ì¬ Animationì˜ ê°„ëµ ì •ë³´ë¥¼ ì–»ëŠ”ë‹¤.
+	RwReal  GetDurationAnimTime(RwUInt32 uiAnimKey);											///< uiAnimKeyì— í•´ë‹¹í•œëŠ” Animationì˜ ì‹œê°„ì„ ì–»ëŠ”ë‹¤.
+    void    OnAfterAnimEventRun();                                                              ///< í˜„ì¬ ì‹œê°„ ì´í›„ì˜ ëª¨ë“  Anim Eventë¥¼ ì‹¤í–‰ì‹œí‚¨ë‹¤.
 
 	RwReal	GetWidth();																			///< Character Width (x)
 	RwReal	GetHeight();																		///< Character Height (y)
@@ -291,35 +291,35 @@ public:
 	RwBool SetRemoveEquipCItem(CNtlPLItem* _pItem, RwUInt32 _CBitSet);
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// 1. pItem		: Change ¶Ç´Â Remove ÇÏ·Á´Â Item ÀÌ´Ù.
-	// 2. bAttach	: Subweapon °ü·Ã Flag, Subweapon ÀÇ °æ¿ì ÀÌ FlagÀÌ FALSE¿©¼­ ½ÇÁ¦·Î´Â Attach µÇÁö ¾Ê´Â´Ù´Â °ÍÀ» ÀÇ¹ÌÇÑ´Ù.
-	// 3. _CBitSet	: Costume °ü·Ã BitFlag Set ÀÌ¸ç ¹İµå½Ã Costume ÀÎ °æ¿ì¿¡¸¸ ÀÔ·ÂÇÑ´Ù.
-	//				  ½ÇÁ¦ BitFlag Set °ªÀÌ 0xFFFFFFFF ÀÎ °æ¿ì´Â ±âÁ¸ÀÇ ¹æ½ÄÀ» µû¸£¸ç 0xFFFFFFFF°¡ ¾Æ´Ñ °æ¿ì´Â ¹«¾ğ°¡ Attach ¶Ç´Â Detach µÈ´Ù´Â ÀÇ¹ÌÀÌ´Ù.
+	// 1. pItem		: Change ë˜ëŠ” Remove í•˜ë ¤ëŠ” Item ì´ë‹¤.
+	// 2. bAttach	: Subweapon ê´€ë ¨ Flag, Subweapon ì˜ ê²½ìš° ì´ Flagì´ FALSEì—¬ì„œ ì‹¤ì œë¡œëŠ” Attach ë˜ì§€ ì•ŠëŠ”ë‹¤ëŠ” ê²ƒì„ ì˜ë¯¸í•œë‹¤.
+	// 3. _CBitSet	: Costume ê´€ë ¨ BitFlag Set ì´ë©° ë°˜ë“œì‹œ Costume ì¸ ê²½ìš°ì—ë§Œ ì…ë ¥í•œë‹¤.
+	//				  ì‹¤ì œ BitFlag Set ê°’ì´ 0xFFFFFFFF ì¸ ê²½ìš°ëŠ” ê¸°ì¡´ì˜ ë°©ì‹ì„ ë”°ë¥´ë©° 0xFFFFFFFFê°€ ì•„ë‹Œ ê²½ìš°ëŠ” ë¬´ì–¸ê°€ Attach ë˜ëŠ” Detach ëœë‹¤ëŠ” ì˜ë¯¸ì´ë‹¤.
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// < ÁÖÀÇ >
-	// ÇöÀç Interface¸¦ »ç¿ëÇÒ¶§ ÁÖÀÇÇØ¾ß ÇÒ »çÇ×Àº ´ÙÀ½°ú °°´Ù.
-	// BitSet¿¡ ÇØ´çÇÏ´Â ¸ğµç¸Ş½¬´Â ´Ü¼øÈ÷ Lib³»ºÎÀûÀ¸·Î attach, detachµÈ´Ù. ¶§¹®¿¡ ÀÌ ÇÔ¼ö¸¦ Ç×»ó ¸¶Áö¸·¿¡ ½ÇÇà½ÃÄÑ¾ß ÇÑ´Ù.
-	// ÀÌ ÇÔ¼ö¸¦ ¸ÕÀú ½ÇÇàÇÑ ÈÄ ±âÁ¸¹æ½ÄÀ¸·Î itemÀ» ÀÔ°Å³ª ¹ş°ÔµÇ¸é ´Ù½Ã ±× item¶§¹®¿¡ default itemºÎºĞÀÌ ÀÔÇôÁö°Å³ª ¹ş°ÜÁö±â ¶§¹®ÀÌ´Ù.
-	// Ç×»ó Costume°ü·ÃµÈ ÀÔ±â interface´Â ¸¶Áö¸·¿¡ ½ÇÇàÇÑ´Ù. ¹İ´ë·Î ¹şÀ»¶§´Â Ç×»ó ¸ÕÀú ½ÇÇàÇÑ´Ù. µ¿ÀÏÇÑ ÀÌÀ¯ÀÌ´Ù.
+	// < ì£¼ì˜ >
+	// í˜„ì¬ Interfaceë¥¼ ì‚¬ìš©í• ë•Œ ì£¼ì˜í•´ì•¼ í•  ì‚¬í•­ì€ ë‹¤ìŒê³¼ ê°™ë‹¤.
+	// BitSetì— í•´ë‹¹í•˜ëŠ” ëª¨ë“ ë©”ì‰¬ëŠ” ë‹¨ìˆœíˆ Libë‚´ë¶€ì ìœ¼ë¡œ attach, detachëœë‹¤. ë•Œë¬¸ì— ì´ í•¨ìˆ˜ë¥¼ í•­ìƒ ë§ˆì§€ë§‰ì— ì‹¤í–‰ì‹œì¼œì•¼ í•œë‹¤.
+	// ì´ í•¨ìˆ˜ë¥¼ ë¨¼ì € ì‹¤í–‰í•œ í›„ ê¸°ì¡´ë°©ì‹ìœ¼ë¡œ itemì„ ì…ê±°ë‚˜ ë²—ê²Œë˜ë©´ ë‹¤ì‹œ ê·¸ itemë•Œë¬¸ì— default itemë¶€ë¶„ì´ ì…í˜€ì§€ê±°ë‚˜ ë²—ê²¨ì§€ê¸° ë•Œë¬¸ì´ë‹¤.
+	// í•­ìƒ Costumeê´€ë ¨ëœ ì…ê¸° interfaceëŠ” ë§ˆì§€ë§‰ì— ì‹¤í–‰í•œë‹¤. ë°˜ëŒ€ë¡œ ë²—ì„ë•ŒëŠ” í•­ìƒ ë¨¼ì € ì‹¤í–‰í•œë‹¤. ë™ì¼í•œ ì´ìœ ì´ë‹¤.
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	virtual RwBool	SetChangeEquipItem(CNtlPLItem *pItem, RwBool bAttach = TRUE, RwUInt32 _CBitSet = dCOSTUME_BITSET_INVALID);
 	virtual RwBool	SetRemoveEquipItem(CNtlPLItem *pItem, RwUInt32 _CBitSet = dCOSTUME_BITSET_INVALID);
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// Toon edge visibiltity¸¦ °áÁ¤ÇÏ´Â ÇÔ¼ö
+	// Toon edge visibiltityë¥¼ ê²°ì •í•˜ëŠ” í•¨ìˆ˜
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// È£ÃâÇÏ¸é Toon edge renderingÀ» ²ô°Å³ª ÄÓ¼ö ÀÖ´Ù.
-	// ÀÌ ÇÔ¼ö¸¦ È£ÃâÇÏ°Ô µÇ¸é ³»ºÎÀûÀ¸·Î Atomic¿¡ Flag¸¦ °®°Ô µÇ¹Ç·Î À¯Áöº¸¼ö¿¡ ÁÖÀÇÇÏ¿©¾ß ÇÑ´Ù.
-	// Edge¸¦ ²ö »óÅÂ¿¡¼­ ¼­¹ö·Î ºÎÅÍ ºÎºĞ mesh¸¦ ÀÔ´Â°æ¿ì, ¹ş´Â°æ¿ìµîµî Ä³¸¯ÅÍÀÇ ¿Ü°ü»óÅÂº¯È­¿¡ µû¶ó ÀÌ ÇÔ¼ö°¡ È£ÃâµÇ¾î¾ß ÇÒ°ÍÀÌ´Ù.
+	// í˜¸ì¶œí•˜ë©´ Toon edge renderingì„ ë„ê±°ë‚˜ ì¼¤ìˆ˜ ìˆë‹¤.
+	// ì´ í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ê²Œ ë˜ë©´ ë‚´ë¶€ì ìœ¼ë¡œ Atomicì— Flagë¥¼ ê°–ê²Œ ë˜ë¯€ë¡œ ìœ ì§€ë³´ìˆ˜ì— ì£¼ì˜í•˜ì—¬ì•¼ í•œë‹¤.
+	// Edgeë¥¼ ëˆ ìƒíƒœì—ì„œ ì„œë²„ë¡œ ë¶€í„° ë¶€ë¶„ meshë¥¼ ì…ëŠ”ê²½ìš°, ë²—ëŠ”ê²½ìš°ë“±ë“± ìºë¦­í„°ì˜ ì™¸ê´€ìƒíƒœë³€í™”ì— ë”°ë¼ ì´ í•¨ìˆ˜ê°€ í˜¸ì¶œë˜ì–´ì•¼ í• ê²ƒì´ë‹¤.
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	VOID SetToonEdgeVisibility4CurEquipItem(RwBool _Visibility);
 
 	void UpdateCharacterAtomicList();
 
 	CNtlPLEquipItem* GetEquipItem() {return m_pEquipItem;}
-	RwBool  SetItemGradeEffect(ENtlPLItemGrade eGrade);                                         ///< ÇöÀç ÀåÂøÇÏ°í ÀÖ´Â ¹«±â¿¡ Grade Effect¸¦ Àû¿ëÇÑ´Ù.
+	RwBool  SetItemGradeEffect(ENtlPLItemGrade eGrade);                                         ///< í˜„ì¬ ì¥ì°©í•˜ê³  ìˆëŠ” ë¬´ê¸°ì— Grade Effectë¥¼ ì ìš©í•œë‹¤.
 
-	SToonData	*GetToonData() { return &m_ToonData; }											///< Toon Data¸¦ ¾ò´Â´Ù.							
+	SToonData	*GetToonData() { return &m_ToonData; }											///< Toon Dataë¥¼ ì–»ëŠ”ë‹¤.							
 
 	void SetColor(RwUInt8 byRed, RwUInt8 byGreen, RwUInt8 byBlue);								///< Base Color
 	RwRGBA	*GetColor() { return &m_sColor; }
@@ -329,7 +329,7 @@ public:
 
 	virtual void SetAlpha(RwUInt8 byValue);																///< Base Alpha
 	virtual void SetWeightAlpha(RwReal fWeightValue);													///< Weight Alpha
-	virtual void SetAtomicWeightAlpha(const RwChar *pAtomicName, RwReal fWeightValue);                  ///< Atomic Weight Alpha Value¸¦ ¼¼ÆÃÇÑ´Ù.
+	virtual void SetAtomicWeightAlpha(const RwChar *pAtomicName, RwReal fWeightValue);                  ///< Atomic Weight Alpha Valueë¥¼ ì„¸íŒ…í•œë‹¤.
 
 	virtual void SetSkinColor(RwUInt8 byRed, RwUInt8 byGreen, RwUInt8 byBlue);					///< Skin Color
 	RwRGBA	*GetSkinColor() { return &m_sSkinColor; }		
@@ -340,13 +340,13 @@ public:
 	virtual void SetInkColor(RwUInt8 byRed, RwUInt8 byGreen, RwUInt8 byBlue);					///< Ink Color
 	virtual void SetInkThickness(RwReal fThickness = DEFAULT_INK_THICKNESS);					///< Ink Thickness
 
-	virtual int	CallBackBaseAnim(void* pAnimEvent);											///< Animation Event¸¦ ¹Ş´Â Callback ÇÔ¼ö
+	virtual int	CallBackBaseAnim(void* pAnimEvent);											///< Animation Eventë¥¼ ë°›ëŠ” Callback í•¨ìˆ˜
 	static RpAtomic *RenderCallBack(RpAtomic *pAtomic);
 
-	// Link Effect °ü·Ã
-	VecLinkEffect*      GetVecLinkEffect() {return &(m_LinkEffectInstance.m_vecLinkEffect);}	///< LinkEffect Vector¸¦ ¹İÈ¯ÇÑ´Ù.
-    CNtlInstanceEffect* AttachLinkEffect(SEventLinkEffect* pEventLinkEffect);					///< Link Effect¸¦ Attach ½ÃÅ²´Ù.
-	RwBool              DetachLinkEffect(CNtlInstanceEffect* pLinkEffect);                      ///< Link Effect¸¦ Detach ½ÃÅ²´Ù.
+	// Link Effect ê´€ë ¨
+	VecLinkEffect*      GetVecLinkEffect() {return &(m_LinkEffectInstance.m_vecLinkEffect);}	///< LinkEffect Vectorë¥¼ ë°˜í™˜í•œë‹¤.
+    CNtlInstanceEffect* AttachLinkEffect(SEventLinkEffect* pEventLinkEffect);					///< Link Effectë¥¼ Attach ì‹œí‚¨ë‹¤.
+	RwBool              DetachLinkEffect(CNtlInstanceEffect* pLinkEffect);                      ///< Link Effectë¥¼ Detach ì‹œí‚¨ë‹¤.
 
 	RwV3d  GetFaceCameraPos() { return m_pProperty->GetFaceCameraPos();}							///< Get Face Camera Position
 	RwV3d  GetFaceCameraLookAt() { return m_pProperty->GetFaceCameraLookAt();}					///< Set Face Camera LookAt Height 
@@ -356,15 +356,15 @@ public:
 
 	static void fpRenderCB(void* _pParam);
 
-	// Animation update¸¦ skipÇÒ¶§ ¹®Á¦°¡ ¹ß»ıÇÒ ¼ÒÁö°¡ ÀÖ´Ù. ex) Æ©Åä¸®¾ó¿¡¼­ ¿ùµå Æ®·£½ºÆûÀÌ ÀÌ·ç¾îÁöÁö ¸øÇÏ°í char animationÀ¸·Î¸¸ Ã³¸®ÇÒ¶§µîµî
-	// ±¸°£ ±¸°£ ¹®Á¦°¡ »ı±â´Â ºÎºĞ¿¡ ¼³Á¤ÇÏ°í ÇØÁ¦ÇÑ´Ù; Renderstate¼³Á¤¹× º¹¿ø°ú °°Àº °³³äÀ¸·Î »ç¿ëÇÏ¸é µÈ´Ù.
+	// Animation updateë¥¼ skipí• ë•Œ ë¬¸ì œê°€ ë°œìƒí•  ì†Œì§€ê°€ ìˆë‹¤. ex) íŠœí† ë¦¬ì–¼ì—ì„œ ì›”ë“œ íŠ¸ëœìŠ¤í¼ì´ ì´ë£¨ì–´ì§€ì§€ ëª»í•˜ê³  char animationìœ¼ë¡œë§Œ ì²˜ë¦¬í• ë•Œë“±ë“±
+	// êµ¬ê°„ êµ¬ê°„ ë¬¸ì œê°€ ìƒê¸°ëŠ” ë¶€ë¶„ì— ì„¤ì •í•˜ê³  í•´ì œí•œë‹¤; Renderstateì„¤ì •ë° ë³µì›ê³¼ ê°™ì€ ê°œë…ìœ¼ë¡œ ì‚¬ìš©í•˜ë©´ ëœë‹¤.
 	static void SetSkipAnimUpdate(RwBool _Skip = TRUE);
 
-	// Simple materialºÎºĞÀÇ game option check¿¡ µû¸¥ À¯¹«¸¦ ÆÇ´ÜÇÏ±â À§ÇÔ ÇÔ¼öÀÌ´Ù.
+	// Simple materialë¶€ë¶„ì˜ game option checkì— ë”°ë¥¸ ìœ ë¬´ë¥¼ íŒë‹¨í•˜ê¸° ìœ„í•¨ í•¨ìˆ˜ì´ë‹¤.
 	static void SetSkipSimpleMaterial(RwBool _Skip = TRUE);
 	static RwBool GetSkipSimpleMaterial(void);
 
-	// edge¸¦ skip ½ÃÅ²´Ù.(Çü¼®)
+	// edgeë¥¼ skip ì‹œí‚¨ë‹¤.(í˜•ì„)
 	static void SetSkipEdge(RwBool _Skip = FALSE);
 	static RwBool GetSkipEdge(void);
 

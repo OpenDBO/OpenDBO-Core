@@ -1,4 +1,4 @@
-// ActionListCtrl.cpp : ���� �����Դϴ�.
+// ActionListCtrl.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -94,7 +94,7 @@ END_MESSAGE_MAP()
 
 
 
-// CActionListCtrl �޽��� ó�����Դϴ�.
+// CActionListCtrl 메시지 처리기입니다.
 
 
 int CActionListCtrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
@@ -102,7 +102,7 @@ int CActionListCtrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CVenusGridCtrl::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// TODO:  ���⿡ Ư��ȭ�� �ۼ� �ڵ带 �߰��մϴ�.
+	// TODO:  여기에 특수화된 작성 코드를 추가합니다.
 	if(!m_image.Create(IDB_EFFECT_LIST_IMAGE,16,1,RGB(0, 255, 255)))
 		return -1;
 
@@ -147,7 +147,7 @@ void CActionListCtrl::InitializeGrid()
 
 void CActionListCtrl::OnContextMenu(CWnd* /*pWnd*/, CPoint point)
 {
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	if (CVenusVisualManager::GetInstance().m_pResourceSystem == NULL) return;
 
 	CMenu menu;
@@ -909,10 +909,10 @@ void CActionListCtrl::OnInsertEmitterFinish()
 
 void CActionListCtrl::OnInsertAttachSystem()
 {
-	// TODO: ���⿡ ���� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
 	if (CVenusVisualManager::GetInstance().m_pResourceSystem->IsEmitterDataFlag(rpPRTSTDEMITTERDATAFLAGPRTMATRIX))
 	{
-//		RwUInt32 result = AfxMessageBox("Matrix Action �� Sub System �� ���� ���� ������ ����.\n������ ���� ������ ���� �˼��� �����Ƿ� Matrix �Ӽ��� ����� �ض�", MB_OK);
+//		RwUInt32 result = AfxMessageBox("Matrix Action 과 Sub System 을 같이 쓰면 에러가 난다.\n에러가 나는 이유는 현재 알수가 없으므로 Matrix 속성을 지우고 해라", MB_OK);
 		return;
 	}
 	CreateAction(IMAGE_INDEX_EMITTER_EMITTER, rpPRTADVEMITTERDATAFLAGPRTEMITTER, NULL);
@@ -920,55 +920,55 @@ void CActionListCtrl::OnInsertAttachSystem()
 
 void CActionListCtrl::OnInsertEmitterMultiColor()
 {
-	// TODO: ���⿡ ���� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
 	CreateAction(IMAGE_INDEX_EMITTER_MULTI_COLOR, rpPRTADVEMITTERDATAFLAGMULTICOLOR, NULL);
 }
 
 void CActionListCtrl::OnInsertEmitterMultiSize()
 {
-	// TODO: ���⿡ ���� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
 	CreateAction(IMAGE_INDEX_EMITTER_MULTI_SIZE, rpPRTADVEMITTERDATAFLAGMULTISIZE, NULL);
 }
 void CActionListCtrl::OnInsertEmitterMultiRotate()
 {
-	// TODO: ���⿡ ���� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
 	CreateAction(IMAGE_INDEX_EMITTER_MULTI_ROTATE, rpPRTADVEMITTERDATAFLAGMULTIROTATE, NULL);
 }
 
 void CActionListCtrl::OnInsertEmitterMultiTexcoords()
 {
-	// TODO: ���⿡ ���� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
 	CreateAction(IMAGE_INDEX_EMITTER_MULTI_TEXCOORDS, rpPRTADVEMITTERDATAFLAGMULTITEXCOORDS, NULL);
 }
 
 void CActionListCtrl::OnInsertEmitterMultiTextures()
 {
-	// TODO: ���⿡ ���� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
 	CreateAction(IMAGE_INDEX_EMITTER_MULTI_TEXTURES, rpPRTADVEMITTERDATAFLAGMULTITEXTURES, NULL);
 }
 
 void CActionListCtrl::OnInsertPointEmitter()
 {
-	// TODO: ���⿡ ���� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
 	CreateAction(IMAGE_INDEX_POINT_EMITTER, rpPRTADVEMITTERDATAFLAGPOINTLIST, NULL);
 }
 
 void CActionListCtrl::OnInsertCircleEmitter()
 {
-	// TODO: ���⿡ ���� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
 	CreateAction(IMAGE_INDEX_CIRCLE_EMITTER, rpPRTADVEMITTERDATAFLAGCIRCLE, NULL);
 }
 
 void CActionListCtrl::OnInsertSphereEmitter()
 {
-	// TODO: ���⿡ ���� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
 	CreateAction(IMAGE_INDEX_SPHERE_EMITTER, rpPRTADVEMITTERDATAFLAGSPHERE, NULL);
 }
 
 
 void CActionListCtrl::OnInsertEmitterSplinePath()
 {
-	// TODO: ���⿡ ���� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
 	CreateAction(IMAGE_INDEX_EMITTER_SPLINE_PATH, rpPRTADVEMITTERDATAFLAGSPLINEPATH, NULL);
 }
 
@@ -984,7 +984,7 @@ void CActionListCtrl::OnInsertEmitterUvanim()
 
 void CActionListCtrl::OnDeleteAction()
 {
-	// TODO: ���⿡ ���� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
 	if (AfxMessageBox("really ?", MB_OKCANCEL) != IDOK) return;
 	RwInt32 nDataFlag = GetSelectResourceData();
 	RwInt32 nMultiDataFlag = 0;
@@ -1021,7 +1021,7 @@ void CActionListCtrl::OnDeleteAction()
 void CActionListCtrl::OnLvnItemchanged(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
-	// TODO: ���⿡ ��Ʈ�� �˸� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	if (m_bListUpdate)
 	{
 		RwInt32 nDataFlag = GetSelectResourceData();
@@ -1037,7 +1037,7 @@ void CActionListCtrl::OnLvnItemchanged(NMHDR *pNMHDR, LRESULT *pResult)
 
 void CActionListCtrl::OnNMClick(NMHDR *pNMHDR, LRESULT *pResult)
 {
-	// TODO: ���⿡ ��Ʈ�� �˸� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	RwInt32 nDataFlag = GetSelectResourceData();
 
 	CVenusVisualManager::GetInstance().SetSelectResourceData(CVenusVisualManager::GetInstance().m_pResourceEffect, CVenusVisualManager::GetInstance().m_pResourceSystem, nDataFlag);
@@ -1050,21 +1050,21 @@ void CActionListCtrl::OnNMClick(NMHDR *pNMHDR, LRESULT *pResult)
 
 void CActionListCtrl::OnEditCopy()
 {
-	// TODO: ���⿡ ���� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
 	RwInt32 nDataFlag = GetSelectResourceData();
 	CVenusPropertyContainer::GetInstance().SetCopyResourceData(TRUE, CVenusVisualManager::GetInstance().m_pResourceEffect, CVenusVisualManager::GetInstance().m_pResourceSystem, nDataFlag);
 }
 
 void CActionListCtrl::OnEditCut()
 {
-	// TODO: ���⿡ ���� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
 	RwInt32 nDataFlag = GetSelectResourceData();
 	CVenusPropertyContainer::GetInstance().SetCopyResourceData(FALSE, CVenusVisualManager::GetInstance().m_pResourceEffect, CVenusVisualManager::GetInstance().m_pResourceSystem, nDataFlag);
 }
 
 void CActionListCtrl::OnEditPaste()
 {
-	// TODO: ���⿡ ���� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
 	NTL_ASSERTE(CVenusPropertyContainer::GetInstance().m_pCopyResourceEffect != NULL);
 	NTL_ASSERTE(CVenusPropertyContainer::GetInstance().m_pCopyResourceSystem != NULL);
 	NTL_ASSERTE(CVenusPropertyContainer::GetInstance().m_nCopySystemDataFlag != 0);
@@ -1072,13 +1072,13 @@ void CActionListCtrl::OnEditPaste()
 	NTL_ASSERTE(CVenusVisualManager::GetInstance().m_pResourceEffect != NULL);
 	NTL_ASSERTE(CVenusVisualManager::GetInstance().m_pResourceSystem != NULL);
 
-	// ���� flag �� ���õǾ� �ִ��� Ȯ���ؼ� ���õǾ� ���� �������� copy �Ѵ�
+	// 같은 flag 가 세팅되어 있는지 확인해서 세팅되어 있지 않을때만 copy 한다
 	if (CVenusVisualManager::GetInstance().m_pResourceSystem->IsEmitterDataFlag(CVenusPropertyContainer::GetInstance().m_nCopySystemDataFlag))
 	{
 		AfxMessageBox(CStringManager::GetInstance().GetString(STRING_ALREADY_SETTING_FLAG), MB_OK);
 		return;
 	}
-	// ���� system type �� ��츸 �����Ѵ�
+	// 같은 system type 일 경우만 복사한다
 	if (CVenusPropertyContainer::GetInstance().m_pCopyResourceSystem->GetSystemType() != CVenusVisualManager::GetInstance().m_pResourceSystem->GetSystemType())
 	{
 		AfxMessageBox(CStringManager::GetInstance().GetString(STRING_DIFFERENT_SYSTEM_TYPE), MB_OK);
@@ -1102,7 +1102,7 @@ void CActionListCtrl::OnEditPaste()
 
 void CActionListCtrl::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	switch(nChar)
 	{
 	case VK_CONTROL:
@@ -1149,7 +1149,7 @@ void CActionListCtrl::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CActionListCtrl::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	switch(nChar)
 	{
 		case VK_CONTROL:

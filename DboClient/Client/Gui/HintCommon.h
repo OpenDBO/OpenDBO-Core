@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: HintCommon.h
 * Author		: Cho Haesung
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 1. 16
 * Abstract		: 
 *****************************************************************************
-* Desc			: PoPo IconÀ» ÅëÇÏ¿© Ãâ·ÂµÇ´Â ÈùÆ®µé
+* Desc			: PoPo Iconì„ í†µí•˜ì—¬ ì¶œë ¥ë˜ëŠ” ížŒíŠ¸ë“¤
 *****************************************************************************/
 
 #ifndef __HINT_COMMON_H__
@@ -13,8 +13,8 @@
 
 #pragma once
 
-#define MAX_HINT_STRING_TITLE_LEN 64		// Popo Notify Á¦¸ñÀÇ ±æÀÌ ( 32±ÛÀÚ )
-#define MAX_HINT_STRING_BUFFER_LEN 128		// Popo Notify ³»¿ëÀÇ ±æÀÌ ( 64±ÛÀÚ )
+#define MAX_HINT_STRING_TITLE_LEN 64		// Popo Notify ì œëª©ì˜ ê¸¸ì´ ( 32ê¸€ìž )
+#define MAX_HINT_STRING_BUFFER_LEN 128		// Popo Notify ë‚´ìš©ì˜ ê¸¸ì´ ( 64ê¸€ìž )
 
 /**
 * \ingroup client
@@ -25,10 +25,10 @@ class CHint
 public:
 	enum eHintType
 	{
-		eHINT_TYPE_HELP,			// µµ¿ò¸» ÈùÆ®
-		eHINT_TYPE_GUIDE,			// ¾È³» ÈùÆ®
-		eHINT_TYPE_STRING,			// ¹®ÀÚ¿­ ÈùÆ®
-		eHINT_TYPE_NUMS,			// ÈùÆ® Å¸ÀÔ °¹¼ö
+		eHINT_TYPE_HELP,			// ë„ì›€ë§ ížŒíŠ¸
+		eHINT_TYPE_GUIDE,			// ì•ˆë‚´ ížŒíŠ¸
+		eHINT_TYPE_STRING,			// ë¬¸ìžì—´ ížŒíŠ¸
+		eHINT_TYPE_NUMS,			// ížŒíŠ¸ íƒ€ìž… ê°¯ìˆ˜
 		eHINT_TYPE_INVALID = eHINT_TYPE_NUMS
 	};
 

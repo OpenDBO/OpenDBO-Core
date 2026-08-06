@@ -168,7 +168,7 @@ RwBool CNtlSLEventHandler::Create(void)
 	RegisterMsg(g_EventItemSocketInsertBead, "g_EventItemSocketInsertBead", "SNtlEventItemSocketInsertBead");
 	RegisterMsg(g_EventItemSocketDestroyBead, "g_EventItemSocketDestroyBead", "SNtlEventItemSocketDestroyBead");
 
-    // ∫ØΩ≈ ∞¸∑√ ¿Ã∫•∆Æ
+    // Î≥ÄÏã† Í¥ÄÎ†® Ïù¥Î≤§Ìä∏
     RegisterMsg (g_EventTransform, "g_EventTransform", "SNtlEventTransform");
     RegisterMsg (g_EventMobTransform, "g_EventMobTransform", "SNtlEventMobTransform");
     RegisterMsg (g_EventTransformCandy, "g_EventTransformCandy", "SNtlEventTransformCandy");
@@ -176,7 +176,7 @@ RwBool CNtlSLEventHandler::Create(void)
 
 	RegisterMsg(g_EventCinematicScale, "g_EventCinematicScale", "SNtlEventSobCinematicScale");
 
-    // ƒ¡µº« ∞¸∑√ ¿Ã∫•∆Æ
+    // Ïª®ÎîîÏÖò Í¥ÄÎ†® Ïù¥Î≤§Ìä∏
     RegisterMsg (g_EventAfterEffectRemainTimeNfy, "g_EventAfterEffectRemainTimeNfy", "SNtlEventAfterEffectRemainTimeNfy");
     RegisterMsg (g_EventSobCondTerror, "g_EventSobCondTerror", "SNtlEventCondTerror");
     RegisterMsg (g_EventSobCondConfused, "g_EventSobCondConfused", "SNtlEventCondConfused");
@@ -371,7 +371,7 @@ RwBool CNtlSLEventHandler::Create(void)
 	RegisterMsg(g_EventActionMapUpdateRes, "g_EventActionMapUpdateRes", "SNtlEventActionMapUpdateRes");
 	RegisterMsg(g_EventActionMapClientNotify, "g_EventActionMapClientNotify", "SNtlEventActionMapClientNotify");
 	
-	// simulation object ¡§∫∏ update.
+	// simulation object Ï†ïÎ≥¥ update.
 	RegisterMsg (g_EventSobInfoUpdate, "g_EventSobInfoUpdateStr", "SNtlEventSobInfoUpdate");
 	RegisterMsg (g_EventSobNpcCommunity, "g_EventSobNpcCommunityStr", "SNtlEventSobNpcCommunity");
 	RegisterMsg (g_EventSobTriggerObjCommunity, "g_EventSobTriggerObjCommunityStr", "SNtlEventSobTriggerObjCommunity");
@@ -386,7 +386,7 @@ RwBool CNtlSLEventHandler::Create(void)
 
 	RegisterMsg(g_EventPrivateShopNameTag, "g_EventPrivateShopNameTag", "SNtlEventPrivateShopNameTag");
 
-	// simulation object ¡§∫∏ æÚæÓø¿±‚.
+	// simulation object Ï†ïÎ≥¥ ÏñªÏñ¥Ïò§Í∏∞.
 	RegisterMsg (g_EventSobGetState, "g_EventSobGetStateStr", "SNtlEventSobGetState");
 	RegisterMsg (g_EventSobGetFightingMode, "g_EventSobGetFightingModeStr", "SNtlEventSobGetFightingMode");	
 	RegisterMsg(g_EventSobGetAirMode, "g_EventSobGetAirModeStr", "SNtlEventSobGetAirMode");
@@ -782,7 +782,7 @@ void CNtlSLEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventItemSocketInsertBead);
 	UnRegisterMsg(g_EventItemSocketDestroyBead);
 
-	// ∫ØΩ≈ ∞¸∑√ ¿Ã∫•∆Æ
+	// Î≥ÄÏã† Í¥ÄÎ†® Ïù¥Î≤§Ìä∏
 	UnRegisterMsg(g_EventTransform);
 	UnRegisterMsg(g_EventMobTransform);
 	UnRegisterMsg(g_EventTransformCandy);
@@ -790,7 +790,7 @@ void CNtlSLEventHandler::Destroy(void)
 
 	UnRegisterMsg(g_EventCinematicScale);
 
-	// ƒ¡µº« ∞¸∑√ ¿Ã∫•∆Æ
+	// Ïª®ÎîîÏÖò Í¥ÄÎ†® Ïù¥Î≤§Ìä∏
 	UnRegisterMsg(g_EventAfterEffectRemainTimeNfy);
 	UnRegisterMsg(g_EventSobCondTerror);
 	UnRegisterMsg(g_EventSobCondConfused);
@@ -985,7 +985,7 @@ void CNtlSLEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventActionMapUpdateRes);
 	UnRegisterMsg(g_EventActionMapClientNotify);
 
-	// simulation object ¡§∫∏ update.
+	// simulation object Ï†ïÎ≥¥ update.
 	UnRegisterMsg(g_EventSobInfoUpdate);
 	UnRegisterMsg(g_EventSobNpcCommunity);
 	UnRegisterMsg(g_EventSobTriggerObjCommunity);
@@ -1000,7 +1000,7 @@ void CNtlSLEventHandler::Destroy(void)
 
 	UnRegisterMsg(g_EventPrivateShopNameTag);
 
-	// simulation object ¡§∫∏ æÚæÓø¿±‚.
+	// simulation object Ï†ïÎ≥¥ ÏñªÏñ¥Ïò§Í∏∞.
 	UnRegisterMsg(g_EventSobGetState);
 	UnRegisterMsg(g_EventSobGetFightingMode);
 	UnRegisterMsg(g_EventSobGetAirMode);

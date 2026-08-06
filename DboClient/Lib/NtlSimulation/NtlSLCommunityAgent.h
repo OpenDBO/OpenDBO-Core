@@ -2,7 +2,7 @@
 *
 * File			: NtlSLCommunityAgent.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 3. 24
 * Abstract		: Simulation community agent class
 *****************************************************************************
@@ -51,7 +51,7 @@ public:
 	COMMUNITY_ITER	Begin();
 	COMMUNITY_ITER	End();
 
-	// Sort¸¦ ½ÇÇàÇÏ°í ³ª¼­´Â ÀÌÀü¿¡ GetMemberbyIndex()·Î ¹ŞÀº ¸É¹ö ±¸Á¶Ã¼¿Í ´Ù¸¦ ¼ö ÀÖ´Ù
+	// Sortë¥¼ ì‹¤í–‰í•˜ê³  ë‚˜ì„œëŠ” ì´ì „ì— GetMemberbyIndex()ë¡œ ë°›ì€ ë§´ë²„ êµ¬ì¡°ì²´ì™€ ë‹¤ë¥¼ ìˆ˜ ìˆë‹¤
 	virtual VOID	Sort(RwUInt8 byDataType, RwBool bAscent);
 
 	RwBool			IsHaveGroup();

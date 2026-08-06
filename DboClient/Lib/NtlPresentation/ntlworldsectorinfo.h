@@ -42,9 +42,9 @@ class CNtlPLGameProperty;
 class CNtlPLDojo;
 
 // SectorInfo
-// : È­ÀÏ ¶Ç´Â È­ÀÏ ¸Ş¸ğ¸®¿¡ Á¢±ÙÇÏ´Â ¸ğµç ÄÚµå´Â ÀÌ°÷¿¡ Á¤ÀÇ ÇÑ´Ù.
-// : È­ÀÏ Á¢±Ù ½Ã¿¡´Â dGET_WORLD_PARAM()ÀÇ WorldLoadVer, WorldSaveVerÀ» ±¸ºĞÇÏ¿© ÀÛ¼ºÇÑ´Ù.
-// : È­ÀÏ ¸Ş¸ğ¸® Á¢±Ù ½Ã¿¡´Â dGET_WORLD_PARAM()ÀÇ WorldVerÀ¸·Î ÀÛ¼ºÇÑ´Ù. (´Ü ¿¹¿ÜÀÇ °æ¿ì°¡ ¹ß»ı ÇÒ ¼ö ÀÖ´Ù)
+// : í™”ì¼ ë˜ëŠ” í™”ì¼ ë©”ëª¨ë¦¬ì— ì ‘ê·¼í•˜ëŠ” ëª¨ë“  ì½”ë“œëŠ” ì´ê³³ì— ì •ì˜ í•œë‹¤.
+// : í™”ì¼ ì ‘ê·¼ ì‹œì—ëŠ” dGET_WORLD_PARAM()ì˜ WorldLoadVer, WorldSaveVerì„ êµ¬ë¶„í•˜ì—¬ ì‘ì„±í•œë‹¤.
+// : í™”ì¼ ë©”ëª¨ë¦¬ ì ‘ê·¼ ì‹œì—ëŠ” dGET_WORLD_PARAM()ì˜ WorldVerìœ¼ë¡œ ì‘ì„±í•œë‹¤. (ë‹¨ ì˜ˆì™¸ì˜ ê²½ìš°ê°€ ë°œìƒ í•  ìˆ˜ ìˆë‹¤)
 class CNtlWorldSectorInfo
 {
 public:
@@ -72,7 +72,7 @@ public:
 	RwBool	NtlWorldSectorGeometryLoadFromFile(CNtlWorldSector *pNtlWorldSector, FILE* pFile, sCUR_FIELD_TEX_INFO& CurFieldTexInfo);
 	RwBool  NtlWorldSectorGeometrySaveIntoFile(CNtlWorldSector *pNtlWorldSector, FILE* pFile);
 
-	// ÀÎµµ¾î
+	// ì¸ë„ì–´
 	RwBool	NtlWorldSectorGeometryLoadFromFileIndoor(CNtlWorldSector *pNtlWorldSector, FILE* pFile);
 	RwBool	NtlWorldSectorGeometrySaveIntoFileIndoor(CNtlWorldSector *pNtlWorldSector, FILE* pFile);
 
@@ -404,7 +404,7 @@ extern RwBool _RpNtlWorldSectorGeometryDeleteWithoutSwapFileSaving(CNtlWorldSect
 extern RwBool _RpNtlWorldSectorGeometryLoadFromFile(sCUR_FIELD_TEX_INFO& CurFieldTexInfo, CNtlWorldSector *pNtlWorldSector, FILE* pFile);
 extern RwBool _RpNtlWorldSectorGeometrySaveIntoFile(RpWorldSector *pWorldSector, FILE* pFile);
 
-// ÀÎµµ¾î
+// ì¸ë„ì–´
 extern RwBool _RpNtlWorldSectorGeometryLoadFromFileIndoor(CNtlWorldSector *pNtlWorldSector, FILE* pFile);
 extern RwBool _RpNtlWorldSectorGeometrySaveIntoFileIndoor(CNtlWorldSector *pNtlWorldSector, FILE* pFile);
 

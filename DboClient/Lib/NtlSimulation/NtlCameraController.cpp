@@ -214,7 +214,7 @@ RwBool CNtlCameraNormalController::UpdateSmoothLookAt(RwV3d& vLookAt, RwReal fEl
 
 void CNtlCameraNormalController::UpdateZoomInOut(RwReal fElapsed)
 {
-    //À§Ä¡ °»½Å
+    //ìœ„ì¹˜ ê°±ì‹ 
     RwReal fCurrDist = GetNtlGameCameraManager()->GetDist();
     float fDeltaDist = m_fDeltaDist * fElapsed * 4.0f;
     if( fabs(m_fDesiredDist - fCurrDist) <= fabs(fDeltaDist))
@@ -249,12 +249,12 @@ void CNtlCameraNormalController::UpdateSmoothLerp(RwV3d& vCamPos, RwV3d& vLookAt
 
     if(fCurrLen > NTL_EPSILON)
     {
-        // delta time µ¿¾È ÀÌµ¿ °Å¸®¸¦ ±¸ÇÑ´Ù.
+        // delta time ë™ì•ˆ ì´ë™ ê±°ë¦¬ë¥¼ êµ¬í•œë‹¤.
         if(fCurrLen - RwV3dLength(&vDelta) <= NTL_EPSILON)           
         {
             EnableSmoothingLerp(FALSE);
         }
-        else if(fCurrLen > GetNtlGameCameraManager()->GetMaxDist() * 1.2f)      /// °©ÀÚ±â ¹üÀ§°¡ ¸Ö¸® ¹ú¾îÁö´Â °æ¿ì¸¦ ´ëºñÇÑ ¹æ¾îÄÚµå (ÅÚ·¹Æ÷Æ® ÇÒ¶§ ¹ö±×°¡ »ı±â´Â °æ¿ì°¡ ÀÖ´Ù) by agebreak 2009.05.06)
+        else if(fCurrLen > GetNtlGameCameraManager()->GetMaxDist() * 1.2f)      /// ê°‘ìê¸° ë²”ìœ„ê°€ ë©€ë¦¬ ë²Œì–´ì§€ëŠ” ê²½ìš°ë¥¼ ëŒ€ë¹„í•œ ë°©ì–´ì½”ë“œ (í…”ë ˆí¬íŠ¸ í• ë•Œ ë²„ê·¸ê°€ ìƒê¸°ëŠ” ê²½ìš°ê°€ ìˆë‹¤) by agebreak 2009.05.06)
         {
             m_vLerpPos = vPos + (vDir * -1.0f * GetNtlGameCameraManager()->GetMaxDist());
             EnableSmoothingLerp(FALSE);
@@ -371,7 +371,7 @@ void CNtlCameraNormalController::Update(RwReal fElapsed)
     RwReal fDistOffset = 0.0f;
     RwV3d vLookAt, vCamPos;
 
-    // ÇöÀç camera position °ú actor position »çÀÌ ÃÊ´ç 10¹ÌÅÍ·Î º¸°£À» ÇÑ´Ù.
+    // í˜„ì¬ camera position ê³¼ actor position ì‚¬ì´ ì´ˆë‹¹ 10ë¯¸í„°ë¡œ ë³´ê°„ì„ í•œë‹¤.
     if(m_bySmoothingFlag == CAMERA_NORAML_SMOOTHING_LERP)
         UpdateSmoothLerp(vCamPos, vLookAt, fDistOffset, fElapsed);
     else if(m_bySmoothingFlag == CAMERA_NORAML_SMOOTHING_FOLLOW_START)
@@ -591,7 +591,7 @@ void CNtlCameraDashController::CalcCameraTrans(RwReal fSpeed, RwReal fLimitLen, 
 
     if(fCurrLen > fLimitLen)
     {
-        // delta time µ¿¾È ÀÌµ¿ °Å¸®¸¦ ±¸ÇÑ´Ù.
+        // delta time ë™ì•ˆ ì´ë™ ê±°ë¦¬ë¥¼ êµ¬í•œë‹¤.
         if(fCurrLen - RwV3dLength(&vDelta) <= fLimitLen)
         {
             CNtlMath::MathRwV3dAssign(&m_vStartPos, vPos.x-fLimitLen*vDir.x, vPos.y-fLimitLen*vDir.y, vPos.z-fLimitLen*vDir.z);
@@ -631,7 +631,7 @@ void CNtlCameraDashController::CalcCameraEndTrans(RwReal fElapsed)
 
     if(fCurrLen > NTL_EPSILON)
     {
-        // delta time µ¿¾È ÀÌµ¿ °Å¸®¸¦ ±¸ÇÑ´Ù.
+        // delta time ë™ì•ˆ ì´ë™ ê±°ë¦¬ë¥¼ êµ¬í•œë‹¤.
         if(fCurrLen - RwV3dLength(&vDelta) <= NTL_EPSILON)
             m_vStartPos = vPos;
         else
@@ -1061,7 +1061,7 @@ CNtlCameraDragonBallController::CNtlCameraDragonBallController()
     AddCameraData(5.67f, -13.216f, 20.192f, 77.251f, -4.053f, 34.29f, 24.023f, &m_vecData);
     CreateSequenceData(&m_pSeqPos, &m_pSeqTarget, &m_vecData);
 
-    // Idle¿ë Ä«¸Ş¶ó        
+    // Idleìš© ì¹´ë©”ë¼        
     m_DataIdle.fTime = 7.0f;
     m_DataIdle.vPos.x = -13.216f;
     m_DataIdle.vPos.y = 20.192f;
@@ -1171,7 +1171,7 @@ void CNtlCameraDragonBallController::SetActiveActor(const CNtlSobActor *pActor)
 
     CNtlCameraFromArtData::SetActiveActor(pActor);
 
-    // Idle Camera À§Ä¡ º¯È¯
+    // Idle Camera ìœ„ì¹˜ ë³€í™˜
     RwV3dTransformPoint(&m_DataIdle.vPos, &m_DataIdle.vPos, &m_matDir);
     RwV3dTransformPoint(&m_DataIdle.vTargetPos, &m_DataIdle.vTargetPos, &m_matDir);
 
@@ -1225,7 +1225,7 @@ void CNtlCameraDragonBallController::ChangeState(RwInt32 iState)
     {
         m_fTime = 0.0f;        
     }
-    else if(iState == CAMERA_DB_STATE_SCATTER) // Ä«¸Ş¶ó Èğ¾îÁö´Â ¿¬Ãâ
+    else if(iState == CAMERA_DB_STATE_SCATTER) // ì¹´ë©”ë¼ í©ì–´ì§€ëŠ” ì—°ì¶œ
     {
         GetNtlGameCameraManager()->SetFov(60.0f);
         m_fTime = 0.0f;
@@ -2800,7 +2800,7 @@ void CNtlSobCameraExplosion::UpdateCamera( RwMatrix& matResult )
     RwV3d v3ActorPos = m_pActor->GetPosition();
     RwV3d v3CamPos = pCameraMatrix->pos;
 
-    // Æø¹ß ¿µÇâ ¹İ°æ ¹Û¿¡ Á¸ÀçÇÏ´Â °æ¿ì Æø¹ß ½ÃÅ°Áö ¾Ê´Â´Ù
+    // í­ë°œ ì˜í–¥ ë°˜ê²½ ë°–ì— ì¡´ì¬í•˜ëŠ” ê²½ìš° í­ë°œ ì‹œí‚¤ì§€ ì•ŠëŠ”ë‹¤
     RwReal fDist = sqrtf( (v3AvatarPos.x - v3ActorPos.x) * (v3AvatarPos.x - v3ActorPos.x) +
         (v3AvatarPos.z - v3ActorPos.z) * (v3AvatarPos.z - v3ActorPos.z) );
 
@@ -2810,12 +2810,12 @@ void CNtlSobCameraExplosion::UpdateCamera( RwMatrix& matResult )
     {
         if ( fDist <= EXPLOSION_MIN_DISTANCE )
         {
-            // ÃÖ¼Ò ¿µ¿ª ¾È¿¡ Á¸ÀçÇÏ´Â °æ¿ì´Â ÃÖ´ë·Î Æø¹ß½ÃÅ²´Ù
+            // ìµœì†Œ ì˜ì—­ ì•ˆì— ì¡´ì¬í•˜ëŠ” ê²½ìš°ëŠ” ìµœëŒ€ë¡œ í­ë°œì‹œí‚¨ë‹¤
             fDistFactor = 1.f;
         }
         else if ( fDist >= EXPLOSION_MAX_DISTANCE )
         {
-            // ÃÖ´ë ¿µ¿ª ¹Û¿¡ Á¸ÀçÇÏ´Â °æ¿ì´Â Æø¹ß½ÃÅ°Áö ¾Ê´Â´Ù
+            // ìµœëŒ€ ì˜ì—­ ë°–ì— ì¡´ì¬í•˜ëŠ” ê²½ìš°ëŠ” í­ë°œì‹œí‚¤ì§€ ì•ŠëŠ”ë‹¤
             return;
         }
         else
@@ -2824,7 +2824,7 @@ void CNtlSobCameraExplosion::UpdateCamera( RwMatrix& matResult )
         }
     }
 
-    // È¸Àü ¸ÅÆ®¸¯½º °è»ê
+    // íšŒì „ ë§¤íŠ¸ë¦­ìŠ¤ ê³„ì‚°
     RwMatrix matRotate;
     RwMatrixSetIdentity( &matRotate );
 
@@ -2836,11 +2836,11 @@ void CNtlSobCameraExplosion::UpdateCamera( RwMatrix& matResult )
 
     RwV3dCrossProduct( &matRotate.right, &matRotate.up, &matRotate.at );
 
-    // Explosion offset °ª È¸Àü
+    // Explosion offset ê°’ íšŒì „
     RwV3d v3Offset;
     RwV3dTransformPoint( &v3Offset, &matResult.pos, &matRotate );
 
-    // Æø¹ß °Å¸®¿¡ µû¸¥ °¡°¨
+    // í­ë°œ ê±°ë¦¬ì— ë”°ë¥¸ ê°€ê°
     RwV3dScale( &v3Offset, &v3Offset, fDistFactor );
 
     GetNtlGameCameraManager()->AddCameraOffset( &v3Offset );
@@ -2921,11 +2921,11 @@ void CNtlCameraTimeMachineArriveController::Update( RwReal fElapsed )
             RwV3d v3TMDir = m_pTimemachineActor->GetDirection();
             RwV3d v3TMPos = m_pTimemachineActor->GetPosition();
 
-            // Time machineÀÇ ¸ŞÆ®¸¯½º °è»ê
+            // Time machineì˜ ë©”íŠ¸ë¦­ìŠ¤ ê³„ì‚°
             RwMatrix matTMRotate;
             CNtlMath::MathRwMatrixAssign( &matTMRotate, &v3TMPos, &v3TMDir );
 
-            // ·ÎÄÃ Ä«¸Ş¶ó À§Ä¡ ¹× ¹æÇâ Á¤º¸ È¸Àü
+            // ë¡œì»¬ ì¹´ë©”ë¼ ìœ„ì¹˜ ë° ë°©í–¥ ì •ë³´ íšŒì „
             RwV3d v3Temp;
 
             v3Temp = m_v3Pos;
@@ -3197,11 +3197,11 @@ void CNtlCameraFPSController::Enter()
     m_bInter = TRUE;
     m_uiMoveFlag = NTL_MOVE_NONE;
 
-    // Ä«¸Ş¶ó À§Ä¡
+    // ì¹´ë©”ë¼ ìœ„ì¹˜
     m_vTargetPos = m_pActor->GetPosition();
     if(m_pActor->GetSobProxy()->GetBaseAnimationKey() == SWIM_IDLE)
     {
-        // NOTE: ¹°¼Ó¿¡¼­´Â Ä«¸Ş¶ó°¡ ³·À¸¸é ¹°ÀÌ ·»´õ¸µ¾ÈµÈ´Ù. ±×·¡¼­ ³ôÀÌ¸¦ Á»´õ ³ô¿´´Ù(by agebreak)
+        // NOTE: ë¬¼ì†ì—ì„œëŠ” ì¹´ë©”ë¼ê°€ ë‚®ìœ¼ë©´ ë¬¼ì´ ë Œë”ë§ì•ˆëœë‹¤. ê·¸ë˜ì„œ ë†’ì´ë¥¼ ì¢€ë” ë†’ì˜€ë‹¤(by agebreak)
         m_vTargetPos.y += m_pActor->GetSobProxy()->GetPLEntityHeight() * 1.3f;      
     }
     else
@@ -3253,10 +3253,10 @@ void CNtlCameraFPSController::Update( RwReal fElapsed )
         {
             RwReal fDeltaTime = min(m_fInterTime / FPS_INTERPOLATION_TIME, 1.0f);
 
-            // À§Ä¡ º¸°£
+            // ìœ„ì¹˜ ë³´ê°„
             vCamPos = CNtlMath::Interpolation(m_vStartPos, m_vTargetPos, fDeltaTime);
 
-            // LookAt º¸°£
+            // LookAt ë³´ê°„
             vLookAt = CNtlMath::Interpolation(m_vCurrLookAt, m_vTargetLookAt, fDeltaTime);            
         }        
     }
@@ -3300,7 +3300,7 @@ void CNtlCameraFPSController::ZoomInOut( RwReal fDelta )
 
     if(fDelta > 0)
     {
-        CNtlSLEventGenerator::CameraControlDelete(CAMERA_CONTROL_FPS);       // ÁÜÀ» ½ÃÅ°¸é FPSÄ«¸Ş¶ó¿¡¼­ ºüÁø´Ù.
+        CNtlSLEventGenerator::CameraControlDelete(CAMERA_CONTROL_FPS);       // ì¤Œì„ ì‹œí‚¤ë©´ FPSì¹´ë©”ë¼ì—ì„œ ë¹ ì§„ë‹¤.
         GetNtlGameCameraManager()->SetDist(GetNtlGameCameraManager()->GetMinDist() + 0.1f);
     }    
 }
@@ -3545,7 +3545,7 @@ void CNtlCameraBusController::Update_TraceBusBack( RwReal fElapsed )
 
     if( !m_BusTraceInfo.bTracing )
     {
-        // ¹ö½ºÀÇ ¹æÇâÀÌ ¹Ù²î¾ú´ÂÁö Ã¼Å©
+        // ë²„ìŠ¤ì˜ ë°©í–¥ì´ ë°”ë€Œì—ˆëŠ”ì§€ ì²´í¬
         if( v3BusDir.x != m_BusTraceInfo.v3BusDir.x ||
             v3BusDir.y != m_BusTraceInfo.v3BusDir.y ||
             v3BusDir.z != m_BusTraceInfo.v3BusDir.z )
@@ -3975,7 +3975,7 @@ RwReal CNtlCameraTutorialController::GetActorOffset( void )
 {
 	if ( m_pActor )
 	{
-		// ¼ö¿µ ÁßÀÎ °æ¿ì´Â Height ratio ¸¦ ¹İ¿µÇÏÁö ¾Ê´Â´Ù
+		// ìˆ˜ì˜ ì¤‘ì¸ ê²½ìš°ëŠ” Height ratio ë¥¼ ë°˜ì˜í•˜ì§€ ì•ŠëŠ”ë‹¤
 
 		RwReal fOffset;
 		RwV3d vPos = m_pActor->GetPosition();
@@ -4048,7 +4048,7 @@ void CNtlCameraObserver::Update( RwReal fElapsed )
         RwV3d vPos = *GetNtlGameCameraManager()->GetCameraPos();
         RwV3d vTarget = GetNtlGameCameraManager()->GetLookAt();
 
-        // ÇÁ¸® Ä«¸Ş¶ó¸¦ À§ÇØ¼­ Pitch¿Í Yaw¸¦ ÀúÀåÇÑ´Ù.
+        // í”„ë¦¬ ì¹´ë©”ë¼ë¥¼ ìœ„í•´ì„œ Pitchì™€ Yawë¥¼ ì €ì¥í•œë‹¤.
         RwV3d vLookAt = vTarget - vPos;
         RwV3dNormalize(&vLookAt, &vLookAt);        
         GetNtlGameCameraManager()->SetPitch(CNtlMath::LineToAngleX(&vLookAt));
@@ -4074,7 +4074,7 @@ void CNtlCameraObserver::SetIndex(RwInt32 nType, RwInt32 nIndex)
         GetNtlGameCameraManager()->SetCameraPos(&m_mapPos[m_nIndex].vPos);
         GetNtlGameCameraManager()->SetLookAt(&m_mapPos[m_nIndex].vTarget);
 
-        //// ÇÁ¸® Ä«¸Ş¶ó¸¦ À§ÇØ¼­ Pitch¿Í Yaw¸¦ ÀúÀåÇÑ´Ù.
+        //// í”„ë¦¬ ì¹´ë©”ë¼ë¥¼ ìœ„í•´ì„œ Pitchì™€ Yawë¥¼ ì €ì¥í•œë‹¤.
         //RwV3d vLookAt = m_mapPos[m_nIndex].vTarget - m_mapPos[m_nIndex].vPos;
         //RwV3dNormalize(&vLookAt, &vLookAt);        
         //GetNtlGameCameraManager()->SetPitch(CNtlMath::LineToAngleX(&vLookAt));
@@ -4101,7 +4101,7 @@ RwBool CNtlCameraObserver::LoadObserverCameraData()
         if(pData == NULL)
             return FALSE;
 
-        // ¹öÆÛ + 1 »ı¼º
+        // ë²„í¼ + 1 ìƒì„±
         char* pBuffer = NTL_NEW char[nSize + 1];
         memcpy(pBuffer, pData, sizeof(char) * nSize);
         pBuffer[nSize] = '\0';

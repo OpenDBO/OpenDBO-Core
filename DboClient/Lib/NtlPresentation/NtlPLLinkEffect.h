@@ -6,7 +6,7 @@
 typedef std::vector<CNtlInstanceEffect*> VecLinkEffect;
 /**
  * \ingroup NtlPresentation
- * \brief Link Effect Å¬·¡½º (Model¿¡ °è¼Ó ºÙ¾îÀÖ´Â ÀÌÆåÆ®) 
+ * \brief Link Effect í´ë˜ìŠ¤ (Modelì— ê³„ì† ë¶™ì–´ìˆëŠ” ì´í™íŠ¸) 
  * \date 2006-07-14
  * \author agebreak
  */
@@ -18,10 +18,10 @@ public:
     
     CNtlInstanceEffect* AttachLinkEffect(CNtlPLAttach* pAttach, SEventLinkEffect* pEventLinkEffect);    
     RwBool DetachLinkEffect(CNtlPLAttach* pAttach, CNtlInstanceEffect* pLinkEffect);
-    CNtlInstanceEffect* GetLinkEffectFromName(RwChar* szName);          ///< ÀÌ¸§À¸·Î LinkEffect Instance¸¦ °Ë»öÇÏ¿© ¹İÈ¯ÇÑ´Ù. (¸ğµ¨Åø¿¡¼­¸¸ »ç¿ë)
-    void SetVisible(BOOL bVisible);         ///< ¸ğµç LinkEffectÀÇ VisibleÀ» ¼³Á¤ÇÑ´Ù. 
+    CNtlInstanceEffect* GetLinkEffectFromName(RwChar* szName);          ///< ì´ë¦„ìœ¼ë¡œ LinkEffect Instanceë¥¼ ê²€ìƒ‰í•˜ì—¬ ë°˜í™˜í•œë‹¤. (ëª¨ë¸íˆ´ì—ì„œë§Œ ì‚¬ìš©)
+    void SetVisible(BOOL bVisible);         ///< ëª¨ë“  LinkEffectì˜ Visibleì„ ì„¤ì •í•œë‹¤. 
 
 public:
-    VecLinkEffect m_vecLinkEffect;          ///< Link Effect InstanceµéÀÇ º¤ÅÍ
+    VecLinkEffect m_vecLinkEffect;          ///< Link Effect Instanceë“¤ì˜ ë²¡í„°
 
 };

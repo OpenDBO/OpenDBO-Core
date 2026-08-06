@@ -2,7 +2,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 //
-// Copyright © 1999, Stefan Belopotocan, http://welcome.to/StefanBelopotocan
+// Copyright ï¿½ 1999, Stefan Belopotocan, http://welcome.to/StefanBelopotocan
 //
 /////////////////////////////////////////////////////////////////////////////
 
@@ -269,12 +269,12 @@ int CInPlaceComboBoxImp::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	CFont* pFont = pParent->GetFont();
 
-	// Vstupný riadok
+	// Vstupnï¿½ riadok
 	m_wndEdit.Create(WS_CHILD|WS_VISIBLE|ES_AUTOHSCROLL, rect, this, 2);
 	m_wndEdit.SetOwner(this);
 	m_wndEdit.SetFont(pFont);
 
-	// Zoznam položiek
+	// Zoznam poloì—ek
 	rect.right += m_nButtonDx - 1;
 	rect.top = rect.bottom + 2;
 	rect.bottom += 100;
@@ -304,12 +304,12 @@ void CInPlaceComboBoxImp::MoveControl(CRect& rect)
 
 	CWnd* pParent = GetParent();
 
-	// Prekresli predošlú pozíciu
+	// Prekresli predoï¿½lï¿½ pozï¿½ciu
 	ClientToScreen(prevRect);
 	pParent->ScreenToClient(prevRect);
 	pParent->InvalidateRect(prevRect);
 
-	// Nová pozícia
+	// Novï¿½ pozï¿½cia
 	MoveWindow(rect, FALSE);
 
 	pParent->ClientToScreen(rect);
@@ -339,7 +339,7 @@ void CInPlaceComboBoxImp::OnPaint()
 {
 	CPaintDC dc(this);
 	
-	// Nakresli tlaèítko
+	// Nakresli tlaå¦–tko
 	CRect rect;
 
 	GetClientRect(rect);

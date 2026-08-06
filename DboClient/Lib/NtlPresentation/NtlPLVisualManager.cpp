@@ -332,9 +332,9 @@ void CNtlPLVisualManager::RemoveReservedUpdate(CNtlPLEntity *pEntity)
 	CNtlPLRenderGroup *pRenderGroup = FindUpdateGroup(uiClassType);
 	NTL_ASSERTE(pRenderGroup);
 
-	// AddReservedUpdate������ NTL_PLEFLAG_NOTUPDATE Flag�� ����.
-	// �ѹ��̶� AddReservedUpdate Update ���°� �����ȴ�.
-	// ���� ������ ���� ������ �ľ��صд�. // Cz
+	// AddReservedUpdate占쏙옙占쏙옙占쏙옙 NTL_PLEFLAG_NOTUPDATE Flag占쏙옙 占쏙옙占쏙옙.
+	// 占싼뱄옙占싱띰옙 AddReservedUpdate Update 占쏙옙占승곤옙 占쏙옙占쏙옙占싫댐옙.
+	// 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占식억옙占쌔둔댐옙. // Cz
 	pRenderGroup->RemoveEntity(pEntity); 
 }
 
@@ -356,7 +356,7 @@ void CNtlPLVisualManager::Update(RwReal fElapsed)
 		NTL_RPROFILE_VOID()
 	}
 
-	// distance filter ó��.
+	// distance filter 처占쏙옙.
 	UpdateDistanceFilter(fElapsed);
 
 	// update sound
@@ -493,7 +493,7 @@ void CNtlPLVisualManager::Render(void)
 
 	m_CullScheduler.Update(g_GetElapsedTime());
 
-    // Entity �ø� üũ
+    // Entity 占시몌옙 체크
 // 	static RwReal	g_fCullTimeCur	= 0.0f;
 // 	static RwReal	g_fCullTime		= 0.05f / 3.0f;
 // 	static RwInt32	g_iCullMode		= 0;
@@ -503,7 +503,7 @@ void CNtlPLVisualManager::Render(void)
 // 	{
 // 		CNtlPLRenderGroup* pNtlPLRenderGroup = NULL;
 // 
-// 		// Object Culling Test�� Frustum Sector �������� Visible�� ������ �����.
+// 		// Object Culling Test를 Frustum Sector 기준으로 Visible에 문제가 생긴다.
 // 		switch (g_iCullMode)
 // 		{
 // 		case 0:
@@ -566,7 +566,7 @@ void CNtlPLVisualManager::Render(void)
 				RwCameraForAllSectorsInFrustum(CNtlPLGlobal::m_RwCamera, NtlWorldSectorRenderCallback, NULL);
 				RwCameraForAllSectorsInFrustum(CNtlPLGlobal::m_RwCamera, NtlWorldSectorAtomicCallback, NULL);
 				break;
-				// �ε���
+				// 占싸듸옙占쏙옙
 			case AW_RWWORLD:
 				Render4RWWorld();
 				break;
@@ -814,7 +814,7 @@ RwBool CNtlPLVisualManager::AddPLEntity(CNtlPLEntity *pEntity)
     {
 		AddDistanceFilter(pEntity);
 
-        // Event Object��� SL�� Event�� ������.
+        // Event Object라면 SL에 Event를 날린다.
         CNtlPLObject* pObject = reinterpret_cast<CNtlPLObject*>(pEntity);
         if(pObject && pObject->GetProperty()->GetObjectType() == E_OBJECT_MILEPOST)
         {
@@ -901,7 +901,7 @@ void CNtlPLVisualManager::RemovePLEntity(CNtlPLEntity *pEntity)
 	if(pRenderGroup)
 		pRenderGroup->RemoveEntity(pEntity); 
 
-	// reserved ���� remove
+	// reserved 占쏙옙占쏙옙 remove
 	MapReservedUpdate::iterator it;
 	it = m_mapAddUpdate.find(pEntity);
 	if(it != m_mapAddUpdate.end())
@@ -911,7 +911,7 @@ void CNtlPLVisualManager::RemovePLEntity(CNtlPLEntity *pEntity)
 	if(it != m_mapRemoveUpdate.end())
 		m_mapRemoveUpdate.erase(it);
 
-	// distane filter group���� remove �Ѵ�.
+	// distane filter group占쏙옙占쏙옙 remove 占싼댐옙.
 	if(m_pDistFiterGroup)
 	{
 		RemoveDistanceFilter(pEntity);
@@ -953,7 +953,7 @@ void CNtlPLVisualManager::RemoveDistanceFilter(CNtlPLEntity *pEntity)
 EActiveWorldType CNtlPLVisualManager::GetActiveWorldType(void)
 {
 	/*
-	����
+	占쏙옙占쏙옙
 	if(m_pRWWorldEntity)
 		return AW_RWWORLD;
 	else if(m_pWorldEntity)
@@ -1028,7 +1028,7 @@ RwBool CNtlPLVisualManager::GetRWWorldHeight(const RwV3d *pWorldPos, RwReal& fHe
 		return FALSE;
 	}
 
-	// object line collision ���� ������.
+	// object line collision 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙.
 	RwLine Line;
 	RwV3dAssign(&Line.start, pWorldPos);
 	RwV3dAssign(&Line.end, pWorldPos);
@@ -1057,7 +1057,7 @@ RwBool CNtlPLVisualManager::GetRWWorldHeight(const RwV3d *pWorldPos, RwReal& fHe
 		}
 	}
 
-	// height field ���� ������
+	// height field 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
 	static SWorldIntersect sHFInter;
 	static RwBool bHFColl = FALSE;
 	bHFColl = Collision_IndoorIntersectionLineTopDown(Line, sHFInter);
@@ -1136,7 +1136,7 @@ RwBool CNtlPLVisualManager::GetHeightFieldWorldHeight(const RwV3d *pWorldPos, Rw
 		return FALSE;
 	}
 
-	// object line collision ���� ������.
+	// object line collision 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙.
 	RwLine Line;
 	RwV3dAssign(&Line.start, pWorldPos);
 	RwV3dAssign(&Line.end, pWorldPos);
@@ -1165,7 +1165,7 @@ RwBool CNtlPLVisualManager::GetHeightFieldWorldHeight(const RwV3d *pWorldPos, Rw
 		}
 	}
 
-	// height field ���� ������
+	// height field 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
 	static SWorldIntersect sHFInter;
 	static RwBool bHFColl = FALSE;
 	bHFColl = Collision_HeightFieldIntersectionLineTopDown(Line, sHFInter);
@@ -1208,7 +1208,7 @@ RwBool CNtlPLVisualManager::GetHeightFieldWorldHeight(const RwV3d *pWorldPos, Rw
 		else
 		{
 			// �ƹ��͵� �浹�� �ȵǾ��� ���.. start ��ġ�� �÷��� �ѹ��� �Ѵ�.
-			Line.start.y += fLineLen; // ���� 200.0f;
+			Line.start.y += fLineLen; // 占쏙옙占쏙옙 200.0f;
 			bHFColl = Collision_HeightFieldIntersectionLineTopDown(Line, sHFInter);
 			if(bHFColl)
 			{
@@ -1242,7 +1242,7 @@ RwBool CNtlPLVisualManager::GetRWTerrainHeight(const RwV3d *pWorldPos, RwReal& f
 		return FALSE;
 	}
 
-	// height field ���� ������
+	// height field 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
 	RwV3d vTmp;
 	CNtlMath::MathRwV3dAssign(&vTmp, pWorldPos->x, pWorldPos->y, pWorldPos->z);
 	fHeight = GetWorld()->GetWorldSectorHeight(vTmp);
@@ -1258,7 +1258,7 @@ RwBool CNtlPLVisualManager::GetHeightFieldTerrainHeight(const RwV3d *pWorldPos, 
 		return FALSE;
 	}
 
-	// height field ���� ������
+	// height field 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
 	RwV3d vTmp;
 	CNtlMath::MathRwV3dAssign(&vTmp, pWorldPos->x, pWorldPos->y, pWorldPos->z);
 	fHeight = GetWorld()->GetWorldSectorHeight(vTmp);
@@ -1268,7 +1268,7 @@ RwBool CNtlPLVisualManager::GetHeightFieldTerrainHeight(const RwV3d *pWorldPos, 
 
 RwBool CNtlPLVisualManager::IsWorldReady(void)
 {
-	// �ε���
+	// 占싸듸옙占쏙옙
 	EActiveWorldType eWorldType = GetActiveWorldType();
 
 	if(eWorldType == AW_NONE)
@@ -1298,9 +1298,9 @@ RwBool CNtlPLVisualManager::GetWorldHeight( const RwV3d *pWorldPos, RwReal& fHei
 }
 
 /**
-*  world position�� �ش��ϴ� terrain ������ �ش��ϴ� height�� ���ϴ� interface �Լ�.
-*  \return terrain height value�� �����Ѵ�.
-*  \param pWorldPos world position�� �ش��ϴ� RwV3d pointer
+*  world position占쏙옙 占쌔댐옙占싹댐옙 terrain 占쏙옙占쏙옙占쏙옙 占쌔댐옙占싹댐옙 height占쏙옙 占쏙옙占싹댐옙 interface 占쌉쇽옙.
+*  \return terrain height value占쏙옙 占쏙옙占쏙옙占싼댐옙.
+*  \param pWorldPos world position占쏙옙 占쌔댐옙占싹댐옙 RwV3d pointer
 *
 */
 RwBool CNtlPLVisualManager::GetTerrainHeight(const RwV3d *pWorldPos, RwReal& fHeight)
@@ -1324,10 +1324,10 @@ RpWorld* CNtlPLVisualManager::GetWorldPtr(void)
 
 
 /**
-*  world�� pick�� polygon�� ã�´�.
-* ĳ���͸� ��ŷ�ϰ�... ��ŷ�� ĳ���ͳ��� �Ÿ� ���ؼ� ����� �� �����ϰ�,
-* ������ �ٽ� �Ÿ� �񱳸� �ؼ� ������ ������ sPickInfo.pPLEntity = GetTerrain() �� �־��ְ�,
-* ĳ���Ͱ� ������ sPickInfo.pPLEntity = CNtlPLCharacter�� �־��ָ� �ȴ�.
+*  world占쏙옙 pick占쏙옙 polygon占쏙옙 찾占승댐옙.
+* 캐릭터를 피킹하고... 피킹된 캐릭터끼리 거리 구해서 가까운 놈 선택하고,
+* 占쏙옙占쏙옙占쏙옙 占쌕쏙옙 占신몌옙 占쏟교몌옙 占쌔쇽옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 sPickInfo.pPLEntity = GetTerrain() 占쏙옙 占쌍억옙占쌍곤옙,
+* 캐占쏙옙占싶곤옙 占쏙옙占쏙옙占쏙옙 sPickInfo.pPLEntity = CNtlPLCharacter占쏙옙 占쌍억옙占쌍몌옙 占싫댐옙.
 *  \return �浿�� polygon�� ��ǥ.
 *
 */
@@ -1382,7 +1382,7 @@ RwBool CNtlPLVisualManager::PickWorld_Old(RwInt32 iPosX, RwInt32 iPosY, SWorldPi
 aaaa
 	sPickInfo.pPLEntity = NULL;
 
-	// ������ �������� ������.
+	// 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙.
 	RwBool bPickTerrain = FALSE;
 	RwV3d vTerrain;
 	if(!sPickInfo.bTerrainExclusion)
@@ -1401,7 +1401,7 @@ aaaa
 		}
 	}
 
-	// object�� picking �Ѵ�.
+	// object占쏙옙 picking 占싼댐옙.
 	
 	sPickInfo.pPLEntity = NULL;
 
@@ -1413,7 +1413,7 @@ aaaa
 	RwCameraCalcPixelRay( CNtlPLGlobal::m_RwCamera, &CameraRay, &vScreenPos );
 	Pick_WorldIntersectionLine(CameraRay, sPickInfo, fPickObjLimit);
 
-	// object���� picking �Ȱ��� �����ϸ�.
+	// object占쏙옙占쏙옙 picking 占싫곤옙占쏙옙 占쏙옙占쏙옙占싹몌옙.
 	if(sPickInfo.pPLEntity)
 	{
 		if(bPickTerrain)
@@ -1471,7 +1471,7 @@ RwBool CNtlPLVisualManager::PickWorld_New(RwInt32 iPosX, RwInt32 iPosY, SWorldPi
 
 	//////////////////////////////////////////////////////////////////////////
 	//
-	//	���� Picking
+	//	占쏙옙占쏙옙 Picking
 	//
 	//////////////////////////////////////////////////////////////////////////
 	RwBool bPickTerrain = FALSE;
@@ -1600,8 +1600,8 @@ RwBool CNtlPLVisualManager::CTChar2Poly(sNPE_COLLISION_PARAM& sNPECollisionParam
 }
 */
 /**
- * Map Tool���� Object Fade ȿ�� ������ �����Ҷ� ����Ѵ�.
- * \param bEnable Fade ȿ�� ���� 
+ * Map Tool에서 Object Fade 효과 유무를 설정할때 사용한다.
+ * \param bEnable Fade 효占쏙옙 占쏙옙占쏙옙 
  */
 void CNtlPLVisualManager::SetDistanceFilter(RwBool bEnable)
 {
@@ -1625,7 +1625,7 @@ void CNtlPLVisualManager::SetDistanceFilter(RwBool bEnable)
 
 DWORD CNtlPLVisualManager::GetWorldAttribute(RwV3d vPos)
 {
-	// �ε���
+	// 占싸듸옙占쏙옙
 	EActiveWorldType eWorldType = GetActiveWorldType();
 
 	if(eWorldType == AW_NONE)
@@ -1636,7 +1636,7 @@ DWORD CNtlPLVisualManager::GetWorldAttribute(RwV3d vPos)
 
 DWORD CNtlPLVisualManager::GetWorldNormalAttribute(RwV3d vPos)
 {
-	// �ε���
+	// 占싸듸옙占쏙옙
 	EActiveWorldType eWorldType = GetActiveWorldType();
 
 	if(eWorldType == AW_NONE)
@@ -1650,7 +1650,7 @@ DWORD CNtlPLVisualManager::GetWorldNormalAttribute(RwV3d vPos)
 
 DWORD CNtlPLVisualManager::GetWorldSpecialAttribute(RwV3d vPos)
 {
-	// �ε���
+	// 占싸듸옙占쏙옙
 	EActiveWorldType eWorldType = GetActiveWorldType();
 
 	if(eWorldType == AW_NONE)
@@ -1663,7 +1663,7 @@ DWORD CNtlPLVisualManager::GetWorldSpecialAttribute(RwV3d vPos)
 
 BYTE CNtlPLVisualManager::GetWorldMaterialAttribute(RwV3d vPos)
 {
-	// �ε���
+	// 占싸듸옙占쏙옙
 	EActiveWorldType eWorldType = GetActiveWorldType();
 	if(eWorldType == AW_NONE)
 		return 0;
@@ -1673,7 +1673,7 @@ BYTE CNtlPLVisualManager::GetWorldMaterialAttribute(RwV3d vPos)
 
 RwReal CNtlPLVisualManager::GetWorldWaterHeight(RwV3d vPos)
 {
-	// �ε���
+	// 占싸듸옙占쏙옙
 	EActiveWorldType eWorldType = GetActiveWorldType();
 	if(eWorldType == AW_NONE)
 		return -9999.0f;
@@ -1684,7 +1684,7 @@ RwReal CNtlPLVisualManager::GetWorldWaterHeight(RwV3d vPos)
 
 RwReal CNtlPLVisualManager::GetActiveBloomFactor(void) 
 {
-	// �ε���
+	// 占싸듸옙占쏙옙
 	EActiveWorldType eWorldType = GetActiveWorldType();
 	if(eWorldType == AW_NONE)
 		return dMONO_POWER_DEFAULT;
@@ -1698,7 +1698,7 @@ RwReal CNtlPLVisualManager::GetActiveBloomFactor(void)
 
 RwBool CNtlPLVisualManager::GetAvailablePos(RwV3d& _CurPos)
 {
-	// �ε���
+	// 占싸듸옙占쏙옙
 	EActiveWorldType eWorldType = GetActiveWorldType();
 	if(eWorldType == AW_NONE)
 		return TRUE;

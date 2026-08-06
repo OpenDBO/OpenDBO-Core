@@ -59,7 +59,7 @@ RwBool CNtlSLCENode::Update( RwReal fElapsedTime )
 
 RwBool CNtlSLCENode::Load( CNtlSerializer& s ) 
 {
-    // Å¸ÀÔÀº ÄÁÆ®·Ñ·¯¿¡¼­ ÆÇ´ÜÀ» À§ÇØ¼­ ·ÎµåÇÏ±â ¶§¹®¿¡, ¿©±â¼­´Â ·ÎµåÇÏÁö ¾Ê´Â´Ù.
+    // íƒ€ì…ì€ ì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ íŒë‹¨ì„ ìœ„í•´ì„œ ë¡œë“œí•˜ê¸° ë•Œë¬¸ì—, ì—¬ê¸°ì„œëŠ” ë¡œë“œí•˜ì§€ ì•ŠëŠ”ë‹¤.
     s>>m_strName;
 
     return TRUE;    
@@ -82,7 +82,7 @@ CNtlSLCENodeEffect::CNtlSLCENodeEffect()
 
 void CNtlSLCENodeEffect::Create() 
 {
-	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ¿¹¼±Àü¿¡¼­´Â ÀÌÆåÆ®¸¦ ÇÃ·¹ÀÌ ÇÏÁö ¾Ê´Â´Ù.
+	// ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì˜ˆì„ ì „ì—ì„œëŠ” ì´í™íŠ¸ë¥¼ í”Œë ˆì´ í•˜ì§€ ì•ŠëŠ”ë‹¤.
 	sWORLD_INFO* pWORLD_INFO = Logic_GetActiveWorldInfo();
 	if( !pWORLD_INFO )
 	{
@@ -241,7 +241,7 @@ void CNtlSLCENodeBalloon::Create()
 
 void CNtlSLCENodeBalloon::Destory() 
 {
-    // »ı¼ºµÈ ¸»Ç³¼± ¸ğµÎ ¼Ò¸ê
+    // ìƒì„±ëœ ë§í’ì„  ëª¨ë‘ ì†Œë©¸
     CNtlPLEventGenerator::HideAllSpectatorBalloon();
 }
 
@@ -251,7 +251,7 @@ RwBool CNtlSLCENodeBalloon::Update( RwReal fElapsedTime )
 
     if(m_fTotalElapsedTime >= m_fInstanceTime)
     {
-        // ¸»Ç³¼± »ı¼º ÀÌº¥Æ®
+        // ë§í’ì„  ìƒì„± ì´ë²¤íŠ¸
         CreateBalloon();
 
         m_fTotalElapsedTime = 0.0f;
@@ -759,7 +759,7 @@ void CNtlSLCENodeReferee::SetNextNarration()
 			}
 			else
 			{
-				// Ã³À½ ½ÃÀÛÇÒ ¶§
+				// ì²˜ìŒ ì‹œì‘í•  ë•Œ
 				m_NarrationInfo.byCurNarrationIndex = 0;
 			}
 
@@ -792,8 +792,8 @@ void CNtlSLCENodeReferee::SetNextNarration()
 
 void CNtlSLCENodeReferee::UpdateNarration(RwReal fElapsedTime)
 {
-	// ¹Ì´Ï ³ª·¹ÀÌ¼ÇÀº µµÁß¿¡ ´Ù¸¥ ¹Ì´Ï ³ª·¹ÀÌ¼ÇÀÇ »õÄ¡±â·Î ¿¬Ãâ Áß´Ü ÀÌº¥Æ®¸¦ ¹ŞÀ» ¼ö ¾øÀ» ¼öµµ ÀÖ´Ù
-	// Á÷Á¢ Remain timeÀ» Ã¼Å©ÇÏ¿© ´ÙÀ½ ³»¿ëÀ» ÇÃ·¹ÀÌÇÏÀÚ!!
+	// ë¯¸ë‹ˆ ë‚˜ë ˆì´ì…˜ì€ ë„ì¤‘ì— ë‹¤ë¥¸ ë¯¸ë‹ˆ ë‚˜ë ˆì´ì…˜ì˜ ìƒˆì¹˜ê¸°ë¡œ ì—°ì¶œ ì¤‘ë‹¨ ì´ë²¤íŠ¸ë¥¼ ë°›ì„ ìˆ˜ ì—†ì„ ìˆ˜ë„ ìˆë‹¤
+	// ì§ì ‘ Remain timeì„ ì²´í¬í•˜ì—¬ ë‹¤ìŒ ë‚´ìš©ì„ í”Œë ˆì´í•˜ì!!
 
 	if( !m_pRefreeActor )
 		return;

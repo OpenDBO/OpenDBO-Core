@@ -18,7 +18,7 @@
 #define BALLOON_MARGIN_HEIGHT		83
 #define CINEMATIC_NAME_POS_Y		677
 
-#define CINIMATIC_BAR_HEIGHTRATE	0.16666667f // 768ÀÏ¶§ 
+#define CINIMATIC_BAR_HEIGHTRATE	0.16666667f // 768ì¼ë•Œ 
 
 #define PCSELFOCUS_DELTA_FROM_SELBUTTON_X	5
 #define CINEMATIC_BACK_ALPHA		100
@@ -374,7 +374,7 @@ VOID CNtlPLCinematicObject::SetBalloonType( RwInt32 eBalloonType )
 	//CRectangle rtScreen = m_pBalloon->GetScreenRect();
 	//CRectangle rtClient = m_pBalloon->GetClientRect();
 
-	//// peessitemp ÇöÀç ¸»Ç³¼±ÀÌ ÇÏ³ªÀÓ
+	//// peessitemp í˜„ì¬ ë§í’ì„ ì´ í•˜ë‚˜ì„
 	//if( eBalloonType == BALLOON_TYPE_NORMAL )
 	//{
 	//	surface = GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Cinematic.srf", "srfBalloonType1Body" );
@@ -476,7 +476,7 @@ VOID CNtlPLCinematicObject::SetFocusOnNPCBar( RwBool bFocusOnNPC )
 	std::list<gui::CSurface>* pNPCSurfaceList = m_pNameBox->GetSurface();
 	std::list<gui::CSurface>* pPCSurfaceList = m_pdlgPCNameBar->GetSurface();
 
-	// peessi: ÇöÀç Alpha°ªÀº Surface¸¸ ÀúÀåµÇ¾î ÀÖÀ¸¹Ç·Î ¹®Á¦. Alpha°ªÀ» ÀúÀåÇÏ´Â ÀÎÅÍÆäÀÌ½º¸¦ ¸¸µéÁö °ËÅä.
+	// peessi: í˜„ì¬ Alphaê°’ì€ Surfaceë§Œ ì €ì¥ë˜ì–´ ìˆìœ¼ë¯€ë¡œ ë¬¸ì œ. Alphaê°’ì„ ì €ì¥í•˜ëŠ” ì¸í„°í˜ì´ìŠ¤ë¥¼ ë§Œë“¤ì§€ ê²€í† .
 	RwUInt8 byPCAlpha, byNPCAlpha;
 	
 	if( pNPCSurfaceList->empty() )
@@ -617,7 +617,7 @@ RwBool CNtlPLCinematicObject::IsFlashObjectUpdated(VOID)
 
 VOID CNtlPLCinematicObject::InitShowSetting(VOID)
 {
-	// °¢ Begin State¿¡¼­ ÇÑ¹ø¾¿ È£Ãâ ÈÄ Á¶Á¤. This´Â DialogManager¿¡¼­ Á¶Á¤.
+	// ê° Begin Stateì—ì„œ í•œë²ˆì”© í˜¸ì¶œ í›„ ì¡°ì •. ThisëŠ” DialogManagerì—ì„œ ì¡°ì •.
 	m_pCinematicUpper->Show( true );
 	m_pCinematicLower->Show( true );
 	m_pHtmlText->Show( true );
@@ -627,18 +627,18 @@ VOID CNtlPLCinematicObject::InitShowSetting(VOID)
 	ShowImage( TRUE );
 	m_pBalloon->Show( true );	
 
-	// PC Dialog´Â Quest¿¡¼­¸¸ »ç¿ëÇÏ¹Ç·Î ±âº»ÀûÀ¸·Î Show False
+	// PC DialogëŠ” Questì—ì„œë§Œ ì‚¬ìš©í•˜ë¯€ë¡œ ê¸°ë³¸ì ìœ¼ë¡œ Show False
 	m_pfrmPCFrame->Show( false );
 }
 
 VOID CNtlPLCinematicObject::FitSizeToScreen( RwInt32 nWidth, RwInt32 nHeight )
 {
-	// È¾À¸·Î¸¸ °¡¿îµ¥ Á¤·Ä, Á¾À¸·Î´Â ¸Ç ¹Ø¿¡.
+	// íš¡ìœ¼ë¡œë§Œ ê°€ìš´ë° ì •ë ¬, ì¢…ìœ¼ë¡œëŠ” ë§¨ ë°‘ì—.
 	RwInt32 nNewXPos, nNewYPos;	
 	nNewXPos = ( nWidth - CINEMATIC_DEFAULT_WIDTH ) / 2;
 	nNewYPos = nHeight - CINEMATIC_DEFAULT_HEIGHT;
 
-	// ¸îÇÈ¼¿ Á¤µµÀÇ ¿ÀÂ÷¸¦ ÇÇÇÒ¼ö ¾ø´Ù.
+	// ëª‡í”½ì…€ ì •ë„ì˜ ì˜¤ì°¨ë¥¼ í”¼í• ìˆ˜ ì—†ë‹¤.
 	RwInt32 nBarHeight = (RwInt32)(nHeight * CINIMATIC_BAR_HEIGHTRATE + 0.5f);
 
 	// Cinematic LowerBar Fix Pos
@@ -716,10 +716,10 @@ VOID CNtlPLCinematicObject::FitSizeToScreen( RwInt32 nWidth, RwInt32 nHeight )
 	rtPCFrame.SetRectWH( nNewXPos, nHeight - nBarHeight, rtPCFrame.GetWidth(), nBarHeight );
 	m_pfrmPCFrame->SetPosition( rtPCFrame );
 
-	RwInt32 nPCFrameTextRegionHeight = nBarHeight - 19;	// MagicalNumber : ÀÌ¹ÌÁö·Î °¡¸®´Â ºÎºĞÀÌ 19 pixel ¸¸Å­.
+	RwInt32 nPCFrameTextRegionHeight = nBarHeight - 19;	// MagicalNumber : ì´ë¯¸ì§€ë¡œ ê°€ë¦¬ëŠ” ë¶€ë¶„ì´ 19 pixel ë§Œí¼.
 	
 	CRectangle rtPCMessage = m_phtmlPCMessage->GetPosition();
-	RwInt32 nPCMessagePosY = ( nPCFrameTextRegionHeight - rtPCMessage.GetHeight() ) / 2 + 8; // MagicalNumber : À­ÂÊ ÀÌ¹ÌÁö´Â 8Pixel
+	RwInt32 nPCMessagePosY = ( nPCFrameTextRegionHeight - rtPCMessage.GetHeight() ) / 2 + 8; // MagicalNumber : ìœ—ìª½ ì´ë¯¸ì§€ëŠ” 8Pixel
 	if( nPCMessagePosY < 8 )
 		nPCMessagePosY = 8;
 	m_phtmlPCMessage->SetPosition( rtPCMessage.left, nPCMessagePosY );

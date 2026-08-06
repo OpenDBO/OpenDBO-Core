@@ -62,8 +62,8 @@
 #include "AlarmManager.h"
 #include "DialogManager.h"
 
-#include "NtlPLObject.h"		//Test ���� ���� ����(by HoDong)
-#include "NtlPLEventGenerator.h"//Test ���� ���� ����(by Peessi)
+#include "NtlPLObject.h"		//Test 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙(by HoDong)
+#include "NtlPLEventGenerator.h"//Test 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙(by Peessi)
 #include "NtlPLEvent.h"
 
 #include "TBGui.h"
@@ -239,7 +239,7 @@ void CAvatarController::Destroy()
 	//test
 	UnLinkMsg(g_EventSCS);
 	
-	// move mark�� �����Ѵ�.
+	// move mark占쏙옙 占쏙옙占쏙옙占싼댐옙.
 	DeleteMoveMark();
 }
 
@@ -1461,7 +1461,7 @@ int	CAvatarController::KeyboardDownHandler(uintptr_t uiKeyData)
 #ifdef _UICONFIG
         GetDboGlobal()->GetDBOUIConfig()->Reflash();
 #endif        
-		// peessi: õ�����Ϲ���ȸ ����ǥ �׽�Ʈ��.
+		// peessi: 천占쏙옙占쏙옙占싹뱄옙占쏙옙회 占쏙옙占쏙옙표 占쌓쏙옙트占쏙옙.
 		//if( !CTBGui::m_pInstance->m_pTournamentGui )
 		//{
 		//	CTBGui::m_pInstance->m_pTournamentGui = NTL_NEW CTBTournamentGui( "BudokaiTournamentGui" );
@@ -1533,7 +1533,7 @@ void CAvatarController::CreateMoveMark(const RwV3d *pPos)
 
 	m_pMoveMark->SetPosition(pPos);
 
-	// ���� 
+	// 占쏙옙占쏙옙 
 	RwInt32 nSoundIndex = NtlRandomNumber(0, 3);
 	Logic_PlayGUISound((char*)(SOUND_SL_GROUND_PICKING[nSoundIndex]));
 }
@@ -1550,7 +1550,7 @@ void CAvatarController::DeleteMoveMark(void)
 
 void CAvatarController::UpdateMoveMark(RwReal fElapsed)
 {
-	// move mark�� ��� ����ٰ� ���ش�.
+	// move mark를 잠깐 띄웠다가 없앤다.
 	if(m_pMoveMark)
 	{
 		m_fMoveMarkTime += fElapsed;
@@ -2453,7 +2453,7 @@ int CAvatarController::ActionPartySelect(uintptr_t uiIdx)
 	{
 		CNtlParty *pParty = pSobAvatar->GetParty();
 
-		// �ƹ�Ÿ ���� ��Ƽ ����ü�� ��Ƽ ���� ������ ���� ���Եȴ�
+		// 占싣뱄옙타 占쏙옙占쏙옙 占쏙옙티 占쏙옙占쏙옙체占쏙옙 占쏙옙티 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쌉된댐옙
 		if( pParty->GetAvatarIndex() <= (RwInt32)uiIdx )
 			++uiIdx;
 
@@ -2550,7 +2550,7 @@ int CAvatarController::ActionPartyShareTargetSelect( uintptr_t uiSlot )
 }
 
 /**
- * ���������� ��Ƽ����� Ÿ�����Ѵ�. 
+ * 순차적으로 파티멤버를 타겟팅한다. 
  */
 int CAvatarController::ActionPartyAutoSelect() 
 {

@@ -38,7 +38,7 @@ public:
 
 	virtual RwUInt32		GetOccluderType() { return EPLOCCLUDER_QUAD; }
 
-	// °¢ ¸éÀÇ Á¾·ùÀÇ µû¶ó ¾÷µ¥ÀÌÆ® È£ÃâÀÌ ´Ù¸£´Ù.
+	// ê° ë©´ì˜ ì¢…ë¥˜ì˜ ë”°ë¼ ì—…ë°ì´íŠ¸ í˜¸ì¶œì´ ë‹¤ë¥´ë‹¤.
 	virtual RwBool			Update(RwReal fElapsed);
 	virtual RwBool			UpdateOneside(RwReal fElapsed);
 	virtual RwBool			UpdateTwoside(RwReal fElapsed);

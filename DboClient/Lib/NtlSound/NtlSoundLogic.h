@@ -47,16 +47,16 @@ RwBool Logic_IsExistLog(const RwChar* pcText);
 // Sound operation
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// FMOD¿¡¼­ Áö¿øÇÏ´Â º¼·ýÀ¸·Î º¯È¯ÇÑ´Ù
+// FMODì—ì„œ ì§€ì›í•˜ëŠ” ë³¼ë¥¨ìœ¼ë¡œ ë³€í™˜í•œë‹¤
 RwReal Logic_GetFMODValidVolume(RwReal fVolume);
 
-// ½ÇÁ¦ FMOD¿¡¼­ ¾²ÀÌ´Â º¼·ýÀ» °áÁ¤ÇÑ´Ù
+// ì‹¤ì œ FMODì—ì„œ ì“°ì´ëŠ” ë³¼ë¥¨ì„ ê²°ì •í•œë‹¤
 RwReal Logic_CalcPlayVolume(sNtlVolume* pNtlVolume);
 
-// FMOD¿¡¼­ Áö¿øÇÏ´Â PitchÀ¸·Î º¯È¯ÇÑ´Ù
+// FMODì—ì„œ ì§€ì›í•˜ëŠ” Pitchìœ¼ë¡œ ë³€í™˜í•œë‹¤
 RwReal Logic_GetFMODValidPitch(RwReal fPitch);
 
-// ½ÇÁ¦ FMOD¿¡¼­ ¾²ÀÌ´Â Pitch¸¦ °áÁ¤ÇÑ´Ù
+// ì‹¤ì œ FMODì—ì„œ ì“°ì´ëŠ” Pitchë¥¼ ê²°ì •í•œë‹¤
 RwReal Logic_CalcPlayPitch(sNtlPitch* pNtlPitch);
 
 RwBool Logic_IsExistFile(const RwChar* pcFileName);

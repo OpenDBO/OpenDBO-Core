@@ -14,9 +14,9 @@ RwUInt32 CNtlApplication::m_uiFrameRate = 1000;
 
 bool minimized = false;
 
-//Resource Arena�� Size
+//Resource Arena占쏙옙 Size
 #define rsRESOURCESDEFAULTARENASIZE (128 << 20) // 128MB for x64
-//File System���� �ٷ�� �ִ� ���ÿ� Open�Ҽ� �ִ� File�� �ִ� ����
+//File System에서 다룰수 있는 동시에 Open할수 있는 File의 최대 갯수
 #define MAX_NB_FILES_PER_FS (200)   
 
 CNtlApplication::CNtlApplication() : m_hWnd(NULL), 
@@ -48,12 +48,12 @@ CNtlApplication::~CNtlApplication()
 }
 
 /**
- * Window���� ���� Message�� ó���ϴ� �Լ�
+ * Window占쏙옙占쏙옙 占쏙옙占쏙옙 Message占쏙옙 처占쏙옙占싹댐옙 占쌉쇽옙
  * \param hWnd Window Handle
  * \param message Window Message
  * \param wParam 
  * \param lParam 
- * \return message�� ó�� ���
+ * \return message의 처리 결과
  */
 LRESULT CALLBACK MainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -61,7 +61,7 @@ LRESULT CALLBACK MainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 }
 
 /**
- * Application���� �ʱ�ȭ �ؾ��� ���� �Լ�
+ * Application占쏙옙占쏙옙 占십깍옙화 占쌔억옙占쏙옙 占쏙옙占쏙옙 占쌉쇽옙
  */
 void CNtlApplication::Init()
 {
@@ -71,7 +71,7 @@ void CNtlApplication::Init()
 /**
  * 
  *
- * \return Window Class�� 
+ * \return Window Class占쏙옙 
  */
 bool CNtlApplication::RegisterMainWindowClass(HANDLE processInstance)
 {
@@ -121,10 +121,10 @@ HWND CNtlApplication::CreateMainWindow(HANDLE processInstance, int posX, int pos
 	m_iWindowWidth	= m_iScreenWidth = m_iUserWidth = sizeX;
 	m_iWindowHeight = m_iScreenHeight = m_iUserHeight = sizeY;
 	
-	// ���� ��Ÿ���� ����� �������� ũ�⸦ ����Ѵ�.
+	// 현재 스타일이 적용된 윈도우의 크기를 계산한다.
 	AdjustWindowRect(&rect, m_wndStyle, FALSE);
 	
-	// ������ ũ���� Window�� �����Ѵ�.
+	// 占쏙옙占쏙옙占쏙옙 크占쏙옙占쏙옙 Window占쏙옙 占쏙옙占쏙옙占싼댐옙.
     HWND hwnd = CreateWindow(  kMainWindowClassName, kMainWindowName,
         m_wndStyle,
         posX, posY,
@@ -150,7 +150,7 @@ static rwD3D9DeviceReleaseCallBack g_OldDeviceReleaseCallBack = NULL;
 static rwD3D9DeviceRestoreCallBack g_OldDeviceRestoreCallBack = NULL;
 
 /**
- * Ntl�� DeviceRelease CallBack �Լ�
+ * Ntl占쏙옙 DeviceRelease CallBack 占쌉쇽옙
  */
 static void NtlDeviceReleaseCallBack(void)
 {
@@ -163,7 +163,7 @@ static void NtlDeviceReleaseCallBack(void)
 
 
 /**
- * Ntl�� DeviceRestore CallBack �Լ�
+ * Ntl占쏙옙 DeviceRestore CallBack 占쌉쇽옙
  */
 static void NtlDeviceRestoreCallBack(void)
 {
@@ -187,7 +187,7 @@ static void NtlSetDxDeviceEventHandler(void)
 }
 
 /**
- * Renderware�� Debug ������ ����ϴ� CallBack �Լ�
+ * Renderware의 Debug 정보를 출력하는 CallBack 함수
  */
 
 // 
@@ -258,15 +258,15 @@ void AllowAccessibilityShortcutKeys( bool bAllowKeys )
 
 
 /**
- * Application�� �����ϴ� �Լ��� Window�� ���� �� Renderware Engine�� �ʱ�ȭ
- * ���� �Ѵ�.
+ * Application占쏙옙 占쏙옙占쏙옙占싹댐옙 占쌉쇽옙占쏙옙 Window占쏙옙 占쏙옙占쏙옙 占쏙옙 Renderware Engine占쏙옙 占십깍옙화
+ * 占쏙옙占쏙옙 占싼댐옙.
  * \param hInstance Window Instance
- * \param posX Window X ������ġ
- * \param posY Window Y ������ġ
- * \param sizeX Window ���� ũ��
- * \param sizeY Window ���� ũ��
- * \param bFullScreen Full ȭ������ Window ȭ������ Ȯ��
- * \return Application�� �����ߴ����� ���� ����
+ * \param posX Window X 占쏙옙占쏙옙占쏙옙치
+ * \param posY Window Y 占쏙옙占쏙옙占쏙옙치
+ * \param sizeX Window 占쏙옙占쏙옙 크占쏙옙
+ * \param sizeY Window 占쏙옙占쏙옙 크占쏙옙
+ * \param bFullScreen Full 화占쏙옙占쏙옙占쏙옙 Window 화占쏙옙占쏙옙占쏙옙 확占쏙옙
+ * \return Application占쏙옙 占쏙옙占쏙옙占쌩댐옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙
  */
 RwBool CNtlApplication::Create( HINSTANCE hInstance, 
 							    RwInt32 posX, 
@@ -275,7 +275,7 @@ RwBool CNtlApplication::Create( HINSTANCE hInstance,
 								RwInt32 sizeY, 
 								RwBool bFullScreen)
 {
-	//Window ����
+	//Window 占쏙옙占쏙옙
 	RegisterMainWindowClass(hInstance);
 	m_hWnd = CreateMainWindow(hInstance, posX, posY, sizeX, sizeY, bFullScreen);
 
@@ -286,7 +286,7 @@ RwBool CNtlApplication::Create( HINSTANCE hInstance,
     SystemParametersInfo(SPI_GETFILTERKEYS, sizeof(FILTERKEYS), &g_StartupFilterKeys, 0);
 	AllowAccessibilityShortcutKeys( false );
 	
-	//Memory Function �� ArenaSize ����
+	//Memory Function 占쏙옙 ArenaSize 占쏙옙占쏙옙
 	if( !RwEngineInit(NULL, rwENGINEINITNOFREELISTS, rsRESOURCESDEFAULTARENASIZE))
 	{
 		DBO_FAIL("Engine initial fail !!!");
@@ -295,10 +295,10 @@ RwBool CNtlApplication::Create( HINSTANCE hInstance,
 	
 	RwDebugSetHandler(NtlRenderwareDebugMessageHandler);
 
-	//Plugin ���
+	//Plugin 등록
 	AttachPlugin();
 
-	//Renderware ������ Opne�Ѵ�.
+	//Renderware 占쏙옙占쏙옙占쏙옙 Opne占싼댐옙.
 	RwEngineOpenParams openParams;
 	openParams.displayID = m_hWnd;
 	if( !RwEngineOpen(&openParams) )
@@ -308,7 +308,7 @@ RwBool CNtlApplication::Create( HINSTANCE hInstance,
 		return FALSE;
 	}
 
-	//������ Graphics�� Mode�� �����ϴ����� Ȯ���Ѵ�.
+	//占쏙옙占쏙옙占쏙옙 Graphics占쏙옙 Mode占쏙옙 占쏙옙占쏙옙占싹댐옙占쏙옙占쏙옙 확占쏙옙占싼댐옙.
 	if( !SelectVideoMode() )
 	{
 		DBO_FAIL("Select video mode fail !!!");
@@ -319,7 +319,7 @@ RwBool CNtlApplication::Create( HINSTANCE hInstance,
 	//RwUInt32 uiMaxMultiSampling = RwD3D9EngineGetMaxMultiSamplingLevels();
 	//RwBool bSuccess = RwD3D9ChangeMultiSamplingLevels(1);
 	
-	//Renderware Engine�� �����Ѵ�.
+	//Renderware Engine占쏙옙 占쏙옙占쏙옙占싼댐옙.
 	RwD3D9EngineSetMultiThreadSafe( TRUE );
 	if( !RwEngineStart() )
 	{
@@ -327,7 +327,7 @@ RwBool CNtlApplication::Create( HINSTANCE hInstance,
 		return FALSE;
 	}	
 	
-	//File System Manager�� �ʱ�ȭ �ϰ� Install�� �Ѵ�.
+	//File System Manager占쏙옙 占십깍옙화 占싹곤옙 Install占쏙옙 占싼댐옙.
 	if (RtFSManagerOpen(RTFSMAN_UNLIMITED_NUM_FS) != FALSE)
     {
         if (!RsInstallFileSystem())
@@ -347,12 +347,12 @@ RwBool CNtlApplication::Create( HINSTANCE hInstance,
 	ShowWindow(m_hWnd, 1);
 	UpdateWindow(m_hWnd);
 
-	// ShowWindow �� �Ŀ� ������ ���������� ũ�Ⱑ ����� ���� �ִ�. ����� ũ�⸦ ������Ʈ�Ѵ�.
+	// ShowWindow 한 후에 생성된 윈도우즈의 크기가 변경될 수도 있다. 변경된 크기를 업데이트한다.
 	RECT rect;
 	GetClientRect( m_hWnd, &rect );
 	Resize( rect.right - rect.left, rect.bottom - rect.top, TRUE, FALSE );
 	
-	//SubSystem�� ����(Camera, Charset ...)
+	//SubSystem占쏙옙 占쏙옙占쏙옙(Camera, Charset ...)
 	if(!CreateSubSystem(m_iScreenWidth, m_iScreenHeight, TRUE))
 		return FALSE;
 
@@ -368,11 +368,11 @@ RwBool CNtlApplication::Create( HINSTANCE hInstance,
 
 
 /**
- * Application�� �����ϴ� �Լ��� Window�� ���� �� Renderware Engine�� �ʱ�ȭ
- * ���� �Ѵ�.(Mfc ��)
+ * Application占쏙옙 占쏙옙占쏙옙占싹댐옙 占쌉쇽옙占쏙옙 Window占쏙옙 占쏙옙占쏙옙 占쏙옙 Renderware Engine占쏙옙 占십깍옙화
+ * 占쏙옙占쏙옙 占싼댐옙.(Mfc 占쏙옙)
  * \param HWND Window Handle
- * \param bFullScreen Full ȭ������ Window ȭ������ Ȯ��
- * \return Application�� �����ߴ����� ���� ����
+ * \param bFullScreen Full 화占쏙옙占쏙옙占쏙옙 Window 화占쏙옙占쏙옙占쏙옙 확占쏙옙
+ * \return Application占쏙옙 占쏙옙占쏙옙占쌩댐옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙
  */
 RwBool CNtlApplication::Create(HWND hHandle, RwBool bFullScreen)
 {
@@ -384,7 +384,7 @@ RwBool CNtlApplication::Create(HWND hHandle, RwBool bFullScreen)
 	m_iScreenWidth  = rtRect.right - rtRect.left;
 	m_iScreenHeight = rtRect.bottom - rtRect.top;
 
-	//Memory Function �� ArenaSize ����
+	//Memory Function 占쏙옙 ArenaSize 占쏙옙占쏙옙
 	if( !RwEngineInit(NULL, rwENGINEINITNOFREELISTS, rsRESOURCESDEFAULTARENASIZE))
 		return FALSE;
 
@@ -392,7 +392,7 @@ RwBool CNtlApplication::Create(HWND hHandle, RwBool bFullScreen)
 
 	AttachPlugin();
 
-	//Renderware ������ Opne�Ѵ�.
+	//Renderware 占쏙옙占쏙옙占쏙옙 Opne占싼댐옙.
 	RwEngineOpenParams openParams;
 	openParams.displayID = m_hWnd;
 	if( !RwEngineOpen(&openParams) )
@@ -401,19 +401,19 @@ RwBool CNtlApplication::Create(HWND hHandle, RwBool bFullScreen)
 		return FALSE;
 	}
 
-	//������ Graphics�� Mode�� �����ϴ����� Ȯ���Ѵ�.
+	//占쏙옙占쏙옙占쏙옙 Graphics占쏙옙 Mode占쏙옙 占쏙옙占쏙옙占싹댐옙占쏙옙占쏙옙 확占쏙옙占싼댐옙.
 	if( !SelectVideoMode() )
 	{
 		return FALSE;
 	}
 	
-	//Renderware Engine�� �����Ѵ�.
+	//Renderware Engine占쏙옙 占쏙옙占쏙옙占싼댐옙.
 	if( !RwEngineStart() )
 	{
 		return FALSE;
 	}	
 	
-	//File System Manager�� �ʱ�ȭ �ϰ� Install�� �Ѵ�.
+	//File System Manager占쏙옙 占십깍옙화 占싹곤옙 Install占쏙옙 占싼댐옙.
 	if (RtFSManagerOpen(RTFSMAN_UNLIMITED_NUM_FS) != FALSE)
     {
         if (!RsInstallFileSystem())
@@ -426,11 +426,11 @@ RwBool CNtlApplication::Create(HWND hHandle, RwBool bFullScreen)
         return FALSE;
     }
 	
-	//PlugIn ��� �� Image Loader(Bmp, Png) ���
+	//PlugIn 등록 및 Image Loader(Bmp, Png) 등록
 	
 	RegisterImageLoader();
 	
-	//SubSystem�� ����(Camera, Charset ...)
+	//SubSystem占쏙옙 占쏙옙占쏙옙(Camera, Charset ...)
 	if(!CreateSubSystem(m_iScreenWidth, m_iScreenHeight, TRUE))
 		return FALSE;
 
@@ -444,7 +444,7 @@ RwBool CNtlApplication::Create(HWND hHandle, RwBool bFullScreen)
 }
 
 /**
- * Application�� ����� �����Ѵ�.
+ * Application의 기능을 종료한다.
  */
 void CNtlApplication::Destroy()
 {
@@ -466,9 +466,9 @@ void CNtlApplication::Destroy()
 
 
 /** 
- * m_nWindowWidth, m_nWindowHeight, m_nBitDepth�� ������ ī��
- * ���� ������ �Ǵ����� �˻��Ѵ�.
- * \return Mode�� �����ϴ����� ���� ����
+ * m_nWindowWidth, m_nWindowHeight, m_nBitDepth占쏙옙 占쏙옙占쏙옙占쏙옙 카占쏙옙
+ * 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占실댐옙占쏙옙占쏙옙 占싯삼옙占싼댐옙.
+ * \return Mode占쏙옙 占쏙옙占쏙옙占싹댐옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙
  */
 RwBool CNtlApplication::SelectVideoMode()
 {
@@ -481,28 +481,28 @@ RwBool CNtlApplication::SelectVideoMode()
 	RwInt32			nGcurSelVM = 0;
 	RwInt32			nDefDeviceNum = 0;
 
-	//���� System�� Rendering�� �Ҽ� �ִ�(Graphic Device)�� ������ �����Ѵ�. 
+	//占쏙옙占쏙옙 System占쏙옙 Rendering占쏙옙 占쌀쇽옙 占쌍댐옙(Graphic Device)占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싼댐옙. 
 	nGnumSubSystems = RwEngineGetNumSubSystems();
 	
 	/* Just to be sure ... */
     nGnumSubSystems = (nGnumSubSystems > MAX_SUBSYSTEMS) ? MAX_SUBSYSTEMS : nGnumSubSystems;
 	
-	//Graphics Device�� ��� �̸����� ��´�.
+	//Graphics Device의 모든 이름들을 얻는다.
     for (RwInt32 subSysNum = 0; subSysNum < nGnumSubSystems; ++ subSysNum)
     {
         RwEngineGetSubSystemInfo(&GsubSysInfo[subSysNum], subSysNum);
     }
 	
-	//������ Graphics Device�� ��´�.
+	//현재의 Graphics Device를 얻는다.
 	nGcurSel = RwEngineGetCurrentSubSystem();
 	
-	//������ Graphics Device�� Engine Setting �Ѵ�.
+	//占쏙옙占쏙옙占쏙옙 Graphics Device占쏙옙 Engine Setting 占싼댐옙.
     if (!RwEngineSetSubSystem(nGcurSel))
     {
         return FALSE;
     }
 	
-	// ������ �ػ󵵸� ã�´�. Mode�� �����ϴ��� Ȯ���� �Ѵ�.
+	// 占쏙옙占쏙옙占쏙옙 占쌔상도몌옙 찾占승댐옙. Mode占쏙옙 占쏙옙占쏙옙占싹댐옙占쏙옙 확占쏙옙占쏙옙 占싼댐옙.
 	nGcurSelVM = GetVideoMode( m_bFullScreen, m_iScreenWidth, m_iScreenHeight, m_iBitDepth );
 	if( nGcurSelVM < 0 )
 	{
@@ -531,7 +531,7 @@ RwBool CNtlApplication::SelectVideoMode()
 		m_iWindowPosY = rect.top;
 	}
 	
-	// ���� ���õ� �ػ��� ũ�⸦ ������Ʈ
+	// 占쏙옙占쏙옙 占쏙옙占시듸옙 占쌔삼옙占쏙옙 크占썩를 占쏙옙占쏙옙占쏙옙트
 	m_iUserWidth = vm.width;
 	m_iUserHeight = vm.height;
 	m_iBitDepth = vm.depth;
@@ -600,7 +600,7 @@ RwBool CNtlApplication::ToggleFullMode(void)
 
 	ChangeWindowStyle(bFullScreen);
 
-	//Mode�� �����ϴ��� Ȯ���� �Ѵ�.
+	//Mode占쏙옙 占쏙옙占쏙옙占싹댐옙占쏙옙 확占쏙옙占쏙옙 占싼댐옙.
 	RwInt32 nGcurSelVM = GetVideoMode(bFullScreen, m_iUserWidth, m_iUserHeight, m_iBitDepth);	
 	if( nGcurSelVM < 0 )
 	{
@@ -622,7 +622,7 @@ RwBool CNtlApplication::ToggleFullMode(void)
 	RwVideoMode vm;
 	RwEngineGetVideoModeInfo(&vm, RwEngineGetCurrentVideoMode());
 
-	// ���� Ǯ ��ũ�� Mode�ε� vm.flags�� EXCLUSIVE�� �ƴ϶�� â ȭ�� -> ��ü ȭ�� ��� ��ȯ ���з� �����ϰ�
+	// 만약 풀 스크린 Mode인데 vm.flags가 EXCLUSIVE가 아니라면 창 화면 -> 전체 화면 모드 전환 실패로 간주하고
 	// �����츦 �ٽ� �����ش�. �ݴ��� ��쵵 �Ȱ��� �������� �����Ѵ�.
 	// ȭ�� ��ȯ�� �����ߴ��� ������ �ػ󵵿� ���缭 �ٽ� �ѹ� ������ ��Ÿ���� �����Ѵ�.
 	if( (vm.flags & rwVIDEOMODEEXCLUSIVE) == 0)
@@ -662,7 +662,7 @@ void CNtlApplication::ChangeVideoMode(RwInt32 iWidth, RwInt32 iHeight, RwInt32 i
 			}
 		}	
 
-		// User�� ������ �ػ� ������Ʈ
+		// User占쏙옙 占쏙옙占쏙옙占쏙옙 占쌔삼옙 占쏙옙占쏙옙占쏙옙트
 		m_iUserWidth = iWidth;
 		m_iUserHeight = iHeight;
 		m_iBitDepth = iBitDepth;
@@ -670,7 +670,7 @@ void CNtlApplication::ChangeVideoMode(RwInt32 iWidth, RwInt32 iHeight, RwInt32 i
 		if (!RwD3D9ChangeVideoMode(nGcurSelVM))
 			return;
 
-		// ToggleFullMode() �� ��� Window�� Resize message�� �߻������� ChangeVideoMode�� ��� Resize�� ���������� �߻���Ų��.
+		// ToggleFullMode() 의 경우 Window의 Resize message를 발생하지만 ChangeVideoMode의 경우 Resize를 강제적으로 발생시킨다.
 		RECT rect;
 		GetClientRect( m_hWnd, &rect );
 		Resize( rect.right - rect.left, rect.bottom - rect.top, TRUE, FALSE );
@@ -678,13 +678,13 @@ void CNtlApplication::ChangeVideoMode(RwInt32 iWidth, RwInt32 iHeight, RwInt32 i
 	// Window Mode
 	else
 	{
-		// User�� ������ �ػ� ������Ʈ
+		// User占쏙옙 占쏙옙占쏙옙占쏙옙 占쌔삼옙 占쏙옙占쏙옙占쏙옙트
 		m_iUserWidth = iWidth;
 		m_iUserHeight = iHeight;
 		m_iBitDepth = iBitDepth;
 
 		// ���� ����ȭ���� ũ�⸦ �����ͼ� ����ȭ�麸�� �� ũ�ٸ� ũ��� ������ �����Ѵ�.
-		// ���õ� ũ��� �״�� ������.
+		// 선택된 크기는 그대로 가진다.
 		int nSystemWidth = GetSystemMetrics(SM_CXSCREEN);
 		int nSystemHeight = GetSystemMetrics(SM_CYSCREEN);
 
@@ -706,7 +706,7 @@ void CNtlApplication::ChangeVideoMode(RwInt32 iWidth, RwInt32 iHeight, RwInt32 i
  * \param bFullScreen
  * \param nWidth Window Width
  * \param nHeight Window Height
- * \return ������ Video Mode�� ������ �ϴ���
+ * \return 占쏙옙占쏙옙占쏙옙 Video Mode占쏙옙 占쏙옙占쏙옙占쏙옙 占싹댐옙占쏙옙
  */
 RwInt32 CNtlApplication::GetVideoMode(RwBool bFullScreen, RwInt32 nWidth, RwInt32 nHeight, RwInt32 bitDepth)
 {
@@ -737,8 +737,8 @@ RwInt32 CNtlApplication::GetVideoMode(RwBool bFullScreen, RwInt32 nWidth, RwInt3
 
 
 /**
- * File System�� Install�� �Ѵ�.
- * \return Install�� �Ǿ������� ���� ���� ����
+ * File System占쏙옙 Install占쏙옙 占싼댐옙.
+ * \return Install占쏙옙 占실억옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙
  */
 RwBool CNtlApplication::RsInstallFileSystem()
 {
@@ -844,11 +844,11 @@ RwBool CNtlApplication::RsInstallFileSystem()
 }
 
 /**
- * Window�� Size�� ���������� ȣ���� �Ǵ� �Լ�
- * \param nWidth Window���� Size
- * \param nHeight Window���� Size
+ * Window占쏙옙 Size占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 호占쏙옙占쏙옙 占실댐옙 占쌉쇽옙
+ * \param nWidth Window占쏙옙占쏙옙 Size
+ * \param nHeight Window占쏙옙占쏙옙 Size
  * \param zBuffer ZBuffer ��� ����
- * \return Resize�� ���������� �Ǿ������� ����
+ * \return Resize占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占실억옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙
  */
 RwBool CNtlApplication::Resize(RwInt32 iWidth, RwInt32 iHeight, RwBool zBuffer, RwBool bRestore_from_Minimize)
 {
@@ -868,7 +868,7 @@ RwBool CNtlApplication::Resize(RwInt32 iWidth, RwInt32 iHeight, RwBool zBuffer, 
 }
 
 /**
-* ���ø����̼��� ��ġ�� ����� ���� ��
+* 占쏙옙占시몌옙占쏙옙占싱쇽옙占쏙옙 占쏙옙치占쏙옙 占쏙옙占쏙옙占쏘가 占쏙옙占쏙옙 占쏙옙
 * WM_SIZE �� WM_MOVE �޼��� ���� �켱 ó���ȴ�
 */
 void CNtlApplication::SetApplicationMinMax(LPMINMAXINFO lpmmi)
@@ -877,8 +877,8 @@ void CNtlApplication::SetApplicationMinMax(LPMINMAXINFO lpmmi)
 
 /**
  * �߰������� ������ �ؾ��Ұ͵鿡 ���� �Լ�
- * \param nWidth ���� ������ Window�� Client�� ����ũ��
- * \param nHeight ���� ������ Window�� Client�� ����ũ��
+ * \param nWidth 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 Window占쏙옙 Client占쏙옙 占쏙옙占쏙옙크占쏙옙
+ * \param nHeight 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 Window占쏙옙 Client占쏙옙 占쏙옙占쏙옙크占쏙옙
  * \param zBuffer ZBuffer�� �������
  * \return 
  */
@@ -1141,7 +1141,7 @@ RwBool CNtlApplication::RegisterImageLoader()
 // Gamma
 void CNtlApplication::SetGammaRamp(RwReal fGamma)
 {
-	// ��� �޾Ƽ� �����Ѵ�.
+	// 상속 받아서 구현한다.
 }
 
 /**
@@ -1168,28 +1168,28 @@ RwInt32 CNtlApplication::GetBestVideoMode( RwBool bFullScreen, RwInt32 iWidth, R
 		if( sModeInfo.width <= 800 && sModeInfo.height <= 600 )
 			continue;
 
-		// ��ü ȭ���� ��� ����, ����, ���� ������ ���� ���� ���� Video Mode�� �����ϰ�
-		// â ����� ��� Flags�� â ���� üũ�Ǿ� ������ ������ �����Ѵ�.
+		// 전체 화면의 경우 넓이, 높이, 깊이 오차의 합이 가장 낮은 Video Mode를 리턴하고
+		// 창 모드의 경우 Flags가 창 모드로 체크되어 있으면 무조건 리턴한다.
 		if (bFullScreen)
 		{
 			if (sModeInfo.flags & rwVIDEOMODEEXCLUSIVE )
 			{
-				// ���� ����
+				// 占쏙옙占쏙옙 占쏙옙占쏙옙
 				nCompare = iWidth - sModeInfo.width;
 				if( nCompare >= 0 )
 					nMinWidthMargin = nCompare;
 
-				// ���� ����
+				// 占쏙옙占쏙옙 占쏙옙占쏙옙
 				nCompare = iHeight - sModeInfo.height;
 				if( nCompare >= 0 ) 
 					nMinHeightMargin = nCompare;
 
-				// ���� ����
+				// 占쏙옙占쏙옙 占쏙옙占쏙옙
 				nCompare = iBitDepth - sModeInfo.depth;
 				if( nCompare >= 0 )
 					nMinBitDepthMargin = nCompare;
 
-				// ������ ��
+				// 占쏙옙占쏙옙占쏙옙 占쏙옙
 				nCompare = nMinWidthMargin + nMinHeightMargin + nMinBitDepthMargin;
 				if( nCompare >= 0 &&
 					nCompare < nMinSummary )
@@ -1198,7 +1198,7 @@ RwInt32 CNtlApplication::GetBestVideoMode( RwBool bFullScreen, RwInt32 iWidth, R
 					nBestVideoMode = nModeIndex;
 				}
 
-				// ��Ȯ�ϰ� ��ġ��
+				// 占쏙옙확占싹곤옙 占쏙옙치占쏙옙
 				if( nMinSummary == 0 )
 					return nModeIndex;
 			}
@@ -1213,7 +1213,7 @@ RwInt32 CNtlApplication::GetBestVideoMode( RwBool bFullScreen, RwInt32 iWidth, R
 }
 
 /**
-* \brief ������ ������ ������ Resizing�� �ϴ� �Լ�
+* \brief 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 Resizing占쏙옙 占싹댐옙 占쌉쇽옙
 */
 RwBool CNtlApplication::FixedWindowSizing( WPARAM wParam, LPARAM lParam )
 {
@@ -1226,7 +1226,7 @@ RwBool CNtlApplication::FixedWindowSizing( WPARAM wParam, LPARAM lParam )
 
 	switch( wParam )
 	{
-		// ���̰� �þ��.
+		// 占쏙옙占싱곤옙 占시어난占쏙옙.
 	case WMSZ_BOTTOMLEFT:
 	case WMSZ_BOTTOMRIGHT:
 	case WMSZ_LEFT:

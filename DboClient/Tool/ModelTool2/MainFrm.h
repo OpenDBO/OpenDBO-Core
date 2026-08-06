@@ -33,14 +33,14 @@ protected:  // control bar embedded members
 	CXTPStatusBar            m_wndStatusBar;
 	CXTPDockingPaneManager   m_paneManager;    
     CXTPReBar                m_wndReBar;
-    CXTPControlEdit*         m_pEditCamraSense;             ///< ToolBarÀÇ Camera Sensitive
-    CXTPControlEdit*         m_pEditToonThickness;          ///< ToolBarÀÇ Toon Thickness    
-    CXTPControlPopupColor*   m_pCSToonColor;                ///< ToolBarÀÇ Toon Color
-    CXTPControlPopupColor*   m_pCSHeadSkinColor;            ///< ToolBarÀÇ Head Skin Color
-    CXTPControlPopupColor*   m_pCSBodySkinColor;            ///< ToolBarÀÇ Body Skin Color
-    COLORREF                 m_clrToonColor;                ///< ¼³Á¤ÇÒ Toon Color
-    COLORREF                 m_clrHeadSkinColor;            ///< ¼³Á¤ÇÒ Head Skin Color
-    COLORREF                 m_clrBodySkinColor;            ///< ¼³Á¤ÇÒ Body Skin Color
+    CXTPControlEdit*         m_pEditCamraSense;             ///< ToolBarì˜ Camera Sensitive
+    CXTPControlEdit*         m_pEditToonThickness;          ///< ToolBarì˜ Toon Thickness    
+    CXTPControlPopupColor*   m_pCSToonColor;                ///< ToolBarì˜ Toon Color
+    CXTPControlPopupColor*   m_pCSHeadSkinColor;            ///< ToolBarì˜ Head Skin Color
+    CXTPControlPopupColor*   m_pCSBodySkinColor;            ///< ToolBarì˜ Body Skin Color
+    COLORREF                 m_clrToonColor;                ///< ì„¤ì •í•  Toon Color
+    COLORREF                 m_clrHeadSkinColor;            ///< ì„¤ì •í•  Head Skin Color
+    COLORREF                 m_clrBodySkinColor;            ///< ì„¤ì •í•  Body Skin Color
 
 // Generated message map functions
 protected:

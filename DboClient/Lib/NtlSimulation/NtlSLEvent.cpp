@@ -19,8 +19,8 @@ RWS::CEventId g_EventFormatSysStringMsg;
 //////////////////////////////////////////////
 
 RWS::CEventId g_EventNetSendError;	
-RWS::CEventId g_EventNotifySendPacket;			// packetÀ» º¸³¾¶§¹ß»ıÇÏ´Â ÀÌº¥Æ®(PacketTrace¿ë)
-RWS::CEventId g_EventNotifyReceivePacket;		// packetÀ» ¹ŞÀ»¶§¹ß»ıÇÏ´Â ÀÌº¥Æ®(PacketTrace¿ë)
+RWS::CEventId g_EventNotifySendPacket;			// packetì„ ë³´ë‚¼ë•Œë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸(PacketTraceìš©)
+RWS::CEventId g_EventNotifyReceivePacket;		// packetì„ ë°›ì„ë•Œë°œìƒí•˜ëŠ” ì´ë²¤íŠ¸(PacketTraceìš©)
 
 //////////////////////////////////////////////
 /**
@@ -29,29 +29,29 @@ RWS::CEventId g_EventNotifyReceivePacket;		// packetÀ» ¹ŞÀ»¶§¹ß»ıÇÏ´Â ÀÌº¥Æ®(Pac
 //////////////////////////////////////////////
 
 RWS::CEventId g_EventWorldChange;		
-RWS::CEventId g_EventCreateWorld;                 // ¿ùµå°¡ DestroyµÇ´ø°¡ CreateµÉ¶§
+RWS::CEventId g_EventCreateWorld;                 // ì›”ë“œê°€ Destroyë˜ë˜ê°€ Createë ë•Œ
 
 //////////////////////////////////////////////
 /**
-* avatar/camera ÀÌµ¿ ¹× È¸Àü
+* avatar/camera ì´ë™ ë° íšŒì „
 */
 //////////////////////////////////////////////
 
 RWS::CEventId g_EventCameraSmoothingMove;		// camera smoothing move.
-RWS::CEventId g_EventCameraShake;				// Áøµ¿ camera.
+RWS::CEventId g_EventCameraShake;				// ì§„ë™ camera.
 RWS::CEventId g_EventCameraDash;				// dash camera.
-RWS::CEventId g_EventCameraNpc;					// npc click ¿¬Ãâ camera.
-RWS::CEventId g_EventCameraDB;					// dragon ball ¿¬Ãâ camera.
+RWS::CEventId g_EventCameraNpc;					// npc click ì—°ì¶œ camera.
+RWS::CEventId g_EventCameraDB;					// dragon ball ì—°ì¶œ camera.
 RWS::CEventId g_EventCameraDTClear;				// camera direct node clear.
 RWS::CEventId g_EventCameraDTSplineNode;		// camera direct spline node
 RWS::CEventId g_EventCameraFree;				// Free Camera
-RWS::CEventId g_EventCameraTimeMachine;			// Å¸ÀÓ¸Ó½Å Ãâ¹ß ¿¬Ãâ Ä«¸Ş¶ó ÀÌº¥Æ®
-RWS::CEventId g_EventCameraExplosion;			// Æø¹ß Ä«¸Ş¶ó ÀÌº¥Æ®
-RWS::CEventId g_EventCameraTimeMachineArrive;	// Å¸ÀÌ¸Ó½Å µµÂø Ä«¸Ş¶ó ÀÌº¥Æ®
-RWS::CEventId g_EventCameraKnockDownMatrix;		// knockdown matrix camera ¿¬Ãâ.
-RWS::CEventId g_EventCameraFPS;                 // 1ÀÎÄª Ä«¸Ş¶ó
-RWS::CEventId g_EventCameraBus;                 // ¹ö½º Ä«¸Ş¶ó
-RWS::CEventId g_EventCameraObserver;            // ÃµÇÏÁ¦ÀÏ¹«µµÈ¸ ¿ÉÀú¹ö Ä«¸Ş¶ó
+RWS::CEventId g_EventCameraTimeMachine;			// íƒ€ì„ë¨¸ì‹  ì¶œë°œ ì—°ì¶œ ì¹´ë©”ë¼ ì´ë²¤íŠ¸
+RWS::CEventId g_EventCameraExplosion;			// í­ë°œ ì¹´ë©”ë¼ ì´ë²¤íŠ¸
+RWS::CEventId g_EventCameraTimeMachineArrive;	// íƒ€ì´ë¨¸ì‹  ë„ì°© ì¹´ë©”ë¼ ì´ë²¤íŠ¸
+RWS::CEventId g_EventCameraKnockDownMatrix;		// knockdown matrix camera ì—°ì¶œ.
+RWS::CEventId g_EventCameraFPS;                 // 1ì¸ì¹­ ì¹´ë©”ë¼
+RWS::CEventId g_EventCameraBus;                 // ë²„ìŠ¤ ì¹´ë©”ë¼
+RWS::CEventId g_EventCameraObserver;            // ì²œí•˜ì œì¼ë¬´ë„íšŒ ì˜µì €ë²„ ì¹´ë©”ë¼
 RWS::CEventId g_EventCameraControlDelete;		// camera control delete.
 
 //////////////////////////////////////////////
@@ -89,11 +89,11 @@ RWS::CEventId g_EventScreenShot;
 
 RWS::CEventId g_EventSkillSelectMode;
 
-// ¾×¼Ç ½ºÅ³ ¾ÆÀÌÄÜÀ» ÀÌ¿ëÇÑ ¾×¼Ç (AvatarController¿¡¼­ ÇÑ¹ø °É·¯Á®¼­ ÀÌº¥Æ®¸¦ º¸³½´Ù)
-RWS::CEventId g_EventActionFuncBasicAttack;      ///< ±âº» °ø°İ ¾ÆÀÌÄÜ
-RWS::CEventId g_EventActionFuncAssist;            ///< ¾î½Ã½ºÆ® ¾ÆÀÌÄÜ
-RWS::CEventId g_EventActionFuncGetItem;          ///< ¾ÆÀÌÅÛ ½Àµæ ¾ÆÀÌÄÜ
-RWS::CEventId g_EventActionFuncSitAndStand;      ///< ¾É±â ¾ÆÀÌÄÜ
+// ì•¡ì…˜ ìŠ¤í‚¬ ì•„ì´ì½˜ì„ ì´ìš©í•œ ì•¡ì…˜ (AvatarControllerì—ì„œ í•œë²ˆ ê±¸ëŸ¬ì ¸ì„œ ì´ë²¤íŠ¸ë¥¼ ë³´ë‚¸ë‹¤)
+RWS::CEventId g_EventActionFuncBasicAttack;      ///< ê¸°ë³¸ ê³µê²© ì•„ì´ì½˜
+RWS::CEventId g_EventActionFuncAssist;            ///< ì–´ì‹œìŠ¤íŠ¸ ì•„ì´ì½˜
+RWS::CEventId g_EventActionFuncGetItem;          ///< ì•„ì´í…œ ìŠµë“ ì•„ì´ì½˜
+RWS::CEventId g_EventActionFuncSitAndStand;      ///< ì•‰ê¸° ì•„ì´ì½˜
 
 
 RWS::CEventId g_EventESCinNarrationMode;
@@ -107,13 +107,13 @@ RWS::CEventId g_EventESCinNarrationMode;
 
 
 //--------------------
-// simulation ±âº» event
+// simulation ê¸°ë³¸ event
 //--------------------
 
 RWS::CEventId g_EventSobShowNfy;
 
 //--------------------
-// input¿¡ °üÇÑ event
+// inputì— ê´€í•œ event
 //--------------------
 
 RWS::CEventId g_EventTerrainClick;
@@ -128,8 +128,8 @@ RWS::CEventId g_EventSobTargetSelect;
 RWS::CEventId g_EventSobTargetSelectRelease;     
 RWS::CEventId g_EventSobAttackMarkRelease;
 RWS::CEventId g_EventSobAttackSelect;     
-RWS::CEventId g_EventSobTargetMarkSelect;                    ///< Å¸°Ù ¸¶Å·ÇÒ ¿ÀºêÁ§Æ®¸¦ ¼±ÅÃÇÒ¶§ (¸Ş°¡ µµµ¿ÆÄ ½ºÅ³) 
-RWS::CEventId g_EventSobTargetMarkRelease;                   ///< Å¸°Ù ¸¶Å·ÇÒ ¿ÀºêÁ§Æ®¸¦ ¸±¸®Áî
+RWS::CEventId g_EventSobTargetMarkSelect;                    ///< íƒ€ê²Ÿ ë§ˆí‚¹í•  ì˜¤ë¸Œì íŠ¸ë¥¼ ì„ íƒí• ë•Œ (ë©”ê°€ ë„ë™íŒŒ ìŠ¤í‚¬) 
+RWS::CEventId g_EventSobTargetMarkRelease;                   ///< íƒ€ê²Ÿ ë§ˆí‚¹í•  ì˜¤ë¸Œì íŠ¸ë¥¼ ë¦´ë¦¬ì¦ˆ
 RWS::CEventId g_EventSobGotFocus;     
 RWS::CEventId g_EventSobLostFocus;     
 RWS::CEventId g_EventCommuTargetSelect;
@@ -145,7 +145,7 @@ RWS::CEventId g_EventAvatarTargetStateChange;
 RWS::CEventId g_EventSobEventTitleEffect;
 
 //-----------------------------
-// create/delete¿¡ °üÇÑ ÇÔ¼ö.
+// create/deleteì— ê´€í•œ í•¨ìˆ˜.
 //-----------------------------
 
 RWS::CEventId g_EventSobCreate;
@@ -155,10 +155,10 @@ RWS::CEventId g_EventSobDelete;
 RWS::CEventId g_EventSobSummonPetSpawnSync;
 
 //-----------------------------
-// Æê »ı¼º¿¡ °ü·ÃµÈ ÀÌº¥Æ®
+// í« ìƒì„±ì— ê´€ë ¨ëœ ì´ë²¤íŠ¸
 //-----------------------------
 
-RWS::CEventId g_EventSobPetSkillInfo;	// Æê ½ºÅ³¿¡ ´ëÇÑ Á¤º¸
+RWS::CEventId g_EventSobPetSkillInfo;	// í« ìŠ¤í‚¬ì— ëŒ€í•œ ì •ë³´
 
 //-----------------------------
 // server A function for moving a synchronization object.
@@ -173,14 +173,14 @@ RWS::CEventId g_EventSobMoveStop;
 RWS::CEventId g_EventSobDirectionFloat;
 RWS::CEventId g_EventSobFollowMove;
 RWS::CEventId g_EventSobAdjustMove;
-RWS::CEventId g_EventSobPushingNfy;			///< È¸Àü °ø°İÀ» ¹Ş¾Æ¼­ ½½¶óÀÌµù µÇ´Â ÀÌº¥Æ®
-RWS::CEventId g_EventSobGuardCrush;			// simulation object guard crush¸¦ ´çÇÑ´Ù.
-RWS::CEventId g_EventSobMovePatternSync;	// ÇöÀç monster¸¸ »ç¿ëÇÏ°í ÀÖ½¿.
+RWS::CEventId g_EventSobPushingNfy;			///< íšŒì „ ê³µê²©ì„ ë°›ì•„ì„œ ìŠ¬ë¼ì´ë”© ë˜ëŠ” ì´ë²¤íŠ¸
+RWS::CEventId g_EventSobGuardCrush;			// simulation object guard crushë¥¼ ë‹¹í•œë‹¤.
+RWS::CEventId g_EventSobMovePatternSync;	// í˜„ì¬ monsterë§Œ ì‚¬ìš©í•˜ê³  ìˆìŠ´.
 RWS::CEventId g_EventSobAirJump;
 RWS::CEventId g_EventSobAirAccel;
 
 //-----------------------------
-// item ÀåÂø°ú ÇØÁ¦¿¡ °üÇÑ event.
+// item ì¥ì°©ê³¼ í•´ì œì— ê´€í•œ event.
 //-----------------------------
 
 RWS::CEventId g_EventSobItemAdd;
@@ -224,7 +224,7 @@ RWS::CEventId g_EventBattleDungeonLimitTime;
 RWS::CEventId g_EventBattleDungeonFail;
 RWS::CEventId g_EventBattleDungeonRewardFinish;
 //-----------------------------
-// QuickSlot¿¡ °ü·ÃµÈ event
+// QuickSlotì— ê´€ë ¨ëœ event
 //-----------------------------
 
 RWS::CEventId g_EventSobDeleteQuickSlotIcon;
@@ -246,7 +246,7 @@ RWS::CEventId g_EventSobWarehouseItemMove;
 RWS::CEventId g_EventSobWarehouseItemStackMove;
 
 //-----------------------------
-// quest item ÀåÂø°ú ÇØÁ¦¿¡ °üÇÑ event.
+// quest item ì¥ì°©ê³¼ í•´ì œì— ê´€í•œ event.
 //-----------------------------
 RWS::CEventId g_EventSobQuestItemAdd;
 
@@ -272,17 +272,17 @@ RWS::CEventId g_EventItemSocketDestroyBead;
 
 
 //////////////////////////////////////////////////////////////////////////
-// Dynamic Object °ü·Ã ÀÌº¥Æ®
+// Dynamic Object ê´€ë ¨ ì´ë²¤íŠ¸
 //////////////////////////////////////////////////////////////////////////
-RWS::CEventId g_EventDynamicObjectUpdateState;		///< µ¿Àû ¿ÀºêÁ§Æ® »óÅÂ Update
-RWS::CEventId g_EventHoipoiMixRecipeRegNfy;			///< ¹Í½º ·¹½ÃÇÇ µî·Ï ¾Ë¸²
-RWS::CEventId g_EventHoipoiMixItemRecipeInfo;		///< ·¹½ÃÇÇÀÇ Á¤º¸
-RWS::CEventId g_EventHoipoiMixItemMakeExpNfy;		///< ¾ÆÀÌÅÛ ¸¸µé±â °æÇèÄ¡ Áõ°¡ ¾Ë¸²
-RWS::CEventId g_EventHoipoiMixInfoUpdate;			///< È£ÀÌÆ÷ÀÌ¹Í½º ÀÎÆ÷ ¾÷µ¥ÀÌÆ®
+RWS::CEventId g_EventDynamicObjectUpdateState;		///< ë™ì  ì˜¤ë¸Œì íŠ¸ ìƒíƒœ Update
+RWS::CEventId g_EventHoipoiMixRecipeRegNfy;			///< ë¯¹ìŠ¤ ë ˆì‹œí”¼ ë“±ë¡ ì•Œë¦¼
+RWS::CEventId g_EventHoipoiMixItemRecipeInfo;		///< ë ˆì‹œí”¼ì˜ ì •ë³´
+RWS::CEventId g_EventHoipoiMixItemMakeExpNfy;		///< ì•„ì´í…œ ë§Œë“¤ê¸° ê²½í—˜ì¹˜ ì¦ê°€ ì•Œë¦¼
+RWS::CEventId g_EventHoipoiMixInfoUpdate;			///< í˜¸ì´í¬ì´ë¯¹ìŠ¤ ì¸í¬ ì—…ë°ì´íŠ¸
 
 
 //////////////////////////////////////////////////////////////////////////
-// º¯½Å °ü·Ã ÀÌº¥Æ®
+// ë³€ì‹  ê´€ë ¨ ì´ë²¤íŠ¸
 //////////////////////////////////////////////////////////////////////////
 RWS::CEventId g_EventTransform;
 RWS::CEventId g_EventMobTransform;
@@ -296,7 +296,7 @@ RWS::CEventId g_EventSobCondHindingKi;
 RWS::CEventId g_EventCinematicScale;
 
 //-----------------------------
-// server µ¿±â¿¡ ´ëÇÑ actionµé¿¡ °üÇÑ event.
+// server ë™ê¸°ì— ëŒ€í•œ actionë“¤ì— ê´€í•œ event.
 //-----------------------------
 
 RWS::CEventId g_EventSobStanding;
@@ -316,7 +316,7 @@ RWS::CEventId g_EventSobHit;
 RWS::CEventId g_EventSobAttackFollow;
 
 RWS::CEventId g_EventSobAttackMode;
-RWS::CEventId g_EventSobSendAttackEnd;           ///< ¾îÅÃ¸ğµå Á¾·á¸¦ ¼­¹ö¿¡ ¾Ë¸®´Â ÀÌº¥Æ®
+RWS::CEventId g_EventSobSendAttackEnd;           ///< ì–´íƒëª¨ë“œ ì¢…ë£Œë¥¼ ì„œë²„ì— ì•Œë¦¬ëŠ” ì´ë²¤íŠ¸
 
 RWS::CEventId g_EventSobJump;
 
@@ -414,7 +414,7 @@ RWS::CEventId g_EventSobServerUpdateState;
 RWS::CEventId g_EventSobServerUpdateCondition;
 RWS::CEventId g_EventSobServerUpdateAspect;
 RWS::CEventId g_EventSobFainting;
-RWS::CEventId g_EventSobUpdateLPStatusNfy;           ///< SobÀÌ ºó»ç »óÅÂ¿¡ ºü ºÀ»¶§ÀÇ ÀÌº¥Æ®
+RWS::CEventId g_EventSobUpdateLPStatusNfy;           ///< Sobì´ ë¹ˆì‚¬ ìƒíƒœì— ë¹ ì¡‹ì„ë•Œì˜ ì´ë²¤íŠ¸
 
 //-----------------------------
 // party event
@@ -456,7 +456,7 @@ RWS::CEventId g_EventGuildWarehouseItemMove;
 RWS::CEventId g_EventGuildWarehouseItemStackMove;
 
 //-----------------------------
-// µµÀå
+// ë„ì¥
 //-----------------------------
 
 RWS::CEventId g_EventDojo;
@@ -485,7 +485,7 @@ RWS::CEventId g_EventBlackListAdd_Res;
 RWS::CEventId g_EventBlackListDel_Res;
 RWS::CEventId g_EventFriendInfo;
 RWS::CEventId g_EventFriendInfoChange;
-RWS::CEventId g_EventFriendInfoNotify;           ///< UI¸¦ ¾÷µ¥ÀÌÆ® ÇÏ±â À§ÇÑ ÀÌº¥Æ® (µ¥ÀÌÅÍ->UI)
+RWS::CEventId g_EventFriendInfoNotify;           ///< UIë¥¼ ì—…ë°ì´íŠ¸ í•˜ê¸° ìœ„í•œ ì´ë²¤íŠ¸ (ë°ì´í„°->UI)
 
 //-----------------------------
 // OtherParam Event
@@ -502,7 +502,7 @@ RWS::CEventId g_EventBindNotify;
 // PrivateShop Event
 //_____________________________
 
-// °³ÀÎ »óÁ¡
+// ê°œì¸ ìƒì 
 RWS::CEventId g_EventPrivateShopState;
 RWS::CEventId g_EventPrivateShopStateVisitor;
 RWS::CEventId g_EventPrivateShopItem;
@@ -537,24 +537,24 @@ RWS::CEventId g_EventBroadMsgEndNfy;
 // RankBattle
 //_____________________________
 
-RWS::CEventId g_EventRBBoardInfo;				// ·©Å©¹èÆ² °Ô½ÃÆÇ °»½Å
-RWS::CEventId g_EventRBJoin;					// ·©Å©¹èÆ² ½ÅÃ»°ü·Ã.
+RWS::CEventId g_EventRBBoardInfo;				// ë­í¬ë°°í‹€ ê²Œì‹œíŒ ê°±ì‹ 
+RWS::CEventId g_EventRBJoin;					// ë­í¬ë°°í‹€ ì‹ ì²­ê´€ë ¨.
 
-//RWS::CEventId g_EventRBBoardUpdate;			// ·©Å©¹èÆ² °Ô½ÃÆÇ °»½Å
-//RWS::CEventId g_EventRBRoomInfo;				// ¹æÀÇ Á¤º¸
-//RWS::CEventId g_EventRBRoom;					// ·©Å©¹èÆ²·ë °³¼³ »èÁ¦ ÅğÀå µµÀü
-//RWS::CEventId g_EventRBMatch;					// ·©Å©¹èÆ² ÁØºñ ½ÃÀÛ Ãë¼Ò
+//RWS::CEventId g_EventRBBoardUpdate;			// ë­í¬ë°°í‹€ ê²Œì‹œíŒ ê°±ì‹ 
+//RWS::CEventId g_EventRBRoomInfo;				// ë°©ì˜ ì •ë³´
+//RWS::CEventId g_EventRBRoom;					// ë­í¬ë°°í‹€ë£¸ ê°œì„¤ ì‚­ì œ í‡´ì¥ ë„ì „
+//RWS::CEventId g_EventRBMatch;					// ë­í¬ë°°í‹€ ì¤€ë¹„ ì‹œì‘ ì·¨ì†Œ
 
-RWS::CEventId g_EventRBBattleStateUpdate;		// ·©Å©¹èÆ² °æ±âÀå »óÅÂÁ¤º¸
-RWS::CEventId g_EventRBBattleTeamInfo;			// ÆÀ Á¤º¸ ¾Ë¸²
-RWS::CEventId g_EventRBBattlePlayerState;		// ÆÀ Á¤º¸ ¾Ë¸²
-RWS::CEventId g_EventRBBattleKillScoreUpdate;	// Å³ ½ºÄÚ¾î ¾÷µ¥ÀÌÆ®
-RWS::CEventId g_EventRBBattleStageFinish;		// ½ºÅ×ÀÌÁö ¸¶Ä§
-RWS::CEventId g_EventRBBattleMatchFinish;		// °æ±â ¸¶Ä§
-RWS::CEventId g_EventRBBattleEnd;				// RBBattle ¿ùµå ³ª°¡±â Á÷Àü
-RWS::CEventId g_EventRBForcedEnd;				// ¼­¹öÂÊ¿¡¼­ÀÇ °­Á¦Á¾·á
+RWS::CEventId g_EventRBBattleStateUpdate;		// ë­í¬ë°°í‹€ ê²½ê¸°ì¥ ìƒíƒœì •ë³´
+RWS::CEventId g_EventRBBattleTeamInfo;			// íŒ€ ì •ë³´ ì•Œë¦¼
+RWS::CEventId g_EventRBBattlePlayerState;		// íŒ€ ì •ë³´ ì•Œë¦¼
+RWS::CEventId g_EventRBBattleKillScoreUpdate;	// í‚¬ ìŠ¤ì½”ì–´ ì—…ë°ì´íŠ¸
+RWS::CEventId g_EventRBBattleStageFinish;		// ìŠ¤í…Œì´ì§€ ë§ˆì¹¨
+RWS::CEventId g_EventRBBattleMatchFinish;		// ê²½ê¸° ë§ˆì¹¨
+RWS::CEventId g_EventRBBattleEnd;				// RBBattle ì›”ë“œ ë‚˜ê°€ê¸° ì§ì „
+RWS::CEventId g_EventRBForcedEnd;				// ì„œë²„ìª½ì—ì„œì˜ ê°•ì œì¢…ë£Œ
 
-RWS::CEventId g_EventRBTotalScoreUpdate;		// °³ÀÎ ÀüÀû ¾÷µ¥ÀÌÆ®
+RWS::CEventId g_EventRBTotalScoreUpdate;		// ê°œì¸ ì „ì  ì—…ë°ì´íŠ¸
 
 //-----------------------------
 // MailSystem
@@ -616,7 +616,7 @@ RWS::CEventId g_EventNPCCommuExit;
 
 //////////////////////////////////////////////
 /**
-* Á¤º¸ ¾ò¾î¿À±â.
+* ì •ë³´ ì–»ì–´ì˜¤ê¸°.
 */
 //////////////////////////////////////////////
 
@@ -628,11 +628,11 @@ RWS::CEventId g_EventSobGetAirMode;
 
 //////////////////////////////////////////////
 /**
-* Æ®¸®°Å ¿ÀºêÁ§Æ® ½ºÄ«¿ìÅÍ ¿¬Ãâ °ü·Ã
+* íŠ¸ë¦¬ê±° ì˜¤ë¸Œì íŠ¸ ìŠ¤ì¹´ìš°í„° ì—°ì¶œ ê´€ë ¨
 */
 //////////////////////////////////////////////
 
-RWS::CEventId g_EventScouter;				// ½ºÄ«¿ìÅÍ ÀÌº¥Æ®
+RWS::CEventId g_EventScouter;				// ìŠ¤ì¹´ìš°í„° ì´ë²¤íŠ¸
 
 //////////////////////////////////////////////
 /**
@@ -647,7 +647,7 @@ RWS::CEventId g_EventCharReady;
 //_____________________________
 
 //////////////////////////////////////////////////////////////////////////
-// Client ¿Í TS °£ÀÇ ¿¬µ¿ ¸Ş½ÃÁöµé
+// Client ì™€ TS ê°„ì˜ ì—°ë™ ë©”ì‹œì§€ë“¤
 //////////////////////////////////////////////////////////////////////////
 
 // Client => TS
@@ -751,7 +751,7 @@ RWS::CEventId g_EventTSDialogOpen;
 
 
 //////////////////////////////////////////////////////////////////////////
-// Server ¿Í TS °£ÀÇ ¿¬µ¿ ¸Ş½ÃÁöµé
+// Server ì™€ TS ê°„ì˜ ì—°ë™ ë©”ì‹œì§€ë“¤
 //////////////////////////////////////////////////////////////////////////
 
 
@@ -780,14 +780,14 @@ RWS::CEventId  g_EventTObjectUpdateState;
 * DragonBall Collection
 */
 //////////////////////////////////////////////////////////////////////////
-RWS::CEventId  g_EventNightEffect;			// ¿ë½Å µîÀå½Ã È­¸éÀÌ ¾îµÎ¿öÁö´Â È¿°ú 
+RWS::CEventId  g_EventNightEffect;			// ìš©ì‹  ë“±ì¥ì‹œ í™”ë©´ì´ ì–´ë‘ì›Œì§€ëŠ” íš¨ê³¼ 
 RWS::CEventId  g_EventDBCNarration;
 RWS::CEventId  g_EventDBCNarrationEnd;
 RWS::CEventId  g_EventDBCCheck_Res;
 RWS::CEventId  g_EventDBCReward_Res;
 RWS::CEventId  g_EventDBCCollect_Nfy;
 RWS::CEventId  g_EventDBCShedule_Info;
-RWS::CEventId  g_EventDBCScatter;                 // µå·¡°ïº¼ÀÌ Èğ¾îÁö´Â ¿¬Ãâ ½ÃÀÛÀ» ¾Ë¸®´Â ÀÌº¥Æ®
+RWS::CEventId  g_EventDBCScatter;                 // ë“œë˜ê³¤ë³¼ì´ í©ì–´ì§€ëŠ” ì—°ì¶œ ì‹œì‘ì„ ì•Œë¦¬ëŠ” ì´ë²¤íŠ¸
 
 //////////////////////////////////////////////
 /**
@@ -817,10 +817,10 @@ RWS::CEventId g_EventUIConfigReload;
 //////////////////////////////////////////////////////////////////////////
 // Portal System
 //////////////////////////////////////////////////////////////////////////
-RWS::CEventId g_EventPortalInfoRes;          ///< Æ÷Å» Á¤º¸¸¦ ¹ŞÀ»¶§
+RWS::CEventId g_EventPortalInfoRes;          ///< í¬íƒˆ ì •ë³´ë¥¼ ë°›ì„ë•Œ
 RWS::CEventId g_EventPortalAddReq;
-RWS::CEventId g_EventPortalAddRes;           ///< Æ÷Å»À» µî·Ï Ãß°¡ÇßÀ» ¶§ÀÇ ÀÀ´ä
-RWS::CEventId g_EventPortalRes;              ///< Æ÷Å»À» ÀÌµ¿¿äÃ» ÇßÀ» ¶§ÀÇ ÀÀ´ä
+RWS::CEventId g_EventPortalAddRes;           ///< í¬íƒˆì„ ë“±ë¡ ì¶”ê°€í–ˆì„ ë•Œì˜ ì‘ë‹µ
+RWS::CEventId g_EventPortalRes;              ///< í¬íƒˆì„ ì´ë™ìš”ì²­ í–ˆì„ ë•Œì˜ ì‘ë‹µ
 
 //////////////////////////////////////////////////////////////////////////
 // Operate object
@@ -841,16 +841,16 @@ RWS::CEventId g_EventChargingNfy;
 RWS::CEventId g_EventPopoNotify;
 
 //_____________________________
-// ¹ö½º ¹× Å»°Í °ü·Ã ÀÌº¥Æ®
+// ë²„ìŠ¤ ë° íƒˆê²ƒ ê´€ë ¨ ì´ë²¤íŠ¸
 //_____________________________
-RWS::CEventId g_EventSobOnBus;					///< ¹ö½º Å¾½Â
-RWS::CEventId g_EventSobOnVehicle;				///< ½Â°´ÀÌ Vehicle¿¡ Å¸°Å³ª ³»¸®´Â °æ¿ìÀÇ ÀÌº¥Æ®
+RWS::CEventId g_EventSobOnBus;					///< ë²„ìŠ¤ íƒ‘ìŠ¹
+RWS::CEventId g_EventSobOnVehicle;				///< ìŠ¹ê°ì´ Vehicleì— íƒ€ê±°ë‚˜ ë‚´ë¦¬ëŠ” ê²½ìš°ì˜ ì´ë²¤íŠ¸
 
 RWS::CEventId g_EventSobVehicleStart;
-RWS::CEventId g_EventSobRideOnOffVehicle;		///< ¿îÀüÀÚ°¡ Vehicle¿¡ Å¸°Å³ª ³»¸®´Â °æ¿ìÀÇ ÀÌº¥Æ®
-RWS::CEventId g_EventSobVehicleEngine;			///< Å» °Í ¿£Áø °ü·Ã ÀÌº¥Æ®
+RWS::CEventId g_EventSobRideOnOffVehicle;		///< ìš´ì „ìê°€ Vehicleì— íƒ€ê±°ë‚˜ ë‚´ë¦¬ëŠ” ê²½ìš°ì˜ ì´ë²¤íŠ¸
+RWS::CEventId g_EventSobVehicleEngine;			///< íƒˆ ê²ƒ ì—”ì§„ ê´€ë ¨ ì´ë²¤íŠ¸
 
-RWS::CEventId g_EventSobVehicleStunt;			///< Å» °Í ¿¬Ãâ
+RWS::CEventId g_EventSobVehicleStunt;			///< íƒˆ ê²ƒ ì—°ì¶œ
 
 RWS::CEventId g_EventBusMove;
 
@@ -938,7 +938,7 @@ RWS::CEventId g_EventCinematicGuiCommand;
 RWS::CEventId g_EventDialogMove;
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-// °×ºí NPC
+// ê²œë¸” NPC
 ///////////////////////////////////////////////////////////////////////////////////////////
 RWS::CEventId g_EventGambleAniStart;
 RWS::CEventId g_EventGambleAniEnd;
@@ -961,15 +961,15 @@ RWS::CEventId g_EventGameChatOption;
 ///////////////////////////////////////////////////////////////////////////////////////////
 RWS::CEventId g_EventChangeCharName;
 
-RWS::CEventId g_EventChangeNickName;			///< º°¸í ¹Ù²Ù±â
+RWS::CEventId g_EventChangeNickName;			///< ë³„ëª… ë°”ê¾¸ê¸°
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 // Change Class Authority Changed
 ///////////////////////////////////////////////////////////////////////////////////////////
-RWS::CEventId g_EventChangeClassAuthorityChangedNfy;	///< ¾Æ¹ÙÅ¸ »ı¼ºµÚ¿¡µµ ÇÑ¹ø ³¯¶ó¿Â´Ù. 
+RWS::CEventId g_EventChangeClassAuthorityChangedNfy;	///< ì•„ë°”íƒ€ ìƒì„±ë’¤ì—ë„ í•œë²ˆ ë‚ ë¼ì˜¨ë‹¤. 
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-// BattleAttribute refresh ( Å¸°ÙÆÃµÈ »ó´ëÀÇ ´ëÇÑ Á¤º¸ )
+// BattleAttribute refresh ( íƒ€ê²ŸíŒ…ëœ ìƒëŒ€ì˜ ëŒ€í•œ ì •ë³´ )
 RWS::CEventId g_EventCharRefreshBattleAttributeModifier;
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -978,9 +978,9 @@ RWS::CEventId g_EventCharRankPointResetNfy;
 
 //////////////////////////////////////////////////////////////////////////
 // Gui Option
-RWS::CEventId g_EventQuickSlotGuiMode;				///< Äü½½·Ô °ü·Ã ÀÌº¥Æ®
-RWS::CEventId g_EventQuickSlotLockMode;				///< Äü½½·Ô ¶ô ¸ğµå
+RWS::CEventId g_EventQuickSlotGuiMode;				///< í€µìŠ¬ë¡¯ ê´€ë ¨ ì´ë²¤íŠ¸
+RWS::CEventId g_EventQuickSlotLockMode;				///< í€µìŠ¬ë¡¯ ë½ ëª¨ë“œ
 
 //////////////////////////////////////////////////////////////////////////
-// Mob °ü·Ã Event
+// Mob ê´€ë ¨ Event
 RWS::CEventId g_EventMobDie;				///< Mob Die

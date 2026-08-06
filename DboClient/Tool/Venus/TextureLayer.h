@@ -1,7 +1,7 @@
 #pragma once
 
 
-// CTextureLayer ºäÀÔ´Ï´Ù.
+// CTextureLayer ë·°ì…ë‹ˆë‹¤.
 #include "rwcore.h"
 
 #include "RollupCtrl.h"
@@ -11,7 +11,7 @@ class CTextureLayer : public CView
 	DECLARE_DYNCREATE(CTextureLayer)
 
 protected:
-	CTextureLayer();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CTextureLayer();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CTextureLayer();
 
 public:
@@ -30,7 +30,7 @@ public:
 	CRollupCtrl				m_RollupControl;
 
 public:
-	virtual void OnDraw(CDC* pDC);      // ÀÌ ºä¸¦ ±×¸®±â À§ÇØ ÀçÁ¤ÀÇµÇ¾ú½À´Ï´Ù.
+	virtual void OnDraw(CDC* pDC);      // ì´ ë·°ë¥¼ ê·¸ë¦¬ê¸° ìœ„í•´ ì¬ì •ì˜ë˜ì—ˆìŠµë‹ˆë‹¤.
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;

@@ -4,7 +4,7 @@
 
 /**
  * \ingroup NtlSimulation
- * \brief NPC ¿Í ´ëÈ­ÇÒ ¶§ ÀÌ¿ë
+ * \brief NPC ì™€ ëŒ€í™”í•  ë•Œ ì´ìš©
  * \date 2007-07-18
  * \author avooo
  */

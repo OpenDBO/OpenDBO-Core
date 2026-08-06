@@ -2,7 +2,7 @@
  *
  * File			: NtlBehaviorBase.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2006. 2. 9	
  * Abstract		: actor behavior class
  *****************************************************************************

@@ -185,7 +185,7 @@ void CMsgBoxGui::SetBoxData( RwBool bPopup, RwBool bHasInput, std::list<sMsgBoxC
 	if( pData )
 		memcpy_s( &m_Data, sizeof( sMsgBoxData ), pData, sizeof( sMsgBoxData ) );
 
-	// Btn Show À¯¹« ÆÇº°.
+	// Btn Show ìœ ë¬´ íŒë³„.
 	m_pInput->Show( false );
 	m_pbtnOk->Show( false );
 	m_pbtnCancel->Show( false );
@@ -296,7 +296,7 @@ VOID CMsgBoxGui::ProccessDefault()
 			return;
 		}
 
-		// Ok CancelÀÌ ¾ø´Â °æ¿ì.
+		// Ok Cancelì´ ì—†ëŠ” ê²½ìš°.
 		if(m_pbtnCancel->IsVisible() == false && m_pbtnOk->IsVisible() == false)
 			m_bHide = TRUE;
 		else

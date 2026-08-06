@@ -6,7 +6,7 @@
 
 class CTextTable;
 
-// ¸»Ç³¼±À» ÀÌ·ç´Â ±¸Á¶Ã¼
+// ë§í’ì„ ì„ ì´ë£¨ëŠ” êµ¬ì¡°ì²´
 struct SDragonDialog
 {
 	gui::CPanel*		m_pPanel;
@@ -42,14 +42,14 @@ struct SDragonDialog
 
 /**
 * \ingroup Client
-* \brief ¿ë½ÅÀÇ ´ëÈ­(¸»Ç³¼±)À» Ç¥½ÃÇÏ´Â GUI Å¬·¡½º
+* \brief ìš©ì‹ ì˜ ëŒ€í™”(ë§í’ì„ )ì„ í‘œì‹œí•˜ëŠ” GUI í´ë˜ìŠ¤
 * \date 2007-07-6
 * \author agebreak
 */
 class CDBCDragonDialogGUI : public CNtlPLGui, public RWS::CEventHandler
 {
 public:
-	enum EDialogType			///< ´ÙÀÌ¾ó·Î±×ÀÇ Å¸ÀÔ
+	enum EDialogType			///< ë‹¤ì´ì–¼ë¡œê·¸ì˜ íƒ€ì…
 	{
 		E_DIALOG_NORMAL,
 		E_DIALOG_WARN,
@@ -70,21 +70,21 @@ public:
 	// Event
 	VOID		HandleEvents(RWS::CMsg &pMsg);
 
-	VOID		SetText(RwInt32 nTblIdx, EDialogType eDialogType = E_DIALOG_NORMAL);					///< ¿ë½Å ´ëÈ­ Å×ÀÌºí ÀÎµ¦½ºÀÇ ´ëÈ­¸¦ Ç¥½ÃÇÑ´Ù.
-	VOID		SetText(std::wstring& strWString, EDialogType eDialogType = E_DIALOG_NORMAL);		///< ÅØ½ºÆ®¸¦ Ç¥½ÃÇÑ´Ù.	
-	VOID		ShowNormalDialog(RwBool bShow);				///< ÀÏ¹İ ´ë»çÃ¢ Ç¥½Ã À¯¹«¸¦ ¼³Á¤ÇÑ´Ù.
+	VOID		SetText(RwInt32 nTblIdx, EDialogType eDialogType = E_DIALOG_NORMAL);					///< ìš©ì‹  ëŒ€í™” í…Œì´ë¸” ì¸ë±ìŠ¤ì˜ ëŒ€í™”ë¥¼ í‘œì‹œí•œë‹¤.
+	VOID		SetText(std::wstring& strWString, EDialogType eDialogType = E_DIALOG_NORMAL);		///< í…ìŠ¤íŠ¸ë¥¼ í‘œì‹œí•œë‹¤.	
+	VOID		ShowNormalDialog(RwBool bShow);				///< ì¼ë°˜ ëŒ€ì‚¬ì°½ í‘œì‹œ ìœ ë¬´ë¥¼ ì„¤ì •í•œë‹¤.
 
-	static		CDBCDragonDialogGUI* GetInstance();			///< ½Ì±ÛÅæ Instance¸¦ ¹İÈ¯ÇÑ´Ù.
-	static		void				 DeleteInstance();		///< ½Ì±ÛÅæ Instance¸¦ »èÁ¦ÇÑ´Ù.
+	static		CDBCDragonDialogGUI* GetInstance();			///< ì‹±ê¸€í†¤ Instanceë¥¼ ë°˜í™˜í•œë‹¤.
+	static		void				 DeleteInstance();		///< ì‹±ê¸€í†¤ Instanceë¥¼ ì‚­ì œí•œë‹¤.
 
 protected:	
-	void		AdjustDialog();								///< UIÀÇ À§Ä¡¸¦ °áÁ¤ÇÑ´Ù.    
+	void		AdjustDialog();								///< UIì˜ ìœ„ì¹˜ë¥¼ ê²°ì •í•œë‹¤.    
 
 protected:
-	static		CDBCDragonDialogGUI* m_pInstance;			///< ½Ì±ÛÅæ ÀÎ½ºÅÏ½º
+	static		CDBCDragonDialogGUI* m_pInstance;			///< ì‹±ê¸€í†¤ ì¸ìŠ¤í„´ìŠ¤
 
-	SDragonDialog	m_SDragonDialog[DIALOG_COUNT];			///< ¿ë½ÅÀÇ ´ëÈ­¸¦ Ç¥½ÃÇÒ ¸»Ç³¼± ±¸Á¶Ã¼
-	CTextTable*		m_pDragonTextTable;						///< ¿ë½ÅÀÇ ´ëÈ­ Å×ÀÌºí		
+	SDragonDialog	m_SDragonDialog[DIALOG_COUNT];			///< ìš©ì‹ ì˜ ëŒ€í™”ë¥¼ í‘œì‹œí•  ë§í’ì„  êµ¬ì¡°ì²´
+	CTextTable*		m_pDragonTextTable;						///< ìš©ì‹ ì˜ ëŒ€í™” í…Œì´ë¸”		
 	RwBool			m_bDelete;
     
 };	

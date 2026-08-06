@@ -4,7 +4,7 @@
 /**
 *
 *  constructor for CNtlStage
-*  \param pStageName´Â stage nameÀÌ´Ù.
+*  \param pStageNameëŠ” stage nameì´ë‹¤.
 *
 */
 CNtlStage::CNtlStage(const char *pStageName)

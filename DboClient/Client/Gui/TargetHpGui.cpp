@@ -164,7 +164,7 @@ RwBool CTargetHpGui::Create(VOID)
 	m_slotMouseLeaveTargetsTarget = m_pbtTargetIcon->SigMouseLeave().Connect(this, &CTargetHpGui::OnMouseLeaveTargetsTarget);
 
 
-	// event µî·Ï.
+	// event ë“±ë¡.
 	LinkMsg(g_EventSobTargetInfoUpdate, 0);
 	LinkMsg(g_EventSobTargetChanged);
 	LinkMsg(g_EventSobInfoUpdate, 0);
@@ -501,13 +501,13 @@ void CTargetHpGui::HandleEvents(RWS::CMsg &pMsg)
 		{
 			if( pPacket->nWorkId == PMW_PARTY_INVITE )
 			{
-				// ÀÌ¹Ì ³ªÀÇ ÆÄÆ¼¿øÀÌ ¾Æ´Ï¶ó¸é
+				// ì´ë¯¸ ë‚˜ì˜ íŒŒí‹°ì›ì´ ì•„ë‹ˆë¼ë©´
 				if( GetNtlSLGlobal()->GetSobAvatar()->GetParty()->IsMember(pPacket->uiSerial) == false )
 				{
 					CNtlSob* pSob = GetNtlSobManager()->GetSobObject(pPacket->uiSerial);
 					CNtlSobPlayer* pPlayer = reinterpret_cast<CNtlSobPlayer*>(pSob);
 
-					// ÇÃ·¹ÀÌ¾î¸¸ÀÌ ÆÄÆ¼·Î ÃÊ´ë °¡´ÉÇÏ´Ù
+					// í”Œë ˆì´ì–´ë§Œì´ íŒŒí‹°ë¡œ ì´ˆëŒ€ ê°€ëŠ¥í•˜ë‹¤
 					if( pPlayer->GetClassID() != SLCLASS_PLAYER)
 						NTL_RETURNVOID();
 
@@ -517,12 +517,12 @@ void CTargetHpGui::HandleEvents(RWS::CMsg &pMsg)
 			}
 			else if( pPacket->nWorkId == PMW_PARTY_LEADER_CHANGE )
 			{				
-				// ÆÄÆ¼Àå À§ÀÓ
+				// íŒŒí‹°ì¥ ìœ„ì„
 				GetDboGlobal()->GetGamePacketGenerator()->SendPartyChangeLeader(pPacket->uiSerial);
 			}
 			else if(pPacket->nWorkId == PMW_PARTY_KICK_OUT)
 			{
-				// ÆÄÆ¼ °­Åğ
+				// íŒŒí‹° ê°•í‡´
 				GetDboGlobal()->GetGamePacketGenerator()->SendPartyKickOut(pPacket->uiSerial);
 			}
 			else if( pPacket->nWorkId == PMW_PVP_REQUEST_FIGHT )
@@ -545,7 +545,7 @@ void CTargetHpGui::HandleEvents(RWS::CMsg &pMsg)
 						CNtlSobPlayerAttr* pSobPlayerAttr = reinterpret_cast<CNtlSobPlayerAttr*>( pSobPlayer->GetSobAttr() );
 						NTL_ASSERT(pSobPlayerAttr, "CTargetHpGui::HandleEvents, g_EventIconPopupResult, pPacket->nWorkId == PMW_USER_TRADE, Not exist player attr of handle : " << m_pTargetSobObj->GetSerialID());
 
-						// %s´Ô¿¡°Ô °Å·¡¸¦ ¿äÃ»ÇÏ¿´½À´Ï´Ù
+						// %së‹˜ì—ê²Œ ê±°ë˜ë¥¼ ìš”ì²­í•˜ì˜€ìŠµë‹ˆë‹¤
 						GetAlarmManager()->FormattedAlarmMessage("DST_TRADE_REQUEST_START", FALSE, NULL, pSobPlayerAttr->GetName());
 					}
 				}
@@ -675,7 +675,7 @@ RwBool CTargetHpGui::TargetUpdateProc(VOID)
 		m_sttHp->Format( "%u / %u", uiHp, uiMaxHp );
 		m_sttEp->Format( "%u / %u", uiEp, uiMaxEp );
 
-		// Á¾Á· ¾ÆÀÌÄÜ
+		// ì¢…ì¡± ì•„ì´ì½˜
 		CNtlSobAvatarAttr* pSobAvatarAttr = reinterpret_cast<CNtlSobAvatarAttr*>( m_pTargetSobObj->GetSobAttr() );
 		SetRaceIcon( pSobAvatarAttr->GetRace() );	
 	}
@@ -732,7 +732,7 @@ RwBool CTargetHpGui::TargetUpdateProc(VOID)
 			m_pBuff->Show( false );
 		}
 
-		// Á¾Á· ¾ÆÀÌÄÜ		
+		// ì¢…ì¡± ì•„ì´ì½˜		
 		SetRaceIcon( pSobPlayerAttr->GetRace() );
 	}
 	else if( m_pTargetSobObj->GetClassID() == SLCLASS_MONSTER )
@@ -831,7 +831,7 @@ RwBool CTargetHpGui::TargetUpdateProc(VOID)
 			m_ppnlNpcJob->SetToolTip(std::wstring(pJobText));
 		}
 
-		// Á¾Á· ¾ÆÀÌÄÜ
+		// ì¢…ì¡± ì•„ì´ì½˜
 		sNPC_TBLDAT* pNpcData = pAttr->GetNpcTbl();
 
 		SetMobNpcTypeIcon( pNpcData->byNpcType );
@@ -863,7 +863,7 @@ RwBool CTargetHpGui::TargetUpdateProc(VOID)
 		m_sttHp->Format( "%u / %u", uiHp, uiMaxHp );
 		m_sttEp->Format( "%u / %u", uiEp, uiMaxEp );	
 
-		// Á¾Á· ¾ÆÀÌÄÜ( Pet Àº NPC )
+		// ì¢…ì¡± ì•„ì´ì½˜( Pet ì€ NPC )
 		CNtlSobPetAttr* pPetAttr = reinterpret_cast<CNtlSobPetAttr*>( m_pTargetSobObj->GetSobAttr() );
 		sNPC_TBLDAT* pPetData = pPetAttr->GetNpcTbl();
 
@@ -919,7 +919,7 @@ RwBool CTargetHpGui::TargetUpdateProc(VOID)
 	}
 	else 
 	{
-		// Pet ¸»°í ´Ù¸¥ °Í Ãâ·ÂÇÒ°Ô ÀÖ³ª? 
+		// Pet ë§ê³  ë‹¤ë¥¸ ê²ƒ ì¶œë ¥í• ê²Œ ìˆë‚˜? 
 		NTL_ASSERT( FALSE, "CTargetHpGui::TargetUpdateProc - Invalid SobObj's Class ID" );
 	}
 
@@ -951,7 +951,7 @@ VOID CTargetHpGui::OnClickShareTargetBtn( gui::CComponent* pComponent )
 {
 	RwInt32 iAdjust = 37;
 	CRectangle rect = m_pThis->GetScreenRect();
-	CDboEventGenerator::IconPopupShow( TRUE, m_pTargetSobObj->GetSerialID(), PLACE_SUB_TARGETUI, 1, rect.right - iAdjust, -iAdjust );		// nSrcSlotId·Î  ShareTargetÀÎÁö MenuÀÎÁö ±¸ºĞ.
+	CDboEventGenerator::IconPopupShow( TRUE, m_pTargetSobObj->GetSerialID(), PLACE_SUB_TARGETUI, 1, rect.right - iAdjust, -iAdjust );		// nSrcSlotIdë¡œ  ShareTargetì¸ì§€ Menuì¸ì§€ êµ¬ë¶„.
 }
 
 VOID CTargetHpGui::OnMouseUpTargetsTarget(const CKey & key)
@@ -1126,7 +1126,7 @@ VOID CTargetHpGui::SetTargetMobNpcTypeIcon(RwUInt8 byType)
 }
 
 VOID CTargetHpGui::SetMobGrade( RwUInt8 byMobGrade )
-{ // Show ¿©ºÎµµ ÆÇ´Ü
+{ // Show ì—¬ë¶€ë„ íŒë‹¨
 	gui::CSurface	surface;
 	std::wstring	wstrToolTip;
 

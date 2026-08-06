@@ -1,4 +1,4 @@
-// MPPGraphicPane.cpp : ���� �����Դϴ�.
+// MPPGraphicPane.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -50,7 +50,7 @@ BEGIN_MESSAGE_MAP(CMPPGraphicPane, CXTResizeFormView)
 END_MESSAGE_MAP()
 
 
-// CMPPGraphicPane �����Դϴ�.
+// CMPPGraphicPane 진단입니다.
 
 #ifdef _DEBUG
 void CMPPGraphicPane::AssertValid() const
@@ -92,7 +92,7 @@ void CMPPGraphicPane::OnInitialUpdate()
 }
 
 
-// CMPPGraphicPane �޽��� ó�����Դϴ�.
+// CMPPGraphicPane 메시지 처리기입니다.
 
 /*
 
@@ -179,7 +179,7 @@ void CMPPGraphicPane::OnNMReleasedcaptureEffectParticleRatio(NMHDR *pNMHDR, LRES
 {
 	GetMPPClientEvent()->SendEvent(MSG_MRPOPO_SPEC_EFFECT_PARTICLE_RATIO, m_sdPraticleRatio.GetPos());
 
-	// TODO: ���⿡ ��Ʈ�� �˸� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	*pResult = 0;
 }
 
@@ -199,6 +199,6 @@ void CMPPGraphicPane::OnNMReleasedcaptureCharDist(NMHDR *pNMHDR, LRESULT *pResul
 {
 	GetMPPClientEvent()->SendEvent(MSG_MRPOPO_SPEC_CHAR_DIST, m_sldCharDist.GetPos());
 
-	// TODO: ���⿡ ��Ʈ�� �˸� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	*pResult = 0;
 }

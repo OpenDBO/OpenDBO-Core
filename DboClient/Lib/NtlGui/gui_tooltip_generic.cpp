@@ -100,7 +100,7 @@ VOID CToolTip_Generic::CalcRect(VOID)// const CPos& ptMouse )
 
 	m_pOutline->SetOutScreenRect( rcOutRect );
 
-	// ºÎ¸ð ÁÂÇ¥ÀÇ »ó´ë À§Ä¡·Î ÁÂÇ¥ ¹Ù²Þ.
+	// ë¶€ëª¨ ì¢Œí‘œì˜ ìƒëŒ€ ìœ„ì¹˜ë¡œ ì¢Œí‘œ ë°”ê¿ˆ.
 	if( m_pToolTip->GetParent() )
 	{
 		rcParent = m_pToolTip->GetParent()->GetScreenRect();
@@ -121,7 +121,7 @@ VOID CToolTip_Generic::CalcRect(VOID)// const CPos& ptMouse )
 
 VOID CToolTip_Generic::SetTextPosition(VOID)
 {
-	// ºÎ¸ð¿¡¼­ÀÇ »ó´ëÁÂÇ¥¸¦ ³Ñ°ÜÁØ´Ù. ¿©¹é, ¼±µÎ²²°¡ ÁöÁ¤µÉ¶§¸¶´Ù ½ÇÇà
+	// ë¶€ëª¨ì—ì„œì˜ ìƒëŒ€ì¢Œí‘œë¥¼ ë„˜ê²¨ì¤€ë‹¤. ì—¬ë°±, ì„ ë‘ê»˜ê°€ ì§€ì •ë ë•Œë§ˆë‹¤ ì‹¤í–‰
 	m_pToolTip->m_pStaticBox->SetPosition( m_pOutline->GetLeftCX() + m_nMarginX, m_pOutline->GetTopCY() + m_nMarginY );
 }
 
@@ -160,7 +160,7 @@ VOID CToolTip_Generic::OnMove( INT nOldX,INT nOldY )
 
 	CRectangle rect = m_pToolTip->GetScreenRect();
 
-	// ½ºÅ©¸° ÁÂÇ¥¸¦ ³Ñ°ÜÁØ´Ù.
+	// ìŠ¤í¬ë¦° ì¢Œí‘œë¥¼ ë„˜ê²¨ì¤€ë‹¤.
 	m_pOutline->SetMove( rect.left, rect.top );
 }
 

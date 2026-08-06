@@ -2,15 +2,15 @@
 *
 * File			: SayFilter.h
 * Author		: JinSung, Kim ( Modified Haesung, Cho )
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 9. 4
 * Abstract		: Say message filtering manager
 *****************************************************************************
 * Desc			:
 *
-* DBO ¹®ÀÚ¿­ ÇÊÅÍ¸µ
-* ÇöÀç´Â Å×ÀÌºíÀÌ ·ÎµåµÇÁö ¾Ê¾Ò¾îµµ °ÔÀÓ ÇÃ·¹ÀÌ°¡ °¡´É (ÇÊÅÍµÇÁö ¾ÊÀ½)
-* (Á¤Ã¥ÀûÀ¸·Î »óÀÇÇØ¾ß ÇÒ »çÇ×µé)
+* DBO ë¬¸ìì—´ í•„í„°ë§
+* í˜„ì¬ëŠ” í…Œì´ë¸”ì´ ë¡œë“œë˜ì§€ ì•Šì•˜ì–´ë„ ê²Œì„ í”Œë ˆì´ê°€ ê°€ëŠ¥ (í•„í„°ë˜ì§€ ì•ŠìŒ)
+* (ì •ì±…ì ìœ¼ë¡œ ìƒì˜í•´ì•¼ í•  ì‚¬í•­ë“¤)
 *****************************************************************************/
 
 #ifndef _SAYFILTER_H_
@@ -29,7 +29,7 @@
 
 /**
 * \ingroup Client
-* ÇÊÅÍµÉ ´Ü¾îµéÀ» ÇÑ ±ÛÀÚ¾¿ ºĞ¸®ÇÏ¿© ¸ÊÀÇ Å° °ª¿¡ »ğÀÔ
+* í•„í„°ë  ë‹¨ì–´ë“¤ì„ í•œ ê¸€ìì”© ë¶„ë¦¬í•˜ì—¬ ë§µì˜ í‚¤ ê°’ì— ì‚½ì…
 */
 template <typename T>
 class CFilterWord
@@ -41,7 +41,7 @@ public:
 	typedef	std::basic_string<T, TCHAR_TRAITS, TALLOCATOR>	TSTRING;
 
 public:
-	// ´ëÃ¼ÇÒ ÅØ½ºÆ®¸¦ ÀúÀå
+	// ëŒ€ì²´í•  í…ìŠ¤íŠ¸ë¥¼ ì €ì¥
 	struct SResult
 	{
 		TSTRING strText;
@@ -213,7 +213,7 @@ int CFilterWord<T>::GetNumFilter()
 
 /**
 * \ingroup Client
-* ¸Ş½ÃÁö ÇÊÅÍ¸µÀÇ Å¬·¡½º
+* ë©”ì‹œì§€ í•„í„°ë§ì˜ í´ë˜ìŠ¤
 */
 class CFilterManager
 {
@@ -221,28 +221,28 @@ public:
 	typedef CFilterWord<wchar_t> CWFILTERWORD;
 
 public:
-	// ÃÊ±âÈ­ & ÇØÁ¦
+	// ì´ˆê¸°í™” & í•´ì œ
 	void InitOnce();
 	void Destroy();
 
-	// Å×ÀÌºí ·Îµå
+	// í…Œì´ë¸” ë¡œë“œ
 	void Create( void );
 
-	void AddFilter( int nIndex, wchar_t* pText, int nLink );		///< ÇÊÅÍ¸µ ´Ü¾î¸¦ µî·Ï
+	void AddFilter( int nIndex, wchar_t* pText, int nLink );		///< í•„í„°ë§ ë‹¨ì–´ë¥¼ ë“±ë¡
 
-	std::wstring Filtering( std::wstring& pText );					///< ÇÊÅÍ¸µ (wstring)
-	std::string Filtering( std::string& pText );					///< ÇÊÅÍ¸µ (string)
-	std::wstring Filtering( const wchar_t* pText );						///< ÇÊÅÍ¸µ (wchar_t*)
+	std::wstring Filtering( std::wstring& pText );					///< í•„í„°ë§ (wstring)
+	std::string Filtering( std::string& pText );					///< í•„í„°ë§ (string)
+	std::wstring Filtering( const wchar_t* pText );						///< í•„í„°ë§ (wchar_t*)
 
 	/*std::wstring FilterName( */
 
 	RwBool IsAnyInvalidText( const WCHAR* pText );
 
-	RwBool IsSlang( std::wstring& pText );							///< ¿å¼³ÀÎÁö Ã¼Å©(wstring), ¿å¼³ÀÌ¶ó¸é TRUE ¸®ÅÏ
-	RwBool IsSlang( std::string& pText );							///< ¿å¼³ÀÎÁö Ã¼Å©(string)
+	RwBool IsSlang( std::wstring& pText );							///< ìš•ì„¤ì¸ì§€ ì²´í¬(wstring), ìš•ì„¤ì´ë¼ë©´ TRUE ë¦¬í„´
+	RwBool IsSlang( std::string& pText );							///< ìš•ì„¤ì¸ì§€ ì²´í¬(string)
 	RwBool IsSlang( const wchar_t* pText );
 
-	// ½Ì±ÛÅæÀÇ ÀÎ½ºÅÏ½º
+	// ì‹±ê¸€í†¤ì˜ ì¸ìŠ¤í„´ìŠ¤
 	static CFilterManager* GetInstance(void)
 	{
 		static CFilterManager instance;
@@ -255,7 +255,7 @@ protected:
 	std::wstring			m_defaultReplace;
 	RwBool					m_bIsEmpty;
 
-	// »ı¼ºÀÚ & ¼Ò¸êÀÚ
+	// ìƒì„±ì & ì†Œë©¸ì
 	CFilterManager();
 	~CFilterManager();
 };

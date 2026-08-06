@@ -1,4 +1,4 @@
-// Attr_COND_BudokaiState.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_COND_BudokaiState.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -7,7 +7,7 @@
 #include "NtlBudokai.h"
 
 
-// CAttr_COND_BudokaiState ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_COND_BudokaiState ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_COND_BudokaiState, CAttr_Page, 1)
 
@@ -77,25 +77,25 @@ BOOL CAttr_COND_BudokaiState::OnInitDialog()
 {
 	CAttr_Page::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	int nIdx;
 
-	m_ctrState.SetItemData( m_ctrState.AddString( _T("ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ´İÈû") ), eTS_BUDOKAI_STATE_CLOSE );
-	nIdx = m_ctrState.AddString( _T("ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ¿­¸²") );
+	m_ctrState.SetItemData( m_ctrState.AddString( _T("ì²œí•˜ì œì¼ ë¬´ë„íšŒ ë‹«í˜") ), eTS_BUDOKAI_STATE_CLOSE );
+	nIdx = m_ctrState.AddString( _T("ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì—´ë¦¼") );
 	m_ctrState.SetItemData( nIdx, eTS_BUDOKAI_STATE_OPEN );
 	m_ctrState.SetCurSel( nIdx );
 
-	m_ctrMode.SetItemData( m_ctrMode.AddString( _T("¼ºÀÎ") ), eTS_BUDOKAI_MODE_ADULT );
-	m_ctrMode.SetItemData( m_ctrMode.AddString( _T("Ã»¼Ò³â") ), eTS_BUDOKAI_MODE_CHILD );
-	nIdx = m_ctrMode.AddString( _T("¸ğµÎ") );
+	m_ctrMode.SetItemData( m_ctrMode.AddString( _T("ì„±ì¸") ), eTS_BUDOKAI_MODE_ADULT );
+	m_ctrMode.SetItemData( m_ctrMode.AddString( _T("ì²­ì†Œë…„") ), eTS_BUDOKAI_MODE_CHILD );
+	nIdx = m_ctrMode.AddString( _T("ëª¨ë‘") );
 	m_ctrMode.SetItemData( nIdx, eTS_BUDOKAI_MODE_ALL );
 	m_ctrMode.SetCurSel( nIdx );
 
 	if ( m_strData.GetLength() > 0 ) SetPageData( m_strData );
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 
@@ -103,4 +103,4 @@ BEGIN_MESSAGE_MAP(CAttr_COND_BudokaiState, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_COND_BudokaiState ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_COND_BudokaiState ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

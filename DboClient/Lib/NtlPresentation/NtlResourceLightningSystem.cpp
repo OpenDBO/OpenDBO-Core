@@ -2,7 +2,7 @@
 //	File		:	NtlResourceLightningSystem.cpp
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -17,7 +17,7 @@ CNtlResourceLightningSystem::CNtlResourceLightningSystem(const RwChar* strName) 
 
 	memset(&m_EmitterStandard, 0, sizeof(SNtlLightningEmitterStandard));       
 
-    // »ç¿ëÇÏÁö ¾Ê´Â Rotate°ªÀ» EndPoint °ªÀ¸·Î »ç¿ëÇÑ´Ù.
+    // ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” Rotateê°’ì„ EndPoint ê°’ìœ¼ë¡œ ì‚¬ìš©í•œë‹¤.
     m_vRotate.x = m_vRotate.y = 0.0f;
     m_vRotate.z = 5.0f;
 }

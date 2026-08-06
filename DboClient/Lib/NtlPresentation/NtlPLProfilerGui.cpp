@@ -42,15 +42,15 @@ CNtlPLProfilerItem::~CNtlPLProfilerItem()
 
 /**
 * \brief Create
-* \param pParentComp	(gui::CComponent*) ºÎ¸ğÀÇ Component
-* \param rect			(CRectangle&) ItemÀÌ »ı¼ºµÉ ¿µ¿ª
+* \param pParentComp	(gui::CComponent*) ë¶€ëª¨ì˜ Component
+* \param rect			(CRectangle&) Itemì´ ìƒì„±ë  ì˜ì—­
 */
 VOID CNtlPLProfilerItem::Create( gui::CComponent* pParentComp, CRectangle& rect )
 {
-	// Dialog »ı¼º
+	// Dialog ìƒì„±
 	m_pThis = NTL_NEW gui::CDialog( &rect, pParentComp, GetNtlGuiManager()->GetSurfaceManager() );
 
-	// DialogÀÇ ÀÚ½ÄÀ¸·Î µî·ÏµÉ Componentµé »ı¼º
+	// Dialogì˜ ìì‹ìœ¼ë¡œ ë“±ë¡ë  Componentë“¤ ìƒì„±
 	CRectangle rectChild;
 	rectChild.SetRectWH( 0, 0, 270, 20 );
 	m_pStbItemName = NTL_NEW gui::CStaticBox( &rectChild, m_pThis, GetNtlGuiManager()->GetSurfaceManager(),
@@ -77,7 +77,7 @@ VOID CNtlPLProfilerItem::Create( gui::CComponent* pParentComp, CRectangle& rect 
 		COMP_TEXT_VERTICAL_CENTER | COMP_TEXT_CENTER );
 	m_pStbCallPerFrame->CreateFontStd( DETAIL_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR );
 
-	// ÇöÀç Dialog´Â ÀÔ·ÂÀ» ¹ŞÁö ¾Ê´Â´Ù. ÀÔ·ÂÀº CNtlPLProfilerGui Å¬·¡½º¿¡¼­ Ã³¸®ÇÑ´Ù.
+	// í˜„ì¬ DialogëŠ” ì…ë ¥ì„ ë°›ì§€ ì•ŠëŠ”ë‹¤. ì…ë ¥ì€ CNtlPLProfilerGui í´ë˜ìŠ¤ì—ì„œ ì²˜ë¦¬í•œë‹¤.
 	m_pThis->Enable( false );
 }
 
@@ -95,7 +95,7 @@ VOID CNtlPLProfilerItem::Destroy()
 }
 
 /**
-* \brief ÇöÀç ¾ÆÀÌÅÛÀ» °­Á¶ÇÑ´Ù.
+* \brief í˜„ì¬ ì•„ì´í…œì„ ê°•ì¡°í•œë‹¤.
 */
 VOID CNtlPLProfilerItem::FocusItem( RwBool bFocus /*= TRUE */ )
 {
@@ -115,8 +115,8 @@ VOID CNtlPLProfilerItem::FocusItem( RwBool bFocus /*= TRUE */ )
 }
 
 /**
-* \brief Data¸¦ ±¸Á¶Ã¼·Î Ã¤¿ö³Ö´Â´Ù.
-* \param bLogged	(RwBool) ºÎ¸ğ¿¡°Ô¼­ % ¿Í Total¿¡¼­ % ÀÌ¿ÜÀÇ °ªµéÀÇ À¯È¿ ¿©ºÎ
+* \brief Dataë¥¼ êµ¬ì¡°ì²´ë¡œ ì±„ì›Œë„£ëŠ”ë‹¤.
+* \param bLogged	(RwBool) ë¶€ëª¨ì—ê²Œì„œ % ì™€ Totalì—ì„œ % ì´ì™¸ì˜ ê°’ë“¤ì˜ ìœ íš¨ ì—¬ë¶€
 */
 VOID CNtlPLProfilerItem::SetProfileData( SNtlProfileNode& sNode, RwBool bLogged /*= TRUE */ )
 {
@@ -225,7 +225,7 @@ RwBool CNtlPLProfilerGui::Create()
 	m_pThis->SetFrameSize( &rect );
 	m_pThis->SetMovable( TRUE );
 
-	// ÇöÀç Dialog¸¦ ¾î¶°ÇÑ »óÈ²¿¡¼­µµ ÀÔ·ÂÀ» ¹ŞÀ» ¼ö ÀÖ°Ô ¿ì¼±¼øÀ§¸¦ °¡Àå ³ô°Ô ¼³Á¤ÇÑ´Ù.
+	// í˜„ì¬ Dialogë¥¼ ì–´ë– í•œ ìƒí™©ì—ì„œë„ ì…ë ¥ì„ ë°›ì„ ìˆ˜ ìˆê²Œ ìš°ì„ ìˆœìœ„ë¥¼ ê°€ì¥ ë†’ê²Œ ì„¤ì •í•œë‹¤.
 	m_pThis->SetPriority( 65534 );
 
 	// Title
@@ -305,7 +305,7 @@ RwBool CNtlPLProfilerGui::Create()
 	m_pDlgDataField = NTL_NEW gui::CDialog( &rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager() );
 
 	// Create Scroll Bar
-	// Todo : ½ºÅ©·Ñ ¹Ù ÀÛ¾÷ÇØ¾ßÇÔ ( 2008. 6. 23 )
+	// Todo : ìŠ¤í¬ë¡¤ ë°” ì‘ì—…í•´ì•¼í•¨ ( 2008. 6. 23 )
 	rect.SetRectWH( m_pDlgDataField->GetWidth() - 5, 0, 5, m_pDlgDataField->GetHeight() );
 	m_pScrollBar = NTL_NEW gui::CScrollBar( rect, 0, 10, false, m_pDlgDataField, GetNtlGuiManager()->GetSurfaceManager() );
 	SetSurface( m_surBar, 5, 175, 0x66, 0x33, 0x00, 128);
@@ -355,8 +355,8 @@ RwBool CNtlPLProfilerGui::Create()
 }
 
 /**
-* \brief ¾÷µ¥ÀÌÆ®¸¦ ÇÑ´Ù. dPROFILER_GUI_UPDATE_TIME ¸¶´Ù Data¸¦ °¡Á®¿À°í GUI¸¦ ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
-* \param fElapsed		(RwReal) ÀÌÀü ÇÁ·¹ÀÓ¿¡¼­ÀÇ °æ°ú½Ã°£
+* \brief ì—…ë°ì´íŠ¸ë¥¼ í•œë‹¤. dPROFILER_GUI_UPDATE_TIME ë§ˆë‹¤ Dataë¥¼ ê°€ì ¸ì˜¤ê³  GUIë¥¼ ì—…ë°ì´íŠ¸í•œë‹¤.
+* \param fElapsed		(RwReal) ì´ì „ í”„ë ˆì„ì—ì„œì˜ ê²½ê³¼ì‹œê°„
 */
 VOID CNtlPLProfilerGui::Update( RwReal fElapsed )
 {
@@ -396,7 +396,7 @@ VOID CNtlPLProfilerGui::Destroy()
 
 /**
 * \brief HandleEvents
-* \param msg	(RWS::CMsg&) ÀÌº¥Æ® ¸Ş½ÃÁö ±¸Á¶Ã¼
+* \param msg	(RWS::CMsg&) ì´ë²¤íŠ¸ ë©”ì‹œì§€ êµ¬ì¡°ì²´
 */
 VOID CNtlPLProfilerGui::HandleEvents( RWS::CMsg& msg )
 {
@@ -409,7 +409,7 @@ VOID CNtlPLProfilerGui::HandleEvents( RWS::CMsg& msg )
 }
 
 /**
-* \brief Open/Close ÇÒ ¶§ ÇØÁà¾ß ÇÒ °ÍµéÀ» Ã³¸®ÇÑ´Ù.
+* \brief Open/Close í•  ë•Œ í•´ì¤˜ì•¼ í•  ê²ƒë“¤ì„ ì²˜ë¦¬í•œë‹¤.
 */
 VOID CNtlPLProfilerGui::ShowDialog( RwBool bShow /*= TRUE*/ )
 {
@@ -433,8 +433,8 @@ VOID CNtlPLProfilerGui::ShowDialog( RwBool bShow /*= TRUE*/ )
 }
 
 /**
-* \brief ÇöÀç ³ëµåÀÇ ¹İº¹ÀÚ¸¦ ÀÚ½Ä ³ëµå·Î ÀÌµ¿ÇÏ°í µ¥ÀÌÅ¸¸¦ ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
-* \param nIdx	(RwInt32) ÀÚ½Ä ³ëµåÀÇ Index
+* \brief í˜„ì¬ ë…¸ë“œì˜ ë°˜ë³µìë¥¼ ìì‹ ë…¸ë“œë¡œ ì´ë™í•˜ê³  ë°ì´íƒ€ë¥¼ ì—…ë°ì´íŠ¸í•œë‹¤.
+* \param nIdx	(RwInt32) ìì‹ ë…¸ë“œì˜ Index
 */
 RwBool CNtlPLProfilerGui::EnterChild( RwInt32 nIdx )
 {
@@ -446,7 +446,7 @@ RwBool CNtlPLProfilerGui::EnterChild( RwInt32 nIdx )
 }
 
 /**
-* \brief ÇöÀç ³ëµåÀÇ ¹İº¹ÀÚ¸¦ ºÎ¸ğ ³ëµå·Î ÀÌµ¿ÇÏ°í µ¥ÀÌÅ¸¸¦ ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
+* \brief í˜„ì¬ ë…¸ë“œì˜ ë°˜ë³µìë¥¼ ë¶€ëª¨ ë…¸ë“œë¡œ ì´ë™í•˜ê³  ë°ì´íƒ€ë¥¼ ì—…ë°ì´íŠ¸í•œë‹¤.
 */
 RwBool CNtlPLProfilerGui::EnterParent()
 {
@@ -458,8 +458,8 @@ RwBool CNtlPLProfilerGui::EnterParent()
 }
 
 /**
-* \brief ¸¶¿ì½ºÀÇ ÁÂÇ¥°ªÀ¸·Î ÇöÀç À§Ä¡ÇÑ ¾ÆÀÌÅÛÀ» °­Á¶ÇÑ´Ù.
-* \param nFlags		(RwInt32) ¸¶¿ì½ºÀÇ »óÅÂ
+* \brief ë§ˆìš°ìŠ¤ì˜ ì¢Œí‘œê°’ìœ¼ë¡œ í˜„ì¬ ìœ„ì¹˜í•œ ì•„ì´í…œì„ ê°•ì¡°í•œë‹¤.
+* \param nFlags		(RwInt32) ë§ˆìš°ìŠ¤ì˜ ìƒíƒœ
 * \param nX			(RwInt32) X Pos
 * \param nY			(RwInt32) Y Pos
 */
@@ -477,12 +477,12 @@ VOID CNtlPLProfilerGui::OnMouseMove( RwInt32 nFlags, RwInt32 nX, RwInt32 nY )
 
 /**
 * \brief OnMouseDown
-* \param key	(const CKey&) ¸¶¿ì½ºÀÇ Á¤º¸ ±¸Á¶Ã¼
+* \param key	(const CKey&) ë§ˆìš°ìŠ¤ì˜ ì •ë³´ êµ¬ì¡°ì²´
 */
 VOID CNtlPLProfilerGui::OnMouseDown( const CKey& key )
 {
-	// ¸¶¿ì½ºÀÇ ¿ŞÂÊ ¹öÆ°ÀÌ Down µÇ¾úÀ» ¶§ ÇöÀç DownµÈ °÷¿¡ À§Ä¡ÇÑ ItemÀÌ ÀÖ´Ù¸é ±× ¾ÆÀÌÅÛÀÇ
-	// Index¸¦ ±â¾ïÇÑ´Ù.
+	// ë§ˆìš°ìŠ¤ì˜ ì™¼ìª½ ë²„íŠ¼ì´ Down ë˜ì—ˆì„ ë•Œ í˜„ì¬ Downëœ ê³³ì— ìœ„ì¹˜í•œ Itemì´ ìˆë‹¤ë©´ ê·¸ ì•„ì´í…œì˜
+	// Indexë¥¼ ê¸°ì–µí•œë‹¤.
 	if( key.m_nID == UD_LEFT_BUTTON )
 	{
 		CRectangle rect = m_pDlgDataField->GetScreenRect();
@@ -502,12 +502,12 @@ VOID CNtlPLProfilerGui::OnMouseDown( const CKey& key )
 
 /**
 * \brief OnMouseUp
-* \param key	(const CKey&) ¸¶¿ì½ºÀÇ Á¤º¸ ±¸Á¶Ã¼
+* \param key	(const CKey&) ë§ˆìš°ìŠ¤ì˜ ì •ë³´ êµ¬ì¡°ì²´
 */
 VOID CNtlPLProfilerGui::OnMouseUp( const CKey& key )
 {
-	// ¸¶¿ì½º°¡ Up Ã³¸®µÇ¾úÀ» ¶§ ÇöÀç À§Ä¡ÇÑ °÷ÀÌ ¾ÆÀÌÅÛÀÌ ÀÖ´Â °÷ÀÌ°í Down µÇ¾úÀ» ¶§ÀÇ Index¿Í ÀÏÄ¡ÇÑ´Ù¸é
-	// ÇöÀç À§Ä¡ÇÑ ItemÀÇ ³ëµå·Î ¹İº¹ÀÚ¸¦ ÀÌµ¿ÇÏ°í µ¥ÀÌÅ¸¸¦ ¾÷µ¥ÀÌÆ® ½ÃÅ²´Ù.
+	// ë§ˆìš°ìŠ¤ê°€ Up ì²˜ë¦¬ë˜ì—ˆì„ ë•Œ í˜„ì¬ ìœ„ì¹˜í•œ ê³³ì´ ì•„ì´í…œì´ ìˆëŠ” ê³³ì´ê³  Down ë˜ì—ˆì„ ë•Œì˜ Indexì™€ ì¼ì¹˜í•œë‹¤ë©´
+	// í˜„ì¬ ìœ„ì¹˜í•œ Itemì˜ ë…¸ë“œë¡œ ë°˜ë³µìë¥¼ ì´ë™í•˜ê³  ë°ì´íƒ€ë¥¼ ì—…ë°ì´íŠ¸ ì‹œí‚¨ë‹¤.
 	if( key.m_nID == UD_LEFT_BUTTON )
 	{
 		for( RwUInt32 i = 0; i < m_uiSibblingCount - m_pScrollBar->GetValue() ; ++i )
@@ -529,7 +529,7 @@ VOID CNtlPLProfilerGui::OnMouseUp( const CKey& key )
 }
 
 /**
-* \brief m_pBtnUpperExplore¸¦ Å¬¸¯ÇßÀ» ¶§
+* \brief m_pBtnUpperExploreë¥¼ í´ë¦­í–ˆì„ ë•Œ
 */
 VOID CNtlPLProfilerGui::OnClickedBtnUpperExplore( gui::CComponent* pComponent )
 {
@@ -537,7 +537,7 @@ VOID CNtlPLProfilerGui::OnClickedBtnUpperExplore( gui::CComponent* pComponent )
 }
 
 /**
-* \brief m_pBtnResetÀ» Å¬¸¯ÇßÀ» ¶§
+* \brief m_pBtnResetì„ í´ë¦­í–ˆì„ ë•Œ
 */
 VOID CNtlPLProfilerGui::OnClickedBtnReset( gui::CComponent* pComponent )
 {
@@ -545,7 +545,7 @@ VOID CNtlPLProfilerGui::OnClickedBtnReset( gui::CComponent* pComponent )
 }
 
 /**
-* \brief m_pBtnClose¸¦ Å¬¸¯ÇßÀ» ¶§
+* \brief m_pBtnCloseë¥¼ í´ë¦­í–ˆì„ ë•Œ
 */
 VOID CNtlPLProfilerGui::OnClickedBtnClose( gui::CComponent* pComponent )
 {
@@ -553,7 +553,7 @@ VOID CNtlPLProfilerGui::OnClickedBtnClose( gui::CComponent* pComponent )
 }
 
 /**
-* \brief ÇöÀç ¹İº¹ÀÚ°¡ À§Ä¡ÇÑ °÷¿¡¼­ Á¤º¸¸¦ °¡Á®¿Â´Ù.
+* \brief í˜„ì¬ ë°˜ë³µìê°€ ìœ„ì¹˜í•œ ê³³ì—ì„œ ì •ë³´ë¥¼ ê°€ì ¸ì˜¨ë‹¤.
 */
 VOID CNtlPLProfilerGui::GetCurrentProfileData()
 {
@@ -565,7 +565,7 @@ VOID CNtlPLProfilerGui::GetCurrentProfileData()
 	m_pCurrentIter->First();
 	sprintf_s( m_acParentName, dPROFILER_GUI_PARENT_NAME_BUFFER, "%s", m_pCurrentIter->Get_Current_Parent_Name() );
 	
-	// ÇöÀç ¹İº¹ÀÚÀÇ Sibbling ³ëµåÀÇ °¹¼ö¸¦ ¼¾´Ù.
+	// í˜„ì¬ ë°˜ë³µìì˜ Sibbling ë…¸ë“œì˜ ê°¯ìˆ˜ë¥¼ ì„¼ë‹¤.
 	m_uiSibblingCount = 0;
 	while( !m_pCurrentIter->Is_Done() )
 	{
@@ -573,22 +573,22 @@ VOID CNtlPLProfilerGui::GetCurrentProfileData()
 		m_pCurrentIter->Next();
 	}
 
-	// Count¿¡ ¸ÂÃç¼­ GUI Ç×¸ñ°ú ±¸Á¶Ã¼¸¦ »ı¼º
+	// Countì— ë§ì¶°ì„œ GUI í•­ëª©ê³¼ êµ¬ì¡°ì²´ë¥¼ ìƒì„±
 	CreateProfilerItems( m_uiSibblingCount );
 
-	// UIÀÇ Scroll Bar ¼Ó¼ºÀ» Á¶Á¤ÇÑ´Ù.
+	// UIì˜ Scroll Bar ì†ì„±ì„ ì¡°ì •í•œë‹¤.
 	AdjustPanelToItems();
 
-	// NtlProfiler¿¡°Ô Data¸¦ °¡Á®¿Â´Ù.
+	// NtlProfilerì—ê²Œ Dataë¥¼ ê°€ì ¸ì˜¨ë‹¤.
 	UpdateData();
 
-	// GUI ¿¡ DataµéÀ» ¾÷µ¥ÀÌÆ® ÇÑ´Ù.
+	// GUI ì— Dataë“¤ì„ ì—…ë°ì´íŠ¸ í•œë‹¤.
 	UpdatePanel();
 }
 
 /**
-* \brief ³ëµåÀÇ Á¤º¸¸¦ ÀúÀåÇÒ ±¸Á¶Ã¼¿Í GUI ItemÀ» »ı¼ºÇÑ´Ù.
-* \param uiItemsCount	(RwUInt32) ¾ÆÀÌÅÛÀÇ °¹¼ö(ÇöÀç ¹İº¹ÀÚÀÇ ÀÚ½Ä ³ëµåµéÀÇ °¹¼ö)
+* \brief ë…¸ë“œì˜ ì •ë³´ë¥¼ ì €ì¥í•  êµ¬ì¡°ì²´ì™€ GUI Itemì„ ìƒì„±í•œë‹¤.
+* \param uiItemsCount	(RwUInt32) ì•„ì´í…œì˜ ê°¯ìˆ˜(í˜„ì¬ ë°˜ë³µìì˜ ìì‹ ë…¸ë“œë“¤ì˜ ê°¯ìˆ˜)
 */
 VOID CNtlPLProfilerGui::CreateProfilerItems(RwUInt32 uiItemsCount)
 {
@@ -603,7 +603,7 @@ VOID CNtlPLProfilerGui::CreateProfilerItems(RwUInt32 uiItemsCount)
 }
 
 /**
-* \brief µ¿ÀûÀ¸·Î »ı¼ºµÈ Á¤º¸ ±¸Á¶Ã¼¿Í GUi ItemµéÀ» ÇØÁ¦ÇÑ´Ù.
+* \brief ë™ì ìœ¼ë¡œ ìƒì„±ëœ ì •ë³´ êµ¬ì¡°ì²´ì™€ GUi Itemë“¤ì„ í•´ì œí•œë‹¤.
 */
 VOID CNtlPLProfilerGui::DestroyProfilerItems()
 {
@@ -621,7 +621,7 @@ VOID CNtlPLProfilerGui::DestroyProfilerItems()
 }
 
 /**
-* \brief ÇöÀç ¹İº¹ÀÚ°¡ À§Ä¡ÇÑ NodeµéÀÇ Á¤º¸¸¦ °¡Á®¿Â´Ù.
+* \brief í˜„ì¬ ë°˜ë³µìê°€ ìœ„ì¹˜í•œ Nodeë“¤ì˜ ì •ë³´ë¥¼ ê°€ì ¸ì˜¨ë‹¤.
 */
 VOID CNtlPLProfilerGui::UpdateData()
 {
@@ -681,7 +681,7 @@ VOID CNtlPLProfilerGui::UpdateData()
 	sprintf_s( m_pProfileNode[uiIndex].acNodeName, dPROFILER_GUI_NAME_BUFFER, "%s", "UnLogged" );
 	m_pProfileNode[uiIndex].uiIndex = uiIndex;
 
-	// Todo : Unlogged µÈ °ÍµéÀÇ ¼öÇà½Ã°£À» ³Ö¾î¾ß ÇÑ´Ù.
+	// Todo : Unlogged ëœ ê²ƒë“¤ì˜ ìˆ˜í–‰ì‹œê°„ì„ ë„£ì–´ì•¼ í•œë‹¤.
 	if( MSecPerCall4Parent )
 		m_pProfileNode[uiIndex].fPercentByParent = 100.0f - fPerFromParent;
 	else
@@ -689,7 +689,7 @@ VOID CNtlPLProfilerGui::UpdateData()
 }
 
 /**
-* \brief GUI ¸¦ °»½Å
+* \brief GUI ë¥¼ ê°±ì‹ 
 */
 VOID CNtlPLProfilerGui::UpdatePanel()
 {

@@ -1,4 +1,4 @@
-// PropertyPane.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PropertyPane.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -137,7 +137,7 @@ BEGIN_MESSAGE_MAP(CPropertyPane, CWnd)
 END_MESSAGE_MAP()
 
 
-// CPropertyPane ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPropertyPane ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 #define IDC_PROPERTY_GRID				101
 
@@ -146,7 +146,7 @@ int CPropertyPane::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// TODO:  ¿©±â¿¡ Æ¯¼öÈ­µÈ ÀÛ¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì‘ì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	if(m_PropGrid.Create(CRect(0, 0, 0, 0), this, IDC_PROPERTY_GRID))
 	{
@@ -199,7 +199,7 @@ void CPropertyPane::OnSize(UINT nType, int cx, int cy)
 {
 	CWnd::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CSize sz(0);
 
 	if (m_PropGrid.GetSafeHwnd())

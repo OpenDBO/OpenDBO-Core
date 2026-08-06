@@ -94,7 +94,7 @@ void CNtlBehaviorCharGroundMove::Enter(void)
     //{
         SetAnim(m_MoveStuff.byMoveFlags);
 
-        // Idle -> Run ���� �ִϸ��̼�
+        // Idle -> Run 占쏙옙占쏙옙 占쌍니몌옙占싱쇽옙
         SetIdle2RunAnim();
 
         //m_fSyncSendTime = MOVE_SYNC_SEND_TIME;
@@ -114,11 +114,11 @@ void CNtlBehaviorCharGroundMove::SetIdle2RunAnim( void )
     if(m_pActor->GetSobProxy()->GetDisableAniChange() || Logic_IsTransformSpinAttack(m_pActor) || Logic_IsTransformRollingAttack(m_pActor))
         return;
 
-    // ���Žÿ��� ���� �ִϸ��̼��� ���Ѵ�.
+    // 占쏙옙占신시울옙占쏙옙 占쏙옙占쏙옙 占쌍니몌옙占싱쇽옙占쏙옙 占쏙옙占싼댐옙.
     if(Logic_GetPlayerRace(m_pActor) == RACE_NAMEK && Logic_IsTransform(m_pActor))
         return;
 
-    // Idle �ִϸ��̼� ���϶��� ��ȯ�Ѵ�.
+    // Idle 占쌍니몌옙占싱쇽옙 占쏙옙占싹띰옙占쏙옙 占쏙옙환占싼댐옙.
     if(!IsIdleAnimationPlaying())
         return;
 
@@ -129,7 +129,7 @@ void CNtlBehaviorCharGroundMove::SetIdle2RunAnim( void )
         {
             CNtlSobCharProxy *pSobProxy = reinterpret_cast<CNtlSobCharProxy*>(m_pActor->GetSobProxy());            
             sITEM_TBLDAT *pItemTblData = Logic_GetEquipedWeaponItemTableData(m_pActor);
-            if(pItemTblData && Logic_IsEquipedStaffWeapon(pItemTblData))    // �������� ��� ������
+            if(pItemTblData && Logic_IsEquipedStaffWeapon(pItemTblData))    // 스태프를 들고 있을때
             {
                 pSobProxy->SetBaseAnimation(NML_STAFF_IDLE_RUN_FRONT, FALSE);
             }
@@ -159,7 +159,7 @@ void CNtlBehaviorCharGroundMove::Exit(void)
     }
     
 
-    // ���߿� base class enter�� ȣ���Ѵ�.
+    // 占쏙옙占쌩울옙 base class enter占쏙옙 호占쏙옙占싼댐옙.
     CNtlBehaviorBase::Exit(); 
 }
 
@@ -167,10 +167,10 @@ void CNtlBehaviorCharGroundMove::Update(RwReal fElapsed)
 {
     fElapsed = min(fElapsed, 0.2f);
 
-    if(IsFinish() && !m_pActor->GetSobProxy()->GetDisableAniChange()) // �ִϸ��̼� ����ȵǴ� ���¿����� ������ �ʴ´�. (ȸ�������� ����)
+    if(IsFinish() && !m_pActor->GetSobProxy()->GetDisableAniChange()) // 애니메이션 변경안되는 상태에서는 끝내지 않는다. (회전공격을 위해)
         return;
 
-    // ���� �ִϸ��̼� ó�� (2Frame �ĺ��� �̵��Ѵ�)
+    // 占쏙옙占쏙옙 占쌍니몌옙占싱쇽옙 처占쏙옙 (2Frame 占식븝옙占쏙옙 占싱듸옙占싼댐옙)
     if(!m_bInterAnimEnd)
     {
         if(m_fInterAnimTime < FRAME_2)
@@ -279,7 +279,7 @@ RwUInt32 CNtlBehaviorCharGroundMove::HandleEvents(RWS::CMsg &pMsg)
     else if(pMsg.Id == g_EventTransform)
     {
         SNtlEventTransform* pEvent = (SNtlEventTransform*)pMsg.pData;
-        if(pEvent->sApsectState.sAspectStateBase.byAspectStateId == ASPECTSTATE_INVALID)     // ���� ����
+        if(pEvent->sApsectState.sAspectStateBase.byAspectStateId == ASPECTSTATE_INVALID)     // 占쏙옙占쏙옙 占쏙옙占쏙옙
         {
             SetAnim(m_MoveStuff.byMoveFlags);
         }
@@ -317,8 +317,8 @@ void CNtlBehaviorCharGroundMove::FootStepMaterialProc(RWS::CMsg &pMsg)
         RwReal						fHeight		= 0.0f;
 
         // Cz : CNtlPLGlobal::m_pWHEntity ���强�� ������ GetWorldHeight�� ȣ���մϴ�.
-        //		Performance�� ������ �� ������ ������ �����Ƿ� ����ϱ�� �Ͽ����ϴ�.
-        //		������ ������ ���� ��� �����̸� ȣ���� �ּ���.
+        //		Performance占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占실뤄옙 占쏙옙占쏙옙歐占쏙옙 占싹울옙占쏙옙占싹댐옙.
+        //		문제의 요지가 있을 경우 진성이를 호출해 주세요.
         if (!(GetSceneManager()->GetWorldHeight(&vPos, fHeight, NULL) && CNtlPLGlobal::m_pWHEntity))
         {
             byMaterial = GetSceneManager()->GetWorldMaterialAttribute(vPos);
@@ -328,7 +328,7 @@ void CNtlBehaviorCharGroundMove::FootStepMaterialProc(RWS::CMsg &pMsg)
             ? CHANNEL_GROUP_AVATAR_EFFECT_SOUND
             : CHANNEL_GROUP_EFFECT_SOUND;
 
-        if(pEvent->eFootStepMobType == FOOT_TYPE_LARGE || (m_pActor->GetFlags() & SLFLAG_LARGE_FOOT_SOUND)) // ���� �� ���ڱ� �Ҹ�
+        if(pEvent->eFootStepMobType == FOOT_TYPE_LARGE || (m_pActor->GetFlags() & SLFLAG_LARGE_FOOT_SOUND)) // 占쏙옙占쏙옙 占쏙옙 占쏙옙占쌘깍옙 占쌀몌옙
         {
             sprintf_s(cSoundResoureName, 64, "%s_L_%u.wav", NAMING_SOUND_FOOTSTEP, NtlRandomNumber(0, 3));
 
@@ -346,7 +346,7 @@ void CNtlBehaviorCharGroundMove::FootStepMaterialProc(RWS::CMsg &pMsg)
 
 			GetSoundManager()->Play(&tSoundParam);
         }
-        else    // �Ϲ� �� ���ڱ� �Ҹ�
+        else    // 占싹뱄옙 占쏙옙 占쏙옙占쌘깍옙 占쌀몌옙
         {
             sprintf_s(cSoundResoureName, 64, "%s_%u_%u.wav", NAMING_SOUND_FOOTSTEP, byMaterial, NtlRandomNumber(0, 3));
 
@@ -648,7 +648,7 @@ void CNtlBehaviorCharGroundMove::SetAnim(RwUInt8 byMoveFlags)
         }
         else
         {
-            if(Logic_IsTransformGreatNamek(m_pActor))  // ���Ž�
+            if(Logic_IsTransformGreatNamek(m_pActor))  // 占쏙옙占신쏙옙
             {
                 uiNextAnimKey = TRANS_RUN_FRONT;
             }
@@ -1104,7 +1104,7 @@ RwBool CNtlBehaviorCharGroundMove::UpdateDirectionMove(RwReal fElapsed)
 RwBool CNtlBehaviorCharGroundMove::UpdateLocationMove(RwReal fElapsed)
 {
     //-------------------------------------
-    // speed �� anim speed ����.
+    // speed 占쏙옙 anim speed 占쏙옙占쏙옙.
     RwBool bWalkMove = Logic_IsActorWalkMove(m_pActor, m_MoveStuff.byFormFlag);
     RwReal fSpeed; 
     if(bWalkMove)
@@ -1321,13 +1321,13 @@ RwBool CNtlBehaviorCharGroundMove::UpdateTargetMove(RwReal fElapsed)
         return TRUE;
     }
 
-    // ��ǥ update
+    // 占쏙옙표 update
     vPos += vDelta;    
 
     Logic_GetWorldHeight(m_pActor, &vPos, m_sHStuff);
     vPos.y = m_sHStuff.fFinialHeight;
 
-    // slow move�� ���.
+    // slow move일 경우.
     if(m_bSlowMove)
     {
         m_fSlowMoveTime += fElapsed;
@@ -1379,7 +1379,7 @@ RwBool CNtlBehaviorCharGroundMove::UpdateTargetMove(RwReal fElapsed)
         }
     }
 
-    // ���� üũ
+    // 占쏙옙占쏙옙 체크
     if(CheckFalling(fOldActorHeight, m_sHStuff.fFinialHeight, fSpeed, NTL_MOVE_F))
         return TRUE;
 
@@ -1643,7 +1643,7 @@ RwBool CNtlBehaviorCharGroundMove::UpdateDashTargetMove(RwReal fElapsed)
     RwV3d vDir;
     RwV3dSubMacro(&vDir, &vDestPos, &vPos); 
 
-    // ���� ���� �Ÿ��� ���Ѵ�.
+    // 占쏙옙占쏙옙 占쏙옙占쏙옙 占신몌옙占쏙옙 占쏙옙占싼댐옙.
     RwReal fCurrLen = RwV3dLength(&vDir);
     vDir.y = 0.0f;
     RwV3dNormalize(&vDir, &vDir);
@@ -1733,7 +1733,7 @@ RwBool CNtlBehaviorCharGroundMove::UpdateDashTargetMove(RwReal fElapsed)
         }
     }
 
-    // ���ο� ��ǥ setting
+    // 占쏙옙占싸울옙 占쏙옙표 setting
     m_pActor->SetPosition(&vPos);
 
     // ���� �ð� ���� �̵��� �Ÿ��� limit �Ÿ� �ȿ� ������? �����.
@@ -1799,7 +1799,7 @@ void CNtlBehaviorCharGroundMove::UpdateDashEffect(RwUInt32 uiMoveDirFlags, RwV3d
 {
     RwV3d vPos = m_pActor->GetPosition();
 
-    // �ڿ� ���� �ٴ� effect
+    // 占쌘울옙 占쏙옙占쏙옙 占쌕댐옙 effect
     RwMatrix mat;
     RwMatrixSetIdentity(&mat);
 
@@ -1811,7 +1811,7 @@ void CNtlBehaviorCharGroundMove::UpdateDashEffect(RwUInt32 uiMoveDirFlags, RwV3d
     RwV3dAssignMacro(&mat.up, &CNtlPLGlobal::m_vYAxisV3);
     RwMatrixUpdate(&mat);
 
-    // effect ���� setting.
+    // effect 占쏙옙占쏙옙 setting.
     if(uiMoveDirFlags == NTL_MOVE_F)
         CNtlMath::MathRwV3dAssign(&m_vDashEffOffset, vDir.x*0.6f, 0.86f, vDir.z*0.6f);
     else if(uiMoveDirFlags == NTL_MOVE_B)
@@ -1840,7 +1840,7 @@ void CNtlBehaviorCharGroundMove::UpdateDashLineEffect(RwV3d& vPos, RwV3d& vDir)
     {
         m_pDashLine->SetPosition(&vPos);
 
-        // ī�޶� ���� ������
+        // 카占쌨띰옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
         RwMatrix *pMatrix = RwFrameGetMatrix( RwCameraGetFrame( CNtlPLGlobal::m_RwCamera ) );
         RwV3d *pCamDir = RwMatrixGetAt( pMatrix );
 
@@ -1878,13 +1878,13 @@ RwBool CNtlBehaviorCharGroundMove::UpdateMoveSync(RwReal fElapsedTime, OUT RwV3d
 
     RwReal fSpeed = GetMoveSpeed(pMoveSyncStuff->m_pMoveSyncCurr->byMoveFlag);                
 
-    //keyboard �̵��� ó���Ѵ�	
+    //keyboard 占싱듸옙占쏙옙 처占쏙옙占싼댐옙	
     CNtlVector vHeading, vDest;
     NtlGetDestination_Keyboard(vMoveDir.x, vMoveDir.y, vMoveDir.z, fSpeed, vPos.x, vPos.y, vPos.z, byMoveFlags, fElapsedTime * 1000.f, 1.0f, &vHeading, &vDest);
     CNtlMath::MathRwV3dAssign(&vDestPos, vDest.x, vDest.y, vDest.z);      
     CNtlMath::MathRwV3dAssign(&vDestDir, vHeading.x, 0.0f, vHeading.z);
 
-    // ���� MoveSync�� ���� �־���� ��ġ�� ����� ��, �� ��ġ�� �������� ������ �����Ѵ�.    
+    // 원래 MoveSync에 맞춰 있어야할 위치를 계산한 후, 그 위치로 가기위한 포스를 결정한다.    
     RwV3d vSyncDir = pMoveSyncStuff->m_pMoveSyncCurr->vLoc - vDestPos;
     vSyncDir.y = 0.0f;
     RwV3dNormalize(&vSyncDir, &vSyncDir);
@@ -1892,12 +1892,12 @@ RwBool CNtlBehaviorCharGroundMove::UpdateMoveSync(RwReal fElapsedTime, OUT RwV3d
     RwV3d vMoveDest = vSyncDir * (fSyncDistance / MOVE_SYNC_SPEED) * fElapsedTime;    
     vDestPos += vMoveDest;
 
-    // ���� ����
+    // 占쏙옙占쏙옙 占쏙옙占쏙옙
     *pNewDir = pMoveSyncStuff->m_pMoveSyncCurr->vDir;
     //*pNewDir = vSyncDir;  // If you set the direction to go, you will have problems when you go back, and there will be collisions in other parts.
     
     
-    // ���� ��ġ    
+    // 占쏙옙占쏙옙 占쏙옙치    
     Logic_GetWorldHeight(m_pActor, &vDestPos, m_sHStuff);
     vDestPos.y = m_sHStuff.fFinialHeight;
     *pDestPos = vDestPos;    

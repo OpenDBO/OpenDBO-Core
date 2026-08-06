@@ -1237,7 +1237,7 @@ RwBool CNtlSobCharDecorationProxy::AttachRPBonusEffect()
         }        
     }
 
-    if(m_pPLCharacter->GetBoneByName(strBoneList2.c_str())) // ū ����Ʈ
+    if(m_pPLCharacter->GetBoneByName(strBoneList2.c_str())) // 큰 占쏙옙占쏙옙트
     {
         pEffect = (CNtlInstanceEffect*)GetSceneManager()->CreateEntity(PLENTITY_EFFECT, NTL_VID_RPBONUS_BIG);
         if(pEffect)

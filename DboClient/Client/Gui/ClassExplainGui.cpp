@@ -38,14 +38,14 @@ RwBool CClassExplainGui::Create()
 
 	CRectangle rect;
 
-	// ¹è°æ
+	// ë°°ê²½
 	m_Background.SetType(CWindowby3::WT_HORIZONTAL);
 	m_Background.SetSurface(0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharCreate_Explain.srf", "srfBackgroundUp" ));
 	m_Background.SetSurface(1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharCreate_Explain.srf", "srfBackgroundCenter" ));
 	m_Background.SetSurface(2, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharCreate_Explain.srf", "srfBackgroundBottom" ));	
 	m_Background.SetSize(225, 298);
 
-	// Å¬·¡½º ÀÌ¸§ ¹è°æ
+	// í´ëž˜ìŠ¤ ì´ë¦„ ë°°ê²½
 	m_srtClassNameBack.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharCreate_Explain.srf", "srfNameBar" ));
 
 
@@ -55,14 +55,14 @@ RwBool CClassExplainGui::Create()
 	m_pTitleStatic->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_CHAR_CLASS"));
 
 
-	// Á¾Á· ÀÌ¸§
+	// ì¢…ì¡± ì´ë¦„
 	rect.SetRect(28, 37, 197, 62);
 	m_pClassName = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER );
 	m_pClassName->CreateFontStd( DEFAULT_FONT, 110, DEFAULT_FONT_ATTR);
 	m_pClassName->SetTextColor( RGB(255, 192, 0) );
 	m_pClassName->Enable(false);
 
-	// Å¬·¡½º ¼³¸í
+	// í´ëž˜ìŠ¤ ì„¤ëª…
 	m_pExplainHtml = (gui::CHtmlBox*)GetComponent("hbxConv");
 	m_pExplainHtml->SetLineSpace(8);
 

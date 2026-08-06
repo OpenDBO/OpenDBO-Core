@@ -8,12 +8,12 @@
 #include "NtlSobItem.h"
 /**
 * \ingroup Client
-* \brief »ó¿ëÈ­°ü·Ã ±â°£ ¿¬Àå Ã³¸®,  ±â°£¿¬ÀåÈ®ÀÎ3(Á¦´Ï, ³İÇÇ, Ä³½¬) + ±¸¸ÅÈ®ÀÎ(Ä³½¬)
-*  Å©±â º¯µ¿ dialog Ä³½¬ÀÏ¶§ size°¡ default, Á¦´Ï, ³İÇÇ¼­ size°¡ ÁÙ¾îµë
+* \brief ìƒìš©í™”ê´€ë ¨ ê¸°ê°„ ì—°ì¥ ì²˜ë¦¬,  ê¸°ê°„ì—°ì¥í™•ì¸3(ì œë‹ˆ, ë„·í”¼, ìºì‰¬) + êµ¬ë§¤í™•ì¸(ìºì‰¬)
+*  í¬ê¸° ë³€ë™ dialog ìºì‰¬ì¼ë•Œ sizeê°€ default, ì œë‹ˆ, ë„·í”¼ì„œ sizeê°€ ì¤„ì–´ë“¬
 *
-*	CCommercialExtendGui´Â ±âº»ÀûÀ¸·Î ±â°£ ¿¬Àå Ã³¸®¿ë GuiÁö¸¸
+*	CCommercialExtendGuiëŠ” ê¸°ë³¸ì ìœ¼ë¡œ ê¸°ê°„ ì—°ì¥ ì²˜ë¦¬ìš© Guiì§€ë§Œ
 *	
-*	Á¦ÀÏ ¸ÕÀú ±â°£Á¦ ¾ÆÀÌÅÛÀÇ ÃÖÃÊ ±¸¸Å ÀÌº¥Æ®¸¦ Ã³¸®ÇÏ´Â °¡Àå Áß¿äÇÑ  entry point
+*	ì œì¼ ë¨¼ì € ê¸°ê°„ì œ ì•„ì´í…œì˜ ìµœì´ˆ êµ¬ë§¤ ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•˜ëŠ” ê°€ì¥ ì¤‘ìš”í•œ  entry point
 *
 * 
 * \date 2009-08-14
@@ -36,29 +36,29 @@ public:
 		int					iDefaultWndHeight;
 		int					iDefaultDescript1Top;
 		int					iDefaultCancelButtLeft;
-		/// ¿ÜºÎ link
-		gui::CDialog*		pDialog;						// dialog Å©±â º¯°æ
-		gui::CStaticBox*	pStatic_stbTitle;				// titleº¯°æ °¡´É
+		/// ì™¸ë¶€ link
+		gui::CDialog*		pDialog;						// dialog í¬ê¸° ë³€ê²½
+		gui::CStaticBox*	pStatic_stbTitle;				// titleë³€ê²½ ê°€ëŠ¥
 		gui::CStaticBox*	pStatic_stbConsumeGoldTitle;
 		gui::CStaticBox*	pStatic_stbMyGoldTitle;
 		gui::CStaticBox*	pStatic_stbRemainTime;
 		gui::CStaticBox*	pStatic_stbAddableTime;
 		gui::CStaticBox*	pStatic_stbConsumeGold;
-		CSurfaceGui*		pSurConsumeGoldIcon;			// ÅØ½ºÃ³ ¹Ù²ğ ¼ö ÀÖÀ½
+		CSurfaceGui*		pSurConsumeGoldIcon;			// í…ìŠ¤ì²˜ ë°”ë€” ìˆ˜ ìˆìŒ
 		gui::CStaticBox*	pStatic_stbMyGold;
-		CSurfaceGui*		pSurMyGoldIcon;					// ÅØ½ºÃ³ ¹Ù²ğ ¼ö ÀÖÀ½
+		CSurfaceGui*		pSurMyGoldIcon;					// í…ìŠ¤ì²˜ ë°”ë€” ìˆ˜ ìˆìŒ
 		gui::CPanel*		pPanel_pnlPanel2;
 		gui::COutputBox*		pInput_opbDescriptDetail;
-		gui::CStaticBox*	pStatic_stbDescript1;			// º¯È­ °¡
-		gui::CStaticBox*	pStatic_stbDescript2;			// º¯È­ °¡
-		gui::CButton*		pButt_btnConfirm;				// ¼û°ÜÁú¼ö ÀÖÀ½
-		gui::CButton*		pButt_btnBuyDuration;			// ¼û°ÜÁü
-		gui::CButton*		pButt_btnRefillCash;			// ¼û°ÜÁü
-		gui::CButton*		pButt_btnCancel;				// À§Ä¡ º¯°æ
+		gui::CStaticBox*	pStatic_stbDescript1;			// ë³€í™” ê°€
+		gui::CStaticBox*	pStatic_stbDescript2;			// ë³€í™” ê°€
+		gui::CButton*		pButt_btnConfirm;				// ìˆ¨ê²¨ì§ˆìˆ˜ ìˆìŒ
+		gui::CButton*		pButt_btnBuyDuration;			// ìˆ¨ê²¨ì§
+		gui::CButton*		pButt_btnRefillCash;			// ìˆ¨ê²¨ì§
+		gui::CButton*		pButt_btnCancel;				// ìœ„ì¹˜ ë³€ê²½
 	};
 protected:
 	CAttributeControlSet	m_AttributeControlSet;
-	CNtlSobItem*			m_pTargetNtlSobItem;			// ¿¬ÀåÀ§ÇÑ Target item
+	CNtlSobItem*			m_pTargetNtlSobItem;			// ì—°ì¥ìœ„í•œ Target item
 
 	RwUInt32				m_uiConsumeGold;
 	RwUInt32				m_uiMyGold;
@@ -129,13 +129,13 @@ public:
 
 protected:
 
-	GUI_EXTEND_MODE				m_eCurrExtendGuiMode;	/// ÀÌ gui´Â 4°³ÀÇ mode·Î µ¿ÀÛÇÏ°Ô µÇ¾îÀÖ´Ù
+	GUI_EXTEND_MODE				m_eCurrExtendGuiMode;	/// ì´ guiëŠ” 4ê°œì˜ modeë¡œ ë™ì‘í•˜ê²Œ ë˜ì–´ìˆë‹¤
 	CCommercialExtendMode*		m_pArrayCommercialExtendMode[NUM_EXTEND_MODE];
 
-	RwUInt32					m_uiDurItemIdx;				/// °Å·¡ÇÒ ±â°£Á¦ ¾ÆÀÌÅÛ
+	RwUInt32					m_uiDurItemIdx;				/// ê±°ë˜í•  ê¸°ê°„ì œ ì•„ì´í…œ
 		
-	CNtlSobItem*				m_pTargetNtlSobItem;		/// ±â°£¿¬ÀåÇÒ ¾ÆÀÌÅÛ
-	sITEM_TBLDAT*				m_pCurrITEM_TBLDA;			/// ±â°£¿¬ÀåÀ» À§ÇÑ itemÀÇ Á¤º¸ ref
+	CNtlSobItem*				m_pTargetNtlSobItem;		/// ê¸°ê°„ì—°ì¥í•  ì•„ì´í…œ
+	sITEM_TBLDAT*				m_pCurrITEM_TBLDA;			/// ê¸°ê°„ì—°ì¥ì„ ìœ„í•œ itemì˜ ì •ë³´ ref
 
 
 	class CDataSendBuyDurItemNPC
@@ -153,7 +153,7 @@ protected:
 	class CDataSendMoveDurItemFromYardrat
 	{
 	public:
-		RwUInt64				m_uiProductId;					/// Yardrat Ã¢°í¿ë		/// CASH_EXTEND, CASH_BUY
+		RwUInt64				m_uiProductId;					/// Yardrat ì°½ê³ ìš©		/// CASH_EXTEND, CASH_BUY
 	};
 
 	class CDataSendMascot
@@ -216,8 +216,8 @@ public:
 	VOID						SetDurationItem(RwUInt32 uiItemIdx);
 	VOID						SetExtendTargetItem(CNtlSobItem* pNtlSobItem);
 	VOID						SetCurrItemTbl(RwUInt32 uiItemIdx);
-	VOID						SetCurrItemTbl(sITEM_TBLDAT* pITEM_TBLDAT);	/// ¸ğµç item °ü·Ã Á¤º¸ setting
-																			/// settingÀü¿¡ GUI_EXTEND_MODE°¡ °áÁ¤µÇ¾î ÀÖ¾î¾ß ÇÔ
+	VOID						SetCurrItemTbl(sITEM_TBLDAT* pITEM_TBLDAT);	/// ëª¨ë“  item ê´€ë ¨ ì •ë³´ setting
+																			/// settingì „ì— GUI_EXTEND_MODEê°€ ê²°ì •ë˜ì–´ ìˆì–´ì•¼ í•¨
 protected:
 	//! Implementation
 	VOID						ChangeExtendMode(GUI_EXTEND_MODE eMode);
@@ -234,7 +234,7 @@ protected:
 	VOID						OnMove(int nX,int nY);
 
 	// Gui Components
-	gui::CStaticBox*			m_pStatic_stbTitle;					// titleº¯°æ °¡´É
+	gui::CStaticBox*			m_pStatic_stbTitle;					// titleë³€ê²½ ê°€ëŠ¥
 	gui::CPanel*				m_pPanel_pnlItemButt;
 	//gui::CPanel*				m_pPanel_pnlPanel1;
 	gui::CStaticBox*			m_pStatic_stbRemainTimeTitle;
@@ -248,26 +248,26 @@ protected:
 	gui::CStaticBox*			m_pStatic_stbMyGold;
 	gui::CPanel*				m_pPanel_pnlPanelMyGoldIcon;		
 
-	gui::CPanel*				m_pPanel_pnlPanel2;					// ¼û°ÜÁú¼ö ÀÖÀ½
+	gui::CPanel*				m_pPanel_pnlPanel2;					// ìˆ¨ê²¨ì§ˆìˆ˜ ìˆìŒ
 	gui::COutputBox*			m_pInput_opbDescriptDetail;
 
 	gui::CPanel*				m_pPanel_pnlPanelName;
 	gui::CStaticBox*			m_pStatic_stbItemName;
-	gui::CStaticBox*			m_pStatic_stbDescript1;				// º¯È­ °¡
-	gui::CStaticBox*			m_pStatic_stbDescript2;				// º¯È­ °¡
-	gui::CButton*				m_pButt_btnConfirm;					// ¼û°ÜÁú¼ö ÀÖÀ½
-	gui::CButton*				m_pButt_btnCancel;					// À§Ä¡º¯°æ
-	gui::CButton*				m_pButt_btnBuyDuration;				// ¼û°ÜÁü
-	gui::CButton*				m_pButt_btnRefillCash;				// ¼û°ÜÁü
+	gui::CStaticBox*			m_pStatic_stbDescript1;				// ë³€í™” ê°€
+	gui::CStaticBox*			m_pStatic_stbDescript2;				// ë³€í™” ê°€
+	gui::CButton*				m_pButt_btnConfirm;					// ìˆ¨ê²¨ì§ˆìˆ˜ ìˆìŒ
+	gui::CButton*				m_pButt_btnCancel;					// ìœ„ì¹˜ë³€ê²½
+	gui::CButton*				m_pButt_btnBuyDuration;				// ìˆ¨ê²¨ì§
+	gui::CButton*				m_pButt_btnRefillCash;				// ìˆ¨ê²¨ì§
 	gui::CButton*				m_pButt_btnClose;
 
 	// Variable
 	CSurfaceGui					m_surItemIconSlot;
 	CSurfaceGui					m_surEnterSlot;
-	CSurfaceGui					m_surConsumeGoldIcon;				// ÅØ½ºÃ³ ¹Ù²ğ ¼ö ÀÖÀ½
-	CSurfaceGui					m_surMyGoldIcon;					// ÅØ½ºÃ³ ¹Ù²ğ ¼ö ÀÖÀ½
+	CSurfaceGui					m_surConsumeGoldIcon;				// í…ìŠ¤ì²˜ ë°”ë€” ìˆ˜ ìˆìŒ
+	CSurfaceGui					m_surMyGoldIcon;					// í…ìŠ¤ì²˜ ë°”ë€” ìˆ˜ ìˆìŒ
 
-	CWindowby3					m_DialogSurface;					///< Å©±â º¯°æ °¡´ÉÇÑ dialogÀÌ¹ÌÁö
+	CWindowby3					m_DialogSurface;					///< í¬ê¸° ë³€ê²½ ê°€ëŠ¥í•œ dialogì´ë¯¸ì§€
 
 	// Gui Signals
 	gui::CSlot					m_slotGotFocus_pnlItemButt;

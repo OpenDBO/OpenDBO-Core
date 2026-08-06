@@ -1,4 +1,4 @@
-// NotifyDlg.cpp : ���� �����Դϴ�.
+// NotifyDlg.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "NotifyDlg.h"
 
 
-// CNotifyDlg ��ȭ �����Դϴ�.
+// CNotifyDlg 대화 상자입니다.
 
 IMPLEMENT_DYNAMIC(CNotifyDlg, CDialog)
 
@@ -30,4 +30,4 @@ BEGIN_MESSAGE_MAP(CNotifyDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CNotifyDlg �޽��� ó�����Դϴ�.
+// CNotifyDlg 메시지 처리기입니다.

@@ -369,14 +369,14 @@ VOID CCursorManager::SetMouseCursor( STATE eState )
 
 	m_eCurCursor = (RwUInt8)eState;
 
-	// �ٷ� Ŀ���� �����ϱ� ����
+	// 占쌕뤄옙 커占쏙옙占쏙옙 占쏙옙占쏙옙占싹깍옙 占쏙옙占쏙옙
 	SetCursor(m_hMouseCursor[m_eCurCursor]);
 
 	// Ŀ�� ���
 	SetClassLongPtr( CNtlApplication::GetInstance()->GetHWnd(), GCL_HCURSOR, (LONG_PTR)m_hMouseCursor[m_eCurCursor] );
 
 	if( eState == CS_BATTLE_TARGET )
-	{	// Ÿ�� ���ý�
+	{	// 타占쏙옙 占쏙옙占시쏙옙
 		Logic_PlayGUISound( GSD_SYSTEM_ENEMY_FOUSE );
 	}
 }

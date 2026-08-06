@@ -308,7 +308,7 @@ void CNtlPLDojo::RefreshDojo()
 	SNtlPLDojoProp sNtlPLDojoProp;
 	if (GetSceneManager()->GetDojoContainer()->GetDojo(m_iDojoID, &sNtlPLDojoProp))
 	{
-		m_sEmblemNew = sNtlPLDojoProp.sEmblem; // SetLevel¸¦ È£Ãâ ÇÏ±â Àü¿¡ Setting ÇØ¾ß ÇÑ´Ù.
+		m_sEmblemNew = sNtlPLDojoProp.sEmblem; // SetLevelë¥¼ í˜¸ì¶œ í•˜ê¸° ì „ì— Setting í•´ì•¼ í•œë‹¤.
 		SetLevel(sNtlPLDojoProp.iLevel);
 	}
 }

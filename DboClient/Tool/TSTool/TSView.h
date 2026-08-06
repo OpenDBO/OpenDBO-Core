@@ -212,7 +212,7 @@ public:
 extern CTSView* g_pTSView;
 
 
-#ifndef _DEBUG  // TSView.cppÀÇ µğ¹ö±× ¹öÀü
+#ifndef _DEBUG  // TSView.cppì˜ ë””ë²„ê·¸ ë²„ì „
 inline CTSDoc* CTSView::GetDocument() const
    { return reinterpret_cast<CTSDoc*>(m_pDocument); }
 #endif

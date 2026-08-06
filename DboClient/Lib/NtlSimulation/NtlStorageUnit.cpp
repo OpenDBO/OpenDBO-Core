@@ -33,7 +33,7 @@ CNtlStorageUnit::~CNtlStorageUnit()
 }
 
 /**
-* \brief Storage Unit�� �����Ѵ�. Type�� Serializer�� �޾Ƽ� �˸°� �����Ѵ�.
+* \brief Storage Unit占쏙옙 占쏙옙占쏙옙占싼댐옙. Type占쏙옙 Serializer占쏙옙 占쌨아쇽옙 占싯맞곤옙 占쏙옙占쏙옙占싼댐옙.
 */
 bool CNtlStorageUnit::Create( eNTL_STORAGE_TYPE eType )
 {
@@ -178,7 +178,7 @@ bool CNtlStorageUnit::GetData( unsigned int uiKey, std::string& strOut )
 	DATAMAP::iterator it = m_mapStorageData.find( uiKey );
 	if( it == m_mapStorageData.end() )
 	{
-		// Key�� ã�� ���ߴ�.
+		// Key占쏙옙 찾占쏙옙 占쏙옙占쌩댐옙.
 		return false;
 	}
 
@@ -191,20 +191,20 @@ bool CNtlStorageUnit::SetData( unsigned int uiKey, std::string strData )
 	DATAMAP::iterator it = m_mapStorageData.find( uiKey );
 	if( it == m_mapStorageData.end() )
 	{
-		// Key�� ã�� ���ߴٸ� ���� ���̺� �����̳ʿ� Key�� �����ϴ��� Ȯ��
+		// Key占쏙옙 찾占쏙옙 占쏙옙占쌩다몌옙 占쏙옙占쏙옙 占쏙옙占싱븝옙 占쏙옙占쏙옙占싱너울옙 Key占쏙옙 占쏙옙占쏙옙占싹댐옙占쏙옙 확占쏙옙
 		eNTL_STORAGE_TYPE eType = GetNtlStorageMTContainer()->GetStorageType( uiKey );
 		if( eType == eNTL_STORAGE_INVALID )
 		{
 			return false;
 		}
 
-		// ���� Unit�� Type�� key�� ������ �ִ� Type�� ��ġ�ϴ��� Ȯ���Ѵ�.
+		// 占쏙옙占쏙옙 Unit占쏙옙 Type占쏙옙 key占쏙옙 占쏙옙占쏙옙占쏙옙 占쌍댐옙 Type占쏙옙 占쏙옙치占싹댐옙占쏙옙 확占쏙옙占싼댐옙.
 		if( eType != m_eStorageType )
 		{
 			return false;
 		}
 
-		// ��ġ �Ѵٸ� Key���� �˸��� ����Ÿ�� ���� �־��ش�.
+		// 일치 한다면 Key값에 알맞은 데이타를 만들어서 넣어준다.
 		m_mapStorageData[uiKey] = strData;
 		return true;
 	}
@@ -258,7 +258,7 @@ bool CNtlStorageUnit::GetBoolData( unsigned int uiKey )
 	DATAMAP::iterator it = m_mapStorageData.find( uiKey );
 	if( it == m_mapStorageData.end() )
 	{
-		// Key�� ã�� ���ߴ�.
+		// Key占쏙옙 찾占쏙옙 占쏙옙占쌩댐옙.
 		return false;
 	}
 
@@ -273,7 +273,7 @@ int CNtlStorageUnit::GetIntData( unsigned int uiKey )
 	DATAMAP::iterator it = m_mapStorageData.find( uiKey );
 	if( it == m_mapStorageData.end() )
 	{
-		// Key�� ã�� ���ߴ�.
+		// Key占쏙옙 찾占쏙옙 占쏙옙占쌩댐옙.
 		return 0;
 	}
 
@@ -285,7 +285,7 @@ float CNtlStorageUnit::GetFloatData( unsigned int uiKey )
 	DATAMAP::iterator it = m_mapStorageData.find( uiKey );
 	if( it == m_mapStorageData.end() )
 	{
-		// Key�� ã�� ���ߴ�.
+		// Key占쏙옙 찾占쏙옙 占쏙옙占쌩댐옙.
 		return 0.0f;
 	}
 
@@ -297,7 +297,7 @@ std::string CNtlStorageUnit::GetStringData( unsigned int uiKey )
 	DATAMAP::iterator it = m_mapStorageData.find( uiKey );
 	if( it == m_mapStorageData.end() )
 	{
-		// Key�� ã�� ���ߴ�.
+		// Key占쏙옙 찾占쏙옙 占쏙옙占쌩댐옙.
 		return std::string("");
 	}
 

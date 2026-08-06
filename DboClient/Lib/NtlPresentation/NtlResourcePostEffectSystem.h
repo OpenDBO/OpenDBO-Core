@@ -2,7 +2,7 @@
 //	File		:	NtlResourcePostEffectSystem.h
 //	Desc		:	
 //	Begin		:	2006. 7.28
-//	Copyright	:	¨Ï 2006 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2006 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************

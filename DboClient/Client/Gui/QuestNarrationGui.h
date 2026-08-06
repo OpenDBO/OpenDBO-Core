@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File: QuestNarrationGui.h
 // Desc: QuestNarrationGui
-//		 Narration ����
+//		 Narration 占쏙옙占쏙옙
 //
 // 2006.12.5 Peessi@hitel.net   
 //
@@ -82,19 +82,19 @@ private:
 	CNtlTCUnit*			m_pTCUnit;
 	sTS_KEY				m_TSKey;
 	
-	STATE				m_eUIState;					// UI��ü�� State
-	RwInt32				m_eTSState;					// TS�� ������ State
-	RwInt32				m_eTextOutType;				// Text ��� ���
-	RwUInt32			m_uiMaxLifeTime;			// �� �ð��� ������ ������ true�� �Ѱ��ش�.
+	STATE				m_eUIState;					// UI占쏙옙체占쏙옙 State
+	RwInt32				m_eTSState;					// TS占쏙옙 占쏙옙占쏙옙占쏙옙 State
+	RwInt32				m_eTextOutType;				// Text 출력 방식
+	RwUInt32			m_uiMaxLifeTime;			// 占쏙옙 占시곤옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 true占쏙옙 占싼곤옙占쌔댐옙.
 	RwUInt32			m_uiCurrentTime;			//
-	RwUInt32			m_flagOwnerType;			// OWNERTYPE Flag, ������ � Ÿ���� ����Ǿ���. Begin ~ End
-	OWNERTYPE			m_eCurrentType;				// ������ Ÿ�Ը�.
+	RwUInt32			m_flagOwnerType;			// OWNERTYPE Flag, 이전에 어떤 타입이 실행되었나. Begin ~ End
+	OWNERTYPE			m_eCurrentType;				// 占쏙옙占쏙옙占쏙옙 타占쌉몌옙.
 
 	RwUInt8				m_byPCSelectID[CINEMATIC_MAX_PC_SELECT];
 	
-	bool				m_bResult;					// ���� �����ΰ� �������� �ΰ�.
+	bool				m_bResult;					// 占쏙옙占쏙옙 占쏙옙占쏙옙占싸곤옙 占쏙옙占쏙옙占쏙옙占쏙옙 占싸곤옙.
 	RwUInt8				m_bySelectID;				// User Select Value;
-	//RwBool				m_bShowPCMessageOnPCSelect;	// PCSelect�� PCMessage�� ǥ������ ����. Begin���� ���ö� Ing���� �Ǻ��ϱ� ����.
+	//RwBool				m_bShowPCMessageOnPCSelect;	// PCSelect占쏙옙 PCMessage占쏙옙 표占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙. Begin占쏙옙占쏙옙 占쏙옙占시띰옙 Ing占쏙옙占쏙옙 占실븝옙占싹깍옙 占쏙옙占쏙옙.
 
 	CQuestGui*			m_pQuestGui;
 

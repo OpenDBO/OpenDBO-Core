@@ -33,20 +33,20 @@ public:
 
 	static CMsgBoxManager* GetInstance(VOID);
 	
-	// »èÁ¦´Â Àý´ë·Î »èÁ¦ÇÔ¼ö¸¸À» ÀÌ¿ë.
+	// ì‚­ì œëŠ” ì ˆëŒ€ë¡œ ì‚­ì œí•¨ìˆ˜ë§Œì„ ì´ìš©.
 	VOID DeleteMsgBox(const char* strStringID );
 	VOID DeleteMsgBox( CMsgBoxGui* pDeletedMsgBox );
 	VOID DeleteAllMsgBoxExceptNetConnectBox(VOID);
 	VOID DeleteNetConnectBox(VOID);
 
-	// º¹¼ö°³·Î ³ª¿Ã ¼öµµ ÀÖÀ½. ±×·²¶§´Â ¸®½ºÆ®Æ÷ÀÎÅÍ¸¦ ÀÌ¿ë. ¸®ÅÏÀº °¡Àå ¸¶Áö¸·À¸·Î ¹ß°ßµÈ °ª. 
+	// ë³µìˆ˜ê°œë¡œ ë‚˜ì˜¬ ìˆ˜ë„ ìžˆìŒ. ê·¸ëŸ´ë•ŒëŠ” ë¦¬ìŠ¤íŠ¸í¬ì¸í„°ë¥¼ ì´ìš©. ë¦¬í„´ì€ ê°€ìž¥ ë§ˆì§€ë§‰ìœ¼ë¡œ ë°œê²¬ëœ ê°’. 
 	CMsgBoxGui* GetMsgBox(char* strStringID, LIST_MSGBOX* pList = NULL );
 
-	// ³ª·¹ÀÌ¼Çµî ¸Þ½ÃÁö ¹Ú½ºµéÀ» ´ÜÁö º¸¿©ÁÖ°Å³ª º¸¿©ÁÖÁö ¾Ê´Â ±â´É.
+	// ë‚˜ë ˆì´ì…˜ë“± ë©”ì‹œì§€ ë°•ìŠ¤ë“¤ì„ ë‹¨ì§€ ë³´ì—¬ì£¼ê±°ë‚˜ ë³´ì—¬ì£¼ì§€ ì•ŠëŠ” ê¸°ëŠ¥.
 	VOID ShowAllMsgBox( bool bShow );	
 
-	RwBool IsShowMsgBox(VOID);			// ÀüÃ¼¸Þ½ÃÁö¹Ú½º°¡ º¸ÀÏ¶§
-	RwBool IsShowPopupMsgBox(VOID);		// ÆË¾÷¸Þ½ÃÁö¹Ú½º°¡ º¸ÀÏ¶§
+	RwBool IsShowMsgBox(VOID);			// ì „ì²´ë©”ì‹œì§€ë°•ìŠ¤ê°€ ë³´ì¼ë•Œ
+	RwBool IsShowPopupMsgBox(VOID);		// íŒì—…ë©”ì‹œì§€ë°•ìŠ¤ê°€ ë³´ì¼ë•Œ
 
 private:
 	//! Implementation

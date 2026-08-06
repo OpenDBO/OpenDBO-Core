@@ -98,7 +98,7 @@ void CNtlPLEquipItem::AddItem(CNtlPLItem *pItem, RwBool bAttach)
 	EQUIP_ITEM_LIST_ITER it = m_listItem.begin();
 	EItemEquipSlotType	eEquipSlotType	= pItem->GetEquipSlotType();
 
-	// Body´Â Slot¿¡ ÇÏ³ª¸¸ ÀåÂøÀÌ °¡´É ÇÏ´Ù.
+	// BodyëŠ” Slotì— í•˜ë‚˜ë§Œ ì¥ì°©ì´ ê°€ëŠ¥ í•˜ë‹¤.
 	for(; it != m_listItem.end(); ++it)
 	{
 		CNtlPLItem *plistItem = *it;
@@ -209,7 +209,7 @@ void CNtlPLEquipItem::Destroy()
 	}
 	m_mapDefaultItem.clear();
 
-	//Item °ü·Ã Instance´Â Simulation ÂÊ¿¡¼­ ÇØÁ¦¸¦ ÇÑ´Ù.
+	//Item ê´€ë ¨ InstanceëŠ” Simulation ìª½ì—ì„œ í•´ì œë¥¼ í•œë‹¤.
 	m_listItem.clear();
 
 	if( m_pBaseFaceTexture != NULL)

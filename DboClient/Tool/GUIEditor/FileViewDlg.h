@@ -3,17 +3,17 @@
 #include "DirTreeCtrl.h"
 #include "ExtFilter.h"
 
-// FileViewDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// FileViewDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CFileViewDlg : public CDialog
 {
 	DECLARE_DYNCREATE(CFileViewDlg)
 
 public:
-	CFileViewDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CFileViewDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CFileViewDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_FILEVIEWDLG };
 
 	// variables
@@ -24,7 +24,7 @@ protected:
 	BOOL m_bInitialized;
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

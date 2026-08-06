@@ -2,7 +2,7 @@
  *
  * File			: NtlSkillContainer.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2006. 4. 24	
  * Abstract		: Simulation skill container
  *****************************************************************************
@@ -33,8 +33,8 @@ class CNtlSkillContainer : public RWS::CEventHandler
 {
 protected:
 
-	SERIAL_HANDLE m_hSerial[NTL_MAX_PC_HAVE_SKILL];		/** skill ¿¸√º slot */
-	SERIAL_HANDLE m_hHTBSerial[NTL_HTB_MAX_PC_HAVE_HTB_SKILL];	/** HTB Skill ∫–∏Æ*/
+	SERIAL_HANDLE m_hSerial[NTL_MAX_PC_HAVE_SKILL];		/** skill Ï†ÑÏ≤¥ slot */
+	SERIAL_HANDLE m_hHTBSerial[NTL_HTB_MAX_PC_HAVE_HTB_SKILL];	/** HTB Skill Î∂ÑÎ¶¨*/
 	SERIAL_HANDLE m_hActionSerial[NTL_MAX_PC_HAVE_ACTION_SKILL];
 
 public:
@@ -57,7 +57,7 @@ public:
 	CNtlSobSkill* GetSameKindSkillFromTableId(RwUInt32 uiTblId);
 	sSKILL_TBLDAT* GetSkillFromTable(RwInt32 iSlotIdx);
 	RwInt32 GetSkillSlotIdx( SERIAL_HANDLE hSerial );
-	RwBool SkillExists( TBLIDX minIdx, TBLIDX maxIdx );	// Upgrade √º≈©øÎ.
+	RwBool SkillExists( TBLIDX minIdx, TBLIDX maxIdx );	// Upgrade Ï≤¥ÌÅ¨Ïö©.
 	RwBool IsNeedSkillPre(TBLIDX curIdx);
 
 	RwInt32 GetHTBSkillCount(void);
@@ -109,7 +109,7 @@ private:
 	void SkillInitHandler( RWS::CMsg& msg );
 	void PassiveSkillEffectHandler( RWS::CMsg& msg );
 		
-	// passive skill ∆«¥‹.
+	// passive skill ÌåêÎã®.
 	void PassiveSkillDetecting(RwUInt32 uiTblId);
 
 public:
@@ -158,10 +158,10 @@ class CNtlPetSkillContainer : public RWS::CEventHandler
 {
 protected:
 
-	SERIAL_HANDLE	m_hSerial[NTL_MAX_NPC_HAVE_SKILL];		/** skill ¿¸√º slot */
+	SERIAL_HANDLE	m_hSerial[NTL_MAX_NPC_HAVE_SKILL];		/** skill Ï†ÑÏ≤¥ slot */
 	RwUInt8			m_byUseBasis[NTL_MAX_NPC_HAVE_SKILL];	/** skill AI Basis */
-	RwUInt16		m_wUseLp[NTL_MAX_NPC_HAVE_SKILL];		/** skill AI Lp ¡∂∞« */
-	RwUInt16		m_wUseTime[NTL_MAX_NPC_HAVE_SKILL];		/** skill AI Time ¡∂∞« */
+	RwUInt16		m_wUseLp[NTL_MAX_NPC_HAVE_SKILL];		/** skill AI Lp Ï°∞Í±¥ */
+	RwUInt16		m_wUseTime[NTL_MAX_NPC_HAVE_SKILL];		/** skill AI Time Ï°∞Í±¥ */
 
 public:
 

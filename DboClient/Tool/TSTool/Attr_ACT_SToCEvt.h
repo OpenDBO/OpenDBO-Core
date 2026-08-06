@@ -5,7 +5,7 @@
 #include "afxwin.h"
 
 
-// CAttr_ACT_SToCEvt ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_ACT_SToCEvt ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CAttr_ACT_SToCEvt : public CAttr_Page
 {
@@ -26,7 +26,7 @@ public:
 	CAttr_ACT_SToCEvt();
 	virtual ~CAttr_ACT_SToCEvt();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_TS_ACT_STOCEVT_ATTR_DIAG };
 
 	virtual CString	GetPageData( void );
@@ -36,7 +36,7 @@ public:
 	void InitData_SToCEvtCondData( void );
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual BOOL OnInitDialog();
 
 	DECLARE_MESSAGE_MAP()

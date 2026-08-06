@@ -250,7 +250,7 @@ VOID CIconPopupGui::ShowEvent( RWS::CMsg& msg )
 			{
 				if( pSobItemAttr->IsNeedToIdentify() )
 				{
-					// ¹ÌÈ®ÀÎ ¾ÆÀÌÅÛ					
+					// ë¯¸í™•ì¸ ì•„ì´í…œ					
 					SelectItem( m_apMenu[PMW_PICKUP] );
 				}
 				else
@@ -268,13 +268,13 @@ VOID CIconPopupGui::ShowEvent( RWS::CMsg& msg )
 			{
 				if( pSobItemAttr->IsNeedToIdentify() )
 				{
-					// ¹ÌÈ®ÀÎ ¾ÆÀÌÅÛ
+					// ë¯¸í™•ì¸ ì•„ì´í…œ
 					SelectItem( m_apMenu[PMW_PICKUP] );
 					SelectItem( m_apMenu[PMW_DELETE] );
 				}
 				else
 				{
-					// ÀÏ¹İÀûÀÎ °æ¿ì
+					// ì¼ë°˜ì ì¸ ê²½ìš°
 					if( reinterpret_cast<CNtlSobItemIcon*>( pSobItem->GetIcon() )->IsUsePossible() )
 						SelectItem( m_apMenu[PMW_USE] );
 
@@ -289,10 +289,10 @@ VOID CIconPopupGui::ShowEvent( RWS::CMsg& msg )
 			// If the items in the bag can not be placed in the slot in duplicate
 			if( GetDialogManager()->IsOpenDialog(DIALOG_NPCSHOP) )
 			{
-				// NPC »óÁ¡À» ¿­¾ú´Ù¸é
+				// NPC ìƒì ì„ ì—´ì—ˆë‹¤ë©´
 				if( pSobItemAttr->IsNeedToIdentify() )
 				{
-					// ¹ÌÈ®ÀÎ ¾ÆÀÌÅÛ					
+					// ë¯¸í™•ì¸ ì•„ì´í…œ					
 					SelectItem( m_apMenu[PMW_PICKUP] );
 				}
 				else
@@ -310,12 +310,12 @@ VOID CIconPopupGui::ShowEvent( RWS::CMsg& msg )
 			{
 				if( pSobItemAttr->IsNeedToIdentify() )
 				{
-					// ¹ÌÈ®ÀÎ ¾ÆÀÌÅÛ					
+					// ë¯¸í™•ì¸ ì•„ì´í…œ					
 					SelectItem( m_apMenu[PMW_PICKUP] );
 				}
 				else
 				{
-					// ÀÏ¹İÀûÀÎ °æ¿ì
+					// ì¼ë°˜ì ì¸ ê²½ìš°
 					SelectItem( m_apMenu[PMW_EQUIP] );
 					SelectItem( m_apMenu[PMW_PICKUP] );
 					SelectItem( m_apMenu[PMW_DELETE] );
@@ -335,12 +335,12 @@ VOID CIconPopupGui::ShowEvent( RWS::CMsg& msg )
 	}
 	else if( pData->nSrcPlace == PLACE_EQUIP )
 	{
-		// ÀåºñÃ¢ÀÎ ¾ÆÀÌÅÛÀÎ °æ¿ì
+		// ì¥ë¹„ì°½ì¸ ì•„ì´í…œì¸ ê²½ìš°
 		CNtlSobItem* pSobItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( m_hSerial ) );
 		
 		if( pSobItem->IsScouterItem() )
 		{
-			// ÀåºñÃ¢ÀÇ ½ºÄ«¿ìÅÍ ½½·ÔÀÎ °æ¿ì
+			// ì¥ë¹„ì°½ì˜ ìŠ¤ì¹´ìš°í„° ìŠ¬ë¡¯ì¸ ê²½ìš°
 			SelectItem( m_apMenu[PMW_VIEW] );
 		}
 
@@ -349,7 +349,7 @@ VOID CIconPopupGui::ShowEvent( RWS::CMsg& msg )
 	}
 	else if( pData->nSrcPlace == PLACE_SCOUTER_SLOT )
 	{
-		// ½ºÄ«¿ìÅÍ ½½·ÔÀÎ °æ¿ì
+		// ìŠ¤ì¹´ìš°í„° ìŠ¬ë¡¯ì¸ ê²½ìš°
 		SelectItem( m_apMenu[PMW_VIEW] );
 		SelectItem( m_apMenu[PMW_PICKUP] );
 		SelectItem( m_apMenu[PMW_DELETE] );
@@ -391,7 +391,7 @@ VOID CIconPopupGui::ShowEvent( RWS::CMsg& msg )
 				RwBool bIamPartyLearder = Logic_I_am_PartyLeader();
 				RwBool bCanPartyInvite = Logic_CanPartyInvite();
 
-				// ÆÄÆ¼
+				// íŒŒí‹°
 				if( bIamPartyLearder )
 				{
 					if( pParty->IsMember(m_hSerial) )
@@ -414,7 +414,7 @@ VOID CIconPopupGui::ShowEvent( RWS::CMsg& msg )
 				}
 
 
-				// ±æµåÀåÀÌ°Å³ª ºÎ±æµåÀåÀÏ °æ¿ìÀÇ ¸Ş´º
+				// ê¸¸ë“œì¥ì´ê±°ë‚˜ ë¶€ê¸¸ë“œì¥ì¼ ê²½ìš°ì˜ ë©”ë‰´
 				if( pGuild->IsGuildMaster( pAvatar->GetCharID() ) ||
 					pGuild->IsSecondGuildMaster( pAvatar->GetCharID() ) )
 				{
@@ -426,7 +426,7 @@ VOID CIconPopupGui::ShowEvent( RWS::CMsg& msg )
 
 				SelectItem( m_apMenu[PMW_FRIEND_ADD] );
 
-				// ÀÏ¹İ ¿ùµå¿¡¼­
+				// ì¼ë°˜ ì›”ë“œì—ì„œ
 				if (pWorldTblData->byWorldRuleType == GAMERULE_NORMAL)
 				{
 					if (Logic_CanRequestFreeBattle())
@@ -464,7 +464,7 @@ VOID CIconPopupGui::ShowEvent( RWS::CMsg& msg )
 		CNtlSobAvatar* pAvater = GetNtlSLGlobal()->GetSobAvatar();
 		SERIAL_HANDLE hLeaderHandle = pAvater->GetParty()->GetLeaderHandle();		
 
-		// ÆÄÆ¼ÀåÀÏ °æ¿ìÀÇ ¸Ş´º
+		// íŒŒí‹°ì¥ì¼ ê²½ìš°ì˜ ë©”ë‰´
 		if( pAvater->GetSerialID() == hLeaderHandle )
 		{
 			SelectItem( m_apMenu[PMW_PARTY_LEADER_CHANGE] );
@@ -519,7 +519,7 @@ VOID CIconPopupGui::ShowEvent( RWS::CMsg& msg )
 		CNtlParty* pParty = GetNtlSLGlobal()->GetSobAvatar()->GetParty();
 		RwUInt8 byZennyLootingMethod = pParty->GetZennyLootingMethod();
 
-		// ÇöÀç ¼±ÅÃµÈ Á¦´Ï ºĞ¹è ¹æ½ÄÀº ´Ù¸¥ »öÀ¸·Î º¸¿©ÁØ´Ù
+		// í˜„ì¬ ì„ íƒëœ ì œë‹ˆ ë¶„ë°° ë°©ì‹ì€ ë‹¤ë¥¸ ìƒ‰ìœ¼ë¡œ ë³´ì—¬ì¤€ë‹¤
 		switch( byZennyLootingMethod )
 		{
 		case NTL_PARTY_ZENNY_LOOTING_GREEDILY:
@@ -544,7 +544,7 @@ VOID CIconPopupGui::ShowEvent( RWS::CMsg& msg )
 		CNtlParty* pParty = GetNtlSLGlobal()->GetSobAvatar()->GetParty();
 		RwUInt8 byItemLootingMethod = pParty->GetItemLootingMethod();
 
-		// ÇöÀç ¼±ÅÃµÈ ¾ÆÀÌÅÛ ºĞ¹è ¹æ½ÄÀº ´Ù¸¥ »öÀ¸·Î º¸¿©ÁØ´Ù
+		// í˜„ì¬ ì„ íƒëœ ì•„ì´í…œ ë¶„ë°° ë°©ì‹ì€ ë‹¤ë¥¸ ìƒ‰ìœ¼ë¡œ ë³´ì—¬ì¤€ë‹¤
 		switch( byItemLootingMethod )
 		{
 		case NTL_PARTY_ITEM_LOOTING_GREEDILY:
@@ -748,7 +748,7 @@ VOID CIconPopupGui::CalcRect( RwInt32 nXPos, RwInt32 nYPos )
 	RwInt32 nWidth = ICONPOPUP_ITEM_WIDTH + 2 * ICONPOPUP_MARGIN_X;
 	RwInt32 nHeight = ICONPOPUP_ITEM_HEIGHT * m_nSeletecItemCount + ICONPOPUP_SPACE * ( m_nSeletecItemCount - 1 ) + 2 * ICONPOPUP_MARGIN_Y;
 
-	// ±âº»À§Ä¡´Â Right Bottom
+	// ê¸°ë³¸ìœ„ì¹˜ëŠ” Right Bottom
 	RwInt32 nX = nXPos + NTL_ITEM_ICON_SIZE + ICONPOPUP_POINT_MARGIN_X;
 	RwInt32 nY = nYPos + NTL_ITEM_ICON_SIZE + ICONPOPUP_POINT_MARGIN_Y;
 
@@ -820,7 +820,7 @@ RwBool CCalcPopupGui::Create(VOID)
 
 	m_pThis = (gui::CDialog*)GetComponent( "dlgMain" );
 
-	m_pThis->SetPriority( dDIALOGPRIORITY_CALC_POPUP );	// °è»ê±â ¿ì¼± ¼øÀ§ Ãß°¡
+	m_pThis->SetPriority( dDIALOGPRIORITY_CALC_POPUP );	// ê³„ì‚°ê¸° ìš°ì„  ìˆœìœ„ ì¶”ê°€
 	
 	m_apButton[0] = (gui::CButton*)GetComponent( "btn0" );
 	m_apButton[1] = (gui::CButton*)GetComponent( "btn1" );
@@ -895,7 +895,7 @@ VOID CCalcPopupGui::ShowEvent( RWS::CMsg& msg )
 	RwInt32 nScreenHeight = m_pThis->GetGuiManager()->GetHeight();
 	CRectangle rtBox = m_pThis->GetClientRect();
 
-	// ±âº»À§Ä¡´Â Right Bottom
+	// ê¸°ë³¸ìœ„ì¹˜ëŠ” Right Bottom
 	RwInt32 nX = pData->nXPos + ICONPOPUP_MARGIN_X;
 	RwInt32 nY = pData->nYPos + ICONPOPUP_MARGIN_Y;
 	RwInt32 nWidth = rtBox.GetWidth(); 
@@ -917,7 +917,7 @@ VOID CCalcPopupGui::ShowEvent( RWS::CMsg& msg )
 
 VOID CCalcPopupGui::OnButtonClick( gui::CComponent* pComponent )
 {
-	// RwUInt32 ¹üÀ§¸¦ ³Ñ±â´Â °ÍÀ» ¹æÁöÇÏ±â À§ÇØ
+	// RwUInt32 ë²”ìœ„ë¥¼ ë„˜ê¸°ëŠ” ê²ƒì„ ë°©ì§€í•˜ê¸° ìœ„í•´
 	RwUInt64 ui64Temp = m_uiValue;
 
 	ui64Temp *= 10;

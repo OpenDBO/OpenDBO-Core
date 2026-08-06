@@ -55,7 +55,7 @@ RwBool CDojoInfoGui::Create()
 
 	m_pDialogName		= (gui::CStaticBox*)GetComponent( "stbTitle" );
 
-	// ¹é¶óÀÎ
+	// ë°±ë¼ì¸
 	m_srf3BackLine.SetType(CWindowby3::WT_HORIZONTAL);
 	m_srf3BackLine.SetSurface( 0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", "srfBackLineTop" ) );
 	m_srf3BackLine.SetSurface( 1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", "srfBackLineCenter" ) );
@@ -63,18 +63,18 @@ RwBool CDojoInfoGui::Create()
 	m_srf3BackLine.SetSize(303, 414);
 	m_srf3BackLine.SetPositionfromParent(9, 50);
 
-	// Á¤º¸ ÆäÀÌÁö
+	// ì •ë³´ íŽ˜ì´ì§€
 	m_pTabPage[TAB_PAGE_INFO] = NTL_NEW CDojoInfo_Info;
 	if( !m_pTabPage[TAB_PAGE_INFO]->Create(this) )
 		NTL_RETURN(FALSE);
 
-	// ÀüÅõ ÆäÀÌÁö
+	// ì „íˆ¬ íŽ˜ì´ì§€
 	m_pTabPage[TAB_PAGE_BATTLE] = NTL_NEW CDojoInfo_Battle;
 	if( !m_pTabPage[TAB_PAGE_BATTLE]->Create(this) )
 		NTL_RETURN(FALSE);
 
 
-	// ½ºÆ®¸µ	
+	// ìŠ¤íŠ¸ë§	
 	m_pDialogName->SetText(GetDisplayStringManager()->GetString("DST_DOJO_INFO"));
 
 	std::wstring wstrText = GetDisplayStringManager()->GetString("DST_DOJO_INFO_INFO");
@@ -101,7 +101,7 @@ RwBool CDojoInfoGui::Create()
 	m_slotPaint						= m_pThis->SigPaint().Connect( this, &CDojoInfoGui::OnPaint );
 	m_slotCaptureMouseDown			= GetNtlGuiManager()->GetGuiManager()->SigCaptureMouseDown().Connect( this, &CDojoInfoGui::OnCaptureMouseDown );
 
-	// OnMove¸¦ ÅëÇØ À§Ä¡°¡ °áÁ¤µÇ´Â ÄÄÆ÷³ÍÆ®¸¦ À§ÇØ¼­
+	// OnMoveë¥¼ í†µí•´ ìœ„ì¹˜ê°€ ê²°ì •ë˜ëŠ” ì»´í¬ë„ŒíŠ¸ë¥¼ ìœ„í•´ì„œ
 	OnMove(100, 100);
 
 	LinkMsg(g_EventNPCDialogOpen);
@@ -269,11 +269,11 @@ VOID CDojoInfoGui::HandleEvents( RWS::CMsg &msg )
 		if( pEvent->eDialog != DIALOG_DOJO_INFO )
 			return;
 
-		// °°Àº NPC
+		// ê°™ì€ NPC
 		if( m_hNPCSerial == pEvent->hSerialId )
 			return;
 
-		// ´Ù¸¥ NPC¿Í ´ëÈ­¸¦ ÇÏ´Â °æ¿ìÀÌ´Ù
+		// ë‹¤ë¥¸ NPCì™€ ëŒ€í™”ë¥¼ í•˜ëŠ” ê²½ìš°ì´ë‹¤
 		if( m_hNPCSerial != INVALID_SERIAL_ID )
 		{
 			GetDialogManager()->CloseDialog(DIALOG_DOJO_INFO);
@@ -290,7 +290,7 @@ VOID CDojoInfoGui::HandleEvents( RWS::CMsg &msg )
 
 		if( m_hNPCSerial == *pDeleteSerial )
 		{
-			// NPC ¼­¹ö°¡ ´Ù¿îµÇ°Å³ª ÇÏ¿© °©ÀÚ±â NPC°¡ »ç¶óÁö´Â °æ¿ì
+			// NPC ì„œë²„ê°€ ë‹¤ìš´ë˜ê±°ë‚˜ í•˜ì—¬ ê°‘ìžê¸° NPCê°€ ì‚¬ë¼ì§€ëŠ” ê²½ìš°
 			GetDialogManager()->CloseDialog(DIALOG_DOJO_INFO);
 		}
 	}

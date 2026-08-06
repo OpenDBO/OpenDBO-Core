@@ -2,7 +2,7 @@
 //	File		:	NtlEffectSplinePath.cpp
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -84,7 +84,7 @@ void CNtlEffectSplinePath::FrameAnimation(RwReal fAniFrame, RwMatrix& matWorld, 
 	{
 		RtQuat quat;
 
-		// ÃÖ´ë Å°°ªÀ» ³ÑÀ¸¸é ¸¶Áö¸· °ªÀ» ³Ö¾îÁØ´Ù.
+		// ìµœëŒ€ í‚¤ê°’ì„ ë„˜ìœ¼ë©´ ë§ˆì§€ë§‰ ê°’ì„ ë„£ì–´ì¤€ë‹¤.
 		if(fAniFrame > m_pCurveData[m_nTotalCurveCount - 1].fTime)
 		{
 			quat = m_pCurveData[m_nTotalCurveCount - 1].quat;

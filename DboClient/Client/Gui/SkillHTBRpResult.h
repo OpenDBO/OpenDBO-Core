@@ -2,7 +2,7 @@
  *
  * File			: SkillHTBRpResult.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2008. 11. 26	
  * Abstract		: HTB Skill RP Result
  *****************************************************************************

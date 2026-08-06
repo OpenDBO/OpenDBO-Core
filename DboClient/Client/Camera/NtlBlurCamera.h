@@ -2,7 +2,7 @@
 //	File		:	NtlBlurCamera.h
 //	Desc		:	
 //	Begin		:	2006. 2.13
-//	Copyright	:	�� 2006 by Mahwang CO., Ltd
+//	Copyright	:	占쏙옙 2006 by Mahwang CO., Ltd
 //	Author		:	Mahwang
 //	Update		:	
 //***********************************************************************************
@@ -136,9 +136,9 @@ private:
 	RwInt32				m_nFakeHDRBlurCount;
 
 
-	// ����þ� 
-	enum { GAUSSION_WEIGHT_COUNT = 7, };									// ����ġ ����� ����
-	RwReal				m_fGaussainDispersion_sq;						// �л��� ����
+	// 가우시안 
+	enum { GAUSSION_WEIGHT_COUNT = 7, };									// 가중치 계산할 개수
+	RwReal				m_fGaussainDispersion_sq;						// 占싻삼옙占쏙옙 占쏙옙占쏙옙
 	RwReal				m_fGaussainWeightTable[GAUSSION_WEIGHT_COUNT];	// ����ġ �迭
 
 

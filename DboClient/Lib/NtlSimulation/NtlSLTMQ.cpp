@@ -221,11 +221,11 @@ VOID CNtlTMQ::HandleEvents(RWS::CMsg &pMsg)
 			m_RunningInfo.pTMQTable			= reinterpret_cast<sTIMEQUEST_TBLDAT*>( API_GetTableContainer()->GetTimeQuestTable()->FindData(rTimeQuestRuleInfo.timeQuestTblidx) );
 			m_RunningInfo.eTimeQuestMode	= (eTIMEQUEST_MODE)rTimeQuestRuleInfo.byTimeQuestMode;
 			m_RunningInfo.byDifficultyFlag	= (eTIMEQUEST_DIFFICULTY)rTimeQuestRuleInfo.byDifficulty;
-			m_RunningInfo.fLastDayRecord	= 0.f;// (RwReal)rTimeQuestRuleInfo.dwDayRecord / 1000.f;//¹Ğ¸®¼¼ÄÁµå ´ÜÀ§·Î ¿Â´Ù //by daneos
+			m_RunningInfo.fLastDayRecord	= 0.f;// (RwReal)rTimeQuestRuleInfo.dwDayRecord / 1000.f;//ë°€ë¦¬ì„¸ì»¨ë“œ ë‹¨ìœ„ë¡œ ì˜¨ë‹¤ //by daneos
 			m_RunningInfo.fLimitedTime		= 0.f;// (RwReal)rTimeQuestRuleInfo.dwLimitTime; //by daneos
 			m_RunningInfo.bUpdateTime		= rTimeQuestRuleInfo.bCountDown;
 
-			// ¼­¹öÂÊ¿¡¼­ ±â·ÏÀÌ ¸ÅÀÏ °»½ÅµÈ´Ù
+			// ì„œë²„ìª½ì—ì„œ ê¸°ë¡ì´ ë§¤ì¼ ê°±ì‹ ëœë‹¤
 			//by daneos
 			//if( rTimeQuestRuleInfo.dwDayRecord == INVALID_SERIAL_ID )
 			//	m_RunningInfo.fLastDayRecord = 0.f;

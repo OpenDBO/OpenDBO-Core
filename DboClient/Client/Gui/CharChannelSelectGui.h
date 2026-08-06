@@ -1,7 +1,7 @@
 			/******************************************************************************
 * File			: CharCreateGui.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2006. 12. 7
 * Abstract		: 
 *****************************************************************************
@@ -53,15 +53,15 @@ public:
 
 	struct AttiributeSlot
 	{
-		CSurfaceGui			Backboard;		///< πË∞Ê
+		CSurfaceGui			Backboard;		///< Î∞∞Í≤Ω
 		CSurfaceGui			Textboard;		///< text backboard
-		gui::CButton*		pLeftButton;	///< øﬁ¬  «◊∏Ò º±≈√
-		gui::CButton*		pRightButton;	///< ø¿∏•¬  «◊∏Ò º±≈√
-		gui::CStaticBox*	pTitle;			///< «◊∏Ò º≥∏Ì
-		gui::CStaticBox*	pAttribute;		///< º±≈√µ» «◊∏Ò
-		CSlotGui			Icon;			///< º”º∫ æ∆¿Ãƒ‹
-		RwUInt8				byValue;		///< «ˆ¿Á º±≈√µ» ∞™
-		std::list<std::wstring> listContent;	///< º”º∫ ∞™
+		gui::CButton*		pLeftButton;	///< ÏôºÏ™Ω Ìï≠Î™© ÏÑ†ÌÉù
+		gui::CButton*		pRightButton;	///< Ïò§Î•∏Ï™Ω Ìï≠Î™© ÏÑ†ÌÉù
+		gui::CStaticBox*	pTitle;			///< Ìï≠Î™© ÏÑ§Î™Ö
+		gui::CStaticBox*	pAttribute;		///< ÏÑ†ÌÉùÎêú Ìï≠Î™©
+		CSlotGui			Icon;			///< ÏÜçÏÑ± ÏïÑÏù¥ÏΩò
+		RwUInt8				byValue;		///< ÌòÑÏû¨ ÏÑ†ÌÉùÎêú Í∞í
+		std::list<std::wstring> listContent;	///< ÏÜçÏÑ± Í∞í
 
 		~AttiributeSlot()
 		{
@@ -106,9 +106,9 @@ public:
 
 	struct SavedAttribute
 	{
-		RwUInt8					byRaceValue;	///< ¡æ¡∑
-		RwUInt8					byHair;			///< ∏”∏Æ ∏æÁ
-		std::list<std::wstring> listContent;	///< º”º∫ ∞™
+		RwUInt8					byRaceValue;	///< Ï¢ÖÏ°±
+		RwUInt8					byHair;			///< Î®∏Î¶¨ Î™®Ïñë
+		std::list<std::wstring> listContent;	///< ÏÜçÏÑ± Í∞í
 	};
 
 	CCharCreateGuiGui(const RwChar* pName);
@@ -126,12 +126,12 @@ protected:
 
 	VOID			EnableButtons(bool bEnable);
 
-	VOID			UpdateSlot(RwBool bRight, RwUInt8 byIndex);///< ¡¬øÏ πˆ∆∞ø° µ˚∂Û ΩΩ∑‘¿« ≥ªøÎ¿ª ∞ªΩ≈«—¥Ÿ.
-	VOID			UpdateComboBox();		///< ƒﬁ∫∏ π⁄Ω∫¿« ≥ªøÎµÈ¿ª ∞ªΩ≈«—¥Ÿ	
-	VOID			CheckEnableButton();	///< «◊∏Òø° µ˚∏• πˆ∆∞ ªÁøÎ∞°¥… ø©∫Œ∏¶ æÀæ∆∫ª¥Ÿ
+	VOID			UpdateSlot(RwBool bRight, RwUInt8 byIndex);///< Ï¢åÏö∞ Î≤ÑÌäºÏóê Îî∞Îùº Ïä¨Î°ØÏùò ÎÇ¥Ïö©ÏùÑ Í∞±Ïã†ÌïúÎã§.
+	VOID			UpdateComboBox();		///< ÏΩ§Î≥¥ Î∞ïÏä§Ïùò ÎÇ¥Ïö©Îì§ÏùÑ Í∞±Ïã†ÌïúÎã§	
+	VOID			CheckEnableButton();	///< Ìï≠Î™©Ïóê Îî∞Î•∏ Î≤ÑÌäº ÏÇ¨Ïö©Í∞ÄÎä• Ïó¨Î∂ÄÎ•º ÏïåÏïÑÎ≥∏Îã§
 
-	RwUInt8			ConverIndexToClass(RwInt32 iIndex);	///< ƒﬁ∫∏ ∏ÆΩ∫∆Æ ¿Œµ¶Ω∫ø° µ˚∂Û ¡æ¡∑∫∞ ≈¨∑°Ω∫ π›»Ø
-	RwUInt8			ConverIndexToGenderbyRace(RwInt32 iRace);	///< ƒﬁ∫∏ ∏ÆΩ∫∆Æ ¿Œµ¶Ω∫ø° µ˚∂Û ¡æ¡∑¿« º∫∫∞ π›»Ø
+	RwUInt8			ConverIndexToClass(RwInt32 iIndex);	///< ÏΩ§Î≥¥ Î¶¨Ïä§Ìä∏ Ïù∏Îç±Ïä§Ïóê Îî∞Îùº Ï¢ÖÏ°±Î≥Ñ ÌÅ¥ÎûòÏä§ Î∞òÌôò
+	RwUInt8			ConverIndexToGenderbyRace(RwInt32 iRace);	///< ÏΩ§Î≥¥ Î¶¨Ïä§Ìä∏ Ïù∏Îç±Ïä§Ïóê Îî∞Îùº Ï¢ÖÏ°±Ïùò ÏÑ±Î≥Ñ Î∞òÌôò
 
 	VOID			LocateComponent(RwInt32 IWidth, RwInt32 IHeight);
 	
@@ -158,10 +158,10 @@ protected:
 	gui::CSlot			m_slotMakeButton;
 	gui::CSlot			m_slotReturnButton;	
 
-	CWindowby3			m_RaceWin;			///< Race πË∞Ê
-	CWindowby3			m_ClassWin;			///< Class πË∞Ê
-	CWindowby3			m_MakeWin;			///< Make πË∞Ê
-	CWindowby3			m_MakeWin2;			///< Make2 πË∞Ê
+	CWindowby3			m_RaceWin;			///< Race Î∞∞Í≤Ω
+	CWindowby3			m_ClassWin;			///< Class Î∞∞Í≤Ω
+	CWindowby3			m_MakeWin;			///< Make Î∞∞Í≤Ω
+	CWindowby3			m_MakeWin2;			///< Make2 Î∞∞Í≤Ω
 
 	CSurfaceGui			m_RaceText;			///< Race text
 	CSurfaceGui			m_RaceUnderLine;	///< Race under line
@@ -169,27 +169,27 @@ protected:
 	CSurfaceGui			m_ClassUnderLine;	///< Race under line
 	CSurfaceGui			m_MakeText;			///< Make text
 	CSurfaceGui			m_MakeUnderLine;	///< Make under line
-	CSurfaceGui			m_NameInputBack;	///< ¿Ã∏ß ¿‘∑¬∂ı πË∞Ê
+	CSurfaceGui			m_NameInputBack;	///< Ïù¥Î¶Ñ ÏûÖÎ†•ÎûÄ Î∞∞Í≤Ω
 
-	gui::CStaticBox*	m_pRaceName;		///< ¡æ¡∑ ¿Ã∏ß
-	gui::CStaticBox*	m_pClassName;		///< ≈¨∑°Ω∫ ¿Ã∏ß
-	gui::CStaticBox*	m_pRaceInfo;		///< ¡æ¡∑ º≥∏Ì
-	gui::CStaticBox*	m_pClassInfo;		///< ≈¨∑°Ω∫ º≥∏Ì
-	gui::CStaticBox*	m_pCharMake;		///< 'ƒ≥∏Ø≈Õ ∏∏µÈ±‚' Ω∫≈¬∆Ω
-	gui::CStaticBox*	m_pNameInputStatic;	///< '¿Ã∏ß' Ω∫≈¬∆Ω
+	gui::CStaticBox*	m_pRaceName;		///< Ï¢ÖÏ°± Ïù¥Î¶Ñ
+	gui::CStaticBox*	m_pClassName;		///< ÌÅ¥ÎûòÏä§ Ïù¥Î¶Ñ
+	gui::CStaticBox*	m_pRaceInfo;		///< Ï¢ÖÏ°± ÏÑ§Î™Ö
+	gui::CStaticBox*	m_pClassInfo;		///< ÌÅ¥ÎûòÏä§ ÏÑ§Î™Ö
+	gui::CStaticBox*	m_pCharMake;		///< 'Ï∫êÎ¶≠ÌÑ∞ ÎßåÎì§Í∏∞' Ïä§ÌÉúÌã±
+	gui::CStaticBox*	m_pNameInputStatic;	///< 'Ïù¥Î¶Ñ' Ïä§ÌÉúÌã±
 
-	gui::CInputBox*		m_pNameInput;		///< ¿Ã∏ß ¿‘∑¬∂ı
+	gui::CInputBox*		m_pNameInput;		///< Ïù¥Î¶Ñ ÏûÖÎ†•ÎûÄ
 
-	gui::CButton*		m_pLeftRotButton;	///< øﬁ¬  »∏¿¸ πˆ∆∞
-	gui::CButton*		m_pRightRotButton;	///< ø¿∏•¬  »∏¿¸ πˆ∆∞
-	gui::CButton*		m_pStopButton;		///< ¡§¡ˆ πˆ∆∞
-	gui::CButton*		m_pRandomButton;	///< ∑£¥˝ πˆ∆∞
-	gui::CButton*		m_pMakeButton;		///< ∏∏µÈ±‚ πˆ∆∞
-	gui::CButton*		m_pReturnButton;	///< µπæ∆∞°±‚ πˆ∆∞
+	gui::CButton*		m_pLeftRotButton;	///< ÏôºÏ™Ω ÌöåÏ†Ñ Î≤ÑÌäº
+	gui::CButton*		m_pRightRotButton;	///< Ïò§Î•∏Ï™Ω ÌöåÏ†Ñ Î≤ÑÌäº
+	gui::CButton*		m_pStopButton;		///< Ï†ïÏßÄ Î≤ÑÌäº
+	gui::CButton*		m_pRandomButton;	///< ÎûúÎç§ Î≤ÑÌäº
+	gui::CButton*		m_pMakeButton;		///< ÎßåÎì§Í∏∞ Î≤ÑÌäº
+	gui::CButton*		m_pReturnButton;	///< ÎèåÏïÑÍ∞ÄÍ∏∞ Î≤ÑÌäº
 
-	AttiributeSlot		m_AttibuteSlot[ATTIRIBUTE_NUM];		///< ƒ≥∏Ø≈Õ º”º∫ ΩΩ∑‘
-	SavedAttribute		m_TempAttribute;	///< «◊∏Ò º±≈√ ∫“∞°Ω√ ¿˙¿Â
-	RwUInt8				m_byRotationState;	///< ƒ≥∏Ø≈Õ »∏¿¸ªÛ≈¬
+	AttiributeSlot		m_AttibuteSlot[ATTIRIBUTE_NUM];		///< Ï∫êÎ¶≠ÌÑ∞ ÏÜçÏÑ± Ïä¨Î°Ø
+	SavedAttribute		m_TempAttribute;	///< Ìï≠Î™© ÏÑ†ÌÉù Î∂àÍ∞ÄÏãú Ï†ÄÏû•
+	RwUInt8				m_byRotationState;	///< Ï∫êÎ¶≠ÌÑ∞ ÌöåÏ†ÑÏÉÅÌÉú
 };
 */
 /*
@@ -213,13 +213,13 @@ protected:
 protected:
 	gui::CSlot			m_slotPaint;
 
-	CWindowby3			m_Background;		///< πË∞Ê
+	CWindowby3			m_Background;		///< Î∞∞Í≤Ω
 
 	CSurfaceGui			m_srfRaceText;		///< Race text
-	CSurfaceGui			m_srtRaceNameBack;	///< ¡æ¡∑ ¿Ã∏ß πË∞Ê
+	CSurfaceGui			m_srtRaceNameBack;	///< Ï¢ÖÏ°± Ïù¥Î¶Ñ Î∞∞Í≤Ω
 	
-	gui::CStaticBox*	m_pRaceName;		///< ¡æ¡∑ ¿Ã∏ß
-	//gui::CHtmlBox*		m_pExplainHtml;		///< ¡æ¡∑ º≥∏Ì
+	gui::CStaticBox*	m_pRaceName;		///< Ï¢ÖÏ°± Ïù¥Î¶Ñ
+	//gui::CHtmlBox*		m_pExplainHtml;		///< Ï¢ÖÏ°± ÏÑ§Î™Ö
 };
 
 class CClassExplainGui : public CNtlPLGui
@@ -242,13 +242,13 @@ protected:
 protected:
 	gui::CSlot			m_slotPaint;
 
-	CWindowby3			m_Background;		///< πË∞Ê
+	CWindowby3			m_Background;		///< Î∞∞Í≤Ω
 
 	CSurfaceGui			m_srfClassText;		///< Class text
-	CSurfaceGui			m_srtClassNameBack;	///< ≈¨∑°Ω∫ ¿Ã∏ß πË∞Ê
+	CSurfaceGui			m_srtClassNameBack;	///< ÌÅ¥ÎûòÏä§ Ïù¥Î¶Ñ Î∞∞Í≤Ω
 
-	gui::CStaticBox*	m_pClassName;		///< ≈¨∑°Ω∫ ¿Ã∏ß
-	//gui::CHtmlBox*		m_pExplainHtml;		///< ≈¨∑°Ω∫ º≥∏Ì
+	gui::CStaticBox*	m_pClassName;		///< ÌÅ¥ÎûòÏä§ Ïù¥Î¶Ñ
+	//gui::CHtmlBox*		m_pExplainHtml;		///< ÌÅ¥ÎûòÏä§ ÏÑ§Î™Ö
 };
 
 class CCharCreateGuiGui : public CNtlPLGui, public RWS::CEventHandler
@@ -287,14 +287,14 @@ protected:
 	gui::CSlot			m_slotStopButton;
 	gui::CSlot			m_slotPaint;
 
-	gui::CButton*		m_pLeftRotButton;	///< øﬁ¬  »∏¿¸ πˆ∆∞
-	gui::CButton*		m_pRightRotButton;	///< ø¿∏•¬  »∏¿¸ πˆ∆∞
-	gui::CButton*		m_pStopButton;		///< ¡§¡ˆ πˆ∆∞
+	gui::CButton*		m_pLeftRotButton;	///< ÏôºÏ™Ω ÌöåÏ†Ñ Î≤ÑÌäº
+	gui::CButton*		m_pRightRotButton;	///< Ïò§Î•∏Ï™Ω ÌöåÏ†Ñ Î≤ÑÌäº
+	gui::CButton*		m_pStopButton;		///< Ï†ïÏßÄ Î≤ÑÌäº
 
-	CSurfaceGui			m_NameInputBack;	///< ¿Ã∏ß ¿‘∑¬∂ı πË∞Ê
+	CSurfaceGui			m_NameInputBack;	///< Ïù¥Î¶Ñ ÏûÖÎ†•ÎûÄ Î∞∞Í≤Ω
 
-	CRaceExplainGui*	m_pRaceExplainGui;	///< ¡æ¡∑ º≥∏Ì Gui
-	CClassExplainGui*	m_pClassExplainGui;	///< ≈¨∑°Ω∫ º≥∏Ì Gui
+	CRaceExplainGui*	m_pRaceExplainGui;	///< Ï¢ÖÏ°± ÏÑ§Î™Ö Gui
+	CClassExplainGui*	m_pClassExplainGui;	///< ÌÅ¥ÎûòÏä§ ÏÑ§Î™Ö Gui
 
-	RwUInt8				m_byRotationState;	///< ƒ≥∏Ø≈Õ »∏¿¸ªÛ≈¬
+	RwUInt8				m_byRotationState;	///< Ï∫êÎ¶≠ÌÑ∞ ÌöåÏ†ÑÏÉÅÌÉú
 };*/

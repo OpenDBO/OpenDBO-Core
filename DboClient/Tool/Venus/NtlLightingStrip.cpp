@@ -2,7 +2,7 @@
 //	File		:	NtlLightingLinePrimitive.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	®œ 2005 by agebreak CO., Ltd
+//	Copyright	:	‚ìí 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -19,7 +19,7 @@ CNtlLightingStrip::CNtlLightingStrip()
 {
 	m_nMaxSize	= 0;
 	m_nNum		= 0;
-	m_fWidth	= 0.3f;			// Line ∆¯ 
+	m_fWidth	= 0.3f;			// Line Ìè≠ 
 	m_Color		= 0xffffffff;
 
 	m_pVertices = NULL;

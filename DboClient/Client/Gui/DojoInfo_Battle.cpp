@@ -102,7 +102,7 @@ RwBool CDojoInfo_Battle::Create(CNtlPLGui* pParent)
 	m_srfScrambleOffenceGuildBar.SetPositionfromParent(10, 361);
 
 
-	// ½ºÆ®¸µ
+	// ìŠ¤íŠ¸ë§
 	m_pAskDuelButton					->SetText(GetDisplayStringManager()->GetString("DST_DOJO_BATTLE_APPLICATION_FOR_BATTLE"));
 	m_pAskScrambleButton				->SetText(GetDisplayStringManager()->GetString("DST_DOJO_BATTLE_APPLICATION_FOR_BATTLE"));
 
@@ -262,7 +262,7 @@ VOID CDojoInfo_Battle::HandleEvents( RWS::CMsg &msg )
 {
 	if( msg.Id == g_EventDojoNotify )
 	{
-		// GUI¸¦ ¿­ ¶§¸¶´Ù Á¤º¸¸¦ °»½ÅÇÏ±â¿¡ ´ÝÇôÀÖ´Â »óÅÂ¿¡¼­´Â °»½ÅÇÏÁö ¾Ê´Â´Ù
+		// GUIë¥¼ ì—´ ë•Œë§ˆë‹¤ ì •ë³´ë¥¼ ê°±ì‹ í•˜ê¸°ì— ë‹«í˜€ìžˆëŠ” ìƒíƒœì—ì„œëŠ” ê°±ì‹ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		if( FALSE == GetDialogManager()->IsOpenDialog(DIALOG_DOJO_INFO) )
 			return;
 
@@ -293,12 +293,12 @@ VOID CDojoInfo_Battle::HandleEvents( RWS::CMsg &msg )
 	}
 	else if( msg.Id == g_EventScrambleDefaultInfoNotify )
 	{
-		// GUI¸¦ ¿­ ¶§¸¶´Ù Á¤º¸¸¦ °»½ÅÇÏ±â¿¡ ´ÝÇôÀÖ´Â »óÅÂ¿¡¼­´Â °»½ÅÇÏÁö ¾Ê´Â´Ù
+		// GUIë¥¼ ì—´ ë•Œë§ˆë‹¤ ì •ë³´ë¥¼ ê°±ì‹ í•˜ê¸°ì— ë‹«í˜€ìžˆëŠ” ìƒíƒœì—ì„œëŠ” ê°±ì‹ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		if( FALSE == GetDialogManager()->IsOpenDialog(DIALOG_DOJO_INFO) )
 			return;
 
 
-		// ÇöÀç º¸°í ÀÖ´Â Á¤º¸°¡ ÀÚ½ÅÀÌ °ø°Ý À¯ÆÄ¿¡ ¼ÓÇÏÁö ¾Ê´Â´Ù¸é ±»ÀÌ Á¤º¸¸¦ °»½ÅÇÒ ÇÊ¿ä¾ø´Ù
+		// í˜„ìž¬ ë³´ê³  ìžˆëŠ” ì •ë³´ê°€ ìžì‹ ì´ ê³µê²© ìœ íŒŒì— ì†í•˜ì§€ ì•ŠëŠ”ë‹¤ë©´ êµ³ì´ ì •ë³´ë¥¼ ê°±ì‹ í•  í•„ìš”ì—†ë‹¤
 		SNtlEventScrambleDefaultInfo* pEvent = reinterpret_cast<SNtlEventScrambleDefaultInfo*>( msg.pData );
 
 		if( pEvent->uiDojoTableIndex != m_uiDojoTableIndex )
@@ -312,7 +312,7 @@ VOID CDojoInfo_Battle::HandleEvents( RWS::CMsg &msg )
 		CNtlDojo*	pDojo		= pAvatar->GetDojo();
 		sDOJO_INFO* pDOJO_INFO	= pDojo->GetDojoInfo(m_uiDojoTableIndex );
 
-		// º¸°í ÀÖ´Â µµÀåÀÇ Á¤º¸°¡ ¿ì¸® µµÀåÀÌ¶ó¸é
+		// ë³´ê³  ìžˆëŠ” ë„ìž¥ì˜ ì •ë³´ê°€ ìš°ë¦¬ ë„ìž¥ì´ë¼ë©´
 		if( pGuild->GetGuildID() != pDOJO_INFO->guildID )
 			return;
 
@@ -329,12 +329,12 @@ VOID CDojoInfo_Battle::HandleEvents( RWS::CMsg &msg )
 	}
 	else if( msg.Id == g_EventNotifyGuild )
 	{
-		// GUI¸¦ ¿­ ¶§¸¶´Ù Á¤º¸¸¦ °»½ÅÇÏ±â¿¡ ´ÝÇôÀÖ´Â »óÅÂ¿¡¼­´Â °»½ÅÇÏÁö ¾Ê´Â´Ù
+		// GUIë¥¼ ì—´ ë•Œë§ˆë‹¤ ì •ë³´ë¥¼ ê°±ì‹ í•˜ê¸°ì— ë‹«í˜€ìžˆëŠ” ìƒíƒœì—ì„œëŠ” ê°±ì‹ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		if( FALSE == GetDialogManager()->IsOpenDialog(DIALOG_DOJO_INFO) )
 			return;
 
 
-		// ÇöÀç º¸°í ÀÖ´Â Á¤º¸°¡ ÀÚ½ÅÀÌ °ø°Ý À¯ÆÄ¿¡ ¼ÓÇÏÁö ¾Ê´Â´Ù¸é ±»ÀÌ Á¤º¸¸¦ °»½ÅÇÒ ÇÊ¿ä¾ø´Ù
+		// í˜„ìž¬ ë³´ê³  ìžˆëŠ” ì •ë³´ê°€ ìžì‹ ì´ ê³µê²© ìœ íŒŒì— ì†í•˜ì§€ ì•ŠëŠ”ë‹¤ë©´ êµ³ì´ ì •ë³´ë¥¼ ê°±ì‹ í•  í•„ìš”ì—†ë‹¤
 		SNtlEventNotifyGuild* pEvent = reinterpret_cast<SNtlEventNotifyGuild*>( msg.pData );
 
 		if( SLGE_APPOINT_MASTER		== pEvent->iMessage ||

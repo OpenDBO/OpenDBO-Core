@@ -2,21 +2,21 @@
 #include "afxwin.h"
 
 
-// CPaletteSkyFloatingEntityDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteSkyFloatingEntityDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CPaletteSkyFloatingEntityDlg : public CDialog
 {
 	DECLARE_DYNAMIC(CPaletteSkyFloatingEntityDlg)
 
 public:
-	CPaletteSkyFloatingEntityDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CPaletteSkyFloatingEntityDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CPaletteSkyFloatingEntityDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_SKY_FLOATING_ENTITY };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
 
 	DECLARE_MESSAGE_MAP()

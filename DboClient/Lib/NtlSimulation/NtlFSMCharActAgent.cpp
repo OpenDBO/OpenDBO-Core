@@ -124,7 +124,7 @@ CNtlFSMCharActAgent::~CNtlFSMCharActAgent()
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server state create ºĞ¼® ÇÔ¼ö.
+//  des : server state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -263,7 +263,7 @@ void CNtlFSMCharActAgent::ServerStateCreateAnalysis(sCHARSTATE *pCharState)
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server standing state create ºĞ¼® ÇÔ¼ö.
+//  des : server standing state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -275,7 +275,7 @@ void CNtlFSMCharActAgent::ServerStateCreateStanding(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server charging state create ºĞ¼® ÇÔ¼ö.
+//  des : server charging state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -287,7 +287,7 @@ void CNtlFSMCharActAgent::ServerStateCreateCharging(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server blocking state create ºĞ¼® ÇÔ¼ö.
+//  des : server blocking state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -300,7 +300,7 @@ void CNtlFSMCharActAgent::ServerStateCreateBlocking(sCHARSTATE *pServerState)
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server sit state create ºĞ¼® ÇÔ¼ö.
+//  des : server sit state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -313,7 +313,7 @@ void CNtlFSMCharActAgent::ServerStateCreateSitting(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server move state create ºĞ¼® ÇÔ¼ö.
+//  des : server move state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -362,7 +362,7 @@ void CNtlFSMCharActAgent::ServerStateCreateMoving(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server destmove state create ºĞ¼® ÇÔ¼ö.
+//  des : server destmove state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -376,7 +376,7 @@ void CNtlFSMCharActAgent::ServerStateCreateDestMove(sCHARSTATE *pServerState)
 
 	sCHARSTATE_DESTMOVE *pDestMove = &pServerState->sCharStateDetail.sCharStateDestMove;
 
-	// Dest location counter´Â ¹İµå½Ã 1 ÀÌ»óÀÌ¾î¾ß ÇÑ´Ù
+	// Dest location counterëŠ” ë°˜ë“œì‹œ 1 ì´ìƒì´ì–´ì•¼ í•œë‹¤
 	if ( 0 == pDestMove->byDestLocCount )
 	{
 		DBO_WARNING_MESSAGE( "A dest location counter must be one more. ClassID: " << m_pActor->GetClassID());
@@ -386,7 +386,7 @@ void CNtlFSMCharActAgent::ServerStateCreateDestMove(sCHARSTATE *pServerState)
 		return;
 	}
 
-	// Dest location counter´Â ¹İµå½Ã DBO_MAX_NEXT_DEST_LOC_COUNT º¸´Ù ÀÛ°Å³ª °°¾Æ¾ß ÇÑ´Ù
+	// Dest location counterëŠ” ë°˜ë“œì‹œ DBO_MAX_NEXT_DEST_LOC_COUNT ë³´ë‹¤ ì‘ê±°ë‚˜ ê°™ì•„ì•¼ í•œë‹¤
 	if ( pDestMove->byDestLocCount > DBO_MAX_NEXT_DEST_LOC_COUNT )
 	{
 		DBO_WARNING_MESSAGE( "A dest location counter must be less equal than DBO_MAX_NEXT_DEST_LOC_COUNT. ClassID: " << m_pActor->GetClassID() );
@@ -445,7 +445,7 @@ void CNtlFSMCharActAgent::ServerStateCreateDestMove(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server follow state create ºĞ¼® ÇÔ¼ö.
+//  des : server follow state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -494,7 +494,7 @@ void CNtlFSMCharActAgent::ServerStateCreateFollowing(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server falling state create ºĞ¼® ÇÔ¼ö.
+//  des : server falling state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -506,7 +506,7 @@ void CNtlFSMCharActAgent::ServerStateCreateFalling(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server follow state create ºĞ¼® ÇÔ¼ö.
+//  des : server follow state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -579,7 +579,7 @@ void CNtlFSMCharActAgent::ServerStateCreateDash(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server teleport state create ºĞ¼® ÇÔ¼ö.
+//  des : server teleport state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -607,7 +607,7 @@ void CNtlFSMCharActAgent::ServerStateCreateTeleporting(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server sliding state create ºĞ¼® ÇÔ¼ö.
+//  des : server sliding state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -619,7 +619,7 @@ void CNtlFSMCharActAgent::ServerStateCreateSliding(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server stun state create ºĞ¼® ÇÔ¼ö.
+//  des : server stun state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -634,7 +634,7 @@ void CNtlFSMCharActAgent::ServerStateCreateStun(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server sleep state create ºĞ¼® ÇÔ¼ö.
+//  des : server sleep state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -646,7 +646,7 @@ void CNtlFSMCharActAgent::ServerStateCreateSleep(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server paralyze state create ºĞ¼® ÇÔ¼ö.
+//  des : server paralyze state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -658,7 +658,7 @@ void CNtlFSMCharActAgent::ServerStateCreateParalyze(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server knockdown state create ºĞ¼® ÇÔ¼ö.
+//  des : server knockdown state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -677,7 +677,7 @@ void CNtlFSMCharActAgent::ServerStateCreateKnockDown(sCHARSTATE *pServerState)
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server focusing state create ºĞ¼® ÇÔ¼ö.
+//  des : server focusing state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -689,7 +689,7 @@ void CNtlFSMCharActAgent::ServerStateCreateFocusing(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server casting state create ºĞ¼® ÇÔ¼ö.
+//  des : server casting state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -719,7 +719,7 @@ void CNtlFSMCharActAgent::ServerStateCreateCasting(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server skill affecting state create ºĞ¼® ÇÔ¼ö.
+//  des : server skill affecting state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -731,7 +731,7 @@ void CNtlFSMCharActAgent::ServerStateCreateSkillAffecting(sCHARSTATE *pServerSta
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server HTB state create ºĞ¼® ÇÔ¼ö.
+//  des : server HTB state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -761,7 +761,7 @@ void CNtlFSMCharActAgent::ServerStateCreateHTB(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server HTB Sandbag state create ºĞ¼® ÇÔ¼ö.
+//  des : server HTB Sandbag state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -773,7 +773,7 @@ void CNtlFSMCharActAgent::ServerStateCreateHTBSandbag(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server Item casting state create ºĞ¼® ÇÔ¼ö.
+//  des : server Item casting state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -803,7 +803,7 @@ void CNtlFSMCharActAgent::ServerStateCreateItemCasting(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server fainting state create ºĞ¼® ÇÔ¼ö.
+//  des : server fainting state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -815,7 +815,7 @@ void CNtlFSMCharActAgent::ServerStateCreateFainting(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server private shop state create ºĞ¼® ÇÔ¼ö.
+//  des : server private shop state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -843,7 +843,7 @@ void CNtlFSMCharActAgent::ServerStateCreatePrivateShop(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server direction state create ºĞ¼® ÇÔ¼ö.
+//  des : server direction state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -865,7 +865,7 @@ void CNtlFSMCharActAgent::ServerStateCreateDirection(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server direction state create ºĞ¼® ÇÔ¼ö.
+//  des : server direction state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -886,7 +886,7 @@ void CNtlFSMCharActAgent::ServerStateCreateOperation(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server despawn state create ºĞ¼® ÇÔ¼ö.
+//  des : server despawn state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -897,7 +897,7 @@ void CNtlFSMCharActAgent::ServerStateCreateDespawn(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server camping state create ºĞ¼® ÇÔ¼ö.
+//  des : server camping state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -909,7 +909,7 @@ void CNtlFSMCharActAgent::ServerStateCreateCamping(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server leaving state create ºĞ¼® ÇÔ¼ö.
+//  des : server leaving state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -922,7 +922,7 @@ void CNtlFSMCharActAgent::ServerStateCreateLeaving(sCHARSTATE *pServerState)
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server RideOn state create ºĞ¼® ÇÔ¼ö.
+//  des : server RideOn state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -939,7 +939,7 @@ void CNtlFSMCharActAgent::ServerStateCreateRideOn( sCHARSTATE *pServerState )
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server Turning state create ºĞ¼® ÇÔ¼ö.
+//  des : server Turning state create ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server char state data structer
@@ -951,7 +951,7 @@ void CNtlFSMCharActAgent::ServerStateCreateTurning( sCHARSTATE *pServerState )
     vDestDir.y = pServerState->sCharStateDetail.sCharStateTurning.vDestDir.y;
     vDestDir.z = pServerState->sCharStateDetail.sCharStateTurning.vDestDir.z;
 
-    // ÅÍ´× »óÅÂ·Î µé¾î¿À¸é ¹æÇâÀ» ³¡³­ÈÄÀÇ ¹æÇâÀ¸·Î ¼³Á¤ÇÏ°í Idle »óÅÂ·Î º¸³½´Ù.    
+    // í„°ë‹ ìƒíƒœë¡œ ë“¤ì–´ì˜¤ë©´ ë°©í–¥ì„ ëë‚œí›„ì˜ ë°©í–¥ìœ¼ë¡œ ì„¤ì •í•˜ê³  Idle ìƒíƒœë¡œ ë³´ë‚¸ë‹¤.    
     m_pActor->SetDirection(&vDestDir);   
     SetNextStateId(NTL_FSMSID_IDLE);
 }
@@ -1052,7 +1052,7 @@ void CNtlFSMCharActAgent::ServerAspectStateVehicle(sASPECTSTATE *pServerAspectSt
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server state update ºĞ¼® ÇÔ¼ö.
+//  des : server state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -1185,7 +1185,7 @@ void CNtlFSMCharActAgent::ServerStateUpdateAnalysis(SNtlEventSobServerUpdateStat
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server state update ºĞ¼® ÇÔ¼ö.
+//  des : server state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server condition update data structer
@@ -1215,7 +1215,7 @@ void CNtlFSMCharActAgent::ServerConditionUpdateAnalysis(RwUInt8 byServerState, R
 	else 
 		SetAttackDisallow(FALSE);
 
-    // È¥¶õÀÌ³ª °øÆ÷ÀÏ¶§´Â ÀÌ¹Ì DirectMode°¡ Àû¿ëµÇ¾î ÀÖ´Ù.
+    // í˜¼ë€ì´ë‚˜ ê³µí¬ì¼ë•ŒëŠ” ì´ë¯¸ DirectModeê°€ ì ìš©ë˜ì–´ ìˆë‹¤.
     if(!(qwCondition & CHARCOND_FLAG_CONFUSED || qwCondition & CHARCOND_FLAG_TERROR))
     {    
 	    if(byServerState == CHARSTATE_DIRECT_PLAY)
@@ -1225,7 +1225,7 @@ void CNtlFSMCharActAgent::ServerConditionUpdateAnalysis(RwUInt8 byServerState, R
     }
 }
 
-// Server·ÎºÎÅÍ Àü¼Û¹ŞÀº Aspect ºĞ¼® Ã³¸® ÇÔ¼ö
+// Serverë¡œë¶€í„° ì „ì†¡ë°›ì€ Aspect ë¶„ì„ ì²˜ë¦¬ í•¨ìˆ˜
 void CNtlFSMCharActAgent::ServerAspectUpdateAnalysis(sASPECTSTATE& sAspectState, RwBool bCreateUpdate)
 {
     if ( m_pActor->GetClassID() != SLCLASS_AVATAR &&
@@ -1255,7 +1255,7 @@ void CNtlFSMCharActAgent::ServerAspectUpdateAnalysis(sASPECTSTATE& sAspectState,
 		case ASPECTSTATE_GREAT_NAMEK:
 		case ASPECTSTATE_KAIOKEN:
 		{
-			// ¾Æ¹ÙÅ¸´Â º¯½ÅÀ» ½º½º·Î Ã³¸®ÇÑ´Ù. (È¸Àü°ø°İ ¿¹¿Ü)
+			// ì•„ë°”íƒ€ëŠ” ë³€ì‹ ì„ ìŠ¤ìŠ¤ë¡œ ì²˜ë¦¬í•œë‹¤. (íšŒì „ê³µê²© ì˜ˆì™¸)
 			if ( m_pActor->GetClassID() == SLCLASS_AVATAR )
 			{
 				return;
@@ -1303,7 +1303,7 @@ void CNtlFSMCharActAgent::ServerAspectUpdateAnalysis(sASPECTSTATE& sAspectState,
 			}
 			else
 			{
-				// Vehicle ÇØÁ¦
+				// Vehicle í•´ì œ
 				if ( sOldAspectState.sAspectStateBase.byAspectStateId == ASPECTSTATE_VEHICLE )
 				{
 					if ( bCreateUpdate )
@@ -1335,7 +1335,7 @@ void CNtlFSMCharActAgent::ServerAspectUpdateAnalysis(sASPECTSTATE& sAspectState,
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server spqwn state update ºĞ¼® ÇÔ¼ö.
+//  des : server spqwn state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -1365,7 +1365,7 @@ void CNtlFSMCharActAgent::ServerStateSpawn(sCHARSTATE *pServerState)
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server standing state update ºĞ¼® ÇÔ¼ö.
+//  des : server standing state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -1437,7 +1437,7 @@ void CNtlFSMCharActAgent::ServerStateStanding(sCHARSTATE *pServerState)
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server charging state update ºĞ¼® ÇÔ¼ö.
+//  des : server charging state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -1449,7 +1449,7 @@ void CNtlFSMCharActAgent::ServerStateCharging(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server blocking state update ºĞ¼® ÇÔ¼ö.
+//  des : server blocking state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -1462,7 +1462,7 @@ void CNtlFSMCharActAgent::ServerStateBlocking(sCHARSTATE *pServerState)
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server sit state update ºĞ¼® ÇÔ¼ö.
+//  des : server sit state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -1476,7 +1476,7 @@ void CNtlFSMCharActAgent::ServerStateSitting(sCHARSTATE *pServerState)
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server move state update ºĞ¼® ÇÔ¼ö.
+//  des : server move state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -1518,7 +1518,7 @@ void CNtlFSMCharActAgent::ServerStateMoving(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server dest move state update ºĞ¼® ÇÔ¼ö.
+//  des : server dest move state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -1529,7 +1529,7 @@ void CNtlFSMCharActAgent::ServerStateDestMove(sCHARSTATE *pServerState)
 	sCHARSTATE_BASE *pBase = &pServerState->sCharStateBase;
 	sCHARSTATE_DESTMOVE *pDestMove = &pServerState->sCharStateDetail.sCharStateDestMove;
 
-	// Dest location counter´Â ¹İµå½Ã 1 ÀÌ»óÀÌ¾î¾ß ÇÑ´Ù
+	// Dest location counterëŠ” ë°˜ë“œì‹œ 1 ì´ìƒì´ì–´ì•¼ í•œë‹¤
 	if ( 0 == pDestMove->byDestLocCount )
 	{
 		DBO_WARNING_MESSAGE( "A dest location counter must be one more." );
@@ -1539,7 +1539,7 @@ void CNtlFSMCharActAgent::ServerStateDestMove(sCHARSTATE *pServerState)
 		return;
 	}
 
-	// Dest location counter´Â ¹İµå½Ã DBO_MAX_NEXT_DEST_LOC_COUNT º¸´Ù ÀÛ°Å³ª °°¾Æ¾ß ÇÑ´Ù
+	// Dest location counterëŠ” ë°˜ë“œì‹œ DBO_MAX_NEXT_DEST_LOC_COUNT ë³´ë‹¤ ì‘ê±°ë‚˜ ê°™ì•„ì•¼ í•œë‹¤
 	if ( pDestMove->byDestLocCount > DBO_MAX_NEXT_DEST_LOC_COUNT )
 	{
 		DBO_WARNING_MESSAGE( "A dest location counter must be less equal than DBO_MAX_NEXT_DEST_LOC_COUNT." );
@@ -1598,7 +1598,7 @@ void CNtlFSMCharActAgent::ServerStateDestMove(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server follow state update ºĞ¼® ÇÔ¼ö.
+//  des : server follow state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -1652,7 +1652,7 @@ void CNtlFSMCharActAgent::ServerStateFalling(sCHARSTATE* pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server dash state update ºĞ¼® ÇÔ¼ö.
+//  des : server dash state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -1670,7 +1670,7 @@ void CNtlFSMCharActAgent::ServerStateDash(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server teleport state update ºĞ¼® ÇÔ¼ö.
+//  des : server teleport state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -1692,7 +1692,7 @@ void CNtlFSMCharActAgent::ServerStateTeleporting(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server sliding state update ºĞ¼® ÇÔ¼ö.
+//  des : server sliding state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -1710,7 +1710,7 @@ void CNtlFSMCharActAgent::ServerStateSliding(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server knockdown state update ºĞ¼® ÇÔ¼ö.
+//  des : server knockdown state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -1739,7 +1739,7 @@ void CNtlFSMCharActAgent::ServerStateKnockDown(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server sutn state update ºĞ¼® ÇÔ¼ö.
+//  des : server sutn state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -1754,7 +1754,7 @@ void CNtlFSMCharActAgent::ServerStateStun(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server sleep state update ºĞ¼® ÇÔ¼ö.
+//  des : server sleep state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -1767,7 +1767,7 @@ void CNtlFSMCharActAgent::ServerStateSleep(sCHARSTATE *pServerState)
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server paralyze state update ºĞ¼® ÇÔ¼ö.
+//  des : server paralyze state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -1779,7 +1779,7 @@ void CNtlFSMCharActAgent::ServerStateParalyze(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server focus state update ºĞ¼® ÇÔ¼ö.
+//  des : server focus state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -1791,7 +1791,7 @@ void CNtlFSMCharActAgent::ServerStateFocusing(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server casting state update ºĞ¼® ÇÔ¼ö.
+//  des : server casting state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -1814,7 +1814,7 @@ void CNtlFSMCharActAgent::ServerStateCasting(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server HTB state update ºĞ¼® ÇÔ¼ö.
+//  des : server HTB state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -1826,7 +1826,7 @@ void CNtlFSMCharActAgent::ServerStateHTB(sCHARSTATE *pServerState)
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server Sandbag state update ºĞ¼® ÇÔ¼ö.
+//  des : server Sandbag state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -1837,7 +1837,7 @@ void CNtlFSMCharActAgent::ServerStateHTBSandbag(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server item casting state update ºĞ¼® ÇÔ¼ö.
+//  des : server item casting state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -1860,7 +1860,7 @@ void CNtlFSMCharActAgent::ServerStateItemCasting(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server faint state update ºĞ¼® ÇÔ¼ö.
+//  des : server faint state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -1885,7 +1885,7 @@ void CNtlFSMCharActAgent::ServerStateFainting(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server private shop state update ºĞ¼® ÇÔ¼ö.
+//  des : server private shop state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -1908,7 +1908,7 @@ void CNtlFSMCharActAgent::ServerStatePrivateShop(sCHARSTATE *pServerState)
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server direction state update ºĞ¼® ÇÔ¼ö.
+//  des : server direction state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -1929,7 +1929,7 @@ void CNtlFSMCharActAgent::ServerStateDirection(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server operation state update ºĞ¼® ÇÔ¼ö.
+//  des : server operation state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -1953,7 +1953,7 @@ void CNtlFSMCharActAgent::ServerStateOperation(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server despawn state update ºĞ¼® ÇÔ¼ö.
+//  des : server despawn state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -1972,7 +1972,7 @@ void CNtlFSMCharActAgent::ServerStateDespawn(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server camping state update ºĞ¼® ÇÔ¼ö.
+//  des : server camping state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -1984,7 +1984,7 @@ void CNtlFSMCharActAgent::ServerStateCamping(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server leaving state update ºĞ¼® ÇÔ¼ö.
+//  des : server leaving state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -1996,7 +1996,7 @@ void CNtlFSMCharActAgent::ServerStateLeaving(sCHARSTATE *pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server RideOn state update ºĞ¼® ÇÔ¼ö.
+//  des : server RideOn state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -2012,7 +2012,7 @@ void CNtlFSMCharActAgent::ServerStateRideOn( sCHARSTATE *pServerState )
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : server Turning state update ºĞ¼® ÇÔ¼ö.
+//  des : server Turning state update ë¶„ì„ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : server state update data structer
@@ -2064,7 +2064,7 @@ void CNtlFSMCharActAgent::ServerStateAirDashAccel(sCHARSTATE * pServerState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : update ÇÔ¼ö.
+//  des : update í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : delta time.
@@ -2077,7 +2077,7 @@ void CNtlFSMCharActAgent::Update(RwReal fElapsed)
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : event Ã³¸® ÇÔ¼ö.
+//  des : event ì²˜ë¦¬ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : event message.
@@ -2155,8 +2155,8 @@ RwUInt32 CNtlFSMCharActAgent::HandleEvents(RWS::CMsg &pMsg)
 				}
 			}
 
-			// reflection damage¸¦ Ãâ·ÂÇÑ´Ù.
-			// ¿©±â´Â Áß¿äÇÑ ºÎºĞ.
+			// reflection damageë¥¼ ì¶œë ¥í•œë‹¤.
+			// ì—¬ê¸°ëŠ” ì¤‘ìš”í•œ ë¶€ë¶„.
 			if(bReflection)
 			{
 				SNtlEventSobHit *pHit		= reinterpret_cast<SNtlEventSobHit*>(pMsg.pData);
@@ -2228,7 +2228,7 @@ RwUInt32 CNtlFSMCharActAgent::HandleEvents(RWS::CMsg &pMsg)
 			pCtrlStuff->sVehicle.idxVehicleItem = pData->tblVehicleItem;
 			NTL_RETURN(NTL_FSM_EVENTRES_BLOCK);
 		}
-        else if(pMsg.Id == g_EventSobUpdateLPStatusNfy) // ºó»ç »óÅÂ Ã¼Å©
+        else if(pMsg.Id == g_EventSobUpdateLPStatusNfy) // ë¹ˆì‚¬ ìƒíƒœ ì²´í¬
         {
             SNtlEventSobUpdateLPStatusNfy* pNfy = (SNtlEventSobUpdateLPStatusNfy*)pMsg.pData;
             if(IsEmergency() != pNfy->bEmergency)
@@ -2281,7 +2281,7 @@ RwUInt32 CNtlFSMCharActAgent::HandleEvents(RWS::CMsg &pMsg)
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : ÇöÀç »óÅÂ°¡ ³¡³µÀ» ¶§ next »óÅÂ¸¦ °áÁ¤ÇÑ´Ù.
+//  des : í˜„ì¬ ìƒíƒœê°€ ëë‚¬ì„ ë•Œ next ìƒíƒœë¥¼ ê²°ì •í•œë‹¤.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : current state
@@ -2450,7 +2450,7 @@ RwUInt32 CNtlFSMCharActAgent::AcquireSkillActionProc(void)
 {
 	if( IsFightingMode() )
 	{
-		// move stuff ¼Ó¼º setting
+		// move stuff ì†ì„± setting
 		CNtlBeCharData *pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData()); 
 
 		SCtrlStuff *pCtrlStuff = pBeData->GetCtrlStuff();
@@ -2472,14 +2472,14 @@ RwUInt32 CNtlFSMCharActAgent::AcquireSkillActionProc(void)
 		return NTL_FSMSID_FIGHTING_POSE;
 	}
 	else
-		return NTL_FSMSID_FIGHTING_POSE;        // ÆÄÀÌÆÃ ¸ğµå°¡ ¾Æ´Ò¶§µµ ÆÄÀÌÆÃÆ÷Áî->º¸°£À» ÇÑ´Ù.
+		return NTL_FSMSID_FIGHTING_POSE;        // íŒŒì´íŒ… ëª¨ë“œê°€ ì•„ë‹ë•Œë„ íŒŒì´íŒ…í¬ì¦ˆ->ë³´ê°„ì„ í•œë‹¤.
 }
 
 RwUInt32 CNtlFSMCharActAgent::AcquireHTBProc(void)
 {
 	if( IsFightingMode() )
 	{
-		// move stuff ¼Ó¼º setting
+		// move stuff ì†ì„± setting
 		CNtlBeCharData *pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData()); 
 
 		SCtrlStuff *pCtrlStuff = pBeData->GetCtrlStuff();
@@ -2764,13 +2764,13 @@ void CNtlFSMCharActAgent::ConditionConfused(RwBool bAffect)
 {
     if(bAffect)
     {
-        // confused effect »ı¼º
+        // confused effect ìƒì„±
         if(!m_pConditionConfuse)
         {
             m_pConditionConfuse = CreateVisualSystemEffect(NTL_VID_STATE_CONFUSED);
             SetDirectMode(TRUE);
 
-            // ½ÇÁ¦ Ã³¸®´Â ÀÌº¥Æ®¸¦ ¹ŞÀ¸¸é Ã³¸®
+            // ì‹¤ì œ ì²˜ë¦¬ëŠ” ì´ë²¤íŠ¸ë¥¼ ë°›ìœ¼ë©´ ì²˜ë¦¬
         }
     }
     else
@@ -2791,7 +2791,7 @@ void CNtlFSMCharActAgent::ConditionTerror(RwBool bAffect)
 {
     if(bAffect)
     {
-        // terror effect »ı¼º
+        // terror effect ìƒì„±
         if(!m_pConditionTerror)
         {
             m_pConditionTerror = CreateVisualSystemEffect(NTL_VID_STATE_TERROR);
@@ -2816,7 +2816,7 @@ void CNtlFSMCharActAgent::ConditionTaunt( RwBool bAffect )
 {
     if(bAffect)
     {
-        // taunt effect »ı¼º
+        // taunt effect ìƒì„±
         if(!m_pConditionTaunt)
         {
             m_pConditionTaunt = CreateVisualSystemEffect(NTL_VID_STATE_TAUNT);
@@ -2838,7 +2838,7 @@ void CNtlFSMCharActAgent::ConditionTransparent( RwBool bAffect )
 
     if(bAffect)
     {
-        // ¾Æ¹ÙÅ¸´Â º¸ÀÌÁö ¾Ê´Â°Ô ¾Æ´Ï¶ó, ¾ËÆÄ¸¸ ¸Ô¿©ÁØ´Ù.
+        // ì•„ë°”íƒ€ëŠ” ë³´ì´ì§€ ì•ŠëŠ”ê²Œ ì•„ë‹ˆë¼, ì•ŒíŒŒë§Œ ë¨¹ì—¬ì¤€ë‹¤.
         if(m_pActor->GetClassID() == SLCLASS_AVATAR)
         {
             m_pSystemGMAlpha = m_pActor->GetSobProxy()->AddVisualSystemEffectAlphaBlend(0.5f, 0.0f, TRUE);
@@ -2880,7 +2880,7 @@ void CNtlFSMCharActAgent::ConditionInvisible( RwBool bAffect )
 
 void CNtlFSMCharActAgent::ConditionHidingKi( RwBool bAffect ) 
 {
-    // ¾Æ¹ÙÅ¸¸¸ ±â¼û±â±â½Ã¿¡ Alpha¸¦ Ã³¸®ÇÑ´Ù.
+    // ì•„ë°”íƒ€ë§Œ ê¸°ìˆ¨ê¸°ê¸°ì‹œì— Alphaë¥¼ ì²˜ë¦¬í•œë‹¤.
     if(m_pActor->GetClassID() == SLCLASS_AVATAR)
     {
         if(IsHidingKi() == bAffect)
@@ -2953,7 +2953,7 @@ void CNtlFSMCharActAgent::SetTransformSequela(RwBool bSequela)
 {
     m_uActMode.bitSequela = bSequela;
 
-    // ¾Æ¹ÙÅ¸¶ó¸é º¯½Å ÈŞÀ¯Áõ ÀÌº¥Æ®¸¦ º¸³½´Ù.
+    // ì•„ë°”íƒ€ë¼ë©´ ë³€ì‹  íœ´ìœ ì¦ ì´ë²¤íŠ¸ë¥¼ ë³´ë‚¸ë‹¤.
     if(bSequela && m_pActor->GetClassID() == SLCLASS_AVATAR)
     {
         CNtlSLEventGenerator::SobTransformSequela(m_pActor->GetSerialID());        

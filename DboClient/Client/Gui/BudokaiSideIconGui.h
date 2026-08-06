@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: BudokaiSideIconGui.h
 * Author		: Haesung, Cho
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 4. 24
 * Abstract		: 
 *****************************************************************************
-* Desc			: ÃµÇÏÁ¦ÀÏ¹«µµÈ¸ °øÁö SideIcon
+* Desc			: ì²œí•˜ì œì¼ë¬´ë„íšŒ ê³µì§€ SideIcon
 *****************************************************************************/
 
 #ifndef _BUDOKAI_SIDE_ICON_GUI_H_
@@ -17,8 +17,8 @@
 #include "Windowby3.h"
 
 // Time
-#define dBUDOKAI_NOTICE_SYSTEM_TIME		5.0f		// ½Ã½ºÅÛ °øÁö ½Ã°£
-#define dBUDOKAI_NOTICE_GM_TIME			7.0f		// GM Time °øÁö ½Ã°£
+#define dBUDOKAI_NOTICE_SYSTEM_TIME		5.0f		// ì‹œìŠ¤í…œ ê³µì§€ ì‹œê°„
+#define dBUDOKAI_NOTICE_GM_TIME			7.0f		// GM Time ê³µì§€ ì‹œê°„
 
 #define dBUDOKAI_DEFAULT_HEIGHT			60
 

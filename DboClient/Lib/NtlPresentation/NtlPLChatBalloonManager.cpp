@@ -217,13 +217,13 @@ RwBool CNtlPLBalloonManager::CreateInstance(VOID)
 	m_pInstance->m_pTestText->Enable( false );
 	m_pInstance->m_pTestText->Show( false );
 
-	// Update ¿¬°á
+	// Update ì—°ê²°
 	GetNtlGuiManager()->AddUpdateFunc( m_pInstance );
 
-	// CallBack ¿¬°á
+	// CallBack ì—°ê²°
 	m_pInstance->m_slotPaint = m_pInstance->m_pThis->SigPaint().Connect( m_pInstance, &CNtlPLBalloonManager::OnPaint );
 
-	// Event ¿¬°á
+	// Event ì—°ê²°
 	m_pInstance->LinkMsg( g_EventShowSpectatorBalloon );
 	m_pInstance->LinkMsg( g_EventHideAllSpectatorBalloon );
 	
@@ -240,13 +240,13 @@ VOID CNtlPLBalloonManager::DeleteInstance(VOID)
 	// TestText
 	NTL_DELETE( m_pInstance->m_pTestText );
 
-	// Update ¿¬°áÇØÁ¦
+	// Update ì—°ê²°í•´ì œ
 	GetNtlGuiManager()->RemoveUpdateFunc( m_pInstance );
 
-	// CallBack ¿¬°á ÇØÁ¦
+	// CallBack ì—°ê²° í•´ì œ
 	m_pInstance->m_pThis->SigPaint().Disconnect(m_pInstance->m_slotPaint);
 
-	// Event ¿¬°áÇØÁ¦
+	// Event ì—°ê²°í•´ì œ
 	m_pInstance->UnLinkMsg( g_EventShowSpectatorBalloon );
 	m_pInstance->UnLinkMsg( g_EventHideAllSpectatorBalloon );
 	
@@ -312,13 +312,13 @@ VOID CNtlPLBalloonManager::Update( RwReal fElapsed )
 		}				
 	}
 
-	// °Å¸®¼ø Á¤·Ä
+	// ê±°ë¦¬ìˆœ ì •ë ¬
 	qsort( m_aDiaplsyBalloon, m_nDisplayCount, sizeof( stDISPLAYBALLOON ), &CNtlPLBalloonManager::Compare );
 }
 
 RwInt32 CNtlPLBalloonManager::Compare( const VOID* valLeft, const VOID* valRight )
 {
-	// °Å¸®°¡ ¸Õ °ÍÀ» ¸ÕÀú ÂïÈ÷µµ·Ï ¾ÕÀ¸·Î Á¤·Ä
+	// ê±°ë¦¬ê°€ ë¨¼ ê²ƒì„ ë¨¼ì € ì°íˆë„ë¡ ì•ìœ¼ë¡œ ì •ë ¬
 	stDISPLAYBALLOON* pLeft = (stDISPLAYBALLOON*)valLeft;
 	stDISPLAYBALLOON* pRight= (stDISPLAYBALLOON*)valRight;
 

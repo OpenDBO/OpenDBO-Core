@@ -497,7 +497,7 @@ RwInt32 CNtlPLResoucePackManager::SavePack(RwUInt8 byPackType, std::list<std::st
 	pResPack->ClearHeader();
 
 	//----------------------------------------------------
-	// ������ directory�� �����Ѵ�.
+	// 占쏙옙占쏙옙占쏙옙 directory占쏙옙 占쏙옙占쏙옙占싼댐옙.
 	RwChar strCurPath[NTL_MAX_DIR_PATH];
 	::GetCurrentDirectory(NTL_MAX_DIR_PATH, strCurPath);
 
@@ -884,7 +884,7 @@ void CNtlPLResoucePackManager::FilterPathBuffer(const RwChar *pPath, const RwCha
 	RwInt32 iOffset = 0;
 	RwInt32 iLen = 0;
 
-	// Ȯ���� filter �����.
+	// 확장자 filter 만들기.
 	iLen = (RwInt32)strlen(pFileName);
 	for(RwInt32 i = 0; i < iLen; i++)
 	{
@@ -907,7 +907,7 @@ void CNtlPLResoucePackManager::FilterPathBuffer(const RwChar *pPath, const RwCha
 	if(pPath == NULL)
 		return;
 
-	// path�� �ҹ��ڷ� �����.
+	// path를 소문자로 만들기.
 	m_iCurrPathNum = 0;
 	iOffset = 0;
 	iLen = (RwInt32)strlen(pPath);
@@ -1267,7 +1267,7 @@ void CNtlPLResoucePackManager::LoadFlash(const RwChar *pFileName, void **pData, 
 	if(pElement == NULL)
 		return;
 
-	// Flash Size�� int�� ����.
+	// Flash Size占쏙옙 int占쏙옙 占쏙옙占쏙옙.
 	if(pElement->uiSize >= 0x80000000 )
 		return;
 

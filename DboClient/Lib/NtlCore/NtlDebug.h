@@ -2,9 +2,9 @@
  *
  * File			: NtlDebug.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 7. 28	
- * Abstract		: memory / debug wrapping(RenderWare Studio ÂüÁ¶).
+ * Abstract		: memory / debug wrapping(RenderWare Studio ì°¸ì¡°).
  *****************************************************************************
  * Desc         : 
  *
@@ -21,9 +21,9 @@
 *
 * \ingroup debugmacros
 *
-* debug °ü·ÃÇØ¼­ renderware studioÀÇ macro¸¦ wrapping.
-* debugmacors.h/cpp¸¦ ÂüÁ¶ÇØ ÁÖ¼¼¿ä.
-* ASSERT ¹× Function Profiler°¡ Á¸Àç.
+* debug ê´€ë ¨í•´ì„œ renderware studioì˜ macroë¥¼ wrapping.
+* debugmacors.h/cppë¥¼ ì°¸ì¡°í•´ ì£¼ì„¸ìš”.
+* ASSERT ë° Function Profilerê°€ ì¡´ì¬.
 *
 */
 
@@ -106,9 +106,9 @@
 
 
 /*********************************************************************
-**	Assert¿Í trace¸¦ ·ÎÁ÷À» °ËÅäÇÏ¿© ÀÛ¾÷À» Çß´ÂÁö ¿©ºÎ¸¦
-**  ÆÇº°ÇÏ±â À§ÇØ ´ÙÀ½ ¸ÅÅ©·Î¸¦ ÀÌ¿ëÇÏ¿© ÁÖ½Ê½Ã¿ä.
-**  ÀÛ¾÷ÀÌ ¿Ï·áµÇ¸é ÀÌ¸§À» ÀÏ°ıÀûÀ¸·Î ¹Ù²Ùµµ·Ï ÇÏ°Ú½À´Ï´Ù.
+**	Assertì™€ traceë¥¼ ë¡œì§ì„ ê²€í† í•˜ì—¬ ì‘ì—…ì„ í–ˆëŠ”ì§€ ì—¬ë¶€ë¥¼
+**  íŒë³„í•˜ê¸° ìœ„í•´ ë‹¤ìŒ ë§¤í¬ë¡œë¥¼ ì´ìš©í•˜ì—¬ ì£¼ì‹­ì‹œìš”.
+**  ì‘ì—…ì´ ì™„ë£Œë˜ë©´ ì´ë¦„ì„ ì¼ê´„ì ìœ¼ë¡œ ë°”ê¾¸ë„ë¡ í•˜ê² ìŠµë‹ˆë‹¤.
 **********************************************************************/
 
 #define DBO_FAIL(msg)					NTL_ASSERTFAIL(msg)
@@ -155,26 +155,26 @@
 *
 * \ingroup MemHandler
 *
-* memory °ü·ÃÇØ¼­ renderware studioÀÇ macro¸¦ wrapping.
-* »ç¿ë ¹æ¹ıÀº memoryhandelr.h/cpp¸¦ ÂüÁ¶ÇØ ÁÖ¼¼¿ä.
-* RenderWare Studio¿¡¼­´Â new, delete operator ¿¬»êÀÚ¸¦ ÀçÁ¤ÀÇ ÇÏ°í ÀÖÀ¸¸ç, memory profiler ±â´ÉÀÌ Á¦°øµÈ´Ù.
-* ³»ºÎÀûÀ¸·Î malloc ÇÔ¼ö¸¦ »ç¿ëÇÑ´Ù.
-* ¶ÇÇÑ macro NTL_OP_NEW, NTL_NEW, NTL_OP_NEW_TYPE, NTL_NEW_TYPE Àº new ¿¬»êÀÚ¸¦ »ç¿ëÇÏ°í ÀÖÀ¸¸ç, 
-* __FILE__ , __LINE__ , Memory typeµîÀÇ momery profiler¿¡ ºÎ°¡ÀûÀÎ Á¤º¸¸¦ Ãß°¡ÇÏµµ·Ï µÇ¾î ÀÖ´Ù.
-* memory type¿¡´Â RWS_MEMORY_TYPE_RW, RWS_MEMORY_TYPE_STD, RWS_MEMORY_TYPE_RWS, RWS_MEMORY_TYPE_USER µîÀÌ 
-* Á¦°øµÇ°í ÀÖ´Âµ¥, µğ¹ö±ë »Ó¸¸¾Æ´Ï¶ó »ç¿ëÇÏ´Â ÇÔ¼öµµ ´Ù¸£´Ù.
-* RWS_MEMORY_TYPE_RW => RenderWare allocations ÀÎ RwMalloc, RwCalloc and RwRealloc functions¸¦ »ç¿ëÇÑ´Ù.
-* RWS_MEMORY_TYPE_STD => standard memory allocations, via the global operator new ¸¦ »ç¿ëÇÑ´Ù.
-* RWS_MEMORY_TYPE_RWS => standard memory allocations, via the global operator new ¸¦ »ç¿ëÇÏ°í, 'RWS_NEW' and 'RWS_OP_NEW'
-*						 macro°¡ »ç¿ëµÈ´Ù.	
-* RWS_MEMORY_TYPE_USER => standard memory allocations, via the global operator new ¸¦ »ç¿ëÇÏ°í, 'NTL_NEW_TYPE' and 'NTL_OP_NEW_TYPE'
-*						 macro°¡ »ç¿ëµÈ´Ù.	
+* memory ê´€ë ¨í•´ì„œ renderware studioì˜ macroë¥¼ wrapping.
+* ì‚¬ìš© ë°©ë²•ì€ memoryhandelr.h/cppë¥¼ ì°¸ì¡°í•´ ì£¼ì„¸ìš”.
+* RenderWare Studioì—ì„œëŠ” new, delete operator ì—°ì‚°ìë¥¼ ì¬ì •ì˜ í•˜ê³  ìˆìœ¼ë©°, memory profiler ê¸°ëŠ¥ì´ ì œê³µëœë‹¤.
+* ë‚´ë¶€ì ìœ¼ë¡œ malloc í•¨ìˆ˜ë¥¼ ì‚¬ìš©í•œë‹¤.
+* ë˜í•œ macro NTL_OP_NEW, NTL_NEW, NTL_OP_NEW_TYPE, NTL_NEW_TYPE ì€ new ì—°ì‚°ìë¥¼ ì‚¬ìš©í•˜ê³  ìˆìœ¼ë©°, 
+* __FILE__ , __LINE__ , Memory typeë“±ì˜ momery profilerì— ë¶€ê°€ì ì¸ ì •ë³´ë¥¼ ì¶”ê°€í•˜ë„ë¡ ë˜ì–´ ìˆë‹¤.
+* memory typeì—ëŠ” RWS_MEMORY_TYPE_RW, RWS_MEMORY_TYPE_STD, RWS_MEMORY_TYPE_RWS, RWS_MEMORY_TYPE_USER ë“±ì´ 
+* ì œê³µë˜ê³  ìˆëŠ”ë°, ë””ë²„ê¹… ë¿ë§Œì•„ë‹ˆë¼ ì‚¬ìš©í•˜ëŠ” í•¨ìˆ˜ë„ ë‹¤ë¥´ë‹¤.
+* RWS_MEMORY_TYPE_RW => RenderWare allocations ì¸ RwMalloc, RwCalloc and RwRealloc functionsë¥¼ ì‚¬ìš©í•œë‹¤.
+* RWS_MEMORY_TYPE_STD => standard memory allocations, via the global operator new ë¥¼ ì‚¬ìš©í•œë‹¤.
+* RWS_MEMORY_TYPE_RWS => standard memory allocations, via the global operator new ë¥¼ ì‚¬ìš©í•˜ê³ , 'RWS_NEW' and 'RWS_OP_NEW'
+*						 macroê°€ ì‚¬ìš©ëœë‹¤.	
+* RWS_MEMORY_TYPE_USER => standard memory allocations, via the global operator new ë¥¼ ì‚¬ìš©í•˜ê³ , 'NTL_NEW_TYPE' and 'NTL_OP_NEW_TYPE'
+*						 macroê°€ ì‚¬ìš©ëœë‹¤.	
 *
 */
 
 
 /*
-// RWS_MEMORY_TYPE_RW ÀÎÀÚ·Î »ç¿ëµÈ´Ù.
+// RWS_MEMORY_TYPE_RW ì¸ìë¡œ ì‚¬ìš©ëœë‹¤.
 void *RWSMalloc(size_t size, RwUInt32 hint);
 void RWSFree(void *pMem);
 void *RWSReAlloc(void *pMem, size_t newSize, RwUInt32 hint);
@@ -183,7 +183,7 @@ void *RWSCalloc(size_t num, size_t size, RwUInt32 hint);
 
 /**
 * \ingroup MemHandler
-* ============= »ç¿ë¹æ¹ı =============
+* ============= ì‚¬ìš©ë°©ë²• =============
 * int *pTemp = NTL_NEW int;
 * int *pTemp = NTL_NEW int[10];
 * ====================================
@@ -195,7 +195,7 @@ void *RWSCalloc(size_t num, size_t size, RwUInt32 hint);
 #define NTL_DELETE( p )					RWS_DELETE( p )
 #define NTL_ARRAY_DELETE( p )			RWS_ARRAY_DELETE( p )
 
-#define B2b(val) (val ? true : false)           ///< BOOLÇüÀ» boolÇüÀ¸·Î º¯°æÇÑ´Ù.
+#define B2b(val) (val ? true : false)           ///< BOOLí˜•ì„ boolí˜•ìœ¼ë¡œ ë³€ê²½í•œë‹¤.
 
 
 #endif

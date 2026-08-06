@@ -2,7 +2,7 @@
  *
  * File			: NtlFSMController.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2006. 2. 9	
  * Abstract		: FSM controller base class
  *****************************************************************************
@@ -49,7 +49,7 @@ public:
 		dump.Dump();
 	}
 
-    //--- Property ÇÔ¼öµé ---//
+    //--- Property í•¨ìˆ˜ë“¤ ---//
 	
 	void     SetControllerId(RwUInt32 uiStateId);
 	RwUInt32 GetControllerId(void) const;

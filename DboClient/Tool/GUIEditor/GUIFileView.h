@@ -4,20 +4,20 @@
 
 #define ID_TREECTRL 10002
 
-// CGUIFileView ºäÀÔ´Ï´Ù.
+// CGUIFileView ë·°ì…ë‹ˆë‹¤.
 
 class CGUIFileView : public CView
 {
 	DECLARE_DYNCREATE(CGUIFileView)
 
 protected:
-	CGUIFileView();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CGUIFileView();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CGUIFileView();
 
 	CDirTreeCtrlMSC	m_DirTree;
 
 public:
-	virtual void OnDraw(CDC* pDC);      // ÀÌ ºä¸¦ ±×¸®±â À§ÇØ ÀçÁ¤ÀÇµÇ¾ú½À´Ï´Ù.
+	virtual void OnDraw(CDC* pDC);      // ì´ ë·°ë¥¼ ê·¸ë¦¬ê¸° ìœ„í•´ ì¬ì •ì˜ë˜ì—ˆìŠµë‹ˆë‹¤.
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;

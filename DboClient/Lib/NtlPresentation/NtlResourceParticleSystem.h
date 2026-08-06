@@ -2,7 +2,7 @@
 //	File		:	NtlResourceParticleSystem.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -42,8 +42,8 @@ public:
 
 	std::string						m_strSubSystem;
 
-    SNtlPrtStdEmitterTrail          m_EmitterTrail;             ///< Trail Action °ü·Ã ÇÁ·ÎÆÛÆ¼
-	RwReal							m_fDepthBias;				///< Depth Bias °ª
+    SNtlPrtStdEmitterTrail          m_EmitterTrail;             ///< Trail Action ê´€ë ¨ í”„ë¡œí¼í‹°
+	RwReal							m_fDepthBias;				///< Depth Bias ê°’
 
 public:
 	CNtlResourceParticleSystem(const RwChar* strName);
@@ -62,5 +62,5 @@ public:
 public:
 	RwBool	IsPointEmitterDataFlag(RwUInt32 flag)		{ return (m_nPointEmitterDataFlag == flag) ? TRUE : FALSE; }
     
-    void    SetFollowFlag(BOOL bFollow);                ///< ÆÄÆ¼Å¬ÀÌ »ý¼ºÀ§Ä¡¸¦ µû¶ó´Ù´ÒÁö À¯¹«¸¦ ¼³Á¤ÇÑ´Ù.
+    void    SetFollowFlag(BOOL bFollow);                ///< íŒŒí‹°í´ì´ ìƒì„±ìœ„ì¹˜ë¥¼ ë”°ë¼ë‹¤ë‹ì§€ ìœ ë¬´ë¥¼ ì„¤ì •í•œë‹¤.
 };

@@ -1,4 +1,4 @@
-// Attr_EVT_ClickNPC.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_EVT_ClickNPC.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_EVT_ClickNPC.h"
 
 
-// CAttr_EVT_ClickNPC ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_EVT_ClickNPC ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_EVT_ClickNPC, CAttr_Page, 1)
 
@@ -51,4 +51,4 @@ BEGIN_MESSAGE_MAP(CAttr_EVT_ClickNPC, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_EVT_ClickNPC ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_EVT_ClickNPC ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

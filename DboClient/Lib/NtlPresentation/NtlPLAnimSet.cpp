@@ -21,9 +21,9 @@ CNtlPLAnimSet::~CNtlPLAnimSet()
 }
 
 /**
- * FrameÀÇ Hierarchy¸¦ ¾ò¾î ¿Â´Ù.
- * \param *frame ÇöÀç frame
- * \param *data return¸¦ ÇÒ Hierarchy
+ * Frameì˜ Hierarchyë¥¼ ì–»ì–´ ì˜¨ë‹¤.
+ * \param *frame í˜„ì¬ frame
+ * \param *data returnë¥¼ í•  Hierarchy
  */
 static RwFrame *GetChildFrameHierarchy(RwFrame *frame, void *data)
 {    
@@ -43,8 +43,8 @@ static RwFrame *GetChildFrameHierarchy(RwFrame *frame, void *data)
 }
 
 /**
- * Skin¿¡ Hierarchy¸¦ SettingÀ» ÇÑ´Ù.
- * \param *atomic ÇöÀç atomic
+ * Skinì— Hierarchyë¥¼ Settingì„ í•œë‹¤.
+ * \param *atomic í˜„ì¬ atomic
  * \param *data Hierarchy 
  */
 static RpAtomic *SetHierarchyForSkinAtomic(RpAtomic *atomic, void *data)
@@ -74,9 +74,9 @@ float Max(float x, float y)
 }
 
 /**
- * AnimSet¸¦ »ı¼ºÀ» ÇÑ´Ù.
+ * AnimSetë¥¼ ìƒì„±ì„ í•œë‹¤.
  * \param *pClump Target Clump
- * \param *pDefaultAnim Default Animation(Idle): Hierarchy¸¦ »ı¼ºÇÏ±â À§ÇØ¼­ ÇÊ¿ä
+ * \param *pDefaultAnim Default Animation(Idle): Hierarchyë¥¼ ìƒì„±í•˜ê¸° ìœ„í•´ì„œ í•„ìš”
  */
 void CNtlPLAnimSet::Create(RpClump *pClump, RtAnimAnimation *pDefaultAnim, CNtlPLCharacter *pOwner)
 {
@@ -99,15 +99,15 @@ void CNtlPLAnimSet::CreateAnimation(RtAnimAnimation *pDefaultAnim)
 	NTL_ASSERT(m_pTargetClump != NULL, "m_pTargetClump = NULL");
 	NTL_ASSERT(pDefaultAnim != NULL, "pDefaultAnim = NULL");
 
-	//Hierarchy¸¦ ¾ò¾î¿Â´Ù.
+	//Hierarchyë¥¼ ì–»ì–´ì˜¨ë‹¤.
 	RwFrameForAllChildren( RpClumpGetFrame(m_pTargetClump), 
 		                   GetChildFrameHierarchy, 
 						   (void *)&m_pMainHierarchy);
 
-	//Skin¿¡ Hierarchy Á¤º¸¸¦ ÁØ´Ù.
+	//Skinì— Hierarchy ì •ë³´ë¥¼ ì¤€ë‹¤.
 	RpClumpForAllAtomics( m_pTargetClump, SetHierarchyForSkinAtomic, (void *)m_pMainHierarchy);
 
-	//Default Animation¸¦ ¼¼ÆÃÇÑ´Ù.
+	//Default Animationë¥¼ ì„¸íŒ…í•œë‹¤.
 	RpHAnimHierarchySetCurrentAnim(m_pMainHierarchy, pDefaultAnim);
 	
 	
@@ -126,7 +126,7 @@ void CNtlPLAnimSet::CreateAnimation(RtAnimAnimation *pDefaultAnim)
 			RpHAnimHierarchyGetFlags(m_pMainHierarchy),
 			m_pMainHierarchy->currentAnim->maxInterpKeyFrameSize);
 		
-		//Default AnimÀÌ ¾øÀ¸¸é AddTogether ¿¬»ê½Ã ¿¡·¯°¡ ³­´Ù.
+		//Default Animì´ ì—†ìœ¼ë©´ AddTogether ì—°ì‚°ì‹œ ì—ëŸ¬ê°€ ë‚œë‹¤.
 		RpHAnimHierarchySetCurrentAnim(m_Channel[i].pHierarchy,      pDefaultAnim);
 	}
 	m_eBlendType    = BLEND_TWEEN;
@@ -141,7 +141,7 @@ void CNtlPLAnimSet::CreateAnimation(RtAnimAnimation *pDefaultAnim)
 }
 
 /**
- * AnimSet¸¦ Destory ÇÑ´Ù.
+ * AnimSetë¥¼ Destory í•œë‹¤.
  */
 void CNtlPLAnimSet::Destroy()
 {
@@ -185,9 +185,9 @@ void CNtlPLAnimSet::SendFootStep()
 }
 
 /*
- * AnimSet¸¦ Update¸¦ ÇÏ´Â ÇÔ¼öÀÌ¸ç 2°³ÀÇ Animation
- * °£ÀÇ Blend¸¦ Ã³¸®¸¦ ÇÑ´Ù.
- * \param fElapsed ÀÌÀü ½Ã°£¿¡¼­ °æ°úµÈ ½Ã°£
+ * AnimSetë¥¼ Updateë¥¼ í•˜ëŠ” í•¨ìˆ˜ì´ë©° 2ê°œì˜ Animation
+ * ê°„ì˜ Blendë¥¼ ì²˜ë¦¬ë¥¼ í•œë‹¤.
+ * \param fElapsed ì´ì „ ì‹œê°„ì—ì„œ ê²½ê³¼ëœ ì‹œê°„
  */
 void CNtlPLAnimSet::Update(float fElapsed)
 {
@@ -275,7 +275,7 @@ void CNtlPLAnimSet::Update(float fElapsed)
 				m_bAnimChanging = FALSE;
 				m_fBlendAlpha = 0.f;
 
-				//Next AnimationÀÇ »óÅÂ ¹× Ani Á¤º¸¸¦ Current·Î ¿Å±ä´Ù.
+				//Next Animationì˜ ìƒíƒœ ë° Ani ì •ë³´ë¥¼ Currentë¡œ ì˜®ê¸´ë‹¤.
 				RpHAnimHierarchySetCurrentAnim( m_Channel[ANIM_CHANNEL_CURRENT].pHierarchy,
 					                            RpHAnimHierarchyGetCurrentAnim(m_Channel[ANIM_CHANNEL_NEXT].pHierarchy) );
 				float animTime = m_Channel[ANIM_CHANNEL_NEXT].pHierarchy->currentAnim->currentTime;
@@ -298,9 +298,9 @@ void CNtlPLAnimSet::Update(float fElapsed)
 	NTL_RETURNVOID();
 }
 /**
- * Animation¸¦ Change¸¦ ÇÑ´Ù.
- * \param *pAnim ÇöÀç Play¸¦ ÇÒ RtAnimation
- * \param bLoop Loop AnimationÀÎ°¡(ÀÌºÎºĞÀº ¾ÆÁ÷ ÄÚµù ¾ÈÇÔ)
+ * Animationë¥¼ Changeë¥¼ í•œë‹¤.
+ * \param *pAnim í˜„ì¬ Playë¥¼ í•  RtAnimation
+ * \param bLoop Loop Animationì¸ê°€(ì´ë¶€ë¶„ì€ ì•„ì§ ì½”ë”© ì•ˆí•¨)
  */
 void CNtlPLAnimSet::SetChangeAnimation(SAnimData *pAnimData, RwBool bLoop, unsigned int uiAnimKey)
 {
@@ -316,7 +316,7 @@ void CNtlPLAnimSet::SetChangeAnimation(SAnimData *pAnimData, RwBool bLoop, unsig
 		}
 		else
 		{
-			//Next AnimationÀÇ »óÅÂ ¹× Ani Á¤º¸¸¦ Current·Î ¿Å±ä´Ù.
+			//Next Animationì˜ ìƒíƒœ ë° Ani ì •ë³´ë¥¼ Currentë¡œ ì˜®ê¸´ë‹¤.
 			RpHAnimHierarchySetCurrentAnim( m_Channel[ANIM_CHANNEL_CURRENT].pHierarchy,
 											RpHAnimHierarchyGetCurrentAnim(m_Channel[ANIM_CHANNEL_NEXT].pHierarchy) );
 			
@@ -350,8 +350,8 @@ void CNtlPLAnimSet::SetChangeChannelAnimation(EAnimChannel eChannel, RtAnimAnima
 /**
  *
  * \param blendType BlendType
- * \param fBlendTargetAlpha    º¯ÇØ¾ß ÇÒ BlendÀÇ °ª(0 - 1)
- * \param fBlendTargetInterval TargetAlpha±îÁö Blend°¡ µÇ¾îÁú ½Ã°£(ÃÊ)
+ * \param fBlendTargetAlpha    ë³€í•´ì•¼ í•  Blendì˜ ê°’(0 - 1)
+ * \param fBlendTargetInterval TargetAlphaê¹Œì§€ Blendê°€ ë˜ì–´ì§ˆ ì‹œê°„(ì´ˆ)
  * \return 
  */
 RwBool CNtlPLAnimSet::SetChangeBlend(EBlendType blendType, RwReal fBlendTargetAlpha, RwReal fBlendTargetInterval)

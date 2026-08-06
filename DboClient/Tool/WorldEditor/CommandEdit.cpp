@@ -1,4 +1,4 @@
-// CommandEdit.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// CommandEdit.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -67,5 +67,5 @@ BOOL CCommandEdit::PreTranslateMessage( MSG* pMsg )
 	return CEdit::PreTranslateMessage( pMsg );
 }
 
-// CCommandEdit ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CCommandEdit ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 

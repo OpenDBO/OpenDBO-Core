@@ -137,11 +137,11 @@ RwBool CMoviePlayer::ReadyMovie(const char* pcFileName, eMovieSizeType eSizeType
 	}
 
 
-	// µ¥¸ð¹öÀüÀÇ ·Î°íÇ¥½Ã¸¦ ¾ø¾Ö·Á¸é ±¸¸ÅÇÑ Á¦Ç°ID ¿Í ÀÎÁõÅ°¸¦ ¿©±â¿¡ »ç¿ëÇÏ¿©¾ß ÇÕ´Ï´Ù.
+	// ë°ëª¨ë²„ì „ì˜ ë¡œê³ í‘œì‹œë¥¼ ì—†ì• ë ¤ë©´ êµ¬ë§¤í•œ ì œí’ˆID ì™€ ì¸ì¦í‚¤ë¥¼ ì—¬ê¸°ì— ì‚¬ìš©í•˜ì—¬ì•¼ í•©ë‹ˆë‹¤.
 	m_BVL.Verify(dBVL_NTL_ID, dBVL_NTL_PASSWARD);
 
 
-	// µ¿¿µ»ó ÆÄÀÏ ¿­±â, ¿ÀÇÁ´× µ¿¿µ»óÀº OpenAsync() ´ë½Å Open()À» »ç¿ëÇÏ´Â°ÍÀÌ ÁÁ½À´Ï´Ù.
+	// ë™ì˜ìƒ íŒŒì¼ ì—´ê¸°, ì˜¤í”„ë‹ ë™ì˜ìƒì€ OpenAsync() ëŒ€ì‹  Open()ì„ ì‚¬ìš©í•˜ëŠ”ê²ƒì´ ì¢‹ìŠµë‹ˆë‹¤.
 	hr = m_BVL.Open(pcFileName, BVL_OPEN_OPT_AUTOPLAY);
 	if(FAILED(hr))
 	{
@@ -167,7 +167,7 @@ RwBool CMoviePlayer::ReadyMovie(const char* pcFileName, eMovieSizeType eSizeType
 	{
 	case MOVIE_SIZE_ORIGINAL:
 		{
-			// µ¿¿µ»óÀÇ °¡·Î, ¼¼·ÎÀÇ ÇØ»óµµ¸¦ º¸Á¸ÇÏ¸é¼­ È­¸é Áß¾Ó¿¡ À§Ä¡ÇÏµµ·Ï ÇÑ´Ù
+			// ë™ì˜ìƒì˜ ê°€ë¡œ, ì„¸ë¡œì˜ í•´ìƒë„ë¥¼ ë³´ì¡´í•˜ë©´ì„œ í™”ë©´ ì¤‘ì•™ì— ìœ„ì¹˜í•˜ë„ë¡ í•œë‹¤
 			RwReal fMovieTop	= (RwReal)((iScreenHeight - info.height) / 2.f);
 			RwReal fMovieBottom	= fMovieTop + info.height;
 			RwReal fMovieLeft	= (RwReal)((iScreenWidth - info.width) / 2.f);
@@ -186,7 +186,7 @@ RwBool CMoviePlayer::ReadyMovie(const char* pcFileName, eMovieSizeType eSizeType
 		}
 	case MOVIE_SIZE_RATIO_FULL:
 		{
-			// µ¿¿µ»óÀÇ ¼öÆò ÇØ»óµµ¿Í È­¸éÀÇ ÇØ»óµµ ¼öÆò ÇØ»óµµ¿ÍÀÇ ºñÀ²¿¡ µû¶ó µ¿¿µ»óÀÇ ¼öÁ÷ ±æÀÌ¸¦ Á¶ÀýÇÑ´Ù
+			// ë™ì˜ìƒì˜ ìˆ˜í‰ í•´ìƒë„ì™€ í™”ë©´ì˜ í•´ìƒë„ ìˆ˜í‰ í•´ìƒë„ì™€ì˜ ë¹„ìœ¨ì— ë”°ë¼ ë™ì˜ìƒì˜ ìˆ˜ì§ ê¸¸ì´ë¥¼ ì¡°ì ˆí•œë‹¤
 			RwReal fAdjustMovieHight	= ((RwReal)iScreenWidth / (RwReal)info.width) * (RwReal)info.height;
 			RwReal fMovieTop			= ((RwReal)iScreenHeight - fAdjustMovieHight) / 2.f;
 			RwReal fMovieBottom			= fMovieTop + fAdjustMovieHight;
@@ -204,8 +204,8 @@ RwBool CMoviePlayer::ReadyMovie(const char* pcFileName, eMovieSizeType eSizeType
 		}
 	case MOVIE_SIZE_FULL:
 		{
-			// µ¿¿µ»óÀÇ °¡·Î, ¼¼·ÎÀÇ ÇØ»óµµ°¡ È­¸éÀÇ ÇØ»óµµ ¼öÆò ÇØ»óµµ¿ÍÀÇ ºñÀ²ÀÌ Å« ÂÊÀ»
-			// ±âÁØÀ¸·Î µ¿¿µ»óÀÇ °¡·Î, ¼¼·Î ±æÀÌ¸¦ ´Ã·Á È­¸é¿¡ ²Ë Â÷µµ·Ï ÇÑ´Ù.
+			// ë™ì˜ìƒì˜ ê°€ë¡œ, ì„¸ë¡œì˜ í•´ìƒë„ê°€ í™”ë©´ì˜ í•´ìƒë„ ìˆ˜í‰ í•´ìƒë„ì™€ì˜ ë¹„ìœ¨ì´ í° ìª½ì„
+			// ê¸°ì¤€ìœ¼ë¡œ ë™ì˜ìƒì˜ ê°€ë¡œ, ì„¸ë¡œ ê¸¸ì´ë¥¼ ëŠ˜ë ¤ í™”ë©´ì— ê½‰ ì°¨ë„ë¡ í•œë‹¤.
 			RwReal fScaleWidth, fScaleHeight;
 			RwReal fMovieTop, fMovieBottom, fMovieLeft, fMovieRight;
 
@@ -331,7 +331,7 @@ RwBool CMoviePlayer::IsPlay()
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-///         D3D °ø°£¿¡ »ç°¢ Æò¸éÀ» »ý¼ºÇÏ°í °Å±â¿¡ µ¿¿µ»ó ÅØ½ºÃ³¸¦ ÀÔÈû
+///         D3D ê³µê°„ì— ì‚¬ê° í‰ë©´ì„ ìƒì„±í•˜ê³  ê±°ê¸°ì— ë™ì˜ìƒ í…ìŠ¤ì²˜ë¥¼ ìž…íž˜
 /// @param  
 /// @return 
 /// @date   Thursday, February 05, 2009  11:08:42 AM
@@ -376,21 +376,21 @@ VOID CMoviePlayer::Render()
 	if( false == IsPlay() )
 		return;
 
-	// »õ·Î¿î ÇÁ·¹ÀÓÀÌ ÀÖ´ÂÁö È®ÀÎÇÑ´Ù.
+	// ìƒˆë¡œìš´ í”„ë ˆìž„ì´ ìžˆëŠ”ì§€ í™•ì¸í•œë‹¤.
 	if(m_BVL.CheckFrame())
 	{
 		HRESULT hr;
 		IDirect3DTexture9* curframe;
 
-		// ÇÁ·¹ÀÓ µ¥ÀÌÅ¸¸¦ °¡Á®¿Â´Ù.
+		// í”„ë ˆìž„ ë°ì´íƒ€ë¥¼ ê°€ì ¸ì˜¨ë‹¤.
 		hr = m_BVL.GetLastFrame(&curframe);
 		if( FAILED(hr) )
 			return;
 
-		// È­¸é Ãâ·Â
+		// í™”ë©´ ì¶œë ¥
 		RenderD3D(curframe);
 
-		// ÀÛ¾÷ ¿Ï·á
+		// ìž‘ì—… ì™„ë£Œ
 		m_BVL.ReleaseLastFrame(curframe);
 	}
 }
@@ -435,7 +435,7 @@ eMOVIE_HANDLE_EVENT_RESULT CMoviePlayer::HandleEvent(HWND hWnd, UINT message, WP
 
 	case WM_ACTIVATE:
 		{
-			// Minimize ¶Ç´Â Active ºñÈ°¼ºÈ­
+			// Minimize ë˜ëŠ” Active ë¹„í™œì„±í™”
 			if ( LOWORD( wParam ) == WA_INACTIVE || ::IsIconic( hWnd ) )
 			{
 				if ( IsPlay() )

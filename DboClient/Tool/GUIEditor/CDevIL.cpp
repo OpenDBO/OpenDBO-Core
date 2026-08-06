@@ -1,10 +1,10 @@
 //-----------------------------------------------------------------------------
 // Name: class CDevIL
-// Desc: DevIL SDK¸¦ ÀÌ¿ëÇÏ¿© ÀÌ¹ÌÁö¸¦ ·ÎµåÇÏ´Â Å¬·¡½º.
+// Desc: DevIL SDKë¥¼ ì´ìš©í•˜ì—¬ ì´ë¯¸ì§€ë¥¼ ë¡œë“œí•˜ëŠ” í´ëž˜ìŠ¤.
 //
 //			 
 // 2004.08	  KlayMan@gs
-// 2006.01.16 Peessi@hitel.net  Á¤¸® ¹× ¸ðµâÈ­
+// 2006.01.16 Peessi@hitel.net  ì •ë¦¬ ë° ëª¨ë“ˆí™”
 //-----------------------------------------------------------------------------
 
 #include "stdafx.h"					// for Windows MFC
@@ -49,55 +49,55 @@ void CDevIL::Init()
 
 void CDevIL::Shutdown()
 {
-	Unload();		// ·ÎµåµÇ¾î ÀÖ´Â°É ¿ì¼± Áö¿î´Ù.
+	Unload();		// ë¡œë“œë˜ì–´ ìžˆëŠ”ê±¸ ìš°ì„  ì§€ìš´ë‹¤.
 	ilShutDown();	
 }
 
 BOOL CDevIL::Load( LPCTSTR szFilename )
 {
-	// IL0. ±âÁ¸ Image¸¦ ÆÄ±«ÇÑ´Ù. 
+	// IL0. ê¸°ì¡´ Imageë¥¼ íŒŒê´´í•œë‹¤. 
 	Unload();
 
 
-	// IL1. 1°³ÀÇ Image¸¦ 'imageIdx'¶ó´Â ÀÌ¸§(¼ýÀÚ)À¸·Î ¸¸µç´Ù.
+	// IL1. 1ê°œì˜ Imageë¥¼ 'imageIdx'ë¼ëŠ” ì´ë¦„(ìˆ«ìž)ìœ¼ë¡œ ë§Œë“ ë‹¤.
 	ilGenImages( 1, &m_imageIdx );
 
 
-	// IL2. 'imageIdx'¶ó´Â ÀÌ¸§À» ÇöÀç ´Ù·ç°í ÀÖ´Â Image·Î Á¤ÇÑ´Ù.
+	// IL2. 'imageIdx'ë¼ëŠ” ì´ë¦„ì„ í˜„ìž¬ ë‹¤ë£¨ê³  ìžˆëŠ” Imageë¡œ ì •í•œë‹¤.
 	ilBindImage( m_imageIdx );
 
 
-	// IL2-1. ±×¸² ÆÄÀÏÆ÷¸ä¸¶´Ù ÇÈ¼¿ÀÌ »óÇÏ·Î ÁøÇàµÇ´Â ¹æÇâÀÌ ´Ù¸£¹Ç·Î,
-	//      ¹«Á¶°Ç 'À§¿¡¼­ ¾Æ·¡' ¹æÇâÀÌ µÇµµ·Ï '°­Á¦·Î' Á¤ÇÑ´Ù.
+	// IL2-1. ê·¸ë¦¼ íŒŒì¼í¬ë©§ë§ˆë‹¤ í”½ì…€ì´ ìƒí•˜ë¡œ ì§„í–‰ë˜ëŠ” ë°©í–¥ì´ ë‹¤ë¥´ë¯€ë¡œ,
+	//      ë¬´ì¡°ê±´ 'ìœ„ì—ì„œ ì•„ëž˜' ë°©í–¥ì´ ë˜ë„ë¡ 'ê°•ì œë¡œ' ì •í•œë‹¤.
 	ilEnable( IL_ORIGIN_SET );
 	ilOriginFunc( IL_ORIGIN_UPPER_LEFT );
 
 
-	// IL3. ±×¸²À» ÀÐ¾î¼­ ÇöÀç Image¿¡ ³Ö´Â´Ù.
-	//      ÆÄÀÏÇü½ÄÀº ¾Ë¾Æ¼­ ÀÎ½ÄÇÑ´Ù.
+	// IL3. ê·¸ë¦¼ì„ ì½ì–´ì„œ í˜„ìž¬ Imageì— ë„£ëŠ”ë‹¤.
+	//      íŒŒì¼í˜•ì‹ì€ ì•Œì•„ì„œ ì¸ì‹í•œë‹¤.
 	if( ilLoadImage( (char*)szFilename ) == IL_FALSE ) 
 	{
 		Unload();
 		return FALSE;
 	}
 
-	// IL3-1. ÆÄÀÏÇü½ÄÀ» ¸ÂÃç¼­ ÀÐ°í ½Í´Ù¸é ilLoad()¸¦ ÀÌ¿ëÇÑ´Ù.
+	// IL3-1. íŒŒì¼í˜•ì‹ì„ ë§žì¶°ì„œ ì½ê³  ì‹¶ë‹¤ë©´ ilLoad()ë¥¼ ì´ìš©í•œë‹¤.
 	//ilLoad( fileType, szFileName );
 
-	// IL4. ImageÀÇ PixelµéÀÌ ¾î¶² ½ÄÀÌ´ø °£¿¡
-	//      BGRA¼ø¼­/32ºñÆ®ÀÇ ubyte´ÜÀ§ ÇüÅÂ·Î ¹Ù²Û´Ù. 
-	//      --> Alpha Á¤º¸¸¦ Æ÷ÇÔÇßÀ» °æ¿ì ¶§¹®ÀÓ.
+	// IL4. Imageì˜ Pixelë“¤ì´ ì–´ë–¤ ì‹ì´ë˜ ê°„ì—
+	//      BGRAìˆœì„œ/32ë¹„íŠ¸ì˜ ubyteë‹¨ìœ„ í˜•íƒœë¡œ ë°”ê¾¼ë‹¤. 
+	//      --> Alpha ì •ë³´ë¥¼ í¬í•¨í–ˆì„ ê²½ìš° ë•Œë¬¸ìž„.
 	ilConvertImage( IL_BGRA, IL_UNSIGNED_BYTE );
 
-	// IL4-1. Alpha Ã¤³ÎÀÌ ¾ø´Ù¸é ¹«½ÃÇÏ°í ·ÎµùÇØµµ ¹«¹æ.
+	// IL4-1. Alpha ì±„ë„ì´ ì—†ë‹¤ë©´ ë¬´ì‹œí•˜ê³  ë¡œë”©í•´ë„ ë¬´ë°©.
 	//ilConvertImage( IL_BGR, IL_UNSIGNED_BYTE );
 
-	// IL4-2. Alpha Ã¤³ÎÀÌ ¾ø´Âµ¥ BGRA½ÄÀ¸·Î Alpha Ã¤³Î Æ÷¸äÀ¸·Î ÄÁ¹öÆÃÇÏ¸é
-	//        Alpha °ªÀº ¹«Á¶°Ç 0xFF(255)°¡ µÈ´Ù.
+	// IL4-2. Alpha ì±„ë„ì´ ì—†ëŠ”ë° BGRAì‹ìœ¼ë¡œ Alpha ì±„ë„ í¬ë©§ìœ¼ë¡œ ì»¨ë²„íŒ…í•˜ë©´
+	//        Alpha ê°’ì€ ë¬´ì¡°ê±´ 0xFF(255)ê°€ ëœë‹¤.
 
-	// IL4-2. ÀÏ´Ü ÄÁ¹öÆÃÀÌ µÇ¸é ³»ºÎÁ¤º¸´Â ÄÁ¹öÆÃ µÈ »óÅÂ·Î À¯ÁöµÈ´Ù.
-	//        µû¶ó¼­ ÆÄÀÏÆ÷¸äÁ¤º¸¸¦ º¸Á¸ÇÏ´Â °ÍÀÌ Áß¿äÇÏ´Ù¸é,
-	//        ÀÌ·¸°Ô ¹«½ÄÇÏ°Ô ÄÁ¹öÆÃÇØ¼­´Â ¾ÈµÈ´Ù.
+	// IL4-2. ì¼ë‹¨ ì»¨ë²„íŒ…ì´ ë˜ë©´ ë‚´ë¶€ì •ë³´ëŠ” ì»¨ë²„íŒ… ëœ ìƒíƒœë¡œ ìœ ì§€ëœë‹¤.
+	//        ë”°ë¼ì„œ íŒŒì¼í¬ë©§ì •ë³´ë¥¼ ë³´ì¡´í•˜ëŠ” ê²ƒì´ ì¤‘ìš”í•˜ë‹¤ë©´,
+	//        ì´ë ‡ê²Œ ë¬´ì‹í•˜ê²Œ ì»¨ë²„íŒ…í•´ì„œëŠ” ì•ˆëœë‹¤.
 
 	//// Infomation Setting
 	m_nWidth	= ilGetInteger( IL_IMAGE_WIDTH );
@@ -120,11 +120,11 @@ BOOL CDevIL::Load( LPCTSTR szFilename )
 
 void CDevIL::Unload()
 {
-	// 1. ILÀÌ ÀÐ¾îµéÀÎ ÀÌ¹ÌÁö¸¦ »èÁ¦ÇÑ´Ù. 
-	//    ÇÏÁö¸¸ ÀÎµ¦½º¿Í ÇØÁ¦ÇÑ Æ÷ÀÎÅÍ ÀÚÃ¼´Â ³²¾Æ ÀÖ´Ù.
+	// 1. ILì´ ì½ì–´ë“¤ì¸ ì´ë¯¸ì§€ë¥¼ ì‚­ì œí•œë‹¤. 
+	//    í•˜ì§€ë§Œ ì¸ë±ìŠ¤ì™€ í•´ì œí•œ í¬ì¸í„° ìžì²´ëŠ” ë‚¨ì•„ ìžˆë‹¤.
 	ilDeleteImages( 1, &m_imageIdx );	
 
-	// 2. ³»°¡ Á¤ÀÇÇß´ø ¼Ó¼º °ª ÃÊ±âÈ­. 
+	// 2. ë‚´ê°€ ì •ì˜í–ˆë˜ ì†ì„± ê°’ ì´ˆê¸°í™”. 
 	ClearMember();						
 }
 

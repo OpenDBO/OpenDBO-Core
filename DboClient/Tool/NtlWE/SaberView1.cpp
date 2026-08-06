@@ -1,4 +1,4 @@
-// SaberView1.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// SaberView1.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "SaberView1.h"
 
 
-// CSaberView1 ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CSaberView1 ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CSaberView1, CDialog)
 
@@ -31,7 +31,7 @@ BEGIN_MESSAGE_MAP(CSaberView1, CDialog)
 END_MESSAGE_MAP()
 
 
-// CSaberView1 ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CSaberView1 ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 /*
 void CWorldViewDlg::CreateWorldViewResource()

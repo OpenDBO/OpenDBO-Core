@@ -1,7 +1,7 @@
 /*****************************************************************************
 * File			: DiceManager.h
 * Author		: Hong Sungbock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2008. 5. 26
 * Abstract		: Dbo dice manager
 *****************************************************************************
@@ -52,7 +52,7 @@ public:
 	VOID			Cancel(RwUInt8 byWorkID);
 	VOID			CancelAll();
 
-	VOID			LineUpDice();			///< «ˆ¿Á »≠∏Èø° ∫∏¿Ã¥¬ ¡÷ªÁ¿ß¿« ¿ßƒ°∏¶ ¡§∑ƒ«—¥Ÿ
+	VOID			LineUpDice();			///< ÌòÑÏû¨ ÌôîÎ©¥Ïóê Î≥¥Ïù¥Îäî Ï£ºÏÇ¨ÏúÑÏùò ÏúÑÏπòÎ•º Ï†ïÎ†¨ÌïúÎã§
 
 	RwInt32			SwitchDialog(bool bOpen);
 

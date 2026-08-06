@@ -721,7 +721,7 @@ RwRasterRender(RwRaster * raster, RwInt32 x, RwInt32 y)
 
 /**
  * \ingroup rwraster
- * \ref RwRasterUnlockPalette is used to unlock the specified raster�s
+ * \ref RwRasterUnlockPalette is used to unlock the specified raster占퐏
  * palette, following a call to \ref RwRasterLockPalette, allowing it to be used
  * by the device again.
  *
@@ -890,7 +890,7 @@ RwRasterRegisterPlugin(RwInt32 size, RwUInt32 pluginID,
  * \ingroup rwraster
  * \ref RwRasterLockPalette is used to lock the specified raster for
  * direct palette access according to the given lock mode. The lock prevents
- * the device changing the palette�s data while it is under the control of
+ * the device changing the palette占퐏 data while it is under the control of
  * the application.
  *
  * The palette must be unlocked when the application has finished updating

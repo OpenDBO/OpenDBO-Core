@@ -857,7 +857,7 @@ _rpToonD3D9RenderCallback(RwResEntry *repEntry,
 			_rwD3D9RenderStateVertexAlphaEnable(TRUE);
 		}
 
-		//�ܺο��� ������ AlphaEnable�� ������ �ȵȴ�.(by HoDong)
+		//占쌤부울옙占쏙옙 占쏙옙占쏙옙占쏙옙 AlphaEnable占쏙옙 占쏙옙占쏙옙占쏙옙 占싫된댐옙.(by HoDong)
 		//else
 		//{
 		//_rwD3D9RenderStateVertexAlphaEnable(FALSE);

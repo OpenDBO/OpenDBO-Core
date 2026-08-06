@@ -2,7 +2,7 @@
  *
  * File			: NtlVehicleHelper.h
  * Author		: JeongHo, Rho
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2008. 11. 6
  * Abstract		: Vehicle helper class
  *****************************************************************************

@@ -164,7 +164,7 @@ void CShape_GEntityCont::Activate( const CPoint &point )
 			int nIdx = GetEntityAt( point );
 
 			CString strMsg;
-			strMsg.Format( _T("[%s]¸¦ Á¤¸» Áö¿ì½Ã°Ú½À´Ï±î?"), m_EntityList[nIdx].strType.GetString() );
+			strMsg.Format( _T("[%s]ë¥¼ ì •ë§ ì§€ìš°ì‹œê² ìŠµë‹ˆê¹Œ?"), m_EntityList[nIdx].strType.GetString() );
 
 			if ( IDOK == AfxMessageBox( strMsg, MB_OKCANCEL ) )
 			{

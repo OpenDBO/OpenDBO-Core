@@ -1,9 +1,9 @@
 /*****************************************************************************
 * File			: DboPackethandler_GUBank.cpp
 * Author		: Hong sungbock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 1. 16
-* Abstract		: ÀºÇà °ü·Ã ÆÐÅ¶ ÇÚµé
+* Abstract		: ì€í–‰ ê´€ë ¨ íŒ¨í‚· í•¸ë“¤
 *****************************************************************************
 * Desc         : 
 *****************************************************************************/
@@ -43,7 +43,7 @@ void PacketHandler_GSBankStartRes(void *pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock( GU_BANK_START_RES );
 
-	// Ã¢°í¸¦ Ã³À½ ¿©´Â µ¿ÀÛÀÇ °á°ú
+	// ì°½ê³ ë¥¼ ì²˜ìŒ ì—¬ëŠ” ë™ìž‘ì˜ ê²°ê³¼
 	sGU_BANK_START_RES *pResult = (sGU_BANK_START_RES*)pPacket;
 
 	if( pResult->wResultCode != GAME_SUCCESS )
@@ -63,7 +63,7 @@ void PacketHandler_GSBankMoveRes(void *pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock( GU_BANK_MOVE_RES );
 
-	// Ã¢°í¿¡ ¾ÆÀÌÅÛÀ» ³Ö°Å³ª ²¨³Â´Ù
+	// ì°½ê³ ì— ì•„ì´í…œì„ ë„£ê±°ë‚˜ êº¼ëƒˆë‹¤
 	sGU_BANK_MOVE_RES *pResult = (sGU_BANK_MOVE_RES*)pPacket;
 
 	if( pResult->wResultCode != GAME_SUCCESS )
@@ -83,7 +83,7 @@ void PacketHandler_GSBankStackRes(void *pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock( GU_BANK_MOVE_STACK_RES );
 
-	// Ã¢°í¿¡ ¾ÆÀÌÅÛÀ» 1°³º¸´Ù ¸¹ÀÌ ³Ö°Å³ª ²¨³Â´Ù
+	// ì°½ê³ ì— ì•„ì´í…œì„ 1ê°œë³´ë‹¤ ë§Žì´ ë„£ê±°ë‚˜ êº¼ëƒˆë‹¤
 	sGU_BANK_MOVE_STACK_RES *pResult = (sGU_BANK_MOVE_STACK_RES*)pPacket;
 
 	if( pResult->wResultCode != GAME_SUCCESS )
@@ -103,7 +103,7 @@ void PacketHandler_GSBankEndRes(void *pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock( GU_BANK_END_RES );
 
-	// Ã¢°í¸¦ ´Ý¾Ò´Ù. ¸Þ¼¼Áö¸¸ »Ñ¸°´Ù
+	// ì°½ê³ ë¥¼ ë‹«ì•˜ë‹¤. ë©”ì„¸ì§€ë§Œ ë¿Œë¦°ë‹¤
 	sGU_BANK_END_RES *pResult = (sGU_BANK_END_RES*)pPacket;
 
 	if( pResult->wResultCode != GAME_SUCCESS )
@@ -117,7 +117,7 @@ void PacketHandler_GSBankEndRes(void *pPacket)
 
 void PacketHandler_GSBankItemInfo(void *pPacket)
 {
-	// Ã³À½À¸·Î Ã¢°í¸¦ ¿­¾î¼­ ÆÐÅ¶À» ¹Þ¾Ò´Ù
+	// ì²˜ìŒìœ¼ë¡œ ì°½ê³ ë¥¼ ì—´ì–´ì„œ íŒ¨í‚·ì„ ë°›ì•˜ë‹¤
 	sGU_BANK_ITEM_INFO* pResult = (sGU_BANK_ITEM_INFO*)pPacket;
 
 	CNtlSLEventGenerator::SobWarehouseItemCreate(pResult->byItemCount, pResult->aBankProfile);	
@@ -127,7 +127,7 @@ void PacketHandler_GSBankZennyInfo(void* pPacket)
 {
 	sGU_BANK_ZENNY_INFO* pResult = (sGU_BANK_ZENNY_INFO*)pPacket;
 
-	// Á¦´Ï
+	// ì œë‹ˆ
 	CNtlSLEventGenerator::SobWarehouseUpdate(NESWUT_ADD_ZENNY, INVALID_SERIAL_ID, pResult->dwZenny);
 }
 
@@ -135,7 +135,7 @@ void PacketHandler_GSBankZennyRes(void *pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock( GU_BANK_ZENNY_RES );
 
-	// Ã¢°íÀÇ Á¦´Ï¿¡ º¯È­
+	// ì°½ê³ ì˜ ì œë‹ˆì— ë³€í™”
 	sGU_BANK_ZENNY_RES *pResult = (sGU_BANK_ZENNY_RES*)pPacket;
 
 	if( pResult->wResultCode != GAME_SUCCESS )
@@ -147,10 +147,10 @@ void PacketHandler_GSBankZennyRes(void *pPacket)
 	GetIconMoveManager()->IconMoveEnd();
 
 	if(pResult->bIsSave)
-		// Àú±Ý
+		// ì €ê¸ˆ
 		CNtlSLEventGenerator::SobWarehouseUpdate(NESWUT_ADD_ZENNY, pResult->handle, pResult->dwZenny);
 	else
-		// ÀÎÃâ
+		// ì¸ì¶œ
 		CNtlSLEventGenerator::SobWarehouseUpdate(NESWUT_SUB_ZENNY, pResult->handle, pResult->dwZenny);
 }
 
@@ -158,7 +158,7 @@ void PacketHandler_GSBankBuyRes(void *pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock( GU_BANK_BUY_RES );
 
-	// Ã¢°í ½½·ÔÀ» ´Ã·È´Ù
+	// ì°½ê³  ìŠ¬ë¡¯ì„ ëŠ˜ë ¸ë‹¤
 	sGU_BANK_BUY_RES *pResult = (sGU_BANK_BUY_RES*)pPacket;
 
 	if( pResult->wResultCode != GAME_SUCCESS )
@@ -182,7 +182,7 @@ void PacketHandler_GSBankBuyRes(void *pPacket)
 
 	CNtlSLEventGenerator::SobWarehouseItemCreate(1, &itemProfile);
 
-	// Ã¢°í¸¦ ±¸ÀÔÇÏ¿´½À´Ï´Ù
+	// ì°½ê³ ë¥¼ êµ¬ìž…í•˜ì˜€ìŠµë‹ˆë‹¤
 	GetAlarmManager()->AlarmMessage("DST_WAREHOUSE_SUCCESS_BUY");
 }
 
@@ -190,8 +190,8 @@ void PacketHandler_GSBankItemDeleteRes(void *pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock( GU_BANK_ITEM_DELETE_RES );
 
-	// Ã¢°í ¾ÈÀÇ ¾ÆÀÌÅÛÀ» Áö¿î °á°ú¸¦ ¾Ë·ÁÁØ´Ù
-	// ½ÇÁ¦·Î Áö¿ì´Â °ÍÀº GU_ITEM_DELETE
+	// ì°½ê³  ì•ˆì˜ ì•„ì´í…œì„ ì§€ìš´ ê²°ê³¼ë¥¼ ì•Œë ¤ì¤€ë‹¤
+	// ì‹¤ì œë¡œ ì§€ìš°ëŠ” ê²ƒì€ GU_ITEM_DELETE
 	sGU_BANK_ITEM_DELETE_RES* pResult = (sGU_BANK_ITEM_DELETE_RES*)pPacket;
 
 	if( pResult->wResultCode != GAME_SUCCESS )

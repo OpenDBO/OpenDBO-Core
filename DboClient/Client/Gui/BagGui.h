@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File: BagGui.h
-// Desc: Bag Slot ¹× Bag 
+// Desc: Bag Slot ë° Bag 
 //
 // 2006.04.25 Peessi@hitel.net   
 //
@@ -36,7 +36,7 @@ public:
 	virtual VOID UpdateData(VOID);
 	RwInt32	SwitchDialog( bool bOpen );
 
-	VOID SetBagEnable( RwBool bEnable ); // °¡¹æÀÌ Å¬¶óÀÌ¾ğÆ®Disable À¯¹«. 
+	VOID SetBagEnable( RwBool bEnable ); // ê°€ë°©ì´ í´ë¼ì´ì–¸íŠ¸Disable ìœ ë¬´. 
 
 //! Event
 	virtual VOID HandleEvents( RWS::CMsg& msg );
@@ -117,16 +117,16 @@ protected:
 	gui::CRadarEffect* m_pCoolTimeEffect;
 
 	// Gamble Effect
-	gui::CFlash**			m_ppGambleBoomEffect;		///< ÇÃ·¡½¬ ÀÌÆåÆ® ( Boom! )
-	gui::CSlot*				m_pSlotBoomEffectEnd;		///< ÇÃ·¡½¬ ÀÌÆåÆ®°¡ Á¾·áµÇ¾úÀ» °æ¿ì
-	RwBool*					m_pbIsGambleEffect;			///< ÇÃ·¡½¬ ÀÌÆåÆ®°¡ »ç¿ëµÇ°í ÀÖ´ÂÁöÀÇ ¿©ºÎ(¾ÆÀÌÅÛÀÌ Ã³¸®µÇ¾î¼± ¾ÈµÈ´Ù)
+	gui::CFlash**			m_ppGambleBoomEffect;		///< í”Œë˜ì‰¬ ì´í™íŠ¸ ( Boom! )
+	gui::CSlot*				m_pSlotBoomEffectEnd;		///< í”Œë˜ì‰¬ ì´í™íŠ¸ê°€ ì¢…ë£Œë˜ì—ˆì„ ê²½ìš°
+	RwBool*					m_pbIsGambleEffect;			///< í”Œë˜ì‰¬ ì´í™íŠ¸ê°€ ì‚¬ìš©ë˜ê³  ìˆëŠ”ì§€ì˜ ì—¬ë¶€(ì•„ì´í…œì´ ì²˜ë¦¬ë˜ì–´ì„  ì•ˆëœë‹¤)
 
 	// Item Identify Effect
-	gui::CParticleBox*		m_pPBox;					///< ÆÄÆ¼Å¬ ¹Ú½º
+	gui::CParticleBox*		m_pPBox;					///< íŒŒí‹°í´ ë°•ìŠ¤
 	
 	RwInt32			  m_nMouseOnIndex;	
 
-	RwBool			  m_bCEnable;			// Å¬¶óÀÌ¾ğÆ®»óÈ² Enable¿©ºÎ. °¡¹æÀÌ ¿­¸®Áö ¾Ê°í, ¿­·ÁÀÖ´ø °ÍÀÌ ´İÈ÷°Ô µÈ´Ù. 
+	RwBool			  m_bCEnable;			// í´ë¼ì´ì–¸íŠ¸ìƒí™© Enableì—¬ë¶€. ê°€ë°©ì´ ì—´ë¦¬ì§€ ì•Šê³ , ì—´ë ¤ìˆë˜ ê²ƒì´ ë‹«íˆê²Œ ëœë‹¤. 
 };
 
 class CBasicBagGui : public CBagBaseGui
@@ -418,7 +418,7 @@ public:
 	RwBool	Update( RwReal fElapsed );	
 	VOID	Render(VOID);
 
-	VOID	SetInitXPos( RwInt32 nScreenXPos );	// DestPosµµ °°ÀÌ ¼öÁ¤µÊ.
+	VOID	SetInitXPos( RwInt32 nScreenXPos );	// DestPosë„ ê°™ì´ ìˆ˜ì •ë¨.
 	VOID	SetInitYPos( RwInt32 nScreenYPos );
 
 	RwBool	IsEffectShow(VOID) { return m_bShowEffect; }
@@ -516,7 +516,7 @@ private:
 
 	CSurfaceGui	 m_surDisableSlot[VISIBLE_BAGSLOT_COUNT];
 	CSurfaceGui	 m_surFocusSlot[VISIBLE_BAGSLOT_COUNT];
-	CSurfaceGui	 m_surFritzSlot[VISIBLE_BAGSLOT_COUNT];	// ³»±¸µµ°¡ ´ÙÇÑ³à¼®µé Ç¥½Ã.
+	CSurfaceGui	 m_surFritzSlot[VISIBLE_BAGSLOT_COUNT];	// ë‚´êµ¬ë„ê°€ ë‹¤í•œë…€ì„ë“¤ í‘œì‹œ.
 	RwInt32		 m_arrFocusEffect[VISIBLE_BAGSLOT_COUNT];
 	gui::CStaticBox* m_apstbStackNum[VISIBLE_BAGSLOT_COUNT];
 

@@ -16,7 +16,7 @@ CNtlStorageGroupScouter::~CNtlStorageGroupScouter(void)
 
 bool CNtlStorageGroupScouter::Load( CNtlStorageSerializer* pS )
 {
-	// Binary ¹öÆÛ°¡ ¾Æ´Ï¸é ¸ğµå°¡ ¾Æ´Ï¸é ÀĞÁö ¸øÇÑ´Ù.
+	// Binary ë²„í¼ê°€ ì•„ë‹ˆë©´ ëª¨ë“œê°€ ì•„ë‹ˆë©´ ì½ì§€ ëª»í•œë‹¤.
 	if( pS->GetStorageSerializerType() != eNTL_STORAGE_SERIALIZER_BINARY )
 		return false;
 
@@ -27,7 +27,7 @@ bool CNtlStorageGroupScouter::Load( CNtlStorageSerializer* pS )
 	int nCount = 0;
 	for(;;)
 	{
-		// ¹«ÇÑ·çÇÁ ¹æÁö
+		// ë¬´í•œë£¨í”„ ë°©ì§€
 		if( ++nCount > 1000000 )
 			return false;
 

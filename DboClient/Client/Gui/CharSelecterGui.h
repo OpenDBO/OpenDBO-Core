@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: CharSelecterGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 10. 15
 * Abstract		:
 *****************************************************************************
-* Desc			: ÀÚ½ÅÀÇ Ä³¸¯ÅÍÁß ÇÃ·¹ÀÌÇÒ Ä³¸¯ÅÍ¸¦ ¼±ÅÃÇÏ±â À§ÇÑ GUI
+* Desc			: ìì‹ ì˜ ìºë¦­í„°ì¤‘ í”Œë ˆì´í•  ìºë¦­í„°ë¥¼ ì„ íƒí•˜ê¸° ìœ„í•œ GUI
 *****************************************************************************/
 
 #pragma once
@@ -120,12 +120,12 @@ protected:
 	gui::CSlot			m_slotPaint;
 	gui::CSlot			m_slotPostPaint;
 
-	CWindowby3			m_Background;	///< ¹è°æ »ó´Ü
+	CWindowby3			m_Background;	///< ë°°ê²½ ìƒë‹¨
 
 	CSurfaceGui			m_srfInfoBack;		///<
 
-	gui::CButton*		m_pCharDelButton;	///< Ä³¸¯ÅÍ »èÁ¦ ¹öÆ°
-	gui::CButton*		m_pCharRecoveryButton;///< Ä³¸¯ÅÍ º¹±¸ ¹öÆ°
+	gui::CButton*		m_pCharDelButton;	///< ìºë¦­í„° ì‚­ì œ ë²„íŠ¼
+	gui::CButton*		m_pCharRecoveryButton;///< ìºë¦­í„° ë³µêµ¬ ë²„íŠ¼
 
 	gui::CStaticBox*	m_pTitleStatic;
 
@@ -133,5 +133,5 @@ protected:
 
 	RwUInt8				m_byFocusIndex;
 
-	sCharSlot			m_CharSlot[NTL_MAX_COUNT_USER_CHAR_SLOT];///< Ä³¸¯ÅÍ ½½·Ô
+	sCharSlot			m_CharSlot[NTL_MAX_COUNT_USER_CHAR_SLOT];///< ìºë¦­í„° ìŠ¬ë¡¯
 };

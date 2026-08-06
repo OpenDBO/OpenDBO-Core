@@ -1,4 +1,4 @@
-// Attr_CONT_Switch.cpp : ���� �����Դϴ�.
+// Attr_CONT_Switch.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_CONT_Switch.h"
 
 
-// CAttr_CONT_Switch ��ȭ �����Դϴ�.
+// CAttr_CONT_Switch 대화 상자입니다.
 
 IMPLEMENT_SERIAL(CAttr_CONT_Switch, CAttr_Page, 1)
 
@@ -51,4 +51,4 @@ BEGIN_MESSAGE_MAP(CAttr_CONT_Switch, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_CONT_Switch �޽��� ó�����Դϴ�.
+// CAttr_CONT_Switch 메시지 처리기입니다.
