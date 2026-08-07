@@ -118,7 +118,7 @@ CNtlHistoryAction* CNtlHistoryController::PushHistoryAction(CNtlHistoryAction* p
 	static RwUInt32 uiQSize = 3;
 	if (m_vecHistoryActionList.size() >= uiQSize)
 	{
-		DeleteHistroyActionBefore((m_vecHistoryActionList.size()) - uiQSize + 2); // +2 ´Â INDEX°¡ 1ºÎÅÍ ½ÃÀÛÇÏ±â ¶§¹®ÀÌ´Ù.
+		DeleteHistroyActionBefore((m_vecHistoryActionList.size()) - uiQSize + 2); // +2 ëŠ” INDEXê°€ 1ë¶€í„° ì‹œì‘í•˜ê¸° ë•Œë¬¸ì´ë‹¤.
 	}
 
 	m_vecHistoryActionList.push_back(pHistoryAction);

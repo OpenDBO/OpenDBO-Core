@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: ChannelSelectGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 10. 17
 * Abstract		: 
 *****************************************************************************
-* Desc			: ·Îºñ¿¡¼­ Ã¤³ÎÀ» ¼±ÅÃÇÏ±â À§ÇÑ Å¬·¡½º
+* Desc			: ë¡œë¹„ì—ì„œ ì±„ë„ì„ ì„ íƒí•˜ê¸° ìœ„í•œ í´ë˜ìŠ¤
 *****************************************************************************/
 
 #pragma once
@@ -99,14 +99,14 @@ protected:
 	gui::CStaticBox*	m_pServerName;
 	gui::CStaticBox*	m_pSelectChannel;	///
 
-	gui::CButton*		m_pOkButton;		///< È®ÀÎ ¹öÆ°
-	gui::CButton*		m_pCancelButton;	///< Ãë¼Ò ¹öÆ°
+	gui::CButton*		m_pOkButton;		///< í™•ì¸ ë²„íŠ¼
+	gui::CButton*		m_pCancelButton;	///< ì·¨ì†Œ ë²„íŠ¼
 
 	CSurfaceGui			m_srfFocusBar;
 	CSurfaceGui			m_srfSelectBar;
 	CSurfaceGui			m_srfDownBar;
 
-	gui::CScrollBar*	m_pScrollBar;		///< Ã¤³Î ½ºÅ©·Ñ
+	gui::CScrollBar*	m_pScrollBar;		///< ì±„ë„ ìŠ¤í¬ë¡¤
 
 	RwUInt8				m_byFocusIndex;
 	RwUInt8				m_byDownIndex;

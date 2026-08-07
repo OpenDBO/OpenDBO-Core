@@ -25,7 +25,7 @@
 #include "DisplayStringManager.h"
 #include "DboEventGenerator.h"
 
-#define TB_FINAL_ENEMY_PARTYINFO_CLASSICON_X	-24		// °¢ ÆÄÆ¼ÀÎÆ÷¾ÆÀÌÅÛ ±âÁØ ÁÂÇ¥.
+#define TB_FINAL_ENEMY_PARTYINFO_CLASSICON_X	-24		// ê° íŒŒí‹°ì¸í¬ì•„ì´í…œ ê¸°ì¤€ ì¢Œí‘œ.
 #define TB_FINAL_ENEMY_PARTYINFO_CLASSICON_Y	0	
 
 #define TB_FINAL_BATTLEINFO_BLUESCORE_X		127
@@ -290,11 +290,11 @@ VOID CTBFinalMatchInfoGui::HandleEvents( RWS::CMsg& msg )
 
 		if( pData->bEnterState )
 		{
-			// ÇöÀç ÀÚ½ÅÀÇ °æ±â°¡ ¾Æ´Ï¶ó¸é
+			// í˜„ì¬ ìì‹ ì˜ ê²½ê¸°ê°€ ì•„ë‹ˆë¼ë©´
 			if( !pTBWorldConcept->GetMyTeam() )
 				return;
 
-			// Âü°¡ÀÚ°¡ ¾Æ´Ï¶ó¸é
+			// ì°¸ê°€ìê°€ ì•„ë‹ˆë¼ë©´
 			if( !pTBWorldConcept->GetMyTeam() )
 				return;
 

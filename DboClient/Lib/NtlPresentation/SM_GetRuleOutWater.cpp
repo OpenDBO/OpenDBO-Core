@@ -84,7 +84,7 @@ RwBool CSM_GetRuleOutWater::CheckSector(BYTE* _pFileMemPos)
 		RwRGBA rgbaDiffuse;
 
 		//////////////////////////////////////////////////////////////////////////
-		// ÇÊ¿äÇÑ Á¤º¸¸¦ º¹»çÇØµÎ°í ÆÄÀÏÆ÷ÀÎÅÍ¸¦ ½ºÅµÇØµĞ´Ù.
+		// í•„ìš”í•œ ì •ë³´ë¥¼ ë³µì‚¬í•´ë‘ê³  íŒŒì¼í¬ì¸í„°ë¥¼ ìŠ¤í‚µí•´ë‘”ë‹¤.
 		//////////////////////////////////////////////////////////////////////////
 		// Use : Height
 		CopyMemory(&fHeight, _pFileMemPos, sizeof(RwReal));
@@ -114,7 +114,7 @@ RwBool CSM_GetRuleOutWater::CheckSector(BYTE* _pFileMemPos)
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		// ½ÇÁúÀûÀÎ °Ë»ç¸¦ ÇÑ´Ù.
+		// ì‹¤ì§ˆì ì¸ ê²€ì‚¬ë¥¼ í•œë‹¤.
 		//////////////////////////////////////////////////////////////////////////
 		// Water Check
 		{
@@ -222,7 +222,7 @@ RwBool CSM_GetRuleOutWater::Report()
 		RwInt32 nSecond = (RwInt32)systemTime.wSecond;
 		RwInt32 nMinute = (RwInt32)systemTime.wMinute;
 		RwReal fMilliseconds = (RwReal)systemTime.wMilliseconds / 1000.f;
-		sprintf_s(szBuffer, "%d³â %d¿ù %dÀÏ %d½Ã %dºĞ %dÃÊ", nYear, nMonth, nDay, nHour, nMinute, nSecond);
+		sprintf_s(szBuffer, "%dë…„ %dì›” %dì¼ %dì‹œ %dë¶„ %dì´ˆ", nYear, nMonth, nDay, nHour, nMinute, nSecond);
 
 		fprintf(pFile, "========== %s ==========\n", szBuffer);
 
@@ -329,7 +329,7 @@ RwBool CSM_GetRuleOutWater::CheckSector(BYTE* _pFileMemPos)
 		RwRGBA rgbaDiffuse;
 
 		//////////////////////////////////////////////////////////////////////////
-		// ÇÊ¿äÇÑ Á¤º¸¸¦ º¹»çÇØµÎ°í ÆÄÀÏÆ÷ÀÎÅÍ¸¦ ½ºÅµÇØµĞ´Ù.
+		// í•„ìš”í•œ ì •ë³´ë¥¼ ë³µì‚¬í•´ë‘ê³  íŒŒì¼í¬ì¸í„°ë¥¼ ìŠ¤í‚µí•´ë‘”ë‹¤.
 		//////////////////////////////////////////////////////////////////////////
 		// Use : Height
 		CopyMemory(&fHeight, _pFileMemPos, sizeof(RwReal));
@@ -359,7 +359,7 @@ RwBool CSM_GetRuleOutWater::CheckSector(BYTE* _pFileMemPos)
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		// ½ÇÁúÀûÀÎ °Ë»ç¸¦ ÇÑ´Ù.
+		// ì‹¤ì§ˆì ì¸ ê²€ì‚¬ë¥¼ í•œë‹¤.
 		//////////////////////////////////////////////////////////////////////////
 		// Water Check
 		{
@@ -466,7 +466,7 @@ RwBool CSM_GetRuleOutWater::Report()
 		RwInt32 nSecond = (RwInt32)systemTime.wSecond;
 		RwInt32 nMinute = (RwInt32)systemTime.wMinute;
 		RwReal fMilliseconds = (RwReal)systemTime.wMilliseconds / 1000.f;
-		sprintf_s(szBuffer, "%d³â %d¿ù %dÀÏ %d½Ã %dºĞ %dÃÊ", nYear, nMonth, nDay, nHour, nMinute, nSecond);
+		sprintf_s(szBuffer, "%dë…„ %dì›” %dì¼ %dì‹œ %dë¶„ %dì´ˆ", nYear, nMonth, nDay, nHour, nMinute, nSecond);
 
 		fprintf(pFile, "========== %s ==========\n", szBuffer);
 

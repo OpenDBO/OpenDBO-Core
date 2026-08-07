@@ -1,4 +1,4 @@
-// NaviToolDoc.cpp : CNaviToolDoc Å¬·¡½ºÀÇ ±¸Çö
+// NaviToolDoc.cpp : CNaviToolDoc í´ë˜ìŠ¤ì˜ êµ¬í˜„
 //
 
 #include "stdafx.h"
@@ -29,7 +29,7 @@ BEGIN_MESSAGE_MAP(CNaviToolDoc, CDocument)
 END_MESSAGE_MAP()
 
 
-// CNaviToolDoc »ı¼º/¼Ò¸ê
+// CNaviToolDoc ìƒì„±/ì†Œë©¸
 
 CNaviToolDoc::CNaviToolDoc()
 {
@@ -54,8 +54,8 @@ BOOL CNaviToolDoc::OnNewDocument()
 	if (!CDocument::OnNewDocument())
 		return FALSE;
 
-	// TODO: ¿©±â¿¡ ÀçÃÊ±âÈ­ ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
-	// SDI ¹®¼­´Â ÀÌ ¹®¼­¸¦ ´Ù½Ã »ç¿ëÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì¬ì´ˆê¸°í™” ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
+	// SDI ë¬¸ì„œëŠ” ì´ ë¬¸ì„œë¥¼ ë‹¤ì‹œ ì‚¬ìš©í•©ë‹ˆë‹¤.
 
 	return TRUE;
 }
@@ -69,16 +69,16 @@ void CNaviToolDoc::Serialize(CArchive& ar)
 {
 	if (ar.IsStoring())
 	{
-		// TODO: ¿©±â¿¡ ÀúÀå ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+		// TODO: ì—¬ê¸°ì— ì €ì¥ ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	}
 	else
 	{
-		// TODO: ¿©±â¿¡ ·Îµù ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+		// TODO: ì—¬ê¸°ì— ë¡œë”© ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	}
 }
 
 
-// CNaviToolDoc Áø´Ü
+// CNaviToolDoc ì§„ë‹¨
 
 #ifdef _DEBUG
 void CNaviToolDoc::AssertValid() const
@@ -93,7 +93,7 @@ void CNaviToolDoc::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CNaviToolDoc ¸í·É
+// CNaviToolDoc ëª…ë ¹
 
 void CNaviToolDoc::OnLoadWorldData()
 {

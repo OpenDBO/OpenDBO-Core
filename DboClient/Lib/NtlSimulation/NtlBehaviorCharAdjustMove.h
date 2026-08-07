@@ -4,7 +4,7 @@
 
 /**
  * \ingroup NtlSimulation
- * \brief ÀÌµ¿ÀÌ ¸ØÃáÈÄ¿¡ ¼­¹ö À§Ä¡¿¡ ¸Â°Ô À§Ä¡ º¸°£À» Ã³¸®ÇÏ´Â Çàµ¿ Å¬·¡½º
+ * \brief ì´ë™ì´ ë©ˆì¶˜í›„ì— ì„œë²„ ìœ„ì¹˜ì— ë§ê²Œ ìœ„ì¹˜ ë³´ê°„ì„ ì²˜ë¦¬í•˜ëŠ” í–‰ë™ í´ë˜ìŠ¤
  *
  * \date 2009-04-15
  * \author agebreak
@@ -26,7 +26,7 @@ public:
     virtual void SetAnim();
 
 protected:    
-    RwBool  IsNotAdjustMove();                  ///< Adjust Move¸¦ ÇÏÁö ¾Ê´Â »óÅÂÀÎÁö Ã¼Å©ÇÑ´Ù.
+    RwBool  IsNotAdjustMove();                  ///< Adjust Moveë¥¼ í•˜ì§€ ì•ŠëŠ” ìƒíƒœì¸ì§€ ì²´í¬í•œë‹¤.
 
 protected:
     SMoveStuff			m_MoveStuff;

@@ -2,15 +2,15 @@
 *
 * File			: NtlGuildWarehouse.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 2. 27
 * Abstract		: Simulation Guild Warehouse class
 *****************************************************************************
-* Desc          : ±æµå Ã¢°í´Â ±æµåÀå°ú ºÎ±æµåÀåÀÌ ÀÌ¿ëÇÒ ¼ö ÀÖ´Ù.
-*				  ±æµå Ã¢°í´Â ÇÑ¹ø¿¡ ÇÑ¸í¸¸ÀÌ ÀÌ¿ëÇÒ ¼ö ÀÖ´Ù.
+* Desc          : ê¸¸ë“œ ì°½ê³ ëŠ” ê¸¸ë“œì¥ê³¼ ë¶€ê¸¸ë“œì¥ì´ ì´ìš©í•  ìˆ˜ ìˆë‹¤.
+*				  ê¸¸ë“œ ì°½ê³ ëŠ” í•œë²ˆì— í•œëª…ë§Œì´ ì´ìš©í•  ìˆ˜ ìˆë‹¤.
 *				  
-*				  ±æµå Ã¢°í¿¡ ÀÖ´Â ¾ÆÀÌÅÛÀº ´Ü¼ø µ¥ÀÌÅÍ·Î¸¸ Á¸ÀçÇÏ¸ç
-*				  °¡¹æ, ½ºÄ«¿ìÅÍ, Àåºñ ½½·Ô µî¿¡ ¿Å°Ü¾ßÃ Sob °´Ã¼°¡ µÈ´Ù
+*				  ê¸¸ë“œ ì°½ê³ ì— ìˆëŠ” ì•„ì´í…œì€ ë‹¨ìˆœ ë°ì´í„°ë¡œë§Œ ì¡´ì¬í•˜ë©°
+*				  ê°€ë°©, ìŠ¤ì¹´ìš°í„°, ì¥ë¹„ ìŠ¬ë¡¯ ë“±ì— ì˜®ê²¨ì•¼ë¨„ Sob ê°ì²´ê°€ ëœë‹¤
 *****************************************************************************/
 
 #ifndef __NTL_GUILD_WAREHOUSE_H__
@@ -39,7 +39,7 @@ struct sGuildWarehouseSlot
 	RwUInt8				byCurDur;
 	RwBool				bNeedToIdentify;
 	RwUInt8				byGrade;
-	RwUInt8				byBattleAttribute;		// Áø±â¸Í¿©¶ô cf) NtlBattle.h eBATTLE_ATTRIBUTE 
+	RwUInt8				byBattleAttribute;		// ì§„ê¸°ë§¹ì—¬ë½ cf) NtlBattle.h eBATTLE_ATTRIBUTE 
 	RwUInt8				byRestrictState;
 	sITEM_OPTION_SET	sOptionSet;
 };
@@ -77,8 +77,8 @@ protected:
 	void			ItemStackMoveEventHandler(RWS::CMsg &msg);
 
 protected:
-	SERIAL_HANDLE	m_hNPC;									///< »ó´ëÇÏ°í ÀÖ´Â NPC
-	RwUInt32		m_uiZenny;								///< Á¦´Ï
+	SERIAL_HANDLE	m_hNPC;									///< ìƒëŒ€í•˜ê³  ìˆëŠ” NPC
+	RwUInt32		m_uiZenny;								///< ì œë‹ˆ
 
 	sGuildWarehouseSlot	aWarehouseSlot[NTL_MAX_GUILD_BANK_COUNT][NTL_MAX_GUILD_ITEM_SLOT];
 };

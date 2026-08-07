@@ -1,4 +1,4 @@
-// ProjectMainMenu.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// ProjectMainMenu.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -61,7 +61,7 @@ BEGIN_MESSAGE_MAP(CTSQuestTextBar, CSizingControlBarCF)
 END_MESSAGE_MAP()
 
 
-// CTSQuestTextBar Áø´ÜÀÔ´Ï´Ù.
+// CTSQuestTextBar ì§„ë‹¨ì…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CTSQuestTextBar::AssertValid() const
@@ -78,7 +78,7 @@ void CTSQuestTextBar::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CTSQuestTextBar ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CTSQuestTextBar ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 int CTSQuestTextBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if ( CSizingControlBarCF::OnCreate( lpCreateStruct ) == -1 )

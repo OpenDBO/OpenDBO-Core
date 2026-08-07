@@ -2,7 +2,7 @@
 //	File		:	VenusFramework.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -11,7 +11,7 @@
 
 #include "NtlPostEffectCamera.h"
 
-// Ä«¸Ş¶ó View 
+// ì¹´ë©”ë¼ View 
 enum EVenusCameraStaticView
 {
     E_STATIC_VIEW_FRONT,
@@ -24,7 +24,7 @@ enum EVenusCameraStaticView
 
 /**
  * \ingroup Venus
- * \brief VenusÀÇ Ä«¸Ş¶ó Å¬·¡½º. PostEffectCamera·ÎºÎÅÍ »ó¼Ó¹Ş¾Æ¼­ »Ç»ş½Ã ±â´ÉÀÌ µÈ´Ù.
+ * \brief Venusì˜ ì¹´ë©”ë¼ í´ë˜ìŠ¤. PostEffectCameraë¡œë¶€í„° ìƒì†ë°›ì•„ì„œ ë½€ìƒ¤ì‹œ ê¸°ëŠ¥ì´ ëœë‹¤.
  * \date 2006-08-01
  * \author agebreak
  */
@@ -41,41 +41,41 @@ public:
 						RwReal fNearClipPlane = 1.f, 
 						RwReal fFarClipPlane = 1000.f);
 
-    void	MouseMessages(UINT uMsg, POINT point, short zDelta = 0, UINT nFlags = 0);   ///< ¸¶¿ì½º ¸Ş½ÃÁö¸¦ Àü´ŞÇÑ´Ù.
+    void	MouseMessages(UINT uMsg, POINT point, short zDelta = 0, UINT nFlags = 0);   ///< ë§ˆìš°ìŠ¤ ë©”ì‹œì§€ë¥¼ ì „ë‹¬í•œë‹¤.
 
-    /// View Matrix¸¦ ÃÊ±âÈ­ ÇÑ´Ù.
+    /// View Matrixë¥¼ ì´ˆê¸°í™” í•œë‹¤.
     void	InitViewMatrix();
     void	InitViewMatrix(RwCamera* pCamera);
 
-    /// View Matrix¸¦ ¾÷µ¥ÀÌÆ® ÇÑ´Ù.
+    /// View Matrixë¥¼ ì—…ë°ì´íŠ¸ í•œë‹¤.
     void	UpdateViewMatrix(RwV3d* pMove);
     void	UpdateViewMatrix();
     void	UpdateViewMatrix(RwCamera* pCamera);
 
-    RwMatrix*	GetViewMatrix();        ///< ÇöÀç Ä«¸Ş¶ó Matrix¸¦ ¹İÈ¯ÇÑ´Ù.
-    RwV3d*	    GetViewPosition();      ///< ÇöÀç Ä«¸Ş¶ó À§Ä¡¸¦ ¹İÈ¯ÇÑ´Ù.
+    RwMatrix*	GetViewMatrix();        ///< í˜„ì¬ ì¹´ë©”ë¼ Matrixë¥¼ ë°˜í™˜í•œë‹¤.
+    RwV3d*	    GetViewPosition();      ///< í˜„ì¬ ì¹´ë©”ë¼ ìœ„ì¹˜ë¥¼ ë°˜í™˜í•œë‹¤.
 
     RwBool	GetArrowMatrix(RwMatrix& matArrow);
     RwBool	GetClumpMatrix(RwMatrix& matClump);
 
-    // Get/Set ¸Ş¼Òµå
-    void   SetTargetPosition(const RwV3d vTargetPosition) {m_vTargetPosition = vTargetPosition;};    ///< Å¸°Ù À§Ä¡¸¦ ¼³Á¤ÇÑ´Ù.
-    RwV3d  GetTargetPosition() {return m_vTargetPosition;} ///< LootAt Å¸°Ù À§Ä¡¸¦ ¹İÈ¯ÇÑ´Ù.
+    // Get/Set ë©”ì†Œë“œ
+    void   SetTargetPosition(const RwV3d vTargetPosition) {m_vTargetPosition = vTargetPosition;};    ///< íƒ€ê²Ÿ ìœ„ì¹˜ë¥¼ ì„¤ì •í•œë‹¤.
+    RwV3d  GetTargetPosition() {return m_vTargetPosition;} ///< LootAt íƒ€ê²Ÿ ìœ„ì¹˜ë¥¼ ë°˜í™˜í•œë‹¤.
 
-    void   SetViewDistance(RwReal fViewDistance) {m_fViewDistance = fViewDistance;} ///< ½Ã¾ß°Å¸®¸¦ ¼³Á¤ÇÑ´Ù.
+    void   SetViewDistance(RwReal fViewDistance) {m_fViewDistance = fViewDistance;} ///< ì‹œì•¼ê±°ë¦¬ë¥¼ ì„¤ì •í•œë‹¤.
 
-    RwReal GetMoveSpeed() {return m_fMoveSpeed;}            ///< Move Speed¸¦ ¹İÈ¯ÇÑ´Ù.
-    void   SetMoveSpeed(const RwReal fMoveSpeed) {m_fMoveSpeed = fMoveSpeed;} ///< Move Speed¸¦ ¹İÈ¯ÇÑ´Ù.
+    RwReal GetMoveSpeed() {return m_fMoveSpeed;}            ///< Move Speedë¥¼ ë°˜í™˜í•œë‹¤.
+    void   SetMoveSpeed(const RwReal fMoveSpeed) {m_fMoveSpeed = fMoveSpeed;} ///< Move Speedë¥¼ ë°˜í™˜í•œë‹¤.
 
-    RwReal GetRotationSpeed() {return m_fRotateSpeed;};     ///< Rotation Speed¸¦ ¹İÈ¯ÇÑ´Ù.
-    void   SetRotationSpeed(const RwReal fRotationSpeed) {m_fRotateSpeed = fRotationSpeed;} ///< ÇöÀç È¸Àü ¼Óµµ¸¦ ¹İÈ¯ÇÑ´Ù.
+    RwReal GetRotationSpeed() {return m_fRotateSpeed;};     ///< Rotation Speedë¥¼ ë°˜í™˜í•œë‹¤.
+    void   SetRotationSpeed(const RwReal fRotationSpeed) {m_fRotateSpeed = fRotationSpeed;} ///< í˜„ì¬ íšŒì „ ì†ë„ë¥¼ ë°˜í™˜í•œë‹¤.
 
-    RwReal GetWheelSpeed() {return m_fWheelSpeed;}          ///< Wheel Speed¸¦ ¹İÈ¯ÇÑ´Ù.
-    void   SetWheelSpeed(const RwReal fWheelSpeed) {m_fWheelSpeed = fWheelSpeed;} ///< Wheel Speed¸¦ ¼³Á¤ÇÑ´Ù.
+    RwReal GetWheelSpeed() {return m_fWheelSpeed;}          ///< Wheel Speedë¥¼ ë°˜í™˜í•œë‹¤.
+    void   SetWheelSpeed(const RwReal fWheelSpeed) {m_fWheelSpeed = fWheelSpeed;} ///< Wheel Speedë¥¼ ì„¤ì •í•œë‹¤.
 
     void	GetMouseRay(const POINT& point, RwV3d& vRayPos, RwV3d& vRayDir);
 
-    void    SetStaticView(EVenusCameraStaticView eStaticView);      ///< ÀÌ¹Ì Á¤ÀÇµÈ View ¹æÇâÀ¸·Î Ä«¸Ş¶ó¸¦ À§Ä¡½ÃÅ²´Ù.
+    void    SetStaticView(EVenusCameraStaticView eStaticView);      ///< ì´ë¯¸ ì •ì˜ëœ View ë°©í–¥ìœ¼ë¡œ ì¹´ë©”ë¼ë¥¼ ìœ„ì¹˜ì‹œí‚¨ë‹¤.
 
     static	CVenusCamera&	GetInstance(void);
 
@@ -84,16 +84,16 @@ protected:
     void	MoveViewMatrix(POINT gap, RwCamera* pCamera);
 
 protected:
-    RwReal		m_fViewDistance;                ///< ½Ã¾ß °Å¸®
-    RwV3d		m_vTargetPosition;              ///< Look Å¸°ÙÀÇ À§Ä¡
+    RwReal		m_fViewDistance;                ///< ì‹œì•¼ ê±°ë¦¬
+    RwV3d		m_vTargetPosition;              ///< Look íƒ€ê²Ÿì˜ ìœ„ì¹˜
 
-    RwBool		m_bRButtonDown;                 ///< ¸¶¿ì½º ¿À¸¥ÂÊ ¹öÆ° ´­¸² ¿©ºÎ
-    POINT		m_RButtonDownPosition;          ///< ¸¶¿ì½º ¿À¸¥ÂÊ ¹öÆ°ÀÌ ´­·ÈÀ»¶§ÀÇ À§Ä¡
+    RwBool		m_bRButtonDown;                 ///< ë§ˆìš°ìŠ¤ ì˜¤ë¥¸ìª½ ë²„íŠ¼ ëˆŒë¦¼ ì—¬ë¶€
+    POINT		m_RButtonDownPosition;          ///< ë§ˆìš°ìŠ¤ ì˜¤ë¥¸ìª½ ë²„íŠ¼ì´ ëˆŒë ¸ì„ë•Œì˜ ìœ„ì¹˜
 
-    RwBool		m_bMButtonDown;                 ///< ¸¶¿ì½º ÈÙ ¹öÆ° ´­¸² ¿©ºÎ
-    POINT		m_MButtonDownPosition;          ///< ¸¶¿ì½º ÈÙ ¹öÆ°ÀÌ ´­·ÈÀ»¶§ÀÇ À§Ä¡
+    RwBool		m_bMButtonDown;                 ///< ë§ˆìš°ìŠ¤ íœ  ë²„íŠ¼ ëˆŒë¦¼ ì—¬ë¶€
+    POINT		m_MButtonDownPosition;          ///< ë§ˆìš°ìŠ¤ íœ  ë²„íŠ¼ì´ ëˆŒë ¸ì„ë•Œì˜ ìœ„ì¹˜
 
-    RwReal		m_fMoveSpeed;                   ///< Ä«¸Ş¶ó Move Speed
-    RwReal		m_fRotateSpeed;                 ///< Ä«¸Ş¶ó È¸Àü Speed
-    RwReal		m_fWheelSpeed;                  ///< Ä«¸Ş¶ó ÈÙ Speed (°Å¸® Á¶Àı)
+    RwReal		m_fMoveSpeed;                   ///< ì¹´ë©”ë¼ Move Speed
+    RwReal		m_fRotateSpeed;                 ///< ì¹´ë©”ë¼ íšŒì „ Speed
+    RwReal		m_fWheelSpeed;                  ///< ì¹´ë©”ë¼ íœ  Speed (ê±°ë¦¬ ì¡°ì ˆ)
 };

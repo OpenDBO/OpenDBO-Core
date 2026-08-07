@@ -220,7 +220,7 @@ void CNtlSobFeelingActor::SobSubWeaponDeActiveEventHandler(RWS::CMsg &pMsg)
 
 void CNtlSobFeelingActor::SobPostEffectEventHandler( RWS::CMsg& pMsg ) 
 {
-    // ½ÇÁ¦ ±¸ÇöÀº ÇÁ·Ï½Ã¿¡¼­ ÇÑ´Ù.
+    // ì‹¤ì œ êµ¬í˜„ì€ í”„ë¡ì‹œì—ì„œ í•œë‹¤.
     CNtlSobProxy* pSobProxy = GetSobProxy();
     if(!pSobProxy)
         return;

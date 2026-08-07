@@ -71,7 +71,7 @@ void CAnimAttrView::OnInitialUpdate()
 {
     CFormView::OnInitialUpdate();
 
-    // ÇÁ·ÎÆÛÆ¼ À©µµ¿ì ÃÊ±âÈ­
+    // í”„ë¡œí¼í‹° ìœˆë„ìš° ì´ˆê¸°í™”
     DWORD dwStyle;
     CRect rc;
     dwStyle = WS_CHILD|WS_VISIBLE|PTS_NOTIFY;
@@ -81,8 +81,8 @@ void CAnimAttrView::OnInitialUpdate()
     m_HitPropertyTree.Create(dwStyle, rc, this, IDC_PROPERTY_FRAME);
     m_SoundProperyTree.Create(dwStyle, rc, this, IDC_PROPERTY_FRAME);
 
-    InitHitPropertyItem();      // Hit Event Property °ü·Ã ÃÊ±âÈ­
-    InitSoundPropertyItem();    // Sound Event Property °ü·Ã ÃÊ±âÈ­    
+    InitHitPropertyItem();      // Hit Event Property ê´€ë ¨ ì´ˆê¸°í™”
+    InitSoundPropertyItem();    // Sound Event Property ê´€ë ¨ ì´ˆê¸°í™”    
 
     SetPropertyMode(MODE_NONE);
 }
@@ -107,7 +107,7 @@ void CAnimAttrView::InitHitPropertyItem()
     m_pPropTargetBehavior->SetLabelText(L"Target Behavior");
     m_pPropTargetBehavior->SetInfoText(L"Select Behavior of Target that for Hit Event");
     m_pPropTargetBehavior->SetCtrlID(ID_PROP_ITEM_TARGETBEHAVIOR);    
-    m_pPropTargetBehavior->AddString(L"None");      // Add StringÀ¸·Î ³Ö¾î¾ß¸¸ Á¦´ë·Î ÀÛµ¿ÇÑ´Ù.
+    m_pPropTargetBehavior->AddString(L"None");      // Add Stringìœ¼ë¡œ ë„£ì–´ì•¼ë§Œ ì œëŒ€ë¡œ ìž‘ë™í•œë‹¤.
     m_pPropTargetBehavior->AddString(L"Push");
     m_pPropTargetBehavior->AddString(L"Toss");
     m_pPropTargetBehavior->AddString(L"Fall Down");
@@ -236,7 +236,7 @@ void CAnimAttrView::SetInit(CMTCharacter* pCharacter, SEventAnim* pEventAnim)
     
     m_pEventAnim = pEventAnim;
 
-    // ¹ÞÀº µ¥ÀÌÅÍ¸¦ À©µµ¿ì¿¡ Ç¥½ÃÇÑ´Ù.
+    // ë°›ì€ ë°ì´í„°ë¥¼ ìœˆë„ìš°ì— í‘œì‹œí•œë‹¤.
     if(pEventAnim->eEventID == EVENT_ANIM_HIT)
     {
         SetPropertyMode(MODE_HIT_EVENT);        
@@ -254,7 +254,7 @@ void CAnimAttrView::SetInit(CMTCharacter* pCharacter, SEventAnim* pEventAnim)
         }
         m_pPropHandType->SetCurSel(pEventAnimHit->eHandType);
 
-        // ¹Þ¾Æ¿Â µ¥ÀÌÅÍ¿¡ ¸Â°Ô ¼¼ÆÃÇÑ´Ù.
+        // ë°›ì•„ì˜¨ ë°ì´í„°ì— ë§žê²Œ ì„¸íŒ…í•œë‹¤.
         m_pPropBone->SetCurSelText(pEventAnimHit->chBoneName);
         
         std::string* sEffectName = CNtlPLCharacterParser::GetInstance().GetProjEffectTypeTable()->GetString(pEventAnimHit->uiProjectileEffectType);
@@ -311,7 +311,7 @@ void CAnimAttrView::SetLuaIDList()
 
     m_pPropLuaID->ResetContent();
 
-    // ÆÄ¼­·ÎºÎÅÍ µ¥ÀÌÅÍ¸¦ °¡Á®¿Í¼­ ¼³Á¤ÇÑ´Ù.
+    // íŒŒì„œë¡œë¶€í„° ë°ì´í„°ë¥¼ ê°€ì ¸ì™€ì„œ ì„¤ì •í•œë‹¤.
     int nCount = 0;
     KEY_STRING_MAP* pMap = CNtlPLCharacterParser::GetInstance().GetEffectLuaIDTable()->GetMapKeyToString();
     if(pMap)
@@ -335,7 +335,7 @@ void CAnimAttrView::SetEffectTypeList()
 
     m_pPropEffectType->ResetContent();
 
-    // ÆÄ¼­·ÎºÎÅÍ µ¥ÀÌÅÍ¸¦ °¡Á®¿Í¼­ ¼³Á¤ÇÑ´Ù.
+    // íŒŒì„œë¡œë¶€í„° ë°ì´í„°ë¥¼ ê°€ì ¸ì™€ì„œ ì„¤ì •í•œë‹¤.
     int nCount = 0;
     KEY_STRING_MAP* pMap = CNtlPLCharacterParser::GetInstance().GetProjEffectTypeTable()->GetMapKeyToString();
     if(pMap)
@@ -372,7 +372,7 @@ void CAnimAttrView::OnSize(UINT nType, int cx, int cy)
 
 void CAnimAttrView::OnItemChanged(NMHDR* pNotifyStruct, LRESULT* plResult)
 {
-    // ÇÁ·ÎÆÛÆ¼ ÄÁÆ®·ÑÀÇ ÀÌº¥Æ® Ã³¸® ÇÔ¼ö
+    // í”„ë¡œí¼í‹° ì»¨íŠ¸ë¡¤ì˜ ì´ë²¤íŠ¸ ì²˜ë¦¬ í•¨ìˆ˜
     LPNMPROPTREE pNMPropTree = (LPNMPROPTREE)pNotifyStruct;
 
     if (pNMPropTree->pItem)
@@ -427,7 +427,7 @@ void CAnimAttrView::OnChangeHitTime()
     m_pPropHitTime->GetWindowText(sTime);    
     m_pEventAnim->fTime = (RwReal)_wtof(sTime);    
 
-    // AnimToolViewÀÇ ¸¶Ä¿À§Ä¡µµ º¯°æÇÏ¿© ÁØ´Ù.
+    // AnimToolViewì˜ ë§ˆì»¤ìœ„ì¹˜ë„ ë³€ê²½í•˜ì—¬ ì¤€ë‹¤.
     CAnimToolView::GetInstance()->SetMarkerPos(m_pEventAnim);
 
 }
@@ -521,7 +521,7 @@ void CAnimAttrView::OnChangeLuaID()
     m_pPropLuaID->GetWindowText(sLuaName);
     std::string strLuaName = W2A(sLuaName);
 
-	//by HongHoDong LuaID¿¡ ³Ö¾î¾ß ÇÕ´Ï´Ù.(2006. 5. 18)
+	//by HongHoDong LuaIDì— ë„£ì–´ì•¼ í•©ë‹ˆë‹¤.(2006. 5. 18)
     //pEventAnimHit->uiProjectileEffectType = CNtlPLCharacterParser::GetInstance().GetEffectLuaIDTable()->GetKey(strLuaName);
 	pEventAnimHit->uiEffectLuaID = CNtlPLCharacterParser::GetInstance().GetEffectLuaIDTable()->GetKey(strLuaName);
 

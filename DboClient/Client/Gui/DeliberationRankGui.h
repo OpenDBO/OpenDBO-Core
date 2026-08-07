@@ -1,7 +1,7 @@
 /*****************************************************************************
 * File			: DeliberationRankGui.h
 * Author		: Hong Sungbock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2009. 8. 18
 * Abstract		: DBO contract gui.
 *****************************************************************************

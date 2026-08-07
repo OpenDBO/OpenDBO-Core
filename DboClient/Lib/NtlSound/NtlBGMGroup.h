@@ -2,15 +2,15 @@
 *
 * File			: NtlBGMGroup.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2009. 1. 28
 * Abstract		: Background Music Channel Group
 *****************************************************************************
-* Desc			: ´Ù¸¥ ¹è°æÀ½¾ÇÀ¸·Î ÀüÈ¯µÉ½Ã ÀÌÀü ¹è°æÀ½¾Ç(PostMusic)Àº
-*				  Fade Out ÀÌ µÇ¸ç »ç¶óÁø´Ù
+* Desc			: ë‹¤ë¥¸ ë°°ê²½ìŒì•…ìœ¼ë¡œ ì „í™˜ë ì‹œ ì´ì „ ë°°ê²½ìŒì•…(PostMusic)ì€
+*				  Fade Out ì´ ë˜ë©° ì‚¬ë¼ì§„ë‹¤
 *
-*				  ¹è°æÀ½¾ÇÀº ¿ì¼±¼øÀ§°¡ ÀÖ¾î¼­ ¿ì¼±¼øÀ§ ¹è°æÀ½¾ÇÀÇ ¿¬ÁÖ°¡
-*				  ³¡³ª¾ß ´ë±âÁßÀÎ ¹è°æÀ½¾ÇÀÌ PlayµÈ´Ù.
+*				  ë°°ê²½ìŒì•…ì€ ìš°ì„ ìˆœìœ„ê°€ ìˆì–´ì„œ ìš°ì„ ìˆœìœ„ ë°°ê²½ìŒì•…ì˜ ì—°ì£¼ê°€
+*				  ëë‚˜ì•¼ ëŒ€ê¸°ì¤‘ì¸ ë°°ê²½ìŒì•…ì´ Playëœë‹¤.
 *****************************************************************************/
 
 #pragma once
@@ -53,10 +53,10 @@ protected:
 	virtual void	ReleaseFinishedSound(float fElapsed);
 
 protected:
-	float			m_fReplayElapsed;						///< ÇöÀç À½¾ÇÀÇ ´ÙÀ½ Àç»ı±îÁö ³²Àº ½Ã°£
+	float			m_fReplayElapsed;						///< í˜„ì¬ ìŒì•…ì˜ ë‹¤ìŒ ì¬ìƒê¹Œì§€ ë‚¨ì€ ì‹œê°„
 
-	sPLAY_BGM_INFO	m_tPlaySound;							///< ÇöÀç Play µÇ°í ÀÖ´Â »ç¿îµå
-	sPLAY_BGM_INFO	m_tPostSound;							///< Fade out ÈÄ »èÁ¦µÉ »ç¿îµå
+	sPLAY_BGM_INFO	m_tPlaySound;							///< í˜„ì¬ Play ë˜ê³  ìˆëŠ” ì‚¬ìš´ë“œ
+	sPLAY_BGM_INFO	m_tPostSound;							///< Fade out í›„ ì‚­ì œë  ì‚¬ìš´ë“œ
 
 	CNtlBGMPlayList*	m_pBGMPlayList;
 };

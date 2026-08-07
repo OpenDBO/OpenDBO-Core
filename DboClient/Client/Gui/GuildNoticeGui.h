@@ -1,11 +1,11 @@
 /*****************************************************************************
 * File			: GuildNoticeGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 3. 23
 * Abstract		: 
 *****************************************************************************
-* Desc			: ±æµå °øÁö ÀÛ¼ºÃ¢
+* Desc			: ê¸¸ë“œ ê³µì§€ ìž‘ì„±ì°½
 *****************************************************************************/
 
 #pragma once
@@ -65,9 +65,9 @@ protected:
 	gui::CButton*		m_pOKButton;
 	gui::CButton*		m_pCancelButton;
 
-	gui::CInputBox*		m_pNoticeInput;						///< °øÁö ÀÔ·Â¶õ
+	gui::CInputBox*		m_pNoticeInput;						///< ê³µì§€ ìž…ë ¥ëž€
 
-	CWindowby3			m_srfBackboard;						///< µÞ ¹è°æ
+	CWindowby3			m_srfBackboard;						///< ë’· ë°°ê²½
 
 	eNOTICE_TYPE		m_eNoticeType;
 };

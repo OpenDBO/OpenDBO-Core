@@ -2,7 +2,7 @@
 *
 * File			: DShowMoviePlay.h
 * Author		: HongHoDong
-* Copyright	: (¡÷)NTL
+* Copyright	: (Ï£º)NTL
 * Date			: 2007. 6. 24	
 * Abstract		: NTl DShowMoviePlay
 *****************************************************************************
@@ -77,7 +77,7 @@ protected:
 	std::string				m_strMovieFileName;
 
 	eMovieSizeType			m_eSize;
-	RwBool					m_bPlay;		///< BVLø°º≠ ¡¶∞¯«œ¥¬ IsPlay «‘ºˆ¥¬ BVL ∂Û¿Ã∫Í∑Ø∏Æ∏¶ ∫“∑Øø¿±‚ ¿¸±Ó¡ˆ æµ ºˆ∞° æ¯¥Ÿ	
+	RwBool					m_bPlay;		///< BVLÏóêÏÑú Ï†úÍ≥µÌïòÎäî IsPlay Ìï®ÏàòÎäî BVL ÎùºÏù¥Î∏åÎü¨Î¶¨Î•º Î∂àÎü¨Ïò§Í∏∞ Ï†ÑÍπåÏßÄ Ïì∏ ÏàòÍ∞Ä ÏóÜÎã§	
 	RwBool					m_bRelease;
 	RwReal					m_fVolume;
 };

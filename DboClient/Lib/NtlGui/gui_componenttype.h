@@ -13,10 +13,10 @@ class CComponentType
 {
 public:
 //! Construction:
-	//: component type »ı¼ºÀÚ.
+	//: component type ìƒì„±ì.
 	CComponentType(){;}
 
-	//: component type ¼Ò¸êÀÚ.
+	//: component type ì†Œë©¸ì.
 	virtual ~CComponentType() {;}
 
 	//: create component

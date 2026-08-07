@@ -2,7 +2,7 @@
  *
  * File			: NTLApplication
  * Author		: HongHoDong
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 7. 14	
  * Abstract		: NTl Application
  *****************************************************************************
@@ -35,7 +35,7 @@ void UnLinkTextureLoad(void);
 
 /**
  * \ingroup Toolkit
- * Applicaton¸¦ »ı¼ºÇÏ±â À§ÇÑ Base Class ÀÌ´Ù.
+ * Applicatonë¥¼ ìƒì„±í•˜ê¸° ìœ„í•œ Base Class ì´ë‹¤.
  *
  *
  */
@@ -73,7 +73,7 @@ protected:
 
 	RwBool			m_bQuit;
 
-	RwBool			m_bRenderEnable;	// Render°¡ °¡´É ÇÑÁö
+	RwBool			m_bRenderEnable;	// Renderê°€ ê°€ëŠ¥ í•œì§€
 	
 	//The Unique Application Instance
 	static CNtlApplication *m_pInstance;

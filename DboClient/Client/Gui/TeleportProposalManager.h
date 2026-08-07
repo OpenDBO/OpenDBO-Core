@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: TeleportProposalManager.h
 * Author		: Haesung Cho
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2009. 4. 24
 * Abstract		: 
 *****************************************************************************
-* Desc			: Teleport proposal µÈ¿ª ∞¸∏Æ«—¥Ÿ.
+* Desc			: Teleport proposal Îì§ÏùÑ Í¥ÄÎ¶¨ÌïúÎã§.
 *****************************************************************************/
 
 #ifndef __TELEPORT_PROPOSAL_MANAGER_H__

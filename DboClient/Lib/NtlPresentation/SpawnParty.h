@@ -19,9 +19,9 @@ public:
 	CSpawnPartyContainer(void) {;}
 	virtual ~CSpawnPartyContainer(void) {;}
 
-	typedef std::map<DWORD, CSpawnParty*>				SPAWN_PARTY_MAP;
-	typedef std::map<DWORD, CSpawnParty*>::value_type	SPAWN_PARTY_VALUE;
-	typedef std::map<DWORD, CSpawnParty*>::iterator		SPAWN_PARTY_ITER;
+	typedef std::map<uintptr_t, CSpawnParty*>				SPAWN_PARTY_MAP;
+	typedef std::map<uintptr_t, CSpawnParty*>::value_type	SPAWN_PARTY_VALUE;
+	typedef std::map<uintptr_t, CSpawnParty*>::iterator		SPAWN_PARTY_ITER;
 
 private:
 	static DWORD	m_PartyIdx;
@@ -73,8 +73,8 @@ public:
 	VOID	Save(FILE* _pFile);
 };
 
-// CSpawnParty¸¦ »ó¼Ó ¹ŞÀ¸·Á ÇßÀ¸³ª »ı¼ºÀÚ¿¡¼­ SingletonÀ» »ç¿ëÇÏ±â ¶§¹®¿¡ ÀÏ´ÜÀº µû·Î ¸¸µç´Ù.
-// ³ªÁß¿¡ ½Ã°£ÀÌ ÀÖÀ» ¶§ ÇÕÄ¡´Â ¹æ¹ıÀ» °ËÅäÇØ º»´Ù.
+// CSpawnPartyë¥¼ ìƒì† ë°›ìœ¼ë ¤ í–ˆìœ¼ë‚˜ ìƒì„±ìì—ì„œ Singletonì„ ì‚¬ìš©í•˜ê¸° ë•Œë¬¸ì— ì¼ë‹¨ì€ ë”°ë¡œ ë§Œë“ ë‹¤.
+// ë‚˜ì¤‘ì— ì‹œê°„ì´ ìˆì„ ë•Œ í•©ì¹˜ëŠ” ë°©ë²•ì„ ê²€í† í•´ ë³¸ë‹¤.
 class CMergeSpawnParty 
 {
 public:

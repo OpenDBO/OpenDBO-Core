@@ -5,7 +5,7 @@
 // 2006.6.21 Peessi@hitel.net   
 //
 // To Be Desired:
-//	1. ÇöÀç Ä³¸¯ÅÍ ¹× ¸÷¸¸ Ç¥½ÃµÊ. ÁöµµÀÌ¹ÌÁö¸¦ Ç¥½ÃÇÏ±âÀ§ÇÑ ¸¶½ºÅ© ±â´ÉÀ» Ãß°¡ÇØ¾ßÇÔ.
+//	1. í˜„ì¬ ìºë¦­í„° ë° ëª¹ë§Œ í‘œì‹œë¨. ì§€ë„ì´ë¯¸ì§€ë¥¼ í‘œì‹œí•˜ê¸°ìœ„í•œ ë§ˆìŠ¤í¬ ê¸°ëŠ¥ì„ ì¶”ê°€í•´ì•¼í•¨.
 //
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -46,13 +46,13 @@ class CMapItem
 public:
 	enum eMapPosition
 	{
-		///< ÁÂ»ó´Ü			»ó´Ü				¿ì»ó´Ü
+		///< ì¢Œìƒë‹¨			ìƒë‹¨				ìš°ìƒë‹¨
 		MP_LT,				MP_CT,				MP_RT,
 
-		///< ÁÂ				Áß					¿ì
+		///< ì¢Œ				ì¤‘					ìš°
 		MP_LC,				MP_CC,				MP_RC,
 
-		///< ÁÂÇÏ´Ü			ÇÏ´Ü				¿ìÇÏ´Ü
+		///< ì¢Œí•˜ë‹¨			í•˜ë‹¨				ìš°í•˜ë‹¨
 		MP_LB,				MP_CB,				MP_RB,
 
 		NUM_MAPPOSITON
@@ -82,35 +82,35 @@ public:
 	VOID			SetScale(RwReal fScale);
 	RwReal			GetScale();
 
-	RwReal			GetRate();								///< ½ºÄÉÀÏ¿¡ µû¸¥ ÅØ½ºÃ³¿¡ ´ëÇÑ ¹Ì´Ï¸Ê ºñÀ²
+	RwReal			GetRate();								///< ìŠ¤ì¼€ì¼ì— ë”°ë¥¸ í…ìŠ¤ì²˜ì— ëŒ€í•œ ë¯¸ë‹ˆë§µ ë¹„ìœ¨
 	RealRect		GetAreaRect();
 
 protected:
-	VOID			UpdateAreaRect(RwV3d vFieldPos);	///< ¾Æ¹ÙÅ¸¸¦ Áß½ÉÀ¸·Î 4°³ÀÇ ÇÊµå ¿µ¿ª °è»ê
-	VOID			UpdatePotalMapUpdateResource();		///< ÇÊ¿äÇÑ ¸®¼Ò½º ·Îµù	
+	VOID			UpdateAreaRect(RwV3d vFieldPos);	///< ì•„ë°”íƒ€ë¥¼ ì¤‘ì‹¬ìœ¼ë¡œ 4ê°œì˜ í•„ë“œ ì˜ì—­ ê³„ì‚°
+	VOID			UpdatePotalMapUpdateResource();		///< í•„ìš”í•œ ë¦¬ì†ŒìŠ¤ ë¡œë”©	
 
-	VOID			LoadingSurface(CSurfaceGui& surface, RwInt32 iFieldIndex, RwInt32 iMapPosition);///< ½ÇÁ¦ °ÔÀÓ¿¡ ±×¸± ¹Ì´Ï¸ÊÀ» ·ÎµùÇÑ´Ù
+	VOID			LoadingSurface(CSurfaceGui& surface, RwInt32 iFieldIndex, RwInt32 iMapPosition);///< ì‹¤ì œ ê²Œì„ì— ê·¸ë¦´ ë¯¸ë‹ˆë§µì„ ë¡œë”©í•œë‹¤
 
-	RwInt32			CalcIndex(RwInt32 iCenterIndex, RwInt32 iPosition); ///< ÁöÁ¤µÈ À§Ä¡ÀÇ À¯È¿ÇÑ ÀÎµ¦½º¸¦ ¹İÈ¯ÇÑ´Ù
-	RwBool			IsWorldIndex(RwInt32 iIndex);		///< ¿ùµå»óÀÇ ÀÎµ¦½ºÀÎÁö¸¦ °Ë»ç
+	RwInt32			CalcIndex(RwInt32 iCenterIndex, RwInt32 iPosition); ///< ì§€ì •ëœ ìœ„ì¹˜ì˜ ìœ íš¨í•œ ì¸ë±ìŠ¤ë¥¼ ë°˜í™˜í•œë‹¤
+	RwBool			IsWorldIndex(RwInt32 iIndex);		///< ì›”ë“œìƒì˜ ì¸ë±ìŠ¤ì¸ì§€ë¥¼ ê²€ì‚¬
 	
 
 protected:
-	static CSurfaceCamera*		m_pRealMapCamera;		///< ½ÇÁ¦ ±×¸± ÅØ½ºÃ³ »ı¼ºÀ» À§ÇÑ Ä«¸Ş¶ó
-	static CSurfaceCamera*		m_pRealMapCamera2;		///< ½ÇÁ¦ ±×¸± ÅØ½ºÃ³ »ı¼ºÀ» À§ÇÑ Ä«¸Ş¶ó
+	static CSurfaceCamera*		m_pRealMapCamera;		///< ì‹¤ì œ ê·¸ë¦´ í…ìŠ¤ì²˜ ìƒì„±ì„ ìœ„í•œ ì¹´ë©”ë¼
+	static CSurfaceCamera*		m_pRealMapCamera2;		///< ì‹¤ì œ ê·¸ë¦´ í…ìŠ¤ì²˜ ìƒì„±ì„ ìœ„í•œ ì¹´ë©”ë¼
 	
-	CCameraRenderTargetSurface	m_ResourceSurface[NUM_MAPPOSITON];	///< ¸®¼Ò½º´Â º¸°üÇÒ ¼­ÆäÀÌ½º
+	CCameraRenderTargetSurface	m_ResourceSurface[NUM_MAPPOSITON];	///< ë¦¬ì†ŒìŠ¤ëŠ” ë³´ê´€í•  ì„œí˜ì´ìŠ¤
 	
-	CFilteredSurfaceGui			m_SurfaceMap2;			///< ½ÇÁ¦ È­¸é¿¡ ±×¸± ¸Ê
-	CCameraRenderTargetSurface	m_SurfaceMap;			///< ½ÇÁ¦ È­¸é¿¡ ±×¸± ¸Ê
+	CFilteredSurfaceGui			m_SurfaceMap2;			///< ì‹¤ì œ í™”ë©´ì— ê·¸ë¦´ ë§µ
+	CCameraRenderTargetSurface	m_SurfaceMap;			///< ì‹¤ì œ í™”ë©´ì— ê·¸ë¦´ ë§µ
 
-	RealRect					m_rtAreaRect;			///< ¾Æ¹ÙÅ¸¸¦ Áß½ÉÀ¸·Î ·ÎµùµÈ ÇÊµå ¿µ¿ª
+	RealRect					m_rtAreaRect;			///< ì•„ë°”íƒ€ë¥¼ ì¤‘ì‹¬ìœ¼ë¡œ ë¡œë”©ëœ í•„ë“œ ì˜ì—­
 
-	RwInt32						m_iPostField;			///< ÀÌÀü¿¡ À§Ä¡ÇÑ ÇÊµå ÀÎµ¦½º		
-	RwInt32						m_iCurField;			///< ÇöÀç À§Ä¡ÇÑ ÇÊµå ÀÎµ¦½º
-	WORLDID						m_PostWorldID;			///< ÀÌÀü ¿ùµå ID
+	RwInt32						m_iPostField;			///< ì´ì „ì— ìœ„ì¹˜í•œ í•„ë“œ ì¸ë±ìŠ¤		
+	RwInt32						m_iCurField;			///< í˜„ì¬ ìœ„ì¹˜í•œ í•„ë“œ ì¸ë±ìŠ¤
+	WORLDID						m_PostWorldID;			///< ì´ì „ ì›”ë“œ ID
 
-	RwReal						m_fScale;				///< ¹Ì´Ï¸Ê ½ºÄÉÀÏ
+	RwReal						m_fScale;				///< ë¯¸ë‹ˆë§µ ìŠ¤ì¼€ì¼
 };
 
 
@@ -118,7 +118,7 @@ protected:
 class CMinimapGui : public CNtlPLGui, public RWS::CEventHandler
 {
 public:
-#define dMINIMAPSCALE_COUNT					(3)			///< ¹Ì´Ï¸Ê ÃàÃ´ °¹¼ö
+#define dMINIMAPSCALE_COUNT					(3)			///< ë¯¸ë‹ˆë§µ ì¶•ì²™ ê°¯ìˆ˜
 
 	enum eMapStyle
 	{
@@ -131,7 +131,7 @@ public:
 
 	enum eTriggerObjectMarkType
 	{
-		TOMT_POPOSTONE,									///< Æ÷Æ÷½ºÅæ
+		TOMT_POPOSTONE,									///< í¬í¬ìŠ¤í†¤
 
 		NUM_TOMT
 	};
@@ -158,18 +158,18 @@ public:
 
 	enum eNextQuestMarkType
 	{
-		NQMT_INSIGHT,									///< ¹Ì´Ï¸Ê ½Ã¾ß°Å¸® ¾È¿¡ ÀÖ´Ù(NPC, OBJECT)
-		NQMT_INSIGHT_POSITION,							///< ¹Ì´Ï¸Ê ½Ã¾ß°Å¸® ¾È¿¡ ÀÖ´Ù(POSITION)
+		NQMT_INSIGHT,									///< ë¯¸ë‹ˆë§µ ì‹œì•¼ê±°ë¦¬ ì•ˆì— ìˆë‹¤(NPC, OBJECT)
+		NQMT_INSIGHT_POSITION,							///< ë¯¸ë‹ˆë§µ ì‹œì•¼ê±°ë¦¬ ì•ˆì— ìˆë‹¤(POSITION)
 		NQMT_CHECK,	// to do
-		NQMT_OUTSIGHT,									///< ¹Ì´Ï¸Ê ½Ã¾ß°Å¸® ¹Û¿¡ ÀÖ´Ù
+		NQMT_OUTSIGHT,									///< ë¯¸ë‹ˆë§µ ì‹œì•¼ê±°ë¦¬ ë°–ì— ìˆë‹¤
 
 		NUM_NQMT
 	};
 
 	enum eMiniMapPosition
 	{
-		MMP_INSIGHT,									///< ¹Ì´Ï¸Ê ½Ã¾ß°Å¸® ¾È¿¡ ÀÖ´Ù
-		MMP_OUTSIGHT,									///< ¹Ì´Ï¸Ê ½Ã¾ß°Å¸® ¹Û¿¡ ÀÖ´Ù
+		MMP_INSIGHT,									///< ë¯¸ë‹ˆë§µ ì‹œì•¼ê±°ë¦¬ ì•ˆì— ìˆë‹¤
+		MMP_OUTSIGHT,									///< ë¯¸ë‹ˆë§µ ì‹œì•¼ê±°ë¦¬ ë°–ì— ìˆë‹¤
 
 		NUM_MMP
 	};
@@ -245,7 +245,7 @@ public:
 	{
 		RwV2d				v2Pos;
 		RwV2d				v2Icon;
-		RwV2d				v2OutCenter;		///< eNextQuestMarkTypeÀÌ NQMT_OUTSIGHTÀÏ¶§ À¯È¿
+		RwV2d				v2OutCenter;		///< eNextQuestMarkTypeì´ NQMT_OUTSIGHTì¼ë•Œ ìœ íš¨
 		eNextQuestMarkType	eType;
 		RwBool				bShow;
 		RwBool				bInfoWindow;
@@ -258,10 +258,10 @@ public:
 
 	struct sCHECK_POINT
 	{
-		// ÇöÀç´Â ÇÑ¹ø¿¡ ÇÏ³ª¸¸ Á¸ÀçÇÏÁö¸¸ ³ªÁßÀ» À§ÇØ¼­ std::vector·Î °ü¸®ÇÑ´Ù
+		// í˜„ì¬ëŠ” í•œë²ˆì— í•˜ë‚˜ë§Œ ì¡´ì¬í•˜ì§€ë§Œ ë‚˜ì¤‘ì„ ìœ„í•´ì„œ std::vectorë¡œ ê´€ë¦¬í•œë‹¤
 		RwV2d				v2Pos;
 		RwV2d				v2Icon;
-		RwV2d				v2OutCenter;		///< eMiniMapPositionÀÌ MMP_OUTSIGHTÀÏ¶§ À¯È¿
+		RwV2d				v2OutCenter;		///< eMiniMapPositionì´ MMP_OUTSIGHTì¼ë•Œ ìœ íš¨
 		eMiniMapPosition	eType;
 		RwBool				bShow;
 		RwReal				fAngle;
@@ -272,7 +272,7 @@ public:
 	{
 		RwV2d				v2Pos;
 		RwV2d				v2Icon;
-		RwV2d				v2OutCenter;		///< eMiniMapPositionÀÌ MMP_OUTSIGHTÀÏ¶§ À¯È¿
+		RwV2d				v2OutCenter;		///< eMiniMapPositionì´ MMP_OUTSIGHTì¼ë•Œ ìœ íš¨
 		eMiniMapPosition	eType;
 		WCHAR*				pwcName;
 		RwBool				bShow;
@@ -430,29 +430,29 @@ private:
 	CSurfaceGui		m_surMarkPartyMember[NUM_MMP];
 	CSurfaceGui		m_surMarkCommonTarget[NTL_MAX_SHARETARGET_COUNT];
 	CSurfaceGui		m_surMarkDojoSeal[MAX_TOBJECT_STATE_TYPE_C];
-	CSurfaceGui		m_surCamp[NUM_CAMP_PEOPLE];					///< (ÇÇ¾Æ±¸ºĞ)ÆÀÀ» ³ª´©¾î¼­ ½Î¿ì´Â °æ¿ìÀÇ »ç¶÷µé
+	CSurfaceGui		m_surCamp[NUM_CAMP_PEOPLE];					///< (í”¼ì•„êµ¬ë¶„)íŒ€ì„ ë‚˜ëˆ„ì–´ì„œ ì‹¸ìš°ëŠ” ê²½ìš°ì˜ ì‚¬ëŒë“¤
 
 	RwReal			m_fElapsedTime;
 	
 	RwUInt8			m_byMapStyle;
-	RwInt8			m_byCurScale;								///< ÇöÀç ÁöµµÀÇ ½ºÄÉÀÏ	
-	RwReal			m_fMiniMapScaleLevels[dMINIMAPSCALE_COUNT];	///< ÁöµµÀÇ ½ºÄÉÀÏ ´Ü°è
+	RwInt8			m_byCurScale;								///< í˜„ì¬ ì§€ë„ì˜ ìŠ¤ì¼€ì¼	
+	RwReal			m_fMiniMapScaleLevels[dMINIMAPSCALE_COUNT];	///< ì§€ë„ì˜ ìŠ¤ì¼€ì¼ ë‹¨ê³„
 
 	sSCRAMBLE_VISIBLE	m_tSCRAMBLE_VISIBLE;
 
-	SERIAL_HANDLE	m_hBus_with_Avatar;							///< ¾Æ¹ÙÅ¸°¡ Å¸°í ÀÖ´Â ¹ö½ºÀÇ ÇÚµé
+	SERIAL_HANDLE	m_hBus_with_Avatar;							///< ì•„ë°”íƒ€ê°€ íƒ€ê³  ìˆëŠ” ë²„ìŠ¤ì˜ í•¸ë“¤
 
-	CMapNameTextTable*			m_pMapNameTextTable;			///< ÇöÀç ¾Æ¹ÙÅ¸°¡ À§Ä¡ÇÑ °÷ÀÇ Map name code
+	CMapNameTextTable*			m_pMapNameTextTable;			///< í˜„ì¬ ì•„ë°”íƒ€ê°€ ìœ„ì¹˜í•œ ê³³ì˜ Map name code
 	
 	std::vector<sTRIGGER_OBJECT> m_vecTriggerObject;
-	std::vector<sHIDDEN_OBJECT> m_vecHiddenObject;				///< Trigger objectÀÇ ÇÑ Á¾·ùÀÌÁö¸¸ º°µµ·Î °ü¸®ÇÑ´Ù
+	std::vector<sHIDDEN_OBJECT> m_vecHiddenObject;				///< Trigger objectì˜ í•œ ì¢…ë¥˜ì´ì§€ë§Œ ë³„ë„ë¡œ ê´€ë¦¬í•œë‹¤
 	std::vector<sMONSTER>		m_vecMob;
 	std::vector<sMINIMAP_NPC>	m_vecNPC;
 	std::vector<sMINIMAP_QUEST>	m_vecQuest;
 	std::vector<sNEXT_QUEST>	m_vectNextQuest;
 	std::vector<sCHECK_POINT>	m_vecCheckPoint;
 	std::vector<sPARTYMEMBER>	m_vecPartyMember;
-	sCOMMON_TARGET				m_aCommonTarget[NTL_MAX_SHARETARGET_COUNT];	///< ¹è¿­ÀÇ ÀÎµ¦½º¿Í °øÀ¯ Å¸°Ù ¹øÈ£¸¦ ¸ÂÃá´Ù
+	sCOMMON_TARGET				m_aCommonTarget[NTL_MAX_SHARETARGET_COUNT];	///< ë°°ì—´ì˜ ì¸ë±ìŠ¤ì™€ ê³µìœ  íƒ€ê²Ÿ ë²ˆí˜¸ë¥¼ ë§ì¶˜ë‹¤
 	std::map<RwUInt32, sSCRAMBLE_SEAL*>			m_mapScrambleSeal;
 	std::map<RwUInt32, sSCRAMBLE_SEAL_NOTIFY*>	m_mapScrambleSealNotify;
 	LIST_CAMP_PEOPLE			m_listCampPeople;

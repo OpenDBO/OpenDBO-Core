@@ -3,6 +3,13 @@
 #include "NtlPLHelpers.h"
 #include "NtlDebug.h"
 #include "NtlPLEntity.h"
+
+#ifdef _DEBUG
+#include <crtdbg.h>
+#define HEAP_CHECK() do { if (!_CrtCheckMemory()) { OutputDebugStringA("HEAP CORRUPTION DETECTED in NtlPLResourceManager.cpp\n"); __debugbreak(); } } while(0)
+#else
+#define HEAP_CHECK() ((void)0)
+#endif
 #include "rtanim.h" 
 #include "ntlworldcommon.h"
 #include "NtlPLResourcePack.h"
@@ -56,7 +63,7 @@ RwImageSetPath(strImagePath.c_str());*/
 // 		}		
 // 		m_strImagePath += pInPath;
 // 
-// 		*ppOutPath		= const_cast<RwChar*>(m_strImagePath.c_str()); // À§ÇèÇÏÁö¸¸ ÀÌ·¸°Ô ÇÏÀÚ...
+// 		*ppOutPath		= const_cast<RwChar*>(m_strImagePath.c_str()); // å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹±ë¤„ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™...
 // 		*pOutPathSize	= m_strImagePath.size();
 // 	}
 // 	return bResult;
@@ -126,7 +133,7 @@ CNtlPLResourceManager::CNtlPLResourceManager()
 }
 
 /**
-*  singleton CNtlPLResourceManager interface ÇÔ¼ö.
+*  singleton CNtlPLResourceManager interface å ìŒ‰ì‡½ì˜™.
 *
 */
 CNtlPLResourceManager* CNtlPLResourceManager::GetInstance(void)
@@ -136,7 +143,7 @@ CNtlPLResourceManager* CNtlPLResourceManager::GetInstance(void)
 }
 
 /**
-* Initial ÇÔ¼ö.
+* Initial å ìŒ‰ì‡½ì˜™.
 *
 */
 bool CNtlPLResourceManager::Crate(void)
@@ -146,7 +153,7 @@ bool CNtlPLResourceManager::Crate(void)
 
 
 /**
-*  Terminate ÇÔ¼ö.
+*  Terminate å ìŒ‰ì‡½ì˜™.
 *
 */
 void CNtlPLResourceManager::Destroy(void)
@@ -165,7 +172,7 @@ void CNtlPLResourceManager::Destroy(void)
 
 
 /**
-*  Update ÇÔ¼ö.
+*  Update å ìŒ‰ì‡½ì˜™.
 *
 */
 
@@ -182,8 +189,8 @@ void CNtlPLResourceManager::Update(RwReal fElapsed)
 }
 
 /**
-*  applicationÀÌ Á¾·á µÇ¾úÀ» ¶§ ÇØÁöµÇÁö ¾ÊÀº resource¸¦ debuggingÀ» À§ÇÑ ÇÔ¼ö.
-*  debugging ³»¿ëÀ» file or output window·Î display ÇÒ ¼ö ÀÖµµ·Ï ÇÑ´Ù.
+*  applicationå ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì‹¤ì–µì˜™å ì™ì˜™ å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ resourceå ì™ì˜™ debuggingå ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ìŒ‰ì‡½ì˜™.
+*  debugging å ì™ì˜™å ì™ì˜™å ì™ì˜™ file or output windowå ì™ì˜™ display å ì™ì˜™ å ì™ì˜™ å ìŒë“¸ì˜™å ì™ì˜™ å ì‹¼ëŒì˜™.
 *
 */
 void CNtlPLResourceManager::DebugResource(void)
@@ -198,11 +205,11 @@ void CNtlPLResourceManager::DebugResource(void)
 
 
 /**
-*  CNtlPLResource °´Ã¼¸¦ »ı¼ºÇÏ´Â ÇÔ¼ö.
+*  CNtlPLResource å ì™ì˜™ì²´å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ëŒì˜™ å ìŒ‰ì‡½ì˜™.
 *
-*  \param pName resource nameÀ» CNtlPLResource¿¡ ´ã´Â´Ù.
-*  \param iType renderware dataÀÇ type.
-*  \param iType renderware dataÀÇ pointer.
+*  \param pName resource nameì„ CNtlPLResourceì— ë‹´ëŠ”ë‹¤.
+*  \param iType renderware dataå ì™ì˜™ type.
+*  \param iType renderware dataå ì™ì˜™ pointer.
 */
 CNtlPLResource* CNtlPLResourceManager::CreateResource(const char *pName, unsigned int uiType, bool bClone, void *pData)
 {
@@ -219,9 +226,9 @@ CNtlPLResource* CNtlPLResourceManager::CreateResource(const char *pName, unsigne
 }
 
 /**
-*  CNtlPLResource °´Ã¼¸¦ container¿¡ µî·ÏÇÏ´Â ÇÔ¼ö.
+*  CNtlPLResource ï¿½ï¿½Ã¼ï¿½ï¿½ containerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½.
 *
-*  \param pResource container µî·ÏÇÒ resource pointer
+*  \param pResource container ï¿½ï¿½ï¿½ï¿½ï¿½ resource pointer
 */
 void CNtlPLResourceManager::RegisterResource(const CNtlPLResource *pResource)
 {
@@ -262,9 +269,9 @@ void CNtlPLResourceManager::RegisterResource(const CNtlPLResource *pResource)
 
 
 /**
-*  CNtlPLResource °´Ã¼¸¦ container¿¡¼­ ÇØÁ¦ÇÏ´Â ÇÔ¼ö.
+*  CNtlPLResource å ì™ì˜™ì²´å ì™ì˜™ containerå ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ëŒì˜™ å ìŒ‰ì‡½ì˜™.
 *
-*  \param pResource container ÇØÁ¦ÇÒ resource pointer
+*  \param pResource container å ì™ì˜™å ì™ì˜™å ì™ì˜™ resource pointer
 */
 void CNtlPLResourceManager::UnRegisterResource(const CNtlPLResource *pResource)
 {
@@ -386,8 +393,8 @@ void CNtlPLResourceManager::UnRegisterResource(const CNtlPLResource *pResource)
 }
 
 /**
-*  RenderWare data¸¦ ÀĞ´Â ÇÔ¼ö.
-*  clump¿Í atomic´Â Ã³À½ »ı¼ºÇÏ´õ¶óµµ clone clump ¹× atomicÀ¸·Î ´Ù½Ã »ı¼ºÇÏ¿© ¸®ÅÏÇÑ´Ù.
+*  RenderWare dataå ì™ì˜™ å ì‹»ëŒì˜™ å ìŒ‰ì‡½ì˜™.
+*  clumpå ì™ì˜™ atomicå ì™ì˜™ ì²˜å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ëŒì˜™å ì™ì˜™ clone clump å ì™ì˜™ atomicå ì™ì˜™å ì™ì˜™ å ìŒ•ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ìš¸ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¼ëŒì˜™.
 *
 *  \param pStrName file name
 *  \param pResourcePath resource path
@@ -440,19 +447,38 @@ CNtlPLResource* CNtlPLResourceManager::LoadDefault(const char *pStrName, const c
 	if(pResource == NULL)
 	{
 		RwStream *pStream = NULL;
-		void *fp = NULL;
+		RwUInt8* buf = NULL;
 
 		SPackResFileData sPackFileData;
 		bool bPack = GetNtlResourcePackManager()->LoadObject(pStrName, sPackFileData);
 
 		if(bPack)
 		{
-			fp = RwFopen(sPackFileData.strPackFileName.c_str(), "rb");
-			if(fp == NULL)
-				return NULL;
-
-			RwFseek(fp, sPackFileData.uiOffset, RTFILE_POS_BEGIN);
-			pStream = RwStreamOpen(rwSTREAMFILE, rwSTREAMREAD, fp);
+			FILE* fp = NULL;
+			if (fopen_s(&fp, sPackFileData.strPackFileName.c_str(), "rb") == 0)
+			{
+				fseek(fp, sPackFileData.uiOffset, SEEK_SET);
+				buf = (RwUInt8*)RwMalloc(sPackFileData.uiSize, rwMEMHINTDUR_GLOBAL);
+				if (buf)
+				{
+					size_t readBytes = fread(buf, 1, sPackFileData.uiSize, fp);
+					fclose(fp);
+					if (readBytes == sPackFileData.uiSize)
+					{
+						RwMemory mem;
+						mem.start = buf;
+						mem.length = sPackFileData.uiSize;
+						pStream = RwStreamOpen(rwSTREAMMEMORY, rwSTREAMREAD, &mem);
+					}
+					else
+					{
+						RwFree(buf);
+						buf = NULL;
+					}
+				}
+				else
+					fclose(fp);
+			}
 		}
 		else
 		{
@@ -473,19 +499,19 @@ CNtlPLResource* CNtlPLResourceManager::LoadDefault(const char *pStrName, const c
 			
 			RwStreamClose( pStream, NULL );
 
+			if (buf)
+				RwFree(buf);
+
 			pNewResource = CreateResource(pFileName, uiType, false, pData); 
 			RegisterResource(pNewResource);
 		}
 		else    // If the corresponding clump is not loaded, NULL is returned. (by agebreak 2006-11-29)
 		{
-			if(fp)
-				RwFclose(fp);
+			if (buf)
+				RwFree(buf);
 
 			return NULL;
 		}
-
-		if(fp)
-			RwFclose(fp);
 	}
 	else
 	{
@@ -498,10 +524,10 @@ CNtlPLResource* CNtlPLResourceManager::LoadDefault(const char *pStrName, const c
 		}
 	}
 
-	// clone »ı¼ºÀ» À§ÇØ¼­..
+	// clone å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ìŒ”ì‡½ì˜™..
 	pResource = Find(pFileName, uiType);
 
-	// clone »ı¼º.
+	// clone å ì™ì˜™å ì™ì˜™.
 	if(uiType == rwID_CLUMP || uiType == rwID_ATOMIC)
 	{
 		pData = CreateCloneRwData( pResource->GetType(), (void*)pResource->GetData() );  
@@ -519,7 +545,7 @@ CNtlPLResource* CNtlPLResourceManager::LoadDefault(const char *pStrName, const c
 }
 
 /**
-*  RenderWare world data¸¦ ÀĞ´Â ÇÔ¼ö.
+*  RenderWare world dataå ì™ì˜™ å ì‹»ëŒì˜™ å ìŒ‰ì‡½ì˜™.
 *
 *  \param pStrName file name
 *  \param pResourcePath resource path
@@ -535,18 +561,20 @@ CNtlPLResource* CNtlPLResourceManager::LoadWorld(const char *pStrName, const cha
 }
 
 /**
-*  RenderWare data¸¦ ÀĞ´Â ÇÔ¼ö.
+*  RenderWare dataå ì™ì˜™ å ì‹»ëŒì˜™ å ìŒ‰ì‡½ì˜™.
 *
 *  \param pStrName file name
 *  \param pResourcePath resource path
-*  \param bClone clump¸¦ cloneÀ¸·Î »ı¼ºÇÒ °ÍÀÎÁö¸¦ °áÁ¤ÇÏ´Â º¯¼ö.
+*  \param bClone clumpå ì™ì˜™ cloneå ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ëŒì˜™ å ì™ì˜™å ì™ì˜™.
 */
 
 CNtlPLResource* CNtlPLResourceManager::LoadClump(const char *pStrName, const char * pResourcePath)
 {
 	NTL_FUNCTION("CNtlPLResourceManager::LoadClump");	
 
+	HEAP_CHECK();
 	CNtlPLResource *pResource = LoadDefault(pStrName, pResourcePath, rwID_CLUMP);
+	HEAP_CHECK();
 	if(pResource == NULL)
 	{		
 		DBO_TRACE(FALSE, "CNtlPLResourceManager::LoadClump the clump find not(" << pStrName << ")");
@@ -575,11 +603,11 @@ void CNtlPLResourceManager::LoadSchedulingClump(const char *pStrName, const char
 }
 
 /**
-*  RenderWare data¸¦ ÀĞ´Â ÇÔ¼ö.
+*  RenderWare dataå ì™ì˜™ å ì‹»ëŒì˜™ å ìŒ‰ì‡½ì˜™.
 *
 *  \param pStrName file name
 *  \param pResourcePath resource path
-*  \param bClone atomic¸¦ cloneÀ¸·Î »ı¼ºÇÒ °ÍÀÎÁö¸¦ °áÁ¤ÇÏ´Â º¯¼ö.
+*  \param bClone atomicå ì™ì˜™ cloneå ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ëŒì˜™ å ì™ì˜™å ì™ì˜™.
 */
 
 CNtlPLResource* CNtlPLResourceManager::LoadAtomic(const char *pStrName, const char * pResourcePath)
@@ -606,14 +634,14 @@ CNtlPLResource* CNtlPLResourceManager::LoadAnimation(const char *pStrName)
 }
 
 /**
-*  RenderWare data¸¦ ÀĞ´Â ÇÔ¼ö.
+*  RenderWare dataå ì™ì˜™ å ì‹»ëŒì˜™ å ìŒ‰ì‡½ì˜™.
 *
 *  \param pStrName file name
 *  \param pResourcePath resource path
-*  \param eFilterMode textureÀÇ filtering mode. renderware RwTextureFilterMode¸¦ ÂüÁ¶.
-*  \param EResDictType texture¸¦ groupÀ¸·Î ³ª´©¾î °ü¸®ÇÒ °æ¿ì¿¡ groupÀÇ id°¡ µÈ´Ù.
-*         groupÀ¸·Î °ü¸®ÇÏ´Â ÀÌÀ¯´Â °Ë»ö ¼Óµµ¸¦ ºü¸£°Ô ÇÒ ¼ö ÀÖ´Ù.     
-*         ÀÏ¹İÀûÀ¸·Î object, character, terrain, texture, uiµîÀÇ groupÀ» »ı°¢ÇØ º¼ ¼ö ÀÖ´Ù.
+*  \param eFilterMode textureå ì™ì˜™ filtering mode. renderware RwTextureFilterModeå ì™ì˜™ å ì™ì˜™å ì™ì˜™.
+*  \param EResDictType textureï¿½ï¿½ groupï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¿¡ groupï¿½ï¿½ idï¿½ï¿½ ï¿½È´ï¿½.
+*         groupå ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ëŒì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹¯ì‚¼ì˜™ å ìŒˆë“¸ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™ å ì™ì˜™ å ìŒëŒì˜™.     
+*         å ì‹¹ë±„ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ object, character, terrain, texture, uiå ì™ì˜™å ì™ì˜™ groupå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™ å ì™ì˜™ å ìŒëŒì˜™.
 */
 
 RwTexture* CNtlPLResourceManager::LoadTexture(const char *pStrName, const char * pResourcePath, EResDictType eType /*= RES_TEX_DEFAULT_DICT*/ , const char *pStrMaskName /*= NULL*/)
@@ -623,10 +651,12 @@ RwTexture* CNtlPLResourceManager::LoadTexture(const char *pStrName, const char *
 	NTL_PRE(pStrName);
     NTL_PRE(pResourcePath);
 	
+	HEAP_CHECK();
 	RwImageSetPath(pResourcePath);
 	
 
 	RwTexture *pTexture = RwTextureRead(pStrName, pStrMaskName);
+	HEAP_CHECK();
 	if (pTexture == NULL)
 	{
 		static RwChar acCurrentDirectory[1024];
@@ -674,9 +704,9 @@ RwTexture* CNtlPLResourceManager::CreateTexture(const char *pStrName,
 
 
 /**
-*  resource¸¦ unload ÇÑ´Ù.
+*  resourceå ì™ì˜™ unload å ì‹¼ëŒì˜™.
 *
-*  \param pResource unloadÇÒ resource pointer
+*  \param pResource unloadå ì™ì˜™ resource pointer
 */
 void CNtlPLResourceManager::UnLoad(CNtlPLResource *pResource)
 {
@@ -701,7 +731,7 @@ void CNtlPLResourceManager::UnLoad(CNtlPLResource *pResource)
 }
 
 /**
-*  scheduling»ó¿¡ µî·ÏµÇ¾î ÀÖ´Â entity¿¡ ÇØ´çÇÏ´Â scheduling node¸¦ »èÁ¦ÇÑ´Ù.
+*  schedulingìƒì— ë“±ë¡ë˜ì–´ ìˆëŠ” entityì— í•´ë‹¹í•˜ëŠ” scheduling nodeë¥¼ ì‚­ì œí•œë‹¤.
 *
 */
 void CNtlPLResourceManager::UnLoadScheduling(CNtlPLEntity *pPLEntity, CNtlPLResource *pResource)
@@ -719,7 +749,7 @@ void CNtlPLResourceManager::UnLoadScheduling(CNtlPLEntity *pPLEntity, CNtlPLReso
 }
 
 /**
-*  container¿¡¼­ nameÀ¸·Î CNtlPLResource¸¦ Ã£´Â´Ù.
+*  containerå ì™ì˜™å ì™ì˜™ nameå ì™ì˜™å ì™ì˜™ CNtlPLResourceå ì™ì˜™ ì°¾å ìŠ¹ëŒì˜™.
 *
 *  \param pTexture texture pointer
 */
@@ -729,7 +759,7 @@ void CNtlPLResourceManager::UnLoadTexture(RwTexture *pTexture)
 }
 
 /**
-*  container¿¡¼­ nameÀ¸·Î CNtlPLResource¸¦ Ã£´Â´Ù.
+*  containerå ì™ì˜™å ì™ì˜™ nameå ì™ì˜™å ì™ì˜™ CNtlPLResourceå ì™ì˜™ ì°¾å ìŠ¹ëŒì˜™.
 *
 *  \param pName name string
 *  \param uiType the resource type
@@ -812,7 +842,7 @@ CNtlPLResource* CNtlPLResourceManager::Find(const char *pName, unsigned int uiTy
 }
 
 /**
-*  renderware world¸¦ »ı¼ºÇÏ´Â ÇÔ¼ö.
+*  renderware worldå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ëŒì˜™ å ìŒ‰ì‡½ì˜™.
 *
 *  \param pStream world stream data
 */
@@ -832,7 +862,7 @@ RpWorld* CNtlPLResourceManager::WorldStreamRead (RwStream *pStream)
 
 
 /**
-*  renderware atomic¸¦ »ı¼ºÇÏ´Â ÇÔ¼ö.
+*  renderware atomicå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ëŒì˜™ å ìŒ‰ì‡½ì˜™.
 *
 *  \param pStream atomic stream data
 */
@@ -853,7 +883,7 @@ RpAtomic* CNtlPLResourceManager::AtomicStreamRead (RwStream *pStream)
 
 
 /**
-*  renderware clump¸¦ »ı¼ºÇÏ´Â ÇÔ¼ö.
+*  renderware clumpå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ëŒì˜™ å ìŒ‰ì‡½ì˜™.
 *
 *  \param pStream clump stream data
 */
@@ -877,9 +907,9 @@ RpClump* CNtlPLResourceManager::ClumpStreamRead (RwStream *pStream)
 
 
 /**
-*  renderware data type¿¡ ÇØ´çÇÏ´Â data¸¦ »ı¼ºÇÏ´Â ÇÔ¼ö.
+*  renderware data typeå ì™ì˜™ å ìŒ”ëŒì˜™å ì‹¹ëŒì˜™ dataå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ëŒì˜™ å ìŒ‰ì‡½ì˜™.
 *
-*  \param pSteam stream °´Ã¼ pointer.
+*  \param pSteam stream å ì™ì˜™ì²´ pointer.
 *  \param iType renderware data type.
 */
 
@@ -924,11 +954,11 @@ void* CNtlPLResourceManager::CreateRwData(RwStream *pStream, unsigned int iType)
 }
 
 /**
-*  renderware data¿¡ ÇØ´çÇÏ´Â clone data¸¦ »ı¼ºÇÑ´Ù.
-*  typeÀ» ºñ±³ÇÏ¿© ÀûÀıÇÑ renderware clone ÇÔ¼ö¸¦ Àû¿ëÇÑ´Ù.
+*  renderware dataå ì™ì˜™ å ìŒ”ëŒì˜™å ì‹¹ëŒì˜™ clone dataå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¼ëŒì˜™.
+*  typeå ì™ì˜™ å ì™ì˜™å ì‹¹ìš¸ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ renderware clone å ìŒ‰ì‡½ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¼ëŒì˜™.
 *
 *  \param iType renderware data type.
-*  \param pData cloneÇÒ renderware data.
+*  \param pData cloneå ì™ì˜™ renderware data.
 */
 void* CNtlPLResourceManager::CreateCloneRwData(unsigned int iType, void *pData)
 {
@@ -952,10 +982,10 @@ void* CNtlPLResourceManager::CreateCloneRwData(unsigned int iType, void *pData)
 }
 
 /**
-*  renderware data¿¡ ÇØ´çÇÏ´Â type¿¡ ÀûÀıÇÏ°Ô »èÁ¦ÇÑ´Ù.
+*  renderware dataå ì™ì˜™ å ìŒ”ëŒì˜™å ì‹¹ëŒì˜™ typeå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ê³¤ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¼ëŒì˜™.
 *
 *  \param iType renderware data type.
-*  \param pData »èÁ¦ÇÒ renderware data.
+*  \param pData å ì™ì˜™å ì™ì˜™å ì™ì˜™ renderware data.
 */
 void CNtlPLResourceManager::DestroyRwData(unsigned int iType, void *pData)
 {

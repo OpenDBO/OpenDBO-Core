@@ -1,4 +1,4 @@
-// FieldHeatHazeDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// FieldHeatHazeDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -15,7 +15,7 @@
 
 #include "WorldViewDlg.h"
 
-// CFieldHeatHazeDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CFieldHeatHazeDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CFieldHeatHazeDlg, CDialog)
 
@@ -54,7 +54,7 @@ BEGIN_MESSAGE_MAP(CFieldHeatHazeDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CFieldHeatHazeDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CFieldHeatHazeDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CFieldHeatHazeDlg::PreTranslateMessage(MSG* pMsg)
 {
@@ -215,7 +215,7 @@ void CFieldHeatHazeDlg::ApplyData(sNTL_HEATHAZE* pHeatHaze, RwBool bScrollUpdate
 
 void CFieldHeatHazeDlg::OnBnClickedOk()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	static_cast<CNtlWEDoc*>(((CNtlWEApp*)(AfxGetApp()))->m_pDoc)->m_pNtlFieldProp->_NtlHeatHaze = m_sNtlHeatHaze;
 	
@@ -256,7 +256,7 @@ void CFieldHeatHazeDlg::OnBnClickedOk()
 
 	dGETDOC()->ApplyFieldProp(((CNtlWEApp*)(AfxGetApp()))->m_pDoc->m_pNtlFieldProp, eNFP_FIELDHEATHAZE);
 
-	// ÀÎµµ¾î
+	// ì¸ë„ì–´
 // 	switch (GetSceneManager()->GetActiveWorldType())
 // 	{
 // 	case AW_HEGITHFIELD:
@@ -274,7 +274,7 @@ void CFieldHeatHazeDlg::OnBnClickedOk()
 
 void CFieldHeatHazeDlg::OnBnClickedCancel()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	CNtlPostEffectCamera::GetInstance()->GetHeatHaze()->m_pToolHeatHaze = NULL;
 
@@ -282,7 +282,7 @@ void CFieldHeatHazeDlg::OnBnClickedCancel()
 }
 void CFieldHeatHazeDlg::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	sNTL_HEATHAZE tempHeatHaze = m_sNtlHeatHaze;
 	if (pScrollBar->GetSafeHwnd() == m_SliderMps.GetSafeHwnd())
 	{

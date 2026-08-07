@@ -1,15 +1,15 @@
 #pragma once
 
-/// ¿¡·¯ ¸®Æ÷Æ® ÆÄÀÏ ±¸Á¶Ã¼
+/// ì—ëŸ¬ ë¦¬í¬íŠ¸ íŒŒì¼ êµ¬ì¡°ì²´
 struct SErrorReportFile
 {
-	std::string m_strFolderName;	///< ÆÄÀÏÀÌ À§Ä¡ÇÑ Æú´õ¸í
-	std::string	m_strFileName;		///< ÆÄÀÏ ÀÌ¸§ (Æú´õ Á¦¿Ü)
-	std::string m_strUserID;		///< À¯Àú ID
-	std::string m_strFileDate;		///< ÆÄÀÏ »ı¼º ³¯Â¥ (20070130 Çü½Ä)
+	std::string m_strFolderName;	///< íŒŒì¼ì´ ìœ„ì¹˜í•œ í´ë”ëª…
+	std::string	m_strFileName;		///< íŒŒì¼ ì´ë¦„ (í´ë” ì œì™¸)
+	std::string m_strUserID;		///< ìœ ì € ID
+	std::string m_strFileDate;		///< íŒŒì¼ ìƒì„± ë‚ ì§œ (20070130 í˜•ì‹)
 };
 
-/// ½ÇÁ¦ ½º·¹µå·Î ÀÛµ¿ÇÏ¸é¼­ ÀÛ¾÷À» Ã³¸®ÇÏ´Â Å¬·¡½º
+/// ì‹¤ì œ ìŠ¤ë ˆë“œë¡œ ì‘ë™í•˜ë©´ì„œ ì‘ì—…ì„ ì²˜ë¦¬í•˜ëŠ” í´ë˜ìŠ¤
 class CERSMWorker
 {
 public:
@@ -17,16 +17,16 @@ public:
 	virtual ~CERSMWorker(void);
 
 public:
-	bool ProcessErrReports();										///< ¿¡·¯ ¸®Æ÷Æ® ÆÄÀÏµéÀÇ Ã³¸®¸¦ ¼öÇàÇÑ´Ù.
+	bool ProcessErrReports();										///< ì—ëŸ¬ ë¦¬í¬íŠ¸ íŒŒì¼ë“¤ì˜ ì²˜ë¦¬ë¥¼ ìˆ˜í–‰í•œë‹¤.
 	
 protected:
-	bool GetListZipFiles(const std::string& strFolderName);			///< Æú´õ·ÎºÎÅÍ ZipÆÄÀÏÀ» °¡Á®¿Í¼­ º¤ÅÍ¸¦ »ı¼ºÇÑ´Ù.
-	std::string GetUserIDFromZipFile(const std::string& strZipFileName);	///< ZipÆÄÀÏ·ÎºÎÅÍ À¯Àú ID¸¦ °¡Á®¿Â´Ù.
-	bool RenameZipFiles();											///< ZipFileµéÀÇ ÀÌ¸§À» º¯°æÇÑ´Ù.	
+	bool GetListZipFiles(const std::string& strFolderName);			///< í´ë”ë¡œë¶€í„° ZipíŒŒì¼ì„ ê°€ì ¸ì™€ì„œ ë²¡í„°ë¥¼ ìƒì„±í•œë‹¤.
+	std::string GetUserIDFromZipFile(const std::string& strZipFileName);	///< ZipíŒŒì¼ë¡œë¶€í„° ìœ ì € IDë¥¼ ê°€ì ¸ì˜¨ë‹¤.
+	bool RenameZipFiles();											///< ZipFileë“¤ì˜ ì´ë¦„ì„ ë³€ê²½í•œë‹¤.	
 
-	void Clear();													///< º¤ÅÍ³»ÀÇ ³»¿ëÀ» ºñ¿î´Ù.
-	string GetTime();												///< ÇöÀç ½Ã°£À» ¹®ÀÚ¿­·Î ¹İÈ¯ÇÑ´Ù.
+	void Clear();													///< ë²¡í„°ë‚´ì˜ ë‚´ìš©ì„ ë¹„ìš´ë‹¤.
+	string GetTime();												///< í˜„ì¬ ì‹œê°„ì„ ë¬¸ìì—´ë¡œ ë°˜í™˜í•œë‹¤.
 
 protected:
-	std::vector<SErrorReportFile*>	m_vecErrorReportFiles;			///< ¿¡·¯ ¸®Æ÷Æ® ÆÄÀÏ ±¸Á¶Ã¼µéÀÇ º¤ÅÍ
+	std::vector<SErrorReportFile*>	m_vecErrorReportFiles;			///< ì—ëŸ¬ ë¦¬í¬íŠ¸ íŒŒì¼ êµ¬ì¡°ì²´ë“¤ì˜ ë²¡í„°
 };

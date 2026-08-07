@@ -1,4 +1,4 @@
-// NtlWEDoc.cpp : CNtlWEDoc Å¬·¡½ºÀÇ ±¸Çö
+// NtlWEDoc.cpp : CNtlWEDoc í´ëž˜ìŠ¤ì˜ êµ¬í˜„
 //
 #include "stdafx.h"
 #include "NtlWE.h"
@@ -86,11 +86,11 @@ ON_COMMAND(ID_TEMP_PROOFSINVALIDSECTORLINK, &CNtlWEDoc::OnTempProofsinvalidsecto
 END_MESSAGE_MAP()
 
 
-// CNtlWEDoc »ý¼º/¼Ò¸ê
+// CNtlWEDoc ìƒì„±/ì†Œë©¸
 
 CNtlWEDoc::CNtlWEDoc()
 {
-	// TODO: ¿©±â¿¡ ÀÏÈ¸¼º »ý¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì¼íšŒì„± ìƒì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	m_pNtlFieldProp				= NULL;
 	m_pNtlBlockProp				= NULL;
 	m_pNtlFieldPropClipboard	= NULL;
@@ -109,8 +109,8 @@ BOOL CNtlWEDoc::OnNewDocument()
 	if (!CDocument::OnNewDocument())
 		return FALSE;
 
-	// TODO: ¿©±â¿¡ ´Ù½Ã ÃÊ±âÈ­ ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
-	// SDI ¹®¼­´Â ÀÌ ¹®¼­¸¦ ´Ù½Ã »ç¿ëÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë‹¤ì‹œ ì´ˆê¸°í™” ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
+	// SDI ë¬¸ì„œëŠ” ì´ ë¬¸ì„œë¥¼ ë‹¤ì‹œ ì‚¬ìš©í•©ë‹ˆë‹¤.
 
 	return TRUE;
 }
@@ -121,16 +121,16 @@ void CNtlWEDoc::Serialize(CArchive& ar)
 {
 	if (ar.IsStoring())
 	{
-		// TODO: ¿©±â¿¡ ÀúÀå ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+		// TODO: ì—¬ê¸°ì— ì €ìž¥ ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	}
 	else
 	{
-		// TODO: ¿©±â¿¡ ·Îµù ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+		// TODO: ì—¬ê¸°ì— ë¡œë”© ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	}
 }
 
 
-// CNtlWEDoc Áø´Ü
+// CNtlWEDoc ì§„ë‹¨
 
 #ifdef _DEBUG
 void CNtlWEDoc::AssertValid() const
@@ -145,7 +145,7 @@ void CNtlWEDoc::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CNtlWEDoc ¸í·É
+// CNtlWEDoc ëª…ë ¹
 
 void CNtlWEDoc::OnFileSave()
 {
@@ -513,7 +513,7 @@ void CNtlWEDoc::OnAttrFog()
 		}*/
 		
 		dGETDOC()->ApplyFieldProp(((CNtlWEApp*)(AfxGetApp()))->m_pDoc->m_pNtlFieldProp, eNFP_FOG);
-		// ÀÎµµ¾î
+		// ì¸ë„ì–´
 // 		switch (GetSceneManager()->GetActiveWorldType())
 // 		{
 // 		case AW_HEGITHFIELD:
@@ -575,7 +575,7 @@ void CNtlWEDoc::OnAttrSky()
 
 		dGETDOC()->ApplyFieldProp(((CNtlWEApp*)(AfxGetApp()))->m_pDoc->m_pNtlFieldProp, eNFP_SKY);
 
-		// ÀÎµµ¾î
+		// ì¸ë„ì–´
 // 		switch (GetSceneManager()->GetActiveWorldType())
 // 		{
 // 		case AW_HEGITHFIELD:
@@ -637,7 +637,7 @@ void CNtlWEDoc::OnAttrLight()
 
 		dGETDOC()->ApplyFieldProp(((CNtlWEApp*)(AfxGetApp()))->m_pDoc->m_pNtlFieldProp, eNFP_LIGHT);
 
-		// ÀÎµµ¾î
+		// ì¸ë„ì–´
 // 		switch (GetSceneManager()->GetActiveWorldType())
 // 		{
 // 		case AW_HEGITHFIELD:
@@ -916,7 +916,7 @@ void CNtlWEDoc::OnFieldBgm()
 
 		dGETDOC()->ApplyFieldProp(((CNtlWEApp*)(AfxGetApp()))->m_pDoc->m_pNtlFieldProp, eNFP_SOUND);
 
-		// ÀÎµµ¾î
+		// ì¸ë„ì–´
 // 		switch (GetSceneManager()->GetActiveWorldType())
 // 		{
 // 		case AW_HEGITHFIELD:
@@ -1105,12 +1105,12 @@ void CNtlWEDoc::OnHeightfieldupdate()
 
 void CNtlWEDoc::OnUpdateHeightfieldupdate(CCmdUI *pCmdUI)
 {
-	// TODO: ¿©±â¿¡ ¸í·É ¾÷µ¥ÀÌÆ® UI Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì—…ë°ì´íŠ¸ UI ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 void CNtlWEDoc::OnUpdateFieldMonopower(CCmdUI *pCmdUI)
 {
-	// TODO: ¿©±â¿¡ ¸í·É ¾÷µ¥ÀÌÆ® UI Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì—…ë°ì´íŠ¸ UI ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 void CNtlWEDoc::OnVisibilityDistance()
@@ -1172,7 +1172,7 @@ void CNtlWEDoc::OnFieldFieldname()
 
 		dGETDOC()->ApplyFieldProp(((CNtlWEApp*)(AfxGetApp()))->m_pDoc->m_pNtlFieldProp, eNFP_NAME);
 
-		// ÀÎµµ¾î
+		// ì¸ë„ì–´
 // 		switch (GetSceneManager()->GetActiveWorldType())
 // 		{
 // 		case AW_HEGITHFIELD:
@@ -1233,7 +1233,7 @@ void CNtlWEDoc::OnFieldMonopower()
 
 		dGETDOC()->ApplyFieldProp(((CNtlWEApp*)(AfxGetApp()))->m_pDoc->m_pNtlFieldProp, eNFP_BLOOM);
 
-		// ÀÎµµ¾î
+		// ì¸ë„ì–´
 // 		switch (GetSceneManager()->GetActiveWorldType())
 // 		{
 // 		case AW_HEGITHFIELD:
@@ -1517,14 +1517,14 @@ if(m_SLPropDlg.DoModal() == IDOK)
 
 void CNtlWEDoc::OnMaterialPropUpdate()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CMaterialPropDlg Dlg;
 	Dlg.DoModal();
 }
 
 void CNtlWEDoc::OnFieldcolor()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if(m_FieldColorPropDlg.DoModal() == IDOK)
 	{
 		/*RwBool					IsAField	= dGETHDL()->m_pFieldUIManager->IsSingleSelected();
@@ -1564,7 +1564,7 @@ void CNtlWEDoc::OnFieldcolor()
 
 		dGETDOC()->ApplyFieldProp(((CNtlWEApp*)(AfxGetApp()))->m_pDoc->m_pNtlFieldProp, eNFP_FIELDCOLOR);
 
-		// ÀÎµµ¾î
+		// ì¸ë„ì–´
 // 		switch (GetSceneManager()->GetActiveWorldType())
 // 		{
 // 		case AW_HEGITHFIELD:
@@ -1585,7 +1585,7 @@ void CNtlWEDoc::OnFieldsearch()
 
 void CNtlWEDoc::OnWeather()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if(m_WeatherDlg.DoModal() == IDOK)
 	{
 		/*RwBool					IsAField	= dGETHDL()->m_pFieldUIManager->IsSingleSelected();
@@ -1625,7 +1625,7 @@ void CNtlWEDoc::OnWeather()
 
 		dGETDOC()->ApplyFieldProp(((CNtlWEApp*)(AfxGetApp()))->m_pDoc->m_pNtlFieldProp, eNFP_WEATHER);
 
-		// ÀÎµµ¾î
+		// ì¸ë„ì–´
 // 		switch (GetSceneManager()->GetActiveWorldType())
 // 		{
 // 		case AW_HEGITHFIELD:
@@ -1698,7 +1698,7 @@ void CNtlWEDoc::OnBlockGameProperty()
 {
 	if(m_GamePropDlg.DoModal() == IDOK)
 	{
-		// ÀÎµµ¾î
+		// ì¸ë„ì–´
 		switch (GetSceneManager()->GetActiveWorldType())
 		{
 		case AW_RWWORLD:

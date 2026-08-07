@@ -2,7 +2,7 @@
  *
  * File			: NtlPLAttach.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 8. 11	
  * Abstract		: Presentation layer attach entity class
  *****************************************************************************
@@ -23,13 +23,13 @@ class CNtlPLAttach;
 enum EPLAttachType
 {
 	PL_ATTACH_BONE,
-	PL_ATTACH_BONE_OFFSET_POS_ROOT_ROTATE_Y,//Character Bone¿¡¼­ OffsetÀ§Ä¡¿Í RootÀÇ YÃà È¸Àü°ªÀÌ Àû¿ë
+	PL_ATTACH_BONE_OFFSET_POS_ROOT_ROTATE_Y,//Character Boneì—ì„œ Offsetìœ„ì¹˜ì™€ Rootì˜ Yì¶• íšŒì „ê°’ì´ ì ìš©
 
 	PL_ATTACH_WORLD_POS,
-	PL_ATTACH_WORLD_POSANDROTATE,			//¿ì¼± ÀÓÀÇ·Î ³ÖÀº°ÍÀÓ(By HoDong)
-    PL_ATTACH_WORLD_POS_HEIGHT,             ///< À§Ä¡¿¡ AttachµÇ³ª ³ôÀÌ´Â World Height
+	PL_ATTACH_WORLD_POSANDROTATE,			//ìš°ì„  ì„ì˜ë¡œ ë„£ì€ê²ƒì„(By HoDong)
+    PL_ATTACH_WORLD_POS_HEIGHT,             ///< ìœ„ì¹˜ì— Attachë˜ë‚˜ ë†’ì´ëŠ” World Height
 
-    PL_ATTACH_NONE,                         ///< BoneÀÌ³ª World¿¡ AttachµÇÁö ¾Ê°í, ¼ø¼ö Attach List¿¡¸¸ µé¾î°¡´Â °æ¿ì (Trace Effect, Grade Effect)
+    PL_ATTACH_NONE,                         ///< Boneì´ë‚˜ Worldì— Attachë˜ì§€ ì•Šê³ , ìˆœìˆ˜ Attach Listì—ë§Œ ë“¤ì–´ê°€ëŠ” ê²½ìš° (Trace Effect, Grade Effect)
 };
 
 #define MAX_ATTR_BONE_NAME	128
@@ -88,9 +88,9 @@ public:
 
 	RwBool AttachWorldPos(CNtlPLAttach *pPLAttachEntity, RwV3d vOffset);
 	RwBool AttachWorldPosAndRotate(CNtlPLAttach *pPLAttachEntity, RwV3d vOffset);
-    RwBool AttachWorldPosHeight(CNtlPLAttach* pPLAttachEntity); ///< ÁöÇü ³ôÀÌ¿¡ Attach ÇÑ´Ù.
+    RwBool AttachWorldPosHeight(CNtlPLAttach* pPLAttachEntity); ///< ì§€í˜• ë†’ì´ì— Attach í•œë‹¤.
 
-    RwBool Attach(CNtlPLAttach* pPLAttachEntity);               ///< BoneÀÌ³ª World¿¡ Attach µÇÁö ¾Ê°í, Attach List¿¡¸¸ µé¾î°£´Ù
+    RwBool Attach(CNtlPLAttach* pPLAttachEntity);               ///< Boneì´ë‚˜ Worldì— Attach ë˜ì§€ ì•Šê³ , Attach Listì—ë§Œ ë“¤ì–´ê°„ë‹¤
     
 	void Detach(CNtlPLAttach *pPLAttachEntity);
 

@@ -68,11 +68,11 @@ RwBool CQuestSearchGui::Create(RwReal fMapScale, gui::CComponent* parentComponen
 	CRectangle rect;
 	RwReal fReducedScale = fMapScale/dMAP_DEFAULT_REDUCED_SCALE;
 
-	// avooo's commnet : ÀÌ ºÎºĞÀ» Å×ÀÌºí·Î »©ÀÚ. ¿ùµåº°·Î °Ë»ö ¹üÀ§¸¦ ´Ù¸£°Ô...
+	// avooo's commnet : ì´ ë¶€ë¶„ì„ í…Œì´ë¸”ë¡œ ë¹¼ì. ì›”ë“œë³„ë¡œ ê²€ìƒ‰ ë²”ìœ„ë¥¼ ë‹¤ë¥´ê²Œ...
 	if( 5 == Logic_GetActiveWorldTableId() )
 		fReducedScale /= 3.f;
 
-	// ÃøÁ¤½ÃÀÇ ¹è°æ
+	// ì¸¡ì •ì‹œì˜ ë°°ê²½
 	m_pFlashSearch = (gui::CFlash*)GetComponent("flaQuestSearch");
 	m_slotMovieEnd = m_pFlashSearch->SigMovieEnd().Connect( this, &CQuestSearchGui::OnMovieEnd );
 	rect = m_pFlashSearch->GetFrameResolution();
@@ -147,7 +147,7 @@ VOID CQuestSearchGui::ResetArea(const CRectangle& rtWorldMap, RwReal fMapScale, 
 {
 	CRectangle rtScreen;
 
-	// ÇÃ·¡½¬ Å¬¸®ÇÎÀ» À§ÇÑ ¿µ¿ª ¼³Á¤
+	// í”Œë˜ì‰¬ í´ë¦¬í•‘ì„ ìœ„í•œ ì˜ì—­ ì„¤ì •
 	rtScreen.left		= rtWorldMap.left	+ dADJUST_AREA_LEFT;
 	rtScreen.top		= rtWorldMap.top	+ dADJUST_AREA_TOP;
 	rtScreen.right		= rtWorldMap.right	- dADJUST_AREA_RIGHT;
@@ -158,7 +158,7 @@ VOID CQuestSearchGui::ResetArea(const CRectangle& rtWorldMap, RwReal fMapScale, 
 	m_pFlashSearch->SetPosition(m_iAvatarXPos - m_pFlashSearch->GetWidth()/2 - dADJUST_AREA_LEFT,
 								m_iAvatarYPos - m_pFlashSearch->GetHeight()/2 - dADJUST_AREA_TOP);
 
-	// Äù½ºÆ® ¸¶Å© À§Ä¡ º¸Á¤
+	// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ìœ„ì¹˜ ë³´ì •
 	CRectangle rtQuest;
 	ITER_QUEST_INFO it = m_mapQuestInfo.begin();
 	for( ; it != m_mapQuestInfo.end() ; ++it )
@@ -197,11 +197,11 @@ RwBool CQuestSearchGui::SetQuestInfo()
 	v2AvatarPos.y = v3AvatarPos.z;
 
 
-	// ¾Æ¹ÙÅ¸¿Í ÀÏÁ¤ ¹İ°æ¿¡ ÀÖ´Â Äù½ºÆ®¸¦ Ã£´Â´Ù.
+	// ì•„ë°”íƒ€ì™€ ì¼ì • ë°˜ê²½ì— ìˆëŠ” í€˜ìŠ¤íŠ¸ë¥¼ ì°¾ëŠ”ë‹¤.
 
 	SGET_QUEST_INFO* pSGETQuestInfo = NULL;
 
-	// avooo's commnet : ÀÌ ºÎºĞÀ» Å×ÀÌºí·Î »©ÀÚ. ¿ùµåº°·Î °Ë»ö ¹üÀ§¸¦ ´Ù¸£°Ô...
+	// avooo's commnet : ì´ ë¶€ë¶„ì„ í…Œì´ë¸”ë¡œ ë¹¼ì. ì›”ë“œë³„ë¡œ ê²€ìƒ‰ ë²”ìœ„ë¥¼ ë‹¤ë¥´ê²Œ...
 	if( 5 == Logic_GetActiveWorldTableId() )
 		pSGETQuestInfo = pTSCQAgency->GetQuestInfoList_ForQuestSerarch(Logic_GetActiveWorldTableId(), v3AvatarPos.x, v3AvatarPos.z, dSEARCH_RADIUS/3.f);
 	else
@@ -217,7 +217,7 @@ RwBool CQuestSearchGui::SetQuestInfo()
 	CNPCTable*				pNPCTable		= API_GetTableContainer()->GetNpcTable();
 	CTextTable*				pNPCTextTable	= API_GetTableContainer()->GetTextAllTable()->GetNPCTbl();
 
-	// ¾Æ¹ÙÅ¸¿Í °°Àº Á¸¿¡ Á¸ÀçÇÏ´Â Äù½ºÆ®¸¦ Ã£±â À§ÇØ
+	// ì•„ë°”íƒ€ì™€ ê°™ì€ ì¡´ì— ì¡´ì¬í•˜ëŠ” í€˜ìŠ¤íŠ¸ë¥¼ ì°¾ê¸° ìœ„í•´
 	CNtlPLWorldEntity* pWorldEntity = reinterpret_cast<CNtlPLVisualManager*>( GetSceneManager() )->GetWorld();
 	if( !pWorldEntity )
 	{
@@ -252,7 +252,7 @@ RwBool CQuestSearchGui::SetQuestInfo()
 		ITER_QUEST_INFO it = m_mapQuestInfo.find(pNPC_TBLDAT->Name);
 		if( it == m_mapQuestInfo.end() )
 		{
-			// quest search¿¡ ¾ÆÁ÷ ÀúÀåµÇÁö ¾ÊÀº Äù½ºÆ®¸¦ °¡Áö°í ÀÖ´Â NPCÀÌ´Ù
+			// quest searchì— ì•„ì§ ì €ì¥ë˜ì§€ ì•Šì€ í€˜ìŠ¤íŠ¸ë¥¼ ê°€ì§€ê³  ìˆëŠ” NPCì´ë‹¤
 
 			RwV2d v2QuestPos;
 
@@ -260,7 +260,7 @@ RwBool CQuestSearchGui::SetQuestInfo()
 			v2QuestPos.y = pSGETQuestInfo->QuestInfoList[i].fZPos;
 
 
-			// ¾Æ¹ÙÅ¸¿Í °°Àº Á¸¿¡ Á¸ÀçÇÏ´Â Äù½ºÆ®¸¦ Ã£±â À§ÇØ
+			// ì•„ë°”íƒ€ì™€ ê°™ì€ ì¡´ì— ì¡´ì¬í•˜ëŠ” í€˜ìŠ¤íŠ¸ë¥¼ ì°¾ê¸° ìœ„í•´
 			if( FALSE == IsSameZoneWithAvatar(idxAvatarWorldZone, v2QuestPos.x, v2QuestPos.y) )
 				continue;
 
@@ -290,7 +290,7 @@ RwBool CQuestSearchGui::SetQuestInfo()
 		}
 		else
 		{
-			// quest search¿¡ ÀúÀåµÈ Äù½ºÆ®¸¦ °¡Áö°í ÀÖ´Â NPCÀÌ´Ù			
+			// quest searchì— ì €ì¥ëœ í€˜ìŠ¤íŠ¸ë¥¼ ê°€ì§€ê³  ìˆëŠ” NPCì´ë‹¤			
 
 			sQUEST_TEXT_DATA_TBLDAT* pQUEST_TEXT_DATA_TBLDAT = reinterpret_cast<sQUEST_TEXT_DATA_TBLDAT*>( pQuestTable->FindData(pSGETQuestInfo->QuestInfoList[i].dwQuestTitle) );
 			if( !pQUEST_TEXT_DATA_TBLDAT )
@@ -309,7 +309,7 @@ RwBool CQuestSearchGui::SetQuestInfo()
 	if( m_mapQuestInfo.size() == 0 )
 		GetAlarmManager()->AlarmMessage("DST_SCOUTER_QUEST_SEARCH_NOT_QUEST");
 
-	// Äù½ºÆ® ÀÌº¥Æ®
+	// í€˜ìŠ¤íŠ¸ ì´ë²¤íŠ¸
 	CNtlSLEventGenerator::TSSearchQuest();
 
 	return TRUE;

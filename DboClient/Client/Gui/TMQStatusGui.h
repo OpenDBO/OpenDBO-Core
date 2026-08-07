@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: TMQStatusGui.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2007. 10. 29
 * Abstract		: 
 *****************************************************************************
-* Desc			: TMQ ¡¯«‡ ªÛ≈¬√¢
+* Desc			: TMQ ÏßÑÌñâ ÏÉÅÌÉúÏ∞Ω
 *****************************************************************************/
 
 #pragma once
@@ -87,33 +87,33 @@ protected:
 	gui::CSlot			m_slotPaint;
 	gui::CSlot			m_slotPostPaint;
 
-	gui::CStaticBox*	m_pDialogName;					///< ¥Ÿ¿ÃæÛ∑Œ±◊¿« ¿Ã∏ß Ω∫≈¬∆Ω
-	gui::CStaticBox*	m_pInfo;						///< '¡§∫∏'
-	gui::CStaticBox*	m_pPoint;						///< '∆˜¿Œ∆Æ'
-	gui::CStaticBox*	m_pCurPoint;					///< «ˆ¿Á ∆˜¿Œ∆Æ
-	gui::CStaticBox*	m_pQuest;						///< 'ƒ˘Ω∫∆Æ'
-	gui::CStaticBox*	m_pQuestTitle;					///< ƒ˘Ω∫∆Æ ¡¶∏Ò
-	gui::CStaticBox*	m_pQuestAim_1;					///< ƒ˘Ω∫∆Æ ∏Ò«• 1
-	gui::CStaticBox*	m_pQuestAim_2;					///< ƒ˘Ω∫∆Æ ∏Ò«• 2
-	gui::CStaticBox*	m_pQuestAim_3;					///< ƒ˘Ω∫∆Æ ∏Ò«• 3
-	gui::CStaticBox*	m_pQuestAim_4;					///< ƒ˘Ω∫∆Æ ∏Ò«• 4
+	gui::CStaticBox*	m_pDialogName;					///< Îã§Ïù¥ÏñºÎ°úÍ∑∏Ïùò Ïù¥Î¶Ñ Ïä§ÌÉúÌã±
+	gui::CStaticBox*	m_pInfo;						///< 'Ï†ïÎ≥¥'
+	gui::CStaticBox*	m_pPoint;						///< 'Ìè¨Ïù∏Ìä∏'
+	gui::CStaticBox*	m_pCurPoint;					///< ÌòÑÏû¨ Ìè¨Ïù∏Ìä∏
+	gui::CStaticBox*	m_pQuest;						///< 'ÌÄòÏä§Ìä∏'
+	gui::CStaticBox*	m_pQuestTitle;					///< ÌÄòÏä§Ìä∏ Ï†úÎ™©
+	gui::CStaticBox*	m_pQuestAim_1;					///< ÌÄòÏä§Ìä∏ Î™©Ìëú 1
+	gui::CStaticBox*	m_pQuestAim_2;					///< ÌÄòÏä§Ìä∏ Î™©Ìëú 2
+	gui::CStaticBox*	m_pQuestAim_3;					///< ÌÄòÏä§Ìä∏ Î™©Ìëú 3
+	gui::CStaticBox*	m_pQuestAim_4;					///< ÌÄòÏä§Ìä∏ Î™©Ìëú 4
 	
-	gui::CButton*		m_pMinimizeButton;				///< √÷º“»≠ πˆ∆∞
-	gui::CButton*		m_pStageButton;					///< Ω∫≈◊¿Ã¡ˆ ¡§∫∏
-	gui::CButton*		m_pSenarioButton;				///< Ω√≥™∏Æø¿ πˆ∆∞
-	gui::CButton*		m_pNextButton;					///< ¥Ÿ¿Ω ƒ˘Ω∫∆Æ πˆ∆∞
+	gui::CButton*		m_pMinimizeButton;				///< ÏµúÏÜåÌôî Î≤ÑÌäº
+	gui::CButton*		m_pStageButton;					///< Ïä§ÌÖåÏù¥ÏßÄ Ï†ïÎ≥¥
+	gui::CButton*		m_pSenarioButton;				///< ÏãúÎÇòÎ¶¨Ïò§ Î≤ÑÌäº
+	gui::CButton*		m_pNextButton;					///< Îã§Ïùå ÌÄòÏä§Ìä∏ Î≤ÑÌäº
 
 	gui::CFlickerEffect	m_SenarioButtonFlicker;
 	gui::CFlickerEffect	m_StageButtonFlicker;
 
-	CSurfaceGui			m_srfGaugeBack;					///< TMQ ∆˜¿Œ∆Æ πÈº≠∆‰¿ÃΩ∫
-	CSurfaceGui			m_srfTMQContourLine_1;			///< ±∏∫–º±
-	CSurfaceGui			m_srfTMQContourLine_2;			///< ±∏∫–º±
-	CSurfaceGui			m_srfTMQContourLine_3;			///< ±∏∫–º±
-	CSurfaceGui			m_srfCouponSlot;				///< ƒÌ∆˘ ΩΩ∑‘
+	CSurfaceGui			m_srfGaugeBack;					///< TMQ Ìè¨Ïù∏Ìä∏ Î∞±ÏÑúÌéòÏù¥Ïä§
+	CSurfaceGui			m_srfTMQContourLine_1;			///< Íµ¨Î∂ÑÏÑ†
+	CSurfaceGui			m_srfTMQContourLine_2;			///< Íµ¨Î∂ÑÏÑ†
+	CSurfaceGui			m_srfTMQContourLine_3;			///< Íµ¨Î∂ÑÏÑ†
+	CSurfaceGui			m_srfCouponSlot;				///< Ïø†Ìè∞ Ïä¨Î°Ø
 
-	gui::CProgressBar*	m_pTMQGauge;					///< TMQ ∞‘¿Ã¡ˆ
+	gui::CProgressBar*	m_pTMQGauge;					///< TMQ Í≤åÏù¥ÏßÄ
 
 	CLittleQuestContainer* m_pTMQQuestContainer;
-	CRegularSlotGui			m_CouponSlot;					///< ƒÌ∆˘ ΩΩ∑‘
+	CRegularSlotGui			m_CouponSlot;					///< Ïø†Ìè∞ Ïä¨Î°Ø
 };

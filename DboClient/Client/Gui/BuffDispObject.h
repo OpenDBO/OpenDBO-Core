@@ -1,9 +1,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File: BuffDispObject
 // Desc: Buff Gui Object. 
-//		 - Áßº¹ »ı¼ºÀÌ °¡´ÉÇÏµµ·Ï ±¸Çö.
+//		 - ì¤‘ë³µ ìƒì„±ì´ ê°€ëŠ¥í•˜ë„ë¡ êµ¬í˜„.
 //
-//		 - 1. Show(), Update(), Move()µîÀº Æ÷ÇÔÇÏ´Â °´Ã¼¿¡¼­ ¿¬°áÇØ ÁÖ¾î¾ß ÇÔ. 
+//		 - 1. Show(), Update(), Move()ë“±ì€ í¬í•¨í•˜ëŠ” ê°ì²´ì—ì„œ ì—°ê²°í•´ ì£¼ì–´ì•¼ í•¨. 
 //
 // 2007.05.07 Peessi@hitel.net   
 ////////////////////////////////////////////////////////////////////////////////
@@ -159,8 +159,8 @@ public:
 	VOID	SetBuffAll( CNtlFakeBuffContainer* pFakeBuffContainer );
 	VOID	ClearBuff(VOID);
 	
-	VOID	SetMove( CRectangle& rtScreen );	// ¼ÓÇØ ÀÖ´Â GUIÀÇ ½ºÅ©¸° ÁÂÇ¥¸¦ ³Ñ°ÜÁÖ´Â °ÍÀ¸·Î OK.
-	VOID	Show( bool bShow );					// ¼ÓÇØ ÀÖ´Â GUIÀÇ Show½Ã °°ÀÌ ÁöÁ¤À» ÇØ ÁÖµµ·Ï.
+	VOID	SetMove( CRectangle& rtScreen );	// ì†í•´ ìˆëŠ” GUIì˜ ìŠ¤í¬ë¦° ì¢Œí‘œë¥¼ ë„˜ê²¨ì£¼ëŠ” ê²ƒìœ¼ë¡œ OK.
+	VOID	Show( bool bShow );					// ì†í•´ ìˆëŠ” GUIì˜ Showì‹œ ê°™ì´ ì§€ì •ì„ í•´ ì£¼ë„ë¡.
 
 	RwBool	IsShow() { return m_bShow; }
 

@@ -2,7 +2,7 @@
 *
 * File			: DboMovingAlgorithm.h
 * Author		: JeongHo, Rho
-* Copyright		: (¡÷) NTL
+* Copyright		: (Ï£º) NTL
 * Date			: 2009. 1. 21
 * Abstract		: Moving algorithm
 *****************************************************************************

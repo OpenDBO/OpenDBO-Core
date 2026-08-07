@@ -869,7 +869,7 @@ void CNtlWorldShadowManager::UpdateSectorPSTex(std::vector<CNtlPLEntity*>& vecSe
 
 	POINT				SPos, EPos, MPos, RPos;
 
-	// Brush¸¦ Á¤È®ÇÏ°Ô Ç¥ÇöÇÒ ¹æ¹ıÀÌ ¾ø´Ù. ÇöÀç´Â ÅØ¼¿ 4°³¸¦ Áö¿ì°í ³ªÁß¿¡ UI¸¦ ´Ù½Ã ±¸¼ºÇÏÀÚ.
+	// Brushë¥¼ ì •í™•í•˜ê²Œ í‘œí˜„í•  ë°©ë²•ì´ ì—†ë‹¤. í˜„ì¬ëŠ” í…ì…€ 4ê°œë¥¼ ì§€ìš°ê³  ë‚˜ì¤‘ì— UIë¥¼ ë‹¤ì‹œ êµ¬ì„±í•˜ì.
 	RwReal fRadius = 3.0f;
 	if (IsCollidedInTex())
 	{
@@ -1636,7 +1636,7 @@ RwBool CNtlWorldShadowManager::CheckShadowFilter(RwTexture* pTexture, RwInt32 iI
 	}
 	RwRasterUnlock(pTexture->raster);
 
-	// À§¿¡¼­ ±×¸²ÀÚ°¡ ¾Æ´Ñ ¿µ¿ªÀ» Ã¼Å©ÇßÀ¸¹Ç·Î, ¿©±â¼­´Â ±×¸²ÀÚ ¾Æ´Ñ ¿µ¿ª ±âÁØÀ¸·Î ¹Ù²Ù¼­ Ã¼Å©ÇÑ´Ù.
+	// ìœ„ì—ì„œ ê·¸ë¦¼ìê°€ ì•„ë‹Œ ì˜ì—­ì„ ì²´í¬í–ˆìœ¼ë¯€ë¡œ, ì—¬ê¸°ì„œëŠ” ê·¸ë¦¼ì ì•„ë‹Œ ì˜ì—­ ê¸°ì¤€ìœ¼ë¡œ ë°”ê¾¸ì„œ ì²´í¬í•œë‹¤.
 	if (static_cast<RwReal>(iCheck) / static_cast<RwReal>(iSize * iSize) >= fShadowPer)
 	{
 		return TRUE;

@@ -5,15 +5,15 @@
 #include "afxwin.h"
 
 
-// CAttr_ACT_OperateObject ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_ACT_OperateObject ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CAttr_ACT_OperateObject : public CAttr_Page
 {
 	DECLARE_SERIAL(CAttr_ACT_OperateObject)
 
 public:
-	// ÇöÀç µ¥ÀÌÅÍ »ç¿ë½Ã true°¡ ½ÃÀÛ, 
-	// false°¡ Á¾·á·Î »ç¿ëµÇ¼­ ¾Æ·¡¿Í °°ÀÌ ¸ÂÃß¾î ³õ¾ÒÀ½.
+	// í˜„ì¬ ë°ì´í„° ì‚¬ìš©ì‹œ trueê°€ ì‹œì‘, 
+	// falseê°€ ì¢…ë£Œë¡œ ì‚¬ìš©ë˜ì„œ ì•„ë˜ì™€ ê°™ì´ ë§ì¶”ì–´ ë†“ì•˜ìŒ.
 	enum
 	{
 		eOPERATEOBJECT_TYPE_END,
@@ -24,14 +24,14 @@ public:
 	CAttr_ACT_OperateObject();
 	virtual ~CAttr_ACT_OperateObject();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_TS_ACT_OPERATEOBJECT_ATTR_DIAG };
 
 	virtual CString	GetPageData( void );
 	virtual void	UnPakingPageData( CString& strKey, CString& strValue );
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual BOOL OnInitDialog();
 
 	DECLARE_MESSAGE_MAP()

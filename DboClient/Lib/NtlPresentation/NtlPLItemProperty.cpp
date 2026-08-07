@@ -7,7 +7,7 @@
 #include "NtlPLApi.h"
 
 unsigned int CNtlPLItemProperty::m_strVer;			  /* property file version **/
-std::string CNtlPLItemProperty::m_strItemDataPath;	  /* Item mesh fileÀÇ path name **/
+std::string CNtlPLItemProperty::m_strItemDataPath;	  /* Item mesh fileì˜ path name **/
 
 CNtlPLItemProperty::CNtlPLItemProperty()
 {
@@ -25,7 +25,7 @@ CNtlPLItemProperty::~CNtlPLItemProperty()
 {
     m_TypeAnimTable.Destroy();
 
-    // Link EffectÀÇ ÇØÁ¦´Â ¿©±â¼­ ÇÑ´Ù.
+    // Link Effectì˜ í•´ì œëŠ” ì—¬ê¸°ì„œ í•œë‹¤.
     for(UINT i = 0; i < m_vLinkEffect.size(); ++i)
     {
         NTL_DELETE(m_vLinkEffect[i]);
@@ -33,9 +33,9 @@ CNtlPLItemProperty::~CNtlPLItemProperty()
 }
 
 /**
-  *  xml file·ÎºÎÅÍ object property data¸¦ loadingÇÏ´Â ÇÔ¼ö
-  *  \param pDoc´Â xml wrapping class pointer.
-  *  \param pNod´Â À¯È¿ÇÑ xml node.
+  *  xml fileë¡œë¶€í„° object property dataë¥¼ loadingí•˜ëŠ” í•¨ìˆ˜
+  *  \param pDocëŠ” xml wrapping class pointer.
+  *  \param pNodëŠ” ìœ íš¨í•œ xml node.
   *
   */
 RwBool CNtlPLItemProperty::Load(CNtlXMLDoc *pDoc, IXMLDOMNode *pNode)
@@ -65,10 +65,10 @@ RwBool CNtlPLItemProperty::Load(CNtlXMLDoc *pDoc, IXMLDOMNode *pNode)
 
 
 /**
-    *  xml file·Î object property data¸¦ saveÇÏ´Â ÇÔ¼ö
+    *  xml fileë¡œ object property dataë¥¼ saveí•˜ëŠ” í•¨ìˆ˜
 
-	*  \param pDoc´Â xml wrapping class pointer.
-	*  \param pNod´Â À¯È¿ÇÑ xml node.
+	*  \param pDocëŠ” xml wrapping class pointer.
+	*  \param pNodëŠ” ìœ íš¨í•œ xml node.
     *
     */
 RwBool CNtlPLItemProperty::Save(CNtlXMLDoc *pDoc, IXMLDOMNode *pNode)

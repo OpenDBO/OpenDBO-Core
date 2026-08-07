@@ -1,6 +1,6 @@
-// stdafx.cpp : Ç¥ÁØ Æ÷ÇÔ ÆÄÀÏÀ» Æ÷ÇÔÇÏ´Â ¼Ò½º ÆÄÀÏÀÔ´Ï´Ù.
-// GUIEditor.pch´Â ¹Ì¸® ÄÄÆÄÀÏµÈ Çì´õ°¡ µË´Ï´Ù.
-// stdafx.obj´Â ¹Ì¸® ÄÄÆÄÀÏµÈ Çü½Ä Á¤º¸¸¦ Æ÷ÇÔÇÕ´Ï´Ù.
+// stdafx.cpp : í‘œì¤€ í¬í•¨ íŒŒì¼ì„ í¬í•¨í•˜ëŠ” ì†ŒìŠ¤ íŒŒì¼ìž…ë‹ˆë‹¤.
+// GUIEditor.pchëŠ” ë¯¸ë¦¬ ì»´íŒŒì¼ëœ í—¤ë”ê°€ ë©ë‹ˆë‹¤.
+// stdafx.objëŠ” ë¯¸ë¦¬ ì»´íŒŒì¼ëœ í˜•ì‹ ì •ë³´ë¥¼ í¬í•¨í•©ë‹ˆë‹¤.
 
 #include "stdafx.h"
 

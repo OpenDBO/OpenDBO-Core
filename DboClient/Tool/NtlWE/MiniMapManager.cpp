@@ -70,8 +70,8 @@ void CMiniMapManager::SaveMinimap(RwInt32 FieldIdx, RwUInt32 uiLayer)
 	}
 	else if (uiLayer == NTL_PLEFLAG_MINIMAP_LAYER_TWO)
 	{
-		// Effect ¹× Object Áß¿¡ LAYER_TWO·Î ¼³Á¤µÇ¾î ÀÖ´Â °ÍÀÌ ÀÖ´Â°¡ È®ÀÎÇÑ´Ù.
-		// ´Ù¸¥ EntityµéÀº ±âº»ÀûÀ¸·Î TWO¸¦ ¼³Á¤ÇÒ ¼ö ¾ø´Ù.
+		// Effect ë° Object ì¤‘ì— LAYER_TWOë¡œ ì„¤ì •ë˜ì–´ ìžˆëŠ” ê²ƒì´ ìžˆëŠ”ê°€ í™•ì¸í•œë‹¤.
+		// ë‹¤ë¥¸ Entityë“¤ì€ ê¸°ë³¸ì ìœ¼ë¡œ TWOë¥¼ ì„¤ì •í•  ìˆ˜ ì—†ë‹¤.
 		CNtlWorldFieldManager*	pMgr = GetSceneManager()->GetWorld()->GetWorldFieldMgr();
 		CNtlWorldSector*		pSectors = pMgr->m_pSectors;
 	

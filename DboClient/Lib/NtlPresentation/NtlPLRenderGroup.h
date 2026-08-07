@@ -2,7 +2,7 @@
 *
 * File			: NtlPLSceneManager.h
 * Author		: HyungSuk, Jang
-* Copyright	: (ÁÖ)NTL
+* Copyright	: (ì£¼)NTL
 * Date			: 2005. 8. 01	
 * Abstract		: Presentation scene manager base class 
 *****************************************************************************
@@ -22,8 +22,8 @@ class CNtlPLEntity;
 
 /**
 * \ingroup NtlPresentation
-* °°Àº Á¾·ùÀÇ entity¸¦ group °ü¸®ÇÏ´Â °´Ã¼.
-* stl ¿¬°ü ¹è¿­ mapÀ» »ç¿ëÇÑ´Ù.
+* ê°™ì€ ì¢…ë¥˜ì˜ entityë¥¼ group ê´€ë¦¬í•˜ëŠ” ê°ì²´.
+* stl ì—°ê´€ ë°°ì—´ mapì„ ì‚¬ìš©í•œë‹¤.
 *
 */
 
@@ -48,13 +48,13 @@ public:
 	~CNtlPLRenderGroup();
 
 	/**
-	*  render group °´Ã¼°¡ »ı¼ºµÈ ´ÙÀ½ È£ÃâÇÏ´Â ÇÔ¼ö.
+	*  render group ê°ì²´ê°€ ìƒì„±ëœ ë‹¤ìŒ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜.
 	*  \see Destroy
 	*/
 	RwBool Create(void);
 
 	/**
-	*  render group °´Ã¼°¡ »èÁ¦µÇ±â Àü¿¡ È£ÃâÇÏ´Â ÇÔ¼ö.
+	*  render group ê°ì²´ê°€ ì‚­ì œë˜ê¸° ì „ì— í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜.
 	*  \see Create
 	*/
 	void Destroy(void);
@@ -66,46 +66,46 @@ public:
 	void SetLayer(RwUInt32 uiLayer);
 
 	/**
-	*  render group layer ¾ò¾î¿À±â.
+	*  render group layer ì–»ì–´ì˜¤ê¸°.
 	*  \see SetLayer
 	*/
 	RwUInt32 GetLayer(void) const;
 
 	/**
-	*  group¿¡ entity¸¦ add ÇÑ´Ù.
-	*  \param pEntity´Â addÇÒ entity pointerÀÌ´Ù.
+	*  groupì— entityë¥¼ add í•œë‹¤.
+	*  \param pEntityëŠ” addí•  entity pointerì´ë‹¤.
 	*  \see RemoveEntity
 	*/
 	RwBool AddEntity(const CNtlPLEntity *pEntity);
 
 	/**
-	*  group¿¡ entity¸¦ remove ÇÑ´Ù.
-	*  \param pEntity´Â removeÇÒ entity pointerÀÌ´Ù.
+	*  groupì— entityë¥¼ remove í•œë‹¤.
+	*  \param pEntityëŠ” removeí•  entity pointerì´ë‹¤.
 	*  \see AddEntity
 	*/
 	void RemoveEntity(CNtlPLEntity *pEntity);
 
 	/**
-	*  group¿¡¼­ ÇØ´ç entity¸¦ Ã£´Â´Ù.
-	*  \param pEntity´Â container¿¡¼­ Ã£À» entity pointer
-	*  \return ¼º°øÇÏ¸é TRUE, ½ÇÆĞÇÏ¸é FALSE
+	*  groupì—ì„œ í•´ë‹¹ entityë¥¼ ì°¾ëŠ”ë‹¤.
+	*  \param pEntityëŠ” containerì—ì„œ ì°¾ì„ entity pointer
+	*  \return ì„±ê³µí•˜ë©´ TRUE, ì‹¤íŒ¨í•˜ë©´ FALSE
 	*/
 	RwBool FindEntity(const CNtlPLEntity *pEntity);
 
 	/**
-	*  group¿¡¼­ entity °¹¼ö¸¦ ±¸ÇÑ´Ù.
-	*  \return entity °¹¼ö.
+	*  groupì—ì„œ entity ê°¯ìˆ˜ë¥¼ êµ¬í•œë‹¤.
+	*  \return entity ê°¯ìˆ˜.
 	*/
 	RwInt32 GetEntityCount(void);
 
 	/**
-	*  group¿¡ ÇØ´çÇÏ´Â entity container ÂüÁ¶¸¦ ¸®ÅÏÇÑ´Ù.
-	*  \return entity container(m_mapEntity) ÂüÁ¶¸¦ ¸®ÅÏ.
+	*  groupì— í•´ë‹¹í•˜ëŠ” entity container ì°¸ì¡°ë¥¼ ë¦¬í„´í•œë‹¤.
+	*  \return entity container(m_mapEntity) ì°¸ì¡°ë¥¼ ë¦¬í„´.
 	*/
 	MapEntity* GetEntities(void);
 
 	/**
-	*  group¿¡ ÇØ´çÇÏ´Â ¸ğµç entity¸¦ ´ã´Â´Ù.
+	*  groupì— í•´ë‹¹í•˜ëŠ” ëª¨ë“  entityë¥¼ ë‹´ëŠ”ë‹¤.
 	*/
 	void Gets(std::list<CNtlPLEntity*>& listEntities);
 };

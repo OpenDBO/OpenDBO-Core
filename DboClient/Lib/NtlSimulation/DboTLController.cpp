@@ -63,7 +63,7 @@ void CDboTLController::Update( RwReal fElapsedTime )
 
 void CDboTLController::Skip()
 {
-	// g_EventTLEnableSkipÀÌº¥Æ®°¡ ¹ß»ıÇÏ¿© m_bEnableSkip ÇÃ·¡±×°¡ FALSE°¡ µÉ ¶§±îÁö ¹İº¹ÇÑ´Ù
+	// g_EventTLEnableSkipì´ë²¤íŠ¸ê°€ ë°œìƒí•˜ì—¬ m_bEnableSkip í”Œë˜ê·¸ê°€ FALSEê°€ ë  ë•Œê¹Œì§€ ë°˜ë³µí•œë‹¤
 	while ( m_bEnableSkip && m_itCurGroup != m_defGroupList.end() )
 	{
 		m_bSkipping = TRUE;
@@ -100,13 +100,13 @@ void CDboTLController::HandleEvents( RWS::CMsg &pMsg )
 
 void CDboTLController::ChangeCurGroup( void )
 {
-	// ÃÊ±â ¼³Á¤½Ã ÇöÀç ±×·ì¿¡ ´ëÇÑ Enter
+	// ì´ˆê¸° ì„¤ì •ì‹œ í˜„ì¬ ê·¸ë£¹ì— ëŒ€í•œ Enter
 	if ( m_itCurGroup == m_defGroupList.end() )
 	{
 		m_itCurGroup = m_defGroupList.begin();
 		(*m_itCurGroup)->Enter();
 	}
-	// ÃÊ±â ÀÌÈÄ ÇöÀç ±×·ì Leave ¹× ´ÙÀ½ ±×·ì¿¡ ´ëÇÑ Enter
+	// ì´ˆê¸° ì´í›„ í˜„ì¬ ê·¸ë£¹ Leave ë° ë‹¤ìŒ ê·¸ë£¹ì— ëŒ€í•œ Enter
 	else
 	{
 		(*m_itCurGroup)->Leave();

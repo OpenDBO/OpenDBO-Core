@@ -1,14 +1,14 @@
 #pragma once
 
 
-// CMPPLogView 轰涝聪促.
+// CMPPLogView 敕办瀰雼堧嫟.
 
 class CMPPLogView : public CRichEditView
 {
 	DECLARE_DYNCREATE(CMPPLogView)
 
 protected:
-	CMPPLogView();           // 悼利 父甸扁俊 荤侩登绰 protected 积己磊涝聪促.
+	CMPPLogView();           // 霃欖爜 毵岆摛旮办棎 靷毄霅橂姅 protected 靸濎劚鞛愳瀰雼堧嫟.
 	virtual ~CMPPLogView();
 
     static CMPPLogView* m_pInstance;

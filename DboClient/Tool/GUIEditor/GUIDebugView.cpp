@@ -1,4 +1,4 @@
-// GUIDebugView.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// GUIDebugView.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -26,14 +26,14 @@ BEGIN_MESSAGE_MAP(CGUIDebugView, CScrollView)
 END_MESSAGE_MAP()
 
 
-// CGUIDebugView ±×¸®±âÀÔ´Ï´Ù.
+// CGUIDebugView ê·¸ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CGUIDebugView::OnInitialUpdate()
 {
 	CScrollView::OnInitialUpdate();
 
 	CSize sizeTotal;
-	// TODO: ÀÌ ºäÀÇ ÀüÃ¼ Å©±â¸¦ °è»êÇÕ´Ï´Ù.
+	// TODO: ì´ ë·°ì˜ ì „ì²´ í¬ê¸°ë¥¼ ê³„ì‚°í•©ë‹ˆë‹¤.
 	sizeTotal.cx = sizeTotal.cy = 100;
 	SetScrollSizes(MM_TEXT, sizeTotal);
 }
@@ -41,7 +41,7 @@ void CGUIDebugView::OnInitialUpdate()
 void CGUIDebugView::OnDraw(CDC* pDC)
 {
 	CDocument* pDoc = GetDocument();
-	// TODO: ¿©±â¿¡ ±×¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ê·¸ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	
 	if( g_DevILImage.IsLoaded() )
 	{
@@ -51,7 +51,7 @@ void CGUIDebugView::OnDraw(CDC* pDC)
 }
 
 
-// CGUIDebugView Áø´ÜÀÔ´Ï´Ù.
+// CGUIDebugView ì§„ë‹¨ì…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CGUIDebugView::AssertValid() const
@@ -66,7 +66,7 @@ void CGUIDebugView::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CGUIDebugView ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CGUIDebugView ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CGUIDebugView::OnSize(UINT nType, int cx, int cy)
 {

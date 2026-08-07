@@ -1,4 +1,4 @@
-// CameraAttrDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// CameraAttrDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -13,7 +13,7 @@
 #include "NtlWorldFieldManager.h"
 #include "NtlPLOptionManager.h"
 
-// CCameraAttrDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CCameraAttrDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CCameraAttrDlg, CDialog)
 CCameraAttrDlg::CCameraAttrDlg(CWnd* pParent /*=NULL*/)
@@ -59,7 +59,7 @@ BEGIN_MESSAGE_MAP(CCameraAttrDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CCameraAttrDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CCameraAttrDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 VOID CCameraAttrDlg::SetCurCamMode(RwInt32 IdxCamMode)
 {
@@ -115,7 +115,7 @@ BOOL CCameraAttrDlg::OnInitDialog()
 	UpdateData(FALSE);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CCameraAttrDlg::SetInfo()

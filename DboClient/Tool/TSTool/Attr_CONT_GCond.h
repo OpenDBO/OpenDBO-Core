@@ -4,7 +4,7 @@
 #include "Attr_Page.h"
 
 
-// CAttr_CONT_GCond ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_CONT_GCond ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CAttr_CONT_GCond : public CAttr_Page
 {
@@ -14,14 +14,14 @@ public:
 	CAttr_CONT_GCond();
 	virtual ~CAttr_CONT_GCond();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_TS_CONT_GCOND_ATTR_DIAG };
 
 	virtual CString	GetPageData( void );
 	virtual void	UnPakingPageData( CString& strKey, CString& strValue );
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 

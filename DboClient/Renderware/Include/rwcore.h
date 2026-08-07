@@ -3908,7 +3908,7 @@ extern RwImage *RwImageFindRasterFormat(RwImage *ipImage,RwInt32 nRasterType,
 #endif
 
 #define RWFRAMEALIGNMENT(_frame) \
-   (! (((rwFRAMEALIGNMENT)-1) & ((RwUInt32)(_frame))))
+    (! (((rwFRAMEALIGNMENT)-1) & ((uintptr_t)(_frame))))
 
 /* Type ID */
 #define rwFRAME 0

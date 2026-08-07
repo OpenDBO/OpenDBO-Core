@@ -2,7 +2,7 @@
 //	File		:	VenusFramework.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	®œ 2005 by agebreak CO., Ltd
+//	Copyright	:	‚ìí 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -23,7 +23,7 @@
 
 /**
  * \ingroup Venus
- * \brief Venus¿« Main FrameWork
+ * \brief VenusÏùò Main FrameWork
  * \date 2006-07-31
  * \author agebreak
  */
@@ -37,79 +37,79 @@ public:
 	virtual RwBool	Update(RwReal fTime, RwReal fElapsedTime);
 			void	OnIdle()	{ CNtlApplication::Update(); }
 
-            void	SetSelectRectangle(POINT& OldPoint, POINT& CurPoint);  ///< º±≈√øµø™ ªÁ∞¢«¸¿ª º≥¡§«—¥Ÿ.
-            void	CreateEffectClump(const RwChar* strPathName);          ///< Effect Clump∏¶ ª˝º∫«—¥Ÿ.
+            void	SetSelectRectangle(POINT& OldPoint, POINT& CurPoint);  ///< ÏÑ†ÌÉùÏòÅÏó≠ ÏÇ¨Í∞ÅÌòïÏùÑ ÏÑ§Ï†ïÌïúÎã§.
+            void	CreateEffectClump(const RwChar* strPathName);          ///< Effect ClumpÎ•º ÏÉùÏÑ±ÌïúÎã§.
     
-            void	UpdateAmbient();                                       ///< Ambient Light∏¶ æ˜µ•¿Ã∆Æ«—¥Ÿ.
-            void	UpdateMainLight();                                     ///< Main Light∏¶ æ˜µ•¿Ã∆Æ«—¥Ÿ.
-            RpLight* CreateMainLight();                                    ///< Main Light∏¶ ª˝º∫«—¥Ÿ.
+            void	UpdateAmbient();                                       ///< Ambient LightÎ•º ÏóÖÎç∞Ïù¥Ìä∏ÌïúÎã§.
+            void	UpdateMainLight();                                     ///< Main LightÎ•º ÏóÖÎç∞Ïù¥Ìä∏ÌïúÎã§.
+            RpLight* CreateMainLight();                                    ///< Main LightÎ•º ÏÉùÏÑ±ÌïúÎã§.
 
-            void	ShowTerrain(RwBool bShow);                             ///< ¡ˆ«¸ «•Ω√ ¿Øπ´∏¶ º≥¡§«—¥Ÿ.
-            void	ShowObject(RwBool bShow);                              ///< Decal Test∏¶ ¿ß«— Object «•Ω√ ¿Øπ´∏¶ º≥¡§«—¥Ÿ.
+            void	ShowTerrain(RwBool bShow);                             ///< ÏßÄÌòï ÌëúÏãú Ïú†Î¨¥Î•º ÏÑ§Ï†ïÌïúÎã§.
+            void	ShowObject(RwBool bShow);                              ///< Decal TestÎ•º ÏúÑÌïú Object ÌëúÏãú Ïú†Î¨¥Î•º ÏÑ§Ï†ïÌïúÎã§.
 
             /// Get/Set Method
-            RwBool  GetSelectMode() {return m_bSelectMode;}                ///< Select Mode∏¶ º≥¡§«—¥Ÿ,.
-            void    SetSelectMode(RwBool bSelectMode) {m_bSelectMode = bSelectMode;} ///< Select Mode∏¶ π›»Ø«—¥Ÿ.
+            RwBool  GetSelectMode() {return m_bSelectMode;}                ///< Select ModeÎ•º ÏÑ§Ï†ïÌïúÎã§,.
+            void    SetSelectMode(RwBool bSelectMode) {m_bSelectMode = bSelectMode;} ///< Select ModeÎ•º Î∞òÌôòÌïúÎã§.
 
-            RwRGBA  GetBackGroundColor() {return m_BackgroundColor;}       ///< Background Color∏¶ π›»Ø«—¥Ÿ.
-            void    SetBackGroundColor(const RwRGBA& color) {m_BackgroundColor = color;} ///< BackGround Color∏¶ º≥¡§«—¥Ÿ.
+            RwRGBA  GetBackGroundColor() {return m_BackgroundColor;}       ///< Background ColorÎ•º Î∞òÌôòÌïúÎã§.
+            void    SetBackGroundColor(const RwRGBA& color) {m_BackgroundColor = color;} ///< BackGround ColorÎ•º ÏÑ§Ï†ïÌïúÎã§.
 
-            void    SetFrameFix(RwBool bEnable) {m_bFrameFix = bEnable;}           ///< Frame Fix ¿Øπ´∏¶ º±≈√«—¥Ÿ. («ˆ¿Á¥¬ 30 fps∑Œ ∞Ì¡§«—¥Ÿ.)                    
-            RwBool  GetFrameFix() {return m_bFrameFix;}                            ///< Frame Fix ¿Øπ´∏¶ π›»Ø«—¥Ÿ. 
+            void    SetFrameFix(RwBool bEnable) {m_bFrameFix = bEnable;}           ///< Frame Fix Ïú†Î¨¥Î•º ÏÑ†ÌÉùÌïúÎã§. (ÌòÑÏû¨Îäî 30 fpsÎ°ú Í≥†Ï†ïÌïúÎã§.)                    
+            RwBool  GetFrameFix() {return m_bFrameFix;}                            ///< Frame Fix Ïú†Î¨¥Î•º Î∞òÌôòÌïúÎã§. 
 
-			RwBool	CreateWorld();												   ///< VENUSø°º≠ ªÁøÎ«“ World∏¶ ª˝º∫«—¥Ÿ.
+			RwBool	CreateWorld();												   ///< VENUSÏóêÏÑú ÏÇ¨Ïö©Ìï† WorldÎ•º ÏÉùÏÑ±ÌïúÎã§.
 
 	static	CVenusFramework&	GetInstance(void);
 
 protected:
-    virtual RwBool  AttachPlugin();                                        ///< PluginµÈ¿ª Attach «—¥Ÿ.
-    virtual RwBool	CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, RwBool bZBuffer); ///< SubSystem¿ª ª˝º∫«—¥Ÿ.
+    virtual RwBool  AttachPlugin();                                        ///< PluginÎì§ÏùÑ Attach ÌïúÎã§.
+    virtual RwBool	CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, RwBool bZBuffer); ///< SubSystemÏùÑ ÏÉùÏÑ±ÌïúÎã§.
 
-    RpClump* LoadDummyClump(const RwChar* strFileName, RwV3d v, RwV3d s);  ///< Dummy Clump∏¶ ª˝º∫«—¥Ÿ.
+    RpClump* LoadDummyClump(const RwChar* strFileName, RwV3d v, RwV3d s);  ///< Dummy ClumpÎ•º ÏÉùÏÑ±ÌïúÎã§.
 
-    void	SetPauseVertex();                                              ///< PauseΩ√ ≥™≈∏≥™¥¬ »≠∏È ≈◊µŒ∏Æ πˆ≈ÿΩ∫∏¶ º≥¡§«—¥Ÿ.
+    void	SetPauseVertex();                                              ///< PauseÏãú ÎÇòÌÉÄÎÇòÎäî ÌôîÎ©¥ ÌÖåÎëêÎ¶¨ Î≤ÑÌÖçÏä§Î•º ÏÑ§Ï†ïÌïúÎã§.
     void	DisplayInfo();
     
-    void	RenderSelectRectangle();                                       ///< º±≈√ øµø™¿ª »≠∏Èø° ∑ª¥ı∏µ «—¥Ÿ.
-    void	AutoTempFileSave();                                            ///< ¿”Ω√ ∆ƒ¿œ¿ª ¿⁄µø¿∏∑Œ ¿˙¿Â«—¥Ÿ.
-    void    SetErrorReport();                                              ///< BugTrap¿ª ¿ÃøÎ«— ø°∑Ø ∏Æ∆˜∆Æ º≥¡§¿ª «—¥Ÿ.
-	RwBool	VENUS_PLInit();												   ///< API_PLInit¿« ≥ªøÎ¿ª Venusø° ∏¬∞‘ ºˆ¡§«ﬂ¥Ÿ.
-	void	VENUS_PLTerminate();										   ///< API_PLTerminate¿« ≥ªøÎ¿ª Venusø° ∏¬∞‘ ºˆ¡§«ﬂ¥Ÿ.
+    void	RenderSelectRectangle();                                       ///< ÏÑ†ÌÉù ÏòÅÏó≠ÏùÑ ÌôîÎ©¥Ïóê Î†åÎçîÎßÅ ÌïúÎã§.
+    void	AutoTempFileSave();                                            ///< ÏûÑÏãú ÌååÏùºÏùÑ ÏûêÎèôÏúºÎ°ú Ï†ÄÏû•ÌïúÎã§.
+    void    SetErrorReport();                                              ///< BugTrapÏùÑ Ïù¥Ïö©Ìïú ÏóêÎü¨ Î¶¨Ìè¨Ìä∏ ÏÑ§Ï†ïÏùÑ ÌïúÎã§.
+	RwBool	VENUS_PLInit();												   ///< API_PLInitÏùò ÎÇ¥Ïö©ÏùÑ VenusÏóê ÎßûÍ≤å ÏàòÏ†ïÌñàÎã§.
+	void	VENUS_PLTerminate();										   ///< API_PLTerminateÏùò ÎÇ¥Ïö©ÏùÑ VenusÏóê ÎßûÍ≤å ÏàòÏ†ïÌñàÎã§.
 
 protected:
-    RtCharset*						m_pCharset;             ///< Display ¡§∫∏∏¶ «•Ω√«œ±‚ ¿ß«— ∞¥√º
-    RpWorld*						m_pWorld;               ///< World ∞¥√º
-	CNtlPLWorldEntity*				m_pWorldEntity;			///< World Entity ∞¥√º
-    RpLight*						m_pAmbientLight;        ///< Ambient Light ∞¥√º
-    RpLight*						m_pMainLight;           ///< Main Light ∞¥√º
+    RtCharset*						m_pCharset;             ///< Display Ï†ïÎ≥¥Î•º ÌëúÏãúÌïòÍ∏∞ ÏúÑÌïú Í∞ùÏ≤¥
+    RpWorld*						m_pWorld;               ///< World Í∞ùÏ≤¥
+	CNtlPLWorldEntity*				m_pWorldEntity;			///< World Entity Í∞ùÏ≤¥
+    RpLight*						m_pAmbientLight;        ///< Ambient Light Í∞ùÏ≤¥
+    RpLight*						m_pMainLight;           ///< Main Light Í∞ùÏ≤¥
 
     RpClump*						m_pEffectClump;         ///< Effect Clump
-	CNtlPLEntity*					m_pDecalTestObject;		///< Decal TestøÎ Object ∞¥√º
+	CNtlPLEntity*					m_pDecalTestObject;		///< Decal TestÏö© Object Í∞ùÏ≤¥
 
     RwRGBA							m_BackgroundColor;      ///< BackGround Color
     RwRGBA							m_ForegroundColor;      ///< ForeGround Color
 
-    RwBool							m_bSelectMode;          ///< º±≈√ Mode Flag
+    RwBool							m_bSelectMode;          ///< ÏÑ†ÌÉù Mode Flag
 	CNtlPLEventHandler		       *m_pPLEventHandler;
 
-    // º±≈√ ªÁ∞¢«¸ πˆ≈ÿΩ∫
+    // ÏÑ†ÌÉù ÏÇ¨Í∞ÅÌòï Î≤ÑÌÖçÏä§
     enum RECTANGLE_VERTEX
     {
         RECTANGLE_VERTEX_COUNT = 5
     };
-    RwIm2DVertex					m_RectangleVertex[RECTANGLE_VERTEX_COUNT];      ///< Select ªÁ∞¢«¸ πˆ≈ÿΩ∫
+    RwIm2DVertex					m_RectangleVertex[RECTANGLE_VERTEX_COUNT];      ///< Select ÏÇ¨Í∞ÅÌòï Î≤ÑÌÖçÏä§
 
-    CNtlLightingController			m_LightningController;		///< π¯∞≥ ∞¸∏Æ¿⁄.
+    CNtlLightingController			m_LightningController;		///< Î≤àÍ∞ú Í¥ÄÎ¶¨Ïûê.
 
-    RwIm2DVertex					m_PauseVertex[16];          ///< Pause πˆ≈ÿΩ∫
+    RwIm2DVertex					m_PauseVertex[16];          ///< Pause Î≤ÑÌÖçÏä§
 
-    RwReal							m_fAutoSaveTime;            ///< Auto Saveµ… Time ∞™
+    RwReal							m_fAutoSaveTime;            ///< Auto SaveÎê† Time Í∞í
 
-    RwBool                          m_bFrameFix;                ///< FrameFix ¿Øπ´∏¶ º±≈√«—¥Ÿ.
-    RwReal                          m_fTimeFrameFix;            ///< FrameFixΩ√ ªÁøÎ«“ Time∞™¿ª ¿˙¿Â«œ∞Ì ¿÷¥¬ ∫Øºˆ
-    SToonData*                      m_pToonData;                     ///< ≈˜¿Ã ¿˚øÎµ» ∏ﬁΩ√∏¶ ¿ß«— ≈˜ ¡§∫∏
+    RwBool                          m_bFrameFix;                ///< FrameFix Ïú†Î¨¥Î•º ÏÑ†ÌÉùÌïúÎã§.
+    RwReal                          m_fTimeFrameFix;            ///< FrameFixÏãú ÏÇ¨Ïö©Ìï† TimeÍ∞íÏùÑ Ï†ÄÏû•ÌïòÍ≥† ÏûàÎäî Î≥ÄÏàò
+    SToonData*                      m_pToonData;                     ///< Ìà∞Ïù¥ Ï†ÅÏö©Îêú Î©îÏãúÎ•º ÏúÑÌïú Ìà∞ Ï†ïÎ≥¥
 
 public:
-	CNtlPLSun*						m_pSun;						///< LensFlare Test∏¶ ¿ß«— ∞¥√º
+	CNtlPLSun*						m_pSun;						///< LensFlare TestÎ•º ÏúÑÌïú Í∞ùÏ≤¥
 
 };

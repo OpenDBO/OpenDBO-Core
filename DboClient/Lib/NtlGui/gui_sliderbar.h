@@ -159,7 +159,7 @@ public:
 
 public:
 
-	//: thumb track or slider bar¸¦ Àâ°í ÀÌµ¿ÇßÀ» °æ¿ì È£ÃâµÇ´Â function
+	//: thumb track or slider barë¥¼ ì¡ê³  ì´ë™í–ˆì„ ê²½ìš° í˜¸ì¶œë˜ëŠ” function
 	VOID SliderMovePaint(VOID);
 
 private:
@@ -181,7 +181,7 @@ private:
 
 	int m_nScrollDelta;
 
-	//: slider bar rendering position °è»ê.
+	//: slider bar rendering position ê³„ì‚°.
 	CRectangle CalculateSliderPaint(VOID);
 	
 	CSliderBar(const CSliderBar &copy) : CComponent(NULL,NULL) { return; } // disallow copy construction.

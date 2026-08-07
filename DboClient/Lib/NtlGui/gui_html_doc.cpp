@@ -471,7 +471,7 @@ VOID CHtmlMetaTagContainter::UnderLineTagHandler(WCHAR *pwBuffer, const WCHAR *p
 
 UserTagFunc CHtmlDoc::m_fnUserTag = NULL;
 
-// »ý¼ºÀÚ
+// ìƒì„±ìž
 CHtmlDoc::CHtmlDoc()
 {
 	m_nMetaTagId	= -1;
@@ -491,7 +491,7 @@ CHtmlDoc::CHtmlDoc()
 	m_bInFontTag	= FALSE;
 	m_pParentComp	= NULL;
 	
-	// ÆÄ½Ì ÇÒ¶§ ÅÂ±×¿¡ µû¶ó¼­ °ü·ÃµÈ ÇÔ¼ö¸¦ ¿¬°á½ÃÄÑ³õ´Â´Ù.
+	// íŒŒì‹± í• ë•Œ íƒœê·¸ì— ë”°ë¼ì„œ ê´€ë ¨ëœ í•¨ìˆ˜ë¥¼ ì—°ê²°ì‹œì¼œë†“ëŠ”ë‹¤.
 	RegisterTagParsingHandler();
 }
 
@@ -502,7 +502,7 @@ CHtmlDoc::~CHtmlDoc()
 
 VOID CHtmlDoc::Reset(VOID)
 {
-	// ÃÊ±âÈ­ ¼³Á¤À¸·Î ¸®¼Â
+	// ì´ˆê¸°í™” ì„¤ì •ìœ¼ë¡œ ë¦¬ì…‹
 	m_wstrFontName	= HTML_FONT_NAME;
 	m_nFontSize		= HTML_FONT_SIZE;
 	m_nFontAttr		= 0;
@@ -594,7 +594,7 @@ VOID CHtmlDoc::Parsing(const CHAR *pFileName)
 
 	if(lexer.IsEmpty())
 	{
-		// Todo :: ÆÄÀÏÀÌ ¾ø°Å³ª ½ÇÆÐÇßÀ» ¶§ ¿¡·¯°¡ ³µ´Ù°í ¾Ë·ÁÁØ´Ù.
+		// Todo :: íŒŒì¼ì´ ì—†ê±°ë‚˜ ì‹¤íŒ¨í–ˆì„ ë•Œ ì—ëŸ¬ê°€ ë‚¬ë‹¤ê³  ì•Œë ¤ì¤€ë‹¤.
 		WCHAR awcBuffer[64] = L" ";
 		::MultiByteToWideChar( GetACP(), 0, pFileName, -1, awcBuffer, 64 );
 
@@ -612,7 +612,7 @@ VOID CHtmlDoc::Parsing(const CHAR *pFileName)
 		if(lexer.IsEmpty())
 			break;
 
-		// ÅäÅ«¸¶´Ù ºñ±³ÇÏ¿© ÅØ½ºÆ®´Â Item¿¡ Ãß°¡ÇÏ°í ÅÂ±× ´Â ¿¬°áµÈ ÆÄ½Ì ÇÔ¼ö¸¦ ÄÝ ÇÑ´Ù.
+		// í† í°ë§ˆë‹¤ ë¹„êµí•˜ì—¬ í…ìŠ¤íŠ¸ëŠ” Itemì— ì¶”ê°€í•˜ê³  íƒœê·¸ ëŠ” ì—°ê²°ëœ íŒŒì‹± í•¨ìˆ˜ë¥¼ ì½œ í•œë‹¤.
 		std::wstring &token = lexer.GetNextToken();
 
 		if(lexer.GetTokenType() == CHtmlTokenizer::CToken::TOKEN_TEXT)
@@ -624,7 +624,7 @@ VOID CHtmlDoc::Parsing(const CHAR *pFileName)
 		}
 		else if(lexer.GetTokenType() == CHtmlTokenizer::CToken::TOKEN_TAG)
 		{
-			// ¼Ò¹®ÀÚ·Î º¯È¯
+			// ì†Œë¬¸ìžë¡œ ë³€í™˜
 			std::transform( token.begin(), token.end(), token.begin(), tolower );
 			TagTokenParsing(wchBuffer, token.c_str(), (INT)token.size());
 		}
@@ -660,7 +660,7 @@ VOID CHtmlDoc::Parsing(const WCHAR *pMemory, INT nSize)
 		}
 		else if(lexer.GetTokenType() == CHtmlTokenizer::CToken::TOKEN_TAG)
 		{
-			// ¼Ò¹®ÀÚ·Î º¯È¯
+			// ì†Œë¬¸ìžë¡œ ë³€í™˜
 			std::transform( token.begin(), token.end(), token.begin(), tolower );
 			TagTokenParsing(wchBuffer, token.c_str(), (INT)token.size());
 		}
@@ -681,11 +681,11 @@ VOID CHtmlDoc::TagTokenParsing(WCHAR *pwBuffer, const WCHAR *pToken, INT nSize)
 			if(it == m_hmapTag.end())
 			{
 				AddTextItem(pwBuffer, pToken, nSize, HTML_META_KEY_DEFAULT);
-				// ¸ðµç °ÍÀ» stringÀ¸·Î »ý°¢ÇÑ´Ù.
+				// ëª¨ë“  ê²ƒì„ stringìœ¼ë¡œ ìƒê°í•œë‹¤.
 			}
 			else
 			{
-				// iterator¿¡ µé¾î ÀÖ´Â ÇÔ¼ö¸¦ È£Ãâ
+				// iteratorì— ë“¤ì–´ ìžˆëŠ” í•¨ìˆ˜ë¥¼ í˜¸ì¶œ
 				(this->*((*it).second))(pwBuffer, &pToken[nCurPos], nSize - nCurPos); 
 			}
 
@@ -712,7 +712,7 @@ VOID CHtmlDoc::AddTextItem(const WCHAR *pwText, const WCHAR *pMetaKey)
 	COLORREF TextColor		= m_CurTextColor;
 
 	CHtmlMetaTag *pMetaTag = GetMetaTagContainer()->FindMetaTag(m_nMetaTagId);
-	// Meta Id°¡ ÀÖ°í Font Tag°¡ »ç¿ëµÇÁö ¾Ê¾Ò´Ù¸é MetaTag¸¦ Àû¿ëÇÑ´Ù.
+	// Meta Idê°€ ìžˆê³  Font Tagê°€ ì‚¬ìš©ë˜ì§€ ì•Šì•˜ë‹¤ë©´ MetaTagë¥¼ ì ìš©í•œë‹¤.
 	if(pMetaTag && !m_bInFontTag)
 	{
 		CHtmlMetaTagItem *pMetaTagItem = pMetaTag->FindItem(pMetaKey);

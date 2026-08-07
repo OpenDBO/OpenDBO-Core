@@ -1,4 +1,4 @@
-// AnimationView.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// AnimationView.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -24,16 +24,16 @@ BEGIN_MESSAGE_MAP(CAnimationView, CView)
 END_MESSAGE_MAP()
 
 
-// CAnimationView ±×¸®±âÀÔ´Ï´Ù.
+// CAnimationView ê·¸ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CAnimationView::OnDraw(CDC* pDC)
 {
 	CDocument* pDoc = GetDocument();
-	// TODO: ¿©±â¿¡ ±×¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ê·¸ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 
-// CAnimationView Áø´ÜÀÔ´Ï´Ù.
+// CAnimationView ì§„ë‹¨ì…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CAnimationView::AssertValid() const
@@ -48,13 +48,13 @@ void CAnimationView::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CAnimationView ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAnimationView ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CAnimationView::OnInitialUpdate()
 {
 	CView::OnInitialUpdate();
 
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	m_AnimationTreeDialog.Create(IDD_ANIMASSETDLG, this);
 	m_AnimationSetDialog.Create(IDD_ANIMASSETANIMSETDLG, this);
 
@@ -65,7 +65,7 @@ void CAnimationView::OnInitialUpdate()
 void CAnimationView::OnSize(UINT nType, int cx, int cy)
 {
 	CView::OnSize(nType, cx, cy);
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if(m_AnimationTreeDialog.GetSafeHwnd())
 	{
 		m_AnimationTreeDialog.MoveWindow(0, 0, cx, 300); 

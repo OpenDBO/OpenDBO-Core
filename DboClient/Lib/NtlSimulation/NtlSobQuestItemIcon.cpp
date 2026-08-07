@@ -49,7 +49,7 @@ void CNtlSobQuestItemIcon::HandleEvents(RWS::CMsg &pMsg)
 		CNtlSobItemAttr *pSobItemAttr = reinterpret_cast<CNtlSobItemAttr*>(pSobItem->GetSobAttr());
 		sITEM_TBLDAT* pItemTbl = pSobItemAttr->GetItemTbl();
 		
-		// ÀÌÀü¿£ ItemUnIdentified¿´´Ù°¡ Ç®·ÈÀ»¶§.
+		// ì´ì „ì—” ItemUnIdentifiedì˜€ë‹¤ê°€ í’€ë ¸ì„ë•Œ.
 		if( pSobItemAttr->IsNeedToIdentify() && !pSobItemUpdate->bNeedToIdentify )
 		{
 			CreateImage(pItemTbl->strIcon_Name.c_str());

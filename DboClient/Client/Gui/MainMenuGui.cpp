@@ -459,7 +459,7 @@ VOID CMainMenuGui::OnClickedInven( gui::CComponent* pComponent )
 
 		RwBool bAllClosedCapsuleClosed = GetDialogManager()->IsBagOpen();
 
-		// °¡¹æÀÌ ÇÑ°³¶óµµ ¿­·Á ÀÖ´Ù¸é ÀüºÎ ´Ý´Â´Ù.
+		// ê°€ë°©ì´ í•œê°œë¼ë„ ì—´ë ¤ ìžˆë‹¤ë©´ ì „ë¶€ ë‹«ëŠ”ë‹¤.
 		GetDialogManager()->SwitchBag(!bAllClosedCapsuleClosed);
 	}
 

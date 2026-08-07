@@ -1,11 +1,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Name: class gui:CBalloon
-// Desc: Ç³¼± µµ¿ò¸».
+// Desc: í’ì„  ë„ì›€ë§.
 //
 // 2006.02.20 Peessi@hitel.net   
 //
 // To Be Desired:
-//	1. ±ÛÀÚ¼ö ÃÊ°úÇÏ¸é ...·Î »ı·«
+//	1. ê¸€ììˆ˜ ì´ˆê³¼í•˜ë©´ ...ë¡œ ìƒëµ
 ////////////////////////////////////////////////////////////////////////////////
 #ifndef __GUI_BALLOON_H__
 #define __GUI_BALLOON_H__
@@ -31,15 +31,15 @@ public:
 	
 //! Operations:
 public:
-	// ½ÃÀÛÁ¡. Ç³¼±²¿¸®ÀÇ Left or Right Bottom
-	VOID SetOrigin( INT nScreenX, INT nScreenY, BOOL bLeft = FALSE );    // ´ÙÀ½ TextÀÔ·Â±îÁö ¿Å°ÜÁöÁö ¾Ê´Â´Ù.
-	VOID SetOriginNow( INT nScreenX, INT nScreenY, BOOL bLeft = FALSE ); // ¹Ù·Î ¿Å°ÜÁø´Ù.
+	// ì‹œì‘ì . í’ì„ ê¼¬ë¦¬ì˜ Left or Right Bottom
+	VOID SetOrigin( INT nScreenX, INT nScreenY, BOOL bLeft = FALSE );    // ë‹¤ìŒ Textì…ë ¥ê¹Œì§€ ì˜®ê²¨ì§€ì§€ ì•ŠëŠ”ë‹¤.
+	VOID SetOriginNow( INT nScreenX, INT nScreenY, BOOL bLeft = FALSE ); // ë°”ë¡œ ì˜®ê²¨ì§„ë‹¤.
 	VOID SetMargin( INT nMarginX, INT nMarginY );
 
-	// BalloonÀÇ ÅØ½ºÃÄ ¹öÅØ½º Ä®¶ó¼³Á¤.
+	// Balloonì˜ í…ìŠ¤ì³ ë²„í…ìŠ¤ ì¹¼ë¼ì„¤ì •.
 	VOID SetBalloonColor( BYTE ucRed, BYTE ucGreen, BYTE ucBlue );
 
-	// Static Box°ü·Ã Interface
+	// Static Boxê´€ë ¨ Interface
 	VOID CreateFontStd( CHAR* pFaceName, INT nHeight, INT nAttributes );
 	VOID SetText( const CHAR* text );
 	VOID SetText( const WCHAR* text );
@@ -62,7 +62,7 @@ public:
 
 	VOID Clear();	
 	
-	// Outline °ü·Ã Interface
+	// Outline ê´€ë ¨ Interface
 	VOID AddSurfaces( CSurface& surCenter, CSurface& surLTC, CSurface& surRTC, CSurface& surLBC, CSurface& surRBC,
 					  CSurface& surLL, CSurface& surTL, CSurface& surRL, CSurface& surBL, CSurface& surTail );
 

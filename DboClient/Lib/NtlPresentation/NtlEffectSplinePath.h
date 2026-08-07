@@ -2,7 +2,7 @@
 //	File		:	NtlEffectSplinePath.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************

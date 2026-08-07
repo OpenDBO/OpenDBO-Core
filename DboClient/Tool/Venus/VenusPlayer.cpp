@@ -2,7 +2,7 @@
 //	File		:	VenusPlayer.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by NTL CO., Ltd
+//	Copyright	:	â“’ 2005 by NTL CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -140,7 +140,7 @@ void CVenusPlayer::Create()
 			m_pClumpResource = CNtlPLResourceManager::GetInstance()->LoadClump(strPathName, CVenusPlayerEventManager::GetInstance().m_strClumpTexturePath.c_str());
             CNtlInstanceMeshSystem::CreateToonData(m_pClumpResource->GetClump(), m_pToonData);
             
-            // Hierarchy Á¤º¸¸¦ ¼³Á¤ÇÑ´Ù.
+            // Hierarchy ì •ë³´ë¥¼ ì„¤ì •í•œë‹¤.
             m_pBaseHierarchy = Helper_GetHierarchyClump(m_pClumpResource->GetClump());
             if(m_pBaseHierarchy)
             {

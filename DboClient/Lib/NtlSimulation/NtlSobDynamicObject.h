@@ -2,7 +2,7 @@
  *
  * File			: NtlSobDynamicObject.h
  * Author		: Haesung, Cho
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2008. 12. 15	
  * Abstract		: Simulation dynamic object
  *****************************************************************************

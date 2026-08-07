@@ -133,7 +133,7 @@ SGET_QUEST_INFO* CDboTSCTAgency::GetQuestInfoList( eEVENT_GEN_TYPE eEvtGenType, 
 
 	//////////////////////////////////////////////////////////////////////////
 	//
-	// ÇöÀç Object trigger¿¡¼­´Â ¹ÙÀÎµå ¹× Æ÷Å» °¡´É ¿©ºÎ¸¸ °Ë»ç ÇÔ
+	// í˜„ìž¬ Object triggerì—ì„œëŠ” ë°”ì¸ë“œ ë° í¬íƒˆ ê°€ëŠ¥ ì—¬ë¶€ë§Œ ê²€ì‚¬ í•¨
 	//
 	//////////////////////////////////////////////////////////////////////////
 
@@ -145,7 +145,7 @@ SGET_QUEST_INFO* CDboTSCTAgency::GetQuestInfoList( eEVENT_GEN_TYPE eEvtGenType, 
 			CObjectTable* pObjTable = API_GetTableContainer()->GetObjectTable( GetNtlSLGlobal()->GetAvatarInfo()->sWorldInfo.tblidx );
 			if ( pObjTable )
 			{
-				sOBJECT_TBLDAT* pTblData = (sOBJECT_TBLDAT*)pObjTable->FindData( uiOwnerId /* ÀÌº¥Æ® Å¸ÀÔÀÌ ¿ÀºêÁ§Æ® °ü·Ã ÀÌ¹Ç·Î uiOwnerId´Â ¿ÀºêÁ§Æ® Å×ÀÌºí ÀÎµ¦½º°¡ µÈ´Ù*/ );
+				sOBJECT_TBLDAT* pTblData = (sOBJECT_TBLDAT*)pObjTable->FindData( uiOwnerId /* ì´ë²¤íŠ¸ íƒ€ìž…ì´ ì˜¤ë¸Œì íŠ¸ ê´€ë ¨ ì´ë¯€ë¡œ uiOwnerIdëŠ” ì˜¤ë¸Œì íŠ¸ í…Œì´ë¸” ì¸ë±ìŠ¤ê°€ ëœë‹¤*/ );
 
 				if ( pTblData )
 				{
@@ -158,7 +158,7 @@ SGET_QUEST_INFO* CDboTSCTAgency::GetQuestInfoList( eEVENT_GEN_TYPE eEvtGenType, 
 
 	sQUEST_INFO sTriggerInfo;
 
-	// 1. ÇöÀç ÁøÇà ÁßÀÎ Æ®¸®°Å°¡ ÇØ´ç ¿ÀºêÁ§Æ® ¾ÆÀÌµð¸¦ ÁøÇà ÀÌº¥Æ®·Î »ç¿ëÇÒ ¼ö ÀÖ´ÂÁö °Ë»çÇÑ´Ù
+	// 1. í˜„ìž¬ ì§„í–‰ ì¤‘ì¸ íŠ¸ë¦¬ê±°ê°€ í•´ë‹¹ ì˜¤ë¸Œì íŠ¸ ì•„ì´ë””ë¥¼ ì§„í–‰ ì´ë²¤íŠ¸ë¡œ ì‚¬ìš©í•  ìˆ˜ ìžˆëŠ”ì§€ ê²€ì‚¬í•œë‹¤
 	mapdef_TRIGGER_LIST::iterator itCPT = m_defCurTList.begin();
 	for ( ; itCPT != m_defCurTList.end(); ++itCPT )
 	{
@@ -208,13 +208,13 @@ SGET_QUEST_INFO* CDboTSCTAgency::GetQuestInfoList( eEVENT_GEN_TYPE eEvtGenType, 
 			sTriggerInfo.sKey.tcID = pTCtrl->GetCurTSP()->GetID();
 			sTriggerInfo.dwQuestTitle = pTCtrl->GetTrigger()->GetTitle();
 			sTriggerInfo.dwQuestStartDialog = 0xffffffff;
-			sTriggerInfo.eProgType = eQUEST_PROGRESS_TYPE_PROGRESS;	// PC TriggerÀÎ °æ¿ì ¹«Á¶°Ç ÁøÇà »óÅÂ·Î Ç¥ÇöÇÑ´Ù
+			sTriggerInfo.eProgType = eQUEST_PROGRESS_TYPE_PROGRESS;	// PC Triggerì¸ ê²½ìš° ë¬´ì¡°ê±´ ì§„í–‰ ìƒíƒœë¡œ í‘œí˜„í•œë‹¤
 
 			m_TriggerInfo.QuestInfoList.push_back( sTriggerInfo );
 		}
 	}
 
-	// 2. ÇØ´ç ¿ÀºêÁ§Æ® ¾ÆÀÌµð·Î ½ÃÀÛ ÇÒ ¼ö ÀÖ´Â Æ®·¯°Å°¡ Á¸ÀçÇÏ¸é ½ÃÀÛÇÑ´Ù
+	// 2. í•´ë‹¹ ì˜¤ë¸Œì íŠ¸ ì•„ì´ë””ë¡œ ì‹œìž‘ í•  ìˆ˜ ìžˆëŠ” íŠ¸ëŸ¬ê±°ê°€ ì¡´ìž¬í•˜ë©´ ì‹œìž‘í•œë‹¤
 	CNtlTSEvtMapper* pEvtMapper = 0;
 
 	if ( eEVENT_GEN_TYPE_CLICK_NPC == eEvtGenType )
@@ -338,7 +338,7 @@ SGET_QUEST_INFO* CDboTSCTAgency::GetQuestInfoList( eEVENT_GEN_TYPE eEvtGenType, 
 
 	for ( itSQ = pSTrigList->begin(); itSQ != pSTrigList->end(); ++itSQ )
 	{
-		// ÇöÀç ÁøÇàÁßÀÎ Äù½ºÆ®ÀÌ¸é ´õ ÀÌ»ó ÁøÇà ÇÒ ¼ö ¾ø´Ù
+		// í˜„ìž¬ ì§„í–‰ì¤‘ì¸ í€˜ìŠ¤íŠ¸ì´ë©´ ë” ì´ìƒ ì§„í–‰ í•  ìˆ˜ ì—†ë‹¤
 		if ( m_defCurTList.find( *itSQ ) != m_defCurTList.end() ) continue;
 
 		CNtlTSTrigger* pTrig = ((CDboTSCMain*)m_pParent)->FindTriggerFromTS( *itSQ );
@@ -346,7 +346,7 @@ SGET_QUEST_INFO* CDboTSCTAgency::GetQuestInfoList( eEVENT_GEN_TYPE eEvtGenType, 
 
 		CDboTSCTCtrl* pTCtrl = (CDboTSCTCtrl*)MakeTriggerController( pTrig );
 
-		// Main groupÀÇ start container(½ÃÀÛ ÄÁÅ×ÀÌ³Ê)¸¦ ¸¸Á·ÇÏ¸é Äù½ºÆ® ÁøÇà
+		// Main groupì˜ start container(ì‹œìž‘ ì»¨í…Œì´ë„ˆ)ë¥¼ ë§Œì¡±í•˜ë©´ í€˜ìŠ¤íŠ¸ ì§„í–‰
 
 		sRunParam.SetControl( pTCtrl );
 
@@ -836,7 +836,7 @@ void CDboTSCTAgency::HandleEvents( RWS::CMsg& Msg )
 
 CDboTSTCtrl* CDboTSCTAgency::MakeTriggerController( CNtlTSTrigger* pTrig )
 {
-	// Trigger controller ¸¦ »ý¼ºÇÑ´Ù
+	// Trigger controller ë¥¼ ìƒì„±í•œë‹¤
 	CNtlTSControlObject* pCtrlObj = GetParent()->GetControlFactory()->CreateObj( "CDboTSCTCtrl" );
 	if ( !pCtrlObj->IsDerivedClass( "CDboTSCTCtrl" ) )
 	{
@@ -845,7 +845,7 @@ CDboTSTCtrl* CDboTSCTAgency::MakeTriggerController( CNtlTSTrigger* pTrig )
 		return 0;
 	}
 
-	// TS trigger ¿Í Trigger¸¦ ¿¬°á ¹× ÀúÀåÇÑ´Ù
+	// TS trigger ì™€ Triggerë¥¼ ì—°ê²° ë° ì €ìž¥í•œë‹¤
 	((CDboTSCTCtrl*)pCtrlObj)->SetTrigger( pTrig );
 	((CDboTSCTCtrl*)pCtrlObj)->SetParent( this );
 
@@ -874,15 +874,15 @@ void CDboTSCTAgency::AttachColTrigObj( unsigned int hHandle )
 
 void CDboTSCTAgency::UG_Avatar_TS_Confirm_Step( NTL_TS_T_ID tId, NTL_TS_TC_ID tcCurId, NTL_TS_TC_ID tcNextId, unsigned int* uiParam, unsigned char byEventType, unsigned int uiEventData )
 {
-	OUT_QMSG_6( "[Trigger] User -> GameServer : Confirm Ã³¸®Áß [%d,%d,%d,%d,%d,%d]", tId, tcCurId, tcNextId, uiParam, byEventType, uiEventData );
+	OUT_QMSG_6( "[Trigger] User -> GameServer : Confirm ì²˜ë¦¬ì¤‘ [%d,%d,%d,%d,%d,%d]", tId, tcCurId, tcNextId, uiParam, byEventType, uiEventData );
 
-	// ¼­¹ö¿¡°Ô ¸Þ½ÃÁö¸¦ º¸³½´Ù
+	// ì„œë²„ì—ê²Œ ë©”ì‹œì§€ë¥¼ ë³´ë‚¸ë‹¤
 	API_GetSLPacketGenerator()->SendTSConfirmStepReq( TS_TYPE_PC_TRIGGER_CS, tId, tcCurId, tcNextId, uiParam, byEventType, uiEventData );
 }
 
 void CDboTSCTAgency::GU_Avatar_TS_Confirm_Step( WORD wResultCode, NTL_TS_T_ID tId, NTL_TS_TC_ID tcCurId, NTL_TS_TC_ID tcNextId )
 {
-	OUT_QMSG_3( "[Trigger] GameServer -> User : Confirm Ã³¸®Áß [%d,%d,%d]", tId, tcCurId, tcNextId );
+	OUT_QMSG_3( "[Trigger] GameServer -> User : Confirm ì²˜ë¦¬ì¤‘ [%d,%d,%d]", tId, tcCurId, tcNextId );
 
 	if ( RESULT_SUCCESS != wResultCode )
 	{
@@ -896,7 +896,7 @@ void CDboTSCTAgency::GU_Avatar_TS_Confirm_Step( WORD wResultCode, NTL_TS_T_ID tI
 
 void CDboTSCTAgency::GU_TS_Update_State( NTL_TS_T_ID tId, unsigned char byType, unsigned short wTSState, unsigned int uiParam )
 {
-	OUT_QMSG_4( "[Trigger] GameServer -> User : Update TS state message Ã³¸®Áß [%d, %d, %d, %d]", tId, byType, wTSState, uiParam );
+	OUT_QMSG_4( "[Trigger] GameServer -> User : Update TS state message ì²˜ë¦¬ì¤‘ [%d, %d, %d, %d]", tId, byType, wTSState, uiParam );
 
 	CDboTSCTCtrl* pTCtrl = (CDboTSCTCtrl*)FindProgressTrigger( tId );
 
@@ -905,15 +905,15 @@ void CDboTSCTAgency::GU_TS_Update_State( NTL_TS_T_ID tId, unsigned char byType, 
 
 void CDboTSCTAgency::UG_TS_Update_State( NTL_TS_T_ID tId, unsigned char byType, unsigned short wTSState, unsigned int uiParam )
 {
-	OUT_QMSG_4( "[Trigger] User -> GameServer : Update TS state message Ã³¸®Áß [%d, %d, %d, %d]", tId, byType, wTSState, uiParam );
+	OUT_QMSG_4( "[Trigger] User -> GameServer : Update TS state message ì²˜ë¦¬ì¤‘ [%d, %d, %d, %d]", tId, byType, wTSState, uiParam );
 
-	// ¼­¹ö¿¡°Ô »óÅÂ ¾÷µ¥ÀÌÆ® ¸Þ½ÃÁö¸¦ Àü¼ÛÇÑ´Ù
+	// ì„œë²„ì—ê²Œ ìƒíƒœ ì—…ë°ì´íŠ¸ ë©”ì‹œì§€ë¥¼ ì „ì†¡í•œë‹¤
 	API_GetSLPacketGenerator()->SendTSUpdateState( tId, TS_TYPE_PC_TRIGGER_CS, byType, wTSState, uiParam );
 }
 
 void CDboTSCTAgency::GU_TS_Update_Event_Nfy( NTL_TS_EVENT_ID eID )
 {
-	OUT_QMSG_1( "[Trigger] GameServer -> User : Update TS Event Ã³¸®Áß [%d]", eID );
+	OUT_QMSG_1( "[Trigger] GameServer -> User : Update TS Event ì²˜ë¦¬ì¤‘ [%d]", eID );
 
 	SGET_QUEST_INFO* pQuestInfo = GetQuestInfoList( eEVENT_GEN_TYPE_RCV_SVR_EVT, eID );
 
@@ -932,12 +932,12 @@ void CDboTSCTAgency::UT_UpdateAvatarPos( unsigned int uiWorldIdx, float fPosX, f
 		return;
 	}
 
-	// World °¡ ±³Ã¼µÈ °æ¿ì
+	// World ê°€ êµì²´ëœ ê²½ìš°
 	if ( m_sAvatarCurPos.uiWorldIx != uiWorldIdx )
 	{
 		sCOL_RGN_DATA sColRgnData;
 
-		// Leave Ã³¸®
+		// Leave ì²˜ë¦¬
 		if ( 0xffffffff != m_sAvatarCurPos.uiWorldIx )
 		{
 			sColRgnData.eWorldChangeType = sCOL_RGN_DATA::eWORLD_CHANGE_TYPE_LEAVE;
@@ -955,8 +955,8 @@ void CDboTSCTAgency::UT_UpdateAvatarPos( unsigned int uiWorldIdx, float fPosX, f
 				UT_EventDoTrigger( sQuestInfo, eEVENT_GEN_TYPE_COL_REGION, 0, &sColRgnData );
 			}
 
-			// ¹Ù·Î Enter Ã³¸®°¡ ÀÌ·ïÁö´Â °ÍÀ» ¸·°í
-			// ´ÙÀ½ ÇÁ·¹ÀÓ¿¡ Ã³¸®µÇµµ·Ï ÇÑ´Ù
+			// ë°”ë¡œ Enter ì²˜ë¦¬ê°€ ì´ë¤„ì§€ëŠ” ê²ƒì„ ë§‰ê³ 
+			// ë‹¤ìŒ í”„ë ˆìž„ì— ì²˜ë¦¬ë˜ë„ë¡ í•œë‹¤
 			m_sAvatarCurPos.uiWorldIx = 0xffffffff;
 		}
 		else
@@ -981,10 +981,10 @@ void CDboTSCTAgency::UT_UpdateAvatarPos( unsigned int uiWorldIdx, float fPosX, f
 			m_sAvatarCurPos.fPosZ = fPosZ;
 		}
 	}
-	// World °¡ ±³Ã¼µÇÁö ¾ÊÀº °æ¿ì
+	// World ê°€ êµì²´ë˜ì§€ ì•Šì€ ê²½ìš°
 	else
 	{
-		// °°Àº ¿ùµå¿¡¼­ ÀÌµ¿À» ÇÑ °æ¿ì
+		// ê°™ì€ ì›”ë“œì—ì„œ ì´ë™ì„ í•œ ê²½ìš°
 		if ( abs( fPosX - m_sAvatarCurPos.fPosX ) > 0.0001f ||
 			 abs( fPosZ - m_sAvatarCurPos.fPosZ ) > 0.0001f )
 		{
@@ -1019,7 +1019,7 @@ void CDboTSCTAgency::TU_FinishQuest( unsigned char byTSType, NTL_TS_T_ID tID )
 
 void CDboTSCTAgency::UT_EventDoTrigger( sQUEST_INFO& sQuestInfo, eEVENT_GEN_TYPE eEvtGenType, RwUInt32 uiOwnerId, void* pParameter /*= NULL*/ )
 {
-	OUT_QMSG_3( "[Trigger] User -> Trigger : Do trigger message Ã³¸®Áß [%d, %d, %d]", sQuestInfo.sKey.tID, eEvtGenType, uiOwnerId );
+	OUT_QMSG_3( "[Trigger] User -> Trigger : Do trigger message ì²˜ë¦¬ì¤‘ [%d, %d, %d]", sQuestInfo.sKey.tID, eEvtGenType, uiOwnerId );
 
 	if ( eQUEST_PROGRESS_TYPE_NEW == sQuestInfo.eProgType )
 	{
@@ -1028,7 +1028,7 @@ void CDboTSCTAgency::UT_EventDoTrigger( sQUEST_INFO& sQuestInfo, eEVENT_GEN_TYPE
 			return;
 		}
 
-		// ÁøÇà Áß¿¡ ÀÖ´Â Æ®¸®°Å´Â »õ·ÎÀÌ ÁøÇàÇÒ ¼ö ¾ø´Ù
+		// ì§„í–‰ ì¤‘ì— ìžˆëŠ” íŠ¸ë¦¬ê±°ëŠ” ìƒˆë¡œì´ ì§„í–‰í•  ìˆ˜ ì—†ë‹¤
 		CDboTSCTCtrl* pProgress = (CDboTSCTCtrl*)FindProgressTrigger( sQuestInfo.sKey.tID );
 		if ( pProgress ) return;
 
@@ -1041,7 +1041,7 @@ void CDboTSCTAgency::UT_EventDoTrigger( sQUEST_INFO& sQuestInfo, eEVENT_GEN_TYPE
 		sRunParam.SetControl( pTCtrl );
 		sRunParam.SetAgency( this );
 
-		// Main groupÀÇ start container(½ÃÀÛ ÄÁÅ×ÀÌ³Ê)¸¦ ¸¸Á·ÇÏ¸é Äù½ºÆ® ÁøÇà
+		// Main groupì˜ start container(ì‹œìž‘ ì»¨í…Œì´ë„ˆ)ë¥¼ ë§Œì¡±í•˜ë©´ í€˜ìŠ¤íŠ¸ ì§„í–‰
 
 		pTCtrl->SetEventGenType( eEvtGenType );
 		pTCtrl->SetEventGenId( uiOwnerId );
@@ -1138,7 +1138,7 @@ void CDboTSCTAgency::UT_EventDoTrigger( sQUEST_INFO& sQuestInfo, eEVENT_GEN_TYPE
 
 void CDboTSCTAgency::TU_ShowProposalDialog( sTS_KEY& sKey, CDboTSContProposal* pCont, CDboTSContReward* pActRwd )
 {
-	OUT_QMSG_1( "[Trigger] Trigger -> User : Show proposal dialog message Ã³¸®Áß [%d]", sKey.tID );
+	OUT_QMSG_1( "[Trigger] Trigger -> User : Show proposal dialog message ì²˜ë¦¬ì¤‘ [%d]", sKey.tID );
 
 	if (pActRwd)
 	{
@@ -1168,7 +1168,7 @@ void CDboTSCTAgency::TU_ShowProposalDialog( sTS_KEY& sKey, CDboTSContProposal* p
 
 void CDboTSCTAgency::UT_ShowProposalDialog( sTS_KEY& sKey, bool bAccept )
 {
-	OUT_QMSG_2( "[Trigger] User -> Trigger : Show proposal dialog message Ã³¸®Áß [%d, %d]", sKey.tID, bAccept );
+	OUT_QMSG_2( "[Trigger] User -> Trigger : Show proposal dialog message ì²˜ë¦¬ì¤‘ [%d, %d]", sKey.tID, bAccept );
 
 	CDboTSCTCtrl* pTCtrl = (CDboTSCTCtrl*)FindProgressTrigger( sKey.tID );
 
@@ -1177,7 +1177,7 @@ void CDboTSCTAgency::UT_ShowProposalDialog( sTS_KEY& sKey, bool bAccept )
 
 void CDboTSCTAgency::TU_ShowRewardDialog( sTS_KEY& sKey, CDboTSCTCtrl* pTCtrl, CDboTSContReward* pContRwd )
 {
-	OUT_QMSG_1( "[Trigger] Trigger -> User : Show reward dialog message Ã³¸®Áß [%d]", sKey.tID );
+	OUT_QMSG_1( "[Trigger] Trigger -> User : Show reward dialog message ì²˜ë¦¬ì¤‘ [%d]", sKey.tID );
 
 	if (pContRwd)
 	{
@@ -1208,7 +1208,7 @@ void CDboTSCTAgency::TU_ShowRewardDialog( sTS_KEY& sKey, CDboTSCTCtrl* pTCtrl, C
 
 void CDboTSCTAgency::UT_ShowRewardDialog( sTS_KEY& sKey, int nSelIdx, bool bCancel )
 {
-	OUT_QMSG_3( "[Trigger] User -> Trigger : Show reward dialog message Ã³¸®Áß [%d, %d, %d]", sKey.tID, nSelIdx, bCancel );
+	OUT_QMSG_3( "[Trigger] User -> Trigger : Show reward dialog message ì²˜ë¦¬ì¤‘ [%d, %d, %d]", sKey.tID, nSelIdx, bCancel );
 
 	CDboTSCTCtrl* pTCtrl = (CDboTSCTCtrl*)FindProgressTrigger( sKey.tID );
 
@@ -1217,7 +1217,7 @@ void CDboTSCTAgency::UT_ShowRewardDialog( sTS_KEY& sKey, int nSelIdx, bool bCanc
 
 void CDboTSCTAgency::TU_ShowUserSelectionDialog( sTS_KEY& sKey, CDboTSCTCtrl* pTCtrl, CDboTSContUsrSel* pCont )
 {
-	OUT_QMSG_1( "[Trigger] Trigger -> User : Show user selection dialog message Ã³¸®Áß [%d]", sKey.tID );
+	OUT_QMSG_1( "[Trigger] Trigger -> User : Show user selection dialog message ì²˜ë¦¬ì¤‘ [%d]", sKey.tID );
 
 	int nCnt;
 	sTS_BRANCH_INFO sBranchInfo[eBRANCH_INFO_MAX];
@@ -1260,7 +1260,7 @@ void CDboTSCTAgency::TU_ShowUserSelectionDialog( sTS_KEY& sKey, CDboTSCTCtrl* pT
 
 void CDboTSCTAgency::UT_ShowUserSelectionDialog( sTS_KEY& sKey, NTL_TS_TC_ID tcSelId, bool bCancel )
 {
-	OUT_QMSG_3( "[Trigger] User -> Trigger : Show user selection dialog message Ã³¸®Áß [%d, %d, %d]", sKey.tID, tcSelId, bCancel );
+	OUT_QMSG_3( "[Trigger] User -> Trigger : Show user selection dialog message ì²˜ë¦¬ì¤‘ [%d, %d, %d]", sKey.tID, tcSelId, bCancel );
 
 	CDboTSCTCtrl* pTCtrl = (CDboTSCTCtrl*)FindProgressTrigger( sKey.tID );
 
@@ -1269,7 +1269,7 @@ void CDboTSCTAgency::UT_ShowUserSelectionDialog( sTS_KEY& sKey, NTL_TS_TC_ID tcS
 
 void CDboTSCTAgency::TU_ShowNarrationDialog( sTS_KEY& sKey, CDboTSContNarration* pCont )
 {
-	OUT_QMSG_1( "[Trigger] Trigger -> User : Show narration dialog message Ã³¸®Áß [%d]", sKey.tID );
+	OUT_QMSG_1( "[Trigger] Trigger -> User : Show narration dialog message ì²˜ë¦¬ì¤‘ [%d]", sKey.tID );
 
 	CNtlSLEventGenerator::QuestNarrationDialog_Req( sKey,
 													pCont->GetProgressState(),
@@ -1284,7 +1284,7 @@ void CDboTSCTAgency::TU_ShowNarrationDialog( sTS_KEY& sKey, CDboTSContNarration*
 
 void CDboTSCTAgency::UT_ShowNarrationDialog( sTS_KEY& sKey, bool bCancel )
 {
-	OUT_QMSG_2( "[Trigger] User -> Trigger : Show narration dialog message Ã³¸®Áß [%d, %d]", sKey.tID, bCancel );
+	OUT_QMSG_2( "[Trigger] User -> Trigger : Show narration dialog message ì²˜ë¦¬ì¤‘ [%d, %d]", sKey.tID, bCancel );
 
 	CDboTSCTCtrl* pTCtrl = (CDboTSCTCtrl*)FindProgressTrigger( sKey.tID );
 
@@ -1293,7 +1293,7 @@ void CDboTSCTAgency::UT_ShowNarrationDialog( sTS_KEY& sKey, bool bCancel )
 
 void CDboTSCTAgency::TU_ShowUnifiedNarrationDialog( sTS_KEY& sKey, CDboTSContUnifiedNarration* pCont )
 {
-	OUT_QMSG_1( "[Trigger] Trigger -> User : Show unified narration dialog message Ã³¸®Áß [%d]", sKey.tID );
+	OUT_QMSG_1( "[Trigger] Trigger -> User : Show unified narration dialog message ì²˜ë¦¬ì¤‘ [%d]", sKey.tID );
 
 	CQuestNarrationTable* pQuestNarrationTbl = API_GetTableContainer()->GetQuestNarrationTable();
 	sQUEST_NARRATION_TBLDAT* pData = (sQUEST_NARRATION_TBLDAT*) pQuestNarrationTbl->FindData( pCont->GetNarrationTblIdx() );
@@ -1324,7 +1324,7 @@ void CDboTSCTAgency::TU_ShowUnifiedNarrationDialog( sTS_KEY& sKey, CDboTSContUni
 
 void CDboTSCTAgency::UT_ShowUnifiedNarrationDialog( sTS_KEY& sKey, bool bCancel )
 {
-	OUT_QMSG_2( "[Trigger] User -> Trigger : Show unified narration dialog message Ã³¸®Áß [%d, %d]", sKey.tID, bCancel );
+	OUT_QMSG_2( "[Trigger] User -> Trigger : Show unified narration dialog message ì²˜ë¦¬ì¤‘ [%d, %d]", sKey.tID, bCancel );
 
 	if ( m_pUnifiedQuestNarration &&
 		 (m_pUnifiedQuestNarration->GetTSKey().tID == sKey.tID) &&
@@ -1344,14 +1344,14 @@ void CDboTSCTAgency::UT_ShowUnifiedNarrationDialog( sTS_KEY& sKey, bool bCancel 
 
 void CDboTSCTAgency::TU_ShowNPCConv( sTS_KEY& sKey, CDboTSActNPCConv* pAct )
 {
-	OUT_QMSG_1( "[Trigger] Trigger -> User : Show npc conversation message Ã³¸®Áß [%d]", sKey.tID );
+	OUT_QMSG_1( "[Trigger] Trigger -> User : Show npc conversation message ì²˜ë¦¬ì¤‘ [%d]", sKey.tID );
 
 	CNtlSLEventGenerator::QuestNPCDialog_Req( sKey, pAct->GetNPCConvType(), pAct->GetNPCIdx(), pAct->GetNPCConv() );
 }
 
 void CDboTSCTAgency::UT_ShowNPCConv( sTS_KEY& sKey )
 {
-	OUT_QMSG_1( "[Trigger] User -> Trigger : Show npc conversation message Ã³¸®Áß [%d]", sKey.tID );
+	OUT_QMSG_1( "[Trigger] User -> Trigger : Show npc conversation message ì²˜ë¦¬ì¤‘ [%d]", sKey.tID );
 
 	CDboTSCTCtrl* pTCtrl = (CDboTSCTCtrl*)FindProgressTrigger( sKey.tID );
 
@@ -1360,14 +1360,14 @@ void CDboTSCTAgency::UT_ShowNPCConv( sTS_KEY& sKey )
 
 void CDboTSCTAgency::TU_CameraDirection( sTS_KEY& sKey, CDboTSActOPCam* pAct )
 {
-	OUT_QMSG_1( "[Trigger] Trigger -> User : Camera message Ã³¸®Áß [%d]", sKey.tID );
+	OUT_QMSG_1( "[Trigger] Trigger -> User : Camera message ì²˜ë¦¬ì¤‘ [%d]", sKey.tID );
 
 	UT_CameraDirection( sKey );
 }
 
 void CDboTSCTAgency::UT_CameraDirection( sTS_KEY& sKey )
 {
-	OUT_QMSG_1( "[Trigger] User -> Trigger : Camera message Ã³¸®Áß [%d]", sKey.tID );
+	OUT_QMSG_1( "[Trigger] User -> Trigger : Camera message ì²˜ë¦¬ì¤‘ [%d]", sKey.tID );
 
 	CDboTSCTCtrl* pTCtrl = (CDboTSCTCtrl*)FindProgressTrigger( sKey.tID );
 
@@ -1377,14 +1377,14 @@ void CDboTSCTAgency::UT_CameraDirection( sTS_KEY& sKey )
 
 void CDboTSCTAgency::TU_ShowObjConv( sTS_KEY& sKey, CDboTSActObjConv* pAct )
 {
-	OUT_QMSG_1( "[Trigger] Trigger -> User : Show object conversation message Ã³¸®Áß [%d]", sKey.tID );
+	OUT_QMSG_1( "[Trigger] Trigger -> User : Show object conversation message ì²˜ë¦¬ì¤‘ [%d]", sKey.tID );
 
 	CNtlSLEventGenerator::QuestObjDialog_Req( sKey, pAct->GetObjConvType(), pAct->GetWorldTblIdx(), pAct->GetObjIdx(), pAct->GetObjConv() );
 }
 
 void CDboTSCTAgency::UT_ShowObjConv( sTS_KEY& sKey )
 {
-	OUT_QMSG_1( "[Trigger] User -> Trigger : Show object conversation message Ã³¸®Áß [%d]", sKey.tID );
+	OUT_QMSG_1( "[Trigger] User -> Trigger : Show object conversation message ì²˜ë¦¬ì¤‘ [%d]", sKey.tID );
 
 	CDboTSCTCtrl* pTCtrl = (CDboTSCTCtrl*)FindProgressTrigger( sKey.tID );
 
@@ -1394,7 +1394,7 @@ void CDboTSCTAgency::UT_ShowObjConv( sTS_KEY& sKey )
 
 void CDboTSCTAgency::TU_Hint( sTS_KEY& sKey, CDboTSActHint* pAct )
 {
-	OUT_QMSG_1( "[Trigger] Trigger -> User : Hint message Ã³¸®Áß [%d]", sKey.tID );
+	OUT_QMSG_1( "[Trigger] Trigger -> User : Hint message ì²˜ë¦¬ì¤‘ [%d]", sKey.tID );
 
 	CNtlSLEventGenerator::RegSideHintIcon( pAct->GetHintType(), pAct->GetTableIndex() );
 
@@ -1403,7 +1403,7 @@ void CDboTSCTAgency::TU_Hint( sTS_KEY& sKey, CDboTSActHint* pAct )
 
 void CDboTSCTAgency::UT_Hint( sTS_KEY& sKey )
 {
-	OUT_QMSG_1( "[Trigger] User -> Trigger : Hint message Ã³¸®Áß [%d]", sKey.tID );
+	OUT_QMSG_1( "[Trigger] User -> Trigger : Hint message ì²˜ë¦¬ì¤‘ [%d]", sKey.tID );
 
 	CDboTSCTCtrl* pTCtrl = (CDboTSCTCtrl*)FindProgressTrigger( sKey.tID );
 
@@ -1412,7 +1412,7 @@ void CDboTSCTAgency::UT_Hint( sTS_KEY& sKey )
 
 void CDboTSCTAgency::TU_Open_Window( sTS_KEY& sKey, CDboTSActOpenWindow* pAct )
 {
-	OUT_QMSG_1( "[Trigger] Trigger -> User : Open Window message Ã³¸®Áß [%d]", sKey.tID );
+	OUT_QMSG_1( "[Trigger] Trigger -> User : Open Window message ì²˜ë¦¬ì¤‘ [%d]", sKey.tID );
 
 	switch ( pAct->GetWindowType() )
 	{
@@ -1438,7 +1438,7 @@ void CDboTSCTAgency::TU_Open_Window( sTS_KEY& sKey, CDboTSActOpenWindow* pAct )
 
 void CDboTSCTAgency::UT_Open_Window( sTS_KEY& sKey )
 {
-	OUT_QMSG_1( "[Trigger] User -> Trigger : Open Window message Ã³¸®Áß [%d]", sKey.tID );
+	OUT_QMSG_1( "[Trigger] User -> Trigger : Open Window message ì²˜ë¦¬ì¤‘ [%d]", sKey.tID );
 
 	CDboTSCTCtrl* pTCtrl = (CDboTSCTCtrl*)FindProgressTrigger( sKey.tID );
 
@@ -1447,21 +1447,21 @@ void CDboTSCTAgency::UT_Open_Window( sTS_KEY& sKey )
 
 void CDboTSCTAgency::TU_PC_ConvNfy( sTS_KEY& sKey, CDboTSActPCConv* pAct )
 {
-	OUT_QMSG_1( "[Trigger] User -> Trigger : PC conversation message Ã³¸®Áß [%d]", sKey.tID );
+	OUT_QMSG_1( "[Trigger] User -> Trigger : PC conversation message ì²˜ë¦¬ì¤‘ [%d]", sKey.tID );
 
 	CNtlSLEventGenerator::TSPCDialog_Nfy( pAct->GetConvTblIdx() );
 }
 
 void CDboTSCTAgency::TU_TelMudosa( sTS_KEY& sKey, CDboTSActTelMudosa* pAct )
 {
-	OUT_QMSG_1( "[Trigger] Trigger -> User : Teleport Mudosa message Ã³¸®Áß [%d]", sKey.tID );
+	OUT_QMSG_1( "[Trigger] Trigger -> User : Teleport Mudosa message ì²˜ë¦¬ì¤‘ [%d]", sKey.tID );
 
 	CNtlSLEventGenerator::TSMudosaTeleport_Req( sKey );
 }
 
 void CDboTSCTAgency::UT_TelMudosa( sTS_KEY& sKey, RwUInt8 byMudosaIndex, RwBool bCancel )
 {
-	OUT_QMSG_1( "[Trigger] User -> Trigger : Teleport Mudosa message Ã³¸®Áß [%d]", sKey.tID );
+	OUT_QMSG_1( "[Trigger] User -> Trigger : Teleport Mudosa message ì²˜ë¦¬ì¤‘ [%d]", sKey.tID );
 
 	CDboTSCTCtrl* pTCtrl = (CDboTSCTCtrl*)FindProgressTrigger( sKey.tID );
 

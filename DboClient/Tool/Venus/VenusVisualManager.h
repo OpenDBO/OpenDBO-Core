@@ -2,7 +2,7 @@
 //	File		:	CVenusVisualManager.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	®œ 2005 by agebreak CO., Ltd
+//	Copyright	:	‚ìí 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -24,7 +24,7 @@
 
 /**
  * \ingroup Venus
- * \brief Venus¿« Visual Manager
+ * \brief VenusÏùò Visual Manager
  * \date 2006-08-09
  * \author agebreak
  */
@@ -50,7 +50,7 @@ public:
 	virtual void	Update(RwReal fElapsed);
 	virtual void	Render(void);	
 
-    void    RenderEffect(RwBool bRender);                           ///< ¿Ã∆Â∆Æ ∑ª¥ı∏µ¿ª On/Off «—¥Ÿ.
+    void    RenderEffect(RwBool bRender);                           ///< Ïù¥ÌéôÌä∏ Î†åÎçîÎßÅÏùÑ On/Off ÌïúÎã§.
 
 	RwInt32	GetRenderingEffectCount();
 	RwInt32 GetRenderingPolygonCount();
@@ -58,15 +58,15 @@ public:
 
 	RwBool	ResetInstanceEffectFromSplinePath(const RwChar* strName);
 
-	///< EffectEntity¿« Property Data∞° ∫Ø∞Ê¿Ã µ«æ˙¿ª ∞ÊøÏ »£√‚¿Ã µ»¥Ÿ.
+	///< EffectEntityÏùò Property DataÍ∞Ä Î≥ÄÍ≤ΩÏù¥ ÎêòÏóàÏùÑ Í≤ΩÏö∞ Ìò∏Ï∂úÏù¥ ÎêúÎã§.
 	RwBool	ResetInstanceEffect(const RwChar* strName);
-	///< EffectEntity∏¶ ªË¡¶∏¶ «—¥Ÿ.
+	///< EffectEntityÎ•º ÏÇ≠Ï†úÎ•º ÌïúÎã§.
 	RwBool	DeleteInstanceEffect(const RwChar* strName);
 
 	void	EditInstanceEffect(RwInt32 nAxisType, POINT gap);
 	void	EditInstanceEffect(RwMatrix* pEditMatrix);
 
-    /// Effect∞° º±≈√øµø™æ»ø° ∆˜«‘âÁ¥¬¡ˆ √º≈©«—¥Ÿ.
+    /// EffectÍ∞Ä ÏÑ†ÌÉùÏòÅÏó≠ÏïàÏóê Ìè¨Ìï®Îê¨ÎäîÏßÄ Ï≤¥ÌÅ¨ÌïúÎã§.
 	void	IntersectionEffect(POINT point, RwBool bShiftButton, RwBool bCtrlButton); 
 	void	IntersectionEffect(POINT OldPoint, POINT CurPoint, RwBool bShiftButton, RwBool bCtrlButton); 
 	void	InsertSelectEffect(CNtlInstanceEffect* pInstanceEffect, RwBool bShiftButton, RwBool bCtrlButton);
@@ -80,15 +80,15 @@ public:
 	CNtlPLEntity*	CreateEventEffect(const RwChar *pKey);
 	void			DeleteEventEffect(CNtlPLEntity *pEntity);
 
-	///< º±≈√µ» Effect System
+	///< ÏÑ†ÌÉùÎêú Effect System
 	void	SetSelectResourceData(CNtlResourceEffect* pResourceEffect = NULL, CNtlResourceComponentSystem* pResourceComponentSystem = NULL, RwInt32 nSystemDataFlag = 0);
 
-    /// πŸøÓµ˘ Ω∫««æÓ∏¶ ¿⁄µø ª˝º∫«—¥Ÿ.
+    /// Î∞îÏö¥Îî© Ïä§ÌîºÏñ¥Î•º ÏûêÎèô ÏÉùÏÑ±ÌïúÎã§.
     void    OnGenerateBoundingBoxAll();
 
 protected:
-	virtual void AlarmAutoDelete(CNtlPLEntity *pEntity);			///< ªË¡¶µ«¥¬ EffectµÈ¿ª ¿ß«— ∞°ªÛ «‘ºˆ (Repeat ±‚¥…¿ª ¿ß«ÿº≠ ø¿πˆ∂Û¿Ãµ˘ «—¥Ÿ.)
-    CNtlInstanceEffect* CreateEffect(RwUInt32 nIndex);              ///< πŸøÓµ˘ π⁄Ω∫∏¶ ¿ß«ÿº≠ ¿Ã∆Â∆Æ∏¶ ª˝º∫«œ¥¬ «‘ºˆ
+	virtual void AlarmAutoDelete(CNtlPLEntity *pEntity);			///< ÏÇ≠Ï†úÎêòÎäî EffectÎì§ÏùÑ ÏúÑÌïú Í∞ÄÏÉÅ Ìï®Ïàò (Repeat Í∏∞Îä•ÏùÑ ÏúÑÌï¥ÏÑú Ïò§Î≤ÑÎùºÏù¥Îî© ÌïúÎã§.)
+    CNtlInstanceEffect* CreateEffect(RwUInt32 nIndex);              ///< Î∞îÏö¥Îî© Î∞ïÏä§Î•º ÏúÑÌï¥ÏÑú Ïù¥ÌéôÌä∏Î•º ÏÉùÏÑ±ÌïòÎäî Ìï®Ïàò
 
 public:
     CNtlResourceEffect*				m_pResourceEffect;
@@ -107,13 +107,13 @@ public:
     RwImVertexIndex					m_EmitterIndex[EMITTER_INDEX_COUNT];
 
 protected:
-    // πŸøÓµ˘ π⁄Ω∫ ∞ËªÍ¿ª ¿ß«— ¿”Ω√ ∫ØºˆµÈ
+    // Î∞îÏö¥Îî© Î∞ïÏä§ Í≥ÑÏÇ∞ÏùÑ ÏúÑÌïú ÏûÑÏãú Î≥ÄÏàòÎì§
     CNtlInstanceEffect*             m_pBSCurrEffect;
     RwUInt32                        m_nBSIndex;
     RwBool                          m_bGenerateBS;
     RwReal                          m_fEffectLifeTime;
 
-    RwInt32                         m_nEventEffectUsedMemory;                      ///< ¿Ã∫•∆Æø°º≠ ª˝º∫µ» ¿Ã∆Â∆ÆµÈ¿Ã ªÁøÎ«œ¥¬ ∏ﬁ∏∏Æ
+    RwInt32                         m_nEventEffectUsedMemory;                      ///< Ïù¥Î≤§Ìä∏ÏóêÏÑú ÏÉùÏÑ±Îêú Ïù¥ÌéôÌä∏Îì§Ïù¥ ÏÇ¨Ïö©ÌïòÎäî Î©îÎ™®Î¶¨
 };
 
 inline void CVenusVisualManager::SetSelectResourceData(CNtlResourceEffect* pResourceEffect, CNtlResourceComponentSystem* pResourceComponentSystem, RwInt32 nSystemDataFlag)

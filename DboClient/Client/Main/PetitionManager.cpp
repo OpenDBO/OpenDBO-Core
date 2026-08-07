@@ -80,7 +80,7 @@ void CPetitionManager::StartGMChatting(PETITIONID petitionID, ACCOUNTID GMID, co
 	CNtlStage* pStage = CStageManager::GetInstance()->GetActiveStage();
 	if( !pStage )
 	{
-		// À¯Àú°¡ ¾ÆÁ÷ ¿ùµå¿¡ µé¾î°¡Áö ¾Ê¾Ò´Ù
+		// ìœ ì €ê°€ ì•„ì§ ì›”ë“œì— ë“¤ì–´ê°€ì§€ ì•Šì•˜ë‹¤
 		GetDboGlobal()->GetChatPacketGenerator()->SendPetitionChatStartRes(PETITION_NOT_YET_ENTER_WORLD, GMID);
 		return;
 	}
@@ -88,14 +88,14 @@ void CPetitionManager::StartGMChatting(PETITIONID petitionID, ACCOUNTID GMID, co
 	std::string strStageName = pStage->GetName();
 	if( strStageName != GAME_STAGE_NAME )
 	{
-		// À¯Àú°¡ ¾ÆÁ÷ ¿ùµå¿¡ µé¾î°¡Áö ¾Ê¾Ò´Ù
+		// ìœ ì €ê°€ ì•„ì§ ì›”ë“œì— ë“¤ì–´ê°€ì§€ ì•Šì•˜ë‹¤
 		GetDboGlobal()->GetChatPacketGenerator()->SendPetitionChatStartRes(PETITION_NOT_YET_ENTER_WORLD, GMID);
 		return;
 	}
 
 	if( IsGMChatting() )
 	{
-		// À¯Àú°¡ ÀÌ¹Ì GM Ã¤ÆÃÁßÀÌ´Ù
+		// ìœ ì €ê°€ ì´ë¯¸ GM ì±„íŒ…ì¤‘ì´ë‹¤
 		GetDboGlobal()->GetChatPacketGenerator()->SendPetitionChatStartRes(PETITION_AREADY_GM_CHATTING, GMID);
 		return;
 	}
@@ -104,7 +104,7 @@ void CPetitionManager::StartGMChatting(PETITIONID petitionID, ACCOUNTID GMID, co
 	if( FALSE == GetDboGlobal()->GetChatPacketGenerator()->SendPetitionChatStartRes(CHAT_SUCCESS, GMID) )
 		return;
 
-	// À¯Àú°¡ ÁøÁ¤À» ³ÖÁö ¾Ê¾Æµµ GMÀÌ ÁøÁ¤À» »ý¼ºÇÏ¿© À¯Àú¿Í ´Éµ¿ÀûÀ¸·Î Ã¤ÆÃÀ» ÇÒ ¼ö ÀÖ´Ù
+	// ìœ ì €ê°€ ì§„ì •ì„ ë„£ì§€ ì•Šì•„ë„ GMì´ ì§„ì •ì„ ìƒì„±í•˜ì—¬ ìœ ì €ì™€ ëŠ¥ë™ì ìœ¼ë¡œ ì±„íŒ…ì„ í•  ìˆ˜ ìžˆë‹¤
 	m_Petition.petitionID			= petitionID;
 
 	m_GMChat.bGMChatting			= TRUE;

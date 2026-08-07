@@ -24,7 +24,7 @@
 #include "DisplayStringManager.h"
 #include "DboEventGenerator.h"
 
-#define TB_MINOR_ENEMY_PARTYINFO_CLASSICON_X	-24		// °¢ ÆÄÆ¼ÀÎÆ÷¾ÆÀÌÅÛ ±âÁØ ÁÂÇ¥.
+#define TB_MINOR_ENEMY_PARTYINFO_CLASSICON_X	-24		// ê° íŒŒí‹°ì¸í¬ì•„ì´í…œ ê¸°ì¤€ ì¢Œí‘œ.
 #define TB_MINOR_ENEMY_PARTYINFO_CLASSICON_Y	0	
 
 #define TB_MINOR_BATTLEINFO_ALIVESCORE_X	38
@@ -323,7 +323,7 @@ VOID CTBMinorMatchInfoGui::HandleEvents( RWS::CMsg& msg )
 	}
 	else if( msg.Id == g_EventMinorMatchUpdateScore )
 	{
-		// Âü°¡ÀÚÀÎÁö °üÀüÀÚÀÎÁö¿¡ µû¶ó¼­ ´Ù¸¥ UI Update ¹æ½ÄÀ» »ç¿ëÇÑ´Ù.
+		// ì°¸ê°€ìì¸ì§€ ê´€ì „ìì¸ì§€ì— ë”°ë¼ì„œ ë‹¤ë¥¸ UI Update ë°©ì‹ì„ ì‚¬ìš©í•œë‹¤.
 		if( IsEntrance() )
 			HandleEventEntranceUpdateScore( msg );
 		else
@@ -338,7 +338,7 @@ VOID CTBMinorMatchInfoGui::HandleEvents( RWS::CMsg& msg )
 	}	
 	else if( msg.Id == g_EventMinorMatchTeamInfo )
 	{
-		// Âü°¡ÀÚÀÎÁö °üÀüÀÚÀÎÁö È®ÀÎÇÑ´Ù.
+		// ì°¸ê°€ìì¸ì§€ ê´€ì „ìì¸ì§€ í™•ì¸í•œë‹¤.
 		UpdateInfoType();
 		SetInfoFrame();
 		SetInfoOnce();
@@ -386,7 +386,7 @@ VOID CTBMinorMatchInfoGui::HandleEventObserverMinorMatchPlayerState( RWS::CMsg& 
 			pEnemyInfoItem->SetMemberState( pBudokaiMember->pTeam->wTeamType );
 		}
 
-		// ÇöÀç ¸ÅÄ¡ STATE°¡ READYº¸´Ù ³ô´Ù¸é »ì¾Æ ÀÖ´Â Ä«¿îÆ®¸¦ ¼¼¾î¼­ Àû¿ëÇÑ´Ù.
+		// í˜„ì¬ ë§¤ì¹˜ STATEê°€ READYë³´ë‹¤ ë†’ë‹¤ë©´ ì‚´ì•„ ìˆëŠ” ì¹´ìš´íŠ¸ë¥¼ ì„¸ì–´ì„œ ì ìš©í•œë‹¤.
 		if( pTBWorldConcept->GetMatchState() >= BUDOKAI_MINORMATCH_STATE_STAGE_READY )
 		{
 			m_numAliveCount.SetNumber( GetAliveCount() );
@@ -476,7 +476,7 @@ VOID CTBMinorMatchInfoGui::HandleEventEntranceMatchStateUpdate( RWS::CMsg& msg )
 			m_numAliveCount.SetNumber( GetAliveEnemyCount() );
 			m_numKillCount.SetNumber( 0 );				
 
-			// »ó´ëÆÀ Á¤º¸ ÀÔ·Â
+			// ìƒëŒ€íŒ€ ì •ë³´ ì…ë ¥
 			RwInt32 idx = 0;
 			MAP_TBTEAM* pTeams = pTBWorldConcept->GetTeams();
 			stTBudokaiTeam* pMyTeam = pTBWorldConcept->GetMyTeam();
@@ -530,7 +530,7 @@ VOID CTBMinorMatchInfoGui::HandleEventObserverMatchStateUpdate( RWS::CMsg& msg )
 		m_numAliveCount.SetNumber( GetAliveCount() );
 		m_numKillCount.SetNumber( GetTotalMemberCount() );				
 
-		// ÇöÀç ÀÎ¿ø Á¤º¸ ÀÔ·Â
+		// í˜„ì¬ ì¸ì› ì •ë³´ ì…ë ¥
 		RwInt32 idx = 0;
 		MAP_TBTEAM* pTeams = pTBWorldConcept->GetTeams();
 		MAP_TBTEAM_ITER iter;			
@@ -569,7 +569,7 @@ CTBMinorMatchEnemyInfoItem* CTBMinorMatchInfoGui::FindEnemyInfoItem( RwUInt16 wT
 }
 
 /**
-* \brief ³²¾ÆÀÖ´Â Àû ÀÎ¿ø¼ö¸¦ Ã¼Å©ÇÑ´Ù.
+* \brief ë‚¨ì•„ìˆëŠ” ì  ì¸ì›ìˆ˜ë¥¼ ì²´í¬í•œë‹¤.
 */
 RwUInt32 CTBMinorMatchInfoGui::GetAliveEnemyCount(VOID)
 {
@@ -626,7 +626,7 @@ RwUInt32 CTBMinorMatchInfoGui::GetTotalMemberCount( VOID )
 	CNtlWorldConceptTB* pTBWorldConcept = reinterpret_cast<CNtlWorldConceptTB*>( GetNtlWorldConcept()->GetWorldConceptController( WORLD_PLAY_T_BUDOKAI ) );
 	NTL_ASSERT( pTBWorldConcept, "CNtlTBudokai::HandleEvents : must World concept is valid" );		
 
-	// Á×Àº »ç¶÷µé±îÁö ÆÇ´ÜÇÑ´Ù.
+	// ì£½ì€ ì‚¬ëŒë“¤ê¹Œì§€ íŒë‹¨í•œë‹¤.
 	RwUInt32 uiTotalMember = 0;
 	MAP_TBTEAM* pTeams = pTBWorldConcept->GetTeams();
 	MAP_TBTEAM_ITER iter;
@@ -645,7 +645,7 @@ RwBool CTBMinorMatchInfoGui::IsEntrance()
 	CNtlWorldConceptTB* pTBWorldConcept = reinterpret_cast<CNtlWorldConceptTB*>( GetNtlWorldConcept()->GetWorldConceptController( WORLD_PLAY_T_BUDOKAI ) );
 	NTL_ASSERT( pTBWorldConcept, "CNtlTBudokai::HandleEvents : must world concept is valid" );
 
-	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸¿¡ ÀÚ½ÅÀÌ ¾øÀ¸¸é Âü°¡ÀÚ°¡ ¾Æ´Ï´Ù
+	// ì²œí•˜ì œì¼ ë¬´ë„íšŒì— ìì‹ ì´ ì—†ìœ¼ë©´ ì°¸ê°€ìê°€ ì•„ë‹ˆë‹¤
 	stTBudokaiMember* pMember = pTBWorldConcept->FindMember( GetNtlSLGlobal()->GetSobAvatar()->GetSerialID() );
 	if( pMember )
 	{
@@ -671,7 +671,7 @@ VOID CTBMinorMatchInfoGui::UpdateInfoType()
 
 VOID CTBMinorMatchInfoGui::SetInfoFrame()
 {
-	// GUI INFO TYPE¿¡ µû¶ó ´Ù¸§
+	// GUI INFO TYPEì— ë”°ë¼ ë‹¤ë¦„
 	if( m_byInfoType == INFO_ENTRANCE )
 	{
 		m_pStbAllPlayer->Show( false );

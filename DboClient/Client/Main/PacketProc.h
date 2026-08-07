@@ -2,7 +2,7 @@
  *
  * File			: PacketProc.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 9. 14	
  * Abstract		: packet process 
  *****************************************************************************
@@ -59,22 +59,22 @@ public:
 	static CPacketProc* GetInstance(void);
 
 	/**
-	* network¿¡¼­ ¿Â packet data
+	* networkì—ì„œ ì˜¨ packet data
 	*/
 	void RecvPacketProc(void);
 
 	/**
-	* virtual server¿¡¼­ ¿Â packet
+	* virtual serverì—ì„œ ì˜¨ packet
 	*/
 	void RecvVirualPackProc(void *pPacket);
 
 	/**
-	* packet µ¥ÀÌÅÍ¸¦ ²¨³¾ °ÍÀÎ°¡?
+	* packet ë°ì´í„°ë¥¼ êº¼ë‚¼ ê²ƒì¸ê°€?
 	*/
 	void ActivePop(RwBool bPop);
 
 	/**
-	* packet µ¥ÀÌÅÍ¸¦ ²¨³¾ °ÍÀÎ°¡?
+	* packet ë°ì´í„°ë¥¼ êº¼ë‚¼ ê²ƒì¸ê°€?
 	*/
 	RwBool IsActivePop(void) const;
 

@@ -1,7 +1,7 @@
 /******************************************************************************
 * File			: ScouterGui.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2006. 9. 13S
 * Abstract		: 
 *****************************************************************************
@@ -38,7 +38,7 @@ public:
 	RwBool		Create();
 	VOID		Destroy();
 
-	RwInt32		SwitchDialog(bool bOpen);			///< DialogManagerø°º≠¿« Open/Close
+	RwInt32		SwitchDialog(bool bOpen);			///< DialogManagerÏóêÏÑúÏùò Open/Close
 
 protected:
 	virtual VOID	HandleEvents( RWS::CMsg &msg );	
@@ -57,11 +57,11 @@ protected:
 	gui::CSlot			m_slotMouseLeave;
 	gui::CSlot			m_slotPaint;
 
-	RwInt32				m_iMouseDownSlot;			///< ∏∂øÏΩ∫∑Œ ¥≠∏∞ ΩΩ∑‘¿« ¿Œµ¶Ω∫
+	RwInt32				m_iMouseDownSlot;			///< ÎßàÏö∞Ïä§Î°ú ÎàåÎ¶∞ Ïä¨Î°ØÏùò Ïù∏Îç±Ïä§
 
-	RwInt32				m_iPageType;				///< «ˆ¿Á¿« ∆‰¿Ã¡ˆ ≈∏¿‘
+	RwInt32				m_iPageType;				///< ÌòÑÏû¨Ïùò ÌéòÏù¥ÏßÄ ÌÉÄÏûÖ
 
-	CItemSlot			m_slot;						///< ΩΩ∑‘
+	CItemSlot			m_slot;						///< Ïä¨Î°Ø
 
-	gui::CPanel*		m_pSlotFocusEffect;			///< ΩΩ∑‘ ∆˜ƒøΩ∫ ¿Ã∆Â∆Æ
+	gui::CPanel*		m_pSlotFocusEffect;			///< Ïä¨Î°Ø Ìè¨Ïª§Ïä§ Ïù¥ÌéôÌä∏
 };*/

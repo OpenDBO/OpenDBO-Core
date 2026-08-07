@@ -5,7 +5,7 @@
 #include "afxwin.h"
 
 
-// CAttr_EVT_SkillUse ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_EVT_SkillUse ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CAttr_EVT_SkillUse : public CAttr_Page
 {
@@ -20,19 +20,19 @@ protected:
 	int m_nCurSelIndex;
 
 public:
-	CAttr_EVT_SkillUse(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CAttr_EVT_SkillUse(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CAttr_EVT_SkillUse();
 
 	void InitData( void );
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_TS_EVT_SKILL_USE_ATTR_DIAG };
 
 	virtual CString	GetPageData( void );
 	virtual void	UnPakingPageData( CString& strKey, CString& strValue );
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual BOOL OnInitDialog();
 
 	DECLARE_MESSAGE_MAP()

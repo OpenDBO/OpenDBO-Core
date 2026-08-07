@@ -1,4 +1,4 @@
-// Attr_ACT_TelMinorMatch.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_ACT_TelMinorMatch.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_ACT_TelMinorMatch.h"
 
 
-// CAttr_ACT_TelMinorMatch ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_ACT_TelMinorMatch ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_ACT_TelMinorMatch, CAttr_Page, 1)
 
@@ -51,12 +51,12 @@ BOOL CAttr_ACT_TelMinorMatch::OnInitDialog()
 {
 	CAttr_Page::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	if ( m_strData.GetLength() > 0 ) SetPageData( m_strData );
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 
@@ -64,4 +64,4 @@ BEGIN_MESSAGE_MAP(CAttr_ACT_TelMinorMatch, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_ACT_TelMinorMatch ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_ACT_TelMinorMatch ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

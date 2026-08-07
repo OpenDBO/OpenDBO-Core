@@ -12,10 +12,10 @@ class CPathMeshFindDlg : public CDialog
 	DECLARE_DYNAMIC(CPathMeshFindDlg)
 
 public:
-	CPathMeshFindDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CPathMeshFindDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CPathMeshFindDlg();
 
-	// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+	// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_PATH_MESH_FIND };
 
 	enum ESEARCHLIST
@@ -31,7 +31,7 @@ public:
 	typedef void (CPathMeshFindDlg::*_CBOBJECT)(char*, RwV3d*, RwV3d*, RwV3d*, void*);
 
 protected:
-	virtual void				DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void				DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 
@@ -97,10 +97,10 @@ class CPathMeshFindDlg : public CDialog, public CNtlWorldFileMemAccessor
 	DECLARE_DYNAMIC(CPathMeshFindDlg)
 
 public:
-	CPathMeshFindDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CPathMeshFindDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CPathMeshFindDlg();
 
-	// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+	// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_PATH_MESH_FIND };
 
 	enum ESEARCHLIST
@@ -116,7 +116,7 @@ public:
 	typedef void (CPathMeshFindDlg::*_CBOBJECT)(char*, RwV3d*, RwV3d*, RwV3d*, void*);
 
 protected:
-	virtual void				DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void				DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 

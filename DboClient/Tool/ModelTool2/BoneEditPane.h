@@ -29,18 +29,18 @@ public:
     void   SetEnable(BOOL bEnable);
 
 protected:    
-    void   OnChangeBoneLength(BOOL bPlus);                      ///< ¼±ÅÃÇÑ BoneÀÇ Length¸¦ º¯°æÇÑ´Ù.
-    void   OnChangeBoneWidth(BOOL bPlus);                       ///< ¼±ÅÃÇÑ BoneÀÇ Width¸¦ º¯°æÇÑ´Ù.
-    void   OnChangeBoneMove(BOOL bPlus);                        ///< ¼±ÅÃÇÑ BoneÀÇ À§Ä¡¸¦ º¯°æÇÑ´Ù.
-    void   OnChangeSensitive(BOOL bPlus);                       ///< BoneÀ» º¯°æÇÒ Sensitive¸¦ º¯°æÇÑ´Ù.
-    void   OnChangeBaseScale(BOOL bPlus);                       ///< BoneÀÇ Base ScaleÀ» º¯°æÇÑ´Ù.
+    void   OnChangeBoneLength(BOOL bPlus);                      ///< ì„ íƒí•œ Boneì˜ Lengthë¥¼ ë³€ê²½í•œë‹¤.
+    void   OnChangeBoneWidth(BOOL bPlus);                       ///< ì„ íƒí•œ Boneì˜ Widthë¥¼ ë³€ê²½í•œë‹¤.
+    void   OnChangeBoneMove(BOOL bPlus);                        ///< ì„ íƒí•œ Boneì˜ ìœ„ì¹˜ë¥¼ ë³€ê²½í•œë‹¤.
+    void   OnChangeSensitive(BOOL bPlus);                       ///< Boneì„ ë³€ê²½í•  Sensitiveë¥¼ ë³€ê²½í•œë‹¤.
+    void   OnChangeBaseScale(BOOL bPlus);                       ///< Boneì˜ Base Scaleì„ ë³€ê²½í•œë‹¤.
 
 protected:
     static CBoneEditPane* m_pInstance;
 
     CMTCharacter*               m_pCharacter;
     CNtlPLCharacterProperty*    m_pProperty;
-    int                         m_nSelectBoneIndex;              ///< ÇöÀç ¼±ÅÃµÈ Bone Index;
+    int                         m_nSelectBoneIndex;              ///< í˜„ìž¬ ì„ íƒëœ Bone Index;
 
 protected:
     CButton m_ckEnableBoneEdit;        

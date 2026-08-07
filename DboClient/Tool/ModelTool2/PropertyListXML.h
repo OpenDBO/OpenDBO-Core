@@ -6,7 +6,7 @@
 
 /**
  * \ingroup ModelTool2
- * \brief Å¬¶óÀÌ¾ğÆ®¿¡¼­ »ç¿ëÇÒ Ä³¸¯ÅÍ(MOB Æ÷ÇÔ), ¿ÀºêÁ§Æ®µéÀÇ PropertyList.xmlÀ» »ı¼ºÇÏ´Â Å¬·¡½º
+ * \brief í´ë¼ì´ì–¸íŠ¸ì—ì„œ ì‚¬ìš©í•  ìºë¦­í„°(MOB í¬í•¨), ì˜¤ë¸Œì íŠ¸ë“¤ì˜ PropertyList.xmlì„ ìƒì„±í•˜ëŠ” í´ë˜ìŠ¤
  * \date 2006-06-09
  * \author agebreak
  */
@@ -24,13 +24,13 @@ public:
     CPropertyListXML(void);
     virtual ~CPropertyListXML(void);
     
-    RwBool Save(const CHAR* szFileName, EProperyListMode eMode, CTreeCtrl* pTreeCtrl, TREEITEM_VECTOR vTreeItem);     ///< PropertyList¸¦ XMLÇüÅÂ·Î ÀúÀåÇÑ´Ù.
+    RwBool Save(const CHAR* szFileName, EProperyListMode eMode, CTreeCtrl* pTreeCtrl, TREEITEM_VECTOR vTreeItem);     ///< PropertyListë¥¼ XMLí˜•íƒœë¡œ ì €ì¥í•œë‹¤.
 
 protected:
     RwBool CreateHeader();
     RwBool CreateElemList(CTreeCtrl* pTreeCtrl, TREEITEM_VECTOR vTreeItem);
 
-    RwBool SetIndent();                                             ///< XML¿¡ ½ºÅ¸ÀÏ ½ÃÆ®¸¦ Àû¿ëÇÑ´Ù. (indent.xls)
+    RwBool SetIndent();                                             ///< XMLì— ìŠ¤íƒ€ì¼ ì‹œíŠ¸ë¥¼ ì ìš©í•œë‹¤. (indent.xls)
 
 protected:
     IXMLDOMElement* m_pRootElem;

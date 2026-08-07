@@ -8,7 +8,7 @@ class CNewAssetOpen : public CFileDialog
 	DECLARE_DYNAMIC(CNewAssetOpen)
 
 public:
-	CNewAssetOpen(BOOL bOpenFileDialog, // FileOpenÀº TRUE, FileSaveAs´Â FALSEÀÔ´Ï´Ù.
+	CNewAssetOpen(BOOL bOpenFileDialog, // FileOpenì€ TRUE, FileSaveAsëŠ” FALSEì…ë‹ˆë‹¤.
 		LPCTSTR lpszDefExt = NULL,
 		LPCTSTR lpszFileName = NULL,
 		DWORD dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,

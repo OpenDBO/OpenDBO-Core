@@ -97,7 +97,7 @@ RtCharset* RsCharsetPrint(RtCharset *charSet, const RwChar *string,
 
 //---------------------------------------------------------------------------
 //Name		: RsPathnameCreate
-//Desc		: fileÀÇ fullpathnameÀ» ¸¸µç´Ù.
+//Desc		: fileì˜ fullpathnameì„ ë§Œë“ ë‹¤.
 //Return	: Return fullpathname
 //Parameter	: srcBuffer - filename
 //---------------------------------------------------------------------------

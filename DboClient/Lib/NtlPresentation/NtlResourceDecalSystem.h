@@ -2,7 +2,7 @@
 //	File		:	NtlResourceDecalSystem.h
 //	Desc		:	
 //	Begin		:	2007. 3.21
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************

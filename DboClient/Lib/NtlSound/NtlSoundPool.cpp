@@ -2,16 +2,16 @@
 #include "NtlSoundEvent.h"
 
 
-RWS::CEventId g_EventSoundReleaseSound;				// ÇÑ °³ Ã¤³ÎÀÇ »ç¿îµå°¡ ÇØÁ¦µÇ¾ú´Ù
+RWS::CEventId g_EventSoundReleaseSound;				// í•œ ê°œ ì±„ë„ì˜ ì‚¬ìš´ë“œê°€ í•´ì œë˜ì—ˆë‹¤
 
-RWS::CEventId g_EventSoundFinishFade;				// ÆäÀÌµå ÀÎ/¾Æ¿ôÀÌ ³¡³µ´Ù
+RWS::CEventId g_EventSoundFinishFade;				// í˜ì´ë“œ ì¸/ì•„ì›ƒì´ ëë‚¬ë‹¤
 
-RWS::CEventId g_EventSoundDSP;						// È¿°úÀ½ °ü·Ã ÀÌº¥Æ®
+RWS::CEventId g_EventSoundDSP;						// íš¨ê³¼ìŒ ê´€ë ¨ ì´ë²¤íŠ¸
 
-RWS::CEventId g_EventSoundEventMusic;				// ÀÌº¥Æ®À½¾Ç Ã¤³Î ÀÌº¥Æ®
+RWS::CEventId g_EventSoundEventMusic;				// ì´ë²¤íŠ¸ìŒì•… ì±„ë„ ì´ë²¤íŠ¸
 
-RWS::CEventId g_EventSoundRestTime;					// ¹İº¹µÇ´Â À½¾ÇÀÇ ´ÙÀ½ ÇÃ·¹ÀÌ±îÁö ÈŞ½Ä ½Ã°£
+RWS::CEventId g_EventSoundRestTime;					// ë°˜ë³µë˜ëŠ” ìŒì•…ì˜ ë‹¤ìŒ í”Œë ˆì´ê¹Œì§€ íœ´ì‹ ì‹œê°„
 
-RWS::CEventId g_EventSoundKnockdown;				// ³Ë´Ù¿î µÉ ¶§
+RWS::CEventId g_EventSoundKnockdown;				// ë„‰ë‹¤ìš´ ë  ë•Œ
 
-RWS::CEventId g_EventSoundMinMaxRate;				// 3D »ç¿îµåÀÇ ÀüÃ¼ Min, Max°ªÀ» ¹Ù²Û´Ù
+RWS::CEventId g_EventSoundMinMaxRate;				// 3D ì‚¬ìš´ë“œì˜ ì „ì²´ Min, Maxê°’ì„ ë°”ê¾¼ë‹¤

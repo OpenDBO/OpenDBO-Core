@@ -115,7 +115,7 @@ void CNtlWorldRpLightManager::Destroy()
 void CNtlWorldRpLightManager::SaveSwap()
 {
 #ifdef dNTL_WORLD_TOOL_MODE
-	//Sector°¡ »èÁ¦ µÇ¸é¼­ ÀÚµ¿À¸·Î »èÁ¦ µÈ´Ù. ÇÏÁö¸¸ ¸®½ºÆ®´Â »èÁ¦ µÇÁö ¾Ê´Â´Ù. Á¤º¸¸¸ ÀúÀåÇÑ´Ù.
+	//Sectorê°€ ì‚­ì œ ë˜ë©´ì„œ ìžë™ìœ¼ë¡œ ì‚­ì œ ëœë‹¤. í•˜ì§€ë§Œ ë¦¬ìŠ¤íŠ¸ëŠ” ì‚­ì œ ë˜ì§€ ì•ŠëŠ”ë‹¤. ì •ë³´ë§Œ ì €ìž¥í•œë‹¤.
 // 	for (int z = -dGET_WORLD_PARAM()->WorldSizeHalf; z < dGET_WORLD_PARAM()->WorldSizeHalf; z += dGET_WORLD_PARAM()->WorldSectorSize)
 // 	{
 // 		for (int x = -dGET_WORLD_PARAM()->WorldSizeHalf; x < dGET_WORLD_PARAM()->WorldSizeHalf; x += dGET_WORLD_PARAM()->WorldSectorSize)
@@ -304,7 +304,7 @@ void CNtlWorldRpLightManager::Render()
 {
 #ifdef dNTL_WORLD_TOOL_MODE
 	
-	//RenderRpLightList()¸¦ ¾²Áö ¾ÊÀº ÀÌÀ¯´Â ±ÙÃ³ Sector ¸¸ ±×·ÁÁÖ±â À§ÇØ¼­´Ù.
+	//RenderRpLightList()ë¥¼ ì“°ì§€ ì•Šì€ ì´ìœ ëŠ” ê·¼ì²˜ Sector ë§Œ ê·¸ë ¤ì£¼ê¸° ìœ„í•´ì„œë‹¤.
 	RwV3d vCur;
 	if (GetSceneManager()->GetWorld()->GetPlayerPosition(vCur))
 	{

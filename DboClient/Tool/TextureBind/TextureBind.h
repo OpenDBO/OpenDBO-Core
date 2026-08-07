@@ -1,16 +1,16 @@
-// TextureBind.h : TextureBind ÀÀ¿ë ÇÁ·Î±×·¥¿¡ ´ëÇÑ ÁÖ Çì´õ ÆÄÀÏ
+// TextureBind.h : TextureBind ì‘ìš© í”„ë¡œê·¸ë¨ì— ëŒ€í•œ ì£¼ í—¤ë” íŒŒì¼
 //
 #pragma once
 
 #ifndef __AFXWIN_H__
-	#error "PCH¿¡ ´ëÇØ ÀÌ ÆÄÀÏÀ» Æ÷ÇÔÇÏ±â Àü¿¡ 'stdafx.h'¸¦ Æ÷ÇÔÇÕ´Ï´Ù."
+	#error "PCHì— ëŒ€í•´ ì´ íŒŒì¼ì„ í¬í•¨í•˜ê¸° ì „ì— 'stdafx.h'ë¥¼ í¬í•¨í•©ë‹ˆë‹¤."
 #endif
 
-#include "resource.h"       // ÁÖ ±âÈ£ÀÔ´Ï´Ù.
+#include "resource.h"       // ì£¼ ê¸°í˜¸ì…ë‹ˆë‹¤.
 
 
 // CTextureBindApp:
-// ÀÌ Å¬·¡½ºÀÇ ±¸Çö¿¡ ´ëÇØ¼­´Â TextureBind.cppÀ» ÂüÁ¶ÇÏ½Ê½Ã¿À.
+// ì´ í´ë˜ìŠ¤ì˜ êµ¬í˜„ì— ëŒ€í•´ì„œëŠ” TextureBind.cppì„ ì°¸ì¡°í•˜ì‹­ì‹œì˜¤.
 //
 
 class CTextureBindApp : public CWinApp
@@ -19,7 +19,7 @@ public:
 	CTextureBindApp();
 
 
-// ÀçÁ¤ÀÇÀÔ´Ï´Ù.
+// ì¬ì •ì˜ì…ë‹ˆë‹¤.
 public:
 	virtual BOOL	InitInstance();
 	virtual int		ExitInstance();

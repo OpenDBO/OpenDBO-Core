@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: GMPlayerGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 11. 17
 * Abstract		: 
 *****************************************************************************
-* Desc			: GMÀÌ º¸´Â PlayerÀÇ Á¤º¸
+* Desc			: GMì´ ë³´ëŠ” Playerì˜ ì •ë³´
 *****************************************************************************/
 
 #pragma once
@@ -30,7 +30,7 @@ public:
 
 	RwBool		SetPlayerSerial(SERIAL_HANDLE hPlayer);
 
-	// DialogManagerÀÇ Movable °£¼·À» ¹ŞÁö ¾Ê±â À§ÇÏ¿©
+	// DialogManagerì˜ Movable ê°„ì„­ì„ ë°›ì§€ ì•Šê¸° ìœ„í•˜ì—¬
 	virtual void	SetMovable(RwBool bMovable) {}
 
 	RwInt32		SwitchDialog(bool bOpen);

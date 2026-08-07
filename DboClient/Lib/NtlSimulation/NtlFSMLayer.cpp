@@ -81,7 +81,7 @@ RwUInt32 CNtlFSMLayer::HandleEvents(RWS::CMsg &pMsg)
 	RwUInt32 uiNotifyParam1 = 0;
 	RwUInt32 uiNotifyParam2 = 0;
 
-	// agentÀÇ event Ã³¸®.
+	// agentì˜ event ì²˜ë¦¬.
 	uiRes = m_pAgent->HandleEvents(pMsg);
 	if(uiRes == NTL_FSM_EVENTRES_BLOCK)
 	{
@@ -99,7 +99,7 @@ RwUInt32 CNtlFSMLayer::HandleEvents(RWS::CMsg &pMsg)
 		}
 		else 
 		{
-			// ´ÙÀ½ »óÅÂ¸¦ state ÀÚ½ÅÀº ¸ð¸£´Â °æ¿ì. agentÇÑÅ× ¹°¾îº»´Ù.
+			// ë‹¤ìŒ ìƒíƒœë¥¼ state ìžì‹ ì€ ëª¨ë¥´ëŠ” ê²½ìš°. agentí•œí…Œ ë¬¼ì–´ë³¸ë‹¤.
 			RwUInt32 uiCurrStateId = m_pState->GetStateId();
 			RwUInt32 uiNextStateId = m_pAgent->GetNextStateId();
 
@@ -117,12 +117,12 @@ RwUInt32 CNtlFSMLayer::HandleEvents(RWS::CMsg &pMsg)
 	}
 	else
 	{	
-		// stateÀÇ event Ã³¸®.
+		// stateì˜ event ì²˜ë¦¬.
 		if(m_pState)
 		{
 			uiRes = m_pState->HandleEvents(pMsg); 
 
-			// ´ÙÀ½ »óÅÂ¸¦ state ÀÚ½ÅÀº ¸ð¸£´Â °æ¿ì. agentÇÑÅ× ¹°¾îº»´Ù.
+			// ë‹¤ìŒ ìƒíƒœë¥¼ state ìžì‹ ì€ ëª¨ë¥´ëŠ” ê²½ìš°. agentí•œí…Œ ë¬¼ì–´ë³¸ë‹¤.
 			RwUInt32 uiCurrStateId = m_pState->GetStateId();
 			RwUInt32 uiNextStateId = m_pState->GetNextStateId();
 

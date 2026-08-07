@@ -132,7 +132,7 @@ RwBool CSubGaugeGui::Create(VOID)
 	m_pRPGauge->Show( false );
 	m_pRPBack->Show( false );
 
-	// Guard Gauge ÃÊ±â¼¼ÆÃ
+	// Guard Gauge ì´ˆê¸°ì„¸íŒ…
 	m_ppnlGuardMark->Show( false );
 	m_surGuardGauge.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "RPCGauge.srf", "srfGuardGauge" ) );
 	m_surGuardGauge.SetPositionfromParent( SUBGAUGE_GUARD_OFFSET_GAUGE_X, SUBGAUGE_GUARD_OFFSET_GAUGE_Y );
@@ -237,14 +237,14 @@ VOID CSubGaugeGui::HandleEvents( RWS::CMsg& msg )
 		if( pData->bStartOrEnd )
 		{// Casting On
 			if( iter == m_mapCastGauge.end() )
-			{// ¾øÀ»¶§¸¸ Ãß°¡
+			{// ì—†ì„ë•Œë§Œ ì¶”ê°€
 				m_mapCastGauge[pData->pActor->GetSerialID()] = NTL_NEW CCastGauge( m_pThis, pData->pActor );
 			}
 		}
 		else
 		{// Casting Off
 			if( iter != m_mapCastGauge.end() )
-			{// ÀÖÀ»¶§¸¸ »èÁ¦
+			{// ìˆì„ë•Œë§Œ ì‚­ì œ
 				CCastGauge* pCastGauge = iter->second;
 				NTL_DELETE( pCastGauge );
 				m_mapCastGauge.erase( iter );
@@ -257,7 +257,7 @@ VOID CSubGaugeGui::HandleEvents( RWS::CMsg& msg )
 		MAP_CASTGAUGE_ITER iter = m_mapCastGauge.find( handle );
 		
 		if( iter != m_mapCastGauge.end() )
-		{// ÀÖÀ»¶§¸¸ »èÁ¦
+		{// ìˆì„ë•Œë§Œ ì‚­ì œ
 			CCastGauge* pCastGauge = iter->second;
 			NTL_DELETE( pCastGauge );
 			m_mapCastGauge.erase( iter );
@@ -285,7 +285,7 @@ VOID CSubGaugeGui::HandleEvents( RWS::CMsg& msg )
 			SetGuardMark( "srfGuardDown" );			
 			SetGuardState( STATE_RUN );		
 
-			// Sound ½ÃÀÛ
+			// Sound ì‹œì‘
 			sNtlSoundPlayParameta tSoundParam;
 			tSoundParam.iChannelGroup	= CHANNEL_GROUP_UI_SOUND;
 			tSoundParam.pcFileName		= GSD_SYSTEM_GUARD_GAGE;
@@ -319,7 +319,7 @@ VOID CSubGaugeGui::CheckRPGaugeState( RwInt32 nCurrentRPBall )
 			m_pRPBack->Show( true );
 			m_bRPBallMax = FALSE;
 
-			// RP GaugeÀÌ¹ÌÁö º¯°æ
+			// RP Gaugeì´ë¯¸ì§€ ë³€ê²½
 			RwChar buf[256];
 			sprintf_s( buf, 256, "srfNewRPGauge%d", nCurrentRPBall );
 			m_pRPGauge->ClearSurface();
@@ -432,10 +432,10 @@ VOID CSubGaugeGui::GuardGaugeUpdate( RwReal fElapsed )
 					m_bGuardShow = FALSE;
 					m_ppnlGuardMark->Show( false );
 
-					// ±âÁ¸ À½¾Ç ²ô°í
+					// ê¸°ì¡´ ìŒì•… ë„ê³ 
 					GetSoundManager()->Stop(m_hSound);
 
-					// »õ·Î¿î À½¾Ç
+					// ìƒˆë¡œìš´ ìŒì•…
 					sNtlSoundPlayParameta tSoundParam;
 					tSoundParam.iChannelGroup	= CHANNEL_GROUP_UI_SOUND;
 					tSoundParam.pcFileName		= GSD_SYSTEM_GUARD_GAGE_END;

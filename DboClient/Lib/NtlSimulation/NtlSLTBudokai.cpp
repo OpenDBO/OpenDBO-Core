@@ -89,7 +89,7 @@ RwBool CNtlTBudokai::Create(void)
 
 	LinkMsg( g_EventUpdateTick, 0 );
 
-	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ÀÇ »óÅÂ ( °ÔÀÓ Á¢¼Ó ÃÊ±â )
+	// ì²œí•˜ì œì¼ ë¬´ë„íšŒì˜ ìƒíƒœ ( ê²Œì„ ì ‘ì† ì´ˆê¸° )
 	STenkaichiBudokaiInfo* pBudokaiState = GetNtlSLGlobal()->GetTBudokaiStateInfo();
 	m_wSeasonCount = pBudokaiState->sStateInfo.wSeasonCount; 
 	::CopyMemory( &m_sStateInfo, &pBudokaiState->sStateInfo, sizeof( sBUDOKAI_UPDATE_STATE_INFO ) );
@@ -150,7 +150,7 @@ void CNtlTBudokai::HandleEvents(RWS::CMsg& msg)
 
 		m_fCurrentTime += fElapsed;
 		
-		// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ½Ã°£À» ¾÷µ¥ÀÌÆ® ÇØÁØ´Ù.
+		// ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì‹œê°„ì„ ì—…ë°ì´íŠ¸ í•´ì¤€ë‹¤.
 		if( m_sStateInfo.byState != BUDOKAI_STATE_JUNIOR_CLOSE ||
 			m_sStateInfo.byState != BUDOKAI_STATE_CLOSE )
 		{
@@ -311,7 +311,7 @@ void CNtlTBudokai::HandleEvents(RWS::CMsg& msg)
 	}
 	else if( msg.Id == g_EventBudokaiStateInfoNfy )
 	{
-		// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ÀÇ »óÅÂ ( °ÔÀÓ Á¢¼Ó ÃÊ±â )
+		// ì²œí•˜ì œì¼ ë¬´ë„íšŒì˜ ìƒíƒœ ( ê²Œì„ ì ‘ì† ì´ˆê¸° )
 		sNtlEventBudokaiStateInfoNfy* pNotify = reinterpret_cast<sNtlEventBudokaiStateInfoNfy*>(msg.pData);
 
 		m_wSeasonCount = pNotify->wSeasonCount; 
@@ -322,7 +322,7 @@ void CNtlTBudokai::HandleEvents(RWS::CMsg& msg)
 	}		
 	else if( msg.Id == g_EventBudokaiUpdateStateNfy )
 	{		
-		// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ MainState ÀÇ Update
+		// ì²œí•˜ì œì¼ ë¬´ë„íšŒ MainState ì˜ Update
 		sNtlEventBudokaiUpdateStateNfy* pNotify = reinterpret_cast<sNtlEventBudokaiUpdateStateNfy*>( msg.pData );
 		
 		m_wSeasonCount = pNotify->sStateInfo.wSeasonCount;
@@ -342,7 +342,7 @@ void CNtlTBudokai::HandleEvents(RWS::CMsg& msg)
 	}		
 	else if( msg.Id == g_EventBudokaiUpdateMatchStateNfy )
 	{
-		// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ÀÇ MatchState Update
+		// ì²œí•˜ì œì¼ ë¬´ë„íšŒì˜ MatchState Update
 		sNtlEventBudokaiUpdateMatchStateNfy* pNotify = reinterpret_cast<sNtlEventBudokaiUpdateMatchStateNfy*>( msg.pData );
 
 		if( pNotify->byMatchType == INVALID_BUDOKAI_MATCH_TYPE )
@@ -350,8 +350,8 @@ void CNtlTBudokai::HandleEvents(RWS::CMsg& msg)
 
 		::CopyMemory( &m_aMatchStateInfo[ pNotify->byMatchType ] , &pNotify->sStateInfo, sizeof( sBUDOKAI_UPDATE_MATCH_STATE_INFO ) );
 		
-		// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ Âü°¡ ½ÅÃ»ÇÑ »óÅÂÀÌ°í ÀÚ½ÅÀÌ ½ÅÃ»ÇÑ ¸ÅÄ¡ Å¸ÀÔÀÌ µî·Ï±â°£ -> ¿¹¼±Àü ´ë±â »óÅÂ·Î ¾÷µ¥ÀÌÆ® µÇ¸é
-		// ¼­¹ö·Î ÀÚ½ÅÀÌ ¿¹¼±Àü¿¡ »ÌÇû´ÂÁö ¾È »ÌÇû´ÂÁö Á¤º¸ È®ÀÎÀ» ¿äÃ»ÇÑ´Ù.
+		// ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì°¸ê°€ ì‹ ì²­í•œ ìƒíƒœì´ê³  ìì‹ ì´ ì‹ ì²­í•œ ë§¤ì¹˜ íƒ€ì…ì´ ë“±ë¡ê¸°ê°„ -> ì˜ˆì„ ì „ ëŒ€ê¸° ìƒíƒœë¡œ ì—…ë°ì´íŠ¸ ë˜ë©´
+		// ì„œë²„ë¡œ ìì‹ ì´ ì˜ˆì„ ì „ì— ë½‘í˜”ëŠ”ì§€ ì•ˆ ë½‘í˜”ëŠ”ì§€ ì •ë³´ í™•ì¸ì„ ìš”ì²­í•œë‹¤.
 		if( m_sJoinInfo.byJoinState == BUDOKAI_JOIN_STATE_PLAY )
 		{
 			if( m_sJoinInfo.byMatchType == pNotify->byMatchType )
@@ -362,16 +362,16 @@ void CNtlTBudokai::HandleEvents(RWS::CMsg& msg)
 	}	
 	else if( msg.Id == g_EventBudokaiJoinIndividualRes )
 	{
-		// °³ÀÎÀü Âü°¡ °á°ú
+		// ê°œì¸ì „ ì°¸ê°€ ê²°ê³¼
 		SNtlEventBudokaiJoinIndividualRes* pResult = reinterpret_cast<SNtlEventBudokaiJoinIndividualRes*>( msg.pData );
 
 		if( pResult->wResultCode == GAME_SUCCESS )
 		{
-			m_sJoinInfo.byMatchType = BUDOKAI_MATCH_TYPE_INDIVIDIAUL;		// °³ÀÎÀü
-			m_sJoinInfo.byJoinResult = BUDOKAI_JOIN_RESULT_REGISTER;		// µî·ÏÀÚ
-			m_sJoinInfo.byJoinState = BUDOKAI_JOIN_STATE_PLAY;				// Âü°¡Áß
-			m_sJoinInfo.sIndividualInfo.wJoinId = pResult->wJoinId;			// Âü°¡¹øÈ£
-			m_sJoinInfo.sIndividualInfo.bDojoRecommender = B2b(pResult->bDojoRecommender);	// µµÀå ÃßÃµÀÚ
+			m_sJoinInfo.byMatchType = BUDOKAI_MATCH_TYPE_INDIVIDIAUL;		// ê°œì¸ì „
+			m_sJoinInfo.byJoinResult = BUDOKAI_JOIN_RESULT_REGISTER;		// ë“±ë¡ì
+			m_sJoinInfo.byJoinState = BUDOKAI_JOIN_STATE_PLAY;				// ì°¸ê°€ì¤‘
+			m_sJoinInfo.sIndividualInfo.wJoinId = pResult->wJoinId;			// ì°¸ê°€ë²ˆí˜¸
+			m_sJoinInfo.sIndividualInfo.bDojoRecommender = B2b(pResult->bDojoRecommender);	// ë„ì¥ ì¶”ì²œì
 
 			SAvatarInfo* pAvatarInfo = GetNtlSLGlobal()->GetAvatarInfo();
 			swprintf_s( m_sJoinInfo.sIndividualInfo.wszCharName, NTL_MAX_SIZE_CHAR_NAME + 1, L"%s", pAvatarInfo->sCharPf.awchName );
@@ -379,15 +379,15 @@ void CNtlTBudokai::HandleEvents(RWS::CMsg& msg)
 	}	
 	else if( msg.Id == g_EventBudokaiLeaveIndividualRes )
 	{
-		// °³ÀÎÀü Ãë¼Ò °á°ú
+		// ê°œì¸ì „ ì·¨ì†Œ ê²°ê³¼
 		SNtlEventBudokaiLeaveIndividualRes* pResult = reinterpret_cast<SNtlEventBudokaiLeaveIndividualRes*>( msg.pData );
 
 		if( pResult->wResultCode == GAME_SUCCESS )
 		{
-			m_sJoinInfo.byMatchType = INVALID_BUDOKAI_MATCH_TYPE;		// Å¸ÀÔ ¸ğ¸§
-			m_sJoinInfo.byJoinResult = INVALID_BUDOKAI_JOIN_RESULT;		// Âü°¡ °á°ú ¸ğ¸§
-			m_sJoinInfo.byJoinState = INVALID_BUDOKAI_JOIN_STATE;		// Âü°¡ ¾ÈÇÔ
-			m_sJoinInfo.sIndividualInfo.wJoinId = INVALID_WORD;			// Á¢¼ö ¹øÈ£ ¾øÀ½
+			m_sJoinInfo.byMatchType = INVALID_BUDOKAI_MATCH_TYPE;		// íƒ€ì… ëª¨ë¦„
+			m_sJoinInfo.byJoinResult = INVALID_BUDOKAI_JOIN_RESULT;		// ì°¸ê°€ ê²°ê³¼ ëª¨ë¦„
+			m_sJoinInfo.byJoinState = INVALID_BUDOKAI_JOIN_STATE;		// ì°¸ê°€ ì•ˆí•¨
+			m_sJoinInfo.sIndividualInfo.wJoinId = INVALID_WORD;			// ì ‘ìˆ˜ ë²ˆí˜¸ ì—†ìŒ
 
 			SAvatarInfo* pAvatarInfo = GetNtlSLGlobal()->GetAvatarInfo();
 			swprintf_s( m_sJoinInfo.sIndividualInfo.wszCharName, NTL_MAX_SIZE_CHAR_NAME + 1, L"%s", pAvatarInfo->sCharPf.awchName );
@@ -395,43 +395,43 @@ void CNtlTBudokai::HandleEvents(RWS::CMsg& msg)
 	}	
 	else if( msg.Id == g_EventBudokaiJoinTeamInfoRes )
 	{
-		// ÀÌ ÀÌº¥Æ®´Â ÆÄÆ¼ÀüÀ» ½ÅÃ»ÇÒ ¶§ ½ÅÃ»¼­¿¡ ÀÚ½ÅÀÌ ¼ÓÇÑ ÆÄÆ¼ÀÇ Á¤º¸¸¦ Ãâ·ÂÇÏ´Âµ¥ »ç¿ëµÈ´Ù.
-		// ( Á¤º¸¸¦ Simulation¿¡ ÀúÀåÇÒ ÇÊ¿ä°¡ ¾ø´Ù )
+		// ì´ ì´ë²¤íŠ¸ëŠ” íŒŒí‹°ì „ì„ ì‹ ì²­í•  ë•Œ ì‹ ì²­ì„œì— ìì‹ ì´ ì†í•œ íŒŒí‹°ì˜ ì •ë³´ë¥¼ ì¶œë ¥í•˜ëŠ”ë° ì‚¬ìš©ëœë‹¤.
+		// ( ì •ë³´ë¥¼ Simulationì— ì €ì¥í•  í•„ìš”ê°€ ì—†ë‹¤ )
 	}		
 	else if( msg.Id == g_EventBudokaiJoinTeamRes )
 	{
-		// ÆÄÆ¼Àü µî·Ï °á°ú
+		// íŒŒí‹°ì „ ë“±ë¡ ê²°ê³¼
 		SNtlEventBudokaiJoinTeamRes* pResult = reinterpret_cast<SNtlEventBudokaiJoinTeamRes*>( msg.pData );
 		
 		if( pResult->wResultCode == GAME_SUCCESS )
 		{
-			m_sJoinInfo.byMatchType = BUDOKAI_MATCH_TYPE_TEAM;			// ÆÄÆ¼Àü
-			m_sJoinInfo.byJoinResult = BUDOKAI_JOIN_RESULT_REGISTER;	// µî·ÏÁß
-			m_sJoinInfo.byJoinState = BUDOKAI_JOIN_STATE_PLAY;			// Âü°¡Áß
-			m_sJoinInfo.sTeamInfo.wJoinId = pResult->wJoinId;			// Âü°¡¹øÈ£
+			m_sJoinInfo.byMatchType = BUDOKAI_MATCH_TYPE_TEAM;			// íŒŒí‹°ì „
+			m_sJoinInfo.byJoinResult = BUDOKAI_JOIN_RESULT_REGISTER;	// ë“±ë¡ì¤‘
+			m_sJoinInfo.byJoinState = BUDOKAI_JOIN_STATE_PLAY;			// ì°¸ê°€ì¤‘
+			m_sJoinInfo.sTeamInfo.wJoinId = pResult->wJoinId;			// ì°¸ê°€ë²ˆí˜¸
 
-			// ÆÀ ÀÌ¸§°ú ¸â¹öµéÀÇ Á¤º¸
+			// íŒ€ ì´ë¦„ê³¼ ë©¤ë²„ë“¤ì˜ ì •ë³´
 			swprintf_s( m_sJoinInfo.sTeamInfo.wszTeamName, NTL_MAX_LENGTH_BUDOKAI_TEAM_NAME_IN_UNICODE + 1, L"%s", pResult->wszTeamName );
 			::CopyMemory( m_sJoinInfo.sTeamInfo.aMemberInfo, pResult->aTeamInfo, sizeof( sBUDOKAI_TEAM_POINT_INFO ) * pResult->byMemberCount );
 		}
 	}			
 	else if( msg.Id == g_EventBudokaiJoinTeamNfy )
 	{	
-		// ÆÄÆ¼Àü µî·Ï °á°ú ( ÆÄÆ¼ÀåÀÌ ¾Æ´Ñ ´Ù¸¥ ¸â¹öµé¿¡°Ô Àü´ŞµÇ´Â ÀÌº¥Æ®, ¼º°øÀÏ¶§¸¸ ¿Â´Ù. )
+		// íŒŒí‹°ì „ ë“±ë¡ ê²°ê³¼ ( íŒŒí‹°ì¥ì´ ì•„ë‹Œ ë‹¤ë¥¸ ë©¤ë²„ë“¤ì—ê²Œ ì „ë‹¬ë˜ëŠ” ì´ë²¤íŠ¸, ì„±ê³µì¼ë•Œë§Œ ì˜¨ë‹¤. )
 		SNtlEventBudokaiJoinTeamNfy* pNotify = reinterpret_cast<SNtlEventBudokaiJoinTeamNfy*>( msg.pData );
 
-		m_sJoinInfo.byMatchType = BUDOKAI_MATCH_TYPE_TEAM;				// ÆÄÆ¼Àü
-		m_sJoinInfo.byJoinResult = BUDOKAI_JOIN_RESULT_REGISTER;		// µî·ÏÁß
-		m_sJoinInfo.byJoinState = BUDOKAI_JOIN_STATE_PLAY;				// Âü°¡Áß
-		m_sJoinInfo.sTeamInfo.wJoinId = pNotify->wJoinId;				// Âü°¡¹øÈ£
+		m_sJoinInfo.byMatchType = BUDOKAI_MATCH_TYPE_TEAM;				// íŒŒí‹°ì „
+		m_sJoinInfo.byJoinResult = BUDOKAI_JOIN_RESULT_REGISTER;		// ë“±ë¡ì¤‘
+		m_sJoinInfo.byJoinState = BUDOKAI_JOIN_STATE_PLAY;				// ì°¸ê°€ì¤‘
+		m_sJoinInfo.sTeamInfo.wJoinId = pNotify->wJoinId;				// ì°¸ê°€ë²ˆí˜¸
 
-		// ÆÀ ÀÌ¸§°ú ¸â¹öµéÀÇ Á¤º¸
+		// íŒ€ ì´ë¦„ê³¼ ë©¤ë²„ë“¤ì˜ ì •ë³´
 		swprintf_s( m_sJoinInfo.sTeamInfo.wszTeamName, NTL_MAX_LENGTH_BUDOKAI_TEAM_NAME_IN_UNICODE + 1, L"%s", pNotify->wszTeamName );
 		::CopyMemory( m_sJoinInfo.sTeamInfo.aMemberInfo, pNotify->aTeamInfo, sizeof( sBUDOKAI_TEAM_POINT_INFO ) * pNotify->byMemberCount );
 	}			
 	else if( msg.Id == g_EventBudokaiLeaveTeamRes )
 	{
-		// ÆÄÆ¼Àü ÀüÃ¼ Ãë¼Ò °á°ú ( ÆÄÆ¼Àå )
+		// íŒŒí‹°ì „ ì „ì²´ ì·¨ì†Œ ê²°ê³¼ ( íŒŒí‹°ì¥ )
 		SNtlEventBudokaiLeaveTeamRes* pResult = reinterpret_cast< SNtlEventBudokaiLeaveTeamRes*>( msg.pData );
 
 		if( pResult->wResultCode == GAME_SUCCESS )
@@ -447,7 +447,7 @@ void CNtlTBudokai::HandleEvents(RWS::CMsg& msg)
 	}		
 	else if( msg.Id == g_EventBudokaiLeaveTeamNfy )
 	{
-		// ÆÄÆ¼Àü ÀüÃ¼ Ãë¼Ò °á°ú ( ÆÄÆ¼Àå ¿ÜÀÇ ¸â¹öµé )
+		// íŒŒí‹°ì „ ì „ì²´ ì·¨ì†Œ ê²°ê³¼ ( íŒŒí‹°ì¥ ì™¸ì˜ ë©¤ë²„ë“¤ )
 
 		m_sJoinInfo.byMatchType = INVALID_BUDOKAI_MATCH_TYPE;
 		m_sJoinInfo.byJoinState = INVALID_BUDOKAI_JOIN_STATE;
@@ -459,7 +459,7 @@ void CNtlTBudokai::HandleEvents(RWS::CMsg& msg)
 	}		
 	else if( msg.Id == g_EventBudokaiLeaveTeamMemberRes )
 	{
-		// ¸â¹ö Ãë¼Ò °á°ú
+		// ë©¤ë²„ ì·¨ì†Œ ê²°ê³¼
 		SNtlEventBudokaiLeaveTeamMemberRes* pResult = reinterpret_cast<SNtlEventBudokaiLeaveTeamMemberRes*>( msg.pData );
 
 		if( pResult->wResultCode == GAME_SUCCESS )
@@ -475,14 +475,14 @@ void CNtlTBudokai::HandleEvents(RWS::CMsg& msg)
 	}	
 	else if( msg.Id == g_EventBudokaiLeaveTeamMemberNfy )
 	{
-		// ¸â¹ö Ãë¼Ò ¾Ë¸² ( Å¸ ¸â¹öµé¿¡°Ô )
+		// ë©¤ë²„ ì·¨ì†Œ ì•Œë¦¼ ( íƒ€ ë©¤ë²„ë“¤ì—ê²Œ )
 		SNtlEventBudokaiLeaveTeamMemberNfy* pNotify = reinterpret_cast<SNtlEventBudokaiLeaveTeamMemberNfy*>( msg.pData );
 
-		// ÆÄÆ¼ÀüÀÏ °æ¿ì¸¸ À¯È¿ÇÏ´Ù.
+		// íŒŒí‹°ì „ì¼ ê²½ìš°ë§Œ ìœ íš¨í•˜ë‹¤.
 		if( m_sJoinInfo.byMatchType != BUDOKAI_MATCH_TYPE_TEAM )
 			return;
 
-		// ÀÌ¸§ÀÌ ¸Â´Â ÆÄÆ¼ ¸â¹ö¸¦ Ã£¾Æ¼­ Á¤º¸¸¦ »èÁ¦ÇØÁØ´Ù.
+		// ì´ë¦„ì´ ë§ëŠ” íŒŒí‹° ë©¤ë²„ë¥¼ ì°¾ì•„ì„œ ì •ë³´ë¥¼ ì‚­ì œí•´ì¤€ë‹¤.
 		for( RwInt32 i = 0; i < NTL_MAX_MEMBER_IN_PARTY; ++i )
 		{
 			if( wcscmp( m_sJoinInfo.sTeamInfo.aMemberInfo[i].wszName, pNotify->pwcMemberName ) == 0 )

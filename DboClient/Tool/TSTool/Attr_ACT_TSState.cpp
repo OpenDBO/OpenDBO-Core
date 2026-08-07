@@ -1,4 +1,4 @@
-// Attr_ACT_Cin.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_ACT_Cin.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_ACT_TSState.h"
 
 
-// CAttr_ACT_TSState ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_ACT_TSState ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_ACT_TSState, CAttr_Page, 1)
 
@@ -84,7 +84,7 @@ BOOL CAttr_ACT_TSState::OnInitDialog()
 {
 	CAttr_Page::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	m_ctrTypeAddBtn.SetCheck( BST_CHECKED );
 	m_ctrTypeRemoveBtn.SetCheck( BST_UNCHECKED );
 
@@ -93,7 +93,7 @@ BOOL CAttr_ACT_TSState::OnInitDialog()
 	if ( m_strData.GetLength() > 0 ) SetPageData( m_strData );
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 
@@ -103,7 +103,7 @@ BEGIN_MESSAGE_MAP(CAttr_ACT_TSState, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_ACT_TSState ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_ACT_TSState ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CAttr_ACT_TSState::OnBnClickedTsActAttrTsstateTypeAddCheck()
 {

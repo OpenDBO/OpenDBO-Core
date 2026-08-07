@@ -1,12 +1,12 @@
 /*****************************************************************************
 * File			: DboLogic_String.h
 * Author		: Hong sungbock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 1. 12
-* Abstract		: ½ºÆ®¸µ °ü·Ã ·ÎÁ÷À» ¸ð¾ÆµÐ´Ù
+* Abstract		: ìŠ¤íŠ¸ë§ ê´€ë ¨ ë¡œì§ì„ ëª¨ì•„ë‘”ë‹¤
 *****************************************************************************
-* Desc         : Ã£À¸·Á´Â ½ºÆ®¸µÀÌ ¾øÀ» ½Ã¿¡´Â ¹Ýµå½Ã ¾Ë ¼ö ÀÖµµ·Ï
-*				 Assert¸¦ °É´øÁö ½ºÆ®¸µÀÌ ¾ø´Ù´Â ¸Þ¼¼Áö¸¦ µ¹·ÁÁÖµµ·Ï ÇÏÀÚ
+* Desc         : ì°¾ìœ¼ë ¤ëŠ” ìŠ¤íŠ¸ë§ì´ ì—†ì„ ì‹œì—ëŠ” ë°˜ë“œì‹œ ì•Œ ìˆ˜ ìžˆë„ë¡
+*				 Assertë¥¼ ê±¸ë˜ì§€ ìŠ¤íŠ¸ë§ì´ ì—†ë‹¤ëŠ” ë©”ì„¸ì§€ë¥¼ ëŒë ¤ì£¼ë„ë¡ í•˜ìž
 *****************************************************************************/
 
 #include "precomp_dboclient.h"
@@ -97,7 +97,7 @@ const WCHAR* Logic_GetHoipoiMixSkillName(RwUInt8 byType)
 const WCHAR* Logic_GetNPCJobName(RwUInt8 byJob)
 {
 	// It examines the indexes individually so that when there is a change in the index number
-	// ¶ÇÇÑ ½ºÆ®¸µ Å×ÀÌºíÀÇ ¼ø¼­¿¡ ¿µÇâÀÌ ¾øµµ·Ï...
+	// ë˜í•œ ìŠ¤íŠ¸ë§ í…Œì´ë¸”ì˜ ìˆœì„œì— ì˜í–¥ì´ ì—†ë„ë¡...
 	switch( byJob )
 	{
 	case NPC_JOB_WEAPON_MERCHANT:			return GetDisplayStringManager()->GetString( "DST_JOB_WEAPON_MERCHANT" );
@@ -191,8 +191,8 @@ const WCHAR* Logic_GetNPCRaceName(RwUInt8 byRace)
 
 const WCHAR* Logic_GetMobRaceName(RwUInt8 byRace)
 {
-	// ÀÎµ¦½º¸¦ ÀÏÀÏÀÌ °Ë»çÇÏ¿© ÀÎµ¦½ºÀÇ ¼ýÀÚ¿¡ º¯°æÀÌ ÀÖÀ» ½Ã Assert¸¦ ¹ß»ý½ÃÄÑ ¹Ù·Î ¾Ë ¼ö ÀÖµµ·Ï ÇÑ´Ù
-	// ¶ÇÇÑ ½ºÆ®¸µ Å×ÀÌºíÀÇ ¼ø¼­¿¡ ¿µÇâÀÌ ¾øµµ·Ï...
+	// ì¸ë±ìŠ¤ë¥¼ ì¼ì¼ì´ ê²€ì‚¬í•˜ì—¬ ì¸ë±ìŠ¤ì˜ ìˆ«ìžì— ë³€ê²½ì´ ìžˆì„ ì‹œ Assertë¥¼ ë°œìƒì‹œì¼œ ë°”ë¡œ ì•Œ ìˆ˜ ìžˆë„ë¡ í•œë‹¤
+	// ë˜í•œ ìŠ¤íŠ¸ë§ í…Œì´ë¸”ì˜ ìˆœì„œì— ì˜í–¥ì´ ì—†ë„ë¡...
 	switch( byRace )
 	{
 	case MOB_TYPE_ANIMAL:					return GetDisplayStringManager()->GetString( "DST_MOB_TYPE_ANIMAL" );
@@ -314,7 +314,7 @@ RwBool	Logic_GetSystemEffectText( RwUInt32 uiSystemEffectIdx, RwReal fValue, std
 		return FALSE;
 	}
 
-	// BuffÀÇ °æ¿ì Direct°è¿­Àº Ãâ·Â¾ÈÇÔ
+	// Buffì˜ ê²½ìš° Directê³„ì—´ì€ ì¶œë ¥ì•ˆí•¨
 	if( pBuffShow )
 	{
 		if( pSystemEffectData->byActive_Effect_Type == SKILL_ACTIVE_TYPE_DD ||
@@ -334,7 +334,7 @@ RwBool	Logic_GetSystemEffectText( RwUInt32 uiSystemEffectIdx, RwReal fValue, std
 
 	WCHAR buf[256];
 
-	// Excpetion : ½ºÅ³ Å¸ÀÔ Ç¥±â ¿¹¿Ü
+	// Excpetion : ìŠ¤í‚¬ íƒ€ìž… í‘œê¸° ì˜ˆì™¸
 	if( pSkillData )
 	{
 		if( pSystemEffectData->effectCode == ACTIVE_DIRECT_DAMAGE ||
@@ -411,7 +411,7 @@ RwBool	Logic_GetSystemEffectText( RwUInt32 uiSystemEffectIdx, RwReal fValue, std
 		bINTValue = FALSE;
 	}	
 
-	// Exception : ´ÜÀ§ °ü·Ã Ç¥±â ¿¹¿Ü
+	// Exception : ë‹¨ìœ„ ê´€ë ¨ í‘œê¸° ì˜ˆì™¸
 	if( byPercentType && pSystemEffectData->byActive_Effect_Type != SKILL_ACTIVE_TYPE_DOT)
 	{
 		if( nInsertPosition >= 0 )
@@ -702,8 +702,8 @@ void Logic_WarnningWorldConceptActionMessage(RwUInt32 uiGrade)
 		GetAlarmManager()->AlarmMessage(string);
 }
 
-// Å×ÀÌºí ÀÎµ¦½º·Î Áö¿ªÀÇ ÀÌ¸§À» °¡Á®¿Â´Ù.
-// return FALSE¸é Å×ÀÌºí¿¡ ¾øÀ½
+// í…Œì´ë¸” ì¸ë±ìŠ¤ë¡œ ì§€ì—­ì˜ ì´ë¦„ì„ ê°€ì ¸ì˜¨ë‹¤.
+// return FALSEë©´ í…Œì´ë¸”ì— ì—†ìŒ
 RwBool Logic_GetAreaNameFromTblIDX( TBLIDX tblIdx, std::wstring* pstrString ) 
 {
 	CMapNameTextTable* pTable = API_GetTableContainer()->GetTextAllTable()->GetMapNameTbl();
@@ -713,7 +713,7 @@ RwBool Logic_GetAreaNameFromTblIDX( TBLIDX tblIdx, std::wstring* pstrString )
 		{
 			if(!pTable->GetZoneName(tblIdx, pstrString))
 			{
-				// ÅØ½ºÆ® Å×ÀÌºíÀÌ Á¸ÀçÇÏÁö ¾Ê´Â´Ù
+				// í…ìŠ¤íŠ¸ í…Œì´ë¸”ì´ ì¡´ìž¬í•˜ì§€ ì•ŠëŠ”ë‹¤
 				static WCHAR awcBuffer[] = L"Not exist terrain name";
 				*pstrString = awcBuffer;
 				return FALSE;
@@ -783,7 +783,7 @@ WCHAR* Logic_GetTimeString(RwReal fSecond)
 	memset(awcBuffer, 0, 64);
 
 
-	// ½Ã°£ °è»ê
+	// ì‹œê°„ ê³„ì‚°
 	uiDay = (RwUInt32)(fLeftSecond / 86400.f);
 
 	fLeftSecond -= (RwReal)uiDay * 86400.f;
@@ -796,7 +796,7 @@ WCHAR* Logic_GetTimeString(RwReal fSecond)
 	uiSecond = (RwUInt32)fLeftSecond;
 	
 
-	// ½Ã°£ ½ºÆ®¸µ Á¶ÇÕ
+	// ì‹œê°„ ìŠ¤íŠ¸ë§ ì¡°í•©
 	if( uiDay > 0 )
 	{
 		const WCHAR* pwcText = GetDisplayStringManager()->GetString("DST_TIME_DAY");
@@ -808,7 +808,7 @@ WCHAR* Logic_GetTimeString(RwReal fSecond)
 		const WCHAR* pwcText = GetDisplayStringManager()->GetString("DST_TIME_AN_HOUR");
 		RwUInt32 uiBufferStart = wcslen(awcBuffer);
 
-		// ÀÌ¹Ì ½ºÆ®¸µÀÌ ÀÖ´Ù. ºóÄ­À» È®º¸ÇÏÀÚ
+		// ì´ë¯¸ ìŠ¤íŠ¸ë§ì´ ìžˆë‹¤. ë¹ˆì¹¸ì„ í™•ë³´í•˜ìž
 		if( uiBufferStart > 0 )
 		{
 			swprintf_s(awcBuffer + uiBufferStart, 64 - uiBufferStart, L" ");
@@ -823,7 +823,7 @@ WCHAR* Logic_GetTimeString(RwReal fSecond)
 		const WCHAR* pwcText	= GetDisplayStringManager()->GetString("DST_TIME_MINUTE");
 		RwUInt32 uiBufferStart = wcslen(awcBuffer);
 
-		// ÀÌ¹Ì ½ºÆ®¸µÀÌ ÀÖ´Ù. ºóÄ­À» È®º¸ÇÏÀÚ
+		// ì´ë¯¸ ìŠ¤íŠ¸ë§ì´ ìžˆë‹¤. ë¹ˆì¹¸ì„ í™•ë³´í•˜ìž
 		if( uiBufferStart > 0 )
 		{
 			swprintf_s(awcBuffer + uiBufferStart, 64 - uiBufferStart, L" ");
@@ -839,7 +839,7 @@ WCHAR* Logic_GetTimeString(RwReal fSecond)
 		const WCHAR* pwcText	= GetDisplayStringManager()->GetString("DST_TIME_SECOND");
 		RwUInt32 uiBufferStart = wcslen(awcBuffer);
 
-		// ÀÌ¹Ì ½ºÆ®¸µÀÌ ÀÖ´Ù. ºóÄ­À» È®º¸ÇÏÀÚ
+		// ì´ë¯¸ ìŠ¤íŠ¸ë§ì´ ìžˆë‹¤. ë¹ˆì¹¸ì„ í™•ë³´í•˜ìž
 		if( uiBufferStart > 0 )
 		{
 			swprintf_s(awcBuffer + uiBufferStart, 64 - uiBufferStart, L" ");
@@ -863,7 +863,7 @@ WCHAR * Logic_GetTimeStringWithMillisecond(RwReal fSecond)
 	memset(awcBuffer, 0, 64);
 
 
-	// ½Ã°£ °è»ê
+	// ì‹œê°„ ê³„ì‚°
 	uiDay = (RwUInt32)(fLeftSecond / 86400.f);
 
 	fLeftSecond -= (RwReal)uiDay * 86400.f;
@@ -876,7 +876,7 @@ WCHAR * Logic_GetTimeStringWithMillisecond(RwReal fSecond)
 	fSecondWithMs = fLeftSecond;
 
 
-	// ½Ã°£ ½ºÆ®¸µ Á¶ÇÕ
+	// ì‹œê°„ ìŠ¤íŠ¸ë§ ì¡°í•©
 	if (uiDay > 0)
 	{
 		const WCHAR* pwcText = GetDisplayStringManager()->GetString("DST_TIME_DAY");
@@ -888,7 +888,7 @@ WCHAR * Logic_GetTimeStringWithMillisecond(RwReal fSecond)
 		const WCHAR* pwcText = GetDisplayStringManager()->GetString("DST_TIME_AN_HOUR");
 		RwUInt32 uiBufferStart = wcslen(awcBuffer);
 
-		// ÀÌ¹Ì ½ºÆ®¸µÀÌ ÀÖ´Ù. ºóÄ­À» È®º¸ÇÏÀÚ
+		// ì´ë¯¸ ìŠ¤íŠ¸ë§ì´ ìžˆë‹¤. ë¹ˆì¹¸ì„ í™•ë³´í•˜ìž
 		if (uiBufferStart > 0)
 		{
 			swprintf_s(awcBuffer + uiBufferStart, 64 - uiBufferStart, L" ");
@@ -903,7 +903,7 @@ WCHAR * Logic_GetTimeStringWithMillisecond(RwReal fSecond)
 		const WCHAR* pwcText = GetDisplayStringManager()->GetString("DST_TIME_MINUTE");
 		RwUInt32 uiBufferStart = wcslen(awcBuffer);
 
-		// ÀÌ¹Ì ½ºÆ®¸µÀÌ ÀÖ´Ù. ºóÄ­À» È®º¸ÇÏÀÚ
+		// ì´ë¯¸ ìŠ¤íŠ¸ë§ì´ ìžˆë‹¤. ë¹ˆì¹¸ì„ í™•ë³´í•˜ìž
 		if (uiBufferStart > 0)
 		{
 			swprintf_s(awcBuffer + uiBufferStart, 64 - uiBufferStart, L" ");
@@ -919,7 +919,7 @@ WCHAR * Logic_GetTimeStringWithMillisecond(RwReal fSecond)
 		const WCHAR* pwcText = GetDisplayStringManager()->GetString("DST_TIME_SECOND");
 		RwUInt32 uiBufferStart = wcslen(awcBuffer);
 
-		// ÀÌ¹Ì ½ºÆ®¸µÀÌ ÀÖ´Ù. ºóÄ­À» È®º¸ÇÏÀÚ
+		// ì´ë¯¸ ìŠ¤íŠ¸ë§ì´ ìžˆë‹¤. ë¹ˆì¹¸ì„ í™•ë³´í•˜ìž
 		if (uiBufferStart > 0)
 		{
 			swprintf_s(awcBuffer + uiBufferStart, 64 - uiBufferStart, L" ");
@@ -1056,7 +1056,7 @@ WCHAR* Logic_GetCoolTimeString(RwReal fSecond)
 }
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ÀÇ ¸ÅÄ¡ ½ºÅ×ÀÌÆ®¸¦ ½ºÆ®¸µÀ¸·Î ¹ÝÈ¯ÇÑ´Ù.
+* \brief ì²œí•˜ì œì¼ ë¬´ë„íšŒì˜ ë§¤ì¹˜ ìŠ¤í…Œì´íŠ¸ë¥¼ ìŠ¤íŠ¸ë§ìœ¼ë¡œ ë°˜í™˜í•œë‹¤.
 */
 const WCHAR* Logic_GetStringTBMatchType( RwUInt8 byTBMatchType )
 {
@@ -1078,10 +1078,10 @@ const WCHAR* Logic_GetStringTBMatchState( RwUInt8 byTBMatchState )
 	switch( byTBMatchState )
 	{
 	case BUDOKAI_MATCHSTATE_REGISTER:
-		return GetDisplayStringManager()->GetString( "DST_BUDOKAI_REGISTER_INFO_TITLE" ); 				// µî·Ï ±â°£
-	case BUDOKAI_MATCHSTATE_WAIT_MINOR_MATCH:		// ¿¹¼±Àü ´ë±â
+		return GetDisplayStringManager()->GetString( "DST_BUDOKAI_REGISTER_INFO_TITLE" ); 				// ë“±ë¡ ê¸°ê°„
+	case BUDOKAI_MATCHSTATE_WAIT_MINOR_MATCH:		// ì˜ˆì„ ì „ ëŒ€ê¸°
 		return GetDisplayStringManager()->GetString( "DST_BUDOKAI_MINORMATCH_INFO_TITLE_WAIT" );
-	case BUDOKAI_MATCHSTATE_MINOR_MATCH:				// ¿¹¼±Àü 
+	case BUDOKAI_MATCHSTATE_MINOR_MATCH:				// ì˜ˆì„ ì „ 
 		return GetDisplayStringManager()->GetString( "DST_BUDOKAI_MINORMATCH_INFO_TITLE_BATTLE" );
 	case BUDOKAI_MATCHSTATE_WAIT_MAJORMATCH_32:
 		return GetDisplayStringManager()->GetString( "DST_BUDOKAI_MAJORMATCH_INFO_TITLE_32_WAIT" );
@@ -1095,7 +1095,7 @@ const WCHAR* Logic_GetStringTBMatchState( RwUInt8 byTBMatchState )
 		return GetDisplayStringManager()->GetString( "DST_BUDOKAI_MAJORMATCH_INFO_TITLE_8_WAIT" );
 	case BUDOKAI_MATCHSTATE_MAJORMATCH_08:
 		return GetDisplayStringManager()->GetString( "DST_BUDOKAI_MAJORMATCH_INFO_TITLE_8" );
-	case BUDOKAI_MATCHSTATE_WAIT_SEMIFINAL_MATCH:	// ÁØ°á½Â ´ë±â
+	case BUDOKAI_MATCHSTATE_WAIT_SEMIFINAL_MATCH:	// ì¤€ê²°ìŠ¹ ëŒ€ê¸°
 		return GetDisplayStringManager()->GetString( "DST_BUDOKAI_MAJORMATCH_INFO_TITLE_SEMIFINAL_WAIT" );
 	case BUDOKAI_MATCHSTATE_SEMIFINAL_MATCH:
 		return GetDisplayStringManager()->GetString( "DST_BUDOKAI_MAJORMATCH_INFO_TITLE_SEMIFINAL" );
@@ -1112,7 +1112,7 @@ const WCHAR* Logic_GetStringTBMatchState( RwUInt8 byTBMatchState )
 }
 
 /**
-* \brief ÇöÀç ¾Æ¹ÙÅ¸ÀÇ Âü°¡ »óÅÂ¸¦ ½ºÆ®¸µÀ¸·Î °¡Á®¿Â´Ù. ( ¿¹¼± ÁøÃâÀÚ, 16°­ ÁøÃâÀÚ, Å»¶ôÀÚ µîµî )
+* \brief í˜„ìž¬ ì•„ë°”íƒ€ì˜ ì°¸ê°€ ìƒíƒœë¥¼ ìŠ¤íŠ¸ë§ìœ¼ë¡œ ê°€ì ¸ì˜¨ë‹¤. ( ì˜ˆì„  ì§„ì¶œìž, 16ê°• ì§„ì¶œìž, íƒˆë½ìž ë“±ë“± )
 */
 const WCHAR* Logic_GetAvatarTBJoinState()
 {
@@ -1120,8 +1120,8 @@ const WCHAR* Logic_GetAvatarTBJoinState()
 
 	sBUDOKAI_JOIN_INFO* pJoinInfo;
 
-	// NULL ÀÏ ¶§´Â ¾Æ¹ÙÅ¸ »ý¼º Àü¿¡ Á¤º¸°¡ µé¾î¿ÔÀ» °æ¿ì
-	// NULLÀÌ ¾Æ´Ò ¶§´Â Á¤»óÀûÀ¸·Î µ¥ÀÌÅÍ°¡ ¼ÂÆÃ µÇ¾úÀ» °æ¿ì
+	// NULL ì¼ ë•ŒëŠ” ì•„ë°”íƒ€ ìƒì„± ì „ì— ì •ë³´ê°€ ë“¤ì–´ì™”ì„ ê²½ìš°
+	// NULLì´ ì•„ë‹ ë•ŒëŠ” ì •ìƒì ìœ¼ë¡œ ë°ì´í„°ê°€ ì…‹íŒ… ë˜ì—ˆì„ ê²½ìš°
 	if( pSobAvatar == NULL )
 		pJoinInfo = &GetNtlSLGlobal()->GetTBudokaiStateInfo()->sJoinInfo;
 	else
@@ -1201,7 +1201,7 @@ const WCHAR* Logic_GetAvatarTBJoinState()
 }
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ 64 ºñÆ® Á¤¼ö ½Ã°£¿¡ °ü·ÃµÈ ½ºÆ®¸µ ( ´ÜÀ§¿¡ µû¶ó¼­ ´Ù¸£°Ô ¸®ÅÏµÈ´Ù. )
+* \brief ì²œí•˜ì œì¼ ë¬´ë„íšŒ 64 ë¹„íŠ¸ ì •ìˆ˜ ì‹œê°„ì— ê´€ë ¨ëœ ìŠ¤íŠ¸ë§ ( ë‹¨ìœ„ì— ë”°ë¼ì„œ ë‹¤ë¥´ê²Œ ë¦¬í„´ëœë‹¤. )
 */
 const WCHAR* Logic_GetTBRemainTimeString( BUDOKAITIME tmTime )
 {
@@ -1243,8 +1243,8 @@ const WCHAR* Logic_GetTBDateToDateString( tm tmAtTime, tm tmToTime )
 
 	static WCHAR awcBufferResult[512];
 
-	// µµÀå ÃßÃµ ±â°£
-	// ¿¹¼±Àü ±â°£
+	// ë„ìž¥ ì¶”ì²œ ê¸°ê°„
+	// ì˜ˆì„ ì „ ê¸°ê°„
 	swprintf_s( awcBuffer, 128, GetDisplayStringManager()->GetString( "DST_BUDOKAI_NEWS_NOTICE_GUIDE_TIME"),
 		tmAtTime.tm_mon+1, tmAtTime.tm_mday, 
 		(tmAtTime.tm_hour >= 12 ? GetDisplayStringManager()->GetString( "DST_BUDOKAI_NEWS_NOTICE_GUIDE_TIME_PM" ) : GetDisplayStringManager()->GetString( "DST_BUDOKAI_NEWS_NOTICE_GUIDE_TIME_AM" ) ),
@@ -1325,7 +1325,7 @@ const WCHAR* Logic_GetMailRemainTimeString( DBOTIME tmTime )
 
 	if( tmRemainTime.tm_yday > 0 )
 	{
-		// ³²Àº ÀÏ¼ö
+		// ë‚¨ì€ ì¼ìˆ˜
 		swprintf_s( awcBuffer, 256, GetDisplayStringManager()->GetString( "DST_BUDOKAI_TIME_DAY" ), tmRemainTime.tm_yday );
 
 		return awcBuffer;
@@ -1333,7 +1333,7 @@ const WCHAR* Logic_GetMailRemainTimeString( DBOTIME tmTime )
 
 	if( tmRemainTime.tm_hour > 0 )
 	{
-		// ³²Àº ½Ã°£
+		// ë‚¨ì€ ì‹œê°„
 		swprintf_s( awcBuffer, 256, GetDisplayStringManager()->GetString( "DST_BUDOKAI_TIME_HOUR" ), tmRemainTime.tm_hour );
 
 		return awcBuffer;
@@ -1341,7 +1341,7 @@ const WCHAR* Logic_GetMailRemainTimeString( DBOTIME tmTime )
 
 	if( tmRemainTime.tm_min > 0 )
 	{
-		// ³²Àº ºÐ
+		// ë‚¨ì€ ë¶„
 		swprintf_s( awcBuffer, 256, GetDisplayStringManager()->GetString( "DST_BUDOKAI_TIME_MINUTE" ), tmRemainTime.tm_min );
 
 		return awcBuffer;

@@ -2,11 +2,11 @@
 *
 * File			: NtlPlLensFlare
 * Author		: agebreak
-* Copyright	: (ÁÖ)NTL
+* Copyright	: (ì£¼)NTL
 * Date			: 2007. 4. 19	
 * Abstract		: Presentation layer LensFlare entity class
 *****************************************************************************
-* Desc         : ÅÂ¾çÀÇ À§Ä¡¿¡ ¿µÇâÀ» ¹Ş´Â Lensflare¸¦ ±¸ÇöÇÑ Å¬·¡½º
+* Desc         : íƒœì–‘ì˜ ìœ„ì¹˜ì— ì˜í–¥ì„ ë°›ëŠ” Lensflareë¥¼ êµ¬í˜„í•œ í´ë˜ìŠ¤
 *
 *****************************************************************************/
 
@@ -19,14 +19,14 @@
 #define	LENSFLARE_FADE_VELOCITY		4.0f
 #define	LENSFLARE_PICK_TICK			0.3f
 
-///< LensFlare¸¦ ±¸¼ºÇÏ´Â SpotÀÇ Á¤º¸¸¦ ´ã°í ÀÖ´Â ±¸Á¶Ã¼
+///< LensFlareë¥¼ êµ¬ì„±í•˜ëŠ” Spotì˜ ì •ë³´ë¥¼ ë‹´ê³  ìˆëŠ” êµ¬ì¡°ì²´
 struct SNtlPLLensFlareSpot
 {
-	RwTexture*	m_pTexture;					///< SpotÀÇ Texture
-	RwReal		m_fSize;					///< SpotÀÇ Size (0.0 ~ 1.0)
-	RwReal		m_fLinePos;					///< SpotÀÇ À§Ä¡ (1 ~ -1)
-	RwRGBAReal	m_color;					///< SpotÀÇ Vertex Color	
-	RwIm2DVertex* m_pIm2dBuffer;			///< SpotÀ» ±¸¼ºÇÏ´Â Vertex ¹öÆÛ
+	RwTexture*	m_pTexture;					///< Spotì˜ Texture
+	RwReal		m_fSize;					///< Spotì˜ Size (0.0 ~ 1.0)
+	RwReal		m_fLinePos;					///< Spotì˜ ìœ„ì¹˜ (1 ~ -1)
+	RwRGBAReal	m_color;					///< Spotì˜ Vertex Color	
+	RwIm2DVertex* m_pIm2dBuffer;			///< Spotì„ êµ¬ì„±í•˜ëŠ” Vertex ë²„í¼
 
 	SNtlPLLensFlareSpot()
 	{
@@ -72,29 +72,29 @@ public:
 
 	virtual void	SetMatrix(RwMatrix& matWorld);
 
-	void	AddSpot(const SNtlPLLensFlareSpot& spot);				///< SpotÀ» Ãß°¡ÇÑ´Ù.
-	void	AddSpotForTest(const std::string& strXMLFileName);		///< XMLÆÄÀÏ¿¡¼­ Spot Á¤º¸¸¦ ÀĞ¾î¿Í¼­ ¼³Á¤ÇÑ´Ù
+	void	AddSpot(const SNtlPLLensFlareSpot& spot);				///< Spotì„ ì¶”ê°€í•œë‹¤.
+	void	AddSpotForTest(const std::string& strXMLFileName);		///< XMLíŒŒì¼ì—ì„œ Spot ì •ë³´ë¥¼ ì½ì–´ì™€ì„œ ì„¤ì •í•œë‹¤
 
-	void	SetMaxIntensity(RwReal fMaxIntensity) {m_fIntensity = fMaxIntensity;}	///< ÃÖ´ë °­µµ¸¦ ¼³Á¤ÇÑ´Ù. (0.0 ~ 1.0 »çÀÌ)
-	RwReal  GetMaxIntensity() {return m_fIntensity;}				///<  ÃÖ´ë °­µµ¸¦ ¹İÈ¯ÇÑ´Ù.
+	void	SetMaxIntensity(RwReal fMaxIntensity) {m_fIntensity = fMaxIntensity;}	///< ìµœëŒ€ ê°•ë„ë¥¼ ì„¤ì •í•œë‹¤. (0.0 ~ 1.0 ì‚¬ì´)
+	RwReal  GetMaxIntensity() {return m_fIntensity;}				///<  ìµœëŒ€ ê°•ë„ë¥¼ ë°˜í™˜í•œë‹¤.
 
 protected:
-	void	AddSpots();												///< SpotµéÀ» º¤ÅÍ¿¡ Ãß°¡ÇÑ´Ù.
-	void	UpdateVertices(RwReal fElapsedTime);					///< vertexµéÀÇ Á¤º¸¸¦ UpdateÇÑ´Ù.
-	void	SetRhwVertex(RwIm2DVertex* pVertex, RwReal nStartX, RwReal nStartY, RwInt32 width, RwInt32 height, RwRGBAReal color);		///< 2D VertexµéÀ» ¼³Á¤ÇÑ´Ù
-	RwBool	CalcPicking(const RwV2d& posLight);						///< ±¤¿øÀ» Object¿Í Terrain CollisionÀ» Ã¼Å©ÇÏ¿© º¸ÀÏÁö ¾Èº¸ÀÏÁö °áÁ¤ÇÑ´Ù.
+	void	AddSpots();												///< Spotë“¤ì„ ë²¡í„°ì— ì¶”ê°€í•œë‹¤.
+	void	UpdateVertices(RwReal fElapsedTime);					///< vertexë“¤ì˜ ì •ë³´ë¥¼ Updateí•œë‹¤.
+	void	SetRhwVertex(RwIm2DVertex* pVertex, RwReal nStartX, RwReal nStartY, RwInt32 width, RwInt32 height, RwRGBAReal color);		///< 2D Vertexë“¤ì„ ì„¤ì •í•œë‹¤
+	RwBool	CalcPicking(const RwV2d& posLight);						///< ê´‘ì›ì„ Objectì™€ Terrain Collisionì„ ì²´í¬í•˜ì—¬ ë³´ì¼ì§€ ì•ˆë³´ì¼ì§€ ê²°ì •í•œë‹¤.
 
 protected:
 	std::vector<SNtlPLLensFlareSpot>		m_vecSpots;
 	std::vector<RwTexture*>					m_vecTex;	
-	RwReal									m_fIntensity;			///< FlareÀÇ ÃÖ´ë °­µµ
-	RwReal									m_fIntensityBorder;		///< FlareÀÇ ¹üÀ§ (°­µµ¿¡ ¿µÇâÀ» ÁØ´Ù)	
-	RwMatrix								m_matWorld;				///< World Matrix (Pos¸¦ ¼³Á¤ÇÏ±â À§ÇØ¼­ »ç¿ëÇÑ´Ù)
-	RwBool									m_bRender;				///< Render À¯¹«
-	RwReal									m_fFadeIntensity;		///< Fade In/Out¿ë º¯¼ö
+	RwReal									m_fIntensity;			///< Flareì˜ ìµœëŒ€ ê°•ë„
+	RwReal									m_fIntensityBorder;		///< Flareì˜ ë²”ìœ„ (ê°•ë„ì— ì˜í–¥ì„ ì¤€ë‹¤)	
+	RwMatrix								m_matWorld;				///< World Matrix (Posë¥¼ ì„¤ì •í•˜ê¸° ìœ„í•´ì„œ ì‚¬ìš©í•œë‹¤)
+	RwBool									m_bRender;				///< Render ìœ ë¬´
+	RwReal									m_fFadeIntensity;		///< Fade In/Outìš© ë³€ìˆ˜
 	EFadeStatus								m_eFadeStatus;
 
-	// Pick Tick ¼³Á¤¿ë º¯¼öµé
-	RwBool									m_bPrevPickingResult;	///< ÀÌÀü Tick¿¡¼­ ÀúÀåÇÏ°í ÀÖ´ø Picking °á°ú°ª
-	RwReal									m_fPickingTickTime;		///< Pick¿¡ TickÀ» ÁöÁ¤ÇÏ±â À§ÇÑ Time º¯¼ö									
+	// Pick Tick ì„¤ì •ìš© ë³€ìˆ˜ë“¤
+	RwBool									m_bPrevPickingResult;	///< ì´ì „ Tickì—ì„œ ì €ì¥í•˜ê³  ìˆë˜ Picking ê²°ê³¼ê°’
+	RwReal									m_fPickingTickTime;		///< Pickì— Tickì„ ì§€ì •í•˜ê¸° ìœ„í•œ Time ë³€ìˆ˜									
 };	

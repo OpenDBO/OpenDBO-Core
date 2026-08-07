@@ -2,7 +2,7 @@
  *
  * File			: NtlFSMCharAct.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2006. 2. 9	
  * Abstract		: character fsm class
  *****************************************************************************
@@ -28,7 +28,7 @@ public:
 	virtual RwBool Create(void);	
 	virtual void Destroy(void);
 
-    virtual CNtlFSMStateBase* Transition(CNtlSobActor *pActor, CNtlFSMStateBase *pOldState, RwUInt32 uiNewStateId); ///< State∏¶ ∫Ø»Ø«—¥Ÿ
+    virtual CNtlFSMStateBase* Transition(CNtlSobActor *pActor, CNtlFSMStateBase *pOldState, RwUInt32 uiNewStateId); ///< StateÎ•º Î≥ÄÌôòÌïúÎã§
 };
 
 #endif

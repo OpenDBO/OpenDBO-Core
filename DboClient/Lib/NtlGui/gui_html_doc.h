@@ -5,7 +5,7 @@
 
 typedef VOID (*UserTagFunc)(const WCHAR *pTag, UINT uId, std::wstring& str);
 
-// Kell's Comment<2007-10-31>: Html_Doc °ü·ÃµÈ ºÎºĞÀº ÆÄÀÏ ÀÌ¸§À» »©°í ¸ğµç ºÎºĞÀ» Wide Character ÇüÀ¸·Î º¯°æ
+// Kell's Comment<2007-10-31>: Html_Doc ê´€ë ¨ëœ ë¶€ë¶„ì€ íŒŒì¼ ì´ë¦„ì„ ë¹¼ê³  ëª¨ë“  ë¶€ë¶„ì„ Wide Character í˜•ìœ¼ë¡œ ë³€ê²½
 
 START_GUI
 
@@ -34,9 +34,9 @@ class CHtml_Item;
 class CHtmlMetaTagItem
 {
 public:
-	std::wstring	m_wstrTagKey;		// MetaTag ÀÇ KeyName
+	std::wstring	m_wstrTagKey;		// MetaTag ì˜ KeyName
 
-	INT				m_nFlags;			// MetaTagÀÇ Flags
+	INT				m_nFlags;			// MetaTagì˜ Flags
 	std::wstring	m_wstrFontName;		// Font
 	COLORREF		m_FontColor;		// Color
 	INT				m_nFontSize;		// Size
@@ -55,7 +55,7 @@ class CHtmlMetaTag
 private:
 	typedef std::list<CHtmlMetaTagItem*> ListMetaTagItem;
 
-	INT				m_nTagId;					// ÇöÀç TagÀÇ ID
+	INT				m_nTagId;					// í˜„ì¬ Tagì˜ ID
 	ListMetaTagItem	m_listMetaTagItem;			
 
 public:
@@ -67,7 +67,7 @@ public:
 	INT					GetTagId(void) const;
 
 	VOID				AddItem(CHtmlMetaTagItem *pItem);
-	CHtmlMetaTagItem*	FindItem(const wchar_t *pKey);		// List¿¡ ÀÖ´Â MetaTagItem À» pKey·Î Ã£´Â´Ù.
+	CHtmlMetaTagItem*	FindItem(const wchar_t *pKey);		// Listì— ìˆëŠ” MetaTagItem ì„ pKeyë¡œ ì°¾ëŠ”ë‹¤.
 };	
 
 //////////////////////////////////////////////////////////////////////////
@@ -88,7 +88,7 @@ private:
 private:
 	VOID			Reset(VOID);
 
-	bool			IsTokenSpace(WCHAR c);	// c°¡ ½ºÆäÀÌ½ºÀÎÁö °Ë»çÇÑ´Ù.
+	bool			IsTokenSpace(WCHAR c);	// cê°€ ìŠ¤í˜ì´ìŠ¤ì¸ì§€ ê²€ì‚¬í•œë‹¤.
 
 	VOID			TagTokenParsing(WCHAR *pwBuffer, const WCHAR *pToken, INT nSize);
 	VOID			Parsing(const CHAR *pFileName);
@@ -132,7 +132,7 @@ static CHtmlMetaTagContainter* GetMetaTagContainer(void)
 class CHtmlDoc
 {
 public:
-	// ÇöÀçÀÇ font ¼Ó¼º.
+	// í˜„ì¬ì˜ font ì†ì„±.
 	INT				m_nMetaTagId;
 	std::wstring	m_wstrFontName;		// font name
 	INT				m_nFontSize;		// font size
@@ -140,17 +140,17 @@ public:
 	float			m_fFontRatio;		// font ratio
 	COLORREF		m_CurTextColor;		// text color
 	COLORREF		m_CurBgColor;		// text background color
-	DWORD			m_dwAlign;			// text Á¤·Ä.
-	DWORD			m_dwCurrAlign;		// text current Á¤·Ä.
+	DWORD			m_dwAlign;			// text ì •ë ¬.
+	DWORD			m_dwCurrAlign;		// text current ì •ë ¬.
 	BOOL			m_bLinkItem;		// Link Text
-	BOOL			m_bInFontTag;		// Font Tag¾È¿¡ ÀÖ´ÂÁö È®ÀÎ
+	BOOL			m_bInFontTag;		// Font Tagì•ˆì— ìˆëŠ”ì§€ í™•ì¸
 
-	// Link ¼Ó¼º
+	// Link ì†ì„±
 	BYTE			m_byLinkType;		// Link Type
-	std::wstring	m_wstrLinkFileName;	// LinkµÉ File name
-	INT				m_nLinkIndex;		// LinkµÉ Index
+	std::wstring	m_wstrLinkFileName;	// Linkë  File name
+	INT				m_nLinkIndex;		// Linkë  Index
 
-	// Doc À» °¡Áö°í ÀÖ´Â Gui ComponentÀÇ Æ÷ÀÎÅÍ
+	// Doc ì„ ê°€ì§€ê³  ìˆëŠ” Gui Componentì˜ í¬ì¸í„°
 	CComponent*		m_pParentComp;
 	
 	typedef std::list<CHtml_Item*> ListHtmlItem;

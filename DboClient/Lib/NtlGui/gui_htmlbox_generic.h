@@ -6,29 +6,29 @@
 
 START_GUI
 
-// HTML ITEM ∞πºˆ∏¶ ¡§¿«
+// HTML ITEM Í∞ØÏàòÎ•º Ï†ïÏùò
 #define MAX_HTML_ITEM			1000
 #define MAX_HTML_ITEM_ALIGN		100	
-#define HTML_LINE_INTERVAL		5		///< ∂Û¿Œ¥Á ∞£∞›¿ª Define¿∏∑Œ ¡§¿«(±‚∫ª)
+#define HTML_LINE_INTERVAL		5		///< ÎùºÏù∏Îãπ Í∞ÑÍ≤©ÏùÑ DefineÏúºÎ°ú Ï†ïÏùò(Í∏∞Î≥∏)
 
 /**
-* \brief Link µ«¥¬ øµø™¿ª ¿˙¿Â«œ∞Ì ¿÷¥¬¥Ÿ.
+* \brief Link ÎêòÎäî ÏòÅÏó≠ÏùÑ Ï†ÄÏû•ÌïòÍ≥† ÏûàÎäîÎã§.
 */
 struct sLinkRect
 {
-	CHtml_LinkItem* pLinkItem;			///< ∏µ≈© æ∆¿Ã≈€
-	CRectangle		rectArea;			///< ∞ËªÍµ… øµø™( Ω∫≈©∑—, ∆‰¿Ã¡ˆ ∆˜«‘ )
+	CHtml_LinkItem* pLinkItem;			///< ÎßÅÌÅ¨ ÏïÑÏù¥ÌÖú
+	CRectangle		rectArea;			///< Í≥ÑÏÇ∞Îê† ÏòÅÏó≠( Ïä§ÌÅ¨Î°§, ÌéòÏù¥ÏßÄ Ìè¨Ìï® )
 };
 
 // Callback
 typedef VOID (*HtmlLinkTagFunc)(gui::CComponent* pComponent, BYTE byType, UINT32 uiIndex, std::wstring& strFilename);
 
-// ¿¸πÊº±æ
+// Ï†ÑÎ∞©ÏÑ†Ïñ∏
 class CHtmlDoc;
 
 /**
 * \ingroup client
-* \brief RowHtml_Item ≈¨∑°Ω∫¥¬ Htmlø°º≠ ∞¢ «‡¿ª ¥„∞Ì ¿÷¥¬ ItemµÈ¿Ã¥Ÿ.
+* \brief RowHtml_Item ÌÅ¥ÎûòÏä§Îäî HtmlÏóêÏÑú Í∞Å ÌñâÏùÑ Îã¥Í≥† ÏûàÎäî ItemÎì§Ïù¥Îã§.
 */
 class CRowHtml_Item
 {
@@ -55,7 +55,7 @@ public:
 	INT			GetCurrentIndex(VOID);
 	INT			GetItemCount(VOID);
 
-	// ∏ÆΩ∫∆Æø° «ˆ¿Á ∞°¡ˆ∞Ì ¿÷¥¬ string æ∆¿Ã≈€¿« ∏µÁ ±€¿⁄ ≈©±‚∏¶ ±‚∑œ«—¥Ÿ.
+	// Î¶¨Ïä§Ìä∏Ïóê ÌòÑÏû¨ Í∞ÄÏßÄÍ≥† ÏûàÎäî string ÏïÑÏù¥ÌÖúÏùò Î™®Îì† Í∏ÄÏûê ÌÅ¨Í∏∞Î•º Í∏∞Î°ùÌïúÎã§.
 	VOID		GetItemRect( std::list<CRectangle>& list );
 	VOID		GetLinkRect( std::list<sLinkRect>& list );
 
@@ -65,9 +65,9 @@ private:
 	INT GetChildRowHtmlHeight(INT nLineIntervalY);
 
 private:
-	INT						m_nCurrIdx;				///< «ˆ¿Á Index ( Line Index )
-	INT						m_nLineIntervalY;		///< Item ¥Á Y ∞£∞›
-	BOOL					m_bFull;				///< «ˆ¿Á Row∞° ≤À √°¥¬¡ˆ¿« ø©∫Œ
+	INT						m_nCurrIdx;				///< ÌòÑÏû¨ Index ( Line Index )
+	INT						m_nLineIntervalY;		///< Item Îãπ Y Í∞ÑÍ≤©
+	BOOL					m_bFull;				///< ÌòÑÏû¨ RowÍ∞Ä ÍΩâ Ï∞ºÎäîÏßÄÏùò Ïó¨Î∂Ä
 	BOOL					m_bFixedTopDown;
 	CRectangle				m_rtClipping;
 	CRectangle				m_rtArea;
@@ -79,7 +79,7 @@ private:
 
 /**
 * \ingroup client
-* \brief HtmlBox∞° ªÁøÎ«“ ºˆ ¿÷¥¬ Generic º”º∫µÈ
+* \brief HtmlBoxÍ∞Ä ÏÇ¨Ïö©Ìï† Ïàò ÏûàÎäî Generic ÏÜçÏÑ±Îì§
 */
 class CHtmlBox_Generic
 {
@@ -87,54 +87,54 @@ public:
 	CHtmlBox_Generic(CHtmlBox *pSelf, BOOL bDynamic = FALSE);
 	~CHtmlBox_Generic();
 
-	VOID	SetHtmlFromFile(const CHAR *pFileName);					///< ∆ƒ¿œø°º≠ ∆ƒΩÃ
-	VOID	SetHtmlFromMemory(const WCHAR *pMemory, INT nSize);		///< ∏ﬁ∏∏Æø°º≠ ∆ƒΩÃ
+	VOID	SetHtmlFromFile(const CHAR *pFileName);					///< ÌååÏùºÏóêÏÑú ÌååÏã±
+	VOID	SetHtmlFromMemory(const WCHAR *pMemory, INT nSize);		///< Î©îÎ™®Î¶¨ÏóêÏÑú ÌååÏã±
 	
-	BOOL	SetFontRatio( float fRatio );							///< ≈ÿΩ∫∆Æ πË¿≤ ¡ˆ¡§
-	VOID	SetStyle(DWORD dwStyle);								///< Style ¡ˆ¡§
-	VOID	SetLineSpace(INT nSpace);								///< ∂Û¿Œ ∞£∞› ¡ˆ¡§
-	VOID	SetTextBackgroundColor(COLORREF color);					///< ≈ÿΩ∫∆Æ πË∞Êªˆ±Ú ¡ˆ¡§
+	BOOL	SetFontRatio( float fRatio );							///< ÌÖçÏä§Ìä∏ Î∞∞Ïú® ÏßÄÏ†ï
+	VOID	SetStyle(DWORD dwStyle);								///< Style ÏßÄÏ†ï
+	VOID	SetLineSpace(INT nSpace);								///< ÎùºÏù∏ Í∞ÑÍ≤© ÏßÄÏ†ï
+	VOID	SetTextBackgroundColor(COLORREF color);					///< ÌÖçÏä§Ìä∏ Î∞∞Í≤ΩÏÉâÍπî ÏßÄÏ†ï
 
-	VOID	Clear(VOID);									///< Item, Texture √ ±‚»≠
+	VOID	Clear(VOID);									///< Item, Texture Ï¥àÍ∏∞Ìôî
 
 public:
 	//: Sets the surface.
 	VOID	AddSurface( CSurface surface );
 	
-	VOID	CreateTextTexture(void);						///< Text Texture ª˝º∫
-	VOID	DeleteTextTexture(void);						///< Text Texture «ÿ¡¶
+	VOID	CreateTextTexture(void);						///< Text Texture ÏÉùÏÑ±
+	VOID	DeleteTextTexture(void);						///< Text Texture Ìï¥Ï†ú
 
-	//: 2007-11-16 «— ±€¿⁄æø º¯º≠¥Î∑Œ √‚∑¬«œ¥¬ ∏µÂ
+	//: 2007-11-16 Ìïú Í∏ÄÏûêÏî© ÏàúÏÑúÎåÄÎ°ú Ï∂úÎ†•ÌïòÎäî Î™®Îìú
 public:
-	VOID	SetIntervalTextEnable(float fIntervalTime);		///< ∏µÂ ø¬ : √‚∑¬ ∞£∞› (√ )
-	VOID	SetIntervalTextDisable();						///< «— ±€¿⁄æø √‚∑¬«œ¥¬ ∏µÂ∏¶ «ÿ¡¶
+	VOID	SetIntervalTextEnable(float fIntervalTime);		///< Î™®Îìú Ïò® : Ï∂úÎ†• Í∞ÑÍ≤© (Ï¥à)
+	VOID	SetIntervalTextDisable();						///< Ìïú Í∏ÄÏûêÏî© Ï∂úÎ†•ÌïòÎäî Î™®ÎìúÎ•º Ìï¥Ï†ú
 
-	VOID	Update(float fElapsedTime);						///< æ˜µ•¿Ã∆Æ
+	VOID	Update(float fElapsedTime);						///< ÏóÖÎç∞Ïù¥Ìä∏
 
-	INT		GetIntervalPageNums(VOID);						///< √‚∑¬µ«¥¬ √— ∆‰¿Ã¡ˆ ∞πºˆ
-	INT		GetCurrentPage(VOID);							///< «ˆ¿Á ∆‰¿Ã¡ˆ
+	INT		GetIntervalPageNums(VOID);						///< Ï∂úÎ†•ÎêòÎäî Ï¥ù ÌéòÏù¥ÏßÄ Í∞ØÏàò
+	INT		GetCurrentPage(VOID);							///< ÌòÑÏû¨ ÌéòÏù¥ÏßÄ
 
-	BOOL	SetNextPage(VOID);								///< ¥Ÿ¿Ω ∆‰¿Ã¡ˆ
-	BOOL	SetPrevPage(VOID);								///< ¿Ã¿¸ ∆‰¿Ã¡ˆ
-	BOOL	SetSkipPage(VOID);								///< «ˆ¿Á ∆‰¿Ã¡ˆ SKIP
+	BOOL	SetNextPage(VOID);								///< Îã§Ïùå ÌéòÏù¥ÏßÄ
+	BOOL	SetPrevPage(VOID);								///< Ïù¥Ï†Ñ ÌéòÏù¥ÏßÄ
+	BOOL	SetSkipPage(VOID);								///< ÌòÑÏû¨ ÌéòÏù¥ÏßÄ SKIP
 
-	BOOL	SetPlayPage(INT nPage);							///< nPage∫Œ≈Õ «√∑π¿Ã
+	BOOL	SetPlayPage(INT nPage);							///< nPageÎ∂ÄÌÑ∞ ÌîåÎ†àÏù¥
 
-	VOID	SetPause( BOOL bPause = TRUE );					///< ¿œΩ√∏ÿ√„ ( FALSE∏¶ ≥÷¿∏∏È ¿Á∞≥ )
-	VOID	SetImmediate( BOOL bImmediate = TRUE );			///< ∆‰¿Ã¡ˆ∏¶ πŸ∑Œ ∫∏ø©¡÷¥¬ ∏µÂ
+	VOID	SetPause( BOOL bPause = TRUE );					///< ÏùºÏãúÎ©àÏ∂§ ( FALSEÎ•º ÎÑ£ÏúºÎ©¥ Ïû¨Í∞ú )
+	VOID	SetImmediate( BOOL bImmediate = TRUE );			///< ÌéòÏù¥ÏßÄÎ•º Î∞îÎ°ú Î≥¥Ïó¨Ï£ºÎäî Î™®Îìú
 
-	VOID	SetPresentNum(INT nNum);						///< «—π¯ø° √‚∑¬µ… ±€¿⁄¿« ∞πºˆ º≥¡§
-	INT		GetPresentNum();								///< «ˆ¿Á √‚∑¬µ«¥¬ ±€¿⁄ ∞πºˆ
+	VOID	SetPresentNum(INT nNum);						///< ÌïúÎ≤àÏóê Ï∂úÎ†•Îê† Í∏ÄÏûêÏùò Í∞ØÏàò ÏÑ§Ï†ï
+	INT		GetPresentNum();								///< ÌòÑÏû¨ Ï∂úÎ†•ÎêòÎäî Í∏ÄÏûê Í∞ØÏàò
 
-	CSignal_v1<int> m_SigPageDone;							///< ∆‰¿Ã¡ˆ∞° øœ∑· µ∆¿ª ∂ß ≥Ø∂Û∞°¥¬ »£√‚µ«¥¬ Signal
+	CSignal_v1<int> m_SigPageDone;							///< ÌéòÏù¥ÏßÄÍ∞Ä ÏôÑÎ£å ÎêêÏùÑ Îïå ÎÇ†ÎùºÍ∞ÄÎäî Ìò∏Ï∂úÎêòÎäî Signal
 
 private:
-	VOID	DeleteItem(VOID);								///< m_pHtmlDoc «ÿ¡¶
-	VOID	DeleteRenderItem(VOID);							///< m_listRowHtml √ ±‚»≠
+	VOID	DeleteItem(VOID);								///< m_pHtmlDoc Ìï¥Ï†ú
+	VOID	DeleteRenderItem(VOID);							///< m_listRowHtml Ï¥àÍ∏∞Ìôî
 	
-	VOID	ItemDisposition(VOID);							///< HtmlBox ƒƒ∆˜≥Õ∆Æø° ∏¬√· ItemµÈ ∞ËªÍ
-	VOID	ItemLineSorting(VOID);							///< HtmlBox øµø™ ∞ËªÍ
-	VOID	ItemRenderToTexture(INT nVScrollPos);			///< øµø™ø° æÀ∏¬∞‘ ∑ª¥ı∏µ
+	VOID	ItemDisposition(VOID);							///< HtmlBox Ïª¥Ìè¨ÎÑåÌä∏Ïóê ÎßûÏ∂ò ItemÎì§ Í≥ÑÏÇ∞
+	VOID	ItemLineSorting(VOID);							///< HtmlBox ÏòÅÏó≠ Í≥ÑÏÇ∞
+	VOID	ItemRenderToTexture(INT nVScrollPos);			///< ÏòÅÏó≠Ïóê ÏïåÎßûÍ≤å Î†åÎçîÎßÅ
 
 	INT		GetAlignOffsetX(DWORD dwAlign, INT nClipWidth, INT nItemWidth);
 	INT		GetAlignOffsetY(DWORD dwAlign, INT nClipHeight, INT nItemHeight);
@@ -143,27 +143,27 @@ private:
 	VOID	SetVScrollRange(INT nRange);
 	VOID	SetVScrollPos(INT nPos);
 
-	VOID	IntervalTextPosCalc(VOID);						///< ±€¿⁄ ¿ßƒ°∏¶ ∞ËªÍ
-	VOID	IntervalPagePosCalc(VOID);						///< ∆‰¿Ã¡ˆ¿« ≈©±‚ ∞ËªÍ
+	VOID	IntervalTextPosCalc(VOID);						///< Í∏ÄÏûê ÏúÑÏπòÎ•º Í≥ÑÏÇ∞
+	VOID	IntervalPagePosCalc(VOID);						///< ÌéòÏù¥ÏßÄÏùò ÌÅ¨Í∏∞ Í≥ÑÏÇ∞
 
-	VOID	IntervalPageInit(INT nPage);					///< √‚∑¬¿ª ¿ß«— æ˜µ•¿Ã∆Æ ¡§∫∏ √ ±‚»≠
-	VOID	IntervalPageDone(INT nPage);					///< IntervalText ∆‰¿Ã¡ˆ øœ∑·
+	VOID	IntervalPageInit(INT nPage);					///< Ï∂úÎ†•ÏùÑ ÏúÑÌïú ÏóÖÎç∞Ïù¥Ìä∏ Ï†ïÎ≥¥ Ï¥àÍ∏∞Ìôî
+	VOID	IntervalPageDone(INT nPage);					///< IntervalText ÌéòÏù¥ÏßÄ ÏôÑÎ£å
 
-	VOID	DeleteIntervalText(VOID);						///< IntervalText¿« ∏µÁ ¿⁄ø¯ ªË¡¶
+	VOID	DeleteIntervalText(VOID);						///< IntervalTextÏùò Î™®Îì† ÏûêÏõê ÏÇ≠Ï†ú
 
-	// Dynamic ∞¸∑√ «‘ºˆ
-	VOID	AdjustToWidthString(VOID);						///< Dynamic º”º∫ ¿œ∂ß ƒƒ∆˜≥Õ∆Æ¿« Width∏¶ ¡∂¿˝«—¥Ÿ.
-	VOID	AdjustToHeightString(VOID);						///< Dynamic º”º∫ ¿œ∂ß ƒƒ∆˜≥Õ∆Æ¿« Height∏¶ ¡∂¿˝«—¥Ÿ.
+	// Dynamic Í¥ÄÎ†® Ìï®Ïàò
+	VOID	AdjustToWidthString(VOID);						///< Dynamic ÏÜçÏÑ± ÏùºÎïå Ïª¥Ìè¨ÎÑåÌä∏Ïùò WidthÎ•º Ï°∞Ï†àÌïúÎã§.
+	VOID	AdjustToHeightString(VOID);						///< Dynamic ÏÜçÏÑ± ÏùºÎïå Ïª¥Ìè¨ÎÑåÌä∏Ïùò HeightÎ•º Ï°∞Ï†àÌïúÎã§.
 
 	INT FindMaxWidthItem(VOID);
 
-	// Link ∞¸∑√ «‘ºˆ
-	VOID	LinkRectCalc(VOID);								///< ∏µ≈©µ«¥¬ ¿ßƒ°∏¶ ∞ËªÍ
-	VOID	LinkVScrollCalc(INT nPos);						///< ∏µ≈©µ«¥¬ øµø™¿ª Ω∫≈©∑—ø° µ˚∂Û ∞ËªÍ«ÿ¡ÿ¥Ÿ.
-	VOID	DeleteIntervalLink(VOID);						///< Interval Text Mode¿œ ∂ß ∏µ≈© øµø™ ∞ËªÍ «—∞Õ¿ª ªË¡¶«—¥Ÿ.
+	// Link Í¥ÄÎ†® Ìï®Ïàò
+	VOID	LinkRectCalc(VOID);								///< ÎßÅÌÅ¨ÎêòÎäî ÏúÑÏπòÎ•º Í≥ÑÏÇ∞
+	VOID	LinkVScrollCalc(INT nPos);						///< ÎßÅÌÅ¨ÎêòÎäî ÏòÅÏó≠ÏùÑ Ïä§ÌÅ¨Î°§Ïóê Îî∞Îùº Í≥ÑÏÇ∞Ìï¥Ï§ÄÎã§.
+	VOID	DeleteIntervalLink(VOID);						///< Interval Text ModeÏùº Îïå ÎßÅÌÅ¨ ÏòÅÏó≠ Í≥ÑÏÇ∞ ÌïúÍ≤ÉÏùÑ ÏÇ≠Ï†úÌïúÎã§.
 
 public:
-	// Link ∞¸∑√ ƒ›πÈ «‘ºˆ
+	// Link Í¥ÄÎ†® ÏΩúÎ∞± Ìï®Ïàò
 	static HtmlLinkTagFunc m_fnHtmlLinkTag;
 
 	static VOID LinkHtmlLinkTag(HtmlLinkTagFunc fnLinkTag);
@@ -202,65 +202,65 @@ private:
 	// html document
 	CHtmlDoc			*m_pHtmlDoc;
 
-	// rendering HTML item : º”µµ∏¶ ¿ß«œø© µ˚∑Œ ¿⁄∑·±∏¡∂∏¶ ∏∂∑√«œø¥¥Ÿ.
+	// rendering HTML item : ÏÜçÎèÑÎ•º ÏúÑÌïòÏó¨ Îî∞Î°ú ÏûêÎ£åÍµ¨Ï°∞Î•º ÎßàÎ†®ÌïòÏòÄÎã§.
 	std::list<CRowHtml_Item*> m_listRowHtml;
 
 	// component attribute
 	DWORD		m_dwStyle;
-	INT			m_nLineInterY;				///< line ∞£∞›.
-	INT			m_nItemCx;					///< ¿¸√º item¿« width
-	INT			m_nItemCy;					///< ¿¸√º item¿« height
+	INT			m_nLineInterY;				///< line Í∞ÑÍ≤©.
+	INT			m_nItemCx;					///< Ï†ÑÏ≤¥ itemÏùò width
+	INT			m_nItemCy;					///< Ï†ÑÏ≤¥ itemÏùò height
 	BOOL		m_bVScrollEnable;			///< vertical scroll enable
 	INT			m_nVScrollRange;			///< vertical scroll range
-	COLORREF	m_BgColor;					///< πË∞Ê ªˆ±Ú
+	COLORREF	m_BgColor;					///< Î∞∞Í≤Ω ÏÉâÍπî
 	INT			m_nVScrollPos;
 
 	float m_fRatio;
 
-	BOOL		m_bIntervalText;			///< «ˆ¿Á¿« ∏µÂ default = FALSE
-	BOOL		m_bDonePage;				///< «ˆ¿Á¿« ∆‰¿Ã¡ˆ∏¶ ∏µŒ √‚∑¬ øœ∑·
-	BOOL		m_bPause;					///< ¿œΩ√∏ÿ√„
-	BOOL		m_bImmediate;				///< ∆‰¿Ã¡ˆ∏¶ πŸ∑Œ ∫∏ø©¡‹
+	BOOL		m_bIntervalText;			///< ÌòÑÏû¨Ïùò Î™®Îìú default = FALSE
+	BOOL		m_bDonePage;				///< ÌòÑÏû¨Ïùò ÌéòÏù¥ÏßÄÎ•º Î™®Îëê Ï∂úÎ†• ÏôÑÎ£å
+	BOOL		m_bPause;					///< ÏùºÏãúÎ©àÏ∂§
+	BOOL		m_bImmediate;				///< ÌéòÏù¥ÏßÄÎ•º Î∞îÎ°ú Î≥¥Ïó¨Ï§å
 
-	float		m_fIntervalTime;			///< ∞£∞›¿« Ω√∞£
-	float		m_fElapsedTime;				///< ¥©¿˚µ» Ω√∞£
+	float		m_fIntervalTime;			///< Í∞ÑÍ≤©Ïùò ÏãúÍ∞Ñ
+	float		m_fElapsedTime;				///< ÎàÑÏ†ÅÎêú ÏãúÍ∞Ñ
 	
-	INT			m_nCurrentRow;				///< √‚∑¬«œ¥¬ «ˆ¿Á ±€¿⁄¿« ¿ßƒ°¿« ≥Ù¿Ã
-	INT			m_nCurrentPage;				///< √‚∑¬«œ¥¬ «ˆ¿Á ∆‰¿Ã¡ˆ
+	INT			m_nCurrentRow;				///< Ï∂úÎ†•ÌïòÎäî ÌòÑÏû¨ Í∏ÄÏûêÏùò ÏúÑÏπòÏùò ÎÜíÏù¥
+	INT			m_nCurrentPage;				///< Ï∂úÎ†•ÌïòÎäî ÌòÑÏû¨ ÌéòÏù¥ÏßÄ
 
-	PlaneSnapShot	m_planeInterval;		///< «ˆ¿Á ¡¯«‡¡ﬂ¿Œ ¡Ÿ¿« rect
-	INT				m_nPageCount;			///< ∆‰¿Ã¡ˆ¿« ∞πºˆ
+	PlaneSnapShot	m_planeInterval;		///< ÌòÑÏû¨ ÏßÑÌñâÏ§ëÏù∏ Ï§ÑÏùò rect
+	INT				m_nPageCount;			///< ÌéòÏù¥ÏßÄÏùò Í∞ØÏàò
 
-	INT				m_nPresentNum;			///< «—π¯ø° ∫∏ø©¡Ÿ ±€¿⁄¿« ∞πºˆ ( 1 ~ 10 , default 1 )
+	INT				m_nPresentNum;			///< ÌïúÎ≤àÏóê Î≥¥Ïó¨Ï§Ñ Í∏ÄÏûêÏùò Í∞ØÏàò ( 1 ~ 10 , default 1 )
 	
 	typedef std::list<CRectangle> LISTRECTANGLE;
-	LISTRECTANGLE *m_pListRectangle;		///< ∆‰¿Ã¡ˆ ∫∞∑Œ ±€¿⁄¿« ≈©±‚∏¶ ¥„¿∫ ∏ÆΩ∫∆Æ
-	LISTRECTANGLE::iterator itListRect;		///< ±€¿⁄¿« π›∫π¿⁄
+	LISTRECTANGLE *m_pListRectangle;		///< ÌéòÏù¥ÏßÄ Î≥ÑÎ°ú Í∏ÄÏûêÏùò ÌÅ¨Í∏∞Î•º Îã¥ÏùÄ Î¶¨Ïä§Ìä∏
+	LISTRECTANGLE::iterator itListRect;		///< Í∏ÄÏûêÏùò Î∞òÎ≥µÏûê
 
 	typedef std::vector<INT> VECINT;
-	VECINT m_vecNewLineIdx;					///< CRowHtml_Item¿« [br]≈¬±◊¿« index
-	VECINT m_vecNewPageIdx; 				///< ∆‰¿Ã¡ˆ∏¶ ±∏∫–«œ¥¬ [br]≈¬±◊¿« index
+	VECINT m_vecNewLineIdx;					///< CRowHtml_ItemÏùò [br]ÌÉúÍ∑∏Ïùò index
+	VECINT m_vecNewPageIdx; 				///< ÌéòÏù¥ÏßÄÎ•º Íµ¨Î∂ÑÌïòÎäî [br]ÌÉúÍ∑∏Ïùò index
 
 	typedef std::vector<CRectangle> VECRECTANGLE;
-	VECRECTANGLE m_vecPageRect;				///< ∞¢ ∆‰¿Ã¡ˆ¿« ≈©±‚
+	VECRECTANGLE m_vecPageRect;				///< Í∞Å ÌéòÏù¥ÏßÄÏùò ÌÅ¨Í∏∞
 
-	// Dynamic º”º∫
-	BOOL	m_bDynamic;						///< Dynamic º”º∫
-	INT		m_nMaxCX;						///< √÷¥Î »Æ¿Â«“ ºˆ ¿÷¥¬ X
-	INT		m_nMaxCY;						///< √÷¥Î »Æ¿Â«“ ºˆ ¿÷¥¬ Y
-	INT		m_nMinCX;						///< √÷¥Î ¡Ÿ¿œ ºˆ ¿÷¥¬ X
-	INT		m_nMinCY;						///< √÷¥Î ¡Ÿ¿œ ºˆ ¿÷¥¬ Y
+	// Dynamic ÏÜçÏÑ±
+	BOOL	m_bDynamic;						///< Dynamic ÏÜçÏÑ±
+	INT		m_nMaxCX;						///< ÏµúÎåÄ ÌôïÏû•Ìï† Ïàò ÏûàÎäî X
+	INT		m_nMaxCY;						///< ÏµúÎåÄ ÌôïÏû•Ìï† Ïàò ÏûàÎäî Y
+	INT		m_nMinCX;						///< ÏµúÎåÄ Ï§ÑÏùº Ïàò ÏûàÎäî X
+	INT		m_nMinCY;						///< ÏµúÎåÄ Ï§ÑÏùº Ïàò ÏûàÎäî Y
 
-	CRectangle	m_rectScreen;				///< √ ±‚ ƒƒ∆˜≥Õ∆Æ¿« øµø™ ( Dynamic º”º∫¿œ∂ß ∞ËªÍ¿« ±‚¡ÿ¿Ã µ»¥Ÿ )
-	CRectangle	m_rectClient;				///< √ ±‚ ƒƒ∆˜≥Õ∆Æ¿« øµø™
+	CRectangle	m_rectScreen;				///< Ï¥àÍ∏∞ Ïª¥Ìè¨ÎÑåÌä∏Ïùò ÏòÅÏó≠ ( Dynamic ÏÜçÏÑ±ÏùºÎïå Í≥ÑÏÇ∞Ïùò Í∏∞Ï§ÄÏù¥ ÎêúÎã§ )
+	CRectangle	m_rectClient;				///< Ï¥àÍ∏∞ Ïª¥Ìè¨ÎÑåÌä∏Ïùò ÏòÅÏó≠
 
-	INT		m_nMaxWidth;					///< «ˆ¿Á æ∆¿Ã≈€ ¡ﬂø°º≠ ∞°¿Â ≈´ ªÁ¿Ã¡Ó∏¶ ∫∏∞¸«œ¥¬ ∫Øºˆ
+	INT		m_nMaxWidth;					///< ÌòÑÏû¨ ÏïÑÏù¥ÌÖú Ï§ëÏóêÏÑú Í∞ÄÏû• ÌÅ∞ ÏÇ¨Ïù¥Ï¶àÎ•º Î≥¥Í¥ÄÌïòÎäî Î≥ÄÏàò
 
-	// Link º”º∫
+	// Link ÏÜçÏÑ±
 	typedef std::list<sLinkRect> LISTLINK;
-	LISTLINK			m_listOriginLink;					///< Link øµø™¿ª ¥„∞Ì ø¯∫ª ∏ÆΩ∫∆Æ
-	LISTLINK			m_listDuplicateLink;				///< Scroll∞˙ Page ∞ËªÍ±Ó¡ˆ ∏∂ƒ£ ∏µ≈© øµø™ ∏ÆΩ∫∆Æ(Ω«¡¶ ∞ËªÍΩ√ ¬¸¡∂)
-	LISTLINK*			m_pListLink;						///< Link øµø™¿ª ∆‰¿Ã¡ˆ ∫∞∑Œ ¥„∞Ì ¿÷¥¬ ∏ÆΩ∫∆Æ(IntervalText ªÁøÎΩ√)
+	LISTLINK			m_listOriginLink;					///< Link ÏòÅÏó≠ÏùÑ Îã¥Í≥† ÏõêÎ≥∏ Î¶¨Ïä§Ìä∏
+	LISTLINK			m_listDuplicateLink;				///< ScrollÍ≥º Page Í≥ÑÏÇ∞ÍπåÏßÄ ÎßàÏπú ÎßÅÌÅ¨ ÏòÅÏó≠ Î¶¨Ïä§Ìä∏(Ïã§Ï†ú Í≥ÑÏÇ∞Ïãú Ï∞∏Ï°∞)
+	LISTLINK*			m_pListLink;						///< Link ÏòÅÏó≠ÏùÑ ÌéòÏù¥ÏßÄ Î≥ÑÎ°ú Îã¥Í≥† ÏûàÎäî Î¶¨Ïä§Ìä∏(IntervalText ÏÇ¨Ïö©Ïãú)
 	LISTLINK::iterator	m_itCaptureLink;
 
 };

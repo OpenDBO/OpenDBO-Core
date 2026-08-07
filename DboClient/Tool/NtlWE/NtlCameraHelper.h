@@ -2,7 +2,7 @@
  *
  * File			: NTLCameraHelper.h
  * Author		: HongHoDong
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 8. 25	
  * Abstract		: NTl CameraHelper
  *****************************************************************************
@@ -16,7 +16,7 @@
 
 /**
  * \ingroup Client
- * Camera °ü·Ã Helper ÇÔ¼öµé ÀÌ´Ù.
+ * Camera ê´€ë ¨ Helper í•¨ìˆ˜ë“¤ ì´ë‹¤.
  * 
  */
 

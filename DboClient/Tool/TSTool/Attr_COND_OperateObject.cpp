@@ -1,4 +1,4 @@
-// Attr_COND_OperateObject.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_COND_OperateObject.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_COND_OperateObject.h"
 
 
-// CAttr_COND_OperateObject ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_COND_OperateObject ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_COND_OperateObject, CAttr_Page, 1)
 
@@ -41,4 +41,4 @@ BEGIN_MESSAGE_MAP(CAttr_COND_OperateObject, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_COND_OperateObject ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_COND_OperateObject ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

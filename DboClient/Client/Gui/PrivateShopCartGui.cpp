@@ -335,7 +335,7 @@ void CPrivateShopCartGui::OnMouseUp(const CKey& key)
 	{
 		if (m_pFocusItem == m_pClickItem)
 		{
-			// ÇöÀç ¸¶¿ì½º ¿ÞÂÊ ¹öÆ°À» ÀÌ¿ëÇÏ¿© ¾ÆÀÌÅÛÀ» µî·ÏÇÏ´Â °ÍÀº ¸·Çô ÀÖÀ½
+			// í˜„ìž¬ ë§ˆìš°ìŠ¤ ì™¼ìª½ ë²„íŠ¼ì„ ì´ìš©í•˜ì—¬ ì•„ì´í…œì„ ë“±ë¡í•˜ëŠ” ê²ƒì€ ë§‰í˜€ ìžˆìŒ
 			if (key.m_nID == UD_LEFT_BUTTON)
 			{
 				if (GetIconMoveManager()->IsActive() && GetIconMoveManager()->GetSrcPlace() == PLACE_PRIVATESHOP)
@@ -375,7 +375,7 @@ void CPrivateShopCartGui::OnMouseDown(const CKey& key)
 	m_pClickItem = m_pFocusItem;
 	if ( m_pClickItem )
 	{
-		// ¿À¸¥ÂÊ ¹öÆ°¸¸ È¿°ú¸¦ ÁØ´Ù.
+		// ì˜¤ë¥¸ìª½ ë²„íŠ¼ë§Œ íš¨ê³¼ë¥¼ ì¤€ë‹¤.
 		if( key.m_nID == UD_RIGHT_BUTTON )
 			m_pClickItem->slotCart.ClickEffect(true);
 
@@ -420,7 +420,7 @@ void CPrivateShopCartGui::ShowInfoWindow(RwBool bIsShow, RwInt32 iIndex)
 	}
 	else
 	{
-		// ÀÚ½ÅÀÇ Dialog¿¡¼­ ¿äÃ»ÇÑ InfoWindowÀÎÁö °Ë»çÇÏ°í ´Ý¾ÆÁØ´Ù.
+		// ìžì‹ ì˜ Dialogì—ì„œ ìš”ì²­í•œ InfoWindowì¸ì§€ ê²€ì‚¬í•˜ê³  ë‹«ì•„ì¤€ë‹¤.
 		if( DIALOG_PRIVATESHOP_CART == GetInfoWndManager()->GetRequestGui() )
 			GetInfoWndManager()->ShowInfoWindow(FALSE);
 	}
@@ -443,7 +443,7 @@ void CPrivateShopCartGui::OnBuyButtonClicked(gui::CComponent* pComponent)
 	memset( auiBuy, INVALID_BYTE, sizeof(RwUInt8) * NTL_MAX_BUY_SHOPPING_CART );
 	RwUInt8 byCount = 0;
 
-	// autBuy ¹è¿­¿¡ ¼ø¼­´ë·Î ½×¾Æ¼­ ¼­¹ö·Î º¸³½´Ù. ( Áß°£¿¡ ºó °÷ÀÌ ÀÖÀ¸¸é ±¸ÀÔÀÌ µÇÁö ¾Ê´Â´Ù. )
+	// autBuy ë°°ì—´ì— ìˆœì„œëŒ€ë¡œ ìŒ“ì•„ì„œ ì„œë²„ë¡œ ë³´ë‚¸ë‹¤. ( ì¤‘ê°„ì— ë¹ˆ ê³³ì´ ìžˆìœ¼ë©´ êµ¬ìž…ì´ ë˜ì§€ ì•ŠëŠ”ë‹¤. )
 	for (int i = 0; i < NTL_MAX_BUY_SHOPPING_CART; ++i)
 	{
 		if( m_CartItem[i].uiPrivateShopPos != INVALID_BYTE )

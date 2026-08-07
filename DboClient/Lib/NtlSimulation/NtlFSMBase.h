@@ -2,7 +2,7 @@
  *
  * File			: NtlFSMBase.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2006. 2. 9	
  * Abstract		: Finite state machine class
  *****************************************************************************
@@ -20,8 +20,8 @@ class CNtlSobActor;
 
 /**
  * \ingroup NtlSimulation
- * DBO¿¡¼­ FSMÀ» ±¸µ¿½ÃÅ°´Â classÀÌ´Ù.
- * stateÀÇ container ±â´É°ú transition ±â´ÉÀ» ÇÑ´Ù.
+ * DBOì—ì„œ FSMì„ êµ¬ë™ì‹œí‚¤ëŠ” classì´ë‹¤.
+ * stateì˜ container ê¸°ëŠ¥ê³¼ transition ê¸°ëŠ¥ì„ í•œë‹¤.
  * 
  */
 class CNtlFSMBase
@@ -35,12 +35,12 @@ protected:
 public:
 
 	virtual ~CNtlFSMBase() {}	
-	virtual RwBool Create(void);    ///< ÀÌ Å¬·¡½º°¡ »ı¼ºµÈ ÈÄ ¹Ù·Î È£ÃâÇÏ´Â ÇÔ¼ö	
-	virtual void Destroy(void);     ///< ÀÌ Å¬·¡½º°¡ ¼Ò¸êµÇ±â Àü¿¡ È£ÃâµÇ´Â ÇÔ¼ö
+	virtual RwBool Create(void);    ///< ì´ í´ë˜ìŠ¤ê°€ ìƒì„±ëœ í›„ ë°”ë¡œ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜	
+	virtual void Destroy(void);     ///< ì´ í´ë˜ìŠ¤ê°€ ì†Œë©¸ë˜ê¸° ì „ì— í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜
 
-	RwBool            Register(CNtlFSMStateBase *pState);                                                   ///< State Container¿¡ State¸¦ AddÇÑ´Ù.	
-	CNtlFSMStateBase* CreateState(CNtlSobActor *pActor, RwUInt32 uiNewStateId);                             ///< ÃÖÃÊÀÇ State¸¦ »ı¼ºÇÏ´Â ÇÔ¼ö 	
-	virtual CNtlFSMStateBase* Transition(CNtlSobActor *pActor, CNtlFSMStateBase *pOldState, RwUInt32 uiNewStateId); ///< State¸¦ º¯È¯ÇÑ´Ù
+	RwBool            Register(CNtlFSMStateBase *pState);                                                   ///< State Containerì— Stateë¥¼ Addí•œë‹¤.	
+	CNtlFSMStateBase* CreateState(CNtlSobActor *pActor, RwUInt32 uiNewStateId);                             ///< ìµœì´ˆì˜ Stateë¥¼ ìƒì„±í•˜ëŠ” í•¨ìˆ˜ 	
+	virtual CNtlFSMStateBase* Transition(CNtlSobActor *pActor, CNtlFSMStateBase *pOldState, RwUInt32 uiNewStateId); ///< Stateë¥¼ ë³€í™˜í•œë‹¤
 };
 
 #endif

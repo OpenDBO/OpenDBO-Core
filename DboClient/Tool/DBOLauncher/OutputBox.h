@@ -2,7 +2,7 @@
 *
 * File			: OutputBox.h
 * Author		:
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			:
 * Abstract		: 
 *****************************************************************************
@@ -31,7 +31,7 @@ public:
     virtual ~COutputBox( void );
 
 public:
-    void				EraseBack( CDialog* pDlg );		// ±Û¾¾¿µ¿ªÀ» Áö¿î´Ù.
+    void				EraseBack( CDialog* pDlg );		// ê¸€ì”¨ì˜ì—­ì„ ì§€ìš´ë‹¤.
 
 protected:
 	afx_msg HBRUSH		CtlColor( CDC* pDC, UINT nCtlColor );

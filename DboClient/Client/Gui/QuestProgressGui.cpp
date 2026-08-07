@@ -155,7 +155,7 @@ RwBool CQuestProgressGui::Create( CQuestGui* pQuestGui )
 	m_phbxConversation->SetLineSpace( 7 );
 	m_phbxAim->SetLineSpace( 7 );
 	
-	// º¸»ó¿µ¿ª ¼³Á¤.
+	// ë³´ìƒì˜ì—­ ì„¤ì •.
 	SetRewardRectHardcode();
 
 	SetBasicUISetting();
@@ -253,7 +253,7 @@ VOID CQuestProgressGui::HandleEvents( RWS::CMsg& msg )
 	}
 	else if( msg.Id == g_EventRegQuest_Nfy )
 	{
-		// Ã¢ÀÌ ¿­·ÁÀÖ´Â »óÅÂ¿¡¼­ °°Àº ¾ÆÀÌµð¸é Ã¢À» ´Ý°í ´Ù½Ã ¶ç¿î´Ù. 
+		// ì°½ì´ ì—´ë ¤ìžˆëŠ” ìƒíƒœì—ì„œ ê°™ì€ ì•„ì´ë””ë©´ ì°½ì„ ë‹«ê³  ë‹¤ì‹œ ë„ìš´ë‹¤. 
 		if( !IsShow() )
 			return;
 
@@ -271,7 +271,7 @@ VOID CQuestProgressGui::SetBasicUISetting(VOID)
 	m_ptbtTab->SelectTab( (RwInt32)CONV_TAB );
 	SelectTabPage( CONV_TAB );
 	
-	// UI ¼¼ÆÃ
+	// UI ì„¸íŒ…
 	m_pstbTitle->SetText( GetDisplayStringManager()->GetString( "DST_QUEST_PROGRESS_WINDOW_TITLE" ) );
 	m_pstbTimeTitle->SetText( GetDisplayStringManager()->GetString( "DST_QUEST_LIMIT_TIME" ) );
 	m_pstbProgressTitle->SetText( GetDisplayStringManager()->GetString( "DST_QUEST_PROGRESS_INFO" ) );
@@ -298,20 +298,20 @@ VOID CQuestProgressGui::SetBasicUISetting(VOID)
 
 VOID CQuestProgressGui::SetQuestData( SNtlEventShowQuestWindow_Nfy* pData )
 {
-	// Á¦¸ñ
+	// ì œëª©
 	SetQuestTitle( pData->uiQuestTitle, pData->uiQuestSort, pData->eGradeType );
 
 	CQuestTextDataTable* pQuestTextTable = API_GetTableContainer()->GetQuestTextDataTable();
 	sQUEST_TEXT_DATA_TBLDAT* pQuestText;
 
-	// ³»¿ë
+	// ë‚´ìš©
 	pQuestText = reinterpret_cast<sQUEST_TEXT_DATA_TBLDAT*>( pQuestTextTable->FindData( pData->uiQuestContents ) );
 	if( pQuestText )
 		m_phbxConversation->SetHtmlFromMemory( pQuestText->wstrText.c_str(), pQuestText->wstrText.size() );
 	else
 		m_phbxConversation->Clear();
 
-	// ¸ñÇ¥
+	// ëª©í‘œ
 	pQuestText = reinterpret_cast<sQUEST_TEXT_DATA_TBLDAT*>( pQuestTextTable->FindData( pData->uiQuestGoal ) );
 	if( pQuestText )
 		m_phbxAim->SetHtmlFromMemory( pQuestText->wstrText.c_str(), pQuestText->wstrText.size() );
@@ -329,7 +329,7 @@ VOID CQuestProgressGui::SetQuestData( SNtlEventShowQuestWindow_Nfy* pData )
 	m_pstbRewardGetExpAmountText->SetText(pData->uiRewardExp);
 	m_pstbRewardGetZennyAmountText->SetText(pData->uiRewardZeni);
 
-	// TMQ Quest´Â Æ÷±âÇÒ ¼ö ¾øÀ½
+	// TMQ QuestëŠ” í¬ê¸°í•  ìˆ˜ ì—†ìŒ
 	if( Logic_IsNormalQuest( pData->sTSKey.tID ) )
 		m_pbtnQuestGiveUp->Show( true );
 	else
@@ -457,7 +457,7 @@ VOID CQuestProgressGui::UpdateUIData( eSTOC_EVT_DATA_TYPE eEvtInfoType, uSTOC_EV
 		}
 	}
 
-	// ½Ã°£.
+	// ì‹œê°„.
 	if( uiTimeLimit != 0xffffffff )
 	{
 		RwUInt32 uiTime;

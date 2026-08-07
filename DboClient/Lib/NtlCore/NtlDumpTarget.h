@@ -2,12 +2,12 @@
  *
  * File			: NtlDumpTarget.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 12. 26	
  * Abstract		: entity dump target class
  *****************************************************************************
- * Desc         : ÀÌ class´Â ¸ğµç °´Ã¼ÀÇ class ³»¿ëÀ» dump ÇÏ±â À§ÇÑ target class ÀÌ´Ù.
- *				  dump ³»¿ëÀÌ console window, file, graphic user interface°¡ µÉ ¼öµµ ÀÖ´Ù.	
+ * Desc         : ì´ classëŠ” ëª¨ë“  ê°ì²´ì˜ class ë‚´ìš©ì„ dump í•˜ê¸° ìœ„í•œ target class ì´ë‹¤.
+ *				  dump ë‚´ìš©ì´ console window, file, graphic user interfaceê°€ ë  ìˆ˜ë„ ìˆë‹¤.	
  *****************************************************************************/
 
 
@@ -23,9 +23,9 @@ private:
 
     RwChar *m_pBuffer;		/** stream buffer */
 	RwInt32 m_iCurrSize;	/** current buffer size */
-	RwInt32 m_iDataSize;	/** current À¯È¿ÇÑ data size */
+	RwInt32 m_iDataSize;	/** current ìœ íš¨í•œ data size */
 
-	RwBool m_bActive;		/** dump targetÀÌ active µÇ¾î ÀÖ´Â°¡ ? */
+	RwBool m_bActive;		/** dump targetì´ active ë˜ì–´ ìˆëŠ”ê°€ ? */
 
 private:
 

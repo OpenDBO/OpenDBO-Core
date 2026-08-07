@@ -1,4 +1,4 @@
-// PalettePerformancePVS.cpp : ���� �����Դϴ�.
+// PalettePerformancePVS.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -14,7 +14,7 @@
 #include "PerformanceChecker.h"
 
 
-// CPalettePerformancePVS ��ȭ �����Դϴ�.
+// CPalettePerformancePVS 대화 상자입니다.
 
 IMPLEMENT_DYNAMIC(CPalettePerformancePVS, CDialog)
 
@@ -44,14 +44,14 @@ BEGIN_MESSAGE_MAP(CPalettePerformancePVS, CDialog)
 END_MESSAGE_MAP()
 
 
-// CPalettePerformancePVS �޽��� ó�����Դϴ�.
+// CPalettePerformancePVS 메시지 처리기입니다.
 
 BOOL CPalettePerformancePVS::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ����: OCX �Ӽ� �������� FALSE�� ��ȯ�ؾ� �մϴ�.
+	// 예외: OCX 속성 페이지는 FALSE를 반환해야 합니다.
 }
 
 BOOL CPalettePerformancePVS::PreTranslateMessage(MSG* pMsg)
@@ -373,11 +373,11 @@ void CPalettePerformancePVS::OnBnClickedReport()
 
 		if(FieldPVSEnable)
 		{
-			fprintf(pFile, "===> [ %d ] �ʵ忡 PVS����Ÿ�� �����մϴ�.\n", CurFieldIdx);
+			fprintf(pFile, "===> [ %d ] 필드에 PVS데이타가 존재합니다.\n", CurFieldIdx);
 		}
 		else
 		{
-			fprintf(pFile, "===> [ %d ] �ʵ忡 PVS����Ÿ�� �������� �ʽ��ϴ�.\n", CurFieldIdx);
+			fprintf(pFile, "===> [ %d ] 필드에 PVS데이타가 존재하지 않습니다.\n", CurFieldIdx);
 		}
 	}
 

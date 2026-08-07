@@ -26,7 +26,7 @@
 #include "precomp_ntlcore.h"
 #include <rwcore.h>
 #include <rpworld.h>
-// Çü¼®
+// í˜•ì„
 // #include "memoryhandler.h"
 
 #ifdef RWS_EVENTVISUALIZATION

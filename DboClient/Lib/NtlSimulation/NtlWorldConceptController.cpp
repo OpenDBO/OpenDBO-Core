@@ -24,9 +24,9 @@ CNtlWorldConceptController::~CNtlWorldConceptController(void)
 }
 
 /**
- * µðÆúÆ®´Â ¸ðµç ¾×¼ÇÀÌ °¡´ÉÇÑ »óÅÂÀÌ´Ù. °¢ ÄÁ¼Á¿¡ µû¶ó ÇÏ¸é ¾ÈµÇ´Â ¾×¼ÇÀÌ ÀÖ´Â °æ¿ì¿¡´Â ¿À¹ö¶óÀÌµùÇÑ´Ù.
- * \param eAction ¾×¼Ç °¡´É À¯¹« ÆÇº° ÇÃ·¡±×
- * return ¾×¼Ç °¡´É À¯¹«
+ * ë””í´íŠ¸ëŠ” ëª¨ë“  ì•¡ì…˜ì´ ê°€ëŠ¥í•œ ìƒíƒœì´ë‹¤. ê° ì»¨ì…‰ì— ë”°ë¼ í•˜ë©´ ì•ˆë˜ëŠ” ì•¡ì…˜ì´ ìžˆëŠ” ê²½ìš°ì—ëŠ” ì˜¤ë²„ë¼ì´ë”©í•œë‹¤.
+ * \param eAction ì•¡ì…˜ ê°€ëŠ¥ ìœ ë¬´ íŒë³„ í”Œëž˜ê·¸
+ * return ì•¡ì…˜ ê°€ëŠ¥ ìœ ë¬´
  */
 RwBool CNtlWorldConceptController::IsEnableAction( EAvatarAction eAction ) 
 {
@@ -34,7 +34,7 @@ RwBool CNtlWorldConceptController::IsEnableAction( EAvatarAction eAction )
 }
 
 /**
- * µðÆúÆ®´Â ¾Æ¹«°Íµµ ÇÏÁö ¾Ê´Â´Ù. ÄÁ¼Á¿¡ µû¶ó ÇÏÀ§ Å¬·¡½º¿¡¼­ ¿À¹ö¶óÀÌµùÇÑ´Ù. 
+ * ë””í´íŠ¸ëŠ” ì•„ë¬´ê²ƒë„ í•˜ì§€ ì•ŠëŠ”ë‹¤. ì»¨ì…‰ì— ë”°ë¼ í•˜ìœ„ í´ëž˜ìŠ¤ì—ì„œ ì˜¤ë²„ë¼ì´ë”©í•œë‹¤. 
  */
 void CNtlWorldConceptController::Update( RwReal fElapsedTime ) 
 {

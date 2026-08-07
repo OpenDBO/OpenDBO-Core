@@ -1,4 +1,4 @@
-// FieldSearchDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// FieldSearchDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -27,7 +27,7 @@
 //////////////////////////////////////////////////////////////////////////
 #ifdef dNTL_WORLD_FILE
 
-// CFieldSearchDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CFieldSearchDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CFieldSearchDlg, CDialog)
 
@@ -76,7 +76,7 @@ BEGIN_MESSAGE_MAP(CFieldSearchDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CFieldSearchDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CFieldSearchDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CFieldSearchDlg::PreTranslateMessage(MSG* pMsg)
 {
@@ -129,13 +129,13 @@ BOOL CFieldSearchDlg::OnInitDialog()
 
 void CFieldSearchDlg::OnBnClickedOk()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	OnOK();
 }
 
 void CFieldSearchDlg::OnBnClickedCancel()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	OnCancel();
 }
 
@@ -203,7 +203,7 @@ void CFieldSearchDlg::UpdateSearchList()
 {
 	/*
 	WorldFileFormat - SectorInfo
-	WorldEditor¿¡¼­ Object, SE, Effect¸¦ °Ë»öÇÏ±â À§ÇØ »ç¿ëµÇ´Â ºÎºĞÀÌ´Ù.
+	WorldEditorì—ì„œ Object, SE, Effectë¥¼ ê²€ìƒ‰í•˜ê¸° ìœ„í•´ ì‚¬ìš©ë˜ëŠ” ë¶€ë¶„ì´ë‹¤.
 	*/
 
  	UpdateData(TRUE);
@@ -842,7 +842,7 @@ void CFieldSearchDlg::OnLvnItemchangedSearchList(NMHDR *pNMHDR, LRESULT *pResult
 //////////////////////////////////////////////////////////////////////////
 #else
 
-// CFieldSearchDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CFieldSearchDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CFieldSearchDlg, CDialog)
 
@@ -891,7 +891,7 @@ BEGIN_MESSAGE_MAP(CFieldSearchDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CFieldSearchDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CFieldSearchDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CFieldSearchDlg::PreTranslateMessage(MSG* pMsg)
 {
@@ -944,13 +944,13 @@ BOOL CFieldSearchDlg::OnInitDialog()
 
 void CFieldSearchDlg::OnBnClickedOk()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	OnOK();
 }
 
 void CFieldSearchDlg::OnBnClickedCancel()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	OnCancel();
 }
 
@@ -1018,7 +1018,7 @@ void CFieldSearchDlg::UpdateSearchList()
 {
 	/*
 	WorldFileFormat - SectorInfo
-	WorldEditor¿¡¼­ Object, SE, Effect¸¦ °Ë»öÇÏ±â À§ÇØ »ç¿ëµÇ´Â ºÎºĞÀÌ´Ù.
+	WorldEditorì—ì„œ Object, SE, Effectë¥¼ ê²€ìƒ‰í•˜ê¸° ìœ„í•´ ì‚¬ìš©ë˜ëŠ” ë¶€ë¶„ì´ë‹¤.
 	*/
 
 	UpdateData(TRUE);

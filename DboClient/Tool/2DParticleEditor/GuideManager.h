@@ -10,17 +10,17 @@
 #pragma once
 
 /**
-* \brief TOOL»óÀÇ Guide LineÀ» ±×¸®±â À§ÇÑ ¸Å´ÏÀú Å¬·¡½º
+* \brief TOOLìƒì˜ Guide Lineì„ ê·¸ë¦¬ê¸° ìœ„í•œ ë§¤ë‹ˆì € í´ë˜ìŠ¤
 */
 class CGuideManager
 {
 public:
 	enum eCENTER_LINE
 	{
-		eCENTER_LINE_HORIZONTAL,	///< °¡·Î
-		eCENTER_LINE_VERTICAL,		///< ¼¼·Î
+		eCENTER_LINE_HORIZONTAL,	///< ê°€ë¡œ
+		eCENTER_LINE_VERTICAL,		///< ì„¸ë¡œ
 
-		eCENTER_LINE_NUMS			///< °¡ÀÌµå¶óÀÎ °¹¼ö
+		eCENTER_LINE_NUMS			///< ê°€ì´ë“œë¼ì¸ ê°¯ìˆ˜
 	};
 
 	CGuideManager(void);
@@ -32,7 +32,7 @@ public:
 		return &instance;
 	}
 
-	// Guide Line ( Áß¾Ó¼± )
+	// Guide Line ( ì¤‘ì•™ì„  )
 	VOID			SetCenter( float fX, float fY );
 
 	VOID			SetBox( float fX, float fY, float fWidth, float fHeight );
@@ -41,12 +41,12 @@ public:
 	VOID			Render();
 
 protected:
-	gui::CGuiLine	m_lineCenter[eCENTER_LINE_NUMS];			///< È­¸éÀÇ Áß¾Ó¼± ( + Ç¥½Ã )
+	gui::CGuiLine	m_lineCenter[eCENTER_LINE_NUMS];			///< í™”ë©´ì˜ ì¤‘ì•™ì„  ( + í‘œì‹œ )
 
 	float			m_fCenterX;
 	float			m_fCenterY;
 
-	gui::CGuiLine	m_lineBox;									///< Emitter°¡ Box TypeÀÏ °æ¿ì ·»´õ¸µ ÇØÁÖ´Â ÀÎÅÍÆäÀÌ½º
+	gui::CGuiLine	m_lineBox;									///< Emitterê°€ Box Typeì¼ ê²½ìš° ë Œë”ë§ í•´ì£¼ëŠ” ì¸í„°í˜ì´ìŠ¤
 	BOOL			m_bLineBox;
 
 	float			m_fBoxPosX;

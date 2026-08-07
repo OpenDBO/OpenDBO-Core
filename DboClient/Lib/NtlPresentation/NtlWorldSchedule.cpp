@@ -259,8 +259,8 @@ RwBool CNtlWorldScheduler::Scheduling(RwReal fElapsedTime, RwV3d& vAvatarPos)
 // 
 // void CNtlWorldScheduler::CreateField(RwInt32 iFieldIdx)
 // {
-// 	// Create ScheduleÀº Delete ScheduleÀÌ ºñ¾î ÀÖÀ» °æ¿ì¸¸ ½ÇÇàÇÏ±â ¶§¹®¿¡ Remove ÇÏÁö ¾Ê´Â´Ù.
-// 	// Remove ÇÒ °æ¿ì µ¥ÀÌÅÍ°¡ Add µÉ ¼ö ÀÖ´Ù.
+// 	// Create Scheduleì€ Delete Scheduleì´ ë¹„ì–´ ìžˆì„ ê²½ìš°ë§Œ ì‹¤í–‰í•˜ê¸° ë•Œë¬¸ì— Remove í•˜ì§€ ì•ŠëŠ”ë‹¤.
+// 	// Remove í•  ê²½ìš° ë°ì´í„°ê°€ Add ë  ìˆ˜ ìžˆë‹¤.
 // 	//m_WDS.RemoveSchedule(iFieldIdx);
 // 	switch (GetSceneManager()->GetActiveWorldType())
 // 	{
@@ -2049,8 +2049,8 @@ CNtlWorldScheduler::~CNtlWorldScheduler()
 
 void CNtlWorldScheduler::CreateField(RwInt32 iFieldIdx)
 {
-	// Create ScheduleÀº Delete ScheduleÀÌ ºñ¾î ÀÖÀ» °æ¿ì¸¸ ½ÇÇàÇÏ±â ¶§¹®¿¡ Remove ÇÏÁö ¾Ê´Â´Ù.
-	// Remove ÇÒ °æ¿ì µ¥ÀÌÅÍ°¡ Add µÉ ¼ö ÀÖ´Ù.
+	// Create Scheduleì€ Delete Scheduleì´ ë¹„ì–´ ìžˆì„ ê²½ìš°ë§Œ ì‹¤í–‰í•˜ê¸° ë•Œë¬¸ì— Remove í•˜ì§€ ì•ŠëŠ”ë‹¤.
+	// Remove í•  ê²½ìš° ë°ì´í„°ê°€ Add ë  ìˆ˜ ìžˆë‹¤.
 	//m_WDS.RemoveSchedule(iFieldIdx);
 	switch (GetSceneManager()->GetActiveWorldType())
 	{

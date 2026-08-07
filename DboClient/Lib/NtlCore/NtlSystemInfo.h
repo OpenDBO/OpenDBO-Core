@@ -1,7 +1,7 @@
 /*****************************************************************************
 * File			: NtlSystemInfo.h
 * Author		: HyungSuk, Jang
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2009. 3. 18
 * Abstract		: it can read system info
  *****************************************************************************/

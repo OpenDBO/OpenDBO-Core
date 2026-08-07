@@ -36,7 +36,7 @@
  local defines
  */
 
-#define BUFFER_MAX_INDEX    65535
+#define BUFFER_MAX_INDEX    131070
 
 typedef struct _rxD3D9Im3DVertex RxD3D9Im3DVertex;
 struct _rxD3D9Im3DVertex

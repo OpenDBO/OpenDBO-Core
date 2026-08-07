@@ -2,7 +2,7 @@
  *
  * File			: NtlPLSceneManagerFactroy.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 8. 01	
  * Abstract		: Presentation scene manager factroy class 
  *****************************************************************************
@@ -25,19 +25,19 @@ class CNtlPLSceneManagerFactory
 {
 private:
 
-	static CNtlPLSceneManager *m_pSceneManager;		/**< activeµ» scene manager instance pointer */
+	static CNtlPLSceneManager *m_pSceneManager;		/**< activeÎêú scene manager instance pointer */
     	
 public:
 
 	/**
-    *  scene manager instance∏¶ æÚæÓø¿¥¬ «‘ºˆ.
+    *  scene manager instanceÎ•º ÏñªÏñ¥Ïò§Îäî Ìï®Ïàò.
 	*
-    *  \return scene manager instance pointer∏¶ ∏Æ≈œ.
+    *  \return scene manager instance pointerÎ•º Î¶¨ÌÑ¥.
     */
 	static CNtlPLSceneManager* GetInstance();
 	
 	/**
-    *  activeµ» scene manager pointer∏¶ µÓ∑œ«—¥Ÿ.
+    *  activeÎêú scene manager pointerÎ•º Îì±Î°ùÌïúÎã§.
 	*
     *  \param scene manager pointer.
     */

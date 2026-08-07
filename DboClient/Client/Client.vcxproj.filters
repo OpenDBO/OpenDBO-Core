@@ -1232,6 +1232,12 @@
     <ClCompile Include="MascotStatusBarGui.cpp">
       <Filter>Gui\Component\Game\Mascot</Filter>
     </ClCompile>
+    <ClCompile Include="Gui\OptionFilter.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="crt_compat.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gui\ContractGui.h">
@@ -2162,9 +2168,6 @@
       <Filter>Gui\Component\Game\Mascot</Filter>
     </ClInclude>
     <ClInclude Include="Gui\OptionFilter.h">
-      <Filter>Gui\Component\Game\Option</Filter>
-    </ClInclude>
-    <ClInclude Include="Gui\OptionFilter.cpp">
       <Filter>Gui\Component\Game\Option</Filter>
     </ClInclude>
   </ItemGroup>

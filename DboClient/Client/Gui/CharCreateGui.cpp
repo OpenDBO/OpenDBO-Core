@@ -104,7 +104,7 @@ RwBool CCharCreateGuiGui::Create()
 	m_pNameStatic->SetText(GetDisplayStringManager()->GetString("DST_STATUS_NAME"));
 	m_pNameStatic->Enable(false);
 
-	// �̸� �Է¶�
+	// 이름 입력란
 	m_pNameInput = (gui::CInputBox*)GetComponent( "NameInput" );
 	m_pNameInput->SetMaxLength(NTL_MAX_SIZE_CHAR_NAME);
 	m_pNameInput->SetCaretSize(dINPUTBOX_CARET_WIDTH, dINPUTBOX_CARET_HEIGHT);

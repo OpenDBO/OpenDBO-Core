@@ -48,14 +48,14 @@ RwBool CCharacterInfoGui::Create()
 
 	CRectangle rect;
 
-	// ¹è°æ
+	// ë°°ê²½
 	m_Background.SetType(CWindowby3::WT_HORIZONTAL);
 	m_Background.SetSurface(0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface("CharSelect_CharInfo.srf", "srfBackgroundUp"));
 	m_Background.SetSurface(1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface("CharSelect_CharInfo.srf", "srfBackgroundCenter"));
 	m_Background.SetSurface(2, GetNtlGuiManager()->GetSurfaceManager()->GetSurface("CharSelect_CharInfo.srf", "srfBackgroundBottom"));
 	m_Background.SetSize(233, 298);
 
-	// Ä³¸¯ÅÍ Á¤º¸ ¹è°æ
+	// ìºë¦­í„° ì •ë³´ ë°°ê²½
 	m_srtInfoBack.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("CharSelect_CharInfo.srf", "srfBar"));
 
 	// 'title box'
@@ -65,42 +65,42 @@ RwBool CCharacterInfoGui::Create()
 	m_pTitleStatic->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_CARACTER_INFO"));
 	m_pTitleStatic->Enable(false);
 
-	// 'ÀÌ¸§'
+	// 'ì´ë¦„'
 	rect.SetRect(30, 88, 130, 102);
 	m_pNameStatic = NTL_NEW gui::CStaticBox(rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT);
 	m_pNameStatic->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pNameStatic->SetText(GetDisplayStringManager()->GetString("DST_STATUS_NAME"));
 	m_pNameStatic->Enable(false);
 
-	// '·¹º§'
+	// 'ë ˆë²¨'
 	rect.SetRect(30, 110, 130, 124);
 	m_pLevelStatic = NTL_NEW gui::CStaticBox(rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT);
 	m_pLevelStatic->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pLevelStatic->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_CHAR_LEVEL"));
 	m_pLevelStatic->Enable(false);
 
-	// 'Å¬·¡½º'
+	// 'í´ëž˜ìŠ¤'
 	rect.SetRect(30, 132, 130, 146);
 	m_pClassStatic = NTL_NEW gui::CStaticBox(rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT);
 	m_pClassStatic->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pClassStatic->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_CHAR_CLASS"));
 	m_pClassStatic->Enable(false);
 
-	// '¼ÒÀ¯Á¦´Ï'
+	// 'ì†Œìœ ì œë‹ˆ'
 	rect.SetRect(30, 154, 130, 168);
 	m_pZennyStatic = NTL_NEW gui::CStaticBox(rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT);
 	m_pZennyStatic->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pZennyStatic->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_ZENNY"));
 	m_pZennyStatic->Enable(false);
 
-	// 'ÃÖÁ¾À§Ä¡'
+	// 'ìµœì¢…ìœ„ì¹˜'
 	rect.SetRect(30, 178, 130, 192);
 	m_pLastLocationStatic = NTL_NEW gui::CStaticBox(rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT);
 	m_pLastLocationStatic->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pLastLocationStatic->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_POSITION"));
 	m_pLastLocationStatic->Enable(false);
 
-	// '»èÁ¦ ¿¹Á¤ÀÏ'
+	// 'ì‚­ì œ ì˜ˆì •ì¼'
 	rect.SetRect(30, 212, 130, 226);
 	m_pDeleteDayStatic = NTL_NEW gui::CStaticBox(rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT);
 	m_pDeleteDayStatic->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
@@ -108,49 +108,49 @@ RwBool CCharacterInfoGui::Create()
 	m_pDeleteDayStatic->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_DEL_DAT"));
 	m_pDeleteDayStatic->Enable(false);
 
-	// Ä³¸¯ÅÍ ÀÌ¸§
+	// ìºë¦­í„° ì´ë¦„
 	rect.SetRect(110, 88, 210, 102);
 	m_pName = NTL_NEW gui::CStaticBox(rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT);
 	m_pName->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pName->SetTextColor(RGB(255, 192, 0));
 	m_pName->Enable(false);
 
-	// Ä³¸¯ÅÍ ·¹º§
+	// ìºë¦­í„° ë ˆë²¨
 	rect.SetRect(110, 110, 210, 124);
 	m_pLevel = NTL_NEW gui::CStaticBox(rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT);
 	m_pLevel->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pLevel->SetTextColor(RGB(255, 192, 0));
 	m_pLevel->Enable(false);
 
-	// Ä³¸¯ÅÍ Å¬·¡½º
+	// ìºë¦­í„° í´ëž˜ìŠ¤
 	rect.SetRect(110, 132, 210, 146);
 	m_pClass = NTL_NEW gui::CStaticBox(rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT);
 	m_pClass->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pClass->SetTextColor(RGB(255, 192, 0));
 	m_pClass->Enable(false);
 
-	// Ä³¸¯ÅÍ ¼ÒÀ¯ Á¦´Ï
+	// ìºë¦­í„° ì†Œìœ  ì œë‹ˆ
 	rect.SetRect(110, 154, 210, 168);
 	m_pZenny = NTL_NEW gui::CStaticBox(rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT);
 	m_pZenny->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pZenny->SetTextColor(RGB(255, 192, 0));
 	m_pZenny->Enable(false);
 
-	// Ä³¸¯ÅÍ ÃÖÁ¾ À§Ä¡
+	// ìºë¦­í„° ìµœì¢… ìœ„ì¹˜
 	rect.SetRect(110, 178, 215, 192);
 	m_pLastLocation = NTL_NEW gui::CStaticBox(rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT);
 	m_pLastLocation->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pLastLocation->SetTextColor(RGB(255, 192, 0));
 	m_pLastLocation->Enable(false);
 
-	// Ä³¸¯ÅÍ »èÁ¦ ¿¹Á¤ÀÏ
+	// ìºë¦­í„° ì‚­ì œ ì˜ˆì •ì¼
 	rect.SetRect(110, 212, 215, 226);
 	m_pDeleteDay = NTL_NEW gui::CStaticBox(rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT);
 	m_pDeleteDay->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pDeleteDay->SetTextColor(RGB(255, 219, 71));
 	m_pDeleteDay->Enable(false);
 
-	// Ä³¸¯ÅÍ »èÁ¦ ¿¹Á¤ÀÏ »ó¼¼ ¼³¸í
+	// ìºë¦­í„° ì‚­ì œ ì˜ˆì •ì¼ ìƒì„¸ ì„¤ëª…
 	rect.SetRect(30, 236, 215, 296);
 	m_pDeleteDayExplain = NTL_NEW gui::CStaticBox(rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT | COMP_TEXT_UP);
 	m_pDeleteDayExplain->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
@@ -328,15 +328,15 @@ VOID CCharacterInfoGui::HandleEvents(RWS::CMsg &msg)
 				}
 
 
-				// ¾Æ¹ÙÅ¸°¡ ¸¶Áö¸·À¸·Î ÇÃ·¹ÀÌÇÑ Àå¼ÒÀÇ ÀÌ¸§
+				// ì•„ë°”íƒ€ê°€ ë§ˆì§€ë§‰ìœ¼ë¡œ í”Œë ˆì´í•œ ìž¥ì†Œì˜ ì´ë¦„
 				if (FALSE == pMapNameTable->GetAreaName(uiMapNameIndex, &wstrText))
 				{
 					if (FALSE == pMapNameTable->GetSectorName(uiMapNameIndex, &wstrText))
 					{
 						if (FALSE == pMapNameTable->GetZoneName(uiMapNameIndex, &wstrText))
 						{
-							// avooo's comment : ¾Æ·¡ ÄÚµå¸¦ DST_LOBBY_DEFAULT_POSITION_HUMAN + race Çü½ÄÀ¸·Î °£´ÜÈ÷ ½ºÆ®¸µÀ» ¾ò¾î¿Ã ¼ö
-							//					 ÀÖ°ÚÀ¸³ª Á¾Á·¿¡ º¯È­°¡ ÀÖÀ» ¶§ ½ºÆ®¸µÀ» Ãß°¡ÇÏ´Â °ÍÀ» ÀØÁö ¾Ê±â À§ÇØ ÀÌ´ë·Î µÐ´Ù
+							// avooo's comment : ì•„ëž˜ ì½”ë“œë¥¼ DST_LOBBY_DEFAULT_POSITION_HUMAN + race í˜•ì‹ìœ¼ë¡œ ê°„ë‹¨ížˆ ìŠ¤íŠ¸ë§ì„ ì–»ì–´ì˜¬ ìˆ˜
+							//					 ìžˆê² ìœ¼ë‚˜ ì¢…ì¡±ì— ë³€í™”ê°€ ìžˆì„ ë•Œ ìŠ¤íŠ¸ë§ì„ ì¶”ê°€í•˜ëŠ” ê²ƒì„ ìžŠì§€ ì•Šê¸° ìœ„í•´ ì´ëŒ€ë¡œ ë‘”ë‹¤
 							switch (pLOBBY_CHARACTER->tSummary.byRace)
 							{
 							case RACE_HUMAN:

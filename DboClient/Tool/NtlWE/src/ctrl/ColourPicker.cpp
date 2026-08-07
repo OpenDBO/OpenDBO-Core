@@ -391,7 +391,7 @@ BOOL CColourPicker::OnClicked()
     CRect rect;
     GetWindowRect(rect);
     new CColourPopup(CPoint(rect.left, rect.bottom), GetColour(), this, 10, 
-                     _T("´Ù¸¥ »ö..."));
+                     _T("ë‹¤ë¥¸ ìƒ‰..."));
 
     CWnd *pParent = GetParent();
     if (pParent)
@@ -481,7 +481,7 @@ void CColourPicker::PreSubclassWindow()
 void CColourPicker::SetBkColour(COLORREF crColourBk)
 {
     m_crColourBk = crColourBk;
-	if(m_bTextColorConvert)	// ÅØ½ºÆ®ÀÇ »ö±òÀº ¹è°æ°ú ¹İ´ë·Î ÇÑ´Ù. 
+	if(m_bTextColorConvert)	// í…ìŠ¤íŠ¸ì˜ ìƒ‰ê¹”ì€ ë°°ê²½ê³¼ ë°˜ëŒ€ë¡œ í•œë‹¤. 
 		SetTextColour(COLORREF(RGB(255,255,255))-m_crColourBk);
     if (IsWindow(m_hWnd)) RedrawWindow();
 }

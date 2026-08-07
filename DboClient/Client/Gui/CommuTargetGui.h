@@ -6,7 +6,7 @@
 
 /**
  * \ingroup Client
- * \brief Ä¿¹Â´ÏÆ¼ Å¸°Ù À©µµ¿ì GUI
+ * \brief ì»¤ë®¤ë‹ˆí‹° íƒ€ê²Ÿ ìœˆë„ìš° GUI
  * \date 2007-12-26
  * \author agebreak
  */
@@ -30,8 +30,8 @@ protected:
     VOID        OnEventTargetRelease();
 
 protected:
-    gui::CStaticBox*    m_pSttName;                     ///< Å¸°Ù ÀÌ¸§ Ç¥½Ã 
-    gui::CStaticBox*    m_pSttType;                     ///< Å¸°Ù Á¾·ù Ç¥½Ã (Ä£±¸,±æµå...)
+    gui::CStaticBox*    m_pSttName;                     ///< íƒ€ê²Ÿ ì´ë¦„ í‘œì‹œ 
+    gui::CStaticBox*    m_pSttType;                     ///< íƒ€ê²Ÿ ì¢…ë¥˜ í‘œì‹œ (ì¹œêµ¬,ê¸¸ë“œ...)
 
     SNtlEventCommuTargetSelect     m_currTarget;
 

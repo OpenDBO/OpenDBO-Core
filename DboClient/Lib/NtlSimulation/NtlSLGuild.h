@@ -2,7 +2,7 @@
 *
 * File			: NtlSLGuild.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2007. 4. 11	
 * Abstract		: Simulation guild info class
 *****************************************************************************
@@ -25,14 +25,14 @@
 struct sGuildMember : public sCommunityMember
 {
 	CHARACTERID		charID;			///< DB character id	
-	RwUInt32		uiWorldNameTable;	///< ¡ˆø™ ¿Ã∏ß ≈◊¿Ã∫Ì ¿Œµ¶Ω∫
-	RwUInt8			byRace;			///< ¡æ¡∑
-	RwUInt8			byLevel;		///< ∑π∫ß
-	RwUInt8			byClass;		///< ≈¨∑°Ω∫	
-	RwBool			bOnline;		///< ∞‘¿” ¡¢º” ø©∫Œ
-	RwUInt32        uiSerialID;     ///< Ω√∏ÆæÛID («⁄µÈ)
-	RwUInt32		uiReputation;	///< ∆Ú∆« ¡°ºˆ
-	std::wstring	wstrArea;		///< «ˆ¿Á ¿ßƒ° ¿Ã∏ß
+	RwUInt32		uiWorldNameTable;	///< ÏßÄÏó≠ Ïù¥Î¶Ñ ÌÖåÏù¥Î∏î Ïù∏Îç±Ïä§
+	RwUInt8			byRace;			///< Ï¢ÖÏ°±
+	RwUInt8			byLevel;		///< Î†àÎ≤®
+	RwUInt8			byClass;		///< ÌÅ¥ÎûòÏä§	
+	RwBool			bOnline;		///< Í≤åÏûÑ Ï†ëÏÜç Ïó¨Î∂Ä
+	RwUInt32        uiSerialID;     ///< ÏãúÎ¶¨ÏñºID (Ìï∏Îì§)
+	RwUInt32		uiReputation;	///< ÌèâÌåê Ï†êÏàò
+	std::wstring	wstrArea;		///< ÌòÑÏû¨ ÏúÑÏπò Ïù¥Î¶Ñ
 };
 
 struct sGuildNotice
@@ -66,42 +66,42 @@ public:
 
 	virtual	void	HandleEvents(RWS::CMsg &pMsg);
 
-	const WCHAR*	GetGuildName();							///< ±ÊµÂ ¿Ã∏ß¿ª π›»Ø«—¥Ÿ
+	const WCHAR*	GetGuildName();							///< Í∏∏Îìú Ïù¥Î¶ÑÏùÑ Î∞òÌôòÌïúÎã§
 
 	GUILDID			GetGuildID();
-	CHARACTERID		GetMasterID();							///< ±ÊµÂ ∏∂Ω∫≈Õ ID¿ª π›»Ø«—¥Ÿ
-	CHARACTERID		GetSecondMasterID(RwInt32 iIndex);		///< ±ÊµÂ ∫Œ∏∂Ω∫≈Õ ID¿ª π›»Ø«—¥Ÿ
+	CHARACTERID		GetMasterID();							///< Í∏∏Îìú ÎßàÏä§ÌÑ∞ IDÏùÑ Î∞òÌôòÌïúÎã§
+	CHARACTERID		GetSecondMasterID(RwInt32 iIndex);		///< Í∏∏Îìú Î∂ÄÎßàÏä§ÌÑ∞ IDÏùÑ Î∞òÌôòÌïúÎã§
 
-	RwInt32			GetCountSecondMaster();					///< ±ÊµÂ ∫Œ∏∂Ω∫≈Õ ¿Œø¯ºˆ∏¶ π›»Ø«—¥Ÿ
-	RwUInt32		GetReputation();						///< ±ÊµÂ ∏Ìº∫ ∆˜¿Œ∆Æ∏¶ π›»Ø«—¥Ÿ
-	RwUInt32		GetReputationEver();					///< ±ÊµÂ ¥©¿˚ ∆Ú∆« ∆˜¿Œ∆Æ∏¶ π›»Ø«—¥Ÿ
-	time_t			GetTimeToDisband();						///< ±ÊµÂ∞° «ÿªÍµ«±‚±Ó¡ˆ ≥≤¿∫ Ω√∞£¿ª π›»Ø«—¥Ÿ	
-	sGuildNotice*	GetNotice();							///< ∞•µÂ ∞¯¡ˆ≥ªøÎ π›»Ø
+	RwInt32			GetCountSecondMaster();					///< Í∏∏Îìú Î∂ÄÎßàÏä§ÌÑ∞ Ïù∏ÏõêÏàòÎ•º Î∞òÌôòÌïúÎã§
+	RwUInt32		GetReputation();						///< Í∏∏Îìú Î™ÖÏÑ± Ìè¨Ïù∏Ìä∏Î•º Î∞òÌôòÌïúÎã§
+	RwUInt32		GetReputationEver();					///< Í∏∏Îìú ÎàÑÏ†Å ÌèâÌåê Ìè¨Ïù∏Ìä∏Î•º Î∞òÌôòÌïúÎã§
+	time_t			GetTimeToDisband();						///< Í∏∏ÎìúÍ∞Ä Ìï¥ÏÇ∞ÎêòÍ∏∞ÍπåÏßÄ ÎÇ®ÏùÄ ÏãúÍ∞ÑÏùÑ Î∞òÌôòÌïúÎã§	
+	sGuildNotice*	GetNotice();							///< Í∞àÎìú Í≥µÏßÄÎÇ¥Ïö© Î∞òÌôò
 	RwInt32			GetOnlineMemberCount();
 	RwUInt8			GetGuildDogiColorIndex();
 	RwUInt8			GetDojoDogiColorIndex();
 
-	// Sort∏¶ Ω««‡«œ∞Ì ≥™º≠¥¬ ¿Ã¿¸ø° GetMemberbyIndex()∑Œ πﬁ¿∫ ∏…πˆ ±∏¡∂√ºøÕ ¥Ÿ∏¶ ºˆ ¿÷¥Ÿ
+	// SortÎ•º Ïã§ÌñâÌïòÍ≥† ÎÇòÏÑúÎäî Ïù¥Ï†ÑÏóê GetMemberbyIndex()Î°ú Î∞õÏùÄ Îß¥Î≤Ñ Íµ¨Ï°∞Ï≤¥ÏôÄ Îã§Î•º Ïàò ÏûàÎã§
 	virtual VOID	Sort(RwUInt8 byDataType, RwBool bAscent);
 
 	virtual RwBool	IsHaveGroup();
-	RwBool			IsBeingDisband();						///< ±ÊµÂ∞° «ÿªÍµ«±‚¿Œ¡ˆ ø©∫Œ
-	RwBool			IsGuildMaster(CHARACTERID charID);		///< ±ÊµÂ¿Â¿Œ¡ˆ ø©∫Œ
-	RwBool			IsSecondGuildMaster(CHARACTERID charID);///< ∫Œ±ÊµÂ¿Â¿Œ¡ˆ ø©∫Œ
-	RwBool			IsHaveEmblem();							///< ±ÊµÂ πÆ¿Â¿Ã ¿÷¥¬¡ˆ ø©∫Œ
+	RwBool			IsBeingDisband();						///< Í∏∏ÎìúÍ∞Ä Ìï¥ÏÇ∞ÎêòÍ∏∞Ïù∏ÏßÄ Ïó¨Î∂Ä
+	RwBool			IsGuildMaster(CHARACTERID charID);		///< Í∏∏ÎìúÏû•Ïù∏ÏßÄ Ïó¨Î∂Ä
+	RwBool			IsSecondGuildMaster(CHARACTERID charID);///< Î∂ÄÍ∏∏ÎìúÏû•Ïù∏ÏßÄ Ïó¨Î∂Ä
+	RwBool			IsHaveEmblem();							///< Í∏∏Îìú Î¨∏Ïû•Ïù¥ ÏûàÎäîÏßÄ Ïó¨Î∂Ä
 	RwBool			IsChangedGuildDogiColor();
 	RwBool			IsChangedDojoDogiColor();
-	RwBool			IsExistFunction(eDBO_GUILD_FUNCTION eFunctionIndex);///< ±ÊµÂ ±‚¥…¿Ã ¡∏¿Á«œ¥¬¡ˆ ø©∫Œ
+	RwBool			IsExistFunction(eDBO_GUILD_FUNCTION eFunctionIndex);///< Í∏∏Îìú Í∏∞Îä•Ïù¥ Ï°¥Ïû¨ÌïòÎäîÏßÄ Ïó¨Î∂Ä
 
-	RwBool			CanGetGuildFunction(eDBO_GUILD_FUNCTION eFunctionIndex);	///< ±ÊµÂ ±‚¥…¿ª æÚ¿ª ºˆ ¿÷¥¬¡ˆ ø©∫Œ
-	RwBool			CanGetDojoFunction(eDBO_GUILD_FUNCTION eFunctionIndex);		///< µµ¿Â ±‚¥…¿ª æÚ¿ª ºˆ ¿÷¥¬¡ˆ ø©∫Œ
+	RwBool			CanGetGuildFunction(eDBO_GUILD_FUNCTION eFunctionIndex);	///< Í∏∏Îìú Í∏∞Îä•ÏùÑ ÏñªÏùÑ Ïàò ÏûàÎäîÏßÄ Ïó¨Î∂Ä
+	RwBool			CanGetDojoFunction(eDBO_GUILD_FUNCTION eFunctionIndex);		///< ÎèÑÏû• Í∏∞Îä•ÏùÑ ÏñªÏùÑ Ïàò ÏûàÎäîÏßÄ Ïó¨Î∂Ä
 
-	RwBool			EnableUIGuildFunction(eDBO_GUILD_FUNCTION eFunctionIndex);	///< ±ÊµÂ ±‚¥… ∏ﬁ¥∫∏¶ ø≠ ºˆ ¿÷¥¬¡ˆ ø©∫Œ
-	RwBool			EnableUIDojoFunction(eDBO_GUILD_FUNCTION eFunctionIndex);	///< µµ¿Â ±‚¥… ∏ﬁ¥∫∏¶ ø≠ ºˆ ¿÷¥¬¡ˆ ø©∫Œ
+	RwBool			EnableUIGuildFunction(eDBO_GUILD_FUNCTION eFunctionIndex);	///< Í∏∏Îìú Í∏∞Îä• Î©îÎâ¥Î•º Ïó¥ Ïàò ÏûàÎäîÏßÄ Ïó¨Î∂Ä
+	RwBool			EnableUIDojoFunction(eDBO_GUILD_FUNCTION eFunctionIndex);	///< ÎèÑÏû• Í∏∞Îä• Î©îÎâ¥Î•º Ïó¥ Ïàò ÏûàÎäîÏßÄ Ïó¨Î∂Ä
 
 protected:
-	VOID			AppointSecondMaster(CHARACTERID charID);	///< ∫Œ±ÊµÂ¿Â¿∏∑Œ ¿”∏Ì«—¥Ÿ
-	VOID			DismissSecondMaster(CHARACTERID charID);	///< ∫Œ±ÊµÂ¿Â¿« ¡˜¿ß∏¶ «ÿ¡¶«—¥Ÿ
+	VOID			AppointSecondMaster(CHARACTERID charID);	///< Î∂ÄÍ∏∏ÎìúÏû•ÏúºÎ°ú ÏûÑÎ™ÖÌïúÎã§
+	VOID			DismissSecondMaster(CHARACTERID charID);	///< Î∂ÄÍ∏∏ÎìúÏû•Ïùò ÏßÅÏúÑÎ•º Ìï¥Ï†úÌïúÎã§
 
 	VOID			ChangeAllMemberDogiColor(RwUInt8 byGuildDogiColor, RwUInt8 byDojoDogiColor);
 	VOID			ChangeMemberDogiColor(CHARACTERID charID, RwUInt8 byGuildDogiColor, RwUInt8 byDojoDogiColor);
@@ -138,24 +138,24 @@ protected:
 	}
 
 protected:
-	WCHAR					m_wszGuildName[NTL_MAX_SIZE_GUILD_NAME+1];	///< ±ÊµÂ ¿Ã∏ß
+	WCHAR					m_wszGuildName[NTL_MAX_SIZE_GUILD_NAME+1];	///< Í∏∏Îìú Ïù¥Î¶Ñ
 
 	GUILDID					m_guildID;
 	
-	CHARACTERID				m_masterID;					///< ∏∂Ω∫≈Õ ID
-	CHARACTERID				m_secondMasterID[DBO_MAX_SECOND_MASTER_IN_GUILD];///< ∫Œ∏∂Ω∫≈Õ ID
+	CHARACTERID				m_masterID;					///< ÎßàÏä§ÌÑ∞ ID
+	CHARACTERID				m_secondMasterID[DBO_MAX_SECOND_MASTER_IN_GUILD];///< Î∂ÄÎßàÏä§ÌÑ∞ ID
 
-	RwUInt32				m_uiReputation;				///< ±ÊµÂ ∏Ìº∫
-	RwUInt32				m_uiMaxReputationEver;		///< ±ÊµÂ √÷¥Î ¥©¿˚ ∏Ìº∫ ∆˜¿Œ∆Æ	
-	time_t					m_timeToDisband;			///< ±ÊµÂ∞° «ÿªÍµ«±‚±Ó¡ˆ ≥≤¿∫ Ω√∞£
+	RwUInt32				m_uiReputation;				///< Í∏∏Îìú Î™ÖÏÑ±
+	RwUInt32				m_uiMaxReputationEver;		///< Í∏∏Îìú ÏµúÎåÄ ÎàÑÏ†Å Î™ÖÏÑ± Ìè¨Ïù∏Ìä∏	
+	time_t					m_timeToDisband;			///< Í∏∏ÎìúÍ∞Ä Ìï¥ÏÇ∞ÎêòÍ∏∞ÍπåÏßÄ ÎÇ®ÏùÄ ÏãúÍ∞Ñ
 
 	RwInt32					m_iOnlineMember;
 
-	RwUInt64				m_ui64Function;				///< ±ÊµÂ ±‚¥…
-	sGuildNotice			m_GuildNotice;				///< ±ÊµÂ ∞¯¡ˆ
+	RwUInt64				m_ui64Function;				///< Í∏∏Îìú Í∏∞Îä•
+	sGuildNotice			m_GuildNotice;				///< Í∏∏Îìú Í≥µÏßÄ
 
-	RwUInt8					m_byGuildDogiColorIndex;	///< ¿Ø∆ƒ µµ∫π ªˆªÛ
-	RwUInt8					m_byDojoDogiColorIndex;		///< µµ¿Â µµ∫π ªˆªÛ
+	RwUInt8					m_byGuildDogiColorIndex;	///< Ïú†Ìåå ÎèÑÎ≥µ ÏÉâÏÉÅ
+	RwUInt8					m_byDojoDogiColorIndex;		///< ÎèÑÏû• ÎèÑÎ≥µ ÏÉâÏÉÅ
 };
 
 #endif

@@ -75,7 +75,7 @@ VOID CSCSSideIconGui::OnSideViewClosed( )
 
 VOID CSCSSideIconGui::OnIconButtonClicked(gui::CComponent* pComponent)
 {
-	// ¿­°í ´Ý±â
+	// ì—´ê³  ë‹«ê¸°
 	if( GetDialogManager()->GetDialog(DIALOG_GM_QUICKSLOT) )
 	{
 		GetDialogManager()->CloseGMDialog();

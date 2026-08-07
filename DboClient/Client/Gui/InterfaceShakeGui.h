@@ -2,19 +2,19 @@
  *
  * File			: InterfaceShakeGui.h
  * Author		: Haesung, Cho
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2007. 12. 10	
  * Abstract		: DBO KnockDown Recovery UI(WAKE UP GUI).
  *****************************************************************************
  * Desc         : 
- * 1. ³Ë´Ù¿î µÆÀ» ½Ã UI°¡ ¶°¾ß ÇÑ´Ù.
- * 2. ProgressBar°¡ ÇÏ³ª ¶ß¸ç ²Ë Â÷¸é ³Ë´Ù¿îÀÌ È¸º¹µÈ´Ù. (ÃÖ¼Ò 4ÃÊ¿¡¼­ 8ÃÊ »çÀÌ)
- * 3. ¸¶¿ì½º¸¦ ÁÂ¿ì·Î Èçµé ½Ã °ÔÀÌÁö°¡ Â÷¾ß ÇÑ´Ù.
- * 4. Å°º¸µåÀÇ ÁÂ¿ì ¹æÇâÅ° ÀÔ·ÂÀ» ¹Þ¾Æ¾ß ÇÑ´Ù. (InputActionMap)
- * 5. ¸¶¿ì½ºÀÇ Èçµå´Â ¼Óµµ¿Í Å°º¸µåÀÇ ÀÔ·Â ¼Óµµ¿¡ ¾Ë¸Â°Ô Â÷¾ß ÇÑ´Ù.
+ * 1. ë„‰ë‹¤ìš´ ëì„ ì‹œ UIê°€ ë– ì•¼ í•œë‹¤.
+ * 2. ProgressBarê°€ í•˜ë‚˜ ëœ¨ë©° ê½‰ ì°¨ë©´ ë„‰ë‹¤ìš´ì´ íšŒë³µëœë‹¤. (ìµœì†Œ 4ì´ˆì—ì„œ 8ì´ˆ ì‚¬ì´)
+ * 3. ë§ˆìš°ìŠ¤ë¥¼ ì¢Œìš°ë¡œ í”ë“¤ ì‹œ ê²Œì´ì§€ê°€ ì°¨ì•¼ í•œë‹¤.
+ * 4. í‚¤ë³´ë“œì˜ ì¢Œìš° ë°©í–¥í‚¤ ìž…ë ¥ì„ ë°›ì•„ì•¼ í•œë‹¤. (InputActionMap)
+ * 5. ë§ˆìš°ìŠ¤ì˜ í”ë“œëŠ” ì†ë„ì™€ í‚¤ë³´ë“œì˜ ìž…ë ¥ ì†ë„ì— ì•Œë§žê²Œ ì°¨ì•¼ í•œë‹¤.
  *
- * Todo : ÇöÀç Å°º¸µå´Â Á¦¿ÜµÈ »óÈ², ÈÄ¿¡ Å°º¸µå°¡ Æ÷ÇÔµÈ´Ù°í ÇÏ¸é ÁÖ¼®À» ´Ù Áö¿ì¸é µÈ´Ù.
- * (script Æ÷ÇÔ)
+ * Todo : í˜„ìž¬ í‚¤ë³´ë“œëŠ” ì œì™¸ëœ ìƒí™©, í›„ì— í‚¤ë³´ë“œê°€ í¬í•¨ëœë‹¤ê³  í•˜ë©´ ì£¼ì„ì„ ë‹¤ ì§€ìš°ë©´ ëœë‹¤.
+ * (script í¬í•¨)
  *****************************************************************************/
 
 #ifndef __INTERFACE_SHAKE_H__
@@ -24,43 +24,43 @@
 #include "ceventhandler.h"
  
 // Define
-#define dSHAKE_MAX_WAKEUP 8.0f		// WakeUp UIÀÇ ÃÖ´ë ½Ã°£
-#define dSHAKE_MIN_WAKEUP 4.0f		// WakeUp UIÀÇ ÃÖ¼Ò ½Ã°£
+#define dSHAKE_MAX_WAKEUP 8.0f		// WakeUp UIì˜ ìµœëŒ€ ì‹œê°„
+#define dSHAKE_MIN_WAKEUP 4.0f		// WakeUp UIì˜ ìµœì†Œ ì‹œê°„
 
-#define dSHAKE_MOVE_DISTANCE 0		// ¸¶¿ì½º°¡ ¹ÝÀÀÇÒ ÃÖ¼Ò °Å¸®
+#define dSHAKE_MOVE_DISTANCE 0		// ë§ˆìš°ìŠ¤ê°€ ë°˜ì‘í•  ìµœì†Œ ê±°ë¦¬
 
-#define dSHAKE_MOUSE_LEFT_X		55		// ¸¶¿ì½º°¡ ¿ÞÂÊÀ¸·Î ¿òÁ÷¿´À» ¶§ ÀÌµ¿µÉ ¸¶¿ì½º ÀÌ¹ÌÁöÀÇ À§Ä¡
-#define dSHAKE_MOUSE_RIGHT_X	70		// ¸¶¿ì½º°¡ ¿À¸¥ÂÊÀ¸·Î ¿òÁ÷¿´À» ¶§ ÀÌµ¿µÉ ¸¶¿ì½º ÀÌ¹ÌÁöÀÇ À§Ä¡
+#define dSHAKE_MOUSE_LEFT_X		55		// ë§ˆìš°ìŠ¤ê°€ ì™¼ìª½ìœ¼ë¡œ ì›€ì§ì˜€ì„ ë•Œ ì´ë™ë  ë§ˆìš°ìŠ¤ ì´ë¯¸ì§€ì˜ ìœ„ì¹˜
+#define dSHAKE_MOUSE_RIGHT_X	70		// ë§ˆìš°ìŠ¤ê°€ ì˜¤ë¥¸ìª½ìœ¼ë¡œ ì›€ì§ì˜€ì„ ë•Œ ì´ë™ë  ë§ˆìš°ìŠ¤ ì´ë¯¸ì§€ì˜ ìœ„ì¹˜
 
-#define dSHAKE_MOUSE_Y			48		// ¸¶¿ì½ºÀÇ ³ôÀÌ
+#define dSHAKE_MOUSE_Y			48		// ë§ˆìš°ìŠ¤ì˜ ë†’ì´
 
 // File Locate
 #define dSHAKE_FILE_SURFACE "gui\\InterfaceShakeGui.srf"
 #define dSHAKE_FILE_FRAME "gui\\InterfaceShakeGui.frm"
 
 /**
-* ÀÌµæÀ» ¹Þ´Â ½Ã°£´ëÀÇ Define (Ã¹¹øÂ° ½Ã°£Àº µÎ¹øÂ° ½Ã°£º¸´Ù Àû¾î¾ß ÇÑ´Ù.)
-* Ã¹¹øÂ° ½Ã°£	: +3
-* µÎ¹øÂ° ½Ã°£	: +2
-* ±×¿Ü			: +1
+* ì´ë“ì„ ë°›ëŠ” ì‹œê°„ëŒ€ì˜ Define (ì²«ë²ˆì§¸ ì‹œê°„ì€ ë‘ë²ˆì§¸ ì‹œê°„ë³´ë‹¤ ì ì–´ì•¼ í•œë‹¤.)
+* ì²«ë²ˆì§¸ ì‹œê°„	: +3
+* ë‘ë²ˆì§¸ ì‹œê°„	: +2
+* ê·¸ì™¸			: +1
 */
-#define dSHAKE_MOUSE_FIRSTTIME 0.3f		// ¸¶¿ì½º: ÀÌµæÀ» ¾òÀ» ¼ö ÀÖ´Â Ã¹¹øÂ° ½Ã°£
-#define dSHAKE_MOUSE_SECONDTIME 0.5f	// ¸¶¿ì½º: ÀÌµæÀ» ¾òÀ» ¼ö ÀÖ´Â µÎ¹øÂ° ½Ã°£
-#define dSHAKE_KEYBOARD_FIRSTTIME 0.1f	// Å°º¸µå
-#define dSHAKE_KEYBOARD_SECONDTIME 0.3f	// Å°º¸µå
+#define dSHAKE_MOUSE_FIRSTTIME 0.3f		// ë§ˆìš°ìŠ¤: ì´ë“ì„ ì–»ì„ ìˆ˜ ìžˆëŠ” ì²«ë²ˆì§¸ ì‹œê°„
+#define dSHAKE_MOUSE_SECONDTIME 0.5f	// ë§ˆìš°ìŠ¤: ì´ë“ì„ ì–»ì„ ìˆ˜ ìžˆëŠ” ë‘ë²ˆì§¸ ì‹œê°„
+#define dSHAKE_KEYBOARD_FIRSTTIME 0.1f	// í‚¤ë³´ë“œ
+#define dSHAKE_KEYBOARD_SECONDTIME 0.3f	// í‚¤ë³´ë“œ
 
 /**
-* ÀÌµæÀ» ¹Þ´Â ¼öÄ¡
+* ì´ë“ì„ ë°›ëŠ” ìˆ˜ì¹˜
 */
-#define dSHAKE_ADVANTAGE_FIRST	3		// Ã¹¹øÂ° ½Ã°£ ³»
-#define dSHAKE_ADVANTAGE_SECOND	2		// µÎ¹øÂ° ½Ã°£ ³»
-#define dSHAKE_ADVANTAGE_THIRD	1		// ±×¿Ü
+#define dSHAKE_ADVANTAGE_FIRST	3		// ì²«ë²ˆì§¸ ì‹œê°„ ë‚´
+#define dSHAKE_ADVANTAGE_SECOND	2		// ë‘ë²ˆì§¸ ì‹œê°„ ë‚´
+#define dSHAKE_ADVANTAGE_THIRD	1		// ê·¸ì™¸
 
 /**
 * \ingroup client
-* \brief ÀÎÅÍÆäÀÌ½º Èçµé±â(WakeUp GUI)
-* °ÔÀÓ »óÀÇ Ä³¸¯ÅÍ°¡ ³Ë-´Ù¿î µÇ¾úÀ» ½Ã À¯Àú°¡ ¸¶¿ì½º ÀÌµ¿À¸·Î Á» ´õ ºü¸¥ ½Ã°£³»¿¡
-* ³Ë´Ù¿î »óÅÂ°¡ È¸º¹µÉ ¼ö ÀÖ°Ô ÇÑ´Ù.
+* \brief ì¸í„°íŽ˜ì´ìŠ¤ í”ë“¤ê¸°(WakeUp GUI)
+* ê²Œìž„ ìƒì˜ ìºë¦­í„°ê°€ ë„‰-ë‹¤ìš´ ë˜ì—ˆì„ ì‹œ ìœ ì €ê°€ ë§ˆìš°ìŠ¤ ì´ë™ìœ¼ë¡œ ì¢€ ë” ë¹ ë¥¸ ì‹œê°„ë‚´ì—
+* ë„‰ë‹¤ìš´ ìƒíƒœê°€ íšŒë³µë  ìˆ˜ ìžˆê²Œ í•œë‹¤.
 */
 class CInterfaceShakeGui : public CNtlPLGui, public RWS::CEventHandler
 {
@@ -74,7 +74,7 @@ public:
 
 	// HandleEvents & SwitchDialog
 	VOID		HandleEvents(RWS::CMsg &msg);
-	RwInt32		SwitchDialog(bool bOpen);		///< DialogManager¿¡¼­ÀÇ Open/Close
+	RwInt32		SwitchDialog(bool bOpen);		///< DialogManagerì—ì„œì˜ Open/Close
 
 	// Update
 	VOID		Update( RwReal fElapsed );
@@ -82,8 +82,8 @@ public:
 	VOID		ProgressUpdateFromKeyboard();
 
 	// Interface
-	VOID		ShowInterface( VOID );			///< WakeUp Gui ¸¦ ¶Ù¿î´Ù.
-	VOID		CloseInterface( VOID );			///< ´Ý´Â´Ù.
+	VOID		ShowInterface( VOID );			///< WakeUp Gui ë¥¼ ë›°ìš´ë‹¤.
+	VOID		CloseInterface( VOID );			///< ë‹«ëŠ”ë‹¤.
 
 	// CallBack
 	VOID		OnKeyDown( gui::CComponent* pComponent, CInputDevice* pDevice, const CKey& key);
@@ -102,23 +102,23 @@ protected:
 	gui::CSlot	m_slotKeyDown;				///< KeyDown Signal
 	gui::CSlot	m_slotKeyUp;				///< KeyUp Signal
 
-	RwInt32		m_nOldMouseX;				///< Old Mouse X ÁÂÇ¥
-	RwInt32		m_nMouseX;					///< »õ·Î¿î Mouse X ÁÂÇ¥
-	RwInt32		m_nOffsetX;					///<  ¸¶¿ì½º X ÁÂÇ¥°¡ ÀÌµ¿ÇÑ °Å¸® ( -, + )
-	RwInt32		m_nTrackValue;				///< ProgressBarÀÇ ¼öÄ¡
-	RwInt32		m_nTrackMax;				///< TrackÀÇ ÃÖ´ë ±æÀÌ
-	RwInt32		m_nTrackMin;				///< TrackÀÇ ÃÖ¼Ò ±æÀÌ
+	RwInt32		m_nOldMouseX;				///< Old Mouse X ì¢Œí‘œ
+	RwInt32		m_nMouseX;					///< ìƒˆë¡œìš´ Mouse X ì¢Œí‘œ
+	RwInt32		m_nOffsetX;					///<  ë§ˆìš°ìŠ¤ X ì¢Œí‘œê°€ ì´ë™í•œ ê±°ë¦¬ ( -, + )
+	RwInt32		m_nTrackValue;				///< ProgressBarì˜ ìˆ˜ì¹˜
+	RwInt32		m_nTrackMax;				///< Trackì˜ ìµœëŒ€ ê¸¸ì´
+	RwInt32		m_nTrackMin;				///< Trackì˜ ìµœì†Œ ê¸¸ì´
 
-	RwBool		m_bMouseToggle;				///< ¸¶¿ì½ºÀÇ ¿ÞÂÊ, ¿À¸¥ÂÊ (TRUE, FALSE)
-	RwBool		m_bKeyToggle;				///< Å°ÀÇ ¿ÞÂÊ, ¿À¸¥ÂÊ (TRUE, FALSE)
-	RwBool		m_bComplete;				///< È¸º¹ ¼º°ø¿©ºÎ
+	RwBool		m_bMouseToggle;				///< ë§ˆìš°ìŠ¤ì˜ ì™¼ìª½, ì˜¤ë¥¸ìª½ (TRUE, FALSE)
+	RwBool		m_bKeyToggle;				///< í‚¤ì˜ ì™¼ìª½, ì˜¤ë¥¸ìª½ (TRUE, FALSE)
+	RwBool		m_bComplete;				///< íšŒë³µ ì„±ê³µì—¬ë¶€
 
-	RwReal		m_fElapsedTime;				///< UI°¡ °É¸° ½Ã°£
-	RwReal		m_fShakeElapsedTime;		///< ¸¶¿ì½º·Î ÇÑ¹ø Áõ°¡µÉ¶§ °É¸° ½Ã°£
-	RwReal		m_fKeyDownElapsedTime;		///< Å°º¸µå·Î ÇÑ¹ø Áõ°¡µÉ¶§ °É¸° ½Ã°£
-	RwReal		m_fElapsedShakeTime;		///< Èçµå´Â Å¸ÀÓ
+	RwReal		m_fElapsedTime;				///< UIê°€ ê±¸ë¦° ì‹œê°„
+	RwReal		m_fShakeElapsedTime;		///< ë§ˆìš°ìŠ¤ë¡œ í•œë²ˆ ì¦ê°€ë ë•Œ ê±¸ë¦° ì‹œê°„
+	RwReal		m_fKeyDownElapsedTime;		///< í‚¤ë³´ë“œë¡œ í•œë²ˆ ì¦ê°€ë ë•Œ ê±¸ë¦° ì‹œê°„
+	RwReal		m_fElapsedShakeTime;		///< í”ë“œëŠ” íƒ€ìž„
 
-	RwUInt32	m_dwLeftKey;				///< ActionMapÀÇ ÁÂ¿ì ¹æÇâÅ°
+	RwUInt32	m_dwLeftKey;				///< ActionMapì˜ ì¢Œìš° ë°©í–¥í‚¤
 	RwUInt32	m_dwRightKey;
 };
  

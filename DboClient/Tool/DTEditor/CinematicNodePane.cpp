@@ -1,4 +1,4 @@
-// CinematicNode.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// CinematicNode.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -27,6 +27,6 @@ END_MESSAGE_MAP()
 
 
 
-// CCinematicNodePane ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CCinematicNodePane ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 

@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: SideDialogControlGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 1. 24
 * Abstract		: 
 *****************************************************************************
-* Desc			: »çÀÌµå ´ÙÀÌ¾ó·Î±×¸¦ °ü¸®ÇÏ´Â ÄÁÆ®·Ñ GUI
+* Desc			: ì‚¬ì´ë“œ ë‹¤ì´ì–¼ë¡œê·¸ë¥¼ ê´€ë¦¬í•˜ëŠ” ì»¨íŠ¸ë¡¤ GUI
 *****************************************************************************/
 
 #pragma once
@@ -53,7 +53,7 @@ public:
 	RwBool		Create();
 	VOID		Destroy();
 
-	RwInt32		SwitchDialog(bool bOpen);			///< DialogManager¿¡¼­ÀÇ Open/Close
+	RwInt32		SwitchDialog(bool bOpen);			///< DialogManagerì—ì„œì˜ Open/Close
 
 	RwBool		SelectButtonType(RwUInt32 uiDialogType);
 
@@ -76,10 +76,10 @@ protected:
 	gui::CSlot			m_slotRightButton;
 	gui::CSlot			m_slotMove;
 
-	gui::CButton*		m_pLeftButton;				///< ¿ŞÂÊ ¹öÆ°
-	gui::CButton*		m_pRightButton;				///< ¿À¸¥ÂÊ ¹öÆ°
+	gui::CButton*		m_pLeftButton;				///< ì™¼ìª½ ë²„íŠ¼
+	gui::CButton*		m_pRightButton;				///< ì˜¤ë¥¸ìª½ ë²„íŠ¼
 
-	CSideDialogMiniGui*	m_pSideDialogMiniGui;		///< »çÀÌµå ´ÙÀÌ¾ó·Î±×ÀÇ ÃÖ¼ÒÈ­½Ã °øÅë ´ÙÀÌ¾ó·Î±×
+	CSideDialogMiniGui*	m_pSideDialogMiniGui;		///< ì‚¬ì´ë“œ ë‹¤ì´ì–¼ë¡œê·¸ì˜ ìµœì†Œí™”ì‹œ ê³µí†µ ë‹¤ì´ì–¼ë¡œê·¸
 
 	sButtonType			m_aButtonType[NUM_BUTTONTYPE];
 

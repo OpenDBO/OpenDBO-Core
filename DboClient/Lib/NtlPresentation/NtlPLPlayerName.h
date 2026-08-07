@@ -2,7 +2,7 @@
  *
  * File			: NtlPLPlayerName.h
  * Author		: HyungSuk Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 11. 24	
  * Abstract		: Presentation layer player name entity class
  *****************************************************************************
@@ -21,8 +21,8 @@
 #include "gui_font.h"
 #include "gui_texture.h"
 
-// TextureÀÇ 1 Size¿¡ °¡Àå ¶Ñ·ÇÇÏ°Ô º¸ÀÌ´Â Æú¸®°ï »çÀÌÁî
-// Textrue Size¿¡ °öÇØÁÖ¸é °¡Àå ¶Ñ·ÇÇÏ°Ô º¸ÀÌ´Â Æú¸®°ï »çÀÌÁî¸¦ ³»³õ´Â´Ù.
+// Textureì˜ 1 Sizeì— ê°€ì¥ ëšœë ·í•˜ê²Œ ë³´ì´ëŠ” í´ë¦¬ê³¤ ì‚¬ì´ì¦ˆ
+// Textrue Sizeì— ê³±í•´ì£¼ë©´ ê°€ì¥ ëšœë ·í•˜ê²Œ ë³´ì´ëŠ” í´ë¦¬ê³¤ ì‚¬ì´ì¦ˆë¥¼ ë‚´ë†“ëŠ”ë‹¤.
 // ex) 512 * PLAYERNAME_BOX_BASIS_CX = 2.0f
 #define PLAYERNAME_BOX_BASIS_CX			0.00390625f
 #define PLAYERNAME_BOX_BASIS_CY			0.00625f
@@ -44,7 +44,7 @@
 // FONT SIZE
 //#define dNTL_PLAYERNAME_FONTSIZE_NAME	230 
 //#define dNTL_PLAYERNAME_FONTSIZE_GUILD	180
-// modified by kell ( 2008. 7. 1 ±âÈ¹ÆÀ¿äÃ» )
+// modified by kell ( 2008. 7. 1 ê¸°íšíŒ€ìš”ì²­ )
 #define dNTL_PLAYERNAME_FONTSIZE_NAME	200 
 #define dNTL_PLAYERNAME_FONTSIZE_GUILD	200
 #define dNTL_PLAYERNAME_FONTSIZE_NICK	190
@@ -58,7 +58,7 @@
 #define dNTL_PL_FLAG_TITLE		0x00000010
 
 /**
-* \brief PlayerNameEntityÀÇ ÀÚ·á±¸Á¶
+* \brief PlayerNameEntityì˜ ìë£Œêµ¬ì¡°
 */
 struct SPLPlayerNameCreateParam : public SPLEntityCreateParam
 {
@@ -143,8 +143,8 @@ public:
 	void	SetNickNameColor(const WCHAR* pwcTitle, COLORREF color );
 
 protected:
-	RwBool	m_bCameraCullIn;				///< Ä«¸Ş¶ó¿¡ ÄÃ¸µµÇ´Â°¡
-	RwReal	m_fCullDist;					///< ÄÃ¸µ °Å¸®
+	RwBool	m_bCameraCullIn;				///< ì¹´ë©”ë¼ì— ì»¬ë§ë˜ëŠ”ê°€
+	RwReal	m_fCullDist;					///< ì»¬ë§ ê±°ë¦¬
 
 	RwBool m_bNameVisible;					///< Whether or not the PlayerName can be Visible
 	RwBool m_bTitleNameVisible;				///< Whether or not the TitleName can be Visible
@@ -163,21 +163,21 @@ protected:
 	CPos	m_posNickNameSize;				///< Nick's pixel size
 	CPos	m_posTitleNameSize;				///< Title pixel size
 
-	RwV3d			m_v3WorldPosition;		///< PlayerName EntityÀÇ ¿ùµå Æ÷Áö¼Ç
+	RwV3d			m_v3WorldPosition;		///< PlayerName Entityì˜ ì›”ë“œ í¬ì§€ì…˜
 	
-	RwV3d			m_v3Pos[PLAYERNAME_VERTEX_COUNT];				///< ÀÌ¸§°ú ±æµå ÀÌ¸§ÀÇ ·ÎÄÃ ÁÂÇ¥
-	RwIm3DVertex	m_3dVertices[PLAYERNAME_VERTEX_COUNT];			///< ½ÇÁ¦ ¿ÀºêÁ§Æ®¸¦ ±×¸± ¶§ »ç¿ëµÉ ¹öÅØ½º ¹öÆÛ
+	RwV3d			m_v3Pos[PLAYERNAME_VERTEX_COUNT];				///< ì´ë¦„ê³¼ ê¸¸ë“œ ì´ë¦„ì˜ ë¡œì»¬ ì¢Œí‘œ
+	RwIm3DVertex	m_3dVertices[PLAYERNAME_VERTEX_COUNT];			///< ì‹¤ì œ ì˜¤ë¸Œì íŠ¸ë¥¼ ê·¸ë¦´ ë•Œ ì‚¬ìš©ë  ë²„í…ìŠ¤ ë²„í¼
 
-	RwV3d			m_v3EmblemPos[PLAYERNAME_VERTEX_COUNT];			///< ±æµå ¿¥ºí·½ÀÇ ·ÎÄÃ ÁÂÇ¥
-	RwIm3DVertex	m_3dEmblemVertices[PLAYERNAME_VERTEX_COUNT];	///< ¿¥ºí·½ ¿ÀºêÁ§Æ®¸¦ ±×¸± ¶§ »ç¿ëµÉ ¹öÅØ½º ¹öÆÛ
+	RwV3d			m_v3EmblemPos[PLAYERNAME_VERTEX_COUNT];			///< ê¸¸ë“œ ì— ë¸”ë ˜ì˜ ë¡œì»¬ ì¢Œí‘œ
+	RwIm3DVertex	m_3dEmblemVertices[PLAYERNAME_VERTEX_COUNT];	///< ì— ë¸”ë ˜ ì˜¤ë¸Œì íŠ¸ë¥¼ ê·¸ë¦´ ë•Œ ì‚¬ìš©ë  ë²„í…ìŠ¤ ë²„í¼
 
 	RwV3d			m_v3NickPos[PLAYERNAME_VERTEX_COUNT];
 	RwIm3DVertex	m_3dNickVertices[PLAYERNAME_VERTEX_COUNT];
 
-	RwMatrix		m_matWorld;				///< Ä«¸Ş¶óÀÇ ¿ªÇà·Ä°ú ½ºÄÉÀÏ °ªÀ¸·Î ±¸ÇÑ ¿ùµå Çà·Ä
-    RwUInt8			m_byAlpha;				///< PlayerNameÀÇ Alpha
+	RwMatrix		m_matWorld;				///< ì¹´ë©”ë¼ì˜ ì—­í–‰ë ¬ê³¼ ìŠ¤ì¼€ì¼ ê°’ìœ¼ë¡œ êµ¬í•œ ì›”ë“œ í–‰ë ¬
+    RwUInt8			m_byAlpha;				///< PlayerNameì˜ Alpha
 
-	RwUInt32		m_byFlag;				///< Ãâ·ÂµÇ°Å³ª ·ÎÄÃ ÁÂÇ¥¸¦ °è»êÇÏ´Â »óÅÂ ÅÂ±×
+	RwUInt32		m_byFlag;				///< ì¶œë ¥ë˜ê±°ë‚˜ ë¡œì»¬ ì¢Œí‘œë¥¼ ê³„ì‚°í•˜ëŠ” ìƒíƒœ íƒœê·¸
 };
 
 #endif

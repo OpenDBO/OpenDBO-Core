@@ -2608,7 +2608,8 @@ struct RpClump
         RwObject            object;
 
         /* Information about all the Atomics */
-        RwLinkList          atomicList;
+        //RwLinkList          atomicList; // x64 port
+        RpAtomic*           atomicList;
 
         /* Lists of lights and cameras */
         RwLinkList          lightList;
@@ -2657,7 +2658,10 @@ struct RpAtomic
 
     /* Connections to other atomics */
     RpClump            *clump;
-    RwLLLink            inClumpLink;
+    // x64 port: replaced inClumpLink with prev/next
+    //RwLLLink            inClumpLink;
+    RpAtomic           *prev;
+    RpAtomic           *next;
 
     /* callbacks */
     RpAtomicCallBackRender renderCallBack;
@@ -3767,19 +3771,21 @@ struct RxD3D9ResEntryHeader
 
     void        *indexBuffer;   /**< Index buffer */
 
-    RwUInt32    primType;       /**< Primitive type */
+    RwPrimitiveType    primType;       /**< Primitive type */
 
     RxD3D9VertexStream vertexStream[RWD3D9_MAX_VERTEX_STREAMS];   /**< Vertex streams */
 
-    RwBool      useOffsets;      /**< Use vertex buffer offsets when setting the streams */
+    RwUInt8      useOffsets;      /**< Use vertex buffer offsets when setting the streams */
 
     void        *vertexDeclaration;   /**< Vertex declaration */
 
     RwUInt32    totalNumIndex;  /**< Total number of indices. Needed for
-                                     reinstancing, not for rendering */
+                                      reinstancing, not for rendering */
 
     RwUInt32    totalNumVertex; /**< Total number of vertices. Needed for
-                                     reinstancing, not for rendering */
+                                      reinstancing, not for rendering */
+
+    RwUInt8     isLive;         /**< Resource is live/valid */  
 };
 
 /* This is what I keep in memory as part of the instance data setup */
@@ -4015,7 +4021,12 @@ _rpD3D9VertexDeclarationInstTangent(RwUInt32 type,
                                     const RpVertexNormal *packedNormal,
                                     const RwTexCoords *texCoord,
                                     RxD3D9ResEntryHeader *meshHeader,
-                                    RwUInt32 stride);
+                                    RwUInt32 stride
+									//@{ Jaewon 20050330
+									,
+									const RpMeshHeader *mH
+									//@} Jaewon
+									);
 
 extern void
 _rpD3D9VertexDeclarationUnInstV3d(RwUInt32 type,

@@ -122,7 +122,7 @@ RwBool CTBMatchResultGui::Create( eMATCHWORLD_TYPE eMatchType )
 
 	CRectangle rtScreen = m_pThis->GetScreenRect();
 
-	// ÃÊ±âÀ§Ä¡ ¼³Á¤
+	// ì´ˆê¸°ìœ„ì¹˜ ì„¤ì •
 	m_rtRewardItem[BLUE][0].SetRectWH( MATCHREWARD_BLUE_ICON_X, MATCHREWARD_ICON_Y, DBOGUI_ICON_SIZE, DBOGUI_ICON_SIZE );
 	m_rtRewardItem[RED][0].SetRectWH( MATCHREWARD_RED_ICON_X, MATCHREWARD_ICON_Y, DBOGUI_ICON_SIZE, DBOGUI_ICON_SIZE );
 
@@ -237,9 +237,9 @@ VOID CTBMatchResultGui::Destroy(VOID)
 {
 	GetNtlGuiManager()->RemoveUpdateFunc( this );
 
-	OnMouseLeave( NULL ); // ÀÎÆ÷À©µµ¿ì ´İ±â.
+	OnMouseLeave( NULL ); // ì¸í¬ìœˆë„ìš° ë‹«ê¸°.
 
-	DeleteAllRewardItem(); // ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ »èÁ¦.
+	DeleteAllRewardItem(); // ì•„ì´í…œ ì•„ì´ì½˜ ì‚­ì œ.
 
 	switch( m_eMatchType )
 	{		
@@ -714,7 +714,7 @@ VOID CTBMatchResultGui::SetFlashResult( FLASHRESULT eResult )
 	CNtlWorldConceptTB* pTBWorldConcept = reinterpret_cast<CNtlWorldConceptTB*>( GetNtlWorldConcept()->GetWorldConceptController( WORLD_PLAY_T_BUDOKAI ) );
 	NTL_ASSERT( pTBWorldConcept, "CNtlTBudokai::HandleEvents : must World concept is valid" );	
 
-	// Âü°¡ÀÚ°¡ ¾Æ´Ï¶ó¸é
+	// ì°¸ê°€ìê°€ ì•„ë‹ˆë¼ë©´
 	if( !pTBWorldConcept->GetMyTeam() )
 		eResult = NONE;
 

@@ -62,7 +62,7 @@ RwBool CNtlInstanceLineSystem::Create( CNtlResourceEffect* pResourceEffect, CNtl
     CNtlInstanceImVertexSystem::Create(pResourceEffect, pResourceComponentSystem, matWorld);
     m_pResourceLineSystem = (CNtlResourceLineSystem*)pResourceComponentSystem;
  
-    // Vertex Buffer »ı¼º (ÃÖ´ë ¶óÀÎÀÇ °³¼ö * 6)
+    // Vertex Buffer ìƒì„± (ìµœëŒ€ ë¼ì¸ì˜ ê°œìˆ˜ * 6)
     m_nVertexCount = m_pResourceLineSystem->m_EmitterStandard.m_nMaxCount * 6;    
     m_pVertices = NTL_NEW RwIm3DVertex[m_nVertexCount];
     NTL_ASSERTE(m_pVertices);
@@ -70,7 +70,7 @@ RwBool CNtlInstanceLineSystem::Create( CNtlResourceEffect* pResourceEffect, CNtl
     ZeroMemory(m_pVertices, sizeof(RwIm3DVertex) * m_nVertexCount);
     m_uiMemoryUseSize += sizeof(RwIm3DVertex) * m_nVertexCount;
 
-    // Line Pool »ı¼º
+    // Line Pool ìƒì„±
     m_poolLineSystemVertex = NTL_NEW SLineSystemVertex[m_pResourceLineSystem->m_EmitterStandard.m_nMaxCount];
     NTL_ASSERTE(m_poolLineSystemVertex);
     if(!m_poolLineSystemVertex) NTL_RETURN(FALSE);
@@ -78,10 +78,10 @@ RwBool CNtlInstanceLineSystem::Create( CNtlResourceEffect* pResourceEffect, CNtl
     m_uiMemoryUseSize += sizeof(SLineSystemVertex) * m_pResourceLineSystem->m_EmitterStandard.m_nMaxCount;
     
 
-    // ÅØ½ºÃÄ ¼³Á¤
+    // í…ìŠ¤ì³ ì„¤ì •
     m_pCurrentTexture = m_pStandardTexture = CreateTexture(m_pResourceLineSystem->m_strTextureName);
 
-    // ±âº» Emitter ¼³Á¤
+    // ê¸°ë³¸ Emitter ì„¤ì •
     BuildEmitterStandard();
 
     m_nRoateSeed = rand();
@@ -91,7 +91,7 @@ RwBool CNtlInstanceLineSystem::Create( CNtlResourceEffect* pResourceEffect, CNtl
 
 void CNtlInstanceLineSystem::BuildEmitterStandard()
 {
-    // Color ¼³Á¤
+    // Color ì„¤ì •
     if(m_pResourceLineSystem->IsEmitterDataFlag(rpPRTSTDEMITTERDATAFLAGPRTCOLOR))
     {
         RwRGBA color;
@@ -178,7 +178,7 @@ RwBool CNtlInstanceLineSystem::Render()
 	if(m_listLineSystemVertex.empty())
 		return TRUE;
     
-    // Vertex µéÀ» ·»´õ¸µ ÇÑ´Ù.
+    // Vertex ë“¤ì„ ë Œë”ë§ í•œë‹¤.
     if(m_pResourceLineSystem->m_EmitterStandard.m_bZBufferEnable == FALSE)
     {
         RwRenderStateSet( rwRENDERSTATEZTESTENABLE, (void*)FALSE);
@@ -212,7 +212,7 @@ void CNtlInstanceLineSystem::UpdateVertices( RwReal fElapsedTime )
 
     m_fCreateGapTime += fElapsedTime;
 
-    // Gap TimeÀÌ Áö³µÀ¸¸é »õ·Î¿î ¶óÀÎÀ» »ı¼ºÇÑ´Ù.
+    // Gap Timeì´ ì§€ë‚¬ìœ¼ë©´ ìƒˆë¡œìš´ ë¼ì¸ì„ ìƒì„±í•œë‹¤.
     RwReal fEmitterGap = m_pResourceLineSystem->m_EmitterStandard.m_fEmitterGap;
     if(CNtlInstanceEffect::GetLowSpecEnable())
     {
@@ -240,10 +240,10 @@ void CNtlInstanceLineSystem::UpdateVertices( RwReal fElapsedTime )
 
             if(pLineSystemVertex->fLifeTime < m_pResourceLineSystem->m_EmitterStandard.m_fLineLifeTime)
             {
-                // ³¡Á¡À» ¼³Á¤µÈ ¹æÇâÀ¸·Î ÀÌµ¿ ½ÃÅ²´Ù.
+                // ëì ì„ ì„¤ì •ëœ ë°©í–¥ìœ¼ë¡œ ì´ë™ ì‹œí‚¨ë‹¤.
                 pLineSystemVertex->vUpdatePoint += pLineSystemVertex->vDir * m_pResourceLineSystem->m_EmitterStandard.m_fVelocity * fElapsedTime;
 
-                // ¶óÀÎÀÌ ±æÀÌ°¡ Á¤ÇØÁø ±æÀÌº¸´Ù ±æ¾îÁö¸é StartPointµµ ÀÌµ¿ÇÑ´Ù.
+                // ë¼ì¸ì´ ê¸¸ì´ê°€ ì •í•´ì§„ ê¸¸ì´ë³´ë‹¤ ê¸¸ì–´ì§€ë©´ StartPointë„ ì´ë™í•œë‹¤.
                 if(m_pResourceLineSystem->m_EmitterStandard.m_bMoveLine)
                 {
                     RwV3d vLenth = pLineSystemVertex->vUpdatePoint - pLineSystemVertex->vStrartPoint;
@@ -254,13 +254,13 @@ void CNtlInstanceLineSystem::UpdateVertices( RwReal fElapsedTime )
                     }
                 }
 
-                // Shake ¿É¼ÇÀÌ ÄÑÁ®ÀÖÀ¸¸é ·£´ıÀ¸·Î Èçµç´Ù
+                // Shake ì˜µì…˜ì´ ì¼œì ¸ìˆìœ¼ë©´ ëœë¤ìœ¼ë¡œ í”ë“ ë‹¤
                 if(m_pResourceLineSystem->m_EmitterStandard.m_bShake)
                 {
                     UpdateShake(pLineSystemVertex);
                 }
 
-                // Á¤ÇØÁø µÎÁ¡À» °¡Áö°í ZÃà ºôº¸µå ¸éÀ» »ı¼ºÇÑ´Ù.
+                // ì •í•´ì§„ ë‘ì ì„ ê°€ì§€ê³  Zì¶• ë¹Œë³´ë“œ ë©´ì„ ìƒì„±í•œë‹¤.
                 if(m_pResourceLineSystem->m_EmitterStandard.m_bZBiilBoard)
                 {
                     UpdateZBillBoard(pLineSystemVertex);
@@ -271,7 +271,7 @@ void CNtlInstanceLineSystem::UpdateVertices( RwReal fElapsedTime )
                 }
                 
 
-                // List¿¡ ÀÖ´Â VertexµéÀ» Vertex Buffer¿¡ ³Ö´Â´Ù.
+                // Listì— ìˆëŠ” Vertexë“¤ì„ Vertex Bufferì— ë„£ëŠ”ë‹¤.
                 for(int i = 0; i < 6; ++i)
                 {
                     m_pVertices[nCount++] = pLineSystemVertex->imVertices[i];                    
@@ -279,7 +279,7 @@ void CNtlInstanceLineSystem::UpdateVertices( RwReal fElapsedTime )
 
                 ++it;
             }
-            else    // Life TimeÀÌ Áö³ª¸é ¸®½ºÆ®¿¡¼­ Á¦°ÅÇÑ´Ù.
+            else    // Life Timeì´ ì§€ë‚˜ë©´ ë¦¬ìŠ¤íŠ¸ì—ì„œ ì œê±°í•œë‹¤.
             {
                 it = m_listLineSystemVertex.erase(it);
 
@@ -289,7 +289,7 @@ void CNtlInstanceLineSystem::UpdateVertices( RwReal fElapsedTime )
 }
 
 /**
- * »õ·Î¿î ¶óÀÎÀ» Ãß°¡ÇÏ¿© List¿¡ Ãß°¡ÇÑ´Ù. 
+ * ìƒˆë¡œìš´ ë¼ì¸ì„ ì¶”ê°€í•˜ì—¬ Listì— ì¶”ê°€í•œë‹¤. 
  */
 void CNtlInstanceLineSystem::CreateLine()
 {
@@ -303,7 +303,7 @@ void CNtlInstanceLineSystem::CreateLine()
         m_nPoolIndex = 0;
     }
 
-    // Emitter³»ÀÇ À§Ä¡¸¦ °áÁ¤ÇÑ´Ù.
+    // Emitterë‚´ì˜ ìœ„ì¹˜ë¥¼ ê²°ì •í•œë‹¤.
     RwReal fRadian = NtlRandomNumber(0.0f, (2.0f * rwPI));        
     
     RwV3d vStartPoint;
@@ -334,7 +334,7 @@ void CNtlInstanceLineSystem::CreateLine()
         vStartPoint.y = (RwReal)RwSin(fRadian);    
         vStartPoint.z = 0.0f;    
 
-        // LineÀÇ ÁøÇà ¹æÇâÀ» °áÁ¤ÇÑ´Ù.
+        // Lineì˜ ì§„í–‰ ë°©í–¥ì„ ê²°ì •í•œë‹¤.
         vDir = vStartPoint * m_pResourceLineSystem->m_EmitterStandard.m_fTargetRadius;    
         vDir.z = -1.0f;
         RwV3dNormalize(&vDir, &vDir);
@@ -345,7 +345,7 @@ void CNtlInstanceLineSystem::CreateLine()
 
     m_poolLineSystemVertex[m_nPoolIndex].vDir = vDir;    
 
-    // Emitter Bias¸¦ ¼³Á¤ÇÑ´Ù.
+    // Emitter Biasë¥¼ ì„¤ì •í•œë‹¤.
     if(m_pResourceLineSystem->m_EmitterStandard.m_fEmitterBias != 0.0f)
     {
         RwReal fEmitterBias = NtlRandomNumber(-(m_pResourceLineSystem->m_EmitterStandard.m_fEmitterBias), m_pResourceLineSystem->m_EmitterStandard.m_fEmitterBias);
@@ -353,7 +353,7 @@ void CNtlInstanceLineSystem::CreateLine()
         m_poolLineSystemVertex[m_nPoolIndex].vStrartPoint += vDir;
     }
 
-    // UV ¼³Á¤
+    // UV ì„¤ì •
     m_poolLineSystemVertex[m_nPoolIndex].imVertices[0].u = 0.0f;
     m_poolLineSystemVertex[m_nPoolIndex].imVertices[0].v = 0.0f;
     m_poolLineSystemVertex[m_nPoolIndex].imVertices[1].u = 1.0f;
@@ -367,16 +367,16 @@ void CNtlInstanceLineSystem::CreateLine()
     m_poolLineSystemVertex[m_nPoolIndex].imVertices[5].u = 0.0f;
     m_poolLineSystemVertex[m_nPoolIndex].imVertices[5].v = 1.0f;
 
-    // Color ¼³Á¤
+    // Color ì„¤ì •
     for(int i = 0; i < 6; ++i)
     {
         RwIm3DVertexSetRGBA(&m_poolLineSystemVertex[m_nPoolIndex].imVertices[i], m_sColor.red, m_sColor.green, m_sColor.blue, m_sColor.alpha);
     }
 
-    // Size ¼³Á¤    
+    // Size ì„¤ì •    
     if(m_pResourceLineSystem->IsEmitterDataFlag(rpPRTSTDEMITTERDATAFLAGPRTSIZE))
     {
-        // Size ActionÀÌ ¼³Á¤µÇ¸é ±âº» Size´Â ¹«½ÃµÈ´Ù. (Size ActionÀÇ z°ªÀº »ç¿ëÇÏÁö ¾Ê´Â´Ù.)
+        // Size Actionì´ ì„¤ì •ë˜ë©´ ê¸°ë³¸ SizeëŠ” ë¬´ì‹œëœë‹¤. (Size Actionì˜ zê°’ì€ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤.)
         m_poolLineSystemVertex[m_nPoolIndex].vLineSize.x = m_pResourceLineSystem->m_EmitterPrtSize.prtStartSize.x;        
         m_poolLineSystemVertex[m_nPoolIndex].vLineSize.y = m_pResourceLineSystem->m_EmitterPrtSize.prtStartSize.y;
     }
@@ -424,27 +424,27 @@ void CNtlInstanceLineSystem::UpdateZBillBoard( SLineSystemVertex* pLineSystemVer
 
 void CNtlInstanceLineSystem::UpdateNoneZBillBoard( SLineSystemVertex* pLineSystemVertex ) 
 {
-    // ZBillBoard°¡ Àû¿ëµÇÁö ¾ÊÀº ¸éÀ» »ı¼ºÇÑ´Ù.
-    // ¶óÀÎÀÇ Dir º¤ÅÍ¿Í ¶óÀÎÀ§Ä¡¿Í ¿øÁ¡°úÀÇ º¤ÅÍ¸¦ ¿ÜÀûÇÑ º¤ÅÍ ¹æÇâÀ¸·Î ¸éÀ» ´Ã¸°´Ù.
+    // ZBillBoardê°€ ì ìš©ë˜ì§€ ì•Šì€ ë©´ì„ ìƒì„±í•œë‹¤.
+    // ë¼ì¸ì˜ Dir ë²¡í„°ì™€ ë¼ì¸ìœ„ì¹˜ì™€ ì›ì ê³¼ì˜ ë²¡í„°ë¥¼ ì™¸ì í•œ ë²¡í„° ë°©í–¥ìœ¼ë¡œ ë©´ì„ ëŠ˜ë¦°ë‹¤.
 
     if(!pLineSystemVertex)
         return;
 
-    // ÁøÇà º¤ÅÍ
+    // ì§„í–‰ ë²¡í„°
     RwV3d vDir = pLineSystemVertex->vUpdatePoint - pLineSystemVertex->vStrartPoint;
     if(RwV3dLength(&vDir) == 0.0f)
         return;
 
     RwV3dNormalize(&vDir, &vDir);
 
-    // ¿øÁ¡°úÀÇ º¤ÅÍ
+    // ì›ì ê³¼ì˜ ë²¡í„°
     RwV3d vLinePos = pLineSystemVertex->vUpdatePoint;
     vLinePos.z = m_pResourceLineSystem->m_vPosition.z;
 
     RwV3d vOrigin = vLinePos - m_pResourceLineSystem->m_vPosition;
     RwV3dNormalize(&vOrigin, &vOrigin);
 
-    // µÎ º¤ÅÍ¸¦ ¿ÜÀûÇÏ¿© ¸éÀÇ ¹æÇâÀ» °áÁ¤ÇÑ´Ù.
+    // ë‘ ë²¡í„°ë¥¼ ì™¸ì í•˜ì—¬ ë©´ì˜ ë°©í–¥ì„ ê²°ì •í•œë‹¤.
     RwV3d vAxisWidth;
     RwV3dCrossProduct(&vAxisWidth, &vDir, &vOrigin);
     RwV3dNormalize(&vAxisWidth, &vAxisWidth);
@@ -454,10 +454,10 @@ void CNtlInstanceLineSystem::UpdateNoneZBillBoard( SLineSystemVertex* pLineSyste
 
 
 /**
- * ¶óÀÎÀÇ Á¤º¸·Î Æò¸éÀ» »ı¼ºÇÑ´Ù.
- * \param pLineSystemVertex Á¤º¸¸¦ °¡Áö°í ÀÖ´Â ±¸Á¶Ã¼ÀÇ Æ÷ÀÎÅÍ
- * \param vStartAxis ½ÃÀÛÁ¡¿¡¼­ ±¸¼ºµÉ Æò¸éÀÇ º¤ÅÍ (´ÜÀ§º¤ÅÍ)
- * \param vEndAxis ³¡Á¡¿¡¼­ ±¸¼ºµÉ Æí¸éÀÇ º¤ÅÍ (´ÜÀ§ º¤ÅÍ) 
+ * ë¼ì¸ì˜ ì •ë³´ë¡œ í‰ë©´ì„ ìƒì„±í•œë‹¤.
+ * \param pLineSystemVertex ì •ë³´ë¥¼ ê°€ì§€ê³  ìˆëŠ” êµ¬ì¡°ì²´ì˜ í¬ì¸í„°
+ * \param vStartAxis ì‹œì‘ì ì—ì„œ êµ¬ì„±ë  í‰ë©´ì˜ ë²¡í„° (ë‹¨ìœ„ë²¡í„°)
+ * \param vEndAxis ëì ì—ì„œ êµ¬ì„±ë  í¸ë©´ì˜ ë²¡í„° (ë‹¨ìœ„ ë²¡í„°) 
  */
 void CNtlInstanceLineSystem::CreatePlane(SLineSystemVertex* pLineSystemVertex, const RwV3d& vStartAxis, const RwV3d& vEndAxis)
 {
@@ -491,7 +491,7 @@ void CNtlInstanceLineSystem::UpdateShake( SLineSystemVertex* pLineSystemVertex )
 
     fShakeDir = fShakeDir * fShakeRatio;
 
-    // ³¡¶óÀÎ¸¸ Shake¸¦ Àû¿ëÇÑ´Ù.
+    // ëë¼ì¸ë§Œ Shakeë¥¼ ì ìš©í•œë‹¤.
     pLineSystemVertex->vUpdatePoint = pLineSystemVertex->vUpdatePoint + fShakeDir;
 }
 
@@ -517,7 +517,7 @@ void CNtlInstanceLineSystem::UpdateRotate( RwReal fDeltaTime )
 
 void CNtlInstanceLineSystem::UpdateColor( RwReal fDeltaTime ) 
 {
-    // °¢°¢ÀÇ ¶óÀÎ¸¶´Ù Color¸¦ UpdateÇÑ´Ù.
+    // ê°ê°ì˜ ë¼ì¸ë§ˆë‹¤ Colorë¥¼ Updateí•œë‹¤.
     RwRGBA color;
 
     for each(SLineSystemVertex* pLineSystemVertex in m_listLineSystemVertex)
@@ -541,7 +541,7 @@ void CNtlInstanceLineSystem::UpdateColor( RwReal fDeltaTime )
 }
 void CNtlInstanceLineSystem::UpdateSize( RwReal fDeltaTime ) 
 {
-    // °¢°¢ÀÇ ¶óÀÎ¸¶´Ù Size¸¦ UpdateÇÑ´Ù.
+    // ê°ê°ì˜ ë¼ì¸ë§ˆë‹¤ Sizeë¥¼ Updateí•œë‹¤.
     RwV3d size;
 
     for each(SLineSystemVertex* pLineSystemVertex in m_listLineSystemVertex)

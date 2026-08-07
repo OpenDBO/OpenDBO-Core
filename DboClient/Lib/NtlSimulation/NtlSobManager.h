@@ -2,7 +2,7 @@
  *
  * File			: NtlSobManager.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 8. 23	
  * Abstract		: Simulation entity manager class
  *****************************************************************************
@@ -79,14 +79,14 @@ private:
 	typedef std::map<const RWS::CRegisteredMsgs*, FuncEventHander> MapFuncEventHandler;
 	MapFuncEventHandler m_mapEventFunc;
 
-	// Æ¯Á¤ group¿¡ visual proxy Ã³¸®.
+	// íŠ¹ì • groupì— visual proxy ì²˜ë¦¬.
 	typedef std::map<SERIAL_HANDLE, void*> MapVisible;
 	MapVisible m_mapGroupVisible[E_SOB_GROUP_VISIBLE_FILTER_END];
 
-	// Character °¡½Ã°Å¸®¿¡ µû¸¥ visual proxy Ã³¸®.
+	// Character ê°€ì‹œê±°ë¦¬ì— ë”°ë¥¸ visual proxy ì²˜ë¦¬.
 	RwReal		m_fOptiionRangeTick;
 
-	// status animation sync Ã³¸®.
+	// status animation sync ì²˜ë¦¬.
 	CNtlSobStatusAnimSyncManager *m_pAnimSyncManager;
 
 	CNtlSobCharPerfController* m_pCharPerfCtrl;
@@ -165,8 +165,8 @@ public:
 	void GameOptionShadowOnOff(RwBool bShadowOnOff);
 
 	/**
-	*  simulation entity managerÀÇ event handler
-	*  \param pMsg´Â event°¡ ¹ß»ıÇÒ °æ¿ì ³Ñ¾î¿À´Â message.
+	*  simulation entity managerì˜ event handler
+	*  \param pMsgëŠ” eventê°€ ë°œìƒí•  ê²½ìš° ë„˜ì–´ì˜¤ëŠ” message.
 	*/
 	virtual void HandleEvents(RWS::CMsg &pMsg);
 
@@ -197,7 +197,7 @@ public:
 	void EventObjectThreadLoadCompleteEventHandler(RWS::CMsg& pMsg);
 
     // World Create
-    void EventCreateWorldHandler(RWS::CMsg& pMsg);                      ///< ¿ùµå°¡ »ı¼º/Á¦°Å µÉ¶§ÀÇ ÀÌº¥Æ®
+    void EventCreateWorldHandler(RWS::CMsg& pMsg);                      ///< ì›”ë“œê°€ ìƒì„±/ì œê±° ë ë•Œì˜ ì´ë²¤íŠ¸
 
 	// Naming
 	void ChangeCharName(RWS::CMsg& pMsg);

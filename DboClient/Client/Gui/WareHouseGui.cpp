@@ -49,7 +49,7 @@ namespace
 	#define dSLOT_VER_GAP		40
 	#define dSLOT_HORI_GAP		40
 
-	#define dHEIGHT_GAP			30		// ∞¯¿Ø √¢∞ÌøÕ ¿œπ› √¢∞Ì¿« ≥Ù¿Ã ¬˜¿Ã
+	#define dHEIGHT_GAP			30		// Í≥µÏú† Ï∞ΩÍ≥†ÏôÄ ÏùºÎ∞ò Ï∞ΩÍ≥†Ïùò ÎÜíÏù¥ Ï∞®Ïù¥
 };
 
 
@@ -119,7 +119,7 @@ VOID CWarehouseGui::Init()
 {
 	CRectangle rect;
 
-	// ¥Ÿ¿ÃæÛ∑Œ±◊ ¿Ã∏ß Ω∫≈¬∆Ω
+	// Îã§Ïù¥ÏñºÎ°úÍ∑∏ Ïù¥Î¶Ñ Ïä§ÌÉúÌã±
 	rect.SetRectWH(DBOGUI_DIALOG_TITLE_X, DBOGUI_DIALOG_TITLE_Y, 145, 14);
 	m_pDialogName = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT );
 	m_pDialogName->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
@@ -135,11 +135,11 @@ VOID CWarehouseGui::Init()
 		m_pDialogName->SetText(GetDisplayStringManager()->GetString("DST_WAREHOUSE_NAME_COMMON"));
 	
 
-	// √¢¥›±‚ πˆ∆∞
+	// Ï∞ΩÎã´Í∏∞ Î≤ÑÌäº
 	m_pExitButton= (gui::CButton*)GetComponent("btnExit");
 	m_slotCloseButton = m_pExitButton->SigClicked().Connect(this, &CWarehouseGui::ClickedCloseButton);
 
-	// æ∆¿Ã≈€ ΩΩ∑‘
+	// ÏïÑÏù¥ÌÖú Ïä¨Î°Ø
 	for(RwInt32 i = 0 ; i < NTL_MAX_BANK_ITEM_SLOT ; ++i )
 	{
 		m_Slot[i].Create(m_pThis, (eDialogType)(DIALOG_WAREHOUSE_1 + m_byWarehouseIndex), REGULAR_SLOT_ITEM_SOB, SDS_COUNT | SDS_LOCK);
@@ -150,10 +150,10 @@ VOID CWarehouseGui::Init()
 			m_Slot[i].SetPosition_fromParent(dSLOT_START_X + dSLOT_VER_GAP*(i%dSLOT_ROW), dSLOT_START_Y + dSLOT_HORI_GAP*(i/dSLOT_COLUMN));
 	}
 
-	// ΩΩ∑‘ ∆˜ƒøΩ∫ ¿Ã∆Â∆Æ
+	// Ïä¨Î°Ø Ìè¨Ïª§Ïä§ Ïù¥ÌéôÌä∏
 	m_FocusEffect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", "srfSlotFocusEffect") );
 
-	// ΩΩ∑‘ ºø∑∫∆Æ ¿Ã∆Â∆Æ
+	// Ïä¨Î°Ø ÏÖÄÎ†âÌä∏ Ïù¥ÌéôÌä∏
 	m_SelectEffect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", "srfSlotGrayedEffect" ) );
 
 	LinkMsg(g_EventSobInfoUpdate);
@@ -203,7 +203,7 @@ VOID CWarehouseGui::UpdateItems()
 				m_Slot[i].Clear();
 
 				if( pChildItemAttr->IsNeedToIdentify() )
-					// πÃ»Æ¿Œ æ∆¿Ã≈€
+					// ÎØ∏ÌôïÏù∏ ÏïÑÏù¥ÌÖú
 					m_Slot[i].SetSerialType(REGULAR_SLOT_ITEM_NOT_IDENTIFICATION);
 				else
 					m_Slot[i].SetSerialType(REGULAR_SLOT_ITEM_SOB);
@@ -308,7 +308,7 @@ VOID CWarehouseGui::OnMouseDown(const CKey& key)
 	{
 		m_iMouseDownSlot = iPtinSlot;
 
-		// ≈¨∏Ø ¿Ã∫•∆Æ Ω√¿€
+		// ÌÅ¥Î¶≠ Ïù¥Î≤§Ìä∏ ÏãúÏûë
 		m_iClickEffectedSlot = iPtinSlot;	
 		m_Slot[m_iClickEffectedSlot].ClickEffect(TRUE);
 	}	
@@ -316,7 +316,7 @@ VOID CWarehouseGui::OnMouseDown(const CKey& key)
 
 VOID CWarehouseGui::OnMouseUp(const CKey& key)
 {
-	// ≈¨∏Ø ¿Ã∫•∆Æ ¡æ∑·	
+	// ÌÅ¥Î¶≠ Ïù¥Î≤§Ìä∏ Ï¢ÖÎ£å	
 	if( m_iClickEffectedSlot != INVALID_INDEX )
 	{		
 		m_Slot[m_iClickEffectedSlot].ClickEffect(FALSE);
@@ -337,7 +337,7 @@ VOID CWarehouseGui::OnMouseUp(const CKey& key)
 			{
 				if( GetIconMoveManager()->IsActive() )
 				{
-					// √¢∞Ì∑Œ π∞∞«¿ª ø≈±‰¥Ÿ			
+					// Ï∞ΩÍ≥†Î°ú Î¨ºÍ±¥ÏùÑ ÏòÆÍ∏¥Îã§			
 					CNtlWarehouse* pWarehouses = GetNtlSLGlobal()->GetSobAvatar()->GetWarehouse();
 					GetIconMoveManager()->IconMovePutDown(PLACE_WAREHOUSE, pWarehouses->GetSlotSerailID(m_byWarehouseIndex), m_iMouseDownSlot);
 				}
@@ -347,13 +347,13 @@ VOID CWarehouseGui::OnMouseUp(const CKey& key)
 					{
 						if( key.m_dwVKey & UD_MK_CONTROL )
 						{
-							// √¢∞Ìø°º≠ æ∆¿Ã≈€¿ª ≥™¥©±‚ ¿ß«ÿ ∞ËªÍ±‚∏¶ ø¨¥Ÿ
+							// Ï∞ΩÍ≥†ÏóêÏÑú ÏïÑÏù¥ÌÖúÏùÑ ÎÇòÎàÑÍ∏∞ ÏúÑÌï¥ Í≥ÑÏÇ∞Í∏∞Î•º Ïó∞Îã§
 							CRectangle rtScreen = m_pThis->GetScreenRect();
 							CDboEventGenerator::CalcPopupShow( TRUE, m_Slot[m_iMouseDownSlot].GetSerial(), PLACE_WAREHOUSE, rtScreen.left, rtScreen.top, m_Slot[m_iMouseDownSlot].GetCount() );
 						}
 						else
 						{
-							// √¢∞Ìø°º≠ π∞∞«¿ª ¡˝¥¬¥Ÿ
+							// Ï∞ΩÍ≥†ÏóêÏÑú Î¨ºÍ±¥ÏùÑ ÏßëÎäîÎã§
 							GetIconMoveManager()->IconMovePickUp(m_Slot[m_iMouseDownSlot].GetSerial(), PLACE_WAREHOUSE,
 								m_iMouseDownSlot, m_Slot[m_iMouseDownSlot].GetCount(), m_Slot[m_iMouseDownSlot].GetTexture(), 0, 0);	
 
@@ -374,7 +374,7 @@ VOID CWarehouseGui::OnMouseUp(const CKey& key)
 
 					if( uiBagIndex != INVALID_INDEX)
 					{
-						// πŸ∑Œ ∞°πÊ¿∏∑Œ ø≈±‰¥Ÿ
+						// Î∞îÎ°ú Í∞ÄÎ∞©ÏúºÎ°ú ÏòÆÍ∏¥Îã§
 						Logic_ItemMoveProc(m_Slot[m_iMouseDownSlot].GetSerial(), PLACE_WAREHOUSE, (RwUInt8)m_iMouseDownSlot,
 							PLACE_BAG, hBagHandle, (RwUInt8)uiSlot_of_Bag, m_Slot[m_iMouseDownSlot].GetCount());
 
@@ -426,7 +426,7 @@ VOID CWarehouseGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 	{
 		FocusEffect(TRUE, iPtinSlot);
 
-		// ΩΩ∑‘ ≈¨∏Ø ¿Ã∆Â∆Æ
+		// Ïä¨Î°Ø ÌÅ¥Î¶≠ Ïù¥ÌéôÌä∏
 		if( m_iClickEffectedSlot != INVALID_INDEX )
 		{
 			if( m_iClickEffectedSlot == iPtinSlot )
@@ -533,7 +533,7 @@ VOID CWarehouseGui::HandleEvents( RWS::CMsg &msg )
 			NTL_RETURNVOID();
 
 
-		// √¢∞Ì ¡§∫∏∏¶ æ˜µ•¿Ã∆Æ «—¥Ÿ.
+		// Ï∞ΩÍ≥† Ï†ïÎ≥¥Î•º ÏóÖÎç∞Ïù¥Ìä∏ ÌïúÎã§.
 		UpdateItems();
 	}
 	else if( msg.Id == g_EventCalcPopupResult )
@@ -544,7 +544,7 @@ VOID CWarehouseGui::HandleEvents( RWS::CMsg &msg )
 		{
 			CNtlSobItem* pItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( pData->uiSerial ) );
 
-			// 3∞≥¿« √¢∞Ì¡ﬂø° «ÿ¥Á æ∆¿Ã≈€¿ª ∞°¡ˆ∞Ì ¿÷¥¬ ∞Õ¿ª √£¥¬¥Ÿ
+			// 3Í∞úÏùò Ï∞ΩÍ≥†Ï§ëÏóê Ìï¥Îãπ ÏïÑÏù¥ÌÖúÏùÑ Í∞ÄÏßÄÍ≥† ÏûàÎäî Í≤ÉÏùÑ Ï∞æÎäîÎã§
 			if( m_Slot[pItem->GetItemSlotIdx()].GetSerial() != pItem->GetSerialID() )
 				return;
 		
@@ -559,7 +559,7 @@ VOID CWarehouseGui::HandleEvents( RWS::CMsg &msg )
 		if( pPacket->nSrcPlace != PLACE_WAREHOUSE )
 			return;
 
-		// 3∞≥¿« √¢∞Ì¡ﬂø° «ÿ¥Á æ∆¿Ã≈€¿ª ∞°¡ˆ∞Ì ¿÷¥¬ ∞Õ¿ª √£¥¬¥Ÿ
+		// 3Í∞úÏùò Ï∞ΩÍ≥†Ï§ëÏóê Ìï¥Îãπ ÏïÑÏù¥ÌÖúÏùÑ Í∞ÄÏßÄÍ≥† ÏûàÎäî Í≤ÉÏùÑ Ï∞æÎäîÎã§
 		if( m_Slot[pPacket->nSrcSlotIdx].GetSerial() != pPacket->uiSerial )
 			return;
 
@@ -630,11 +630,11 @@ RwBool CWarehouseCommonGui::Create()
 
 	Init();
 
-	// ¡¶¥œ πˆ∆∞
+	// Ï†úÎãà Î≤ÑÌäº
 	m_pZennyButton = (gui::CButton*)GetComponent("btnZenny");
 	m_slotZennyButton = m_pZennyButton->SigClicked().Connect(this, &CWarehouseCommonGui::ClickedZennyButton);
 
-	// ¡¶¥œ Ω∫≈¬∆Ω
+	// Ï†úÎãà Ïä§ÌÉúÌã±
 	rect.SetRectWH(56, 36, 82, 14);
 	m_pZenny = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_RIGHT );
 	m_pZenny->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);	
@@ -643,7 +643,7 @@ RwBool CWarehouseCommonGui::Create()
 
 	m_pMoneyIconTexture = Logic_CreateTexture( MONEYICON_NAME );
 
-	// ¡¶¥œ ΩΩ∑‘ Destination ¿ÃπÃ¡ˆ
+	// Ï†úÎãà Ïä¨Î°Ø Destination Ïù¥ÎØ∏ÏßÄ
 	m_srfZennySlotDestination.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "BasicBag.srf", "srfMoneyBtnWayFocus" ) );
 	m_srfZennySlotDestination.SetPositionfromParent(31, 32);
 
@@ -688,14 +688,14 @@ VOID CWarehouseCommonGui::ClickedZennyButton(gui::CComponent* pComponent)
 
 	if( GetIconMoveManager()->IsActive() )
 	{
-		// ¡¶¥œ ∫∏∞¸
+		// Ï†úÎãà Î≥¥Í¥Ä
 		GetIconMoveManager()->IconMovePutDown(PLACE_SUB_WAREHOUSE_ZENNY, m_hNPCSerial, INVALID_INDEX);
 	}
 	else
 	{
 		if( m_uiZenny > 0 )
 		{
-			// √¢∞Ìø° ¡¶¥œ∞° ¿÷¥Ÿ∏È...¿Œ√‚
+			// Ï∞ΩÍ≥†Ïóê Ï†úÎãàÍ∞Ä ÏûàÎã§Î©¥...Ïù∏Ï∂ú
 			CRectangle rect = m_pZennyButton->GetScreenRect();
 			CDboEventGenerator::CalcPopupShow(TRUE, INVALID_SERIAL_ID, PLACE_SUB_WAREHOUSE_ZENNY, 
 				rect.right, rect.bottom, m_uiZenny);
@@ -731,14 +731,14 @@ VOID CWarehouseCommonGui::HandleEvents( RWS::CMsg &msg )
 
 		switch(pEvent->uiParam1)
 		{
-		case NESWUT_ADD_ZENNY:	// √¢∞Ìø° ¡¶¥œ∞° ¥√æ˙¥Ÿ
+		case NESWUT_ADD_ZENNY:	// Ï∞ΩÍ≥†Ïóê Ï†úÎãàÍ∞Ä ÎäòÏóàÎã§
 			{
 				m_uiZenny = GetNtlSLGlobal()->GetSobAvatar()->GetWarehouse()->GetZenny();
 				m_pZenny->SetText( m_uiZenny );
 
 				break;
 			}
-		case NESWUT_SUB_ZENNY:	// √¢∞Ìø° ¡¶¥œ∞° ¡Ÿæ˙¥Ÿ
+		case NESWUT_SUB_ZENNY:	// Ï∞ΩÍ≥†Ïóê Ï†úÎãàÍ∞Ä Ï§ÑÏóàÎã§
 			{
 				m_uiZenny = GetNtlSLGlobal()->GetSobAvatar()->GetWarehouse()->GetZenny();
 				m_pZenny->SetText( m_uiZenny );
@@ -803,36 +803,36 @@ RwBool CWarehouseBarGui::Create()
 
 	m_pThis = (gui::CDialog*)GetComponent("dlgMain");
 
-	// 1π¯ √¢∞Ì πˆ∆∞
+	// 1Î≤à Ï∞ΩÍ≥† Î≤ÑÌäº
 	m_pWarehouseBtn[0] = (gui::CButton*)GetComponent("btn1");
 	m_pWarehouseBtn[0]->SetToolTip(GetDisplayStringManager()->GetString("DST_WAREHOUSE_NAME_1"));
 	m_pWarehouseBtn[0]->ClickEnable(false);
 	m_slotWarehouseBtn[0] = m_pWarehouseBtn[0]->SigClicked().Connect(this, &CWarehouseBarGui::Clicked_1_Button);
 
-	// 2π¯ √¢∞Ì πˆ∆∞
+	// 2Î≤à Ï∞ΩÍ≥† Î≤ÑÌäº
 	m_pWarehouseBtn[1] = (gui::CButton*)GetComponent("btn2");
 	m_pWarehouseBtn[1]->SetToolTip(GetDisplayStringManager()->GetString("DST_WAREHOUSE_NAME_2"));
 	m_pWarehouseBtn[1]->ClickEnable(false);
 	m_slotWarehouseBtn[1] = m_pWarehouseBtn[1]->SigClicked().Connect(this, &CWarehouseBarGui::Clicked_2_Button);
 
-	// 3π¯ √¢∞Ì πˆ∆∞
+	// 3Î≤à Ï∞ΩÍ≥† Î≤ÑÌäº
 	m_pWarehouseBtn[2] = (gui::CButton*)GetComponent("btn3");
 	m_pWarehouseBtn[2]->SetToolTip(GetDisplayStringManager()->GetString("DST_WAREHOUSE_NAME_3"));
 	m_pWarehouseBtn[2]->ClickEnable(false);
 	m_slotWarehouseBtn[2] = m_pWarehouseBtn[2]->SigClicked().Connect(this, &CWarehouseBarGui::Clicked_3_Button);
 
-	// ∞¯¿Ø √¢∞Ì πˆ∆∞
+	// Í≥µÏú† Ï∞ΩÍ≥† Î≤ÑÌäº
 	m_pWarehouseBtn[3] = (gui::CButton*)GetComponent("btnCommon");
 	m_pWarehouseBtn[3]->SetToolTip(GetDisplayStringManager()->GetString("DST_WAREHOUSE_NAME_COMMON"));
 	m_pWarehouseBtn[3]->ClickEnable(false);
 	m_slotWarehouseBtn[3] = m_pWarehouseBtn[3]->SigClicked().Connect(this, &CWarehouseBarGui::Clicked_Common_Button);
 
-	// ∏µÁ √¢∞Ì πˆ∆∞
+	// Î™®Îì† Ï∞ΩÍ≥† Î≤ÑÌäº
 	m_p_All_Button = (gui::CButton*)GetComponent("btnAll");
 	m_p_All_Button->SetToolTip(GetDisplayStringManager()->GetString("DST_WAREHOUSE_ALL"));
 	m_slot_All_Button = m_p_All_Button->SigClicked().Connect(this, &CWarehouseBarGui::ClickedAllButton);
 
-	// √¢¥›±‚ πˆ∆∞
+	// Ï∞ΩÎã´Í∏∞ Î≤ÑÌäº
 	m_pExitButton= (gui::CButton*)GetComponent("btnExit");
 	m_slotCloseButton = m_pExitButton->SigClicked().Connect(this, &CWarehouseBarGui::ClickedCloseButton);
 
@@ -877,7 +877,7 @@ SERIAL_HANDLE CWarehouseBarGui::GetNPCSerial()
 
 VOID CWarehouseBarGui::Clicked_1_Button(gui::CComponent* pComponent)
 {
-	// ±‚∫ª √¢∞Ì
+	// Í∏∞Î≥∏ Ï∞ΩÍ≥†
 	GetDialogManager()->SwitchDialog(DIALOG_WAREHOUSE_1);
 }
 
@@ -904,7 +904,7 @@ VOID CWarehouseBarGui::Clicked_Common_Button(gui::CComponent* pComponent)
 
 VOID CWarehouseBarGui::ClickedAllButton(gui::CComponent* pComponent)
 {
-	// √¢∞Ì∞° «œ≥™∂Ûµµ ø≠∑¡¿÷¥Ÿ∏È ¿¸∫Œ ¥›¥¬¥Ÿ
+	// Ï∞ΩÍ≥†Í∞Ä ÌïòÎÇòÎùºÎèÑ Ïó¥Î†§ÏûàÎã§Î©¥ Ï†ÑÎ∂Ä Îã´ÎäîÎã§
 	RwBool bOpen = FALSE;
 
 	CNtlWarehouse* pWarehouse = GetNtlSLGlobal()->GetSobAvatar()->GetWarehouse();
@@ -944,7 +944,7 @@ VOID CWarehouseBarGui::ClickedAllButton(gui::CComponent* pComponent)
 
 VOID CWarehouseBarGui::ClickedCloseButton(gui::CComponent* pComponent)
 {
-	// º≠πˆø° √¢∞Ì ¿ÃøÎ¿Ã ≥°≥µ¿Ω¿ª æÀ∏∞¥Ÿ
+	// ÏÑúÎ≤ÑÏóê Ï∞ΩÍ≥† Ïù¥Ïö©Ïù¥ ÎÅùÎÇ¨ÏùåÏùÑ ÏïåÎ¶∞Îã§
 	GetDboGlobal()->GetGamePacketGenerator()->SendBankEnd();
 }
 
@@ -990,7 +990,7 @@ RwInt32 CWarehouseBarGui::SwitchDialog(bool bOpen)
 			Show(false);
 			Logic_CancelNpcFacing();
 
-			// √¢∞Ì æ∆¿Ã≈€¿ª πˆ∏Æ∑¡∞Ì ∂ÁøÓ ∏ﬁºº¡ˆ π⁄Ω∫∏¶ ¥›¥¬¥Ÿ
+			// Ï∞ΩÍ≥† ÏïÑÏù¥ÌÖúÏùÑ Î≤ÑÎ¶¨Î†§Í≥† ÎùÑÏö¥ Î©îÏÑ∏ÏßÄ Î∞ïÏä§Î•º Îã´ÎäîÎã§
 			CMsgBoxManager::LIST_MSGBOX listMSGBOX;
 			GetMsgBoxManager()->GetMsgBox("DST_ITEM_CONFIRM_DROP", &listMSGBOX);
 
@@ -1036,7 +1036,7 @@ VOID CWarehouseBarGui::HandleEvents( RWS::CMsg &msg )
 
 		m_hNPCSerial = pData->hSerialId;
 
-		// √¢∞Ì ø≠±‚∏¶ º≠πˆø° ø‰√ª«—¥Ÿ
+		// Ï∞ΩÍ≥† Ïó¥Í∏∞Î•º ÏÑúÎ≤ÑÏóê ÏöîÏ≤≠ÌïúÎã§
 		RwBool	bPacketLock		= FALSE;
 		bool	bSendSuccess	= GetDboGlobal()->GetGamePacketGenerator()->SendBankStart(m_hNPCSerial, &bPacketLock);
 
@@ -1059,10 +1059,10 @@ VOID CWarehouseBarGui::HandleEvents( RWS::CMsg &msg )
 		{
 		case NESWUT_WAREHOUSE_START:
 			{
-				// √¢∞Ì ƒ¡∆Æ∑— πŸ ø≠±‚
+				// Ï∞ΩÍ≥† Ïª®Ìä∏Î°§ Î∞î Ïó¥Í∏∞
 				GetDialogManager()->OpenDialog(DIALOG_WAREHOUSEBAR, pEvent->hSerialId, FALSE);
 
-				// √¢∞Ì ø≠±‚					
+				// Ï∞ΩÍ≥† Ïó¥Í∏∞					
 				CNtlWarehouse* pWarehouse = GetNtlSLGlobal()->GetSobAvatar()->GetWarehouse();
 				for(RwUInt8 i = 0 ; i < NTL_MAX_BANKSLOT_COUNT ; ++i)
 				{
@@ -1071,10 +1071,10 @@ VOID CWarehouseBarGui::HandleEvents( RWS::CMsg &msg )
 				}
 				NTL_ASSERT(pWarehouse->GetSlotSerailID(0) != INVALID_SERIAL_ID, "CWarehouseBarGui::HandleEvents, Not exist bagic warehouse");
 
-				// ∞°πÊ ø≠±‚
+				// Í∞ÄÎ∞© Ïó¥Í∏∞
 				GetDialogManager()->SwitchBag( TRUE );
 
-				// NPC π¯»£
+				// NPC Î≤àÌò∏
 				m_hNPCSerial = pEvent->hSerialId;
 				((CWarehouseCommonGui*)m_pWareHouseGui[NTL_COMMON_WAREHOUSE])->SetNPCHandle(m_hNPCSerial);
 
@@ -1132,12 +1132,12 @@ VOID CWarehouseBarGui::HandleEvents( RWS::CMsg &msg )
 	}	
 	else if( msg.Id == g_EventCharObjDelete )
 	{
-		// ∞©¿⁄±‚ ƒ≥∏Ø≈Õ∞° ªÁ∂Û†∫¥Ÿ
+		// Í∞ëÏûêÍ∏∞ Ï∫êÎ¶≠ÌÑ∞Í∞Ä ÏÇ¨ÎùºÏ°ãÎã§
 		SERIAL_HANDLE* pDeleteSerial = reinterpret_cast<SERIAL_HANDLE*>( msg.pData );
 
 		if( m_hNPCSerial == *pDeleteSerial )
 		{
-			// º≠πˆø° √¢∞Ì ¿ÃøÎ¿Ã ≥°≥µ¿Ω¿ª æÀ∏∞¥Ÿ
+			// ÏÑúÎ≤ÑÏóê Ï∞ΩÍ≥† Ïù¥Ïö©Ïù¥ ÎÅùÎÇ¨ÏùåÏùÑ ÏïåÎ¶∞Îã§
 			GetDboGlobal()->GetGamePacketGenerator()->SendBankEnd();
 		}
 	}
@@ -1149,7 +1149,7 @@ VOID CWarehouseBarGui::HandleEvents( RWS::CMsg &msg )
 		{
 			if( pEvent->iType == DIALOGEVENT_NPC_BYEBYE )
 			{
-				// º≠πˆø° √¢∞Ì ¿ÃøÎ¿Ã ≥°≥µ¿Ω¿ª æÀ∏∞¥Ÿ
+				// ÏÑúÎ≤ÑÏóê Ï∞ΩÍ≥† Ïù¥Ïö©Ïù¥ ÎÅùÎÇ¨ÏùåÏùÑ ÏïåÎ¶∞Îã§
 				GetDboGlobal()->GetGamePacketGenerator()->SendBankEnd();
 			}
 			else if( pEvent->iType == DIALOGEVENT_OPEN_FAIL_NPC_DIALOG )

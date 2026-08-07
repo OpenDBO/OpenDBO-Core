@@ -2,7 +2,7 @@
 *
 * File			: DboTLEntity.h
 * Author		: JeongHo, Rho
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 4. 22	
 * Abstract		: 
 *****************************************************************************
@@ -118,7 +118,7 @@ class CDboTLDefaultSkin : public CDboTLEntity
 {
 // Member variables
 protected:
-	// Font °ü·Ã
+	// Font ê´€ë ¨
 	std::string			m_strFontName;
 	RwRGBA				m_rgbFontBackColor;
 	RwRGBA				m_rgbFontColor;
@@ -126,13 +126,13 @@ protected:
 	RwUInt32			m_uiFontAllign;
 	RwV2d				m_vFontOffset;
 
-	// Message layer °ü·Ã
+	// Message layer ê´€ë ¨
 	RwV2d				m_vMsgLayerOffset;
 
-	// Ok °ü·Ã
+	// Ok ê´€ë ¨
 	RwV2d				m_vOkOffset;
 
-	// Image °ü·Ã
+	// Image ê´€ë ¨
 	RwV2d				m_vIMGOffset;
 
 // Constructions and Destructions
@@ -144,7 +144,7 @@ public:
 	virtual void		Enter( void );
 
 public:
-	// Font °ü·Ã
+	// Font ê´€ë ¨
 	void				SetFontName( const char* pFontName ) { m_strFontName = pFontName; }
 	void				SetFontBackColor( const RwRGBA& rgbFontBackColor ) { m_rgbFontBackColor = rgbFontBackColor; }
 	void				SetFontColor( const RwRGBA& rgbFontColor ) { m_rgbFontColor = rgbFontColor; }
@@ -152,13 +152,13 @@ public:
 	void				SetFontAllign( RwUInt32 uiFontAllign ) { m_uiFontAllign = uiFontAllign; }
 	void				SetFontOffset( const RwV2d& vFontOffset ) { m_vFontOffset = vFontOffset; }
 
-	// Msg layer °ü·Ã
+	// Msg layer ê´€ë ¨
 	void				SetMsgLayerOffset( const RwV2d& vMsgLayerOffset ) { m_vMsgLayerOffset = vMsgLayerOffset; }
 
-	// Ok °ü·Ã
+	// Ok ê´€ë ¨
 	void				SetOkOffset( const RwV2d& vOkOffset ) { m_vOkOffset = vOkOffset; }
 
-	// Image °ü·Ã
+	// Image ê´€ë ¨
 	void				SetIMGOffset( const RwV2d& vIMGOffset ) { m_vIMGOffset = vIMGOffset; }
 };
 

@@ -2,7 +2,7 @@
  *
  * File			: NtlStageManager.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 7. 14	
  * Abstract		: Stage Manager.
  *****************************************************************************
@@ -21,11 +21,11 @@ class CNtlStage;
 
 /**
  * \ingroup Client
- * activeµÈ stage¸¦ °ü¸®ÇÏ´Â classÀÌ´Ù.
- * stage manager class´Â event¸¦ ¹Ş¾Æ¼­ Ã³¸®ÇÏ´Âµ¥, 
- * event¿¡´Â stage »ı¼º/»èÁ¦°¡ Á¸ÀçÇÑ´Ù.
- * event id¿¡´Â g_EventCreateStage, g_EventDeleteStage°¡ ¾²ÀÌ¸ç,
- * NtlGlobalEvent.h¿¡ ¼±¾ğµÇ¾î ÀÖ´Ù.
+ * activeëœ stageë¥¼ ê´€ë¦¬í•˜ëŠ” classì´ë‹¤.
+ * stage manager classëŠ” eventë¥¼ ë°›ì•„ì„œ ì²˜ë¦¬í•˜ëŠ”ë°, 
+ * eventì—ëŠ” stage ìƒì„±/ì‚­ì œê°€ ì¡´ì¬í•œë‹¤.
+ * event idì—ëŠ” g_EventCreateStage, g_EventDeleteStageê°€ ì“°ì´ë©°,
+ * NtlGlobalEvent.hì— ì„ ì–¸ë˜ì–´ ìˆë‹¤.
   */
 
 class CNtlStageManager : public RWS::CEventHandler
@@ -38,21 +38,21 @@ protected:
 
 	/**
 	* 
-    *  \return CNtlStageManager class¸¦ »ó¼Ó¹Ş´Â class¿¡¼­ ÇÔ¼ö¸¦ ÀçÁ¤ÀÇ ÇÏ¿© stage name¿¡ ÇØ´çÇÏ´Â stage¸¦ »ı¼ºÇÏ¿©
-    *  ¸®ÅÏÇÑ´Ù.
-    *  »ı¼ºµÈ stage´Â active stage list¿¡ µî·ÏµÈ´Ù.
+    *  \return CNtlStageManager classë¥¼ ìƒì†ë°›ëŠ” classì—ì„œ í•¨ìˆ˜ë¥¼ ì¬ì •ì˜ í•˜ì—¬ stage nameì— í•´ë‹¹í•˜ëŠ” stageë¥¼ ìƒì„±í•˜ì—¬
+    *  ë¦¬í„´í•œë‹¤.
+    *  ìƒì„±ëœ stageëŠ” active stage listì— ë“±ë¡ëœë‹¤.
 	*/
 	virtual CNtlStage* CreateStage(const char *pStageName) = 0;
 
 	/**
 	* 
-    *  stage¸¦ »èÁ¦ÇÏ°í, active stage list¿¡¼­ Á¦°ÅÇÑ´Ù.
+    *  stageë¥¼ ì‚­ì œí•˜ê³ , active stage listì—ì„œ ì œê±°í•œë‹¤.
 	*/
 	void DeleteStage(CNtlStage *pStage);
 
 	/**
     *
-    *  \return ÇöÀç activeµÈ stageÁß¿¡¼­ stage name°ú CNtlStage¸¦ Ã£¾Æ¼­ ¸®ÅÏÇÑ´Ù.
+    *  \return í˜„ì¬ activeëœ stageì¤‘ì—ì„œ stage nameê³¼ CNtlStageë¥¼ ì°¾ì•„ì„œ ë¦¬í„´í•œë‹¤.
     */
 	CNtlStage* FindActiveStage(const char *pStageName);
 

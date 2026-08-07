@@ -218,10 +218,10 @@ RwUInt32 CNtlFSMCharActStateBase::EventProcActionMapSkillUse(RWS::CMsg &pMsg)
 	//
 	SNtlEventActionMapSkillUse *pSkillUse = reinterpret_cast<SNtlEventActionMapSkillUse*>(pMsg.pData);
 
-	// skill »ç¿ë effect Ãâ·Â
+	// skill ì‚¬ìš© effect ì¶œë ¥
 	Logic_SkillUseVisualEffect(m_pActor, pSkillUse->hSkillSerialId);
 
-	// Event Ã³¸®
+	// Event ì²˜ë¦¬
 	FSMEvent_CharActActionMapSkillUse(m_pActor, pSkillUse);
 
 	if(Logic_IsNotFollowMoveSkill(m_pActor, pSkillUse->bySkillSlotIdx))
@@ -455,11 +455,11 @@ RwUInt32 CNtlFSMCharActStateBase::EventProcInputTerrainClick(RWS::CMsg &pMsg)
 
 	FSMEvent_CharActTerrainClick(m_pActor, reinterpret_cast<SNtlEventTerrainClick*>(pMsg.pData)); 
 
-	// ÇöÀç ÀÌµ¿»óÅÂ°¡ ¾Æ´Ï¸é.
+	// í˜„ìž¬ ì´ë™ìƒíƒœê°€ ì•„ë‹ˆë©´.
 	RwUInt32 uiStateId = GetStateId();
 	if( uiStateId == NTL_FSMSID_MOVE || uiStateId == NTL_FSMSID_SWIMMING)
 	{
-		// behavior data¸¦ updateÇÑ´Ù.
+		// behavior dataë¥¼ updateí•œë‹¤.
 		UpdateBehavior();
 	}
 	else
@@ -532,10 +532,10 @@ RwUInt32 CNtlFSMCharActStateBase::EventProcInputKeyboardMove(RWS::CMsg &pMsg)
 
 	if( uiStateId == NTL_FSMSID_MOVE || uiStateId == NTL_FSMSID_SWIMMING)
 	{
-		// behavior data¸¦ updateÇÑ´Ù.
+		// behavior dataë¥¼ updateí•œë‹¤.
 		UpdateBehavior();
 	}
-	else // ÇöÀç ÀÌµ¿»óÅÂ°¡ ¾Æ´Ï¸é.
+	else // í˜„ìž¬ ì´ë™ìƒíƒœê°€ ì•„ë‹ˆë©´.
 	{
 		Finish();
 
@@ -722,7 +722,7 @@ RwUInt32 CNtlFSMCharActStateBase::EventProcInputChangeHeading(RWS::CMsg &pMsg)
 	NTL_RETURN(NTL_FSM_EVENTRES_CHANGE_STATE);
 }
 
-/// Sob Object¸¦ Å¬¸¯ÇßÀ»¶§ È£ÃâµÈ´Ù.
+/// Sob Objectë¥¼ í´ë¦­í–ˆì„ë•Œ í˜¸ì¶œëœë‹¤.
 RwUInt32 CNtlFSMCharActStateBase::EventProcSobTargetSelect(RWS::CMsg &pMsg)
 {
 	NTL_FUNCTION("CNtlFSMCharActStateBase::EventProcSobTargetSelect");
@@ -792,7 +792,7 @@ RwUInt32 CNtlFSMCharActStateBase::EventProcSobAttackSelect(RWS::CMsg &pMsg)
 	SCtrlStuff *pCtrlStuff = pBeData->GetCtrlStuff();
 
 	// Let's not get rid of it..... 
-	// direciton ÀÌ 0, 0, 0 ³ª¿Â´Ù.. (2006. 6. 16)
+	// direciton ì´ 0, 0, 0 ë‚˜ì˜¨ë‹¤.. (2006. 6. 16)
 	// Because of me, people are stunned.
 	if(m_pActor->GetSerialID() == pSobAttackSelect->hSerialId)
 	{
@@ -1028,7 +1028,7 @@ RwUInt32 CNtlFSMCharActStateBase::EventProcSobSpecialAttack(RWS::CMsg& pMsg)
 RwUInt32 CNtlFSMCharActStateBase::EventProcSobAttacked(RWS::CMsg &pMsg)
 {
 	SNtlEventSobAttacked* pAttacked = reinterpret_cast<SNtlEventSobAttacked*>(pMsg.pData);
-	m_pActor->SetLastAttackerID(pAttacked->hAttackerSerialId);	/// last attacker ÀúÀå
+	m_pActor->SetLastAttackerID(pAttacked->hAttackerSerialId);	/// last attacker ì €ìž¥
 
 	NTL_RETURN(NTL_FSM_EVENTRES_PASS);
 }
@@ -1042,7 +1042,7 @@ RwUInt32 CNtlFSMCharActStateBase::EventProcSobHit(RWS::CMsg &pMsg)
 
 	LuaExec_Hurt(pHit->sHitStuff.hAttackerSerialId, pHit->sHitStuff.hDefenderSerialId, &pHit->sHitStuff);
 
-	// Å¸°Ù ¸¶Å·µÈ »óÅÂ¶ó¸é ÇØÁ¦ÇÑ´Ù.
+	// íƒ€ê²Ÿ ë§ˆí‚¹ëœ ìƒíƒœë¼ë©´ í•´ì œí•œë‹¤.
 	if(m_pActor->GetSerialID() == Logic_GetTargetMarkingID())
 	{
 		CNtlSLEventGenerator::SobTargetMarkRelease(m_pActor->GetSerialID());
@@ -1276,7 +1276,7 @@ RwUInt32 CNtlFSMCharActStateBase::EventProcSobSkillAction(RWS::CMsg &pMsg)
 RwUInt32 CNtlFSMCharActStateBase::EventProcSobSkillActioned(RWS::CMsg &pMsg)
 {
 	SNtlEventSobSkillActioned* pSkillActioned = reinterpret_cast<SNtlEventSobSkillActioned*>(pMsg.pData);
-	m_pActor->SetLastAttackerID(pSkillActioned->hAttackerSerialId);	/// last attacker ÀúÀå
+	m_pActor->SetLastAttackerID(pSkillActioned->hAttackerSerialId);	/// last attacker ì €ìž¥
 
 	NTL_RETURN(NTL_FSM_EVENTRES_PASS);
 }
@@ -1400,12 +1400,12 @@ RwUInt32 CNtlFSMCharActStateBase::EventProcCondTerror( RWS::CMsg& pMsg )
 
 		//pCharAgent->ConditionTerror(TRUE);
 
-		// 1. ÀÚ½ÅÀ» °ø°ÝÇÑ ¸÷ÀÇ À§Ä¡¸¦ °¡Á®¿Â´Ù.
+		// 1. ìžì‹ ì„ ê³µê²©í•œ ëª¹ì˜ ìœ„ì¹˜ë¥¼ ê°€ì ¸ì˜¨ë‹¤.
 		CNtlSobActor* pActor = (CNtlSobActor*)GetNtlSobManager()->GetSobObject(pData->hAttackerSerialId);
 		if(!pActor)
 			NTL_RETURN(NTL_FSM_EVENTRES_PASS);
 
-		// 2. ¾Æ¹ÙÅ¸ÀÇ ÇöÀç À§Ä¡¿¡¼­ ¸÷°ú ¹Ý´ëÂÊÀ¸·Î ´Þ·Á°£´Ù. (ÃÖ´ë 10m)
+		// 2. ì•„ë°”íƒ€ì˜ í˜„ìž¬ ìœ„ì¹˜ì—ì„œ ëª¹ê³¼ ë°˜ëŒ€ìª½ìœ¼ë¡œ ë‹¬ë ¤ê°„ë‹¤. (ìµœëŒ€ 10m)
 		RwV3d vDest = m_pActor->GetPosition() - pActor->GetPosition();
 		vDest.y = 0;
 		RwV3dNormalize(&vDest, &vDest);
@@ -1428,10 +1428,10 @@ RwUInt32 CNtlFSMCharActStateBase::EventProcSobPushingNfy( RWS::CMsg& pMsg )
 	if(pData->hSerialId != m_pActor->GetSerialID())
 		NTL_RETURN(NTL_FSM_EVENTRES_BLOCK);
 
-	// ÇöÀç »óÅÂ¸¦ ¸ØÃß°í Pushing»óÅÂ·Î ÀüÀÌÇÑ´Ù.
-	FSMEvent_CharActHit(m_pActor, pData->byAttackResult, pData->wAttackResultValue);    // Hit Effect¹× µ¥¹ÌÁö Ãâ·Â
+	// í˜„ìž¬ ìƒíƒœë¥¼ ë©ˆì¶”ê³  Pushingìƒíƒœë¡œ ì „ì´í•œë‹¤.
+	FSMEvent_CharActHit(m_pActor, pData->byAttackResult, pData->wAttackResultValue);    // Hit Effectë° ë°ë¯¸ì§€ ì¶œë ¥
 
-	if(pData->byAttackResult == BATTLE_ATTACK_RESULT_DODGE) // È¸ÇÇ
+	if(pData->byAttackResult == BATTLE_ATTACK_RESULT_DODGE) // íšŒí”¼
 	{
 		sITEM_TBLDAT *pItemTblData = Logic_GetEquipedWeaponItemTableData(m_pActor);
 		RwBool bEquipedStaff = FALSE;
@@ -1458,7 +1458,7 @@ RwUInt32 CNtlFSMCharActStateBase::EventProcSobPushingNfy( RWS::CMsg& pMsg )
 
 RwUInt32 CNtlFSMCharActStateBase::EventSobTransformSequela(RWS::CMsg& pMsg)
 {
-    // ¾Æ¹ÙÅ¸ Àü¿ë ÀÌº¥Æ®
+    // ì•„ë°”íƒ€ ì „ìš© ì´ë²¤íŠ¸
     if(m_pActor->GetClassID() != SLCLASS_AVATAR)
         NTL_RETURN(NTL_FSM_EVENTRES_BLOCK);
 

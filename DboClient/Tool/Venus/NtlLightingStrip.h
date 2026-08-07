@@ -2,7 +2,7 @@
 //	File		:	NtlLightingStrip.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	®œ 2005 by agebreak CO., Ltd
+//	Copyright	:	‚ìí 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -26,7 +26,7 @@ protected:
 protected:
 	RwInt32						m_nMaxSize;
 	RwInt32						m_nNum;
-	RwReal						m_fWidth;			// Line ∆¯ 
+	RwReal						m_fWidth;			// Line Ìè≠ 
 
 	D3DCOLOR					m_Color;
 

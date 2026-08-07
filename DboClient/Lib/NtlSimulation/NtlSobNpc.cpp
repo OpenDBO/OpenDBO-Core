@@ -55,7 +55,7 @@ RwBool CNtlSobNpc::Create(void)
 {
 	NTL_FUNCTION("CNtlSobNpc::Create");
 
-	// proxy ¼³Á¤
+	// proxy ì„¤ì •
 	m_pSobProxy = NTL_NEW CNtlSobCharProxy;
 	m_pSobProxy->Create(0);
 	m_pSobProxy->SetSobObj(this);
@@ -68,7 +68,7 @@ RwBool CNtlSobNpc::Create(void)
 		NTL_RETURN(FALSE);
 	}
 
-	// class name ¼³Á¤.
+	// class name ì„¤ì •.
 	SetClassName(SLCLASS_NAME_NPC);
 
 	NTL_RETURN(TRUE);
@@ -117,7 +117,7 @@ void CNtlSobNpc::HandleEvents(RWS::CMsg &pMsg)
 		// proxy setting
 		GetSobProxy()->HandleEvents(pMsg);
 
-		// ÁÂÇ¥¿Í ¹æÇâ ¼¼ÆÃ.
+		// ì¢Œí‘œì™€ ë°©í–¥ ì„¸íŒ….
 		RwV3d vLoc, vDir;
 		RwV3dAssignMacro(&vLoc, &pSobCreate->vLoc); 
 		RwV3dAssignMacro(&vDir, &pSobCreate->vDir); 
@@ -148,7 +148,7 @@ void CNtlSobNpc::HandleEvents(RWS::CMsg &pMsg)
 			ActiveQuestMark( TRUE );
 		}
 
-		// °ø°İÀ» ´çÇÒ ¶§ headingÀ» change ÇØ¾ß ÇÏ´ÂÁö ÆÇ´Ü.
+		// ê³µê²©ì„ ë‹¹í•  ë•Œ headingì„ change í•´ì•¼ í•˜ëŠ”ì§€ íŒë‹¨.
 		CNtlSobNpcAttr *pNpcAttr = reinterpret_cast<CNtlSobNpcAttr*>( GetSobAttr() );
 		sNPC_TBLDAT *pNpcTable = pNpcAttr->GetNpcTbl();
 		if(pNpcTable)
@@ -181,7 +181,7 @@ void CNtlSobNpc::HandleEvents(RWS::CMsg &pMsg)
 	}
     else if(pMsg.Id == g_EventAnimEnd)
     {
-        // »óÁ¡ ÀÌ¿ë½Ã ÀÌº¥Æ® ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ıÈÄ ·çÇÁ·Î º¯°æ
+        // ìƒì  ì´ìš©ì‹œ ì´ë²¤íŠ¸ ì• ë‹ˆë©”ì´ì…˜ ì¬ìƒí›„ ë£¨í”„ë¡œ ë³€ê²½
         SNtlEventAnimEnd* pData = (SNtlEventAnimEnd*)pMsg.pData;
         if(pData->uiSerialId == GetSerialID() && (pData->uiBaseAnimKey == SOC_NO || pData->uiBaseAnimKey == SOC_BYE || pData->uiBaseAnimKey == SOC_AGREE))
         {
@@ -274,7 +274,7 @@ void CNtlSobNpc::QeustMarkCheck(RwReal fElapsed)
 			if( ( m_byQuestMark != byQuestMark ) ||
 				( byQuestMark == EQuestMarkBalloonNew && m_tID != tID ) )
 			{
-				// event ¹ß»ı.	
+				// event ë°œìƒ.	
 				m_byQuestMark = byQuestMark;
 				m_tID = tID;
 				CNtlSLEventGenerator::QuestMark(GetSerialID(), m_byQuestMark, (void*)pQuestInfo);
@@ -292,7 +292,7 @@ void CNtlSobNpc::ActiveQuestMark(RwBool bQuestMark)
 	{
 		if(m_byQuestMark != EQuestMarkNone)
 		{
-			// noneÀ» º¸³½´Ù.
+			// noneì„ ë³´ë‚¸ë‹¤.
 			m_byQuestMark = EQuestMarkNone;
 			CNtlSLEventGenerator::QuestMark(GetSerialID(), m_byQuestMark, NULL);
 		}

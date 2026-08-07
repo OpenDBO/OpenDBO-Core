@@ -2,7 +2,7 @@
 *
 * File			: GameLoadingThread.h
 * Author		: Jeong Ho, Rho
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2006. 1. 3
 * Abstract		: Game loading scene
 *****************************************************************************

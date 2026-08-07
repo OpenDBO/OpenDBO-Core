@@ -2,7 +2,7 @@
  *
  * File			: InputHandler.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Âç†ÏèôÏòô)NTL
  * Date			: 2005. 8. 26	
  * Abstract		: Input handler 
  *****************************************************************************
@@ -65,6 +65,9 @@ private:
 
 	RwBool m_bActive;
 
+	static SKeyData g_LastKeyData;
+	static SMouseData g_LastMouseData;
+
 public:
 
 	CInputHandler() { m_bActive = TRUE; }
@@ -82,9 +85,11 @@ public:
 		m_bActive = bActive;
 	}
 
+	static SKeyData* GetLastKeyData() { return &g_LastKeyData; }
+	static SMouseData* GetLastMouseData() { return &g_LastMouseData; }
 
-	template <class Callbackclass>	
-	INPUT_HANDLE LinkKeyDown(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiKeyData))
+	template <class Callbackclass>
+	INPUT_HANDLE LinkKeyDown(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiKeyData))
 	{
 		CNtlCallbackParam1 *pWidget = NTL_NEW CNtlCallbackWidget1<Callbackclass> (cbclass,callback);
 		m_listKeyDown.push_back(pWidget);
@@ -92,7 +97,7 @@ public:
 	}
     
 	template <class Callbackclass>	
-	INPUT_HANDLE LinkKeyUp(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiKeyData))
+	INPUT_HANDLE LinkKeyUp(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiKeyData))
 	{
 		CNtlCallbackParam1 *pWidget = NTL_NEW CNtlCallbackWidget1<Callbackclass> (cbclass,callback);
 		m_listKeyUp.push_back(pWidget);
@@ -100,7 +105,7 @@ public:
 	}
 
 	template <class Callbackclass>	
-	INPUT_HANDLE LinkMouseDown(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiMouseData))
+	INPUT_HANDLE LinkMouseDown(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiMouseData))
 	{
 		CNtlCallbackParam1 *pWidget = NTL_NEW CNtlCallbackWidget1<Callbackclass> (cbclass,callback);
 		m_listMouseDown.push_back(pWidget);
@@ -108,7 +113,7 @@ public:
 	}
 
 	template <class Callbackclass>	
-	INPUT_HANDLE LinkMouseUp(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiMouseData))
+	INPUT_HANDLE LinkMouseUp(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiMouseData))
 	{
 		CNtlCallbackParam1 *pWidget = NTL_NEW CNtlCallbackWidget1<Callbackclass> (cbclass,callback);
 		m_listMouseUp.push_back(pWidget);
@@ -116,7 +121,7 @@ public:
 	}
 
 	template <class Callbackclass>	
-	INPUT_HANDLE LinkMouseMove(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiMouseData))
+	INPUT_HANDLE LinkMouseMove(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiMouseData))
 	{
 		CNtlCallbackParam1 *pWidget = NTL_NEW CNtlCallbackWidget1<Callbackclass> (cbclass,callback);
 		m_listMouseMove.push_back(pWidget);
@@ -124,7 +129,7 @@ public:
 	}
 
 	template <class Callbackclass>
-	INPUT_HANDLE LinkMouseWheel(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiMouseData))
+	INPUT_HANDLE LinkMouseWheel(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiMouseData))
 	{
 		CNtlCallbackParam1 *pWidget = NTL_NEW CNtlCallbackWidget1<Callbackclass> (cbclass,callback);
 		m_listMouseWheel.push_back(pWidget);

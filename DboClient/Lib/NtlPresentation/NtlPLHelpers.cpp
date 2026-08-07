@@ -264,11 +264,11 @@ void Helper_DetachPLEntity(CNtlPLEntity *pSource, CNtlPLEntity *pTarget)
 }
 
 /**
-* ¹®ÀÚ¿­À» ÆÄ½ÌÇÏ¿© ¹İÈ¯ÇÑ´Ù.
-* \param szInput ÀÔ·Â ¹®ÀÚ¿­
-* \param szOutput Ãâ·Â ¹®ÀÚ¿­
-* \param szSplit ÆÄ½ÌÇÒ ¹®ÀÚ¿­ 
-* \param nCount ÆÄ½ÌÈÄ, °¡Á®¿À°í ½ÍÀº ¹®ÀÚ¿­ÀÇ Index, 0ºÎÅÍ ½ÃÀÛÇÑ´Ù. (Ex. "r;g;b"¿¡¼­ g¸¦ °¡Á®¿À°í½Í´Ù¸é 1) 
+* ë¬¸ìì—´ì„ íŒŒì‹±í•˜ì—¬ ë°˜í™˜í•œë‹¤.
+* \param szInput ì…ë ¥ ë¬¸ìì—´
+* \param szOutput ì¶œë ¥ ë¬¸ìì—´
+* \param szSplit íŒŒì‹±í•  ë¬¸ìì—´ 
+* \param nCount íŒŒì‹±í›„, ê°€ì ¸ì˜¤ê³  ì‹¶ì€ ë¬¸ìì—´ì˜ Index, 0ë¶€í„° ì‹œì‘í•œë‹¤. (Ex. "r;g;b"ì—ì„œ gë¥¼ ê°€ì ¸ì˜¤ê³ ì‹¶ë‹¤ë©´ 1) 
 */
 void Helper_StringSplit( const RwChar* szInput, RwChar* szOutput, size_t sizeOutput, const RwChar* szSplit, RwInt32 nCount ) 
 {
@@ -294,21 +294,21 @@ void Helper_StringSplit( const RwChar* szInput, RwChar* szOutput, size_t sizeOut
 		++nCnt;
 	}
 
-	// ¸¶Áö¸· ¹®ÀÚ¿­À» Ã£À»¶§ ÇÊ¿ä     
+	// ë§ˆì§€ë§‰ ë¬¸ìì—´ì„ ì°¾ì„ë•Œ í•„ìš”     
 	sprintf_s(szOutput, sizeOutput, "%s", tempIndex);       
 }
 
 /**
-* "x;y;z"ÇüÅÂÀÇ ¹®ÀÚ¿­À» RwV3d·Î º¯È¯ÇÏ¿© ¹İÈ¯ÇÑ´Ù.
-* \param buf ÀÔ·ÂµÉ ¹®ÀÚ¿­
-* return ¹İÈ¯µÈ RwV3d°ª
+* "x;y;z"í˜•íƒœì˜ ë¬¸ìì—´ì„ RwV3dë¡œ ë³€í™˜í•˜ì—¬ ë°˜í™˜í•œë‹¤.
+* \param buf ì…ë ¥ë  ë¬¸ìì—´
+* return ë°˜í™˜ëœ RwV3dê°’
 */
 RwV3d Helper_String2V3D(const RwChar* buf)
 {
 	RwV3d vReturn = {0.0f, 0.0f, 0.0f};    
 	RwChar szOutput[3][64] = {0,};
 
-	// NOTE: ¼Óµµ¸¦ À§ÇØ¼­ For¹®À» »ç¿ëÇÏÁö ¾Ê´Â´Ù.
+	// NOTE: ì†ë„ë¥¼ ìœ„í•´ì„œ Forë¬¸ì„ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤.
 	Helper_StringSplit(buf, szOutput[0], 64, ";", 0);
 	Helper_StringSplit(buf, szOutput[1], 64, ";", 1);
 	Helper_StringSplit(buf, szOutput[2], 64, ";", 2);
@@ -372,7 +372,7 @@ RwUInt8 Helper_RGB2Gray(RwUInt8& _R, RwUInt8& _G, RwUInt8& _B)
 
 
 //////////////////////////////////////////////////////////////////////////
-// Callback ÇÔ¼ö
+// Callback í•¨ìˆ˜
 //////////////////////////////////////////////////////////////////////////
 
 

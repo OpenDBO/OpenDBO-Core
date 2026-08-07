@@ -2,11 +2,11 @@
  *
  * File			: NtlHttpDownLoader.h
  * Author		: HongHoDong
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2007. 2. 5.
  * Abstract		: 
  *****************************************************************************
- * Desc         : Patch ServerÀÇ FileÀ» Http ProtocolÀ¸·Î ´Ù¿î ¹Ş´Â´Ù.
+ * Desc         : Patch Serverì˜ Fileì„ Http Protocolìœ¼ë¡œ ë‹¤ìš´ ë°›ëŠ”ë‹¤.
  *
  *****************************************************************************/
 #pragma once

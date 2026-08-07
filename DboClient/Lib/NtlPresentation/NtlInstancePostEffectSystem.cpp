@@ -2,7 +2,7 @@
 //	File		:	NtlInstancePostEffectSystem.cpp
 //	Desc		:	
 //	Begin		:	2007. 1.17
-//	Copyright	:	¨Ï 2007 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2007 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -86,7 +86,7 @@ void CNtlInstancePostEffectSystem::Delete()
     NTL_ARRAY_DELETE(m_pComicVertices);
     NTL_ARRAY_DELETE(m_pComicHalfIndex);
 
-    // »èÁ¦½Ã Camera Å¬·¡½º¿¡¼­ µî·ÏÀ» ÇØÁ¦ÇÑ´Ù.
+    // ì‚­ì œì‹œ Camera í´ëž˜ìŠ¤ì—ì„œ ë“±ë¡ì„ í•´ì œí•œë‹¤.
     if(CNtlPostEffectCamera::GetInstance())
     {
         CNtlPostEffectCamera::GetInstance()->DetachPostEffectSystem(this);
@@ -118,7 +118,7 @@ RwBool CNtlInstancePostEffectSystem::Create(CNtlResourceEffect* pResourceEffect,
     SetComicVertex();
     SetComicIndex();
 
-    // Center Fix   (¸ðµ¨Åø¿¡¼­ Post Effect Event·Î »ç¿ëÇÏ¸é, ÀÌº¥Æ®¿¡¼­ ´Ù½Ã ÀçÁ¤ÀÇ µÈ´Ù)
+    // Center Fix   (ëª¨ë¸íˆ´ì—ì„œ Post Effect Eventë¡œ ì‚¬ìš©í•˜ë©´, ì´ë²¤íŠ¸ì—ì„œ ë‹¤ì‹œ ìž¬ì •ì˜ ëœë‹¤)
     if(pResourceComponentSystem->m_nEmitterDataFlag & NTLrpPRTSTDEMITTERDATAFLAGPRTCENTERFIX)
     {
         m_bCenterFix = TRUE;
@@ -139,7 +139,7 @@ void CNtlInstancePostEffectSystem::BuildEmitterStandard(SNtlPostEffectEmitterSta
     ZeroMemory(m_pComicVertices, sizeof(RwIm2DVertex) * (m_nVertexCount + 2));
     m_uiMemoryUseSize += sizeof(RwIm2DVertex) * (m_nVertexCount + 2);
     
-    // Áß½ÉÁ¡ ÁÂÇ¥ ÃÊ±âÈ­ 
+    // ì¤‘ì‹¬ì  ì¢Œí‘œ ì´ˆê¸°í™” 
     m_v2dCenterPos.x = CNtlPostEffectCamera::GetInstance()->GetScreenSize().x * 0.5f;
     m_v2dCenterPos.y = CNtlPostEffectCamera::GetInstance()->GetScreenSize().y * 0.5f;
 }
@@ -182,7 +182,7 @@ void CNtlInstancePostEffectSystem::SetComicIndex()
 {
     if(m_pResourcePostEffectSystem->m_EmitterStandard.bDrawFullScreen)
     {
-        // Full ScreenÀÇ °æ¿ì Index°¡ ¾Æ´Ñ FanÀ¸·Î ±×¸°´Ù
+        // Full Screenì˜ ê²½ìš° Indexê°€ ì•„ë‹Œ Fanìœ¼ë¡œ ê·¸ë¦°ë‹¤
     }
     else
     {
@@ -221,12 +221,12 @@ RwBool CNtlInstancePostEffectSystem::Update(RwReal fElapsedTime)
 			m_bReady	= TRUE;
 			m_bUpdate	= TRUE;
 
-			// ½ºÅ¸Æ®°¡ µÇ¸é ¶óÀÌÇÁ Å¸ÀÓÀ» ÃÊ±âÈ­ ÇÑ´Ù.
+			// ìŠ¤íƒ€íŠ¸ê°€ ë˜ë©´ ë¼ì´í”„ íƒ€ìž„ì„ ì´ˆê¸°í™” í•œë‹¤.
 			m_fLifeTime = fElapsedTime;
 
             RebuildPostEffectVertex();
 
-            // Camera °´Ã¼ µî·ÏÇÑ´Ù.
+            // Camera ê°ì²´ ë“±ë¡í•œë‹¤.
             CNtlPostEffectCamera::GetInstance()->AttachPostEffectSystem(this);
 		}
 		else
@@ -267,8 +267,8 @@ RwBool CNtlInstancePostEffectSystem::Update(RwReal fElapsedTime)
 //------------------------------------------------------------------
 RwBool CNtlInstancePostEffectSystem::Render()
 {
-    // Visual Manager¿¡¼­ È£ÃâÇÏ´Â Render´Â »ç¿ëÇÏÁö ¾Ê´Â´Ù.
-    // ´ë½Å Camera¿¡¼­ RenderPostEffect¸¦ È£ÃâÇÑ´Ù.
+    // Visual Managerì—ì„œ í˜¸ì¶œí•˜ëŠ” RenderëŠ” ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤.
+    // ëŒ€ì‹  Cameraì—ì„œ RenderPostEffectë¥¼ í˜¸ì¶œí•œë‹¤.
 	if (!m_bReady) return TRUE;
 
 	return TRUE;
@@ -284,7 +284,7 @@ void CNtlInstancePostEffectSystem::RebuildPostEffectVertex()
     RwReal fRadius = 0.0f;
     if(m_pResourcePostEffectSystem->m_EmitterStandard.bDrawFullScreen)
     {
-        // Full ScreenÀÎ°æ¿ì¿¡´Â ¹ÝÁö¸§À» Áß½ÉÁ¡°ú È­¸éÀÇ 4±ÍÅüÀÌµé°úÀÇ °Å¸®¸¦ ±¸ÇØ¼­ °¡Àå ±ä °Å¸®·Î ¼³Á¤ÇÑ´Ù.
+        // Full Screenì¸ê²½ìš°ì—ëŠ” ë°˜ì§€ë¦„ì„ ì¤‘ì‹¬ì ê³¼ í™”ë©´ì˜ 4ê·€í‰ì´ë“¤ê³¼ì˜ ê±°ë¦¬ë¥¼ êµ¬í•´ì„œ ê°€ìž¥ ê¸´ ê±°ë¦¬ë¡œ ì„¤ì •í•œë‹¤.
         RwV2d v2dEndPoint[4];
         v2dEndPoint[0].x = v2dEndPoint[0].y = 0.0f;
         v2dEndPoint[1].x = 0.0f;
@@ -305,7 +305,7 @@ void CNtlInstancePostEffectSystem::RebuildPostEffectVertex()
             }
         }
 
-        // È­¸é ÀüÃ¼¸¦ Ã¤¿ì±â À§ÇØ¼­ ¾à°£ÀÇ Offset°ªÀ» ´õ ³Ö¾îÁØ´Ù.
+        // í™”ë©´ ì „ì²´ë¥¼ ì±„ìš°ê¸° ìœ„í•´ì„œ ì•½ê°„ì˜ Offsetê°’ì„ ë” ë„£ì–´ì¤€ë‹¤.
         fRadius += 100.0f;
     }
     else
@@ -399,7 +399,7 @@ RwBool CNtlInstancePostEffectSystem::RenderPostEffect()
 
     if(m_pResourcePostEffectSystem->m_EmitterStandard.bDrawFullScreen)
     {
-        // Full ScreenÀÇ °æ¿ì FanÀ¸·Î ±×¸®¸é µÈ´Ù.
+        // Full Screenì˜ ê²½ìš° Fanìœ¼ë¡œ ê·¸ë¦¬ë©´ ëœë‹¤.
         RwIm2DRenderPrimitive(rwPRIMTYPETRIFAN, m_pComicVertices, m_nVertexCount + 2);        
     }
     else
@@ -417,7 +417,7 @@ void CNtlInstancePostEffectSystem::SetWorldMatrix( const RwMatrix& matWorld )
     CNtlInstanceComponentSystem::SetWorldMatrix(matWorld);
     RwV3d vPosition = *RwMatrixGetPos(&m_matRender);
 
-    // Áß½ÉÁ¡ À§Ä¡ °íÁ¤ ±â´É
+    // ì¤‘ì‹¬ì  ìœ„ì¹˜ ê³ ì • ê¸°ëŠ¥
     if(!m_bCenterFix || m_bUpdateCenter)
     {
         m_v2dCenterPos = API_PL_Calc3DPosTo2D(&vPosition, (RwInt32)CNtlPostEffectCamera::GetInstance()->GetScreenSize().x, (RwInt32)CNtlPostEffectCamera::GetInstance()->GetScreenSize().y);        

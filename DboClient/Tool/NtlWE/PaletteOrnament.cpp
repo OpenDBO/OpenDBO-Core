@@ -1,4 +1,4 @@
-// PaletteOrnament.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PaletteOrnament.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -15,7 +15,7 @@
 #include "NtlMTXml.h"
 #include "NtlWorldEntityPreview.h"
 
-// CPaletteOrnament ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteOrnament ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPaletteOrnament, CDialog)
 CPaletteOrnament::CPaletteOrnament(CWnd* pParent /*=NULL*/)
@@ -559,7 +559,7 @@ VOID CPaletteOrnament::RefreshScaleInfo(CNtlPLEntity* pEntity)
 
 void CPaletteOrnament::InsertItemRecursive( SItemNode* pItemNode, HTREEITEM hParentItem ) 
 {
-	// ÀÚ½ÅÀ» Ãß°¡ÇÑ´Ù.
+	// ìì‹ ì„ ì¶”ê°€í•œë‹¤.
 	TV_INSERTSTRUCT sTvStruct;
 	sTvStruct.hParent = hParentItem;
 	sTvStruct.hInsertAfter = TVI_SORT;
@@ -568,12 +568,12 @@ void CPaletteOrnament::InsertItemRecursive( SItemNode* pItemNode, HTREEITEM hPar
 
 	if(pItemNode->eNodeType == NODE_SCIRPT)
 	{
-		// ½ºÅ©¸³Æ®¶ó¸é ÀÚ½ÅÀ» Ãß°¡ÇÏ°í ³¡³½´Ù.
+		// ìŠ¤í¬ë¦½íŠ¸ë¼ë©´ ìì‹ ì„ ì¶”ê°€í•˜ê³  ëë‚¸ë‹¤.
 		sTvStruct.item.iImage = 2;
 		sTvStruct.item.iSelectedImage = 2;
 		m_TreeOrnament.InsertItem(&sTvStruct);
 	}
-	else	// Æú´õ¶ó¸é ÀÚ½ÄµéÀ» Àç±Í·Î µ·´Ù.
+	else	// í´ë”ë¼ë©´ ìì‹ë“¤ì„ ì¬ê·€ë¡œ ëˆë‹¤.
 	{
 		sTvStruct.item.iImage = 0;
 		sTvStruct.item.iSelectedImage = 0;

@@ -1,13 +1,13 @@
 /******************************************************************************
 * File			: SideDialogManager.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 11. 6
 * Abstract		: 
 *****************************************************************************
-* Desc			: Å¬¶óÀÌ¾ðÆ®ÀÇ ¿À¸¥ÂÊ Áß¾Ó¿¡ ³ªÅ¸³ª´Â ´ÙÀÌ¾ó·Î±×¸¦ °ü¸®ÇÑ´Ù
-*				  ³ôÀÌ°¡ °ãÄ¡´Â °æ¿ì Open/close ÀÌÆåÆ®°¡ ¾øÀÌ È­¸é¿¡ Ç¥½ÃÁßÀÌ¸é
-*				  °ãÄ¡´Â ¸ðµç ±âÁ¸ÀÇ SideDialog¸¦ ´Ý´Â´Ù
+* Desc			: í´ë¼ì´ì–¸íŠ¸ì˜ ì˜¤ë¥¸ìª½ ì¤‘ì•™ì— ë‚˜íƒ€ë‚˜ëŠ” ë‹¤ì´ì–¼ë¡œê·¸ë¥¼ ê´€ë¦¬í•œë‹¤
+*				  ë†’ì´ê°€ ê²¹ì¹˜ëŠ” ê²½ìš° Open/close ì´íŽ™íŠ¸ê°€ ì—†ì´ í™”ë©´ì— í‘œì‹œì¤‘ì´ë©´
+*				  ê²¹ì¹˜ëŠ” ëª¨ë“  ê¸°ì¡´ì˜ SideDialogë¥¼ ë‹«ëŠ”ë‹¤
 *****************************************************************************/
 
 #pragma once
@@ -30,15 +30,15 @@ public:
 
 	enum eOpenType
 	{
-		OPENTYPE_OPEN,							///< ÇöÀç È­¸é¿¡ º¸¿©Áö°í ÀÖ´Â »óÅÂ
-		OPENTYPE_MINIMAM,						///< ÇöÀç È­¸é¿¡ º¸¿©Áö°í ÀÖÀ¸³ª ÃÖ¼ÒÈ­µÈ »óÅÂ
-		OPENTYPE_CONCEAL,						///< ´Ù¸¥ Ã¢¿¡ °¡·ÁÁ® ÀÖ´Â »óÅÂ
+		OPENTYPE_OPEN,							///< í˜„ìž¬ í™”ë©´ì— ë³´ì—¬ì§€ê³  ìžˆëŠ” ìƒíƒœ
+		OPENTYPE_MINIMAM,						///< í˜„ìž¬ í™”ë©´ì— ë³´ì—¬ì§€ê³  ìžˆìœ¼ë‚˜ ìµœì†Œí™”ëœ ìƒíƒœ
+		OPENTYPE_CONCEAL,						///< ë‹¤ë¥¸ ì°½ì— ê°€ë ¤ì ¸ ìžˆëŠ” ìƒíƒœ
 	};
 
 	struct DialogInfo
 	{
-		CNtlPLGui*				pDialog;		///< ´ÙÀÌ¾ó·Î±×·ÎÀÇ Æ÷ÀÎÅÍ
-		CNtlCallbackParam1bool* pCallSwitch;	///< ´ÙÀÌ¾ó·Î±× ¿­°í ´Ý´Â ÇÔ¼ö·ÎÀÇ ÄÝ¹é
+		CNtlPLGui*				pDialog;		///< ë‹¤ì´ì–¼ë¡œê·¸ë¡œì˜ í¬ì¸í„°
+		CNtlCallbackParam1bool* pCallSwitch;	///< ë‹¤ì´ì–¼ë¡œê·¸ ì—´ê³  ë‹«ëŠ” í•¨ìˆ˜ë¡œì˜ ì½œë°±
 
 		DialogInfo()
 		{
@@ -76,7 +76,7 @@ public:
 
 	VOID		Update(RwReal fElapsed);
 	RwInt32		SwitchDialog(bool bOpen);
-	RwBool		SwitchDialog(int iDialog);			///< »çÀÌµå ´ÙÀÌ¾ó·Î±×¸¦ ¿­°Å³ª ´Ý´Â´Ù
+	RwBool		SwitchDialog(int iDialog);			///< ì‚¬ì´ë“œ ë‹¤ì´ì–¼ë¡œê·¸ë¥¼ ì—´ê±°ë‚˜ ë‹«ëŠ”ë‹¤
 
 	VOID		OpenDefaultDialog();
 	RwBool		OpenDialog(RwInt32 iSideDialog, RwBool bPlaySound = TRUE);
@@ -114,8 +114,8 @@ protected:
 
 	gui::CSlot				m_slotMove;
 
-	MAP_SDIALOG				m_mapDialog;					///< µî·ÏµÈ ´ÙÀÌ¾ó·Î±×µéÀÇ Æ÷ÀÎÅÍ ¸ðÀ½
-	MAP_PRESENTATION		m_mapPresentDialog;				///< ÇöÀç º¸¿©Áö°í ÀÖ´Â ´ÙÀÌ¾ó·Î±×ÀÇ Á¤º¸
+	MAP_SDIALOG				m_mapDialog;					///< ë“±ë¡ëœ ë‹¤ì´ì–¼ë¡œê·¸ë“¤ì˜ í¬ì¸í„° ëª¨ìŒ
+	MAP_PRESENTATION		m_mapPresentDialog;				///< í˜„ìž¬ ë³´ì—¬ì§€ê³  ìžˆëŠ” ë‹¤ì´ì–¼ë¡œê·¸ì˜ ì •ë³´
 
 	MAP_ATTRIBUTE			m_mapAttribute;
 };

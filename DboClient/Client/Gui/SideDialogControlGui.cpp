@@ -57,11 +57,11 @@ RwBool CSideDialogControlGui::Create()
 	m_pThis = (gui::CDialog*)GetComponent("dlgMain");
 	m_pThis->SetPriority(dDIALOGPRIORITY_SIDE_DIALOG);
 
-	// ¿ŞÂÊ ¹öÆ°
+	// ì™¼ìª½ ë²„íŠ¼
 	m_pLeftButton = (gui::CButton*)GetComponent( "btnLeft" );
 	m_slotLeftButton = m_pLeftButton->SigClicked().Connect(this, &CSideDialogControlGui::OnClick_LeftButton);
 
-	// ¿À¸¥ÂÊ ¹öÆ°
+	// ì˜¤ë¥¸ìª½ ë²„íŠ¼
 	m_pRightButton = (gui::CButton*)GetComponent( "btnRight" );
 	m_slotRightButton = m_pRightButton->SigClicked().Connect(this, &CSideDialogControlGui::OnClick_RightButton);
 
@@ -150,7 +150,7 @@ VOID CSideDialogControlGui::ArrangeButtons(RwBool bOpenStartIndex /* = FALSE */)
 		{
 			++byCount;
 			
-			// È­¸é¿¡ º¸ÀÌ´Â ¹öÆ°Áß Ã¹ ¹øÂ°¿¡ ÇØ´çÇÏ´Â ´ÙÀÌ¾ó·Î±×¸¦ ¿¬´Ù
+			// í™”ë©´ì— ë³´ì´ëŠ” ë²„íŠ¼ì¤‘ ì²« ë²ˆì§¸ì— í•´ë‹¹í•˜ëŠ” ë‹¤ì´ì–¼ë¡œê·¸ë¥¼ ì—°ë‹¤
 			if( m_byVisibleStart == byCount )
 			{
 				if( bOpenStartIndex )
@@ -177,7 +177,7 @@ VOID CSideDialogControlGui::ArrangeButtons(RwBool bOpenStartIndex /* = FALSE */)
 			sButtonType* pButtonType = *it;
 			if( m_byVisibleStart <= byCount && byCount <= dMAX_BUTTON_VISILE )
 			{
-				// È­¸é¿¡ º¸ÀÌ´Â ¹öÆ°Áß Ã¹ ¹øÂ°¿¡ ÇØ´çÇÏ´Â ´ÙÀÌ¾ó·Î±×¸¦ ¿¬´Ù
+				// í™”ë©´ì— ë³´ì´ëŠ” ë²„íŠ¼ì¤‘ ì²« ë²ˆì§¸ì— í•´ë‹¹í•˜ëŠ” ë‹¤ì´ì–¼ë¡œê·¸ë¥¼ ì—°ë‹¤
 				if( m_byVisibleStart == byCount )
 				{
 					if( bOpenStartIndex )
@@ -212,7 +212,7 @@ VOID CSideDialogControlGui::ArrangeButtons(RwBool bOpenStartIndex /* = FALSE */)
 
 VOID CSideDialogControlGui::AddButton(RwUInt32 uiSideDialogType)
 {
-	// ÀÌ¹Ì µî·ÏÀÌ µÇ¾î ÀÖÀ¸¸é ¸®ÅÏ
+	// ì´ë¯¸ ë“±ë¡ì´ ë˜ì–´ ìˆìœ¼ë©´ ë¦¬í„´
 	LIST_BUTTON_ITER it = m_listEnableButton.begin();
 	for( ; it != m_listEnableButton.end() ; ++it )
 	{
@@ -227,7 +227,7 @@ VOID CSideDialogControlGui::AddButton(RwUInt32 uiSideDialogType)
 		{
 			m_listEnableButton.push_back(&m_aButtonType[i]);
 
-			// ÇöÀç AddµÇ´Â °ÍÀÌ Ç¥½ÃµÇ´Ï ±âÁ¸ÀÇ ÃÖ¼ÒÈ­µÈ ´ÙÀÌ¾ó·Î±×´Â Ç¥½ÃÇÒ ÇÊ¿ä°¡ ¾ø´Ù
+			// í˜„ì¬ Addë˜ëŠ” ê²ƒì´ í‘œì‹œë˜ë‹ˆ ê¸°ì¡´ì˜ ìµœì†Œí™”ëœ ë‹¤ì´ì–¼ë¡œê·¸ëŠ” í‘œì‹œí•  í•„ìš”ê°€ ì—†ë‹¤
 			m_pSideDialogMiniGui->Inactive();
 			break;
 		}
@@ -347,7 +347,7 @@ VOID CSideDialogControlGui::HandleEvents( RWS::CMsg &msg )
 				{
 					if( m_aButtonType[i].uiSideDialogType == pEvent->uiSrcSDialog )
 					{
-						// »çÀÌµå ´ÙÀÌ¾ó·Î±× °øÅë ÃÖ¼ÒÈ­ GUI¸¦ º¸¿©ÁØ´Ù
+						// ì‚¬ì´ë“œ ë‹¤ì´ì–¼ë¡œê·¸ ê³µí†µ ìµœì†Œí™” GUIë¥¼ ë³´ì—¬ì¤€ë‹¤
 						m_pSideDialogMiniGui->Active(m_aButtonType[i].uiSideDialogType,
 													 m_aButtonType[i].pButton->GetToolTip().c_str());
 						break;

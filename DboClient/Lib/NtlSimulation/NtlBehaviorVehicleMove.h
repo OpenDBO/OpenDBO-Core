@@ -2,7 +2,7 @@
  *
  * File			: NtlBehaviorVehicleMove.h
  * Author		: JeongHo, Rho
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2008. 11. 14	
  * Abstract		: vehicle move behavior class
  *****************************************************************************
@@ -79,7 +79,7 @@ protected:
 	// Move stop
 	RwBool						m_bStop;
 
-	// possible ∫Ø»≠ check
+	// possible Î≥ÄÌôî check
 	RwReal						m_fPosChangeTime;
 	RwUInt8						m_byPosChangeCnt;
 	RwV3d						m_vChangeOldPos;
@@ -88,7 +88,7 @@ protected:
 	RwUInt8						m_byCollMoveImpossCnt;
 	SWorldHeightStuff			m_sHStuff;
 
-	// server µø±‚ ¿ßƒ° ∫∏¡§.
+	// server ÎèôÍ∏∞ ÏúÑÏπò Î≥¥Ï†ï.
 	RwBool						m_bServerSyncPos;
 	RwV3d						m_vServerSyncDir;
 	RwReal						m_fServerSyncDist;

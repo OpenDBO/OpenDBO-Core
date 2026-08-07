@@ -3,14 +3,14 @@
 
 
 
-// CMPPSetItemPane Æû ºäÀÔ´Ï´Ù.
+// CMPPSetItemPane í¼ ë·°ì…ë‹ˆë‹¤.
 
 class CMPPSetItemPane : public CXTResizeFormView
 {
 	DECLARE_DYNCREATE(CMPPSetItemPane)
 
 protected:
-	CMPPSetItemPane();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CMPPSetItemPane();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CMPPSetItemPane();
 
 public:
@@ -23,7 +23,7 @@ public:
 #endif
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 

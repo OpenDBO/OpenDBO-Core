@@ -7,7 +7,10 @@
 #include "NtlPLSceneManager.h"
 #include "NtlWorldShadow.h"
 #include "NtlPLEntityRenderHelpers.h"
+#include "NtlPostEffectCamera.h"
 #include "ntlworldinterface.h"
+#include <rpmatfx.h>
+#include <rpuvanim.h>
 
 static RxPipeline   *g_sNtlMatExtAtomicPipe = NULL;
 
@@ -103,7 +106,7 @@ static void D3D9DefaultRenderBlack(RxD3D9ResEntryHeader *resEntryHeader,RpAtomic
     return;
 }
 
-static void NtlMatExtRenderCallback( RwResEntry *repEntry, void *object,RwUInt8 type, RwUInt32 flags)
+void NtlMatExtRenderCallback( RwResEntry *repEntry, void *object,RwUInt8 type, RwUInt32 flags)
 {
 	RxD3D9ResEntryHeader    *resEntryHeader;
 	RxD3D9InstanceData      *instancedData;
@@ -129,6 +132,14 @@ static void NtlMatExtRenderCallback( RwResEntry *repEntry, void *object,RwUInt8 
 	RwD3D9SetVertexDeclaration(resEntryHeader->vertexDeclaration);
 
 	RwD3D9GetRenderState(D3DRS_LIGHTING, &lighting);
+	if (!lighting && CNtlPostEffectCamera::IsMSAAMode())
+	{
+		// Im2D/UI states can leave lighting disabled before a world atomic is
+		// submitted. This callback otherwise intentionally renders the atomic
+		// black when lighting is disabled.
+		RwD3D9SetRenderState(D3DRS_LIGHTING, TRUE);
+		lighting = TRUE;
+	}
 
 	if (lighting == FALSE)
 	{
@@ -232,9 +243,9 @@ static void NtlMatExtRenderCallback( RwResEntry *repEntry, void *object,RwUInt8 
 			}
 		}
 
-		// Cz : WorldEditor¿¡¼­ Shadow Property¸¦ ÃßÃâÇÒ ¶§ rxGEOMETRY_TEXTURED, rxGEOMETRY_TEXTURED2 Flag¸¦
-		// Á¦°Å ÇÏ±â ¶§¹®¿¡ ÃßÃâ ½Ã Texture°¡ NULL·Î ¼³Á¤µÇ¾î Radeon¿¡¼­ ShadowMapÀÌ RenderµÇÁö ¾Ê´Â´Ù.
-		// WorldEditor¿¡¼­´Â ÀÌºÎºÐÀ» ±³Ã¼ÇÏ¿© »ç¿ëÇÑ´Ù.
+		// Cz : WorldEditorå ì™ì˜™å ì™ì˜™ Shadow Propertyå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™ rxGEOMETRY_TEXTURED, rxGEOMETRY_TEXTURED2 Flagå ì™ì˜™
+		// å ì™ì˜™å ì™ì˜™ å ì‹¹ê¹ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™ Textureå ì™ì˜™ NULLå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¤ì–µì˜™ Radeonå ì™ì˜™å ì™ì˜™ ShadowMapå ì™ì˜™ Renderå ì™ì˜™å ì™ì˜™ å ì‹­ëŠ”ëŒì˜™.
+		// WorldEditorì—ì„œëŠ” ì´ë¶€ë¶„ì„ êµì²´í•˜ì—¬ ì‚¬ìš©í•œë‹¤.
 #ifdef dNTL_WORLD_TOOL_MODE
 		if (material->texture != NULL && (flags & (rxGEOMETRY_TEXTURED | rxGEOMETRY_TEXTURED2)) != 0)
 		{
@@ -359,6 +370,26 @@ static void NtlMatExtRenderCallback( RwResEntry *repEntry, void *object,RwUInt8 
 		*/
 		RwD3D9SetVertexShader(instancedData->vertexShader);
 
+		/* Apply UV-animation texture transform from the material's MatFX data.
+		   RpMaterialUVAnimExists detects materials that had their UV transform
+		   matrices set by RpMaterialUVAnimApplyUpdate (called every frame from
+		   CNtlPLUVAnim::Update). For those materials it is safe to read the
+		   matrices via RpMatFXMaterialGetUVTransformMatrices. Materials without
+		   UV animation are skipped â€” calling the getter on them would crash
+		   inside MatFXGetConstData. */
+		if (RpMaterialUVAnimExists(material))
+		{
+			RwMatrix *pUVMatBase = NULL;
+			RwMatrix *pUVMatDual = NULL;
+			RpMatFXMaterialGetUVTransformMatrices(material, &pUVMatBase, &pUVMatDual);
+			RwMatrix *pUVMat = (pUVMatBase != NULL) ? pUVMatBase : pUVMatDual;
+			if (pUVMat != NULL)
+			{
+				RwD3D9SetTransform(D3DTS_TEXTURE0, pUVMat);
+				RwD3D9SetTextureStageState(0, D3DTSS_TEXTURETRANSFORMFLAGS, D3DTTFF_COUNT2);
+			}
+		}
+
 		/*
 		* Render
 		*/
@@ -402,7 +433,7 @@ static void NtlMatExtRenderCallback( RwResEntry *repEntry, void *object,RwUInt8 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-		// ¼±ÅÃÇßÀ»¶§ ¹à°Ô Ã³¸® µÇ´Â ºÎºÐ
+		// ì„ íƒí–ˆì„ë•Œ ë°ê²Œ ì²˜ë¦¬ ë˜ëŠ” ë¶€ë¶„
 		if(RpNtlMaterialExtGetFlag(material) & rpNTL_MATERIAL_ADD_COLOR)
 		{
 			D3DCOLOR    matColor;
@@ -430,7 +461,7 @@ static void NtlMatExtRenderCallback( RwResEntry *repEntry, void *object,RwUInt8 
 			RwRenderStateSet(rwRENDERSTATESRCBLEND, (void*)rwBLENDONE);
 			RwRenderStateSet(rwRENDERSTATEDESTBLEND, (void*)rwBLENDONE);
 
-			RwD3D9SetTextureStageState(0, D3DTSS_COLOROP,   D3DTOP_MODULATE2X);
+			RwD3D9SetTextureStageState(0, D3DTSS_COLOROP,   D3DTOP_MODULATE);
 			RwD3D9SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TFACTOR);
 			RwD3D9SetTextureStageState(0, D3DTSS_COLORARG2, D3DTA_TEXTURE);
 			RwD3D9SetTextureStageState(0, D3DTSS_ALPHAOP,   D3DTOP_SELECTARG1);
@@ -461,6 +492,10 @@ static void NtlMatExtRenderCallback( RwResEntry *repEntry, void *object,RwUInt8 
 
 			RwD3D9SetRenderState(D3DRS_ZWRITEENABLE, zWriteEnable);
 		}
+		/* Reset UV-animation texture transform so the next material is not
+		   affected by this material's UV matrix. */
+		RwD3D9SetTextureStageState(0, D3DTSS_TEXTURETRANSFORMFLAGS, D3DTTFF_DISABLE);
+		RwD3D9SetTransform(D3DTS_TEXTURE0, &CNtlPLGlobal::m_mD3D9IdentityMatrix);
 		instancedData++;
 	}
 
@@ -579,6 +614,22 @@ void NtlMatExtSetPipeline(RpAtomic *pAtomic)
 	NTL_ASSERTE( pAtomic );
 	NTL_ASSERTE( g_sNtlMatExtAtomicPipe );
 	pAtomic->pipeline = g_sNtlMatExtAtomicPipe;
+}
+
+void NtlMatExtSetToonSkinPipelineRenderCB(RpAtomic *pAtomic)
+{
+	NTL_ASSERTE(pAtomic);
+
+	RxPipeline *pipeline = pAtomic->pipeline;
+	if (!pipeline || pipeline->numNodes == 0 || !pipeline->nodes)
+		return;
+
+	RxPipelineNode *node = &pipeline->nodes[0];
+	if (node && node->privateData)
+	{
+		RxD3D9AllInOneRenderCallBack *pRenderCB = (RxD3D9AllInOneRenderCallBack *)node->privateData;
+		*pRenderCB = NtlMatExtRenderCallback;
+	}
 }
 
 RwBool NtlMatExtPluginAttach(void)

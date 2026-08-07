@@ -1,4 +1,4 @@
-// PalettePerformanceSectorCull.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PalettePerformanceSectorCull.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -41,7 +41,7 @@ BEGIN_MESSAGE_MAP(CPalettePerformanceSectorCull, CDialog)
 END_MESSAGE_MAP()
 
 
-// CPalettePerformanceSectorCull ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPalettePerformanceSectorCull ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CPalettePerformanceSectorCull::OnInitDialog()
 {
@@ -56,7 +56,7 @@ BOOL CPalettePerformanceSectorCull::OnInitDialog()
 	m_SSMCombo.SetCurSel(0);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 BOOL CPalettePerformanceSectorCull::PreTranslateMessage(MSG* pMsg)

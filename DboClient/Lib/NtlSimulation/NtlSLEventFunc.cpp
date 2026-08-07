@@ -3571,13 +3571,13 @@ void CNtlSLEventGenerator::QuestRewardDialog_Res( bool bResult, sTS_KEY& sTSKey,
 }
 
 void CNtlSLEventGenerator::QuestNarrationDialog_Req( sTS_KEY& sTSKey,
-													eNARRATION_PROGRESS_STATE eProgState,		// Narration ���� ����
-													eNARRATION_OWNER_TYPE eOwnerType,			// Owner�� ����
-													RwUInt32 uiOwnerIdx,						// Owner�� ���̺� �ε���
-													eNARRATION_OWNER_STATE eOwnerState,		// Owner�� ����
-													eNARRATION_DIALOG_DIR_TYPE eDialogDirType,	// ��ȭ ���� ����
-													RwUInt32 uiDialog,							// ��ȭ ����
-													eNARRATION_GUI_TYPE eGUIType,				// GUI ����
+													eNARRATION_PROGRESS_STATE eProgState,		// Narration 占쏙옙占쏙옙 占쏙옙占쏙옙
+													eNARRATION_OWNER_TYPE eOwnerType,			// Owner占쏙옙 占쏙옙占쏙옙
+													RwUInt32 uiOwnerIdx,						// Owner占쏙옙 占쏙옙占싱븝옙 占싸듸옙占쏙옙
+													eNARRATION_OWNER_STATE eOwnerState,		// Owner占쏙옙 占쏙옙占쏙옙
+													eNARRATION_DIALOG_DIR_TYPE eDialogDirType,	// 占쏙옙화 占쏙옙占쏙옙 占쏙옙占쏙옙
+													RwUInt32 uiDialog,							// 占쏙옙화 占쏙옙占쏙옙
+													eNARRATION_GUI_TYPE eGUIType,				// GUI 占쏙옙占쏙옙
 													RwUInt32 uiMaxLifeTime )					// �� �ð� �̻� �����̼� â�� ���� �Ǵ� ��� �ڵ����� Next�� �Ѿ�� �Ѵ�.
 {
 	SNtlEventQuestNarrationDialog_Req sQuestNarrationDialogReq;
@@ -3735,10 +3735,10 @@ void CNtlSLEventGenerator::ShowQuestPosMark( sTS_KEY& sTSKey, RwBool bShow )
 }
 
 void CNtlSLEventGenerator::QuestObjDialog_Req( sTS_KEY& sTSKey,
-											  eOBJCONV_TYPE eObjConvType,			// Object ��ȭ Ÿ��
-											  RwUInt32 uiWorldIdx,					// Object �Ҽ� world index
-											  RwUInt32 uiObjIdx,					// Object ���̺� �ε���
-											  RwUInt32 uiDesc )					// Object ��ȭ
+											  eOBJCONV_TYPE eObjConvType,			// Object 占쏙옙화 타占쏙옙
+											  RwUInt32 uiWorldIdx,					// Object 占쌀쇽옙 world index
+											  RwUInt32 uiObjIdx,					// Object 占쏙옙占싱븝옙 占싸듸옙占쏙옙
+											  RwUInt32 uiDesc )					// Object 占쏙옙화
 {
 	SNtlEventQuestObjDialog_Req sObjDlg;
 
@@ -4251,7 +4251,7 @@ void CNtlSLEventGenerator::TObjectUpdateState( SERIAL_HANDLE hSerialId, TBLIDX t
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
-* Ʈ���� ������Ʈ ��ī���� ���� ����
+* 트占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙트 占쏙옙카占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙
 */
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

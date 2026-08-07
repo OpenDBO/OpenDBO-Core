@@ -36,10 +36,10 @@ void CNtlPLUVAnim::Destory()
 
 
 /**
- * uvaÆÄÀÏ·Î ºÎÅÍ UVAnimÀ» »ı¼ºÇÏ¿© Clump¿¡ Àû¿ëÇÑ´Ù.
- * \param szUVFileName Àû¿ëÇÒ uvAnim ÆÄÀÏ°æ·Î (*.uva)
- * \param pClump UVAnimÀ» Àû¿ëÇÒ Clump °´Ã¼
- * return ¼º°ø À¯¹«
+ * uvaíŒŒì¼ë¡œ ë¶€í„° UVAnimì„ ìƒì„±í•˜ì—¬ Clumpì— ì ìš©í•œë‹¤.
+ * \param szUVFileName ì ìš©í•  uvAnim íŒŒì¼ê²½ë¡œ (*.uva)
+ * \param pClump UVAnimì„ ì ìš©í•  Clump ê°ì²´
+ * return ì„±ê³µ ìœ ë¬´
  */
 RwBool CNtlPLUVAnim::Create( const char* szUVFileName, RpClump* pClump ) 
 {
@@ -75,9 +75,9 @@ RwBool CNtlPLUVAnim::Create( const char* szUVFileName )
         return FALSE;
 
 
-    // NOTE: È­¸é¿¡ ¼­·Î´Ù¸¥ UVAnimÀÌ Àû¿ëµÈ Object°¡ µÎ°³ÀÌ»óÀÖÀ»¶§. ¹®Á¦°¡ ÀÖÁö ¾ÊÀ»±î?
-    // Â÷ÈÄ¿¡ °á°ú¸¦ º¸°í, ¹®Á¦°¡ ÀÖÀ¸¸é ¼öÁ¤ÇÑ´Ù.
-    // DIct°´Ã¼¿¡ Entry(RpUVAnim*)¸¦ Ãß°¡ÇÏ´Â ÇüÅÂ·Î º¯°æÀÌ ÇÊ¿äÇÒÁöµµ ¸ğ¸£°Ú´Ù.
+    // NOTE: í™”ë©´ì— ì„œë¡œë‹¤ë¥¸ UVAnimì´ ì ìš©ëœ Objectê°€ ë‘ê°œì´ìƒìˆì„ë•Œ. ë¬¸ì œê°€ ìˆì§€ ì•Šì„ê¹Œ?
+    // ì°¨í›„ì— ê²°ê³¼ë¥¼ ë³´ê³ , ë¬¸ì œê°€ ìˆìœ¼ë©´ ìˆ˜ì •í•œë‹¤.
+    // DIctê°ì²´ì— Entry(RpUVAnim*)ë¥¼ ì¶”ê°€í•˜ëŠ” í˜•íƒœë¡œ ë³€ê²½ì´ í•„ìš”í• ì§€ë„ ëª¨ë¥´ê² ë‹¤.
     RtDictSchemaSetCurrentDict(RpUVAnimGetDictSchema(), m_pUvAnimDict);    
 
     return TRUE;
@@ -98,16 +98,16 @@ void CNtlPLUVAnim::Update( RwReal fElapsedTime )
 
     //API_MaterialsInterpolatorsAddAnimTime(m_pAnimationMaterialList, fElapsedTime * m_fUVAnimTime);    
 
-    // º¹¼ö°³ÀÇ Clump¿¡ MaterialÀÌ °øÅëÀûÀ¸·Î Àû¿ëÀÌµÇ±â ¶§¹®¿¡, AddTimeÀÌ ¾Æ´Ñ SetCurrentTimeÀ» Àû¿ëÇÑ´Ù.
+    // ë³µìˆ˜ê°œì˜ Clumpì— Materialì´ ê³µí†µì ìœ¼ë¡œ ì ìš©ì´ë˜ê¸° ë•Œë¬¸ì—, AddTimeì´ ì•„ë‹Œ SetCurrentTimeì„ ì ìš©í•œë‹¤.
     API_MaterialsInterpolatorsSetCurrentTime(m_pAnimationMaterialList, CNtlTimer::GetAppTime() * m_fUVAnimTime);
 
     API_MaterialsAnimApply(m_pAnimationMaterialList);
 }
 
 /**
- * *.uva ÆÄÀÏÀ» ·ÎµåÇÑ´Ù.
- * \param strFullName uvaÆÄÀÏ°æ·Î
- * return uvaÆÄÀÏÀ» ·ÎµåÇÑ RtDict °´Ã¼
+ * *.uva íŒŒì¼ì„ ë¡œë“œí•œë‹¤.
+ * \param strFullName uvaíŒŒì¼ê²½ë¡œ
+ * return uvaíŒŒì¼ì„ ë¡œë“œí•œ RtDict ê°ì²´
  */
 RtDict* CNtlPLUVAnim::UVAnimDictLoad( const RwChar* strFullName ) 
 {

@@ -313,9 +313,9 @@ bool CComponentTokenizerW::Load(const char *pFileName, bool bUsePack)
 {
 	NTL_ARRAY_DELETE( m_pData );
 
-	// Kell's Comment : UTF-16/UCS2 ¸¸ °Ë»çÇÑ´Ù. ÀÌ¿ÜÀÇ ¹æ½ÄÀº MultiByte·Î ÀĞ´Â´Ù.
-	// UTF-16ÀÇ Byte-order Mark´Â 2byte ÀÎ FF FE ¸¦ »ç¿ëÇÏ°í ÀÌ ¹æ½ÄÀº À©µµ¿ìÀÇ
-	// ¸Ş¸ğÀåÀÌ³ª Word¿¡¼­ »ç¿ëÇÏ´Â ¹æ½ÄÀÌ´Ù. (ÁÖÀÇ)
+	// Kell's Comment : UTF-16/UCS2 ë§Œ ê²€ì‚¬í•œë‹¤. ì´ì™¸ì˜ ë°©ì‹ì€ MultiByteë¡œ ì½ëŠ”ë‹¤.
+	// UTF-16ì˜ Byte-order MarkëŠ” 2byte ì¸ FF FE ë¥¼ ì‚¬ìš©í•˜ê³  ì´ ë°©ì‹ì€ ìœˆë„ìš°ì˜
+	// ë©”ëª¨ì¥ì´ë‚˜ Wordì—ì„œ ì‚¬ìš©í•˜ëŠ” ë°©ì‹ì´ë‹¤. (ì£¼ì˜)
 
 	const BYTE byBomOffset = 2;
 	const BYTE abyUnicodeBom[2] = { 0xFF, 0xFE };
@@ -330,13 +330,13 @@ bool CComponentTokenizerW::Load(const char *pFileName, bool bUsePack)
 		memcpy( pBuffer, pData, sizeof(char)*iSize);
 		pBuffer[iSize] = '\0';
 		
-		// // UTF - 16ÀÏ °æ¿ì¿¡
+		// // UTF - 16ì¼ ê²½ìš°ì—
 		if( abyUnicodeBom[0] == pBuffer[0] &&
 			abyUnicodeBom[1] == pBuffer[1] )
 		{
 			int nStrLen = (int)strlen( pBuffer+2 );
-			// WideÇüÀÇ ¹è¿­Àº 2Byte ´ç ÇÏ³ªÀÓ.
-			// ¾ÕÀÇ BOM ÄÚµå¸¦ »« °ÍÀÇ 2¸¦ ³ª´²ÁØ ¸¸Å­ º¹»çÇÑ´Ù.
+			// Wideí˜•ì˜ ë°°ì—´ì€ 2Byte ë‹¹ í•˜ë‚˜ì„.
+			// ì•ì˜ BOM ì½”ë“œë¥¼ ëº€ ê²ƒì˜ 2ë¥¼ ë‚˜ëˆ ì¤€ ë§Œí¼ ë³µì‚¬í•œë‹¤.
 			m_nTotalSize = nStrLen;
 			m_pData = NTL_NEW WCHAR[m_nTotalSize+1];
 			memcpy( m_pData, pBuffer+2, iSize-2 );
@@ -367,12 +367,12 @@ bool CComponentTokenizerW::Load(const char *pFileName, bool bUsePack)
 		if(fp == NULL)
 			return false;
 #endif
-		// ¾ÕÀÇ 2 Byte¸¸ ÀĞ¾î¿Â´Ù.
+		// ì•ì˜ 2 Byteë§Œ ì½ì–´ì˜¨ë‹¤.
 		BYTE abyHtml_Bom[2] = { 0, };
 		fread( abyHtml_Bom, 2, 1, fp );
 
-		// Unicode(LE)°¡ ¾Æ´Ñ °æ¿ì Assert°¡ °É¸°´Ù.
-		// ÇöÀç´Â MultiByte¿Í Unicode, 2°³ ´Ù ÀĞ¾îµé¾î¾ß ÇÑ´Ù.
+		// Unicode(LE)ê°€ ì•„ë‹Œ ê²½ìš° Assertê°€ ê±¸ë¦°ë‹¤.
+		// í˜„ì¬ëŠ” MultiByteì™€ Unicode, 2ê°œ ë‹¤ ì½ì–´ë“¤ì–´ì•¼ í•œë‹¤.
 		// assert( abyUnicodeBom == abyHtml_Bom );
 
 		// UTF-16(Little-Endian)
@@ -383,7 +383,7 @@ bool CComponentTokenizerW::Load(const char *pFileName, bool bUsePack)
 			int nSize = ftell(fp);
 			fseek(fp, 0, SEEK_SET);
 
-			// Unicode´Â 2byte´ç 1character¸¦ »ç¿ëÇÑ´Ù.
+			// UnicodeëŠ” 2byteë‹¹ 1characterë¥¼ ì‚¬ìš©í•œë‹¤.
 			int nStrLen = m_nTotalSize = (nSize/2);
 			m_pData = NTL_NEW wchar_t[nStrLen];
 			m_pData[nStrLen-1] = L'\0';
@@ -405,10 +405,10 @@ bool CComponentTokenizerW::Load(const char *pFileName, bool bUsePack)
 
 			m_pData = NTL_NEW wchar_t[nSize];
 
-			// Wide Character·Î º¯È¯
+			// Wide Characterë¡œ ë³€í™˜
 			::MultiByteToWideChar( GetACP(), 0,pData, -1, m_pData, nSize );
 
-			// Data »èÁ¦
+			// Data ì‚­ì œ
 			NTL_ARRAY_DELETE( pData );
 		}
 

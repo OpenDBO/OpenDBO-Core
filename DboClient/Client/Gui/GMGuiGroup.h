@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: GMGuiGroup.h
 * Author		: Haesung, Cho
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 11. 18
 * Abstract		: 
 *****************************************************************************
-* Desc			: GM Mode·Î µé¾î°¬À» ¶§ »ç¿ëµÇ´Â GuiÀÇ Group
+* Desc			: GM Modeë¡œ ë“¤ì–´ê°”ì„ ë•Œ ì‚¬ìš©ë˜ëŠ” Guiì˜ Group
 *****************************************************************************/
 
 #pragma once
@@ -14,7 +14,7 @@
 #include "ceventhandler.h"
 
 /**
-* \ingroup GMÀÇ Gui Group
+* \ingroup GMì˜ Gui Group
 */
 
 class CGMQuickSlotGui;

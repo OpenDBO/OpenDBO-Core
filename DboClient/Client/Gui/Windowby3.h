@@ -1,14 +1,14 @@
 /******************************************************************************
 * File			: CWindowby3.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2006. 12. 8
 * Abstract		: 
 * Update		: 
 *****************************************************************************
-* Desc			: Å« À©µµ¿ìÀÇ ¸®¼Ò½º¸¦ ¼öÆò È¤Àº ¼öÁ÷À¸·Î 3µîºĞÇÑ °ÍÀ» Ç¥ÇöÇÑ´Ù
-*				  ½ºÅ©¸³Æ®·Î ¹Ì¸® »çÀÌÁî¸¦ ÁöÁ¤ÇÏÁö ¾Ê¾Ò´Ù¸é SetRect, SetRectWH,
-*				  SetSizeµîÀ» È£ÃâÇÑ µÚ¿¡ SetPositionfromParentÇÔ¼ö¸¦ È£ÃâÇÏÀÚ
+* Desc			: í° ìœˆë„ìš°ì˜ ë¦¬ì†ŒìŠ¤ë¥¼ ìˆ˜í‰ í˜¹ì€ ìˆ˜ì§ìœ¼ë¡œ 3ë“±ë¶„í•œ ê²ƒì„ í‘œí˜„í•œë‹¤
+*				  ìŠ¤í¬ë¦½íŠ¸ë¡œ ë¯¸ë¦¬ ì‚¬ì´ì¦ˆë¥¼ ì§€ì •í•˜ì§€ ì•Šì•˜ë‹¤ë©´ SetRect, SetRectWH,
+*				  SetSizeë“±ì„ í˜¸ì¶œí•œ ë’¤ì— SetPositionfromParentí•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ì
 *****************************************************************************/
 
 #pragma once
@@ -40,8 +40,8 @@ public:
 	VOID			SetRectWH(RwInt32 iPosX, RwInt32 iPosY, RwInt32 iWidth, RwInt32 iHeight);
 	VOID			SetSize(RwUInt32 uiWidth, RwUInt32 uiHeight);
 	VOID			SetAlpha(RwUInt8 byAlpha);
-	VOID			SetSurface(RwInt8 byIndex, gui::CSurface& surface);	///< ¼­ÆäÀÌ½º µî·Ï
-	VOID			SetPosition(RwInt32 iPosX, RwInt32 iPosY);			///< À©µµ¿ìÀÇ ÇüÅÂ¸¦ À¯ÁöÇÑÃ¼ ¿Å±ä´Ù
+	VOID			SetSurface(RwInt8 byIndex, gui::CSurface& surface);	///< ì„œí˜ì´ìŠ¤ ë“±ë¡
+	VOID			SetPosition(RwInt32 iPosX, RwInt32 iPosY);			///< ìœˆë„ìš°ì˜ í˜•íƒœë¥¼ ìœ ì§€í•œì²´ ì˜®ê¸´ë‹¤
 	VOID			SetPositionfromParent(RwInt32 iPosX, RwInt32 iPosY);
 	VOID			SetPositionbyParent(RwInt32 iParentPosX, RwInt32 iParentPosY);
 

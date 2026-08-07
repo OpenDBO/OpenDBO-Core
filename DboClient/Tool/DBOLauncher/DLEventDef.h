@@ -2,7 +2,7 @@
 *
 * File			: DLEventDef.h
 * Author		: 
-* Copyright		: (ÁÖ) NTL
+* Copyright		: (ì£¼) NTL
 * Date			:
 * Abstract		: 
 *****************************************************************************
@@ -24,40 +24,40 @@
 enum eDL_EVENT
 {
 	// Message
-	eDL_EVENT_OUTPUT_MESSAGE_TO_USER,			// »ç¿ëÀÚ¿¡°Ô ¾Ë¸² ¸Þ½ÃÁö
-	eDL_EVENT_OUTPUT_MESSAGE_FOR_DEBUG,			// µð¹ö±ëÀ» À§ÇÑ ¸Þ½ÃÁö
+	eDL_EVENT_OUTPUT_MESSAGE_TO_USER,			// ì‚¬ìš©ìžì—ê²Œ ì•Œë¦¼ ë©”ì‹œì§€
+	eDL_EVENT_OUTPUT_MESSAGE_FOR_DEBUG,			// ë””ë²„ê¹…ì„ ìœ„í•œ ë©”ì‹œì§€
 
 	// Skin
-	eDL_EVENT_CREATE_SKIN,						// SkinÀ» »ý¼ºÇÑ´Ù
-	eDL_EVENT_DELETE_SKIN,						// SkinÀ» Á¦°ÅÇÑ´Ù
-	eDL_EVENT_ACTIVE_START,						// ½ÃÀÛ ¹öÆ°À» È°¼ºÈ­ / ºñÈ°¼ºÈ­ ÇÑ´Ù
-	eDL_EVENT_ACTIVE_INTEGRITY,					// ¹«°á¼º ¹öÆ°À» È°¼ºÈ­ / ºñÈ°¼ºÈ­ ÇÑ´Ù
+	eDL_EVENT_CREATE_SKIN,						// Skinì„ ìƒì„±í•œë‹¤
+	eDL_EVENT_DELETE_SKIN,						// Skinì„ ì œê±°í•œë‹¤
+	eDL_EVENT_ACTIVE_START,						// ì‹œìž‘ ë²„íŠ¼ì„ í™œì„±í™” / ë¹„í™œì„±í™” í•œë‹¤
+	eDL_EVENT_ACTIVE_INTEGRITY,					// ë¬´ê²°ì„± ë²„íŠ¼ì„ í™œì„±í™” / ë¹„í™œì„±í™” í•œë‹¤
 
 	// Download
-	eDL_EVENT_DO_DOWNLOAD,						// Download ½ÃÀÛ ¸í·É
-	eDL_EVENT_DOWNLOADING_NFY,					// Download ÁøÇà Áß ¾Ë¸²
+	eDL_EVENT_DO_DOWNLOAD,						// Download ì‹œìž‘ ëª…ë ¹
+	eDL_EVENT_DOWNLOADING_NFY,					// Download ì§„í–‰ ì¤‘ ì•Œë¦¼
 
 	// Patch
-	eDL_EVENT_DO_PATCH,							// Patch ½ÃÀÛ ¸í·É
+	eDL_EVENT_DO_PATCH,							// Patch ì‹œìž‘ ëª…ë ¹
 	eDL_EVENT_PATCH_START_NFY,
 	eDL_EVENT_PATCH_UPDATE_NFY,
 	eDL_EVENT_PATCH_COMPLETE_NFY,
 	eDL_EVENT_PATCH_ETC_UPDATE_NFY,
 
 	// Version
-	eDL_EVENT_UPDATE_VERSION_NFY,				// ÇöÀç ¹öÀü ¾÷µ¥ÀÌÆ®
+	eDL_EVENT_UPDATE_VERSION_NFY,				// í˜„ìž¬ ë²„ì „ ì—…ë°ì´íŠ¸
 
 	// Integrity
-	eDL_EVENT_DO_CHECK_INTEGRITY,				// ¹«°á¼º °Ë»ç ½ÃÀÛ
+	eDL_EVENT_DO_CHECK_INTEGRITY,				// ë¬´ê²°ì„± ê²€ì‚¬ ì‹œìž‘
 	eDL_EVENT_INTEGRITY_START_NFY,
 	eDL_EVENT_INTEGRITY_UPDATE_NFY,
 	eDL_EVENT_INTEGRITY_COMPLETE_NFY,
 
 	// State
-	eDL_EVENT_CHANGE_STATE,						// »óÅÂ º¯°æ
+	eDL_EVENT_CHANGE_STATE,						// ìƒíƒœ ë³€ê²½
 
 	// Quit
-	eDL_EVENT_USER_EXIT							// »ç¿ëÀÚ Á¾·á
+	eDL_EVENT_USER_EXIT							// ì‚¬ìš©ìž ì¢…ë£Œ
 };
 
 

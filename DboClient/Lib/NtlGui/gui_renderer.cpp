@@ -97,8 +97,8 @@ VOID CGuiRenderer::RenderBuffer(const PlaneSnapShot *pSnapShot, CTexture *pTextu
 		fPoint[2] = (FLOAT)pSnapShot->rtRect.right;
 		fPoint[3] = (FLOAT)pSnapShot->rtRect.bottom;
 
-		fDelta[0] = fPoint[0] + ( fPoint[2] - fPoint[0] ) / 2; // x√‡
-		fDelta[1] = fPoint[1] + ( fPoint[3] - fPoint[1] ) / 2;  // y√‡
+		fDelta[0] = fPoint[0] + ( fPoint[2] - fPoint[0] ) / 2; // xÏ∂ï
+		fDelta[1] = fPoint[1] + ( fPoint[3] - fPoint[1] ) / 2;  // yÏ∂ï
 
 		fPoint[0] -= fDelta[0];
 		fPoint[1] -= fDelta[1];
@@ -114,7 +114,7 @@ VOID CGuiRenderer::RenderBuffer(const PlaneSnapShot *pSnapShot, CTexture *pTextu
 		fVertex[6] = fPoint[2] * fCosTheta + fPoint[3] * fSinTheta + fDelta[0];
 		fVertex[7] = fPoint[3] * fCosTheta - fPoint[2] * fSinTheta + fDelta[1];
 
-		// »∏¿¸
+		// ÌöåÏ†Ñ
 		RwIm2DVertexSetScreenX(&m_2dVertices[0], fVertex[0] + fOffset);
 		RwIm2DVertexSetScreenY(&m_2dVertices[0], fVertex[1] + fOffset);
 
@@ -231,7 +231,7 @@ VOID CGuiRenderer::RenderQueue(const PlaneSnapShot *pSnapShot, CTexture *pTextur
 {
 	NTL_SPROFILE("CGuiRenderer::RenderQueue")
 
-	// Clipping øµø™ ∞ËªÍ.
+	// Clipping ÏòÅÏó≠ Í≥ÑÏÇ∞.
 	PlaneSnapShot planeClipped = *pSnapShot;
 
 	if( pClippingRect )
@@ -263,7 +263,7 @@ VOID CGuiRenderer::RenderQueue(const PlaneSnapShot *pSnapShot, CTexture *pTextur
 		if( planeClipped.rtRect.right - planeClipped.rtRect.left <= 0 || planeClipped.rtRect.bottom - planeClipped.rtRect.top <= 0 )
 			return;
 	}	
-	// Clipping øµø™ ∞ËªÍ ≥°.
+	// Clipping ÏòÅÏó≠ Í≥ÑÏÇ∞ ÎÅù.
 
 	if(bRenderTop)
 	{

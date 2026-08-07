@@ -173,7 +173,7 @@ VOID CDialogManager::Update(RwReal fElapsed)
 		}
 	}	
 
-	// �Ϻ� â���� ������ ���� �ݱ� ������ �;����� ������.
+	// 占싹븝옙 창占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쌥깍옙 占쏙옙占쏙옙占쏙옙 占싶억옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙.
 	// ���� DialogMananger�� Update���� â�� ���� ���Ŀ� ��Ƽ ���̾�α׸� �����ش�
 	if( m_bExpectingCloseNPCDialog )
 	{
@@ -276,7 +276,7 @@ VOID CDialogManager::CloseNotDefaultDialog()
 
 VOID CDialogManager::CloseAll()
 {
-	// ������ ���� ��Ŷ�� �޾� ������ dialog�� ���ؼ� ������ �̸� �����Ѵ�
+	// 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙킷占쏙옙 占쌨억옙 占쏙옙占쏙옙占쏙옙 dialog占쏙옙 占쏙옙占쌔쇽옙 占쏙옙占쏙옙占쏙옙 占싱몌옙 占쏙옙占쏙옙占싼댐옙
 	CNtlWorldConceptController* pWorldConcept = GetNtlWorldConcept()->FindGradeExtController(WORLD_CONCEPT_SECOND_GRADE);
 	
 	if( pWorldConcept )
@@ -325,7 +325,7 @@ VOID CDialogManager::SwitchBag(RwBool bOpen)
 			CloseDialog(i, FALSE);
 	}
 
-	// �����ؼ� �Ҹ��� 5�� ���� ���� �����ϱ� ����
+	// 占쏙옙占쏙옙占쌔쇽옙 占쌀몌옙占쏙옙 5占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占싹깍옙 占쏙옙占쏙옙
 	if( bOpen )
 		PlayOpenSound(DIALOG_CAPSULE_1);
 	else
@@ -333,7 +333,7 @@ VOID CDialogManager::SwitchBag(RwBool bOpen)
 }
 
 /**
-* \brief Capsult kit�� Index�� Switch Dialog�Ѵ�.
+* \brief Capsult kit占쏙옙 Index占쏙옙 Switch Dialog占싼댐옙.
 */
 VOID CDialogManager::SwitchBagByIndex( RwInt32 nIndex )
 {
@@ -378,7 +378,7 @@ VOID CDialogManager::RaiseDialogbyUser(RwInt32 iDialog)
 	{
 		if( iDialog == *it )
 		{
-			// ������ �̹� �ִٸ� ���� �ڷ�..
+			// 占쏙옙占쏙옙占쏙옙 占싱뱄옙 占쌍다몌옙 占쏙옙占쏙옙 占쌘뤄옙..
 			m_listRaiseDialogbyUser.erase(it);
 			m_listRaiseDialogbyUser.push_back(iDialog);
 			return;
@@ -521,13 +521,13 @@ VOID CDialogManager::OnMode(eDialogMode eMode)
 			// �����̼��� �带 ���� ��� ���̾�α׸� �ݴ´�
 			CloseAll();
 
-			// �����̼��߿��� ������ǳ���� ǥ���Ѵ�.
+			// 占쏙옙占쏙옙占싱쇽옙占쌩울옙占쏙옙 占쏙옙占쏙옙占쏙옙풍占쏙옙占쏙옙 표占쏙옙占싼댐옙.
 			GetBalloonManager()->SetVisibleBalloonType( CBalloonGui::TYPE_SERVER );
 
 			// ä��â�� ��Ŀ���� �����.
 			CDboEventGenerator::ChatGuiMode( FALSE );
 
-			// �Էµ� ��ǲ ����
+			// 占쌉력듸옙 占쏙옙풋 占쏙옙占쏙옙
 			GetInputActionMap()->Reset();
 
 			// Can not input key input
@@ -619,10 +619,10 @@ VOID CDialogManager::OffMode()
 
 		case DIALOGMODE_NARRATION:
 		{
-			// �������� �Ǵ��� ����Ʈ �ε������Ϳ��� �Ѵ�.
+			// 占쏙옙占쏙옙占쏙옙占쏙옙 占실댐옙占쏙옙 占쏙옙占쏙옙트 占싸듸옙占쏙옙占쏙옙占싶울옙占쏙옙 占싼댐옙.
 			GetSideDialogManager()->OpenDialog(SDIALOG_QUEST_INDICATOR);
 
-			// ��ǳ�� ���� ����
+			// 占쏙옙풍占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙
 			GetBalloonManager()->SetVisibleBalloonType(CBalloonGui::ALL);
 
 			// �����̼� ���� ���� �䱸�� â ����
@@ -684,7 +684,7 @@ VOID CDialogManager::LocateBag(RwInt32 iScreenWidth, RwInt32 iScreenHeight, RwBo
 		if( !bForce && pGui->IsShow() == FALSE )
 			continue;
 
-		// ù ��° ������ ��ġ�� ���Ѵ�
+		// 첫 占쏙옙째 占쏙옙占쏙옙占쏙옙 占쏙옙치占쏙옙 占쏙옙占싼댐옙
 		if( byBagCount == 0 )
 		{
 			iX = iScreenWidth - dDIALOG_CLEINT_EDGE_GAP - pGui->GetWidth();
@@ -739,7 +739,7 @@ VOID CDialogManager::LocationDialogs(RwInt32 iWidth, RwInt32 iHeight)
 	if( pGui )
 		pGui->SetPosition(iWidth - pGui->GetWidth() - dDIALOG_CLEINT_EDGE_GAP, GetDialog(DIALOG_SIDEDIALOG_CONTROLLER)->GetPosition().bottom);
 
-	// ���̵� ������
+	// 占쏙옙占싱듸옙 占쏙옙占쏙옙占쏙옙
 	pGui = GetDialog(DIALOG_SIDEICON);
 	if( pGui )
 		pGui->SetPosition(iWidth, iHeight - 53);
@@ -919,7 +919,7 @@ VOID CDialogManager::LocationDialogs(RwInt32 iWidth, RwInt32 iHeight)
 	if( pGui )
 	{
 		rect = GetDialog(DIALOG_QUICKSLOT)->GetPosition();
-		pGui->SetPosition(rect.left, rect.top - rect.GetHeight() - 4); // �� ��ų â ��������
+		pGui->SetPosition(rect.left, rect.top - rect.GetHeight() - 4); // 占쏙옙 占쏙옙킬 창 占쏙옙占쏙옙占쏙옙占쏙옙
 	}	
 
 	pGui = GetDialog(DIALOG_CHANNGEL_CHANGE);
@@ -1014,7 +1014,7 @@ VOID CDialogManager::Locate_AutoPosition(RwInt32 iWidth, RwInt32 iHeight)
 	CRectangle rect;
 	RwInt32 iX;	
 
-	// ����
+	// 占쏙옙占쏙옙
 	LocateBag(iWidth, iHeight);
 
 	// Regular Dialog
@@ -1171,7 +1171,7 @@ VOID CDialogManager::Locate_UserDefaultPosition(RwInt32 iWidth, RwInt32 iHeight)
 
 VOID CDialogManager::Locate_MovableDefaultPosition()
 {
-	// ����
+	// 占쏙옙占쏙옙
 	LocateBag(GetDboGlobal()->GetScreenWidth(), GetDboGlobal()->GetScreenHeight(), TRUE);
 
 	// Regular Dialog
@@ -1517,7 +1517,7 @@ CNtlPLGui* const CDialogManager::GetpDialogTEST(const char* szFrmFileName)
 
 RwBool CDialogManager::ShowDialogTEST(RwInt32 iDialog, bool bOpen)
 {
-	/// OpenDialog �ƴ� �ܼ� Show��.....
+	/// OpenDialog 占싣댐옙 占쌤쇽옙 Show占쏙옙.....
 	CNtlPLGui* pDialog;
 	DIALOG_MAP::iterator it = m_mapDialog.find(iDialog);	/// ��ϵ� dialog �˻�
 	if( it != m_mapDialog.end() )
@@ -1529,7 +1529,7 @@ RwBool CDialogManager::ShowDialogTEST(RwInt32 iDialog, bool bOpen)
 			return TRUE;
 		}
 	}
-	else	/// ������ side dialog  �˻�, open
+	else	/// 占쏙옙占쏙옙占쏙옙 side dialog  占싯삼옙, open
 		return GetSideDialogManager()->ShowDialogTEST(iDialog, bOpen);
 
 	return FALSE;
@@ -1541,7 +1541,7 @@ VOID CDialogManager::ShowAllDialogTEST(bool bOpen)	///< DialogManager, SideDialo
 
 	CNtlPLGui* pDialog;
 	for(RwInt32 i = DIALOG_FIRST + 1 ; i < DIALOG_NUM ; ++i )
-	{	/// OpenDialog �ƴ� �ܼ� Show��.....
+	{	/// OpenDialog 占싣댐옙 占쌤쇽옙 Show占쏙옙.....
 		DIALOG_MAP::iterator it = m_mapDialog.find(i);	/// ��ϵ� dialog �˻�
 		if( it != m_mapDialog.end() )
 		{

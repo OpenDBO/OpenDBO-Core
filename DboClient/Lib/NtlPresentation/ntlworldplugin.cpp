@@ -618,7 +618,7 @@ RwBool RpNtlWorldSectorGeometryCreate(CNtlWorldSector *pNtlWorldSector)
 {
 	NTL_FUNCTION("RpNtlWorldSectorGeometryCreate");
 
-	// ÀÎµµ¾î
+	// ì¸ë„ì–´
 	switch (GetSceneManager()->GetActiveWorldType())
 	{
 	case AW_HEGITHFIELD:
@@ -670,7 +670,7 @@ RwBool RpNtlWorldSectorGeometryCreateFromFile(sCUR_FIELD_TEX_INFO& CurFieldTexIn
 {
 	NTL_FUNCTION("RpNtlWorldSectorGeometryCreateFromFile");
 
-	// ÀÎµµ¾î
+	// ì¸ë„ì–´
 	switch (GetSceneManager()->GetActiveWorldType())
 	{
 	case AW_HEGITHFIELD:
@@ -717,7 +717,7 @@ RwBool RpNtlWorldSectorGeometryCreateFromFile(sCUR_FIELD_TEX_INFO& CurFieldTexIn
 }
 */
 
-//ÀÎµµ¾î
+//ì¸ë„ì–´
 // RwBool RpNtlWorldSectorGeometryDeleteIntoFile(RpWorldSector *pRpWorldSector, FILE* pFile)
 // {
 // 	NTL_FUNCTION("RpNtlWorldSectorGeometryDeleteIntoFile");
@@ -731,7 +731,7 @@ RwBool RpNtlWorldSectorGeometryDeleteIntoFile(CNtlWorldSector *pNtlWorldSector, 
 {
 	NTL_FUNCTION("RpNtlWorldSectorGeometryDeleteIntoFile");
 
-	//ÀÎµµ¾î
+	//ì¸ë„ì–´
 	switch (GetSceneManager()->GetActiveWorldType())
 	{
 	case AW_HEGITHFIELD:
@@ -2193,7 +2193,7 @@ RwBool RpNtlWorldSectorGeometryCreate(CNtlWorldSector *pNtlWorldSector)
 {
 	NTL_FUNCTION("RpNtlWorldSectorGeometryCreate");
 
-	// ÀÎµµ¾î
+	// ì¸ë„ì–´
 	switch (GetSceneManager()->GetActiveWorldType())
 	{
 	case AW_HEGITHFIELD:
@@ -2236,7 +2236,7 @@ RwBool RpNtlWorldSectorGeometryCreateFromFile(sCUR_FIELD_TEX_INFO& CurFieldTexIn
 {
 	NTL_FUNCTION("RpNtlWorldSectorGeometryCreateFromFile");
 
-	// ÀÎµµ¾î
+	// ì¸ë„ì–´
 	switch (GetSceneManager()->GetActiveWorldType())
 	{
 	case AW_HEGITHFIELD:
@@ -2283,7 +2283,7 @@ NTL_RETURN(TRUE);
 }
 */
 
-//ÀÎµµ¾î
+//ì¸ë„ì–´
 // RwBool RpNtlWorldSectorGeometryDeleteIntoFile(RpWorldSector *pRpWorldSector, FILE* pFile)
 // {
 // 	NTL_FUNCTION("RpNtlWorldSectorGeometryDeleteIntoFile");
@@ -2297,7 +2297,7 @@ RwBool RpNtlWorldSectorGeometryDeleteIntoFile(CNtlWorldSector *pNtlWorldSector, 
 {
 	NTL_FUNCTION("RpNtlWorldSectorGeometryDeleteIntoFile");
 
-	//ÀÎµµ¾î
+	//ì¸ë„ì–´
 	switch (GetSceneManager()->GetActiveWorldType())
 	{
 	case AW_HEGITHFIELD:

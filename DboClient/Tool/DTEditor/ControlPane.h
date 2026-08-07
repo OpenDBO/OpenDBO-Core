@@ -10,7 +10,7 @@
 
 class CNtlDTProp;
 
-// CControlPane ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CControlPane ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 struct SSplineProp;
 class CNtlDTProp;
@@ -37,10 +37,10 @@ class CControlPane : public CXTResizeDialog
 	};
 
 public:
-	CControlPane(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CControlPane(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CControlPane();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_CONTROL_PANE };
 
 // Attributes
@@ -99,7 +99,7 @@ public:
 	CPointAttrDlg*		GetPointAttrDlg(void)		{ return &m_AttrDlg; }
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

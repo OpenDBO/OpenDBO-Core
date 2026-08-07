@@ -2,7 +2,7 @@
  *
  * File			: NtlPLItemFileData.h
  * Author		: HongHoDong
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 11. 2.	
  * Abstract		: NTL CNtlPLItemFileData
  *****************************************************************************
@@ -24,10 +24,10 @@ public:
 
 	const std::string &GetLastError() { return m_strError; }
 
-    CNtlMatchingTable* GetItemMatchTable() {return &m_ItemMatchTable;}          ///< Item Animation Table¿ª π›»Ø«—¥Ÿ	
+    CNtlMatchingTable* GetItemMatchTable() {return &m_ItemMatchTable;}          ///< Item Animation TableÏùÑ Î∞òÌôòÌïúÎã§	
 
 protected:    
-    void    CreateKeyword();                                ///< Animation Table ¡§∫∏∏¶ ∏∏µÁ¥Ÿ.
+    void    CreateKeyword();                                ///< Animation Table Ï†ïÎ≥¥Î•º ÎßåÎì†Îã§.
 
 protected:
     std::string				m_strError;

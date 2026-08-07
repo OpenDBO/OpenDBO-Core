@@ -2,7 +2,7 @@
 *
 * File			: NtlPLPropertyContaier.h
 * Author		: HyungSuk, Jang
-* Copyright	: (ÁÖ)NTL
+* Copyright	: (ì£¼)NTL
 * Date			: 2005. 8. 09	
 * Abstract		: Presentation object property container class
 *****************************************************************************
@@ -24,8 +24,8 @@ class CNtlPLProperty;
 
 /**
 * \ingroup NtlPresentation
-* Presentation¿¡ »ç¿ëÇÏ´Â ¸ğµç property¸¦ °ü¸®ÇÏ´Â conatiner class ÀÌ´Ù.\
-* ÀÌ °´Ã¼´Â singleton °´Ã¼ÀÌ´Ù. GetInstance() ÇÔ¼ö¸¦ »ç¿ëÇÑ´Ù.
+* Presentationì— ì‚¬ìš©í•˜ëŠ” ëª¨ë“  propertyë¥¼ ê´€ë¦¬í•˜ëŠ” conatiner class ì´ë‹¤.\
+* ì´ ê°ì²´ëŠ” singleton ê°ì²´ì´ë‹¤. GetInstance() í•¨ìˆ˜ë¥¼ ì‚¬ìš©í•œë‹¤.
 *
 */
 class CNtlPLPropertyContainer
@@ -57,9 +57,9 @@ protected:
 public:
 
 	/**
-	*  property¸¦ container¿¡ addÇÑ´Ù.
+	*  propertyë¥¼ containerì— addí•œë‹¤.
 	*  \param eType entity type.
-	*  \param pProp addÇÒ property pointer.
+	*  \param pProp addí•  property pointer.
 	*/
 	// by agebreak
 	virtual RwBool AddProp(ENtlPLEntityType eType, CNtlPLProperty *pProp);
@@ -73,18 +73,18 @@ protected:
 	RwBool	LoadSound(const RwChar *pFileName);
 
 	/**
-	*  effect property¸¦ load ÇÏ´Â ÇÔ¼ö.
+	*  effect propertyë¥¼ load í•˜ëŠ” í•¨ìˆ˜.
 	*  \param pFileName property file name.
-	*  \return ¼º°øÇÏ¸é TRUE, ½ÇÆĞÇÏ¸é FALSE.
+	*  \return ì„±ê³µí•˜ë©´ TRUE, ì‹¤íŒ¨í•˜ë©´ FALSE.
 	*  \see LoadObject
 	*  \see LoadCharacter
 	*/
 	RwBool	LoadEffect(const RwChar *pFileName);
 
 	/**
-	*  effect property¸¦ load ÇÏ´Â ÇÔ¼ö.
+	*  effect propertyë¥¼ load í•˜ëŠ” í•¨ìˆ˜.
 	*  \param pFileName property file name.
-	*  \return ¼º°øÇÏ¸é TRUE, ½ÇÆĞÇÏ¸é FALSE.
+	*  \return ì„±ê³µí•˜ë©´ TRUE, ì‹¤íŒ¨í•˜ë©´ FALSE.
 	*  \see LoadObject
 	*  \see LoadCharacter
 	*  \see LoadEffect
@@ -92,27 +92,27 @@ protected:
 	RwBool	LoadGui(const RwChar *pFileName);
 
 	/**
-	*  plant property¸¦ load ÇÏ´Â ÇÔ¼ö.
+	*  plant propertyë¥¼ load í•˜ëŠ” í•¨ìˆ˜.
 	*  \param pFileName property file name.
-	*  \return ¼º°øÇÏ¸é TRUE, ½ÇÆĞÇÏ¸é FALSE.
+	*  \return ì„±ê³µí•˜ë©´ TRUE, ì‹¤íŒ¨í•˜ë©´ FALSE.
 	*/
 	RwBool	LoadPlant(const RwChar *pFileName);
 
 	/**
-	*  weather property¸¦ load ÇÏ´Â ÇÔ¼ö.
+	*  weather propertyë¥¼ load í•˜ëŠ” í•¨ìˆ˜.
 	*  \param pFileName property file name.
-	*  \return ¼º°øÇÏ¸é TRUE, ½ÇÆĞÇÏ¸é FALSE.
+	*  \return ì„±ê³µí•˜ë©´ TRUE, ì‹¤íŒ¨í•˜ë©´ FALSE.
 	*/
 	RwBool	LoadWeather(const RwChar *pFileName, RwUInt32 uiLevel);
 
 	/**
-	*  field bgm/env/share property¸¦ load ÇÏ´Â ÇÔ¼ö.
+	*  field bgm/env/share propertyë¥¼ load í•˜ëŠ” í•¨ìˆ˜.
 	*  \param pFileName property file name.
-	*  \return ¼º°øÇÏ¸é TRUE, ½ÇÆĞÇÏ¸é FALSE.
+	*  \return ì„±ê³µí•˜ë©´ TRUE, ì‹¤íŒ¨í•˜ë©´ FALSE.
 	*/
 	RwBool	LoadSoundField(const RwChar *pFileName, const RwChar* pName);
 
-	// Serialize ÀúÀå/·Îµå °ü·Ã ¸Ş¼Òµåµé
+	// Serialize ì €ì¥/ë¡œë“œ ê´€ë ¨ ë©”ì†Œë“œë“¤
 	RwBool	SaveCharacterSerialize(CNtlFileSerializer& sl);
 	RwBool	LoadCharacterSerialize(CNtlFileSerializer& sl);
 
@@ -137,77 +137,77 @@ public:
 	virtual ~CNtlPLPropertyContainer();
 
 	/**
-	*  property container °´Ã¼°¡ »ı¼ºµÈ ´ÙÀ½ È£ÃâÇÏ´Â ÇÔ¼ö.
+	*  property container ê°ì²´ê°€ ìƒì„±ëœ ë‹¤ìŒ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜.
 	*  \see Destroy
 	*/
 	virtual RwBool Create(void);
 
 	/**
-	*  property container °´Ã¼°¡ »ı¼ºµÈ ´ÙÀ½ È£ÃâÇÏ´Â ÇÔ¼ö.
+	*  property container ê°ì²´ê°€ ìƒì„±ëœ ë‹¤ìŒ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜.
 	*  \see Destroy
 	*/
 	virtual void Destroy(void);
 
 	/**
-	*  property container instaince ÇÔ¼ö.
-	*  ÀÌ ÇÔ¼ö¸¦ »ç¿ëÇÏ¿© ¸â¹ö ÇÔ¼ö/º¯¼ö¿¡ Á¢±ÙÇÑ´Ù.
+	*  property container instaince í•¨ìˆ˜.
+	*  ì´ í•¨ìˆ˜ë¥¼ ì‚¬ìš©í•˜ì—¬ ë©¤ë²„ í•¨ìˆ˜/ë³€ìˆ˜ì— ì ‘ê·¼í•œë‹¤.
 	*  \see Destroy
 	*/
 	static CNtlPLPropertyContainer* GetInstance(void);
 
 	/**
-	*  presentation¿¡ »ç¿ëÇÏ´Â ¸ğµç property fileÀ» loadingÇÏ´Â ÇÔ¼ö.
-	*  \param pFileName´Â filenameÀÌ´Ù.
+	*  presentationì— ì‚¬ìš©í•˜ëŠ” ëª¨ë“  property fileì„ loadingí•˜ëŠ” í•¨ìˆ˜.
+	*  \param pFileNameëŠ” filenameì´ë‹¤.
 	*/
 	virtual RwBool Load();
 
 	/**
-	*  object property¸¦ load ÇÏ´Â ÇÔ¼ö.
+	*  object propertyë¥¼ load í•˜ëŠ” í•¨ìˆ˜.
 	*  \param pFileName property file name.
-	*  \return ¼º°øÇÏ¸é TRUE, ½ÇÆĞÇÏ¸é FALSE.
+	*  \return ì„±ê³µí•˜ë©´ TRUE, ì‹¤íŒ¨í•˜ë©´ FALSE.
 	*  \see LoadCharacter
 	*  \see LoadEffect
 	*/
 	RwBool LoadObject(const RwChar *pFileName);
 
 	/**
-	*  character property¸¦ load ÇÏ´Â ÇÔ¼ö.
+	*  character propertyë¥¼ load í•˜ëŠ” í•¨ìˆ˜.
 	*  \param pFileName property file name.
-	*  \return ¼º°øÇÏ¸é TRUE, ½ÇÆĞÇÏ¸é FALSE.
+	*  \return ì„±ê³µí•˜ë©´ TRUE, ì‹¤íŒ¨í•˜ë©´ FALSE.
 	*  \see LoadObject
 	*  \see LoadEffect
 	*/
 	RwBool LoadCharacter(const RwChar *pFileName);
 
 	/**
-	*  item property¸¦ load ÇÏ´Â ÇÔ¼ö.
+	*  item propertyë¥¼ load í•˜ëŠ” í•¨ìˆ˜.
 	*  \param pFileName property file name.
-	*  \return ¼º°øÇÏ¸é TRUE, ½ÇÆĞÇÏ¸é FALSE.
+	*  \return ì„±ê³µí•˜ë©´ TRUE, ì‹¤íŒ¨í•˜ë©´ FALSE.
 	*  \see LoadObject
 	*  \see LoadEffect
 	*/
 	RwBool LoadItem(const RwChar *pFileName);
 
 
-	virtual RwBool LoadSerialize(RwBool bEncrypt = FALSE, RwChar* szCryptPassword = NULL);				///< ¹ÙÀÌ³Ê¸®·Î ÄÁ¹öÆÃµÈ µ¥ÀÌÅÍµéÀ» ·ÎµåÇÑ´Ù.
-	virtual RwBool SaveSerialize(RwBool bEncrypt = FALSE, RwChar* szCryptPassword = NULL);				///< ¹ÙÀÌ³Ê¸®·Î ÄÁ¹öÆÃµÈ µ¥ÀÌÅÍµéÀ» ¼¼ÀÌºêÇÑ´Ù.
+	virtual RwBool LoadSerialize(RwBool bEncrypt = FALSE, RwChar* szCryptPassword = NULL);				///< ë°”ì´ë„ˆë¦¬ë¡œ ì»¨ë²„íŒ…ëœ ë°ì´í„°ë“¤ì„ ë¡œë“œí•œë‹¤.
+	virtual RwBool SaveSerialize(RwBool bEncrypt = FALSE, RwChar* szCryptPassword = NULL);				///< ë°”ì´ë„ˆë¦¬ë¡œ ì»¨ë²„íŒ…ëœ ë°ì´í„°ë“¤ì„ ì„¸ì´ë¸Œí•œë‹¤.
 
 	void		SaveObjectScript(std::string &strFileName);
 	void		SaveCharacterScript(std::string &strFileName);
 	void		SaveItemScript(std::string &strFileName);
 
 	/**
-	*  presentation¿¡ »ç¿ëÇÏ´Â ¸ğµç property fileÀ» loadingÇÏ´Â ÇÔ¼ö.
-	*  \param eType´Â entity type
-	*  \param uiId ¾ò¾î¿Ã property id
-	*  \return ¼º°øÇÏ¸é property °´Ã¼ pointer, ½ÇÆĞÇÏ¸é NULL ÀÌ´Ù.
+	*  presentationì— ì‚¬ìš©í•˜ëŠ” ëª¨ë“  property fileì„ loadingí•˜ëŠ” í•¨ìˆ˜.
+	*  \param eTypeëŠ” entity type
+	*  \param uiId ì–»ì–´ì˜¬ property id
+	*  \return ì„±ê³µí•˜ë©´ property ê°ì²´ pointer, ì‹¤íŒ¨í•˜ë©´ NULL ì´ë‹¤.
 	*/
 	CNtlPLProperty* GetProperty(ENtlPLEntityType eType, const RwChar *pKey);
 
 	/**
-	*  entity type¿¡ ÇØ´çÇÏ´Â property containerÀÇ ÂüÁ¶ º¯¼ö¸¦ ¾ò¾î¿Â´Ù.
-	*  \param eType´Â entity type
-	*  \param mapProps property container¸¦ ¾òÀ» ÂüÁ¶ º¯¼ö.
+	*  entity typeì— í•´ë‹¹í•˜ëŠ” property containerì˜ ì°¸ì¡° ë³€ìˆ˜ë¥¼ ì–»ì–´ì˜¨ë‹¤.
+	*  \param eTypeëŠ” entity type
+	*  \param mapProps property containerë¥¼ ì–»ì„ ì°¸ì¡° ë³€ìˆ˜.
 	*/
 	MapProp& Gets(ENtlPLEntityType eType);
 

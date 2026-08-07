@@ -31,7 +31,7 @@ BOOL CNtlPatchHistory::LoadCurVersion(const char *pszFullPathFileName)
 	
 	if(doc.Load( const_cast<char *>(pszFullPathFileName) ) == false)
 	{
-		//FileÀÌ ¾øÀ½
+		//Fileì´ ì—†ìŒ
 		return FALSE;
 	}
 
@@ -50,7 +50,7 @@ BOOL CNtlPatchHistory::LoadCurVersion(const char *pszFullPathFileName)
     }    
     else
     {
-        m_strPatchDate = "0710";    // °Á µğÆúÆ®°ª
+        m_strPatchDate = "0710";    // ê± ë””í´íŠ¸ê°’
     }
     
 	
@@ -63,7 +63,7 @@ BOOL CNtlPatchHistory::LoadCurVersion(const char *pszFullPathFileName)
 	pNode = doc.SelectSingleNode(PATCH_CUR_VER_LAUNCHER_XML_NODE);
 	if(!doc.GetTextWithAttributeName(pNode, PATCH_CUR_VER_ATTRIBUTE, strBuffer, 1024))
 	{
-		//Ver Attribute°¡ ¾øÀ½
+		//Ver Attributeê°€ ì—†ìŒ
 		return FALSE;
 	}
 	
@@ -95,7 +95,7 @@ BOOL CNtlPatchHistory::LoadPatchList(const char *pszFullPathFileName)
     char szFileName[1024] = {0,};
     char szDate[32] = {0,};
 
-	// character element list ¾ò¾î ¿Â´Ù.
+	// character element list ì–»ì–´ ì˜¨ë‹¤.
 	IXMLDOMNodeList *pList = doc.SelectNodeList("/PatchList/ClientDiffRtPatch/Data");
 	IXMLDOMNode* pNode = NULL;
 

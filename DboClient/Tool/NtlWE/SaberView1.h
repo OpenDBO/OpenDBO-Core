@@ -1,21 +1,21 @@
 #pragma once
 
 
-// CSaberView1 ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CSaberView1 ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CSaberView1 : public CDialog
 {
 	DECLARE_DYNAMIC(CSaberView1)
 
 public:
-	CSaberView1(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CSaberView1(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CSaberView1();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_SABER_VIEW1 };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

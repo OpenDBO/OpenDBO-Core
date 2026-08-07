@@ -83,8 +83,8 @@ VOID CNetPySideIconGui::OnIconButtonClicked( gui::CComponent* pComponent )
 {
     CSideIconGui::GetInstance()->CloseSideView(SIDEVIEW_NETPY);
 
-	// ±âÈ¹ÆÀ¿¡¼­ ¿äÃ»ÇÏ±â Àü±îÁö È°¼ºÈ­ ½ÃÅ°Áö ¾Ê´Â´Ù.
-	// 09. 08. 17 ¿ù¿äÀÏ ±âÈ¹ÆÀ ±èÁ¾¿Ï¾¾ÀÇ ¿äÃ»À¸·Î Å¬¶óÀÌ¾ğÆ®ÆÀ Á¶ÇØ¼º ÀÛ¾÷ÇÔ
+	// ê¸°íšíŒ€ì—ì„œ ìš”ì²­í•˜ê¸° ì „ê¹Œì§€ í™œì„±í™” ì‹œí‚¤ì§€ ì•ŠëŠ”ë‹¤.
+	// 09. 08. 17 ì›”ìš”ì¼ ê¸°íšíŒ€ ê¹€ì¢…ì™„ì”¨ì˜ ìš”ì²­ìœ¼ë¡œ í´ë¼ì´ì–¸íŠ¸íŒ€ ì¡°í•´ì„± ì‘ì—…í•¨
     if (!GetDialogManager()->IsOpenDialog(DIALOG_NETPYSHOP))
         GetDboGlobal()->GetGamePacketGenerator()->SendShopNetPyItemStartReq();
     else
@@ -108,7 +108,7 @@ void CNetPySideIconGui::OnMouseLeave(gui::CComponent* pComponent)
 
 void CNetPySideIconGui::Show( bool bShow ) 
 {
-    // ÇöÀç NetPy°¡ 0ÀÌ¸é Side IconÀ» º¸ÀÌÁö ¾Ê´Â´Ù.
+    // í˜„ì¬ NetPyê°€ 0ì´ë©´ Side Iconì„ ë³´ì´ì§€ ì•ŠëŠ”ë‹¤.
     if(!m_bNetmarbleMemberShip && Logic_GetNetPy() < 0)
     {
         __super::Show(FALSE);

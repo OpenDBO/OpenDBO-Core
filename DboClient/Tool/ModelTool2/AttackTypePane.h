@@ -29,7 +29,7 @@ public:
 
 protected:
     void SetEnable(BOOL bEnable);
-    void ChangeDamage(int nIndex);                          ///< µ¥¹ÌÁö¸£ º¯°æÇÑ´Ù.
+    void ChangeDamage(int nIndex);                          ///< ë°ë¯¸ì§€ë¥´ ë³€ê²½í•œë‹¤.
 
 protected:
     static CAttackTypePane* m_pInstance;

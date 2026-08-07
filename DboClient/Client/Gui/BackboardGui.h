@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: CBackboardGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 8. 8
 * Abstract		: 
 *****************************************************************************
-* Desc			: ÁöÁ¤µÈ »ö»ó°ú Åõ¸íµµ¿¡ µû¶ó È­¸é ÀüÃ¼¸¦ °¡¸®´Â »ç°¢ÇüÀ» ±×¸°´Ù
+* Desc			: ì§€ì •ëœ ìƒ‰ìƒê³¼ íˆ¬ëª…ë„ì— ë”°ë¼ í™”ë©´ ì „ì²´ë¥¼ ê°€ë¦¬ëŠ” ì‚¬ê°í˜•ì„ ê·¸ë¦°ë‹¤
 *****************************************************************************/
 
 #pragma once
@@ -32,7 +32,7 @@ public:
 	VOID		SetColor(RwUInt8 byRed, RwUInt8 byGreen, RwUInt8 byBlue);
 	VOID		SetAlpha(RwUInt8 byAlpha);
 
-	RwInt32		SwitchDialog(bool bOpen);			///< DialogManager¿¡¼­ÀÇ Open/Close
+	RwInt32		SwitchDialog(bool bOpen);			///< DialogManagerì—ì„œì˜ Open/Close
 
 protected:
 	CBackboardGui() {}

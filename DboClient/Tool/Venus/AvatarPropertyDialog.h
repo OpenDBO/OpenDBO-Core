@@ -1,7 +1,7 @@
 #pragma once
 
 
-// CAvatarPropertyDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAvatarPropertyDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 #include "PropTree.h"
 #include "MacSliderCtrl.h"
 
@@ -12,7 +12,7 @@ class CAvatarPropertyDialog : public CDialog
 	DECLARE_DYNCREATE(CAvatarPropertyDialog)
 
 public:
-	CAvatarPropertyDialog(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CAvatarPropertyDialog(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CAvatarPropertyDialog();
 
 	void	ResetProperties(RwUInt32 nCurrentPoint = 0);
@@ -61,11 +61,11 @@ public:
 
 public:
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_AVATAR_PROPERTY };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

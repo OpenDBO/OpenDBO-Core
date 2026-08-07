@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: NpcNotifyGui.h
 * Author		: Cho HaeSung
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 2. 11
 * Abstract		: 
 *****************************************************************************
-* Desc			: NPC°¡ ³ª¿Í¼­ ¼­¹öÀÇ °øÁö¸¦ Ãâ·ÂÇÑ´Ù.
+* Desc			: NPCê°€ ë‚˜ì™€ì„œ ì„œë²„ì˜ ê³µì§€ë¥¼ ì¶œë ¥í•œë‹¤.
 *****************************************************************************/
 
 #ifndef __NPC_NOTIFY_GUI_H__
@@ -14,9 +14,9 @@
 //#include "ceventhandler.h"
 //#include "NtlPLGui.h"
 //
-//#define dNPCNOTIFY_SLIDING_IN_TIME		0.1f			// ½½¶óÀÌµù ÀÎ µÇ´Â ½Ã°£
-//#define dNPCNOTIFY_SLIDING_OUT_TIME		0.1f			// ½½¶óÀÌµù ¾Æ¿ô µÇ´Â ½Ã°£
-//#define dNPCNOTIFY_SHOW_TIME			3.0f			// NPC Notify°¡ ÅØ½ºÆ®¸¦ º¸¿©ÁÖ´Â ½Ã°£
+//#define dNPCNOTIFY_SLIDING_IN_TIME		0.1f			// ìŠ¬ë¼ì´ë”© ì¸ ë˜ëŠ” ì‹œê°„
+//#define dNPCNOTIFY_SLIDING_OUT_TIME		0.1f			// ìŠ¬ë¼ì´ë”© ì•„ì›ƒ ë˜ëŠ” ì‹œê°„
+//#define dNPCNOTIFY_SHOW_TIME			3.0f			// NPC Notifyê°€ í…ìŠ¤íŠ¸ë¥¼ ë³´ì—¬ì£¼ëŠ” ì‹œê°„
 //
 //class CNpcNotifyGui : public CNtlPLGui, public RWS::CEventHandler
 //{
@@ -60,7 +60,7 @@
 //
 //	//! Variables
 //	gui::CStaticBox*	m_pStbText;			///< Text
-//	gui::CFlash*		m_pFlaBalloon;		///< ¸»Ç³¼±
+//	gui::CFlash*		m_pFlaBalloon;		///< ë§í’ì„ 
 //	gui::CPanel*		m_pPanNpc;			///< NPC
 //
 //	RwReal		m_fCurrentTime;

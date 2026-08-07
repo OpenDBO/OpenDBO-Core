@@ -28,8 +28,8 @@ const RwInt32 g_nBlendMaxCount = 12;
 
 
 #define IDC_PROPERTY_GRID               101
-#define EFFECT_HIT_WORD_PREFIX          "TXT_"          ///< Word EffectÀÇ Prefix
-#define EFFECT_POST_EFFECT_PREFIX       "POST_"         ///< Post EffectÀÇ Prefix   
+#define EFFECT_HIT_WORD_PREFIX          "TXT_"          ///< Word Effectì˜ Prefix
+#define EFFECT_POST_EFFECT_PREFIX       "POST_"         ///< Post Effectì˜ Prefix   
 
 #define RwRGBA2RGB(color) RGB(color.red, color.green, color.blue)
 #define RGB2RwRGBA(rw, rgb) rw.red = GetRValue(rgb); rw.green = GetGValue(rgb); rw.blue = GetBValue(rgb)
@@ -535,7 +535,7 @@ void CPropertyPane::OnInitialUpdate()
         m_pObjForcePicking->SetID(ID_OBJ_FORCE_PICKING);
         m_pObjPENaviPress->SetID(ID_OBJ_PE_NAVI_PRESS);
         m_pObjCullTestAllAtomic->SetID(ID_OBJ_CULLTEST_ALL_ATOMIC);
-        m_pObjSoundName->SetID(ID_SE_SOUND_NAME1);                  // »ç¿îµå ÀÌº¥Æ®¿Í ¾ÆÀÌµð¸¦ °ø¿ëÀ¸·Î »ç¿ëÇØ °°Àº ÀÌº¥Æ® Ã³¸®ÇÔ¼ö¸¦ »ç¿ëÇÑ´Ù.
+        m_pObjSoundName->SetID(ID_SE_SOUND_NAME1);                  // ì‚¬ìš´ë“œ ì´ë²¤íŠ¸ì™€ ì•„ì´ë””ë¥¼ ê³µìš©ìœ¼ë¡œ ì‚¬ìš©í•´ ê°™ì€ ì´ë²¤íŠ¸ ì²˜ë¦¬í•¨ìˆ˜ë¥¼ ì‚¬ìš©í•œë‹¤.
         m_pObjSoundVolume->SetID(ID_SE_SOUND_VOLUME);
         m_pObjSoundDist->SetID(ID_SE_SOUND_DIST);
         m_pObjSoundDecayDist->SetID(ID_SE_SOUND_DECAY_DIST);
@@ -823,7 +823,7 @@ void CPropertyPane::SetEvent(SEventAnim* pEventAnim, RpClump* pClump /* = NULL *
         m_pClump = pClump;        
         SetBoneList();
 
-        // Effect List°¡ ¾øÀ¸¸é ÀÐ¾î¿Â´Ù.
+        // Effect Listê°€ ì—†ìœ¼ë©´ ì½ì–´ì˜¨ë‹¤.
         if(m_pItemTargetEffectName->GetConstraints()->GetCount() <= 0)
         {
             SetEffectNameList();
@@ -943,20 +943,20 @@ void CPropertyPane::SetItem(CMTItem* pItem)
             m_pItemApplyEmblem->SetBool(FALSE);
         }
 
-        // Trace Effect °ü·Ã ¼³Á¤ »çÇ×
+        // Trace Effect ê´€ë ¨ ì„¤ì • ì‚¬í•­
         ApplyTraceEventProperties(&(pItem->GetProperty()->m_eventTrace));
 
-        // Upgrade Effect °ü·Ã ¼³Á¤
+        // Upgrade Effect ê´€ë ¨ ì„¤ì •
         ApplyUpgradeEffectProperties(pItem->GetProperty()->GetUpgradeEffectProperty());
 
         if(m_pClump != m_pItem->GetClumpInfo()->GetClump())
         {
-            // ItemÀÇ Bone List¸¦ UdpateÇÑ´Ù.
+            // Itemì˜ Bone Listë¥¼ Udpateí•œë‹¤.
             m_pClump = m_pItem->GetClumpInfo()->GetClump();            
             SetBoneList();
         }
 
-        // Effect List°¡ ¾øÀ¸¸é ÀÐ¾î¿Â´Ù.
+        // Effect Listê°€ ì—†ìœ¼ë©´ ì½ì–´ì˜¨ë‹¤.
         if(m_pItemTargetEffectName->GetConstraints()->GetCount() <= 0)
         {
             SetEffectNameList();
@@ -1240,7 +1240,7 @@ void CPropertyPane::SetEffectTypeList()
 
     m_pItemProjectileType->GetConstraints()->RemoveAll();
 
-    // ÆÄ¼­·ÎºÎÅÍ µ¥ÀÌÅÍ¸¦ °¡Á®¿Í¼­ ¼³Á¤ÇÑ´Ù.
+    // íŒŒì„œë¡œë¶€í„° ë°ì´í„°ë¥¼ ê°€ì ¸ì™€ì„œ ì„¤ì •í•œë‹¤.
     KEY_STRING_MAP* pMap = CNtlPLCharacterParser::GetInstance().GetProjEffectTypeTable()->GetMapKeyToString();
     if(pMap)
     {
@@ -1259,7 +1259,7 @@ void CPropertyPane::SetEffectNameList()
 {
     USES_CONVERSION;
 
-    // Ã³À½¿£ °ø¹éÀ» ÇÏ³ª Ãß°¡ÇÑ´Ù (Null°ªÀ» À§ÇØ¿©)
+    // ì²˜ìŒì—” ê³µë°±ì„ í•˜ë‚˜ ì¶”ê°€í•œë‹¤ (Nullê°’ì„ ìœ„í•´ì—¬)
     m_pItemProjectileName->GetConstraints()->AddConstraint("");
     m_pItemTargetEffectName->GetConstraints()->AddConstraint("");
     m_pItemSubTargetEffect->GetConstraints()->AddConstraint("");
@@ -1277,13 +1277,13 @@ void CPropertyPane::SetEffectNameList()
         std::string strEffectName = it->first;
         CString sEffectName = (strEffectName.c_str());        
 
-        // 'TEXT'¶ó´Â ±Û¾¾¸¸ Æ÷ÇÔµÈ ÀÌÆåÆ®¸¸ Word Effect¿¡ Æ÷ÇÔ½ÃÅ²´Ù.
+        // 'TEXT'ë¼ëŠ” ê¸€ì”¨ë§Œ í¬í•¨ëœ ì´íŽ™íŠ¸ë§Œ Word Effectì— í¬í•¨ì‹œí‚¨ë‹¤.
         if(FindNoCase(sEffectName, EFFECT_HIT_WORD_PREFIX))
         {
             m_pItemWordEffect->GetConstraints()->AddConstraint(sEffectName);            
         }
 
-        // 'POST_'¶ó´Â ±ÛÀÚ°¡ Æ÷ÇÔµÈ ÀÌÆåÆ®¸¸ Post Effect¿¡ Æ÷ÇÔ½ÃÅ²´Ù.
+        // 'POST_'ë¼ëŠ” ê¸€ìžê°€ í¬í•¨ëœ ì´íŽ™íŠ¸ë§Œ Post Effectì— í¬í•¨ì‹œí‚¨ë‹¤.
         else if(FindNoCase(sEffectName, EFFECT_POST_EFFECT_PREFIX))
         {
             m_pPEEffectName->GetConstraints()->AddConstraint(sEffectName);
@@ -1435,7 +1435,7 @@ LRESULT CPropertyPane::OnGridNotify(WPARAM wParam, LPARAM lParam)
                 break;
             }
         }
-        else if(m_ePropertyMode == PROPERTY_MODE_OBJECT && m_pObject)   // AnimEvent °¡ ¾Æ´Ò¶§
+        else if(m_ePropertyMode == PROPERTY_MODE_OBJECT && m_pObject)   // AnimEvent ê°€ ì•„ë‹ë•Œ
         {
             SetObjectProperties(m_pObject, pItem->GetID());
         }
@@ -1453,7 +1453,7 @@ LRESULT CPropertyPane::OnGridNotify(WPARAM wParam, LPARAM lParam)
         }
 
         CModelToolApplication::GetInstance()->SetDataChanged();        
-        ::SetCurrentDirectoryA(CModelToolApplication::GetInstance()->GetWorkDir()); // ÆÄÀÏ OpenÃ¢À» ¿¬ÈÄ¿¡ ÀÛ¾÷ Æú´õ°¡ ¹Ù²ï´Ù. ±×·¡¼­ ¿ø·¡ÀÛ¾÷Æú´õ·Î ¼³Á¤ÇØÁØ´Ù.
+        ::SetCurrentDirectoryA(CModelToolApplication::GetInstance()->GetWorkDir()); // íŒŒì¼ Openì°½ì„ ì—°í›„ì— ìž‘ì—… í´ë”ê°€ ë°”ë€ë‹¤. ê·¸ëž˜ì„œ ì›ëž˜ìž‘ì—…í´ë”ë¡œ ì„¤ì •í•´ì¤€ë‹¤.
     }
     return 0;
 }
@@ -1545,7 +1545,7 @@ void CPropertyPane::SetHitEventProperties( SEventAnimHit* pEventHit, UINT nID )
     case ID_HIT_PROJECTILE_TYPE:        
         pEventHit->uiProjectileEffectType = (EProjectileEffectType)m_pItemProjectileType->GetEnum();
 
-        // Projectile TypeÀÌ º¯È¯µÇ¸é Extra Data¸¦ ÃÊ±âÈ­ ÇÑ´Ù. (UnionÀÌ±â ¶§¹®)
+        // Projectile Typeì´ ë³€í™˜ë˜ë©´ Extra Dataë¥¼ ì´ˆê¸°í™” í•œë‹¤. (Unionì´ê¸° ë•Œë¬¸)
         ZeroMemory(&pEventHit->uEffectTypeExtraData, sizeof(UEffectTypeExtraData));
 
         SetProjectileType();
@@ -1648,7 +1648,7 @@ void CPropertyPane::SetHitEventProperties( SEventAnimHit* pEventHit, UINT nID )
         pEventHit->uEffectTypeExtraData.hissidanData.v2dAngle.x = (RwReal)m_pHitHissidianDirection->GetValueX();
         pEventHit->uEffectTypeExtraData.hissidanData.v2dAngle.y = (RwReal)m_pHitHissidianDirection->GetValueY();                    
 
-        // ¶óÀÎÀ» ·»´õ¸µÇÑ´Ù.
+        // ë¼ì¸ì„ ë Œë”ë§í•œë‹¤.
         if(m_pCharacter && m_pEventAnim)
             m_pCharacter->SetRenderHissidian((SEventAnimHit*)m_pEventAnim);
         break;                
@@ -1657,7 +1657,7 @@ void CPropertyPane::SetHitEventProperties( SEventAnimHit* pEventHit, UINT nID )
             int nCount = (int)m_pHitMultiHissidanCount->GetNumber();
             if(nCount > 0)
             {
-                // »õ·Î¿î ¹öÆÛ¸¦ ¸¸µé¾î ±âÁ¸ ³»¿ëÀ» Ä«ÇÇÇÏ°í, ¹öÆÛ¸¦ º¯°æÇÑ´Ù.
+                // ìƒˆë¡œìš´ ë²„í¼ë¥¼ ë§Œë“¤ì–´ ê¸°ì¡´ ë‚´ìš©ì„ ì¹´í”¼í•˜ê³ , ë²„í¼ë¥¼ ë³€ê²½í•œë‹¤.
                 RwV2d* pNewBuf = NTL_NEW RwV2d[nCount];
                 ZeroMemory(pNewBuf, sizeof(RwV2d) * nCount);
 
@@ -1672,7 +1672,7 @@ void CPropertyPane::SetHitEventProperties( SEventAnimHit* pEventHit, UINT nID )
                 m_pHitMultiHissidanIndex->SetHidden(FALSE);
                 m_pHitMultiHissidanDir->SetHidden(FALSE);
 
-                // 0¹øÂ° ÀÎµ¦½º¸¦ ¼±ÅÃÇÑ´Ù.
+                // 0ë²ˆì§¸ ì¸ë±ìŠ¤ë¥¼ ì„ íƒí•œë‹¤.
                 m_pHitMultiHissidanIndex->SetEnum(0);
                 m_pHitMultiHissidanDir->SetOffset(pEventHit->uEffectTypeExtraData.multiHissidanData.pArrayAngle[0].x,
                     pEventHit->uEffectTypeExtraData.multiHissidanData.pArrayAngle[0].y);                                                              
@@ -1687,7 +1687,7 @@ void CPropertyPane::SetHitEventProperties( SEventAnimHit* pEventHit, UINT nID )
         break;
     case ID_HIT_MULTI_HISSIDAN_INDEX:
         {
-            // ¼±ÅÃÇÑ INDEXÀÇ ³»¿ëÀ¸·Î DIRÀ» º¯°æÇÑ´Ù.
+            // ì„ íƒí•œ INDEXì˜ ë‚´ìš©ìœ¼ë¡œ DIRì„ ë³€ê²½í•œë‹¤.
             int nIndex = m_pHitMultiHissidanIndex->GetEnum();
             m_pHitMultiHissidanDir->SetOffset(pEventHit->uEffectTypeExtraData.multiHissidanData.pArrayAngle[nIndex].x,
                 pEventHit->uEffectTypeExtraData.multiHissidanData.pArrayAngle[nIndex].y);                                                          
@@ -1699,7 +1699,7 @@ void CPropertyPane::SetHitEventProperties( SEventAnimHit* pEventHit, UINT nID )
             pEventHit->uEffectTypeExtraData.multiHissidanData.pArrayAngle[nIndex].x = (RwReal)m_pHitMultiHissidanDir->GetValueX();
             pEventHit->uEffectTypeExtraData.multiHissidanData.pArrayAngle[nIndex].y = (RwReal)m_pHitMultiHissidanDir->GetValueY();
 
-            // ¶óÀÎÀ» ·»´õ¸µÇÑ´Ù.
+            // ë¼ì¸ì„ ë Œë”ë§í•œë‹¤.
             if(m_pCharacter && m_pEventAnim)
                 m_pCharacter->SetRenderHissidian((SEventAnimHit*)m_pEventAnim);
         }                    
@@ -1889,7 +1889,7 @@ void CPropertyPane::ApplyTraceEventProperties(SEventTrace* pEventTrace)
 {
     USES_CONVERSION;
 
-    if(CModelToolApplication::GetInstance()->GetAppMode() == MT_MODE_ITEM)      // ItemÀÇ Trace Event
+    if(CModelToolApplication::GetInstance()->GetAppMode() == MT_MODE_ITEM)      // Itemì˜ Trace Event
     {
         m_pCatTraceEvent->SetHidden(FALSE);
         m_pCatTraceEvent->Collapse();
@@ -1914,7 +1914,7 @@ void CPropertyPane::ApplyTraceEventProperties(SEventTrace* pEventTrace)
         m_pTEStartAlpha->SetHidden(FALSE);
         m_pTEEndAlpha->SetHidden(FALSE);
     }
-    else                // PCÀÇ Trace Event
+    else                // PCì˜ Trace Event
     {
         m_pTEStartTime->SetHidden(FALSE);
         m_pTELifeTime->SetHidden(FALSE);
@@ -2433,7 +2433,7 @@ void CPropertyPane::SetAtomicList(const SEventAlpha* pEventAlpah)
         m_pAlphaAtomic[i]->SetCaption((strAtomicName.c_str()));
         m_pAlphaAtomic[i]->SetHidden(FALSE);
 
-        // ÀÌº¥Æ®ÀÇ ºñÆ® ÇÃ·¡±×·ÎºÎÅÍ ¼³Á¤°ªÀ» °¡Á®¿Â´Ù.
+        // ì´ë²¤íŠ¸ì˜ ë¹„íŠ¸ í”Œëž˜ê·¸ë¡œë¶€í„° ì„¤ì •ê°’ì„ ê°€ì ¸ì˜¨ë‹¤.
         if(Helper_GetBitFlag(pEventAlpah->bfAtomicList, i))
         {
             m_pAlphaAtomic[i]->SetBool(TRUE);
@@ -2586,7 +2586,7 @@ void CPropertyPane::SetSoundEventProperties( SEventSound* pEventSound, UINT nID 
         break;
     case ID_SE_SOUND_NAME1:      
         {
-            // »ç¿îµå Æú´õÀÇ ÇÏÀ§ °æ·Î±îÁö¸¸ ¹ÝÈ¯ÇÑ´Ù.
+            // ì‚¬ìš´ë“œ í´ë”ì˜ í•˜ìœ„ ê²½ë¡œê¹Œì§€ë§Œ ë°˜í™˜í•œë‹¤.
             CString strSoundName = m_pSESoundName1->GetValue();            
             strSoundName = GetSoundFilePath(strSoundName);
             m_pSESoundName1->SetValue(strSoundName);
@@ -2595,7 +2595,7 @@ void CPropertyPane::SetSoundEventProperties( SEventSound* pEventSound, UINT nID 
         break;
     case ID_SE_SOUND_NAME2:
         {
-            // »ç¿îµå Æú´õÀÇ ÇÏÀ§ °æ·Î±îÁö¸¸ ¹ÝÈ¯ÇÑ´Ù.
+            // ì‚¬ìš´ë“œ í´ë”ì˜ í•˜ìœ„ ê²½ë¡œê¹Œì§€ë§Œ ë°˜í™˜í•œë‹¤.
             CString strSoundName = m_pSESoundName2->GetValue();            
             strSoundName = GetSoundFilePath(strSoundName);
             m_pSESoundName2->SetValue(strSoundName);
@@ -2604,7 +2604,7 @@ void CPropertyPane::SetSoundEventProperties( SEventSound* pEventSound, UINT nID 
         break;
     case ID_SE_SOUND_NAME3:
         {
-            // »ç¿îµå Æú´õÀÇ ÇÏÀ§ °æ·Î±îÁö¸¸ ¹ÝÈ¯ÇÑ´Ù.
+            // ì‚¬ìš´ë“œ í´ë”ì˜ í•˜ìœ„ ê²½ë¡œê¹Œì§€ë§Œ ë°˜í™˜í•œë‹¤.
             CString strSoundName = m_pSESoundName3->GetValue();            
             strSoundName = GetSoundFilePath(strSoundName);
             m_pSESoundName3->SetValue(strSoundName);
@@ -2613,7 +2613,7 @@ void CPropertyPane::SetSoundEventProperties( SEventSound* pEventSound, UINT nID 
         break;
     case ID_SE_SOUND_NAME4:
         {
-            // »ç¿îµå Æú´õÀÇ ÇÏÀ§ °æ·Î±îÁö¸¸ ¹ÝÈ¯ÇÑ´Ù.
+            // ì‚¬ìš´ë“œ í´ë”ì˜ í•˜ìœ„ ê²½ë¡œê¹Œì§€ë§Œ ë°˜í™˜í•œë‹¤.
             CString strSoundName = m_pSESoundName4->GetValue();            
             strSoundName = GetSoundFilePath(strSoundName);
             m_pSESoundName4->SetValue(strSoundName);
@@ -2858,7 +2858,7 @@ void CPropertyPane::SetObjectProperties( CMTObject* pObject, UINT nID )
             ::SetCurrentDirectoryA(CModelToolApplication::GetInstance()->GetWorkDir());
             if(pObject->SetUVAnim((strUVAnimFileName)))    
             {
-                // UVAnimÀ» Àû¿ëÇÑÈÄ Clump¸¦ ReLoadÇÑ´Ù.
+                // UVAnimì„ ì ìš©í•œí›„ Clumpë¥¼ ReLoadí•œë‹¤.
                 pObject->LoadClump((RwChar*)pObject->GetClumpInfo()->GetClumpName());
                 pObject->GetUVAnim()->SetClump(pObject->GetClump());
             }
@@ -2943,7 +2943,7 @@ void CPropertyPane::SetObjectProperties( CMTObject* pObject, UINT nID )
         break;
     case ID_SE_SOUND_NAME1:
         {
-            // »ç¿îµå Æú´õÀÇ ÇÏÀ§ °æ·Î±îÁö¸¸ ¹ÝÈ¯ÇÑ´Ù.
+            // ì‚¬ìš´ë“œ í´ë”ì˜ í•˜ìœ„ ê²½ë¡œê¹Œì§€ë§Œ ë°˜í™˜í•œë‹¤.
             CString strSoundName = m_pObjSoundName->GetValue();            
             strSoundName = GetSoundFilePath(strSoundName);
             m_pObjSoundName->SetValue(strSoundName);
@@ -2970,7 +2970,7 @@ void CPropertyPane::SetObjectProperties( CMTObject* pObject, UINT nID )
         break;
     }
 
-    // »ç¿îµå °ü·Ã ¼³Á¤ÀÌ º¯°æµÇ¾úÀ»¶§
+    // ì‚¬ìš´ë“œ ê´€ë ¨ ì„¤ì •ì´ ë³€ê²½ë˜ì—ˆì„ë•Œ
     if(bSoundChange)
     {
         pObject->ClearLoopSound();

@@ -20,6 +20,7 @@ public:
 
 	void						AddBus(CNpc* pNpc);
 	void						RemoveBus(CNpc * pNpc);
+	void						BroadcastBusPosition(CNpc* pNpc);
 
 	void						AddPlayerSync(CCharacter* pPlayer, ZONEID worldZoneId);
 	void						RemovePlayerSync(CCharacter* pPlayer);
@@ -38,6 +39,7 @@ private:
 	struct sBUS
 	{
 		CNpc* pNpc;
+		ZONEID worldZoneId;
 		std::set<HOBJECT>	m_setPlayers;
 	};
 

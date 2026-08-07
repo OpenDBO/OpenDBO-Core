@@ -122,11 +122,11 @@ void CNtlSobItemIcon::HandleEvents(RWS::CMsg &pMsg)
 	{
 		SNtlEventSobItemUpdate* pSobItemUpdate = reinterpret_cast<SNtlEventSobItemUpdate*>(pMsg.pData);
 		
-		// ÀÌ¶§´Â Attrº¸´Ù ¸ÕÀú Update µÊ.
+		// ì´ë•ŒëŠ” Attrë³´ë‹¤ ë¨¼ì € Update ë¨.
 		CNtlSobItem *pSobItem = reinterpret_cast<CNtlSobItem*>(m_pSobObj);
 		CNtlSobItemAttr *pSobItemAttr = reinterpret_cast<CNtlSobItemAttr*>(pSobItem->GetSobAttr());
 				
-		// ÀÌÀü¿£ ItemUnIdentified¿´´Ù°¡ Ç®·ÈÀ»¶§.
+		// ì´ì „ì—” ItemUnIdentifiedì˜€ë‹¤ê°€ í’€ë ¸ì„ë•Œ.
 		if( pSobItemAttr->IsNeedToIdentify() && !pSobItemUpdate->bNeedToIdentify )
 		{
 			sITEM_TBLDAT* pItemData = reinterpret_cast<sITEM_TBLDAT*>( API_GetTableContainer()->GetItemTable()->FindData( pSobItemUpdate->uiItemTblId ) );
@@ -256,7 +256,7 @@ RwBool CNtlSobItemIcon::Use(SERIAL_HANDLE hTargetSerialId, RwUInt32 param1/* = 0
 	}
 
 	//-----------------------------------------------------------------
-	// casting °Ë»ç.
+	// casting ê²€ì‚¬.
 
 	if(m_byIconState == ICON_STATE_COOLING)
 	{
@@ -265,7 +265,7 @@ RwBool CNtlSobItemIcon::Use(SERIAL_HANDLE hTargetSerialId, RwUInt32 param1/* = 0
 	}
 
 	//-----------------------------------------------------------------
-	// target À¯È¿ °Ë»ç.
+	// target ìœ íš¨ ê²€ì‚¬.
 	CNtlSobItem *pSobItem = reinterpret_cast<CNtlSobItem*>(m_pSobObj);
 	CNtlSobItemAttr *pSobItemAttr = reinterpret_cast<CNtlSobItemAttr*>(pSobItem->GetSobAttr());
 	sITEM_TBLDAT* pItemTbl = pSobItemAttr->GetItemTbl();
@@ -279,7 +279,7 @@ RwBool CNtlSobItemIcon::Use(SERIAL_HANDLE hTargetSerialId, RwUInt32 param1/* = 0
 		NTL_RETURN(FALSE);
 	
 	//-----------------------------------------------------------------
-	// appoint target À¯È¿ °Ë»ç.
+	// appoint target ìœ íš¨ ê²€ì‚¬.
 	//-----------------------------------------------------------------
 	// self
 	RwUInt8 byAppointTarget = pUseItemTblData->byAppoint_Target;
@@ -313,17 +313,17 @@ RwBool CNtlSobItemIcon::Use(SERIAL_HANDLE hTargetSerialId, RwUInt32 param1/* = 0
 	// self
 	if(byApplyTarget == DBO_SKILL_APPLY_TARGET_SELF)
 	{
-		// check ¾ÈÇÔ.
+		// check ì•ˆí•¨.
 	}
 	// enemy
 	else if(byApplyTarget == DBO_SKILL_APPLY_TARGET_ENEMY)
 	{
-		// check ¾ÈÇÔ.
+		// check ì•ˆí•¨.
 	}
 	// alliance
 	else if(byApplyTarget == DBO_SKILL_APPLY_TARGET_ALLIANCE)
 	{
-		// check ¾ÈÇÔ.
+		// check ì•ˆí•¨.
 	}
 	// party
 	else if(byApplyTarget == DBO_SKILL_APPLY_TARGET_PARTY)
@@ -335,7 +335,7 @@ RwBool CNtlSobItemIcon::Use(SERIAL_HANDLE hTargetSerialId, RwUInt32 param1/* = 0
 	}
 
 	//-----------------------------------------------------------------
-	// Lp, Ep, Rp Max °Ë»ç. 
+	// Lp, Ep, Rp Max ê²€ì‚¬. 
 	//-----------------------------------------------------------------
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
 	CNtlSobAvatarAttr* pAvatarAttr = reinterpret_cast<CNtlSobAvatarAttr*>( pAvatar->GetSobAttr() );
@@ -408,7 +408,7 @@ RwBool CNtlSobItemIcon::Use(SERIAL_HANDLE hTargetSerialId, RwUInt32 param1/* = 0
 				bLPEPRPUseCheck = TRUE;
 			}
 		}
-		else // ±×¿ÜÀÇ Effect°¡ ÀÖ´Â °æ¿ì ¹«Á¶°Ç »ç¿ë °¡´É.
+		else // ê·¸ì™¸ì˜ Effectê°€ ìˆëŠ” ê²½ìš° ë¬´ì¡°ê±´ ì‚¬ìš© ê°€ëŠ¥.
 		{
 			bLPEPRPUseCheck = TRUE;
 			sResult[i].bResult = TRUE;

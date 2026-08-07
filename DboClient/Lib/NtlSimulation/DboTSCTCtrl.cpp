@@ -27,22 +27,22 @@ CDboTSCTCtrl::~CDboTSCTCtrl( void )
 
 void CDboTSCTCtrl::Update( void )
 {
-	// Á¾·á »óÅÂÀÎ °æ¿ì
+	// ì¢…ë£Œ ìƒíƒœì¸ ê²½ìš°
 	if ( IsExitState() ) return;
 
-	// ¿¹¿Ü Å¸ÀÌ¸Ó ¾÷µ¥ÀÌÆ®
+	// ì˜ˆì™¸ íƒ€ì´ë¨¸ ì—…ë°ì´íŠ¸
 	UpdateExceptionTimer();
 
-	// ´ë±â Å¸ÀÌ¸Ó ¾÷µ¥ÀÌÆ®
+	// ëŒ€ê¸° íƒ€ì´ë¨¸ ì—…ë°ì´íŠ¸
 	UpdateTimeWait();
 
-	// ´ë±â Å¸ÀÌ¸Ó µ¿ÀÛ
+	// ëŒ€ê¸° íƒ€ì´ë¨¸ ë™ìž‘
 	if ( !IsTimeWait() )
 	{
-		// µ¿±âÈ­ Å¥°¡ µ¿ÀÛ ÁßÀÌ¸é ´ÙÀ½ ´Ü°è·Î ÁøÇàÇÏÁö ¾Ê´Â´Ù
+		// ë™ê¸°í™” íê°€ ë™ìž‘ ì¤‘ì´ë©´ ë‹¤ìŒ ë‹¨ê³„ë¡œ ì§„í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤
 		if ( IsContSyncQueueEmpty() )
 		{
-			// Äù½ºÆ®¸¦ ÁøÇàÇÑ´Ù
+			// í€˜ìŠ¤íŠ¸ë¥¼ ì§„í–‰í•œë‹¤
 			UpdateTSStep();
 		}
 	}
@@ -65,7 +65,7 @@ NTL_TSRESULT CDboTSCTCtrl::Cont_GCond( CNtlTSCont* pCont )
 	sParam.SetControl( this );
 	sParam.SetAgency( GetParent() );
 
-	// ÀÏ¹ÝÀûÀÎ Á¶°Ç ÄÁÅ×ÀÌ³Ê´Â Å¬¶óÀÌ¾ðÆ®¿¡¼­ ¸ÕÀú ½ÇÇàÇÏ°í ¹®Á¦ ¾øÀ¸¸é ¼­¹ö·Î °ËÁõÀ» ¿ä±¸ÇÑ´Ù
+	// ì¼ë°˜ì ì¸ ì¡°ê±´ ì»¨í…Œì´ë„ˆëŠ” í´ë¼ì´ì–¸íŠ¸ì—ì„œ ë¨¼ì € ì‹¤í–‰í•˜ê³  ë¬¸ì œ ì—†ìœ¼ë©´ ì„œë²„ë¡œ ê²€ì¦ì„ ìš”êµ¬í•œë‹¤
 	NTL_TSRESULT tsResult = GetTrigger()->RunTarget( tgID, tcID, GetParent()->GetRecv(), &sParam );
 	if ( tsResult & NTL_TSRESULT_TYPE_ERROR )
 	{
@@ -73,7 +73,7 @@ NTL_TSRESULT CDboTSCTCtrl::Cont_GCond( CNtlTSCont* pCont )
 		return tsResult;
 	}
 
-	// Á¶°ÇÀ» ¸¸Á·ÇÔ
+	// ì¡°ê±´ì„ ë§Œì¡±í•¨
 	if ( NTL_TSRESULT_TYPE_SUCCESS == tsResult )
 	{
 		CNtlTSCont* pNextCont = GetTrigger()->GetGroup( tgID )->GetChildCont( pContGCond->GetYesLinkID() );
@@ -83,20 +83,20 @@ NTL_TSRESULT CDboTSCTCtrl::Cont_GCond( CNtlTSCont* pCont )
 			return NTL_TSRESULT_TYPE_ERROR;
 		}
 
-		// ¼­¹ö¿¡°Ô ´ÙÀ½ ´Ü°è·Î ÁøÇàÇØµµ µÇ´ÂÁö ¹°¾îº»´Ù
+		// ì„œë²„ì—ê²Œ ë‹¤ìŒ ë‹¨ê³„ë¡œ ì§„í–‰í•´ë„ ë˜ëŠ”ì§€ ë¬¼ì–´ë³¸ë‹¤
 		unsigned int uiParam[QUEST_REWARD_SEL_MAX_CNT] = { 0xffffffff , 0xffffffff , 0xffffffff , 0xffffffff };
 
 		UG_Avatar_TS_Confirm_Step( tcID, pNextCont->GetID(), uiParam, GetEventType(), GetEventData() );
 	}
-	// ÇöÀç´Â Á¶°ÇÀ» ¸¸Á·ÇÏÁö´Â ¸øÇÏ³ª ´ÙÀ½¿¡´Â Á¶°ÇÀ» ¸¸Á·ÇÒ ¼ö ÀÖÀ½
-	// ÇöÀçµµ Á¶°ÇÀ» ¸¸Á·ÇÏÁö´Â ¸øÇÏ°í ´ÙÀ½¿¡µµ Àý´ë Á¶°ÇÀ» ¸¸Á·ÇÒ ¼ö ¾ø´Â °æ¿ì
+	// í˜„ìž¬ëŠ” ì¡°ê±´ì„ ë§Œì¡±í•˜ì§€ëŠ” ëª»í•˜ë‚˜ ë‹¤ìŒì—ëŠ” ì¡°ê±´ì„ ë§Œì¡±í•  ìˆ˜ ìžˆìŒ
+	// í˜„ìž¬ë„ ì¡°ê±´ì„ ë§Œì¡±í•˜ì§€ëŠ” ëª»í•˜ê³  ë‹¤ìŒì—ë„ ì ˆëŒ€ ì¡°ê±´ì„ ë§Œì¡±í•  ìˆ˜ ì—†ëŠ” ê²½ìš°
 	else if ( (tsResult & NTL_TSRESULT_TYPE_COND_CAN_PROGRESS) || (tsResult & NTL_TSRESULT_TYPE_COND_CANT_PROGRESS) )
 	{
-		// ¸¸¾à No¿¡ ¿¬°áµÈ ¸µÅ©°¡ ÀÖ´Ù¸é ½ÇÇàÇÑ´Ù
+		// ë§Œì•½ Noì— ì—°ê²°ëœ ë§í¬ê°€ ìžˆë‹¤ë©´ ì‹¤í–‰í•œë‹¤
 		CNtlTSCont* pNextCont = GetTrigger()->GetGroup( tgID )->GetChildCont( pContGCond->GetNoLinkID() );
 		if ( pNextCont )
 		{
-			// ¼­¹ö¿¡°Ô ´ÙÀ½ ´Ü°è·Î ÁøÇàÇØµµ µÇ´ÂÁö ¹°¾îº»´Ù
+			// ì„œë²„ì—ê²Œ ë‹¤ìŒ ë‹¨ê³„ë¡œ ì§„í–‰í•´ë„ ë˜ëŠ”ì§€ ë¬¼ì–´ë³¸ë‹¤
 			unsigned int uiParam[QUEST_REWARD_SEL_MAX_CNT] = { 0xffffffff , 0xffffffff , 0xffffffff , 0xffffffff };
 
 			UG_Avatar_TS_Confirm_Step( tcID, pNextCont->GetID(), uiParam, GetEventType(), GetEventData() );
@@ -113,7 +113,7 @@ NTL_TSRESULT CDboTSCTCtrl::Cont_GAct( CNtlTSCont* pCont )
 	NTL_TS_TG_ID tgID = ((CNtlTSGroup*)pContGAct->GetParent())->GetID();
 	NTL_TS_TG_ID tcID = pContGAct->GetID();
 
-	// ÀÏ¹ÝÀûÀÎ ¾×¼Ç ÄÁÅ×ÀÌ³Ê´Â ¼­¹ö¿¡°Ô ½ÇÇàÀ» ¿äÃ»ÇÏ°í ÀÀ´äÀ» ¹ÞÀº ½ÃÁ¡¿¡¼­ ½ÇÇàÀ» ÇÑ´Ù
+	// ì¼ë°˜ì ì¸ ì•¡ì…˜ ì»¨í…Œì´ë„ˆëŠ” ì„œë²„ì—ê²Œ ì‹¤í–‰ì„ ìš”ì²­í•˜ê³  ì‘ë‹µì„ ë°›ì€ ì‹œì ì—ì„œ ì‹¤í–‰ì„ í•œë‹¤
 	CNtlTSCont* pNextCont = GetTrigger()->GetGroup( tgID )->GetChildCont( pContGAct->GetNextLinkID() );
 	if ( 0 == pNextCont )
 	{
@@ -121,7 +121,7 @@ NTL_TSRESULT CDboTSCTCtrl::Cont_GAct( CNtlTSCont* pCont )
 		return NTL_TSRESULT_TYPE_ERROR;
 	}
 
-	// ¼­¹ö¿¡°Ô ´ÙÀ½ ´Ü°è·Î ÁøÇàÇØµµ µÇ´ÂÁö ¹°¾îº»´Ù
+	// ì„œë²„ì—ê²Œ ë‹¤ìŒ ë‹¨ê³„ë¡œ ì§„í–‰í•´ë„ ë˜ëŠ”ì§€ ë¬¼ì–´ë³¸ë‹¤
 	unsigned int uiParam[QUEST_REWARD_SEL_MAX_CNT] = { 0xffffffff , 0xffffffff , 0xffffffff , 0xffffffff };
 
 	UG_Avatar_TS_Confirm_Step( tcID, pNextCont->GetID(), uiParam, GetEventType(), GetEventData() );
@@ -136,7 +136,7 @@ NTL_TSRESULT CDboTSCTCtrl::Cont_UserSel( CNtlTSCont* pCont )
 	NTL_TS_TG_ID tgID = ((CNtlTSGroup*)pContUsr->GetParent())->GetID();
 	NTL_TS_TG_ID tcID = pContUsr->GetID();
 
-	// À¯Àú¿¡°Ô À¯Àú ¼±ÅÃÃ¢ Ãâ·Â
+	// ìœ ì €ì—ê²Œ ìœ ì € ì„ íƒì°½ ì¶œë ¥
 	sTS_KEY sKey; sKey.Init();
 	sKey.tID = tID;
 	sKey.tgID = tgID;
@@ -158,7 +158,7 @@ NTL_TSRESULT CDboTSCTCtrl::Cont_Reward( CNtlTSCont* pCont )
 	sParam.SetControl( this );
 	sParam.SetAgency( GetParent() );
 
-	// º¸»ó ÄÁÅ×ÀÌ³Ê´Â Å¬¶óÀÌ¾ðÆ®¿¡¼­ ¸ÕÀú ½ÇÇàÇÏ°í ¹®Á¦ ¾øÀ¸¸é ¼­¹ö·Î °ËÁõÀ» ¿ä±¸ÇÑ´Ù
+	// ë³´ìƒ ì»¨í…Œì´ë„ˆëŠ” í´ë¼ì´ì–¸íŠ¸ì—ì„œ ë¨¼ì € ì‹¤í–‰í•˜ê³  ë¬¸ì œ ì—†ìœ¼ë©´ ì„œë²„ë¡œ ê²€ì¦ì„ ìš”êµ¬í•œë‹¤
 	NTL_TSRESULT tsResult = GetTrigger()->RunTarget( tgID, tcID, GetParent()->GetRecv(), &sParam );
 	if ( tsResult & NTL_TSRESULT_TYPE_ERROR )
 	{
@@ -166,11 +166,11 @@ NTL_TSRESULT CDboTSCTCtrl::Cont_Reward( CNtlTSCont* pCont )
 		return tsResult;
 	}
 
-	// Á¶°ÇÀ» ¸¸Á·ÇÔ
+	// ì¡°ê±´ì„ ë§Œì¡±í•¨
 	if ( NTL_TSRESULT_TYPE_SUCCESS == tsResult )
 	{
-		// À¯Àú¿¡°Ô ´ëÈ­ Ãâ·Â.
-		// ±×¸®°í, À¯Àú°¡ ÁÖ¾îÁø º¸»óÁß ÇÏ³ª¸¦ ¼±ÅÃÇØ¼­ ¾Ë·ÁÁà¾ß ÇÔ
+		// ìœ ì €ì—ê²Œ ëŒ€í™” ì¶œë ¥.
+		// ê·¸ë¦¬ê³ , ìœ ì €ê°€ ì£¼ì–´ì§„ ë³´ìƒì¤‘ í•˜ë‚˜ë¥¼ ì„ íƒí•´ì„œ ì•Œë ¤ì¤˜ì•¼ í•¨
 		sTS_KEY sKey; sKey.Init();
 		sKey.tID = tID;
 		sKey.tgID = tgID;
@@ -193,7 +193,7 @@ NTL_TSRESULT CDboTSCTCtrl::Cont_Start( CNtlTSCont* pCont )
 	sParam.SetControl( this );
 	sParam.SetAgency( GetParent() );
 
-	// ½ÃÀÛ ÄÁÅ×ÀÌ³Ê´Â Å¬¶óÀÌ¾ðÆ®¿¡¼­ ¸ÕÀú ½ÇÇàÇÏ°í ¹®Á¦ ¾øÀ¸¸é ¼­¹ö·Î °ËÁõÀ» ¿ä±¸ÇÑ´Ù
+	// ì‹œìž‘ ì»¨í…Œì´ë„ˆëŠ” í´ë¼ì´ì–¸íŠ¸ì—ì„œ ë¨¼ì € ì‹¤í–‰í•˜ê³  ë¬¸ì œ ì—†ìœ¼ë©´ ì„œë²„ë¡œ ê²€ì¦ì„ ìš”êµ¬í•œë‹¤
 	NTL_TSRESULT tsResult = GetTrigger()->RunTarget( tgID, tcID, GetParent()->GetRecv(), &sParam );
 	if ( tsResult & NTL_TSRESULT_TYPE_ERROR )
 	{
@@ -201,7 +201,7 @@ NTL_TSRESULT CDboTSCTCtrl::Cont_Start( CNtlTSCont* pCont )
 		return tsResult;
 	}
 
-	// Á¶°ÇÀ» ¸¸Á·ÇÔ
+	// ì¡°ê±´ì„ ë§Œì¡±í•¨
 	if ( NTL_TSRESULT_TYPE_SUCCESS == tsResult )
 	{
 		CNtlTSCont* pNextCont = GetTrigger()->GetGroup( tgID )->GetChildCont( pContStart->GetYesLinkID() );
@@ -211,20 +211,20 @@ NTL_TSRESULT CDboTSCTCtrl::Cont_Start( CNtlTSCont* pCont )
 			return NTL_TSRESULT_TYPE_ERROR;
 		}
 
-		// ¼­¹ö¿¡°Ô ´ÙÀ½ ´Ü°è·Î ÁøÇàÇØµµ µÇ´ÂÁö ¹°¾îº»´Ù
+		// ì„œë²„ì—ê²Œ ë‹¤ìŒ ë‹¨ê³„ë¡œ ì§„í–‰í•´ë„ ë˜ëŠ”ì§€ ë¬¼ì–´ë³¸ë‹¤
 		unsigned int uiParam[QUEST_REWARD_SEL_MAX_CNT] = { 0xffffffff , 0xffffffff , 0xffffffff , 0xffffffff };
 
 		UG_Avatar_TS_Confirm_Step( tcID, pNextCont->GetID(), uiParam, GetEventType(), GetEventData() );
 	}
-	// ½ÃÀÛ ÄÁÅ×ÀÌ³Ê¿¡¼­ ½ÃÀÛÀ» ´ÙÀ½À¸·Î ÁøÇà ÇÒ ¼ö ¾ø´Â °æ¿ì´Â ¹«Á¶°Ç No¸¦ ½ÇÇàÇÑ´Ù
+	// ì‹œìž‘ ì»¨í…Œì´ë„ˆì—ì„œ ì‹œìž‘ì„ ë‹¤ìŒìœ¼ë¡œ ì§„í–‰ í•  ìˆ˜ ì—†ëŠ” ê²½ìš°ëŠ” ë¬´ì¡°ê±´ Noë¥¼ ì‹¤í–‰í•œë‹¤
 	else if ( (tsResult & NTL_TSRESULT_TYPE_COND_CAN_PROGRESS) || (tsResult & NTL_TSRESULT_TYPE_COND_CANT_PROGRESS) )
 	{
-		// ¸¸¾à No¿¡ ¿¬°áµÈ ¸µÅ©°¡ ÀÖ´Ù¸é ½ÇÇàÇÑ´Ù
+		// ë§Œì•½ Noì— ì—°ê²°ëœ ë§í¬ê°€ ìžˆë‹¤ë©´ ì‹¤í–‰í•œë‹¤
 		CNtlTSCont* pNextCont = GetTrigger()->GetGroup( tgID )->GetChildCont( pContStart->GetNoLinkID() );
 
 		if ( pNextCont )
 		{
-			// ¼­¹ö¿¡°Ô ´ÙÀ½ ´Ü°è·Î ÁøÇàÇØµµ µÇ´ÂÁö ¹°¾îº»´Ù
+			// ì„œë²„ì—ê²Œ ë‹¤ìŒ ë‹¨ê³„ë¡œ ì§„í–‰í•´ë„ ë˜ëŠ”ì§€ ë¬¼ì–´ë³¸ë‹¤
 			unsigned int uiParam[QUEST_REWARD_SEL_MAX_CNT] = { 0xffffffff , 0xffffffff , 0xffffffff , 0xffffffff };
 
 			UG_Avatar_TS_Confirm_Step( tcID, pNextCont->GetID(), uiParam, GetEventType(), GetEventData() );
@@ -241,7 +241,7 @@ NTL_TSRESULT CDboTSCTCtrl::Cont_End( CNtlTSCont* pCont )
 	NTL_TS_TG_ID tgID = ((CNtlTSGroup*)pContEnd->GetParent())->GetID();
 	NTL_TS_TG_ID tcID = pContEnd->GetID();
 
-	// ¼­¹ö¿¡°Ô ´ÙÀ½ ´Ü°è·Î ÁøÇàÇØµµ µÇ´ÂÁö ¹°¾îº»´Ù
+	// ì„œë²„ì—ê²Œ ë‹¤ìŒ ë‹¨ê³„ë¡œ ì§„í–‰í•´ë„ ë˜ëŠ”ì§€ ë¬¼ì–´ë³¸ë‹¤
 	unsigned int uiParam[QUEST_REWARD_SEL_MAX_CNT] = { 0xffffffff , 0xffffffff , 0xffffffff , 0xffffffff };
 
 	UG_Avatar_TS_Confirm_Step( tcID, NTL_TS_TC_ID_INVALID, uiParam, GetEventType(), GetEventData() );
@@ -258,7 +258,7 @@ NTL_TSRESULT CDboTSCTCtrl::Cont_Narration( CNtlTSCont* pCont )
 	sKey.tgID = ((CNtlTSGroup*)pContNarration->GetParent())->GetID();
 	sKey.tcID = pContNarration->GetID();
 
-	// À¯Àú¿¡°Ô ³ª·¡ÀÌ¼Ç ´ëÈ­ Ãâ·Â.
+	// ìœ ì €ì—ê²Œ ë‚˜ëž˜ì´ì…˜ ëŒ€í™” ì¶œë ¥.
 	TU_ShowNarrationDialog( sKey, pContNarration );
 
 	return NTL_TSRESULT_TYPE_SUCCESS;
@@ -292,7 +292,7 @@ NTL_TSRESULT CDboTSCTCtrl::Cont_Switch( CNtlTSCont* pCont )
 	CDboTSContSwitch* pContSwitch = (CDboTSContSwitch*)pCont;
 	NTL_TS_TG_ID tcID = pContSwitch->GetID();
 
-	// ¼­¹ö¿¡°Ô ´ÙÀ½ ´Ü°è·Î ÁøÇàÇØµµ µÇ´ÂÁö ¹°¾îº»´Ù
+	// ì„œë²„ì—ê²Œ ë‹¤ìŒ ë‹¨ê³„ë¡œ ì§„í–‰í•´ë„ ë˜ëŠ”ì§€ ë¬¼ì–´ë³¸ë‹¤
 	unsigned int uiParam[QUEST_REWARD_SEL_MAX_CNT] = { 0xffffffff , 0xffffffff , 0xffffffff , 0xffffffff };
 
 	UG_Avatar_TS_Confirm_Step( tcID, NTL_TS_TC_ID_INVALID, uiParam, GetEventType(), GetEventData() );
@@ -309,7 +309,7 @@ NTL_TSRESULT CDboTSCTCtrl::Cont_UnifiedNarration( CNtlTSCont* pCont )
 	sKey.tgID = ((CNtlTSGroup*)pContNarration->GetParent())->GetID();
 	sKey.tcID = pContNarration->GetID();
 
-	// À¯Àú¿¡°Ô ³ª·¡ÀÌ¼Ç ´ëÈ­ Ãâ·Â.
+	// ìœ ì €ì—ê²Œ ë‚˜ëž˜ì´ì…˜ ëŒ€í™” ì¶œë ¥.
 	TU_ShowUnifiedNarrationDialog( sKey, pContNarration );
 
 	return NTL_TSRESULT_TYPE_SUCCESS;
@@ -323,7 +323,7 @@ void CDboTSCTCtrl::UpdateTSStep( void )
 	if ( IsClientWait() ) return;
 	if ( IsSvrComAfterClientWait() ) return;
 
-	// ÇöÀç ÁøÇà ÁßÀÎ ÄÁÅ×ÀÌ³Ê°¡ ¾ø´Ù´Â °ÍÀº ½ÃÀÛÀ» ÀÇ¹ÌÇÔ
+	// í˜„ìž¬ ì§„í–‰ ì¤‘ì¸ ì»¨í…Œì´ë„ˆê°€ ì—†ë‹¤ëŠ” ê²ƒì€ ì‹œìž‘ì„ ì˜ë¯¸í•¨
 	if ( 0 == m_pCurTSP )
 	{
 		m_pCurTSP = GetTrigger()->GetGroup( NTL_TS_MAIN_GROUP_ID )->GetChildCont( START_CONTAINER_ID );
@@ -446,10 +446,10 @@ void CDboTSCTCtrl::ChangeTSState( unsigned int uiChangFlag )
 	{
 		if ( IsFailed() )
 		{
-			// ¼­¹ö¿¡°Ô Failed ¼³Á¤ »óÅÂ¸¦ Àü¼ÛÇÑ´Ù
+			// ì„œë²„ì—ê²Œ Failed ì„¤ì • ìƒíƒœë¥¼ ì „ì†¡í•œë‹¤
 			UG_TS_Update_State( eTSSTATE_TYPE_ADD, eTS_SVR_STATE_FAILED );
 
-			// ¿¡·¯ »óÅÂÀÌ¸é PC Æ®¸®°ÅÀÇ °æ¿ì °­Á¦ Á¾·á »óÅÂ·Î ÀÌµ¿ÇÑ´Ù
+			// ì—ëŸ¬ ìƒíƒœì´ë©´ PC íŠ¸ë¦¬ê±°ì˜ ê²½ìš° ê°•ì œ ì¢…ë£Œ ìƒíƒœë¡œ ì´ë™í•œë‹¤
 			SetExitState();
 		}
 		else
@@ -461,15 +461,15 @@ void CDboTSCTCtrl::ChangeTSState( unsigned int uiChangFlag )
 	{
 		if ( IsError() )
 		{
-			// ¼­¹ö¿¡°Ô ¿¡·¯ ¼³Á¤ »óÅÂ¸¦ Àü¼ÛÇÑ´Ù
+			// ì„œë²„ì—ê²Œ ì—ëŸ¬ ì„¤ì • ìƒíƒœë¥¼ ì „ì†¡í•œë‹¤
 			UG_TS_Update_State( eTSSTATE_TYPE_ADD, eTS_SVR_STATE_ERROR );
 
-			// ¿¡·¯ »óÅÂÀÌ¸é PC Æ®¸®°ÅÀÇ °æ¿ì °­Á¦ Á¾·á »óÅÂ·Î ÀÌµ¿ÇÑ´Ù
+			// ì—ëŸ¬ ìƒíƒœì´ë©´ PC íŠ¸ë¦¬ê±°ì˜ ê²½ìš° ê°•ì œ ì¢…ë£Œ ìƒíƒœë¡œ ì´ë™í•œë‹¤
 			SetExitState();
 		}
 		else
 		{
-			// ¼­¹ö¿¡°Ô ¿¡·¯ ¼³Á¤ ÇØÀç »óÅÂ¸¦ Àü¼ÛÇÑ´Ù
+			// ì„œë²„ì—ê²Œ ì—ëŸ¬ ì„¤ì • í•´ìž¬ ìƒíƒœë¥¼ ì „ì†¡í•œë‹¤
 			UG_TS_Update_State( eTSSTATE_TYPE_REMOVE, eTS_SVR_STATE_ERROR );
 		}
 	}
@@ -477,7 +477,7 @@ void CDboTSCTCtrl::ChangeTSState( unsigned int uiChangFlag )
 	{
 		if ( IsExitState() )
 		{
-			// Å¬¶óÀÌ¾ðÆ®¿¡°Ô Æ®¸®°Å Á¾·á¸¦ ¾Ë¸²
+			// í´ë¼ì´ì–¸íŠ¸ì—ê²Œ íŠ¸ë¦¬ê±° ì¢…ë£Œë¥¼ ì•Œë¦¼
 			((CDboTSCTAgency*)GetParent())->TU_FinishQuest( TS_TYPE_PC_TRIGGER_CS, GetTrigger()->GetID() );
 		}
 	}
@@ -551,7 +551,7 @@ void CDboTSCTCtrl::GU_Avatar_TS_Confirm_Step( WORD wResultCode, NTL_TS_TC_ID tcC
 		return;
 	}
 
-	// ÇöÀç ÄÁÅ×ÀÌ³Ê ½ÇÇà
+	// í˜„ìž¬ ì»¨í…Œì´ë„ˆ ì‹¤í–‰
 	sCTRUN_PARAM sParam;
 	sParam.SetControl( this );
 	sParam.SetAgency( GetParent() );
@@ -562,12 +562,12 @@ void CDboTSCTCtrl::GU_Avatar_TS_Confirm_Step( WORD wResultCode, NTL_TS_TC_ID tcC
 	{
 	case DBO_CONT_TYPE_ID_CONT_GCOND:
 		{
-			// ¼± °Ë»ç¸¦ ÇÏ¹Ç·Î ÀÌ°÷¿¡¼­ Æ®¸®°Å¸¦ Run ÇÒ ÇÊ¿ä ¾øÀ½
+			// ì„  ê²€ì‚¬ë¥¼ í•˜ë¯€ë¡œ ì´ê³³ì—ì„œ íŠ¸ë¦¬ê±°ë¥¼ Run í•  í•„ìš” ì—†ìŒ
 		}
 		break;
 	case DBO_CONT_TYPE_ID_CONT_GACT:
 		{
-			// ¿¡·¯ »óÅÂ·Î ºÐ±â½Ã¿¡´Â ¾×¼ÇÀ» ½ÇÇàÇÏÁö ¾Ê´Â´Ù
+			// ì—ëŸ¬ ìƒíƒœë¡œ ë¶„ê¸°ì‹œì—ëŠ” ì•¡ì…˜ì„ ì‹¤í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤
 			if ( pNextCont->GetID() != ((CDboTSContGAct*)pCurCont)->GetErrorLinkID() )
 			{
 				tsResult = GetTrigger()->RunTarget( NTL_TS_MAIN_GROUP_ID, pCurCont->GetID(), GetParent()->GetRecv(), &sParam );
@@ -576,47 +576,47 @@ void CDboTSCTCtrl::GU_Avatar_TS_Confirm_Step( WORD wResultCode, NTL_TS_TC_ID tcC
 		break;
 	case DBO_CONT_TYPE_ID_CONT_USERSEL:
 		{
-			// ½ÇÇà ½ÃÅ³ ¿£Æ¼Æ¼°¡ Á¸ÀçÇÏÁö ¾ÊÀ½
+			// ì‹¤í–‰ ì‹œí‚¬ ì—”í‹°í‹°ê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŒ
 		}
 		break;
 	case DBO_CONT_TYPE_ID_CONT_REWARD:
 		{
-			// ¼± °Ë»ç¸¦ ÇÏ¹Ç·Î ÀÌ°÷¿¡¼­ Æ®¸®°Å¸¦ Run ÇÒ ÇÊ¿ä ¾øÀ½
+			// ì„  ê²€ì‚¬ë¥¼ í•˜ë¯€ë¡œ ì´ê³³ì—ì„œ íŠ¸ë¦¬ê±°ë¥¼ Run í•  í•„ìš” ì—†ìŒ
 		}
 		break;
 	case DBO_CONT_TYPE_ID_CONT_START:
 		{
-			// ¼± °Ë»ç¸¦ ÇÏ¹Ç·Î ÀÌ°÷¿¡¼­ Æ®¸®°Å¸¦ Run ÇÒ ÇÊ¿ä ¾øÀ½
+			// ì„  ê²€ì‚¬ë¥¼ í•˜ë¯€ë¡œ ì´ê³³ì—ì„œ íŠ¸ë¦¬ê±°ë¥¼ Run í•  í•„ìš” ì—†ìŒ
 		}
 		break;
 	case DBO_CONT_TYPE_ID_CONT_END:
 		{
-			// ½ÇÇà ½ÃÅ³ ¿£Æ¼Æ¼°¡ Á¸ÀçÇÏÁö ¾ÊÀ½
+			// ì‹¤í–‰ ì‹œí‚¬ ì—”í‹°í‹°ê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŒ
 
-			// Á¾·á Ã³¸®¸¦ ¼öÇàÇÑ´Ù
+			// ì¢…ë£Œ ì²˜ë¦¬ë¥¼ ìˆ˜í–‰í•œë‹¤
 			SetExitState();
 		}
 		break;
 	case DBO_CONT_TYPE_ID_CONT_NARRATION:
 		{
-			// ½ÇÇà ½ÃÅ³ ¿£Æ¼Æ¼°¡ Á¸ÀçÇÏÁö ¾ÊÀ½
+			// ì‹¤í–‰ ì‹œí‚¬ ì—”í‹°í‹°ê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŒ
 		}
 		break;
 	case DBO_CONT_TYPE_ID_CONT_PROPOSAL:
 		{
-			// ½ÇÇà ½ÃÅ³ ¿£Æ¼Æ¼°¡ Á¸ÀçÇÏÁö ¾ÊÀ½
+			// ì‹¤í–‰ ì‹œí‚¬ ì—”í‹°í‹°ê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŒ
 		}
 		break;
 
 	case DBO_CONT_TYPE_ID_CONT_SWITCH:
 		{
-			// ½ÇÇà ½ÃÅ³ ¿£Æ¼Æ¼°¡ Á¸ÀçÇÏÁö ¾ÊÀ½
+			// ì‹¤í–‰ ì‹œí‚¬ ì—”í‹°í‹°ê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŒ
 		}
 		break;
 
 	case DBO_CONT_TYPE_ID_CONT_UNIFIED_NARRATION:
 		{
-			// ½ÇÇà ½ÃÅ³ ¿£Æ¼Æ¼°¡ Á¸ÀçÇÏÁö ¾ÊÀ½
+			// ì‹¤í–‰ ì‹œí‚¬ ì—”í‹°í‹°ê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŒ
 		}
 		break;
 	}
@@ -628,7 +628,7 @@ void CDboTSCTCtrl::GU_Avatar_TS_Confirm_Step( WORD wResultCode, NTL_TS_TC_ID tcC
 		return;
 	}
 
-	// ´ÙÀ½ ÄÁÅ×ÀÌ³Ê·Î TSP¸¦ ÀÌµ¿ÇÑ´Ù
+	// ë‹¤ìŒ ì»¨í…Œì´ë„ˆë¡œ TSPë¥¼ ì´ë™í•œë‹¤
 	MoveTSP( pCurCont, pNextCont, false );
 }
 
@@ -658,7 +658,7 @@ void CDboTSCTCtrl::GU_TS_Update_State( unsigned char byType, unsigned short wTSS
 		break;
 	}
 
-	// ½ÇÆÐ³ª ¿¡·¯ »óÅÂÀÌ¸é PC Æ®¸®°ÅÀÇ °æ¿ì °­Á¦ Á¾·á »óÅÂ·Î ÀÌµ¿ÇÑ´Ù
+	// ì‹¤íŒ¨ë‚˜ ì—ëŸ¬ ìƒíƒœì´ë©´ PC íŠ¸ë¦¬ê±°ì˜ ê²½ìš° ê°•ì œ ì¢…ë£Œ ìƒíƒœë¡œ ì´ë™í•œë‹¤
 	if ( IsFailed() || IsError() )
 	{
 		SetExitState();

@@ -49,7 +49,7 @@
 
 #include "HintCommon.h"
 
-// ¹®ÀÚ¿­ ¾Ë¸²ÀÌ Ãâ·ÂµÇ´Â ½Ã°£
+// ë¬¸ìì—´ ì•Œë¦¼ì´ ì¶œë ¥ë˜ëŠ” ì‹œê°„
 #define dSTRING_HINT_TIME_NEWMAIL 5.0f
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -57,7 +57,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
-* \brief »ı¼ºÀÚ
+* \brief ìƒì„±ì
 */
 CHelpHintConditionCheck ::CHelpHintConditionCheck()
 :m_bRegNewHint(FALSE)
@@ -66,7 +66,7 @@ CHelpHintConditionCheck ::CHelpHintConditionCheck()
 }
 
 /**
-* \brief ¼Ò¸êÀÚ
+* \brief ì†Œë©¸ì
 */
 CHelpHintConditionCheck ::~CHelpHintConditionCheck()
 {
@@ -79,7 +79,7 @@ RwBool CHelpHintConditionCheck::Create()
 {
 	NTL_FUNCTION("CHelpHintConditionCheck::Create");
 
-	// Á¶°Ç °Ë»ç¸¦ ÇÒ Help Data¸¦ Map¿¡ º¸°üÇÑ´Ù. (byConditionCheck¸¦ index·Î, data´Â tblidx=> È£ÃâÀ§ÇÑ)
+	// ì¡°ê±´ ê²€ì‚¬ë¥¼ í•  Help Dataë¥¼ Mapì— ë³´ê´€í•œë‹¤. (byConditionCheckë¥¼ indexë¡œ, dataëŠ” tblidx=> í˜¸ì¶œìœ„í•œ)
 	CHelpTable* pHelpTable = API_GetTableContainer()->GetHelpTable();
 	for (CTable::TABLEIT it = pHelpTable->Begin(); it != pHelpTable->End(); ++it)
 	{
@@ -137,13 +137,13 @@ void CHelpHintConditionCheck::Destroy()
 
 /**
 * \brief HandleEvents
-* \param msg	Event Message ±¸Á¶Ã¼
+* \param msg	Event Message êµ¬ì¡°ì²´
 */
 void CHelpHintConditionCheck::HandleEvents(RWS::CMsg& msg)
 {
 	NTL_FUNCTION("CHelpHintConditionCheck::HandleEvents");
 
-	// Tutorial ÈùÆ®°¡ ¾÷µ¥ÀÌÆ® µÇ¾úÀ» ¶§
+	// Tutorial íŒíŠ¸ê°€ ì—…ë°ì´íŠ¸ ë˜ì—ˆì„ ë•Œ
 	if (msg.Id == g_EventHelpHint)
 	{
 		SNtlEventHelpHint* pData	= reinterpret_cast<SNtlEventHelpHint*>(msg.pData);
@@ -263,7 +263,7 @@ void CHelpHintConditionCheck::HandleEvents(RWS::CMsg& msg)
 		if( bBool )
 			UnLinkMsg(g_EventTMQCleintState);
 	}   ///////////////  /// woosungs_test 20090804
-	else if (msg.Id == g_EventTSItemGet)					/// item È¹µæ  ÃÖÃÊ item ·çÆÃ, ÃÖÃÊ Àåºñitem ·çÆÃ
+	else if (msg.Id == g_EventTSItemGet)					/// item íšë“  ìµœì´ˆ item ë£¨íŒ…, ìµœì´ˆ ì¥ë¹„item ë£¨íŒ…
 	{
 		RwBool bBool = TRUE;
 
@@ -274,7 +274,7 @@ void CHelpHintConditionCheck::HandleEvents(RWS::CMsg& msg)
 		if( bBool )
 			UnLinkMsg(g_EventTSItemGet);
 	}
-	else if (msg.Id == g_EventOpenBagGui)					/// ÃÖÃÊ inventory open
+	else if (msg.Id == g_EventOpenBagGui)					/// ìµœì´ˆ inventory open
 	{
 		RwBool bBool = TRUE;
 
@@ -283,7 +283,7 @@ void CHelpHintConditionCheck::HandleEvents(RWS::CMsg& msg)
 		if( bBool )
 			UnLinkMsg(g_EventOpenBagGui);
 	}
-	else if (msg.Id == g_EventOpenScouterBackgroundGui)		/// ÃÖÃÊ scouter use
+	else if (msg.Id == g_EventOpenScouterBackgroundGui)		/// ìµœì´ˆ scouter use
 	{
 		RwBool bBool = TRUE;
 
@@ -292,7 +292,7 @@ void CHelpHintConditionCheck::HandleEvents(RWS::CMsg& msg)
 		if( bBool )
 			UnLinkMsg(g_EventOpenScouterBackgroundGui);
 	}
-	else if (msg.Id == g_EventSobEquipItemDurDown)			/// ÃÖÃÊ Àåºñ ³»±¸µµ ´Ù¿î
+	else if (msg.Id == g_EventSobEquipItemDurDown)			/// ìµœì´ˆ ì¥ë¹„ ë‚´êµ¬ë„ ë‹¤ìš´
 	{
 		RwBool bBool = TRUE;
 
@@ -301,7 +301,7 @@ void CHelpHintConditionCheck::HandleEvents(RWS::CMsg& msg)
 		if( bBool )
 			UnLinkMsg(g_EventSobEquipItemDurDown);
 	}
-	else if (msg.Id == g_EventMobDie)						/// ÃÖÃÊ Mob »ç³É
+	else if (msg.Id == g_EventMobDie)						/// ìµœì´ˆ Mob ì‚¬ëƒ¥
 	{
 		RwBool bBool = TRUE;
 
@@ -338,14 +338,14 @@ RwBool CHelpHintConditionCheck::RegHelpHint(const BYTE& byID)
 	HELPMAP::iterator it = m_mapHelpHint.find(byID);
 	if (it == m_mapHelpHint.end())
 	{
-		return TRUE;													/// Help_Data¿¡ Á¸ÀçÇÏÁö¾Ê´Â Á¶°Ç..... ¹«Á¶°Ç TRUE¹İÈ¯
+		return TRUE;													/// Help_Dataì— ì¡´ì¬í•˜ì§€ì•ŠëŠ” ì¡°ê±´..... ë¬´ì¡°ê±´ TRUEë°˜í™˜
 	}
 
 
 	m_uiHelpHint |= 0x1 << byID;
-	m_bRegNewHint = TRUE;												/// SendPacketHintReq() ¿¹¾à
+	m_bRegNewHint = TRUE;												/// SendPacketHintReq() ì˜ˆì•½
 	//GetDboGlobal()->GetGamePacketGenerator()->SendTutorialHintUpdateReq(m_uiHelpHint);
-	//°°Àº »óÈ²¿¡¼­ ÇÕÃÄ¼­ Request À§ÇØ HandleEvents·Î ¿Å±è
+	//ê°™ì€ ìƒí™©ì—ì„œ í•©ì³ì„œ Request ìœ„í•´ HandleEventsë¡œ ì˜®ê¹€
 
 	TBLIDXVEC& vecTable = it->second;
 	for (int i = 0; i < (int)vecTable.size(); ++i)
@@ -550,7 +550,7 @@ RwBool CHelpHintConditionCheck::IsHelpHint_First_TSItemGetEquip(RWS::CMsg& msg)
 																	//Logic_GetItemDataFromTable	
 	if(pITEM_TBLDAT)
 	{
-		if(EQUIP_TYPE_UNKNOWN != pITEM_TBLDAT->byEquip_Type)	/// equip ÀÏ¶§¸¸ Ã¼Å©
+		if(EQUIP_TYPE_UNKNOWN != pITEM_TBLDAT->byEquip_Type)	/// equip ì¼ë•Œë§Œ ì²´í¬
 		{
 			return RegHelpHint(FIRST_LOOT_EQUIP);
 		}
@@ -615,7 +615,7 @@ RwBool CHelpHintConditionCheck::IsHelpHint_First_OpenScouterBackgroundGui(RWS::C
 }
 
 /**
-* \brief TMQ¿¡ Ã³À½ ÁøÀÔÇÑ °ÍÀ» Ã¼Å©
+* \brief TMQì— ì²˜ìŒ ì§„ì…í•œ ê²ƒì„ ì²´í¬
 */
 RwBool CHelpHintConditionCheck::IsHelpHint_First_Into_Tmq( RWS::CMsg& msg ) 
 {
@@ -624,7 +624,7 @@ RwBool CHelpHintConditionCheck::IsHelpHint_First_Into_Tmq( RWS::CMsg& msg )
 
 	SNtlEventTMQServerState* pEvent = reinterpret_cast<SNtlEventTMQServerState*>(msg.pData);
 
-	// TMQ ½ÃÀÛÀÇ State
+	// TMQ ì‹œì‘ì˜ State
 	if( pEvent->uiState == WORLD_STATE_TMQ_BEGIN )
 	{
 		return RegHelpHint(FIRST_INTO_TMQ);
@@ -638,7 +638,7 @@ RwBool CHelpHintConditionCheck::IsHelpHint_First_Into_Tmq( RWS::CMsg& msg )
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
-* \brief »ı¼ºÀÚ
+* \brief ìƒì„±ì
 */
 CHintSideIconGui::CHintSideIconGui(const RwChar* pName) 
 : CSideIconBase(pName)
@@ -647,7 +647,7 @@ CHintSideIconGui::CHintSideIconGui(const RwChar* pName)
 }
 
 /**
-* \brief ¼Ò¸êÀÚ
+* \brief ì†Œë©¸ì
 */
 CHintSideIconGui::~CHintSideIconGui()
 {
@@ -666,13 +666,13 @@ RwBool CHintSideIconGui::Create()
 	CNtlPLGui::CreateComponents(GetNtlGuiManager()->GetGuiManager());
 
 	m_pThis			= (gui::CDialog*)GetComponent("dlgMain");
-	m_pIconButton	= (gui::CButton*)GetComponent("btnIcon");	// Æ÷Æ÷ ¾ÆÀÌÄÜ
+	m_pIconButton	= (gui::CButton*)GetComponent("btnIcon");	// í¬í¬ ì•„ì´ì½˜
 
 	m_slotIconButtonClicked	= m_pIconButton->SigClicked().Connect(this, &CHintSideIconGui::OnIconButtonClicked);
 	m_slotPaint = m_pIconButton->SigPaint().Connect( this, &CHintSideIconGui::OnPaint );
 	m_slotMove = m_pThis->SigMove().Connect( this, &CHintSideIconGui::OnMove );
 
-	// Help Hint Á¶°Ç °Ë»ç »ı¼º
+	// Help Hint ì¡°ê±´ ê²€ì‚¬ ìƒì„±
 	m_helpHintConditionCheck.Create();
 
 	//srfHintPulse
@@ -732,8 +732,8 @@ void CHintSideIconGui::HandleEvents(RWS::CMsg& msg)
 {
 	NTL_FUNCTION("CHintSideIconGui::HandleEnvets");
 
-	// Hint¸¦ µî·Ï ÇÏ°í Æ÷Æ÷ ¾ÆÀÌÄÜÀ» º¸¿©ÁØ´Ù.
-	// ShowHint(); ³»ºÎ¿¡¼­ ÈùÆ®ÀÇ °¹¼ö¸¦ ¾÷µ¥ÀÌÆ® ÇÑ´Ù.
+	// Hintë¥¼ ë“±ë¡ í•˜ê³  í¬í¬ ì•„ì´ì½˜ì„ ë³´ì—¬ì¤€ë‹¤.
+	// ShowHint(); ë‚´ë¶€ì—ì„œ íŒíŠ¸ì˜ ê°¯ìˆ˜ë¥¼ ì—…ë°ì´íŠ¸ í•œë‹¤.
 	if (msg.Id == g_EventRegSideHintIcon)
 	{
 		SNtlEventRegSideHintIcon* pHintData = reinterpret_cast<SNtlEventRegSideHintIcon*>(msg.pData);
@@ -745,7 +745,7 @@ void CHintSideIconGui::HandleEvents(RWS::CMsg& msg)
 		
 		ShowHint();
 
-		// HintTypeÀÌ HINTICON_HELP ¶ó¸é ¸µÅ©µÈ µµ¿ò¸»À» ¿­¾îÁØ´Ù.
+		// HintTypeì´ HINTICON_HELP ë¼ë©´ ë§í¬ëœ ë„ì›€ë§ì„ ì—´ì–´ì¤€ë‹¤.
 		if(pHintData->uiEventType == HINTICON_HELP )
 		{
 			CDboEventGenerator::OpenHelpWindow(pHintData->uiTableIndex);
@@ -806,7 +806,7 @@ void CHintSideIconGui::HandleEvents(RWS::CMsg& msg)
 	{
 		SNtlEventChangeClassAuthorityChanged* pData = reinterpret_cast<SNtlEventChangeClassAuthorityChanged*>(msg.pData);
 
-		// ÀüÁ÷ °¡´É Ã³¸®
+		// ì „ì§ ê°€ëŠ¥ ì²˜ë¦¬
 		if( pData->bCanChangeClass )
 		{
 			CStringHint* pStringHint = NTL_NEW CStringHint( GetDisplayStringManager()->GetString( "DST_SIDEICON_HINT_CLASS_CHANGE_TITLE" ),
@@ -821,7 +821,7 @@ void CHintSideIconGui::HandleEvents(RWS::CMsg& msg)
 	}
 	else if( msg.Id == g_EventHintViewClosed )
 	{
-		// Áö¿ì°í Ãâ·ÂÇÑ´Ù.
+		// ì§€ìš°ê³  ì¶œë ¥í•œë‹¤.
 		if( !m_vecHelpHint.empty() )
 		{
 			CHint* pHint = m_vecHelpHint.back();
@@ -845,8 +845,8 @@ void CHintSideIconGui::HandleEvents(RWS::CMsg& msg)
 
 /**
 * \brief Update Hint
-* ÇöÀç ³²¾ÆÀÖ´Â ÈùÆ®µéÀÇ °¹¼ö¸¦ Ã¼Å©ÇÏ¿© Ãâ·ÂÇÑ´Ù.
-* \return ÈùÆ®°¡ ÀÖ´ÂÁö ¾ø´ÂÁöÀÇ ¿©ºÎ( TRUE : ÈùÆ® ³²¾ÆÀÖÀ½, FALSE : ÈùÆ® ¾øÀ½ )
+* í˜„ì¬ ë‚¨ì•„ìˆëŠ” íŒíŠ¸ë“¤ì˜ ê°¯ìˆ˜ë¥¼ ì²´í¬í•˜ì—¬ ì¶œë ¥í•œë‹¤.
+* \return íŒíŠ¸ê°€ ìˆëŠ”ì§€ ì—†ëŠ”ì§€ì˜ ì—¬ë¶€( TRUE : íŒíŠ¸ ë‚¨ì•„ìˆìŒ, FALSE : íŒíŠ¸ ì—†ìŒ )
 */
 RwBool CHintSideIconGui::UpdateHint()
 {
@@ -889,7 +889,7 @@ void CHintSideIconGui::HideHint()
 }
 
 /**
-* \brief »çÀÌµåºä°¡ ´İ±æ¶§ È£Ãâ
+* \brief ì‚¬ì´ë“œë·°ê°€ ë‹«ê¸¸ë•Œ í˜¸ì¶œ
 */
 void CHintSideIconGui::OnSideViewClosed()
 {
@@ -897,7 +897,7 @@ void CHintSideIconGui::OnSideViewClosed()
 }
 
 /**
-* \brief Æ÷Æ÷ ¾ÆÀÌÄÜÀ» Å¬¸¯ÇÏ¿´À» ¶§ È£Ãâ
+* \brief í¬í¬ ì•„ì´ì½˜ì„ í´ë¦­í•˜ì˜€ì„ ë•Œ í˜¸ì¶œ
 */
 void CHintSideIconGui::OnIconButtonClicked(gui::CComponent* pComponent)
 {
@@ -916,11 +916,11 @@ void CHintSideIconGui::OnIconButtonClicked(gui::CComponent* pComponent)
 }
 
 /**
-* \brief ÈùÆ®ÀÇ »çÀÌµå ºä¸¦ º¸¿©ÁØ´Ù.
+* \brief íŒíŠ¸ì˜ ì‚¬ì´ë“œ ë·°ë¥¼ ë³´ì—¬ì¤€ë‹¤.
 */
 void CHintSideIconGui::ShowHintView()
 {
-	// ÈùÆ®°¡ ÀÖÀ»¶§¸¸ º¸¿©ÁØ´Ù.
+	// íŒíŠ¸ê°€ ìˆì„ë•Œë§Œ ë³´ì—¬ì¤€ë‹¤.
 	if (!m_vecHelpHint.empty())
 	{
 		CHint* pHint = m_vecHelpHint.back();
@@ -980,7 +980,7 @@ void CHintSideIconGui::OnMove( RwInt32 nOldX, RwInt32 nOldY )
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
-* \brief »ı¼ºÀÚ
+* \brief ìƒì„±ì
 */
 CHelpHintSideViewGui::CHelpHintSideViewGui(const RwChar* pName) 
 : CSideViewBase(pName)
@@ -993,7 +993,7 @@ m_pCloseButton(NULL)
 }
 
 /**
-* \brief ¼Ò¸êÀÚ
+* \brief ì†Œë©¸ì
 */
 CHelpHintSideViewGui::~CHelpHintSideViewGui()
 {
@@ -1306,7 +1306,7 @@ void CGuideHintSideViewGui::OpenFlashBox(sGUIDE_HINT_TBLDAT* pTableData)
 
 	m_pThis->SetPosition(rectPosition);
 
-	m_pFlash->Load( pTableData->szResource ); // ·Îµù ºÎºĞÀº ÀÌº¥Æ® ¹Ş´Â °÷À¸·Î ¿Å°Ü¾ß ÇÔ. by Peessi.
+	m_pFlash->Load( pTableData->szResource ); // ë¡œë”© ë¶€ë¶„ì€ ì´ë²¤íŠ¸ ë°›ëŠ” ê³³ìœ¼ë¡œ ì˜®ê²¨ì•¼ í•¨. by Peessi.
 	m_pFlash->SetPosition(rectPosition);
 	m_pFlash->PlayMovie( TRUE );
 	m_pFlash->RestartMovie();
@@ -1393,7 +1393,7 @@ void CStringHintSideViewGui::Update( RwReal fElapsed )
 
 		if( m_fCurrentTime > m_fLifeTime )
 		{
-			// ´İ¾ÆÁØ´Ù.
+			// ë‹«ì•„ì¤€ë‹¤.
 			OnSideViewClose();
 
 			CDboEventGenerator::HintSideViewClosed();

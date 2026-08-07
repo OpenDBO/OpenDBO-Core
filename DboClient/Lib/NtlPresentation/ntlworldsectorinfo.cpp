@@ -151,7 +151,7 @@ RwBool CNtlWorldSectorInfo::NtlWorldSectorGeometryCreate(CNtlWorldSector *pNtlWo
 	RwInt32 NPosEXBy0 = (RwInt32)(SPos.x + (float)dGET_WORLD_PARAM()->WorldSizeHalf);
 	RwInt32 CurRealPt;
 
-	// ���ľ� �Ѵ� ������ Ʋ����
+	// 占쏙옙占식억옙 占싼댐옙 占쏙옙占쏙옙占쏙옙 틀占쏙옙占쏙옙
 	for(int i = (RwInt32)SPos.y; i <= (RwInt32)EPos.y; i += dGET_WORLD_PARAM()->WorldSectorTileSize)
 	{
 		for(int j = NPosSXBy0; j >= NPosEXBy0; j -= dGET_WORLD_PARAM()->WorldSectorTileSize)
@@ -242,7 +242,7 @@ RwBool CNtlWorldSectorInfo::NtlWorldSectorGeometryDelete(CNtlWorldSector *pNtlWo
 {
 	NTL_FUNCTION("_RpNtlWorldSectorGeometryDelete");
 
-	// �ε���
+	// 占싸듸옙占쏙옙
 	switch (GetSceneManager()->GetActiveWorldType())
 	{
 	case AW_HEGITHFIELD:
@@ -269,7 +269,7 @@ RwBool CNtlWorldSectorInfo::NtlWorldSectorGeometryDeleteWithoutSwapFileSaving(CN
 {
 	NTL_FUNCTION("_RpNtlWorldSectorGeometryDeleteWithoutSwapFileSaving");
 
-	// �ε���
+	// 占싸듸옙占쏙옙
 	switch (GetSceneManager()->GetActiveWorldType())
 	{
 	case AW_HEGITHFIELD:
@@ -741,11 +741,11 @@ RwBool CNtlWorldSectorInfo::IndoorSectorLoadFromFile(FILE* pFile, CNtlWorldSecto
 
 	SectorObjectLoadFromFile(pFile, pNtlWorldSector, AW_RWWORLD);
 	SectorWaterLoadFromFile(pFile, pNtlWorldSector);
-	SectorShadowLoadFromFile(pFile, pNtlWorldSector); // ����ȭ�� ���� �մϴ�.
+	SectorShadowLoadFromFile(pFile, pNtlWorldSector); // 占쏙옙占쏙옙화占쏙옙 占쏙옙占쏙옙 占쌌니댐옙.
 	SectorEffectLoadFromFile(pFile, pNtlWorldSector);
 	SectorSoundEffectLoadFromFile(pFile, pNtlWorldSector);
-	SectorCullLoadFromFile(pFile, pNtlWorldSector); // ����ȭ�� ���� �մϴ�.
-	SectorTileTransparencyLoadFromFile(pFile, pNtlWorldSector); // ����ȭ�� ���� �մϴ�.
+	SectorCullLoadFromFile(pFile, pNtlWorldSector); // 占쏙옙占쏙옙화占쏙옙 占쏙옙占쏙옙 占쌌니댐옙.
+	SectorTileTransparencyLoadFromFile(pFile, pNtlWorldSector); // 占쏙옙占쏙옙화占쏙옙 占쏙옙占쏙옙 占쌌니댐옙.
 	SectorShoreLineLoadFromFile(pFile, pNtlWorldSector);
 	SectorDecalLoadFromFile(pFile, pNtlWorldSector);
 	SectorPlantLoadFromFile(pFile, pNtlWorldSector);
@@ -767,11 +767,11 @@ RwBool CNtlWorldSectorInfo::IndoorSectorSaveIntoFile(FILE* pFile, CNtlWorldSecto
 
 	SectorObjectSaveIntoFile(pFile, pNtlWorldSector, AW_RWWORLD);
 	SectorWaterSaveIntoFile(pFile, pNtlWorldSector);
-	SectorShadowSaveIntoFile(pFile, pNtlWorldSector); // ����ȭ�� ���� �մϴ�.
+	SectorShadowSaveIntoFile(pFile, pNtlWorldSector); // 占쏙옙占쏙옙화占쏙옙 占쏙옙占쏙옙 占쌌니댐옙.
 	SectorEffectSaveIntoFile(pFile, pNtlWorldSector);
 	SectorSoundEffectSaveIntoFile(pFile, pNtlWorldSector);
-	SectorCullSaveIntoFile(pFile, pNtlWorldSector); // ����ȭ �� ���� �մϴ�.
-	SectorTileTransparencySaveIntoFile(pFile, pNtlWorldSector); // ����ȭ �� ���� �մϴ�.
+	SectorCullSaveIntoFile(pFile, pNtlWorldSector); // 占쏙옙占쏙옙화 占쏙옙 占쏙옙占쏙옙 占쌌니댐옙.
+	SectorTileTransparencySaveIntoFile(pFile, pNtlWorldSector); // 占쏙옙占쏙옙화 占쏙옙 占쏙옙占쏙옙 占쌌니댐옙.
 	SectorShoreLineSaveIntoFile(pFile, pNtlWorldSector);
 	SectorDecalSaveIntoFile(pFile, pNtlWorldSector);
 	SectorPlantSaveIntoFile(pFile, pNtlWorldSector);
@@ -793,11 +793,11 @@ BYTE* CNtlWorldSectorInfo::IndoorSectorSaveIntoFileFromFileMem(FILE* pFile, BYTE
 
 	pFileMem = SectorObjectSaveIntoFileFromFileMem(pFile, pFileMem, AW_RWWORLD);
 	pFileMem = SectorWaterSaveIntoFileFromFileMem(pFile, pFileMem);
-	pFileMem = SectorShadowSaveIntoFileFromFileMem(pFile, pFileMem); // ����ȭ�� ���� �մϴ�.
+	pFileMem = SectorShadowSaveIntoFileFromFileMem(pFile, pFileMem); // 占쏙옙占쏙옙화占쏙옙 占쏙옙占쏙옙 占쌌니댐옙.
 	pFileMem = SectorEffectSaveIntoFileFromFileMem(pFile, pFileMem);
 	pFileMem = SectorSoundEffectSaveIntoFileFromFileMem(pFile, pFileMem);
-	pFileMem = SectorCullSaveIntoFileFromFileMem(pFile, pFileMem); // ����ȭ �� ���� �մϴ�.
-	pFileMem = SectorTileTransparencySaveIntoFileFromFileMem(pFile, pFileMem); // ����ȭ �� ���� �մϴ�.
+	pFileMem = SectorCullSaveIntoFileFromFileMem(pFile, pFileMem); // 占쏙옙占쏙옙화 占쏙옙 占쏙옙占쏙옙 占쌌니댐옙.
+	pFileMem = SectorTileTransparencySaveIntoFileFromFileMem(pFile, pFileMem); // 占쏙옙占쏙옙화 占쏙옙 占쏙옙占쏙옙 占쌌니댐옙.
 	pFileMem = SectorShoreLineSaveIntoFileFromFileMem(pFile, pFileMem);
 	pFileMem = SectorDecalSaveIntoFileFromFileMem(pFile, pFileMem);
 	pFileMem = SectorPlantSaveIntoFileFromFileMem(pFile, pFileMem);
@@ -818,11 +818,11 @@ RwInt32 CNtlWorldSectorInfo::IndoorSectorSkipToFile(FILE* pFile)
 
 	SectorObjectSkipToFile(pFile, AW_RWWORLD);
 	SectorWaterSkipToFile(pFile);
-	SectorShadowSkipToFile(pFile); // ����ȭ�� ���� �մϴ�.
+	SectorShadowSkipToFile(pFile); // 占쏙옙占쏙옙화占쏙옙 占쏙옙占쏙옙 占쌌니댐옙.
 	SectorEffectSkipToFile(pFile);
 	SectorSoundEffectSkipToFile(pFile);
-	SectorCullSkipToFile(pFile); // ����ȭ �� ���� �մϴ�.
-	SectorTileTransparencySkipToFile(pFile); // ����ȭ �� ���� �մϴ�.
+	SectorCullSkipToFile(pFile); // 占쏙옙占쏙옙화 占쏙옙 占쏙옙占쏙옙 占쌌니댐옙.
+	SectorTileTransparencySkipToFile(pFile); // 占쏙옙占쏙옙화 占쏙옙 占쏙옙占쏙옙 占쌌니댐옙.
 	SectorShoreLineSkipToFile(pFile);
 	SectorDecalSkipToFile(pFile);
 	SectorPlantSkipToFile(pFile);
@@ -843,11 +843,11 @@ BYTE* CNtlWorldSectorInfo::IndoorSectorSkipToFileMem(BYTE* pFileMem)
 
 	pFileMem = SectorObjectSkipToFileMem(pFileMem, AW_RWWORLD);
 	pFileMem = SectorWaterSkipToFileMem(pFileMem);
-	pFileMem = SectorShadowSkipToFileMem(pFileMem); // ����ȭ�� ���� �մϴ�.
+	pFileMem = SectorShadowSkipToFileMem(pFileMem); // 占쏙옙占쏙옙화占쏙옙 占쏙옙占쏙옙 占쌌니댐옙.
 	pFileMem = SectorEffectSkipToFileMem(pFileMem);
 	pFileMem = SectorSoundEffectSkipToFileMem(pFileMem);
-	pFileMem = SectorCullSkipToFileMem(pFileMem); // ����ȭ �� ���� �մϴ�.
-	pFileMem = SectorTileTransparencySkipToFileMem(pFileMem); // ����ȭ �� ���� �մϴ�.
+	pFileMem = SectorCullSkipToFileMem(pFileMem); // 占쏙옙占쏙옙화 占쏙옙 占쏙옙占쏙옙 占쌌니댐옙.
+	pFileMem = SectorTileTransparencySkipToFileMem(pFileMem); // 占쏙옙占쏙옙화 占쏙옙 占쏙옙占쏙옙 占쌌니댐옙.
 	pFileMem = SectorShoreLineSkipToFileMem(pFileMem);
 	pFileMem = SectorDecalSkipToFileMem(pFileMem);
 	pFileMem = SectorPlantSkipToFileMem(pFileMem);
@@ -1024,7 +1024,7 @@ RwBool CNtlWorldSectorInfo::SectorMaterialLoadFromFile(FILE* pFile, CNtlWorldSec
 			{
 				fread(&uiLength, sizeof(RwUInt32), 1, pFile);
 				fread(ReadBuff, sizeof(RwChar) * uiLength, 1, pFile);
-				ReadBuff[uiLength] = '\0'; // String ���� ǥ�����ش�.
+				ReadBuff[uiLength] = '\0'; // String 占쏙옙占쏙옙 표占쏙옙占쏙옙占쌔댐옙.
 
 				pNtlWorldSector->m_pTextureSplat[i] = CNtlPLResourceManager::GetInstance()->LoadTexture(ReadBuff, dGET_WORLD_PARAM()->CurDefaultTexPath); 
 				DBO_ASSERT(pNtlWorldSector->m_pTextureSplat[i], "Texture load failed.");
@@ -2558,7 +2558,7 @@ void CNtlWorldSectorInfo::SectorObjectSaveIntoFileFromFileMemDiff(FILE* pFile, B
 		}
 	}
 
-	// Merge �� �� ������ fwrite �Ѵ�.
+	// Merge 占쏙옙 占쏙옙 占쏙옙占쏙옙占쏙옙 fwrite 占싼댐옙.
 	iNum = iDstTriggerCnt + iSrcNonTriggerCnt;
 	fwrite(&iNum, sizeof(RwInt32), 1, pFile);
 
@@ -2802,12 +2802,12 @@ RwBool CNtlWorldSectorInfo::SectorShadowLoadFromFile(FILE* pFile, CNtlWorldSecto
 
 		if (dNTL_WORLD_VERSION_COMPARE(dGET_WORLD_PARAM()->WorldLoadVer, dNTL_WORLD_VERSION_OLD))
 		{
-			// ���ο��� 8888 ���˰� 888 ���˿� ���� Load�� �ٸ���.
+			// 占쏙옙占싸울옙占쏙옙 8888 占쏙옙占싯곤옙 888 占쏙옙占싯울옙 占쏙옙占쏙옙 Load占쏙옙 占쌕몌옙占쏙옙.
 			CNtlPLResourceManager::GetInstance()->LoadTexture(pNtlWorldShadow->m_pTexShadow, pFile);		
 		}
 		else if (dNTL_WORLD_VERSION_COMPARE(dGET_WORLD_PARAM()->WorldLoadVer, dNTL_WORLD_VERSION))
 		{
-			// ���ο��� 8888 ���˰� 888 ���˿� ���� Load�� �ٸ���.
+			// 占쏙옙占싸울옙占쏙옙 8888 占쏙옙占싯곤옙 888 占쏙옙占싯울옙 占쏙옙占쏙옙 Load占쏙옙 占쌕몌옙占쏙옙.
 			CNtlPLResourceManager::GetInstance()->LoadTextureShadowMap(pNtlWorldShadow->m_pTexShadow, pFile);
 		}		
 	}	
@@ -6172,7 +6172,7 @@ RwBool _RpNtlWorldSectorGeometrySaveIntoFile(RpWorldSector *pWorldSector, FILE* 
 {
 	/*
 	WorldFileFormat - SectorInfo
-	SectorInfo�� File�� Save�ϴ� �κ��̴�.
+	SectorInfo占쏙옙 File占쏙옙 Save占싹댐옙 占싸븝옙占싱댐옙.
 	*/
 
 	NTL_FUNCTION("_RpNtlWorldSectorGeometrySaveIntoFile");
@@ -6275,7 +6275,7 @@ RwBool _RpNtlWorldSectorGeometrySaveIntoFile(RpWorldSector *pWorldSector, FILE* 
 			fwrite(&SID, sizeof(RwUInt32), 1, pFile);
 
 			ObjectID = pNtlPLObject->GetObjectSerialID();
-#ifdef dNTL_WORLD_FORMAT_CONVERT // ���� ���� ��ȯ��dGET_WORLD_PARAM()->WorldObjectSerialID ����Ǿ�� �Ѵ�.
+#ifdef dNTL_WORLD_FORMAT_CONVERT // 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙환占쏙옙dGET_WORLD_PARAM()->WorldObjectSerialID 占쏙옙占쏙옙퓸占쏙옙 占싼댐옙.
 			if (ObjectID == 0)
 			{
 				ObjectID = dGET_WORLD_PARAM()->WorldObjectSerialID;
@@ -6778,7 +6778,7 @@ RwBool _RpNtlWorldSectorGeometryLoadFromFile(sCUR_FIELD_TEX_INFO& CurFieldTexInf
 {
 	/*
 	WorldFileFormat - SectorInfo
-	SectorInfo�� File�κ��� Load �ϴ� �κ� �̴�.
+	SectorInfo占쏙옙 File占싸븝옙占쏙옙 Load 占싹댐옙 占싸븝옙 占싱댐옙.
 	*/
 
 	NTL_FUNCTION("_RpNtlWorldSectorGeometryLoadFromFile");
@@ -7700,7 +7700,7 @@ RwBool _RpNtlWorldSectorGeometryDeleteWithoutSwapFileSaving(CNtlWorldSector *pNt
 	// 		dNTL_WORLD_LOCAL(pNtlWorldSector->m_pWorldSector, pNtlSector) = NULL;
 	// 	}
 
-	// �ε���
+	// 占싸듸옙占쏙옙
 	switch (GetSceneManager()->GetActiveWorldType())
 	{
 	case AW_HEGITHFIELD:
@@ -7739,7 +7739,7 @@ RwBool _RpNtlWorldSectorGeometryDelete(CNtlWorldSector *pNtlWorldSector)
 	// 		dNTL_WORLD_LOCAL(pNtlWorldSector->m_pWorldSector, pNtlSector) = NULL;
 	// 	}
 
-	// �ε���
+	// 占싸듸옙占쏙옙
 	switch (GetSceneManager()->GetActiveWorldType())
 	{
 	case AW_HEGITHFIELD:
@@ -7830,7 +7830,7 @@ RwBool _RpNtlWorldSectorGeometryCreate(CNtlWorldSector *pNtlWorldSector)
 	RwInt32 NPosEXBy0 = (RwInt32)(SPos.x + (float)dGET_WORLD_PARAM()->WorldSizeHalf);
 	RwInt32 CurRealPt;
 
-	// ���ľ� �Ѵ� ������ Ʋ����
+	// 占쏙옙占식억옙 占싼댐옙 占쏙옙占쏙옙占쏙옙 틀占쏙옙占쏙옙
 	for(int i = (RwInt32)SPos.y; i <= (RwInt32)EPos.y; i += dGET_WORLD_PARAM()->WorldSectorTileSize)
 	{
 		for(int j = NPosSXBy0; j >= NPosEXBy0; j -= dGET_WORLD_PARAM()->WorldSectorTileSize)
@@ -8907,7 +8907,7 @@ RwBool _RpNtlWorldSectorGeometrySaveIntoFileIndoor(CNtlWorldSector *pNtlWorldSec
 {
 	/*
 	WorldFileFormat - SectorInfo
-	SectorInfo�� File�� Save�ϴ� �κ��̴�.
+	SectorInfo占쏙옙 File占쏙옙 Save占싹댐옙 占싸븝옙占싱댐옙.
 	*/
 
 	NTL_FUNCTION("_RpNtlWorldSectorGeometrySaveIntoFile");

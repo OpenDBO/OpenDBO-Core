@@ -24,9 +24,9 @@ HBRUSH CHTTPTransparent::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 {
     //HBRUSH hbr = CExplorer_information::OnCtlColor(pDC, pWnd, nCtlColor);
 
-    // TODO:  ¿©±â¼­ DCÀÇ Æ¯¼ºÀ» º¯°æÇÕ´Ï´Ù.
+    // TODO:  ì—¬ê¸°ì„œ DCì˜ íŠ¹ì„±ì„ ë³€ê²½í•©ë‹ˆë‹¤.
 
-    // TODO:  ±âº»°ªÀÌ Àû´çÇÏÁö ¾ÊÀ¸¸é ´Ù¸¥ ºê·¯½Ã¸¦ ¹ÝÈ¯ÇÕ´Ï´Ù.
+    // TODO:  ê¸°ë³¸ê°’ì´ ì ë‹¹í•˜ì§€ ì•Šìœ¼ë©´ ë‹¤ë¥¸ ë¸ŒëŸ¬ì‹œë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
 
     pDC->SetBkMode(TRANSPARENT);    
     return (HBRUSH)GetStockObject(NULL_BRUSH);

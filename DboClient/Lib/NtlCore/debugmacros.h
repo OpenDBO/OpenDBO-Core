@@ -19,7 +19,11 @@ namespace RWS
 		#ifdef NDEBUG
 			#define RWS_DEBUGBREAK
 		#else
-			#define RWS_DEBUGBREAK __asm { int 3 }
+			#if defined(_M_X64) || defined(_WIN64)
+				#define RWS_DEBUGBREAK __debugbreak()
+			#else
+				#define RWS_DEBUGBREAK __asm { int 3 }
+			#endif
 		#endif
 	#elif
 		#error "Your platform specific break code here"

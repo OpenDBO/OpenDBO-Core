@@ -115,7 +115,7 @@ public:
     }
 
     void setMesh(iMesh *mesh);
-	void setMesh(const char* filename);	// Ãß°¡ -by Kell(09. 07. 24)
+	void setMesh(const char* filename);	// ì¶”ê°€ -by Kell(09. 07. 24)
     void releaseMesh();
 
     void zoomExtents();

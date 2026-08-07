@@ -51,7 +51,7 @@ void CCoordManager::SetMouseDelta( INT nDelta )
 {
 	m_nMouseDelta = m_nMouseDelta + nDelta;
 
-	// Delta ÇÑ°è
+	// Delta í•œê³„
 	if( m_nMouseDelta > 1200 )
 		m_nMouseDelta = 1200;
 	else if( m_nMouseDelta < -360 )
@@ -75,11 +75,11 @@ CPoint CCoordManager::FixMousePt( CPoint& point )
 	
 	ptResult = point;
 
-	// ¿©¹é °ø°£ Àû¿ë.
+	// ì—¬ë°± ê³µê°„ ì ìš©.
 	ptResult.x -= m_nMargin;
 	ptResult.y -= m_nMargin;
 
-	// ¿©¹é³»ÀÇ °ø°£À¸·Î ¼öÁ¤.
+	// ì—¬ë°±ë‚´ì˜ ê³µê°„ìœ¼ë¡œ ìˆ˜ì •.
 	if( point.x < m_nMargin ) 
 		ptResult.x = 0;
 	if( point.y < m_nMargin ) 
@@ -89,7 +89,7 @@ CPoint CCoordManager::FixMousePt( CPoint& point )
 	if( point.y > m_rcClient.bottom - m_nMargin + 1 ) 
 		ptResult.y = m_rcClient.bottom - 2 * m_nMargin + 1;
 
-	// ScaleFactor Àû¿ë. Offset Àû¿ë.
+	// ScaleFactor ì ìš©. Offset ì ìš©.
     ptResult.x = (INT)( ptResult.x / m_fFixXScaleFactor ) + m_ptOffset.x;
 	ptResult.y = (INT)( ptResult.y / m_fFixYScaleFactor ) + m_ptOffset.y;
 
@@ -98,7 +98,7 @@ CPoint CCoordManager::FixMousePt( CPoint& point )
 
 CRect CCoordManager::GetDestRect()
 {
-	// Result Rect´Â width(), height() °ªÀÌ right, bottom¿¡ µé¾îÀÖ´Ù.
+	// Result RectëŠ” width(), height() ê°’ì´ right, bottomì— ë“¤ì–´ìˆë‹¤.
 	CRect rcResult( 0, 0, 0, 0 );
 
 	rcResult.left	= m_nMargin;
@@ -111,7 +111,7 @@ CRect CCoordManager::GetDestRect()
 
 CRect CCoordManager::GetSrcRect()
 {
-	// Result Rect´Â width(), height() °ªÀÌ right, bottom¿¡ µé¾îÀÖ´Ù.
+	// Result RectëŠ” width(), height() ê°’ì´ right, bottomì— ë“¤ì–´ìˆë‹¤.
 	CRect rcResult( 0, 0, 0, 0 );
 
 	rcResult.left	= m_ptOffset.x;
@@ -127,7 +127,7 @@ CCoordManager::MARGINRECT CCoordManager::PtInMargin( CPoint& point )
 	/*if( point.x < 0 || point.y < 0 || point.x > m_rcClient.right || point.y > m_rcClient.bottom )
 		return CENTER;*/
 	
-	// ¿ŞÂÊ
+	// ì™¼ìª½
 	if( point.x < m_nMargin )
 	{
 		if( point.y < m_nMargin )
@@ -137,7 +137,7 @@ CCoordManager::MARGINRECT CCoordManager::PtInMargin( CPoint& point )
 		else
 			return LEFT;
 	}
-	// ¿À¸¥ÂÊ
+	// ì˜¤ë¥¸ìª½
 	else if( point. x > m_nMargin + m_rcView.right )
 	{
 		if( point.y < m_nMargin )
@@ -147,7 +147,7 @@ CCoordManager::MARGINRECT CCoordManager::PtInMargin( CPoint& point )
 		else
 			return RIGHT;
 	}
-	// Áß¾Ó
+	// ì¤‘ì•™
 	else
 	{
 		if( point.y < m_nMargin )
@@ -158,7 +158,7 @@ CCoordManager::MARGINRECT CCoordManager::PtInMargin( CPoint& point )
 			return CENTER;
 	}
 	
-	//// ¿ŞÂÊ
+	//// ì™¼ìª½
 	//if( point.x < 0 )
 	//{
 	//	if( point.y < 0 )
@@ -168,7 +168,7 @@ CCoordManager::MARGINRECT CCoordManager::PtInMargin( CPoint& point )
 	//	else
 	//		return LEFT;
 	//}
-	//// ¿À¸¥ÂÊ
+	//// ì˜¤ë¥¸ìª½
 	//else if( point. x > m_rcClient.right )
 	//{
 	//	if( point.y < 0 )
@@ -178,7 +178,7 @@ CCoordManager::MARGINRECT CCoordManager::PtInMargin( CPoint& point )
 	//	else
 	//		return RIGHT;
 	//}
-	//// Áß¾Ó
+	//// ì¤‘ì•™
 	//else
 	//{
 	//	if( point.y < 0 )
@@ -242,7 +242,7 @@ BOOL CCoordManager::IsVScrollNeed()
 
 void CCoordManager::FixOffset()
 {
-	// offset º¸Á¤.
+	// offset ë³´ì •.
 	if( m_ptOffset.x < 0 ) m_ptOffset.x = 0;
 	if( m_ptOffset.y < 0 ) m_ptOffset.y = 0;
 	if( IsHScrollNeed() )
@@ -310,7 +310,7 @@ void CCoordManager::SetMargin( INT nMargin )
 
 void CCoordManager::SetFixScaleFactor()
 {
-	// ¼Ò¼ıÁ¡ 6ÀÚ¸® ÀÌÇÏ¿¡¼­ ³»¸² Çö»óÀÌ ÀÏ¾î³ª¹Ç·Î ÀÓÀÇ ¿Ã¸². 
+	// ì†Œìˆ«ì  6ìë¦¬ ì´í•˜ì—ì„œ ë‚´ë¦¼ í˜„ìƒì´ ì¼ì–´ë‚˜ë¯€ë¡œ ì„ì˜ ì˜¬ë¦¼. 
 	m_fFixXScaleFactor = ( (FLOAT)m_rcView.right / (INT)( m_rcView.right / m_fScaleFactor ) ) + 0.000001f; 
 	m_fFixYScaleFactor = ( (FLOAT)m_rcView.bottom / (INT)( m_rcView.bottom / m_fScaleFactor ) ) + 0.000001f;
 	FixOffset();

@@ -2,7 +2,7 @@
  *
  * File			: NtlPLApi.h
  * Author		: All Author
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 8. 11	
  * Abstract		: Presentation layer api function.
  *****************************************************************************
@@ -23,7 +23,7 @@ void API_PLTerminate(void);
 
 #define API_PL_CLAMP(x, min, max) (x = (x < min ? min : x < max ? x : max))
 
-#define E2I(val) *((int*)&val)					///< Enum«¸¿ª Int«¸¿∏∑Œ ∫Ø∞Ê«—¥Ÿ.
+#define E2I(val) *((int*)&val)					///< EnumÌòïÏùÑ IntÌòïÏúºÎ°ú Î≥ÄÍ≤ΩÌïúÎã§.
 
 
 RpAtomic*	API_PL_LoadAtomic(const RwChar*	filename, const RwChar* pTexturePath);
@@ -50,22 +50,22 @@ void		API_PL_8BColorClamp(RwUInt8* pDst, RwInt32 Value);	// 8bits color clamping
 void		API_PL_1BColorClamp(RwReal* pDst, RwReal Value);	// 1.0f based color clamping from the value
 
 
-void		API_PL_RasterSaveImage(const RwRaster *pRaster, const RwChar *pszFileName);    ///< Raster∏¶ Image∑Œ ¿˙¿Â(.png, .bmp)
-void		API_PL_RasterSaveImage(const RwRaster *pRaster, const RwChar *pszFileName, RwInt32 _Width, RwInt32 _Height);    ///< Raster∏¶ Image∑Œ ¿˙¿Â(.png, .bmp)
+void		API_PL_RasterSaveImage(const RwRaster *pRaster, const RwChar *pszFileName);    ///< RasterÎ•º ImageÎ°ú Ï†ÄÏû•(.png, .bmp)
+void		API_PL_RasterSaveImage(const RwRaster *pRaster, const RwChar *pszFileName, RwInt32 _Width, RwInt32 _Height);    ///< RasterÎ•º ImageÎ°ú Ï†ÄÏû•(.png, .bmp)
 
 void		API_PL_CameraLookAt( RwCamera* pCamera, 
 								 const RwV3d* pSetCameraPos, 
 								 const RwV3d* pTarget, 
 								 const RwV3d* pSentInUp = NULL,
-								 RwReal fAtAxisRot = 0.0f);   ///< LookAt¿∏∑Œ Camra Matrix∏¶ ∫Ø»Ø
+								 RwReal fAtAxisRot = 0.0f);   ///< LookAtÏúºÎ°ú Camra MatrixÎ•º Î≥ÄÌôò
 
 void		API_PL_CameraMatrixLookAt( RwMatrix *pMat, 
 									   const RwV3d* pSetCameraPos, 
 									   const RwV3d* pTarget);  
 
-RwV2d       API_PL_Calc3DPosTo2D( RwV3d* v3DPos, RwInt32 nWidth, RwInt32 nHeight, RwBool bOutSideReturn = FALSE); ///< 3D¡¬«•∏¶ 2D¡¬«•∑Œ ∫Ø»Ø«—¥Ÿ
+RwV2d       API_PL_Calc3DPosTo2D( RwV3d* v3DPos, RwInt32 nWidth, RwInt32 nHeight, RwBool bOutSideReturn = FALSE); ///< 3DÏ¢åÌëúÎ•º 2DÏ¢åÌëúÎ°ú Î≥ÄÌôòÌïúÎã§
 
-RpAtomic*	API_PL_RenderWireMesh(RpAtomic* atomic, void* data);				   ///< Atomic¿ª Wireframe¿∏∑Œ «•Ω√«—¥Ÿ.
+RpAtomic*	API_PL_RenderWireMesh(RpAtomic* atomic, void* data);				   ///< AtomicÏùÑ WireframeÏúºÎ°ú ÌëúÏãúÌïúÎã§.
 
 
 #endif

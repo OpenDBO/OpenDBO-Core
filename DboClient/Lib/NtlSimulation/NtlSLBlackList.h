@@ -10,7 +10,7 @@ struct sBlackListMember : public sCommunityMember
 };
 
 
-// ºí·¢¸®½ºÆ® µ¥ÀÌÅÍ¸¦ °ü¸®ÇÏ´Â Å¬·¡½º
+// ë¸”ë™ë¦¬ìŠ¤íŠ¸ ë°ì´í„°ë¥¼ ê´€ë¦¬í•˜ëŠ” í´ë˜ìŠ¤
 /// by agebreak 2007.12.14
 class CNtlSLBlackList : public CNtlSLCommunityGroup, public RWS::CEventHandler
 {

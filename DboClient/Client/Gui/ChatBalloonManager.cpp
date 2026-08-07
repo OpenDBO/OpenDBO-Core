@@ -164,11 +164,11 @@ RwInt32 CBalloonGui::PriorityCheck( RwUInt32 eType )
 }
 
 // ChatBalloon 
-// 1. 20ÃÊ°£ Ç¥½Ã. ( ¾ç ³¡´Ü 1ÃÊ°£ Blending ) - ok
-// 2. PC ¹Ý°æ 60m  - ok
-// 3. PC ¸Ó¸®À§ Ç¥½Ã. - ok 
-// 4. °ø°Ý ¹ÞÀ¸¸é »ç¶óÁü.
-// 5. ÆÄÆ¼´ëÈ­¸¸ Ç¥½Ã ¿É¼Ç
+// 1. 20ì´ˆê°„ í‘œì‹œ. ( ì–‘ ëë‹¨ 1ì´ˆê°„ Blending ) - ok
+// 2. PC ë°˜ê²½ 60m  - ok
+// 3. PC ë¨¸ë¦¬ìœ„ í‘œì‹œ. - ok 
+// 4. ê³µê²© ë°›ìœ¼ë©´ ì‚¬ë¼ì§.
+// 5. íŒŒí‹°ëŒ€í™”ë§Œ í‘œì‹œ ì˜µì…˜
 
 CChatBalloonGui::CChatBalloonGui( CNtlSob* pOwnerObject, CPos& posOffsetDelta, const WCHAR* pMessage, RwInt32 eType, RwBool bPartyMsg /* = FALSE  */ )
 : CBalloonGui( pOwnerObject, BALLOON_CHAT_DISPTIME, posOffsetDelta, eType ), m_bIsPartyMessage( bPartyMsg )
@@ -202,7 +202,7 @@ CChatBalloonGui::CChatBalloonGui( CNtlSob* pOwnerObject, CPos& posOffsetDelta, c
 	m_pName->SetEffectValue( 0 );
 	m_pName->SetText( Logic_GetName( pOwnerObject ) );
 
-	// Balloon ¼Ó¼º ¼¼ÆÃ
+	// Balloon ì†ì„± ì„¸íŒ…
 	m_pGuiBalloon->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR );
 	m_pGuiBalloon->SetTextColor( RGB( 10, 10, 10 ) );
 	m_pGuiBalloon->SetMargin( 5, 0 );
@@ -246,7 +246,7 @@ RwInt32 CChatBalloonGui::Update( RwReal fElapseTime )
 {
 	m_fCurrentTime += fElapseTime;
 
-	// Fade È¿°ú
+	// Fade íš¨ê³¼
 	FadeEffect();
 
 	if( m_eState == HIDE )
@@ -255,7 +255,7 @@ RwInt32 CChatBalloonGui::Update( RwReal fElapseTime )
 	if( GetGuiFuntor()->GetDistanceFromAvatar( m_pOwnerSobObject->GetPosition() ) > BALLOON_CHAT_RANGE )
 		return CBalloonManager::UR_NOTSHOW;
 
-	// À§Ä¡ º¯°æ
+	// ìœ„ì¹˜ ë³€ê²½
 	if( !PositionUpdate() )
 		return CBalloonManager::UR_NOTSHOW;
 
@@ -550,8 +550,8 @@ std::wstring CNPCBalloonGui::GetText(VOID)
 }
 
 // PrivateShopBalloon 
-// 1. Ç¥½Ã¿©ºÎ´Â ¸í·É¿¡ÀÇÇØ¼­¸¸ Ã³¸®
-// 2. PC ¹Ý°æ 30m
+// 1. í‘œì‹œì—¬ë¶€ëŠ” ëª…ë ¹ì—ì˜í•´ì„œë§Œ ì²˜ë¦¬
+// 2. PC ë°˜ê²½ 30m
 
 CPrivateShopBalloonGui::CPrivateShopBalloonGui( CNtlSob* pOwnerObject, CPos& posOffsetDelta, RwBool bReady, const WCHAR* pMessage )
 : CBalloonGui( pOwnerObject, 0.0f, posOffsetDelta, TYPE_PRIVATESHOP )
@@ -757,9 +757,9 @@ void CPrivateShopBalloonGui::ResizeBackground()
 }
 
 // QuestBalloon 
-// 1. ´Ý±âÀü±îÁö È¤Àº 1ºÐ°£ Ç¥½Ã.
-// 2. PC ¹Ý°æ 60m.
-// 3. NPC ¸Ó¸®À§ Ç¥½Ã.
+// 1. ë‹«ê¸°ì „ê¹Œì§€ í˜¹ì€ 1ë¶„ê°„ í‘œì‹œ.
+// 2. PC ë°˜ê²½ 60m.
+// 3. NPC ë¨¸ë¦¬ìœ„ í‘œì‹œ.
 
 CQuestBalloonGui::CQuestBalloonGui( CNtlSob* pOwnerObject, CPos& posOffsetDelta, std::wstring& wstrHtmlData, RwUInt32 uiID, RwBool bTimeProc )
 : CBalloonGui( pOwnerObject, BALLOON_NPC_DISPTIME, posOffsetDelta, TYPE_QUEST ), m_uiID( uiID ), m_bTimeProc( bTimeProc )
@@ -780,7 +780,7 @@ CQuestBalloonGui::CQuestBalloonGui( CNtlSob* pOwnerObject, CPos& posOffsetDelta,
 	rect.SetRectWH( BALLOON_QUEST_MARK_OFFSET, BALLOON_QUEST_MARK_OFFSET, BALLOON_QUEST_IMAGESIZE, BALLOON_QUEST_IMAGESIZE );
 	m_pMark = NTL_NEW gui::CPanel( rect, m_pBalloon, pSurfaceManager, pSurfaceManager->GetSurface( "Balloon.srf", "QuestImage" ) );
 
-	// Balloon ¼Ó¼º ¼¼ÆÃ
+	// Balloon ì†ì„± ì„¸íŒ…
 	m_pBalloon->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR );
 	m_pBalloon->SetTextColor( RGB( 10, 10, 10 ) );
 	m_pBalloon->SetMargin( 5, 0 );
@@ -920,9 +920,9 @@ VOID CQuestBalloonGui::FadeEffect(VOID)
 }
 
 // NPCMarkBalloon 
-// 1. ÀÌº¥Æ®¿¡ÀÇÇØ Ç¥½Ã, »èÁ¦.
-// 2. PC ¹Ý°æ 10m.
-// 3. NPC ¸Ó¸®À§ Ç¥½Ã.
+// 1. ì´ë²¤íŠ¸ì—ì˜í•´ í‘œì‹œ, ì‚­ì œ.
+// 2. PC ë°˜ê²½ 10m.
+// 3. NPC ë¨¸ë¦¬ìœ„ í‘œì‹œ.
 
 CMarkBalloonGui::CMarkBalloonGui( CNtlSob* pOwnerObject, CPos& posOffsetDelta, std::wstring& wstrHtmlData )
 : CBalloonGui( pOwnerObject, 0.0f, posOffsetDelta, TYPE_NPC_MARK )
@@ -943,7 +943,7 @@ CMarkBalloonGui::CMarkBalloonGui( CNtlSob* pOwnerObject, CPos& posOffsetDelta, s
 	rect.SetRectWH( BALLOON_QUEST_MARK_OFFSET, BALLOON_QUEST_MARK_OFFSET, BALLOON_QUEST_IMAGESIZE, BALLOON_QUEST_IMAGESIZE );
 	m_pMark = NTL_NEW gui::CPanel( rect, m_pBalloon, pSurfaceManager, pSurfaceManager->GetSurface( "Balloon.srf", "NPCMarkImage" ) );
 
-	// Balloon ¼Ó¼º ¼¼ÆÃ
+	// Balloon ì†ì„± ì„¸íŒ…
 	m_pBalloon->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR );
 	m_pBalloon->SetTextColor( RGB( 10, 10, 10 ) );
 	m_pBalloon->SetMargin( 5, 0 );
@@ -1077,9 +1077,9 @@ VOID CMarkBalloonGui::FadeEffect(VOID)
 
 
 // CDiceBalloonGui 
-// 1. ÀÌº¥Æ®¿¡ÀÇÇØ Ç¥½Ã, »èÁ¦.
-// 2. PC ¹Ý°æ 10m.
-// 3. PC ¸Ó¸®À§ Ç¥½Ã.
+// 1. ì´ë²¤íŠ¸ì—ì˜í•´ í‘œì‹œ, ì‚­ì œ.
+// 2. PC ë°˜ê²½ 10m.
+// 3. PC ë¨¸ë¦¬ìœ„ í‘œì‹œ.
 
 CDiceBalloonGui::CDiceBalloonGui( CNtlSob* pOwnerObject, CPos& posOffsetDelta, RwUInt32 uiNumber )
 : CBalloonGui( pOwnerObject, BALLOON_CHAT_DISPTIME, posOffsetDelta, TYPE_DICE )
@@ -1217,8 +1217,8 @@ VOID CDiceBalloonGui::FadeEffect(VOID)
 
 
 // BattleGauge 
-// 1. Ç¥½Ã¿©ºÎ´Â ¸í·É¿¡ÀÇÇØ¼­¸¸ Ã³¸®
-// 2. PC ¹Ý°æ 30m
+// 1. í‘œì‹œì—¬ë¶€ëŠ” ëª…ë ¹ì—ì˜í•´ì„œë§Œ ì²˜ë¦¬
+// 2. PC ë°˜ê²½ 30m
 
 CBattleGaugeGui::CBattleGaugeGui( CNtlSob* pOwnerObject, CPos& posOffsetDelta, const WCHAR* pName, RwUInt32 uiMaxLp, RwUInt32 uiLp, RwBool bMyTeam )
 : CBalloonGui( pOwnerObject, 0.0f, posOffsetDelta, TYPE_BATTLEGAUGE )
@@ -1412,15 +1412,15 @@ RwBool CBalloonManager::CreateInstance(VOID)
 	m_pInstance->m_pTestText->Enable( false );
 	m_pInstance->m_pTestText->Show( false );
 
-	// Update ¿¬°á
+	// Update ì—°ê²°
 	GetNtlGuiManager()->AddUpdateFunc( m_pInstance );
 
-	// CallBack ¿¬°á
+	// CallBack ì—°ê²°
 	m_pInstance->m_slotPaint = m_pInstance->m_pThis->SigPaint().Connect( m_pInstance, &CBalloonManager::OnPaint );
 
-	// Event ¿¬°á
+	// Event ì—°ê²°
 	m_pInstance->LinkMsg( g_EventSobDelete, 0, 0x9000 );
-	//m_pInstance->LinkMsg( g_EventCharObjDelete, 0, 0x9000 );	// °´Ã¼°¡ Áö¿öÁö±â Àü¿¡ Áö¿î´Ù. 
+	//m_pInstance->LinkMsg( g_EventCharObjDelete, 0, 0x9000 );	// ê°ì²´ê°€ ì§€ì›Œì§€ê¸° ì „ì— ì§€ìš´ë‹¤. 
 	m_pInstance->LinkMsg( g_EventQuestMark, 0 );
 	m_pInstance->LinkMsg( g_EventServerCharDialog, 0 );
 	m_pInstance->LinkMsg( g_EventSobInfoUpdate, 0 );
@@ -1443,13 +1443,13 @@ VOID CBalloonManager::DeleteInstance(VOID)
 	// TestText
 	NTL_DELETE( m_pInstance->m_pTestText );
 
-	// Update ¿¬°áÇØÁ¦
+	// Update ì—°ê²°í•´ì œ
 	GetNtlGuiManager()->RemoveUpdateFunc( m_pInstance );
 
-	// CallBack ¿¬°á ÇØÁ¦
+	// CallBack ì—°ê²° í•´ì œ
 	m_pInstance->m_pThis->SigPaint().Disconnect(m_pInstance->m_slotPaint);
 
-	// Event ¿¬°áÇØÁ¦
+	// Event ì—°ê²°í•´ì œ
 	m_pInstance->UnLinkMsg( g_EventSobDelete );
 	//m_pInstance->UnLinkMsg( g_EventCharObjDelete );
 	m_pInstance->UnLinkMsg( g_EventQuestMark );
@@ -1524,13 +1524,13 @@ VOID CBalloonManager::Update( RwReal fElapsed )
 		}				
 	}
 
-	// °Å¸®¼ø Á¤·Ä
+	// ê±°ë¦¬ìˆœ ì •ë ¬
 	qsort( m_aDiaplsyBalloon, m_nDisplayCount, sizeof( stDISPLAYBALLOON ), &CBalloonManager::Compare );
 }
 
 RwInt32 CBalloonManager::Compare( const VOID* valLeft, const VOID* valRight )
 {
-	// °Å¸®°¡ ¸Õ °ÍÀ» ¸ÕÀú ÂïÈ÷µµ·Ï ¾ÕÀ¸·Î Á¤·Ä
+	// ê±°ë¦¬ê°€ ë¨¼ ê²ƒì„ ë¨¼ì € ì°ížˆë„ë¡ ì•žìœ¼ë¡œ ì •ë ¬
 	stDISPLAYBALLOON* pLeft = (stDISPLAYBALLOON*)valLeft;
 	stDISPLAYBALLOON* pRight= (stDISPLAYBALLOON*)valRight;
 
@@ -1548,7 +1548,7 @@ VOID CBalloonManager::AddAvatarBalloon( const WCHAR* pMessage, RwBool bPartyMsg 
 	CBalloonGui* pBalloon = NULL;
 	CPos posOffsetDelta;
 
-	// ObjectClickGui°¡ ¶°ÀÖÀ»¶§¿¡´Â ¸»Ç³¼± Ç¥½Ã ¾ÈÇÔ.
+	// ObjectClickGuiê°€ ë– ìžˆì„ë•Œì—ëŠ” ë§í’ì„  í‘œì‹œ ì•ˆí•¨.
 	if( GetDialogManager()->IsOpenDialog( DIALOG_OBJECT_CLICK ) )
 		return;
 
@@ -1599,7 +1599,7 @@ VOID CBalloonManager::AddAvatarBalloon( const WCHAR* pMessage, RwBool bPartyMsg 
 
 		if( bNeedToCreate )
 		{
-			// »ý¼ºµÇ¾î ÀÖ´ø ¿ÀºêÁ§Æ®ÀÇ ¿ÀÇÁ¼ÂÀ» ¼öÁ¤ÇÒ ÇÊ¿ä´Â ¾ø´Ù.
+			// ìƒì„±ë˜ì–´ ìžˆë˜ ì˜¤ë¸Œì íŠ¸ì˜ ì˜¤í”„ì…‹ì„ ìˆ˜ì •í•  í•„ìš”ëŠ” ì—†ë‹¤.
 			pBalloon = NTL_NEW CChatBalloonGui(pAvatar, posOffsetDelta, pMessage, CBalloonGui::TYPE_AVATAR_CHAT, bPartyMsg);
 			AddBalloonData( pBalloon );
 		}
@@ -1664,7 +1664,7 @@ VOID CBalloonManager::AddPlayerBalloon( CNtlSob* pSobObject, const WCHAR* pMessa
 
 		if( bNeedToCreate )
 		{
-			// »ý¼ºµÇ¾î ÀÖ´ø ¿ÀºêÁ§Æ®ÀÇ ¿ÀÇÁ¼ÂÀ» ¼öÁ¤ÇÒ ÇÊ¿ä´Â ¾ø´Ù.
+			// ìƒì„±ë˜ì–´ ìžˆë˜ ì˜¤ë¸Œì íŠ¸ì˜ ì˜¤í”„ì…‹ì„ ìˆ˜ì •í•  í•„ìš”ëŠ” ì—†ë‹¤.
 			if( IsEnableToCreate( CBalloonGui::TYPE_PLAYER_CHAT ) )
 			{
 				pBalloon = NTL_NEW CChatBalloonGui( pSobObject, posOffsetDelta, pMessage, CBalloonGui::TYPE_PLAYER_CHAT, bPartyMsg);
@@ -1744,7 +1744,7 @@ VOID CBalloonManager::AddNPCBalloon( CNtlSob* pSobObject, const WCHAR* pMessage,
 
 		if( bNeedToCreate )
 		{
-			// »ý¼ºµÇ¾î ÀÖ´ø ¿ÀºêÁ§Æ®ÀÇ ¿ÀÇÁ¼ÂÀ» ¼öÁ¤ÇÒ ÇÊ¿ä´Â ¾ø´Ù.
+			// ìƒì„±ë˜ì–´ ìžˆë˜ ì˜¤ë¸Œì íŠ¸ì˜ ì˜¤í”„ì…‹ì„ ìˆ˜ì •í•  í•„ìš”ëŠ” ì—†ë‹¤.
 			pBalloon = NTL_NEW CNPCBalloonGui( pSobObject, posOffsetDelta, pMessage, fLifeTime, eType, byBalloonType, bTimeProc );
 			AddBalloonData( pBalloon );
 		}
@@ -1862,7 +1862,7 @@ VOID CBalloonManager::AddQuestBalloon( CNtlSob* pSobObject, std::wstring& wstrHt
 
 		if( bNeedToCreate )
 		{
-			// »ý¼ºµÇ¾î ÀÖ´ø ¿ÀºêÁ§Æ®ÀÇ ¿ÀÇÁ¼ÂÀ» ¼öÁ¤ÇÒ ÇÊ¿ä´Â ¾ø´Ù.
+			// ìƒì„±ë˜ì–´ ìžˆë˜ ì˜¤ë¸Œì íŠ¸ì˜ ì˜¤í”„ì…‹ì„ ìˆ˜ì •í•  í•„ìš”ëŠ” ì—†ë‹¤.
 			pBalloon = NTL_NEW CQuestBalloonGui( pSobObject, posOffsetDelta, wstrHtmlData, uiID, bTimeProc );
 			AddBalloonData( pBalloon );
 		}
@@ -1924,7 +1924,7 @@ VOID CBalloonManager::AddMarkBalloon( CNtlSob* pSobObject, std::wstring& wstrHtm
 
 		if( bNeedToCreate )
 		{
-			// »ý¼ºµÇ¾î ÀÖ´ø ¿ÀºêÁ§Æ®ÀÇ ¿ÀÇÁ¼ÂÀ» ¼öÁ¤ÇÒ ÇÊ¿ä´Â ¾ø´Ù.
+			// ìƒì„±ë˜ì–´ ìžˆë˜ ì˜¤ë¸Œì íŠ¸ì˜ ì˜¤í”„ì…‹ì„ ìˆ˜ì •í•  í•„ìš”ëŠ” ì—†ë‹¤.
 			pBalloon = NTL_NEW CMarkBalloonGui( pSobObject, posOffsetDelta, wstrHtmlData );
 			AddBalloonData( pBalloon );
 		}
@@ -1986,7 +1986,7 @@ VOID CBalloonManager::AddDiceBalloon( CNtlSob* pSobObject, RwUInt32 uiNumber )
 
 		if( bNeedToCreate )
 		{
-			// »ý¼ºµÇ¾î ÀÖ´ø ¿ÀºêÁ§Æ®ÀÇ ¿ÀÇÁ¼ÂÀ» ¼öÁ¤ÇÒ ÇÊ¿ä´Â ¾ø´Ù.
+			// ìƒì„±ë˜ì–´ ìžˆë˜ ì˜¤ë¸Œì íŠ¸ì˜ ì˜¤í”„ì…‹ì„ ìˆ˜ì •í•  í•„ìš”ëŠ” ì—†ë‹¤.
 			pBalloon = NTL_NEW CDiceBalloonGui( pSobObject, posOffsetDelta, uiNumber );
 			AddBalloonData( pBalloon );
 		}
@@ -2221,7 +2221,7 @@ VOID CBalloonManager::RemoveBalloonData( CNtlSob* pObj )
 		objit = m_mmapObjBalloon.erase( objit );		
 	}
 
-	//// peessi : °è¼ÓµÇ´Â ¹«È¿Æ÷ÀÎÅÍ ¿¡·¯¸¦ Àâ±â À§ÇÔ.  
+	//// peessi : ê³„ì†ë˜ëŠ” ë¬´íš¨í¬ì¸í„° ì—ëŸ¬ë¥¼ ìž¡ê¸° ìœ„í•¨.  
 	//for( MMAP_TYPE_BALLOON_IT it = m_mmapTypeBalloon.begin() ; it != m_mmapTypeBalloon.end() ; ++it )
 	//{
 	//	CBalloonGui* pTypeBalloon = (*it).second;
@@ -2426,7 +2426,7 @@ VOID CBalloonManager::HandleEvents( RWS::CMsg& msg )
 		//RemoveBalloonData( GetNtlSobManager()->GetSobObject( *pDeleteSerial ) );
 		RemoveBalloonData( GetNtlSobManager()->GetSobObject( pData->hSerialId ) );
 	}
-	// Æ÷Æ÷½ºÅæ ºÎÈ° ÅØ½ºÆ®.
+	// í¬í¬ìŠ¤í†¤ ë¶€í™œ í…ìŠ¤íŠ¸.
 	else if( msg.Id == g_EventCharReady ) 
 	{
 		CNtlOtherParam* pOtherParam = GetNtlSLGlobal()->GetSobAvatar()->GetOtherParam();

@@ -2,9 +2,9 @@
  *
  * File			: NtlSobFeelingActor.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2007. 04. 09	
- * Abstract		: Simulation objectø°º≠ ∞®¡§¿ª ¥¿≥¢¥¬ object
+ * Abstract		: Simulation objectÏóêÏÑú Í∞êÏ†ïÏùÑ ÎäêÎÅºÎäî object
  *****************************************************************************
  * Desc         : 
  *
@@ -81,7 +81,7 @@ public:
 	void						SobEquipChangeEventHandler(RWS::CMsg &pMsg);
 	void						SobSubWeaponActiveEventHandler(RWS::CMsg &pMsg);
 	void						SobSubWeaponDeActiveEventHandler(RWS::CMsg &pMsg);
-    void                        SobPostEffectEventHandler(RWS::CMsg& pMsg);             ///< Post Effect Event∏¶ √≥∏Æ«—¥Ÿ.
+    void                        SobPostEffectEventHandler(RWS::CMsg& pMsg);             ///< Post Effect EventÎ•º Ï≤òÎ¶¨ÌïúÎã§.
 };
 
 

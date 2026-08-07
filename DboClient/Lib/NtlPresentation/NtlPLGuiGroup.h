@@ -1,9 +1,9 @@
 /*****************************************************************************
  * File			: NtlPLGuiGroup.h
  * Author		: Hong Sungbock
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2007. 12. 13
- * Abstract		: PL´ÜÀÇ Gui groupÀ» »ı¼ºÇÑ´Ù
+ * Abstract		: PLë‹¨ì˜ Gui groupì„ ìƒì„±í•œë‹¤
  *****************************************************************************
  * Desc         : 
  *

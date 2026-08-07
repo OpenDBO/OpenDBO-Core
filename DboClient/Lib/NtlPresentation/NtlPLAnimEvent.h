@@ -32,8 +32,8 @@ struct SEventAnimHit
 
 struct SAnimSequenceEvent
 {
-	EAnimEvent	id;					//eventÀÇ Á¾·ù
-	float		fTime;				//½ÃÀÛ ½Ã°£ (½ÇÁ¦ ½Ã°£)
+	EAnimEvent	id;					//eventì˜ ì¢…ë¥˜
+	float		fTime;				//ì‹œì‘ ì‹œê°„ (ì‹¤ì œ ì‹œê°„)
 };
 
 #endif

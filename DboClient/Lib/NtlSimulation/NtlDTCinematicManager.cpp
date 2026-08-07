@@ -118,7 +118,7 @@ void CNtlDTCinematicManager::Update(RwReal fElapsed)
 	{
 		m_bRunning = FALSE;
 
-		// instance ªË¡¶.
+		// instance ÏÇ≠Ï†ú.
 		MapNodeChain::iterator instit;
 		for(instit = m_mapInstanceChain.begin(); instit != m_mapInstanceChain.end(); instit++)
 		{

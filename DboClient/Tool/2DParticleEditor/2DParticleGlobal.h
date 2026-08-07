@@ -14,10 +14,10 @@
 ///< Global Data
 extern TCHAR g_tcharWorkPath[256];
 
-// ¸¶¿ì½ºÀÇ »óÅÂ¸¦ Á¤ÀÇÇÑ´Ù.
+// ë§ˆìš°ìŠ¤ì˜ ìƒíƒœë¥¼ ì •ì˜í•œë‹¤.
 enum eMouseMode
 {
-	MOUSE_MODE_MOVED,			///< ¸¶¿ì½º·Î ¹«¾ùÀ» ¼±ÅÃÇØ¼­ ÀÌµ¿À» ÇÏ´Â »óÅÂ
+	MOUSE_MODE_MOVED,			///< ë§ˆìš°ìŠ¤ë¡œ ë¬´ì—‡ì„ ì„ íƒí•´ì„œ ì´ë™ì„ í•˜ëŠ” ìƒíƒœ
 
 	MOUSE_MODE_NUMS,
 	MOUSE_MODE_INVALID = 0xFF

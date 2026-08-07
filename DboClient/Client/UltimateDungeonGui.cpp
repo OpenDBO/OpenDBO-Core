@@ -205,7 +205,7 @@ bool CUltimateDungeonGui::LoadUdInfo(SERIAL_HANDLE hNPCSerial)
 			char chDifficulty[128];
 			sprintf_s(chDifficulty, 128, "DST_TMQ_DEGREE_OF_DIFFICULTY_%d", pData->byDungeonType + 1);
 
-			m_pbtnDifficultyCombo->AddItem(GetDisplayStringManager()->GetString(chDifficulty), (DWORD)pData->byDungeonType - 1);
+			m_pbtnDifficultyCombo->AddItem(GetDisplayStringManager()->GetString(chDifficulty), (DWORD_PTR)(pData->byDungeonType - 1));
 		}
 	}
 

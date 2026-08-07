@@ -30,7 +30,7 @@ CNtlSobVehicle::CNtlSobVehicle( void )
 
 	m_bAttachDriver = FALSE;
 
-	// Centimeter ´ÜÀ§·Î °è»êÇÔ
+	// Centimeter ë‹¨ìœ„ë¡œ ê³„ì‚°í•¨
 	m_fRideOnOffAccel		= 200.f;
 	m_fRideOnOffMaxSpeed	= 200.f;
 	m_fRideOnOffCurSpeed	= 0.f;
@@ -175,7 +175,7 @@ void CNtlSobVehicle::UpdateRideOnHeight( RwReal fElapsed )
 			m_fTargetRideOnHeight = 0.f;
 		}*/
 
-		// »ó½Â
+		// ìƒìŠ¹
 		if ( m_fTargetRideOnHeight > m_fCurRideOnHeight )
 		{
 			m_fRideOnOffCurSpeed += m_fRideOnOffAccel * fElapsed;
@@ -184,7 +184,7 @@ void CNtlSobVehicle::UpdateRideOnHeight( RwReal fElapsed )
 			m_fCurRideOnHeight += m_fRideOnOffCurSpeed * fElapsed;
 			m_fCurRideOnHeight = (m_fCurRideOnHeight >= m_fTargetRideOnHeight ? m_fTargetRideOnHeight : m_fCurRideOnHeight);
 		}
-		// ÇÏ°­
+		// í•˜ê°•
 		else if ( m_fTargetRideOnHeight < m_fCurRideOnHeight )
 		{
 			m_fRideOnOffCurSpeed += m_fRideOnOffAccel * fElapsed;

@@ -2,7 +2,7 @@
 //	File		:	VenusFramework.cpp
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by NTL-inc CO., Ltd
+//	Copyright	:	â“’ 2005 by NTL-inc CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -253,7 +253,7 @@ RwBool CVenusFramework::AttachPlugin()
 
 void CVenusFramework::SetErrorReport() 
 {
-    // ¹ö±×Æ®·¦¿ë ¼³Á¤
+    // ë²„ê·¸íŠ¸ëž©ìš© ì„¤ì •
     BT_SetAppName(VERSION_VENUS);         
     BT_SetSupportServer(_T("211.169.249.71"), 9999);
     BT_SetFlags(BTF_DETAILEDMODE);
@@ -300,17 +300,17 @@ RwBool CVenusFramework::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, RwBoo
 		NTL_RETURN(FALSE);
 	}
 
-	// Active Scene Manager¸¦ SettingÇÑ´Ù.
+	// Active Scene Managerë¥¼ Settingí•œë‹¤.
 	CNtlPLSceneManagerFactory::ActiveSceneManager(&CVenusVisualManager::GetInstance());
 
-	// Property Container¸¦ »ý¼ºÇÏ°í, µ¥ÀÌÅÍ¸¦ Load ÇÑ´Ù.
+	// Property Containerë¥¼ ìƒì„±í•˜ê³ , ë°ì´í„°ë¥¼ Load í•œë‹¤.
 	if(!CVenusPropertyContainer::GetInstance().LoadSerialize())
 	{
 		NTL_ASSERTFAIL("Property Container Load Fail!");
 		NTL_RETURN(FALSE);
 	}
 	
-	// World¸¦ »ý¼ºÇÑ´Ù.
+	// Worldë¥¼ ìƒì„±í•œë‹¤.
 	CreateWorld();
 	ShowTerrain(CVenusConfig::GetInstance().m_bShowTerrain);	
 
@@ -345,12 +345,12 @@ RwBool CVenusFramework::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, RwBoo
 
 	SetPauseVertex();
 
-    // Sound Manager¸¦ »ý¼ºÇÑ´Ù.
+    // Sound Managerë¥¼ ìƒì„±í•œë‹¤.
     //std::string strSoundPath = ".\\";
     //strSoundPath += CVenusConfig::GetInstance().m_strSoundPath;
     //strSoundPath += "\\";
 
-    GetSoundManager()->Init(".\\Sound\\");      // °­Á¦ ¼¼ÆÃ
+    GetSoundManager()->Init(".\\Sound\\");      // ê°•ì œ ì„¸íŒ…
     GetSoundManager()->SetListenerPosition(0.0f, 0.0f, 0.0f);
 
     CString strTitleName;
@@ -468,7 +468,7 @@ void CVenusFramework::UpdateMainLight()
 //------------------------------------------------------------------
 void CVenusFramework::ShowTerrain(RwBool bShow)
 {
-	// ÁöÇü°ú ½ºÄ«ÀÌ¸¦ °°ÀÌ ¾ø¾Ø´Ù.
+	// ì§€í˜•ê³¼ ìŠ¤ì¹´ì´ë¥¼ ê°™ì´ ì—†ì•¤ë‹¤.
 	CNtlPLGlobal::m_bWorldTerrainVisible = bShow;
 	CNtlPLGlobal::m_bWorldSkyVisible = bShow;
 }
@@ -480,7 +480,7 @@ void CVenusFramework::ShowObject(RwBool bShow)
 	//	m_pDecalTestObject->SetVisible(bShow);
 	//}	
 
-	// NOTE : Å×½ºÆ®¿ëÀ¸·Î ÀÓ½Ã·Î LensFlare Refresh ÀÛ¾÷À» ÇÑ´Ù.
+	// NOTE : í…ŒìŠ¤íŠ¸ìš©ìœ¼ë¡œ ìž„ì‹œë¡œ LensFlare Refresh ìž‘ì—…ì„ í•œë‹¤.
 	//if(m_pSun)
 	//{
 	//	m_pSun->ReFreshLensFlareData();
@@ -563,7 +563,7 @@ void CVenusFramework::SetPauseVertex()
 //------------------------------------------------------------------
 RwBool CVenusFramework::Update(RwReal fTime, RwReal fElapsedTime)
 {
-    // Frame °íÁ¤À» Àû¿ëÇÑ´Ù.
+    // Frame ê³ ì •ì„ ì ìš©í•œë‹¤.
     if(m_bFrameFix)
     {
         m_fTimeFrameFix += fElapsedTime;
@@ -593,7 +593,7 @@ RwBool CVenusFramework::Update(RwReal fTime, RwReal fElapsedTime)
 	m_pWorldEntity->SetPlayerPosition(vPos);		
 	//m_pWorldEntity->Update(fElapsedTime);
 
-    // ÀÚµ¿ ÀúÀå
+    // ìžë™ ì €ìž¥
 	m_fAutoSaveTime += fElapsedTime;
 	if (m_fAutoSaveTime > CVenusConfig::GetInstance().m_fAutoSaveMaxTime)
 	{
@@ -658,7 +658,7 @@ RwBool CVenusFramework::Update(RwReal fTime, RwReal fElapsedTime)
 			}
 			else
 			{
-				// ÀÌº¥Æ® »óÅÂÀÏ¶§´Â ÀÏ¹Ý ÀÌÆåÆ®´Â ·»´õ¸µÇÏÁö ¾Ê´Â´Ù.
+				// ì´ë²¤íŠ¸ ìƒíƒœì¼ë•ŒëŠ” ì¼ë°˜ ì´íŽ™íŠ¸ëŠ” ë Œë”ë§í•˜ì§€ ì•ŠëŠ”ë‹¤.
 				CVenusVisualManager::GetInstance().RenderEffect(FALSE);
 				CVenusVisualManager::GetInstance().Render();
 				CVenusPlayerEventManager::GetInstance().Render();
@@ -688,7 +688,7 @@ RwBool CVenusFramework::Update(RwReal fTime, RwReal fElapsedTime)
 		if (CVenusCamera::GetInstance().MainCameraBeginUpdate(fElapsedTime))
 		{
 
-			// ÇÊÅÍ È¿°ú°¡ ¸ÔÁö ¾Ê¾Æ¾ß ÇÒ°ÍµéÀº ¿©±â¼­ ±×·Á¶ó
+			// í•„í„° íš¨ê³¼ê°€ ë¨¹ì§€ ì•Šì•„ì•¼ í• ê²ƒë“¤ì€ ì—¬ê¸°ì„œ ê·¸ë ¤ë¼
 			CVenusCamera::GetInstance().MainCameraEndUpdate();
 		}
 
@@ -761,7 +761,7 @@ void CVenusFramework::SetSelectRectangle(POINT& OldPoint, POINT& CurPoint)
 
 //------------------------------------------------------------------
 //	FuncName	: RenderSelectPatch
-//	Desc		: ·»´õ¿þ¾î¿¡¼­ Á¦°øÇÏ´Â ¹öÅØ½º ±¸Á¶¸¦ ±×¶§·Î ¾²±â ¶§¹®¿¡ fvf µîÀ» µû·Î ÇØÁÖÁö ¾Ê¾Æµµ µÈ´Ù.
+//	Desc		: ë Œë”ì›¨ì–´ì—ì„œ ì œê³µí•˜ëŠ” ë²„í…ìŠ¤ êµ¬ì¡°ë¥¼ ê·¸ë•Œë¡œ ì“°ê¸° ë•Œë¬¸ì— fvf ë“±ì„ ë”°ë¡œ í•´ì£¼ì§€ ì•Šì•„ë„ ëœë‹¤.
 //	Parameter	: 
 //	Return		: 
 //------------------------------------------------------------------
@@ -807,8 +807,8 @@ void CVenusFramework::AutoTempFileSave()
 
 		CVenusPropertyContainer::GetInstance().Save(strPathName.c_str());
 
-		// Auto Save ·Î Backup ÆÄÀÏÀ» ¸¸µç´Ù°í ÇØ¼­ CVenusPropertyContainer::GetInstance().m_bSave ·Î ÇØ¼­´Â ¾ÈµÈ´Ù.
-		// ÀÌÀ¯´Â ¾Ë¾Æ¼­..
+		// Auto Save ë¡œ Backup íŒŒì¼ì„ ë§Œë“ ë‹¤ê³  í•´ì„œ CVenusPropertyContainer::GetInstance().m_bSave ë¡œ í•´ì„œëŠ” ì•ˆëœë‹¤.
+		// ì´ìœ ëŠ” ì•Œì•„ì„œ..
 		CVenusPropertyContainer::GetInstance().m_bSave = TRUE;
 	}
 }
@@ -861,7 +861,7 @@ RwBool CVenusFramework::VENUS_PLInit()
 	if(!CNtlResourceScheduleManager::AllocFreeList())
 		return FALSE;
 
-	//----- ¿©±â¼­ºÎÅÍ Venus¿¡ ¸Â°Ô ¼öÁ¤ÇÑ ³»¿ë
+	//----- ì—¬ê¸°ì„œë¶€í„° Venusì— ë§žê²Œ ìˆ˜ì •í•œ ë‚´ìš©
 
 	CNtlEffectSystemFreeList::m_strClumpTexturePath = CVenusConfig::GetInstance().m_strClumpTexturePath.c_str();
 
@@ -897,10 +897,10 @@ RwBool CVenusFramework::VENUS_PLInit()
 
 	((CEventLayer*)gGetEditLayer(EDIT_LAYER_EVENT))->ResetPropertiesEnemy();
 
-	// µ¥ÀÌÅ¸¸¦ ´Ù ÀÐ°í ³­ ´ÙÀ½¿¡´Â ±âº» µð·ºÅä¸®·Î µÇµ¹·ÁÁØ´Ù
+	// ë°ì´íƒ€ë¥¼ ë‹¤ ì½ê³  ë‚œ ë‹¤ìŒì—ëŠ” ê¸°ë³¸ ë””ë ‰í† ë¦¬ë¡œ ë˜ëŒë ¤ì¤€ë‹¤
 	SetCurrentDirectory(CVenusConfig::GetInstance().m_strMainPath.c_str());
 
-    // ¹Ù¿îµù ½ºÇÇ¾î ¾÷µ¥ÀÌÆ® True
+    // ë°”ìš´ë”© ìŠ¤í”¼ì–´ ì—…ë°ì´íŠ¸ True
     CNtlResourceEffect::m_bUpdateBoundingSphere = TRUE;
 
 	return TRUE;
@@ -912,7 +912,7 @@ void CVenusFramework::VENUS_PLTerminate()
 
 	CNtlPLResourceManager::GetInstance()->Destroy();
 	
-	//---- ¼öÁ¤ÇÑ ³»¿ë	
+	//---- ìˆ˜ì •í•œ ë‚´ìš©	
 	CNtlEffectSystemFreeList::Destroy();	
 	//////////////////////////////////////////////////////////////////////////
 

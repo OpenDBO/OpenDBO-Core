@@ -283,7 +283,7 @@ namespace RWS
       {
          RWS_FUNCTION("RWS::CDefaultStreamHandler::VersionNumber");
       
-		 // «¸ºÆ
+		 // ÌòïÏÑù
          RwChar *buffer = static_cast<char*>(NTL_NEW char[rChunkHeader.length]);
       
          RwStreamRead(pStream, buffer, rChunkHeader.length);
@@ -291,7 +291,7 @@ namespace RWS
          RWS_ASSERT((*reinterpret_cast<RwUInt32*>(buffer)) == 0x0100, "Incompatible RenderWare Studio Stream, version number ( "
                << (*reinterpret_cast<RwUInt32*>(buffer)) << " )");
 
-		 // «¸ºÆ
+		 // ÌòïÏÑù
 		 RWS_ARRAY_DELETE(buffer);
    
          RWS_RETURNVOID();

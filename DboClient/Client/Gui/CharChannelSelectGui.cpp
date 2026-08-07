@@ -56,7 +56,7 @@ RwBool CCharCreateGuiGui::Create()
 
 	CRectangle rect;
 
-	// Race πË∞Ê
+	// Race Î∞∞Í≤Ω
 	m_RaceWin.SetSurface(0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharCreate.srf", "info_1_Left" ));
 	m_RaceWin.SetSurface(1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharCreate.srf", "info_1_Center" ));
 	m_RaceWin.SetSurface(2, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharCreate.srf", "info_1_Right" ));
@@ -65,7 +65,7 @@ RwBool CCharCreateGuiGui::Create()
 	m_RaceUnderLine.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharCreate.srf", "underLine" ));
 	m_RaceUnderLine.SetPosition(15, 91);
 
-	// Class πË∞Ê
+	// Class Î∞∞Í≤Ω
 	m_ClassWin.SetSurface(0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharCreate.srf", "info_1_Left" ));
 	m_ClassWin.SetSurface(1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharCreate.srf", "info_1_Center" ));
 	m_ClassWin.SetSurface(2, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharCreate.srf", "info_1_Right" ));
@@ -75,7 +75,7 @@ RwBool CCharCreateGuiGui::Create()
 	m_ClassUnderLine.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharCreate.srf", "underLine" ));
 	m_ClassUnderLine.SetPosition(15, 404);
 
-	// Make πË∞Ê
+	// Make Î∞∞Í≤Ω
 	m_MakeWin.SetSurface(0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharCreate.srf", "make_1_Left" ));
 	m_MakeWin.SetSurface(1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharCreate.srf", "make_1_Center" ));
 	m_MakeWin.SetSurface(2, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharCreate.srf", "make_1_Right" ));
@@ -100,84 +100,84 @@ RwBool CCharCreateGuiGui::Create()
 	m_MakeText.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharCreate.srf", "make_text" ));
 	m_MakeText.SetPositionfromParent(806, 70);
 
-	// ¿Ã∏ß ¿‘∑¬∂ı πË∞Ê
+	// Ïù¥Î¶Ñ ÏûÖÎ†•ÎûÄ Î∞∞Í≤Ω
 	m_NameInputBack.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharCreate.srf", "name_input" ));
 	m_NameInputBack.SetPositionfromParent(400, 685);
 
-	// ¿Ã∏ß ¿‘∑¬∂ı
+	// Ïù¥Î¶Ñ ÏûÖÎ†•ÎûÄ
 	m_pNameInput = (gui::CInputBox*)GetComponent( "NameInput" );
 	m_pNameInput->SetText(L"");
 
-	// ¡æ¡∑ ¿Ã∏ß	
+	// Ï¢ÖÏ°± Ïù¥Î¶Ñ	
 	rect.SetRectWH(90, 67, 150, 30);
 	m_pRaceName = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT );	
 	m_pRaceName->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pRaceName->SetText(L"");
 	m_pRaceName->Enable(false);
 
-	// ≈¨∑°Ω∫ ¿Ã∏ß	
+	// ÌÅ¥ÎûòÏä§ Ïù¥Î¶Ñ	
 	rect.SetRectWH(90, 380, 150, 30);
 	m_pClassName = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT );	
 	m_pClassName->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pClassName->SetText(L"");
 	m_pClassName->Enable(false);
 
-	// ¡æ¡∑ º≥∏Ì
+	// Ï¢ÖÏ°± ÏÑ§Î™Ö
 	rect.SetRectWH(19, 117, 201, 250);
 	m_pRaceInfo = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT | COMP_TEXT_UP);	
 	m_pRaceInfo->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pRaceInfo->SetText(L"");
 	m_pRaceInfo->Enable(false);
 
-	// ≈¨∑°Ω∫ º≥∏Ì
+	// ÌÅ¥ÎûòÏä§ ÏÑ§Î™Ö
 	rect.SetRectWH(19, 431, 201, 250);
 	m_pClassInfo = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT | COMP_TEXT_UP);	
 	m_pClassInfo->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pClassInfo->SetText(L"");
 	m_pClassInfo->Enable(false);
 
-	// 'ƒ≥∏Ø≈Õ ∏∏µÈ±‚' Ω∫≈¬∆Ω	
+	// 'Ï∫êÎ¶≠ÌÑ∞ ÎßåÎì§Í∏∞' Ïä§ÌÉúÌã±	
 	rect.SetRectWH(900, 67, 150, 30);
 	m_pCharMake =  NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT );
 	m_pCharMake->CreateFontStd(DEFAULT_FONT, 110, DEFAULT_FONT_ATTR);
 	m_pCharMake->SetText(GetDisplayStringManager()->GetString(DST_LOBBY_CHARACTER_MAKE));
 	m_pCharMake->Enable(false);
 
-	// '¿Ã∏ß' Ω∫≈¬∆Ω
+	// 'Ïù¥Î¶Ñ' Ïä§ÌÉúÌã±
 	rect.SetRectWH(413, 704, 30, 20);
 	m_pNameInputStatic =  NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_RIGHT );
 	m_pNameInputStatic->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pNameInputStatic->SetText(GetDisplayStringManager()->GetString(DST_STATUS_NAME));
 	m_pNameInputStatic->Enable(false);
 
-	// øﬁ¬  »∏¿¸ πˆ∆∞
+	// ÏôºÏ™Ω ÌöåÏ†Ñ Î≤ÑÌäº
 	m_pLeftRotButton = (gui::CButton*)GetComponent("LeftRotButton");
 	m_slotLeftRotButton = m_pLeftRotButton->SigClicked().Connect( this, &CCharCreateGuiGui::ClickRotButton );
 
-	// ø¿∏•¬  »∏¿¸ πˆ∆∞
+	// Ïò§Î•∏Ï™Ω ÌöåÏ†Ñ Î≤ÑÌäº
 	m_pRightRotButton = (gui::CButton*)GetComponent("RightRotButton");
 	m_slotRightRotButton = m_pRightRotButton->SigClicked().Connect( this, &CCharCreateGuiGui::ClickRotButton );
 
-	// ¡§¡ˆ πˆ∆∞
+	// Ï†ïÏßÄ Î≤ÑÌäº
 	m_pStopButton = (gui::CButton*)GetComponent("StopButton");
 	m_slotStopButton = m_pStopButton->SigClicked().Connect( this, &CCharCreateGuiGui::ClickRotButton );
 
-	// ∑£¥˝ πˆ∆∞
+	// ÎûúÎç§ Î≤ÑÌäº
 	m_pRandomButton = (gui::CButton*)GetComponent("RandomButton");
 	m_pRandomButton->SetText(GetDisplayStringManager()->GetString(DST_LOBBY_RANDOM_CHOICE));
 	m_slotRandomButton = m_pRandomButton->SigClicked().Connect( this, &CCharCreateGuiGui::ClickedRandomButton );
 
-	// ∏∏µÈ±‚
+	// ÎßåÎì§Í∏∞
 	m_pMakeButton = (gui::CButton*)GetComponent("MakeButton");
 	m_pMakeButton->SetText(GetDisplayStringManager()->GetString(DST_LOBBY_MAKE));
 	m_slotMakeButton = m_pMakeButton->SigClicked().Connect( this, &CCharCreateGuiGui::ClickedMakeButton );
 
-	// µπæ∆∞°±‚ πˆ∆∞
+	// ÎèåÏïÑÍ∞ÄÍ∏∞ Î≤ÑÌäº
 	m_pReturnButton = (gui::CButton*)GetComponent("ReturnButton");
 	m_pReturnButton->SetText(GetDisplayStringManager()->GetString(DST_LOBBY_RETURN));
 	m_slotReturnButton = m_pReturnButton->SigClicked().Connect( this, &CCharCreateGuiGui::ClickedReturnButton);
 
-	// ∞¢ º”º∫
+	// Í∞Å ÏÜçÏÑ±
 	std::string fullName = "";
 	char acLeft[] = "LeftButton_";
 	char acRight[] = "RightButton_";
@@ -189,7 +189,7 @@ RwBool CCharCreateGuiGui::Create()
 												"char_mak_ico05.png", "char_mak_ico06.png"};
 	for(RwInt8 i = 0 ; i < ATTIRIBUTE_NUM ; ++i)
 	{		
-		// ΩΩ∑‘ πË∞Ê
+		// Ïä¨Î°Ø Î∞∞Í≤Ω
 		m_AttibuteSlot[i].Backboard.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharCreate.srf", "make_slot" ));
 		m_AttibuteSlot[i].Backboard.SetPosition(806, 115 + i*ATTIRIBUTEHAEIGHT);
 
@@ -197,12 +197,12 @@ RwBool CCharCreateGuiGui::Create()
 		m_AttibuteSlot[i].Textboard.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharCreate.srf", "TextBoard" ));
 		m_AttibuteSlot[i].Textboard.SetPosition(855, 149+ i*ATTIRIBUTEHAEIGHT);
 
-		// ΩΩ∑‘ æ∆¿Ãƒ‹
+		// Ïä¨Î°Ø ÏïÑÏù¥ÏΩò
 		m_AttibuteSlot[i].Icon.Create(m_pThis, DIALOG_UNKNOWN, ISST_NORMATL_ICON);
 		m_AttibuteSlot[i].Icon.SetPosition(818, 133 + i*ATTIRIBUTEHAEIGHT);
 		m_AttibuteSlot[i].Icon.SetIcon(aIconName[i].c_str());
 
-		// ΩΩ∑‘ øﬁ¬  πˆ∆∞
+		// Ïä¨Î°Ø ÏôºÏ™Ω Î≤ÑÌäº
 		_itoa_s(i+1, acNum, sizeof(acNum), 10);
 
 		fullName = acLeft;
@@ -210,47 +210,47 @@ RwBool CCharCreateGuiGui::Create()
 		m_AttibuteSlot[i].pLeftButton = (gui::CButton*)GetComponent(fullName.c_str());
 		m_slotLeft[i] = m_AttibuteSlot[i].pLeftButton->SigClicked().Connect( this, &CCharCreateGuiGui::ClickLeftButton);
 
-		// ΩΩ∑‘ ø¿∏•¬  πˆ∆∞
+		// Ïä¨Î°Ø Ïò§Î•∏Ï™Ω Î≤ÑÌäº
 		fullName = acRight;
 		fullName += acNum;
 		m_AttibuteSlot[i].pRightButton = (gui::CButton*)GetComponent(fullName.c_str());
 		m_slotRight[i] = m_AttibuteSlot[i].pRightButton->SigClicked().Connect( this, &CCharCreateGuiGui::ClickRightButton);
 
-		// ΩΩ∑‘ ≈∏¿Ã∆≤
+		// Ïä¨Î°Ø ÌÉÄÏù¥ÌãÄ
 		fullName = acStaticName;
 		fullName += acNum;
 		m_AttibuteSlot[i].pTitle = (gui::CStaticBox*)GetComponent(fullName.c_str());
 
-		// º±≈√µ» «◊∏Ò
+		// ÏÑ†ÌÉùÎêú Ìï≠Î™©
 		rect.SetRectWH(855, 151 + i*ATTIRIBUTEHAEIGHT, 140, 17);
 		m_AttibuteSlot[i].pAttribute = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER );
 		m_AttibuteSlot[i].pAttribute->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 		m_AttibuteSlot[i].pAttribute->SetText(L"");
 		m_AttibuteSlot[i].pAttribute->Enable(false);
 				
-		// «ˆ¿Á º±≈√µ» ¿Œµ¶Ω∫
+		// ÌòÑÏû¨ ÏÑ†ÌÉùÎêú Ïù∏Îç±Ïä§
 		m_AttibuteSlot[i].byValue = 0;
 	}	
 
-	// ¡æ   ¡∑
+	// Ï¢Ö   Ï°±
 	m_AttibuteSlot[ATTIRIBUTE_RACE].pTitle->SetText(GetDisplayStringManager()->GetString(DST_LOBBY_RACE));
-	// º∫   ∫∞
+	// ÏÑ±   Î≥Ñ
 	m_AttibuteSlot[ATTIRIBUTE_GENDER].pTitle->SetText(GetDisplayStringManager()->GetString(DST_LOBBY_GENDER));
-	// ¡˜   æ˜
+	// ÏßÅ   ÏóÖ
 	m_AttibuteSlot[ATTIRIBUTE_CLASS].pTitle->SetText(GetDisplayStringManager()->GetString(DST_LOBBY_CLASS));
-	// ∏”∏Æ∏æÁ
+	// Î®∏Î¶¨Î™®Ïñë
 	m_AttibuteSlot[ATTIRIBUTE_HAIR].pTitle->SetText(GetDisplayStringManager()->GetString(DST_LOBBY_HAIR));
-	// ∏”∏Æªˆ
+	// Î®∏Î¶¨ÏÉâ
 	m_AttibuteSlot[ATTIRIBUTE_HAIR_COLOR].pTitle->SetText(GetDisplayStringManager()->GetString(DST_LOBBY_HAIRCOLOR));
-	// æÛ   ±º
+	// Ïñº   Íµ¥
 	m_AttibuteSlot[ATTIRIBUTE_FACE].pTitle->SetText(GetDisplayStringManager()->GetString(DST_LOBBY_FACE));
-	// ««∫Œªˆ
+	// ÌîºÎ∂ÄÏÉâ
 	m_AttibuteSlot[ATTIRIBUTE_SKIN].pTitle->SetText(GetDisplayStringManager()->GetString(DST_LOBBY_SKIN));	
 
 	// sig	
 	m_slotPaint			= m_pThis->SigPaint().Connect( this, &CCharCreateGuiGui::OnPaint );
 
-	// ¡æ¡∑¿∫ ∞Ì¡§	
+	// Ï¢ÖÏ°±ÏùÄ Í≥†Ï†ï	
 	m_AttibuteSlot[ATTIRIBUTE_RACE].listContent.push_back(GetDisplayStringManager()->GetString(DST_HUMAN));
 	m_AttibuteSlot[ATTIRIBUTE_RACE].listContent.push_back(GetDisplayStringManager()->GetString(DST_NAMEK));
 	//m_AttibuteSlot[ATTIRIBUTE_RACE].pTitle->SetText(GetDisplayStringManager()->GetString( DST_MAJIN ));
@@ -261,7 +261,7 @@ RwBool CCharCreateGuiGui::Create()
 	m_TempAttribute.byRaceValue = RACE_UNKNOWN;
 	m_TempAttribute.byHair = 0xFF;
 
-	// «ˆ¿Á ¡æ¡∑ø° µ˚∂Û º±≈√«“ ºˆ ¿÷¥¬ ƒ≥∏Ø≈Õ º”º∫ ∏ÆΩ∫∆Æ «•Ω√
+	// ÌòÑÏû¨ Ï¢ÖÏ°±Ïóê Îî∞Îùº ÏÑ†ÌÉùÌï† Ïàò ÏûàÎäî Ï∫êÎ¶≠ÌÑ∞ ÏÜçÏÑ± Î¶¨Ïä§Ìä∏ ÌëúÏãú
 	UpdateComboBox();	
 
 	// Locate Component
@@ -324,53 +324,53 @@ VOID CCharCreateGuiGui::UpdateComboBox()
 	{
 	case RACE_HUMAN:
 		{
-			// ¡æ¡∑
+			// Ï¢ÖÏ°±
 			m_pRaceName->SetText(GetDisplayStringManager()->GetString( DST_HUMAN ));
 			m_pRaceInfo->SetText(GetDisplayStringManager()->GetString( DST_LOBBY_HUMAN_EXPLAIN ));
 
-			// ≈¨∑°Ω∫
+			// ÌÅ¥ÎûòÏä§
 			m_AttibuteSlot[ATTIRIBUTE_CLASS].listContent.push_back(GetDisplayStringManager()->GetString( DST_HUMAN_FIGHTER ));
 			m_AttibuteSlot[ATTIRIBUTE_CLASS].listContent.push_back(GetDisplayStringManager()->GetString( DST_HUMAN_MYSTIC ));
 			m_pClassName->SetText(GetDisplayStringManager()->GetString( DST_HUMAN_FIGHTER ));
 			m_pClassInfo->SetText(GetDisplayStringManager()->GetString( DST_LOBBY_HUMAN_FIGHTER ));
 
-			// º∫∫∞
+			// ÏÑ±Î≥Ñ
 			m_AttibuteSlot[ATTIRIBUTE_GENDER].listContent.push_back(GetDisplayStringManager()->GetString( DST_AVATAR_SEX_MALE ));
 			m_AttibuteSlot[ATTIRIBUTE_GENDER].listContent.push_back(GetDisplayStringManager()->GetString( DST_AVATAR_SEX_FEMALE ));
 
 			if( m_AttibuteSlot[ATTIRIBUTE_GENDER].byValue == GENDER_MALE )
 			{
-				// ∏”∏Æ∏æÁ
+				// Î®∏Î¶¨Î™®Ïñë
 				for(RwInt32 i = 0 ; i < DEFAULT_HEAD_NUM ; ++i )
 					m_AttibuteSlot[ATTIRIBUTE_HAIR].listContent.push_back(GetDisplayStringManager()->GetString( DST_HUMAN_MALE_HAIRTYPE1 + i ));
 
-				// ∏”∏Æªˆ
+				// Î®∏Î¶¨ÏÉâ
 				for(RwInt32 i = 0 ; i < DEFAULT_HEAD_COLOR_NUM ; ++i )
 					m_AttibuteSlot[ATTIRIBUTE_HAIR_COLOR].listContent.push_back(GetDisplayStringManager()->GetString( DST_HUMAN_MALE_HAIRCOLOR1 + i ));
 
-				// æÛ±º
+				// ÏñºÍµ¥
 				for(RwInt32 i = 0 ; i < DEFAULT_FACE_NUM ; ++i )
 					m_AttibuteSlot[ATTIRIBUTE_FACE].listContent.push_back(GetDisplayStringManager()->GetString( DST_HUMAN_MALE_FACE1 + i ));
 
-				// ««∫Œ
+				// ÌîºÎ∂Ä
 				for(RwInt32 i = 0 ; i < DEFAULT_SKIN_COLOR_NUM ; ++i )
 					m_AttibuteSlot[ATTIRIBUTE_SKIN].listContent.push_back(GetDisplayStringManager()->GetString( DST_HUMAN_MALE_SKIN1 + i ));
 			}
 			else
 			{				
-				// ∏”∏Æ∏æÁ
+				// Î®∏Î¶¨Î™®Ïñë
 				for(RwInt32 i = 0 ; i < DEFAULT_HEAD_NUM ; ++i )
 					m_AttibuteSlot[ATTIRIBUTE_HAIR].listContent.push_back(GetDisplayStringManager()->GetString( DST_HUMAN_FEMALE_HAIRTYPE1 + i ));
 
-				// ∏”∏Æªˆ
+				// Î®∏Î¶¨ÏÉâ
 				for(RwInt32 i = 0 ; i < DEFAULT_HEAD_COLOR_NUM ; ++i )
 					m_AttibuteSlot[ATTIRIBUTE_HAIR_COLOR].listContent.push_back(GetDisplayStringManager()->GetString( DST_HUMAN_FEMALE_HAIRCOLOR1 + i ));
 
-				// æÛ±º
+				// ÏñºÍµ¥
 				for(RwInt32 i = 0 ; i < DEFAULT_FACE_NUM ; ++i )
 					m_AttibuteSlot[ATTIRIBUTE_FACE].listContent.push_back(GetDisplayStringManager()->GetString( DST_HUMAN_FEMALE_FACE1 + i ));
 
-				// ««∫Œ
+				// ÌîºÎ∂Ä
 				for(RwInt32 i = 0 ; i < DEFAULT_SKIN_COLOR_NUM ; ++i )
 					m_AttibuteSlot[ATTIRIBUTE_SKIN].listContent.push_back(GetDisplayStringManager()->GetString( DST_HUMAN_FEMALE_SKIN1 + i ));
 			}
@@ -378,32 +378,32 @@ VOID CCharCreateGuiGui::UpdateComboBox()
 		}
 	case RACE_NAMEK:
 		{	
-			// ¡æ¡∑
+			// Ï¢ÖÏ°±
 			m_pRaceName->SetText(GetDisplayStringManager()->GetString( DST_NAMEK ));
 			m_pRaceInfo->SetText(GetDisplayStringManager()->GetString( DST_LOBBY_NAMEK_EXPLAIN ));
 
-			// ≈¨∑°Ω∫
+			// ÌÅ¥ÎûòÏä§
 			m_AttibuteSlot[ATTIRIBUTE_CLASS].listContent.push_back(GetDisplayStringManager()->GetString( DST_NAMEK_FIGHTER ));
 			m_AttibuteSlot[ATTIRIBUTE_CLASS].listContent.push_back(GetDisplayStringManager()->GetString( DST_NAMEK_MYSTIC ));
 			m_pClassName->SetText(GetDisplayStringManager()->GetString( DST_NAMEK_FIGHTER ));
 			m_pClassInfo->SetText(GetDisplayStringManager()->GetString( DST_LOBBY_NAMEK_FIGHTER ));
 
-			// º∫∫∞
+			// ÏÑ±Î≥Ñ
 			m_AttibuteSlot[ATTIRIBUTE_GENDER].listContent.push_back(GetDisplayStringManager()->GetString( DST_AVATAR_SEX_NOT_EXIST ));
 
-			// ∏”∏Æ∏æÁ
+			// Î®∏Î¶¨Î™®Ïñë
 			for(RwInt32 i = 0 ; i < DEFAULT_HEAD_NUM ; ++i )
 				m_AttibuteSlot[ATTIRIBUTE_HAIR].listContent.push_back(GetDisplayStringManager()->GetString( DST_NAMEKAN_HAIRTYPE1 + i ));
 
-			// ∏”∏Æªˆ
+			// Î®∏Î¶¨ÏÉâ
 			for(RwInt32 i = 0 ; i < DEFAULT_HEAD_COLOR_NUM ; ++i )
 				m_AttibuteSlot[ATTIRIBUTE_HAIR_COLOR].listContent.push_back(GetDisplayStringManager()->GetString( DST_NAMEKAN_HAIRCOLOR1 + i ));
 
-			// æÛ±º
+			// ÏñºÍµ¥
 			for(RwInt32 i = 0 ; i < DEFAULT_FACE_NUM ; ++i )
 				m_AttibuteSlot[ATTIRIBUTE_FACE].listContent.push_back(GetDisplayStringManager()->GetString( DST_NAMEKAN_FACE1 + i ));
 
-			// ««∫Œ
+			// ÌîºÎ∂Ä
 			for(RwInt32 i = 0 ; i < DEFAULT_SKIN_COLOR_NUM ; ++i )
 				m_AttibuteSlot[ATTIRIBUTE_SKIN].listContent.push_back(GetDisplayStringManager()->GetString( DST_NAMEKAN_SKIN1 + i ));
 
@@ -411,53 +411,53 @@ VOID CCharCreateGuiGui::UpdateComboBox()
 		}
 	case RACE_MAJIN:
 		{
-			// ¡æ¡∑
+			// Ï¢ÖÏ°±
 			m_pRaceName->SetText(GetDisplayStringManager()->GetString( DST_MAJIN ));
 			m_pRaceInfo->SetText(GetDisplayStringManager()->GetString( DST_LOBBY_MAJIN_EXPLAIN ));
 
-			// ≈¨∑°Ω∫
+			// ÌÅ¥ÎûòÏä§
 			m_AttibuteSlot[ATTIRIBUTE_CLASS].listContent.push_back(GetDisplayStringManager()->GetString( DST_MIGHTY_MAJIN ));
 			m_AttibuteSlot[ATTIRIBUTE_CLASS].listContent.push_back(GetDisplayStringManager()->GetString( DST_WONDER_MAJIN ));
 			m_pClassName->SetText(GetDisplayStringManager()->GetString( DST_MIGHTY_MAJIN ));
 			m_pClassInfo->SetText(GetDisplayStringManager()->GetString( DST_LOBBY_MIGHTY_MAJIN ));
 
-			// º∫∫∞
+			// ÏÑ±Î≥Ñ
 			m_AttibuteSlot[ATTIRIBUTE_GENDER].listContent.push_back(GetDisplayStringManager()->GetString( DST_AVATAR_SEX_MALE ));
 			m_AttibuteSlot[ATTIRIBUTE_GENDER].listContent.push_back(GetDisplayStringManager()->GetString( DST_AVATAR_SEX_FEMALE ));
 
 			if( m_AttibuteSlot[ATTIRIBUTE_GENDER].byValue == GENDER_MALE )
 			{
-				// ∏”∏Æ∏æÁ
+				// Î®∏Î¶¨Î™®Ïñë
 				for(RwInt32 i = 0 ; i < DEFAULT_HEAD_NUM ; ++i )
 					m_AttibuteSlot[ATTIRIBUTE_HAIR].listContent.push_back(GetDisplayStringManager()->GetString( DST_MAJIN_MALE_HAIRTYPE1 + i ));
 
-				// ∏”∏Æªˆ
+				// Î®∏Î¶¨ÏÉâ
 				for(RwInt32 i = 0 ; i < DEFAULT_HEAD_COLOR_NUM ; ++i )
 					m_AttibuteSlot[ATTIRIBUTE_HAIR_COLOR].listContent.push_back(GetDisplayStringManager()->GetString( DST_MAJIN_MALE_HAIRCOLOR1 + i ));
 
-				// æÛ±º
+				// ÏñºÍµ¥
 				for(RwInt32 i = 0 ; i < DEFAULT_FACE_NUM ; ++i )
 					m_AttibuteSlot[ATTIRIBUTE_FACE].listContent.push_back(GetDisplayStringManager()->GetString( DST_MAJIN_MALE_FACE1 + i ));
 
-				// ««∫Œ
+				// ÌîºÎ∂Ä
 				for(RwInt32 i = 0 ; i < DEFAULT_SKIN_COLOR_NUM ; ++i )
 					m_AttibuteSlot[ATTIRIBUTE_SKIN].listContent.push_back(GetDisplayStringManager()->GetString( DST_MAJIN_MALE_SKIN1 + i ));
 			}
 			else
 			{
-				// ∏”∏Æ∏æÁ
+				// Î®∏Î¶¨Î™®Ïñë
 				for(RwInt32 i = 0 ; i < DEFAULT_HEAD_NUM ; ++i )
 					m_AttibuteSlot[ATTIRIBUTE_HAIR].listContent.push_back(GetDisplayStringManager()->GetString( DST_MAJIN_FEMALE_HAIRTYPE1 + i ));
 
-				// ∏”∏Æªˆ
+				// Î®∏Î¶¨ÏÉâ
 				for(RwInt32 i = 0 ; i < DEFAULT_HEAD_COLOR_NUM ; ++i )
 					m_AttibuteSlot[ATTIRIBUTE_HAIR_COLOR].listContent.push_back(GetDisplayStringManager()->GetString( DST_MAJIN_FEMALE_HAIRCOLOR1 + i ));
 
-				// æÛ±º
+				// ÏñºÍµ¥
 				for(RwInt32 i = 0 ; i < DEFAULT_FACE_NUM ; ++i )
 					m_AttibuteSlot[ATTIRIBUTE_FACE].listContent.push_back(GetDisplayStringManager()->GetString( DST_MAJIN_FEMALE_FACE1 + i ));
 
-				// ««∫Œ
+				// ÌîºÎ∂Ä
 				for(RwInt32 i = 0 ; i < DEFAULT_SKIN_COLOR_NUM ; ++i )
 					m_AttibuteSlot[ATTIRIBUTE_SKIN].listContent.push_back(GetDisplayStringManager()->GetString( DST_MAJIN_FEMALE_SKIN1 + i ));
 			}
@@ -472,7 +472,7 @@ VOID CCharCreateGuiGui::UpdateComboBox()
 	m_AttibuteSlot[ATTIRIBUTE_FACE].SelectIndex(0);
 	m_AttibuteSlot[ATTIRIBUTE_SKIN].SelectIndex(0);
 
-	// ∏ÆΩ∫∆Æ∞° πŸ≤Ó∏È ∏µ®¿∫ ¡§¡ˆ«— ªÛ≈¬∑Œ ¡§∏È¿ª πŸ∂Û∫∏≥™
+	// Î¶¨Ïä§Ìä∏Í∞Ä Î∞îÎÄåÎ©¥ Î™®Îç∏ÏùÄ Ï†ïÏßÄÌïú ÏÉÅÌÉúÎ°ú Ï†ïÎ©¥ÏùÑ Î∞îÎùºÎ≥¥ÎÇò
 	CDboEventGenerator::LobbyMessage(LMT_ROTATION_FOREWARD);
 }
 
@@ -518,7 +518,7 @@ VOID CCharCreateGuiGui::ClickRightButton(gui::CComponent* pComponent)
 
 VOID CCharCreateGuiGui::UpdateSlot(RwBool bRight, RwUInt8 byIndex)
 {
-	// ¿Œµ¶Ω∫ ∫Ø∞Ê
+	// Ïù∏Îç±Ïä§ Î≥ÄÍ≤Ω
 	if( bRight )
 		m_AttibuteSlot[byIndex].SelectIndex(m_AttibuteSlot[byIndex].byValue + 1);
 	else
@@ -526,14 +526,14 @@ VOID CCharCreateGuiGui::UpdateSlot(RwBool bRight, RwUInt8 byIndex)
 
 	if( byIndex == ATTIRIBUTE_RACE )
 	{
-		// ¡æ¡∑¿Ã πŸ≤Óæ˙¥Ÿ.
+		// Ï¢ÖÏ°±Ïù¥ Î∞îÎÄåÏóàÎã§.
 		UpdateComboBox();
 
 		ChangeModel(true);
 	}
 	else if( byIndex == ATTIRIBUTE_CLASS )
 	{
-		// ≈¨∑°Ω∫∞° πŸ≤Óæ˙¥Ÿ
+		// ÌÅ¥ÎûòÏä§Í∞Ä Î∞îÎÄåÏóàÎã§
 		if( m_AttibuteSlot[ATTIRIBUTE_RACE].byValue == RACE_HUMAN )
 		{
 			m_pClassName->SetText(GetDisplayStringManager()->GetString(DST_HUMAN_FIGHTER  + m_AttibuteSlot[byIndex].byValue));
@@ -557,7 +557,7 @@ VOID CCharCreateGuiGui::UpdateSlot(RwBool bRight, RwUInt8 byIndex)
 		ChangeModel(false);
 	}
 	
-	// πˆ∆∞ ªÁøÎø©∫Œ ∆«¥‹
+	// Î≤ÑÌäº ÏÇ¨Ïö©Ïó¨Î∂Ä ÌåêÎã®
 	CheckEnableButton();
 }
 
@@ -566,10 +566,10 @@ VOID CCharCreateGuiGui::CheckEnableButton()
 	if( GetCharStageState()->GetCurrentState() != CHAR_STATE_MAKE_IDLE )
 		return;
 
-	// »ﬁ∏’ ¥Î∏”∏Æ¿« ∞ÊøÏ ∏”∏Æªˆ¿ª ∞Ì∏¶ ºˆ æ¯¥Ÿ	
+	// Ìú¥Î®º ÎåÄÎ®∏Î¶¨Ïùò Í≤ΩÏö∞ Î®∏Î¶¨ÏÉâÏùÑ Í≥†Î•º Ïàò ÏóÜÎã§	
 	if( m_AttibuteSlot[ATTIRIBUTE_RACE].byValue == RACE_HUMAN )
 	{
-		// ¥Î∏”∏Æ
+		// ÎåÄÎ®∏Î¶¨
 		if( m_AttibuteSlot[ATTIRIBUTE_HAIR].byValue == 1 &&
 			m_AttibuteSlot[ATTIRIBUTE_GENDER].byValue != GENDER_FEMALE )
 		{
@@ -578,13 +578,13 @@ VOID CCharCreateGuiGui::CheckEnableButton()
 				m_AttibuteSlot[ATTIRIBUTE_HAIR_COLOR].pLeftButton->Enable(false);
 				m_AttibuteSlot[ATTIRIBUTE_HAIR_COLOR].pRightButton->Enable(false);
 
-				// ¡§∫∏ ¿˙¿Â
+				// Ï†ïÎ≥¥ Ï†ÄÏû•
 				m_TempAttribute.listContent = m_AttibuteSlot[ATTIRIBUTE_HAIR_COLOR].listContent;
 				m_TempAttribute.byRaceValue = m_AttibuteSlot[ATTIRIBUTE_RACE].byValue;
 				m_TempAttribute.byHair = m_AttibuteSlot[ATTIRIBUTE_HAIR].byValue;
 
 				m_AttibuteSlot[ATTIRIBUTE_HAIR_COLOR].ClearText();
-				// º±≈√∫“∞°
+				// ÏÑ†ÌÉùÎ∂àÍ∞Ä
 				m_AttibuteSlot[ATTIRIBUTE_HAIR_COLOR].pAttribute->SetText(GetDisplayStringManager()->GetString(DST_LOBBY_CANNOT_CHOICE));
 			}			
 		}
@@ -605,13 +605,13 @@ VOID CCharCreateGuiGui::CheckEnableButton()
 			}
 		}
 	}
-	// ≥™∏ﬁ≈©¿Œ¿« ∞ÊøÏ ∏”∏Æªˆ¿ª ∞Ì∏¶ ºˆ æ¯¥Ÿ
+	// ÎÇòÎ©îÌÅ¨Ïù∏Ïùò Í≤ΩÏö∞ Î®∏Î¶¨ÏÉâÏùÑ Í≥†Î•º Ïàò ÏóÜÎã§
 	else if(m_AttibuteSlot[ATTIRIBUTE_RACE].byValue == RACE_NAMEK )
 	{
 		m_AttibuteSlot[ATTIRIBUTE_HAIR_COLOR].pLeftButton->Enable(false);
 		m_AttibuteSlot[ATTIRIBUTE_HAIR_COLOR].pRightButton->Enable(false);
 
-		// ¡§∫∏ ¿˙¿Â
+		// Ï†ïÎ≥¥ Ï†ÄÏû•
 		m_TempAttribute.listContent = m_AttibuteSlot[ATTIRIBUTE_HAIR_COLOR].listContent;
 		m_TempAttribute.byRaceValue = m_AttibuteSlot[ATTIRIBUTE_RACE].byValue;
 		m_TempAttribute.byHair = m_AttibuteSlot[ATTIRIBUTE_HAIR].byValue;
@@ -680,14 +680,14 @@ VOID CCharCreateGuiGui::ChangeModel(RwBool bSetDefaultCamera)
 
 	if( m_AttibuteSlot[ATTIRIBUTE_RACE].byValue == RACE_NAMEK )
 	{
-		// ≥™∏ﬁ≈©¿Œ¿« ««∫Œªˆ∞˙ ∏”∏Æªˆ¿∫ ∞∞¥Ÿ
+		// ÎÇòÎ©îÌÅ¨Ïù∏Ïùò ÌîºÎ∂ÄÏÉâÍ≥º Î®∏Î¶¨ÏÉâÏùÄ Í∞ôÎã§
 		m_AttibuteSlot[ATTIRIBUTE_HAIR_COLOR].byValue = m_AttibuteSlot[ATTIRIBUTE_SKIN].byValue;
 	}
 	
 	byClass = ConverIndexToClass(m_AttibuteSlot[ATTIRIBUTE_CLASS].byValue);
 	byGender = ConverIndexToGenderbyRace(m_AttibuteSlot[ATTIRIBUTE_RACE].byValue);
 
-	// +1 : ∏µ® ¿Œµ¶Ω∫∞° 1∫Œ≈Õ Ω√¿€«œ¥¬ ∞Õµµ ¿÷¥Ÿ
+	// +1 : Î™®Îç∏ Ïù∏Îç±Ïä§Í∞Ä 1Î∂ÄÌÑ∞ ÏãúÏûëÌïòÎäî Í≤ÉÎèÑ ÏûàÎã§
 	CDboEventGenerator::CharMaking(bSetDefaultCamera,
 									m_AttibuteSlot[ATTIRIBUTE_RACE].byValue,
 									byClass,
@@ -745,7 +745,7 @@ VOID CCharCreateGuiGui::ClickedRandomButton(gui::CComponent* pComponent)
 	if( GetCharStageState()->GetCurrentState() != CHAR_STATE_MAKE_IDLE )
 		return;
 
-	// ∑£¥˝∞™ æÚæÓø¿±‚
+	// ÎûúÎç§Í∞í ÏñªÏñ¥Ïò§Í∏∞
 	m_AttibuteSlot[ATTIRIBUTE_HAIR].SelectIndex(NtlRandomNumber(0, DEFAULT_HEAD_NUM - 1));
 	m_AttibuteSlot[ATTIRIBUTE_HAIR_COLOR].SelectIndex(NtlRandomNumber(0, DEFAULT_HEAD_COLOR_NUM - 1));
 	m_AttibuteSlot[ATTIRIBUTE_FACE].SelectIndex(NtlRandomNumber(0, DEFAULT_FACE_NUM - 1));
@@ -753,7 +753,7 @@ VOID CCharCreateGuiGui::ClickedRandomButton(gui::CComponent* pComponent)
 
 	CheckEnableButton();
 
-	// Ω«¡¶ ∏µ® πŸ≤Ÿ±‚
+	// Ïã§Ï†ú Î™®Îç∏ Î∞îÍæ∏Í∏∞
 	ChangeModel(false);
 }
 
@@ -768,25 +768,25 @@ VOID CCharCreateGuiGui::ClickedMakeButton(gui::CComponent* pComponent)
 
 	if( iNumByte == 0 )
 	{
-		// ¿Ã∏ß¿ª ¿‘∑¬«œø© ¡÷Ω Ω√ø‰
+		// Ïù¥Î¶ÑÏùÑ ÏûÖÎ†•ÌïòÏó¨ Ï£ºÏã≠ÏãúÏöî
 		CDboEventGenerator::LobbyMsgBox(LMBT_OK, LMBW_NONE, GetDisplayStringManager()->GetString(DST_LOBBY_EMPTYNAME));
 		return;
 	}
 	else if( iNumByte < NTL_MIN_SIZE_CHAR_NAME )
 	{		
-		// ¿Ã∏ß¿Ã ≥ π´ ¬™Ω¿¥œ¥Ÿ
+		// Ïù¥Î¶ÑÏù¥ ÎÑàÎ¨¥ ÏßßÏäµÎãàÎã§
 		CDboEventGenerator::LobbyMsgBox(LMBT_OK, LMBW_NONE, GetDisplayStringManager()->GetString(DST_LOBBY_SHORTNAME));
 		return;
 	}
 	else if( iNumByte > NTL_MAX_SIZE_CHAR_NAME )
 	{
-		// ¿Ã∏ß¿Ã ≥ π´ ±Ì¥œ¥Ÿ
+		// Ïù¥Î¶ÑÏù¥ ÎÑàÎ¨¥ ÍπäÎãàÎã§
 		CDboEventGenerator::LobbyMsgBox(LMBT_OK, LMBW_NONE, GetDisplayStringManager()->GetString(DST_LOBBY_LONGNAME));
 		return;
 	}
 	else if( GetChattingFilter()->IsSlang((WCHAR*)m_pNameInput->GetText()) )
 	{
-		// ªÁøÎ«“ ºˆ æ¯¥¬ ¥‹æÓ∞° ¿÷Ω¿¥œ¥Ÿ
+		// ÏÇ¨Ïö©Ìï† Ïàò ÏóÜÎäî Îã®Ïñ¥Í∞Ä ÏûàÏäµÎãàÎã§
 		CDboEventGenerator::LobbyMsgBox(LMBT_OK, LMBW_NONE, GetDisplayStringManager()->GetString(DST_LOBBY_CAN_NOT_USE_THE_WORD));
 		return;
 	}
@@ -796,7 +796,7 @@ VOID CCharCreateGuiGui::ClickedMakeButton(gui::CComponent* pComponent)
 	byClass = ConverIndexToClass(m_AttibuteSlot[ATTIRIBUTE_CLASS].byValue);
 	byGender = ConverIndexToGenderbyRace(m_AttibuteSlot[ATTIRIBUTE_RACE].byValue);
 
-	// +1 : ∏µ® ¿Œµ¶Ω∫∞° 1∫Œ≈Õ Ω√¿€«œ¥¬ ∞Õµµ ¿÷¥Ÿ
+	// +1 : Î™®Îç∏ Ïù∏Îç±Ïä§Í∞Ä 1Î∂ÄÌÑ∞ ÏãúÏûëÌïòÎäî Í≤ÉÎèÑ ÏûàÎã§
 	GetDboGlobal()->GetLobbyPacketGenerator()->SendCharAddReq(m_pNameInput->GetText(),
 						m_AttibuteSlot[ATTIRIBUTE_RACE].byValue, byClass, 
 						byGender,  m_AttibuteSlot[ATTIRIBUTE_FACE].byValue + 1,
@@ -1016,7 +1016,7 @@ RwBool CRaceExplainGui::Create()
 
 	CRectangle rect;
 
-	// πË∞Ê
+	// Î∞∞Í≤Ω
 	m_Background.SetType(CWindowby3::WT_VERTICAL);
 	m_Background.SetSurface(0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharCreate_Explain.srf", "srfBackgroundLeft" ));
 	m_Background.SetSurface(1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharCreate_Explain.srf", "srfBackgroundCenter" ));
@@ -1025,14 +1025,14 @@ RwBool CRaceExplainGui::Create()
 	// Race text surface
 	m_srfRaceText.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharCreate_Explain.srf", "srfRaceText" ));
 
-	// ¡æ¡∑ ¿Ã∏ß πË∞Ê
+	// Ï¢ÖÏ°± Ïù¥Î¶Ñ Î∞∞Í≤Ω
 	m_srtRaceNameBack.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharCreate_Explain.srf", "srfNameBar" ));
 
-	// ¡æ¡∑ ¿Ã∏ß
+	// Ï¢ÖÏ°± Ïù¥Î¶Ñ
 	rect.SetRectWH(48, 70, 169, 14);
 	m_pRaceName = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER );
 	m_pRaceName->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
-	m_pRaceName->SetText("¿Œ∞£");
+	m_pRaceName->SetText("Ïù∏Í∞Ñ");
 	m_pRaceName->Enable(false);
 
 	// sig
@@ -1099,7 +1099,7 @@ RwBool CClassExplainGui::Create()
 
 	CRectangle rect;
 
-	// πË∞Ê
+	// Î∞∞Í≤Ω
 	m_Background.SetType(CWindowby3::WT_VERTICAL);
 	m_Background.SetSurface(0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharCreate_Explain.srf", "srfBackgroundLeft" ));
 	m_Background.SetSurface(1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharCreate_Explain.srf", "srfBackgroundCenter" ));
@@ -1108,14 +1108,14 @@ RwBool CClassExplainGui::Create()
 	// Class text surface
 	m_srfClassText.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharCreate_Explain.srf", "srfRaceText" ));
 
-	// ≈¨∑°Ω∫ ¿Ã∏ß πË∞Ê
+	// ÌÅ¥ÎûòÏä§ Ïù¥Î¶Ñ Î∞∞Í≤Ω
 	m_srtClassNameBack.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharCreate_Explain.srf", "srfNameBar" ));
 
-	// ¡æ¡∑ ¿Ã∏ß
+	// Ï¢ÖÏ°± Ïù¥Î¶Ñ
 	rect.SetRectWH(48, 70, 169, 14);
 	m_pClassName = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER );
 	m_pClassName->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
-	m_pClassName->SetText("π´µµ∞°");
+	m_pClassName->SetText("Î¨¥ÎèÑÍ∞Ä");
 	m_pClassName->Enable(false);
 
 	// sig
@@ -1182,24 +1182,24 @@ RwBool CCharCreateGuiGui::Create()
 
 	CRectangle rect;
 
-	// øﬁ¬  »∏¿¸ πˆ∆∞
+	// ÏôºÏ™Ω ÌöåÏ†Ñ Î≤ÑÌäº
 	m_pLeftRotButton = (gui::CButton*)GetComponent("LeftRotButton");
 	m_slotLeftRotButton = m_pLeftRotButton->SigClicked().Connect( this, &CCharCreateGuiGui::OnClickLeftTurnButton );
 
-	// ø¿∏•¬  »∏¿¸ πˆ∆∞
+	// Ïò§Î•∏Ï™Ω ÌöåÏ†Ñ Î≤ÑÌäº
 	m_pRightRotButton = (gui::CButton*)GetComponent("RightRotButton");
 	m_slotRightRotButton = m_pRightRotButton->SigClicked().Connect( this, &CCharCreateGuiGui::OnClickRightTurnButton );
 
-	// ¡§¡ˆ πˆ∆∞
+	// Ï†ïÏßÄ Î≤ÑÌäº
 	m_pStopButton = (gui::CButton*)GetComponent("StopButton");
 	m_slotStopButton = m_pStopButton->SigClicked().Connect( this, &CCharCreateGuiGui::OnClickStopButton );
 
-	// ¡æ¡∑ º≥∏Ì Gui
+	// Ï¢ÖÏ°± ÏÑ§Î™Ö Gui
 	m_pRaceExplainGui = NTL_NEW CRaceExplainGui("RaceExplain");
 	m_pRaceExplainGui->Create();
 	m_pRaceExplainGui->SetPosition(4, 53);
 
-	// ≈¨∑°Ω∫ º≥∏Ì Gui
+	// ÌÅ¥ÎûòÏä§ ÏÑ§Î™Ö Gui
 	m_pClassExplainGui = NTL_NEW CClassExplainGui("ClassExplain");
 	m_pClassExplainGui->Create();
 	m_pClassExplainGui->SetPosition(4, 364);

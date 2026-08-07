@@ -2,7 +2,7 @@
  *
  * File			: NtlPLDamageBox.h
  * Author		: HyungSuk Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 11. 28	
  * Abstract		: Presentation layer damage box entity class
  *****************************************************************************

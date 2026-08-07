@@ -588,7 +588,7 @@ CMDStaticBox_Item* CMDStaticBox_Generic::FindLastItem( std::list<CMDStaticBox_It
 /////////////////////////////////////////////////////////////////////////////
 // callback function
 
-// setoption °ü·Ã ´ëÆø ¼öÁ¤ÇØ¾ßÇÔ. ±â´É ¹Ìºñ.
+// setoption ê´€ë ¨ ëŒ€í­ ìˆ˜ì •í•´ì•¼í•¨. ê¸°ëŠ¥ ë¯¸ë¹„.
 VOID CMDStaticBox_Generic::OnSetOptions( const CComponentOptions& options )
 {
 	if( options.Exists( "min_cx" ) )

@@ -2,11 +2,11 @@
 *
 * File			: NtlSobHTBSkill.h
 * Author		: Peessi
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2006. 8. 1	
 * Abstract		: Simulation HTB skill object
 *****************************************************************************
-* Desc          : HTB Skill ∫–∏Æ. 
+* Desc          : HTB Skill Î∂ÑÎ¶¨. 
 *
 *****************************************************************************/
 

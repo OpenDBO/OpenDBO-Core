@@ -2,7 +2,7 @@
  *
  * File			: NtlSLEventHandler.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 9. 01	
  * Abstract		: Simulation layer event handler
  *****************************************************************************

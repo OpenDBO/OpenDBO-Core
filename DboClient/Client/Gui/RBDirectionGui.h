@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File: RBDirectionGui.h
-// Desc: Rank Battle ø¨√‚ Gui
+// Desc: Rank Battle Ïó∞Ï∂ú Gui
 //
 // 2008.03.14 Peessi@hitel.net   
 ////////////////////////////////////////////////////////////////////////////////
@@ -56,7 +56,7 @@ private:
 	gui::CSlot			m_slotTsuruTeamMemberMovieEnd[MAX_TEAM_MEMBER];
 	
 	//! Variables
-	gui::CDialog*		m_pdlgDirection;	// DirectionøÎ ∫Œ∏∞¥√º.
+	gui::CDialog*		m_pdlgDirection;	// DirectionÏö© Î∂ÄÎ™®Í∞ùÏ≤¥.
 	gui::CFlash*		m_pflaTitle;
 	gui::CFlash*		m_pflaKameTeam;
 	gui::CFlash*		m_pflaTsuruTeam;
@@ -64,7 +64,7 @@ private:
 	gui::CFlash*		m_pflaTsuruTeamMember[MAX_TEAM_MEMBER];
 	gui::CFlash*		m_pflaVS;
 
-	stSCOREINFO			m_stScore;			// ¡°ºˆ.
+	stSCOREINFO			m_stScore;			// Ï†êÏàò.
 
 	CRectangle			m_rtOriginalTitle;
 	CRectangle			m_rtOriginalKameTeam;

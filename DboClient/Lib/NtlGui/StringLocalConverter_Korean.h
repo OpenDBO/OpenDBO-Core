@@ -1,14 +1,14 @@
 /******************************************************************************
 * File			: StringLocalConverter_Korean.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 12. 19
 * Abstract		: 
 *****************************************************************************
-* Desc			: ÇÑ±¹¾î´Â ¾Õ ±ÛÀÚ Á¾¼º¿¡ µû¶ó º¯°æÀÌ µÇ´Â Á¶»ç°¡ 5°¡Áö ÀÖ´Ù
+* Desc			: í•œêµ­ì–´ëŠ” ì•ž ê¸€ìž ì¢…ì„±ì— ë”°ë¼ ë³€ê²½ì´ ë˜ëŠ” ì¡°ì‚¬ê°€ 5ê°€ì§€ ìžˆë‹¤
 *
-*				  ¿¹ ) À»/¸¦, ÀÌ/°¡, Àº/´Â, ¿Í/°ú, 
-*					   Á¾¼ºÀÌ ¾ø°Å³ª ¹× Á¾¼ºÀÌ '¤©'ÀÌ¸é ·Î/À¸·Î
+*				  ì˜ˆ ) ì„/ë¥¼, ì´/ê°€, ì€/ëŠ”, ì™€/ê³¼, 
+*					   ì¢…ì„±ì´ ì—†ê±°ë‚˜ ë° ì¢…ì„±ì´ 'ã„¹'ì´ë©´ ë¡œ/ìœ¼ë¡œ
 *****************************************************************************/
 
 #ifndef __GUI_STRING_LOCAL_CONVERTER_KOREAN_H__
@@ -25,7 +25,7 @@ public:
 	virtual void	LocalStringCovert(WCHAR* pwcOutput, const WCHAR* pwcText);
 
 protected:
-	///< À¯´ÏÄÚµå ÇÑ±Û À½ÀýÀÇ Á¾¼º ¼ø¼­°ªÀ» ¹ÝÈ¯ÇÑ´Ù
+	///< ìœ ë‹ˆì½”ë“œ í•œê¸€ ìŒì ˆì˜ ì¢…ì„± ìˆœì„œê°’ì„ ë°˜í™˜í•œë‹¤
 	RwInt32			GetKoreanThirdSound(const WCHAR* pwcText);
 };
 

@@ -13,7 +13,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// ÇÑ±¹¾î resources
+// í•œêµ­ì–´ resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 #ifdef _WIN32
@@ -48,9 +48,9 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)\r\n"
     "LANGUAGE 18, 1\r\n"
     "#pragma code_page(949)\r\n"
-    "#include ""res\\TextureBind.rc2""  // Microsoft Visual C++ ÀÌ¿ÜÀÇ ´Ù¸¥ µµ±¸¿¡¼­ ÆíÁýÇÑ ¸®¼Ò½ºÀÔ´Ï´Ù.\r\n"
-    "#include ""afxres.rc""         // Ç¥ÁØ ±¸¼º ¿ä¼ÒÀÔ´Ï´Ù.\r\n"
-    "#include ""afxprint.rc""       // ÀÎ¼â ¹Ì¸® º¸±â ¸®¼Ò½º\r\n"
+    "#include ""res\\TextureBind.rc2""  // Microsoft Visual C++ ì´ì™¸ì˜ ë‹¤ë¥¸ ë„êµ¬ì—ì„œ íŽ¸ì§‘í•œ ë¦¬ì†ŒìŠ¤ìž…ë‹ˆë‹¤.\r\n"
+    "#include ""afxres.rc""         // í‘œì¤€ êµ¬ì„± ìš”ì†Œìž…ë‹ˆë‹¤.\r\n"
+    "#include ""afxprint.rc""       // ì¸ì‡„ ë¯¸ë¦¬ ë³´ê¸° ë¦¬ì†ŒìŠ¤\r\n"
     "#endif\r\n"
     "\0"
 END
@@ -102,37 +102,37 @@ END
 
 IDR_MAINFRAME MENU 
 BEGIN
-    POPUP "ÆÄÀÏ(&F)"
+    POPUP "íŒŒì¼(&F)"
     BEGIN
-        MENUITEM "»õ·Î ¸¸µé±â(&N)\tCtrl+N",          ID_FILE_NEW
-        MENUITEM "¿­±â(&O)...\tCtrl+O",           ID_TB_OPEN
-        MENUITEM "ÀúÀå(&S)\tCtrl+S",              ID_TB_SAVE
-        MENUITEM "´Ù¸¥ ÀÌ¸§À¸·Î ÀúÀå(&A)...",           ID_FILE_SAVE_AS
+        MENUITEM "ìƒˆë¡œ ë§Œë“¤ê¸°(&N)\tCtrl+N",          ID_FILE_NEW
+        MENUITEM "ì—´ê¸°(&O)...\tCtrl+O",           ID_TB_OPEN
+        MENUITEM "ì €ìž¥(&S)\tCtrl+S",              ID_TB_SAVE
+        MENUITEM "ë‹¤ë¥¸ ì´ë¦„ìœ¼ë¡œ ì €ìž¥(&A)...",           ID_FILE_SAVE_AS
         MENUITEM SEPARATOR
-        MENUITEM "ÀÎ¼â(&P)...\tCtrl+P",           ID_FILE_PRINT
-        MENUITEM "ÀÎ¼â ¹Ì¸® º¸±â(&V)",                ID_FILE_PRINT_PREVIEW
-        MENUITEM "ÀÎ¼â ¼³Á¤(&R)...",                ID_FILE_PRINT_SETUP
+        MENUITEM "ì¸ì‡„(&P)...\tCtrl+P",           ID_FILE_PRINT
+        MENUITEM "ì¸ì‡„ ë¯¸ë¦¬ ë³´ê¸°(&V)",                ID_FILE_PRINT_PREVIEW
+        MENUITEM "ì¸ì‡„ ì„¤ì •(&R)...",                ID_FILE_PRINT_SETUP
         MENUITEM SEPARATOR
-        MENUITEM "ÃÖ±Ù¿¡ »ç¿ëÇÑ ÆÄÀÏ",                  ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM "ìµœê·¼ì— ì‚¬ìš©í•œ íŒŒì¼",                  ID_FILE_MRU_FILE1, GRAYED
         MENUITEM SEPARATOR
-        MENUITEM "³¡³»±â(&X)",                     ID_APP_EXIT
+        MENUITEM "ëë‚´ê¸°(&X)",                     ID_APP_EXIT
     END
-    POPUP "ÆíÁý(&E)"
+    POPUP "íŽ¸ì§‘(&E)"
     BEGIN
-        MENUITEM "½ÇÇà Ãë¼Ò(&U)\tCtrl+Z",           ID_EDIT_UNDO
+        MENUITEM "ì‹¤í–‰ ì·¨ì†Œ(&U)\tCtrl+Z",           ID_EDIT_UNDO
         MENUITEM SEPARATOR
-        MENUITEM "Àß¶ó³»±â(&T)\tCtrl+X",            ID_EDIT_CUT
-        MENUITEM "º¹»ç(&C)\tCtrl+C",              ID_EDIT_COPY
-        MENUITEM "ºÙ¿©³Ö±â(&P)\tCtrl+V",            ID_EDIT_PASTE
+        MENUITEM "ìž˜ë¼ë‚´ê¸°(&T)\tCtrl+X",            ID_EDIT_CUT
+        MENUITEM "ë³µì‚¬(&C)\tCtrl+C",              ID_EDIT_COPY
+        MENUITEM "ë¶™ì—¬ë„£ê¸°(&P)\tCtrl+V",            ID_EDIT_PASTE
     END
-    POPUP "º¸±â(&V)"
+    POPUP "ë³´ê¸°(&V)"
     BEGIN
-        MENUITEM "µµ±¸ ¸ðÀ½(&T)",                   ID_VIEW_TOOLBAR
-        MENUITEM "»óÅÂ Ç¥½ÃÁÙ(&S)",                  ID_VIEW_STATUS_BAR
+        MENUITEM "ë„êµ¬ ëª¨ìŒ(&T)",                   ID_VIEW_TOOLBAR
+        MENUITEM "ìƒíƒœ í‘œì‹œì¤„(&S)",                  ID_VIEW_STATUS_BAR
     END
-    POPUP "µµ¿ò¸»(&H)"
+    POPUP "ë„ì›€ë§(&H)"
     BEGIN
-        MENUITEM "TextureBind Á¤º¸(&A)...",       ID_APP_ABOUT
+        MENUITEM "TextureBind ì •ë³´(&A)...",       ID_APP_ABOUT
     END
 END
 
@@ -168,13 +168,13 @@ END
 
 IDD_ABOUTBOX DIALOGEX 0, 0, 235, 55
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "TextureBind Á¤º¸"
-FONT 9, "MS ¼Ð ´ëÈ­ »óÀÚ", 0, 0, 0x1
+CAPTION "TextureBind ì •ë³´"
+FONT 9, "MS ì…¸ ëŒ€í™” ìƒìž", 0, 0, 0x1
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
-    LTEXT           "TextureBind ¹öÀü 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "TextureBind ë²„ì „ 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
     LTEXT           "Copyright (C) 2009",IDC_STATIC,40,25,119,8
-    DEFPUSHBUTTON   "È®ÀÎ",IDOK,178,7,50,16,WS_GROUP
+    DEFPUSHBUTTON   "í™•ì¸",IDOK,178,7,50,16,WS_GROUP
 END
 
 IDD_DIALOG_LOAD DIALOGEX 0, 0, 220, 156
@@ -182,13 +182,13 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSM
 CAPTION "Load"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "È®ÀÎ",IDOK,54,132,50,14
-    PUSHBUTTON      "Ãë¼Ò",IDCANCEL,114,132,50,14
-    LTEXT           "ºÒ·¯¿Ã µ¥ÀÌÅ¸ÀÇ Å¸ÀÔ",IDC_STATIC,12,12,150,8
-    LTEXT           "ºÒ·¯¿Ã µ¥ÀÌÅ¸ÀÇ Å©±â",IDC_STATIC,12,48,150,8
+    DEFPUSHBUTTON   "í™•ì¸",IDOK,54,132,50,14
+    PUSHBUTTON      "ì·¨ì†Œ",IDCANCEL,114,132,50,14
+    LTEXT           "ë¶ˆëŸ¬ì˜¬ ë°ì´íƒ€ì˜ íƒ€ìž…",IDC_STATIC,12,12,150,8
+    LTEXT           "ë¶ˆëŸ¬ì˜¬ ë°ì´íƒ€ì˜ í¬ê¸°",IDC_STATIC,12,48,150,8
     COMBOBOX        IDC_OPEN_COMBO_TYPE,12,24,150,54,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
     COMBOBOX        IDC_OPEN_COMBO_SIZE,12,60,150,54,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "ºÒ·¯¿Ã µ¥ÀÌÅ¸ÀÇ À§Ä¡",IDC_STATIC,12,84,150,8
+    LTEXT           "ë¶ˆëŸ¬ì˜¬ ë°ì´íƒ€ì˜ ìœ„ì¹˜",IDC_STATIC,12,84,150,8
     EDITTEXT        IDC_OPEN_EDIT_PATH,12,96,150,12,ES_AUTOHSCROLL
     PUSHBUTTON      "...",IDC_OPEN_BUTTON_PATH,168,96,42,12
 END
@@ -198,11 +198,11 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSM
 CAPTION "Save"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "È®ÀÎ",IDOK,48,78,50,14
-    PUSHBUTTON      "Ãë¼Ò",IDCANCEL,114,78,50,14
-    LTEXT           "°á°ú¹°ÀÇ »çÀÌÁî¸¦ °áÁ¤ÇÏ¼¼¿ä.",IDC_STATIC,6,6,150,8
+    DEFPUSHBUTTON   "í™•ì¸",IDOK,48,78,50,14
+    PUSHBUTTON      "ì·¨ì†Œ",IDCANCEL,114,78,50,14
+    LTEXT           "ê²°ê³¼ë¬¼ì˜ ì‚¬ì´ì¦ˆë¥¼ ê²°ì •í•˜ì„¸ìš”.",IDC_STATIC,6,6,150,8
     COMBOBOX        IDC_COMBO_SAVE_TYPE,6,18,108,48,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "°á°ú¹°ÀÌ À§Ä¡ÇÒ Æú´õ¸¦ ÁöÁ¤ÇÏ¼¼¿ä.",IDC_STATIC,6,42,150,8
+    LTEXT           "ê²°ê³¼ë¬¼ì´ ìœ„ì¹˜í•  í´ë”ë¥¼ ì§€ì •í•˜ì„¸ìš”.",IDC_STATIC,6,42,150,8
     EDITTEXT        IDC_EDIT_SAVE_PATH,6,54,174,12,ES_AUTOHSCROLL
     PUSHBUTTON      "...",IDC_BUTTON_SAVE_PATH,186,54,36,12
 END
@@ -230,13 +230,13 @@ BEGIN
     BEGIN
         BLOCK "041203b5"
         BEGIN
-            VALUE "CompanyName", "TODO: <È¸»ç ÀÌ¸§>"
-            VALUE "FileDescription", "TODO: <ÆÄÀÏ ¼³¸í>"
+            VALUE "CompanyName", "TODO: <íšŒì‚¬ ì´ë¦„>"
+            VALUE "FileDescription", "TODO: <íŒŒì¼ ì„¤ëª…>"
             VALUE "FileVersion", "1.0.0.1"
             VALUE "InternalName", "TextureBind.exe"
-            VALUE "LegalCopyright", "TODO: (c) <È¸»ç ÀÌ¸§>.  All rights reserved."
+            VALUE "LegalCopyright", "TODO: (c) <íšŒì‚¬ ì´ë¦„>.  All rights reserved."
             VALUE "OriginalFilename", "TextureBind.exe"
-            VALUE "ProductName", "TODO: <Á¦Ç° ÀÌ¸§>"
+            VALUE "ProductName", "TODO: <ì œí’ˆ ì´ë¦„>"
             VALUE "ProductVersion", "1.0.0.1"
         END
     END
@@ -289,7 +289,7 @@ END
 
 STRINGTABLE 
 BEGIN
-    IDP_OLE_INIT_FAILED     "OLE¸¦ ÃÊ±âÈ­ÇÒ ¼ö ¾ø½À´Ï´Ù. OLE ¶óÀÌºê·¯¸® ¹öÀüÀÌ ¿Ã¹Ù¸¥Áö È®ÀÎÇÏ½Ê½Ã¿À."
+    IDP_OLE_INIT_FAILED     "OLEë¥¼ ì´ˆê¸°í™”í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤. OLE ë¼ì´ë¸ŒëŸ¬ë¦¬ ë²„ì „ì´ ì˜¬ë°”ë¥¸ì§€ í™•ì¸í•˜ì‹­ì‹œì˜¤."
 END
 
 STRINGTABLE 
@@ -300,7 +300,7 @@ END
 STRINGTABLE 
 BEGIN
     AFX_IDS_APP_TITLE       "TextureBind"
-    AFX_IDS_IDLEMESSAGE     "ÁØºñ"
+    AFX_IDS_IDLEMESSAGE     "ì¤€ë¹„"
 END
 
 STRINGTABLE 
@@ -315,98 +315,98 @@ END
 
 STRINGTABLE 
 BEGIN
-    ID_FILE_NEW             "»õ ¹®¼­¸¦ ¸¸µì´Ï´Ù.\n»õ·Î ¸¸µé±â"
-    ID_FILE_OPEN            "±âÁ¸ ¹®¼­¸¦ ¿±´Ï´Ù.\n¿­±â"
-    ID_FILE_CLOSE           "È°¼º ¹®¼­¸¦ ´Ý½À´Ï´Ù.\n´Ý±â"
-    ID_FILE_SAVE            "È°¼º ¹®¼­¸¦ ÀúÀåÇÕ´Ï´Ù.\nÀúÀå"
-    ID_FILE_SAVE_AS         "È°¼º ¹®¼­¸¦ »õ ÀÌ¸§À¸·Î ÀúÀåÇÕ´Ï´Ù.\n´Ù¸¥ ÀÌ¸§À¸·Î ÀúÀå"
-    ID_FILE_PAGE_SETUP      "ÀÎ¼â ¿É¼ÇÀ» º¯°æÇÕ´Ï´Ù.\nÆäÀÌÁö ¼³Á¤"
-    ID_FILE_PRINT_SETUP     "ÇÁ¸°ÅÍ ¹× ÀÎ¼â ¿É¼ÇÀ» º¯°æÇÕ´Ï´Ù.\nÀÎ¼â ¼³Á¤"
-    ID_FILE_PRINT           "È°¼º ¹®¼­¸¦ ÀÎ¼âÇÕ´Ï´Ù.\nÀÎ¼â"
-    ID_FILE_PRINT_PREVIEW   "ÀüÃ¼ ÆäÀÌÁö¸¦ Ç¥½ÃÇÕ´Ï´Ù.\nÀÎ¼â ¹Ì¸® º¸±â"
+    ID_FILE_NEW             "ìƒˆ ë¬¸ì„œë¥¼ ë§Œë“­ë‹ˆë‹¤.\nìƒˆë¡œ ë§Œë“¤ê¸°"
+    ID_FILE_OPEN            "ê¸°ì¡´ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤.\nì—´ê¸°"
+    ID_FILE_CLOSE           "í™œì„± ë¬¸ì„œë¥¼ ë‹«ìŠµë‹ˆë‹¤.\në‹«ê¸°"
+    ID_FILE_SAVE            "í™œì„± ë¬¸ì„œë¥¼ ì €ìž¥í•©ë‹ˆë‹¤.\nì €ìž¥"
+    ID_FILE_SAVE_AS         "í™œì„± ë¬¸ì„œë¥¼ ìƒˆ ì´ë¦„ìœ¼ë¡œ ì €ìž¥í•©ë‹ˆë‹¤.\në‹¤ë¥¸ ì´ë¦„ìœ¼ë¡œ ì €ìž¥"
+    ID_FILE_PAGE_SETUP      "ì¸ì‡„ ì˜µì…˜ì„ ë³€ê²½í•©ë‹ˆë‹¤.\níŽ˜ì´ì§€ ì„¤ì •"
+    ID_FILE_PRINT_SETUP     "í”„ë¦°í„° ë° ì¸ì‡„ ì˜µì…˜ì„ ë³€ê²½í•©ë‹ˆë‹¤.\nì¸ì‡„ ì„¤ì •"
+    ID_FILE_PRINT           "í™œì„± ë¬¸ì„œë¥¼ ì¸ì‡„í•©ë‹ˆë‹¤.\nì¸ì‡„"
+    ID_FILE_PRINT_PREVIEW   "ì „ì²´ íŽ˜ì´ì§€ë¥¼ í‘œì‹œí•©ë‹ˆë‹¤.\nì¸ì‡„ ë¯¸ë¦¬ ë³´ê¸°"
 END
 
 STRINGTABLE 
 BEGIN
-    ID_APP_ABOUT            "ÇÁ·Î±×·¥ Á¤º¸, ¹öÀü ¹øÈ£, ÀúÀÛ±ÇÀ» Ç¥½ÃÇÕ´Ï´Ù.\nÁ¤º¸"
-    ID_APP_EXIT             "¹®¼­¸¦ ÀúÀåÇÒÁö¸¦ ¹¯°í ÀÀ¿ë ÇÁ·Î±×·¥À» ³¡³À´Ï´Ù.\n³¡³»±â"
+    ID_APP_ABOUT            "í”„ë¡œê·¸ëž¨ ì •ë³´, ë²„ì „ ë²ˆí˜¸, ì €ìž‘ê¶Œì„ í‘œì‹œí•©ë‹ˆë‹¤.\nì •ë³´"
+    ID_APP_EXIT             "ë¬¸ì„œë¥¼ ì €ìž¥í• ì§€ë¥¼ ë¬»ê³  ì‘ìš© í”„ë¡œê·¸ëž¨ì„ ëëƒ…ë‹ˆë‹¤.\nëë‚´ê¸°"
 END
 
 STRINGTABLE 
 BEGIN
-    ID_FILE_MRU_FILE1       "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE2       "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE3       "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE4       "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE5       "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE6       "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE7       "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE8       "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE9       "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE10      "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE11      "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE12      "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE13      "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE14      "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE15      "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE16      "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
+    ID_FILE_MRU_FILE1       "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE2       "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE3       "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE4       "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE5       "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE6       "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE7       "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE8       "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE9       "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE10      "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE11      "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE12      "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE13      "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE14      "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE15      "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE16      "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
 END
 
 STRINGTABLE 
 BEGIN
-    ID_NEXT_PANE            "´ÙÀ½ Ã¢À¸·Î ÀüÈ¯ÇÕ´Ï´Ù.\n´ÙÀ½ Ã¢"
-    ID_PREV_PANE            "ÀÌÀü Ã¢À¸·Î ÀüÈ¯ÇÕ´Ï´Ù.\nÀÌÀü Ã¢"
+    ID_NEXT_PANE            "ë‹¤ìŒ ì°½ìœ¼ë¡œ ì „í™˜í•©ë‹ˆë‹¤.\në‹¤ìŒ ì°½"
+    ID_PREV_PANE            "ì´ì „ ì°½ìœ¼ë¡œ ì „í™˜í•©ë‹ˆë‹¤.\nì´ì „ ì°½"
 END
 
 STRINGTABLE 
 BEGIN
-    ID_WINDOW_SPLIT         "È°¼º Ã¢À» ¿©·¯ °³ÀÇ Ã¢À¸·Î ºÐÇÒÇÕ´Ï´Ù.\nºÐÇÒ"
+    ID_WINDOW_SPLIT         "í™œì„± ì°½ì„ ì—¬ëŸ¬ ê°œì˜ ì°½ìœ¼ë¡œ ë¶„í• í•©ë‹ˆë‹¤.\në¶„í• "
 END
 
 STRINGTABLE 
 BEGIN
-    ID_EDIT_CLEAR           "¼±ÅÃ ¿µ¿ªÀ» Áö¿ó´Ï´Ù.\nÁö¿ì±â"
-    ID_EDIT_CLEAR_ALL       "¸ðµÎ Áö¿ó´Ï´Ù.\n¸ðµÎ Áö¿ì±â"
-    ID_EDIT_COPY            "¼±ÅÃ ¿µ¿ªÀ» º¹»çÇÏ¿© Å¬¸³º¸µå¿¡ ³Ö½À´Ï´Ù.\nº¹»ç"
-    ID_EDIT_CUT             "¼±ÅÃ ¿µ¿ªÀ» Àß¶ó³»¾î Å¬¸³º¸µå¿¡ ³Ö½À´Ï´Ù.\nÀß¶ó³»±â"
-    ID_EDIT_FIND            "ÁöÁ¤ÇÑ ÅØ½ºÆ®¸¦ Ã£½À´Ï´Ù.\nÃ£±â"
-    ID_EDIT_PASTE           "Å¬¸³º¸µå ³»¿ëÀ» »ðÀÔÇÕ´Ï´Ù.\nºÙ¿©³Ö±â"
-    ID_EDIT_REPEAT          "¸¶Áö¸· ÀÛ¾÷À» ¹Ýº¹ÇÕ´Ï´Ù.\n¹Ýº¹"
-    ID_EDIT_REPLACE         "Æ¯Á¤ ÅØ½ºÆ®¸¦ ´Ù¸¥ ÅØ½ºÆ®·Î ¹Ù²ß´Ï´Ù.\n¹Ù²Ù±â"
-    ID_EDIT_SELECT_ALL      "ÀüÃ¼ ¹®¼­¸¦ ¼±ÅÃÇÕ´Ï´Ù.\n¸ðµÎ ¼±ÅÃ"
-    ID_EDIT_UNDO            "¸¶Áö¸· ÀÛ¾÷ ½ÇÇàÀ» Ãë¼ÒÇÕ´Ï´Ù.\n½ÇÇà Ãë¼Ò"
-    ID_EDIT_REDO            "ÀÌÀü¿¡ ½ÇÇà Ãë¼ÒµÈ ÀÛ¾÷À» ´Ù½Ã ½ÇÇàÇÕ´Ï´Ù.\n´Ù½Ã ½ÇÇà"
+    ID_EDIT_CLEAR           "ì„ íƒ ì˜ì—­ì„ ì§€ì›ë‹ˆë‹¤.\nì§€ìš°ê¸°"
+    ID_EDIT_CLEAR_ALL       "ëª¨ë‘ ì§€ì›ë‹ˆë‹¤.\nëª¨ë‘ ì§€ìš°ê¸°"
+    ID_EDIT_COPY            "ì„ íƒ ì˜ì—­ì„ ë³µì‚¬í•˜ì—¬ í´ë¦½ë³´ë“œì— ë„£ìŠµë‹ˆë‹¤.\në³µì‚¬"
+    ID_EDIT_CUT             "ì„ íƒ ì˜ì—­ì„ ìž˜ë¼ë‚´ì–´ í´ë¦½ë³´ë“œì— ë„£ìŠµë‹ˆë‹¤.\nìž˜ë¼ë‚´ê¸°"
+    ID_EDIT_FIND            "ì§€ì •í•œ í…ìŠ¤íŠ¸ë¥¼ ì°¾ìŠµë‹ˆë‹¤.\nì°¾ê¸°"
+    ID_EDIT_PASTE           "í´ë¦½ë³´ë“œ ë‚´ìš©ì„ ì‚½ìž…í•©ë‹ˆë‹¤.\në¶™ì—¬ë„£ê¸°"
+    ID_EDIT_REPEAT          "ë§ˆì§€ë§‰ ìž‘ì—…ì„ ë°˜ë³µí•©ë‹ˆë‹¤.\në°˜ë³µ"
+    ID_EDIT_REPLACE         "íŠ¹ì • í…ìŠ¤íŠ¸ë¥¼ ë‹¤ë¥¸ í…ìŠ¤íŠ¸ë¡œ ë°”ê¿‰ë‹ˆë‹¤.\në°”ê¾¸ê¸°"
+    ID_EDIT_SELECT_ALL      "ì „ì²´ ë¬¸ì„œë¥¼ ì„ íƒí•©ë‹ˆë‹¤.\nëª¨ë‘ ì„ íƒ"
+    ID_EDIT_UNDO            "ë§ˆì§€ë§‰ ìž‘ì—… ì‹¤í–‰ì„ ì·¨ì†Œí•©ë‹ˆë‹¤.\nì‹¤í–‰ ì·¨ì†Œ"
+    ID_EDIT_REDO            "ì´ì „ì— ì‹¤í–‰ ì·¨ì†Œëœ ìž‘ì—…ì„ ë‹¤ì‹œ ì‹¤í–‰í•©ë‹ˆë‹¤.\në‹¤ì‹œ ì‹¤í–‰"
 END
 
 STRINGTABLE 
 BEGIN
-    ID_VIEW_TOOLBAR         "µµ±¸ ¸ðÀ½À» Ç¥½ÃÇÏ°Å³ª ¼û±é´Ï´Ù.\nµµ±¸ ¸ðÀ½ ¼³Á¤/ÇØÁ¦"
-    ID_VIEW_STATUS_BAR      "»óÅÂ Ç¥½ÃÁÙÀ» Ç¥½ÃÇÏ°Å³ª ¼û±é´Ï´Ù.\n»óÅÂ Ç¥½ÃÁÙ ¼³Á¤/ÇØÁ¦"
+    ID_VIEW_TOOLBAR         "ë„êµ¬ ëª¨ìŒì„ í‘œì‹œí•˜ê±°ë‚˜ ìˆ¨ê¹ë‹ˆë‹¤.\në„êµ¬ ëª¨ìŒ ì„¤ì •/í•´ì œ"
+    ID_VIEW_STATUS_BAR      "ìƒíƒœ í‘œì‹œì¤„ì„ í‘œì‹œí•˜ê±°ë‚˜ ìˆ¨ê¹ë‹ˆë‹¤.\nìƒíƒœ í‘œì‹œì¤„ ì„¤ì •/í•´ì œ"
 END
 
 STRINGTABLE 
 BEGIN
-    AFX_IDS_SCSIZE          "Ã¢ Å©±â¸¦ º¯°æÇÕ´Ï´Ù."
-    AFX_IDS_SCMOVE          "Ã¢ À§Ä¡¸¦ º¯°æÇÕ´Ï´Ù."
-    AFX_IDS_SCMINIMIZE      "Ã¢À» ¾ÆÀÌÄÜÀ¸·Î Ãà¼ÒÇÕ´Ï´Ù."
-    AFX_IDS_SCMAXIMIZE      "Ã¢À» ÀüÃ¼ È­¸é Å©±â·Î È®´ëÇÕ´Ï´Ù."
-    AFX_IDS_SCNEXTWINDOW    "´ÙÀ½ ¹®¼­ Ã¢À¸·Î ÀüÈ¯ÇÕ´Ï´Ù."
-    AFX_IDS_SCPREVWINDOW    "ÀÌÀü ¹®¼­ Ã¢À¸·Î ÀüÈ¯ÇÕ´Ï´Ù."
-    AFX_IDS_SCCLOSE         "¹®¼­¸¦ ÀúÀåÇÒ °ÍÀÎÁö È®ÀÎÇÏ°í È°¼º Ã¢À» ´Ý½À´Ï´Ù."
+    AFX_IDS_SCSIZE          "ì°½ í¬ê¸°ë¥¼ ë³€ê²½í•©ë‹ˆë‹¤."
+    AFX_IDS_SCMOVE          "ì°½ ìœ„ì¹˜ë¥¼ ë³€ê²½í•©ë‹ˆë‹¤."
+    AFX_IDS_SCMINIMIZE      "ì°½ì„ ì•„ì´ì½˜ìœ¼ë¡œ ì¶•ì†Œí•©ë‹ˆë‹¤."
+    AFX_IDS_SCMAXIMIZE      "ì°½ì„ ì „ì²´ í™”ë©´ í¬ê¸°ë¡œ í™•ëŒ€í•©ë‹ˆë‹¤."
+    AFX_IDS_SCNEXTWINDOW    "ë‹¤ìŒ ë¬¸ì„œ ì°½ìœ¼ë¡œ ì „í™˜í•©ë‹ˆë‹¤."
+    AFX_IDS_SCPREVWINDOW    "ì´ì „ ë¬¸ì„œ ì°½ìœ¼ë¡œ ì „í™˜í•©ë‹ˆë‹¤."
+    AFX_IDS_SCCLOSE         "ë¬¸ì„œë¥¼ ì €ìž¥í•  ê²ƒì¸ì§€ í™•ì¸í•˜ê³  í™œì„± ì°½ì„ ë‹«ìŠµë‹ˆë‹¤."
 END
 
 STRINGTABLE 
 BEGIN
-    AFX_IDS_SCRESTORE       "Ã¢À» º¸Åë Å©±â·Î º¹¿øÇÕ´Ï´Ù."
-    AFX_IDS_SCTASKLIST      "ÀÛ¾÷ ¸ñ·ÏÀ» È°¼ºÈ­ÇÕ´Ï´Ù."
+    AFX_IDS_SCRESTORE       "ì°½ì„ ë³´í†µ í¬ê¸°ë¡œ ë³µì›í•©ë‹ˆë‹¤."
+    AFX_IDS_SCTASKLIST      "ìž‘ì—… ëª©ë¡ì„ í™œì„±í™”í•©ë‹ˆë‹¤."
 END
 
 STRINGTABLE 
 BEGIN
-    AFX_IDS_PREVIEW_CLOSE   "ÀÎ¼â ¹Ì¸® º¸±â ¸ðµå¸¦ ´Ý½À´Ï´Ù.\n¹Ì¸® º¸±â Ãë¼Ò"
+    AFX_IDS_PREVIEW_CLOSE   "ì¸ì‡„ ë¯¸ë¦¬ ë³´ê¸° ëª¨ë“œë¥¼ ë‹«ìŠµë‹ˆë‹¤.\në¯¸ë¦¬ ë³´ê¸° ì·¨ì†Œ"
 END
 
-#endif    // ÇÑ±¹¾î resources
+#endif    // í•œêµ­ì–´ resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -424,9 +424,9 @@ END
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 LANGUAGE 18, 1
 #pragma code_page(949)
-#include "res\TextureBind.rc2"  // Microsoft Visual C++ ÀÌ¿ÜÀÇ ´Ù¸¥ µµ±¸¿¡¼­ ÆíÁýÇÑ ¸®¼Ò½ºÀÔ´Ï´Ù.
-#include "afxres.rc"         // Ç¥ÁØ ±¸¼º ¿ä¼ÒÀÔ´Ï´Ù.
-#include "afxprint.rc"       // ÀÎ¼â ¹Ì¸® º¸±â ¸®¼Ò½º
+#include "res\TextureBind.rc2"  // Microsoft Visual C++ ì´ì™¸ì˜ ë‹¤ë¥¸ ë„êµ¬ì—ì„œ íŽ¸ì§‘í•œ ë¦¬ì†ŒìŠ¤ìž…ë‹ˆë‹¤.
+#include "afxres.rc"         // í‘œì¤€ êµ¬ì„± ìš”ì†Œìž…ë‹ˆë‹¤.
+#include "afxprint.rc"       // ì¸ì‡„ ë¯¸ë¦¬ ë³´ê¸° ë¦¬ì†ŒìŠ¤
 #endif
 
 /////////////////////////////////////////////////////////////////////////////

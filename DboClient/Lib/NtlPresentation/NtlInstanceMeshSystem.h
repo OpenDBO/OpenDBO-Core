@@ -2,7 +2,7 @@
 //	File		:	NtlInstanceMeshSystem.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -39,10 +39,10 @@ public:
 	virtual RwBool	Update(RwReal fElapsedTime);
 	virtual RwBool	Render();
 
-	RwBool		    Finish();                                                       ///< ÀÌÆåÆ®ÀÇ »èÁ¦ ÀÛ¾÷À» Ã³¸®ÇÑ´Ù.
+	RwBool		    Finish();                                                       ///< ì´íŽ™íŠ¸ì˜ ì‚­ì œ ìž‘ì—…ì„ ì²˜ë¦¬í•œë‹¤.
 
 	virtual void	SetWorldMatrix(const RwMatrix& matWorld);
-	virtual void    SetAlpha(RwUInt8 byValue);                                      ///< ÀÌÆåÆ®ÀÇ Alpha°ªÀ» Àû¿ëÇÑ´Ù.
+	virtual void    SetAlpha(RwUInt8 byValue);                                      ///< ì´íŽ™íŠ¸ì˜ Alphaê°’ì„ ì ìš©í•œë‹¤.
     virtual void	SetScale(RwReal fScale);
 
     static void    CreateToonData(RpClump* pClump, SToonData* pToonData);
@@ -52,7 +52,7 @@ protected:
     void	UpdateSize(RwReal fDeltaTime);
     void	UpdateColor(RwReal fDeltaTime);
     void	UpdateRotate(RwReal fDeltaTime);
-    virtual RwBool  UpdateFinish(RwReal fElapsedTime);          ///< Finish ÀÛ¾÷À» Ã³¸®ÇÑ´Ù.
+    virtual RwBool  UpdateFinish(RwReal fElapsedTime);          ///< Finish ìž‘ì—…ì„ ì²˜ë¦¬í•œë‹¤.
     void    CalcBoundingSphere();
     
 
@@ -72,10 +72,10 @@ protected:
 
     RwBool							m_bUpdateRenderMatrix;
 
-    RwMatrix*                       m_pMatEmitter;                   ///< Attach OptionÀÌ False »óÅÂÀÏ¶§ Ã³À½ EmitterÀÇ Matrix
-    RwMatrix                        m_matInvScale;                   ///< Scale Çà·ÄÀÇ ¿ªÇà·Ä. Spline °è»ê½Ã »ç¿ëµÈ´Ù.
-    RpHAnimHierarchy*               m_pAnimhierarchy;                ///< ClumpÀÇ Hierarchy (AnimationÀÌ ÀÖÀ»¶§¸¸ »ç¿ë)
+    RwMatrix*                       m_pMatEmitter;                   ///< Attach Optionì´ False ìƒíƒœì¼ë•Œ ì²˜ìŒ Emitterì˜ Matrix
+    RwMatrix                        m_matInvScale;                   ///< Scale í–‰ë ¬ì˜ ì—­í–‰ë ¬. Spline ê³„ì‚°ì‹œ ì‚¬ìš©ëœë‹¤.
+    RpHAnimHierarchy*               m_pAnimhierarchy;                ///< Clumpì˜ Hierarchy (Animationì´ ìžˆì„ë•Œë§Œ ì‚¬ìš©)
 
     CNtlInstanceTrailSystem*        m_pTrailSystem;                  ///< Trail System (Trail Action)
-    SToonData*                      m_pToonData;                     ///< Å÷ÀÌ Àû¿ëµÈ ¸Þ½Ã¸¦ À§ÇÑ Å÷ Á¤º¸
+    SToonData*                      m_pToonData;                     ///< íˆ°ì´ ì ìš©ëœ ë©”ì‹œë¥¼ ìœ„í•œ íˆ° ì •ë³´
 };

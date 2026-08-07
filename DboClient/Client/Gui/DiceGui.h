@@ -1,7 +1,7 @@
 /******************************************************************************
 * File			: DiceGui.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2008. 5. 26
 * Abstract		: 
 *****************************************************************************
@@ -21,8 +21,8 @@ struct sITEM_PROFILE;
 
 struct sWaitDiceDisappear
 {
-	RwReal		fElapsedDisappear;	///< ¡÷ªÁ¿ß∞° ªÁ∂Û¡ˆ±‚±Ó¡ˆ¿« Ω√∞£
-	RwBool		bWaitDisappear;		///< ¡÷ªÁ¿ß∞° ªÁ∂Û¡ˆ±‚∏¶ ±‚¥Ÿ∏Æ¥¬¡ˆ ø©∫Œ
+	RwReal		fElapsedDisappear;	///< Ï£ºÏÇ¨ÏúÑÍ∞Ä ÏÇ¨ÎùºÏßÄÍ∏∞ÍπåÏßÄÏùò ÏãúÍ∞Ñ
+	RwBool		bWaitDisappear;		///< Ï£ºÏÇ¨ÏúÑÍ∞Ä ÏÇ¨ÎùºÏßÄÍ∏∞Î•º Í∏∞Îã§Î¶¨ÎäîÏßÄ Ïó¨Î∂Ä
 
 	sWaitDiceDisappear()
 	:fElapsedDisappear(0.f), bWaitDisappear(false)
@@ -98,12 +98,12 @@ protected:
 	gui::CSlot			m_slotFSCallback;
 	gui::CSlot			m_slotMovieEnd;
 	
-	gui::CButton*		m_pExitButton;			///< √¢¥›±‚ πˆ∆∞
-	gui::CFlash*		m_pflashDice;			///< ¡÷ªÁ¿ß «√∑°Ω¨
+	gui::CButton*		m_pExitButton;			///< Ï∞ΩÎã´Í∏∞ Î≤ÑÌäº
+	gui::CFlash*		m_pflashDice;			///< Ï£ºÏÇ¨ÏúÑ ÌîåÎûòÏâ¨
 
-	gui::CStaticBox*	m_pActionDiceExplain;	///< æ◊º« ¡÷ªÁ¿ß º≥∏Ì
-	gui::CStaticBox*	m_pActionDiceExplain2;	///< æ◊º« ¡÷ªÁ¿ß º≥∏Ì2
-	gui::CStaticBox*	m_pResultNum;			///< ¡÷ªÁ¿ß∏¶ ±º∏∞ º˝¿⁄
+	gui::CStaticBox*	m_pActionDiceExplain;	///< Ïï°ÏÖò Ï£ºÏÇ¨ÏúÑ ÏÑ§Î™Ö
+	gui::CStaticBox*	m_pActionDiceExplain2;	///< Ïï°ÏÖò Ï£ºÏÇ¨ÏúÑ ÏÑ§Î™Ö2
+	gui::CStaticBox*	m_pResultNum;			///< Ï£ºÏÇ¨ÏúÑÎ•º Íµ¥Î¶∞ Ïà´Ïûê
 };
 
 
@@ -150,22 +150,22 @@ protected:
 	gui::CSlot			m_slotMouseLeave;
 	gui::CSlot			m_slotPaint;
 
-	gui::CButton*		m_pExitButton;			///< √¢¥›±‚ πˆ∆∞
-	gui::CFlash*		m_pflashDice;			///< ¡÷ªÁ¿ß «√∑°Ω¨
+	gui::CButton*		m_pExitButton;			///< Ï∞ΩÎã´Í∏∞ Î≤ÑÌäº
+	gui::CFlash*		m_pflashDice;			///< Ï£ºÏÇ¨ÏúÑ ÌîåÎûòÏâ¨
 
-	gui::CStaticBox*	m_pAutoDiceExplain;		///< ¿⁄µø ¡÷ªÁ¿ß º≥∏Ì
-	gui::CStaticBox*	m_pResultNum;			///< ¡÷ªÁ¿ß∏¶ ±º∏∞ º˝¿⁄
+	gui::CStaticBox*	m_pAutoDiceExplain;		///< ÏûêÎèô Ï£ºÏÇ¨ÏúÑ ÏÑ§Î™Ö
+	gui::CStaticBox*	m_pResultNum;			///< Ï£ºÏÇ¨ÏúÑÎ•º Íµ¥Î¶∞ Ïà´Ïûê
 
-	gui::CProgressBar*	m_pTimeGauge;			///< ¡÷ªÁ¿ß ±º∏Æ±‚ Ω√∞£ ¡¶«—
+	gui::CProgressBar*	m_pTimeGauge;			///< Ï£ºÏÇ¨ÏúÑ Íµ¥Î¶¨Í∏∞ ÏãúÍ∞Ñ Ï†úÌïú
 
-	CSurfaceGui			m_srfItemSlot;			///< æ∆¿Ã≈€ ΩΩ∑‘ πË∞Ê
-	CSurfaceGui			m_srfTimeGaugeBack;		///< ¡÷ªÁ¿ß ±º∏Æ±‚ Ω√∞£ ¡¶«— πË∞Ê
+	CSurfaceGui			m_srfItemSlot;			///< ÏïÑÏù¥ÌÖú Ïä¨Î°Ø Î∞∞Í≤Ω
+	CSurfaceGui			m_srfTimeGaugeBack;		///< Ï£ºÏÇ¨ÏúÑ Íµ¥Î¶¨Í∏∞ ÏãúÍ∞Ñ Ï†úÌïú Î∞∞Í≤Ω
 
-	CRegularSlotGui			m_slot;					///< æ∆¿Ã≈€ ΩΩ∑‘
+	CRegularSlotGui			m_slot;					///< ÏïÑÏù¥ÌÖú Ïä¨Î°Ø
 
-	RwReal				m_fElapsed;				///< ¡÷ªÁ¿ß∏¶ ±º∑¡æﬂ «“ ¡¶«— Ω√∞£
+	RwReal				m_fElapsed;				///< Ï£ºÏÇ¨ÏúÑÎ•º Íµ¥Î†§Ïïº Ìï† Ï†úÌïú ÏãúÍ∞Ñ
 	
-	sWaitDiceDisappear	m_WaitDiceDisappear;	///< ¡÷ªÁ¿ß∞° ªÁ∂Û¡˙ ∂ß±Ó¡ˆ « ø‰∑Œ «œ¥¬ ¡§∫∏
+	sWaitDiceDisappear	m_WaitDiceDisappear;	///< Ï£ºÏÇ¨ÏúÑÍ∞Ä ÏÇ¨ÎùºÏßà ÎïåÍπåÏßÄ ÌïÑÏöîÎ°ú ÌïòÎäî Ï†ïÎ≥¥
 
 	sITEM_PROFILE*		m_pItemProfile;	
 };

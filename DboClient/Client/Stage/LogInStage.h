@@ -2,7 +2,7 @@
  *
  * File			: LogInStage.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 8. 17	
  * Abstract		: Login stage class
  *****************************************************************************

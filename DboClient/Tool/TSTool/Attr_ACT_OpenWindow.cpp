@@ -1,4 +1,4 @@
-// CAttr_ACT_OpenWindow.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// CAttr_ACT_OpenWindow.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_ACT_OpenWindow.h"
 
 
-// CAttr_ACT_OpenWindow ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_ACT_OpenWindow ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_ACT_OpenWindow, CAttr_Page, 1)
 
@@ -117,15 +117,15 @@ BOOL CAttr_ACT_OpenWindow::OnInitDialog()
 {
 	CAttr_Page::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	m_ctrShowBtn.SetCheck( BST_CHECKED );
 
-	m_ctrWindowTypeCombo.SetItemData( m_ctrWindowTypeCombo.AddString( _T("Æ©Åä¸®¾ó ÈùÆ® Ã¢") ), eWINDOW_TYPE_TUTORIALHINT );
-	m_ctrWindowTypeCombo.SetItemData( m_ctrWindowTypeCombo.AddString( _T("ÇïÇÁ Ã¢") ), eWINDOW_TYPE_HELP );
-	m_ctrWindowTypeCombo.SetItemData( m_ctrWindowTypeCombo.AddString( _T("ÀÎº¥Åä¸® Ã¢") ), eWINDOW_TYPE_INVENTORY );
-	m_ctrWindowTypeCombo.SetItemData( m_ctrWindowTypeCombo.AddString( _T("½ºÅ³ Ã¢") ), eWINDOW_TYPE_SKILL );
-	int nIdx = m_ctrWindowTypeCombo.AddString( _T("Ä³¸¯ÅÍ Á¤º¸ Ã¢") );
+	m_ctrWindowTypeCombo.SetItemData( m_ctrWindowTypeCombo.AddString( _T("íŠœí† ë¦¬ì–¼ íŒíŠ¸ ì°½") ), eWINDOW_TYPE_TUTORIALHINT );
+	m_ctrWindowTypeCombo.SetItemData( m_ctrWindowTypeCombo.AddString( _T("í—¬í”„ ì°½") ), eWINDOW_TYPE_HELP );
+	m_ctrWindowTypeCombo.SetItemData( m_ctrWindowTypeCombo.AddString( _T("ì¸ë²¤í† ë¦¬ ì°½") ), eWINDOW_TYPE_INVENTORY );
+	m_ctrWindowTypeCombo.SetItemData( m_ctrWindowTypeCombo.AddString( _T("ìŠ¤í‚¬ ì°½") ), eWINDOW_TYPE_SKILL );
+	int nIdx = m_ctrWindowTypeCombo.AddString( _T("ìºë¦­í„° ì •ë³´ ì°½") );
 	m_ctrWindowTypeCombo.SetItemData( nIdx, eWINDOW_TYPE_CHARINFO );
 	m_ctrWindowTypeCombo.SetCurSel( nIdx );
 
@@ -140,7 +140,7 @@ BOOL CAttr_ACT_OpenWindow::OnInitDialog()
 	OnCbnSelchangeTsActAttrOpenWindowCombo();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 
@@ -149,7 +149,7 @@ BEGIN_MESSAGE_MAP(CAttr_ACT_OpenWindow, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_ACT_OpenWindow ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_ACT_OpenWindow ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 void CAttr_ACT_OpenWindow::OnCbnSelchangeTsActAttrOpenWindowCombo()
 {
 	if ( -1 != m_nCurSelIndex )

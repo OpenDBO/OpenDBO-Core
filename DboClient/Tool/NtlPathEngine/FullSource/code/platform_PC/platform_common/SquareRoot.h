@@ -11,15 +11,12 @@
 #ifndef SQUARE_ROOT_INCLUDED
 #define SQUARE_ROOT_INCLUDED
 
-inline __declspec(naked) float __fastcall
+#include <cmath>
+
+inline float
 SquareRoot(float value)
 {
-    __asm
-    {
-        fld   DWORD PTR [esp+4]
-        fsqrt
-        ret 4
-    }
+    return std::sqrtf(value);
 }
 
 #endif

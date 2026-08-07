@@ -4,7 +4,7 @@
 
 
 
-// CFieldsInformation ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CFieldsInformation ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 //////////////////////////////////////////////////////////////////////////
 // dNTL_WORLD_FILE : DEFINE
@@ -16,14 +16,14 @@ class CFieldsInformation : public CDialog
 	DECLARE_DYNAMIC(CFieldsInformation)
 
 public:
-	CFieldsInformation(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CFieldsInformation(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CFieldsInformation();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_FIELD_INFO };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 
@@ -58,14 +58,14 @@ class CFieldsInformation : public CDialog, public CNtlWorldFileMemAccessor
 	DECLARE_DYNAMIC(CFieldsInformation)
 
 public:
-	CFieldsInformation(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CFieldsInformation(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CFieldsInformation();
 
-	// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+	// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_FIELD_INFO };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 

@@ -1,4 +1,4 @@
-// EventLayer.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// EventLayer.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -30,16 +30,16 @@ BEGIN_MESSAGE_MAP(CEventLayer, CView)
 END_MESSAGE_MAP()
 
 
-// CEventLayer ±×¸®±âÀÔ´Ï´Ù.
+// CEventLayer ê·¸ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CEventLayer::OnDraw(CDC* pDC)
 {
 	CDocument* pDoc = GetDocument();
-	// TODO: ¿©±â¿¡ ±×¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ê·¸ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 
-// CEventLayer Áø´ÜÀÔ´Ï´Ù.
+// CEventLayer ì§„ë‹¨ì…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CEventLayer::AssertValid() const
@@ -54,7 +54,7 @@ void CEventLayer::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CEventLayer ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CEventLayer ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CEventLayer::OnInitialUpdate()
 {

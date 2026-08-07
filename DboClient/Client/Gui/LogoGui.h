@@ -1,7 +1,7 @@
 /******************************************************************************
 * File			: LogoGui.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2008. 11. 12
 * Abstract		: 
 * Update		: 

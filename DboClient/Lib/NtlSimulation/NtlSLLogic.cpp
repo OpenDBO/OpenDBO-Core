@@ -262,7 +262,7 @@ RwBool Logic_IsUIDevInfoVisible(void)
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // monster/player logic
-// ���� : �ӵ��� table data�� ���� �� ������ ������ �ӵ��� �ɰ��̴�.
+// 占쏙옙占쏙옙 : 占쌈듸옙占쏙옙 table data占쏙옙 占쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쌈듸옙占쏙옙 占심곤옙占싱댐옙.
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -270,7 +270,7 @@ RwBool Logic_IsUIDevInfoVisible(void)
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// actor �Ӽ� logic
+// actor 占쌈쇽옙 logic
 
 const WCHAR* Logic_GetName(CNtlSob *pSobObj)
 {
@@ -514,7 +514,7 @@ void Logic_SetRpStock( CNtlSob* pSobObj, RwUInt32 uiRpStock )
 
 		if( uiRpStock > (RwUInt32)GetNtlSLGlobal()->GetAvatarInfo()->sCharPf.byCurRPBall)
         {
-            // RP Stock�� �ö����� �̺�Ʈ 
+            // RP Stock占쏙옙 占시띰옙占쏙옙占쏙옙 占싱븝옙트 
             if(Logic_GetActorStateId(pSobActor) == NTL_FSMSID_CHARGING)
             {
                 pSobActor->GetSobProxy()->CreatePLEffect(NTL_VID_RPBALL_UP, &pSobActor->GetPosition());
@@ -1393,7 +1393,7 @@ float Logic_GetMaxDashDistanceBackLeftRight(CNtlSobActor * pActor)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// player ���� 
+// player 占쏙옙占쏙옙 
 
 RwUInt8	Logic_GetPlayerRace(CNtlSobActor *pActor)
 {
@@ -1474,7 +1474,7 @@ RwUInt32 Logic_GetReputation(CNtlSobActor *pActor)
 
 RwUInt8	Logic_ConverClasstoRace(RwUInt8 byClass)
 {
-	// Ŭ������ � ������ ���ϴ��� �˾ƺ���
+	// 클占쏙옙占쏙옙占쏙옙 占쏘떤 占쏙옙占쏙옙占쏙옙 占쏙옙占싹댐옙占쏙옙 占싯아븝옙占쏙옙
 	switch(byClass)
 	{
 	case PC_CLASS_HUMAN_FIGHTER:
@@ -1967,9 +1967,9 @@ RwReal Logic_GetRequiredEPFactor( CNtlSobActor* pActor )
 //}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// actor�� ���� �� mode
+// actor占쏙옙 占쏙옙占쏙옙 占쏙옙 mode
 
-// actor�� community actor�ΰ�?(npc, trigger object, world item)
+// actor占쏙옙 community actor占싸곤옙?(npc, trigger object, world item)
 RwBool Logic_IsCommunityActor(CNtlSobActor *pActor)
 {
 	if( !pActor )
@@ -2015,7 +2015,7 @@ RwBool Logic_IsGambleActor( CNtlSobActor *pActor )
 	return FALSE;
 }
 
-// operation trigger actor �ΰ�?
+// operation trigger actor 占싸곤옙?
 RwBool Logic_IsOperationTriggerActor(CNtlSobActor *pActor)
 {
 	if( !pActor )
@@ -2039,7 +2039,7 @@ RwUInt32 Logic_GetDirectIdTriggerActor(CNtlSobActor *pActor)
 	return pObjTblData->objectDirectionIndex;
 }
 
-// actor�� state id�� �Ѱ��ش�.
+// actor占쏙옙 state id占쏙옙 占싼곤옙占쌔댐옙.
 RwUInt32 Logic_GetActorStateId(CNtlSobActor *pActor)
 {
 	if( !pActor )
@@ -2075,7 +2075,7 @@ RwUInt32 Logic_GetActorStateFlags( CNtlSobActor* pActor )
 	return pStateBase->GetFlags();
 }
 
-// actor�� target �ϰ� �ִ� serial id
+// actor占쏙옙 target 占싹곤옙 占쌍댐옙 serial id
 SERIAL_HANDLE Logic_GetActorTargetSerialId(CNtlSobActor *pActor)
 {
 	if( !pActor )
@@ -2095,7 +2095,7 @@ SERIAL_HANDLE Logic_GetActorTargetSerialId(CNtlSobActor *pActor)
 }
 
 
-// actor ���� �������ΰ�?
+// actor 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占싸곤옙?
 RwBool Logic_IsActorBattleMode(CNtlSobActor *pActor)
 {
 	if( !pActor )
@@ -2876,11 +2876,11 @@ CNtlSobActor* Logic_FindNearEnemyFromAvatarActor(void)
 	if(pSobAvatar == NULL)
 		return NULL;
 
-    // PVP, ��ũ ��Ʋ, õ�����Ϲ���ȸ���� ��Ȳ�� �ֱ� ������ WorldConcept���� Ÿ���� �˻��ؾ� �Ѵ�.
+    // PVP, 占쏙옙크 占쏙옙틀, 천占쏙옙占쏙옙占싹뱄옙占쏙옙회占쏙옙占쏙옙 占쏙옙황占쏙옙 占쌍깍옙 占쏙옙占쏙옙占쏙옙 WorldConcept占쏙옙占쏙옙 타占쏙옙占쏙옙 占싯삼옙占쌔억옙 占싼댐옙.
     return GetNtlWorldConcept()->FindNearEnemyFromAvatarActor(pSobAvatar);
 }
 
-// �ڵ� Ÿ������ Ÿ�� ���� ����
+// 占쌘듸옙 타占쏙옙占쏙옙占쏙옙 타占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙
 struct STargetInfo
 {
     CNtlSobActor*   pActor;
@@ -2899,8 +2899,8 @@ CNtlSobActor* Logic_GetAutoTarget(CNtlSobActor* pActor)
         return NULL;
 
     const RwReal  MAX_TARGET_LENGTH = 35.0f;
-    static RwUInt32 nTargetIndex = 0;                // ���������� Ÿ���� �����ϱ� ���� Static ����
-    static CNtlSobActor* pPrevTargetActor = NULL;    // ���� Ÿ���� �����صд�.
+    static RwUInt32 nTargetIndex = 0;                // 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 타占쏙옙占쏙옙 占쏙옙占쏙옙占싹깍옙 占쏙옙占쏙옙 Static 占쏙옙占쏙옙
+    static CNtlSobActor* pPrevTargetActor = NULL;    // 占쏙옙占쏙옙 타占쏙옙占쏙옙 占쏙옙占쏙옙占쌔둔댐옙.
     static CNtlSobActor* pNearTargetActor = NULL;    // ���� ����� Ÿ���� �����صд�.
     RwReal fLen = 0.0f;
     
@@ -2925,13 +2925,13 @@ CNtlSobActor* Logic_GetAutoTarget(CNtlSobActor* pActor)
             
             fLen = CNtlMath::GetLength(pActor->GetPosition(), pTarActor->GetPosition());            
 
-            // ���� �Ÿ� �̻��̸� Ÿ���� ���� �ʴ´�
+            // 占쏙옙占쏙옙 占신몌옙 占싱삼옙占싱몌옙 타占쏙옙占쏙옙 占쏙옙占쏙옙 占십는댐옙
             if ( fLen > MAX_TARGET_LENGTH)
             {
                 continue;
             }
 
-            // �þ߿� ������ ������ Ÿ���� ���� �ʴ´�.
+            // 占시야울옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 타占쏙옙占쏙옙 占쏙옙占쏙옙 占십는댐옙.
             sSphere.center = pTarActor->GetPosition();
             sSphere.radius = pTarActor->GetSobProxy()->GetPLEntityHeight();
             if ( !RwCameraFrustumTestSphere( GetNtlGameCameraManager()->GetCamera()->GetCamera(), &sSphere ) )
@@ -2954,7 +2954,7 @@ CNtlSobActor* Logic_GetAutoTarget(CNtlSobActor* pActor)
         
         if(!vecTargetList.empty())
         {
-            // ����Ʈ�� �����Ѵ�.
+            // 占쏙옙占쏙옙트占쏙옙 占쏙옙占쏙옙占싼댐옙.
             std::sort(vecTargetList.begin(), vecTargetList.end(), TargetInfoSorter);
             nTargetIndex = nTargetIndex >= vecTargetList.size() ? 0 : nTargetIndex;            
 
@@ -2966,7 +2966,7 @@ CNtlSobActor* Logic_GetAutoTarget(CNtlSobActor* pActor)
 
             CNtlSobActor* pTargetActor = vecTargetList[nTargetIndex++]->pActor;
             
-            if(pTargetActor == pPrevTargetActor)    // ���� Ÿ�ٰ� ���ο� Ÿ���� ������ ���� Ÿ���� �����Ѵ�.
+            if(pTargetActor == pPrevTargetActor)    // 占쏙옙占쏙옙 타占쌕곤옙 占쏙옙占싸울옙 타占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 타占쏙옙占쏙옙 占쏙옙占쏙옙占싼댐옙.
             {
                 nTargetIndex = nTargetIndex >= vecTargetList.size() ? 0 : nTargetIndex;
                 pTarActor = vecTargetList[nTargetIndex++]->pActor;
@@ -3365,7 +3365,7 @@ void Logic_AvatarStateChange(void)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// table data ������.
+// table data 占쏙옙占쏙옙占쏙옙.
 
 void Logic_MakeMobBrief(sMOB_BRIEF *pBrief, TBLIDX tblidx)
 {
@@ -3656,7 +3656,7 @@ sITEM_TBLDAT* Logic_GetItemDataFromSob(SERIAL_HANDLE hSerial)
 		CNtlSobItemAttr* pSobItemAttr = reinterpret_cast<CNtlSobItemAttr*>(pSobItem->GetSobAttr());
 		NTL_ASSERT(pSobItemAttr, "Logic_GetItemDataFromSob, Not exist sob item attiribure of handle : " << hSerial);
 
-		// ��Ȯ�� ������
+		// 占쏙옙확占쏙옙 占쏙옙占쏙옙占쏙옙
 		if( pSobItemAttr->IsNeedToIdentify() )
 			return NULL;
 
@@ -4562,7 +4562,7 @@ RwReal Logic_GetItemSystemEffectValue(sITEM_TBLDAT* pITEM_TBLDAT, RwUInt32 uiSys
 		if( !pSYSTEM_EFFECT_TBLDAT )
 			continue;
 
-		// pSYSTEM_EFFECT_TBLDAT->effectCode�� ���� NtlSystemEffect.h�� ���ǵǾ� �ִ�
+		// pSYSTEM_EFFECT_TBLDAT->effectCode占쏙옙 占쏙옙占쏙옙 NtlSystemEffect.h占쏙옙 占쏙옙占실되억옙 占쌍댐옙
 		if( (RwUInt32)pSYSTEM_EFFECT_TBLDAT->effectCode == uiSystemEffect )
 		{
 			return (RwReal)pUSE_ITEM_TBLDAT->aSystem_Effect_Value[i];
@@ -4677,7 +4677,7 @@ typedef struct _SCharCollisionBrief
 	RwReal fCollDist;
 	RwV3d vCollPos;
 	RwV3d vCollNormal;
-	RwV3d vAdjustCollPos;	// char �̵� ���⿡ ���� collisin position�� �����Ѵ�.
+	RwV3d vAdjustCollPos;	// char 占싱듸옙 占쏙옙占썩에 占쏙옙占쏙옙 collisin position占쏙옙 占쏙옙占쏙옙占싼댐옙.
 	RwBool bCollRecursive;
 	RwV3d vNewPos;
 	RwBool bCollMoveImPossible;	// �浹�� �ߴµ�, ������� �̵��� �� ���� ���.
@@ -4729,7 +4729,7 @@ void Logic_ProcWorldLight(CNtlSobActor *pActor, RwV3d vPos)
 
 	CNtlSobProxy*	pSobProxy	= pActor->GetSobProxy();
 
-	// vPos�� ShadowProperty������ �����´�.
+	// vPos占쏙옙 ShadowProperty占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占승댐옙.
 	RwBool			bIsInShadow	= GetNtlPLOptionManager()->GetTerrainShadow() && (GetSceneManager()->GetWorldNormalAttribute(vPos) & DBO_WORLD_ATTR_GROUP_FLAG_WORLD_SHADOW);
 
 	if (bIsInShadow && CNtlPLGlobal::m_pWHEntity && CNtlPLGlobal::m_pWHEntity->GetClassType() == PLENTITY_OBJECT)
@@ -5025,7 +5025,7 @@ RwReal Logic_GetSwimmingOffset(CNtlSobActor *pActor)
 		}
         else if(pPlayerAttr->GetRace() == RACE_MAJIN && Logic_IsTransform(pActor))
         {
-            // ������ ���������� ��� Offset�� �����ؾ��Ѵ�.
+            // 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏘른占쏙옙 Offset占쏙옙 占쏙옙占쏙옙占쌔억옙占싼댐옙.
             fOffset = SWIM_OFFSET_ADULT;
         }
 		else
@@ -5215,7 +5215,7 @@ void Logic_GetCharacterCollisionBBox(RwBBox *pBox, SCharCollisionBrief *pCollBri
 
 void Logic_GetCharacterCollisionLine(CNtlSobActor *pActor, RwLine *pLine, SCharCollisionBrief *pCollBrief )
 {
-	// ���� : character ��ġ�� character ������ 30% �������� �Ѵ�.
+	// 占쏙옙占쏙옙 : character 占쏙옙치占쏙옙 character 占쏙옙占쏙옙占쏙옙 30% 占쏙옙占쏙옙占쏙옙占쏙옙 占싼댐옙.
 
 	if( !pActor || !pLine || !pCollBrief )
 		return;
@@ -5228,7 +5228,7 @@ void Logic_GetCharacterCollisionLine(CNtlSobActor *pActor, RwLine *pLine, SCharC
 
 	if ( fLineY < CHAR_COLLISION_LINE_LIMIT_HEIGHT )
 	{
-		// GreatNamek�� �ƴ� ���� Collision height �� Clipping �Ѵ�
+		// GreatNamek占쏙옙 占싣댐옙 占쏙옙占쏙옙 Collision height 占쏙옙 Clipping 占싼댐옙
 		if ( NULL == pActor || !Logic_IsTransformGreatNamek( pActor ) )
 		{
 			fLineY = CHAR_COLLISION_LINE_LIMIT_HEIGHT;
@@ -5239,22 +5239,22 @@ void Logic_GetCharacterCollisionLine(CNtlSobActor *pActor, RwLine *pLine, SCharC
 	RwReal fRightX = pRight->x * pCollBrief->fCharHalfWidth;
 	RwReal fRightZ = pRight->z * pCollBrief->fCharHalfWidth;
 
-	// �߾�
+	// 占쌩억옙
 	pLine[0].start.x = pPos->x;
 	pLine[0].start.y = fLineY;
 	pLine[0].start.z = pPos->z;
 
-	//// ����
+	//// 占쏙옙占쏙옙
 	pLine[1].start.x = pPos->x - fRightX;
 	pLine[1].start.y = fLineY;
 	pLine[1].start.z = pPos->z - fRightZ;
 
-	// ������
+	// 占쏙옙占쏙옙占쏙옙
 	pLine[2].start.x = pPos->x + fRightX;
 	pLine[2].start.y = fLineY;
 	pLine[2].start.z = pPos->z + fRightZ;
 
-	// Y�� ���� üũ ����
+	// Y占쏙옙 占쏙옙占쏙옙 체크 占쏙옙占쏙옙
 	pLine[3].start.x = pPos->x;
 	pLine[3].start.y = fLineY;
 	pLine[3].start.z = pPos->z;
@@ -5283,7 +5283,7 @@ RwBool Logic_GetCharacterCollisionAtomicNormal(RwLine *pLine, SWorldCharIntersec
 
 	RwBool bIndoorWorld = GetSceneManager()->GetActiveWorldType() == AW_RWWORLD ? TRUE : FALSE;
 
-	// ������ �ƴϸ� ������ ����(y��üũ)�� üũ���� �ʴ´�.
+	// 占쏙옙占쏙옙占쏙옙 占싣니몌옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙(y占쏙옙체크)占쏙옙 체크占쏙옙占쏙옙 占십는댐옙.
 	RwInt32 nLineCnt = bJump ? CHAR_COLLISION_LINE_COUNT : CHAR_COLLISION_LINE_COUNT - 1;
 
 	for(RwInt32 iLineIdx = 0; iLineIdx < nLineCnt; ++iLineIdx)
@@ -5583,7 +5583,7 @@ RwUInt8 Logic_CharacterCollisionBegin(CNtlSobActor *pActor, RwReal fSpeed, RwRea
 			if(Logic_IsCharacterCollisionNewPosition(&g_sColliBrief))
 			{
 				// �浹�� ���� ���.. �浹 ���⸦ ���Ѵ�.
-				// ���ο� ��ġ�� setting �Ѵ�.
+				// 占쏙옙占싸울옙 占쏙옙치占쏙옙 setting 占싼댐옙.
 				if(Logic_IsTransformGreatNamek(pActor))
 				{
 					g_sColliBrief.vNewPos = g_sColliBrief.vCharCurrPos;
@@ -6056,7 +6056,7 @@ void Logic_SetHeadNameColor(CNtlSob* pSob)
 			CNtlSobTriggerObjectAttr* pTriggerObjectAttr = reinterpret_cast<CNtlSobTriggerObjectAttr*>( pTriggerObject->GetSobAttr() );
 			CNtlSobTriggerObjectProxy* pTriggerObjectAttrProxy = reinterpret_cast<CNtlSobTriggerObjectProxy*>( pTriggerObject->GetSobProxy() );
 
-			// Ʈ���� ������Ʈ�� �̸��� ���� ���� �ִ�
+			// 트占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙트占쏙옙 占싱몌옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 占쌍댐옙
 			if( pTriggerObjectAttr->GetName() )
 				pTriggerObjectAttrProxy->SetNameColor(pTriggerObjectAttr->GetName(), NTL_OBJ_NAME_COLOR);
 			else
@@ -6166,7 +6166,7 @@ RwBool Logic_IsCanCreatePrivateShop()
 
 			if(FSMUtil_IsPrivateShopping(pPlayer->GetCurrentState()))
 			{
-				// �ݰ� 3M �̳��� ���� ������ �ϳ� �̻� �ֽ��ϴ�
+				// 占쌥곤옙 3M 占싱놂옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占싹놂옙 占싱삼옙 占쌍쏙옙占싹댐옙
 				CNtlSLEventGenerator::SysMsg(pAvater->GetSerialID(), "GAME_PRIVATESHOP_PRIVATESHOP_ANOTHER_PRIVATESHOP");
 				return FALSE;
 			}
@@ -6179,7 +6179,7 @@ RwBool Logic_IsCanCreatePrivateShop()
 
 	for(int i = 0; i < 2; i++)
 	{
-		// npc �˻�.
+		// npc 占싯삼옙.
 		pSobGroup = GetNtlSobManager()->GetSobGroup(arrClass[i]);
 		if (pSobGroup)
 		{
@@ -6201,7 +6201,7 @@ RwBool Logic_IsCanCreatePrivateShop()
 				RwReal fLength = RwV2dLength(&v2Sub);
 				if (fLength <= fLimitedDistance + (fPLWidth + fPLDepth)/4.0f )
 				{
-					// �ݰ� 2M �̳��� NPC�� �����մϴ�. ( NPC �� ��ġ�� ������ �ذ� )
+					// 占쌥곤옙 2M 占싱놂옙占쏙옙 NPC占쏙옙 占쏙옙占쏙옙占쌌니댐옙. ( NPC 占쏙옙 占쏙옙치占쏙옙 占쏙옙占쏙옙占쏙옙 占쌔곤옙 )
 					CNtlSLEventGenerator::SysMsg(pAvater->GetSerialID(), "GAME_PRIVATESHOP_PRIVATESHOP_ANOTHER_NPC");
 					return FALSE;
 				}
@@ -6260,7 +6260,7 @@ RwBool Logic_IsCoolTimeUpdate(CNtlSobActor *pActor)
 	return TRUE;
 }
 
-// ��������Ʈ�� �ִ��� Ȯ���Ѵ�.
+// 占쏙옙占쏙옙占쏙옙占쏙옙트占쏙옙 占쌍댐옙占쏙옙 확占쏙옙占싼댐옙.
 RwBool Logic_IsBlackList( RwUInt32 uiSerialID ) 
 {
 	CNtlSob* pActor = GetNtlSobManager()->GetSobObject(uiSerialID);
@@ -6370,7 +6370,7 @@ RwInt32 Logic_isPartyShareTarget( SERIAL_HANDLE hSerial )
 		}
 	}
 
-	// ��ġ�ϴ°��� ������ -1�� ��ȯ�Ѵ�.
+	// 占쏙옙치占싹는곤옙占쏙옙 占쏙옙占쏙옙占쏙옙 -1占쏙옙 占쏙옙환占싼댐옙.
 	return -1;
 }
 
@@ -6390,7 +6390,7 @@ RwInt32 Logic_GetShareTargetBlankSlot()
 	static RwInt32 nBlankSlot = 0;
 
 	RwInt32 nSlot = Logic_isPartyShareTarget(INVALID_SERIAL_ID);
-	if(nSlot == -1) // �� ������ ������
+	if(nSlot == -1) // 占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
 	{
 		nSlot = nBlankSlot;
 
@@ -6530,7 +6530,7 @@ RwBool Logic_CanRideOnVehicle(SERIAL_HANDLE hHandle, CNtlSobItem* pSobItem)
 
 	if ( NULL == pUseItemTbl )
 	{
-		// �ش� �������� vehicle �������� �ƴ� ���� TRUE
+		// 占쌔댐옙 占쏙옙占쏙옙占쏙옙占쏙옙 vehicle 占쏙옙占쏙옙占쏙옙占쏙옙 占싣댐옙 占쏙옙占쏙옙 TRUE
 		return TRUE;
 	}
 
@@ -6538,7 +6538,7 @@ RwBool Logic_CanRideOnVehicle(SERIAL_HANDLE hHandle, CNtlSobItem* pSobItem)
 
 	if ( NULL == pUseItemTblData )
 	{
-		// �ش� �������� vehicle �������� �ƴ� ���� TRUE
+		// 占쌔댐옙 占쏙옙占쏙옙占쏙옙占쏙옙 vehicle 占쏙옙占쏙옙占쏙옙占쏙옙 占싣댐옙 占쏙옙占쏙옙 TRUE
 		return TRUE;
 	}
 
@@ -6546,7 +6546,7 @@ RwBool Logic_CanRideOnVehicle(SERIAL_HANDLE hHandle, CNtlSobItem* pSobItem)
 
 	if ( NULL == pSystemEffectTbl )
 	{
-		// �ش� �������� vehicle �������� �ƴ� ���� TRUE
+		// 占쌔댐옙 占쏙옙占쏙옙占쏙옙占쏙옙 vehicle 占쏙옙占쏙옙占쏙옙占쏙옙 占싣댐옙 占쏙옙占쏙옙 TRUE
 		return TRUE;
 	}
 
@@ -6565,11 +6565,11 @@ RwBool Logic_CanRideOnVehicle(SERIAL_HANDLE hHandle, CNtlSobItem* pSobItem)
 
 	if ( !bVehicleItem )
 	{
-		// �ش� �������� vehicle �������� �ƴ� ���� TRUE
+		// 占쌔댐옙 占쏙옙占쏙옙占쏙옙占쏙옙 vehicle 占쏙옙占쏙옙占쏙옙占쏙옙 占싣댐옙 占쏙옙占쏙옙 TRUE
 		return TRUE;
 	}
 
-	// ���� �˻�
+	// 占쏙옙占쏙옙 占싯삼옙
 
 	CNtlSob* pSobObj = GetNtlSobManager()->GetSobObject( hHandle );
 
@@ -6734,8 +6734,8 @@ RwBool Logic_IsTransformRollingAttack(CNtlSobActor* pSobActor)
 	return FALSE;
 }
 
-// ���Ž�ų�� �ƴϸ�, 0�� ��ȯ
-// ���� ��ų�̸� ��� ���� ��ų���� ��ȯ
+// 占쏙옙占신쏙옙킬占쏙옙 占싣니몌옙, 0占쏙옙 占쏙옙환
+// 占쏙옙占쏙옙 占쏙옙킬占싱몌옙 占쏘레占쏙옙 占쏙옙占쏙옙 占쏙옙킬占쏙옙占쏙옙 占쏙옙환
 RwUInt32 Logic_IsTransformSkill( RwUInt32 uiSkillTblId ) 
 {
 	sSKILL_TBLDAT* pData = (sSKILL_TBLDAT*)API_GetTableContainer()->GetSkillTable()->FindData(uiSkillTblId);
@@ -7600,22 +7600,22 @@ void Logic_GetVehicleCollisionLine( RwLine* pLine, SCharCollisionBrief* pCollBri
 	RwReal fRightX = pRight->x * pCollBrief->fCharHalfWidth;
 	RwReal fRightZ = pRight->z * pCollBrief->fCharHalfWidth;
 
-	// �߾�
+	// 占쌩억옙
 	pLine[0].start.x = pPos->x;
 	pLine[0].start.y = fLineY;
 	pLine[0].start.z = pPos->z;
 
-	// ����
+	// 占쏙옙占쏙옙
 	pLine[1].start.x = pPos->x - fRightX;
 	pLine[1].start.y = fLineY;
 	pLine[1].start.z = pPos->z - fRightZ;
 
-	// ������
+	// 占쏙옙占쏙옙占쏙옙
 	pLine[2].start.x = pPos->x + fRightX;
 	pLine[2].start.y = fLineY;
 	pLine[2].start.z = pPos->z + fRightZ;
 
-	// Y�� ���� üũ ����
+	// Y占쏙옙 占쏙옙占쏙옙 체크 占쏙옙占쏙옙
 	pLine[3].start.x = pPos->x;
 	pLine[3].start.y = fLineY;
 	pLine[3].start.z = pPos->z;
@@ -7876,7 +7876,7 @@ RwBool Logic_GetVehicleCollisionAtomicNormal( RwLine* pLine, SWorldCharIntersect
 
 	RwBool bIndoorWorld = GetSceneManager()->GetActiveWorldType() == AW_RWWORLD ? TRUE : FALSE;
 
-	// ������ �ƴϸ� ������ ����(y�� üũ)�� üũ���� �ʴ´�.
+	// 占쏙옙占쏙옙占쏙옙 占싣니몌옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙(y占쏙옙 체크)占쏙옙 체크占쏙옙占쏙옙 占십는댐옙.
 	RwInt32 nLineCnt = bJump ? VEHICLE_COLLISION_LINE_COUNT : VEHICLE_COLLISION_LINE_COUNT - 1;
 
 	for ( RwInt32 iLineIdx = 0; iLineIdx < nLineCnt; ++iLineIdx )
@@ -8156,14 +8156,14 @@ void Logic_PlayItemPutDownSound(sITEM_TBLDAT* pITEM_TBLDAT, RwUInt8 byDestPlace)
 	{
 	case CONTAINER_TYPE_EQUIP:
 		{
-			// ĳ���� ����â
+			// 캐占쏙옙占쏙옙 占쏙옙占쏙옙창
 			Logic_PlayGUISound(GSD_SYSTEM_ITEM_EQUIP);
 			return;
 		}
 	}
 	/*
 	// �Ƹ��� �Ҹ��� ������ �ϳ� �� �þ���� �ɵ� ��. �Ϲ� ���濡 ��ϵǴ� �Ҹ���...
-	// ���� ����
+	// 占쏙옙占쏙옙 占쏙옙占쏙옙
 	CONTAINER_TYPE_BAG1
 	CONTAINER_TYPE_BAG2
 	CONTAINER_TYPE_BAG3

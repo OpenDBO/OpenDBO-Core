@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Name: 
-// Desc: GUI °ø¿ë À¯Æ¿ ÇÔ¼öµé.
+// Desc: GUI ê³µìš© ìœ í‹¸ í•¨ìˆ˜ë“¤.
 //
 // 2006.09.26 Peessi@hitel.net   
 //
@@ -40,7 +40,7 @@ VOID ChangeLineFeedToCStyle( std::wstring& wstr );
 
 float RwV2dLineInterpolation( RwV2d* v2dOutput, RwV2d* v2dStart, RwV2d* v2dEnd, float fTime, float fGoalTime );
 
-// ¹®ÀÚ¿­ °ü·Ã
+// ë¬¸ìì—´ ê´€ë ¨
 void ExtractTokenByLastChar( char* pStr, char* pBuffer, int nLen, const char *pMark );
 BOOL ExtractTokenByFind( char* pOutBuffer, int nBufferSize, char* pSrcBuffer, char* pToken, int nTokenSize );
 void RemoveSpaceForSelfBuffer( char* pStrBuffer );

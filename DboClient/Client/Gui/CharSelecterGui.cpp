@@ -103,7 +103,7 @@ RwBool CCharSelecterGui::Create()
 		m_CharSlot[i].m_pTextStatic->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_CHARACTER_MAKE"));
 		m_CharSlot[i].m_pTextStatic->Enable(false);
 
-		// Ä³¸¯ÅÍ ÀÌ¸§
+		// ìºë¦­í„° ì´ë¦„
 		rect.SetRectWH(75, iNameY, 120, 14);
 		m_CharSlot[i].pName = NTL_NEW gui::CStaticBox(rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER);
 		m_CharSlot[i].pName->CreateFontStd(DEFAULT_FONT, 105, DEFAULT_FONT_ATTR);
@@ -111,29 +111,29 @@ RwBool CCharSelecterGui::Create()
 		m_CharSlot[i].pName->Clear();
 		m_CharSlot[i].pName->Enable(false);
 
-		// Ä³¸¯ÅÍ ·¹º§
+		// ìºë¦­í„° ë ˆë²¨
 		rect.SetRectWH(0, iNameY + 17, 200, 14);
 		m_CharSlot[i].pLevel = NTL_NEW gui::CStaticBox(rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_RIGHT);
 		m_CharSlot[i].pLevel->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 		m_CharSlot[i].pLevel->SetTextColor(RGB(255, 255, 255));
 		m_CharSlot[i].pLevel->Enable(false);
 
-		// New Character ¼­ÆäÀÌ½º
+		// New Character ì„œíŽ˜ì´ìŠ¤
 		m_CharSlot[i].srfNewCharacter.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("CharSelecter.srf", "srfNewCharacter"));
 
-		// New Character ¼­ÆäÀÌ½º Æ÷Ä¿½º
+		// New Character ì„œíŽ˜ì´ìŠ¤ í¬ì»¤ìŠ¤
 		m_CharSlot[i].srfNewCharacterFoc.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("CharSelecter.srf", "srfNewCharacter_Foc"));
 
 		iNameY += dHEIGHT_GAP;
 		iStartButtonY += dHEIGHT_GAP;
 	}
 
-	// Ä³¸¯ÅÍ »èÁ¦ ¹öÆ°
+	// ìºë¦­í„° ì‚­ì œ ë²„íŠ¼
 	m_pCharDelButton = (gui::CButton*)GetComponent("btnCharDel");
 	m_pCharDelButton->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_DEL_CHAR"));
 	m_slotCharDelButton = m_pCharDelButton->SigClicked().Connect(this, &CCharSelecterGui::OnClickDelCharButton);
 
-	// Ä³¸¯ÅÍ º¹±¸ ¹öÆ°
+	// ìºë¦­í„° ë³µêµ¬ ë²„íŠ¼
 	m_pCharRecoveryButton = (gui::CButton*)GetComponent("btnCharRecovery");
 	m_pCharRecoveryButton->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_RECOVERY_CHAR_INFO"));
 	m_slotCharRecoveryButton = m_pCharRecoveryButton->SigClicked().Connect(this, &CCharSelecterGui::OnClickRecoveryCharButton);
@@ -185,7 +185,7 @@ VOID CCharSelecterGui::Update(RwReal fElapsed)
 		if (CHAR_STATE_RESERVATED_DEL != m_CharSlot[i].m_byState)
 			continue;
 
-		// ²À ÇÊ¿äÇÑ °æ¿ì¸¸ µü ÇÑ¹ø ·Îºñ Á¤º¸¸¦ °¡Á®¿À±â À§ÇØ
+		// ê¼­ í•„ìš”í•œ ê²½ìš°ë§Œ ë”± í•œë²ˆ ë¡œë¹„ ì •ë³´ë¥¼ ê°€ì ¸ì˜¤ê¸° ìœ„í•´
 		if (!pLobby)
 			pLobby = GetLobbyManager()->GetLobby(hServer);
 
@@ -437,7 +437,7 @@ VOID CCharSelecterGui::OnPostPaint()
 {
 	for (RwUInt8 i = 0; i < NTL_MAX_COUNT_USER_CHAR_SLOT; ++i)
 	{
-		// ¾Æ¿¹ ±×¸®Áö ¾Ê´Â °ÍÀÌ ¾Æ´Ï¶ó ºóÄ­ ÀÌ¹ÌÁö¸¦ ±×¸±Áö ¸»Áö¸¦ °áÁ¤ÇÑ´Ù
+		// ì•„ì˜ˆ ê·¸ë¦¬ì§€ ì•ŠëŠ” ê²ƒì´ ì•„ë‹ˆë¼ ë¹ˆì¹¸ ì´ë¯¸ì§€ë¥¼ ê·¸ë¦´ì§€ ë§ì§€ë¥¼ ê²°ì •í•œë‹¤
 		if (i == m_byFocusIndex)
 			m_CharSlot[i].Render(true);
 		else
@@ -478,10 +478,10 @@ VOID CCharSelecterGui::HandleEvents(RWS::CMsg &msg)
 						continue;
 					}
 
-					// Ä³¸¯ÅÍ ÀÌ¸§
+					// ìºë¦­í„° ì´ë¦„
 					m_CharSlot[i].pName->SetText(pLOBBY_CHARACTER->tSummary.awchName);
 
-					// Ä³¸¯ÅÍ ·¹º§
+					// ìºë¦­í„° ë ˆë²¨
 					if (pLOBBY_CHARACTER->bReservatedDelete)
 					{
 						m_CharSlot[i].pLevel->SetTextColor(RGB(255, 79, 79));
@@ -501,7 +501,7 @@ VOID CCharSelecterGui::HandleEvents(RWS::CMsg &msg)
 						m_CharSlot[i].pButton[CHAR_STATE_RESERVATED_DEL]->Show(false);
 					}
 
-					// Ä³¸¯ÅÍ Á¾Á·
+					// ìºë¦­í„° ì¢…ì¡±
 					m_CharSlot[i].srfRace.GetRect(rect);
 
 					switch (pLOBBY_CHARACTER->tSummary.byRace)

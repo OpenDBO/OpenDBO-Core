@@ -113,7 +113,7 @@ void CNtlSobTriggerObjectProxy::CreatePLTargetMark(void)
 	CNtlSobTriggerObjectAttr* pAttrTObj = dynamic_cast< CNtlSobTriggerObjectAttr* > ( pSobTObj->GetSobAttr() );
 	if ( NULL == pAttrTObj ) return;
 
-    // °øÀ¯ Å¸°ÙÀÌ ¼³Á¤µÇ¾î ÀÖÀ¸¸é ÀÏ¹İ Å¸ÄÏ¸¶Å©´Â ¶ßÁö ¾Ê´Â´Ù.
+    // ê³µìœ  íƒ€ê²Ÿì´ ì„¤ì •ë˜ì–´ ìˆìœ¼ë©´ ì¼ë°˜ íƒ€ì¼“ë§ˆí¬ëŠ” ëœ¨ì§€ ì•ŠëŠ”ë‹¤.
     if(m_pShareTargetMark && m_pShareTargetMark->IsShareTargeting())
     {
         CreateShareTargetMark(m_pShareTargetMark->GetSlot(), CNtlShareTargetMark::SHARE_TARGET_TARGET);
@@ -315,8 +315,8 @@ void CNtlSobTriggerObjectProxy::SobCreateEventHandler(RWS::CMsg &pMsg)
 
 	m_pPLObject->SetSerialID(m_pSobObj->GetSerialID());
 
-	// Æ®¸®°Å ¿ÀºêÁ§Æ®ÀÇ °æ¿ì Visible ¿©ºÎ ¹× Fading In/Out ¿©ºÎ¸¦
-	// ¿ÜºÎ¿¡¼­ Á¦¾îÇÑ´Ù - °ÔÀÓÀÇ °æ¿ì
+	// íŠ¸ë¦¬ê±° ì˜¤ë¸Œì íŠ¸ì˜ ê²½ìš° Visible ì—¬ë¶€ ë° Fading In/Out ì—¬ë¶€ë¥¼
+	// ì™¸ë¶€ì—ì„œ ì œì–´í•œë‹¤ - ê²Œì„ì˜ ê²½ìš°
 	RwUInt32 uiFlags = m_pPLObject->GetFlags();
 	uiFlags |= NTL_PLEFLAG_OBJECT_FORCE_VISIBLE;
 	uiFlags &= ~NTL_PLEFLAG_FADE;
@@ -333,7 +333,7 @@ void CNtlSobTriggerObjectProxy::SobCreateEventHandler(RWS::CMsg &pMsg)
 
 	CreatePLObjectName();
 
-	// ÃÊ±â »óÅÂ¸¦ Ã³¸®ÇÑ´Ù
+	// ì´ˆê¸° ìƒíƒœë¥¼ ì²˜ë¦¬í•œë‹¤
 	sOBJECT_TBLDAT* pObjTbl = ((CNtlSobTriggerObjectAttr*)m_pSobObj->GetSobAttr())->GetTriggerObjectTbl();
 	InitState( pObjTbl->byDefMainState, pObjTbl->byDefSubState);
 }
@@ -384,7 +384,7 @@ void CNtlSobTriggerObjectProxy::SobQuestMark(RWS::CMsg &pMsg)
 
 void CNtlSobTriggerObjectProxy::SobUpdateState(RWS::CMsg &pMsg)
 {
-	// ¾÷µ¥ÀÌÆ®µÈ »óÅÂ Ã³¸®¸¦ ¼öÇàÇÑ´Ù
+	// ì—…ë°ì´íŠ¸ëœ ìƒíƒœ ì²˜ë¦¬ë¥¼ ìˆ˜í–‰í•œë‹¤
 	SNtlEventTObjectUpdateState *pSobTObjUpdateState = reinterpret_cast<SNtlEventTObjectUpdateState*>(pMsg.pData);
 	UpdateState( pSobTObjUpdateState->byMainState, pSobTObjUpdateState->bySubState, pSobTObjUpdateState->uiStateTime );
 }
@@ -595,19 +595,19 @@ void CNtlSobTriggerObjectProxy::UpdateState(RwUInt8 byMainState, RwUInt8 bySubSt
     if(byMainState >= DBO_MAX_OBJECT_STATE)
         return;
 
-	// ¸ŞÀÎ »óÅÂ Ã³¸®
+	// ë©”ì¸ ìƒíƒœ ì²˜ë¦¬
 
-	// PID objectÀÎ °æ¿ì Visible¿¡ ´ëÇÑ ÄÁÆ®·ÑÀº CS ¿¬µ¿ »óÅÂ¿Í´Â ¹«°üÇÏ°Ô ÇöÀç ¾Æ¹ÙÅ¸ ¼Ò¼Ó ÆÄÆ¼ÀÇ
-	// ÆÄÆ¼ ÀÎ½ºÅÏÀü Å¸ÀÔ¿¡ ÀÇÇØ »óÅÂ°¡ °áÁ¤µÈ´Ù
+	// PID objectì¸ ê²½ìš° Visibleì— ëŒ€í•œ ì»¨íŠ¸ë¡¤ì€ CS ì—°ë™ ìƒíƒœì™€ëŠ” ë¬´ê´€í•˜ê²Œ í˜„ì¬ ì•„ë°”íƒ€ ì†Œì† íŒŒí‹°ì˜
+	// íŒŒí‹° ì¸ìŠ¤í„´ì „ íƒ€ì…ì— ì˜í•´ ìƒíƒœê°€ ê²°ì •ëœë‹¤
 	if ( IsPIDObject() )
 	{
 		m_byMainState = byMainState;
 
-		// Animation chainÀº ÃÊ±âÈ­ »óÅÂ·Î À¯ÁöµÇ¾î¾ß ÇÑ´Ù
+		// Animation chainì€ ì´ˆê¸°í™” ìƒíƒœë¡œ ìœ ì§€ë˜ì–´ì•¼ í•œë‹¤
 	}
 	else
 	{
-		// »óÅÂ°¡ º¯°æµÇ¾úÀ» °æ¿ì¸¸ ¸ŞÀÎ»óÅÂ¸¦ ¾÷µ¥ÀÌÆ®ÇÑ´Ù
+		// ìƒíƒœê°€ ë³€ê²½ë˜ì—ˆì„ ê²½ìš°ë§Œ ë©”ì¸ìƒíƒœë¥¼ ì—…ë°ì´íŠ¸í•œë‹¤
 		if ( m_byMainState != byMainState )
 		{
 			m_byMainState = byMainState;
@@ -629,12 +629,12 @@ void CNtlSobTriggerObjectProxy::UpdateState(RwUInt8 byMainState, RwUInt8 bySubSt
 			{
 				fProgTime -= m_pPLObject->GetAnimPlayTime( pObjTbl->abyState[byMainState][i] );
 
-				// Æ®¸®°Å ¿ÀºêÁ§Æ®ÀÇ »óÅÂ ÁøÇà ½Ã°£¿¡ µû¶ó AnimationÀ» skippingÇÑ´Ù
+				// íŠ¸ë¦¬ê±° ì˜¤ë¸Œì íŠ¸ì˜ ìƒíƒœ ì§„í–‰ ì‹œê°„ì— ë”°ë¼ Animationì„ skippingí•œë‹¤
 				if ( fProgTime < 0.f )
 				{
 					if ( FLT_MAX == fPlayTime )
 					{
-						// ÀÌº¥Æ®¸¦ °Ç³Ê ¶Ù´Â °æ¿ì°¡ ¹ß»ıÇÏ´Â µí ÇÏ¿© ¿ì¼± ¾Æ·¡ ÁÖ¼® ÄÚµå ´ë½Å Ã³À½ ºÎÅÍ ½ÃÀÛ ÇÏµµ·Ï Ã³¸® ÇßÀ½.
+						// ì´ë²¤íŠ¸ë¥¼ ê±´ë„ˆ ë›°ëŠ” ê²½ìš°ê°€ ë°œìƒí•˜ëŠ” ë“¯ í•˜ì—¬ ìš°ì„  ì•„ë˜ ì£¼ì„ ì½”ë“œ ëŒ€ì‹  ì²˜ìŒ ë¶€í„° ì‹œì‘ í•˜ë„ë¡ ì²˜ë¦¬ í–ˆìŒ.
 						fPlayTime = 0.f;	// fProgTime + m_pPLObject->GetAnimPlayTime( pObjTbl->abyState[byMainState][i] );
 					}
 
@@ -644,8 +644,8 @@ void CNtlSobTriggerObjectProxy::UpdateState(RwUInt8 byMainState, RwUInt8 bySubSt
 				++i;
 			}
 
-			// ¼­¹ö¿¡¼­ Æ®¸®°Å ¿ÀºêÁ§Æ®ÀÇ »óÅÂ ÁøÇà ½Ã°£ÀÌ ¸ğµç Animation ±æ°Ô ³»·Á¿Â °æ¿ì
-			// ¸Ç ¸¶Áö¸· AnimationÀ» Ãâ·ÂÇÏµµ·Ï ÇÑ´Ù
+			// ì„œë²„ì—ì„œ íŠ¸ë¦¬ê±° ì˜¤ë¸Œì íŠ¸ì˜ ìƒíƒœ ì§„í–‰ ì‹œê°„ì´ ëª¨ë“  Animation ê¸¸ê²Œ ë‚´ë ¤ì˜¨ ê²½ìš°
+			// ë§¨ ë§ˆì§€ë§‰ Animationì„ ì¶œë ¥í•˜ë„ë¡ í•œë‹¤
 			if ( m_AnimChain.empty() && i > 0 )
 			{
 				fPlayTime = 0.f;
@@ -667,22 +667,22 @@ void CNtlSobTriggerObjectProxy::UpdateState(RwUInt8 byMainState, RwUInt8 bySubSt
 		}
 	}
 
-	// º¸Á¶ »óÅÂ Ã³¸®
+	// ë³´ì¡° ìƒíƒœ ì²˜ë¦¬
 	m_bySubState = bySubState;
 
-	// ¿ÀºêÁ§Æ® Show / Hide ¿©ºÎ
+	// ì˜¤ë¸Œì íŠ¸ Show / Hide ì—¬ë¶€
 
-	// Scouter objectÀÎ °æ¿ì Visible¿¡ ´ëÇÑ ÄÁÆ®·ÑÀº CS ¿¬µ¿ »óÅÂ¿Í´Â ¹«°üÇÏ°Ô Ã³¸®µÈ´Ù
-	// Áï, Visibility¿¡ ´ëÇØ¼­´Â CS°£¿¡ ¿¬µ¿µÇ´Â »óÅÂ¿Í µ¿±â¸¦ ¸ÂÃßÁö ¾Ê´Â´Ù
+	// Scouter objectì¸ ê²½ìš° Visibleì— ëŒ€í•œ ì»¨íŠ¸ë¡¤ì€ CS ì—°ë™ ìƒíƒœì™€ëŠ” ë¬´ê´€í•˜ê²Œ ì²˜ë¦¬ëœë‹¤
+	// ì¦‰, Visibilityì— ëŒ€í•´ì„œëŠ” CSê°„ì— ì—°ë™ë˜ëŠ” ìƒíƒœì™€ ë™ê¸°ë¥¼ ë§ì¶”ì§€ ì•ŠëŠ”ë‹¤
 	if ( IsScouterObject() )
 	{
-		// ¾Æ¹« °Íµµ ÇÏÁö ¾Ê´Â´Ù
+		// ì•„ë¬´ ê²ƒë„ í•˜ì§€ ì•ŠëŠ”ë‹¤
 	}
-	// TLQ objectÀÎ °æ¿ì Visible¿¡ ´ëÇÑ ÄÁÆ®·ÑÀº CS ¿¬µ¿ »óÅÂ¿Í´Â ¹«°üÇÏ°Ô Ã³¸®µÈ´Ù
-	// Áï, Visibility¿¡ ´ëÇØ¼­´Â CS°£¿¡ ¿¬µ¿µÇ´Â »óÅÂ¿Í µ¿±â¸¦ ¸ÂÃßÁö ¾Ê´Â´Ù
+	// TLQ objectì¸ ê²½ìš° Visibleì— ëŒ€í•œ ì»¨íŠ¸ë¡¤ì€ CS ì—°ë™ ìƒíƒœì™€ëŠ” ë¬´ê´€í•˜ê²Œ ì²˜ë¦¬ëœë‹¤
+	// ì¦‰, Visibilityì— ëŒ€í•´ì„œëŠ” CSê°„ì— ì—°ë™ë˜ëŠ” ìƒíƒœì™€ ë™ê¸°ë¥¼ ë§ì¶”ì§€ ì•ŠëŠ”ë‹¤
 	else if ( IsTLQObject() )
 	{
-		// ¾Æ¹« °Íµµ ÇÏÁö ¾Ê´Â´Ù
+		// ì•„ë¬´ ê²ƒë„ í•˜ì§€ ì•ŠëŠ”ë‹¤
 	}
 	else
 	{
@@ -756,8 +756,8 @@ void CNtlSobTriggerObjectProxy::UpdateTLQObject(RwReal fElapsed)
 
 void CNtlSobTriggerObjectProxy::UpdatePIDObject(RwReal fElapsed)
 {
-	// Æ®¸®°Å ¿ÀºêÁ§Æ®ÀÇ °æ¿ì ¾Æ¹ÙÅ¸ º¸´Ù ¸ÕÀú »ı¼ºµÇ¹Ç·Î
-	// ¾Æ¹ÙÅ¸°¡ ¾ÆÁ÷ »ı¼ºµÇÁö ¾ÊÀº °æ¿ì¿¡ ´ëÇÑ ¿¹¿ÜÃ³¸®l
+	// íŠ¸ë¦¬ê±° ì˜¤ë¸Œì íŠ¸ì˜ ê²½ìš° ì•„ë°”íƒ€ ë³´ë‹¤ ë¨¼ì € ìƒì„±ë˜ë¯€ë¡œ
+	// ì•„ë°”íƒ€ê°€ ì•„ì§ ìƒì„±ë˜ì§€ ì•Šì€ ê²½ìš°ì— ëŒ€í•œ ì˜ˆì™¸ì²˜ë¦¬l
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
 	if ( NULL == pAvatar )
 	{
@@ -770,7 +770,7 @@ void CNtlSobTriggerObjectProxy::UpdatePIDObject(RwReal fElapsed)
 		return;
 	}
 
-	// Animation chainÀÌ ºñ¾î ÀÖ´Â °æ¿ì¿¡ ÇÑÇØ »õ·Î¿î Animation chainÀ» ±¸¼ºÇÑ´Ù
+	// Animation chainì´ ë¹„ì–´ ìˆëŠ” ê²½ìš°ì— í•œí•´ ìƒˆë¡œìš´ Animation chainì„ êµ¬ì„±í•œë‹¤
 	if ( IsPIDObject() && m_AnimChain.empty() )
 	{
 		RwUInt8 byDngState;
@@ -793,7 +793,7 @@ void CNtlSobTriggerObjectProxy::UpdatePIDObject(RwReal fElapsed)
 			++i;
 		}
 
-		// ÃÊ±â »óÅÂ¿¡¼­´Â Animation chainÀÇ ¸Ç µÚ ¾Ö´Ï¸ÅÀÌ¼Ç¸¸ Ãâ·ÂÇÑ´Ù.
+		// ì´ˆê¸° ìƒíƒœì—ì„œëŠ” Animation chainì˜ ë§¨ ë’¤ ì• ë‹ˆë§¤ì´ì…˜ë§Œ ì¶œë ¥í•œë‹¤.
 		if ( !m_AnimChain.empty() )
 		{
 			while ( m_AnimChain.size() != 1 )
@@ -843,7 +843,7 @@ void CNtlSobTriggerObjectProxy::Fade(RwBool bFadeIn)
 
 void CNtlSobTriggerObjectProxy::UpdateFadeInOut(RwReal fElapsed)
 {
-	// ÇöÀçÀÇ Alpha °ª ÆÇ´Ü
+	// í˜„ì¬ì˜ Alpha ê°’ íŒë‹¨
 	m_sFadeInOutInfo.fCurAlpha = CNtlMath::Range( m_sFadeInOutInfo.fCurAlpha, 0.0f, 255.0f );
 	m_sFadeInOutInfo.fDestAlpha = CNtlMath::Range( m_sFadeInOutInfo.fDestAlpha, 0.0f, 255.0f );
 
@@ -851,15 +851,15 @@ void CNtlSobTriggerObjectProxy::UpdateFadeInOut(RwReal fElapsed)
 	{
 		RwBool bFadeIn = ((RwReal)m_sFadeInOutInfo.fDestAlpha - (RwReal)m_sFadeInOutInfo.fCurAlpha > 0) ? TRUE : FALSE;
 
-		// ÀÚ½Ä ¿ÀºêÁ§Æ®µé¿¡ ´ëÇÑ Alpha °áÁ¤
+		// ìì‹ ì˜¤ë¸Œì íŠ¸ë“¤ì— ëŒ€í•œ Alpha ê²°ì •
 		RwReal fAlpha = m_sFadeInOutInfo.fCurAlpha + ( bFadeIn ? FADE_RATIO * fElapsed : -1 * FADE_RATIO * fElapsed );
 		m_sFadeInOutInfo.fCurAlpha = CNtlMath::Range( fAlpha, 0.0f, 255.0f );
 	}
 
-	// ÀÚ½Ä ¿ÀºêÁ§Æ®µé¿¡ ´ëÇÑ Visual °áÁ¤
+	// ìì‹ ì˜¤ë¸Œì íŠ¸ë“¤ì— ëŒ€í•œ Visual ê²°ì •
 	m_sFadeInOutInfo.bShow = (m_sFadeInOutInfo.fCurAlpha != 0.0f) ? TRUE : FALSE;
 
-	// ÀÚ½Ä ¿ÀºêÁ§Æ®µé¿¡ ´ëÇÑ Alpha ¹× Visual ¼³Á¤
+	// ìì‹ ì˜¤ë¸Œì íŠ¸ë“¤ì— ëŒ€í•œ Alpha ë° Visual ì„¤ì •
 	CNtlSobProxy::EnableVisible( m_sFadeInOutInfo.bShow );
 
 	if( m_pPLObject )
@@ -923,7 +923,7 @@ void CNtlSobTriggerObjectProxy::SobShareTargetSelectHandler( RWS::CMsg& msg )
     SNtlEventShareTargetSelect* pData = (SNtlEventShareTargetSelect*)msg.pData;
     if(pData->hSerialId == m_pSobObj->GetSerialID())
     {
-        // ±âÁ¸ Å¸°Ù ¸¶Å©¸¦ »èÁ¦ÇÏ±â Àü¿¡ ÇöÀç »óÅÂ¸¦ ÀúÀåÇØµĞ´Ù        
+        // ê¸°ì¡´ íƒ€ê²Ÿ ë§ˆí¬ë¥¼ ì‚­ì œí•˜ê¸° ì „ì— í˜„ì¬ ìƒíƒœë¥¼ ì €ì¥í•´ë‘”ë‹¤        
         RwBool bTargetMode = m_pTargetMark ? TRUE : FALSE;
 
         DeletePLTargetMark();

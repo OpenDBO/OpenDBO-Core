@@ -13,7 +13,7 @@
 
 enum EPLWorldLightType
 {
-	EPLWORLDLIGHT_BASE,			// CNtlPLWorldLight_Base // »ç¿ëÇÏÁö ¾Ê´Â´Ù.
+	EPLWORLDLIGHT_BASE,			// CNtlPLWorldLight_Base // ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤.
 	EPLWORLDLIGHT_SPHERE,		// CNtlPLWorldLight_Sphere
 	EPLWORLDLIGHT_BOX			// CNtlPLWorldLight_Box
 };
@@ -49,7 +49,7 @@ public:
 	virtual void				SetPosition(const RwV3d* pvPos);
 	virtual RwV3d				GetPosition();
 
-	// Radius ±âÁØÀ¸·Î Light¸¦ °Ë»öÇÑ´Ù.
+	// Radius ê¸°ì¤€ìœ¼ë¡œ Lightë¥¼ ê²€ìƒ‰í•œë‹¤.
 	virtual void				SetRadius(RwReal fRadius);
 	virtual RwReal				GetRadius();
 
@@ -65,9 +65,9 @@ public:
 	
 protected:
 	/*
-	IsIn :	±âº»ÀûÀÎ °Ë»ö ¹æ¹ıÀº Shpere¸¦ »ç¿ëÇÏÀÚ.
-			±×·¯¹Ç·Î m_SphereÀÇ Radius °ªÀÌ ÇÊ¿äÇÏ´Ù. Create½Ã °ªÀ» ÀÔ·ÂÇÏÀÚ.
-			¸¸¾à »ç¿ëÇÏÁö ¾Ê´Â´Ù¸é IsIn ÇÔ¼ö¸¦ Overriding ÇÑ´Ù.
+	IsIn :	ê¸°ë³¸ì ì¸ ê²€ìƒ‰ ë°©ë²•ì€ Shpereë¥¼ ì‚¬ìš©í•˜ì.
+			ê·¸ëŸ¬ë¯€ë¡œ m_Sphereì˜ Radius ê°’ì´ í•„ìš”í•˜ë‹¤. Createì‹œ ê°’ì„ ì…ë ¥í•˜ì.
+			ë§Œì•½ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤ë©´ IsIn í•¨ìˆ˜ë¥¼ Overriding í•œë‹¤.
 	*/
 	virtual RwBool				IsIn(const RwV3d* pvPos, RwReal* pfOutDistance = NULL);
 	virtual RwBool				IsInSphere(const RwV3d* pvPos, RwReal* pfOutDistance = NULL);

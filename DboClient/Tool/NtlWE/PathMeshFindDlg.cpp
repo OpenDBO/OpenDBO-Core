@@ -73,7 +73,7 @@ BEGIN_MESSAGE_MAP(CPathMeshFindDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CFieldSearchDlg �޽��� ó�����Դϴ�.
+// CFieldSearchDlg 占쌨쏙옙占쏙옙 처占쏙옙占쏙옙占쌉니댐옙.
 
 BOOL CPathMeshFindDlg::PreTranslateMessage(MSG* pMsg)
 {
@@ -625,13 +625,16 @@ RwBool CPathMeshFindDlg::IsInConvexHull(RwV3d& vPos, std::vector<RwV3d>& vecConv
 void CPathMeshFindDlg::BuildClmupConvexHull(RpClump* pRpClump, std::vector<RwV3d>& vecResult)
 {
 	CNtlConvexHull::vecdef_POS_LIST vecPosList;
-	RwLLLink*						pCur	= rwLinkListGetFirstLLLink(&pRpClump->atomicList);
-	RwLLLink*						pEnd	= rwLinkListGetTerminator(&pRpClump->atomicList);
-	RwLLLink*						pNext	= NULL;
+	// atomicList is now a direct RpAtomic* circular list after the x64 struct refactor
+	RpAtomic*			\t\t\tpCurAtomic = ;
+	RpAtomic*			\t\t\tpNext = NULL;
 
-	while(pCur != pEnd)
+	if(pRpClump->atomicList)
 	{
-		RpAtomic*		pCurAtomic		= rwLLLinkGetData(pCur, RpAtomic, inClumpLink);
+		pCurAtomic = pRpClump->atomicList;
+		do
+	\t{
+		\tpNext = pCurAtomic->next;
 		RpGeometry*		pCurGeometry	= RpAtomicGetGeometry(pCurAtomic);	
 		RpMorphTarget*	pCurMorphTarget	= RpGeometryGetMorphTarget(pCurGeometry, 0);
 		RpTriangle*		pCurTriangle	= RpGeometryGetTriangles(pCurGeometry);
@@ -659,8 +662,8 @@ void CPathMeshFindDlg::BuildClmupConvexHull(RpClump* pRpClump, std::vector<RwV3d
 			vecPosList.push_back(pairPos);
 		}		
 
-		pNext	= rwLLLinkGetNext(pCur);
-		pCur	= pNext;
+		\tpCurAtomic = pNext;
+	\t} while(pCurAtomic != pRpClump->atomicList);
 	}
 
 	CNtlConvexHull ntlConvexHull(vecPosList); ntlConvexHull.BuildHull();
@@ -833,12 +836,15 @@ void CPathMeshFindDlg::CalcClmupBoundingSphere(RpClump* pRpClump, RwSphere* pRwS
 	pRwSphere->center.z	= 0.0f;
 	pRwSphere->radius	= 0.0f;
 
-	pCur = rwLinkListGetFirstLLLink(&pRpClump->atomicList);
-	pEnd = rwLinkListGetTerminator(&pRpClump->atomicList);
 
-	while(pCur != pEnd)
+
+
+	if(pRpClump->atomicList)
 	{
-		pCurAtomic	= rwLLLinkGetData(pCur, RpAtomic, inClumpLink);
+		pCurAtomic = pRpClump->atomicList;
+		do
+		{
+			pNext = pCurAtomic->next;
 		pCurSphere	= const_cast<RwSphere*>(RpAtomicGetWorldBoundingSphere(pCurAtomic));
 
 		if(!NumSphere)
@@ -861,8 +867,8 @@ void CPathMeshFindDlg::CalcClmupBoundingSphere(RpClump* pRpClump, RwSphere* pRwS
 			pRwSphere->center.z += pCurSphere->center.z;
 		}
 
-		pNext	= rwLLLinkGetNext(pCur);
-		pCur	= pNext;
+			pCurAtomic = pNext;
+	\t} while(pCurAtomic != pRpClump->atomicList);
 
 		NumSphere++;
 	}
@@ -1124,7 +1130,7 @@ BEGIN_MESSAGE_MAP(CPathMeshFindDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CFieldSearchDlg �޽��� ó�����Դϴ�.
+// CFieldSearchDlg 占쌨쏙옙占쏙옙 처占쏙옙占쏙옙占쌉니댐옙.
 
 BOOL CPathMeshFindDlg::PreTranslateMessage(MSG* pMsg)
 {
@@ -1677,13 +1683,16 @@ RwBool CPathMeshFindDlg::IsInConvexHull(RwV3d& vPos, std::vector<RwV3d>& vecConv
 void CPathMeshFindDlg::BuildClmupConvexHull(RpClump* pRpClump, std::vector<RwV3d>& vecResult)
 {
 	CNtlConvexHull::vecdef_POS_LIST vecPosList;
-	RwLLLink*						pCur	= rwLinkListGetFirstLLLink(&pRpClump->atomicList);
-	RwLLLink*						pEnd	= rwLinkListGetTerminator(&pRpClump->atomicList);
-	RwLLLink*						pNext	= NULL;
+	// atomicList is now a direct RpAtomic* circular list after the x64 struct refactor
+	RpAtomic*			\t\t\tpCurAtomic = ;
+	RpAtomic*			\t\t\tpNext = NULL;
 
-	while(pCur != pEnd)
+	if(pRpClump->atomicList)
 	{
-		RpAtomic*		pCurAtomic		= rwLLLinkGetData(pCur, RpAtomic, inClumpLink);
+		pCurAtomic = pRpClump->atomicList;
+		do
+	\t{
+		\tpNext = pCurAtomic->next;
 		RpGeometry*		pCurGeometry	= RpAtomicGetGeometry(pCurAtomic);	
 		RpMorphTarget*	pCurMorphTarget	= RpGeometryGetMorphTarget(pCurGeometry, 0);
 		RpTriangle*		pCurTriangle	= RpGeometryGetTriangles(pCurGeometry);
@@ -1711,8 +1720,8 @@ void CPathMeshFindDlg::BuildClmupConvexHull(RpClump* pRpClump, std::vector<RwV3d
 			vecPosList.push_back(pairPos);
 		}		
 
-		pNext	= rwLLLinkGetNext(pCur);
-		pCur	= pNext;
+		\tpCurAtomic = pNext;
+	\t} while(pCurAtomic != pRpClump->atomicList);
 	}
 
 	CNtlConvexHull ntlConvexHull(vecPosList); ntlConvexHull.BuildHull();
@@ -1885,12 +1894,15 @@ void CPathMeshFindDlg::CalcClmupBoundingSphere(RpClump* pRpClump, RwSphere* pRwS
 	pRwSphere->center.z	= 0.0f;
 	pRwSphere->radius	= 0.0f;
 
-	pCur = rwLinkListGetFirstLLLink(&pRpClump->atomicList);
-	pEnd = rwLinkListGetTerminator(&pRpClump->atomicList);
 
-	while(pCur != pEnd)
+
+
+	if(pRpClump->atomicList)
 	{
-		pCurAtomic	= rwLLLinkGetData(pCur, RpAtomic, inClumpLink);
+		pCurAtomic = pRpClump->atomicList;
+		do
+		{
+			pNext = pCurAtomic->next;
 		pCurSphere	= const_cast<RwSphere*>(RpAtomicGetWorldBoundingSphere(pCurAtomic));
 
 		if(!NumSphere)
@@ -1913,8 +1925,8 @@ void CPathMeshFindDlg::CalcClmupBoundingSphere(RpClump* pRpClump, RwSphere* pRwS
 			pRwSphere->center.z += pCurSphere->center.z;
 		}
 
-		pNext	= rwLLLinkGetNext(pCur);
-		pCur	= pNext;
+			pCurAtomic = pNext;
+	\t} while(pCurAtomic != pRpClump->atomicList);
 
 		NumSphere++;
 	}

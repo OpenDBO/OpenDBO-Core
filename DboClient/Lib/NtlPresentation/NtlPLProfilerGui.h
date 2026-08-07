@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: NtlPLProfilerGui.h
 * Author		: Cho Haesung
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 6. 19
 * Abstract		: 
 *****************************************************************************
-* Desc			: ÇÁ·ÎÆÄÀÏ¸µ µ¥ÀÌÅÍ¸¦ Ãâ·ÂÇÑ´Ù.
+* Desc			: í”„ë¡œíŒŒì¼ë§ ë°ì´í„°ë¥¼ ì¶œë ¥í•œë‹¤.
 *****************************************************************************/
 
 #pragma once
@@ -31,17 +31,17 @@
 #define dPROFILER_GUI_PARENT_NAME_BUFFER	128
 #define dPROFILER_GUI_NAME_BUFFER			128
 
-#define dPROFILER_GUI_CURRENT_VIEW_NUMS		9	// ÇÑ¹ø¿¡ º¸¿©ÁÙ ¼ö ÀÖ´Â °¹¼ö
+#define dPROFILER_GUI_CURRENT_VIEW_NUMS		9	// í•œë²ˆì— ë³´ì—¬ì¤„ ìˆ˜ ìžˆëŠ” ê°¯ìˆ˜
 
 /**
-* \brief Profiler NodeÀÇ Á¤º¸¸¦ Ãâ·ÂÇÒ ±¸Á¶Ã¼
+* \brief Profiler Nodeì˜ ì •ë³´ë¥¼ ì¶œë ¥í•  êµ¬ì¡°ì²´
 */
 struct SNtlProfileNode
 {
 	RwUInt32	uiIndex;									///< Index
 	RwUInt8		byHighLightField;
-	RwChar		acNodeName[dPROFILER_GUI_NAME_BUFFER];		///< NodeÀÇ ÀÌ¸§
-	RwReal		fPercentByParent;							///< ºÎ¸ð¿¡°Ô¼­ÀÇ %
+	RwChar		acNodeName[dPROFILER_GUI_NAME_BUFFER];		///< Nodeì˜ ì´ë¦„
+	RwReal		fPercentByParent;							///< ë¶€ëª¨ì—ê²Œì„œì˜ %
 	RwReal		fMSecPerFrame;								///< ms / f
 	RwReal		fMSecPerCall;								///< ms / c
 	RwReal		fCallPerFrame;								///< calls / f
@@ -61,7 +61,7 @@ enum eNtlProfileField
 
 /**
 * \ingroup presentation
-* \brief ÇÁ·ÎÆÄÀÏ·¯ GUI¿¡¼­ ÇÑ ³ëµåÀÇ Á¤º¸¸¦ Ç¥½ÃÇØÁÖ´Â Item
+* \brief í”„ë¡œíŒŒì¼ëŸ¬ GUIì—ì„œ í•œ ë…¸ë“œì˜ ì •ë³´ë¥¼ í‘œì‹œí•´ì£¼ëŠ” Item
 */
 class CNtlPLProfilerItem
 {
@@ -96,7 +96,7 @@ class CProfileIterator;
 
 /**
 * \ingroup presentation
-* \brief ÇÁ·ÎÆÄÀÏ·¯ GUI ( CoreÀÇ NtlProfiler ¿¡¼­ Á¤º¸¸¦ ¾ò¾î¿Í¼­ Ãâ·ÂÇÑ´Ù )
+* \brief í”„ë¡œíŒŒì¼ëŸ¬ GUI ( Coreì˜ NtlProfiler ì—ì„œ ì •ë³´ë¥¼ ì–»ì–´ì™€ì„œ ì¶œë ¥í•œë‹¤ )
 */
 class CNtlPLProfilerGui : public CNtlPLGui, public RWS::CEventHandler
 {
@@ -138,7 +138,7 @@ protected:
 	// Dialog
 	gui::CStaticBox*	m_pStbTitle;
 	
-	// ¸Þ´º
+	// ë©”ë‰´
 	gui::CStaticBox*	m_pStbNodeName;
 	gui::CStaticBox*	m_pStbParent;
 	gui::CStaticBox*	m_pStbMSecPerFrame;

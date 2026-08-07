@@ -2,11 +2,11 @@
 *
 * File			: NtlSobActionSkill.h
 * Author		: Peessi
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2006. 8. 30	
 * Abstract		: Simulation Action skill object
 *****************************************************************************
-* Desc          : Action Skill ∫–∏Æ. 
+* Desc          : Action Skill Î∂ÑÎ¶¨. 
 *
 *****************************************************************************/
 

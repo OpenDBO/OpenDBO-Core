@@ -207,7 +207,7 @@ _rwFreeListEnable(RwBool enabled)
 #endif /* (!defined(rwMALLOCALIGNMENT) */
 
 #define rwAlign(_addr, _alignment) \
-    (( (RwUInt32)(_addr) + ((_alignment) - 1) ) & ~((_alignment) - 1))
+    (( (uintptr_t)(_addr) + ((_alignment) - 1) ) & ~((uintptr_t)(_alignment) - 1))
 
 static RwLinkList _freeListList;
 static RwBool     _freeListModuleOpen = FALSE;
@@ -738,8 +738,8 @@ _rwFreeListAllocReal(RwFreeList * freeList, RwUInt32 hint)
                         /* align data block */
                         aligned  = (RwUInt8*)link + sizeof(RwLLLink) +
                                    heapEntries + freeList->alignment - 1;
-                        aligned = (RwUInt8*)((RwUInt32)aligned &
-                                    (RwUInt32)~(freeList->alignment - 1));
+                        aligned = (RwUInt8*)((uintptr_t)aligned &
+                                    ~((uintptr_t)(freeList->alignment - 1)));
 
                         /* get the entry */
                         freeEntry = (RwUInt8*)aligned +
@@ -793,8 +793,8 @@ _rwFreeListAllocReal(RwFreeList * freeList, RwUInt32 hint)
             /* align data block */
             aligned  = (RwUInt8*)dataBlock + sizeof(RwLLLink) +
                        heapEntries + freeList->alignment - 1;
-            aligned = (RwUInt8*)((RwUInt32)aligned &
-                          (RwUInt32)~(freeList->alignment - 1));
+            aligned = (RwUInt8*)((uintptr_t)aligned &
+                          (uintptr_t)~(freeList->alignment - 1));
 
             freeEntry = aligned;
         }
@@ -912,8 +912,8 @@ _rwFreeListFreeReal(RwFreeList * freeList, void *entry)
 #ifdef RWDEBUG
             if ((heap[heapElement] & mask) == 0)
             {
-                RWMESSAGE((RWSTRING("entry 0x%X was not previously allocated"),
-                    (RwUInt32)entry));
+                RWMESSAGE((RWSTRING("entry 0x%zX was not previously allocated"),
+                    (uintptr_t)entry));
             }
             RWASSERT(heap[heapElement] & mask);
 #endif /* RWDEBUG */
@@ -944,7 +944,7 @@ _rwFreeListFreeReal(RwFreeList * freeList, void *entry)
     }
 
     /* the entry wasn't found */
-    RWMESSAGE((RWSTRING("Entry 0x%08X was not allocated from this FreeList"), (RwUInt32)entry));
+    RWMESSAGE((RWSTRING("Entry 0x%08zX was not allocated from this FreeList"), (uintptr_t)entry));
     RWASSERT(FALSE);
 
     RWRETURN(NULL);
@@ -1123,8 +1123,8 @@ RwFreeListForAllUsed(RwFreeList * freeList,
                         /* align data block */
                         aligned  = (RwUInt8*)link + sizeof(RwLLLink) +
                                    heapEntries + freeList->alignment - 1;
-                        aligned = (RwUInt8*)((RwUInt32)aligned &
-                                    (RwUInt32)~(freeList->alignment - 1));
+                        aligned = (RwUInt8*)((uintptr_t)aligned &
+                                    ~((uintptr_t)(freeList->alignment - 1)));
 
                         /* get the entry */
                         entry = (RwUInt8*)aligned +

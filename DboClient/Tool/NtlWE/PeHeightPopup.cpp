@@ -1,4 +1,4 @@
-// PeHeightPopup.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PeHeightPopup.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "PeHeightPopup.h"
 
 
-// CPeHeightPopup ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPeHeightPopup ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPeHeightPopup, CDialog)
 
@@ -33,7 +33,7 @@ BEGIN_MESSAGE_MAP(CPeHeightPopup, CDialog)
 END_MESSAGE_MAP()
 
 
-// CPeHeightPopup ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPeHeightPopup ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CPeHeightPopup::OnInitDialog()
 {
@@ -42,7 +42,7 @@ BOOL CPeHeightPopup::OnInitDialog()
 	UpdateData(FALSE);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 BOOL CPeHeightPopup::PreTranslateMessage(MSG* pMsg)
@@ -72,13 +72,13 @@ BOOL CPeHeightPopup::PreTranslateMessage(MSG* pMsg)
 
 LRESULT CPeHeightPopup::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	return CDialog::WindowProc(message, wParam, lParam);
 }
 void CPeHeightPopup::OnBnClickedOk()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	UpdateData(TRUE);
 

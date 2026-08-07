@@ -3,21 +3,21 @@
 
 
 //Animation Event
-RWS::CEventId g_EventAnimEnd;			//AnimationÀÌ ³¡³µÀ» °æ¿ì
+RWS::CEventId g_EventAnimEnd;			//Animationì´ ëë‚¬ì„ ê²½ìš°
 RWS::CEventId g_EventAnimHit;           //Animation Attack Event
-RWS::CEventId g_EventAnimFootStep;      //Running Áß Character ¹ß¹Ù´ÚÀÌ ¶¥¿¡ ´êÀ»¶§
+RWS::CEventId g_EventAnimFootStep;      //Running ì¤‘ Character ë°œë°”ë‹¥ì´ ë•…ì— ë‹¿ì„ë•Œ
 RWS::CEventId g_EventWeightTime;		//Animation WeightTimeEvent
-RWS::CEventId g_EventSubWeaponActive;	 //sub weaponÀ» active ½ÃÅ²´Ù ( ¿¹ : µî¿¡ Â÷°í ÀÖ´Â Ä®À» »Ì´Â´Ù. )
-RWS::CEventId g_EventSubWeaponDeActive;	 //sub weaponÀ» deactive ½ÃÅ²´Ù ( ¿¹ : »Ì¾Ò´ø Ä®À» ´Ù½Ã µî¿¡ Âù´Ù. )
-RWS::CEventId g_EventSummon;			 //summmon active ½ÃÅ²´Ù.( ¼ÒÈ¯¼ö°¡ ¼ÒÈ¯¹°À» ¼ÒÈ¯½ÃÅ°´Â timing event. )
-RWS::CEventId g_EventAlpha;               // Alpha Fade¿ë ÀÌº¥Æ®
-RWS::CEventId g_EventAnimTMQ;            // TMQ ¿¬Ãâ¿ë ÀÌº¥Æ®
-RWS::CEventId g_EventExplosion;           // Æø¹ß ÀÌº¥Æ®
+RWS::CEventId g_EventSubWeaponActive;	 //sub weaponì„ active ì‹œí‚¨ë‹¤ ( ì˜ˆ : ë“±ì— ì°¨ê³  ìˆëŠ” ì¹¼ì„ ë½‘ëŠ”ë‹¤. )
+RWS::CEventId g_EventSubWeaponDeActive;	 //sub weaponì„ deactive ì‹œí‚¨ë‹¤ ( ì˜ˆ : ë½‘ì•˜ë˜ ì¹¼ì„ ë‹¤ì‹œ ë“±ì— ì°¬ë‹¤. )
+RWS::CEventId g_EventSummon;			 //summmon active ì‹œí‚¨ë‹¤.( ì†Œí™˜ìˆ˜ê°€ ì†Œí™˜ë¬¼ì„ ì†Œí™˜ì‹œí‚¤ëŠ” timing event. )
+RWS::CEventId g_EventAlpha;               // Alpha Fadeìš© ì´ë²¤íŠ¸
+RWS::CEventId g_EventAnimTMQ;            // TMQ ì—°ì¶œìš© ì´ë²¤íŠ¸
+RWS::CEventId g_EventExplosion;           // í­ë°œ ì´ë²¤íŠ¸
 RWS::CEventId g_EventAnimPostEffect;      // Post Effect Event
-RWS::CEventId g_EventAnimDirect;          // ¿¬Ãâ ÀÌº¥Æ®
-RWS::CEventId g_EventAnimColorChange;     // »ö»óº¯°æ ÀÌº¥Æ®
-RWS::CEventId g_EventAnimStretch;         // ÆÈ´Ã¸®±â ÀÌº¥Æ®
-RWS::CEventId g_EventAnimTrigger;         // Æ®¸®°Å ÀÌº¥Æ®
+RWS::CEventId g_EventAnimDirect;          // ì—°ì¶œ ì´ë²¤íŠ¸
+RWS::CEventId g_EventAnimColorChange;     // ìƒ‰ìƒë³€ê²½ ì´ë²¤íŠ¸
+RWS::CEventId g_EventAnimStretch;         // íŒ”ëŠ˜ë¦¬ê¸° ì´ë²¤íŠ¸
+RWS::CEventId g_EventAnimTrigger;         // íŠ¸ë¦¬ê±° ì´ë²¤íŠ¸
 RWS::CEventId g_EventAnimSkillCancel;	  // anim cancel point	
 
 
@@ -36,12 +36,12 @@ RWS::CEventId NPEI_IS_MAPNAME_CHANGE;
 
 
 // trigger
-RWS::CEventId g_EventTriDoodads;	// Æ®¸®°Å ¸Ê¿ÀºêÁ§µéÀÌ ·Îµù ¶Ç´Â »èÁ¦µÉ¶§
+RWS::CEventId g_EventTriDoodads;	// íŠ¸ë¦¬ê±° ë§µì˜¤ë¸Œì ë“¤ì´ ë¡œë”© ë˜ëŠ” ì‚­ì œë ë•Œ
 
 
 // Event Object
-RWS::CEventId g_EventCreateEventObject; ///< ÀÌº¥Æ® ¿ÀºêÁ§Æ®°¡ ·Îµù ¶Ç´Â »èÁ¦ µÉ¶§
-RWS::CEventId g_EventThreadLoadingComplete; // ¿£Æ¼Æ¼ÀÇ ½º·¹µå ·ÎµùÀÌ ³¡³µÀ½À» ÅëÁöÇÏ´Â ÀÌº¥Æ®
+RWS::CEventId g_EventCreateEventObject; ///< ì´ë²¤íŠ¸ ì˜¤ë¸Œì íŠ¸ê°€ ë¡œë”© ë˜ëŠ” ì‚­ì œ ë ë•Œ
+RWS::CEventId g_EventThreadLoadingComplete; // ì—”í‹°í‹°ì˜ ìŠ¤ë ˆë“œ ë¡œë”©ì´ ëë‚¬ìŒì„ í†µì§€í•˜ëŠ” ì´ë²¤íŠ¸
 
 
 // gui event
@@ -51,19 +51,19 @@ RWS::CEventId g_EventCinematicViewShow;
 RWS::CEventId g_EventCinematicBalloon;
 RWS::CEventId g_EventCinematicFlash;
 RWS::CEventId g_EventCinematicEcho;
-RWS::CEventId g_EventResetCinematic;			// Cinematic ActionÀ» ResetÇÑ´Ù. GUI¿¡¼­¸¸ È£Ãâ
+RWS::CEventId g_EventResetCinematic;			// Cinematic Actionì„ Resetí•œë‹¤. GUIì—ì„œë§Œ í˜¸ì¶œ
 
 
-RWS::CEventId g_EventCinematicFadeOut;         // ½Ã³×¸¶Æ½ ¿¬Ãâ ½ÃÀÛ
-RWS::CEventId g_EventCinematicFadeIn;          // ½Ã³×¸¶Æ½ ¿¬Ãâ Á¾·á
+RWS::CEventId g_EventCinematicFadeOut;         // ì‹œë„¤ë§ˆí‹± ì—°ì¶œ ì‹œì‘
+RWS::CEventId g_EventCinematicFadeIn;          // ì‹œë„¤ë§ˆí‹± ì—°ì¶œ ì¢…ë£Œ
 
-RWS::CEventId g_EventCinematicBreak;			// ½Ã³×¸¶Æ½ ¿¬Ãâ break
+RWS::CEventId g_EventCinematicBreak;			// ì‹œë„¤ë§ˆí‹± ì—°ì¶œ break
 
 RWS::CEventId g_EventShowProfilerGui;			// ProfilerGUI Open/Close
 
 RWS::CEventId g_EventShowSpectatorBalloon;
 RWS::CEventId g_EventHideAllSpectatorBalloon;
 
-RWS::CEventId g_EventShowPlayerName;			// PlayerName Entity°¡ Show/Hide
+RWS::CEventId g_EventShowPlayerName;			// PlayerName Entityê°€ Show/Hide
 
 RWS::CEventId g_EventDirectPlayCancel;

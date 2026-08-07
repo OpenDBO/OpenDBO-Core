@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------------------
 // Name: class CDevILMFCMemDC
-// Desc: DevIL SDK¸¦ ÀÌ¿ëÇÏ¿© MFCMemDC¿¡ ¶ç¿î´Ù.
+// Desc: DevIL SDKë¥¼ ì´ìš©í•˜ì—¬ MFCMemDCì— ë„ìš´ë‹¤.
 //
 //			 
 // 2006.01.16 Peessi@hitel.net  
@@ -68,7 +68,7 @@ void CDevILMFCMemDC::ConvertToMemDC( CWnd* pWnd )
 	{
 		for( int x = 0 ; x < (m_nWidth*m_nBytes) ;  x+=(m_nBytes) )
 		{	
-			// Alpha°ªÀÌ ¾ø´Â ÆÄÀÏÀÎ °æ¿ì 0xff( 255 )·Î ¼¼ÆÃµÇ¾î ÀÖ´Ù. 
+			// Alphaê°’ì´ ì—†ëŠ” íŒŒì¼ì¸ ê²½ìš° 0xff( 255 )ë¡œ ì„¸íŒ…ë˜ì–´ ìˆë‹¤. 
 			a = m_pPic[ (m_nWidth*m_nBytes) * y + x + 3 ];
 			t = a / 255.0f;
 		

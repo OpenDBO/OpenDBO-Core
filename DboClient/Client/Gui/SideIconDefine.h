@@ -2,17 +2,17 @@
 
 enum eSideIconType
 {
-	SIDEICON_HINT,						///< ÈùÆ® ¾ÆÀÌÄÜ
-	SIDEICON_DBC,						///< µå·¡°ïº¼ ¼öÁý ¾ÆÀÌÄÜ
-	SIDEICON_RB,						///< ·©Å©¹èÆ² ¾ÆÀÌÄÜ
-	SIDEICON_DOREPAIR,					///< ¼ö¸®¿ä±¸ ¾ÆÀÌÄÜ
-	SIDEICON_TUTORIAL,					///< Æ©Åä¸®¾ó ¾ÆÀÌÄÜ
-	SIDEICON_CAUTION,					///< °æ°í ¾ÆÀÌÄÜ
-	SIDEICON_BUDOKAI,					///< ÃµÇÏÁ¦ÀÏ¹«µµÈ¸ ¾ÆÀÌÄÜ
-	SIDEICON_PETITION,					///< Petition ¾ÆÀÌÄÜ
-	SIDEICON_GM,						///< GM ¾ÆÀÌÄÜ
-	SIDEICON_DOJO,						///< µµÀå »çÀÌµå ¾ÆÀÌÄÜ
-    SIDEICON_NETPY,                     ///< NetPy »çÀÌµå ¾ÆÀÌÄÜ
+	SIDEICON_HINT,						///< ížŒíŠ¸ ì•„ì´ì½˜
+	SIDEICON_DBC,						///< ë“œëž˜ê³¤ë³¼ ìˆ˜ì§‘ ì•„ì´ì½˜
+	SIDEICON_RB,						///< ëž­í¬ë°°í‹€ ì•„ì´ì½˜
+	SIDEICON_DOREPAIR,					///< ìˆ˜ë¦¬ìš”êµ¬ ì•„ì´ì½˜
+	SIDEICON_TUTORIAL,					///< íŠœí† ë¦¬ì–¼ ì•„ì´ì½˜
+	SIDEICON_CAUTION,					///< ê²½ê³  ì•„ì´ì½˜
+	SIDEICON_BUDOKAI,					///< ì²œí•˜ì œì¼ë¬´ë„íšŒ ì•„ì´ì½˜
+	SIDEICON_PETITION,					///< Petition ì•„ì´ì½˜
+	SIDEICON_GM,						///< GM ì•„ì´ì½˜
+	SIDEICON_DOJO,						///< ë„ìž¥ ì‚¬ì´ë“œ ì•„ì´ì½˜
+    SIDEICON_NETPY,                     ///< NetPy ì‚¬ì´ë“œ ì•„ì´ì½˜
 	SIDEICON_HLS,
 
 	SIDEICON_NUMS,
@@ -21,42 +21,42 @@ enum eSideIconType
 
 enum eSideViewType
 {
-	SIDEVIEW_HINT_HELP,					///< ÇïÇÁ ÈùÆ® ºä
-	SIDEVIEW_HINT_GUIDE,				///< °¡ÀÌµå ÈùÆ® ºä
-	SIDEVIEW_HINT_STRING,				///< ¹®ÀÚ¿­ ¾Ë¸² ºä
-	SIDEVIEW_DBC,						///< µå·¡°ïº¼ ¼öÁý ¾Ë¸² ºä
-	SIDEVIEW_RB,						///< ·©Å©¹èÆ² ºä
-	SIDEVIEW_DOREPAIR,					///< ¼ö¸®¿ä±¸ ºä
-	SIDEVIEW_TUTORIAL,					///< Æ©Åä¸®¾ó ºä
-	SIDEVIEW_CAUTION,					///< °æ°í ºä
-	SIDEVIEW_BUDOKAI,					///< ÃµÇÏÁ¦ÀÏ¹«µµÈ¸ ºä
-	SIDEVIEW_PETITION,					///< Petition ºä
-	SIDEVIEW_GM,						///< GM ºä
-	SIDEVIEW_DOJO,						///< µµÀå ºä
-    SIDEVIEW_NETPY,                     ///< NetPy ºä
+	SIDEVIEW_HINT_HELP,					///< í—¬í”„ ížŒíŠ¸ ë·°
+	SIDEVIEW_HINT_GUIDE,				///< ê°€ì´ë“œ ížŒíŠ¸ ë·°
+	SIDEVIEW_HINT_STRING,				///< ë¬¸ìžì—´ ì•Œë¦¼ ë·°
+	SIDEVIEW_DBC,						///< ë“œëž˜ê³¤ë³¼ ìˆ˜ì§‘ ì•Œë¦¼ ë·°
+	SIDEVIEW_RB,						///< ëž­í¬ë°°í‹€ ë·°
+	SIDEVIEW_DOREPAIR,					///< ìˆ˜ë¦¬ìš”êµ¬ ë·°
+	SIDEVIEW_TUTORIAL,					///< íŠœí† ë¦¬ì–¼ ë·°
+	SIDEVIEW_CAUTION,					///< ê²½ê³  ë·°
+	SIDEVIEW_BUDOKAI,					///< ì²œí•˜ì œì¼ë¬´ë„íšŒ ë·°
+	SIDEVIEW_PETITION,					///< Petition ë·°
+	SIDEVIEW_GM,						///< GM ë·°
+	SIDEVIEW_DOJO,						///< ë„ìž¥ ë·°
+    SIDEVIEW_NETPY,                     ///< NetPy ë·°
 	SIDEVIEW_HLS,
 
 	SIDEVIEW_NUMS,
 	INVALID_SIDEVIEW
 };
 
-// µå·¡°ïº¼ ÄÃ·º¼ÇÀÇ »çÀÌµå ¾ÆÀÌÄÜ »óÅÂ
+// ë“œëž˜ê³¤ë³¼ ì»¬ë ‰ì…˜ì˜ ì‚¬ì´ë“œ ì•„ì´ì½˜ ìƒíƒœ
 enum eDBCSideIconType
 {
-	E_ICON_NO_SEASON,					///< µå·¡°ïº¼ ¼öÁý ±â°£ÀÌ ¾Æ´Ò¶§
-	E_ICON_SEASON,						///< µå·¡°ïº¼ ¼öÁý ±â°£ÀÏ¶§
-	E_ICON_COLLECT,						///< µå·¡°ïº¼ ¼öÁýÀ» ¿Ï·á ÇßÀ»¶§
+	E_ICON_NO_SEASON,					///< ë“œëž˜ê³¤ë³¼ ìˆ˜ì§‘ ê¸°ê°„ì´ ì•„ë‹ë•Œ
+	E_ICON_SEASON,						///< ë“œëž˜ê³¤ë³¼ ìˆ˜ì§‘ ê¸°ê°„ì¼ë•Œ
+	E_ICON_COLLECT,						///< ë“œëž˜ê³¤ë³¼ ìˆ˜ì§‘ì„ ì™„ë£Œ í–ˆì„ë•Œ
 };
 
 enum eNetPySideViewType
 {
-    E_NETPY_INFO,                       ///< ÇöÀç NetPy »óÅÂ Ç¥½Ã
-    E_NETPY_NOTIFY,                     ///< NetPy È¹µæ ¾Ë¸² Ç¥½Ã
+    E_NETPY_INFO,                       ///< í˜„ìž¬ NetPy ìƒíƒœ í‘œì‹œ
+    E_NETPY_NOTIFY,                     ///< NetPy íšë“ ì•Œë¦¼ í‘œì‹œ
 };
 
 
-// »çÀÌµå ¾ÆÀÌÄÜ ¿ì¼±¼øÀ§ ////////////////////////////////////////////////////////////////////
-// ¿ì¼± ¼øÀ§°¡ ³·À»¼ö·Ï ¿À¸¥ÂÊ¿¡ Ãâ·ÂµÈ´Ù.
+// ì‚¬ì´ë“œ ì•„ì´ì½˜ ìš°ì„ ìˆœìœ„ ////////////////////////////////////////////////////////////////////
+// ìš°ì„  ìˆœìœ„ê°€ ë‚®ì„ìˆ˜ë¡ ì˜¤ë¥¸ìª½ì— ì¶œë ¥ëœë‹¤.
 #define dSIDEICON_PRIORITY_DEFAULT		50
 #define dSIDEICON_PRIORITY_CAUTION		25
 #define dSIDEICON_PRIORITY_TUTORIAL		0

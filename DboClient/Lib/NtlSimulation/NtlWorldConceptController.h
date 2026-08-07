@@ -5,7 +5,7 @@
 #include "NtlWorldConceptDefine.h"
 /**
  * \ingroup NtlSimulation
- * \brief °¢ World ConceptµéÀÇ »óÀ§ Å¬·¡½º
+ * \brief ê° World Conceptë“¤ì˜ ìƒìœ„ í´ë˜ìŠ¤
  * \date 2007-06-14
  * \author agebreak
  */
@@ -19,10 +19,10 @@ public:
 	CNtlWorldConceptController(void);
 	virtual ~CNtlWorldConceptController(void);
 
-	virtual void		Update(RwReal fElapsedTime);				///< °¢ ÄÁ¼Á¿¡ ¸Â´Â ³»¿ëµéÀÇ UpdateÃ³¸® ÇÔ¼ö
-	virtual RwBool		IsEnableAction(EAvatarAction eAction);		///< AvatarÀÇ ActionÀÌ ÇöÀç Ã³¸® °¡´ÉÇÑÁö¸¦ °¢ ÄÁ¼Á¿¡ µû¶ó ÆÇº°ÇÑ´Ù.
-	virtual void		ChangeState(RwInt32 iState);				///< State »óÅÂ¸¦ º¯°æÇÑ´Ù.	
-	virtual RwInt32		GetState() {return m_iWorldState;}			///< ÇöÀç State »óÅÂ¸¦ ¹İÈ¯ÇÑ´Ù.
+	virtual void		Update(RwReal fElapsedTime);				///< ê° ì»¨ì…‰ì— ë§ëŠ” ë‚´ìš©ë“¤ì˜ Updateì²˜ë¦¬ í•¨ìˆ˜
+	virtual RwBool		IsEnableAction(EAvatarAction eAction);		///< Avatarì˜ Actionì´ í˜„ì¬ ì²˜ë¦¬ ê°€ëŠ¥í•œì§€ë¥¼ ê° ì»¨ì…‰ì— ë”°ë¼ íŒë³„í•œë‹¤.
+	virtual void		ChangeState(RwInt32 iState);				///< State ìƒíƒœë¥¼ ë³€ê²½í•œë‹¤.	
+	virtual RwInt32		GetState() {return m_iWorldState;}			///< í˜„ì¬ State ìƒíƒœë¥¼ ë°˜í™˜í•œë‹¤.
 	
 	virtual void		BeforeLoadingDirect(void)	{}
 	virtual void		AfterLoadingDirect(void)	{}
@@ -46,8 +46,8 @@ public:
 
 protected:
 
-	RwReal				m_fStateTime;									///< °¢ State¿¡¼­ÀÇ °æ°úµÈ ½Ã°£
-	RwInt32				m_iWorldState;									///< ÇöÀçÀÇ State »óÅÂ		
+	RwReal				m_fStateTime;									///< ê° Stateì—ì„œì˜ ê²½ê³¼ëœ ì‹œê°„
+	RwInt32				m_iWorldState;									///< í˜„ì¬ì˜ State ìƒíƒœ		
 	EWorldPlayConcept	m_eType;
 	RwBool				m_bPause;
 };

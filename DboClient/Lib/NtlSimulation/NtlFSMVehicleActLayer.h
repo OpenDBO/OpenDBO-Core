@@ -2,7 +2,7 @@
  *
  * File			: NtlFSMVehicleActLayer.h
  * Author		: JeongHo, Rho
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2008. 11. 12	
  * Abstract		: fsm vehicle act layer
  *****************************************************************************
@@ -30,25 +30,25 @@ public:
 	CNtlFSMVehicleActLayer( void );
 
 	/**
-    *  ÀÌ class°¡ »ı¼ºµÈ ÈÄ ¹Ù·Î È£ÃâÇÏ´Â ÇÔ¼ö
+    *  ì´ classê°€ ìƒì„±ëœ í›„ ë°”ë¡œ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜
     *
     */
 	virtual RwBool Create( RwUInt32 uiController );
 
 	/**
-    *  ÀÌ class°¡ ¼Ò¸êµÇ±â Àü¿¡ È£ÃâÇÏ´Â ÇÔ¼ö
+    *  ì´ classê°€ ì†Œë©¸ë˜ê¸° ì „ì— í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜
     *
     */
 	virtual void Destroy( void );
 
 	/**
-    *  layer update ÇÔ¼ö.
+    *  layer update í•¨ìˆ˜.
     *
     */
 	virtual void Update( RwReal fElapsed );
 
 	/**
-    *  layer event handler ÇÔ¼ö.
+    *  layer event handler í•¨ìˆ˜.
     *
     */
 	virtual RwUInt32 HandleEvents( RWS::CMsg &pMsg );

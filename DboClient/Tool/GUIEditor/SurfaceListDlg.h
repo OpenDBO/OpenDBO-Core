@@ -3,17 +3,17 @@
 #include "Control/PropTree.h"
 #include "resource.h"
 
-// CSurfaceListDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CSurfaceListDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CSurfaceListDlg : public CDialog
 {
 	DECLARE_DYNCREATE(CSurfaceListDlg)
 
 public:
-	CSurfaceListDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CSurfaceListDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CSurfaceListDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_SURFACELISTDLG };
 
 	enum PROPERTY_ID
@@ -23,8 +23,8 @@ public:
 		PROPERTY_CAPTION = 0,
 	};
 
-	void	DisplayList();			// ListÃâ·Â.
-	INT		GetFocusID();		// 0 ÀÌÇÏ¸é ¾øÀ½.
+	void	DisplayList();			// Listì¶œë ¥.
+	INT		GetFocusID();		// 0 ì´í•˜ë©´ ì—†ìŒ.
 		
 protected:
 	CPropTree	m_PropertyTree;
@@ -36,7 +36,7 @@ protected:
 	void	ShowAttribute( CPropTreeItem* pItem );
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

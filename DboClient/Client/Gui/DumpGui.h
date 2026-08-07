@@ -2,7 +2,7 @@
  *
  * File			: DumpGui.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 12. 27	
  * Abstract		: DBO dump gui.
  *****************************************************************************

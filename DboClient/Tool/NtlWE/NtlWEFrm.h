@@ -1,4 +1,4 @@
-// NtlWEFrm.h : CNtlWEFrm Å¬·¡½ºÀÇ ÀÎÅÍÆäÀÌ½º
+// NtlWEFrm.h : CNtlWEFrm í´ë˜ìŠ¤ì˜ ì¸í„°í˜ì´ìŠ¤
 //
 
 
@@ -48,21 +48,21 @@ class CPaletteDojoDlg;
 class CNtlWEFrm : public CFrameWnd
 {
 	
-protected: // serialization¿¡¼­¸¸ ¸¸µé¾îÁı´Ï´Ù.
+protected: // serializationì—ì„œë§Œ ë§Œë“¤ì–´ì§‘ë‹ˆë‹¤.
 	CNtlWEFrm();
 	DECLARE_DYNCREATE(CNtlWEFrm)
 
-// Æ¯¼º
+// íŠ¹ì„±
 public:
 
-// ÀÛ¾÷
+// ì‘ì—…
 public:
 
-// ÀçÁ¤ÀÇ
+// ì¬ì •ì˜
 public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 
-// ±¸Çö
+// êµ¬í˜„
 public:
 	virtual ~CNtlWEFrm();
 #ifdef _DEBUG
@@ -70,7 +70,7 @@ public:
 	virtual void Dump(CDumpContext& dc) const;
 #endif
 
-protected:  // ÄÁÆ®·Ñ ¸ğÀ½ÀÌ Æ÷ÇÔµÈ ¸â¹öÀÔ´Ï´Ù.
+protected:  // ì»¨íŠ¸ë¡¤ ëª¨ìŒì´ í¬í•¨ëœ ë©¤ë²„ì…ë‹ˆë‹¤.
 	CStatusBar  m_wndStatusBar;
 	CToolBar    m_wndToolBar;
 	CReBar      m_wndReBar;
@@ -122,7 +122,7 @@ public:
 public:
 	
 
-// ¸Ş½ÃÁö ¸Ê ÇÔ¼ö¸¦ »ı¼ºÇß½À´Ï´Ù.
+// ë©”ì‹œì§€ ë§µ í•¨ìˆ˜ë¥¼ ìƒì„±í–ˆìŠµë‹ˆë‹¤.
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	//afx_msg void OnSize(UINT nType, int cx, int cy);
@@ -269,7 +269,7 @@ public:
 	afx_msg void OnVisionHeathaze();
 	afx_msg void OnUpdateVisionHeathaze(CCmdUI *pCmdUI);
 
-	// ÀÎµµ¾î
+	// ì¸ë„ì–´
 	afx_msg void OnWorldNew();
 	afx_msg void OnWorldLoad();
 	afx_msg void OnExportExportpathenginedata();
@@ -282,7 +282,7 @@ public:
 	
 	afx_msg void OnUtilBookmark();
 
-	// ÀÎµµ¾î
+	// ì¸ë„ì–´
 	afx_msg void OnPaletteGameproperty();
 	afx_msg void OnUpdatePaletteGameproperty(CCmdUI *pCmdUI);
 	afx_msg void OnPaletteWorldview();

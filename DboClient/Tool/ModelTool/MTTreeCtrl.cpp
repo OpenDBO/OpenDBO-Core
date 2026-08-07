@@ -57,7 +57,7 @@ END_MESSAGE_MAP()
 // CMTTreeCtrl message handlers
 void CMTTreeCtrl::SetRoot(WCHAR* szRootName)
 {
-    // ÀÌ¹ÌÁö ¸®½ºÆ® ¼³Á¤
+    // ì´ë¯¸ì§€ ë¦¬ìŠ¤íŠ¸ ì„¤ì •
     m_pImageList = new CImageList();
     m_pImageList->Create(16, 16, ILC_COLOR32, 4, 4);
     m_pImageList->Add(AfxGetApp()->LoadIcon(IDI_ICON7));
@@ -66,7 +66,7 @@ void CMTTreeCtrl::SetRoot(WCHAR* szRootName)
     m_pImageList->Add(AfxGetApp()->LoadIcon(IDI_ICON9));    
     SetImageList(m_pImageList, TVSIL_NORMAL);
 
-    // Æ®¸® ÄÁÆ®·Ñ ÃÊ±âÈ­
+    // íŠ¸ë¦¬ ì»¨íŠ¸ë¡¤ ì´ˆê¸°í™”
     TV_INSERTSTRUCT tvStruct;
     tvStruct.hParent      = NULL;
     tvStruct.hInsertAfter = TVI_LAST;
@@ -106,14 +106,14 @@ void CMTTreeCtrl::OnContextMenu(CWnd* pWnd, CPoint point)
         CMenu* subMenu = NULL;
         menuPopup.LoadMenu(IDR_MENU1);
 
-        if(nImage == 0)         // Æú´õ
+        if(nImage == 0)         // í´ë”
         {
-            // ¸Ş´º¸¦ ¿¬´Ù.
+            // ë©”ë‰´ë¥¼ ì—°ë‹¤.
             subMenu = menuPopup.GetSubMenu(0);
             subMenu->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, this);        
             
         }
-        else if(nImage == 3)    // ½ºÅ©¸³Æ® 
+        else if(nImage == 3)    // ìŠ¤í¬ë¦½íŠ¸ 
         {
             subMenu = menuPopup.GetSubMenu(1);            
             subMenu->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, this);        
@@ -123,7 +123,7 @@ void CMTTreeCtrl::OnContextMenu(CWnd* pWnd, CPoint point)
 
 void CMTTreeCtrl::OnMenuAddFolder()
 {
-    // »õ Æú´õ¸¦ Ãß°¡ÇÑ´Ù.
+    // ìƒˆ í´ë”ë¥¼ ì¶”ê°€í•œë‹¤.
 
     m_hSelectedItem = GetSelectedItem();
 
@@ -134,7 +134,7 @@ void CMTTreeCtrl::OnMenuAddFolder()
     tvStruct.hParent      = m_hSelectedItem;    
     tvStruct.hInsertAfter = TVI_LAST;
     tvStruct.item.mask = TVIF_TEXT | TVIF_IMAGE | TVIF_SELECTEDIMAGE;
-    tvStruct.item.pszText = L"»õÆú´õ";
+    tvStruct.item.pszText = L"ìƒˆí´ë”";
     tvStruct.item.iImage  = 0;
     tvStruct.item.iSelectedImage = 1;
     HTREEITEM hAddItem = InsertItem(&tvStruct);
@@ -155,7 +155,7 @@ void CMTTreeCtrl::OnMenuAddScript()
     tvStruct.hParent      = m_hSelectedItem;
     tvStruct.hInsertAfter = TVI_LAST;
     tvStruct.item.mask = TVIF_TEXT | TVIF_IMAGE | TVIF_SELECTEDIMAGE;
-    tvStruct.item.pszText = L"»õ½ºÅ©¸³Æ®";
+    tvStruct.item.pszText = L"ìƒˆìŠ¤í¬ë¦½íŠ¸";
     tvStruct.item.iImage  = 2;    
     tvStruct.item.iSelectedImage = 2;
     HTREEITEM hAddItem = InsertItem(&tvStruct);
@@ -195,7 +195,7 @@ CString CMTTreeCtrl::SelectScriptName()
     int nSelectedImage = 0;
     GetItemImage(m_hSelectedItem, nImage, nSelectedImage);
 
-    if(nImage != 3)     // ½ºÅ©¸³Æ® ÆÄÀÏ ·ÎµåÀÏ¶§¸¸ Ç¥½Ã
+    if(nImage != 3)     // ìŠ¤í¬ë¦½íŠ¸ íŒŒì¼ ë¡œë“œì¼ë•Œë§Œ í‘œì‹œ
         return L"";
     
     return GetItemText(m_hSelectedItem);    
@@ -220,7 +220,7 @@ CString CMTTreeCtrl::SelectClumpName()
     int nSelectedImage = 0;
     GetItemImage(m_hSelectedItem, nImage, nSelectedImage);
 
-    if(nImage != 2)     // ½ºÅ©¸³Æ® ÆÄÀÏ ·ÎµåÀÏ¶§¸¸ Ç¥½Ã
+    if(nImage != 2)     // ìŠ¤í¬ë¦½íŠ¸ íŒŒì¼ ë¡œë“œì¼ë•Œë§Œ í‘œì‹œ
         return L"";
 
     HTREEITEM hItem = GetChildItem(m_hSelectedItem);
@@ -242,10 +242,10 @@ CString CMTTreeCtrl::SelectClumpName()
 
 void CMTTreeCtrl::OnMenuNewScript()
 {
-    // »õ·Î¿î ½ºÅ©¸³Æ®¸¦ Æú´õ¿¡ Ãß°¡ÇÑ´Ù.
+    // ìƒˆë¡œìš´ ìŠ¤í¬ë¦½íŠ¸ë¥¼ í´ë”ì— ì¶”ê°€í•œë‹¤.
     m_hSelectedItem = GetSelectedItem();
 
-    // ½ºÅ©¸³Æ® Ç×¸ñ Ãß°¡
+    // ìŠ¤í¬ë¦½íŠ¸ í•­ëª© ì¶”ê°€
     TV_INSERTSTRUCT tvStruct;
     tvStruct.hParent      = m_hSelectedItem;
     tvStruct.hInsertAfter = TVI_LAST;
@@ -279,7 +279,7 @@ void CMTTreeCtrl::AddItem(const RwChar* sScriptName)
 
     m_hSelectedItem = GetSelectedItem();
 
-    // Ç×¸ñ Ãß°¡
+    // í•­ëª© ì¶”ê°€
     TV_INSERTSTRUCT sTvStruct;
     sTvStruct.hParent = m_hSelectedItem;
     sTvStruct.hInsertAfter = TVI_LAST;
@@ -293,7 +293,7 @@ void CMTTreeCtrl::AddItem(const RwChar* sScriptName)
 
 void CMTTreeCtrl::OnMenuDeleteFolder()
 {
-    if(MessageBox(L"Á¤¸»·Î »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?", NULL, MB_OKCANCEL) == IDOK)
+    if(MessageBox(L"ì •ë§ë¡œ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?", NULL, MB_OKCANCEL) == IDOK)
     {
         m_hSelectedItem = GetSelectedItem();
         DeleteItem(m_hSelectedItem);
@@ -302,7 +302,7 @@ void CMTTreeCtrl::OnMenuDeleteFolder()
 
 void CMTTreeCtrl::OnMenuDeleteScript()
 {
-    if(MessageBox(L"Á¤¸»·Î »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?", NULL, MB_OKCANCEL) == IDOK)
+    if(MessageBox(L"ì •ë§ë¡œ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?", NULL, MB_OKCANCEL) == IDOK)
     {
         m_hSelectedItem = GetSelectedItem();
         if(m_pParentView)
@@ -315,7 +315,7 @@ void CMTTreeCtrl::OnTvnBegindrag(NMHDR *pNMHDR, LRESULT *pResult)
 {
     LPNMTREEVIEW pNMTreeView = reinterpret_cast<LPNMTREEVIEW>(pNMHDR);
     
-    // ¸¶¿ì½º Ä¿¼­¸¦ µå·¡±ë ¸ğµå·Î º¯°æ
+    // ë§ˆìš°ìŠ¤ ì»¤ì„œë¥¼ ë“œë˜ê¹… ëª¨ë“œë¡œ ë³€ê²½
     SetClassLong(this->m_hWnd, GCL_HCURSOR, (long)AfxGetApp()->LoadCursor(IDC_CURSOR1));
     m_bDrag = TRUE;
     SelectItem(pNMTreeView->itemNew.hItem);
@@ -339,7 +339,7 @@ void CMTTreeCtrl::OnLButtonUp(UINT nFlags, CPoint point)
 {
     if(m_bDrag)
     {
-        //Ä¿¼­¸¦ ¿ø·¡´ë·Î º¯°æ
+        //ì»¤ì„œë¥¼ ì›ë˜ëŒ€ë¡œ ë³€ê²½
         SetClassLong(this->m_hWnd, GCL_HCURSOR, (long)LoadCursor(NULL, IDC_ARROW));
         m_bDrag = FALSE;
         EndDrag(point);
@@ -350,7 +350,7 @@ void CMTTreeCtrl::OnLButtonUp(UINT nFlags, CPoint point)
 
 void CMTTreeCtrl::EndDrag(CPoint point)
 {
-    // µå·¡±×°¡ ³¡³­ ¾ÆÀÌÅÛÀÌ Æú´õÀÏ¶§¸¸ ÀÌµ¿ÇÑ´Ù.
+    // ë“œë˜ê·¸ê°€ ëë‚œ ì•„ì´í…œì´ í´ë”ì¼ë•Œë§Œ ì´ë™í•œë‹¤.
     int nImageIndex = 0, nSelectImageIndex = 0;
     GetItemImage(m_hCurItem, nImageIndex, nSelectImageIndex);
     if(nImageIndex != 0)
@@ -360,7 +360,7 @@ void CMTTreeCtrl::EndDrag(CPoint point)
     }
 
     CString strItemName = GetItemText(m_hDragItem);
-    // Ç×¸ñ Ãß°¡
+    // í•­ëª© ì¶”ê°€
     TV_INSERTSTRUCT sTvStruct;
     sTvStruct.hParent = m_hCurItem;
     sTvStruct.hInsertAfter = TVI_LAST;
@@ -401,14 +401,14 @@ void CMTTreeCtrl::SaveTree(WCHAR* szRootName, WCHAR* szFileName)
         CString sParentName = GetItemText(pItem);
         CString sItemName = GetItemText(vTreeItem[i]);
 
-        if(sItemName != "New Script")   // New Script°¡ ¾Æ´Ò¶§¸¸ ÀúÀåÇÑ´Ù.
+        if(sItemName != "New Script")   // New Scriptê°€ ì•„ë‹ë•Œë§Œ ì €ì¥í•œë‹¤.
         {
-            // XML¿¡ Ãß°¡ÇÑ´Ù.
-            if(nImage == 0)    // Æú´õ
+            // XMLì— ì¶”ê°€í•œë‹¤.
+            if(nImage == 0)    // í´ë”
             {
                 xmlSave.AddFolderNode((LPWSTR)(LPCWSTR)sParentName, (LPWSTR)(LPCWSTR)sItemName);
             }
-            else if(nImage == 3)  // ½ºÅ©¸³Æ®
+            else if(nImage == 3)  // ìŠ¤í¬ë¦½íŠ¸
             {
                 xmlSave.AddScriptNode((LPWSTR)(LPCWSTR)sParentName, (LPWSTR)(LPCWSTR)sItemName);
             }        
@@ -459,7 +459,7 @@ void CMTTreeCtrl::LoadTree(WCHAR* szFileName)
 
 HTREEITEM CMTTreeCtrl::GetItemByName(WCHAR* szItemName)
 {
-    // ¸ğµç Æ®¸®ÀÇ ¾ÆÀÌÅÛÀ» °Ë»öÇØ¼­ ÀÌ¸§À» Ã£¾Æ³½´Ù.
+    // ëª¨ë“  íŠ¸ë¦¬ì˜ ì•„ì´í…œì„ ê²€ìƒ‰í•´ì„œ ì´ë¦„ì„ ì°¾ì•„ë‚¸ë‹¤.
     TREEITEM_VECTOR vTreeItem;
     GetAllChildNode(GetRootItem(), vTreeItem);
     for(size_t i = 0; i < vTreeItem.size(); ++i)
@@ -483,7 +483,7 @@ void CMTTreeCtrl::OnTvnEndlabeledit(NMHDR *pNMHDR, LRESULT *pResult)
     {
         SetItemText(m_hSelectedItem, pTVDispInfo->item.pszText);
 
-        // ½ºÅ©¸³Æ® ¶ó¸é ÆÄÀÏ ÀÌ¸§µµ º¯°æÇÑ´Ù.
+        // ìŠ¤í¬ë¦½íŠ¸ ë¼ë©´ íŒŒì¼ ì´ë¦„ë„ ë³€ê²½í•œë‹¤.
         int nImage = 0, nSelectImage = 0;
         GetItemImage(m_hSelectedItem, nImage, nSelectImage);
         if(nImage == 3 && m_pParentView && m_sPrevScriptName != "")
@@ -505,7 +505,7 @@ void CMTTreeCtrl::GetAllChildNode(HTREEITEM hItem, TREEITEM_VECTOR& vTreeItem)
 
         if (ItemHasChildren(hItem))
         {
-            GetAllChildNode(GetChildItem(hItem), vTreeItem);  //Àç±ÍÈ£Ãâ
+            GetAllChildNode(GetChildItem(hItem), vTreeItem);  //ì¬ê·€í˜¸ì¶œ
         } 
 
         hItem = GetNextSiblingItem(hItem);
@@ -546,7 +546,7 @@ BOOL CMTTreeCtrl::PreTranslateMessage(MSG* pMsg)
 {
     if(GetEditControl() && pMsg->message == WM_KEYDOWN && pMsg->wParam == VK_RETURN)
     {
-        // ÀÌ¸§ º¯°æ½Ã ¿£ÅÍ¸¦ ÀÔ·ÂÇÏ¸é Àû¿ëÀÌ µÇ°Ô ÇÑ´Ù.
+        // ì´ë¦„ ë³€ê²½ì‹œ ì—”í„°ë¥¼ ì…ë ¥í•˜ë©´ ì ìš©ì´ ë˜ê²Œ í•œë‹¤.
         CString sNewName;
         GetEditControl()->GetWindowText(sNewName);
         SetItemText(GetSelectedItem(), sNewName);        

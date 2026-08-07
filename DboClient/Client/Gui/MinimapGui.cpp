@@ -77,15 +77,15 @@ CSurfaceCamera* CMapItem::m_pRealMapCamera2 = NULL;
 
 #define MINIMAP_UPDATETIME		0.1f
 
-#define dLENGTH_VISIBLE_PARTY_ARROW			100.f	///< ÀÏÁ¤ °Å¸® ÀÌ»ó ¶³¾îÁø ÆÄÆ¼¿øÀÇ È­»ìÇ¥´Â º¸¿©ÁÖÁö ¾Ê´Â´Ù
+#define dLENGTH_VISIBLE_PARTY_ARROW			100.f	///< ì¼ì • ê±°ë¦¬ ì´ìƒ ë–¨ì–´ì§„ íŒŒí‹°ì›ì˜ í™”ì‚´í‘œëŠ” ë³´ì—¬ì£¼ì§€ ì•ŠëŠ”ë‹¤
 
-#define	dONE_SIZE_RESOURCE_COUNT			3		///< ÇÑ ÃàÀÇ ¸®¼Ò½º °¹¼ö
+#define	dONE_SIZE_RESOURCE_COUNT			3		///< í•œ ì¶•ì˜ ë¦¬ì†ŒìŠ¤ ê°¯ìˆ˜
 
-#define	dFIELD_RESOURCE_SIZE				128		///< ÇÊµå¸Ê ¸®¼Ò½º ÇÑ ¸éÀÇ »çÀÌÁî
-#define	dRENDER_TARGET_MAP_SIZE				384		///< ¹é¹öÆÛ¿¡ ÀúÀåµÈ ÀüÃ¼ ÁöµµÀÇ ÇÑ ¸éÀÇ »çÀÌÁî
-#define	dRESULT_DEFUALT_SIZE				256		///< ÃÖÁ¾ ÅØ½ºÃ³ÀÇ ±âº» »çÀÌÁî
+#define	dFIELD_RESOURCE_SIZE				128		///< í•„ë“œë§µ ë¦¬ì†ŒìŠ¤ í•œ ë©´ì˜ ì‚¬ì´ì¦ˆ
+#define	dRENDER_TARGET_MAP_SIZE				384		///< ë°±ë²„í¼ì— ì €ì¥ëœ ì „ì²´ ì§€ë„ì˜ í•œ ë©´ì˜ ì‚¬ì´ì¦ˆ
+#define	dRESULT_DEFUALT_SIZE				256		///< ìµœì¢… í…ìŠ¤ì²˜ì˜ ê¸°ë³¸ ì‚¬ì´ì¦ˆ
 
-#define	dSURFACE_SIZE						150		///< ¹Ì´Ï¸Ê ¼­ÆäÀÌ½º »çÀÌÁî
+#define	dSURFACE_SIZE						150		///< ë¯¸ë‹ˆë§µ ì„œí˜ì´ìŠ¤ ì‚¬ì´ì¦ˆ
 
 // avooo's comment : Adjusting the icons with the actual map ratio is too small or too large. Adjust it arbitrarily.
 #define dICON_RATE_0						1.5f
@@ -99,8 +99,8 @@ CSurfaceCamera* CMapItem::m_pRealMapCamera2 = NULL;
 #define dNEXTQUEST_ICON_DISTANCE_FROM_CENTER	59.f
 #define dNEXTQUEST_ICON_RADIUS					9.f
 
-#define dSEAL_REMAIN_TIME					(3.f)	///< ÀÎÀå ÇÃ·¡½¬°¡ º¸¿©Áö´Â ½Ã°£
-#define dSEAL_REST_TIME						(5.f)	///< ÀÎÀå ÇÃ·¡½¬°¡ º¸¿©Áö°í ³ª¼­ ÀÏÁ¤½Ã°£Àº ´Ù½Ã º¸¿©ÁÖÁö ¾Ê´Â´Ù
+#define dSEAL_REMAIN_TIME					(3.f)	///< ì¸ì¥ í”Œë˜ì‰¬ê°€ ë³´ì—¬ì§€ëŠ” ì‹œê°„
+#define dSEAL_REST_TIME						(5.f)	///< ì¸ì¥ í”Œë˜ì‰¬ê°€ ë³´ì—¬ì§€ê³  ë‚˜ì„œ ì¼ì •ì‹œê°„ì€ ë‹¤ì‹œ ë³´ì—¬ì£¼ì§€ ì•ŠëŠ”ë‹¤
 #define dSEAL_ENEMY_FLASH_FILE				"Minimap_Signal_Effect_Red.swf"
 #define dSEAL_MY_TEAM_FLASH_FILE			"Minimap_Signal_Effect_Blue.swf"
 
@@ -201,7 +201,7 @@ RwReal CMapItem::GetRate()
 
 RwBool CMapItem::ReadyMakeTexture(RwReal fElapsed)
 {
-	// ¾ÆÁ÷ ¼­¹ö·Î ºÎÅÍ EnterWorld ÆĞÅ¶À» ¹ŞÁö ¾Ê¾Ò´Ù
+	// ì•„ì§ ì„œë²„ë¡œ ë¶€í„° EnterWorld íŒ¨í‚·ì„ ë°›ì§€ ì•Šì•˜ë‹¤
 	RwUInt32 uiWorldID = Logic_GetActiveWorldId();
 	if( uiWorldID == 0 )
 		return false;
@@ -231,7 +231,7 @@ RwBool CMapItem::ReadyMakeTexture(RwReal fElapsed)
 	if( !m_pRealMapCamera->CameraBeginUpdate() )
 		return false;
 
-	// UV Á¶Á¤ : ¿À¸¥¼Õ ÁÂÇ¥°è¸¦ ¾²±â¿¡ ÁÂ»ó´Ü ¹æÇâÀÌ + ÀÌ´Ù.
+	// UV ì¡°ì • : ì˜¤ë¥¸ì† ì¢Œí‘œê³„ë¥¼ ì“°ê¸°ì— ì¢Œìƒë‹¨ ë°©í–¥ì´ + ì´ë‹¤.
 	RwV3d vAvatarPos = pAvatar->GetPosition();
 	RwInt32 iAreaSize = dGET_WORLD_PARAM()->WorldFieldSize * dONE_SIZE_RESOURCE_COUNT;
 	RwReal fHalfSize = (RwReal)dRESULT_DEFUALT_SIZE / 2.f;
@@ -298,7 +298,7 @@ VOID CMapItem::UpdatePotalMapUpdateResource()
 
 		for( RwUInt8 i = 0 ; i < NUM_MAPPOSITON ; ++i )
 		{
-			// ¿ùµå°¡ ¹Ù²î¸é ¸®¼Ò½º¸¦ ÀüºÎ ´Ù½Ã ÀĞ¾îµéÀÎ´Ù
+			// ì›”ë“œê°€ ë°”ë€Œë©´ ë¦¬ì†ŒìŠ¤ë¥¼ ì „ë¶€ ë‹¤ì‹œ ì½ì–´ë“¤ì¸ë‹¤
 			Logic_DeleteTexture(m_ResourceSurface[i].GetTexture());
 			m_ResourceSurface[i].UnsetTexture();
 			LoadingSurface(m_ResourceSurface[i], CalcIndex(m_iCurField, i), i);
@@ -310,7 +310,7 @@ VOID CMapItem::UpdatePotalMapUpdateResource()
 		std::map<RwInt32, gui::CTexture*> mapResourceSurface;
 		std::map<RwInt32, gui::CTexture*>::iterator it_resource;
 
-		// ±âÁ¸ÀÇ ¸®¼Ò½º¸¦ º¸°ü
+		// ê¸°ì¡´ì˜ ë¦¬ì†ŒìŠ¤ë¥¼ ë³´ê´€
 		for( RwUInt8 i = 0 ; i < NUM_MAPPOSITON ; ++i )
 		{
 			iFieldIndex = CalcIndex(m_iPostField, i);
@@ -330,18 +330,18 @@ VOID CMapItem::UpdatePotalMapUpdateResource()
 
 			if( it_resource == mapResourceSurface.end() )
 			{
-				// »õ·Î¿î ¸®¼Ò½º¸¦ ·ÎµùÇÑ´Ù
+				// ìƒˆë¡œìš´ ë¦¬ì†ŒìŠ¤ë¥¼ ë¡œë”©í•œë‹¤
 				LoadingSurface(m_ResourceSurface[i], iFieldIndex, i);
 			}
 			else
 			{
-				// ±âÁ¸ ¸®¼Ò½º¸¦ È°¿ëÇÑ´Ù
+				// ê¸°ì¡´ ë¦¬ì†ŒìŠ¤ë¥¼ í™œìš©í•œë‹¤
 				m_ResourceSurface[i].SetTexture(it_resource->second);
 				mapResourceSurface.erase(it_resource);
 			}
 		}
 
-		// ÀçÈ°¿ëµÇÁö ¾Ê´Â ¸®¼Ò½º´Â »èÁ¦ÇÑ´Ù
+		// ì¬í™œìš©ë˜ì§€ ì•ŠëŠ” ë¦¬ì†ŒìŠ¤ëŠ” ì‚­ì œí•œë‹¤
 		it_resource = mapResourceSurface.begin();
 		for( ; it_resource != mapResourceSurface.end() ; ++it_resource )
 		{
@@ -360,8 +360,8 @@ VOID CMapItem::LoadingSurface(CSurfaceGui& surface, RwInt32 iFieldIndex, RwInt32
 	CWorldTable* pWorldTable = API_GetTableContainer()->GetWorldTable();
 	sWORLD_TBLDAT* pWORLD_TBLDAT = reinterpret_cast<sWORLD_TBLDAT*>( pWorldTable->FindData(Logic_GetActiveWorldTableId()) );
 
-	// ¹Ì´Ï¸ÊÀÇ ¸®¼Ò½º´Â 4ÀÚ¸®ÀÇ ¼ıÀÚ·Î µÈ ÆÄÀÏÀÌ¸§À¸·Î µÇ¾î ÀÖ´Ù
-	// È®ÀåÀÚ´Â DDS ÀÌ¸ç ÇöÀç ÇÁ·ÎÁ§Æ®¿¡¼­ DDS´Â È®ÀåÀÚ¸¦ ºÙÀÌÁö ¾Ê°í ¾´´Ù
+	// ë¯¸ë‹ˆë§µì˜ ë¦¬ì†ŒìŠ¤ëŠ” 4ìë¦¬ì˜ ìˆ«ìë¡œ ëœ íŒŒì¼ì´ë¦„ìœ¼ë¡œ ë˜ì–´ ìˆë‹¤
+	// í™•ì¥ìëŠ” DDS ì´ë©° í˜„ì¬ í”„ë¡œì íŠ¸ì—ì„œ DDSëŠ” í™•ì¥ìë¥¼ ë¶™ì´ì§€ ì•Šê³  ì“´ë‹¤
 	sprintf_s(acFileName, "%04d", iFieldIndex);
 
 	::WideCharToMultiByte(GetACP(), 0, pWORLD_TBLDAT->wszResourceFolder, -1, acPathName, 256, NULL, NULL);
@@ -377,7 +377,7 @@ RwInt32 CMapItem::CalcIndex(RwInt32 iCenterIndex, RwInt32 iPosition)
 {
 	RwInt32 iResult;
 
-	// ¿ùµåÀÇ ÇÑ ÃàÀÇ »çÀÌÁî
+	// ì›”ë“œì˜ í•œ ì¶•ì˜ ì‚¬ì´ì¦ˆ
 	RwInt32 iWorldEdgeSize = dGET_WORLD_PARAM()->WorldFieldNum;	
 
 	switch(iPosition)
@@ -387,7 +387,7 @@ RwInt32 CMapItem::CalcIndex(RwInt32 iCenterIndex, RwInt32 iPosition)
 			RwInt32 iCompare = iCenterIndex + iWorldEdgeSize;
 			iResult = iCompare + 1;
 
-			// ¼¼·ÎÃàÀÌ ´Ù¸£¸é °¡Àå ÁÂÃøÀÌ¶ó ÀÌº¸´Ù ÁÂÃøÀÇ ÇÊµå´Â ¾øÀ½À» ³ªÅ¸³½´Ù
+			// ì„¸ë¡œì¶•ì´ ë‹¤ë¥´ë©´ ê°€ì¥ ì¢Œì¸¡ì´ë¼ ì´ë³´ë‹¤ ì¢Œì¸¡ì˜ í•„ë“œëŠ” ì—†ìŒì„ ë‚˜íƒ€ë‚¸ë‹¤
 			if( (iCompare/iWorldEdgeSize) != (iResult/iWorldEdgeSize) )
 			{
 				iResult = INVALID_INDEX;
@@ -408,7 +408,7 @@ RwInt32 CMapItem::CalcIndex(RwInt32 iCenterIndex, RwInt32 iPosition)
 			RwInt32 iCompare = iCenterIndex + iWorldEdgeSize;
 			iResult = iCompare - 1;
 
-			// ¼¼·ÎÃàÀÌ ´Ù¸£¸é °¡Àå ¿ìÃøÀÌ¶ó ÀÌº¸´Ù ¿ìÃøÀÇ ÇÊµå´Â ¾øÀ½À» ³ªÅ¸³½´Ù
+			// ì„¸ë¡œì¶•ì´ ë‹¤ë¥´ë©´ ê°€ì¥ ìš°ì¸¡ì´ë¼ ì´ë³´ë‹¤ ìš°ì¸¡ì˜ í•„ë“œëŠ” ì—†ìŒì„ ë‚˜íƒ€ë‚¸ë‹¤
 			if( (iCompare/iWorldEdgeSize) != (iResult/iWorldEdgeSize) )
 			{
 				iResult = INVALID_INDEX;
@@ -422,7 +422,7 @@ RwInt32 CMapItem::CalcIndex(RwInt32 iCenterIndex, RwInt32 iPosition)
 			RwInt32 iCompare = iCenterIndex;
 			iResult = iCompare + 1;
 
-			// ¼¼·ÎÃàÀÌ ´Ù¸£¸é °¡Àå ÁÂÃøÀÌ¶ó ÀÌº¸´Ù ÁÂÃøÀÇ ÇÊµå´Â ¾øÀ½À» ³ªÅ¸³½´Ù
+			// ì„¸ë¡œì¶•ì´ ë‹¤ë¥´ë©´ ê°€ì¥ ì¢Œì¸¡ì´ë¼ ì´ë³´ë‹¤ ì¢Œì¸¡ì˜ í•„ë“œëŠ” ì—†ìŒì„ ë‚˜íƒ€ë‚¸ë‹¤
 			if( (iCompare/iWorldEdgeSize) != (iResult/iWorldEdgeSize) )
 			{
 				iResult = INVALID_INDEX;
@@ -441,7 +441,7 @@ RwInt32 CMapItem::CalcIndex(RwInt32 iCenterIndex, RwInt32 iPosition)
 			RwInt32 iCompare = iCenterIndex;
 			iResult = iCompare - 1;
 
-			// ¼¼·ÎÃàÀÌ ´Ù¸£¸é °¡Àå ¿ìÃøÀÌ¶ó ÀÌº¸´Ù ¿ìÃøÀÇ ÇÊµå´Â ¾øÀ½À» ³ªÅ¸³½´Ù
+			// ì„¸ë¡œì¶•ì´ ë‹¤ë¥´ë©´ ê°€ì¥ ìš°ì¸¡ì´ë¼ ì´ë³´ë‹¤ ìš°ì¸¡ì˜ í•„ë“œëŠ” ì—†ìŒì„ ë‚˜íƒ€ë‚¸ë‹¤
 			if( (iCompare/iWorldEdgeSize) != (iResult/iWorldEdgeSize) )
 			{
 				iResult = INVALID_INDEX;
@@ -461,7 +461,7 @@ RwInt32 CMapItem::CalcIndex(RwInt32 iCenterIndex, RwInt32 iPosition)
 				break;
 			}
 
-			// ¼¼·ÎÃàÀÌ ´Ù¸£¸é °¡Àå ÁÂÃøÀÌ¶ó ÀÌº¸´Ù ÁÂÃøÀÇ ÇÊµå´Â ¾øÀ½À» ³ªÅ¸³½´Ù
+			// ì„¸ë¡œì¶•ì´ ë‹¤ë¥´ë©´ ê°€ì¥ ì¢Œì¸¡ì´ë¼ ì´ë³´ë‹¤ ì¢Œì¸¡ì˜ í•„ë“œëŠ” ì—†ìŒì„ ë‚˜íƒ€ë‚¸ë‹¤
 			if( (iCompare/iWorldEdgeSize) != (iResult/iWorldEdgeSize) )
 			{
 				iResult = INVALID_INDEX;
@@ -494,7 +494,7 @@ RwInt32 CMapItem::CalcIndex(RwInt32 iCenterIndex, RwInt32 iPosition)
 				break;
 			}
 
-			// ¼¼·ÎÃàÀÌ ´Ù¸£¸é °¡Àå ¿ìÃøÀÌ¶ó ÀÌº¸´Ù ¿ìÃøÀÇ ÇÊµå´Â ¾øÀ½À» ³ªÅ¸³½´Ù
+			// ì„¸ë¡œì¶•ì´ ë‹¤ë¥´ë©´ ê°€ì¥ ìš°ì¸¡ì´ë¼ ì´ë³´ë‹¤ ìš°ì¸¡ì˜ í•„ë“œëŠ” ì—†ìŒì„ ë‚˜íƒ€ë‚¸ë‹¤
 			if( (iCompare/iWorldEdgeSize) != (iResult/iWorldEdgeSize) )
 			{
 				iResult = INVALID_INDEX;
@@ -637,23 +637,23 @@ RwBool CMinimapGui::Create(VOID)
 	//Hidden Objects
 	m_surHiddenObject.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Minimap.srf", "srfHiddenObject" ) );
 
-	// Æ÷Æ÷½ºÅæ
+	// í¬í¬ìŠ¤í†¤
 	m_surPopoStone.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", "srfPopoStone" ) );
 	m_surPopoStoneActive.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfBindPopoStone"));
 
-	// °øÀ¯ Å¸°Ù
+	// ê³µìœ  íƒ€ê²Ÿ
 	for( RwUInt8 i = 0 ; i < NTL_MAX_SHARETARGET_COUNT ; ++i )
 	{
 		sprintf_s(acBuffer, 64, "srfCommonTargetMark_%d", i+1);
 		m_surMarkCommonTarget[i].SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Minimap.srf", acBuffer ) );
 	}
 
-	// µµÀå ÀÎÀå
+	// ë„ì¥ ì¸ì¥
 	m_surMarkDojoSeal[DBO_TEAM_MY_TEAM]		.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Minimap.srf", "srfSealMyTeamTeam" ) );
 	m_surMarkDojoSeal[DBO_TEAM_ENEMY]		.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Minimap.srf", "srfSealEnemyTeam" ) );
 	m_surMarkDojoSeal[DBO_TEAM_NEUTRAILITY]	.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Minimap.srf", "srfSealNoTeam" ) );
 
-	// (ÇÇ¾Æ±¸ºĞ)ÆÀÀ» ³ª´©¾î¼­ ½Î¿ì´Â °æ¿ìÀÇ »ç¶÷µé
+	// (í”¼ì•„êµ¬ë¶„)íŒ€ì„ ë‚˜ëˆ„ì–´ì„œ ì‹¸ìš°ëŠ” ê²½ìš°ì˜ ì‚¬ëŒë“¤
 	m_surCamp[CAMP_PEOPLE_MY_PARTY]				.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Minimap.srf", "srfScrambleCampPartyTeam" ) );
 	m_surCamp[CAMP_PEOPLE_MY_TEAM]				.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Minimap.srf", "srfScrambleCampMyTeam" ) );
 	m_surCamp[CAMP_PEOPLE_EMENY_TEAM]			.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Minimap.srf", "srfScrambleCampEnemyTeam" ) );
@@ -767,11 +767,11 @@ VOID CMinimapGui::Update( RwReal fElapsed )
 
 	m_fElapsedTime += fElapsed;
 
-	// ¿¬»ê·®À» ÁÙÀÌ±â À§ÇØ ÀÏÁ¤½Ã°£¸¶´Ù Update
+	// ì—°ì‚°ëŸ‰ì„ ì¤„ì´ê¸° ìœ„í•´ ì¼ì •ì‹œê°„ë§ˆë‹¤ Update
 	if( m_fElapsedTime < MINIMAP_UPDATETIME )
 		return;
 
-	// m_fElapsedTime ÃÊ±âÈ­´Â UpdateBeforeCamera()ÇÔ¼ö¿¡¼­
+	// m_fElapsedTime ì´ˆê¸°í™”ëŠ” UpdateBeforeCamera()í•¨ìˆ˜ì—ì„œ
 
 	CNtlGuild*		pGuild				= pAvatar->GetGuild();
 	const WCHAR*	pwcAvatarGuildName	= pGuild->GetGuildName();
@@ -796,7 +796,7 @@ VOID CMinimapGui::Update( RwReal fElapsed )
 	}
 
 
-	// ´ë»óÀÇ À§Ä¡¸¦ ÀÓ½Ã ÀúÀå
+	// ëŒ€ìƒì˜ ìœ„ì¹˜ë¥¼ ì„ì‹œ ì €ì¥
 	RwV3d v3TempPos;
 	CRectangle rtScreen = m_pThis->GetScreenRect();
 
@@ -805,7 +805,7 @@ VOID CMinimapGui::Update( RwReal fElapsed )
 	v2Avatar.x = v3Avatar.x;
 	v2Avatar.y = v3Avatar.z;
 
-	// ¾Æ¹ÙÅ¸
+	// ì•„ë°”íƒ€
 	if( m_hBus_with_Avatar == INVALID_SERIAL_ID )
 	{
 		RwV3d vDirAvatar = pAvatar->GetDirection();
@@ -837,7 +837,7 @@ VOID CMinimapGui::Update( RwReal fElapsed )
 	if( m_tSCRAMBLE_VISIBLE.bShowScrambleMyTeam || 
 		m_tSCRAMBLE_VISIBLE.bShowScrambleEnemyTeam )
 	{
-		// µµÀåÀü ÆÀ
+		// ë„ì¥ì „ íŒ€
 		CNtlSobGroup* pSobGroup = GetNtlSobManager()->GetSobGroup( SLCLASS_PLAYER );
 		if( pSobGroup )
 		{
@@ -886,7 +886,7 @@ VOID CMinimapGui::Update( RwReal fElapsed )
 
 	if( !m_tSCRAMBLE_VISIBLE.bScramble )
 	{
-		// ÆÄÆ¼ ¸É¹ö À§Ä¡ ¾÷µ¥ÀÌÆ®
+		// íŒŒí‹° ë§´ë²„ ìœ„ì¹˜ ì—…ë°ì´íŠ¸
 		RwUInt8 byPartyMemberIndex = 0;
 		COMMUNITY_ITER it_party = pParty->Begin();
 		for( ; it_party != pParty->End() ; ++it_party )
@@ -922,7 +922,7 @@ VOID CMinimapGui::Update( RwReal fElapsed )
 
 			if( IsV2MoreLength(&partyMember.v2Pos, &v2Avatar, fLimitedDistance) )
 			{
-				// ÀÏÁ¤ °Å¸® ¶³¾îÁø ÆÄÆ¼¿øÀÇ È­»ìÇ¥ ¾ÆÀÌÄÜÀº ¾Æ¿¹ º¸¿©ÁÖÁö ¾Ê´Â´Ù
+				// ì¼ì • ê±°ë¦¬ ë–¨ì–´ì§„ íŒŒí‹°ì›ì˜ í™”ì‚´í‘œ ì•„ì´ì½˜ì€ ì•„ì˜ˆ ë³´ì—¬ì£¼ì§€ ì•ŠëŠ”ë‹¤
 				if( Logic_InFollowRange(pAvatar, pMember->vPos, dLENGTH_VISIBLE_PARTY_ARROW ) )
 					continue;
 
@@ -933,7 +933,7 @@ VOID CMinimapGui::Update( RwReal fElapsed )
 				RwV2dSub(&v2Dir, &partyMember.v2Pos, &v2Avatar);
 				partyMember.fAngle = GetAngle(v2Dir, &v2Dir);
 
-				// GUI´Â x, y°¡ +¹æÇâÀÌ ¹İ´ë¹æÇâ
+				// GUIëŠ” x, yê°€ +ë°©í–¥ì´ ë°˜ëŒ€ë°©í–¥
 				v2Dir *= -1.f;
 
 				partyMember.v2OutCenter = v2Dir * dNEXTQUEST_ICON_DISTANCE_FROM_CENTER;
@@ -960,7 +960,7 @@ VOID CMinimapGui::Update( RwReal fElapsed )
 		}
 	}
 
-	// Æ®¸®°Å ¿ÀºêÁ§Æ® À§Ä¡ ¾÷µ¥ÀÌÆ®
+	// íŠ¸ë¦¬ê±° ì˜¤ë¸Œì íŠ¸ ìœ„ì¹˜ ì—…ë°ì´íŠ¸
 	pSobGroup = GetNtlSobManager()->GetSobGroup( SLCLASS_TRIGGER_OBJECT );
 	if( pSobGroup )
 	{
@@ -1009,7 +1009,7 @@ VOID CMinimapGui::Update( RwReal fElapsed )
 		}
 	}
 
-	// ¸ó½ºÅÍ À§Ä¡ ¾÷µ¥ÀÌÆ®
+	// ëª¬ìŠ¤í„° ìœ„ì¹˜ ì—…ë°ì´íŠ¸
 	pSobGroup = GetNtlSobManager()->GetSobGroup( SLCLASS_MONSTER );
 	if( pSobGroup )
 	{
@@ -1075,7 +1075,7 @@ VOID CMinimapGui::Update( RwReal fElapsed )
 		}
 	}
 
-	// NPC, Äù½ºÆ® À§Ä¡ ¾÷µ¥ÀÌÆ®
+	// NPC, í€˜ìŠ¤íŠ¸ ìœ„ì¹˜ ì—…ë°ì´íŠ¸
 	pSobGroup = GetNtlSobManager()->GetSobGroup( SLCLASS_NPC );
 
 	CNpcServerTable* pNpcServerTbl = API_GetTableContainer()->GetNpcServerTable();
@@ -1144,12 +1144,12 @@ VOID CMinimapGui::Update( RwReal fElapsed )
 				}
 				else if( Logic_IsBus( reinterpret_cast<CNtlSobActor*>(pNpc) ) )
 				{
-					// ¾Æ¹ÙÅ¸°¡ Å¸°í ÀÖ´Â ¹ö½º
+					// ì•„ë°”íƒ€ê°€ íƒ€ê³  ìˆëŠ” ë²„ìŠ¤
 					if( pNpc->GetSerialID() == m_hBus_with_Avatar )
 						sNPC.bGetOnBus = true;
 					else
 					{
-						// ÆÄÆ¼¿øÀÌ Å¸°í ÀÖ´Â ¹ö½ºÀÎÁö °Ë»ç
+						// íŒŒí‹°ì›ì´ íƒ€ê³  ìˆëŠ” ë²„ìŠ¤ì¸ì§€ ê²€ì‚¬
 						for( RwUInt8 i = 0 ; i < NTL_MAX_MEMBER_IN_PARTY ; ++i )
 						{
 							if( ahBus_with_Party[i] == pNpc->GetSerialID() )
@@ -1166,7 +1166,7 @@ VOID CMinimapGui::Update( RwReal fElapsed )
 		}
 	}
 
-	// Sob °´Ã¼´Â ¾øÁö¸¸ Å×ÀÌºí»ó¿¡ ¹Ì´Ï¸Ê ¿µ¿ª¿¡ À§Ä¡ÇÏ´Â NPC¸¦ Ã£´Â´Ù
+	// Sob ê°ì²´ëŠ” ì—†ì§€ë§Œ í…Œì´ë¸”ìƒì— ë¯¸ë‹ˆë§µ ì˜ì—­ì— ìœ„ì¹˜í•˜ëŠ” NPCë¥¼ ì°¾ëŠ”ë‹¤
 	if( GetNtlWorldConcept()->IsActivePlayConcept(WORLD_PLAY_DOJO_SCRAMBLE) == false)
 	{
 		CDboTSCMain* pTCSMain = GetTSCMain();
@@ -1321,7 +1321,7 @@ VOID CMinimapGui::Update( RwReal fElapsed )
 			RwV2dSub(&v2Dir, &nextQuest.v2Pos, &v2Avatar);
 			nextQuest.fAngle = GetAngle(v2Dir, &v2Dir);
 
-			// GUI´Â x, y°¡ +¹æÇâÀÌ ¹İ´ë¹æÇâ
+			// GUIëŠ” x, yê°€ +ë°©í–¥ì´ ë°˜ëŒ€ë°©í–¥
 			v2Dir *= -1.f;
 
 			nextQuest.v2OutCenter = v2Dir * dNEXTQUEST_ICON_DISTANCE_FROM_CENTER;
@@ -1361,7 +1361,7 @@ VOID CMinimapGui::Update( RwReal fElapsed )
 		m_vectNextQuest.push_back(nextQuest);
 	}
 
-	// Ã¼Å© Æ÷ÀÎÆ®
+	// ì²´í¬ í¬ì¸íŠ¸
 	std::vector<sCHECK_POINT>::iterator it_CheckPoint = m_vecCheckPoint.begin();
 	for( ; it_CheckPoint != m_vecCheckPoint.end() ; ++it_CheckPoint )
 	{
@@ -1378,7 +1378,7 @@ VOID CMinimapGui::Update( RwReal fElapsed )
 			RwV2dSub(&v2Dir, &checkPoint.v2Pos, &v2Avatar);
 			checkPoint.fAngle = GetAngle(v2Dir, &v2Dir);
 
-			// GUI´Â x, y°¡ +¹æÇâÀÌ ¹İ´ë¹æÇâ
+			// GUIëŠ” x, yê°€ +ë°©í–¥ì´ ë°˜ëŒ€ë°©í–¥
 			v2Dir *= -1.f;
 
 			checkPoint.v2OutCenter = v2Dir * dNEXTQUEST_ICON_DISTANCE_FROM_CENTER;
@@ -1393,7 +1393,7 @@ VOID CMinimapGui::Update( RwReal fElapsed )
 		}
 	}
 
-	// ·£µå¸¶Å©
+	// ëœë“œë§ˆí¬
 	/*for each( sLANKMARK* pLandMark in m_listLandMark )
 	{
 		if( IsV2MoreLength(&pLandMark->v2Pos, &v2Avatar, fLimitedDistance) )
@@ -1406,8 +1406,8 @@ VOID CMinimapGui::Update( RwReal fElapsed )
 		TransWorldToMapAxis( v2Avatar, pLandMark->v2Pos, fRealRate, pLandMark->v2Icon );
 	}*/
 
-	// °øÀ¯ Å¸°Ù : È¤½Ã À§ÀÇ ·ÎÁ÷¿¡ Æ÷ÇÔµÇÁö ¾ÊÁö¸¸ °øÀ¯ Å¸°ÙÀ» °¡¸®Å°´Â Á¤º¸°¡ ³²¾ÆÀÖ´ÂÁö °Ë»ç
-	//			   ¿¹) ÇÃ·¹ÀÌ¾î
+	// ê³µìœ  íƒ€ê²Ÿ : í˜¹ì‹œ ìœ„ì˜ ë¡œì§ì— í¬í•¨ë˜ì§€ ì•Šì§€ë§Œ ê³µìœ  íƒ€ê²Ÿì„ ê°€ë¦¬í‚¤ëŠ” ì •ë³´ê°€ ë‚¨ì•„ìˆëŠ”ì§€ ê²€ì‚¬
+	//			   ì˜ˆ) í”Œë ˆì´ì–´
 	sSHARETARGET_INFO* pSHARETARGET_INFO = pAvatar->GetParty()->GetShareTargetInfos();
 	if( pSHARETARGET_INFO )
 	{
@@ -1447,7 +1447,7 @@ VOID CMinimapGui::Update( RwReal fElapsed )
 		}
 	}
 
-	// µµÀå ÀÎÀå
+	// ë„ì¥ ì¸ì¥
 	std::map<RwUInt32, sSCRAMBLE_SEAL*>::iterator it_Seal = m_mapScrambleSeal.begin();
 	for( ; it_Seal != m_mapScrambleSeal.end() ; ++it_Seal )
 	{
@@ -1544,7 +1544,7 @@ VOID CMinimapGui::UpdateBeforeCamera(RwReal fElapsed)
 
 	UpdateRegionTitle();
 
-	// ¿¬»ê·®À» ÁÙÀÌ±â À§ÇØ ÀÏÁ¤½Ã°£¸¶´Ù Update
+	// ì—°ì‚°ëŸ‰ì„ ì¤„ì´ê¸° ìœ„í•´ ì¼ì •ì‹œê°„ë§ˆë‹¤ Update
 	if( m_fElapsedTime < MINIMAP_UPDATETIME )
 		return;
 
@@ -1561,7 +1561,7 @@ VOID CMinimapGui::UpdateBeforeCamera(RwReal fElapsed)
 			RwReal fRate = ((RwReal)dGET_WORLD_PARAM()->WorldFieldSize * (RwReal)dONE_SIZE_RESOURCE_COUNT)
 				/ (RwReal)dRENDER_TARGET_MAP_SIZE;
 
-			// ·£µå¸¶Å©
+			// ëœë“œë§ˆí¬
 			/*for each( sLANKMARK* pLandMark in m_listLandMark )
 			{
 				if( !pLandMark->bShow )
@@ -1572,7 +1572,7 @@ VOID CMinimapGui::UpdateBeforeCamera(RwReal fElapsed)
 				m_surMarkLandMark[pLandMark->eLandMarkType].Render();
 			}*/
 
-			// Æ®¸®°Å ¿ÀºêÁ§Æ®
+			// íŠ¸ë¦¬ê±° ì˜¤ë¸Œì íŠ¸
 			for( i = 0 ; i < m_vecTriggerObject.size() ; ++i )
 			{
 				sTRIGGER_OBJECT& triggerObject = m_vecTriggerObject[i];
@@ -1591,7 +1591,7 @@ VOID CMinimapGui::UpdateBeforeCamera(RwReal fElapsed)
 				}
 			}
 
-			// È÷µç ¿ÀºêÁ§Æ®
+			// íˆë“  ì˜¤ë¸Œì íŠ¸
 			for( i = 0 ; i < m_vecHiddenObject.size() ; ++i )
 			{
 				sHIDDEN_OBJECT& hiddenObject = m_vecHiddenObject[i];
@@ -1604,7 +1604,7 @@ VOID CMinimapGui::UpdateBeforeCamera(RwReal fElapsed)
 				}
 			}
 
-			// µµÀå ÀÎÀå
+			// ë„ì¥ ì¸ì¥
 			std::map<RwUInt32, sSCRAMBLE_SEAL*>::iterator it_Seal = m_mapScrambleSeal.begin();
 			for( ; it_Seal != m_mapScrambleSeal.end() ; ++it_Seal )
 			{
@@ -1618,7 +1618,7 @@ VOID CMinimapGui::UpdateBeforeCamera(RwReal fElapsed)
 				}
 			}
 
-			// ¸ó½ºÅÍ
+			// ëª¬ìŠ¤í„°
 			for( i = 0 ; i < m_vecMob.size() ; ++i )
 			{
 				sMONSTER& monster = m_vecMob[i];
@@ -1696,7 +1696,7 @@ VOID CMinimapGui::UpdateBeforeCamera(RwReal fElapsed)
 				m_surMarkQuest[nType].Render();
 			}
 
-			// ´ÙÀ½ Äù½ºÆ®
+			// ë‹¤ìŒ í€˜ìŠ¤íŠ¸
 			for( i = 0 ; i < m_vectNextQuest.size() ; ++i )
 			{
 				sNEXT_QUEST* pNextQuest = &m_vectNextQuest[i];
@@ -1716,7 +1716,7 @@ VOID CMinimapGui::UpdateBeforeCamera(RwReal fElapsed)
 				// avooo's comment : Outwardly pointing icons are drawn in the OnPaint () function.
 			}
 
-			// Ã¼Å© Æ÷ÀÎÆ®
+			// ì²´í¬ í¬ì¸íŠ¸
 			for( i = 0 ; i < m_vecCheckPoint.size() ; ++i )
 			{
 				sCHECK_POINT* pCheckPoint = &m_vecCheckPoint[i];
@@ -1733,7 +1733,7 @@ VOID CMinimapGui::UpdateBeforeCamera(RwReal fElapsed)
 				// avooo's comment : Outwardly pointing icons are drawn in the OnPaint () function.
 			}
 
-			// ÆÄÆ¼¸É¹ö
+			// íŒŒí‹°ë§´ë²„
 			if( !m_tSCRAMBLE_VISIBLE.bScramble )
 			{
 				for( i = 0 ; i < m_vecPartyMember.size() ; ++i )
@@ -2116,7 +2116,7 @@ VOID CMinimapGui::OnPaint(VOID)
 
 		m_MapItem.Render();
 
-		// ´ÙÀ½ Äù½ºÆ®
+		// ë‹¤ìŒ í€˜ìŠ¤íŠ¸
 		for( i = 0 ; i < m_vectNextQuest.size() ; ++i )
 		{
 			sNEXT_QUEST* pNextQuest = &m_vectNextQuest[i];
@@ -2157,7 +2157,7 @@ VOID CMinimapGui::OnPaint(VOID)
 			// avooo's commnet : The inner icon is drawn in UpdateBeforeCamera ()
 		}
 
-		// ÆÄÆ¼¿ø
+		// íŒŒí‹°ì›
 		if( !m_tSCRAMBLE_VISIBLE.bScramble )
 		{
 			for( i = 0 ; i < m_vecPartyMember.size() ; ++i )
@@ -2239,7 +2239,7 @@ VOID CMinimapGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 
 	CRectangle rtScreen = m_pThis->GetScreenRect();
 
-	// ¾Æ¹ÙÅ¸
+	// ì•„ë°”íƒ€
 	if( m_surMarkAvatar.PtInRect(rtScreen.left + nX, rtScreen.top + nY) )
 	{
 		CNtlParty*		pParty = pAvatar->GetParty();
@@ -2255,7 +2255,7 @@ VOID CMinimapGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 		listMarkInfo.push_back(info);
 	}
 
-	// ¸ó½ºÅÍ
+	// ëª¬ìŠ¤í„°
 	CTextTable* pMonsterTextTable = API_GetTableContainer()->GetTextAllTable()->GetMobTbl();
 
 	iHalfWidth = ((RwInt32)((RwReal)m_surMarkMob[MMT_NORMAL].GetWidth() / 2.f / fRate));
@@ -2318,7 +2318,7 @@ VOID CMinimapGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 		}
 	}
 
-	// Äù½ºÆ®
+	// í€˜ìŠ¤íŠ¸
 	iHalfWidth = ((RwInt32)((RwReal)m_surMarkQuest[0].GetWidth() / 2.f / fRate));
 	iHalfHeight = ((RwInt32)((RwReal)m_surMarkQuest[0].GetHeight() / 2.f / fRate));
 
@@ -2352,7 +2352,7 @@ VOID CMinimapGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 		}			
 	}
 
-	// ´ÙÀ½ ÁøÇà Äù½ºÆ®	
+	// ë‹¤ìŒ ì§„í–‰ í€˜ìŠ¤íŠ¸	
 	for( i = 0 ; i < m_vectNextQuest.size() ; ++i )
 	{
 		sNEXT_QUEST& nextQuest = m_vectNextQuest[i];
@@ -2386,7 +2386,7 @@ VOID CMinimapGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 		{
 			sMINIMAPINFO info;
 
-			// ex) [metatag =5]Àç¹è¸Ç ==> Àç¹è¸Ç
+			// ex) [metatag =5]ì¬ë°°ë§¨ ==> ì¬ë°°ë§¨
 			const WCHAR* pwcText = wcschr(nextQuest.pwcText, L']');
 			if( pwcText )
 			{
@@ -2508,7 +2508,7 @@ VOID CMinimapGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 
 	if( m_tSCRAMBLE_VISIBLE.bShowScrambleMyTeam || m_tSCRAMBLE_VISIBLE.bShowScrambleEnemyTeam )
 	{
-		// µµÀåÀü ÀÎ¿ø
+		// ë„ì¥ì „ ì¸ì›
 		LIST_CAMP_PEOPLE::iterator it_CampPeople = m_listCampPeople.begin();
 		for( ; it_CampPeople != m_listCampPeople.end() ; ++it_CampPeople )
 		{
@@ -2556,7 +2556,7 @@ VOID CMinimapGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 	
 	if( !m_tSCRAMBLE_VISIBLE.bScramble )
 	{
-		// ÆÄÆ¼¸É¹ö
+		// íŒŒí‹°ë§´ë²„
 		for( i = 0 ; i < m_vecPartyMember.size() ; ++i )
 		{
 			sPARTYMEMBER& partyMember = m_vecPartyMember[i];
@@ -2599,7 +2599,7 @@ VOID CMinimapGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 		}
 	}	
 
-	// ·£µå¸¶Å©
+	// ëœë“œë§ˆí¬
 	/*for each( sLANKMARK* pLandMark in m_listLandMark )
 	{
 		if( !pLandMark->bShow )
@@ -2620,7 +2620,7 @@ VOID CMinimapGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 		}
 	}*/
 
-	// °øÀ¯ Å¸°Ù
+	// ê³µìœ  íƒ€ê²Ÿ
 	for( RwUInt8 j = 0 ; j < NTL_MAX_SHARETARGET_COUNT ; ++j )
 	{
 		if( !m_aCommonTarget[j].bInfoWindow )
@@ -2641,7 +2641,7 @@ VOID CMinimapGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 		}
 	}
 
-	// µµÀå ÀÎÀå
+	// ë„ì¥ ì¸ì¥
 	std::map<RwUInt32, sSCRAMBLE_SEAL*>::iterator it_Seal = m_mapScrambleSeal.begin();
 	for( ; it_Seal != m_mapScrambleSeal.end() ; ++it_Seal )
 	{
@@ -2820,10 +2820,10 @@ VOID CMinimapGui::HandleEvents( RWS::CMsg& msg )
 			checkPoint.v2Pos.x		= pEvent->vLoc.x;
 			checkPoint.v2Pos.y		= pEvent->vLoc.z;
 
-			// Ã¼Å© Æ÷ÀÎÆ®
+			// ì²´í¬ í¬ì¸íŠ¸
 			checkPoint.wstrText		= GetDisplayStringManager()->GetString("DST_MINIMAP_CHECK_POINT");
 
-			// ±âÈ¹»ó ÇÑ¹ø¿¡ Ã¼Å© Æ÷ÀÎÆ®´Â ÇÑ¹ø¿¡ ÇÏ³ª¸¸....
+			// ê¸°íšìƒ í•œë²ˆì— ì²´í¬ í¬ì¸íŠ¸ëŠ” í•œë²ˆì— í•˜ë‚˜ë§Œ....
 			m_vecCheckPoint.clear();
 
 			m_vecCheckPoint.push_back(checkPoint);
@@ -2832,7 +2832,7 @@ VOID CMinimapGui::HandleEvents( RWS::CMsg& msg )
 		{
 			m_vecCheckPoint.clear();
 
-			/*	Â÷ÈÄ ±âÈ¹ÀÌ ¹Ù²î¾î ¿©·¯°³ÀÇ Ã¼Å© Æ÷ÀÎÆ®°¡ »ı±æ ¼ö ÀÖÀ» ¶§¸¦ À§ÇÏ¿© ºÀÀÎ...
+			/*	ì°¨í›„ ê¸°íšì´ ë°”ë€Œì–´ ì—¬ëŸ¬ê°œì˜ ì²´í¬ í¬ì¸íŠ¸ê°€ ìƒê¸¸ ìˆ˜ ìˆì„ ë•Œë¥¼ ìœ„í•˜ì—¬ ë´‰ì¸...
 			std::vector<sCHECK_POINT>::iterator it = m_vecCheckPoint.begin();
 			for( ; it != m_vecCheckPoint.end() ; ++it )
 			{
@@ -2892,7 +2892,7 @@ VOID CMinimapGui::HandleEvents( RWS::CMsg& msg )
 		if( false == GetNtlWorldConcept()->IsActivePlayConcept(WORLD_PLAY_DOJO_SCRAMBLE) )
 			NTL_RETURNVOID();
 
-		// ÀÎÀå Á¤º¸´Â µµÀå ÀïÅ»ÀüÁß »ı¼ºµÇ¸é µµÀå ÀïÅ»ÀüÀÌ ³¡³¯ ¶§±îÁö »èÁ¦ÇÏÁö ¾Ê´Â´Ù
+		// ì¸ì¥ ì •ë³´ëŠ” ë„ì¥ ìŸíƒˆì „ì¤‘ ìƒì„±ë˜ë©´ ë„ì¥ ìŸíƒˆì „ì´ ëë‚  ë•Œê¹Œì§€ ì‚­ì œí•˜ì§€ ì•ŠëŠ”ë‹¤
 		SNtlEventDojo* pEvent = reinterpret_cast<SNtlEventDojo*>( msg.pData );
 
 		if( DOJO_EVENT_SEAL_ATTACK_BEGIN == pEvent->byDojoEvent )
@@ -3025,7 +3025,7 @@ VOID CMinimapGui::HandleEvents( RWS::CMsg& msg )
 		}
 		else if( DOJO_EVENT_SCRAMBLE_CHANGE_SEAL_OWNER == pEvent->byDojoEvent )
 		{
-			// ÀÎÀåÀÇ »óÅÂ°¡ º¯°æµÇ¾úÀ½À» ÆÇ´ÜÇÑ´Ù
+			// ì¸ì¥ì˜ ìƒíƒœê°€ ë³€ê²½ë˜ì—ˆìŒì„ íŒë‹¨í•œë‹¤
 			TBLIDX		dojoTblidx		= pEvent->uiParam;
 			TBLIDX		idxObject		= *(TBLIDX*)pEvent->pExData;
 

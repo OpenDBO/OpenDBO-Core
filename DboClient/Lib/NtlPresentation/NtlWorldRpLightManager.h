@@ -7,7 +7,7 @@
 
 #include "ceventhandler.h"
 
-//Light Mode ¿¡¼­ »ç¿ëÇÒ ´õ¹Ì Á¤º¸.
+//Light Mode ì—ì„œ ì‚¬ìš©í•  ë”ë¯¸ ì •ë³´.
 struct SLightModeData
 {
 	RwV3d		vPosision;

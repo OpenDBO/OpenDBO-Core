@@ -1,4 +1,4 @@
-// PropTreeList.cpp : ���� �����Դϴ�.
+// PropTreeList.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -45,14 +45,14 @@ END_MESSAGE_MAP()
 
 
 
-// CPropTreeList �޽��� ó�����Դϴ�.
+// CPropTreeList 메시지 처리기입니다.
 
 
 void CPropTreeList::OnSize(UINT nType, int cx, int cy)
 {
 	CWnd::OnSize(nType, cx, cy);
 
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	RecreateBackBuffer(cx, cy);
 
 	if (m_pProp)
@@ -69,8 +69,8 @@ void CPropTreeList::OnSize(UINT nType, int cx, int cy)
 void CPropTreeList::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰��մϴ�.
-	// �׸��� �޽����� ���ؼ��� CWnd::OnPaint()��(��) ȣ������ ���ʽÿ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
+	// 그리기 메시지에 대해서는 CWnd::OnPaint()을(를) 호출하지 마십시오.
 	CDC memdc;
 	CBitmap* pOldBitmap;
 
@@ -130,7 +130,7 @@ void CPropTreeList::OnPaint()
 
 BOOL CPropTreeList::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
 {
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	if (nHitTest==HTCLIENT)
 	{
 		CPoint pt;
@@ -158,7 +158,7 @@ BOOL CPropTreeList::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
 
 void CPropTreeList::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	ASSERT(m_pProp!=NULL);
 
 	if (m_pProp->IsDisableInput())
@@ -250,8 +250,8 @@ void CPropTreeList::OnLButtonDown(UINT nFlags, CPoint point)
 			break;
 	}
 
-	// ������ Ȯ������ ������ ���⼭ OnLButtonDown �� ó���� ������ ������ CPropTreeItemSlider ��
-	// OnLButtonDown�� �������� ���Ѵ�. �׷��� ���⼭ ������ OnLButtonDown�� �־��ش�.
+	// 이유는 확실하지 않으나 여기서 OnLButtonDown 을 처리해 버리기 때문에 CPropTreeItemSlider 에
+	// OnLButtonDown을 전달하지 못한다. 그래서 여기서 강제로 OnLButtonDown을 넣어준다.
 	if (m_pProp->GetFocusedItem() != NULL && m_pProp->GetFocusedItem()->m_ControlType == _XPTI_ControlType_Slider)
 	{
 		CPropTreeItemSlider* pItemSlider = (CPropTreeItemSlider*)m_pProp->GetFocusedItem();
@@ -263,7 +263,7 @@ void CPropTreeList::OnLButtonDown(UINT nFlags, CPoint point)
 
 void CPropTreeList::OnLButtonUp(UINT nFlags, CPoint point)
 {
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	if (m_bColDrag)
 	{
 		CDC* pDC = GetDC();
@@ -285,7 +285,7 @@ void CPropTreeList::OnLButtonUp(UINT nFlags, CPoint point)
 
 void CPropTreeList::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	ASSERT(m_pProp!=NULL);
 
 	m_pProp->SendNotify(NM_DBLCLK);
@@ -341,7 +341,7 @@ void CPropTreeList::OnLButtonDblClk(UINT nFlags, CPoint point)
 
 void CPropTreeList::OnMouseMove(UINT nFlags, CPoint point)
 {
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	if (m_bColDrag)
 	{
 		CDC* pDC = GetDC();
@@ -358,7 +358,7 @@ void CPropTreeList::OnMouseMove(UINT nFlags, CPoint point)
 
 BOOL CPropTreeList::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 {
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	SCROLLINFO si;
 
 	ZeroMemory(&si, sizeof(SCROLLINFO));
@@ -381,7 +381,7 @@ BOOL CPropTreeList::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 
 void CPropTreeList::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	CPropTreeItem* pItem;
 
 	ASSERT(m_pProp!=NULL);
@@ -460,14 +460,14 @@ void CPropTreeList::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CPropTreeList::OnMButtonDown(UINT nFlags, CPoint point)
 {
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 
 	CWnd::OnMButtonDown(nFlags, point);
 }
 
 UINT CPropTreeList::OnGetDlgCode()
 {
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	return DLGC_WANTARROWS|DLGC_WANTCHARS|DLGC_WANTALLKEYS;
 //	return CWnd::OnGetDlgCode();
 }
@@ -475,7 +475,7 @@ UINT CPropTreeList::OnGetDlgCode()
 
 void CPropTreeList::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 {
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	SCROLLINFO si;
 	CRect rc;
 	LONG nHeight;

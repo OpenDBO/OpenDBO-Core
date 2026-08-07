@@ -1,4 +1,4 @@
-// ProjectMainMenu.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// ProjectMainMenu.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -61,7 +61,7 @@ BEGIN_MESSAGE_MAP(CTSProjectMainMenuBar, CSizingControlBarCF)
 END_MESSAGE_MAP()
 
 
-// CTSProjectMainMenuBar Áø´ÜÀÔ´Ï´Ù.
+// CTSProjectMainMenuBar ì§„ë‹¨ì…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CTSProjectMainMenuBar::AssertValid() const
@@ -78,7 +78,7 @@ void CTSProjectMainMenuBar::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CTSProjectMainMenuBar ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CTSProjectMainMenuBar ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 int CTSProjectMainMenuBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if ( CSizingControlBarCF::OnCreate( lpCreateStruct ) == -1 )

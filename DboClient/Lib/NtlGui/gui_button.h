@@ -109,9 +109,9 @@ public:
 
 	VOID SetTextCoord( INT nX, INT nY );
 
-	VOID SetTextDownCoordDiff( INT nX, INT nY );		// ¹öÆ°´Ù¿î½Ã ÅØ½ºÆ®°¡ ÀÌµ¿ÇÏ´Â °ª.
+	VOID SetTextDownCoordDiff( INT nX, INT nY );		// ë²„íŠ¼ë‹¤ìš´ì‹œ í…ìŠ¤íŠ¸ê°€ ì´ë™í•˜ëŠ” ê°’.
 
-	VOID ApplyText(VOID);								// ¸ğµç Á¤º¸°¡ ´Ù ÀÔ·ÂµÈ ÈÄ ÇÑ¹ø ½ÇÇàÇØÁØ´Ù.
+	VOID ApplyText(VOID);								// ëª¨ë“  ì •ë³´ê°€ ë‹¤ ì…ë ¥ëœ í›„ í•œë²ˆ ì‹¤í–‰í•´ì¤€ë‹¤.
 
 	//: If toggle is true, pressing the button toggles it between an On and and Off state. 
 	//: If toggle is false, pressing the button causes an action, then the button returns to the unpressed state. 

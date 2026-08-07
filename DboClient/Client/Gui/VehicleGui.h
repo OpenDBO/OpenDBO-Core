@@ -1,7 +1,7 @@
 /******************************************************************************
 * File			: Vehicle.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2009. 1. 5
 * Abstract		: 
 * Update		: 
@@ -37,7 +37,7 @@ class CVehicleGui : public CNtlPLGui, public RWS::CEventHandler
 
 	struct sFUEL
 	{
-		CRegularSlotGui				FuelSlot;				///< ø¨∑· ΩΩ∑‘
+		CRegularSlotGui				FuelSlot;				///< Ïó∞Î£å Ïä¨Î°Ø
 		SET_LOCKED_BAGSLOT		setLockedBagSlot;
 		SET_LOCKED_BAGSLOT		setNewLockBagSlot;
 	};
@@ -115,9 +115,9 @@ protected:
 	gui::CProgressBar*	m_pFuelGauge;
 	gui::CFlash*		m_pflashEngineWorking;
 
-	CSurfaceGui			m_srfFocusEffect;		///< ΩΩ∑‘ ∆˜ƒøΩ∫ ¿Ã∆Â∆Æ
-	CSurfaceGui			m_srfSelectEffect;		///< ΩΩ∑‘ ºø∑∫∆Æ ¿Ã∆Â∆Æ	
-	CSurfaceGui			m_srfFuelGaugeBack;		///< ø¨∑· ∞‘¿Ã¡ˆ πË∞Ê
+	CSurfaceGui			m_srfFocusEffect;		///< Ïä¨Î°Ø Ìè¨Ïª§Ïä§ Ïù¥ÌéôÌä∏
+	CSurfaceGui			m_srfSelectEffect;		///< Ïä¨Î°Ø ÏÖÄÎ†âÌä∏ Ïù¥ÌéôÌä∏	
+	CSurfaceGui			m_srfFuelGaugeBack;		///< Ïó∞Î£å Í≤åÏù¥ÏßÄ Î∞∞Í≤Ω
 
 	RwBool				m_bFocus;
 	RwBool				m_bSelected;

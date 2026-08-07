@@ -3,7 +3,7 @@
 #include "colourpicker.h"
 #include "NtlPLDecalVolume.h"
 
-// PaletteDecalVolumeDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// PaletteDecalVolumeDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 #define PDV_PROP_COLOR	0x00000001
 #define PDV_PROP_POS	0x00000002
@@ -18,14 +18,14 @@ class CPaletteDecalVolumeDlg : public CDialog
 	DECLARE_DYNAMIC(CPaletteDecalVolumeDlg)
 
 public:
-	CPaletteDecalVolumeDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CPaletteDecalVolumeDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CPaletteDecalVolumeDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_ORNAMENT_DECAL_VOLUME };
 
 protected:
-	virtual void			DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void			DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual LRESULT			WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
 	virtual BOOL			PreTranslateMessage(MSG* pMsg);
 

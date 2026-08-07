@@ -6,7 +6,7 @@
 #include "colourpicker.h"
 
 
-// CPaletteDecalDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteDecalDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 class CNtlPLWorldDecal;
 
 
@@ -15,14 +15,14 @@ class CPaletteDecalDlg : public CDialog
 	DECLARE_DYNAMIC(CPaletteDecalDlg)
 
 public:
-	CPaletteDecalDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CPaletteDecalDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CPaletteDecalDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_ORNAMENT_DECAL };
 
 protected:
-	virtual void	DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void	DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
 	virtual BOOL	PreTranslateMessage(MSG* pMsg);
 	DECLARE_MESSAGE_MAP()

@@ -1,4 +1,4 @@
-// MainMenuListView.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// MainMenuListView.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -22,7 +22,7 @@ BEGIN_MESSAGE_MAP(CTSQuestTextListCtrl, CListCtrl)
 END_MESSAGE_MAP()
 
 
-// CTSQuestTextListCtrl Áø´ÜÀÔ´Ï´Ù.
+// CTSQuestTextListCtrl ì§„ë‹¨ì…ë‹ˆë‹¤.
 
 void CTSQuestTextListCtrl::Init( void )
 {
@@ -62,4 +62,4 @@ void CTSQuestTextListCtrl::AddEntity( unsigned int uiTableIndex, const CString& 
 	SetItem( &lvItem );
 }
 
-// CTSQuestTextListCtrl ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CTSQuestTextListCtrl ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

@@ -2,7 +2,7 @@
 *
 * File			: NtlWeatherGroup.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2008. 5. 30	
 * Abstract		: Sound weather channel group
 *****************************************************************************

@@ -391,7 +391,7 @@ VOID CVehicleGui::Fuel_SetGauge()
 
 VOID CVehicleGui::Fuel_LockUnlock_in_Bag()
 {
-	// ±âÁ¸¿¡ °¡¹æÀÇ ¿¬·á¿¡ °É·ÁÀÖ´ø ¾ÆÀÌÅÛ ¶ôÀÌ Ç¬´Ù
+	// ê¸°ì¡´ì— ê°€ë°©ì˜ ì—°ë£Œì— ê±¸ë ¤ìˆë˜ ì•„ì´í…œ ë½ì´ í‘¼ë‹¤
 	SET_LOCKED_BAGSLOT::iterator it_ex = m_tFuel.setLockedBagSlot.begin();
 	for( ; it_ex != m_tFuel.setLockedBagSlot.end() ; ++it_ex )
 	{
@@ -404,7 +404,7 @@ VOID CVehicleGui::Fuel_LockUnlock_in_Bag()
 		}
 	}
 
-	// »õ·ÎÀÌ °¡¹æÀÇ ¿¬·á¿¡ ¾ÆÀÌÅÛ ¶ôÀ» °Ç´Ù
+	// ìƒˆë¡œì´ ê°€ë°©ì˜ ì—°ë£Œì— ì•„ì´í…œ ë½ì„ ê±´ë‹¤
 	SET_LOCKED_BAGSLOT::iterator it_new = m_tFuel.setNewLockBagSlot.begin();	
 	for( ; it_new != m_tFuel.setNewLockBagSlot.end() ; ++it_new )
 	{
@@ -417,7 +417,7 @@ VOID CVehicleGui::Fuel_LockUnlock_in_Bag()
 		}
 	}
 
-	// »õ·Î¿î ¶ô Á¤º¸¸¦ º¸°üÇÑ´Ù
+	// ìƒˆë¡œìš´ ë½ ì •ë³´ë¥¼ ë³´ê´€í•œë‹¤
 	m_tFuel.setLockedBagSlot.clear();
 	m_tFuel.setLockedBagSlot = m_tFuel.setNewLockBagSlot;
 	m_tFuel.setNewLockBagSlot.clear();
@@ -430,7 +430,7 @@ VOID CVehicleGui::Vehicle_Start()
 		DBO_FAIL("Not eixst file : " << dENGINE_WORKING_FLASH << ". You can continue the game.");
 	}*/
 
-	// ÇÃ·¡½¬ÀÇ À§Ä¡¸¦ ¸ÂÃß±â À§ÇØ
+	// í”Œë˜ì‰¬ì˜ ìœ„ì¹˜ë¥¼ ë§ì¶”ê¸° ìœ„í•´
 	OnMove(0, 0);
 
 	//m_pflashEngineWorking->PlayMovie( TRUE );

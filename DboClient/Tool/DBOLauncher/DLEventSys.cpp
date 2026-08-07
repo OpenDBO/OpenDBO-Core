@@ -2,7 +2,7 @@
 *
 * File			: DLEventSys.cpp
 * Author		: 
-* Copyright		: (¡÷) NTL
+* Copyright		: (Ï£º) NTL
 * Date			:
 * Abstract		: 
 *****************************************************************************

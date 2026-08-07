@@ -1,4 +1,4 @@
-// PaletteOrnamentTabDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PaletteOrnamentTabDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -12,7 +12,7 @@
 #include "PaletteHeatHazeDlg.h"
 #include "PaletteDojoDlg.h"
 
-// CPaletteOrnamentTabDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteOrnamentTabDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPaletteOrnamentTabDlg, CDialog)
 
@@ -39,7 +39,7 @@ BEGIN_MESSAGE_MAP(CPaletteOrnamentTabDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CPaletteOrnamentTabDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPaletteOrnamentTabDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 VOID CPaletteOrnamentTabDlg::InitializeWorldData()
 {
@@ -227,7 +227,7 @@ BOOL CPaletteOrnamentTabDlg::OnInitDialog()
 	CDialog::OnInitDialog();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 BOOL CPaletteOrnamentTabDlg::PreTranslateMessage(MSG* pMsg)

@@ -7,18 +7,18 @@
 #define WEAPON_BONE_NAME_1      "TracePoint1"
 #define WEAPON_BONE_NAME_2      "TracePoint2"
 
-// ±ËÀû¿¡ »ç¿ëµÇ´Â vertex ±¸Á¶Ã¼
+// ê¶¤ì ì— ì‚¬ìš©ë˜ëŠ” vertex êµ¬ì¡°ì²´
 struct STraceEdge
 {
-    RwReal          fLifeTime;       ///< EdgeÀÇ »ı¸í ½Ã°£
-    RwIm3DVertex    vVertices[2];    ///< Edge¸¦ ±¸¼ºÇÏ´Â µÎ°³ÀÇ Vertex    
+    RwReal          fLifeTime;       ///< Edgeì˜ ìƒëª… ì‹œê°„
+    RwIm3DVertex    vVertices[2];    ///< Edgeë¥¼ êµ¬ì„±í•˜ëŠ” ë‘ê°œì˜ Vertex    
 };
 
 typedef std::list<STraceEdge*> ListTraceEdge;
 
 /**
  * \ingroup NtlPresentation
- * \brief ±ËÀû(Trace) ÀÌÆåÆ® ÀÎ½ºÅÏ½º Å¬·¡½º
+ * \brief ê¶¤ì (Trace) ì´í™íŠ¸ ì¸ìŠ¤í„´ìŠ¤ í´ë˜ìŠ¤
  * \date 2006-09-14
  * \author agebreak
  */
@@ -31,7 +31,7 @@ public:
     void* operator new(size_t size);
     void  operator delete(void* pObj);
 
-    virtual RwBool Create(SEventTrace* pEventTrace, CNtlPLAttach* pAttach);        ///< TraceEvent °´Ã¼·Î ÀÌÆåÆ®¸¦ »ı¼ºÇÑ´Ù.
+    virtual RwBool Create(SEventTrace* pEventTrace, CNtlPLAttach* pAttach);        ///< TraceEvent ê°ì²´ë¡œ ì´í™íŠ¸ë¥¼ ìƒì„±í•œë‹¤.
     virtual void   Delete();
 
     virtual RwBool Update(RwReal fElapsedTime);
@@ -41,32 +41,32 @@ protected:
     virtual void Init();
     virtual void Reset();
     
-    void    SetEdgePoint(CNtlPLAttach* pAttach);                  ///< Edge¸¦ ÂïÀ» VertexÀÇ À§Ä¡¸¦ ¼³Á¤ÇÑ´Ù.
-    virtual RwBool  UpdateVertices(RwReal fElapsedTime);          ///< VertexµéÀÇ Á¤º¸¸¦ UpdateÇÑ´Ù.
-    virtual void    CreateEdge();                                         ///< »õ·Î¿î Edge¸¦ Ãß°¡ÇÑ´Ù.
-    void    CreateSplinePath();                                   ///< Spline Path PointµéÀ» ¸¸µé¾î¼­ ¹öÅØ½º ¹öÆÛ¿¡ ³Ö´Â´Ù.
+    void    SetEdgePoint(CNtlPLAttach* pAttach);                  ///< Edgeë¥¼ ì°ì„ Vertexì˜ ìœ„ì¹˜ë¥¼ ì„¤ì •í•œë‹¤.
+    virtual RwBool  UpdateVertices(RwReal fElapsedTime);          ///< Vertexë“¤ì˜ ì •ë³´ë¥¼ Updateí•œë‹¤.
+    virtual void    CreateEdge();                                         ///< ìƒˆë¡œìš´ Edgeë¥¼ ì¶”ê°€í•œë‹¤.
+    void    CreateSplinePath();                                   ///< Spline Path Pointë“¤ì„ ë§Œë“¤ì–´ì„œ ë²„í…ìŠ¤ ë²„í¼ì— ë„£ëŠ”ë‹¤.
 
-    virtual void UpdateUV();                                      ///< UV°ªÀ» UpdateÇÑ´Ù.
-    virtual void UpdateColor();                                   ///< Color°ªÀ» UpdateÇÑ´Ù.
+    virtual void UpdateUV();                                      ///< UVê°’ì„ Updateí•œë‹¤.
+    virtual void UpdateColor();                                   ///< Colorê°’ì„ Updateí•œë‹¤.
 
 private:
-    // ÀÌ Create ÇÔ¼ö´Â »ç¿ëÇÏÁö ¾Ê´Â´Ù.
+    // ì´ Create í•¨ìˆ˜ëŠ” ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤.
     virtual RwBool Create(CNtlResourceEffect* pResourceEffect, CNtlResourceComponentSystem* pResourceComponentSystem, const RwMatrix& matWorld) {return TRUE;}
 
 protected:    
-    SEventTrace*    m_pEventTrace;              ///< ±ËÀû Á¤º¸¸¦ °¡Áö°í ÀÖ´Â Event °´Ã¼
-    CNtlPLAttach*   m_pAttach;                  ///< ±ËÀûÀ» ºÙÀÏ Ä³¸¯ÅÍ or Item
+    SEventTrace*    m_pEventTrace;              ///< ê¶¤ì  ì •ë³´ë¥¼ ê°€ì§€ê³  ìˆëŠ” Event ê°ì²´
+    CNtlPLAttach*   m_pAttach;                  ///< ê¶¤ì ì„ ë¶™ì¼ ìºë¦­í„° or Item
 
-    RwV3d           m_vStartPoint;              ///< ±ËÀûÀÇ ½ÃÀÛ Point
-    RwV3d           m_vEndPoint;                ///< ±ËÀûÀÇ ³¡ Point
+    RwV3d           m_vStartPoint;              ///< ê¶¤ì ì˜ ì‹œì‘ Point
+    RwV3d           m_vEndPoint;                ///< ê¶¤ì ì˜ ë Point
 
-    ListTraceEdge   m_listTraceEdge;            ///< ÇöÀç ±ËÀûÀ» ±¸¼ºÇÏ°í ÀÖ´Â EdgeµéÀÇ ¸®½ºÆ®
-    ListTraceEdge   m_listControlPoint;         ///< ControlPointµéÀÇ List
-    STraceEdge*     m_poolTraceEdge;            ///< Trace Edge ±¸Á¶Ã¼ Pool (Spline¿¡¼­ Control Point°¡ µÈ´Ù)
-    STraceEdge*     m_poolControlPoint;         ///< ½ÇÁ¦ ±×·ÁÁú SplineÀ» ±¸¼ºÇÏ´Â ±¸Á¶Ã¼ Pool
-    RwInt32         m_nPoolIndex;               ///< Pool¿¡¼­ »ç¿ëÇÒ Index
-    RwInt32         m_nControlPointIndex;       ///< SplineÀÇ Pool Index
-    RwReal          m_fEdgeGapTemp;             ///< Edge GapÀ» Ã¼Å©ÇÏ±â À§ÇÑ º¯¼ö    
+    ListTraceEdge   m_listTraceEdge;            ///< í˜„ì¬ ê¶¤ì ì„ êµ¬ì„±í•˜ê³  ìˆëŠ” Edgeë“¤ì˜ ë¦¬ìŠ¤íŠ¸
+    ListTraceEdge   m_listControlPoint;         ///< ControlPointë“¤ì˜ List
+    STraceEdge*     m_poolTraceEdge;            ///< Trace Edge êµ¬ì¡°ì²´ Pool (Splineì—ì„œ Control Pointê°€ ëœë‹¤)
+    STraceEdge*     m_poolControlPoint;         ///< ì‹¤ì œ ê·¸ë ¤ì§ˆ Splineì„ êµ¬ì„±í•˜ëŠ” êµ¬ì¡°ì²´ Pool
+    RwInt32         m_nPoolIndex;               ///< Poolì—ì„œ ì‚¬ìš©í•  Index
+    RwInt32         m_nControlPointIndex;       ///< Splineì˜ Pool Index
+    RwReal          m_fEdgeGapTemp;             ///< Edge Gapì„ ì²´í¬í•˜ê¸° ìœ„í•œ ë³€ìˆ˜    
 };
 
 typedef std::list<CNtlInstanceTraceSystem*> ListTraceSystem;

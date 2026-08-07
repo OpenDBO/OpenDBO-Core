@@ -1,11 +1,11 @@
 /*****************************************************************************
 * File			: GuildEmblemMakerGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 3. 3
 * Abstract		: 
 *****************************************************************************
-* Desc			: ±æµå ¹®Àå ¸¸µé±â Ã¢
+* Desc			: ê¸¸ë“œ ë¬¸ìž¥ ë§Œë“¤ê¸° ì°½
 *****************************************************************************/
 
 #pragma once
@@ -36,19 +36,19 @@ class CGuildEmblemMakerGui : public CNtlPLGui, public RWS::CEventHandler
 public:
 	struct sMoustInfo
 	{
-		RwUInt8			bySlotType;					///< ¸¶¿ì½º°¡ À§Ä¡ÇÑ ½½·ÔÀÇ Å¸ÀÔ
-		RwUInt8			bySlotIndex;				///< ¸¶¿ì½º°¡ À§Ä¡ÇÑ ½½·ÔÀÇ ÀÎµ¦½º
+		RwUInt8			bySlotType;					///< ë§ˆìš°ìŠ¤ê°€ ìœ„ì¹˜í•œ ìŠ¬ë¡¯ì˜ íƒ€ìž…
+		RwUInt8			bySlotIndex;				///< ë§ˆìš°ìŠ¤ê°€ ìœ„ì¹˜í•œ ìŠ¬ë¡¯ì˜ ì¸ë±ìŠ¤
 	};
 
 	struct sStuffSelect
 	{
-		RwUInt32		bySelectStuffIndex;			///< ¼±ÅÃµÈ Àç·á ÅØ½ºÃ³ÀÇ ÀÌ¸§¿¡ Æ÷ÇÔµÈ ÀÎµ¦½º
+		RwUInt32		bySelectStuffIndex;			///< ì„ íƒëœ ìž¬ë£Œ í…ìŠ¤ì²˜ì˜ ì´ë¦„ì— í¬í•¨ëœ ì¸ë±ìŠ¤
 	};
 
 	struct sStuffSlot
 	{
-		RwUInt8			byStuffTextureIndex;		///< Àç·á ÅØ½ºÃ³ÀÇ ÀÌ¸§¿¡ Æ÷ÇÔµÈ ÀÎµ¦½º
-		CSurfaceGui		srfStuff;					///< Àç·á ÅØ½ºÃ³ÀÇ ¼­ÆäÀÌ½º
+		RwUInt8			byStuffTextureIndex;		///< ìž¬ë£Œ í…ìŠ¤ì²˜ì˜ ì´ë¦„ì— í¬í•¨ëœ ì¸ë±ìŠ¤
+		CSurfaceGui		srfStuff;					///< ìž¬ë£Œ í…ìŠ¤ì²˜ì˜ ì„œíŽ˜ì´ìŠ¤
 
 		sStuffSlot()
 		:byStuffTextureIndex(dPLEMBLEM_INVALID_FACTOR)
@@ -137,8 +137,8 @@ protected:
 
 	sMoustInfo			m_MouseInfo;
 	sStuffSelect		m_StuffSelect[dSTUFF_TEXTURE_ROW];
-	sStuffSlot			m_StuffSlot[dSTUFF_TEXTURE_ROW][dSTUFF_TEXTURE_COLUMN];///< ¿¥ºí·½À» ¸¸µé Àç·á ÅØ½ºÃ³	
-	RwUInt8				m_byCurStuffRow;	///< ÇöÀç ¼öÁ¤ÇÏ°í ÀÖ´Â Àç·á ÅØ½ºÃ³ÀÇ Çà
+	sStuffSlot			m_StuffSlot[dSTUFF_TEXTURE_ROW][dSTUFF_TEXTURE_COLUMN];///< ì— ë¸”ë ˜ì„ ë§Œë“¤ ìž¬ë£Œ í…ìŠ¤ì²˜	
+	RwUInt8				m_byCurStuffRow;	///< í˜„ìž¬ ìˆ˜ì •í•˜ê³  ìžˆëŠ” ìž¬ë£Œ í…ìŠ¤ì²˜ì˜ í–‰
 	RwUInt8				m_byPaletteFocus;
 	RwBool				m_bStuffFocus;
 
@@ -150,7 +150,7 @@ protected:
 	MAP_STUFF*			m_mapStuffTypeA;
 	MAP_STUFF*			m_mapStuffTypeB;
 	
-	CRectangle			m_rtPalette[dPALETTE_ROW * dPALETTE_COLUMN];		///< GUI »óÀÇ Ä®¶ó ÆÈ·¹Æ®ÀÇ ¿µ¿ª
+	CRectangle			m_rtPalette[dPALETTE_ROW * dPALETTE_COLUMN];		///< GUI ìƒì˜ ì¹¼ë¼ íŒ”ë ˆíŠ¸ì˜ ì˜ì—­
 
 	gui::CTexture		m_EmblemTexture;
 

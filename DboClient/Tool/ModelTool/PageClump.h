@@ -33,11 +33,11 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 public:
-    void    SetMultiTextureInfo(RwChar* chTextureName, RwInt32 iWidth, RwInt32 uiHeight);     ///< MultiTexture Á¤º¸¸¦ ¼³Á¤ÇÑ´Ù.
+    void    SetMultiTextureInfo(RwChar* chTextureName, RwInt32 iWidth, RwInt32 uiHeight);     ///< MultiTexture ì •ë³´ë¥¼ ì„¤ì •í•œë‹¤.
 
 protected:
-    CString m_strLoadFileName;                          ///< LoadÇÑ ÆÄÀÏ¸í
-    CString m_strLoadFilePath;                          ///< LoadÇÑ ÆÄÀÏÀÇ Full Path
+    CString m_strLoadFileName;                          ///< Loadí•œ íŒŒì¼ëª…
+    CString m_strLoadFilePath;                          ///< Loadí•œ íŒŒì¼ì˜ Full Path
 
 public:
 	afx_msg void OnBnClickedButton1();

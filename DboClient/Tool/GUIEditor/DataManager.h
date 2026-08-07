@@ -27,7 +27,7 @@ typedef struct _SURFACEDATA
 	CString _strResourceFileName;
 	CString _strResourceName;
 
-	CRect	_rcCoord;			// Width, Height´Â Right, Bottom¿¡ ÀúÀå. 
+	CRect	_rcCoord;			// Width, HeightëŠ” Right, Bottomì— ì €ì¥. 
 
 	INT		_cRed;
 	INT		_cGreen;
@@ -115,10 +115,10 @@ private:
 	gui::CResourceManager	m_mgrResource;
 	gui::CSurfaceManager	m_mgrSurface;
 
-	BOOL	m_bRsrFileLoad;						// ÆÄÀÏ·Îµå¿©ºÎ.
+	BOOL	m_bRsrFileLoad;						// íŒŒì¼ë¡œë“œì—¬ë¶€.
 	BOOL	m_bSrfFileLoad;							
 
-	CString	m_strRsrFileName;					// ·ÎµåµÈ ÆÄÀÏ ÀÌ¸§. ÀÌ¸§¸¸.
+	CString	m_strRsrFileName;					// ë¡œë“œëœ íŒŒì¼ ì´ë¦„. ì´ë¦„ë§Œ.
 	CString m_strSrfFileName;
 
 	CString m_strWorkDir;						// Work Directory;

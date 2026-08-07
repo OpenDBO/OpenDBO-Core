@@ -1,9 +1,9 @@
 /*****************************************************************************
 * File			: DboPackethandler_GUParty.cpp
 * Author		: Hong sungbock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 1. 16
-* Abstract		: ÆÄÆ¼ °ü·Ã ÆĞÅ¶ ÇÚµé
+* Abstract		: íŒŒí‹° ê´€ë ¨ íŒ¨í‚· í•¸ë“¤
 *****************************************************************************
 * Desc         : 
 *****************************************************************************/
@@ -30,7 +30,7 @@ void PacketHandler_GSPartyCreateRes(void *pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock( GU_PARTY_CREATE_RES );
 
-	// ÀÚ½ÅÀÌ ¿äÃ»ÇÑ ÆÄÆ¼ »ı¼º °á°ú¸¦ ¾Ë·ÁÁØ´Ù.
+	// ìì‹ ì´ ìš”ì²­í•œ íŒŒí‹° ìƒì„± ê²°ê³¼ë¥¼ ì•Œë ¤ì¤€ë‹¤.
 	sGU_PARTY_CREATE_RES* pResult = (sGU_PARTY_CREATE_RES*)pPacket;
 
 	if( pResult->wResultCode != GAME_SUCCESS )
@@ -71,7 +71,7 @@ void PacketHandler_GSPartyDisbandRes(void *pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock( GU_PARTY_DISBAND_RES );
 
-	// ÀÚ½ÅÀÌ ÆÄÆ¼¸¦ ÇØ»êÇÑ °á°ú¸¦ ¾Ë·ÁÁØ´Ù.
+	// ìì‹ ì´ íŒŒí‹°ë¥¼ í•´ì‚°í•œ ê²°ê³¼ë¥¼ ì•Œë ¤ì¤€ë‹¤.
 	sGU_PARTY_DISBAND_RES* pResult = (sGU_PARTY_DISBAND_RES*)pPacket;
 
 	if( pResult->wResultCode != GAME_SUCCESS )
@@ -85,7 +85,7 @@ void PacketHandler_GSPartyDisbandRes(void *pPacket)
 
 void PacketHandler_GSPartyDisbandNfy(void *pPacket)
 {
-	// ÆÄÆ¼°¡ ÇØ»êµÇ¾úÀ½À» ÆÄÆ¼ÀåÀÌ ¾Æ´Ñ ¸É¹öµé¿¡°Ô ¾Ë·ÁÁØ´Ù.
+	// íŒŒí‹°ê°€ í•´ì‚°ë˜ì—ˆìŒì„ íŒŒí‹°ì¥ì´ ì•„ë‹Œ ë§´ë²„ë“¤ì—ê²Œ ì•Œë ¤ì¤€ë‹¤.
 	//sGU_PARTY_DISBANDED_NFY* pResult = (sGU_PARTY_DISBANDED_NFY*)pPacket;
 
 	CNtlSLEventGenerator::PartyDisband();
@@ -95,7 +95,7 @@ void PacketHandler_GSPartyInviteRes(void *pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock( GU_PARTY_INVITE_RES );
 
-	// ÆÄÆ¼ ¸®´õ¿¡°Ô ÆÄÆ¼ ÃÊ´ë °á°ú¸¦ ¾Ë·ÁÁØ´Ù.	
+	// íŒŒí‹° ë¦¬ë”ì—ê²Œ íŒŒí‹° ì´ˆëŒ€ ê²°ê³¼ë¥¼ ì•Œë ¤ì¤€ë‹¤.	
 	sGU_PARTY_INVITE_RES* pResult = (sGU_PARTY_INVITE_RES*)pPacket;
 
 	if( pResult->wResultCode != GAME_SUCCESS )
@@ -104,13 +104,13 @@ void PacketHandler_GSPartyInviteRes(void *pPacket)
 		return;
 	}	
 
-	// %s´ÔÀ» ÆÄÆ¼¿¡ ÃÊ´ëÇÏ¿´½À´Ï´Ù
+	// %së‹˜ì„ íŒŒí‹°ì— ì´ˆëŒ€í•˜ì˜€ìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_PARTY_INVITE_SUCCESS", FALSE, NULL, pResult->wszTargetName);
 }
 
 void PacketHandler_GSPartyInviteNfy(void *pPacket)
 {
-	// ÃÊ´ë ´ë»ó¿¡°Ô ¸Ş¼¼Áö¸¦ º¸³½´Ù.
+	// ì´ˆëŒ€ ëŒ€ìƒì—ê²Œ ë©”ì„¸ì§€ë¥¼ ë³´ë‚¸ë‹¤.
 	sGU_PARTY_INVITE_NFY* pResult = (sGU_PARTY_INVITE_NFY*)pPacket;
 
 	if( wcslen(pResult->wszInvitorPcName) > 0)
@@ -123,7 +123,7 @@ void PacketHandler_GSPartyResponseInvitationRes(void *pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock( GU_PARTY_RESPONSE_INVITATION_RES );
 
-	// ÆÄÆ¼ ÃÊ´ëÀÇ ÀÀ´ä¿¡ ´ëÇÑ °á°ú¸¦ ¸®´õ¿¡°Ô º¸³½´Ù.
+	// íŒŒí‹° ì´ˆëŒ€ì˜ ì‘ë‹µì— ëŒ€í•œ ê²°ê³¼ë¥¼ ë¦¬ë”ì—ê²Œ ë³´ë‚¸ë‹¤.
 	sGU_PARTY_RESPONSE_INVITATION_RES* pResult = (sGU_PARTY_RESPONSE_INVITATION_RES*)pPacket;
 
 	if( pResult->wResultCode != GAME_SUCCESS )
@@ -135,7 +135,7 @@ void PacketHandler_GSPartyResponseInvitationRes(void *pPacket)
 
 void PacketHandler_GSPartyMemberJoinedNfy(void *pPacket)
 {
-	// »õ·Î¿î ÆÄÆ¼¿øÀÌ °¡ÀÔÇßÀ½À» ¾Ë·ÁÁØ´Ù.
+	// ìƒˆë¡œìš´ íŒŒí‹°ì›ì´ ê°€ì…í–ˆìŒì„ ì•Œë ¤ì¤€ë‹¤.
 	sGU_PARTY_MEMBER_JOINED_NFY* pResult = (sGU_PARTY_MEMBER_JOINED_NFY*)pPacket;
 
 	CNtlSLEventGenerator::PartyMemberAdd(pResult->memberInfo.hHandle, pResult->memberInfo.awchMemberName,
@@ -144,13 +144,13 @@ void PacketHandler_GSPartyMemberJoinedNfy(void *pPacket)
 		pResult->memberInfo.wMaxEP, pResult->memberInfo.worldTblidx, pResult->memberInfo.worldId,
 		pResult->memberInfo.vCurLoc.x, pResult->memberInfo.vCurLoc.y, pResult->memberInfo.vCurLoc.z);
 
-	// %s´ÔÀÌ ÆÄÆ¼¿¡ µé¾î¿À¼Ì½À´Ï´Ù
+	// %së‹˜ì´ íŒŒí‹°ì— ë“¤ì–´ì˜¤ì…¨ìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_PARTY_NEW_MEMBER", FALSE, NULL, pResult->memberInfo.awchMemberName);
 }
 
 void PacketHandler_GSPartyInfo(void *pPacket)
 {
-	// »õ·Î °¡ÀÔÇÑ ÆÄÆ¼¿øÀÌ ÆÄÆ¼Á¤º¸¸¦ ¹Ş´Â´Ù.
+	// ìƒˆë¡œ ê°€ì…í•œ íŒŒí‹°ì›ì´ íŒŒí‹°ì •ë³´ë¥¼ ë°›ëŠ”ë‹¤.
 	sGU_PARTY_INFO* pResult = (sGU_PARTY_INFO*)pPacket;
 
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
@@ -160,7 +160,7 @@ void PacketHandler_GSPartyInfo(void *pPacket)
 		return;
 	}
 
-	// ÆÄÆ¼¸¦ »ı¼ºÇÑ´Ù
+	// íŒŒí‹°ë¥¼ ìƒì„±í•œë‹¤
 	CNtlSLEventGenerator::PartyCreate(pResult->awchPartyName);
 
 	for(RwInt32 i = 0 ; i < pResult->byMemberInfoCount ; ++i )
@@ -174,41 +174,41 @@ void PacketHandler_GSPartyInfo(void *pPacket)
 			pResult->memberInfo[i].vCurLoc.x, pResult->memberInfo[i].vCurLoc.y, pResult->memberInfo[i].vCurLoc.z);
 	}	
 
-	// ÆÄÆ¼ ¸®½ºÆ®¿¡ ÀÚ½ÅÀ» Ãß°¡½ÃÅ²´Ù	
+	// íŒŒí‹° ë¦¬ìŠ¤íŠ¸ì— ìì‹ ì„ ì¶”ê°€ì‹œí‚¨ë‹¤	
 	CNtlSobAvatarAttr* pAvatarAttr = reinterpret_cast<CNtlSobAvatarAttr*>(pAvatar->GetSobAttr());
 	CNtlSLEventGenerator::PartyMemberAdd(pAvatar->GetSerialID(), (WCHAR*)pAvatarAttr->GetName());
 
-	// ÆÄÆ¼ÀåÀ» ¼³Á¤ÇÑ´Ù
+	// íŒŒí‹°ì¥ì„ ì„¤ì •í•œë‹¤
 	CNtlSLEventGenerator::PartyLeaderChange(pResult->hLeader);
 
-	// ¾ÆÀÌÅÛ ºĞ¹è ¹æ½Ä
+	// ì•„ì´í…œ ë¶„ë°° ë°©ì‹
 	CNtlSLEventGenerator::PartyUpdate(PMT_ITEM_DIVISION, INVALID_SERIAL_ID, pResult->byItemLootingMethod);
 
-	// Á¦´Ï ºĞ¹è ¹æ½Ä
+	// ì œë‹ˆ ë¶„ë°° ë°©ì‹
 	CNtlSLEventGenerator::PartyUpdate(PMT_ZENNY_DIVISION, INVALID_SERIAL_ID, pResult->byZennyLootingMethod);
 
-    // °øÀ¯ Å¸°Ù µ¥ÀÌÅÍ    
+    // ê³µìœ  íƒ€ê²Ÿ ë°ì´í„°    
     CNtlSLEventGenerator::PartyShareTargetNfy(pResult->sharetargetInfo);
 
-	// ÆÄÆ¼ ´øÀü Á¤º¸
+	// íŒŒí‹° ë˜ì „ ì •ë³´
 	CNtlSLEventGenerator::PartyUpdate(PMT_PARTY_DUNGEON_STATE, INVALID_SERIAL_ID, pResult->eDiff);	
 }
 
 void PacketHandler_GSPartyInviteDeclinedNfy(void *pPacket)
 {
-	// ÃÊ´ëÇÑ ´ë»óÀÌ °ÅÀıÇß´Ù.
+	// ì´ˆëŒ€í•œ ëŒ€ìƒì´ ê±°ì ˆí–ˆë‹¤.
 	sGU_PARTY_INVITATION_DECLINED_NFY* pResult = (sGU_PARTY_INVITATION_DECLINED_NFY*)pPacket;	
 
-	// %s´ÔÀÌ ÃÊ´ë¸¦ °ÅÀıÇÏ¿´½À´Ï´Ù
+	// %së‹˜ì´ ì´ˆëŒ€ë¥¼ ê±°ì ˆí•˜ì˜€ìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_PARTY_INVITE_DECLINE", FALSE, NULL, pResult->wszPlayerName);
 }
 
 void PacketHandler_GSPartyInviteExpiredNfy(void *pPacket)
 {
-	// ÆÄÆ¼ ÃÊ´ë¸¦ ÇßÁö¸¸ ÀÏÁ¤ ½Ã°£µ¿¾È ÀÀ´äÀÌ ¾ø¾ú´Ù.
+	// íŒŒí‹° ì´ˆëŒ€ë¥¼ í–ˆì§€ë§Œ ì¼ì • ì‹œê°„ë™ì•ˆ ì‘ë‹µì´ ì—†ì—ˆë‹¤.
 	sGU_PARTY_INVITATION_EXPIRED_NFY* pResult = (sGU_PARTY_INVITATION_EXPIRED_NFY*)pPacket;
 
-	// %s´ÔÀÌ ÃÊ´ë¸¦ °ÅÀıÇÏ¿´½À´Ï´Ù
+	// %së‹˜ì´ ì´ˆëŒ€ë¥¼ ê±°ì ˆí•˜ì˜€ìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_PARTY_INVITE_DECLINE", FALSE, NULL, pResult->wszPlayerName);
 }
 
@@ -216,7 +216,7 @@ void PacketHandler_GSPartyLeaveRes(void *pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock( GU_PARTY_LEAVE_RES );
 
-	// ÀÚ½ÅÀÌ ¿äÃ»ÇÑ ÆÄÆ¼ Å»ÅğÀÇ °á°ú¸¦ ¾Ë·ÁÁØ´Ù.
+	// ìì‹ ì´ ìš”ì²­í•œ íŒŒí‹° íƒˆí‡´ì˜ ê²°ê³¼ë¥¼ ì•Œë ¤ì¤€ë‹¤.
 	sGU_PARTY_LEAVE_RES* pResult = (sGU_PARTY_LEAVE_RES*)pPacket;
 
 	if( pResult->wResultCode != GAME_SUCCESS )
@@ -232,7 +232,7 @@ void PacketHandler_GSPartyLeaveRes(void *pPacket)
 
 void PacketHandler_GSPartyMemberLeftNfy(void *pPacket)
 {
-	// ÀÚ½ÅÀÇ ÆÄÆ¼¿øÀÌ ¶°³µ´Ù.
+	// ìì‹ ì˜ íŒŒí‹°ì›ì´ ë– ë‚¬ë‹¤.
 	sGU_PARTY_MEMBER_LEFT_NFY* pResult = (sGU_PARTY_MEMBER_LEFT_NFY*)pPacket;
 
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
@@ -252,7 +252,7 @@ void PacketHandler_GSPartyMemberLeftNfy(void *pPacket)
 
 	WCHAR* pwcText	= pMember->wszMemberName;
 
-	// %s´ÔÀÌ ÆÄÆ¼¿¡¼­ Å»ÅğÇÏ¿´½À´Ï´Ù
+	// %së‹˜ì´ íŒŒí‹°ì—ì„œ íƒˆí‡´í•˜ì˜€ìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_PARTY_LEAVE", FALSE, NULL, pwcText);
 	CNtlSLEventGenerator::PartyMemberDel(pResult->hMember);
 }
@@ -261,7 +261,7 @@ void PacketHandler_GSPartyKickOutRes(void* pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock( GU_PARTY_KICK_OUT_RES );
 
-	// ÆÄÆ¼ ¸É¹ö °­Åğ °á°ú
+	// íŒŒí‹° ë§´ë²„ ê°•í‡´ ê²°ê³¼
 	sGU_PARTY_KICK_OUT_RES* pResult = (sGU_PARTY_KICK_OUT_RES*)pPacket;
 
 	if( pResult->wResultCode != GAME_SUCCESS )
@@ -287,14 +287,14 @@ void PacketHandler_GSPartyKickOutRes(void* pPacket)
 
 	WCHAR* pwcText = pMember->wszMemberName;
 
-	// %s´ÔÀÌ ÆÄÆ¼¿¡¼­ Å»ÅğÇÏ¿´½À´Ï´Ù
+	// %së‹˜ì´ íŒŒí‹°ì—ì„œ íƒˆí‡´í•˜ì˜€ìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_PARTY_LEAVE", FALSE, NULL, pwcText);
 	CNtlSLEventGenerator::PartyMemberDel(pResult->hTargetMember);
 }
 
 void PacketHandler_GSPartyMemberKickedOutNfy(void *pPacket)
 {
-	// ÆÄÆ¼ ¸É¹ö°¡ °­ÅğµÈ °ÍÀ» ³²¾ÆÀÖ´Â ÆÄÆ¼¿ø¿¡°Ô ¾Ë·ÁÁØ´Ù.
+	// íŒŒí‹° ë§´ë²„ê°€ ê°•í‡´ëœ ê²ƒì„ ë‚¨ì•„ìˆëŠ” íŒŒí‹°ì›ì—ê²Œ ì•Œë ¤ì¤€ë‹¤.
 	sGU_PARTY_MEMBER_KICKED_OUT_NFY* pResult = (sGU_PARTY_MEMBER_KICKED_OUT_NFY*)pPacket;
 
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
@@ -314,7 +314,7 @@ void PacketHandler_GSPartyMemberKickedOutNfy(void *pPacket)
 
 	WCHAR* pwcText = pMember->wszMemberName;
 
-	// %s´ÔÀÌ ÆÄÆ¼¿¡¼­ Å»ÅğÇÏ¿´½À´Ï´Ù
+	// %së‹˜ì´ íŒŒí‹°ì—ì„œ íƒˆí‡´í•˜ì˜€ìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_PARTY_LEAVE", FALSE, NULL, pwcText);
 	CNtlSLEventGenerator::PartyMemberDel(pResult->hMember);
 }
@@ -323,7 +323,7 @@ void PacketHandler_GSPartyChangeLeaderRes(void *pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock( GU_PARTY_CHANGE_LEADER_RES );
 
-	// ÆÄÆ¼ ¸®´õ¿¡°Ô ¸®´õ º¯°æ ¿äÃ»À» °á°ú¸¦ ¾Ë·ÁÁØ´Ù.
+	// íŒŒí‹° ë¦¬ë”ì—ê²Œ ë¦¬ë” ë³€ê²½ ìš”ì²­ì„ ê²°ê³¼ë¥¼ ì•Œë ¤ì¤€ë‹¤.
 	sGU_PARTY_CHANGE_LEADER_RES* pResult = (sGU_PARTY_CHANGE_LEADER_RES*)pPacket;
 
 	if( pResult->wResultCode != GAME_SUCCESS )
@@ -349,14 +349,14 @@ void PacketHandler_GSPartyChangeLeaderRes(void *pPacket)
 
 	WCHAR* pwcText = pMember->wszMemberName;
 
-	// %s´ÔÀÌ ÆÄÆ¼ÀåÀÌ µÇ¾ú½À´Ï´Ù
+	// %së‹˜ì´ íŒŒí‹°ì¥ì´ ë˜ì—ˆìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_PARTY_CHANGE_LEADER", FALSE, NULL, pwcText);
 	CNtlSLEventGenerator::PartyLeaderChange(pResult->hNewLeader);
 }
 
 void PacketHandler_GSPartyChangedLeaderNfy(void *pPacket)
 {
-	// ÆÄÆ¼ ¸®´õ°¡ º¯°æµÇ¾úÀ½À» ÆÄÆ¼ ¸É¹ö¿¡°Ô ¾Ë·ÁÁØ´Ù
+	// íŒŒí‹° ë¦¬ë”ê°€ ë³€ê²½ë˜ì—ˆìŒì„ íŒŒí‹° ë§´ë²„ì—ê²Œ ì•Œë ¤ì¤€ë‹¤
 	sGU_PARTY_LEADER_CHANGED_NFY* pResult = (sGU_PARTY_LEADER_CHANGED_NFY*)pPacket;
 
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
@@ -376,14 +376,14 @@ void PacketHandler_GSPartyChangedLeaderNfy(void *pPacket)
 
 	WCHAR* pwcText = pMember->wszMemberName;
 
-	// %s´ÔÀÌ ÆÄÆ¼ÀåÀÌ µÇ¾ú½À´Ï´Ù
+	// %së‹˜ì´ íŒŒí‹°ì¥ì´ ë˜ì—ˆìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_PARTY_CHANGE_LEADER", FALSE, NULL, pwcText);
 	CNtlSLEventGenerator::PartyLeaderChange(pResult->hNewLeader);
 }
 
 void PacketHandler_GSPartyLevelUp(void* pPacket)
 {
-	// ÆÄÆ¼¿øÀÌ ·¹º§¾÷À» ÇÏ¿´´Ù
+	// íŒŒí‹°ì›ì´ ë ˆë²¨ì—…ì„ í•˜ì˜€ë‹¤
 	sGU_PARTY_MEMBER_LEVELED_UP_NFY* pResult = (sGU_PARTY_MEMBER_LEVELED_UP_NFY*)pPacket;
 
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
@@ -405,14 +405,14 @@ void PacketHandler_GSPartyLevelUp(void* pPacket)
 
 void PacketHandler_GSPartyChangeClass(void* pPacket)
 {
-	// ÆÄÆ¼¿øÀÇ Å¬·¡½º°¡ ¹Ù²î¾ú´Ù
+	// íŒŒí‹°ì›ì˜ í´ë˜ìŠ¤ê°€ ë°”ë€Œì—ˆë‹¤
 	sGU_PARTY_MEMBER_CLASS_CHANGED_NFY* pResult = (sGU_PARTY_MEMBER_CLASS_CHANGED_NFY*)pPacket;
 	CNtlSLEventGenerator::PartyUpdate(PMT_CLASS, pResult->hMember, pResult->byNewClass);
 }
 
 void PacketHandler_GSPartyMember_LocationNfy(void* pPacket)
 {
-	// ÆÄÆ¼ ¸É¹öÀÇ À§Ä¡¸¦ ¾÷µ¥ÀÌÆ® ÇÑ´Ù
+	// íŒŒí‹° ë§´ë²„ì˜ ìœ„ì¹˜ë¥¼ ì—…ë°ì´íŠ¸ í•œë‹¤
 	sGU_PARTY_MEMBER_LOCATION_NFY* pResult = (sGU_PARTY_MEMBER_LOCATION_NFY*)pPacket;
 
 	RwV3d vPos;
@@ -423,7 +423,7 @@ void PacketHandler_GSPartyMember_LocationNfy(void* pPacket)
 
 void PacketHandler_GSPartyMemberGainedItemNfy(void *pPacket)
 {
-	// ÆÄÆ¼ ¸É¹ö°¡ ¾ÆÀÌÅÛÀ» ÁÖÀº °ÍÀ» ¾Ë·ÁÁØ´Ù
+	// íŒŒí‹° ë§´ë²„ê°€ ì•„ì´í…œì„ ì£¼ì€ ê²ƒì„ ì•Œë ¤ì¤€ë‹¤
 	sGU_PARTY_MEMBER_GAINED_ITEM_NFY* pResult = (sGU_PARTY_MEMBER_GAINED_ITEM_NFY*)pPacket;
 
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
@@ -445,12 +445,12 @@ void PacketHandler_GSPartyMemberGainedItemNfy(void *pPacket)
 
 	if(pResult->itemTblidx == INVALID_SERIAL_ID)
 	{
-		// %s´ÔÀÌ ¹ÌÈ®ÀÎ ¾ÆÀÌÅÛÀ» È¹µæÇÏ¿´½À´Ï´Ù
+		// %së‹˜ì´ ë¯¸í™•ì¸ ì•„ì´í…œì„ íšë“í•˜ì˜€ìŠµë‹ˆë‹¤
 		GetAlarmManager()->FormattedAlarmMessage("DST_PARTY_INVEN_ADD_UNDEFINED_ITEM_OTHER", FALSE, NULL, pwcText);
 	}
 	else
 	{
-		// %s´ÔÀÇ È¹µæ ¾ÆÀÌÅÛ %s
+		// %së‹˜ì˜ íšë“ ì•„ì´í…œ %s
 		sITEM_TBLDAT* pITEM_TBLDAT = Logic_GetItemDataFromTable(pResult->itemTblidx);
 		if( !pITEM_TBLDAT )
 		{
@@ -469,25 +469,25 @@ void PacketHandler_GSPartyMemberGainedItemNfy(void *pPacket)
 
 void PacketHandler_GSPartyMemberGainedZennyNfy(void *pPacket)
 {
-	// Á¦´Ï¸¦ ºĞ¹è¹Ş¾Ò´Ù´Â ¸Ş¼¼Áö
+	// ì œë‹ˆë¥¼ ë¶„ë°°ë°›ì•˜ë‹¤ëŠ” ë©”ì„¸ì§€
 	sGU_PARTY_MEMBER_GAINED_ZENNY_NFY* pResult = (sGU_PARTY_MEMBER_GAINED_ZENNY_NFY*)pPacket;
 
 	if( pResult->bIsShared )
 	{
-		// ´Ù¸¥ ÆÄÆ¼¿øÀÌ Á¦´Ï¸¦ ÁÖ¾î¼­ ºĞ¹è¹Ş¾Ò´Ù
-		// %dÁß %d Á¦´Ï¸¦ ºĞ¹è¹Ş¾Ò½À´Ï´Ù
+		// ë‹¤ë¥¸ íŒŒí‹°ì›ì´ ì œë‹ˆë¥¼ ì£¼ì–´ì„œ ë¶„ë°°ë°›ì•˜ë‹¤
+		// %dì¤‘ %d ì œë‹ˆë¥¼ ë¶„ë°°ë°›ì•˜ìŠµë‹ˆë‹¤
         if(pResult->dwBonusZenny == 0)
         {
 		    GetAlarmManager()->FormattedAlarmMessage("DST_PARTY_GET_ZENNY", FALSE, NULL, Logic_FormatZeni(pResult->dwOriginalZenny), Logic_FormatZeni(pResult->dwZenny));
         }
-        else    // PC¹æ Ãß°¡ È¹µæ
+        else    // PCë°© ì¶”ê°€ íšë“
         {
             GetAlarmManager()->FormattedAlarmMessage("DST_PARTY_GET_ZENNY_AND_BONUS", FALSE, NULL, Logic_FormatZeni(pResult->dwOriginalZenny), Logic_FormatZeni(pResult->dwAcquisitionZenny), Logic_FormatZeni(pResult->dwBonusZenny));
         }
 	}
 	else
 	{
-		// ´Ù¸¥ ÆÄÆ¼¿øÀÌ Á¦´Ï¸¦ ÁÖ¾ú´Ù
+		// ë‹¤ë¥¸ íŒŒí‹°ì›ì´ ì œë‹ˆë¥¼ ì£¼ì—ˆë‹¤
 		CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
 		if( !pAvatar )
 		{
@@ -503,12 +503,12 @@ void PacketHandler_GSPartyMemberGainedZennyNfy(void *pPacket)
 			return;
 		}
 
-		// %s´ÔÀÌ %d Á¦´Ï¸¦ È¹µæÇÏ¿´½À´Ï´Ù
+		// %së‹˜ì´ %d ì œë‹ˆë¥¼ íšë“í•˜ì˜€ìŠµë‹ˆë‹¤
         if(pResult->dwBonusZenny == 0)
         {
 		    GetAlarmManager()->FormattedAlarmMessage("DST_PARTY_GET_ZENNY_OTHER", FALSE, NULL, pMember->wszMemberName, Logic_FormatZeni(pResult->dwZenny));
         }
-        else    // PC¹æ Ãß°¡ È¹µæ
+        else    // PCë°© ì¶”ê°€ íšë“
         {
             GetAlarmManager()->FormattedAlarmMessage("DST_PARTY_GET_ZENNY_OTHER_AND_BONUS", FALSE, NULL, pMember->wszMemberName, Logic_FormatZeni(pResult->dwAcquisitionZenny), Logic_FormatZeni(pResult->dwBonusZenny));
         }
@@ -519,7 +519,7 @@ void PacketHandler_GSPartyChangeZennyLootinMethodRes(void *pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock( GU_PARTY_CHANGE_ZENNY_LOOTING_METHOD_RES );
 
-	// Á¦´Ï ºĞ¹è ¹æ½Ä º¯°æ °á°ú¸¦ ÆÄÆ¼Àå¿¡°Ô ¾Ë·ÁÁØ´Ù
+	// ì œë‹ˆ ë¶„ë°° ë°©ì‹ ë³€ê²½ ê²°ê³¼ë¥¼ íŒŒí‹°ì¥ì—ê²Œ ì•Œë ¤ì¤€ë‹¤
 	sGU_PARTY_CHANGE_ZENNY_LOOTING_METHOD_RES* pResult = (sGU_PARTY_CHANGE_ZENNY_LOOTING_METHOD_RES*)pPacket;
 
 	if( pResult->wResultCode != GAME_SUCCESS )	
@@ -530,18 +530,18 @@ void PacketHandler_GSPartyChangeZennyLootinMethodRes(void *pPacket)
 
 	CNtlSLEventGenerator::PartyUpdate(PMT_ZENNY_DIVISION, INVALID_SERIAL_ID, pResult->byNewLootingMethod);	
 
-	// Á¦´Ï ºĞ¹è¹æ½ÄÀÌ %s·Î º¯°æµÇ¾ú½À´Ï´Ù
+	// ì œë‹ˆ ë¶„ë°°ë°©ì‹ì´ %së¡œ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_PARTY_CHANGE_ZENNY_DIVISION", FALSE, NULL, Logic_GetPartyZeniLootingMethod(pResult->byNewLootingMethod));
 }
 
 void PacketHandler_GSPartyZennyLootingMethodChangedNfy(void *pPacket)
 {
-	// ÆÄÆ¼ÀåÀ» Á¦¿ÜÇÑ ¸É¹öµé¿¡°Ô Á¦´Ï ºĞ¹è ¹æ½Ä º¯°æ ¾Ë¸®±â
+	// íŒŒí‹°ì¥ì„ ì œì™¸í•œ ë§´ë²„ë“¤ì—ê²Œ ì œë‹ˆ ë¶„ë°° ë°©ì‹ ë³€ê²½ ì•Œë¦¬ê¸°
 	sGU_PARTY_ZENNY_LOOTING_METHOD_CHANGED_NFY* pResult = (sGU_PARTY_ZENNY_LOOTING_METHOD_CHANGED_NFY*)pPacket;
 
 	CNtlSLEventGenerator::PartyUpdate(PMT_ZENNY_DIVISION, INVALID_SERIAL_ID, pResult->byNewLootingMethod);
 
-	// Á¦´Ï ºĞ¹è¹æ½ÄÀÌ %s·Î º¯°æµÇ¾ú½À´Ï´Ù
+	// ì œë‹ˆ ë¶„ë°°ë°©ì‹ì´ %së¡œ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_PARTY_CHANGE_ZENNY_DIVISION", FALSE, NULL, Logic_GetPartyZeniLootingMethod(pResult->byNewLootingMethod));
 }
 
@@ -549,7 +549,7 @@ void PacketHandler_GSPartyChangeItemLootinMethodRes(void *pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock( GU_PARTY_CHANGE_ITEM_LOOTING_METHOD_RES );
 
-	// ¾ÆÀÌÅÛ ºĞ¹è ¹æ½Ä º¯°æ °á°ú¸¦ ÆÄÆ¼Àå¿¡°Ô ¾Ë·ÁÁØ´Ù
+	// ì•„ì´í…œ ë¶„ë°° ë°©ì‹ ë³€ê²½ ê²°ê³¼ë¥¼ íŒŒí‹°ì¥ì—ê²Œ ì•Œë ¤ì¤€ë‹¤
 	sGU_PARTY_CHANGE_ITEM_LOOTING_METHOD_RES* pResult = (sGU_PARTY_CHANGE_ITEM_LOOTING_METHOD_RES*)pPacket;
 
 	if( pResult->wResultCode != GAME_SUCCESS )
@@ -560,22 +560,22 @@ void PacketHandler_GSPartyChangeItemLootinMethodRes(void *pPacket)
 
 	CNtlSLEventGenerator::PartyUpdate(PMT_ITEM_DIVISION, INVALID_SERIAL_ID, pResult->byNewLootingMethod);
 
-	// ¾ÆÀÌÅÛ ºĞ¹è¹æ½ÄÀÌ %s·Î º¯°æµÇ¾ú½À´Ï´Ù
+	// ì•„ì´í…œ ë¶„ë°°ë°©ì‹ì´ %së¡œ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_PARTY_CHANGE_ITEM_DIVISION", FALSE, NULL, Logic_GetPartyItemLootingMethod(pResult->byNewLootingMethod));
 }
 
 void PacketHandler_GSPartyItemLootingMethodChangedNfy(void *pPacket)
 {
-	// ÆÄÆ¼ÀåÀ» Á¦¿ÜÇÑ ¸É¹öµé¿¡°Ô Á¦´Ï ¾ÆÀÌÅÛ ºĞ¹è ¹æ½Ä º¯°æ ¾Ë¸®±â
+	// íŒŒí‹°ì¥ì„ ì œì™¸í•œ ë§´ë²„ë“¤ì—ê²Œ ì œë‹ˆ ì•„ì´í…œ ë¶„ë°° ë°©ì‹ ë³€ê²½ ì•Œë¦¬ê¸°
 	sGU_PARTY_ITEM_LOOTING_METHOD_CHANGED_NFY* pResult = (sGU_PARTY_ITEM_LOOTING_METHOD_CHANGED_NFY*)pPacket;
 
 	CNtlSLEventGenerator::PartyUpdate(PMT_ITEM_DIVISION, INVALID_SERIAL_ID, pResult->byNewLootingMethod);
 
-	// ¾ÆÀÌÅÛ ºĞ¹è¹æ½ÄÀÌ %s·Î º¯°æµÇ¾ú½À´Ï´Ù
+	// ì•„ì´í…œ ë¶„ë°°ë°©ì‹ì´ %së¡œ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_PARTY_CHANGE_ITEM_DIVISION", FALSE, NULL, Logic_GetPartyItemLootingMethod(pResult->byNewLootingMethod));
 }
 
-// ÆÄÆ¼ °øÀ¯ Å¸°Ù ¿äÃ»¿¡ ´ëÇÑ °á°ú ÆĞÅ¶
+// íŒŒí‹° ê³µìœ  íƒ€ê²Ÿ ìš”ì²­ì— ëŒ€í•œ ê²°ê³¼ íŒ¨í‚·
 void PacketHandler_GSPartyShareTargetRes( void* pPacket ) 
 {
     sGU_PARTY_SHARETARGET_RES* pData = (sGU_PARTY_SHARETARGET_RES*)pPacket;
@@ -588,7 +588,7 @@ void PacketHandler_GSPartyShareTargetRes( void* pPacket )
     CNtlSLEventGenerator::PartyShareTargetRes(pData->wResultCode);
 }
 
-// ÆÄÆ¼ °øÀ¯ Å¸°Ù ¼±ÅÃ¿¡ ´ëÇÑ ¾Ë¸² ÆĞÅ¶
+// íŒŒí‹° ê³µìœ  íƒ€ê²Ÿ ì„ íƒì— ëŒ€í•œ ì•Œë¦¼ íŒ¨í‚·
 void PacketHandler_GSPartyShareTargetNfy( void* pPacket ) 
 {
     sGU_PARTY_SHARETARGET_NFY* pData = (sGU_PARTY_SHARETARGET_NFY*)pPacket;
@@ -598,7 +598,7 @@ void PacketHandler_GSPartyShareTargetNfy( void* pPacket )
 
 void PacketHandler_GSPartyDungeonDiffRes(void *pPacket)
 {
-	// ÆÄÆ¼Àå¿¡°Ô ÆÄÆ¼ ´øÀüÀÇ ³­ÀÌµµ º¯°æ °á°ú¸¦ ¾Ë¸°´Ù
+	// íŒŒí‹°ì¥ì—ê²Œ íŒŒí‹° ë˜ì „ì˜ ë‚œì´ë„ ë³€ê²½ ê²°ê³¼ë¥¼ ì•Œë¦°ë‹¤
 	API_GetSLPacketLockManager()->Unlock( GU_PARTY_DUNGEON_DIFF_RES );
 
 	sGU_PARTY_DUNGEON_DIFF_RES* pResult = (sGU_PARTY_DUNGEON_DIFF_RES*)pPacket;
@@ -623,7 +623,7 @@ void PacketHandler_GSPartyDungeonDiffRes(void *pPacket)
 
 void PacketHandler_GSPartyDungeonDiffNfy(void *pPacket)
 {
-	// ÆÄÆ¼¿øµé¿¡°Ô ÆÄÆ¼ ´øÀü ³­ÀÌµµ º¯°æÀ» ¾Ë¸°´Ù
+	// íŒŒí‹°ì›ë“¤ì—ê²Œ íŒŒí‹° ë˜ì „ ë‚œì´ë„ ë³€ê²½ì„ ì•Œë¦°ë‹¤
 	sGU_PARTY_DUNGEON_DIFF_NFY* pResult = (sGU_PARTY_DUNGEON_DIFF_NFY*)pPacket;
 
 	CNtlSLEventGenerator::PartyUpdate(PMT_PARTY_DUNGEON_STATE, INVALID_SERIAL_ID, pResult->eDiff);	
@@ -640,7 +640,7 @@ void PacketHandler_GSPartyDungeonDiffNfy(void *pPacket)
 
 void PacketHandler_GSPartyDungeonInitRes(void *pPacket)
 {
-	// ÆÄÆ¼Àå¿¡°Ô ÆÄÆ¼ ´øÀü ÃÊ±âÈ­ °á°ú¸¦ ¾Ë¸°´Ù
+	// íŒŒí‹°ì¥ì—ê²Œ íŒŒí‹° ë˜ì „ ì´ˆê¸°í™” ê²°ê³¼ë¥¼ ì•Œë¦°ë‹¤
 	API_GetSLPacketLockManager()->Unlock( GU_PARTY_DUNGEON_INIT_RES );
 
 	sGU_PARTY_DUNGEON_INIT_RES* pResult = (sGU_PARTY_DUNGEON_INIT_RES*)pPacket;
@@ -658,7 +658,7 @@ void PacketHandler_GSPartyDungeonInitRes(void *pPacket)
 
 void PacketHandler_GSPartyDungeonInitNfy(void *pPacket)
 {
-	// ÆÄÆ¼¿ø¿¡°Ô ÆÄÆ¼ ´øÀü ÃÊ±âÈ­¸¦ ¾Ë¸°´Ù
+	// íŒŒí‹°ì›ì—ê²Œ íŒŒí‹° ë˜ì „ ì´ˆê¸°í™”ë¥¼ ì•Œë¦°ë‹¤
 	//sGU_PARTY_DUNGEON_INIT_NFY* pResult = (sGU_PARTY_DUNGEON_INIT_NFY*)pPacket;
 
 	GetAlarmManager()->AlarmMessage("DST_PARTY_DUNGEON_INITIALIZE");

@@ -1,16 +1,16 @@
-// GUIEditor.h : GUIEditor ÀÀ¿ë ÇÁ·Î±×·¥¿¡ ´ëÇÑ ÁÖ Çì´õ ÆÄÀÏ
+// GUIEditor.h : GUIEditor ì‘ìš© í”„ë¡œê·¸ëž¨ì— ëŒ€í•œ ì£¼ í—¤ë” íŒŒì¼
 //
 #pragma once
 
 #ifndef __AFXWIN_H__
-	#error PCH¿¡¼­ ÀÌ ÆÄÀÏÀ» Æ÷ÇÔÇÏ±â Àü¿¡ 'stdafx.h'¸¦ Æ÷ÇÔÇÏ½Ê½Ã¿À.
+	#error PCHì—ì„œ ì´ íŒŒì¼ì„ í¬í•¨í•˜ê¸° ì „ì— 'stdafx.h'ë¥¼ í¬í•¨í•˜ì‹­ì‹œì˜¤.
 #endif
 
-#include "resource.h"       // ÁÖ ±âÈ£
+#include "resource.h"       // ì£¼ ê¸°í˜¸
 
 
 // CGUIEditorApp:
-// ÀÌ Å¬·¡½ºÀÇ ±¸Çö¿¡ ´ëÇØ¼­´Â GUIEditor.cppÀ» ÂüÁ¶ÇÏ½Ê½Ã¿À.
+// ì´ í´ëž˜ìŠ¤ì˜ êµ¬í˜„ì— ëŒ€í•´ì„œëŠ” GUIEditor.cppì„ ì°¸ì¡°í•˜ì‹­ì‹œì˜¤.
 //
 
 class CGUIEditorApp : public CWinApp
@@ -19,11 +19,11 @@ public:
 	CGUIEditorApp();
 
 
-// ÀçÁ¤ÀÇ
+// ìž¬ì •ì˜
 public:
 	virtual BOOL InitInstance();
 
-// ±¸Çö
+// êµ¬í˜„
 	afx_msg void OnAppAbout();
 	DECLARE_MESSAGE_MAP()
 };

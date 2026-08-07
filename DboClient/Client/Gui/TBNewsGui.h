@@ -1,9 +1,9 @@
 /*****************************************************************************
 * File			: TBNewsGui.h
 * Author		: Haesung, Cho
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 10. 21
-* Abstract		: DBO ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ¼Ò½ÄÁö ¸®´º¾ó
+* Abstract		: DBO ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì†Œì‹ì§€ ë¦¬ë‰´ì–¼
 *****************************************************************************
 * Desc         : 
 *****************************************************************************/
@@ -13,30 +13,30 @@
 
 #pragma once
 
-// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ GUI ½ºÅ©¸³Æ® ÆÄÀÏ
+// ì²œí•˜ì œì¼ ë¬´ë„íšŒ GUI ìŠ¤í¬ë¦½íŠ¸ íŒŒì¼
 #define dTBNEWS_SCRIPT_FILE_FOLDER		L"script\\tenkaichibudokai\\"
 #define dTBNEWS_GUI_FRAMEWORK_FILE		"gui\\TBNewsGui.frm"
 #define dTBNEWS_GUI_SURFACE_FILE		"gui\\TBNewsGui.srf"
 
-// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ÀÇ ½ºÅ©·Ñ µÇ´Â ½ºÅÂÆ½ ¹Ú½ºÀÇ °¹¼ö
+// ì²œí•˜ì œì¼ ë¬´ë„íšŒì˜ ìŠ¤í¬ë¡¤ ë˜ëŠ” ìŠ¤íƒœí‹± ë°•ìŠ¤ì˜ ê°¯ìˆ˜
 #define dTBNEWS_INFO_BOX_NUMS						2
 
-// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ½ºÅ©·Ñ ¹Ú½ºÀÇ ÃÖ¼Ò Å©±â
+// ì²œí•˜ì œì¼ ë¬´ë„íšŒ ìŠ¤í¬ë¡¤ ë°•ìŠ¤ì˜ ìµœì†Œ í¬ê¸°
 #define dTBNEWS_INFO_BOX_MIN_WIDTH					245
 
-// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ½ºÅ©·Ñ ¹Ú½ºÀÇ °£°Ý
+// ì²œí•˜ì œì¼ ë¬´ë„íšŒ ìŠ¤í¬ë¡¤ ë°•ìŠ¤ì˜ ê°„ê²©
 #define dTBNEWS_INFO_BOX_MARGIN						10
 
 /**
 * \ingroup client
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ¼Ò½ÄÁö GUI
+* \brief ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì†Œì‹ì§€ GUI
 */
 class CTBNewsGui : public CNtlPLGui, public RWS::CEventHandler
 {
 	enum eNewsType
 	{
-		TYPE_INDIVIDIAUL = 0,			///< °³ÀÎÀü ¼Ò½ÄÁö
-		TYPE_TEAM,					///< ÆÀÀü ¼Ò½ÄÁö
+		TYPE_INDIVIDIAUL = 0,			///< ê°œì¸ì „ ì†Œì‹ì§€
+		TYPE_TEAM,					///< íŒ€ì „ ì†Œì‹ì§€
 
 		TYPE_NUMS,
 		INVALID_TYPE = 0xFF
@@ -44,9 +44,9 @@ class CTBNewsGui : public CNtlPLGui, public RWS::CEventHandler
 
 	enum eStaticInfo
 	{
-		INFO_STATE = 0,					///< °³ÀÎÀÇ Âü°¡ Á¤º¸
-		INFO_INDITIME,				///< °³ÀÎÀü ½Ã°£ Á¤º¸
-		INFO_TEAMTIME,				///< ÆÄÆ¼Àü ½Ã°£ Á¤º¸
+		INFO_STATE = 0,					///< ê°œì¸ì˜ ì°¸ê°€ ì •ë³´
+		INFO_INDITIME,				///< ê°œì¸ì „ ì‹œê°„ ì •ë³´
+		INFO_TEAMTIME,				///< íŒŒí‹°ì „ ì‹œê°„ ì •ë³´
 		
 		INFO_NUMS,
 		INVALID_INFO = 0xFF
@@ -100,34 +100,34 @@ public:
 	// Info
 public:
 	void	InitInfoBox();
-	WCHAR*	GetNextStepString( RwUInt8 byMatchType );			///< ´ÙÀ½ »óÅÂ¿¡ ´ëÇÑ ¸Þ½ÃÁö Ãâ·Â
+	WCHAR*	GetNextStepString( RwUInt8 byMatchType );			///< ë‹¤ìŒ ìƒíƒœì— ëŒ€í•œ ë©”ì‹œì§€ ì¶œë ¥
 	void	SetInfoBox( RwUInt8 byInfoBoxNum, gui::CStaticBox* pStbInfoBox );
 	void	UpdateInstanceInfo();
 
 
 protected:
-	gui::CStaticBox*	m_pStbTitle;			///< ¼Ò½ÄÁöÀÇ ÀÌ¸§
-	gui::CStaticBox*	m_pStbHeadLine;			///< ¼Ò½ÄÁöÀÇ HeadLine
-	gui::CStaticBox*	m_pStbNewsMark;			///< ¼Ò½ÄÁöÀÇ Mark
+	gui::CStaticBox*	m_pStbTitle;			///< ì†Œì‹ì§€ì˜ ì´ë¦„
+	gui::CStaticBox*	m_pStbHeadLine;			///< ì†Œì‹ì§€ì˜ HeadLine
+	gui::CStaticBox*	m_pStbNewsMark;			///< ì†Œì‹ì§€ì˜ Mark
 
-	gui::CPanel*		m_pPnlImage;			///< ¼Ò½ÄÁö¿¡ »ðÀÏµÈ ÀÌ¹ÌÁö
-	gui::CHtmlBox*		m_pHtmlNews;			///< ¼Ò½ÄÁö°¡ Ãâ·ÂµÉ Html ¹Ú½º
+	gui::CPanel*		m_pPnlImage;			///< ì†Œì‹ì§€ì— ì‚½ì¼ëœ ì´ë¯¸ì§€
+	gui::CHtmlBox*		m_pHtmlNews;			///< ì†Œì‹ì§€ê°€ ì¶œë ¥ë  Html ë°•ìŠ¤
 
-	gui::CStaticBox*	m_pStbNoticeText[TL_NUMS];	///< ¼Ò½ÄÁöÀÇ Ãâ·ÂµÉ ÅØ½ºÆ®µé
+	gui::CStaticBox*	m_pStbNoticeText[TL_NUMS];	///< ì†Œì‹ì§€ì˜ ì¶œë ¥ë  í…ìŠ¤íŠ¸ë“¤
 		
-	gui::CButton*	m_pBtnClose;			///< ´Ý±â ¹öÆ°
-	gui::CButton*	m_pBtnSoloRequest;		///< °³ÀÎÀü ½ÅÃ»ÇÏ±â ÀÇ ¹öÆ°
-	gui::CButton*	m_pBtnPartyRequest;		///< ÆÄÆ¼Àü ½ÅÃ»ÇÏ±â ÀÇ ¹öÆ°
-	gui::CButton*	m_pBtnLicense;			///< Á¢¼öÁõÀÇ ¹öÆ°
-	gui::CButton*	m_pBtnTournement;		///< ´ëÁøÇ¥ÀÇ ¹öÆ°
+	gui::CButton*	m_pBtnClose;			///< ë‹«ê¸° ë²„íŠ¼
+	gui::CButton*	m_pBtnSoloRequest;		///< ê°œì¸ì „ ì‹ ì²­í•˜ê¸° ì˜ ë²„íŠ¼
+	gui::CButton*	m_pBtnPartyRequest;		///< íŒŒí‹°ì „ ì‹ ì²­í•˜ê¸° ì˜ ë²„íŠ¼
+	gui::CButton*	m_pBtnLicense;			///< ì ‘ìˆ˜ì¦ì˜ ë²„íŠ¼
+	gui::CButton*	m_pBtnTournement;		///< ëŒ€ì§„í‘œì˜ ë²„íŠ¼
 
 	// Scroll infotext
-	gui::CDialog*		m_pDlgInfo;			///< Clipping µÇ´Â dialog
+	gui::CDialog*		m_pDlgInfo;			///< Clipping ë˜ëŠ” dialog
 	gui::CStaticBox*	m_paStbInfoBox[dTBNEWS_INFO_BOX_NUMS];
 	RwUInt8				m_aBoxPresentInfo[dTBNEWS_INFO_BOX_NUMS];
 	RwReal				m_fBoxPresentPosX[dTBNEWS_INFO_BOX_NUMS];
 
-	RwUInt8				m_byCurFirstBox;	///< ÇöÀç ¾Õ¼­°í ÀÖ´Â ¹Ú½ºÀÇ ¹øÈ£
+	RwUInt8				m_byCurFirstBox;	///< í˜„ìž¬ ì•žì„œê³  ìžˆëŠ” ë°•ìŠ¤ì˜ ë²ˆí˜¸
 
 	// Slot
 	gui::CSlot			m_slotClickedBtnClose;

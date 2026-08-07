@@ -1,4 +1,4 @@
-// PaletteRegion.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PaletteRegion.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "PaletteRegion.h"
 
 
-// CPaletteRegion ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteRegion ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPaletteRegion, CDialog)
 CPaletteRegion::CPaletteRegion(CWnd* pParent /*=NULL*/)
@@ -31,4 +31,4 @@ BEGIN_MESSAGE_MAP(CPaletteRegion, CDialog)
 END_MESSAGE_MAP()
 
 
-// CPaletteRegion ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPaletteRegion ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

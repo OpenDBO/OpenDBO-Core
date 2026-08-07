@@ -2,7 +2,7 @@
  *
  * File			: CharacterStage.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (å ì™ì˜™)NTL
  * Date			: 2006. 11. 28	
  * Abstract		: Character stage class
  *****************************************************************************
@@ -71,11 +71,11 @@ private:
 	CNtlPLWorldEntity		*m_pWorldEntity;						// Main World
 	
 	RwV3d					m_vCameraPos;							// Camera Position
-	RwV3d					m_vCameraPosAt;							// Camera°¡ º¸´Â À§Ä¡							
-	RwV3d					m_vAvatarPos;							// AvatarÀÇ À§Ä¡
+	RwV3d					m_vCameraPosAt;							// Cameraå ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™ì¹˜							
+	RwV3d					m_vAvatarPos;							// Avatarå ì™ì˜™ å ì™ì˜™ì¹˜
 	RwV3d					m_vAvatarUpdatePos;
 
-	RwReal					m_fAvatarAngleY;						// AvatarÀÇ YÃà È¸Àü °ª
+	RwReal					m_fAvatarAngleY;						// Avatarå ì™ì˜™ Yå ì™ì˜™ íšŒå ì™ì˜™ å ì™ì˜™
 
 	CNtlSobAvatar			*m_pAvatar;								// Avatar
 	RwInt32					m_iAvatarRotState;						// Avatar Rotation State
@@ -87,7 +87,7 @@ private:
 	RwInt8					m_byRace;
 	RwInt8					m_byCharHeightType;
 
-	// ¸¶¿ì½º ÈÙ ½ºÅ©·Ñ¿¡ µû¶ó ÀÚ¿¬½º·¯¿î ¹İÀÀÀ» ÇÏ±â À§ÇØ ¸ğµç ÈÙ ¸Ş¼¼Áö ÀúÀå
+	// ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ ï¿½ï¿½Å©ï¿½Ñ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ş¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	std::list<sCameraZoom>	m_listZoomMode;
 	RwReal					m_fReservatedZoomStep;
 	RwReal					m_fTotalZoomStep;
@@ -97,7 +97,7 @@ private:
 	sCameraData				m_CameraData[RACE_COUNT + 1][NUM_CHT][NUM_ZL];
 	RwV3d					m_v3Dir[RACE_COUNT + 1][NUM_CHT][NUM_ZL];
 
-	RwBool					m_bOptionApply;							// CLobbayStage °´Ã¼ »ı¼º½Ã ÇÑ¹ø¸¸ FALSE °ªÀ» °¡Áø´Ù.
+	RwBool					m_bOptionApply;							// CLobbayStage å ì™ì˜™ì²´ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹¼ë±„ì˜™å ì™ì˜™ FALSE å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™.
 
 private:
 	INPUT_HANDLE m_hKeyDown;
@@ -105,7 +105,7 @@ private:
 private:
 	void CheckDeletedCharacter();
 
-	int	KeyboardDownHandler(unsigned int uiKeyData);
+	int	KeyboardDownHandler(uintptr_t uiKeyData);
 
 	// Process network
 	void RequestLobbyInfo();
@@ -124,10 +124,10 @@ private:
 
 	void CreateDownLoadAvatar( sPC_SUMMARY *pCharInfo);
 
-	void SetupDefaultCamerabyRace(RwUInt8 byRace);							//AvatarÀÇ À§Ä¡, CameraÀÇ À§Ä¡¸¦ ÃÊ±âÈ­
-	void CreateBackGroundStage( RwUInt32 uiRace, RwBool bForce = false);	//World¸¦ »ı¼º(ÇÑ¹ø¸¸ »ı¼ºÀÌ µÈ´Ù.)
-	void TeleportStage();													//SetUpDefaultCamerabyRace¿¡ ÀÇÇØ¼­ ¼³Á¤µÈ °÷À¸·Î Teleport
-																			//Teleport½Ã ·ÎµùÀÌ ÀÏ¾î³­´Ù.
+	void SetupDefaultCamerabyRace(RwUInt8 byRace);							//Avatarå ì™ì˜™ å ì™ì˜™ì¹˜, Cameraå ì™ì˜™ å ì™ì˜™ì¹˜å ì™ì˜™ å ì‹­ê¹ì˜™í™”
+	void CreateBackGroundStage( RwUInt32 uiRace, RwBool bForce = false);	//Worldå ì™ì˜™ å ì™ì˜™å ì™ì˜™(å ì‹¼ë±„ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹«ëŒì˜™.)
+	void TeleportStage();													//SetUpDefaultCamerabyRaceå ì™ì˜™ å ì™ì˜™å ìŒ”ì‡½ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ Teleport
+																			//Teleportå ì™ì˜™ å ì‹¸ë“¸ì˜™å ì™ì˜™ å ì‹¹ì–´ë‚œå ì™ì˜™.
 
 	void DestroyBackGroundStage();
 	void DestroyAvatar();

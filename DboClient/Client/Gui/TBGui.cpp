@@ -450,7 +450,7 @@ VOID CTBGui::Destroy(VOID)
 
 VOID CTBGui::CreateBudokaiNewsOnce()
 {
-	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ Á¤º¸°¡ CLOSE°¡ ¾Æ´Ï¶ó¸é OpenÇÑ´Ù.
+	// ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì •ë³´ê°€ CLOSEê°€ ì•„ë‹ˆë¼ë©´ Opení•œë‹¤.
 	STenkaichiBudokaiInfo* pBudokaiState = GetNtlSLGlobal()->GetTBudokaiStateInfo();
 
 	if( pBudokaiState->sStateInfo.byState != BUDOKAI_STATE_JUNIOR_CLOSE ||
@@ -460,7 +460,7 @@ VOID CTBGui::CreateBudokaiNewsOnce()
 
 VOID CTBGui::CreateBudokaiNews()
 {
-	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ¼Ò½ÄÁö
+	// ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì†Œì‹ì§€
 	if( m_pNewsGui == NULL )
 	{
 		m_pNewsGui = NTL_NEW CTBNewsGui( "TBNewsGui" );
@@ -476,7 +476,7 @@ VOID CTBGui::CreateBudokaiNews()
 		}
 	}
 
-	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ½ÅÃ»¼­
+	// ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì‹ ì²­ì„œ
 	if( m_pRequestGui == NULL )
 	{
 		m_pRequestGui = NTL_NEW CTBRequestGui( "TBRequestGui" );
@@ -598,7 +598,7 @@ VOID CTBGui::HandleEvents( RWS::CMsg& msg )
 		CNtlWorldConceptTB* pTBWorldConcept = reinterpret_cast<CNtlWorldConceptTB*>( GetNtlWorldConcept()->GetWorldConceptController( WORLD_PLAY_T_BUDOKAI ) );
 		DBO_ASSERT( pTBWorldConcept, "CNtlTBudokai::HandleEvents : must World concept is valid" );	
 
-		// Âü°¡ÀÚ¿Í °üÀüÀÚ¸¦ ±¸ºĞÇÏ¿© Ã³¸®ÇÑ´Ù.
+		// ì°¸ê°€ìì™€ ê´€ì „ìë¥¼ êµ¬ë¶„í•˜ì—¬ ì²˜ë¦¬í•œë‹¤.
 		stTBudokaiMember* pMember = pTBWorldConcept->FindMember( Logic_GetAvatarHandle() );
 		if( pMember )
 			HandleEventMinorMatchStateUpdateEntrance( msg );
@@ -678,7 +678,7 @@ VOID CTBGui::HandleEvents( RWS::CMsg& msg )
 		{
 			if( pState->uiState == WORLD_STATE_IDLE )
 			{
-				// peessi: WORLD_STATE_ENTER »óÅÂ¿¡¼­´Â MINOR,MAJOR,FINAL ÆÇº°ÀÌ ºÒ°¡´É. IDLEÀÌ ÇÑ¹ø¸¸ µé¾î¿À±â ¶§¹®¿¡ ÀÌ¿ë. 
+				// peessi: WORLD_STATE_ENTER ìƒíƒœì—ì„œëŠ” MINOR,MAJOR,FINAL íŒë³„ì´ ë¶ˆê°€ëŠ¥. IDLEì´ í•œë²ˆë§Œ ë“¤ì–´ì˜¤ê¸° ë•Œë¬¸ì— ì´ìš©. 
 				CNtlWorldConceptTB* pTBWorldConcept = reinterpret_cast<CNtlWorldConceptTB*>( GetNtlWorldConcept()->GetWorldConceptController( WORLD_PLAY_T_BUDOKAI ) );
 				DBO_ASSERT( pTBWorldConcept, "CTBGui::HandleEvents : must World concept is valid" );		
 	
@@ -811,7 +811,7 @@ VOID CTBGui::HandleEventMajorMatchStateUpdateObserver( RWS::CMsg& msg )
 		{
 			DirectionMode( FALSE );
 
-			// ºÒÇÊ¿äÇÑ UIµéÀ» ´İ´Â´Ù.
+			// ë¶ˆí•„ìš”í•œ UIë“¤ì„ ë‹«ëŠ”ë‹¤.
 			GetDialogManager()->CloseDialog( DIALOG_HP );
 			GetDialogManager()->CloseDialog( DIALOG_TARGER_UI );
 			GetDialogManager()->CloseDialog( DIALOG_TIME_NOTIFY );
@@ -867,7 +867,7 @@ VOID CTBGui::HandleEventFinalMatchStateUpdateObserver( RWS::CMsg& msg )
 		{
 			DirectionMode( FALSE );
 
-			// ºÒÇÊ¿äÇÑ UIµéÀ» ´İ´Â´Ù.
+			// ë¶ˆí•„ìš”í•œ UIë“¤ì„ ë‹«ëŠ”ë‹¤.
 			GetDialogManager()->CloseDialog( DIALOG_HP );
 			GetDialogManager()->CloseDialog( DIALOG_TARGER_UI );
 			GetDialogManager()->CloseDialog( DIALOG_TIME_NOTIFY );
@@ -888,7 +888,7 @@ VOID CTBGui::HandleEventFinalMatchStateUpdateObserver( RWS::CMsg& msg )
 }
 
 /**
-* \brief °´Ã¼°¡ ¼Ò¸êÇÏ°í ´Ù½Ã »ı¼ºµÇ¾úÀ» ¶§ ¸ÅÄ¡ ÁßÀÇ Battle Gauge¸¦ ´Ù½Ã ¼¼ÆÃÇØÁÖ±â À§ÇØ »ç¿ëµÈ´Ù.
+* \brief ê°ì²´ê°€ ì†Œë©¸í•˜ê³  ë‹¤ì‹œ ìƒì„±ë˜ì—ˆì„ ë•Œ ë§¤ì¹˜ ì¤‘ì˜ Battle Gaugeë¥¼ ë‹¤ì‹œ ì„¸íŒ…í•´ì£¼ê¸° ìœ„í•´ ì‚¬ìš©ëœë‹¤.
 */
 VOID CTBGui::HandleEventSobCreate( RWS::CMsg& msg )
 {
@@ -1021,8 +1021,8 @@ VOID CTBGui::UnsetBattleGauge(VOID)
 }
 
 /**
-* \brief »óÈ²¿¡ ¸ÂÃá Notify¸¦ Ãâ·ÂÇÑ´Ù.
-* \param byMsgId	(RwUInt8) NtlBudokai.h ¿¡ Á¤ÀÇµÇ¾î ÀÖ´Â »óÈ²µé
+* \brief ìƒí™©ì— ë§ì¶˜ Notifyë¥¼ ì¶œë ¥í•œë‹¤.
+* \param byMsgId	(RwUInt8) NtlBudokai.h ì— ì •ì˜ë˜ì–´ ìˆëŠ” ìƒí™©ë“¤
 */
 VOID CTBGui::ProgressMessageNotify( RwUInt8 byMsgId )
 {

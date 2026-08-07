@@ -25,8 +25,8 @@ protected:
 	CString								m_strProjName;	// Project name
 	DWORD								m_dwTSType;		// Trigger system type
 
-	CArray<CString, const CString&>		m_aTriggerList;	// Æ®¸®°Å ÆÄÀÏ ¸®½ºÆ®
-	CTSTrigger							m_TSTrigger;	// ÇöÀç ·ÎµùµÈ Æ®¸®°Å
+	CArray<CString, const CString&>		m_aTriggerList;	// íŠ¸ë¦¬ê±° íŒŒì¼ ë¦¬ìŠ¤íŠ¸
+	CTSTrigger							m_TSTrigger;	// í˜„ì¬ ë¡œë”©ëœ íŠ¸ë¦¬ê±°
 
 	CString								m_strPath;
 

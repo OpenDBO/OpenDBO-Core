@@ -1,4 +1,4 @@
-// N3Slider.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// N3Slider.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -25,14 +25,14 @@ END_MESSAGE_MAP()
 
 
 
-// N3SlierFrame ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// N3SlierFrame ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 
 void N3SlierFrame::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
-	// ±×¸®±â ¸Ş½ÃÁö¿¡ ´ëÇØ¼­´Â CStatic::OnPaint()À»(¸¦) È£ÃâÇÏÁö ¸¶½Ê½Ã¿À.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
+	// ê·¸ë¦¬ê¸° ë©”ì‹œì§€ì— ëŒ€í•´ì„œëŠ” CStatic::OnPaint()ì„(ë¥¼) í˜¸ì¶œí•˜ì§€ ë§ˆì‹­ì‹œì˜¤.
 	CBrush brush(m_clrColor);
 	CRect rc;
 	GetClientRect(rc);
@@ -83,9 +83,9 @@ END_MESSAGE_MAP()
 
 
 
-// N3Slider ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// N3Slider ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
-// D:\WorkNet\Tool\Venus\N3Slider.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// D:\WorkNet\Tool\Venus\N3Slider.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 
@@ -93,8 +93,8 @@ void N3Slider::OnPaint()
 {
 //	CPaintDC dc(this); // device context for painting
 	CPaintDC dcPaint(this); // device context for painting
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
-	// ±×¸®±â ¸Ş½ÃÁö¿¡ ´ëÇØ¼­´Â CWnd::OnPaint()À»(¸¦) È£ÃâÇÏÁö ¸¶½Ê½Ã¿À.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
+	// ê·¸ë¦¬ê¸° ë©”ì‹œì§€ì— ëŒ€í•´ì„œëŠ” CWnd::OnPaint()ì„(ë¥¼) í˜¸ì¶œí•˜ì§€ ë§ˆì‹­ì‹œì˜¤.
 	CBitmapDC dc;
 	CRect rc;
 	CRect rect;
@@ -183,7 +183,7 @@ void N3Slider::OnPaint()
 
 void N3Slider::OnMouseMove(UINT nFlags, CPoint point)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if( GetCapture() == this )
 	{
 		CRect rc;
@@ -200,7 +200,7 @@ void N3Slider::OnMouseMove(UINT nFlags, CPoint point)
 
 void N3Slider::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	SetCapture();
 	CRect rc;
 	GetClientRect(rc);
@@ -216,14 +216,14 @@ void N3Slider::OnLButtonDown(UINT nFlags, CPoint point)
 
 void N3Slider::OnLButtonUp(UINT nFlags, CPoint point)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	ReleaseCapture();
 	CWnd::OnLButtonUp(nFlags, point);
 }
 
 void N3Slider::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	bool b=false;
 	if( nChar==37 )		 // Left
 	{	m_iPos--;  b=true;	}

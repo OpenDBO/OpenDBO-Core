@@ -72,7 +72,7 @@ void CNtlPLCullingOperator::Update(RwReal fElapsed)
 			break;
 		}
 
-		// ½ºÄÉÁì °¹¼ö¸¦ ³Ñ¾î¼­¸é...
+		// ìŠ¤ì¼€ì¥´ ê°¯ìˆ˜ë¥¼ ë„˜ì–´ì„œë©´...
 		if(m_iCurrAtomicNum >= iMaxCullAtomicNum)
 		{
 			break;

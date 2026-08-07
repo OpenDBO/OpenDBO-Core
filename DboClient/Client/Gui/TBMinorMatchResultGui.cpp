@@ -176,9 +176,9 @@ VOID CTBMinorMatchResultGui::Destroy(VOID)
 {
 	GetNtlGuiManager()->RemoveUpdateFunc( this );
 
-	OnMouseLeave( NULL ); // ¿Œ∆˜¿©µµøÏ ¥›±‚.
+	OnMouseLeave( NULL ); // Ïù∏Ìè¨ÏúàÎèÑÏö∞ Îã´Í∏∞.
 
-	DeleteAllRewardItem(); // æ∆¿Ã≈€ æ∆¿Ãƒ‹ ªË¡¶.
+	DeleteAllRewardItem(); // ÏïÑÏù¥ÌÖú ÏïÑÏù¥ÏΩò ÏÇ≠Ï†ú.
 
 	UnLinkMsg( g_EventMinorMatchMatchFinish );
 	UnLinkMsg( g_EventResize );
@@ -272,7 +272,7 @@ RwBool CTBMinorMatchResultGui::SetResultData( VOID* pData )
 	m_pflaResult->RestartMovie();
 	m_pflaBar->RestartMovie();
 
-	// ΩΩ∑‘ ªË¡¶.
+	// Ïä¨Î°Ø ÏÇ≠Ï†ú.
 	DeleteAllRewardItem();
 
 	SNtlEventMinorMatchMatchFinish* pFinishData = reinterpret_cast<SNtlEventMinorMatchMatchFinish*>( pData );		
@@ -297,7 +297,7 @@ RwBool CTBMinorMatchResultGui::SetResultData( VOID* pData )
 	uiKOBonus = pReward->dwKillCountPoint * pFinishData->byKillCount;	
 
 	if( pTBWorldConcept->GetMyTeam() )
-	{// ¬¸∞°¿⁄
+	{// Ï∞∏Í∞ÄÏûê
 		if( pFinishData->byMatchResult == MATCH_RESULT_WIN )
 		{
 			if( pTBWorldConcept->GetMyTeamType() == pFinishData->wMatchWinner )
@@ -331,7 +331,7 @@ RwBool CTBMinorMatchResultGui::SetResultData( VOID* pData )
 		}
 	}
 	else
-	{// ∞¸¿¸¿⁄
+	{// Í¥ÄÏ†ÑÏûê
 		uiWinBonus = pReward->dwWinnerMudosaPoint;
 		SetRewardItem( 0, pReward->winnerItem, pReward->byWinerItemStackCount );			
 		SetFlashResult( NONE );

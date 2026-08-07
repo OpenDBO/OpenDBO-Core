@@ -87,7 +87,7 @@ RwBool CGuildEmblemMakerGui::Create()
 	m_pOKButton->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_OK"));
 	m_pCancelButton->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_CANCLE2"));
 
-	// Àç·á ÅØ½ºÃ³ÀÇ ¼­ÆäÀÌ½º
+	// ì¬ë£Œ í…ìŠ¤ì²˜ì˜ ì„œí˜ì´ìŠ¤
 	RwInt32 iStuffX = dEMBLEM_STUFF_START_X;
 	RwInt32 iStuffY = dEMBLEM_STUFF_START_Y;
 	for(RwUInt8 i = 0 ; i < dSTUFF_TEXTURE_ROW ; ++i)
@@ -103,7 +103,7 @@ RwBool CGuildEmblemMakerGui::Create()
 		iStuffY += dEMBLEM_STUFF_ROW_GAP + dEMBLEM_STUFF_SIZE;
 	}
 
-	// ÆÈ·¹Æ® ¿µ¿ª
+	// íŒ”ë ˆíŠ¸ ì˜ì—­
 	RwInt32 iPaletteX = dPALETTE_START_X;
 	RwInt32 iPaletteY = dPALETTE_START_Y;
 	for(RwUInt8 i = 0 ; i < dPALETTE_ROW ; ++i )
@@ -118,17 +118,17 @@ RwBool CGuildEmblemMakerGui::Create()
 		iPaletteY += dPALETTE_GAP + dPALETTE_SIZE;
 	}
 
-	// ¼¿·ºÆ® & Æ÷Ä¿½º ¼­ÆäÀÌ½º
+	// ì…€ë ‰íŠ¸ & í¬ì»¤ìŠ¤ ì„œí˜ì´ìŠ¤
 	for(RwUInt8 i = 0 ; i < dSTUFF_TEXTURE_ROW ; ++i)
 		m_srfEmblemSelect[i].SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GuildEmblemMaker.srf", "srfSelectEmblem" ) );
 
 	m_srfEmblemFocus.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GuildEmblemMaker.srf", "srfSelectEmblem" ) );
 	m_srfPaletteFocus.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GuildEmblemMaker.srf", "srfSelectColor" ) );
 
-	// Emblem ±¸¼º ¿ä¼Ò
+	// Emblem êµ¬ì„± ìš”ì†Œ
 	m_pEmblemFactor = NTL_NEW sEmblemFactor;
 
-	// Àç·á ÅØ½ºÃ³ ¸®½ºÆ® ÃÊ±âÈ­
+	// ì¬ë£Œ í…ìŠ¤ì²˜ ë¦¬ìŠ¤íŠ¸ ì´ˆê¸°í™”
 	m_mapStuffTypeA = (MAP_STUFF*)GetEmblemMaker()->GetStuffList(EMBLEMTYPE_A);
 	m_mapStuffTypeB = (MAP_STUFF*)GetEmblemMaker()->GetStuffList(EMBLEMTYPE_B);
 
@@ -259,7 +259,7 @@ VOID CGuildEmblemMakerGui::SetTextureStuff(RwInt8 byStuffType, RwUInt32 uiStuffT
 			}
 	}
 
-	// ±âÁ¸¿¡ Á¸ÀçÇÏ´Â ÅØ½ºÃ³¸¦ ÀçÈ°¿ëÇÏ±â À§ÇØ ·ÎµùµÈ ÅØ½ºÃ³ º¸°ü
+	// ê¸°ì¡´ì— ì¡´ì¬í•˜ëŠ” í…ìŠ¤ì²˜ë¥¼ ì¬í™œìš©í•˜ê¸° ìœ„í•´ ë¡œë”©ëœ í…ìŠ¤ì²˜ ë³´ê´€
 	for(RwUInt8 i = 0 ; i < dSTUFF_TEXTURE_COLUMN ; ++i)
 	{
 		if( m_StuffSlot[byStuffType][i].srfStuff.GetTexture() )
@@ -268,11 +268,11 @@ VOID CGuildEmblemMakerGui::SetTextureStuff(RwInt8 byStuffType, RwUInt32 uiStuffT
 		m_StuffSlot[byStuffType][i].srfStuff.UnsetTexture();
 	}
 
-	// È­¸é¿¡ º¸¿©Áö´Â Àç·á ÅØ½ºÃ³ÀÇ Àç±¸¼º
+	// í™”ë©´ì— ë³´ì—¬ì§€ëŠ” ì¬ë£Œ í…ìŠ¤ì²˜ì˜ ì¬êµ¬ì„±
 	it = pmapStuffType->find(uiStuffTextureIndex);
 	if( it != pmapStuffType->end() )
 	{
-		// È­¸é¿¡ º¸¿©ÁÙ ¿¬¼ÓµÈ 4°³ÀÇ Àç·á ÅØ½ºÃ³¸¦ Ã£´Â´Ù
+		// í™”ë©´ì— ë³´ì—¬ì¤„ ì—°ì†ëœ 4ê°œì˜ ì¬ë£Œ í…ìŠ¤ì²˜ë¥¼ ì°¾ëŠ”ë‹¤
 		RwUInt32 uiMaxStuff = pmapStuffType->size();
 
 		if( uiMaxStuff > dSTUFF_TEXTURE_COLUMN )
@@ -283,14 +283,14 @@ VOID CGuildEmblemMakerGui::SetTextureStuff(RwInt8 byStuffType, RwUInt32 uiStuffT
 			TEMP_STUFF_TEXTURE::iterator it_tempFind = mapTempTexture.find(it->second);
 			if( it_tempFind != mapTempTexture.end() )
 			{
-				// Àç·á ÅØ½ºÃ³ÀÇ ÀÎµ¦½º°¡ ¸Ş¸ğ¸®¿¡ Á¸ÀçÇÏ¸é
+				// ì¬ë£Œ í…ìŠ¤ì²˜ì˜ ì¸ë±ìŠ¤ê°€ ë©”ëª¨ë¦¬ì— ì¡´ì¬í•˜ë©´
 				m_StuffSlot[byStuffType][i].srfStuff.SetTexture( it_tempFind->second );
 				m_StuffSlot[byStuffType][i].byStuffTextureIndex = (RwUInt8)it->second;
 				mapTempTexture.erase(it_tempFind);
 			}
 			else
 			{
-				// ¸Ş¸ğ¸®·Î »õ·Î¿î Àç·á ÅØ½ºÃ³¸¦ ÀĞ¾îµéÀÎ´Ù				
+				// ë©”ëª¨ë¦¬ë¡œ ìƒˆë¡œìš´ ì¬ë£Œ í…ìŠ¤ì²˜ë¥¼ ì½ì–´ë“¤ì¸ë‹¤				
                 ZeroMemory(acBuffer, sizeof(acBuffer));
 				GetEmblemMaker()->MakeEmblemResourceName((eEmblemType)byStuffType, (RwUInt8)it->second, acBuffer, 64);
 				m_StuffSlot[byStuffType][i].srfStuff.SetTexture( Logic_CreateTexture(acBuffer, TEXTTYPE_EMBLEM) );
@@ -304,7 +304,7 @@ VOID CGuildEmblemMakerGui::SetTextureStuff(RwInt8 byStuffType, RwUInt32 uiStuffT
 		}
 	}
 
-	// Àç»ç¿ëµÇÁö ¾ÊÀº ÅØ½ºÃ³´Â ¸Ş¸ğ¸®¿¡¼­ »èÁ¦ÇÑ´Ù
+	// ì¬ì‚¬ìš©ë˜ì§€ ì•Šì€ í…ìŠ¤ì²˜ëŠ” ë©”ëª¨ë¦¬ì—ì„œ ì‚­ì œí•œë‹¤
 	std::map<RwUInt32, gui::CTexture*>::iterator it_TempTexture = mapTempTexture.begin();
 	for( ; it_TempTexture != mapTempTexture.end() ; ++it_TempTexture )
 	{
@@ -524,7 +524,7 @@ VOID CGuildEmblemMakerGui::OnMouseUp(const CKey& key)
 		{
 			if( m_byCurStuffRow != INVALID_BYTE )
 			{
-				// ÆÈ·¹Æ®¸¦ ¼±ÅÃÇß´Ù
+				// íŒ”ë ˆíŠ¸ë¥¼ ì„ íƒí–ˆë‹¤
 				switch(m_byCurStuffRow)
 				{
 					case 0:	m_pEmblemFactor->byTypeAColor = m_MouseInfo.bySlotIndex; break;
@@ -559,7 +559,7 @@ VOID CGuildEmblemMakerGui::OnMove(RwInt32 iOldX, RwInt32 iOldY)
 
 VOID CGuildEmblemMakerGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 {
-	// Àç·á ÅØ½ºÃ³ Æ÷Ä¿½º
+	// ì¬ë£Œ í…ìŠ¤ì²˜ í¬ì»¤ìŠ¤
 	RwUInt8 byStuffFocus = INVALID_BYTE;
 	for(RwUInt8 i = 0 ; i < dSTUFF_TEXTURE_ROW ; ++i)
 	{
@@ -576,7 +576,7 @@ VOID CGuildEmblemMakerGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 
 	m_bStuffFocus = FALSE;
 
-	// ÆÈ·¹Æ® Æ÷Ä¿½º
+	// íŒ”ë ˆíŠ¸ í¬ì»¤ìŠ¤
 	m_byPaletteFocus = PtInRectPalette(nX, nY);
 	if( m_byPaletteFocus != INVALID_BYTE )
 	{

@@ -1,4 +1,4 @@
-// PropTreeInfo.cpp : ���� �����Դϴ�.
+// PropTreeInfo.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -26,14 +26,14 @@ END_MESSAGE_MAP()
 
 
 
-// CPropTreeInfo �޽��� ó�����Դϴ�.
+// CPropTreeInfo 메시지 처리기입니다.
 
 
 void CPropTreeInfo::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰��մϴ�.
-	// �׸��� �޽����� ���ؼ��� CStatic::OnPaint()��(��) ȣ������ ���ʽÿ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
+	// 그리기 메시지에 대해서는 CStatic::OnPaint()을(를) 호출하지 마십시오.
 	CRect rc;
 
 	GetClientRect(rc);

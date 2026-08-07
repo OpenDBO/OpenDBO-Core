@@ -2,7 +2,7 @@
  *
  * File			: NtlPLSceneManager.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 8. 01	
  * Abstract		: Presentation scene manager base class 
  *****************************************************************************
@@ -37,9 +37,9 @@ enum EActiveWorldType
 
 /**
  * \ingroup NtlPresentation
- * presentationÀÇ scene manager Ãß»óÈ­ class ÀÌ´Ù.
- * ±â´ÉÀûÀÎ À§ÁÖÀÇ Ãß»óÇÔ¼ö·Î ±¸¼ºµÇ¾î ÀÖ´Ù.
- * Dbo client¿Í editor¿¡¼­´Â ÀÌ class¸¦ »ó¼Ó¹Ş¾Æ ÀçÁ¤ÀÇ ÇÑ´Ù.
+ * presentationì˜ scene manager ì¶”ìƒí™” class ì´ë‹¤.
+ * ê¸°ëŠ¥ì ì¸ ìœ„ì£¼ì˜ ì¶”ìƒí•¨ìˆ˜ë¡œ êµ¬ì„±ë˜ì–´ ìˆë‹¤.
+ * Dbo clientì™€ editorì—ì„œëŠ” ì´ classë¥¼ ìƒì†ë°›ì•„ ì¬ì •ì˜ í•œë‹¤.
  *
  */
 class CNtlPLSceneManager
@@ -47,43 +47,43 @@ class CNtlPLSceneManager
 public:
 
 	/**
-    *  presentation scene manager°¡ »ı¼ºµÈ ´ÙÀ½ È£ÃâÇÏ´Â interface ÇÔ¼ö.
-	*  \return ¼º°øÇÏ¸é true¸¦ µ¹·ÁÁÖ°í, ½ÇÆĞÇÏ¸é false¸¦ µ¹·ÁÁØ´Ù.
+    *  presentation scene managerê°€ ìƒì„±ëœ ë‹¤ìŒ í˜¸ì¶œí•˜ëŠ” interface í•¨ìˆ˜.
+	*  \return ì„±ê³µí•˜ë©´ trueë¥¼ ëŒë ¤ì£¼ê³ , ì‹¤íŒ¨í•˜ë©´ falseë¥¼ ëŒë ¤ì¤€ë‹¤.
     *
     */
 	virtual RwBool Create(void) = 0;
 
 	/**
-    *  presentation scene manager°¡ ¼Ò¸êµÇ±â Àü¿¡ È£ÃâÇÏ´Â interface ÇÔ¼ö.
+    *  presentation scene managerê°€ ì†Œë©¸ë˜ê¸° ì „ì— í˜¸ì¶œí•˜ëŠ” interface í•¨ìˆ˜.
     *
     */
 	virtual void Destroy(void) = 0;
 
 
 	/**
-    *  presentation scene manager update ÇÔ¼ö.
+    *  presentation scene manager update í•¨ìˆ˜.
     *
     */
 	virtual void Update(RwReal fElapsed) = 0;
 
 	/**
-    *  presentation scene manager update Àü¿¡ ui¿¡ entity¸¦ rendering ÇÏ±â À§ÇÑ ÇÔ¼ö.
-	* render ware´Â camera updateµéÀÌ °ãÄ¡¸é ¾ÈµÈ´Ù.
-	* UIµµ camera texture¸¦ »ç¿ëÇÏ¹Ç·Î, main scene camera¿Í update°¡ °ãÄ¡¸é ¾ÈµÈ´Ù.
+    *  presentation scene manager update ì „ì— uiì— entityë¥¼ rendering í•˜ê¸° ìœ„í•œ í•¨ìˆ˜.
+	* render wareëŠ” camera updateë“¤ì´ ê²¹ì¹˜ë©´ ì•ˆëœë‹¤.
+	* UIë„ camera textureë¥¼ ì‚¬ìš©í•˜ë¯€ë¡œ, main scene cameraì™€ updateê°€ ê²¹ì¹˜ë©´ ì•ˆëœë‹¤.
     *
     */
 	virtual void UpdateBeforeCamera(RwReal fElapsed) = 0;
 
 
 	/**
-    *  presentation scene manager render ÇÔ¼ö.
+    *  presentation scene manager render í•¨ìˆ˜.
     *
     */
 	virtual void Render(void) = 0;
 	virtual void Render4RWWorld(void) = 0;
 
 	/**
-    *  presentation scene manager postrender ÇÔ¼ö.
+    *  presentation scene manager postrender í•¨ìˆ˜.
     *
     */
 	virtual void PostRender(void) = 0;
@@ -102,34 +102,34 @@ public:
 	virtual void ResetGuiManager(RwInt32 iScreenWidth, RwInt32 iScreenHeight) = 0;
 
 	/**
-    *  entity¸¦ create ÇÏ´Â factory interface  ÇÔ¼ö.
-	*  entity factory class¸¦ µû·Î ¸¸µé°ÍÀÎÁö¸¦ °ËÅäÇØ¾ß ÇÑ´Ù.
-	*  \return ¼º°øÇÏ¸é entity base pointer¸¦ µ¹·ÁÁÖ°í, ½ÇÆĞÇÏ¸é NULL¸¦ µ¹·ÁÁØ´Ù.
+    *  entityë¥¼ create í•˜ëŠ” factory interface  í•¨ìˆ˜.
+	*  entity factory classë¥¼ ë”°ë¡œ ë§Œë“¤ê²ƒì¸ì§€ë¥¼ ê²€í† í•´ì•¼ í•œë‹¤.
+	*  \return ì„±ê³µí•˜ë©´ entity base pointerë¥¼ ëŒë ¤ì£¼ê³ , ì‹¤íŒ¨í•˜ë©´ NULLë¥¼ ëŒë ¤ì¤€ë‹¤.
 	*  \see DeleteEntity
     *
     */
 	virtual CNtlPLEntity* CreateEntity(ENtlPLEntityType eType, const RwChar *pKey, const SPLEntityCreateParam *pParam = NULL) = 0;
 
 	/**
-    *  entity¸¦ delete ÇÏ´Â factory interface ÇÔ¼ö.
-	*  entity factory class¸¦ µû·Î ¸¸µé°ÍÀÎÁö¸¦ °ËÅäÇØ¾ß ÇÑ´Ù.
-	*  \param pEntity »èÁ¦ÇÒ entity pointer
+    *  entityë¥¼ delete í•˜ëŠ” factory interface í•¨ìˆ˜.
+	*  entity factory classë¥¼ ë”°ë¡œ ë§Œë“¤ê²ƒì¸ì§€ë¥¼ ê²€í† í•´ì•¼ í•œë‹¤.
+	*  \param pEntity ì‚­ì œí•  entity pointer
 	*  \see CreateEntity
     *
     */
 	virtual void DeleteEntity(CNtlPLEntity *pEntity) = 0;
 
 	/**
-    *  entity¸¦ scene manager¿¡ add interface ÇÔ¼ö.
-	*  \param pEntity scene manager¿¡ Ãß°¡ÇÒ entity pointer
+    *  entityë¥¼ scene managerì— add interface í•¨ìˆ˜.
+	*  \param pEntity scene managerì— ì¶”ê°€í•  entity pointer
 	*  \see RemovePLEntity
     *
     */
 	virtual RwBool AddPLEntity(CNtlPLEntity *pEntity) = 0;
 
 	/**
-    *  entity¸¦ scene manager¿¡¼­ removeÇÏ´Â interface ÇÔ¼ö.
-	*  \param pEntity scene manager¿¡ Á¦°ÅÇÒ entity pointer
+    *  entityë¥¼ scene managerì—ì„œ removeí•˜ëŠ” interface í•¨ìˆ˜.
+	*  \param pEntity scene managerì— ì œê±°í•  entity pointer
 	*  \see AddPLEntity
     *
     */
@@ -137,97 +137,97 @@ public:
 
 
 	/**
-    *  entity¸¦ scene managerÀÇ update¿¡ addÇÏ´Â interface ÇÔ¼ö.
-	*  \param pEntity scene manager¿¡ addÇÒ entity pointer
+    *  entityë¥¼ scene managerì˜ updateì— addí•˜ëŠ” interface í•¨ìˆ˜.
+	*  \param pEntity scene managerì— addí•  entity pointer
 	*  \see RemoveUpdate
     *
     */
 	virtual void AddUpdate(CNtlPLEntity *pEntity) = 0;
 
 	/**
-    *  entity¸¦ scene managerÀÇ update¿¡ removeÇÏ´Â interface ÇÔ¼ö.
-	*  \param pEntity scene manager¿¡ removeÇÒ entity pointer
+    *  entityë¥¼ scene managerì˜ updateì— removeí•˜ëŠ” interface í•¨ìˆ˜.
+	*  \param pEntity scene managerì— removeí•  entity pointer
 	*  \see AddUpdate
     *
     */
 	virtual void RemoveUpdate(CNtlPLEntity *pEntity) = 0;
 
 	/**
-    *  entity¸¦ distance filtering manager¿¡ Ãß°¡ÇÑ´Ù.
-	*  \param pEntity distance filtering manager¿¡ addÇÒ entity pointer
+    *  entityë¥¼ distance filtering managerì— ì¶”ê°€í•œë‹¤.
+	*  \param pEntity distance filtering managerì— addí•  entity pointer
 	*  \see RemoveDistanceFilter
     *
     */
 	virtual void AddDistanceFilter(CNtlPLEntity *pEntity) = 0;
 
 	/**
-    *  entity¸¦ distance filtering manager¿¡ »èÁ¦ÇÑ´Ù.
-	*  \param pEntity distance filtering manager¿¡ removeÇÒ entity pointer
+    *  entityë¥¼ distance filtering managerì— ì‚­ì œí•œë‹¤.
+	*  \param pEntity distance filtering managerì— removeí•  entity pointer
 	*  \see AddDistanceFilter
     *
     */
 	virtual void RemoveDistanceFilter(CNtlPLEntity *pEntity) = 0;
 
 	/**
-    *  ÇöÀç active µÇ¾î ÀÖ´Â world type(renderware world or height fieldÀÎ°¡?)
+    *  í˜„ì¬ active ë˜ì–´ ìˆëŠ” world type(renderware world or height fieldì¸ê°€?)
     *
     */
 	virtual EActiveWorldType GetActiveWorldType(void) = 0;
 
 	/**
-	*  world °¡ ÁØºñ µÇ¾î ÀÖ´Â°¡?
+	*  world ê°€ ì¤€ë¹„ ë˜ì–´ ìˆëŠ”ê°€?
 	*  \return ready is TRUE or FALSE
 	*
 	*/
 	virtual RwBool IsWorldReady(void) = 0;
 
 	/**
-    *  world position¿¡ ÇØ´çÇÏ´Â terrain ¹× ¿ÀºêÁ§Æ®¸¦ Æ÷ÇÔÇÑ worldÀÇ height¸¦ ±¸ÇÏ´Â interface ÇÔ¼ö.
-	*  \return terrain or object height value¸¦ ¸®ÅÏÇÑ´Ù.
-	*  \param pWorldPos world position¿¡ ÇØ´çÇÏ´Â RwV3d pointer
+    *  world positionì— í•´ë‹¹í•˜ëŠ” terrain ë° ì˜¤ë¸Œì íŠ¸ë¥¼ í¬í•¨í•œ worldì˜ heightë¥¼ êµ¬í•˜ëŠ” interface í•¨ìˆ˜.
+	*  \return terrain or object height valueë¥¼ ë¦¬í„´í•œë‹¤.
+	*  \param pWorldPos world positionì— í•´ë‹¹í•˜ëŠ” RwV3d pointer
 	*
     */
 	virtual RwBool GetWorldHeight(const RwV3d *pWorldPos, RwReal& fHeight, RwV3d *pNormal, RwReal fLineLen = 1000.0f) = 0;
 
 	/**
-    *  world position¿¡ ÇØ´çÇÏ´Â terrain ÁöÇü¸¸ ÇØ´çÇÏ´Â height¸¦ ±¸ÇÏ´Â interface ÇÔ¼ö.
-	*  \return terrain height value¸¦ ¸®ÅÏÇÑ´Ù.
-	*  \param pWorldPos world position¿¡ ÇØ´çÇÏ´Â RwV3d pointer
+    *  world positionì— í•´ë‹¹í•˜ëŠ” terrain ì§€í˜•ë§Œ í•´ë‹¹í•˜ëŠ” heightë¥¼ êµ¬í•˜ëŠ” interface í•¨ìˆ˜.
+	*  \return terrain height valueë¥¼ ë¦¬í„´í•œë‹¤.
+	*  \param pWorldPos world positionì— í•´ë‹¹í•˜ëŠ” RwV3d pointer
 	*
     */
 	virtual RwBool GetTerrainHeight(const RwV3d *pWorldPos, RwReal& fHeight) = 0;
 
 	/**
-    *  mouse picking½Ã¿¡ pickingµÈ entity¸¦ °ËÃâÇÏ´Â interface ÇÔ¼ö.
-	*  \param iPosX mouseÀÇ screen x-ÁÂÇ¥
-	*  \param iPosX mouseÀÇ screen y-ÁÂÇ¥
+    *  mouse pickingì‹œì— pickingëœ entityë¥¼ ê²€ì¶œí•˜ëŠ” interface í•¨ìˆ˜.
+	*  \param iPosX mouseì˜ screen x-ì¢Œí‘œ
+	*  \param iPosX mouseì˜ screen y-ì¢Œí‘œ
 	*
     */
 	virtual RwBool PickWorld(RwInt32 iPosX, RwInt32 iPosY, SWorldPickInfo& sPickInfo, RwReal fPickTerrainLimit, RwReal fPickObjLimit) = 0;
 
 	/**
-	*  WorldÀÇ ¹°°ú ÁöÇü¿¡ Ray InterSectionÀ» ½ÇÇàÇÑ´Ù.
+	*  Worldì˜ ë¬¼ê³¼ ì§€í˜•ì— Ray InterSectionì„ ì‹¤í–‰í•œë‹¤.
 	*/
 	virtual RwBool PickTerrian(RwV3d& vStartPos, RwV3d& vEndPos, SWorldPickInfo& sPickInfo) = 0;
 	virtual RwBool PickTerrianAndWater(RwV3d& vStartPos, RwV3d& vEndPos, SWorldPickInfo& sPickInfo) = 0;
 
 	/**
-    *  camera Ãæµ¹ °Ë»ç¸¦ ÇÏ¿©, »õ·Î¿î Ãæµ¹ camera À§Ä¡¸¦ ±¸ÇÑ´Ù.
-	*  \param1 pCameraPos ÇöÀç cameraÀÇ position
-	*  \param2 pLookAt ÇöÀç cameraÀÇ look at position
-	*  \param2 »õ·Î¿î cameraÀÇ position
+    *  camera ì¶©ëŒ ê²€ì‚¬ë¥¼ í•˜ì—¬, ìƒˆë¡œìš´ ì¶©ëŒ camera ìœ„ì¹˜ë¥¼ êµ¬í•œë‹¤.
+	*  \param1 pCameraPos í˜„ì¬ cameraì˜ position
+	*  \param2 pLookAt í˜„ì¬ cameraì˜ look at position
+	*  \param2 ìƒˆë¡œìš´ cameraì˜ position
 	*
     */
 	virtual RwBool GetCameraCollision(const RwV3d *pCameraPos, const RwV3d *pLookAt, RwReal fRadius, RwV3d& vNewPos) = 0;
 
 	/**
-	*  character Ãæµ¹ Ã³¸® ÇÔ¼ö.
+	*  character ì¶©ëŒ ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 // 	virtual RwBool CTChar2Poly(sNPE_COLLISION_PARAM& sNPECollisionParam) = 0;
 // 	virtual RwBool CTLine2Sphere(RwLine* _pLine, sNPE_COLLISION_PARAM& sNPECollisionParam) = 0;
 
 	/**
-    *  RpWorld pointer¸¦ ¾ò¾î¿À´Â interface ÇÔ¼ö.
+    *  RpWorld pointerë¥¼ ì–»ì–´ì˜¤ëŠ” interface í•¨ìˆ˜.
 	*
     */
 	virtual RpWorld* GetWorldPtr(void) = 0;
@@ -238,7 +238,7 @@ public:
 
 	/**
 	* world attribute
-	* \return worldÀÇ attribute value¸¦ ¸®ÅÏÇÑ´Ù.
+	* \return worldì˜ attribute valueë¥¼ ë¦¬í„´í•œë‹¤.
 	* \see GetWorldNormalAttribute
 	* \see GetWorldSpecialAttribute
 	*/
@@ -246,35 +246,35 @@ public:
 
 	/**
 	* world normal attribute
-	* \return worldÀÇ normal attribute value¸¦ ¸®ÅÏÇÑ´Ù.
+	* \return worldì˜ normal attribute valueë¥¼ ë¦¬í„´í•œë‹¤.
 	* \see GetWorldSpecialAttribute
 	*/
 	virtual DWORD GetWorldNormalAttribute(RwV3d vPos) = 0;
 
 	/**
-	* world special attribute(ÀÏ¹İ¼Ó¼º °ú Æ¯¼ö¼Ó¼ºÀ¸·Î ³ª´¶´Ù)
-	* \return worldÀÇ special attribute value¸¦ ¸®ÅÏÇÑ´Ù.
+	* world special attribute(ì¼ë°˜ì†ì„± ê³¼ íŠ¹ìˆ˜ì†ì„±ìœ¼ë¡œ ë‚˜ë‰œë‹¤)
+	* \return worldì˜ special attribute valueë¥¼ ë¦¬í„´í•œë‹¤.
 	* \see GetWorldNormalAttribute
 	*/
 	virtual DWORD GetWorldSpecialAttribute(RwV3d vPos) = 0;
 
 	/**
 	* world material attribute
-	* \return worldÀÇ material attribute value¸¦ ¸®ÅÏÇÑ´Ù.
+	* \return worldì˜ material attribute valueë¥¼ ë¦¬í„´í•œë‹¤.
 	*/
 	virtual BYTE GetWorldMaterialAttribute(RwV3d vPos) = 0;
 
 	/**
-	* ÀÏ¹İÀûÀ¸·Î worldÀÇ normal attribute¸¦ Ã¼Å©ÇÏ¿© ¹°ÀÏ °æ¿ì¿¡¸¸ »ç¿ëÇÑ´Ù.
-	* \return worldÀÇ water ³ôÀÌ.
+	* ì¼ë°˜ì ìœ¼ë¡œ worldì˜ normal attributeë¥¼ ì²´í¬í•˜ì—¬ ë¬¼ì¼ ê²½ìš°ì—ë§Œ ì‚¬ìš©í•œë‹¤.
+	* \return worldì˜ water ë†’ì´.
 	*/
 	virtual RwReal GetWorldWaterHeight(RwV3d vPos) = 0;
 
 
 
 	/**
-	* ÇöÀç À§Ä¡ÀÇ Bloom effect power factor¸¦ ±¸ÇØ¿Â´Ù.
-	* \return if TRUE ÀÌ¸é °ªÀÌ À¯È¿ÇÏ°í, FALSEÀÌ¸é À¯È¿ÇÏÁö ¾Ê´Ù.
+	* í˜„ì¬ ìœ„ì¹˜ì˜ Bloom effect power factorë¥¼ êµ¬í•´ì˜¨ë‹¤.
+	* \return if TRUE ì´ë©´ ê°’ì´ ìœ íš¨í•˜ê³ , FALSEì´ë©´ ìœ íš¨í•˜ì§€ ì•Šë‹¤.
 	*/
 	virtual RwReal						GetActiveBloomFactor(void) = 0; 
 
@@ -287,27 +287,27 @@ public:
 	virtual CNtlPLPlant*				GetPlant(void) = 0;
 	virtual CNtlPLWorldEntity*			GetWorld(void) = 0;
 
-	// ½ÇÁ¦ ¿ùµå ÁÂÇ¥¿¡ ÀÌµ¿ÇÒ¼ö ÀÖ´ÂÁö ¾ø´ÂÁö¸¦ Ã¼Å©ÇØÁØ´Ù.
+	// ì‹¤ì œ ì›”ë“œ ì¢Œí‘œì— ì´ë™í• ìˆ˜ ìˆëŠ”ì§€ ì—†ëŠ”ì§€ë¥¼ ì²´í¬í•´ì¤€ë‹¤.
 	virtual RwBool	GetAvailablePos(RwV3d& _CurPos) = 0;
 
-	// °ÔÀÓ¿¡¼­ ½Ç½Ã°£À¸·Î ¹è°æºÎºĞ·£´õ¸µ¿¡ PVS »ç¿ë À¯¹«¸¦ °áÁ¤ÇÏ°í ½ÍÀ»¶§
+	// ê²Œì„ì—ì„œ ì‹¤ì‹œê°„ìœ¼ë¡œ ë°°ê²½ë¶€ë¶„ëœë”ë§ì— PVS ì‚¬ìš© ìœ ë¬´ë¥¼ ê²°ì •í•˜ê³  ì‹¶ì„ë•Œ
 	virtual VOID	SetWorldPVSActivation(RwBool _Flag) = 0;
 
-	// ½ÇÁ¦ ¿ùµå ÁÂÇ¥ÀÇ ÁöÇü°ú ¼öÁ÷ÀÎ È¸Àü ¸ÅÆ®¸¯Æ®¸¦ ¾ò´Â´Ù.
+	// ì‹¤ì œ ì›”ë“œ ì¢Œí‘œì˜ ì§€í˜•ê³¼ ìˆ˜ì§ì¸ íšŒì „ ë§¤íŠ¸ë¦­íŠ¸ë¥¼ ì–»ëŠ”ë‹¤.
 	virtual RwBool	GetWorldTerrainRotate(RwMatrix* pmatOut, RwV3d* pvPos, RwBool bPosHeightChange, RwReal fLineLen = 1000.0f) = 0;
 
-    // »ç¿îµå¸¦ µè´Â ¸®½º³Ê °´Ã¼¸¦ ¼³Á¤ÇÑ´Ù. (NULL·Î ¼³Á¤ÇÏ¸é Ä«¸Ş¶ó À§Ä¡ Áß½ÉÀ¸·Î »ç¿îµå°¡ µé¸°´Ù)
+    // ì‚¬ìš´ë“œë¥¼ ë“£ëŠ” ë¦¬ìŠ¤ë„ˆ ê°ì²´ë¥¼ ì„¤ì •í•œë‹¤. (NULLë¡œ ì„¤ì •í•˜ë©´ ì¹´ë©”ë¼ ìœ„ì¹˜ ì¤‘ì‹¬ìœ¼ë¡œ ì‚¬ìš´ë“œê°€ ë“¤ë¦°ë‹¤)
     virtual VOID	SetSoundListener(CNtlPLEntity* pEntity) = 0;
 
-	// ÁöÁ¤µÈ À§Ä¡ÀÇ ±×¸²ÀÚ »ö»óÀ» ¾ò°í ½ÍÀ» ¶§ »ç¿ë
+	// ì§€ì •ëœ ìœ„ì¹˜ì˜ ê·¸ë¦¼ì ìƒ‰ìƒì„ ì–»ê³  ì‹¶ì„ ë•Œ ì‚¬ìš©
 	virtual RwBool	GetWorldShadowColor(RwV3d& vPos, RwRGBA* pOutColor) = 0;
 
-	// ÁöÁ¤µÈ À§Ä¡ÀÇ ¿¬»êµÈ ¿ùµå»ö»óÀ» ¾Ë°í ½ÍÀ» ¶§ »ç¿ë
+	// ì§€ì •ëœ ìœ„ì¹˜ì˜ ì—°ì‚°ëœ ì›”ë“œìƒ‰ìƒì„ ì•Œê³  ì‹¶ì„ ë•Œ ì‚¬ìš©
 	virtual RwBool	GetWorldLightColor(RwV3d& vPos, RwRGBA* pOutColor, RwBool bCalcShadow) = 0;
 
-    virtual void	SetEntityVisible(ENtlPLEntityType eLayer, RwBool bVisible) = 0;             ///< ·»´õ·¹ÀÌ¾îÀÇ ·»´õ¸µÀ» On/Off ÇÑ´Ù. (Å×½ºÆ®¿ë)
+    virtual void	SetEntityVisible(ENtlPLEntityType eLayer, RwBool bVisible) = 0;             ///< ë Œë”ë ˆì´ì–´ì˜ ë Œë”ë§ì„ On/Off í•œë‹¤. (í…ŒìŠ¤íŠ¸ìš©)
 
-	// PLENTITY_SUN Entity VisibleÀ» º¯°æÇÑ´Ù.
+	// PLENTITY_SUN Entity Visibleì„ ë³€ê²½í•œë‹¤.
 	virtual void	SetVisiblePlanet(RwBool bVisible) = 0;
 
 	virtual void	RunableRainBloomLight(RwReal fBloomShaderFadeInTime, RwReal fBloomShaderFadeOutTime) = 0;
@@ -316,7 +316,7 @@ public:
 };
 
 /**
-*  scene managerÀÇ instace ÇÔ¼ö.
+*  scene managerì˜ instace í•¨ìˆ˜.
 *
 */
 inline CNtlPLSceneManager* GetSceneManager(void)

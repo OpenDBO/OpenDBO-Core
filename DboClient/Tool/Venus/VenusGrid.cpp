@@ -2,7 +2,7 @@
 //	File		:	VenusGrid.cpp
 //	Desc		:	
 //	Begin		:	2004.9.30
-//	Copyright	:	¨Ï 2004 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2004 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -85,7 +85,7 @@ RwBool CVenusGrid::CreateGrid(RwInt32 nTileCount)
 
 	RwIm3DVertex* pBufferVertices = m_pVertex;
 
-	// °¡·Î
+	// ê°€ë¡œ
 	for (RwInt32 i = 0; i <= m_nTileCount; ++ i)
 	{
 		if ((i % 5) != nGap)
@@ -102,7 +102,7 @@ RwBool CVenusGrid::CreateGrid(RwInt32 nTileCount)
 		if (i == m_nTileCount / 2) RwIm3DVertexSetRGBA(pBufferVertices, 255, 0, 0, 255);
 		++ pBufferVertices;
 	}
-	// ¼¼·Î
+	// ì„¸ë¡œ
 	for (RwInt32 i = 0; i <= m_nTileCount; ++ i)
 	{
 		if ((i % 5) != nGap)
@@ -133,14 +133,14 @@ RwBool CVenusGrid::SetGridWidth(RwReal fGridWidth)
 {
 	m_fGridWidth = fGridWidth;
 
-    // ¾ÆÁ÷ ¹öÅØ½º¹öÆÛ°¡ »ý¼ºµÇÁö ¾Ê¾ÒÀ¸¸é °ª¸¸ ¼³Á¤ÇÑ´Ù.
+    // ì•„ì§ ë²„í…ìŠ¤ë²„í¼ê°€ ìƒì„±ë˜ì§€ ì•Šì•˜ìœ¼ë©´ ê°’ë§Œ ì„¤ì •í•œë‹¤.
     if(!m_pVertex)
         return TRUE;
 
 	RwReal fStart = (RwReal)(m_nTileCount / 2) * fGridWidth;
 	RwV3d vStartPosition = {-fStart, 0, -fStart};
 
-	// °¡·Î
+	// ê°€ë¡œ
 	RwIm3DVertex* pBufferVertices = m_pVertex;
 	for (RwInt32 i = 0; i <= m_nTileCount; ++ i)
 	{
@@ -150,7 +150,7 @@ RwBool CVenusGrid::SetGridWidth(RwReal fGridWidth)
 		RwIm3DVertexSetPos(pBufferVertices, vStartPosition.x + (fGridWidth*m_nTileCount), vStartPosition.y, vStartPosition.z + (fGridWidth*i));
 		++ pBufferVertices;
 	}
-	// ¼¼·Î
+	// ì„¸ë¡œ
 	for (RwInt32 i = 0; i <= m_nTileCount; ++ i)
 	{
 		RwIm3DVertexSetPos(pBufferVertices, vStartPosition.x + (fGridWidth*i), vStartPosition.y, vStartPosition.z);

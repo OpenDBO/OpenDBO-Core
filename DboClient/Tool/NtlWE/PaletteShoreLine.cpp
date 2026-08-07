@@ -1,4 +1,4 @@
-// PaletteShoreLine.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PaletteShoreLine.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -10,7 +10,7 @@
 #include "NtlWorldPaletteDefine.h"
 
 
-// CPaletteShoreLine ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteShoreLine ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPaletteShoreLine, CDialog)
 
@@ -153,11 +153,11 @@ void CPaletteShoreLine::InitializeWorldData()
 	UpdateData(FALSE);
 }
 
-// CPaletteShoreLine ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPaletteShoreLine ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 /*
 void CPaletteShoreLine::OnBnClickedAutoGenShoreline()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 */
 BOOL CPaletteShoreLine::OnInitDialog()
@@ -165,7 +165,7 @@ BOOL CPaletteShoreLine::OnInitDialog()
 	CDialog::OnInitDialog();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CPaletteShoreLine::OnTvnSelchangedScriptTree(NMHDR *pNMHDR, LRESULT *pResult)

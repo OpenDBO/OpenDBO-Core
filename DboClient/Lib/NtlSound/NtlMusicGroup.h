@@ -2,15 +2,15 @@
 *
 * File			: NtlMusicGroup.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2006. 7. 11	
 * Abstract		: Background Music Channel Group
 *****************************************************************************
-* Desc			: ´Ù¸¥ À½¾ÇÀ¸·Î ÀüÈ¯µÉ½Ã ÀÌÀü À½¾Ç(PostMusic)Àº
-*				  Fade Out ÀÌ µÇ¸ç mapÀÇ Ã³À½¿¡ À§Ä¡ÇÏ°í »õ·Î¿î À½¾ÇÀº
-*				  mapÀÇ µÎ¹øÂ°¿¡ À§Ä¡ÇÑ´Ù
+* Desc			: ë‹¤ë¥¸ ìŒì•…ìœ¼ë¡œ ì „í™˜ë ì‹œ ì´ì „ ìŒì•…(PostMusic)ì€
+*				  Fade Out ì´ ë˜ë©° mapì˜ ì²˜ìŒì— ìœ„ì¹˜í•˜ê³  ìƒˆë¡œìš´ ìŒì•…ì€
+*				  mapì˜ ë‘ë²ˆì§¸ì— ìœ„ì¹˜í•œë‹¤
 *
-*				  ÀÏ´Ü Fade OutÀÌ ½ÃÀÛµÈ PostMusicÀº »ç¶óÁ®¾ß¸¸ ÇÑ´Ù
+*				  ì¼ë‹¨ Fade Outì´ ì‹œì‘ëœ PostMusicì€ ì‚¬ë¼ì ¸ì•¼ë§Œ í•œë‹¤
 *****************************************************************************/
 
 #pragma once
@@ -38,8 +38,8 @@ protected:
 	virtual void	ReleaseFinishedSound(float fElapsed);
 
 protected:
-	float			m_fDelayReplayTime;						///< ¹İº¹µÇ´Â À½¾ÇÀÇ ´ÙÀ½ Àç»ı±îÁö ÈŞ½Ä ½Ã°£(´ÜÀ§ : ÃÊ)
-	float			m_fReplayElapsed;						///< ÇöÀç À½¾ÇÀÇ ´ÙÀ½ Àç»ı±îÁö ³²Àº ½Ã°£
+	float			m_fDelayReplayTime;						///< ë°˜ë³µë˜ëŠ” ìŒì•…ì˜ ë‹¤ìŒ ì¬ìƒê¹Œì§€ íœ´ì‹ ì‹œê°„(ë‹¨ìœ„ : ì´ˆ)
+	float			m_fReplayElapsed;						///< í˜„ì¬ ìŒì•…ì˜ ë‹¤ìŒ ì¬ìƒê¹Œì§€ ë‚¨ì€ ì‹œê°„
 
-	SOUND_HANDLE	m_hPostSound;							///< Fade out ÈÄ »èÁ¦µÉ »ç¿îµå ÇÚµé
+	SOUND_HANDLE	m_hPostSound;							///< Fade out í›„ ì‚­ì œë  ì‚¬ìš´ë“œ í•¸ë“¤
 };

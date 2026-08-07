@@ -1,4 +1,4 @@
-// AssetObjectView.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// AssetObjectView.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -24,16 +24,16 @@ BEGIN_MESSAGE_MAP(CAssetObjectView, CView)
 END_MESSAGE_MAP()
 
 
-// CAssetObjectView ±×¸®±âÀÔ´Ï´Ù.
+// CAssetObjectView ê·¸ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CAssetObjectView::OnDraw(CDC* pDC)
 {
 //	CDocument* pDoc = GetDocument();
-	// TODO: ¿©±â¿¡ ±×¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ê·¸ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 
-// CAssetObjectView Áø´ÜÀÔ´Ï´Ù.
+// CAssetObjectView ì§„ë‹¨ì…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CAssetObjectView::AssertValid() const
@@ -48,7 +48,7 @@ void CAssetObjectView::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CAssetObjectView ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAssetObjectView ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CAssetObjectView::OnInitialUpdate()
 {

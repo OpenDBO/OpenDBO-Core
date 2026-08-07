@@ -2,7 +2,7 @@
  *
  * File			: NtlSobItemAttr.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 11. 30	
  * Abstract		: Simulation object item attribute base class
  *****************************************************************************
@@ -25,23 +25,23 @@ private:
 
 	sITEM_TBLDAT *m_pItemTbl;
 	RwUInt8 m_byStackNum;
-	RwUInt8 m_byRank;		/** item µî±Ş */
-	RwUInt8 m_byGrade;		/** item ¾÷±×·¹ÀÌµå µî±Ş **/
-	RwUInt8 m_byDur;		/** item ³»±¸µµ */
-	RwUInt8 m_byMaxDur;		/** item max ³»±¸µµ */
-	RwBool	m_bNeedToIdentify; /** item identify ÇÊ¿ä¿©ºÎ **/
+	RwUInt8 m_byRank;		/** item ë“±ê¸‰ */
+	RwUInt8 m_byGrade;		/** item ì—…ê·¸ë ˆì´ë“œ ë“±ê¸‰ **/
+	RwUInt8 m_byDur;		/** item ë‚´êµ¬ë„ */
+	RwUInt8 m_byMaxDur;		/** item max ë‚´êµ¬ë„ */
+	RwBool	m_bNeedToIdentify; /** item identify í•„ìš”ì—¬ë¶€ **/
 	sITEM_OPTION_SET	m_sOptionSet;
 	RwUInt8 m_ucBattleAttribute;
 
-	RwUInt8	m_ucRestrictState;	/** ±Í¼Ó»óÅÂ eITEM_RESTRICT_STATE_TYPE **/
-	std::wstring m_wstrMaker;	/** Á¦ÀÛÀÚ **/
+	RwUInt8	m_ucRestrictState;	/** ê·€ì†ìƒíƒœ eITEM_RESTRICT_STATE_TYPE **/
+	std::wstring m_wstrMaker;	/** ì œì‘ì **/
 
-	RwUInt8		m_ucDurationType;	/** »ç¿ë±â°£ eDURATIONTYPE **/
-	DBOTIME		m_StartTime;		/** ÀÎº¥Åä¸®¿¡ µé¾î¿Â ³¯Â¥ **/
-	DBOTIME		m_EndTime;			/** »ç¿ë ¸¸·á ±â°£ **/
-	DBOTIME		m_RemainTime;		/** ³²Àº½Ã°£ ÃÊ **/
-	RwReal		m_fRemainTimeBelowPeriod;		/** ³²Àº½Ã°£ ¼Ò¼öÁ¡ ÀÌÇÏ **/
-	RwReal		m_fNotifyTime;		/** ³²Àº½Ã°£ ¾Ë¸²°£°İ **/
+	RwUInt8		m_ucDurationType;	/** ì‚¬ìš©ê¸°ê°„ eDURATIONTYPE **/
+	DBOTIME		m_StartTime;		/** ì¸ë²¤í† ë¦¬ì— ë“¤ì–´ì˜¨ ë‚ ì§œ **/
+	DBOTIME		m_EndTime;			/** ì‚¬ìš© ë§Œë£Œ ê¸°ê°„ **/
+	DBOTIME		m_RemainTime;		/** ë‚¨ì€ì‹œê°„ ì´ˆ **/
+	RwReal		m_fRemainTimeBelowPeriod;		/** ë‚¨ì€ì‹œê°„ ì†Œìˆ˜ì  ì´í•˜ **/
+	RwReal		m_fNotifyTime;		/** ë‚¨ì€ì‹œê°„ ì•Œë¦¼ê°„ê²© **/
 		
 public:
 

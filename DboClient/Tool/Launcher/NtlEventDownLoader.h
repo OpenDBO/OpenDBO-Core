@@ -2,11 +2,11 @@
  *
  * File			: NtlEventDonwLoader.h
  * Author		: HongHoDong
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2007. 2. 6.
  * Abstract		: 
  *****************************************************************************
- * Desc         : DownLoad Áß¿¡ ¹ß»ıÇÏ´Â Event
+ * Desc         : DownLoad ì¤‘ì— ë°œìƒí•˜ëŠ” Event
  *
  *****************************************************************************/
 #pragma once

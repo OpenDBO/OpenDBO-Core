@@ -2,7 +2,7 @@
  *
  * File			: DboPacketGenerator.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (å ì™ì˜™)NTL
  * Date			: 2005. 9. 27	
  * Abstract		: DBO packet generator
  *****************************************************************************
@@ -165,7 +165,7 @@ public:
 	bool SendPartyZennyDivision(RwUInt8 byDivision);
 	bool SendPartyItemDivision(RwUInt8 byDivision);
 
-	bool SendPartyShareTargetReq(RwUInt8 bySlot, RwUInt32 hTarget);                ///< ÆÄÆ¼ °øÀ¯ Å¸°Ù ¼±ÅÃÀ» ¼­¹ö¿¡ ¿äÃ»ÇÑ´Ù.
+	bool SendPartyShareTargetReq(RwUInt8 bySlot, RwUInt32 hTarget);                ///< å ì™ì˜™í‹° å ì™ì˜™å ì™ì˜™ íƒ€å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™ì²­å ì‹¼ëŒì˜™.
 
 	bool SendPartyDungeonChangeReq(RwUInt32 uiPartyDungeonState);
 	bool SendPartyDungeonInitReq(void);
@@ -212,14 +212,14 @@ public:
 	bool SendGuildWarehouseZennyReq(RwUInt32 uiNPCSerial, RwUInt32 uiZenny, RwBool bSave);
 	bool SendGuildWarehouseEnd();
 
-	// µµÀå
+	// å ì™ì˜™å ì™ì˜™
 	bool SendDojo_CreateReq(RwUInt32 uiNPCHandle);
 	bool SendDojo_FunctionAddReq(RwUInt32 uiGuildManagerHandle, RwUInt8 byFunction, RwUInt8 byPlace, RwUInt8 byPos);
 	bool SendDojo_ScrambleReq(RwUInt32 uiNPCHandle);
 	bool SendDojo_ScrambleResponseReq(bool bAccept);
 	bool SendDojo_NPCInfoReq(RwUInt32 uiNPCSerial);
 
-	// µµº¹
+	// å ì™ì˜™å ì™ì˜™
 	bool SendDogi_CreateReq(RwUInt32 uiHandle, void* pDogiData);
 	bool SendDogi_ChagneReq(RwUInt32 uiHandle, void* pDogiData);
 	bool SendGuildDogi_CreateReq(RwUInt32 uiHandle, void* pDogiData);
@@ -245,7 +245,7 @@ public:
 	//bool SendRBMatchCancelReq(void);
 	
 	// PrivateShop
-	//bool SendPrivateShopCreateReq(); // SL·Î ÀÌµ¿
+	//bool SendPrivateShopCreateReq(); // SLå ì™ì˜™ å ì‹±ë“¸ì˜™
 	bool SendPrivateShopExitReq();
 	bool SendPrivateShopOpenReq(const WCHAR* pwcPrivateShopName, const WCHAR* pwcNotice, bool bIsOwnerEmpty);
 	bool SendPrivateShopCloseReq();
@@ -268,7 +268,7 @@ public:
 	bool SendMailDelReq(RwUInt32 hSerialID, MAILID mailID);
 	bool SendMailReturnReq(RwUInt32 hSerialID, MAILID mailID);
 	bool SendMailReloadReq(RwUInt32 hSerialID);
-	//bool SendMailLoadReq(RwUInt32 hSerialID, MAILID mailID); // SL ·Î ÀÌµ¿
+	//bool SendMailLoadReq(RwUInt32 hSerialID, MAILID mailID); // SL å ì™ì˜™ å ì‹±ë“¸ì˜™
 	bool SendMailItemReceiveReq(RwUInt32 hSerialID, MAILID mailID);
 	bool SendMailLockReq(RwUInt32 hSerialID, MAILID mailID, bool bIsLock);
 	bool SendCharAwayReq(bool bIsAway);
@@ -281,9 +281,9 @@ public:
 	bool	SendAuctionHouseBuyReq(ITEMID nItem);
 
     // Portal System
-    bool SendPortalStartReq(RwUInt32 hSerialID, RwBool* pPacketLock);                    ///< Æ÷Å» NPC¸¦ Å¬¸¯Çß´Ù´Â ÆĞÅ¶À» º¸³½´Ù.
-    bool SendPortalAddReq(RwUInt32 hSerialID);                      ///< Æ÷Å» NPC¿¡ ¼³Á¤µÈ Æ÷ÀÎÆ®ÀÇ µî·ÏÀ» ¿äÃ»ÇÑ´Ù.
-    bool SendPortalReq(RwUInt32 hSerialID, BYTE byPoint);           ///< Æ÷Å» ÀÌµ¿À» ¿äÃ»ÇÑ´Ù.
+    bool SendPortalStartReq(RwUInt32 hSerialID, RwBool* pPacketLock);                    ///< å ì™ì˜™íƒˆ NPCå ì™ì˜™ í´å ì™ì˜™å ìŒ©ë‹¤ëŒì˜™ å ì™ì˜™í‚·å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™.
+    bool SendPortalAddReq(RwUInt32 hSerialID);                      ///< í¬íƒˆ NPCì— ì„¤ì •ëœ í¬ì¸íŠ¸ì˜ ë“±ë¡ì„ ìš”ì²­í•œë‹¤.
+    bool SendPortalReq(RwUInt32 hSerialID, BYTE byPoint);           ///< å ì™ì˜™íƒˆ å ì‹±ë“¸ì˜™å ì™ì˜™ å ì™ì˜™ì²­å ì‹¼ëŒì˜™.
 
 	// WarFog
 	bool SendWarFogUpdateReq(RwUInt32 uiTriggerObjectIndex);
@@ -292,12 +292,12 @@ public:
 	bool SendBlockModeReq(bool bIsOn);
 
 	// KnockDown Recovery
-	bool SendCharKnockDownReleaseNfy();								///< ³Ë´Ù¿îÀ» È¸º¹ÇÑ´Ù°í ¿äÃ»ÇÑ´Ù.
+	bool SendCharKnockDownReleaseNfy();								///< å ì‹¯ë‹¤ìš¸ì˜™å ì™ì˜™ íšŒå ì™ì˜™å ì‹¼ë‹¤ê³¤ì˜™ å ì™ì˜™ì²­å ì‹¼ëŒì˜™.
 
-    // º¯½Å    
-    bool SendTransformCancelReq();                              ///< º¯½Å Ãë¼Ò¸¦ ¿äÃ»ÇÑ´Ù.
+    // å ì™ì˜™å ì™ì˜™    
+    bool SendTransformCancelReq();                              ///< ë³€ì‹  ì·¨ì†Œë¥¼ ìš”ì²­í•œë‹¤.
 
-	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ½ÅÃ» °ü·Ã
+	// ì²œå ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™íšŒ å ì™ì˜™ì²­ å ì™ì˜™å ì™ì˜™
 	bool SendBudokaiJoinIndividualReq();
 	bool SendBudokaiLeaveIndividualReq();
 	bool SendBudokaiJoinTeamInfoReq();
@@ -309,7 +309,7 @@ public:
 	bool SendBudokaiPrizeWinnerNameReq();
 	bool SendBudokaiPrizeTeamWinnerNameReq();
 
-	// ÁÖ»çÀ§
+	// å ìŒì‚¼ì˜™å ì™ì˜™
 	bool SendRoolReq();
 	bool SendItemDiceReq(HOBJECT hItemHandle, BYTE byDice);
 
@@ -319,7 +319,7 @@ public:
 	// Teleport
 	bool SendTeleportConfirmReq(bool bTeleport, RwUInt8 byTeleportIndex);
 
-	// ½ºÅ³ÃÊ±âÈ­
+	// å ì™ì˜™í‚¬å ì‹­ê¹ì˜™í™”
 	bool SendSkillInitReq(RwUInt32 hSerialID);
 	bool SendSkillResetPlusReq(BYTE byPlace, BYTE byPos);
 	bool SendResetSkillOne(BYTE Place, BYTE Pos, BYTE SlotIndex);
@@ -335,7 +335,7 @@ public:
 	bool SendHoipoiMixItemCreateReq(HOBJECT hObject, TBLIDX idxRecipe, BYTE byMaterialCount, void* aMaterialSlot);
 
 	// bus
-	bool SendBusWorldMapStatus(bool bIsWorldMapOpen);
+	bool SendBusWorldMapStatus(bool bIsWorldMapOpen, TBLIDX worldMapZoneId = INVALID_ZONEID);
 
 	// NetPyShop
 	bool SendShopNetPyItemStartReq();
@@ -403,16 +403,16 @@ public:
 	bool SendGuild_Notice_Req(RwUInt16 wNoticeLength, const WCHAR* pwcNotice);
 
     // Friend System
-    bool SendFriend_Add_Req(const WCHAR* pName);              ///< Ä£±¸ Ãß°¡¸¦ ¿äÃ»ÇÑ´Ù.
-    bool SendFriend_Del_Req(RwUInt32 uiTargetID, const WCHAR* pName);             ///< Ä£±¸ »èÁ¦¸¦ ¿äÃ»ÇÑ´Ù.
-    bool SendFriend_Move_Req(RwUInt32 uiTargetID, const WCHAR* pName);            ///< Ä£±¸ ¸®½ºÆ®->ºí·¢¸®½ºÆ® ÀÌµ¿À» ¿äÃ»ÇÑ´Ù.
-    bool SendFriend_Black_Add_Req(const WCHAR* pName);        ///< ºí·¢ ¸®½ºÆ® Ãß°¡¸¦ ¿äÃ»ÇÑ´Ù.
-    bool SendFriend_Black_Del_Req(RwUInt32 uiTargetID, const WCHAR* pName);       ///< ºí·¢ ¸®½ºÆ® »èÁ¦¸¦ ¿äÃ»ÇÑ´Ù.
+    bool SendFriend_Add_Req(const WCHAR* pName);              ///< ì¹œå ì™ì˜™ å ìŒ©ê³¤ì˜™å ì™ì˜™ å ì™ì˜™ì²­å ì‹¼ëŒì˜™.
+    bool SendFriend_Del_Req(RwUInt32 uiTargetID, const WCHAR* pName);             ///< ì¹œå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™ì²­å ì‹¼ëŒì˜™.
+    bool SendFriend_Move_Req(RwUInt32 uiTargetID, const WCHAR* pName);            ///< ì¹œå ì™ì˜™ å ì™ì˜™å ì™ì˜™íŠ¸->å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™íŠ¸ å ì‹±ë“¸ì˜™å ì™ì˜™ å ì™ì˜™ì²­å ì‹¼ëŒì˜™.
+    bool SendFriend_Black_Add_Req(const WCHAR* pName);        ///< å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™íŠ¸ å ìŒ©ê³¤ì˜™å ì™ì˜™ å ì™ì˜™ì²­å ì‹¼ëŒì˜™.
+    bool SendFriend_Black_Del_Req(RwUInt32 uiTargetID, const WCHAR* pName);       ///< å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™íŠ¸ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™ì²­å ì‹¼ëŒì˜™.
 
 	// Ranking Board
-	bool SendRankBattle_Rank_List_Req( RwInt32 dwPage, RwInt8 byCompareDay );	// ·©Å· º¸µå ¸®½ºÆ®¸¦ ¿äÃ»ÇÑ´Ù.
-	bool SendRankBattle_Rank_Find_Character_Req( RwInt32 dwPage, RwInt8 byCompareDay, const WCHAR *pCharName );	// °Ë»öÇÒ Ä³¸¯ÅÍ°¡ ÀÖ´Â ¸®½ºÆ®¸¦ ¿äÃ»ÇÑ´Ù.
-	bool SendRankBattle_Rank_Compare_Day_Req( RwInt32 dwPage, RwInt8 byCompareDay );	// ºñ±³³¯Â¥¿¡ µû¸¥ ¸®½ºÆ®¸¦ ¿äÃ»ÇÑ´Ù.
+	bool SendRankBattle_Rank_List_Req( RwInt32 dwPage, RwInt8 byCompareDay );	// å ì™ì˜™í‚¹ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™íŠ¸å ì™ì˜™ å ì™ì˜™ì²­å ì‹¼ëŒì˜™.
+	bool SendRankBattle_Rank_Find_Character_Req( RwInt32 dwPage, RwInt8 byCompareDay, const WCHAR *pCharName );	// å ì‹¯ì‚¼ì˜™å ì™ì˜™ ìºå ì™ì˜™å ì‹¶ê³¤ì˜™ å ìŒëŒì˜™ å ì™ì˜™å ì™ì˜™íŠ¸å ì™ì˜™ å ì™ì˜™ì²­å ì‹¼ëŒì˜™.
+	bool SendRankBattle_Rank_Compare_Day_Req( RwInt32 dwPage, RwInt8 byCompareDay );	// å ìŸêµë†‚ì˜™ì§œå ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™íŠ¸å ì™ì˜™ å ì™ì˜™ì²­å ì‹¼ëŒì˜™.
 
 	bool SendTMQ_Record_List_Req( RwUInt32 tmqTblidx, RwUInt8 byDifficult );
 	bool SendTMQ_Member_List_Req( RwUInt32 tmqTblidx, RwUInt8 byDifficult, RwUInt8 byRank );
@@ -423,7 +423,7 @@ public:
 	bool SendBudokaiTournamentTeamListReq( RwUInt8 byReceivedListCount );
 	bool SendBudokaiTournamentTeamInfoReq( RwUInt16 wJoinID1, RwUInt16 wJoinID2 );	
 
-	// µµÀå
+	// å ì™ì˜™å ì™ì˜™
 	bool SendDojo_BudokaiSeedAddReq(const WCHAR* pwcCharName);
 	bool SendDojo_NoticeChangeReq(RwUInt16 wNoticeLengthInUnicode, WCHAR* awcNotice);
 

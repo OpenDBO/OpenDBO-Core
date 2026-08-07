@@ -1,4 +1,4 @@
-// BotPane.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// BotPane.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -46,7 +46,7 @@ END_MESSAGE_MAP()
 void CBotPane::CBotTree::OnTvnSelchanged(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMTREEVIEW pNMTreeView = reinterpret_cast<LPNMTREEVIEW>(pNMHDR);
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	HTREEITEM hItem = GetSelectedItem();
 
@@ -57,7 +57,7 @@ void CBotPane::CBotTree::OnDestroy()
 {
 	CTreeCtrl::OnDestroy();
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 
@@ -85,7 +85,7 @@ END_MESSAGE_MAP()
 
 
 
-// CBotPane ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CBotPane ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 
 
@@ -94,7 +94,7 @@ int CBotPane::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// TODO:  ¿©±â¿¡ Æ¯¼öÈ­µÈ ÀÛ¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì‘ì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	XTPImageManager()->SetMaskColor(RGB(0, 0xFF, 0));
 	VERIFY(m_wndToolBar.CreateToolBar(WS_VISIBLE|WS_CHILD|CBRS_TOOLTIPS, this));
@@ -178,7 +178,7 @@ void CBotPane::OnSize(UINT nType, int cx, int cy)
 {
 	CWnd::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	CSize sz(0);
 	if (m_wndToolBar.GetSafeHwnd())
@@ -198,7 +198,7 @@ void CBotPane::OnDestroy()
 {
 	CWnd::OnDestroy();
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	std::list<SBotTreeData*>::iterator it;
 	for(it = m_listTreeData.begin(); it != m_listTreeData.end(); it++)

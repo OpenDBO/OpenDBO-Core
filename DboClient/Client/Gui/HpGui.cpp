@@ -1080,7 +1080,7 @@ VOID CHpGui::CalcBattleAttribute(VOID)
 	m_sBattleAttr.bySourceWeaponAttr = pSobAvatarAttr->GetMainBattleAttr();
 	m_sBattleAttr.bySourceArmorAttr = pSobAvatarAttr->GetArmorBattleAttr();
 
-	// ���ó�ʼ����
+	// 占쏙옙占시놂옙迦占쏙옙占쏙옙
 	m_sBattleAttr.afSourceOffenceBonus[BATTLE_ATTRIBUTE_HONEST] = pSobAvatarAttr->m_fHonestOffense;
 	m_sBattleAttr.afSourceDefenceBonus[BATTLE_ATTRIBUTE_HONEST] = pSobAvatarAttr->m_fHonestDefense;
 

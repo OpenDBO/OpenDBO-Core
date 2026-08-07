@@ -325,7 +325,7 @@ RwBool CHelpWindowGui::Create()
 	m_pStbGoList->SetText(GetDisplayStringManager()->GetString("DST_HELPWND_GOLIST"));
 	m_pBtnRequestPetition->SetText(GetDisplayStringManager()->GetString("DST_HELPWND_PETITION_TO_GM"));
 
-	// Å¬º£ ¹öÀü¿¡¼­´Â Áø¼º ½Ã½ºÅÛÀ» ÀÌ¿ëÇÒ ¼ö ¾øµµ·Ï ¸·´Â´Ù
+	// í´ë²  ë²„ì „ì—ì„œëŠ” ì§„ì„± ì‹œìŠ¤í…œì„ ì´ìš©í•  ìˆ˜ ì—†ë„ë¡ ë§‰ëŠ”ë‹¤
 	m_pBtnRequestPetition->Show(false);
 	
 
@@ -559,8 +559,8 @@ void CHelpWindowGui::OpenUserInterface(eHELPWINDOW_TYPE ehelpWindowType, TBLIDX 
 }
 
 /**
-* \brief À¯Àú ÀÎÅÍÆäÀÌ½º¸¦ ÃÊ±âÈ­ÇÑ´Ù.
-* ¿­·ÁÀÖ´ø Æ®¸® ±¸Á¶ ±×´ë·Î ¼öÁ¤.
+* \brief ìœ ì € ì¸í„°í˜ì´ìŠ¤ë¥¼ ì´ˆê¸°í™”í•œë‹¤.
+* ì—´ë ¤ìˆë˜ íŠ¸ë¦¬ êµ¬ì¡° ê·¸ëŒ€ë¡œ ìˆ˜ì •.
 */
 void CHelpWindowGui::ClearUserInterface()
 {

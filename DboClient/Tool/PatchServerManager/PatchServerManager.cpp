@@ -214,7 +214,7 @@ BOOL CPatchServerManagerApp::ConsoleHandlerRoutine( DWORD dwCtrlType )
 
 void CPatchServerManagerApp::SetWorkingDirectory() 
 {
-    // ¼­ºñ½º¿¡¼­ ½ÇÇàµÇ±â ¶§¹®¿¡, ÇöÀç ½ÇÇàÆÄÀÏÀÇ °æ·Î¸¦ ÀĞ¾î¿Í ¼³Á¤ÇÑ´Ù
+    // ì„œë¹„ìŠ¤ì—ì„œ ì‹¤í–‰ë˜ê¸° ë•Œë¬¸ì—, í˜„ì¬ ì‹¤í–‰íŒŒì¼ì˜ ê²½ë¡œë¥¼ ì½ì–´ì™€ ì„¤ì •í•œë‹¤
     WCHAR szBuf[1024] = {0,};
     GetModuleFileName(NULL, szBuf, 1204);
 

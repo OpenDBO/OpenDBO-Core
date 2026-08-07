@@ -2,11 +2,11 @@
  *
  * File			: DBOCheatCommand
  * Author		: agebreak
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2007. 9. 13	
  * Abstract		: DBO Cheat Command
  *****************************************************************************
- * Desc         : DBO¿¡¼­ »ç¿ëÇÏ´Â Å¬¶óÀÌ¾ğÆ® »çÀÌµåÀÇ Ä¡Æ® Ä¿¸Çµå¸¦ ÆÄ½ÌÇÏ¿© Ã³¸®ÇÑ´Ù.
+ * Desc         : DBOì—ì„œ ì‚¬ìš©í•˜ëŠ” í´ë¼ì´ì–¸íŠ¸ ì‚¬ì´ë“œì˜ ì¹˜íŠ¸ ì»¤ë§¨ë“œë¥¼ íŒŒì‹±í•˜ì—¬ ì²˜ë¦¬í•œë‹¤.
  *
  *****************************************************************************/
 
@@ -26,10 +26,10 @@ public:
     CDBOCheatCommand();
     ~CDBOCheatCommand();
 
-    RwBool  OnCmdParsing(const std::string& strCmd);            ///< Ä¡Æ®Å°¸¦ ÆÄ½ÌÇÑ´Ù
+    RwBool  OnCmdParsing(const std::string& strCmd);            ///< ì¹˜íŠ¸í‚¤ë¥¼ íŒŒì‹±í•œë‹¤
 
 protected:
-    void		Register();                 ///< Ä¡Æ® ¹®ÀÚ¿­°ú ÇÔ¼öµéÀ» µî·ÏÇÑ´Ù.
+    void		Register();                 ///< ì¹˜íŠ¸ ë¬¸ìì—´ê³¼ í•¨ìˆ˜ë“¤ì„ ë“±ë¡í•œë‹¤.
 
 	RwBool		OnElapsedTime(CNtlTokenizer* pLexer);
     RwBool		OnDump(CNtlTokenizer* pLexer);
@@ -54,11 +54,11 @@ protected:
 	RwBool		OnPacketLockMsg(CNtlTokenizer* pLexer);
 	RwBool		OnServerMsg(CNtlTokenizer* pLexer);
 	RwBool		OnShadow(CNtlTokenizer* pLexer);
-	RwBool		OnCharLoadTime(CNtlTokenizer* pLexer);			///< Ä³¸¯ÅÍ ·Îµù Å×½ºÆ®¿ë Ä¡Æ®Å°
-    RwBool		OnTest(CNtlTokenizer* pLexer);                    ///< Å×½ºÆ®¿ë Ä¡Æ®Å°
-    RwBool		OnTest2(CNtlTokenizer* pLexer);                    ///< Å×½ºÆ®¿ë Ä¡Æ®Å°
-    RwBool		OnTest3(CNtlTokenizer* pLexer);                    ///< Å×½ºÆ®¿ë Ä¡Æ®Å°
-	RwBool		OnTestInfoScrollTime(CNtlTokenizer* pLexer);		///< ÀÎÆ÷¹Ú½º ½ºÅ©·Ñ ¼Óµµ ÆÑÅÍ
+	RwBool		OnCharLoadTime(CNtlTokenizer* pLexer);			///< ìºë¦­í„° ë¡œë”© í…ŒìŠ¤íŠ¸ìš© ì¹˜íŠ¸í‚¤
+    RwBool		OnTest(CNtlTokenizer* pLexer);                    ///< í…ŒìŠ¤íŠ¸ìš© ì¹˜íŠ¸í‚¤
+    RwBool		OnTest2(CNtlTokenizer* pLexer);                    ///< í…ŒìŠ¤íŠ¸ìš© ì¹˜íŠ¸í‚¤
+    RwBool		OnTest3(CNtlTokenizer* pLexer);                    ///< í…ŒìŠ¤íŠ¸ìš© ì¹˜íŠ¸í‚¤
+	RwBool		OnTestInfoScrollTime(CNtlTokenizer* pLexer);		///< ì¸í¬ë°•ìŠ¤ ìŠ¤í¬ë¡¤ ì†ë„ íŒ©í„°
 	RwBool		OnTutorialScript(CNtlTokenizer* pLexer);	
 	RwBool		OnFlashNotify(CNtlTokenizer* pLexer);
 	RwBool		OnAvatarShowOnOff(CNtlTokenizer* pLexer);
@@ -68,15 +68,15 @@ protected:
 	RwBool		OnSkipTerrain(CNtlTokenizer* pLexer);
 	RwBool		OnObjectDistance(CNtlTokenizer* pLexer);
 	RwBool		OnTerrainDistance(CNtlTokenizer* pLexer);
-    RwBool      OnLowSpecEffect(CNtlTokenizer* pLexer);         ///< ÀÌÆåÆ® ·Î¿ì ½ºÆå Àû¿ë
-	RwBool      OnLowSpecEffectRatio(CNtlTokenizer* pLexer);    ///< ÀÌÆåÆ® ·Î¿ì ½ºÆå Àû¿ë
-    RwBool      OnRenderMesh(CNtlTokenizer* pLexer);            ///< Mesh ÀÌÆåÆ® ·»´õ¸µ À¯¹«
-    RwBool      OnRenderDecal(CNtlTokenizer* pLexer);           ///< µ¥Ä® ÀÌÆåÆ® ·»´õ¸µ À¯¹«	
+    RwBool      OnLowSpecEffect(CNtlTokenizer* pLexer);         ///< ì´í™íŠ¸ ë¡œìš° ìŠ¤í™ ì ìš©
+	RwBool      OnLowSpecEffectRatio(CNtlTokenizer* pLexer);    ///< ì´í™íŠ¸ ë¡œìš° ìŠ¤í™ ì ìš©
+    RwBool      OnRenderMesh(CNtlTokenizer* pLexer);            ///< Mesh ì´í™íŠ¸ ë Œë”ë§ ìœ ë¬´
+    RwBool      OnRenderDecal(CNtlTokenizer* pLexer);           ///< ë°ì¹¼ ì´í™íŠ¸ ë Œë”ë§ ìœ ë¬´	
 
-	RwBool      OnRenderWaterSpecular(CNtlTokenizer* pLexer);           ///< ¿öÅÍ ½ºÆäÅ§¶ó ·»´õ¸µ À¯¹«
-	RwBool		OnRenderTerrainShadow(CNtlTokenizer* pLexer);           ///< ÁöÇü ±×¸²ÀÚ ·»´õ¸µ À¯¹«
+	RwBool      OnRenderWaterSpecular(CNtlTokenizer* pLexer);           ///< ì›Œí„° ìŠ¤í˜í˜ë¼ ë Œë”ë§ ìœ ë¬´
+	RwBool		OnRenderTerrainShadow(CNtlTokenizer* pLexer);           ///< ì§€í˜• ê·¸ë¦¼ì ë Œë”ë§ ìœ ë¬´
 
-	RwBool		OnWeatherLevel(CNtlTokenizer* pLexer);           ///< ³¯¾¾ ·¹º§ ¼³Á¤.
+	RwBool		OnWeatherLevel(CNtlTokenizer* pLexer);           ///< ë‚ ì”¨ ë ˆë²¨ ì„¤ì •.
 
 	RwBool		OnBroadCastPosX(CNtlTokenizer* pLexer);
 	RwBool		OnMiniNarration(CNtlTokenizer* pLexer);
@@ -103,7 +103,7 @@ protected:
 
 	RwBool      OnPerf(CNtlTokenizer* pLexer);
 
-	RwBool      OnDialog(CNtlTokenizer* pLexer);				///< dialog °ü·Ã /dialog all open(close)
+	RwBool      OnDialog(CNtlTokenizer* pLexer);				///< dialog ê´€ë ¨ /dialog all open(close)
 	RwBool      OnPacketTrace(CNtlTokenizer* pLexer);			/// woosungs_test 20090804
 
 	// sound
@@ -119,7 +119,7 @@ protected:
 	RwBool		OnDestMove(CNtlTokenizer* pLexer);
 
 protected:
-    MapCheatHandler m_mapCheatHandler;  ///< Ä¡Æ® ¹®ÀÚ¿­°ú Ã³¸® ÇÔ¼ö ¸Ê    
+    MapCheatHandler m_mapCheatHandler;  ///< ì¹˜íŠ¸ ë¬¸ìì—´ê³¼ ì²˜ë¦¬ í•¨ìˆ˜ ë§µ    
 
 	std::list<SOUND_HANDLE>		m_listPlayList;
 	SOUND_HANDLE	m_hSound;

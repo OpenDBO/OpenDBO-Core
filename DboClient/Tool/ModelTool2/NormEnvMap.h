@@ -6,7 +6,7 @@
 
 /**
  * \ingroup ModelTool2
- * \brief Normal Map°ú Env MapÀ» »ı¼º, Àû¿ëÇÏ´Â Å¬·¡½º
+ * \brief Normal Mapê³¼ Env Mapì„ ìƒì„±, ì ìš©í•˜ëŠ” í´ë˜ìŠ¤
  * \date 2006-06-28
  * \author agebreak
  */
@@ -16,13 +16,13 @@ public:
     CNormEnvMap(void);
     virtual ~CNormEnvMap(void);
 
-    static void SetEnableNormMap(RpClump* pClump, RwBool bEnable);                    ///< ³ë¸»¸Ê, EnvMapÀ» Àû¿ëÇÑ´Ù.
-    static void SetNormMap(RpMaterial* pMaterial, RwBool bEnable);                    ///< ³ë¸»¸ÊÀ» Àû¿ëÇÑ´Ù.
-    static void SetEnvMap(RpMaterial* pMaterial, RwTexture* pTexture);                ///< EnvMapÀ» Àû¿ëÇÑ´Ù.
-    static void SetEnvMapShininess(RpMaterial* pMaterial, RwReal fShininess);         ///< Shininess¸¦ ¼³Á¤ÇÑ´Ù.
+    static void SetEnableNormMap(RpClump* pClump, RwBool bEnable);                    ///< ë…¸ë§ë§µ, EnvMapì„ ì ìš©í•œë‹¤.
+    static void SetNormMap(RpMaterial* pMaterial, RwBool bEnable);                    ///< ë…¸ë§ë§µì„ ì ìš©í•œë‹¤.
+    static void SetEnvMap(RpMaterial* pMaterial, RwTexture* pTexture);                ///< EnvMapì„ ì ìš©í•œë‹¤.
+    static void SetEnvMapShininess(RpMaterial* pMaterial, RwReal fShininess);         ///< Shininessë¥¼ ì„¤ì •í•œë‹¤.
 
 protected:
     static RwTexture* NormalMapTextureSpaceCreateFromTexture(RwTexture *texture, RwReal bumpness);
     static RwRaster*  NormalMapTextureSpaceCreateFromImage(RwImage *image, RwUInt32 rasterFlags, RwBool clamp, RwReal bumpness);
-    static RwBool IsAnim(RpClump* pClump);                                            ///< AnimÀÌ Àû¿ëµÆ´ÂÁö ¾ÈµÆ´ÂÁö¸¦ ¹İÈ¯ÇÑ´Ù.
+    static RwBool IsAnim(RpClump* pClump);                                            ///< Animì´ ì ìš©ëëŠ”ì§€ ì•ˆëëŠ”ì§€ë¥¼ ë°˜í™˜í•œë‹¤.
 };

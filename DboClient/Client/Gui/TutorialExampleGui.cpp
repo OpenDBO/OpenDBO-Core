@@ -92,7 +92,7 @@ VOID CTutorialExampleGui::Update(RwReal fElapsed)
 
 	m_pflashExample->Update(fElapsed);
 
-	// ¾ËÆÄ º¯°æ
+	// ì•ŒíŒŒ ë³€ê²½
 	if( m_ShowHide.fRemainTime > 0.f )
 	{
 		RwUInt8 byAlpha;
@@ -154,7 +154,7 @@ VOID CTutorialExampleGui::LocateComponent()
 	rtRect.left		= (GetDboGlobal()->GetScreenWidth() - iWidth)/2 + m_iOffsetX;
 	rtRect.right	= rtRect.left + iWidth;
 
-	// ±âÈ¹ÀÇ º¯°æÀ¸·Î È­¸é Áß¾Ó Á¤·Ä¿¡¼­ È­¸é ÇÏ´Ü Á¤·Ä·Î º¯°æ
+	// ê¸°íšì˜ ë³€ê²½ìœ¼ë¡œ í™”ë©´ ì¤‘ì•™ ì •ë ¬ì—ì„œ í™”ë©´ í•˜ë‹¨ ì •ë ¬ë¡œ ë³€ê²½
 	rtRect.top		= GetDboGlobal()->GetScreenHeight() - (768 - ((768 - iHeight)/2 + m_iOffsetY));
 	rtRect.bottom	= rtRect.top + iHeight;
 

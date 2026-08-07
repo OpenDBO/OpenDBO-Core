@@ -73,7 +73,7 @@ RwBool CDboCharacterApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeig
 		NTL_RETURN(FALSE);
 	}
 	
-	// active renderware camera setting ÇÑ´Ù.
+	// active renderware camera setting í•œë‹¤.
 	CNtlPLGlobal::SetActiveCamera(m_pCamera->GetCamera()); 
 	
 	
@@ -91,10 +91,10 @@ RwBool CDboCharacterApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeig
  	
 	 
 
-	// active scene manager¸¦ setting ÇÑ´Ù.
+	// active scene managerë¥¼ setting í•œë‹¤.
 	CNtlPLSceneManagerFactory::ActiveSceneManager(m_pVisualManager);
 
-	// property container »ý¼º ¹× load ÇÑ´Ù.
+	// property container ìƒì„± ë° load í•œë‹¤.
 	if(!CNtlPLPropertyContainer::GetInstance()->Load(""))
 	{
 		NTL_ASSERTFAIL("Property container load fail");
@@ -232,7 +232,7 @@ void CDboCharacterApplication::Destroy()
     RpLightDestroy(m_pLtDirectional);
 
 	
-	// property¸¦ destroy ÇÑ´Ù.
+	// propertyë¥¼ destroy í•œë‹¤.
 	m_PropContainter.GetInstance()->Destroy();
 
 	

@@ -23,11 +23,11 @@ CNtlPLLinkEffect::~CNtlPLLinkEffect(void)
 }
 
 /**
- * LinkEffect¸¦ »ı¼ºÇÏ¿© ºÎÂøÇÑ´Ù.
- * \param pAttach ºÎÂøÇÒ ºÎ¸ğ °´Ã¼
- * \param pEventLinkEffect ÀÌÆåÆ®¸¦ »ı¼ºÇÒ ÇÁ·ÎÆÛÆ¼ °´Ã¼
- * \param vLinkEffect Instance Effect¸¦ »ı¼ºÇÒ vector
- * return »ı¼ºµÈ Effect °´Ã¼, ½ÇÆĞ½Ã¿£ NULLÀ» ¹İÈ¯
+ * LinkEffectë¥¼ ìƒì„±í•˜ì—¬ ë¶€ì°©í•œë‹¤.
+ * \param pAttach ë¶€ì°©í•  ë¶€ëª¨ ê°ì²´
+ * \param pEventLinkEffect ì´í™íŠ¸ë¥¼ ìƒì„±í•  í”„ë¡œí¼í‹° ê°ì²´
+ * \param vLinkEffect Instance Effectë¥¼ ìƒì„±í•  vector
+ * return ìƒì„±ëœ Effect ê°ì²´, ì‹¤íŒ¨ì‹œì—” NULLì„ ë°˜í™˜
  */
 CNtlInstanceEffect* CNtlPLLinkEffect::AttachLinkEffect(CNtlPLAttach* pAttach, SEventLinkEffect* pEventLinkEffect)
 {
@@ -45,7 +45,7 @@ CNtlInstanceEffect* CNtlPLLinkEffect::AttachLinkEffect(CNtlPLAttach* pAttach, SE
 			return NULL;
 		}
 
-        // Auto Delete ÀÌÆåÆ®´Â »ç¿ëÇÒ¼ö ¾ø´Ù.
+        // Auto Delete ì´í™íŠ¸ëŠ” ì‚¬ìš©í• ìˆ˜ ì—†ë‹¤.
         if(pEffect->IsAutoDelete())
         {
             pEffect->SetVisible(FALSE);
@@ -54,7 +54,7 @@ CNtlInstanceEffect* CNtlPLLinkEffect::AttachLinkEffect(CNtlPLAttach* pAttach, SE
         }
     }
 
-    // Attach ÇÑ´Ù.
+    // Attach í•œë‹¤.
     RwBool bSuccess = FALSE;
     if(pEventLinkEffect->bAttachBone)
     {
@@ -67,13 +67,13 @@ CNtlInstanceEffect* CNtlPLLinkEffect::AttachLinkEffect(CNtlPLAttach* pAttach, SE
 		bSuccess = pAttach->AttachWorldPosAndRotate(pEffect, pEventLinkEffect->vOffsetPos);
     }
 
-    if(!bSuccess)       // Attach°¡ Á¤»óÀûÀ¸·Î µÇÁö ¾Ê¾ÒÀ»¶§ (º»ÀÌ ¾ø´Ù´ø°¡..)
+    if(!bSuccess)       // Attachê°€ ì •ìƒì ìœ¼ë¡œ ë˜ì§€ ì•Šì•˜ì„ë•Œ (ë³¸ì´ ì—†ë‹¤ë˜ê°€..)
     {
         GetSceneManager()->DeleteEntity(pEffect);
         return NULL;
     }
 
-    // ºÎ¸ğÀÇ Visible ¼Ó¼ºÀ» µû¸¥´Ù.
+    // ë¶€ëª¨ì˜ Visible ì†ì„±ì„ ë”°ë¥¸ë‹¤.
     pEffect->SetVisible(pAttach->IsVisible());
 
     m_vecLinkEffect.push_back(pEffect);    
@@ -82,11 +82,11 @@ CNtlInstanceEffect* CNtlPLLinkEffect::AttachLinkEffect(CNtlPLAttach* pAttach, SE
 }
 
 /**
-* LinkEffect¸¦ Á¦°ÅÇÑ´Ù.
-* \param pAttach LinkEffect¸¦ Á¦°ÅÇÒ ºÎ¸ğ °´Ã¼
-* \param pEventLinkEffect Á¦°ÅÇÒ LinkEffect
-* \param vLinkEffect Instance Effect¸¦ Á¦°ÅÇÒ vector
-* return ¼º°ø À¯¹«
+* LinkEffectë¥¼ ì œê±°í•œë‹¤.
+* \param pAttach LinkEffectë¥¼ ì œê±°í•  ë¶€ëª¨ ê°ì²´
+* \param pEventLinkEffect ì œê±°í•  LinkEffect
+* \param vLinkEffect Instance Effectë¥¼ ì œê±°í•  vector
+* return ì„±ê³µ ìœ ë¬´
 */
 RwBool CNtlPLLinkEffect::DetachLinkEffect(CNtlPLAttach* pAttach, CNtlInstanceEffect* pLinkEffect)
 {
@@ -97,7 +97,7 @@ RwBool CNtlPLLinkEffect::DetachLinkEffect(CNtlPLAttach* pAttach, CNtlInstanceEff
     pLinkEffect->SetVisible(FALSE);
     GetSceneManager()->DeleteEntity(pLinkEffect);    
 
-    // IntanceµéÀÇ Vector¿¡¼­ Á¦°ÅÇÑ´Ù.    
+    // Intanceë“¤ì˜ Vectorì—ì„œ ì œê±°í•œë‹¤.    
     VecLinkEffect::iterator it = m_vecLinkEffect.begin();
     for(; it != m_vecLinkEffect.end(); ++it)
     {
@@ -114,9 +114,9 @@ RwBool CNtlPLLinkEffect::DetachLinkEffect(CNtlPLAttach* pAttach, CNtlInstanceEff
 
 
 /**
- * Effect ÀÎ½ºÅÏÆ® ¸®½ºÆ®Áß¿¡¼­ ÀÌ¸§¿¡ ÇØ´çÇÏ´Â ÀÎ½ºÅÏ½º ÀÌÆåÆ®¸¦ ¹İÈ¯ÇÑ´Ù.
- * \param szName Ã£À» ÀÌÆåÆ®ÀÇ ÀÌ¸§
- * return Ã£Àº ÀÎ½ºÅÏ½º ÀÌÆåÆ® °´Ã¼. Ã£Áö¸øÇÏ¸é NULLÀ» ¹İÈ¯ÇÑ´Ù.
+ * Effect ì¸ìŠ¤í„´íŠ¸ ë¦¬ìŠ¤íŠ¸ì¤‘ì—ì„œ ì´ë¦„ì— í•´ë‹¹í•˜ëŠ” ì¸ìŠ¤í„´ìŠ¤ ì´í™íŠ¸ë¥¼ ë°˜í™˜í•œë‹¤.
+ * \param szName ì°¾ì„ ì´í™íŠ¸ì˜ ì´ë¦„
+ * return ì°¾ì€ ì¸ìŠ¤í„´ìŠ¤ ì´í™íŠ¸ ê°ì²´. ì°¾ì§€ëª»í•˜ë©´ NULLì„ ë°˜í™˜í•œë‹¤.
  */
 CNtlInstanceEffect* CNtlPLLinkEffect::GetLinkEffectFromName(RwChar* szName)
 {

@@ -2,7 +2,7 @@
  *
  * File			: NtlPLEntityFactory.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 8. 11	
  * Abstract		: Presentation layer entity factory class
  *****************************************************************************
@@ -21,8 +21,8 @@
 
 /**
  * \ingroup NtlPresentation
- * entity »ı¼º ¹× ¼Ò¸êÀ» ´ã´çÇÏ´Â factory class.
- * presentationÀÇ ¸ğµç entityÀÇ »ı¼º ¹× ¼Ò¸êÀº factory ¹æ½ÄÀ» »ç¿ëÇÑ´Ù.
+ * entity ìƒì„± ë° ì†Œë©¸ì„ ë‹´ë‹¹í•˜ëŠ” factory class.
+ * presentationì˜ ëª¨ë“  entityì˜ ìƒì„± ë° ì†Œë©¸ì€ factory ë°©ì‹ì„ ì‚¬ìš©í•œë‹¤.
  *
  */
 
@@ -31,16 +31,16 @@ class CNtlPLEntityFactory
 public:
 
 	/**
-	*  entity¸¦ »ı¼ºÇÏ´Â ÇÔ¼ö.
-	*  \param pEntityName »ı¼ºÇÒ entity name.
-	*  \retrun »ı¼º¿¡ ¼º°øÇÏ¸é entity pointer, ½ÇÆĞÇÏ¸é NULL¸¦ ¸®ÅÏÇÑ´Ù.
+	*  entityë¥¼ ìƒì„±í•˜ëŠ” í•¨ìˆ˜.
+	*  \param pEntityName ìƒì„±í•  entity name.
+	*  \retrun ìƒì„±ì— ì„±ê³µí•˜ë©´ entity pointer, ì‹¤íŒ¨í•˜ë©´ NULLë¥¼ ë¦¬í„´í•œë‹¤.
 	*  \see DeleteEntity
 	*/
 	static CNtlPLEntity* CreateEntity(ENtlPLEntityType eType, const SPLEntityCreateParam* _pParam);
 
 	/**
-	*  entity¸¦ ¼Ò¸êÇÏ´Â ÇÔ¼ö.
-	*  \param pEntity ¼Ò¸êÇÒ entity pointer.
+	*  entityë¥¼ ì†Œë©¸í•˜ëŠ” í•¨ìˆ˜.
+	*  \param pEntity ì†Œë©¸í•  entity pointer.
 	*  \see CreateEntity
 	*/
 	static void DeleteEntity(CNtlPLEntity *pEntity);

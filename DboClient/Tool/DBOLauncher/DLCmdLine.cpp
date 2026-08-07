@@ -2,7 +2,7 @@
 *
 * File			: DLCmdLine.h
 * Author		: 
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 
 * Abstract		: 
 *****************************************************************************
@@ -157,14 +157,14 @@ bool CDLCmdLine::ParseCmdLine( void )
 
 			if ( eDBO_SERVICE_PUBLISHER_NTL == uiPublisherID )
 			{
-				// °³¹ß¿ëÀÎ °æ¿ì´Â Launcher command ÀÌ¿Ü´Â ÀÖÀ» ¼ö ¾ø´Ù
+				// ê°œë°œìš©ì¸ ê²½ìš°ëŠ” Launcher command ì´ì™¸ëŠ” ìˆì„ ìˆ˜ ì—†ë‹¤
 				sCmdFieldData.eCmdType	= eDL_CMD_TYPE_INVALID;
 
 				bRet &= false;
 			}
 			else if ( eDBO_SERVICE_PUBLISHER_CJI_KOR == uiPublisherID )
 			{
-				// CJI KorÀÎ °æ¿ì´Â ´Ü ÇÏ³ª¸¸ÀÇ Service command ¸¸ Á¸ÀçÇÑ´Ù
+				// CJI Korì¸ ê²½ìš°ëŠ” ë‹¨ í•˜ë‚˜ë§Œì˜ Service command ë§Œ ì¡´ì¬í•œë‹¤
 				if ( 0 == GetCmdTypeCnt( eDL_CMD_TYPE_SERVICE ) )
 				{
 					sCmdFieldData.eCmdType = eDL_CMD_TYPE_SERVICE;

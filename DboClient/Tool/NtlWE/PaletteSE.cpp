@@ -1,4 +1,4 @@
-// SEPropDlg.cpp : ���� �����Դϴ�.
+// SEPropDlg.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -8,7 +8,7 @@
 #include "NtlPLObject.h"
 
 
-// CPaletteSE ��ȭ �����Դϴ�.
+// CPaletteSE 대화 상자입니다.
 
 IMPLEMENT_DYNAMIC(CPaletteSE, CDialog)
 
@@ -35,17 +35,17 @@ BEGIN_MESSAGE_MAP(CPaletteSE, CDialog)
 END_MESSAGE_MAP()
 
 
-// CPaletteSE �޽��� ó�����Դϴ�.
+// CPaletteSE 메시지 처리기입니다.
 
 void CPaletteSE::OnBnClickedOk()
 {
-	// TODO: ���⿡ ��Ʈ�� �˸� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	OnOK();
 }
 
 void CPaletteSE::OnBnClickedCancel()
 {
-	// TODO: ���⿡ ��Ʈ�� �˸� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	OnCancel();
 }
 
@@ -56,7 +56,7 @@ BOOL CPaletteSE::OnInitDialog()
 	
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ����: OCX �Ӽ� �������� FALSE�� ��ȯ�ؾ� �մϴ�.
+	// 예외: OCX 속성 페이지는 FALSE를 반환해야 합니다.
 }
 
 HTREEITEM CPaletteSE::GetItemByName(char* szItemName, HTREEITEM hItem)

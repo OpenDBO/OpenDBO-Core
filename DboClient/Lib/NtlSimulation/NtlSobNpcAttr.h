@@ -2,7 +2,7 @@
  *
  * File			: NtlSobNpc.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 11. 30	
  * Abstract		: Simulation object npc attribute base class
  *****************************************************************************

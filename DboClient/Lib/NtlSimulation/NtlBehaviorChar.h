@@ -2,7 +2,7 @@
  *
  * File			: NtlBehaviorChar.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2006. 2. 9	
  * Abstract		: character behavior class
  *****************************************************************************
@@ -107,7 +107,7 @@ public:
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
-// ¿œπ›¿˚¿Œ ∞¯∞›.
+// ÏùºÎ∞òÏ†ÅÏù∏ Í≥µÍ≤©.
 
 class CNtlBehaviorCharPushFollow;
 
@@ -127,7 +127,7 @@ protected:
 	RwUInt8			m_iHitIdx;
 	SHitStuff		*m_ppHit[NTL_MAX_HITGROUP][NTL_MAX_HITNUM];
 	RwReal			m_fHitTime[NTL_MAX_HITNUM];
-	RwReal			m_fAnimTime;					/** attack animation ¿¸√º Ω√∞£ */
+	RwReal			m_fAnimTime;					/** attack animation Ï†ÑÏ≤¥ ÏãúÍ∞Ñ */
 	RwReal			m_fAnimSpeed;					/** attack animation speed */
 
 	CNtlBehaviorCharPushFollow *m_pPushFollow;
@@ -171,7 +171,7 @@ public:
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
-// ¿œπ›¿˚¿Œ ∞¯∞›.
+// ÏùºÎ∞òÏ†ÅÏù∏ Í≥µÍ≤©.
 
 class CNtlBehaviorCharPushFollow : public CNtlBehaviorBase
 {
@@ -220,18 +220,18 @@ public:
     virtual void UpdateData(void);
 
 private:
-    void CreateTimeSequence(void);          ///< push sequence node ª˝º∫ «‘ºˆ.
-    void DeleteTimeSequence(void);          ///< push sequence node ªË¡¶ «‘ºˆ. 
-    RwReal GetMaxTime(void) const;          ///< ∞¥√º¿« life time.
-    RwReal GetMaxDist(void) const;          ///< øÚ¡˜¿”¿« √÷¥Î ∞≈∏Æ.
-    void   UpdatePosition(RwReal fElapsed);                ///< ¿ßƒ°∏¶ æ˜µ•¿Ã∆Æ«—¥Ÿ.
+    void CreateTimeSequence(void);          ///< push sequence node ÏÉùÏÑ± Ìï®Ïàò.
+    void DeleteTimeSequence(void);          ///< push sequence node ÏÇ≠Ï†ú Ìï®Ïàò. 
+    RwReal GetMaxTime(void) const;          ///< Í∞ùÏ≤¥Ïùò life time.
+    RwReal GetMaxDist(void) const;          ///< ÏõÄÏßÅÏûÑÏùò ÏµúÎåÄ Í±∞Î¶¨.
+    void   UpdatePosition(RwReal fElapsed);                ///< ÏúÑÏπòÎ•º ÏóÖÎç∞Ïù¥Ìä∏ÌïúÎã§.
 
 private:
-	RwV3d m_vPushDir;		/** push πÊ«‚ */
-	RwReal m_fPrevDist;     /** Ω√∞£ø° µ˚∏• distance∏¶ ªÁøÎ«œπ«∑Œ, ¿Ã¿¸¿« dist∏¶ ∫∏∞¸«—¥Ÿ. */
-	RwReal m_fTime;			/** push ¥©¿˚ time */
-	RwReal m_fDistScale;    /** time sequence¥¬ Ω√∞£∞˙ ∞≈∏Æ∞° ∞Ì¡§, push ∞≈∏Æ∞° ∞Ì¡§¿Ã æ∆¥œπ«∑Œ */
-	RwV3d  m_vDestPos;		/** push∑Œ ¿Œ«œø© øÚ¡˜¿œ √÷¡æ ¿ßƒ° */
+	RwV3d m_vPushDir;		/** push Î∞©Ìñ• */
+	RwReal m_fPrevDist;     /** ÏãúÍ∞ÑÏóê Îî∞Î•∏ distanceÎ•º ÏÇ¨Ïö©ÌïòÎØÄÎ°ú, Ïù¥Ï†ÑÏùò distÎ•º Î≥¥Í¥ÄÌïúÎã§. */
+	RwReal m_fTime;			/** push ÎàÑÏ†Å time */
+	RwReal m_fDistScale;    /** time sequenceÎäî ÏãúÍ∞ÑÍ≥º Í±∞Î¶¨Í∞Ä Í≥†Ï†ï, push Í±∞Î¶¨Í∞Ä Í≥†Ï†ïÏù¥ ÏïÑÎãàÎØÄÎ°ú */
+	RwV3d  m_vDestPos;		/** pushÎ°ú Ïù∏ÌïòÏó¨ ÏõÄÏßÅÏùº ÏµúÏ¢Ö ÏúÑÏπò */
 
 	CNtlDistTimeSequence *m_pSeq;	/** push sequence node */
 };
@@ -255,33 +255,33 @@ private:
 	};
 	
 	RwUInt32 m_uiSlidingState;	/** sliding state */
-	RwV3d m_vPushDir;			/** sliding πÊ«‚ */
-	RwReal m_fPrevDist;		    /** Ω√∞£ø° µ˚∏• distance∏¶ ªÁøÎ«œπ«∑Œ, ¿Ã¿¸¿« dist∏¶ ∫∏∞¸«—¥Ÿ. */
-	RwReal m_fTime;				/** sliding ¥©¿˚ time */
-	RwReal m_fDistScale;		/** time sequence¥¬ Ω√∞£∞˙ ∞≈∏Æ∞° ∞Ì¡§, sliding ∞≈∏Æ∞° ∞Ì¡§¿Ã æ∆¥œπ«∑Œ */
-	RwV3d  m_vDestPos;			/** sliding∑Œ ¿Œ«œø© øÚ¡˜¿œ √÷¡æ ¿ßƒ° */
+	RwV3d m_vPushDir;			/** sliding Î∞©Ìñ• */
+	RwReal m_fPrevDist;		    /** ÏãúÍ∞ÑÏóê Îî∞Î•∏ distanceÎ•º ÏÇ¨Ïö©ÌïòÎØÄÎ°ú, Ïù¥Ï†ÑÏùò distÎ•º Î≥¥Í¥ÄÌïúÎã§. */
+	RwReal m_fTime;				/** sliding ÎàÑÏ†Å time */
+	RwReal m_fDistScale;		/** time sequenceÎäî ÏãúÍ∞ÑÍ≥º Í±∞Î¶¨Í∞Ä Í≥†Ï†ï, sliding Í±∞Î¶¨Í∞Ä Í≥†Ï†ïÏù¥ ÏïÑÎãàÎØÄÎ°ú */
+	RwV3d  m_vDestPos;			/** slidingÎ°ú Ïù∏ÌïòÏó¨ ÏõÄÏßÅÏùº ÏµúÏ¢Ö ÏúÑÏπò */
 
 	CNtlDistTimeSequence *m_pSeq;	/** sliding sequence node */
 
 private:
 
 	/**
-	* sliding sequence node ª˝º∫ «‘ºˆ.
+	* sliding sequence node ÏÉùÏÑ± Ìï®Ïàò.
 	*/
 	void CreateTimeSequence(void);
 
 	/**
-	* sliding sequence node ªË¡¶ «‘ºˆ. 
+	* sliding sequence node ÏÇ≠Ï†ú Ìï®Ïàò. 
 	*/
 	void DeleteTimeSequence(void);
 
 	/**
-	* ∞¥√º¿« life time.
+	* Í∞ùÏ≤¥Ïùò life time.
 	*/
 	RwReal GetMaxTime(void) const;
 
 	/**
-	* øÚ¡˜¿”¿« √÷¥Î ∞≈∏Æ.
+	* ÏõÄÏßÅÏûÑÏùò ÏµúÎåÄ Í±∞Î¶¨.
 	*/
 	RwReal GetMaxDist(void) const;
 
@@ -296,24 +296,24 @@ private:
 	void UpdateSlidingStop(RwReal fElapsed);
 
 	/**
-	* sliding ¡¬«• ∞ËªÍ.
+	* sliding Ï¢åÌëú Í≥ÑÏÇ∞.
 	*/
 	void UpdatePosition(RwReal fTime);
 
 	/**
-	* sliding ªÛ≈¬ πŸ≤Ÿ¥¬ «‘ºˆ.
+	* sliding ÏÉÅÌÉú Î∞îÍæ∏Îäî Ìï®Ïàò.
 	*/
 	void ChangeSlidingState(RwUInt32 uiState);
 
 public:
 
 	/**
-	* ª˝º∫¿⁄
+	* ÏÉùÏÑ±Ïûê
 	*/
 	CNtlBehaviorCharSliding();
 
 	/**
-	* º“∏Í¿⁄
+	* ÏÜåÎ©∏Ïûê
 	*/
 	~CNtlBehaviorCharSliding();
 
@@ -323,8 +323,8 @@ public:
 	virtual RwUInt32 HandleEvents(RWS::CMsg &pMsg);
 
 	/**
-	* ∞¥√º¥¬ CNtlBeCharData ∞¥√º ¡§∫∏∏¶ ¬¸¡∂«œø© ªÁøÎ«œ±‚ ∂ßπÆø°, sliding ∞¥√º updateΩ√ ªÁøÎ.
-	* «ˆ¿Á sliding behavior∞° µø¿€¡ﬂ¿Œ ªÛ≈¬ø°º≠, ¥Ÿ∏• sliding ∏Ì∑…¿ª πﬁæ“¿ª ∂ß. ¡§∫∏ update.
+	* Í∞ùÏ≤¥Îäî CNtlBeCharData Í∞ùÏ≤¥ Ï†ïÎ≥¥Î•º Ï∞∏Ï°∞ÌïòÏó¨ ÏÇ¨Ïö©ÌïòÍ∏∞ ÎïåÎ¨∏Ïóê, sliding Í∞ùÏ≤¥ updateÏãú ÏÇ¨Ïö©.
+	* ÌòÑÏû¨ sliding behaviorÍ∞Ä ÎèôÏûëÏ§ëÏù∏ ÏÉÅÌÉúÏóêÏÑú, Îã§Î•∏ sliding Î™ÖÎ†πÏùÑ Î∞õÏïòÏùÑ Îïå. Ï†ïÎ≥¥ update.
 	*/
 	virtual void UpdateData(void);
 
@@ -344,56 +344,56 @@ class CNtlBehaviorCharShock : public CNtlBehaviorBase
 
 private:
 
-	RwV3d m_vPushDir;		/** shock πÊ«‚ */
-	RwV3d m_vDestPos;		/** shock∑Œ ¿Œ«œø© øÚ¡˜¿œ √÷¡æ ¿ßƒ° */
-	RwReal m_fTime;			/** shock ¥©¿˚ time */
-	RwReal m_fDistScale;    /** time sequence¥¬ Ω√∞£∞˙ ∞≈∏Æ∞° ∞Ì¡§, shock ∞≈∏Æ∞° ∞Ì¡§¿Ã æ∆¥œπ«∑Œ */
+	RwV3d m_vPushDir;		/** shock Î∞©Ìñ• */
+	RwV3d m_vDestPos;		/** shockÎ°ú Ïù∏ÌïòÏó¨ ÏõÄÏßÅÏùº ÏµúÏ¢Ö ÏúÑÏπò */
+	RwReal m_fTime;			/** shock ÎàÑÏ†Å time */
+	RwReal m_fDistScale;    /** time sequenceÎäî ÏãúÍ∞ÑÍ≥º Í±∞Î¶¨Í∞Ä Í≥†Ï†ï, shock Í±∞Î¶¨Í∞Ä Í≥†Ï†ïÏù¥ ÏïÑÎãàÎØÄÎ°ú */
 		
 	CNtlDistTimeSequence *m_pSeq;
 
 private:
 
 	/**
-	* hit shock sequence node ª˝º∫ «‘ºˆ.
+	* hit shock sequence node ÏÉùÏÑ± Ìï®Ïàò.
 	*/
 	void CreateTimeSequence(void);
 
 	/**
-	* hit shock sequence node ªË¡¶ «‘ºˆ. 
+	* hit shock sequence node ÏÇ≠Ï†ú Ìï®Ïàò. 
 	*/
 	void DeleteTimeSequence(void);
 
 	/**
-	* hit shock ∞¥√º data reset «‘ºˆ.
+	* hit shock Í∞ùÏ≤¥ data reset Ìï®Ïàò.
 	*/
 	void ResetTimeSequence(void);
 
 	/**
-	* time sequence node update «‘ºˆ.
-	* param1 : πŸ∑Œ ¿Ã¿¸¿« ¥©¿˚ Ω√∞£.
-	* param2 : «ˆ¿Á¿« ¥©¿˚ Ω√∞£.
+	* time sequence node update Ìï®Ïàò.
+	* param1 : Î∞îÎ°ú Ïù¥Ï†ÑÏùò ÎàÑÏ†Å ÏãúÍ∞Ñ.
+	* param2 : ÌòÑÏû¨Ïùò ÎàÑÏ†Å ÏãúÍ∞Ñ.
 	*/
 	void UpdateTimeSequence(RwReal fOldTime, RwReal fCurrTime);
 
 	/**
-	* ∞¥√º¿« life time.
+	* Í∞ùÏ≤¥Ïùò life time.
 	*/
 	RwReal GetMaxTime(void) const;
 
 	/**
-	* øÚ¡˜¿”¿« √÷¥Î ∞≈∏Æ.
+	* ÏõÄÏßÅÏûÑÏùò ÏµúÎåÄ Í±∞Î¶¨.
 	*/
 	RwReal GetMaxDist(void) const;
 
 public:
 
 	/**
-	* ª˝º∫¿⁄.
+	* ÏÉùÏÑ±Ïûê.
 	*/
 	CNtlBehaviorCharShock();
 
 	/**
-	* º“∏Í¿⁄.
+	* ÏÜåÎ©∏Ïûê.
 	*/
 	~CNtlBehaviorCharShock();
 
@@ -403,8 +403,8 @@ public:
 	virtual RwUInt32 HandleEvents(RWS::CMsg &pMsg);
 
 	/**
-	* ∞¥√º¥¬ CNtlBeCharData ∞¥√º ¡§∫∏∏¶ ¬¸¡∂«œø© ªÁøÎ«œ±‚ ∂ßπÆø°, shock ∞¥√º updateΩ√ ªÁøÎ.
-	* «ˆ¿Á shock behavior∞° µø¿€¡ﬂ¿Œ ªÛ≈¬ø°º≠, ¥Ÿ∏• shock ∏Ì∑…¿ª πﬁæ“¿ª ∂ß. ¡§∫∏ update.
+	* Í∞ùÏ≤¥Îäî CNtlBeCharData Í∞ùÏ≤¥ Ï†ïÎ≥¥Î•º Ï∞∏Ï°∞ÌïòÏó¨ ÏÇ¨Ïö©ÌïòÍ∏∞ ÎïåÎ¨∏Ïóê, shock Í∞ùÏ≤¥ updateÏãú ÏÇ¨Ïö©.
+	* ÌòÑÏû¨ shock behaviorÍ∞Ä ÎèôÏûëÏ§ëÏù∏ ÏÉÅÌÉúÏóêÏÑú, Îã§Î•∏ shock Î™ÖÎ†πÏùÑ Î∞õÏïòÏùÑ Îïå. Ï†ïÎ≥¥ update.
 	*/
 	virtual void UpdateData(void);
 };
@@ -437,34 +437,34 @@ public:
     virtual RwUInt32 HandleEvents(RWS::CMsg &pMsg);
 
     /**
-    * ∞¥√º¥¬ CNtlBeCharData ∞¥√º ¡§∫∏∏¶ ¬¸¡∂«œø© ªÁøÎ«œ±‚ ∂ßπÆø°, knock down ∞¥√º updateΩ√ ªÁøÎ.
-    * «ˆ¿Á knock down behavior∞° µø¿€¡ﬂ¿Œ ªÛ≈¬ø°º≠, ¥Ÿ∏• knock down ∏Ì∑…¿ª πﬁæ“¿ª ∂ß. ¡§∫∏ update.
+    * Í∞ùÏ≤¥Îäî CNtlBeCharData Í∞ùÏ≤¥ Ï†ïÎ≥¥Î•º Ï∞∏Ï°∞ÌïòÏó¨ ÏÇ¨Ïö©ÌïòÍ∏∞ ÎïåÎ¨∏Ïóê, knock down Í∞ùÏ≤¥ updateÏãú ÏÇ¨Ïö©.
+    * ÌòÑÏû¨ knock down behaviorÍ∞Ä ÎèôÏûëÏ§ëÏù∏ ÏÉÅÌÉúÏóêÏÑú, Îã§Î•∏ knock down Î™ÖÎ†πÏùÑ Î∞õÏïòÏùÑ Îïå. Ï†ïÎ≥¥ update.
     */
     virtual void UpdateData(void);
-    void ChangeKnockDownState(RwUInt32 uiState);    ///< knockdown bahavior ¿« state∏¶ ¿¸¿ÃΩ√≈∞¥¬ «‘ºˆ.
+    void ChangeKnockDownState(RwUInt32 uiState);    ///< knockdown bahavior Ïùò stateÎ•º Ï†ÑÏù¥ÏãúÌÇ§Îäî Ìï®Ïàò.
     void SetKnockDownDir(const RwV3d *pKnockDownDir);   ///< knock down direction.
 
 private:
-	void CreateFallupTimeSequence(void);    ///< knockdown fall up sequence node ª˝º∫ «‘ºˆ.
-	void CreateLandingTimeSequence(void);   ///< knockdown landing sequence node ª˝º∫ «‘ºˆ.
-	void DeleteTimeSequence(void);          ///< knockdown sequence node ªË¡¶ «‘ºˆ. 
-	void UpdateFallUp(RwReal fElapsed);     ///< knockdown fall up update «‘ºˆ.
-	void UpdateLanding(RwReal fElapsed);    ///< knockdown landing update «‘ºˆ.
-	void UpdateFallDown(RwReal fElapsed);   ///< knockdown fall down update «‘ºˆ.
-	void UpdateKnock(RwReal fElapsed);      ///< knockdown¿« æ≤∑Ø¡Æ ¿÷¿ª ∂ß update «‘ºˆ.
-	void CalcLanding(RwReal fElapsed);      ///< landing ªÛ≈¬ ∞ËªÍ.
-    RwV3d UpdatePosition(RwReal fElapsed, RwV3d& vPos, RwReal fSpeed);   ///< y∞™¿ª ¡¶ø‹«— ¿ßƒ° ∞ËªÍ (√Êµπ √≥∏Æ)
+	void CreateFallupTimeSequence(void);    ///< knockdown fall up sequence node ÏÉùÏÑ± Ìï®Ïàò.
+	void CreateLandingTimeSequence(void);   ///< knockdown landing sequence node ÏÉùÏÑ± Ìï®Ïàò.
+	void DeleteTimeSequence(void);          ///< knockdown sequence node ÏÇ≠Ï†ú Ìï®Ïàò. 
+	void UpdateFallUp(RwReal fElapsed);     ///< knockdown fall up update Ìï®Ïàò.
+	void UpdateLanding(RwReal fElapsed);    ///< knockdown landing update Ìï®Ïàò.
+	void UpdateFallDown(RwReal fElapsed);   ///< knockdown fall down update Ìï®Ïàò.
+	void UpdateKnock(RwReal fElapsed);      ///< knockdownÏùò Ïì∞Îü¨Ï†∏ ÏûàÏùÑ Îïå update Ìï®Ïàò.
+	void CalcLanding(RwReal fElapsed);      ///< landing ÏÉÅÌÉú Í≥ÑÏÇ∞.
+    RwV3d UpdatePosition(RwReal fElapsed, RwV3d& vPos, RwReal fSpeed);   ///< yÍ∞íÏùÑ Ï†úÏô∏Ìïú ÏúÑÏπò Í≥ÑÏÇ∞ (Ï∂©Îèå Ï≤òÎ¶¨)
 
 protected:
     RwUInt32 m_uiKnockDownState;		/** knock down state */
     RwBool m_bStanding;					/** knock down standing */
     RwBool m_bFainting;					/** knock down fainting */
 
-    RwReal m_fTime;						/** known down ¥©¿˚ time */
-    RwV3d m_vKnockDownDir;				/** knock down πÊ«‚ */
-    RwV2d m_vPrevDist;					/** Ω√∞£ø° µ˚∏• distance∏¶ ªÁøÎ«œπ«∑Œ, ¿Ã¿¸¿« dist∏¶ ∫∏∞¸«—¥Ÿ. */
-    RwV2d m_vFallDelta;					/** ∂≥æÓ¡ˆ¥¬ delta dist */
-    RwReal m_fDistScale;				/** time sequence¥¬ Ω√∞£∞˙ ∞≈∏Æ∞° ∞Ì¡§, push ∞≈∏Æ∞° ∞Ì¡§¿Ã æ∆¥œπ«∑Œ */
+    RwReal m_fTime;						/** known down ÎàÑÏ†Å time */
+    RwV3d m_vKnockDownDir;				/** knock down Î∞©Ìñ• */
+    RwV2d m_vPrevDist;					/** ÏãúÍ∞ÑÏóê Îî∞Î•∏ distanceÎ•º ÏÇ¨Ïö©ÌïòÎØÄÎ°ú, Ïù¥Ï†ÑÏùò distÎ•º Î≥¥Í¥ÄÌïúÎã§. */
+    RwV2d m_vFallDelta;					/** Îñ®Ïñ¥ÏßÄÎäî delta dist */
+    RwReal m_fDistScale;				/** time sequenceÎäî ÏãúÍ∞ÑÍ≥º Í±∞Î¶¨Í∞Ä Í≥†Ï†ï, push Í±∞Î¶¨Í∞Ä Í≥†Ï†ïÏù¥ ÏïÑÎãàÎØÄÎ°ú */
 
     CNtl2DTimeSequence *m_pSeq;				/** knock down fall up sequence node */
     CNtlDistTimeSequence *m_pLandingSeq;	/** knock donw landing sequence node */
@@ -526,12 +526,12 @@ private:
 	void SetAnim(void);
 
 	/**
-	* push sequence node ª˝º∫ «‘ºˆ.
+	* push sequence node ÏÉùÏÑ± Ìï®Ïàò.
 	*/
 	void CreateTimeSequence(void);
 
 	/**
-	* push sequence node ªË¡¶ «‘ºˆ. 
+	* push sequence node ÏÇ≠Ï†ú Ìï®Ïàò. 
 	*/
 	void DeleteTimeSequence(void);
 
@@ -611,7 +611,7 @@ public:
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
-// ºˆ¡˜ ªÛΩ¬.(target¿ª µ˚∂Û∞£¥Ÿ)
+// ÏàòÏßÅ ÏÉÅÏäπ.(targetÏùÑ Îî∞ÎùºÍ∞ÑÎã§)
 
 class CNtlBehaviorCharHomingUp : public CNtlBehaviorBase
 {
@@ -645,7 +645,7 @@ public:
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
-// ºˆ¡˜ «œ∞≠.
+// ÏàòÏßÅ ÌïòÍ∞ï.
 
 class CNtlBehaviorCharHomingDown : public CNtlBehaviorBase
 {
@@ -672,12 +672,12 @@ private:
 
 
 	/**
-	* push sequence node ª˝º∫ «‘ºˆ.
+	* push sequence node ÏÉùÏÑ± Ìï®Ïàò.
 	*/
 	void CreateTimeSequence(void);
 
 	/**
-	* push sequence node ªË¡¶ «‘ºˆ. 
+	* push sequence node ÏÇ≠Ï†ú Ìï®Ïàò. 
 	*/
 	void DeleteTimeSequence(void);
 
@@ -699,7 +699,7 @@ public:
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
-// ºˆ¡˜ ªÛΩ¬(target¿ª µ˚∂Û∞°¡ˆ æ ∞Ì) ¿œ¡§«— ≥Ù¿Ã∏¶ jumping «—¥Ÿ.
+// ÏàòÏßÅ ÏÉÅÏäπ(targetÏùÑ Îî∞ÎùºÍ∞ÄÏßÄ ÏïäÍ≥†) ÏùºÏ†ïÌïú ÎÜíÏù¥Î•º jumping ÌïúÎã§.
 
 class CNtlBehaviorCharJumpingUp : public CNtlBehaviorBase
 {
@@ -720,12 +720,12 @@ private:
 	void SetAnim(void);
 
 	/**
-	* push sequence node ª˝º∫ «‘ºˆ.
+	* push sequence node ÏÉùÏÑ± Ìï®Ïàò.
 	*/
 	void CreateTimeSequence(void);
 
 	/**
-	* push sequence node ªË¡¶ «‘ºˆ. 
+	* push sequence node ÏÇ≠Ï†ú Ìï®Ïàò. 
 	*/
 	void DeleteTimeSequence(void);
 
@@ -745,7 +745,7 @@ public:
 
 /**
  * \ingroup NtlSimulation
- * \brief ≥™∏ﬁ≈©¿« ∏∂Ω≈øœ Ω∫≈≥. ≈∏∞Ÿ¿ª ≤¯æÓ¥Á±‰¥Ÿ.
+ * \brief ÎÇòÎ©îÌÅ¨Ïùò ÎßàÏã†ÏôÑ Ïä§ÌÇ¨. ÌÉÄÍ≤üÏùÑ ÎÅåÏñ¥ÎãπÍ∏¥Îã§.
  *
  * \date 2008-10-17
  * \author agebreak
@@ -766,25 +766,25 @@ public:
     virtual void UpdateData(void);
 
 protected:
-    RwReal  GetTargetDistance(CNtlSobActor* pTargetActor);              ///< ¥Á∞‹ø¿¥¬ ≈∏∞Ÿ∞˙¿« ∞≈∏Æ∏¶ ∞ËªÍ«—¥Ÿ (Radius∑Œ ∫Ò±≥)
+    RwReal  GetTargetDistance(CNtlSobActor* pTargetActor);              ///< ÎãπÍ≤®Ïò§Îäî ÌÉÄÍ≤üÍ≥ºÏùò Í±∞Î¶¨Î•º Í≥ÑÏÇ∞ÌïúÎã§ (RadiusÎ°ú ÎπÑÍµê)
 
 protected:
-    CNtlPLCharacter*    m_pCharacter;           ///< ªÁøÎ¿⁄¿« ø£∆º∆º ∞¥√º    
-    RwUInt32            m_uiTargetId;           ///< ≈∏∞Ÿ Ω√∏ÆæÛ ID
-    RwV3d               m_vTargetPos;           ///< √≥¿Ω ¿Ã∫•∆Æ∞° πﬂª˝«ﬂ¿ª∂ß¿« ≈∏∞Ÿ ¿ßƒ°
-    RwBool              m_bPulling;             ///< ¥Á±‚¥¬ ªÛ≈¬¿Œ¡ˆ ª∏¥¬ªÛ≈¬¿Œ¡ˆ «√∑°±◊ (FALSE ª∏¥¬ªÛ≈¬, TRUE ¥Á∞‹ø¿¥¬ ªÛ≈¬)    
-    SEventStretch*      m_pStretchEvent;         ///< ¿Ã∫•∆Æ ±∏¡∂√º
-    RwReal              m_fStretchPullingSpeed;  ///< «ˆ¿Á «Æ∏µ Ω∫««µÂ
-    RwMatrix            m_matDir;                ///< æÓ±˙ πÊ«‚ ∏≈∆Æ∏ØΩ∫
+    CNtlPLCharacter*    m_pCharacter;           ///< ÏÇ¨Ïö©ÏûêÏùò ÏóîÌã∞Ìã∞ Í∞ùÏ≤¥    
+    RwUInt32            m_uiTargetId;           ///< ÌÉÄÍ≤ü ÏãúÎ¶¨Ïñº ID
+    RwV3d               m_vTargetPos;           ///< Ï≤òÏùå Ïù¥Î≤§Ìä∏Í∞Ä Î∞úÏÉùÌñàÏùÑÎïåÏùò ÌÉÄÍ≤ü ÏúÑÏπò
+    RwBool              m_bPulling;             ///< ÎãπÍ∏∞Îäî ÏÉÅÌÉúÏù∏ÏßÄ ÎªóÎäîÏÉÅÌÉúÏù∏ÏßÄ ÌîåÎûòÍ∑∏ (FALSE ÎªóÎäîÏÉÅÌÉú, TRUE ÎãπÍ≤®Ïò§Îäî ÏÉÅÌÉú)    
+    SEventStretch*      m_pStretchEvent;         ///< Ïù¥Î≤§Ìä∏ Íµ¨Ï°∞Ï≤¥
+    RwReal              m_fStretchPullingSpeed;  ///< ÌòÑÏû¨ ÌíÄÎßÅ Ïä§ÌîºÎìú
+    RwMatrix            m_matDir;                ///< Ïñ¥Íπ® Î∞©Ìñ• Îß§Ìä∏Î¶≠Ïä§
 
-    RwBool              m_bOrgBoneScale;        ///< ø¯∑°¿« ∫ª Ω∫ƒ…¿œ «√∑°±◊
-    RwReal              m_fOrgBoneLength[3];    ///< ø¯∑°¿« ∫ª ±Ê¿Ã
-    RwReal              m_fOrgBoneWidth[3];     ///< ø¯∑°¿« ∫ª µŒ≤≤
+    RwBool              m_bOrgBoneScale;        ///< ÏõêÎûòÏùò Î≥∏ Ïä§ÏºÄÏùº ÌîåÎûòÍ∑∏
+    RwReal              m_fOrgBoneLength[3];    ///< ÏõêÎûòÏùò Î≥∏ Í∏∏Ïù¥
+    RwReal              m_fOrgBoneWidth[3];     ///< ÏõêÎûòÏùò Î≥∏ ÎëêÍªò
 };
 //////////////////////////////////////////////////////////////////////////
 /**
  * \ingroup NtlSimulation
- * \brief ªÛ¥Î¿« µÓµ⁄∑Œ øˆ«¡«ÿº≠ ∞¯∞›«œ¥¬ Ω∫≈≥ (º∂±§¬¸)
+ * \brief ÏÉÅÎåÄÏùò Îì±Îí§Î°ú ÏõåÌîÑÌï¥ÏÑú Í≥µÍ≤©ÌïòÎäî Ïä§ÌÇ¨ (ÏÑ¨Í¥ëÏ∞∏)
  *
  * \date 2008-11-20
  * \author agebreak
@@ -807,7 +807,7 @@ public:
 
 protected:
 
-    void    OnWarpBack();                       ///< ªÛ¥ÎπÊ¿« µ⁄∑Œ øˆ«¡«—¥Ÿ.
+    void    OnWarpBack();                       ///< ÏÉÅÎåÄÎ∞©Ïùò Îí§Î°ú ÏõåÌîÑÌïúÎã§.
 
 protected:
 
@@ -818,7 +818,7 @@ protected:
 
 /**
  * \ingroup NtlSimulation
- * \brief ∏∂¿Œ¿« ±Ÿ∞≈∏Æ ∞¯∞£ µµæ‡ Ω∫≈≥ (≈∏∞Ÿ¿« ±Ÿ√≥∑Œ ¿Ãµø)
+ * \brief ÎßàÏù∏Ïùò Í∑ºÍ±∞Î¶¨ Í≥µÍ∞Ñ ÎèÑÏïΩ Ïä§ÌÇ¨ (ÌÉÄÍ≤üÏùò Í∑ºÏ≤òÎ°ú Ïù¥Îèô)
  *
  * \date 2008-11-21
  * \author agebreak
@@ -838,7 +838,7 @@ public:
 
 protected:
 
-    void    OnWarpTarget();                 ///< ≈∏∞Ÿ¿« ¡÷¿ß∑Œ øˆ«¡«—¥Ÿ.
+    void    OnWarpTarget();                 ///< ÌÉÄÍ≤üÏùò Ï£ºÏúÑÎ°ú ÏõåÌîÑÌïúÎã§.
 
 protected:
 
@@ -852,7 +852,7 @@ protected:
 
 /**
  * \ingroup NtlSimulation
- * \brief Ω∫∑Á æÓ≈√(¿œº∂ Ω∫≈∏¿œ) Ω∫≈≥
+ * \brief Ïä§Î£® Ïñ¥ÌÉù(ÏùºÏÑ¨ Ïä§ÌÉÄÏùº) Ïä§ÌÇ¨
  *
  * \date 2008-11-21
  * \author agebreak
@@ -910,7 +910,7 @@ protected:
 
 /**
  * \ingroup NtlSimulation
- * \brief ∏˜¿Ã ∫ØΩ≈ Ω∫≈≥¿ª ªÁøÎ«“∂ß ªÁøÎµ«¥¬ ≈¨∑°Ω∫ (∏˜ «—¡§)
+ * \brief Î™πÏù¥ Î≥ÄÏã† Ïä§ÌÇ¨ÏùÑ ÏÇ¨Ïö©Ìï†Îïå ÏÇ¨Ïö©ÎêòÎäî ÌÅ¥ÎûòÏä§ (Î™π ÌïúÏ†ï)
  *
  * \date 2009-01-16
  * \author agebreak
@@ -928,7 +928,7 @@ public:
     virtual void Update(RwReal fElapsed);
     virtual RwUInt32 HandleEvents(RWS::CMsg &pMsg);   
 
-    void    SetAnimation(RwUInt32 uiAction, RwUInt32 uiActionLoop);       ///< æ÷¥œ∏ﬁ¿Ãº«¿ª ºº∆√«—¥Ÿ.
+    void    SetAnimation(RwUInt32 uiAction, RwUInt32 uiActionLoop);       ///< Ïï†ÎãàÎ©îÏù¥ÏÖòÏùÑ ÏÑ∏ÌåÖÌïúÎã§.
 protected:
 
 protected:

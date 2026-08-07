@@ -41,7 +41,7 @@ CMy2DParticleEditorApp theApp;
 
 BOOL CMy2DParticleEditorApp::InitInstance()
 {
-	// µğ¹ö±ë¿ë
+	// ë””ë²„ê¹…ìš©
 	/*_CrtSetBreakAlloc( 73443 );*/
 
 	/*AllocConsole();
@@ -149,7 +149,7 @@ void CMy2DParticleEditorApp::OnAppAbout()
 
 int CMy2DParticleEditorApp::ExitInstance()
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	m_ParticleApp.Destroy();
 
 	return CWinApp::ExitInstance();
@@ -158,23 +158,23 @@ int CMy2DParticleEditorApp::ExitInstance()
 
 BOOL CMy2DParticleEditorApp::OnIdle(LONG lCount)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	
-	// À©µµ¿ì°¡ ÃÖ¼ÒÈ­ µÇ¾î ÀÖÀ» °æ¿ì´Â ¾÷µ¥ÀÌÆ® ÇÏÁö ¾Ê´Â´Ù.
+	// ìœˆë„ìš°ê°€ ìµœì†Œí™” ë˜ì–´ ìˆì„ ê²½ìš°ëŠ” ì—…ë°ì´íŠ¸ í•˜ì§€ ì•ŠëŠ”ë‹¤.
 	if(m_pMainWnd->IsIconic())
 		return FALSE;
 
 
 	m_ParticleApp.OnIdle();
 
-	// ¸Å ÇÁ·¹ÀÓ °»½ÅÀ» À§ÇÑ ÄÚµå : Ç×»ó TRUE¸¦ ¸®ÅÏÇÑ´Ù.
+	// ë§¤ í”„ë ˆì„ ê°±ì‹ ì„ ìœ„í•œ ì½”ë“œ : í•­ìƒ TRUEë¥¼ ë¦¬í„´í•œë‹¤.
 	__super::OnIdle(lCount);
 	return TRUE;
 }
 
 BOOL CMy2DParticleEditorApp::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	m_ParticleApp.PreTranslateMessage( pMsg->hwnd, pMsg->message, pMsg->wParam, pMsg->lParam );
 
 	return CWinApp::PreTranslateMessage(pMsg);
@@ -182,7 +182,7 @@ BOOL CMy2DParticleEditorApp::PreTranslateMessage(MSG* pMsg)
 
 void CMy2DParticleEditorApp::OnAttrNew()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	
 }

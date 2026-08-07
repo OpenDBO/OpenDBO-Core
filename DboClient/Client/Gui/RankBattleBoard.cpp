@@ -34,7 +34,7 @@
 ////////////////////////////////////////////////////////////////////////////////////
 
 /**
-* \brief »ı¼ºÀÚ
+* \brief ìƒì„±ì
 */
 CRankBattleRowItem::CRankBattleRowItem() 
 : m_pStbRank(NULL)
@@ -54,7 +54,7 @@ CRankBattleRowItem::CRankBattleRowItem()
 }
 
 /**
-* \brief ¼Ò¸êÀÚ
+* \brief ì†Œë©¸ì
 */
 CRankBattleRowItem::~CRankBattleRowItem() 
 {
@@ -63,64 +63,64 @@ CRankBattleRowItem::~CRankBattleRowItem()
 
 /**
 * \brief Create
-* \param pParentGui		(gui::CComponent*) ºÎ¸ğ GUIÀÇ Æ÷ÀÎÅÍ
-* \param nTop			(RwInt32) ÇöÀçÀÇ ¾ÆÀÌÅÛÀÌ ½ÃÀÛµÉ Y ÁÂÇ¥
+* \param pParentGui		(gui::CComponent*) ë¶€ëª¨ GUIì˜ í¬ì¸í„°
+* \param nTop			(RwInt32) í˜„ì¬ì˜ ì•„ì´í…œì´ ì‹œì‘ë  Y ì¢Œí‘œ
 */
 VOID CRankBattleRowItem::Create( gui::CComponent* pParentGui , RwInt32 nTop ) 
 {
-	// ¼øÀ§ÀÇ À§Ä¡
+	// ìˆœìœ„ì˜ ìœ„ì¹˜
 	CRectangle rect;
 
 	rect.SetRectWH( 0, nTop, 631, 25 );
 	m_pDlgItem = NTL_NEW gui::CDialog( &rect, pParentGui, GetNtlGuiManager()->GetSurfaceManager() );
 	
-	// ¼øÀ§(¼ıÀÚ)
+	// ìˆœìœ„(ìˆ«ì)
 	rect.SetRectWH( 6, 0, 43, 25 );
 	m_pStbRank = NTL_NEW gui::CStaticBox( &rect, m_pDlgItem, GetNtlGuiManager()->GetSurfaceManager(),
 		COMP_TEXT_VERTICAL_CENTER | COMP_TEXT_CENTER );
 	m_pStbRank->CreateFontStd( DETAIL_FONT , dRANKBOARD_RANKBATTLE_ROWITEM_FONT_HEIGHT, 0 );
 
-	// ÀÌ¸§(¹®ÀÚ¿­)
+	// ì´ë¦„(ë¬¸ìì—´)
 	rect.SetRectWH( 61, 0, 120, 25 );
 	m_pStbName = NTL_NEW gui::CStaticBox( &rect, m_pDlgItem, GetNtlGuiManager()->GetSurfaceManager(),
 		COMP_TEXT_VERTICAL_CENTER | COMP_TEXT_CENTER );
 	m_pStbName->CreateFontStd( DETAIL_FONT, dRANKBOARD_RANKBATTLE_ROWITEM_FONT_HEIGHT, 0 );
 	
-	// ·¹º§(¼ıÀÚ)
+	// ë ˆë²¨(ìˆ«ì)
 	rect.SetRectWH( 199, 0, 30, 25 );
 	m_pStbLevel = NTL_NEW gui::CStaticBox( &rect, m_pDlgItem, GetNtlGuiManager()->GetSurfaceManager(),
 		COMP_TEXT_VERTICAL_CENTER | COMP_TEXT_CENTER );
 	m_pStbLevel->CreateFontStd( DETAIL_FONT, dRANKBOARD_RANKBATTLE_ROWITEM_FONT_HEIGHT, 0 );
 
-	// Á÷¾÷(±×¸²)
+	// ì§ì—…(ê·¸ë¦¼)
 	rect.SetRectWH( 252, 2, 19, 29 );
 	m_pPanClass = NTL_NEW gui::CPanel( &rect, m_pDlgItem, GetNtlGuiManager()->GetSurfaceManager() );
 	
-	// ±æµåÀÌ¸§(¹®ÀÚ¿­)
+	// ê¸¸ë“œì´ë¦„(ë¬¸ìì—´)
 	rect.SetRectWH( 293, 0, 136, 25 );
 	m_pStbGuildName = NTL_NEW gui::CStaticBox( &rect, m_pDlgItem, GetNtlGuiManager()->GetSurfaceManager(),
 		COMP_TEXT_VERTICAL_CENTER | COMP_TEXT_CENTER );
 	m_pStbGuildName->CreateFontStd( DETAIL_FONT, dRANKBOARD_RANKBATTLE_ROWITEM_FONT_HEIGHT, 0 );
 
-	// Á¡¼ö(¼ıÀÚ)
+	// ì ìˆ˜(ìˆ«ì)
 	rect.SetRectWH( 432, 0, 66, 25 );
 	m_pStbPoint = NTL_NEW gui::CStaticBox( &rect, m_pDlgItem, GetNtlGuiManager()->GetSurfaceManager(),
 		COMP_TEXT_VERTICAL_CENTER | COMP_TEXT_CENTER );
 	m_pStbPoint->CreateFontStd( DETAIL_FONT, dRANKBOARD_RANKBATTLE_ROWITEM_FONT_HEIGHT, 0 );
 	
-	// ¿¬½Â(¼ıÀÚ)
+	// ì—°ìŠ¹(ìˆ«ì)
 	rect.SetRectWH( 514, 0, 24, 25 );
 	m_pStbStraightWin = NTL_NEW gui::CStaticBox( &rect, m_pDlgItem, GetNtlGuiManager()->GetSurfaceManager(),
 		COMP_TEXT_VERTICAL_CENTER | COMP_TEXT_CENTER );
 	m_pStbStraightWin->CreateFontStd( DETAIL_FONT, dRANKBOARD_RANKBATTLE_ROWITEM_FONT_HEIGHT, 0 );
 
-	// ºñ±³µî¼ö(¼ıÀÚ)
+	// ë¹„êµë“±ìˆ˜(ìˆ«ì)
 	rect.SetRectWH( 518, 0, 72, 25 );
 	m_pStbCompare = NTL_NEW gui::CStaticBox( &rect, m_pDlgItem, GetNtlGuiManager()->GetSurfaceManager(),
 		COMP_TEXT_VERTICAL_CENTER | COMP_TEXT_RIGHT );
 	m_pStbCompare->CreateFontStd( DETAIL_FONT, dRANKBOARD_RANKBATTLE_ROWITEM_FONT_HEIGHT, 0 );
 
-	// ºñ±³¸¶Å©(±×¸²)
+	// ë¹„êµë§ˆí¬(ê·¸ë¦¼)
 	rect.SetRectWH( 593, 8, 8, 7 );
 	m_pPanCompareMark = NTL_NEW gui::CPanel( &rect, m_pDlgItem, GetNtlGuiManager()->GetSurfaceManager() );
 
@@ -147,8 +147,8 @@ VOID CRankBattleRowItem::Destroy()
 }
 
 /**
-* \brief ÇöÀçÀÇ ¾ÆÀÌÅÛÀ» º¸¿©ÁúÁö ¾È º¸¿©ÁúÁö ¼ÂÆÃÇÑ´Ù.
-* \param bShow		(RwBool) º¸¿©Áö´Â ¿©ºÎ
+* \brief í˜„ì¬ì˜ ì•„ì´í…œì„ ë³´ì—¬ì§ˆì§€ ì•ˆ ë³´ì—¬ì§ˆì§€ ì…‹íŒ…í•œë‹¤.
+* \param bShow		(RwBool) ë³´ì—¬ì§€ëŠ” ì—¬ë¶€
 * 
 */
 VOID CRankBattleRowItem::Show( RwBool bShow /*= TRUE */ ) 
@@ -157,25 +157,25 @@ VOID CRankBattleRowItem::Show( RwBool bShow /*= TRUE */ )
 }
 
 /**
-* \brief Ç×¸ñÀÇ µ¥ÀÌÅÍ¸¦ ¼¼ÆÃ
-* \param nRank			¼øÀ§	
-* \param pwcName		ÀÌ¸§
-* \param nLevel			·¹º§
-* \param byClass		Á÷¾÷(NtlCharacter.h)
-* \param pwcGuildName	±æµåÀÌ¸§
-* \param nPoint			Á¡¼ö
-* \param nStraightWin	¿¬½Â
-* \param nCompare		ºñ±³µî¼ö
-* \param bHighLight		°­Á¶( TRUE = °­Á¶ FALSE = °­Á¶ÇÏÁö ¾ÊÀ½ )
+* \brief í•­ëª©ì˜ ë°ì´í„°ë¥¼ ì„¸íŒ…
+* \param nRank			ìˆœìœ„	
+* \param pwcName		ì´ë¦„
+* \param nLevel			ë ˆë²¨
+* \param byClass		ì§ì—…(NtlCharacter.h)
+* \param pwcGuildName	ê¸¸ë“œì´ë¦„
+* \param nPoint			ì ìˆ˜
+* \param nStraightWin	ì—°ìŠ¹
+* \param nCompare		ë¹„êµë“±ìˆ˜
+* \param bHighLight		ê°•ì¡°( TRUE = ê°•ì¡° FALSE = ê°•ì¡°í•˜ì§€ ì•ŠìŒ )
 */
 VOID CRankBattleRowItem::SetItem(  RwInt32 nRank, const WCHAR* pwcName, RwInt32 nLevel, 
 									RwUInt8 byClass, const WCHAR* pwcGuildName, RwInt32 nPoint, 
 									RwUInt16 nStraightWin, RwUInt32 nCompare , RwBool bHightLight/* FALSE  */) 
 {	
-	// ¼­ÆäÀÌ½º¸¦ ÃÊ±âÈ­
+	// ì„œí˜ì´ìŠ¤ë¥¼ ì´ˆê¸°í™”
 	m_pDlgItem->GetSurface()->clear();
 	
-	// °Ë»ö µÈ ´ë»óÀ» °­Á¶ÇÏ¿© Ç¥½ÃÇÑ´Ù.
+	// ê²€ìƒ‰ ëœ ëŒ€ìƒì„ ê°•ì¡°í•˜ì—¬ í‘œì‹œí•œë‹¤.
 	if( bHightLight )
 	{
 		m_pDlgItem->AddSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "RankingGui.srf", "srfHighLightLeft" ) );
@@ -190,12 +190,12 @@ VOID CRankBattleRowItem::SetItem(  RwInt32 nRank, const WCHAR* pwcName, RwInt32 
 	m_pStbLevel->SetText( nLevel );
 	m_pPanClass->GetSurface()->clear();
 	m_pPanClass->AddSurface( Logic_GetPCClassIconSurface( byClass, FALSE ) );
-	m_byClass = byClass;							// Á÷¾÷ Á¤º¸ ÀúÀå
+	m_byClass = byClass;							// ì§ì—… ì •ë³´ ì €ì¥
 	m_pStbGuildName->SetText( pwcGuildName );
 	m_pStbPoint->SetText( nPoint );
 	m_pStbStraightWin->SetText( nStraightWin );
 
-	// nCompare°¡ DWORD_INVALID ÀÏ °æ¿ì ( ¼­¹ö¿¡ ±× ³¯Â¥ÀÇ ±â·ÏµÈ µî¼ö°¡ ¾ø´Ù´Â °Í )
+	// nCompareê°€ DWORD_INVALID ì¼ ê²½ìš° ( ì„œë²„ì— ê·¸ ë‚ ì§œì˜ ê¸°ë¡ëœ ë“±ìˆ˜ê°€ ì—†ë‹¤ëŠ” ê²ƒ )
 	if( nCompare == -1 )
 	{
 		m_pStbCompare->SetText( L"-" );
@@ -204,14 +204,14 @@ VOID CRankBattleRowItem::SetItem(  RwInt32 nRank, const WCHAR* pwcName, RwInt32 
 		return;
 	}
 
-	// ºñ±³ µî¼ö( ÀÌÀü ¼øÀ§¿¡¼­ ÇöÀç ¼øÀ§¸¦ »©ÁØ´Ù. )
+	// ë¹„êµ ë“±ìˆ˜( ì´ì „ ìˆœìœ„ì—ì„œ í˜„ì¬ ìˆœìœ„ë¥¼ ë¹¼ì¤€ë‹¤. )
 	RwInt32 nAbsComp = nCompare - nRank;
 
 	m_pStbCompare->SetText( abs(nAbsComp) );
 
 	m_pPanCompareMark->GetSurface()->clear();
 
-	// ºñ±³ ¸¶Å©
+	// ë¹„êµ ë§ˆí¬
 	if( nAbsComp > 0 )
 		m_pPanCompareMark->AddSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "RankingGui.srf", "srfCompareUp" ) );
 	else if( nAbsComp < 0 )
@@ -221,8 +221,8 @@ VOID CRankBattleRowItem::SetItem(  RwInt32 nRank, const WCHAR* pwcName, RwInt32 
 }
 
 /**
-* \brief ºñ±³µî¼ö¸¸ ¼¼ÆÃ
-* \param nCompare ÀÌÀüÀÇ ¼øÀ§
+* \brief ë¹„êµë“±ìˆ˜ë§Œ ì„¸íŒ…
+* \param nCompare ì´ì „ì˜ ìˆœìœ„
 */
 VOID CRankBattleRowItem::SetCompareInfo( RwInt32 nCompare ) 
 {
@@ -234,13 +234,13 @@ VOID CRankBattleRowItem::SetCompareInfo( RwInt32 nCompare )
 		return;
 	}
 
-	// ºñ±³ µî¼ö( ÀÌÀü ¼øÀ§¿¡¼­ ÇöÀç ¼øÀ§¸¦ »©ÁØ´Ù. )
+	// ë¹„êµ ë“±ìˆ˜( ì´ì „ ìˆœìœ„ì—ì„œ í˜„ì¬ ìˆœìœ„ë¥¼ ë¹¼ì¤€ë‹¤. )
 	RwInt32 nAbsComp = nCompare - m_nRank;
 
 	m_pStbCompare->SetText( abs(nAbsComp) );
 
 
-	// ºñ±³ ¸¶Å©
+	// ë¹„êµ ë§ˆí¬
 	m_pPanCompareMark->GetSurface()->clear();
 
 	if( nAbsComp > 0 )
@@ -250,7 +250,7 @@ VOID CRankBattleRowItem::SetCompareInfo( RwInt32 nCompare )
 }
 
 /**
-* \brief ¾ÆÀÌÅÛÀ» ÃÊ±âÈ­ÇÑ´Ù.
+* \brief ì•„ì´í…œì„ ì´ˆê¸°í™”í•œë‹¤.
 */
 VOID CRankBattleRowItem::ClearItem()
 {
@@ -269,19 +269,19 @@ VOID CRankBattleRowItem::ClearItem()
 }
 
 /**
-* \brief Á÷¾÷ ¸¶Å©¿¡ ÅøÆÁÀ» ´Ü´Ù.
-* \param pComponent	(gui::CComponent*) ¸¶¿ì½º°¡ µé¾î¿Â ÄÄÆ÷³ÍÆ®
+* \brief ì§ì—… ë§ˆí¬ì— íˆ´íŒì„ ë‹¨ë‹¤.
+* \param pComponent	(gui::CComponent*) ë§ˆìš°ìŠ¤ê°€ ë“¤ì–´ì˜¨ ì»´í¬ë„ŒíŠ¸
 */
 VOID CRankBattleRowItem::OnMouseEnterFromClass( gui::CComponent* pComponent ) 
 {
-	// InfoWindow¸¦ ¹öÆ°¿¡ ´Ş¾ÆÁØ´Ù.
+	// InfoWindowë¥¼ ë²„íŠ¼ì— ë‹¬ì•„ì¤€ë‹¤.
 	if( m_byClass == INVALID_BYTE )
 		return;
 
 	if( m_pPanClass )
 	{
 		CRectangle rtScreen = m_pPanClass->GetScreenRect();
-		// ToolTipÀ» infoWindow·Î »ı¼ºÇÑ´Ù.
+		// ToolTipì„ infoWindowë¡œ ìƒì„±í•œë‹¤.
 		
 		GetInfoWndManager()->ShowInfoWindow( TRUE, CInfoWndManager::INFOWND_JUST_WTEXT,
 				rtScreen.left, rtScreen.top, 
@@ -291,8 +291,8 @@ VOID CRankBattleRowItem::OnMouseEnterFromClass( gui::CComponent* pComponent )
 }
 
 /**
-* \brief Á÷¾÷ ¸¶Å©ÀÇ ÅøÆÁÀ» »èÁ¦ÇÑ´Ù.
-* \param pComponent (gui::CComponent*) ¸¶¿ì½º Æ÷ÀÎÅÍ°¡ ³ª°£ ÄÄÆ÷³ÍÆ®
+* \brief ì§ì—… ë§ˆí¬ì˜ íˆ´íŒì„ ì‚­ì œí•œë‹¤.
+* \param pComponent (gui::CComponent*) ë§ˆìš°ìŠ¤ í¬ì¸í„°ê°€ ë‚˜ê°„ ì»´í¬ë„ŒíŠ¸
 */
 VOID CRankBattleRowItem::OnMouseLeaveFromClass( gui::CComponent* pComponent ) 
 {
@@ -312,7 +312,7 @@ VOID CRankBattleRowItem::OnMouseLeaveFromClass( gui::CComponent* pComponent )
 ////////////////////////////////////////////////////////////////////////////////////
 
 /**
-* \brief »ı¼ºÀÚ
+* \brief ìƒì„±ì
 */
 CRankBattleBoard::CRankBattleBoard()
 : m_pRankBattleBoardDlg(NULL)
@@ -330,7 +330,7 @@ CRankBattleBoard::CRankBattleBoard()
 }
 
 /**
-* \brief ¼Ò¸êÀÚ
+* \brief ì†Œë©¸ì
 */
 CRankBattleBoard::~CRankBattleBoard() 
 {
@@ -338,8 +338,8 @@ CRankBattleBoard::~CRankBattleBoard()
 
 /**
 * \brief Create
-* \param eType		º¸µåÀÇ Å¸ÀÔ(CBoard*)
-* \param pParentGui ºÎ¸ğ GUIÀÇ Æ÷ÀÎÅÍ
+* \param eType		ë³´ë“œì˜ íƒ€ì…(CBoard*)
+* \param pParentGui ë¶€ëª¨ GUIì˜ í¬ì¸í„°
 */
 void CRankBattleBoard::Create( eBoardType eType , CRankBoardGui* pParent ) 
 {
@@ -471,7 +471,7 @@ void CRankBattleBoard::Enable( RwBool bEnable /*= TRUE */ )
 	m_pBtnSearch->ClickEnable( bEnable );
 	m_pIpbSearch->Enable( B2b(bEnable) );
 
-	// ÇöÀç ÆäÀÌÁö°¡ 0 ÀÌ¶ó¸é Ç×»ó ClickEnable( FALSE ) »óÅÂ°¡ µÇ°Ô ÇÑ´Ù.
+	// í˜„ì¬ í˜ì´ì§€ê°€ 0 ì´ë¼ë©´ í•­ìƒ ClickEnable( FALSE ) ìƒíƒœê°€ ë˜ê²Œ í•œë‹¤.
 	if( m_nCurrentPage == 0 )
 		m_pBtnPrev->ClickEnable( FALSE );
 
@@ -480,7 +480,7 @@ void CRankBattleBoard::Enable( RwBool bEnable /*= TRUE */ )
 }
 
 /**
-* \brief ÇöÀç ÆäÀÌÁö ¿äÃ»
+* \brief í˜„ì¬ í˜ì´ì§€ ìš”ì²­
 */
 void CRankBattleBoard::CurrentPage() 
 {
@@ -490,22 +490,22 @@ void CRankBattleBoard::CurrentPage()
 }
 
 /**
-* \brief ·©Å©¹èÆ²ÀÇ ¼øÀ§°Ô½ÃÆÇÀÌ ¹ŞÀ» Msg¸¦ ¹Ş¾Æ¼­ Ã³¸®ÇÑ´Ù.
-* CRankBoardGui¿¡¼­ ÇöÀç ÀÌ Board¿¡ ÇÊ¿äÇÑ ÀÌº¥Æ®¸¸ °ñ¶ó¼­ º¸³»ÁØ´Ù.
-* \param msg	EventÀÇ ¸Ş½ÃÁö
+* \brief ë­í¬ë°°í‹€ì˜ ìˆœìœ„ê²Œì‹œíŒì´ ë°›ì„ Msgë¥¼ ë°›ì•„ì„œ ì²˜ë¦¬í•œë‹¤.
+* CRankBoardGuiì—ì„œ í˜„ì¬ ì´ Boardì— í•„ìš”í•œ ì´ë²¤íŠ¸ë§Œ ê³¨ë¼ì„œ ë³´ë‚´ì¤€ë‹¤.
+* \param msg	Eventì˜ ë©”ì‹œì§€
 */
 void CRankBattleBoard::MessageProc( RWS::CMsg& msg ) 
 {
-	// ÆäÀÌÁö ¸®½ºÆ®
+	// í˜ì´ì§€ ë¦¬ìŠ¤íŠ¸
 	if( msg.Id == g_EventRankBattleRankListRes )
 	{
 		SDboEventRankBattleRankListRes* pRes = 
 			reinterpret_cast<SDboEventRankBattleRankListRes*>(msg.pData);
 
-		// ·©Å©Á¤º¸ÀÇ Ä«¿îÆ®°¡ 0 ÀÌ¶ó¸é ¾ø´Â ÆäÀÌÁö¸¦ ¿äÃ»ÇÑ °Í.
+		// ë­í¬ì •ë³´ì˜ ì¹´ìš´íŠ¸ê°€ 0 ì´ë¼ë©´ ì—†ëŠ” í˜ì´ì§€ë¥¼ ìš”ì²­í•œ ê²ƒ.
 		if( pRes->byRankInfoCount == 0 )
 		{
-			// ¸¸¾à 0ÆäÀÌÁöÀÇ Ä«¿îÆ®°¡ ÇÏ³ªµµ ¾ø´Ù¸é ¼­¹ö¿¡ ·©Å©¹èÆ² µ¥ÀÌÅÍ°¡ ¾ø´Â °Í.
+			// ë§Œì•½ 0í˜ì´ì§€ì˜ ì¹´ìš´íŠ¸ê°€ í•˜ë‚˜ë„ ì—†ë‹¤ë©´ ì„œë²„ì— ë­í¬ë°°í‹€ ë°ì´í„°ê°€ ì—†ëŠ” ê²ƒ.
 			if( pRes->dwPage == 0 )
 			{
 				/*GetAlarmManager()->AlarmMessage( DST_RANKBOARD_BOARD_MSGBOX_NODATA );*/
@@ -525,17 +525,17 @@ void CRankBattleBoard::MessageProc( RWS::CMsg& msg )
 		sRANKBATTLE_RANK_INFO* apRank = 
 			reinterpret_cast<sRANKBATTLE_RANK_INFO*>( pData->Read( pRes->wRankInfo ) );
 
-		// ÆäÀÌÁö Á¤º¸ ÀúÀå
+		// í˜ì´ì§€ ì •ë³´ ì €ì¥
 		m_nCurrentPage = pRes->dwPage;
 		m_nCurrentCompareDay = pRes->byCompareDay;
 
-		// ¾ÆÀÌÅÛ ±¸¼º
+		// ì•„ì´í…œ êµ¬ì„±
 		m_nRankBattleItemCount = pRes->byRankInfoCount;
 		for( int i = 0; i< pRes->byRankInfoCount; ++i )
 		{
 			m_sRankBattleItem[i].nRank = (pRes->dwPage*10) + i + 1;
 			
-			// sVARIABLE_DATA¿¡¼­ Ä³¸¯ÅÍ ÀÌ¸§
+			// sVARIABLE_DATAì—ì„œ ìºë¦­í„° ì´ë¦„
 			int nSize = pData->GetSize( apRank[i].wCharName );
 			::ZeroMemory( m_sRankBattleItem[i].awcName, sizeof(WCHAR) * NTL_MAX_SIZE_CHAR_NAME+1 );
 			::CopyMemory( m_sRankBattleItem[i].awcName, pData->Read( apRank[i].wCharName ), nSize);
@@ -544,7 +544,7 @@ void CRankBattleBoard::MessageProc( RWS::CMsg& msg )
 			m_sRankBattleItem[i].nLevel = apRank[i].byLevel;
 			m_sRankBattleItem[i].byClass = apRank[i].byClass;
 		
-			// sVARIABLE_DATA¿¡¼­ÀÇ ±æµå ÀÌ¸§
+			// sVARIABLE_DATAì—ì„œì˜ ê¸¸ë“œ ì´ë¦„
 			nSize = pData->GetSize( apRank[i].wGuildName );
 			::ZeroMemory( m_sRankBattleItem[i].awcGuildName, sizeof(WCHAR) * NTL_MAX_SIZE_GUILD_NAME+1 );
 			::CopyMemory( m_sRankBattleItem[i].awcGuildName, pData->Read( apRank[i].wGuildName ), nSize );
@@ -557,7 +557,7 @@ void CRankBattleBoard::MessageProc( RWS::CMsg& msg )
 
 		SetDataResult( eDATA_OK );
 	}
-	// °Ë»ö °á°ú ¸®½ºÆ®
+	// ê²€ìƒ‰ ê²°ê³¼ ë¦¬ìŠ¤íŠ¸
 	else if( msg.Id == g_EventRankBattleRankFindCharacterRes )
 	{
 		SDboEventRankBattleRankFindCharacterRes* pRes = reinterpret_cast<SDboEventRankBattleRankFindCharacterRes*>(msg.pData);
@@ -585,7 +585,7 @@ void CRankBattleBoard::MessageProc( RWS::CMsg& msg )
 		{
 			m_sRankBattleItem[i].nRank = (pRes->dwPage*10) + i + 1;
 
-			// sVARIABLE_DATA¿¡¼­ Ä³¸¯ÅÍ ÀÌ¸§
+			// sVARIABLE_DATAì—ì„œ ìºë¦­í„° ì´ë¦„
 			int nSize = pData->GetSize( apRank[i].wCharName );
 			::ZeroMemory( m_sRankBattleItem[i].awcName, sizeof(WCHAR) * NTL_MAX_SIZE_CHAR_NAME+1 );
 			::CopyMemory( m_sRankBattleItem[i].awcName, pData->Read( apRank[i].wCharName ), nSize);
@@ -594,7 +594,7 @@ void CRankBattleBoard::MessageProc( RWS::CMsg& msg )
 			m_sRankBattleItem[i].nLevel = apRank[i].byLevel;
 			m_sRankBattleItem[i].byClass = apRank[i].byClass;
 
-			// sVARIABLE_DATA¿¡¼­ÀÇ ±æµå ÀÌ¸§
+			// sVARIABLE_DATAì—ì„œì˜ ê¸¸ë“œ ì´ë¦„
 			nSize = pData->GetSize( apRank[i].wGuildName );
 			::ZeroMemory( m_sRankBattleItem[i].awcGuildName, sizeof(WCHAR) * NTL_MAX_SIZE_GUILD_NAME+1 );
 			::CopyMemory( m_sRankBattleItem[i].awcGuildName, pData->Read( apRank[i].wGuildName ), nSize );
@@ -607,7 +607,7 @@ void CRankBattleBoard::MessageProc( RWS::CMsg& msg )
 
 		SetDataResult( eDATA_OK );
 	}
-	// ºñ±³³¯Â¥ º¯°æ ¸®½ºÆ®
+	// ë¹„êµë‚ ì§œ ë³€ê²½ ë¦¬ìŠ¤íŠ¸
 	else if( msg.Id == g_EventRankBattleRankCompareDayRes )
 	{
 		SDboEventRankBattleRankCompareDayRes* pRes = 
@@ -618,8 +618,8 @@ void CRankBattleBoard::MessageProc( RWS::CMsg& msg )
 		m_nCurrentPage = pRes->dwPage;
 		m_nCurrentCompareDay = pRes->byCompareDay;
 	
-		// bIsFullList == TRUE : ¼­¹öÀÇ Ä³½¬¿¡ ÀúÀåµÈ µ¥ÀÌÅ¸°¡ ¾ø¾î¼­ ±× ÆäÀÌÁöÀÇ ÀüÃ¼ ¸®½ºÆ®°¡ ³»·Á¿Â´Ù
-		// bIsFullList == FALSE : ¼­¹öÀÇ Ä³½¬¿¡ ÀúÀåµÈ µ¥ÀÌÅ¸°¡ ÀÖ¾î¼­ ºñ±³µÈ ³¯Â¥¸¸ ³»·Á¿Â´Ù.
+		// bIsFullList == TRUE : ì„œë²„ì˜ ìºì‰¬ì— ì €ì¥ëœ ë°ì´íƒ€ê°€ ì—†ì–´ì„œ ê·¸ í˜ì´ì§€ì˜ ì „ì²´ ë¦¬ìŠ¤íŠ¸ê°€ ë‚´ë ¤ì˜¨ë‹¤
+		// bIsFullList == FALSE : ì„œë²„ì˜ ìºì‰¬ì— ì €ì¥ëœ ë°ì´íƒ€ê°€ ìˆì–´ì„œ ë¹„êµëœ ë‚ ì§œë§Œ ë‚´ë ¤ì˜¨ë‹¤.
 		if( bIsFullList )
 		{
 			sRANKBATTLE_RANK_INFO* apRank = reinterpret_cast<sRANKBATTLE_RANK_INFO*>( pData->Read(pRes->wRankInfo) );
@@ -636,7 +636,7 @@ void CRankBattleBoard::MessageProc( RWS::CMsg& msg )
 			{
 				m_sRankBattleItem[i].nRank = (pRes->dwPage*10) + i + 1;
 
-				// sVARIABLE_DATA¿¡¼­ Ä³¸¯ÅÍ ÀÌ¸§
+				// sVARIABLE_DATAì—ì„œ ìºë¦­í„° ì´ë¦„
 				int nSize = pData->GetSize( apRank[i].wCharName );
 				::ZeroMemory( m_sRankBattleItem[i].awcName, sizeof(WCHAR) * NTL_MAX_SIZE_CHAR_NAME+1 );
 				::CopyMemory( m_sRankBattleItem[i].awcName, pData->Read( apRank[i].wCharName ), nSize);
@@ -645,7 +645,7 @@ void CRankBattleBoard::MessageProc( RWS::CMsg& msg )
 				m_sRankBattleItem[i].nLevel = apRank[i].byLevel;
 				m_sRankBattleItem[i].byClass = apRank[i].byClass;
 
-				// sVARIABLE_DATA¿¡¼­ÀÇ ±æµå ÀÌ¸§
+				// sVARIABLE_DATAì—ì„œì˜ ê¸¸ë“œ ì´ë¦„
 				nSize = pData->GetSize( apRank[i].wGuildName );
 				::ZeroMemory( m_sRankBattleItem[i].awcGuildName, sizeof(WCHAR) * NTL_MAX_SIZE_GUILD_NAME+1 );
 				::CopyMemory( m_sRankBattleItem[i].awcGuildName, pData->Read( apRank[i].wGuildName ), nSize );
@@ -679,21 +679,21 @@ void CRankBattleBoard::MessageProc( RWS::CMsg& msg )
 }
 
 /**
-* \brief UI¿¡¼­ °¡Áö°í ÀÖ´Â Á¤º¸¸¦ Àû¿ëÇÏ°í µ¥ÀÌÅ¸ÀÇ °á°ú°ª¿¡ µû¸¥ ¾È³» ¸Ş½ÃÁö¸¦ Ãâ·ÂÇÑ´Ù.
+* \brief UIì—ì„œ ê°€ì§€ê³  ìˆëŠ” ì •ë³´ë¥¼ ì ìš©í•˜ê³  ë°ì´íƒ€ì˜ ê²°ê³¼ê°’ì— ë”°ë¥¸ ì•ˆë‚´ ë©”ì‹œì§€ë¥¼ ì¶œë ¥í•œë‹¤.
 */
 VOID CRankBattleBoard::ApplyData()
 {
 	switch( m_byDataResult )
 	{
-		// µ¥ÀÌÅ¸°¡ Á¤»óÀûÀ¸·Î Ã³¸®µÇ¾ú´Ù.
+		// ë°ì´íƒ€ê°€ ì •ìƒì ìœ¼ë¡œ ì²˜ë¦¬ë˜ì—ˆë‹¤.
 	case eDATA_OK:
 		{
-			// ¼øÀ§ °Ë»ö ¸ğµå¿´À» °æ¿ì
+			// ìˆœìœ„ ê²€ìƒ‰ ëª¨ë“œì˜€ì„ ê²½ìš°
 			if( m_bSearchRank )
 			{
 				m_bSearchRank = FALSE;
 
-				// UI°¡ °¡Áö°í ÀÖ´Â Á¤º¸¸¦ Á¤»óÀûÀ¸·Î ¾ÆÀÌÅÛ¿¡ ÀÔ·ÂÇÑ´Ù.
+				// UIê°€ ê°€ì§€ê³  ìˆëŠ” ì •ë³´ë¥¼ ì •ìƒì ìœ¼ë¡œ ì•„ì´í…œì— ì…ë ¥í•œë‹¤.
 				for( RwInt32 i = 0; i< m_nRankBattleItemCount; ++i )
 				{
 					RwBool bHighLight = FALSE;
@@ -712,7 +712,7 @@ VOID CRankBattleBoard::ApplyData()
 
 				}
 
-				// ¹ŞÁö ¸øÇÑ Á¤º¸ÀÇ ¾ÆÀÌÅÛÀº º¸¿©ÁÖÁö ¾Ê´Â´Ù.
+				// ë°›ì§€ ëª»í•œ ì •ë³´ì˜ ì•„ì´í…œì€ ë³´ì—¬ì£¼ì§€ ì•ŠëŠ”ë‹¤.
 				if( m_nRankBattleItemCount < dRANKBOARD_RANKBATTLE_ROWITEM_NUMS )
 				{
 					for(int i=m_nRankBattleItemCount; i< dRANKBOARD_RANKBATTLE_ROWITEM_NUMS; ++i )
@@ -723,7 +723,7 @@ VOID CRankBattleBoard::ApplyData()
 			}
 			else
 			{
-				// UI°¡ °¡Áö°í ÀÖ´Â Á¤º¸¸¦ Á¤»óÀûÀ¸·Î ¾ÆÀÌÅÛ¿¡ ÀÔ·ÂÇÑ´Ù.
+				// UIê°€ ê°€ì§€ê³  ìˆëŠ” ì •ë³´ë¥¼ ì •ìƒì ìœ¼ë¡œ ì•„ì´í…œì— ì…ë ¥í•œë‹¤.
 				for( RwInt32 i = 0; i< m_nRankBattleItemCount; ++i )
 				{
 					RwBool bHighLight = FALSE;
@@ -742,7 +742,7 @@ VOID CRankBattleBoard::ApplyData()
 
 				}
 
-				// ¹ŞÁö ¸øÇÑ Á¤º¸ÀÇ ¾ÆÀÌÅÛÀº º¸¿©ÁÖÁö ¾Ê´Â´Ù.
+				// ë°›ì§€ ëª»í•œ ì •ë³´ì˜ ì•„ì´í…œì€ ë³´ì—¬ì£¼ì§€ ì•ŠëŠ”ë‹¤.
 				if( m_nRankBattleItemCount < dRANKBOARD_RANKBATTLE_ROWITEM_NUMS )
 				{
 					for(int i=m_nRankBattleItemCount; i< dRANKBOARD_RANKBATTLE_ROWITEM_NUMS; ++i )
@@ -753,7 +753,7 @@ VOID CRankBattleBoard::ApplyData()
 			}
 		}
 		break;
-		// ºñ±³³¯Â¥¸¸ ³»·Á¿ÔÀ» °æ¿ì
+		// ë¹„êµë‚ ì§œë§Œ ë‚´ë ¤ì™”ì„ ê²½ìš°
 	case eDATA_ONLYCOMPARE:
 		{
 			for( RwInt32 i = 0; i< m_nRankBattleItemCount; ++i )
@@ -762,14 +762,14 @@ VOID CRankBattleBoard::ApplyData()
 			}
 		}
 		break;
-		// ¼­¹ö¿¡ ¾Æ¹«·± Á¤º¸°¡ ¾ø´Ù.
+		// ì„œë²„ì— ì•„ë¬´ëŸ° ì •ë³´ê°€ ì—†ë‹¤.
 	case eDATA_NONE:
 		{
 			if( m_pParentGui->IsShow() )
 				GetAlarmManager()->AlarmMessage( "DST_RANKBOARD_BOARD_MSGBOX_NODATA" );
 		}
 		break;
-		// ¾ø´Â ÆäÀÌÁöÀÔ´Ï´Ù.
+		// ì—†ëŠ” í˜ì´ì§€ì…ë‹ˆë‹¤.
 	case eDATA_NOTPAGE:
 		{
 			if( m_bSearchRank )
@@ -787,7 +787,7 @@ VOID CRankBattleBoard::ApplyData()
 
 		}
 		break;
-		// °Ë»ö °á°ú°¡ ¾ø½À´Ï´Ù.
+		// ê²€ìƒ‰ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.
 	case eDATA_NOTFIND:
 		{
 			if( m_pParentGui->IsShow() )
@@ -802,7 +802,7 @@ VOID CRankBattleBoard::ApplyData()
 }
 
 /**
-* \brief ¾ÆÀÌÅÛ ÃÊ±âÈ­
+* \brief ì•„ì´í…œ ì´ˆê¸°í™”
 */
 VOID CRankBattleBoard::RowItemClear()
 {
@@ -813,7 +813,7 @@ VOID CRankBattleBoard::RowItemClear()
 }
 
 /**
-* \brief ¼­¹ö¿¡¼­ ¹ŞÀº µ¥ÀÌÅ¸ÀÇ À¯È¿¼º °á°ú¸¦ ¼¼ÆÃÇÑ´Ù.
+* \brief ì„œë²„ì—ì„œ ë°›ì€ ë°ì´íƒ€ì˜ ìœ íš¨ì„± ê²°ê³¼ë¥¼ ì„¸íŒ…í•œë‹¤.
 * \param byDataResult	(RwUInt8) eDataResult
 */
 VOID CRankBattleBoard::SetDataResult( RwUInt8 byDataResult )
@@ -823,7 +823,7 @@ VOID CRankBattleBoard::SetDataResult( RwUInt8 byDataResult )
 
 
 /**
-* \brief 'ÀÌÀü' ¹öÆ°À» Å¬¸¯
+* \brief 'ì´ì „' ë²„íŠ¼ì„ í´ë¦­
 */
 VOID CRankBattleBoard::OnClickedBtnPrev( gui::CComponent* pComponent ) 
 {
@@ -837,12 +837,12 @@ VOID CRankBattleBoard::OnClickedBtnPrev( gui::CComponent* pComponent )
 		m_nCurrentPage - 1,
 		(RwInt8)m_nCurrentCompareDay );
 	
-	// ºñÈ°¼ºÈ­
+	// ë¹„í™œì„±í™”
 	m_pParentGui->DisableAllButton();
 }
 
 /**
-* \brief '´ÙÀ½' ¹öÆ°À» Å¬¸¯
+* \brief 'ë‹¤ìŒ' ë²„íŠ¼ì„ í´ë¦­
 */
 VOID CRankBattleBoard::OnClickedBtnNext( gui::CComponent* pComponent ) 
 {
@@ -850,12 +850,12 @@ VOID CRankBattleBoard::OnClickedBtnNext( gui::CComponent* pComponent )
 		m_nCurrentPage + 1, 
 		(RwInt8)m_nCurrentCompareDay );
 
-	// ºñÈ°¼ºÈ­
+	// ë¹„í™œì„±í™”
 	m_pParentGui->DisableAllButton();
 }
 
 /**
-* \brief °Ë»ö Ã¢¿¡¼­ ¿£ÅÍ¸¦ ÃÆÀ» °æ¿ì
+* \brief ê²€ìƒ‰ ì°½ì—ì„œ ì—”í„°ë¥¼ ì³¤ì„ ê²½ìš°
 */
 VOID CRankBattleBoard::OnInputReturnSearch() 
 {
@@ -864,7 +864,7 @@ VOID CRankBattleBoard::OnInputReturnSearch()
 
 	const WCHAR* pwcText = m_pIpbSearch->GetText();
 
-	// ÀÔ·ÂÃ¢¿¡ ÇÑ ±ÛÀÚ ÀÌ»ó ÀÔ·ÂµÇ¾úÀ» °æ¿ì Ã³¸®ÇÑ´Ù.
+	// ì…ë ¥ì°½ì— í•œ ê¸€ì ì´ìƒ ì…ë ¥ë˜ì—ˆì„ ê²½ìš° ì²˜ë¦¬í•œë‹¤.
 	if( wcslen(pwcText) > 0 )
 	{
 		if( (eSearchMode)m_nSearchMode == eSEARCH_NAME )
@@ -884,13 +884,13 @@ VOID CRankBattleBoard::OnInputReturnSearch()
 
 			--nSearchRank;
 
-			// ÆäÀÌÁö¿Í ¸î¹øÂ°ÀÎÁö¸¦ Ã£´Â´Ù.
+			// í˜ì´ì§€ì™€ ëª‡ë²ˆì§¸ì¸ì§€ë¥¼ ì°¾ëŠ”ë‹¤.
 			m_nSearchRankPage = 0;
 			m_nSearchRankIndex = nSearchRank % 10;
 			if( nSearchRank > 10 )
 				m_nSearchRankPage = (RwInt32)((RwReal)nSearchRank * 0.1f);
 
-			// ÆäÀÌÁö¸¦ ¿äÃ»
+			// í˜ì´ì§€ë¥¼ ìš”ì²­
 			m_bSearchRank = TRUE;
 			GetDboGlobal()->GetChatPacketGenerator()->SendRankBattle_Rank_List_Req( m_nSearchRankPage, (RwInt8)m_nCurrentCompareDay );
 
@@ -904,7 +904,7 @@ VOID CRankBattleBoard::OnInputReturnSearch()
 }
 
 /**
-* \brief °Ë»ö ¹öÆ°À» Å¬¸¯ÇÏ¿´À» °æ¿ì
+* \brief ê²€ìƒ‰ ë²„íŠ¼ì„ í´ë¦­í•˜ì˜€ì„ ê²½ìš°
 */
 VOID CRankBattleBoard::OnClickedBtnSearch( gui::CComponent* pComponent ) 
 {
@@ -932,13 +932,13 @@ VOID CRankBattleBoard::OnClickedBtnSearch( gui::CComponent* pComponent )
 
 			--nSearchRank;
 			
-			// ÆäÀÌÁö¿Í ¸î¹øÂ°ÀÎÁö¸¦ Ã£´Â´Ù.
+			// í˜ì´ì§€ì™€ ëª‡ë²ˆì§¸ì¸ì§€ë¥¼ ì°¾ëŠ”ë‹¤.
 			m_nSearchRankPage = 0;
 			m_nSearchRankIndex = nSearchRank % 10;
 			if( nSearchRank > 10 )
 				m_nSearchRankPage = (RwInt32)((RwReal)nSearchRank * 0.1f);
 
-			// ÆäÀÌÁö¸¦ ¿äÃ»
+			// í˜ì´ì§€ë¥¼ ìš”ì²­
 			m_bSearchRank = TRUE;
 			GetDboGlobal()->GetChatPacketGenerator()->SendRankBattle_Rank_List_Req( m_nSearchRankPage, (RwInt8)m_nCurrentCompareDay );
 			
@@ -953,8 +953,8 @@ VOID CRankBattleBoard::OnClickedBtnSearch( gui::CComponent* pComponent )
 
 
 /**
-* \brief ÄŞº¸¹Ú½ºÀÇ ¾ÆÀÌÅÛÀ» ¼±ÅÃÇÏ¿´À» °æ¿ì
-* \param nIndex		¼±ÅÃÇÑ Index
+* \brief ì½¤ë³´ë°•ìŠ¤ì˜ ì•„ì´í…œì„ ì„ íƒí•˜ì˜€ì„ ê²½ìš°
+* \param nIndex		ì„ íƒí•œ Index
 */
 VOID CRankBattleBoard::OnItemSelect( INT nIndex ) 
 {
@@ -963,14 +963,14 @@ VOID CRankBattleBoard::OnItemSelect( INT nIndex )
 
 	GetDboGlobal()->GetChatPacketGenerator()->SendRankBattle_Rank_Compare_Day_Req( m_nCurrentPage, (RwInt8)(nIndex+1) );
 
-	// ·©Å©º¸µå¸¦ Disable »óÅÂ·Î ÀüÈ¯
+	// ë­í¬ë³´ë“œë¥¼ Disable ìƒíƒœë¡œ ì „í™˜
 	m_pParentGui->DisableAllButton();
 }
 
 /**
-* \brief ÄŞº¸¹Ú½ºÀÇ ¸®½ºÆ®¹Ú½º¸¦ ¿­¾úÀ» °æ¿ì
-* \param bToggled	¿ÀÇÂ¿©ºÎ
-* \param pComponent	¿ÀÇÂµÈ ÄŞÆ÷³ÍÆ®
+* \brief ì½¤ë³´ë°•ìŠ¤ì˜ ë¦¬ìŠ¤íŠ¸ë°•ìŠ¤ë¥¼ ì—´ì—ˆì„ ê²½ìš°
+* \param bToggled	ì˜¤í”ˆì—¬ë¶€
+* \param pComponent	ì˜¤í”ˆëœ ì½¤í¬ë„ŒíŠ¸
 */
 VOID CRankBattleBoard::OnListToggled( RwBool bToggled, gui::CComponent* pComponent ) 
 {

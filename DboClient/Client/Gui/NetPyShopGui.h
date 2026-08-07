@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: NetPyShopGui.h
 * Author		: Cho Haesung
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2009. 6. 25
 * Abstract		: 
 *****************************************************************************
-* Desc			: Commercial ±â´É Áß NetPyShopÀÇ GUI ¹× ±â´ÉÀ» Á¤ÀÇÇÏ´Â Class
+* Desc			: Commercial ê¸°ëŠ¥ ì¤‘ NetPyShopì˜ GUI ë° ê¸°ëŠ¥ì„ ì •ì˜í•˜ëŠ” Class
 *****************************************************************************/
 
 #ifndef __NETPYSHOP_GUI_H__
@@ -42,8 +42,8 @@ class CNtlSobActor;
 class CNetPyShopGui : public CNtlPLGui, public RWS::CEventHandler
 {
 #define dFIRST_PAGE			0
-#define dMAX_PAGE			5			///< ÇÑ ÅÇ ´ç µî·Ï ¼ö ÀÖ´Â ÃÖ´ë ÆäÀÌÁö
-#define dMAX_ITEM_PANEL		6			///< ShopÀÇ ¾ÆÀÌÅÛ ÆĞ³Î °¹¼ö
+#define dMAX_PAGE			5			///< í•œ íƒ­ ë‹¹ ë“±ë¡ ìˆ˜ ìˆëŠ” ìµœëŒ€ í˜ì´ì§€
+#define dMAX_ITEM_PANEL		6			///< Shopì˜ ì•„ì´í…œ íŒ¨ë„ ê°¯ìˆ˜
 #define dNETPYSHOP_TAB_NUMS 4
 
 public:
@@ -63,8 +63,8 @@ public:
 		CRegularSlotGui			slot;			///< slot
 		gui::CPanel*		pItemPanel;		///< Item panel
 		CSurfaceGui			srfNeedItem;	///< Need Item
-		gui::CStaticBox*	pItemName;		///< ÀÌ¸§
-		gui::CStaticBox*	pPoint;			///< ÇÊ¿äÇÑ Æ÷ÀÎÆ®(°¡°İ, ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ Æ÷ÀÎÆ® µî...)
+		gui::CStaticBox*	pItemName;		///< ì´ë¦„
+		gui::CStaticBox*	pPoint;			///< í•„ìš”í•œ í¬ì¸íŠ¸(ê°€ê²©, ì²œí•˜ì œì¼ ë¬´ë„íšŒ í¬ì¸íŠ¸ ë“±...)
 		std::wstring		wstrNeedItemName;
 
 		RwBool				bNeedItem;
@@ -85,7 +85,7 @@ public:
 	RwBool			Create();
 	VOID			Destroy();
 
-	RwInt32			SwitchDialog(bool bOpen);		///< DialogManager¿¡¼­ÀÇ Open/Close
+	RwInt32			SwitchDialog(bool bOpen);		///< DialogManagerì—ì„œì˜ Open/Close
 	eShopType		GetShopType();
 
 protected:
@@ -95,21 +95,21 @@ protected:
 	VOID			ResetCartTexture(eShopType eType);
 
 	VOID			OpenShop();
-	VOID			CloseShop();						///< NPC »óÁ¡À» ´İ´Â´Ù.	
+	VOID			CloseShop();						///< NPC ìƒì ì„ ë‹«ëŠ”ë‹¤.	
 
-	VOID			ClearShop();						///< ShopÀÇ Á¤º¸¸¦ ÃÊ±âÈ­ ÇÑ´Ù.
-	VOID			ClearPanels();						///< ÆĞ³Î ³»¿ë ÀüºÎ ÃÊ±âÈ­ ÇÑ´Ù.
+	VOID			ClearShop();						///< Shopì˜ ì •ë³´ë¥¼ ì´ˆê¸°í™” í•œë‹¤.
+	VOID			ClearPanels();						///< íŒ¨ë„ ë‚´ìš© ì „ë¶€ ì´ˆê¸°í™” í•œë‹¤.
 
-	VOID			UpdateTabContent(RwUInt8 byIndex);	///< ÅÇ¿¡ ¸Â´Â ³»¿ëÀ» °»½ÅÇÑ´Ù
-	bool			SetPage(RwInt32 iPage);				///< ÇöÀç ÆäÀÌÁö ¼³Á¤
-	VOID			SetPanel(RwInt32 iPage);			///< ÇöÀç ÆäÀÌÁö¿¡ ¸Â´Â ¾ÆÀÌÅÛ ¸®½ºÆ®¸¦ º¸¿©ÁØ´Ù.
+	VOID			UpdateTabContent(RwUInt8 byIndex);	///< íƒ­ì— ë§ëŠ” ë‚´ìš©ì„ ê°±ì‹ í•œë‹¤
+	bool			SetPage(RwInt32 iPage);				///< í˜„ì¬ í˜ì´ì§€ ì„¤ì •
+	VOID			SetPanel(RwInt32 iPage);			///< í˜„ì¬ í˜ì´ì§€ì— ë§ëŠ” ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ë¥¼ ë³´ì—¬ì¤€ë‹¤.
 	VOID			SetPageButton();
 
-	VOID			SelectItem(RwInt32 iPanelIndex);	///< ¾ÆÀÌÅÛÀ» »ç±â À§ÇØ ¼±ÅÃÀ» ÇÏ¿´´Ù.
+	VOID			SelectItem(RwInt32 iPanelIndex);	///< ì•„ì´í…œì„ ì‚¬ê¸° ìœ„í•´ ì„ íƒì„ í•˜ì˜€ë‹¤.
 
-	VOID			SetZenny();							///< ÀÚ½ÅÀÇ ¼ÒÁö±İ Á¤º¸¸¦ ¾÷µ¥ÀÌÆ® ÇÑ´Ù.
+	VOID			SetZenny();							///< ìì‹ ì˜ ì†Œì§€ê¸ˆ ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸ í•œë‹¤.
 	
-	RwUInt8			GetPageCount_of_CurTab();			///< ÇöÀç ÅÇ¿¡ ¼ÓÇÑ ÆäÀÌÁöÀÇ °¹¼ö¸¦ ¹İÈ¯ÇÑ´Ù
+	RwUInt8			GetPageCount_of_CurTab();			///< í˜„ì¬ íƒ­ì— ì†í•œ í˜ì´ì§€ì˜ ê°¯ìˆ˜ë¥¼ ë°˜í™˜í•œë‹¤
 
 	RwBool			IsFirstPage();
 	RwBool			IsLastPage();
@@ -123,11 +123,11 @@ protected:
 	VOID			OnPaint();
 	VOID			OnPostPaint();	
 
-	VOID			OnSelectChangeTabButton( INT nCurIndex, INT nPrevIndex );	///< ÅÇ ¹öÆ°À» ´­·¶´Ù
+	VOID			OnSelectChangeTabButton( INT nCurIndex, INT nPrevIndex );	///< íƒ­ ë²„íŠ¼ì„ ëˆŒë €ë‹¤
 
-	VOID			ClickedPrePageButton(gui::CComponent* pComponent);	///< ÀÌÀü ¹öÆ°À» ´­·¶´Ù.
-	VOID			ClickedNextPageButton(gui::CComponent* pComponent);	///< ´ÙÀ½ ¹öÆ°À» ´­·¶´Ù.
-	VOID			ClickedCloseButton(gui::CComponent* pComponent);	///< ´İ±â ¹öÆ°À» ´­·¶´Ù.
+	VOID			ClickedPrePageButton(gui::CComponent* pComponent);	///< ì´ì „ ë²„íŠ¼ì„ ëˆŒë €ë‹¤.
+	VOID			ClickedNextPageButton(gui::CComponent* pComponent);	///< ë‹¤ìŒ ë²„íŠ¼ì„ ëˆŒë €ë‹¤.
+	VOID			ClickedCloseButton(gui::CComponent* pComponent);	///< ë‹«ê¸° ë²„íŠ¼ì„ ëˆŒë €ë‹¤.
 	VOID			ClickedNetStoreButton(gui::CComponent* pComponent);
 	
 	VOID			OnMouseDown(const CKey& key);
@@ -154,40 +154,40 @@ protected:
 	gui::CSlot			m_slotClickedNetStore;
 
 	RwInt32				m_iInfoWindowIndex;
-	RwInt32				m_iMouseDownSlot;	///< ¸¶¿ì½º·Î ´­¸° ½½·ÔÀÇ ÀÎµ¦½º
-	RwInt32				m_iSelectedSlot;	///< ¼¿·ºÆ® ÀÌÆåÆ® ½½·Ô
+	RwInt32				m_iMouseDownSlot;	///< ë§ˆìš°ìŠ¤ë¡œ ëˆŒë¦° ìŠ¬ë¡¯ì˜ ì¸ë±ìŠ¤
+	RwInt32				m_iSelectedSlot;	///< ì…€ë ‰íŠ¸ ì´í™íŠ¸ ìŠ¬ë¡¯
 	RwInt32				m_iClickEffectedSlot;
 
-	gui::CTabButton*	m_pTabButton;		//< ÅÇ ¹öÆ°
+	gui::CTabButton*	m_pTabButton;		//< íƒ­ ë²„íŠ¼
 
 	ItemPanel			m_ItemPanel[dMAX_ITEM_PANEL];	///< ItemPanel
 
-	CWindowby3			m_BackLineSurface;	///< ¹é¶óÀÎ
+	CWindowby3			m_BackLineSurface;	///< ë°±ë¼ì¸
 
-	CSurfaceGui			m_FocusEffect;		///< ½½·Ô Æ÷Ä¿½º ÀÌÆåÆ®
-	CSurfaceGui			m_SelectEffect;		///< ½½·Ô ¼¿·ºÆ® ÀÌÆåÆ®
-	CSurfaceGui			m_MoneyBackPanel;	///< ¼ÒÁö±İ ¹è°æ
-	CSurfaceGui			m_PageBackPanel;	///< ÆäÀÌÁö ¹è°æ
+	CSurfaceGui			m_FocusEffect;		///< ìŠ¬ë¡¯ í¬ì»¤ìŠ¤ ì´í™íŠ¸
+	CSurfaceGui			m_SelectEffect;		///< ìŠ¬ë¡¯ ì…€ë ‰íŠ¸ ì´í™íŠ¸
+	CSurfaceGui			m_MoneyBackPanel;	///< ì†Œì§€ê¸ˆ ë°°ê²½
+	CSurfaceGui			m_PageBackPanel;	///< í˜ì´ì§€ ë°°ê²½
 
-	gui::CButton*		m_pExitButton;		///< Ã¢´İ±â ¹öÆ°
-	gui::CButton*		m_pPrePageButton;	///< ÀÌÀü ÆäÀÌÁö ³Ñ¾î°¡±â ¹öÆ°
-	gui::CButton*		m_pNextPageButton;	///< ´ÙÀ½ ÆäÀÌÁö ³Ñ¾î°¡±â ¹öÆ°
+	gui::CButton*		m_pExitButton;		///< ì°½ë‹«ê¸° ë²„íŠ¼
+	gui::CButton*		m_pPrePageButton;	///< ì´ì „ í˜ì´ì§€ ë„˜ì–´ê°€ê¸° ë²„íŠ¼
+	gui::CButton*		m_pNextPageButton;	///< ë‹¤ìŒ í˜ì´ì§€ ë„˜ì–´ê°€ê¸° ë²„íŠ¼
 	gui::CButton*		m_pNetStoreButton;
 
-	gui::CStaticBox*	m_pShopTitle;		///< »óÁ¡ ÀÌ¸§	
-	gui::CStaticBox*	m_pLargeBuyExplan;	///< ´ë·® ±¸¸Å ¼³¸í
-	gui::CStaticBox*	m_pPocketMoneytitle;///< ¼ÒÁö±İ Á¦¸ñ
-	gui::CStaticBox*	m_pPocketMoney;		///< ¼ÒÁö±İ	
-	gui::CStaticBox*	m_pCurrentPage;		///< ÇöÀç ÆäÀÌÁö Ç¥½Ã
+	gui::CStaticBox*	m_pShopTitle;		///< ìƒì  ì´ë¦„	
+	gui::CStaticBox*	m_pLargeBuyExplan;	///< ëŒ€ëŸ‰ êµ¬ë§¤ ì„¤ëª…
+	gui::CStaticBox*	m_pPocketMoneytitle;///< ì†Œì§€ê¸ˆ ì œëª©
+	gui::CStaticBox*	m_pPocketMoney;		///< ì†Œì§€ê¸ˆ	
+	gui::CStaticBox*	m_pCurrentPage;		///< í˜„ì¬ í˜ì´ì§€ í‘œì‹œ
 
-	ShopItem			m_aShopItem[NTL_MAX_MERCHANT_TAB_COUNT][NTL_MAX_MERCHANT_COUNT];	/// °¢ ÅÇº°·Î ÆÈ ¼ö ÀÖ´Â ¾ÆÀÌÅÛ Á¤º¸
+	ShopItem			m_aShopItem[NTL_MAX_MERCHANT_TAB_COUNT][NTL_MAX_MERCHANT_COUNT];	/// ê° íƒ­ë³„ë¡œ íŒ” ìˆ˜ ìˆëŠ” ì•„ì´í…œ ì •ë³´
 
 	eShopType			m_eShopType;
 
-	RwInt32				m_iCurTab;			///< ÇöÀç ÅÇ ÀÎµ¦½º
-	RwInt32				m_iCurPage;			///< ÇöÀç ÆäÀÌÁö
+	RwInt32				m_iCurTab;			///< í˜„ì¬ íƒ­ ì¸ë±ìŠ¤
+	RwInt32				m_iCurPage;			///< í˜„ì¬ í˜ì´ì§€
 
-	RwBool				m_bFocus;			///< Æ÷Ä¿½º¸¦ ¾ò¾ú´Ù.
+	RwBool				m_bFocus;			///< í¬ì»¤ìŠ¤ë¥¼ ì–»ì—ˆë‹¤.
 
 	unsigned int		m_adwNETPYSHOP_MERCHANT_TBLIDX[dNETPYSHOP_TAB_NUMS];
 };

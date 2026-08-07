@@ -129,7 +129,7 @@ private:
 	ICONSTATE			m_eRClickIcon;	
 	RwBool				m_bPushDownIcon;
 
-	RwReal				m_fRightClickTime;	// ¿À¸¥ÂÊ ¹öÆ° ´­·¶À»¶§ÀÇ ½Ã°£. RPBonusÀû¿ë
+	RwReal				m_fRightClickTime;	// ì˜¤ë¥¸ìª½ ë²„íŠ¼ ëˆŒë €ì„ë•Œì˜ ì‹œê°„. RPBonusì ìš©
 
 	gui::CRadarEffect	m_CoolTimeEffect;
 	CSurfaceGui			m_surRPType;
@@ -145,7 +145,7 @@ private:
 	CNtlSobIcon*				m_pSobIcon;
 	CSkillCustomizeSkillItem*	m_pItem;
 
-	stSkillUpgradeInfo	m_stSkillUpgradeInfo;	// ¾÷±×·¹ÀÌµå Á¤º¸. (Infownd¿ë µ¥ÀÌÅÍ)
+	stSkillUpgradeInfo	m_stSkillUpgradeInfo;	// ì—…ê·¸ë ˆì´ë“œ ì •ë³´. (Infowndìš© ë°ì´í„°)
 };
 
 class CSkillCustomizeItemGroup
@@ -170,7 +170,7 @@ public:
 	VOID SetSkillItem( RwUInt32 uiBaseSkillIndex, CNtlSobIcon* pSobIcon, sTBLDAT* pData );
 	VOID SetRPType( RwUInt32 uiBaseSkillIndex, CNtlSobSkillAttr* pSobSkillAttr );
 	VOID CheckUpgradebleSkill(VOID);
-	VOID CheckSkillGroupShowAndSize(VOID);	// ÇöÀç ½ºÅ³ÀÌ º¸¿©Áö´Â ¸¸Å­ ¶óÀÎ Show, »çÀÌÁî Á¶Àı.
+	VOID CheckSkillGroupShowAndSize(VOID);	// í˜„ì¬ ìŠ¤í‚¬ì´ ë³´ì—¬ì§€ëŠ” ë§Œí¼ ë¼ì¸ Show, ì‚¬ì´ì¦ˆ ì¡°ì ˆ.
 
 	VOID SetOffset( RwInt32 nYOffset );						
 	VOID CalcScrollBar(VOID);

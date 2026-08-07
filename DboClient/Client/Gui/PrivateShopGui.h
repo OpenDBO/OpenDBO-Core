@@ -1,9 +1,9 @@
 /*****************************************************************************
 * File			: PrivateShopGui.h
 * Author		: Jinsung, Kim -> Haesung, Cho
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 7. 4 -> 2007. 12. 19
-* Abstract		: DBO °³ÀÎ»óÁ¡
+* Abstract		: DBO ê°œì¸ìƒì 
 *****************************************************************************
 * Desc         : 
 *****************************************************************************/
@@ -17,7 +17,7 @@
 #include "SlotGui.h"
 #include "NtlItem.h"
 
-// °³ÀÎ»óÁ¡ ¾ÆÀÌÅÛÀÇ À§Ä¡
+// ê°œì¸ìƒì  ì•„ì´í…œì˜ ìœ„ì¹˜
 #define dPRIVATESHOP_UI_ITEM_TOP				42
 #define dPRIVATESHOP_UI_ITEM_LEFT				20
 #define dPRIVATESHOP_UI_ITEM_GAP				55
@@ -42,7 +42,7 @@ class CPrivateShopGui;
 
 /**
 * \ingroup client
-* \brief °³ÀÎ»óÁ¡ ¾ÆÀÌÅÛ ½½·Ô
+* \brief ê°œì¸ìƒì  ì•„ì´í…œ ìŠ¬ë¡¯
 */
 class CPrivateShopItemGui
 {
@@ -90,11 +90,11 @@ public:
 
 protected:
 	// Components
-	gui::CDialog*		m_pShopItem;				///< ItemÀÇ Dialog
-	gui::CPanel*		m_pShopItemBg;				///< Item SlotÀÇ ¹è°æ
-	gui::CStaticBox*	m_pShopItemName;			///< Item ÀÌ¸§
-	gui::CButton*		m_pShopItemPrice;			///< Item °¡°İ
-	CRegularSlotGui*			m_pShopItemIcon;			///< Item IconÀÇ Slot
+	gui::CDialog*		m_pShopItem;				///< Itemì˜ Dialog
+	gui::CPanel*		m_pShopItemBg;				///< Item Slotì˜ ë°°ê²½
+	gui::CStaticBox*	m_pShopItemName;			///< Item ì´ë¦„
+	gui::CButton*		m_pShopItemPrice;			///< Item ê°€ê²©
+	CRegularSlotGui*			m_pShopItemIcon;			///< Item Iconì˜ Slot
 
 	// Signals
 	gui::CSlot			m_slotMove;	
@@ -107,49 +107,49 @@ protected:
 	gui::CSlot			m_slotClickedBtnPrice;			
 
 	// Effects
-	CSurfaceGui			m_EffectPick;				///< ÇÈµÈ »óÅÂÀÇ ±×¸²
-	CSurfaceGui*		m_pEffectSelect;			///< ¼±ÅÃµÈ »óÅÂÀÇ ±×¸²
-	CSurfaceGui*		m_pEffectFocus;				///< Æ÷Ä¿½º »óÅÂÀÇ ±×¸²
+	CSurfaceGui			m_EffectPick;				///< í”½ëœ ìƒíƒœì˜ ê·¸ë¦¼
+	CSurfaceGui*		m_pEffectSelect;			///< ì„ íƒëœ ìƒíƒœì˜ ê·¸ë¦¼
+	CSurfaceGui*		m_pEffectFocus;				///< í¬ì»¤ìŠ¤ ìƒíƒœì˜ ê·¸ë¦¼
 
-	CPrivateShopGui*	m_pPrivateShopGui;			///< ÀÌ ½½·ÔÀ» °¡Áö´Â ºÎ¸ğÀÇ Class
-	RwBool				m_bClick;					///< Å¬¸¯µÇ¾ú³ª?
+	CPrivateShopGui*	m_pPrivateShopGui;			///< ì´ ìŠ¬ë¡¯ì„ ê°€ì§€ëŠ” ë¶€ëª¨ì˜ Class
+	RwBool				m_bClick;					///< í´ë¦­ë˜ì—ˆë‚˜?
 	
-	RwUInt8				m_uiItemState;				///< ¾ÆÀÌÅÛ »óÅÂ
+	RwUInt8				m_uiItemState;				///< ì•„ì´í…œ ìƒíƒœ
 	CRectangle			m_rectItem;
 	RwUInt8				m_uiPos;
 };
 
 /**
 * \ingroup client
-* \brief °³ÀÎ»óÁ¡ GUI
+* \brief ê°œì¸ìƒì  GUI
 */
 class CPrivateShopGui : public CNtlPLGui, public RWS::CEventHandler
 {
 public:
 	
-	///< °³ÀÎ»óÁ¡ UIÀÇ Tab Type
+	///< ê°œì¸ìƒì  UIì˜ Tab Type
 	enum eTAB_TYPE
 	{
-		TAB_SHOP,	///< »óÁ¡
-		TAB_NOTE,	///< °øÁö
-		TAB_NUM,	///< TABÀÇ °¹¼ö
+		TAB_SHOP,	///< ìƒì 
+		TAB_NOTE,	///< ê³µì§€
+		TAB_NUM,	///< TABì˜ ê°¯ìˆ˜
 	};
 
-	///< °³ÀÎ»óÁ¡ UIÀÇ Item Slot
+	///< ê°œì¸ìƒì  UIì˜ Item Slot
 	enum eITEM_SLOT
 	{
-		SLOT_NUM = 6,	///< ½½·Ô °¹¼ö
+		SLOT_NUM = 6,	///< ìŠ¬ë¡¯ ê°¯ìˆ˜
 	};
 
-	///< °³ÀÎ»óÁ¡ UIÀÇ Type
+	///< ê°œì¸ìƒì  UIì˜ Type
 	enum ePrivateShopType
 	{
-		PRIVATESHOP_BUY,	///< ¼Õ´Ô
-		PRIVATESHOP_SELL,	///< ÁÖÀÎ
+		PRIVATESHOP_BUY,	///< ì†ë‹˜
+		PRIVATESHOP_SELL,	///< ì£¼ì¸
 		PRIVATESHOP_NONE,
 	};
 
-	// »ı¼ºÀÚ & ¼Ò¸êÀÚ
+	// ìƒì„±ì & ì†Œë©¸ì
 	CPrivateShopGui(const RwChar* pName);
 	virtual ~CPrivateShopGui();
 
@@ -161,25 +161,25 @@ public:
 
 	// SwitchDialog & HandleEvents
 	RwInt32	SwitchDialog(bool bOpen);
-	void	HandleEvents(RWS::CMsg& msg);								///< ÀÌº¥Æ®
-	void	HandleMsgboxResult(void* pData);							///< ¸Ş½ÃÁö ¹Ú½º °á°ú
+	void	HandleEvents(RWS::CMsg& msg);								///< ì´ë²¤íŠ¸
+	void	HandleMsgboxResult(void* pData);							///< ë©”ì‹œì§€ ë°•ìŠ¤ ê²°ê³¼
 
-	void	HandleCalcPopupResult(void* pData);							///< °è»ê±âÀÇ ÀÔ·Â °á°ú
-	void	HandleSobPrivateShopCommunity(void *pData);					///< »óÁ¡ÀÇ »óÅÂ°¡ º¯°æµÇ¾úÀ» °æ¿ì
-	void	HandleRegPrivateShopItem(void* pData);						///< °³ÀÎ»óÁ¡ Item Reg
-	void	HandleSobInfoUpdate(void* pData);							///< Sob °´Ã¤ÀÇ Á¤º¸ Update
-	void	HandlePickedUpHide(void* pData);							///< °³ÀÎ»óÁ¡ ¾ÆÀÌÅÛÀÌ ÇÈ¾÷ µÇ¾î¼­ Hide µÇ¾úÀ» ¶§ 
+	void	HandleCalcPopupResult(void* pData);							///< ê³„ì‚°ê¸°ì˜ ì…ë ¥ ê²°ê³¼
+	void	HandleSobPrivateShopCommunity(void *pData);					///< ìƒì ì˜ ìƒíƒœê°€ ë³€ê²½ë˜ì—ˆì„ ê²½ìš°
+	void	HandleRegPrivateShopItem(void* pData);						///< ê°œì¸ìƒì  Item Reg
+	void	HandleSobInfoUpdate(void* pData);							///< Sob ê°ì±„ì˜ ì •ë³´ Update
+	void	HandlePickedUpHide(void* pData);							///< ê°œì¸ìƒì  ì•„ì´í…œì´ í”½ì—… ë˜ì–´ì„œ Hide ë˜ì—ˆì„ ë•Œ 
 
-	// HandleEvents : °³ÀÎ»óÁ¡ °ü·Ã
-	void	HandlePrivateShopState(void* pData);						///< °³ÀÎ»óÁ¡ State
-	void	HandlePrivateShopStateVisitor(void *pData);					///< ¹æ¹®ÀÚ°¡ µé¾î¿ÔÀ» ¶§
-	void	HandlePrivateShopItem(void* pData);							///< °³ÀÎ»óÁ¡ Item
-	void	HandlePrivateShopItemDataInfo(void* pData);					///< °³ÀÎ»óÁ¡ Item Update
-	void	HandlePrivateShopItemSelect(void* pData);					///< °³ÀÎ»óÁ¡ Item Select
+	// HandleEvents : ê°œì¸ìƒì  ê´€ë ¨
+	void	HandlePrivateShopState(void* pData);						///< ê°œì¸ìƒì  State
+	void	HandlePrivateShopStateVisitor(void *pData);					///< ë°©ë¬¸ìê°€ ë“¤ì–´ì™”ì„ ë•Œ
+	void	HandlePrivateShopItem(void* pData);							///< ê°œì¸ìƒì  Item
+	void	HandlePrivateShopItemDataInfo(void* pData);					///< ê°œì¸ìƒì  Item Update
+	void	HandlePrivateShopItemSelect(void* pData);					///< ê°œì¸ìƒì  Item Select
 	void	HandlePrivateShopSelectNfy(void* pData);
-	void	HandlePrivateShopItemBuying(void* pData);					///< °³ÀÎ»óÁ¡ Item Buying
-	void	HandlePrivateShopItemState(void* pData);					///< °³ÀÎ»óÁ¡ Item State
-	void	HandlePrivateShopNameTag(void* pData);						///< °³ÀÎ»óÁ¡ NameTag Update
+	void	HandlePrivateShopItemBuying(void* pData);					///< ê°œì¸ìƒì  Item Buying
+	void	HandlePrivateShopItemState(void* pData);					///< ê°œì¸ìƒì  Item State
+	void	HandlePrivateShopNameTag(void* pData);						///< ê°œì¸ìƒì  NameTag Update
 
 	// Event
 	void	OnPaintEffect();
@@ -209,8 +209,8 @@ public:
 	void	OnShopItemPriceClicked(CPrivateShopItemGui* pShopItem, gui::CComponent* pComponent);
 	
 	// Gui Setting
-	void	SetSale(bool bSale);		// ÆÇ¸Å°³½Ã
-	void	SetAway(bool bAway);		// ÀÚ¸®ºñ¿ò
+	void	SetSale(bool bSale);		// íŒë§¤ê°œì‹œ
+	void	SetAway(bool bAway);		// ìë¦¬ë¹„ì›€
 	void	SetNotice(const WCHAR* pText);
 	void	SetPage(RwUInt32 iPage, bool bCheckMax = true);
 
@@ -247,7 +247,7 @@ protected:
 	gui::CSlot					m_slotTabShopMouseLeave;
 	gui::CSlot					m_slotCaptureMouseDown;
 
-	// TAB_SHOP ( »óÁ¡ ) Components
+	// TAB_SHOP ( ìƒì  ) Components
 	gui::CButton*				m_pNextButton;
 	gui::CButton*				m_pPrevButton;
 	gui::CButton*				m_pSaleButton;
@@ -262,26 +262,26 @@ protected:
 	gui::CSlot					m_slotSaleClicked;
 	gui::CSlot					m_slotEffectPaint;
 
-	// TAB_SHOP ( »óÁ¡ ) Signals
-	CPrivateShopItemGui			m_aShopItem[SLOT_NUM];		///< °³ÀÎ»óÁ¡ ¾ÆÀÌÅÛ
-	CSurfaceGui					m_EffectSelect;				///< ¼±ÅÃµÈ »óÅÂÀÇ ±×¸²
-	CSurfaceGui					m_EffectFocus;				///< Æ÷Ä¿½º »óÅÂÀÇ ±×¸²
+	// TAB_SHOP ( ìƒì  ) Signals
+	CPrivateShopItemGui			m_aShopItem[SLOT_NUM];		///< ê°œì¸ìƒì  ì•„ì´í…œ
+	CSurfaceGui					m_EffectSelect;				///< ì„ íƒëœ ìƒíƒœì˜ ê·¸ë¦¼
+	CSurfaceGui					m_EffectFocus;				///< í¬ì»¤ìŠ¤ ìƒíƒœì˜ ê·¸ë¦¼
 
-	// TAB_SHOP ( »óÁ¡ ) State & Effect
-	ePrivateShopType			m_eShopType;				///< »óÁ¡ÀÇ »óÅÂ
+	// TAB_SHOP ( ìƒì  ) State & Effect
+	ePrivateShopType			m_eShopType;				///< ìƒì ì˜ ìƒíƒœ
 	sPRIVATESHOP_ITEM_DATA		m_aShopItemData[NTL_MAX_PRIVATESHOP_INVENTORY];
 	sPRIVATESHOP_SHOP_DATA		m_ShopData;
 
-	CPrivateShopItemGui*		m_pItemSelect;		///< ¼±ÅÃµÈ ¾ÆÀÌÅÛ
-	CPrivateShopItemGui*		m_pItemFocus;		///< Æ÷Ä¿½º µÈ ¾ÆÀÌÅÛ
+	CPrivateShopItemGui*		m_pItemSelect;		///< ì„ íƒëœ ì•„ì´í…œ
+	CPrivateShopItemGui*		m_pItemFocus;		///< í¬ì»¤ìŠ¤ ëœ ì•„ì´í…œ
 
-	RwUInt32					m_uiItemCount;		///< ¾ÆÀÌÅÛ °¹¼ö
-	RwUInt32					m_uiPageMax;		///< ÃÖ´ë ÆäÀÌÁö 
-	RwUInt32					m_uiPageCur;		///< ÇöÀç ÆäÀÌÁö
-	bool						m_bAway;			///< ÀÚ¸®ºñ¿ò
-	bool						m_bSale;			///< ÆÇ¸ÅÁß
+	RwUInt32					m_uiItemCount;		///< ì•„ì´í…œ ê°¯ìˆ˜
+	RwUInt32					m_uiPageMax;		///< ìµœëŒ€ í˜ì´ì§€ 
+	RwUInt32					m_uiPageCur;		///< í˜„ì¬ í˜ì´ì§€
+	bool						m_bAway;			///< ìë¦¬ë¹„ì›€
+	bool						m_bSale;			///< íŒë§¤ì¤‘
 
-	// TAB_NOTE ( °øÁö ) Components
+	// TAB_NOTE ( ê³µì§€ ) Components
 	gui::CStaticBox*			m_pShopNameTitle;
 	gui::CInputBox*				m_pShopNameInput;
 	gui::CStaticBox*			m_pShopNoticeTitle;
@@ -291,7 +291,7 @@ protected:
 	gui::CButton*				m_pMailButton;
 	gui::CStaticBox*			m_pNoticeMaxNum;
 
-	// TAB_NOTE ( °øÁö ) Signals
+	// TAB_NOTE ( ê³µì§€ ) Signals
 	gui::CSlot					m_slotNameGotFocus;
 	gui::CSlot					m_slotNameLostFocus;
 	gui::CSlot					m_slotNoticeGotFocus;

@@ -54,16 +54,16 @@ RwBool CCharGuiGroup::Create(void)
 	gui::CResourceManager* pResMgr = CNtlPLGuiManager::GetInstance()->GetReourceManager();
 	pResMgr->AddPage("gui\\Lobby.rsr");
 
-	// Ä³¸¯ÅÍ ¸¸µé±â 	
+	// ìºë¦­í„° ë§Œë“¤ê¸° 	
     AddGuiMacro(m_pCharCreate, CCharCreateGuiGui, "CharCreate");
 
-	// Ä³¸¯ÅÍ ¼¿·ºÆ®	
+	// ìºë¦­í„° ì…€ë ‰íŠ¸	
     AddGuiMacro(m_pCharSelect, CCharSelectGui, "CharSelect");
 
-	// ¼­¹ö ¼¿·ºÆ®	
+	// ì„œë²„ ì…€ë ‰íŠ¸	
     AddGuiMacro(m_pServerSelect, CServerSelectGui, "ServerSelect");
 
-	// ·Îºñ È­¸é ÀüÈ¯ ÀÌÆåÆ®	
+	// ë¡œë¹„ í™”ë©´ ì „í™˜ ì´í™íŠ¸	
     AddGuiMacro(m_pTurnOverBackboard, CBackboardGui, "LobbyTurnOver");
 
 	NTL_RETURN(TRUE);

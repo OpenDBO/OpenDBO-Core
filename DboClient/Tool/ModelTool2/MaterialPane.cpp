@@ -128,7 +128,7 @@ void CMaterialPane::OnLbnSelchangeListMaterial()
     if(!m_pMTClump)
         return;
 
-    // Material Á¤º¸¸¦ °¡Á®¿Í¼­ ¸®½ºÆ® ¹Ú½º¿¡ ¼¼ÆÃÇÑ´Ù. (¸ÖÆ¼ ÅØ½ºÃÄ)
+    // Material ì •ë³´ë¥¼ ê°€ì ¸ì™€ì„œ ë¦¬ìŠ¤íŠ¸ ë°•ìŠ¤ì— ì„¸íŒ…í•œë‹¤. (ë©€í‹° í…ìŠ¤ì³)
     int nIndex = m_listBoxMaterial.GetCurSel();
     char szMaterialName[256] = {0,};
     m_listBoxMaterial.GetText(nIndex, szMaterialName);
@@ -141,7 +141,7 @@ void CMaterialPane::OnBnClickedBtMaterialAdd()
     if(!m_pMTClump)
         return;
 
-    // ¸ÖÆ¼ÅØ½ºÃ³ Ãß°¡ ±â´É
+    // ë©€í‹°í…ìŠ¤ì²˜ ì¶”ê°€ ê¸°ëŠ¥
     char szOpenFilter[] = "Texture File (*.dds;*.png)|*.dds; *.png||";    
     CFileDialog dlgTextureFile(TRUE, NULL, NULL, OFN_HIDEREADONLY, szOpenFilter);
     if(dlgTextureFile.DoModal() == IDOK)
@@ -154,7 +154,7 @@ void CMaterialPane::OnBnClickedBtMaterialAdd()
         //strFileName.Replace(".PNG", "");
         
         
-		// ListBox¿¡¼­ Material ÀÌ¸§À» °¡Á®¿Â´Ù.
+		// ListBoxì—ì„œ Material ì´ë¦„ì„ ê°€ì ¸ì˜¨ë‹¤.
         int nIndex = m_listBoxMaterial.GetCurSel();
         char szMaterialName[256] = {0,};
         m_listBoxMaterial.GetText(nIndex, szMaterialName);
@@ -180,10 +180,10 @@ void CMaterialPane::OnBnClickedBtMaterialDel()
     if(!m_pMTClump)
         return;
 
-    // ±âÁ¸¿¡ ÀÖ´ø ¸ÖÆ¼ ÅØ½ºÃ³¸¦ Á¦°ÅÇÑ´Ù.
+    // ê¸°ì¡´ì— ìˆë˜ ë©€í‹° í…ìŠ¤ì²˜ë¥¼ ì œê±°í•œë‹¤.
 
     
-    // ListBox¿¡¼­ Material ÀÌ¸§À» °¡Á®¿Â´Ù.
+    // ListBoxì—ì„œ Material ì´ë¦„ì„ ê°€ì ¸ì˜¨ë‹¤.
     int nIndex = m_listBoxMaterial.GetCurSel();
     char szMaterialName[256] = {0,};
     m_listBoxMaterial.GetText(nIndex, szMaterialName);
@@ -191,7 +191,7 @@ void CMaterialPane::OnBnClickedBtMaterialDel()
     RwBool bReturn = m_pMTClump->SetMultiTexture((szMaterialName), NULL, NULL);
     if(bReturn == (RwBool)TRUE)
     {
-        // È­¸é Á¤º¸¸¦ °»½ÅÇÑ´Ù.
+        // í™”ë©´ ì •ë³´ë¥¼ ê°±ì‹ í•œë‹¤.
         m_editTextureName.SetWindowText("");
         m_editTextureSize.SetWindowText("");
     }
@@ -212,11 +212,11 @@ void CMaterialPane::OnDisplayMaterialInfo(char* szMaterialName)
     RpMaterial* pMaterial = m_pMTClump->GetMaterialByName((szMaterialName));    
     if(pMaterial)
     {
-        // ÅØ½ºÃÄ ¼³Á¤
+        // í…ìŠ¤ì³ ì„¤ì •
         RwTexture* pTexture = NtlMatExtGetMultiTexture(pMaterial);
         if(pTexture)
         {
-            // ÀÌ¸§ ¼³Á¤
+            // ì´ë¦„ ì„¤ì •
             std::string strTextureName = RwTextureGetName(pTexture);
             RwRaster* pRaster = RwTextureGetRaster(pTexture);
             RwInt32 nWidth = RwRasterGetWidth(pRaster);
@@ -229,7 +229,7 @@ void CMaterialPane::OnDisplayMaterialInfo(char* szMaterialName)
         }
         else
         {
-            // MultiTexture°¡ ¾øÀ»¶§
+            // MultiTextureê°€ ì—†ì„ë•Œ
             m_editTextureName.SetWindowText("");
             m_editTextureSize.SetWindowText("");
         }

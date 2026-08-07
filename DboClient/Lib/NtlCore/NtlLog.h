@@ -2,7 +2,7 @@
 //	File		:	NtlLog.h
 //	Desc		:	
 //	Begin		:	2005. 8. 2
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************

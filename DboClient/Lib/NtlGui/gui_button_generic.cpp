@@ -198,7 +198,7 @@ VOID CButton_Generic::OnMouseMove( INT nKey, INT nX, INT nY )
 	{
 		if( !m_bMouseEnter )
 		{
-			SetMouseEnter( TRUE );					// RenderSerface º¸´Ù MouseEnter°¡ ¸ÕÀú ¿Í¾ß ÇÑ´Ù. 
+			SetMouseEnter( TRUE );					// RenderSerface ë³´ë‹¤ MouseEnterê°€ ë¨¼ì € ì™€ì•¼ í•œë‹¤. 
 
 			if( !( m_bToggleMode && m_bToggled ) )
 				SetRenderSurface();		

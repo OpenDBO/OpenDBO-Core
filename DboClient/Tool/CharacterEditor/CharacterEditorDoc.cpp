@@ -1,4 +1,4 @@
-// CharacterEditorDoc.cpp : CCharacterEditorDoc Å¬·¡½ºÀÇ ±¸Çö
+// CharacterEditorDoc.cpp : CCharacterEditorDoc í´ë˜ìŠ¤ì˜ êµ¬í˜„
 //
 
 #include "stdafx.h"
@@ -19,11 +19,11 @@ BEGIN_MESSAGE_MAP(CCharacterEditorDoc, CDocument)
 END_MESSAGE_MAP()
 
 
-// CCharacterEditorDoc »ı¼º/¼Ò¸ê
+// CCharacterEditorDoc ìƒì„±/ì†Œë©¸
 
 CCharacterEditorDoc::CCharacterEditorDoc()
 {
-	// TODO: ¿©±â¿¡ ÀÏÈ¸¼º »ı¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì¼íšŒì„± ìƒì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 }
 
@@ -36,8 +36,8 @@ BOOL CCharacterEditorDoc::OnNewDocument()
 	if (!CDocument::OnNewDocument())
 		return FALSE;
 
-	// TODO: ¿©±â¿¡ ´Ù½Ã ÃÊ±âÈ­ ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
-	// SDI ¹®¼­´Â ÀÌ ¹®¼­¸¦ ´Ù½Ã »ç¿ëÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë‹¤ì‹œ ì´ˆê¸°í™” ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
+	// SDI ë¬¸ì„œëŠ” ì´ ë¬¸ì„œë¥¼ ë‹¤ì‹œ ì‚¬ìš©í•©ë‹ˆë‹¤.
 
 	return TRUE;
 }
@@ -51,16 +51,16 @@ void CCharacterEditorDoc::Serialize(CArchive& ar)
 {
 	if (ar.IsStoring())
 	{
-		// TODO: ¿©±â¿¡ ÀúÀå ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+		// TODO: ì—¬ê¸°ì— ì €ì¥ ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	}
 	else
 	{
-		// TODO: ¿©±â¿¡ ·Îµù ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+		// TODO: ì—¬ê¸°ì— ë¡œë”© ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	}
 }
 
 
-// CCharacterEditorDoc Áø´Ü
+// CCharacterEditorDoc ì§„ë‹¨
 
 #ifdef _DEBUG
 void CCharacterEditorDoc::AssertValid() const
@@ -75,4 +75,4 @@ void CCharacterEditorDoc::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CCharacterEditorDoc ¸í·É
+// CCharacterEditorDoc ëª…ë ¹

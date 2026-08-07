@@ -4,7 +4,7 @@
 
 /**
  * \ingroup MrPoPo
- * \brief Å¬¶óÀÌ¾ğÆ®·Î º¸³»´Â ÀÌº¥Æ®¸¦ °ü¸®ÇÏ´Â Å¬·¡½º
+ * \brief í´ë¼ì´ì–¸íŠ¸ë¡œ ë³´ë‚´ëŠ” ì´ë²¤íŠ¸ë¥¼ ê´€ë¦¬í•˜ëŠ” í´ë˜ìŠ¤
  *
  * \date 2008-08-01
  * \author agebreak
@@ -15,11 +15,11 @@ public:
     CMPPClientEvent(void);
     ~CMPPClientEvent(void);
 
-    BOOL    CheckClientConnect();                           ///< Å¬¶óÀÌ¾ğÆ®¿ÍÀÇ ¿¬°áÀ» Ã¼Å©ÇÑ´Ù.
+    BOOL    CheckClientConnect();                           ///< í´ë¼ì´ì–¸íŠ¸ì™€ì˜ ì—°ê²°ì„ ì²´í¬í•œë‹¤.
     void    SendEvent(int nMsgCode, DWORD param);    
 
 protected:
-    HWND     m_hDBOClient;                                   ///< Å¬¶óÀÌ¾ğÆ® À©µµ¿ìÀÇ ÇÚµé
+    HWND     m_hDBOClient;                                   ///< í´ë¼ì´ì–¸íŠ¸ ìœˆë„ìš°ì˜ í•¸ë“¤
 };
 
 static CMPPClientEvent* GetMPPClientEvent()

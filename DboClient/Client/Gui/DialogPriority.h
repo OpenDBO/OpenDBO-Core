@@ -1,16 +1,16 @@
 /******************************************************************************
 * File			: DialogPriority.h
 * Author		: Hong SungBock
-* Copyright		: (��)NTL
+* Copyright		: (占쏙옙)NTL
 * Date			: 2008. 2. 12
 * Abstract		: 
 *****************************************************************************
 * Desc			: ���̾�α��� ������ �켱������ �����Ѵ�
-*				  ū ������ ���� ���� �´�
-*				  ���� : 0 ~ 65534
+*				  큰 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 占승댐옙
+*				  占쏙옙占쏙옙 : 0 ~ 65534
 *
 *				  �켱������ ������ ������ �����ξ� ���� ��������� �߰���
-*				  �����ϵ��� �Ѵ�
+*				  占쏙옙占쏙옙占싹듸옙占쏙옙 占싼댐옙
 *****************************************************************************/
 
 #pragma once
@@ -43,19 +43,19 @@
 #define dDIALOGPRIORITY_RESULT_NARRATION								46300
 #define dDIALOGPRIORITY_RESULT											46200
 
-#define dDIALOGPRIORITY_CALC_POPUP										46000	// ����
+#define dDIALOGPRIORITY_CALC_POPUP										46000	// 占쏙옙占쏙옙
 
-#define dDIALOGPRIORITY_PRIVATE_BUSINESS_PRICE							45100	// ���� ���� ���� â
+#define dDIALOGPRIORITY_PRIVATE_BUSINESS_PRICE							45100	// 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 창
 
 #define dDIALOGPRIORITY_EFDIALOG										45000	// Entire Focusing Dialog
 #define dDIALOGPRIORITY_EFDIALOG_BACKGROUND								44999	// Entire Focusing Dialog backgound
 
 #define dDIALOGPRIORITY_TBGAMBLERESULT									40000	// õ������ ����ȸ �׺� ���â
 
-#define dDIALOGPRIORITY_PRIVATE_BUSINESS								35000	// ���� â
+#define dDIALOGPRIORITY_PRIVATE_BUSINESS								35000	// 占쏙옙占쏙옙 창
 
 #define dDIALOGPRIORITY_RPBONUS											34000
-#define dDIALOGPRIORITY_SKILLABILITY_SET								33500	///< ��ų ����Ƽ ���� â
+#define dDIALOGPRIORITY_SKILLABILITY_SET								33500	///< 占쏙옙킬 占쏙옙占쏙옙티 占쏙옙占쏙옙 창
 
 #define dDIALOGPRIORITY_MANIA_TIME_SET									33250	///< ���� �ŴϾ� Ÿ�� �缳�� â
 

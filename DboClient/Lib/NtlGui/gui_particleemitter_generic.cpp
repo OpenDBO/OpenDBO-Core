@@ -144,7 +144,7 @@
 //
 //VOID CParticleEmitter_Generic::OnSetOptions( const CComponentOptions& options )
 //{
-//	// option¿¡¼­ controlÀ» ½ºÅ©¸³Æ®·Î »©³¾ ¼ö ÀÖµµ·Ï.
+//	// optionì—ì„œ controlì„ ìŠ¤í¬ë¦½íŠ¸ë¡œ ë¹¼ë‚¼ ìˆ˜ ìˆë„ë¡.
 //}
 //
 //VOID CParticleEmitter_Generic::OnPaint(VOID)

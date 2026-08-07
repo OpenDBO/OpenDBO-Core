@@ -1,4 +1,4 @@
-// Attr_COND_PCRace.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_COND_PCRace.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_COND_PCRace.h"
 
 
-// CAttr_COND_PCRace ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_COND_PCRace ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_COND_PCRace, CAttr_Page, 1)
 
@@ -66,11 +66,11 @@ BEGIN_MESSAGE_MAP(CAttr_COND_PCRace, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_COND_PCRace ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_COND_PCRace ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CAttr_COND_PCRace::OnBnClickedTsCondAttrPcraceAllCheck()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	int nRet = m_ctrAll.GetCheck();
 	m_ctrHuman.SetCheck( nRet );
 	m_ctrNamek.SetCheck( nRet );

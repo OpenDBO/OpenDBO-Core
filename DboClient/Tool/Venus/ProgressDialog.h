@@ -2,14 +2,14 @@
 #include "afxcmn.h"
 
 
-// CProgressDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CProgressDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CProgressDialog : public CDialog
 {
 	DECLARE_DYNAMIC(CProgressDialog)
 
 public:
-	CProgressDialog(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CProgressDialog(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CProgressDialog();
 
 	int			m_nCurrentTime;
@@ -19,11 +19,11 @@ public:
 
 	static CProgressDialog& GetInstance();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_PROGRESS };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

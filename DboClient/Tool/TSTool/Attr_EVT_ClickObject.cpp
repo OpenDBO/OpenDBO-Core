@@ -1,4 +1,4 @@
-// Attr_EVT_ClickObject.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_EVT_ClickObject.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_EVT_ClickObject.h"
 
 
-// CAttr_EVT_ClickObject ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_EVT_ClickObject ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_EVT_ClickObject, CAttr_Page, 1)
 
@@ -58,4 +58,4 @@ BEGIN_MESSAGE_MAP(CAttr_EVT_ClickObject, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_EVT_ClickObject ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_EVT_ClickObject ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

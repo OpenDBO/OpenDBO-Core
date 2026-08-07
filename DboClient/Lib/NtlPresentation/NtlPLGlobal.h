@@ -2,7 +2,7 @@
  *
  * File			: NtlPLGlobal.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 8. 11	
  * Abstract		: Presentation layer global variable class
  *****************************************************************************
@@ -25,8 +25,8 @@ extern RwReal g_fCharScheduleTime;
 
 /**
  * \ingroup NtlPresentation
- * global data ÀÚ·á±¸Á¶.
- * renderware RpWorld¿Í RwCamera´Â ¸¹Àº °÷À¸·Î »ç¿ëÇÏ¹Ç·Î, Àü¿ªÀ¸·Î ÂüÁ¶ÇÒ ¼ö ÀÖ°Ô ¸¸µé¾ú´Ù.
+ * global data ìë£Œêµ¬ì¡°.
+ * renderware RpWorldì™€ RwCameraëŠ” ë§ì€ ê³³ìœ¼ë¡œ ì‚¬ìš©í•˜ë¯€ë¡œ, ì „ì—­ìœ¼ë¡œ ì°¸ì¡°í•  ìˆ˜ ìˆê²Œ ë§Œë“¤ì—ˆë‹¤.
  *
  */
 
@@ -35,19 +35,19 @@ class CNtlPLGlobal
 {
 public:
 
-	static RpWorld*					m_pRpWorld;						/* ÇöÀç active µÈ RpWorld pointer **/
-	static RwCamera*				m_RwCamera;						/* ÇöÀç active µÈ RwCamera pointer **/
+	static RpWorld*					m_pRpWorld;						/* í˜„ì¬ active ëœ RpWorld pointer **/
+	static RwCamera*				m_RwCamera;						/* í˜„ì¬ active ëœ RwCamera pointer **/
 
-	// ÀÎµµ¾î
-	static RpWorldSector*			m_RpWorldSector;				/* ÇöÀç active µÈ RpWorldSector pointer **/
+	// ì¸ë„ì–´
+	static RpWorldSector*			m_RpWorldSector;				/* í˜„ì¬ active ëœ RpWorldSector pointer **/
 
-	static RwV3d					m_vZeroV3;						/* ÃÊ±âÈ­ µÈ vector º¯¼ö **/
-	static RwMatrix					m_matIden;						/* ÃÊ±âÈ­ µÈ matrix º¯¼ö **/
+	static RwV3d					m_vZeroV3;						/* ì´ˆê¸°í™” ëœ vector ë³€ìˆ˜ **/
+	static RwMatrix					m_matIden;						/* ì´ˆê¸°í™” ëœ matrix ë³€ìˆ˜ **/
 	static RwV3d					m_vIdenV3;
 	static RwV3d					m_vXAxisV3;
 	static RwV3d					m_vYAxisV3;
 	static RwV3d					m_vZAxisV3;
-	static RwMatrix					m_matNameBox;					/* name box matrix º¯¼ö */
+	static RwMatrix					m_matNameBox;					/* name box matrix ë³€ìˆ˜ */
 
 	static std::string				m_strAppPath;
 	static RwBool					m_bCollObjVisible;				/* collision object rendering on/off flag */
@@ -55,30 +55,30 @@ public:
 	static RwReal					m_fDistFiterObjFrequency;		/* object distance fade in/out filtering update frequency */
 	static RwBool					m_bWorldTerrainVisible;			/* world terrain visible on/off */
 	static RwBool					m_bWorldSkyVisible;				/* world Sky visible on/off */
-	static RwBool					m_bDecalRender;					// Decal Render on/Off	 - Decal Test ¿ë
-    static RwBool					m_bCharacterUpdateVisible;		///< Ä³¸¯ÅÍ°¡ VisibleÀÎ °æ¿ì¿¡¸¸ UdpateÇÑ´Ù´Â Flag (¸ÊÅø¿¡¼­ »ç¿ë)
-	static RwReal					m_fLensFlareForDNRatio;			///< D&NÀÌ ÀÛ¿ëÇÒ¶§ Lens Flare°¡ ¾ó¸¶¸¸Å­ÀÇ ¿µÇâÀ» ¹ŞÀ»ÁöÀÇ ¹èÀ²
+	static RwBool					m_bDecalRender;					// Decal Render on/Off	 - Decal Test ìš©
+    static RwBool					m_bCharacterUpdateVisible;		///< ìºë¦­í„°ê°€ Visibleì¸ ê²½ìš°ì—ë§Œ Udpateí•œë‹¤ëŠ” Flag (ë§µíˆ´ì—ì„œ ì‚¬ìš©)
+	static RwReal					m_fLensFlareForDNRatio;			///< D&Nì´ ì‘ìš©í• ë•Œ Lens Flareê°€ ì–¼ë§ˆë§Œí¼ì˜ ì˜í–¥ì„ ë°›ì„ì§€ì˜ ë°°ìœ¨
 	
 	
 	// Cz : 08.1.31
-	static CNtlPLEntity*			m_pWHEntity;					// world height °¡ object À§¿¡ ÀÖ´Â°¡? // Bool Çü ´ë½Å Entity·Î º¯°æ.
+	static CNtlPLEntity*			m_pWHEntity;					// world height ê°€ object ìœ„ì— ìˆëŠ”ê°€? // Bool í˜• ëŒ€ì‹  Entityë¡œ ë³€ê²½.
 	
 	
-	static RwBool					m_UseTerrainPVSMode;			// terrainÀÇ PVS data »ç¿ë À¯¹«
+	static RwBool					m_UseTerrainPVSMode;			// terrainì˜ PVS data ì‚¬ìš© ìœ ë¬´
 	static RwUInt32					m_uiRenderFlag;
 	static RwBool					m_IsMinimapRendering;
 	static RwUInt32					m_uiMinimapLayer;
-	static std::vector<std::string> m_vecPathMinimapObject;			// ¹Ì´Ï¸Ê Ãâ·Â ½Ã Á¦°ÅµÇ¾î¾ß ÇÒ Object List. ÀÓ½Ã·Î »ç¿ëÇÑ´Ù.
+	static std::vector<std::string> m_vecPathMinimapObject;			// ë¯¸ë‹ˆë§µ ì¶œë ¥ ì‹œ ì œê±°ë˜ì–´ì•¼ í•  Object List. ì„ì‹œë¡œ ì‚¬ìš©í•œë‹¤.
 
-    static RwBool					m_bObjectRender;				///< Object Render À¯¹« ÇÃ·¡±×
+    static RwBool					m_bObjectRender;				///< Object Render ìœ ë¬´ í”Œë˜ê·¸
 
 	static D3DMATRIX				m_mD3D9IdentityMatrix;
-    static RwBool					m_bRenderScouter;				///< ½ºÄ«¿ìÅÍ ·»´õ¸µ À¯¹« ÇÃ·¡±×
-    static RwBool					m_bEntityNotCulling;            ///< Entity ÄÃ¸µ ¾ÈÇÒ¶§ »ç¿ëÇÏ´Â ÇÃ·¡±×
+    static RwBool					m_bRenderScouter;				///< ìŠ¤ì¹´ìš°í„° ë Œë”ë§ ìœ ë¬´ í”Œë˜ê·¸
+    static RwBool					m_bEntityNotCulling;            ///< Entity ì»¬ë§ ì•ˆí• ë•Œ ì‚¬ìš©í•˜ëŠ” í”Œë˜ê·¸
 
-	static RwReal					m_fIndoorPlaneHeight;			///< Indoor¿¡¼­ »ç¿ëÇÏ´Â ÁöÇü Æò¸é ³ôÀÌ.
+	static RwReal					m_fIndoorPlaneHeight;			///< Indoorì—ì„œ ì‚¬ìš©í•˜ëŠ” ì§€í˜• í‰ë©´ ë†’ì´.
 
-	static RwUInt16					m_uiRenderFrame;				///< Culling¿¡¼­ »ç¿ë µÇ´Â RenderFrame
+	static RwUInt16					m_uiRenderFrame;				///< Cullingì—ì„œ ì‚¬ìš© ë˜ëŠ” RenderFrame
 
 	static RwUInt32					m_uiCullTestCnt;
 	static RwUInt32					m_uiCullTestAtomicCnt;
@@ -92,32 +92,32 @@ public:
 public:
 
 	/**
-	*  Initialize ÇÔ¼ö.
+	*  Initialize í•¨ìˆ˜.
 	*  \see Terminate
 	*/
 	static void Init(void);
 
 	/**
-	*  Terminate ÇÔ¼ö.
+	*  Terminate í•¨ìˆ˜.
 	*  \see Init
 	*/
 	static void Terminate(void);
 
 	/**
-	*  RpWorld¸¦ settingÇÏ´Â ÇÔ¼ö.
+	*  RpWorldë¥¼ settingí•˜ëŠ” í•¨ìˆ˜.
 	*  \param pRpWorld 
 	*/
 	static void SetActiveWorld(const RpWorld *pRpWorld);
 
 	/**
-	*  RwCamera¸¦ settingÇÏ´Â ÇÔ¼ö.
+	*  RwCameraë¥¼ settingí•˜ëŠ” í•¨ìˆ˜.
 	*  \param pRwCamera
 	*/
 	static void SetActiveCamera(const RwCamera *pRwCamera);
 
 	/**
-	*  SABER¿¡¼­ Minimap Ãâ·Â ½Ã Ãâ·ÂÇÏÁö ¸»¾Æ¾ß ÇÒ Object List¸¦ Load ÇÑ´Ù.
-	*  ÀÌ ÇÔ¼ö ¹× m_strPathMiniMapObject º¯¼ö´Â ÃßÈÄ Minimap ±âÈ¹¿¡ µû¶ó »èÁ¦ µÉ ¼ö ÀÖ´Ù.
+	*  SABERì—ì„œ Minimap ì¶œë ¥ ì‹œ ì¶œë ¥í•˜ì§€ ë§ì•„ì•¼ í•  Object Listë¥¼ Load í•œë‹¤.
+	*  ì´ í•¨ìˆ˜ ë° m_strPathMiniMapObject ë³€ìˆ˜ëŠ” ì¶”í›„ Minimap ê¸°íšì— ë”°ë¼ ì‚­ì œ ë  ìˆ˜ ìˆë‹¤.
 	*/
 	static void	LoadMinimapPassObjectList(const RwChar* pFilename);
 };

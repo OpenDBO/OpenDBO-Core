@@ -48,8 +48,8 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)\r\n"
     "LANGUAGE 18, 1\r\n"
     "#pragma code_page(949)\r\n"
-    "#include ""res\\GUIEditor.rc2""  // Microsoft Visual C++¿¡¼­ ÆíÁýµÇÁö ¾ÊÀº ¸®¼Ò½º\r\n"
-    "#include ""afxres.rc""         // Ç¥ÁØ ±¸¼º ¿ä¼Ò\r\n"
+    "#include ""res\\GUIEditor.rc2""  // Microsoft Visual C++ì—ì„œ íŽ¸ì§‘ë˜ì§€ ì•Šì€ ë¦¬ì†ŒìŠ¤\r\n"
+    "#include ""afxres.rc""         // í‘œì¤€ êµ¬ì„± ìš”ì†Œ\r\n"
     "#endif\r\n"
     "\0"
 END
@@ -173,7 +173,7 @@ BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
     LTEXT           "GUIEditor Version 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
     LTEXT           "Copyright (C) 2006",IDC_STATIC,40,25,119,8
-    DEFPUSHBUTTON   "È®ÀÎ",IDOK,178,7,50,16,WS_GROUP
+    DEFPUSHBUTTON   "í™•ì¸",IDOK,178,7,50,16,WS_GROUP
     EDITTEXT        IDC_EDIT1,124,34,40,14,ES_AUTOHSCROLL
     CONTROL         "",IDC_RICHEDIT21,"RichEdit20A",ES_AUTOHSCROLL | WS_BORDER | WS_TABSTOP,170,34,40,14
 END
@@ -207,7 +207,7 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
 FONT 9, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
     GROUPBOX        "",IDC_PROPERTY_STATIC,0,0,186,83
-    PUSHBUTTON      "¸Add Resource list",IDC_ADD_RESOURCELIST,0,84,49,14
+    PUSHBUTTON      "í‡dd Resource list",IDC_ADD_RESOURCELIST,0,84,49,14
     PUSHBUTTON      "Fix Resource list",IDC_FIX_RESOURCELIST,50,84,49,14
 END
 
@@ -466,8 +466,8 @@ END
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENG)
 LANGUAGE 18, 1
 #pragma code_page(949)
-#include "res\GUIEditor.rc2"  // Microsoft Visual C++¿¡¼­ ÆíÁýµÇÁö ¾ÊÀº ¸®¼Ò½º
-#include "afxres.rc"         // Ç¥ÁØ ±¸¼º ¿ä¼Ò
+#include "res\GUIEditor.rc2"  // Microsoft Visual C++ì—ì„œ íŽ¸ì§‘ë˜ì§€ ì•Šì€ ë¦¬ì†ŒìŠ¤
+#include "afxres.rc"         // í‘œì¤€ êµ¬ì„± ìš”ì†Œ
 #endif
 
 /////////////////////////////////////////////////////////////////////////////

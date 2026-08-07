@@ -1,4 +1,4 @@
-// Attr_ACT_Drop.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_ACT_Drop.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -8,7 +8,7 @@
 #include "NtlDirection.h"
 
 
-// CAttr_ACT_Drop ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_ACT_Drop ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_ACT_Drop, CAttr_Page, 1)
 
@@ -76,16 +76,16 @@ BOOL CAttr_ACT_Drop::OnInitDialog()
 {
 	CAttr_Page::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
-	m_ctrPermissionTypeCtrl.SetItemData( m_ctrPermissionTypeCtrl.AddString( _T("°³ÀÎ") ), eQUEST_DROP_PERMISSION_TYPE_PERSONAL );
-	int nIdx = m_ctrPermissionTypeCtrl.AddString( _T("ÆÄÆ¼") );
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
+	m_ctrPermissionTypeCtrl.SetItemData( m_ctrPermissionTypeCtrl.AddString( _T("ê°œì¸") ), eQUEST_DROP_PERMISSION_TYPE_PERSONAL );
+	int nIdx = m_ctrPermissionTypeCtrl.AddString( _T("íŒŒí‹°") );
 	m_ctrPermissionTypeCtrl.SetItemData( nIdx, eQUEST_DROP_PERMISSION_TYPE_PARTY );
 	m_ctrPermissionTypeCtrl.SetCurSel( nIdx );
 
 	if ( m_strData.GetLength() > 0 ) SetPageData( m_strData );
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 
@@ -93,4 +93,4 @@ BEGIN_MESSAGE_MAP(CAttr_ACT_Drop, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_ACT_Drop ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_ACT_Drop ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

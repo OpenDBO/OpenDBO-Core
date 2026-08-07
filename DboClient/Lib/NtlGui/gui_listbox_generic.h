@@ -71,8 +71,8 @@ public:
 
 	VOID Sort( bool bAscending );
 
-	VOID ReviseItem();						// º¸¿©Áö´Â ItemÀ» Ãß¸®°í, ÆøÀ» Á¶Àı.
-	VOID DrawItem(VOID);						// º¸¿©Áö´Â ItemÀ» Texture¿¡ ±×¸®±â.
+	VOID ReviseItem();						// ë³´ì—¬ì§€ëŠ” Itemì„ ì¶”ë¦¬ê³ , í­ì„ ì¡°ì ˆ.
+	VOID DrawItem(VOID);						// ë³´ì—¬ì§€ëŠ” Itemì„ Textureì— ê·¸ë¦¬ê¸°.
 
 	//-------------------------------------------------------------------------
 	//: font Create
@@ -90,10 +90,10 @@ public:
 
 private:
 //! Implementation:
-	VOID UpdateScrollbar(VOID);					// ScrollBar À¯¹« ÆÇ´Ü.
+	VOID UpdateScrollbar(VOID);					// ScrollBar ìœ ë¬´ íŒë‹¨.
 	VOID CalcRowWidth(VOID);
 	VOID CalcRowHeight(VOID);
-	INT  GetStartX( CUniBuffer* pBuffer );		// DrawµÇ´Â RowÀÇ Client±âÁØ À§Ä¡ ¹İÈ¯.
+	INT  GetStartX( CUniBuffer* pBuffer );		// Drawë˜ëŠ” Rowì˜ Clientê¸°ì¤€ ìœ„ì¹˜ ë°˜í™˜.
 	INT  GetStartY( INT nIndex );
 	INT  MousePosToIndex( INT nYPos );
 
@@ -127,37 +127,37 @@ public:
 	CSurface				  m_TextSurface;	
 	CSurface				  m_MaskSurface;
 	std::list<CRectangle*>	  m_listMaskRect;
-	std::list<CSurface>		  m_listSurface;	// ListBoxÀÚ½ÅÀÇ Surface
+	std::list<CSurface>		  m_listSurface;	// ListBoxìì‹ ì˜ Surface
 	
 	CGuiFont*			m_pFont;				// Font
 	DWORD				m_dwScrollStyle;		// scroll bar is vertival ro horizen
-	DWORD				m_dwWidthSortStyle;		// °¡·Î Á¤·Ä.
+	DWORD				m_dwWidthSortStyle;		// ê°€ë¡œ ì •ë ¬.
 
 	INT					m_nMaxRowCount;			// max text line count
-	INT					m_nVisibleRowCount;		// È­¸é¿¡ º¸ÀÌ´Â ÁÙ °¹¼ö
+	INT					m_nVisibleRowCount;		// í™”ë©´ì— ë³´ì´ëŠ” ì¤„ ê°¯ìˆ˜
 	
-	INT					m_nMarginX;				// °¡·Î, ¼¼·Î ¿©¹é.		
+	INT					m_nMarginX;				// ê°€ë¡œ, ì„¸ë¡œ ì—¬ë°±.		
 	INT					m_nMarginY;
 
 	INT					m_nTextMarginX;			// new 11/3/2018
 	INT					m_nScrollbarMarginX;	// new 11/3/2018
 		
 	INT					m_nOffsetRow;			// Begin to take a string line. (Change when scrolling.)
-	INT					m_nHighlightRow;		// DrawItem Index±âÁØ.
+	INT					m_nHighlightRow;		// DrawItem Indexê¸°ì¤€.
 	
-	std::string			m_strFont;				// font ÀÌ¸§.
-	INT					m_nFontH;				// font ³ôÀÌ.
+	std::string			m_strFont;				// font ì´ë¦„.
+	INT					m_nFontH;				// font ë†’ì´.
 	INT					m_nFontAttributes;		// font attribute
 	
-	COLORREF			m_SelTextColor;			// ¼±ÅÃµÈ itemÀÇ text color »ö±ò...
-	COLORREF			m_TextColor;			// ±âº» TextColor;
+	COLORREF			m_SelTextColor;			// ì„ íƒëœ itemì˜ text color ìƒ‰ê¹”...
+	COLORREF			m_TextColor;			// ê¸°ë³¸ TextColor;
 	COLORREF			m_BkColor;
 	INT					m_nBkMode;				
-	COLORREF			m_EffectColor;			// ÅØ½ºÆ® ÀÌÆåÆ®Ä®¶ó.
+	COLORREF			m_EffectColor;			// í…ìŠ¤íŠ¸ ì´í™íŠ¸ì¹¼ë¼.
 	INT					m_nEffectMode;	
 	INT					m_nEffectValue;			
 		
-	INT					m_nRowHeight;			// ÇàÀÇ Æø, ³ôÀÌ
+	INT					m_nRowHeight;			// í–‰ì˜ í­, ë†’ì´
 	INT					m_nRowWidth;			
 	
 	BOOL				m_bDynamicScrollBar;

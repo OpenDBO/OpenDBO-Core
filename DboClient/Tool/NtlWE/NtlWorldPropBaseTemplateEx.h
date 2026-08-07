@@ -24,7 +24,7 @@ protected:
 };
 
 //////////////////////////////////////////////////////////////////////////
-// CNtlWorldPropBaseTemplateExSector : Sector ´ÜÀ§·Î ½ÇÇà
+// CNtlWorldPropBaseTemplateExSector : Sector ë‹¨ìœ„ë¡œ ì‹¤í–‰
 //////////////////////////////////////////////////////////////////////////
 
 class CNtlWorldPropBaseTemplateExSector : public CNtlWorldPropBaseTemplateEx
@@ -38,7 +38,7 @@ public:
 };
 
 //////////////////////////////////////////////////////////////////////////
-// CNtlWorldPropBaseTemplateExField : Field ´ÜÀ§·Î ½ÇÇà
+// CNtlWorldPropBaseTemplateExField : Field ë‹¨ìœ„ë¡œ ì‹¤í–‰
 //////////////////////////////////////////////////////////////////////////
 
 class CNtlWorldPropBaseTemplateExField : public CNtlWorldPropBaseTemplateEx

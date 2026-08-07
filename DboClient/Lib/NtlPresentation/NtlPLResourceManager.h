@@ -2,14 +2,14 @@
  *
  * File			: NtlPLResourceManager.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 7. 21	
  * Abstract		: Presentation layer resource manager class
  *****************************************************************************
  * Desc         : 
  * Adjust		: HuunSuk, Jang(2005. 7 29)
- *			        - renderware texture reseouce Ãß°¡. 
- *				    - resorce¿¡ dictory type Ãß°¡(texture¸¦ groupº°·Î °ü¸®ÇÏ±â À§ÇÑ interface) 
+ *			        - renderware texture reseouce ì¶”ê°€. 
+ *				    - resorceì— dictory type ì¶”ê°€(textureë¥¼ groupë³„ë¡œ ê´€ë¦¬í•˜ê¸° ìœ„í•œ interface) 
  *
  *****************************************************************************/
 
@@ -29,10 +29,10 @@ class CNtlResourceScheduleManager;
 
 /**
 * \ingroup NtlPresentation
-* RenderWare resource manager classÀÌ´Ù.
-* world, clump, atomic, texture°¡ Á¦°øµÇ°í ÀÖÀ¸¸ç, uva fileÀº ÃßÈÄ Á¦°ø À¯¹«¸¦ °ËÅäÇÑ´Ù.
-* Note : moduleÀº ¾ÆÁ÷ °ËÁõµÇÁö ¾Ê¾ÒÀ¸¹Ç·Î »ç¿ëÀÚ´Â ÁÖÀÇÇØ¾ß ÇÑ´Ù.
-*        ¶ÇÇÑ resource container¸¦ clump ¿Í atomicÀ» µû·Î »ı¼ºÇÒ °ÍÀÎÁö °ËÅäÇØ¾ß ÇÑ´Ù.
+* RenderWare resource manager classì´ë‹¤.
+* world, clump, atomic, textureê°€ ì œê³µë˜ê³  ìˆìœ¼ë©°, uva fileì€ ì¶”í›„ ì œê³µ ìœ ë¬´ë¥¼ ê²€í† í•œë‹¤.
+* Note : moduleì€ ì•„ì§ ê²€ì¦ë˜ì§€ ì•Šì•˜ìœ¼ë¯€ë¡œ ì‚¬ìš©ìëŠ” ì£¼ì˜í•´ì•¼ í•œë‹¤.
+*        ë˜í•œ resource containerë¥¼ clump ì™€ atomicì„ ë”°ë¡œ ìƒì„±í•  ê²ƒì¸ì§€ ê²€í† í•´ì•¼ í•œë‹¤.
 * 
 */
 class CNtlPLResourceManager
@@ -72,7 +72,7 @@ private:
 	typedef std::map<std::string, CNtlPLResource*> ResourceMap;
 	typedef std::multimap<std::string, CNtlPLResource*> ResourceMultiMap;
 
-	ResourceMap m_mapResTbl; /**< CNtlPlResourceÀÇ container*/
+	ResourceMap m_mapResTbl; /**< CNtlPlResourceì˜ container*/
 
 	ResourceMap m_mapWorld;
 	ResourceMap m_mapClump;
@@ -89,72 +89,72 @@ private:
 private:
 	
 	/**
-    *  RenderWare data¸¦ ÀĞ´Â ÇÔ¼ö.
+    *  RenderWare dataë¥¼ ì½ëŠ” í•¨ìˆ˜.
     *
 	*  \param pStrName file name
 	*  \param pResourcePath resource path
 	*  \param uiType RednerWare resource type
-	*  \param bClone container¿¡ file name°ú °°Àº resource°¡ Á¸ÀçÇÑ´Ù¸é? cloneÀ¸·Î »ı¼ºÇÒ °ÍÀÎ°¡?
+	*  \param bClone containerì— file nameê³¼ ê°™ì€ resourceê°€ ì¡´ì¬í•œë‹¤ë©´? cloneìœ¼ë¡œ ìƒì„±í•  ê²ƒì¸ê°€?
 	*  \return resource class pointer
 	*/
 	CNtlPLResource* LoadDefault(const char *pStrName, const char * pResourcePath, unsigned int uiType);
 
 	/**
-    *  CNtlPLResource °´Ã¼¸¦ »ı¼ºÇÏ´Â ÇÔ¼ö.
+    *  CNtlPLResource ê°ì²´ë¥¼ ìƒì„±í•˜ëŠ” í•¨ìˆ˜.
     *
-    *  \param pName resource nameÀ» CNtlPLResource¿¡ ´ã´Â´Ù.
-	*  \param uiType renderware dataÀÇ type.
-	*  \param bClone renderware dataÀÇ clone flag.
-	*  \param pData renderware dataÀÇ pointer.
+    *  \param pName resource nameì„ CNtlPLResourceì— ë‹´ëŠ”ë‹¤.
+	*  \param uiType renderware dataì˜ type.
+	*  \param bClone renderware dataì˜ clone flag.
+	*  \param pData renderware dataì˜ pointer.
 	*  \return resource class pointer
     */
 	CNtlPLResource* CreateResource(const char *pName, unsigned int uiType, bool bClone,	void *pData);
 
 	/**
-    *  CNtlPLResource °´Ã¼¸¦ container¿¡ µî·ÏÇÏ´Â ÇÔ¼ö.
+    *  CNtlPLResource ê°ì²´ë¥¼ containerì— ë“±ë¡í•˜ëŠ” í•¨ìˆ˜.
     *
-    *  \param pResource container µî·ÏÇÒ resource pointer
+    *  \param pResource container ë“±ë¡í•  resource pointer
 	*  \see UnRegisterResource
     */
 	void RegisterResource(const CNtlPLResource *pResource);
 
 	/**
-    *  CNtlPLResource °´Ã¼¸¦ container¿¡¼­ ÇØÁ¦ÇÏ´Â ÇÔ¼ö.
+    *  CNtlPLResource ê°ì²´ë¥¼ containerì—ì„œ í•´ì œí•˜ëŠ” í•¨ìˆ˜.
     *
-    *  \param pResource container ÇØÁ¦ÇÒ resource pointer
+    *  \param pResource container í•´ì œí•  resource pointer
 	*  \see RegisterResource
     */
 	void UnRegisterResource(const CNtlPLResource *pResource);
 
 	/**
-    *  renderware data type¿¡ ÇØ´çÇÏ´Â data¸¦ »ı¼ºÇÏ´Â ÇÔ¼ö.
+    *  renderware data typeì— í•´ë‹¹í•˜ëŠ” dataë¥¼ ìƒì„±í•˜ëŠ” í•¨ìˆ˜.
     *
-    *  \param pSteam stream °´Ã¼ pointer.
+    *  \param pSteam stream ê°ì²´ pointer.
 	*  \param iType renderware data type.
     */
 	void* CreateRwData(RwStream *pSteam, unsigned int iType);
 
 	/**
-    *  renderware data¿¡ ÇØ´çÇÏ´Â clone data¸¦ »ı¼ºÇÑ´Ù.
-	*  typeÀ» ºñ±³ÇÏ¿© ÀûÀıÇÑ renderware clone ÇÔ¼ö¸¦ Àû¿ëÇÑ´Ù.
+    *  renderware dataì— í•´ë‹¹í•˜ëŠ” clone dataë¥¼ ìƒì„±í•œë‹¤.
+	*  typeì„ ë¹„êµí•˜ì—¬ ì ì ˆí•œ renderware clone í•¨ìˆ˜ë¥¼ ì ìš©í•œë‹¤.
     *
     *  \param iType renderware data type.
-	*  \param pData cloneÇÒ renderware data.
+	*  \param pData cloneí•  renderware data.
 	*  \return renderware data pointer
 	*  \see DestroyRwData
     */
 	void* CreateCloneRwData(unsigned int iType, void *pData); 
 
 	/**
-    *  renderware data¿¡ ÇØ´çÇÏ´Â type¿¡ ÀûÀıÇÏ°Ô »èÁ¦ÇÑ´Ù.
+    *  renderware dataì— í•´ë‹¹í•˜ëŠ” typeì— ì ì ˆí•˜ê²Œ ì‚­ì œí•œë‹¤.
     *
     *  \param iType renderware data type.
-	*  \param pData »èÁ¦ÇÒ renderware data.
+	*  \param pData ì‚­ì œí•  renderware data.
     */
 	void  DestroyRwData(unsigned int iType, void *pData);
 
 	/**
-    *  renderware world¸¦ »ı¼ºÇÏ´Â ÇÔ¼ö.
+    *  renderware worldë¥¼ ìƒì„±í•˜ëŠ” í•¨ìˆ˜.
     *
 	*  \param pStream world stream data
 	*  \return RenderWare world pointer
@@ -164,7 +164,7 @@ private:
 	RpWorld* WorldStreamRead (RwStream *pStream);
 	
 	/**
-    *  renderware clump¸¦ »ı¼ºÇÏ´Â ÇÔ¼ö.
+    *  renderware clumpë¥¼ ìƒì„±í•˜ëŠ” í•¨ìˆ˜.
     *
 	*  \param pStream clump stream data
 	*  \return RenderWare clump pointer
@@ -174,7 +174,7 @@ private:
 	RpClump* ClumpStreamRead (RwStream *pStream);
 
 	/**
-    *  renderware atomic¸¦ »ı¼ºÇÏ´Â ÇÔ¼ö.
+    *  renderware atomicë¥¼ ìƒì„±í•˜ëŠ” í•¨ìˆ˜.
     *
 	*  \param pStream atomic stream data
 	*  \return RenderWare atomic pointer
@@ -184,18 +184,18 @@ private:
 	RpAtomic* AtomicStreamRead (RwStream *pStream);
 
 	/**
-    *  container¿¡¼­ nameÀ¸·Î CNtlPLResource¸¦ Ã£´Â´Ù.
+    *  containerì—ì„œ nameìœ¼ë¡œ CNtlPLResourceë¥¼ ì°¾ëŠ”ë‹¤.
     *
 	*  \param pName name string
 	*  \param uiType the resource type
 	*  \param uiType the resource dictory type
-	*  \return pName¿¡ ÇØ´çÇÏ´Â resource class pointer
+	*  \return pNameì— í•´ë‹¹í•˜ëŠ” resource class pointer
     */
 	CNtlPLResource* Find(const char *pName, unsigned int uiType, EResDictType eDictType = RES_TEX_DEFAULT_DICT);
 
     /**
-    *  applicationÀÌ Á¾·á µÇ¾úÀ» ¶§ ÇØÁöµÇÁö ¾ÊÀº resource¸¦ debuggingÀ» À§ÇÑ ÇÔ¼ö.
-	*  debugging ³»¿ëÀ» file or output window·Î display ÇÒ ¼ö ÀÖµµ·Ï ÇÑ´Ù.
+    *  applicationì´ ì¢…ë£Œ ë˜ì—ˆì„ ë•Œ í•´ì§€ë˜ì§€ ì•Šì€ resourceë¥¼ debuggingì„ ìœ„í•œ í•¨ìˆ˜.
+	*  debugging ë‚´ìš©ì„ file or output windowë¡œ display í•  ìˆ˜ ìˆë„ë¡ í•œë‹¤.
     *
 	*/
 	void DebugResource(void);
@@ -205,32 +205,32 @@ public:
 	CNtlPLResourceManager();
 
 	/**
-    *  singleton CNtlPLResourceManager interface ÇÔ¼ö.
+    *  singleton CNtlPLResourceManager interface í•¨ìˆ˜.
     *
 	*/
 	static CNtlPLResourceManager* GetInstance(void);
 
 	/**
-    * Initial ÇÔ¼ö.
-	*  \return resource managerÀÇ ÃÊ±âÈ­°¡ ¼º°øÇßÀ¸¸é true, ½ÇÆĞÇÏ¸é false
+    * Initial í•¨ìˆ˜.
+	*  \return resource managerì˜ ì´ˆê¸°í™”ê°€ ì„±ê³µí–ˆìœ¼ë©´ true, ì‹¤íŒ¨í•˜ë©´ false
     *
 	*/
 	bool Crate(void);
 
 	/**
-    *  Terminate ÇÔ¼ö.
+    *  Terminate í•¨ìˆ˜.
     *
 	*/
 	void Destroy(void);
 
 	/**
-    *  Update ÇÔ¼ö.
+    *  Update í•¨ìˆ˜.
     *
 	*/
 	void Update(RwReal fElapsed);
 
 	/**
-    *  RenderWare world data¸¦ ÀĞ´Â ÇÔ¼ö.
+    *  RenderWare world dataë¥¼ ì½ëŠ” í•¨ìˆ˜.
     *
 	*  \param pStrName file name
 	*  \param pResourcePath resource path
@@ -243,11 +243,11 @@ public:
 	CNtlPLResource* LoadWorld(const char *pStrName, const char * pResourcePath);
 
 	/**
-    *  RenderWare clump data¸¦ ÀĞ´Â ÇÔ¼ö.
+    *  RenderWare clump dataë¥¼ ì½ëŠ” í•¨ìˆ˜.
     *
 	*  \param pStrName file name
 	*  \param pResourcePath resource path
-	*  \param bClone clump¸¦ cloneÀ¸·Î »ı¼ºÇÒ °ÍÀÎÁö¸¦ °áÁ¤ÇÏ´Â º¯¼ö.
+	*  \param bClone clumpë¥¼ cloneìœ¼ë¡œ ìƒì„±í•  ê²ƒì¸ì§€ë¥¼ ê²°ì •í•˜ëŠ” ë³€ìˆ˜.
 	*  \return Pointer resource class
 	*  \see LoadWorld
 	*  \see LoadAtomic
@@ -258,11 +258,11 @@ public:
 
 
 	/**
-    *  RenderWare clump data¸¦ ÀĞ´Â ÇÔ¼ö. ÀÏÁ¤ÇÑ ½Ã°£¸¶´Ù scheduling ÇÏ¸é¼­ loading ÇÑ´Ù(thread loading ´ëÃ¼¿ë)
+    *  RenderWare clump dataë¥¼ ì½ëŠ” í•¨ìˆ˜. ì¼ì •í•œ ì‹œê°„ë§ˆë‹¤ scheduling í•˜ë©´ì„œ loading í•œë‹¤(thread loading ëŒ€ì²´ìš©)
     *
 	*  \param pStrName file name
 	*  \param pResourcePath resource path
-	*  \param bClone clump¸¦ cloneÀ¸·Î »ı¼ºÇÒ °ÍÀÎÁö¸¦ °áÁ¤ÇÏ´Â º¯¼ö.
+	*  \param bClone clumpë¥¼ cloneìœ¼ë¡œ ìƒì„±í•  ê²ƒì¸ì§€ë¥¼ ê²°ì •í•˜ëŠ” ë³€ìˆ˜.
 	*  \return Pointer resource class
 	*  \see LoadWorld
 	*  \see LoadAtomic
@@ -272,11 +272,11 @@ public:
 	void LoadSchedulingClump(const char *pStrName, const char * pResourcePath, CNtlPLEntity *pEntity);
 
 	/**
-    *  RenderWare atomic data¸¦ ÀĞ´Â ÇÔ¼ö.
+    *  RenderWare atomic dataë¥¼ ì½ëŠ” í•¨ìˆ˜.
     *
 	*  \param pStrName file name
 	*  \param pResourcePath resource path
-	*  \param bClone atomic¸¦ cloneÀ¸·Î »ı¼ºÇÒ °ÍÀÎÁö¸¦ °áÁ¤ÇÏ´Â º¯¼ö.
+	*  \param bClone atomicë¥¼ cloneìœ¼ë¡œ ìƒì„±í•  ê²ƒì¸ì§€ë¥¼ ê²°ì •í•˜ëŠ” ë³€ìˆ˜.
 	*  \return Pointer resource class
 	*  \see LoadWorld
 	*  \see LoadClump
@@ -287,7 +287,7 @@ public:
 
 	
 	/**
-    *  RenderWare animation data¸¦ ÀĞ´Â ÇÔ¼ö.
+    *  RenderWare animation dataë¥¼ ì½ëŠ” í•¨ìˆ˜.
     *
 	*  \param pStrName file name
 	*  \return Pointer resource class
@@ -300,29 +300,29 @@ public:
 	CNtlPLResource* LoadAnimation(const char *pStrName);
 
 	/**
-    *  RenderWare texture data¸¦ ÀĞ´Â ÇÔ¼ö.
+    *  RenderWare texture dataë¥¼ ì½ëŠ” í•¨ìˆ˜.
     *
 	*  \param pStrName file name
 	*  \param pResourcePath resource path
-	*  \param eFilterMode textureÀÇ filtering mode. renderware RwTextureFilterMode¸¦ ÂüÁ¶.
-	*  \param EResDictType texture¸¦ groupÀ¸·Î ³ª´©¾î °ü¸®ÇÒ °æ¿ì¿¡ groupÀÇ id°¡ µÈ´Ù.
-	*         groupÀ¸·Î °ü¸®ÇÏ´Â ÀÌÀ¯´Â °Ë»ö ¼Óµµ¸¦ ºü¸£°Ô ÇÒ ¼ö ÀÖ´Ù.     
-	*         ÀÏ¹İÀûÀ¸·Î object, character, terrain, texture, uiµîÀÇ groupÀ» »ı°¢ÇØ º¼ ¼ö ÀÖ´Ù.
+	*  \param eFilterMode textureì˜ filtering mode. renderware RwTextureFilterModeë¥¼ ì°¸ì¡°.
+	*  \param EResDictType textureë¥¼ groupìœ¼ë¡œ ë‚˜ëˆ„ì–´ ê´€ë¦¬í•  ê²½ìš°ì— groupì˜ idê°€ ëœë‹¤.
+	*         groupìœ¼ë¡œ ê´€ë¦¬í•˜ëŠ” ì´ìœ ëŠ” ê²€ìƒ‰ ì†ë„ë¥¼ ë¹ ë¥´ê²Œ í•  ìˆ˜ ìˆë‹¤.     
+	*         ì¼ë°˜ì ìœ¼ë¡œ object, character, terrain, texture, uië“±ì˜ groupì„ ìƒê°í•´ ë³¼ ìˆ˜ ìˆë‹¤.
 	*  \return Pointer resource class
 	*  \see UnLoadTexture
 	*/
 	RwTexture* LoadTexture(const char *pStrName, const char * pResourcePath, EResDictType eType = RES_TEX_DEFAULT_DICT, const char *pStrMaskName = NULL);
 
 	/**
-    *  RenderWare texture¸¦ °­Á¦ÀûÀ¸·Î »ı¼ºÇÏ´Â ÇÔ¼ö.
+    *  RenderWare textureë¥¼ ê°•ì œì ìœ¼ë¡œ ìƒì„±í•˜ëŠ” í•¨ìˆ˜.
     *
 	*  \param pStrName file name.
 	*  \param iWidth texture width.
 	*  \param iHeight texture height.
-	*  \param iDepth pixel ±íÀÌ.
+	*  \param iDepth pixel ê¹Šì´.
 	*  \param eFilterMode texture filter mode.
 	*  \param eFormat raster format.
-	*  \param eType texture dictionary type.(CNtlPLResourceManager ÀÇ EResDictType »ç¿ë).
+	*  \param eType texture dictionary type.(CNtlPLResourceManager ì˜ EResDictType ì‚¬ìš©).
 	*  \return Pointer renderware texture pointer
 	*  \see LoadTexture
 	*  \see UnLoadTexture
@@ -336,9 +336,9 @@ public:
 							EResDictType eType = RES_TEX_DEFAULT_DICT);
 
 	/**
-    *  resource¸¦ unload ÇÑ´Ù.
+    *  resourceë¥¼ unload í•œë‹¤.
     *
-	*  \param pResource unloadÇÒ resource pointer
+	*  \param pResource unloadí•  resource pointer
 	*  \see LoadWorld	
 	*  \see LoadClump	
 	*  \see LoadAtomic
@@ -348,15 +348,15 @@ public:
 
 	
 	/**
-    *  scheduling»ó¿¡ µî·ÏµÇ¾î ÀÖ´Â entity¿¡ ÇØ´çÇÏ´Â scheduling node¸¦ »èÁ¦ÇÑ´Ù.
+    *  schedulingìƒì— ë“±ë¡ë˜ì–´ ìˆëŠ” entityì— í•´ë‹¹í•˜ëŠ” scheduling nodeë¥¼ ì‚­ì œí•œë‹¤.
     *
 	*/
 	void UnLoadScheduling(CNtlPLEntity *pPLEntity, CNtlPLResource *pResource);
 
 	/**
-    *  texture¸¦ unload ÇÑ´Ù.
+    *  textureë¥¼ unload í•œë‹¤.
     *
-	*  \param pResource unloadÇÒ resource pointer
+	*  \param pResource unloadí•  resource pointer
 	*  \see LoadTexture	
 	*/
 	void UnLoadTexture(RwTexture *pTexture);

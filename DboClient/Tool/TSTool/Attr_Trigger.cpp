@@ -1,4 +1,4 @@
-// Attr_Trigger.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_Trigger.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -10,7 +10,7 @@
 #include "RwdTblIdxChanger.h"
 
 
-// CAttr_Trigger ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_Trigger ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_Trigger, CAttr_Page, 1)
 
@@ -137,7 +137,7 @@ BOOL CAttr_Trigger::OnInitDialog()
 {
 	CAttr_Page::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	m_ctrRepeat.SetCheck( BST_UNCHECKED );
 	m_ctrCanShare.SetCheck( BST_CHECKED );
 	m_ctrOutStateMsg.SetCheck( BST_CHECKED );
@@ -145,7 +145,7 @@ BOOL CAttr_Trigger::OnInitDialog()
 	if ( m_strData.GetLength() > 0 ) SetPageData( m_strData );
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 BEGIN_MESSAGE_MAP(CAttr_Trigger, CAttr_Page)
@@ -154,7 +154,7 @@ BEGIN_MESSAGE_MAP(CAttr_Trigger, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_Trigger ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_Trigger ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CAttr_Trigger::OnBnClickedTsTriggerAttrDefIndexBtn()
 {

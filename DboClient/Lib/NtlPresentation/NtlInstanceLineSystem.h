@@ -3,22 +3,22 @@
 #include "NtlInstanceImVertexSystem.h"
 #include "NtlResourceLineSystem.h"
 
-/// LineSystemÀÇ Æò¸éÀ» ±¸¼ºÇÏ´Â Á¤º¸¸¦ °¡Áø ±¸Á¶Ã¼
+/// LineSystemì˜ í‰ë©´ì„ êµ¬ì„±í•˜ëŠ” ì •ë³´ë¥¼ ê°€ì§„ êµ¬ì¡°ì²´
 struct SLineSystemVertex
 {
-    RwV3d vStrartPoint;     ///< ½ÃÀÛÁ¡ÀÇ À§Ä¡                 
-    RwV3d vUpdatePoint;     ///< ¾÷µ¥ÀÌÆ® µÇ´Â ³¡Á¡ÀÇ À§Ä¡
-    RwV3d vDir;             ///< ³ª¾Æ°¡´Â ¹æÇâ
-    RwIm3DVertex imVertices[6]; ///< LineÀ» ±¸¼ºÇÏ´Â 6°³ÀÇ ¹öÅØ½ºÀÇ Æ÷ÀÎÅÍ
-    RwReal fLifeTime;       ///< ¶óÀÎÀÇ Life Time
-    RwV2d vLineSize;        ///< ¶óÀÎÀÇ Size (Size Action ¶§¹®¿¡ ÇÊ¿äÇÏ´Ù)
+    RwV3d vStrartPoint;     ///< ì‹œì‘ì ì˜ ìœ„ì¹˜                 
+    RwV3d vUpdatePoint;     ///< ì—…ë°ì´íŠ¸ ë˜ëŠ” ëì ì˜ ìœ„ì¹˜
+    RwV3d vDir;             ///< ë‚˜ì•„ê°€ëŠ” ë°©í–¥
+    RwIm3DVertex imVertices[6]; ///< Lineì„ êµ¬ì„±í•˜ëŠ” 6ê°œì˜ ë²„í…ìŠ¤ì˜ í¬ì¸í„°
+    RwReal fLifeTime;       ///< ë¼ì¸ì˜ Life Time
+    RwV2d vLineSize;        ///< ë¼ì¸ì˜ Size (Size Action ë•Œë¬¸ì— í•„ìš”í•˜ë‹¤)
 };
 
 typedef std::list<SLineSystemVertex*> ListLineSystemVertex;
 
 /**
  * \ingroup NtlPresentation
- * \brief ¶óÀÎ ÀÌÆåÆ® ÀÎ½ºÅÏ½º Å¬·¡½º
+ * \brief ë¼ì¸ ì´í™íŠ¸ ì¸ìŠ¤í„´ìŠ¤ í´ë˜ìŠ¤
  * \date 2006-09-21
  * \author agebreak
  */
@@ -37,7 +37,7 @@ public:
     virtual RwBool Update(RwReal fElapsedTime);
     virtual RwBool Render();    
 
-    RwInt32 GetPolyCount() {return (int)m_listLineSystemVertex.size();} ///< ÇöÀçÀÇ Æú¸®°ï °¹¼ö¸¦ ¹İÈ¯ÇÑ´Ù.
+    RwInt32 GetPolyCount() {return (int)m_listLineSystemVertex.size();} ///< í˜„ì¬ì˜ í´ë¦¬ê³¤ ê°¯ìˆ˜ë¥¼ ë°˜í™˜í•œë‹¤.
 
 protected:
     virtual void Init();
@@ -47,18 +47,18 @@ protected:
 
     void UpdateVertices(RwReal fElapsedTime);
     void BuildEmitterStandard();
-    void CreateLine();                                              ///< »õ·Î¿î ¶óÀÎÀ» »ı¼ºÇÑ´Ù.
-    void CreatePlane(SLineSystemVertex* pLineSystemVertex, const RwV3d& vStartAxis, const RwV3d& vEndAxis); ///< µÎÁ¡ÀÇ Á¤º¸·Î Æò¸éÀ» »ı¼ºÇÏ¿© ¶óÀÎÀ» ¸¸µç´Ù.
-    void UpdateZBillBoard(SLineSystemVertex* pLineSystemVertex);    ///< zÃà ºôº¸µå·Î ¸éÀ» »ı¼ºÇÑ´Ù.    
-    void UpdateNoneZBillBoard(SLineSystemVertex* pLineSystemVertex);///< ZÃà ºôº¸µå°¡ Àû¿ëµÇÁö ¾ÊÀº ¸éÀ» »ı¼ºÇÑ´Ù.
-    void UpdateShake(SLineSystemVertex* pLineSystemVertex);         ///< Shake¸¦ Àû¿ëÇÑ´Ù.    
-    void UpdateRotate(RwReal fDeltaTime);                           ///< Rotate¸¦ Àû¿ëÇÑ´Ù.
+    void CreateLine();                                              ///< ìƒˆë¡œìš´ ë¼ì¸ì„ ìƒì„±í•œë‹¤.
+    void CreatePlane(SLineSystemVertex* pLineSystemVertex, const RwV3d& vStartAxis, const RwV3d& vEndAxis); ///< ë‘ì ì˜ ì •ë³´ë¡œ í‰ë©´ì„ ìƒì„±í•˜ì—¬ ë¼ì¸ì„ ë§Œë“ ë‹¤.
+    void UpdateZBillBoard(SLineSystemVertex* pLineSystemVertex);    ///< zì¶• ë¹Œë³´ë“œë¡œ ë©´ì„ ìƒì„±í•œë‹¤.    
+    void UpdateNoneZBillBoard(SLineSystemVertex* pLineSystemVertex);///< Zì¶• ë¹Œë³´ë“œê°€ ì ìš©ë˜ì§€ ì•Šì€ ë©´ì„ ìƒì„±í•œë‹¤.
+    void UpdateShake(SLineSystemVertex* pLineSystemVertex);         ///< Shakeë¥¼ ì ìš©í•œë‹¤.    
+    void UpdateRotate(RwReal fDeltaTime);                           ///< Rotateë¥¼ ì ìš©í•œë‹¤.
     
 protected:
-    CNtlResourceLineSystem*     m_pResourceLineSystem;          ///< »ı¼º Á¤º¸¸¦ °¡Áö°í ÀÖ´Â ¶óÀÎ ¸®¼Ò½º Å¬·¡½º
-    ListLineSystemVertex        m_listLineSystemVertex;         ///< LineSystemÀ» ±¸¼ºÇÏ´Â ¸éµéÀÇ ¸®½ºÆ®
-    SLineSystemVertex*          m_poolLineSystemVertex;         ///< LineSystem Vertex Memory PoolÀÇ Æ÷ÀÎÅÍ
-    RwInt32                     m_nPoolIndex;                   ///< Memory PoolÀÇ ÀÎµ¦½º
-    RwReal                      m_fCreateGapTime;               ///< »ı¼º ÁÖ±â¸¦ ºñ±³ÇÏ±âÀ§ÇÑ º¯¼ö
-    RwInt32                     m_nRoateSeed;                   ///< Rotate Bias¿¡ »ç¿ëµÉ Seed°ª               
+    CNtlResourceLineSystem*     m_pResourceLineSystem;          ///< ìƒì„± ì •ë³´ë¥¼ ê°€ì§€ê³  ìˆëŠ” ë¼ì¸ ë¦¬ì†ŒìŠ¤ í´ë˜ìŠ¤
+    ListLineSystemVertex        m_listLineSystemVertex;         ///< LineSystemì„ êµ¬ì„±í•˜ëŠ” ë©´ë“¤ì˜ ë¦¬ìŠ¤íŠ¸
+    SLineSystemVertex*          m_poolLineSystemVertex;         ///< LineSystem Vertex Memory Poolì˜ í¬ì¸í„°
+    RwInt32                     m_nPoolIndex;                   ///< Memory Poolì˜ ì¸ë±ìŠ¤
+    RwReal                      m_fCreateGapTime;               ///< ìƒì„± ì£¼ê¸°ë¥¼ ë¹„êµí•˜ê¸°ìœ„í•œ ë³€ìˆ˜
+    RwInt32                     m_nRoateSeed;                   ///< Rotate Biasì— ì‚¬ìš©ë  Seedê°’               
 };

@@ -2,7 +2,7 @@
  *
  * File			: NtlSobPet.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2006. 11. 23	
  * Abstract		: Simulation pet base class
  *****************************************************************************

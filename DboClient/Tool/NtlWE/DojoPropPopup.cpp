@@ -1,11 +1,11 @@
-// DojoPropPopup.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// DojoPropPopup.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
 #include "NtlWE.h"
 #include "DojoPropPopup.h"
 
-// CDojoPropPopup ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CDojoPropPopup ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CDojoPropPopup, CDialog)
 
@@ -55,7 +55,7 @@ BEGIN_MESSAGE_MAP(CDojoPropPopup, CDialog)
 END_MESSAGE_MAP()
 
 
-// CDojoPropPopup ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CDojoPropPopup ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 BOOL CDojoPropPopup::OnInitDialog()
 {
 	CDialog::OnInitDialog();
@@ -124,7 +124,7 @@ BOOL CDojoPropPopup::PreTranslateMessage(MSG* pMsg)
 
 void CDojoPropPopup::OnBnClickedOk()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CNtlPLDojo* pPLDojo = dGETHDL()->GetCurDojo();
 
 	if (pPLDojo)
@@ -138,13 +138,13 @@ void CDojoPropPopup::OnBnClickedOk()
 
 void CDojoPropPopup::OnBnClickedCancel()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	OnCancel();
 }
 
 void CDojoPropPopup::OnBnClickedButtonLoadObject()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	char acPathBK[NTL_MAX_DIR_PATH];
 	::GetCurrentDirectory(NTL_MAX_DIR_PATH, acPathBK);
 
@@ -165,7 +165,7 @@ void CDojoPropPopup::OnBnClickedButtonLoadObject()
 
 void CDojoPropPopup::OnBnClickedButtonLoadEffectUp()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	char acPathBK[NTL_MAX_DIR_PATH];
 	::GetCurrentDirectory(NTL_MAX_DIR_PATH, acPathBK);
 
@@ -186,7 +186,7 @@ void CDojoPropPopup::OnBnClickedButtonLoadEffectUp()
 
 void CDojoPropPopup::OnBnClickedButtonLoadEffectDown()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	char acPathBK[NTL_MAX_DIR_PATH];
 	::GetCurrentDirectory(NTL_MAX_DIR_PATH, acPathBK);
 
@@ -207,7 +207,7 @@ void CDojoPropPopup::OnBnClickedButtonLoadEffectDown()
 
 void CDojoPropPopup::OnBnClickedButtonReset()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CNtlPLDojo* pPLDojo = dGETHDL()->GetCurDojo();
 
 	if (pPLDojo)
@@ -218,13 +218,13 @@ void CDojoPropPopup::OnBnClickedButtonReset()
 
 void CDojoPropPopup::OnBnClickedButtonDelEffectUp()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	m_strNameEffectUp = m_astrNameEffectUp[m_cbDojoLevel.GetCurSel()] = "";
 }
 
 void CDojoPropPopup::OnBnClickedButtonDelEffectDown()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	m_strNameEffectDown = m_astrNameEffectDown[m_cbDojoLevel.GetCurSel()] = "";
 }
 

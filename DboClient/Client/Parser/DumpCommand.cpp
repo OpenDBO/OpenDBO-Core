@@ -161,7 +161,7 @@ void CDumpCmdManager::RecvPacket(void *pPacket)
 
 void CDumpCmdManager::RecvNet(const char *pFormat)
 {
-	// È°¿ëµÇÁö ¾Ê°í ÀÖÀ½
+	// í™œìš©ë˜ì§€ ì•Šê³  ìˆìŒ
 
 	MAP_DUMPTARGET::iterator it;
 	for(it = m_mapActiveTarget.begin(); it != m_mapActiveTarget.end(); ++it)
@@ -263,7 +263,7 @@ void CDumpCmdManager::OutPutClientMessage(eDUMP_TYPE eDumpType, const WCHAR* pMe
 
 void CDumpCmdManager::OutputSobObj(RwUInt32 uiSerialId)
 {
-	// Dump ÇÃ·¡±×°¡ ¾Æ´Ñ º°µµÀÇ Ä¡Æ®¸¦ ÅëÇØ¼­ È°¼ºÈ­ÇÒ ¼ö ÀÖ´Ù
+	// Dump í”Œë˜ê·¸ê°€ ì•„ë‹Œ ë³„ë„ì˜ ì¹˜íŠ¸ë¥¼ í†µí•´ì„œ í™œì„±í™”í•  ìˆ˜ ìˆë‹¤
 
 	MAP_DUMPTARGET::iterator it;
 	for(it = m_mapActiveTarget.begin(); it != m_mapActiveTarget.end(); ++it)
@@ -274,7 +274,7 @@ void CDumpCmdManager::OutputSobObj(RwUInt32 uiSerialId)
 
 void CDumpCmdManager::OutputSobObj(CNtlDumpTarget &dump, RwUInt32 uiSeiralId)
 {
-	// Dump ÇÃ·¡±×°¡ ¾Æ´Ñ º°µµÀÇ Ä¡Æ®¸¦ ÅëÇØ¼­ È°¼ºÈ­ÇÒ ¼ö ÀÖ´Ù
+	// Dump í”Œë˜ê·¸ê°€ ì•„ë‹Œ ë³„ë„ì˜ ì¹˜íŠ¸ë¥¼ í†µí•´ì„œ í™œì„±í™”í•  ìˆ˜ ìˆë‹¤
 
 	dump.Color(0, 255, 0);
 	dump << "\n\n\n\n================ simulation object dump(begin) =====================\n";
@@ -301,7 +301,7 @@ void CDumpCmdManager::OutputSobObj(CNtlDumpTarget &dump, RwUInt32 uiSeiralId)
 /// woosungs_test 20090723
 void CDumpCmdManager::OutputDump(const RwChar *pMsg, RwUInt32 iR, RwUInt32 iG, RwUInt32 iB)
 {
-	// Dump ÇÃ·¡±×°¡ ¾Æ´Ñ º°µµÀÇ Ä¡Æ®¸¦ ÅëÇØ¼­ È°¼ºÈ­ÇÒ ¼ö ÀÖ´Ù
+	// Dump í”Œë˜ê·¸ê°€ ì•„ë‹Œ ë³„ë„ì˜ ì¹˜íŠ¸ë¥¼ í†µí•´ì„œ í™œì„±í™”í•  ìˆ˜ ìˆë‹¤
 
 	MAP_DUMPTARGET::iterator it;
 	for(it = m_mapActiveTarget.begin(); it != m_mapActiveTarget.end(); ++it)

@@ -119,14 +119,14 @@ VOID CMsgBoxManager::DeleteMsgBox(const char* strStringID)
 
 			if( bPassPopupToNextMsgBox )
 			{
-				// ¾ÆÁ÷ PopupÀÌ ³²¾ÆÀÖÀ»‹š
+				// ì•„ì§ Popupì´ ë‚¨ì•„ìžˆì„ë–„
 				if( iter != m_listPopupMsgBox.end() )
 				{
 					CMsgBoxGui* pMsgBox = (*iter);
 					pMsgBox->SetAlpha( (RwUInt8)MSGBOXMGR_DEFAULT_ALPHA );
 					pMsgBox->Popup( true );
 				}				
-				// Popup Msg°¡ ¾øÀ½.
+				// Popup Msgê°€ ì—†ìŒ.
 				else
 				{
 					SetMsgBoxAlpha( (RwUInt8)MSGBOXMGR_DEFAULT_ALPHA );
@@ -175,14 +175,14 @@ VOID CMsgBoxManager::DeleteAllMsgBoxExceptNetConnectBox(VOID)
 
 			if( bPassPopupToNextMsgBox )
 			{
-				// ¾ÆÁ÷ PopupÀÌ ³²¾ÆÀÖÀ»‹š
+				// ì•„ì§ Popupì´ ë‚¨ì•„ìžˆì„ë–„
 				if( iter != m_listPopupMsgBox.end() )
 				{
 					CMsgBoxGui* pMsgBox = (*iter);
 					pMsgBox->SetAlpha( (RwUInt8)MSGBOXMGR_DEFAULT_ALPHA );
 					pMsgBox->Popup( true );
 				}				
-				// Popup Msg°¡ ¾øÀ½.
+				// Popup Msgê°€ ì—†ìŒ.
 				else
 				{
 					SetMsgBoxAlpha( (RwUInt8)MSGBOXMGR_DEFAULT_ALPHA );
@@ -231,14 +231,14 @@ VOID CMsgBoxManager::DeleteNetConnectBox(VOID)
 
 			if( bPassPopupToNextMsgBox )
 			{
-				// ¾ÆÁ÷ PopupÀÌ ³²¾ÆÀÖÀ»‹š
+				// ì•„ì§ Popupì´ ë‚¨ì•„ìžˆì„ë–„
 				if( iter != m_listPopupMsgBox.end() )
 				{
 					CMsgBoxGui* pMsgBox = (*iter);
 					pMsgBox->SetAlpha( (RwUInt8)MSGBOXMGR_DEFAULT_ALPHA );
 					pMsgBox->Popup( true );
 				}				
-				// Popup Msg°¡ ¾øÀ½.
+				// Popup Msgê°€ ì—†ìŒ.
 				else
 				{
 					SetMsgBoxAlpha( (RwUInt8)MSGBOXMGR_DEFAULT_ALPHA );
@@ -370,14 +370,14 @@ VOID CMsgBoxManager::DeleteMsgBox( CMsgBoxGui* pDeletedMsgBox )
 			
 			if( bPassPopupToNextMsgBox )
 			{
-				// ¾ÆÁ÷ PopupÀÌ ³²¾ÆÀÖÀ»‹š
+				// ì•„ì§ Popupì´ ë‚¨ì•„ìžˆì„ë–„
 				if( iter != m_listPopupMsgBox.end() )
 				{
 					CMsgBoxGui* pMsgBox = (*iter);
 					pMsgBox->SetAlpha( (RwUInt8)MSGBOXMGR_DEFAULT_ALPHA );
 					pMsgBox->Popup( true );
 				}				
-				// Popup Msg°¡ ¾øÀ½.
+				// Popup Msgê°€ ì—†ìŒ.
 				else
 				{
 					SetMsgBoxAlpha( (RwUInt8)MSGBOXMGR_DEFAULT_ALPHA );
@@ -640,7 +640,7 @@ VOID CMsgBoxManager::HandleEvents( RWS::CMsg &msg )
 		{
 			if( pMsgBoxResult->eResult == MBR_OK )
 			{
-				// Ã¢°í NPC Serial
+				// ì°½ê³  NPC Serial
 				SERIAL_HANDLE hNPCHandle = pMsgBoxResult->pData->hHandle;
 
 				// The Merchant Tabe index in the first index of the NPC table
@@ -657,7 +657,7 @@ VOID CMsgBoxManager::HandleEvents( RWS::CMsg &msg )
 		{	
 			if( pMsgBoxResult->eResult == MBR_OK )
 			{
-				// Ã¢°í NPC Serial
+				// ì°½ê³  NPC Serial
 				SERIAL_HANDLE hNPCHandle = pMsgBoxResult->pData->hHandle;
 
 				// The Merchant Tabe index in the first index of the NPC table
@@ -1114,7 +1114,7 @@ VOID CMsgBoxManager::HandleEvents( RWS::CMsg &msg )
 					return;
 				}
 
-				// Ä³¸¯ÅÍ »èÁ¦
+				// ìºë¦­í„° ì‚­ì œ
 				SERVER_HANDLE	hServer	= GetLobbyManager()->GetSelectedServerHandle();
 				CLobby*			pLobby	= GetLobbyManager()->GetLobby(hServer);
 				if( !pLobby )
@@ -1153,7 +1153,7 @@ VOID CMsgBoxManager::HandleEvents( RWS::CMsg &msg )
 					return;
 				}
 
-				// Ä³¸¯ÅÍ º¹±¸
+				// ìºë¦­í„° ë³µêµ¬
 				SERVER_HANDLE	hServer	= GetLobbyManager()->GetSelectedServerHandle();
 				CLobby*			pLobby	= GetLobbyManager()->GetLobby(hServer);
 				if( !pLobby )

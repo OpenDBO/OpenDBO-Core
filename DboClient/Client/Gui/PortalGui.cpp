@@ -552,8 +552,8 @@ RwBool CPortalGui::IsConnect(RwUInt32 nPortalID, DWORD& nZenny)
     return FALSE;
 }
 
-// ÇöÀç Æ÷Å» Å×ÀÌºí¿¡¼­ Å¸°Ù Æ÷Å» Æ÷ÀÎÆ®ÀÇ ÀÎµ¦½º¸¦ Ã£¾Æ¼­ ¹ÝÈ¯ÇÑ´Ù.
-// Return : 0 ~ 7 »çÀÌÀÇ ÀÎµ¦½º ¹øÈ£, Ã£Áö ¸øÇÑ °æ¿ì¿¡´Â -1À» ¸®ÅÏ
+// í˜„ìž¬ í¬íƒˆ í…Œì´ë¸”ì—ì„œ íƒ€ê²Ÿ í¬íƒˆ í¬ì¸íŠ¸ì˜ ì¸ë±ìŠ¤ë¥¼ ì°¾ì•„ì„œ ë°˜í™˜í•œë‹¤.
+// Return : 0 ~ 7 ì‚¬ì´ì˜ ì¸ë±ìŠ¤ ë²ˆí˜¸, ì°¾ì§€ ëª»í•œ ê²½ìš°ì—ëŠ” -1ì„ ë¦¬í„´
 RwInt32 CPortalGui::FindPointIndex( RwUInt32 nCurrPortalID, RwUInt32 nTargetPortalID ) 
 {
     sPORTAL_TBLDAT* pPortalData = (sPORTAL_TBLDAT*)API_GetTableContainer()->GetPortalTable()->FindData(nCurrPortalID);

@@ -1,4 +1,4 @@
-// DirectionPropRefreeView.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// DirectionPropRefreeView.cpp : êµ¬í˜„ íŒŒì¼ìž…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -81,7 +81,7 @@ BEGIN_MESSAGE_MAP(CDirectionPropRefreeView, CXTResizeFormView)
 END_MESSAGE_MAP()
 
 
-// CDirectionPropRefreeView Áø´ÜÀÔ´Ï´Ù.
+// CDirectionPropRefreeView ì§„ë‹¨ìž…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CDirectionPropRefreeView::AssertValid() const
@@ -98,13 +98,13 @@ void CDirectionPropRefreeView::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CDirectionPropRefreeView ¸Þ½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CDirectionPropRefreeView ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ìž…ë‹ˆë‹¤.
 
 void CDirectionPropRefreeView::OnDestroy()
 {
 	CXTResizeFormView::OnDestroy();
 
-	// TODO: ¿©±â¿¡ ¸Þ½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	DestroyListItem();
 }
 
@@ -183,7 +183,7 @@ void CDirectionPropRefreeView::OnInitialUpdate()
 {
 	CXTResizeFormView::OnInitialUpdate();
 
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ëž˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	// Call SetListEditStyle to set the type of edit list. You can
 	// pass in LBS_XT_NOTOOLBAR if you don't want the toolbar displayed.
@@ -197,7 +197,7 @@ void CDirectionPropRefreeView::OnSize(UINT nType, int cx, int cy)
 {
 	CXTResizeFormView::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Þ½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if( m_PropGrid.GetSafeHwnd() && m_staticRefree.GetSafeHwnd() )
 	{
 		RECT rc;
@@ -212,7 +212,7 @@ void CDirectionPropRefreeView::OnShowWindow(BOOL bShow, UINT nStatus)
 {
 	CWnd::OnShowWindow(bShow, nStatus);
 
-	// TODO: ¿©±â¿¡ ¸Þ½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if( !bShow )
 		m_eButtonInputType = BUTTON_INPUT_TYPE_NONE;
 }
@@ -420,7 +420,7 @@ void CDirectionPropRefreeView::SetAnimIDEnum()
 
 	if( xmlScript.LoadCharacterScript(strFullName.c_str(), &charPropery) == false )
 	{
-		// ½ÉÆÇÀÇ ¾Ö´Ï¸ÞÀÌ¼Ç XML ÆÄÀÏÀÌ ¾ø´Ù
+		// ì‹¬íŒì˜ ì• ë‹ˆë©”ì´ì…˜ XML íŒŒì¼ì´ ì—†ë‹¤
 		AfxMessageBox("Can not found N_HFI_M_H1.XML file");
 		return;
 	}
@@ -476,7 +476,7 @@ void CDirectionPropRefreeView::SetAnimIDEnum()
 
 void CDirectionPropRefreeView::OnLbnDblclkList_AnimList()
 {
-	// ¼±ÅÃµÈ m_lcAnimationListÀÇ Ç×¸ñÀ» m_lcSelectedAnimationList¿¡ Ãß°¡ÇÑ´Ù
+	// ì„ íƒëœ m_lcAnimationListì˜ í•­ëª©ì„ m_lcSelectedAnimationListì— ì¶”ê°€í•œë‹¤
 
 	RwInt32 iIndex = m_lcAnimationList.GetCurSel();
 	sANIM_DATA* pAnimData = (sANIM_DATA*)m_lcAnimationList.GetItemData( iIndex );	
@@ -492,7 +492,7 @@ void CDirectionPropRefreeView::OnLbnDblclkList_AnimList()
 
 void CDirectionPropRefreeView::OnBnClickedButton_Delete()
 {
-	// m_lcSelectedAnimationListÀÇ Ç×¸ñÀ» »èÁ¦ÇÑ´Ù
+	// m_lcSelectedAnimationListì˜ í•­ëª©ì„ ì‚­ì œí•œë‹¤
 
 	RwInt32 iIndex = m_lcSelectedAnimationList.GetCurSel();
 	if( iIndex == LB_ERR )
@@ -512,7 +512,7 @@ void CDirectionPropRefreeView::OnBnClickedButton_Delete()
 
 void CDirectionPropRefreeView::OnBnClickedButton_Up()
 {
-	// ¼±ÅÃµÈ m_lcSelectedAnimationListÀÇ Ç×¸ñÀ» ÇÑ´Ü°è À§·Î ¿Ã¸°´Ù
+	// ì„ íƒëœ m_lcSelectedAnimationListì˜ í•­ëª©ì„ í•œë‹¨ê³„ ìœ„ë¡œ ì˜¬ë¦°ë‹¤
 
 	RwInt32 iIndex = m_lcSelectedAnimationList.GetCurSel();
 	if( iIndex == LB_ERR )
@@ -537,7 +537,7 @@ void CDirectionPropRefreeView::OnBnClickedButton_Up()
 	m_lcSelectedAnimationList.SetCurSel(iIndex - 1);
 
 
-	// CNtlSLCENode Á¤·Ä
+	// CNtlSLCENode ì •ë ¬
 	m_pCurRefreeData->RemoveAllAnimId();
 
 	for(RwInt32 i = 0 ; i < m_lcSelectedAnimationList.GetCount() ; ++i )
@@ -549,7 +549,7 @@ void CDirectionPropRefreeView::OnBnClickedButton_Up()
 
 void CDirectionPropRefreeView::OnBnClickedButton_Down()
 {
-	// ¼±ÅÃµÈ m_lcSelectedAnimationListÀÇ Ç×¸ñÀ» ÇÑ´Ü°è ¾Æ·¡·Î ¿Ã¸°´Ù
+	// ì„ íƒëœ m_lcSelectedAnimationListì˜ í•­ëª©ì„ í•œë‹¨ê³„ ì•„ëž˜ë¡œ ì˜¬ë¦°ë‹¤
 
 	RwInt32 iIndex = m_lcSelectedAnimationList.GetCurSel();
 	if( iIndex == LB_ERR )
@@ -574,7 +574,7 @@ void CDirectionPropRefreeView::OnBnClickedButton_Down()
 	m_lcSelectedAnimationList.DeleteString(iIndex);
 
 
-	// CNtlSLCENode Á¤·Ä
+	// CNtlSLCENode ì •ë ¬
 	m_pCurRefreeData->RemoveAllAnimId();
 
 	for(RwInt32 i = 0 ; i < m_lcSelectedAnimationList.GetCount() ; ++i )
@@ -598,7 +598,7 @@ void CDirectionPropRefreeView::DestroyListItem()
 
 void CDirectionPropRefreeView::OnCbnSelchangeCombo1()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	m_pCurRefreeData->SetAnimPlayType( m_ComboAnimPlayType.GetCurSel() ); 	 
 }
 
@@ -675,7 +675,7 @@ void CDirectionPropRefreeView::OnSelchangeEditList_Narration()
 
 void CDirectionPropRefreeView::OnBnClickedButton_NarrationUp()
 {
-	// ¼±ÅÃµÈ m_ListBoxNarrationListÀÇ Ç×¸ñÀ» ÇÑ´Ü°è À§·Î ¿Ã¸°´Ù
+	// ì„ íƒëœ m_ListBoxNarrationListì˜ í•­ëª©ì„ í•œë‹¨ê³„ ìœ„ë¡œ ì˜¬ë¦°ë‹¤
 
 	RwInt32 iIndex = m_ListBoxNarrationList.GetCurSel();
 	if( iIndex == LB_ERR )
@@ -704,7 +704,7 @@ void CDirectionPropRefreeView::OnBnClickedButton_NarrationUp()
 
 void CDirectionPropRefreeView::OnBnClickedButton_NarrationDown()
 {
-	// ¼±ÅÃµÈ m_ListBoxNarrationListÀÇ Ç×¸ñÀ» ÇÑ´Ü°è ¾Æ·¡·Î ¿Ã¸°´Ù
+	// ì„ íƒëœ m_ListBoxNarrationListì˜ í•­ëª©ì„ í•œë‹¨ê³„ ì•„ëž˜ë¡œ ì˜¬ë¦°ë‹¤
 
 	RwInt32 iIndex = m_ListBoxNarrationList.GetCurSel();
 	if( iIndex == LB_ERR )
@@ -739,7 +739,7 @@ void CDirectionPropRefreeView::RefreshNarrationList()
 {
 	CString strText;
 
-	// CNtlSLCENode Á¤·Ä
+	// CNtlSLCENode ì •ë ¬
 	m_pCurRefreeData->RemoveAllNarrationIndex();
 	
 	for(RwInt32 i = 0 ; i < m_ListBoxNarrationList.GetCount() ; ++i )

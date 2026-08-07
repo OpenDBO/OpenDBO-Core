@@ -313,11 +313,11 @@ RwImageFindRasterFormat(RwImage *ipImage, RwInt32 nRasterType,
  * The types of image files that are supported are determined by the format
  * modules which have been registered using \ref RwImageRegisterImageFormat. Note
  * that the filename must include the file's extension, as this identifies the
- * image’s type for dispatch to the correct loader module.
+ * imageë­© type for dispatch to the correct loader module.
  *
  * The raster is created as type rwRASTERTYPENORMAL and with the default depth.
  *
- * Gamma correction is not applied to the raster’s image
+ * Gamma correction is not applied to the rasterë­© image
  *
  * \param filename  A pointer to a string specifying the file name of the image.
  *
@@ -392,11 +392,11 @@ RwRasterRead(const RwChar *filename)
  * The types of image files that are supported are determined by the format
  * modules which have been registered using \ref RwImageRegisterImageFormat. Note
  * that the filename must include the file's extension, as this identifies the
- * image’s type for dispatch to the correct loader module.
+ * imageë­© type for dispatch to the correct loader module.
  *
  * The raster is created as type rwRASTERTYPENORMAL and with the default depth.
  *
- * Gamma correction is not applied to the raster’s image.
+ * Gamma correction is not applied to the rasterë­© image.
  *
  * \param filename  A pointer to a file name of the first image
  * \param maskname  A pointer to a file name of the second image supplying the mask.

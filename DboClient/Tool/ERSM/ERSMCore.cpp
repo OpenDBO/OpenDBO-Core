@@ -87,8 +87,8 @@ DWORD WINAPI ERSMCore::WorkThread( LPVOID pParam )
 
 std::string ERSMCore::GetModulePath() 
 {
-	// ¼­ºñ½º ÇÁ·Î±×·¥¿¡¼­ GetCurrentDirectory¸¦ ÇÏ¸é SYSTEMÆú´õ¸¦ ¹ÝÈ¯ÇÑ´Ù
-	// ÀÌ ÇÔ¼ö´Â ¼­ºñ½º ÇÁ·Î±×·¥ÀÌ ½ÇÇàµÈ °æ·Î¸¦ ¹ÝÈ¯ÇÑ´Ù.
+	// ì„œë¹„ìŠ¤ í”„ë¡œê·¸ëž¨ì—ì„œ GetCurrentDirectoryë¥¼ í•˜ë©´ SYSTEMí´ë”ë¥¼ ë°˜í™˜í•œë‹¤
+	// ì´ í•¨ìˆ˜ëŠ” ì„œë¹„ìŠ¤ í”„ë¡œê·¸ëž¨ì´ ì‹¤í–‰ëœ ê²½ë¡œë¥¼ ë°˜í™˜í•œë‹¤.
 	char szFilePath[_MAX_PATH] = {0,};
 	char szDrive[_MAX_PATH] = {0,};
 	char szDir[_MAX_PATH] = {0,};

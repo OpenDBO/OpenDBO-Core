@@ -2,7 +2,7 @@
  *
  * File			: NtlSLLuaGlue.h
  * Author		: HyungSuk, Jang
- * Copyright	: (มึ)NTL
+ * Copyright	: (์ฃผ)NTL
  * Date			: 2006. 2. 20	
  * Abstract		: simulation lua glue function
  *****************************************************************************
@@ -75,236 +75,236 @@ extern "C" {
 	// lua register function
 	////////////////////////////////////////////////////////////////////////////
 
-	// lua ภฮภฺ : 
+	// lua ์ธ์ : 
 	int LuaGlue_RegisterSLSetupData(lua_State *L);
 
-	// lua ภฮภฺ : serial id, sob key name
+	// lua ์ธ์ : serial id, sob key name
 	int LuaGlue_RegisterSobCreate(lua_State *L);
 
-	// lua ภฮภฺ : serial id, sob key name
+	// lua ์ธ์ : serial id, sob key name
 	int LuaGlue_RegisterSobDestroy(lua_State *L);
 
-	// lua ภฮภฺ : serial id, state key name
+	// lua ์ธ์ : serial id, state key name
 	int LuaGlue_RegisterCharStateEnter(lua_State *L);
 
-	// lua ภฮภฺ : serial id, state key name
+	// lua ์ธ์ : serial id, state key name
 	int LuaGlue_RegisterCharStateExit(lua_State *L);
 
-	// lua ภฮภฺ : serial id, behavior key name
+	// lua ์ธ์ : serial id, behavior key name
 	int LuaGlue_RegisterCharBehaviorEnter(lua_State *L);
 
-	// lua ภฮภฺ : serial id, behavior key name
+	// lua ์ธ์ : serial id, behavior key name
 	int LuaGlue_RegisterCharBehaviorExit(lua_State *L);
 
-	// lua ภฮภฺ : attack serial id, target serial id
+	// lua ์ธ์ : attack serial id, target serial id
 	int LuaGlue_RegisterAttack(lua_State *L);
 
-	// lua ภฮภฺ : attack serial id, target serial id
+	// lua ์ธ์ : attack serial id, target serial id
 	int LuaGlue_RegisterHurt(lua_State *L);
 
-	// lua ภฮภฺ : attack serial id, target serial id, skill key name
+	// lua ์ธ์ : attack serial id, target serial id, skill key name
 	int LuaGlue_RegisterSkillCastingEnter(lua_State *L);
 
-	// lua ภฮภฺ : attack serial id, target serial id, skill key name
+	// lua ์ธ์ : attack serial id, target serial id, skill key name
 	int LuaGlue_RegisterSkillCastingExit(lua_State *L);
 
-	// lua ภฮภฺ : attack serial id, target serial id, skill key name
+	// lua ์ธ์ : attack serial id, target serial id, skill key name
 	int LuaGlue_RegisterSkillActionEnter(lua_State *L);
 
-	// lua ภฮภฺ : attack serial id, target serial id, skill key name
+	// lua ์ธ์ : attack serial id, target serial id, skill key name
 	int LuaGlue_RegisterSkillActionExit(lua_State *L);
 
-	// lua ภฮภฺ : htb attack serial id, htb skill table id, set skill table id, current step id
+	// lua ์ธ์ : htb attack serial id, htb skill table id, set skill table id, current step id
 	int LuaGlue_RegisterHTBSkillStepEnter(lua_State *L);
 
-	// lua ภฮภฺ : htb attack serial id, htb skill table id, set skill table id, current step id
+	// lua ์ธ์ : htb attack serial id, htb skill table id, set skill table id, current step id
 	int LuaGlue_RegisterHTBSkillStepExit(lua_State *L);
 
-	// lua ภฮภฺ : htb table id
+	// lua ์ธ์ : htb table id
 	int LuaGlue_RegisterHTBCameraStart(lua_State *L);
 
-	// lua ภฮภฺ : 
+	// lua ์ธ์ : 
 	int LuaGlue_RegisterDragonDNEnter(lua_State* L);
 
-	// lua ภฮภฺ : explosion id
+	// lua ์ธ์ : explosion id
 	int LuaGlue_RegisterExplosionCamera(lua_State* L);
 
-    // lua ภฮภฺ : camera index
+    // lua ์ธ์ : camera index
     int LuaGlue_RegisterObserverCamera(lua_State* L);
 
 	////////////////////////////////////////////////////////////////////////////
-	// lua : นฐธฎภ๛/ณํธฎภ๛ ฐดรผ ปýผบ วิผ๖
+	// lua : ๋ฌผ๋ฆฌ์ /๋…ผ๋ฆฌ์  ๊ฐ์ฒด ์์ฑ ํ•จ์
 	////////////////////////////////////////////////////////////////////////////
 
-	// lua ภฮภฺ : key name, add object flag
+	// lua ์ธ์ : key name, add object flag
 	int LuaGlue_CreateEffect(lua_State *L);
 	
-	// lua ภฮภฺ : filename, add object flag
+	// lua ์ธ์ : filename, add object flag
 	int LuaGlue_CreateSound(lua_State *L);
 
 	////////////////////////////////////////////////////////////////////////////
-	// lua : Dataธฆ ยüมถวา actor ฐดรผ ผณมค
+	// lua : Data๋ฅผ ์ฐธ์กฐํ•  actor ๊ฐ์ฒด ์ค์ •
 	////////////////////////////////////////////////////////////////////////////
 
-	// lua ภฮภฺ : serial id
+	// lua ์ธ์ : serial id
 	int LuaGlue_ActiveActor(lua_State *L);
 
-	// lua ภฮภฺ : serial id
+	// lua ์ธ์ : serial id
 	int LuaGlue_ActiveObject(lua_State *L);
 
-	// lua ภฮภฺ : พ๘ฝฟ.
+	// lua ์ธ์ : ์—์ด.
 	int LuaGlue_ActiveActorEdit(lua_State *L);
 
-	// lua ภฮภฺ : พ๘ฝฟ.
+	// lua ์ธ์ : ์—์ด.
 	int LuaGlue_ActiveObjectEdit(lua_State *L);
 
 	////////////////////////////////////////////////////////////////////////////
-	// lua : transform positionฟก ฐüทรตศ วิผ๖.
+	// lua : transform position์— ๊ด€๋ จ๋ ํ•จ์.
 	////////////////////////////////////////////////////////////////////////////
 
-	// lua ภฮภฺ : พ๘ฝฟ.
+	// lua ์ธ์ : ์—์ด.
 	int LuaGlue_BeginTransform(lua_State *L);
 
-	// lua ภฮภฺ : พ๘ฝฟ.
+	// lua ์ธ์ : ์—์ด.
 	int LuaGlue_EndTransform(lua_State *L);
 
-	// lua ภฮภฺ : offset x, offset y, offset z
+	// lua ์ธ์ : offset x, offset y, offset z
 	int LuaGlue_SetPosition(lua_State *L);
 
-	// lua ภฮภฺ : bone name, offset x, offset y, offset z
+	// lua ์ธ์ : bone name, offset x, offset y, offset z
 	int LuaGlue_SetBonePosition(lua_State *L);
 
-	// lua ภฮภฺ : offset x, offset y, offset z
+	// lua ์ธ์ : offset x, offset y, offset z
 	int LuaGlue_AddPosition(lua_State *L);
 
 	////////////////////////////////////////////////////////////////////////////
-	// lua : transform directionฟก ฐüทรตศ วิผ๖.
+	// lua : transform direction์— ๊ด€๋ จ๋ ํ•จ์.
 	////////////////////////////////////////////////////////////////////////////
 
-	// lua ภฮภฺ : พ๘ฝฟ.
+	// lua ์ธ์ : ์—์ด.
 	int LuaGlue_SetDirection(lua_State *L);
 
 	////////////////////////////////////////////////////////////////////////////
-	// lua : transform scaleฟก ฐüทรตศ วิผ๖.
+	// lua : transform scale์— ๊ด€๋ จ๋ ํ•จ์.
 	////////////////////////////////////////////////////////////////////////////
 
-	// lua ภฮภฺ : scale x, scale y, scale z
+	// lua ์ธ์ : scale x, scale y, scale z
 	int LuaGlue_SetScale(lua_State *L);
 
 	////////////////////////////////////////////////////////////////////////////
-	// lua : attachฟก ฐüทรตศ วิผ๖.
+	// lua : attach์— ๊ด€๋ จ๋ ํ•จ์.
 	////////////////////////////////////////////////////////////////////////////
 
-	// lua ภฮภฺ : offset x, offset y, offset z
+	// lua ์ธ์ : offset x, offset y, offset z
 	int LuaGlue_AttachWorld(lua_State *L);
 
-	// lua ภฮภฺ : bone name
+	// lua ์ธ์ : bone name
 	int LuaGlue_AttachBone(lua_State *L);
 
 	////////////////////////////////////////////////////////////////////////////
-	// lua : actor มคบธฟอ ฐüทรตศ วิผ๖.
+	// lua : actor ์ •๋ณด์€ ๊ด€๋ จ๋ ํ•จ์.
 	////////////////////////////////////////////////////////////////////////////
 
-	// lua ภฮภฺ : actor serial id, actor height offset rate
+	// lua ์ธ์ : actor serial id, actor height offset rate
 	int LuaGlue_GetActorPosition(lua_State *L);
 
-	// lua ภฮภฺ : actor serial id, actor height offset rate, front distance
+	// lua ์ธ์ : actor serial id, actor height offset rate, front distance
 	int LuaGlue_GetActorFrontPosition(lua_State *L);
 
-	// lua ภฮภฺ : actor serial id, actor height offset rate, back distance
+	// lua ์ธ์ : actor serial id, actor height offset rate, back distance
 	int LuaGlue_GetActorBackPosition(lua_State *L);
 
-	// lua ภฮภฺ : actor serial id, actor height offset rate, left distance
+	// lua ์ธ์ : actor serial id, actor height offset rate, left distance
 	int LuaGlue_GetActorLeftPosition(lua_State *L);
 
-	// lua ภฮภฺ : actor serial id, actor height offset rate, right distance
+	// lua ์ธ์ : actor serial id, actor height offset rate, right distance
 	int LuaGlue_GetActorRightPosition(lua_State *L);
 	
 	////////////////////////////////////////////////////////////////////////////
-	// lua : cameraฟก ฐüทรตศ วิผ๖.
+	// lua : camera์— ๊ด€๋ จ๋ ํ•จ์.
 	////////////////////////////////////////////////////////////////////////////
 
 	int LuaGlue_CameraShake(lua_State *L);
 
-	// lua ภฮภฺ : shake weight, shake height
+	// lua ์ธ์ : shake weight, shake height
 	int LuaGlue_SetCameraShakeFactor(lua_State *L);
 
-	// lua ภฮภฺ : พ๘ฝฟ.
+	// lua ์ธ์ : ์—์ด.
 	int LuaGlue_ResetCameraShakeFactor(lua_State *L);
 
-	// lua ภฮภฺ : fov value
+	// lua ์ธ์ : fov value
 	int LuaGlue_SetCameraFov(lua_State *L);
 
-	// lua ภฮภฺ : camera direction node previous nodeฟก attach ฝรลฐดย flagธฆ enable วัดู.
+	// lua ์ธ์ : camera direction node previous node์— attach ์ํค๋” flag๋ฅผ enable ํ•๋ค.
 	int LuaGlue_CameraDirectChildBegin(lua_State *L);
 
-	// lua ภฮภฺ : camera direction node previous nodeฟก attach ฝรลฐดย flagธฆ disable วัดู.
+	// lua ์ธ์ : camera direction node previous node์— attach ์ํค๋” flag๋ฅผ disable ํ•๋ค.
 	int LuaGlue_CameraDirectChildEnd(lua_State *L);
 	
-	// lua ภฮภฺ : camera direction node clear
+	// lua ์ธ์ : camera direction node clear
 	int LuaGlue_CameraDirectClear(lua_State *L);
 
-	// lua ภฮภฺ : keep time(ภฏม๖ฝรฐฃ)
+	// lua ์ธ์ : keep time(์ ์ง€์๊ฐ)
 	int LuaGlue_AddCameraPauseNode(lua_State *L);
 
-	// lua ภฮภฺ : start position x, start position y, start position z, direct property key name
+	// lua ์ธ์ : start position x, start position y, start position z, direct property key name
 	int LuaGlue_AddSplineCameraSelfNode(lua_State *L);
 
 	int LuaGlue_AddSkillSplineDynamicActorSelfNode(lua_State *L);
 
-	// lua ภฮภฺ : actor height offset, property key
+	// lua ์ธ์ : actor height offset, property key
 	int LuaGlue_AddSkillSplineDynamicLookAtNode(lua_State *L);
 
-	// lua ภฮภฺ : actor height offset, property key
+	// lua ์ธ์ : actor height offset, property key
 	int LuaGlue_AddSkillSplineDynamicLookAtCenterNode(lua_State *L);
 
 	int LuaGlue_AddSkillSplineStaticPosDynamicLookAtNode(lua_State *L);
 
-	// lua ภฮภฺ : direct property key name
+	// lua ์ธ์ : direct property key name
 	int LuaGlue_AddSkillAttackerSplineCameraSelfNode(lua_State *L);
 
-	// lua ภฮภฺ : direct property key name
+	// lua ์ธ์ : direct property key name
 	int LuaGlue_AddSkillTargetSplineCameraSelfNode(lua_State *L);
 
-	// lua ภฮภฺ : actor serial id, direct property key name
+	// lua ์ธ์ : actor serial id, direct property key name
 	int LuaGlue_AddSkillSplineActorRefSelfNode(lua_State *L);
 
 	////////////////////////////////////////////////////////////////////////////
 	// lua : Logic => actor
 	////////////////////////////////////////////////////////////////////////////
 
-	// lua ภฮภฺ : serial id
+	// lua ์ธ์ : serial id
 	int LuaGlue_GetOwnerSerialId(lua_State *L);
 
-	// lua ภฮภฺ : serial id
+	// lua ์ธ์ : serial id
 	int LuaGlue_GetActorType(lua_State *L);
 	
-	// lua ภฮภฺ : serial id
+	// lua ์ธ์ : serial id
 	int LuaGlue_IsAvatarActor(lua_State *L);
 
 	////////////////////////////////////////////////////////////////////////////
-	// lua : Logic => HTB camera control ผำผบฟก ฐüทรตศ วิผ๖.
+	// lua : Logic => HTB camera control ์์ฑ์— ๊ด€๋ จ๋ ํ•จ์.
 	////////////////////////////////////////////////////////////////////////////
 
-	// lua ภฮภฺ : พ๘ฝฟ.
+	// lua ์ธ์ : ์—์ด.
 	int LuaGlue_GetSkillAttackSerialId(lua_State *L);
 
-	// lua ภฮภฺ : พ๘ฝฟ.
+	// lua ์ธ์ : ์—์ด.
 	int LuaGlue_GetSkillTargetSerialId(lua_State *L);
 
 	////////////////////////////////////////////////////////////////////////////
 	// lua : Presentation => day and night
 	////////////////////////////////////////////////////////////////////////////
 
-	// lua ภฮภฺ : delay time, duration time, start value, finish value, blend factor
+	// lua ์ธ์ : delay time, duration time, start value, finish value, blend factor
 	int LuaGlue_AddDNNode(lua_State *L);
 
-	// lua ภฮภฺ : delay time, duration time, finish value, blend factor
+	// lua ์ธ์ : delay time, duration time, finish value, blend factor
 	int LuaGlue_AddDNNodeCurrentStart(lua_State *L);
 
 
 	////////////////////////////////////////////////////////////////////////////
-	// lua : Logic => cinematic ฟฌรโฟก ฐüทรตศ วิผ๖.
+	// lua : Logic => cinematic ์—ฐ์ถ์— ๊ด€๋ จ๋ ํ•จ์.
 	////////////////////////////////////////////////////////////////////////////
 
 	int LuaGlue_BeginCinematic(lua_State *L);
@@ -442,7 +442,7 @@ extern "C" {
 	int LuaGlue_AddCNCinematicServerAck(lua_State *L);
 
 	////////////////////////////////////////////////////////////////////////////
-	// lua : Logic => Explosion camera ฟฌรโฟก ฐüทรตศ วิผ๖.
+	// lua : Logic => Explosion camera ์—ฐ์ถ์— ๊ด€๋ จ๋ ํ•จ์.
 	////////////////////////////////////////////////////////////////////////////
 
 	int LuaGlue_AddSinExplosionAlgorithm_XAxis(lua_State *L);
@@ -459,7 +459,7 @@ extern "C" {
 
 
 	////////////////////////////////////////////////////////////////////////////
-	// รตวฯมฆภฯ นซตตศธ ฐüทร ฟฌรโ
+	// ์ฒํ•์ ์ผ ๋ฌด๋ํ ๊ด€๋ จ ์—ฐ์ถ
 	////////////////////////////////////////////////////////////////////////////
 
 	int LuaGlue_DTAddController(lua_State *L);

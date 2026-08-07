@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File: SkillCommonGui.h
-// Desc: Skill Master, Skill Gui°£ÀÇ °øÅëµÈ Å¬·¡½º ¼±¾ð.
+// Desc: Skill Master, Skill Guiê°„ì˜ ê³µí†µëœ í´ëž˜ìŠ¤ ì„ ì–¸.
 //
 // 2007.9.3 Peessi@hitel.net  
 // To Be Desired:
@@ -46,17 +46,17 @@ protected:
 enum eSKILLRQSTATE
 { 
 	SRQ_FLAG_INITIAL					= 0x0000,	// 					
-	SRQ_FLAG_NOT_LEARN_SKILL			= 0x0001,	// ¹Ì¸® ¹è¿ö¾ß ÇÏ´Â ½ºÅ³¶§¹®¿¡ ¹è¿ï ¼ö ¾ø´Ù.
-	SRQ_FLAG_NOT_LEARN_LEVEL			= 0x0002,	// ·¹º§ÀÌ ³·¾Æ ½ºÅ³À» ¹è¿ï ¼ö ¾ø´Ù.
-	SRQ_FLAG_CAN_LEARN_BY_SKILLMASTER	= 0x0004,	// ½ºÅ³¸¶½ºÅÍ¿¡°Ô ½ºÅ³À» ¹è¿ï ¼ö ÀÖ´Ù.
-	SRQ_FLAG_CAN_LEARN_BY_SELF			= 0x0008,	// ÀÚ½ÅÀÌ Á÷Á¢ ½ºÅ³À» ¹è¿ï ¼ö ÀÖ´Ù.
-	SRQ_FLAG_NOT_UPGRADE_SKILLEXP		= 0x0010,	// ½ºÅ³ °æÇèÄ¡°¡ ³·¾Æ ¾÷±×·¹ÀÌµå¸¦ ÇÒ ¼ö ¾ø´Ù.
-	SRQ_FLAG_NOT_UPGRADE_LEVEL			= 0x0020,	// ·¹º§ÀÌ ³·¾Æ ¾÷±×·¹ÀÌµå¸¦ ÇÒ ¼ö ¾ø´Ù.
-	SRQ_FLAG_CAN_UPGRADE				= 0x0040,	// ¾÷±×·¹ÀÌµå¸¦ ÇÒ ¼ö ÀÖ´Ù.
-	SRQ_FLAG_MASTER						= 0x0080,	// ½ºÅ³À» ¸¶½ºÅÍ Çß´Ù.
-	SRQ_FLAG_LEARNED					= 0x0100,	// ÀÌ¹Ì ¹è¿î ½ºÅ³ÀÌ´Ù. 	
-	SRQ_FLAG_NOT_LEARN_CLASS			= 0x0200,	// Å¬·¡½º°¡ ¾È¸Â¾Æ ¹è¿ï¼ö ¾ø´Ù. 
-	SRQ_FLAG_NOT_LEARN_CHANGECLASSRIGHT	= 0x0400,	// ¸¶½ºÅÍ¸®´Â ÀüÁ÷±ÇÇÑÀ» ¾ò¾î¾ß ¹è¿ï ¼ö ÀÖ´Ù.
+	SRQ_FLAG_NOT_LEARN_SKILL			= 0x0001,	// ë¯¸ë¦¬ ë°°ì›Œì•¼ í•˜ëŠ” ìŠ¤í‚¬ë•Œë¬¸ì— ë°°ìš¸ ìˆ˜ ì—†ë‹¤.
+	SRQ_FLAG_NOT_LEARN_LEVEL			= 0x0002,	// ë ˆë²¨ì´ ë‚®ì•„ ìŠ¤í‚¬ì„ ë°°ìš¸ ìˆ˜ ì—†ë‹¤.
+	SRQ_FLAG_CAN_LEARN_BY_SKILLMASTER	= 0x0004,	// ìŠ¤í‚¬ë§ˆìŠ¤í„°ì—ê²Œ ìŠ¤í‚¬ì„ ë°°ìš¸ ìˆ˜ ìžˆë‹¤.
+	SRQ_FLAG_CAN_LEARN_BY_SELF			= 0x0008,	// ìžì‹ ì´ ì§ì ‘ ìŠ¤í‚¬ì„ ë°°ìš¸ ìˆ˜ ìžˆë‹¤.
+	SRQ_FLAG_NOT_UPGRADE_SKILLEXP		= 0x0010,	// ìŠ¤í‚¬ ê²½í—˜ì¹˜ê°€ ë‚®ì•„ ì—…ê·¸ë ˆì´ë“œë¥¼ í•  ìˆ˜ ì—†ë‹¤.
+	SRQ_FLAG_NOT_UPGRADE_LEVEL			= 0x0020,	// ë ˆë²¨ì´ ë‚®ì•„ ì—…ê·¸ë ˆì´ë“œë¥¼ í•  ìˆ˜ ì—†ë‹¤.
+	SRQ_FLAG_CAN_UPGRADE				= 0x0040,	// ì—…ê·¸ë ˆì´ë“œë¥¼ í•  ìˆ˜ ìžˆë‹¤.
+	SRQ_FLAG_MASTER						= 0x0080,	// ìŠ¤í‚¬ì„ ë§ˆìŠ¤í„° í–ˆë‹¤.
+	SRQ_FLAG_LEARNED					= 0x0100,	// ì´ë¯¸ ë°°ìš´ ìŠ¤í‚¬ì´ë‹¤. 	
+	SRQ_FLAG_NOT_LEARN_CLASS			= 0x0200,	// í´ëž˜ìŠ¤ê°€ ì•ˆë§žì•„ ë°°ìš¸ìˆ˜ ì—†ë‹¤. 
+	SRQ_FLAG_NOT_LEARN_CHANGECLASSRIGHT	= 0x0400,	// ë§ˆìŠ¤í„°ë¦¬ëŠ” ì „ì§ê¶Œí•œì„ ì–»ì–´ì•¼ ë°°ìš¸ ìˆ˜ ìžˆë‹¤.
 };
 
 //! examin												/// woosungs_test 20090730

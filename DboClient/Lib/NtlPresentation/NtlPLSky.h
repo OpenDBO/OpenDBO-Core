@@ -164,7 +164,7 @@ public:
 
 #endif //__NTL_PLSKY_H__
 
-// Sky Performance Çâ»óÀ» À§ÇØ¼­ Mesh¸¦ ºĞÇÒÇÏ¿´À¸³ª Çâ»óµÇÁö ¾Ê¾Ò´Ù.
+// Sky Performance í–¥ìƒì„ ìœ„í•´ì„œ Meshë¥¼ ë¶„í• í•˜ì˜€ìœ¼ë‚˜ í–¥ìƒë˜ì§€ ì•Šì•˜ë‹¤.
 // #ifndef __NTL_PLSKY_H__
 // #define __NTL_PLSKY_H__
 // 

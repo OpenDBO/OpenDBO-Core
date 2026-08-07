@@ -454,22 +454,22 @@ RwBool Logic_IsStackMovable( SERIAL_HANDLE hSrcSerial, SERIAL_HANDLE hDestSerial
 	if( nSplitCount == 0 )
 		return FALSE;
 
-	// 1. ¸ñÀû½½·ÔÀÌ ºñ¾îÀÖÁö ¾Ê´Ù¸é
+	// 1. ëª©ì ìŠ¬ë¡¯ì´ ë¹„ì–´ìˆì§€ ì•Šë‹¤ë©´
 	if( hDestSerial != INVALID_SERIAL_ID )
 	{
 		CNtlSobItem* pDestItem= reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( hDestSerial) );
 		NTL_ASSERT( pDestItem, "Logic_IsStackMove : DestItem is null" );
 		CNtlSobItemAttr* pDestItemAttr = reinterpret_cast<CNtlSobItemAttr*>( pDestItem->GetSobAttr() );
 
-		// 1-2. ¹ÌÈ®ÀÎ ¾ÆÀÌÅÛÀÌ ¾Æ´Ï¾î¾ß
+		// 1-2. ë¯¸í™•ì¸ ì•„ì´í…œì´ ì•„ë‹ˆì–´ì•¼
 		if( pDestItemAttr->IsNeedToIdentify() )
 			return FALSE;
 
-		// 2. °°Àº Á¾·ùÀÇ ¾ÆÀÌÄÜÀÌ¾î¾ß
+		// 2. ê°™ì€ ì¢…ë¥˜ì˜ ì•„ì´ì½˜ì´ì–´ì•¼
 		if( pSrcItemAttr->GetItemTbl()->tblidx != pDestItemAttr->GetItemTbl()->tblidx )
 			return FALSE;
 
-		// 3. ¸ñÀûÁöÀÇ ¾ÆÀÌÅÛ½ºÅÃÀÌ ÃÖ´ë°ªº¸´Ù ÀÛ¾Æ¾ß
+		// 3. ëª©ì ì§€ì˜ ì•„ì´í…œìŠ¤íƒì´ ìµœëŒ€ê°’ë³´ë‹¤ ì‘ì•„ì•¼
 		if( pDestItemAttr->GetStackNum() >= pDestItemAttr->GetItemTbl()->byMax_Stack )
 		{
 			// 
@@ -479,13 +479,13 @@ RwBool Logic_IsStackMovable( SERIAL_HANDLE hSrcSerial, SERIAL_HANDLE hDestSerial
 				return FALSE;
 		}
 
-		// 4. ±Ù¿øÁö°¡ ÃÖ´ë ¾ÆÀÌÅÛ °¹¼öº¸´Ù Àû°Ô ´ú¾î¾ß
+		// 4. ê·¼ì›ì§€ê°€ ìµœëŒ€ ì•„ì´í…œ ê°¯ìˆ˜ë³´ë‹¤ ì ê²Œ ëœì–´ì•¼
 		if( nSplitCount >= pSrcItemAttr->GetItemTbl()->byMax_Stack )
 			return FALSE;
 	}	
 	else
 	{
-		// 1. °¡Áø ¸¸Å­À» ¸ğµÎ µé¾ú´Ù¸é ±×³É Move
+		// 1. ê°€ì§„ ë§Œí¼ì„ ëª¨ë‘ ë“¤ì—ˆë‹¤ë©´ ê·¸ëƒ¥ Move
 		if( pSrcItemAttr->GetStackNum() <= nSplitCount )
 			return FALSE;
 	}
@@ -507,15 +507,15 @@ RwBool Logic_IsStackMovable_to_GuildWarehouse( sGuildWarehouseSlot* pGuildWareho
 	NTL_ASSERT(pGuildWarehouseItem, "Logic_IsStackMovable_to_GuildWarehouse, Invalid pointer");
 	if(pGuildWarehouseItem->hHandle != INVALID_SERIAL_ID)
 	{
-		// 0. ¸ñÀû½½·ÔÀÌ ¹ÌÈ®ÀÎ ¾ÆÀÌÅÛÀÌ ¾Æ´Ï¾î¾ß
+		// 0. ëª©ì ìŠ¬ë¡¯ì´ ë¯¸í™•ì¸ ì•„ì´í…œì´ ì•„ë‹ˆì–´ì•¼
 		if( pGuildWarehouseItem->bNeedToIdentify )
 			return FALSE;
 
-		// 1. ¸ñÀû½½·ÔÀÌ ºñ¾îÀÖÁö ¾Ê´Ù¸é °°Àº Á¾·ùÀÇ ¾ÆÀÌÄÜÀÌ¾î¾ß
+		// 1. ëª©ì ìŠ¬ë¡¯ì´ ë¹„ì–´ìˆì§€ ì•Šë‹¤ë©´ ê°™ì€ ì¢…ë¥˜ì˜ ì•„ì´ì½˜ì´ì–´ì•¼
 		if( pSrcItemAttr->GetItemTbl()->tblidx != pGuildWarehouseItem->pITEM_TBLDAT->tblidx )
 			return FALSE;
 
-		// 2. ¸ñÀûÁöÀÇ ¾ÆÀÌÅÛ½ºÅÃÀÌ ÃÖ´ë°ªº¸´Ù ÀÛ¾Æ¾ß
+		// 2. ëª©ì ì§€ì˜ ì•„ì´í…œìŠ¤íƒì´ ìµœëŒ€ê°’ë³´ë‹¤ ì‘ì•„ì•¼
 		if( pGuildWarehouseItem->byStackcount >= pGuildWarehouseItem->pITEM_TBLDAT->byMax_Stack )
 		{
 			if( nSplitCount < pSrcItemAttr->GetStackNum() )
@@ -524,13 +524,13 @@ RwBool Logic_IsStackMovable_to_GuildWarehouse( sGuildWarehouseSlot* pGuildWareho
 				return FALSE;
 		}
 
-		// 3. ±Ù¿øÁö°¡ ÃÖ´ë ¾ÆÀÌÅÛ °¹¼öº¸´Ù Àû°Ô ´ú¾î¾ß
+		// 3. ê·¼ì›ì§€ê°€ ìµœëŒ€ ì•„ì´í…œ ê°¯ìˆ˜ë³´ë‹¤ ì ê²Œ ëœì–´ì•¼
 		if( nSplitCount >= pSrcItemAttr->GetItemTbl()->byMax_Stack )
 			return FALSE;
 	}
 	else
 	{
-		// 1. °¡Áø ¸¸Å­À» ¸ğµÎ µé¾ú´Ù¸é ±×³É Move
+		// 1. ê°€ì§„ ë§Œí¼ì„ ëª¨ë‘ ë“¤ì—ˆë‹¤ë©´ ê·¸ëƒ¥ Move
 		if( pSrcItemAttr->GetStackNum() <= nSplitCount )
 			return FALSE;
 	}
@@ -546,22 +546,22 @@ RwBool Logic_IsStackMovable_from_GuildWarehouse( sGuildWarehouseSlot* pGuildWare
 	if( nSplitCount == 0 )
 		return FALSE;
 
-	// 1. ¸ñÀû½½·ÔÀÌ ºñ¾îÀÖÁö ¾Ê´Ù¸é
+	// 1. ëª©ì ìŠ¬ë¡¯ì´ ë¹„ì–´ìˆì§€ ì•Šë‹¤ë©´
 	if( hDestSerial != INVALID_SERIAL_ID )
 	{
 		CNtlSobItem* pDestItem= reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( hDestSerial) );
 		NTL_ASSERT( pDestItem, "Logic_IsStackMovable_from_GuildWarehouse : DestItem is null" );
 		CNtlSobItemAttr* pDestItemAttr = reinterpret_cast<CNtlSobItemAttr*>( pDestItem->GetSobAttr() );
 
-		// 1-2. ¸ñÀûÁö ¾ÆÀÌÄÜÀÌ ¹ÌÈ®ÀÎ ¾ÆÀÌÅÛÀÌ ¾Æ´Ï¾î¾ß
+		// 1-2. ëª©ì ì§€ ì•„ì´ì½˜ì´ ë¯¸í™•ì¸ ì•„ì´í…œì´ ì•„ë‹ˆì–´ì•¼
 		if( pDestItemAttr->IsNeedToIdentify() )
 			return FALSE;
 
-		// 2. °°Àº Á¾·ùÀÇ ¾ÆÀÌÄÜÀÌ¾î¾ß
+		// 2. ê°™ì€ ì¢…ë¥˜ì˜ ì•„ì´ì½˜ì´ì–´ì•¼
 		if( pGuildWarehouseItem->pITEM_TBLDAT->tblidx != pDestItemAttr->GetItemTbl()->tblidx )
 			return FALSE;
 
-		// 3. ¸ñÀûÁöÀÇ ¾ÆÀÌÅÛ½ºÅÃÀÌ ÃÖ´ë°ªº¸´Ù ÀÛ¾Æ¾ß
+		// 3. ëª©ì ì§€ì˜ ì•„ì´í…œìŠ¤íƒì´ ìµœëŒ€ê°’ë³´ë‹¤ ì‘ì•„ì•¼
 		if( pDestItemAttr->GetStackNum() >= pDestItemAttr->GetItemTbl()->byMax_Stack )
 		{
 			// 
@@ -571,13 +571,13 @@ RwBool Logic_IsStackMovable_from_GuildWarehouse( sGuildWarehouseSlot* pGuildWare
 				return FALSE;
 		}
 
-		// 4. ±Ù¿øÁö°¡ ÃÖ´ë ¾ÆÀÌÅÛ °¹¼öº¸´Ù Àû°Ô ´ú¾î¾ß
+		// 4. ê·¼ì›ì§€ê°€ ìµœëŒ€ ì•„ì´í…œ ê°¯ìˆ˜ë³´ë‹¤ ì ê²Œ ëœì–´ì•¼
 		if( nSplitCount >= pGuildWarehouseItem->pITEM_TBLDAT->byMax_Stack )
 			return FALSE;
 	}	
 	else
 	{
-		// 1. °¡Áø ¸¸Å­À» ¸ğµÎ µé¾ú´Ù¸é ±×³É Move
+		// 1. ê°€ì§„ ë§Œí¼ì„ ëª¨ë‘ ë“¤ì—ˆë‹¤ë©´ ê·¸ëƒ¥ Move
 		if( pGuildWarehouseItem->byStackcount <= nSplitCount )
 			return FALSE;
 	}
@@ -598,11 +598,11 @@ RwBool Logic_IsStackMovable_from_GuildWarehouse( sGuildWarehouseSlot* pGuildWare
 
 	if( pGuildWarehouseDestItem->hHandle != INVALID_SERIAL_ID )
 	{
-		// 1. ¸ñÀû½½·ÔÀÌ ºñ¾îÀÖÁö ¾Ê´Ù¸é °°Àº Á¾·ùÀÇ ¾ÆÀÌÄÜÀÌ¾î¾ß
+		// 1. ëª©ì ìŠ¬ë¡¯ì´ ë¹„ì–´ìˆì§€ ì•Šë‹¤ë©´ ê°™ì€ ì¢…ë¥˜ì˜ ì•„ì´ì½˜ì´ì–´ì•¼
 		if( pGuildWarehouseSrcItem->pITEM_TBLDAT->tblidx != pGuildWarehouseDestItem->pITEM_TBLDAT->tblidx )
 			return FALSE;
 
-		// 2. ¸ñÀûÁöÀÇ ¾ÆÀÌÅÛ½ºÅÃÀÌ ÃÖ´ë°ªº¸´Ù ÀÛ¾Æ¾ß
+		// 2. ëª©ì ì§€ì˜ ì•„ì´í…œìŠ¤íƒì´ ìµœëŒ€ê°’ë³´ë‹¤ ì‘ì•„ì•¼
 		if( pGuildWarehouseDestItem->byStackcount >= pGuildWarehouseDestItem->pITEM_TBLDAT->byMax_Stack )
 		{
 			if( nSplitCount < pGuildWarehouseDestItem->byStackcount )
@@ -611,13 +611,13 @@ RwBool Logic_IsStackMovable_from_GuildWarehouse( sGuildWarehouseSlot* pGuildWare
 				return FALSE;
 		}
 
-		// 3. ±Ù¿øÁö°¡ ÃÖ´ë ¾ÆÀÌÅÛ °¹¼öº¸´Ù Àû°Ô ´ú¾î¾ß
+		// 3. ê·¼ì›ì§€ê°€ ìµœëŒ€ ì•„ì´í…œ ê°¯ìˆ˜ë³´ë‹¤ ì ê²Œ ëœì–´ì•¼
 		if( nSplitCount >= pGuildWarehouseSrcItem->pITEM_TBLDAT->byMax_Stack )
 			return FALSE;
 	}
 	else
 	{
-		// 1. °¡Áø ¸¸Å­À» ¸ğµÎ µé¾ú´Ù¸é ±×³É Move
+		// 1. ê°€ì§„ ë§Œí¼ì„ ëª¨ë‘ ë“¤ì—ˆë‹¤ë©´ ê·¸ëƒ¥ Move
 		if( pGuildWarehouseSrcItem->byStackcount <= nSplitCount)
 			return FALSE;
 	}
@@ -681,7 +681,7 @@ RwBool Logic_ItemDeleteProc( sMsgDboItemInfo* pInfo, RwBool* pPacketLock )
 			NTL_RETURN( FALSE );
 		}
 
-		// µµÀå ÀïÅ»Àü Áß¿¡´Â ÀÎÀå Á¦¾î±â¸¦ ¾ø¾Ù ¼ö ¾ø´Ù
+		// ë„ì¥ ìŸíƒˆì „ ì¤‘ì—ëŠ” ì¸ì¥ ì œì–´ê¸°ë¥¼ ì—†ì•¨ ìˆ˜ ì—†ë‹¤
 		if( pDOJO_TBLDAT->controllerTblidx == pITEM_TBLDAT->tblidx )
 		{
 			GetAlarmManager()->AlarmMessage("DST_WORLD_CONCEPT_DOJO_SCRAMBLE");
@@ -771,10 +771,10 @@ RwBool Logic_ItemDirectEquipProc( SERIAL_HANDLE hSrcSerial, EPlace eSrcPlace, Rw
 	{
 		if( pItem->IsEquipItem() )
 		{	
-			// ½ºÄ«¿ìÅÍÀÇ °æ¿ì´Â ÇÑ°¡Áö ´õ Ã¼Å© peessi: ÇÒ ÇÊ¿ä°¡ ¾ø¾îÁ³À½. ³»ºÎ·ÎÁ÷¿¡¼­ Ã³¸®ÇÑ´Ù. 
+			// ìŠ¤ì¹´ìš°í„°ì˜ ê²½ìš°ëŠ” í•œê°€ì§€ ë” ì²´í¬ peessi: í•  í•„ìš”ê°€ ì—†ì–´ì¡ŒìŒ. ë‚´ë¶€ë¡œì§ì—ì„œ ì²˜ë¦¬í•œë‹¤. 
 			//if( pItem->IsScouterItem() )
 			//{
-			//	// ½ºÄ«¿ìÅÍ¸¦ ÀåÂøÇÏ·Á°í ÇÒ ¶§ ÀÌ¹Ì ½ºÄ«¿ìÅÍ°¡ ÀåÂøµÇ¾î ÀÖ´Â °ÍÀÌ ºñ¾îÀÖÁö ¾Ê´Ù¸é
+			//	// ìŠ¤ì¹´ìš°í„°ë¥¼ ì¥ì°©í•˜ë ¤ê³  í•  ë•Œ ì´ë¯¸ ìŠ¤ì¹´ìš°í„°ê°€ ì¥ì°©ë˜ì–´ ìˆëŠ” ê²ƒì´ ë¹„ì–´ìˆì§€ ì•Šë‹¤ë©´
 			//	CNtlInventory* pInventory = GetNtlSLGlobal()->GetSobAvatar()->GetInventory();
 			//	RwUInt32 uiScouterSerial = pInventory->GetEquipItem(EQUIP_SLOT_TYPE_SCOUTER);
 
@@ -789,7 +789,7 @@ RwBool Logic_ItemDirectEquipProc( SERIAL_HANDLE hSrcSerial, EPlace eSrcPlace, Rw
 			//	}				
 			//}
 
-			// ÀÏ¹İ ÀåÂø ¾ÆÀÌÅÛ
+			// ì¼ë°˜ ì¥ì°© ì•„ì´í…œ
 			for( RwUInt8 i = 0 ; i < NTL_MAX_EQUIP_ITEM_SLOT ; ++i )
 			{
 				RwUInt32 dwSlotFlag = Logic_ConvertEquipSlotIdxToFlag( i );
@@ -1112,9 +1112,9 @@ int Logic_UseProcSubForSpecialTypeItem(CNtlSob * pSob, RwUInt32 hTarget, CNtlSob
 }
 
 /**
-* \brief Rp Bonus Skill »ç¿ë
+* \brief Rp Bonus Skill ì‚¬ìš©
 * \param hSrcSerial	
-* \retrun Up ¿¡¼­ »ç¿ëÃ³¸® ¿©ºÎ (TRUE : UpÀ» ¹«½Ã, FALSE : UpÀ» Ã³¸®)
+* \retrun Up ì—ì„œ ì‚¬ìš©ì²˜ë¦¬ ì—¬ë¶€ (TRUE : Upì„ ë¬´ì‹œ, FALSE : Upì„ ì²˜ë¦¬)
 */
 RwBool Logic_UseProcRpBonusSkill( SERIAL_HANDLE hSrcSerial ) 
 {
@@ -1170,7 +1170,7 @@ RwBool Logic_IsBagClearable( SERIAL_HANDLE hSrcSerial, RwUInt8 ucSrcSlotIdx )
 
 RwInt32 Logic_ItemGetGUI_EXTEND_MODEByCommonPointType(RwUInt8 byCommonPointType)
 {
-	// itemÀÇ ¸ğµå ºĞ·ù Common_Point_Type
+	// itemì˜ ëª¨ë“œ ë¶„ë¥˜ Common_Point_Type
 	CCommercialExtendGui::GUI_EXTEND_MODE eMode = CCommercialExtendGui::ZENNY_EXTEND;
 	switch( byCommonPointType )
 	{
@@ -1490,7 +1490,7 @@ CNtlSobItem* Logic_FindInventoryItemMinDurByDurationGroup(RwUInt32 uiDurationGro
 	CNtlSobItem* pRetNtlSobItem = NULL;
 	RwUInt32 uiRemaintime = 0xFFFFFFFF;
 
-	/// Bag °Ë»ö
+	/// Bag ê²€ìƒ‰
 	for( RwInt32 i = 0 ; i < NTL_MAX_BAGSLOT_COUNT ; ++i )
 	{
 		SERIAL_HANDLE hBagSerial = pInventory->GetBagItem( i );
@@ -1532,7 +1532,7 @@ CNtlSobItem* Logic_FindInventoryItemMinDurByDurationGroup(RwUInt32 uiDurationGro
 		}		
 	}
 
-	/// Eqip °Ë»ö (scouter Æ÷ÇÔ)
+	/// Eqip ê²€ìƒ‰ (scouter í¬í•¨)
 	for( RwInt32 i = 0 ; i < NTL_MAX_EQUIP_ITEM_SLOT; ++i )
 	{
 		SERIAL_HANDLE hEquipItemSerial = pInventory->GetEquipItem( i );
@@ -1578,7 +1578,7 @@ RwBool Logic_FindInventoryItemByItemType(eITEM_TYPE eType, BYTE * byPlace, BYTE 
 {
 	CNtlInventory* pInventory = GetNtlSLGlobal()->GetSobAvatar()->GetInventory();
 
-	/// Bag °Ë»ö
+	/// Bag ê²€ìƒ‰
 	for (RwInt32 i = 0; i < NTL_MAX_BAGSLOT_COUNT; ++i)
 	{
 		SERIAL_HANDLE hBagSerial = pInventory->GetBagItem(i);
@@ -1670,7 +1670,7 @@ VOID Logic_EnableIcon( RwBool bEnable, RwUInt8 byPlace, RwUInt8 uiSlotIdx )
 		CDboEventGenerator::EnableItemIcon( bEnable, PLACE_BAG, uiSlotIdx, byPlace - CONTAINER_TYPE_BAG1 );		
 	}	
 	else if( byPlace == CONTAINER_TYPE_EQUIP )
-	{// ScouterSlotÀº Equip¿¡ Æ÷ÇÔ.
+	{// ScouterSlotì€ Equipì— í¬í•¨.
 		CDboEventGenerator::EnableItemIcon( bEnable, PLACE_EQUIP, uiSlotIdx );
 	}
 	else if( byPlace == CONTAINER_TYPE_BAGSLOT )
@@ -1682,12 +1682,12 @@ VOID Logic_EnableIcon( RwBool bEnable, RwUInt8 byPlace, RwUInt8 uiSlotIdx )
 		CDboEventGenerator::EnableItemIcon( bEnable, PLACE_WAREHOUSE, uiSlotIdx, byPlace - CONTAINER_TYPE_BANK1 );
 	}
 
-	// QuestIconÀº ´Ù¸¥ ÆĞÅ¶¿¡¼­ ÀÌº¥Æ® È£Ãâ.
+	// QuestIconì€ ë‹¤ë¥¸ íŒ¨í‚·ì—ì„œ ì´ë²¤íŠ¸ í˜¸ì¶œ.
 }
 
 RwBool Logic_IsUpdateType(RwInt32 iType, void* pData)
 {
-	// NtlSLEvent.hÆÄÀÏ¾ÈÀÇ EEventAvatarInfoUpdateTypeÇüÀÇ Å¸ÀÔ¸¸ °Ë»ç
+	// NtlSLEvent.híŒŒì¼ì•ˆì˜ EEventAvatarInfoUpdateTypeí˜•ì˜ íƒ€ì…ë§Œ ê²€ì‚¬
 
 	SNtlEventSobInfoUpdate* pPacket = reinterpret_cast<SNtlEventSobInfoUpdate*>( pData );
 
@@ -1750,12 +1750,12 @@ std::string Logic_GetSmallIconName(const char* pcIconName)
 }
 
 /**
-* \brief PCÀÇ Class Icon Surface ¾ò±â
-* ¿Ü°û¼±ÀÌ ÀÖ´Â ¾ÆÀÌÄÜÀº °¡·Î/¼¼·Î 25px ÀÇ Å©±âÀÌ¸ç, ¿Ü°û¼±ÀÌ ¾ø´Â ¾ÆÀÌÄÜÀº
-* °¡·Î/¼¼·Î 19pxÀÇ Å©±âÀÌ´Ù.
-* \param byClass		NtlCharacter.h ¿¡ ¼±¾ğµÇ¾î ÀÖ´Â PC Å¬·¡½º »ó¼ö
-* \param bOutLine		¿Ü°û¼±ÀÇ À¯/¹« ( µğÆúÆ® : TRUE )
-* \return Ã£¾Æ³½ ¼­ÆäÀÌ½º
+* \brief PCì˜ Class Icon Surface ì–»ê¸°
+* ì™¸ê³½ì„ ì´ ìˆëŠ” ì•„ì´ì½˜ì€ ê°€ë¡œ/ì„¸ë¡œ 25px ì˜ í¬ê¸°ì´ë©°, ì™¸ê³½ì„ ì´ ì—†ëŠ” ì•„ì´ì½˜ì€
+* ê°€ë¡œ/ì„¸ë¡œ 19pxì˜ í¬ê¸°ì´ë‹¤.
+* \param byClass		NtlCharacter.h ì— ì„ ì–¸ë˜ì–´ ìˆëŠ” PC í´ë˜ìŠ¤ ìƒìˆ˜
+* \param bOutLine		ì™¸ê³½ì„ ì˜ ìœ /ë¬´ ( ë””í´íŠ¸ : TRUE )
+* \return ì°¾ì•„ë‚¸ ì„œí˜ì´ìŠ¤
 */
 gui::CSurface& Logic_GetPCClassIconSurface(RwUInt8 byClass, RwBool bOutLine /* TRUE */ )
 {
@@ -1765,48 +1765,48 @@ gui::CSurface& Logic_GetPCClassIconSurface(RwUInt8 byClass, RwBool bOutLine /* T
 
 	switch(byClass)
 	{
-	case PC_CLASS_HUMAN_FIGHTER:	strSrfName = "srfHuman_Fighter";	break;  //(¹«µµ°¡)
-	case PC_CLASS_HUMAN_MYSTIC:		strSrfName = "srfHuman_Mystic";		break;	//(±â°ø»ç)
-	case PC_CLASS_HUMAN_ENGINEER:	strSrfName = "srfHuman_Engineer";	break;	//(¿£Áö´Ï¾î)
-	case PC_CLASS_NAMEK_FIGHTER:	strSrfName = "srfNamek_Fighter";	break;	//(Àü»ç)
-	case PC_CLASS_NAMEK_MYSTIC:		strSrfName = "srfNamek_Mystic";		break;	//(¿ëÁ·)
-	case PC_CLASS_MIGHTY_MAJIN:		strSrfName = "srfMighty_Majin";		break;	//(´ë¸¶ÀÎ)
-	case PC_CLASS_WONDER_MAJIN:		strSrfName = "srfWonder_Majin";		break;	//(ÀÇ¸¶ÀÎ)
-	case PC_CLASS_STREET_FIGHTER:	strSrfName = "srfStreet_Fighter";	break;	//(°İÅõ°¡)
-	case PC_CLASS_SWORD_MASTER:		strSrfName = "srfSword_Master";		break;	//(°Ë¼ú°¡)
-	case PC_CLASS_CRANE_ROSHI:		strSrfName = "srfCrane_Roshi";		break;	//(ÇĞ¼±»ç)
-	case PC_CLASS_TURTLE_ROSHI:		strSrfName = "srfTurtle_Roshi";		break;	//(°ÅºÏ¼±»ç)
-	case PC_CLASS_GUN_MANIA:		strSrfName = "srfGun_Mania";		break;	//(°Ç¸Å´Ï¾Æ)
-	case PC_CLASS_MECH_MANIA:		strSrfName = "srfMech_Mania";		break;	//(¸ŞÄ«¸Å´Ï¾Æ)
-	case PC_CLASS_DARK_WARRIOR:		strSrfName = "srfDark_Warrior";		break;	//(¸¶°èÀü»ç)
-	case PC_CLASS_SHADOW_KNIGHT:	strSrfName = "srfShadow_Knight";	break;	//(¸¶µµÀü»ç)
-	case PC_CLASS_DENDEN_HEALER:	strSrfName = "srfDenden_Healer";	break;	//(µ§µ§µµ»ç)
-	case PC_CLASS_POCO_SUMMONER:	strSrfName = "srfPoco_Summoner";	break;	//(Æ÷ÄÚµµ»ç)
-	case PC_CLASS_GRAND_MA:			strSrfName = "srfGrand_Ma";			break;	//(±×·£¸¶)
-	case PC_CLASS_ULTI_MA:			strSrfName = "srfUlti_Ma";			break;	//(¾óÆ¼¸¶)
-	case PC_CLASS_PLAS_MA:			strSrfName = "srfPlas_Ma";			break;	//(ÇÃ¶óÁî¸¶)
-	case PC_CLASS_KAR_MA:			strSrfName = "srfKar_Ma";			break;	//(Ä«¸£¸¶)
+	case PC_CLASS_HUMAN_FIGHTER:	strSrfName = "srfHuman_Fighter";	break;  //(ë¬´ë„ê°€)
+	case PC_CLASS_HUMAN_MYSTIC:		strSrfName = "srfHuman_Mystic";		break;	//(ê¸°ê³µì‚¬)
+	case PC_CLASS_HUMAN_ENGINEER:	strSrfName = "srfHuman_Engineer";	break;	//(ì—”ì§€ë‹ˆì–´)
+	case PC_CLASS_NAMEK_FIGHTER:	strSrfName = "srfNamek_Fighter";	break;	//(ì „ì‚¬)
+	case PC_CLASS_NAMEK_MYSTIC:		strSrfName = "srfNamek_Mystic";		break;	//(ìš©ì¡±)
+	case PC_CLASS_MIGHTY_MAJIN:		strSrfName = "srfMighty_Majin";		break;	//(ëŒ€ë§ˆì¸)
+	case PC_CLASS_WONDER_MAJIN:		strSrfName = "srfWonder_Majin";		break;	//(ì˜ë§ˆì¸)
+	case PC_CLASS_STREET_FIGHTER:	strSrfName = "srfStreet_Fighter";	break;	//(ê²©íˆ¬ê°€)
+	case PC_CLASS_SWORD_MASTER:		strSrfName = "srfSword_Master";		break;	//(ê²€ìˆ ê°€)
+	case PC_CLASS_CRANE_ROSHI:		strSrfName = "srfCrane_Roshi";		break;	//(í•™ì„ ì‚¬)
+	case PC_CLASS_TURTLE_ROSHI:		strSrfName = "srfTurtle_Roshi";		break;	//(ê±°ë¶ì„ ì‚¬)
+	case PC_CLASS_GUN_MANIA:		strSrfName = "srfGun_Mania";		break;	//(ê±´ë§¤ë‹ˆì•„)
+	case PC_CLASS_MECH_MANIA:		strSrfName = "srfMech_Mania";		break;	//(ë©”ì¹´ë§¤ë‹ˆì•„)
+	case PC_CLASS_DARK_WARRIOR:		strSrfName = "srfDark_Warrior";		break;	//(ë§ˆê³„ì „ì‚¬)
+	case PC_CLASS_SHADOW_KNIGHT:	strSrfName = "srfShadow_Knight";	break;	//(ë§ˆë„ì „ì‚¬)
+	case PC_CLASS_DENDEN_HEALER:	strSrfName = "srfDenden_Healer";	break;	//(ë´ë´ë„ì‚¬)
+	case PC_CLASS_POCO_SUMMONER:	strSrfName = "srfPoco_Summoner";	break;	//(í¬ì½”ë„ì‚¬)
+	case PC_CLASS_GRAND_MA:			strSrfName = "srfGrand_Ma";			break;	//(ê·¸ëœë§ˆ)
+	case PC_CLASS_ULTI_MA:			strSrfName = "srfUlti_Ma";			break;	//(ì–¼í‹°ë§ˆ)
+	case PC_CLASS_PLAS_MA:			strSrfName = "srfPlas_Ma";			break;	//(í”Œë¼ì¦ˆë§ˆ)
+	case PC_CLASS_KAR_MA:			strSrfName = "srfKar_Ma";			break;	//(ì¹´ë¥´ë§ˆ)
 	default:
 		NTL_ASSERT( false, "Not exist class" );
 	}
 
-	// OutLine ÀÌ ÀÖ´Â ¾ÆÀÌÄÜÀÌ¶ó¸é _OutÀÌ¶ó´Â ´Ü¾î¸¦ ºÙ¿©ÁØ´Ù.
+	// OutLine ì´ ìˆëŠ” ì•„ì´ì½˜ì´ë¼ë©´ _Outì´ë¼ëŠ” ë‹¨ì–´ë¥¼ ë¶™ì—¬ì¤€ë‹¤.
 	if( bOutLine )
 		strSrfName += "_Out";
 
-	// ¼­ÆäÀÌ½º¸¦ °¡Á®¿Í¼­ ¸®ÅÏ
+	// ì„œí˜ì´ìŠ¤ë¥¼ ê°€ì ¸ì™€ì„œ ë¦¬í„´
 	surface = GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", strSrfName );
 
 	return surface;
 }
 
 /**
-* \brief NPCÀÇ Class Icon Surface ¾ò±â
-* ¿Ü°û¼±ÀÌ ÀÖ´Â ¾ÆÀÌÄÜÀº °¡·Î/¼¼·Î 25px ÀÇ Å©±âÀÌ¸ç, ¿Ü°û¼±ÀÌ ¾ø´Â ¾ÆÀÌÄÜÀº
-* °¡·Î/¼¼·Î 14pxÀÇ Å©±âÀÌ´Ù.
-* \param byClass		NtlCharacter.h ¿¡ ¼±¾ğµÇ¾î ÀÖ´Â NPC Å¬·¡½º »ó¼ö
-* \param bOutLine		¿Ü°û¼±ÀÇ À¯/¹« ( µğÆúÆ® : TRUE )
-* \return Ã£¾Æ³½ ¼­ÆäÀÌ½º
+* \brief NPCì˜ Class Icon Surface ì–»ê¸°
+* ì™¸ê³½ì„ ì´ ìˆëŠ” ì•„ì´ì½˜ì€ ê°€ë¡œ/ì„¸ë¡œ 25px ì˜ í¬ê¸°ì´ë©°, ì™¸ê³½ì„ ì´ ì—†ëŠ” ì•„ì´ì½˜ì€
+* ê°€ë¡œ/ì„¸ë¡œ 14pxì˜ í¬ê¸°ì´ë‹¤.
+* \param byClass		NtlCharacter.h ì— ì„ ì–¸ë˜ì–´ ìˆëŠ” NPC í´ë˜ìŠ¤ ìƒìˆ˜
+* \param bOutLine		ì™¸ê³½ì„ ì˜ ìœ /ë¬´ ( ë””í´íŠ¸ : TRUE )
+* \return ì°¾ì•„ë‚¸ ì„œí˜ì´ìŠ¤
 */
 gui::CSurface& Logic_GetNPCClassIconSurface(RwUInt8 byClass, RwBool bOutLine /* TRUE */ )
 {
@@ -1819,71 +1819,71 @@ gui::CSurface& Logic_GetNPCClassIconSurface(RwUInt8 byClass, RwBool bOutLine /* 
 		case NPC_JOB_WEAPON_MERCHANT:			
 		case NPC_JOB_SPECIAL_WEAPON_MERCHANT:	strSrfName = "srfWeapon_Merchant";	break;	
 		case NPC_JOB_ARMOR_MERCHANT:			
-		case NPC_JOB_SPECIAL_ARMOR_MERCHANT:	strSrfName = "srfArmor_Merchant";	break;	// ÀÇº¹»óÀÎ
+		case NPC_JOB_SPECIAL_ARMOR_MERCHANT:	strSrfName = "srfArmor_Merchant";	break;	// ì˜ë³µìƒì¸
 
 		case NPC_JOB_GOODS_MERCHANT:			
 		case NPC_JOB_SPECIAL_GOODS_MERCHANT:
-		case NPC_JOB_ALIEN_ENGINEER:			strSrfName = "srfGoods_Merchant";	break;	// ÀâÈ­»óÀÎ
+		case NPC_JOB_ALIEN_ENGINEER:			strSrfName = "srfGoods_Merchant";	break;	// ì¡í™”ìƒì¸
 
 
 		case NPC_JOB_SCOUTER_MERCHANT:
 		case NPC_JOB_SPECIAL_SCOUTER_MERCHANT:
 		case NPC_JOB_SCOUTER_MERCHANT2:			
-		case NPC_JOB_SPECIAL_SCOUTER_MERCHANT2:	strSrfName = "srfScouter_Merchant";	break;	// ½ºÄ«¿ìÅÍ»óÀÎ
+		case NPC_JOB_SPECIAL_SCOUTER_MERCHANT2:	strSrfName = "srfScouter_Merchant";	break;	// ìŠ¤ì¹´ìš°í„°ìƒì¸
 
-		case NPC_JOB_GUARD:						strSrfName = "srfGuard";			break;	// °æºñ
+		case NPC_JOB_GUARD:						strSrfName = "srfGuard";			break;	// ê²½ë¹„
 
-		case NPC_JOB_SKILL_TRAINER_HFI:			// ¹«µµ°¡ ±³°ü
-		case NPC_JOB_SKILL_TRAINER_HMY:			// ±â°ø»ç ±³°ü
-		case NPC_JOB_SKILL_TRAINER_HEN:			// ¿£Áö´Ï¾î ±³°ü
-		case NPC_JOB_SKILL_TRAINER_NFI:			// Àü»ç ±³°ü
-		case NPC_JOB_SKILL_TRAINER_NMY:			// ¿ëÁ· ±³°ü
-		case NPC_JOB_SKILL_TRAINER_MMI:			// ´ë¸¶ÀÎ ±³°ü
+		case NPC_JOB_SKILL_TRAINER_HFI:			// ë¬´ë„ê°€ êµê´€
+		case NPC_JOB_SKILL_TRAINER_HMY:			// ê¸°ê³µì‚¬ êµê´€
+		case NPC_JOB_SKILL_TRAINER_HEN:			// ì—”ì§€ë‹ˆì–´ êµê´€
+		case NPC_JOB_SKILL_TRAINER_NFI:			// ì „ì‚¬ êµê´€
+		case NPC_JOB_SKILL_TRAINER_NMY:			// ìš©ì¡± êµê´€
+		case NPC_JOB_SKILL_TRAINER_MMI:			// ëŒ€ë§ˆì¸ êµê´€
 		case NPC_JOB_SKILL_TRAINER_MWO:			
-		case NPC_JOB_GRAND_SKILL_TRAINER_HFI:	// ¹«µµ°¡ ±×·£µå ½ºÅ³¸¶½ºÅÍ
-		case NPC_JOB_GRAND_SKILL_TRAINER_HMY:	// ±â°ø»ç ±×·£µå ½ºÅ³¸¶½ºÅÍ
-		case NPC_JOB_GRAND_SKILL_TRAINER_HEN:	// ¿£Áö´Ï¾î ±×·£µå ½ºÅ³¸¶½ºÅÍ
-		case NPC_JOB_GRAND_SKILL_TRAINER_NFI:	// Àü»ç ±×·£µå ½ºÅ³¸¶½ºÅÍ
-		case NPC_JOB_GRAND_SKILL_TRAINER_NMY:	// ¿ëÁ· ±×·£µå ½ºÅ³¸¶½ºÅÍ
-		case NPC_JOB_GRAND_SKILL_TRAINER_MMI:	// ´ë¸¶ÀÎ ±×·£µå ½ºÅ³¸¶½ºÅÍ
-		case NPC_JOB_GRAND_SKILL_TRAINER_MWO:	strSrfName = "srfSkill_Trainer";	break;	// ÀÇ¸¶ÀÎ ±³°ü
+		case NPC_JOB_GRAND_SKILL_TRAINER_HFI:	// ë¬´ë„ê°€ ê·¸ëœë“œ ìŠ¤í‚¬ë§ˆìŠ¤í„°
+		case NPC_JOB_GRAND_SKILL_TRAINER_HMY:	// ê¸°ê³µì‚¬ ê·¸ëœë“œ ìŠ¤í‚¬ë§ˆìŠ¤í„°
+		case NPC_JOB_GRAND_SKILL_TRAINER_HEN:	// ì—”ì§€ë‹ˆì–´ ê·¸ëœë“œ ìŠ¤í‚¬ë§ˆìŠ¤í„°
+		case NPC_JOB_GRAND_SKILL_TRAINER_NFI:	// ì „ì‚¬ ê·¸ëœë“œ ìŠ¤í‚¬ë§ˆìŠ¤í„°
+		case NPC_JOB_GRAND_SKILL_TRAINER_NMY:	// ìš©ì¡± ê·¸ëœë“œ ìŠ¤í‚¬ë§ˆìŠ¤í„°
+		case NPC_JOB_GRAND_SKILL_TRAINER_MMI:	// ëŒ€ë§ˆì¸ ê·¸ëœë“œ ìŠ¤í‚¬ë§ˆìŠ¤í„°
+		case NPC_JOB_GRAND_SKILL_TRAINER_MWO:	strSrfName = "srfSkill_Trainer";	break;	// ì˜ë§ˆì¸ êµê´€
 
-		case NPC_JOB_BANKER:					strSrfName = "srfBanker";			break;	// Ã¢°íÁö±â
+		case NPC_JOB_BANKER:					strSrfName = "srfBanker";			break;	// ì°½ê³ ì§€ê¸°
 
 		case NPC_JOB_TALKER:
-		case NPC_JOB_COMIC_NPC:					strSrfName = "srfTalker";			break;	// ÀÌ¾ß±â²Û
+		case NPC_JOB_COMIC_NPC:					strSrfName = "srfTalker";			break;	// ì´ì•¼ê¸°ê¾¼
 
 		case NPC_JOB_GUILD_MANAGER:
-		case NPC_JOB_DOJO_MANAGER:	// µµÀå °ü¸®ÀÎ
-		case NPC_JOB_DOJO_MERCHANT:	// µµÀå »óÀÎ
-		case NPC_JOB_DOJO_SEAL:		// µµÀå ÀÎÀå
-		case NPC_JOB_DOJO_BANKER:				strSrfName = "srfDojoNPC";			break;// µµÀå Ã¢°í
+		case NPC_JOB_DOJO_MANAGER:	// ë„ì¥ ê´€ë¦¬ì¸
+		case NPC_JOB_DOJO_MERCHANT:	// ë„ì¥ ìƒì¸
+		case NPC_JOB_DOJO_SEAL:		// ë„ì¥ ì¸ì¥
+		case NPC_JOB_DOJO_BANKER:				strSrfName = "srfDojoNPC";			break;// ë„ì¥ ì°½ê³ 
 
-		case NPC_JOB_SUMMON_PET:				strSrfName = "srfSummon_Pet";		break;	// ¼ÒÈ¯¼ö
+		case NPC_JOB_SUMMON_PET:				strSrfName = "srfSummon_Pet";		break;	// ì†Œí™˜ìˆ˜
 
-		case NPC_JOB_DOGI_MERCHANT:				strSrfName = "srfDogi_Merchant";	break;	// µµº¹ »óÀÎ
+		case NPC_JOB_DOGI_MERCHANT:				strSrfName = "srfDogi_Merchant";	break;	// ë„ë³µ ìƒì¸
 
-		case NPC_JOB_SPECIAL_FOODS_MERCHANT:	strSrfName = "srfSpecial_Foods_Merchant";	break;	// °í±Ş ½Ä·áÇ° »óÀÎ
+		case NPC_JOB_SPECIAL_FOODS_MERCHANT:	strSrfName = "srfSpecial_Foods_Merchant";	break;	// ê³ ê¸‰ ì‹ë£Œí’ˆ ìƒì¸
 
-		case NPC_JOB_SUB_WEAPON_MERCHANT:		strSrfName = "srfSub_Weapon_Merchant";		break;// º¸Á¶ ¹«±â »óÀÎ
-		case NPC_JOB_GATE_KEEPER:				strSrfName = "srfGate_Keeper";				break;	// ¹®Áö±â
-		case NPC_JOB_VENDING_MACHINE:			strSrfName = "srfVending_Machine";			break;	// ÀÚÆÇ±â
-		case NPC_JOB_TIMEMACHINE_MERCHANT:		strSrfName = "srfTimeMachine_Merchant";		break;	// Å¸ÀÓ¸Ó½ÅÁøÀÔ NPC
-		case NPC_JOB_PORTAL_MAN:				strSrfName = "srfPortal_Man";				break;// ¼ø°£ ÀÌµ¿ ¼­ºñ½º¸Ç		
-		case NPC_JOB_BUS:						strSrfName = "srfBus";						break;// ¹ö½º
+		case NPC_JOB_SUB_WEAPON_MERCHANT:		strSrfName = "srfSub_Weapon_Merchant";		break;// ë³´ì¡° ë¬´ê¸° ìƒì¸
+		case NPC_JOB_GATE_KEEPER:				strSrfName = "srfGate_Keeper";				break;	// ë¬¸ì§€ê¸°
+		case NPC_JOB_VENDING_MACHINE:			strSrfName = "srfVending_Machine";			break;	// ìíŒê¸°
+		case NPC_JOB_TIMEMACHINE_MERCHANT:		strSrfName = "srfTimeMachine_Merchant";		break;	// íƒ€ì„ë¨¸ì‹ ì§„ì… NPC
+		case NPC_JOB_PORTAL_MAN:				strSrfName = "srfPortal_Man";				break;// ìˆœê°„ ì´ë™ ì„œë¹„ìŠ¤ë§¨		
+		case NPC_JOB_BUS:						strSrfName = "srfBus";						break;// ë²„ìŠ¤
 
 	//case NPC_JOB_RECEPTION:					strSrfName = "srfReception";				break;// The people who receive the first ball
 
 		case NPC_JOB_BUDOHSI_MERCHANT:			
 		case NPC_JOB_BUDOHSI_MERCHANT2:			
-		case NPC_JOB_BUDOHSI_MERCHANT3:			strSrfName = "srfBudo_Merchant";			break;// ¹«µµ»ç »óÀÎ
+		case NPC_JOB_BUDOHSI_MERCHANT3:			strSrfName = "srfBudo_Merchant";			break;// ë¬´ë„ì‚¬ ìƒì¸
 
-		case NPC_JOB_REFEREE:					strSrfName = "srfRefree";					break;// ½ÉÆÇ
+		case NPC_JOB_REFEREE:					strSrfName = "srfRefree";					break;// ì‹¬íŒ
 
 		case NPC_JOB_GAMBLE_MERCHANT:			
-		case NPC_JOB_AIR_GAMBLE_MERCHANT:		strSrfName = "srfGamble_Merchant";			break;// »Ì±â »óÀÎ
+		case NPC_JOB_AIR_GAMBLE_MERCHANT:		strSrfName = "srfGamble_Merchant";			break;// ë½‘ê¸° ìƒì¸
 
-		case NPC_JOB_CHAMPION_MERCHANT:			strSrfName = "srfChampion_Merchant";		break;// Ã¨ÇÇ¾ğ »óÀÎ
+		case NPC_JOB_CHAMPION_MERCHANT:			strSrfName = "srfChampion_Merchant";		break;// ì±”í”¼ì–¸ ìƒì¸
 
 		case NPC_JOB_MIX_MASTER:				
 		case NPC_JOB_MIX_MASTER2:				strSrfName = "srfHoipoiNPC";				break;// 
@@ -1981,7 +1981,7 @@ gui::CSurface& Logic_GetBattleAttributeIconSurface( RwUInt8 byAttribute, RwBool 
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Passive skill »ç¿ë °¡´É À¯¹« °Ë»ç
+// Passive skill ì‚¬ìš© ê°€ëŠ¥ ìœ ë¬´ ê²€ì‚¬
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 RwBool Logic_IsPassiveDashUsePossible(void)
@@ -2389,7 +2389,7 @@ RwBool Logic_MakeLoadGameOptFileName(std::string& strFileName, const WCHAR *pCha
 	// user
 	std::string str = USEROPT_SERIALIZE_FOLDERNAME;
 
-	// °èÁ¤
+	// ê³„ì •
 	::WideCharToMultiByte(GetACP(), 0, pUserData->wchUserID, -1, chBuffer, 128, NULL, NULL);
 	str += "\\";
 	str += chBuffer;
@@ -2438,7 +2438,7 @@ RwBool Logic_MakeSaveGameOptFileName(std::string& strFileName, const WCHAR *pCha
 
 	::FindClose( hFile );
 
-	// °èÁ¤.
+	// ê³„ì •.
 	::WideCharToMultiByte(GetACP(), 0, pUserData->wchUserID, -1, chBuffer, 128, NULL, NULL);
 	str += "\\";
 	str += chBuffer;
@@ -2459,7 +2459,7 @@ RwBool Logic_MakeSaveGameOptFileName(std::string& strFileName, const WCHAR *pCha
 
 	::FindClose( hFile );
 
-	// Ä³¸¯ÅÍ ÀÌ¸§.
+	// ìºë¦­í„° ì´ë¦„.
 	::WideCharToMultiByte(GetACP(), 0, pCharName, -1, chBuffer, 128, NULL, NULL);
 	str += "\\";
 	str += chBuffer;
@@ -2474,7 +2474,7 @@ RwBool Logic_MakeSaveGameOptFileName(std::string& strFileName, const WCHAR *pCha
 	return TRUE;
 }
 /**
-* \brief eNTL_STORAGE_GROUP_ACCOUNT °ü·Ã ¿É¼ÇµéÀ» ·ÎµåÇÑ´Ù.
+* \brief eNTL_STORAGE_GROUP_ACCOUNT ê´€ë ¨ ì˜µì…˜ë“¤ì„ ë¡œë“œí•œë‹¤.
 */
 void Logic_LoadAccountOption( void )
 {
@@ -2484,7 +2484,7 @@ void Logic_LoadAccountOption( void )
 	// user
 	std::string str = USEROPT_SERIALIZE_FOLDERNAME;
 
-	// °èÁ¤
+	// ê³„ì •
 	::WideCharToMultiByte(GetACP(), 0, pUserData->wchUserID, -1, chBuffer, 128, NULL, NULL);
 	str += "\\";
 	str += chBuffer;
@@ -2509,7 +2509,7 @@ void Logic_LoadAccountOption( void )
 }
 
 /**
-* \brief eNTL_STORAGE_GROUP_ACCOUNT °ü·Ã ¿É¼ÇµéÀ» ÀúÀåÇÑ´Ù.
+* \brief eNTL_STORAGE_GROUP_ACCOUNT ê´€ë ¨ ì˜µì…˜ë“¤ì„ ì €ì¥í•œë‹¤.
 */
 void Logic_SaveAccountOption( void )
 {
@@ -2527,7 +2527,7 @@ void Logic_SaveAccountOption( void )
 
 	::FindClose( hFile );
 
-	// °èÁ¤.
+	// ê³„ì •.
 	::WideCharToMultiByte(GetACP(), 0, pUserData->wchUserID, -1, chBuffer, 128, NULL, NULL);
 	str += "\\";
 	str += chBuffer;
@@ -2545,7 +2545,7 @@ void Logic_SaveAccountOption( void )
 }
 
 /**
-* \brief eNTL_STORAGE_GROUP_SYSTEM °ü·Ã ¿É¼ÇµéÀ» ·ÎµåÇÑ´Ù.
+* \brief eNTL_STORAGE_GROUP_SYSTEM ê´€ë ¨ ì˜µì…˜ë“¤ì„ ë¡œë“œí•œë‹¤.
 */
 void Logic_LoadSystemOption( void )
 {
@@ -2573,7 +2573,7 @@ void Logic_LoadSystemOption( void )
 }
 
 /**
-* \brief eNTL_STORAGE_GROUP_SYSTEM °ü·Ã ¿É¼ÇµéÀ» ÀúÀåÇÑ´Ù.
+* \brief eNTL_STORAGE_GROUP_SYSTEM ê´€ë ¨ ì˜µì…˜ë“¤ì„ ì €ì¥í•œë‹¤.
 */
 void Logic_SaveSystemOption( void )
 {
@@ -2597,7 +2597,7 @@ void Logic_SaveSystemOption( void )
 }
 
 /**
-* \brief eNTL_STORAGE_GROUP_GAMEINFO °ü·Ã ¿É¼ÇµéÀ» ·ÎµåÇÑ´Ù.
+* \brief eNTL_STORAGE_GROUP_GAMEINFO ê´€ë ¨ ì˜µì…˜ë“¤ì„ ë¡œë“œí•œë‹¤.
 */
 void Logic_LoadGameOption(void)
 {
@@ -2607,7 +2607,7 @@ void Logic_LoadGameOption(void)
 	// user
 	std::string str = USEROPT_SERIALIZE_FOLDERNAME;
 
-	// °èÁ¤
+	// ê³„ì •
 	::WideCharToMultiByte(GetACP(), 0, pUserData->wchUserID, -1, chBuffer, 128, NULL, NULL);
 	str += "\\";
 	str += chBuffer;
@@ -2632,7 +2632,7 @@ void Logic_LoadGameOption(void)
 }
 
 /**
-* \brief eNTL_STORAGE_GROUP_GAMEINFO °ü·Ã ¿É¼ÇµéÀ» ÀúÀåÇÑ´Ù.
+* \brief eNTL_STORAGE_GROUP_GAMEINFO ê´€ë ¨ ì˜µì…˜ë“¤ì„ ì €ì¥í•œë‹¤.
 */
 void Logic_SaveGameOption(void)
 {
@@ -2650,7 +2650,7 @@ void Logic_SaveGameOption(void)
 
 	::FindClose( hFile );
 
-	// °èÁ¤.
+	// ê³„ì •.
 	::WideCharToMultiByte(GetACP(), 0, pUserData->wchUserID, -1, chBuffer, 128, NULL, NULL);
 	str += "\\";
 	str += chBuffer;
@@ -2812,7 +2812,7 @@ void Logic_SaveCharacterOption( void )
 
 	::FindClose( hFile );
 
-	// °èÁ¤.
+	// ê³„ì •.
 	::WideCharToMultiByte(GetACP(), 0, pUserData->wchUserID, -1, chBuffer, 128, NULL, NULL);
 	str += "\\";
 	str += chBuffer;
@@ -2830,7 +2830,7 @@ void Logic_SaveCharacterOption( void )
 		return;
 	}
 
-	// ¼­¹ö ÀÌ¸§.
+	// ì„œë²„ ì´ë¦„.
 	::WideCharToMultiByte(GetACP(), 0, pLobby->GetServerName(), -1, chBuffer, 128, NULL, NULL);
 	str += "\\";
 	str += chBuffer;
@@ -2840,7 +2840,7 @@ void Logic_SaveCharacterOption( void )
 
 	::FindClose( hFile );
 
-	// Ä³¸¯ÅÍ ÀÌ¸§.
+	// ìºë¦­í„° ì´ë¦„.
 	RwUInt8 bySelChar = pLobby->GetSelectedCharacterIndex();
 	sLOBBY_CHARACTER* pLOBBY_CHARACTER = pLobby->GetCharacter( bySelChar );
 	if( !pLOBBY_CHARACTER )
@@ -2866,7 +2866,7 @@ void Logic_SaveCharacterOption( void )
 }
 
 /**
-* \brief eNTL_STORAGE_GROUP_SCOUTER °ü·Ã ¿É¼ÇµéÀ» ·ÎµåÇÑ´Ù.
+* \brief eNTL_STORAGE_GROUP_SCOUTER ê´€ë ¨ ì˜µì…˜ë“¤ì„ ë¡œë“œí•œë‹¤.
 */
 void Logic_LoadScouterOption(void)
 {
@@ -2876,7 +2876,7 @@ void Logic_LoadScouterOption(void)
 	// user
 	std::string str = USEROPT_SERIALIZE_FOLDERNAME;
 
-	// °èÁ¤
+	// ê³„ì •
 	::WideCharToMultiByte(GetACP(), 0, pUserData->wchUserID, -1, chBuffer, 128, NULL, NULL);
 	str += "\\";
 	str += chBuffer;
@@ -2889,12 +2889,12 @@ void Logic_LoadScouterOption(void)
 		return;
 	}
 
-	// ¼­¹ö ÀÌ¸§.
+	// ì„œë²„ ì´ë¦„.
 	::WideCharToMultiByte(GetACP(), 0, pLobby->GetServerName(), -1, chBuffer, 128, NULL, NULL);
 	str += "\\";
 	str += chBuffer;
 
-	// Ä³¸¯ÅÍ ÀÌ¸§.
+	// ìºë¦­í„° ì´ë¦„.
 	RwUInt8 bySelChar = pLobby->GetSelectedCharacterIndex();
 	sLOBBY_CHARACTER* pLOBBY_CHARACTER = pLobby->GetCharacter( bySelChar );
 	if( !pLOBBY_CHARACTER )
@@ -2926,7 +2926,7 @@ void Logic_LoadScouterOption(void)
 }
 
 /**
-* \brief eNTL_STORAGE_GROUP_SCOUTER °ü·Ã ¿É¼ÇµéÀ» ÀúÀåÇÑ´Ù.
+* \brief eNTL_STORAGE_GROUP_SCOUTER ê´€ë ¨ ì˜µì…˜ë“¤ì„ ì €ì¥í•œë‹¤.
 */
 void Logic_SaveScouterOption(void)
 {	
@@ -2944,7 +2944,7 @@ void Logic_SaveScouterOption(void)
 
 	::FindClose( hFile );
 
-	// °èÁ¤.
+	// ê³„ì •.
 	::WideCharToMultiByte(GetACP(), 0, pUserData->wchUserID, -1, chBuffer, 128, NULL, NULL);
 	str += "\\";
 	str += chBuffer;
@@ -2962,7 +2962,7 @@ void Logic_SaveScouterOption(void)
 		return;
 	}
 
-	// ¼­¹ö ÀÌ¸§.
+	// ì„œë²„ ì´ë¦„.
 	::WideCharToMultiByte(GetACP(), 0, pLobby->GetServerName(), -1, chBuffer, 128, NULL, NULL);
 	str += "\\";
 	str += chBuffer;
@@ -2972,7 +2972,7 @@ void Logic_SaveScouterOption(void)
 
 	::FindClose( hFile );
 
-	// Ä³¸¯ÅÍ ÀÌ¸§.
+	// ìºë¦­í„° ì´ë¦„.
 	RwUInt8 bySelChar = pLobby->GetSelectedCharacterIndex();
 	sLOBBY_CHARACTER* pLOBBY_CHARACTER = pLobby->GetCharacter( bySelChar );
 	if( !pLOBBY_CHARACTER )
@@ -2998,7 +2998,7 @@ void Logic_SaveScouterOption(void)
 }
 
 /**
-* \brief eNTL_STORAGE_GROUP_QUEST °ü·Ã ¿É¼ÇµéÀ» ·ÎµåÇÑ´Ù.
+* \brief eNTL_STORAGE_GROUP_QUEST ê´€ë ¨ ì˜µì…˜ë“¤ì„ ë¡œë“œí•œë‹¤.
 */
 void Logic_LoadQuestOption(void)
 {
@@ -3008,7 +3008,7 @@ void Logic_LoadQuestOption(void)
 	// user
 	std::string str = USEROPT_SERIALIZE_FOLDERNAME;
 
-	// °èÁ¤
+	// ê³„ì •
 	::WideCharToMultiByte(GetACP(), 0, pUserData->wchUserID, -1, chBuffer, 128, NULL, NULL);
 	str += "\\";
 	str += chBuffer;
@@ -3021,12 +3021,12 @@ void Logic_LoadQuestOption(void)
 		return;
 	}
 
-	// ¼­¹ö ÀÌ¸§.
+	// ì„œë²„ ì´ë¦„.
 	::WideCharToMultiByte(GetACP(), 0, pLobby->GetServerName(), -1, chBuffer, 128, NULL, NULL);
 	str += "\\";
 	str += chBuffer;
 
-	// Ä³¸¯ÅÍ ÀÌ¸§.
+	// ìºë¦­í„° ì´ë¦„.
 	RwUInt8 bySelChar = pLobby->GetSelectedCharacterIndex();
 	sLOBBY_CHARACTER* pLOBBY_CHARACTER = pLobby->GetCharacter( bySelChar );
 	if( !pLOBBY_CHARACTER )
@@ -3058,7 +3058,7 @@ void Logic_LoadQuestOption(void)
 }
 
 /**
-* \brief eNTL_STORAGE_GROUP_QUEST °ü·Ã ¿É¼ÇµéÀ» ÀúÀåÇÑ´Ù.
+* \brief eNTL_STORAGE_GROUP_QUEST ê´€ë ¨ ì˜µì…˜ë“¤ì„ ì €ì¥í•œë‹¤.
 */
 void Logic_SaveQuestOption(void)
 {
@@ -3079,7 +3079,7 @@ void Logic_SaveQuestOption(void)
 
 	::FindClose( hFile );
 
-	// °èÁ¤.
+	// ê³„ì •.
 	::WideCharToMultiByte(GetACP(), 0, pUserData->wchUserID, -1, chBuffer, 128, NULL, NULL);
 	str += "\\";
 	str += chBuffer;
@@ -3097,7 +3097,7 @@ void Logic_SaveQuestOption(void)
 		return;
 	}
 
-	// ¼­¹ö ÀÌ¸§.
+	// ì„œë²„ ì´ë¦„.
 	::WideCharToMultiByte(GetACP(), 0, pLobby->GetServerName(), -1, chBuffer, 128, NULL, NULL);
 	str += "\\";
 	str += chBuffer;
@@ -3107,7 +3107,7 @@ void Logic_SaveQuestOption(void)
 
 	::FindClose( hFile );
 
-	// Ä³¸¯ÅÍ ÀÌ¸§.
+	// ìºë¦­í„° ì´ë¦„.
 	RwUInt8 bySelChar = pLobby->GetSelectedCharacterIndex();
 	sLOBBY_CHARACTER* pLOBBY_CHARACTER = pLobby->GetCharacter( bySelChar );
 	if( !pLOBBY_CHARACTER )
@@ -3133,7 +3133,7 @@ void Logic_SaveQuestOption(void)
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//	gameÀÇ °¢Á¾ callback ÇÔ¼ö.
+//	gameì˜ ê°ì¢… callback í•¨ìˆ˜.
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void Logic_CallbackHtmlUserTag(const WCHAR *pTag, RwUInt32 uiId, std::wstring& strOut)
@@ -3178,7 +3178,7 @@ void Logic_CallbackHtmlUserTag(const WCHAR *pTag, RwUInt32 uiId, std::wstring& s
 	{
 		strOut = Logic_GetPlayerRaceName( uiId );
 	}
-	else if(strTag == L"place")	// 2008.1.3 Ãß°¡ comment by Kell
+	else if(strTag == L"place")	// 2008.1.3 ì¶”ê°€ comment by Kell
 	{
 		CMapNameTextTable* pPlaceText = API_GetTableContainer()->GetTextAllTable()->GetMapNameTbl();
 		strOut = pPlaceText->GetText( uiId );
@@ -3226,7 +3226,7 @@ RwUInt32 Logic_AllRepairCost()
 	sITEM_TBLDAT* pITEM_TBLDAT = NULL;
 	SERIAL_HANDLE hItem = INVALID_SERIAL_ID;
 
-	// ÀåÂø ¾ÆÀÌÅÛÀÇ ¼ö¸® °¡°İ
+	// ì¥ì°© ì•„ì´í…œì˜ ìˆ˜ë¦¬ ê°€ê²©
 	for( RwUInt8 i = 0 ; i < EQUIP_SLOT_TYPE_COUNT ; ++i )
 	{
 		hItem = pInventory->GetEquipItem(i);
@@ -3245,9 +3245,9 @@ RwUInt32 Logic_AllRepairCost()
 		uiRepairCost += Dbo_GetRepairPay(pITEM_TBLDAT->dwCost, pSobItemAttr->GetMaxDur(), pSobItemAttr->GetDur());
 	}
 
-	// avooo's comment : ¿Í¿ìÃ³·³ °¡¹æÀÇ ¾ÆÀÌÅÛµµ ÇÑ²¨¹ø¿¡ °íÄ¡±â À§ÇÑ °ªÀÌ ÇÊ¿äÇÑ ÁÙ ¾Ë°í ÄÚµùÇß´Ù
-	//					 ±âÈ¹ÀÇ º¯°æÀÌ ÀÖÀ»Áö ¸ğ¸£´Ï Áö¿ìÁö ¸»°í ÁÖ¼® Ã³¸®ÇØµÎÀÚ
-	// °¡¹æ¾ÈÀÇ ¾ÆÀÌÅÛ
+	// avooo's comment : ì™€ìš°ì²˜ëŸ¼ ê°€ë°©ì˜ ì•„ì´í…œë„ í•œêº¼ë²ˆì— ê³ ì¹˜ê¸° ìœ„í•œ ê°’ì´ í•„ìš”í•œ ì¤„ ì•Œê³  ì½”ë”©í–ˆë‹¤
+	//					 ê¸°íšì˜ ë³€ê²½ì´ ìˆì„ì§€ ëª¨ë¥´ë‹ˆ ì§€ìš°ì§€ ë§ê³  ì£¼ì„ ì²˜ë¦¬í•´ë‘ì
+	// ê°€ë°©ì•ˆì˜ ì•„ì´í…œ
 	/*
 	for( RwUInt8 i = 0 ; i < NTL_MAX_BAGSLOT_COUNT ; ++i )
 	{
@@ -3318,7 +3318,7 @@ void Logic_WorldItemPick(SERIAL_HANDLE hPickSerial)
 		if(!bTSSuccess)
 			return;
 
-		// communication actor ÀÌ¸é?
+		// communication actor ì´ë©´?
 		CNtlSobActor *pTarActor = (CNtlSobActor*)pPickSobObj;
 
 		if( Logic_IsCommunityActor(pTarActor) )
@@ -3376,7 +3376,7 @@ bool Logic_AvatarTarget(void)
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//  ½ºÅ³ °ü·Ã
+//  ìŠ¤í‚¬ ê´€ë ¨
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 RwReal Logic_GetHTBTotalPower( sHTB_SET_TBLDAT* pHTBData )
 {
@@ -3404,14 +3404,14 @@ RwReal Logic_GetHTBTotalPower( sHTB_SET_TBLDAT* pHTBData )
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//	¹èÆ² ¼Ó¼º ¾ÆÀÌÄÜ ¹× ÅøÆÁ ¼³Á¤
+//	ë°°í‹€ ì†ì„± ì•„ì´ì½˜ ë° íˆ´íŒ ì„¤ì •
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void Logic_SetBattleAttributeMark( gui::CPanel* pComponent, RwUInt8 byBattleAttribute, RwBool bOutLine /* = TRUE  */ )
 {
 	gui::CSurface surface = Logic_GetBattleAttributeIconSurface( byBattleAttribute, bOutLine );
 
-	// ToolTipÀº InfoWindow·Î ´ëÃ¼ÇÑ´Ù.
+	// ToolTipì€ InfoWindowë¡œ ëŒ€ì²´í•œë‹¤.
 
 	//pComponent->Show( true );
 	pComponent->GetSurface()->clear();
@@ -3499,7 +3499,7 @@ RwUInt8 Logic_GetCounterpartGradeType(CNtlSobAttr* pOriginalSobAttr, CNtlSobAttr
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//	´ÙÀÌ¾ó·Î±× °ü·Ã
+//	ë‹¤ì´ì–¼ë¡œê·¸ ê´€ë ¨
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void Logic_LocateDialog_in_CleintRect(CNtlPLGui* pGui, RwBool bForce /* = FALSE */)
@@ -3537,7 +3537,7 @@ void Logic_LocateDialog_in_CleintRect(CNtlPLGui* pGui, RwBool bForce /* = FALSE 
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// ºÎÈ°¸Ş½ÃÁö ¹Ú½º 
+// ë¶€í™œë©”ì‹œì§€ ë°•ìŠ¤ 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void Logic_ShowRegenBox(void)
@@ -3584,7 +3584,7 @@ void Logic_ShowRegenBox(void)
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// µ¿¿µ»ó °ü·Ã
+// ë™ì˜ìƒ ê´€ë ¨
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void Logic_SetOptionMoviePlay()
@@ -3593,8 +3593,8 @@ void Logic_SetOptionMoviePlay()
 	CInputHandler::GetInstance()->SetActive(FALSE);
 	GetCursorManager()->ShowMouseCursor(FALSE);
 
-	// µ¿¿µ»óÀ» ÇÃ·¹ÀÌ ÇÒ ¶§´Â PostEffectCameraÀÇ Filter¸¦ NONEÀ¸·Î ÇÑ´Ù.
-	// ÄÚµå ¼ø¼­¿¡ ÁÖÀÇÇÑ´Ù.
+	// ë™ì˜ìƒì„ í”Œë ˆì´ í•  ë•ŒëŠ” PostEffectCameraì˜ Filterë¥¼ NONEìœ¼ë¡œ í•œë‹¤.
+	// ì½”ë“œ ìˆœì„œì— ì£¼ì˜í•œë‹¤.
 	CNtlPostEffectCamera::SetPostEffectFilters(POST_EFFECT_FILTER_NONE);
 	CDboApplication::GetInstance()->SetRenderEnable(FALSE);
 }
@@ -3605,8 +3605,8 @@ void Logic_SetOptionMovieStop()
 	CInputHandler::GetInstance()->SetActive(TRUE);
 	GetCursorManager()->ShowMouseCursor(TRUE);
 
-	// HDR OptionÀ» ÀĞ¾î¿Í¼­ º¹¿øÇÑ´Ù.
-	// ÄÚµå ¼ø¼­¿¡ ÁÖÀÇÇÑ´Ù
+	// HDR Optionì„ ì½ì–´ì™€ì„œ ë³µì›í•œë‹¤.
+	// ì½”ë“œ ìˆœì„œì— ì£¼ì˜í•œë‹¤
 	if( GetNtlStorageManager()->GetBoolData(dSTORAGE_GRAPHIC_SHADER_HDR) )
 		CNtlPostEffectCamera::SetPostEffectFilters(POST_EFFECT_FILTER_HDR);
 	else
@@ -3615,7 +3615,7 @@ void Logic_SetOptionMovieStop()
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// »ö»ó °ü·Ã
+// ìƒ‰ìƒ ê´€ë ¨
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 RwUInt32 Logic_GetItemRankColor( RwUInt8 byRank )
 {

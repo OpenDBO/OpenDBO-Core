@@ -10,9 +10,9 @@
 
 /**
  * \ingroup NtlCore
- * \brief BugTrapÀ» ÀÌ¿ëÇÏ´Â Å¬·¡½º (http://www.codeproject.com/tools/BugTrap.asp)
- * ÀÌ Çì´õ¸¸ IncludeÇÏ¸é ÇÁ·Î±×·¥ÀÌ »¶³¯¶§ ¹ö±×Æ®·¦ÀÌ ½ÇÇàµÈ´Ù.
- * Ãâ·Â ¸Ş½ÃÁö¸¦ º¯°æÇÏ±â À§ÇØ¼­´Â cpp ÆÄÀÏÀÇ ÁÖ¼®À» ÂüÁ¶ÇÑ´Ù.
+ * \brief BugTrapì„ ì´ìš©í•˜ëŠ” í´ë˜ìŠ¤ (http://www.codeproject.com/tools/BugTrap.asp)
+ * ì´ í—¤ë”ë§Œ Includeí•˜ë©´ í”„ë¡œê·¸ë¨ì´ ë»‘ë‚ ë•Œ ë²„ê·¸íŠ¸ë©ì´ ì‹¤í–‰ëœë‹¤.
+ * ì¶œë ¥ ë©”ì‹œì§€ë¥¼ ë³€ê²½í•˜ê¸° ìœ„í•´ì„œëŠ” cpp íŒŒì¼ì˜ ì£¼ì„ì„ ì°¸ì¡°í•œë‹¤.
  * \date 2006-12-08
  * \author agebreak
  */

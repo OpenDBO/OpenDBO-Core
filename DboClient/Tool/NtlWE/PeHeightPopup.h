@@ -1,21 +1,21 @@
 #pragma once
 
 
-// CPeHeightPopup ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPeHeightPopup ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CPeHeightPopup : public CDialog
 {
 	DECLARE_DYNAMIC(CPeHeightPopup)
 
 public:
-	CPeHeightPopup(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CPeHeightPopup(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CPeHeightPopup();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_PE_HEIGHT };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual LRESULT	WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
 
 	DECLARE_MESSAGE_MAP()

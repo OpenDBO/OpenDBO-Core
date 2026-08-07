@@ -1,4 +1,4 @@
-// FileNewDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// FileNewDlg.cpp : êµ¬í˜„ íŒŒì¼ìž…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -9,7 +9,7 @@
 #include "NtlPLSky.h"
 
 
-// CFileNewDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CFileNewDlg ëŒ€í™” ìƒìžìž…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CFileNewDlg, CDialog)
 CFileNewDlg::CFileNewDlg(CWnd* pParent /*=NULL*/)
@@ -53,7 +53,7 @@ BEGIN_MESSAGE_MAP(CFileNewDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CFileNewDlg ¸Þ½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CFileNewDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ìž…ë‹ˆë‹¤.
 
 BOOL CFileNewDlg::OnInitDialog()
 {
@@ -113,7 +113,7 @@ BOOL CFileNewDlg::OnInitDialog()
 	UpdateData(FALSE);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹ÝÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± íŽ˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CFileNewDlg::Update()
@@ -189,12 +189,12 @@ void CFileNewDlg::Update()
 }
 void CFileNewDlg::OnEnChangeWorldHeightFieldNum()
 {
-	// TODO:  RICHEDIT ÄÁÆ®·ÑÀÎ °æ¿ì ÀÌ ÄÁÆ®·ÑÀº
-	// CDialog::¸¶½ºÅ©¿¡ OR ¿¬»êÇÏ¿© ¼³Á¤µÈ ENM_CHANGE ÇÃ·¡±×¸¦ ÁöÁ¤ÇÏ¿©
-	// CRichEditCtrl().SetEventMask()¸¦ È£ÃâÇÏµµ·Ï OnInitDialog() ÇÔ¼ö¸¦ ÀçÁöÁ¤ÇÏÁö ¾ÊÀ¸¸é
-	// ÀÌ ¾Ë¸²À» º¸³»Áö ¾Ê½À´Ï´Ù.
+	// TODO:  RICHEDIT ì»¨íŠ¸ë¡¤ì¸ ê²½ìš° ì´ ì»¨íŠ¸ë¡¤ì€
+	// CDialog::ë§ˆìŠ¤í¬ì— OR ì—°ì‚°í•˜ì—¬ ì„¤ì •ëœ ENM_CHANGE í”Œëž˜ê·¸ë¥¼ ì§€ì •í•˜ì—¬
+	// CRichEditCtrl().SetEventMask()ë¥¼ í˜¸ì¶œí•˜ë„ë¡ OnInitDialog() í•¨ìˆ˜ë¥¼ ìž¬ì§€ì •í•˜ì§€ ì•Šìœ¼ë©´
+	// ì´ ì•Œë¦¼ì„ ë³´ë‚´ì§€ ì•ŠìŠµë‹ˆë‹¤.
 
-	// TODO:  ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if(!m_IsDialogInitialize)
 		return;
 
@@ -205,12 +205,12 @@ void CFileNewDlg::OnEnChangeWorldHeightFieldNum()
 
 void CFileNewDlg::OnEnChangeWorldSectorTileSize()
 {
-	// TODO:  RICHEDIT ÄÁÆ®·ÑÀÎ °æ¿ì ÀÌ ÄÁÆ®·ÑÀº
-	// CDialog::¸¶½ºÅ©¿¡ OR ¿¬»êÇÏ¿© ¼³Á¤µÈ ENM_CHANGE ÇÃ·¡±×¸¦ ÁöÁ¤ÇÏ¿©
-	// CRichEditCtrl().SetEventMask()¸¦ È£ÃâÇÏµµ·Ï OnInitDialog() ÇÔ¼ö¸¦ ÀçÁöÁ¤ÇÏÁö ¾ÊÀ¸¸é
-	// ÀÌ ¾Ë¸²À» º¸³»Áö ¾Ê½À´Ï´Ù.
+	// TODO:  RICHEDIT ì»¨íŠ¸ë¡¤ì¸ ê²½ìš° ì´ ì»¨íŠ¸ë¡¤ì€
+	// CDialog::ë§ˆìŠ¤í¬ì— OR ì—°ì‚°í•˜ì—¬ ì„¤ì •ëœ ENM_CHANGE í”Œëž˜ê·¸ë¥¼ ì§€ì •í•˜ì—¬
+	// CRichEditCtrl().SetEventMask()ë¥¼ í˜¸ì¶œí•˜ë„ë¡ OnInitDialog() í•¨ìˆ˜ë¥¼ ìž¬ì§€ì •í•˜ì§€ ì•Šìœ¼ë©´
+	// ì´ ì•Œë¦¼ì„ ë³´ë‚´ì§€ ì•ŠìŠµë‹ˆë‹¤.
 
-	// TODO:  ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if(!m_IsDialogInitialize)
 		return;
 
@@ -221,12 +221,12 @@ void CFileNewDlg::OnEnChangeWorldSectorTileSize()
 
 void CFileNewDlg::OnEnChangeWorldSectorTileNum()
 {
-	// TODO:  RICHEDIT ÄÁÆ®·ÑÀÎ °æ¿ì ÀÌ ÄÁÆ®·ÑÀº
-	// CDialog::¸¶½ºÅ©¿¡ OR ¿¬»êÇÏ¿© ¼³Á¤µÈ ENM_CHANGE ÇÃ·¡±×¸¦ ÁöÁ¤ÇÏ¿©
-	// CRichEditCtrl().SetEventMask()¸¦ È£ÃâÇÏµµ·Ï OnInitDialog() ÇÔ¼ö¸¦ ÀçÁöÁ¤ÇÏÁö ¾ÊÀ¸¸é
-	// ÀÌ ¾Ë¸²À» º¸³»Áö ¾Ê½À´Ï´Ù.
+	// TODO:  RICHEDIT ì»¨íŠ¸ë¡¤ì¸ ê²½ìš° ì´ ì»¨íŠ¸ë¡¤ì€
+	// CDialog::ë§ˆìŠ¤í¬ì— OR ì—°ì‚°í•˜ì—¬ ì„¤ì •ëœ ENM_CHANGE í”Œëž˜ê·¸ë¥¼ ì§€ì •í•˜ì—¬
+	// CRichEditCtrl().SetEventMask()ë¥¼ í˜¸ì¶œí•˜ë„ë¡ OnInitDialog() í•¨ìˆ˜ë¥¼ ìž¬ì§€ì •í•˜ì§€ ì•Šìœ¼ë©´
+	// ì´ ì•Œë¦¼ì„ ë³´ë‚´ì§€ ì•ŠìŠµë‹ˆë‹¤.
 
-	// TODO:  ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if(!m_IsDialogInitialize)
 		return;
 
@@ -237,12 +237,12 @@ void CFileNewDlg::OnEnChangeWorldSectorTileNum()
 
 void CFileNewDlg::OnEnChangeWorldFieldSectorNum()
 {
-	// TODO:  RICHEDIT ÄÁÆ®·ÑÀÎ °æ¿ì ÀÌ ÄÁÆ®·ÑÀº
-	// CDialog::¸¶½ºÅ©¿¡ OR ¿¬»êÇÏ¿© ¼³Á¤µÈ ENM_CHANGE ÇÃ·¡±×¸¦ ÁöÁ¤ÇÏ¿©
-	// CRichEditCtrl().SetEventMask()¸¦ È£ÃâÇÏµµ·Ï OnInitDialog() ÇÔ¼ö¸¦ ÀçÁöÁ¤ÇÏÁö ¾ÊÀ¸¸é
-	// ÀÌ ¾Ë¸²À» º¸³»Áö ¾Ê½À´Ï´Ù.
+	// TODO:  RICHEDIT ì»¨íŠ¸ë¡¤ì¸ ê²½ìš° ì´ ì»¨íŠ¸ë¡¤ì€
+	// CDialog::ë§ˆìŠ¤í¬ì— OR ì—°ì‚°í•˜ì—¬ ì„¤ì •ëœ ENM_CHANGE í”Œëž˜ê·¸ë¥¼ ì§€ì •í•˜ì—¬
+	// CRichEditCtrl().SetEventMask()ë¥¼ í˜¸ì¶œí•˜ë„ë¡ OnInitDialog() í•¨ìˆ˜ë¥¼ ìž¬ì§€ì •í•˜ì§€ ì•Šìœ¼ë©´
+	// ì´ ì•Œë¦¼ì„ ë³´ë‚´ì§€ ì•ŠìŠµë‹ˆë‹¤.
 
-	// TODO:  ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if(!m_IsDialogInitialize)
 		return;
 
@@ -253,13 +253,13 @@ void CFileNewDlg::OnEnChangeWorldFieldSectorNum()
 
 void CFileNewDlg::OnEnChangeWorldTexAddr()
 {
-	// TODO:  RICHEDIT ÄÁÆ®·ÑÀÎ °æ¿ì ÀÌ ÄÁÆ®·ÑÀº
-	// CDialog::¸¶½ºÅ©¿¡ OR ¿¬»êÇÏ¿© ¼³Á¤µÈ ENM_CHANGE ÇÃ·¡±×¸¦ ÁöÁ¤ÇÏ¿©
-	// CRichEditCtrl().SetEventMask()¸¦ È£ÃâÇÏµµ·Ï OnInitDialog() ÇÔ¼ö¸¦ ÀçÁöÁ¤ÇÏÁö ¾ÊÀ¸¸é
-	// ÀÌ ¾Ë¸²À» º¸³»Áö ¾Ê½À´Ï´Ù.
+	// TODO:  RICHEDIT ì»¨íŠ¸ë¡¤ì¸ ê²½ìš° ì´ ì»¨íŠ¸ë¡¤ì€
+	// CDialog::ë§ˆìŠ¤í¬ì— OR ì—°ì‚°í•˜ì—¬ ì„¤ì •ëœ ENM_CHANGE í”Œëž˜ê·¸ë¥¼ ì§€ì •í•˜ì—¬
+	// CRichEditCtrl().SetEventMask()ë¥¼ í˜¸ì¶œí•˜ë„ë¡ OnInitDialog() í•¨ìˆ˜ë¥¼ ìž¬ì§€ì •í•˜ì§€ ì•Šìœ¼ë©´
+	// ì´ ì•Œë¦¼ì„ ë³´ë‚´ì§€ ì•ŠìŠµë‹ˆë‹¤.
 
-	// TODO:  ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
-	// TODO:  ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
+	// TODO:  ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if(!m_IsDialogInitialize)
 		return;
 
@@ -270,12 +270,12 @@ void CFileNewDlg::OnEnChangeWorldTexAddr()
 
 void CFileNewDlg::OnEnChangeWorldBlockSize()
 {
-	// TODO:  RICHEDIT ÄÁÆ®·ÑÀÎ °æ¿ì, ÀÌ ÄÁÆ®·ÑÀº
-	// CDialog::OnInitDialog() ÇÔ¼ö¸¦ ÀçÁöÁ¤ÇÏ°í  ¸¶½ºÅ©¿¡ OR ¿¬»êÇÏ¿© ¼³Á¤µÈ
-	// ENM_CHANGE ÇÃ·¡±×¸¦ ÁöÁ¤ÇÏ¿© CRichEditCtrl().SetEventMask()¸¦ È£ÃâÇØ¾ß¸¸
-	// ÇØ´ç ¾Ë¸² ¸Þ½ÃÁö¸¦ º¸³À´Ï´Ù.
+	// TODO:  RICHEDIT ì»¨íŠ¸ë¡¤ì¸ ê²½ìš°, ì´ ì»¨íŠ¸ë¡¤ì€
+	// CDialog::OnInitDialog() í•¨ìˆ˜ë¥¼ ìž¬ì§€ì •í•˜ê³   ë§ˆìŠ¤í¬ì— OR ì—°ì‚°í•˜ì—¬ ì„¤ì •ëœ
+	// ENM_CHANGE í”Œëž˜ê·¸ë¥¼ ì§€ì •í•˜ì—¬ CRichEditCtrl().SetEventMask()ë¥¼ í˜¸ì¶œí•´ì•¼ë§Œ
+	// í•´ë‹¹ ì•Œë¦¼ ë©”ì‹œì§€ë¥¼ ë³´ëƒ…ë‹ˆë‹¤.
 
-	// TODO:  ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if(!m_IsDialogInitialize)
 		return;
 

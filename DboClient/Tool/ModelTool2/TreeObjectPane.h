@@ -32,21 +32,21 @@ public:
     static CTreeObjectPane* GetInstance() {return m_pInstance;}
 
     void   SetObject(CMTObject* pObject);
-    void   OnDataChanged();                               ///< µ¥ÀÌÅÍ°¡ º¯°æµÇ¾úÀ½À» ¾Ë¸°´Ù.
-    void   OnShowSaveForChanges();                      ///< Á¾·áÇÏ±âÀü¿¡ º¯°æµÈ°ÍÀ» ÀúÀåÇÒ°ÍÀÎÁö ¹°¾îº»´Ù.
+    void   OnDataChanged();                               ///< ë°ì´í„°ê°€ ë³€ê²½ë˜ì—ˆìŒì„ ì•Œë¦°ë‹¤.
+    void   OnShowSaveForChanges();                      ///< ì¢…ë£Œí•˜ê¸°ì „ì— ë³€ê²½ëœê²ƒì„ ì €ìž¥í• ê²ƒì¸ì§€ ë¬¼ì–´ë³¸ë‹¤.
 
 protected:
-    void UpdateResFolder(CTreeCtrl* pTreeCtrl, LPCTSTR pstr, HTREEITEM hItemParent, BOOL bFile);                 ///< ¸®¼Ò½º Æú´õ ³»¿ëÀ» Æ®¸®¿¡ ¼³Á¤ÇÑ´Ù.
-    RwBool OnSaveScript(HTREEITEM hItem);               ///< ¾ÆÀÌÅÛÀÇ ½ºÅ©¸³Æ®¸¦ ÀúÀåÇÑ´Ù.    
-    void   OnSavePropertyList();                        ///< Property List ÆÄÀÏÀ» ÀúÀåÇÑ´Ù
+    void UpdateResFolder(CTreeCtrl* pTreeCtrl, LPCTSTR pstr, HTREEITEM hItemParent, BOOL bFile);                 ///< ë¦¬ì†ŒìŠ¤ í´ë” ë‚´ìš©ì„ íŠ¸ë¦¬ì— ì„¤ì •í•œë‹¤.
+    RwBool OnSaveScript(HTREEITEM hItem);               ///< ì•„ì´í…œì˜ ìŠ¤í¬ë¦½íŠ¸ë¥¼ ì €ìž¥í•œë‹¤.    
+    void   OnSavePropertyList();                        ///< Property List íŒŒì¼ì„ ì €ìž¥í•œë‹¤
     
 protected:
     static CTreeObjectPane* m_pInstance;
 
-    CString     m_strObjectPath;                        ///< ¿ÀºêÁ§Æ® ¸®¼Ò½º Æú´õÀÇ ·çÆ® ÆÐ½º
-    CString     m_strScriptPath;                        ///< ½ºÅ©¸³Æ®°¡ ÀúÀåµÉ Æú´õ
-    CString     m_strTreeXMLPath;                       ///< TreeXmlÀÌ ÀúÀåµÉ Æú´õ
-    CImageList* m_pImageList;                           ///< Æ®¸®¿¡ »ç¿ëÇÒ ÀÌ¹ÌÁö ¸®½ºÆ®
+    CString     m_strObjectPath;                        ///< ì˜¤ë¸Œì íŠ¸ ë¦¬ì†ŒìŠ¤ í´ë”ì˜ ë£¨íŠ¸ íŒ¨ìŠ¤
+    CString     m_strScriptPath;                        ///< ìŠ¤í¬ë¦½íŠ¸ê°€ ì €ìž¥ë  í´ë”
+    CString     m_strTreeXMLPath;                       ///< TreeXmlì´ ì €ìž¥ë  í´ë”
+    CImageList* m_pImageList;                           ///< íŠ¸ë¦¬ì— ì‚¬ìš©í•  ì´ë¯¸ì§€ ë¦¬ìŠ¤íŠ¸
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
@@ -58,8 +58,8 @@ protected:
     HTREEITEM     m_itemScriptRoot;
     VWChar        m_vFilePath;
     VMTObject     m_vMTObject;
-    CMTObject*    m_pObject;                               ///< ÇöÀç ÀÛ¾÷ÇÏ°í ÀÖ´Â Object °´Ã¼
-    CString       m_strPrevFileName;                       ///< ÆÄÀÏ¸í º¯°æ½Ã¿¡ »ç¿ëÇÏ´Â º¯¼ö    
+    CMTObject*    m_pObject;                               ///< í˜„ìž¬ ìž‘ì—…í•˜ê³  ìžˆëŠ” Object ê°ì²´
+    CString       m_strPrevFileName;                       ///< íŒŒì¼ëª… ë³€ê²½ì‹œì— ì‚¬ìš©í•˜ëŠ” ë³€ìˆ˜    
 
 public:
     virtual void OnInitialUpdate();

@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: ScouterGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (å ì™ì˜™)NTL
 * Date			: 2008. 11. 17
 * Abstract		: 
 *****************************************************************************
-* Desc			: GM °ÔÀÓ ´ÜÃà ¸Ş´º ÀÎÅÍÆäÀÌ½º
+* Desc			: GM å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ìŒ¨ëŒì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì‹±ì™ì˜™
 *****************************************************************************/
 
 #pragma once
@@ -71,8 +71,8 @@ protected:
 
 	VOID			OnMove(RwInt32 iOldX, RwInt32 iOldY);
 
-	RwInt32			ActionMapQuickSlotDown( RwUInt32 uiKey );
-	RwInt32			ActionMapQuickSlotUp( RwUInt32 uiKey );
+	RwInt32 ActionMapQuickSlotDown( uintptr_t uiKey );
+	RwInt32 ActionMapQuickSlotUp( uintptr_t uiKey );
 
 protected:
 	gui::CSlot			m_slotCharShowButton;
@@ -91,26 +91,26 @@ protected:
 	gui::CSlot			m_slotReturn;
 	gui::CSlot			m_slotMove;
 
-	gui::CButton*		m_pCharShowButton;				///< GM Ä³¸¯ÅÍ º¸ÀÌ±â ¹öÆ°
-	gui::CButton*		m_pCharHideButton;				///< GM Ä³¸¯ÅÍ ¼û±â±â ¹öÆ°
-	gui::CButton*		m_pTenkaichiButton;				///< ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ¸Ş´º »óÀ§ ¹öÆ°
-	gui::CButton*		m_pPortalButton;				///< ¾Æ¹ÙÅ¸ ÀÌµ¿ ¹öÆ°
-	gui::CButton*		m_pFreeCameraButton;			///< ÇÁ¸® Ä«¸Ş¶ó ¹öÆ°
-	gui::CButton*		m_pNormalCameraButton;			///< 3ÀÎÄª Ä«¸Ş¶ó ¹öÆ°
+	gui::CButton*		m_pCharShowButton;				///< GM ìºå ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì‹±ê¹ì˜™ å ì™ì˜™íŠ¼
+	gui::CButton*		m_pCharHideButton;				///< GM ìºë¦­í„° ìˆ¨ê¸°ê¸° ë²„íŠ¼
+	gui::CButton*		m_pTenkaichiButton;				///< ì²œå ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™íšŒ å ìŒ¨ëŒì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™íŠ¼
+	gui::CButton*		m_pPortalButton;				///< å ì‹£ë±„ì˜™íƒ€ å ì‹±ë“¸ì˜™ å ì™ì˜™íŠ¼
+	gui::CButton*		m_pFreeCameraButton;			///< å ì™ì˜™å ì™ì˜™ ì¹´å ìŒ¨ë°ì˜™ å ì™ì˜™íŠ¼
+	gui::CButton*		m_pNormalCameraButton;			///< 3å ì™ì˜™ì¹­ ì¹´å ìŒ¨ë°ì˜™ å ì™ì˜™íŠ¼
 
-	gui::CButton*		m_pTenkaichi_CameraLocButton;	///< ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ Ä«¸Ş¶ó À§Ä¡ º¯°æ ¹öÆ°
-	gui::CButton*		m_pTenkaichi_CameraMoveButton;	///< ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ Ä«¸Ş¶ó ÀÌµ¿ ¹öÆ°
-	gui::CButton*		m_pTenkaichi_MenuShowButton;	///< ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ Á¤ÇØÁø ¸Ş´º Show ¹öÆ°
-	gui::CButton*		m_pTenkaichi_MenuHideButton;	///< ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ Á¤ÇØÁø ¸Ş´º Hide ¹öÆ°
-	gui::CButton*		m_pTenkaichi_PlayerButton;		///< ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ¼±¼ö Á¤º¸ ¹öÆ°
-	gui::CButton*		m_pTenkaichi_TournamentButton;	///< ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ´ëÁøÇ¥ º¸±â ¹öÆ°
-	gui::CButton*		m_pReturnButton;				///< µ¹¾Æ°¡±â ¹öÆ°
+	gui::CButton*		m_pTenkaichi_CameraLocButton;	///< ì²œå ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™íšŒ ì¹´å ìŒ¨ë°ì˜™ å ì™ì˜™ì¹˜ å ì™ì˜™å ì™ì˜™ å ì™ì˜™íŠ¼
+	gui::CButton*		m_pTenkaichi_CameraMoveButton;	///< ì²œå ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™íšŒ ì¹´å ìŒ¨ë°ì˜™ å ì‹±ë“¸ì˜™ å ì™ì˜™íŠ¼
+	gui::CButton*		m_pTenkaichi_MenuShowButton;	///< ì²œå ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™íšŒ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ìŒ¨ëŒì˜™ Show å ì™ì˜™íŠ¼
+	gui::CButton*		m_pTenkaichi_MenuHideButton;	///< ì²œå ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™íšŒ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ìŒ¨ëŒì˜™ Hide å ì™ì˜™íŠ¼
+	gui::CButton*		m_pTenkaichi_PlayerButton;		///< ì²œå ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™íšŒ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™íŠ¼
+	gui::CButton*		m_pTenkaichi_TournamentButton;	///< ì²œå ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™íšŒ å ì™ì˜™å ì™ì˜™í‘œ å ì™ì˜™å ì™ì˜™ å ì™ì˜™íŠ¼
+	gui::CButton*		m_pReturnButton;				///< å ì™ì˜™å ì‹£ê³¤ì˜™å ì™ì˜™ å ì™ì˜™íŠ¼
 
-	CGMPopupGui*		m_pPopupGui;					///< GM Popup ¸Ş´º
+	CGMPopupGui*		m_pPopupGui;					///< GM Popup å ìŒ¨ëŒì˜™
 
 	eMenuGroup			m_eMenuGroup;
 	RwBool				m_bAvatarShow;
-	RwInt8				m_byPopupSlot;					///< ÆË¾÷ ¸Ş´º°¡ ³ª¿Â ½½·ÔÀÇ ÀÎµ¦½º
+	RwInt8				m_byPopupSlot;					///< å ì‹¯ì–µì˜™ å ìŒ¨ëŒì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹¸ë“¸ì˜™å ì™ì˜™
 
 	MAP_POPUP			m_mapPlayerInfo;
 };

@@ -53,7 +53,7 @@ RwBool CNtlSobTriggerObject::Create(VOID)
 {
 	NTL_FUNCTION("CNtlSobTriggerObject::Create");
 
-	// proxy ¼³Á¤
+	// proxy ì„¤ì •
 	m_pSobProxy = NTL_NEW CNtlSobTriggerObjectProxy;
 	m_pSobProxy->Create(0);
 	m_pSobProxy->SetSobObj(this);
@@ -63,7 +63,7 @@ RwBool CNtlSobTriggerObject::Create(VOID)
 		NTL_RETURN(FALSE);
 	}
 
-	// class name ¼³Á¤.
+	// class name ì„¤ì •.
 	SetClassName(SLCLASS_NAME_TRIGGER_OBJECT);
 
 	NTL_RETURN(TRUE);
@@ -107,13 +107,13 @@ void CNtlSobTriggerObject::HandleEvents( RWS::CMsg& pMsg )
 		
 		GetSobAttr()->HandleEvents(pMsg);
 
-		// ÃÊ±â Trigger objectÀÇ »óÅÂ¸¦ ¼³Á¤ÇÑ´Ù
+		// ì´ˆê¸° Trigger objectì˜ ìƒíƒœë¥¼ ì„¤ì •í•œë‹¤
 		InitState();
 
 		// proxy setting
 		GetSobProxy()->HandleEvents(pMsg);
 
-		// ÁÂÇ¥¿Í ¹æÇâ ¼¼ÆÃ.
+		// ì¢Œí‘œì™€ ë°©í–¥ ì„¸íŒ….
 		RwV3dAssignMacro(&m_vPos, &pSobCreate->vLoc);
 		RwV3d vDir = GetSobProxy()->GetDirection();
 		RwV3dAssignMacro(&m_vDirection, &vDir); 
@@ -181,7 +181,7 @@ void CNtlSobTriggerObject::HandleEvents( RWS::CMsg& pMsg )
 	{
 		SNtlEventTObjectUpdateState *pSobTObjUpdateState = reinterpret_cast<SNtlEventTObjectUpdateState*>(pMsg.pData);
 
-		// Trigger objectÀÇ »óÅÂ¸¦ ¾÷µ¥ÀÌÆ® ÇÑ´Ù
+		// Trigger objectì˜ ìƒíƒœë¥¼ ì—…ë°ì´íŠ¸ í•œë‹¤
 		UpdateState(pSobTObjUpdateState);
 
 		GetSobProxy()->HandleEvents(pMsg);
@@ -275,7 +275,7 @@ void CNtlSobTriggerObject::QeustMarkCheck(RwReal fElapsed)
 		if( ( m_byQuestMark != byQuestMark ) ||
 			( byQuestMark == EQuestMarkBalloonNew && m_tID != tID ) )
 		{
-			// event ¹ß»ý.	
+			// event ë°œìƒ.	
 			m_byQuestMark = byQuestMark;
 			m_tID = tID;
 			CNtlSLEventGenerator::QuestMark(GetSerialID(), m_byQuestMark, (void*)pQuestInfo);
@@ -299,23 +299,23 @@ RwBool CNtlSobTriggerObject::CanClicked(void)
 		return FALSE;
 	}
 
-	// Trigger object tableÀÇ ¼±ÅÃ °¡´É ÇÃ·¡±×°¡ ²¨Àú ÀÖ´Â °æ¿ì´Â Å¬¸¯ ºÒ°¡´É.
+	// Trigger object tableì˜ ì„ íƒ ê°€ëŠ¥ í”Œëž˜ê·¸ê°€ êº¼ì € ìžˆëŠ” ê²½ìš°ëŠ” í´ë¦­ ë¶ˆê°€ëŠ¥.
 	if ( (pAttrTObj->m_pTriggerObjTbl->dwFunction & eDBO_TRIGGER_OBJECT_FUNC_SELECTION) != eDBO_TRIGGER_OBJECT_FUNC_SELECTION )
 	{
 		return FALSE;
 	}
 
-	// »óÅÂ°¡ Á¸ÀçÇÏ´Â °æ¿ì¸¸ Å¬¸¯ °Ë»ç¸¦ ¼öÇàÇÏ°í
-	// ±×·¸Áö ¾ÊÀº °æ¿ì´Â ¹«Á¶°Ç Å¬¸¯ °¡´É »óÅÂ·Î Ã³¸®ÇÑ´Ù
+	// ìƒíƒœê°€ ì¡´ìž¬í•˜ëŠ” ê²½ìš°ë§Œ í´ë¦­ ê²€ì‚¬ë¥¼ ìˆ˜í–‰í•˜ê³ 
+	// ê·¸ë ‡ì§€ ì•Šì€ ê²½ìš°ëŠ” ë¬´ì¡°ê±´ í´ë¦­ ê°€ëŠ¥ ìƒíƒœë¡œ ì²˜ë¦¬í•œë‹¤
 	if ( INVALID_TOBJECT_STATE_TYPE != m_byStateType && TOBJECT_STATE_NONE != m_sCurState.byMainState )
 	{
-		// ÇöÀç Æ®¸®°Å ¿ÀºêÁ§Æ®ÀÇ »óÅÂ°¡ º¸ÀÌ´Â »óÅÂÀÎÁö °Ë»ç
+		// í˜„ìž¬ íŠ¸ë¦¬ê±° ì˜¤ë¸Œì íŠ¸ì˜ ìƒíƒœê°€ ë³´ì´ëŠ” ìƒíƒœì¸ì§€ ê²€ì‚¬
 		if ( (m_sCurState.bySubState & (1<<TOBJECT_SUBSTATE_SHOW)) != (1<<TOBJECT_SUBSTATE_SHOW) )
 		{
 			return FALSE;
 		}
 
-		// ÇöÀç Æ®¸®°Å ¿ÀºêÁ§Æ®ÀÇ »óÅÂ°¡ Å¬¸¯ ºÒ°¡´É »óÅÂÀÎÁö °Ë»ç
+		// í˜„ìž¬ íŠ¸ë¦¬ê±° ì˜¤ë¸Œì íŠ¸ì˜ ìƒíƒœê°€ í´ë¦­ ë¶ˆê°€ëŠ¥ ìƒíƒœì¸ì§€ ê²€ì‚¬
 		if ( (m_sCurState.bySubState & (1<<TOBJECT_SUBSTATE_UNSELECT)) == (1<<TOBJECT_SUBSTATE_UNSELECT) )
 		{
 			return FALSE;
@@ -351,7 +351,7 @@ void CNtlSobTriggerObject::ActiveQuestMark(RwBool bQuestMark)
 	{
 		if(m_byQuestMark != EQuestMarkNone)
 		{
-			// noneÀ» º¸³½´Ù.
+			// noneì„ ë³´ë‚¸ë‹¤.
 			m_byQuestMark = EQuestMarkNone;
 			CNtlSLEventGenerator::QuestMark(GetSerialID(), m_byQuestMark, NULL);
 		}
@@ -411,10 +411,10 @@ void CNtlSobTriggerObject::InitState( void )
 
 void CNtlSobTriggerObject::UpdateState( SNtlEventTObjectUpdateState *pSobTObjUpdateState )
 {
-	// »óÅÂ ÀúÀå
+	// ìƒíƒœ ì €ìž¥
 	m_sPreState = m_sCurState;
 
-	// »õ·Î¿î »óÅÂ·Î ¾÷µ¥ÀÌÆ®
+	// ìƒˆë¡œìš´ ìƒíƒœë¡œ ì—…ë°ì´íŠ¸
 	m_sCurState.byMainState = pSobTObjUpdateState->byMainState;
 	m_sCurState.bySubState = pSobTObjUpdateState->bySubState;
 
@@ -442,7 +442,7 @@ void CNtlSobTriggerObject::PlayClickSound( void )
 	v3Pos.y = pTriggerObjectAttr->m_pTriggerObjTbl->vLoc.y;
 	v3Pos.z = pTriggerObjectAttr->m_pTriggerObjTbl->vLoc.z;
 
-	// Æ®¸®°Å ¿ÀºêÁ§Æ®ÀÇ »óÅÂ°¡ Á¸ÀçÇÏÁö ¾Ê´Â °æ¿ì
+	// íŠ¸ë¦¬ê±° ì˜¤ë¸Œì íŠ¸ì˜ ìƒíƒœê°€ ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” ê²½ìš°
 	if ( INVALID_TOBJECT_STATE_TYPE != m_byStateType && TOBJECT_STATE_NONE != m_sCurState.byMainState )
 	{
 		sNtlSoundPlayParameta tSoundParam;
@@ -454,13 +454,13 @@ void CNtlSobTriggerObject::PlayClickSound( void )
 
 		GetSoundManager()->Play(&tSoundParam);
 	}
-	// Æ®¸®°Å ¿ÀºêÁ§Æ®ÀÇ »óÅÂ°¡ Á¸ÀçÇÏ´Â °æ¿ì
+	// íŠ¸ë¦¬ê±° ì˜¤ë¸Œì íŠ¸ì˜ ìƒíƒœê°€ ì¡´ìž¬í•˜ëŠ” ê²½ìš°
 	else
 	{
-		// Æ®¸®°Å ¿ÀºêÁ§Æ®¸¦ Å¬¸¯ °¡´É ÇÑ °æ¿ì¸¸ ¼Ò¸®¸¦ ³½´Ù
+		// íŠ¸ë¦¬ê±° ì˜¤ë¸Œì íŠ¸ë¥¼ í´ë¦­ ê°€ëŠ¥ í•œ ê²½ìš°ë§Œ ì†Œë¦¬ë¥¼ ë‚¸ë‹¤
 		if ( CanClicked() )
 		{
-			// ¼­¹ö·Î ºÎÅÍ »óÅÂ°¡ Àß¸ø ³»·Á¿Â °æ¿ì
+			// ì„œë²„ë¡œ ë¶€í„° ìƒíƒœê°€ ìž˜ëª» ë‚´ë ¤ì˜¨ ê²½ìš°
 			if ( MAX_TOBJECT_STATE <= m_sCurState.byMainState )
 			{
 				sNtlSoundPlayParameta tSoundParam;
@@ -476,7 +476,7 @@ void CNtlSobTriggerObject::PlayClickSound( void )
 			{
 				std::string strSoundName = pTriggerObjectAttr->m_pTriggerObjTbl->achClickSound[m_sCurState.byMainState];
 
-				// »óÅÂ¿¡ µû¸¥ Å¬¸¯ »ç¿îµå°¡ Á¸ÀçÇÏ´Â °æ¿ì
+				// ìƒíƒœì— ë”°ë¥¸ í´ë¦­ ì‚¬ìš´ë“œê°€ ì¡´ìž¬í•˜ëŠ” ê²½ìš°
 				if ( !strSoundName.empty() )
 				{
 					sNtlSoundPlayParameta tSoundParam;

@@ -2,11 +2,11 @@
 *
 * File			: NtlPLDecal.h
 * Author		: agebreak
-* Copyright	: (ÁÖ)NTL
+* Copyright	: (ì£¼)NTL
 * Date			: 2006. 6. 15	
 * Abstract		: Presentation layer decal entity class
 *****************************************************************************
-* Desc         : Effect¹× World¿¡¼­ »ç¿ëµÇ´Â Decal Å¬·¡½º. (±×¸²ÀÚ Ç¥Çö¿¡µµ »ç¿ëµÈ´Ù)
+* Desc         : Effectë° Worldì—ì„œ ì‚¬ìš©ë˜ëŠ” Decal í´ë˜ìŠ¤. (ê·¸ë¦¼ì í‘œí˜„ì—ë„ ì‚¬ìš©ëœë‹¤)
 *
 *****************************************************************************/
 
@@ -16,24 +16,24 @@
 #include "NtlPLAttach.h"
 #include "NtlEffectDefine.h"
 
-/// DecalÀÇ Á¾·ù
+/// Decalì˜ ì¢…ë¥˜
 enum EDecalType
 {
-	DECAL_EFFECT,					///< Effect¿ë Decal
-	DECAL_TERRAIN,					///< ÁöÇü¿ë Decal
+	DECAL_EFFECT,					///< Effectìš© Decal
+	DECAL_TERRAIN,					///< ì§€í˜•ìš© Decal
 };
 
-// Decal Effect¿¡¼­¸¸ ¾²´Â ÇÃ·¡±×
+// Decal Effectì—ì„œë§Œ ì“°ëŠ” í”Œë˜ê·¸
 enum EDecalEffectFlag
 {
-	E_FLAG_DECAL_RENDER_OBJECT = 0x00100000,					///< ¿ÀºêÁ§Æ®¿¡ DecalÀ» ·£´õ
-	E_FLAG_DECAL_RENDER_WORLD  = 0x00200000,					///< World¿¡ DecalÀ» ·»´õ
-	E_FLAG_DECAL_WATER		   = 0x00400000,					///< ¹° À§¿¡¸¸ ³ªÅ¸³ª´Â DecalÀÌ¶ó¸é ÀÌ Flag¸¦ ÄÑÁØ´Ù (±âº»°ª False)
-	E_FLAG_DECAL_DAYNIGHT 	   = 0x00800000						///< Day&NightÀÇ ¿µÇâÀ» ¹Ş´Â DecalÀÌ¶ó¸é ÀÌ Flag¸¦ ÄÑÁØ´Ù (±âº»°ª False)
+	E_FLAG_DECAL_RENDER_OBJECT = 0x00100000,					///< ì˜¤ë¸Œì íŠ¸ì— Decalì„ ëœë”
+	E_FLAG_DECAL_RENDER_WORLD  = 0x00200000,					///< Worldì— Decalì„ ë Œë”
+	E_FLAG_DECAL_WATER		   = 0x00400000,					///< ë¬¼ ìœ„ì—ë§Œ ë‚˜íƒ€ë‚˜ëŠ” Decalì´ë¼ë©´ ì´ Flagë¥¼ ì¼œì¤€ë‹¤ (ê¸°ë³¸ê°’ False)
+	E_FLAG_DECAL_DAYNIGHT 	   = 0x00800000						///< Day&Nightì˜ ì˜í–¥ì„ ë°›ëŠ” Decalì´ë¼ë©´ ì´ Flagë¥¼ ì¼œì¤€ë‹¤ (ê¸°ë³¸ê°’ False)
 };
 
 
-/// Object¿¡ DecalÀ» ±×¸®±â À§ÇØ Äİ¹éÇÔ¼ö¿¡°Ô ³Ñ°ÜÁÖ´Â ÆÄ¶ó¹ÌÅÍ ±¸Á¶Ã¼
+/// Objectì— Decalì„ ê·¸ë¦¬ê¸° ìœ„í•´ ì½œë°±í•¨ìˆ˜ì—ê²Œ ë„˜ê²¨ì£¼ëŠ” íŒŒë¼ë¯¸í„° êµ¬ì¡°ì²´
 struct DecalCallbackParam
 {
 	RwV3d vPos;
@@ -44,7 +44,7 @@ struct DecalCallbackParam
 
 	float fIntersectionRadius;
 	float fScale;
-	RwInt32 nMaxVertextCnt;				///< »ı¼ºµÉ DecalÀÇ ÃÖ´ë Vertex °³¼ö
+	RwInt32 nMaxVertextCnt;				///< ìƒì„±ë  Decalì˜ ìµœëŒ€ Vertex ê°œìˆ˜
 	RwReal fYOffset;
 };
 
@@ -98,9 +98,9 @@ public:
 	virtual void SetScale(RwReal fScale);
     virtual void SetScaleSize(RwReal fScale);
 	virtual void SetSize(RwReal fXSize, RwReal fZSize);
-	virtual void SetRotate(RwReal fDegree);															///< DecalÀ» È¸Àü½ÃÅ²´Ù. YÃàÀ» ±âÁØÀ¸·Î¸¸ È¸ÀüÇÑ´Ù.Rotate ActionÀÌ Àû¿ëµÇ¾î ÀÖ´Â °æ¿ì¿£ Àû¿ëµÇÁö ¾Ê´Â´Ù.
-	virtual void SetMatrix(RwMatrix& matWorld);														///< World Matrix¸¦ Àû¿ëÇÑ´Ù. 
-	virtual void SetYOffset(RwReal fYOffset) {m_fYOffset = fYOffset;}								///< DecalÀÇ YOffset °ª(Áö¸éÀ¸·ÎºÎÅÍ ¾ó¸¶ À§¿¡ ±×¸±°ÍÀÎ°¡)À» ¼³Á¤ÇÑ´Ù
+	virtual void SetRotate(RwReal fDegree);															///< Decalì„ íšŒì „ì‹œí‚¨ë‹¤. Yì¶•ì„ ê¸°ì¤€ìœ¼ë¡œë§Œ íšŒì „í•œë‹¤.Rotate Actionì´ ì ìš©ë˜ì–´ ìˆëŠ” ê²½ìš°ì—” ì ìš©ë˜ì§€ ì•ŠëŠ”ë‹¤.
+	virtual void SetMatrix(RwMatrix& matWorld);														///< World Matrixë¥¼ ì ìš©í•œë‹¤. 
+	virtual void SetYOffset(RwReal fYOffset) {m_fYOffset = fYOffset;}								///< Decalì˜ YOffset ê°’(ì§€ë©´ìœ¼ë¡œë¶€í„° ì–¼ë§ˆ ìœ„ì— ê·¸ë¦´ê²ƒì¸ê°€)ì„ ì„¤ì •í•œë‹¤
 
 	virtual RwInt32	GetNameLen() { return m_iNameLen; }
 
@@ -114,50 +114,50 @@ public:
 	virtual RwReal	GetYOffset() {return m_fYOffset;}
 	virtual RwReal  GetVisibleDist() { return m_fVisibleSquaredDist; }
 	virtual SNtlPrtStdEmitterPrtUVAnim& GetUVChunk() { return m_EmitterPrtUVAnim; }
-    virtual RwUInt32 GetMemoryUseSize() {return m_uiMemoryUseSize;}                                 ///< ¸Ş¸ğ¸® »ç¿ë·®À» ¹İÈ¯ÇÑ´Ù.
+    virtual RwUInt32 GetMemoryUseSize() {return m_uiMemoryUseSize;}                                 ///< ë©”ëª¨ë¦¬ ì‚¬ìš©ëŸ‰ì„ ë°˜í™˜í•œë‹¤.
 
 	void			GetRotateActionValue(RwReal& fAngle, RwReal& fTimeGap);
 	void			GetScaleActionValue(RwReal& _StartScale, RwReal& _EndScale, RwReal& _TimeGap);
 	
-	void SetLifeTime(RwReal fLifeTime) {m_fLifeTime = fLifeTime;}									///< DecalÀÇ LifeTimeÀ» ¼³Á¤ÇÑ´Ù. (¿µ±¸ DecalÀÇ °æ¿ì 0À» ¼³Á¤)
+	void SetLifeTime(RwReal fLifeTime) {m_fLifeTime = fLifeTime;}									///< Decalì˜ LifeTimeì„ ì„¤ì •í•œë‹¤. (ì˜êµ¬ Decalì˜ ê²½ìš° 0ì„ ì„¤ì •)
 	
-	void SetAlphaBlend(RwBool bBlend, RwBlendFunction srcBlend, RwBlendFunction destBlend);			///< ¾ËÆÄ ºí·»µå¸¦ ¼³Á¤ÇÑ´Ù.
-	RwInt32	GetVerexCount() {return m_nRenderVertexCnt;}											///< ÇöÀç ±×·ÁÁö°í ÀÖ´Â ¹öÅØ½ºÀÇ °³¼ö¸¦ ¹İÈ¯ÇÑ´Ù.
+	void SetAlphaBlend(RwBool bBlend, RwBlendFunction srcBlend, RwBlendFunction destBlend);			///< ì•ŒíŒŒ ë¸”ë Œë“œë¥¼ ì„¤ì •í•œë‹¤.
+	RwInt32	GetVerexCount() {return m_nRenderVertexCnt;}											///< í˜„ì¬ ê·¸ë ¤ì§€ê³  ìˆëŠ” ë²„í…ìŠ¤ì˜ ê°œìˆ˜ë¥¼ ë°˜í™˜í•œë‹¤.
 
 	// Effect Flag
 	RwInt32	GetEffectFlag() {return m_nFlagEffect;}
 	void	SetEffectFlag(RwInt32 nFlag) {m_nFlagEffect = nFlag;}
 
 	// Action
-	void	Set2DRoateAction(RwReal fAngle, RwReal fTimeGap = 1.0f);						///< È¸Àü ¾×¼ÇÀ» Àû¿ëÇÑ´Ù. (1ÃÊ¿¡ °ÉÃÄ È¸ÀüÇÏ´Â °¢µµ¸¦ ¼³Á¤ÇÑ´Ù (°¢µµ´Â DegreeÀÌ´Ù.))
-	void	SetColorAction(const RwRGBA& colStart, const RwRGBA& colEnd, RwReal fTimeGap);	///< Color ActionÀ» Àû¿ëÇÑ´Ù.
-	void	SetMultiColorAction(const RpPrtAdvPrtMultiColorEmitter& emitterPrtMulticol);		///< Multi Color ActionÀ» Àû¿ëÇÑ´Ù.
-	void	SetSizeAction(RwReal fStartScale, RwReal fEndScale, RwReal fTimeGap);			///< Size ActionÀ» Àû¿ëÇÑ´Ù.
-	void	SetMultiSizeAction(const SNtlAdvMultiSizeEmitter& emitterPrtMultiSize);			///< Multi Size ActionÀ» Àû¿ëÇÑ´Ù.
-	void	SetMultiTextureAction(const RpPrtAdvEmtPrtMultiTextures& emitterMultiTexture);	///< Multi Texture ActionÀ» Àû¿ëÇÑ´Ù.
-	void	SetUVAnimAction(const SNtlPrtStdEmitterPrtUVAnim& emitterUVAnim);				///< UV AnimationÀ» Àû¿ëÇÑ´Ù.
-    void    SetUpdateVertex(RwBool bUpdate) {m_bVertexUpdate = bUpdate;}                    ///< ¹öÅØ½º¸¦ °­Á¦ ¾÷µ¥ÀÌÆ®ÇÒ¶§ ÇÃ·¡±×¸¦ ¹Ù²Ù¾îÁØ´Ù.
+	void	Set2DRoateAction(RwReal fAngle, RwReal fTimeGap = 1.0f);						///< íšŒì „ ì•¡ì…˜ì„ ì ìš©í•œë‹¤. (1ì´ˆì— ê±¸ì³ íšŒì „í•˜ëŠ” ê°ë„ë¥¼ ì„¤ì •í•œë‹¤ (ê°ë„ëŠ” Degreeì´ë‹¤.))
+	void	SetColorAction(const RwRGBA& colStart, const RwRGBA& colEnd, RwReal fTimeGap);	///< Color Actionì„ ì ìš©í•œë‹¤.
+	void	SetMultiColorAction(const RpPrtAdvPrtMultiColorEmitter& emitterPrtMulticol);		///< Multi Color Actionì„ ì ìš©í•œë‹¤.
+	void	SetSizeAction(RwReal fStartScale, RwReal fEndScale, RwReal fTimeGap);			///< Size Actionì„ ì ìš©í•œë‹¤.
+	void	SetMultiSizeAction(const SNtlAdvMultiSizeEmitter& emitterPrtMultiSize);			///< Multi Size Actionì„ ì ìš©í•œë‹¤.
+	void	SetMultiTextureAction(const RpPrtAdvEmtPrtMultiTextures& emitterMultiTexture);	///< Multi Texture Actionì„ ì ìš©í•œë‹¤.
+	void	SetUVAnimAction(const SNtlPrtStdEmitterPrtUVAnim& emitterUVAnim);				///< UV Animationì„ ì ìš©í•œë‹¤.
+    void    SetUpdateVertex(RwBool bUpdate) {m_bVertexUpdate = bUpdate;}                    ///< ë²„í…ìŠ¤ë¥¼ ê°•ì œ ì—…ë°ì´íŠ¸í• ë•Œ í”Œë˜ê·¸ë¥¼ ë°”ê¾¸ì–´ì¤€ë‹¤.
 
 protected:
-	RwBool	UpdateVertices();						///< Decal VertexÀÇ Á¤º¸¸¦ °»½ÅÇÑ´Ù.
-	void	SetVertexColor(const RwRGBA& color);	///< VertexµéÀÇ Color¸¦ ¼³Á¤ÇÑ´Ù.	
-	void	UpdateUV();								///< VertexµéÀÇ UV°ªÀ» UpdateÇÑ´Ù
+	RwBool	UpdateVertices();						///< Decal Vertexì˜ ì •ë³´ë¥¼ ê°±ì‹ í•œë‹¤.
+	void	SetVertexColor(const RwRGBA& color);	///< Vertexë“¤ì˜ Colorë¥¼ ì„¤ì •í•œë‹¤.	
+	void	UpdateUV();								///< Vertexë“¤ì˜ UVê°’ì„ Updateí•œë‹¤
 	
-	void	UpdateRoate(RwReal fElapsedTime);		///< Rotate Action °ªÀ» Àû¿ëÇÑ´Ù.
-	void	UpdateColor(RwReal fElapsedTime);		///< Color Action °ªÀ» Àû¿ëÇÑ´Ù.
-	void	UpdateScale(RwReal fElapsedTime);		///< Scale Action °ªÀ» Àû¿ëÇÑ´Ù.
-	void	UpdateMultiTexture(RwReal fElapsedTime);///< Multi Texture Action °ªÀ» Àû¿ëÇÑ´Ù.
-	void	UpdateMultiColor(RwReal fElapsedTime);	///< Multi Color Action °ªÀ» Àû¿ëÇÑ´Ù.
-	void	UpdateMultiSize(RwReal fElapsedTime);	///< Multi Size Action °ªÀ» Àû¿ëÇÑ´Ù. (size´Â X°ª¸¸ Àû¿ëÇÑ´Ù)
-	void	UpdateUVAnim(RwReal fElapsedTime);		///< UV Anim Action °ªÀ» Àû¿ëÇÑ´Ù.
-	void	UpdateFade(RwReal fElapsedTime);		///< Fade In/OutÀ» UpdateÇÑ´Ù.
+	void	UpdateRoate(RwReal fElapsedTime);		///< Rotate Action ê°’ì„ ì ìš©í•œë‹¤.
+	void	UpdateColor(RwReal fElapsedTime);		///< Color Action ê°’ì„ ì ìš©í•œë‹¤.
+	void	UpdateScale(RwReal fElapsedTime);		///< Scale Action ê°’ì„ ì ìš©í•œë‹¤.
+	void	UpdateMultiTexture(RwReal fElapsedTime);///< Multi Texture Action ê°’ì„ ì ìš©í•œë‹¤.
+	void	UpdateMultiColor(RwReal fElapsedTime);	///< Multi Color Action ê°’ì„ ì ìš©í•œë‹¤.
+	void	UpdateMultiSize(RwReal fElapsedTime);	///< Multi Size Action ê°’ì„ ì ìš©í•œë‹¤. (sizeëŠ” Xê°’ë§Œ ì ìš©í•œë‹¤)
+	void	UpdateUVAnim(RwReal fElapsedTime);		///< UV Anim Action ê°’ì„ ì ìš©í•œë‹¤.
+	void	UpdateFade(RwReal fElapsedTime);		///< Fade In/Outì„ Updateí•œë‹¤.
 
-	void	GetObjectDecalVertex();					///< Object¿¡ ±×·ÁÁö´Â DecalÀ» °è»êÇÑ´Ù.		
-	RwBool	GetWaterDecalVertex();					///< ¹°À§¿¡ ±×·ÁÁö´Â DecalÀ» °è»êÇÑ´Ù.
-	RwBool	IsVisble();								///< Ä«¸Ş¶ó ÄÃ¸µ°ú Visible Distance¸¦ °è»êÇØ¼­ º¸¿©ÁúÁö À¯¹«¸¦ ¹İÈ¯ÇÑ´Ù.
-    void    ChangeBigVB();                          ///< ¹öÅØ½º ¹öÆÛ°¡ ºÎÁ·ÇÑ °æ¿ì¿¡ Å« ¹öÆÛ·Î º¯°æÇÑ´Ù.
+	void	GetObjectDecalVertex();					///< Objectì— ê·¸ë ¤ì§€ëŠ” Decalì„ ê³„ì‚°í•œë‹¤.		
+	RwBool	GetWaterDecalVertex();					///< ë¬¼ìœ„ì— ê·¸ë ¤ì§€ëŠ” Decalì„ ê³„ì‚°í•œë‹¤.
+	RwBool	IsVisble();								///< ì¹´ë©”ë¼ ì»¬ë§ê³¼ Visible Distanceë¥¼ ê³„ì‚°í•´ì„œ ë³´ì—¬ì§ˆì§€ ìœ ë¬´ë¥¼ ë°˜í™˜í•œë‹¤.
+    void    ChangeBigVB();                          ///< ë²„í…ìŠ¤ ë²„í¼ê°€ ë¶€ì¡±í•œ ê²½ìš°ì— í° ë²„í¼ë¡œ ë³€ê²½í•œë‹¤.
 
-	void	SetTextureMatrix(RwIm3DVertex* pVertices, RwInt32 nVertCnt, RwMatrix* pMatrix);	///< VertexµéÀÇ UV¿¡ Texture Matrix¸¦ Àû¿ëÇÑ´Ù.
+	void	SetTextureMatrix(RwIm3DVertex* pVertices, RwInt32 nVertCnt, RwMatrix* pMatrix);	///< Vertexë“¤ì˜ UVì— Texture Matrixë¥¼ ì ìš©í•œë‹¤.
 
 protected:
 
@@ -169,13 +169,13 @@ protected:
 	RwReal m_fIntersectionRadius;
 	RwReal m_fScale;
 	RwReal m_fVisibleSquaredDist;
-	RwTextureAddressMode m_rwWrapType;				///< ÅØ½ºÃÄÀÇ Wrap Type
+	RwTextureAddressMode m_rwWrapType;				///< í…ìŠ¤ì³ì˜ Wrap Type
 	RwMatrix m_matWorld;							///< World Matrix
-	RwReal m_fYOffset;								///< Y Offset °ª
-	RwBool m_bVertexUpdate;							///< Vertex¸¦ UpdateÇÒÁö À¯¹« ÇÃ·¡±×
-	RwV3d  m_vOriginPos;							///< ÇöÀç »ı¼ºµÈ World VertexÀÇ ÁßÁ¡ À§Ä¡
-	RwReal m_fRadiusWorldVertex;					///< ÇöÀç »ı¼ºµÈ World VertexÀÇ ¹İÁö¸§
-	RwReal m_fDegree;								///< Rotation°ª (Degree)
+	RwReal m_fYOffset;								///< Y Offset ê°’
+	RwBool m_bVertexUpdate;							///< Vertexë¥¼ Updateí• ì§€ ìœ ë¬´ í”Œë˜ê·¸
+	RwV3d  m_vOriginPos;							///< í˜„ì¬ ìƒì„±ëœ World Vertexì˜ ì¤‘ì  ìœ„ì¹˜
+	RwReal m_fRadiusWorldVertex;					///< í˜„ì¬ ìƒì„±ëœ World Vertexì˜ ë°˜ì§€ë¦„
+	RwReal m_fDegree;								///< Rotationê°’ (Degree)
 	EDecalType m_eDecalType;						///< DecalType
 
 	RwTexture* m_pTexture;
@@ -184,55 +184,55 @@ protected:
 	RwRGBA m_color;	
 
 	// Render State
-	RwBool				m_bBlend;			///< ¾ËÆÄ ºí·»µù À¯¹«
-	RwBlendFunction		m_blendSrc;			///< ¼Ò½º ºí·»µå
-	RwBlendFunction		m_blendDest;		///< Å¸°Ù ºí·»µå
+	RwBool				m_bBlend;			///< ì•ŒíŒŒ ë¸”ë Œë”© ìœ ë¬´
+	RwBlendFunction		m_blendSrc;			///< ì†ŒìŠ¤ ë¸”ë Œë“œ
+	RwBlendFunction		m_blendDest;		///< íƒ€ê²Ÿ ë¸”ë Œë“œ
 
 	RwIm3DVertex*		m_pIm3DBuffer;		///< Vertex Buffer 
-	RwInt32				m_nRenderVertexCnt;	///< ·»´õ¸µµÉ VertexÀÇ °³¼ö	
+	RwInt32				m_nRenderVertexCnt;	///< ë Œë”ë§ë  Vertexì˜ ê°œìˆ˜	
 
 	// Emitter Action
-	RwInt32				m_nFlagEffect;		///< ÀÌÆåÆ® ¼Ó¼º Flag
-	RwReal				m_fTotalElapsedTime;///< »ı¼ºµÇ¼­ Áö±İ±îÁöÀÇ ½Ã°£
-	RwReal				m_fElapsedTime;		///< ÇÑ ÇÁ·¹ÀÓÀÇ Å¸ÀÓ
-	RwReal				m_fLifeTime;		///< DecalÀÇ Life Time
+	RwInt32				m_nFlagEffect;		///< ì´í™íŠ¸ ì†ì„± Flag
+	RwReal				m_fTotalElapsedTime;///< ìƒì„±ë˜ì„œ ì§€ê¸ˆê¹Œì§€ì˜ ì‹œê°„
+	RwReal				m_fElapsedTime;		///< í•œ í”„ë ˆì„ì˜ íƒ€ì„
+	RwReal				m_fLifeTime;		///< Decalì˜ Life Time
 
-	RwReal				m_f2DRoateAngle;	///< 2D Roate Action½Ã È¸ÀüÇÏ´Â °¢µµ
-	RwBool				m_bFirstRotate;		///< ·ÎÅ×ÀÌÆ®½Ã ÅØ½ºÃÄÀÇ ÁßÁ¡À» º¯°æÀ» Ã¼Å©ÇÏ±â À§ÇØ¼­ »ç¿ëÇÏ´Â º¯¼ö
-	RwReal				m_fOrgRotateAngle;	///< ¿ø·¡ ¼³Á¤µÈ Rotate Angle°ª
-	RwReal				m_fRotateTimeGap;	///< ¼³Á¤µÈ Rotate Time Gap
+	RwReal				m_f2DRoateAngle;	///< 2D Roate Actionì‹œ íšŒì „í•˜ëŠ” ê°ë„
+	RwBool				m_bFirstRotate;		///< ë¡œí…Œì´íŠ¸ì‹œ í…ìŠ¤ì³ì˜ ì¤‘ì ì„ ë³€ê²½ì„ ì²´í¬í•˜ê¸° ìœ„í•´ì„œ ì‚¬ìš©í•˜ëŠ” ë³€ìˆ˜
+	RwReal				m_fOrgRotateAngle;	///< ì›ë˜ ì„¤ì •ëœ Rotate Angleê°’
+	RwReal				m_fRotateTimeGap;	///< ì„¤ì •ëœ Rotate Time Gap
 
-	RwMatrix			m_matTexture;		///< UV ÁÂÇ¥ º¯°æ¿¡ »ç¿ëµÇ´Â ÅØ½ºÃÄ ¸ÅÆ®¸¯½º
+	RwMatrix			m_matTexture;		///< UV ì¢Œí‘œ ë³€ê²½ì— ì‚¬ìš©ë˜ëŠ” í…ìŠ¤ì³ ë§¤íŠ¸ë¦­ìŠ¤
 
-	RwRGBA				m_colStart;			///< Color Action¿¡ »ç¿ëµÇ´Â Start Color
-	RwRGBA				m_colEnd;			///< Color Action¿¡ »ç¿ëµÇ´Â End Color
-	RwReal				m_fColorActionTime;	///< Color Action¿¡ »ç¿ëµÇ´Â Time
+	RwRGBA				m_colStart;			///< Color Actionì— ì‚¬ìš©ë˜ëŠ” Start Color
+	RwRGBA				m_colEnd;			///< Color Actionì— ì‚¬ìš©ë˜ëŠ” End Color
+	RwReal				m_fColorActionTime;	///< Color Actionì— ì‚¬ìš©ë˜ëŠ” Time
 
-	RwReal				m_fStartScale;		///< Size Aciton¿¡ »ç¿ëµÇ´Â Start Scale
-	RwReal				m_fEndScale;		///< Scale Action¿¡ »ç¿ëµÇ´Â End Scale;
-	RwReal				m_fScaleActionTimeGap; ///< Scale Action »ç¿ëµÇ´Â Time
+	RwReal				m_fStartScale;		///< Size Acitonì— ì‚¬ìš©ë˜ëŠ” Start Scale
+	RwReal				m_fEndScale;		///< Scale Actionì— ì‚¬ìš©ë˜ëŠ” End Scale;
+	RwReal				m_fScaleActionTimeGap; ///< Scale Action ì‚¬ìš©ë˜ëŠ” Time
 
-	RwUInt32			m_nCurrentTexture;		  ///< Multi Texture Action¿¡¼­ ÇöÀç ·»´õ¸µ µÇ´Â ÅØ½ºÃÄÀÇ ÀÎµ¦½º ¹øÈ£
-	RwReal				m_fMultiTextureDeltaTime; ///< Multi Texture Acion¿¡ »ç¿ëµÇ´Â Time
+	RwUInt32			m_nCurrentTexture;		  ///< Multi Texture Actionì—ì„œ í˜„ì¬ ë Œë”ë§ ë˜ëŠ” í…ìŠ¤ì³ì˜ ì¸ë±ìŠ¤ ë²ˆí˜¸
+	RwReal				m_fMultiTextureDeltaTime; ///< Multi Texture Acionì— ì‚¬ìš©ë˜ëŠ” Time
 
-	RwRGBA				m_colPrev;				  ///< Multo Color Action¿¡ »ç¿ëµÇ´Â ÀÌÀüÀÇ Color
-	RwUInt32			m_nNextColorIndex;		  ///< Multi Color Action¿¡ »ç¿ëµÇ´Â Index
-	RwReal				m_fMultiColorDeltaTime;	  ///< Multi Color Action¿¡ »ç¿ëµÇ´Â Time
+	RwRGBA				m_colPrev;				  ///< Multo Color Actionì— ì‚¬ìš©ë˜ëŠ” ì´ì „ì˜ Color
+	RwUInt32			m_nNextColorIndex;		  ///< Multi Color Actionì— ì‚¬ìš©ë˜ëŠ” Index
+	RwReal				m_fMultiColorDeltaTime;	  ///< Multi Color Actionì— ì‚¬ìš©ë˜ëŠ” Time
 
-	RwReal				m_fPrevSize;			  ///< Multi Size Action¿¡ »ç¿ëµÇ´Â ÀÌÀüÀÇ Size
-	RwUInt32			m_nNextSizeIndex;		  ///< Multi Size Action¿¡ »ç¿ëµÇ´Â Index
-	RwReal				m_fMultiSizeDeltaTime;	  ///< Multi Size Action¿¡ »ç¿ëµÇ´Â Time
+	RwReal				m_fPrevSize;			  ///< Multi Size Actionì— ì‚¬ìš©ë˜ëŠ” ì´ì „ì˜ Size
+	RwUInt32			m_nNextSizeIndex;		  ///< Multi Size Actionì— ì‚¬ìš©ë˜ëŠ” Index
+	RwReal				m_fMultiSizeDeltaTime;	  ///< Multi Size Actionì— ì‚¬ìš©ë˜ëŠ” Time
 
-	RpPrtAdvPrtMultiColorEmitter	m_EmitterPrtMultiCol;		///< Multi Color Action Á¤º¸¸¦ ´ã°í ÀÖ´Â ±¸Á¶Ã¼
-	RpPrtAdvEmtPrtMultiTextures		m_EmitterMultiTextures;		///< Multi Texture Action Á¤º¸ ±¸Á¶Ã¼
-	SNtlAdvMultiSizeEmitter			m_EmitterPrtMultiSize;		///< Multi Size Action Á¤º¸ ±¸Á¶Ã¼
-	SNtlPrtStdEmitterPrtUVAnim		m_EmitterPrtUVAnim;			///< UV Anim Action Á¤º¸ ±¸Á¶Ã¼
+	RpPrtAdvPrtMultiColorEmitter	m_EmitterPrtMultiCol;		///< Multi Color Action ì •ë³´ë¥¼ ë‹´ê³  ìˆëŠ” êµ¬ì¡°ì²´
+	RpPrtAdvEmtPrtMultiTextures		m_EmitterMultiTextures;		///< Multi Texture Action ì •ë³´ êµ¬ì¡°ì²´
+	SNtlAdvMultiSizeEmitter			m_EmitterPrtMultiSize;		///< Multi Size Action ì •ë³´ êµ¬ì¡°ì²´
+	SNtlPrtStdEmitterPrtUVAnim		m_EmitterPrtUVAnim;			///< UV Anim Action ì •ë³´ êµ¬ì¡°ì²´
 
-	EFadeStatus			m_eFadeStatus;			  ///< Fade »óÅÂ º¯¼ö (ÁöÇü DecalÀÎ °æ¿ì¿¡¸¸ »ç¿ëµÈ´Ù)
-	RwInt32 			m_uiFadeAlpha;			  ///< Fade½Ã »ç¿ëµÇ´Â Alpha 
+	EFadeStatus			m_eFadeStatus;			  ///< Fade ìƒíƒœ ë³€ìˆ˜ (ì§€í˜• Decalì¸ ê²½ìš°ì—ë§Œ ì‚¬ìš©ëœë‹¤)
+	RwInt32 			m_uiFadeAlpha;			  ///< Fadeì‹œ ì‚¬ìš©ë˜ëŠ” Alpha 
 	RwReal				m_fFadeGap;
 
-    RwUInt32            m_uiMemoryUseSize;        ///< ¸Ş¸ğ¸® »ç¿ë·®
+    RwUInt32            m_uiMemoryUseSize;        ///< ë©”ëª¨ë¦¬ ì‚¬ìš©ëŸ‰
 
 	static const RwReal		m_cfFadeTime;
 };

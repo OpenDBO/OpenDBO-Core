@@ -1,11 +1,11 @@
 /*****************************************************************************
 * File			: DboPackethandler_TU.cpp
 * Author		: Hong sungbock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 1. 16
 * Abstract		: 
 *****************************************************************************
-* Desc         : Ä¿¹Â´ÏÆ¼ ¼­¹ö ÆĞÅ¶ ÇÚµé
+* Desc         : ì»¤ë®¤ë‹ˆí‹° ì„œë²„ íŒ¨í‚· í•¸ë“¤
 *****************************************************************************/
 
 #include "precomp_dboclient.h"
@@ -40,8 +40,8 @@ void PacketHandler_TSChatEnterRes(void *pPacket)
 
 void PacketHandler_TSChatDisconnectNfy(void *pPacket)
 {
-	// Ä¿¹Â´ÏÆ¼ ¼­¹ö ²÷°åÀ» ¶§´Â ¾Æ¹«·± Ã³¸®¸¦ ÇÏÁö ¾Ê±â·Î ÇÏ¿´´Ù.
-	// ±æµå, ÃµÇÏÁ¦ÀÏ¹«µµÈ¸, Ã¤ÆÃ µîÀÇ Á¦¾à»çÇ×ÀÌ »ı±ä´Ù
+	// ì»¤ë®¤ë‹ˆí‹° ì„œë²„ ëŠê²¼ì„ ë•ŒëŠ” ì•„ë¬´ëŸ° ì²˜ë¦¬ë¥¼ í•˜ì§€ ì•Šê¸°ë¡œ í•˜ì˜€ë‹¤.
+	// ê¸¸ë“œ, ì²œí•˜ì œì¼ë¬´ë„íšŒ, ì±„íŒ… ë“±ì˜ ì œì•½ì‚¬í•­ì´ ìƒê¸´ë‹¤
 	//sTU_DISCONNECTED_NFY* pEnterRes = (sTU_DISCONNECTED_NFY*)pPacket; 
 
 	SConnectData* pConnectData = GetDboGlobal()->GetConnectData();
@@ -52,7 +52,7 @@ void PacketHandler_TSChatMsgSay(void *pPacket)
 {
     sTU_CHAT_MESSAGE_SAY *pMsgSay = (sTU_CHAT_MESSAGE_SAY*)pPacket;
     
-    // ºí·¢¸®½ºÆ®(Â÷´Ü) Ã¼Å© 
+    // ë¸”ë™ë¦¬ìŠ¤íŠ¸(ì°¨ë‹¨) ì²´í¬ 
     if(GetNtlSLGlobal()->GetSobAvatar()->GetBlackList()->GetMemberbyName(pMsgSay->awchSenderCharName))
         return;
 
@@ -63,7 +63,7 @@ void PacketHandler_TSChatMsgShout(void *pPacket)
 {
 	sTU_CHAT_MESSAGE_SHOUT *pMsgShout = (sTU_CHAT_MESSAGE_SHOUT*)pPacket;
 
-    // ºí·¢¸®½ºÆ®(Â÷´Ü) Ã¼Å© 
+    // ë¸”ë™ë¦¬ìŠ¤íŠ¸(ì°¨ë‹¨) ì²´í¬ 
     if(GetNtlSLGlobal()->GetSobAvatar()->GetBlackList()->GetMemberbyName(pMsgShout->awchSenderCharName))
         return;
 
@@ -98,7 +98,7 @@ void PacketHandler_TSChatMsgParty(void *pPacket)
 {
 	sTU_CHAT_MESSAGE_PARTY *pMsgParty = (sTU_CHAT_MESSAGE_PARTY*)pPacket;
 
-    // ºí·¢¸®½ºÆ®(Â÷´Ü) Ã¼Å© 
+    // ë¸”ë™ë¦¬ìŠ¤íŠ¸(ì°¨ë‹¨) ì²´í¬ 
     if(GetNtlSLGlobal()->GetSobAvatar()->GetBlackList()->GetMemberbyName(pMsgParty->awchSenderCharName))
         return;
 
@@ -112,7 +112,7 @@ void PacketHandler_TSChatMsgGuild(void *pPacket)
 {
 	sTU_CHAT_MESSAGE_GUILD *pMsgGuild = (sTU_CHAT_MESSAGE_GUILD*)pPacket;
 
-    // ºí·¢¸®½ºÆ®(Â÷´Ü) Ã¼Å© 
+    // ë¸”ë™ë¦¬ìŠ¤íŠ¸(ì°¨ë‹¨) ì²´í¬ 
     if(GetNtlSLGlobal()->GetSobAvatar()->GetBlackList()->GetMemberbyName(pMsgGuild->wszSenderCharName))
         return;
 
@@ -149,7 +149,7 @@ void PacketHandler_TSPetitionUserInsertRes(void *pPacket)
 	API_GetSLPacketLockManager()->Unlock(TU_PETITION_USER_INSERT_RES);
 	CDboEventGenerator::PetitionEvent(PETITON_ENABLE_PETITON_GUI);
 
-	// À¯Àú°¡ º¸³½ ÁøÁ¤ÀÌ Á¢¼ö ‰ç´ÂÁö ¿©ºÎ
+	// ìœ ì €ê°€ ë³´ë‚¸ ì§„ì •ì´ ì ‘ìˆ˜ ë¬ëŠ”ì§€ ì—¬ë¶€
 	sTU_PETITION_USER_INSERT_RES* pResult = (sTU_PETITION_USER_INSERT_RES*)pPacket;
 
 	if( pResult->wResultCode != CHAT_SUCCESS )
@@ -168,7 +168,7 @@ void PacketHandler_TSPetitionModifyRes(void *pPacket)
 	API_GetSLPacketLockManager()->Unlock(TU_PETITION_CONTENT_MODIFY_RES);
 	CDboEventGenerator::PetitionEvent(PETITON_ENABLE_PETITON_GUI);
 
-	// ÀÌ¹Ì º¸³½ ÁøÁ¤ÀÇ ¼öÁ¤ °á°ú
+	// ì´ë¯¸ ë³´ë‚¸ ì§„ì •ì˜ ìˆ˜ì • ê²°ê³¼
 	sTU_PETITION_CONTENT_MODIFY_RES* pResult = (sTU_PETITION_CONTENT_MODIFY_RES*)pPacket;
 
 	if( pResult->wResultCode != CHAT_SUCCESS )
@@ -185,7 +185,7 @@ void PacketHandler_TSPetitionUserCancelRes(void *pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock(TU_PETITION_USER_CANCEL_RES);
 
-	// ÁøÁ¤ Ãë¼Ò
+	// ì§„ì • ì·¨ì†Œ
 	sTU_PETITION_USER_CANCEL_RES* pResult = (sTU_PETITION_USER_CANCEL_RES*)pPacket;
 
 	if( pResult->wResultCode != CHAT_SUCCESS )
@@ -212,7 +212,7 @@ void PacketHandler_TSPetitionFinishNfy(void *pPacket)
 
 void PacketHandler_TSPetitionChatStartReq(void *pPacket)
 {
-	// GMÀ¸·Î ºÎÅÍ GM Ã¤ÆÃ ¿äÃ»À» ¹Ş¾Ò´Ù.
+	// GMìœ¼ë¡œ ë¶€í„° GM ì±„íŒ… ìš”ì²­ì„ ë°›ì•˜ë‹¤.
 	sTU_PETITION_CHAT_START_REQ* pResult = (sTU_PETITION_CHAT_START_REQ*)pPacket;
 	
 	GetPetitionManager()->StartGMChatting(pResult->petitionID, pResult->gmAccountID, pResult->awchGMCharName_Consult, pResult->bNeedSatisfactionRate);
@@ -221,19 +221,19 @@ void PacketHandler_TSPetitionChatStartReq(void *pPacket)
 
 void PacketHandler_TSPetitionChatGMSayReq(void *pPacket)
 {
-	// GMÀ¸·Î ºÎÅÍ GM Ã¤ÆÃ ¸Ş¼¼Áö¸¦ ¹Ş¾Ò´Ù
+	// GMìœ¼ë¡œ ë¶€í„° GM ì±„íŒ… ë©”ì„¸ì§€ë¥¼ ë°›ì•˜ë‹¤
 	sTU_PETITION_CHAT_GM_SAY_REQ* pResult = (sTU_PETITION_CHAT_GM_SAY_REQ*)pPacket;
 
 	if( GetPetitionManager()->GetChattingGMID() == INVALID_ACCOUNTID )
 	{
-		// TU_PETITION_CHAT_START_REQÆĞÅ¶À» À¯Àú°¡ ¾ÆÁ÷ ¹ŞÁö ¾Ê¾Ò´Ù
+		// TU_PETITION_CHAT_START_REQíŒ¨í‚·ì„ ìœ ì €ê°€ ì•„ì§ ë°›ì§€ ì•Šì•˜ë‹¤
 		GetDboGlobal()->GetChatPacketGenerator()->SendPetitionChatGMSayRes(PETITION_NOT_STARTED_CLEINT_GM_CHAT, pResult->gmAccountID);
 		return;
 	}
 
 	if( GetPetitionManager()->GetChattingGMID() != pResult->gmAccountID )
 	{
-		// ÀÌ¹Ì Ã¤ÆÃÁßÀÎ GMÀÇ ID°¡ ¾Æ´Ï´Ù
+		// ì´ë¯¸ ì±„íŒ…ì¤‘ì¸ GMì˜ IDê°€ ì•„ë‹ˆë‹¤
 		GetDboGlobal()->GetChatPacketGenerator()->SendPetitionChatGMSayRes(PETITION_DIFFERENT_CHAATING_GM_ID, pResult->gmAccountID);
 		return;
 	}
@@ -249,7 +249,7 @@ void PacketHandler_TSPetitionChatGMSayReq(void *pPacket)
 
 void PacketHandler_TSPetitionChatUserSayRes(void *pPacket)
 {
-	// GM¿¡°Ô º¸³½ ÀÚ½ÅÀÇ ¸Ş¼¼ÁöÀÇ °á°ú
+	// GMì—ê²Œ ë³´ë‚¸ ìì‹ ì˜ ë©”ì„¸ì§€ì˜ ê²°ê³¼
 	sTU_PETITION_CHAT_USER_SAY_RES* pResult = (sTU_PETITION_CHAT_USER_SAY_RES*)pPacket;
 
 	if( pResult->wResultCode != CHAT_SUCCESS )
@@ -261,7 +261,7 @@ void PacketHandler_TSPetitionChatUserSayRes(void *pPacket)
 
 void PacketHandler_TSPetitionChatGMEndNfy(void *pPacket)
 {
-	// GMÀÌ GM Ã¤ÆÃÀ» Á¾·áÇÏ¿´´Ù
+	// GMì´ GM ì±„íŒ…ì„ ì¢…ë£Œí•˜ì˜€ë‹¤
 	//sTU_PETITION_CHAT_GM_END_NFY* pResult = (sTU_PETITION_CHAT_GM_END_NFY*)pPacket;
 
 	CDboEventGenerator::PetitionEvent(PETITON_CHATTING_END);

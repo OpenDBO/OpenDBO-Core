@@ -122,7 +122,7 @@ CWorldEditorEventHander::CWorldEditorEventHander(RwInt32 WindowWith, RwInt32 Win
 	m_pBrushSelectionSub	= NULL;
 	m_pBrush2D				= NULL;
 
-	// ¹Î¼®¼±¹è ¿äÃ»À¸·Î ±âº»°ªÀ» 0.5f -> 1.0f ·Î º¯°æ.
+	// ë¯¼ì„ì„ ë°° ìš”ì²­ìœ¼ë¡œ ê¸°ë³¸ê°’ì„ 0.5f -> 1.0f ë¡œ ë³€ê²½.
 
 	//m_fObjMovementSensitivity	= 0.5f;
 	m_fObjMovementSensitivity	= 1.0f;
@@ -1451,7 +1451,7 @@ void CWorldEditorEventHander::UpdateDepthMap()
 {
 	CNtlWorldFieldManager *pMgr = dGETMGR();
 
-	// delete the existing "â©" ui entities
+	// delete the existing "æ°´" ui entities
 	if(m_vecSelectedWaterObj.size())
 	{
 		for(unsigned int p = 0; p < m_vecSelectedWaterObj.size(); ++p)

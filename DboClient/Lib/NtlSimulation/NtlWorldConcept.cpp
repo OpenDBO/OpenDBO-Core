@@ -386,17 +386,17 @@ void CNtlWorldConcept::SetHaveTutorialWorldConcept( RwBool bHave )
 
 void CNtlWorldConcept::HandleEvents(RWS::CMsg &pMsg)
 {
-	// DBCÀÇ Night Effect¸¦ Àû¿ëÇÑ´Ù.
+	// DBCì˜ Night Effectë¥¼ ì ìš©í•œë‹¤.
 	if(pMsg.Id == g_EventNightEffect)
 	{
 		SNtlEventNightEffect* pNightEffect = reinterpret_cast<SNtlEventNightEffect*>(pMsg.pData);
-		if(pNightEffect->bOn && !m_bIsNightOn)      // ÇöÀç Night »óÅÂ°¡ ¾Æ´Ñ °æ¿ì¿¡¸¸ È£ÃâµÈ´Ù
+		if(pNightEffect->bOn && !m_bIsNightOn)      // í˜„ì¬ Night ìƒíƒœê°€ ì•„ë‹Œ ê²½ìš°ì—ë§Œ í˜¸ì¶œëœë‹¤
 		{
 			GetSceneManager()->GetWorld()->OnDragonSkyAppearence(TRUE);
-			LuaExec_DragonDNEnter();		// lua script È£Ãâ		
+			LuaExec_DragonDNEnter();		// lua script í˜¸ì¶œ		
             m_bIsNightOn = TRUE;
 		}
-		else if(!pNightEffect->bOn && m_bIsNightOn) // ÇöÀç Night »óÅÂ°¡ ¾Æ´Ñ °æ¿ì¿¡´Â È£ÃâµÇÁö ¾Ê´Â´Ù.
+		else if(!pNightEffect->bOn && m_bIsNightOn) // í˜„ì¬ Night ìƒíƒœê°€ ì•„ë‹Œ ê²½ìš°ì—ëŠ” í˜¸ì¶œë˜ì§€ ì•ŠëŠ”ë‹¤.
 		{
 			GetSceneManager()->GetWorld()->OnDragonSkyAppearence(FALSE);		
 			GetDnController()->AddDNNodeCurrentStart(0.0f, 3.0f, 0);		
@@ -478,10 +478,10 @@ RwBool CNtlWorldConcept::CanUseSkill(RwUInt32 hSerialID, RwUInt32& uiResultCode)
 
 
 /**
- * ¾Æ¹ÙÅ¸ÀÇ Å¸°ÙÀÌ ÀûÀÎÁö ÆÄ¾ÇÇÑ´Ù. (ÀûÀº Mob°ú PVP »ó´ëÀÌ´Ù)
- * \param pActor Å¸°Ù Actor °´Ã¼ÀÇ Æ÷ÀÎÅÍ
- * \param hTargetSerial Å¸°Ù Actor °´Ã¼ÀÇ Serial ID
- * return Å¸°ÙÀÌ ÀûÀÎ¸é True¸¦ ¹İÈ¯ÇÏ°í, ¾Æ´Ï¸é False¸¦ ¹İÈ¯ÇÑ´Ù.
+ * ì•„ë°”íƒ€ì˜ íƒ€ê²Ÿì´ ì ì¸ì§€ íŒŒì•…í•œë‹¤. (ì ì€ Mobê³¼ PVP ìƒëŒ€ì´ë‹¤)
+ * \param pActor íƒ€ê²Ÿ Actor ê°ì²´ì˜ í¬ì¸í„°
+ * \param hTargetSerial íƒ€ê²Ÿ Actor ê°ì²´ì˜ Serial ID
+ * return íƒ€ê²Ÿì´ ì ì¸ë©´ Trueë¥¼ ë°˜í™˜í•˜ê³ , ì•„ë‹ˆë©´ Falseë¥¼ ë°˜í™˜í•œë‹¤.
  */
 RwBool CNtlWorldConcept::IsEnemyTargetFromAvatarActor(CNtlSobActor *pActor, SERIAL_HANDLE hTargetSerial)
 {
@@ -504,9 +504,9 @@ RwBool CNtlWorldConcept::IsEnemyTargetFromAvatarActor(CNtlSobActor* pActor, CNtl
 
 	RwUInt32 uiTargetClassId = pSobObj->GetClassID();
 
-	if (uiTargetClassId == SLCLASS_MONSTER)					// Å¸°ÙÀÌ ¸÷ÀÌ¶ó¸é ¹«Á¶°Ç TRUE
+	if (uiTargetClassId == SLCLASS_MONSTER)					// íƒ€ê²Ÿì´ ëª¹ì´ë¼ë©´ ë¬´ì¡°ê±´ TRUE
 		return TRUE;
-	else if (uiTargetClassId == SLCLASS_PLAYER)				// Å¸°ÙÀÌ Player¶ó¸é PVP»óÅÂÀÇ Å¸°Ù¸¸ÀÌ ÀûÀÌµÈ´Ù.
+	else if (uiTargetClassId == SLCLASS_PLAYER)				// íƒ€ê²Ÿì´ Playerë¼ë©´ PVPìƒíƒœì˜ íƒ€ê²Ÿë§Œì´ ì ì´ëœë‹¤.
 	{
 		if (IsActivePlayConcept(WORLD_PLAY_FREEPVP_ZONE))
 		{
@@ -594,7 +594,7 @@ RwBool CNtlWorldConcept::IsEnemyTargetFromAvatarActor(CNtlSobActor* pActor, CNtl
 				return FALSE;
 		}
 	}
-	else if (uiTargetClassId == SLCLASS_PET)					// Å¸°ÙÀÌ PetÀÌ°í, PVP»óÅÂÀÇ ÀûÀÌ petÀÇ ÁÖÀÎÀÎ°æ¿ì¿¡¸¸ ÀûÀÌ µÈ´Ù.
+	else if (uiTargetClassId == SLCLASS_PET)					// íƒ€ê²Ÿì´ Petì´ê³ , PVPìƒíƒœì˜ ì ì´ petì˜ ì£¼ì¸ì¸ê²½ìš°ì—ë§Œ ì ì´ ëœë‹¤.
 	{
 		SERIAL_HANDLE hTargetOwnerSerial = pSobObj->GetOwnerID();
 

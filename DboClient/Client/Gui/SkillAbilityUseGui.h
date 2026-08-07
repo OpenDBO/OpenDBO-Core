@@ -2,7 +2,7 @@
 *
 * File			: SkillAbilityUseGui.h
 * Author		: Cho HaeSung
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2008. 11. 17
 * Abstract		: DBO Skill Ability Use
 *****************************************************************************

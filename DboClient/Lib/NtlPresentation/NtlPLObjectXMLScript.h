@@ -11,7 +11,7 @@
 
 /**
  * \ingroup NtlPresentation
- * \brief ¿ÀºêÁ§Æ® ½ºÅ©¸³Æ®(XML)À» Save/Load ÇÏ´Â Å¬·¡½º
+ * \brief ì˜¤ë¸Œì íŠ¸ ìŠ¤í¬ë¦½íŠ¸(XML)ì„ Save/Load í•˜ëŠ” í´ë˜ìŠ¤
  * \date 2006-06-07
  * \author agebreak
  */
@@ -21,19 +21,19 @@ public:
     CNtlPLObjectXMLScript(void);
     virtual ~CNtlPLObjectXMLScript(void);
 
-    RwBool SaveObjectScript(const char* strFileName, CNtlPLObjectProperty* pProperty);      ///< ½ºÅ©¸³Æ® ÆÄÀÏÀ» ÀúÀåÇÑ´Ù.
-    RwBool LoadObjectScript(const char* strFileName, CNtlPLObjectProperty* pProperty);      ///< ½ºÅ©¸³Æ® ÆÄÀÏÀ» ·ÎµåÇÑ´Ù.
+    RwBool SaveObjectScript(const char* strFileName, CNtlPLObjectProperty* pProperty);      ///< ìŠ¤í¬ë¦½íŠ¸ íŒŒì¼ì„ ì €ì¥í•œë‹¤.
+    RwBool LoadObjectScript(const char* strFileName, CNtlPLObjectProperty* pProperty);      ///< ìŠ¤í¬ë¦½íŠ¸ íŒŒì¼ì„ ë¡œë“œí•œë‹¤.
 
 protected:    
-    RwBool SaveHeader(CNtlPLObjectProperty* pProperty);             ///< Çì´õ ºÎºĞÀ» ÀúÀåÇÑ´Ù.
-    RwBool SaveBody(CNtlPLObjectProperty* pProperty);               ///< ¹Ùµğ ºÎºĞÀ» ÀúÀåÇÑ´Ù.
-    RwBool SaveLinkEffect(CNtlPLObjectProperty* pProperty);		    ///< Link Effect Data ºÎºĞÀ» ÀúÀåÇÑ´Ù.
-	RwBool SaveAnimTable(CNtlPLObjectProperty* pProperty);       ///< AnimTable ºÎºĞÀ» ÀúÀåÇÑ´Ù.      
+    RwBool SaveHeader(CNtlPLObjectProperty* pProperty);             ///< í—¤ë” ë¶€ë¶„ì„ ì €ì¥í•œë‹¤.
+    RwBool SaveBody(CNtlPLObjectProperty* pProperty);               ///< ë°”ë”” ë¶€ë¶„ì„ ì €ì¥í•œë‹¤.
+    RwBool SaveLinkEffect(CNtlPLObjectProperty* pProperty);		    ///< Link Effect Data ë¶€ë¶„ì„ ì €ì¥í•œë‹¤.
+	RwBool SaveAnimTable(CNtlPLObjectProperty* pProperty);       ///< AnimTable ë¶€ë¶„ì„ ì €ì¥í•œë‹¤.      
 
-    RwBool LoadHeader(CNtlPLObjectProperty* pProperty);             ///< Çì´õ ºÎºĞÀ» ·ÎµåÇÑ´Ù.
-    RwBool LoadBody(CNtlPLObjectProperty* pProperty);               ///< Çì´õ ºÎºĞÀ» ·ÎµåÇÑ´Ù.
-    RwBool LoadLinkEffect(CNtlPLObjectProperty* pProperty);         ///< Link Effect Data ºÎºĞÀ» ·ÎµåÇÑ´Ù.
-	RwBool LoadAnimTable(CNtlPLObjectProperty* pProperty);                     ///< AnimTable  ºÎºĞÀ» ·ÎµåÇÑ´Ù.
+    RwBool LoadHeader(CNtlPLObjectProperty* pProperty);             ///< í—¤ë” ë¶€ë¶„ì„ ë¡œë“œí•œë‹¤.
+    RwBool LoadBody(CNtlPLObjectProperty* pProperty);               ///< í—¤ë” ë¶€ë¶„ì„ ë¡œë“œí•œë‹¤.
+    RwBool LoadLinkEffect(CNtlPLObjectProperty* pProperty);         ///< Link Effect Data ë¶€ë¶„ì„ ë¡œë“œí•œë‹¤.
+	RwBool LoadAnimTable(CNtlPLObjectProperty* pProperty);                     ///< AnimTable  ë¶€ë¶„ì„ ë¡œë“œí•œë‹¤.
 
 protected:
     IXMLDOMElement*     m_pElemRoot;                ///< Root Element

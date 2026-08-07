@@ -270,9 +270,14 @@ RwBool CNtlPLShoreLineProp::LoadUVSingleShoreLineContainer(CNtlXMLDoc *pDoc, IXM
 	else
 	{
 		pUVSingleSLC->m_pTex = CNtlPLResourceManager::GetInstance()->LoadTexture(TempBuf, ".\\texture\\ntlwe\\ShoreLine\\");
-		DBO_ASSERT(pUVSingleSLC->m_pTex, "Texture load failed.");
-
-		RwTextureSetAddressing(pUVSingleSLC->m_pTex, rwTEXTUREADDRESSCLAMP);
+		if (pUVSingleSLC->m_pTex == NULL)
+		{
+			DBO_WARNING_MESSAGE("Texture load failed (non-fatal): " << TempBuf);
+		}
+		else
+		{
+			RwTextureSetAddressing(pUVSingleSLC->m_pTex, rwTEXTUREADDRESSCLAMP);
+		}
 	}
 
 	m_vecUVSingleSLC.push_back(pUVSingleSLC);
@@ -353,9 +358,11 @@ RwBool CNtlPLShoreLineProp::LoadUVDualShoreLineContainer(CNtlXMLDoc *pDoc, IXMLD
 	else
 	{
 		pUVDualSLC->m_pTex[0] = CNtlPLResourceManager::GetInstance()->LoadTexture(TempBuf, ".\\texture\\ntlwe\\ShoreLine\\");
-		DBO_ASSERT(pUVDualSLC->m_pTex[0], "Texture load failed.");
+		if (pUVDualSLC->m_pTex[0] == NULL)
+			DBO_WARNING_MESSAGE("Texture load failed (non-fatal): " << TempBuf);
 
-		RwTextureSetAddressing(pUVDualSLC->m_pTex[0], rwTEXTUREADDRESSCLAMP);
+		if (pUVDualSLC->m_pTex[0])
+			RwTextureSetAddressing(pUVDualSLC->m_pTex[0], rwTEXTUREADDRESSCLAMP);
 	}
 
 	if(!pDoc->GetTextWithAttributeName(pNode, "texname1", TempBuf, dSHORELINE_PROP_MAX_STRING_SIZE))
@@ -366,9 +373,11 @@ RwBool CNtlPLShoreLineProp::LoadUVDualShoreLineContainer(CNtlXMLDoc *pDoc, IXMLD
 	else
 	{
 		pUVDualSLC->m_pTex[1] = CNtlPLResourceManager::GetInstance()->LoadTexture(TempBuf, ".\\texture\\ntlwe\\ShoreLine\\");
-		DBO_ASSERT(pUVDualSLC->m_pTex[1], "Texture load failed.");
+		if (pUVDualSLC->m_pTex[1] == NULL)
+			DBO_WARNING_MESSAGE("Texture load failed (non-fatal): " << TempBuf);
 
-		RwTextureSetAddressing(pUVDualSLC->m_pTex[1], rwTEXTUREADDRESSCLAMP);
+		if (pUVDualSLC->m_pTex[1])
+			RwTextureSetAddressing(pUVDualSLC->m_pTex[1], rwTEXTUREADDRESSCLAMP);
 	}
 
 
@@ -445,9 +454,11 @@ RwBool CNtlPLShoreLineProp::LoadSequenceShoreLineContainer(CNtlXMLDoc *pDoc, IXM
 		::sprintf_s(FileName, 256, "%s%d", pSequenceSLC->m_TexName0, j);
 		
 		pSequenceSLC->m_ppTexPack[j] = CNtlPLResourceManager::GetInstance()->LoadTexture(FileName, strTexPath.c_str());
-		DBO_ASSERT(pSequenceSLC->m_ppTexPack[j], "Texture load failed.");
+		if (pSequenceSLC->m_ppTexPack[j] == NULL)
+			DBO_WARNING_MESSAGE("Texture load failed (non-fatal): " << FileName);
 
-		RwTextureSetAddressing(pSequenceSLC->m_ppTexPack[j], rwTEXTUREADDRESSCLAMP);
+		if (pSequenceSLC->m_ppTexPack[j])
+			RwTextureSetAddressing(pSequenceSLC->m_ppTexPack[j], rwTEXTUREADDRESSCLAMP);
 	}
 
 	m_vecSequenceSLC.push_back(pSequenceSLC);

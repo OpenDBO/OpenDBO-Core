@@ -55,8 +55,8 @@ void API_CoreUpdate(RwReal fElapsed)
 
 /**
 * \ingroup NtlCore
-* System ÀÇ Window Mode °¡ Window <-> FullScreenÀ¸·Î Åä±ÛµÉ ¶§ event¸¦ º¸³½´Ù.
-* screenmode°¡ º¯°æµÉ ¶§ ÀÛ¾÷ÀÌ ÇÊ¿äÇÑ core º¸´Ù »óÀ§ ·¹ÀÌ¾îÀÇ ÀÛ¾÷Àº g_EventToggleFullScreenÀ» ¹Ş¾Æ¼­ Ã³¸®ÇÑ´Ù.
+* System ì˜ Window Mode ê°€ Window <-> FullScreenìœ¼ë¡œ í† ê¸€ë  ë•Œ eventë¥¼ ë³´ë‚¸ë‹¤.
+* screenmodeê°€ ë³€ê²½ë  ë•Œ ì‘ì—…ì´ í•„ìš”í•œ core ë³´ë‹¤ ìƒìœ„ ë ˆì´ì–´ì˜ ì‘ì—…ì€ g_EventToggleFullScreenì„ ë°›ì•„ì„œ ì²˜ë¦¬í•œë‹¤.
 */
 void API_CoreToggleFullScreenNotify(bool bFullScreen)
 {

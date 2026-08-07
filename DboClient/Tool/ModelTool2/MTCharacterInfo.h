@@ -20,7 +20,7 @@ typedef std::map<RpMaterial*, RpAtomic*>::iterator      MATERIAL_ATOMIC_MAP_ITER
 
 /**
  * \ingroup ModelTool
- * \brief Clump(Ä³¸¯ÅÍ) °ü·Ã Á¤º¸¸¦ °ü¸®ÇÏ´Â Å¬·¡½º 
+ * \brief Clump(ìºë¦­í„°) ê´€ë ¨ ì •ë³´ë¥¼ ê´€ë¦¬í•˜ëŠ” í´ë˜ìŠ¤ 
  * \date 2006-04-10
  * \author agebreak
  */
@@ -29,92 +29,92 @@ class CMTClump
 public:
 	CMTClump(void);
 	virtual ~CMTClump(void);
-    static void CreateCartoon();                                 ///< Toon °´Ã¼¸¦ »ı¼ºÇÑ´Ù
-    static void DestroyCartoon();                                ///< Cartoon °´Ã¼¸¦ ÇØÁ¦ÇÑ´Ù.
-    static void SetToonThickness(RwReal fThickness);             ///< Toon Thickness¸¦ ¼³Á¤ÇÑ´Ù.
-    static void SetToonInkColor(RwRGBA color);                   ///< Toon InkÀÇ Color¸¦ ¼³Á¤ÇÑ´Ù
+    static void CreateCartoon();                                 ///< Toon ê°ì²´ë¥¼ ìƒì„±í•œë‹¤
+    static void DestroyCartoon();                                ///< Cartoon ê°ì²´ë¥¼ í•´ì œí•œë‹¤.
+    static void SetToonThickness(RwReal fThickness);             ///< Toon Thicknessë¥¼ ì„¤ì •í•œë‹¤.
+    static void SetToonInkColor(RwRGBA color);                   ///< Toon Inkì˜ Colorë¥¼ ì„¤ì •í•œë‹¤
 	static SToonData* GetToonData() {return &m_ToonData;}		 
 
 public:
-    RwBool      Load(RwChar* szFileName);                        ///< Clump ÆÄÀÏÀ» LoadÇÑ´Ù,
-    RwBool      Save(RwChar* szFileName);                        ///< Clump ÆÄÀÏÀ» SaveÇÑ´Ù.
-	RwBool		Create(RpClump* pClump, RwChar* szClumpName);    ///< Å×ÀÌºí ³»¿ëÀ» »ı¼ºÇÑ´Ù.
-	void		Destroy();								         ///< ³»¿ëÀ» ÇØÁ¦ÇÑ´Ù.
+    RwBool      Load(RwChar* szFileName);                        ///< Clump íŒŒì¼ì„ Loadí•œë‹¤,
+    RwBool      Save(RwChar* szFileName);                        ///< Clump íŒŒì¼ì„ Saveí•œë‹¤.
+	RwBool		Create(RpClump* pClump, RwChar* szClumpName);    ///< í…Œì´ë¸” ë‚´ìš©ì„ ìƒì„±í•œë‹¤.
+	void		Destroy();								         ///< ë‚´ìš©ì„ í•´ì œí•œë‹¤.
 
-	RwFrame*	GetFrameByName(RwChar* chFrameName);	         ///< Æ¯Á¤ FrameÀ» ¹İÈ¯ÇÑ´Ù.
-    RwBBox      GetDefaultBBox()  {return m_bboxCharacter;};     ///< Ä³¸¯ÅÍÀÇ Default BBox¸¦ ¹İÈ¯ÇÑ´Ù.
+	RwFrame*	GetFrameByName(RwChar* chFrameName);	         ///< íŠ¹ì • Frameì„ ë°˜í™˜í•œë‹¤.
+    RwBBox      GetDefaultBBox()  {return m_bboxCharacter;};     ///< ìºë¦­í„°ì˜ Default BBoxë¥¼ ë°˜í™˜í•œë‹¤.
 
-    // Clump °ü·Ã ¸Ş¼­µå
-    RpClump*    GetClump() {return m_pClump;}                                   ///< RpClump °´Ã¼¸¦ ¹İÈ¯ÇÑ´Ù.
-    const char* GetClumpName() {return m_strClumpName;}                         ///< ClumpÀÇ PathNameÀ» ¹İÈ¯ÇÑ´Ù.
-    void        SetVisible(RwBool bVisible);                                    ///< ClumpÀÇ ·»´õ¸µ À¯¹«¸¦ ¼³Á¤ÇÑ´Ù.
-    void        SetCartoon();                                                   ///< Toon ·»´õ¸µÀ» Àû¿ëÇÑ´Ù.
-    void        SetViewEdge(RwBool bVisible);                                   ///< Toon EdgeÀÇ On/Off¸¦ ¼³Á¤ÇÑ´Ù    
+    // Clump ê´€ë ¨ ë©”ì„œë“œ
+    RpClump*    GetClump() {return m_pClump;}                                   ///< RpClump ê°ì²´ë¥¼ ë°˜í™˜í•œë‹¤.
+    const char* GetClumpName() {return m_strClumpName;}                         ///< Clumpì˜ PathNameì„ ë°˜í™˜í•œë‹¤.
+    void        SetVisible(RwBool bVisible);                                    ///< Clumpì˜ ë Œë”ë§ ìœ ë¬´ë¥¼ ì„¤ì •í•œë‹¤.
+    void        SetCartoon();                                                   ///< Toon ë Œë”ë§ì„ ì ìš©í•œë‹¤.
+    void        SetViewEdge(RwBool bVisible);                                   ///< Toon Edgeì˜ On/Offë¥¼ ì„¤ì •í•œë‹¤    
 
-    // Atomic °ü·Ã
-    RpAtomic*	GetAtomicByName(RwChar* chAtomicName);	                        ///< Æ¯Á¤ AtomicÀ» ¹İÈ¯ÇÑ´Ù.
-    RpAtomic*   GetAtomicByMaterial(RpMaterial* pMaterial);                     ///< ÇØ´ç MaterialÀ» °¡Áö°íÀÖ´Â AtomicÀ» ¹İÈ¯ÇÑ´Ù.
-    std::vector<char*>    GetAtomicNames();                                     ///< AtomicµéÀÇ ÀÌ¸§À» ¹İÈ¯ÇÑ´Ù.
-    RwBool	    RemoveAtomic(RwChar* chAtomicName);	                            ///< AtomicÀ» Clump¿¡¼­ Á¦°ÅÇÑ´Ù.
-    RwBool      CollisionDataBuild(RwChar* szAtomicName);                       ///< Collision Tree µ¥ÀÌÅÍ¸¦ BuildÇÑ´Ù.
-    void        SetAtomicFlag(ENtlAtomicFlag nFlagType, RwChar* szAtomicName, RwBool bEnable); ///< Atomic Flag¸¦ ¼³Á¤ÇÑ´Ù.    
+    // Atomic ê´€ë ¨
+    RpAtomic*	GetAtomicByName(RwChar* chAtomicName);	                        ///< íŠ¹ì • Atomicì„ ë°˜í™˜í•œë‹¤.
+    RpAtomic*   GetAtomicByMaterial(RpMaterial* pMaterial);                     ///< í•´ë‹¹ Materialì„ ê°€ì§€ê³ ìˆëŠ” Atomicì„ ë°˜í™˜í•œë‹¤.
+    std::vector<char*>    GetAtomicNames();                                     ///< Atomicë“¤ì˜ ì´ë¦„ì„ ë°˜í™˜í•œë‹¤.
+    RwBool	    RemoveAtomic(RwChar* chAtomicName);	                            ///< Atomicì„ Clumpì—ì„œ ì œê±°í•œë‹¤.
+    RwBool      CollisionDataBuild(RwChar* szAtomicName);                       ///< Collision Tree ë°ì´í„°ë¥¼ Buildí•œë‹¤.
+    void        SetAtomicFlag(ENtlAtomicFlag nFlagType, RwChar* szAtomicName, RwBool bEnable); ///< Atomic Flagë¥¼ ì„¤ì •í•œë‹¤.    
     void        SetAtomicFlag(ENtlAtomicFlag nFlag, RpAtomic* pAtomic, RwBool bEnable);
-	void		RenderWireFrame();												///< WireframeÀ» ·»´õ¸µÇÑ´Ù.
+	void		RenderWireFrame();												///< Wireframeì„ ë Œë”ë§í•œë‹¤.
     
 
-    // Material °ü·Ã
-    RpMaterial* GetMaterialByName(RwChar* chMaterialName);                      ///< Æ¯Á¤ MaterialÀ» ¹İÈ¯ÇÑ´Ù.
-    std::vector<char*>    GetMaterialNames();                                   ///< MaterialµéÀÇ ÀÌ¸§À» ¹İÈ¯ÇÑ´Ù    
-    void        SetMaterialColor(RwChar* chMaterialName, int r, int g, int b);  ///< Material¿¡ Color¸¦ Àû¿ëÇÑ´Ù.
-    RwBool      SetMultiTexture(RwChar* chMaterialName, RwChar* chTextureName, RwChar* chTexturePath); ///< Material¿¡ MultiTexture¸¦ Àû¿ëÇÑ´Ù.
+    // Material ê´€ë ¨
+    RpMaterial* GetMaterialByName(RwChar* chMaterialName);                      ///< íŠ¹ì • Materialì„ ë°˜í™˜í•œë‹¤.
+    std::vector<char*>    GetMaterialNames();                                   ///< Materialë“¤ì˜ ì´ë¦„ì„ ë°˜í™˜í•œë‹¤    
+    void        SetMaterialColor(RwChar* chMaterialName, int r, int g, int b);  ///< Materialì— Colorë¥¼ ì ìš©í•œë‹¤.
+    RwBool      SetMultiTexture(RwChar* chMaterialName, RwChar* chTextureName, RwChar* chTexturePath); ///< Materialì— MultiTextureë¥¼ ì ìš©í•œë‹¤.
     
-    // ¹Ù¿îµù ¹Ú½º °ü·Ã
-    void	    CreateBB(RwChar* chAtomicName);				                	///< ÇØ´ç AtomicÀÇ BB¸¦ »ı¼ºÇÑ´Ù.
-    void        ClearBB();								    	                ///< ¹Ù¿îµù ¹Ú½º Á¤º¸¸¦ ºñ¿î´Ù.
-    void        RenderAtomicBB();                                               ///< »ı¼ºÇÑ Atomic BB¸¦ ·»´õ¸µÇÑ´Ù.
-    void        RenderBB(RwBBox* pBBox, int r = 255, int g = 255, int b = 0);	///< ¹Ù¿îµù ¹Ú½º¸¦ ·»´õ¸µ ÇÑ´Ù.	
-    RwReal      GetMaxWidthHeight();                                            ///< ClumpÀÇ Width, HeightÁß Å«°ÍÀ» ¹İÈ¯ÇÑ´Ù.
+    // ë°”ìš´ë”© ë°•ìŠ¤ ê´€ë ¨
+    void	    CreateBB(RwChar* chAtomicName);				                	///< í•´ë‹¹ Atomicì˜ BBë¥¼ ìƒì„±í•œë‹¤.
+    void        ClearBB();								    	                ///< ë°”ìš´ë”© ë°•ìŠ¤ ì •ë³´ë¥¼ ë¹„ìš´ë‹¤.
+    void        RenderAtomicBB();                                               ///< ìƒì„±í•œ Atomic BBë¥¼ ë Œë”ë§í•œë‹¤.
+    void        RenderBB(RwBBox* pBBox, int r = 255, int g = 255, int b = 0);	///< ë°”ìš´ë”© ë°•ìŠ¤ë¥¼ ë Œë”ë§ í•œë‹¤.	
+    RwReal      GetMaxWidthHeight();                                            ///< Clumpì˜ Width, Heightì¤‘ í°ê²ƒì„ ë°˜í™˜í•œë‹¤.
 
-    // È­¸é¿¡ Ç¥½ÃÇÒ Á¤º¸ °ü·Ã
-    void        DisplayInfo(RtCharset* pCharSet);                               ///< Clump Á¤º¸¸¦ È­¸é»ó¿¡ Ç¥½ÃÇÑ´Ù.
+    // í™”ë©´ì— í‘œì‹œí•  ì •ë³´ ê´€ë ¨
+    void        DisplayInfo(RtCharset* pCharSet);                               ///< Clump ì •ë³´ë¥¼ í™”ë©´ìƒì— í‘œì‹œí•œë‹¤.
 
 protected:
-	void		SetClumpInfo();							///< Clump °ü·Ã Á¤º¸¸¦ Map¿¡ ¼¼ÆÃÇÑ´Ù.
-    void        UpdateHeightWidth();                    ///< ³ôÀÌ¿Í ³ĞÀÌ Á¤º¸¸¦ ¾÷µ¥ÀÌÆ® ÇÑ´Ù.
-    void        UpdateAtomicBB();                       ///< AtomicBBµéÀ» UpdateÇÑ´Ù.
+	void		SetClumpInfo();							///< Clump ê´€ë ¨ ì •ë³´ë¥¼ Mapì— ì„¸íŒ…í•œë‹¤.
+    void        UpdateHeightWidth();                    ///< ë†’ì´ì™€ ë„“ì´ ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸ í•œë‹¤.
+    void        UpdateAtomicBB();                       ///< AtomicBBë“¤ì„ Updateí•œë‹¤.
 
-    // CallBack ÇÔ¼öµé
-    static RpAtomic*	GetClumpAllAtomics(RpAtomic* pAtomic, void* pData);		///< Clump¿¡¼­ ¸ğµç AtomicÀ» °¡Á®¿Í ¼³Á¤ÇÏ´Â Äİ¹é ÇÔ¼ö
+    // CallBack í•¨ìˆ˜ë“¤
+    static RpAtomic*	GetClumpAllAtomics(RpAtomic* pAtomic, void* pData);		///< Clumpì—ì„œ ëª¨ë“  Atomicì„ ê°€ì ¸ì™€ ì„¤ì •í•˜ëŠ” ì½œë°± í•¨ìˆ˜
     static RwFrame*     GetChildFrame(RwFrame* pFrame, void* pData);
     static RpMaterial*  GetAllMaterials(RpMaterial* material, void* pData);
 
 
 public:
-	FRAME_TABLE_MAP		m_mapFrameTable;				///< Frame Å×ÀÌºí
-	MATERIAL_TABLE_MAP	m_mapMaterialtable;				///< Material Å×ÀÌºí
-	ATOMIC_TABLE_MAP	m_mapAtomicTable;				///< Atomic Å×ÀÌºí
-    MATERIAL_ATOMIC_MAP m_mapMaterialAtomicTable;       ///< Material - Atomic Å×ÀÌºí
+	FRAME_TABLE_MAP		m_mapFrameTable;				///< Frame í…Œì´ë¸”
+	MATERIAL_TABLE_MAP	m_mapMaterialtable;				///< Material í…Œì´ë¸”
+	ATOMIC_TABLE_MAP	m_mapAtomicTable;				///< Atomic í…Œì´ë¸”
+    MATERIAL_ATOMIC_MAP m_mapMaterialAtomicTable;       ///< Material - Atomic í…Œì´ë¸”
 
-    static RpAtomic*    m_pTempAtomic;                  ///< Material - Atomic MAPÀ» ¸¸µé±â À§ÇÑ ÀÓ½Ã Atomic Æ÷ÀÎÅÍ
+    static RpAtomic*    m_pTempAtomic;                  ///< Material - Atomic MAPì„ ë§Œë“¤ê¸° ìœ„í•œ ì„ì‹œ Atomic í¬ì¸í„°
 
 protected:
-    static SToonData    m_ToonData;                     ///< Toon¿¡ »ç¿ëµÉ °´Ã¼
-    RwChar              m_strClumpName[1024];           ///< ClumpÀÇ ÀÌ¸§
-	RpClump*			m_pClump;		    			///< Á¤º¸¸¦ ÀĞ¾î¿Ã Clump
-    CNtlPLResource*     m_pResourceClump;               ///< Clump Load »ç¿ëÇÒ Resource
+    static SToonData    m_ToonData;                     ///< Toonì— ì‚¬ìš©ë  ê°ì²´
+    RwChar              m_strClumpName[1024];           ///< Clumpì˜ ì´ë¦„
+	RpClump*			m_pClump;		    			///< ì •ë³´ë¥¼ ì½ì–´ì˜¬ Clump
+    CNtlPLResource*     m_pResourceClump;               ///< Clump Load ì‚¬ìš©í•  Resource
 
-    RwBool              m_bVisible;                     ///< È­¸é¿¡ ³ªÅ¸³ª´Â À¯¹«
-    std::vector<RwChar*>  m_vecBB;				        ///< ¹Ù¿îµù ¹Ú½º ¸®½ºÆ®        
+    RwBool              m_bVisible;                     ///< í™”ë©´ì— ë‚˜íƒ€ë‚˜ëŠ” ìœ ë¬´
+    std::vector<RwChar*>  m_vecBB;				        ///< ë°”ìš´ë”© ë°•ìŠ¤ ë¦¬ìŠ¤íŠ¸        
 
-    // È­¸é¿¡ Ç¥½ÃÇÒ Á¤º¸µé
-    static int          m_nTotalTriangels;              ///< ÀüÃ¼ Triangle °³¼ö
-    static int          m_nTotalVertices;               ///< ÀüÃ¼ Vertex °³¼ö
+    // í™”ë©´ì— í‘œì‹œí•  ì •ë³´ë“¤
+    static int          m_nTotalTriangels;              ///< ì „ì²´ Triangle ê°œìˆ˜
+    static int          m_nTotalVertices;               ///< ì „ì²´ Vertex ê°œìˆ˜
 
-    RwBBox              m_bboxCharacter;                ///< Ä³¸¯ÅÍÀÇ Default BBox
-    RwReal              m_fClumpHeight;                 ///< ClumpÀÇ ³ôÀÌ
-    RwReal              m_fClumpWidth;                  ///< ClumpÀÇ ÁÂ¿ì ³ĞÀÌ
-    RwReal              m_fClumpDepth;                  ///< ClumpÀÇ ¾ÕµÚ ³ĞÀÌ
+    RwBBox              m_bboxCharacter;                ///< ìºë¦­í„°ì˜ Default BBox
+    RwReal              m_fClumpHeight;                 ///< Clumpì˜ ë†’ì´
+    RwReal              m_fClumpWidth;                  ///< Clumpì˜ ì¢Œìš° ë„“ì´
+    RwReal              m_fClumpDepth;                  ///< Clumpì˜ ì•ë’¤ ë„“ì´
 
-    std::vector<RwTexture*> m_vMultiTexture;             ///< MultiTexture ¸®½ºÆ® (³ªÁß¿¡ ÇØÁ¦¸¦ À§ÇØ ÇÊ¿äÇÏ´Ù)
+    std::vector<RwTexture*> m_vMultiTexture;             ///< MultiTexture ë¦¬ìŠ¤íŠ¸ (ë‚˜ì¤‘ì— í•´ì œë¥¼ ìœ„í•´ í•„ìš”í•˜ë‹¤)
 
 };

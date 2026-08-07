@@ -1,4 +1,4 @@
-// MainMenuTreeCtrl.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// MainMenuTreeCtrl.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -24,7 +24,7 @@ BEGIN_MESSAGE_MAP(CMainMenuTreeCtrl, CTreeCtrl)
 END_MESSAGE_MAP()
 
 
-// CMainMenuTreeCtrl Áø´ÜÀÔ´Ï´Ù.
+// CMainMenuTreeCtrl ì§„ë‹¨ì…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CMainMenuTreeCtrl::AssertValid() const
@@ -152,11 +152,11 @@ void CMainMenuTreeCtrl::DelExceptionGroup( NTL_TS_TG_ID tgID )
 	}
 }
 
-// CMainMenuTreeCtrl ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CMainMenuTreeCtrl ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CMainMenuTreeCtrl::OnEraseBkgnd(CDC* pDC)
 {
-	// ¹è°æÀ» ´Ù½Ã ±×¸®Áö ¾Ê´Â´Ù
+	// ë°°ê²½ì„ ë‹¤ì‹œ ê·¸ë¦¬ì§€ ì•ŠëŠ”ë‹¤
 	return TRUE;
 }
 

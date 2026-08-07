@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: TMQBoard.h
 * Author		: Cho Hae sung
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 4. 13
 * Abstract		:  
 *****************************************************************************
-* Desc			: TMQÀÇ ¼øÀ§ °Ô½ÃÆÇ
+* Desc			: TMQì˜ ìˆœìœ„ ê²Œì‹œíŒ
 *****************************************************************************/
 
 #ifndef __TMQBOARD_H__
@@ -27,7 +27,7 @@ class CTMQBoard;
 
 /**
 * \ingroup client
-* \brief ÆÄÆ¼ ¸®½ºÆ® ¾ÆÀÌÅÛ
+* \brief íŒŒí‹° ë¦¬ìŠ¤íŠ¸ ì•„ì´í…œ
 */
 class CTMQPartyListItem
 {
@@ -66,7 +66,7 @@ protected:
 
 /**
 * \ingroup client
-* \brief TMQ Party Member ¸®½ºÆ®ÀÇ ¾ÆÀÌÅÛ
+* \brief TMQ Party Member ë¦¬ìŠ¤íŠ¸ì˜ ì•„ì´í…œ
 */
 class CTMQPartyMemberItem
 {
@@ -184,7 +184,7 @@ protected:
 	CTMQPartyListItem		m_itemPartyList[dRANKBOARD_TMQ_PARTYITEM_NUMS];
 	CTMQPartyMemberItem		m_itemPartyMember[dRANKBOARD_TMQ_PARTYMEMBERITEM_NUMS];
 
-	// ¼­¹ö¿¡¼­ ¹ŞÀº Á¤º¸¸¦ GUI¿¡¼­ °¡Áö°í ÀÖ±â À§ÇÏ¿© ÆĞÅ¶°ú ¶È°°Àº ±¸Á¶Ã¼¸¦ BOARD¿¡¼­ °¡Áö°í ÀÖ´Â´Ù.
+	// ì„œë²„ì—ì„œ ë°›ì€ ì •ë³´ë¥¼ GUIì—ì„œ ê°€ì§€ê³  ìˆê¸° ìœ„í•˜ì—¬ íŒ¨í‚·ê³¼ ë˜‘ê°™ì€ êµ¬ì¡°ì²´ë¥¼ BOARDì—ì„œ ê°€ì§€ê³  ìˆëŠ”ë‹¤.
 	RwUInt8							m_byTeamCount;
 	RwUInt8							m_byMemberCount;
 	sTIMEQUEST_TEAM_RANK_DATA		m_sTeamRankData[dRANKBOARD_TMQ_PARTYITEM_NUMS];

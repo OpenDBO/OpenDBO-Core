@@ -141,7 +141,7 @@ eLOAD_RESULT CNtlPLPalette::LoadPalette_forDeveloper()
 
 	XMLDoc.Create();
 
-	// NtlPresentation ·¹ÀÌ¾î¿¡ Palette.xml À» Ãß°¡ÇØ µÎ¾ú´Ù
+	// NtlPresentation ë ˆì´ì–´ì— Palette.xml ì„ ì¶”ê°€í•´ ë‘ì—ˆë‹¤
 	if( !XMLDoc.Load("Palette.xml") )
 		return LOAD_RESULT_FAIL_LOAD_FILE;
 

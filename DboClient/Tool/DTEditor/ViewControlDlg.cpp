@@ -1,4 +1,4 @@
-// ViewControlDlg.cpp : ���� �����Դϴ�.
+// ViewControlDlg.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -23,7 +23,7 @@
 #include "NtlSLLogic.h"
 
 
-// CViewControlDlg ��ȭ �����Դϴ�.
+// CViewControlDlg 대화 상자입니다.
 
 IMPLEMENT_DYNAMIC(CViewControlDlg, CDialog)
 
@@ -69,15 +69,15 @@ BEGIN_MESSAGE_MAP(CViewControlDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CViewControlDlg �޽��� ó�����Դϴ�.
+// CViewControlDlg 메시지 처리기입니다.
 
 BOOL CViewControlDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ���⿡ �߰� �ʱ�ȭ �۾��� �߰��մϴ�.
+	// TODO:  여기에 추가 초기화 작업을 추가합니다.
 
-	// world table ���.
+	// world table 등록.
 	CWorldTable *pWorldTbl = API_GetTableContainer()->GetWorldTable();
 
 	CTable::TABLEIT it;
@@ -192,17 +192,17 @@ BOOL CViewControlDlg::OnInitDialog()
 	UpdateData(FALSE);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ����: OCX �Ӽ� �������� FALSE�� ��ȯ�ؾ� �մϴ�.
+	// 예외: OCX 속성 페이지는 FALSE를 반환해야 합니다.
 }
 
 void CViewControlDlg::OnEnChangeEditTeleportX()
 {
-	// TODO:  RICHEDIT ��Ʈ���� ���, �� ��Ʈ����
-	// CDialog::OnInitDialog() �Լ��� �������ϰ�  ����ũ�� OR �����Ͽ� ������
-	// ENM_CHANGE �÷��׸� �����Ͽ� CRichEditCtrl().SetEventMask()�� ȣ���ؾ߸�
-	// �ش� �˸� �޽����� �����ϴ�.
+	// TODO:  RICHEDIT 컨트롤인 경우, 이 컨트롤은
+	// CDialog::OnInitDialog() 함수를 재지정하고  마스크에 OR 연산하여 설정된
+	// ENM_CHANGE 플래그를 지정하여 CRichEditCtrl().SetEventMask()를 호출해야만
+	// 해당 알림 메시지를 보냅니다.
 
-	// TODO:  ���⿡ ��Ʈ�� �˸� ó���� �ڵ带 �߰��մϴ�.
+	// TODO:  여기에 컨트롤 알림 처리기 코드를 추가합니다.
 }
 
 void CViewControlDlg::OnBnClickedOk()
@@ -296,7 +296,7 @@ void CViewControlDlg::OnBnClickedOk()
 		}
 	}
 
-	// TODO: ���⿡ ��Ʈ�� �˸� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	OnOK();
 }
 
@@ -443,7 +443,7 @@ void CViewControlDlg::InitGender(RwUInt8 byRace, RwUInt8 bySelGender)
 
 void CViewControlDlg::OnCbnSelchangeComboAvatarRace()
 {
-	// TODO: ���⿡ ��Ʈ�� �˸� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 
 	int nIndex = m_comboRace.GetCurSel();
 	RwUInt8 byRace = (RwUInt8)m_comboRace.GetItemData(nIndex);

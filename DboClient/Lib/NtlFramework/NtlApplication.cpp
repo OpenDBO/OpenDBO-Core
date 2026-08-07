@@ -14,10 +14,10 @@ RwUInt32 CNtlApplication::m_uiFrameRate = 1000;
 
 bool minimized = false;
 
-//Resource ArenaÀÇ Size
-#define rsRESOURCESDEFAULTARENASIZE (4 << 20)
-//File System¿¡¼­ ´Ù·ê¼ö ÀÖ´Â µ¿½Ã¿¡ OpenÇÒ¼ö ÀÖ´Â FileÀÇ ÃÖ´ë °¹¼ö
-#define MAX_NB_FILES_PER_FS (20)   
+//Resource Arenaå ì™ì˜™ Size
+#define rsRESOURCESDEFAULTARENASIZE (128 << 20) // 128MB for x64
+//File Systemì—ì„œ ë‹¤ë£°ìˆ˜ ìˆëŠ” ë™ì‹œì— Opení• ìˆ˜ ìˆëŠ” Fileì˜ ìµœëŒ€ ê°¯ìˆ˜
+#define MAX_NB_FILES_PER_FS (200)   
 
 CNtlApplication::CNtlApplication() : m_hWnd(NULL), 
 									 m_hAccel(NULL),
@@ -48,12 +48,12 @@ CNtlApplication::~CNtlApplication()
 }
 
 /**
- * Window¿¡¼­ ¹ŞÀº Message¸¦ Ã³¸®ÇÏ´Â ÇÔ¼ö
+ * Windowå ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ Messageå ì™ì˜™ ì²˜å ì™ì˜™å ì‹¹ëŒì˜™ å ìŒ‰ì‡½ì˜™
  * \param hWnd Window Handle
  * \param message Window Message
  * \param wParam 
  * \param lParam 
- * \return messageÀÇ Ã³¸® °á°ú
+ * \return messageì˜ ì²˜ë¦¬ ê²°ê³¼
  */
 LRESULT CALLBACK MainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -61,7 +61,7 @@ LRESULT CALLBACK MainWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 }
 
 /**
- * Application¿¡¼­ ÃÊ±âÈ­ ÇØ¾ßÇÒ º¯¼ö ÇÔ¼ö
+ * Applicationå ì™ì˜™å ì™ì˜™ å ì‹­ê¹ì˜™í™” å ìŒ”ì–µì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ìŒ‰ì‡½ì˜™
  */
 void CNtlApplication::Init()
 {
@@ -71,7 +71,7 @@ void CNtlApplication::Init()
 /**
  * 
  *
- * \return Window Class¸¦ 
+ * \return Window Classå ì™ì˜™ 
  */
 bool CNtlApplication::RegisterMainWindowClass(HANDLE processInstance)
 {
@@ -121,22 +121,22 @@ HWND CNtlApplication::CreateMainWindow(HANDLE processInstance, int posX, int pos
 	m_iWindowWidth	= m_iScreenWidth = m_iUserWidth = sizeX;
 	m_iWindowHeight = m_iScreenHeight = m_iUserHeight = sizeY;
 	
-	// ÇöÀç ½ºÅ¸ÀÏÀÌ Àû¿ëµÈ À©µµ¿ìÀÇ Å©±â¸¦ °è»êÇÑ´Ù.
+	// í˜„ì¬ ìŠ¤íƒ€ì¼ì´ ì ìš©ëœ ìœˆë„ìš°ì˜ í¬ê¸°ë¥¼ ê³„ì‚°í•œë‹¤.
 	AdjustWindowRect(&rect, m_wndStyle, FALSE);
 	
-	// ÀûÀıÇÑ Å©±âÀÇ Window¸¦ »ı¼ºÇÑ´Ù.
+	// å ì™ì˜™å ì™ì˜™å ì™ì˜™ í¬å ì™ì˜™å ì™ì˜™ Windowå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¼ëŒì˜™.
     HWND hwnd = CreateWindow(  kMainWindowClassName, kMainWindowName,
         m_wndStyle,
         posX, posY,
         rect.right - rect.left, rect.bottom - rect.top,
         (HWND)0, (HMENU)0, (HINSTANCE)processInstance, 0);
 
-	// Window ÀÇ ½ÇÁ¦ Å©±â °è»ê
+	// Window ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½
 	GetWindowRect( hwnd, &rect );
 	m_iWindowWidth = rect.right - rect.left;
 	m_iWindowHeight = rect.bottom - rect.top;
 
-	// Screen ÀÇ ½ÇÁ¦ Å©±â °è»ê
+	// Screen ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½
 	GetClientRect( hwnd, &rect );
 	m_iScreenWidth = rect.right - rect.left;
 	m_iScreenHeight = rect.bottom - rect.top;
@@ -150,7 +150,7 @@ static rwD3D9DeviceReleaseCallBack g_OldDeviceReleaseCallBack = NULL;
 static rwD3D9DeviceRestoreCallBack g_OldDeviceRestoreCallBack = NULL;
 
 /**
- * NtlÀÇ DeviceRelease CallBack ÇÔ¼ö
+ * Ntlå ì™ì˜™ DeviceRelease CallBack å ìŒ‰ì‡½ì˜™
  */
 static void NtlDeviceReleaseCallBack(void)
 {
@@ -163,7 +163,7 @@ static void NtlDeviceReleaseCallBack(void)
 
 
 /**
- * NtlÀÇ DeviceRestore CallBack ÇÔ¼ö
+ * Ntlå ì™ì˜™ DeviceRestore CallBack å ìŒ‰ì‡½ì˜™
  */
 static void NtlDeviceRestoreCallBack(void)
 {
@@ -175,7 +175,7 @@ static void NtlDeviceRestoreCallBack(void)
 }
 
 /**
- * NtlÀÇ DeviceRestore CallBack ÇÔ¼ö¸¦ µî·ÏÀ» ÇÏ´Â ÇÔ¼ö
+ * Ntlï¿½ï¿½ DeviceRestore CallBack ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
  */
 static void NtlSetDxDeviceEventHandler(void)
 {
@@ -187,7 +187,7 @@ static void NtlSetDxDeviceEventHandler(void)
 }
 
 /**
- * RenderwareÀÇ Debug Á¤º¸¸¦ Ãâ·ÂÇÏ´Â CallBack ÇÔ¼ö
+ * Renderwareì˜ Debug ì •ë³´ë¥¼ ì¶œë ¥í•˜ëŠ” CallBack í•¨ìˆ˜
  */
 
 // 
@@ -258,15 +258,15 @@ void AllowAccessibilityShortcutKeys( bool bAllowKeys )
 
 
 /**
- * Application¸¦ »ı¼ºÇÏ´Â ÇÔ¼ö·Î WindowÀÇ »ı¼º ¹× Renderware EngineÀÇ ÃÊ±âÈ­
- * µéÀ» ÇÑ´Ù.
+ * Applicationå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ëŒì˜™ å ìŒ‰ì‡½ì˜™å ì™ì˜™ Windowå ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™ Renderware Engineå ì™ì˜™ å ì‹­ê¹ì˜™í™”
+ * å ì™ì˜™å ì™ì˜™ å ì‹¼ëŒì˜™.
  * \param hInstance Window Instance
- * \param posX Window X ½ÃÀÛÀ§Ä¡
- * \param posY Window Y ½ÃÀÛÀ§Ä¡
- * \param sizeX Window °¡·Î Å©±â
- * \param sizeY Window ¼¼·Î Å©±â
- * \param bFullScreen Full È­¸éÀÎÁö Window È­¸éÀÎÁö È®ÀÎ
- * \return ApplicationÀÌ ¼º°øÇß´ÂÁö¿¡ ´ëÇÑ À¯¹«
+ * \param posX Window X å ì™ì˜™å ì™ì˜™å ì™ì˜™ì¹˜
+ * \param posY Window Y å ì™ì˜™å ì™ì˜™å ì™ì˜™ì¹˜
+ * \param sizeX Window å ì™ì˜™å ì™ì˜™ í¬å ì™ì˜™
+ * \param sizeY Window å ì™ì˜™å ì™ì˜™ í¬å ì™ì˜™
+ * \param bFullScreen Full í™”å ì™ì˜™å ì™ì˜™å ì™ì˜™ Window í™”å ì™ì˜™å ì™ì˜™å ì™ì˜™ í™•å ì™ì˜™
+ * \return Applicationå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ìŒ©ëŒì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
  */
 RwBool CNtlApplication::Create( HINSTANCE hInstance, 
 							    RwInt32 posX, 
@@ -275,7 +275,7 @@ RwBool CNtlApplication::Create( HINSTANCE hInstance,
 								RwInt32 sizeY, 
 								RwBool bFullScreen)
 {
-	//Window »ı¼º
+	//Window å ì™ì˜™å ì™ì˜™
 	RegisterMainWindowClass(hInstance);
 	m_hWnd = CreateMainWindow(hInstance, posX, posY, sizeX, sizeY, bFullScreen);
 
@@ -286,7 +286,7 @@ RwBool CNtlApplication::Create( HINSTANCE hInstance,
     SystemParametersInfo(SPI_GETFILTERKEYS, sizeof(FILTERKEYS), &g_StartupFilterKeys, 0);
 	AllowAccessibilityShortcutKeys( false );
 	
-	//Memory Function ¹× ArenaSize ¼¼ÆÃ
+	//Memory Function å ì™ì˜™ ArenaSize å ì™ì˜™å ì™ì˜™
 	if( !RwEngineInit(NULL, rwENGINEINITNOFREELISTS, rsRESOURCESDEFAULTARENASIZE))
 	{
 		DBO_FAIL("Engine initial fail !!!");
@@ -295,10 +295,10 @@ RwBool CNtlApplication::Create( HINSTANCE hInstance,
 	
 	RwDebugSetHandler(NtlRenderwareDebugMessageHandler);
 
-	//Plugin µî·Ï
+	//Plugin ë“±ë¡
 	AttachPlugin();
 
-	//Renderware ¿£ÁøÀ» OpneÇÑ´Ù.
+	//Renderware å ì™ì˜™å ì™ì˜™å ì™ì˜™ Opneå ì‹¼ëŒì˜™.
 	RwEngineOpenParams openParams;
 	openParams.displayID = m_hWnd;
 	if( !RwEngineOpen(&openParams) )
@@ -308,7 +308,7 @@ RwBool CNtlApplication::Create( HINSTANCE hInstance,
 		return FALSE;
 	}
 
-	//ÇöÀçÀÇ Graphics°¡ Mode¸¦ Áö¿øÇÏ´ÂÁö¸¦ È®ÀÎÇÑ´Ù.
+	//å ì™ì˜™å ì™ì˜™å ì™ì˜™ Graphicså ì™ì˜™ Modeå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ëŒì˜™å ì™ì˜™å ì™ì˜™ í™•å ì™ì˜™å ì‹¼ëŒì˜™.
 	if( !SelectVideoMode() )
 	{
 		DBO_FAIL("Select video mode fail !!!");
@@ -319,7 +319,7 @@ RwBool CNtlApplication::Create( HINSTANCE hInstance,
 	//RwUInt32 uiMaxMultiSampling = RwD3D9EngineGetMaxMultiSamplingLevels();
 	//RwBool bSuccess = RwD3D9ChangeMultiSamplingLevels(1);
 	
-	//Renderware Engine¸¦ ½ÃÀÛÇÑ´Ù.
+	//Renderware Engineå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¼ëŒì˜™.
 	RwD3D9EngineSetMultiThreadSafe( TRUE );
 	if( !RwEngineStart() )
 	{
@@ -327,7 +327,7 @@ RwBool CNtlApplication::Create( HINSTANCE hInstance,
 		return FALSE;
 	}	
 	
-	//File System Manager¸¦ ÃÊ±âÈ­ ÇÏ°í Install¸¦ ÇÑ´Ù.
+	//File System Managerå ì™ì˜™ å ì‹­ê¹ì˜™í™” å ì‹¹ê³¤ì˜™ Installå ì™ì˜™ å ì‹¼ëŒì˜™.
 	if (RtFSManagerOpen(RTFSMAN_UNLIMITED_NUM_FS) != FALSE)
     {
         if (!RsInstallFileSystem())
@@ -347,12 +347,12 @@ RwBool CNtlApplication::Create( HINSTANCE hInstance,
 	ShowWindow(m_hWnd, 1);
 	UpdateWindow(m_hWnd);
 
-	// ShowWindow ÇÑ ÈÄ¿¡ »ı¼ºµÈ À©µµ¿ìÁîÀÇ Å©±â°¡ º¯°æµÉ ¼öµµ ÀÖ´Ù. º¯°æµÈ Å©±â¸¦ ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
+	// ShowWindow í•œ í›„ì— ìƒì„±ëœ ìœˆë„ìš°ì¦ˆì˜ í¬ê¸°ê°€ ë³€ê²½ë  ìˆ˜ë„ ìˆë‹¤. ë³€ê²½ëœ í¬ê¸°ë¥¼ ì—…ë°ì´íŠ¸í•œë‹¤.
 	RECT rect;
 	GetClientRect( m_hWnd, &rect );
 	Resize( rect.right - rect.left, rect.bottom - rect.top, TRUE, FALSE );
 	
-	//SubSystemµé »ı¼º(Camera, Charset ...)
+	//SubSystemå ì™ì˜™ å ì™ì˜™å ì™ì˜™(Camera, Charset ...)
 	if(!CreateSubSystem(m_iScreenWidth, m_iScreenHeight, TRUE))
 		return FALSE;
 
@@ -368,11 +368,11 @@ RwBool CNtlApplication::Create( HINSTANCE hInstance,
 
 
 /**
- * Application¸¦ »ı¼ºÇÏ´Â ÇÔ¼ö·Î WindowÀÇ »ı¼º ¹× Renderware EngineÀÇ ÃÊ±âÈ­
- * µéÀ» ÇÑ´Ù.(Mfc ¿ë)
+ * Applicationå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ëŒì˜™ å ìŒ‰ì‡½ì˜™å ì™ì˜™ Windowå ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™ Renderware Engineå ì™ì˜™ å ì‹­ê¹ì˜™í™”
+ * å ì™ì˜™å ì™ì˜™ å ì‹¼ëŒì˜™.(Mfc å ì™ì˜™)
  * \param HWND Window Handle
- * \param bFullScreen Full È­¸éÀÎÁö Window È­¸éÀÎÁö È®ÀÎ
- * \return ApplicationÀÌ ¼º°øÇß´ÂÁö¿¡ ´ëÇÑ À¯¹«
+ * \param bFullScreen Full í™”å ì™ì˜™å ì™ì˜™å ì™ì˜™ Window í™”å ì™ì˜™å ì™ì˜™å ì™ì˜™ í™•å ì™ì˜™
+ * \return Applicationå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ìŒ©ëŒì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
  */
 RwBool CNtlApplication::Create(HWND hHandle, RwBool bFullScreen)
 {
@@ -384,7 +384,7 @@ RwBool CNtlApplication::Create(HWND hHandle, RwBool bFullScreen)
 	m_iScreenWidth  = rtRect.right - rtRect.left;
 	m_iScreenHeight = rtRect.bottom - rtRect.top;
 
-	//Memory Function ¹× ArenaSize ¼¼ÆÃ
+	//Memory Function å ì™ì˜™ ArenaSize å ì™ì˜™å ì™ì˜™
 	if( !RwEngineInit(NULL, rwENGINEINITNOFREELISTS, rsRESOURCESDEFAULTARENASIZE))
 		return FALSE;
 
@@ -392,7 +392,7 @@ RwBool CNtlApplication::Create(HWND hHandle, RwBool bFullScreen)
 
 	AttachPlugin();
 
-	//Renderware ¿£ÁøÀ» OpneÇÑ´Ù.
+	//Renderware å ì™ì˜™å ì™ì˜™å ì™ì˜™ Opneå ì‹¼ëŒì˜™.
 	RwEngineOpenParams openParams;
 	openParams.displayID = m_hWnd;
 	if( !RwEngineOpen(&openParams) )
@@ -401,19 +401,19 @@ RwBool CNtlApplication::Create(HWND hHandle, RwBool bFullScreen)
 		return FALSE;
 	}
 
-	//ÇöÀçÀÇ Graphics°¡ Mode¸¦ Áö¿øÇÏ´ÂÁö¸¦ È®ÀÎÇÑ´Ù.
+	//å ì™ì˜™å ì™ì˜™å ì™ì˜™ Graphicså ì™ì˜™ Modeå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ëŒì˜™å ì™ì˜™å ì™ì˜™ í™•å ì™ì˜™å ì‹¼ëŒì˜™.
 	if( !SelectVideoMode() )
 	{
 		return FALSE;
 	}
 	
-	//Renderware Engine¸¦ ½ÃÀÛÇÑ´Ù.
+	//Renderware Engineå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¼ëŒì˜™.
 	if( !RwEngineStart() )
 	{
 		return FALSE;
 	}	
 	
-	//File System Manager¸¦ ÃÊ±âÈ­ ÇÏ°í Install¸¦ ÇÑ´Ù.
+	//File System Managerå ì™ì˜™ å ì‹­ê¹ì˜™í™” å ì‹¹ê³¤ì˜™ Installå ì™ì˜™ å ì‹¼ëŒì˜™.
 	if (RtFSManagerOpen(RTFSMAN_UNLIMITED_NUM_FS) != FALSE)
     {
         if (!RsInstallFileSystem())
@@ -426,11 +426,11 @@ RwBool CNtlApplication::Create(HWND hHandle, RwBool bFullScreen)
         return FALSE;
     }
 	
-	//PlugIn µî·Ï ¹× Image Loader(Bmp, Png) µî·Ï
+	//PlugIn ë“±ë¡ ë° Image Loader(Bmp, Png) ë“±ë¡
 	
 	RegisterImageLoader();
 	
-	//SubSystemµé »ı¼º(Camera, Charset ...)
+	//SubSystemå ì™ì˜™ å ì™ì˜™å ì™ì˜™(Camera, Charset ...)
 	if(!CreateSubSystem(m_iScreenWidth, m_iScreenHeight, TRUE))
 		return FALSE;
 
@@ -444,7 +444,7 @@ RwBool CNtlApplication::Create(HWND hHandle, RwBool bFullScreen)
 }
 
 /**
- * ApplicationÀÇ ±â´ÉÀ» Á¾·áÇÑ´Ù.
+ * Applicationì˜ ê¸°ëŠ¥ì„ ì¢…ë£Œí•œë‹¤.
  */
 void CNtlApplication::Destroy()
 {
@@ -466,9 +466,9 @@ void CNtlApplication::Destroy()
 
 
 /** 
- * m_nWindowWidth, m_nWindowHeight, m_nBitDepth°¡ ÇöÀçÀÇ Ä«µå
- * ¿¡¼­ Áö¿øÀÌ µÇ´ÂÁö¸¦ °Ë»çÇÑ´Ù.
- * \return Mode¸¦ Áö¿øÇÏ´ÂÁö¿¡ ´ëÇÑ ¿©ºÎ
+ * m_nWindowWidth, m_nWindowHeight, m_nBitDepthå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ ì¹´å ì™ì˜™
+ * å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹¤ëŒì˜™å ì™ì˜™å ì™ì˜™ å ì‹¯ì‚¼ì˜™å ì‹¼ëŒì˜™.
+ * \return Modeå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ëŒì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
  */
 RwBool CNtlApplication::SelectVideoMode()
 {
@@ -481,28 +481,28 @@ RwBool CNtlApplication::SelectVideoMode()
 	RwInt32			nGcurSelVM = 0;
 	RwInt32			nDefDeviceNum = 0;
 
-	//ÇöÀç System¿¡ RenderingÀ» ÇÒ¼ö ÀÖ´Â(Graphic Device)ÀÇ °¹¼ö¸¦ ¸®ÅÏÇÑ´Ù. 
+	//å ì™ì˜™å ì™ì˜™ Systemå ì™ì˜™ Renderingå ì™ì˜™ å ìŒ€ì‡½ì˜™ å ìŒëŒì˜™(Graphic Device)å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¼ëŒì˜™. 
 	nGnumSubSystems = RwEngineGetNumSubSystems();
 	
 	/* Just to be sure ... */
     nGnumSubSystems = (nGnumSubSystems > MAX_SUBSYSTEMS) ? MAX_SUBSYSTEMS : nGnumSubSystems;
 	
-	//Graphics DeviceÀÇ ¸ğµç ÀÌ¸§µéÀ» ¾ò´Â´Ù.
+	//Graphics Deviceì˜ ëª¨ë“  ì´ë¦„ë“¤ì„ ì–»ëŠ”ë‹¤.
     for (RwInt32 subSysNum = 0; subSysNum < nGnumSubSystems; ++ subSysNum)
     {
         RwEngineGetSubSystemInfo(&GsubSysInfo[subSysNum], subSysNum);
     }
 	
-	//ÇöÀçÀÇ Graphics Device¸¦ ¾ò´Â´Ù.
+	//í˜„ì¬ì˜ Graphics Deviceë¥¼ ì–»ëŠ”ë‹¤.
 	nGcurSel = RwEngineGetCurrentSubSystem();
 	
-	//ÇöÀçÀÇ Graphics Device·Î Engine Setting ÇÑ´Ù.
+	//å ì™ì˜™å ì™ì˜™å ì™ì˜™ Graphics Deviceå ì™ì˜™ Engine Setting å ì‹¼ëŒì˜™.
     if (!RwEngineSetSubSystem(nGcurSel))
     {
         return FALSE;
     }
 	
-	// ÃÖÀûÀÇ ÇØ»óµµ¸¦ Ã£´Â´Ù. Mode¸¦ Áö¿øÇÏ´ÂÁö È®ÀÎÀ» ÇÑ´Ù.
+	// å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ìŒ”ìƒë„ëªŒì˜™ ì°¾å ìŠ¹ëŒì˜™. Modeå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ëŒì˜™å ì™ì˜™ í™•å ì™ì˜™å ì™ì˜™ å ì‹¼ëŒì˜™.
 	nGcurSelVM = GetVideoMode( m_bFullScreen, m_iScreenWidth, m_iScreenHeight, m_iBitDepth );
 	if( nGcurSelVM < 0 )
 	{
@@ -531,7 +531,7 @@ RwBool CNtlApplication::SelectVideoMode()
 		m_iWindowPosY = rect.top;
 	}
 	
-	// ÇöÀç ¼±ÅÃµÈ ÇØ»óµµÀÇ Å©±â¸¦ ¾÷µ¥ÀÌÆ®
+	// å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì‹œë“¸ì˜™ å ìŒ”ì‚¼ì˜™å ì™ì˜™ í¬å ì©ë¥¼ å ì™ì˜™å ì™ì˜™å ì™ì˜™íŠ¸
 	m_iUserWidth = vm.width;
 	m_iUserHeight = vm.height;
 	m_iBitDepth = vm.depth;
@@ -567,7 +567,7 @@ void CNtlApplication::ChangeWindowStyle(RwBool bFullScreen)
 	SetWindowLong(m_hWnd, GWL_STYLE, m_wndStyle);
 	SetWindowPos(m_hWnd, m_hWndInsertAfter, 0, 0, rect.right - rect.left, rect.bottom - rect.top, m_wndFlags);
 
-	// Resize ÇÑ ÈÄ¿¡ GetClientRect·Î ÇØ¼­ ÇöÀç Size¿Í Å©±â°¡ ¾È ¸Â´Â´Ù¸é ¸ÂÃç¼­ Resize ÇØÁØ´Ù.
+	// Resize ï¿½ï¿½ ï¿½Ä¿ï¿½ GetClientRectï¿½ï¿½ ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ Sizeï¿½ï¿½ Å©ï¿½â°¡ ï¿½ï¿½ ï¿½Â´Â´Ù¸ï¿½ ï¿½ï¿½ï¿½ç¼­ Resize ï¿½ï¿½ï¿½Ø´ï¿½.
 	RECT rectAfter;
 	GetClientRect( m_hWnd, &rectAfter );
 	if( rect.right - rect.left != rectAfter.right - rectAfter.left ||
@@ -576,7 +576,7 @@ void CNtlApplication::ChangeWindowStyle(RwBool bFullScreen)
 		Resize( rectAfter.right - rectAfter.left, rectAfter.bottom - rectAfter.top, TRUE, FALSE );
 	}
 
-	// Ç® ½ºÅ©¸°ÀÌ ¾Æ´Ò °æ¿ì Áß°£ À§Ä¡·Î º¯°æ
+	// Ç® ï¿½ï¿½Å©ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if( !m_bFullScreen )
 	{
 		RECT rectWindow;
@@ -600,7 +600,7 @@ RwBool CNtlApplication::ToggleFullMode(void)
 
 	ChangeWindowStyle(bFullScreen);
 
-	//Mode¸¦ Áö¿øÇÏ´ÂÁö È®ÀÎÀ» ÇÑ´Ù.
+	//Modeå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ëŒì˜™å ì™ì˜™ í™•å ì™ì˜™å ì™ì˜™ å ì‹¼ëŒì˜™.
 	RwInt32 nGcurSelVM = GetVideoMode(bFullScreen, m_iUserWidth, m_iUserHeight, m_iBitDepth);	
 	if( nGcurSelVM < 0 )
 	{
@@ -622,9 +622,9 @@ RwBool CNtlApplication::ToggleFullMode(void)
 	RwVideoMode vm;
 	RwEngineGetVideoModeInfo(&vm, RwEngineGetCurrentVideoMode());
 
-	// ¸¸¾à Ç® ½ºÅ©¸° ModeÀÎµ¥ vm.flags°¡ EXCLUSIVE°¡ ¾Æ´Ï¶ó¸é Ã¢ È­¸é -> ÀüÃ¼ È­¸é ¸ğµå ÀüÈ¯ ½ÇÆĞ·Î °£ÁÖÇÏ°í
-	// À©µµ¿ì¸¦ ´Ù½Ã ¸ÂÃçÁØ´Ù. ¹İ´ëÀÇ °æ¿ìµµ ¶È°°Àº ·ÎÁ÷À¸·Î Àû¿ëÇÑ´Ù.
-	// È­¸é ÀüÈ¯¿¡ ¼º°øÇß´õ¶óµµ ÇöÀçÀÇ ÇØ»óµµ¿¡ ¸ÂÃç¼­ ´Ù½Ã ÇÑ¹ø À©µµ¿ì ½ºÅ¸ÀÏÀ» º¯°æÇÑ´Ù.
+	// ë§Œì•½ í’€ ìŠ¤í¬ë¦° Modeì¸ë° vm.flagsê°€ EXCLUSIVEê°€ ì•„ë‹ˆë¼ë©´ ì°½ í™”ë©´ -> ì „ì²´ í™”ë©´ ëª¨ë“œ ì „í™˜ ì‹¤íŒ¨ë¡œ ê°„ì£¼í•˜ê³ 
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ì¸¦ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½. ï¿½İ´ï¿½ï¿½ï¿½ ï¿½ï¿½ìµµ ï¿½È°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+	// È­ï¿½ï¿½ ï¿½ï¿½È¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø»óµµ¿ï¿½ ï¿½ï¿½ï¿½ç¼­ ï¿½Ù½ï¿½ ï¿½Ñ¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 	if( (vm.flags & rwVIDEOMODEEXCLUSIVE) == 0)
 	{
 		ChangeWindowStyle( FALSE );
@@ -662,7 +662,7 @@ void CNtlApplication::ChangeVideoMode(RwInt32 iWidth, RwInt32 iHeight, RwInt32 i
 			}
 		}	
 
-		// User°¡ ¼±ÅÃÇÑ ÇØ»óµµ ¾÷µ¥ÀÌÆ®
+		// Userå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ìŒ”ì‚¼ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™íŠ¸
 		m_iUserWidth = iWidth;
 		m_iUserHeight = iHeight;
 		m_iBitDepth = iBitDepth;
@@ -670,7 +670,7 @@ void CNtlApplication::ChangeVideoMode(RwInt32 iWidth, RwInt32 iHeight, RwInt32 i
 		if (!RwD3D9ChangeVideoMode(nGcurSelVM))
 			return;
 
-		// ToggleFullMode() ÀÇ °æ¿ì WindowÀÇ Resize message¸¦ ¹ß»ıÇÏÁö¸¸ ChangeVideoModeÀÇ °æ¿ì Resize¸¦ °­Á¦ÀûÀ¸·Î ¹ß»ı½ÃÅ²´Ù.
+		// ToggleFullMode() ì˜ ê²½ìš° Windowì˜ Resize messageë¥¼ ë°œìƒí•˜ì§€ë§Œ ChangeVideoModeì˜ ê²½ìš° Resizeë¥¼ ê°•ì œì ìœ¼ë¡œ ë°œìƒì‹œí‚¨ë‹¤.
 		RECT rect;
 		GetClientRect( m_hWnd, &rect );
 		Resize( rect.right - rect.left, rect.bottom - rect.top, TRUE, FALSE );
@@ -678,13 +678,13 @@ void CNtlApplication::ChangeVideoMode(RwInt32 iWidth, RwInt32 iHeight, RwInt32 i
 	// Window Mode
 	else
 	{
-		// User°¡ ¼±ÅÃÇÑ ÇØ»óµµ ¾÷µ¥ÀÌÆ®
+		// Userå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ìŒ”ì‚¼ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™íŠ¸
 		m_iUserWidth = iWidth;
 		m_iUserHeight = iHeight;
 		m_iBitDepth = iBitDepth;
 
-		// ÇöÀç ¹ÙÅÁÈ­¸éÀÇ Å©±â¸¦ °¡Á®¿Í¼­ ¹ÙÅÁÈ­¸éº¸´Ù ´õ Å©´Ù¸é Å©±â´Â °­Á¦·Î ¼öÁ¤ÇÑ´Ù.
-		// ¼±ÅÃµÈ Å©±â´Â ±×´ë·Î °¡Áø´Ù.
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ Å©ï¿½â¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ ï¿½ï¿½ï¿½ï¿½È­ï¿½éº¸ï¿½ï¿½ ï¿½ï¿½ Å©ï¿½Ù¸ï¿½ Å©ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
+		// ì„ íƒëœ í¬ê¸°ëŠ” ê·¸ëŒ€ë¡œ ê°€ì§„ë‹¤.
 		int nSystemWidth = GetSystemMetrics(SM_CXSCREEN);
 		int nSystemHeight = GetSystemMetrics(SM_CYSCREEN);
 
@@ -706,7 +706,7 @@ void CNtlApplication::ChangeVideoMode(RwInt32 iWidth, RwInt32 iHeight, RwInt32 i
  * \param bFullScreen
  * \param nWidth Window Width
  * \param nHeight Window Height
- * \return ÇöÀçÀÇ Video Mode¸¦ Áö¿øÀ» ÇÏ´ÂÁö
+ * \return å ì™ì˜™å ì™ì˜™å ì™ì˜™ Video Modeå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹¹ëŒì˜™å ì™ì˜™
  */
 RwInt32 CNtlApplication::GetVideoMode(RwBool bFullScreen, RwInt32 nWidth, RwInt32 nHeight, RwInt32 bitDepth)
 {
@@ -737,8 +737,8 @@ RwInt32 CNtlApplication::GetVideoMode(RwBool bFullScreen, RwInt32 nWidth, RwInt3
 
 
 /**
- * File SystemÀ» Install¸¦ ÇÑ´Ù.
- * \return InstallÀÌ µÇ¾ú´ÂÁö¿¡ ´ëÇÑ ¼º°ø À¯¹«
+ * File Systemå ì™ì˜™ Installå ì™ì˜™ å ì‹¼ëŒì˜™.
+ * \return Installå ì™ì˜™ å ì‹¤ì–µì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
  */
 RwBool CNtlApplication::RsInstallFileSystem()
 {
@@ -844,22 +844,22 @@ RwBool CNtlApplication::RsInstallFileSystem()
 }
 
 /**
- * WindowÀÇ Size°¡ º¯°æµÆÀ»°æ¿ì È£ÃâÀÌ µÇ´Â ÇÔ¼ö
- * \param nWidth Window°¡·Î Size
- * \param nHeight Window¼¼·Î Size
- * \param zBuffer ZBuffer »ç¿ë À¯¹«
- * \return Resize°¡ ¼º°øÀûÀ¸·Î µÇ¾ú´ÂÁöÀÇ À¯¹«
+ * Windowå ì™ì˜™ Sizeå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ í˜¸å ì™ì˜™å ì™ì˜™ å ì‹¤ëŒì˜™ å ìŒ‰ì‡½ì˜™
+ * \param nWidth Windowå ì™ì˜™å ì™ì˜™ Size
+ * \param nHeight Windowå ì™ì˜™å ì™ì˜™ Size
+ * \param zBuffer ZBuffer ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+ * \return Resizeå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹¤ì–µì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
  */
 RwBool CNtlApplication::Resize(RwInt32 iWidth, RwInt32 iHeight, RwBool zBuffer, RwBool bRestore_from_Minimize)
 {
 	RECT rect;
 
-	// Window ÀÇ ½ÇÁ¦ Å©±â °è»ê
+	// Window ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½
 	GetWindowRect( m_hWnd, &rect );
 	m_iWindowWidth = rect.right - rect.left;
 	m_iWindowHeight = rect.bottom - rect.top;
 
-	// Screen ÀÇ ½ÇÁ¦ Å©±â °è»ê
+	// Screen ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½
 	GetClientRect( m_hWnd, &rect );
 	m_iScreenWidth = rect.right - rect.left;
 	m_iScreenHeight = rect.bottom - rect.top;
@@ -868,18 +868,18 @@ RwBool CNtlApplication::Resize(RwInt32 iWidth, RwInt32 iHeight, RwBool zBuffer, 
 }
 
 /**
-* ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀÇ À§Ä¡³ª »çÀÌÁî°¡ º¯ÇÒ ¶§
-* WM_SIZE ³ª WM_MOVE ¸Ş¼¼Áö º¸´Ù ¿ì¼± Ã³¸®µÈ´Ù
+* å ì™ì˜™å ì‹œëªŒì˜™å ì™ì˜™å ì‹±ì‡½ì˜™å ì™ì˜™ å ì™ì˜™ì¹˜å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì˜ê°€ å ì™ì˜™å ì™ì˜™ å ì™ì˜™
+* WM_SIZE ï¿½ï¿½ WM_MOVE ï¿½Ş¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ì¼± Ã³ï¿½ï¿½ï¿½È´ï¿½
 */
 void CNtlApplication::SetApplicationMinMax(LPMINMAXINFO lpmmi)
 {
 }
 
 /**
- * Ãß°¡ÀûÀ¸·Î »ı¼ºÀ» ÇØ¾ßÇÒ°Íµé¿¡ ´ëÇÑ ÇÔ¼ö
- * \param nWidth ÇöÀç »ı¼ºµÈ WindowÀÇ ClientÀÇ °¡·ÎÅ©±â
- * \param nHeight ÇöÀç »ı¼ºµÈ WindowÀÇ ClientÀÇ ¼¼·ÎÅ©±â
- * \param zBuffer ZBufferÀÇ »ç¿ëÀ¯¹«
+ * ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¾ï¿½ï¿½Ò°Íµé¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
+ * \param nWidth å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ Windowå ì™ì˜™ Clientå ì™ì˜™ å ì™ì˜™å ì™ì˜™í¬å ì™ì˜™
+ * \param nHeight å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ Windowå ì™ì˜™ Clientå ì™ì˜™ å ì™ì˜™å ì™ì˜™í¬å ì™ì˜™
+ * \param zBuffer ZBufferï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * \return 
  */
 RwBool CNtlApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, RwBool zBuffer)
@@ -1007,13 +1007,18 @@ int CNtlApplication::MessagePump()
 		else
 		{
 			QueryPerformanceCounter(&start);
-			RwUInt32 uiRateTime = (1000000 / m_uiFrameRate); // in microseconds
 
 			Update();
 
-			do {
-				QueryPerformanceCounter(&end);
-			} while ((end.QuadPart - start.QuadPart) * 1000000.0 / frequency.QuadPart < uiRateTime);
+			// 0 = unlimited frame rate: skip the throttle spin entirely.
+			if (m_uiFrameRate > 0)
+			{
+				RwUInt32 uiRateTime = (1000000 / m_uiFrameRate); // in microseconds
+
+				do {
+					QueryPerformanceCounter(&end);
+				} while ((end.QuadPart - start.QuadPart) * 1000000.0 / frequency.QuadPart < uiRateTime);
+			}
 		}
 	}
 
@@ -1136,11 +1141,11 @@ RwBool CNtlApplication::RegisterImageLoader()
 // Gamma
 void CNtlApplication::SetGammaRamp(RwReal fGamma)
 {
-	// »ó¼Ó ¹Ş¾Æ¼­ ±¸ÇöÇÑ´Ù.
+	// ìƒì† ë°›ì•„ì„œ êµ¬í˜„í•œë‹¤.
 }
 
 /**
-* \brief °¡Àå ÀûÇÕÇÑ ºñµğ¿À¸ğµå¸¦ ¸®ÅÏÇÑ´Ù.
+* \brief ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½å¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 */
 RwInt32 CNtlApplication::GetBestVideoMode( RwBool bFullScreen, RwInt32 iWidth, RwInt32 iHeight, RwInt32 iBitDepth )
 {
@@ -1163,28 +1168,28 @@ RwInt32 CNtlApplication::GetBestVideoMode( RwBool bFullScreen, RwInt32 iWidth, R
 		if( sModeInfo.width <= 800 && sModeInfo.height <= 600 )
 			continue;
 
-		// ÀüÃ¼ È­¸éÀÇ °æ¿ì ³ĞÀÌ, ³ôÀÌ, ±íÀÌ ¿ÀÂ÷ÀÇ ÇÕÀÌ °¡Àå ³·Àº Video Mode¸¦ ¸®ÅÏÇÏ°í
-		// Ã¢ ¸ğµåÀÇ °æ¿ì Flags°¡ Ã¢ ¸ğµå·Î Ã¼Å©µÇ¾î ÀÖÀ¸¸é ¹«Á¶°Ç ¸®ÅÏÇÑ´Ù.
+		// ì „ì²´ í™”ë©´ì˜ ê²½ìš° ë„“ì´, ë†’ì´, ê¹Šì´ ì˜¤ì°¨ì˜ í•©ì´ ê°€ì¥ ë‚®ì€ Video Modeë¥¼ ë¦¬í„´í•˜ê³ 
+		// ì°½ ëª¨ë“œì˜ ê²½ìš° Flagsê°€ ì°½ ëª¨ë“œë¡œ ì²´í¬ë˜ì–´ ìˆìœ¼ë©´ ë¬´ì¡°ê±´ ë¦¬í„´í•œë‹¤.
 		if (bFullScreen)
 		{
 			if (sModeInfo.flags & rwVIDEOMODEEXCLUSIVE )
 			{
-				// ³ĞÀÌ ¿ÀÂ÷
+				// å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
 				nCompare = iWidth - sModeInfo.width;
 				if( nCompare >= 0 )
 					nMinWidthMargin = nCompare;
 
-				// ³ôÀÌ ¿ÀÂ÷
+				// å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
 				nCompare = iHeight - sModeInfo.height;
 				if( nCompare >= 0 ) 
 					nMinHeightMargin = nCompare;
 
-				// ±íÀÌ ¿ÀÂ÷
+				// å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
 				nCompare = iBitDepth - sModeInfo.depth;
 				if( nCompare >= 0 )
 					nMinBitDepthMargin = nCompare;
 
-				// ¿ÀÂ÷ÀÇ ÇÕ
+				// å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™
 				nCompare = nMinWidthMargin + nMinHeightMargin + nMinBitDepthMargin;
 				if( nCompare >= 0 &&
 					nCompare < nMinSummary )
@@ -1193,7 +1198,7 @@ RwInt32 CNtlApplication::GetBestVideoMode( RwBool bFullScreen, RwInt32 iWidth, R
 					nBestVideoMode = nModeIndex;
 				}
 
-				// Á¤È®ÇÏ°Ô ÀÏÄ¡ÇÔ
+				// å ì™ì˜™í™•å ì‹¹ê³¤ì˜™ å ì™ì˜™ì¹˜å ì™ì˜™
 				if( nMinSummary == 0 )
 					return nModeIndex;
 			}
@@ -1208,7 +1213,7 @@ RwInt32 CNtlApplication::GetBestVideoMode( RwBool bFullScreen, RwInt32 iWidth, R
 }
 
 /**
-* \brief °íÁ¤µÈ ºñÀ²·Î À©µµ¿ì Resizing¸¦ ÇÏ´Â ÇÔ¼ö
+* \brief å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ Resizingå ì™ì˜™ å ì‹¹ëŒì˜™ å ìŒ‰ì‡½ì˜™
 */
 RwBool CNtlApplication::FixedWindowSizing( WPARAM wParam, LPARAM lParam )
 {
@@ -1221,7 +1226,7 @@ RwBool CNtlApplication::FixedWindowSizing( WPARAM wParam, LPARAM lParam )
 
 	switch( wParam )
 	{
-		// ³ôÀÌ°¡ ´Ã¾î³­´Ù.
+		// å ì™ì˜™å ì‹±ê³¤ì˜™ å ì‹œì–´ë‚œå ì™ì˜™.
 	case WMSZ_BOTTOMLEFT:
 	case WMSZ_BOTTOMRIGHT:
 	case WMSZ_LEFT:

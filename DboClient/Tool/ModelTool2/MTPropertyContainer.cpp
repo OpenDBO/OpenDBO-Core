@@ -17,7 +17,7 @@ RwBool CMTPropertyContainer::Load()
 	NTL_FUNCTION("__FUNCTION__");
 
 	//////////////////////////////////////////////////////////////////////////
-	// ¿ùµå¿ë ·Îµå
+	// ì›”ë“œìš© ë¡œë“œ
 	if(!LoadNtlWorld(""))
 	{
 		NTL_RETURN(FALSE);

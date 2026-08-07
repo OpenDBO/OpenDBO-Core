@@ -342,7 +342,7 @@ public:
 		\param	nIDCaption	ID of the caption to be used for the option sheet.
 		\param	pParentWnd	Points to the parent or owner window object (of
 							type CWnd) to which the dialog object belongs.
-							If it is NULL, the dialog object’s parent window
+							If it is NULL, the dialog objectë­© parent window
 							is set to the main application window.
 		\param	iSelectPage	The index of the page that will initially be on
 							top. Default is the first page added to the sheet.
@@ -359,7 +359,7 @@ public:
 							used for the option sheet. Cannot be NULL.
 		\param	pParentWnd	Points to the parent or owner window object (of
 							type CWnd) to which the dialog object belongs.
-							If it is NULL, the dialog object’s parent window
+							If it is NULL, the dialog objectë­© parent window
 							is set to the main application window.
 		\param	iSelectPage	The index of the page that will initially be on
 							top. Default is the first page added to the sheet.
@@ -463,7 +463,7 @@ public:
 		\brief	Retrieves the index of the active page of the option sheet.
 
 		Call this member function to get the index number of the option sheet
-		window’s active page, then use the returned index number as the parameter
+		windowë­© active page, then use the returned index number as the parameter
 		for GetPage. 
 
 		\return	The index number of the active page.
@@ -525,7 +525,7 @@ public:
 	/*!
 		\brief	Returns the active page object.
 
-		Call this member function to retrieve the option sheet window’s
+		Call this member function to retrieve the option sheet windowë­©
 		active page. Use this member function to perform some action on the
 		active page.
 
@@ -628,7 +628,7 @@ public:
 
 		Call this member function to enable or disable the Back, Next, or
 		Finish button in a wizard option sheet. Call SetWizardButtons only
-		after the dialog is open; you can’t call SetWizardButtons before you
+		after the dialog is open; you canë­ª call SetWizardButtons before you
 		call DoModal. Typically, you should call SetWizardButtons from
 		COptionPage::OnSetActive.
 
@@ -816,7 +816,7 @@ public:
 		list in the tree control or if a parent name is supplied the page
 		is added in the groups sub-list.
 
-		<b>AddPage</b> adds the COptionPage object to the COptionSheet object’s
+		<b>AddPage</b> adds the COptionPage object to the COptionSheet objectë­©
 		list of pages but does not actually create the window for the page. The
 		framework postpones creation of the window for the page until the user
 		selects that page.
@@ -846,7 +846,7 @@ public:
 		group. In non-wizard mode, the group's name is added to the end of the
 		list in the child list control..
 
-		<b>AddGroup</b> adds the COptionPage object to the COptionSheet object’s
+		<b>AddGroup</b> adds the COptionPage object to the COptionSheet objectë­©
 		list of groups/pages but does not actually create the window for the
 		page. The framework postpones creation of the window for the page until
 		the user selects that page.

@@ -105,7 +105,7 @@ RwBool CDboExtraErrorReport::SetIndent()
 
 void CDboExtraErrorReport::SetDXDiagLog() 
 {
-    // Dx¿¡¼­ PC°ü·Ã Á¤º¸¸¦ °¡Á®¿Í¼­ txtÆÄÀÏÀ» ¸¸µç´Ù.
+    // Dxì—ì„œ PCê´€ë ¨ ì •ë³´ë¥¼ ê°€ì ¸ì™€ì„œ txtíŒŒì¼ì„ ë§Œë“ ë‹¤.
     SHELLEXECUTEINFO execInfo;
     ZeroMemory(&execInfo, sizeof(SHELLEXECUTEINFO));
     execInfo.cbSize = sizeof(SHELLEXECUTEINFO);

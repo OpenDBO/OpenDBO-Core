@@ -2,7 +2,7 @@
  *
  * File			: NtlLoadingController.cpp
  * Author		: JeongHo,Rho
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2007. 2. 13	
  * Abstract		: 
  *****************************************************************************

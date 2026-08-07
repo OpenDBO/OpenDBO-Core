@@ -81,7 +81,7 @@ void CPathManager::Create( int nCount )
 
 	m_pStbToolTip->AddSurface( surface );
 
-	// ¶óÀÎÆĞ½º¸¦ »ı¼º
+	// ë¼ì¸íŒ¨ìŠ¤ë¥¼ ìƒì„±
 	m_pLinePath = new gui::CGuiLine();
 }
 
@@ -158,7 +158,7 @@ void CPathManager::BuildActivePathItem()
 	m_pActiveValueItem->GetValue( "path_time", m_sPathInfo.fTime );
 	m_pActiveValueItem->GetValue( "path_ctrlnum", m_sPathInfo.nCtrlNum );
 	m_pActiveValueItem->GetValue( "path_curvesubnum", m_sPathInfo.nCurveSubNum );
-	// ¹öÆÛ
+	// ë²„í¼
 	gui::SCtrlPoint* pCtrlPoint = new gui::SCtrlPoint[m_sPathInfo.nCtrlNum];
 
 	m_pActiveValueItem->GetValue( "path_ctrlpoint", pCtrlPoint, m_sPathInfo.nCtrlNum );
@@ -192,13 +192,13 @@ void CPathManager::UpdateCurrentPathData()
 		m_pCtrlPoint[i].fTime = m_pPath[i].GetTime();
 	}
 
-	// Path LineÀ» UpdateÇÑ´Ù.
+	// Path Lineì„ Updateí•œë‹¤.
 	CreateActivePathLine();
 }
 
 void CPathManager::SaveCurrentPathData()
 {
-	// Data°¡ ¾ø´Ù.
+	// Dataê°€ ì—†ë‹¤.
 	if( m_pPath == NULL )
 		return;
 
@@ -249,7 +249,7 @@ void CPathManager::SetTotalTime( float fTime )
 }
 
 /**
-* \brief OffsetÀÌ ¹Ù²î¸é ½ÇÁ¦ µ¥ÀÌÅÍ´Â º¯°æÇÏÁö ¾Ê°í Rendering µÇ´Â ¾ÆÀÌÅÛµé ¼Ó¼º¸¸ º¯°æÇÑ´Ù.
+* \brief Offsetì´ ë°”ë€Œë©´ ì‹¤ì œ ë°ì´í„°ëŠ” ë³€ê²½í•˜ì§€ ì•Šê³  Rendering ë˜ëŠ” ì•„ì´í…œë“¤ ì†ì„±ë§Œ ë³€ê²½í•œë‹¤.
 */
 void CPathManager::RefreshOffsetData()
 {
@@ -288,7 +288,7 @@ int CPathManager::GetCount()
 }
 
 /**
-* \brief ÇöÀçÀÇ Active Item¿¡ ¸ÂÃá PathÀÇ LineÀ» ¼¼ÆÃÇÑ´Ù.
+* \brief í˜„ì¬ì˜ Active Itemì— ë§ì¶˜ Pathì˜ Lineì„ ì„¸íŒ…í•œë‹¤.
 */
 void CPathManager::CreateActivePathLine()
 {

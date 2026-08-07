@@ -2,15 +2,15 @@
  *
  * File			: NtlSobTriggerObject.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 11. 16	
  * Abstract		: Simulation trigger object
  *****************************************************************************
- * Desc         : trigger°¡ ¼³Á¤µÇ¾î ÀÖ´Â object ´ëÇØ ±â´ÉÀ» Á¦°øÇØÁÖ¸ç, 
- *				  ¼­¹ö¿Í µ¿±â¸¦ ÀÌ·é´Ù.
- *				  handleÀº ÀÏ¹İÀûÀÎ simulation object ¹æ½ÄÃ³·³ ¼­¹ö¿¡ ÀÇÇÑ handle 
- *                ÇÒ´ç ¹æ½ÄÀÌ ¾Æ´Ï¶ó, ¼­¹ö¿Í Å¬¶óÀÌ¾ğÆ®°£ÀÇ µ¿ÀÏÇÑ ¾Ë°í¸®ÁòÀ»
- *                »ç¿ëÇÏ¿©, Å¬¶óÀÌ¾ğÆ® ÀÚÃ¼ÀûÀ¸·Î handleÀ» ÇÒ´çÇÑ´Ù.
+ * Desc         : triggerê°€ ì„¤ì •ë˜ì–´ ìˆëŠ” object ëŒ€í•´ ê¸°ëŠ¥ì„ ì œê³µí•´ì£¼ë©°, 
+ *				  ì„œë²„ì™€ ë™ê¸°ë¥¼ ì´ë£¬ë‹¤.
+ *				  handleì€ ì¼ë°˜ì ì¸ simulation object ë°©ì‹ì²˜ëŸ¼ ì„œë²„ì— ì˜í•œ handle 
+ *                í• ë‹¹ ë°©ì‹ì´ ì•„ë‹ˆë¼, ì„œë²„ì™€ í´ë¼ì´ì–¸íŠ¸ê°„ì˜ ë™ì¼í•œ ì•Œê³ ë¦¬ì¦˜ì„
+ *                ì‚¬ìš©í•˜ì—¬, í´ë¼ì´ì–¸íŠ¸ ìì²´ì ìœ¼ë¡œ handleì„ í• ë‹¹í•œë‹¤.
  *****************************************************************************/
 
 #ifndef __NTL_SOB_TRIGGEROBJECT_H__
@@ -37,7 +37,7 @@ protected:
 	RwBool			m_bActiveQuestMark;
 	RwUInt16		m_tID;
 
-	// Æ®¸®°Å ¿ÀºêÁ§Æ®ÀÇ »óÅÂ
+	// íŠ¸ë¦¬ê±° ì˜¤ë¸Œì íŠ¸ì˜ ìƒíƒœ
 	RwUInt8						m_byStateType;
 	SNtlSobTriggerObjectState	m_sPreState;
 	SNtlSobTriggerObjectState	m_sCurState;

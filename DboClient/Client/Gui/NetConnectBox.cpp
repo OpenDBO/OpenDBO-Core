@@ -56,29 +56,29 @@
 //
 //	CRectangle rect;
 //
-//	// È®ÀÎ ¹öÆ°
+//	// í™•ì¸ ë²„íŠ¼
 //	m_pOkBtn = (gui::CButton*)GetComponent("btnOK");
 //	m_pOkBtn->SetText(GetDisplayStringManager()->GetString(DST_MSG_BTN_OK));
 //	m_slotOk = m_pOkBtn->SigClicked().Connect( this, &CNetConnectBox::OnClickedOkButton );
 //
-//	// Ãë¼Ò ¹öÆ°
+//	// ì·¨ì†Œ ë²„íŠ¼
 //	m_pCancelBtn = (gui::CButton*)GetComponent("btnCancel");
 //	m_pCancelBtn->SetText(GetDisplayStringManager()->GetString(DST_MSG_BTN_CANCEL));
 //	m_slotCencle = m_pCancelBtn->SigClicked().Connect( this, &CNetConnectBox::OnClickedCancelButton );	
 //
-//	// ¹è°æ
+//	// ë°°ê²½
 //	m_Backboard.SetType(CWindowby3::WT_HORIZONTAL);
 //	m_Backboard.SetSurface(0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "NetConnect.srf", "srfBackgroundUp" ));
 //	m_Backboard.SetSurface(1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "NetConnect.srf", "srfBackgroundCenter" ));
 //	m_Backboard.SetSurface(2, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "NetConnect.srf", "srfBackgroundBottom" ));
 //
-//	// ±ÛÀÚ ¹è°æ Æ²
+//	// ê¸€ì ë°°ê²½ í‹€
 //	m_Panel.SetType(CWindowby3::WT_HORIZONTAL);
 //	m_Panel.SetSurface(0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "NetConnect.srf", "srfPanelUp" ));
 //	m_Panel.SetSurface(1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "NetConnect.srf", "srfPanelCenter" ));
 //	m_Panel.SetSurface(2, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "NetConnect.srf", "srfPanelBottom" ));
 //
-//	// ¸Ş¼¼Áö ³»¿ë
+//	// ë©”ì„¸ì§€ ë‚´ìš©
 //	rect.SetRectWH(20, dMESSAGE_Y, 283, 200);
 //	m_pMessage = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER |  COMP_TEXT_VERTICAL_CENTER, TRUE);
 //	m_pMessage->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
@@ -140,14 +140,14 @@
 //	RwInt32 iDialogWidth = m_Backboard.GetWidth();
 //	RwInt32 iDialogHeight = 0;
 //	
-//	// ¸Ş¼¼Áö ¹Ú½ºÀÇ ÃÖ¼Ò Å©±â ÁöÁ¤
+//	// ë©”ì„¸ì§€ ë°•ìŠ¤ì˜ ìµœì†Œ í¬ê¸° ì§€ì •
 //	if( iMessageHeight < dMESSAGE_MINIMUN_HEIGHT )
 //		iMessageAreaHeight = dMESSAGE_MINIMUN_HEIGHT;
 //	else
 //		iMessageAreaHeight = iMessageHeight;
 //
 //
-//	// OK, Cancle ¹öÆ° Ç¥½Ã ¿©ºÎ ¹× À§Ä¡
+//	// OK, Cancle ë²„íŠ¼ í‘œì‹œ ì—¬ë¶€ ë° ìœ„ì¹˜
 //	//switch(m_byMsgBoxType)
 //	//{
 //	//case MBT_OK:
@@ -189,13 +189,13 @@
 //	//	}
 //	//}
 //
-//	// ¸Ş¼¼Áö ¹Ú½º Áß¾Ó¿¡ À§Ä¡
+//	// ë©”ì„¸ì§€ ë°•ìŠ¤ ì¤‘ì•™ì— ìœ„ì¹˜
 //	m_pThis->SetPosition((GetDboGlobal()->GetScreenWidth() - m_Backboard.GetWidth())/2,
 //						 (GetDboGlobal()->GetScreenHeight() - iDialogHeight)/2);
 //
 //	if( iMessageHeight < dMESSAGE_MINIMUN_HEIGHT )
 //	{
-//		// ¸Ş¼¼Áö ¹Ú½ºÀÇ ÃÖ¼Ò Å©±â ÁöÁ¤¿¡ µû¸¥ À§Ä¡ º¸Á¤
+//		// ë©”ì„¸ì§€ ë°•ìŠ¤ì˜ ìµœì†Œ í¬ê¸° ì§€ì •ì— ë”°ë¥¸ ìœ„ì¹˜ ë³´ì •
 //		RwInt32 iAdjust = (dMESSAGE_MINIMUN_HEIGHT - iMessageHeight) / 2;
 //		m_pMessage->SetPosition((m_pThis->GetWidth() - m_pMessage->GetWidth())/2, dMESSAGE_Y + iAdjust);
 //	}
@@ -239,7 +239,7 @@
 //		}
 //	case MBW_DEL_CHARACTER:
 //		{
-//			// Ä³¸¯ÅÍ »èÁ¦
+//			// ìºë¦­í„° ì‚­ì œ
 //			RwUInt8 byServer = GetDboGlobal()->GetSelectedServerHandle();
 //			LobbyInfo* pLobbyInfo = GetDboGlobal()->GetLobbyInfo(byServer);
 //			SERIAL_HANDLE hCharacter = pLobbyInfo->character[GetDboGlobal()->GetSelectedCharIndex()].Summary.charId;
@@ -251,7 +251,7 @@
 //		}
 //	case MBW_RECOVERY_CHARACTER:
 //		{
-//			// Ä³¸¯ÅÍ º¹±¸
+//			// ìºë¦­í„° ë³µêµ¬
 //			RwUInt8 byServer = GetDboGlobal()->GetSelectedServerHandle();
 //			LobbyInfo* pLobbyInfo = GetDboGlobal()->GetLobbyInfo(byServer);
 //			SERIAL_HANDLE hCharacter = pLobbyInfo->character[GetDboGlobal()->GetSelectedCharIndex()].Summary.charId;
@@ -288,7 +288,7 @@
 //	{
 //	case MBW_ASK_TUTORIAL:	
 //		{
-//			// ¹Ù·Î °ÔÀÓ ÁøÀÔ
+//			// ë°”ë¡œ ê²Œì„ ì§„ì…
 //			GetCharStageState()->ReservateState(CHAR_STATE_SUCCESS_ENTER_GAME);
 //			GetCharStageState()->ChangeState(CHAR_STATE_SELECT_EXIT);
 //

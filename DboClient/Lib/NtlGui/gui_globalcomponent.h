@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Name: class gui::CGlobalComponent
-// Desc: GUI Library³»¿¡¼­»ç¿ëµÇ´Â Component °ü¸®. 
-//		 Phase¿¡ °ü°è¾øÀÌ Àü¿ªÀ¸·Î »ı¼ºµÇ¾ßÇÒ ComponentÀÇ °ü¸®.	
+// Desc: GUI Libraryë‚´ì—ì„œì‚¬ìš©ë˜ëŠ” Component ê´€ë¦¬. 
+//		 Phaseì— ê´€ê³„ì—†ì´ ì „ì—­ìœ¼ë¡œ ìƒì„±ë˜ì•¼í•  Componentì˜ ê´€ë¦¬.	
 //			 
 // 2006.03.6 Peessi@hitel.net   
 //
@@ -23,8 +23,8 @@ public:
 	static CGlobalComponent* GetInstance();
 
 //! Operations:
-	VOID SetToolTip( CToolTip* pToolTip );	// ÁÖÀÇ!! : new·Î »ı¼ºÇÑ Æ÷ÀÎÅÍ¸¸ ³Ñ°Ü¾ß ÇÑ´Ù.
-	VOID SetToolTip( std::string strName );	// ÁÖÀÇ!! : CreateComponent°¡ ¼±ÇàµÇ¾î¾ß ÇÑ´Ù.
+	VOID SetToolTip( CToolTip* pToolTip );	// ì£¼ì˜!! : newë¡œ ìƒì„±í•œ í¬ì¸í„°ë§Œ ë„˜ê²¨ì•¼ í•œë‹¤.
+	VOID SetToolTip( std::string strName );	// ì£¼ì˜!! : CreateComponentê°€ ì„ í–‰ë˜ì–´ì•¼ í•œë‹¤.
 	CToolTip* GetToolTip() { return m_pToolTip; }
 	
 	VOID CreateComponent( std::string rsrFile, std::string srfFile, std::string frmFile, 

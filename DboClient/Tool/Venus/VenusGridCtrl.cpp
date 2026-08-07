@@ -1,4 +1,4 @@
-// VenusGridCtrl.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// VenusGridCtrl.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -24,7 +24,7 @@ END_MESSAGE_MAP()
 
 
 
-// CVenusGridCtrl ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CVenusGridCtrl ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 //------------------------------------------------------------------
 //	FuncName	: ResetTreeItemName

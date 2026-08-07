@@ -5,8 +5,8 @@
 
 /**
  * \ingroup NtlPresentation
- * CNtlPLPlant¿¡ ÇØ´çÇÏ´Â property classÀÌ´Ù.
- * property data´Â xml file·Î ÀÛ¼ºµÇ¾îÁ® ÀÖ´Ù.
+ * CNtlPLPlantì— í•´ë‹¹í•˜ëŠ” property classì´ë‹¤.
+ * property dataëŠ” xml fileë¡œ ì‘ì„±ë˜ì–´ì ¸ ìˆë‹¤.
  *
  */
 

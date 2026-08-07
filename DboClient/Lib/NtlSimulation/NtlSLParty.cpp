@@ -149,14 +149,14 @@ VOID CNtlParty::Update(RwReal fElapsed)
 		
 		CNtlSobPlayer* pPlayer = reinterpret_cast<CNtlSobPlayer*>(GetNtlSobManager()->GetSobObject(pMember->hSerial));
 		
-		// ÆÄÆ¼ ¸É¹ö°¡ °¡½Ã¿µ¿ª ¹ÛÀ¸·Î ³ª°¡¼­ »ç¶óÁú ¼öµµ ÀÖ´Ù.
+		// íŒŒí‹° ë§´ë²„ê°€ ê°€ì‹œì˜ì—­ ë°–ìœ¼ë¡œ ë‚˜ê°€ì„œ ì‚¬ë¼ì§ˆ ìˆ˜ë„ ìˆë‹¤.
 		if(!pPlayer)
 			continue;
 
 		RwV3d vPos = pPlayer->GetPosition();
 		
-		// ¾Æ¹ÙÅ¸ ÁÖº¯¿¡ ÀÖÀ¸¹Ç·Î ¾Æ¹ÙÅ¸¿Í °°Àº ¿ùµå ¾ÆÀÌµğ¸¦ °®´Â´Ù
-		// ¾Æ¹ÙÅ¸ ÁÖº¯¿¡ ¾øÀ» ¶§´Â ¼­¹ö·Î ºÎÅÍ º°µµÀÇ ÆĞÅ¶À¸·Î µ¥ÀÌÅÍ¸¦ ¹Ş´Â´Ù
+		// ì•„ë°”íƒ€ ì£¼ë³€ì— ìˆìœ¼ë¯€ë¡œ ì•„ë°”íƒ€ì™€ ê°™ì€ ì›”ë“œ ì•„ì´ë””ë¥¼ ê°–ëŠ”ë‹¤
+		// ì•„ë°”íƒ€ ì£¼ë³€ì— ì—†ì„ ë•ŒëŠ” ì„œë²„ë¡œ ë¶€í„° ë³„ë„ì˜ íŒ¨í‚·ìœ¼ë¡œ ë°ì´í„°ë¥¼ ë°›ëŠ”ë‹¤
 		pMember->uiWorldID	= Logic_GetActiveWorldId();
 		pMember->uiWorldTbl	= Logic_GetActiveWorldTableId();
 
@@ -291,7 +291,7 @@ VOID CNtlParty::HandleEvents(RWS::CMsg &pMsg)
 
 		if(hAvatarHandle == hSerial)
 		{
-			// ÆÄÆ¼ °­Åğ¸¦ ÅëÇØ¼­ Avatar°¡ °­ÅğµÇ¾ú´Ù
+			// íŒŒí‹° ê°•í‡´ë¥¼ í†µí•´ì„œ Avatarê°€ ê°•í‡´ë˜ì—ˆë‹¤
 			Leave();
 
 			CNtlSLEventGenerator::PartyUpdateValue(PMT_PARTY_LEAVE);
@@ -428,7 +428,7 @@ VOID CNtlParty::HandleEvents(RWS::CMsg &pMsg)
 		{
 			CNtlSobPlayer* pPlayer = reinterpret_cast<CNtlSobPlayer*>(GetNtlSobManager()->GetSobObject(pMember->hSerial));
 
-			// °¡½Ã°Å¸®¿¡ ÀÖ´Â ¸É¹öÀÇ À§Ä¡´Â ¾÷µ¥ÀÌÆ®ÇÏÁö ¾Ê´Â´Ù
+			// ê°€ì‹œê±°ë¦¬ì— ìˆëŠ” ë§´ë²„ì˜ ìœ„ì¹˜ëŠ” ì—…ë°ì´íŠ¸í•˜ì§€ ì•ŠëŠ”ë‹¤
 			if(pPlayer)
 				return;
 

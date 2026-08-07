@@ -2,7 +2,7 @@
 *
 * File			: NtlSLTMQ.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 
 * Update		: 10. 29
 * Abstract		: Simulation time machine class
@@ -38,29 +38,29 @@ public:
 
 	struct sWaitInfo
 	{
-		sTIMEQUEST_TBLDAT*			pTMQTable;	///< TMQ ≈◊¿Ã∫Ì		
-		RwReal						fRemainTime;///< TMQ √ﬂ√∑/¡¯¿‘±Ó¡ˆ ≥≤¿∫ Ω√∞£
-		RwBool						bTeleport;	///< TMQ √ﬂ√∑¿Ã µ«æÓ 1»∏ ≈⁄∑π∆˜∆Æ «“ ºˆ ¿÷¥Ÿ
-		SERIAL_HANDLE				hNPCHandle;	///< TMQ Ω≈√ª¿ª «— NPC¿« «⁄µÈ
+		sTIMEQUEST_TBLDAT*			pTMQTable;	///< TMQ ÌÖåÏù¥Î∏î		
+		RwReal						fRemainTime;///< TMQ Ï∂îÏ≤®/ÏßÑÏûÖÍπåÏßÄ ÎÇ®ÏùÄ ÏãúÍ∞Ñ
+		RwBool						bTeleport;	///< TMQ Ï∂îÏ≤®Ïù¥ ÎêòÏñ¥ 1Ìöå ÌÖîÎ†àÌè¨Ìä∏ Ìï† Ïàò ÏûàÎã§
+		SERIAL_HANDLE				hNPCHandle;	///< TMQ Ïã†Ï≤≠ÏùÑ Ìïú NPCÏùò Ìï∏Îì§
 	};
 
 	struct sTMQRunning
 	{
-		sTIMEQUEST_TBLDAT*		pTMQTable;			///< TMQ ≈◊¿Ã∫Ì
-		eTIMEQUEST_DIFFICULTY	byDifficultyFlag;	///< ≥≠¿Ãµµ «√∑°±◊( eTIMEQUEST_DIFFICULTY_FLAG )
+		sTIMEQUEST_TBLDAT*		pTMQTable;			///< TMQ ÌÖåÏù¥Î∏î
+		eTIMEQUEST_DIFFICULTY	byDifficultyFlag;	///< ÎÇúÏù¥ÎèÑ ÌîåÎûòÍ∑∏( eTIMEQUEST_DIFFICULTY_FLAG )
 		eTIMEQUEST_MODE			eTimeQuestMode;		///< eTIMEQUEST_MODE
 
 		RwUInt8				byStage;
-		RwReal				fLimitedTime;		///< ≥≤¿∫ Ω√∞£
-		RwBool				bUpdateTime;		///< ≥≤¿∫ Ω√∞£ æ˜µ•¿Ã∆Æ ø©∫Œ
+		RwReal				fLimitedTime;		///< ÎÇ®ÏùÄ ÏãúÍ∞Ñ
+		RwBool				bUpdateTime;		///< ÎÇ®ÏùÄ ÏãúÍ∞Ñ ÏóÖÎç∞Ïù¥Ìä∏ Ïó¨Î∂Ä
 
-		RwReal				fLastDayRecord;		///< ¡ˆ±›±Ó¡ˆ¿« TMQ √÷¥‹±‚∑œ
+		RwReal				fLastDayRecord;		///< ÏßÄÍ∏àÍπåÏßÄÏùò TMQ ÏµúÎã®Í∏∞Î°ù
 		RwUInt32			uiClearTime;
 		RwUInt32			uiBonusTime;
 		RwBool				bDayRecord;
 		RwBool				bBestRecord;
 
-		// avooo's comment: ¡¯«‡ø° ∞¸«— ∫∏¥Ÿ ¿⁄ºº«— ¡§∫∏¥¬ SAvatarInfo¿« sWORLD_INFO ∑Œ ≈Î«ÿº≠..
+		// avooo's comment: ÏßÑÌñâÏóê Í¥ÄÌïú Î≥¥Îã§ ÏûêÏÑ∏Ìïú Ï†ïÎ≥¥Îäî SAvatarInfoÏùò sWORLD_INFO Î°ú ÌÜµÌï¥ÏÑú..
 	};
 
 	virtual	RwBool			Create(void);
@@ -72,13 +72,13 @@ public:
 
 	VOID					SetNPCHandle(SERIAL_HANDLE hNPCHandle);
 
-	// TMQ øπæ‡ ¡§∫∏
+	// TMQ ÏòàÏïΩ Ï†ïÎ≥¥
 	sTIMEQUEST_TBLDAT*		GetTMQTable_for_RegRoom();
 	RwReal					GetRemainTime_in_Room();
 	RwBool					CanTMQTeleport();
 	SERIAL_HANDLE			GetNPCHandle();
 
-	// TMQ ¡¯«‡ ¡§∫∏
+	// TMQ ÏßÑÌñâ Ï†ïÎ≥¥
 	VOID					SetStage(RwUInt8 byStage) { m_RunningInfo.byStage = byStage; }
 
 	sTIMEQUEST_TBLDAT*		GetTMQTable();
@@ -98,8 +98,8 @@ protected:
 	RwUInt8					GetNearDifficult(TBLIDX tmqTblidx);
 
 protected:
-	sWaitInfo		m_WaitInfo;			///< µÓ∑œ»ƒ ¥Î±‚ ¡§∫∏
-	sTMQRunning		m_RunningInfo;		///< TMQ ¡¯«‡ ¡§∫∏
+	sWaitInfo		m_WaitInfo;			///< Îì±Î°ùÌõÑ ÎåÄÍ∏∞ Ï†ïÎ≥¥
+	sTMQRunning		m_RunningInfo;		///< TMQ ÏßÑÌñâ Ï†ïÎ≥¥
 };
 
 inline VOID CNtlTMQ::SetNPCHandle(SERIAL_HANDLE hNPCHandle)

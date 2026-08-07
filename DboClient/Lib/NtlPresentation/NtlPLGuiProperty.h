@@ -2,7 +2,7 @@
  *
  * File			: NtlPLGuiProperty.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 8. 22	
  * Abstract		: Presentation layer gui property class
  *****************************************************************************
@@ -18,8 +18,8 @@
 
 /**
  * \ingroup NtlPresentation
- * CNtlPLGui¿¡ ÇØ´çÇÏ´Â property classÀÌ´Ù.
- * property data´Â xml file·Î ÀÛ¼ºµÇ¾îÁ® ÀÖ´Ù.
+ * CNtlPLGuiì— í•´ë‹¹í•˜ëŠ” property classì´ë‹¤.
+ * property dataëŠ” xml fileë¡œ ì‘ì„±ë˜ì–´ì ¸ ìˆë‹¤.
  *
  */
 
@@ -29,7 +29,7 @@ public:
 
 	static unsigned int m_strVer;			/* gui property file version **/
 	static std::string m_strScriptPath;		/* gui script path name **/ 
-	static std::string m_strTexPath;		/* gui texture fileÀÇ path name **/ 
+	static std::string m_strTexPath;		/* gui texture fileì˜ path name **/ 
 	
 	std::string m_strResFile;				/* gui resource script file name **/ 
 	std::string m_strSurFile;				/* gui surface script file name **/ 
@@ -50,17 +50,17 @@ public:
 	virtual ~CNtlPLGuiProperty();
 
 	/**
-    *  xml file·ÎºÎÅÍ object property data¸¦ loadingÇÏ´Â ÇÔ¼ö
-	*  \param pDoc´Â xml wrapping class pointer.
-	*  \param pNod´Â À¯È¿ÇÑ xml node.
+    *  xml fileë¡œë¶€í„° object property dataë¥¼ loadingí•˜ëŠ” í•¨ìˆ˜
+	*  \param pDocëŠ” xml wrapping class pointer.
+	*  \param pNodëŠ” ìœ íš¨í•œ xml node.
     *
     */
 	virtual RwBool	Load(CNtlXMLDoc *pDoc, IXMLDOMNode *pNode);
 
 	/**
-    *  xml file·Î object property data¸¦ saveÇÏ´Â ÇÔ¼ö
-	*  \param pDoc´Â xml wrapping class pointer.
-	*  \param pNod´Â À¯È¿ÇÑ xml node.
+    *  xml fileë¡œ object property dataë¥¼ saveí•˜ëŠ” í•¨ìˆ˜
+	*  \param pDocëŠ” xml wrapping class pointer.
+	*  \param pNodëŠ” ìœ íš¨í•œ xml node.
     *
     */
 	virtual RwBool	Save(CNtlXMLDoc *pDoc, IXMLDOMNode *pNode );

@@ -1,7 +1,7 @@
 #pragma once
 
 
-// CEffectPropertyDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CEffectPropertyDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 #include "PropTree.h"
 
 #include "NtlEffectDefine.h"
@@ -16,7 +16,7 @@
 
 #include "NtlResourceEffect.h"
 
-/// ºôº¸µå ¼³Á¤¿¡ ¾²ÀÌ´Â Flag
+/// ë¹Œë³´ë“œ ì„¤ì •ì— ì“°ì´ëŠ” Flag
 enum EBillBoardFlag
 {
     BILLBOARD_NONE = 0,
@@ -30,7 +30,7 @@ class CEffectPropertyDialog : public CDialog
 	DECLARE_DYNCREATE(CEffectPropertyDialog)
 
 public:
-	CEffectPropertyDialog(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CEffectPropertyDialog(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CEffectPropertyDialog();
 
 public:
@@ -172,11 +172,11 @@ public:
 	CPropTreeItem*	SetProperties_Textures(std::string& strCurrentName, CPropTreeItem* pRoot);
     CPropTreeItem*  SetProperties_Sound(std::string& strSoundName, CPropTreeItem* pRoot);
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_EFFECT_PROPERTY };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	afx_msg void OnItemChanged(NMHDR* pNotifyStruct, LRESULT* plResult);
 

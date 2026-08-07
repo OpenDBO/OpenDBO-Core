@@ -13,7 +13,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// �ѱ��� resources
+// 한국어 resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 #ifdef _WIN32
@@ -218,7 +218,7 @@ END
 
 IDD_INFOMATION DIALOGEX 0, 0, 169, 110
 STYLE DS_ABSALIGN | DS_SETFONT | WS_CHILD
-FONT 9, "����", 0, 0, 0x0
+FONT 9, "굴림", 0, 0, 0x0
 BEGIN
     CTEXT           "X",IDC_STATIC,6,19,17,13,SS_CENTERIMAGE
     CTEXT           "Y",IDC_STATIC,6,32,17,13,SS_CENTERIMAGE
@@ -448,22 +448,22 @@ END
 
 STRINGTABLE 
 BEGIN
-    ID_ATTR_OPEN            "��ƼŬ ��ũ��Ʈ�� �о�ɴϴ�.\nOpen"
-    ID_ATTR_SAVE            "���� �����ϰ� �ִ� ��ƼŬ�� ��ũ��Ʈ�� �����մϴ�.\nSave"
-    ID_BACKPIC_EDIT         "Edit\n��濡 ��µ� �׸� ������ �����մϴ�."
-    ID_BACKPIC_BUTTON       "Select\n��濡 ��µ� �׸��� �����մϴ�."
-    ID_BACKPIC_CAPTION      "Caption\n����� �׸��� �����մϴ�."
+    ID_ATTR_OPEN            "파티클 스크립트를 읽어옵니다.\nOpen"
+    ID_ATTR_SAVE            "현재 편집하고 있는 파티클을 스크립트로 저장합니다.\nSave"
+    ID_BACKPIC_EDIT         "Edit\n배경에 출력될 그림 파일을 지정합니다."
+    ID_BACKPIC_BUTTON       "Select\n배경에 출력될 그림을 선택합니다."
+    ID_BACKPIC_CAPTION      "Caption\n배경의 그림을 지정합니다."
 END
 
 STRINGTABLE 
 BEGIN
-    ID_ATTR_GADD            "��ƼŬ �׷��� �߰��մϴ�."
-    ID_ATTR_PADD            "��ƼŬ�� �߰��մϴ�."
-    ID_ATTR_DEL             "��ƼŬ �׷� �Ǵ� ��ƼŬ�� �����մϴ�. �׷��� �����ϸ� �׷쿡 ���� ��ƼŬ�� ���� �����˴ϴ�."
-    ID_ATTR_PLAY            "������ ��ƼŬ �׷��� ����մϴ�."
+    ID_ATTR_GADD            "파티클 그룹을 추가합니다."
+    ID_ATTR_PADD            "파티클을 추가합니다."
+    ID_ATTR_DEL             "파티클 그룹 또는 파티클을 삭제합니다. 그룹을 삭제하면 그룹에 속한 파티클들 또한 삭제됩니다."
+    ID_ATTR_PLAY            "현재의 파티클 그룹을 재생합니다."
 END
 
-#endif    // �ѱ��� resources
+#endif    // 한국어 resources
 /////////////////////////////////////////////////////////////////////////////
 
 

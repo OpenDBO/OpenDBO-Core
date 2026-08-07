@@ -2,7 +2,7 @@
 *
 * File			: NtlSobTriggerObjectAttr.h
  * Author		: HyungSuk, Jang
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2006. 11. 21	
 * Abstract		: Simulation object trigger object attribute base class
 *****************************************************************************

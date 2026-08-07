@@ -2,7 +2,7 @@
 #include "afxwin.h"
 
 
-// CStatusBarDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CStatusBarDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 #include "rwcore.h"
 
@@ -17,7 +17,7 @@ class CStatusBarDialog : public CDialog
 	DECLARE_DYNAMIC(CStatusBarDialog)
 
 public:
-	CStatusBarDialog(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CStatusBarDialog(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CStatusBarDialog();
 	static CStatusBarDialog&	GetInstance();
 
@@ -36,11 +36,11 @@ public:
 
 
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_STATUSBAR };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

@@ -23,11 +23,11 @@ struct DecalParam
 
 class CNtlInstanceDecalSystem : public CNtlInstanceComponentSystem
 {
-	// Vertex¸¦ »ç¿ëÇÏÁö¸¸, CNtlDecalÀ» »ç¿ëÇÏ±â ¶§¹®¿¡ ImvertexSystem¿¡¼­ »ó¼Ó ¹ŞÁö ¾Ê´Â´Ù.
+	// Vertexë¥¼ ì‚¬ìš©í•˜ì§€ë§Œ, CNtlDecalì„ ì‚¬ìš©í•˜ê¸° ë•Œë¬¸ì— ImvertexSystemì—ì„œ ìƒì† ë°›ì§€ ì•ŠëŠ”ë‹¤.
 public:
-	CNtlResourceDecalSystem*		m_pResourceDecalSystem;			///< ÇÁ·ÎÆÛÆ¼ Á¤º¸¸¦ °¡Áö°í ÀÖ´Â ¸®¼Ò½º °´Ã¼
+	CNtlResourceDecalSystem*		m_pResourceDecalSystem;			///< í”„ë¡œí¼í‹° ì •ë³´ë¥¼ ê°€ì§€ê³  ìˆëŠ” ë¦¬ì†ŒìŠ¤ ê°ì²´
 	RwBool							m_bUpdateVertex;
-	CNtlPLDecal*					m_pDecalSystem;					///< ½ÇÁ¦ DecalÀ» ±×¸®´Â Decal °´Ã¼
+	CNtlPLDecal*					m_pDecalSystem;					///< ì‹¤ì œ Decalì„ ê·¸ë¦¬ëŠ” Decal ê°ì²´
 
 public:
 	CNtlInstanceDecalSystem(void);
@@ -44,7 +44,7 @@ public:
 
 			void	SetVertexUv();
     virtual void    SetAlpha(RwUInt8 byValue);
-    virtual void	SetScale(RwReal fScale);									 ///< ÀÌÆåÆ®ÀÇ ScaleÀ» ¼³Á¤ÇÑ´Ù. (ÇöÀç´Â ÆÄÆ¼Å¬¿¡¼­¸¸ À¯È¿ÇÏ´Ù)
+    virtual void	SetScale(RwReal fScale);									 ///< ì´í™íŠ¸ì˜ Scaleì„ ì„¤ì •í•œë‹¤. (í˜„ì¬ëŠ” íŒŒí‹°í´ì—ì„œë§Œ ìœ íš¨í•˜ë‹¤)
 
 	virtual RwBool	Update(RwReal fElapsedTime);
 	virtual RwBool	Render();
@@ -53,6 +53,6 @@ public:
 
 	virtual void	SetWorldMatrix(const RwMatrix& matWorld);
 
-	RwInt32	GetPolyCount();											///< ÇöÀç ±×·ÁÁö°í ÀÖ´Â Æú¸®°ïÀÇ °³¼ö¸¦ ¹İÈ¯ÇÑ´Ù. (Vertex °³¼ö / 3)
+	RwInt32	GetPolyCount();											///< í˜„ì¬ ê·¸ë ¤ì§€ê³  ìˆëŠ” í´ë¦¬ê³¤ì˜ ê°œìˆ˜ë¥¼ ë°˜í™˜í•œë‹¤. (Vertex ê°œìˆ˜ / 3)
 };
 

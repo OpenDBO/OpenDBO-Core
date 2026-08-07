@@ -1,12 +1,12 @@
 /******************************************************************************
 * File			: LobbyManager.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2009. 8. 6
 * Abstract		: 
 * Update		: 
 *****************************************************************************
-* Desc			: ½ÇÁ¦ º» °ÔÀÓÀü±îÁöÀÇ ·Îºñ¸¦ °ü¸®ÇÑ´Ù
+* Desc			: ì‹¤ì œ ë³¸ ê²Œì„ì „ê¹Œì§€ì˜ ë¡œë¹„ë¥¼ ê´€ë¦¬í•œë‹¤
 *****************************************************************************/
 
 #pragma once
@@ -58,7 +58,7 @@ public:
 
 	RwBool			IsWaitingServerListInfo();
 	RwBool			IsWaitingChannelInfo();	
-	RwBool			IsFistAcceptServer();				//< t: À¯Àú°¡ Á¢¼ÓÇß´ø ¼­¹ö°¡ ¾ø´Ù
+	RwBool			IsFistAcceptServer();				//< t: ìœ ì €ê°€ ì ‘ì†í–ˆë˜ ì„œë²„ê°€ ì—†ë‹¤
 
 
 protected:

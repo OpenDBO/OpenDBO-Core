@@ -155,7 +155,7 @@ VOID CTerritoryNotifyGui::HandleEvents( RWS::CMsg& msg )
 
 		Logic_PlayGUISound(GSD_SYSTEM_TERRAIN_NOTIFY);		
 
-		// À§Ä¡´Â ´Ù½Ã ÁöÁ¤ÇØ¾ßÇÑ´Ù.
+		// ìœ„ì¹˜ëŠ” ë‹¤ì‹œ ì§€ì •í•´ì•¼í•œë‹¤.
 		SetPosition( CRectangle( 0, 0, m_pmdbNotifyText->GetWidth(), m_pmdbNotifyText->GetHeight() ) );
 		PositionAlign( GetDboGlobal()->GetScreenWidth(), GetDboGlobal()->GetScreenHeight() );		
 	}
@@ -207,7 +207,7 @@ VOID CTerritoryNotifyGui::HandleEvents( RWS::CMsg& msg )
 		Show( true );
 		SetUpdateState( FADE_IN );
 
-		// À§Ä¡´Â ´Ù½Ã ÁöÁ¤ÇØ¾ßÇÑ´Ù.
+		// ìœ„ì¹˜ëŠ” ë‹¤ì‹œ ì§€ì •í•´ì•¼í•œë‹¤.
 		SetPosition( CRectangle( 0, 0, m_pmdbNotifyText->GetWidth(), m_pmdbNotifyText->GetHeight() ) );
 		PositionAlign( GetDboGlobal()->GetScreenWidth(), GetDboGlobal()->GetScreenHeight() );		
 	}

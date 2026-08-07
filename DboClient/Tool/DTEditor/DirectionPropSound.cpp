@@ -1,4 +1,4 @@
-// DirectionPropSound.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// DirectionPropSound.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -49,7 +49,7 @@ END_MESSAGE_MAP()
 
 
 
-// CDirectionPropSound ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CDirectionPropSound ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 
 
@@ -58,7 +58,7 @@ int CDirectionPropSound::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// TODO:  ¿©±â¿¡ Æ¯¼öÈ­µÈ ÀÛ¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì‘ì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if( m_PropGrid.Create(CRect(0, 0, 0, 0), this, IDS_STRING_SOUND) )
 	{
 		CString strTemp;
@@ -132,7 +132,7 @@ void CDirectionPropSound::OnSize(UINT nType, int cx, int cy)
 {
 	CWnd::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CSize sz(0);
 
 	if (m_PropGrid.GetSafeHwnd())
@@ -145,7 +145,7 @@ void CDirectionPropSound::OnShowWindow(BOOL bShow, UINT nStatus)
 {
 	CWnd::OnShowWindow(bShow, nStatus);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if( !bShow )
 		m_bWaitOffsetClick = false;
 }

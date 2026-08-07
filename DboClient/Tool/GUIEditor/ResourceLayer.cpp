@@ -1,4 +1,4 @@
-// ResourceLayer.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// ResourceLayer.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -31,16 +31,16 @@ ON_WM_SETFOCUS()
 END_MESSAGE_MAP()
 
 
-// CResourceLayer ±×¸®±âÀÔ´Ï´Ù.
+// CResourceLayer ê·¸ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CResourceLayer::OnDraw(CDC* pDC)
 {
 	CDocument* pDoc = GetDocument();
-	// TODO: ¿©±â¿¡ ±×¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ê·¸ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 
-// CResourceLayer Áø´ÜÀÔ´Ï´Ù.
+// CResourceLayer ì§„ë‹¨ì…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CResourceLayer::AssertValid() const
@@ -55,13 +55,13 @@ void CResourceLayer::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CResourceLayer ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CResourceLayer ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CResourceLayer::OnSize(UINT nType, int cx, int cy)
 {
 	CView::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if( m_bInitialized )
 		m_RollUpCtrl.MoveWindow( 0, 0, cx, cy );
 }
@@ -70,7 +70,7 @@ void CResourceLayer::OnSetFocus(CWnd* pOldWnd)
 {
 	CView::OnSetFocus(pOldWnd);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	//CLayerMisc::GetInstance().SetLayer( CLayerMisc::RESOURCE_LAYER );
 }
 
@@ -78,7 +78,7 @@ void CResourceLayer::OnInitialUpdate()
 {
 	CView::OnInitialUpdate();
 
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	m_RollUpCtrl.Create( WS_VISIBLE|WS_CHILD, CRect(0,1,190,400), this, IDD_ROLLUPPAGEID );
 
 	//m_RollUpCtrl.InsertPage( "File View", IDD_FILEVIEWDLG, RUNTIME_CLASS( CFileViewDlg ) );

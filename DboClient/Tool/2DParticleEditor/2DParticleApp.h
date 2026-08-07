@@ -64,8 +64,8 @@ protected:
 
 protected:
 	RtCharset*					m_pCharset;			///< Renderware chracter set
-	RwRGBA						m_BackgroundColor;	///< Background color(¹è°æ»ö)
-	RwRGBA						m_ForegroundColor;	///< Foreground color(Àü°æ»ö)
+	RwRGBA						m_BackgroundColor;	///< Background color(ë°°ê²½ìƒ‰)
+	RwRGBA						m_ForegroundColor;	///< Foreground color(ì „ê²½ìƒ‰)
 
 	CNtlCamera*					m_pCamera;			///< Main Camera
 

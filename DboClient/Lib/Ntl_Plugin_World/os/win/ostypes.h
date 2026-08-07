@@ -465,6 +465,7 @@ MACRO_STOP
 
 #if (!defined(RWINT32FROMFLOAT))
 
+#if defined(_M_IX86)
 static __inline RwInt32
 int32fromreal(RwReal x)
 {
@@ -488,11 +489,25 @@ int32fromreal(RwReal x)
 
     return res;
 }
+#else
+static __inline RwInt32
+int32fromreal(RwReal x)
+{
+    return (RwInt32)(x);
+}
+#endif
 #define RwInt32FromRealMacro(x) int32fromreal(x)
 
 #endif /* (!defined(RWINT32FROMFLOAT)) */
 
 #if (!defined(NOASM))
+#if defined(_M_X64) || defined(_WIN64)
+static __inline RwUInt32 
+RwFastRealToUInt32Inline(RwReal x)
+{
+    return (RwUInt32)x;
+}
+#else
 static __inline RwUInt32 
 RwFastRealToUInt32Inline(RwReal x)
 {
@@ -503,6 +518,7 @@ RwFastRealToUInt32Inline(RwReal x)
     
     return(res);
 }
+#endif
 
 #define RwFastRealToUInt32 RwFastRealToUInt32Inline
 

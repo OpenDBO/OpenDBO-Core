@@ -1,16 +1,16 @@
 /******************************************************************************
 * File			: CounterGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 11. 8
 * Abstract		: 
 * Update		: 
 *****************************************************************************
-* Desc			: °ÔÀÓÁß Ä«¿îÅÍ¸¦ ¼¼´Â GUI
-*				  1. Ä«¿îÆ®´Â ÁÙ¾îµé±â¸¸ ÇÏ°í ´Ã¾î³ªÁö ¾Ê´Â´Ù
-*				  2. ¸Å ÃÊ¸¶´Ù ½Ã°è¼Ò¸®¸¦ ³¾ ¼ö ÀÖ´Ù
-*				  3. Ä«¿îÆ®¸¦ ÀÏ½ÃÀûÀ¸·Î ¸ØÃâ ¼ö ÀÖ´Ù
-*				  4. ÁöÁ¤µÈ PibotÀ» ±âÁØÀ¸·Î 4°¡Áö ¹æ¸éÀ¸·Î À§Ä¡ÇÒ ¼ö ÀÖ´Ù
+* Desc			: ê²Œìž„ì¤‘ ì¹´ìš´í„°ë¥¼ ì„¸ëŠ” GUI
+*				  1. ì¹´ìš´íŠ¸ëŠ” ì¤„ì–´ë“¤ê¸°ë§Œ í•˜ê³  ëŠ˜ì–´ë‚˜ì§€ ì•ŠëŠ”ë‹¤
+*				  2. ë§¤ ì´ˆë§ˆë‹¤ ì‹œê³„ì†Œë¦¬ë¥¼ ë‚¼ ìˆ˜ ìžˆë‹¤
+*				  3. ì¹´ìš´íŠ¸ë¥¼ ì¼ì‹œì ìœ¼ë¡œ ë©ˆì¶œ ìˆ˜ ìžˆë‹¤
+*				  4. ì§€ì •ëœ Pibotì„ ê¸°ì¤€ìœ¼ë¡œ 4ê°€ì§€ ë°©ë©´ìœ¼ë¡œ ìœ„ì¹˜í•  ìˆ˜ ìžˆë‹¤
 *****************************************************************************/
 
 #pragma once
@@ -34,9 +34,9 @@ enum eCounterDisplayType
 
 enum eCounterQuadrant		// SetPosition The space to be sorted from the assignment specified by the function
 {							//						||
-	COUNTER_QUADRANT_1,		//			2»çºÐ¸é		||		1»çºÐ¸é
+	COUNTER_QUADRANT_1,		//			2ì‚¬ë¶„ë©´		||		1ì‚¬ë¶„ë©´
 	COUNTER_QUADRANT_2,		//	================== Pibot ==================
-	COUNTER_QUADRANT_3,		//			3»çºÐ¸é		||		4»çºÐ¸é
+	COUNTER_QUADRANT_3,		//			3ì‚¬ë¶„ë©´		||		4ì‚¬ë¶„ë©´
 	COUNTER_QUADRANT_4		//						||
 };
 
@@ -53,12 +53,12 @@ public:
 	virtual VOID	Update(RwReal fElapsed);
 	virtual VOID	Destroy();
 
-	VOID			SetTime(RwReal fSecond);				///< CCounterGuiÀÇ ÇöÀç ½Ã°£À» ¼³Á¤ÇÔ
+	VOID			SetTime(RwReal fSecond);				///< CCounterGuiì˜ í˜„ìž¬ ì‹œê°„ì„ ì„¤ì •í•¨
 	RwReal			GetTime();
 
 	VOID			SetQuadrant(eCounterQuadrant eQuadrantType);
 
-	///< fUsableSecond º¸´Ù ÀÛÀº ½Ã°£¿¡ ¸Å ÃÊ "Â°±ï" °Å¸®´Â ¼Ò¸®¸¦ ³½´Ù
+	///< fUsableSecond ë³´ë‹¤ ìž‘ì€ ì‹œê°„ì— ë§¤ ì´ˆ "ì§¸ê¹" ê±°ë¦¬ëŠ” ì†Œë¦¬ë¥¼ ë‚¸ë‹¤
 	VOID			AlarmSound(RwBool bActive, RwReal fUsableSecond = 10.f);
 
 	VOID			SetDisplayFlag(RwUInt8 byFlag);
@@ -94,19 +94,19 @@ protected:
 
 	gui::CFlash*		m_pflashBackground;
 
-	CNumberGui			m_MinuteNumberGui;		///< ºÐ ´ÜÀ§ Ç¥½Ã
-	CNumberGui			m_SecondNumberGui;		///< ÃÊ ´ÜÀ§ Ç¥½Ã
+	CNumberGui			m_MinuteNumberGui;		///< ë¶„ ë‹¨ìœ„ í‘œì‹œ
+	CNumberGui			m_SecondNumberGui;		///< ì´ˆ ë‹¨ìœ„ í‘œì‹œ
 
 	CSurfaceGui			m_srfNumberBack;
 
 	eCounterDisplayType	m_eDisplayType;
 	eCounterQuadrant	m_eQuadrant;
 
-	RwReal				m_fElapsed;				///< Ä«¿îÆ® ³²Àº ½Ã°£
-	RwReal				m_fUsableAlarmTime;		///< ÀÌ ½Ã°£º¸´Ù m_fElapsedÀÌ ÀÛ¾ÆÁö¸é Â°±ï ¼Ò¸®°¡ ³­´Ù
-	RwReal				m_fSizeRate;			///< NumberÀÇ »çÀÌÁî ºñÀ²
+	RwReal				m_fElapsed;				///< ì¹´ìš´íŠ¸ ë‚¨ì€ ì‹œê°„
+	RwReal				m_fUsableAlarmTime;		///< ì´ ì‹œê°„ë³´ë‹¤ m_fElapsedì´ ìž‘ì•„ì§€ë©´ ì§¸ê¹ ì†Œë¦¬ê°€ ë‚œë‹¤
+	RwReal				m_fSizeRate;			///< Numberì˜ ì‚¬ì´ì¦ˆ ë¹„ìœ¨
 
-	RwInt32				m_iAlarmElapsed;		///< Â°±ï ¼Ò¸®°¡ ³µ¾ú´ø ½Ã°£
+	RwInt32				m_iAlarmElapsed;		///< ì§¸ê¹ ì†Œë¦¬ê°€ ë‚¬ì—ˆë˜ ì‹œê°„
 
 	RwUInt8				m_byDisplayFlag;
 	

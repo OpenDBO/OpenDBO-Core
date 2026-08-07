@@ -203,7 +203,7 @@ RwBool CNtlSobSkillIcon::Use(SERIAL_HANDLE hTargetSerialId, RwUInt32 uiRPBonusTy
 		NTL_RETURN(FALSE);
 	}
 
-	// Rp ∞ÀªÁ ( wRequire_RP ¥¬ ¿Ã¡¶ ¿œπ›Ω∫≈≥µµ ¡∏¿Á«—¥Ÿ. )
+	// Rp Í≤ÄÏÇ¨ ( wRequire_RP Îäî Ïù¥Ï†ú ÏùºÎ∞òÏä§ÌÇ¨ÎèÑ Ï°¥Ïû¨ÌïúÎã§. )
  	if(byCurrRpStock < pSkillTbl->byRequire_RP_Ball && uiRPBonusType != 0xFF )
  	{
  		CNtlSLEventGenerator::SysMsg(m_pSobObj->GetOwnerID(), "GAME_SKILL_NOT_ENOUGH_RP_BALL");
@@ -402,7 +402,7 @@ void CNtlSobSkillIcon::SetSkillIconState( RwUInt8 byIconState, RwUInt8 byRpBonus
 	CNtlSobSkillAttr* pSkillAttr = reinterpret_cast<CNtlSobSkillAttr*>( m_pSobObj->GetSobAttr() );
 	sSKILL_TBLDAT* pSkillData = pSkillAttr->GetSkillTbl();
 
-	// Ω∫≈≥ ƒ≈∏¿”¿ª º≠πˆ∞° ¡˜¡¢ ¡¶æÓ«œ¥¬ ∞ÊøÏ. º≠πˆø°º≠ ªı∑Œ ∆–≈∂¿Ã ≥Ø∂Ûø¿∞‘ µ«æÓ ¿÷¥Ÿ. 
+	// Ïä§ÌÇ¨ Ïø®ÌÉÄÏûÑÏùÑ ÏÑúÎ≤ÑÍ∞Ä ÏßÅÏ†ë Ï†úÏñ¥ÌïòÎäî Í≤ΩÏö∞. ÏÑúÎ≤ÑÏóêÏÑú ÏÉàÎ°ú Ìå®ÌÇ∑Ïù¥ ÎÇ†ÎùºÏò§Í≤å ÎêòÏñ¥ ÏûàÎã§. 
 	if( bSpecialCoolTimeCheck && pSkillData->dwFunction_Bit_Flag & SKILL_FUNCTION_FLAG_SPECIAL_COOL_TIME_RULE )
 		return;
 

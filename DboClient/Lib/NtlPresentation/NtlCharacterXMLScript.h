@@ -6,13 +6,13 @@
 #include "NtlPLCharacterProperty.h"
 #include "NtlPLXMLScriptHelper.h"
 
-// 1.1 : Bone ScaleÀÌ Àû¿ëµÇÁö ¾ÊÀº °æ¿ì Bone Scale Data¸¦ ÀúÀå/·ÎµåÇÏÁö ¾Êµµ·Ï º¯°æ
+// 1.1 : Bone Scaleì´ ì ìš©ë˜ì§€ ì•Šì€ ê²½ìš° Bone Scale Dataë¥¼ ì €ì¥/ë¡œë“œí•˜ì§€ ì•Šë„ë¡ ë³€ê²½
 
 #define CHARACTER_XML_SCRIPT_VER        L"2"
 
 /**
  * \ingroup NtlPresentation
- * \brief Ä³¸¯ÅÍ ½ºÅ©¸³Æ®(XML)À» Save/Load ÇÏ´Â Å¬·¡½º
+ * \brief ìºë¦­í„° ìŠ¤í¬ë¦½íŠ¸(XML)ì„ Save/Load í•˜ëŠ” í´ë˜ìŠ¤
  * \date 2006-05-16
  * \author agebreak
  */
@@ -22,36 +22,36 @@ public:
     CNtlCharacterXMLScript(void);
     virtual ~CNtlCharacterXMLScript(void);
 
-    RwBool SaveCharacterScript(const char* strFileName, CNtlPLCharacterProperty* pProperty);         ///< Ä³¸¯ÅÍ ÇÁ·ÎÆÛÆ¼¸¦ XML ½ºÅ©¸³Æ®·Î ÀúÀåÇÑ´Ù.
-    RwBool LoadCharacterScript(const char* strFileName, CNtlPLCharacterProperty* pProperty);         ///< XML ½ºÅ©¸³Æ®¸¦ ·ÎµåÇÏ¿© Ä³¸¯ÅÍ ÇÁ·ÎÆÛÆ¼¿¡ ¼¼ÆÃÇÑ´Ù.
+    RwBool SaveCharacterScript(const char* strFileName, CNtlPLCharacterProperty* pProperty);         ///< ìºë¦­í„° í”„ë¡œí¼í‹°ë¥¼ XML ìŠ¤í¬ë¦½íŠ¸ë¡œ ì €ì¥í•œë‹¤.
+    RwBool LoadCharacterScript(const char* strFileName, CNtlPLCharacterProperty* pProperty);         ///< XML ìŠ¤í¬ë¦½íŠ¸ë¥¼ ë¡œë“œí•˜ì—¬ ìºë¦­í„° í”„ë¡œí¼í‹°ì— ì„¸íŒ…í•œë‹¤.
 
 protected:
-    RwBool  SaveHeader(CNtlPLCharacterProperty* pProperty);                        ///< Header ºÎºĞÀ» ÀúÀåÇÑ´Ù.
-    RwBool  SaveBoneData(CNtlPLCharacterProperty* pProperty);                      ///< Bone Data ºÎºĞÀ» ÀúÀåÇÑ´Ù
-    RwBool  SaveLinkEffect(CNtlPLCharacterProperty* pProperty);                    ///< Link Effect Data ºÎºĞÀ» ÀúÀåÇÑ´Ù.
-    RwBool  SaveAnimTable(CNtlPLCharacterProperty* pProperty);                     ///< AnimTable ºÎºĞÀ» ÀúÀåÇÑ´Ù.      
+    RwBool  SaveHeader(CNtlPLCharacterProperty* pProperty);                        ///< Header ë¶€ë¶„ì„ ì €ì¥í•œë‹¤.
+    RwBool  SaveBoneData(CNtlPLCharacterProperty* pProperty);                      ///< Bone Data ë¶€ë¶„ì„ ì €ì¥í•œë‹¤
+    RwBool  SaveLinkEffect(CNtlPLCharacterProperty* pProperty);                    ///< Link Effect Data ë¶€ë¶„ì„ ì €ì¥í•œë‹¤.
+    RwBool  SaveAnimTable(CNtlPLCharacterProperty* pProperty);                     ///< AnimTable ë¶€ë¶„ì„ ì €ì¥í•œë‹¤.      
 
-    RwBool  LoadHeader(CNtlPLCharacterProperty* pProperty);                        ///< Header ºÎºĞÀ» ·ÎµåÇÑ´Ù.
-    RwBool  LoadBoneData(CNtlPLCharacterProperty* pProperty);                      ///< Bone Data ºÎºĞÀ» ·ÎµåÇÑ´Ù.
-    RwBool  LoadLinkEffect(CNtlPLCharacterProperty* pProperty);                    ///< Link Effect Data ºÎºĞÀ» ·ÎµåÇÑ´Ù.
-    RwBool  LoadAnimTable(CNtlPLCharacterProperty* pProperty);                     ///< AnimTable  ºÎºĞÀ» ·ÎµåÇÑ´Ù.
+    RwBool  LoadHeader(CNtlPLCharacterProperty* pProperty);                        ///< Header ë¶€ë¶„ì„ ë¡œë“œí•œë‹¤.
+    RwBool  LoadBoneData(CNtlPLCharacterProperty* pProperty);                      ///< Bone Data ë¶€ë¶„ì„ ë¡œë“œí•œë‹¤.
+    RwBool  LoadLinkEffect(CNtlPLCharacterProperty* pProperty);                    ///< Link Effect Data ë¶€ë¶„ì„ ë¡œë“œí•œë‹¤.
+    RwBool  LoadAnimTable(CNtlPLCharacterProperty* pProperty);                     ///< AnimTable  ë¶€ë¶„ì„ ë¡œë“œí•œë‹¤.
 
 
     //////////////////////////////////////////////////////////////////////////
-    void    SaveHitEvent(IXMLDOMElement* pElemEvent, const SEventAnimHit* pEventHit);  ///< Hit Event¸¦ Save ÇÑ´Ù.    
-    void    LoadHitEvent(IXMLDOMNode* pNodeEvent, SEventAnimHit* pEventHit);           ///< Hit Event¸¦ Load ÇÑ´Ù.
+    void    SaveHitEvent(IXMLDOMElement* pElemEvent, const SEventAnimHit* pEventHit);  ///< Hit Eventë¥¼ Save í•œë‹¤.    
+    void    LoadHitEvent(IXMLDOMNode* pNodeEvent, SEventAnimHit* pEventHit);           ///< Hit Eventë¥¼ Load í•œë‹¤.
 
-    void    SaveTraceEvent(IXMLDOMElement* pElemEvent, const SEventTrace* pEventTrace);  ///< Trace Event¸¦ Save ÇÑ´Ù.    
-    void    LoadTraceEvent(IXMLDOMNode* pNodeEvent, SEventTrace* pEventTrace);           ///< Trace Event¸¦ Load ÇÑ´Ù.
+    void    SaveTraceEvent(IXMLDOMElement* pElemEvent, const SEventTrace* pEventTrace);  ///< Trace Eventë¥¼ Save í•œë‹¤.    
+    void    LoadTraceEvent(IXMLDOMNode* pNodeEvent, SEventTrace* pEventTrace);           ///< Trace Eventë¥¼ Load í•œë‹¤.
 
-    void    SaveSubWeaponEvent(IXMLDOMElement* pElemEvent, const SEventSubWeapon* pEventSubWeapon); ///< SubWeapon Event¸¦ SaveÇÑ´Ù.
-    void    LoadSubWeaponEvent(IXMLDOMNode* pNodeEvent, SEventSubWeapon* pEventSubWeapon);          ///< SubWeapon Event¸¦ LoadÇÑ´Ù.
+    void    SaveSubWeaponEvent(IXMLDOMElement* pElemEvent, const SEventSubWeapon* pEventSubWeapon); ///< SubWeapon Eventë¥¼ Saveí•œë‹¤.
+    void    LoadSubWeaponEvent(IXMLDOMNode* pNodeEvent, SEventSubWeapon* pEventSubWeapon);          ///< SubWeapon Eventë¥¼ Loadí•œë‹¤.
 
-	void	SavePostEffectEvent(IXMLDOMElement* pElemEvent, const SEventPostEffect* pEventPostEffect);	///< Post Effect Event¸¦ Save ÇÑ´Ù.
-	void	LoadPostEffectEvent(IXMLDOMNode* pNodeEvent, SEventPostEffect* pPostEffect);				///< Post Effect Event¸¦ Load ÇÑ´Ù.
+	void	SavePostEffectEvent(IXMLDOMElement* pElemEvent, const SEventPostEffect* pEventPostEffect);	///< Post Effect Eventë¥¼ Save í•œë‹¤.
+	void	LoadPostEffectEvent(IXMLDOMNode* pNodeEvent, SEventPostEffect* pPostEffect);				///< Post Effect Eventë¥¼ Load í•œë‹¤.
 
-    void    SaveFootStepEvent(IXMLDOMElement* pElemEvent, const SEventFootStep* pEventFootStep);        ///< Ç²½ºÅÜ ÀÌº¥Æ®¸¦ SaveÇÑ´Ù.
-    void    LoadFootStepEvent(IXMLDOMNode* pNodeEvent, SEventFootStep* pFootStep);                      ///< Ç²½ºÅÜ ÀÌº¥Æ®¸¦ LoadÇÑ´Ù.
+    void    SaveFootStepEvent(IXMLDOMElement* pElemEvent, const SEventFootStep* pEventFootStep);        ///< í’‹ìŠ¤í… ì´ë²¤íŠ¸ë¥¼ Saveí•œë‹¤.
+    void    LoadFootStepEvent(IXMLDOMNode* pNodeEvent, SEventFootStep* pFootStep);                      ///< í’‹ìŠ¤í… ì´ë²¤íŠ¸ë¥¼ Loadí•œë‹¤.
 
     void    SaveDirectEvent(IXMLDOMElement* pElemEvent, const SEventDirect* pEventDirect);
     void    LoadDirectEvent(IXMLDOMNode* pNodeEvent, SEventDirect* pEventDirect);

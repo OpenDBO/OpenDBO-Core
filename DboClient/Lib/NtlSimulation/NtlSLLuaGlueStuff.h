@@ -2,7 +2,7 @@
  *
  * File			: NtlSLLuaGlueStuff.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2006. 2. 20	
  * Abstract		: simulation lua glue stuff
  *****************************************************************************

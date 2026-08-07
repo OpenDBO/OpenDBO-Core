@@ -22,7 +22,7 @@ void CExTreeCtrl::OnTvnBegindrag(NMHDR *pNMHDR, LRESULT *pResult)
 {
     LPNMTREEVIEW pNMTreeView = reinterpret_cast<LPNMTREEVIEW>(pNMHDR);
     
-    // ¸¶¿ì½º Ä¿¼­¸¦ µå·¡±ë ¸ğµå·Î º¯°æ
+    // ë§ˆìš°ìŠ¤ ì»¤ì„œë¥¼ ë“œë˜ê¹… ëª¨ë“œë¡œ ë³€ê²½
     if(pNMTreeView->itemNew.hItem)
     {
         SetClassLong(this->m_hWnd, GCL_HCURSOR, (long)AfxGetApp()->LoadCursor(IDC_CURSOR1));
@@ -58,7 +58,7 @@ void CExTreeCtrl::OnMouseMove(UINT nFlags, CPoint point)
 
 void CExTreeCtrl::OnLButtonUp(UINT nFlags, CPoint point)
 {
-    //Ä¿¼­¸¦ ¿ø·¡´ë·Î º¯°æ
+    //ì»¤ì„œë¥¼ ì›ë˜ëŒ€ë¡œ ë³€ê²½
     SetClassLong(this->m_hWnd, GCL_HCURSOR, (long)LoadCursor(NULL, IDC_ARROW));
 
     if(m_bDrag && m_hCurItem)
@@ -69,7 +69,7 @@ void CExTreeCtrl::OnLButtonUp(UINT nFlags, CPoint point)
 
         int nImageIndex = 0, nSelectImageIndex = 0;
         GetItemImage(m_hCurItem, nImageIndex, nSelectImageIndex);
-        if(nImageIndex == 0) // Æú´õ ¹Ø¿¡¸¸ ÀÌµ¿ÀÌ °¡´ÉÇÏ´Ù
+        if(nImageIndex == 0) // í´ë” ë°‘ì—ë§Œ ì´ë™ì´ ê°€ëŠ¥í•˜ë‹¤
         {
             OnMoveItem(GetFirstSelectedItem(), m_hCurItem);            
         }
@@ -138,7 +138,7 @@ void CExTreeCtrl::GetAllChildNode(HTREEITEM hItem, TREEITEM_VECTOR& vTreeItem)
 
         if (ItemHasChildren(hItem))
         {
-            GetAllChildNode(GetChildItem(hItem), vTreeItem);  //Àç±ÍÈ£Ãâ
+            GetAllChildNode(GetChildItem(hItem), vTreeItem);  //ì¬ê·€í˜¸ì¶œ
         } 
 
         hItem = GetNextSiblingItem(hItem);
@@ -199,7 +199,7 @@ void CExTreeCtrl::LoadTree(const char* szFileName)
 
 void CExTreeCtrl::InsertItemRecursive(SItemNode* pItemNode, HTREEITEM hParentItem)
 {
-	// ÀÚ½ÅÀ» Ãß°¡ÇÑ´Ù.
+	// ìì‹ ì„ ì¶”ê°€í•œë‹¤.
 	TV_INSERTSTRUCT sTvStruct;
 	sTvStruct.hParent = hParentItem;
 	sTvStruct.hInsertAfter = TVI_SORT;
@@ -208,12 +208,12 @@ void CExTreeCtrl::InsertItemRecursive(SItemNode* pItemNode, HTREEITEM hParentIte
 
 	if(pItemNode->eNodeType == NODE_SCIRPT)
 	{
-		// ½ºÅ©¸³Æ®¶ó¸é ÀÚ½ÅÀ» Ãß°¡ÇÏ°í ³¡³½´Ù.
+		// ìŠ¤í¬ë¦½íŠ¸ë¼ë©´ ìì‹ ì„ ì¶”ê°€í•˜ê³  ëë‚¸ë‹¤.
 		sTvStruct.item.iImage = 2;
 		sTvStruct.item.iSelectedImage = 2;
 		InsertItem(&sTvStruct);
 	}
-	else	// Æú´õ¶ó¸é ÀÚ½ÄµéÀ» Àç±Í·Î µ·´Ù.
+	else	// í´ë”ë¼ë©´ ìì‹ë“¤ì„ ì¬ê·€ë¡œ ëˆë‹¤.
 	{
 		sTvStruct.item.iImage = 0;
 		sTvStruct.item.iSelectedImage = 0;
@@ -231,7 +231,7 @@ void CExTreeCtrl::InsertItemRecursive(SItemNode* pItemNode, HTREEITEM hParentIte
 
 void CExTreeCtrl::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-    // Del Å°·Î Ç×¸ñ »èÁ¦
+    // Del í‚¤ë¡œ í•­ëª© ì‚­ì œ
     if(nChar == VK_DELETE)
     {
         HTREEITEM hItem = GetFirstSelectedItem();

@@ -69,10 +69,10 @@ RwBool CDboTLLoader::Load_Script( void )
 
 	m_pScript = NTL_NEW CNtlLuaState;
 
-	// ¿¡·¯ ÇÚµé·¯ ¿¬°á
+	// ì—ëŸ¬ í•¸ë“¤ëŸ¬ ì—°ê²°
 	m_pScript->LinkErrorHandler( CDboTLLoader::Script_Error );
 
-	// Lua glue ¿¬°á
+	// Lua glue ì—°ê²°
 	bResult &= (m_pScript->AddFunction( "TLSyncGroup",				&CDboTLLoader::LuaGlue_TLSyncGroup ) ? TRUE : FALSE);
 	bResult &= (m_pScript->AddFunction( "TLPause",					&CDboTLLoader::LuaGlue_TLPause ) ? TRUE : FALSE);
 	bResult &= (m_pScript->AddFunction( "TLDefaultSkin",			&CDboTLLoader::LuaGlue_TLDefaultSkin ) ? TRUE : FALSE);
@@ -107,7 +107,7 @@ RwBool CDboTLLoader::Load_Script( void )
 
 
 
-	// Script ½ÇÇà
+	// Script ì‹¤í–‰
 	if ( GetNtlResourcePackManager()->GetActiveFlags() & NTL_PACK_TYPE_FLAG_SCRIPT )
 	{
 		void* pBuffer = NULL;

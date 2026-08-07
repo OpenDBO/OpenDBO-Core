@@ -1,9 +1,9 @@
 /*****************************************************************************
 * File			: NtlStorageGroupGameInfo.h
 * Author		: HaeSung, Cho
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2009. 2. 5	
-* Abstract		: GameInfo ¿« ∞¸∑√ UnitµÈ
+* Abstract		: GameInfo Ïùò Í¥ÄÎ†® UnitÎì§
 *****************************************************************************
 * Desc         : 
 *

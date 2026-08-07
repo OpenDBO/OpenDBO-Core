@@ -2,7 +2,7 @@
 //	File		:	NtlEffectSystemFreeList.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	Agebreak
 //	Update		:	
 //***********************************************************************************
@@ -34,8 +34,8 @@ private:
     static  RwFreeList*     m_pTraceSystemFreeList;
     static  RwFreeList*     m_pLineSystemFreeList;    
     static  RwFreeList*     m_pTrailSystemFreeList;    
-    static  RwFreeList*     m_pVertex1024;                          ///< ¹öÅØ½º(1024) ¸Þ¸ð¸® Ç®
-    static  RwFreeList*     m_pVertex5120;                          ///< ¹öÅØ½º(5120) ¸Þ¸ð¸® Ç®
+    static  RwFreeList*     m_pVertex1024;                          ///< ë²„í…ìŠ¤(1024) ë©”ëª¨ë¦¬ í’€
+    static  RwFreeList*     m_pVertex5120;                          ///< ë²„í…ìŠ¤(5120) ë©”ëª¨ë¦¬ í’€
 
 public:
 	static	std::string					m_strClumpTexturePath;
@@ -43,7 +43,7 @@ public:
 	static	CNtlResourceFileManager		m_AnimationFileManager;
 	static	CNtlResourceFileManager		m_UvAnimationFileManager;
 	static	CNtlResourceFileManager		m_TextureFileManager;
-    static  CNtlResourceFileManager     m_SoundFileManager;                 ///< Sound FileµéÀÇ ¸®½ºÆ® (ÇöÀç´Â Venus¿¡¼­¸¸ »ç¿ëÇÑ´Ù)
+    static  CNtlResourceFileManager     m_SoundFileManager;                 ///< Sound Fileë“¤ì˜ ë¦¬ìŠ¤íŠ¸ (í˜„ìž¬ëŠ” Venusì—ì„œë§Œ ì‚¬ìš©í•œë‹¤)
 
 	//typedef std::map<std::string, CNtlPLResource*, STRING_COMPARE_NOCASE>	smdef_PLResource;
 	//static	smdef_PLResource		m_smClumpResource;

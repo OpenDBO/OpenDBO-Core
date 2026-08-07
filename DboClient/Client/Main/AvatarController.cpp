@@ -62,8 +62,8 @@
 #include "AlarmManager.h"
 #include "DialogManager.h"
 
-#include "NtlPLObject.h"		//Test ÃßÈÄ »èÁ¦ ¿¹Á¤(by HoDong)
-#include "NtlPLEventGenerator.h"//Test ÃßÈÄ »èÁ¦ ¿¹Á¤(by Peessi)
+#include "NtlPLObject.h"		//Test å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™(by HoDong)
+#include "NtlPLEventGenerator.h"//Test å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™(by Peessi)
 #include "NtlPLEvent.h"
 
 #include "TBGui.h"
@@ -239,7 +239,7 @@ void CAvatarController::Destroy()
 	//test
 	UnLinkMsg(g_EventSCS);
 	
-	// move mark¸¦ »èÁ¦ÇÑ´Ù.
+	// move markå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¼ëŒì˜™.
 	DeleteMoveMark();
 }
 
@@ -1164,7 +1164,7 @@ void CAvatarController::UpdateAutoRun(RwReal fElapsed)
 	//}
 }
 
-int	CAvatarController::MouseWheelHandler(unsigned int uiMouseData)
+int	CAvatarController::MouseWheelHandler(uintptr_t uiMouseData)
 {
 	if(!GetNtlWorldConcept()->IsEnableAction(E_ACTION_CAMERA_CONTROL))
 		return TRUE;
@@ -1199,7 +1199,7 @@ int CAvatarController::RestoreHandler(void)
 	return TRUE;
 }
 
-int	CAvatarController::MouseDownHandler(unsigned int uiMouseData)
+int	CAvatarController::MouseDownHandler(uintptr_t uiMouseData)
 {
 	SMouseData *pData = (SMouseData *)uiMouseData;
 
@@ -1341,7 +1341,7 @@ int	CAvatarController::MouseDownHandler(unsigned int uiMouseData)
 }
 
 
-int	CAvatarController::MouseUpHandler(unsigned int uiMouseData)
+int	CAvatarController::MouseUpHandler(uintptr_t uiMouseData)
 {
 	SMouseData *pData = (SMouseData *)uiMouseData;
 
@@ -1416,7 +1416,7 @@ int	CAvatarController::MouseUpHandler(unsigned int uiMouseData)
 	return TRUE;
 }
 
-int	CAvatarController::KeyboardDownHandler(unsigned int uiKeyData)
+int	CAvatarController::KeyboardDownHandler(uintptr_t uiKeyData)
 {
 	SKeyData* pData = (SKeyData*)uiKeyData;
 
@@ -1461,7 +1461,7 @@ int	CAvatarController::KeyboardDownHandler(unsigned int uiKeyData)
 #ifdef _UICONFIG
         GetDboGlobal()->GetDBOUIConfig()->Reflash();
 #endif        
-		// peessi: ÃµÇÏÁ¦ÀÏ¹«µµÈ¸ ´ëÁøÇ¥ Å×½ºÆ®¿ë.
+		// peessi: ì²œå ì™ì˜™å ì™ì˜™å ì‹¹ë±„ì˜™å ì™ì˜™íšŒ å ì™ì˜™å ì™ì˜™í‘œ å ìŒ“ì™ì˜™íŠ¸å ì™ì˜™.
 		//if( !CTBGui::m_pInstance->m_pTournamentGui )
 		//{
 		//	CTBGui::m_pInstance->m_pTournamentGui = NTL_NEW CTBTournamentGui( "BudokaiTournamentGui" );
@@ -1518,7 +1518,7 @@ int	CAvatarController::KeyboardDownHandler(unsigned int uiKeyData)
 	return TRUE;
 }
 
-int CAvatarController::KeyboardUpHandler(unsigned int uiKeyData)
+int CAvatarController::KeyboardUpHandler(uintptr_t uiKeyData)
 {
 	return TRUE;
 }
@@ -1533,7 +1533,7 @@ void CAvatarController::CreateMoveMark(const RwV3d *pPos)
 
 	m_pMoveMark->SetPosition(pPos);
 
-	// »ç¿îµå 
+	// å ì™ì˜™å ì™ì˜™ 
 	RwInt32 nSoundIndex = NtlRandomNumber(0, 3);
 	Logic_PlayGUISound((char*)(SOUND_SL_GROUND_PICKING[nSoundIndex]));
 }
@@ -1550,7 +1550,7 @@ void CAvatarController::DeleteMoveMark(void)
 
 void CAvatarController::UpdateMoveMark(RwReal fElapsed)
 {
-	// move mark¸¦ Àá±ñ ¶ç¿ü´Ù°¡ ¾ø¾Ø´Ù.
+	// move markë¥¼ ì ê¹ ë„ì› ë‹¤ê°€ ì—†ì•¤ë‹¤.
 	if(m_pMoveMark)
 	{
 		m_fMoveMarkTime += fElapsed;
@@ -1741,7 +1741,7 @@ void CAvatarController::UpdatePickFocus(RwReal fElapsed)
 	}		
 }
 
-int CAvatarController::ActionMapKeyboardMove(unsigned int uiMoveFlags)
+int CAvatarController::ActionMapKeyboardMove(uintptr_t uiMoveFlags)
 {
 	CNtlSobAvatar *pSobAvatar = GetNtlSLGlobal()->GetSobAvatar();
 	DBO_ASSERT(pSobAvatar, "CAvatarController::ActionMapKeyboardMove: Not exist avatar instance");
@@ -1961,7 +1961,7 @@ int CAvatarController::ActionAutoRun()
     return 1;
 }
 
-int CAvatarController::ActionMapKeyboardDashMove(unsigned int uiMoveFlags)
+int CAvatarController::ActionMapKeyboardDashMove(uintptr_t uiMoveFlags)
 {
 	if(!GetNtlWorldConcept()->IsEnableAction(E_ACTION_MOVE))
         return TRUE;
@@ -2025,7 +2025,7 @@ int CAvatarController::ActionAvatarSelect(void)
 	return 1;
 }
 
-int CAvatarController::ActionJump(unsigned int uiMoveFlags)
+int CAvatarController::ActionJump(uintptr_t uiMoveFlags)
 {
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
 	DBO_ASSERT(pAvatar, "CAvatarController::ActionJump: Not exist avatar instance");
@@ -2153,7 +2153,7 @@ int CAvatarController::ActionJump(unsigned int uiMoveFlags)
 	return TRUE;
 }
 
-int CAvatarController::ActionCharging(unsigned int uiCharging)
+int CAvatarController::ActionCharging(uintptr_t uiCharging)
 {
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
 	if (!pAvatar)
@@ -2186,7 +2186,7 @@ int CAvatarController::ActionCharging(unsigned int uiCharging)
 	return TRUE;
 }
 
-int CAvatarController::ActionBlocking(unsigned int uiBlocking)
+int CAvatarController::ActionBlocking(uintptr_t uiBlocking)
 {
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
 	if (!pAvatar)
@@ -2222,7 +2222,7 @@ int CAvatarController::ActionBlocking(unsigned int uiBlocking)
 	return 1;
 }
 
-int CAvatarController::ActionSitAndStand(unsigned int bKeyDown)
+int CAvatarController::ActionSitAndStand(uintptr_t bKeyDown)
 {
 	CNtlSobAvatar *pSobAvatar = GetNtlSLGlobal()->GetSobAvatar();
 	NTL_ASSERT(pSobAvatar, "CAvatarController::ActionSitAndStand: not exist avatar instance");
@@ -2440,7 +2440,7 @@ int CAvatarController::ActionAutoFollow(void)
 	return TRUE;
 }
 
-int CAvatarController::ActionPartySelect(unsigned int uiIdx)
+int CAvatarController::ActionPartySelect(uintptr_t uiIdx)
 {
 	if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_TARGETING ) )
 		return FALSE;
@@ -2453,7 +2453,7 @@ int CAvatarController::ActionPartySelect(unsigned int uiIdx)
 	{
 		CNtlParty *pParty = pSobAvatar->GetParty();
 
-		// ¾Æ¹ÙÅ¸ ¶ÇÇÑ ÆÄÆ¼ ±¸Á¶Ã¼¿¡ ÆÄÆ¼ °¡ÀÔ ¼ø¼­¿¡ µû¶ó Æ÷ÇÔµÈ´Ù
+		// å ì‹£ë±„ì˜™íƒ€ å ì™ì˜™å ì™ì˜™ å ì™ì˜™í‹° å ì™ì˜™å ì™ì˜™ì²´å ì™ì˜™ å ì™ì˜™í‹° å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ìŒ‰ëœëŒì˜™
 		if( pParty->GetAvatarIndex() <= (RwInt32)uiIdx )
 			++uiIdx;
 
@@ -2518,7 +2518,7 @@ void CAvatarController::SetAutoRun(RwBool bAutoRun)
 	m_bAutoRun = bAutoRun;
 }
 
-int CAvatarController::ActionPartyShareTargetMarking( unsigned int uiSlot ) 
+int CAvatarController::ActionPartyShareTargetMarking( uintptr_t uiSlot ) 
 {
     if(uiSlot < 0 || uiSlot >= NTL_MAX_SHARETARGET_COUNT)
         return FALSE;
@@ -2533,7 +2533,7 @@ int CAvatarController::ActionPartyShareTargetMarking( unsigned int uiSlot )
     return TRUE;
 }
 
-int CAvatarController::ActionPartyShareTargetSelect( unsigned int uiSlot ) 
+int CAvatarController::ActionPartyShareTargetSelect( uintptr_t uiSlot ) 
 {
     if(uiSlot < 0 || uiSlot >= NTL_MAX_SHARETARGET_COUNT)
         return FALSE;
@@ -2550,7 +2550,7 @@ int CAvatarController::ActionPartyShareTargetSelect( unsigned int uiSlot )
 }
 
 /**
- * ¼øÂ÷ÀûÀ¸·Î ÆÄÆ¼¸â¹ö¸¦ Å¸°ÙÆÃÇÑ´Ù. 
+ * ìˆœì°¨ì ìœ¼ë¡œ íŒŒí‹°ë©¤ë²„ë¥¼ íƒ€ê²ŸíŒ…í•œë‹¤. 
  */
 int CAvatarController::ActionPartyAutoSelect() 
 {

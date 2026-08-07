@@ -115,7 +115,7 @@ RwUInt32 CNtlFSMCharActLayer::HandleEvents(RWS::CMsg &pMsg)
 		if( (uiResult == NTL_ATTACK_RESULT_SUCCESS || uiResult == NTL_ATTACK_RESULT_KNOCKDOWN || uiResult == NTL_ATTACK_RESULT_SLIDING) 
 			&& (uiBehavior == NTL_ATTACK_NORMAL || uiBehavior == NTL_ATTACK_PUSH) )
 		{
-			// hit shock¸¦ Àû¿ëÇÏ´Â ³ðÀÌ¸é.?
+			// hit shockë¥¼ ì ìš©í•˜ëŠ” ë†ˆì´ë©´.?
 			if( !(m_pActor->GetFlags() & SLFLAG_NOT_HITSHOCK) )
 			{
 				if(m_pBeShock)

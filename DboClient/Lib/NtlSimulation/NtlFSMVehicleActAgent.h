@@ -2,7 +2,7 @@
  *
  * File			: NtlFSMVehicleActAgent.h
  * Author		: JeongHo, Rho
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2008. 11. 12
  * Abstract		: vehicle act agent class
  *****************************************************************************

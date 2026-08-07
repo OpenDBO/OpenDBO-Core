@@ -1,4 +1,4 @@
-// MPPClientCheat.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// MPPClientCheat.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -43,7 +43,7 @@ BEGIN_MESSAGE_MAP(CMPPClientCheat, CXTResizeFormView)
 END_MESSAGE_MAP()
 
 
-// CMPPClientCheat Áø´ÜÀÔ´Ï´Ù.
+// CMPPClientCheat ì§„ë‹¨ì…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CMPPClientCheat::AssertValid() const
@@ -69,7 +69,7 @@ void CMPPClientCheat::OnInitialUpdate()
     m_cbDump.SetItemData(1, MPP_DUMP_TARGET);
 }
 
-// CMPPClientCheat ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CMPPClientCheat ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CMPPClientCheat::OnBnClickedBtElapsed()
 {

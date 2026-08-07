@@ -1,4 +1,4 @@
-// PaletteSpawnBase.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PaletteSpawnBase.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "PaletteSpawnBase.h"
 
 
-// CPaletteSpawnBase ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteSpawnBase ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPaletteSpawnBase, CDialog)
 
@@ -38,11 +38,11 @@ BEGIN_MESSAGE_MAP(CPaletteSpawnBase, CDialog)
 END_MESSAGE_MAP()
 
 
-// CPaletteSpawnBase ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPaletteSpawnBase ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 LRESULT CPaletteSpawnBase::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	return CDialog::WindowProc(message, wParam, lParam);
 }
@@ -79,7 +79,7 @@ BOOL CPaletteSpawnBase::OnInitDialog()
 	UpdateData(FALSE);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 VOID CPaletteSpawnBase::Refresh(RwV3d& _SpawnPos, RwV3d& _SpawnDir, CSpawnMacro& _SpawnMacro, CSpawn* pSpawn)

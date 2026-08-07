@@ -28,9 +28,9 @@ public:
 	
 	virtual void					Clear();
 	
-	virtual void					SetDojo(RwInt32 iID, RwInt32 iLevel, sEmblemFactor* pEmblem);	// iID´Â 0º¸´Ù Ä¿¾ß ÇÑ´Ù.
-	virtual void					SetDojo_Level(RwInt32 iID, RwInt32 iLevel);						// iID´Â 0º¸´Ù Ä¿¾ß ÇÑ´Ù.
-	virtual void					SetDojo_Emblem(RwInt32 iID, sEmblemFactor* pEmblem);			// iID´Â 0º¸´Ù Ä¿¾ß ÇÑ´Ù.
+	virtual void					SetDojo(RwInt32 iID, RwInt32 iLevel, sEmblemFactor* pEmblem);	// iIDëŠ” 0ë³´ë‹¤ ì»¤ì•¼ í•œë‹¤.
+	virtual void					SetDojo_Level(RwInt32 iID, RwInt32 iLevel);						// iIDëŠ” 0ë³´ë‹¤ ì»¤ì•¼ í•œë‹¤.
+	virtual void					SetDojo_Emblem(RwInt32 iID, sEmblemFactor* pEmblem);			// iIDëŠ” 0ë³´ë‹¤ ì»¤ì•¼ í•œë‹¤.
 	virtual RwBool					GetDojo(RwInt32 iID, SNtlPLDojoProp* pEmblemOut);
 
 	virtual void					SetDojoWorld(RwInt32 iLevel, sEmblemFactor* pEmblem);
@@ -38,7 +38,7 @@ public:
 	virtual void					SetDojoWorld_Emblem(sEmblemFactor* pEmblem);
 	virtual RwBool					GetDojoWorld(SNtlPLDojoProp* pEmblemOut);
 
-	virtual void					RefreshDojo(); // Upgrade ¶Ç´Â Downgrade Effectµµ °°ÀÌ ÀÛµ¿ µÈ´Ù.
+	virtual void					RefreshDojo(); // Upgrade ë˜ëŠ” Downgrade Effectë„ ê°™ì´ ì‘ë™ ëœë‹¤.
 
 private:
 	MAP_DOJO						m_mapDojoContainer;

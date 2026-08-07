@@ -448,7 +448,7 @@ RwBool CAlarmManager::RepeatCheck( eALARMTYPE eAlarmType, std::string& string, R
 	//				{
 	//					RwUInt32 flagMsgBoxStyle = (RwUInt32)( atoi( token.c_str() ) );
 
-	//					// ÃßÈÄ NetMessageBox¿Í ÅëÇÕ ¿¹Á¤.
+	//					// ì¶”í›„ NetMessageBoxì™€ í†µí•© ì˜ˆì •.
 	//					//if( stAlarmItem.uType & ALARM_TYPE_MSGBOX )
 	//					//{
 	//					//	if( uMsgBoxStyle == MBT_CANCEL )

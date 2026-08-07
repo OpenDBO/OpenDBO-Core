@@ -1,4 +1,4 @@
-// ChaozDlg.cpp : ���� ����
+// ChaozDlg.cpp : 구현 파일
 //
 
 #include "stdafx.h"
@@ -10,20 +10,20 @@
 #endif
 
 
-// ���� ���α׷� ������ ���Ǵ� CAboutDlg ��ȭ �����Դϴ�.
+// 응용 프로그램 정보에 사용되는 CAboutDlg 대화 상자입니다.
 
 class CAboutDlg : public CDialog
 {
 public:
 	CAboutDlg();
 
-// ��ȭ ���� �������Դϴ�.
+// 대화 상자 데이터입니다.
 	enum { IDD = IDD_ABOUTBOX };
 
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV �����Դϴ�.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 지원입니다.
 
-// �����Դϴ�.
+// 구현입니다.
 protected:
 	DECLARE_MESSAGE_MAP()
 };
@@ -41,7 +41,7 @@ BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CChaozDlg ��ȭ ����
+// CChaozDlg 대화 상자
 
 
 
@@ -81,15 +81,15 @@ BEGIN_MESSAGE_MAP(CChaozDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CChaozDlg �޽��� ó����
+// CChaozDlg 메시지 처리기
 
 BOOL CChaozDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// �ý��� �޴��� "����..." �޴� �׸��� �߰��մϴ�.
+	// 시스템 메뉴에 "정보..." 메뉴 항목을 추가합니다.
 
-	// IDM_ABOUTBOX�� �ý��� ���� ������ �־�� �մϴ�.
+	// IDM_ABOUTBOX는 시스템 명령 범위에 있어야 합니다.
 	ASSERT((IDM_ABOUTBOX & 0xFFF0) == IDM_ABOUTBOX);
 	ASSERT(IDM_ABOUTBOX < 0xF000);
 
@@ -105,19 +105,19 @@ BOOL CChaozDlg::OnInitDialog()
 		}
 	}
 
-	// �� ��ȭ ������ �������� �����մϴ�. ���� ���α׷��� �� â�� ��ȭ ���ڰ� �ƴ� ��쿡��
-	//  �����ӿ�ũ�� �� �۾��� �ڵ����� �����մϴ�.
-	SetIcon(m_hIcon, TRUE);			// ū �������� �����մϴ�.
-	SetIcon(m_hIcon, FALSE);		// ���� �������� �����մϴ�.
+	// 이 대화 상자의 아이콘을 설정합니다. 응용 프로그램의 주 창이 대화 상자가 아닐 경우에는
+	//  프레임워크가 이 작업을 자동으로 수행합니다.
+	SetIcon(m_hIcon, TRUE);			// 큰 아이콘을 설정합니다.
+	SetIcon(m_hIcon, FALSE);		// 작은 아이콘을 설정합니다.
 
-	// TODO: ���⿡ �߰� �ʱ�ȭ �۾��� �߰��մϴ�.
+	// TODO: 여기에 추가 초기화 작업을 추가합니다.
 
 	m_Combo_Channel.AddString(_T("2D Sound"));
 	m_Combo_Channel.AddString(_T("3D Sound"));
 
 	m_Combo_Channel.SetCurSel(0);
 
-	return TRUE;  // ��Ŀ���� ��Ʈ�ѿ� �������� ������ TRUE�� ��ȯ�մϴ�.
+	return TRUE;  // 포커스를 컨트롤에 설정하지 않으면 TRUE를 반환합니다.
 }
 
 void CChaozDlg::OnSysCommand(UINT nID, LPARAM lParam)
@@ -133,19 +133,19 @@ void CChaozDlg::OnSysCommand(UINT nID, LPARAM lParam)
 	}
 }
 
-// ��ȭ ���ڿ� �ּ�ȭ ���߸� �߰��� ��� �������� �׸�����
-//  �Ʒ� �ڵ尡 �ʿ��մϴ�. ����/�� ���� ����ϴ� MFC ���� ���α׷��� ��쿡��
-//  �����ӿ�ũ���� �� �۾��� �ڵ����� �����մϴ�.
+// 대화 상자에 최소화 단추를 추가할 경우 아이콘을 그리려면
+//  아래 코드가 필요합니다. 문서/뷰 모델을 사용하는 MFC 응용 프로그램의 경우에는
+//  프레임워크에서 이 작업을 자동으로 수행합니다.
 
 void CChaozDlg::OnPaint()
 {
 	if (IsIconic())
 	{
-		CPaintDC dc(this); // �׸��⸦ ���� ����̽� ���ؽ�Ʈ
+		CPaintDC dc(this); // 그리기를 위한 디바이스 컨텍스트
 
 		SendMessage(WM_ICONERASEBKGND, reinterpret_cast<WPARAM>(dc.GetSafeHdc()), 0);
 
-		// Ŭ���̾�Ʈ �簢������ �������� ����� ����ϴ�.
+		// 클라이언트 사각형에서 아이콘을 가운데에 맞춥니다.
 		int cxIcon = GetSystemMetrics(SM_CXICON);
 		int cyIcon = GetSystemMetrics(SM_CYICON);
 		CRect rect;
@@ -153,7 +153,7 @@ void CChaozDlg::OnPaint()
 		int x = (rect.Width() - cxIcon + 1) / 2;
 		int y = (rect.Height() - cyIcon + 1) / 2;
 
-		// �������� �׸��ϴ�.
+		// 아이콘을 그립니다.
 		dc.DrawIcon(x, y, m_hIcon);
 	}
 	else
@@ -162,8 +162,8 @@ void CChaozDlg::OnPaint()
 	}
 }
 
-// ����ڰ� �ּ�ȭ�� â�� ���� ���ȿ� Ŀ���� ǥ�õǵ��� �ý��ۿ���
-//  �� �Լ��� ȣ���մϴ�.
+// 사용자가 최소화된 창을 끄는 동안에 커서가 표시되도록 시스템에서
+//  이 함수를 호출합니다.
 HCURSOR CChaozDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
@@ -243,7 +243,7 @@ void CChaozDlg::OnBnClickedButton_PlaySound()
 		return;
 	}
 
-	// Dbo cleint���� �޾Ƶ��̴� ���� 1, 2�̴�
+	// Dbo cleint에서 받아들이는 값은 1, 2이다
 	++iComboBoxChannel;
 
 	CString strFileName;
@@ -273,9 +273,9 @@ void CChaozDlg::OnBnClickedButton_PlaySound()
 	m_Edit_Volume.GetWindowText(strVolume);
 	m_CheckBox_Loop.GetWindowText(strLoop);
 
-	// soundmanager�� play �Լ��� ����Ʈ ������ �ʱ�ȭ �صξ�
-	// ������ ���� �Է¹��� ���ߴ��� ���θ� �Ǵ��ϴ� �б⸦ �α� �ʰ�
-	// �ѹ��� �޼����� ���� �� �ֵ��� �Ѵ�.
+	// soundmanager의 play 함수의 디폴트 값으로 초기화 해두어
+	// 툴에서 값을 입력받지 못했는지 여부를 판단하는 분기를 두기 않고
+	// 한번에 메세지를 보낼 수 있도록 한다.
 	float fPosX = 0.f;
 	float fPosY = 0.f;
 	float fPosZ = 0.f;

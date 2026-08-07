@@ -1,4 +1,4 @@
-// CInstancePropertyDialog.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// CInstancePropertyDialog.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -14,7 +14,7 @@
 #include "CInstancePropertyDialog.h"
 
 
-// CInstancePropertyDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CInstancePropertyDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 BEGIN_MESSAGE_MAP(CInstancePropertyDialog, CDialog)
 	//{{AFX_MSG_MAP(CDlgDlg)
@@ -159,4 +159,4 @@ void CInstancePropertyDialog::OnItemChanged(NMHDR* pNotifyStruct, LRESULT* plRes
 	*plResult = 0;
 }
 
-// CInstancePropertyDialog ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CInstancePropertyDialog ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

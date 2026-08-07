@@ -97,7 +97,7 @@ private:
 	RwInt32				m_nReadPage;
 	RwUInt8				m_eType;		// eQuestMessageType	
 
-	// Visit Äù½ºÆ® °ü·Ã µ¥ÀÌÅÍ
+	// Visit í€˜ìŠ¤íŠ¸ ê´€ë ¨ ë°ì´í„°
 	sQUEST_INFO			m_QuestInfo;
 	RwUInt32			m_uiEventGenType;
 	RwUInt32			m_uiID;

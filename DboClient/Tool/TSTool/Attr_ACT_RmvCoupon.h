@@ -5,7 +5,7 @@
 #include "afxwin.h"
 
 
-// CAttr_ACT_RmvCoupon ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_ACT_RmvCoupon ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CAttr_ACT_RmvCoupon : public CAttr_Page
 {
@@ -15,14 +15,14 @@ public:
 	CAttr_ACT_RmvCoupon();
 	virtual ~CAttr_ACT_RmvCoupon();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_TS_ACT_RMV_COUPON_ATTR_DIAG };
 
 	virtual CString	GetPageData( void );
 	virtual void	UnPakingPageData( CString& strKey, CString& strValue );
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual BOOL OnInitDialog();
 
 	DECLARE_MESSAGE_MAP()

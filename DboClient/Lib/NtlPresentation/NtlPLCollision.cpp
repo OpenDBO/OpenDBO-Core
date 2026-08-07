@@ -80,18 +80,17 @@ RpAtomic* CNtlPLCollision::WorldIntersection4AtomicCB_CTChar2Poly(RpIntersection
 	// loop clump
 	CNtlPLObject*				pNtlPLObjectSrc	= static_cast<CNtlPLObject*>(pNPECollisionParam->_pNtlPLEntity);
 	RpClump*					pClump			= pNtlPLObjectSrc->GetClump();
-	RwLLLink*					pCur;
-	RwLLLink*					pEnd;
-	RwLLLink*					pNext;
+	// atomicList is now a direct RpAtomic* circular list after the x64 struct refactor
 	RpAtomic*					pCurAtomicInClump;
+	RpAtomic*					pNext;
 	RwSphere*					pSphere;
 
-	pCur = rwLinkListGetFirstLLLink(&pClump->atomicList);
-	pEnd = rwLinkListGetTerminator(&pClump->atomicList);
-
-	while(pCur != pEnd)
+	if(pClump->atomicList)
 	{
-		pCurAtomicInClump	= rwLLLinkGetData(pCur, RpAtomic, inClumpLink);
+	pCurAtomicInClump = pClump->atomicList;
+	do
+	{
+		pNext = pCurAtomicInClump->next;
 		pSphere				= RpAtomicGetBoundingSphere(pCurAtomicInClump);
 
 		// Collision flag should be applied partially.
@@ -108,8 +107,8 @@ RpAtomic* CNtlPLCollision::WorldIntersection4AtomicCB_CTChar2Poly(RpIntersection
 			RpAtomicForAllIntersections(pAtomic, pIntersection, CNtlPLCollision::WorldIntersection4AtomicTriCB_CTChar2Poly, pNPECollisionParam);
 		}
 		
-		pNext	= rwLLLinkGetNext(pCur);
-		pCur	= pNext;
+		pCurAtomicInClump = pNext;
+	} while(pCurAtomicInClump != pClump->atomicList);
 	}
 
 	return pAtomic;

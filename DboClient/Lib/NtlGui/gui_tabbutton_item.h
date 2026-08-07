@@ -27,10 +27,10 @@ public:
 	//! Operation
 	VOID	SetPosition( INT nX );
 	
-	VOID	Enable( BOOL bEnable );	// е╛╦╞╟║╢и©╘╨н.
-	VOID	Focus( BOOL bFocus );	// фВд©╫╨ ╩Себ.
-	VOID	Select(VOID);			// ╪╠ец ╩Себ.
-	VOID	Release(VOID);			// ╠Б╨╩ ╩Себ.
+	VOID	Enable( BOOL bEnable );	// М│╢К╕╜Й╟─К┼╔Л≈╛К╤─.
+	VOID	Focus( BOOL bFocus );	// М▐╛Л╩╓Л┼╓ Л┐│М┐°.
+	VOID	Select(VOID);			// Л└═М┐² Л┐│М┐°.
+	VOID	Release(VOID);			// Й╦╟КЁ╦ Л┐│М┐°.
 	
 	//! Implements
 	VOID	SetSurface( CSurface& leftSurface, CSurface& centerSurface, CSurface& rightSurface );

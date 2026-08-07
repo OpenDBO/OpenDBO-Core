@@ -2,7 +2,7 @@
  *
  * File			: NtlSobIcon.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2006. 3. 07	
  * Abstract		: Simulation icon object
  *****************************************************************************
@@ -28,7 +28,7 @@ public:
 
 protected:
 
-	CNtlSob* m_pSobObj;		/** icon À» ¼ÒÀ¯ÇÏ´Â °´Ã¼ÀÇ pointer => CNtlSobSkill, CNtlSobItem µîµî*/ 
+	CNtlSob* m_pSobObj;		/** icon ì„ ì†Œìœ í•˜ëŠ” ê°ì²´ì˜ pointer => CNtlSobSkill, CNtlSobItem ë“±ë“±*/ 
 	void*    m_pImage;
 
 	CNtlSobIcon();
@@ -36,7 +36,7 @@ protected:
 	RwUInt8 m_byIconState;
 	RwReal  m_fCoolTime;
 	RwReal  m_fMaxCoolTime;
-    WORD    m_wErrorMsg;           ///< ¿¡·¯ ¸Þ½ÃÁö º¯¼ö
+    WORD    m_wErrorMsg;           ///< ì—ëŸ¬ ë©”ì‹œì§€ ë³€ìˆ˜
 
 	static RwReal m_fCollingUpdateFactor;
 	

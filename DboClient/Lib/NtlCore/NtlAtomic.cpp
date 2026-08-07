@@ -4,8 +4,8 @@
 //#include "NtlToonMaterial.h"
 
 /**
- * Plugin °íÀ¯ ID ´Ù¸¥ Plugin°ú °°Àº ID°¡ ÀÖÀ¸¸é ¾ÈµÈ´Ù.
- * ¿ø·¡´Â Renderware¿¡ º¸°í¸¦ ÇÏ°í ¸¸µé¾î¾ß ÇÑ´Ù.
+ * Plugin å ì™ì˜™å ì™ì˜™ ID å ìŒ•ëªŒì˜™ Pluginå ì™ì˜™ å ì™ì˜™å ì™ì˜™ IDå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹«ëœëŒì˜™.
+ * å ì™ì˜™å ì™ì˜™å ì™ì˜™ Renderwareå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹¹ê³¤ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹¼ëŒì˜™.
  */
 const RwUInt32 PluginID = 0xFE;
 
@@ -20,7 +20,7 @@ const RwUInt16 NTL_ATOMIC_SAVE_VER = 1;
 const RwUInt16 NTL_ATOMIC_SAVE_VER1 = 2;
 
 /**
- * Ãß°¡ Data
+ * å ìŒ©ê³¤ì˜™ Data
  */
 struct NtlAtomicPluginData
 {
@@ -29,34 +29,34 @@ struct NtlAtomicPluginData
 	RwUInt16	uiVersion;			//Save Version
 	RwUInt32	uiFlag;				//Atomic Flag
 
-	// ÇöÀç pUser´Â ¸Þ¸ð¸®»ó¿¡¼­ ¹ü¿ëÀûÀ¸·Î ¾²ÀÏ¼ö ÀÖµµ·Ï ¸¸µé¾îÁ® ÀÖÀ¸¸é ¿ÀºêÁ§Æ® ½¦µµ¿ìÂÊ¿¡¼­ »ç¿ëÇÏ°í ÀÖ½À´Ï´Ù.
-	// NtlPLObj¿¡¼­ ¿ÀºêÁ§Æ® ½¦µµ¿ì ÇÃ·¡±×°¡ ¾ø´Ù¸é ÀÌ Pointer¸¦ °ø¿ëÀ¸·Î »ç¿ëÇÏ¼Åµµ µË´Ï´Ù
-	// ¶ÇÇÑ ÀÌ º¯¼ö´Â °ø¿ëÀ¸·Î ¾²ÀÌ±â ¶§¹®¿¡ »ý¼º, »èÁ¦¿¡ ´ëÇÑ Ã¥ÀÓÀº °¢°¢ÀÇ ¸ðÁì¿¡¼­ ÇØ°áÇØ¾ß ÇÕ´Ï´Ù.
-	// ÇÃ·¯±×ÀÎ µð½ºÆ®·°Æ®¿¡¼­ °æ¿ì¿¡ ¸Â´Â ¼Ò¸ê¹®Á¦°¡ »ý±é´Ï´Ù. ÀÌ°ªÀº Å¬·ÐµÇÁö ¾Ê½À´Ï´Ù.  - ¿ìµð
+	// í˜„ìž¬ pUserëŠ” ë©”ëª¨ë¦¬ìƒì—ì„œ ë²”ìš©ì ìœ¼ë¡œ ì“°ì¼ìˆ˜ ìžˆë„ë¡ ë§Œë“¤ì–´ì ¸ ìžˆìœ¼ë©´ ì˜¤ë¸Œì íŠ¸ ì‰ë„ìš°ìª½ì—ì„œ ì‚¬ìš©í•˜ê³  ìžˆìŠµë‹ˆë‹¤.
+	// NtlPLObjì—ì„œ ì˜¤ë¸Œì íŠ¸ ì‰ë„ìš° í”Œëž˜ê·¸ê°€ ì—†ë‹¤ë©´ ì´ Pointerë¥¼ ê³µìš©ìœ¼ë¡œ ì‚¬ìš©í•˜ì…”ë„ ë©ë‹ˆë‹¤
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¥ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì¿¡ï¿½ï¿½ ï¿½Ø°ï¿½ï¿½Ø¾ï¿½ ï¿½Õ´Ï´ï¿½.
+	// ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¿¡ ï¿½Â´ï¿½ ï¿½Ò¸ê¹®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½. ï¿½Ì°ï¿½ï¿½ï¿½ Å¬ï¿½Ðµï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.  - ï¿½ï¿½ï¿½
 	void* pUserDat;				
 
-	// ÀÌ º¯¼ö´Â ¿ÀºêÁ§Æ® ½¦µµ¿ì Àü¿ë º¯¼ö ÀÔ´Ï´Ù. À§¿Í ¸¶Âù°¡Áö·Î ÇÃ·¡±×°¡ ¾ø´Ù¸é ÀÌ º¯¼ö¸¦ °ø¿ëÀ¸·Î »ç¿ë ÇÏ½Ç¼ö ÀÖ½À´Ï´Ù. ÀÌ°ªÀº Å¬·ÐµË´Ï´Ù. ÁÖÀÇÇÏ¼¼¿©. - ¿ìµð
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô´Ï´ï¿½. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½×°ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ï½Ç¼ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½. ï¿½Ì°ï¿½ï¿½ï¿½ Å¬ï¿½ÐµË´Ï´ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½. - ï¿½ï¿½ï¿½
 	RwUInt16 UserDat;
 
-	// ÀÌ º¯¼ö´Â ¿ÀºêÁ§Æ® ½¦µµ¿ì Àü¿ë º¯¼ö ÀÔ´Ï´Ù. À§¿Í ¸¶Âù°¡Áö·Î ÇÃ·¡±×°¡ ¾ø´Ù¸é ÀÌ º¯¼ö¸¦ °ø¿ëÀ¸·Î »ç¿ë ÇÏ½Ç¼ö ÀÖ½À´Ï´Ù. ÀÌ°ªÀº Å¬·ÐµË´Ï´Ù. ÁÖÀÇÇÏ¼¼¿©. - ¿ìµð
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô´Ï´ï¿½. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½×°ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ï½Ç¼ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½. ï¿½Ì°ï¿½ï¿½ï¿½ Å¬ï¿½ÐµË´Ï´ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½. - ï¿½ï¿½ï¿½
 	RwReal _UserDatReal;
 
-	// Atomic¿¡ ModulateµÉ Alpha°ª
+	// Atomicå ì™ì˜™ Modulateå ì™ì˜™ Alphaå ì™ì˜™
 	RwUInt8		alpha;
 
 	RpAtomicCallBackRender atomicRenderCallBack;
 
-	// ÀÌ º¯¼ö´Â È¯°æ¸Ê Àü¿ë º¯¼ö ÀÔ´Ï´Ù. À§¿Í ¸¶Âù°¡Áö·Î ÇÃ·¡±×°¡ ¾ø´Ù¸é ÀÌ º¯¼ö¸¦ °ø¿ëÀ¸·Î »ç¿ë ÇÏ½Ç¼ö ÀÖ½À´Ï´Ù. ÀÌ°ªÀº Å¬·ÐµË´Ï´Ù. ÁÖÀÇÇÏ¼¼¿©. - ¿ìµð
+	// ì´ ë³€ìˆ˜ëŠ” í™˜ê²½ë§µ ì „ìš© ë³€ìˆ˜ ìž…ë‹ˆë‹¤. ìœ„ì™€ ë§ˆì°¬ê°€ì§€ë¡œ í”Œëž˜ê·¸ê°€ ì—†ë‹¤ë©´ ì´ ë³€ìˆ˜ë¥¼ ê³µìš©ìœ¼ë¡œ ì‚¬ìš© í•˜ì‹¤ìˆ˜ ìžˆìŠµë‹ˆë‹¤. ì´ê°’ì€ í´ë¡ ë©ë‹ˆë‹¤. ì£¼ì˜í•˜ì„¸ì—¬. - ìš°ë””
 	RwUInt16 _EnvTexName;
 };
 
 /**
- * È®Àå µÈ Offset Memory ÁÖ¼Ò
+ * í™•å ì™ì˜™ å ì™ì˜™ Offset Memory å ìŒì‡½ì˜™
  */
 unsigned int iPlugin_Offset = 0;
 
 /**
- * È®Àå Offset Á¢±Ù ÇÔ¼ö
+ * í™•å ì™ì˜™ Offset å ì™ì˜™å ì™ì˜™ å ìŒ‰ì‡½ì˜™
  */
 inline NtlAtomicPluginData* NtlGetPluginData( RpAtomic* pAtomic)
 {
@@ -64,14 +64,14 @@ inline NtlAtomicPluginData* NtlGetPluginData( RpAtomic* pAtomic)
 
 	NTL_PRE(iPlugin_Offset);
 
-	const RwUInt32 baseAddr = reinterpret_cast<RwUInt32>(pAtomic);
-	const RwUInt32 pluginAddr = baseAddr + iPlugin_Offset;
+	const uintptr_t baseAddr = reinterpret_cast<uintptr_t>(pAtomic);
+	const uintptr_t pluginAddr = baseAddr + iPlugin_Offset;
 
 	NTL_RETURN( reinterpret_cast<NtlAtomicPluginData*>(pluginAddr) );
 }
 
 /**
- * È®Àå Offset Á¢±Ù ÇÔ¼ö
+ * í™•å ì™ì˜™ Offset å ì™ì˜™å ì™ì˜™ å ìŒ‰ì‡½ì˜™
  */
 inline const NtlAtomicPluginData *NtlGetPluginData( const RpAtomic* pAtomic )
 {
@@ -79,8 +79,8 @@ inline const NtlAtomicPluginData *NtlGetPluginData( const RpAtomic* pAtomic )
 
 	NTL_PRE(iPlugin_Offset);
 
-	const RwUInt32 baseAddr = reinterpret_cast<RwUInt32>(pAtomic);
-	const RwUInt32 pluginAddr = baseAddr + iPlugin_Offset;
+	const uintptr_t baseAddr = reinterpret_cast<uintptr_t>(pAtomic);
+	const uintptr_t pluginAddr = baseAddr + iPlugin_Offset;
 
 	NTL_RETURN( reinterpret_cast<const NtlAtomicPluginData*>(pluginAddr) );
 }
@@ -138,7 +138,7 @@ void *Plugin_Copy(void* pDestObject, const void* pSrcObject, RwInt32 offset, RwI
 	NTL_PRE(pDestObject);
 	NTL_PRE(pSrcObject);
 
-	//void Data´Â Copy¸¦ ÇÏÁö ¾Ê´Â´Ù. Pointer°¡ Àß¸ø µÇ¾î¼­ ErrorÀÇ ¼ÒÁö°¡ ÀÖ´Ù.	
+	//void Dataå ì™ì˜™ Copyå ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì‹­ëŠ”ëŒì˜™. Pointerå ì™ì˜™ å ìŒ©ëªŒì˜™ å ì‹¤ì–´ì„œ Errorå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ìŒëŒì˜™.	
 	NtlAtomicPluginData* pSrcData  = NtlGetPluginData((RpAtomic*)pSrcObject);
 	NtlAtomicPluginData* pDestData = NtlGetPluginData((RpAtomic*)pDestObject);
 
@@ -261,7 +261,7 @@ static RwStream *Plugin_StreamWrite( RwStream *stream,
 }
 
 /**
- * PlugInÀ» Save¸¦ ÇÒ °æ¿ì¿¡¸¸ »ç¿ëÀ» ÇÑ´Ù.
+ * PlugInï¿½ï¿½ Saveï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ´ï¿½.
  */
 static RwInt32 Plugin_StreamGetSize( const void *pAtomic,
                                      RwInt32     offset,
@@ -269,7 +269,7 @@ static RwInt32 Plugin_StreamGetSize( const void *pAtomic,
 {
 	NtlAtomicPluginData* pPluginData = NtlGetPluginData((RpAtomic*)pAtomic);
 	
-	// Ç×»ó ÃÖ½Å ¹öÀüÀ» ÀúÀå ÇÑ´Ù.(NTL_ATOMIC_SAVE_VER)
+	// å ìŒ“ì‚¼ì˜™ å ìŒì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì‹¼ëŒì˜™.(NTL_ATOMIC_SAVE_VER)
 	//pPluginData->uiVersion = NTL_ATOMIC_SAVE_VER;
 	//return (sizeof(pPluginData->uiVersion) + sizeof(pPluginData->uiFlag) + sizeof(pPluginData->UserDat) + sizeof(pPluginData->_UserDatReal) );
 
@@ -278,13 +278,13 @@ static RwInt32 Plugin_StreamGetSize( const void *pAtomic,
 }
 
 /**
- * Plugin µî·Ï
+ * Plugin ï¿½ï¿½ï¿½
  */      
 RwBool RpNtlAtomicPluginAttach(void)
 {
     NTL_FUNCTION("RpNtlAtomicPluginAttach");
 
-	//Atomic È®ÀåÀ» ÇÒ°æ¿ì ³Ñ¾î¿À´Â °ªÀÌ ½ÇÁ¦·Î È®ÀåÀÌ µÈ Offset ÁÖ¼Ò ÀÌ´Ù.
+	//Atomic í™•ìž¥ì„ í• ê²½ìš° ë„˜ì–´ì˜¤ëŠ” ê°’ì´ ì‹¤ì œë¡œ í™•ìž¥ì´ ëœ Offset ì£¼ì†Œ ì´ë‹¤.
     iPlugin_Offset = RpAtomicRegisterPlugin (sizeof(NtlAtomicPluginData),
 											 MAKECHUNKID(rwVENDORID_CRITERIONRM, PluginID),
 											 Plugin_Constructor,  
@@ -307,7 +307,7 @@ RwBool RpNtlAtomicPluginAttach(void)
 }
 
 /**
- * Plugin È®Àå Á¢±Ù ÇÔ¼ö
+ * Plugin í™•å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ìŒ‰ì‡½ì˜™
  */   
 void RpNtlAtomicSetData( RpAtomic* pAtomic, void *pData)
 {

@@ -136,8 +136,8 @@ public:
 	// VOID* GetSpawnTblDat() = 0
 };
 
-// ³»ºÎ¿¡¼­ ½Ì±ÛÅÏ »ç¿ëÀ¸·Î »ç¿ë¿¡ ³­ÇØÇÒ ¼ö ÀÖ¾î ÀÏ´ÜÀº µû·Î ¸¸µç´Ù.
-// ³ªÁß¿¡ ½Ã°£¿¡ µÉ ¶§ ÀüºÎ ÇÕÄ¡´Â ¹æ¾ÈÀ» ¸ð»öÇØ º¸ÀÚ.
+// ë‚´ë¶€ì—ì„œ ì‹±ê¸€í„´ ì‚¬ìš©ìœ¼ë¡œ ì‚¬ìš©ì— ë‚œí•´í•  ìˆ˜ ìžˆì–´ ì¼ë‹¨ì€ ë”°ë¡œ ë§Œë“ ë‹¤.
+// ë‚˜ì¤‘ì— ì‹œê°„ì— ë  ë•Œ ì „ë¶€ í•©ì¹˜ëŠ” ë°©ì•ˆì„ ëª¨ìƒ‰í•´ ë³´ìž.
 class CMergeSpawn
 {
 public:

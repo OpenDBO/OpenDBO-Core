@@ -1774,7 +1774,7 @@ RpAtomic* CSpawnManager::NestUIDrawAllAtomicCB(RpAtomic* _pAtomic, void* _pData)
 	}
 
 	/*
-	¸ÞÀÎ Ä³¸¯ÅÍ Æ÷ÀÎÅÍ¸¦ ¾ò°í ½ÍÀ»¶§
+	ë©”ì¸ ìºë¦­í„° í¬ì¸í„°ë¥¼ ì–»ê³  ì‹¶ì„ë•Œ
 	CNtlSobAvatar *pSobAvatar = GetNtlSLGlobal()->GetSobAvatar()
 	CNtlSobProxy *pSobProxy = *pSobAvatar->GetSobProxy();
 	CNtlPLCharacter *pCharacter = (CNtlPLCharacter *)pSobProxy->GetPLMainEntity();

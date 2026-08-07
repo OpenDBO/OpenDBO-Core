@@ -52,9 +52,9 @@ void CNtlInstanceUpgradeEffectSystem::Delete()
 }
 
 /**
- * Grade Effect¸¦ »ı¼ºÇÑ´Ù.
- * \param pItem Grade Effect°¡ ºÙÀ» Item
- * \param eBoneIndex Grade Effect°¡ ºÙÀ» Bone½Ö 
+ * Grade Effectë¥¼ ìƒì„±í•œë‹¤.
+ * \param pItem Grade Effectê°€ ë¶™ì„ Item
+ * \param eBoneIndex Grade Effectê°€ ë¶™ì„ BoneìŒ 
  * return 
  */
 RwBool CNtlInstanceUpgradeEffectSystem::Create(CNtlPLItem* pItem, EGradeBoneIndex eBoneIndex /* = GRADE_EFFECT_BONE1 */)
@@ -65,7 +65,7 @@ RwBool CNtlInstanceUpgradeEffectSystem::Create(CNtlPLItem* pItem, EGradeBoneInde
     m_pItem = pItem;   
     m_eGradeBone = eBoneIndex;
 
-    // Vertex Buffer »ı¼º
+    // Vertex Buffer ìƒì„±
     m_pVertices = (RwIm3DVertex*)RwMalloc(6 * sizeof(RwIm3DVertex), rwID_NAOBJECT);
     if(!m_pVertices)
         return FALSE;
@@ -139,7 +139,7 @@ void CNtlInstanceUpgradeEffectSystem::SetTexture( RwChar* szTextureName )
 RwBool CNtlInstanceUpgradeEffectSystem::UpdateVertices( RwReal fElapsedTime ) 
 {
 
-    // »ç°¢ÇüÀ» »ı¼ºÇÏ°í ¹«±âÀÇ Ãà¿¡ µû¶ó ºôº¸µå¸¦ »ı¼ºÇÑ´Ù.
+    // ì‚¬ê°í˜•ì„ ìƒì„±í•˜ê³  ë¬´ê¸°ì˜ ì¶•ì— ë”°ë¼ ë¹Œë³´ë“œë¥¼ ìƒì„±í•œë‹¤.
 
     RwV3d vStartPos, vEndPos;
     RwMatrix *pMatStart, *pMatEnd;
@@ -181,7 +181,7 @@ RwBool CNtlInstanceUpgradeEffectSystem::UpdateVertices( RwReal fElapsedTime )
         RwMatrix matStartTemp = *pMatStart;
         RwMatrix matEndTemp = *pMatEnd;
 
-        // Matrix¿¡¼­ È¸Àü°ª¸¸ °¡Á®¿Í¼­ Offset¿¡ Àû¿ëÇÑÈÄ Point¿¡ ´õÇÑ´Ù.
+        // Matrixì—ì„œ íšŒì „ê°’ë§Œ ê°€ì ¸ì™€ì„œ Offsetì— ì ìš©í•œí›„ Pointì— ë”í•œë‹¤.
         matStartTemp.pos.x = matStartTemp.pos.y = matStartTemp.pos.z = 0.0f;
         matEndTemp.pos.x = matEndTemp.pos.y = matEndTemp.pos.z = 0.0f;
 
@@ -189,7 +189,7 @@ RwBool CNtlInstanceUpgradeEffectSystem::UpdateVertices( RwReal fElapsedTime )
         RwV3dTransformPoint(&v3dStartOffset, &(m_pItem->GetProperty()->GetUpgradeEffectProperty()->m_vStartBoneOffset), &matStartTemp);
         RwV3dTransformPoint(&v3dEndOffset, &(m_pItem->GetProperty()->GetUpgradeEffectProperty()->m_vEndBoneOffset), &matEndTemp);
 
-        // µÎ¹øÂ° º»Àº Ã¹¹øÂ°°ÍÇÏ°í Offset¿¡¼­ x°¡ ¹İ´ë °ªÀÌ´Ù. (¾çÂÊ ±Û·¯ºê)
+        // ë‘ë²ˆì§¸ ë³¸ì€ ì²«ë²ˆì§¸ê²ƒí•˜ê³  Offsetì—ì„œ xê°€ ë°˜ëŒ€ ê°’ì´ë‹¤. (ì–‘ìª½ ê¸€ëŸ¬ë¸Œ)
         if(m_eGradeBone == GRADE_EFFECT_BONE1)
         {
             vStartPos += v3dStartOffset;

@@ -1,4 +1,4 @@
-// PaletteGameProperty.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PaletteGameProperty.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -10,7 +10,7 @@
 
 #include "NtlWorldPropUtil.h"
 
-// CPaletteGameProperty ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteGameProperty ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPaletteGameProperty, CDialog)
 
@@ -87,7 +87,7 @@ BEGIN_MESSAGE_MAP(CPaletteGameProperty, CDialog)
 END_MESSAGE_MAP()
 
 
-// CPaletteGameProperty ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPaletteGameProperty ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 VOID CPaletteGameProperty::InitializeWorldData()
 {

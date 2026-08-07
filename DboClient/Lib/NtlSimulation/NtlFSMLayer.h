@@ -2,7 +2,7 @@
  *
  * File			: NtlFSMBase.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2006. 2. 9	
  * Abstract		: Finite state machine class
  *****************************************************************************
@@ -46,11 +46,11 @@ public:
 	virtual void NotifyUpdateChangeState(RwUInt32 uiOldStateId, RwUInt32 uiNextStateId);    ///< update notify function(state change)
 	virtual void NotifyEvents(RWS::CMsg &pMsg, RwUInt32 uiEventResult, RwUInt32 uiParam1, RwUInt32 uiParam2);   ///< event notify function(state change)
 
-    CNtlFSMAgent*       GetFSMAgent(void) const;      ///< agent instance∏¶ æÚæÓø¿¥¬ «‘ºˆ.
-	CNtlFSMBase*        GetFSM(void) const;            ///< instance∏¶ æÚæÓø¿¥¬ «‘ºˆ.
-	CNtlFSMStateBase*   GetCurrentState(void) const;  ///< current state∏¶ æÚæÓø¿¥¬ «‘ºˆ.
+    CNtlFSMAgent*       GetFSMAgent(void) const;      ///< agent instanceÎ•º ÏñªÏñ¥Ïò§Îäî Ìï®Ïàò.
+	CNtlFSMBase*        GetFSM(void) const;            ///< instanceÎ•º ÏñªÏñ¥Ïò§Îäî Ìï®Ïàò.
+	CNtlFSMStateBase*   GetCurrentState(void) const;  ///< current stateÎ•º ÏñªÏñ¥Ïò§Îäî Ìï®Ïàò.
 	
-	void SetActor(const CNtlSobActor *pActor);          ///< actor º≥¡§ «‘ºˆ.
+	void SetActor(const CNtlSobActor *pActor);          ///< actor ÏÑ§Ï†ï Ìï®Ïàò.
 	CNtlSobActor* GetActor(void) const;
 };
 

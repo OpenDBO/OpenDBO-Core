@@ -2,7 +2,7 @@
  *
  * File			: TimeFixedNotifyGui.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2006. 12. 06	
  * Abstract		: DBO time fixed notify gui.
  *****************************************************************************
@@ -34,7 +34,7 @@ class CCautionNotifyGui;
 
 /**
 * \ingroup client
-* \brief IntervalTime ¸¶´Ù CallbackÀ» ³¯¸®´Â Timer
+* \brief IntervalTime ë§ˆë‹¤ Callbackì„ ë‚ ë¦¬ëŠ” Timer
 */
 class CNotifyTimer
 {
@@ -68,7 +68,7 @@ void CNotifyTimer::LinkIntervalTimer(Callbackclass *cbclass, int (Callbackclass:
 
 /**
 * \ingroup client
-* \brief ¸Å½Ã°£¸¶´Ù ÀÏÁ¤ÇÏ°Ô Ãâ·ÂµÇ´Â Caution Notify
+* \brief ë§¤ì‹œê°„ë§ˆë‹¤ ì¼ì •í•˜ê²Œ ì¶œë ¥ë˜ëŠ” Caution Notify
 */
 class CCautionNotifyContinuance
 {
@@ -92,7 +92,7 @@ protected:
 
 /**
 * \ingroup client
-* \brief È­¸é Áß¾Ó¿¡ ¶ß´Â °æ°í ¸Ş½ÃÁö¸¦ ¶ç¿ì´Â GUI, ´©ÀûµÇ¸é Caution SideIconÂÊÀ¸·Î ¸Ş½ÃÁö¸¦ º¸³½´Ù.
+* \brief í™”ë©´ ì¤‘ì•™ì— ëœ¨ëŠ” ê²½ê³  ë©”ì‹œì§€ë¥¼ ë„ìš°ëŠ” GUI, ëˆ„ì ë˜ë©´ Caution SideIconìª½ìœ¼ë¡œ ë©”ì‹œì§€ë¥¼ ë³´ë‚¸ë‹¤.
 */
 class CCautionNotifyGui : public CNtlPLGui, public RWS::CEventHandler
 {

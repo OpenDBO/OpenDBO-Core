@@ -30,12 +30,12 @@ void CNtlSobDynamicObjectAttr::HandleEvents( RWS::CMsg& pMsg )
 	{
 		SNtlEventSobDynamicObjectCreate* pDynamicObjectCreate = reinterpret_cast<SNtlEventSobDynamicObjectCreate*>( pMsg.pData );
 
-		// 1. Type ÀúÀå TableIdx ÀúÀå
+		// 1. Type ì €ìž¥ TableIdx ì €ìž¥
 		m_byDynamicObjectType = pDynamicObjectCreate->byType;
 		m_idxTableForType = pDynamicObjectCreate->uiTableIndexForType;
 		
-		// 2. Type ¿¡ ¸ÂÃç¼­ Å×ÀÌºíÀ» ²¨³½´Ù.
-		//  2-1. ÀÌ¸§À» ¼¼ÆÃÇÑ´Ù. ( ´©±¸´©±¸ÀÇ ¹«½¼¹«½¼ ¸Ó½ÅÀ» °í·ÁÇØº»´Ù. )
+		// 2. Type ì— ë§žì¶°ì„œ í…Œì´ë¸”ì„ êº¼ë‚¸ë‹¤.
+		//  2-1. ì´ë¦„ì„ ì„¸íŒ…í•œë‹¤. ( ëˆ„êµ¬ëˆ„êµ¬ì˜ ë¬´ìŠ¨ë¬´ìŠ¨ ë¨¸ì‹ ì„ ê³ ë ¤í•´ë³¸ë‹¤. )
 		
 		CDynamicObjectTable* pDynamicObjectTbl = API_GetTableContainer()->GetDynamicObjectTable();
 		NTL_ASSERT(pDynamicObjectTbl, "CNtlSobDynamicObjectAttr::HandleEvents => Dynamic ObjectTable is null" );

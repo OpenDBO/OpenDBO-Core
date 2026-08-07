@@ -416,6 +416,7 @@ void CNpc::Spawn(bool bSpawnOnServerStart)
 	if (HasFunction(NPC_FUNC_FLAG_BUS))
 	{
 		g_pBusSystem->AddBus(this);
+		g_pBusSystem->BroadcastBusPosition(this);
 	}
 }
 

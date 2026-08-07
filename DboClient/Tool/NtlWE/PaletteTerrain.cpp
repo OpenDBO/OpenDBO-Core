@@ -1,4 +1,4 @@
-// PaletteTerrain.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PaletteTerrain.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -17,7 +17,7 @@
 using std::string;
 
 
-// CPaletteTerrain ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteTerrain ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPaletteTerrain, CDialog)
 CPaletteTerrain::CPaletteTerrain(CWnd* pParent /*=NULL*/)
@@ -155,7 +155,7 @@ ON_BN_CLICKED(IDC_ROAD, &CPaletteTerrain::OnBnClickedRoad)
 END_MESSAGE_MAP()
 
 
-// CPaletteTerrain ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPaletteTerrain ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 VOID CPaletteTerrain::OnResetTexturePanel()
 {
@@ -920,7 +920,7 @@ BOOL CPaletteTerrain::OnInitDialog()
 	UpdateData(FALSE);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CPaletteTerrain::HDCategoryBtnImgSwapping() 

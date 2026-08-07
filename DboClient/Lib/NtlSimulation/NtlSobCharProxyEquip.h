@@ -38,11 +38,11 @@ private:
     CNtlPLCharacter				*m_pPLCharacter;						/** character resource */
     SEquipItem					m_arrSlotItem[NTL_MAX_EQUIP_ITEM_SLOT];
     RwBool						m_bSunWeaponReCreate;
-    CNtlSubWeaponController		*m_pSubWeaponController;				/** gem °ú °°ÀÌ sub weapon controlÀÌ ÇÊ¿äÇÑ °æ¿ì */
+    CNtlSubWeaponController		*m_pSubWeaponController;				/** gem ê³¼ ê°™ì´ sub weapon controlì´ í•„ìš”í•œ ê²½ìš° */
 
     RwBool						m_bActiveSubWeapon;
-    RwUInt8						m_byStorageWeaponNum;					/** sub weapon À» »ç¿ëÇÏ¸é¼­ º¸°üÁßÀÎ main weapon °¹¼ö */
-    SStorageEquipItem			m_sStorageWeapon[EMaxStorageWeapon];	/** sub weapon À» »ç¿ëÇÏ¸é¼­ º¸°üÇÒ main weapon buffer */
+    RwUInt8						m_byStorageWeaponNum;					/** sub weapon ì„ ì‚¬ìš©í•˜ë©´ì„œ ë³´ê´€ì¤‘ì¸ main weapon ê°¯ìˆ˜ */
+    SStorageEquipItem			m_sStorageWeapon[EMaxStorageWeapon];	/** sub weapon ì„ ì‚¬ìš©í•˜ë©´ì„œ ë³´ê´€í•  main weapon buffer */
 
     RwBool						m_bVisible;
     RwBool						m_bResLoaded;
@@ -71,7 +71,7 @@ private:
 
     void			UpdateResourceLoadCheck(RwReal fElapsed);
 
-    void            SetAnimationCostumeItem(CNtlPLItem* pItem);                     ///< ÄÚ½ºÆ¬ ¾ÆÀÌÅÛ¿¡ ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ¼¼ÆÃÇÑ´Ù (µîµÚ¿¡Áö´Â Æ¯¼öÇÑ ¾ÆÀÌÅÛµéÀÇ ¾Ö´Ï¸ŞÀÌ¼Ç)
+    void            SetAnimationCostumeItem(CNtlPLItem* pItem);                     ///< ì½”ìŠ¤íŠ¬ ì•„ì´í…œì— ì• ë‹ˆë©”ì´ì…˜ì„ ì„¸íŒ…í•œë‹¤ (ë“±ë’¤ì—ì§€ëŠ” íŠ¹ìˆ˜í•œ ì•„ì´í…œë“¤ì˜ ì• ë‹ˆë©”ì´ì…˜)
 
 public:
     CNtlSobCharEquipProxy();

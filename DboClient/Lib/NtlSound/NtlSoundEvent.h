@@ -2,7 +2,7 @@
  *
  * File			: DboEvent.h
  * Author		: Hong Sungbock
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2007. 5. 29
  * Abstract		: Ntl sound event.
  *****************************************************************************
@@ -15,33 +15,33 @@
 #include "ceventhandler.h"
 #include "NtlSoundDefines.h"
 
-extern RWS::CEventId g_EventSoundReleaseSound;				// ÇÑ °³ Ã¤³ÎÀÇ »ç¿îµå°¡ ÇØÁ¦µÇ¾ú´Ù
+extern RWS::CEventId g_EventSoundReleaseSound;				// í•œ ê°œ ì±„ë„ì˜ ì‚¬ìš´ë“œê°€ í•´ì œë˜ì—ˆë‹¤
 
-extern RWS::CEventId g_EventSoundFinishFade;				// ÆäÀÌµå ÀÎ/¾Æ¿ôÀÌ ³¡³µ´Ù
+extern RWS::CEventId g_EventSoundFinishFade;				// í˜ì´ë“œ ì¸/ì•„ì›ƒì´ ëë‚¬ë‹¤
 
-extern RWS::CEventId g_EventSoundDSP;						// È¿°úÀ½ °ü·Ã ÀÌº¥Æ®
+extern RWS::CEventId g_EventSoundDSP;						// íš¨ê³¼ìŒ ê´€ë ¨ ì´ë²¤íŠ¸
 
-extern RWS::CEventId g_EventSoundEventMusic;				// Ã¤³Î ÀÌº¥Æ®
+extern RWS::CEventId g_EventSoundEventMusic;				// ì±„ë„ ì´ë²¤íŠ¸
 
-extern RWS::CEventId g_EventSoundRestTime;					// ¹İº¹µÇ´Â À½¾ÇÀÇ ´ÙÀ½ ÇÃ·¹ÀÌ±îÁö ÈŞ½Ä ½Ã°£
+extern RWS::CEventId g_EventSoundRestTime;					// ë°˜ë³µë˜ëŠ” ìŒì•…ì˜ ë‹¤ìŒ í”Œë ˆì´ê¹Œì§€ íœ´ì‹ ì‹œê°„
 
-extern RWS::CEventId g_EventSoundKnockdown;					// ³Ë´Ù¿î µÉ ¶§
+extern RWS::CEventId g_EventSoundKnockdown;					// ë„‰ë‹¤ìš´ ë  ë•Œ
 
-extern RWS::CEventId g_EventSoundMinMaxRate;				// 3D »ç¿îµåÀÇ ÀüÃ¼ Min, Max°ªÀ» ¹Ù²Û´Ù
+extern RWS::CEventId g_EventSoundMinMaxRate;				// 3D ì‚¬ìš´ë“œì˜ ì „ì²´ Min, Maxê°’ì„ ë°”ê¾¼ë‹¤
 
-extern RWS::CEventId g_EventSoundAddListRangeBGM;			// Range BGMÀ» ¸®½ºÆ®¿¡ Ãß°¡
+extern RWS::CEventId g_EventSoundAddListRangeBGM;			// Range BGMì„ ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€
 
-extern RWS::CEventId g_EventSoundDelListRangeBGM;			// Range BGMÀ» ¸®½ºÆ®¿¡¼­ »èÁ¦
+extern RWS::CEventId g_EventSoundDelListRangeBGM;			// Range BGMì„ ë¦¬ìŠ¤íŠ¸ì—ì„œ ì‚­ì œ
 
-extern RWS::CEventId g_EventSoundChangeListRangeBGM;		// Range BGMÀÇ °ªÀ» º¯°æ
+extern RWS::CEventId g_EventSoundChangeListRangeBGM;		// Range BGMì˜ ê°’ì„ ë³€ê²½
 
-extern RWS::CEventId g_EventSoundAddListShareBGM;			// Shard BGMÀ» ¸®½ºÆ®¿¡ Ãß°¡
+extern RWS::CEventId g_EventSoundAddListShareBGM;			// Shard BGMì„ ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€
 
-extern RWS::CEventId g_EventSoundDeleteAllListShareBGM;		// Shard BGMÀ» ¸®½ºÆ®¿¡¼­ ¸ğµÎ »èÁ¦
+extern RWS::CEventId g_EventSoundDeleteAllListShareBGM;		// Shard BGMì„ ë¦¬ìŠ¤íŠ¸ì—ì„œ ëª¨ë‘ ì‚­ì œ
 
-extern RWS::CEventId g_EventSoundShareBGMPlayRate;			// Shard BGMÀ» ÇÃ·¹ÀÌ ÇÒ ¼ö ÀÖ´Â È®·ü Á¶Àı
+extern RWS::CEventId g_EventSoundShareBGMPlayRate;			// Shard BGMì„ í”Œë ˆì´ í•  ìˆ˜ ìˆëŠ” í™•ë¥  ì¡°ì ˆ
 
-extern RWS::CEventId g_EventSoundReleaseObjectGroup;		// Object GroupÀÇ ¸ğµç »ç¿îµå¸¦ ÇØÁ¦ÇÑ´Ù
+extern RWS::CEventId g_EventSoundReleaseObjectGroup;		// Object Groupì˜ ëª¨ë“  ì‚¬ìš´ë“œë¥¼ í•´ì œí•œë‹¤
 
 //////////////////////////////////////////////////////////////////////////
 //	Structure
@@ -49,9 +49,9 @@ extern RWS::CEventId g_EventSoundReleaseObjectGroup;		// Object GroupÀÇ ¸ğµç »ç¿
 
 enum eDSPEvent
 {
-	DSP_ADD_REVERV,							///< Æ¯Á¤ Ã¤³Î±×·ì¿¡ reverv È¿°ú¸¦ Àû¿ëÇÑ´Ù
-	DSP_REMOVE_REVERV,						///< Æ¯Á¤ Ã¤³Î±×·ì¿¡ reverv È¿°ú¸¦ ÇØÁ¦Èù´Ù
-	DSP_REMOVE_ALL,							///< Æ¯Á¤ Ã¤³Î±×·ì¿¡ ¸ğµç È¿°ú¸¦ ÇØÁ¦ÇÑ´Ù
+	DSP_ADD_REVERV,							///< íŠ¹ì • ì±„ë„ê·¸ë£¹ì— reverv íš¨ê³¼ë¥¼ ì ìš©í•œë‹¤
+	DSP_REMOVE_REVERV,						///< íŠ¹ì • ì±„ë„ê·¸ë£¹ì— reverv íš¨ê³¼ë¥¼ í•´ì œíŒë‹¤
+	DSP_REMOVE_ALL,							///< íŠ¹ì • ì±„ë„ê·¸ë£¹ì— ëª¨ë“  íš¨ê³¼ë¥¼ í•´ì œí•œë‹¤
 };
 
 struct SNtlEventDSP
@@ -61,53 +61,53 @@ struct SNtlEventDSP
 
 enum eEventMusic
 {
-	EVENT_MUSIC_EVENT_MUSIC_HAD_PLAY,			///< Event À½¾ÇÀÌ ÇÃ·¹ÀÌ¸¦ ½ÃÀÛÇß´Ù
-	EVENT_MUSIC_ALL_EVENT_MUSIC_FINISH,			///< ¸ğµç Event À½¾ÇÀÌ ÇÃ·¹ÀÌ¸¦ Á¾·áÇß´Ù
+	EVENT_MUSIC_EVENT_MUSIC_HAD_PLAY,			///< Event ìŒì•…ì´ í”Œë ˆì´ë¥¼ ì‹œì‘í–ˆë‹¤
+	EVENT_MUSIC_ALL_EVENT_MUSIC_FINISH,			///< ëª¨ë“  Event ìŒì•…ì´ í”Œë ˆì´ë¥¼ ì¢…ë£Œí–ˆë‹¤
 
-	EVENT_MUSIC_LEAVE_MAIN_WORLD_CONCEPT,		///< ¸ŞÀÎ¿ùµå ÄÁ¼Á¿¡¼­ ´Ù¸¥ ÄÁ¼ÁÀ¸·Î º¯°æÀÌ µÇ¾ú´Ù
+	EVENT_MUSIC_LEAVE_MAIN_WORLD_CONCEPT,		///< ë©”ì¸ì›”ë“œ ì»¨ì…‰ì—ì„œ ë‹¤ë¥¸ ì»¨ì…‰ìœ¼ë¡œ ë³€ê²½ì´ ë˜ì—ˆë‹¤
 
-	EVENT_MUSIC_START_PVP_BGM,					///< PVP BGM ½ÃÀÛ
-	EVENT_MUSIC_END_PVP_BGM,					///< PVP BGM ³¡
+	EVENT_MUSIC_START_PVP_BGM,					///< PVP BGM ì‹œì‘
+	EVENT_MUSIC_END_PVP_BGM,					///< PVP BGM ë
 
 	EVENT_MUSIC_WAIT_PVP_BGM,
 	EVENT_MUSIC_END_WAIT,
 
-	EVENT_MUSIC_START_PRIVATE_RANKBATTLE_BGM,	///< ·©Å©¹èÆ² °³ÀÎÀü BGM ½ÃÀÛ
-	EVENT_MUSIC_END_PRIVATE_RANKBATTLE_BGM,		///< ·©Å©¹èÆ² °³ÀÎÀü ³¡
+	EVENT_MUSIC_START_PRIVATE_RANKBATTLE_BGM,	///< ë­í¬ë°°í‹€ ê°œì¸ì „ BGM ì‹œì‘
+	EVENT_MUSIC_END_PRIVATE_RANKBATTLE_BGM,		///< ë­í¬ë°°í‹€ ê°œì¸ì „ ë
 
-	EVENT_MUSIC_START_PARTY_RANKBATTLE_BGM,		///< ·©Å©¹èÆ² ÆÄÆ¼Àü BGM ½ÃÀÛ
-	EVENT_MUSIC_END_PARTY_RANKBATTLE_BGM,		///< ·©Å©¹èÆ² ÆÄÆ¼Àü ³¡
+	EVENT_MUSIC_START_PARTY_RANKBATTLE_BGM,		///< ë­í¬ë°°í‹€ íŒŒí‹°ì „ BGM ì‹œì‘
+	EVENT_MUSIC_END_PARTY_RANKBATTLE_BGM,		///< ë­í¬ë°°í‹€ íŒŒí‹°ì „ ë
 
-	EVENT_MUSIC_END_CINEMATIC_BGM,				///< ½Ã³×¸¶Æ½ BGM ³¡
+	EVENT_MUSIC_END_CINEMATIC_BGM,				///< ì‹œë„¤ë§ˆí‹± BGM ë
 
-	EVENT_MUSIC_START_MAIN_THEME,				///< ¸ŞÀÎÅ×¸¶ BGM ½ÃÀÛ
+	EVENT_MUSIC_START_MAIN_THEME,				///< ë©”ì¸í…Œë§ˆ BGM ì‹œì‘
 	EVENT_MUSIC_PROLOG_THMEM_BGM_PLAY,			///< Prolog BGM Play
-	EVENT_MUSIC_END_MAIN_THEME,					///< ¸ŞÀÎÅ×¸¶ ³¡
-	EVENT_MUSIC_IMMEDIATELY_END_MAIN_THEME,		///< ¸ŞÀÎÅ×¸¶ FadeOut ¾øÀÌ ¹Ù·Î Á¾·á	
+	EVENT_MUSIC_END_MAIN_THEME,					///< ë©”ì¸í…Œë§ˆ ë
+	EVENT_MUSIC_IMMEDIATELY_END_MAIN_THEME,		///< ë©”ì¸í…Œë§ˆ FadeOut ì—†ì´ ë°”ë¡œ ì¢…ë£Œ	
 
-	EVENT_MUSIC_VOLUME_DOWN_BECAUSE_MOVIE_PLAY,	///< Movie¸¦ ÇÃ·¹ÀÌÇÏ±â¿¡ Master º¼·ıÀ» ÁÙÀÎ´Ù
-	EVENT_MUSIC_VOLUME_UP_BECAUSE_MOVIE_PLAY,	///< Movie°¡ ÇÃ·¹ÀÌ Á¾·áµÇ¾î Master º¼·ıÀ» ³ôÀÎ´Ù
+	EVENT_MUSIC_VOLUME_DOWN_BECAUSE_MOVIE_PLAY,	///< Movieë¥¼ í”Œë ˆì´í•˜ê¸°ì— Master ë³¼ë¥¨ì„ ì¤„ì¸ë‹¤
+	EVENT_MUSIC_VOLUME_UP_BECAUSE_MOVIE_PLAY,	///< Movieê°€ í”Œë ˆì´ ì¢…ë£Œë˜ì–´ Master ë³¼ë¥¨ì„ ë†’ì¸ë‹¤
 
-	EVENT_MUSIC_FINISH_THEME_BGM,				///< THEME BGMÀÌ ÇÃ·¹ÀÌ ÁßÀÌ¸é Á¾·áÇÏ¶ó	
+	EVENT_MUSIC_FINISH_THEME_BGM,				///< THEME BGMì´ í”Œë ˆì´ ì¤‘ì´ë©´ ì¢…ë£Œí•˜ë¼	
 
-	EVENT_MUSIC_LOOP_THEME_BGM,					///< THEME BGM¸¦ Loop ÇÑ´Ù
-	EVENT_MUSIC_NOT_LOOP_THEME_BGM,				///< THEME BGM¸¦ ÇÑ ¹ø¸¸ ÇÃ·¹ÀÌ ÇÑ´Ù
+	EVENT_MUSIC_LOOP_THEME_BGM,					///< THEME BGMë¥¼ Loop í•œë‹¤
+	EVENT_MUSIC_NOT_LOOP_THEME_BGM,				///< THEME BGMë¥¼ í•œ ë²ˆë§Œ í”Œë ˆì´ í•œë‹¤
 
-	EVENT_MUSIC_TEMP_FINISH_TMQ,				///< ÀÓ½Ã TMQ Á¾·á
+	EVENT_MUSIC_TEMP_FINISH_TMQ,				///< ì„ì‹œ TMQ ì¢…ë£Œ
 
-	EVENT_MUSIC_TB_DIRECTION_BGM_PLAY,			///< ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ¿¬Ãâ BGM Play
-	EVENT_MUSIC_TB_DIRECTION_BGM_STOP,			///< ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ¿¬Ãâ BGM Stop
+	EVENT_MUSIC_TB_DIRECTION_BGM_PLAY,			///< ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì—°ì¶œ BGM Play
+	EVENT_MUSIC_TB_DIRECTION_BGM_STOP,			///< ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì—°ì¶œ BGM Stop
 
-	EVENT_MUSIC_TB_PARTY_BGM_PLAY,				///< ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ÆÄÆ¼Àü BGM Play
-	EVENT_MUSIC_TB_PARTY_BGM_STOP,				///< ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ÆÄÆ¼Àü BGM Stop
+	EVENT_MUSIC_TB_PARTY_BGM_PLAY,				///< ì²œí•˜ì œì¼ ë¬´ë„íšŒ íŒŒí‹°ì „ BGM Play
+	EVENT_MUSIC_TB_PARTY_BGM_STOP,				///< ì²œí•˜ì œì¼ ë¬´ë„íšŒ íŒŒí‹°ì „ BGM Stop
 
-	EVENT_MUSIC_TB_PRIVATE_BGM_PLAY,			///< ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ °³ÀÎÀü BGM Play
-	EVENT_MUSIC_TB_PRIVATE_BGM_STOP,			///< ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ °³ÀÎÀü BGM Stop
+	EVENT_MUSIC_TB_PRIVATE_BGM_PLAY,			///< ì²œí•˜ì œì¼ ë¬´ë„íšŒ ê°œì¸ì „ BGM Play
+	EVENT_MUSIC_TB_PRIVATE_BGM_STOP,			///< ì²œí•˜ì œì¼ ë¬´ë„íšŒ ê°œì¸ì „ BGM Stop
 
 	EVENT_MUSIC_RAGNE_STOP,						///< Range BGM Stop
-	EVENT_MUSIC_REMOVE_RAGNE_BGM,				///< BGM ±×·ì¿¡¼­ Range BGM ¸®½ºÆ®¸¦ Áö¿ü´Ù
+	EVENT_MUSIC_REMOVE_RAGNE_BGM,				///< BGM ê·¸ë£¹ì—ì„œ Range BGM ë¦¬ìŠ¤íŠ¸ë¥¼ ì§€ì› ë‹¤
 
-	EVENT_MUSIC_START_SCRAMBLE_READY_BGM,		///< µµÀå ÀïÅ»Àü
+	EVENT_MUSIC_START_SCRAMBLE_READY_BGM,		///< ë„ì¥ ìŸíƒˆì „
 	EVENT_MUSIC_STOP_SCRAMBLE_READY_BGM,
 	EVENT_MUSIC_START_SCRAMBLE_START_BGM,
 	EVENT_MUSIC_END_SCRAMBLE_START_BGM,
@@ -121,8 +121,8 @@ struct SNtlEeventMusic
 struct SNtlEventMusicRestTime
 {
 	RwUInt8			byChannelGroup;
-	RwReal			fRestTime;				///< ´ÜÀ§ : ÃÊ
-	RwUInt8			byBGMType;				///< BGM Ã¤³Î ±×·ìÀÏ ¶§¸¸ À¯È¿ÇÏ´Ù
+	RwReal			fRestTime;				///< ë‹¨ìœ„ : ì´ˆ
+	RwUInt8			byBGMType;				///< BGM ì±„ë„ ê·¸ë£¹ì¼ ë•Œë§Œ ìœ íš¨í•˜ë‹¤
 };
 
 struct SNtlEventKnockdown

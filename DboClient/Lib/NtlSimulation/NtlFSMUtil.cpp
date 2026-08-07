@@ -10,7 +10,7 @@
 #include "NtlFSMCharActAgent.h"
 #include "NtlSLEventFunc.h"
 
-// ÀÌµ¿ÀÌ °¡´ÉÇÑ »óÅÂÀÎ°¡?
+// ì´ë™ì´ ê°€ëŠ¥í•œ ìƒíƒœì¸ê°€?
 RwBool FSMUtil_CanMoveState(CNtlFSMStateBase *pStateBase)
 {
 	if(pStateBase->GetFlags() & NTL_FSMSF_NOT_MOVE)
@@ -19,7 +19,7 @@ RwBool FSMUtil_CanMoveState(CNtlFSMStateBase *pStateBase)
 	return TRUE;
 }
 
-// °ø°ÝÀÌ °¡´ÉÇÑ »óÅÂÀÎ°¡?
+// ê³µê²©ì´ ê°€ëŠ¥í•œ ìƒíƒœì¸ê°€?
 RwBool FSMUtil_CanAttackState(CNtlFSMStateBase *pStateBase)
 {
 	if(pStateBase->GetFlags() & NTL_FSMSF_NOT_ATTACK_CAN)
@@ -28,7 +28,7 @@ RwBool FSMUtil_CanAttackState(CNtlFSMStateBase *pStateBase)
 	return TRUE;
 }
 
-// °ø°ÝÀ» ¹ÞÀ» ¼ö ÀÖ´Â »óÅÂÀÎ°¡?
+// ê³µê²©ì„ ë°›ì„ ìˆ˜ ìžˆëŠ” ìƒíƒœì¸ê°€?
 RwBool FSMUtil_CanHurtState(CNtlFSMStateBase *pStateBase)
 {
 	if(pStateBase->GetFlags() & NTL_FSMSF_NOT_HURT_CAN)

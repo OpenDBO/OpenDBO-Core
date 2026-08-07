@@ -1,4 +1,4 @@
-// TSProjectProperty.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// TSProjectProperty.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -8,7 +8,7 @@
 #include "DirDialog.h"
 
 
-// CTSProjectProperty ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CTSProjectProperty ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CTSProjectProperty, CDialog)
 
@@ -44,13 +44,13 @@ BEGIN_MESSAGE_MAP(CTSProjectProperty, CDialog)
 END_MESSAGE_MAP()
 
 
-// CTSProjectProperty ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CTSProjectProperty ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CTSProjectProperty::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	int nIdx = m_ctrTSMode.AddString( _T("Quest CS") );
 	m_ctrTSMode.SetItemData( nIdx, TS_TYPE_QUEST_CS );
 	m_ctrTSMode.SetItemData( m_ctrTSMode.AddString( _T("Trigger CS") ), TS_TYPE_PC_TRIGGER_CS );
@@ -58,7 +58,7 @@ BOOL CTSProjectProperty::OnInitDialog()
 	m_ctrTSMode.SetCurSel( nIdx );
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CTSProjectProperty::OnBnClickedButton1()

@@ -2,7 +2,7 @@
 
 #include "NtlWorldPropMaterialController.h"
 
-// MaterialPropDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// MaterialPropDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CMaterialPropDlg : public CDialog
 {
@@ -24,14 +24,14 @@ private:
 	void WorkProc(eWORK eWork);
 
 public: // sys
-	CMaterialPropDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CMaterialPropDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CMaterialPropDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_MATERIAL_PROP };
 
 protected:
-	virtual void	DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void	DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual LRESULT	WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
 
 	DECLARE_MESSAGE_MAP()

@@ -37,9 +37,9 @@
 #define dFLASH_SCRAMBLE_REWARD			"Dojo_Scramble_Result.swf"
 #define dFLASH_SCRAMBLE_REWARD_NPC		"Dojo_Scramble_Result_npc.swf"
 
-#define dWARNING_REST_TIME					(180.f)			///< °æ°í¸¦ ÇÏ±â À§ÇÑ ÃÖ¼Ò ÈÞÁö ½Ã°£(´ÜÀ§ : ÃÊ)
-#define dWARNING_POINT_GAP					(90)			///< Áö°í ÀÖÀ» °æ¿ì °æ°í¸¦ ÇÏ±â À§ÇÑ Á¡¼öÂ÷
-#define dWARNING_BE_STEALED_SEAL_COUNT		(5)				///< ÀÎÀåÀ» »¯°åÀ» °æ¿ì °æ°í¸¦ ÇÏ±â À§ÇÑ ÃÖ¼Ò °¹¼ö
+#define dWARNING_REST_TIME					(180.f)			///< ê²½ê³ ë¥¼ í•˜ê¸° ìœ„í•œ ìµœì†Œ íœ´ì§€ ì‹œê°„(ë‹¨ìœ„ : ì´ˆ)
+#define dWARNING_POINT_GAP					(90)			///< ì§€ê³  ìžˆì„ ê²½ìš° ê²½ê³ ë¥¼ í•˜ê¸° ìœ„í•œ ì ìˆ˜ì°¨
+#define dWARNING_BE_STEALED_SEAL_COUNT		(5)				///< ì¸ìž¥ì„ ëºê²¼ì„ ê²½ìš° ê²½ê³ ë¥¼ í•˜ê¸° ìœ„í•œ ìµœì†Œ ê°¯ìˆ˜
 
 
 CScrambleNotifyGui::CScrambleNotifyGui(const RwChar* pName)
@@ -421,19 +421,19 @@ VOID CScrambleNotifyGui::OnFSCallback_RewardWidget(const char* pcString, const c
 
 	m_tREWARD_WIDGET.bShowRewardItem = TRUE;
 
-	// ÀÌ±ä ±æµå ÀÌ¸§
+	// ì´ê¸´ ê¸¸ë“œ ì´ë¦„
 	m_tREWARD_WIDGET.pGuildName->SetText( pGuild->GetGuildName() );
 
-	// È¹µæ À¯ÆÄ Æ÷ÀÎÆ®
+	// íšë“ ìœ íŒŒ í¬ì¸íŠ¸
 	m_tREWARD_WIDGET.pRewardReputationPoint->SetText( m_tREWARD_WIDGET.uiGuildReputation );			
 
-	// µµÀå Áö¿ª ÀÌ¸§ ¾ò¾î¿À±â
+	// ë„ìž¥ ì§€ì—­ ì´ë¦„ ì–»ì–´ì˜¤ê¸°
 	std::wstring wstrDojoName = pGuild->GetGuildName();
 	wstrDojoName += L" ";
 	wstrDojoName += GetDisplayStringManager()->GetString("DST_DOJO");
 	m_tREWARD_WIDGET.pDojoName->SetText( wstrDojoName.c_str() );
 
-	// È¹µæ ¾ÆÀÌÅÛ
+	// íšë“ ì•„ì´í…œ
 	if( INVALID_TBLIDX == m_tREWARD_WIDGET.uiItemTableIndex )
 	{
 		m_tREWARD_WIDGET.pRewardItem->SetText(L"-");
@@ -458,7 +458,7 @@ VOID CScrambleNotifyGui::OnFSCallback_RewardWidget(const char* pcString, const c
 		}
 	}
 
-	// NPC ³ª·¹ÀÌ¼Ç
+	// NPC ë‚˜ë ˆì´ì…˜
 	if( !m_tREWARD_WIDGET.pResultNarration )
 	{
 		m_tREWARD_WIDGET.pResultNarration = NTL_NEW CResultNarrationGui( "ScrambleResultNarration" );
@@ -567,8 +567,8 @@ VOID CScrambleNotifyGui::HandleEvents( RWS::CMsg &msg )
 		{
 		case DOJO_EVENT_SCRAMBLE_SCORE:
 			{
-				// ´Ù¸¥ Á¤º¸°¡ ´õ Áß¿äÇÏ±â¿¡ ¿ì¼± ¼øÀ§¸¦ ³·Ãè´Ù.
-				// ÇÃ·¡½¬°¡ ÀÌ¹Ì ¿¬ÃâÁßÀÌ¸é °æ°í ÇÃ·¡½¬´Â º¸¿©ÁÖÁö ¾Ê´Â´Ù
+				// ë‹¤ë¥¸ ì •ë³´ê°€ ë” ì¤‘ìš”í•˜ê¸°ì— ìš°ì„  ìˆœìœ„ë¥¼ ë‚®ì·„ë‹¤.
+				// í”Œëž˜ì‰¬ê°€ ì´ë¯¸ ì—°ì¶œì¤‘ì´ë©´ ê²½ê³  í”Œëž˜ì‰¬ëŠ” ë³´ì—¬ì£¼ì§€ ì•ŠëŠ”ë‹¤
 				if( IsShow() )
 					NTL_RETURNVOID();
 
@@ -701,7 +701,7 @@ VOID CScrambleNotifyGui::HandleEvents( RWS::CMsg &msg )
 				}
 				else
 				{
-					// Á³´Ù¸é ÀÓ½Ã·Î ¼­¹ö¿¡¼­ ¿¬Ãâ »óÅÂ°¡ Ãß°¡µÉ ¶§±îÁö ¸·´Â´Ù
+					// ì¡Œë‹¤ë©´ ìž„ì‹œë¡œ ì„œë²„ì—ì„œ ì—°ì¶œ ìƒíƒœê°€ ì¶”ê°€ë  ë•Œê¹Œì§€ ë§‰ëŠ”ë‹¤
 					NTL_RETURNVOID();
 
 					pFlash_Notify->Invoke("Conclusion", "%d", 0);
@@ -718,8 +718,8 @@ VOID CScrambleNotifyGui::HandleEvents( RWS::CMsg &msg )
 
 				if( m_strFileName.empty() )
 				{
-					// ¾Æ¹«·± ¿¬ÃâÁßÀÌ ¾Æ´Ò ¶§¸¸ º¸»ó ¿¬ÃâÀ» ¹Ù·Î º¸¿©ÁØ´Ù
-					// ¸¸¾à °á°úÃ¢À» º¸¿©ÁÖ°í ÀÖ´Ù¸é °á°úÃ¢ ÀÌÈÄ¿¡ º¸»ó ¿¬ÃâÀ» º¸¿©ÁÙ °ÍÀÌ´Ù
+					// ì•„ë¬´ëŸ° ì—°ì¶œì¤‘ì´ ì•„ë‹ ë•Œë§Œ ë³´ìƒ ì—°ì¶œì„ ë°”ë¡œ ë³´ì—¬ì¤€ë‹¤
+					// ë§Œì•½ ê²°ê³¼ì°½ì„ ë³´ì—¬ì£¼ê³  ìžˆë‹¤ë©´ ê²°ê³¼ì°½ ì´í›„ì— ë³´ìƒ ì—°ì¶œì„ ë³´ì—¬ì¤„ ê²ƒì´ë‹¤
 					PlayReward();
 				}
 
@@ -761,7 +761,7 @@ VOID CScrambleNotifyGui::HandleEvents( RWS::CMsg &msg )
 			NTL_RETURNVOID();
 
 
-		// µµÀå ÀïÅ»Àü ´ë±âÁß GUI ¿¬Ãâ
+		// ë„ìž¥ ìŸíƒˆì „ ëŒ€ê¸°ì¤‘ GUI ì—°ì¶œ
 		if( pEvent->bShow )
 		{
 			LoadFlash(m_tSTART_WIDGET.pFlash, dFLASH_SCRAMBLE_TITLE);

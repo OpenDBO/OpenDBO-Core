@@ -1,4 +1,4 @@
-// LightDialog.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// LightDialog.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -10,7 +10,7 @@
 
 #include "VenusFramework.h"
 
-// CLightDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CLightDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 const RwChar* g_LightString[] = {	"rpLIGHTDIRECTIONAL",	\
 									"rpLIGHTPOINT",			\
@@ -87,7 +87,7 @@ BEGIN_MESSAGE_MAP(CLightDialog, CDialog)
 END_MESSAGE_MAP()
 
 
-// CLightDialog ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CLightDialog ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 CLightDialog& CLightDialog::GetInstance()
 {
 	static CLightDialog dlg;
@@ -98,7 +98,7 @@ BOOL CLightDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CRect rect;
 	GetWindowRect(&rect);
 	CPoint posStart;
@@ -133,7 +133,7 @@ BOOL CLightDialog::OnInitDialog()
 	}
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CLightDialog::InitSliderButton(CMacSliderCtrl* pSlider, int nStart, int nEnd, int nTic, COLORREF color)
@@ -145,7 +145,7 @@ void CLightDialog::InitSliderButton(CMacSliderCtrl* pSlider, int nStart, int nEn
 
 void CLightDialog::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	switch(pScrollBar->GetDlgCtrlID())
 	{
 		case IDC_ABMIENT_COLOR_R:
@@ -336,14 +336,14 @@ void CLightDialog::BuildLightAngle()
 }
 void CLightDialog::OnCbnSelchangeLightType()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CVenusConfig::GetInstance().m_nLightType = (int)m_LightType.GetItemData(m_LightType.GetCurSel());
 	CVenusFramework::GetInstance().CreateMainLight();
 }
 
 void CLightDialog::OnBnClickedLightColor()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CColorDialog dlg;
 	if (dlg.DoModal() != IDOK)
 	{
@@ -360,7 +360,7 @@ void CLightDialog::OnBnClickedLightColor()
 
 void CLightDialog::OnBnClickedAbmientColor()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CColorDialog dlg;
 	if (dlg.DoModal() != IDOK)
 	{

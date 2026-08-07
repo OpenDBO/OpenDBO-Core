@@ -2,7 +2,7 @@
  *
  * File			: NTLGammaController
  * Author		: Haesung Cho
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2009. 4. 10	
  * Abstract		: NTL Gamma Controller
  *****************************************************************************

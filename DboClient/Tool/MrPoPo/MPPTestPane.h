@@ -1,14 +1,14 @@
 #pragma once
 #include "afxwin.h"
 
-// CMPPTestPane Æû ºäÀÔ´Ï´Ù.
+// CMPPTestPane í¼ ë·°ì…ë‹ˆë‹¤.
 
 class CMPPTestPane : public CXTResizeFormView
 {
 	DECLARE_DYNCREATE(CMPPTestPane)
 
 protected:
-	CMPPTestPane();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CMPPTestPane();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CMPPTestPane();
 
 public:
@@ -21,7 +21,7 @@ public:
 #endif
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 

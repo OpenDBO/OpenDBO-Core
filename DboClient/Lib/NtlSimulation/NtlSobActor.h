@@ -2,7 +2,7 @@
  *
  * File			: NtlSobActor.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 9. 01	
  * Abstract		: Simulation object actor
  *****************************************************************************
@@ -42,7 +42,7 @@ protected:
 	
 protected:
 
-	// »ı¼ºÀÚ.
+	// ìƒì„±ì.
 	CNtlSobActor();
 	
 public:
@@ -76,7 +76,7 @@ public:
 	virtual RwBool CanMove(void);
 	virtual RwBool CanAttack(void);
 	virtual RwBool CanHurted(void);
-	virtual RwBool CanClick(void);	// ÀÌ ¾×ÅÍ¸¦ Å¬¸¯ÇØ¼­ ¼±ÅÃÇÒ ¼ö ÀÖ´ÂÁö¿¡ ´ëÇÑ À¯¹«
+	virtual RwBool CanClick(void);	// ì´ ì•¡í„°ë¥¼ í´ë¦­í•´ì„œ ì„ íƒí•  ìˆ˜ ìˆëŠ”ì§€ì— ëŒ€í•œ ìœ ë¬´
 
 	virtual RwBool IsAirMode(void);
 	virtual RwBool IsFightingMode(void);

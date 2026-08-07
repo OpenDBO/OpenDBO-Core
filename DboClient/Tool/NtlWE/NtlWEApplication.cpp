@@ -140,7 +140,7 @@ RwBool CNtlWEApplication::RestoreHandler()
 			}
 		}
 		break;
-		// ÀÎµµ¾î
+		// ì¸ë„ì–´
 	case AW_RWWORLD:
 		{
 			if (m_pEventHandler)
@@ -301,7 +301,7 @@ bool CNtlWEApplication::CreateWorldFromFolder(string& FullPathFileName)
 	m_pCameraTop->SetCamera(m_pCamera->GetCamera());
 
 	// tool event handler
-	// ÀÎµµ¾î
+	// ì¸ë„ì–´
 	//switch (m_pWorldEntity->GetActiveWorldType())
 	//{
 	//case AW_HEGITHFIELD:
@@ -469,7 +469,7 @@ bool CNtlWEApplication::CreateWorld(string& FullPathFileName)
 	m_pCameraTop->SetCamera(m_pCamera->GetCamera());
 
 	// tool event handler
-	// ÀÎµµ¾î
+	// ì¸ë„ì–´
 // 	switch (m_pWorldEntity->GetActiveWorldType())
 // 	{
 // 	case AW_HEGITHFIELD:
@@ -549,7 +549,7 @@ void CNtlWEApplication::CreateWorldDefaultParam()
 	dGET_WORLD_PARAM()->ClrBaseAmbient[2]		= 100;
 	dGET_WORLD_PARAM()->ClrShadow				= 0xff777777;
 
-	// ÀÎµµ¾î
+	// ì¸ë„ì–´
 	dGET_WORLD_PARAM()->WorldBlockSize			= 64;
 	dGET_WORLD_PARAM()->WorldBlockNum			= dGET_WORLD_PARAM()->WorldSize / dGET_WORLD_PARAM()->WorldBlockSize;
 	dGET_WORLD_PARAM()->WorldType				= 0;
@@ -558,10 +558,10 @@ void CNtlWEApplication::CreateWorldDefaultParam()
 
 void CNtlWEApplication::SetErrorReport()
 {
-	// Dx¿¡¼­ PC°ü·Ã Á¤º¸¸¦ °¡Á®¿Í¼­ txtÆÄÀÏÀ» ¸¸µç´Ù.
+	// Dxì—ì„œ PCê´€ë ¨ ì •ë³´ë¥¼ ê°€ì ¸ì™€ì„œ txtíŒŒì¼ì„ ë§Œë“ ë‹¤.
 	//ShellExecute(NULL, "open", "dxdiag.exe", "/t DxLog.txt", NULL, SW_SHOWNORMAL);
 
-	// ¹ö±×Æ®·¦¿ë ¼³Á¤    
+	// ë²„ê·¸íŠ¸ëž©ìš© ì„¤ì •    
 	char szVer[32] = {0,};
 	//sprintf_s(szVer, "%d.%d", CLIENT_LVER, CLIENT_RVER);
 	sprintf_s(szVer, "1.0");
@@ -1214,7 +1214,7 @@ RwBool CNtlWEApplication::Update(RwReal fTime, RwReal fElapsedTime)
 	dGETFRM()->m_pWorldViewDlg->Render();
 	
 	// 2009. 3. 23. - Cz
-	// Print Screen Key·Î Client¿¡¼­ ScreenshotÀ» Âï±â ¶§¹®¿¡ ¶È°°Àº ±â´ÉÀ» Tool¿¡¼­ »©±â·ÎÇÔ.
+	// Print Screen Keyë¡œ Clientì—ì„œ Screenshotì„ ì°ê¸° ë•Œë¬¸ì— ë˜‘ê°™ì€ ê¸°ëŠ¥ì„ Toolì—ì„œ ë¹¼ê¸°ë¡œí•¨.
 	//PickSC();
 
 	return TRUE;
@@ -1370,7 +1370,7 @@ bool CNtlWEApplication::CreateWorldEx(string& FullPathFileName)
 	m_pCameraTop->SetCamera(m_pCamera->GetCamera());
 
 	// tool event handler
-	// ÀÎµµ¾î
+	// ì¸ë„ì–´
 // 	switch (m_pWorldEntity->GetActiveWorldType())
 // 	{
 // 	case AW_HEGITHFIELD:

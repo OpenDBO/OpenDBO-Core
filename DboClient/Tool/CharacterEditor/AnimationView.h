@@ -1,7 +1,7 @@
 #pragma once
 
 
-// CAnimationView ºäÀÔ´Ï´Ù.
+// CAnimationView ë·°ì…ë‹ˆë‹¤.
 #include "AnimationTreeDialog.h"
 #include "AnimationSetDialog.h"
 
@@ -10,14 +10,14 @@ class CAnimationView : public CView
 	DECLARE_DYNCREATE(CAnimationView)
 
 protected:
-	CAnimationView();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CAnimationView();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CAnimationView();
 
 public:
 	CAnimationTreeDialog	m_AnimationTreeDialog;
 	CAnimationSetDialog	    m_AnimationSetDialog;
 public:
-	virtual void OnDraw(CDC* pDC);      // ÀÌ ºä¸¦ ±×¸®±â À§ÇØ ÀçÁ¤ÀÇµÇ¾ú½À´Ï´Ù.
+	virtual void OnDraw(CDC* pDC);      // ì´ ë·°ë¥¼ ê·¸ë¦¬ê¸° ìœ„í•´ ì¬ì •ì˜ë˜ì—ˆìŠµë‹ˆë‹¤.
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;

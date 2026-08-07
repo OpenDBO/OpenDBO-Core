@@ -39,18 +39,18 @@ public:
 	INT				m_nFontH;
 	INT				m_nFontAttribute;
 	BOOL			m_bDynamic;			// Dynamically adjust window size.
-	INT				m_nMaxCX;			// Dynamic½Ã ÃÖ´ë Æø
-	INT				m_nMaxCY;			// Dynamic½Ã ÃÖ´ë ³ôÀÌ.
-	INT				m_nMinCX;			// Dynamic½Ã ÃÖ¼Ò Æø.
-	INT				m_nMinCY;			// Dynamic½Ã ÃÖ¼Ò ³ôÀÌ.
+	INT				m_nMaxCX;			// Dynamicì‹œ ìµœëŒ€ í­
+	INT				m_nMaxCY;			// Dynamicì‹œ ìµœëŒ€ ë†’ì´.
+	INT				m_nMinCX;			// Dynamicì‹œ ìµœì†Œ í­.
+	INT				m_nMinCY;			// Dynamicì‹œ ìµœì†Œ ë†’ì´.
 	INT				m_nTextureWidth;
 	INT				m_nTextureHeight;
 	INT				m_nMarginX;
 	INT				m_nMarginY;
 	INT				m_nLineSpace;		// Line.
 	
-	BYTE			m_ucAlpha;				// AlphaÀúÀå°ª.
-	BYTE			m_ucTexturePosOffset;	// Shadow, OutlineµîÀ¸·Î ÀÎÇØ ¹ß»ıµÇ´Â ÅÃ½ºÃÄ ¿©ºĞÀÇ »çÀÌÁî. 
+	BYTE			m_ucAlpha;				// Alphaì €ì¥ê°’.
+	BYTE			m_ucTexturePosOffset;	// Shadow, Outlineë“±ìœ¼ë¡œ ì¸í•´ ë°œìƒë˜ëŠ” íƒìŠ¤ì³ ì—¬ë¶„ì˜ ì‚¬ì´ì¦ˆ. 
 	BYTE			m_ucTextureSizeOffset;
 
 	LIST_ITEM		m_listItem;
@@ -84,7 +84,7 @@ public:
 	VOID AddText( const CHAR* text );		
 	VOID AddText( const WCHAR* text );
 
-	VOID SetMargin( INT nMarginX, INT nMarginY );	// Font»ı¼ºÈÄ MarginÁ¶Á¤½Ã. »ı¼ºÀü¿¡´Â ÀÚµ¿À¸·Î ÀÔ·ÂµÈ´Ù.
+	VOID SetMargin( INT nMarginX, INT nMarginY );	// Fontìƒì„±í›„ Marginì¡°ì •ì‹œ. ìƒì„±ì „ì—ëŠ” ìë™ìœ¼ë¡œ ì…ë ¥ëœë‹¤.
 	VOID SetEffectMode( INT nEffectMode, BOOL bSurfaceChange = TRUE );
 	VOID SetEffectValue( INT nEffectValue, BOOL bSurfaceChange = TRUE );
 
@@ -94,7 +94,7 @@ public:
 
 	VOID SetTextSurface( CRectangle rcScreen );
 
-	INT  GetFitWidthToString(VOID);					// ÅØ½ºÆ® ÀÚÃ¼ÀÇ ±æÀÌ + MarginÀÇ °ªÀ¸·Î ¸®»çÀÌÁî.
+	INT  GetFitWidthToString(VOID);					// í…ìŠ¤íŠ¸ ìì²´ì˜ ê¸¸ì´ + Marginì˜ ê°’ìœ¼ë¡œ ë¦¬ì‚¬ì´ì¦ˆ.
 	INT  GetFitHeightToString(VOID);
 
 	VOID Redraw(VOID);

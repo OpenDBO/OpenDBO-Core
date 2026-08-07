@@ -192,8 +192,8 @@ sPLAY_BGM_PARAMETA* CNtlBGMPlayList::GetBGM_TopPriority()
 	tPLAY_BGM_PARAMETA.bEnableParameta = FALSE;
 
 
-	// øÏº±º¯¿ß∞° ≥Ù¿∫ BGM¿Ã ¿÷¿∏∏È ±◊∞Õ¿ª π›»Ø«—¥Ÿ
-	// Share BGM¿∫ Local BGM¿œ ∂ß ∞∞¿Ã ∞ÀªÁ«—¥Ÿ
+	// Ïö∞ÏÑ†ÏàúÏúÑÍ∞Ä ÎÜíÏùÄ BGMÏù¥ ÏûàÏúºÎ©¥ Í∑∏Í≤ÉÏùÑ Î∞òÌôòÌïúÎã§
+	// Share BGMÏùÄ Local BGMÏùº Îïå Í∞ôÏù¥ Í≤ÄÏÇ¨ÌïúÎã§
 	for( RwUInt8 i = NUM_BGM_TYPE - 1 ; i > 0 ; --i )
 	{
 		if( BGM_TYPE_LOCAL_THEME == i )
@@ -217,7 +217,7 @@ sPLAY_BGM_PARAMETA* CNtlBGMPlayList::GetBGM_TopPriority()
 				tPLAY_BGM_PARAMETA.strFileName			= *(m_atBGM_INFO[i].listSoundFile.begin());
 			}
 
-			// Share BGM¿∫ Local BGM¿œ ∂ß ∞∞¿Ã ∞ÀªÁ«—¥Ÿ
+			// Share BGMÏùÄ Local BGMÏùº Îïå Í∞ôÏù¥ Í≤ÄÏÇ¨ÌïúÎã§
 			break;
 		}
 		else if( false == m_atBGM_INFO[i].listSoundFile.empty() )

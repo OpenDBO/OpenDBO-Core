@@ -5,7 +5,7 @@
 #include "afxwin.h"
 
 
-// CAttr_COND_PCCls ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_COND_PCCls ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CAttr_COND_PCCls : public CAttr_Page
 {
@@ -15,14 +15,14 @@ public:
 	CAttr_COND_PCCls();
 	virtual ~CAttr_COND_PCCls();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_TS_COND_PCCLS_ATTR_DIAG };
 
 	virtual CString	GetPageData( void );
 	virtual void	UnPakingPageData( CString& strKey, CString& strValue );
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 

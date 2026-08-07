@@ -1,4 +1,4 @@
-// PalettePerformanceImposter.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PalettePerformanceImposter.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "PalettePerformanceImposter.h"
 
 
-// CPalettePerformanceImposter ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPalettePerformanceImposter ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPalettePerformanceImposter, CDialog)
 
@@ -30,16 +30,16 @@ BEGIN_MESSAGE_MAP(CPalettePerformanceImposter, CDialog)
 END_MESSAGE_MAP()
 
 
-// CPalettePerformanceImposter ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPalettePerformanceImposter ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CPalettePerformanceImposter::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 BOOL CPalettePerformanceImposter::PreTranslateMessage(MSG* pMsg)

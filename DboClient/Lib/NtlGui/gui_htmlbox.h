@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Name: class gui:CHtmlBox
-// Desc: html ¹®¼­¸¦ ÀĞ¾î µé¿©, html ¹®¹ı¿¡ ¸Â°Ô Ç¥ÇöÀ» ÇÑ´Ù.
+// Desc: html ë¬¸ì„œë¥¼ ì½ì–´ ë“¤ì—¬, html ë¬¸ë²•ì— ë§ê²Œ í‘œí˜„ì„ í•œë‹¤.
 //		 
 //
 // 2006.10.12 Peessi@hitel.net   
@@ -58,30 +58,30 @@ public:
 
 	CScrollBar* GetScrollBar(VOID) const;
 
-	// Interval Text ÀÎÅÍÆäÀÌ½º
+	// Interval Text ì¸í„°í˜ì´ìŠ¤
 public:
-	VOID SetIntervalTextEnable(float fIntervalTime);	// ¸ğµå : Ãâ·Â °£°İ ½Ã°£
-	VOID SetIntervalTextDisable();						// ¸ğµå ÇØÁ¦
+	VOID SetIntervalTextEnable(float fIntervalTime);	// ëª¨ë“œ : ì¶œë ¥ ê°„ê²© ì‹œê°„
+	VOID SetIntervalTextDisable();						// ëª¨ë“œ í•´ì œ
 
 	VOID Update( float fElapsedTime );					// Update
 
-	INT	GetIntervalPageNums(VOID);						// ÆäÀÌÁö °¹¼ö
-	INT GetCurrentPage(VOID);							// ÇöÀç ÆäÀÌÁö ¹øÈ£ 0~
+	INT	GetIntervalPageNums(VOID);						// í˜ì´ì§€ ê°¯ìˆ˜
+	INT GetCurrentPage(VOID);							// í˜„ì¬ í˜ì´ì§€ ë²ˆí˜¸ 0~
 	
-	BOOL SetNextPage(VOID);								// ´ÙÀ½ ÆäÀÌÁö
-	BOOL SetPrevPage(VOID);								// ÀÌÀü ÆäÀÌÁö
-	BOOL SetSkipPage(VOID);								// ÇöÀç ÆäÀÌÁö Skip
+	BOOL SetNextPage(VOID);								// ë‹¤ìŒ í˜ì´ì§€
+	BOOL SetPrevPage(VOID);								// ì´ì „ í˜ì´ì§€
+	BOOL SetSkipPage(VOID);								// í˜„ì¬ í˜ì´ì§€ Skip
 
-	BOOL SetPlayPage(INT nPage);						// nPage ÇÃ·¹ÀÌ
+	BOOL SetPlayPage(INT nPage);						// nPage í”Œë ˆì´
 
-	VOID SetPause( BOOL bPause = TRUE );				// ÀÏ½Ã ¸ØÃã
-	VOID SetImmediate( BOOL bImmediate = TRUE );		// Áï°¢ Ãâ·Â
+	VOID SetPause( BOOL bPause = TRUE );				// ì¼ì‹œ ë©ˆì¶¤
+	VOID SetImmediate( BOOL bImmediate = TRUE );		// ì¦‰ê° ì¶œë ¥
 
-	VOID SetPresentNum(INT nNum);						// Ãâ·ÂµÇ´Â ±ÛÀÚÀÇ °¹¼ö(ÇÑ¹ø¿¡)
+	VOID SetPresentNum(INT nNum);						// ì¶œë ¥ë˜ëŠ” ê¸€ìì˜ ê°¯ìˆ˜(í•œë²ˆì—)
 	INT	 GetPresentNum();
 
 	//! signals
-	CSignal_v1<int>& CHtmlBox::SigPageDone();			// ÆäÀÌÁö°¡ ¿Ï·áµÇ¾úÀ» ¶§ ¹ß»ı
+	CSignal_v1<int>& CHtmlBox::SigPageDone();			// í˜ì´ì§€ê°€ ì™„ë£Œë˜ì—ˆì„ ë•Œ ë°œìƒ
 
 private:
 	//! Implementation

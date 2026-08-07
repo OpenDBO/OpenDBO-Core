@@ -226,7 +226,7 @@ RwBool CRBBoardGui::Create(VOID)
 	m_pThis->Show( false );
 	m_ppnlFocusBar->Show( false );
 		
-	// Event¿¬°á
+	// Eventì—°ê²°
 	LinkMsg( g_EventRBBoardInfo );
 	LinkMsg( g_EventRBJoin );
 	LinkMsg( g_EventNPCDialogOpen );
@@ -486,7 +486,7 @@ VOID CRBBoardGui::SetBoardData( RwUInt8 byBattleType, RwUInt8 byArenaCount, sRAN
 	//if( pBoardData->byRoomCount == 0 )
 	//	m_ppnlFocusBar->Show( false );	
 	//else
-	//{// ±âº»¼±ÅÃ
+	//{// ê¸°ë³¸ì„ íƒ
 	//	RwInt32 nFocusItemID = GetFocusItemID();
 
 	//	if( pBoardData->byRoomCount <= nFocusItemID )
@@ -495,19 +495,19 @@ VOID CRBBoardGui::SetBoardData( RwUInt8 byBattleType, RwUInt8 byArenaCount, sRAN
 	//		OnClickBoardItem( 0 );
 	//}	
 
-	//// ·¹º§Á¦ÇÑ Ç¥½Ã
+	//// ë ˆë²¨ì œí•œ í‘œì‹œ
 	////m_pstbCanEnterLevel->Format( GetDisplayStringManager()->GetString( DST_RB_LEVEL_LIMIT ), pRankBattleData->byMinLevel, pRankBattleData->byMaxLevel );
 	//
-	//// ÆäÀÌÁö Ç¥½Ã
+	//// í˜ì´ì§€ í‘œì‹œ
 	////SetPage( pBoardData->wCurPage, pBoardData->wTotalPage );	
 	////m_pstbPage->Format( GetDisplayStringManager()->GetString( DST_RB_PAGE ), m_nCurrentPage + 1, ( m_nTotalPage == 0 ) ? m_nTotalPage + 1 : m_nTotalPage );
 	//
-	//// ¾ÆÀÌÅÛ Ç¥½Ã
+	//// ì•„ì´í…œ í‘œì‹œ
 	//for( RwInt32 i = 0 ; i < MAX_BOARD_ITEM ; ++i )
 	//{
 	//	if( i < pBoardData->byRoomCount )
 	//	{
-	//		// ¾ÆÀÌÅÛÀÌ ÀÖ´Â °æ¿ì
+	//		// ì•„ì´í…œì´ ìˆëŠ” ê²½ìš°
 	//		m_BoardItem[i].Show( true );
 
 	//		if( pBoardData->byRoomType == RANKBATTLE_MODE_INDIVIDUAL )
@@ -528,7 +528,7 @@ VOID CRBBoardGui::SetBoardData( RwUInt8 byBattleType, RwUInt8 byArenaCount, sRAN
 	//	}
 	//	else
 	//	{
-	//		// ¾ÆÀÌÅÛÀÌ ¾ø´Â °æ¿ì
+	//		// ì•„ì´í…œì´ ì—†ëŠ” ê²½ìš°
 	//		m_BoardItem[i].Show( false );
 	//	}
 	//}
@@ -710,7 +710,7 @@ VOID CRBBoardGui::OnClickBoardItem( RwInt32 nItemIndex, RwUInt32 uiFieldID )
 	}	
 	else
 	{
-		// peessitemp : ½ÅÃ»Áß¿¡´Â ´Ù¸¥ °ÍÀ» ¼±ÅÃÇÒ ¼ö ¾ø´Ù´Â ¸Ş½ÃÁö ÇÊ¿ä.
+		// peessitemp : ì‹ ì²­ì¤‘ì—ëŠ” ë‹¤ë¥¸ ê²ƒì„ ì„ íƒí•  ìˆ˜ ì—†ë‹¤ëŠ” ë©”ì‹œì§€ í•„ìš”.
 
 	}
 }

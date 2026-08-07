@@ -1,4 +1,4 @@
-// FileViewDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// FileViewDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -8,7 +8,7 @@
 #include "GUIResourceView.h"
 #include "resource.h"
 
-// FileViewDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// FileViewDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNCREATE(CFileViewDlg, CDialog)
 CFileViewDlg::CFileViewDlg(CWnd* pParent /*=NULL*/)
@@ -33,13 +33,13 @@ BEGIN_MESSAGE_MAP(CFileViewDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// FileViewDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// FileViewDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CFileViewDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 	
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if ( !m_FileTree.m_hWnd )
 	{
 		if ( m_FileTree.SubclassDlgItem( IDC_TREE1, this ) )
@@ -57,13 +57,13 @@ BOOL CFileViewDlg::OnInitDialog()
 	m_bInitialized = TRUE;
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CFileViewDlg::OnTvnSelchangedTree1(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMTREEVIEW pNMTreeView = reinterpret_cast<LPNMTREEVIEW>(pNMHDR);
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CString strFullPath = (LPCTSTR)m_FileTree.GetFullPath( pNMTreeView->itemNew.hItem );
 	CString strSubPath = (LPCTSTR)m_FileTree.GetSubPath( (LPCTSTR)strFullPath );
 		
@@ -80,7 +80,7 @@ void CFileViewDlg::OnSize(UINT nType, int cx, int cy)
 {
 	CDialog::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if( m_bInitialized )
 	{
 		CWnd* pWindow = GetDlgItem( IDC_TREE1 );

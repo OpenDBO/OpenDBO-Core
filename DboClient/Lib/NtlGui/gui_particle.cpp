@@ -22,11 +22,11 @@ CParticle::CParticle( RwV2d& v2dPos, RwV2d& v2dDir, float fLifeTime, float fVel,
 
 	m_fScale = fScale;
 
-	// ÆÄÆ¼Å¬ÀÇ ÅØ½ºÃÄ·Î »ç¿ëÇÒ ¼­ÆäÀÌ½º¿¡¼­ ³ĞÀÌ¿Í ³ôÀÌ¸¦ ¹Ì¸® °è»êÇØµĞ´Ù.
+	// íŒŒí‹°í´ì˜ í…ìŠ¤ì³ë¡œ ì‚¬ìš©í•  ì„œí˜ì´ìŠ¤ì—ì„œ ë„“ì´ì™€ ë†’ì´ë¥¼ ë¯¸ë¦¬ ê³„ì‚°í•´ë‘”ë‹¤.
 	m_nWidth = (int)(surface.m_SnapShot.rtRect.GetWidth() * fScale);
 	m_nHeight = (int)(surface.m_SnapShot.rtRect.GetHeight() * fScale);
 
-	// ¼­ÆäÀÌ½º º¹»ç ( ÅØ½ºÃÄ´Â Æ÷ÀÎÅÍ¸¸ º¹»çµÈ´Ù. )
+	// ì„œí˜ì´ìŠ¤ ë³µì‚¬ ( í…ìŠ¤ì³ëŠ” í¬ì¸í„°ë§Œ ë³µì‚¬ëœë‹¤. )
 	m_surParticle = surface;
 
 	m_fAge = 0.f;
@@ -41,7 +41,7 @@ CParticle::CParticle( RwV2d& v2dPos, RwV2d& v2dDir, float fLifeTime, float fVel,
 	m_surParticle.m_SnapShot.uBlue = uBlue;
 	m_surParticle.m_SnapShot.uAlpha = uAlpha;
 
-	// ¿øº»ÀÇ °ªÀ» º¸°üÇÑ´Ù.
+	// ì›ë³¸ì˜ ê°’ì„ ë³´ê´€í•œë‹¤.
 	m_OriginSnapShot = m_surParticle.m_SnapShot;
 
 	m_bDie = FALSE;
@@ -58,11 +58,11 @@ void CParticle::Update( float fElapsed )
 	if( m_fAge > m_fLifeTime )
 		m_bDie = TRUE;
 
-	//// 1. ¼Óµµ °è»ê
+	//// 1. ì†ë„ ê³„ì‚°
 	RwV2d v2dVelDelta;
 	RwV2dScale( &v2dVelDelta, &m_v2dDir, fElapsed );
 
-	// 2. À§Ä¡ + ¼Óµµ
+	// 2. ìœ„ì¹˜ + ì†ë„
 	RwV2dAdd( &m_v2dPos, &m_v2dPos, &v2dVelDelta );
 
 	// 3. Texture Position update

@@ -46,14 +46,14 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 //////////////////////////////////////////////////////////////////////////
 //
 //	Event
-//	Å¬¶óÀÌ¾ğÆ®¿¡¼­´Â ÀÌº¥Æ®¿¡ ÇÑÇØ¼­´Â ¼± °Ë»ç Ã³¸®°¡ µÇ¹Ç·Î ÀÌ°÷¿¡¼­´Â
-//	°Ë»ç¸¦ ½ÇÇàÇÏÁö ¾Ê´Â´Ù
+//	í´ë¼ì´ì–¸íŠ¸ì—ì„œëŠ” ì´ë²¤íŠ¸ì— í•œí•´ì„œëŠ” ì„  ê²€ì‚¬ ì²˜ë¦¬ê°€ ë˜ë¯€ë¡œ ì´ê³³ì—ì„œëŠ”
+//	ê²€ì‚¬ë¥¼ ì‹¤í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤
 //
 //////////////////////////////////////////////////////////////////////////
 
 	case DBO_EVENT_TYPE_ID_CLICK_NPC:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ÀÌº¥Æ® °Ë»ç´Â Success·Î Ã³¸®ÇÑ´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° ì´ë²¤íŠ¸ ê²€ì‚¬ëŠ” Successë¡œ ì²˜ë¦¬í•œë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			if ( pQParam->IsQuestShare() ) break;
@@ -67,7 +67,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 		break;
 	case DBO_EVENT_TYPE_ID_CLICK_OBJECT:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ÀÌº¥Æ® °Ë»ç´Â Success·Î Ã³¸®ÇÑ´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° ì´ë²¤íŠ¸ ê²€ì‚¬ëŠ” Successë¡œ ì²˜ë¦¬í•œë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			if ( pQParam->IsQuestShare() ) break;
@@ -82,7 +82,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 		break;
 	case DBO_EVENT_TYPE_ID_COL_OBJECT:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ÀÌº¥Æ® °Ë»ç´Â Success·Î Ã³¸®ÇÑ´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° ì´ë²¤íŠ¸ ê²€ì‚¬ëŠ” Successë¡œ ì²˜ë¦¬í•œë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			if ( pQParam->IsQuestShare() ) break;
@@ -97,7 +97,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 		break;
 	case DBO_EVENT_TYPE_ID_ITEM_USE:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ÀÌº¥Æ® °Ë»ç´Â Success·Î Ã³¸®ÇÑ´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° ì´ë²¤íŠ¸ ê²€ì‚¬ëŠ” Successë¡œ ì²˜ë¦¬í•œë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			if ( pQParam->GetCtrl()->GetEventGenType() == eEVENT_GEN_TYPE_ITEM_USE )
@@ -157,7 +157,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 		break;
 	case DBO_EVENT_TYPE_ID_ITEM_GET:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ÀÌº¥Æ® °Ë»ç´Â Success·Î Ã³¸®ÇÑ´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° ì´ë²¤íŠ¸ ê²€ì‚¬ëŠ” Successë¡œ ì²˜ë¦¬í•œë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			if ( !( pQParam->GetCtrl()->GetEventGenType() == eEVENT_GEN_TYPE_ITEM_GET &&
@@ -169,7 +169,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 		break;
 	case DBO_EVENT_TYPE_ID_ITEM_EQUIP:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ÀÌº¥Æ® °Ë»ç´Â Success·Î Ã³¸®ÇÑ´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° ì´ë²¤íŠ¸ ê²€ì‚¬ëŠ” Successë¡œ ì²˜ë¦¬í•œë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			if ( !( pQParam->GetCtrl()->GetEventGenType() == eEVENT_GEN_TYPE_ITEM_EQUIP &&
@@ -181,7 +181,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 		break;
 	case DBO_EVENT_TYPE_ID_SCOUT_USE:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ÀÌº¥Æ® °Ë»ç´Â Success·Î Ã³¸®ÇÑ´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° ì´ë²¤íŠ¸ ê²€ì‚¬ëŠ” Successë¡œ ì²˜ë¦¬í•œë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			if ( pQParam->GetCtrl()->GetEventGenType() == eEVENT_GEN_TYPE_SCOUT_USE )
@@ -236,7 +236,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 		break;
 	case DBO_EVENT_TYPE_ID_RCV_SVR_EVT:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ÀÌº¥Æ® °Ë»ç´Â Success·Î Ã³¸®ÇÑ´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° ì´ë²¤íŠ¸ ê²€ì‚¬ëŠ” Successë¡œ ì²˜ë¦¬í•œë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			if ( !( pQParam->GetCtrl()->GetEventGenType() == eEVENT_GEN_TYPE_RCV_SVR_EVT &&
@@ -249,19 +249,19 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_EVENT_TYPE_ID_SKILL_USE:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ÀÌº¥Æ® °Ë»ç´Â Success·Î Ã³¸®ÇÑ´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° ì´ë²¤íŠ¸ ê²€ì‚¬ëŠ” Successë¡œ ì²˜ë¦¬í•œë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			if ( pQParam->GetCtrl()->GetEventGenType() == eEVENT_GEN_TYPE_SKILL_USE )
 			{
 				CSkillTable* pSkillTable = API_GetTableContainer()->GetSkillTable();
 
-				// Skill type °Ë»ç
+				// Skill type ê²€ì‚¬
 				if ( eEVENT_SKILL_TYPE_SKILLIDX == pQParam->GetCtrl()->GetEventGenSkillUseInfo().eSkillType )
 				{
 					if ( 0xffffffff == ((CDboTSSkillUse*)pEntity)->GetSkillIdx() || ( pSkillTable->FindBasicSkillTblidx( ((CDboTSSkillUse*)pEntity)->GetSkillIdx() ) == pSkillTable->FindBasicSkillTblidx( pQParam->GetCtrl()->GetEventGenId() ) ) )
 					{
-						// Skill target °Ë»ç
+						// Skill target ê²€ì‚¬
 						eEVENT_SKILL_TARGET_TYPE eTargetType = ((CDboTSSkillUse*)pEntity)->GetSkillTargetType();
 						if ( eEVENT_SKILL_TARGET_TYPE_ALL != eTargetType )
 						{
@@ -304,11 +304,11 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 					}
 				}
 
-				// Skill RP °Ë»ç
+				// Skill RP ê²€ì‚¬
 				{
 					unsigned int uiSkillRPFlags = ((CDboTSSkillUse*)pEntity)->GetSkillRPFlags();
 
-					// uiSkillRPFlags == 0 ÀÌ¸é RP °Ë»ç¸¦ ¼öÇàÇÏÁö ¾Ê´Â´Ù
+					// uiSkillRPFlags == 0 ì´ë©´ RP ê²€ì‚¬ë¥¼ ìˆ˜í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤
 					if ( 0 != uiSkillRPFlags )
 					{
 						unsigned char byRpBonusType = pQParam->GetCtrl()->GetEventGenSkillUseInfo().byRpBonusType;
@@ -394,7 +394,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_EVENT_TYPE_ID_COL_RGN:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ÀÌº¥Æ® °Ë»ç´Â Success·Î Ã³¸®ÇÑ´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° ì´ë²¤íŠ¸ ê²€ì‚¬ëŠ” Successë¡œ ì²˜ë¦¬í•œë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			if ( pQParam->GetCtrl()->GetEventGenType() == eEVENT_GEN_TYPE_COL_REGION )
@@ -462,7 +462,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_EVENT_TYPE_ID_RB:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ÀÌº¥Æ® °Ë»ç´Â Success·Î Ã³¸®ÇÑ´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° ì´ë²¤íŠ¸ ê²€ì‚¬ëŠ” Successë¡œ ì²˜ë¦¬í•œë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			if ( pQParam->GetCtrl()->GetEventGenType() == eEVENT_GEN_TYPE_RB )
@@ -504,7 +504,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_EVENT_TYPE_ID_CLICK_MOB:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ÀÌº¥Æ® °Ë»ç´Â Success·Î Ã³¸®ÇÑ´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° ì´ë²¤íŠ¸ ê²€ì‚¬ëŠ” Successë¡œ ì²˜ë¦¬í•œë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			if ( pQParam->IsQuestShare() ) break;
@@ -519,7 +519,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_EVENT_TYPE_ID_BIND_STONE:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ÀÌº¥Æ® °Ë»ç´Â Success·Î Ã³¸®ÇÑ´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° ì´ë²¤íŠ¸ ê²€ì‚¬ëŠ” Successë¡œ ì²˜ë¦¬í•œë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			if ( pQParam->IsQuestShare() ) break;
@@ -533,7 +533,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_EVENT_TYPE_ID_SEARCH_QUEST:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ÀÌº¥Æ® °Ë»ç´Â Success·Î Ã³¸®ÇÑ´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° ì´ë²¤íŠ¸ ê²€ì‚¬ëŠ” Successë¡œ ì²˜ë¦¬í•œë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			if ( pQParam->IsQuestShare() ) break;
@@ -547,7 +547,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_EVENT_TYPE_ID_ITEM_UPGRADE:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ÀÌº¥Æ® °Ë»ç´Â Success·Î Ã³¸®ÇÑ´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° ì´ë²¤íŠ¸ ê²€ì‚¬ëŠ” Successë¡œ ì²˜ë¦¬í•œë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			if ( pQParam->IsQuestShare() ) break;
@@ -561,7 +561,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_EVENT_TYPE_ID_TELEPORT:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ÀÌº¥Æ® °Ë»ç´Â Success·Î Ã³¸®ÇÑ´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° ì´ë²¤íŠ¸ ê²€ì‚¬ëŠ” Successë¡œ ì²˜ë¦¬í•œë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			if ( pQParam->IsQuestShare() ) break;
@@ -575,7 +575,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_EVENT_TYPE_ID_BUDOKAI:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ÀÌº¥Æ® °Ë»ç´Â Success·Î Ã³¸®ÇÑ´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° ì´ë²¤íŠ¸ ê²€ì‚¬ëŠ” Successë¡œ ì²˜ë¦¬í•œë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			if ( pQParam->IsQuestShare() ) break;
@@ -589,7 +589,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_EVENT_TYPE_ID_SLOTMACHINE:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ÀÌº¥Æ® °Ë»ç´Â Success·Î Ã³¸®ÇÑ´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° ì´ë²¤íŠ¸ ê²€ì‚¬ëŠ” Successë¡œ ì²˜ë¦¬í•œë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			if ( pQParam->IsQuestShare() ) break;
@@ -603,7 +603,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_EVENT_TYPE_ID_HOIPOIMIX:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ÀÌº¥Æ® °Ë»ç´Â Success·Î Ã³¸®ÇÑ´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° ì´ë²¤íŠ¸ ê²€ì‚¬ëŠ” Successë¡œ ì²˜ë¦¬í•œë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			if ( pQParam->IsQuestShare() ) break;
@@ -617,7 +617,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_EVENT_TYPE_ID_PRIVATESHOP:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ÀÌº¥Æ® °Ë»ç´Â Success·Î Ã³¸®ÇÑ´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° ì´ë²¤íŠ¸ ê²€ì‚¬ëŠ” Successë¡œ ì²˜ë¦¬í•œë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			if ( pQParam->IsQuestShare() ) break;
@@ -631,7 +631,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_EVENT_TYPE_ID_FREEBATTLE:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ÀÌº¥Æ® °Ë»ç´Â Success·Î Ã³¸®ÇÑ´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° ì´ë²¤íŠ¸ ê²€ì‚¬ëŠ” Successë¡œ ì²˜ë¦¬í•œë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			if ( pQParam->IsQuestShare() ) break;
@@ -645,7 +645,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_EVENT_TYPE_ID_ITEMIDENTITY:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ÀÌº¥Æ® °Ë»ç´Â Success·Î Ã³¸®ÇÑ´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° ì´ë²¤íŠ¸ ê²€ì‚¬ëŠ” Successë¡œ ì²˜ë¦¬í•œë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			if ( pQParam->IsQuestShare() ) break;
@@ -659,7 +659,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_EVENT_TYPE_ID_USERMAIL:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ÀÌº¥Æ® °Ë»ç´Â Success·Î Ã³¸®ÇÑ´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° ì´ë²¤íŠ¸ ê²€ì‚¬ëŠ” Successë¡œ ì²˜ë¦¬í•œë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			if ( pQParam->IsQuestShare() ) break;
@@ -744,7 +744,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 //////////////////////////////////////////////////////////////////////////
 //
 //	Condition
-//	Å¬¶óÀÌ¾ğÆ® ¸ğµâ¿¡¼­ Ã³¸® µÇ¾î¾ß ÇÔ
+//	í´ë¼ì´ì–¸íŠ¸ ëª¨ë“ˆì—ì„œ ì²˜ë¦¬ ë˜ì–´ì•¼ í•¨
 //
 //////////////////////////////////////////////////////////////////////////
 
@@ -1023,15 +1023,15 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 							break;
 						}
 
-						// ÇÊ¿äÇÑ ¾ÆÀÌÅÛÀÌ Invalid ÀÎ °æ¿ì ÇÊ¿ä ¾ÆÀÌÅÛÀÌ ¾ø´Â °æ¿ì·Î °£ÁÖ
+						// í•„ìš”í•œ ì•„ì´í…œì´ Invalid ì¸ ê²½ìš° í•„ìš” ì•„ì´í…œì´ ì—†ëŠ” ê²½ìš°ë¡œ ê°„ì£¼
 						unsigned int uiNeedItemIdx = pQParam->GetCtrl()->GetServerEvtData().sPublicMobItemCnt[i].uiRequireItemIdx;
 						if ( 0xffffffff == uiNeedItemIdx ) continue;
 
-						// ÇØ´ç Äù½ºÆ® ¾ÆÀÌÅÛÀ» À¯Àú°¡ °¡Áö°í ÀÖ´ÂÁö °Ë»çÇÑ´Ù
+						// í•´ë‹¹ í€˜ìŠ¤íŠ¸ ì•„ì´í…œì„ ìœ ì €ê°€ ê°€ì§€ê³  ìˆëŠ”ì§€ ê²€ì‚¬í•œë‹¤
 						{
 							int nSumCnt = 0;
 
-							// Quest inventory¸¦ °Ë»ö
+							// Quest inventoryë¥¼ ê²€ìƒ‰
 							for ( int j = 0; j < MAX_QUEST_INVENTORY_SLOT; ++j )
 							{
 								CNtlSobQuestItem* pQItem = pQInventory->GetQuestItemFromIdx( j );
@@ -1107,7 +1107,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 			int nSumCnt = 0;
 
-			// Equip Ã¢À» °Ë»ö
+			// Equip ì°½ì„ ê²€ìƒ‰
 			for ( int i = 0; i < NTL_MAX_EQUIP_ITEM_SLOT; ++i )
 			{
 				CNtlSobItem* pSobItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( pInventory->GetEquipItem( i ) ) );
@@ -1120,7 +1120,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 				}
 			}
 
-			// Bag Ã¢À» °Ë»ö
+			// Bag ì°½ì„ ê²€ìƒ‰
 			for ( int i = 0; i < NTL_MAX_BAGSLOT_COUNT; ++i )
 			{
 				CNtlSobItem* pSobItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( pInventory->GetBagItem( i ) ) );
@@ -1167,7 +1167,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 			bool bFind = false;
 
-			// Equip Ã¢À» °Ë»ö
+			// Equip ì°½ì„ ê²€ìƒ‰
 			for ( int i = 0; i < NTL_MAX_EQUIP_ITEM_SLOT; ++i )
 			{
 				CNtlSobItem* pSobItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( pInventory->GetEquipItem( i ) ) );
@@ -1243,8 +1243,8 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_COND_TYPE_ID_CHECK_OBJITEM:
 		{
-			// Object °¡ ¾ÆÀÌÅÛÀ» ÁÙ ¼ö ÀÖ´ÂÁö °Ë»çÇÏ´Â Á¶°ÇÀº
-			// Äù½ºÆ®¿¡¼­´Â µ¿ÀÛÇÏÁö ¾Ê´Â´Ù
+			// Object ê°€ ì•„ì´í…œì„ ì¤„ ìˆ˜ ìˆëŠ”ì§€ ê²€ì‚¬í•˜ëŠ” ì¡°ê±´ì€
+			// í€˜ìŠ¤íŠ¸ì—ì„œëŠ” ë™ì‘í•˜ì§€ ì•ŠëŠ”ë‹¤
 			CNtlTSLog::Log( "Not supported condition. Info[%d,%d,%d]. [%s]",
 							pQParam->GetCtrl()->GetTrigger()->GetID(),
 							((CNtlTSGroup*)pEntity->GetParent()->GetParent())->GetID(),
@@ -1292,7 +1292,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_COND_TYPE_ID_CHECK_OBJ_STATE:
 		{
-			// Äù½ºÆ®¿¡¼­´Â µ¿ÀÛÇÏÁö ¾Ê´Â´Ù
+			// í€˜ìŠ¤íŠ¸ì—ì„œëŠ” ë™ì‘í•˜ì§€ ì•ŠëŠ”ë‹¤
 			CNtlTSLog::Log( "Not supported condition. Info[%d,%d,%d]. [%s]",
 							pQParam->GetCtrl()->GetTrigger()->GetID(),
 							((CNtlTSGroup*)pEntity->GetParent()->GetParent())->GetID(),
@@ -1321,7 +1321,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_COND_TYPE_ID_CHECK_OPERATEOBJECT:
 		{
-			// Äù½ºÆ®¿¡¼­´Â µ¿ÀÛÇÏÁö ¾Ê´Â´Ù
+			// í€˜ìŠ¤íŠ¸ì—ì„œëŠ” ë™ì‘í•˜ì§€ ì•ŠëŠ”ë‹¤
 			CNtlTSLog::Log( "Not supported condition. Info[%d,%d,%d]. [%s]",
 							pQParam->GetCtrl()->GetTrigger()->GetID(),
 							((CNtlTSGroup*)pEntity->GetParent()->GetParent())->GetID(),
@@ -1333,7 +1333,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_COND_TYPE_ID_CHECK_HASCOUPON:
 		{
-			// Äù½ºÆ®¿¡¼­´Â µ¿ÀÛÇÏÁö ¾Ê´Â´Ù
+			// í€˜ìŠ¤íŠ¸ì—ì„œëŠ” ë™ì‘í•˜ì§€ ì•ŠëŠ”ë‹¤
 			CNtlTSLog::Log( "Not supported condition. Info[%d,%d,%d]. [%s]",
 							pQParam->GetCtrl()->GetTrigger()->GetID(),
 							((CNtlTSGroup*)pEntity->GetParent()->GetParent())->GetID(),
@@ -1345,8 +1345,8 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_COND_TYPE_ID_CHECK_NPCDEAD:
 		{
-			// ¼­¹öÀÇ ¿¹¿Ü Å¸ÀÌ¸Ó¿¡¼­¸¸ µ¿ÀÛ ÇÏ´Â ÄÚµå·Î
-			// Å¬¶óÀÌ¾ğÆ®ÀÇ ÀÌ°÷ÀÌ È£Ãâ µÇ¸é ¾ÈµÊ.
+			// ì„œë²„ì˜ ì˜ˆì™¸ íƒ€ì´ë¨¸ì—ì„œë§Œ ë™ì‘ í•˜ëŠ” ì½”ë“œë¡œ
+			// í´ë¼ì´ì–¸íŠ¸ì˜ ì´ê³³ì´ í˜¸ì¶œ ë˜ë©´ ì•ˆë¨.
 			CNtlTSLog::Log( "Not supported condition. Info[%d,%d,%d]. [%s]",
 							pQParam->GetCtrl()->GetTrigger()->GetID(),
 							((CNtlTSGroup*)pEntity->GetParent()->GetParent())->GetID(),
@@ -1358,8 +1358,8 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_COND_TYPE_ID_CHECK_DIST_WITH_NPC:
 		{
-			// ¼­¹öÀÇ ¿¹¿Ü Å¸ÀÌ¸Ó¿¡¼­¸¸ µ¿ÀÛ ÇÏ´Â ÄÚµå·Î
-			// Å¬¶óÀÌ¾ğÆ®ÀÇ ÀÌ°÷ÀÌ È£Ãâ µÇ¸é ¾ÈµÊ.
+			// ì„œë²„ì˜ ì˜ˆì™¸ íƒ€ì´ë¨¸ì—ì„œë§Œ ë™ì‘ í•˜ëŠ” ì½”ë“œë¡œ
+			// í´ë¼ì´ì–¸íŠ¸ì˜ ì´ê³³ì´ í˜¸ì¶œ ë˜ë©´ ì•ˆë¨.
 			CNtlTSLog::Log( "Not supported condition. Info[%d,%d,%d]. [%s]",
 							pQParam->GetCtrl()->GetTrigger()->GetID(),
 							((CNtlTSGroup*)pEntity->GetParent()->GetParent())->GetID(),
@@ -1373,13 +1373,13 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 		{
 			CDboTSCQCtrl* pCtrl = pQParam->GetCtrl();
 
-			// 1. Äù½ºÆ®°¡ Fail ¶Ç´Â Error »óÅÂÀÎ °æ¿ì ¾ÆÀÌÅÛÀ» ÁÙ ¼ö ¾ø´Ù.
+			// 1. í€˜ìŠ¤íŠ¸ê°€ Fail ë˜ëŠ” Error ìƒíƒœì¸ ê²½ìš° ì•„ì´í…œì„ ì¤„ ìˆ˜ ì—†ë‹¤.
 			if ( !pCtrl->IsFailed() && !pCtrl->IsError() )
 			{
-				// 2. Delivery item ¼­¹ö ÀÌº¥Æ®°¡ µ¿ÀÛ ÁßÀÎÁö °Ë»çÇÑ´Ù.
+				// 2. Delivery item ì„œë²„ ì´ë²¤íŠ¸ê°€ ë™ì‘ ì¤‘ì¸ì§€ ê²€ì‚¬í•œë‹¤.
 				if ( eSTOC_EVT_DATA_TYPE_DELIVERY_ITEM == pCtrl->GetServerEvtDataType() )
 				{
-					// 3. ÇöÁ¦ ÁøÇà ÁßÀÎ °æ¿ì¸¸ Á¶°Ç °Ë»ç¸¦ Åë°úÇÑ´Ù.
+					// 3. í˜„ì œ ì§„í–‰ ì¤‘ì¸ ê²½ìš°ë§Œ ì¡°ê±´ ê²€ì‚¬ë¥¼ í†µê³¼í•œë‹¤.
 
 					CDboTSCheckSToCDelivery* pDelivery = (CDboTSCheckSToCDelivery*) pEntity;
 
@@ -1406,7 +1406,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 					if ( bCanProcess )
 					{
-						// 4. SToC Condition °Ë»ç
+						// 4. SToC Condition ê²€ì‚¬
 
 						uSTOC_EVT_COND_DATA& uSToCCondData = pCtrl->GetServerEvtCondData();
 
@@ -1422,7 +1422,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 								{
 									if ( 0xffffffff == uSToCCondData.sAutoEquipItem[i].uiItemTblIdx ) continue;
 
-									// Equip Ã¢¿¡¼­ ¾ÆÀÌÅÛ °Ë»ç
+									// Equip ì°½ì—ì„œ ì•„ì´í…œ ê²€ì‚¬
 									bool bFind = false;
 									for ( int j = 0; j < NTL_MAX_EQUIP_ITEM_SLOT; ++j )
 									{
@@ -1454,7 +1454,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 								{
 									if ( 0xffffffff == uSToCCondData.sEquipItem[i].uiItemTblIdx ) continue;
 
-									// Equip Ã¢¿¡¼­ ¾ÆÀÌÅÛ °Ë»ç
+									// Equip ì°½ì—ì„œ ì•„ì´í…œ ê²€ì‚¬
 									bool bFind = false;
 									for ( int j = 0; j < NTL_MAX_EQUIP_ITEM_SLOT; ++j )
 									{
@@ -1488,7 +1488,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 									bool bFind = false;
 
-									// Equip Ã¢¿¡¼­ ¾ÆÀÌÅÛ °Ë»ç
+									// Equip ì°½ì—ì„œ ì•„ì´í…œ ê²€ì‚¬
 									for ( int j = 0; j < NTL_MAX_EQUIP_ITEM_SLOT; ++j )
 									{
 										CNtlSobItem* pSobItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( pInventory->GetEquipItem( j ) ) );
@@ -1502,7 +1502,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 										}
 									}
 
-									// Bag Ã¢¿¡¼­ ¾ÆÀÌÅÛ °Ë»ç
+									// Bag ì°½ì—ì„œ ì•„ì´í…œ ê²€ì‚¬
 									if ( !bFind )
 									{
 										for ( int k = 0; i < NTL_MAX_BAGSLOT_COUNT; ++k )
@@ -1552,7 +1552,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 								{
 									if ( 0xffffffff == uSToCCondData.sHaveQItem[i].uiQItemTblIdx ) continue;
 
-									// Äù½ºÆ® ¾ÆÀÌÅÛ ÀÎº¥Åä¸®¿¡¼­ Äù½ºÆ® ¾ÆÀÌÅÛ °Ë»ç
+									// í€˜ìŠ¤íŠ¸ ì•„ì´í…œ ì¸ë²¤í† ë¦¬ì—ì„œ í€˜ìŠ¤íŠ¸ ì•„ì´í…œ ê²€ì‚¬
 
 									int nSum = 0;
 									CNtlQuestInventory* pQuestInventory = GetNtlSLGlobal()->GetSobAvatar()->GetQuestInventory();
@@ -1583,8 +1583,8 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 							break;
 						}
 
-						// 5. SToC Sub Condition °Ë»ç
-						// Delivery´Â Sub conditionÀ» ÇöÀç °Ë»çÇÒ ÇÊ¿ä ¾øÀ½.
+						// 5. SToC Sub Condition ê²€ì‚¬
+						// DeliveryëŠ” Sub conditionì„ í˜„ì¬ ê²€ì‚¬í•  í•„ìš” ì—†ìŒ.
 					}
 					else
 					{
@@ -1605,7 +1605,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 		case DBO_COND_TYPE_ID_CHECK_ATTACH_OBJ:
 			{
-				// Object trigger¿¡¼­¸¸ µ¿ÀÛÇÏ´Â condition
+				// Object triggerì—ì„œë§Œ ë™ì‘í•˜ëŠ” condition
 				CNtlTSLog::Log( "Not supported condition. Info[%d,%d,%d]. [%s]",
 								pQParam->GetCtrl()->GetTrigger()->GetID(),
 								((CNtlTSGroup*)pEntity->GetParent()->GetParent())->GetID(),
@@ -1690,16 +1690,16 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_ACT_TYPE_ID_ACT_ITEM:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ActionÀº ½ÇÇàÇÏÁö ¾Ê´Â´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° Actionì€ ì‹¤í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­´Â µ¿ÀÛÇÏÁö ¾Ê´Â ¼­¹ö Àü¿ë ¾×¼Ç
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œëŠ” ë™ì‘í•˜ì§€ ì•ŠëŠ” ì„œë²„ ì „ìš© ì•¡ì…˜
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_EXCEPT_TIMER_S:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ActionÀº ½ÇÇàÇÏÁö ¾Ê´Â´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° Actionì€ ì‹¤í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			CDboTSActETimerS* pTimer = (CDboTSActETimerS*)pEntity;
@@ -1716,7 +1716,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_ACT_TYPE_ID_ACT_EXCEPT_TIMER_E:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ActionÀº ½ÇÇàÇÏÁö ¾Ê´Â´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° Actionì€ ì‹¤í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			CDboTSActETimerE* pTimer = (CDboTSActETimerE*)pEntity;
@@ -1733,7 +1733,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_ACT_TYPE_ID_ACT_STOCEVT:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ActionÀº ½ÇÇàÇÏÁö ¾Ê´Â´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° Actionì€ ì‹¤í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			CDboTSActSToCEvt* pEvt = (CDboTSActSToCEvt*)pEntity;
@@ -1750,16 +1750,16 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_ACT_TYPE_ID_ACT_QITEM:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ActionÀº ½ÇÇàÇÏÁö ¾Ê´Â´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° Actionì€ ì‹¤í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­´Â µ¿ÀÛÇÏÁö ¾Ê´Â ¼­¹ö Àü¿ë ¾×¼Ç
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œëŠ” ë™ì‘í•˜ì§€ ì•ŠëŠ” ì„œë²„ ì „ìš© ì•¡ì…˜
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_NPCCONV:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ActionÀº ½ÇÇàÇÏÁö ¾Ê´Â´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° Actionì€ ì‹¤í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			CDboTSActNPCConv* pConv = (CDboTSActNPCConv*)pEntity;
@@ -1776,7 +1776,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_ACT_TYPE_ID_ACT_REGQINFO:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ActionÀº ½ÇÇàÇÏÁö ¾Ê´Â´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° Actionì€ ì‹¤í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			CDboTSActRegQInfo* pRegQInfo = (CDboTSActRegQInfo*)pEntity;
@@ -1793,13 +1793,13 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_ACT_TYPE_ID_ACT_DIR:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­´Â ¾Æ¹«°Íµµ ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œëŠ” ì•„ë¬´ê²ƒë„ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_OPCAM:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ActionÀº ½ÇÇàÇÏÁö ¾Ê´Â´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° Actionì€ ì‹¤í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			CDboTSActOPCam* pCam = (CDboTSActOPCam*)pEntity;
@@ -1816,7 +1816,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_ACT_TYPE_ID_ACT_TWAITTS:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ActionÀº ½ÇÇàÇÏÁö ¾Ê´Â´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° Actionì€ ì‹¤í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			CDboTSActTWaitTS* pWaitTS = (CDboTSActTWaitTS*)pEntity;
@@ -1833,7 +1833,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_ACT_TYPE_ID_ACT_INSSM:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ActionÀº ½ÇÇàÇÏÁö ¾Ê´Â´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° Actionì€ ì‹¤í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			CDboTSActInSSM* pSSM = (CDboTSActInSSM*)pEntity;
@@ -1850,7 +1850,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_ACT_TYPE_ID_ACT_TSSTATE:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ActionÀº ½ÇÇàÇÏÁö ¾Ê´Â´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° Actionì€ ì‹¤í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			CDboTSActTSState* pTSState = (CDboTSActTSState*)pEntity;
@@ -1867,25 +1867,25 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_ACT_TYPE_ID_ACT_PORTAL:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ Æ÷Å»Àº µ¿ÀÛÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ í¬íƒˆì€ ë™ì‘í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_OBJSTATE:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ ¿ÀºêÁ§Æ®ÀÇ »óÅÂ¸¦ º¯°æÇÏ´Â ÄÚµå´Â µ¿ÀÛÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ ì˜¤ë¸Œì íŠ¸ì˜ ìƒíƒœë¥¼ ë³€ê²½í•˜ëŠ” ì½”ë“œëŠ” ë™ì‘í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_CONC_CHECK:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ µ¿½Ã Ã¼Å©¿¡ ´ëÇÑ µ¿ÀÛÀº ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ ë™ì‹œ ì²´í¬ì— ëŒ€í•œ ë™ì‘ì€ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_OBJCONV:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ActionÀº ½ÇÇàÇÏÁö ¾Ê´Â´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° Actionì€ ì‹¤í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			CDboTSActObjConv* pConv = (CDboTSActObjConv*)pEntity;
@@ -1902,7 +1902,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_ACT_TYPE_ID_ACT_HINT:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ActionÀº ½ÇÇàÇÏÁö ¾Ê´Â´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° Actionì€ ì‹¤í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			CDboTSActHint* pHint = (CDboTSActHint*)pEntity;
@@ -1920,17 +1920,17 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 	case DBO_ACT_TYPE_ID_ACT_SEND_SVR_EVT:
 	case DBO_ACT_TYPE_ID_ACT_TMQ_STAGE:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ActionÀº ½ÇÇàÇÏÁö ¾Ê´Â´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° Actionì€ ì‹¤í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
-			// Send server event ¹× TMQ stage º¯°æ½Ã 1ÃÊÁ¤µµÀÇ µô·¹ÀÌ¸¦ µĞ´Ù
+			// Send server event ë° TMQ stage ë³€ê²½ì‹œ 1ì´ˆì •ë„ì˜ ë”œë ˆì´ë¥¼ ë‘”ë‹¤
 			pQParam->GetCtrl()->StartTimeWait( 1000 );
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_OPEN_WINDOW:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ActionÀº ½ÇÇàÇÏÁö ¾Ê´Â´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° Actionì€ ì‹¤í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			CDboTSActOpenWindow* pAct = (CDboTSActOpenWindow*) pEntity;
@@ -1947,67 +1947,67 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_ACT_TYPE_ID_ACT_TMQ_TIMEBONUS:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ Å¸ÀÓ º¸³Ê½º¿¡ ´ëÇÑ µ¿ÀÛÀº ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ íƒ€ì„ ë³´ë„ˆìŠ¤ì— ëŒ€í•œ ë™ì‘ì€ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_TELECAST:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ ¹æ¼Û¿¡ ´ëÇÑ µ¿ÀÛÀº ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ ë°©ì†¡ì— ëŒ€í•œ ë™ì‘ì€ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_DIRINDICATOR:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ ¹æÇâ Áö½Ã¿¡ ´ëÇÑ µ¿ÀÛÀº ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ ë°©í–¥ ì§€ì‹œì— ëŒ€í•œ ë™ì‘ì€ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_OPERATEOBJECT:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ ¿ÀºêÁ§Æ® µ¿ÀÛ¿¡ ´ëÇÑ µ¿ÀÛÀº ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ ì˜¤ë¸Œì íŠ¸ ë™ì‘ì— ëŒ€í•œ ë™ì‘ì€ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_DROP:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ µå¶ø¿¡ ´ëÇÑ µ¿ÀÛÀº ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ ë“œëì— ëŒ€í•œ ë™ì‘ì€ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_RMV_COUPON:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ µå¶ø¿¡ ´ëÇÑ µ¿ÀÛÀº ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ ë“œëì— ëŒ€í•œ ë™ì‘ì€ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_ESCORT:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ ¿¡½ºÄÚÆ® °ü·ÃÇØ¼­´Â µ¿ÀÛ ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ ì—ìŠ¤ì½”íŠ¸ ê´€ë ¨í•´ì„œëŠ” ë™ì‘ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_TMQINFOTYPE:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ TMQ info type °ü·ÃÇØ¼­´Â µ¿ÀÛ ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ TMQ info type ê´€ë ¨í•´ì„œëŠ” ë™ì‘ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_WORLDPLAYSCRIPT:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ World play script °ü·ÃÇØ¼­´Â µ¿ÀÛ ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ World play script ê´€ë ¨í•´ì„œëŠ” ë™ì‘ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_SWPROBSF:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ Switch probability success fail °ü·ÃÇØ¼­´Â µ¿ÀÛ ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ Switch probability success fail ê´€ë ¨í•´ì„œëŠ” ë™ì‘ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_PCCONV:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ActionÀº ½ÇÇàÇÏÁö ¾Ê´Â´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° Actionì€ ì‹¤í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			CDboTSActPCConv* pAct = (CDboTSActPCConv*) pEntity;
@@ -2024,13 +2024,13 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_ACT_TYPE_ID_ACT_CUSTOMEVT:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ custom event¿¡ °ü·ÃÇØ¼­´Â µ¿ÀÛ ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ custom eventì— ê´€ë ¨í•´ì„œëŠ” ë™ì‘ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_TELMUDOSA:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ActionÀº ½ÇÇàÇÏÁö ¾Ê´Â´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° Actionì€ ì‹¤í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			CDboTSActTelMudosa* pAct = (CDboTSActTelMudosa*) pEntity;
@@ -2047,49 +2047,49 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_ACT_TYPE_ID_ACT_TELMINORMATCH:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ teleport minor match¿¡ °ü·ÃÇØ¼­´Â µ¿ÀÛ ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ teleport minor matchì— ê´€ë ¨í•´ì„œëŠ” ë™ì‘ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_PIDGN:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ Party instance dungeon¿¡ °ü·ÃÇØ¼­´Â µ¿ÀÛ ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ Party instance dungeonì— ê´€ë ¨í•´ì„œëŠ” ë™ì‘ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_TLQ:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ Time leap quest dungeon¿¡ °ü·ÃÇØ¼­´Â µ¿ÀÛ ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ Time leap quest dungeonì— ê´€ë ¨í•´ì„œëŠ” ë™ì‘ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_DO_SKILL:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ Do skill ¿¡ °ü·ÃÇØ¼­´Â µ¿ÀÛ ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ Do skill ì— ê´€ë ¨í•´ì„œëŠ” ë™ì‘ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_TOBJ_FRIENDLY:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ Trigger object friendly ¿¡ °ü·ÃÇØ¼­´Â µ¿ÀÛ ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ Trigger object friendly ì— ê´€ë ¨í•´ì„œëŠ” ë™ì‘ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_BROAD_MSG:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ Broad message ¿¡ °ü·ÃÇØ¼­´Â µ¿ÀÛ ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ Broad message ì— ê´€ë ¨í•´ì„œëŠ” ë™ì‘ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_MINI_NARRATION:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ Mini narration ¿¡ °ü·ÃÇØ¼­´Â µ¿ÀÛ ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ Mini narration ì— ê´€ë ¨í•´ì„œëŠ” ë™ì‘ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_REG_C_TIMING:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ActionÀº ½ÇÇàÇÏÁö ¾Ê´Â´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° Actionì€ ì‹¤í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			CDboTSActRegCTiming* pAct = (CDboTSActRegCTiming*) pEntity;
@@ -2106,7 +2106,7 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_ACT_TYPE_ID_ACT_EXC_C_GROUP:
 		{
-			// Äù½ºÆ® ¸¶Å© °Ë»ç¿ëÀÎ °æ¿ì ActionÀº ½ÇÇàÇÏÁö ¾Ê´Â´Ù
+			// í€˜ìŠ¤íŠ¸ ë§ˆí¬ ê²€ì‚¬ìš©ì¸ ê²½ìš° Actionì€ ì‹¤í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤
 			if ( pQParam->IsForCheckQuestMark() ) break;
 
 			CDboTSActExcCGroup* pAct = (CDboTSActExcCGroup*) pEntity;
@@ -2123,19 +2123,19 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_ACT_TYPE_ID_ACT_SKIP_CONT:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ Skip cont ¿¡ °ü·ÃÇØ¼­´Â µ¿ÀÛ ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ Skip cont ì— ê´€ë ¨í•´ì„œëŠ” ë™ì‘ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_OBJ_WPS:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ Obj WPS ¿¡ °ü·ÃÇØ¼­´Â µ¿ÀÛ ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ Obj WPS ì— ê´€ë ¨í•´ì„œëŠ” ë™ì‘ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 		case DBO_ACT_TYPE_ID_ACT_DOJO:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ Dojo ¿¡ °ü·ÃÇØ¼­´Â µ¿ÀÛ ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ Dojo ì— ê´€ë ¨í•´ì„œëŠ” ë™ì‘ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 

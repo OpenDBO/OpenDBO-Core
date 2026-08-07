@@ -19,33 +19,33 @@ public:
     virtual RwBool Create(const SPLEntityCreateParam * pParam  = NULL);
     virtual RwBool Update(RwReal fElapsed);
     virtual void   SetVisible(BOOL bVisible);
-    virtual int	   CallBackBaseAnim(void* pEventData);	            	///< Animation EventÀÇ CallBack ÇÔ¼ö    
-    virtual RwBool SetTriggerAnimation(RwUInt32 uiAnimKey, RwReal fStartTime = 0.0f, RwBool bLoop = TRUE);				///< Trigger AnimationÀ» Àç»ýÇÑ´Ù.
+    virtual int	   CallBackBaseAnim(void* pEventData);	            	///< Animation Eventì˜ CallBack í•¨ìˆ˜    
+    virtual RwBool SetTriggerAnimation(RwUInt32 uiAnimKey, RwReal fStartTime = 0.0f, RwBool bLoop = TRUE);				///< Trigger Animationì„ ìž¬ìƒí•œë‹¤.
     virtual void   SetWeightAlpha(RwReal fWeightValue);							///< Weight Alpha
 
 
-    CMTClump*      GetClumpInfo() {return &m_MTClump;}                      ///< CMTClump °´Ã¼¸¦ ¹ÝÈ¯ÇÑ´Ù.
-    ENTITY_ATOMIC_VEC   GetAtomicList() {return m_vecAtomicList;}           ///< Atomic List¸¦ ¹ÝÈ¯ÇÑ´Ù.      (Alpha Event¿¡¼­ Atomic Index ¼ø¼­¸¦ ¸ÂÃß±â À§ÇØ¼­ Ãß°¡)
+    CMTClump*      GetClumpInfo() {return &m_MTClump;}                      ///< CMTClump ê°ì²´ë¥¼ ë°˜í™˜í•œë‹¤.
+    ENTITY_ATOMIC_VEC   GetAtomicList() {return m_vecAtomicList;}           ///< Atomic Listë¥¼ ë°˜í™˜í•œë‹¤.      (Alpha Eventì—ì„œ Atomic Index ìˆœì„œë¥¼ ë§žì¶”ê¸° ìœ„í•´ì„œ ì¶”ê°€)
 	
 	virtual const RwBBox* GetBoundingBox(void);
-	void	RenderBBox();						                            ///< ¼³Á¤µÈ BBox¸¦ ·»´õ¸µÇÑ´Ù.
-	void	RenderWireFrame();					                            ///< ObjectÀÇ WireframeÀ» ·»´õ¸µ ÇÑ´Ù.
+	void	RenderBBox();						                            ///< ì„¤ì •ëœ BBoxë¥¼ ë Œë”ë§í•œë‹¤.
+	void	RenderWireFrame();					                            ///< Objectì˜ Wireframeì„ ë Œë”ë§ í•œë‹¤.
 
-    // Link Effect °ü·Ã
-    CNtlInstanceEffect* GetLinkEffectFromName(RwChar* szName);              ///< Name¿¡ ÇØ´çÇÏ´Â LinkEffect¸¦ ¹ÝÈ¯ÇÑ´Ù.
-    void    AddLoopSound(SOUND_HANDLE hSound) {m_listLoopSound.push_back(hSound);}             ///< LoopSound List¿¡ SoundHandleÀ» Ãß°¡ÇÑ´Ù.
-    void    ClearLoopSound();                                                                  ///< LoopSound List¿¡ µé¾îÀÖ´Â LoopSoundµéÀ» ¼Ò¸êÇÑ´Ù.
+    // Link Effect ê´€ë ¨
+    CNtlInstanceEffect* GetLinkEffectFromName(RwChar* szName);              ///< Nameì— í•´ë‹¹í•˜ëŠ” LinkEffectë¥¼ ë°˜í™˜í•œë‹¤.
+    void    AddLoopSound(SOUND_HANDLE hSound) {m_listLoopSound.push_back(hSound);}             ///< LoopSound Listì— SoundHandleì„ ì¶”ê°€í•œë‹¤.
+    void    ClearLoopSound();                                                                  ///< LoopSound Listì— ë“¤ì–´ìžˆëŠ” LoopSoundë“¤ì„ ì†Œë©¸í•œë‹¤.
 
-    // ¸ðµ¨Åø¿¡¼­´Â ÄÃ¸µÀ» ÇÏÁö ¾Ê´Â´Ù.
+    // ëª¨ë¸íˆ´ì—ì„œëŠ” ì»¬ë§ì„ í•˜ì§€ ì•ŠëŠ”ë‹¤.
     virtual RwBool CullingTest(RwCamera* pRwCamera, RwUInt16 uiRenderFrame) {return FALSE;}
     virtual RwBool CullingTest(RwCamera* pRwCamera) {return FALSE;}
 	
 protected:
-    void    CalcBBox();                                                     ///< ±âº» BBox¸¦ °è»êÇØ¼­, Property¿¡ ¼¼ÆÃÇÑ´Ù.    
+    void    CalcBBox();                                                     ///< ê¸°ë³¸ BBoxë¥¼ ê³„ì‚°í•´ì„œ, Propertyì— ì„¸íŒ…í•œë‹¤.    
 
-    virtual void OnEventAlphaFade(SEventAlpha* pEventAlpha);                ///< Model Tool¿¡¼­ Alpha Fade´Â ÀÚ±â °´Ã¼°¡ Ã³¸®ÇÑ´Ù.    
+    virtual void OnEventAlphaFade(SEventAlpha* pEventAlpha);                ///< Model Toolì—ì„œ Alpha FadeëŠ” ìžê¸° ê°ì²´ê°€ ì²˜ë¦¬í•œë‹¤.    
 
 protected:
-    CMTClump m_MTClump;                         ///< Clump °ü·Ã °´Ã¼   
+    CMTClump m_MTClump;                         ///< Clump ê´€ë ¨ ê°ì²´   
 };
 

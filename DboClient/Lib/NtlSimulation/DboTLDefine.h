@@ -2,7 +2,7 @@
 *
 * File			: DboTLDefine.h
 * Author		: JeongHo, Rho
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2008. 4. 22	
 * Abstract		: 
 *****************************************************************************

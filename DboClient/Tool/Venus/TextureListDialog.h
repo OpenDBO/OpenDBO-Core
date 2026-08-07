@@ -2,7 +2,7 @@
 #include "afxcmn.h"
 
 
-// CTextureListDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CTextureListDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 #include "DataTreeCtrl.h"
 
 class CTextureListDialog : public CDialog
@@ -10,7 +10,7 @@ class CTextureListDialog : public CDialog
 	DECLARE_DYNCREATE(CTextureListDialog)
 
 public:
-	CTextureListDialog(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CTextureListDialog(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CTextureListDialog();
 
 	void	SerializeList();
@@ -19,11 +19,11 @@ public:
 	BOOL					m_Initialized;
 
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_TEXTURE_LIST };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:
@@ -33,7 +33,7 @@ public:
 	afx_msg void OnTvnSelchangedTextureList(NMHDR *pNMHDR, LRESULT *pResult);
 
 protected:
-    void OnRefreshList();                           ///< Texture List¸¦ RefreshÇÑ´Ù.
+    void OnRefreshList();                           ///< Texture Listë¥¼ Refreshí•œë‹¤.
 
 protected:
     CDataTreeCtrl m_TextureList;

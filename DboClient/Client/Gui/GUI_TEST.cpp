@@ -98,7 +98,7 @@ CGUI_test::~CGUI_test()
 RwBool CGUI_test::Create( )
 {
 	NTL_FUNCTION("CGUI_test::Create");
-	// GUI_TEST. srf,frm ·ÎÄÃ·Î Ãß°¡
+	// GUI_TEST. srf,frm ë¡œì»¬ë¡œ ì¶”ê°€
 	if (!CNtlPLGui::Create("", "gui\\GUI_TEST.srf", "gui\\GUI_TEST.frm"))
 		NTL_RETURN(FALSE);
 
@@ -145,7 +145,7 @@ RwBool CGUI_test::Create( )
 	m_slotScrollMove    = m_pScroll->SigSliderMoved().Connect(this, &CGUI_test::OnScrollChanged);
 
 
-	m_pStbTitle->SetText("GUI_TEST ÁßÀÔ´Ï´Ù....!!");
+	m_pStbTitle->SetText("GUI_TEST ì¤‘ì…ë‹ˆë‹¤....!!");
 	m_pStbTitle->SetPosition(DBOGUI_DIALOG_TITLE_X, DBOGUI_DIALOG_TITLE_Y);
 	
 //	if( !CreateDig())
@@ -211,7 +211,7 @@ void CGUI_test::OnClickedBtnClose( gui::CComponent* pComponent )
 
 	if( m_bButCheck )
 	{
-		m_pStbTitle->SetText("¹öÆ° Å¬¸¯!");
+		m_pStbTitle->SetText("ë²„íŠ¼ í´ë¦­!");
 		m_pDigStatic->Show(true);
 		m_pDigEdit->Show(false);
 	}
@@ -229,7 +229,7 @@ void CGUI_test::OnClickedBtnDlgEdit( gui::CComponent* pComponent )
 
 	if( m_bdlgEdit )
 	{
-		m_pBtnDlgEdit->SetText("Dlg ¹öÆ° Å¬¸¯11");
+		m_pBtnDlgEdit->SetText("Dlg ë²„íŠ¼ í´ë¦­11");
 	}
 	else
 	{
@@ -245,7 +245,7 @@ void CGUI_test::OnClickedBtnDlgStatic( gui::CComponent* pComponent )
 
 	if( m_bdlgStatic )
 	{
-		m_pBtnDlgStatic->SetText("Dlg ¹öÆ° Å¬¸¯22");
+		m_pBtnDlgStatic->SetText("Dlg ë²„íŠ¼ í´ë¦­22");
 	}
 	else
 	{

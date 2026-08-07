@@ -1,4 +1,4 @@
-// EntityRegisterDiag.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// EntityRegisterDiag.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -7,7 +7,7 @@
 #include "Attr_Page.h"
 
 
-// CEntityRegisterDiag ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CEntityRegisterDiag ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CEntityRegisterDiag, COptionSheet)
 
@@ -51,11 +51,11 @@ BEGIN_MESSAGE_MAP(CEntityRegisterDiag, COptionSheet)
 END_MESSAGE_MAP()
 
 
-// CEntityRegisterDiag ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CEntityRegisterDiag ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CEntityRegisterDiag::OnCommand(WPARAM wParam, LPARAM lParam)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	if ( IDOK == LOWORD( wParam ) && NULL != lParam )
 	{

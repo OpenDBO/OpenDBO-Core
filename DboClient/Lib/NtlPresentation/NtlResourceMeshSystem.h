@@ -2,7 +2,7 @@
 //	File		:	NtlResourceMeshSystem.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -26,13 +26,13 @@ public:
 	SNtlPrtStdEmitterPrtSize		m_EmitterPrtSize;
 	SNtlPrtStdEmitterPrtRotate		m_EmitterPrtRotate;
 
-    SNtlPrtStdEmitterPrtFinish      m_EmitterPrtFinish;             ///< Finish ¿¬Ãâ¿¡ »ç¿ëµÇ´Â ÇÁ·ÎÆÛÆ¼
+    SNtlPrtStdEmitterPrtFinish      m_EmitterPrtFinish;             ///< Finish ì—°ì¶œì— ì‚¬ìš©ë˜ëŠ” í”„ë¡œí¼í‹°
 
 	RpPrtAdvPrtMultiColorEmitter	m_EmitterPrtMultiCol;
 	SNtlAdvMultiSizeEmitter			m_EmitterPrtMultiSize;
 	SNtlAdvMultiRotateEmitter		m_EmitterPrtMultiRotate;
 
-    SNtlPrtStdEmitterTrail          m_EmitterTrail;               ///< Trail Action °ü·Ã ÇÁ·ÎÆÛÆ¼
+    SNtlPrtStdEmitterTrail          m_EmitterTrail;               ///< Trail Action ê´€ë ¨ í”„ë¡œí¼í‹°
 
 public:
 	CNtlResourceMeshSystem(const RwChar* strName);

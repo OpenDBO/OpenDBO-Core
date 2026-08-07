@@ -84,7 +84,7 @@ RwBool CDojoInfo_Info::Create(CNtlPLGui* pParent)
 	m_NoticeBackground.SetPositionfromParent(15, 318);
 
 	
-	// ½ºÆ®¸µ
+	// ìŠ¤íŠ¸ë§
 	m_pTenkaichiPlayerButton	->SetToolTip(GetDisplayStringManager()->GetString("DST_DOJO_INFO_SET_TENKAI_SEED_PLAYER"));
 	m_pNoticeButton				->SetToolTip(GetDisplayStringManager()->GetString("DST_DOJO_INFO_GUILD_NOTICE"));
 
@@ -183,7 +183,7 @@ VOID CDojoInfo_Info::SetDojoInfo(sDBO_DOJO_NPC_INFO* pDBO_DOJO_NPC_INFO)
 		return;
 	}
 
-	// Áö¿ª ÀÌ¸§ ¾ò¾î¿À±â
+	// ì§€ì—­ ì´ë¦„ ì–»ì–´ì˜¤ê¸°
 	CTextTable* pTextTable = API_GetTableContainer()->GetTextAllTable()->GetTextTbl(CTextAllTable::MAP_NAME);
 	std::wstring wstrRegionName = pTextTable->GetText(pDOJO_TBLDAT->mapName);
 
@@ -365,7 +365,7 @@ VOID CDojoInfo_Info::HandleEvents( RWS::CMsg &msg )
 {
 	if( msg.Id == g_EventDojoNotify )
 	{
-		// GUI¸¦ ¿­ ¶§¸¶´Ù Á¤º¸¸¦ °»½ÅÇÏ±â¿¡ ´ÝÇôÀÖ´Â »óÅÂ¿¡¼­´Â °»½ÅÇÏÁö ¾Ê´Â´Ù
+		// GUIë¥¼ ì—´ ë•Œë§ˆë‹¤ ì •ë³´ë¥¼ ê°±ì‹ í•˜ê¸°ì— ë‹«í˜€ìžˆëŠ” ìƒíƒœì—ì„œëŠ” ê°±ì‹ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		if( FALSE == GetDialogManager()->IsOpenDialog(DIALOG_DOJO_INFO) )
 			return;
 
@@ -410,12 +410,12 @@ VOID CDojoInfo_Info::HandleEvents( RWS::CMsg &msg )
 	}
 	else if( msg.Id == g_EventNotifyGuild )
 	{
-		// GUI¸¦ ¿­ ¶§¸¶´Ù Á¤º¸¸¦ °»½ÅÇÏ±â¿¡ ´ÝÇôÀÖ´Â »óÅÂ¿¡¼­´Â °»½ÅÇÏÁö ¾Ê´Â´Ù
+		// GUIë¥¼ ì—´ ë•Œë§ˆë‹¤ ì •ë³´ë¥¼ ê°±ì‹ í•˜ê¸°ì— ë‹«í˜€ìžˆëŠ” ìƒíƒœì—ì„œëŠ” ê°±ì‹ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		if( FALSE == GetDialogManager()->IsOpenDialog(DIALOG_DOJO_INFO) )
 			return;
 
 
-		// ÇöÀç º¸°í ÀÖ´Â Á¤º¸°¡ ÀÚ½ÅÀÌ °ø°Ý À¯ÆÄ¿¡ ¼ÓÇÏÁö ¾Ê´Â´Ù¸é ±»ÀÌ Á¤º¸¸¦ °»½ÅÇÒ ÇÊ¿ä¾ø´Ù
+		// í˜„ìž¬ ë³´ê³  ìžˆëŠ” ì •ë³´ê°€ ìžì‹ ì´ ê³µê²© ìœ íŒŒì— ì†í•˜ì§€ ì•ŠëŠ”ë‹¤ë©´ êµ³ì´ ì •ë³´ë¥¼ ê°±ì‹ í•  í•„ìš”ì—†ë‹¤
 		SNtlEventNotifyGuild* pEvent = reinterpret_cast<SNtlEventNotifyGuild*>( msg.pData );
 
 		if( SLGE_MEM_REPUTATION		== pEvent->iMessage ||

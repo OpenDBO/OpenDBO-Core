@@ -212,7 +212,7 @@ VOID CNtlFlasherManager::SetFontMapData( std::string& strMapName, std::string& s
 	else if (strStyle == "Original")
 		FontFlags = GFxFontMap::MFF_FauxItalic;
 
-	//m_pFontMap->MapFont( L"$NormalFont", L"¼Ò¸ÁM", FontFlags );	
+	//m_pFontMap->MapFont( L"$NormalFont", L"ì†Œë§M", FontFlags );	
 
 	INT nLen = (INT)strlen( strMapName.c_str() );
 	WCHAR pBuffer[1024];

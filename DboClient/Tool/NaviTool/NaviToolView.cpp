@@ -1,4 +1,4 @@
-// NaviToolView.cpp : CNaviToolView Å¬·¡½ºÀÇ ±¸Çö
+// NaviToolView.cpp : CNaviToolView í´ëž˜ìŠ¤ì˜ êµ¬í˜„
 //
 
 #include "stdafx.h"
@@ -17,17 +17,17 @@
 IMPLEMENT_DYNCREATE(CNaviToolView, CView)
 
 BEGIN_MESSAGE_MAP(CNaviToolView, CView)
-	// Ç¥ÁØ ÀÎ¼â ¸í·ÉÀÔ´Ï´Ù.
+	// í‘œì¤€ ì¸ì‡„ ëª…ë ¹ìž…ë‹ˆë‹¤.
 	ON_COMMAND(ID_FILE_PRINT, &CView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CView::OnFilePrintPreview)
 END_MESSAGE_MAP()
 
-// CNaviToolView »ý¼º/¼Ò¸ê
+// CNaviToolView ìƒì„±/ì†Œë©¸
 
 CNaviToolView::CNaviToolView()
 {
-	// TODO: ¿©±â¿¡ »ý¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ìƒì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 }
 
@@ -37,13 +37,13 @@ CNaviToolView::~CNaviToolView()
 
 BOOL CNaviToolView::PreCreateWindow(CREATESTRUCT& cs)
 {
-	// TODO: CREATESTRUCT cs¸¦ ¼öÁ¤ÇÏ¿© ¿©±â¿¡¼­
-	//  Window Å¬·¡½º ¶Ç´Â ½ºÅ¸ÀÏÀ» ¼öÁ¤ÇÕ´Ï´Ù.
+	// TODO: CREATESTRUCT csë¥¼ ìˆ˜ì •í•˜ì—¬ ì—¬ê¸°ì—ì„œ
+	//  Window í´ëž˜ìŠ¤ ë˜ëŠ” ìŠ¤íƒ€ì¼ì„ ìˆ˜ì •í•©ë‹ˆë‹¤.
 
 	return CView::PreCreateWindow(cs);
 }
 
-// CNaviToolView ±×¸®±â
+// CNaviToolView ê·¸ë¦¬ê¸°
 
 void CNaviToolView::OnDraw(CDC* /*pDC*/)
 {
@@ -52,30 +52,30 @@ void CNaviToolView::OnDraw(CDC* /*pDC*/)
 	if (!pDoc)
 		return;
 
-	// TODO: ¿©±â¿¡ ¿ø½Ã µ¥ÀÌÅÍ¿¡ ´ëÇÑ ±×¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì›ì‹œ ë°ì´í„°ì— ëŒ€í•œ ê·¸ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 
-// CNaviToolView ÀÎ¼â
+// CNaviToolView ì¸ì‡„
 
 BOOL CNaviToolView::OnPreparePrinting(CPrintInfo* pInfo)
 {
-	// ±âº»ÀûÀÎ ÁØºñ
+	// ê¸°ë³¸ì ì¸ ì¤€ë¹„
 	return DoPreparePrinting(pInfo);
 }
 
 void CNaviToolView::OnBeginPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
 {
-	// TODO: ÀÎ¼âÇÏ±â Àü¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì¸ì‡„í•˜ê¸° ì „ì— ì¶”ê°€ ì´ˆê¸°í™” ìž‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 void CNaviToolView::OnEndPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
 {
-	// TODO: ÀÎ¼â ÈÄ Á¤¸® ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì¸ì‡„ í›„ ì •ë¦¬ ìž‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 
-// CNaviToolView Áø´Ü
+// CNaviToolView ì§„ë‹¨
 
 #ifdef _DEBUG
 void CNaviToolView::AssertValid() const
@@ -88,7 +88,7 @@ void CNaviToolView::Dump(CDumpContext& dc) const
 	CView::Dump(dc);
 }
 
-CNaviToolDoc* CNaviToolView::GetDocument() const // µð¹ö±×µÇÁö ¾ÊÀº ¹öÀüÀº ÀÎ¶óÀÎÀ¸·Î ÁöÁ¤µË´Ï´Ù.
+CNaviToolDoc* CNaviToolView::GetDocument() const // ë””ë²„ê·¸ë˜ì§€ ì•Šì€ ë²„ì „ì€ ì¸ë¼ì¸ìœ¼ë¡œ ì§€ì •ë©ë‹ˆë‹¤.
 {
 	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CNaviToolDoc)));
 	return (CNaviToolDoc*)m_pDocument;

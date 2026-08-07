@@ -1,4 +1,4 @@
-// PaletteHeatHazeDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PaletteHeatHazeDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -10,7 +10,7 @@
 #include "NtlPLDef.h"
 #include "NtlPLHeatHaze.h"
 
-// CPaletteHeatHazeDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteHeatHazeDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPaletteHeatHazeDlg, CDialog)
 
@@ -68,7 +68,7 @@ BEGIN_MESSAGE_MAP(CPaletteHeatHazeDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CPaletteHeatHazeDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPaletteHeatHazeDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 LRESULT CPaletteHeatHazeDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 {

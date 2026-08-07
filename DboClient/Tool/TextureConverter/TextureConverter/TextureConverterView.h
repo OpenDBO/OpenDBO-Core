@@ -1,4 +1,4 @@
-// TextureConverterView.h : iCTextureConverterView Å¬·¡½ºÀÇ ÀÎÅÍÆäÀÌ½º
+// TextureConverterView.h : iCTextureConverterView í´ë˜ìŠ¤ì˜ ì¸í„°í˜ì´ìŠ¤
 //
 
 
@@ -7,28 +7,28 @@
 
 class CTextureConverterView : public CScrollView
 {
-protected: // serialization¿¡¼­¸¸ ¸¸µé¾îÁı´Ï´Ù.
+protected: // serializationì—ì„œë§Œ ë§Œë“¤ì–´ì§‘ë‹ˆë‹¤.
 	CTextureConverterView();
 	DECLARE_DYNCREATE(CTextureConverterView)
 
-// Æ¯¼º
+// íŠ¹ì„±
 public:
 	CTextureConverterDoc* GetDocument() const;
 
-// ÀÛ¾÷
+// ì‘ì—…
 public:
 
-// ÀçÁ¤ÀÇ
+// ì¬ì •ì˜
 	public:
-	virtual void OnDraw(CDC* pDC);  // ÀÌ ºä¸¦ ±×¸®±â À§ÇØ ÀçÁ¤ÀÇµÇ¾ú½À´Ï´Ù.
+	virtual void OnDraw(CDC* pDC);  // ì´ ë·°ë¥¼ ê·¸ë¦¬ê¸° ìœ„í•´ ì¬ì •ì˜ë˜ì—ˆìŠµë‹ˆë‹¤.
 virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 protected:
-	virtual void OnInitialUpdate(); // »ı¼º ÈÄ Ã³À½ È£ÃâµÇ¾ú½À´Ï´Ù.
+	virtual void OnInitialUpdate(); // ìƒì„± í›„ ì²˜ìŒ í˜¸ì¶œë˜ì—ˆìŠµë‹ˆë‹¤.
 	virtual BOOL OnPreparePrinting(CPrintInfo* pInfo);
 	virtual void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
 	virtual void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
 
-// ±¸Çö
+// êµ¬í˜„
 public:
 	virtual ~CTextureConverterView();
 #ifdef _DEBUG
@@ -38,12 +38,12 @@ public:
 
 protected:
 
-// ¸Ş½ÃÁö ¸Ê ÇÔ¼ö¸¦ »ı¼ºÇß½À´Ï´Ù.
+// ë©”ì‹œì§€ ë§µ í•¨ìˆ˜ë¥¼ ìƒì„±í–ˆìŠµë‹ˆë‹¤.
 protected:
 	DECLARE_MESSAGE_MAP()
 };
 
-#ifndef _DEBUG  // TextureConverterView.cppÀÇ µğ¹ö±× ¹öÀü
+#ifndef _DEBUG  // TextureConverterView.cppì˜ ë””ë²„ê·¸ ë²„ì „
 inline CTextureConverterDoc* CTextureConverterView::GetDocument() const
    { return reinterpret_cast<CTextureConverterDoc*>(m_pDocument); }
 #endif

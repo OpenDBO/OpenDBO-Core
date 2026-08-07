@@ -1,4 +1,4 @@
-// RectInfoDlg.cpp : ���� �����Դϴ�.
+// RectInfoDlg.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -8,7 +8,7 @@
 #include "CDevILMFCMemDC.h"
 
 
-// CRectInfoDlg ��ȭ �����Դϴ�.
+// CRectInfoDlg 대화 상자입니다.
 
 IMPLEMENT_DYNCREATE(CRectInfoDlg, CDialog)
 CRectInfoDlg::CRectInfoDlg(CWnd* pParent /*=NULL*/)
@@ -32,13 +32,13 @@ BEGIN_MESSAGE_MAP(CRectInfoDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CRectInfoDlg �޽��� ó�����Դϴ�.
+// CRectInfoDlg 메시지 처리기입니다.
 
 BOOL CRectInfoDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ���⿡ �߰� �ʱ�ȭ �۾��� �߰��մϴ�.
+	// TODO:  여기에 추가 초기화 작업을 추가합니다.
 	DWORD dwStyle;
 	CRect rc;
 
@@ -67,14 +67,14 @@ BOOL CRectInfoDlg::OnInitDialog()
 	InitProperty();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ����: OCX �Ӽ� �������� FALSE�� ��ȯ�ؾ� �մϴ�.
+	// 예외: OCX 속성 페이지는 FALSE를 반환해야 합니다.
 }
 
 void CRectInfoDlg::OnSize(UINT nType, int cx, int cy)
 {
 	CDialog::OnSize(nType, cx, cy);
 
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	if( m_bInitialized )
 	{
 		CWnd* pWindow = GetDlgItem( IDC_PROPERTY_RECTINFO );

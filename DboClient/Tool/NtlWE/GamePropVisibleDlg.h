@@ -1,17 +1,17 @@
 #pragma once
 
 
-// CGamePropVisibleDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CGamePropVisibleDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CGamePropVisibleDlg : public CDialog
 {
 	DECLARE_DYNAMIC(CGamePropVisibleDlg)
 
 public:
-	CGamePropVisibleDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CGamePropVisibleDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CGamePropVisibleDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_VISIBLE_PROP };
 
 protected:
@@ -23,7 +23,7 @@ public:
 	RwBool			GetGamePropColor(RwUInt32 uiFlags, RwRGBA* pRGBA);
 
 protected:
-	virtual void	DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void	DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual LRESULT	WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
 	virtual BOOL	OnInitDialog();
 

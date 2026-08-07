@@ -2,7 +2,7 @@
 *
 * File			: NtlDNController
 * Author		: Peessi
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2006. 8. 17	
 * Abstract		: Presentation Day And Night Control
 *****************************************************************************
@@ -21,7 +21,7 @@ public:
 	enum { NOT_START = 0xffffffff };
 	
 	CDNNode( RwReal fBeginTime, RwReal fDurationTime, RwUInt8 ucStartValue, RwUInt8 ucFinishValue, RwReal fBlendFactor, CNtlDNController* pController );
-	CDNNode( RwReal fBeginTime, RwReal fDurationTime, RwUInt8 ucFinishValue, RwReal fBlendFactor, CNtlDNController* pController );// Current Start »ı¼ºÀÚ.
+	CDNNode( RwReal fBeginTime, RwReal fDurationTime, RwUInt8 ucFinishValue, RwReal fBlendFactor, CNtlDNController* pController );// Current Start ìƒì„±ì.
 	
 	~CDNNode(VOID);
 
@@ -77,7 +77,7 @@ private:
 
 	DNLIST	 m_listDNNode;		
 	RwUInt8  m_ucLastValue;
-	BOOL	 m_bSetDNEffect;		// DNEffect°¡ Àû¿ëµÇ´Â »óÅÂ¸¦ ¾Ë±âÀ§ÇÑ °Í. TRUE : Àû¿ëÁß.
+	BOOL	 m_bSetDNEffect;		// DNEffectê°€ ì ìš©ë˜ëŠ” ìƒíƒœë¥¼ ì•Œê¸°ìœ„í•œ ê²ƒ. TRUE : ì ìš©ì¤‘.
 };
 
 static CNtlDNController* GetDnController(VOID)

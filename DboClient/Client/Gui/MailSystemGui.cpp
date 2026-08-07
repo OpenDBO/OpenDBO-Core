@@ -49,11 +49,11 @@
 // etc
 
 /**
-* \brief eTYPE¿¡ ¸ÂÃç¼­ °¡º¯ÀÎÀÚ¸¦ ¸Å°³º¯¼ö·Î ¹Ş¾Æ¼­ Ã¤ÆÃÃ¢¿¡ Ãâ·ÂÇÑ´Ù.
-* °¡º¯ÀÎÀÚ¸¦ ¹Ş¾Æ¼­ vswprintf_s() ÇÔ¼ö¸¦ »ç¿ëÇÏ¿© ¹®ÀÚ¿­À» ¸¸µç ÈÄ ±× ¹®ÀÚ¿­À»
-* Ã¤ÆÃÃ¢¿¡ Ãâ·ÂÇÏ´Â Event¸¦ º¸³½´Ù.
+* \brief eTYPEì— ë§ì¶°ì„œ ê°€ë³€ì¸ìë¥¼ ë§¤ê°œë³€ìˆ˜ë¡œ ë°›ì•„ì„œ ì±„íŒ…ì°½ì— ì¶œë ¥í•œë‹¤.
+* ê°€ë³€ì¸ìë¥¼ ë°›ì•„ì„œ vswprintf_s() í•¨ìˆ˜ë¥¼ ì‚¬ìš©í•˜ì—¬ ë¬¸ìì—´ì„ ë§Œë“  í›„ ê·¸ ë¬¸ìì—´ì„
+* ì±„íŒ…ì°½ì— ì¶œë ¥í•˜ëŠ” Eventë¥¼ ë³´ë‚¸ë‹¤.
 * \param eType	eMAILSYSTEM_MSG_SAY_TYPE
-* \param ...	°¡º¯ÀÎÀÚ
+* \param ...	ê°€ë³€ì¸ì
 */
 void CMailSystemMsg::MsgSay(eMAILSYSTEM_MSG_SAY_TYPE eType, ...)
 {
@@ -94,9 +94,9 @@ void CMailSystemMsg::MsgSay(eMAILSYSTEM_MSG_SAY_TYPE eType, ...)
 }
 
 /**
-* \breif TYPE°ú °¡º¯ÀÎÀÚ¸¦ ¹Ş¾Æ¼­ Å¸ÀÔ¿¡ ¾Ë¸ÂÀº MessageBox¸¦ ¶ç¿î´Ù.
+* \breif TYPEê³¼ ê°€ë³€ì¸ìë¥¼ ë°›ì•„ì„œ íƒ€ì…ì— ì•Œë§ì€ MessageBoxë¥¼ ë„ìš´ë‹¤.
 * \param eType	eMAILSYSTEM_MSG_BOX_TYPE
-* \param ...	°¡º¯ ÀÎÀÚ
+* \param ...	ê°€ë³€ ì¸ì
 */
 void CMailSystemMsg::MsgBox(eMAILSYSTEM_MSG_BOX_TYPE eType, ...)
 {
@@ -770,7 +770,7 @@ RwBool CMailSystemGui::Create()
 		NTL_RETURN(FALSE);
 	}
 
-	// Dialog Moved Mode¸¦ ´ëºñÇÏ¿© OnMove È£Ãâ
+	// Dialog Moved Modeë¥¼ ëŒ€ë¹„í•˜ì—¬ OnMove í˜¸ì¶œ
 	CRectangle rtDlgAttach = m_pDlgAttach->GetScreenRect();
 	OnMoveDlgAttach( rtDlgAttach.left, rtDlgAttach.top );
 
@@ -957,7 +957,7 @@ void CMailSystemGui::Destroy()
 
 	GetNtlGuiManager()->RemoveUpdateFunc(this);
 
-	// µ· ¾ÆÀÌÄÜ
+	// ëˆ ì•„ì´ì½˜
 	Logic_DeleteTexture( m_pMoneyIconTexture );
 	m_pMoneyIconTexture = NULL;
 	
@@ -1067,7 +1067,7 @@ void CMailSystemGui::HandleEvents(RWS::CMsg& msg)
 			GetDboGlobal()->GetGamePacketGenerator()->SendMailStartReq(pEvent->hSerialId);
 		}
 	}
-	// °è»ê±â·Î ÀÔ·ÂÇÑ °ªÀÌ ³ª¿ÔÀ» °æ¿ì
+	// ê³„ì‚°ê¸°ë¡œ ì…ë ¥í•œ ê°’ì´ ë‚˜ì™”ì„ ê²½ìš°
 	else if (msg.Id == g_EventCalcPopupResult)
 	{
 		SDboEventCalcPopupResult* pEvent = reinterpret_cast<SDboEventCalcPopupResult*>(msg.pData);
@@ -1256,7 +1256,7 @@ void CMailSystemGui::HandleEvents(RWS::CMsg& msg)
 			if( !pSobItemAttr )
 				NTL_RETURNVOID();
 
-			// ÅÇ ÀüÈ¯
+			// íƒ­ ì „í™˜
 			SelectTab( TAB_SENDMAIL );
 			SetSendMailItem( pData->hHandle, (RwUInt8)Logic_WhichBagHasItem( pData->hHandle ), (RwUInt8)pData->uiPos, pSobItemAttr->GetStackNum() );
 		}
@@ -1265,7 +1265,7 @@ void CMailSystemGui::HandleEvents(RWS::CMsg& msg)
 	{
 		SDboEventMailSlotUpdate* pData = reinterpret_cast<SDboEventMailSlotUpdate*>( msg.pData );
 
-		// Mail slot Lock Update ÀÏ °æ¿ì
+		// Mail slot Lock Update ì¼ ê²½ìš°
 		if( pData->byType == eMAILSLOT_UPDATE_LOCK )
 		{
 			RwInt32 nDelIdx = 0;
@@ -1468,8 +1468,8 @@ void CMailSystemGui::OnKeyUp(gui::CComponent* pComponenet, CInputDevice* pDevice
 
 void CMailSystemGui::OnCharChangedIpbMailContent(int iLength)
 {
-	// ¸ŞÀÏ ÄÜÅÙÃ÷ ÇÏ´Ü¿¡ ÇöÀç ±ÛÀÚ¼ö¿Í ÃÖ´ë ±ÛÀÚ¼ö¸¦ Ãâ·ÂÇØÁÖ°í ÀÔ·Â½Ã ÇöÀç±ÛÀÚ¼ö°¡
-	// ÃÖ´ë±ÛÀÚ¼ö¸¦ ³Ñ¾ú´Ù¸é ´õÀÌ»ó ÀÔ·ÂÀÌ ¾ÈµÇ°Ô ÇÑ´Ù.
+	// ë©”ì¼ ì½˜í…ì¸  í•˜ë‹¨ì— í˜„ì¬ ê¸€ììˆ˜ì™€ ìµœëŒ€ ê¸€ììˆ˜ë¥¼ ì¶œë ¥í•´ì£¼ê³  ì…ë ¥ì‹œ í˜„ì¬ê¸€ììˆ˜ê°€
+	// ìµœëŒ€ê¸€ììˆ˜ë¥¼ ë„˜ì—ˆë‹¤ë©´ ë”ì´ìƒ ì…ë ¥ì´ ì•ˆë˜ê²Œ í•œë‹¤.
 	CalcSendMailContentMaxNum();
 	if( iLength >= m_pIpbMailContent->GetMaxLength() )
 	{
@@ -1506,13 +1506,13 @@ void CMailSystemGui::OnToggledBtnAttachReq(gui::CComponent* pComponent, bool bDo
 }
 
 /**
-* \brief Mail ¾²±â¿¡¼­ Á¦´Ï ¹öÆ°À» Å¬¸¯ÇÏ¿´À» ¶§ 
+* \brief Mail ì“°ê¸°ì—ì„œ ì œë‹ˆ ë²„íŠ¼ì„ í´ë¦­í•˜ì˜€ì„ ë•Œ 
 */
 void CMailSystemGui::OnClickedBtnAttachZenny(gui::CComponent* pComponent)
 {
 	RwUInt32 uiSerial;
 	
-	// Ã»±¸ÇÏ±â
+	// ì²­êµ¬í•˜ê¸°
 	if (m_pBtnAttachReq->IsDown())
 	{
 		uiSerial = MAILSYSTEM_ATTACH_REQ;
@@ -1522,12 +1522,12 @@ void CMailSystemGui::OnClickedBtnAttachZenny(gui::CComponent* pComponent)
 		CDboEventGenerator::CalcPopupShow(TRUE, uiSerial, PLACE_SUB_MAILSYSTEM_ZENNY, rect.left - dMAILSYSTEM_UI_CALC_OFFSET, rect.top, NTL_MAX_MAIL_SEND_ZENNY_AMOUNTS);
 	}
 
-	// ¼Û±İÇÏ±â
+	// ì†¡ê¸ˆí•˜ê¸°
 	else if (m_pBtnAttachSend->IsDown())
 	{
 		uiSerial = MAILSYSTEM_ATTACH_SEND;
 					
-		// Icon¿¡ ¹«¾ùÀÎ°¡ µé°í ÀÖ´Ù¸é PutDown Ã³¸®
+		// Iconì— ë¬´ì—‡ì¸ê°€ ë“¤ê³  ìˆë‹¤ë©´ PutDown ì²˜ë¦¬
 		if( GetIconMoveManager()->IsActive() )
 		{
 			GetIconMoveManager()->IconMovePutDown( PLACE_SUB_MAILSYSTEM_ZENNY, INVALID_SERIAL_ID, INVALID_DWORD );
@@ -1541,7 +1541,7 @@ void CMailSystemGui::OnClickedBtnAttachZenny(gui::CComponent* pComponent)
 	}
 	else
 	{
-		// Ã»±¸ÇÏ±â ¶Ç´Â ¼Û±İÇÏ±â¸¦ ¼±ÅÃÇÏÁö ¾Ê¾ÒÀ» °æ¿ì ¼±ÅÃÇØ´Ş¶ó´Â ¸Ş½ÃÁö¸¦ Ãâ·Â
+		// ì²­êµ¬í•˜ê¸° ë˜ëŠ” ì†¡ê¸ˆí•˜ê¸°ë¥¼ ì„ íƒí•˜ì§€ ì•Šì•˜ì„ ê²½ìš° ì„ íƒí•´ë‹¬ë¼ëŠ” ë©”ì‹œì§€ë¥¼ ì¶œë ¥
 		CMailSystemMsg::MsgBox(CMailSystemMsg::MAIL_MSG_BOX_SELECT_REQ_OR_SEND);
 	}
 }
@@ -1784,7 +1784,7 @@ void CMailSystemGui::OnMouseUpDlgAttachItem(const CKey& key)
 				return;
 			}
 
-			// °¡¹æÀÌ ¾Æ´Ï¸é Attach µÇÁö ¾Êµµ·Ï ¼öÁ¤ÇÑ´Ù.
+			// ê°€ë°©ì´ ì•„ë‹ˆë©´ Attach ë˜ì§€ ì•Šë„ë¡ ìˆ˜ì •í•œë‹¤.
 			if( GetIconMoveManager()->IsActive() && GetIconMoveManager()->GetSrcPlace() != PLACE_BAG )
 			{
 				return;
@@ -1950,7 +1950,7 @@ void CMailSystemGui::SetSendMailZenny(bool bIsAttachSend, bool bIsAttachReq, RwU
 
 	m_uiSendMailZenny = uiZenny;
 	
-	// µÑ´Ù °°Àº °æ¿ì´Â µÑ ´Ù False ÀÏ °æ¿ì
+	// ë‘˜ë‹¤ ê°™ì€ ê²½ìš°ëŠ” ë‘˜ ë‹¤ False ì¼ ê²½ìš°
 	if (bIsAttachSend == bIsAttachReq)
 	{
 		m_pStbAttachZenny->Clear();
@@ -2680,7 +2680,7 @@ void CMailSystemReadGui::UpdateReadMail()
 	CheckReplyEnable();
 	CheckReturnEnable();
 	CheckDeleteEnable();
-	CheckAttachActionEffect(); // ²À ¸¶Áö¸·¿¡ Ã¼Å©ÇØ¾ßÇÔ.
+	CheckAttachActionEffect(); // ê¼­ ë§ˆì§€ë§‰ì— ì²´í¬í•´ì•¼í•¨.
 }
 
 void CMailSystemReadGui::DisplayReadMailInit()
@@ -2723,18 +2723,18 @@ void CMailSystemReadGui::DisplayReadMailBasic()
 	RwUInt32 uiMinute	= m_sMailProfile.tCreateTime.minute;
 	RwUInt32 uiHour;
 
-	//%u³â %u¿ù %uÀÏ %s %u½Ã %uºĞ
+	//%uë…„ %uì›” %uì¼ %s %uì‹œ %uë¶„
 	if( m_sMailProfile.tCreateTime.hour > 12 )
 	{
 		uiHour = m_sMailProfile.tCreateTime.hour - 12;
-		// ¿ÀÈÄ
+		// ì˜¤í›„
 		m_pStbSendDate->Format(GetDisplayStringManager()->GetString("DST_MAILSYSTEM_MAIL_SENDDATE"), uiYear, uiMonth, uiDay,
 			GetDisplayStringManager()->GetString( "DST_BUDOKAI_NEWS_NOTICE_GUIDE_TIME_PM" ), uiHour, uiMinute);
 	}
 	else
 	{
 		uiHour = m_sMailProfile.tCreateTime.hour;
-		// ¿ÀÀü
+		// ì˜¤ì „
 		m_pStbSendDate->Format(GetDisplayStringManager()->GetString("DST_MAILSYSTEM_MAIL_SENDDATE"), uiYear, uiMonth, uiDay,
 			GetDisplayStringManager()->GetString( "DST_BUDOKAI_NEWS_NOTICE_GUIDE_TIME_AM" ), uiHour, uiMinute);
 	}

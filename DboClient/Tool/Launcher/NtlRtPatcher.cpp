@@ -42,7 +42,7 @@ BOOL CNtlRtPatcher::DoAction(const char *pszDestPatchPath, const char *pszCurFul
 	else
 	{
 		//ASSERT(0);
-		OutputDebugString("RtPatch File PatchÁß Rrror");
+		OutputDebugString("RtPatch File Patchì¤‘ Rrror");
 		return FALSE;
 	}
 
@@ -135,7 +135,7 @@ LPVOID CALLBACK CallBack( UINT Id, LPVOID Parm )
 	
 	CNtlRtPatcher::GetInstance()->SendEvent(EVENT_PH_DEFAULT_MSG_PUMP, NULL);
 
-	//AbortÀÏ °æ¿ì Á¾·á¸¦ ÇÑ´Ù.
+	//Abortì¼ ê²½ìš° ì¢…ë£Œë¥¼ í•œë‹¤.
 	if( CNtlRtPatcher::GetInstance()->GetAbort())
 		return NULL;
 

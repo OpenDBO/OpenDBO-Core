@@ -6,7 +6,7 @@ struct SSplineProp;
 class CNtlDTProp;
 class CNtlDTSpline;
 
-// CSequenceGraphDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CSequenceGraphDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 typedef struct _SSeqCtrlInfo
 {
@@ -81,10 +81,10 @@ class CSequenceGraphDlg : public CDialog
 	DECLARE_DYNAMIC(CSequenceGraphDlg)
 
 public:
-	CSequenceGraphDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CSequenceGraphDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CSequenceGraphDlg();
 
-	// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+	// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_SEQUENCE_GRAPH };
 
 protected:
@@ -126,7 +126,7 @@ public:
 
 protected:
 
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 

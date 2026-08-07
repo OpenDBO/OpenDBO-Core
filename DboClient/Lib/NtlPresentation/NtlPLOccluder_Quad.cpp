@@ -248,7 +248,7 @@ RwBool CNtlPLOccluder_Quad::UpdateOneside(RwReal fElapsed)
 		m_vVertex[i] = m_vPos + m_vVertexOriginal[i];
 	}
 
-	// ¸éÀ» ±¸¼ºÇÑ´Ù.
+	// ë©´ì„ êµ¬ì„±í•œë‹¤.
 	m_pPlane[EPLANE_OCCLUDER_RIGHT].PlaneFromPoints( pvCameraPos,  &m_vVertex[1], &m_vVertex[0]);	// Left
 	m_pPlane[EPLANE_OCCLUDER_LEFT].PlaneFromPoints( pvCameraPos,  &m_vVertex[3], &m_vVertex[2]);	// Right	
 	m_pPlane[EPLANE_OCCLUDER_TOP].PlaneFromPoints( pvCameraPos,  &m_vVertex[2], &m_vVertex[1]);		// Up
@@ -267,7 +267,7 @@ RwBool CNtlPLOccluder_Quad::UpdateTwoside(RwReal fElapsed)
 		m_vVertex[i] = m_vPos + m_vVertexOriginal[i];
 	}
 
-	// ¸éÀ» ±¸¼ºÇÑ´Ù.
+	// ë©´ì„ êµ¬ì„±í•œë‹¤.
 	m_pPlane[EPLANE_OCCLUDER_RIGHT].PlaneFromPoints( pvCameraPos,  &m_vVertex[1], &m_vVertex[0]);	// Left
 	m_pPlane[EPLANE_OCCLUDER_LEFT].PlaneFromPoints( pvCameraPos,  &m_vVertex[3], &m_vVertex[2]);	// Right	
 	m_pPlane[EPLANE_OCCLUDER_TOP].PlaneFromPoints( pvCameraPos,  &m_vVertex[2], &m_vVertex[1]);		// Up
@@ -290,7 +290,7 @@ RwBool CNtlPLOccluder_Quad::UpdateTwoside(RwReal fElapsed)
 	// 	vDir.y = pvCameraPos->y - m_vPos.y;
 	// 	vDir.z = pvCameraPos->z - m_vPos.z;
 	// 
-	// 	// ÇöÀç ¾ç¸éÀÌ±â ¶§¹®¿¡ ¸éÀÌ µÚÂÊÀÌ¶ó¸é ¹æÇâÀ» ¹Ù²Ù¾î ÁØ´Ù.
+	// 	// í˜„ì¬ ì–‘ë©´ì´ê¸° ë•Œë¬¸ì— ë©´ì´ ë’¤ìª½ì´ë¼ë©´ ë°©í–¥ì„ ë°”ê¾¸ì–´ ì¤€ë‹¤.
 	// 	if (RwV3dDotProduct(&m_pPlane[3].GetNormal(), &vDir) >= 0)
 	// 	{
 	// 		for (int i = 0; i < EPLANE_OCCLUDER_NUM; ++i)
@@ -316,13 +316,13 @@ RwBool CNtlPLOccluder_Quad::UpdateBillboard(RwReal fElapsed)
 
 	RwMatrix mat;
 
-	// ºôº¸µå ¸ÅÆ®¸¯½º¸¦ ¿¬»êÇÑ´Ù.
+	// ë¹Œë³´ë“œ ë§¤íŠ¸ë¦­ìŠ¤ë¥¼ ì—°ì‚°í•œë‹¤.
 	CNtlMath::MathGetRotationMatrix(&mat, &CNtlPLGlobal::m_vZAxisV3, &vDir);
 	*RwMatrixGetPos(&mat) = m_vPos;
 
 	RwV3dTransformPoints(&m_vVertex[0], &m_vVertexOriginal[0], 4, &mat);
 
-	// ¸éÀ» ±¸¼ºÇÑ´Ù.
+	// ë©´ì„ êµ¬ì„±í•œë‹¤.
 	m_pPlane[EPLANE_OCCLUDER_RIGHT].PlaneFromPoints( pvCameraPos,  &m_vVertex[1], &m_vVertex[0]);	// Left
 	m_pPlane[EPLANE_OCCLUDER_LEFT].PlaneFromPoints( pvCameraPos,  &m_vVertex[3], &m_vVertex[2]);	// Right	
 	m_pPlane[EPLANE_OCCLUDER_TOP].PlaneFromPoints( pvCameraPos,  &m_vVertex[2], &m_vVertex[1]);		// Up
@@ -428,7 +428,7 @@ RwBool CNtlPLOccluder_Quad::OccluderTestSphere(RwSphere* pSphere)
 			return FALSE;
 		}
 
-		// ¹Ù´Ú ¸éÀº PortalÀÌ ¾Æ´Ñ °æ¿ì ±»ÀÌ ÇÒ ÇÊ¿ä´Â ¾ø´Ù. Occluder´Â °øÁß¿¡ ¶Ù¾î¼­ ¹èÄ¡ ÇÏÁö ¾Ê´Â´Ù.
+		// ë°”ë‹¥ ë©´ì€ Portalì´ ì•„ë‹Œ ê²½ìš° êµ³ì´ í•  í•„ìš”ëŠ” ì—†ë‹¤. OccluderëŠ” ê³µì¤‘ì— ë›°ì–´ì„œ ë°°ì¹˜ í•˜ì§€ ì•ŠëŠ”ë‹¤.
 		// 		fDist = m_pPlane[EPLANE_OCCLUDER_BOTTOM].DotProduct(&pSphere->center);
 		// 		if (fDist <= pSphere->radius)
 		// 		{
@@ -441,9 +441,9 @@ RwBool CNtlPLOccluder_Quad::OccluderTestSphere(RwSphere* pSphere)
 
 RwBool CNtlPLOccluder_Quad::OccluderTestBox(RwBBox* pBox)
 {
-	// Á¤È®ÇÏÁö ¾Ê´Ù. Á¤È®ÇÑ ÆÇ´ÜÀ» ÇÏ±â À§ÇØ¼­ ¿¬»êÀÌ Ãß°¡µÈ´Ù.
-	// ÇÏÁö¸¸ ¸ğµç Á¡ÀÌ Occluder Frustum ¾È¿¡ ¾ø´Ù¸é, Render ÇØ¾ßµÇ±â ¶§¹®¿¡ Á¤È®ÇÏ°Ô ¿¬»êÇÒ
-	// ÇÊ¿ä´Â ¾øÀ» °Í °°´Ù.
+	// ì •í™•í•˜ì§€ ì•Šë‹¤. ì •í™•í•œ íŒë‹¨ì„ í•˜ê¸° ìœ„í•´ì„œ ì—°ì‚°ì´ ì¶”ê°€ëœë‹¤.
+	// í•˜ì§€ë§Œ ëª¨ë“  ì ì´ Occluder Frustum ì•ˆì— ì—†ë‹¤ë©´, Render í•´ì•¼ë˜ê¸° ë•Œë¬¸ì— ì •í™•í•˜ê²Œ ì—°ì‚°í• 
+	// í•„ìš”ëŠ” ì—†ì„ ê²ƒ ê°™ë‹¤.
 	if (pBox->inf.x == pBox->sup.x && pBox->inf.y == pBox->sup.y && pBox->inf.z == pBox->sup.z)
 	{
 		return FALSE;
@@ -576,7 +576,7 @@ RwBool CNtlPLOccluder_Quad::Pick(RwReal* pfDist, RwInt32* piIndex)
 	RwBool bPicked	= FALSE;
 	RwReal fTemp	= 0.0f;
 
-	// ¹öÅØ½º¸¦ ¼±ÅÃ Çß´ÂÁö ¿©ºÎ¸¦ È®ÀÎ ÇÑ´Ù.
+	// ë²„í…ìŠ¤ë¥¼ ì„ íƒ í–ˆëŠ”ì§€ ì—¬ë¶€ë¥¼ í™•ì¸ í•œë‹¤.
 	if (piIndex)
 	{
 		*piIndex = -1;
@@ -594,7 +594,7 @@ RwBool CNtlPLOccluder_Quad::Pick(RwReal* pfDist, RwInt32* piIndex)
 		}
 	}
 
-	// µŞ¸é ¾Õ¸é ¸ğµÎ ÇÈÅ·ÀÌ °¡´ÉÇÏ´Ù.
+	// ë’·ë©´ ì•ë©´ ëª¨ë‘ í”½í‚¹ì´ ê°€ëŠ¥í•˜ë‹¤.
 	if(RtIntersectionLineTriangle(&rayCamera.start, &vRayDeltha, &m_vVertex[0], &m_vVertex[1], &m_vVertex[2], &fTemp))
 	{
 		bPicked = TRUE;
@@ -647,7 +647,7 @@ RwBool CNtlPLOccluder_Quad::PVSTest(RwV3d* pvStart, RwV3d* pvEnd)
 		}		
 	}
 
-	// intersection check¸¦ À§ÇØ¼­ y °ªÀ» Á¶Á¤ÇÑ´Ù.
+	// intersection checkë¥¼ ìœ„í•´ì„œ y ê°’ì„ ì¡°ì •í•œë‹¤.
 	vVertex[0].y = -2048.0f;
 	vVertex[3].y = -2048.0f;
 
@@ -664,7 +664,7 @@ RwBool CNtlPLOccluder_Quad::PVSTest(RwV3d* pvStart, RwV3d* pvEnd)
 		return TRUE;
 	}
 
-	// ¾ç¸éÀÏ °æ¿ì´Â µŞ¸éµµ È®ÀÎÇØ¾ß ÇÑ´Ù.
+	// ì–‘ë©´ì¼ ê²½ìš°ëŠ” ë’·ë©´ë„ í™•ì¸í•´ì•¼ í•œë‹¤.
 	if (m_ePlaneType == EPLOCCLUDER_PLANE_TWOSIDE)
 	{
 		if(RtIntersectionLineTriangle(pvStart, &vRayDeltha, &vVertex[2], &vVertex[1], &vVertex[0], &fDist))
@@ -687,14 +687,14 @@ void CNtlPLOccluder_Quad::CalcOccluderData()
 
 	if (IsOccluderFuncFlag(EPLOCCLUDER_FUNC_PVS))
 	{
-		// PVS ¿ë ´õ¹Ì ¿ÀÅ¬·ç´õ ÀÏ °æ¿ì. ScaleÀº 384.0f °¡ Max ÀÌ´Ù.
+		// PVS ìš© ë”ë¯¸ ì˜¤í´ë£¨ë” ì¼ ê²½ìš°. Scaleì€ 384.0f ê°€ Max ì´ë‹¤.
 		CLAMP(m_sOccluderSwap.vScale.x, 1.0f, 384.0f);
 		CLAMP(m_sOccluderSwap.vScale.y, 1.0f, 384.0f);
 		m_sOccluderSwap.vScale.z = 1.0f;
 	}
 	else
 	{
-		// ÀÏ¹İ(»ç°¢Çü) ¿ÀÅ¬·ç´õ ÀÏ °æ¿ì. ScaleÀº 512.0f °¡ Max ÀÌ´Ù.
+		// ì¼ë°˜(ì‚¬ê°í˜•) ì˜¤í´ë£¨ë” ì¼ ê²½ìš°. Scaleì€ 512.0f ê°€ Max ì´ë‹¤.
 		CLAMP(m_sOccluderSwap.vScale.x, 1.0f, 512.0f);
 		CLAMP(m_sOccluderSwap.vScale.y, 1.0f, 512.0f);
 		m_sOccluderSwap.vScale.z = 1.0f;
@@ -702,7 +702,7 @@ void CNtlPLOccluder_Quad::CalcOccluderData()
 
 	RwMatrixScale(&mat, &m_sOccluderSwap.vScale, rwCOMBINEREPLACE);
 
-	// ºôº¸µå ÀÏ¶§´Â vRotate°¡ Àû¿ë µÇÁö ¾Ê´Â´Ù.
+	// ë¹Œë³´ë“œ ì¼ë•ŒëŠ” vRotateê°€ ì ìš© ë˜ì§€ ì•ŠëŠ”ë‹¤.
 	if (GetOccluderPlaneType() != EPLOCCLUDER_PLANE_BILLBOARD)
 	{
 		RwMatrixRotate(&mat, &CNtlPLGlobal::m_vYAxisV3, m_sOccluderSwap.vRotate.y, rwCOMBINEPOSTCONCAT);
@@ -731,7 +731,7 @@ void CNtlPLOccluder_Quad::CalcOccluderData()
 
 		RwV3dTransformPoints(&m_vVertexOriginal[0], &vTemp[0], 4, &mat);
 
-		// ÀÏ¹İ(»ç°¢Çü) ¿ÀÅ¬·ç´õ ÀÏ °æ¿ì. Vertex Trans¸¦ Áö¿øÇÏ±â ¶§¹®¿¡. Max(512.0f)¸¦ ³Ñ¾ú´ÂÁö È®ÀÎÇÏ°í ±³Á¤ÇÑ´Ù.
+		// ì¼ë°˜(ì‚¬ê°í˜•) ì˜¤í´ë£¨ë” ì¼ ê²½ìš°. Vertex Transë¥¼ ì§€ì›í•˜ê¸° ë•Œë¬¸ì—. Max(512.0f)ë¥¼ ë„˜ì—ˆëŠ”ì§€ í™•ì¸í•˜ê³  êµì •í•œë‹¤.
 		for (int i = 0; i < 4; ++i)
 		{
 			RwV3d	vDir;
@@ -1221,7 +1221,7 @@ RwBool CNtlPLOccluder_Quad::UpdateOneside(RwReal fElapsed)
 		m_vVertex[i] = m_vPos + m_vVertexOriginal[i];
 	}
 
-	// ¸éÀ» ±¸¼ºÇÑ´Ù.
+	// ë©´ì„ êµ¬ì„±í•œë‹¤.
 	m_pPlane[EPLANE_OCCLUDER_RIGHT].PlaneFromPoints( pvCameraPos,  &m_vVertex[1], &m_vVertex[0]);	// Left
 	m_pPlane[EPLANE_OCCLUDER_LEFT].PlaneFromPoints( pvCameraPos,  &m_vVertex[3], &m_vVertex[2]);	// Right	
 	m_pPlane[EPLANE_OCCLUDER_TOP].PlaneFromPoints( pvCameraPos,  &m_vVertex[2], &m_vVertex[1]);		// Up
@@ -1240,7 +1240,7 @@ RwBool CNtlPLOccluder_Quad::UpdateTwoside(RwReal fElapsed)
 		m_vVertex[i] = m_vPos + m_vVertexOriginal[i];
 	}
 
-	// ¸éÀ» ±¸¼ºÇÑ´Ù.
+	// ë©´ì„ êµ¬ì„±í•œë‹¤.
 	m_pPlane[EPLANE_OCCLUDER_RIGHT].PlaneFromPoints( pvCameraPos,  &m_vVertex[1], &m_vVertex[0]);	// Left
 	m_pPlane[EPLANE_OCCLUDER_LEFT].PlaneFromPoints( pvCameraPos,  &m_vVertex[3], &m_vVertex[2]);	// Right	
 	m_pPlane[EPLANE_OCCLUDER_TOP].PlaneFromPoints( pvCameraPos,  &m_vVertex[2], &m_vVertex[1]);		// Up
@@ -1263,7 +1263,7 @@ RwBool CNtlPLOccluder_Quad::UpdateTwoside(RwReal fElapsed)
 // 	vDir.y = pvCameraPos->y - m_vPos.y;
 // 	vDir.z = pvCameraPos->z - m_vPos.z;
 // 
-// 	// ÇöÀç ¾ç¸éÀÌ±â ¶§¹®¿¡ ¸éÀÌ µÚÂÊÀÌ¶ó¸é ¹æÇâÀ» ¹Ù²Ù¾î ÁØ´Ù.
+// 	// í˜„ì¬ ì–‘ë©´ì´ê¸° ë•Œë¬¸ì— ë©´ì´ ë’¤ìª½ì´ë¼ë©´ ë°©í–¥ì„ ë°”ê¾¸ì–´ ì¤€ë‹¤.
 // 	if (RwV3dDotProduct(&m_pPlane[3].GetNormal(), &vDir) >= 0)
 // 	{
 // 		for (int i = 0; i < EPLANE_OCCLUDER_NUM; ++i)
@@ -1289,13 +1289,13 @@ RwBool CNtlPLOccluder_Quad::UpdateBillboard(RwReal fElapsed)
 
 	RwMatrix mat;
 
-	// ºôº¸µå ¸ÅÆ®¸¯½º¸¦ ¿¬»êÇÑ´Ù.
+	// ë¹Œë³´ë“œ ë§¤íŠ¸ë¦­ìŠ¤ë¥¼ ì—°ì‚°í•œë‹¤.
 	CNtlMath::MathGetRotationMatrix(&mat, &CNtlPLGlobal::m_vZAxisV3, &vDir);
 	*RwMatrixGetPos(&mat) = m_vPos;
 
 	RwV3dTransformPoints(&m_vVertex[0], &m_vVertexOriginal[0], 4, &mat);
 
-	// ¸éÀ» ±¸¼ºÇÑ´Ù.
+	// ë©´ì„ êµ¬ì„±í•œë‹¤.
 	m_pPlane[EPLANE_OCCLUDER_RIGHT].PlaneFromPoints( pvCameraPos,  &m_vVertex[1], &m_vVertex[0]);	// Left
 	m_pPlane[EPLANE_OCCLUDER_LEFT].PlaneFromPoints( pvCameraPos,  &m_vVertex[3], &m_vVertex[2]);	// Right	
 	m_pPlane[EPLANE_OCCLUDER_TOP].PlaneFromPoints( pvCameraPos,  &m_vVertex[2], &m_vVertex[1]);		// Up
@@ -1401,7 +1401,7 @@ RwBool CNtlPLOccluder_Quad::OccluderTestSphere(RwSphere* pSphere)
 			return FALSE;
 		}
 
-		// ¹Ù´Ú ¸éÀº PortalÀÌ ¾Æ´Ñ °æ¿ì ±»ÀÌ ÇÒ ÇÊ¿ä´Â ¾ø´Ù. Occluder´Â °øÁß¿¡ ¶Ù¾î¼­ ¹èÄ¡ ÇÏÁö ¾Ê´Â´Ù.
+		// ë°”ë‹¥ ë©´ì€ Portalì´ ì•„ë‹Œ ê²½ìš° êµ³ì´ í•  í•„ìš”ëŠ” ì—†ë‹¤. OccluderëŠ” ê³µì¤‘ì— ë›°ì–´ì„œ ë°°ì¹˜ í•˜ì§€ ì•ŠëŠ”ë‹¤.
 // 		fDist = m_pPlane[EPLANE_OCCLUDER_BOTTOM].DotProduct(&pSphere->center);
 // 		if (fDist <= pSphere->radius)
 // 		{
@@ -1414,9 +1414,9 @@ RwBool CNtlPLOccluder_Quad::OccluderTestSphere(RwSphere* pSphere)
 
 RwBool CNtlPLOccluder_Quad::OccluderTestBox(RwBBox* pBox)
 {
-	// Á¤È®ÇÏÁö ¾Ê´Ù. Á¤È®ÇÑ ÆÇ´ÜÀ» ÇÏ±â À§ÇØ¼­ ¿¬»êÀÌ Ãß°¡µÈ´Ù.
-	// ÇÏÁö¸¸ ¸ğµç Á¡ÀÌ Occluder Frustum ¾È¿¡ ¾ø´Ù¸é, Render ÇØ¾ßµÇ±â ¶§¹®¿¡ Á¤È®ÇÏ°Ô ¿¬»êÇÒ
-	// ÇÊ¿ä´Â ¾øÀ» °Í °°´Ù.
+	// ì •í™•í•˜ì§€ ì•Šë‹¤. ì •í™•í•œ íŒë‹¨ì„ í•˜ê¸° ìœ„í•´ì„œ ì—°ì‚°ì´ ì¶”ê°€ëœë‹¤.
+	// í•˜ì§€ë§Œ ëª¨ë“  ì ì´ Occluder Frustum ì•ˆì— ì—†ë‹¤ë©´, Render í•´ì•¼ë˜ê¸° ë•Œë¬¸ì— ì •í™•í•˜ê²Œ ì—°ì‚°í• 
+	// í•„ìš”ëŠ” ì—†ì„ ê²ƒ ê°™ë‹¤.
 	if (pBox->inf.x == pBox->sup.x && pBox->inf.y == pBox->sup.y && pBox->inf.z == pBox->sup.z)
 	{
 		return FALSE;
@@ -1549,7 +1549,7 @@ RwBool CNtlPLOccluder_Quad::Pick(RwReal* pfDist, RwInt32* piIndex)
 	RwBool bPicked	= FALSE;
 	RwReal fTemp	= 0.0f;
 
-	// ¹öÅØ½º¸¦ ¼±ÅÃ Çß´ÂÁö ¿©ºÎ¸¦ È®ÀÎ ÇÑ´Ù.
+	// ë²„í…ìŠ¤ë¥¼ ì„ íƒ í–ˆëŠ”ì§€ ì—¬ë¶€ë¥¼ í™•ì¸ í•œë‹¤.
 	if (piIndex)
 	{
 		*piIndex = -1;
@@ -1567,7 +1567,7 @@ RwBool CNtlPLOccluder_Quad::Pick(RwReal* pfDist, RwInt32* piIndex)
 		}
 	}
 
-	// µŞ¸é ¾Õ¸é ¸ğµÎ ÇÈÅ·ÀÌ °¡´ÉÇÏ´Ù.
+	// ë’·ë©´ ì•ë©´ ëª¨ë‘ í”½í‚¹ì´ ê°€ëŠ¥í•˜ë‹¤.
 	if(RtIntersectionLineTriangle(&rayCamera.start, &vRayDeltha, &m_vVertex[0], &m_vVertex[1], &m_vVertex[2], &fTemp))
 	{
 		bPicked = TRUE;
@@ -1620,7 +1620,7 @@ RwBool CNtlPLOccluder_Quad::PVSTest(RwV3d* pvStart, RwV3d* pvEnd)
 		}		
 	}
 
-	// intersection check¸¦ À§ÇØ¼­ y °ªÀ» Á¶Á¤ÇÑ´Ù.
+	// intersection checkë¥¼ ìœ„í•´ì„œ y ê°’ì„ ì¡°ì •í•œë‹¤.
 	vVertex[0].y = -2048.0f;
 	vVertex[3].y = -2048.0f;
 	
@@ -1637,7 +1637,7 @@ RwBool CNtlPLOccluder_Quad::PVSTest(RwV3d* pvStart, RwV3d* pvEnd)
 		return TRUE;
 	}
 	
-	// ¾ç¸éÀÏ °æ¿ì´Â µŞ¸éµµ È®ÀÎÇØ¾ß ÇÑ´Ù.
+	// ì–‘ë©´ì¼ ê²½ìš°ëŠ” ë’·ë©´ë„ í™•ì¸í•´ì•¼ í•œë‹¤.
 	if (m_ePlaneType == EPLOCCLUDER_PLANE_TWOSIDE)
 	{
 		if(RtIntersectionLineTriangle(pvStart, &vRayDeltha, &vVertex[2], &vVertex[1], &vVertex[0], &fDist))
@@ -1660,14 +1660,14 @@ void CNtlPLOccluder_Quad::CalcOccluderData()
 
 	if (IsOccluderFuncFlag(EPLOCCLUDER_FUNC_PVS))
 	{
-		// PVS ¿ë ´õ¹Ì ¿ÀÅ¬·ç´õ ÀÏ °æ¿ì. ScaleÀº 384.0f °¡ Max ÀÌ´Ù.
+		// PVS ìš© ë”ë¯¸ ì˜¤í´ë£¨ë” ì¼ ê²½ìš°. Scaleì€ 384.0f ê°€ Max ì´ë‹¤.
 		CLAMP(m_sOccluderSwap.vScale.x, 1.0f, 384.0f);
 		CLAMP(m_sOccluderSwap.vScale.y, 1.0f, 384.0f);
 		m_sOccluderSwap.vScale.z = 1.0f;
 	}
 	else
 	{
-		// ÀÏ¹İ(»ç°¢Çü) ¿ÀÅ¬·ç´õ ÀÏ °æ¿ì. ScaleÀº 512.0f °¡ Max ÀÌ´Ù.
+		// ì¼ë°˜(ì‚¬ê°í˜•) ì˜¤í´ë£¨ë” ì¼ ê²½ìš°. Scaleì€ 512.0f ê°€ Max ì´ë‹¤.
 		CLAMP(m_sOccluderSwap.vScale.x, 1.0f, 512.0f);
 		CLAMP(m_sOccluderSwap.vScale.y, 1.0f, 512.0f);
 		m_sOccluderSwap.vScale.z = 1.0f;
@@ -1675,7 +1675,7 @@ void CNtlPLOccluder_Quad::CalcOccluderData()
 
 	RwMatrixScale(&mat, &m_sOccluderSwap.vScale, rwCOMBINEREPLACE);
 
-	// ºôº¸µå ÀÏ¶§´Â vRotate°¡ Àû¿ë µÇÁö ¾Ê´Â´Ù.
+	// ë¹Œë³´ë“œ ì¼ë•ŒëŠ” vRotateê°€ ì ìš© ë˜ì§€ ì•ŠëŠ”ë‹¤.
 	if (GetOccluderPlaneType() != EPLOCCLUDER_PLANE_BILLBOARD)
 	{
 		RwMatrixRotate(&mat, &CNtlPLGlobal::m_vYAxisV3, m_sOccluderSwap.vRotate.y, rwCOMBINEPOSTCONCAT);
@@ -1704,7 +1704,7 @@ void CNtlPLOccluder_Quad::CalcOccluderData()
 
 		RwV3dTransformPoints(&m_vVertexOriginal[0], &vTemp[0], 4, &mat);
 
-		// ÀÏ¹İ(»ç°¢Çü) ¿ÀÅ¬·ç´õ ÀÏ °æ¿ì. Vertex Trans¸¦ Áö¿øÇÏ±â ¶§¹®¿¡. Max(512.0f)¸¦ ³Ñ¾ú´ÂÁö È®ÀÎÇÏ°í ±³Á¤ÇÑ´Ù.
+		// ì¼ë°˜(ì‚¬ê°í˜•) ì˜¤í´ë£¨ë” ì¼ ê²½ìš°. Vertex Transë¥¼ ì§€ì›í•˜ê¸° ë•Œë¬¸ì—. Max(512.0f)ë¥¼ ë„˜ì—ˆëŠ”ì§€ í™•ì¸í•˜ê³  êµì •í•œë‹¤.
 		for (int i = 0; i < 4; ++i)
 		{
 			RwV3d	vDir;

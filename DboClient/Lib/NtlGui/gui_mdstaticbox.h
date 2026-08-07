@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Name: class gui:CMDStaticBox
-// Desc: ÇÏ³ªÀÇ ÅØ½ºÃÄ ÀÌ¹ÌÁö·Î Âï°í ½ÍÀº °÷¿¡ 
-//       ´Ù¾çÇÑ ÇüÅÂÀÇ ÆùÆ®, »öÀ¸·Î ÅØ½ºÆ®¸¦ ÂïÀ» ¼ö ÀÖ´Ù.
+// Desc: í•˜ë‚˜ì˜ í…ìŠ¤ì³ ì´ë¯¸ì§€ë¡œ ì°ê³  ì‹¶ì€ ê³³ì— 
+//       ë‹¤ì–‘í•œ í˜•íƒœì˜ í°íŠ¸, ìƒ‰ìœ¼ë¡œ í…ìŠ¤íŠ¸ë¥¼ ì°ì„ ìˆ˜ ìˆë‹¤.
 //		 
 //
 // 2006.04.12 Peessi@hitel.net   
@@ -37,16 +37,16 @@ public:
 	VOID SetBkColor( COLORREF color, BOOL bRedraw = TRUE );
 	VOID SetBkMode( INT nMode, BOOL bRedraw = TRUE );	
 
-	VOID SetMinSize( INT nCX, INT nCY );			// ÃÖ¼Ò»çÀÌÁî
-	VOID SetMarginX( INT nMarginX );				// °¡·Î¿©¹é
-	VOID SetMarginY( INT nMarginY );				// »õ·Î¿©¹é
-	VOID SetInterval( INT nInterval );				// ÁÙ°£
+	VOID SetMinSize( INT nCX, INT nCY );			// ìµœì†Œì‚¬ì´ì¦ˆ
+	VOID SetMarginX( INT nMarginX );				// ê°€ë¡œì—¬ë°±
+	VOID SetMarginY( INT nMarginY );				// ìƒˆë¡œì—¬ë°±
+	VOID SetInterval( INT nInterval );				// ì¤„ê°„
 	
-	VOID SetBlankLine( INT nCY = -1 );				// DefaultÀÏ °æ¿ì Default³ôÀÌ °ªÀ¸·Î.
+	VOID SetBlankLine( INT nCY = -1 );				// Defaultì¼ ê²½ìš° Defaultë†’ì´ ê°’ìœ¼ë¡œ.
 		
 	INT  AddFont( const CHAR* pFontName, INT nHeight, INT nAttributes = 0 );
 
-	// CursorÀÇ À§Ä¡¿¡ µû¶ó ¼øÂ÷ÀûÀ¸·Î ¾Æ·¡ÇàÀ¸·Î Âï´Â´Ù.
+	// Cursorì˜ ìœ„ì¹˜ì— ë”°ë¼ ìˆœì°¨ì ìœ¼ë¡œ ì•„ë˜í–‰ìœ¼ë¡œ ì°ëŠ”ë‹¤.
 	VOID SetItem( const CHAR* szText, const CHAR* szName, DWORD dwFontIndex, DWORD dwStyle, COLORREF colorText, INT nX = 0, BOOL bAttachPrevLine = FALSE );
 	VOID SetItem( const CHAR* szText, const CHAR* szName, DWORD dwFontIndex, DWORD dwStyle, COLORREF colorText, COLORREF colorEffect, INT nEffectMode, INT nEffectValue, INT nX = 0, BOOL bAttachPrevLine = FALSE );
 
@@ -62,7 +62,7 @@ public:
 	VOID Format( const CHAR* szName, DWORD dwFontIndex, DWORD dwStyle, COLORREF colorText, INT nX, BOOL bAttachPrevLine, const WCHAR* format, ... );
 	VOID Format( const CHAR* szName, DWORD dwFontIndex, DWORD dwStyle, COLORREF colorText, COLORREF colorEffect, INT nEffectMode, INT nEffectValue,  INT nX, BOOL bAttachPrevLine, const WCHAR* format, ... );
 
-	// X,YÁÂÇ¥¸¦ ÁöÁ¤ÇÏ¿© Âï´Â ÇÔ¼ö. 
+	// X,Yì¢Œí‘œë¥¼ ì§€ì •í•˜ì—¬ ì°ëŠ” í•¨ìˆ˜. 
 	VOID SetItemXY( const CHAR* szText, const CHAR* szName, DWORD dwFontIndex, INT nX, INT nY, DWORD dwStyle, COLORREF colorText );
 	VOID SetItemXY( const CHAR* szText, const CHAR* szName, DWORD dwFontIndex, INT nX, INT nY, DWORD dwStyle, COLORREF colorText, COLORREF colorEffect, INT nEffectMode, INT nEffectValue );
 

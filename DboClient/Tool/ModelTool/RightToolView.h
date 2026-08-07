@@ -25,7 +25,7 @@ public:
         ENABLE_ANIMSET,
     };
 
-    /// È°¼ºÈ­µÈ ¿ŞÂÊ ºäÀÇ Á¾·ù
+    /// í™œì„±í™”ëœ ì™¼ìª½ ë·°ì˜ ì¢…ë¥˜
     enum ELeftPage
     {
         LEFT_PAGE_PC,
@@ -54,31 +54,31 @@ protected:
 
 public:
     static CRightToolView* GetInstance() {return m_Instance;};
-    void    SetInit(CMTCharacter* pCharacter);          ///< Edit¿¡ »ç¿ëÇÒ ¸ğµ¨ °´Ã¼¸¦ ¼³Á¤ÇÑ´Ù.    
-    void    SetEnable(ECtrlEnable eEnable);             ///< ÀüÃ¼ UIÀÇ È°¼ºÈ­/ºñÈ°¼ºÈ­¸¦ ¼±ÅÃÇÑ´Ù.
-    void    SetActiveLeftView(ELeftPage eActiveLeftPage); ///< ÇöÀç ÀÛ¾÷ÁßÀÎ ¿ŞÂÊ PageÀÇ Á¾·ù¸¦ ¼³Á¤ÇÑ´Ù.
-    void    SetAnimEventData(STypeAnimData* pAnimData); ///< Anim DataµéÀ» ¼¼ÆÃÇÑ´Ù.
+    void    SetInit(CMTCharacter* pCharacter);          ///< Editì— ì‚¬ìš©í•  ëª¨ë¸ ê°ì²´ë¥¼ ì„¤ì •í•œë‹¤.    
+    void    SetEnable(ECtrlEnable eEnable);             ///< ì „ì²´ UIì˜ í™œì„±í™”/ë¹„í™œì„±í™”ë¥¼ ì„ íƒí•œë‹¤.
+    void    SetActiveLeftView(ELeftPage eActiveLeftPage); ///< í˜„ì¬ ì‘ì—…ì¤‘ì¸ ì™¼ìª½ Pageì˜ ì¢…ë¥˜ë¥¼ ì„¤ì •í•œë‹¤.
+    void    SetAnimEventData(STypeAnimData* pAnimData); ///< Anim Dataë“¤ì„ ì„¸íŒ…í•œë‹¤.
 
 protected:
-    std::string GetAnimPath(CString sPathName);         ///< Anim ÆÄÀÏµéÀÇ °æ·Î¸¦ »ó´ë°æ·Î·Î ¹İÈ¯ÇÑ´Ù.
-    void    SetAnimData(RwUInt32 uiKey);                ///< Anim Data¸¦ ¼³Á¤ÇÑ´Ù.
-    void    SetUIStatus(EAnimSet eAnimSet);             ///< Anim Set¿¡ µû¶ó¼­ UI¸¦ È°¼º/ºñÈ°¼ºÈ­ ½ÃÅ²´Ù.    
-    void    CreateAnimFileMap();                        ///< µğÆúÆ®·Î »ç¿ëÇÒ Anim FIle MapÀ» »ı¼ºÇÑ´Ù.
+    std::string GetAnimPath(CString sPathName);         ///< Anim íŒŒì¼ë“¤ì˜ ê²½ë¡œë¥¼ ìƒëŒ€ê²½ë¡œë¡œ ë°˜í™˜í•œë‹¤.
+    void    SetAnimData(RwUInt32 uiKey);                ///< Anim Dataë¥¼ ì„¤ì •í•œë‹¤.
+    void    SetUIStatus(EAnimSet eAnimSet);             ///< Anim Setì— ë”°ë¼ì„œ UIë¥¼ í™œì„±/ë¹„í™œì„±í™” ì‹œí‚¨ë‹¤.    
+    void    CreateAnimFileMap();                        ///< ë””í´íŠ¸ë¡œ ì‚¬ìš©í•  Anim FIle Mapì„ ìƒì„±í•œë‹¤.
 
-    // UI º¯°æ¿¡ µû¸¥ Àû¿ë ¸Ş¼Òµåµé    
-    void    ChangeDamage(int nIndex);                   ///< Dmage°ªÀ» º¯°æÇÑ´Ù.    
+    // UI ë³€ê²½ì— ë”°ë¥¸ ì ìš© ë©”ì†Œë“œë“¤    
+    void    ChangeDamage(int nIndex);                   ///< Dmageê°’ì„ ë³€ê²½í•œë‹¤.    
 
 protected:
     static CRightToolView*  m_Instance;
-    CNtlPLCharacterParser   m_CharacterPaser;           ///< Ä³¸¯ÅÍ ÆÄ¼­ (¾Ö´Ï¸ŞÀÌ¼Ç Set ¶§¹®¿¡ »ç¿ë)
-    CMTCharacter*           m_pCharacter;               ///< »ç¿ëÇÒ ¸ğµ¨°´Ã¼ÀÇ Æ÷ÀÎÅÍ    
-    CNtlTypeAnimTable*      m_pAnimTable;               ///< Edit¿¡ »ç¿ëÇÒ AnimTable;
-    STypeAnimData*          m_pCurrentAnimData;         ///< ÇöÀç EditÁß¿£ AnimData;
-    RwUInt32                m_nCurrentAnimKey;          ///< Edit¿¡ »ç¿ëµÇ´Â ÇöÀç ¾Ö´Ï¸ŞÀÌ¼ÇÀÇ Key
-    EAnimSet                m_eAnimSetKind;             ///< ÇöÀç ÀÛ¾÷ÇÏ°í ÀÖ´Â AnimSet Á¾·ù
+    CNtlPLCharacterParser   m_CharacterPaser;           ///< ìºë¦­í„° íŒŒì„œ (ì• ë‹ˆë©”ì´ì…˜ Set ë•Œë¬¸ì— ì‚¬ìš©)
+    CMTCharacter*           m_pCharacter;               ///< ì‚¬ìš©í•  ëª¨ë¸ê°ì²´ì˜ í¬ì¸í„°    
+    CNtlTypeAnimTable*      m_pAnimTable;               ///< Editì— ì‚¬ìš©í•  AnimTable;
+    STypeAnimData*          m_pCurrentAnimData;         ///< í˜„ì¬ Editì¤‘ì—” AnimData;
+    RwUInt32                m_nCurrentAnimKey;          ///< Editì— ì‚¬ìš©ë˜ëŠ” í˜„ì¬ ì• ë‹ˆë©”ì´ì…˜ì˜ Key
+    EAnimSet                m_eAnimSetKind;             ///< í˜„ì¬ ì‘ì—…í•˜ê³  ìˆëŠ” AnimSet ì¢…ë¥˜
     SEventAnimHit*          m_vEventAnimHit[MAX_HIT_EVENT_COUNT];        ///< Hit Event     
-    ELeftPage               m_eActiveLeftPage;          ///< ÇöÀç ÀÛ¾÷ÁßÀÎ ¿ÜÂÊ PAGEÀÇ Á¾·ù
-    MapAnimFile             m_mapAnimFile;              ///< µğÆúÆ®·Î »ç¿ëÇÒ Anim FileµéÀÇ ¸Ê
+    ELeftPage               m_eActiveLeftPage;          ///< í˜„ì¬ ì‘ì—…ì¤‘ì¸ ì™¸ìª½ PAGEì˜ ì¢…ë¥˜
+    MapAnimFile             m_mapAnimFile;              ///< ë””í´íŠ¸ë¡œ ì‚¬ìš©í•  Anim Fileë“¤ì˜ ë§µ
 
 public:
     CComboBox m_cbAnimSet;

@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: ClassExplainGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 10. 17
 * Abstract		: 
 *****************************************************************************
-* Desc			: ·Îºñ¿¡¼­ Å¬·¡½º¿¡ ´ëÇÑ ¼³¸íÀ» º¸¿©ÁØ´Ù
+* Desc			: ë¡œë¹„ì—ì„œ í´ë˜ìŠ¤ì— ëŒ€í•œ ì„¤ëª…ì„ ë³´ì—¬ì¤€ë‹¤
 *****************************************************************************/
 
 #pragma once
@@ -47,11 +47,11 @@ protected:
 protected:
 	gui::CSlot			m_slotPaint;
 
-	CWindowby3			m_Background;		///< ¹è°æ
+	CWindowby3			m_Background;		///< ë°°ê²½
 
-	CSurfaceGui			m_srtClassNameBack;	///< Å¬·¡½º ÀÌ¸§ ¹è°æ
+	CSurfaceGui			m_srtClassNameBack;	///< í´ë˜ìŠ¤ ì´ë¦„ ë°°ê²½
 
 	gui::CStaticBox*	m_pTitleStatic;
-	gui::CStaticBox*	m_pClassName;		///< Å¬·¡½º ÀÌ¸§
-	gui::CHtmlBox*		m_pExplainHtml;		///< Å¬·¡½º ¼³¸í
+	gui::CStaticBox*	m_pClassName;		///< í´ë˜ìŠ¤ ì´ë¦„
+	gui::CHtmlBox*		m_pExplainHtml;		///< í´ë˜ìŠ¤ ì„¤ëª…
 };

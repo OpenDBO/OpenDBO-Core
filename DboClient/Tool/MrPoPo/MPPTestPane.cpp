@@ -1,4 +1,4 @@
-// MPPTestPane.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// MPPTestPane.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -7,7 +7,7 @@
 #include "CNtlMrPoPoMsg.h"
 #include "MPPClientEvent.h"
 
-/// °üÁßÀÇ»óÅÂ
+/// ê´€ì¤‘ì˜ìƒíƒœ
 enum ETBCrowdStepType
 {
     E_STEP_BASIC,
@@ -75,7 +75,7 @@ BEGIN_MESSAGE_MAP(CMPPTestPane, CXTResizeFormView)
 END_MESSAGE_MAP()
 
 
-// CMPPTestPane Áø´ÜÀÔ´Ï´Ù.
+// CMPPTestPane ì§„ë‹¨ì…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CMPPTestPane::AssertValid() const
@@ -92,7 +92,7 @@ void CMPPTestPane::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CMPPTestPane ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CMPPTestPane ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 void CMPPTestPane::OnInitialUpdate()
 {
     CXTResizeFormView::OnInitialUpdate();
@@ -110,31 +110,31 @@ void CMPPTestPane::OnInitialUpdate()
     m_cbCrowdTest.InsertString(E_STEP_KO, L"KO");
     m_cbCrowdTest.SetCurSel(0);
 
-    // ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ÄªÈ£ ÀÌÆåÆ®    
+    // ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì¹­í˜¸ ì´í™íŠ¸    
     m_cmbTenkaichi.AddString(L"NONE");
     m_cmbTenkaichi.AddString(L"1");    
     m_cmbTenkaichi.AddString(L"2");
     m_cmbTenkaichi.AddString(L"3");
 
-    // ÄÃ·¯ Ã¼ÀÎÁö ÀÌº¥Æ®
+    // ì»¬ëŸ¬ ì²´ì¸ì§€ ì´ë²¤íŠ¸
     m_cbColorChange.AddString(L"START");
     m_cbColorChange.AddString(L"END");
     m_cbColorChange.AddString(L"ANIM");
 
-    // ½ºÅ×ÀÌÆ® Ã¼ÀÎÁö 
+    // ìŠ¤í…Œì´íŠ¸ ì²´ì¸ì§€ 
     m_cbStateChange.AddString(L"IDLE");
     m_cbStateChange.AddString(L"SPIN ATTACK");
     m_cbStateChange.SetItemData(0, 3);
     m_cbStateChange.SetItemData(1, 51);
 
-    // º¯½Å ÀÌº¥Æ®    
+    // ë³€ì‹  ì´ë²¤íŠ¸    
     m_cbTransform.AddString(L"Super Saiyan");
     m_cbTransform.AddString(L"Pure Majin");
     m_cbTransform.AddString(L"Great Namek");    
     m_cbTransform.AddString(L"KaiouKen");
     m_cbTransform.AddString(L"NONE");
 
-    // ½ºÅÏ Å¸ÀÔ
+    // ìŠ¤í„´ íƒ€ì…
     m_cbStunType.AddString(L"GENERAL");
     m_cbStunType.AddString(L"FROZEN");
     m_cbStunType.AddString(L"TIED");

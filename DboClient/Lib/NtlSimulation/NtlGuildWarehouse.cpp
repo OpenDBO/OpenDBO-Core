@@ -341,7 +341,7 @@ void CNtlGuildWarehouse::ItemMoveEventHandler(RWS::CMsg &pMsg)
 	SNtlGuildWarehouseItemMove* pEvent = reinterpret_cast<SNtlGuildWarehouseItemMove*>(pMsg.pData);	
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
 
-	// ±æµå Ã¢°í¿¡¼­ ¾ÆÀÌÅÛÀ».....
+	// ê¸¸ë“œ ì°½ê³ ì—ì„œ ì•„ì´í…œì„.....
 	if( CONTAINER_TYPE_GUILD_FIRST <= pEvent->bySrcPlace && pEvent->bySrcPlace <= CONTAINER_TYPE_GUILD_LAST )
 	{
 		RwUInt8 bySrcIndex = (RwUInt8)(pEvent->bySrcPlace - CONTAINER_TYPE_GUILD_FIRST);
@@ -599,7 +599,7 @@ void CNtlGuildWarehouse::ItemStackMoveEventHandler(RWS::CMsg &msg)
 		}
 
 	}
-	// ÇÏ³ª·Î ÇÕÃÄÁú ¶§
+	// í•˜ë‚˜ë¡œ í•©ì³ì§ˆ ë•Œ
 	else if( pEvent->bySrcStackCount == 0 )
 	{
 		if( CONTAINER_TYPE_GUILD_FIRST <= pEvent->bySrcPlace && pEvent->bySrcPlace <= CONTAINER_TYPE_GUILD_LAST &&
@@ -654,7 +654,7 @@ void CNtlGuildWarehouse::ItemStackMoveEventHandler(RWS::CMsg &msg)
 		}
 	}
 
-	// µÑ ´Ù Á¸ÀçÇÒ ¶§
+	// ë‘˜ ë‹¤ ì¡´ì¬í•  ë•Œ
 	else
 	{
 		if( CONTAINER_TYPE_GUILD_FIRST <= pEvent->bySrcPlace && pEvent->bySrcPlace <= CONTAINER_TYPE_GUILD_LAST &&

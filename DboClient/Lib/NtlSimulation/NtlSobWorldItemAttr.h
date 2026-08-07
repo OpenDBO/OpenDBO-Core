@@ -2,7 +2,7 @@
 *
 * File			: CNtlSobWorldItem.h
 * Author		: Peessi
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2006. 7. 12	
 * Abstract		: Simulation object World item attribute base class
 *****************************************************************************

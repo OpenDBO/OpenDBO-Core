@@ -188,10 +188,10 @@ RwBool CDboGlobal::Create(HWND hWnd)
 
 #endif
 
-	// net sender callback  µî·Ï.
+	// net sender callback  ë“±ë¡.
 	CNtlNetSender::LinkNotifySendPacketFunc(CallbackNetSendPacket);
 
-	// packet generator »ı¼º.
+	// packet generator ìƒì„±.
 	m_pLoginPacketGenerator = NTL_NEW CLoginPacketGenerator(m_pLoginNetSender);	
 	m_pLobbyPacketGenerator = NTL_NEW CLobbyPacketGenerator(m_pLobbyNetSender);	
 	m_pGamePacketGenerator = NTL_NEW CGamePacketGenerator(m_pGameNetSender);	
@@ -287,7 +287,7 @@ RwBool CDboGlobal::LoadConfigOptions(const RwChar *pFileName)
 
     char chBuffer[1024] = {0,};
     
-	// config operationÀ» ¾ò¾î¿Â´Ù.
+	// config operationì„ ì–»ì–´ì˜¨ë‹¤.
 	IXMLDOMNode* pNode = doc.SelectSingleNode((char*)"/config_options/op");
 	
 	if(!doc.GetTextWithAttributeName(pNode, "ver", chBuffer, 1024))

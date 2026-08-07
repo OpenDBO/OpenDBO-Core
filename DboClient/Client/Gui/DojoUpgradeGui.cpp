@@ -148,12 +148,12 @@ RwBool CDojoUpradeGui::Create()
 	m_NeedItemBackground.SetSize(298, 50);
 	m_NeedItemBackground.SetPositionfromParent(11, 292);
 
-	// ¾÷±×·¹ÀÌµå Àç·á ½½·Ô
+	// ì—…ê·¸ë ˆì´ë“œ ìž¬ë£Œ ìŠ¬ë¡¯
 	m_StuffSlot.Create(m_pThis, DIALOG_DOGI, REGULAR_SLOT_ITEM_SOB);
 	m_StuffSlot.SetPosition_fromParent(268, 301);
 
 
-	// ½ºÆ®¸µ
+	// ìŠ¤íŠ¸ë§
 	m_pDialogName					->SetText( GetDisplayStringManager()->GetString("DST_DOJO_UPGRADE") );
 	m_pDojoNameStatic				->SetText( GetDisplayStringManager()->GetString("DST_DOJO_NAME") );	
 	m_pNeedGuildPointStatic			->SetText( GetDisplayStringManager()->GetString("DST_DOJO_NEED_GUILD_POINT") );
@@ -168,7 +168,7 @@ RwBool CDojoUpradeGui::Create()
 	// default value
 	m_pDialogName->SetPosition(DBOGUI_DIALOG_TITLE_X, DBOGUI_DIALOG_TITLE_Y);	
 
-	// ±âº» À§Ä¡ ÁöÁ¤
+	// ê¸°ë³¸ ìœ„ì¹˜ ì§€ì •
 	OnMove(0, 0);
 
 
@@ -708,7 +708,7 @@ VOID CDojoUpradeGui::OnMouseUp(const CKey& key)
 						{
 							CNtlSobItemAttr* pSobItemAttr = reinterpret_cast<CNtlSobItemAttr*>(pSobItem->GetSobAttr());
 
-							// ¹ÌÈ®ÀÎ ¾ÆÀÌÅÛÀÌ ¾Æ´Ñ °Í¸¸ µî·Ï
+							// ë¯¸í™•ì¸ ì•„ì´í…œì´ ì•„ë‹Œ ê²ƒë§Œ ë“±ë¡
 							if( FALSE == pSobItemAttr->IsNeedToIdentify() )
 							{
 								sITEM_TBLDAT* pITEM_TBLDAT = pSobItemAttr->GetItemTbl();
@@ -716,7 +716,7 @@ VOID CDojoUpradeGui::OnMouseUp(const CKey& key)
 								{
 									if( ITEM_TYPE_HOIPOIROCK == pITEM_TBLDAT->byItem_Type )
 									{
-										// °¡¹æ¿¡¼­ µµÀå ¾÷±×·¹ÀÌµå Àç·á ¾ÆÀÌÅÛÀ» µî·ÏÇß´Ù
+										// ê°€ë°©ì—ì„œ ë„ìž¥ ì—…ê·¸ë ˆì´ë“œ ìž¬ë£Œ ì•„ì´í…œì„ ë“±ë¡í–ˆë‹¤
 										SetHoipoiRock(hItem, pSobItemAttr->GetStackNum());
 										GetIconMoveManager()->IconMoveEnd();
 									}
@@ -746,7 +746,7 @@ VOID CDojoUpradeGui::OnMouseUp(const CKey& key)
 		{
 			if( m_byRightMouseDown == iSlot )
 			{
-				// µî·ÏµÈ µµÀå ¾÷±×·¹ÀÌµå ¾ÆÀÌÅÛÀ» Áö¿î´Ù				
+				// ë“±ë¡ëœ ë„ìž¥ ì—…ê·¸ë ˆì´ë“œ ì•„ì´í…œì„ ì§€ìš´ë‹¤				
 				CheckInfoWindow();
 				UnsetHoipoiRock();
 			}
@@ -784,7 +784,7 @@ VOID CDojoUpradeGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 {
 	CRectangle rtScreen = m_pThis->GetScreenRect();
 
-	// Àç·á ½½·Ô ÀÎÆ÷
+	// ìž¬ë£Œ ìŠ¬ë¡¯ ì¸í¬
 	if( m_StuffSlot.PtInRect(nX, nY) )
 	{
 		if( m_StuffSlot.GetSerial() != INVALID_SERIAL_ID )
@@ -807,7 +807,7 @@ VOID CDojoUpradeGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 		m_bSlotFocus = FALSE;
 	}
 
-	// µµÀå ·¹º§ ¼³¸í ÀÎÆ÷
+	// ë„ìž¥ ë ˆë²¨ ì„¤ëª… ì¸í¬
 	RwBool		bExistDojoLevelInfo = TRUE;
 	CRectangle	rtLeftDojoVisual, rtRightDojoVisual;
 
@@ -1027,7 +1027,7 @@ VOID CDojoUpradeGui::HandleEvents( RWS::CMsg &msg )
 
 		if( m_hNPCSerial == *pDeleteSerial )
 		{
-			// NPC ¼­¹ö°¡ ´Ù¿îµÇ°Å³ª ÇÏ¿© °©ÀÚ±â NPC°¡ »ç¶óÁö´Â °æ¿ì
+			// NPC ì„œë²„ê°€ ë‹¤ìš´ë˜ê±°ë‚˜ í•˜ì—¬ ê°‘ìžê¸° NPCê°€ ì‚¬ë¼ì§€ëŠ” ê²½ìš°
 			GetDialogManager()->CloseDialog(DIALOG_DOJO_UPGRADE);
 		}
 	}
@@ -1074,7 +1074,7 @@ VOID CDojoUpradeGui::HandleEvents( RWS::CMsg &msg )
 	}
 	else if( msg.Id == g_EventNotifyGuild )
 	{
-		// GUI¸¦ ¿­ ¶§¸¶´Ù Á¤º¸¸¦ °»½ÅÇÏ±â¿¡ ´ÝÇôÀÖ´Â »óÅÂ¿¡¼­´Â °»½ÅÇÏÁö ¾Ê´Â´Ù
+		// GUIë¥¼ ì—´ ë•Œë§ˆë‹¤ ì •ë³´ë¥¼ ê°±ì‹ í•˜ê¸°ì— ë‹«í˜€ìžˆëŠ” ìƒíƒœì—ì„œëŠ” ê°±ì‹ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		if( FALSE == GetDialogManager()->IsOpenDialog(DIALOG_DOJO_UPGRADE) )
 			NTL_RETURNVOID();
 
@@ -1136,7 +1136,7 @@ VOID CDojoUpradeGui::HandleEvents( RWS::CMsg &msg )
 			{
 				if( NULL == GetNtlSobManager()->GetSobObject(m_StuffSlot.GetSerial()) )
 				{
-					// µî·ÏÇß´ø È£ÀÌÆ÷ÀÌ¶ôÀÌ »ç¶óÁ³´Ù
+					// ë“±ë¡í–ˆë˜ í˜¸ì´í¬ì´ë½ì´ ì‚¬ë¼ì¡Œë‹¤
 					CheckInfoWindow();
 					UnsetHoipoiRock();
 				}
@@ -1145,7 +1145,7 @@ VOID CDojoUpradeGui::HandleEvents( RWS::CMsg &msg )
 	}
 	else if( msg.Id == g_EventDirectMoveIcon )
 	{
-		// GUI¸¦ ¿­ ¶§¸¶´Ù Á¤º¸¸¦ °»½ÅÇÏ±â¿¡ ´ÝÇôÀÖ´Â »óÅÂ¿¡¼­´Â °»½ÅÇÏÁö ¾Ê´Â´Ù
+		// GUIë¥¼ ì—´ ë•Œë§ˆë‹¤ ì •ë³´ë¥¼ ê°±ì‹ í•˜ê¸°ì— ë‹«í˜€ìžˆëŠ” ìƒíƒœì—ì„œëŠ” ê°±ì‹ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		if( FALSE == GetDialogManager()->IsOpenDialog(DIALOG_DOJO_UPGRADE) )
 			NTL_RETURNVOID();
 
@@ -1159,7 +1159,7 @@ VOID CDojoUpradeGui::HandleEvents( RWS::CMsg &msg )
 	}
 	else if( msg.Id == g_EventDojoNotify )
 	{
-		// GUI¸¦ ¿­ ¶§¸¶´Ù Á¤º¸¸¦ °»½ÅÇÏ±â¿¡ ´ÝÇôÀÖ´Â »óÅÂ¿¡¼­´Â °»½ÅÇÏÁö ¾Ê´Â´Ù
+		// GUIë¥¼ ì—´ ë•Œë§ˆë‹¤ ì •ë³´ë¥¼ ê°±ì‹ í•˜ê¸°ì— ë‹«í˜€ìžˆëŠ” ìƒíƒœì—ì„œëŠ” ê°±ì‹ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		if( FALSE == GetDialogManager()->IsOpenDialog(DIALOG_DOJO_UPGRADE) )
 			NTL_RETURNVOID();
 
@@ -1197,7 +1197,7 @@ VOID CDojoUpradeGui::HandleEvents( RWS::CMsg &msg )
 	}
 	else if( msg.Id == g_EventEnableItemIcon )
 	{
-		// GUI¸¦ ¿­ ¶§¸¶´Ù Á¤º¸¸¦ °»½ÅÇÏ±â¿¡ ´ÝÇôÀÖ´Â »óÅÂ¿¡¼­´Â °»½ÅÇÏÁö ¾Ê´Â´Ù
+		// GUIë¥¼ ì—´ ë•Œë§ˆë‹¤ ì •ë³´ë¥¼ ê°±ì‹ í•˜ê¸°ì— ë‹«í˜€ìžˆëŠ” ìƒíƒœì—ì„œëŠ” ê°±ì‹ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		if( FALSE == GetDialogManager()->IsOpenDialog(DIALOG_DOJO_UPGRADE) )
 			NTL_RETURNVOID();
 

@@ -2,17 +2,17 @@
 #include "afxcmn.h"
 
 
-// CPalettePerformance ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPalettePerformance ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CPalettePerformance : public CDialog
 {
 	DECLARE_DYNAMIC(CPalettePerformance)
 
 public:
-	CPalettePerformance(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CPalettePerformance(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CPalettePerformance();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_PERFORMANCE };
 	enum ETAB_ID
 	{
@@ -28,7 +28,7 @@ protected:
 	ETAB_ID m_eTabID[ETAB_ID_NUM];
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

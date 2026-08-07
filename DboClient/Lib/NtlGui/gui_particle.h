@@ -1,12 +1,12 @@
 /*****************************************************************************
 * File			: gui_particle.h
 * Author		: HaeSung, Cho
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2008. 9. 18
 * Abstract		: 
 *****************************************************************************
 * Desc          : 
-* DBO¿« ∆ƒ∆º≈¨
+* DBOÏùò ÌååÌã∞ÌÅ¥
 * gui_particle.h .cpp
 * gui_particlebox.h .cpp
 * gui_particlebox_generic.h .cpp
@@ -37,24 +37,24 @@ public:
 	void	Update( float fElapsed );
 	BOOL	IsDie()						{ return m_bDie; }
 
-	float		m_fLifeTime;		///< ª˝∏Ì(√ )
+	float		m_fLifeTime;		///< ÏÉùÎ™Ö(Ï¥à)
 	float		m_fAge;
 
-	RwV2d		m_v2dPos;			///< ¿ßƒ°
-	RwV2d		m_v2dDir;			///< º”µµ
+	RwV2d		m_v2dPos;			///< ÏúÑÏπò
+	RwV2d		m_v2dDir;			///< ÏÜçÎèÑ
 	
-	CSurface		m_surParticle;	///< º≠∆‰¿ÃΩ∫
+	CSurface		m_surParticle;	///< ÏÑúÌéòÏù¥Ïä§
 	PlaneSnapShot	m_OriginSnapShot;
 
-	int			m_nWidth;			///< º≠∆‰¿ÃΩ∫ ≈©±‚
+	int			m_nWidth;			///< ÏÑúÌéòÏù¥Ïä§ ÌÅ¨Í∏∞
 	int			m_nHeight;
 
-	float		m_fRotate;			///< Rotate µ… ºˆƒ°
+	float		m_fRotate;			///< Rotate Îê† ÏàòÏπò
 
-	float		m_fScale;			///< Scale∞™
+	float		m_fScale;			///< ScaleÍ∞í
 
 protected:	
-	BOOL		m_bDie;				///< ¡◊æ˙≥™?
+	BOOL		m_bDie;				///< Ï£ΩÏóàÎÇò?
 };
 
 ///< Type

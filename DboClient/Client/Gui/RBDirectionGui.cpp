@@ -286,7 +286,7 @@ VOID CRBDirectionGui::OnKameTeamMemberMovieEnd( gui::CComponent* pComponent )
 	{
 		if (pComponent == m_pflaKameTeamMember[i])
 		{
-			++i;		// i´Â ´ÙÀ½¿¡ ÇÃ·¹ÀÌ µÇ´Â ÀÎµ¦½º
+			++i;		// iëŠ” ë‹¤ìŒì— í”Œë ˆì´ ë˜ëŠ” ì¸ë±ìŠ¤
 			break;
 		}
 	}
@@ -312,7 +312,7 @@ VOID CRBDirectionGui::OnTsuruTeamMemberMovieEnd( gui::CComponent* pComponent )
 	{
 		if (pComponent == m_pflaTsuruTeamMember[i])
 		{
-			++i;		// i´Â ´ÙÀ½¿¡ ÇÃ·¹ÀÌ µÇ´Â ÀÎµ¦½º
+			++i;		// iëŠ” ë‹¤ìŒì— í”Œë ˆì´ ë˜ëŠ” ì¸ë±ìŠ¤
 			break;
 		}
 	}

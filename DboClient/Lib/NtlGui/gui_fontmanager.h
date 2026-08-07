@@ -1,12 +1,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Name: class gui::CFontmanager
-// Desc: Text¸¦ Ç¥ÇöÇÑ´Ù.
+// Desc: Textë¥¼ í‘œí˜„í•œë‹¤.
 //
 // Created by jhssugi@ntl-inc.com	
 // 2007.01.26 Peessi@hitel.net   
 //
 // To Be Desired: 
-//	1. ÆùÆ®¸¦ º¸¾ÈÀ» À§ÇÏ¿© ÆÄÀÏ·Î ÀĞÁö¸»°í ¸Ş¸ğ¸®·Î ÀĞ´Â °ÍÀ¸·Î.
+//	1. í°íŠ¸ë¥¼ ë³´ì•ˆì„ ìœ„í•˜ì—¬ íŒŒì¼ë¡œ ì½ì§€ë§ê³  ë©”ëª¨ë¦¬ë¡œ ì½ëŠ” ê²ƒìœ¼ë¡œ.
 ////////////////////////////////////////////////////////////////////////////////
 #ifndef __GUI_FONTMANAGER_H__
 #define __GUI_FONTMANAGER_H__
@@ -86,8 +86,8 @@ private:
 	int m_nDCHeight;
 	int m_nDCShift;
 
-	std::map<std::string,CGuiFont*> m_mapFont;				// ÆùÆ®Å°
-	std::map<std::string,stGUIFONTINFO> m_mapFontResource;	// Á¤ÀÇµÈÆùÆ®ÀÌ¸§. ÆùÆ®½ÇÁ¦ÀÌ¸§.
+	std::map<std::string,CGuiFont*> m_mapFont;				// í°íŠ¸í‚¤
+	std::map<std::string,stGUIFONTINFO> m_mapFontResource;	// ì •ì˜ëœí°íŠ¸ì´ë¦„. í°íŠ¸ì‹¤ì œì´ë¦„.
 
 	FLOAT* m_pOutlineMatrix[GUI_FONT_OUTLINE_MAXVALUE];
 	INT	   m_nOutlineMatrixIndex[GUI_FONT_OUTLINE_MAXVALUE];

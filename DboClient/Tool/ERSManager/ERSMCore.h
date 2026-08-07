@@ -4,7 +4,7 @@ NCDeclareSGT(ERSMCore);
 
 /**
  * \ingroup ERSManager
- * \brief ERSManagerÀÇ ¸ŞÀÎ Ã³¸®¸¦ ÇÏ´Â Core Å¬·¡½º
+ * \brief ERSManagerì˜ ë©”ì¸ ì²˜ë¦¬ë¥¼ í•˜ëŠ” Core í´ë˜ìŠ¤
  * \date 2007-01-26
  * \author agebreak
  */
@@ -15,7 +15,7 @@ public:
     virtual ~ERSMCore(void);
 
 protected:
-    void   Init();                                          ///< ÃÊ±âÈ­ ÀÛ¾÷À» ¼öÇàÇÑ´Ù.
-    void   Destroy();                                       ///< ¸¶¹«¸® ÀÛ¾÷À» ¼öÇàÇÑ´Ù.
-    void   Run();                                           ///< ½º·¹µå¸¦ »ı¼ºÇÏ¿©, ÀÛ¾÷À» ¼öÇàÇÑ´Ù.
+    void   Init();                                          ///< ì´ˆê¸°í™” ì‘ì—…ì„ ìˆ˜í–‰í•œë‹¤.
+    void   Destroy();                                       ///< ë§ˆë¬´ë¦¬ ì‘ì—…ì„ ìˆ˜í–‰í•œë‹¤.
+    void   Run();                                           ///< ìŠ¤ë ˆë“œë¥¼ ìƒì„±í•˜ì—¬, ì‘ì—…ì„ ìˆ˜í–‰í•œë‹¤.
 };

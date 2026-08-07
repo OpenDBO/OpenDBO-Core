@@ -2,7 +2,7 @@
 *
 * File			: NtlPLDistanceFilterGroup.h
 * Author		: HyungSuk, Jang
-* Copyright	: (ÁÖ)NTL
+* Copyright	: (ì£¼)NTL
 * Date			: 2006. 12. 12	
 * Abstract		: Presentation distance filtering group 
 *****************************************************************************
@@ -17,8 +17,8 @@ class CNtlPLEntity;
 
 /**
 * \ingroup NtlPresentation
-* °°Àº Á¾·ùÀÇ entity¸¦ group °ü¸®ÇÏ´Â °´Ã¼.
-* stl ¿¬°ü ¹è¿­ mapÀ» »ç¿ëÇÑ´Ù.
+* ê°™ì€ ì¢…ë¥˜ì˜ entityë¥¼ group ê´€ë¦¬í•˜ëŠ” ê°ì²´.
+* stl ì—°ê´€ ë°°ì—´ mapì„ ì‚¬ìš©í•œë‹¤.
 *
 */
 
@@ -59,46 +59,46 @@ public:
 	~CNtlPLDistanceFilterGroup();
 
 	/**
-	*  distance filtering group °´Ã¼°¡ »ı¼ºµÈ ´ÙÀ½ È£ÃâÇÏ´Â ÇÔ¼ö.
+	*  distance filtering group ê°ì²´ê°€ ìƒì„±ëœ ë‹¤ìŒ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜.
 	*  \see Destroy
 	*/
 	RwBool Create(void);
 
 	/**
-	*  distance filtering group °´Ã¼°¡ »èÁ¦µÇ±â Àü¿¡ È£ÃâÇÏ´Â ÇÔ¼ö.
+	*  distance filtering group ê°ì²´ê°€ ì‚­ì œë˜ê¸° ì „ì— í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜.
 	*  \see Create
 	*/
 	void Destroy(void);
 
 	/**
-	*  distance filtering group¿¡ entity¸¦ Ãß°¡ÇÑ´Ù.
+	*  distance filtering groupì— entityë¥¼ ì¶”ê°€í•œë‹¤.
 	*  \see RemoveEntity
 	*/
 	void AddEntity(CNtlPLEntity *pPLEntity);
 
 	/**
-	*  distance filtering group¿¡ entity¸¦ Á¦°ÅÇÑ´Ù.
+	*  distance filtering groupì— entityë¥¼ ì œê±°í•œë‹¤.
 	*  \see RemoveEntity
 	*/
 	void RemoveEntity(CNtlPLEntity *pPLEntity);
 
 	/**
-	*  next update filterÀ» ¾ò¾î¿Â´Ù.
+	*  next update filterì„ ì–»ì–´ì˜¨ë‹¤.
 	*/
 	const MapSet* GetNextUpdateSet(void);
 
 	/**
-	*  distance filtering groupÀ» ¾ò¾î¿Â´Ù.
+	*  distance filtering groupì„ ì–»ì–´ì˜¨ë‹¤.
 	*/
 	const ListGroup& GetEntities(void) const;
 
 	/**
-	*  distance filtering set °¹¼ö.
+	*  distance filtering set ê°¯ìˆ˜.
 	*/
 	RwInt32 GetFilterSetCount(void);
 
 	/**
-	*  distance filtering group¿¡ Æ÷ÇÔµÈ ÃÑ entityÀÇ °¹¼ö.
+	*  distance filtering groupì— í¬í•¨ëœ ì´ entityì˜ ê°¯ìˆ˜.
 	*/
 	RwInt32 GetEntityCount(void);
 };

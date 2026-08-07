@@ -2,7 +2,7 @@
  *
  * File			: NtlSobProjectileAttr.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 11. 30	
  * Abstract		: Simulation object projectile attribute base class
  *****************************************************************************

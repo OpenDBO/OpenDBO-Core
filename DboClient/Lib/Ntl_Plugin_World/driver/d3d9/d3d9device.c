@@ -801,7 +801,7 @@ D3D9DeviceSystemOpen(void *out __RWUNUSED__,
     {
         RwChar buffer[256];
         RwInt32 len;
-        MEMORYSTATUS memstats;
+        MEMORYSTATUSEX memstats;
 
         /* OS info */
         len = rwsprintf(buffer, "\nOS Info: ");
@@ -811,8 +811,9 @@ D3D9DeviceSystemOpen(void *out __RWUNUSED__,
         RWSRCGLOBAL(debugFunction) (rwDEBUGMESSAGE,
             "------------------------------------------------------------------------------");
 
-        GlobalMemoryStatus(&memstats);
-        len = (memstats.dwTotalPhys / (1024 * 1024));
+        memstats.dwLength = sizeof(MEMORYSTATUSEX);
+        GlobalMemoryStatusEx(&memstats);
+        len = (int)(memstats.ullTotalPhys / (1024 * 1024));
         len = ((len + 1) & 0xfffffffe); /* Round up to a multiple of 2 */
         rwsprintf(buffer, "   RAM:    %d MB", len);
         RWSRCGLOBAL(debugFunction) (rwDEBUGMESSAGE, buffer);
@@ -1200,9 +1201,10 @@ D3D9SetPresentParameters(const D3DDISPLAYMODE *mode,
     Present.MultiSampleType = D3DMULTISAMPLE_NONE;
     Present.MultiSampleQuality = 0;
 
-    if ( EnableFullScreenDialogBoxMode == FALSE &&
-         (SelectedMultisamplingLevels > 1 ||
-          SelectedMultisamplingLevelsNonMask > 1) )
+    /* Force 8x MSAA: the original gate (SelectedMultisamplingLevels > 1)
+       is false when AA is disabled in config (level 1), so MSAA was
+       never applied. Always attempt 8x, falling back to NONMASKABLE. */
+    if (TRUE)
     {
         RwUInt32 maxQualityLevels = 0;
         HRESULT hr;
@@ -1213,14 +1215,14 @@ D3D9SetPresentParameters(const D3DDISPLAYMODE *mode,
                                                 Present.BackBufferFormat,
                                                 Present.Windowed,
                                                 (D3DMULTISAMPLE_TYPE)
-                                                SelectedMultisamplingLevels,
+                                                D3DMULTISAMPLE_8_SAMPLES,
                                                 &maxQualityLevels);
 
         if (SUCCEEDED(hr) &&
             maxQualityLevels > 0)
         {
             Present.MultiSampleType = ((D3DMULTISAMPLE_TYPE)
-                                    SelectedMultisamplingLevels);
+                                    D3DMULTISAMPLE_8_SAMPLES);
 
             Present.MultiSampleQuality = maxQualityLevels - 1;
         }
@@ -1257,6 +1259,16 @@ D3D9SetPresentParameters(const D3DDISPLAYMODE *mode,
         if (Present.MultiSampleType != D3DMULTISAMPLE_NONE)
         {
             Present.SwapEffect = D3DSWAPEFFECT_DISCARD;
+        }
+
+        {
+            RwChar msaaBuf[128];
+            rwsprintf(msaaBuf,
+                      "DBO-MSAA: MultiSampleType=%u Quality=%u "
+                      "(requested 8x)",
+                      (RwUInt32) Present.MultiSampleType,
+                      (RwUInt32) Present.MultiSampleQuality);
+            OutputDebugStringA(msaaBuf);
         }
     }
 

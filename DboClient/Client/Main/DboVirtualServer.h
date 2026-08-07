@@ -2,7 +2,7 @@
  *
  * File			: DboVirtualServer.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 9. 30	
  * Abstract		: DBO virtual server
  *****************************************************************************

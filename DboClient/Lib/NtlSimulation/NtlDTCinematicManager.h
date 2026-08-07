@@ -2,11 +2,11 @@
  *
  * File			: NtlDTCinematicManager.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2007. 06. 27	
  * Abstract		: direct cinematic node manager
  *****************************************************************************
- * Desc         : cinematic ¿¬ÃâÀ» À§ÇÑ nodeÀÇ °ü¸®ÀÚ.
+ * Desc         : cinematic ì—°ì¶œì„ ìœ„í•œ nodeì˜ ê´€ë¦¬ì.
  *
  *****************************************************************************/
 

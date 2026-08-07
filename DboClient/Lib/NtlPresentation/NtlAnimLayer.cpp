@@ -86,16 +86,16 @@ RwBool CNtlAnimLayer::Update(float fElapsed)
 	{
 		SInstanceAnimData *pCurInstanceAnimData = m_AnimChannel[ANIM_CHANNEL_CURRENT].GetAnimData();
 
-        // ÀÌº¥Æ® Äİ¹é
+        // ì´ë²¤íŠ¸ ì½œë°±
 		RwUInt32 uiEventSize = pCurInstanceAnimData->pTypeAnimData->vecAnimEvent.size();
 		if(uiEventSize)
 		{
-			//Model Tool¿¡¼­´Â SortingÀÌ ¾ÈµÇ¾î ÀÖÀ» ¼öµµ ÀÖ´Ù.
+			//Model Toolì—ì„œëŠ” Sortingì´ ì•ˆë˜ì–´ ìˆì„ ìˆ˜ë„ ìˆë‹¤.
 			for(RwUInt32 i = 0; i < uiEventSize; i++)
 			{
 				RwReal fTime = pCurInstanceAnimData->pTypeAnimData->vecAnimEvent[i]->fTime;
 
-				// 0Àº Event¸¦ ¾Èº¸³½´Ù. 0À» º¸³¾ ¼ö ÀÖµµ·Ï ¼öÁ¤ ÈÄ Test (by HoDong)
+				// 0ì€ Eventë¥¼ ì•ˆë³´ë‚¸ë‹¤. 0ì„ ë³´ë‚¼ ìˆ˜ ìˆë„ë¡ ìˆ˜ì • í›„ Test (by HoDong)
 				if( fOldTime < fTime && fTime <= fUpdateElapsedTime)
 				{
 					m_pCallBack->Call(pCurInstanceAnimData->pTypeAnimData->vecAnimEvent[i]);
@@ -103,8 +103,8 @@ RwBool CNtlAnimLayer::Update(float fElapsed)
 			}
 		}
 
-		//AnimationÀÇ End±îÁö Play°¡ µÉ °æ¿ì AnimEnd Event¸¦ º¸³½´Ù.
-		//Loop°¡ ¾Æ´Ò°æ¿ì¿¡¸¸ Event¸¦ º¸³½´Ù.
+		//Animationì˜ Endê¹Œì§€ Playê°€ ë  ê²½ìš° AnimEnd Eventë¥¼ ë³´ë‚¸ë‹¤.
+		//Loopê°€ ì•„ë‹ê²½ìš°ì—ë§Œ Eventë¥¼ ë³´ë‚¸ë‹¤.
 		if( fUpdateElapsedTime >= pCurrentHierarchy->currentAnim->pCurrentAnim->duration && 
 			!m_AnimChannel[ANIM_CHANNEL_CURRENT].GetLoop())
 		{
@@ -124,7 +124,7 @@ RwBool CNtlAnimLayer::Update(float fElapsed)
 		 m_AnimChannel[ANIM_CHANNEL_CURRENT].GetAnimEnd() &&
 	    !m_bBlendChange)
 	{
-		//º¸°£°ªÀÌ °»½ÅÀÌ µÇ¾î ÀÖ¾î¾ß Scale Àû¿ë½Ã ¹®Á¦°¡ ¾È»ı±ä´Ù.
+		//ë³´ê°„ê°’ì´ ê°±ì‹ ì´ ë˜ì–´ ìˆì–´ì•¼ Scale ì ìš©ì‹œ ë¬¸ì œê°€ ì•ˆìƒê¸´ë‹¤.
 		RpHAnimHierarchyCopy(m_pBaseHierarchy, pCurrentHierarchy);
 		NTL_RETURN(TRUE);
 	}
@@ -136,7 +136,7 @@ RwBool CNtlAnimLayer::Update(float fElapsed)
 	if(m_bBlendChange && m_CurBlendData.eBlendType == BLEND_MIX)
 		m_AnimChannel[ANIM_CHANNEL_NEXT].Update(fElapsed);
 	
-    // ¾Ö´Ï¸ŞÀÌ¼Ç ºí·»µù
+    // ì• ë‹ˆë©”ì´ì…˜ ë¸”ë Œë”©
 	if(m_bBlendChange)
 	{
 		RpHAnimHierarchyBlend(m_pBaseHierarchy, pCurrentHierarchy, pNextHierarchy, m_CurBlendData.fBlendAlpha);

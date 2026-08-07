@@ -2,7 +2,7 @@
  *
  * File			: Thread.h
  * Author		: Jeong Ho, Rho
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2007. 1. 3
  * Abstract		: Thread
  *****************************************************************************

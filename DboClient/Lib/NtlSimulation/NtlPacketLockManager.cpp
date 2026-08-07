@@ -65,7 +65,7 @@ CNtlPacketLockManager::CNtlPacketLockManager(VOID)
 
 	m_mapLockPacket[GU_CHAR_CRESCENT_POPO_REVIVAL_RES] = LT_ITEM | LT_WORLDCONCEPT;
 
-	// ªÛ¡°
+	// ÏÉÅÏ†ê
 	m_mapLockPacket[GU_SHOP_START_RES]									= LT_WORLDCONCEPT;
 	m_mapLockPacket[GU_SHOP_END_RES]									= LT_WORLDCONCEPT;
 	m_mapLockPacket[GU_SHOP_BUY_RES]									= LT_ITEM | LT_ZENNY;
@@ -77,7 +77,7 @@ CNtlPacketLockManager::CNtlPacketLockManager(VOID)
 
 	m_mapLockPacket[GU_SHOP_ITEM_IDENTIFY_RES]							= LT_ITEM | LT_ZENNY;	
 
-	// ∆ƒ∆º
+	// ÌååÌã∞
 	m_mapLockPacket[GU_PARTY_CREATE_RES]								= LT_WORLDCONCEPT;	
 	m_mapLockPacket[GU_PARTY_DISBAND_RES]								= LT_WORLDCONCEPT;	
 	m_mapLockPacket[GU_PARTY_INVITE_RES]								= LT_WORLDCONCEPT;	
@@ -108,7 +108,7 @@ CNtlPacketLockManager::CNtlPacketLockManager(VOID)
 	//m_mapLockPacket[GU_PARTY_INVEN_DICE_START_RES]						= LT_ITEM | LT_ZENNY;
 	//m_mapLockPacket[GU_PARTY_INVEN_DICE_ROLL_RES]						= LT_ITEM | LT_ZENNY;	
 
-	// ¿∫«‡ 	
+	// ÏùÄÌñâ 	
 	m_mapLockPacket[GU_BANK_LOAD_RES]									= LT_WORLDCONCEPT;
 	m_mapLockPacket[GU_BANK_START_RES]									= LT_WORLDCONCEPT;
 	m_mapLockPacket[GU_BANK_END_RES]									= LT_WORLDCONCEPT;
@@ -118,7 +118,7 @@ CNtlPacketLockManager::CNtlPacketLockManager(VOID)
 	m_mapLockPacket[GU_BANK_BUY_RES]									= LT_ITEM | LT_ZENNY;	
 	m_mapLockPacket[GU_BANK_ZENNY_RES]									= LT_ZENNY;	
 
-	// ¿Ø¿˙ ∆Æ∑π¿ÃµÂ
+	// Ïú†Ï†Ä Ìä∏Î†àÏù¥Îìú
 	m_mapLockPacket[GU_TRADE_START_RES]									= LT_ITEM | LT_ZENNY | LT_WORLDCONCEPT;
 	m_mapLockPacket[GU_TRADE_END_RES]									= LT_ITEM | LT_ZENNY | LT_WORLDCONCEPT;
 	m_mapLockPacket[GU_TRADE_CANCEL_RES]								= LT_ITEM | LT_ZENNY | LT_WORLDCONCEPT;
@@ -128,7 +128,7 @@ CNtlPacketLockManager::CNtlPacketLockManager(VOID)
 	m_mapLockPacket[GU_TRADE_MODIFY_RES]								= LT_ITEM;
 	m_mapLockPacket[GU_TRADE_ZENNY_UPDATE_RES]							= LT_ZENNY;	
 
-	// ∞≥¿ŒªÛ¡°
+	// Í∞úÏù∏ÏÉÅÏ†ê
 	m_mapLockPacket[GU_PRIVATESHOP_ITEM_INSERT_RES]						= LT_ITEM;
 	m_mapLockPacket[GU_PRIVATESHOP_ITEM_DELETE_RES]						= LT_ITEM;
 	m_mapLockPacket[GU_PRIVATESHOP_ITEM_BUYING_RES]						= LT_ITEM | LT_ZENNY;
@@ -143,7 +143,7 @@ CNtlPacketLockManager::CNtlPacketLockManager(VOID)
 	// tmq
 	m_mapLockPacket[GU_TIMEQUEST_ENTER_RES] = LT_ITEM | LT_WORLDCONCEPT;
 
-	// RankBattle ∞‘Ω√∆« ∞¸∑√ 
+	// RankBattle Í≤åÏãúÌåê Í¥ÄÎ†® 
 	//m_mapLockPacket[GU_RANKBATTLE_ROOM_LIST_RES]						= LT_WORLDCONCEPT;
 	//m_mapLockPacket[GU_RANKBATTLE_ROOM_INFO_RES]						= LT_WORLDCONCEPT;
 	//m_mapLockPacket[GU_RANKBATTLE_ROOM_CREATE_RES]					= LT_WORLDCONCEPT;
@@ -186,7 +186,7 @@ CNtlPacketLockManager::CNtlPacketLockManager(VOID)
     m_mapLockPacket[GU_PORTAL_ADD_RES]                                  = LT_WORLDCONCEPT;
     m_mapLockPacket[GU_PORTAL_RES]                                      = LT_WORLDCONCEPT;
 
-	// ±ÊµÂ
+	// Í∏∏Îìú
 	m_mapLockPacket[GU_GUILD_CREATE_RES]								= LT_COMMUNITY;
 	m_mapLockPacket[GU_GUILD_INVITE_RES]								= LT_COMMUNITY;
 	m_mapLockPacket[TU_GUILD_DISBAND_RES]                               = LT_COMMUNITY;
@@ -209,7 +209,7 @@ CNtlPacketLockManager::CNtlPacketLockManager(VOID)
 	m_mapLockPacket[GU_GUILD_CREATE_MARK_RES]							= LT_COMMUNITY;
 	m_mapLockPacket[GU_GUILD_CHANGE_MARK_RES]							= LT_COMMUNITY;
 
-	// µµ¿Â
+	// ÎèÑÏû•
 	m_mapLockPacket[GU_DOJO_CREATE_RES]							        = LT_ITEM | LT_ZENNY | LT_WORLDCONCEPT;
 	m_mapLockPacket[GU_DOJO_FUNCTION_ADD_RES]					        = LT_ZENNY;
 	m_mapLockPacket[GU_DOJO_SCRAMBLE_RES]						        = LT_WORLDCONCEPT;
@@ -220,7 +220,7 @@ CNtlPacketLockManager::CNtlPacketLockManager(VOID)
 
 	m_mapLockPacket[GU_CHARACTER_RENAME_RES] = LT_COMMUNITY | LT_ITEM;
 	
-	// µµ∫π
+	// ÎèÑÎ≥µ
 	m_mapLockPacket[GU_DOGI_CREATE_RES]									= LT_ITEM | LT_ZENNY;
 	m_mapLockPacket[GU_DOGI_CHANGE_RES]									= LT_ITEM | LT_ZENNY;
 	m_mapLockPacket[GU_GUILD_DOGI_CREATE_RES]							= LT_ITEM | LT_ZENNY;
@@ -233,11 +233,11 @@ CNtlPacketLockManager::CNtlPacketLockManager(VOID)
     m_mapLockPacket[TU_FRIEND_BLACK_ADD_RES]                            = LT_COMMUNITY;
     m_mapLockPacket[TU_FRIEND_BLACK_DEL_RES]                            = LT_COMMUNITY;
 
-    // πˆΩ∫ π◊ ≈ª∞Õ
+    // Î≤ÑÏä§ Î∞è ÌÉàÍ≤É
     m_mapLockPacket[GU_RIDE_ON_BUS_RES]                                 = LT_COMMUNITY | LT_ZENNY;
     m_mapLockPacket[GU_RIDE_OFF_BUS_RES]                                = LT_COMMUNITY;
 
-	// √µ«œ¡¶¿œ π´µµ»∏
+	// Ï≤úÌïòÏ†úÏùº Î¨¥ÎèÑÌöå
 	m_mapLockPacket[GU_BUDOKAI_JOIN_INDIVIDUAL_RES]						= LT_COMMUNITY;
 	m_mapLockPacket[GU_BUDOKAI_LEAVE_INDIVIDUAL_RES]					= LT_COMMUNITY;
 	m_mapLockPacket[GU_BUDOKAI_JOIN_TEAM_INFO_RES]						= LT_COMMUNITY;
@@ -260,7 +260,7 @@ CNtlPacketLockManager::CNtlPacketLockManager(VOID)
 	m_mapLockPacket[GU_BUDOKAI_GM_MATCH_ARENA_ENTER_RES]				= LT_WORLDCONCEPT;
 	m_mapLockPacket[GU_BUDOKAI_GM_MATCH_ARENA_LEAVE_RES]				= LT_WORLDCONCEPT;
 
-	// ¡÷ªÁ¿ß
+	// Ï£ºÏÇ¨ÏúÑ
 	m_mapLockPacket[GU_DICE_ROLL_RES]									= LT_WORLDCONCEPT;
 
 	// Gamble
@@ -274,7 +274,7 @@ CNtlPacketLockManager::CNtlPacketLockManager(VOID)
 	// Teleport
 	m_mapLockPacket[GU_TELEPORT_CONFIRM_RES]							= LT_WORLDCONCEPT;
 
-	// Ω∫≈≥√ ±‚»≠
+	// Ïä§ÌÇ¨Ï¥àÍ∏∞Ìôî
 	m_mapLockPacket[GU_SKILL_INIT_RES]									= LT_SKILL;
 	m_mapLockPacket[GU_SKILL_RESET_PLUS_RES]							= LT_SKILL | LT_ITEM;
 	m_mapLockPacket[GU_SKILL_ONE_RESET_RES]							= LT_ITEM;

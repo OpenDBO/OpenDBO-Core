@@ -245,11 +245,11 @@ void CNtlSummonPetAI::UpdateObservation(RwReal fElapsed)
 
 		if(IsOwnerFighting())
 		{
-			// owner °¡ target ÇÏ°í ÀÖ´Â °´Ã¼°¡ Àû±ºÀÌ³Ä?
+			// owner ê°€ target í•˜ê³  ìˆëŠ” ê°ì²´ê°€ ì êµ°ì´ëƒ?
 			m_hBattleSerialId = SearchFightingTarget();
 			if(m_hBattleSerialId != INVALID_SERIAL_ID)
 			{
-				// targetÀ» ¼³Á¤ÇÏ°í... °ø°İÀ» ÇÑ´Ù.
+				// targetì„ ì„¤ì •í•˜ê³ ... ê³µê²©ì„ í•œë‹¤.
 				ChangeState(ESPS_BATTLE);
 			}
 			else
@@ -364,13 +364,13 @@ void CNtlSummonPetAI::UpdateBattle(RwReal fElapsed)
 				}
 			/*}*/
 
-			// owner¿Í positionÀÌ °ãÃÄ ÀÖ´Â°¡? °ãÃÄ ÀÖ´Ù¸é BATTLE_POSITION_SET »óÅÂ¸¦ Áà¼­
-			// ÀüÅõ¸¦ ÇÒ ¼ö ÀÖ´Â °÷À¸·Î ÀçÀÌµ¿ ÇÏ°Ô ÇÑ´Ù.
+			// ownerì™€ positionì´ ê²¹ì³ ìˆëŠ”ê°€? ê²¹ì³ ìˆë‹¤ë©´ BATTLE_POSITION_SET ìƒíƒœë¥¼ ì¤˜ì„œ
+			// ì „íˆ¬ë¥¼ í•  ìˆ˜ ìˆëŠ” ê³³ìœ¼ë¡œ ì¬ì´ë™ í•˜ê²Œ í•œë‹¤.
 			if(BattleWander())
 				ChangeState(ESPS_BATTLE_POSITION_SET);
 		}
 
-		// ÇöÀç ÆêÀÌ ½ºÅ³À» »ç¿ë°¡´ÉÇÑ »óÅÂÀÌ¸é ½ºÅ³À» »ç¿ëÇÏ´Â AI ÆÇ´ÜÀ» ÇÑ´Ù.
+		// í˜„ì¬ í«ì´ ìŠ¤í‚¬ì„ ì‚¬ìš©ê°€ëŠ¥í•œ ìƒíƒœì´ë©´ ìŠ¤í‚¬ì„ ì‚¬ìš©í•˜ëŠ” AI íŒë‹¨ì„ í•œë‹¤.
 		if(Logic_CanSkillUse(GetActor()))
 			SkillAction();
 
@@ -380,7 +380,7 @@ void CNtlSummonPetAI::UpdateBattle(RwReal fElapsed)
 
 void CNtlSummonPetAI::UpdateBattlePositionSet(RwReal fElapsed)
 {
-	// Battle Position Set¿¡¼­ ÇöÀç ¸ØÃß°í ÀÖ´Ù.
+	// Battle Position Setì—ì„œ í˜„ì¬ ë©ˆì¶”ê³  ìˆë‹¤.
 	if(m_fThinkingTimer >= 0.1f)
 	{
 		RwUInt32 uiStateId = GetActorStateId();
@@ -429,7 +429,7 @@ void CNtlSummonPetAI::Update(RwReal fElapsed)
 		m_fSkillTimer[i] += fElapsed;
 
 	
-	// Skill Timer¸¦ Áõ°¡½ÃÅ²´Ù.
+	// Skill Timerë¥¼ ì¦ê°€ì‹œí‚¨ë‹¤.
 	
 
 //	CalcOwnerTrace();
@@ -457,7 +457,7 @@ void CNtlSummonPetAI::EnterState(CNtlSummonPetAI::ESummonPetState eState)
 	}
 	else if(m_eState == ESPS_BATTLE)
 	{
-		// BAttle¿¡ µé¾î°¡¸é ÃÊ±âÈ­ÇÑ´Ù.
+		// BAttleì— ë“¤ì–´ê°€ë©´ ì´ˆê¸°í™”í•œë‹¤.
 		for(int i=0; i<NTL_MAX_NPC_HAVE_SKILL; ++i)
 			m_fSkillTimer[i] = 0.0f;
 		
@@ -557,7 +557,7 @@ void CNtlSummonPetAI::ResetSkillTimer(RwInt32 iSlotIdx)
 
 RwBool CNtlSummonPetAI::IsThinking(void)
 {
-	// »ı°¢ÇÏ´Â Å¸ÀÓÀÌ ³Ê¹« Âª¾Æ¼­ °ø°İÀ» ÇÏÁö ¸øÇÑ´Ù.
+	// ìƒê°í•˜ëŠ” íƒ€ì„ì´ ë„ˆë¬´ ì§§ì•„ì„œ ê³µê²©ì„ í•˜ì§€ ëª»í•œë‹¤.
 	if(m_fThinkingTimer > 0.2f)
 		return TRUE;
 
@@ -620,7 +620,7 @@ RwBool CNtlSummonPetAI::IsRoundInOwner(RwReal& fDist)
 	RwV3d vActorPos = pActor->GetPosition();
 	RwV3d vOwnerPos = pOwnerActor->GetPosition();
 
-    // Å¸°ÙÀÌ ¼ö¿µÇÏ´Â ¾×ÅÍÀÎ °æ¿ì¿¡´Â y¹«½Ã
+    // íƒ€ê²Ÿì´ ìˆ˜ì˜í•˜ëŠ” ì•¡í„°ì¸ ê²½ìš°ì—ëŠ” yë¬´ì‹œ
     SWorldHeightStuff hStuff;
     if(Logic_IsSwimmingActor(pOwnerActor, &pOwnerActor->GetPosition(), hStuff))
     {
@@ -769,34 +769,34 @@ RwBool CNtlSummonPetAI::BattleWander(void)
 }
 
 /**
-* \brief ½ºÅ³À» »ç¿ëÇÒÁö ¾ÈÇÒÁö ÆÇ´ÜÇÏ¿© ½ºÅ³À» »ç¿ëÇÑ´Ù.
-* \return ½ºÅ³ ¼º°ø, ½ÇÆĞ ¿©ºÎ
+* \brief ìŠ¤í‚¬ì„ ì‚¬ìš©í• ì§€ ì•ˆí• ì§€ íŒë‹¨í•˜ì—¬ ìŠ¤í‚¬ì„ ì‚¬ìš©í•œë‹¤.
+* \return ìŠ¤í‚¬ ì„±ê³µ, ì‹¤íŒ¨ ì—¬ë¶€
 */
 RwBool CNtlSummonPetAI::SkillAction(void)
 {
-	// ÆêÀº ¼¼°¡ÁöÀÇ ½ºÅ³À» °¡Áö°í ÀÖ´Ù.
+	// í«ì€ ì„¸ê°€ì§€ì˜ ìŠ¤í‚¬ì„ ê°€ì§€ê³  ìˆë‹¤.
 	/*CNtlSobPet *pSobPet = reinterpret_cast<CNtlSobPet*>( GetActor() );*/
 	
-	// ½ºÅ³ ¸¶´Ù »ç¿ë ¿©ºÎ¸¦ ÆÇ´ÜÇÏ¿© ½ºÅ³À» »ç¿ëÇÏ·Á°í ¸¶À½ ¸ÔÀº °ÍÀÌ ¿©·¯°³¶ó¸é
-	// ±× Áß¿¡¼­ ÇÏ³ª¸¦ ·£´ıÀ¸·Î »ç¿ëÇÑ´Ù. ( ¿ì¼± ¼øÀ§ °°Àº °Ç ¾ø´Ù. )
+	// ìŠ¤í‚¬ ë§ˆë‹¤ ì‚¬ìš© ì—¬ë¶€ë¥¼ íŒë‹¨í•˜ì—¬ ìŠ¤í‚¬ì„ ì‚¬ìš©í•˜ë ¤ê³  ë§ˆìŒ ë¨¹ì€ ê²ƒì´ ì—¬ëŸ¬ê°œë¼ë©´
+	// ê·¸ ì¤‘ì—ì„œ í•˜ë‚˜ë¥¼ ëœë¤ìœ¼ë¡œ ì‚¬ìš©í•œë‹¤. ( ìš°ì„  ìˆœìœ„ ê°™ì€ ê±´ ì—†ë‹¤. )
 	for(int i=0; i< NTL_MAX_NPC_HAVE_SKILL; ++i)
 	{
 		if( IsThinkingUseSkill( i ) )
 		{
-			// »ç¿ë ¿©ºÎ ÆÇ´Ü
+			// ì‚¬ìš© ì—¬ë¶€ íŒë‹¨
 			m_vecUseSlotIdx.push_back( i );
 		}
 	}
 
-	// ÇÏ³ªµµ ¼±ÅÃ ¾ÈÇß´Ù´Â ÆÇ´Ü
+	// í•˜ë‚˜ë„ ì„ íƒ ì•ˆí–ˆë‹¤ëŠ” íŒë‹¨
 	if( m_vecUseSlotIdx.empty() )
 		return FALSE;
 
-	// ¾Æ´Ï¶ó¸é ¼±ÅÃÀ» Çß´Ù´Â °ÍÀÌ¹Ç·Î ·£´ıÀ¸·Î ¼±ÅÃÇØÁØ´Ù.
+	// ì•„ë‹ˆë¼ë©´ ì„ íƒì„ í–ˆë‹¤ëŠ” ê²ƒì´ë¯€ë¡œ ëœë¤ìœ¼ë¡œ ì„ íƒí•´ì¤€ë‹¤.
 	RwInt32 iSize = (RwInt32)m_vecUseSlotIdx.size();
 	RwInt32 iUseSlotIdx = m_vecUseSlotIdx[rand()%iSize];
 
-	// ¼±ÅÃµÈ ½ºÅ³µéÀ» Áö¿öÁØ´Ù.
+	// ì„ íƒëœ ìŠ¤í‚¬ë“¤ì„ ì§€ì›Œì¤€ë‹¤.
 	m_vecUseSlotIdx.clear();
 
 	return SkillAction( iUseSlotIdx );
@@ -853,9 +853,9 @@ RwBool CNtlSummonPetAI::SkillAction(RwInt32 iSlotIdx)
 
 
 /**
-* \brief SkillContainerÀÇ iSlotIdx¹øÂ° À§Ä¡ÇÑ ½ºÅ³ÀÌ AIÀÇ ÆÇ´Ü Á¶°ÇÀÌ µÇ´ÂÁö È®ÀÎÇÑ´Ù.
-* \param iSlotIdx	(RwInt32) ½ºÅ³ ½½·Ô
-* \return TRUE: »ç¿ëÇÑ´Ù. FALSE: »ç¿ëÇÏÁö ¾Ê´Â´Ù.
+* \brief SkillContainerì˜ iSlotIdxë²ˆì§¸ ìœ„ì¹˜í•œ ìŠ¤í‚¬ì´ AIì˜ íŒë‹¨ ì¡°ê±´ì´ ë˜ëŠ”ì§€ í™•ì¸í•œë‹¤.
+* \param iSlotIdx	(RwInt32) ìŠ¤í‚¬ ìŠ¬ë¡¯
+* \return TRUE: ì‚¬ìš©í•œë‹¤. FALSE: ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤.
 */
 RwBool CNtlSummonPetAI::IsThinkingUseSkill(RwInt32 iSlotIdx)
 {
@@ -865,18 +865,18 @@ RwBool CNtlSummonPetAI::IsThinkingUseSkill(RwInt32 iSlotIdx)
 	CNtlSobPet *pSobPet = reinterpret_cast<CNtlSobPet*>( GetActor() );
 	CNtlPetSkillContainer *pSkillContainer = pSobPet->GetSkillContainer();
 	
-	// ½ºÅ³ ÄÁÅ×ÀÌ³Ê¿¡ ½ºÅ³ÀÌ ¾ø´Ù¸é »ç¿ëÇÑ´Ù°í ÆÇ´ÜÀ» ³»¸± ¼ö ¾ø´Ù.
+	// ìŠ¤í‚¬ ì»¨í…Œì´ë„ˆì— ìŠ¤í‚¬ì´ ì—†ë‹¤ë©´ ì‚¬ìš©í•œë‹¤ê³  íŒë‹¨ì„ ë‚´ë¦´ ìˆ˜ ì—†ë‹¤.
 	if( pSkillContainer->GetSkillCount() < iSlotIdx )
 		return FALSE;
 
-	// Skill ÀÇ AI Basis Time À» È®ÀÎÇÏ¿© ¾ÆÁ÷ ÆÇ´ÜÇÒ Å¸ÀÓÀÌ ¾Æ´Ï¶ó¸é ½ºÅ³À» »ç¿ëÇÏÁö ¾Ê´Â´Ù.
+	// Skill ì˜ AI Basis Time ì„ í™•ì¸í•˜ì—¬ ì•„ì§ íŒë‹¨í•  íƒ€ì„ì´ ì•„ë‹ˆë¼ë©´ ìŠ¤í‚¬ì„ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤.
 	if( m_fSkillTimer[iSlotIdx] < pSkillContainer->GetSkillUseTime( iSlotIdx ) )
 		return FALSE;
 
-	// Å¸ÀÓ ÃÊ±âÈ­
+	// íƒ€ì„ ì´ˆê¸°í™”
 	ResetSkillTimer( iSlotIdx );
 
-	// Basis È®ÀÎ
+	// Basis í™•ì¸
 	RwUInt8 byUseBasis = pSkillContainer->GetSkillUseBasis( iSlotIdx );
 	
 	// enum eSKILLPRIORITY ( NtlSkill.h )
@@ -884,19 +884,19 @@ RwBool CNtlSummonPetAI::IsThinkingUseSkill(RwInt32 iSlotIdx)
 	{
 	case SKILLPRIORITY_CALL:
 	case SKILLPRIORITY_START:
-	case SKILLPRIORITY_FAINTING:	// CALL, START, FAINTING »ç¿ë¾ÈÇÔ
+	case SKILLPRIORITY_FAINTING:	// CALL, START, FAINTING ì‚¬ìš©ì•ˆí•¨
 		return FALSE;
 		
-	case SKILLPRIORITY_LP:			// ÀÚ±â ÀÚ½ÅÀÇ LP ÀÇ Á¶°Ç°ú ÀÏÄ¡ÇÑ´Ù¸é ¹«Á¶°Ç »ç¿ë
+	case SKILLPRIORITY_LP:			// ìê¸° ìì‹ ì˜ LP ì˜ ì¡°ê±´ê³¼ ì¼ì¹˜í•œë‹¤ë©´ ë¬´ì¡°ê±´ ì‚¬ìš©
 		{
 			RwUInt16 wUseLp = pSkillContainer->GetSkillUseLp( iSlotIdx );
 
 			CNtlSobPetAttr* pAttr = reinterpret_cast<CNtlSobPetAttr*>( pSobPet->GetSobAttr() );
 			
-			// ÇöÀç ÆêÀÇ LP Á¤º¸
+			// í˜„ì¬ í«ì˜ LP ì •ë³´
 			RwReal fLpRate = ( (RwReal)pAttr->GetLp() / (RwReal)pAttr->GetMaxLp()) * 100.0f;
 
-			// ÇöÀç ÆêÀÇ LPº¸´Ù »ç¿ë Á¶°ÇÀÌ ¸ÂÁö ¾Ê´Â´Ù¸é »ç¿ëÇÏÁö ¾Ê´Â´Ù.
+			// í˜„ì¬ í«ì˜ LPë³´ë‹¤ ì‚¬ìš© ì¡°ê±´ì´ ë§ì§€ ì•ŠëŠ”ë‹¤ë©´ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤.
 			if( (RwReal)wUseLp < fLpRate )
 			{
 				return FALSE;
@@ -904,14 +904,14 @@ RwBool CNtlSummonPetAI::IsThinkingUseSkill(RwInt32 iSlotIdx)
 		}
 		break;
 
-	case SKILLPRIORITY_GIVE:		// ÁÖÀÎÀÇ LP ¼öÄ¡°¡ Á¶°ÇÀ» ¸¸Á·ÇÑ´Ù¸é ¹«Á¶°Ç »ç¿ë
+	case SKILLPRIORITY_GIVE:		// ì£¼ì¸ì˜ LP ìˆ˜ì¹˜ê°€ ì¡°ê±´ì„ ë§Œì¡±í•œë‹¤ë©´ ë¬´ì¡°ê±´ ì‚¬ìš©
 		{
 			RwUInt16 wUseLp = pSkillContainer->GetSkillUseLp( iSlotIdx );
 
 			CNtlSobPlayer* pSobPlayer = reinterpret_cast<CNtlSobPlayer*>(GetNtlSobManager()->GetSobObject(pSobPet->GetOwnerID()));
 			CNtlSobPlayerAttr* pSobPlayerAttr = reinterpret_cast<CNtlSobPlayerAttr*>(pSobPlayer->GetSobAttr());
 
-			// ÇöÀç ÁÖÀÎÀÇ LP Á¤º¸
+			// í˜„ì¬ ì£¼ì¸ì˜ LP ì •ë³´
 			RwReal fLpRate = ( (RwReal)pSobPlayerAttr->GetLp() / (RwReal)pSobPlayerAttr->GetMaxLp() ) * 100.0f;
 
 			if( (RwReal)wUseLp < fLpRate )
@@ -927,7 +927,7 @@ RwBool CNtlSummonPetAI::IsThinkingUseSkill(RwInt32 iSlotIdx)
 
 			RwInt32 iRate = rand()%100;
 
-			// È®·ü ¹ßµ¿
+			// í™•ë¥  ë°œë™
 			if( iRate > wUseTime)
 			{
 				return FALSE;
@@ -935,22 +935,22 @@ RwBool CNtlSummonPetAI::IsThinkingUseSkill(RwInt32 iSlotIdx)
 		}
 	
 		break;
-	default:						// Table DataÀÇ ÀÌ»ó
+	default:						// Table Dataì˜ ì´ìƒ
 		return FALSE;
 	}
 
-	// ½ºÅ³ÀÇ AI Á¶°ÇÀº ¸¸Á·ÇßÀ¸´Ï ½ºÅ³À» »ç¿ëÇÒ ¼ö ÀÖ´Â »óÅÂÀÎÁö ¾Æ´ÑÁö È®ÀÎÇÑ´Ù.
+	// ìŠ¤í‚¬ì˜ AI ì¡°ê±´ì€ ë§Œì¡±í–ˆìœ¼ë‹ˆ ìŠ¤í‚¬ì„ ì‚¬ìš©í•  ìˆ˜ ìˆëŠ” ìƒíƒœì¸ì§€ ì•„ë‹Œì§€ í™•ì¸í•œë‹¤.
 	CNtlSobSkill* pSobSkill = pSkillContainer->GetSkill( iSlotIdx );
 	CNtlSobSkillAttr* pSobSkillAttr = reinterpret_cast<CNtlSobSkillAttr*>(pSobSkill->GetSobAttr());
 	sSKILL_TBLDAT* pSkillTbl = pSobSkillAttr->GetSkillTbl();
 
-	// »ç¿ë °¡´ÉÇÑ EP°¡ ¾ÈµÊ
+	// ì‚¬ìš© ê°€ëŠ¥í•œ EPê°€ ì•ˆë¨
 	if( Logic_GetEp( pSobPet ) < pSkillTbl->wRequire_EP )
 		return FALSE;
 
 	CNtlSobSkillIcon* pSobSkillIcon = reinterpret_cast<CNtlSobSkillIcon*>(pSobSkill->GetIcon());
 	
-	// ÄğÅ¸ÀÓ Áß
+	// ì¿¨íƒ€ì„ ì¤‘
 	if( pSobSkillIcon->GetIconState() != CNtlSobSkillIcon::ICON_STATE_USEABLE )
 		return FALSE;
 
@@ -989,9 +989,9 @@ void CNtlSummonPetAI::JumpPosition(void)
 
 SERIAL_HANDLE CNtlSummonPetAI::SearchFightingTarget(void)
 {
-	// 1. owner¸¦ °¡Àå ÃÖ±Ù¿¡ °ø°İÇÑ targetÀ» Ã£´Â´Ù.
-	// 2. ownerÀÇ targetÀ» Ã£´Â´Ù.
-	// 3. ¾øÀ¸¸é °ø°İÇÏÁö ¾Ê´Â´Ù. 
+	// 1. ownerë¥¼ ê°€ì¥ ìµœê·¼ì— ê³µê²©í•œ targetì„ ì°¾ëŠ”ë‹¤.
+	// 2. ownerì˜ targetì„ ì°¾ëŠ”ë‹¤.
+	// 3. ì—†ìœ¼ë©´ ê³µê²©í•˜ì§€ ì•ŠëŠ”ë‹¤. 
 
 	CNtlSobActor *pActor = GetActor();
 	CNtlSobActor *pOwnerActor = reinterpret_cast<CNtlSobActor*>( GetNtlSobManager()->GetSobObject(pActor->GetOwnerID()) );

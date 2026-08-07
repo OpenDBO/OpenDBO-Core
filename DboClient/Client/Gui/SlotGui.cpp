@@ -53,13 +53,13 @@ CSlotGui::~CSlotGui()
 
 RwBool CSlotGui::Create(gui::CComponent *pParent, RwUInt32 uiOwnerDialog, DWORD dwSlotStyle /* = SDS_NONE*/)
 {
-	// ºÎ¸ğ ´ÙÀÌ¾ó·Î±× ÀÎµ¦½º
+	// ë¶€ëª¨ ë‹¤ì´ì–¼ë¡œê·¸ ì¸ë±ìŠ¤
 	m_uiOwnerDialog = uiOwnerDialog;
 
-	// ¾ÆÀÌÅÛ ½½·Ô ½ºÅ¸ÀÏ
+	// ì•„ì´í…œ ìŠ¬ë¡¯ ìŠ¤íƒ€ì¼
 	m_dwSlotStyle = dwSlotStyle;
 
-	// °¹¼ö¸¦ Ç¥½ÃÇÑ´Ù¸é
+	// ê°¯ìˆ˜ë¥¼ í‘œì‹œí•œë‹¤ë©´
 	if( BIT_FLAG_TEST(m_dwSlotStyle, SDS_COUNT) )
 	{
 		CRectangle rect;
@@ -72,13 +72,13 @@ RwBool CSlotGui::Create(gui::CComponent *pParent, RwUInt32 uiOwnerDialog, DWORD 
 		m_pCount->Clear();
 	}	
 
-	// »ç¿ë±İÁö ÀÌ¹ÌÁö
+	// ì‚¬ìš©ê¸ˆì§€ ì´ë¯¸ì§€
 	if( BIT_FLAG_TEST(m_dwSlotStyle, SDS_LOCK) )
 	{
 		m_srfLock.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfSlotDisableEffect") );
 	}
 
-	// ÇöÀç Á¶°ÇÀÌ ¸ÂÁö ¾Ê¾Æ »ç¿ëÇÒ ¼ö ¾ø´Ù´Â ÀÌ¹ÌÁö »ç¿ë
+	// í˜„ì¬ ì¡°ê±´ì´ ë§ì§€ ì•Šì•„ ì‚¬ìš©í•  ìˆ˜ ì—†ë‹¤ëŠ” ì´ë¯¸ì§€ ì‚¬ìš©
 	if( BIT_FLAG_TEST(m_dwSlotStyle, SDS_DISABLE) )
 	{
 		m_srfDisable.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfSlotRed" ) );
@@ -465,7 +465,7 @@ RwBool CRegularSlotGui::SetIcon(RwUInt32 uiSerial, RwUInt32 uiCount /* = 1 */)
 			}
 			else
 			{
-				// ¾ÆÀÌÅÛ Å×ÀÌºíÀÌ ¾ø¾îµµ ´Ù¸¥ ·ÎÁ÷µéÀº µ¿ÀÛÇØ¾ß ÇÏ±â¿¡ ¸®ÅÏÇÏÁö ¾Ê´Â´Ù
+				// ì•„ì´í…œ í…Œì´ë¸”ì´ ì—†ì–´ë„ ë‹¤ë¥¸ ë¡œì§ë“¤ì€ ë™ì‘í•´ì•¼ í•˜ê¸°ì— ë¦¬í„´í•˜ì§€ ì•ŠëŠ”ë‹¤
 				DBO_FAIL("Not exist skill table of index : " << uiSerial);
 			}
 			break;
@@ -481,7 +481,7 @@ RwBool CRegularSlotGui::SetIcon(RwUInt32 uiSerial, RwUInt32 uiCount /* = 1 */)
 			}
 			else
 			{
-				// ¾ÆÀÌÅÛ Å×ÀÌºíÀÌ ¾ø¾îµµ ´Ù¸¥ ·ÎÁ÷µéÀº µ¿ÀÛÇØ¾ß ÇÏ±â¿¡ ¸®ÅÏÇÏÁö ¾Ê´Â´Ù
+				// ì•„ì´í…œ í…Œì´ë¸”ì´ ì—†ì–´ë„ ë‹¤ë¥¸ ë¡œì§ë“¤ì€ ë™ì‘í•´ì•¼ í•˜ê¸°ì— ë¦¬í„´í•˜ì§€ ì•ŠëŠ”ë‹¤
 				DBO_FAIL("Not exist htb table of index : " << uiSerial);
 			}
 		}
@@ -548,7 +548,7 @@ VOID CRegularSlotGui::SetCount(RwUInt32 uiCount)
 
 	if( m_uiStackCount >= 1 )
 	{
-		// ½ºÅÃÄ¿ºí ¾ÆÀÌÅÛ¸¸ pITEM_TBLDAT->byMax_Stack °ªÀÌ 1º¸´Ù Å©´Ù
+		// ìŠ¤íƒì»¤ë¸” ì•„ì´í…œë§Œ pITEM_TBLDAT->byMax_Stack ê°’ì´ 1ë³´ë‹¤ í¬ë‹¤
 		if( (pITEM_TBLDAT->byMax_Stack > 1 ) ||
 			IsOnlyUsableIcon() )
 		{

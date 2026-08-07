@@ -280,7 +280,7 @@ RwBool CSM_SplatTexMaxBlend::Report()
 		RwInt32 nSecond = (RwInt32)systemTime.wSecond;
 		RwInt32 nMinute = (RwInt32)systemTime.wMinute;
 		RwReal fMilliseconds = (RwReal)systemTime.wMilliseconds / 1000.f;
-		sprintf_s(szBuffer, "%d³â %d¿ù %dÀÏ %d½Ã %dºĞ %dÃÊ", nYear, nMonth, nDay, nHour, nMinute, nSecond);
+		sprintf_s(szBuffer, "%dë…„ %dì›” %dì¼ %dì‹œ %dë¶„ %dì´ˆ", nYear, nMonth, nDay, nHour, nMinute, nSecond);
 
 		fprintf(pFile, "========== %s ==========\n", szBuffer);
 
@@ -570,7 +570,7 @@ RwBool CSM_SplatTexMaxBlend::Report()
 		RwInt32 nSecond = (RwInt32)systemTime.wSecond;
 		RwInt32 nMinute = (RwInt32)systemTime.wMinute;
 		RwReal fMilliseconds = (RwReal)systemTime.wMilliseconds / 1000.f;
-		sprintf_s(szBuffer, "%d³â %d¿ù %dÀÏ %d½Ã %dºĞ %dÃÊ", nYear, nMonth, nDay, nHour, nMinute, nSecond);
+		sprintf_s(szBuffer, "%dë…„ %dì›” %dì¼ %dì‹œ %dë¶„ %dì´ˆ", nYear, nMonth, nDay, nHour, nMinute, nSecond);
 
 		fprintf(pFile, "========== %s ==========\n", szBuffer);
 

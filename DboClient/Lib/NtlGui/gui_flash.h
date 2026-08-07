@@ -26,8 +26,8 @@ public:
 	CFlash( CComponent* pParent, CSurfaceManager* pSurfaceManager );
 	CFlash( const CRectangle& rtPos, CComponent* pParent, CSurfaceManager* pSurfaceManager, CONST CHAR* pFlashFIleName,
 			BOOL bUseFont = FALSE, BOOL bOriginalSize = FALSE, BOOL bScissor = FALSE );	
-			// bOriginalSize : ·Îµù½Ã ¿øº»¸®¼Ò½ºÀÇ Å©±â·Î ÁöÁ¤.
-			// bParentScissor : ºÎ¸ğ ¿µ¿ª ¹Û, ÀÚ±â ¿µ¿ª ¹ÛÀ¸·Î ³ª°¥¶§ Å¬¸®ÇÎ.
+			// bOriginalSize : ë¡œë”©ì‹œ ì›ë³¸ë¦¬ì†ŒìŠ¤ì˜ í¬ê¸°ë¡œ ì§€ì •.
+			// bParentScissor : ë¶€ëª¨ ì˜ì—­ ë°–, ìê¸° ì˜ì—­ ë°–ìœ¼ë¡œ ë‚˜ê°ˆë•Œ í´ë¦¬í•‘.
 	
 	//: Flash Destructor
 	virtual ~CFlash(VOID);
@@ -37,7 +37,7 @@ public:
 	VOID	SetResizeType( eRESIZETYPE eResizeType );
 	VOID	SetUseFont( BOOL bUseFont );
 
-	CRectangle GetFrameResolution(VOID);		// ÇÃ·¡½¬ÀÇ ¿øº»(ÀÛ¾÷) Å©±â
+	CRectangle GetFrameResolution(VOID);		// í”Œë˜ì‰¬ì˜ ì›ë³¸(ì‘ì—…) í¬ê¸°
 	INT		GetFrameCount(VOID);
 	FLOAT	GetFrameRate(VOID);
 
@@ -61,11 +61,11 @@ public:
 	FLOAT			GetVariableFloat( const CHAR* path );
 	BOOL			GetVariableArray( eARRAYTYPE type, const CHAR* path, DWORD index, VOID* pData, DWORD count );
 
-	// ex: Invoke( "_root._object.gotoAndPlay", "%s,%d", "on", 1 ); return NullÀº ÇÔ¼ö¸¦ ¸øÃ£¾ÒÀ»¶§, "undefine"Àº ÇÔ¼ö´Â Ã£¾ÒÁö¸¸ ¸®ÅÏ°ªÀÌ ¾øÀ»¶§.
+	// ex: Invoke( "_root._object.gotoAndPlay", "%s,%d", "on", 1 ); return Nullì€ í•¨ìˆ˜ë¥¼ ëª»ì°¾ì•˜ì„ë•Œ, "undefine"ì€ í•¨ìˆ˜ëŠ” ì°¾ì•˜ì§€ë§Œ ë¦¬í„´ê°’ì´ ì—†ì„ë•Œ.
 	const CHAR*		Invoke( const CHAR* path, const CHAR* parameter, ... );
 
 	//! Operations:
-	BOOL	Load( CONST CHAR* pFlashFile, BOOL bOriginalSIze = FALSE );	// bOriginalSize : ·Îµù½Ã ¿øº»¸®¼Ò½ºÀÇ Å©±â·Î ÁöÁ¤.
+	BOOL	Load( CONST CHAR* pFlashFile, BOOL bOriginalSIze = FALSE );	// bOriginalSize : ë¡œë”©ì‹œ ì›ë³¸ë¦¬ì†ŒìŠ¤ì˜ í¬ê¸°ë¡œ ì§€ì •.
 	VOID	Unload(VOID);
 
 	VOID	Update( FLOAT fElapsedTime );	
@@ -73,7 +73,7 @@ public:
 	VOID	PlayMovie( BOOL bPlay );
 	VOID	RestartMovie(VOID);
 
-	VOID	Rotate( RwInt32 nDegree );			// + : ½Ã°è¹æÇâ, - : ¹İ½Ã°è¹æÇâ
+	VOID	Rotate( RwInt32 nDegree );			// + : ì‹œê³„ë°©í–¥, - : ë°˜ì‹œê³„ë°©í–¥
 
 	VOID	Show( bool bShow );
 

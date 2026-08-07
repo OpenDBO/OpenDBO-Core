@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: ChatDisplayGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (å ì™ì˜™)NTL
 * Date			: 2008. 7. 1
 * Abstract		: 
 *****************************************************************************
-* Desc			: Ã¤ÆÃ ·Î±×°¡ È­¸é¿¡ º¸¿©Áö´Â GUI
+* Desc			: Ã¤ï¿½ï¿½ ï¿½Î±×°ï¿½ È­ï¿½é¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ GUI
 *****************************************************************************/
 
 #pragma once
@@ -42,10 +42,10 @@ public:
 	struct sResizingInfo
 	{
 		eResizeType			eType;
-		RwInt32				iConfirmXPos;		///< º¯°æ ¿Ï·áµÈ X ÁÂÇ¥
-		RwInt32				iConfirmYPos;		///< º¯°æ ¿Ï·áµÈ Y ÁÂÇ¥
-		RwInt32				iConfirmWidth;		///< º¯°æ ¿Ï·áµÈ ³ĞÀÌ
-		RwInt32				iConfirmHeight;		///< º¯°æ ¿Ï·áµÈ ³ôÀÌ
+		RwInt32				iConfirmXPos;		///< ë³€ê²½ ì™„ë£Œëœ X ì¢Œí‘œ
+		RwInt32				iConfirmYPos;		///< ë³€ê²½ ì™„ë£Œëœ Y ì¢Œí‘œ
+		RwInt32				iConfirmWidth;		///< ë³€ê²½ ì™„ë£Œëœ ë„“ì´
+		RwInt32				iConfirmHeight;		///< ë³€ê²½ ì™„ë£Œëœ ë†’ì´
 	};
 
 	struct sAlphaInfo
@@ -66,7 +66,7 @@ public:
 
 	struct sPositionInfo
 	{
-		RwInt32				iOldScreenHeight;		///< Å¬¶óÀÌ¾ğÆ® Resize½Ã ÇÏ´Ü¿¡¼­ ÀÏÁ¤ÇÑ °Å¸® À¯Áö À§ÇØ
+		RwInt32				iOldScreenHeight;		///< í´å ì™ì˜™å ì‹±ì–µì˜™íŠ¸ Resizeå ì™ì˜™ å ì‹¹ë‹¨ìš¸ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹ ëªŒì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
 	};
 
 
@@ -114,8 +114,8 @@ protected:
 
 	VOID			OnClicked_LastButton(gui::CComponent* pComponent);
 
-	RwInt32			MouseMoveHandler(RwUInt32 uiMouseData);
-	RwInt32			MouseUpHandler(RwUInt32 uiMouseData);
+	RwInt32			MouseMoveHandler(uintptr_t uiMouseData);
+	RwInt32			MouseUpHandler(uintptr_t uiMouseData);
 	VOID			OnCaptureWheelMove(RwInt32 iFlag, RwInt16 sDelta, CPos& pos);
 
 	VOID			OnMouseDown(const CKey& key);
@@ -158,5 +158,5 @@ protected:
 	sPositionInfo		m_tPositionInfo;
 
 	RwBool				m_EnableLogType[NUM_ALL_CHAT_TYPE];
-	RwUInt8				m_byDisplayGuiIndex;				///< ¸î ¹øÂ° µğ½ºÇÃ·¹ÀÌ Ã¢ÀÎÁö
+	RwUInt8				m_byDisplayGuiIndex;				///< å ì™ì˜™ å ì™ì˜™ì§¸ å ì™ì˜™å ì‹œë¤„ì˜™å ì™ì˜™ ì°½å ì™ì˜™å ì™ì˜™
 };

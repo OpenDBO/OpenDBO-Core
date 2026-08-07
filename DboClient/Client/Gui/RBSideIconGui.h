@@ -53,9 +53,9 @@ public:
 private:
 	VOID	HandleEvents( RWS::CMsg& msg );
 
-	//VOID	SetWaitData(VOID);								// ÀÔÀå´ë±â
-	//VOID	SetReadyData( VOID* pData, RwInt32 nCount );	// ÀÔÀåÁØºñ
-	//VOID	SetCancelData( RwUInt32 uiString, RwUInt32 eType );	// ·©Å©¹èÆ²Ãë¼Ò	
+	//VOID	SetWaitData(VOID);								// ì…ì¥ëŒ€ê¸°
+	//VOID	SetReadyData( VOID* pData, RwInt32 nCount );	// ì…ì¥ì¤€ë¹„
+	//VOID	SetCancelData( RwUInt32 uiString, RwUInt32 eType );	// ë­í¬ë°°í‹€ì·¨ì†Œ	
 
 	//VOID	SetState( RwInt32 eState );
 	VOID	SetCurrentTimeInfo( RwReal fElapsedTIme );

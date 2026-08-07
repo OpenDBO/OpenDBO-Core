@@ -1,21 +1,21 @@
 #pragma once
 
 
-// CGamePropDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CGamePropDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CGamePropDlg : public CDialog
 {
 	DECLARE_DYNAMIC(CGamePropDlg)
 
 public:
-	CGamePropDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CGamePropDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CGamePropDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_ATTR_GAMEPROP };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 

@@ -71,16 +71,16 @@ protected:
 	CFont*								m_pEntityFont;
 	COLORREF							m_EntityColor;
 
-	// Attr¿Í EntityÀÇ ºĞ·ùÀÚ
+	// Attrì™€ Entityì˜ ë¶„ë¥˜ì
 	int									m_nSeperatorNameHeight;
 	CFont*								m_pSeperatorNameFont;
 	COLORREF							m_SeperatorNameColor;
 
-	// À±°û¼±
+	// ìœ¤ê³½ì„ 
 	COLORREF							m_FillColor;
 	COLORREF							m_LineColor;
 
-	// ³ôÀÌ°ª °è»ê °ø°£
+	// ë†’ì´ê°’ ê³„ì‚° ê³µê°„
 	int									m_aHeightList[128];
 
 // Constructions and Destructions

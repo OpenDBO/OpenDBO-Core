@@ -428,7 +428,7 @@ VOID CTBTournamentInfoGroup::OnFSCallBack( const RwChar* szCommand, const RwChar
 		{
 			pFightInfo->EndOfAnimation();
 
-			// ÃÖ»óÀ§ ¶óÀÎÀÎ °æ¿ì ÀÌ¸§À» Ãâ·Â
+			// ìµœìƒìœ„ ë¼ì¸ì¸ ê²½ìš° ì´ë¦„ì„ ì¶œë ¥
 			if( byDepth == m_byTopOfDepth )
 			{
 				sBUDOKAI_TOURNAMENT_ENTRY_TEAM_INFO* pData = NULL;
@@ -453,7 +453,7 @@ VOID CTBTournamentInfoGroup::OnFSCallBack( const RwChar* szCommand, const RwChar
 				}				
 			}
 
-			// »óÀ§´ÜÀÇ ¸ğµç Â÷ÀÏµåÀÇ ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ Á¾·áµÇ¾úÀ¸¸é »óÀ§´ÜÀÇ ¾Ö´Ï¸ŞÀÌ¼Ç ½ÃÀÛ
+			// ìƒìœ„ë‹¨ì˜ ëª¨ë“  ì°¨ì¼ë“œì˜ ì• ë‹ˆë©”ì´ì…˜ì´ ì¢…ë£Œë˜ì—ˆìœ¼ë©´ ìƒìœ„ë‹¨ì˜ ì• ë‹ˆë©”ì´ì…˜ ì‹œì‘
 			CTBTournamentFightInfo* pAboveFightInfo = pFightInfo->GetAboveFightInfo();
 			if( pAboveFightInfo && pAboveFightInfo->IsEnableToStartAnimation() )
 				DrawLine( pAboveFightInfo->GetMatchLevel(), pAboveFightInfo->GetMatchNumber(), pAboveFightInfo->GetWinnerPosition() );				
@@ -522,7 +522,7 @@ VOID CTBTournamentFinalInfoGroup::CreateFightData( RwUInt8 byIndex, CTBTournamen
 {
 	CTBTournamentInfoGroup::CreateFightData( byIndex, pAboveFightInfo, byMatchLevel, byMatchNumber );
 
-	// ¸Ç ¹Ø´ÜÀÇ ³à¼®Àº Entry True·Î ¸¸µé¾îÁÖ±â À§ÇØ. °á½ÂÀü Àü¿ë.
+	// ë§¨ ë°‘ë‹¨ì˜ ë…€ì„ì€ Entry Trueë¡œ ë§Œë“¤ì–´ì£¼ê¸° ìœ„í•´. ê²°ìŠ¹ì „ ì „ìš©.
 	if( byMatchLevel == m_byEndOfDepth )
 	{
 		m_ppFightInfo[byIndex]->SetEntryData( MATCH_TEAM_TYPE_TEAM1, INVALID_WORD );
@@ -578,7 +578,7 @@ VOID CTBTournamentFinalInfoGroup::OnFinalFSCallBack( const RwChar* szCommand, co
 
 		CTBTournamentFightInfo* pFightInfo = GetDepthNumberTeamFromFlashArgs( szArgs, &byDepth, &byNumber, &byTeam );
 
-		// ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ³¡³ª¸é ÇØ´çÇÏ´Â ¼±¼ö ÀÌ¸§ Ãâ·Â
+		// ì• ë‹ˆë©”ì´ì…˜ì´ ëë‚˜ë©´ í•´ë‹¹í•˜ëŠ” ì„ ìˆ˜ ì´ë¦„ ì¶œë ¥
 		if( pFightInfo && byDepth == BUDOKAI_MATCH_DEPTH_4 )
 		{
 			sBUDOKAI_TOURNAMENT_ENTRY_TEAM_INFO* pData = NULL;
@@ -680,7 +680,7 @@ RwBool CTBTournamentGui::Create(VOID)
 
 	m_pbtnClose = reinterpret_cast<gui::CButton*>( GetComponent( "btnClose" ) );
 
-	// peessiTODO: ½ÇÁ¦ È¸Â÷¿¡ ¸Â°Ô ¼öÁ¤. ½ÇÁ¦ Infomation·çÆ¾ ÀÛ¼º.
+	// peessiTODO: ì‹¤ì œ íšŒì°¨ì— ë§ê²Œ ìˆ˜ì •. ì‹¤ì œ Infomationë£¨í‹´ ì‘ì„±.
 	m_pstbTitle->Format( GetDisplayStringManager()->GetString( "DST_BUDOKAI_NEWS_TITLE" ), 1 );
 	m_pstbInfomation->SetText( GetDisplayStringManager()->GetString( "DST_BUDOKAI_TOURNAMENT_INFO_1" ) );
 
@@ -694,7 +694,7 @@ RwBool CTBTournamentGui::Create(VOID)
 	m_slotClickPartyBtn = m_pbtnParty->SigClicked().Connect( this, &CTBTournamentGui::OnClickPartyBtn );
 	m_slotClickIndividualBtn = m_pbtnIndividual->SigClicked().Connect( this, &CTBTournamentGui::OnClickIndividualBtn );
 
-	// Åä³Ê¸ÕÆ® ÄÄÆ÷³ÍÆ® »ı¼º.
+	// í† ë„ˆë¨¼íŠ¸ ì»´í¬ë„ŒíŠ¸ ìƒì„±.
 	CreateFightDataGroup();
 
 	Show( false );
@@ -714,7 +714,7 @@ VOID CTBTournamentGui::Destroy(VOID)
 {
 	GetDialogManager()->CloseDialog( DIALOG_BUDOKAI_TOURNAMENT );
 
-	// Åä³Ê¸ÕÆ® ÄÄÆ÷³ÍÆ® ÇØÁ¦
+	// í† ë„ˆë¨¼íŠ¸ ì»´í¬ë„ŒíŠ¸ í•´ì œ
 	DeleteFightDataGroup();
 
 	m_mapIndividualEntryInfo.clear();
@@ -1062,7 +1062,7 @@ VOID CTBTournamentGui::SetPage( ePage ePageType )
 		m_pstbIndividualGroupType->Show( false );		
 		m_pInfoGroup[TOURNAMENT_PARTY]->Show( true );
 
-		// ¹öÆ° ¼¼ÆÃ
+		// ë²„íŠ¼ ì„¸íŒ…
 		m_pbtnParty->ClickEnable( FALSE );
 		m_pbtnIndividual->ClickEnable( TRUE );
 
@@ -1090,7 +1090,7 @@ VOID CTBTournamentGui::SetPage( ePage ePageType )
 			m_pInfoGroup[TOURNAMENT_INDIVIDUAL_FINAL]->Show( true );
 		}
 
-		// ¹öÆ° ¼¼ÆÃ
+		// ë²„íŠ¼ ì„¸íŒ…
 		m_pbtnIndividual->ClickEnable( FALSE );
 		m_pbtnParty->ClickEnable( TRUE );
 

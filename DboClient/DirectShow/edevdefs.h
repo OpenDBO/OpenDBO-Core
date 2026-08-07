@@ -76,13 +76,13 @@
 // returns device postroll time in current time format
 #define ED_DEVCAP_POSTROLL			ED_BASE+30L
 
-// returns indication of device’s synchronization accuracy.
+// returns indication of deviceë­© synchronization accuracy.
 #define ED_DEVCAP_SYNC_ACCURACY		ED_BASE+31L	// returns one of the following:
 #define ED_SYNCACC_PRECISE			ED_BASE+32L
 #define ED_SYNCACC_FRAME			ED_BASE+33L
 #define ED_SYNCACC_ROUGH			ED_BASE+34L
 
-// returns device’s normal framerate.
+// returns deviceë­© normal framerate.
 #define ED_DEVCAP_NORMAL_RATE	ED_BASE+35L	// returns one of the following:
 #define ED_RATE_24				ED_BASE+36L
 #define ED_RATE_25				ED_BASE+37L
@@ -128,8 +128,8 @@
 #define ED_TRANSCAP_CAN_EJECT			ED_BASE+100L
 #define ED_TRANSCAP_CAN_BUMP_PLAY		ED_BASE+101L	// variable speed for synchronizing
 #define ED_TRANSCAP_CAN_PLAY_BACKWARDS	ED_BASE+102L	// servo locked for use during an edit
-#define ED_TRANSCAP_CAN_SET_EE			ED_BASE+103L	// show device’s input on its output
-#define ED_TRANSCAP_CAN_SET_PB			ED_BASE+104L	// show media playback on device’s output
+#define ED_TRANSCAP_CAN_SET_EE			ED_BASE+103L	// show deviceë­© input on its output
+#define ED_TRANSCAP_CAN_SET_PB			ED_BASE+104L	// show media playback on deviceë­© output
 #define ED_TRANSCAP_CAN_DELAY_VIDEO_IN	ED_BASE+105L	// transport can do delayed-in video edits
 #define ED_TRANSCAP_CAN_DELAY_VIDEO_OUT	ED_BASE+106L	// transport can do delayed-out video edits
 #define ED_TRANSCAP_CAN_DELAY_AUDIO_IN	ED_BASE+107L	// transport can do delayed-in audio edits
@@ -153,7 +153,7 @@
 #define ED_TRANSCAP_NUM_AUDIO_TRACKS	ED_BASE+111L	// returns number of audio tracks
 #define ED_TRANSCAP_LTC_TRACK			ED_BASE+112L	// returns track number of LTC timecode track.
 														//  ED_ALL means no dedicated timecode track
-#define ED_TRANSCAP_NEEDS_TBC			ED_BASE+113L	// device’s output not stable
+#define ED_TRANSCAP_NEEDS_TBC			ED_BASE+113L	// deviceë­© output not stable
 #define ED_TRANSCAP_NEEDS_CUEING		ED_BASE+114L	// device must be cued prior to performing edit
 #define ED_TRANSCAP_CAN_INSERT			ED_BASE+115L
 #define ED_TRANSCAP_CAN_ASSEMBLE		ED_BASE+116L
@@ -252,7 +252,7 @@
 #define ED_TCD_POSITION			ED_BASE+429L	// can be one of the following:
 #define ED_TOP					0x0001
 #define ED_MIDDLE				0x0002
-#define ED_BOTTOM				0x0004			// or’d  with
+#define ED_BOTTOM				0x0004			// orë­—  with
 #define ED_LEFT					0x0100
 #define ED_CENTER				0x0200
 #define ED_RIGHT				0x0400

@@ -1,4 +1,4 @@
-// peessi : SCViewer·Î ºôµåÇÒ¶§´Â ¹ØÀÇ precomp include¸¦ ÁÖ¼®Ã³¸®ÇÏ°í, SCVIEWER_MODE Á¤ÀÇ¸¦ È°¼ºÈ­ ÇÑ´Ù.
+// peessi : SCViewerë¡œ ë¹Œë“œí• ë•ŒëŠ” ë°‘ì˜ precomp includeë¥¼ ì£¼ì„ì²˜ë¦¬í•˜ê³ , SCVIEWER_MODE ì •ì˜ë¥¼ í™œì„±í™” í•œë‹¤.
 #include "precomp_dboclient.h"
 //#define SCVIEWER_MODE
 
@@ -38,7 +38,7 @@
 
 #define SKILLCUSTOMIZE_SUFACEPAGE	"gui\\SkillCustomize.srf"
 
-#define LINE_OFFSET			4		// ¸¶½ºÅÍ¸® ½ºÅ³°ú, ÀÏ¹Ý½ºÅ³ÀÇ ¸®¼Ò½º Â÷¿¡¼­ ¿À´Â Å©±â.
+#define LINE_OFFSET			4		// ë§ˆìŠ¤í„°ë¦¬ ìŠ¤í‚¬ê³¼, ì¼ë°˜ìŠ¤í‚¬ì˜ ë¦¬ì†ŒìŠ¤ ì°¨ì—ì„œ ì˜¤ëŠ” í¬ê¸°.
 
 
 CSkillCustomizeLineItem::CSkillCustomizeLineItem( gui::CComponent* pParent, RwUInt8 byLineType, RwUInt8 byBeginPos, RwUInt8 byEndPos,
@@ -53,7 +53,7 @@ CSkillCustomizeLineItem::CSkillCustomizeLineItem( gui::CComponent* pParent, RwUI
 		CRectangle rtLine;
 		CRectangle rtArrow;
 
-		// Begin Down, End UpÀ¸·Î °íÁ¤.
+		// Begin Down, End Upìœ¼ë¡œ ê³ ì •.
 		RwInt32 nXPos = rtBegin.left + ( rtEnd.right - rtBegin.left ) /  2 - UPGRADELINE_WIDTH / 2;
 		rtLine.SetRectWH( nXPos, rtBegin.bottom, UPGRADELINE_WIDTH, rtEnd.top - rtBegin.bottom - UPGRADELINE_HEIGHT );
 		SetLineSurface( GetLineSurface( UPGRADELINE_BAR ), GetLineSurface( UPGRADELINE_BAR_ACTIVE ), rtLine );
@@ -170,7 +170,7 @@ VOID CSkillCustomizeLineItem::GetLinePath( stLINE_PATH* pLinePath, RwUInt8 byLin
 {
 	CRectangle rect = pSkill->GetSkillPosition();
 
-	// begin °ª ÁöÁ¤.
+	// begin ê°’ ì§€ì •.
 	pLinePath->byDirection = byLinePos;
 
 	switch( byLinePos )
@@ -200,7 +200,7 @@ RwBool CSkillCustomizeLineItem::CalcLinePath( stLINE_PATH* pCurrentPath, stLINE_
 	gui::CSurface surface;
 	CRectangle rtLine;	
 
-	// ¹æÇâ °áÁ¤.
+	// ë°©í–¥ ê²°ì •.
 	switch( pCurrentPath->byDirection )
 	{
 	case LINE_POS_LEFT:
@@ -229,19 +229,19 @@ RwBool CSkillCustomizeLineItem::CalcLinePath( stLINE_PATH* pCurrentPath, stLINE_
 
 					rtLine.SetRectWH( pDestPath->nX, pCurrentPath->nY, byLineSize, byLineSize );
 					if( pDestPath->nY - pCurrentPath->nY > 0 )
-					{// Dest°¡ ´õ ¹Ø¿¡ ÀÖ´Ù.
+					{// Destê°€ ë” ë°‘ì— ìžˆë‹¤.
 						SetLineSurface( GetLineSurface( OPTIONLINE_RIGHTDOWN ), GetLineSurface( OPTIONLINE_RIGHTDOWN_ACTIVE ), rtLine );
 						pCurrentPath->SetLinePath( LINE_POS_DOWN, pDestPath->nX, pCurrentPath->nY + byLineSize );
 					}
 					else
-					{// Dest°¡ ´õ À§¿¡ ÀÖ´Ù.
+					{// Destê°€ ë” ìœ„ì— ìžˆë‹¤.
 						SetLineSurface( GetLineSurface( OPTIONLINE_RIGHTUP ), GetLineSurface( OPTIONLINE_RIGHTUP_ACTIVE ), rtLine );
 						pCurrentPath->SetLinePath( LINE_POS_UP, pDestPath->nX, pCurrentPath->nY );
 					}
 				}
 			}
 			else
-			{// ¿ªÀ§Ä¡
+			{// ì—­ìœ„ì¹˜
 				bEnd = TRUE;
 				LineError( strLineName, strReport );				
 			}			
@@ -265,7 +265,7 @@ RwBool CSkillCustomizeLineItem::CalcLinePath( stLINE_PATH* pCurrentPath, stLINE_
 				}
 			}
 			else
-			{// ¿ªÀ§Ä¡
+			{// ì—­ìœ„ì¹˜
 				bEnd = TRUE;
 				LineError( strLineName, strReport );
 			}		
@@ -289,13 +289,13 @@ RwBool CSkillCustomizeLineItem::CalcLinePath( stLINE_PATH* pCurrentPath, stLINE_
 				}
 			}
 			else
-			{// ¿ªÀ§Ä¡
+			{// ì—­ìœ„ì¹˜
 				bEnd = TRUE;
 				LineError( strLineName, strReport );
 			}
 			break;
 		case LINE_POS_LEFT:
-			// ¿ªÀ§Ä¡
+			// ì—­ìœ„ì¹˜
 			bEnd = TRUE;
 			LineError( strLineName, strReport );
 			break;
@@ -327,19 +327,19 @@ RwBool CSkillCustomizeLineItem::CalcLinePath( stLINE_PATH* pCurrentPath, stLINE_
 
 					rtLine.SetRectWH( pDestPath->nX - byLineSize, pCurrentPath->nY, byLineSize, byLineSize );
 					if( pDestPath->nY - pCurrentPath->nY > 0 )
-					{// Dest°¡ ´õ ¹Ø¿¡ ÀÖ´Ù.
+					{// Destê°€ ë” ë°‘ì— ìžˆë‹¤.
 						SetLineSurface( GetLineSurface( OPTIONLINE_LEFTDOWN ), GetLineSurface( OPTIONLINE_LEFTDOWN_ACTIVE ), rtLine );
 						pCurrentPath->SetLinePath( LINE_POS_DOWN, pDestPath->nX - byLineSize, pCurrentPath->nY + byLineSize );
 					}
 					else
-					{// Dest°¡ ´õ À§¿¡ ÀÖ´Ù.
+					{// Destê°€ ë” ìœ„ì— ìžˆë‹¤.
 						SetLineSurface( GetLineSurface( OPTIONLINE_LEFTUP ), GetLineSurface( OPTIONLINE_LEFTUP_ACTIVE ), rtLine );
 						pCurrentPath->SetLinePath( LINE_POS_UP, pDestPath->nX - byLineSize, pCurrentPath->nY );
 					}
 				}
 			}
 			else
-			{// ¿ªÀ§Ä¡
+			{// ì—­ìœ„ì¹˜
 				bEnd = TRUE;
 				LineError( strLineName, strReport );
 			}
@@ -363,7 +363,7 @@ RwBool CSkillCustomizeLineItem::CalcLinePath( stLINE_PATH* pCurrentPath, stLINE_
 				}
 			}
 			else
-			{// ¿ªÀ§Ä¡
+			{// ì—­ìœ„ì¹˜
 				bEnd = TRUE;
 				LineError( strLineName, strReport );
 			}
@@ -387,13 +387,13 @@ RwBool CSkillCustomizeLineItem::CalcLinePath( stLINE_PATH* pCurrentPath, stLINE_
 				}
 			}
 			else
-			{// ¿ªÀ§Ä¡
+			{// ì—­ìœ„ì¹˜
 				bEnd = TRUE;					 
 				LineError( strLineName, strReport );
 			}
 			break;
 		case LINE_POS_RIGHT:
-			// ¿ªÀ§Ä¡
+			// ì—­ìœ„ì¹˜
 			bEnd = TRUE;
 			LineError( strLineName, strReport );
 			break;
@@ -425,19 +425,19 @@ RwBool CSkillCustomizeLineItem::CalcLinePath( stLINE_PATH* pCurrentPath, stLINE_
 
 					rtLine.SetRectWH( pCurrentPath->nX, pDestPath->nY, byLineSize, byLineSize );
 					if( pDestPath->nX - pCurrentPath->nX > 0 )
-					{// Dest°¡ ´õ ¿À¸¥ÂÊ¿¡ ÀÖ´Ù.
+					{// Destê°€ ë” ì˜¤ë¥¸ìª½ì— ìžˆë‹¤.
 						SetLineSurface( GetLineSurface( OPTIONLINE_RIGHTDOWN ), GetLineSurface( OPTIONLINE_RIGHTDOWN_ACTIVE ), rtLine );
 						pCurrentPath->SetLinePath( LINE_POS_RIGHT, pCurrentPath->nX + byLineSize, pDestPath->nY );
 					}
 					else
-					{// Dest°¡ ´õ ¿ÞÂÊ¿¡ ÀÖ´Ù.
+					{// Destê°€ ë” ì™¼ìª½ì— ìžˆë‹¤.
 						SetLineSurface( GetLineSurface( OPTIONLINE_LEFTDOWN ), GetLineSurface( OPTIONLINE_LEFTDOWN_ACTIVE ), rtLine );
 						pCurrentPath->SetLinePath( LINE_POS_LEFT, pCurrentPath->nX, pDestPath->nY );
 					}
 				}
 			}
 			else
-			{// ¿ªÀ§Ä¡
+			{// ì—­ìœ„ì¹˜
 				bEnd = TRUE;
 				LineError( strLineName, strReport );				
 			}
@@ -461,7 +461,7 @@ RwBool CSkillCustomizeLineItem::CalcLinePath( stLINE_PATH* pCurrentPath, stLINE_
 				}
 			}
 			else
-			{// ¿ªÀ§Ä¡
+			{// ì—­ìœ„ì¹˜
 				bEnd = TRUE;
 				LineError( strLineName, strReport );				
 			}
@@ -485,13 +485,13 @@ RwBool CSkillCustomizeLineItem::CalcLinePath( stLINE_PATH* pCurrentPath, stLINE_
 				}
 			}
 			else
-			{// ¿ªÀ§Ä¡
+			{// ì—­ìœ„ì¹˜
 				bEnd = TRUE;
 				LineError( strLineName, strReport );				
 			}
 			break;
 		case LINE_POS_UP:
-			// ¿ªÀ§Ä¡
+			// ì—­ìœ„ì¹˜
 			bEnd = TRUE;
 			LineError( strLineName, strReport );				
 			break;		
@@ -520,12 +520,12 @@ RwBool CSkillCustomizeLineItem::CalcLinePath( stLINE_PATH* pCurrentPath, stLINE_
 
 					rtLine.SetRectWH( pCurrentPath->nX, pDestPath->nY - byLineSize, byLineSize, byLineSize );
 					if( pDestPath->nX - pCurrentPath->nX > 0 )
-					{// Dest°¡ ´õ ¿À¸¥ÂÊ¿¡ ÀÖ´Ù.
+					{// Destê°€ ë” ì˜¤ë¥¸ìª½ì— ìžˆë‹¤.
 						SetLineSurface( GetLineSurface( OPTIONLINE_RIGHTUP ), GetLineSurface( OPTIONLINE_RIGHTUP_ACTIVE ), rtLine );
 						pCurrentPath->SetLinePath( LINE_POS_RIGHT, pCurrentPath->nX + byLineSize, pDestPath->nY - byLineSize );
 					}
 					else
-					{// Dest°¡ ´õ ¿ÞÂÊ¿¡ ÀÖ´Ù.
+					{// Destê°€ ë” ì™¼ìª½ì— ìžˆë‹¤.
 						SetLineSurface( GetLineSurface( OPTIONLINE_LEFTUP ), GetLineSurface( OPTIONLINE_LEFTUP_ACTIVE ), rtLine );
 						pCurrentPath->SetLinePath( LINE_POS_LEFT, pCurrentPath->nX, pDestPath->nY - byLineSize );
 					}
@@ -533,7 +533,7 @@ RwBool CSkillCustomizeLineItem::CalcLinePath( stLINE_PATH* pCurrentPath, stLINE_
 			}
 			else
 			{
-				// ¿ªÀ§Ä¡
+				// ì—­ìœ„ì¹˜
 				bEnd = TRUE;
 				LineError( strLineName, strReport );				
 			}
@@ -557,7 +557,7 @@ RwBool CSkillCustomizeLineItem::CalcLinePath( stLINE_PATH* pCurrentPath, stLINE_
 				}
 			}
 			else
-			{// ¿ªÀ§Ä¡
+			{// ì—­ìœ„ì¹˜
 				bEnd = TRUE;
 				LineError( strLineName, strReport );				
 			}
@@ -581,7 +581,7 @@ RwBool CSkillCustomizeLineItem::CalcLinePath( stLINE_PATH* pCurrentPath, stLINE_
 				}
 			}
 			else
-			{// ¿ªÀ§Ä¡
+			{// ì—­ìœ„ì¹˜
 				bEnd = TRUE;
 				LineError( strLineName, strReport );				
 			}
@@ -1266,7 +1266,7 @@ CSkillCustomizeParser::CSkillCustomizeParser( const RwChar* szFileName )
 
 	enum EParseState
 	{
-		PARSE_GLOBAL,			// ÀüÃ¼ frame
+		PARSE_GLOBAL,			// ì „ì²´ frame
 		PARSE_COMPONENT_TYPE,   // component type
 		PARSE_COMPONENT_NAME,   // component name
 		PARSE_COMPONENT,
@@ -1518,7 +1518,7 @@ RwBool CSkillCustomizeParser::GenerateGuiItem( gui::CComponent* pParent )
 
 		CSkillCustomizeLineItem* pLineItem = NTL_NEW CSkillCustomizeLineItem( pParent, pData->byLineType, pData->byBeginLinePos, pData->byEndLinePos, pBeginSkillItem, pEndSkillItem, iterline->first, m_strError );
 
-		// peessi : ¾÷±×·¹ÀÌµå ¿©ºÎ´Â EndÂÊ¿¡¼­ °Ë»ç. Option LineÀº BeginÂÊ¿¡¼­ °ü¸®.
+		// peessi : ì—…ê·¸ë ˆì´ë“œ ì—¬ë¶€ëŠ” Endìª½ì—ì„œ ê²€ì‚¬. Option Lineì€ Beginìª½ì—ì„œ ê´€ë¦¬.
 		if( pData->byLineType == LINE_TYPE_UPGRADE )
 			pEndSkillItem->SetLine( pLineItem );
 		else
@@ -1533,7 +1533,7 @@ RwBool CSkillCustomizeParser::GenerateGuiItem( gui::CComponent* pParent )
 	DeleteParsedItem();
 
 #ifdef SCVIEWER_MODE
-	//	ºÎ¸ð ³ôÀÌ ¼³Á¤Àº ±âº»ÀûÀ¸·Î ¾Èº¸ÀÌ´Â ½ºÅ³ ¶§¹®¿¡ ÇÏºÎ·Î ÀÌµ¿... ºä¾î¸ðµå·Î ºôµåÇÒ¶§´Â ´Ù º¸ÀÌ°Ô ÇÑ´Ù. 
+	//	ë¶€ëª¨ ë†’ì´ ì„¤ì •ì€ ê¸°ë³¸ì ìœ¼ë¡œ ì•ˆë³´ì´ëŠ” ìŠ¤í‚¬ ë•Œë¬¸ì— í•˜ë¶€ë¡œ ì´ë™... ë·°ì–´ëª¨ë“œë¡œ ë¹Œë“œí• ë•ŒëŠ” ë‹¤ ë³´ì´ê²Œ í•œë‹¤. 
 	if( nYLimit > pParent->GetHeight() )
 		pParent->SetHeight( nYLimit );
 #endif

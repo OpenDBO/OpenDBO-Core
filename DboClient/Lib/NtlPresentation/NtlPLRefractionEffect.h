@@ -2,15 +2,15 @@
 
 struct WaveElement
 {
-    RwV2d   v2Pos;          //±¼ÀıÆÄ¹ß»ıÁöÁ¡
-    RwReal  fRound;         //ÆÄ°¡¹øÁö´ÂÃÖ´ë¹İÁö¸§
-    RwReal  fMaxHeight;     //ÆÄÀÇÃÖÃÊ³ôÀÌ(z°ª)
-    RwReal  fDelta;         //ÇöÀçÁøÇàµÈ½Ã°£(¹×ÇöÀçÆÄÀÇ¹İÁö¸§)
+    RwV2d   v2Pos;          //êµ´ì ˆíŒŒë°œìƒì§€ì 
+    RwReal  fRound;         //íŒŒê°€ë²ˆì§€ëŠ”ìµœëŒ€ë°˜ì§€ë¦„
+    RwReal  fMaxHeight;     //íŒŒì˜ìµœì´ˆë†’ì´(zê°’)
+    RwReal  fDelta;         //í˜„ì¬ì§„í–‰ëœì‹œê°„(ë°í˜„ì¬íŒŒì˜ë°˜ì§€ë¦„)
 };
 
 /**
  * \ingroup NtlPresentation
- * \brief È­¸éÀÇ ±¼Àı ¹İ»ç ÀÌÆåÆ® Å¬·¡½º
+ * \brief í™”ë©´ì˜ êµ´ì ˆ ë°˜ì‚¬ ì´í™íŠ¸ í´ë˜ìŠ¤
  *
  * \date 2008-08-20
  * \author agebreak
@@ -29,7 +29,7 @@ public:
 protected:
 
 protected:
-    std::list<WaveElement*> m_listWaveElement;           ///< ÆÄµ¿¿ø ¸®½ºÆ®
+    std::list<WaveElement*> m_listWaveElement;           ///< íŒŒë™ì› ë¦¬ìŠ¤íŠ¸
     RwInt32     m_nVertexCnt;    
     RwIm2DVertex* m_pVertices;
     RwV2d*      m_pUVVerticesOrg;

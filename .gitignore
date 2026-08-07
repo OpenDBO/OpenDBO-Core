@@ -1,4 +1,4 @@
-3rdParty/Xtreme ToolkitPro v15.2.1
+﻿3rdParty/Xtreme ToolkitPro v15.2.1
 DboClient/.vs
 DboClient/Release
 DboClient/Release4Tools
@@ -483,3 +483,44 @@ FodyWeavers.xsd
 /NtlLib/Shared/NtlXMLLoader/xmlparser_h.h
 /NtlLib/Shared/NtlXMLLoader/msxml2_i.c
 /NtlLib/Shared/NtlXMLLoader/msxml2_h.h
+
+# x64 build outputs
+DboClient/**/x64/
+DboClient/**/Release_x64/
+DboClient/**/*_x64/
+DboClient/**/x64/
+
+# RenderwareX64 compiled libraries (built from source, not source-controlled)
+DboClient/RenderwareX64/Lib/Release_x64/*.lib
+DboClient/RenderwareX64/Lib/Release_x64/*.pdb
+DboClient/RenderwareX64/Lib/Release_x64/*.exp
+DboClient/RenderwareX64/Lib/Release_x64/*.ilk
+
+# Preprocessor output
+*.i
+
+# Client logs
+DboClient/Client/*.log
+DboClient/Client/*.txt
+  
+# x64 port additions  
+*.bak  
+*.i  
+.commandcode/  
+DboClient/Client/DxLog.txt  
+DboClient/Client/dbolog.txt  
+DboClient/emitter.i  
+DboClient/RenderwareX64/Lib/Release_x64.bak/ 
+
+# Task lists (local planning, not tracked)
+/tasks/
+
+# fmod generated binaries (rebuilt per-architecture into Win32/x64)
+DboClient/Lib/NtlSound/fmod/*.dll
+DboClient/Lib/NtlSound/fmod/*.lib
+DboClient/Lib/NtlSound/fmod/*.exp
+DboClient/DragonBall/fmod*.dll
+
+# build staging folder (headers xcopied by RW plugin post-build)
+DboClient/inc/*
+!DboClient/inc/.gitkeep

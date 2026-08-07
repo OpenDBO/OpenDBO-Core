@@ -1,4 +1,4 @@
-// PaletteSpawnMacro.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PaletteSpawnMacro.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -8,7 +8,7 @@
 #include "SpawnMacro.h"
 
 
-// CPaletteSpawnMacro ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteSpawnMacro ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPaletteSpawnMacro, CDialog)
 
@@ -45,7 +45,7 @@ BEGIN_MESSAGE_MAP(CPaletteSpawnMacro, CDialog)
 END_MESSAGE_MAP()
 
 
-// CPaletteSpawnMacro ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPaletteSpawnMacro ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CPaletteSpawnMacro::OnBnClickedCreate()
 {
@@ -151,7 +151,7 @@ BOOL CPaletteSpawnMacro::OnInitDialog()
 	UpdateData(FALSE);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 LRESULT CPaletteSpawnMacro::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)

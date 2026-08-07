@@ -1,4 +1,4 @@
-// VenusView.cpp : CVenusView Å¬·¡½ºÀÇ ±¸Çö
+// VenusView.cpp : CVenusView í´ë˜ìŠ¤ì˜ êµ¬í˜„
 //
 
 #include "stdafx.h"
@@ -35,7 +35,7 @@
 IMPLEMENT_DYNCREATE(CVenusView, CView)
 
 BEGIN_MESSAGE_MAP(CVenusView, CView)
-	// Ç¥ÁØ ÀÎ¼â ¸í·ÉÀÔ´Ï´Ù.
+	// í‘œì¤€ ì¸ì‡„ ëª…ë ¹ì…ë‹ˆë‹¤.
 	ON_COMMAND(ID_FILE_PRINT, CView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, CView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, CView::OnFilePrintPreview)
@@ -68,13 +68,13 @@ BEGIN_MESSAGE_MAP(CVenusView, CView)
     ON_UPDATE_COMMAND_UI(ID_VIEW_LOWSPECEFFECT, &CVenusView::OnUpdateViewLowspeceffect)
 END_MESSAGE_MAP()
 
-// CVenusView »ı¼º/¼Ò¸ê
+// CVenusView ìƒì„±/ì†Œë©¸
 
 CVenusView* g_pMainView = NULL;
 
 CVenusView::CVenusView()
 {
-	// TODO: ¿©±â¿¡ »ı¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ìƒì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	g_pMainView = this;
 
 }
@@ -86,13 +86,13 @@ CVenusView::~CVenusView()
 
 BOOL CVenusView::PreCreateWindow(CREATESTRUCT& cs)
 {
-	// TODO: CREATESTRUCT cs¸¦ ¼öÁ¤ÇÏ¿© ¿©±â¿¡¼­
-	// Window Å¬·¡½º ¶Ç´Â ½ºÅ¸ÀÏÀ» ¼öÁ¤ÇÕ´Ï´Ù.
+	// TODO: CREATESTRUCT csë¥¼ ìˆ˜ì •í•˜ì—¬ ì—¬ê¸°ì—ì„œ
+	// Window í´ë˜ìŠ¤ ë˜ëŠ” ìŠ¤íƒ€ì¼ì„ ìˆ˜ì •í•©ë‹ˆë‹¤.
 
 	return CView::PreCreateWindow(cs);
 }
 
-// CVenusView ±×¸®±â
+// CVenusView ê·¸ë¦¬ê¸°
 
 void CVenusView::OnDraw(CDC* /*pDC*/)
 {
@@ -101,30 +101,30 @@ void CVenusView::OnDraw(CDC* /*pDC*/)
 	if (!pDoc)
 		return;
 
-	// TODO: ¿©±â¿¡ ¿ø½Ã µ¥ÀÌÅÍ¿¡ ´ëÇÑ ±×¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì›ì‹œ ë°ì´í„°ì— ëŒ€í•œ ê·¸ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 
-// CVenusView ÀÎ¼â
+// CVenusView ì¸ì‡„
 
 BOOL CVenusView::OnPreparePrinting(CPrintInfo* pInfo)
 {
-	// ±âº»ÀûÀÎ ÁØºñ
+	// ê¸°ë³¸ì ì¸ ì¤€ë¹„
 	return DoPreparePrinting(pInfo);
 }
 
 void CVenusView::OnBeginPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
 {
-	// TODO: ÀÎ¼âÇÏ±â Àü¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì¸ì‡„í•˜ê¸° ì „ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 void CVenusView::OnEndPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
 {
-	// TODO: ÀÎ¼â ÈÄ Á¤¸® ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì¸ì‡„ í›„ ì •ë¦¬ ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 
-// CVenusView Áø´Ü
+// CVenusView ì§„ë‹¨
 
 #ifdef _DEBUG
 void CVenusView::AssertValid() const
@@ -137,7 +137,7 @@ void CVenusView::Dump(CDumpContext& dc) const
 	CView::Dump(dc);
 }
 
-CVenusDoc* CVenusView::GetDocument() const // µğ¹ö±×µÇÁö ¾ÊÀº ¹öÀüÀº ÀÎ¶óÀÎÀ¸·Î ÁöÁ¤µË´Ï´Ù.
+CVenusDoc* CVenusView::GetDocument() const // ë””ë²„ê·¸ë˜ì§€ ì•Šì€ ë²„ì „ì€ ì¸ë¼ì¸ìœ¼ë¡œ ì§€ì •ë©ë‹ˆë‹¤.
 {
 	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CVenusDoc)));
 	return (CVenusDoc*)m_pDocument;
@@ -145,13 +145,13 @@ CVenusDoc* CVenusView::GetDocument() const // µğ¹ö±×µÇÁö ¾ÊÀº ¹öÀüÀº ÀÎ¶óÀÎÀ¸·Î 
 #endif //_DEBUG
 
 
-// CVenusView ¸Ş½ÃÁö Ã³¸®±â
+// CVenusView ë©”ì‹œì§€ ì²˜ë¦¬ê¸°
 
 void CVenusView::OnSize(UINT nType, int cx, int cy)
 {
 	CView::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	RECT rt;
 	GetClientRect(&rt);
 	CVenusCamera::GetInstance().SetCameraSize((RwRect*)&rt);
@@ -159,7 +159,7 @@ void CVenusView::OnSize(UINT nType, int cx, int cy)
 
 void CVenusView::OnRButtonDown(UINT nFlags, CPoint point)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	CVenusCamera::GetInstance().MouseMessages(WM_RBUTTONDOWN, point);
 	SetCapture();
 
@@ -168,7 +168,7 @@ void CVenusView::OnRButtonDown(UINT nFlags, CPoint point)
 
 void CVenusView::OnRButtonUp(UINT nFlags, CPoint point)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	CVenusCamera::GetInstance().MouseMessages(WM_RBUTTONUP, point);
 	ReleaseCapture();
 
@@ -179,7 +179,7 @@ void CVenusView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	CVenusCamera::GetInstance().MouseMessages(WM_MOUSEMOVE, point);
 
-    // ÀÌÆåÆ®¸¦ ¼±ÅÃÇÏ°í, È­»ìÇ¥¸¦ Å¬¸¯ÇßÀ»´ë, (ÀÌÆåÆ®ÀÇ ÀÌµ¿,È¸Àü,Å©±âº¯È¯µî)
+    // ì´í™íŠ¸ë¥¼ ì„ íƒí•˜ê³ , í™”ì‚´í‘œë¥¼ í´ë¦­í–ˆì„ëŒ€, (ì´í™íŠ¸ì˜ ì´ë™,íšŒì „,í¬ê¸°ë³€í™˜ë“±)
 	if (CManipulator::GetInstance().m_nArrowType != CManipulator::AXIS_TYPE_NONE)
 	{
 		if (CVenusConfig::GetInstance().m_nCurrentLayer == EDIT_LAYER_PATH)
@@ -219,7 +219,7 @@ void CVenusView::OnMouseMove(UINT nFlags, CPoint point)
 
 void CVenusView::OnMButtonDown(UINT nFlags, CPoint point)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	CVenusCamera::GetInstance().MouseMessages(WM_MBUTTONDOWN, point);
 
 	CVenusGrid::GetInstance().IntersectionStart(point, &CVenusCamera::GetInstance().GetTargetPosition());
@@ -231,7 +231,7 @@ void CVenusView::OnMButtonDown(UINT nFlags, CPoint point)
 
 void CVenusView::OnMButtonUp(UINT nFlags, CPoint point)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	CVenusGrid::GetInstance().IntersectionEnd();
 
 	CVenusCamera::GetInstance().MouseMessages(WM_MBUTTONUP, point);
@@ -242,7 +242,7 @@ void CVenusView::OnMButtonUp(UINT nFlags, CPoint point)
 
 BOOL CVenusView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	CVenusCamera::GetInstance().MouseMessages(WM_MOUSEWHEEL, pt, zDelta, nFlags);
 
 	return CView::OnMouseWheel(nFlags, zDelta, pt);
@@ -250,7 +250,7 @@ BOOL CVenusView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 
 void CVenusView::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	m_PointButtonDown = point;
 	if (CVenusConfig::GetInstance().m_nCurrentLayer != EDIT_LAYER_PATH)
 	{
@@ -280,7 +280,7 @@ void CVenusView::OnLButtonDown(UINT nFlags, CPoint point)
 
 void CVenusView::OnLButtonUp(UINT nFlags, CPoint point)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	CManipulator::GetInstance().IntersectionEnd();
 
 	if (CVenusFramework::GetInstance().GetSelectMode())
@@ -318,7 +318,7 @@ void CVenusView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
 	case '1':
 		{
-			//// Scale Å×½ºÆ®¿ë
+			//// Scale í…ŒìŠ¤íŠ¸ìš©
 			//CVenusVisualManager::svdef_InstanceEffect::iterator it;
 			//for (it = CVenusVisualManager::GetInstance().m_svSelectInstanceEffect.begin(); it != CVenusVisualManager::GetInstance().m_svSelectInstanceEffect.end(); ++ it)
 			//{
