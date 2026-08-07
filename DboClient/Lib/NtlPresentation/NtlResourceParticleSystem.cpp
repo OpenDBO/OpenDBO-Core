@@ -410,7 +410,16 @@ RwBool CNtlResourceParticleSystem::Load(FILE* pFile)
 
 	if (IsEmitterDataFlag(rpPRTADVEMITTERDATAFLAGPRTEMITTER))
 	{
-		fread(&m_PrtEmitterEmitter,			sizeof(RpPrtAdvPrtEmitterEmitter),		1,			pFile);
+		// NOTE: RpPrtAdvEmtPrtEmt has a pointer member (RpPrtStdEmitter* emitter)
+		// which is 8 bytes on x64 vs 4 bytes on x86. Read each field individually
+		// to stay compatible with x86-saved .eff files.
+		fread(&m_PrtEmitterEmitter.time,			sizeof(RwReal),		1,			pFile);
+		fread(&m_PrtEmitterEmitter.timeBias,		sizeof(RwReal),		1,			pFile);
+		fread(&m_PrtEmitterEmitter.timeGap,			sizeof(RwReal),		1,			pFile);
+		fread(&m_PrtEmitterEmitter.timeGapBias,		sizeof(RwReal),		1,			pFile);
+		// Skip the x86 pointer field (4 bytes) that was saved in the file
+		RwUInt32 __dummyEmitter;
+		fread(&__dummyEmitter, sizeof(RwUInt32), 1, pFile);
 	}
 
 	if (IsEmitterDataFlag(rpPRTADVEMITTERDATAFLAGMULTICOLOR))

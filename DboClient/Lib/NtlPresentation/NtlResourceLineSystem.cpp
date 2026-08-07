@@ -36,7 +36,11 @@ RwBool CNtlResourceLineSystem::Load(FILE* pFile)
     {
         fread(&m_EmitterSphere, sizeof(SNtlPrtStdEmitterPrtSphere), 1, pFile);        
         fread(&m_EmitterPrtRotate, sizeof(SNtlPrtStdEmitterPrtRotate), 1, pFile);        
-        fread(&m_EmitterPrtMultiRotate,		sizeof(SNtlAdvMultiRotateEmitter),				1,				pFile);
+        fread(&m_EmitterPrtMultiRotate.numRotate,	sizeof(RwUInt32),					1,				pFile);
+        // NOTE: SNtlAdvMultiRotateEmitter has a pointer member (SNtlAdvEmtPrtRotateItem* list)
+        // which is 8 bytes on x64 vs 4 bytes on x86. Skip the x86 pointer field (4 bytes).
+        RwUInt32 __dummyRotate;
+        fread(&__dummyRotate, sizeof(RwUInt32), 1, pFile);
         return TRUE;
     }
 
