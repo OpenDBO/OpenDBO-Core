@@ -19,6 +19,14 @@ RwInt32 g_nVelocityOffset = 0;
 RwReal g_fElapsedTime1 = 0;
 RwV3d g_vOrbitPoint;
 
+static RwBool NtlValidParticleVector(const RwV3d& v)
+{
+	return v.x == v.x && v.y == v.y && v.z == v.z &&
+		v.x > -1000000.0f && v.x < 1000000.0f &&
+		v.y > -1000000.0f && v.y < 1000000.0f &&
+		v.z > -1000000.0f && v.z < 1000000.0f;
+}
+
 CNtlInstanceParticleSystem::CNtlInstanceParticleSystem(void)
 :m_pEmitterPrtMatrix(NULL)
 {
@@ -115,11 +123,11 @@ void CNtlInstanceParticleSystem::Delete()
 	}
 	if (m_pEmitterStandard != NULL)
 	{
-		if (m_pEmitterStandard->texture != NULL)
-		{			
-			CNtlPLResourceManager::GetInstance()->UnLoadTexture(m_pEmitterStandard->texture);
-			m_pEmitterStandard->texture = NULL;
-		}
+		// NOTE: m_pEmitterStandard->texture is the SAME pointer as m_pStandardTexture
+		// (both are set from CreateTexture() in Create()). It is released by
+		// CNtlInstanceComponentSystem::Delete() below. Unloading it here double-frees
+		// the texture once the atomic (tank) releases its own material reference.
+		m_pEmitterStandard->texture = NULL;
 	}
 
 	if(NULL != m_pAtomic)
@@ -631,17 +639,36 @@ void CNtlInstanceParticleSystem::UpdateBillboard()
             RwMatrix* pMatParticle = (RwMatrix*)posLock.data;
 
             RwV3d vParticlePos = *RwMatrixGetPos(pMatParticle);
-            *RwMatrixGetPos(pMatParticle) = ZeroAxis;
-
             RwV3d vAtParticle = *RwMatrixGetAt(pMatParticle);
+
+            if (!NtlValidParticleVector(vParticlePos) || !NtlValidParticleVector(vAtParticle))
+				{
+					posLock.data += posLock.stride;
+					continue;
+				}
+
+				RwReal fRightScale = RwV3dLength(RwMatrixGetRight(pMatParticle));
+				RwReal fUpScale = RwV3dLength(RwMatrixGetUp(pMatParticle));
+				if (fRightScale != fRightScale || fUpScale != fUpScale ||
+					fRightScale > 1000.0f || fUpScale > 1000.0f)
+				{
+					RwMatrixSetIdentity(pMatParticle);
+					*RwMatrixGetPos(pMatParticle) = vParticlePos;
+					posLock.data += posLock.stride;
+					continue;
+				}
 
             RwMatrix matParticle, matBillboard;
 
             if(m_pResourceParticleSystem->IsEmitterDataFlag(NTLrpPRTSTDEMITTERDATAFLAGPRTYBILLBOARD))
             {
                 vAtParticle.y = 0.0f;
-                if(RwV3dLength(&vAtParticle) == 0)
-                    continue;
+                if(!NtlValidParticleVector(vAtParticle) || RwV3dLength(&vAtParticle) <= 0.0001f)
+                {
+						posLock.data += posLock.stride;
+						continue;
+					}
+
 
                 RwV3dNormalize(&vAtParticle, &vAtParticle);
                 RwV3d vRightParticle;
@@ -659,6 +686,11 @@ void CNtlInstanceParticleSystem::UpdateBillboard()
                 RwV3d vParticlePosTemp = vParticlePos;
                 vParticlePosTemp.y = 0.0f;
                 RwV3d vAt = vCameraPos - vParticlePosTemp;
+						if(!NtlValidParticleVector(vAt) || RwV3dLength(&vAt) <= 0.0001f)
+						{
+							posLock.data += posLock.stride;
+							continue;
+						}
                 RwV3dNormalize(&vAt, &vAt);
 
                 RwV3d vRight;
@@ -674,8 +706,12 @@ void CNtlInstanceParticleSystem::UpdateBillboard()
             else if(m_pResourceParticleSystem->IsEmitterDataFlag(NTLrpPRTSTDEMITTERDATAFLAGPRTXBILLBOARD))
             {
                 vAtParticle.x = 0.0f;
-                if(RwV3dLength(&vAtParticle) == 0)
-                    continue;
+                if(!NtlValidParticleVector(vAtParticle) || RwV3dLength(&vAtParticle) <= 0.0001f)
+                {
+						posLock.data += posLock.stride;
+						continue;
+					}
+
 
                 RwV3dNormalize(&vAtParticle, &vAtParticle);
                 RwV3d vRightParticle;
@@ -693,6 +729,11 @@ void CNtlInstanceParticleSystem::UpdateBillboard()
                 RwV3d vParticlePosTemp = vParticlePos;
                 vParticlePosTemp.x = 0.0f;
                 RwV3d vAt = vCameraPos - vParticlePosTemp;
+						if(!NtlValidParticleVector(vAt) || RwV3dLength(&vAt) <= 0.0001f)
+						{
+							posLock.data += posLock.stride;
+							continue;
+						}
                 RwV3dNormalize(&vAt, &vAt);
 
                 RwV3d vRight;
@@ -708,8 +749,12 @@ void CNtlInstanceParticleSystem::UpdateBillboard()
             else if(m_pResourceParticleSystem->IsEmitterDataFlag(NTLrpPRTSTDEMITTERDATAFLAGPRTZBILLBOARD))
             {
                 vAtParticle.z = 0.0f;
-                if(RwV3dLength(&vAtParticle) == 0)
-                    continue;
+                if(!NtlValidParticleVector(vAtParticle) || RwV3dLength(&vAtParticle) <= 0.0001f)
+                {
+						posLock.data += posLock.stride;
+						continue;
+					}
+
 
                 RwV3dNormalize(&vAtParticle, &vAtParticle);
                 RwV3d vRightParticle;
@@ -727,6 +772,11 @@ void CNtlInstanceParticleSystem::UpdateBillboard()
                 RwV3d vParticlePosTemp = vParticlePos;
                 vParticlePosTemp.z = 0.0f;
                 RwV3d vAt = vCameraPos - vParticlePosTemp;
+						if(!NtlValidParticleVector(vAt) || RwV3dLength(&vAt) <= 0.0001f)
+						{
+							posLock.data += posLock.stride;
+							continue;
+						}
                 RwV3dNormalize(&vAt, &vAt);
 
                 RwV3d vRight;
@@ -748,14 +798,40 @@ void CNtlInstanceParticleSystem::UpdateBillboard()
             // M = A(-1) * B
             // 기본축 행렬을 빌보드 행렬로 변환하는 변환행렬을 구한다.
             RwMatrix matTemp = matParticle;
-            RwMatrixInvert(&matParticle, &matTemp);            
+				// NOTE: the axes above are unit vectors, but the flags were copied
+				// from the PTank buffer (garbage from RwMalloc). RwMatrixInvert/
+				// RwMatrixMultiply branch on those flags; a stale identity bit set
+				// makes them skip the actual math and the billboard ends up with a
+				// wrongly-rotated, huge quad that depends on the camera angle.
+				// Set the type explicitly so the inversion is always exact.
+				rwMatrixSetFlags(&matParticle, rwMATRIXTYPEORTHONORMAL);
+				rwMatrixSetFlags(&matBillboard, rwMATRIXTYPEORTHONORMAL);
+				rwMatrixSetFlags(&matTemp, rwMATRIXTYPEORTHONORMAL);
+				if (RwMatrixInvert(&matParticle, &matTemp) == NULL)
+				{
+					posLock.data += posLock.stride;
+					continue;
+				}
             RwMatrix matResult;            
             RwMatrixMultiply(&matResult, &matParticle, &matBillboard);
+				rwMatrixSetFlags(&matResult, rwMATRIXTYPEORTHONORMAL);
 
             // 변환행렬을 원래 파티클의 행렬에 적용한다.
             matTemp = *pMatParticle;
+				rwMatrixSetFlags(&matTemp, 0);
             RwMatrixMultiply(pMatParticle, &matTemp, &matResult);
             *RwMatrixGetPos(pMatParticle) = vParticlePos;
+				// The result carries scale (right/up lengths), so clear the type
+				// flags - otherwise the next frame's invert would take the
+				// orthonormal fast path on a scaled matrix.
+				rwMatrixSetFlags(pMatParticle, 0);
+				if (!NtlValidParticleVector(*RwMatrixGetRight(pMatParticle)) ||
+					!NtlValidParticleVector(*RwMatrixGetUp(pMatParticle)) ||
+					!NtlValidParticleVector(*RwMatrixGetAt(pMatParticle)))
+				{
+					RwMatrixSetIdentity(pMatParticle);
+					*RwMatrixGetPos(pMatParticle) = vParticlePos;
+				}
 
             posLock.data += posLock.stride;
         }
