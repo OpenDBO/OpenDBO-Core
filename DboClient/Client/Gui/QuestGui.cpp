@@ -512,6 +512,7 @@ VOID CQuestGui::HandleEvents( RWS::CMsg &msg )
 	}
 	else if (msg.Id == g_EventResize)
 	{
-		m_pQuestIndicator->HandleEvents(msg);
+		if (m_pQuestIndicator != NULL)
+			m_pQuestIndicator->HandleEvents(msg);
 	}
 }

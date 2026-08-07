@@ -438,6 +438,9 @@ VOID CQuestIndicatorGui::HandleEvents(RWS::CMsg& msg)
 	}
 	else if (msg.Id == g_EventResize)
 	{
+		if (m_pThis == NULL)
+			return;
+
 		CRectangle rect = GetNtlGuiManager()->GetGuiManager()->GetScreenRect();
 		m_pThis->SetPosition(rect.right - (QUEST_INDICATOR_FRAME_WIDTH + QUEST_INDICATOR_QUESTSTATE_WIDTH), m_pThis->GetPosition().top);
 		Refresh();
