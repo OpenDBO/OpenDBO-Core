@@ -168,7 +168,7 @@ void CDLStateDispatchDecision::Enter( void )
 		return;
 	}
 
-	// 2. Server configure�� �о� ���δ�
+	// 2. Server configure를 읽어 들인다
 	if ( !LoadServerConfig() )
 	{
 		DLSendMessage_ToUser( eDL_MSG_ERROR_NOT_PREPARED_LAUNCHER );
