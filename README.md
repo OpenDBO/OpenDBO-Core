@@ -145,6 +145,19 @@ All required third party tools can be obtained from [our 3rd party repository](h
 </details>
 Alternatively there's a video showcasing this process: https://www.youtube.com/watch?v=lWDffP81ACw
 
+<details>
+ <summary>Using the DBOLauncher tool</summary>
+
+`DBOLauncher` (`DboClient/Tool/DBOLauncher`) is the game's launcher: it optionally checks a patch server for updates, then starts `Client.exe`. It's part of `DboClient.sln` (`Release4Tools|Win32`).
+
+1. **Build it:** open `DboClient.sln`, right-click `DBOLauncher` under the `Tool` solution folder, and build it with the `Release4Tools|Win32` configuration. The post-build step copies `LauncherConfig.xml`, `launcherdevmaster.xml`, `patchw32.dll`, and the `patch/` folder from `Tool/DBOLauncher/Test/` into `DragonBall/`.
+
+2. **Offline mode (default):** `Test/launcherdevmaster.xml` ships with `OFFLINE_MODE_ENABLE` set to `1`, so the launcher skips the online patch-server flow entirely and goes straight to its idle screen, where clicking **Start** launches `Client.exe` directly. No server setup needed — this is the quickest way to just launch the client.
+
+3. **Online mode (testing the real patch flow):** set `OFFLINE_MODE_ENABLE` to `0` in `Test/launcherdevmaster.xml` and rebuild to exercise the real patch-server flow instead. This needs a reachable HTTP patch server (**port 80** — hardcoded in the launcher, it can't use another port) — the files it needs to serve are `Test/LauncherConfig.xml` (points at the server) and `Test/patch/` (`PatchServerConfig.XML` + `PatchList.xml`, which ship declaring "nothing to patch" so the launcher reports the client as up to date and proceeds straight to the idle screen). How you host those is up to your own setup.
+
+</details>
+
 ## Acknowledgements
 All and any copyrighted material belongs to their respective owners, this is just a non-profit fan project aiming for game preservation. Thanks to DBOG for providing the base for this source code.
 
