@@ -149,6 +149,25 @@ void CDLStateDispatchDecision::Enter( void )
 		return;
 	}
 
+	// Offline mode: skip every online server-config/version-list/patch step and
+	// just create the skin so the user can start the client locally without a
+	// reachable patch server.
+	if ( g_clDLLaucherDevMaster.IsOfflineModeEnable() )
+	{
+		if ( !CreateSkin() )
+		{
+			DLSendMessage_ToUser( eDL_MSG_ERROR_NOT_PREPARED_LAUNCHER );
+
+			ChangeState( eDL_STATE_END, (void*)eDL_EXIT_CODE_CREATE_SKIN_ERROR );
+
+			return;
+		}
+
+		ChangeState( eDL_STATE_IDLE );
+
+		return;
+	}
+
 	// 2. Server configure를 읽어 들인다
 	if ( !LoadServerConfig() )
 	{

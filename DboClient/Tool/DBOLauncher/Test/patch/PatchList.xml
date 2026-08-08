@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PatchList>
+
+  <LauncherFullRtPatch>
+    <Data Ver="0.0.0" PatchFile="none.zip" />
+  </LauncherFullRtPatch>
+
+  <ClientDiffRtPatch>
+  </ClientDiffRtPatch>
+
+  <ClientFullRtPatch>
+    <Data Ver="0.0.0" PatchFile="none.zip" />
+  </ClientFullRtPatch>
+
+</PatchList>

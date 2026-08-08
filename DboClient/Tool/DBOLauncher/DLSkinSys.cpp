@@ -17,7 +17,7 @@
 #include "DLSkinDlg_Dev.h"
 #include "DLSkinDlg_CJIKor.h"
 #include "DBOLauncherDef.h"
-#include "NtlService.h"
+#include "NtlClientService.h"
 
 
 //////////////////////////////////////////////////////////////////////////
