@@ -283,8 +283,10 @@ CNtlPacketLockManager::CNtlPacketLockManager(VOID)
 	m_mapLockPacket[GU_HOIPOIMIX_ITEM_CREATE_RES]						= LT_ITEM;
 
 	// Vechicle
+	m_mapLockPacket[GU_VEHICLE_ENGINE_START_RES]						= LT_ITEM | LT_WORLDCONCEPT;
+	m_mapLockPacket[GU_VEHICLE_ENGINE_STOP_RES]							= LT_ITEM | LT_WORLDCONCEPT;
 	m_mapLockPacket[GU_VEHICLE_END_RES]									= LT_ITEM | LT_WORLDCONCEPT;
-	m_mapLockPacket[GU_VEHICLE_FUEL_INSERT_RES] = LT_ITEM | LT_WORLDCONCEPT;
+	m_mapLockPacket[GU_VEHICLE_FUEL_INSERT_RES]							= LT_ITEM | LT_WORLDCONCEPT;
 
 	// NetPyShop
 	m_mapLockPacket[GU_SHOP_NETPYITEM_START_RES]						= LT_ITEM | LT_WORLDCONCEPT;

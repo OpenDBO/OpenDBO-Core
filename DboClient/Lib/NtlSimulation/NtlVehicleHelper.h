@@ -1,4 +1,4 @@
-/*****************************************************************************
+﻿/*****************************************************************************
  *
  * File			: NtlVehicleHelper.h
  * Author		: JeongHo, Rho
@@ -16,6 +16,7 @@
 
 #include "NtlSLDef.h"
 #include "ceventhandler.h"
+#include "NtlSoundDefines.h"
 
 
 class CNtlSob;
@@ -40,6 +41,13 @@ enum
 	VEHICLE_SRP_X_ANIMATION_END		= VEHICLE_SRP_X_LANDING,
 };
 
+enum eVehicleSoundLoop
+{
+	VEHICLE_SOUND_LOOP_NONE,
+	VEHICLE_SOUND_LOOP_IDLE,
+	VEHICLE_SOUND_LOOP_RUN,
+};
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -59,6 +67,10 @@ protected:
 	sVEHICLE_TBLDAT*			m_pVehicleTblData;
 
 	RwBool						m_bStrunAniPlay;
+
+	SOUND_HANDLE				m_hVehicleLoopSoundHandle;
+	eVehicleSoundLoop			m_eVehicleSoundLoop;
+	char						m_acLastLoopFileName[64];
 
 public:
 	CNtlVehicleHelper( void );
@@ -82,8 +94,16 @@ public:
 
 	void						UpdateEvent( RWS::CMsg& pMsg );
 
+	void						UpdateVehicleIdleSound( void );
+	void						UpdateVehicleLoopSoundPosition( void );
+
 protected:
 	RwUInt32					GetVehicleAnimIdxFromSRPType( RwUInt8 bySRPType, RwUInt8 byRVAnimIdx );
+
+	void						Vehicle_SetLoopSound( eVehicleSoundLoop eLoop, const char* pcFileName );
+	void						Vehicle_PlayOneShotSound( const char* pcFileName );
+	void						Vehicle_StopLoopSound( void );
+	RwBool						Vehicle_IsLoopSoundAlive( void );
 };
 
 

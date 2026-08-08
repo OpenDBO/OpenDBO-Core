@@ -165,15 +165,14 @@ void CNtlSobVehicle::UpdateRideOnHeight( RwReal fElapsed )
 
 	if ( ASPECTSTATE_VEHICLE == pState->sCharStateBase.aspectState.sAspectStateBase.byAspectStateId )
 	{
-		// engine disabled by daneos
-		//if ( pState->sCharStateBase.aspectState.sAspectStateDetail.sVehicle.bIsEngineOn )
-		//{
-			m_fTargetRideOnHeight = GetMaxRideOnHeight();
-		/*}
+		if (pState->sCharStateBase.aspectState.sAspectStateDetail.sVehicle.bIsEngineOn)
+		{
+			m_fTargetRideOnHeight = ((CNtlSobVehicleAttr*)GetSobAttr())->GetVehicleTable()->wRunHeight;
+		}
 		else
 		{
 			m_fTargetRideOnHeight = 0.f;
-		}*/
+		}
 
 		// 상승
 		if ( m_fTargetRideOnHeight > m_fCurRideOnHeight )

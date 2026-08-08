@@ -891,6 +891,31 @@ bool CNtlSLPacketGenerator::SendRideOffBus()
 	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
 }
 
+bool CNtlSLPacketGenerator::SendVehicle_EngineStartReq(TBLIDX idxItem)
+{
+	if (API_GetSLPacketLockManager()->IsLock(GU_VEHICLE_ENGINE_START_RES))
+		return false;
+
+	sUG_VEHICLE_ENGINE_START_REQ sPacket;
+	sPacket.wOpCode = UG_VEHICLE_ENGINE_START_REQ;
+	sPacket.idFuelItemTblidx = idxItem;
+
+	API_GetSLPacketLockManager()->Lock(GU_VEHICLE_ENGINE_START_RES);
+	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
+}
+
+bool CNtlSLPacketGenerator::SendVehicle_EngineStopReq()
+{
+	if (API_GetSLPacketLockManager()->IsLock(GU_VEHICLE_ENGINE_STOP_RES))
+		return false;
+
+	sUG_VEHICLE_ENGINE_STOP_REQ sPacket;
+	sPacket.wOpCode = UG_VEHICLE_ENGINE_STOP_REQ;
+
+	API_GetSLPacketLockManager()->Lock(GU_VEHICLE_ENGINE_STOP_RES);
+	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
+}
+
 bool CNtlSLPacketGenerator::SendVehicle_EngineFuelRemoveNfy()
 {
 	sUG_VEHICLE_FUEL_REMOVE_NFY sPacket;

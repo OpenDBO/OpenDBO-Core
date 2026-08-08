@@ -443,6 +443,10 @@ enum eOPCODE_GU
 	GU_GUILD_DOGI_CREATE_RES,
 	GU_GUILD_DOGI_CHANGE_RES,
 	GU_VEHICLE_START_NFY,
+	GU_VEHICLE_ENGINE_START_RES,
+	GU_VEHICLE_ENGINE_START_NFY,
+	GU_VEHICLE_ENGINE_STOP_RES,
+	GU_VEHICLE_ENGINE_STOP_NFY,
 	GU_VEHICLE_END_RES,
 	GU_VEHICLE_STUNT_NFY,
 	GU_SKILL_PASSIVE_EFFECT_APPLIED_NFY,
@@ -3181,6 +3185,23 @@ END_PROTOCOL()
 BEGIN_PROTOCOL( GU_VEHICLE_FUEL_INSERT_RES )
 WORD				wResultCode;
 HOBJECT				hItem;
+END_PROTOCOL()
+//------------------------------------------------------------------
+BEGIN_PROTOCOL(GU_VEHICLE_ENGINE_START_RES)
+WORD				wResultCode;
+END_PROTOCOL()
+//------------------------------------------------------------------
+BEGIN_PROTOCOL(GU_VEHICLE_ENGINE_START_NFY)
+HOBJECT				hDriverHandle;
+END_PROTOCOL()
+//------------------------------------------------------------------
+BEGIN_PROTOCOL(GU_VEHICLE_ENGINE_STOP_RES)
+WORD				wResultCode;
+END_PROTOCOL()
+//------------------------------------------------------------------
+BEGIN_PROTOCOL(GU_VEHICLE_ENGINE_STOP_NFY)
+HOBJECT				hDriverHandle;
+DWORD				dwFuelRemain;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL( GU_SKILL_PASSIVE_EFFECT_APPLIED_NFY )

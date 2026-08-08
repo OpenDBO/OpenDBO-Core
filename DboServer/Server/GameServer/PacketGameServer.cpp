@@ -1,4 +1,4 @@
-﻿#include "stdafx.h"
+#include "stdafx.h"
 #include "NtlPacketGU.h"
 #include "NtlPacketUG.h"
 #include "NtlPacketGM.h"
@@ -3626,7 +3626,7 @@ void CClientSession::RecvGuildBankZeniReq(CNtlPacket * pPacket)
 	else if(req->dwZenny == 0 || req->dwZenny == INVALID_DWORD)
 		wResultCode = GAME_FAIL;
 
-	else if(req->bIsSave && req->dwZenny > cPlayer->GetZeni())  //´save zeni | check if player has enough zeni
+	else if(req->bIsSave && req->dwZenny > cPlayer->GetZeni())  //쨈save zeni | check if player has enough zeni
 		wResultCode = GAME_FAIL;
 
 	else if(req->bIsSave && (NTL_CHAR_MAX_SAVE_ZENNY < cPlayer->GetPlayerItemContainer()->GetGuildBankZeni() + req->dwZenny || cPlayer->GetPlayerItemContainer()->GetGuildBankZeni() + req->dwZenny == INVALID_DWORD)) //save zeni | check if zeni over
@@ -9705,6 +9705,51 @@ void CClientSession::RecvEndVehicleReq(CNtlPacket * pPacket)
 		packet.SetPacketLen(sizeof(sGU_VEHICLE_END_RES));
 		SendPacket(&packet);
 	}
+}
+
+void CClientSession::RecvVehicleEngineOn(CNtlPacket* pPacket)
+{
+	if (!cPlayer || !cPlayer->IsInitialized())
+		return;
+
+	CNtlPacket packet(sizeof(sGU_VEHICLE_ENGINE_START_RES));
+	sGU_VEHICLE_ENGINE_START_RES* res = (sGU_VEHICLE_ENGINE_START_RES*)packet.GetPacketData();
+	res->wOpCode = GU_VEHICLE_ENGINE_START_RES;
+	res->wResultCode = GAME_SUCCESS;
+	packet.SetPacketLen(sizeof(sGU_VEHICLE_ENGINE_START_RES));
+	SendPacket(&packet);
+
+	CNtlPacket packet2(sizeof(sGU_VEHICLE_ENGINE_START_NFY));
+	sGU_VEHICLE_ENGINE_START_NFY* res2 = (sGU_VEHICLE_ENGINE_START_NFY*)packet2.GetPacketData();
+	res2->wOpCode = GU_VEHICLE_ENGINE_START_NFY;
+	res2->hDriverHandle = cPlayer->GetID();
+	packet2.SetPacketLen(sizeof(sGU_VEHICLE_ENGINE_START_NFY));
+	cPlayer->Broadcast(&packet2);
+	cPlayer->SetVehicleEngine(true);
+	cPlayer->SetVehicleAniPlay(true);
+
+}
+
+void CClientSession::RecvVehicleEngineOff(CNtlPacket* pPacket)
+{
+	if (!cPlayer || !cPlayer->IsInitialized())
+		return;
+
+	CNtlPacket packet(sizeof(sGU_VEHICLE_ENGINE_STOP_RES));
+	sGU_VEHICLE_ENGINE_STOP_RES* res = (sGU_VEHICLE_ENGINE_STOP_RES*)packet.GetPacketData();
+	res->wOpCode = GU_VEHICLE_ENGINE_STOP_RES;
+	res->wResultCode = GAME_SUCCESS;
+	packet.SetPacketLen(sizeof(sGU_VEHICLE_ENGINE_STOP_RES));
+	SendPacket(&packet);
+
+	CNtlPacket packet2(sizeof(sGU_VEHICLE_ENGINE_STOP_NFY));
+	sGU_VEHICLE_ENGINE_STOP_NFY* res2 = (sGU_VEHICLE_ENGINE_STOP_NFY*)packet2.GetPacketData();
+	res2->wOpCode = GU_VEHICLE_ENGINE_STOP_NFY;
+	res2->hDriverHandle = cPlayer->GetID();
+	packet2.SetPacketLen(sizeof(sGU_VEHICLE_ENGINE_STOP_NFY));
+	cPlayer->Broadcast(&packet2);
+	cPlayer->SetVehicleEngine(false);
+	cPlayer->SetVehicleAniPlay(false);
 }
 
 

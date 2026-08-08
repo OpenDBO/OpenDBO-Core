@@ -757,12 +757,15 @@ void RegisterPacketHandler(void)
 	CNtlPacketHandler::Register(GU_HOIPOIMIX_RECIPE_REG_NFY, PacketHandler_GUHoipoiMixRecipeRegNfy );
 
 	
-
 	// Vehicle
-	CNtlPacketHandler::Register(GU_VEHICLE_START_NFY, PacketHandler_GUVehicleStartNfy );
-	CNtlPacketHandler::Register(GU_VEHICLE_END_RES, PacketHandler_GUVehicleEndRes );
-	CNtlPacketHandler::Register(GU_VEHICLE_STUNT_NFY, PacketHandler_GUVehicleStuntNfy );
+	CNtlPacketHandler::Register(GU_VEHICLE_START_NFY, PacketHandler_GUVehicleStartNfy);
+	CNtlPacketHandler::Register(GU_VEHICLE_ENGINE_START_RES, PacketHandler_GUVehicleEngineStartRes);
+	CNtlPacketHandler::Register(GU_VEHICLE_ENGINE_START_NFY, PacketHandler_GUVehicleEngineStartNfy);
+	CNtlPacketHandler::Register(GU_VEHICLE_ENGINE_STOP_RES, PacketHandler_GUVehicleEngineStopRes);
+	CNtlPacketHandler::Register(GU_VEHICLE_ENGINE_STOP_NFY, PacketHandler_GUVehicleEngineStopNfy);
 	CNtlPacketHandler::Register(GU_VEHICLE_FUEL_INSERT_RES, PacketHandler_GUVehicleFuelInsertRes);
+	CNtlPacketHandler::Register(GU_VEHICLE_END_RES, PacketHandler_GUVehicleEndRes);
+	CNtlPacketHandler::Register(GU_VEHICLE_STUNT_NFY, PacketHandler_GUVehicleStuntNfy);
 
 	CNtlPacketHandler::Register(GU_PLAY_BGM, PacketHandler_GUSoundPlayBGM );
 

@@ -742,6 +742,10 @@ void PacketHandler_GUDynamicObjectUpdateState(void* pPacket);
 
 // Vehicle
 void PacketHandler_GUVehicleStartNfy(void* pPacket);
+void PacketHandler_GUVehicleEngineStartRes(void* pPacket);
+void PacketHandler_GUVehicleEngineStartNfy(void* pPacket);
+void PacketHandler_GUVehicleEngineStopRes(void* pPacket);
+void PacketHandler_GUVehicleEngineStopNfy(void* pPacket);
 void PacketHandler_GUVehicleEndRes(void* pPacket);
 void PacketHandler_GUVehicleStuntNfy(void* pPacket);
 void PacketHandler_GUVehicleFuelInsertRes(void* pPacket);

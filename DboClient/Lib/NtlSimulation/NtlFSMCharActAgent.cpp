@@ -1020,6 +1020,8 @@ void CNtlFSMCharActAgent::ServerAspectCreateStateVehicle(sASPECTSTATE *pServerAs
 		pCtrlStuff->sVehicle.bRideOn = false;
 	}
 
+	pCtrlStuff->sVehicle.bEngineOn = pServerAspectState->sAspectStateDetail.sVehicle.bIsEngineOn;
+
 	SetNextStateId( NTL_FSMSID_RIDEONOFF );
 }
 
@@ -1046,7 +1048,7 @@ void CNtlFSMCharActAgent::ServerAspectStateVehicle(sASPECTSTATE *pServerAspectSt
 		pCtrlStuff->sVehicle.bRideOn = false;
 	}
 
-//	pCtrlStuff->sVehicle.bEngineOn = pServerAspectState->sAspectStateDetail.sVehicle.bIsEngineOn;
+	pCtrlStuff->sVehicle.bEngineOn = pServerAspectState->sAspectStateDetail.sVehicle.bIsEngineOn;
 
 	CNtlSLEventGenerator::SobStateTransition( m_pActor->GetSerialID(), NTL_FSMSID_RIDEONOFF );
 }
@@ -2227,6 +2229,24 @@ RwUInt32 CNtlFSMCharActAgent::HandleEvents(RWS::CMsg &pMsg)
 			pCtrlStuff->sVehicle.hVehicleItem = pData->hVehicleItem;
 			pCtrlStuff->sVehicle.idxVehicleItem = pData->tblVehicleItem;
 			NTL_RETURN(NTL_FSM_EVENTRES_BLOCK);
+		}
+		else if (pMsg.Id == g_EventSobVehicleEngine)
+		{
+			SNtlEventSobVehicleEngine* pVehicleEngine = reinterpret_cast<SNtlEventSobVehicleEngine*>(pMsg.pData);
+
+			CNtlBeCharData* pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData());
+			SCtrlStuff* pCtrlStuff = pBeData->GetCtrlStuff();
+
+			if (VEHICLE_ENGINE_START == pVehicleEngine->byMessage)
+			{
+				m_sCharState.sCharStateBase.aspectState.sAspectStateDetail.sVehicle.bIsEngineOn = true;
+				pCtrlStuff->sVehicle.bEngineOn = true;
+			}
+			else if (VEHICLE_ENGINE_STOP == pVehicleEngine->byMessage)
+			{
+				m_sCharState.sCharStateBase.aspectState.sAspectStateDetail.sVehicle.bIsEngineOn = false;
+				pCtrlStuff->sVehicle.bEngineOn = false;
+			}
 		}
         else if(pMsg.Id == g_EventSobUpdateLPStatusNfy) // 빈사 상태 체크
         {

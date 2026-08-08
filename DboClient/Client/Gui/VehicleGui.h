@@ -1,4 +1,4 @@
-/******************************************************************************
+﻿/******************************************************************************
 * File			: Vehicle.h
 * Author		: Hong SungBock
 * Copyright		: (주)NTL
@@ -37,7 +37,7 @@ class CVehicleGui : public CNtlPLGui, public RWS::CEventHandler
 
 	struct sFUEL
 	{
-		CRegularSlotGui				FuelSlot;				///< 연료 슬롯
+		CRegularSlotGui			FuelSlot;				///< 연료 슬롯
 		SET_LOCKED_BAGSLOT		setLockedBagSlot;
 		SET_LOCKED_BAGSLOT		setNewLockBagSlot;
 	};
@@ -90,6 +90,8 @@ protected:
 	VOID			SelectEffect(RwBool bSelected);
 
 	VOID			OnClicked_ExitButton(gui::CComponent* pComponent);
+	VOID			OnClicked_StopButton(gui::CComponent* pComponent);
+	VOID			OnClicked_StartButton(gui::CComponent* pComponent);
 
 	VOID			OnMouseDown(const CKey& key);
 	VOID			OnMouseUp(const CKey& key);
@@ -101,6 +103,8 @@ protected:
 protected:
 
 	gui::CSlot			m_slotExitButton;
+	gui::CSlot			m_slotStopButton;
+	gui::CSlot			m_slotStartButton;
 	gui::CSlot			m_slotMouseDown;
 	gui::CSlot			m_slotMouseUp;
 	gui::CSlot			m_slotMove;
@@ -113,11 +117,10 @@ protected:
 	gui::CButton*		m_pStartButton;
 
 	gui::CProgressBar*	m_pFuelGauge;
-	gui::CFlash*		m_pflashEngineWorking;
 
-	CSurfaceGui			m_srfFocusEffect;		///< 슬롯 포커스 이펙트
-	CSurfaceGui			m_srfSelectEffect;		///< 슬롯 셀렉트 이펙트	
-	CSurfaceGui			m_srfFuelGaugeBack;		///< 연료 게이지 배경
+	CSurfaceGui			m_srfFocusEffect;		///< slot focus effect surface
+	CSurfaceGui			m_srfSelectEffect;		///< slot select effect surface
+	CSurfaceGui			m_srfFuelGaugeBack;		///< fuel gauge background surface
 
 	RwBool				m_bFocus;
 	RwBool				m_bSelected;

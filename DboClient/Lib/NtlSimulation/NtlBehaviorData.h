@@ -552,14 +552,18 @@ enum eVehicleEngineMessgeType
 	VEHICLE_ENGINE_REG_FUEL,
 	VEHICLE_ENGINE_UNREG_FUEL,
 	VEHICLE_ENGINE_UPDATE_FUEL,
+	VEHICLE_ENGINE_START,
+	VEHICLE_ENGINE_STOP,
 	VEHICLE_ENGINE_END,
+
+	VEHICLE_ENGINE_FAIL_REQUEST_STOP,
 };
 
 struct SCtrlStuffVehicle
 {
 	RwBool	bCreateUpdate;
 	RwBool	bRideOn;
-//	RwBool	bEngineOn; // engine disabled by daneos
+	RwBool	bEngineOn;
 	RwV3d	vSpawnPos;
 	SERIAL_HANDLE hVehicleItem;
 	TBLIDX	idxVehicleItem;

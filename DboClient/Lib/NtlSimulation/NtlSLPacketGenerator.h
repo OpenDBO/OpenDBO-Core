@@ -142,6 +142,8 @@ public:
 	bool SendVehicle_EngineFuelRemoveNfy();
 	bool SendVehicle_EndReq();
 	bool SendVehicle_FuelInsertReq(BYTE byPlace, BYTE byPos);
+	bool SendVehicle_EngineStartReq(TBLIDX idxItem);
+	bool SendVehicle_EngineStopReq();
 
 	bool SendVehicleDirectPlayCancelNfy();
 

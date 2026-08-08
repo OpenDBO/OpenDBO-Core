@@ -385,6 +385,8 @@ public:
 	void						RecvEndVehicleReq(CNtlPacket * pPacket);
 	void						RecvVehicleFuelRemoveNfy(CNtlPacket * pPacket);
 	void						RecvVehicleFuelInsertReq(CNtlPacket * pPacket);
+	void						RecvVehicleEngineOn(CNtlPacket* pPacket);
+	void						RecvVehicleEngineOff(CNtlPacket* pPacket);
 
 	//DOJO
 	void						RecvDojoCreateReq(CNtlPacket * pPacket);

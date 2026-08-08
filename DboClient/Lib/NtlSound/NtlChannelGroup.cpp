@@ -1,4 +1,4 @@
-#include "precomp_ntlsound.h"
+﻿#include "precomp_ntlsound.h"
 #include "NtlChannelGroup.h"
 
 #include <mmsystem.h>
@@ -77,7 +77,7 @@ eStoreResult CNtlChannelGroup::StoreSound(CNtlSound* pSound, sNtlSoundPlayParame
 {
 	m_mapGroup.insert( SOUND_VALUE(pSound->m_hHandle, pSound) );
 
-	// ChannelGroup에 새로 연주되는 channel을 등록한다
+	// register the channel with this group's channel group
 	if( pSound->m_pFMODChannel )
 		pSound->m_pFMODChannel->setChannelGroup(m_pMasterLayer);
 
@@ -159,7 +159,7 @@ void  CNtlChannelGroup::RemoveAllEffect()
 
 bool CNtlChannelGroup::ReleaseLowRankChannel()
 {
-	// 기본적으로 가장 처음에 플레이된 채널이 순위가 낮다
+	// release the oldest channel in this group to free a slot
 	SOUND_ITER it = m_mapGroup.begin();
 
 	CNtlSound* pSound = it->second;
@@ -172,7 +172,7 @@ bool CNtlChannelGroup::ReleaseLowRankChannel()
 
 int CNtlChannelGroup::CanPlay(const char* pcName)
 {
-	// m_uiSoundDuplication 이 0이면 같은 파일 플레이의 갯수 제한이 없다
+	// if m_uiSoundDuplication is 0 there's no limit on playing the same sound repeatedly
 	if( m_uiSoundDuplication > 0 )
 	{
 		unsigned int uiCount = 0;
@@ -208,7 +208,7 @@ int CNtlChannelGroup::CanPlay(const char* pcName)
 
 		if(m_uiSoundDuplication > 1)
 		{
-			// 최대 동시 연주 횟수를 초과했다.
+			// exceeded the maximum duplicate play count
 			if( uiCount > m_uiSoundDuplication )
 			{
 #ifdef SOUND_DEBUG_LOG
@@ -217,13 +217,13 @@ int CNtlChannelGroup::CanPlay(const char* pcName)
 				return SOUNDRESULT_FULL_DUPLICATION;
 			}
 
-			// 같은 이름의 이펙트 파일이 아직 충분한 시간동안 플레이 되지 않았다
+			// not enough time has passed since the same-named effect sound started playing
 			if( uiMS >= DELAY_EFFECT_SOUND_TIME )
 				return SOUNDRESULT_MORE_WAIT_EFFECT_SOUND;
 		}
 		else
 		{
-			// 같은 이름의 사운드가 플레이 되고 있다.
+			// a sound with the same name is already playing
 			if( uiCount == 1 )
 #ifdef SOUND_DEBUG_LOG
 				Logic_NtlSoundLog("CNtlChannelGroup::CanPlay, Already play same name sound", m_eGroup, pcName);
@@ -377,11 +377,11 @@ void CNtlChannelGroup::ReleaseFinishedSound(float fElapsed)
 		{			
 			pSound->m_pFMODChannel->getMode(&mode);
 
-			if( mode ^ FMOD_LOOP_NORMAL )
-			{	// 무한반복이 아닐 때
+			if( !(mode & FMOD_LOOP_NORMAL) )
+			{	// when not looping infinitely
 				bool bPlaying;
 
-				// paused 된 사운드도 true 값이 리턴된다
+				// isPlaying still returns true when paused
 				pSound->m_pFMODChannel->isPlaying(&bPlaying);
 
 				if(!bPlaying)

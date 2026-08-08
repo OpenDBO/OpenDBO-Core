@@ -1,4 +1,4 @@
-#include "precomp_dboclient.h"
+﻿#include "precomp_dboclient.h"
 #include "VehicleGui.h"
 
 // core
@@ -24,10 +24,7 @@
 #include "AlarmManager.h"
 
 
-//#define dENGINE_WORKING_FLASH						"VehicleEffect.swf" // disabled by daneos
-
-
-CVehicleGui::CVehicleGui(const RwChar* pName)
+CVehicleGui::CVehicleGui(const RwChar* pName)  
 :CNtlPLGui(pName)
 ,m_bFocus(FALSE)
 ,m_bSelected(FALSE)
@@ -58,21 +55,15 @@ RwBool CVehicleGui::Create()
 	m_pStopButton		= (gui::CButton*)GetComponent("btnStop");
 	m_pStartButton		= (gui::CButton*)GetComponent("btnPower");
 
-	// hide button because we (daneos) disabled the start/stop engine because its useless.
-	m_pStopButton->Show(false);
-	m_pStartButton->Show(false);
-
 	m_pFuelGauge		= (gui::CProgressBar*)GetComponent("gaugeFuel");
 
 	// Fuel slot
 	m_tFuel.FuelSlot.Create(m_pThis, DIALOG_VEHICLE, REGULAR_SLOT_ITEM_SOB, SDS_NONE);
 	m_tFuel.FuelSlot.SetPosition_fromParent(43, 6);
 
-	m_pflashEngineWorking = (gui::CFlash*)GetComponent("flaEngineWorking");
-	m_pflashEngineWorking->Show(false);
-	//m_pflashEngineWorking->AutoRewind(TRUE);
-
 	m_pExitButton	->SetToolTip( GetDisplayStringManager()->GetString("DST_VEHICLE_GET_OFF") );
+	m_pStopButton->SetToolTip(GetDisplayStringManager()->GetString("DST_VEHICLE_ENGINE_STOP"));
+	m_pStartButton->SetToolTip(GetDisplayStringManager()->GetString("DST_VEHICLE_ENGINE_START"));
 
 
 	// Slot focus effect
@@ -91,9 +82,10 @@ RwBool CVehicleGui::Create()
 
 
 	// default value
-	/*m_pStopButton	->Show(false);*/
-	m_pFuelGauge	->Show(false);
+	m_pStopButton->Show(false);
+	m_pFuelGauge->Show(false);
 
+	m_tVehicle.bMoving = FALSE;
 	m_tVehicle.iFuelGaugeTooltipUpdatedLastTime		= 0;
 	m_tVehicle.fFuelGaugeElapsed					= 0.f;
 	m_tVehicle.fFuelGaugeRemainTime					= 0.f;
@@ -129,7 +121,9 @@ RwBool CVehicleGui::Create()
 
 
 	// sig
-	m_slotExitButton	= m_pExitButton->SigClicked().Connect(this, &CVehicleGui::OnClicked_ExitButton);	
+	m_slotExitButton	= m_pExitButton->SigClicked().Connect(this, &CVehicleGui::OnClicked_ExitButton);
+	m_slotStopButton = m_pStopButton->SigClicked().Connect(this, &CVehicleGui::OnClicked_StopButton);
+	m_slotStartButton = m_pStartButton->SigClicked().Connect(this, &CVehicleGui::OnClicked_StartButton);
 	m_slotMouseDown		= m_pThis->SigMouseDown().Connect(this, &CVehicleGui::OnMouseDown );
 	m_slotMouseUp		= m_pThis->SigMouseUp().Connect(this, &CVehicleGui::OnMouseUp);
 	m_slotMove			= m_pThis->SigMove().Connect(this, &CVehicleGui::OnMove );
@@ -139,9 +133,14 @@ RwBool CVehicleGui::Create()
 
 
 	LinkMsg(g_EventSobVehicleEngine);
-	LinkMsg(g_EventSobInfoUpdate);	
+	LinkMsg(g_EventSobInfoUpdate);
 	LinkMsg(g_EventIconMoveClick);
 
+
+	// The dialog itself is only created here as a reaction to VEHICLE_READY, so by the time it
+	// links to g_EventSobVehicleEngine that message has already been dispatched and will never
+	// reach us. Vehicles always start with the engine on, so reflect that state directly.
+	Vehicle_Start();
 
 	Show(false);
 
@@ -176,8 +175,6 @@ VOID CVehicleGui::Update(RwReal fElapsed)
 {
 	if( IsShow() == FALSE )
 		return;
-
-	//m_pflashEngineWorking->Update( fElapsed );
 
 	if( m_tFuel.FuelSlot.GetSerial() == INVALID_SERIAL_ID )
 		return;
@@ -391,7 +388,7 @@ VOID CVehicleGui::Fuel_SetGauge()
 
 VOID CVehicleGui::Fuel_LockUnlock_in_Bag()
 {
-	// 기존에 가방의 연료에 걸려있던 아이템 락이 푼다
+	// unlock bag slots that were locked before but aren't in the new lock set
 	SET_LOCKED_BAGSLOT::iterator it_ex = m_tFuel.setLockedBagSlot.begin();
 	for( ; it_ex != m_tFuel.setLockedBagSlot.end() ; ++it_ex )
 	{
@@ -404,8 +401,8 @@ VOID CVehicleGui::Fuel_LockUnlock_in_Bag()
 		}
 	}
 
-	// 새로이 가방의 연료에 아이템 락을 건다
-	SET_LOCKED_BAGSLOT::iterator it_new = m_tFuel.setNewLockBagSlot.begin();	
+	// lock bag slots newly added to the lock set
+	SET_LOCKED_BAGSLOT::iterator it_new = m_tFuel.setNewLockBagSlot.begin();
 	for( ; it_new != m_tFuel.setNewLockBagSlot.end() ; ++it_new )
 	{
 		it_ex = m_tFuel.setLockedBagSlot.find( *it_new );
@@ -417,7 +414,7 @@ VOID CVehicleGui::Fuel_LockUnlock_in_Bag()
 		}
 	}
 
-	// 새로운 락 정보를 보관한다
+	// commit the new lock set
 	m_tFuel.setLockedBagSlot.clear();
 	m_tFuel.setLockedBagSlot = m_tFuel.setNewLockBagSlot;
 	m_tFuel.setNewLockBagSlot.clear();
@@ -425,20 +422,18 @@ VOID CVehicleGui::Fuel_LockUnlock_in_Bag()
 
 VOID CVehicleGui::Vehicle_Start()
 {
-	/*if( false == m_pflashEngineWorking->Load(dENGINE_WORKING_FLASH) )
-	{
-		DBO_FAIL("Not eixst file : " << dENGINE_WORKING_FLASH << ". You can continue the game.");
-	}*/
+	m_tVehicle.bMoving = TRUE;
 
-	// 플래쉬의 위치를 맞추기 위해
+	m_pStopButton->Show(true);
+	m_pStartButton->Show(false);
+
 	OnMove(0, 0);
-
-	//m_pflashEngineWorking->PlayMovie( TRUE );
 }
 
 VOID CVehicleGui::Vehicle_Stop()
 {
-//	m_pflashEngineWorking->Unload();
+	m_pStopButton->Show(false);
+	m_pStartButton->Show(true);
 
 	if( m_tVehicle.fFuelGaugeElapsed == 0.f )
 	{		
@@ -545,6 +540,19 @@ VOID CVehicleGui::OnClicked_ExitButton(gui::CComponent* pComponent)
 	API_GetSLPacketGenerator()->SendVehicle_EndReq();
 }
 
+VOID CVehicleGui::OnClicked_StopButton(gui::CComponent* pComponent)
+{
+	if (API_GetSLPacketGenerator()->SendVehicle_EngineStopReq())
+		m_tVehicle.bMoving = FALSE;
+}
+
+VOID CVehicleGui::OnClicked_StartButton(gui::CComponent* pComponent)
+{
+	sITEM_TBLDAT* pFuelTbl = m_tFuel.FuelSlot.GetItemTable();
+
+	API_GetSLPacketGenerator()->SendVehicle_EngineStartReq(pFuelTbl ? pFuelTbl->tblidx : INVALID_TBLIDX);
+}
+
 VOID CVehicleGui::OnMouseDown(const CKey& key)
 {
 	if( GetDialogManager()->GetMode() != DIALOGMODE_UNKNOWN )
@@ -610,18 +618,11 @@ VOID CVehicleGui::OnMouseUp(const CKey& key)
 VOID CVehicleGui::OnMove(RwInt32 iOldX, RwInt32 iOldY)
 {
 	CRectangle rtScreen = m_pThis->GetScreenRect();
-	RwInt32 iFuelSlotCenterX = m_tFuel.FuelSlot.GetX_fromParent() + m_tFuel.FuelSlot.GetWidth()/2;
-	RwInt32 iFuelSlotCenterY = m_tFuel.FuelSlot.GetY_fromParent() + m_tFuel.FuelSlot.GetHeight()/2;
 
 	m_srfFocusEffect	.SetPositionbyParent(rtScreen.left, rtScreen.top);
 	m_srfSelectEffect	.SetPositionbyParent(rtScreen.left, rtScreen.top);
 	m_srfFuelGaugeBack	.SetPositionbyParent(rtScreen.left, rtScreen.top);
 	m_tFuel.FuelSlot	.SetParentPosition(rtScreen.left, rtScreen.top);
-
-	//CRectangle rtFlash = m_pflashEngineWorking->GetFrameResolution();
-	//m_pflashEngineWorking->SetSize(rtFlash.GetWidth(), rtFlash.GetHeight());
-	//m_pflashEngineWorking->SetPosition(iFuelSlotCenterX - rtFlash.GetWidth()/2,
-	//								   iFuelSlotCenterY - rtFlash.GetHeight()/2);
 }
 
 VOID CVehicleGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
@@ -705,6 +706,21 @@ VOID CVehicleGui::HandleEvents( RWS::CMsg &msg )
 			case VEHICLE_READY:
 			{
 				Vehicle_Start();
+			}
+			break;
+			case VEHICLE_ENGINE_START:
+			{
+				Vehicle_Start();
+			}
+			break;
+			case VEHICLE_ENGINE_STOP:
+			{
+				Vehicle_Stop();
+			}
+			break;
+			case VEHICLE_ENGINE_FAIL_REQUEST_STOP:
+			{
+				m_tVehicle.bMoving = TRUE;
 			}
 			break;
 			case VEHICLE_ENGINE_ASK_REG_FROM_BAG:

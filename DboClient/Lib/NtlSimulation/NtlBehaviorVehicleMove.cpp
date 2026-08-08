@@ -177,11 +177,22 @@ void CNtlBehaviorVehicleMoveBase::UpdateVelocity( RwReal fElapsed )
 {
 	if ( !m_bStop )
 	{
+		// m_fDefVelocity would otherwise only ever be (re)read in UpdateData(), which isn't called
+		// every frame - it only runs off specific input events (UpdateBehavior() is skipped whenever
+		// the incoming keyboard-move flags match what's already set, i.e. holding the same direction
+		// with no new key event, which is exactly the common "just driving straight" case). A fuel
+		// item's speed bonus inserted while already riding would then only take effect on the next
+		// event that does trigger it (e.g. turning). UpdateVelocity() runs every frame regardless, so
+		// refresh the cap here instead; it just changes what m_fCurVelocity ramps toward below.
+		m_fDefVelocity = Logic_GetFrontRunSpeed( (CNtlSobActor*)m_pPlayer );
+
 		m_fVelSumTime += fElapsed;
 		m_fPreVelocity = m_fCurVelocity;
 		m_fCurVelocity = ((m_fInitAccelerator + (m_fDefAccelerator * m_fVelSumTime * m_fVelSumTime) / 2.f) * m_fVelSumTime) * ((eVEHICLE_GROUND_TYPE_WATER == m_byGroundType) ? DBO_SWIMMING_SPEED_RATIO : 1.f);
 		m_fCurVelocity = (m_fCurVelocity > m_fDefVelocity ? m_fDefVelocity : m_fCurVelocity );
 	}
+
+	UpdateVehicleLoopSoundPosition();
 }
 
 void CNtlBehaviorVehicleMoveBase::UpdateActorDir( RwReal fElapsed, RwV3d& vCurDir, RwV3d& vNextDir, RwV3d& vResultDir )
@@ -376,6 +387,21 @@ void CNtlBehaviorVehicleMoveBase::UpdateAnim( void )
 			Vehicle_Anim_Run();
 		}
 		break;
+	}
+
+	// The branches above only (re)trigger the run sound on eVEHICLE_MOVE_TYPE/eVEHICLE_TRUN_TYPE
+	// edges, but the sound itself lives on this behavior instance, which gets torn down and
+	// recreated across state transitions (e.g. jump -> falling -> landing -> moving again, or the
+	// engine being cycled off/on while moving) - none of those edges necessarily fire again on the
+	// fresh instance. Verify every frame instead so it heals regardless of how it got lost.
+	if ( m_MoveStuff.byMoveFlags != NTL_MOVE_NONE && m_pVehicle &&
+		 ( m_eVehicleSoundLoop != VEHICLE_SOUND_LOOP_RUN || !Vehicle_IsLoopSoundAlive() ) )
+	{
+		CNtlBeCharData* pBeData = reinterpret_cast<CNtlBeCharData*>( m_pVehicle->GetBehaviorData() );
+		SCtrlStuff* pCtrlStuff = pBeData->GetCtrlStuff();
+
+		if ( pCtrlStuff->sVehicle.bEngineOn )
+			Vehicle_Anim_Run();
 	}
 }
 

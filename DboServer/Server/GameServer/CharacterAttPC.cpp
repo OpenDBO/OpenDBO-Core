@@ -218,14 +218,25 @@ void CCharacterAttPC::CalculateAtt()
 				if (pFuel && pFuel->IsExpired() == false)
 				{
 					sITEM_TBLDAT* fuelTbldat = pFuel->GetTbldat();
-					if (fuelTbldat)
+					if (fuelTbldat && fuelTbldat->Item_Option_Tblidx != INVALID_TBLIDX)
 					{
-						if (fuelTbldat->Item_Option_Tblidx != INVALID_TBLIDX)
+						sITEM_OPTION_TBLDAT* optionTbldat = (sITEM_OPTION_TBLDAT*)g_pTableContainer->GetItemOptionTable()->FindData(fuelTbldat->Item_Option_Tblidx);
+						if (optionTbldat)
 						{
-							sITEM_OPTION_TBLDAT* optionTbldat = (sITEM_OPTION_TBLDAT*)g_pTableContainer->GetItemOptionTable()->FindData(fuelTbldat->Item_Option_Tblidx);
-							if (optionTbldat)
+							// nValue[0] isn't necessarily the speed bonus - system_Effect[] is a
+							// parallel array of effect slots and the fuel's bonus can sit at any
+							// index, so it has to be matched by effect code like every other
+							// per-item bonus in this function (see the char title block above).
+							// Don't stop at the first empty slot either - an invalid entry doesn't
+							// guarantee the remaining slots are unused too.
+							for (int i = 0; i < NTL_MAX_SYSTEM_EFFECT_COUNT; i++)
 							{
-								m_pAttribute.fRunSpeed += m_pAttribute.fRunSpeed * (float)optionTbldat->nValue[0] / 100.f;
+								eSYSTEM_EFFECT_CODE effectcode = g_pTableContainer->GetSystemEffectTable()->GetEffectCodeWithTblidx(optionTbldat->system_Effect[i]);
+								if (effectcode == INVALID_SYSTEM_EFFECT_CODE)
+									continue;
+
+								Dbo_SetAvatarAttributeValue(this, effectcode, (float)optionTbldat->nValue[i],
+									optionTbldat->bAppliedInPercent[i] ? SYSTEM_EFFECT_APPLY_TYPE_PERCENT : SYSTEM_EFFECT_APPLY_TYPE_VALUE);
 							}
 						}
 					}
