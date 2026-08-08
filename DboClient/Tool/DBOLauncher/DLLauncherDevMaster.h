@@ -26,9 +26,10 @@ class CDLLauncherDevMaster
 protected:
 	bool					m_bNoCheckPatchServerEnable;
 	bool					m_bNoCheckIntegrityServerEnable;
+	bool					m_bOfflineModeEnable;
 
 public:
-	CDLLauncherDevMaster( void ) { m_bNoCheckPatchServerEnable = false; m_bNoCheckIntegrityServerEnable = false; }
+	CDLLauncherDevMaster( void ) { m_bNoCheckPatchServerEnable = false; m_bNoCheckIntegrityServerEnable = false; m_bOfflineModeEnable = false; }
 	~CDLLauncherDevMaster( void ) { return; }
 
 public:
@@ -36,6 +37,11 @@ public:
 
 	bool					IsNoCheckPatchServerEnable( void ) const;
 	bool					IsNoCheckIntegrityServerEnable( void ) const;
+
+	// When enabled, the launcher skips the online server-config/version-list/patch
+	// steps entirely and goes straight to the idle screen so the client can be
+	// started locally without a reachable patch server.
+	bool					IsOfflineModeEnable( void ) const;
 };
 
 

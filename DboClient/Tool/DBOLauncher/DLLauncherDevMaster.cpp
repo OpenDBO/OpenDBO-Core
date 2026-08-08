@@ -25,6 +25,7 @@
 
 #define	L_DEV_MASTER_NO_CHECK_PATCH_SVR_ENABLE			_T( "CONFIG/NO_CHECK_PATCH_SVR_ENABLE" )
 #define	L_DEV_MASTER_NO_CHECK_INTEGRITY_SVR_ENABLE		_T( "CONFIG/NO_CHECK_INTEGRITY_SVR_ENABLE" )
+#define	L_DEV_MASTER_OFFLINE_MODE_ENABLE				_T( "CONFIG/OFFLINE_MODE_ENABLE" )
 
 
 CDLLauncherDevMaster g_clDLLaucherDevMaster;
@@ -69,6 +70,11 @@ bool CDLLauncherDevMaster::Load( CString strPath )
 		m_bNoCheckIntegrityServerEnable = (_tstoi( szBuffer ) == 1 ? true : false);
 	}
 
+	if ( doc.GetDataWithXPath( L_DEV_MASTER_OFFLINE_MODE_ENABLE, szBuffer, 4096 ) )
+	{
+		m_bOfflineModeEnable = (_tstoi( szBuffer ) == 1 ? true : false);
+	}
+
 	return true;
 }
 
@@ -80,4 +86,9 @@ bool CDLLauncherDevMaster::IsNoCheckPatchServerEnable( void ) const
 bool CDLLauncherDevMaster::IsNoCheckIntegrityServerEnable( void ) const
 {
 	return m_bNoCheckIntegrityServerEnable;
+}
+
+bool CDLLauncherDevMaster::IsOfflineModeEnable( void ) const
+{
+	return m_bOfflineModeEnable;
 }
