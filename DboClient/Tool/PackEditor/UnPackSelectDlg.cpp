@@ -1,4 +1,4 @@
-// UnPackSelectDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// UnPackSelectDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "UnPackSelectDlg.h"
 
 
-// CUnPackSelectDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CUnPackSelectDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CUnPackSelectDlg, CDialog)
 
@@ -35,16 +35,14 @@ BEGIN_MESSAGE_MAP(CUnPackSelectDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CUnPackSelectDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CUnPackSelectDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CUnPackSelectDlg::OnInitDialog()
 {
     CDialog::OnInitDialog();
 
-    m_listPack.Initialize();
-
     m_listPack.AddString(_T("Texture"));
-    m_listPack.AddString(_T("Object"));    
+    m_listPack.AddString(_T("Object"));
     m_listPack.AddString(_T("GUI"));
     m_listPack.AddString(_T("Flash"));
     m_listPack.AddString(_T("Sound"));
@@ -60,7 +58,7 @@ BOOL CUnPackSelectDlg::OnInitDialog()
         m_listPack.SetCheck(i, TRUE);
     }
 
-    return TRUE;  // return TRUE unless you set the focus to a control    
+    return TRUE;  // return TRUE unless you set the focus to a control
 }
 
 void CUnPackSelectDlg::OnBnClickedOk()

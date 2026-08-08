@@ -14,7 +14,6 @@
 #define new DEBUG_NEW
 #endif
 
-
 // CAboutDlg dialog used for App About
 
 class CAboutDlg : public CDialog
@@ -213,7 +212,7 @@ void CPackEditorDlg::CreateThread(void)
 	if ( m_hThread ) 
 		return;
 
-	// Thread ¸¦ »ý¼ºÇÑ´Ù
+	// Thread ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
 	m_hThread = (HANDLE)_beginthreadex( NULL, 0, &PackExport, this, 0, &m_uiThreaID );
 
 	m_bThreadExport = TRUE;
@@ -225,7 +224,7 @@ void CPackEditorDlg::DeleteThread(void)
 	{
 		WaitForSingleObject( m_hThread, INFINITE );
 
-		// Thread ÇÚµéÀ» ´Ý´Â´Ù
+		// Thread ï¿½Úµï¿½ï¿½ï¿½ ï¿½Ý´Â´ï¿½
 		CloseHandle( m_hThread );
 
 		m_hThread = 0;
@@ -399,7 +398,7 @@ void CPackEditorDlg::OnBnClickedBtnUnpack()
     if(dlg.DoModal() == IDOK)
     {
         m_dwPackTime	= GetTickCount();
-        m_bUnPack		= TRUE;	
+        m_bUnPack		= TRUE;
         m_byPackType	= NTL_PACK_TYPE_GUI;
 
         SetTimer(EXPORT_TIMER_ID, 100, NULL);

@@ -3,25 +3,25 @@
 #include "NtlPlResourcePack.h"
 
 
-// CUnPackSelectDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CUnPackSelectDlg ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
 
 class CUnPackSelectDlg : public CDialog
 {
 	DECLARE_DYNAMIC(CUnPackSelectDlg)
 
 public:
-	CUnPackSelectDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ý¼ºÀÚÀÔ´Ï´Ù.
+	CUnPackSelectDlg(CWnd* pParent = NULL);   // Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
 	virtual ~CUnPackSelectDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
 	enum { IDD = IDD_UNPACK_SELECT };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.
 
 	DECLARE_MESSAGE_MAP()
 public:
-    CXTCheckListBox m_listPack;    
+    CCheckListBox m_listPack;
 
     static int m_LoadPackType[MAX_NTL_PACK_TYPE];
 
