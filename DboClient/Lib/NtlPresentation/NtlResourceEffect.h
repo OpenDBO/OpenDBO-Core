@@ -2,7 +2,7 @@
 //	File		:	NtlResourceEffect.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2006 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2006 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -40,13 +40,13 @@ public:
 
 			RwBool							Load(FILE* pFile);
 
-            RwBool                          IsAutoDelete();                 ///< ·çÇÁ ÀÌÆåÆ®ÀÎÁö ¾Æ´ÑÁö ¹ÝÈ¯ÇÑ´Ù.
+            RwBool                          IsAutoDelete();                 ///< ë£¨í”„ ì´íŽ™íŠ¸ì¸ì§€ ì•„ë‹Œì§€ ë°˜í™˜í•œë‹¤.
 
 	virtual RwBool Load(CNtlXMLDoc *pDoc, IXMLDOMNode *pNode)		{ return FALSE; }
 	virtual RwBool Save(CNtlXMLDoc *pDoc, IXMLDOMNode *pNode)		{ return FALSE; }
 
 public:
     SEffectSoundEx        m_EffectSound;              ///< Effect Sound Property   
-    SEffectBoundingSphere m_EffectBoundingSphere;   ///< EffectÀÇ ¹Ù¿îµù ½ºÇÇ¾î
-	RwReal				m_fScaleForTool;			///< Tool¿¡¼­ Å×½ºÆ®¸¦ À§ÇÑ ½ºÄÉÀÏ º¯¼ö(ÀúÀåÀº µÇÁö ¾Ê´Â´Ù)
+    SEffectBoundingSphere m_EffectBoundingSphere;   ///< Effectì˜ ë°”ìš´ë”© ìŠ¤í”¼ì–´
+	RwReal				m_fScaleForTool;			///< Toolì—ì„œ í…ŒìŠ¤íŠ¸ë¥¼ ìœ„í•œ ìŠ¤ì¼€ì¼ ë³€ìˆ˜(ì €ìž¥ì€ ë˜ì§€ ì•ŠëŠ”ë‹¤)
 };

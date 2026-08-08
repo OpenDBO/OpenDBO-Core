@@ -46,7 +46,7 @@
 #include "DiceManager.h"
 #include "MsgBoxManager.h"
 
-// Å×½ºÆ®
+// å ìŒ“ì™ì˜™íŠ¸
 #include "NtlPLVisualManager.h"
 #include "NtlPLSun.h"
 #include "NtlMath.h"
@@ -203,7 +203,7 @@ RwBool CDialogManager::SwitchDialog(int iDialog)
 
 RwBool CDialogManager::OpenDialog(int iDialog, SERIAL_HANDLE hSerial /* = INVALID_SERIAL_ID */, RwBool bPlaySound /* = TRUE */)
 {
-	// GM ¸Þ´º¿¡¼­ ÀÏºÎ ´ÙÀÌ¾ó·Î±×¸¦ »ç¿ëÇÒ ¼ö ¾øµµ·Ï ÇÏ¿´À» ¶§
+	// GM ë©”ë‰´ì—ì„œ ì¼ë¶€ ë‹¤ì´ì–¼ë¡œê·¸ë¥¼ ì‚¬ìš©í•  ìˆ˜ ì—†ë„ë¡ í•˜ì˜€ì„ ë•Œ
 	if( m_bCanVisible_OnOberserver )
 	{
 		if( iDialog == DIALOG_HP			|| iDialog == DIALOG_MINIMAP ||
@@ -211,7 +211,7 @@ RwBool CDialogManager::OpenDialog(int iDialog, SERIAL_HANDLE hSerial /* = INVALI
 			return FALSE;
 	}
 
-	// GM Menu°¡ ÄÑÁ® ÀÖÀ» ¶§
+	// GM Menuå ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™
 	if( IsOpenDialog(DIALOG_GM_QUICKSLOT) )
 	{
 		if( iDialog == DIALOG_QUICKSLOT		|| iDialog == DIALOG_EXP ||
@@ -219,7 +219,7 @@ RwBool CDialogManager::OpenDialog(int iDialog, SERIAL_HANDLE hSerial /* = INVALI
 			return FALSE;
 	}
 
-	// Äù½ºÆ® ³ª·¹ÀÌ¼ÇÀÌ Èå¸£¸é ¸®ÅÏ 
+	// ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½å¸£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 	if( iDialog != DIALOG_BUDOKAI_TOURNAMENT && 
 		iDialog != DIALOG_BUDOKAI_TOURNAMENT_MATCHINFO &&
 		iDialog != DIALOG_FLASH_NOTIFY &&
@@ -319,21 +319,21 @@ RwBool CDialogManager::CloseDialog(int iDialog, RwBool bPlaySound /* = TRUE */)
 	if(!pDialogInfo)
 		return FALSE;
 
-	// ÀÌ¹Ì ´ÝÇô ÀÖ´Ù¸é ¸®ÅÏ
+	// å ì‹±ë±„ì˜™ å ì™ì˜™å ì™ì˜™ å ìŒë‹¤ëªŒì˜™ å ì™ì˜™å ì™ì˜™
 	if( !pDialogInfo->pDialog->IsShow() )
 		return FALSE;
 
 	if( pDialogInfo->pCallSwitch->Call(false) < 0 )
 		return FALSE;
 
-	// ´õ ÀÌ»ó Entire Focusing DialogÀÌ ¾ø´Ù¸é Dialog µÞÆíÀ¸·Î ¹è°æÀ» ¾ø¾Ø´Ù
+	// ë” ì´ìƒ Entire Focusing Dialogì´ ì—†ë‹¤ë©´ Dialog ë’·íŽ¸ìœ¼ë¡œ ë°°ê²½ì„ ì—†ì•¤ë‹¤
 	if( IsEFDialog((eDialogType)iDialog) )
 	{
 		if( IsOpenEFDialog() == FALSE )
 			CloseDialog(DIALOG_BACKBOARD);
 	}
 
-	// ´ÝÈ÷´Â ´ÙÀÌ¾ó·Î±×°¡ NPC ´ÙÀÌ¾ó·Î±× ÀÏ ¶§
+	// ë‹«ížˆëŠ” ë‹¤ì´ì–¼ë¡œê·¸ê°€ NPC ë‹¤ì´ì–¼ë¡œê·¸ ì¼ ë•Œ
 	if( IsNPCDialog(iDialog) )
 		m_OpenedTarget.pOpenedTarget = NULL;
 
@@ -470,7 +470,7 @@ VOID CDialogManager::ProcessESC()
 				}
                 else if(DIALOG_DBC_ALTAR == iDialog)
                 {
-                    // ÁÖ¹® ¹öÆ°À» Å¬¸¯ÇÏ°í ÀÀ´äÀ» ±â´Ù¸®´Â ÁßÀÌ¸é Ãë¼ÒÇÏÁö ¾Ê´Â´Ù.
+                    // ì£¼ë¬¸ ë²„íŠ¼ì„ í´ë¦­í•˜ê³  ì‘ë‹µì„ ê¸°ë‹¤ë¦¬ëŠ” ì¤‘ì´ë©´ ì·¨ì†Œí•˜ì§€ ì•ŠëŠ”ë‹¤.
                     if(API_GetSLPacketLockManager()->IsLock(GU_DRAGONBALL_CHECK_RES))
                         return;
 
@@ -482,12 +482,12 @@ VOID CDialogManager::ProcessESC()
 		}
 		else if( GetNtlWorldConcept()->IsActivePlayConcept(WORLD_PLAY_TUTORIAL) )
 		{
-			// Æ©Åä¸®¾óÀ» Á¾·áÇÏ½Ã°Ú½À´Ï±î?
+			// Æ©ï¿½ä¸®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï½Ã°Ú½ï¿½ï¿½Ï±ï¿½?
 			GetAlarmManager()->AlarmMessage( "DST_TUTORIAL_ASK_END" );
 		}
 		else if(Logic_GetAvatarTargetHandle() != INVALID_SERIAL_ID )
 		{
-			// Å¸°ÙÀ» Ãë¼ÒÇÑ´Ù
+			// Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_ESC_TARGETING ) )
 				return;
 
@@ -541,13 +541,13 @@ VOID CDialogManager::ProcessOpenRegular(eDialogType eDialog)
 	
 	if( HowManyOpenMaxRegular() <= (RwInt32)m_listOpenedRegularDilaog.size() )
 	{
-		// Regular Dialog°¡ ¿­¸± ¼ö ÀÖ´Â Àå¼Ò°¡ ³²¾ÆÀÖÁö ¾Ê´Ù
+		// Regular Dialogê°€ ì—´ë¦´ ìˆ˜ ìžˆëŠ” ìž¥ì†Œê°€ ë‚¨ì•„ìžˆì§€ ì•Šë‹¤
 		bExistPosition = FALSE;
 		for( ; it_OpenedRegular != m_listOpenedRegularDilaog.end() ; ++it_OpenedRegular )
 		{
 			eDialogType dialogType = *it_OpenedRegular;
 
-			// ¹èÅ¸Àû ¼Ó¼ºÀÌ ¾Æ´Ñ Regular dialog ÇÏ³ª¸¦ ´Ý´Â´Ù
+			// å ì™ì˜™íƒ€å ì™ì˜™ å ìŒˆì‡½ì˜™å ì™ì˜™ å ì‹£ëŒì˜™ Regular dialog å ì‹¹ë†‚ì˜™å ì™ì˜™ å ìŒ¥ëŠ”ëŒì˜™
 			if( IsHaveAttribute((eDialogType)dialogType, dRDA_EXCLUSIVE) == FALSE )
 			{
 				if( CloseDialog(dialogType) )
@@ -560,9 +560,9 @@ VOID CDialogManager::ProcessOpenRegular(eDialogType eDialog)
 
 	if( bExistPosition == FALSE )
 	{
-		// avooo's : ¿©±â¿¡ µé¾î¿À´Â °ÍÀº ±âÈ¹ È¤Àº ÇÁ·Î±×·¥¿¡¼­ ·¹±Ö·¯ ´ÙÀÌ¾ó·Î±×¿¡ ´ëÇÑ Á¤ÀÇ³ª
-		// Àß¸øµÈ ¿ùµå ÄÁ¼Á¿¡ ÀÇÇØ ¹èÅ¸ÀûÀÎ ·¹±Ö·¯ ´ÙÀÌ¾ó·Î±×°¡ µ¿½Ã¿¡ ¶°¼­ »õ·Î¿î ·¹±Ö·¯
-		// ´ÙÀÌ¾ó·Î±×°¡ ¿­¸± °ø°£À» È®º¸ÇÏÁö ¸øÇßÀ» °æ¿ìÀÌ´Ù
+		// avooo's : ì—¬ê¸°ì— ë“¤ì–´ì˜¤ëŠ” ê²ƒì€ ê¸°íš í˜¹ì€ í”„ë¡œê·¸ëž¨ì—ì„œ ë ˆê·¤ëŸ¬ ë‹¤ì´ì–¼ë¡œê·¸ì— ëŒ€í•œ ì •ì˜ë‚˜
+		// ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö·ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±×°ï¿½ ï¿½ï¿½ï¿½Ã¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½Ö·ï¿½
+		// ï¿½ï¿½ï¿½Ì¾ï¿½Î±×°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ì´ï¿½
 		DBO_FAIL("Can not open more regaulr dialog");
 		return;
 	}
@@ -577,7 +577,7 @@ VOID CDialogManager::ProcessOpenRegular(eDialogType eDialog)
 	}
 
 
-	// »õ·Î¿î ´ÙÀÌ¾ó·Î±×¸¦ ¸¶Áö¸· ÀÚ¸®¿¡ ¹èÄ¡ÇÑ´Ù
+	// ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú¸ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Ñ´ï¿½
 	pGui = GetDialog(eDialog);
 
 	if( IsHaveAttribute(eDialog, dRDA_HALFSIZE) )
@@ -590,7 +590,7 @@ VOID CDialogManager::ProcessOpenRegular(eDialogType eDialog)
 
 VOID CDialogManager::ProcessLayer(eDialogType eDialog)
 {
-	// ´ÙÀÌ¾ó·Î±×¸¦ ±×¸®´Â ¼ø¼­¸¦ Á¤¸®ÇÑ´Ù
+	// ï¿½ï¿½ï¿½Ì¾ï¿½Î±×¸ï¿½ ï¿½×¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
 	CNtlPLGui* pGui = GetDialog(eDialog);
 		
 	// EFDialog
@@ -664,16 +664,16 @@ VOID CDialogManager::ProcessMovableDialogs(RwBool bMovable)
 }
 
 /**
-* \brief ¾×¼Ç¿¡ µû¸¥ ´ÙÀÌ¾ó·Î±× Ã³¸®
+* \brief ì•¡ì…˜ì— ë”°ë¥¸ ë‹¤ì´ì–¼ë¡œê·¸ ì²˜ë¦¬
 *
-* InputActionÀ¸·Î µé¾î¿Â ¾×¼ÇÀ¸·Î DialogManager¿¡¼­ ÇØÁÙ ¼ö ÀÖ´Â Ã³¸®¸¦ ÇÑ´Ù.
-* ±âÁ¸ HandleHotKey ·Î ¸µÅ©µÇ¾î¼­ Ã³¸®ÇÏ´ø Å° °ªÀ» ÀÖ´ø°ÍÀ» ÇöÀç ÀÌ ÇÔ¼ö¿¡ ¸µÅ©ÇÏ°í ¾×¼ÇÀ» ¹Þ°Ô ÇÔ
+* InputActionå ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ìŒ“ì‡½ì˜™å ì™ì˜™å ì™ì˜™ DialogManagerå ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™ å ìŒëŒì˜™ ì²˜å ì™ì˜™å ì™ì˜™ å ì‹¼ëŒì˜™.
+* å ì™ì˜™å ì™ì˜™ HandleHotKey å ì™ì˜™ å ì™ì˜™í¬å ì‹¤ì–´ì„œ ì²˜å ì™ì˜™å ì‹¹ëŒì˜™ í‚¤ å ì™ì˜™å ì™ì˜™ å ìŒëŒì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™ å ìŒ‰ì‡½ì˜™å ì™ì˜™ å ì™ì˜™í¬å ì‹¹ê³¤ì˜™ å ìŒ“ì‡½ì˜™å ì™ì˜™ å ìŒ¨ê³¤ì˜™ å ì™ì˜™
 *
-* \param iAction (unsigned int)¾×¼Ç. - Á¤ÀÇ InputAction.h
+* \param iAction (unsigned int)å ìŒ“ì‡½ì˜™. - å ì™ì˜™å ì™ì˜™ InputAction.h
 * \return int
 */
 #include "NtlWorldConceptTutorial.h"
-int	CDialogManager::HandleDialogAction(unsigned int iAction)
+int CDialogManager::HandleDialogAction(uintptr_t iAction)
 {
 	NTL_FUNCTION("CDialogManager::HandleDialogAction");
 
@@ -687,29 +687,29 @@ int	CDialogManager::HandleDialogAction(unsigned int iAction)
 		NTL_RETURN( 1 );
 	}
 
-	// ¾×¼Ç¿¡ µû¸¥ ´ÙÀÌ¾ó·Î±× Ã³¸® ¼ø¼­
-	// Ä³¸¯ÅÍÁ¤º¸
-	// ½ºÅ³Á¤º¸
-	// Äù½ºÆ® Á¤º¸
-	// ¹Ì´Ï¸Ê
-	// ¿ùµå¸Ê
-	// ¸ÞÀÎÄ¸½¶Å¶
-	// ½ºÄ«¿ìÅÍ
-	// ÆÄÆ¼Á¤º¸
-	// ±æµåÁ¤º¸
-	// Ä£±¸Á¤º¸
-	// ¿É¼Ç
-	// µµ¿ò¸»
-	// ¸ÞÀÎ¸Þ´º
-	// ¹Ì´Ï¸ÊÃà¼Ò
-	// ¹Ì´Ï¸ÊÈ®´ë
-	// Ã¤ÆÃÀÌÀüPAGE
-	// Ã¤ÆÃ´ÙÀ½PAGE
-	// Ãë¼Ò
+	// ï¿½×¼Ç¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½Î±ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	// ìºå ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™
+	// å ì™ì˜™í‚¬å ì™ì˜™å ì™ì˜™
+	// å ì™ì˜™å ì™ì˜™íŠ¸ å ì™ì˜™å ì™ì˜™
+	// å ì‹±ë‹ˆëªŒì˜™
+	// ï¿½ï¿½ï¿½ï¿½ï¿½
+	// å ì™ì˜™å ì™ì˜™ìº¡å ì™ì˜™í‚·
+	// å ì™ì˜™ì¹´å ì™ì˜™å ì™ì˜™
+	// å ì™ì˜™í‹°å ì™ì˜™å ì™ì˜™
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	// ì¹œå ì™ì˜™å ì™ì˜™å ì™ì˜™
+	// å ì‹¬ì‡½ì˜™
+	// å ì™ì˜™å ì™ì˜™
+	// å ì™ì˜™å ì‹¸ë©”ëŒì˜™
+	// ï¿½Ì´Ï¸ï¿½ï¿½ï¿½ï¿½
+	// å ì‹±ë‹ˆëªŒì˜™í™•å ì™ì˜™
+	// ì±„å ì™ì˜™å ì™ì˜™å ì™ì˜™PAGE
+	// ì±„å ì‹œëŒì˜™å ì™ì˜™PAGE
+	// ï¿½ï¿½ï¿½
 
 	switch( iAction )
 	{	
-	case ACTION_WINDOW_PROFILE:		// Ä³¸¯ÅÍ Á¤º¸ Ã¢
+	case ACTION_WINDOW_PROFILE:		// ìºå ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ ì°½
 		{
 			RwBool bOpen = IsOpenDialog(DIALOG_STATUS);
 
@@ -730,7 +730,7 @@ int	CDialogManager::HandleDialogAction(unsigned int iAction)
 			SwitchDialog( DIALOG_STATUS );
 			break;
 		}
-	case ACTION_WINDOW_SKILL:		// ½ºÅ³ Á¤º¸ Ã¢
+	case ACTION_WINDOW_SKILL:		// å ì™ì˜™í‚¬ å ì™ì˜™å ì™ì˜™ ì°½
 		{
 			RwBool bOpen = IsOpenDialog(DIALOG_SKILL);
 
@@ -752,7 +752,7 @@ int	CDialogManager::HandleDialogAction(unsigned int iAction)
 
 			break;
 		}
-	case ACTION_WINDOW_QUEST:		// Äù½ºÆ® Á¤º¸ Ã¢
+	case ACTION_WINDOW_QUEST:		// å ì™ì˜™å ì™ì˜™íŠ¸ å ì™ì˜™å ì™ì˜™ ì°½
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_QUEST ) )
 				NTL_RETURN(1);
@@ -763,7 +763,7 @@ int	CDialogManager::HandleDialogAction(unsigned int iAction)
 			SwitchDialog(DIALOG_QUESTLIST);
 			break;
 		}
-	case ACTION_WINDOW_MINIMAP:		// ¹Ì´Ï¸Ê
+	case ACTION_WINDOW_MINIMAP:		// å ì‹±ë‹ˆëªŒì˜™
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_MINIMAP ) )
 				NTL_RETURN(1);
@@ -780,7 +780,7 @@ int	CDialogManager::HandleDialogAction(unsigned int iAction)
 
 			break;
 		}
-	case ACTION_WINDOW_WORLDMAP:	// ¿ùµå¸Ê
+	case ACTION_WINDOW_WORLDMAP:	// ì›”ë“œë§µ
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_WORLDMAP ) )
 				NTL_RETURN(1);
@@ -788,7 +788,7 @@ int	CDialogManager::HandleDialogAction(unsigned int iAction)
 			SwitchDialog(DIALOG_WORLDMAP);
 			break;
 		}
-	case ACTION_WINDOW_MAINCAP:	// Ä¸½¶(°¡¹æ)
+	case ACTION_WINDOW_MAINCAP:	// ìº¡å ì™ì˜™(å ì™ì˜™å ì™ì˜™)
 		{
 			RwBool bBagOpen = IsBagOpen();			
 
@@ -806,14 +806,14 @@ int	CDialogManager::HandleDialogAction(unsigned int iAction)
 			if( IsOpenDialog(DIALOG_WORLDMAP))
 				NTL_RETURN(1);
 
-			// °¡¹æÀÌ ÇÑ°³¶óµµ ¿­·Á ÀÖ´Ù¸é ÀüºÎ ´Ý´Â´Ù.
+			// å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹¼ê³¤ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ìŒë‹¤ëªŒì˜™ å ì™ì˜™å ì™ì˜™ å ìŒ¥ëŠ”ëŒì˜™.
 			bBagOpen = !bBagOpen;
 
 			SwitchBag(bBagOpen);
 
 			break;
 		}
-	case ACTION_WINDOW_GUILD:		// ±æµå Ä¿¹Â´ÏÆ¼
+	case ACTION_WINDOW_GUILD:		// ê¸¸ë“œ ì»¤ë®¤ë‹ˆí‹°
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_GUILD ) )
 				NTL_RETURN(1);
@@ -852,7 +852,7 @@ int	CDialogManager::HandleDialogAction(unsigned int iAction)
 			SwitchDialog(DIALOG_FRIEND_LIST);
 		}
 		break;
-	case ACTION_WINDOW_OPTION: // ¿É¼Ç À©µµ¿ì
+	case ACTION_WINDOW_OPTION: // å ì‹¬ì‡½ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_OPTION ) )
 				NTL_RETURN(1);
@@ -863,7 +863,7 @@ int	CDialogManager::HandleDialogAction(unsigned int iAction)
 			SwitchDialog( DIALOG_OPTIONWND );
 			break;
 		}
-	case ACTION_WINDOW_RANKBOARD:	// ·©Å©º¸µå
+	case ACTION_WINDOW_RANKBOARD:	// å ì™ì˜™í¬å ì™ì˜™å ì™ì˜™
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_RANKBOARD ) )
 				NTL_RETURN(1);
@@ -881,16 +881,16 @@ int	CDialogManager::HandleDialogAction(unsigned int iAction)
 			SwitchDialog(DIALOG_MASCOT);
 			break;
 		}
-	case ACTION_WINDOW_HELP:	// µµ¿ò¸»
+	case ACTION_WINDOW_HELP:	// å ì™ì˜™å ì™ì˜™
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_HELP ) )
 				NTL_RETURN(1);
 
 			SwitchDialog(DIALOG_HELPWND);
-			// ±âÈ¹ÆÀ Help Data Test¸¦ À§ÇØ¼­ ÈùÆ®¸¦ ¾÷µ¥ÀÌÆ® ÇÑ´Ù. ÃßÈÄ »èÁ¦ ÇÒ °Í.
+			// å ì™ì˜™íšå ì™ì˜™ Help Data Testå ì™ì˜™ å ì™ì˜™å ìŒ”ì‡½ì˜™ å ì™ì˜™íŠ¸å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™íŠ¸ å ì‹¼ëŒì˜™. å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™ å ì™ì˜™.
 			break;
 		}
-	case ACTION_WINDOW_MAIN: // ¸ÞÀÎ ¸Þ´º
+	case ACTION_WINDOW_MAIN: // å ì™ì˜™å ì™ì˜™ å ìŒ¨ëŒì˜™
 		{
 			if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_MAINMENU ) )
 				NTL_RETURN(1);
@@ -908,17 +908,17 @@ int	CDialogManager::HandleDialogAction(unsigned int iAction)
 			SwitchDialog( DIALOG_MAINMENU );
 			break;
 		}
-	case ACTION_MINIMAP_ZOOMOUT:	// ¹Ì´Ï¸Ê Ãà¼Ò
+	case ACTION_MINIMAP_ZOOMOUT:	// ë¯¸ë‹ˆë§µ ì¶•ì†Œ
 		{
 			CDboEventGenerator::MapEvent(MMT_MINIMAP_ZOON_OUT);
 			break;
 		}
-	case ACTION_MINIMAP_ZOOMIN:	// ¹Ì´Ï¸Ê È®´ë
+	case ACTION_MINIMAP_ZOOMIN:	// å ì‹±ë‹ˆëªŒì˜™ í™•å ì™ì˜™
 		{
 			CDboEventGenerator::MapEvent(MMT_MINIMAP_ZOON_IN);
 			break;
 		}
-	case ACTION_GLOBAL_CANCLE:	// ESC Å° Ã³¸®
+	case ACTION_GLOBAL_CANCLE:	// ESC í‚¤ ì²˜å ì™ì˜™
 		{
 			ProcessESC();
 			break;
@@ -941,7 +941,7 @@ int	CDialogManager::HandleDialogAction(unsigned int iAction)
 			if( IsOpenDialog(DIALOG_WORLDMAP))
 				NTL_RETURN(1);
 
-			// °¡¹æÀÌ ÇÑ°³¶óµµ ¿­·Á ÀÖ´Ù¸é ÀüºÎ ´Ý´Â´Ù.
+			// å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹¼ê³¤ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ìŒë‹¤ëªŒì˜™ å ì™ì˜™å ì™ì˜™ å ìŒ¥ëŠ”ëŒì˜™.
 			bBagOpen = !bBagOpen;
 
 			SwitchBagByIndex(1);			
@@ -966,7 +966,7 @@ int	CDialogManager::HandleDialogAction(unsigned int iAction)
 			if( IsOpenDialog(DIALOG_WORLDMAP))
 				NTL_RETURN(1);
 
-			// °¡¹æÀÌ ÇÑ°³¶óµµ ¿­·Á ÀÖ´Ù¸é ÀüºÎ ´Ý´Â´Ù.
+			// å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹¼ê³¤ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ìŒë‹¤ëªŒì˜™ å ì™ì˜™å ì™ì˜™ å ìŒ¥ëŠ”ëŒì˜™.
 			bBagOpen = !bBagOpen;
 
 			SwitchBagByIndex(2);			
@@ -991,7 +991,7 @@ int	CDialogManager::HandleDialogAction(unsigned int iAction)
 			if( IsOpenDialog(DIALOG_WORLDMAP))
 				NTL_RETURN(1);
 
-			// °¡¹æÀÌ ÇÑ°³¶óµµ ¿­·Á ÀÖ´Ù¸é ÀüºÎ ´Ý´Â´Ù.
+			// å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹¼ê³¤ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ìŒë‹¤ëªŒì˜™ å ì™ì˜™å ì™ì˜™ å ìŒ¥ëŠ”ëŒì˜™.
 			bBagOpen = !bBagOpen;
 
 			SwitchBagByIndex(3);
@@ -1016,7 +1016,7 @@ int	CDialogManager::HandleDialogAction(unsigned int iAction)
 			if( IsOpenDialog(DIALOG_WORLDMAP))
 				NTL_RETURN(1);
 
-			// °¡¹æÀÌ ÇÑ°³¶óµµ ¿­·Á ÀÖ´Ù¸é ÀüºÎ ´Ý´Â´Ù.
+			// å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹¼ê³¤ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ìŒë‹¤ëªŒì˜™ å ì™ì˜™å ì™ì˜™ å ìŒ¥ëŠ”ëŒì˜™.
 			bBagOpen = !bBagOpen;
 
 			SwitchBagByIndex(4);

@@ -2,11 +2,11 @@
  *
  * File			: NtlRtPatcher.h
  * Author		: HongHoDong
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2007. 2. 5.
  * Abstract		: 
  *****************************************************************************
- * Desc         : Patch Data¸¦ Patch¸¦ ÇÑ´Ù.(RtPatch Àü¿ë)
+ * Desc         : Patch Dataë¥¼ Patchë¥¼ í•œë‹¤.(RtPatch ì „ìš©)
  *
  *****************************************************************************/
 #pragma once

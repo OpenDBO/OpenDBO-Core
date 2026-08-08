@@ -207,7 +207,7 @@ void CNtlPLCharacterParser::CreateKeyword()
         PC_TABLE_ADD(JUMP_LANDING_SHORT);
         PC_TABLE_ADD(JUMP_LANDING_LONG);
         PC_TABLE_ADD(RUN_FRONT);
-		PC_TABLE_ADD(WALK_FRONT); //by HongHoDong(2006. 5. 19) ±âÈ¹¼­»ó¿¡´Â ¾øÁö¸¸ Mob°úÀÇ ÅëÀÏ¼ºÀ» À§ÇØ¼­ ³Ö¾îÁà¾ß ÇÑ´Ù.
+		PC_TABLE_ADD(WALK_FRONT); //by HongHoDong(2006. 5. 19) ê¸°íšì„œìƒì—ëŠ” ì—†ì§€ë§Œ Mobê³¼ì˜ í†µì¼ì„±ì„ ìœ„í•´ì„œ ë„£ì–´ì¤˜ì•¼ í•œë‹¤.
         PC_TABLE_ADD(IDLE_RUN_FRONT);
         PC_TABLE_ADD(RUN_BACK);
         PC_TABLE_ADD(IDLE_RUN_BACK);
@@ -309,8 +309,8 @@ void CNtlPLCharacterParser::CreateKeyword()
         PC_TABLE_ADD(VEHICLE_SRP2_LANDING);
 
 
-//by HongHoDong 2006. 5. 19ÀÏ MobMatching Table ¼öÁ¤ ±×·¡ÇÈÆÀ°ú °°Àº ÀÌ¸§À¸·Î ÇÏ±â·Î °áÁ¤
-//(¾ÆÁ÷ Aliena BrainÀÇ ¹®¼­¿Í ´Ù¸§)
+//by HongHoDong 2006. 5. 19ì¼ MobMatching Table ìˆ˜ì • ê·¸ëž˜í”½íŒ€ê³¼ ê°™ì€ ì´ë¦„ìœ¼ë¡œ í•˜ê¸°ë¡œ ê²°ì •
+//(ì•„ì§ Aliena Brainì˜ ë¬¸ì„œì™€ ë‹¤ë¦„)
 #define MOB_TABLE_ADD(id) m_MobMatchTable.Add(#id, id)
 	MOB_TABLE_ADD(NML_SPAWN);
 	MOB_TABLE_ADD(NML_IDLE_LOOP);

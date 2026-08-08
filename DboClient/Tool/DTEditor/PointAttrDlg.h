@@ -11,21 +11,21 @@ enum
 };
 
 
-// CPointAttrDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPointAttrDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CPointAttrDlg : public CDialog
 {
 	DECLARE_DYNAMIC(CPointAttrDlg)
 
 public:
-	CPointAttrDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CPointAttrDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CPointAttrDlg();
 
 	INT						m_nEditType;
 	CPointEditDlg			*m_pEditDlg;
 	CPointCustomEditDlg		m_CustomDlg;
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_POINTATTRIBUTE };
 
 public:
@@ -34,7 +34,7 @@ public:
 	void		OnPropSelectUpdate(int nSx, int nEx);
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

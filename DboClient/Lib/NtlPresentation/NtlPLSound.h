@@ -86,10 +86,10 @@ public:
 
 	virtual RwInt32	PlaySound(RwChar* pFileName);
 	
-	// Sound BGMÀº Radius°¡ Min°ú Max°¡ µ¿ÀÏÇÏ´Ù.
+	// Sound BGMì€ Radiusê°€ Minê³¼ Maxê°€ ë™ì¼í•˜ë‹¤.
 	virtual RwReal&	GetRadius(RwBool IsMin = TRUE)			{ return m_Radius; }
 
-	// Sound BGMÀº VolumeÀº Á¶ÀıÀÌ ºÒ°¡´ÉÇÏ´Ù.
+	// Sound BGMì€ Volumeì€ ì¡°ì ˆì´ ë¶ˆê°€ëŠ¥í•˜ë‹¤.
 	virtual RwReal&	GetVolume()								{ return m_Volume; }
 
 	virtual VOID	ControlVolume(RwReal Value2Append);

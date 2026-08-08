@@ -2,7 +2,7 @@
  *
  * File			: NtlCameraController.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2006. 8. 08	
  * Abstract		: simulation layer camera controller
  *****************************************************************************
@@ -28,11 +28,11 @@ enum ECameraControlType
     CAMERA_CONTROL_FREE,				/** Free Camera Control */
 	CAMERA_CONTROL_EXPLOSION,			/** Explosion camera control */
 	CAMERA_CONTROL_TIMEMACHINE_ARRIVE,	/** Timemachine arrive camera control */
-	CAMERA_CONTROL_KNOCKDOWN_MATRIX,	/** knockdown matrix ø¨√‚ camera control */
-    CAMERA_CONTROL_FPS,                 /** 1¿Œƒ™ ƒ´∏ﬁ∂Û ƒ¡∆Æ∑—∑Ø */
+	CAMERA_CONTROL_KNOCKDOWN_MATRIX,	/** knockdown matrix Ïó∞Ï∂ú camera control */
+    CAMERA_CONTROL_FPS,                 /** 1Ïù∏Ïπ≠ Ïπ¥Î©îÎùº Ïª®Ìä∏Î°§Îü¨ */
 	CAMERA_CONTROL_BUS,					/** bus camera control */
 	CAMERA_CONTROL_TURORIAL,			/** tutorial camera control */
-    CAMERA_CONTROL_OBSERVER,            ///< √µ«œ¡¶¿œ π´µµ»∏ø°º≠ ªÁøÎ«œ¥¬ ±∏∞ÊøÎ ƒ´∏ﬁ∂Û
+    CAMERA_CONTROL_OBSERVER,            ///< Ï≤úÌïòÏ†úÏùº Î¨¥ÎèÑÌöåÏóêÏÑú ÏÇ¨Ïö©ÌïòÎäî Íµ¨Í≤ΩÏö© Ïπ¥Î©îÎùº
 };
 
 // controller flags
@@ -45,12 +45,12 @@ class CNtlSobActor;
 class CNtl2DTimeSequence;
 class CNtl3DTimeSequence;
 
-/// ƒ´∏ﬁ∂Û ¿ßƒ° ¡§∫∏∏¶ ¥„±‚¿ß«— ±∏¡∂√º
+/// Ïπ¥Î©îÎùº ÏúÑÏπò Ï†ïÎ≥¥Î•º Îã¥Í∏∞ÏúÑÌïú Íµ¨Ï°∞Ï≤¥
 struct SCameraData                  
 {
-    RwReal fTime;                   ///< Ω√∞£
-    RwV3d  vPos;                    ///< ƒ´∏ﬁ∂Û ¿ßƒ°
-    RwV3d  vTargetPos;              ///< ƒ´∏ﬁ∂Û ≈∏∞Ÿ ¿ßƒ°        
+    RwReal fTime;                   ///< ÏãúÍ∞Ñ
+    RwV3d  vPos;                    ///< Ïπ¥Î©îÎùº ÏúÑÏπò
+    RwV3d  vTargetPos;              ///< Ïπ¥Î©îÎùº ÌÉÄÍ≤ü ÏúÑÏπò        
 };
 
 typedef std::vector<SCameraData> VecCamaraData;
@@ -72,7 +72,7 @@ protected:
 protected:
     CNtlCameraController();
 	virtual void UpdateCameraTrans(RwV3d *pCamPos, const RwV3d *pLookAt, RwReal fDistOffset = 0.0f);
-    virtual void SetVisibleAllObject( RwBool bVisible );            //< ∞¥√ºµÈ¿« ∫∏¿”¿ª º≥¡§«—¥Ÿ.
+    virtual void SetVisibleAllObject( RwBool bVisible );            //< Í∞ùÏ≤¥Îì§Ïùò Î≥¥ÏûÑÏùÑ ÏÑ§Ï†ïÌïúÎã§.
 	RwReal GetActorOffset(CNtlSobActor *pActor);
 
 
@@ -173,18 +173,18 @@ private:
 		CAMERA_NORAML_SMOOTHING_STOP			= 0x05
 	};
 
-	RwUInt8 m_byUpdateFlags;		// camera¿« update∏¶ ≥™≈∏≥ª¥¬ flag.
-	RwUInt8	m_bySmoothingFlag;		// camera¿« update smoothing ∫∏∞£.
+	RwUInt8 m_byUpdateFlags;		// cameraÏùò updateÎ•º ÎÇòÌÉÄÎÇ¥Îäî flag.
+	RwUInt8	m_bySmoothingFlag;		// cameraÏùò update smoothing Î≥¥Í∞Ñ.
 	RwReal	m_fSmoothTime;			// smooth time.
 	RwReal	m_fSmoothDist;			// smooth distance
 	RwBool	m_bSmoothLookAtEnable;	// smooth look at enable
 	RwV3d	m_vSmoothLookAt;		// smooth look at position
 	RwV3d	m_vPrevActorPos;		// previous actor position.
 	
-	RwReal	m_fDesiredDist;		// Ω∫«¡∏µ »ø∞˙∏¶ ¿ß«ÿ ΩË¥Ÿ.
-	RwReal	m_fDeltaDist;		// ∏∂øÏΩ∫ wheel delta distance.
-	RwV3d	m_vLerpPos;			// ƒ´∏ﬁ∂Û ∫∏¡§ offset.
-	RwReal	m_fLerpSpeed;		// ƒ´∏ﬁ∂Û ∫∏¡§ speed.
+	RwReal	m_fDesiredDist;		// Ïä§ÌîÑÎßÅ Ìö®Í≥ºÎ•º ÏúÑÌï¥ ÏçºÎã§.
+	RwReal	m_fDeltaDist;		// ÎßàÏö∞Ïä§ wheel delta distance.
+	RwV3d	m_vLerpPos;			// Ïπ¥Î©îÎùº Î≥¥Ï†ï offset.
+	RwReal	m_fLerpSpeed;		// Ïπ¥Î©îÎùº Î≥¥Ï†ï speed.
 
 	CNtlSobActor *m_pActor;
 
@@ -220,7 +220,7 @@ public:
 
 //////////////////////////////////////////////////////////////////////////
 // Create by agebreak 2008.02.11
-// 1¿Œƒ™ ƒ´∏ﬁ∂Û ƒ¡∆Æ∑—∑Ø
+// 1Ïù∏Ïπ≠ Ïπ¥Î©îÎùº Ïª®Ìä∏Î°§Îü¨
 class CNtlCameraFPSController : public CNtlCameraController
 {
 public:
@@ -237,29 +237,29 @@ public:
     virtual void HandleEvents(RWS::CMsg &pMsg); 
     
     void    SetLookAtDir(RwV3d& vCurrLookAt, RwV3d& vTargetLookAt);
-    void    EnableZoomInOut(RwBool bEnable);               ///< ¡‹¿Ã ∞°¥…«—¡ˆ º≥¡§«—¥Ÿ (Ω∫ƒ´øÏ≈Õ¥¬ ¡‹¿Ã æ»µ»¥Ÿ)    
+    void    EnableZoomInOut(RwBool bEnable);               ///< Ï§åÏù¥ Í∞ÄÎä•ÌïúÏßÄ ÏÑ§Ï†ïÌïúÎã§ (Ïä§Ïπ¥Ïö∞ÌÑ∞Îäî Ï§åÏù¥ ÏïàÎêúÎã§)    
     void    AddPitch(RwReal fDeltaPitch);
     void    AddYaw(RwReal fDeltaYaw);
 protected:
 
 protected:
-    CNtlSobActor *m_pActor;                 ///< ∏ﬁ¿Œ¿Ã µ«¥¬ Actor
-    RwBool        m_bEnableZoom;            ///< ¡‹ ∞°¥… «√∑°±◊
-	RwReal		  m_fOldDist;				///< ¿Ã¿¸ ƒ´∏ﬁ∂Û distance    
-    RwV3d         m_vStartPos;              ///< ø¯∑° ƒ´∏ﬁ∂Û ¿ßƒ°
-    RwV3d         m_vTargetPos;             ///< ∫Ø»≠µ… 1¿Œƒ™ ƒ´∏ﬁ∂Û ¿ßƒ°
-    RwV3d         m_vCurrLookAt;            ///< ø¯∑° ∫∏∞Ì ¿÷¥¬ πÊ«‚
-    RwV3d         m_vTargetLookAt;          ///< ∫Ø∞Êµ… ∫∏∞Ì ¿÷¥¬ πÊ«‚
-    RwReal        m_fInterTime;             ///< ∫∏∞£µ«¥¬ Ω√∞£ ¥©¿˚    
-    RwBool        m_bInter;                 ///< «ˆ¿Á ∫∏∞£¡ﬂ¿Œ¡ˆ ø©∫Œ «√∑°±◊
-    RwReal        m_fOrgPitch;              ///< ø¯∑° ƒ´∏ﬁ∂Û Pitch ∞™
-    RwReal        m_fOrgYaw;                ///< ø¯∑° ƒ´∏ﬁ∂Û Yaw ∞™
-    RwUInt32      m_uiMoveFlag;             ///< ≈∞∫∏µÂ ¿Ãµø Flag
+    CNtlSobActor *m_pActor;                 ///< Î©îÏù∏Ïù¥ ÎêòÎäî Actor
+    RwBool        m_bEnableZoom;            ///< Ï§å Í∞ÄÎä• ÌîåÎûòÍ∑∏
+	RwReal		  m_fOldDist;				///< Ïù¥Ï†Ñ Ïπ¥Î©îÎùº distance    
+    RwV3d         m_vStartPos;              ///< ÏõêÎûò Ïπ¥Î©îÎùº ÏúÑÏπò
+    RwV3d         m_vTargetPos;             ///< Î≥ÄÌôîÎê† 1Ïù∏Ïπ≠ Ïπ¥Î©îÎùº ÏúÑÏπò
+    RwV3d         m_vCurrLookAt;            ///< ÏõêÎûò Î≥¥Í≥† ÏûàÎäî Î∞©Ìñ•
+    RwV3d         m_vTargetLookAt;          ///< Î≥ÄÍ≤ΩÎê† Î≥¥Í≥† ÏûàÎäî Î∞©Ìñ•
+    RwReal        m_fInterTime;             ///< Î≥¥Í∞ÑÎêòÎäî ÏãúÍ∞Ñ ÎàÑÏ†Å    
+    RwBool        m_bInter;                 ///< ÌòÑÏû¨ Î≥¥Í∞ÑÏ§ëÏù∏ÏßÄ Ïó¨Î∂Ä ÌîåÎûòÍ∑∏
+    RwReal        m_fOrgPitch;              ///< ÏõêÎûò Ïπ¥Î©îÎùº Pitch Í∞í
+    RwReal        m_fOrgYaw;                ///< ÏõêÎûò Ïπ¥Î©îÎùº Yaw Í∞í
+    RwUInt32      m_uiMoveFlag;             ///< ÌÇ§Î≥¥Îìú Ïù¥Îèô Flag
 };
 
 //////////////////////////////////////////////////////////////////////////
 /// Create by agebreak 2007.11.27
-/// ¿⁄¿Ø∑”∞‘ ¿Ãµø«“ ºˆ ¿÷¥¬ «¡∏Æ ƒ´∏ﬁ∂Û ƒ¡∆Æ∑—∑Ø (DT ø°µ≈Õø°º≠ ªÁøÎ«—¥Ÿ.)
+/// ÏûêÏú†Î°≠Í≤å Ïù¥ÎèôÌï† Ïàò ÏûàÎäî ÌîÑÎ¶¨ Ïπ¥Î©îÎùº Ïª®Ìä∏Î°§Îü¨ (DT ÏóêÎîîÌÑ∞ÏóêÏÑú ÏÇ¨Ïö©ÌïúÎã§.)
 class CNtlFreeCameraController : public CNtlCameraController
 {
 public:
@@ -269,22 +269,22 @@ public:
     virtual void	Enter(void);
     virtual void	Exit(void);
     virtual void    Update(RwReal fElapsed);    
-    virtual RwBool  IsCollisionCheck(void)	{ return FALSE; }           ///< √Êµπ√º≈©∏¶ «œ¡ˆ æ ¥¬¥Ÿ.
+    virtual RwBool  IsCollisionCheck(void)	{ return FALSE; }           ///< Ï∂©ÎèåÏ≤¥ÌÅ¨Î•º ÌïòÏßÄ ÏïäÎäîÎã§.
 	virtual RwBool	IsInterpCheck(void)		{ return FALSE; }
 
     
-    void    Move(RwUInt32 moveType, RwReal fSpeed);          ///< ƒ´∏ﬁ∂Û∏¶ ¿ÃµøΩ√≈≤¥Ÿ.    
+    void    Move(RwUInt32 moveType, RwReal fSpeed);          ///< Ïπ¥Î©îÎùºÎ•º Ïù¥ÎèôÏãúÌÇ®Îã§.    
     void    Stop();
     void    UpdateRotate(const RwV3d& vCamPos);
 
-    static void    SetMoveSpeed(RwReal fSpeed) {m_fMoveSpeed = fSpeed;} ///< ƒ´∏ﬁ∂Û ¿Ãµø º”µµ∏¶ ºº∆√«—¥Ÿ.
-    static RwReal  GetMoveSpeed() {return m_fMoveSpeed;}                ///< ƒ´∏ﬁ∂Û ¿Ãµø º”µµ∏¶ π›»Ø«—¥Ÿ.
+    static void    SetMoveSpeed(RwReal fSpeed) {m_fMoveSpeed = fSpeed;} ///< Ïπ¥Î©îÎùº Ïù¥Îèô ÏÜçÎèÑÎ•º ÏÑ∏ÌåÖÌïúÎã§.
+    static RwReal  GetMoveSpeed() {return m_fMoveSpeed;}                ///< Ïπ¥Î©îÎùº Ïù¥Îèô ÏÜçÎèÑÎ•º Î∞òÌôòÌïúÎã§.
     
 protected:
-    RwUInt32        m_vPrevMoveFlag;                        ///< ¿Ã¿¸ π´∫Í «√∑°±◊∏¶ ¿˙¿Â«—¥Ÿ. (≈∞∏¶ ¥≠∑Øµµ ¡ˆº”¿˚¿∏∑Œ «√∑°±◊∞° ≥Ø∂Ûø¿¡ˆ æ ±‚∂ßπÆø°)
-    RwReal          m_fPrevSpeed;                           ///< ¿Ã¿¸ º”µµ∏¶ ¿˙¿Â«—¥Ÿ.
-    static RwReal   m_fMoveSpeed;                           ///< ƒ´∏ﬁ∂Û ¿Ãµø º”µµ
-    RwBBox          m_box;                                  ///< ƒ´∏ﬁ∂Û ¿Ãµø «—∞Ë    
+    RwUInt32        m_vPrevMoveFlag;                        ///< Ïù¥Ï†Ñ Î¨¥Î∏å ÌîåÎûòÍ∑∏Î•º Ï†ÄÏû•ÌïúÎã§. (ÌÇ§Î•º ÎàåÎü¨ÎèÑ ÏßÄÏÜçÏ†ÅÏúºÎ°ú ÌîåÎûòÍ∑∏Í∞Ä ÎÇ†ÎùºÏò§ÏßÄ ÏïäÍ∏∞ÎïåÎ¨∏Ïóê)
+    RwReal          m_fPrevSpeed;                           ///< Ïù¥Ï†Ñ ÏÜçÎèÑÎ•º Ï†ÄÏû•ÌïúÎã§.
+    static RwReal   m_fMoveSpeed;                           ///< Ïπ¥Î©îÎùº Ïù¥Îèô ÏÜçÎèÑ
+    RwBBox          m_box;                                  ///< Ïπ¥Î©îÎùº Ïù¥Îèô ÌïúÍ≥Ñ    
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -394,7 +394,7 @@ inline void CNtlCameraDashController::SetDashDest(const RwV3d *pDest)
 
 /**
  * \ingroup NtlSimulation
- * \brief ªÛ¿Œ NPC∏¶ ≈¨∏Ø«“ ∂ß ªÁøÎµ«¥¬ ƒ´∏ﬁ∂Û
+ * \brief ÏÉÅÏù∏ NPCÎ•º ÌÅ¥Î¶≠Ìï† Îïå ÏÇ¨Ïö©ÎêòÎäî Ïπ¥Î©îÎùº
  *
  * \date 2009-08-18
  * \author agebreak
@@ -442,8 +442,8 @@ private:
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// ±◊∑°«»∆¿¿∏∑Œ πﬁ¿∫ µ•¿Ã≈Õ∏¶ ¿ÃøÎ«œ¥¬ ƒ´∏ﬁ∂Û ƒ¡∆Æ∑—∑Ø √ﬂªÛ ≈¨∑°Ω∫. 
-// ∞¸∑√ «‘ºˆµÈ¿Ã ±∏«ˆµ«æÓ ¿÷¥Ÿ.
+// Í∑∏ÎûòÌîΩÌåÄÏúºÎ°ú Î∞õÏùÄ Îç∞Ïù¥ÌÑ∞Î•º Ïù¥Ïö©ÌïòÎäî Ïπ¥Î©îÎùº Ïª®Ìä∏Î°§Îü¨ Ï∂îÏÉÅ ÌÅ¥ÎûòÏä§. 
+// Í¥ÄÎ†® Ìï®ÏàòÎì§Ïù¥ Íµ¨ÌòÑÎêòÏñ¥ ÏûàÎã§.
 class CNtlCameraFromArtData : public CNtlCameraController
 {
 public:
@@ -460,7 +460,7 @@ public:
 
 protected:
     virtual void        AddCameraData(RwReal fTime, RwReal posX, RwReal posY, RwReal posZ, RwReal targetX, RwReal targetY, RwReal targetZ, VecCamaraData* pVecCameraData);
-    virtual void        CreateSequenceData(CNtl3DTimeSequence** ppSeqPos, CNtl3DTimeSequence** ppSeqTarget, VecCamaraData* pVecCamaraData);              ///< Ω√ƒˆΩ∫ µ•¿Ã≈Õ∏¶ ª˝º∫«—¥Ÿ.
+    virtual void        CreateSequenceData(CNtl3DTimeSequence** ppSeqPos, CNtl3DTimeSequence** ppSeqTarget, VecCamaraData* pVecCamaraData);              ///< ÏãúÌÄÄÏä§ Îç∞Ïù¥ÌÑ∞Î•º ÏÉùÏÑ±ÌïúÎã§.
     virtual void        UpdateCameraTrans(RwV3d *pCamPos, const RwV3d *pLookAt, RwReal fDistOffset = 0.0f);
 
 protected:
@@ -497,7 +497,7 @@ public:
 protected:    
     void				UpdateStart(RwReal fElapsed);
     void				UpdateLoop(RwReal fElapsed);
-    void                UpdateScatter(RwReal fElapsed);         ///< ƒ´∏ﬁ∂Û »æÓ¡˙∂ß¿« ƒ´∏ﬁ∂Û ø¨√‚
+    void                UpdateScatter(RwReal fElapsed);         ///< Ïπ¥Î©îÎùº Ìù©Ïñ¥ÏßàÎïåÏùò Ïπ¥Î©îÎùº Ïó∞Ï∂ú
     void				UpdateEnd(RwReal fElapsed);    
     void                CreateScatterData();    
 
@@ -511,11 +511,11 @@ protected:
     VecCamaraData       m_vecScatterData;
     SCameraData         m_DataIdle;
     
-    RwReal              m_fOrgFov;              ///< ø¯∑° FOV∞™
+    RwReal              m_fOrgFov;              ///< ÏõêÎûò FOVÍ∞í
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// ≈∏¿”∏”Ω≈ ø¨√‚øÎ ƒ´∏ﬁ∂Û ƒ¡∆Æ∑—∑Ø
+// ÌÉÄÏûÑÎ®∏Ïã† Ïó∞Ï∂úÏö© Ïπ¥Î©îÎùº Ïª®Ìä∏Î°§Îü¨
 class CNtlCameraTimeMachineController : public CNtlCameraFromArtData
 {
 public:
@@ -724,7 +724,7 @@ public:
 		DT_SPLINE_POS_ACTOR_LOOKAT_TWO_ACTOR,
 		DT_SPLINE_POS_LOOKAT_ACTOR,
 		DT_SPLINE_SELF,
-		DT_SPLINE_ACTOR_REF							// ∏Ì∑…¿Ã µø¿€µ«¥¬ Ω√¡°¿« actor¿« ¡§∫∏.
+		DT_SPLINE_ACTOR_REF							// Î™ÖÎ†πÏù¥ ÎèôÏûëÎêòÎäî ÏãúÏ†êÏùò actorÏùò Ï†ïÎ≥¥.
 	};
 
 	struct SSplineNodeLookAtActor
@@ -815,7 +815,7 @@ public:
 
 	virtual void	UpdateData(RwBool bUpdate = TRUE);
 
-	virtual RwBool  IsCollisionCheck(void)	{ return FALSE; }           ///< √Êµπ√º≈©∏¶ «œ¡ˆ æ ¥¬¥Ÿ.
+	virtual RwBool  IsCollisionCheck(void)	{ return FALSE; }           ///< Ï∂©ÎèåÏ≤¥ÌÅ¨Î•º ÌïòÏßÄ ÏïäÎäîÎã§.
 
 	virtual RwBool	IsInterpCheck(void)		{ return FALSE; }
 
@@ -848,7 +848,7 @@ public:
 
 /**
 * \ingroup NtlSimulation
-* \brief √µ«œ¡¶¿œ π´µµ»∏ø°º≠ ªÁøÎ«œ¥¬ ø…¿˙πˆøÎ ∞Ì¡§ ƒ´∏ﬁ∂Û ƒ¡∆Æ∑—∑Ø
+* \brief Ï≤úÌïòÏ†úÏùº Î¨¥ÎèÑÌöåÏóêÏÑú ÏÇ¨Ïö©ÌïòÎäî ÏòµÏ†ÄÎ≤ÑÏö© Í≥†Ï†ï Ïπ¥Î©îÎùº Ïª®Ìä∏Î°§Îü¨
 *
 * \date 2008-09-02
 * \author agebreak
@@ -862,17 +862,17 @@ public:
     virtual void	Enter(void);
     virtual void	Exit(void);
     virtual void    Update(RwReal fElapsed);    
-    virtual RwBool  IsCollisionCheck(void)	{ return FALSE; }           ///< √Êµπ√º≈©∏¶ «œ¡ˆ æ ¥¬¥Ÿ.
+    virtual RwBool  IsCollisionCheck(void)	{ return FALSE; }           ///< Ï∂©ÎèåÏ≤¥ÌÅ¨Î•º ÌïòÏßÄ ÏïäÎäîÎã§.
     virtual RwBool	IsInterpCheck(void)		{ return FALSE; }
 
-    void    SetIndex(RwInt32 nType, RwInt32 nIndex);                    ///< ƒ´∏ﬁ∂Û¿« ¿Œµ¶Ω∫∏¶ º≥¡§«—¥Ÿ.
+    void    SetIndex(RwInt32 nType, RwInt32 nIndex);                    ///< Ïπ¥Î©îÎùºÏùò Ïù∏Îç±Ïä§Î•º ÏÑ§Ï†ïÌïúÎã§.
 
 protected:
-    RwBool  LoadObserverCameraData();                                   ///< XML ∆ƒ¿œ∑Œ∫Œ≈Õ ƒ´∏ﬁ∂Û µ•¿Ã≈Õ∏¶ ∑ŒµÂ«—¥Ÿ.    
+    RwBool  LoadObserverCameraData();                                   ///< XML ÌååÏùºÎ°úÎ∂ÄÌÑ∞ Ïπ¥Î©îÎùº Îç∞Ïù¥ÌÑ∞Î•º Î°úÎìúÌïúÎã§.    
 
 protected:
     RwInt32 m_nIndex;
-    std::map<RwInt32, SObserverCameraData> m_mapPos;                    ///< ø…¿˙πˆ ƒ´∏ﬁ∂Û ¿ßƒ° ¡§∫∏ ∫§≈Õ
+    std::map<RwInt32, SObserverCameraData> m_mapPos;                    ///< ÏòµÏ†ÄÎ≤Ñ Ïπ¥Î©îÎùº ÏúÑÏπò Ï†ïÎ≥¥ Î≤°ÌÑ∞
 
 };
 
@@ -1069,7 +1069,7 @@ public:
 	virtual void Enter(void);
 	virtual void Exit(void);
 	virtual void Update(RwReal fElapsed);
-	virtual RwBool  IsCollisionCheck(void)	{ return FALSE; }           ///< √Êµπ√º≈©∏¶ «œ¡ˆ æ ¥¬¥Ÿ.
+	virtual RwBool  IsCollisionCheck(void)	{ return FALSE; }           ///< Ï∂©ÎèåÏ≤¥ÌÅ¨Î•º ÌïòÏßÄ ÏïäÎäîÎã§.
 	virtual RwBool	IsInterpCheck(void)		{ return FALSE; }
 
 	void AddSinExplosionAlgorithm_X( RwUInt32 uiExcuteID, RwReal fLifeTime, RwReal fFrequancy, RwReal fPhase, RwReal fAmp, RwReal fDescFactor );
@@ -1181,7 +1181,7 @@ public:
 	virtual void		Exit( void );
 	virtual void		Update( RwReal fElapsed );	
 	virtual void		SetActiveActor(const CNtlSobActor *pActor);
-	virtual RwBool		IsCollisionCheck(void)	{ return FALSE; }           ///< √Êµπ√º≈©∏¶ «œ¡ˆ æ ¥¬¥Ÿ.
+	virtual RwBool		IsCollisionCheck(void)	{ return FALSE; }           ///< Ï∂©ÎèåÏ≤¥ÌÅ¨Î•º ÌïòÏßÄ ÏïäÎäîÎã§.
 	virtual RwBool		IsInterpCheck(void)		{ return FALSE; }
 
 	void				SetData(RwReal fLifeTime);
@@ -1237,7 +1237,7 @@ public:
 	virtual void		Enter( void );	
 	virtual void		Exit( void );
 	virtual void		Update( RwReal fElapsed );
-	virtual RwBool		IsCollisionCheck(void)	{ return TRUE; }           ///< √Êµπ√º≈©∏¶ «œ¡ˆ æ ¥¬¥Ÿ.
+	virtual RwBool		IsCollisionCheck(void)	{ return TRUE; }           ///< Ï∂©ÎèåÏ≤¥ÌÅ¨Î•º ÌïòÏßÄ ÏïäÎäîÎã§.
 	virtual RwBool		IsInterpCheck(void)		{ return FALSE; }
 
 	virtual void		UserCameraControlEnable(RwBool bEnable);
@@ -1296,7 +1296,7 @@ public:
 	virtual void		Exit( void );
 	virtual void		Update( RwReal fElapsed );
 	virtual void		SetActiveActor( const CNtlSobActor *pActor );
-	virtual RwBool		IsCollisionCheck(void)	{ return FALSE; }           ///< √Êµπ√º≈©∏¶ «œ¡ˆ æ ¥¬¥Ÿ.
+	virtual RwBool		IsCollisionCheck(void)	{ return FALSE; }           ///< Ï∂©ÎèåÏ≤¥ÌÅ¨Î•º ÌïòÏßÄ ÏïäÎäîÎã§.
 	virtual RwBool		IsInterpCheck(void)		{ return FALSE; }
 
 	void				SetData( RwUInt32 uiType, RwUInt32 uiTblIdx, RwV3d& vTargetPos );

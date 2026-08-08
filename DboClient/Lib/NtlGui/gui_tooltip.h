@@ -1,14 +1,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Name: class gui::CToolTip
-// Desc: ToolTip. CDynamicOutline, CStaticBox·Î ÀÌ·ç¾îÁ® ÀÖÀ½. 
+// Desc: ToolTip. CDynamicOutline, CStaticBoxë¡œ ì´ë£¨ì–´ì ¸ ìˆìŒ. 
 //
 //			 
 // 2006.03.6 Peessi@hitel.net   
 //
 // To Be Desired: 
-//	1. Popup À§Ä¡ º¯°æ. Component¿ÜºÎ ¿µ¿ªÀ¸·Î ¼³Á¤µÇ¾î¾ß ÇÔ.
-//  2. Render Top °ü·Ã ¼³Á¤. RendererÀÇ ÄÚµåºÎÅÍ ¼öÁ¤ÇØ¾ßÇÔ. 
-//  3. GUIManager¿¡¼­ È­¸éÅ©±â¸¦ °¡Á®¿Àµµ·Ï.
+//	1. Popup ìœ„ì¹˜ ë³€ê²½. Componentì™¸ë¶€ ì˜ì—­ìœ¼ë¡œ ì„¤ì •ë˜ì–´ì•¼ í•¨.
+//  2. Render Top ê´€ë ¨ ì„¤ì •. Rendererì˜ ì½”ë“œë¶€í„° ìˆ˜ì •í•´ì•¼í•¨. 
+//  3. GUIManagerì—ì„œ í™”ë©´í¬ê¸°ë¥¼ ê°€ì ¸ì˜¤ë„ë¡.
 ////////////////////////////////////////////////////////////////////////////////
 
 #ifndef __GUI_TOOLTIP_H__
@@ -35,11 +35,11 @@ public:
 //! Operations:
 
 	// Override 
-	VOID Show( bool bShow /* = true */ );								// TooltipÀº ÀÏ¹İ Component¿Í ·ÎÁ÷ÀÌ ´Ù¸£´Ù.
+	VOID Show( bool bShow /* = true */ );								// Tooltipì€ ì¼ë°˜ Componentì™€ ë¡œì§ì´ ë‹¤ë¥´ë‹¤.
 	
 	// ToolTip Interface
-	VOID SetMargin( INT nMarginX, INT nMarginY );						// ToolTip LT¿¡¼­ StaticBoxLT ±îÁöÀÇ °Å¸®
-	VOID SetMouseMargin( INT nMouseMarginX, INT nMouseMarginY );		// ¸¶¿ì½ºÆ÷ÀÎÅÍ¿¡¼­ ToolTip LT±îÁöÀÇ °Å¸®
+	VOID SetMargin( INT nMarginX, INT nMarginY );						// ToolTip LTì—ì„œ StaticBoxLT ê¹Œì§€ì˜ ê±°ë¦¬
+	VOID SetMouseMargin( INT nMouseMarginX, INT nMouseMarginY );		// ë§ˆìš°ìŠ¤í¬ì¸í„°ì—ì„œ ToolTip LTê¹Œì§€ì˜ ê±°ë¦¬
 
 	// Static Box Interface
 	VOID CreateFontStd( CHAR* pFaceName, INT nHeight, INT nAttributes );
@@ -56,7 +56,7 @@ public:
 	// DynamicOutline Interface
 	VOID AddSurfaces( CSurface& surCenter, CSurface& surLTC, CSurface& surRTC, CSurface& surLBC, CSurface& surRBC,
 					  CSurface& surLL, CSurface& surTL, CSurface& surRL, CSurface& surBL );
-	VOID SetTextPosition(VOID);											// Dynamic Outline Surface°¡ ´Ù ÀÔ·ÂµÈ ÈÄ¿¡ ½ÇÇà.
+	VOID SetTextPosition(VOID);											// Dynamic Outline Surfaceê°€ ë‹¤ ì…ë ¥ëœ í›„ì— ì‹¤í–‰.
 
 	VOID ShowToolTip( const CHAR* text, CComponent* pOwner, DWORD dwAlign = 0 );
 	VOID ShowToolTip( const WCHAR* text,  CComponent* pOwner, DWORD dwAlign = 0 );

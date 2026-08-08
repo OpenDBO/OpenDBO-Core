@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: CharInfoGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 10. 17
 * Abstract		:
 *****************************************************************************
-* Desc			: ·Îºñ¿¡¼­ ÇöÀç ¼±ÅÃµÈ Ä³¸¯ÅÍÀÇ Á¤º¸¸¦ º¸¿©ÁØ´Ù
+* Desc			: ë¡œë¹„ì—ì„œ í˜„ì¬ ì„ íƒëœ ìºë¦­í„°ì˜ ì •ë³´ë¥¼ ë³´ì—¬ì¤€ë‹¤
 *****************************************************************************/
 
 #pragma once
@@ -45,23 +45,23 @@ protected:
 protected:
 	gui::CSlot			m_slotPaint;
 
-	CWindowby3			m_Background;		///< ¹è°æ
+	CWindowby3			m_Background;		///< ë°°ê²½
 
-	CSurfaceGui			m_srtInfoBack;		///< Ä³¸¯ÅÍ Á¤º¸ ¹è°æ
+	CSurfaceGui			m_srtInfoBack;		///< ìºë¦­í„° ì •ë³´ ë°°ê²½
 
 	gui::CStaticBox*	m_pTitleStatic;		///<
-	gui::CStaticBox*	m_pNameStatic;		///< 'ÀÌ¸§'
-	gui::CStaticBox*	m_pLevelStatic;		///< '·¹º§'
-	gui::CStaticBox*	m_pClassStatic;		///< 'Å¬·¡½º'
-	gui::CStaticBox*	m_pZennyStatic;		///< '¼ÒÀ¯Á¦´Ï'
-	gui::CStaticBox*	m_pLastLocationStatic;///< 'ÃÖÁ¾À§Ä¡'
-	gui::CStaticBox*	m_pDeleteDayStatic;	///< '»èÁ¦ ¿¹Á¤ÀÏ'
-	gui::CStaticBox*	m_pName;			///< Ä³¸¯ÅÍ ÀÌ¸§
-	gui::CStaticBox*	m_pLevel;			///< Ä³¸¯ÅÍ ·¹º§
-	gui::CStaticBox*	m_pClass;			///< Ä³¸¯ÅÍ Å¬·¡½º
-	gui::CStaticBox*	m_pZenny;			///< Ä³¸¯ÅÍ ¼ÒÀ¯ Á¦´Ï
-	gui::CStaticBox*	m_pLastLocation;	///< Ä³¸¯ÅÍ ÃÖÁ¾ À§Ä¡
+	gui::CStaticBox*	m_pNameStatic;		///< 'ì´ë¦„'
+	gui::CStaticBox*	m_pLevelStatic;		///< 'ë ˆë²¨'
+	gui::CStaticBox*	m_pClassStatic;		///< 'í´ë˜ìŠ¤'
+	gui::CStaticBox*	m_pZennyStatic;		///< 'ì†Œìœ ì œë‹ˆ'
+	gui::CStaticBox*	m_pLastLocationStatic;///< 'ìµœì¢…ìœ„ì¹˜'
+	gui::CStaticBox*	m_pDeleteDayStatic;	///< 'ì‚­ì œ ì˜ˆì •ì¼'
+	gui::CStaticBox*	m_pName;			///< ìºë¦­í„° ì´ë¦„
+	gui::CStaticBox*	m_pLevel;			///< ìºë¦­í„° ë ˆë²¨
+	gui::CStaticBox*	m_pClass;			///< ìºë¦­í„° í´ë˜ìŠ¤
+	gui::CStaticBox*	m_pZenny;			///< ìºë¦­í„° ì†Œìœ  ì œë‹ˆ
+	gui::CStaticBox*	m_pLastLocation;	///< ìºë¦­í„° ìµœì¢… ìœ„ì¹˜
 
-	gui::CStaticBox*	m_pDeleteDay;		///< Ä³¸¯ÅÍ »èÁ¦ ¿¹Á¤ÀÏ
-	gui::CStaticBox*	m_pDeleteDayExplain;///< Ä³¸¯ÅÍ »èÁ¦ ¿¹Á¤ÀÏ »ó¼¼ ¼³¸í
+	gui::CStaticBox*	m_pDeleteDay;		///< ìºë¦­í„° ì‚­ì œ ì˜ˆì •ì¼
+	gui::CStaticBox*	m_pDeleteDayExplain;///< ìºë¦­í„° ì‚­ì œ ì˜ˆì •ì¼ ìƒì„¸ ì„¤ëª…
 };

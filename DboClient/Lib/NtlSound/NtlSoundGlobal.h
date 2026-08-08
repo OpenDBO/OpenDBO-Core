@@ -12,12 +12,12 @@ class CNtlSoundGlobal
 public:
 	static CNtlSoundGlobal*			m_pInstance;
 
-	static FMOD::System*			m_pFMODSystem;				///< FMOD::System ÀÎ½ºÅÏ½º
+	static FMOD::System*			m_pFMODSystem;				///< FMOD::System ì¸ìŠ¤í„´ìŠ¤
 		
 	static std::string				m_strFilePath;
 	static float					m_fMinMaxRate;
 	static sNtlVolume				m_tMasterVolume;
 
-	static SET_ERRORMSG				m_setMsgError;				// °°Àº ¿¡·¯ ¸Þ¼¼Áö¸¦ °É·¯³»±â À§ÇÑ Àü¿ª º¯¼ö
+	static SET_ERRORMSG				m_setMsgError;				// ê°™ì€ ì—ëŸ¬ ë©”ì„¸ì§€ë¥¼ ê±¸ëŸ¬ë‚´ê¸° ìœ„í•œ ì „ì—­ ë³€ìˆ˜
 	static SET_SOUNDHANDLE			m_setPlayingSoundHandle;
 };

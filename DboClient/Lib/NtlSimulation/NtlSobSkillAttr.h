@@ -2,7 +2,7 @@
  *
  * File			: NtlSobSkillAttr.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2006. 4. 24	
  * Abstract		: Simulation object skill attribute base class
  *****************************************************************************

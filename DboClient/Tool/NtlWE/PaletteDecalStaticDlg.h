@@ -1,21 +1,21 @@
 #pragma once
 
 
-// PaletteDecalStaticDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// PaletteDecalStaticDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CPaletteDecalStaticDlg : public CDialog
 {
 	DECLARE_DYNAMIC(CPaletteDecalStaticDlg)
 
 public:
-	CPaletteDecalStaticDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CPaletteDecalStaticDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CPaletteDecalStaticDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_ORNAMENT_DECAL_STATIC };
 
 protected:
-	virtual void		DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void		DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual LRESULT		WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
 	virtual BOOL		PreTranslateMessage(MSG* pMsg);
 

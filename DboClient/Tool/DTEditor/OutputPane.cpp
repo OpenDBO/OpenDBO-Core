@@ -1,4 +1,4 @@
-// OutputPane.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// OutputPane.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -144,7 +144,7 @@ BEGIN_MESSAGE_MAP(COutputPane, CWnd)
 END_MESSAGE_MAP()
 
 
-// COutputPane ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// COutputPane ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 
 int COutputPane::OnCreate(LPCREATESTRUCT lpCreateStruct)
@@ -152,7 +152,7 @@ int COutputPane::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// TODO:  ¿©±â¿¡ Æ¯¼öÈ­µÈ ÀÛ¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì‘ì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	m_wndEdit.Create(WS_CLIPCHILDREN | WS_CLIPSIBLINGS | WS_VISIBLE | ES_READONLY | ES_AUTOHSCROLL | ES_AUTOVSCROLL | ES_MULTILINE, CRect(0, 0,200, 120), this, OUTPUT_PANE_WND_ID);
 	m_wndEdit.ModifyStyleEx(0, WS_EX_STATICEDGE);
@@ -164,7 +164,7 @@ void COutputPane::OnSize(UINT nType, int cx, int cy)
 {
 	CWnd::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	CSize sz(0);
 

@@ -100,11 +100,11 @@ public:
 		m_stlOption["surface_focus"].type = CComponentType::SOptionType::STRING;
 		m_stlOption["surface_mask"].type = CComponentType::SOptionType::STRING;
 
-		// button text ¼Ó¼º.
-		m_stlOption["text_x"].type = CComponentType::SOptionType::NUMBER;						// ¹öÆ°³»ºÎÀÇ ÅØ½ºÆ® À§Ä¡.
+		// button text ì†ì„±.
+		m_stlOption["text_x"].type = CComponentType::SOptionType::NUMBER;						// ë²„íŠ¼ë‚´ë¶€ì˜ í…ìŠ¤íŠ¸ ìœ„ì¹˜.
 		m_stlOption["text_y"].type = CComponentType::SOptionType::NUMBER;
 
-		m_stlOption["textcolor_up_red"].type = CComponentType::SOptionType::NUMBER;				// °¢»óÅÂÀÇ ±ÛÀÚ»ö.
+		m_stlOption["textcolor_up_red"].type = CComponentType::SOptionType::NUMBER;				// ê°ìƒíƒœì˜ ê¸€ììƒ‰.
 		m_stlOption["textcolor_up_green"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["textcolor_up_blue"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["textalpha_up"].type = CComponentType::SOptionType::NUMBER;
@@ -120,19 +120,19 @@ public:
 		m_stlOption["textcolor_disable_green"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["textcolor_disable_blue"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["textalpha_disable"].type = CComponentType::SOptionType::NUMBER;
-		m_stlOption["text_effect_mode"].type = CComponentType::SOptionType::STRING;				// shadow : ±×¸²ÀÚ ouline : ¿Ü°û¼±,±Û·Î¿ì none : ¾øÀ½
+		m_stlOption["text_effect_mode"].type = CComponentType::SOptionType::STRING;				// shadow : ê·¸ë¦¼ì ouline : ì™¸ê³½ì„ ,ê¸€ë¡œìš° none : ì—†ìŒ
 		m_stlOption["text_effectcolor_red"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_effectcolor_green"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_effectcolor_blue"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_effect_value"].type = CComponentType::SOptionType::NUMBER;
-		m_stlOption["text_downcoord_x"].type = CComponentType::SOptionType::NUMBER;				// ´­·ÈÀ»¶§ ÀÌµ¿µÇ´Â °ª.
+		m_stlOption["text_downcoord_x"].type = CComponentType::SOptionType::NUMBER;				// ëˆŒë ¸ì„ë•Œ ì´ë™ë˜ëŠ” ê°’.
 		m_stlOption["text_downcoord_y"].type = CComponentType::SOptionType::NUMBER;
-		m_stlOption["text_style"].type = CComponentType::SOptionType::STRING;					// ±×¿Ü ½ºÅ¸ÀÏµé.
+		m_stlOption["text_style"].type = CComponentType::SOptionType::STRING;					// ê·¸ì™¸ ìŠ¤íƒ€ì¼ë“¤.
 		m_stlOption["font_name"].type = CComponentType::SOptionType::STRING;
 		m_stlOption["font_height"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["font_attribute"].type = CComponentType::SOptionType::NUMBER;
 
-		m_stlOption["enablemousecapture"].type = CComponentType::SOptionType::BOOL;				// Å¬¸¯½Ã ¸¶¿ì½ºÄ¸ÃÄ ¿©ºÎ
+		m_stlOption["enablemousecapture"].type = CComponentType::SOptionType::BOOL;				// í´ë¦­ì‹œ ë§ˆìš°ìŠ¤ìº¡ì³ ì—¬ë¶€
 	}
 
 	virtual CComponent *CreateComponent(CComponent *parent,CSurfaceManager *pSurfaceManager)
@@ -219,7 +219,7 @@ public:
 		m_stlOption["font_width"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["font_height"].type = CComponentType::SOptionType::NUMBER;
 
-		// ScrollBar ¼Ó¼º.
+		// ScrollBar ì†ì„±.
 		m_stlOption["slider_width"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["slider_height"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["button_width"].type = CComponentType::SOptionType::NUMBER;
@@ -265,7 +265,7 @@ public:
 		m_stlOption["text_bkcolor_red"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_bkcolor_green"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_bkcolor_blue"].type = CComponentType::SOptionType::NUMBER;
-		m_stlOption["text_effect_mode"].type = CComponentType::SOptionType::STRING;			// shadow : ±×¸²ÀÚ ouline : ¿Ü°û¼±,±Û·Î¿ì none : ¾øÀ½
+		m_stlOption["text_effect_mode"].type = CComponentType::SOptionType::STRING;			// shadow : ê·¸ë¦¼ì ouline : ì™¸ê³½ì„ ,ê¸€ë¡œìš° none : ì—†ìŒ
 		m_stlOption["text_effectcolor_red"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_effectcolor_green"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_effectcolor_blue"].type = CComponentType::SOptionType::NUMBER;
@@ -353,7 +353,7 @@ public:
 		m_stlOption["text_bkcolor_red"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_bkcolor_green"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_bkcolor_blue"].type = CComponentType::SOptionType::NUMBER;
-		m_stlOption["text_effect_mode"].type = CComponentType::SOptionType::STRING;			// shadow : ±×¸²ÀÚ ouline : ¿Ü°û¼±,±Û·Î¿ì none : ¾øÀ½
+		m_stlOption["text_effect_mode"].type = CComponentType::SOptionType::STRING;			// shadow : ê·¸ë¦¼ì ouline : ì™¸ê³½ì„ ,ê¸€ë¡œìš° none : ì—†ìŒ
 		m_stlOption["text_effectcolor_red"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_effectcolor_green"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_effectcolor_blue"].type = CComponentType::SOptionType::NUMBER;
@@ -364,9 +364,9 @@ public:
 		
 		// dynamic attribute
 		m_stlOption["dynamic"].type = CComponentType::SOptionType::BOOL;
-		m_stlOption["max_cx"].type = CComponentType::SOptionType::NUMBER;					// ±âº»°ªÀº ÄÄÆ÷³ÍÆ®ÀÇ Å©±â
+		m_stlOption["max_cx"].type = CComponentType::SOptionType::NUMBER;					// ê¸°ë³¸ê°’ì€ ì»´í¬ë„ŒíŠ¸ì˜ í¬ê¸°
 		m_stlOption["max_cy"].type = CComponentType::SOptionType::NUMBER;
-		m_stlOption["min_cx"].type = CComponentType::SOptionType::NUMBER;					// ±âº»°ªÀº 0
+		m_stlOption["min_cx"].type = CComponentType::SOptionType::NUMBER;					// ê¸°ë³¸ê°’ì€ 0
 		m_stlOption["min_cy"].type = CComponentType::SOptionType::NUMBER;
 	}
 
@@ -453,7 +453,7 @@ public:
 		m_stlOption["mask_color_green"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["mask_color_blue"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["mask_alpha"].type = CComponentType::SOptionType::NUMBER;		
-		m_stlOption["text_effect_mode"].type = CComponentType::SOptionType::STRING;			// shadow : ±×¸²ÀÚ ouline : ¿Ü°û¼±,±Û·Î¿ì none : ¾øÀ½
+		m_stlOption["text_effect_mode"].type = CComponentType::SOptionType::STRING;			// shadow : ê·¸ë¦¼ì ouline : ì™¸ê³½ì„ ,ê¸€ë¡œìš° none : ì—†ìŒ
 		m_stlOption["text_effectcolor_red"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_effectcolor_green"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_effectcolor_blue"].type = CComponentType::SOptionType::NUMBER;
@@ -542,16 +542,16 @@ public:
 		m_stlOption["text_bkcolor_red"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_bkcolor_green"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_bkcolor_blue"].type = CComponentType::SOptionType::NUMBER;
-		m_stlOption["text_effect_mode"].type = CComponentType::SOptionType::STRING;			// shadow : ±×¸²ÀÚ ouline : ¿Ü°û¼±,±Û·Î¿ì none : ¾øÀ½
+		m_stlOption["text_effect_mode"].type = CComponentType::SOptionType::STRING;			// shadow : ê·¸ë¦¼ì ouline : ì™¸ê³½ì„ ,ê¸€ë¡œìš° none : ì—†ìŒ
 		m_stlOption["text_effectcolor_red"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_effectcolor_green"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_effectcolor_blue"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_effect_value"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["linespace"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["dynamic"].type = CComponentType::SOptionType::BOOL;
-		m_stlOption["max_cx"].type = CComponentType::SOptionType::NUMBER;					// ±âº»°ªÀº ÄÄÆ÷³ÍÆ®ÀÇ Å©±â
+		m_stlOption["max_cx"].type = CComponentType::SOptionType::NUMBER;					// ê¸°ë³¸ê°’ì€ ì»´í¬ë„ŒíŠ¸ì˜ í¬ê¸°
 		m_stlOption["max_cy"].type = CComponentType::SOptionType::NUMBER;
-		m_stlOption["min_cx"].type = CComponentType::SOptionType::NUMBER;					// ±âº»°ªÀº 0
+		m_stlOption["min_cx"].type = CComponentType::SOptionType::NUMBER;					// ê¸°ë³¸ê°’ì€ 0
 		m_stlOption["min_cy"].type = CComponentType::SOptionType::NUMBER;
 
 		m_stlOption["balloontail"].type = CComponentType::SOptionType::BOOL;
@@ -583,7 +583,7 @@ public:
 
 	CComponentType_ComboBox() : CComponentType_Component()
 	{
-		// Ãß°¡ 
+		// ì¶”ê°€ 
 		m_stlOption["list_surface"].type = CComponentType::SOptionType::STRING;
 		m_stlOption["static_surface"].type = CComponentType::SOptionType::STRING;
 		m_stlOption["button_text"].type = CComponentType::SOptionType::STRING;
@@ -606,7 +606,7 @@ public:
 		m_stlOption["text_bkcolor_red"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_bkcolor_green"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_bkcolor_blue"].type = CComponentType::SOptionType::NUMBER;
-		m_stlOption["text_effect_mode"].type = CComponentType::SOptionType::STRING;			// shadow : ±×¸²ÀÚ ouline : ¿Ü°û¼±,±Û·Î¿ì none : ¾øÀ½
+		m_stlOption["text_effect_mode"].type = CComponentType::SOptionType::STRING;			// shadow : ê·¸ë¦¼ì ouline : ì™¸ê³½ì„ ,ê¸€ë¡œìš° none : ì—†ìŒ
 		m_stlOption["text_effectcolor_red"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_effectcolor_green"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_effectcolor_blue"].type = CComponentType::SOptionType::NUMBER;
@@ -693,15 +693,15 @@ public:
 		m_stlOption["text_bkcolor_red"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_bkcolor_green"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_bkcolor_blue"].type = CComponentType::SOptionType::NUMBER;
-		m_stlOption["text_effect_mode"].type = CComponentType::SOptionType::STRING;			// shadow : ±×¸²ÀÚ ouline : ¿Ü°û¼±,±Û·Î¿ì none : ¾øÀ½
+		m_stlOption["text_effect_mode"].type = CComponentType::SOptionType::STRING;			// shadow : ê·¸ë¦¼ì ouline : ì™¸ê³½ì„ ,ê¸€ë¡œìš° none : ì—†ìŒ
 		m_stlOption["text_effectcolor_red"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_effectcolor_green"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_effectcolor_blue"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_effect_value"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["dynamic"].type = CComponentType::SOptionType::BOOL;
-		m_stlOption["max_cx"].type = CComponentType::SOptionType::NUMBER;					// ±âº»°ªÀº ÄÄÆ÷³ÍÆ®ÀÇ Å©±â
+		m_stlOption["max_cx"].type = CComponentType::SOptionType::NUMBER;					// ê¸°ë³¸ê°’ì€ ì»´í¬ë„ŒíŠ¸ì˜ í¬ê¸°
 		m_stlOption["max_cy"].type = CComponentType::SOptionType::NUMBER;
-		m_stlOption["min_cx"].type = CComponentType::SOptionType::NUMBER;					// ±âº»°ªÀº 0
+		m_stlOption["min_cx"].type = CComponentType::SOptionType::NUMBER;					// ê¸°ë³¸ê°’ì€ 0
 		m_stlOption["min_cy"].type = CComponentType::SOptionType::NUMBER;
 
 		m_stlOption["surface_corner_lefttop"].type = CComponentType::SOptionType::STRING;
@@ -737,7 +737,7 @@ public:
 		m_stlOption["textcolor_green"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["textcolor_blue"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["textalpha"].type = CComponentType::SOptionType::NUMBER;
-		m_stlOption["textcolor_sel_red"].type = CComponentType::SOptionType::NUMBER;		// »óÅÂÀÇ ±ÛÀÚ»ö.
+		m_stlOption["textcolor_sel_red"].type = CComponentType::SOptionType::NUMBER;		// ìƒíƒœì˜ ê¸€ììƒ‰.
 		m_stlOption["textcolor_sel_green"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["textcolor_sel_blue"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["textalpha_sel"].type = CComponentType::SOptionType::NUMBER;
@@ -748,7 +748,7 @@ public:
 		m_stlOption["textcolor_disable_red"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["textcolor_disable_green"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["textcolor_disable_blue"].type = CComponentType::SOptionType::NUMBER;
-		m_stlOption["text_effect_mode"].type = CComponentType::SOptionType::STRING;				// shadow : ±×¸²ÀÚ ouline : ¿Ü°û¼±,±Û·Î¿ì none : ¾øÀ½
+		m_stlOption["text_effect_mode"].type = CComponentType::SOptionType::STRING;				// shadow : ê·¸ë¦¼ì ouline : ì™¸ê³½ì„ ,ê¸€ë¡œìš° none : ì—†ìŒ
 		m_stlOption["text_effectcolor_red"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_effectcolor_green"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["text_effectcolor_blue"].type = CComponentType::SOptionType::NUMBER;
@@ -756,7 +756,7 @@ public:
 
 		m_stlOption["textalpha_disable"].type = CComponentType::SOptionType::NUMBER;
 		
-		m_stlOption["text_style"].type = CComponentType::SOptionType::STRING;					// ±×¿Ü ½ºÅ¸ÀÏµé.
+		m_stlOption["text_style"].type = CComponentType::SOptionType::STRING;					// ê·¸ì™¸ ìŠ¤íƒ€ì¼ë“¤.
 		m_stlOption["font_name"].type = CComponentType::SOptionType::STRING;
 		m_stlOption["font_height"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["font_attribute"].type = CComponentType::SOptionType::NUMBER;
@@ -772,12 +772,12 @@ public:
 		m_stlOption["surface_foc_right"].type = CComponentType::SOptionType::STRING;
 		m_stlOption["surface_line"].type = CComponentType::SOptionType::STRING;
 
-		m_stlOption["tabtext_margin_x"].type = CComponentType::SOptionType::NUMBER;				// left surfaceÀÇ left, top ±âÁØ ÁÂÇ¥.
+		m_stlOption["tabtext_margin_x"].type = CComponentType::SOptionType::NUMBER;				// left surfaceì˜ left, top ê¸°ì¤€ ì¢Œí‘œ.
 		m_stlOption["tabtext_margin_y"].type = CComponentType::SOptionType::NUMBER;
-		m_stlOption["tab_unsel_width"].type = CComponentType::SOptionType::NUMBER;				// ¼¿·ºÆ® µÇÁö ÅÇÀÇ ÃÖ¼Ò Æø.
+		m_stlOption["tab_unsel_width"].type = CComponentType::SOptionType::NUMBER;				// ì…€ë ‰íŠ¸ ë˜ì§€ íƒ­ì˜ ìµœì†Œ í­.
 		m_stlOption["left_oriented"].type = CComponentType::SOptionType::BOOL;					
 						
-		m_stlOption["tabtext"].type = CComponentType::SOptionType::STRING;						// ³Ö´Â ¼ø¼­´ë·Î ÀÎµ¦½ºÈ­.
+		m_stlOption["tabtext"].type = CComponentType::SOptionType::STRING;						// ë„£ëŠ” ìˆœì„œëŒ€ë¡œ ì¸ë±ìŠ¤í™”.
 	}
 
 	virtual CComponent* CreateComponent( CComponent* parent, CSurfaceManager* pSurfaceManager )
@@ -791,14 +791,14 @@ class CComponentType_MDStaticBox : public CComponentType_Component
 public:
 	CComponentType_MDStaticBox() : CComponentType_Component()
 	{
-		// Font ´ÜÀ§. »ı·«µÉ ¼ö ¾ø´Ù. 
+		// Font ë‹¨ìœ„. ìƒëµë  ìˆ˜ ì—†ë‹¤. 
 		{
 			m_stlOption["font_name"].type = CComponentType::SOptionType::STRING;
 			m_stlOption["font_height"].type = CComponentType::SOptionType::NUMBER;
 			m_stlOption["font_attribute"].type = CComponentType::SOptionType::NUMBER;
 		}
 
-		// Text ´ÜÀ§. »ı·«µÉ ¼ö ¾ø´Ù. text
+		// Text ë‹¨ìœ„. ìƒëµë  ìˆ˜ ì—†ë‹¤. text
 		{
 			m_stlOption["text"].type = CComponentType::SOptionType::STRING;
 			m_stlOption["text_name"].type = CComponentType::SOptionType::STRING;
@@ -813,7 +813,7 @@ public:
 			m_stlOption["text_color_blue"].type = CComponentType::SOptionType::NUMBER;
 		}
 		
-		m_stlOption["min_cx"].type = CComponentType::SOptionType::NUMBER;	// ¹Ì´Ï¸Ø »çÀÌÁî
+		m_stlOption["min_cx"].type = CComponentType::SOptionType::NUMBER;	// ë¯¸ë‹ˆë©ˆ ì‚¬ì´ì¦ˆ
 		m_stlOption["min_cy"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["margin_x"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["margin_y"].type = CComponentType::SOptionType::NUMBER;
@@ -832,7 +832,7 @@ class CComponentType_HtmlBox : public CComponentType_Component
 public:
 	CComponentType_HtmlBox() : CComponentType_Component()
 	{
-		// ScrollBar ¼Ó¼º.
+		// ScrollBar ì†ì„±.
 		m_stlOption["slider_width"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["slider_height"].type = CComponentType::SOptionType::NUMBER;
 		m_stlOption["button_width"].type = CComponentType::SOptionType::NUMBER;
@@ -853,17 +853,17 @@ public:
 		m_stlOption["slider_surface"].type = CComponentType::SOptionType::STRING;
 		m_stlOption["layout_surface"].type = CComponentType::SOptionType::STRING;
 
-		// Text Style ( ¼¼·Î ¸¸ Àû¿ëÀÌ µÈ´Ù. °¡·Î´Â Html TagÀÇ °¡·Î Á¤·Ä·Î Àû¿ëÇÑ´Ù. )
+		// Text Style ( ì„¸ë¡œ ë§Œ ì ìš©ì´ ëœë‹¤. ê°€ë¡œëŠ” Html Tagì˜ ê°€ë¡œ ì •ë ¬ë¡œ ì ìš©í•œë‹¤. )
 		m_stlOption["text_style"].type = CComponentType::SOptionType::STRING;
 
-		// ÆùÆ® Å©±â °¡ÁßÄ¡
+		// í°íŠ¸ í¬ê¸° ê°€ì¤‘ì¹˜
 		m_stlOption["font_ratio"].type = CComponentType::SOptionType::NUMBER;
 		
 		// Dynamic
 		m_stlOption["dynamic"].type = CComponentType::SOptionType::BOOL;
-		m_stlOption["max_cx"].type = CComponentType::SOptionType::NUMBER;					// ±âº»°ªÀº ÄÄÆ÷³ÍÆ®ÀÇ Å©±â
+		m_stlOption["max_cx"].type = CComponentType::SOptionType::NUMBER;					// ê¸°ë³¸ê°’ì€ ì»´í¬ë„ŒíŠ¸ì˜ í¬ê¸°
 		m_stlOption["max_cy"].type = CComponentType::SOptionType::NUMBER;
-		m_stlOption["min_cx"].type = CComponentType::SOptionType::NUMBER;					// ±âº»°ªÀº 0
+		m_stlOption["min_cx"].type = CComponentType::SOptionType::NUMBER;					// ê¸°ë³¸ê°’ì€ 0
 		m_stlOption["min_cy"].type = CComponentType::SOptionType::NUMBER;
 				
 	}
@@ -879,14 +879,14 @@ class CComponentType_Flash : public CComponentType_Component
 public:
 	CComponentType_Flash() : CComponentType_Component()
 	{
-		m_stlOption["filename"].type = CComponentType::SOptionType::STRING;		// Flash Filename °æ·Î¾øÀÌ Filename¸¸ ½áÁØ´Ù.
+		m_stlOption["filename"].type = CComponentType::SOptionType::STRING;		// Flash Filename ê²½ë¡œì—†ì´ Filenameë§Œ ì¨ì¤€ë‹¤.
 		m_stlOption["initplay"].type = CComponentType::SOptionType::BOOL;		// Play immediately after Load. Default = FLASE
 		m_stlOption["autorewind"].type = CComponentType::SOptionType::BOOL;		// Auto replay after the movie ends. Default = FALSE
 		m_stlOption["framecallback"].type = CComponentType::SOptionType::BOOL;	// It releases the callback when the frame ends. Default = FALSE
-		m_stlOption["usefont"].type = CComponentType::SOptionType::BOOL;		// ÆùÆ® »ç¿ë½Ã ²À ÄÑÁÖ¾î¾ß ÇÑ´Ù. Default = FALSE
-		m_stlOption["originalsize"].type = CComponentType::SOptionType::BOOL;	// »ı¼º½Ã ¼³Á¤ÇÑ ³ĞÀÌ ³ôÀÌ °ªÀÌ ¾Æ´Ñ ¸®¼Ò½ºÀÚÃ¼ÀÇ ÀÛ¾÷¿µ¿ªÀ¸·Î 
-		m_stlOption["resizetype"].type = CComponentType::SOptionType::STRING;	// ( Default = noscale ) showall(Á¾È¾ºñÀ¯Áö), exactfit(Á¾È¾ºñ¹«½Ã)		
-		m_stlOption["scissor"].type = CComponentType::SOptionType::BOOL;		// ºÎ¸ğ,ÀÚ½Å ¿µ¿ª¹ÛÀ¸·Î ³ª°£ ºÎºĞÀÇ Å¬¸®ÇÎÀ¯¹«,
+		m_stlOption["usefont"].type = CComponentType::SOptionType::BOOL;		// í°íŠ¸ ì‚¬ìš©ì‹œ ê¼­ ì¼œì£¼ì–´ì•¼ í•œë‹¤. Default = FALSE
+		m_stlOption["originalsize"].type = CComponentType::SOptionType::BOOL;	// ìƒì„±ì‹œ ì„¤ì •í•œ ë„“ì´ ë†’ì´ ê°’ì´ ì•„ë‹Œ ë¦¬ì†ŒìŠ¤ìì²´ì˜ ì‘ì—…ì˜ì—­ìœ¼ë¡œ 
+		m_stlOption["resizetype"].type = CComponentType::SOptionType::STRING;	// ( Default = noscale ) showall(ì¢…íš¡ë¹„ìœ ì§€), exactfit(ì¢…íš¡ë¹„ë¬´ì‹œ)		
+		m_stlOption["scissor"].type = CComponentType::SOptionType::BOOL;		// ë¶€ëª¨,ìì‹  ì˜ì—­ë°–ìœ¼ë¡œ ë‚˜ê°„ ë¶€ë¶„ì˜ í´ë¦¬í•‘ìœ ë¬´,
 	}
 
 	virtual CComponent* CreateComponent( CComponent* parent, CSurfaceManager* pSurfaceManager )

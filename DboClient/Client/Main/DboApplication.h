@@ -55,7 +55,7 @@ protected:
 
 protected:
 
-	void    SetErrorReport();                       ///< Error Report(Bug Trap)°ü·Ã ¼³Á¤À» ÇÑ´Ù.
+	void    SetErrorReport();                       ///< Error Report(Bug Trap)ê´€ë ¨ ì„¤ì •ì„ í•œë‹¤.
 
 	RwBool	CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, RwBool zBuffer);
 	LRESULT	PreTranslateMessage(HWND window, UINT message, WPARAM wParam, LPARAM lParam);
@@ -68,7 +68,7 @@ protected:
 	void	DisplayFps();
 	RwBool	AttachPlugin();
 	
-	virtual bool RegisterMainWindowClass( HANDLE processInstance );		///< À©µµ¿ì µî·Ï ÇÔ¼ö¸¦ ¿À¹ö¶óÀÌµù ÇÑ´Ù.
+	virtual bool RegisterMainWindowClass( HANDLE processInstance );		///< ìœˆë„ìš° ë“±ë¡ í•¨ìˆ˜ë¥¼ ì˜¤ë²„ë¼ì´ë”© í•œë‹¤.
 	virtual void SetGammaRamp( RwReal fGamma );
 
 	virtual RwBool	CanExitApp( void );

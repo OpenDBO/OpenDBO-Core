@@ -18,7 +18,7 @@
 
 VOID DboExceptionHandler( PEXCEPTION_POINTERS pExceptionInfo )
 {
-	// °ÔÀÓ Á¤º¸¸¦ ÀúÀåÇÑ´Ù.
+	// ê²Œìž„ ì •ë³´ë¥¼ ì €ìž¥í•œë‹¤.
 	CNtlStage *pStage = CStageManager::GetInstance()->GetActiveStage();
 	if(pStage)
 	{
@@ -36,7 +36,7 @@ VOID DboExceptionHandler( PEXCEPTION_POINTERS pExceptionInfo )
 		}
 	}
 
-    // Ãß°¡ Á¤º¸ ·Î±× ÆÄÀÏÀ» ±â·ÏÇÑ´Ù.
+    // ì¶”ê°€ ì •ë³´ ë¡œê·¸ íŒŒì¼ì„ ê¸°ë¡í•œë‹¤.
     CDboExtraErrorReport extraErrorReport;
     extraErrorReport.WriteInfo("USER_ID", CDboGlobal::GetInstance()->GetUserData()->wchUserID);
 

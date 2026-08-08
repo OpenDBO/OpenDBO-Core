@@ -1,4 +1,4 @@
-// SpawnNestDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// SpawnNestDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -8,7 +8,7 @@
 #include "SpawnManager.h"
 
 
-// CSpawnNestDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CSpawnNestDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CSpawnNestDlg, CDialog)
 
@@ -38,7 +38,7 @@ BEGIN_MESSAGE_MAP(CSpawnNestDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CSpawnNestDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CSpawnNestDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CSpawnNestDlg::OnInitDialog()
 {
@@ -58,7 +58,7 @@ BOOL CSpawnNestDlg::OnInitDialog()
 	UpdateData(FALSE);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 BOOL CSpawnNestDlg::PreTranslateMessage(MSG* pMsg)
@@ -115,6 +115,6 @@ void CSpawnNestDlg::OnBnClickedOk()
 
 void CSpawnNestDlg::OnBnClickedCancel()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	OnCancel();
 }

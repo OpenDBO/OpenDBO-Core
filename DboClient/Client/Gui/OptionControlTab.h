@@ -1,7 +1,7 @@
 /******************************************************************************
 * File			: OptionControlTab.h
 * Author		: Cho Hae sung
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2007. 10. 15 
 * Abstract		: 
 *****************************************************************************
@@ -15,19 +15,19 @@
 
 #include "GuiLineTree.h"
 
-// OptionControlList¿« Size
+// OptionControlListÏùò Size
 #define dOPTIONCONTROL_LIST_X			0
 #define dOPTIONCONTROL_LIST_Y			0
 #define dOPTIONCONTROL_LIST_WIDTH		288
 #define dOPTIONCONTROL_LIST_HEIGHT		240
 
-// OptionControlList ScrollBar¿« Size
+// OptionControlList ScrollBarÏùò Size
 #define dOPTIONCONTROL_LIST_SCROLL_WIDTH			12
 #define dOPTIONCONTROL_LIST_SCROLL_HEIGHT			19
 #define dOPTIONCONTROL_LIST_SLIDER_WIDTH			12
 #define dOPTIONCONTROL_LIST_SLIDER_HEIGHT			39
 
-// OptionControl¿« StaticBox(º≥∏Ì ∫Œ∫–)
+// OptionControlÏùò StaticBox(ÏÑ§Î™Ö Î∂ÄÎ∂Ñ)
 #define dOPTIONCONTROL_STATICBOX_X		0
 #define dOPTIONCONTROL_STATICBOX_Y		0
 #define dOPTIONCONTROL_STATICBOX_WIDTH	288
@@ -39,13 +39,13 @@
 //#define dOPTIONCONTROL_STATICBOX_WARNING_COLOR	RGB(255, 0, 0)
 //#define dOPTIONCONTROL_STATICBOX_GUIDE_COLOR	RGB(0, 255, 255)
 
-// COptionControlCategoryNode [+] Button¿« Size
+// COptionControlCategoryNode [+] ButtonÏùò Size
 #define dOPTIONCONTROL_CATEGORY_BUTTON_X		0
 #define dOPTIONCONTROL_CATEGORY_BUTTON_Y		0
 #define dOPTIONCONTROL_CATEGORY_BUTTON_WIDTH	140
 #define dOPTIONCONTROL_CATEGORY_BUTTON_HEIGHT	20
 
-// COptionControlCategoryNode Title¿« Size
+// COptionControlCategoryNode TitleÏùò Size
 #define dOPTIONCONTROL_CATEGORY_TITLE_X 30
 #define dOPTIONCONTROL_CATEGORY_TITLE_Y 0
 #define dOPTIONCONTROL_CATEGORY_TITLE_WIDTH		140
@@ -53,53 +53,53 @@
 #define dOPTIONCONTROL_CATEGORY_TITLE_COLOR			RGB(255, 255, 255)
 #define dOPTIONCONTROL_CATEGORY_TITLE_COLOR_DOWN	RGB( 255, 219, 71 )
 
-// COptionControlActionNode StaticBox¿« Size
+// COptionControlActionNode StaticBoxÏùò Size
 #define dOPTIONCONTROL_ACTIONNODE_TITLE_X 0
 #define dOPTIONCONTROL_ACTIONNODE_TITLE_Y 0
 #define dOPTIONCONTROL_ACTIONNODE_TITLE_WIDTH 147
 #define dOPTIONCONTROL_ACTIONNODE_TITLE_HEIGHT 19
 #define dOPTIONCONTROL_ACTIONNODE_TITLE_COLOR RGB(255, 255, 255)
 
-// Action Node Statib Box Text¿« Coordinate
+// Action Node Statib Box TextÏùò Coordinate
 #define dOPTIONCONTROL_ACTIONNODE_TEXT_COORD_X 10
 #define dOPTIONCONTROL_ACTIONNODE_TEXT_COORD_Y 3
 
-// COptionControlActionNode Button¿« Size
+// COptionControlActionNode ButtonÏùò Size
 #define dOPTIONCONTROL_ACTIONNODE_BUTTON_X 150
 #define dOPTIONCONTROL_ACTIONNODE_BUTTON_Y 0
 #define dOPTIONCONTROL_ACTIONNODE_BUTTON_WIDTH 91
 #define dOPTIONCONTROL_ACTIONNODE_BUTTON_HEIGHT 19
 #define dOPTIONCONTROL_ACTIONNODE_BUTTON_COLOR RGB(255, 255, 255)
 
-// CGuiLineTree∏¶ ±∏º∫«œ¥¬ ItemµÈ¿« Size
+// CGuiLineTreeÎ•º Íµ¨ÏÑ±ÌïòÎäî ItemÎì§Ïùò Size
 #define dOPTIONCONTROL_LINE_HEIGHT				20
 #define dOPTIONCONTROL_LINE_MARGIN				4	
 #define dOPTIONCONTROL_CHILD_MARGIN_WIDTH		20
 
-// ActionµÈ¿ª ±◊∑Ï¡˛¥¬ ±‚¡ÿ
-#define dOPTIONCONTROL_CATEGORY_AVATAR			-2	// æ∆πŸ≈∏ ∞¸∑√
-#define dOPTIONCONTROL_CATEGORY_TARGET			-3	// ≈∏∞Ÿ «‡µø
-#define dOPTIONCONTROL_CATEGORY_QUICKSLOT		-4	// ƒ¸ΩΩ∑‘ «‡µø
-#define dOPTIONCONTROL_CATEGORY_WINDOW			-5	// ¿©µµøÏ ∞¸∑√ «‡µø
-#define dOPTIONCONTROL_CATEGORY_FIXED			-6	// ∞Ì¡§(¥‹√‡≈∞ ∫Ø∞Ê ∫“∞°¥…)
+// ActionÎì§ÏùÑ Í∑∏Î£πÏßìÎäî Í∏∞Ï§Ä
+#define dOPTIONCONTROL_CATEGORY_AVATAR			-2	// ÏïÑÎ∞îÌÉÄ Í¥ÄÎ†®
+#define dOPTIONCONTROL_CATEGORY_TARGET			-3	// ÌÉÄÍ≤ü ÌñâÎèô
+#define dOPTIONCONTROL_CATEGORY_QUICKSLOT		-4	// ÌÄµÏä¨Î°Ø ÌñâÎèô
+#define dOPTIONCONTROL_CATEGORY_WINDOW			-5	// ÏúàÎèÑÏö∞ Í¥ÄÎ†® ÌñâÎèô
+#define dOPTIONCONTROL_CATEGORY_FIXED			-6	// Í≥†Ï†ï(Îã®Ï∂ïÌÇ§ Î≥ÄÍ≤Ω Î∂àÍ∞ÄÎä•)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Class : COptionControlCategoryNode, COptionControlActionNode, COptionControlList, COptionControl
 // Modified by Kell ( 2007. 10. 01 )
 //
-// COptionControlList(CGuiLineTree)¿« ±∏º∫
+// COptionControlList(CGuiLineTree)Ïùò Íµ¨ÏÑ±
 // (RootNode)
-//     ¶ß COptionControlCategoryNode(CGuiLineTreeNode) ( øπ: [+] æ∆πŸ≈∏ «‡µø ∞¸∑√ )
-//     ¶¢ ¶ß COptionControlActionNode(CGuiLineTreeNode)  ( øπ:  [æ∆πŸ≈∏ ¿¸¡¯]  [ W ] )
-//     ¶¢ ¶ß COptionControlActionNode(CGuiLineTreeNode)
-//     ¶¢ ¶¶ ...
-//     ¶ß COptionControlCategoryNode(CGuiLineTreeNode)
-//     ¶¶ ...
+//     ‚îú COptionControlCategoryNode(CGuiLineTreeNode) ( Ïòà: [+] ÏïÑÎ∞îÌÉÄ ÌñâÎèô Í¥ÄÎ†® )
+//     ‚îÇ ‚îú COptionControlActionNode(CGuiLineTreeNode)  ( Ïòà:  [ÏïÑÎ∞îÌÉÄ Ï†ÑÏßÑ]  [ W ] )
+//     ‚îÇ ‚îú COptionControlActionNode(CGuiLineTreeNode)
+//     ‚îÇ ‚îî ...
+//     ‚îú COptionControlCategoryNode(CGuiLineTreeNode)
+//     ‚îî ...
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
 * \ingroup Client
-* ¡∂¿€≈∞ ø…º« ¿©µµøÏ¿« Action¿« Group¿ª «•Ω√«œ¥¬ NODE
+* Ï°∞ÏûëÌÇ§ ÏòµÏÖò ÏúàÎèÑÏö∞Ïùò ActionÏùò GroupÏùÑ ÌëúÏãúÌïòÎäî NODE
 */
 class COptionControlCategoryNode : public CGuiLineTreeNode
 {
@@ -107,14 +107,14 @@ public:
 	COptionControlCategoryNode(CGuiLineTree* pMgr, std::wstring strTitle, RwInt32 nID);
 	virtual ~COptionControlCategoryNode();
 
-	virtual void ShowProc();				///< CGuiLineTreeNodeø°º≠¿« Override
-	virtual void HideProc();				///< CGuiLineTreeNodeø°º≠¿« Override
+	virtual void ShowProc();				///< CGuiLineTreeNodeÏóêÏÑúÏùò Override
+	virtual void HideProc();				///< CGuiLineTreeNodeÏóêÏÑúÏùò Override
 
-	void OnClickBtnExpand(gui::CComponent* pComponent);		///< + πˆ∆∞¿ª ≈¨∏Ø«“∂ß Ω««‡µ«¥¬ «‘ºˆ
-	void OnClickBtnReduce(gui::CComponent* pComponent);		///< - πˆ∆∞¿ª ≈¨∏Ø«“∂ß Ω««‡µ«¥¬ «‘ºˆ
+	void OnClickBtnExpand(gui::CComponent* pComponent);		///< + Î≤ÑÌäºÏùÑ ÌÅ¥Î¶≠Ìï†Îïå Ïã§ÌñâÎêòÎäî Ìï®Ïàò
+	void OnClickBtnReduce(gui::CComponent* pComponent);		///< - Î≤ÑÌäºÏùÑ ÌÅ¥Î¶≠Ìï†Îïå Ïã§ÌñâÎêòÎäî Ìï®Ïàò
 
 protected:
-	gui::CStaticBox* m_pStbTitle;			///< Action Group¿« Title
+	gui::CStaticBox* m_pStbTitle;			///< Action GroupÏùò Title
 	
 	gui::CButton* m_pBtnExpand;				// + Button
 	gui::CButton* m_pBtnReduce;				// - Button
@@ -125,7 +125,7 @@ protected:
 
 /**
 * \ingroup Client
-* ¡∂¿€≈∞ ø…º« ¿©µµøÏ Action Group¿« ItemµÈ¿ª «•Ω√«œ¥¬ Node
+* Ï°∞ÏûëÌÇ§ ÏòµÏÖò ÏúàÎèÑÏö∞ Action GroupÏùò ItemÎì§ÏùÑ ÌëúÏãúÌïòÎäî Node
 */
 class COptionControlActionNode : public CGuiLineTreeNode
 {
@@ -136,10 +136,10 @@ public:
 	virtual void ShowProc();
 	virtual void HideProc();
 
-	///< ≈∞ ¿Ã∏ß¿« πˆ∆∞
+	///< ÌÇ§ Ïù¥Î¶ÑÏùò Î≤ÑÌäº
 	void OnClickBtnSetKey(gui::CComponent* pComponent);
 
-	///< ≈∞ πˆ∆∞¿« ¿Ã∏ß¿ª ¡ˆ¡§
+	///< ÌÇ§ Î≤ÑÌäºÏùò Ïù¥Î¶ÑÏùÑ ÏßÄÏ†ï
 	void SetText( std::wstring& strTitle );
 	
 	void Update();
@@ -147,20 +147,20 @@ public:
 	void RestoreBtnSetKey() { m_pBtnSetKey->Enable(); }
 
 protected:
-	gui::CStaticBox* m_pStbTitle;			///< æ◊º«¿« ¿Ã∏ß
+	gui::CStaticBox* m_pStbTitle;			///< Ïï°ÏÖòÏùò Ïù¥Î¶Ñ
 	
-	gui::CButton* m_pBtnSetKey;				///< ≈∞ ¡ˆ¡§ πˆ∆∞
+	gui::CButton* m_pBtnSetKey;				///< ÌÇ§ ÏßÄÏ†ï Î≤ÑÌäº
 	
-	gui::CSlot m_slotClickedBtnSetKey;		///< ≈∞ ¡ˆ¡§ πˆ∆∞¿« signal
+	gui::CSlot m_slotClickedBtnSetKey;		///< ÌÇ§ ÏßÄÏ†ï Î≤ÑÌäºÏùò signal
 
-	RwUInt32 m_nAction;						///< æ◊º«∞™¿ª ∞°¡ˆ∞Ì ¿÷¥¬¥Ÿ.
+	RwUInt32 m_nAction;						///< Ïï°ÏÖòÍ∞íÏùÑ Í∞ÄÏßÄÍ≥† ÏûàÎäîÎã§.
 	RwBool m_bFixed;
 };
 
 /**
 * \ingroup Client
-* CGuiLineTreeNode∏¶ ªÛº”πﬁ¥¬ ¿©µµøÏ ¡∂¿€≈∞ ∞¸∑√ NodeµÈ¿ª ∞¸∏Æ«œ±‚ ¿ß«ÿ
-* CGuiLineTree∏¶ ªÛº”πﬁ¿∫ ∏≈¥œ¿˙ ≈¨∑°Ω∫
+* CGuiLineTreeNodeÎ•º ÏÉÅÏÜçÎ∞õÎäî ÏúàÎèÑÏö∞ Ï°∞ÏûëÌÇ§ Í¥ÄÎ†® NodeÎì§ÏùÑ Í¥ÄÎ¶¨ÌïòÍ∏∞ ÏúÑÌï¥
+* CGuiLineTreeÎ•º ÏÉÅÏÜçÎ∞õÏùÄ Îß§ÎãàÏ†Ä ÌÅ¥ÎûòÏä§
 */
 class COptionControlList : public CGuiLineTree
 {
@@ -170,15 +170,15 @@ public:
 
 	RwBool	Create(CRectangle& rect, gui::CComponent* pParent, RwInt32 nLineHeight, RwInt32 nLineMargin, RwInt32 nChildXMargin, RwInt32 nScrollBarWidth, COptionControl* pOptionControl = NULL);
 
-	void CreateTree();									///< ∆Æ∏Æ∏¶ ±∏√‡«—¥Ÿ.
+	void CreateTree();									///< Ìä∏Î¶¨Î•º Íµ¨Ï∂ïÌïúÎã§.
 
-	///< ∆Æ∏Æ∏¶ æ˜µ•¿Ã∆Æ «—¥Ÿ.
+	///< Ìä∏Î¶¨Î•º ÏóÖÎç∞Ïù¥Ìä∏ ÌïúÎã§.
 	void UpdateNode();
 
-	///< Ω∫≈©∑— πŸ∏¶ »Ÿ∏∂øÏΩ∫ ¡∂¿€¿ª «œ±‚ ¿ß«ÿ
+	///< Ïä§ÌÅ¨Î°§ Î∞îÎ•º Ìú†ÎßàÏö∞Ïä§ Ï°∞ÏûëÏùÑ ÌïòÍ∏∞ ÏúÑÌï¥
 	void OnCaptureWheelMove( RwInt32 nFlag, RwInt16 sDelta, CPos& pos );
 
-	///< «ˆ¿Á¿« COptionControlList∞° º”«ÿ¿÷¥¬ ≈«¿ª ∫Œ∏•¥Ÿ.
+	///< ÌòÑÏû¨Ïùò COptionControlListÍ∞Ä ÏÜçÌï¥ÏûàÎäî ÌÉ≠ÏùÑ Î∂ÄÎ•∏Îã§.
 	COptionControl* GetParentTab(); 
 
 protected:
@@ -189,8 +189,8 @@ protected:
 
 /**
 * \ingroup Client
-* COptionBase∏¶ ªÛº”πﬁæ∆º≠ ø…º« ¿©µµøÏ¿« ≈« ¡ﬂø° «œ≥™¿Œ ¡∂¿€≈∞ ∞¸∑√ ≈«¿ª ±∏º∫
-* CGuiLineTree∏¶ ∆˜«‘«œø© ¡∂¿€≈∞ ¿‘∑¬ ¡ˆ¡§¿ª πﬁ¿ª ºˆ ¿÷¿Ω
+* COptionBaseÎ•º ÏÉÅÏÜçÎ∞õÏïÑÏÑú ÏòµÏÖò ÏúàÎèÑÏö∞Ïùò ÌÉ≠ Ï§ëÏóê ÌïòÎÇòÏù∏ Ï°∞ÏûëÌÇ§ Í¥ÄÎ†® ÌÉ≠ÏùÑ Íµ¨ÏÑ±
+* CGuiLineTreeÎ•º Ìè¨Ìï®ÌïòÏó¨ Ï°∞ÏûëÌÇ§ ÏûÖÎ†• ÏßÄÏ†ïÏùÑ Î∞õÏùÑ Ïàò ÏûàÏùå
 */
 class COptionControl : public COptionBase
 {
@@ -210,24 +210,24 @@ public:
 	virtual void		OnCancel();
 	virtual void		OnHandleEvents(RWS::CMsg &pMsg);
 
-	// √‚∑¬µ… æ»≥ª ∏ﬁΩ√¡ˆ
+	// Ï∂úÎ†•Îê† ÏïàÎÇ¥ Î©îÏãúÏßÄ
 public:
 
 	void SetGuideText( RwUInt32 uiColor, const WCHAR* pString );
 
-	void SetGuideDefault();						///< ±‚∫ª æ»≥ª
-	void SetGuideChange(RwUInt32 nAction);		///< nAction∞˙ ¡ﬂ∫πµÀ¥œ¥Ÿ. nAction¿∫ ¡ˆ¡§æ»µ ¿∏∑Œ...
-	void SetGuideFixed(RwUInt32 nAction);		///< %s ¿∫ ∫Ø∞Ê ∫“∞°¥… «’¥œ¥Ÿ.
-	void SetGuideNegativeMode();				///< «ˆ¿Á ∏µÂø°º≠¥¬ ∫Ø∞Ê¿Ã ∫“∞°¥…«’¥œ¥Ÿ.
+	void SetGuideDefault();						///< Í∏∞Î≥∏ ÏïàÎÇ¥
+	void SetGuideChange(RwUInt32 nAction);		///< nActionÍ≥º Ï§ëÎ≥µÎê©ÎãàÎã§. nActionÏùÄ ÏßÄÏ†ïÏïàÎê®ÏúºÎ°ú...
+	void SetGuideFixed(RwUInt32 nAction);		///< %s ÏùÄ Î≥ÄÍ≤Ω Î∂àÍ∞ÄÎä• Ìï©ÎãàÎã§.
+	void SetGuideNegativeMode();				///< ÌòÑÏû¨ Î™®ÎìúÏóêÏÑúÎäî Î≥ÄÍ≤ΩÏù¥ Î∂àÍ∞ÄÎä•Ìï©ÎãàÎã§.
 	
 
 protected:
-	COptionControlList* m_pOptionControlList;		///< ∂Û¿Œ∆Æ∏Æ¿« ∏≈¥œ¿˙
-	gui::CDialog*		m_pDlgControlList;			///< ∂Û¿Œ∆Æ∏Æ¿« ∫Œ∏∞° µ… Dialog
+	COptionControlList* m_pOptionControlList;		///< ÎùºÏù∏Ìä∏Î¶¨Ïùò Îß§ÎãàÏ†Ä
+	gui::CDialog*		m_pDlgControlList;			///< ÎùºÏù∏Ìä∏Î¶¨Ïùò Î∂ÄÎ™®Í∞Ä Îê† Dialog
 
-	gui::CStaticBox*	m_pStbControlTitle;			///< ¡∂¿€≈∞ ∫Ø∞Ê √¢¿« ¡¶∏Ò
-	gui::CStaticBox*	m_pStbControlBack;			///< ø…º«√¢¿« ≈ÿΩ∫∆Æ √‚∑¬√¢ πË∞Ê
-	gui::CStaticBox*	m_pStbControlText;			///< ø…º«√¢¿« ≈ÿΩ∫∆Æ √‚∑¬√¢
+	gui::CStaticBox*	m_pStbControlTitle;			///< Ï°∞ÏûëÌÇ§ Î≥ÄÍ≤Ω Ï∞ΩÏùò Ï†úÎ™©
+	gui::CStaticBox*	m_pStbControlBack;			///< ÏòµÏÖòÏ∞ΩÏùò ÌÖçÏä§Ìä∏ Ï∂úÎ†•Ï∞Ω Î∞∞Í≤Ω
+	gui::CStaticBox*	m_pStbControlText;			///< ÏòµÏÖòÏ∞ΩÏùò ÌÖçÏä§Ìä∏ Ï∂úÎ†•Ï∞Ω
 };
 
 #endif//OPTIONREFACTOR

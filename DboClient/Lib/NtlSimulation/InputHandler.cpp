@@ -1,6 +1,9 @@
 #include "precomp_ntlsimulation.h"
 #include "InputHandler.h"
 
+SKeyData CInputHandler::g_LastKeyData;
+SMouseData CInputHandler::g_LastMouseData;
+
 CInputHandler::~CInputHandler()
 {
 }
@@ -153,11 +156,12 @@ void CInputHandler::KeyDownHandler(unsigned int uiChar, unsigned int uiRepCount)
 	if ( !m_bActive ) return;
 
 	SKeyData Key = { uiChar, uiRepCount};
+	g_LastKeyData = Key;
 
 	std::list<CNtlCallbackParam1*>::iterator it;
 	for(it = m_listKeyDown.begin(); it != m_listKeyDown.end(); ++it)
 	{
-		(*it)->Call( reinterpret_cast<unsigned int>(&Key) );
+		(*it)->Call( reinterpret_cast<uintptr_t>(&Key) );
 	}
 
 	NTL_RETURNVOID();
@@ -170,11 +174,12 @@ void CInputHandler::KeyUpHandler(unsigned int uiChar, unsigned int uiRepCount)
 	if ( !m_bActive ) return;
 
 	SKeyData Key = { uiChar, uiRepCount};
+	g_LastKeyData = Key;
 
 	std::list<CNtlCallbackParam1*>::iterator it;
 	for(it = m_listKeyUp.begin(); it != m_listKeyUp.end(); ++it)
 	{
-		(*it)->Call( reinterpret_cast<unsigned int>(&Key) );
+		(*it)->Call( reinterpret_cast<uintptr_t>(&Key) );
 	}
 
 	NTL_RETURNVOID();
@@ -191,7 +196,7 @@ void CInputHandler::MouseDownHandler(unsigned int uiFlags, int nPosX, int nPosY,
 	std::list<CNtlCallbackParam1*>::iterator it;
 	for(it = m_listMouseDown.begin(); it != m_listMouseDown.end(); ++it)
 	{
-		(*it)->Call( reinterpret_cast<unsigned int>(&Mouse) );
+		(*it)->Call( reinterpret_cast<uintptr_t>(&Mouse) );
 	}
 
 	NTL_RETURNVOID();
@@ -208,7 +213,7 @@ void CInputHandler::MouseUpHandler(unsigned int uiFlags, int nPosX, int nPosY, c
 	std::list<CNtlCallbackParam1*>::iterator it;
 	for(it = m_listMouseUp.begin(); it != m_listMouseUp.end(); ++it)
 	{
-		(*it)->Call( reinterpret_cast<unsigned int>(&Mouse) );
+		(*it)->Call( reinterpret_cast<uintptr_t>(&Mouse) );
 	}
 
 	NTL_RETURNVOID();
@@ -225,7 +230,7 @@ void CInputHandler::MouseMoveHandler(unsigned int uiFlags, int nPosX, int nPosY)
 	std::list<CNtlCallbackParam1*>::iterator it;
 	for(it = m_listMouseMove.begin(); it != m_listMouseMove.end(); ++it)
 	{
-		(*it)->Call( reinterpret_cast<unsigned int>(&Mouse) );
+		(*it)->Call( reinterpret_cast<uintptr_t>(&Mouse) );
 	}
 
 	NTL_RETURNVOID();
@@ -242,7 +247,7 @@ void CInputHandler::MouseWheelHandler(unsigned int uiFlags, short shDelta, int n
 	std::list<CNtlCallbackParam1*>::iterator it;
 	for(it = m_listMouseWheel.begin(); it != m_listMouseWheel.end(); ++it)
 	{
-		(*it)->Call( reinterpret_cast<unsigned int>(&Mouse) );
+		(*it)->Call( reinterpret_cast<uintptr_t>(&Mouse) );
 	}
 
 	NTL_RETURNVOID();

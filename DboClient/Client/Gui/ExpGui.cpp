@@ -121,7 +121,7 @@ RwBool CExpEffect::Update( RwReal fElapsed )
                 {
 				    GetAlarmManager()->FormattedAlarmMessage( "DST_NOTIFY_GAIN_EXP", FALSE, NULL, uiExp );
                 }
-                else    // PC¹æ ¸Ş½ÃÁö
+                else    // PCë°© ë©”ì‹œì§€
                 {
                     GetAlarmManager()->FormattedAlarmMessage( "DST_NOTIFY_GAIN_EXP_AND_BONUS", FALSE, NULL, m_uiAcquisitionExp, m_uiBonusExp );
                 }
@@ -162,7 +162,7 @@ RwBool CExpEffect::Update( RwReal fElapsed )
 
 VOID CExpEffect::Render(VOID)
 {
-	// Delay TimeÀÌ ±æ¾îÁ®¼­ ½Ã°£À¸·Î ·£´õ¿©ºÎ ÆÇº° -_-;;
+	// Delay Timeì´ ê¸¸ì–´ì ¸ì„œ ì‹œê°„ìœ¼ë¡œ ëœë”ì—¬ë¶€ íŒë³„ -_-;;
 	if( m_fCurrentTime > 0.0f )
 	{
 		m_surEXP.Render( true );

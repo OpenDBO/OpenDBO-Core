@@ -61,6 +61,12 @@ inline void GetTimeStamp(char* buffer)
 //..... TODO can this be made volatile in the same way as on gcc?
 inline void DoRDTSC(tUnsigned32 &high, tUnsigned32 &low)
 {
+#if defined(_M_X64) || defined(_WIN64)
+    #include <intrin.h>
+    unsigned __int64 tsc = __rdtsc();
+    low = static_cast<tUnsigned32>(tsc & 0xFFFFFFFF);
+    high = static_cast<tUnsigned32>(tsc >> 32);
+#else
     tUnsigned32 _high,_low;
     __asm
     {
@@ -70,6 +76,7 @@ inline void DoRDTSC(tUnsigned32 &high, tUnsigned32 &low)
     }
     high=_high;
     low=_low;
+#endif
 }
 
 // GCC 486

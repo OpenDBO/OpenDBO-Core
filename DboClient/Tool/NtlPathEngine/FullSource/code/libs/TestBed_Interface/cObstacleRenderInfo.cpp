@@ -180,7 +180,7 @@ void cObstacleRenderInfo::BuildVertexBuffer()
 			data[_vertexCount].position.x = vector3.x();
 			data[_vertexCount].position.y = vector3.y();
 
-			// OBstacleÀÇ ³ôÀÌ°¡ ¸ÂÁö ¾Ê´Â´Ù.
+			// OBstacleì˜ ë†’ì´ê°€ ë§ì§€ ì•ŠëŠ”ë‹¤.
 			data[_vertexCount].position.z = -vector3.z();
 			_vertexCount++;
 		}

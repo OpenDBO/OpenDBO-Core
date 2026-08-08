@@ -1,4 +1,4 @@
-// NtlNaviViewer.cpp : DLL ÀÀ¿ë ÇÁ·Î±×·¥¿¡ ´ëÇÑ ÁøÀÔÁ¡À» Á¤ÀÇÇÕ´Ï´Ù.
+// NtlNaviViewer.cpp : DLL ì‘ìš© í”„ë¡œê·¸ë¨ì— ëŒ€í•œ ì§„ì…ì ì„ ì •ì˜í•©ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -25,7 +25,7 @@
 char g_chMousePosition[256] = {0,};
 char g_chFileName[MAX_PATH] = {0,};
 
-// Test¿ë FirstColliding
+// Testìš© FirstColliding
 cPosition g_FirstColliding;
 cPosition g_LineStart;
 cPosition g_LineEnd;

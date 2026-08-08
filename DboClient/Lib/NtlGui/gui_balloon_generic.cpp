@@ -78,8 +78,8 @@ VOID CBalloon_Generic::CalcRect(VOID)
 	nStaticWidth = m_pBalloon->m_pStaticBox->GetWidth() + 2 * m_nMarginX;
 	nStaticHeight= m_pBalloon->m_pStaticBox->GetHeight() + 2 * m_nMarginY;
 	
-	// ÃÖ¼ÒÆø
-	// ÀÏ´Ü ½Ã°£ÀÌ ±ÞÇÏ¹Ç·Î... ³ªÁß¿¡ ´ëÆø ¼öÁ¤ÇÑ´Ù. 
+	// ìµœì†Œí­
+	// ì¼ë‹¨ ì‹œê°„ì´ ê¸‰í•˜ë¯€ë¡œ... ë‚˜ì¤‘ì— ëŒ€í­ ìˆ˜ì •í•œë‹¤. 
 	
 	if( nStaticWidth + m_pOutline->GetLeftCX() + m_pOutline->GetRightCX() <
 		m_pOutline->GetTailWidth() + m_pOutline->GetLeftCornerCX() + m_pOutline->GetRightCornerCX() )
@@ -110,7 +110,7 @@ VOID CBalloon_Generic::CalcRect(VOID)
 
 	rcOutRect = m_pOutline->SetInScreenRect( rcInRect, nTailX );
 
-	// ºÎ¸ð ÁÂÇ¥ÀÇ »ó´ë À§Ä¡·Î ÁÂÇ¥ ¹Ù²Þ.
+	// ë¶€ëª¨ ì¢Œí‘œì˜ ìƒëŒ€ ìœ„ì¹˜ë¡œ ì¢Œí‘œ ë°”ê¿ˆ.
 	if( m_pBalloon->GetParent() )
 	{
 		rcParent = m_pBalloon->GetParent()->GetScreenRect();
@@ -157,7 +157,7 @@ VOID CBalloon_Generic::OnMove( INT nOldX, INT nOldY )
 
 	CRectangle rect = m_pBalloon->GetScreenRect();
 		
-	// ½ºÅ©¸° ÁÂÇ¥¸¦ ³Ñ°ÜÁØ´Ù.
+	// ìŠ¤í¬ë¦° ì¢Œí‘œë¥¼ ë„˜ê²¨ì¤€ë‹¤.
 	m_pOutline->SetMove( rect.left, rect.top );
 }
 

@@ -1,9 +1,9 @@
 /*****************************************************************************
 * File			: DboPackethandler_GUBudokai.cpp
 * Author		: Cho Haesung
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 5. 20
-* Abstract		: ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ °ü·Ã ÆÐÅ¶ ÇÚµé
+* Abstract		: ì²œí•˜ì œì¼ ë¬´ë„íšŒ ê´€ë ¨ íŒ¨í‚· í•¸ë“¤
 *****************************************************************************
 * Desc         : 
 *****************************************************************************/
@@ -167,7 +167,7 @@ void PacketHandler_GUAwardNfy(void* pPacket)
 }
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ÀÇ ÇöÀç »óÅÂ¸¦ Àü¼Û
+* \brief ì²œí•˜ì œì¼ ë¬´ë„íšŒì˜ í˜„ìž¬ ìƒíƒœë¥¼ ì „ì†¡
 */
 void PacketHandler_GUBudokaiStateInfo(void* pPacket)
 {
@@ -188,7 +188,7 @@ void PacketHandler_GUBudokaiStateInfo(void* pPacket)
 }
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ÀÇ Main state update
+* \brief ì²œí•˜ì œì¼ ë¬´ë„íšŒì˜ Main state update
 */
 void PacketHandler_GUBudokaiUpdateStateNfy(void* pPacket)
 {
@@ -204,7 +204,7 @@ void PacketHandler_GUBudokaiUpdateStateNfy(void* pPacket)
 }
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ÀÇ Match state update
+* \brief ì²œí•˜ì œì¼ ë¬´ë„íšŒì˜ Match state update
 */
 void PacketHandler_GUBudokaiUpdateMatchStateNfy(void* pPacket)
 {
@@ -214,7 +214,7 @@ void PacketHandler_GUBudokaiUpdateMatchStateNfy(void* pPacket)
 }
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ °³ÀÎ µî·Ï
+* \brief ì²œí•˜ì œì¼ ë¬´ë„íšŒ ê°œì¸ ë“±ë¡
 */
 void PacketHandler_GUBudokaiJoinIndividualRes(void* pPacket)
 {
@@ -231,7 +231,7 @@ void PacketHandler_GUBudokaiJoinIndividualRes(void* pPacket)
 }
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ °³ÀÎ µî·Ï Ãë¼Ò
+* \brief ì²œí•˜ì œì¼ ë¬´ë„íšŒ ê°œì¸ ë“±ë¡ ì·¨ì†Œ
 */
 void PacketHandler_GUBudokaiLeaveIndividualRes(void* pPacket)
 {
@@ -248,7 +248,7 @@ void PacketHandler_GUBudokaiLeaveIndividualRes(void* pPacket)
 }
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ÆÀ µî·ÏÁ¤º¸ °á°ú
+* \brief ì²œí•˜ì œì¼ ë¬´ë„íšŒ íŒ€ ë“±ë¡ì •ë³´ ê²°ê³¼
 */
 void PacketHandler_GUBudokaiJoinTeamInfoRes(void* pPacket)
 {
@@ -265,7 +265,7 @@ void PacketHandler_GUBudokaiJoinTeamInfoRes(void* pPacket)
 }
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ÆÀ µî·Ï °á°ú
+* \brief ì²œí•˜ì œì¼ ë¬´ë„íšŒ íŒ€ ë“±ë¡ ê²°ê³¼
 */
 void PacketHandler_GUBudokaiJoinTeamRes(void* pPacket)
 {
@@ -284,7 +284,7 @@ void PacketHandler_GUBudokaiJoinTeamRes(void* pPacket)
 }
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ÆÀ µî·Ï ¾Ë¸²
+* \brief ì²œí•˜ì œì¼ ë¬´ë„íšŒ íŒ€ ë“±ë¡ ì•Œë¦¼
 */
 void PacketHandler_GUBudokaiJoinTeamNfy(void* pPacket)
 {
@@ -294,7 +294,7 @@ void PacketHandler_GUBudokaiJoinTeamNfy(void* pPacket)
 }
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ÆÀ µî·Ï Ãë¼Ò °á°ú
+* \brief ì²œí•˜ì œì¼ ë¬´ë„íšŒ íŒ€ ë“±ë¡ ì·¨ì†Œ ê²°ê³¼
 */
 void PacketHandler_GUBudokaiLeaveTeamRes(void* pPacket)
 {
@@ -311,7 +311,7 @@ void PacketHandler_GUBudokaiLeaveTeamRes(void* pPacket)
 }
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ÆÀ µî·Ï Ãë¼Ò ¾Ë¸²
+* \brief ì²œí•˜ì œì¼ ë¬´ë„íšŒ íŒ€ ë“±ë¡ ì·¨ì†Œ ì•Œë¦¼
 */
 void PacketHandler_GUBudokaiLeaveTeamNfy(void* pPacket)
 {
@@ -319,7 +319,7 @@ void PacketHandler_GUBudokaiLeaveTeamNfy(void* pPacket)
 }
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ÆÀ ¸â¹ö µî·Ï Ãë¼Ò °á°ú
+* \brief ì²œí•˜ì œì¼ ë¬´ë„íšŒ íŒ€ ë©¤ë²„ ë“±ë¡ ì·¨ì†Œ ê²°ê³¼
 */
 void PacketHandler_GUBudokaiLeaveTeamMemberRes(void* pPacket)
 {
@@ -336,7 +336,7 @@ void PacketHandler_GUBudokaiLeaveTeamMemberRes(void* pPacket)
 }
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ÆÀ ¸â¹ö µî·Ï Ãë¼Ò ¾Ë¸²
+* \brief ì²œí•˜ì œì¼ ë¬´ë„íšŒ íŒ€ ë©¤ë²„ ë“±ë¡ ì·¨ì†Œ ì•Œë¦¼
 */
 void PacketHandler_GUBudokaiLeaveTeamMemberNfy(void* pPacket)
 {
@@ -346,7 +346,7 @@ void PacketHandler_GUBudokaiLeaveTeamMemberNfy(void* pPacket)
 }
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ µî·Ï Á¤º¸
+* \brief ì²œí•˜ì œì¼ ë¬´ë„íšŒ ë“±ë¡ ì •ë³´
 */
 void PacketHandler_GUBudokaiJoinInfoRes(void* pPacket)
 {
@@ -510,7 +510,7 @@ void PacketHandler_GUBudokaiPrizeWinnerNameRes(void* pPacket)
 		GetAlarmManager()->AlarmMessage(Logic_GetResultCodeString(pResult->wResultCode, "GU_BUDOKAI_PRIZEWINNER_NAME_RES"), TRUE );
 	}
 
-	//// Event º¸³¿
+	//// Event ë³´ëƒ„
 	CDboEventGenerator::BudokaiPrizeWinnerName( BUDOKAI_MATCH_TYPE_INDIVIDIAUL, pResult->wWinner, pResult->wSecondWinner, reinterpret_cast<void*>( &pResult->sData ) );
 }
 

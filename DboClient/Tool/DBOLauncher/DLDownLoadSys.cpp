@@ -2,11 +2,11 @@
 *
 * File			: DLDownLoadSys.cpp
 * Author		:
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			:
 * Abstract		: 
 *****************************************************************************
-* Desc         : Http Protocol À» ÀÌ¿ëÇÑ ´Ù¿î·Îµå ½Ã½ºÅÛ
+* Desc         : Http Protocol ì„ ì´ìš©í•œ ë‹¤ìš´ë¡œë“œ ì‹œìŠ¤í…œ
 *
 *****************************************************************************/
 
@@ -97,7 +97,7 @@ bool CDLDownLoadSys::DoDownload( CString strServerName,
 
 	//////////////////////////////////////////////////////////////////////////
 	//
-	// °æ·Î ¼³Á¤
+	// ê²½ë¡œ ì„¤ì •
 	//
 	//////////////////////////////////////////////////////////////////////////
 
@@ -105,7 +105,7 @@ bool CDLDownLoadSys::DoDownload( CString strServerName,
 	AttachBackSlash( strServerFullPathFileName );
 	strServerFullPathFileName += strServerFileName;
 
-	// HTTP¿¡¼­´Â \À» ¾²Áö¾Ê´Â´Ù. RTPatch ³»ºÎ¿¡¼­ ³ª¿Â ÆÄÀÏ¸íÀÌ \À¸·Î °æ·Î¸¦ Ç¥½ÃÇÏ±â¶§¹®¿¡ /À¸·Î º¯°æÇØÁØ´Ù.
+	// HTTPì—ì„œëŠ” \ì„ ì“°ì§€ì•ŠëŠ”ë‹¤. RTPatch ë‚´ë¶€ì—ì„œ ë‚˜ì˜¨ íŒŒì¼ëª…ì´ \ìœ¼ë¡œ ê²½ë¡œë¥¼ í‘œì‹œí•˜ê¸°ë•Œë¬¸ì— /ìœ¼ë¡œ ë³€ê²½í•´ì¤€ë‹¤.
     strServerFullPathFileName.Replace( _T( "\\" ), _T( "/" ) );
 
 	CString strClientFullPathFileName = strClientPath;	
@@ -115,7 +115,7 @@ bool CDLDownLoadSys::DoDownload( CString strServerName,
     }
 	strClientFullPathFileName += strClientFileName;
 
-	// Server full path file name ±Ô¾à°ú ¸ÂÃçÁØ´Ù
+	// Server full path file name ê·œì•½ê³¼ ë§ì¶°ì¤€ë‹¤
 	strClientFullPathFileName.Replace( _T( "\\" ), _T( "/" ) );
 
 	CInternetSession	INetSession;
@@ -131,7 +131,7 @@ bool CDLDownLoadSys::DoDownload( CString strServerName,
 
 		//////////////////////////////////////////////////////////////////////////
 		//
-		// HTTP ¿¬°á
+		// HTTP ì—°ê²°
 		//
 		//////////////////////////////////////////////////////////////////////////
 
@@ -164,16 +164,16 @@ bool CDLDownLoadSys::DoDownload( CString strServerName,
 		{
 			//////////////////////////////////////////////////////////////////////////
 			//
-			// ÀúÀåÇÒ ÆÄÀÏÀ» À§ÇÑ ¼±Çà ÀÛ¾÷
+			// ì €ì¥í•  íŒŒì¼ì„ ìœ„í•œ ì„ í–‰ ì‘ì—…
 			//
 			//////////////////////////////////////////////////////////////////////////
 
-			// ÀúÀåÇÒ ÆÄÀÏÀÌ ÀÌ¹Ì Á¸ÀçÇÏ¸é ¼Ó¼ºÀ» Normal·Î ¹Ù²Û´Ù
+			// ì €ì¥í•  íŒŒì¼ì´ ì´ë¯¸ ì¡´ì¬í•˜ë©´ ì†ì„±ì„ Normalë¡œ ë°”ê¾¼ë‹¤
 			SetFileAttributes( strClientFullPathFileName, FILE_ATTRIBUTE_NORMAL );
 
 			//////////////////////////////////////////////////////////////////////////
 			//
-			// ÆÄÀÏ ´Ù¿î·Îµå ¹× ÀúÀå
+			// íŒŒì¼ ë‹¤ìš´ë¡œë“œ ë° ì €ì¥
 			//
 			//////////////////////////////////////////////////////////////////////////
 

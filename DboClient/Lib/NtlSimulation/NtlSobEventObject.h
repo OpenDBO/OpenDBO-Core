@@ -2,13 +2,13 @@
  *
  * File			: NtlSobEventObject.h
  * Author		: agebreak
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2007. 9. 4	
  * Abstract		: Simulation Event object
  *****************************************************************************
- * Desc         : Trigger Object ¿ÜÀÇ Æ¯º°ÇÑ Event¸¦ °¡Áö´Â ¿ÀºêÁ§Æ®¸¦ »ý¼ºÇÑ´Ù.
- *				  (¿¹. ÀÌÁ¤Ç¥ - Æ÷Ä¿½ÌµÉ¶§ UI¸¦ Ç¥½Ã)
- *				  ¼­¹ö¿Í µ¿±âÈ­ µÇÁö ¾Ê°í Å¬¶óÀÌ¾ðÆ® Ç¥½Ã¿¡¸¸ »ç¿ëÇÑ´Ù. 
+ * Desc         : Trigger Object ì™¸ì˜ íŠ¹ë³„í•œ Eventë¥¼ ê°€ì§€ëŠ” ì˜¤ë¸Œì íŠ¸ë¥¼ ìƒì„±í•œë‹¤.
+ *				  (ì˜ˆ. ì´ì •í‘œ - í¬ì»¤ì‹±ë ë•Œ UIë¥¼ í‘œì‹œ)
+ *				  ì„œë²„ì™€ ë™ê¸°í™” ë˜ì§€ ì•Šê³  í´ë¼ì´ì–¸íŠ¸ í‘œì‹œì—ë§Œ ì‚¬ìš©í•œë‹¤. 
  *****************************************************************************/
 
 #pragma once

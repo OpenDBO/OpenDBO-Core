@@ -5,7 +5,7 @@
 #include "afxwin.h"
 
 
-// CAttr_CONT_Narration ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_CONT_Narration ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CAttr_CONT_Narration : public CAttr_Page
 {
@@ -23,7 +23,7 @@ public:
 	CAttr_CONT_Narration();
 	virtual ~CAttr_CONT_Narration();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_TS_CONT_NARRATION_ATTR_DIAG };
 
 	virtual CString	GetPageData( void );
@@ -33,7 +33,7 @@ public:
 	void InitData( void );
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual BOOL OnInitDialog();
 
 	DECLARE_MESSAGE_MAP()

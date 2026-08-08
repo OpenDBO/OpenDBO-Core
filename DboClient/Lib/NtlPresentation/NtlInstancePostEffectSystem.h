@@ -2,7 +2,7 @@
 //	File		:	NtlInstancePostEffectSystem.h
 //	Desc		:	
 //	Begin		:	2007. 1.17
-//	Copyright	:	¨Ï 2007 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2007 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -44,7 +44,7 @@ public:
     virtual void    SetWorldMatrix(const RwMatrix& matWorld);
 
             COMIC_STATE GetComicState() {return m_nComicState;}
-            void    SetCenterFixEnable(RwBool bEnable);                     ///< Áß½ÉÁ¡ °íÁ¤ ±â´ÉÀ» On/Off ÇÑ´Ù.
+            void    SetCenterFixEnable(RwBool bEnable);                     ///< ì¤‘ì‹¬ì  ê³ ì • ê¸°ëŠ¥ì„ On/Off í•œë‹¤.
 
 protected:
             void	BuildEmitterStandard(SNtlPostEffectEmitterStandard* pEmitterStandard);
@@ -57,14 +57,14 @@ protected:
 protected:
     CNtlResourcePostEffectSystem*			m_pResourcePostEffectSystem;    
     RwInt32                                 m_nVertexCount;    
-    RwInt32                                 m_nIndexCount;                  ///< IndexÀÇ °³¼ö
+    RwInt32                                 m_nIndexCount;                  ///< Indexì˜ ê°œìˆ˜
     RwInt32			                    	m_nCurLoopCount;        
     RwBool                  				m_bHalfIndexType;    
     COMIC_STATE			                    m_nComicState;
     RwReal				                    m_fComicAlpha;    
-    RwV2d                                   m_v2dCenterPos;                 ///< Áß½ÉÁ¡ÀÇ ÁÂÇ¥
-    RwBool                                  m_bCenterFix;                   ///< Áß½ÉÁ¡ °íÁ¤ ±â´É »ç¿ë ÇÃ·¡±×
-    RwBool                                  m_bUpdateCenter;                ///< Áß½ÉÁ¡ À§Ä¡¸¦ º¯°æÇØ¾ßÇÏ´ÂÁö À¯¹« ÇÃ·¡±×
+    RwV2d                                   m_v2dCenterPos;                 ///< ì¤‘ì‹¬ì ì˜ ì¢Œí‘œ
+    RwBool                                  m_bCenterFix;                   ///< ì¤‘ì‹¬ì  ê³ ì • ê¸°ëŠ¥ ì‚¬ìš© í”Œëž˜ê·¸
+    RwBool                                  m_bUpdateCenter;                ///< ì¤‘ì‹¬ì  ìœ„ì¹˜ë¥¼ ë³€ê²½í•´ì•¼í•˜ëŠ”ì§€ ìœ ë¬´ í”Œëž˜ê·¸
 
     RwIm2DVertex*		                    m_pComicVertices;    
     RwImVertexIndex*	                    m_pComicHalfIndex;        

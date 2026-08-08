@@ -2,7 +2,7 @@
 *
 * File			: NtlSobMerchantItem.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2006. 8. 1
 * Abstract		: Simulation Merchant Item object attribute
 *****************************************************************************
@@ -39,7 +39,7 @@ public:
 
 	sMERCHANT_TBLDAT* GetMerchantTbl(void) const;
 
-	const WCHAR*	GetTabName(void) const;		///< π∞«∞µÈ¿« ∫–∑˘∏Ì( ex : ¿«∫π, π´±‚ ....)
+	const WCHAR*	GetTabName(void) const;		///< Î¨ºÌíàÎì§Ïùò Î∂ÑÎ•òÎ™Ö( ex : ÏùòÎ≥µ, Î¨¥Í∏∞ ....)
 };
 
 #endif

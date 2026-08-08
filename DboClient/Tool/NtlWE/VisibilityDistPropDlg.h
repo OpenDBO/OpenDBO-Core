@@ -2,21 +2,21 @@
 #include "afxwin.h"
 
 
-// CVisibilityDistPropDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CVisibilityDistPropDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CVisibilityDistPropDlg : public CDialog
 {
 	DECLARE_DYNAMIC(CVisibilityDistPropDlg)
 
 public:
-	CVisibilityDistPropDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CVisibilityDistPropDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CVisibilityDistPropDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_VISIBILITY_DIST };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 

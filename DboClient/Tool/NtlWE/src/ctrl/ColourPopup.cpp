@@ -127,7 +127,7 @@ void CColourPopup::Initialise()
     m_nCurrentCol       = -1;
     m_nChosenColourRow  = -1;
     m_nChosenColourCol  = -1;
-    m_strCustomText     = _T("´Ù¸¥ »ö...");
+    m_strCustomText     = _T("ë‹¤ë¥¸ ìƒ‰...");
     m_bShowCustom       = TRUE;
     m_pParent           = NULL;
     m_crColour          = m_crInitialColour = RGB(0,0,0);

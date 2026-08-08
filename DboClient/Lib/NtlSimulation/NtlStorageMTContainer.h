@@ -1,17 +1,17 @@
 /*****************************************************************************
 * File			: NtlStorageMTContainer.h
 * Author		: HaeSung, Cho
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2009. 2. 5	
-* Abstract		: NtlStorageÀÇ Key¿Í °ü·Ã Á¤º¸µéÀ» ÀúÀåÇÏ´Â ¸ÅÇÎ Å×ÀÌºí
+* Abstract		: NtlStorageì˜ Keyì™€ ê´€ë ¨ ì •ë³´ë“¤ì„ ì €ì¥í•˜ëŠ” ë§¤í•‘ í…Œì´ë¸”
 *****************************************************************************
 * Desc			: 
 *
-* ¸¸¾à MappingTableÀ» ¼öÁ¤ÇÏ±â À§ÇØ¼­´Â NtlStorageDefine.h ¿¡ ÀÖ´Â Define°ªÀ» ¼öÁ¤ÇÏ°í
-* ÇöÀç Å¬·¡½º¿¡ ÀÖ´Â ¸ÅÇÎÅ×ÀÌºí µ¥ÀÌÅÍ¸¦ Ã¤¿öÁØ´Ù. Table ¹è¿­ÀÇ ³¡¿¡ »ğÀÔÀº ÇÒ ¼ö ÀÖÀ¸³ª ¼öÁ¤/»èÁ¦´Â Àı´ë·Î
-* ÇÏÁö ¾Ê´Â´Ù. ¸¸¾à Æó±âÇØ¾ßÇÒ KEY°¡ ÀÖ´Ù¸é Á¤ÀÇµÈ KEY´Â ±×´ë·Î ³öµÎ°í ±×³É »ç¿ëÇÏÁö ¾Ê´Â´Ù.
+* ë§Œì•½ MappingTableì„ ìˆ˜ì •í•˜ê¸° ìœ„í•´ì„œëŠ” NtlStorageDefine.h ì— ìˆëŠ” Defineê°’ì„ ìˆ˜ì •í•˜ê³ 
+* í˜„ì¬ í´ë˜ìŠ¤ì— ìˆëŠ” ë§¤í•‘í…Œì´ë¸” ë°ì´í„°ë¥¼ ì±„ì›Œì¤€ë‹¤. Table ë°°ì—´ì˜ ëì— ì‚½ì…ì€ í•  ìˆ˜ ìˆìœ¼ë‚˜ ìˆ˜ì •/ì‚­ì œëŠ” ì ˆëŒ€ë¡œ
+* í•˜ì§€ ì•ŠëŠ”ë‹¤. ë§Œì•½ íê¸°í•´ì•¼í•  KEYê°€ ìˆë‹¤ë©´ ì •ì˜ëœ KEYëŠ” ê·¸ëŒ€ë¡œ ë†”ë‘ê³  ê·¸ëƒ¥ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤.
 *
-* Mapping TableÀº static ¹è¿­·Î ±¸¼ºµÇ¸ç Àı´ë·Î Áß°£ »ğÀÔ/»èÁ¦´Â ÇØ¼­´Â ¾ÈµÈ´Ù.
+* Mapping Tableì€ static ë°°ì—´ë¡œ êµ¬ì„±ë˜ë©° ì ˆëŒ€ë¡œ ì¤‘ê°„ ì‚½ì…/ì‚­ì œëŠ” í•´ì„œëŠ” ì•ˆëœë‹¤.
 * ( Mapping table is composed of static array, and you should not insert/delete it from the midterm )
 *****************************************************************************/
 
@@ -56,11 +56,11 @@ public:
 protected:
 	static SNtlStorageMappingTableData m_StorageMappingTable[];
 
-	// Type º°·Î ¸ÖÆ¼¸Ê¿¡ Æ÷ÀÎÅÍ¸¦ º¸°üÇÏ°í ÀÖ´Â´Ù.
+	// Type ë³„ë¡œ ë©€í‹°ë§µì— í¬ì¸í„°ë¥¼ ë³´ê´€í•˜ê³  ìˆëŠ”ë‹¤.
 	typedef std::multimap	<unsigned char, SNtlStorageMappingTableData*> SORTMMAP;
 	SORTMMAP		m_mmapCategory;
 
-	// KEY ID ¼ø¼­´ë·Î MAP¿¡ º¸°üÇÏ°í ÀÖ´Â´Ù.
+	// KEY ID ìˆœì„œëŒ€ë¡œ MAPì— ë³´ê´€í•˜ê³  ìˆëŠ”ë‹¤.
 	typedef std::map	<unsigned int, SNtlStorageMappingTableData* > TABLEMAP;
 	TABLEMAP		m_mapTable;
 
@@ -68,8 +68,8 @@ protected:
 	STRINGMAP		m_mapString;
 
 
-	bool			m_bSorted;			///< Å×ÀÌºíÀ» Á¤·ÄÇØ¼­ °¡Áö°í ÀÖ´ÂÁö È®ÀÎ
-	unsigned int	m_uiCount;			///< Å×ÀÌºí ¿ø¼Ò °¹¼ö
+	bool			m_bSorted;			///< í…Œì´ë¸”ì„ ì •ë ¬í•´ì„œ ê°€ì§€ê³  ìˆëŠ”ì§€ í™•ì¸
+	unsigned int	m_uiCount;			///< í…Œì´ë¸” ì›ì†Œ ê°¯ìˆ˜
 };
 
 static CNtlStorageMTContainer* GetNtlStorageMTContainer()

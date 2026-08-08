@@ -34,7 +34,7 @@
 #include "NtlFSMDef.h"
 #include "NtlSobMonsterAttr.h"
 
-#define TRANSFORM_NAMEK_ATTACK_RANGE    3.0f                    ///< °Å´ë ³ª¸ß º¯½ÅÈÄÀÇ °ø°İ ¹üÀ§
+#define TRANSFORM_NAMEK_ATTACK_RANGE    3.0f                    ///< ê±°ëŒ€ ë‚˜ë©• ë³€ì‹ í›„ì˜ ê³µê²© ë²”ìœ„
 #define TRANSFORM_PURE_MAJIN_FACE1      "A_P_majin_FACE01"
 #define TRANSFORM_PURE_MAJIN_FACE2      "A_P_majin_FACE01_1"
 #define TRANSFORM_PURE_MAJIN_HEAD       "headShape"
@@ -134,7 +134,7 @@ void CNtlSobCharProxyTransform::Destory()
 
     if(m_pMajinPureModel)
     {
-        if(m_bIsTransform)  // ÇöÀçÀÇ ¸ğµ¨Àº SobProxy¿¡¼­ Áö¿öÁØ´Ù, ¾²Áö ¾Ê´Â ¸ğµ¨À» »èÁ¦ÇÑ´Ù.
+        if(m_bIsTransform)  // í˜„ì¬ì˜ ëª¨ë¸ì€ SobProxyì—ì„œ ì§€ì›Œì¤€ë‹¤, ì“°ì§€ ì•ŠëŠ” ëª¨ë¸ì„ ì‚­ì œí•œë‹¤.
         {
             if(m_pMajinOrgModel)
             {
@@ -248,7 +248,7 @@ void CNtlSobCharProxyTransform::HandleEvents( RWS::CMsg &pMsg )
     {
         EventSobSkillAction(pMsg);
     }
-    else if(pMsg.Id == g_EventAnimHit)  // Hit ÀÌº¥Æ®°¡ º¯½Å Å¸ÀÌ¹ÖÀÌ´Ù.
+    else if(pMsg.Id == g_EventAnimHit)  // Hit ì´ë²¤íŠ¸ê°€ ë³€ì‹  íƒ€ì´ë°ì´ë‹¤.
     {
         if(m_bReadyTransform)   
 		{
@@ -411,7 +411,7 @@ void CNtlSobCharProxyTransform::OnTransform_SuperSaiyan( RwBool bTransform )
         m_pFaceTransform = CNtlPLResourceManager::GetInstance()->LoadTexture(strTexName->c_str(), "Texture\\Item\\;");            
 
         CNtlPLItem* pFaceItem = m_pPLCharacter->GetEquipItem()->GetDefItem(ITEM_EQUIP_FACE);
-        m_pPLCharacter->GetEquipItem()->SetApplyFaceData(pFaceItem);    // º¯½Å »óÅÂ¿¡¼­ ¼ºÀÎ »óÅÂ·Î º¯°æµÉ‹š ¾ó±¼ ÆäÀÌ½º¸¦ ¹Ù²Ù±âÀ§ÇØ¼­ ÇÑ¹ø Àû¿ëÇØ¾ß ÇÑ´Ù.
+        m_pPLCharacter->GetEquipItem()->SetApplyFaceData(pFaceItem);    // ë³€ì‹  ìƒíƒœì—ì„œ ì„±ì¸ ìƒíƒœë¡œ ë³€ê²½ë ë–„ ì–¼êµ´ í˜ì´ìŠ¤ë¥¼ ë°”ê¾¸ê¸°ìœ„í•´ì„œ í•œë²ˆ ì ìš©í•´ì•¼ í•œë‹¤.
         pFaceItem->SetMultiTexture(m_pFaceTransform);
         m_pPLCharacter->GetEquipItem()->SetChangeFaceEnable(FALSE);
 
@@ -497,30 +497,30 @@ void CNtlSobCharProxyTransform::OnTransform_BigNamek( RwBool bTransform )
 {
     if(bTransform)
     {
-        // Å©±â º¯°æ
+        // í¬ê¸° ë³€ê²½
         m_pActor->GetSobProxy()->AddVisualSystemEffectScale(Dbo_GetTransformScale(ASPECTSTATE_GREAT_NAMEK, 1), 2.5f);
 
-        // ¹«±â Á¦°Å
+        // ë¬´ê¸° ì œê±°
         DetachWeapon();
 
-        // °ø°İ ¹üÀ§ ¼³Á¤
+        // ê³µê²© ë²”ìœ„ ì„¤ì •
         CNtlSobBattleAttr *pSobBattleAttr = reinterpret_cast<CNtlSobBattleAttr*>(m_pActor->GetSobAttr());
         m_fOrgAttackRange = pSobBattleAttr->GetAttackRange();
         pSobBattleAttr->SetAttackRange(TRANSFORM_NAMEK_ATTACK_RANGE);
     }
     else
     {
-        // Å©±â º¯°æ
+        // í¬ê¸° ë³€ê²½
         m_pActor->GetSobProxy()->AddVisualSystemEffectScale(1.0f, 2.5f);            
 
-        // ¹«±â ÀåÂø
+        // ë¬´ê¸° ì¥ì°©
         AttachWeapon();
 
-        // °ø°İ ¹üÀ§ ¼³Á¤
+        // ê³µê²© ë²”ìœ„ ì„¤ì •
         CNtlSobBattleAttr *pSobBattleAttr = reinterpret_cast<CNtlSobBattleAttr*>(m_pActor->GetSobAttr());        
         pSobBattleAttr->SetAttackRange(m_fOrgAttackRange);
 
-        // Idle »óÅÂ¶ó¸é ¾Ö´Ï¸ŞÀÌ¼Ç º¯°æ
+        // Idle ìƒíƒœë¼ë©´ ì• ë‹ˆë©”ì´ì…˜ ë³€ê²½
         if(Logic_GetActorStateId(m_pActor) == NTL_FSMSID_IDLE ||
            Logic_GetActorStateId(m_pActor) == NTL_FSMSID_FIGHTING_POSE)
         {
@@ -642,7 +642,7 @@ CNtlPLItem* CNtlSobCharProxyTransform::GetTransformItem()
     {
         GetNtlResourceManager()->SetLoadScheduling(FALSE);
     }
-    else // ¾ÆÁ÷ ½ºÄÉÁì ·ÎµùÀÌ ³¡³ªÁö ¾Ê¾ÒÀ»¶§
+    else // ì•„ì§ ìŠ¤ì¼€ì¥´ ë¡œë”©ì´ ëë‚˜ì§€ ì•Šì•˜ì„ë•Œ
     {
         GetNtlResourceManager()->SetLoadScheduling(TRUE);
         m_bScheduleLoadingCheck = TRUE;
@@ -753,7 +753,7 @@ void CNtlSobCharProxyTransform::ChangeWeapon( RWS::CMsg& pMsg )
 
 void CNtlSobCharProxyTransform::AddWorld() 
 {
-    // ÃÊ»çÀÌ¾îÀÎ
+    // ì´ˆì‚¬ì´ì–´ì¸
     if(m_bIsTransform)
     {
         if(m_pItemTransform)
@@ -763,7 +763,7 @@ void CNtlSobCharProxyTransform::AddWorld()
     }
     
 
-    // ¼ø¼ö ¸¶ÀÎ (ºñ º¯½Å»óÅÂ¶óµµ ¸ğµ¨À» »ı¼ºÇßÀ¸¸é ¿ùµå¿¡ Ãß°¡ÇØ¾ß¸¸ ÇÑ´Ù)    
+    // ìˆœìˆ˜ ë§ˆì¸ (ë¹„ ë³€ì‹ ìƒíƒœë¼ë„ ëª¨ë¸ì„ ìƒì„±í–ˆìœ¼ë©´ ì›”ë“œì— ì¶”ê°€í•´ì•¼ë§Œ í•œë‹¤)    
     if(m_pMajinOrgModel)
         m_pMajinOrgModel->AddWorld();    
     if(m_pMajinPureModel)
@@ -773,7 +773,7 @@ void CNtlSobCharProxyTransform::AddWorld()
     if(m_pMajinPureModelUI)
         m_pMajinPureModelUI->AddWorld();
 
-    // Äµµğ
+    // ìº”ë””
     if(m_pCandyOrgModel)
         m_pCandyOrgModel->AddWorld();
     if(m_pCandyOrgModelUI)
@@ -803,7 +803,7 @@ void CNtlSobCharProxyTransform::RemoveWorld()
         break;
     }
 
-    // ¼ø¼ö ¸¶ÀÎ (ºñ º¯½Å»óÅÂ¶óµµ ¸ğµ¨À» »ı¼ºÇßÀ¸¸é ¿ùµå¿¡ Ãß°¡ÇØ¾ß¸¸ ÇÑ´Ù)            
+    // ìˆœìˆ˜ ë§ˆì¸ (ë¹„ ë³€ì‹ ìƒíƒœë¼ë„ ëª¨ë¸ì„ ìƒì„±í–ˆìœ¼ë©´ ì›”ë“œì— ì¶”ê°€í•´ì•¼ë§Œ í•œë‹¤)            
     if(m_pMajinOrgModel)
         m_pMajinOrgModel->RemoveWorld();    
     if(m_pMajinPureModel)
@@ -813,7 +813,7 @@ void CNtlSobCharProxyTransform::RemoveWorld()
     if(m_pMajinPureModelUI)
         m_pMajinPureModelUI->RemoveWorld();
 
-    // Äµµğ
+    // ìº”ë””
     if(m_pCandyOrgModel)
         m_pCandyOrgModel->RemoveWorld();
     if(m_pCandyOrgModelUI)
@@ -824,7 +824,7 @@ void CNtlSobCharProxyTransform::RemoveWorld()
         m_pCandyModelUI->RemoveWorld();
 }
 
-// ¸¶ÁøÀº ÄÁ¹öÆ® Å¬·¡½ºÃ³·³ ¸ğµ¨À» Á÷Á¢ º¯°æÇÑ´Ù
+// ë§ˆì§„ì€ ì»¨ë²„íŠ¸ í´ë˜ìŠ¤ì²˜ëŸ¼ ëª¨ë¸ì„ ì§ì ‘ ë³€ê²½í•œë‹¤
 void CNtlSobCharProxyTransform::OnTransform_PureMajin( RwBool bTransform ) 
 {
     if(bTransform)
@@ -902,7 +902,7 @@ CNtlPLCharacter* CNtlSobCharProxyTransform::CreatePureMajinModel()
     if(m_pMajinPureModel)
         return m_pMajinPureModel;
 
-    // ½ºÄÉÁì ·ÎµùÀ» ²ö´Ù.
+    // ìŠ¤ì¼€ì¥´ ë¡œë”©ì„ ëˆë‹¤.
     GetNtlResourceManager()->SetLoadScheduling(FALSE);
 
     std::string strModelName = "A_PURE_MAJIN";
@@ -919,14 +919,14 @@ CNtlPLCharacter* CNtlSobCharProxyTransform::CreatePureMajinModel()
     m_pMajinPureModel->SetSerialID(m_pActor->GetSerialID());    
     
 
-    // ½ºÅ² Ä®¶ó Àû¿ë
+    // ìŠ¤í‚¨ ì¹¼ë¼ ì ìš©
     SCharScheduleResInfo* pInfo = m_pPLCharacter->GetCharScheduleResInfo();
     EClassGenderType eClassGenderType = CNtlDefaultItemTable::GetClassGenderType(pInfo->uiRace, pInfo->uiGender, pInfo->bIsAdult);    
     RwRGBA *pSkinColor = CNtlDefaultItemTable::GetInstance().GetSkinColor(eClassGenderType, m_pPLCharacter->GetCharScheduleResInfo()->uiSkinColorType);
     m_pMajinPureModel->UpdateMaterialSkinInfo();    
     m_pMajinPureModel->SetSkinColor(pSkinColor->red, pSkinColor->green, pSkinColor->blue);
 
-    // UI¿ë ¼ø¼ö ¸¶ÀÎ ¸ğµ¨
+    // UIìš© ìˆœìˆ˜ ë§ˆì¸ ëª¨ë¸
     if(m_pActor->GetClassID() == SLCLASS_AVATAR)
     {
         m_pMajinPureModelUI = (CNtlPLCharacter*)GetSceneManager()->CreateEntity(PLENTITY_CHARACTER, strModelName.c_str(), &sParam);
@@ -983,7 +983,7 @@ CNtlPLCharacter* CNtlSobCharProxyTransform::CreateCandyModel()
     NTL_ASSERT(m_pCandyModel, "Can't Create Candy Model : " << strModelName.c_str());
     m_pCandyModel->SetSerialID(m_pActor->GetSerialID());
 
-    // »çÀÌÁî¿¡ ¸Â´Â Å©±â¸¦ Àû¿ëÇÑ´Ù.
+    // ì‚¬ì´ì¦ˆì— ë§ëŠ” í¬ê¸°ë¥¼ ì ìš©í•œë‹¤.
     if(m_pActor->GetClassID() == SLCLASS_MONSTER)
     {
         RwReal fHeight = m_pPLCharacter->GetHeight();
@@ -997,7 +997,7 @@ CNtlPLCharacter* CNtlSobCharProxyTransform::CreateCandyModel()
         }
     }    
 
-    // UI¿ë ¸ğµ¨
+    // UIìš© ëª¨ë¸
     if(m_pActor->GetClassID() == SLCLASS_AVATAR)
     {
         m_pCandyModelUI = (CNtlPLCharacter*)GetSceneManager()->CreateEntity(PLENTITY_CHARACTER, strModelName.c_str(), &sParam);
@@ -1086,7 +1086,7 @@ void CNtlSobCharProxyTransform::OnTransform_Candy( RwBool bTransform )
         CNtlPLEntity* pEffect = GetSceneManager()->CreateEntity(PLENTITY_EFFECT, NTL_VID_CANDY_CHANGE_ORG, NULL);
         pEffect->SetPosition(&m_pActor->GetPosition());
 
-        // ÀÌÆåÆ® Å©±â Á¶Àı
+        // ì´í™íŠ¸ í¬ê¸° ì¡°ì ˆ
         if(m_pCandyModel->GetHeight() >= CANDY_HEIGHT_BIG)
         {
             pEffect->SetScale(CANDY_SCALE_BIG);
@@ -1107,7 +1107,7 @@ void CNtlSobCharProxyTransform::OnTransform_Mob( RwUInt32 tblIdx )
     if(!pTblData)
         return;
     
-    // ½ºÄÉÁì ·ÎµùÀ» ²ö´Ù.
+    // ìŠ¤ì¼€ì¥´ ë¡œë”©ì„ ëˆë‹¤.
     GetNtlResourceManager()->SetLoadScheduling(FALSE);
 
     SPLCharacterCreateParam sParam;
@@ -1127,7 +1127,7 @@ void CNtlSobCharProxyTransform::OnTransform_Mob( RwUInt32 tblIdx )
 
     pSobProxy->SetBaseAnimation(TRANS_SPAWN, FALSE);
 
-    // ¸÷ÀÌ¸§ º¯°æ
+    // ëª¹ì´ë¦„ ë³€ê²½
     CNtlSobMonsterAttr* pMonsterAttr = reinterpret_cast<CNtlSobMonsterAttr*>( m_pActor->GetSobAttr() );
 
 	CTextTable* pTextTable = API_GetTableContainer()->GetTextAllTable()->GetMobTbl();
@@ -1147,7 +1147,7 @@ void CNtlSobCharProxyTransform::EventSobChangeAdult( RWS::CMsg& pMsg )
     if(!IsTransform())
         return;
 
-    // ¾î¸¥À¸·Î ¹Ù²î¸é º¯½Å »óÅÂ¸¦ ÇØÁ¦ÇÑ´Ù.
+    // ì–´ë¥¸ìœ¼ë¡œ ë°”ë€Œë©´ ë³€ì‹  ìƒíƒœë¥¼ í•´ì œí•œë‹¤.
     switch(m_uiTransformId)
     {
 		case ASPECTSTATE_SUPER_SAIYAN:  OnTransform_SuperSaiyan(FALSE);     break;

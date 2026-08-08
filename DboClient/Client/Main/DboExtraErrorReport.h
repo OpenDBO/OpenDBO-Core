@@ -4,7 +4,7 @@
 
 /**
  * \ingroup Client
- * \brief Ãß°¡ Á¤º¸¸¦ ¿¡·¯¸®Æ÷Æ®¿¡ ±â·ÏÇÏ´Â Å¬·¡½º
+ * \brief ì¶”ê°€ ì •ë³´ë¥¼ ì—ëŸ¬ë¦¬í¬íŠ¸ì— ê¸°ë¡í•˜ëŠ” í´ë˜ìŠ¤
  * \date 2007-01-25
  * \author agebreak
  */
@@ -14,15 +14,15 @@ public:
     CDboExtraErrorReport(void);
     virtual ~CDboExtraErrorReport(void);
 
-    RwBool Open();                                          ///< ÆÄÀÏÀ» ¿ÀÇÂÇÑ´Ù.
-    RwBool Save(const char* szFileName);                    ///< ÆÄÀÏÀ» ±â·ÏÇÏ°í ÀúÀåÇÑ´Ù.
+    RwBool Open();                                          ///< íŒŒì¼ì„ ì˜¤í”ˆí•œë‹¤.
+    RwBool Save(const char* szFileName);                    ///< íŒŒì¼ì„ ê¸°ë¡í•˜ê³  ì €ì¥í•œë‹¤.
 
-    void WriteInfo(RwChar* szNodeName, RwChar* szInfo);     ///< ÆÄÀÏ¿¡ Á¤º¸¸¦ ±â·ÏÇÑ´Ù.
-    void WriteInfo(RwChar* szNodeName, WCHAR* szInfo);      ///< ÆÄÀÏ¿¡ Á¤º¸¸¦ ±â·ÏÇÑ´Ù.
-    static void SetDXDiagLog();                             ///< Dxdiag ·Î±×¸¦ ±â·ÏÇÑ´Ù.
+    void WriteInfo(RwChar* szNodeName, RwChar* szInfo);     ///< íŒŒì¼ì— ì •ë³´ë¥¼ ê¸°ë¡í•œë‹¤.
+    void WriteInfo(RwChar* szNodeName, WCHAR* szInfo);      ///< íŒŒì¼ì— ì •ë³´ë¥¼ ê¸°ë¡í•œë‹¤.
+    static void SetDXDiagLog();                             ///< Dxdiag ë¡œê·¸ë¥¼ ê¸°ë¡í•œë‹¤.
 
 protected:
-    RwBool SetIndent();                                             ///< XML¿¡ ½ºÅ¸ÀÏ ½ÃÆ®¸¦ Àû¿ëÇÑ´Ù. (indent.xls)
+    RwBool SetIndent();                                             ///< XMLì— ìŠ¤íƒ€ì¼ ì‹œíŠ¸ë¥¼ ì ìš©í•œë‹¤. (indent.xls)
 
 protected:
     IXMLDOMElement*     m_pRootElem;                ///< Root Element

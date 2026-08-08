@@ -1,4 +1,4 @@
-// Attr_COND_SToCDelivery.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_COND_SToCDelivery.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_COND_SToCDelivery.h"
 
 
-// CAttr_COND_SToCDelivery ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_COND_SToCDelivery ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_COND_SToCDelivery, CAttr_Page, 1)
 
@@ -86,4 +86,4 @@ BEGIN_MESSAGE_MAP(CAttr_COND_SToCDelivery, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_COND_SToCDelivery ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_COND_SToCDelivery ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

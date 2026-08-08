@@ -118,8 +118,8 @@ BOOL CAutoPatchToolDlg::OnInitDialog()
 	}
 
 	//----------------------------------------------------------------------------
-	// command line ºĞ¼®.
-    // /fast - ÆÄÀÏ ¹é¾÷°ú evtMaker ºôµå¸¦ Á¦¿ÜÇÑ´Ù.
+	// command line ë¶„ì„.
+    // /fast - íŒŒì¼ ë°±ì—…ê³¼ evtMaker ë¹Œë“œë¥¼ ì œì™¸í•œë‹¤.
 
 	CString str = GetCommandLine();    
     int curPos = 0;

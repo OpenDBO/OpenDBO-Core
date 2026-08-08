@@ -22,7 +22,7 @@
 #include "DboGlobal.h"
  
 /**
-* \brief »ı¼ºÀÚ
+* \brief ìƒì„±ì
 */
 CInterfaceShakeGui::CInterfaceShakeGui( const RwChar* pName ) 
 : CNtlPLGui(pName)
@@ -49,7 +49,7 @@ CInterfaceShakeGui::CInterfaceShakeGui( const RwChar* pName )
 }
 
 /**
-* \brief ¼Ò¸êÀÚ
+* \brief ì†Œë©¸ì
 */
 CInterfaceShakeGui::~CInterfaceShakeGui() 
 {
@@ -118,17 +118,17 @@ VOID CInterfaceShakeGui::HandleEvents( RWS::CMsg &msg )
 {
 	NTL_FUNCTION("CInterfaceShakeGui::HandleEvents");
 	
-	// ³Ë´Ù¿îÀÌ µÇ¾ú´Ù´Â Notify
+	// ë„‰ë‹¤ìš´ì´ ë˜ì—ˆë‹¤ëŠ” Notify
 	if( msg.Id == g_EventKnockDownNfy )
 	{
-		// ÀÎÅÍÆäÀÌ½º¸¦ ¶ç¿î´Ù.
+		// ì¸í„°í˜ì´ìŠ¤ë¥¼ ë„ìš´ë‹¤.
 		GetDialogManager()->OpenDialog( DIALOG_INTERFACE_SHAKE );
 	}
-	// ³Ë´Ù¿îÀÌ Ç®·È´Ù´Â Notify ( ÀÎÅÍÆäÀÌ½º UI°¡ ¿­·Á ÀÖ´Â »óÈ²¿¡¼­¸¸ ¹Ş¾Æ¼­ Ã³¸® )
+	// ë„‰ë‹¤ìš´ì´ í’€ë ¸ë‹¤ëŠ” Notify ( ì¸í„°í˜ì´ìŠ¤ UIê°€ ì—´ë ¤ ìˆëŠ” ìƒí™©ì—ì„œë§Œ ë°›ì•„ì„œ ì²˜ë¦¬ )
 	else if ( msg.Id == g_EventKnockDownWakeUpNfy 
 		&& GetDialogManager()->IsOpenDialog( DIALOG_INTERFACE_SHAKE ) )
 	{
-		// ÀÎÅÍÆäÀÌ½º¸¦ ´İ´Â´Ù.
+		// ì¸í„°í˜ì´ìŠ¤ë¥¼ ë‹«ëŠ”ë‹¤.
 		GetDialogManager()->CloseDialog( DIALOG_INTERFACE_SHAKE );
 	}
 
@@ -137,9 +137,9 @@ VOID CInterfaceShakeGui::HandleEvents( RWS::CMsg &msg )
 
 /**
 * \brief SwitchDialog
-* DialogManager¿¡¼­ OpenDialog³ª CloseDialog¸¦ ÇØÁáÀ» °æ¿ì ½ÇÇà µÈ´Ù.
+* DialogManagerì—ì„œ OpenDialogë‚˜ CloseDialogë¥¼ í•´ì¤¬ì„ ê²½ìš° ì‹¤í–‰ ëœë‹¤.
 * \param bOpen Open = TRUE / Close = FALSE
-* \return ¼º°ø¿©ºÎ
+* \return ì„±ê³µì—¬ë¶€
 */
 RwInt32 CInterfaceShakeGui::SwitchDialog( bool bOpen ) 
 {
@@ -153,25 +153,25 @@ RwInt32 CInterfaceShakeGui::SwitchDialog( bool bOpen )
 
 /**
 * \brief Update
-* \param fElapsed °æ°ú½Ã°£
+* \param fElapsed ê²½ê³¼ì‹œê°„
 */
 VOID CInterfaceShakeGui::Update( RwReal fElapsed ) 
 {
-	// ½Ã°£ Áõ°¡
+	// ì‹œê°„ ì¦ê°€
 	m_fElapsedTime += fElapsed;
 	m_fShakeElapsedTime += fElapsed;
 	m_fKeyDownElapsedTime += fElapsed;
 	m_fElapsedShakeTime += fElapsed;
 
-	// ÇÃ·¡½¬ ¾÷µ¥ÀÌÆ®
+	// í”Œë˜ì‰¬ ì—…ë°ì´íŠ¸
 	m_pFlashMouseBack->Update( fElapsed );
 
-	// ¸¶¿ì½º À§Ä¡ °»½Å
-	m_nMouseX = CMouse::GetX();					// ÇöÀç ¸¶¿ì½º
-	m_nOffsetX = (m_nMouseX - m_nOldMouseX);		// ÀÌÀü ¸¶¿ì½º¿¡¼­ Áõ°¡°ª ±¸ÇÏ±â
-	m_nOldMouseX = m_nMouseX;					// ÀÌÀü ¸¶¿ì½º´Â ÇöÀçÀÇ ¸¶¿ì½º°¡ µÈ´Ù.
+	// ë§ˆìš°ìŠ¤ ìœ„ì¹˜ ê°±ì‹ 
+	m_nMouseX = CMouse::GetX();					// í˜„ì¬ ë§ˆìš°ìŠ¤
+	m_nOffsetX = (m_nMouseX - m_nOldMouseX);		// ì´ì „ ë§ˆìš°ìŠ¤ì—ì„œ ì¦ê°€ê°’ êµ¬í•˜ê¸°
+	m_nOldMouseX = m_nMouseX;					// ì´ì „ ë§ˆìš°ìŠ¤ëŠ” í˜„ì¬ì˜ ë§ˆìš°ìŠ¤ê°€ ëœë‹¤.
 
-	// True ¿ìÃø, False ÁÂÃø
+	// True ìš°ì¸¡, False ì¢Œì¸¡
 	if( m_bMouseToggle )
 	{
 		if( m_nOffsetX > dSHAKE_MOVE_DISTANCE )
@@ -200,31 +200,31 @@ VOID CInterfaceShakeGui::Update( RwReal fElapsed )
 		GetDialogManager()->CloseDialog( DIALOG_INTERFACE_SHAKE );
 	}
 
-	// ProgressBarÀÇ Max¿¡ ´Ù´Ù¸£¸é ¼º°ø
+	// ProgressBarì˜ Maxì— ë‹¤ë‹¤ë¥´ë©´ ì„±ê³µ
 	if( m_nTrackValue >= m_nTrackMax && m_bComplete == FALSE )
 		m_bComplete = TRUE;
 
-	// ¼º°ø ÇÏ¸é ÆĞÅ¶À» ³¯·ÁÁÖ°í Dialog¸¦ ´İ¾Æ¾ß ÇÑ´Ù.
+	// ì„±ê³µ í•˜ë©´ íŒ¨í‚·ì„ ë‚ ë ¤ì£¼ê³  Dialogë¥¼ ë‹«ì•„ì•¼ í•œë‹¤.
 	if( m_bComplete )
 	{
-		// ¼º°øÇß´õ¶óµµ ÃÖ¼Ò ½Ã°£ÀÌ ¾ÈµÇ¸é ±â´Ù¸°´Ù.
+		// ì„±ê³µí–ˆë”ë¼ë„ ìµœì†Œ ì‹œê°„ì´ ì•ˆë˜ë©´ ê¸°ë‹¤ë¦°ë‹¤.
 		if( m_fElapsedTime < dSHAKE_MIN_WAKEUP )
 			return;
 		
-		// KnockDownÀÇ È¸º¹ ÆĞÅ¶
+		// KnockDownì˜ íšŒë³µ íŒ¨í‚·
 		GetDboGlobal()->GetGamePacketGenerator()->SendCharKnockDownReleaseNfy();
 		
-		// Dialog¸¦ ´İ¾ÆÁØ´Ù.
+		// Dialogë¥¼ ë‹«ì•„ì¤€ë‹¤.
 		GetDialogManager()->CloseDialog( DIALOG_INTERFACE_SHAKE );
 	}
 }
 
 /**
-* \brief ¸¶¿ì½º·Î ÀÎÇÑ ProgressBar Áõ°¡
+* \brief ë§ˆìš°ìŠ¤ë¡œ ì¸í•œ ProgressBar ì¦ê°€
 */
 VOID CInterfaceShakeGui::ProgressUpdateFromMouse() 
 {
-	// ÀÌµæ
+	// ì´ë“
 	if( m_fShakeElapsedTime < dSHAKE_MOUSE_FIRSTTIME )
 	{
 		m_nTrackValue += dSHAKE_ADVANTAGE_FIRST;
@@ -236,21 +236,21 @@ VOID CInterfaceShakeGui::ProgressUpdateFromMouse()
 	else
 		m_nTrackValue += dSHAKE_ADVANTAGE_THIRD;
 
-	// ¸¶¿ì½º Èçµé±â °æ°ú½Ã°£ ÃÊ±âÈ­ & ¸¶¿ì½º Offset ÃÊ±âÈ­
+	// ë§ˆìš°ìŠ¤ í”ë“¤ê¸° ê²½ê³¼ì‹œê°„ ì´ˆê¸°í™” & ë§ˆìš°ìŠ¤ Offset ì´ˆê¸°í™”
 	m_fShakeElapsedTime = 0.0f;
 	m_nOffsetX = 0;
 
-	// Á¦ÇÑ
+	// ì œí•œ
 	if( m_nTrackValue > m_nTrackMax )
 		m_nTrackValue = m_nTrackMax;
 }
 
 /**
-* \brief Å°º¸µå·Î ÀÎÇÑ ProgressBar Áõ°¡
+* \brief í‚¤ë³´ë“œë¡œ ì¸í•œ ProgressBar ì¦ê°€
 */
 VOID CInterfaceShakeGui::ProgressUpdateFromKeyboard() 
 {
-	// ÀÌµæ
+	// ì´ë“
 	if( m_fKeyDownElapsedTime < dSHAKE_KEYBOARD_FIRSTTIME )
 	{
 		m_nTrackValue += dSHAKE_ADVANTAGE_FIRST;
@@ -262,16 +262,16 @@ VOID CInterfaceShakeGui::ProgressUpdateFromKeyboard()
 	else
 		m_nTrackValue += dSHAKE_ADVANTAGE_THIRD;
 
-	// KeyDown °æ°ú½Ã°£ ÃÊ±âÈ­
+	// KeyDown ê²½ê³¼ì‹œê°„ ì´ˆê¸°í™”
 	m_fKeyDownElapsedTime = 0.0f;
 
-	// Track °ª Á¦ÇÑ
+	// Track ê°’ ì œí•œ
 	if( m_nTrackValue > m_nTrackMax )
 		m_nTrackValue = m_nTrackMax;
 }
 
 /**
-* \brief UI¸¦ ¿­°í ÇÊ¿äÇÑ Á¤º¸¸¦ ÃÊ±âÈ­ÇÑ´Ù.
+* \brief UIë¥¼ ì—´ê³  í•„ìš”í•œ ì •ë³´ë¥¼ ì´ˆê¸°í™”í•œë‹¤.
 */
 VOID CInterfaceShakeGui::ShowInterface( VOID ) 
 {
@@ -296,7 +296,7 @@ VOID CInterfaceShakeGui::ShowInterface( VOID )
 }
 
 /**
-* \brief UI¸¦ ´İ¾ÆÁÖ¸ç ÇØÁ¦ÇØÁà¾ß ÇÏ´Â ÀÏµéÀ» ¼öÇàÇÑ´Ù.
+* \brief UIë¥¼ ë‹«ì•„ì£¼ë©° í•´ì œí•´ì¤˜ì•¼ í•˜ëŠ” ì¼ë“¤ì„ ìˆ˜í–‰í•œë‹¤.
 */
 VOID CInterfaceShakeGui::CloseInterface( VOID ) 
 {
@@ -310,7 +310,7 @@ VOID CInterfaceShakeGui::CloseInterface( VOID )
 
 /**
 * \brief OnKeyDown
-* Äİ¹éÀ¸·Î ´ÙÀÌ¾ó·Î±× ¸Å´ÏÀúÀÇ SigCaptureKeyDown¿¡ ¿¬°áµÈ ÇÔ¼ö
+* ì½œë°±ìœ¼ë¡œ ë‹¤ì´ì–¼ë¡œê·¸ ë§¤ë‹ˆì €ì˜ SigCaptureKeyDownì— ì—°ê²°ëœ í•¨ìˆ˜
 */
 VOID CInterfaceShakeGui::OnKeyDown( gui::CComponent* pComponent, CInputDevice* pDevice, const CKey& key ) 
 {
@@ -336,7 +336,7 @@ VOID CInterfaceShakeGui::OnKeyDown( gui::CComponent* pComponent, CInputDevice* p
 
 /**
 * \brief OnKeyUp
-* Äİ¹éÀ¸·Î ´ÙÀÌ¾ó·Î±× ¸Å´ÏÀúÀÇ SigCaptureKeyUp¿¡ ¿¬°áµÈ ÇÔ¼ö
+* ì½œë°±ìœ¼ë¡œ ë‹¤ì´ì–¼ë¡œê·¸ ë§¤ë‹ˆì €ì˜ SigCaptureKeyUpì— ì—°ê²°ëœ í•¨ìˆ˜
 */
 VOID CInterfaceShakeGui::OnKeyUp( gui::CComponent* pComponent, CInputDevice* pDevice, const CKey& key ) 
 {

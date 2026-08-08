@@ -13,7 +13,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// ÇÑ±¹¾î resources
+// í•œêµ­ì–´ resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 #ifdef _WIN32
@@ -78,8 +78,8 @@ CAPTION "SimplePatcher"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "",IDC_SIMPLEPATCHER_PROGRESS,"msctls_progress32",WS_BORDER,57,35,252,11,WS_EX_CLIENTEDGE
-    LTEXT           "ÆÐÄ¡ ÁøÇà·ü",IDC_STATIC,145,16,51,12
-    PUSHBUTTON      "ÆÐÄ¡ ½ÃÀÛ",IDC_SIMPLEPATCHER_PATCH_START,3,6,49,45
+    LTEXT           "íŒ¨ì¹˜ ì§„í–‰ë¥ ",IDC_STATIC,145,16,51,12
+    PUSHBUTTON      "íŒ¨ì¹˜ ì‹œìž‘",IDC_SIMPLEPATCHER_PATCH_START,3,6,49,45
 END
 
 
@@ -121,7 +121,7 @@ BEGIN
     END
 END
 
-#endif    // ÇÑ±¹¾î resources
+#endif    // í•œêµ­ì–´ resources
 /////////////////////////////////////////////////////////////////////////////
 
 

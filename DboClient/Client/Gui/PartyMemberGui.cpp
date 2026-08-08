@@ -191,10 +191,10 @@ RwBool CPartyMemberGui::Create(SERIAL_HANDLE hSerial, WCHAR* pcText, RwUInt8 byC
 
 	CRectangle rect;
 
-	// Á¾Á·°ú Á÷¾÷ ±×¸²
+	// ì¢…ì¡±ê³¼ ì§ì—… ê·¸ë¦¼
 	m_pTributarySimbol = (gui::CPanel*)GetComponent( "TributaryPanel" );
 
-	// ÆÄÆ¼ ¸É¹ö ½ºÅÂÆ½
+	// íŒŒí‹° ë§´ë²„ ìŠ¤íƒœí‹±
 	rect.SetRectWH(19, 4, 104, 20);
 	m_pNameStatic = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER );
 	m_pNameStatic->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
@@ -203,11 +203,11 @@ RwBool CPartyMemberGui::Create(SERIAL_HANDLE hSerial, WCHAR* pcText, RwUInt8 byC
 	m_pNameStatic->SetText(pcText);
 	m_pNameStatic->Enable(false);
 
-	// LP °ÔÀÌÁö
+	// LP ê²Œì´ì§€
 	m_pLPGauge = (gui::CProgressBar*)GetComponent( "LPGauge" );	
 	m_pLPGauge->Enable(false);	
 /*
-	// LP ½ºÅÂÆ½
+	// LP ìŠ¤íƒœí‹±
 	rect.SetRectWH(32, 25, 42, 13);
 	m_pLPStatic = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_RIGHT);
 	m_pLPStatic->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
@@ -215,7 +215,7 @@ RwBool CPartyMemberGui::Create(SERIAL_HANDLE hSerial, WCHAR* pcText, RwUInt8 byC
 	m_pLPStatic->SetEffectValue(DEFAULT_SHADOW_EFFECT_VALUE);
 	m_pLPStatic->Enable(false);
 
-	// ½½·¡½¬ ½ºÅÂÆ½
+	// ìŠ¬ëž˜ì‰¬ ìŠ¤íƒœí‹±
 	rect.SetRectWH(74, 25, 4, 13);
 	m_pLPSlachStatic = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER);
 	m_pLPSlachStatic->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
@@ -224,7 +224,7 @@ RwBool CPartyMemberGui::Create(SERIAL_HANDLE hSerial, WCHAR* pcText, RwUInt8 byC
 	m_pLPSlachStatic->SetText("/");
 	m_pLPSlachStatic->Enable(false);
 
-	// MaxLP ½ºÅÂÆ½
+	// MaxLP ìŠ¤íƒœí‹±
 	rect.SetRectWH(78, 25, 42, 13);
 	m_pMaxLPStatic = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT);
 	m_pMaxLPStatic->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
@@ -232,12 +232,12 @@ RwBool CPartyMemberGui::Create(SERIAL_HANDLE hSerial, WCHAR* pcText, RwUInt8 byC
 	m_pMaxLPStatic->SetEffectValue(DEFAULT_SHADOW_EFFECT_VALUE);
 	m_pMaxLPStatic->Enable(false);
 */
-	// EP °ÔÀÌÁö
+	// EP ê²Œì´ì§€
 	m_pEPGauge = (gui::CProgressBar*)GetComponent( "EPGauge" );	
 	m_pEPGauge->Enable(false);
 
 /*
-	// EP ½ºÅÂÆ½
+	// EP ìŠ¤íƒœí‹±
 	rect.SetRectWH(32, 34, 42, 13);
 	m_pEPStatic = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_RIGHT);
 	m_pEPStatic->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
@@ -245,7 +245,7 @@ RwBool CPartyMemberGui::Create(SERIAL_HANDLE hSerial, WCHAR* pcText, RwUInt8 byC
 	m_pEPStatic->SetEffectValue(DEFAULT_SHADOW_EFFECT_VALUE);
 	m_pEPStatic->Enable(false);
 
-	// ½½·¡½¬ ½ºÅÂÆ½
+	// ìŠ¬ëž˜ì‰¬ ìŠ¤íƒœí‹±
 	rect.SetRectWH(74, 34, 4, 13);
 	m_pEPSlachStatic = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER);
 	m_pEPSlachStatic->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
@@ -254,7 +254,7 @@ RwBool CPartyMemberGui::Create(SERIAL_HANDLE hSerial, WCHAR* pcText, RwUInt8 byC
 	m_pEPSlachStatic->SetText("/");
 	m_pEPSlachStatic->Enable(false);
 
-	// MaxLP ½ºÅÂÆ½
+	// MaxLP ìŠ¤íƒœí‹±
 	rect.SetRectWH(78, 34, 42, 13);
 	m_pMaxEPStatic = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT);
 	m_pMaxEPStatic->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
@@ -262,7 +262,7 @@ RwBool CPartyMemberGui::Create(SERIAL_HANDLE hSerial, WCHAR* pcText, RwUInt8 byC
 	m_pMaxEPStatic->SetEffectValue(DEFAULT_SHADOW_EFFECT_VALUE);
 	m_pMaxEPStatic->Enable(false);
 */
-	// ·¹º§
+	// ë ˆë²¨
 	rect.SetRectWH(5, 28, 22, 13);
 	m_pLevel = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER );
 	m_pLevel->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
@@ -271,25 +271,25 @@ RwBool CPartyMemberGui::Create(SERIAL_HANDLE hSerial, WCHAR* pcText, RwUInt8 byC
 	m_pLevel->Clear();
 	m_pLevel->Enable(false);
 
-	// ´Ù¸¥ ¿ùµå¿¡ ÀÖ´Â ÆÄÆ¼¿øÀÇ ÆÐ³Î
+	// ë‹¤ë¥¸ ì›”ë“œì— ìžˆëŠ” íŒŒí‹°ì›ì˜ íŒ¨ë„
 	m_srfOtherWorldPanel.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "PartyMember.srf", "srfAbsentee" ) );	
 
-	// »ç¸Á½Ã ÆÐ³Î
+	// ì‚¬ë§ì‹œ íŒ¨ë„
 	m_srfDeathPanel.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "PartyMember.srf", "srfDeathPanel" ) );	
 
-	// ¸®´õ ¸¶Å©
+	// ë¦¬ë” ë§ˆí¬
 	m_srfLeaderMark.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "PartyMember.srf", "srfPartyLeaderMark_for_MemberGui" ) );
 	m_srfLeaderMark.SetPositionfromParent(12, 12);
 
-	// »ç¸Á ¸¶Å©
+	// ì‚¬ë§ ë§ˆí¬
 	m_srfDeathMark.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "PartyMember.srf", "srfDeathMark_for_MemberGui" ) );
 	m_srfDeathMark.SetPositionfromParent(12, 12);
 
-	// ¸Ö¸® ¶³¾îÁø ÆÄÆ¼¿ø
+	// ë©€ë¦¬ ë–¨ì–´ì§„ íŒŒí‹°ì›
 	m_srfTooFarMark.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "PartyMember.srf", "srfTooFarMark_for_MemberGui" ) );
 	m_srfTooFarMark.SetPositionfromParent(12, 12);
 
-	// LP °æ°í Ç¥½Ãµî
+	// LP ê²½ê³  í‘œì‹œë“±
 	gui::CSurface surface = GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "PartyMember.srf", "srfWarning" );
 	m_feEmergency.SetSurface( surface );
 	m_feEmergency.SetTime( 1000.0f, 0.5f );
@@ -298,14 +298,14 @@ RwBool CPartyMemberGui::Create(SERIAL_HANDLE hSerial, WCHAR* pcText, RwUInt8 byC
 						   surface.m_Original.rtRect.GetHeight(), surface.m_Original.rtRect.GetHeight() + 5 );
 
 	
-	// Á¾Á·°ú Á÷¾÷ ±×¸²	
+	// ì¢…ì¡±ê³¼ ì§ì—… ê·¸ë¦¼	
 	SetClass(byClass);
 
-	// ¹öÇÁ À©µµ¿ì
+	// ë²„í”„ ìœˆë„ìš°
 	m_pBuff = NTL_NEW CPartyMemberBuffGui;
 	m_pBuff->Create(hSerial);
 
-	// ¸É¹ö ÇÚµé ÀúÀå
+	// ë§´ë²„ í•¸ë“¤ ì €ìž¥
 	m_hSerial = hSerial;
 
 	// sig	
@@ -595,7 +595,7 @@ VOID CPartyMemberGui::OnMouseLeave(gui::CComponent* pComponent)
 
 VOID CPartyMemberGui::OnPostPaint()
 {	
-	// ¸¶Å©
+	// ë§ˆí¬
 	if( BIT_FLAG_TEST(m_byDisplayFlag, dFLAG_DEATH) )
 	{
 		m_srfDeathMark.Render();
@@ -607,7 +607,7 @@ VOID CPartyMemberGui::OnPostPaint()
 
 	m_feEmergency.Render();
 
-	// ÆÐ³Î
+	// íŒ¨ë„
 	if( BIT_FLAG_TEST(m_byDisplayFlag, dFLAG_DEATH) )
 	{
 		m_srfDeathPanel.Render();
@@ -679,12 +679,12 @@ VOID CPartyMemberGui::HandleEvents( RWS::CMsg &msg )
 
 		if( pPacket->nWorkId == PMW_PARTY_LEADER_CHANGE )
 		{				
-			// ÆÄÆ¼Àå À§ÀÓ
+			// íŒŒí‹°ìž¥ ìœ„ìž„
 			GetDboGlobal()->GetGamePacketGenerator()->SendPartyChangeLeader(m_hSerial);
 		}
 		else if(pPacket->nWorkId == PMW_PARTY_KICK_OUT)
 		{
-			// ÆÄÆ¼ °­Åð
+			// íŒŒí‹° ê°•í‡´
 			GetDboGlobal()->GetGamePacketGenerator()->SendPartyKickOut(m_hSerial);
 		}
 	}

@@ -1,7 +1,7 @@
 #pragma once
 
 
-// CStringDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CStringDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 #include <string>
 
 class CStringDialog : public CDialog
@@ -13,14 +13,14 @@ public:
 	std::string			m_strEdit;
 
 public:
-	CStringDialog(LPCTSTR strTitle, LPCTSTR strEdit = "noname", CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CStringDialog(LPCTSTR strTitle, LPCTSTR strEdit = "noname", CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CStringDialog();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_STRING };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

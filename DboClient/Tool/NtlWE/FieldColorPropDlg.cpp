@@ -1,4 +1,4 @@
-// FieldColorPropDlg.cpp : ���� �����Դϴ�.
+// FieldColorPropDlg.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -14,7 +14,7 @@
 #include "FieldColorPropDlg.h"
 
 
-// CFieldColorPropDlg ��ȭ �����Դϴ�.
+// CFieldColorPropDlg 대화 상자입니다.
 
 IMPLEMENT_DYNAMIC(CFieldColorPropDlg, CDialog)
 
@@ -48,7 +48,7 @@ BEGIN_MESSAGE_MAP(CFieldColorPropDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CFieldColorPropDlg �޽��� ó�����Դϴ�.
+// CFieldColorPropDlg 메시지 처리기입니다.
 
 BOOL CFieldColorPropDlg::PreTranslateMessage(MSG* pMsg)
 {
@@ -188,7 +188,7 @@ void CFieldColorPropDlg::SetColor(int r, int g, int b)
 }
 void CFieldColorPropDlg::OnBnClickedOk()
 {
-	// TODO: ���⿡ ��Ʈ�� �˸� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 
 	static_cast<CNtlWEDoc*>(((CNtlWEApp*)(AfxGetApp()))->m_pDoc)->m_pNtlFieldProp->_FieldColor = m_clr;
 
@@ -197,6 +197,6 @@ void CFieldColorPropDlg::OnBnClickedOk()
 
 void CFieldColorPropDlg::OnBnClickedCancel()
 {
-	// TODO: ���⿡ ��Ʈ�� �˸� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	OnCancel();
 }

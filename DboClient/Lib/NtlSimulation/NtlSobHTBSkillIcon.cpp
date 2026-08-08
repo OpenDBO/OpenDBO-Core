@@ -80,7 +80,7 @@ RwBool CNtlSobHTBSkillIcon::IsUsePossible(void)
 		}
 	}
 
-	// ºñÈ÷Å¬, ½ºÇÇ´×¾îÅÃÁßÀÏ¶§´Â HTB½ºÅ³Àº »ç¿ëÇÏÁö ¸øÇÑ´Ù
+	// ë¹„ížˆí´, ìŠ¤í”¼ë‹ì–´íƒì¤‘ì¼ë•ŒëŠ” HTBìŠ¤í‚¬ì€ ì‚¬ìš©í•˜ì§€ ëª»í•œë‹¤
 	if(Logic_IsTransform(GetNtlSLGlobal()->GetSobAvatar()))
 	{
 		DWORD flag = pSkillData->dwTransform_Use_Info_Bit_Flag;        
@@ -153,7 +153,7 @@ RwBool CNtlSobHTBSkillIcon::Use(SERIAL_HANDLE hTargetSerialId, RwUInt32 uiRPBonu
 	}
 
 	//-----------------------------------------------------------------
-	// casting °Ë»ç.
+	// casting ê²€ì‚¬.
 
 	if(m_byIconState == ICON_STATE_COOLING)
 	{
@@ -162,9 +162,9 @@ RwBool CNtlSobHTBSkillIcon::Use(SERIAL_HANDLE hTargetSerialId, RwUInt32 uiRPBonu
 	}
 
 	//-----------------------------------------------------------------
-	// target À¯È¿ °Ë»ç.
+	// target ìœ íš¨ ê²€ì‚¬.
 
-	// ÀÚ±â ÀÚ½ÅÀ» clickÇÏ°í »ç¿ëÇßÀ» °æ¿ì.
+	// ìžê¸° ìžì‹ ì„ clickí•˜ê³  ì‚¬ìš©í–ˆì„ ê²½ìš°.
 	if(m_pSobObj->GetOwnerID() == hTargetSerialId)
 	{
 		CNtlSLEventGenerator::SysMsg(m_pSobObj->GetOwnerID(), "GAME_SKILL_INVALID_TARGET_APPOINTED");
@@ -227,7 +227,7 @@ RwBool CNtlSobHTBSkillIcon::Use(SERIAL_HANDLE hTargetSerialId, RwUInt32 uiRPBonu
 	}
 
 	//-----------------------------------------------------------------
-	// event º¸³»±â.
+	// event ë³´ë‚´ê¸°.
 
 	CNtlSLEventGenerator::ActionMapHTBUse(pSobHTBSkill->GetOwnerID(), hTargetSerialId, pSobHTBSkill->GetSerialID(),
 											fSkillRange, pSobHTBSkill->GetSlotIdx());

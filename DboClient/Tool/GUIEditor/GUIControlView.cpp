@@ -1,4 +1,4 @@
-// GUIControlView.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// GUIControlView.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -29,7 +29,7 @@ BEGIN_MESSAGE_MAP(CGUIControlView, CFormView)
 END_MESSAGE_MAP()
 
 
-// CGUIControlView Áø´ÜÀÔ´Ï´Ù.
+// CGUIControlView ì§„ë‹¨ì…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CGUIControlView::AssertValid() const
@@ -44,4 +44,4 @@ void CGUIControlView::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CGUIControlView ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CGUIControlView ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

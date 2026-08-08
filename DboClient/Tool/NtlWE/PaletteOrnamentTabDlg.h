@@ -2,17 +2,17 @@
 #include "afxcmn.h"
 
 
-// CPaletteOrnamentTabDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteOrnamentTabDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CPaletteOrnamentTabDlg : public CDialog
 {
 	DECLARE_DYNAMIC(CPaletteOrnamentTabDlg)
 
 public:
-	CPaletteOrnamentTabDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CPaletteOrnamentTabDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CPaletteOrnamentTabDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_ORNAMENT_TAB };
 	enum ETAB_ID
 	{
@@ -30,7 +30,7 @@ protected:
 	ETAB_ID m_eTabID[ETAB_ID_NUM];
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
 
 	DECLARE_MESSAGE_MAP()

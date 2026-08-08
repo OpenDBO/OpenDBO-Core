@@ -37,7 +37,7 @@ END_MESSAGE_MAP()
 
 // CMainFrame construction/destruction
 
-// ¹Ì´Ï ´ıÇÁ ¼±¾ğ(Àü¿ªº¯¼ö·Î ¼±¾ğ¸¸ ÇÏ¸é ³¡)
+// ë¯¸ë‹ˆ ë¤í”„ ì„ ì–¸(ì „ì—­ë³€ìˆ˜ë¡œ ì„ ì–¸ë§Œ í•˜ë©´ ë)
 MiniDumper g_MiniDump(TRUE);
 
 CMainFrame::CMainFrame()
@@ -69,12 +69,12 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	EnableDocking(CBRS_ALIGN_ANY);
 	DockControlBar(&m_wndToolBar);
 
-    // Åø¹Ù ¼Ó¼º 
+    // íˆ´ë°” ì†ì„± 
     m_wndToolBar.SetButtonStyle(0, TBBS_CHECKBOX);  
     m_wndToolBar.SetButtonStyle(1, TBBS_CHECKBOX);
     m_wndToolBar.SetButtonStyle(2, TBBS_CHECKBOX);
 
-    // ¹öÁ¯À» À©µµ¿ì¿¡ Ç¥½ÃÇÑ´Ù.
+    // ë²„ì ¼ì„ ìœˆë„ìš°ì— í‘œì‹œí•œë‹¤.
     SetWindowText(MT_WINDOW_NAME);
 
 	return 0;
@@ -117,7 +117,7 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 	// TODO: Modify the Window class or styles here by modifying
 	//  the CREATESTRUCT cs
 
-	// À©µµ¿ì Å©±â ¼³Á¤ 
+	// ìœˆë„ìš° í¬ê¸° ì„¤ì • 
 	cs.cx = 1024;
 	cs.cy = 768;	
 	cs.style = WS_OVERLAPPED | WS_CAPTION | WS_MAXIMIZEBOX | WS_MINIMIZEBOX | WS_SYSMENU | WS_MAXIMIZE ;    

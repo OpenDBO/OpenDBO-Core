@@ -1,6 +1,6 @@
 2005.8.12 
 Extend RpToonMaterial and add RwTexture pointer Implement Paint to MultPass Current Stream
 I did not make the part that reads..(toonmultiTex.h, toonmultiTex.c,
-RpMaterialÀ» È®Àå: toonmultiTex.h, toonmultiTex.c
-Plugin Attach ÇÏ´Â°÷: rptoon.c
+RpMaterialì„ í™•ì¥: toonmultiTex.h, toonmultiTex.c
+Plugin Attach í•˜ëŠ”ê³³: rptoon.c
 Render: d3d9paint.c

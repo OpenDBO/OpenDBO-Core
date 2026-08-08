@@ -27,7 +27,7 @@ void CSCtrl_Link_Error::OnLButtonDown( const CPoint &point, UINT nFlags )
 	}
 	else
 	{
-		AfxMessageBox( _T("ÇØ´ç ÄÁÅ×ÀÌ³Ê¿¡ Error ¸µÅ©´Â ³õÀ» ¼ö ¾ø½À´Ï´Ù") );
+		AfxMessageBox( _T("í•´ë‹¹ ì»¨í…Œì´ë„ˆì— Error ë§í¬ëŠ” ë†“ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤") );
 	}
 }
 

@@ -1,4 +1,4 @@
-// TextureConverter.cpp : ÀÀ¿ë ÇÁ·Î±×·¥¿¡ ´ëÇÑ Å¬·¡½º µ¿ÀÛÀ» Á¤ÀÇÇÕ´Ï´Ù.
+// TextureConverter.cpp : ì‘ìš© í”„ë¡œê·¸ë¨ì— ëŒ€í•œ í´ë˜ìŠ¤ ë™ì‘ì„ ì •ì˜í•©ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -17,94 +17,94 @@
 
 BEGIN_MESSAGE_MAP(CTextureConverterApp, CWinApp)
 	ON_COMMAND(ID_APP_ABOUT, OnAppAbout)
-	// Ç¥ÁØ ÆÄÀÏÀ» ±âÃÊ·Î ÇÏ´Â ¹®¼­ ¸í·ÉÀÔ´Ï´Ù.
+	// í‘œì¤€ íŒŒì¼ì„ ê¸°ì´ˆë¡œ í•˜ëŠ” ë¬¸ì„œ ëª…ë ¹ì…ë‹ˆë‹¤.
 	ON_COMMAND(ID_FILE_NEW, CWinApp::OnFileNew)
 	ON_COMMAND(ID_FILE_OPEN, CWinApp::OnFileOpen)
-	// Ç¥ÁØ ÀÎ¼â ¼³Á¤ ¸í·ÉÀÔ´Ï´Ù.
+	// í‘œì¤€ ì¸ì‡„ ì„¤ì • ëª…ë ¹ì…ë‹ˆë‹¤.
 	ON_COMMAND(ID_FILE_PRINT_SETUP, CWinApp::OnFilePrintSetup)
 END_MESSAGE_MAP()
 
 
-// CTextureConverterApp »ı¼º
+// CTextureConverterApp ìƒì„±
 
 CTextureConverterApp::CTextureConverterApp()
 {
-	// TODO: ¿©±â¿¡ »ı¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
-	// InitInstance¿¡ ¸ğµç Áß¿äÇÑ ÃÊ±âÈ­ ÀÛ¾÷À» ¹èÄ¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ìƒì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
+	// InitInstanceì— ëª¨ë“  ì¤‘ìš”í•œ ì´ˆê¸°í™” ì‘ì—…ì„ ë°°ì¹˜í•©ë‹ˆë‹¤.
 }
 
 
-// À¯ÀÏÇÑ CTextureConverterApp °³Ã¼ÀÔ´Ï´Ù.
+// ìœ ì¼í•œ CTextureConverterApp ê°œì²´ì…ë‹ˆë‹¤.
 
 CTextureConverterApp theApp;
 
-// CTextureConverterApp ÃÊ±âÈ­
+// CTextureConverterApp ì´ˆê¸°í™”
 
 BOOL CTextureConverterApp::InitInstance()
 {
-	// ÀÀ¿ë ÇÁ·Î±×·¥ ¸Å´ÏÆä½ºÆ®°¡ ComCtl32.dll ¹öÀü 6 ÀÌ»óÀ» »ç¿ëÇÏ¿© ºñÁÖ¾ó ½ºÅ¸ÀÏÀ»
-	// »ç¿ëÇÏµµ·Ï ÁöÁ¤ÇÏ´Â °æ¿ì, Windows XP »ó¿¡¼­ ¹İµå½Ã InitCommonControls()°¡ ÇÊ¿äÇÕ´Ï´Ù. 
-	// InitCommonControls()¸¦ »ç¿ëÇÏÁö ¾ÊÀ¸¸é Ã¢À» ¸¸µé ¼ö ¾ø½À´Ï´Ù.
+	// ì‘ìš© í”„ë¡œê·¸ë¨ ë§¤ë‹ˆí˜ìŠ¤íŠ¸ê°€ ComCtl32.dll ë²„ì „ 6 ì´ìƒì„ ì‚¬ìš©í•˜ì—¬ ë¹„ì£¼ì–¼ ìŠ¤íƒ€ì¼ì„
+	// ì‚¬ìš©í•˜ë„ë¡ ì§€ì •í•˜ëŠ” ê²½ìš°, Windows XP ìƒì—ì„œ ë°˜ë“œì‹œ InitCommonControls()ê°€ í•„ìš”í•©ë‹ˆë‹¤. 
+	// InitCommonControls()ë¥¼ ì‚¬ìš©í•˜ì§€ ì•Šìœ¼ë©´ ì°½ì„ ë§Œë“¤ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 	InitCommonControls();
 
 	CWinApp::InitInstance();
 
-	// OLE ¶óÀÌºê·¯¸®¸¦ ÃÊ±âÈ­ÇÕ´Ï´Ù.
+	// OLE ë¼ì´ë¸ŒëŸ¬ë¦¬ë¥¼ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
 	if (!AfxOleInit())
 	{
 		AfxMessageBox(IDP_OLE_INIT_FAILED);
 		return FALSE;
 	}
 	AfxEnableControlContainer();
-	// Ç¥ÁØ ÃÊ±âÈ­
-	// ÀÌµé ±â´ÉÀ» »ç¿ëÇÏÁö ¾Ê°í ÃÖÁ¾ ½ÇÇà ÆÄÀÏÀÇ Å©±â¸¦ ÁÙÀÌ·Á¸é
-	// ¾Æ·¡¿¡¼­ ÇÊ¿ä ¾ø´Â Æ¯Á¤ ÃÊ±âÈ­ ·çÆ¾À» Á¦°ÅÇØ¾ß ÇÕ´Ï´Ù.
-	// ÇØ´ç ¼³Á¤ÀÌ ÀúÀåµÈ ·¹Áö½ºÆ®¸® Å°¸¦ º¯°æÇÏ½Ê½Ã¿À.
-	// TODO: ÀÌ ¹®ÀÚ¿­À» È¸»ç ¶Ç´Â Á¶Á÷ÀÇ ÀÌ¸§°ú °°Àº
-	// ÀûÀıÇÑ ³»¿ëÀ¸·Î ¼öÁ¤ÇØ¾ß ÇÕ´Ï´Ù.
-	SetRegistryKey(_T("·ÎÄÃ ÀÀ¿ë ÇÁ·Î±×·¥ ¸¶¹ı»ç¿¡¼­ »ı¼ºµÈ ÀÀ¿ë ÇÁ·Î±×·¥"));
-	LoadStdProfileSettings(4);  // MRU¸¦ Æ÷ÇÔÇÏ¿© Ç¥ÁØ INI ÆÄÀÏ ¿É¼ÇÀ» ·ÎµåÇÕ´Ï´Ù.
-	// ÀÀ¿ë ÇÁ·Î±×·¥ÀÇ ¹®¼­ ÅÛÇÃ¸´À» µî·ÏÇÕ´Ï´Ù. ¹®¼­ ÅÛÇÃ¸´Àº
-	// ¹®¼­, ÇÁ·¹ÀÓ Ã¢ ¹× ºä »çÀÌÀÇ ¿¬°á ¿ªÇÒÀ» ÇÕ´Ï´Ù.
+	// í‘œì¤€ ì´ˆê¸°í™”
+	// ì´ë“¤ ê¸°ëŠ¥ì„ ì‚¬ìš©í•˜ì§€ ì•Šê³  ìµœì¢… ì‹¤í–‰ íŒŒì¼ì˜ í¬ê¸°ë¥¼ ì¤„ì´ë ¤ë©´
+	// ì•„ë˜ì—ì„œ í•„ìš” ì—†ëŠ” íŠ¹ì • ì´ˆê¸°í™” ë£¨í‹´ì„ ì œê±°í•´ì•¼ í•©ë‹ˆë‹¤.
+	// í•´ë‹¹ ì„¤ì •ì´ ì €ì¥ëœ ë ˆì§€ìŠ¤íŠ¸ë¦¬ í‚¤ë¥¼ ë³€ê²½í•˜ì‹­ì‹œì˜¤.
+	// TODO: ì´ ë¬¸ìì—´ì„ íšŒì‚¬ ë˜ëŠ” ì¡°ì§ì˜ ì´ë¦„ê³¼ ê°™ì€
+	// ì ì ˆí•œ ë‚´ìš©ìœ¼ë¡œ ìˆ˜ì •í•´ì•¼ í•©ë‹ˆë‹¤.
+	SetRegistryKey(_T("ë¡œì»¬ ì‘ìš© í”„ë¡œê·¸ë¨ ë§ˆë²•ì‚¬ì—ì„œ ìƒì„±ëœ ì‘ìš© í”„ë¡œê·¸ë¨"));
+	LoadStdProfileSettings(4);  // MRUë¥¼ í¬í•¨í•˜ì—¬ í‘œì¤€ INI íŒŒì¼ ì˜µì…˜ì„ ë¡œë“œí•©ë‹ˆë‹¤.
+	// ì‘ìš© í”„ë¡œê·¸ë¨ì˜ ë¬¸ì„œ í…œí”Œë¦¿ì„ ë“±ë¡í•©ë‹ˆë‹¤. ë¬¸ì„œ í…œí”Œë¦¿ì€
+	// ë¬¸ì„œ, í”„ë ˆì„ ì°½ ë° ë·° ì‚¬ì´ì˜ ì—°ê²° ì—­í• ì„ í•©ë‹ˆë‹¤.
 	CSingleDocTemplate* pDocTemplate;
 	pDocTemplate = new CSingleDocTemplate(
 		IDR_MAINFRAME,
 		RUNTIME_CLASS(CTextureConverterDoc),
-		RUNTIME_CLASS(CMainFrame),       // ÁÖ SDI ÇÁ·¹ÀÓ Ã¢ÀÔ´Ï´Ù.
+		RUNTIME_CLASS(CMainFrame),       // ì£¼ SDI í”„ë ˆì„ ì°½ì…ë‹ˆë‹¤.
 		RUNTIME_CLASS(CTextureConverterView));
 	if (!pDocTemplate)
 		return FALSE;
 	AddDocTemplate(pDocTemplate);
-	// Ç¥ÁØ ¼Ğ ¸í·É, DDE, ÆÄÀÏ ¿­±â¿¡ ´ëÇÑ ¸í·ÉÁÙÀ» ±¸¹® ºĞ¼®ÇÕ´Ï´Ù.
+	// í‘œì¤€ ì…¸ ëª…ë ¹, DDE, íŒŒì¼ ì—´ê¸°ì— ëŒ€í•œ ëª…ë ¹ì¤„ì„ êµ¬ë¬¸ ë¶„ì„í•©ë‹ˆë‹¤.
 	CCommandLineInfo cmdInfo;
 	ParseCommandLine(cmdInfo);
-	// ¸í·ÉÁÙ¿¡ ÁöÁ¤µÈ ¸í·ÉÀ» µğ½ºÆĞÄ¡ÇÕ´Ï´Ù. ÀÀ¿ë ÇÁ·Î±×·¥ÀÌ /RegServer, /Register, /Unregserver ¶Ç´Â /Unregister·Î ½ÃÀÛµÈ °æ¿ì FALSE¸¦ ¹İÈ¯ÇÕ´Ï´Ù.
+	// ëª…ë ¹ì¤„ì— ì§€ì •ëœ ëª…ë ¹ì„ ë””ìŠ¤íŒ¨ì¹˜í•©ë‹ˆë‹¤. ì‘ìš© í”„ë¡œê·¸ë¨ì´ /RegServer, /Register, /Unregserver ë˜ëŠ” /Unregisterë¡œ ì‹œì‘ëœ ê²½ìš° FALSEë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
 	if (!ProcessShellCommand(cmdInfo))
 		return FALSE;
-	// Ã¢ ÇÏ³ª¸¸ ÃÊ±âÈ­µÇ¾úÀ¸¹Ç·Î ÀÌ¸¦ Ç¥½ÃÇÏ°í ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù.
+	// ì°½ í•˜ë‚˜ë§Œ ì´ˆê¸°í™”ë˜ì—ˆìœ¼ë¯€ë¡œ ì´ë¥¼ í‘œì‹œí•˜ê³  ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤.
 	m_pMainWnd->ShowWindow(SW_SHOW);
 	m_pMainWnd->UpdateWindow();
-	// Á¢¹Ì»ç°¡ ÀÖÀ» °æ¿ì¿¡¸¸ DragAcceptFiles¸¦ È£ÃâÇÕ´Ï´Ù.
-	// SDI ÀÀ¿ë ÇÁ·Î±×·¥¿¡¼­´Â ProcessShellCommand ÈÄ¿¡ ÀÌ·¯ÇÑ È£ÃâÀÌ ¹ß»ıÇØ¾ß ÇÕ´Ï´Ù.
+	// ì ‘ë¯¸ì‚¬ê°€ ìˆì„ ê²½ìš°ì—ë§Œ DragAcceptFilesë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
+	// SDI ì‘ìš© í”„ë¡œê·¸ë¨ì—ì„œëŠ” ProcessShellCommand í›„ì— ì´ëŸ¬í•œ í˜¸ì¶œì´ ë°œìƒí•´ì•¼ í•©ë‹ˆë‹¤.
 	return TRUE;
 }
 
 
 
-// ÀÀ¿ë ÇÁ·Î±×·¥ Á¤º¸¿¡ »ç¿ëµÇ´Â CAboutDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// ì‘ìš© í”„ë¡œê·¸ë¨ ì •ë³´ì— ì‚¬ìš©ë˜ëŠ” CAboutDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CAboutDlg : public CDialog
 {
 public:
 	CAboutDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍ
+// ëŒ€í™” ìƒì ë°ì´í„°
 	enum { IDD = IDD_ABOUTBOX };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿ø
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›
 
-// ±¸Çö
+// êµ¬í˜„
 protected:
 	DECLARE_MESSAGE_MAP()
 };
@@ -121,7 +121,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
 END_MESSAGE_MAP()
 
-// ´ëÈ­ »óÀÚ¸¦ ½ÇÇàÇÏ±â À§ÇÑ ÀÀ¿ë ÇÁ·Î±×·¥ ¸í·ÉÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒìë¥¼ ì‹¤í–‰í•˜ê¸° ìœ„í•œ ì‘ìš© í”„ë¡œê·¸ë¨ ëª…ë ¹ì…ë‹ˆë‹¤.
 void CTextureConverterApp::OnAppAbout()
 {
 	CAboutDlg aboutDlg;
@@ -129,5 +129,5 @@ void CTextureConverterApp::OnAppAbout()
 }
 
 
-// CTextureConverterApp ¸Ş½ÃÁö Ã³¸®±â
+// CTextureConverterApp ë©”ì‹œì§€ ì²˜ë¦¬ê¸°
 

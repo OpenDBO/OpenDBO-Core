@@ -37,20 +37,20 @@ RwBool CPetitionGui::Create()
 	m_pThis			= (gui::CDialog*)GetComponent("dlgMain");
 	m_pThis->SetPriority(dDIALOGPRIORITY_QUICKSLOT);
 
-	// ´Ý±â ¹öÆ°
+	// ë‹«ê¸° ë²„íŠ¼
 	m_pCloseButton	= (gui::CButton*)GetComponent("ExitButton");
 	m_slotCloseButton = m_pCloseButton->SigClicked().Connect(this, &CPetitionGui::OnClicked_CloseButton);
 
-	// ´ÙÀÌ¾ó·Î±× Á¦¸ñ
+	// ë‹¤ì´ì–¼ë¡œê·¸ ì œëª©
 	m_pDialogName	= (gui::CStaticBox*)GetComponent( "stbDialogName" );
 	m_pDialogName->SetPosition(DBOGUI_DIALOG_TITLE_X, DBOGUI_DIALOG_TITLE_Y);
 	m_pDialogName->SetText( GetDisplayStringManager()->GetString( "DST_PETITION_TITLE" ) );
 
-	// ´ëºÐ·ù Ä«Å×°í¸® ½ºÅ×Æ½
+	// ëŒ€ë¶„ë¥˜ ì¹´í…Œê³ ë¦¬ ìŠ¤í…Œí‹±
 	m_pCategoryStatic = (gui::CStaticBox*)GetComponent( "stbCategory" );
 	m_pCategoryStatic->SetText( GetDisplayStringManager()->GetString( "DST_PETITION_GREAT_CATEGORY" ) );
 
-	// ´ëºÐ·ù Ä«Å×°í¸®
+	// ëŒ€ë¶„ë¥˜ ì¹´í…Œê³ ë¦¬
 	m_pCategory		= (gui::CComboBox*)GetComponent( "cbbCategory" );
 	m_slotItemSelect = m_pCategory->SigSelected().Connect( this, &CPetitionGui::OnItemSelect );
 
@@ -63,26 +63,26 @@ RwBool CPetitionGui::Create()
 
 	m_pCategory->SelectItem( 0 );	
 
-	// ¼ÒºÐ·ù Ä«Å×°í¸® ½ºÅ×Æ½
+	// ì†Œë¶„ë¥˜ ì¹´í…Œê³ ë¦¬ ìŠ¤í…Œí‹±
 	m_pCategoryStatic2 = (gui::CStaticBox*)GetComponent( "stbCategory2" );
 	m_pCategoryStatic2->SetText( GetDisplayStringManager()->GetString( "DST_PETITION_SMALL_CATEGORY" ) );
 
-	// ¼ÒºÐ·ù Ä«Å×°í¸®
+	// ì†Œë¶„ë¥˜ ì¹´í…Œê³ ë¦¬
 	m_pCategory2	= (gui::CComboBox*)GetComponent( "cbbCategory2" );
 	m_slotItemSelect2 = m_pCategory2->SigSelected().Connect( this, &CPetitionGui::OnItemSelect2 );
 
-	// Àü¼Û¹öÆ°
+	// ì „ì†¡ë²„íŠ¼
 	m_pSendButton	= (gui::CButton*)GetComponent("btnSend");
 	m_pSendButton->SetText(GetDisplayStringManager()->GetString( "DST_PETITION_SEND" ));
 	m_slotSendButton = m_pSendButton->SigClicked().Connect(this, &CPetitionGui::OnClicked_SendButton);
 
-	// ÁøÁ¤³»¿ë
+	// ì§„ì •ë‚´ìš©
 	m_pInput	= (gui::CInputBox*)GetComponent("Input");	
 	m_pInput->SetMultilineMode(TRUE);
 	m_pInput->SetMaxLength(NTL_MAX_SIZE_QUESTION_CONTENT);
 	m_pInput->SetCaretSize(dINPUTBOX_CARET_WIDTH, dINPUTBOX_CARET_HEIGHT);
 
-	// ¹è°æ
+	// ë°°ê²½
 	m_BackPanel.SetType(CWindowby3::WT_VERTICAL);
 	m_BackPanel.SetSurface( 0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Petition.srf", "srfPanelLeft" ) );
 	m_BackPanel.SetSurface( 1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Petition.srf", "srfPanelCenter" ) );
@@ -90,18 +90,18 @@ RwBool CPetitionGui::Create()
 	m_BackPanel.SetSize(269, 286);
 	m_BackPanel.SetPositionfromParent(12, 71);	
 
-	// Ä«Å×°í¸® 1 ¹è°æ
+	// ì¹´í…Œê³ ë¦¬ 1 ë°°ê²½
 	m_srfCaregoryBack.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Petition.srf", "srfCategoryBack" ) );
 	m_srfCaregoryBack.SetPositionfromParent(12, 47);
 
-	// Ä«Å×°í¸® 2 ¹è°æ
+	// ì¹´í…Œê³ ë¦¬ 2 ë°°ê²½
 	m_srfCaregoryBack2.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Petition.srf", "srfCategoryBack" ) );
 	m_srfCaregoryBack2.SetPositionfromParent(150, 47);
 
-	// ´ëºÐ·ù Ä«Å×°í¸® ¼±ÅÃ ¸Þ¼¼Áö
+	// ëŒ€ë¶„ë¥˜ ì¹´í…Œê³ ë¦¬ ì„ íƒ ë©”ì„¸ì§€
 	m_pCategoryMessage = (gui::CStaticBox*)GetComponent( "stbBigClassfication" );
 
-	//¼ÒºÐ·ù Ä«Å×°í¸® ¼±ÅÃ ¸Þ¼¼Áö
+	//ì†Œë¶„ë¥˜ ì¹´í…Œê³ ë¦¬ ì„ íƒ ë©”ì„¸ì§€
 	m_pCategoryMessage2 = (gui::CStaticBox*)GetComponent( "stbSmallClassfication" );
 
 	if( GetPetitionManager()->GetCategory2() != PETITION_CATEGORY_2_INVALID )
@@ -123,7 +123,7 @@ RwBool CPetitionGui::Create()
 	m_slotMove				= m_pThis->SigMove().Connect( this, &CPetitionGui::OnMove );
 	m_slotPaint				= m_pThis->SigPaint().Connect( this, &CPetitionGui::OnPaint );
 
-	// SurfaceµéÀ» À§Ä¡½ÃÅ°±â À§ÇØ
+	// Surfaceë“¤ì„ ìœ„ì¹˜ì‹œí‚¤ê¸° ìœ„í•´
 	CRectangle rtScreen = m_pThis->GetScreenRect();
 	OnMove(rtScreen.left, rtScreen.top);
 
@@ -245,14 +245,14 @@ VOID CPetitionGui::OnClicked_SendButton(gui::CComponent* pComponent)
 
 	if( iSelectedCategory < 0 )
 	{
-		// ´ëºÐ·ù¸¦ ¼±ÅÃÇÏ½Ê½Ã¿ä
+		// ëŒ€ë¶„ë¥˜ë¥¼ ì„ íƒí•˜ì‹­ì‹œìš”
 		GetAlarmManager()->AlarmMessage("DST_PETITION_CHOICE_GREATE_CATEGORY");
 		return;
 	}
 
 	if( iSelectedCategory2 < 0 )
 	{
-		// ¼ÒºÐ·ù¸¦ ¼±ÅÃÇÏ½Ê½Ã¿ä
+		// ì†Œë¶„ë¥˜ë¥¼ ì„ íƒí•˜ì‹­ì‹œìš”
 		GetAlarmManager()->AlarmMessage("DST_PETITION_CHOICE_SMALL_CATEGORY");
 		return;
 	}
@@ -264,14 +264,14 @@ VOID CPetitionGui::OnClicked_SendButton(gui::CComponent* pComponent)
 
 	if( contentSize == 0 )
 	{
-		// ³»¿ëÀ» ÀÔ·ÂÇÏ¼¼¿ä
+		// ë‚´ìš©ì„ ìž…ë ¥í•˜ì„¸ìš”
 		GetAlarmManager()->AlarmMessage("DST_PETITION_INPUT_CONTENT");
 		return;
 	}
 
 	if( contentSize > NTL_MAX_SIZE_QUESTION_CONTENT )
 	{
-		// ³»¿ëÀÌ ³Ê¹« ±é´Ï´Ù
+		// ë‚´ìš©ì´ ë„ˆë¬´ ê¹ë‹ˆë‹¤
 		GetAlarmManager()->AlarmMessage("DST_PETITION_TOO_LONG_CONTENT");
 		return;
 	}

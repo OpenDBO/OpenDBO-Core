@@ -2,7 +2,7 @@
  *
  * File			: NtlTimer
  * Author		: HongHoDong
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 7. 14	
  * Abstract		: NTL Timer
  *****************************************************************************
@@ -17,7 +17,7 @@
 
 /**
  * \ingroup Util
- * TimeÀ» °è»ê ÇÏ´Â ÇÔ¼ö ÀÌ´Ù.
+ * Timeì„ ê³„ì‚° í•˜ëŠ” í•¨ìˆ˜ ì´ë‹¤.
  *
  * 
  */
@@ -35,7 +35,7 @@ public:
 		TIMER_GETABSOLUTETIME, TIMER_GETAPPTIME, TIMER_GETELAPSEDTIME
 	};
 
-	//  Àý´ë °ÇµéÁö ¸»°Í(Çü¼®) °Çµé ÇÊ¿ä°¡ ÀÖ´Â »ç¶÷Àº ÀÇ³íÇÒ °Í...
+	//  ì ˆëŒ€ ê±´ë“¤ì§€ ë§ê²ƒ(í˜•ì„) ê±´ë“¤ í•„ìš”ê°€ ìžˆëŠ” ì‚¬ëžŒì€ ì˜ë…¼í•  ê²ƒ...
 private:
 
 	static float __stdcall	DXUtil_Timer( TIMER_COMMAND command );

@@ -2,7 +2,7 @@
 *
 * File			: DLState.cpp
 * Author		: 
-* Copyright		: (ÁÖ) NTL
+* Copyright		: (ì£¼) NTL
 * Date			:
 * Abstract		: 
 *****************************************************************************
@@ -69,10 +69,10 @@ void CDLStateStart::Update( void )
 
 	if ( (__int64)m_uiGoalTime < (__int64)uiCurTime )
 	{
-		// 1. ÀÓ½Ã Æú´õ »ı¼º ( ÆÄÀÏ ´Ù¿î·Îµå ¹× º¹»ç ¿ëµµÀÇ Æú´õ )
+		// 1. ì„ì‹œ í´ë” ìƒì„± ( íŒŒì¼ ë‹¤ìš´ë¡œë“œ ë° ë³µì‚¬ ìš©ë„ì˜ í´ë” )
 		::CreateDirectory( DL_TEMP_PATH, NULL );
 
-		// 2. Client°¡ ÀÌ¹Ì ½ÇÇà ÁßÀÎÁö °Ë»çÇÑ´Ù
+		// 2. Clientê°€ ì´ë¯¸ ì‹¤í–‰ ì¤‘ì¸ì§€ ê²€ì‚¬í•œë‹¤
 		if ( IsMultiOpen( DL_MUTEX_DBO, FALSE ) )
 		{
 			DLSendMessage_ToUser( eDL_MSG_MUTEX_CHECK_CLIENT );
@@ -82,7 +82,7 @@ void CDLStateStart::Update( void )
 			return;
 		}
 
-		// 3. Launcher°¡ ÀÌ¹Ì ½ÇÇà ÁßÀÎÁö °Ë»çÇÑ´Ù
+		// 3. Launcherê°€ ì´ë¯¸ ì‹¤í–‰ ì¤‘ì¸ì§€ ê²€ì‚¬í•œë‹¤
 		if ( IsMultiOpen( DL_MUTEX_DBO_LAUNCHER, TRUE ) )
 		{
 			DLSendMessage_ToUser( eDL_MSG_MUTEX_CHECK_LAUNCHER );
@@ -109,7 +109,7 @@ bool CDLStateStart::IsMultiOpen( CString strExeName, bool bCreateMutex )
 				return TRUE;
 			}
 		}
-		// NULL ÀÌ¸é ÀÌ¹Ì ¿­·ÁÀÖ´Â°ÍÀÌ´Ù.
+		// NULL ì´ë©´ ì´ë¯¸ ì—´ë ¤ìˆëŠ”ê²ƒì´ë‹¤.
 		else
 		{
 			return TRUE;
@@ -119,7 +119,7 @@ bool CDLStateStart::IsMultiOpen( CString strExeName, bool bCreateMutex )
 	{
 		HANDLE hMutex = ::OpenMutex( NULL, FALSE, strExeName );
 
-		// NULLÀÌ ¾Æ´Ï¸é ÀÌ¹Ì ¿­·Á ÀÖ´Â °ÍÀÌ´Ù.
+		// NULLì´ ì•„ë‹ˆë©´ ì´ë¯¸ ì—´ë ¤ ìˆëŠ” ê²ƒì´ë‹¤.
 		if ( hMutex )
 		{
 			return TRUE;
@@ -139,7 +139,7 @@ bool CDLStateStart::IsMultiOpen( CString strExeName, bool bCreateMutex )
 
 void CDLStateDispatchDecision::Enter( void )
 {
-	// 1. Local configure¸¦ ÀĞ¾î µéÀÎ´Ù
+	// 1. Local configureë¥¼ ì½ì–´ ë“¤ì¸ë‹¤
 	if ( !LoadLocalConfig() )
 	{
 		DLSendMessage_ToUser( eDL_MSG_ERROR_NOT_PREPARED_LAUNCHER );
@@ -149,7 +149,7 @@ void CDLStateDispatchDecision::Enter( void )
 		return;
 	}
 
-	// 2. Server configure¸¦ ÀĞ¾î µéÀÎ´Ù
+	// 2. Server configureë¥¼ ì½ì–´ ë“¤ì¸ë‹¤
 	if ( !LoadServerConfig() )
 	{
 		DLSendMessage_ToUser( eDL_MSG_ERROR_NOT_PREPARED_LAUNCHER );
@@ -159,7 +159,7 @@ void CDLStateDispatchDecision::Enter( void )
 		return;
 	}
 
-	// 3. Version list¸¦ ÀĞ¾î µéÀÎ´Ù
+	// 3. Version listë¥¼ ì½ì–´ ë“¤ì¸ë‹¤
 	if ( !LoadVersionList() )
 	{
 		DLSendMessage_ToUser( eDL_MSG_ERROR_NOT_PREPARED_LAUNCHER );
@@ -169,7 +169,7 @@ void CDLStateDispatchDecision::Enter( void )
 		return;
 	}
 
-	// 4. SkinÀ» »ı¼ºÇÑ´Ù
+	// 4. Skinì„ ìƒì„±í•œë‹¤
 	if ( !CreateSkin() )
 	{
 		DLSendMessage_ToUser( eDL_MSG_ERROR_NOT_PREPARED_LAUNCHER );
@@ -179,7 +179,7 @@ void CDLStateDispatchDecision::Enter( void )
 		return;
 	}
 
-	// 5. Patch °¡´É ¿©ºÎ¸¦ ÆÇ´ÜÇÑ´Ù
+	// 5. Patch ê°€ëŠ¥ ì—¬ë¶€ë¥¼ íŒë‹¨í•œë‹¤
 
 	if ( g_clDLPatchServerConfig.GetPatchSvrMasterMode() )
 	{
@@ -207,7 +207,7 @@ void CDLStateDispatchDecision::Enter( void )
 		}
 	}
 
-	// 6. ·±Ã³ ÆĞÄ¡ ¸ğµå·Î µ¿ÀÛ ÁßÀÎ °æ¿ì
+	// 6. ëŸ°ì²˜ íŒ¨ì¹˜ ëª¨ë“œë¡œ ë™ì‘ ì¤‘ì¸ ê²½ìš°
 	if ( g_clDLCmdLine.GetCmdTypeCnt( CDLCmdLine::eDL_CMD_TYPE_LAUNCHER_PATCH ) > 0 )
 	{
 		ChangeState( eDL_STATE_LAUNCHER_PATCH );
@@ -218,20 +218,20 @@ void CDLStateDispatchDecision::Enter( void )
 	{
 		CDLPatchData* pLauncherPatchData = g_clDLPatchHistory.GetNewVerLauncherRtFull();
 
-		// 7. ÆĞÄ¡ ÇØ¾ßÇÒ ·±Ã³°¡ Á¸ÀçÇÏ´Â °æ¿ì
+		// 7. íŒ¨ì¹˜ í•´ì•¼í•  ëŸ°ì²˜ê°€ ì¡´ì¬í•˜ëŠ” ê²½ìš°
 		if ( pLauncherPatchData )
 		{
 			ChangeState( eDL_STATE_END, (void*)eDL_EXIT_CODE_EXECUTE_COPY_LAUNCHER );
 
 			return;
 		}
-		// 8. Å¬¶óÀÌ¾ğÆ® ÆĞÄ¡¸¦ ÇØ¾ß ÇÏ´Â °æ¿ì
+		// 8. í´ë¼ì´ì–¸íŠ¸ íŒ¨ì¹˜ë¥¼ í•´ì•¼ í•˜ëŠ” ê²½ìš°
 		else
 		{
-			// 1. ±âÁ¸ ´Ù¿î·Îµå ·±Ã³ Á¸Àç½Ã Á¦°Å
+			// 1. ê¸°ì¡´ ë‹¤ìš´ë¡œë“œ ëŸ°ì²˜ ì¡´ì¬ì‹œ ì œê±°
 			DeleteFile( DL_LAUNCHER_PATCH_EXE_FILE_NAME );
 
-			// 2. Å¬¶óÀÌ¾ğÆ® ÆĞÄ¡
+			// 2. í´ë¼ì´ì–¸íŠ¸ íŒ¨ì¹˜
 			ChangeState( eDL_STATE_CLIENT_PATCH );
 
 			return;
@@ -275,13 +275,13 @@ bool CDLStateDispatchDecision::LoadServerConfig( void )
 
 bool CDLStateDispatchDecision::LoadVersionList( void )
 {
-	// ÇöÀç ·ÎÄÃ¿¡ °¡Áö°í ÀÖ´Â ¹öÀü Á¤º¸¸¦ ÀĞ¾îµéÀÎ´Ù.
+	// í˜„ì¬ ë¡œì»¬ì— ê°€ì§€ê³  ìˆëŠ” ë²„ì „ ì •ë³´ë¥¼ ì½ì–´ë“¤ì¸ë‹¤.
 	if ( !g_clDLPatchHistory.LoadCurVersionList( DL_PATCH_CUR_VER_FILE_NAME ) )
 	{
 		return false;
 	}
 
-	// ¼­¹ö¿¡¼­ °¡Áö°í ÀÖ´Â ¹öÀü Á¤º¸¸¦ ÀĞ¾îµéÀÎ´Ù
+	// ì„œë²„ì—ì„œ ê°€ì§€ê³  ìˆëŠ” ë²„ì „ ì •ë³´ë¥¼ ì½ì–´ë“¤ì¸ë‹¤
 	sDL_ED_DO_DOWNLOAD sData;
 
 	sData.strDownloadServerName = g_clDLPatchServerConfig.GetPatchSvrIP();
@@ -511,7 +511,7 @@ void CDLStateIdle::Exit( void )
 
 void CDLStateIntegrityCheck::Enter( void )
 {
-	// Integrity check ÆÄÀÏ ±¸¼º
+	// Integrity check íŒŒì¼ êµ¬ì„±
 	{
 		sDL_ED_DO_DOWNLOAD sDLData;
 		sDLData.strDownloadServerName	= g_clDLPatchServerConfig.GetIntegritySvrIP();
@@ -543,7 +543,7 @@ void CDLStateIntegrityCheck::Enter( void )
 		}
 	}
 
-	// Integrity check¸¦ ÇÑ´Ù
+	// Integrity checkë¥¼ í•œë‹¤
 	{
 		sDL_ED_DO_CHECK_INTEGRITY sIntegrityData;
 		sIntegrityData.strIntegrityFileName = DL_CUR_PATH;
@@ -567,7 +567,7 @@ void CDLStateIntegrityCheck::Enter( void )
 			return;
 		}
 
-		// Integrity°¡ ±úÁø ÆÄÀÏµéÀ» ´Ù¿î·Îµå ÇÑ´Ù
+		// Integrityê°€ ê¹¨ì§„ íŒŒì¼ë“¤ì„ ë‹¤ìš´ë¡œë“œ í•œë‹¤
 
 		sDL_ED_DO_DOWNLOAD sDLData;
 
@@ -659,17 +659,17 @@ bool CDLStateIntegrityCheck::UnZip( CString strSrcPath, CString strDestPath, CSt
 
 void CDLStateEnd::Enter( void )
 {
-	// 1. Exit code µî·Ï
+	// 1. Exit code ë“±ë¡
 #pragma warning ( disable : 4311 )
 	theApp.SetExitCode( (int)m_pStateTransData );
 
-	// 2. Skin Á¦°Å
+	// 2. Skin ì œê±°
 	DeleteSkin();
 
-	// 3. ÀÓ½Ã Æú´õ Á¦°Å
+	// 3. ì„ì‹œ í´ë” ì œê±°
 	DeleteFolder( DL_TEMP_PATH );
 
-	// 4. Á¾·á »óÅÂ·Î ÀüÀÌ
+	// 4. ì¢…ë£Œ ìƒíƒœë¡œ ì „ì´
 	ChangeState( eDL_STATE_INVALID );
 }
 

@@ -16,8 +16,8 @@
 #include "NtlSLApi.h"
 
 
-#define ITEM_TIMELIMIT_NOTIFY_BEGINTIME		3600.0f	//	1½Ã°£.
-#define ITEM_TIMELIMIT_NOTIFY_INTERVALTIME  600.0f	//	10ºÐ.
+#define ITEM_TIMELIMIT_NOTIFY_BEGINTIME		3600.0f	//	1ì‹œê°„.
+#define ITEM_TIMELIMIT_NOTIFY_INTERVALTIME  600.0f	//	10ë¶„.
 
 DEFINITION_MEMORY_POOL(CNtlSobItemAttr)
 
@@ -188,18 +188,18 @@ void CNtlSobItemAttr::Update(RwReal fElapsedTime)
 				m_fRemainTimeBelowPeriod -= nRemainTimeAbovePeriod;
 			}			
 
-			// »ç¿ë±â°£ ¸¸·á
+			// ì‚¬ìš©ê¸°ê°„ ë§Œë£Œ
 			if( m_RemainTime < 0 )
 			{
 				m_RemainTime = 0;
 				m_fRemainTimeBelowPeriod = 0.0f;
 				m_fNotifyTime = 0.0f;
 
-				// ÆÐÅ¶¿¡¼­ Ã³¸®.
+				// íŒ¨í‚·ì—ì„œ ì²˜ë¦¬.
 				//CTextTable* pItemTextTable = API_GetTableContainer()->GetTextAllTable()->GetItemTbl();
 				//CNtlSLEventGenerator::FormatSysMsg( INVALID_SERIAL_ID, DST_COMMERCIAL_MB_UPDATE_TERM_LIMETED_ITEM_MSG, FALSE, pItemTextTable->GetText( m_pItemTbl->Name ).c_str() );
 			}
-			// »ç¿ë±â°£ ¸¸·á ¾Ë¸²
+			// ì‚¬ìš©ê¸°ê°„ ë§Œë£Œ ì•Œë¦¼
 			else if( m_RemainTime < ITEM_TIMELIMIT_NOTIFY_BEGINTIME )
 			{
 				if( m_fNotifyTime > 0.0f )

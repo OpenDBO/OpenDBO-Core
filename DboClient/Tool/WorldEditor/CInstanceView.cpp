@@ -1,4 +1,4 @@
-// AssetObjectView.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// AssetObjectView.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"

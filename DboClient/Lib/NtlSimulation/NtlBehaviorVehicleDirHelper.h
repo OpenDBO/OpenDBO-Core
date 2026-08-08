@@ -2,7 +2,7 @@
  *
  * File			: NtlBehaviorVehicleDirHelper.h
  * Author		: JeongHo, Rho
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2008. 11. 14	
  * Abstract		: vehicle helper class
  *****************************************************************************

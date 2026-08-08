@@ -2,7 +2,7 @@
  *
  * File			: NtlCharacterData.h
  * Author		: HongHoDong
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2006. 4. 11	
  * Abstract		: NTL NtlCharacterData
  *****************************************************************************
@@ -23,9 +23,9 @@ const RwUInt32 INVALID_GRAPHIC_ANIMATION_ID = 0xFFFFFFFF;
 
 struct STypeScaleBone
 {
-	RwReal	fLength;									///< Bone¿« ±Ê¿Ã
-	RwReal	fWidth;										///< Bone¿« µŒ≤≤
-	RwV3d	vAngle;										///< Bone¿« ∞¢µµ(«ˆ¿Á¥¬ πÃªÁøÎ)
+	RwReal	fLength;									///< BoneÏùò Í∏∏Ïù¥
+	RwReal	fWidth;										///< BoneÏùò ÎëêÍªò
+	RwV3d	vAngle;										///< BoneÏùò Í∞ÅÎèÑ(ÌòÑÏû¨Îäî ÎØ∏ÏÇ¨Ïö©)
 	
 	STypeScaleBone() : fLength(1.f), fWidth(1.f)
 	{
@@ -35,13 +35,13 @@ struct STypeScaleBone
 
 struct STypeBoneData
 {
-	RwBool			bBoneScale;							///< BoneScale¿ª ¿˚øÎ¿ª «“∞Õ¿Œ¡ˆ
-	RwV3d			vPosOffset;							///< √÷ªÛ¿ß Bone ¿ßƒ° Offset
-	RwInt32			nBoneCount;                         ///< Bone¿« ∞πºˆ
+	RwBool			bBoneScale;							///< BoneScaleÏùÑ Ï†ÅÏö©ÏùÑ Ìï†Í≤ÉÏù∏ÏßÄ
+	RwV3d			vPosOffset;							///< ÏµúÏÉÅÏúÑ Bone ÏúÑÏπò Offset
+	RwInt32			nBoneCount;                         ///< BoneÏùò Í∞ØÏàò
 	STypeScaleBone	BoneScale[MAX_NUM_SCALE_BONE];		///< Bone Scale Data
 
 
-	RwBool			bBaseScale;							///< Base Scale∏¶ ¿˚øÎ¿ª «“∞Õ¿Œ¡ˆ
+	RwBool			bBaseScale;							///< Base ScaleÎ•º Ï†ÅÏö©ÏùÑ Ìï†Í≤ÉÏù∏ÏßÄ
 	RwV3d			vBaseScale;							///< Base Scale
 
 	STypeBoneData() : bBoneScale(FALSE),
@@ -57,7 +57,7 @@ struct STypeBoneData
 		vBaseScale.z = 1.f;
 	}
 
-	// √÷¿˚»≠∏¶ ¿ß«ÿº≠ Bone Scale¿Ã≥™ Base∞° ¿˚øÎµ«æÓ ¿÷¿ª∂ß∏∏ ¿˙¿Â¿ª «—¥Ÿ.
+	// ÏµúÏ†ÅÌôîÎ•º ÏúÑÌï¥ÏÑú Bone ScaleÏù¥ÎÇò BaseÍ∞Ä Ï†ÅÏö©ÎêòÏñ¥ ÏûàÏùÑÎïåÎßå Ï†ÄÏû•ÏùÑ ÌïúÎã§.
 	void SaveSerialize(CNtlSerializer& sOut)
 	{
 		// Bone Scale
@@ -107,12 +107,12 @@ struct STypeCharEffectData
 enum ECharWorkState
 {
 	CHAR_WORK_STATE_NONE,								
-	CHAR_WORK_STATE_RES_LOAD_END,					// Res Load øœ∑·
+	CHAR_WORK_STATE_RES_LOAD_END,					// Res Load ÏôÑÎ£å
 };
 
 struct SCharScheduleResInfo
 {
-	RwBool		bVisible;								// »≠∏Èø° ∫∏ø©¡÷¥¬¡ˆ æ∆¥—¡ˆ
+	RwBool		bVisible;								// ÌôîÎ©¥Ïóê Î≥¥Ïó¨Ï£ºÎäîÏßÄ ÏïÑÎãåÏßÄ
 	RwBool		bLoadComplete;
 	
 	RwUInt32	uiAnimKey;

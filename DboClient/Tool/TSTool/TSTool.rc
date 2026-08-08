@@ -13,7 +13,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// «—±πæÓ resources
+// ÌïúÍµ≠Ïñ¥ resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 #ifdef _WIN32
@@ -48,9 +48,9 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)\r\n"
     "LANGUAGE 18, 1\r\n"
     "#pragma code_page(949)\r\n"
-    "#include ""res\\TSTool.rc2""  // Microsoft Visual C++ ¿Ãø‹¿« ¥Ÿ∏• µµ±∏ø°º≠ ∆Ì¡˝«— ∏Æº“Ω∫¿‘¥œ¥Ÿ.\r\n"
-    "#include ""afxres.rc""         // «•¡ÿ ±∏º∫ ø‰º“¿‘¥œ¥Ÿ.\r\n"
-    "#include ""afxprint.rc""       // ¿Œº‚ πÃ∏Æ ∫∏±‚ ∏Æº“Ω∫\r\n"
+    "#include ""res\\TSTool.rc2""  // Microsoft Visual C++ Ïù¥Ïô∏Ïùò Îã§Î•∏ ÎèÑÍµ¨ÏóêÏÑú Ìé∏ÏßëÌïú Î¶¨ÏÜåÏä§ÏûÖÎãàÎã§.\r\n"
+    "#include ""afxres.rc""         // ÌëúÏ§Ä Íµ¨ÏÑ± ÏöîÏÜåÏûÖÎãàÎã§.\r\n"
+    "#include ""afxprint.rc""       // Ïù∏ÏáÑ ÎØ∏Î¶¨ Î≥¥Í∏∞ Î¶¨ÏÜåÏä§\r\n"
     "#endif\r\n"
     "\0"
 END
@@ -1142,7 +1142,7 @@ BEGIN
     COMBOBOX        IDC_TS_ACT_ATTR_OBJCONV_OBJCONV_TYPE_COMBO,96,102,90,48,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Object index",IDC_STATIC,60,150,48,8
     EDITTEXT        IDC_TS_ACT_ATTR_OBJCONV_INDEX_EDITOR,96,162,90,14,ES_AUTOHSCROLL
-    LTEXT           "Object ¥Î»≠",IDC_STATIC,60,180,40,8
+    LTEXT           "Object ÎåÄÌôî",IDC_STATIC,60,180,40,8
     EDITTEXT        IDC_TS_ACT_ATTR_OBJCONV_CONV_EDITOR,96,192,90,14,ES_AUTOHSCROLL
     EDITTEXT        IDC_TS_ACT_ATTR_WORLD_INDEX_EDITOR,96,132,90,14,ES_AUTOHSCROLL
     LTEXT           "World index",IDC_STATIC,60,120,46,8
@@ -1670,29 +1670,29 @@ END
 
 IDD_TS_COND_PROGQUEST_ATTR_DIAG DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "[C]¡¯«‡¡ﬂ Quest ∞ÀªÁ"
+CAPTION "[C]ÏßÑÌñâÏ§ë Quest Í≤ÄÏÇ¨"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    LTEXT           "¡¯«‡ ∞ÀªÁ Quest æ∆¿Ãµ",-1,83,42,87,8
+    LTEXT           "ÏßÑÌñâ Í≤ÄÏÇ¨ Quest ÏïÑÏù¥Îîî",-1,83,42,87,8
     GROUPBOX        "",-1,51,26,151,56
     EDITTEXT        IDC_TS_COND_ATTR_PROGQUEST_ID_EDITOR,82,55,90,12,ES_AUTOHSCROLL
 END
 
 IDD_TS_COND_REPUTATION_ATTR_DIAG DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "[C]∏Ìøπ ∞ÀªÁ"
+CAPTION "[C]Î™ÖÏòà Í≤ÄÏÇ¨"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    LTEXT           "√÷º“ ∏Ìøπ",IDC_STATIC,66,42,35,8
+    LTEXT           "ÏµúÏÜå Î™ÖÏòà",IDC_STATIC,66,42,35,8
     GROUPBOX        "",IDC_STATIC,51,26,151,100
-    LTEXT           "√÷¥Î ∏Ìøπ",IDC_STATIC,66,78,35,8
+    LTEXT           "ÏµúÎåÄ Î™ÖÏòà",IDC_STATIC,66,78,35,8
     EDITTEXT        IDC_TS_COND_ATTR_REPUTATION_MAX_EDITOR,102,90,90,12,ES_AUTOHSCROLL
     EDITTEXT        IDC_TS_COND_ATTR_REPUTATION_MIN_EDITOR,102,54,90,12,ES_AUTOHSCROLL
 END
 
 IDD_TS_ACT_DIR_ATTR_TEL_MINOR_MATCH DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "√µ«œ¡¶¿œπ´µµ»∏ ∏∂¿Ã≥ ∏≈ƒ° ¿Ãµø"
+CAPTION "Ï≤úÌïòÏ†úÏùºÎ¨¥ÎèÑÌöå ÎßàÏù¥ÎÑàÎß§Ïπò Ïù¥Îèô"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     EDITTEXT        IDC_TS_ACT_ATTR_TELMINORMATCH_ID_EDITOR,120,42,66,14,ES_AUTOHSCROLL
@@ -1702,7 +1702,7 @@ END
 
 IDD_TS_ACT_DIR_ATTR_TEL_MUDOSA DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "√µ«œ¡¶¿œπ´µµ»∏ π´µµªÁ ¿Ãµø"
+CAPTION "Ï≤úÌïòÏ†úÏùºÎ¨¥ÎèÑÌöå Î¨¥ÎèÑÏÇ¨ Ïù¥Îèô"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     EDITTEXT        IDC_TS_ACT_ATTR_MUDOSA_ID_EDITOR,120,42,66,14,ES_AUTOHSCROLL
@@ -1712,50 +1712,50 @@ END
 
 IDD_TS_COND_BUDOKAI_STATE_ATTR_DIAG DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "[C]√µ«œ¡¶¿œπ´µµ»∏ ªÛ≈¬ ∞ÀªÁ"
+CAPTION "[C]Ï≤úÌïòÏ†úÏùºÎ¨¥ÎèÑÌöå ÏÉÅÌÉú Í≤ÄÏÇ¨"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     COMBOBOX        IDC_TS_COND_ATTR_MAIN_STATE_COMBO,65,38,112,45,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     COMBOBOX        IDC_TS_COND_ATTR_MODE_COMBO,65,81,112,121,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "√µ«œ¡¶¿œ π´µµ»∏ ªÛ≈¬",IDC_STATIC,65,24,77,8
-    LTEXT           "√µ«œ¡¶¿œ ∏µÂ",IDC_STATIC,65,64,51,8
+    LTEXT           "Ï≤úÌïòÏ†úÏùº Î¨¥ÎèÑÌöå ÏÉÅÌÉú",IDC_STATIC,65,24,77,8
+    LTEXT           "Ï≤úÌïòÏ†úÏùº Î™®Îìú",IDC_STATIC,65,64,51,8
     GROUPBOX        "",IDC_STATIC,45,11,153,129
 END
 
 IDD_TS_EVT_CLICK_MOB_ATTR_DIAG DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "[E]MOB º±≈√"
+CAPTION "[E]MOB ÏÑ†ÌÉù"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     EDITTEXT        IDC_TS_EVT_ATTR_CLICK_MOBGROUPIDX_EDITOR,111,33,72,14,ES_AUTOHSCROLL
-    LTEXT           "Mob ±◊∑Ï index",IDC_STATIC,50,36,58,8
+    LTEXT           "Mob Í∑∏Î£π index",IDC_STATIC,50,36,58,8
     GROUPBOX        "",IDC_STATIC,41,17,151,39
 END
 
 IDD_TS_COND_PROGCUSTOMEVT_ATTR_DIAG DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "[C]º≠πˆ¿Ã∫•∆Æ( ƒøΩ∫≈“ ¿Ã∫•∆Æ )"
+CAPTION "[C]ÏÑúÎ≤ÑÏù¥Î≤§Ìä∏( Ïª§Ïä§ÌÖÄ Ïù¥Î≤§Ìä∏ )"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    LTEXT           "æ∆∑° ¡∂∞« 3∞≥∏¶ ∏∏¡∑«œ∏È ¬¸¿Ãµ ",-1,69,41,117,8
+    LTEXT           "ÏïÑÎûò Ï°∞Í±¥ 3Í∞úÎ•º ÎßåÏ°±ÌïòÎ©¥ Ï∞∏Ïù¥Îê®",-1,69,41,117,8
     GROUPBOX        "",-1,51,26,151,135
     EDITTEXT        IDC_TS_COND_ATTR_PROGCUSTOMEVT_TID_EDITOR,81,135,90,12,ES_AUTOHSCROLL
-    LTEXT           "¡¯«‡¡ﬂ¿Œ Quest æ∆¿Ãµ",-1,83,122,85,8
-    LTEXT           "1. æ∆∑° ¿‘∑¬«— Quest æ∆¿Ãµ∞° µø¿€¡ﬂ¿Œ ∞ÊøÏ",-1,73,53,109,19
-    LTEXT           "2. º≠πˆ ¿Ã∫•∆Æ ( ƒøΩ∫≈“ ¿Ã∫•∆Æ ) ≈∏¿‘¿Ã µø¿€¡ﬂ¿Œ ∞ÊøÏ",-1,73,71,109,19
-    LTEXT           "3. º≠πˆ ¿Ã∫•∆Æ ( ƒøΩ∫≈“ ¿Ã∫•∆Æ ) ¡∂∞«¿ª ∏∏¡∑«œ¥¬ ∞ÊøÏ",-1,74,91,109,19
+    LTEXT           "ÏßÑÌñâÏ§ëÏù∏ Quest ÏïÑÏù¥Îîî",-1,83,122,85,8
+    LTEXT           "1. ÏïÑÎûò ÏûÖÎ†•Ìïú Quest ÏïÑÏù¥ÎîîÍ∞Ä ÎèôÏûëÏ§ëÏù∏ Í≤ΩÏö∞",-1,73,53,109,19
+    LTEXT           "2. ÏÑúÎ≤Ñ Ïù¥Î≤§Ìä∏ ( Ïª§Ïä§ÌÖÄ Ïù¥Î≤§Ìä∏ ) ÌÉÄÏûÖÏù¥ ÎèôÏûëÏ§ëÏù∏ Í≤ΩÏö∞",-1,73,71,109,19
+    LTEXT           "3. ÏÑúÎ≤Ñ Ïù¥Î≤§Ìä∏ ( Ïª§Ïä§ÌÖÄ Ïù¥Î≤§Ìä∏ ) Ï°∞Í±¥ÏùÑ ÎßåÏ°±ÌïòÎäî Í≤ΩÏö∞",-1,74,91,109,19
 END
 
 IDD_TS_ACT_PIDGN_ATTR_DIAG DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "∆ƒ∆º ¿ŒΩ∫≈œΩ∫ ¥¯¿¸"
+CAPTION "ÌååÌã∞ Ïù∏Ïä§ÌÑ¥Ïä§ ÎçòÏ†Ñ"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     EDITTEXT        IDC_TS_ACT_ATTR_PIDGN_ID_EDITOR,120,42,66,14,ES_AUTOHSCROLL
     LTEXT           "Action ID",IDC_STATIC,66,45,43,8
     GROUPBOX        "",IDC_STATIC,48,26,151,39
     GROUPBOX        "",IDC_STATIC,48,78,151,100
-    LTEXT           "¥¯¿¸ ≈∏¿‘",IDC_STATIC,61,96,35,8
+    LTEXT           "ÎçòÏ†Ñ ÌÉÄÏûÖ",IDC_STATIC,61,96,35,8
     COMBOBOX        IDC_TS_ACT_ATTR_PIDGN_TYPE_COMBO,113,93,75,96,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Normal Dugeon Table Index",IDC_TS_ACT_ATTR_PIDGN_NORMAL_IDX_STATIC,52,121,90,8
     EDITTEXT        IDC_TS_ACT_ATTR_PIDGN_NORMAL_IDX_EDITOR,144,119,50,14,ES_AUTOHSCROLL
@@ -1765,7 +1765,7 @@ END
 
 IDD_TS_ACT_DOSKILL_ATTR_DIAG DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "Ω∫≈≥"
+CAPTION "Ïä§ÌÇ¨"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     EDITTEXT        IDC_TS_ACT_ATTR_DOSKILL_ID_EDITOR,120,42,66,14,ES_AUTOHSCROLL
@@ -1778,14 +1778,14 @@ END
 
 IDD_TS_ACT_TLQ_ATTR_DIAG DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "≈∏¿” ∏≥ Quest (TLQ)"
+CAPTION "ÌÉÄÏûÑ Î¶Ω Quest (TLQ)"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     EDITTEXT        IDC_TS_ACT_ATTR_TLQ_ID_EDITOR,120,42,66,14,ES_AUTOHSCROLL
     LTEXT           "Action ID",IDC_STATIC,66,45,43,8
     GROUPBOX        "",IDC_STATIC,48,26,151,39
     GROUPBOX        "",IDC_STATIC,48,78,151,74
-    LTEXT           "¥¯¿¸ ≈∏¿‘",IDC_STATIC,61,96,35,8
+    LTEXT           "ÎçòÏ†Ñ ÌÉÄÏûÖ",IDC_STATIC,61,96,35,8
     COMBOBOX        IDC_TS_ACT_ATTR_TLQ_TYPE_COMBO,113,93,75,96,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Dugeon Table Index",IDC_TS_ACT_ATTR_TLQ_IDX_STATIC,60,122,66,8
     EDITTEXT        IDC_TS_ACT_ATTR_TLQ_IDX_EDITOR,137,120,50,14,ES_AUTOHSCROLL
@@ -1793,7 +1793,7 @@ END
 
 IDD_TS_ACT_TBOJ_FRIENDLY_ATTR_DIAG DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "∆Æ∏Æ∞≈ ø¿∫Í¡ß∆Æ ƒ£π–µµ"
+CAPTION "Ìä∏Î¶¨Í±∞ Ïò§Î∏åÏ†ùÌä∏ ÏπúÎ∞ÄÎèÑ"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     EDITTEXT        IDC_TS_ACT_ATTR_TBOJ_FRIENDLY_ID_EDITOR,120,42,66,14,ES_AUTOHSCROLL
@@ -1803,19 +1803,19 @@ BEGIN
     CONTROL         "PC",IDC_TS_ACT_ATTR_TBOJ_FRIENDLY_PC_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,65,115,25,10
     CONTROL         "NPC",IDC_TS_ACT_ATTR_TBOJ_FRIENDLY_NPC_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,65,130,29,10
     CONTROL         "MOB",IDC_TS_ACT_ATTR_TBOJ_FRIENDLY_MOB_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,65,145,31,10
-    LTEXT           "æ∆∑° «√∑°±◊∞° ƒ—¡Æ ¿÷¥¬ ¥ÎªÛ¿∫ ƒ£±∏∑Œ ¿ŒΩƒ«‘. ¡Ô, ∞¯∞›«œ¡ˆ æ ¿Ω",IDC_STATIC,61,89,126,21
+    LTEXT           "ÏïÑÎûò ÌîåÎûòÍ∑∏Í∞Ä ÏºúÏ†∏ ÏûàÎäî ÎåÄÏÉÅÏùÄ ÏπúÍµ¨Î°ú Ïù∏ÏãùÌï®. Ï¶â, Í≥µÍ≤©ÌïòÏßÄ ÏïäÏùå",IDC_STATIC,61,89,126,21
 END
 
 IDD_TS_COND_AVATAR_DEAD_ATTR_DIAG DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "[C]Avatar ¡◊¿Ω ∞ÀªÁ"
+CAPTION "[C]Avatar Ï£ΩÏùå Í≤ÄÏÇ¨"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
 END
 
 IDD_TS_CONT_UNIFIED_NARRATION_ATTR_DIAG DIALOGEX 0, 0, 250, 341
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "≈Î«’ ≥™∑°¿Ãº«"
+CAPTION "ÌÜµÌï© ÎÇòÎûòÏù¥ÏÖò"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     EDITTEXT        IDC_TS_CONT_ATTR_UNIFIED_NARRATION_ID_EDITOR,126,33,54,14,ES_AUTOHSCROLL
@@ -1828,65 +1828,65 @@ END
 IDD_EXPORT_EVENTOR DIALOGEX 0, 0, 455, 130
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Export Eventor"
-FONT 9, "MS º– ¥Î»≠ ªÛ¿⁄", 0, 0, 0x1
+FONT 9, "MS ÏÖ∏ ÎåÄÌôî ÏÉÅÏûê", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Table µ•¿Ã≈Õ",IDC_STATIC,14,8,424,41
+    GROUPBOX        "Table Îç∞Ïù¥ÌÑ∞",IDC_STATIC,14,8,424,41
     PUSHBUTTON      "Table Path",IDC_TABLE_PATH,22,22,45,16
     EDITTEXT        IDC_TABLE_PATH_EDIT,77,22,349,16,ES_AUTOHSCROLL | ES_READONLY
-    GROUPBOX        "TS µ•¿Ã≈Õ",IDC_STATIC,14,56,424,41
+    GROUPBOX        "TS Îç∞Ïù¥ÌÑ∞",IDC_STATIC,14,56,424,41
     PUSHBUTTON      "TS Path",IDC_TS_PATH,22,71,45,16
     EDITTEXT        IDC_TS_PATH_EDIT,78,71,349,16,ES_AUTOHSCROLL | ES_READONLY
-    PUSHBUTTON      "∫ÙµÂ",IDOK,107,104,65,18
+    PUSHBUTTON      "ÎπåÎìú",IDOK,107,104,65,18
     PUSHBUTTON      "Cancel",IDCANCEL,260,104,65,18
 END
 
 IDD_TS_ACT_BROADMSG_ATTR_DIAG DIALOGEX 0, 0, 250, 322
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "πÊº€ ∏ﬁºº¡ˆ"
+CAPTION "Î∞©ÏÜ° Î©îÏÑ∏ÏßÄ"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     EDITTEXT        IDC_TS_ACT_ATTR_BROADMSG_ID_EDITOR,132,42,54,14,ES_AUTOHSCROLL
     LTEXT           "Action ID",IDC_STATIC,66,45,43,8
     GROUPBOX        "",IDC_STATIC,48,26,151,39
     GROUPBOX        "",IDC_STATIC,48,78,151,227
-    LTEXT           "πÊº€ ¡æ∑˘",IDC_STATIC,68,93,35,8
+    LTEXT           "Î∞©ÏÜ° Ï¢ÖÎ•ò",IDC_STATIC,68,93,35,8
     COMBOBOX        IDD_TS_ACT_BROADMSG_EXCUTION_TYPE_COMBO,67,109,114,75,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "UI ø¨√‚",IDD_TS_ACT_BROADMSG_UI_DIR_TYPE_STATIC,71,130,26,8
+    LTEXT           "UI Ïó∞Ï∂ú",IDD_TS_ACT_BROADMSG_UI_DIR_TYPE_STATIC,71,130,26,8
     COMBOBOX        IDD_TS_ACT_BROADMSG_UI_DIR_TYPE_COMBO,121,127,60,75,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "UI Show/Hide ø¨√‚",IDD_TS_ACT_BROADMSG_UI_SHOW_HIDE_DIR_TYPE_STATIC,58,150,62,8
+    LTEXT           "UI Show/Hide Ïó∞Ï∂ú",IDD_TS_ACT_BROADMSG_UI_SHOW_HIDE_DIR_TYPE_STATIC,58,150,62,8
     COMBOBOX        IDD_TS_ACT_BROADMSG_UI_SHOW_HIDE_DIR_TYPE_COMBO,122,147,59,75,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "UI ∏ª«≥º±",IDD_TS_ACT_BROADMSG_UI_BALLOON_SHAPE_TYPE_STATIC,68,170,34,8
+    LTEXT           "UI ÎßêÌíçÏÑ†",IDD_TS_ACT_BROADMSG_UI_BALLOON_SHAPE_TYPE_STATIC,68,170,34,8
     COMBOBOX        IDD_TS_ACT_BROADMSG_UI_BALLOON_SHAPE_TYPE_COMBO,122,167,59,75,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Speech ø¨√‚",IDD_TS_ACT_BROADMSG_UI_SPEECH_DIR_TYPE_STATIC,67,189,42,8
+    LTEXT           "Speech Ïó∞Ï∂ú",IDD_TS_ACT_BROADMSG_UI_SPEECH_DIR_TYPE_STATIC,67,189,42,8
     COMBOBOX        IDD_TS_ACT_BROADMSG_UI_SPEECH_DIR_TYPE_COMBO,121,186,59,75,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Owner ªÛ≈¬",IDD_TS_ACT_BROADMSG_OWNER_CONDITION_TYPE_STATIC,67,209,40,8
+    LTEXT           "Owner ÏÉÅÌÉú",IDD_TS_ACT_BROADMSG_OWNER_CONDITION_TYPE_STATIC,67,209,40,8
     COMBOBOX        IDD_TS_ACT_BROADMSG_OWNER_CONDITION_TYPE_COMBO,121,206,59,75,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Owner ¡æ∑˘",IDD_TS_ACT_BROADMSG_OWNER_TYPE_STATIC,67,227,40,8
+    LTEXT           "Owner Ï¢ÖÎ•ò",IDD_TS_ACT_BROADMSG_OWNER_TYPE_STATIC,67,227,40,8
     COMBOBOX        IDD_TS_ACT_BROADMSG_OWNER_TYPE_COMBO,121,224,59,75,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Owner Tbl Idx",IDD_TS_ACT_BROADMSG_OWNER_TBL_IDX_STATIC,66,245,46,8
     EDITTEXT        IDD_TS_ACT_BROADMSG_OWNER_TBL_IDX_EDITOR,121,242,58,14,ES_AUTOHSCROLL
     LTEXT           "Speech Tbl Idx",IDD_TS_ACT_BROADMSG_SPEECH_TBL_IDX_STATIC,66,262,48,8
     EDITTEXT        IDD_TS_ACT_BROADMSG_SPEECH_TBL_IDX_EDITOR,121,259,58,14,ES_AUTOHSCROLL
-    LTEXT           "√‚∑¬ Ω√∞£ (√ )",IDD_TS_ACT_BROADMSG_DISPLAY_TIME_STATIC,65,280,50,8
+    LTEXT           "Ï∂úÎ†• ÏãúÍ∞Ñ (Ï¥à)",IDD_TS_ACT_BROADMSG_DISPLAY_TIME_STATIC,65,280,50,8
     EDITTEXT        IDD_TS_ACT_BROADMSG_DISPLAY_TIME_EDITOR,121,277,58,14,ES_AUTOHSCROLL
 END
 
 IDD_TS_ACT_MINI_NARRATION_ATTR_DIAG DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "πÃ¥œ ≥™∑π¿Ãº«"
+CAPTION "ÎØ∏Îãà ÎÇòÎ†àÏù¥ÏÖò"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     EDITTEXT        IDC_TS_ACT_ATTR_MINI_NARRATION_ID_EDITOR,120,42,66,14,ES_AUTOHSCROLL
     LTEXT           "Action ID",-1,66,45,43,8
     GROUPBOX        "",-1,48,26,151,39
     GROUPBOX        "",-1,48,78,151,63
-    LTEXT           "πÃ¥œ ≥™∑π¿Ãº« Table index",-1,59,96,35,33
+    LTEXT           "ÎØ∏Îãà ÎÇòÎ†àÏù¥ÏÖò Table index",-1,59,96,35,33
     EDITTEXT        IDC_TS_ACT_ATTR_MINI_NARRATION_TBLIDX_EDITOR,116,94,69,14,ES_AUTOHSCROLL
 END
 
 IDD_TS_ACT_REG_C_TIMING_ATTR_DIAG DIALOGEX 0, 0, 312, 413
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "≈¨∂Û¿Ãæ∆Æ ≈∏¿Ãπ÷"
+CAPTION "ÌÅ¥ÎùºÏù¥Ïñ∏Ìä∏ ÌÉÄÏù¥Î∞ç"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     EDITTEXT        IDC_TS_ACT_ATTR_REG_C_TIMING_ID_EDITOR,132,42,54,14,ES_AUTOHSCROLL
@@ -1894,7 +1894,7 @@ BEGIN
     GROUPBOX        "",IDC_STATIC,48,26,210,39
     GROUPBOX        "",IDC_STATIC,48,78,210,326
     COMBOBOX        IDD_TS_ACT_REG_C_TIMING_TYPE_COMBO,144,91,62,75,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "µÓ∑œ / √ ±‚»≠",IDC_STATIC,90,93,48,8
+    LTEXT           "Îì±Î°ù / Ï¥àÍ∏∞Ìôî",IDC_STATIC,90,93,48,8
     EDITTEXT        IDD_TS_ACT_REG_C_TIMING_TIMING_TYPE_MOB_CLICK_MIDX_EDITOR,173,119,61,13,ES_AUTOHSCROLL
     EDITTEXT        IDD_TS_ACT_REG_C_TIMING_TIMING_TYPE_NPC_CLICK_NIDX_EDITOR,174,139,61,13,ES_AUTOHSCROLL
     EDITTEXT        IDD_TS_ACT_REG_C_TIMING_TIMING_TYPE_OBJ_CLICK_WTBLIDX_EDITOR,121,174,53,13,ES_AUTOHSCROLL
@@ -1945,7 +1945,7 @@ END
 
 IDD_TS_ACT_EXC_C_GROUP_ATTR_DIAG DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "≈¨∂Û¿Ãæ∆Æ ±◊∑Ï Ω««‡"
+CAPTION "ÌÅ¥ÎùºÏù¥Ïñ∏Ìä∏ Í∑∏Î£π Ïã§Ìñâ"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     EDITTEXT        IDC_TS_ACT_ATTR_EXC_C_GROUP_ID_EDITOR,120,42,66,14,ES_AUTOHSCROLL
@@ -1953,9 +1953,9 @@ BEGIN
     GROUPBOX        "",IDC_STATIC,48,26,151,39
     GROUPBOX        "",IDC_STATIC,48,78,151,100
     EDITTEXT        IDC_TS_ACT_ATTR_EXC_C_GROUP_EXCTSGID_EDITOR,120,123,69,14,ES_AUTOHSCROLL
-    LTEXT           "µÓ∑œ / «ÿ¡¶",IDC_STATIC,64,100,40,8
+    LTEXT           "Îì±Î°ù / Ìï¥Ï†ú",IDC_STATIC,64,100,40,8
     COMBOBOX        IDC_TS_ACT_ATTR_EXC_C_GROUP_REGTYPE_COMBO,120,97,71,155,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Ω««‡ Ω√≈≥ ≈¨∂Û¿Ãæ∆Æ ±◊∑Ï æ∆¿Ãµ",IDC_TS_ACT_ATTR_EXC_C_GROUP_EXCTSGID_STATIC,65,120,43,28
+    LTEXT           "Ïã§Ìñâ ÏãúÌÇ¨ ÌÅ¥ÎùºÏù¥Ïñ∏Ìä∏ Í∑∏Î£π ÏïÑÏù¥Îîî",IDC_TS_ACT_ATTR_EXC_C_GROUP_EXCTSGID_STATIC,65,120,43,28
 END
 
 IDD_QUEST_TEXT_UTILITY DIALOGEX 0, 0, 181, 370
@@ -1975,25 +1975,25 @@ END
 
 IDD_TS_ACT_SKIP_CONT_ATTR_DLG DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "ƒ¡≈Õ¿Ã≥  Ω∫≈µ"
+CAPTION "Ïª®ÌÑ∞Ïù¥ÎÑà Ïä§ÌÇµ"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     EDITTEXT        IDC_TS_ACT_ATTR_SKIP_CONT_ID_EDITOR,132,42,54,14,ES_AUTOHSCROLL
     LTEXT           "Action ID",IDC_STATIC,66,45,43,8
     GROUPBOX        "",IDC_STATIC,48,26,151,39
     GROUPBOX        "",IDC_STATIC,48,78,151,102
-    LTEXT           "Ω∫≈µ«“ Quest æ∆¿Ãµ",IDC_STATIC,65,95,77,8
+    LTEXT           "Ïä§ÌÇµÌï† Quest ÏïÑÏù¥Îîî",IDC_STATIC,65,95,77,8
     EDITTEXT        IDD_TS_ACT_SKIP_CONT_QUESTID_EDITOR,65,111,112,13,ES_AUTOHSCROLL
-    LTEXT           "Ω∫≈µ«“ Container ID",IDC_STATIC,63,131,85,8
+    LTEXT           "Ïä§ÌÇµÌï† Container ID",IDC_STATIC,63,131,85,8
     EDITTEXT        IDD_TS_ACT_SKIP_CONT_CONTID_EDITOR,64,147,112,13,ES_AUTOHSCROLL
 END
 
 IDD_TS_COND_OUTRGN_ATTR_DIAG DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "[C]øµø™π€ ∞ÀªÁ"
+CAPTION "[C]ÏòÅÏó≠Î∞ñ Í≤ÄÏÇ¨"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    LTEXT           "ø˘µÂ Table index",-1,88,41,69,8
+    LTEXT           "ÏõîÎìú Table index",-1,88,41,69,8
     GROUPBOX        "",-1,51,26,151,100
     EDITTEXT        IDC_TS_COND_OUTRGN_ATTR_WORLDTBLIDX_EDITOR,79,55,90,12,ES_AUTOHSCROLL
     LTEXT           "X",-1,85,76,8,8
@@ -2006,21 +2006,21 @@ END
 
 IDD_TS_EVT_BINDSTONE_ATTR_DIAG DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "[E]πŸ¿ŒµÂΩ∫≈ÊπŸ¿ŒµÂ"
+CAPTION "[E]Î∞îÏù∏ÎìúÏä§ÌÜ§Î∞îÏù∏Îìú"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
 END
 
 IDD_TS_EVT_SEARCHQUEST_ATTR_DIAG DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "[E]Questº≠ƒ°"
+CAPTION "[E]QuestÏÑúÏπò"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
 END
 
 IDD_TS_ACT_OBJ_WPS_ATTR_DIAG DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "ø¿∫Í¡ß∆Æ ∆Æ∏Æ∞≈ WPS"
+CAPTION "Ïò§Î∏åÏ†ùÌä∏ Ìä∏Î¶¨Í±∞ WPS"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     EDITTEXT        IDC_TS_ACT_ATTR_OBJ_WPS_ID_EDITOR,120,42,66,14,ES_AUTOHSCROLL
@@ -2028,21 +2028,21 @@ BEGIN
     GROUPBOX        "",IDC_STATIC,48,26,151,39
     GROUPBOX        "",IDC_STATIC,48,78,151,66
     EDITTEXT        IDC_TS_ACT_ATTR_OBJ_WPS_SCRIPTID_EDITOR,91,113,69,14,ES_AUTOHSCROLL
-    LTEXT           "ø˘µÂ «√∑°¿Ã Ω∫≈©∏≥∆Æ æ∆¿Ãµ",IDC_STATIC,72,97,103,8
+    LTEXT           "ÏõîÎìú ÌîåÎûòÏù¥ Ïä§ÌÅ¨Î¶ΩÌä∏ ÏïÑÏù¥Îîî",IDC_STATIC,72,97,103,8
 END
 
 IDD_TS_ACT_DOJO_ATTR_DIAG DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "µµ¿Â ¡¯¿‘ π◊ ≥™∞°±‚"
+CAPTION "ÎèÑÏû• ÏßÑÏûÖ Î∞è ÎÇòÍ∞ÄÍ∏∞"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     EDITTEXT        IDC_TS_ACT_ATTR_DOJO_ID_EDITOR,120,42,66,14,ES_AUTOHSCROLL
     LTEXT           "Action ID",IDC_STATIC,66,45,43,8
     GROUPBOX        "",IDC_STATIC,48,26,151,39
     GROUPBOX        "",IDC_STATIC,48,78,151,66
-    LTEXT           "µµ¿Â ≈∏¿‘",IDC_STATIC,61,96,35,8
+    LTEXT           "ÎèÑÏû• ÌÉÄÏûÖ",IDC_STATIC,61,96,35,8
     COMBOBOX        IDC_TS_ACT_ATTR_DOJO_TYPE_COMBO,113,93,75,96,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "µµ¿Â Table Index",IDC_TS_ACT_ATTR_DOJO_IDX_STATIC,62,121,57,8
+    LTEXT           "ÎèÑÏû• Table Index",IDC_TS_ACT_ATTR_DOJO_IDX_STATIC,62,121,57,8
     EDITTEXT        IDC_TS_ACT_ATTR_DOJO_IDX_EDITOR,137,119,50,14,ES_AUTOHSCROLL
 END
 
@@ -2066,70 +2066,70 @@ END
 
 IDD_TS_EVT_ITEMUPGRADE_ATTR_DIAG DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "[E]item æ˜±◊∑°¿ÃµÂ"
+CAPTION "[E]item ÏóÖÍ∑∏ÎûòÏù¥Îìú"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
 END
 
 IDD_TS_EVT_TELEPORT_ATTR_DIAG DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "[E]æﬂµÂ∑π∆Æ ≈⁄∑π∆˜∆Æ"
+CAPTION "[E]ÏïºÎìúÎ†àÌä∏ ÌÖîÎ†àÌè¨Ìä∏"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
 END
 
 IDD_TS_EVT_BUDOKAI_ATTR_DIAG DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "[E]√µ«œ¡¶¿œπ´µµ»∏ ¬¸ø©"
+CAPTION "[E]Ï≤úÌïòÏ†úÏùºÎ¨¥ÎèÑÌöå Ï∞∏Ïó¨"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
 END
 
 IDD_TS_EVT_SLOTMACHINE_ATTR_DIAG DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "[E]ΩΩ∑‘∏”Ω≈"
+CAPTION "[E]Ïä¨Î°ØÎ®∏Ïã†"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
 END
 
 IDD_TS_EVT_HOIPOIMIX_ATTR_DIAG DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "[E]»£¿Ã∆˜¿ÃπÕΩ∫"
+CAPTION "[E]Ìò∏Ïù¥Ìè¨Ïù¥ÎØπÏä§"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
 END
 
 IDD_TS_EVT_PRIVATESHOP_ATTR_DIAG DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "[E]∞≥¿ŒªÛ¡°"
+CAPTION "[E]Í∞úÏù∏ÏÉÅÏ†ê"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
 END
 
 IDD_TS_EVT_FREEBATTLE_ATTR_DIAG DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "[E]«¡∏ÆπË∆≤"
+CAPTION "[E]ÌîÑÎ¶¨Î∞∞ÌãÄ"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
 END
 
 IDD_TS_EVT_ITEMIDENTITY_ATTR_DIAG DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "[E] item ¿Œ¡ı"
+CAPTION "[E] item Ïù∏Ï¶ù"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
 END
 
 IDD_TS_EVT_USEMAIL_ATTR_DIAG DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "[E] ∏ﬁ¿œ ªÁøÎ"
+CAPTION "[E] Î©îÏùº ÏÇ¨Ïö©"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
 END
 
 IDD_TS_EVT_PARTY_ATTR_DIAG DIALOGEX 0, 0, 250, 303
 STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "[E]∆ƒ∆º"
+CAPTION "[E]ÌååÌã∞"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
 END
@@ -2157,13 +2157,13 @@ BEGIN
     BEGIN
         BLOCK "041203b5"
         BEGIN
-            VALUE "CompanyName", "TODO: <»∏ªÁ ¿Ã∏ß>"
-            VALUE "FileDescription", "TODO: <∆ƒ¿œ º≥∏Ì>"
+            VALUE "CompanyName", "TODO: <ÌöåÏÇ¨ Ïù¥Î¶Ñ>"
+            VALUE "FileDescription", "TODO: <ÌååÏùº ÏÑ§Î™Ö>"
             VALUE "FileVersion", "1.0.0.1"
             VALUE "InternalName", "TSTool.exe"
-            VALUE "LegalCopyright", "TODO: (c) <»∏ªÁ ¿Ã∏ß>.  All rights reserved."
+            VALUE "LegalCopyright", "TODO: (c) <ÌöåÏÇ¨ Ïù¥Î¶Ñ>.  All rights reserved."
             VALUE "OriginalFilename", "TSTool.exe"
-            VALUE "ProductName", "TODO: <¡¶«∞ ¿Ã∏ß>"
+            VALUE "ProductName", "TODO: <Ï†úÌíà Ïù¥Î¶Ñ>"
             VALUE "ProductVersion", "1.0.0.1"
         END
     END
@@ -2874,7 +2874,7 @@ BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Close print preview.\nCancel Preview"
 END
 
-#endif    // «—±πæÓ resources
+#endif    // ÌïúÍµ≠Ïñ¥ resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -2892,9 +2892,9 @@ END
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 LANGUAGE 18, 1
 #pragma code_page(949)
-#include "res\TSTool.rc2"  // Microsoft Visual C++ ¿Ãø‹¿« ¥Ÿ∏• µµ±∏ø°º≠ ∆Ì¡˝«— ∏Æº“Ω∫¿‘¥œ¥Ÿ.
-#include "afxres.rc"         // «•¡ÿ ±∏º∫ ø‰º“¿‘¥œ¥Ÿ.
-#include "afxprint.rc"       // ¿Œº‚ πÃ∏Æ ∫∏±‚ ∏Æº“Ω∫
+#include "res\TSTool.rc2"  // Microsoft Visual C++ Ïù¥Ïô∏Ïùò Îã§Î•∏ ÎèÑÍµ¨ÏóêÏÑú Ìé∏ÏßëÌïú Î¶¨ÏÜåÏä§ÏûÖÎãàÎã§.
+#include "afxres.rc"         // ÌëúÏ§Ä Íµ¨ÏÑ± ÏöîÏÜåÏûÖÎãàÎã§.
+#include "afxprint.rc"       // Ïù∏ÏáÑ ÎØ∏Î¶¨ Î≥¥Í∏∞ Î¶¨ÏÜåÏä§
 #endif
 
 /////////////////////////////////////////////////////////////////////////////

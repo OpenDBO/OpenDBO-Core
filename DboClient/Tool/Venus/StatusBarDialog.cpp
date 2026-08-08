@@ -1,4 +1,4 @@
-// StatusBarDialog.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// StatusBarDialog.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -10,7 +10,7 @@
 #include "VenusFramework.h"
 
 
-// CStatusBarDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CStatusBarDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CStatusBarDialog, CDialog)
 CStatusBarDialog::CStatusBarDialog(CWnd* pParent /*=NULL*/)
@@ -59,13 +59,13 @@ CStatusBarDialog& CStatusBarDialog::GetInstance()
 	return dlg;
 }
 
-// CStatusBarDialog ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CStatusBarDialog ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CStatusBarDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	m_TimeSpeedSlider.SetRange(1, 50);	
 	m_TimeSpeedSlider.SetTic(10);
 	m_TimeSpeedSlider.SetTicFreq(5);
@@ -79,14 +79,14 @@ BOOL CStatusBarDialog::OnInitDialog()
 	UpdateTimeButton();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CStatusBarDialog::OnSize(UINT nType, int cx, int cy)
 {
 	CDialog::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 void CStatusBarDialog::InsertTrace(const RwChar* strTrace)
@@ -137,18 +137,18 @@ void CStatusBarDialog::UpdateCount(RwInt32 nEffectCount, RwInt32 nPolygonCount)
 
 void CStatusBarDialog::OnBnClickedTimePause()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CVenusConfig::GetInstance().m_bTimePause = m_btnTimePause.GetCheck();
 }
 void CStatusBarDialog::OnBnClickedTimeRepeat()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CVenusConfig::GetInstance().m_bTimeRepeat = m_btnTimeRepeat.GetCheck();
 }
 
 void CStatusBarDialog::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	switch(pScrollBar->GetDlgCtrlID())
 	{
 		case IDC_TIME_SPEED:
@@ -163,19 +163,19 @@ void CStatusBarDialog::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar
 
 void CStatusBarDialog::OnBnClickedShowGrid()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CVenusConfig::GetInstance().m_bShowGrid = m_ShowGrid.GetCheck();
 }
 
 void CStatusBarDialog::OnBnClickedShowObject()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.	
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.	
 	CVenusFramework::GetInstance().ShowObject(m_ShowObject.GetCheck());
 }
 
 void CStatusBarDialog::OnBnClickedShowTerrain()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CVenusConfig::GetInstance().m_bShowTerrain = m_ShowTerrain.GetCheck();
 	CVenusFramework::GetInstance().ShowTerrain(CVenusConfig::GetInstance().m_bShowTerrain);
 }

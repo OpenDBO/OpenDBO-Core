@@ -70,7 +70,7 @@ private:
 //////////////////////////////////////////////////////////////////////////
 class CCustomItemSpinDouble;
 
-/// ½Ç¼ö¸¦ »ç¿ëÇÏ±â À§ÇÑ CustomItemSpinDoubleÀ» ±¸¼ºÇÏ´Â SpinButton ÄÁÆ®·Ñ
+/// ì‹¤ìˆ˜ë¥¼ ì‚¬ìš©í•˜ê¸° ìœ„í•œ CustomItemSpinDoubleì„ êµ¬ì„±í•˜ëŠ” SpinButton ì»¨íŠ¸ë¡¤
 class CCustomItemSpinInplaceButtonDouble : public CSpinButtonCtrl
 {
     friend class CCustomItemSpinDouble;
@@ -81,7 +81,7 @@ public:
     afx_msg void OnDeltapos(NMHDR *pNMHDR, LRESULT* pResult);
 };
 
-/// ½Ç¼ö¸¦ »ç¿ëÇÏ±â À§ÇÑ CustomItemSpinDouble
+/// ì‹¤ìˆ˜ë¥¼ ì‚¬ìš©í•˜ê¸° ìœ„í•œ CustomItemSpinDouble
 class CCustomItemSpinDouble : public CXTPPropertyGridItemDouble
 {
     friend class CCustomItemSpinInplaceButtonDouble;
@@ -218,7 +218,7 @@ private:
 };
 
 
-// OffsetÀ» À§ÇÑ Custom Item (x,y,z ¼¼°¡Áö ÁÂÇ¥¸¦ °¡Áø´Ù.)
+// Offsetì„ ìœ„í•œ Custom Item (x,y,z ì„¸ê°€ì§€ ì¢Œí‘œë¥¼ ê°€ì§„ë‹¤.)
 class CCustomItemOffset : public CXTPPropertyGridItem
 {
     class CCustomItemOffsetChild;

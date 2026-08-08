@@ -3,14 +3,14 @@
 
 #include "NtlPLCharacter.h"
 
-/// ½ºÅ©¸³Æ®ÀÇ ³»¿ëÀ» ÀúÀåÇÏ´Â ±¸Á¶Ã¼
+/// ìŠ¤í¬ë¦½íŠ¸ì˜ ë‚´ìš©ì„ ì €ì¥í•˜ëŠ” êµ¬ì¡°ì²´
 struct SMTScriptData
 {
-    std::string     m_sClumpFileName;                   ///< »ç¿ëµÇ´Â Clump ÆÄÀÏ¸í
-    SBoneScaleData  m_BoneScaledata[MAX_NUM_BONES];     ///< BoneÀÇ Á¤º¸¸¦ ´ã°íÀÖ´Â ±¸Á¶Ã¼ ¹è¿­
-    RwInt32         m_nBoneNum;                         ///< BoneÀÇ °³¼ö
+    std::string     m_sClumpFileName;                   ///< ì‚¬ìš©ë˜ëŠ” Clump íŒŒì¼ëª…
+    SBoneScaleData  m_BoneScaledata[MAX_NUM_BONES];     ///< Boneì˜ ì •ë³´ë¥¼ ë‹´ê³ ìˆëŠ” êµ¬ì¡°ì²´ ë°°ì—´
+    RwInt32         m_nBoneNum;                         ///< Boneì˜ ê°œìˆ˜
 
-    // todo. Anim °ü·Ã µ¥ÀÌÅÍ ¼³Á¤ ÇÊ¿ä
+    // todo. Anim ê´€ë ¨ ë°ì´í„° ì„¤ì • í•„ìš”
 
     SMTScriptData()
     {

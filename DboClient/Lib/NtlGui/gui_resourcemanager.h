@@ -19,7 +19,7 @@ class CResourceManager
 public:	
 	CResourceManager();
 
-	//: component manager ¼Ò¸êÀÚ...	
+	//: component manager ì†Œë©¸ìž...	
 	virtual ~CResourceManager();
 
 //! Attributes:
@@ -36,7 +36,7 @@ public:
 
 	CTexture* CreatureTexture(const std::string& strTex);
 	//: strName => surface name
-	//: surface nameÀ¸·Î surface¸¦ Á¤º¸¸¦ ¾ò´Â´Ù.
+	//: surface nameìœ¼ë¡œ surfaceë¥¼ ì •ë³´ë¥¼ ì–»ëŠ”ë‹¤.
 	CTexture* GetTextureHandle(const std::string& strPage,const std::string& strName);
 
 	static bool CreateHyperText (const std::string& strName);

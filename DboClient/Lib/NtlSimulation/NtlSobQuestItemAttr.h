@@ -2,7 +2,7 @@
  *
  * File			: NtlSobQuestItemAttr.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2006. 11. 08	
  * Abstract		: Simulation object quest item attribute base class
  *****************************************************************************

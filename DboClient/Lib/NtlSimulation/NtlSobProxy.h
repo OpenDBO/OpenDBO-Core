@@ -2,7 +2,7 @@
  *
  * File			: NtlSobProxy.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2006. 4. 26	
  * Abstract		: Simulation object proxy base class
  *****************************************************************************
@@ -68,7 +68,7 @@ public:
 	bool			GetDisableAniChange() { return m_bDisableAniChange; }
 
 	//---------------------------------------------------
-	// proxy system flag ¼³Á¤¿¡ °üÇÑ ÇÔ¼ö.
+	// proxy system flag ì„¤ì •ì— ê´€í•œ í•¨ìˆ˜.
 	//---------------------------------------------------
 
 	virtual	void	EnableProxySystemVisible(RwBool bVisible);
@@ -78,7 +78,7 @@ public:
 	RwBool			IsProxySystemGUILPVisible(void);
 
 	//---------------------------------------------------
-	// owner simulation object  ¼³Á¤¿¡ °üÇÑ ÇÔ¼ö.
+	// owner simulation object  ì„¤ì •ì— ê´€í•œ í•¨ìˆ˜.
 	//---------------------------------------------------
 
 	void			SetSobObj(CNtlSob *pSobObj);
@@ -89,30 +89,30 @@ public:
 	virtual void	NotifyStateExit(RwUInt32 uiOldState, RwUInt32 uiNewState)		{}
 
 	//---------------------------------------------------
-	// presentation entity »ı¼º ÇÔ¼ö.                                                                      
+	// presentation entity ìƒì„± í•¨ìˆ˜.                                                                      
 	//---------------------------------------------------
 
-	// attach ½ÃÅ°Áö ¾Ê°í effect »ı¼º.
+	// attach ì‹œí‚¤ì§€ ì•Šê³  effect ìƒì„±.
 	CNtlPLEntity*			CreatePLEffect(const RwChar *pKey, const RwV3d *pPos = NULL, RwBool bIgnoreVisible = FALSE );
 
-	// attach ½ÃÅ°Áö ¾Ê°í effect »ı¼º
-	// child list¿¡ Ãß°¡ÇÑ´Ù.
+	// attach ì‹œí‚¤ì§€ ì•Šê³  effect ìƒì„±
+	// child listì— ì¶”ê°€í•œë‹¤.
 	CNtlPLEntity*			CreatePLChildEffect(const RwChar *pKey, RwBool bIgnoreVisible = FALSE);
 	
-	// bone attach½ÃÅ°¸é¼­ effect »ı¼º.
+	// bone attachì‹œí‚¤ë©´ì„œ effect ìƒì„±.
     virtual CNtlPLEntity*	CreatePLChildEffect(const RwChar *pKey, const RwChar *pAttachBoneName, RwV3d vOffset = ZeroAxis, RwBool bIgnoreVisible = FALSE) {return NULL;}
 
-	// offset position¿¡ attach½ÃÅ°¸é¼­ effect »ı¼º.
+	// offset positionì— attachì‹œí‚¤ë©´ì„œ effect ìƒì„±.
 	virtual CNtlPLEntity*	CreatePLChildEffect(const RwChar *pKey, RwV3d vOffset, RwBool bIgnoreVisible = FALSE, RwBool bApplyRotate = FALSE)  { return NULL; }
 
-	// offset position¿¡ attach½ÃÅ°¸é¼­ effect »ı¼º.
+	// offset positionì— attachì‹œí‚¤ë©´ì„œ effect ìƒì„±.
 	CNtlPLEntity*			CreatePLDamageBox(RwV3d vPos, RwUInt32 uiDamage, RwBool bHealing = FALSE);
 
-	// child·Î »ı¼ºµÈ effect¸¦ »èÁ¦ÇÑ´Ù.
+	// childë¡œ ìƒì„±ëœ effectë¥¼ ì‚­ì œí•œë‹¤.
 	virtual void			DeletePLChildEffect(CNtlPLEntity *pPLEntity);
 
 	//---------------------------------------------------
-	// main presentation entity¿¡ °ü·ÃµÈ ÇÔ¼ö 
+	// main presentation entityì— ê´€ë ¨ëœ í•¨ìˆ˜ 
 	//---------------------------------------------------
 
 	/**
@@ -123,7 +123,7 @@ public:
 	virtual void			RemoveWorld(void)	{}
 
 	/**
-	* transform¿¡ °üÇöµÈ ÇÔ¼ö.
+	* transformì— ê´€í˜„ëœ í•¨ìˆ˜.
 	*/
 
 	virtual void			SetPosition(const RwV3d *pPos)	{}
@@ -140,7 +140,7 @@ public:
 	virtual void			SetScale(RwReal fScale)			{}
 
 	/**
-	* material¿¡ °üÇöµÈ ÇÔ¼ö.
+	* materialì— ê´€í˜„ëœ í•¨ìˆ˜.
 	*/
 
 	virtual void			SetAlpha(RwUInt8 byAlpha);
@@ -160,7 +160,7 @@ public:
 	virtual void			SetInkColor(RwUInt8 byRed, RwUInt8 byGreen, RwUInt8 byBlue) {}
 	
 	/**
-	* animation¿¡ °ü·ÃµÈ ÇÔ¼ö.
+	* animationì— ê´€ë ¨ëœ í•¨ìˆ˜.
 	*/
 	
 	// animation setting
@@ -168,7 +168,7 @@ public:
 
 	virtual RwBool			IsExistBaseAnimation(RwUInt32 uiAnimKey) { return FALSE; }
 
-	// ÇöÀç play ÇÏ´Â animation key¸¦ ¾ò¾î¿Â´Ù.
+	// í˜„ì¬ play í•˜ëŠ” animation keyë¥¼ ì–»ì–´ì˜¨ë‹¤.
 	virtual RwUInt32		GetBaseAnimationKey(void)		{ return 0; }
 
 	virtual RwBool			IsBaseAnimationEnd(void)		{ return TRUE; }
@@ -179,10 +179,10 @@ public:
 	virtual void			SetAnimBlendNoneOneTime(void)	{}
 
 	/**
-	* Decoration¿¡ °ü·ÃµÈ ÇÔ¼ö
+	* Decorationì— ê´€ë ¨ëœ í•¨ìˆ˜
 	*/
 
-	// Entity »ó´ÜÀÇ ÀÌ¸§ »ö»óÀ» º¯°æÇÑ´Ù
+	// Entity ìƒë‹¨ì˜ ì´ë¦„ ìƒ‰ìƒì„ ë³€ê²½í•œë‹¤
 	virtual void			SetNameColor(const WCHAR* pwcName, COLORREF color) {}
 
 	virtual void			SetNickNameColor(const WCHAR* pwcNickName, COLORREF nickNameColor) {}
@@ -195,44 +195,44 @@ public:
 	virtual void			EnableDecorationProxyVisible(RwBool bShow) {}
 
 	/**
-	* entity Á¤º¸¿¡ °üÇÑ ÇÔ¼ö.
+	* entity ì •ë³´ì— ê´€í•œ í•¨ìˆ˜.
 	*/
 
-	// main entity¸¦ ¾ò¾î¿À´Â ÇÔ¼ö.
+	// main entityë¥¼ ì–»ì–´ì˜¤ëŠ” í•¨ìˆ˜.
 	virtual CNtlPLEntity*	GetPLMainEntity(void) { return NULL; }
 
-	// bone positionÀ» ¾ò¾î¿Â´Ù.
+	// bone positionì„ ì–»ì–´ì˜¨ë‹¤.
 	virtual RwV3d			GetBonePosition(const RwChar *pBoneName);
 
-	// ÀåÂøÇÑ ¹«±âÀÇ bone position
+	// ì¥ì°©í•œ ë¬´ê¸°ì˜ bone position
 	virtual RwV3d			GetWeaponBonePosition(const RwChar *pBoneName);
 
-	// ÀåÂøÇÑ sub weaponÀÇ bone position
+	// ì¥ì°©í•œ sub weaponì˜ bone position
 	virtual RwV3d			GetSubWeaponBonePosition(const RwChar *pBoneName);
 
-	// pl entityÀÇ ÆøÀ» ¾ò¾î¿Â´Ù.
+	// pl entityì˜ í­ì„ ì–»ì–´ì˜¨ë‹¤.
 	virtual RwReal			GetPLEntityWidth(void); 
 
-	// pl entityÀÇ ³ôÀÌ¸¦ ¾ò¾î¿Â´Ù.
+	// pl entityì˜ ë†’ì´ë¥¼ ì–»ì–´ì˜¨ë‹¤.
 	virtual RwReal			GetPLEntityHeight(void);
 
-	// pl entityÀÇ depthÀ» ¾ò¾î¿Â´Ù.
+	// pl entityì˜ depthì„ ì–»ì–´ì˜¨ë‹¤.
 	virtual RwReal			GetPLEntityDepth(void); 
 
-	// pl entityÀÇ base scaleÀ» ¾ò¾î¿Â´Ù.
+	// pl entityì˜ base scaleì„ ì–»ì–´ì˜¨ë‹¤.
 	virtual RwReal			GetPLEntityBaseScale(void);
 
-    // ÀÓÀÇ·Î Á¶Á¤µÈ ScaleÀ» ¾ò¾î¿Â´Ù.
+    // ì„ì˜ë¡œ ì¡°ì •ëœ Scaleì„ ì–»ì–´ì˜¨ë‹¤.
     virtual RwReal          GetScale();
 
 	/**
-	* child presentation entity¿¡ °ü·ÃµÈ ÇÔ¼ö  
+	* child presentation entityì— ê´€ë ¨ëœ í•¨ìˆ˜  
 	*/
 
-	// child entity Ãß°¡.
+	// child entity ì¶”ê°€.
 	void					AddPLChildEntity(CNtlPLEntity *pPLEntity);
 
-	// child entity °¹¼ö ¾ò¾î¿À±â.
+	// child entity ê°¯ìˆ˜ ì–»ì–´ì˜¤ê¸°.
 	RwInt32					GetPLChildEntityCount(void) const;
 
 	// child entity transform.
@@ -262,19 +262,19 @@ public:
 	virtual void EnableHighlight(RwBool bEnable) {}	
 	virtual void CreateElapsedController(RwReal fCtrlTime, RwReal fWeightValue);
 	virtual void DeleteElapsedController(void);
-    virtual void EnableCameraAlpha(RwBool bEnable);             ///< Ä«¸Ş¶ó °Å¸®¿¡ µû¸¥ ¾ËÆÄ¸¦ Àû¿ëÇÑ´Ù.
+    virtual void EnableCameraAlpha(RwBool bEnable);             ///< ì¹´ë©”ë¼ ê±°ë¦¬ì— ë”°ë¥¸ ì•ŒíŒŒë¥¼ ì ìš©í•œë‹¤.
 
 //------------------------------------------------------------------------------------------------------------
-// event¿¡ °ü·ÃµÈ ÇÔ¼ö.  
+// eventì— ê´€ë ¨ëœ í•¨ìˆ˜.  
 //------------------------------------------------------------------------------------------------------------
 
 public:
 
 	
-	// mouse focus¸¦ ¹Ş¾ÒÀ» °æ¿ì.
+	// mouse focusë¥¼ ë°›ì•˜ì„ ê²½ìš°.
 	virtual void SetFocus(void) {}
 
-	// mouse focus¸¦ ÀĞ¾î ¹ö·ÈÀ» °æ¿ì.
+	// mouse focusë¥¼ ì½ì–´ ë²„ë ¸ì„ ê²½ìš°.
 	virtual void ReleaseFocus(void) {}
 
 };
@@ -315,7 +315,7 @@ inline RwInt32 CNtlSobProxy::GetPLChildEntityCount(void) const
 	return m_listPLChild.size();
 }
 
-// pl entityÀÇ ÆøÀ» ¾ò¾î¿Â´Ù.
+// pl entityì˜ í­ì„ ì–»ì–´ì˜¨ë‹¤.
 inline RwReal CNtlSobProxy::GetPLEntityWidth(void)
 {
 	return 1.0f;

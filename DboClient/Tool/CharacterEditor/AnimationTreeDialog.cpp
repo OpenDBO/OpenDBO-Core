@@ -1,4 +1,4 @@
-// AnimAssetDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// AnimAssetDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -7,7 +7,7 @@
 #include ".\AnimationTreeDialog.h"
 #include "ToolData.h"
 
-// CAnimAssetDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAnimAssetDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 IMPLEMENT_DYNAMIC(CAnimationTreeDialog, CDialog)
 CAnimationTreeDialog::CAnimationTreeDialog(CWnd* pParent /*=NULL*/)
 	: CDialog(CAnimationTreeDialog::IDD, pParent)
@@ -33,7 +33,7 @@ ON_WM_DESTROY()
 END_MESSAGE_MAP()
 
 
-// CAnimAssetDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAnimAssetDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CAnimationTreeDialog::OnInitDialog()
 {
@@ -42,9 +42,9 @@ BOOL CAnimationTreeDialog::OnInitDialog()
 
 	
 	//theDbo.
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CAnimationTreeDialog::UpdateTree(CDboCharacterApplication *pDboApp)
@@ -95,7 +95,7 @@ void CAnimationTreeDialog::UpdateTree(CDboCharacterApplication *pDboApp)
 void CAnimationTreeDialog::OnTvnSelchangedTree2(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMTREEVIEW pNMTreeView = reinterpret_cast<LPNMTREEVIEW>(pNMHDR);
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	
 	SToolAnimData *pToolAnimData = (SToolAnimData *)m_AnimAssetTreeCtrl.GetItemData(pNMTreeView->itemNew.hItem);
 	if(pToolAnimData != NULL)
@@ -109,7 +109,7 @@ void CAnimationTreeDialog::OnDestroy()
 {
 	CDialog::OnDestroy();
 	
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	
 	DeleteRecursiveToolAnimData(m_AnimAssetTreeCtrl.GetRootItem());
 }

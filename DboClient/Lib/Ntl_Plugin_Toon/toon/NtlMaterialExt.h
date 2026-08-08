@@ -2,7 +2,7 @@
  *
  * File			: toonmultitex.h
  * Author		: HongHoDong
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Âç†ÏèôÏòô)NTL
  * Date			: 2005. 8. 12	
  * Abstract		: NTl Application
  *****************************************************************************
@@ -84,6 +84,7 @@ typedef void (*RpMeshRenderCB)(void* _pParam);
 
 extern void RpNtlMaterialExecuteRenderCB(void* _pParam);
 extern void RpNtlMaterialSetRenderCB(RpMaterial *pMaterial, RpMeshRenderCB _fpCB);
+extern RwBool RpNtlMaterialHasRenderCB(RpMaterial *pMaterial);
 
 extern RwBool RpNtlMaterialExtSetTexture(RpMaterial *pMaterial, RwTexture *pTexture);
 extern RwTexture *RpNtlMaterialExtGetTexture(RpMaterial *pMaterial);

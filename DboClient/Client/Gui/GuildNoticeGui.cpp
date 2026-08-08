@@ -37,7 +37,7 @@ RwBool CGuildNoticeGui::Create(eNOTICE_TYPE eNoticeType)
 
 	m_pThis = (gui::CDialog*)GetComponent("dlgMain");
 
-	// µÞ ¹è°æ
+	// ë’· ë°°ê²½
 	m_srfBackboard.SetSurface(0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GuildNotice.srf", "srfBackboardLeft" ) );
 	m_srfBackboard.SetSurface(1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GuildNotice.srf", "srfBackboardCenter" ) );
 	m_srfBackboard.SetSurface(2, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GuildNotice.srf", "srfBackboardRight" ) );
@@ -66,7 +66,7 @@ RwBool CGuildNoticeGui::Create(eNOTICE_TYPE eNoticeType)
 	m_slotOKButton		= m_pOKButton->SigClicked().Connect(this, &CGuildNoticeGui::OnClicked_OKButton);
 	m_slotCancelButton	= m_pCancelButton->SigClicked().Connect(this, &CGuildNoticeGui::OnClicked_CancelButton);
 
-	// °øÁö ÀÔ·Â¶õ
+	// ê³µì§€ ìž…ë ¥ëž€
 	m_pNoticeInput		= (gui::CInputBox*)GetComponent("NoticeInput");	
 	m_pNoticeInput->SetMultilineMode(TRUE);
 	m_pNoticeInput->SetMaxLength(NTL_MAX_LENGTH_OF_GUILD_NOTICE);

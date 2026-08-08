@@ -2,11 +2,11 @@
  *
  * File			: NtlRender.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 7. 14	
  * Abstract		: Main Render.
  *****************************************************************************
- * ¼³¸í : 
+ * ì„¤ëª… : 
  *
  *****************************************************************************/
 
@@ -18,8 +18,8 @@
 
 /**
  * \ingroup Client
- * clientÀÇ rendering °´Ã¼¿¡ system event¸¦ º¸³»´Â °´Ã¼ÀÌ´Ù.
- * ¸ğµç rendering °´Ã¼¸¦ update ÇÑ´Ù.
+ * clientì˜ rendering ê°ì²´ì— system eventë¥¼ ë³´ë‚´ëŠ” ê°ì²´ì´ë‹¤.
+ * ëª¨ë“  rendering ê°ì²´ë¥¼ update í•œë‹¤.
  *
  */
 
@@ -35,20 +35,20 @@ public:
 
 	CNtlRender();
 
-	// CNtlRender °´Ã¼°¡ »ı¼ºµÈ ´ÙÀ½ °ğ¹Ù·Î È£ÃâµÈ´Ù.
+	// CNtlRender ê°ì²´ê°€ ìƒì„±ëœ ë‹¤ìŒ ê³§ë°”ë¡œ í˜¸ì¶œëœë‹¤.
     bool Create(void);
 
-	// CNtlRender °´Ã¼°¡ ÇØÁ¦µÇ±â Àü¿¡ ¹Ù·Î È£ÃâµÈ´Ù.
+	// CNtlRender ê°ì²´ê°€ í•´ì œë˜ê¸° ì „ì— ë°”ë¡œ í˜¸ì¶œëœë‹¤.
 	void Destroy(void);
 
 	/**
 	* \ingroup Client
-	* clientÀÇ rendering °´Ã¼¿¡ tick event¸¦ º¸³½´Ù.
+	* clientì˜ rendering ê°ì²´ì— tick eventë¥¼ ë³´ë‚¸ë‹¤.
 	*
 	*/
 	void Update(float fElapsed);
 
-	// rendering enable ¹× disable
+	// rendering enable ë° disable
 	void SetEnabled(bool bEnabled); 
 };
 

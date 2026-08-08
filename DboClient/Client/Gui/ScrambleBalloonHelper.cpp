@@ -116,7 +116,7 @@ VOID ScrambleBalloonHelper::Update(RwReal fElapsed)
 					continue;
 				}
 
-				// ¸ð½ÀÀÌ ¾È º¸ÀÌ¸é ¸»Ç³¼± »ý¼º¿¡ ½ÇÆÐÇÑ´Ù
+				// ëª¨ìŠµì´ ì•ˆ ë³´ì´ë©´ ë§í’ì„  ìƒì„±ì— ì‹¤íŒ¨í•œë‹¤
 
 				if( !pSob->IsVisible() )
 				{
@@ -155,10 +155,10 @@ VOID ScrambleBalloonHelper::HandleEvents( RWS::CMsg &msg )
 		if( FALSE == GetNtlWorldConcept()->IsActivePlayConcept(WORLD_PLAY_DOJO_SCRAMBLE) )
 			NTL_RETURNVOID();
 
-		// avooo's comment : ¹Ù·Î ¹èÆ² ¸»Ç³¼±À» »ý¼ºÇÏÁö ¾Ê´Â ÀÌÀ¯
-		//					 g_EventSobCreate ÀÌº¥Æ®°¡ ¹ß»ýµÇ°í Sob °´Ã¼°¡ ¸¸µé¾îÁø ÈÄ º°µµÀÇ Notify°¡ ¾ø´Ù
-		//					 ÀÏ´Ü ÀÌº¥Æ® ¹ß»ý ÈÄ ¸î TickÀÌ Áö³ª°í Sob µ¥ÀÌÅÍ°¡ È®½ÇÈ÷ ÀÖÀ½ÀÌ º¸ÀåµÉ ¶§
-		//					 ¹èÆ² ¸»Ç³¼±À» »ý¼ºÇÑ´Ù
+		// avooo's comment : ë°”ë¡œ ë°°í‹€ ë§í’ì„ ì„ ìƒì„±í•˜ì§€ ì•ŠëŠ” ì´ìœ 
+		//					 g_EventSobCreate ì´ë²¤íŠ¸ê°€ ë°œìƒë˜ê³  Sob ê°ì²´ê°€ ë§Œë“¤ì–´ì§„ í›„ ë³„ë„ì˜ Notifyê°€ ì—†ë‹¤
+		//					 ì¼ë‹¨ ì´ë²¤íŠ¸ ë°œìƒ í›„ ëª‡ Tickì´ ì§€ë‚˜ê³  Sob ë°ì´í„°ê°€ í™•ì‹¤ížˆ ìžˆìŒì´ ë³´ìž¥ë  ë•Œ
+		//					 ë°°í‹€ ë§í’ì„ ì„ ìƒì„±í•œë‹¤
 		SNtlEventSob* pEvent = reinterpret_cast<SNtlEventSob*>( msg.pData );
 
 		if( INVALID_SERIAL_ID == pEvent->hSerialId )
@@ -196,7 +196,7 @@ VOID ScrambleBalloonHelper::HandleEvents( RWS::CMsg &msg )
 	}
 	else if( msg.Id == g_EventEndterWorld )
 	{
-		// ¾Æ¹ÙÅ¸´Â ±âº»ÀûÀ¸·Î µµÀåÀïÅ»Àü¿ë ¸»Ç³¼±À» º¸¿©ÁØ´Ù
+		// ì•„ë°”íƒ€ëŠ” ê¸°ë³¸ì ìœ¼ë¡œ ë„ìž¥ìŸíƒˆì „ìš© ë§í’ì„ ì„ ë³´ì—¬ì¤€ë‹¤
 		if( FALSE == GetNtlWorldConcept()->IsActivePlayConcept(WORLD_PLAY_DOJO_SCRAMBLE) )
 			NTL_RETURNVOID();
 

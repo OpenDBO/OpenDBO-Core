@@ -79,7 +79,7 @@ RwBool DeleteFolder(const RwChar* pFolderName)
 
 RwChar g_chLogPath[MAX_PATH]	= "dbolog.txt";
 
-// ·Î±× ÆÄÀÏÀÇ ¿ë·®ÀÌ 10kb¸¦ ³Ñ¾î°¡¸é »èÁ¦ÇÑ´Ù.
+// ï¿½Î±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ë·®ï¿½ï¿½ 10kbï¿½ï¿½ ï¿½Ñ¾î°¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 #define MAX_LOG_FILE_SIZE 10240
 void NtlLogFileSizeCheck()
 {
@@ -169,7 +169,7 @@ void NtlLogFilePrintArgs(RwChar *fmt, ... )
 	fclose(fp);
 }
 
-// Trace´Â ¸ÅÀÏ »õ·Î¿î ÆÄÀÏÀ» »ı¼ºÇÏ¿© ±â·ÏÇÑ´Ù
+// TraceëŠ” ë§¤ì¼ ìƒˆë¡œìš´ íŒŒì¼ì„ ìƒì„±í•˜ì—¬ ê¸°ë¡í•œë‹¤
 RwChar g_chTracePath[MAX_PATH]	= "";
 
 void NtlTraceEnable_inRelease(bool bEnable)
@@ -333,17 +333,17 @@ bool HaveMagicKeyword(const char* pcFileName, const char* pcKeyword)
 
 bool GetSystemMemorySize(unsigned __int64* pMemorySizeAvailPhys, unsigned __int64* pMemorySizeTotalPhys, unsigned __int64* pMemorySizeAvailVirtual, unsigned __int64* pMemorySizeTotalVirtual, unsigned __int64* pMemorySizeAvailPageFile, unsigned __int64* pMemorySizeTotalPageFile)
 {
-	MEMORYSTATUS MemStatus;
+	MEMORYSTATUSEX MemStatus;
 	MemStatus.dwLength = sizeof(MemStatus);
-	GlobalMemoryStatus(&MemStatus);
+	GlobalMemoryStatusEx(&MemStatus);
 
-	*pMemorySizeAvailPhys		= MemStatus.dwAvailPhys;
-	*pMemorySizeAvailVirtual	= MemStatus.dwAvailVirtual;
-	*pMemorySizeAvailPageFile	= MemStatus.dwAvailPageFile;
+	*pMemorySizeAvailPhys		= MemStatus.ullAvailPhys;
+	*pMemorySizeAvailVirtual	= MemStatus.ullAvailVirtual;
+	*pMemorySizeAvailPageFile	= MemStatus.ullAvailPageFile;
 
-	*pMemorySizeTotalPhys		= MemStatus.dwTotalPhys;
-	*pMemorySizeTotalVirtual	= MemStatus.dwTotalVirtual;
-	*pMemorySizeTotalPageFile	= MemStatus.dwTotalPageFile;
+	*pMemorySizeTotalPhys		= MemStatus.ullTotalPhys;
+	*pMemorySizeTotalVirtual	= MemStatus.ullTotalVirtual;
+	*pMemorySizeTotalPageFile	= MemStatus.ullTotalPageFile;
 
 	return true;
 }

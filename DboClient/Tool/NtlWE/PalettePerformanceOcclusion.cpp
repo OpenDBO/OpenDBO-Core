@@ -1,4 +1,4 @@
-// PalettePerformanceOcclusion.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PalettePerformanceOcclusion.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -12,7 +12,7 @@
 #include "PalettePerformanceOcclusion.h"
 
 
-// CPalettePerformanceOcclusion ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPalettePerformanceOcclusion ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPalettePerformanceOcclusion, CDialog)
 
@@ -60,16 +60,16 @@ BEGIN_MESSAGE_MAP(CPalettePerformanceOcclusion, CDialog)
 END_MESSAGE_MAP()
 
 
-// CPalettePerformanceOcclusion ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPalettePerformanceOcclusion ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CPalettePerformanceOcclusion::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 BOOL CPalettePerformanceOcclusion::PreTranslateMessage(MSG* pMsg)

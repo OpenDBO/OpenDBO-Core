@@ -1,4 +1,4 @@
-// SplinePathPropertyDialog.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// SplinePathPropertyDialog.cpp : êµ¬í˜„ íŒŒì¼ìž…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -12,7 +12,7 @@
 #include "VenusPropertyContainer.h"
 #include "StringManager.h"
 
-// CSplinePathPropertyDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CSplinePathPropertyDialog ëŒ€í™” ìƒìžìž…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNCREATE(CSplinePathPropertyDialog, CDialog)
 CSplinePathPropertyDialog::CSplinePathPropertyDialog(CWnd* pParent /*=NULL*/)
@@ -39,13 +39,13 @@ BEGIN_MESSAGE_MAP(CSplinePathPropertyDialog, CDialog)
 END_MESSAGE_MAP()
 
 
-// CSplinePathPropertyDialog ¸Þ½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CSplinePathPropertyDialog ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ìž…ë‹ˆë‹¤.
 
 BOOL CSplinePathPropertyDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ìž‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	DWORD dwStyle;
 	CRect rc;
 	dwStyle = WS_CHILD|WS_VISIBLE|PTS_NOTIFY;
@@ -67,14 +67,14 @@ BOOL CSplinePathPropertyDialog::OnInitDialog()
 
 	m_Initialized = TRUE;
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹ÝÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± íŽ˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CSplinePathPropertyDialog::OnSize(UINT nType, int cx, int cy)
 {
 	CDialog::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Þ½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if(m_Initialized)
 	{
 		CWnd* pPropertyStaticWindow = GetDlgItem(IDC_PROPERTY_STATIC);
@@ -94,7 +94,7 @@ void CSplinePathPropertyDialog::OnSize(UINT nType, int cx, int cy)
 
 void CSplinePathPropertyDialog::OnTimer(UINT nIDEvent)
 {
-	// TODO: ¿©±â¿¡ ¸Þ½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	KillTimer(nIDEvent);
 
 	switch(nIDEvent)
@@ -122,7 +122,7 @@ void CSplinePathPropertyDialog::OnTimer(UINT nIDEvent)
 
 BOOL CSplinePathPropertyDialog::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ëž˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if (pMsg->message == WM_KEYDOWN) 
 	{
 		if(pMsg->wParam == VK_RETURN) return FALSE;	

@@ -21,15 +21,15 @@ public:
 	enum eMAILSYSTEM_NOTIFY_TYPE
 	{
 		MAILSYSTEM_NOTIFY_TYPE_NONE		= 0x00000000,
-		MAILSYSTEM_NOTIFY_TYPE_NEWMAIL	= 0x00000001,	///< ªı∑ŒøÓ ∏ﬁ¿œ¿Ã ¿÷¥Ÿ¥¬ ∞Õ¿ª æÀ∏≤
+		MAILSYSTEM_NOTIFY_TYPE_NEWMAIL	= 0x00000001,	///< ÏÉàÎ°úÏö¥ Î©îÏùºÏù¥ ÏûàÎã§Îäî Í≤ÉÏùÑ ÏïåÎ¶º
 	};
 
 	enum eMAILSYSTEM_NOTIFY_VALUE
 	{
 		MAILSYSTEM_NOTIFY_VALUE_NONE			= 0x00000000,
-		MAILSYSTEM_NOTIFY_VALUE_MAIL_NORMAL		= 0x00000001,	///< ¿œπ› ∏ﬁ¿œ ¡∏¿Á
-		MAILSYSTEM_NOTIFY_VALUE_MAIL_MANAGER	= 0x00000002,	///< GM ∏ﬁ¿œ ¡∏¿Á
-		MAILSYSTEM_NOTIFY_VALUE_MAIL_FULL		= 0x00000004,	///< ∏ﬁ¿œ¿Ã ∞°µÊ¬¸
+		MAILSYSTEM_NOTIFY_VALUE_MAIL_NORMAL		= 0x00000001,	///< ÏùºÎ∞ò Î©îÏùº Ï°¥Ïû¨
+		MAILSYSTEM_NOTIFY_VALUE_MAIL_MANAGER	= 0x00000002,	///< GM Î©îÏùº Ï°¥Ïû¨
+		MAILSYSTEM_NOTIFY_VALUE_MAIL_FULL		= 0x00000004,	///< Î©îÏùºÏù¥ Í∞ÄÎìùÏ∞∏
 	};
 
 	typedef std::vector<MAILID>					MAIL_ID_VEC;
@@ -63,7 +63,7 @@ public:
 
 public:
 	RwBool				GetMail(sMAIL_PROFILE& outMailProfile, const MAILID& mailID);
-	RwBool				GetMail(sMAIL_PROFILE& outMailProfile, const RwUInt32& uiIndex, const RwBool& bReverse/*∞°¿Â √÷Ω≈¿∫ ¡¶¿œ µ⁄*/);
+	RwBool				GetMail(sMAIL_PROFILE& outMailProfile, const RwUInt32& uiIndex, const RwBool& bReverse/*Í∞ÄÏû• ÏµúÏã†ÏùÄ Ï†úÏùº Îí§*/);
 
 	RwUInt32			GetAbility();
 	SERIAL_HANDLE		GetUseObjectSerial()		{ return m_hObject; }

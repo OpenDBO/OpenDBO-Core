@@ -2,31 +2,31 @@
  *
  * File			: NtlLocalize.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2007. 3. 19	
- * Abstract		: Localizing¿¡ µû¸¥ Á¤ÀÇ.
+ * Abstract		: Localizingì— ë”°ë¥¸ ì •ì˜.
  *****************************************************************************
  * Desc         : 
  *
  *****************************************************************************/
 
 //----------------------------------------
-// DBO Launcher¿¡¼­ÀÇ ÇÔ¼öÀÇ ½ÇÇà ¼ø¼­
+// DBO Launcherì—ì„œì˜ í•¨ìˆ˜ì˜ ì‹¤í–‰ ìˆœì„œ
 //----------------------------------------
 
 // 1. Local_Init();
 // 2. Local_DetectData();
 // 3. Local_DBOEncryptConfig();
-// 4. DBO Client ½ÇÇàÇÒ ¶§ command¿¡ DBO encrypt config data¸¦ ³Ö¾îÁØ´Ù.
+// 4. DBO Client ì‹¤í–‰í•  ë•Œ commandì— DBO encrypt config dataë¥¼ ë„£ì–´ì¤€ë‹¤.
 // 5. Local_Terminate();
 
 
 //----------------------------------------
-// DBO client ¿¡¼­ÀÇ ÇÔ¼öÀÇ ½ÇÇà ¼ø¼­
+// DBO client ì—ì„œì˜ í•¨ìˆ˜ì˜ ì‹¤í–‰ ìˆœì„œ
 //----------------------------------------
 
 // 1. Local_Init();
-// 2. Local_DBODecryptConfig();  command¿¡¼­ÀÇ °ªÀ» ³Ö¾îÁØ´Ù.
+// 2. Local_DBODecryptConfig();  commandì—ì„œì˜ ê°’ì„ ë„£ì–´ì¤€ë‹¤.
 // 3. Local_Terminate();
 
 
@@ -41,7 +41,7 @@ void			Local_Terminate(void);
 unsigned char	Local_GetType(void);	
 SLocalConfig*	Local_GetConfig(void);
 
-// Localizing data °ËÃâ.(launcher·Î ³Ñ¾î¿À´Â decrypt key)
+// Localizing data ê²€ì¶œ.(launcherë¡œ ë„˜ì–´ì˜¤ëŠ” decrypt key)
 bool			Local_DetectData(const char *pKey);
 
 

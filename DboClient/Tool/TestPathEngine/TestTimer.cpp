@@ -8,11 +8,11 @@ float CTBTimer::m_fFps			= 0.0f;
 static float		g_fLastTime = 0.0f;
 static unsigned int g_dwFrames  = 0;
 
-static bool			g_bInterEalpsedTime = false;		// elapsed time º¸°£ÇØ¾ß ÇÏ´Â°¡?
-static float		g_fTotInterTime		= 0.0f;			// ÃÑ º¸°£ÇØ¾ß ÇÒ ½Ã°£.
-static float		g_fTickInterTime	= 0.0f;			// tick´ç º¸°£ÇØ¾ß ÇÒ ½Ã°£.
-static float		g_fInterTimeRate	= 1.1f;			// º¸°£ °áÁ¤ ºñÀ².
-static float		g_fInterTimeMag		= 40.0f;		// interpolation time ¹èÀ².
+static bool			g_bInterEalpsedTime = false;		// elapsed time ë³´ê°„í•´ì•¼ í•˜ëŠ”ê°€?
+static float		g_fTotInterTime		= 0.0f;			// ì´ ë³´ê°„í•´ì•¼ í•  ì‹œê°„.
+static float		g_fTickInterTime	= 0.0f;			// tickë‹¹ ë³´ê°„í•´ì•¼ í•  ì‹œê°„.
+static float		g_fInterTimeRate	= 1.1f;			// ë³´ê°„ ê²°ì • ë¹„ìœ¨.
+static float		g_fInterTimeMag		= 40.0f;		// interpolation time ë°°ìœ¨.
 
 static bool			g_bActiveInterpolation	= false;	
 
@@ -24,7 +24,7 @@ static int			g_iAverateElapsedFactor		= 200;
 
 void __stdcall CTBTimer::InterpolationElapsedTime(float fOldElapsedTime)
 {
-	// averate elapsed time °è»ê.
+	// averate elapsed time ê³„ì‚°.
 	if(m_fElapsedTime < 0.1f)
 	{
 		g_fSumElapsedTime += m_fElapsedTime;
@@ -45,7 +45,7 @@ void __stdcall CTBTimer::InterpolationElapsedTime(float fOldElapsedTime)
 		}
 	}
 
-	// Çü¼®...  elapsed timeÀ» º¸°£ÇÑ´Ù.
+	// í˜•ì„...  elapsed timeì„ ë³´ê°„í•œë‹¤.
 	if(m_fElapsedTime > 1.0f)
 	{
 		m_fElapsedTime += g_fTotInterTime;
@@ -97,8 +97,8 @@ void __stdcall CTBTimer::InterpolationElapsedTime(float fOldElapsedTime)
 *          TIMER_GETAPPTIME      - to get the current time
 *          TIMER_GETELAPSEDTIME  - to get the time that elapsed between 
 *                                  TIMER_GETELAPSEDTIME calls
-* \param command À§ÂüÁ¶
-* \return °¢°¢ÀÇ Command¿¡ ÀÇÇÑ °á°ú°ª
+* \param command ìœ„ì°¸ì¡°
+* \return ê°ê°ì˜ Commandì— ì˜í•œ ê²°ê³¼ê°’
 */
 float __stdcall CTBTimer::DXUtil_Timer( TIMER_COMMAND command )
 {
@@ -143,7 +143,7 @@ float __stdcall CTBTimer::DXUtil_Timer( TIMER_COMMAND command )
 			m_fElapsedTime = (float)((double) ( qwTime.QuadPart - m_llLastElapsedTime ) / (double) m_llQPFTicksPerSec);
 			m_llLastElapsedTime = qwTime.QuadPart;
 
-			// elapsed time º¸°£.
+			// elapsed time ë³´ê°„.
 			if(g_bActiveInterpolation)
 				InterpolationElapsedTime(fOldElapsedTime);
 
@@ -286,8 +286,8 @@ float __stdcall CTBTimer::DXUtil_Timer( TIMER_COMMAND command )
 
 
 /**
-* TimeÀ» °»½ÅÇÏ°í Fps¸¦ °è»êÇØ¼­ ´Ù½Ã ³Ñ°ÜÁØ´Ù.
-* \param &fps Fps°ªÀ» Caller·Î ³Ñ°ÜÁØ´Ù.
+* Timeì„ ê°±ì‹ í•˜ê³  Fpsë¥¼ ê³„ì‚°í•´ì„œ ë‹¤ì‹œ ë„˜ê²¨ì¤€ë‹¤.
+* \param &fps Fpsê°’ì„ Callerë¡œ ë„˜ê²¨ì¤€ë‹¤.
 */
 void __stdcall CTBTimer::UpdateFrame(float &fps)
 {
@@ -340,7 +340,7 @@ void __stdcall CTBTimer::ActiveInterpolation(bool bActive)
 	if(g_bActiveInterpolation == false)
 	{
 		g_bInterEalpsedTime = false;
-		g_fTotInterTime		= 0.0f;			// ÃÑ º¸°£ÇØ¾ß ÇÒ ½Ã°£.
-		g_fTickInterTime	= 0.0f;			// tick´ç º¸°£ÇØ¾ß ÇÒ ½Ã°£.
+		g_fTotInterTime		= 0.0f;			// ì´ ë³´ê°„í•´ì•¼ í•  ì‹œê°„.
+		g_fTickInterTime	= 0.0f;			// tickë‹¹ ë³´ê°„í•´ì•¼ í•  ì‹œê°„.
 	}
 }

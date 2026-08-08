@@ -13,7 +13,7 @@ class CPropertyPane : public CXTResizeFormView
 	DECLARE_DYNCREATE(CPropertyPane)
 
 public:
-    /// ÇöÀç ¼öÁ¤ÁßÀÎ ¸ğµå 
+    /// í˜„ì¬ ìˆ˜ì •ì¤‘ì¸ ëª¨ë“œ 
     enum EPropertyMode
     {
         PROPERTY_MODE_NONE,
@@ -24,10 +24,10 @@ public:
         PROPERTY_MODE_ANIMATION,
     };
 
-    /// ÇÁ·ÎÆÛÆ¼ ÄÁÆ®·Ñ¿¡ Æ÷ÇÔµÈ ¾ÆÀÌÅÛµéÀÇ ID
+    /// í”„ë¡œí¼í‹° ì»¨íŠ¸ë¡¤ì— í¬í•¨ëœ ì•„ì´í…œë“¤ì˜ ID
     enum EItemID
     {
-        // Character ¼³Á¤ °ü·Ã
+        // Character ì„¤ì • ê´€ë ¨
         ID_CHAR_FACE_CAMERA_POS,
         ID_CHAR_FACE_CAMERA_HEIGHT,
 		ID_CHAR_INIT_WALK_SPEED,
@@ -35,7 +35,7 @@ public:
         ID_CHAR_APPLY_TANGENT,
         ID_CHAR_ALPHA_DIST,
 
-        // Animation ÇÁ·ÎÆÛÆ¼
+        // Animation í”„ë¡œí¼í‹°
         ID_ANIM_CULL_CULLTEST,
 
         // Hit Event
@@ -215,7 +215,7 @@ public:
         ID_COLCHANGE_BODY,
         ID_COLCHANGE_ADD,
 
-        // º» ´Ã¸®´Â ÀÌº¥Æ®
+        // ë³¸ ëŠ˜ë¦¬ëŠ” ì´ë²¤íŠ¸
         ID_STRETCH_TIME,
         ID_STRETCH_TYPE,
         ID_STRETCH_BONE1_NAME,        
@@ -228,10 +228,10 @@ public:
         ID_STRETCH_AXIS_BONE,
         ID_STRETCH_TARGET_EFFECT,
 
-        // Æ®¸®°Å ÀÌº¥Æ®
+        // íŠ¸ë¦¬ê±° ì´ë²¤íŠ¸
         ID_TRIGGER_TIME,
 
-        // ½ºÅ³ Äµ½½ ÀÌº¥Æ®
+        // ìŠ¤í‚¬ ìº”ìŠ¬ ì´ë²¤íŠ¸
         ID_SC_TIME,
     };
 
@@ -251,22 +251,22 @@ public:
 public:
     static CPropertyPane* GetInstance() {return m_pInstance;};
 
-    void SetCharacter(CMTCharacter* pCharacter);                       ///< ÇÁ·ÎÆÛÆ¼ µ¥ÀÌÅÍ¸¦ ¼öÁ¤ÇÒ Ä³¸¯ÅÍ¸¦ ¼³Á¤ÇÑ´Ù.
-    void SetEvent(SEventAnim* pEventAnim, RpClump* pClump = NULL, RwBool bRefresh = FALSE);     ///< ÇÁ·ÎÆÛÆ¼ÀÇ µ¥ÀÌÅÍ¸¦ ¼¼ÆÃÇÑ´Ù.        
-    void SetObject(CMTObject* pObject);                                ///< ¿ÀºêÁ§Æ® ÇÁ·ÎÆÛÆ¼¸¦ ¼¼ÆÃÇÑ´Ù.
-    void SetAnimation(STypeAnimData* pTypeAnimData);                   ///< ¾Ö´Ï¸ŞÀÌ¼Ç µ¥ÀÌÅÍ¸¦ ¼¼ÆÃÇÑ´Ù.
-    void SetItem(CMTItem* pItem);                                      ///< Item Property¸¦ ¼¼ÆÃÇÑ´Ù.
-    void SetAttackType(EAttackType eAttackType);                       ///< Attack TypeÀ» ¼³Á¤ÇÑ´Ù.
-    void Update();                           ///< µ¥ÀÌÅÍ ³»¿ëÀ» ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
+    void SetCharacter(CMTCharacter* pCharacter);                       ///< í”„ë¡œí¼í‹° ë°ì´í„°ë¥¼ ìˆ˜ì •í•  ìºë¦­í„°ë¥¼ ì„¤ì •í•œë‹¤.
+    void SetEvent(SEventAnim* pEventAnim, RpClump* pClump = NULL, RwBool bRefresh = FALSE);     ///< í”„ë¡œí¼í‹°ì˜ ë°ì´í„°ë¥¼ ì„¸íŒ…í•œë‹¤.        
+    void SetObject(CMTObject* pObject);                                ///< ì˜¤ë¸Œì íŠ¸ í”„ë¡œí¼í‹°ë¥¼ ì„¸íŒ…í•œë‹¤.
+    void SetAnimation(STypeAnimData* pTypeAnimData);                   ///< ì• ë‹ˆë©”ì´ì…˜ ë°ì´í„°ë¥¼ ì„¸íŒ…í•œë‹¤.
+    void SetItem(CMTItem* pItem);                                      ///< Item Propertyë¥¼ ì„¸íŒ…í•œë‹¤.
+    void SetAttackType(EAttackType eAttackType);                       ///< Attack Typeì„ ì„¤ì •í•œë‹¤.
+    void Update();                           ///< ë°ì´í„° ë‚´ìš©ì„ ì—…ë°ì´íŠ¸í•œë‹¤.
 
 protected:
-    void SetBoneList();                      ///< Bone µ¥ÀÌÅÍ¸¦ ¾÷µ¥ÀÌÆ®ÇÑ´Ù.            
-    void SetAtomicList(const SEventAlpha* pEventAlpah);  ///< Atomic List¸¦ ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
-    void SetEffectTypeList();                ///< Effect Type ¸®½ºÆ® Ç×¸ñÀ» ¼¼ÆÃÇÑ´Ù.
-    void SetEffectNameList();                ///< Effect NameÀ» °¡Á®¿Í¼­ ¼¼ÆÃÇÑ´Ù.
-    void SetProjectileType();                ///< Projectile Type¿¡ µû¶ó UI¸¦ º¯°æÇÑ´Ù.
+    void SetBoneList();                      ///< Bone ë°ì´í„°ë¥¼ ì—…ë°ì´íŠ¸í•œë‹¤.            
+    void SetAtomicList(const SEventAlpha* pEventAlpah);  ///< Atomic Listë¥¼ ì—…ë°ì´íŠ¸í•œë‹¤.
+    void SetEffectTypeList();                ///< Effect Type ë¦¬ìŠ¤íŠ¸ í•­ëª©ì„ ì„¸íŒ…í•œë‹¤.
+    void SetEffectNameList();                ///< Effect Nameì„ ê°€ì ¸ì™€ì„œ ì„¸íŒ…í•œë‹¤.
+    void SetProjectileType();                ///< Projectile Typeì— ë”°ë¼ UIë¥¼ ë³€ê²½í•œë‹¤.
 
-    void HideAllCategory();                  ///< ¸ğµç Ä«Å×°í¸®¸¦ ¼û±ä´Ù.
+    void HideAllCategory();                  ///< ëª¨ë“  ì¹´í…Œê³ ë¦¬ë¥¼ ìˆ¨ê¸´ë‹¤.
 
 protected:
     static CPropertyPane* m_pInstance;
@@ -277,7 +277,7 @@ protected:
     SEventAnim*     m_pEventAnim;
     CMTObject*      m_pObject;
     CMTItem*        m_pItem;
-    CMTCharacter*   m_pCharacter;            ///< ÇÁ·ÎÆÛÆ¼ÀÇ µ¥ÀÌÅÍ¸¦ ¼³Á¤ÇÑ Character
+    CMTCharacter*   m_pCharacter;            ///< í”„ë¡œí¼í‹°ì˜ ë°ì´í„°ë¥¼ ì„¤ì •í•œ Character
     STypeAnimData*  m_pAnimData;
 
 protected:    
@@ -539,61 +539,61 @@ protected:
     void OnCharFaceCameraPos();
     void OnCharFaceCameraHeight();
 
-    void SetObjectProperties(CMTObject* pObject, UINT nID);                          ///< ¿ÀºêÁ§Æ®ÀÇ ÇÁ·ÎÆÛÆ¼¸¦ ¼³Á¤ÇÑ´Ù.
-    void SetItemProperties(CNtlPLItemProperty* pProperty, UINT nID);                 ///< ¾ÆÀÌÅÛ ÇÁ·ÎÆÛÆ¼¸¦ ¼³Á¤ÇÑ´Ù.
-    void SetCharacterProperties(CNtlPLCharacterProperty* pProperty, UINT nID);       ///< Ä³¸¯ÅÍ ÇÁ·ÎÆÛÆ¼¸¦ ¼³Á¤ÇÑ´Ù.    
-    void SetAnimationProperties(STypeAnimData* pAnimData, UINT nID);                 ///< ¾Ö´Ï¸ŞÀÌ¼Ç ÇÁ·ÎÆÛÆ¼¸¦ ¼³Á¤ÇÑ´Ù.
+    void SetObjectProperties(CMTObject* pObject, UINT nID);                          ///< ì˜¤ë¸Œì íŠ¸ì˜ í”„ë¡œí¼í‹°ë¥¼ ì„¤ì •í•œë‹¤.
+    void SetItemProperties(CNtlPLItemProperty* pProperty, UINT nID);                 ///< ì•„ì´í…œ í”„ë¡œí¼í‹°ë¥¼ ì„¤ì •í•œë‹¤.
+    void SetCharacterProperties(CNtlPLCharacterProperty* pProperty, UINT nID);       ///< ìºë¦­í„° í”„ë¡œí¼í‹°ë¥¼ ì„¤ì •í•œë‹¤.    
+    void SetAnimationProperties(STypeAnimData* pAnimData, UINT nID);                 ///< ì• ë‹ˆë©”ì´ì…˜ í”„ë¡œí¼í‹°ë¥¼ ì„¤ì •í•œë‹¤.
 
     void ApplyHitEventProperties(SEventAnimHit* pAnimHit);
     void SetHitEventProperties(SEventAnimHit* pAnimHit, UINT nID);              
 
-    void ApplyTraceEventProperties(SEventTrace* pEventTrace);                        ///< Trace Event¿¡ ¼³Á¤µÈ ³»¿ëÀ¸·Î ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
-    void SetTraceEventProperties(SEventTrace* pEventTrace, UINT nID);                ///< Trace EventÀÇ ÇÁ·ÎÆÛÆ¼¸¦ ¼³Á¤ÇÑ´Ù.
+    void ApplyTraceEventProperties(SEventTrace* pEventTrace);                        ///< Trace Eventì— ì„¤ì •ëœ ë‚´ìš©ìœ¼ë¡œ ì—…ë°ì´íŠ¸í•œë‹¤.
+    void SetTraceEventProperties(SEventTrace* pEventTrace, UINT nID);                ///< Trace Eventì˜ í”„ë¡œí¼í‹°ë¥¼ ì„¤ì •í•œë‹¤.
 
-    void ApplyVisualEffectEventProperties(const SEventVisualEffect* pEventVisualEffect);        ///< Visual Effect Event¿¡ ¼³Á¤µÈ ³»¿ëÀ¸·Î ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
-    void SetVisualEffectEventProperties(SEventVisualEffect* pEventVisualEffect, UINT nID);      ///< Visual Effect EventÀÇ ÇÁ·ÎÆÛÆ¼¸¦ ¼³Á¤ÇÑ´Ù
+    void ApplyVisualEffectEventProperties(const SEventVisualEffect* pEventVisualEffect);        ///< Visual Effect Eventì— ì„¤ì •ëœ ë‚´ìš©ìœ¼ë¡œ ì—…ë°ì´íŠ¸í•œë‹¤.
+    void SetVisualEffectEventProperties(SEventVisualEffect* pEventVisualEffect, UINT nID);      ///< Visual Effect Eventì˜ í”„ë¡œí¼í‹°ë¥¼ ì„¤ì •í•œë‹¤
 
-    void ApplySubWeaponEventProperties(const SEventSubWeapon* pEventSubWeapon); ///< SubWeapon Evnet¿¡ ¼³Á¤µÈ ³»¿ëÀ¸·Î ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
-    void SetSubWeaponProperties(SEventSubWeapon* pEventSubWeapon, UINT nID);    ///< SubWeapon EventÀÇ ÇÁ·ÎÆÛÆ¼¸¦ ¼³Á¤ÇÑ´Ù.
+    void ApplySubWeaponEventProperties(const SEventSubWeapon* pEventSubWeapon); ///< SubWeapon Evnetì— ì„¤ì •ëœ ë‚´ìš©ìœ¼ë¡œ ì—…ë°ì´íŠ¸í•œë‹¤.
+    void SetSubWeaponProperties(SEventSubWeapon* pEventSubWeapon, UINT nID);    ///< SubWeapon Eventì˜ í”„ë¡œí¼í‹°ë¥¼ ì„¤ì •í•œë‹¤.
 
-    void ApplyPostEffectEventProperties(const SEventPostEffect* pEventPostEffect);      ///< PostEffect Event¿¡ ¼³Á¤µÈ ³»¿ëÀ¸·Î ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
-    void SetPostEffectEventProperties(SEventPostEffect* pEventPostEffect, UINT nID);    ///< PostEffect EventÀÇ ÇÁ·ÎÆÛÆ¼¸¦ ¼³Á¤ÇÑ´Ù.
+    void ApplyPostEffectEventProperties(const SEventPostEffect* pEventPostEffect);      ///< PostEffect Eventì— ì„¤ì •ëœ ë‚´ìš©ìœ¼ë¡œ ì—…ë°ì´íŠ¸í•œë‹¤.
+    void SetPostEffectEventProperties(SEventPostEffect* pEventPostEffect, UINT nID);    ///< PostEffect Eventì˜ í”„ë¡œí¼í‹°ë¥¼ ì„¤ì •í•œë‹¤.
 
-    void ApplySummonPetEventProperties(const SEventSummonPet* pEventSummonPet);         ///< SummonPet Event¿¡ ¼³Á¤µÈ ³»¿ëÀ¸·Î ¾÷µ¥ÀÌÆ® ÇÑ´Ù.
-    void SetSummonPetEventProperties(SEventSummonPet* pEventSummonPet, UINT nID);       ///< SummonPet EventÀÇ ÇÁ·ÎÆÛÆ¼¸¦ ¼³Á¤ÇÑ´Ù.
+    void ApplySummonPetEventProperties(const SEventSummonPet* pEventSummonPet);         ///< SummonPet Eventì— ì„¤ì •ëœ ë‚´ìš©ìœ¼ë¡œ ì—…ë°ì´íŠ¸ í•œë‹¤.
+    void SetSummonPetEventProperties(SEventSummonPet* pEventSummonPet, UINT nID);       ///< SummonPet Eventì˜ í”„ë¡œí¼í‹°ë¥¼ ì„¤ì •í•œë‹¤.
 
-    void ApplyTMQEventProperties(const SEventAnimCinematic* pEventTMQ);                           ///< TMQ Event¿¡ ¼³Á¤µÈ ³»¿ëÀ¸·Î ÄÁÆ®·ÑµéÀÇ °ªÀ» ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
-    void SetTMQEventProperties(SEventAnimCinematic* pEventTMQ, UINT nID);                         ///< TMQ EventÀÇ ÇÁ·ÎÆÛÆ¼¸¦ ¼³Á¤ÇÑ´Ù.
+    void ApplyTMQEventProperties(const SEventAnimCinematic* pEventTMQ);                           ///< TMQ Eventì— ì„¤ì •ëœ ë‚´ìš©ìœ¼ë¡œ ì»¨íŠ¸ë¡¤ë“¤ì˜ ê°’ì„ ì—…ë°ì´íŠ¸í•œë‹¤.
+    void SetTMQEventProperties(SEventAnimCinematic* pEventTMQ, UINT nID);                         ///< TMQ Eventì˜ í”„ë¡œí¼í‹°ë¥¼ ì„¤ì •í•œë‹¤.
 
-    void ApplyAlphaEventProperties(const SEventAlpha* pEventAlpha);                     ///< Alpha Evnet¿¡ ¼³Á¤µÈ ³»¿ëÀ¸·Î ÄÁÆ®·ÑµéÀÇ °ªÀ» ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
-    void SetAlphaEventProperties(SEventAlpha* pEventAlpha, UINT nID);                   ///< Alpha EventÀÇ ÇÁ·ÎÆÛÆ¼¸¦ ¼³Á¤ÇÑ´Ù.
+    void ApplyAlphaEventProperties(const SEventAlpha* pEventAlpha);                     ///< Alpha Evnetì— ì„¤ì •ëœ ë‚´ìš©ìœ¼ë¡œ ì»¨íŠ¸ë¡¤ë“¤ì˜ ê°’ì„ ì—…ë°ì´íŠ¸í•œë‹¤.
+    void SetAlphaEventProperties(SEventAlpha* pEventAlpha, UINT nID);                   ///< Alpha Eventì˜ í”„ë¡œí¼í‹°ë¥¼ ì„¤ì •í•œë‹¤.
 
-    void ApplyFootStepEventProperties(const SEventFootStep* pEventFootStep);            ///< Ç²½ºÅÜ(¹ßÀÚ±¹) ÀÌº¥Æ®¿¡ ¼³Á¤µÈ ³»¿ëÀ¸·Î °ªÀ» ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
-    void SetFootStepEventProperties(SEventFootStep* pEventFootStep, UINT nID);          ///< Ç²½ºÅÜÀÇ ÇÁ·ÎÆÛÆ¼¸¦ ¼³Á¤ÇÑ´Ù.
+    void ApplyFootStepEventProperties(const SEventFootStep* pEventFootStep);            ///< í’‹ìŠ¤í…(ë°œìêµ­) ì´ë²¤íŠ¸ì— ì„¤ì •ëœ ë‚´ìš©ìœ¼ë¡œ ê°’ì„ ì—…ë°ì´íŠ¸í•œë‹¤.
+    void SetFootStepEventProperties(SEventFootStep* pEventFootStep, UINT nID);          ///< í’‹ìŠ¤í…ì˜ í”„ë¡œí¼í‹°ë¥¼ ì„¤ì •í•œë‹¤.
 
-    void ApplyExplosionEventProperties(const SEventExplosion* pEventExplosion);         ///< Æø¹ß ÀÌº¥Æ®¿¡ ¼³Á¤µÈ ³»¿ëÀ¸·Î °ªÀ» ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
-    void SetExplosionEventProperties(SEventExplosion* pEventExplosion, UINT nID);       ///< Æø¹ß ÀÌº¥Æ®ÀÇ ÇÁ·ÎÆÛÆ¼¸¦ ¼³Á¤ÇÑ´Ù.
+    void ApplyExplosionEventProperties(const SEventExplosion* pEventExplosion);         ///< í­ë°œ ì´ë²¤íŠ¸ì— ì„¤ì •ëœ ë‚´ìš©ìœ¼ë¡œ ê°’ì„ ì—…ë°ì´íŠ¸í•œë‹¤.
+    void SetExplosionEventProperties(SEventExplosion* pEventExplosion, UINT nID);       ///< í­ë°œ ì´ë²¤íŠ¸ì˜ í”„ë¡œí¼í‹°ë¥¼ ì„¤ì •í•œë‹¤.
 
-    void ApplyUpgradeEffectProperties(const SUpgradeEffectProperty* pUpgradeEffectProperty);    ///< ¾ÆÀÌÅÛ ¾÷±×·¹ÀÌµå ÀÌÆåÆ® ÇÁ·ÎÆÛÆ¼¿¡ ¼³Á¤µÈ ³»¿ëÀ¸·Î °ªÀ» ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
-    void SetUpgradeEffectProperties(SUpgradeEffectProperty* pUpgradeEffectProperty, UINT nID);  ///< ¾ÆÀÌÅÛ ¾÷±×·¹ÀÌµå ÀÌÆåÆ® ÇÁ·ÎÆÛÆ¼¸¦ ¼³Á¤ÇÑ´Ù.
+    void ApplyUpgradeEffectProperties(const SUpgradeEffectProperty* pUpgradeEffectProperty);    ///< ì•„ì´í…œ ì—…ê·¸ë ˆì´ë“œ ì´í™íŠ¸ í”„ë¡œí¼í‹°ì— ì„¤ì •ëœ ë‚´ìš©ìœ¼ë¡œ ê°’ì„ ì—…ë°ì´íŠ¸í•œë‹¤.
+    void SetUpgradeEffectProperties(SUpgradeEffectProperty* pUpgradeEffectProperty, UINT nID);  ///< ì•„ì´í…œ ì—…ê·¸ë ˆì´ë“œ ì´í™íŠ¸ í”„ë¡œí¼í‹°ë¥¼ ì„¤ì •í•œë‹¤.
 
-    void ApplySoundEventProperties(const SEventSound* pEventSound);                     ///< »ç¿îµå ÀÌº¥Æ®¿¡ ¼³Á¤µÈ ³»¿ëÀ¸·Î °ªÀ» ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
-    void SetSoundEventProperties(SEventSound* pEventSound, UINT nID);                   ///< »ç¿îµå ÀÌº¥Æ® ÇÁ·ÎÆÛÆ¼¸¦ ¼³Á¤ÇÑ´Ù.
+    void ApplySoundEventProperties(const SEventSound* pEventSound);                     ///< ì‚¬ìš´ë“œ ì´ë²¤íŠ¸ì— ì„¤ì •ëœ ë‚´ìš©ìœ¼ë¡œ ê°’ì„ ì—…ë°ì´íŠ¸í•œë‹¤.
+    void SetSoundEventProperties(SEventSound* pEventSound, UINT nID);                   ///< ì‚¬ìš´ë“œ ì´ë²¤íŠ¸ í”„ë¡œí¼í‹°ë¥¼ ì„¤ì •í•œë‹¤.
 
-    void ApplyDirectEventProperties(const SEventDirect* pEventDirect);                  ///< ¿¬Ãâ¿ë ÀÌº¥Æ®¿¡ ¼³Á¤µÈ ³»¿ëÀ¸·Î °ªÀ» ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
-    void SetDirectEventProperties(SEventDirect* pEventDirect, UINT nID);                ///< ¿¬Ãâ¿ë ÀÌº¥Æ® ÇÁ·ÎÆÛÆ¼¸¦ ¼³Á¤ÇÑ´Ù.
+    void ApplyDirectEventProperties(const SEventDirect* pEventDirect);                  ///< ì—°ì¶œìš© ì´ë²¤íŠ¸ì— ì„¤ì •ëœ ë‚´ìš©ìœ¼ë¡œ ê°’ì„ ì—…ë°ì´íŠ¸í•œë‹¤.
+    void SetDirectEventProperties(SEventDirect* pEventDirect, UINT nID);                ///< ì—°ì¶œìš© ì´ë²¤íŠ¸ í”„ë¡œí¼í‹°ë¥¼ ì„¤ì •í•œë‹¤.
 
-    void ApplyColorChangeEventProperties(const SEventColorChange* pEventColorChange);   ///< »ö»ó º¯°æ ÀÌº¥Æ® ¾÷µ¥ÀÌÆ®
-    void SetColorChangeEventProperties(SEventColorChange* pEventColorChange, UINT nID); ///< »ö»ó º¯°æ ÇÁ·ÎÆÛÆ¼ ¼³Á¤
+    void ApplyColorChangeEventProperties(const SEventColorChange* pEventColorChange);   ///< ìƒ‰ìƒ ë³€ê²½ ì´ë²¤íŠ¸ ì—…ë°ì´íŠ¸
+    void SetColorChangeEventProperties(SEventColorChange* pEventColorChange, UINT nID); ///< ìƒ‰ìƒ ë³€ê²½ í”„ë¡œí¼í‹° ì„¤ì •
 
-    void ApplyStretchEventProperties(const SEventStretch* pEventStretch);               ///< ½ºÆ®·¹Ä¡ ÀÌº¥Æ® ¾÷µ¥ÀÌÆ®
-    void SetStretchEventProperties(SEventStretch* pEventStretch, UINT nID);             ///< ½ºÆ®·¹Ä¡ ÀÌº¥Æ® ÇÁ·ÎÆÛÆ¼ ¼³Á¤
+    void ApplyStretchEventProperties(const SEventStretch* pEventStretch);               ///< ìŠ¤íŠ¸ë ˆì¹˜ ì´ë²¤íŠ¸ ì—…ë°ì´íŠ¸
+    void SetStretchEventProperties(SEventStretch* pEventStretch, UINT nID);             ///< ìŠ¤íŠ¸ë ˆì¹˜ ì´ë²¤íŠ¸ í”„ë¡œí¼í‹° ì„¤ì •
 
-    void ApplyTriggerEventPrperties(const SEventTrigger* pEventTrigger);                ///< Æ®¸®°Å ÀÌº¥Æ® ¾÷µ¥ÀÌÆ®
-    void SetTriggerEventProperties(SEventTrigger* pEventTrigger, UINT nID);             ///< Æ®¸®°Å ÀÌº¥Æ® ÇÁ·ÎÆÛÆ¼ ¼³Á¤
+    void ApplyTriggerEventPrperties(const SEventTrigger* pEventTrigger);                ///< íŠ¸ë¦¬ê±° ì´ë²¤íŠ¸ ì—…ë°ì´íŠ¸
+    void SetTriggerEventProperties(SEventTrigger* pEventTrigger, UINT nID);             ///< íŠ¸ë¦¬ê±° ì´ë²¤íŠ¸ í”„ë¡œí¼í‹° ì„¤ì •
 
-    void ApplySkillCancelProperties(const SEventSkillCancel* pEventSkillCancel);         ///< ½ºÅ³ Äµ½½ ÀÌº¥Æ® ¾÷µ¥ÀÌÆ®
-    void SetSkillCancelProperties(SEventSkillCancel* pEventSkillCancel, UINT nID);       ///< ½ºÅ³ Äµ½½ ÀÌº¥Æ® ÇÁ·ÎÆÛÆ¼ ¼³Á¤
+    void ApplySkillCancelProperties(const SEventSkillCancel* pEventSkillCancel);         ///< ìŠ¤í‚¬ ìº”ìŠ¬ ì´ë²¤íŠ¸ ì—…ë°ì´íŠ¸
+    void SetSkillCancelProperties(SEventSkillCancel* pEventSkillCancel, UINT nID);       ///< ìŠ¤í‚¬ ìº”ìŠ¬ ì´ë²¤íŠ¸ í”„ë¡œí¼í‹° ì„¤ì •
 
     //////////////////////////////////////////////////////////////////////////
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support

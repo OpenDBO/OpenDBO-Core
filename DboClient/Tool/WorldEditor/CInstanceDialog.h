@@ -4,7 +4,7 @@
 #include "CInstanceTreeCtrl.h"
 
 
-// CAssetObjectDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAssetObjectDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CInstanceDialog : public CDialog
 {

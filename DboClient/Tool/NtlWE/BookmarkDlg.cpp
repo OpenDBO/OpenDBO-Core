@@ -1,4 +1,4 @@
-// BookmarkDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// BookmarkDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -9,7 +9,7 @@
 #include "NtlPLApi.h"
 
 
-// CBookmarkDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CBookmarkDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CBookmarkDlg, CDialog)
 
@@ -55,7 +55,7 @@ BEGIN_MESSAGE_MAP(CBookmarkDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CBookmarkDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CBookmarkDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 BOOL CBookmarkDlg::PreTranslateMessage(MSG* pMsg)
 {
 	/*
@@ -172,7 +172,7 @@ BOOL CBookmarkDlg::OnInitDialog()
 	UpdateData(FALSE);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CBookmarkDlg::OnBnClickedInsert()

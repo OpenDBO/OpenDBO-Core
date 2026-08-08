@@ -1,7 +1,7 @@
 /******************************************************************************
 * File			: CharCreateGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2006. 12. 8
 * Update		: 2007. 10. 11
 * Abstract		:
@@ -57,7 +57,7 @@ public:
 
 	RwUInt8		GetSelectedChannelIndex();
 
-	// Ä³¸¯ÅÍ ½ºÅ×ÀÌÁö(·Îºñ)¿¡¼­ÀÇ GUIÀÇ ÄÁÆ®·ÑÀÇ À§ÇÑ ÇÔ¼ö
+	// ìºë¦­í„° ìŠ¤í…Œì´ì§€(ë¡œë¹„)ì—ì„œì˜ GUIì˜ ì»¨íŠ¸ë¡¤ì˜ ìœ„í•œ í•¨ìˆ˜
 	VOID		SwitchDialog(bool bShow);
 	VOID		EnableButtons(bool bEnable);
 
@@ -91,17 +91,17 @@ protected:
 	gui::CSlot			m_slotCaptureWheelMove;
 	gui::CSlot			m_slotCaptureMouseUp;
 
-	gui::CButton*		m_pLeftRotButton;	///< ¿ŞÂÊ È¸Àü ¹öÆ°
-	gui::CButton*		m_pRightRotButton;	///< ¿À¸¥ÂÊ È¸Àü ¹öÆ°
-	gui::CButton*		m_pGameStartButton;	///< °ÔÀÓ ½ÃÀÛ ¹öÆ°
-	gui::CButton*		m_pExitButton;		///< ³ª°¡±â ¹öÆ°
+	gui::CButton*		m_pLeftRotButton;	///< ì™¼ìª½ íšŒì „ ë²„íŠ¼
+	gui::CButton*		m_pRightRotButton;	///< ì˜¤ë¥¸ìª½ íšŒì „ ë²„íŠ¼
+	gui::CButton*		m_pGameStartButton;	///< ê²Œì„ ì‹œì‘ ë²„íŠ¼
+	gui::CButton*		m_pExitButton;		///< ë‚˜ê°€ê¸° ë²„íŠ¼
 
-	CAccountGui*		m_pAccountGui;		///< °èÁ¤ Á¤º¸ GUI
-	CCharacterInfoGui*	m_pCharacterInfoGui;///< Ä³¸¯ÅÍ Á¤º¸ GUI
-	CCharSelecterGui*	m_pCharSelecterGui;	///< Ä³¸¯ÅÍ ¼±ÅÃ±â GUI
-	CChannelSelectGui*	m_pChannelSelectGui;///< Ã¤³Î ¼¿·ºÆ® GUI
+	CAccountGui*		m_pAccountGui;		///< ê³„ì • ì •ë³´ GUI
+	CCharacterInfoGui*	m_pCharacterInfoGui;///< ìºë¦­í„° ì •ë³´ GUI
+	CCharSelecterGui*	m_pCharSelecterGui;	///< ìºë¦­í„° ì„ íƒê¸° GUI
+	CChannelSelectGui*	m_pChannelSelectGui;///< ì±„ë„ ì…€ë ‰íŠ¸ GUI
 
-	RwUInt8				m_byRotationState;	///< Ä³¸¯ÅÍ È¸Àü»óÅÂ
+	RwUInt8				m_byRotationState;	///< ìºë¦­í„° íšŒì „ìƒíƒœ
 
-	sMOUSE_ROL			m_tMouseRol;		///< ¸¶¿ì½º¸¦ ÀÌ¿ëÇÑ Ä³¸¯ÅÍ È¸Àü
+	sMOUSE_ROL			m_tMouseRol;		///< ë§ˆìš°ìŠ¤ë¥¼ ì´ìš©í•œ ìºë¦­í„° íšŒì „
 };

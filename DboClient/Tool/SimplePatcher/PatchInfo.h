@@ -95,10 +95,10 @@ public:
 	typedef std::vector< CPatchData* > vecdef_PatchDataList;
 
 protected:
-	CString						m_clCurVerFullPathFileName;		// ÇöÀç Version FileÀÌ¸§
-	CString                     m_strCurVerPatchDate;           // ÇöÀç ÆĞÄ¡ÆÄÀÏ ³¯Â¥
-	CPatchVersion				m_clCurVerLauncher;				// ÇöÀç Launcher Version
-	CPatchVersion				m_clCurVerClient;				// ÇöÀç Client Version
+	CString						m_clCurVerFullPathFileName;		// í˜„ì¬ Version Fileì´ë¦„
+	CString                     m_strCurVerPatchDate;           // í˜„ì¬ íŒ¨ì¹˜íŒŒì¼ ë‚ ì§œ
+	CPatchVersion				m_clCurVerLauncher;				// í˜„ì¬ Launcher Version
+	CPatchVersion				m_clCurVerClient;				// í˜„ì¬ Client Version
 
 	CPatchData					m_clNewVerLauncherRtFull;		// Launcher Full RtPatch
 	vecdef_PatchDataList		m_vecNewVerClientRtDiff;		// Client Diff RtPatch List

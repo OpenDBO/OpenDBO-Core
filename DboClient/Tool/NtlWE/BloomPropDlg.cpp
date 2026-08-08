@@ -1,4 +1,4 @@
-// BloomPropDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// BloomPropDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -11,7 +11,7 @@
 
 #include "WorldViewDlg.h"
 
-// CBloomPropDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CBloomPropDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CBloomPropDlg, CDialog)
 
@@ -38,7 +38,7 @@ BEGIN_MESSAGE_MAP(CBloomPropDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CBloomPropDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CBloomPropDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 BOOL CBloomPropDlg::PreTranslateMessage(MSG* pMsg)
 {
 	// prevent keys; escape, return
@@ -123,7 +123,7 @@ BOOL CBloomPropDlg::OnInitDialog()
 	UpdateData(FALSE);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 void CBloomPropDlg::OnDestroy()
 {
@@ -131,5 +131,5 @@ void CBloomPropDlg::OnDestroy()
 
 	CDialog::OnDestroy();
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }

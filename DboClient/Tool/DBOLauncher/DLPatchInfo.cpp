@@ -2,7 +2,7 @@
 *
 * File			: DLPatchInfo.cpp
 * Author		: HongHoDong
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 2. 5.
 * Abstract		: 
 *****************************************************************************
@@ -129,13 +129,13 @@ public:
 	{
 		m_strFullPathFileName = strFullPathFileName;
 
-		// ÆÄÀÏ ¼Ó¼ºÀ» Normal·Î ¹Ù²Û´Ù
+		// íŒŒì¼ ì†ì„±ì„ Normalë¡œ ë°”ê¾¼ë‹¤
 		SetFileAttributes( m_strFullPathFileName, FILE_ATTRIBUTE_NORMAL );
 	}
 
 	~CDLCurVerXmlSaver( void )
 	{
-		// ÆÄÀÏ ¼Ó¼ºÀ» HiddenÀ¸·Î ¹Ù²Û´Ù
+		// íŒŒì¼ ì†ì„±ì„ Hiddenìœ¼ë¡œ ë°”ê¾¼ë‹¤
 		SetFileAttributes( m_strFullPathFileName, FILE_ATTRIBUTE_HIDDEN );
 	}
 
@@ -308,7 +308,7 @@ bool CDLPatchHistory::LoadCurVersionList( CString strFullPathFileName )
 
 	if ( !doc.Load( (TCHAR*)pPath ) )
 	{
-		// ÇöÀç ¹öÀü¿¡ ´ëÇÑ ÆÄÀÏ Á¤º¸°¡ ¾øÀ» ¼ö µµ ÀÖ´Ù
+		// í˜„ì¬ ë²„ì „ì— ëŒ€í•œ íŒŒì¼ ì •ë³´ê°€ ì—†ì„ ìˆ˜ ë„ ìˆë‹¤
 		return true;
 	}
 
@@ -407,7 +407,7 @@ bool CDLPatchHistory::LoadPatchList( CString strPatchListFileName, CString strCl
 
 	//////////////////////////////////////////////////////////////////////////
 	//
-	// Client patch list¸¦ ÀĞ¾îµéÀÎ´Ù
+	// Client patch listë¥¼ ì½ì–´ë“¤ì¸ë‹¤
 	//
 	//////////////////////////////////////////////////////////////////////////
 
@@ -497,7 +497,7 @@ bool CDLPatchHistory::LoadPatchList( CString strPatchListFileName, CString strCl
 
 	//////////////////////////////////////////////////////////////////////////
 	//
-	// Launcher patch list¸¦ ÀĞ¾îµéÀÎ´Ù
+	// Launcher patch listë¥¼ ì½ì–´ë“¤ì¸ë‹¤
 	//
 	//////////////////////////////////////////////////////////////////////////
 

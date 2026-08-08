@@ -1,4 +1,4 @@
-// NewAssetOpen.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// NewAssetOpen.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -25,5 +25,5 @@ END_MESSAGE_MAP()
 
 
 
-// CNewAssetOpen ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CNewAssetOpen ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 

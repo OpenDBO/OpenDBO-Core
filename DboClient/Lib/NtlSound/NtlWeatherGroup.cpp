@@ -61,7 +61,7 @@ int CNtlWeatherGroup::CanPlay(const char* pcName)
 		{
 			if( strcmp(pSound->m_strName.c_str(), pcName) == 0 )
 			{
-				// Fade outµÇ¾î »ç¶óÁö´Â ÁßÀÌ¸é ´Ù½Ã Fade in ½ÃÅ²´Ù
+				// Fade outë˜ì–´ ì‚¬ë¼ì§€ëŠ” ì¤‘ì´ë©´ ë‹¤ì‹œ Fade in ì‹œí‚¨ë‹¤
 				if( pSound->m_eState == SPS_PLAY_FADE_OUT )
 				{
 					GetFadeInOut()->StopImmediately(pSound->m_pFMODChannel, dFADE_STOP_FLAG_NOT_NOTIFY);

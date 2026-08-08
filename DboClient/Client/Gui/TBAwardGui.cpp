@@ -146,9 +146,9 @@ VOID CTBAwardResultGui::Destroy(VOID)
 {
 	GetNtlGuiManager()->RemoveUpdateFunc( this );
 
-	OnMouseLeave( NULL ); // ÀÎÆ÷À©µµ¿ì ´İ±â.
+	OnMouseLeave( NULL ); // ì¸í¬ìœˆë„ìš° ë‹«ê¸°.
 
-	DeleteAllRewardItem(); // ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ »èÁ¦.
+	DeleteAllRewardItem(); // ì•„ì´í…œ ì•„ì´ì½˜ ì‚­ì œ.
 
 	UnLinkMsg( g_EventResize );
 	UnLinkMsg( g_EventCinematicGuiCommand );
@@ -415,16 +415,16 @@ VOID CTBAwardResultGui::ShowAwardItem( RwUInt8 bySlotIdx )
 
 VOID CTBAwardResultGui::OnFSCallBack( const RwChar* szCommand, const RwChar* szArgs )
 {
-	if( !strcmp( szCommand, "TextEnd1" ) )	// 3,4À§
+	if( !strcmp( szCommand, "TextEnd1" ) )	// 3,4ìœ„
 	{
 		ShowAwardItem( FINALMATCH_RESULT_MATCH1_LOSER );
 		ShowAwardItem( FINALMATCH_RESULT_MATCH2_LOSER );
 	}
-	else if( !strcmp( szCommand, "TextEnd2" ) ) // 2À§
+	else if( !strcmp( szCommand, "TextEnd2" ) ) // 2ìœ„
 	{
 		ShowAwardItem( FINALMATCH_RESULT_SEMIWINNER );
 	}
-	else if( !strcmp( szCommand, "TextEnd3" ) )	// 1À§
+	else if( !strcmp( szCommand, "TextEnd3" ) )	// 1ìœ„
 	{
 		ShowAwardItem( FINALMATCH_RESULT_WINNER );
 	}

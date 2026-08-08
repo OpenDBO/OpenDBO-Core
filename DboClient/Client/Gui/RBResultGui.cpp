@@ -106,7 +106,7 @@ RwBool CRBResultGui::Create(VOID)
 
 	CRectangle rtScreen = m_pThis->GetScreenRect();
 
-	// ÃÊ±âÀ§Ä¡ ¼³Á¤
+	// ì´ˆê¸°ìœ„ì¹˜ ì„¤ì •
 	for( RwInt32 i = 0 ; i < TEAM_COUNT ; ++i )
 	{
 		if( i == BLUE )

@@ -52,7 +52,7 @@ void CNtlBehaviorCharGroundAdjustMove::Enter(void)
 
     SetAnim();
 
-    // ≥™¡ﬂø° base class enter∏¶ »£√‚«—¥Ÿ.
+    // ÎÇòÏ§ëÏóê base class enterÎ•º Ìò∏Ï∂úÌïúÎã§.
     CNtlBehaviorBase::Enter(); 
 
 }
@@ -134,7 +134,7 @@ void CNtlBehaviorCharGroundAdjustMove::SetAnim()
         {
             uiNextAnimKey = SWIM_FRONT;
         }
-        else if(Logic_IsTransformGreatNamek(m_pActor))  // ∫ØΩ≈Ω√
+        else if(Logic_IsTransformGreatNamek(m_pActor))  // Î≥ÄÏã†Ïãú
         {
             uiNextAnimKey = TRANS_RUN_FRONT;
         }
@@ -162,7 +162,7 @@ void CNtlBehaviorCharGroundAdjustMove::SetAnim()
         {
             uiNextAnimKey = SWIM_BACK;
         }
-        else if(Logic_IsTransformGreatNamek(m_pActor)) // ∫ØΩ≈Ω√
+        else if(Logic_IsTransformGreatNamek(m_pActor)) // Î≥ÄÏã†Ïãú
         {
             uiNextAnimKey = TRANS_RUN_BACK;
         }
@@ -191,7 +191,7 @@ void CNtlBehaviorCharGroundAdjustMove::SetAnim()
 		{
 			uiNextAnimKey = SWIM_FRONT;
 		}
-		else if (Logic_IsTransformGreatNamek(m_pActor))  // ∫ØΩ≈Ω√
+		else if (Logic_IsTransformGreatNamek(m_pActor))  // Î≥ÄÏã†Ïãú
 		{
 			uiNextAnimKey = TRANS_RUN_FRONT;
 		}
@@ -216,7 +216,7 @@ void CNtlBehaviorCharGroundAdjustMove::SetAnim()
 		{
 			uiNextAnimKey = SWIM_FRONT;
 		}
-		else if (Logic_IsTransformGreatNamek(m_pActor))  // ∫ØΩ≈Ω√
+		else if (Logic_IsTransformGreatNamek(m_pActor))  // Î≥ÄÏã†Ïãú
 		{
 			uiNextAnimKey = TRANS_RUN_FRONT;
 		}

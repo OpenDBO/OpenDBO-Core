@@ -1,4 +1,4 @@
-// TextureConverterView.cpp : CTextureConverterView Å¬·¡½ºÀÇ ±¸Çö
+// TextureConverterView.cpp : CTextureConverterView í´ë˜ìŠ¤ì˜ êµ¬í˜„
 //
 
 #include "stdafx.h"
@@ -17,17 +17,17 @@
 IMPLEMENT_DYNCREATE(CTextureConverterView, CScrollView)
 
 BEGIN_MESSAGE_MAP(CTextureConverterView, CScrollView)
-	// Ç¥ÁØ ÀÎ¼â ¸í·ÉÀÔ´Ï´Ù.
+	// í‘œì¤€ ì¸ì‡„ ëª…ë ¹ì…ë‹ˆë‹¤.
 	ON_COMMAND(ID_FILE_PRINT, CScrollView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, CScrollView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, CScrollView::OnFilePrintPreview)
 END_MESSAGE_MAP()
 
-// CTextureConverterView »ı¼º/¼Ò¸ê
+// CTextureConverterView ìƒì„±/ì†Œë©¸
 
 CTextureConverterView::CTextureConverterView()
 {
-	// TODO: ¿©±â¿¡ »ı¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ìƒì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 }
 
@@ -37,13 +37,13 @@ CTextureConverterView::~CTextureConverterView()
 
 BOOL CTextureConverterView::PreCreateWindow(CREATESTRUCT& cs)
 {
-	// TODO: CREATESTRUCT cs¸¦ ¼öÁ¤ÇÏ¿© ¿©±â¿¡¼­
-	// Window Å¬·¡½º ¶Ç´Â ½ºÅ¸ÀÏÀ» ¼öÁ¤ÇÕ´Ï´Ù.
+	// TODO: CREATESTRUCT csë¥¼ ìˆ˜ì •í•˜ì—¬ ì—¬ê¸°ì—ì„œ
+	// Window í´ë˜ìŠ¤ ë˜ëŠ” ìŠ¤íƒ€ì¼ì„ ìˆ˜ì •í•©ë‹ˆë‹¤.
 
 	return CScrollView::PreCreateWindow(cs);
 }
 
-// CTextureConverterView ±×¸®±â
+// CTextureConverterView ê·¸ë¦¬ê¸°
 
 void CTextureConverterView::OnDraw(CDC* pDC)
 {
@@ -52,7 +52,7 @@ void CTextureConverterView::OnDraw(CDC* pDC)
 	if (!pDoc)
 		return;
 
-	// TODO: ¿©±â¿¡ ¿ø½Ã µ¥ÀÌÅÍ¿¡ ´ëÇÑ ±×¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì›ì‹œ ë°ì´í„°ì— ëŒ€í•œ ê·¸ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	for( int nIndex = 0; nIndex < GetDocument()->GetFileCount(); ++nIndex )
 	{
@@ -64,32 +64,32 @@ void CTextureConverterView::OnInitialUpdate()
 {
 	CScrollView::OnInitialUpdate();
 	CSize sizeTotal;
-	// TODO: ÀÌ ºäÀÇ ÀüÃ¼ Å©±â¸¦ °è»êÇÕ´Ï´Ù.
+	// TODO: ì´ ë·°ì˜ ì „ì²´ í¬ê¸°ë¥¼ ê³„ì‚°í•©ë‹ˆë‹¤.
 	sizeTotal.cx = sizeTotal.cy = 100;
 	SetScrollSizes(MM_TEXT, sizeTotal);
 }
 
 
-// CTextureConverterView ÀÎ¼â
+// CTextureConverterView ì¸ì‡„
 
 BOOL CTextureConverterView::OnPreparePrinting(CPrintInfo* pInfo)
 {
-	// ±âº»ÀûÀÎ ÁØºñ
+	// ê¸°ë³¸ì ì¸ ì¤€ë¹„
 	return DoPreparePrinting(pInfo);
 }
 
 void CTextureConverterView::OnBeginPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
 {
-	// TODO: ÀÎ¼âÇÏ±â Àü¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì¸ì‡„í•˜ê¸° ì „ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 void CTextureConverterView::OnEndPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
 {
-	// TODO: ÀÎ¼â ÈÄ Á¤¸® ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì¸ì‡„ í›„ ì •ë¦¬ ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 
-// CTextureConverterView Áø´Ü
+// CTextureConverterView ì§„ë‹¨
 
 #ifdef _DEBUG
 void CTextureConverterView::AssertValid() const
@@ -102,7 +102,7 @@ void CTextureConverterView::Dump(CDumpContext& dc) const
 	CScrollView::Dump(dc);
 }
 
-CTextureConverterDoc* CTextureConverterView::GetDocument() const // µğ¹ö±×µÇÁö ¾ÊÀº ¹öÀüÀº ÀÎ¶óÀÎÀ¸·Î ÁöÁ¤µË´Ï´Ù.
+CTextureConverterDoc* CTextureConverterView::GetDocument() const // ë””ë²„ê·¸ë˜ì§€ ì•Šì€ ë²„ì „ì€ ì¸ë¼ì¸ìœ¼ë¡œ ì§€ì •ë©ë‹ˆë‹¤.
 {
 	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CTextureConverterDoc)));
 	return (CTextureConverterDoc*)m_pDocument;
@@ -110,4 +110,4 @@ CTextureConverterDoc* CTextureConverterView::GetDocument() const // µğ¹ö±×µÇÁö ¾
 #endif //_DEBUG
 
 
-// CTextureConverterView ¸Ş½ÃÁö Ã³¸®±â
+// CTextureConverterView ë©”ì‹œì§€ ì²˜ë¦¬ê¸°

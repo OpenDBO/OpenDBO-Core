@@ -37,7 +37,7 @@ public:
 	// Tooltip
 	void ShowToolTip( int nPosX, int nPosY, TCHAR* tcToolTip, BOOL bShow = TRUE );
 	
-	// OffsetÀÌ º¯°æµÇ¾úÀ» ¶§ È£Ãâ
+	// Offsetì´ ë³€ê²½ë˜ì—ˆì„ ë•Œ í˜¸ì¶œ
 	void RefreshOffsetData();
 	
 	// Render
@@ -46,7 +46,7 @@ public:
 	// Getter/Setter
 public:
 	int GetCount();
-	// PathÀÇ ÃÑ ½Ã°£À» ¼¼ÆÃ
+	// Pathì˜ ì´ ì‹œê°„ì„ ì„¸íŒ…
 	void SetTotalTime( float fTime );
 
 	static CPathManager* GetInstance()
@@ -66,19 +66,19 @@ protected:
 	void Create( int nCount );
 
 protected:
-	CPathPoint*			m_pPath;					///< Á¡ÀÇ ·»´õ ¾ÆÀÌÅÛ
+	CPathPoint*			m_pPath;					///< ì ì˜ ë Œë” ì•„ì´í…œ
 	
-	gui::SCtrlPoint*	m_pCtrlPoint;				///< ÇöÀç Ctrl PointÀÇ Data
-	gui::SPathInfo		m_sPathInfo;				///< ÆĞ½ºÀÇ Á¤º¸
-	gui::CParticlePath	m_GuiPath;					///< ¶óÀÌºê·¯¸® ÆĞ½º
+	gui::SCtrlPoint*	m_pCtrlPoint;				///< í˜„ì¬ Ctrl Pointì˜ Data
+	gui::SPathInfo		m_sPathInfo;				///< íŒ¨ìŠ¤ì˜ ì •ë³´
+	gui::CParticlePath	m_GuiPath;					///< ë¼ì´ë¸ŒëŸ¬ë¦¬ íŒ¨ìŠ¤
 	
-	gui::CValueItem*	m_pActiveValueItem;			///< ÇöÀç Àû¿ëÁßÀÎ Path
+	gui::CValueItem*	m_pActiveValueItem;			///< í˜„ì¬ ì ìš©ì¤‘ì¸ Path
 
-	gui::CStaticBox*	m_pStbToolTip;				///< ToolTipÀÇ ¹Ú½º
+	gui::CStaticBox*	m_pStbToolTip;				///< ToolTipì˜ ë°•ìŠ¤
 
-	gui::CGuiLine*		m_pLinePath;				///< ÆĞ½ºÀÇ ¶óÀÎ
+	gui::CGuiLine*		m_pLinePath;				///< íŒ¨ìŠ¤ì˜ ë¼ì¸
 
-	int					m_nCount;						///< ÆĞ½º °¹¼ö
+	int					m_nCount;						///< íŒ¨ìŠ¤ ê°¯ìˆ˜
 };
 
 static CPathManager* GetPathManager()

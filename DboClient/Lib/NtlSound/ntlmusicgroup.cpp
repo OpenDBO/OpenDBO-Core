@@ -71,12 +71,12 @@ eStoreResult CNtlMusicGroup::StoreSound(CNtlSound* pSound, sNtlSoundPlayParameta
 
 		if( m_fReplayElapsed > 0.f )
 		{
-			// replay ´ë±â »óÅÂ¸é ¹Ù·Î ¾ø¾Ø´Ù
+			// replay ëŒ€ê¸° ìƒíƒœë©´ ë°”ë¡œ ì—†ì•¤ë‹¤
 			Stop(it->second->m_hHandle);
 		}
 		else
 		{
-			// ÇöÀç ¿¬ÁÖµÇ´Â À½¾ÇÀº PostMusicÀÌ µÇ¾î Fade Out µÈ´Ù.			
+			// í˜„ìž¬ ì—°ì£¼ë˜ëŠ” ìŒì•…ì€ PostMusicì´ ë˜ì–´ Fade Out ëœë‹¤.			
 			FMOD_MODE mode;
 			CNtlSound* pCurSound = it->second;
 
@@ -124,7 +124,7 @@ bool CNtlMusicGroup::Stop(SOUND_HANDLE hHandle)
 {
 	if( hHandle == m_hPostSound )
 	{
-		// Áï°¢ ÇØÁ¦
+		// ì¦‰ê° í•´ì œ
 		CNtlChannelGroup::Stop(m_hPostSound);
 		m_hPostSound = INVALID_SOUND_HANDLE;
 
@@ -135,7 +135,7 @@ bool CNtlMusicGroup::Stop(SOUND_HANDLE hHandle)
 		SOUND_ITER it = m_mapGroup.find(hHandle);
 		if( it != m_mapGroup.end() )
 		{
-			// À½¾ÇÀº Fade outÈÄ ÇØÁ¦µÈ´Ù
+			// ìŒì•…ì€ Fade outí›„ í•´ì œëœë‹¤
 			FMOD_MODE mode;
 			CNtlSound* pSound = it->second;
 
@@ -167,10 +167,10 @@ void CNtlMusicGroup::ReleaseFinishedSound(float fElapsed)
 			pSound->m_pFMODChannel->getMode(&mode);
 
 			if( mode ^ FMOD_LOOP_NORMAL )
-			{	// ¹«ÇÑ¹Ýº¹ÀÌ ¾Æ´Ò ¶§
+			{	// ë¬´í•œë°˜ë³µì´ ì•„ë‹ ë•Œ
 				bool bPlaying;
 
-				// paused µÈ »ç¿îµåµµ true °ªÀÌ ¸®ÅÏµÈ´Ù
+				// paused ëœ ì‚¬ìš´ë“œë„ true ê°’ì´ ë¦¬í„´ëœë‹¤
 				pSound->m_pFMODChannel->isPlaying(&bPlaying);
 
 				if(!bPlaying)

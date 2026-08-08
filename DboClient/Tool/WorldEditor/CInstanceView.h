@@ -3,14 +3,14 @@
 #include "CInstanceDialog.h"
 #include "CInstancePropertyDialog.h"
 
-// CAssetObjectView ºäÀÔ´Ï´Ù.
+// CAssetObjectView ë·°ì…ë‹ˆë‹¤.
 
 class CInstanceView : public CView
 {
 	DECLARE_DYNCREATE(CInstanceView)
 
 protected:
-	CInstanceView();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CInstanceView();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CInstanceView();
 
 public:
@@ -19,7 +19,7 @@ public:
 	CInstancePropertyDialog		m_PropertyDialog;
 
 public:
-	virtual void OnDraw(CDC* pDC);      // ÀÌ ºä¸¦ ±×¸®±â À§ÇØ ÀçÁ¤ÀÇµÇ¾ú½À´Ï´Ù.
+	virtual void OnDraw(CDC* pDC);      // ì´ ë·°ë¥¼ ê·¸ë¦¬ê¸° ìœ„í•´ ì¬ì •ì˜ë˜ì—ˆìŠµë‹ˆë‹¤.
 
 	CInstanceDialog * GetInstanceDialog( void ) const { return const_cast<CInstanceDialog *>(&m_InstanceDialog); }
 	CInstancePropertyDialog * GetPropertyDialog( void ) const { return const_cast<CInstancePropertyDialog *>(&m_PropertyDialog); }

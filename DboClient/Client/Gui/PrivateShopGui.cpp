@@ -64,7 +64,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
-* \brief »ı¼ºÀÚ
+* \brief ìƒì„±ì
 */
 CPrivateShopItemGui::CPrivateShopItemGui()
 :m_pPrivateShopGui(NULL)
@@ -82,7 +82,7 @@ CPrivateShopItemGui::CPrivateShopItemGui()
 }
 
 /**
-* \brief ¼Ò¸êÀÚ
+* \brief ì†Œë©¸ì
 */
 CPrivateShopItemGui::~CPrivateShopItemGui()
 {
@@ -90,12 +90,12 @@ CPrivateShopItemGui::~CPrivateShopItemGui()
 
 /**
 * \brief Create
-* \param rectArea			ÇöÀç ½½·ÔÀÇ ¿µ¿ª
-* \param pEffectSelect		¼±ÅÃÇÏ¿´À» °æ¿ìÀÇ Effect Surface
-* \param pEffectFocus		Æ÷Ä¿½º µÇ¾úÀ» °æ¿ìÀÇ Effect Surface
-* \param pEffectBusiness	ÈïÁ¤ ÁßÀÇ Effect Surface
-* \param pParent			ºÎ¸ğ Component
-* \param pPrivateShopGui	½½·ÔÀ» °¡Áö°í ÀÖ´Â Gui
+* \param rectArea			í˜„ì¬ ìŠ¬ë¡¯ì˜ ì˜ì—­
+* \param pEffectSelect		ì„ íƒí•˜ì˜€ì„ ê²½ìš°ì˜ Effect Surface
+* \param pEffectFocus		í¬ì»¤ìŠ¤ ë˜ì—ˆì„ ê²½ìš°ì˜ Effect Surface
+* \param pEffectBusiness	í¥ì • ì¤‘ì˜ Effect Surface
+* \param pParent			ë¶€ëª¨ Component
+* \param pPrivateShopGui	ìŠ¬ë¡¯ì„ ê°€ì§€ê³  ìˆëŠ” Gui
 */
 RwBool CPrivateShopItemGui::Create(const CRectangle& rectArea, 
 								   CSurfaceGui* pEffectSelect, 
@@ -105,22 +105,22 @@ RwBool CPrivateShopItemGui::Create(const CRectangle& rectArea,
 {
 	NTL_FUNCTION("CPrivateShopItemGui::Create");
 
-	// ¾ÆÀÌÅÛ ½½·ÔÀÇ ±âº»ÀÌ µÇ´Â µŞ ¹è°æ
+	// ì•„ì´í…œ ìŠ¬ë¡¯ì˜ ê¸°ë³¸ì´ ë˜ëŠ” ë’· ë°°ê²½
 	CRectangle rect = rectArea;
 	m_pShopItem = NTL_NEW gui::CDialog(rect, pParent, GetNtlGuiManager()->GetSurfaceManager());
 
-	// ¾ÆÀÌÅÛ µŞ ¹è°æÀÇ ±×¸² ( gui::CPanet )
+	// ì•„ì´í…œ ë’· ë°°ê²½ì˜ ê·¸ë¦¼ ( gui::CPanet )
 	rect.SetRectWH(0, 0, 283, 48);
 	m_pShopItemBg = NTL_NEW gui::CPanel(rect, m_pShopItem, GetNtlGuiManager()->GetSurfaceManager(),
 		GetNtlGuiManager()->GetSurfaceManager()->GetSurface("PrivateShop.srf", "srfBackGroundShopItem"));
 	m_pShopItemBg->Enable(false);
 
-	// ¾ÆÀÌÅÛ ÀÌ¸§
+	// ì•„ì´í…œ ì´ë¦„
 	rect.SetRectWH(48, 2, 200, 16);
 	m_pShopItemName = NTL_NEW gui::CStaticBox(rect, m_pShopItem, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER);
 	m_pShopItemName->Enable(false);
 
-	// °¡°İ 
+	// ê°€ê²© 
 	rect.SetRectWH(176, 22, 103, 20);
 	m_pShopItemPrice = NTL_NEW gui::CButton(rect, L"0",m_pShopItem, GetNtlGuiManager()->GetSurfaceManager());
 
@@ -137,7 +137,7 @@ RwBool CPrivateShopItemGui::Create(const CRectangle& rectArea,
 	m_pShopItemIcon->Create(m_pShopItem, DIALOG_PRIVATESHOP, REGULAR_SLOT_ITEM_TABLE, SDS_COUNT);
 	m_pShopItemIcon->SetPosition_fromParent(7, 6);
 
-	// Pick µÇ¾úÀ» ¶§ÀÇ Surface¸¦ ¼¼ÆÃ
+	// Pick ë˜ì—ˆì„ ë•Œì˜ Surfaceë¥¼ ì„¸íŒ…
 	m_EffectPick.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("PrivateShop.srf", "srfShopItemPick"));
 	m_EffectPick.SetPositionfromParent(7, 6);
 
@@ -184,7 +184,7 @@ void CPrivateShopItemGui::Destroy()
 
 /**
 * \brief clear
-* ÇöÀç ½½·ÔÀÇ ¾ÆÀÌÅÛ Á¤º¸¸¦ ¸ğµÎ ÃÊ±âÈ­ÇÑ´Ù.
+* í˜„ì¬ ìŠ¬ë¡¯ì˜ ì•„ì´í…œ ì •ë³´ë¥¼ ëª¨ë‘ ì´ˆê¸°í™”í•œë‹¤.
 */
 void CPrivateShopItemGui::Clear()
 {
@@ -328,7 +328,7 @@ CRectangle CPrivateShopItemGui::GetShopItemRect()
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
-* \brief »ı¼ºÀÚ
+* \brief ìƒì„±ì
 */
 CPrivateShopGui::CPrivateShopGui(const RwChar* pName) : CNtlPLGui(pName)
 ,m_pTitle(NULL)
@@ -359,7 +359,7 @@ CPrivateShopGui::CPrivateShopGui(const RwChar* pName) : CNtlPLGui(pName)
 }
 
 /**
-* \brief ¼Ò¸êÀÚ
+* \brief ì†Œë©¸ì
 */
 CPrivateShopGui::~CPrivateShopGui()
 {
@@ -367,7 +367,7 @@ CPrivateShopGui::~CPrivateShopGui()
 
 /**
 * \brief Create
-* °øÅëµÈ ´ÙÀÌ¾ó·Î±× ÄÄÆ÷³ÍÆ®¸¦ »ı¼ºÇÏ°í ÇÏÀ§ Tab ÄÄÆ÷³ÍÆ® ¿ª½Ã »ı¼ºÇÑ´Ù.
+* ê³µí†µëœ ë‹¤ì´ì–¼ë¡œê·¸ ì»´í¬ë„ŒíŠ¸ë¥¼ ìƒì„±í•˜ê³  í•˜ìœ„ Tab ì»´í¬ë„ŒíŠ¸ ì—­ì‹œ ìƒì„±í•œë‹¤.
 */
 RwBool CPrivateShopGui::Create()
 {
@@ -411,7 +411,7 @@ RwBool CPrivateShopGui::Create()
 	// TAB_NOTE : Create Component
 	CreateTabNote(m_apDialogTab[TAB_NOTE]);
 
-	// ¸µÅ©
+	// ë§í¬
 	LinkMsg(g_EventPrivateShopState, 0);
 	LinkMsg(g_EventPrivateShopStateVisitor, 0);
 	LinkMsg(g_EventPrivateShopItem, 0);	
@@ -437,8 +437,8 @@ RwBool CPrivateShopGui::Create()
 }
 
 /**
-* \brief TAB_SHOPÀÇ UI¸¦ »ı¼ºÇÑ´Ù.
-* \param pParent	ºÎ¸ğ Dialog
+* \brief TAB_SHOPì˜ UIë¥¼ ìƒì„±í•œë‹¤.
+* \param pParent	ë¶€ëª¨ Dialog
 */
 RwBool CPrivateShopGui::CreateTabShop(gui::CDialog* pParent)
 {
@@ -458,27 +458,27 @@ RwBool CPrivateShopGui::CreateTabShop(gui::CDialog* pParent)
 	m_slotEffectPaint	= m_pSaleButton->SigPaint().Connect(this, &CPrivateShopGui::OnPaintEffect);
 	m_slotSaleClicked	= m_pSaleButton->SigClicked().Connect(this, &CPrivateShopGui::OnClickedBtnSale);
 
-	// ÀÌÆåÆ®
+	// ì´í™íŠ¸
 	m_EffectFocus.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfSlotFocusEffect"));
 	m_EffectSelect.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfSlotGrayedEffect"));
 	
-	// Item SlotÀ» »ı¼º
+	// Item Slotì„ ìƒì„±
 	for (int i = 0; i < SLOT_NUM; ++i )
 	{
 		CRectangle	rect;
 		rect.SetRectWH(dPRIVATESHOP_UI_ITEM_LEFT,						// LEFT
-			dPRIVATESHOP_UI_ITEM_TOP + (dPRIVATESHOP_UI_ITEM_GAP*i),	// TOP ( GAP¸¸Å­ Áõ°¡ )
+			dPRIVATESHOP_UI_ITEM_TOP + (dPRIVATESHOP_UI_ITEM_GAP*i),	// TOP ( GAPë§Œí¼ ì¦ê°€ )
 			283,														// WIDTH
 			48);														// HEIGHT
 
-		// ¾ÆÀÌÅÛ Slot »ı¼º
+		// ì•„ì´í…œ Slot ìƒì„±
 		m_aShopItem[i].Create(rect, &m_EffectSelect, &m_EffectFocus, pParent, this);
 	}
 
 	// Setting
 	m_pZennyTitle->SetText(GetDisplayStringManager()->GetString("DST_PRIVATESHOP_ZENNY"));
 	m_pStbSoldOut->SetText(GetDisplayStringManager()->GetString("DST_PRIVATESHOP_EMPTY_SLOT"));
-	m_pSaleButton->Raise(); // ¾ÆÀÌÅÛ ½½·Ô º¸´Ù Sale ¹öÆ°À» »óÀ§·Î ¿Ã¸°´Ù.
+	m_pSaleButton->Raise(); // ì•„ì´í…œ ìŠ¬ë¡¯ ë³´ë‹¤ Sale ë²„íŠ¼ì„ ìƒìœ„ë¡œ ì˜¬ë¦°ë‹¤.
 	m_pSoldOut->Raise();
 	m_pStbSoldOut->Raise();
 
@@ -486,8 +486,8 @@ RwBool CPrivateShopGui::CreateTabShop(gui::CDialog* pParent)
 }
 
 /**
-* \brief TAB_NOTEÀÇ UI¸¦ »ı¼º
-* \param pParent	ºÎ¸ğ ´ÙÀÌ¾ó·Î±×
+* \brief TAB_NOTEì˜ UIë¥¼ ìƒì„±
+* \param pParent	ë¶€ëª¨ ë‹¤ì´ì–¼ë¡œê·¸
 */
 RwBool CPrivateShopGui::CreateTabNote(gui::CDialog* pParent)
 {
@@ -501,7 +501,7 @@ RwBool CPrivateShopGui::CreateTabNote(gui::CDialog* pParent)
 	m_pMailButton			= (gui::CButton*)GetComponent("btnMail");
 	m_pNoticeMaxNum			= (gui::CStaticBox*)GetComponent("stbMaxNumText");
 
-	// ½½·Ô
+	// ìŠ¬ë¡¯
 	m_slotNameGotFocus			= m_pShopNameInput->SigGotFocus().Connect(this, &CPrivateShopGui::OnGotFocus);
 	m_slotNameLostFocus			= m_pShopNameInput->SigLostFocus().Connect(this, &CPrivateShopGui::OnLostFocus);
 	m_slotNoticeGotFocus		= m_pShopNoticeInput->SigGotFocus().Connect(this, &CPrivateShopGui::OnGotFocus);
@@ -568,12 +568,12 @@ void CPrivateShopGui::Destroy()
 
 /**
 * \breif SwitchDialog
-* \param bOpen ¿ÀÇÂ ¿©ºÎ
-* °ÔÀÓ ·ê ÄÁ¼Á¿¡ ¹°¾îº¸´Â ºÎºĞ ¶§¹®¿¡ Show(bOpen) ºÎºĞÀ» °¡Àå ¾Æ·¡·Î º¯°æÇÏ¿´´Ù.
+* \param bOpen ì˜¤í”ˆ ì—¬ë¶€
+* ê²Œì„ ë£° ì»¨ì…‰ì— ë¬¼ì–´ë³´ëŠ” ë¶€ë¶„ ë•Œë¬¸ì— Show(bOpen) ë¶€ë¶„ì„ ê°€ì¥ ì•„ë˜ë¡œ ë³€ê²½í•˜ì˜€ë‹¤.
 */
 RwInt32 CPrivateShopGui::SwitchDialog(bool bOpen)
 {
-	// ¸¸¾à Dialog¸¦ ´İ´Â´Ù¸é ¼Õ´ÔÀÌ³ª ÁÖÀÎÀÌ³ª °³ÀÎ»óÁ¡À» ²°´Ù´Â °ÍÀ» ÀÇ¹ÌÇÑ´Ù.
+	// ë§Œì•½ Dialogë¥¼ ë‹«ëŠ”ë‹¤ë©´ ì†ë‹˜ì´ë‚˜ ì£¼ì¸ì´ë‚˜ ê°œì¸ìƒì ì„ ê»ë‹¤ëŠ” ê²ƒì„ ì˜ë¯¸í•œë‹¤.
 	if ( bOpen == FALSE )
 	{  
 		if (GetIconMoveManager()->GetSrcPlace() == PLACE_PRIVATESHOP)
@@ -581,15 +581,15 @@ RwInt32 CPrivateShopGui::SwitchDialog(bool bOpen)
 			GetIconMoveManager()->IconMoveEnd();
 		}
 
-		// »óÁ¡ÀÇ Type¿¡ µû¶ó¼­ Á¾·á ÇÏ´Â ÆĞÅ¶ º¸³»ÁÜ.
+		// ìƒì ì˜ Typeì— ë”°ë¼ì„œ ì¢…ë£Œ í•˜ëŠ” íŒ¨í‚· ë³´ë‚´ì¤Œ.
 		switch (m_eShopType)
 		{
 		case PRIVATESHOP_NONE:
 			break;
-		case PRIVATESHOP_BUY:	// ¼Õ´Ô
+		case PRIVATESHOP_BUY:	// ì†ë‹˜
 			GetDboGlobal()->GetGamePacketGenerator()->SendPrivateShopLeaveReq(m_ShopData.hOwner);
 			break;
-		case PRIVATESHOP_SELL:	// ÁÖÀÎ
+		case PRIVATESHOP_SELL:	// ì£¼ì¸
 			{
 				GetDboGlobal()->GetGamePacketGenerator()->SendPrivateShopExitReq();
 			}
@@ -605,13 +605,13 @@ RwInt32 CPrivateShopGui::SwitchDialog(bool bOpen)
 /**
 * \brief HandleEvents
 * Todo
-* °ü·Ã µÈ ÀÌº¥Æ®µé ³¢¸® ºĞÇÒÇØ¾ßÇÔ
+* ê´€ë ¨ ëœ ì´ë²¤íŠ¸ë“¤ ë¼ë¦¬ ë¶„í• í•´ì•¼í•¨
 */
 void CPrivateShopGui::HandleEvents(RWS::CMsg& msg)
 {
 	NTL_FUNCTION("CPrivateShopGui::HandleEvents");
 
-	// Handle Events : Comment´Â class Á¤ÀÇ ºÎºĞ¿¡...
+	// Handle Events : CommentëŠ” class ì •ì˜ ë¶€ë¶„ì—...
 
 	if (msg.Id == g_EventMsgBoxResult)
 		HandleMsgboxResult( msg.pData );
@@ -648,8 +648,8 @@ void CPrivateShopGui::HandleEvents(RWS::CMsg& msg)
 }
 
 /**
-* \brief °³ÀÎ»óÁ¡¿¡ °ü·ÃµÈ MessageBoxÀÇ Result¸¦ Ã³¸®ÇÑ´Ù.
-* \param pMsgBoxResult		¸Ş½ÃÁö¹Ú½ºÀÇ °á°ú ±¸Á¶Ã¼
+* \brief ê°œì¸ìƒì ì— ê´€ë ¨ëœ MessageBoxì˜ Resultë¥¼ ì²˜ë¦¬í•œë‹¤.
+* \param pMsgBoxResult		ë©”ì‹œì§€ë°•ìŠ¤ì˜ ê²°ê³¼ êµ¬ì¡°ì²´
 */
 void CPrivateShopGui::HandleMsgboxResult( void* pData ) 
 {
@@ -674,7 +674,7 @@ void CPrivateShopGui::HandleMsgboxResult( void* pData )
 }
 
 /**
-* \brief °è»ê±â·Î ¼ıÀÚ¸¦ ÀÔ·ÂÇÏ¿´À» °æ¿ì
+* \brief ê³„ì‚°ê¸°ë¡œ ìˆ«ìë¥¼ ì…ë ¥í•˜ì˜€ì„ ê²½ìš°
 */
 void CPrivateShopGui::HandleCalcPopupResult( void* pData ) 
 {
@@ -686,7 +686,7 @@ void CPrivateShopGui::HandleCalcPopupResult( void* pData )
 }
 
 /**
-* \brief ¾Æ¹ÙÅ¸ ÁÖÀ§ÀÇ °³ÀÎ»óÁ¡ÀÌ ¾÷µ¥ÀÌÆ® µÆÀ» °æ¿ì »óÅÂ¸¦ ¾Ë·ÁÁØ´Ù.
+* \brief ì•„ë°”íƒ€ ì£¼ìœ„ì˜ ê°œì¸ìƒì ì´ ì—…ë°ì´íŠ¸ ëì„ ê²½ìš° ìƒíƒœë¥¼ ì•Œë ¤ì¤€ë‹¤.
 */
 void CPrivateShopGui::HandleSobPrivateShopCommunity( void *pData ) 
 {
@@ -694,7 +694,7 @@ void CPrivateShopGui::HandleSobPrivateShopCommunity( void *pData )
 
 	switch( pPrivateShopCommunity->byShopState )
 	{
-		case PRIVATESHOP_STATE_OPEN:				// ¿ÀÇÂ
+		case PRIVATESHOP_STATE_OPEN:				// ì˜¤í”ˆ
 		{
 			if (pPrivateShopCommunity->hSerialId != INVALID_SERIAL_ID)
 			{
@@ -709,7 +709,7 @@ void CPrivateShopGui::HandleSobPrivateShopCommunity( void *pData )
 }
 
 /**
-* \brief °³ÀÎ»óÁ¡ÀÇ ¾ÆÀÌÅÛÀ» µî·ÏÇÏ¿´À» °æ¿ì
+* \brief ê°œì¸ìƒì ì˜ ì•„ì´í…œì„ ë“±ë¡í•˜ì˜€ì„ ê²½ìš°
 */
 void CPrivateShopGui::HandleRegPrivateShopItem( void* pData ) 
 {
@@ -729,7 +729,7 @@ void CPrivateShopGui::HandleRegPrivateShopItem( void* pData )
 }
 
 /**
-* \brief °³ÀÎ»óÁ¡¿¡¼­ ÇÊ¿äÇÑ SOBÀÇ InfomationÀÌ Update
+* \brief ê°œì¸ìƒì ì—ì„œ í•„ìš”í•œ SOBì˜ Infomationì´ Update
 */
 void CPrivateShopGui::HandleSobInfoUpdate( void* pData ) 
 {
@@ -744,7 +744,7 @@ void CPrivateShopGui::HandleSobInfoUpdate( void* pData )
 }
 
 /**
-* \brief °³ÀÎ»óÁ¡ ¾ÆÀÌÅÛÀÌ ÇÈ¾÷ µÇ¾î¼­ Hide µÇ¾úÀ» ¶§ 
+* \brief ê°œì¸ìƒì  ì•„ì´í…œì´ í”½ì—… ë˜ì–´ì„œ Hide ë˜ì—ˆì„ ë•Œ 
 */
 void CPrivateShopGui::HandlePickedUpHide( void* pData ) 
 {
@@ -755,25 +755,25 @@ void CPrivateShopGui::HandlePickedUpHide( void* pData )
 }
 
 /**
-* \brief »óÁ¡ »óÅÂÀÇ º¯°æ
+* \brief ìƒì  ìƒíƒœì˜ ë³€ê²½
 */
 void CPrivateShopGui::HandlePrivateShopState( void* pData ) 
 {
 	SNtlEventPrivateShopState*	pShopState	= reinterpret_cast<SNtlEventPrivateShopState*>( pData );
 	sPRIVATESHOP_SHOP_DATA*		pShopData	= pShopState->pPrivateShopData;
 
-	// ¾Æ¹ÙÅ¸°¡ °³ÀÎ»óÁ¡ »óÅÂ°¡ ¾Æ´Ï¶ó¸é ¸®ÅÏ
+	// ì•„ë°”íƒ€ê°€ ê°œì¸ìƒì  ìƒíƒœê°€ ì•„ë‹ˆë¼ë©´ ë¦¬í„´
 	if (!pShopState->IsAvatarPrivateShop)
 	{
 		NTL_RETURNVOID();
 	}
 
-	// »óÁ¡ »óÅÂÀÇ º¯°æ
+	// ìƒì  ìƒíƒœì˜ ë³€ê²½
 	switch (pShopState->uiEventType)
 	{
-	case PRIVATESHOP_EVENT_CREATE:	// »óÁ¡ ½ÃÀÛ
+	case PRIVATESHOP_EVENT_CREATE:	// ìƒì  ì‹œì‘
 		{
-			// DATA LOADINGÁßÀÌ¶ó¸é Break
+			// DATA LOADINGì¤‘ì´ë¼ë©´ Break
 			if( pShopState->uiPrivateShopState == PRIVATESHOP_STATE_DATALOADING )
 				break;
 
@@ -788,17 +788,17 @@ void CPrivateShopGui::HandlePrivateShopState( void* pData )
 			GetDialogManager()->OpenDialog(DIALOG_PRIVATESHOP);
 		}
 		break;
-	case PRIVATESHOP_EVENT_EXIT:	// »óÁ¡ ³¡
+	case PRIVATESHOP_EVENT_EXIT:	// ìƒì  ë
 		Clear();
 		GetDialogManager()->CloseDialog(DIALOG_PRIVATESHOP);
 		break;
-	case PRIVATESHOP_EVENT_OPEN:	// ÆÇ¸Å °³½Ã
+	case PRIVATESHOP_EVENT_OPEN:	// íŒë§¤ ê°œì‹œ
 		{
 			SetUserInterface(PRIVATESHOP_SELL, pShopData, true);
 			CNtlSLEventGenerator::TSPrivateShop();
 		}
 		break;
-	case PRIVATESHOP_EVENT_CLOSE:	// ÆÇ¸Å ÁßÁö
+	case PRIVATESHOP_EVENT_CLOSE:	// íŒë§¤ ì¤‘ì§€
 		SetSale(false);
 		break;
 	}
@@ -806,7 +806,7 @@ void CPrivateShopGui::HandlePrivateShopState( void* pData )
 }
 
 /**
-* \brief ¼Õ´ÔÀÌ ¹æ¹® ÇÏ¿´À» °æ¿ì
+* \brief ì†ë‹˜ì´ ë°©ë¬¸ í•˜ì˜€ì„ ê²½ìš°
 */
 void CPrivateShopGui::HandlePrivateShopStateVisitor( void *pData ) 
 {
@@ -846,7 +846,7 @@ void CPrivateShopGui::HandlePrivateShopStateVisitor( void *pData )
 }
 
 /**
-* \brief ¾ÆÀÌÅÛÀÌ ¾÷µ¥ÀÌÆ® µÇ¾úÀ» ¶§
+* \brief ì•„ì´í…œì´ ì—…ë°ì´íŠ¸ ë˜ì—ˆì„ ë•Œ
 */
 void CPrivateShopGui::HandlePrivateShopItem( void* pData ) 
 {
@@ -856,13 +856,13 @@ void CPrivateShopGui::HandlePrivateShopItem( void* pData )
 
 	switch (pShopItem->uiEventType)
 	{
-	case PRIVATESHOP_EVENT_ITEM_INSERT: // ¹°Ç° µî·Ï 
+	case PRIVATESHOP_EVENT_ITEM_INSERT: // ë¬¼í’ˆ ë“±ë¡ 
 		SetShopItemData(sShopItemData.byPrivateShopInventorySlotPos, &sShopItemData);
 		break;
-	case PRIVATESHOP_EVENT_ITEM_UPDATE: // ¹°Ç° Á¤º¸ º¯°æ
+	case PRIVATESHOP_EVENT_ITEM_UPDATE: // ë¬¼í’ˆ ì •ë³´ ë³€ê²½
 		m_aShopItemData[sShopItemData.byPrivateShopInventorySlotPos].dwZenny = sShopItemData.dwZenny;
 		break;
-	case PRIVATESHOP_EVENT_ITEM_DELETE: // ¹°Ç° »èÁ¦
+	case PRIVATESHOP_EVENT_ITEM_DELETE: // ë¬¼í’ˆ ì‚­ì œ
 		SetShopItemData(sShopItemData.byPrivateShopInventorySlotPos, NULL);
 		break;
 	}
@@ -870,7 +870,7 @@ void CPrivateShopGui::HandlePrivateShopItem( void* pData )
 }
 
 /**
-* \brief °³ÀÎ»óÁ¡ ¾ÆÀÌÅÛ µ¥ÀÌÅÍ¸¦ ¾÷µ¥ÀÌÆ®ÇÒ °æ¿ì
+* \brief ê°œì¸ìƒì  ì•„ì´í…œ ë°ì´í„°ë¥¼ ì—…ë°ì´íŠ¸í•  ê²½ìš°
 */
 void CPrivateShopGui::HandlePrivateShopItemDataInfo( void* pData ) 
 {
@@ -884,19 +884,19 @@ void CPrivateShopGui::HandlePrivateShopItemDataInfo( void* pData )
 }
 
 /**
-* \brief °³ÀÎ»óÁ¡ÀÇ ItemÀ» ´©±º°¡°¡ ÂòÇÑ °æ¿ì
+* \brief ê°œì¸ìƒì ì˜ Itemì„ ëˆ„êµ°ê°€ê°€ ì°œí•œ ê²½ìš°
 */
 void CPrivateShopGui::HandlePrivateShopItemSelect( void* pData ) 
 {
 	SNtlEventPrivateShopItemSelect* pPrivateShopItemSelect = reinterpret_cast<SNtlEventPrivateShopItemSelect*>(pData);
 
-	// ¾ÆÀÌÅÛÀÇ »óÅÂ¸¦ º¯°æ
+	// ì•„ì´í…œì˜ ìƒíƒœë¥¼ ë³€ê²½
 	m_aShopItemData[pPrivateShopItemSelect->uiPrivateShopPos].byItemState = pPrivateShopItemSelect->uiItemState;
 	UpdateShopItem();
 }
 
 /**
-* \brief °³ÀÎ»óÁ¡ÀÇ ItemÀ» ´©±º°¡°¡ ÂòÇÑ °æ¿ì
+* \brief ê°œì¸ìƒì ì˜ Itemì„ ëˆ„êµ°ê°€ê°€ ì°œí•œ ê²½ìš°
 */
 void CPrivateShopGui::HandlePrivateShopSelectNfy( void* pData ) 
 {
@@ -911,7 +911,7 @@ void CPrivateShopGui::HandlePrivateShopSelectNfy( void* pData )
 }
 
 /**
-* \brief °³ÀÎ»óÁ¡ÀÇ ¹°°ÇÀ» ´©°¡ ±¸¸ÅÇßÀ» °æ¿ì
+* \brief ê°œì¸ìƒì ì˜ ë¬¼ê±´ì„ ëˆ„ê°€ êµ¬ë§¤í–ˆì„ ê²½ìš°
 */
 void CPrivateShopGui::HandlePrivateShopItemBuying( void* pData ) 
 {
@@ -931,7 +931,7 @@ void CPrivateShopGui::HandlePrivateShopItemBuying( void* pData )
 }
 
 /**
-* \brief °³ÀÎ»óÁ¡ ¾ÈÀÇ ¾ÆÀÌÅÛÀÇ »óÅÂ°¡ º¯°æµÇ¾úÀ» °æ¿ì
+* \brief ê°œì¸ìƒì  ì•ˆì˜ ì•„ì´í…œì˜ ìƒíƒœê°€ ë³€ê²½ë˜ì—ˆì„ ê²½ìš°
 */
 void CPrivateShopGui::HandlePrivateShopItemState( void* pData ) 
 {
@@ -947,7 +947,7 @@ void CPrivateShopGui::HandlePrivateShopItemState( void* pData )
 
 
 /**
-* \brief °³ÀÎ»óÁ¡ÀÇ NameTag Update
+* \brief ê°œì¸ìƒì ì˜ NameTag Update
 */
 void CPrivateShopGui::HandlePrivateShopNameTag( void* pData ) 
 {
@@ -1032,10 +1032,10 @@ void CPrivateShopGui::SetShopItemData(RwUInt8 uiPrivateShopPos, sPRIVATESHOP_ITE
 }
 
 /**
-* \brief È¿°ú¸¦ ·»´õ¸µ ÇÑ´Ù.
-* °¢ ¾ÆÀÌÅÛ ½½·Ô¿¡ ¾Ë¸ÂÀº »óÅÂ¸¦ ±×·ÁÁØ´Ù.
-* m_pItemSelect : ¼±ÅÃµÈ »óÅÂ
-* m_pItemFocus : Æ÷Ä¿½º µÈ »óÅÂ
+* \brief íš¨ê³¼ë¥¼ ë Œë”ë§ í•œë‹¤.
+* ê° ì•„ì´í…œ ìŠ¬ë¡¯ì— ì•Œë§ì€ ìƒíƒœë¥¼ ê·¸ë ¤ì¤€ë‹¤.
+* m_pItemSelect : ì„ íƒëœ ìƒíƒœ
+* m_pItemFocus : í¬ì»¤ìŠ¤ ëœ ìƒíƒœ
 */
 void CPrivateShopGui::OnPaintEffect()
 {
@@ -1116,7 +1116,7 @@ void CPrivateShopGui::OnTabShopMouseLeave(gui::CComponent* pComponent)
 
 void CPrivateShopGui::OnClickedBtnNext(gui::CComponent* pComponent)
 {
-	// ¹«¾ùÀÎ°¡¸¦ µé°í ÀÖÀ» °æ¿ì
+	// ë¬´ì—‡ì¸ê°€ë¥¼ ë“¤ê³  ìˆì„ ê²½ìš°
 	if (GetIconMoveManager()->GetSrcPlace() == PLACE_PRIVATESHOP)
 		GetIconMoveManager()->IconMoveEnd();
 
@@ -1220,7 +1220,7 @@ void CPrivateShopGui::OnShopItemClicked(CPrivateShopItemGui* pShopItem, const CK
 	{
 	case PRIVATESHOP_BUY:
 		{
-			// ÇöÀç´Â ¸¶¿ì½º ¿À¸¥ÂÊ ¹öÆ°À¸·Î¸¸ »ç¿ë °¡´ÉÇÏ´Ù.
+			// í˜„ì¬ëŠ” ë§ˆìš°ìŠ¤ ì˜¤ë¥¸ìª½ ë²„íŠ¼ìœ¼ë¡œë§Œ ì‚¬ìš© ê°€ëŠ¥í•˜ë‹¤.
 			if (Key.m_nID == UD_LEFT_BUTTON)
 			{
 				if (!GetIconMoveManager()->IsActive())
@@ -1257,7 +1257,7 @@ void CPrivateShopGui::OnShopItemClicked(CPrivateShopItemGui* pShopItem, const CK
 			{
 				if (GetIconMoveManager()->IsActive() && GetIconMoveManager()->GetSrcPlace() == PLACE_BAG)
 				{
-					// peessi : »ç¿ë±â°£Á¦ÇÑ ¼Ó¼ºÃß°¡·Î ÀÎÇØ ·ÎÁ÷º¯°æ
+					// peessi : ì‚¬ìš©ê¸°ê°„ì œí•œ ì†ì„±ì¶”ê°€ë¡œ ì¸í•´ ë¡œì§ë³€ê²½
 					CNtlSobItemAttr* pSobItemAttr = Logic_GetItemSobAttrFromSobSerial( GetIconMoveManager()->GetSrcSerial() );
 					sITEM_TBLDAT* pTlbData = NULL;
 
@@ -1268,7 +1268,7 @@ void CPrivateShopGui::OnShopItemClicked(CPrivateShopItemGui* pShopItem, const CK
 						(Logic_IsCanSellItem(pSobItemAttr) && Logic_IsCanUserTradeItem(pSobItemAttr) &&
 						Logic_IsCanSaveWarehouse(pSobItemAttr) && Logic_IsCanSaveCommonWarehouse(pSobItemAttr)))
 					{
-						// Cz To Kell : ¾Æ·¡ ¼Ò½º ¼öÁ¤
+						// Cz To Kell : ì•„ë˜ ì†ŒìŠ¤ ìˆ˜ì •
 						//if (pShopItem->GetSerial() != INVALID_SERIAL_ID)
 						if (GetIconMoveManager()->GetSrcSerial() != INVALID_SERIAL_ID)
 						{
@@ -1309,13 +1309,13 @@ void CPrivateShopGui::OnShopItemClicked(CPrivateShopItemGui* pShopItem, const CK
 }
 
 /**
-* \brief °¡°İ ¹öÆ°À» ´­·¶À» °æ¿ì
-* \param pShopItem		´©¸¥ °³ÀÎ»óÁ¡ÀÇ ¾ÆÀÌÅÛ
-* \param pComponent		ClickµÈ ÄÄÆ÷³ÍÆ®
+* \brief ê°€ê²© ë²„íŠ¼ì„ ëˆŒë €ì„ ê²½ìš°
+* \param pShopItem		ëˆ„ë¥¸ ê°œì¸ìƒì ì˜ ì•„ì´í…œ
+* \param pComponent		Clickëœ ì»´í¬ë„ŒíŠ¸
 */
 void CPrivateShopGui::OnShopItemPriceClicked(CPrivateShopItemGui* pShopItem, gui::CComponent* pComponent)
 {
-	// °¡°İ Á¶Á¤À» ÇÏ±â À§ÇÑ °è»ê±â ¸¦ ¶ç¿î´Ù.
+	// ê°€ê²© ì¡°ì •ì„ í•˜ê¸° ìœ„í•œ ê³„ì‚°ê¸° ë¥¼ ë„ìš´ë‹¤.
 	CRectangle rect = pComponent->GetScreenRect();
 	CDboEventGenerator::CalcPopupShow(TRUE, pShopItem->GetPos(), PLACE_PRIVATESHOP,
 		rect.left - dPRIVATESHOP_UI_CALC_OFFSET, rect.top, NTL_MAX_USE_ZENI);
@@ -1357,7 +1357,7 @@ void CPrivateShopGui::SetUserInterface(ePrivateShopType eType, sPRIVATESHOP_SHOP
 	m_pSaleButton->Show(bBool);
 	m_pMailButton->Show(!bBool);
 	
-	// °øÅë Á¤º¸
+	// ê³µí†µ ì •ë³´
 	SetAway(pShopData->sSummaryPrivateShopData.bIsOwnerEmpty);
 	m_pZenny->SetText(Logic_FormatZeni(Logic_GetZenny()));
 	
@@ -1440,7 +1440,7 @@ void CPrivateShopGui::ClearShopItem()
 
 /**
 * \brief Update
-* ¾ÆÀÌÅÛÀÇ »óÅÂ°¡ º¯°æµÈ °ÍÀÌ ÀÖ´Â °ÍÀ» Ã¼Å©ÇØÁØ´Ù.
+* ì•„ì´í…œì˜ ìƒíƒœê°€ ë³€ê²½ëœ ê²ƒì´ ìˆëŠ” ê²ƒì„ ì²´í¬í•´ì¤€ë‹¤.
 */
 void CPrivateShopGui::UpdateShopItem()
 {
@@ -1480,7 +1480,7 @@ void CPrivateShopGui::UpdateShopItem()
 					continue;
 				}
 
-				// ±¸¸ÅÀÚ´Â ÈïÁ¤ ¹öÆ°ÀÌ º¸ÀÎ´Ù.
+				// êµ¬ë§¤ìëŠ” í¥ì • ë²„íŠ¼ì´ ë³´ì¸ë‹¤.
 				m_aShopItem[i].Show(FALSE);
 			}
 			break;
@@ -1662,7 +1662,7 @@ void CPrivateShopGui::OnKeyUp(gui::CComponent* pComponenet, CInputDevice* pDevic
 
 void CPrivateShopGui::OnNoticeCharChanged(int iLength)
 {
-	// Input BoxÀÇ ÃÖ´ë ±ÛÀÚ ¼ö¸¦ ³Ñ°åÀ» ¶§ Ãâ·ÂµÈ´Ù.
+	// Input Boxì˜ ìµœëŒ€ ê¸€ì ìˆ˜ë¥¼ ë„˜ê²¼ì„ ë•Œ ì¶œë ¥ëœë‹¤.
 	CalcNoticeMaxNum();	
 	if( iLength >= m_pShopNoticeInput->GetMaxLength() )
 	{

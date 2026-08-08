@@ -2,7 +2,7 @@
  *
  * File			: NtlSLApi.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (å ì™ì˜™)NTL
  * Date			: 2006. 10. 25	
  * Abstract		: Simulation layer API Function
  *****************************************************************************
@@ -44,11 +44,11 @@ class CNtlDTContainer;
 
 typedef struct _SDevMasterInfo
 {
-	RwBool	bDevUser;				// user°¡ °³¹ßÀÚ ÀÎ°¡?
+	RwBool	bDevUser;				// å ì™ì˜™å ì‹¶ê³¤ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹¸ê³¤ì˜™?
 	RwReal	fCoolingTimeFactor;		// cooling update time factor
 	RwBool	bLoadDataXml;			// loading data type xml
 	RwBool	bPackFileUse;			// pack file use
-	RwBool	bThreadLoading;			// thread loadingÀ» ÇÒ °ÍÀÎ°¡?
+	RwBool	bThreadLoading;			// thread loadingå ì™ì˜™ å ì™ì˜™ å ì™ì˜™å ì‹¸ê³¤ì˜™?
 	RwReal	fCameraFov;				// camera fov
 	RwReal	fCameraNear;			// camera near
 	RwReal	fCameraFar;				// camera far
@@ -57,7 +57,7 @@ typedef struct _SDevMasterInfo
 	RwBool	bScreenChangeMode;		// screen chagne mode
 }SDevMasterInfo;
 
-MEMORYSTATUS*			API_GetGlobalMemoryStatus(void);			
+MEMORYSTATUSEX*			API_GetGlobalMemoryStatus(void);			
 RwUInt8					API_LoadSLDevMasterInformation(void);
 SDevMasterInfo*			API_GetSLDevMasterInformation(void);
 

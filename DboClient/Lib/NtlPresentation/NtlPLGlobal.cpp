@@ -9,7 +9,7 @@ using std::ifstream;
 #include <fstream>
 
 // Character Scheduling load test global variable
-RwReal		g_fCharScheduleTime = 0.3f;
+RwReal		g_fCharScheduleTime = 0.03f;
 
 
 RpWorld*					CNtlPLGlobal::m_pRpWorld = 0;
@@ -27,7 +27,7 @@ std::string					CNtlPLGlobal::m_strAppPath = "";
 
 RwBool						CNtlPLGlobal::m_bCollObjVisible = FALSE;
 RwReal						CNtlPLGlobal::m_fDistFiterFrequency = 2.0f;	
-RwReal						CNtlPLGlobal::m_fDistFiterObjFrequency = 1.0f;	// ¿ÀºêÁ§Æ® ÆäÀÌµå ºí·»µù Å¸ÀÓ
+RwReal						CNtlPLGlobal::m_fDistFiterObjFrequency = 1.0f;	// å ì™ì˜™å ì™ì˜™å ì™ì˜™íŠ¸ å ì™ì˜™å ì‹±ë“¸ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ íƒ€å ì™ì˜™
 RwBool						CNtlPLGlobal::m_bWorldTerrainVisible = TRUE;
 RwBool						CNtlPLGlobal::m_bWorldSkyVisible = TRUE;
 RwBool						CNtlPLGlobal::m_bCharacterUpdateVisible = FALSE;
@@ -38,7 +38,7 @@ RwBool						CNtlPLGlobal::m_UseTerrainPVSMode = TRUE;
 RwUInt32					CNtlPLGlobal::m_uiRenderFlag = 0x00000000;
 RwBool						CNtlPLGlobal::m_IsMinimapRendering = FALSE;
 RwUInt32					CNtlPLGlobal::m_uiMinimapLayer = NTL_PLEFLAG_MINIMAP_LAYER_NONE;
-RwBool						CNtlPLGlobal::m_bObjectRender = TRUE;              ///< Object Render À¯¹« ÇÃ·¡±×
+RwBool						CNtlPLGlobal::m_bObjectRender = TRUE;              ///< Object Render å ì™ì˜™å ì™ì˜™ å ì‹œë¤„ì˜™å ì™ì˜™
 RwBool						CNtlPLGlobal::m_bRenderScouter = TRUE;
 RwBool          		    CNtlPLGlobal::m_bEntityNotCulling = FALSE;
 RwBool						CNtlPLGlobal::m_bItemDropDisplay = TRUE;

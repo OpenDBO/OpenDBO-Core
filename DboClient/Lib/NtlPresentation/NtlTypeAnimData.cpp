@@ -14,7 +14,7 @@ void CNtlTypeAnimTable::Create()
 }
 
 /**
- * .anm Resource ÇØÁ¦
+ * .anm Resource í•´ì œ
  */
 void CNtlTypeAnimTable::Destroy()
 {
@@ -36,13 +36,13 @@ void CNtlTypeAnimTable::Destroy()
 
 
 /**
- * Key°ªÀ¸·Î vaule¸¦ »ı¼ºÀ» ÇÑ´Ù. ÃÊ±â »ı¼º½Ã¿¡¸¸ »ç¿ë
- * \param strAnimName Animation ÆÄÀÏ ÀÌ¸§
+ * Keyê°’ìœ¼ë¡œ vauleë¥¼ ìƒì„±ì„ í•œë‹¤. ì´ˆê¸° ìƒì„±ì‹œì—ë§Œ ì‚¬ìš©
+ * \param strAnimName Animation íŒŒì¼ ì´ë¦„
  * \return STypeAnimData
  */
 STypeAnimData *CNtlTypeAnimTable::Add(RwUInt32 uiKey, const std::string &strAnimName)
 {
-    // Áßº¹ µ¥ÀÌÅÍ°¡ µé¾î¿À´Â ºÎºĞÀ» Ã¼Å©ÇÑ´Ù (by agebreak. 2006.4.20)
+    // ì¤‘ë³µ ë°ì´í„°ê°€ ë“¤ì–´ì˜¤ëŠ” ë¶€ë¶„ì„ ì²´í¬í•œë‹¤ (by agebreak. 2006.4.20)
     STypeAnimData *pTypeAnimData = NULL;
 
     if(m_mapTypeAnim.find(uiKey) != m_mapTypeAnim.end())
@@ -64,14 +64,14 @@ STypeAnimData *CNtlTypeAnimTable::Add(RwUInt32 uiKey, const std::string &strAnim
 
 STypeAnimData *CNtlTypeAnimTable::Add(RwUInt32 uiKey, STypeAnimData *pTypeAnimData)
 {
-    // ±âÁ¸ÀÇ ÄÚµå·Î´Â »õ·Î¿î µ¥ÀÌÅÍ¸¦ Ãß°¡ÇÒ¼ö°¡ ¾ø´Ù.=_=; (By agebreak. 2006.4.25)	
+    // ê¸°ì¡´ì˜ ì½”ë“œë¡œëŠ” ìƒˆë¡œìš´ ë°ì´í„°ë¥¼ ì¶”ê°€í• ìˆ˜ê°€ ì—†ë‹¤.=_=; (By agebreak. 2006.4.25)	
 	pTypeAnimData->uiAnimKey = uiKey;
 	m_mapTypeAnim[uiKey] = pTypeAnimData;
 	return m_mapTypeAnim[uiKey];
 }
 
 /**
- * ³»ºÎÀûÀ¸·Î »ç¿ëÇÏ´Â MapÀ» Return ÇÑ´Ù.
+ * ë‚´ë¶€ì ìœ¼ë¡œ ì‚¬ìš©í•˜ëŠ” Mapì„ Return í•œë‹¤.
  * \return TYPE_ANIM_MAP *
  */
 TYPE_ANIM_MAP *CNtlTypeAnimTable::GetTypeAnimMap()
@@ -80,8 +80,8 @@ TYPE_ANIM_MAP *CNtlTypeAnimTable::GetTypeAnimMap()
 }
 
 /**
- * Key°ªÀ¸·Î STypeAnimData¸¦ ¾ò´Â´Ù.
- * \param uiKey °íÀ¯ Key °ª
+ * Keyê°’ìœ¼ë¡œ STypeAnimDataë¥¼ ì–»ëŠ”ë‹¤.
+ * \param uiKey ê³ ìœ  Key ê°’
  * \return STypeAnimData *
  */
 STypeAnimData *CNtlTypeAnimTable::Get(RwUInt32 uiKey)
@@ -97,8 +97,8 @@ STypeAnimData *CNtlTypeAnimTable::Get(RwUInt32 uiKey)
 }
 
 /**
- * Key°ªÀ¸·Î AnimFileÀ» ¾ò´Â´Ù.
- * \param uiKey °íÀ¯ Key °ª
+ * Keyê°’ìœ¼ë¡œ AnimFileì„ ì–»ëŠ”ë‹¤.
+ * \param uiKey ê³ ìœ  Key ê°’
  * \return Animation File Name
  */
 const std::string *CNtlTypeAnimTable::GetFileName(RwUInt32 uiKey)
@@ -149,7 +149,7 @@ void CNtlTypeAnimTable::SaveSerialize(  CNtlSerializer& sOut )
 		{
 			if(pEventAnim)
 			{
-				sOut<<pEventAnim->eEventID;			// ÀÌº¥Æ® Å¸ÀÔÀ» Çì´õ·Î ³Ö´Â´Ù.
+				sOut<<pEventAnim->eEventID;			// ì´ë²¤íŠ¸ íƒ€ì…ì„ í—¤ë”ë¡œ ë„£ëŠ”ë‹¤.
 				switch(pEventAnim->eEventID)
 				{
 				case EVENT_ANIM_HIT:	

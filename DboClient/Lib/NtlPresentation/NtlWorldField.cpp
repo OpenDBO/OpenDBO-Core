@@ -335,7 +335,7 @@ RwBool CNtlWorldField::CreateFieldFromFile(RwInt32 FieldIdx)
 	{
 		/*
 		WorldFileFormat - FieldProperty
-		Field Property¸¦ File·ÎºÎÅÍ Load ÇÏ´Â ºÎºÐ ÀÌ´Ù.
+		Field Propertyë¥¼ Fileë¡œë¶€í„° Load í•˜ëŠ” ë¶€ë¶„ ì´ë‹¤.
 		*/
 
 		m_pProp = NTL_NEW sNTL_FIELD_PROP;
@@ -430,7 +430,7 @@ RwBool CNtlWorldField::DeleteFieldIntoFile(RwInt32 FieldIdx)
 	{
 		/*
 		WorldFileFormat - FieldProperty
-		Field Property¸¦ File·Î Save ÇÏ´Â ºÎºÐ ÀÌ´Ù.
+		Field Propertyë¥¼ Fileë¡œ Save í•˜ëŠ” ë¶€ë¶„ ì´ë‹¤.
 		*/
 		fwrite(m_pProp->_Name, 64, 1, pFile);
 		fwrite(m_pProp->_pBitProp, sizeof(DWORD) * (dGET_WORLD_PARAM()->WorldSectorTileNum * 2) * (dGET_WORLD_PARAM()->WorldSectorTileNum * 2), 1, pFile);

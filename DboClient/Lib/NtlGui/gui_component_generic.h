@@ -43,13 +43,13 @@ public:
 	bool m_bEnabled;
 	bool m_bPopup;
 	bool m_bRemoveflag;
-	bool m_bRenderTop;	// top level rendering ÇÒ°ÍÀÎ°¡?
+	bool m_bRenderTop;	// top level rendering í• ê²ƒì¸ê°€?
 	
 	int  m_nTabID;
-	WORD m_wPriority;	// ¿ì¼±¼øÀ§. Å« ¼ø¼­´ë·Î È­¸é ¾Õ¿¡ ÂïÈ÷°Ô µÈ´Ù. `
-						// ÀÛÀº ³à¼®ÀÌ Å«³à¼® ¾ÕÀ¸·Î °¥ ¼ö ¾øÀ½. ±âº»°ª 0x7fff ( 32767 ). 
+	WORD m_wPriority;	// ìš°ì„ ìˆœìœ„. í° ìˆœì„œëŒ€ë¡œ í™”ë©´ ì•žì— ì°ížˆê²Œ ëœë‹¤. `
+						// ìž‘ì€ ë…€ì„ì´ í°ë…€ì„ ì•žìœ¼ë¡œ ê°ˆ ìˆ˜ ì—†ìŒ. ê¸°ë³¸ê°’ 0x7fff ( 32767 ). 
 
-	CRectangle	m_rtClipping;	// ºÎ¸ð ¿µ¿ª ¹Û¿¡ ÀÖ´Â ¿µ¿ªÀ» Àß¶ó³½ ½ºÅ©¸°ÁÂÇ¥. ³ªÁß¿¡ Surface¿¡ RwIm2DVertex¸¦ Æ÷ÇÔÇÏ°Ô µÇ¸é, »ó´ëÁÂÇ¥·Î ¹Ù²Ù°í RwIm2DVertex¸¦ Á÷Á¢ ¹Ù²Û´Ù.
+	CRectangle	m_rtClipping;	// ë¶€ëª¨ ì˜ì—­ ë°–ì— ìžˆëŠ” ì˜ì—­ì„ ìž˜ë¼ë‚¸ ìŠ¤í¬ë¦°ì¢Œí‘œ. ë‚˜ì¤‘ì— Surfaceì— RwIm2DVertexë¥¼ í¬í•¨í•˜ê²Œ ë˜ë©´, ìƒëŒ€ì¢Œí‘œë¡œ ë°”ê¾¸ê³  RwIm2DVertexë¥¼ ì§ì ‘ ë°”ê¾¼ë‹¤.
 	bool		m_bClipping;	
 
 	BYTE		m_ucAlpha;

@@ -2,7 +2,7 @@
 *
 * File			: NtlBuffContainer.h
 * Author		: HyungSuk, Jang
-* Copyright	: (¡÷)NTL
+* Copyright	: (Ï£º)NTL
 * Date			: 2006. 5. 11	
 * Abstract		: Simulation buff container
 *****************************************************************************

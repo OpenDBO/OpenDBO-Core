@@ -2,7 +2,7 @@
  *
  * File			: NtlSoundEventGenerator.h
  * Author		: Hong Sungbock
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2007. 5. 29
  * Abstract		: Ntl sound event generator
  *****************************************************************************

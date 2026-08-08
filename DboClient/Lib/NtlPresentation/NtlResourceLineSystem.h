@@ -4,7 +4,7 @@
 
 /**
  * \ingroup NtlPresentation
- * \brief ¶óÀÎ(µÎ²²¸¦ °¡Áø ¼±) ÀÌÆåÆ®¸¦ ¸¸µé±â À§ÇÑ ¸®¼Ò½º Å¬·¡½º
+ * \brief ë¼ì¸(ë‘ê»˜ë¥¼ ê°€ì§„ ì„ ) ì´í™íŠ¸ë¥¼ ë§Œë“¤ê¸° ìœ„í•œ ë¦¬ì†ŒìŠ¤ í´ë˜ìŠ¤
  * \date 2006-09-21
  * \author agebreak
  */
@@ -16,10 +16,10 @@ public:
 
     virtual void Destroy();
 
-    virtual RwBool Load(FILE* pFile);   ///< ÆÄÀÏ·ÎºÎÅÍ µ¥ÀÌÅÍ¸¦ ·ÎµåÇÑ´Ù.
+    virtual RwBool Load(FILE* pFile);   ///< íŒŒì¼ë¡œë¶€í„° ë°ì´í„°ë¥¼ ë¡œë“œí•œë‹¤.
 
 public:   
-    SNtlLineEmitterStandard         m_EmitterStandard;          ///< Line SystemÀÇ ±âº» ¼Ó¼º°ªµé    
+    SNtlLineEmitterStandard         m_EmitterStandard;          ///< Line Systemì˜ ê¸°ë³¸ ì†ì„±ê°’ë“¤    
     
     SNtlPrtStdEmitterPrtSphere      m_EmitterSphere;            ///< Sphere Emitter
     SNtlPrtStdEmitterPrtRotate		m_EmitterPrtRotate;         ///< Rotate Emitter

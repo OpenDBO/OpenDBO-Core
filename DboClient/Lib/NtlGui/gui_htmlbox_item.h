@@ -10,14 +10,14 @@ START_GUI
 
 #define	HTML_ITEM_NONE			0			///<
 #define HTML_ITEM_NEWLINE		1			///< [br]
-#define HTML_ITEM_STRING		2			///< ÀÏ¹İ ÅØ½ºÆ®
+#define HTML_ITEM_STRING		2			///< ì¼ë°˜ í…ìŠ¤íŠ¸
 #define HTML_ITEM_PICTURE		3			///< [img
 #define HTML_ITEM_LINK			4			///< [link
 #define HTML_ITEM_FLASH			5			///< [flash
 #define HTML_ITEM_BACKPIC		6			///< [backpic
 
 /**
-* \brief HTMLÀÇ ALIGN ¼Ó¼º(¾ÆÀÌÅÛº°·Î ÁöÁ¤)
+* \brief HTMLì˜ ALIGN ì†ì„±(ì•„ì´í…œë³„ë¡œ ì§€ì •)
 */
 enum 
 {
@@ -28,11 +28,11 @@ enum
 };
 
 /**
-* \brief LINK TagÀÇ Link ¼Ó¼º
+* \brief LINK Tagì˜ Link ì†ì„±
 */
 enum eLinkType
 {
-	eHTML_LINK_FILE	= 0,			///< File ÀÌ¸§À¸·Î ¸µÅ©
+	eHTML_LINK_FILE	= 0,			///< File ì´ë¦„ìœ¼ë¡œ ë§í¬
 	eHTML_LINK_INTERFACE,			///< Callback
 
 	eHTML_LINK_COUNT,
@@ -46,15 +46,15 @@ class CHtml_Item
 {
 public:
 
-	INT		m_nPosX;			// ÇöÀç À§Ä¡.
-	INT		m_nPosY;			// ÇöÀç À§Ä¡.
+	INT		m_nPosX;			// í˜„ì¬ ìœ„ì¹˜.
+	INT		m_nPosY;			// í˜„ì¬ ìœ„ì¹˜.
 	INT		m_nCX;				// size
 	INT		m_nCY;				// size
-	INT		m_nCurrLine;		// ÇöÀç line index
+	INT		m_nCurrLine;		// í˜„ì¬ line index
 	BYTE	m_byType;			// item type
-	DWORD	m_dwAlign;			// Á¤·Ä
-	DWORD	m_dwWrapAlign;		// picture item°ú ´Ù¸¥ item°úÀÇ ¿¬°ü°ü°è
-	CComponent* m_pParentComp;	// ºÎ¸ğ Component ÀÇ Æ÷ÀÎÅÍ(HtmlÀÇ Æ÷ÀÎÅÍ)
+	DWORD	m_dwAlign;			// ì •ë ¬
+	DWORD	m_dwWrapAlign;		// picture itemê³¼ ë‹¤ë¥¸ itemê³¼ì˜ ì—°ê´€ê´€ê³„
+	CComponent* m_pParentComp;	// ë¶€ëª¨ Component ì˜ í¬ì¸í„°(Htmlì˜ í¬ì¸í„°)
 	
 protected:
 
@@ -162,7 +162,7 @@ public:
 	VOID		ItemLineBottomSorting(INT nBottom);
 	VOID		OnPrePaint(INT nOffsetX, INT nOffsetY, const CRectangle& rect, CTexture *pTexture);
 	
-	// ½ºÆ®¸µ¿¡ µé¾îÀÖ´Â UniBufferÀÇ ±ÛÀÚ Å©±â ÇÏ³ªÇÏ³ª¸¦ ¸®½ºÆ®¿¡ ´ã´Â´Ù.
+	// ìŠ¤íŠ¸ë§ì— ë“¤ì–´ìˆëŠ” UniBufferì˜ ê¸€ì í¬ê¸° í•˜ë‚˜í•˜ë‚˜ë¥¼ ë¦¬ìŠ¤íŠ¸ì— ë‹´ëŠ”ë‹¤.
 	VOID		GetItemRect( std::list<CRectangle>& list );
 	
 	VOID		SetFontRatio( float fRatio );
@@ -217,7 +217,7 @@ public:
 	VOID		ItemLineBottomSorting(INT nBottom);
 	VOID		OnPrePaint(INT nOffsetX, INT nOffsetY, const CRectangle& rect, CTexture *pTexture);
 
-	// ½ºÆ®¸µ¿¡ µé¾îÀÖ´Â UniBufferÀÇ ±ÛÀÚ Å©±â ÇÏ³ªÇÏ³ª¸¦ ¸®½ºÆ®¿¡ ´ã´Â´Ù.
+	// ìŠ¤íŠ¸ë§ì— ë“¤ì–´ìˆëŠ” UniBufferì˜ ê¸€ì í¬ê¸° í•˜ë‚˜í•˜ë‚˜ë¥¼ ë¦¬ìŠ¤íŠ¸ì— ë‹´ëŠ”ë‹¤.
 	VOID		GetItemRect( std::list<CRectangle>& list );
 
 	VOID		SetFontRatio( float fRatio );

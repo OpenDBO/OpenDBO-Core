@@ -50,7 +50,7 @@ public:
 	}
 	virtual bool Free(void* ptr, UPInt size, UPInt align)
 	{
-		// free() doesn’t need size or alignment of the memory block, but
+		// free() doesnë­ª need size or alignment of the memory block, but
 		// you can use it in your implementation if it makes things easier.
 		free(ptr);
 		return true;

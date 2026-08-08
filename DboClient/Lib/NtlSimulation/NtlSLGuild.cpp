@@ -203,14 +203,14 @@ VOID CNtlGuild::ChangeAllMemberDogiColor(RwUInt8 byGuildDogiColor, RwUInt8 byDoj
 		return;
 
 
-	// ¾Æ¹ÙÅ¸ µµº¹ »ö»ó
+	// ì•„ë°”íƒ€ ë„ë³µ ìƒ‰ìƒ
 	pAvatar->SetGuildDogiColorIndex(m_byGuildDogiColorIndex);
 	pAvatar->SetDojoDogiColorIndex(m_byDojoDogiColorIndex);
 	Logic_SetDogiItemColor(pAvatar, pAvatar->GetRealDogiColorIndex());
 	Logic_SetDogiItemColor(pAvatar, pAvatar->GetRealDogiColorIndex(), TRUE);
 
 
-	// À¯ÆÄ¿ø µµº¹ »ö»ó
+	// ìœ íŒŒì› ë„ë³µ ìƒ‰ìƒ
 	COMMUNITY_ITER it_list = m_listMember.begin();
 	for( ; it_list != m_listMember.end() ; ++it_list )
 	{
@@ -232,7 +232,7 @@ VOID CNtlGuild::ChangeMemberDogiColor(CHARACTERID charID, RwUInt8 byGuildDogiCol
 
 		if( pSobPlayer->GetCharID() == charID )
 		{
-			// µµº¹ »ö»ó
+			// ë„ë³µ ìƒ‰ìƒ
 			pSobPlayer->SetGuildDogiColorIndex(byGuildDogiColor);
 			pSobPlayer->SetDojoDogiColorIndex(byDojoDogiColor);
 			Logic_SetDogiItemColor(pSobPlayer, pSobPlayer->GetRealDogiColorIndex());
@@ -351,8 +351,8 @@ RwBool CNtlGuild::EnableUIDojoFunction(eDBO_GUILD_FUNCTION eFunctionIndex)
 
 RwBool CNtlGuild::IsHaveGroup()
 {
-	// GuildInfo ÆĞÅ¶ÀÌ ¿À±â Àü¿¡ ±æµå ID¸¸ °¡Áö°í ÀÖ´Ù.
-	// GuildInfo ÆĞÅ¶¿¡ Æ÷ÇÔµÈ ±æµå ÀÌ¸§ ¿©ºÎ·Î ±æµå °¡ÀÔ ¿©ºÎ¸¦ ÆÇ´ÜÇÏÀÚ
+	// GuildInfo íŒ¨í‚·ì´ ì˜¤ê¸° ì „ì— ê¸¸ë“œ IDë§Œ ê°€ì§€ê³  ìˆë‹¤.
+	// GuildInfo íŒ¨í‚·ì— í¬í•¨ëœ ê¸¸ë“œ ì´ë¦„ ì—¬ë¶€ë¡œ ê¸¸ë“œ ê°€ì… ì—¬ë¶€ë¥¼ íŒë‹¨í•˜ì
 	if( wcslen(m_wszGuildName) > 0 )
 		return TRUE;
 
@@ -370,7 +370,7 @@ VOID CNtlGuild::HandleEvents(RWS::CMsg &pMsg)
 		{
 			case SLGE_GUILD_INFO:
 			{
-				// ÀÌ µ¥ÀÌÅÍ´Â ¿ùµå¿¡ ¿ÏÀüÈ÷ ÁøÀÔÇÏ°í ³ª¼­ ´Ê°Ô ¿Ã ¼öµµ ÀÖ´Ù
+				// ì´ ë°ì´í„°ëŠ” ì›”ë“œì— ì™„ì „íˆ ì§„ì…í•˜ê³  ë‚˜ì„œ ëŠ¦ê²Œ ì˜¬ ìˆ˜ë„ ìˆë‹¤
 				sDBO_GUILD_INFO* pDBO_GUILD_INFO = reinterpret_cast<sDBO_GUILD_INFO*>( pEvent->pData );
 
 				m_guildID = pDBO_GUILD_INFO->guildId;
@@ -390,7 +390,7 @@ VOID CNtlGuild::HandleEvents(RWS::CMsg &pMsg)
 				m_timeToDisband			= pDBO_GUILD_INFO->timeToDisband;
 
 
-				// ¾Æ¹ÙÅ¸´Â µû·Î ÆĞÅ¶À» ¹ŞÁö ¾Ê´Â´Ù
+				// ì•„ë°”íƒ€ëŠ” ë”°ë¡œ íŒ¨í‚·ì„ ë°›ì§€ ì•ŠëŠ”ë‹¤
 				CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
 				CNtlSobCharProxy* pSobCharProxy = reinterpret_cast<CNtlSobCharProxy*>( pAvatar->GetSobProxy() );
 				CNtlSobCharDecorationProxy* pSobCharDecorationProxy = pSobCharProxy->GetDecorationProxy();
@@ -428,7 +428,7 @@ VOID CNtlGuild::HandleEvents(RWS::CMsg &pMsg)
 						++m_iOnlineMember;
 
 
-					// Ã³À½ ±æµå¿¡ µé¾î°¡¸é ¸É¹ö Á¤º¸¸¦ ¸ÕÀú ¹Ş°í ÀÌÈÄ ±æµå Á¶Á÷¿¡ °üÇÑ Á¤º¸¸¦ ¹Ş´Â´Ù
+					// ì²˜ìŒ ê¸¸ë“œì— ë“¤ì–´ê°€ë©´ ë§´ë²„ ì •ë³´ë¥¼ ë¨¼ì € ë°›ê³  ì´í›„ ê¸¸ë“œ ì¡°ì§ì— ê´€í•œ ì •ë³´ë¥¼ ë°›ëŠ”ë‹¤
 					if( IsHaveGroup() )
 					{
 						ChangeMemberDogiColor(pMember->charID, m_byGuildDogiColorIndex, m_byDojoDogiColorIndex);
@@ -452,10 +452,10 @@ VOID CNtlGuild::HandleEvents(RWS::CMsg &pMsg)
 				CHARACTERID avatarID = pAvatar->GetCharID();
 				if( avatarID == pEvent->uiParam )
 				{
-					// ³»°¡ °­Åğ ´çÇß´Ù					
+					// ë‚´ê°€ ê°•í‡´ ë‹¹í–ˆë‹¤					
 					CNtlSLEventGenerator::NotifyGuildEvent(SLGE_DISBAND);
 
-					// ¾Æ¹ÙÅ¸ µµº¹ »ö»ó
+					// ì•„ë°”íƒ€ ë„ë³µ ìƒ‰ìƒ
 					pAvatar->SetGuildDogiColorIndex(INVALID_BYTE);
 					pAvatar->SetDojoDogiColorIndex(INVALID_BYTE);
 					Logic_SetDogiItemColor(pAvatar, INVALID_BYTE);
@@ -463,7 +463,7 @@ VOID CNtlGuild::HandleEvents(RWS::CMsg &pMsg)
 					
 					Leave();
 
-					// ¸Ó¸® À§ ÀÌ¸§
+					// ë¨¸ë¦¬ ìœ„ ì´ë¦„
 					CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
 					Logic_SetHeadNameColor(pAvatar);
 				}
@@ -483,7 +483,7 @@ VOID CNtlGuild::HandleEvents(RWS::CMsg &pMsg)
 					ChangeMemberDogiColor(pMember->charID, INVALID_BYTE, INVALID_BYTE);
 
 
-					// ºÎ±æµåÀåÀÌ¶ó¸é ºÎ±æµåÀå Á¤º¸ ÃÊ±âÈ­
+					// ë¶€ê¸¸ë“œì¥ì´ë¼ë©´ ë¶€ê¸¸ë“œì¥ ì •ë³´ ì´ˆê¸°í™”
 					DismissSecondMaster(pEvent->uiParam);
 					DelMember(pEvent->uiParam);					
 
@@ -494,7 +494,7 @@ VOID CNtlGuild::HandleEvents(RWS::CMsg &pMsg)
 			}
 		case SLGE_APPOINT_MASTER:
 			{
-				// ºÎ±æµåÀåÀÌ¶ó¸é ºÎ±æµåÀå Á¤º¸ ÃÊ±âÈ­
+				// ë¶€ê¸¸ë“œì¥ì´ë¼ë©´ ë¶€ê¸¸ë“œì¥ ì •ë³´ ì´ˆê¸°í™”
 				DismissSecondMaster(pEvent->uiParam);
 				m_masterID = pEvent->uiParam;
 				CNtlSLEventGenerator::NotifyGuildEvent(SLGE_APPOINT_MASTER, pEvent->uiParam);
@@ -532,8 +532,8 @@ VOID CNtlGuild::HandleEvents(RWS::CMsg &pMsg)
 
 				Leave();
 
-				// ¸Ó¸® À§ ÀÌ¸§
-				// ´Ù¸¥ ±æµå¿øÀÇ ÀÌ¸§Àº ¼­¹ö·ÎºÎÅÍ º°µµÀÇ ÆĞÅ¶À¸·Î ¾÷µ¥ÀÌÆ® µÈ´Ù
+				// ë¨¸ë¦¬ ìœ„ ì´ë¦„
+				// ë‹¤ë¥¸ ê¸¸ë“œì›ì˜ ì´ë¦„ì€ ì„œë²„ë¡œë¶€í„° ë³„ë„ì˜ íŒ¨í‚·ìœ¼ë¡œ ì—…ë°ì´íŠ¸ ëœë‹¤
 				CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
 				Logic_SetHeadNameColor(pAvatar);
 
@@ -677,7 +677,7 @@ VOID CNtlGuild::HandleEvents(RWS::CMsg &pMsg)
 			}
 		case SLGE_DOGI_NFY:
 			{
-				// ½ÇÁ¦ µµº¹ÀÇ »ö»óÀ» ¹Ù²Ù´Â °ÍÀº ÀÌº¥Æ®¸¦ º¸³»´Â °÷¿¡¼­ ÇÑ´Ù
+				// ì‹¤ì œ ë„ë³µì˜ ìƒ‰ìƒì„ ë°”ê¾¸ëŠ” ê²ƒì€ ì´ë²¤íŠ¸ë¥¼ ë³´ë‚´ëŠ” ê³³ì—ì„œ í•œë‹¤
 				sDBO_DOGI_DATA* pDBO_DOGI_DATA = (sDBO_DOGI_DATA*)pEvent->pData;
 
 				m_byGuildDogiColorIndex	= pDBO_DOGI_DATA->byGuildColor;
@@ -722,7 +722,7 @@ VOID CNtlGuild::HandleEvents(RWS::CMsg &pMsg)
 		if( IsHaveGroup() == FALSE )
 			NTL_RETURNVOID();
 
-		// ±æµå Á¤º¸Áß ¾Æ¹ÙÅ¸ÀÇ À§Ä¡Á¤º¸´Â ¼­¹ö¿¡¼­ º¸³»ÁÖÁö ¾Ê´Â´Ù
+		// ê¸¸ë“œ ì •ë³´ì¤‘ ì•„ë°”íƒ€ì˜ ìœ„ì¹˜ì •ë³´ëŠ” ì„œë²„ì—ì„œ ë³´ë‚´ì£¼ì§€ ì•ŠëŠ”ë‹¤
 		sNTL_EVENT_MAPNAME* pEvent = reinterpret_cast<sNTL_EVENT_MAPNAME*>( pMsg.pData );
 		CMapNameTextTable* pMapNameTextTable = API_GetTableContainer()->GetTextAllTable()->GetMapNameTbl();
 		CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();

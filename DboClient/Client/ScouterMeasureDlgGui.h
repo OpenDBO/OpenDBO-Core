@@ -1,7 +1,7 @@
 /******************************************************************************
 * File			: ScouterGui.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2006. 9. 13
 * Last Update	: 2007. 8. 28
 * Abstract		:
@@ -61,14 +61,14 @@ public:
 
 		RwBool				bShowScouterBack;
 
-		RwUInt32			uiOffencePower;		///< ∏Ò«• ¿¸≈ı∑¬
-		RwUInt32			uiMoreMeasureCount;	///< ¿¸≈ı∑¬¿ª ∞ªΩ≈«— »Ωºˆ
+		RwUInt32			uiOffencePower;		///< Î™©Ìëú Ï†ÑÌà¨Î†•
+		RwUInt32			uiMoreMeasureCount;	///< Ï†ÑÌà¨Î†•ÏùÑ Í∞±Ïã†Ìïú ÌöüÏàò
 
-		RwReal				fTimeRecievePower;	///< ¿¸≈ı∑¬¿ª º≠πˆ∑Œ∫Œ≈Õ πﬁ¿∫ Ω√∞£
-		RwReal				fTimeAdjustPower;	///< ¿¸≈ı∑¬ ∫∏∞£ Ω√∞£
-		RwReal				fTimeDisplayPower;	///< ¿¸≈ı∑¬ ºˆƒ°∏¶ ∫∏ø©¡÷¥¬ Ω√∞£
+		RwReal				fTimeRecievePower;	///< Ï†ÑÌà¨Î†•ÏùÑ ÏÑúÎ≤ÑÎ°úÎ∂ÄÌÑ∞ Î∞õÏùÄ ÏãúÍ∞Ñ
+		RwReal				fTimeAdjustPower;	///< Ï†ÑÌà¨Î†• Î≥¥Í∞Ñ ÏãúÍ∞Ñ
+		RwReal				fTimeDisplayPower;	///< Ï†ÑÌà¨Î†• ÏàòÏπòÎ•º Î≥¥Ïó¨Ï£ºÎäî ÏãúÍ∞Ñ
 
-		RwInt32				iAdjustCount;		///< ¿¸≈ı∑¬ ∫∏∞£ »Ωºˆ
+		RwInt32				iAdjustCount;		///< Ï†ÑÌà¨Î†• Î≥¥Í∞Ñ ÌöüÏàò
 
 		bool				bAskPower;			///< Requested attack power level	
 
@@ -93,21 +93,21 @@ public:
 	VOID		Destroy();
 	VOID		Clear();
 
-	RwInt32		SwitchDialog(bool bOpen);			///< DialogManagerø°º≠¿« Open/Close
+	RwInt32		SwitchDialog(bool bOpen);			///< DialogManagerÏóêÏÑúÏùò Open/Close
 
 protected:
 	CScouterMeasureDlgGui() {}
 	virtual VOID	HandleEvents(RWS::CMsg& msg);
 
-	VOID		StartMeasure();		///< Ω∫ƒ´øÏ≈Õ √¯¡§¿ª Ω√¿€«—¥Ÿ
+	VOID		StartMeasure();		///< Ïä§Ïπ¥Ïö∞ÌÑ∞ Ï∏°Ï†ïÏùÑ ÏãúÏûëÌïúÎã§
 
-	// ¿¸≈ı∑¬ √¯¡§ ∞¸∑√
+	// Ï†ÑÌà¨Î†• Ï∏°Ï†ï Í¥ÄÎ†®
 	RwBool		MeasurePower_Init();
 	VOID		MeasurePower_Destroy();
 	VOID		MeasurePower_Display(RwUInt32 uiPower, int nPhysOffence, int nPhysDefence, int nEnergyOffence, int nEnergyDefence, int nHitRate, int nDodge);
 	VOID		MeasurePower_AskPowertoServer();
 
-	// »˜µÁ ø¿∫Í¡ß∆Æ √£±‚ ∞¸∑√
+	// ÌûàÎì† Ïò§Î∏åÏ†ùÌä∏ Ï∞æÍ∏∞ Í¥ÄÎ†®
 
 	VOID		EndDisplayImmediately();
 

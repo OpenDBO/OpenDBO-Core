@@ -2,7 +2,7 @@
  *
  * File			: NtlFSMStateBase.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2006. 2. 13	
  * Abstract		: Finite state machine character action base class
  *****************************************************************************
@@ -84,11 +84,11 @@ protected:
 	virtual RwUInt32 EventProcSobFainting(RWS::CMsg &pMsg);
 	virtual RwUInt32 EventProcSobWeightTime(RWS::CMsg &pMsg);
 
-	// ÄÁµð¼Ç Ã³¸® °ü·Ã
-    virtual RwUInt32 EventSobTransformSequela(RWS::CMsg& pMsg);             ///< ÃÊ»çÀÌ¾ßÀÎ Àü¿ë º¯½Å ÈÞÀ¯Áõ Ã³¸®
-    virtual RwUInt32 EventProcAfterEffectRemainTime(RWS::CMsg& pMsg);       ///< º¯½Å ÈÄÀ¯Áõ ÀÌº¥Æ® Ã³¸®
-    virtual RwUInt32 EventProcCondConfused(RWS::CMsg& pMsg);                ///< È¥¶õ »óÅÂ Ã³¸®
-    virtual RwUInt32 EventProcCondTerror(RWS::CMsg& pMsg);                  ///< °øÆ÷ »óÅÂ Ã³¸®
+	// ì»¨ë””ì…˜ ì²˜ë¦¬ ê´€ë ¨
+    virtual RwUInt32 EventSobTransformSequela(RWS::CMsg& pMsg);             ///< ì´ˆì‚¬ì´ì•¼ì¸ ì „ìš© ë³€ì‹  íœ´ìœ ì¦ ì²˜ë¦¬
+    virtual RwUInt32 EventProcAfterEffectRemainTime(RWS::CMsg& pMsg);       ///< ë³€ì‹  í›„ìœ ì¦ ì´ë²¤íŠ¸ ì²˜ë¦¬
+    virtual RwUInt32 EventProcCondConfused(RWS::CMsg& pMsg);                ///< í˜¼ëž€ ìƒíƒœ ì²˜ë¦¬
+    virtual RwUInt32 EventProcCondTerror(RWS::CMsg& pMsg);                  ///< ê³µí¬ ìƒíƒœ ì²˜ë¦¬
 
 
 protected:
@@ -103,14 +103,14 @@ public:
 	virtual void Destroy(void);
 
 	/**
-    *  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+    *  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
     */
 	virtual void Enter(void);
 	virtual void Exit(void);
 	virtual RwUInt32 HandleEvents(RWS::CMsg &pMsg);
 
 	/**
-    *  state clone ÇÔ¼ö.
+    *  state clone í•¨ìˆ˜.
     */
 	virtual void Clone(CNtlFSMStateBase *pState);
 };

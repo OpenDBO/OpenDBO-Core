@@ -2,7 +2,7 @@
  *
  * File			: NtlDownLoader.h
  * Author		: HongHoDong
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2007. 2. 5.
  * Abstract		: 
  *****************************************************************************
@@ -63,7 +63,7 @@ protected:
     CNtlDownLoader() : m_bActive(FALSE), m_bAbort(FALSE), m_bPendingDestroy(FALSE) {}
     CNtlDownLoader(const CNtlDownLoader& rhs) {}
 
-    void CreateDirectoryFromFullPath(const CString& strFullPath);               ///< «Æ∆–Ω∫¿« ∞Ê∑Œ∑Œ∫Œ≈Õ ∆˙¥ı∏¶ ª˝º∫«—¥Ÿ.
+    void CreateDirectoryFromFullPath(const CString& strFullPath);               ///< ÌíÄÌå®Ïä§Ïùò Í≤ΩÎ°úÎ°úÎ∂ÄÌÑ∞ Ìè¥ÎçîÎ•º ÏÉùÏÑ±ÌïúÎã§.
 
 protected:
     std::list<CNtlCallbackParam2*> m_listCallBack;

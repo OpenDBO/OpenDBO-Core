@@ -2,7 +2,7 @@
 //	File		:	NtlInstanceComponentSystem.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	®œ 2005 by agebreak CO., Ltd
+//	Copyright	:	‚ìí 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -27,14 +27,14 @@ class CNtlPLAttach;
 class CNtlInstanceComponentSystem
 {
 public:
-	RwReal							m_fLifeTime;						///< Effect∞° ªÏæ∆ ¿÷¥¬ µøæ»¿« Ω√∞£¿ª ∞°¡ˆ∞Ì ¿÷¥¬ ¿”Ω√ ∫Øºˆ( += fElapsedTime)
+	RwReal							m_fLifeTime;						///< EffectÍ∞Ä ÏÇ¥ÏïÑ ÏûàÎäî ÎèôÏïàÏùò ÏãúÍ∞ÑÏùÑ Í∞ÄÏßÄÍ≥† ÏûàÎäî ÏûÑÏãú Î≥ÄÏàò( += fElapsedTime)
 
 	RwBool							m_bReady;
 	RwBool							m_bStart;
 	RwBool							m_bUpdate;    
-    RwBool                          m_bFinish;                          ///< Finish ¿€æ˜¿ª √≥∏Æ«“∂ß ªÁøÎ«œ¥¬ Flag
+    RwBool                          m_bFinish;                          ///< Finish ÏûëÏóÖÏùÑ Ï≤òÎ¶¨Ìï†Îïå ÏÇ¨Ïö©ÌïòÎäî Flag
     RwBool                          m_bVisible;
-    RwBool                          m_bIsApplyFlagGround;               ///< ¡ˆ«¸ø° ¿ßƒ°«œ¥¬ «√∑°±◊∏¶ √≥∏Æ«ﬂ¥¬¡ˆ ¿Øπ´    
+    RwBool                          m_bIsApplyFlagGround;               ///< ÏßÄÌòïÏóê ÏúÑÏπòÌïòÎäî ÌîåÎûòÍ∑∏Î•º Ï≤òÎ¶¨ÌñàÎäîÏßÄ Ïú†Î¨¥    
 	RwMatrix						m_matWorld;
 	RwMatrix						m_matScale;
 	RwMatrix						m_matRotate;
@@ -69,9 +69,9 @@ public:
 	RwReal							m_fFadeOutTime;
 	CNtlInstanceComponentSystem*	m_pFadeOutSystem;
 
-    // Finish ∞¸∑√
-    RwReal                          m_fFinishTime;                      ///< Finish Ω√∞£ √º≈©ø° ªÁøÎµ… ∫Øºˆ
-    RwV3d                           m_v3dFinishSize;                    ///< FinishΩ√ ≈©±‚ ∫Ø∞Êø° ªÁøÎµ… Size
+    // Finish Í¥ÄÎ†®
+    RwReal                          m_fFinishTime;                      ///< Finish ÏãúÍ∞Ñ Ï≤¥ÌÅ¨Ïóê ÏÇ¨Ïö©Îê† Î≥ÄÏàò
+    RwV3d                           m_v3dFinishSize;                    ///< FinishÏãú ÌÅ¨Í∏∞ Î≥ÄÍ≤ΩÏóê ÏÇ¨Ïö©Îê† Size
 
     RwSphere                        m_BoundingSphere;                   ///< The bounding sphere of the effect system
     RwUInt32                        m_uiMemoryUseSize;                  ///< Memory usage
@@ -97,31 +97,31 @@ public:
 	RwInt32 GetSystemType()					{ return m_pResourceComponentSystem->GetSystemType(); }
 
 
-    /// ∞°ªÛ «‘ºˆµÈ
+    /// Í∞ÄÏÉÅ Ìï®ÏàòÎì§
 	virtual void	Reset() = 0;
 
 	virtual void	Delete();
 	virtual RwBool	Create(CNtlResourceEffect* pResourceEffect, CNtlResourceComponentSystem* pResourceComponentSystem, const RwMatrix& matWorld);
 
-    virtual RwBool  Finish();                                                       ///< ¿Ã∆Â∆Æ¿« ªË¡¶ ¿€æ˜¿ª √≥∏Æ«—¥Ÿ.
-	virtual void	Stop() { m_bUpdate = FALSE; }									///< Update∏¶ ¡ﬂ¥‹¿ª «—¥Ÿ.
+    virtual RwBool  Finish();                                                       ///< Ïù¥ÌéôÌä∏Ïùò ÏÇ≠Ï†ú ÏûëÏóÖÏùÑ Ï≤òÎ¶¨ÌïúÎã§.
+	virtual void	Stop() { m_bUpdate = FALSE; }									///< UpdateÎ•º Ï§ëÎã®ÏùÑ ÌïúÎã§.
 
 	virtual RwBool	Update(RwReal fElapsedTime);
 	virtual RwBool	Render() = 0;
 
 	virtual void	SetWorldMatrix(const RwMatrix& matWorld);
 	virtual void	SetAttachMatrix(const RwMatrix& matAttach);
-    virtual void    SetAlpha(RwUInt8 byValue) {}                                 ///< ¿Ã∆Â∆Æ¿« Alpha∞™¿ª ¿˚øÎ«—¥Ÿ.
-	virtual void	SetScale(RwReal fScale) {m_fScale = fScale;}				 ///< ¿Ã∆Â∆Æ¿« Scale¿ª º≥¡§«—¥Ÿ. 
+    virtual void    SetAlpha(RwUInt8 byValue) {}                                 ///< Ïù¥ÌéôÌä∏Ïùò AlphaÍ∞íÏùÑ Ï†ÅÏö©ÌïúÎã§.
+	virtual void	SetScale(RwReal fScale) {m_fScale = fScale;}				 ///< Ïù¥ÌéôÌä∏Ïùò ScaleÏùÑ ÏÑ§Ï†ïÌïúÎã§. 
     virtual RwReal  GetScale() {return m_fScale;}
     virtual void    SetVisible(RwBool bVisible) {m_bVisible = bVisible;}
-    virtual RwSphere* GetBoundingSphere();                                       ///< ¿Ã∆Â∆Æ¿« πŸøÓµ˘ Ω∫««æÓ∏¶ π›»Ø«—¥Ÿ.
-    virtual RwUInt32 GetMemoryUseSize() {return m_uiMemoryUseSize;}              ///< ∏ﬁ∏∏Æ ªÁøÎ∑Æ¿ª π›»Ø«—¥Ÿ.
+    virtual RwSphere* GetBoundingSphere();                                       ///< Ïù¥ÌéôÌä∏Ïùò Î∞îÏö¥Îî© Ïä§ÌîºÏñ¥Î•º Î∞òÌôòÌïúÎã§.
+    virtual RwUInt32 GetMemoryUseSize() {return m_uiMemoryUseSize;}              ///< Î©îÎ™®Î¶¨ ÏÇ¨Ïö©ÎüâÏùÑ Î∞òÌôòÌïúÎã§.
 
 protected:
-    virtual RwBool  UpdateFinish(RwReal fElapsedTime);                          ///< Finish √≥∏Æ∏¶ «—¥Ÿ.
-    virtual RwUInt8 UpdateFinishAlpha(RwUInt8 uiOriginAlpha, RwReal fElapsedTime, RwReal fFinishTime);  ///< FinishΩ√¿« æÀ∆ƒ∞™¿ª ∞ËªÍ«—¥Ÿ
-    virtual RwV3d   UpdateFinishSize(RwV3d v3dOriginSize, RwReal fElapsedTime, RwReal fFinishTime);     ///< FinishΩ√¿« ªÁ¿Ã¡Ó∞™¿ª ∞ËªÍ«—¥Ÿ.
+    virtual RwBool  UpdateFinish(RwReal fElapsedTime);                          ///< Finish Ï≤òÎ¶¨Î•º ÌïúÎã§.
+    virtual RwUInt8 UpdateFinishAlpha(RwUInt8 uiOriginAlpha, RwReal fElapsedTime, RwReal fFinishTime);  ///< FinishÏãúÏùò ÏïåÌååÍ∞íÏùÑ Í≥ÑÏÇ∞ÌïúÎã§
+    virtual RwV3d   UpdateFinishSize(RwV3d v3dOriginSize, RwReal fElapsedTime, RwReal fFinishTime);     ///< FinishÏãúÏùò ÏÇ¨Ïù¥Ï¶àÍ∞íÏùÑ Í≥ÑÏÇ∞ÌïúÎã§.
 };
 
 //------------------------------------------------------------------
@@ -164,7 +164,7 @@ inline void CNtlInstanceComponentSystem::SetWorldMatrix(const RwMatrix& matWorld
         m_bIsApplyFlagGround = FALSE;
     }
 
-    // Scale ¿˚øÎ
+    // Scale Ï†ÅÏö©
     RwV3d vPosition = *RwMatrixGetPos(&m_matRender);
     RwMatrixGetPos(&m_matRender)->x = 0.0f;
     RwMatrixGetPos(&m_matRender)->y = 0.0f;

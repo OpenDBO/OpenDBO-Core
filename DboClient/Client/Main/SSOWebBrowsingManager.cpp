@@ -28,12 +28,12 @@ CSSOWebBrowsingManager::~CSSOWebBrowsingManager(void)
 
 BOOL CSSOWebBrowsingManager::Create( HWND hWndMain, LPCTSTR strAuthCookie, LPCTSTR strDataCookie, LPCTSTR strCpCookie )
 {
-	// SSO À¥ºê¶ó¿ìÀú ¸ğµâÀ» ÃÊ±âÈ­ ÇÑ´Ù
+	// SSO ì›¹ë¸Œë¼ìš°ì € ëª¨ë“ˆì„ ì´ˆê¸°í™” í•œë‹¤
 	if(!InitSSOWebBrowser(hWndMain, strAuthCookie, strDataCookie, strCpCookie)) 
 	{
-		// ½ÇÆĞÇÏ´Â °æ¿ì ÇÁ·Î±×·¥ Á¾·á
-		MessageBoxA(NULL, "error", "SSO WebBrowser ¸ğµâÀ» ÃÊ±âÈ­ÇÒ ¼ö ¾ø½À´Ï´Ù.", MB_OK);
-		// ÇÁ·Î±×·¥ Á¾·á
+		// ì‹¤íŒ¨í•˜ëŠ” ê²½ìš° í”„ë¡œê·¸ë¨ ì¢…ë£Œ
+		MessageBoxA(NULL, "error", "SSO WebBrowser ëª¨ë“ˆì„ ì´ˆê¸°í™”í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.", MB_OK);
+		// í”„ë¡œê·¸ë¨ ì¢…ë£Œ
 		return FALSE;
 	}
 
@@ -44,14 +44,14 @@ BOOL CSSOWebBrowsingManager::Create( HWND hWndMain, LPCTSTR strAuthCookie, LPCTS
 
 void CSSOWebBrowsingManager::Destroy()
 {
-	// SSOÀ¥ºê¶ó¿ìÀú ¸ğµâÀ» ÆÄ±«ÇÏ±âÀü¿¡ À¥ºê¶ó¿ìÀú¸¦ ¸ÕÀú ÆÄ±«ÇØ¾ßÇÑ´Ù
+	// SSOì›¹ë¸Œë¼ìš°ì € ëª¨ë“ˆì„ íŒŒê´´í•˜ê¸°ì „ì— ì›¹ë¸Œë¼ìš°ì €ë¥¼ ë¨¼ì € íŒŒê´´í•´ì•¼í•œë‹¤
 	for( int i = 0; i < m_vecMembers.size(); i++)
 	{
 		m_vecMembers[i].m_pSSOWebBrowser->Destroy();
 		delete( m_vecMembers[i].m_pSSOWebBrowser );
 	}
 
-	// SSOÀ¥ºê¶ó¿ìÀú ¸ğµâÀ» ÆÄ±«
+	// SSOì›¹ë¸Œë¼ìš°ì € ëª¨ë“ˆì„ íŒŒê´´
 	UnInitSSOWebBrowser();
 
 }

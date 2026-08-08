@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: CautionSideIconGui.h
 * Author		: Cho Haesung
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 4. 3
 * Abstract		: 
 *****************************************************************************
-* Desc			: °æ°í ¸Ş½ÃÁö°¡ ´©ÀûµÇ¼­ Ãâ·ÂµÇ¸é CautionSideIcon¿¡¼­ ´ã¾ÆµĞ´Ù.
+* Desc			: ê²½ê³  ë©”ì‹œì§€ê°€ ëˆ„ì ë˜ì„œ ì¶œë ¥ë˜ë©´ CautionSideIconì—ì„œ ë‹´ì•„ë‘”ë‹¤.
 *
 *****************************************************************************/
 
@@ -21,7 +21,7 @@
 #include "SideIconGui.h"
 #include "windowby3.h"
 
-// Ç¥½ÃµÉ °æ°í ¸Ş½ÃÁöÀÇ ÃÖ´ë °¹¼ö
+// í‘œì‹œë  ê²½ê³  ë©”ì‹œì§€ì˜ ìµœëŒ€ ê°¯ìˆ˜
 #define dMAX_CAUTION_SIDE_VIEW_UNIT			10
 
 #define dCAUTION_UNIT_WIDTH					230
@@ -35,8 +35,8 @@
 #define dCAUTION_UNIT_TEXT_COLOR			RGB( 255, 71, 57 )
 
 /**
-* \brief SideView ¿¡¼­ °¡Áö°í ÀÖ´Â UnitÀÇ Á¤º¸¸¦ ´ãÀº ±¸Á¶Ã¼
-* SideView -> SideIcon À¸·Î Á¤º¸¸¦ ³Ñ±æ ¶§ »ç¿ëµÈ´Ù.
+* \brief SideView ì—ì„œ ê°€ì§€ê³  ìˆëŠ” Unitì˜ ì •ë³´ë¥¼ ë‹´ì€ êµ¬ì¡°ì²´
+* SideView -> SideIcon ìœ¼ë¡œ ì •ë³´ë¥¼ ë„˜ê¸¸ ë•Œ ì‚¬ìš©ëœë‹¤.
 */
 struct SCautionSideViewUnits
 {
@@ -45,7 +45,7 @@ struct SCautionSideViewUnits
 
 /**
 * \ingroup	client
-* \brief	ÇÏ³ªÀÇ °æ°í ¸Ş½ÃÁö¸¦ Ç¥ÇöÇÏ´Â Unit
+* \brief	í•˜ë‚˜ì˜ ê²½ê³  ë©”ì‹œì§€ë¥¼ í‘œí˜„í•˜ëŠ” Unit
 */
 class CCautionSideViewUnit
 {
@@ -73,7 +73,7 @@ protected:
 /**
 * \ingroup	client
 * \brief	Caution Side Icon
-* Side IconÀ» Á¤ÀÇÇÏ°í Caution Side View À» ¿­°í ´İ´Â ±â´É°ú UnitÀ» Side View±îÁö Àü´ŞÇÑ´Ù.
+* Side Iconì„ ì •ì˜í•˜ê³  Caution Side View ì„ ì—´ê³  ë‹«ëŠ” ê¸°ëŠ¥ê³¼ Unitì„ Side Viewê¹Œì§€ ì „ë‹¬í•œë‹¤.
 */
 class CCautionSideIconGui : public CSideIconBase
 {

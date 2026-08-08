@@ -45,10 +45,10 @@ RwBool CDBOTitleGui::Create()
 
 	CRectangle rect;
 
-	// ¹è°æ
+	// ë°°ê²½
 	m_pFlashBackground = (gui::CFlash*)GetComponent("flaBackground");
 
-	// µ¿¿µ»ó Àç»ý ¹öÆ°
+	// ë™ì˜ìƒ ìž¬ìƒ ë²„íŠ¼
 	m_pCinemaButton = (gui::CButton*)GetComponent("CinemaButton");
 	m_pCinemaButton->SetTextFont(DEFAULT_FONT, 105, DEFAULT_FONT_ATTR);
 	m_pCinemaButton->SetTextFocusColor(INFOCOLOR_LOBBY_FOC);
@@ -56,7 +56,7 @@ RwBool CDBOTitleGui::Create()
 	m_pCinemaButton->SetText( GetDisplayStringManager()->GetString("DST_LOGIN_PLAY_MOVIE") );
 	m_slotCinemaButton = m_pCinemaButton->SigClicked().Connect( this, &CDBOTitleGui::OnClicked_CinemaButton);
 
-	// ¾à°ü º¸±â ¹öÆ°
+	// ì•½ê´€ ë³´ê¸° ë²„íŠ¼
 	m_pContractButton = (gui::CButton*)GetComponent("ContractButton");
 	m_pContractButton->SetTextFont(DEFAULT_FONT, 105, DEFAULT_FONT_ATTR);
 	m_pContractButton->SetTextFocusColor(INFOCOLOR_LOBBY_FOC);
@@ -64,7 +64,7 @@ RwBool CDBOTitleGui::Create()
 	m_pContractButton->SetText( GetDisplayStringManager()->GetString("DST_LOGIN_CONTRACT") );
 	m_slotContractButton = m_pContractButton->SigClicked().Connect( this, &CDBOTitleGui::OnClicked_ContractButton);
 
-	// °ÔÀÓ ¼­¹ö Á¢¼Ó ¹öÆ°
+	// ê²Œìž„ ì„œë²„ ì ‘ì† ë²„íŠ¼
 	m_pConnectGameServerButton = (gui::CButton*)GetComponent("ConnectGameServerButton");
 	m_pConnectGameServerButton->SetTextFont(DEFAULT_FONT, 105, DEFAULT_FONT_ATTR);
 	m_pConnectGameServerButton->SetTextFocusColor(INFOCOLOR_LOBBY_FOC);
@@ -72,7 +72,7 @@ RwBool CDBOTitleGui::Create()
 	m_pConnectGameServerButton->SetText( GetDisplayStringManager()->GetString("DST_LOGIN") );
 	m_slotConnectGameServerButton = m_pConnectGameServerButton->SigClicked().Connect( this, &CDBOTitleGui::OnClicked_ConnectGameServerButton);
 
-	// ³ª°¡±â ¹öÆ°
+	// ë‚˜ê°€ê¸° ë²„íŠ¼
 	m_pExitButton = (gui::CButton*)GetComponent("ExitButton");
 	m_pExitButton->SetTextFont(DEFAULT_FONT, 105, DEFAULT_FONT_ATTR);
 	m_pExitButton->SetTextFocusColor(INFOCOLOR_LOBBY_FOC);
@@ -89,7 +89,7 @@ RwBool CDBOTitleGui::Create()
 	m_pVersion->SetText(awcBuffer);
 	m_pVersion->Enable(false);
 
-	// Á¦¸ñ ¼­ÆäÀÌ½º
+	// ì œëª© ì„œíŽ˜ì´ìŠ¤
 	m_srfTitle.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "DBOTitle.srf", "srfTitle" ));
 
 	// Locate Component
@@ -100,7 +100,7 @@ RwBool CDBOTitleGui::Create()
 
 	GetNtlGuiManager()->AddUpdateFunc( this );
 
-	// event µî·Ï.
+	// event ë“±ë¡.
 	LinkMsg(g_EventLoginGuiEnable, 0);
 	LinkMsg(g_EventLogInStageStateEnter, 0);
 	LinkMsg(g_EventLogInStageStateExit, 0);
@@ -196,13 +196,13 @@ int CDBOTitleGui::CallBackMoviePlayStop()
 
 VOID CDBOTitleGui::OnClicked_ContractButton( gui::CComponent* pComponent )
 {
-	// ¾à°ü º¸±â
+	// ì•½ê´€ ë³´ê¸°
 	CDboEventGenerator::LoginEvent(LOGIN_EVENT_SHOW_CONTRACT_PAGE);
 }
 
 VOID CDBOTitleGui::OnClicked_ConnectGameServerButton( gui::CComponent* pComponent )
 {
-	// °ÔÀÓ ¼­¹ö Á¢¼ÓÇÏ±â
+	// ê²Œìž„ ì„œë²„ ì ‘ì†í•˜ê¸°
 	SwitchEnableButtons(false);
 
 	GetLogInStageState()->ChangeState(LOGIN_STATE_CHAR_SERVER_CONNECT);
@@ -210,7 +210,7 @@ VOID CDBOTitleGui::OnClicked_ConnectGameServerButton( gui::CComponent* pComponen
 
 VOID CDBOTitleGui::OnClicked_ExitButton( gui::CComponent* pComponent )
 {
-	// °ÔÀÓ ³ª°¡±â
+	// ê²Œìž„ ë‚˜ê°€ê¸°
 	SUserData* pUserData = GetDboGlobal()->GetUserData();
 	CLoginPacketGenerator* pLoginPacketGenerator = GetDboGlobal()->GetLoginPacketGenerator(); 
 

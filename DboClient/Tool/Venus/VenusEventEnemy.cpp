@@ -2,7 +2,7 @@
 //	File		:	VenusEventEnemy.cpp
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -167,7 +167,7 @@ RwBool CVenusEventEnemy::Update(RwReal fElapsedTime)
 
 		RpHAnimHierarchyUpdateMatrices(hierarchy);
 
-		// Å×½ºÆ®
+		// í…ŒìŠ¤íŠ¸
 		if (m_pDamageAnimationResource && (m_pDamageAnimationResource->GetAnimation() == m_pCurrentAnimation))
 		{
 			if (m_fCurrentTime > hierarchy->currentAnim->currentTime)

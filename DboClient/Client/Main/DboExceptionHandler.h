@@ -1,7 +1,7 @@
 
-/// ¿©±â¿¡¼­.. Msjexhnd.h ÆÄÀÏ¿¡ call back ÇÔ¼ö¸¦ ¸¸µç´Ù.
-// È£ÃâµÈ callbackÀº dboexceptionhandler¿¡¼­ ¹Þ¾Æ¼­.. 
-// GetNtlCallStack()->LogFilePrint() ÇÔ¼ö¸¦ È£ÃâÇÑ´Ù.
+/// ì—¬ê¸°ì—ì„œ.. Msjexhnd.h íŒŒì¼ì— call back í•¨ìˆ˜ë¥¼ ë§Œë“ ë‹¤.
+// í˜¸ì¶œëœ callbackì€ dboexceptionhandlerì—ì„œ ë°›ì•„ì„œ.. 
+// GetNtlCallStack()->LogFilePrint() í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•œë‹¤.
 
 VOID DboExceptionHandler( PEXCEPTION_POINTERS pExceptionInfo );
 

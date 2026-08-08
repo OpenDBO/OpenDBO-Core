@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: ChannelChangeGui.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2008. 8. 28
 * Abstract		: 
 *****************************************************************************
-* Desc			: ∞‘¿”¡ﬂ Ω«Ω√∞£¿∏∑Œ √§≥Œ¿ª ∫Ø∞Ê«œ±‚ ¿ß«— GUI
+* Desc			: Í≤åÏûÑÏ§ë Ïã§ÏãúÍ∞ÑÏúºÎ°ú Ï±ÑÎÑêÏùÑ Î≥ÄÍ≤ΩÌïòÍ∏∞ ÏúÑÌïú GUI
 *****************************************************************************/
 
 #pragma once
@@ -99,18 +99,18 @@ protected:
 	gui::CSlot			m_slotPaint;
 
 	gui::CStaticBox*	m_pDialogName;
-	gui::CStaticBox*	m_pChannelSelect;	///< '√§≥Œº±≈√'
-	gui::CStaticBox*	m_pServerlName;		///< º≠πˆ ¿Ã∏ß
+	gui::CStaticBox*	m_pChannelSelect;	///< 'Ï±ÑÎÑêÏÑ†ÌÉù'
+	gui::CStaticBox*	m_pServerlName;		///< ÏÑúÎ≤Ñ Ïù¥Î¶Ñ
 
 	gui::CButton*		m_pExitButton;
-	gui::CButton*		m_pOkButton;		///< »Æ¿Œ πˆ∆∞
-	gui::CButton*		m_pCancelButton;	///< √Îº“ πˆ∆∞
+	gui::CButton*		m_pOkButton;		///< ÌôïÏù∏ Î≤ÑÌäº
+	gui::CButton*		m_pCancelButton;	///< Ï∑®ÏÜå Î≤ÑÌäº
 
 	CSurfaceGui			m_srfFocusBar;
 	CSurfaceGui			m_srfSelectBar;
 	CSurfaceGui			m_srfDownBar;
 
-	gui::CScrollBar*	m_pScrollBar;		///< √§≥Œ Ω∫≈©∑—
+	gui::CScrollBar*	m_pScrollBar;		///< Ï±ÑÎÑê Ïä§ÌÅ¨Î°§
 
 	RwUInt8				m_byFocusIndex;
 	RwUInt8				m_byDownIndex;

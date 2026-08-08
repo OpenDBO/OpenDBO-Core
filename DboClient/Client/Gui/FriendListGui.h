@@ -14,14 +14,14 @@
 
 /**
  * \ingroup Client
- * \brief Ä£±¸ ¸®½ºÆ®/ºí·¢ ¸®½ºÆ® UI¸¦ ±¸ÇöÇÏ´Â Å¬·¡½º 
+ * \brief ì¹œêµ¬ ë¦¬ìŠ¤íŠ¸/ë¸”ë™ ë¦¬ìŠ¤íŠ¸ UIë¥¼ êµ¬í˜„í•˜ëŠ” í´ë˜ìŠ¤ 
  * \date 2007-12-07
  * \author agebreak
  */
 class CFriendListGui : public CNtlPLGui, public RWS::CEventHandler
 {
 public:
-    enum EFriendListMode                ///< UI ¸®½ºÆ® ¸ğµå
+    enum EFriendListMode                ///< UI ë¦¬ìŠ¤íŠ¸ ëª¨ë“œ
     {
         FRIEND_LIST,
         BLACK_LIST,
@@ -68,7 +68,7 @@ protected:
     void			OnDestroyItem(gui::CButton* pButton);
     void			OnClickedItem(RwInt32 iIndex);
 
-    // ¼ö½Å ÆĞÅ¶ Ã³¸® ÇÔ¼ö
+    // ìˆ˜ì‹  íŒ¨í‚· ì²˜ë¦¬ í•¨ìˆ˜
     VOID    OnFriendAddRes(RwUInt32 uiTargetID);
     VOID    OnFriendDelRes(RwUInt32 uiTargetID);
     VOID    OnFriendMoveRes(RwUInt32 uiTargetID);
@@ -79,14 +79,14 @@ protected:
     VOID    OnFriendInfoChange(RwUInt32 uiTargetID);
     VOID    OnFriendLogin(RwUInt32 uiTargetID);
 
-    VOID    CreateInfoStaticBox();                                  ///< Á¤º¸¸¦ Ç¥½ÃÇÏ±âÀ§ÇÑ ½ºÅÂÆ½¹Ú½ºµéÀ» »ı¼ºÇÑ´Ù.
-    VOID    RefreshList();                                          ///< ÇöÀç º¸ÀÌ´Â Á¤º¸µéÀ» °»½ÅÇÑ´Ù.    
-    VOID    UpdateInfo(RwUInt32 uiCharID = NULL);                   ///< Á¤º¸¸¦ ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
-    RwBool  IsEnableAdd(const WCHAR* pwszName, EFriendListMode eMode);    ///< Ä£±¸ or ºí·¢¸®½ºÆ®¿¡ Ãß°¡°¡ °¡´ÉÇÑÁö È®ÀÎÇÑ´Ù.
-    VOID    OnTargeting(sFriendMember* pMember);                       ///< Ä¿¹Â´ÏÆ¼ Å¸°ÙÆÃÀ» ¼³Á¤ÇÑ´Ù.
+    VOID    CreateInfoStaticBox();                                  ///< ì •ë³´ë¥¼ í‘œì‹œí•˜ê¸°ìœ„í•œ ìŠ¤íƒœí‹±ë°•ìŠ¤ë“¤ì„ ìƒì„±í•œë‹¤.
+    VOID    RefreshList();                                          ///< í˜„ì¬ ë³´ì´ëŠ” ì •ë³´ë“¤ì„ ê°±ì‹ í•œë‹¤.    
+    VOID    UpdateInfo(RwUInt32 uiCharID = NULL);                   ///< ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸í•œë‹¤.
+    RwBool  IsEnableAdd(const WCHAR* pwszName, EFriendListMode eMode);    ///< ì¹œêµ¬ or ë¸”ë™ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€ê°€ ê°€ëŠ¥í•œì§€ í™•ì¸í•œë‹¤.
+    VOID    OnTargeting(sFriendMember* pMember);                       ///< ì»¤ë®¤ë‹ˆí‹° íƒ€ê²ŸíŒ…ì„ ì„¤ì •í•œë‹¤.
 
 protected:
-    // ÄÁÆ®·Ñ
+    // ì»¨íŠ¸ë¡¤
     gui::CStaticBox*    m_pSttDialogTitle;            
     gui::CTabButton*    m_pTabMode;
     gui::CButton*       m_pBtnClose;
@@ -108,7 +108,7 @@ protected:
     gui::CPanel*        m_pPnlBackSpace[FRIEND_LIST_MAX_VISIBLE];
     gui::CPanel*        m_pPnlIcon[FRIEND_LIST_MAX_VISIBLE];
 
-    // ½½·Ô
+    // ìŠ¬ë¡¯
     gui::CSlot          m_slotClose;
     gui::CSlot          m_slotTab;
     gui::CSlot          m_slotBtnAdd;
@@ -133,7 +133,7 @@ protected:
 
     EFriendListMode     m_eListMode;
     RwUInt32            m_uiCurrentCharID;
-    RwInt32             m_nButtonIndex;                     ///< ¹öÆ°¿¡ ÀÌº¥Æ® ½½·ÔÀ» ´Ş±âÀ§ÇÑ º¯¼ö
+    RwInt32             m_nButtonIndex;                     ///< ë²„íŠ¼ì— ì´ë²¤íŠ¸ ìŠ¬ë¡¯ì„ ë‹¬ê¸°ìœ„í•œ ë³€ìˆ˜
 
 	// Help Button
 	gui::CButton*		m_pBtnHelp;

@@ -2,14 +2,14 @@
  *
  * File			: RankBoardGui.h
  * Author		: Haesung, Cho
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2007. 12. 11	
  * Abstract		: DBO Rank Board Gui
  *****************************************************************************
  * Desc         : 
- * ·©Å· º¸µå
- * ÇöÀç´Â ·©Å©¹èÆ²ÀÇ PVP ¼øÀ§¸¸ Ç¥½ÃµÇÁö¸¸, ÈÄ¿¡ TMQ³ª °¢Á¾ ¼øÀ§¿¡ °ü·ÃµÈ °Ô½ÃÆÇ
- * Ãß°¡ ¿¹Á¤
+ * ë­í‚¹ ë³´ë“œ
+ * í˜„ì¬ëŠ” ë­í¬ë°°í‹€ì˜ PVP ìˆœìœ„ë§Œ í‘œì‹œë˜ì§€ë§Œ, í›„ì— TMQë‚˜ ê°ì¢… ìˆœìœ„ì— ê´€ë ¨ëœ ê²Œì‹œíŒ
+ * ì¶”ê°€ ì˜ˆì •
  *****************************************************************************/
 
 #ifndef __RANK_BOARD_H__
@@ -33,7 +33,7 @@ public:
 
 	// HandleEvents & SwitchDialog
 	VOID		HandleEvents(RWS::CMsg &msg);
-	RwInt32		SwitchDialog(bool bOpen);		///< DialogManager¿¡¼­ÀÇ Open/Close
+	RwInt32		SwitchDialog(bool bOpen);		///< DialogManagerì—ì„œì˜ Open/Close
 
 	RwBool		IsEnableButton();
 	VOID		EnableAllButton();

@@ -303,7 +303,7 @@ VOID CScrollBar_Generic::OnMouseDown(const CKey &key)
 					nThumb = m_nMaxValue/nThumbDiv;
 				else
 				{
-					// MAX °ªÀÌ 3 ÀÌÇÏÀÏ °æ¿ì ½½¶óÀÌ´õ °ªÀ» 1 ¾¿ ¿òÁ÷¿©ÁØ´Ù.
+					// MAX ê°’ì´ 3 ì´í•˜ì¼ ê²½ìš° ìŠ¬ë¼ì´ë” ê°’ì„ 1 ì”© ì›€ì§ì—¬ì¤€ë‹¤.
 					// by Kell
 					/*nThumb = m_nMaxValue;*/
 					nThumb = 1;
@@ -437,7 +437,7 @@ VOID CScrollBar_Generic::CalculateSlider(VOID)
 	if(m_pScrollbar == NULL)
 		return;
 
-	// peessitemp : ÇöÀç ½ºÅ©·Ñ ÇÒ °ÍÀÌ ¾øÀ»¶§ÀÇ Ã³¸®. ÀÓ½Ã
+	// peessitemp : í˜„ì¬ ìŠ¤í¬ë¡¤ í•  ê²ƒì´ ì—†ì„ë•Œì˜ ì²˜ë¦¬. ì„ì‹œ
 	if( m_nMaxValue <= 0 )
 	{
 		BYTE ucAlpha = m_pScrollbar->GetAlpha();

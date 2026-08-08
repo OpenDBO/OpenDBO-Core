@@ -161,7 +161,7 @@ RwTexture* CNtlPLEmblemMaker::CreateEmblem(const sEmblemFactor* pEmblemFactor,
 		return NULL;
 
 
-	// ±âÁ¸¿¡ Á¸ÀçÇÏ´Â ÅØ½ºÃ³ÀÌ´Ù
+	// ê¸°ì¡´ì— ì¡´ìž¬í•˜ëŠ” í…ìŠ¤ì²˜ì´ë‹¤
 	ITER_MAP_TEXTURE it = m_mapTexture.find(acEmblemName);
 	if( it != m_mapTexture.end() )
 	{
@@ -170,7 +170,7 @@ RwTexture* CNtlPLEmblemMaker::CreateEmblem(const sEmblemFactor* pEmblemFactor,
 		return pEmblemData->pTexture;
 	}
 
-	// ÅØ½ºÃ³¸¦ »õ·Î Á¦ÀÛÇÑ´Ù
+	// í…ìŠ¤ì²˜ë¥¼ ìƒˆë¡œ ì œìž‘í•œë‹¤
 	return MakeEmblemImmidately(pEmblemFactor, acEmblemName, byEmblemSize, pcBaseTextureName);
 }
 
@@ -200,7 +200,7 @@ RwTexture* CNtlPLEmblemMaker::MakeEmblemImmidately(const sEmblemFactor* pEmblemF
 	
 	RwImageSetPath(".\\texture\\gui\\emblem\\");
 
-	// Àç·á ÅØ½ºÃ³¸¦ ÀÐ¾î¿Â´Ù
+	// ìž¬ë£Œ í…ìŠ¤ì²˜ë¥¼ ì½ì–´ì˜¨ë‹¤
 	if( pEmblemFactor->byTypeA != dPLEMBLEM_INVALID_FACTOR )
 	{
 		MakeEmblemResourceName(EMBLEMTYPE_A, pEmblemFactor->byTypeA, acEmblemFactor, 64, byEmblemSize);
@@ -256,7 +256,7 @@ RwTexture* CNtlPLEmblemMaker::MakeEmblemImmidately(const sEmblemFactor* pEmblemF
 		pBaseTexture = RwTextureRead(pcBaseTextureName, NULL);
 		if(!pBaseTexture)
 		{
-			// Base Texture°¡ ¾ø¾îµµ ¿¥ºí·½À» ¸¸µç´Ù
+			// Base Textureê°€ ì—†ì–´ë„ ì— ë¸”ë ˜ì„ ë§Œë“ ë‹¤
 			char acBuffer[128];
 			sprintf_s(acBuffer, 128, "Not exist texture of name : %s", pcBaseTextureName);
 			NtlLogFilePrint(acBuffer);
@@ -287,7 +287,7 @@ RwTexture* CNtlPLEmblemMaker::MakeEmblemImmidately(const sEmblemFactor* pEmblemF
 	if( pRTCamera->CameraBeginUpdate() )
 	{
 
-	// ¿¥ºí·½ »çÀÌÁî °áÁ¤
+	// ì— ë¸”ë ˜ ì‚¬ì´ì¦ˆ ê²°ì •
 #define d2DPIXEL_OFFSET		(-.5f)
 
 		RwIm2DVertexSetScreenX(&m_pInstance->m_2dVertices[0], 0.f + d2DPIXEL_OFFSET);
@@ -334,7 +334,7 @@ RwTexture* CNtlPLEmblemMaker::MakeEmblemImmidately(const sEmblemFactor* pEmblemF
 		pNewEmblemTexture = CopyToTexture( pRTCamera->GetTexture() );
 		RwTextureSetName(pNewEmblemTexture, pcEmblemName);
 
-		// »õ·Î Á¦ÀÛµÈ ¿¥ºí·½À» ÀúÀåÇÑ´Ù
+		// ìƒˆë¡œ ì œìž‘ëœ ì— ë¸”ë ˜ì„ ì €ìž¥í•œë‹¤
 		sEmblemData* pNewEmblemData = NTL_NEW sEmblemData;
 		pNewEmblemData->pTexture	= pNewEmblemTexture;
 		pNewEmblemData->factor		= *pEmblemFactor;

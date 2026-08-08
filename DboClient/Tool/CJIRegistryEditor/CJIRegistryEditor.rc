@@ -13,7 +13,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// ÇÑ±¹¾î resources
+// í•œêµ­ì–´ resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 #ifdef _WIN32
@@ -48,8 +48,8 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)\r\n"
     "LANGUAGE 18, 1\r\n"
     "#pragma code_page(949)\r\n"
-    "#include ""res\\CJIRegistryEditor.rc2""  // Microsoft Visual C++ ÀÌ¿ÜÀÇ ´Ù¸¥ µµ±¸¿¡¼­ ÆíÁýÇÑ ¸®¼Ò½ºÀÔ´Ï´Ù.\r\n"
-    "#include ""afxres.rc""     // Ç¥ÁØ ±¸¼º ¿ä¼ÒÀÔ´Ï´Ù.\r\n"
+    "#include ""res\\CJIRegistryEditor.rc2""  // Microsoft Visual C++ ì´ì™¸ì˜ ë‹¤ë¥¸ ë„êµ¬ì—ì„œ íŽ¸ì§‘í•œ ë¦¬ì†ŒìŠ¤ìž…ë‹ˆë‹¤.\r\n"
+    "#include ""afxres.rc""     // í‘œì¤€ êµ¬ì„± ìš”ì†Œìž…ë‹ˆë‹¤.\r\n"
     "#endif\r\n"
     "\0"
 END
@@ -73,25 +73,25 @@ IDR_MAINFRAME           ICON                    "res\\CJIRegistryEditor.ico"
 
 IDD_ABOUTBOX DIALOGEX 0, 0, 235, 55
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "CJIRegistryEditor Á¤º¸"
-FONT 9, "MS ¼Ð ´ëÈ­ »óÀÚ", 0, 0, 0x1
+CAPTION "CJIRegistryEditor ì •ë³´"
+FONT 9, "MS ì…¸ ëŒ€í™” ìƒìž", 0, 0, 0x1
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
-    LTEXT           "CJIRegistryEditor ¹öÀü 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "CJIRegistryEditor ë²„ì „ 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
     LTEXT           "Copyright (C) 2009",IDC_STATIC,40,25,119,8
-    DEFPUSHBUTTON   "È®ÀÎ",IDOK,178,7,50,16,WS_GROUP
+    DEFPUSHBUTTON   "í™•ì¸",IDOK,178,7,50,16,WS_GROUP
 END
 
 IDD_CJIREGISTRYEDITOR_DIALOG DIALOGEX 0, 0, 440, 68
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_APPWINDOW
-CAPTION "CJI Release / Dev ±³Ã¼"
-FONT 9, "MS ¼Ð ´ëÈ­ »óÀÚ", 0, 0, 0x1
+CAPTION "CJI Release / Dev êµì²´"
+FONT 9, "MS ì…¸ ëŒ€í™” ìƒìž", 0, 0, 0x1
 BEGIN
-    LTEXT           "CJI Dev ³ª CJI Release ¼³Ä¡ Æú´õ¸¦ ¼±ÅÃÇØ ÁÖ¼¼¿ä",IDC_STATIC,8,6,247,14
-    PUSHBUTTON      "Æú´õ ¼±ÅÃ",IDC_BUTTON1,7,20,50,15
+    LTEXT           "CJI Dev ë‚˜ CJI Release ì„¤ì¹˜ í´ë”ë¥¼ ì„ íƒí•´ ì£¼ì„¸ìš”",IDC_STATIC,8,6,247,14
+    PUSHBUTTON      "í´ë” ì„ íƒ",IDC_BUTTON1,7,20,50,15
     EDITTEXT        IDC_EDIT1,62,20,367,15,ES_AUTOHSCROLL | ES_READONLY
-    PUSHBUTTON      "Àû¿ë",IDC_BUTTON2,7,44,422,16
+    PUSHBUTTON      "ì ìš©",IDC_BUTTON2,7,44,422,16
 END
 
 
@@ -117,13 +117,13 @@ BEGIN
     BEGIN
         BLOCK "041203b5"
         BEGIN
-            VALUE "CompanyName", "TODO: <È¸»ç ÀÌ¸§>"
-            VALUE "FileDescription", "TODO: <ÆÄÀÏ ¼³¸í>"
+            VALUE "CompanyName", "TODO: <íšŒì‚¬ ì´ë¦„>"
+            VALUE "FileDescription", "TODO: <íŒŒì¼ ì„¤ëª…>"
             VALUE "FileVersion", "1.0.0.1"
             VALUE "InternalName", "CJIRegistryEditor.exe"
-            VALUE "LegalCopyright", "TODO: (c) <È¸»ç ÀÌ¸§>.  All rights reserved."
+            VALUE "LegalCopyright", "TODO: (c) <íšŒì‚¬ ì´ë¦„>.  All rights reserved."
             VALUE "OriginalFilename", "CJIRegistryEditor.exe"
-            VALUE "ProductName", "TODO: <Á¦Ç° ÀÌ¸§>"
+            VALUE "ProductName", "TODO: <ì œí’ˆ ì´ë¦„>"
             VALUE "ProductVersion", "1.0.0.1"
         END
     END
@@ -168,10 +168,10 @@ END
 
 STRINGTABLE 
 BEGIN
-    IDS_ABOUTBOX            "CJIRegistryEditor Á¤º¸(&A)..."
+    IDS_ABOUTBOX            "CJIRegistryEditor ì •ë³´(&A)..."
 END
 
-#endif    // ÇÑ±¹¾î resources
+#endif    // í•œêµ­ì–´ resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -189,8 +189,8 @@ END
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 LANGUAGE 18, 1
 #pragma code_page(949)
-#include "res\CJIRegistryEditor.rc2"  // Microsoft Visual C++ ÀÌ¿ÜÀÇ ´Ù¸¥ µµ±¸¿¡¼­ ÆíÁýÇÑ ¸®¼Ò½ºÀÔ´Ï´Ù.
-#include "afxres.rc"     // Ç¥ÁØ ±¸¼º ¿ä¼ÒÀÔ´Ï´Ù.
+#include "res\CJIRegistryEditor.rc2"  // Microsoft Visual C++ ì´ì™¸ì˜ ë‹¤ë¥¸ ë„êµ¬ì—ì„œ íŽ¸ì§‘í•œ ë¦¬ì†ŒìŠ¤ìž…ë‹ˆë‹¤.
+#include "afxres.rc"     // í‘œì¤€ êµ¬ì„± ìš”ì†Œìž…ë‹ˆë‹¤.
 #endif
 
 /////////////////////////////////////////////////////////////////////////////

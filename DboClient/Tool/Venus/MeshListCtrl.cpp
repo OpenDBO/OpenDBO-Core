@@ -1,4 +1,4 @@
-// MeshListCtrl.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// MeshListCtrl.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -38,7 +38,7 @@ END_MESSAGE_MAP()
 
 
 
-// CMeshListCtrl ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CMeshListCtrl ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 
 int CMeshListCtrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
@@ -46,7 +46,7 @@ int CMeshListCtrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CVenusGridCtrl::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// TODO:  ¿©±â¿¡ Æ¯¼öÈ­µÈ ÀÛ¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì‘ì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if(!m_image.Create(IDB_EFFECT_LIST_IMAGE,16,1,RGB(0, 255, 255)))
 		return -1;
 
@@ -90,7 +90,7 @@ void CMeshListCtrl::InitializeGrid()
 
 void CMeshListCtrl::RebuildMeshList()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	DeleteAllItems();
 	DeleteAll();
 

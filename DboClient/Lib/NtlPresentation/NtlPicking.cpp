@@ -169,7 +169,7 @@ bool CNtlPicking::Pick( RwCamera* pCamera, RpWorld* pWorld, RwV2d& v2ScrPos, RwR
 
     m_bCharacterExclusion = sPickInfo.bCharacterExclusion ? true : false;
 
-	// Picking ray¸¦ °è»êÇÑ´Ù
+	// Picking rayë¥¼ ê³„ì‚°í•œë‹¤
 	RwLine PickRay;
 	RwCameraCalcPixelRay( pCamera, &PickRay, &v2ScrPos );
 
@@ -221,7 +221,7 @@ bool CNtlPicking::Pick( RwCamera* pCamera, RpWorld* pWorld, RwV2d& v2ScrPos, RwR
 	{
 		//////////////////////////////////////////////////////////////////////////
 		//
-		// Polygon check routine << Bounding box¿Í Ãæµ¹µÈ Atomic¸¸ ·»´õ¸µÇÑ´Ù >>
+		// Polygon check routine << Bounding boxì™€ ì¶©ëŒëœ Atomicë§Œ ë Œë”ë§í•œë‹¤ >>
 		//
 		//////////////////////////////////////////////////////////////////////////
 
@@ -232,7 +232,7 @@ bool CNtlPicking::Pick( RwCamera* pCamera, RpWorld* pWorld, RwV2d& v2ScrPos, RwR
 			RwCameraEndUpdate( pOldCamera );
 		}
 
-		// Polygon rendering ½ÃÀÛ
+		// Polygon rendering ì‹œì‘
 		UpdateCamera_Begin( pCamera );
 
 		// Initialize to an invalid PLEntity value
@@ -241,7 +241,7 @@ bool CNtlPicking::Pick( RwCamera* pCamera, RpWorld* pWorld, RwV2d& v2ScrPos, RwR
 			// Render atomic detected BBox collision at the top
 			if ( RwCameraBeginUpdate( pCamera ) )
 			{
-				// Project matrix Á¶ÀÛ
+				// Project matrix ì¡°ì‘
 				D3DXMATRIX matOldProj;
 				RwD3D9GetTransform( D3DTS_PROJECTION, &matOldProj );
 
@@ -258,14 +258,14 @@ bool CNtlPicking::Pick( RwCamera* pCamera, RpWorld* pWorld, RwV2d& v2ScrPos, RwR
 				// Render atomics
 				RenderPickedAtoms( m_pPickPipeline );
 
-				// Project matrix º¹±¸
+				// Project matrix ë³µêµ¬
 				RwD3D9SetTransform( D3DTS_PROJECTION, &matOldProj );
 
 				RwCameraEndUpdate( pCamera );
 			}
 		}
 
-		// Polygon rendering Á¾·á 
+		// Polygon rendering ì¢…ë£Œ 
 		UpdateCamera_End( pCamera );
 
 		if (pOldCamera)
@@ -275,7 +275,7 @@ bool CNtlPicking::Pick( RwCamera* pCamera, RpWorld* pWorld, RwV2d& v2ScrPos, RwR
 
 		//////////////////////////////////////////////////////////////////////////
 		//
-		// ÇØ´ç Rasterize¸¦ ´ë»óÀ¸·Î Ãæµ¹ °Ë»ç
+		// í•´ë‹¹ Rasterizeë¥¼ ëŒ€ìƒìœ¼ë¡œ ì¶©ëŒ ê²€ì‚¬
 		//
 		//////////////////////////////////////////////////////////////////////////
 
@@ -293,7 +293,7 @@ bool CNtlPicking::Pick( RwCamera* pCamera, RpWorld* pWorld, RwV2d& v2ScrPos, RwR
 
 	//////////////////////////////////////////////////////////////////////////
 	//
-	// ÃÖ»óÀÇ Picking entity¸¦ Ã£´Â´Ù
+	// ìµœìƒì˜ Picking entityë¥¼ ì°¾ëŠ”ë‹¤
 	//
 	//////////////////////////////////////////////////////////////////////////
 
@@ -487,7 +487,7 @@ RpAtomic* CNtlPicking::PickAtomicBoundBoxCB( RpIntersection* pInters, RpWorldSec
 
 	if ( pPLEntity )
 	{
-		// ObjectÀÇ °æ¿ì Polygon °Ë»ç¸¦ ½ÇÇà ÇÑ´Ù
+		// Objectì˜ ê²½ìš° Polygon ê²€ì‚¬ë¥¼ ì‹¤í–‰ í•œë‹¤
 		if ( pPLEntity->GetClassType() == PLENTITY_OBJECT )
 		{
             CNtlPLObject* pObject = (CNtlPLObject*)pPLEntity;
@@ -768,7 +768,7 @@ void CNtlPicking::RenderPickedAtoms( RxPipeline* pPipeLine )
 
 //////////////////////////////////////////////////////////////////////////
 //
-//	Bounding box resizing ÃÖÀûÀÇ Å©±â¸¦ ±¸ÇÏ±â À§ÇÑ Å×½ºÆ®¿ë Å¬·¡½º
+//	Bounding box resizing ìµœì ì˜ í¬ê¸°ë¥¼ êµ¬í•˜ê¸° ìœ„í•œ í…ŒìŠ¤íŠ¸ìš© í´ë˜ìŠ¤
 //
 //////////////////////////////////////////////////////////////////////////
 

@@ -2,11 +2,11 @@
 *
 * File			: PetStatusBarGui.h
 * Author		: agebreak
-* Copyright	: (ÁÖ)NTL
+* Copyright	: (ì£¼)NTL
 * Date			: 2007. 8. 16	
 * Abstract		: DBO Pet HP/MP gui.
 *****************************************************************************
-* Desc         : Summon PetÀÇ StatusBar GUI¸¦ Ç¥½ÃÇÏ´Â Å¬·¡½º
+* Desc         : Summon Petì˜ StatusBar GUIë¥¼ í‘œì‹œí•˜ëŠ” í´ë˜ìŠ¤
 *
 *****************************************************************************/
 
@@ -40,7 +40,7 @@ public:
 	static CPetStatusBarGui* GetInstance();
 	static void				 DeleteInstance();
 
-	void			SetPetID(RwUInt32 uiSerialId);			///< ¼ÒÈ¯ÇÑ PetÀÇ ID¸¦ ¼³Á¤ÇÑ´Ù.
+	void			SetPetID(RwUInt32 uiSerialId);			///< ì†Œí™˜í•œ Petì˜ IDë¥¼ ì„¤ì •í•œë‹¤.
 	RwUInt32		GetPetID();
 
 protected:
@@ -53,12 +53,12 @@ protected:
     VOID	OnCaptureMouseDown(const CKey& key);
 	VOID	OnCaptureMouseUp(const CKey& key);
     
-	void	UpdatePetInfo();						///< PetÀÇ Á¤º¸¸¦ UI¿¡ ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
-	//void	UpdatePetPowerValue();					///< PetÀÇ ÀüÅõ·ÂÀ» UI¿¡ ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
-    void    ToggleInfo();                           ///< »ó¼¼ Á¤º¸Ã¢À» Åä±ÛÇÑ´Ù	
+	void	UpdatePetInfo();						///< Petì˜ ì •ë³´ë¥¼ UIì— ì—…ë°ì´íŠ¸í•œë‹¤.
+	//void	UpdatePetPowerValue();					///< Petì˜ ì „íˆ¬ë ¥ì„ UIì— ì—…ë°ì´íŠ¸í•œë‹¤.
+    void    ToggleInfo();                           ///< ìƒì„¸ ì •ë³´ì°½ì„ í† ê¸€í•œë‹¤	
 
 protected:
-	static CPetStatusBarGui* m_pInstance;			///< ½Ì±ÛÅæ °´Ã¼
+	static CPetStatusBarGui* m_pInstance;			///< ì‹±ê¸€í†¤ ê°ì²´
     
 	gui::CProgressBar*	m_ppgbHp;
 	gui::CProgressBar*	m_ppgbEp;		
@@ -81,11 +81,11 @@ protected:
     gui::CStaticBox*    m_pSttInfoEDLabel;
     gui::CStaticBox*    m_pSttInfoLP;
     gui::CStaticBox*    m_pSttInfoEP;    
-    gui::CStaticBox*    m_pSttInfoHR;           // °ø°İ ¼º°øÀ²
-    gui::CStaticBox*    m_pSttInfoDR;           // È¸ÇÇÀ²
-    gui::CStaticBox*    m_pSttInfoPO;           // °ø°İ·Â
-    gui::CStaticBox*    m_pSttInfoPD;           // Å¸°İ ¹æ¾î·Â    
-    gui::CStaticBox*    m_pSttInfoED;           // ±â°ø ¹æ¾î·Â
+    gui::CStaticBox*    m_pSttInfoHR;           // ê³µê²© ì„±ê³µìœ¨
+    gui::CStaticBox*    m_pSttInfoDR;           // íšŒí”¼ìœ¨
+    gui::CStaticBox*    m_pSttInfoPO;           // ê³µê²©ë ¥
+    gui::CStaticBox*    m_pSttInfoPD;           // íƒ€ê²© ë°©ì–´ë ¥    
+    gui::CStaticBox*    m_pSttInfoED;           // ê¸°ê³µ ë°©ì–´ë ¥
 
 	//CFilteredSurfaceGui m_surCharacter;
 	gui::CTexture		m_texCharacter;
@@ -113,5 +113,5 @@ protected:
 
 	RwBool			m_bDelete;
 	RwUInt32		m_uiPetID;
-    bool            m_bShowInfo;                ///< Á¤º¸ À©µµ¿ìÀÇ Ç¥½Ã ¿©ºÎ
+    bool            m_bShowInfo;                ///< ì •ë³´ ìœˆë„ìš°ì˜ í‘œì‹œ ì—¬ë¶€
 };

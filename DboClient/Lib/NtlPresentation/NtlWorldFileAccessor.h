@@ -2,7 +2,7 @@
 
 /*
 WorldFileFormat - SectorInfo
-SectorInfo FileÀ» Á¶ÀÛ ÇÏ±â À§ÇØ »ç¿ëµÈ´Ù.
+SectorInfo Fileì„ ì¡°ì‘ í•˜ê¸° ìœ„í•´ ì‚¬ìš©ëœë‹¤.
 */
 #include "ntlworldcommon.h"
 

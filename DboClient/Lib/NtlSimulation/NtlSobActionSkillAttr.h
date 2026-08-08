@@ -2,11 +2,11 @@
 *
 * File			: NtlSobActionSkillAttr.h
 * Author		: Peessi
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2006. 8. 30	
 * Abstract		: Simulation object skill attribute base class
 *****************************************************************************
-* Desc          : NtlSobSkillAttrø°º≠ ∫–∏Æ 
+* Desc          : NtlSobSkillAttrÏóêÏÑú Î∂ÑÎ¶¨ 
 *
 *****************************************************************************/
 

@@ -37,7 +37,7 @@ RwBool CMTObject::LoadClump(RwChar* szFileName)
         Destroy();        
     }
 
-    // ¼³Á¤µÈ UVAnimÀÌ ÀÖÀ¸¸é Àû¿ëÇÑ´Ù.(Clump°¡ LoadµÇ±âÀü¿¡ Load µÇ¾î¾ß ÇÑ´Ù)
+    // ì„¤ì •ëœ UVAnimì´ ìžˆìœ¼ë©´ ì ìš©í•œë‹¤.(Clumpê°€ Loadë˜ê¸°ì „ì— Load ë˜ì–´ì•¼ í•œë‹¤)
     if(m_pProperty && m_pProperty->m_strUVAnimFileName.size())
         SetUVAnim(m_pProperty->m_strUVAnimFileName.c_str());
     
@@ -68,16 +68,16 @@ RwBool CMTObject::LoadClump(RwChar* szFileName)
         }
     }
 
-    Helper_GetBoneList(GetClump(), &m_mapFrame);            // Bone List¸¦ ÀúÀåÇØ µÐ´Ù.
+    Helper_GetBoneList(GetClump(), &m_mapFrame);            // Bone Listë¥¼ ì €ìž¥í•´ ë‘”ë‹¤.
 
-    // BBox°¡ ¾øÀ¸¸é µ¥ÀÌÅÍ¸¦ Ãß°¡ÇÑ´Ù.
+    // BBoxê°€ ì—†ìœ¼ë©´ ë°ì´í„°ë¥¼ ì¶”ê°€í•œë‹¤.
     RwBBox* pBBox = m_pProperty->GetBBox();
     if(pBBox->sup.x == 0.0f && pBBox->inf.x == 0.0f)
     {
         CalcBBox();
     }
 
-    // UVAnimÀ» Clump¿¡ Àû¿ëÇÑ´Ù.
+    // UVAnimì„ Clumpì— ì ìš©í•œë‹¤.
     if(m_pUVAnim)
     {
         m_pUVAnim->SetClump(GetClump());
@@ -92,10 +92,10 @@ RwBool CMTObject::LoadClump(RwChar* szFileName)
     //m_bCollision = m_pProperty->GetCollision();
     SetVisibleCullingDistance(m_pProperty->GetCullingDistance());
 
-    // ºí·»µå °´Ã¼¸¦ »ý¼ºÇÏ°í ¸®½ºÆ®¿¡ Ãß°¡ÇÑ´Ù.
+    // ë¸”ë Œë“œ ê°ì²´ë¥¼ ìƒì„±í•˜ê³  ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€í•œë‹¤.
     m_pFadeBlend = GetAlphaBlendController()->AddAlpha(1.0f);
 
-    // Link Effect¸¦ ¼³Á¤ÇÑ´Ù.
+    // Link Effectë¥¼ ì„¤ì •í•œë‹¤.
     for(UINT i = 0; i < m_pProperty->m_vLinkEffect.size(); ++i)
     {
         SEventLinkEffect* pEventLinkEffect = m_pProperty->m_vLinkEffect[i];        
@@ -103,10 +103,10 @@ RwBool CMTObject::LoadClump(RwChar* szFileName)
     }	    
     if(!m_pProperty->m_vLinkEffect.empty())
     {
-        Update(0.0f);       // ¸µÅ©ÀÌÆåÆ®°¡ ÀÖÀ¸¸é ÃÖÃÊ¿¡ ¾÷µ¥ÀÌÆ®¸¦ ÇÑ¹ø ÇØÁà¾ß ÇÑ´Ù. 
+        Update(0.0f);       // ë§í¬ì´íŽ™íŠ¸ê°€ ìžˆìœ¼ë©´ ìµœì´ˆì— ì—…ë°ì´íŠ¸ë¥¼ í•œë²ˆ í•´ì¤˜ì•¼ í•œë‹¤. 
     }
 
-    // Sound¸¦ Àç»ýÇÑ´Ù.
+    // Soundë¥¼ ìž¬ìƒí•œë‹¤.
     if(strlen(m_pProperty->GetSoundProp()->chSoundName) > 0)
     {
 		sNtlSoundPlayParameta tSoundParam;
@@ -187,7 +187,7 @@ int CMTObject::CallBackBaseAnim(void* pEventData )
 {
     CNtlPLObject::CallBackBaseAnim(pEventData);
 
-    // Model Tool¿¡¼­¸¸ µû·Î Ã³¸®ÇÏ´Â ºÎºÐ¸¸ Ã³¸®ÇÑ´Ù.
+    // Model Toolì—ì„œë§Œ ë”°ë¡œ ì²˜ë¦¬í•˜ëŠ” ë¶€ë¶„ë§Œ ì²˜ë¦¬í•œë‹¤.
     SEventAnim* pEventAnim = (SEventAnim*)pEventData;
     switch(pEventAnim->eEventID)
     {

@@ -2,7 +2,7 @@
  *
  * File			: Global.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 9. 14	
  * Abstract		: DBO global.h
  *****************************************************************************
@@ -45,8 +45,8 @@ class CNtlSobAvatar;
 // config data
 struct SConfigData
 {
-	std::string strAddr;		// account server ip address(ÇØÅ·ÀÇ ¹®Á¦·Î ÇÏµåÄÚµùÀ» °í·ÁÇÑ´Ù?)
-	DWORD dwPort;				// account server ip port(ÇØÅ·ÀÇ ¹®Á¦·Î ÇÏµåÄÚµùÀ» °í·ÁÇÑ´Ù?)
+	std::string strAddr;		// account server ip address(í•´í‚¹ì˜ ë¬¸ì œë¡œ í•˜ë“œì½”ë”©ì„ ê³ ë ¤í•œë‹¤?)
+	DWORD dwPort;				// account server ip port(í•´í‚¹ì˜ ë¬¸ì œë¡œ í•˜ë“œì½”ë”©ì„ ê³ ë ¤í•œë‹¤?)
     std::string strBugTrapServerIP;         
     DWORD       dwBugTrapServerPort;
     std::string strBugTrapFolder;
@@ -72,7 +72,7 @@ typedef struct _SConnectAtomic
 	RwChar		chServerIP[NTL_MAX_LENGTH_OF_IP+1];
 	RwUInt16	wServerPort;
 	RwChar		chAuthKey[NTL_MAX_SIZE_AUTH_KEY+1];
-	RwBool		bBanishment;	///< ¿î¿µ»óÀÇ Á¦Àç¸¦ ´çÇß´ÂÁö ¿©ºÎ
+	RwBool		bBanishment;	///< ìš´ì˜ìƒì˜ ì œì¬ë¥¼ ë‹¹í–ˆëŠ”ì§€ ì—¬ë¶€
 
 	void Init(void)
 	{
@@ -102,7 +102,7 @@ typedef struct _SConnectData
 	SConnectAtomic sGameCon;
 	SConnectAtomic sChatCon;
 
-	// character server Á¾·ù.
+	// character server ì¢…ë¥˜.
 	typedef std::list<SCharServerInfo*> ListCharServer;
 	ListCharServer listCharServer;
 
@@ -112,7 +112,7 @@ typedef struct _SConnectData
 
 	RwBool		bChangingGameServer;
 
-	// Dev func Á¤º¸
+	// Dev func ì •ë³´
 	RwChar			m_acAllowFuncForDev[dMAX_SIZE_DEV_FUNC_ARRAY];
 	
 	void			Init(void);
@@ -148,12 +148,12 @@ typedef struct _SUserData
 typedef struct _SGameData
 {
 	RwBool			bChatMode;
-	RwBool			bFirstWorldEnter;			///< Ã³À½À¸·Î world¿¡ ÁøÀÔÇÏ´Â°¡?
+	RwBool			bFirstWorldEnter;			///< ì²˜ìŒìœ¼ë¡œ worldì— ì§„ì…í•˜ëŠ”ê°€?
 	RwBool			bInputActive;		
 	RwBool			bDebugDisplay;
-	SERIAL_HANDLE	hAskedPCSerial;				///< ¹º°¡¸¦ Áú¹®ÇØ¿Â PCÀÇ ÇÚµé
-    SERIAL_HANDLE   hCommunityTargetSerial;     ///< Ä¿¹Â´ÏÆ¼ ´Ü°è¿¡¼­ ¼±ÅÃ(Å¸°ÙÆÃ)ÇÑ PCÀÇ ÇÚµé
-	RwBool			bAvatarReCreate;			///< ´Ù¸¥ ¹°¸®Àû game server·Î ÁøÀÔÇÒ ¶§ avatar¸¦ »èÁ¦ÇÏ°í ´Ù½Ã »ı¼ºÇÑ´Ù.
+	SERIAL_HANDLE	hAskedPCSerial;				///< ë­”ê°€ë¥¼ ì§ˆë¬¸í•´ì˜¨ PCì˜ í•¸ë“¤
+    SERIAL_HANDLE   hCommunityTargetSerial;     ///< ì»¤ë®¤ë‹ˆí‹° ë‹¨ê³„ì—ì„œ ì„ íƒ(íƒ€ê²ŸíŒ…)í•œ PCì˜ í•¸ë“¤
+	RwBool			bAvatarReCreate;			///< ë‹¤ë¥¸ ë¬¼ë¦¬ì  game serverë¡œ ì§„ì…í•  ë•Œ avatarë¥¼ ì‚­ì œí•˜ê³  ë‹¤ì‹œ ìƒì„±í•œë‹¤.
 
 	void Init(void)
 	{
@@ -174,7 +174,7 @@ struct sContractInfo
 	WCHAR*			pwcContract;
 	WCHAR*			pwcRealContract;
 	RwInt32			uiContractVersion;
-	RwBool			bAcceptGameContract;			///< ¾à°ü ¼ö¶ô ¿©ºÎ
+	RwBool			bAcceptGameContract;			///< ì•½ê´€ ìˆ˜ë½ ì—¬ë¶€
 };
 
 
@@ -190,36 +190,36 @@ private:
 private:
 
 	/**
-	* screen size º¯¼ö.
+	* screen size ë³€ìˆ˜.
 	*/
 	RwUInt32		m_uiScreenWidth;				/** screen width */
 	RwUInt32		m_uiScreenHeight;				/** screen height */
 
 	/**
-	* game lobby °£·« Á¤º¸
+	* game lobby ê°„ëµ ì •ë³´
 	*/
-	RwUInt8			m_byPostSelectedServerHandle;	/** ÀÌÀü¿¡ ¼±ÅÃµÈ ¼­¹öÀÇ ÇÚµé */
-	RwUInt8			m_bySelectedServerHandle;		/** ÇöÀç ¼±ÅÃµÈ ¼­¹öÀÇ ÇÚµé */
-	RwUInt8			m_bySelectedCharIndex;			/** ¼±ÅÃµÈ Ä³¸¯ÅÍ ÀÎµ¦½º */
+	RwUInt8			m_byPostSelectedServerHandle;	/** ì´ì „ì— ì„ íƒëœ ì„œë²„ì˜ í•¸ë“¤ */
+	RwUInt8			m_bySelectedServerHandle;		/** í˜„ì¬ ì„ íƒëœ ì„œë²„ì˜ í•¸ë“¤ */
+	RwUInt8			m_bySelectedCharIndex;			/** ì„ íƒëœ ìºë¦­í„° ì¸ë±ìŠ¤ */
 
 	/**
-	* game data  Ã³¸® º¯¼ö.
+	* game data  ì²˜ë¦¬ ë³€ìˆ˜.
 	*/
 	SUserData			m_sUser;					/** dbo user data */
 	SConfigData			m_sConfig;					/** dbo config data */	
 	SConnectData		m_sConnect;					/** dbo network connect data */		
 	SGameData			m_sGame;					/** dbo game data */
 
-	// µå·¡°ïº¼ ÄÃ·º¼Ç ±â°£ Á¤º¸ ±¸Á¶Ã¼
+	// ë“œë˜ê³¤ë³¼ ì»¬ë ‰ì…˜ ê¸°ê°„ ì •ë³´ êµ¬ì¡°ì²´
 	SNtlEventDBCSchedule_Info m_sDBCSheduleInfo;
 	    
 	/**
-	* network lib º¯¼ö.
+	* network lib ë³€ìˆ˜.
 	*/
 	CNtlClientNet *m_pNetwork;						/** network lib */
 
 	/**
-	* packet Ã³¸® º¯¼ö.
+	* packet ì²˜ë¦¬ ë³€ìˆ˜.
 	*/
 
 	CNtlNetSender *m_pLoginNetSender;					/** login network sender */
@@ -232,11 +232,11 @@ private:
 	CGamePacketGenerator *m_pGamePacketGenerator;		/** game packet generator */
 	CChatPacketGenerator *m_pChatPacketGenerator;		/** chatting packet generator */
 
-    CDBOUIConfig*   m_pDBOUIConfig;                     ///< DBO UI Config Á¤º¸ °´Ã¼ (2007.11.15 by agebreak)
+    CDBOUIConfig*   m_pDBOUIConfig;                     ///< DBO UI Config ì •ë³´ ê°ì²´ (2007.11.15 by agebreak)
 
 	sContractInfo*	m_pContractInfo;
-	RwBool			m_bEnterTutorial;					/** Æ©Åä¸®¾ó ÁøÀÔ ÀÎÅÍÆäÀÌ½º¿¡¼­ Ãë¼Ò ¹öÆ°À» ´­·¯ °ÔÀÓ¿¡ ÁøÀÔ½Ã */
-	RwBool			m_bDirectionFirstConnect;			/** Ã³À½ Á¢¼ÓÇØ¼­ ¿¬ÃâÀ» º¸¿©ÁÙ °ÍÀÎÁö ¿©ºÎ */
+	RwBool			m_bEnterTutorial;					/** íŠœí† ë¦¬ì–¼ ì§„ì… ì¸í„°í˜ì´ìŠ¤ì—ì„œ ì·¨ì†Œ ë²„íŠ¼ì„ ëˆŒëŸ¬ ê²Œì„ì— ì§„ì…ì‹œ */
+	RwBool			m_bDirectionFirstConnect;			/** ì²˜ìŒ ì ‘ì†í•´ì„œ ì—°ì¶œì„ ë³´ì—¬ì¤„ ê²ƒì¸ì§€ ì—¬ë¶€ */
 
 private:
 
@@ -263,19 +263,19 @@ public:
 	void			LoadingContractInfo();
 			
 	/**
-	* game data  Ã³¸® ÇÔ¼ö.
+	* game data  ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	SUserData*		GetUserData(void)		{ return &m_sUser; }
 	SConfigData*	GetConfigData(void)		{ return &m_sConfig; }
 	SConnectData*	GetConnectData(void)	{ return &m_sConnect; }	
 	SGameData*		GetGameData(void)		{ return &m_sGame; }
 
-	// µå·¡°ïº¼ ÄÃ·º¼Ç Á¤º¸ Ã³¸® ÇÔ¼ö
+	// ë“œë˜ê³¤ë³¼ ì»¬ë ‰ì…˜ ì •ë³´ ì²˜ë¦¬ í•¨ìˆ˜
 	void			SetDBCScheduleInfo(SNtlEventDBCSchedule_Info sDBCScheduleInfo) {m_sDBCSheduleInfo = sDBCScheduleInfo;}
 	SNtlEventDBCSchedule_Info* GetDBCScheduleInfo() {return &m_sDBCSheduleInfo;}
 	
 	/**
-	* packet Ã³¸® ÇÔ¼ö.
+	* packet ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	CNtlClientNet*			GetNetwork(void)					{ return m_pNetwork; }
 	CLoginPacketGenerator*	GetLoginPacketGenerator(void)		{ return m_pLoginPacketGenerator; }
@@ -299,7 +299,7 @@ public:
 	void			ToggleDebugDisplay( void )					{ m_sGame.bDebugDisplay = !m_sGame.bDebugDisplay; }
 	RwBool			IsDebugDisplay(void)						{ return m_sGame.bDebugDisplay; }
 
-    CDBOUIConfig*   GetDBOUIConfig()                            {return m_pDBOUIConfig;}        ///< DBO UI Config °´Ã¼¸¦ ¹İÈ¯ÇÑ´Ù.
+    CDBOUIConfig*   GetDBOUIConfig()                            {return m_pDBOUIConfig;}        ///< DBO UI Config ê°ì²´ë¥¼ ë°˜í™˜í•œë‹¤.
 	
 	void			SetEnterTutorial( RwBool bEnter )			{ m_bEnterTutorial = bEnter; }
 	RwBool			IsEnterTutorial()							{ return m_bEnterTutorial; }

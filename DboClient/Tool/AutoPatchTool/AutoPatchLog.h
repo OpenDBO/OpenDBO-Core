@@ -2,7 +2,7 @@
  *
  * File			: AutoPatchLog.h
  * Author		: Jang HyungSuk
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2008. 6. 28	
  * Abstract		: patch log
  *****************************************************************************

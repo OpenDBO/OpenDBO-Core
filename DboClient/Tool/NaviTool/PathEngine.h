@@ -31,7 +31,7 @@ public:
 
 	NAVI_INST_HANDLE					CreateInstanceHandler( unsigned int uiWorldID );
 
-	// Instance handler Á¦°Å
+	// Instance handler ì œê±°
 	void								DeleteInstanceHandler( NAVI_INST_HANDLE hHandle );
 
 	bool								ImportWorldData( const char* pPath );

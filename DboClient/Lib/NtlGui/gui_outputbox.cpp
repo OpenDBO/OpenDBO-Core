@@ -258,7 +258,7 @@ VOID COutputBox::SetMarginX( INT nMarginX )
 {
 	m_pImpl->m_nMarginX = nMarginX;
 
-	// peessi : ¹®Á¦ ÀÖ´Â ÄÚµå. ¿À¸¥ÂÊµµ µ¢´Þ¾Æ ÁÙ¾î¹ö¸°´Ù. 
+	// peessi : ë¬¸ì œ ìžˆëŠ” ì½”ë“œ. ì˜¤ë¥¸ìª½ë„ ë©ë‹¬ì•„ ì¤„ì–´ë²„ë¦°ë‹¤. 
 	if( m_pImpl->m_bScrollbarLeftLine )
 		m_pImpl->m_nMarginX += m_pSBVer->GetWidth();
 }
@@ -429,7 +429,7 @@ VOID COutputBox::OnSetOptions( const CComponentOptions& options )
 
 	m_pSBVer->SigSetOptions()( suboptions );
 
-	// ¿©¹éÁ¶Á¤.
+	// ì—¬ë°±ì¡°ì •.
 	if( m_pImpl->m_bScrollbarLeftLine )
 		m_pImpl->m_nMarginX += nScrollBarWidth;
 

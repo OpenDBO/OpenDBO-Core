@@ -13,6 +13,9 @@
 
 #include "toongeo.h"
 
+/* Global multiplier for toon edge line thickness */
+#define TOON_EDGE_THICKNESS_SCALE 1.8f
+
 /**
  * \defgroup rptoongeo RpToonGeo
  * \ingroup rptoon
@@ -80,7 +83,7 @@ _rpToonUpdateWorldPerspectiveScale(RpToonGeo *geo)
             ToonPerspectiveScaleCoefficientsInit(ink,zMin,zMax);
 
             /* worlds don't need these - 1.0f does nothing */
-            ink->farScale_factor = pixelSize * ink->overallThickness;
+            ink->farScale_factor = pixelSize * ink->overallThickness * TOON_EDGE_THICKNESS_SCALE;
 
             /* We draw 2 quads, want it to be as wide as 1 silhoutte quad in total */
             ink->farScale_creasefactor = 0.5f * ink->farScale_factor;
@@ -133,7 +136,7 @@ _rpToonUpdateAtomicPerspectiveScale(RpToonGeo *geo, RpAtomic *atomic )
             ToonPerspectiveScaleCoefficientsInit(ink,zMin,zMax);
 
             ink->farScale_factor =
-                pixelSize * (1.0f + proportionBetweenClipPlanes * (ink->farScale - 1.0f)) * ink->overallThickness;
+                pixelSize * (1.0f + proportionBetweenClipPlanes * (ink->farScale - 1.0f)) * ink->overallThickness * TOON_EDGE_THICKNESS_SCALE;
 
             /* We draw 2 quads, want it to be as wide as 1 silhoutte quad in total */
             ink->farScale_creasefactor = 0.5f * ink->farScale_factor;

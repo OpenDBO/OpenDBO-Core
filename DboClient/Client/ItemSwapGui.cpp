@@ -287,16 +287,16 @@ VOID CItemSwapGui::OpenShop(SERIAL_HANDLE hNPC, sNPC_TBLDAT* pNPC_TBLDAT)
 	CTextTable* pMerchantTextTable = API_GetTableContainer()->GetTextAllTable()->GetMerchantTbl();
 	CTextTable* pItemTextTable = API_GetTableContainer()->GetTextAllTable()->GetItemTbl();
 
-	// NPC ¹øÈ£
+	// NPC ë²ˆí˜¸
 	m_hNPCSerial = hNPC;
 
-	// »óÁ¡ ÀÌ¸§
+	// ìƒì  ì´ë¦„
 	m_pShopTitle->SetText(pNPCTextTable->GetText(pNPC_TBLDAT->Name).c_str());
 
-	// ÀüÃ¼ ¼ö¸® ÅøÆÁ
+	// ì „ì²´ ìˆ˜ë¦¬ íˆ´íŒ
 	SetRepairAllTooltip();
 
-	// ÇöÀç »óÁ¡¿¡¼­ ÆÈ ¼ö ÀÖ´Â ¾ÆÀÌÅÛ ÃÖ´ë 4Á¾·ùÀÇ ¸ñ·ÏÀ» ÀĞ¾î¿Â´Ù.
+	// í˜„ì¬ ìƒì ì—ì„œ íŒ” ìˆ˜ ìˆëŠ” ì•„ì´í…œ ìµœëŒ€ 4ì¢…ë¥˜ì˜ ëª©ë¡ì„ ì½ì–´ì˜¨ë‹¤.
 	ShopItem shopItem;
 	char acBuffer[256] = "";
 	for (RwInt32 iTabIndex = 0; iTabIndex < NTL_MAX_MERCHANT_TAB_COUNT; ++iTabIndex)
@@ -304,18 +304,18 @@ VOID CItemSwapGui::OpenShop(SERIAL_HANDLE hNPC, sNPC_TBLDAT* pNPC_TBLDAT)
 		if (pNPC_TBLDAT->amerchant_Tblidx[iTabIndex] <= 0)
 			continue;
 
-		// °¢ Tab º° µî·ÏµÈ ¾ÆÀÌÅÛÀ» ÀĞ¾î¿Â´Ù.
+		// ê° Tab ë³„ ë“±ë¡ëœ ì•„ì´í…œì„ ì½ì–´ì˜¨ë‹¤.
 		sMERCHANT_TBLDAT* pMERCHANT_TBLDAT = Logic_GetMerchantDataFromTable(pNPC_TBLDAT->amerchant_Tblidx[iTabIndex]);
 		if (!pMERCHANT_TBLDAT)
 			continue;
 
-		// Tab ÀÌ¸§			
+		// Tab ì´ë¦„			
 		const wchar_t* pwcMerchantName = pMerchantTextTable->GetText(pMERCHANT_TBLDAT->Tab_Name).c_str();
 		WideCharToMultiByte(GetACP(), 0, pwcMerchantName, -1, acBuffer, 256, NULL, NULL);
 		std::string str = acBuffer;
 		m_pTabButton->AddTab(str);
 
-		// °¢ Tabº° µî·ÏµÈ ¾ÆÀÌÅÛÀ» ShopItem¿¡ µî·ÏÇÑ´Ù			
+		// ê° Tabë³„ ë“±ë¡ëœ ì•„ì´í…œì„ ShopItemì— ë“±ë¡í•œë‹¤			
 		sITEM_TBLDAT* pITEM_DATA;
 		for (RwInt32 iMerchantIndex = 0; iMerchantIndex < NTL_MAX_MERCHANT_COUNT; ++iMerchantIndex)
 		{
@@ -323,7 +323,7 @@ VOID CItemSwapGui::OpenShop(SERIAL_HANDLE hNPC, sNPC_TBLDAT* pNPC_TBLDAT)
 			if (!pITEM_DATA)
 				continue;
 
-			// ½ÇÁ¦ ShopItem µ¥ÀÌÅÍ				
+			// ì‹¤ì œ ShopItem ë°ì´í„°				
 			if (pMERCHANT_TBLDAT->aitem_Tblidx[iMerchantIndex] == 0)
 			{
 				m_aShopItem[iTabIndex][iMerchantIndex].hItem = INVALID_SERIAL_ID;
@@ -352,7 +352,7 @@ VOID CItemSwapGui::OpenShop(SERIAL_HANDLE hNPC, sNPC_TBLDAT* pNPC_TBLDAT)
 	m_pPocketMoneytitle->SetText(GetDisplayStringManager()->GetString("DST_NPCSHOP_MYZENNY"));
 
 
-	// ÃÖÃÊ ÅÇ
+	// ìµœì´ˆ íƒ­
 	m_pTabButton->SelectTab(0);
 	UpdateTabContent(0);
 
@@ -772,7 +772,7 @@ VOID CItemSwapGui::OnMove(RwInt32 iOldX, RwInt32 iOldY)
 	m_MoneyBackPanel.SetPositionbyParent(rtScreen.left, rtScreen.top);
 	m_PageBackPanel.SetPositionbyParent(rtScreen.left, rtScreen.top);
 
-	// NPCShop ´ÙÀÌ¾ó·Î±×°¡ ¿òÁ÷ÀÏ ¶§	
+	// NPCShop ë‹¤ì´ì–¼ë¡œê·¸ê°€ ì›€ì§ì¼ ë•Œ	
 	for (RwInt32 i = 0; i < dMAX_ITEM_PANEL; ++i)
 	{
 		m_ItemPanel[i].slot.SetParentPosition(rtScreen.left, rtScreen.top);
@@ -906,7 +906,7 @@ RwInt32 CItemSwapGui::SwitchDialog(bool bOpen)
 	}
 	else
 	{
-		// NPC ¾Ö´Ï¸ŞÀÌ¼Ç
+		// NPC ì• ë‹ˆë©”ì´ì…˜
 		Logic_SetActorAnimation(m_hNPCSerial, NML_IDLE_LOOP, TRUE);
 
 		CNtlWorldConceptController* pWorldConcept = GetNtlWorldConcept()->FindGradeExtController(WORLD_CONCEPT_SECOND_GRADE);

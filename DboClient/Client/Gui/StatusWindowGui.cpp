@@ -426,7 +426,7 @@ VOID CStatusAvatarTab::UpdateStatData(VOID)
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
 
 	if (!pAvatar)
-		return;				// ÃÊ±â ¾Æ¹ÙÅ¸ »ý¼ºÀü¿¡ µé¾î¿À´Â °æ¿ì.
+		return;				// 초기 아바타 생성전에 들어오는 경우.
 
 	CNtlSobAvatarAttr* pAvatarAttr = reinterpret_cast<CNtlSobAvatarAttr*>(pAvatar->GetSobAttr());
 	RwUInt32 uiColor;

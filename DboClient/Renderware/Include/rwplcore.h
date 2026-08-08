@@ -32,8 +32,13 @@
 /*--- System Header Files ---*/
 #include <stdarg.h>
 #include <stddef.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+#if defined(_M_X64) || defined(_WIN64)
+#include <xmmintrin.h>
+#endif
 
 
 /*--- Automatically derived from: C:/RW/Graphics/rwsdk/os/win/ostypes.h ---*/
@@ -487,6 +492,10 @@ MACRO_STOP
 static __inline RwInt32
 int32fromreal(RwReal x)
 {
+#if defined(_M_X64) || defined(_WIN64)
+    // x64: use SSE2 intrinsic for truncating float to int
+    return _mm_cvtt_ss2si(_mm_load_ss(&x));
+#else
     RwInt16 savemode;
     RwInt16 workmode;
     RwInt32 res;
@@ -495,23 +504,31 @@ int32fromreal(RwReal x)
     {
         fnstcw    savemode      ; get fpu mode
         fld dword ptr[x]        ; load rwreal x  
-  
+    
         mov       ax,savemode   ; put fpu mode in register
         or        ah,0ch        ; or-in truncate mode
-  
+    
         mov       workmode,ax   ; make ready to set fpu mode
         fldcw     workmode      ; set fpu to truncate mode
         fistp     dword ptr[res]; store the rwint32eger result 
         fldcw     savemode      ; restore fpu mode
     }
-
+    
     return res;
+#endif
 }
 #define RwInt32FromRealMacro(x) int32fromreal(x)
 
 #endif /* (!defined(RWINT32FROMFLOAT)) */
 
 #if (!defined(NOASM))
+#if defined(_M_X64) || defined(_WIN64)
+static __inline RwUInt32 
+RwFastRealToUInt32Inline(RwReal x)
+{
+    return (RwUInt32)x;
+}
+#else
 static __inline RwUInt32 
 RwFastRealToUInt32Inline(RwReal x)
 {
@@ -522,6 +539,7 @@ RwFastRealToUInt32Inline(RwReal x)
     
     return(res);
 }
+#endif
 
 #define RwFastRealToUInt32 RwFastRealToUInt32Inline
 
@@ -1305,7 +1323,7 @@ struct RwV3d
 };
 
 #define RWV4DALIGNMENT(_v4d) \
-   (! (((rwV4DALIGNMENT)-1) & ((RwUInt32)(_v4d))))
+   (! (((rwV4DALIGNMENT)-1) & ((uintptr_t)(_v4d))))
 
 
 #if (!defined(DOXYGEN))
@@ -1904,6 +1922,8 @@ enum RwPluginVendor
 };
 typedef enum RwPluginVendor RwPluginVendor;
 
+#define rwVENDORID_CRITERIONTK      0x000001L
+
 /***
  *** These are the core objects (8 bit IDs).  They must all be unique.
  *** We can get away without using the MAKECHUNKID macro because the
@@ -2311,7 +2331,7 @@ typedef enum RwErrorCodePlugin_errcore RwErrorCodePlugin_errcore;
 #endif /* (!defined(rwFREELISTCLEANLANDFILL)) */
 
 #define RWFREELISTALIGNED(_pData, _freelist) \
-  (! (((RwUInt32)(_pData)) & ((_freelist)->alignment - 1)) )
+   (! (((uintptr_t)(_pData)) & ((_freelist)->alignment - 1)) )
 
 /*****************************
  * REGULAR MEMORY ALLOCATION *
@@ -3859,7 +3879,7 @@ extern const RwPluginRegistry *_rwPluginRegistryInvokeRights(const RwPluginRegis
  */
 
 #define RWMATRIXALIGNMENT(_mat) \
-   (! (((rwMATRIXALIGNMENT)-1) & ((RwUInt32)(_mat))))
+    (! (((rwMATRIXALIGNMENT)-1) & ((uintptr_t)(_mat))))
 
 #if (defined(RWMATRIXMONITOR))
 # if (defined(_MSC_VER))
@@ -6401,6 +6421,9 @@ struct RwGlobals
 
         RwMetrics           *metrics;
 
+        /* Debug log function */
+        void (*debugLogFunc)(const char *);
+
         /* Current engine status */
         RwEngineStatus      engineStatus;
 
@@ -6907,5 +6930,67 @@ RwStreamReadChunkHeaderInfo(RwStream *stream, RwChunkHeaderInfo *chunkHeaderInfo
 #ifdef    __cplusplus
 }
 #endif                          /* __cplusplus */
+
+#ifndef THREADSAFE_CHECK_ISCALLEDMAIN
+#define THREADSAFE_CHECK_ISCALLEDMAIN()
+#endif
+
+#ifndef CS_INITLOCK
+#define CS_INITLOCK(p,t)        // No Op
+#endif
+#ifndef CS_LOCK
+#define CS_LOCK(p,t)            // No Op
+#endif
+#ifndef CS_UNLOCK
+#define CS_UNLOCK(p,t)          // No Op
+#endif
+#ifndef CS_DELLOCK
+#define CS_DELLOCK(p,t)         // No Op
+#endif
+
+#define CS_MASTERFREELIST_INITLOCK()    // No Op
+#define CS_MASTERFREELIST_LOCK()        // No Op
+#define CS_MASTERFREELIST_UNLOCK()      // No Op
+#define CS_MASTERFREELIST_DELLOCK()     // No Op
+#define CS_FREELIST_INITLOCK(p)         // No Op
+#define CS_FREELIST_LOCK(p)             // No Op
+#define CS_FREELIST_UNLOCK(p)           // No Op
+#define CS_FREELIST_DELLOCK(p)          // No Op
+#define CS_FRAME_INITLOCK()             // No Op
+#define CS_FRAME_LOCK()                 // No Op
+#define CS_FRAME_UNLOCK()               // No Op
+#define CS_FRAME_DELLOCK()              // No Op
+#define CS_TEXTURE_INITLOCK()           // No Op
+#define CS_TEXTURE_LOCK()               // No Op
+#define CS_TEXTURE_UNLOCK()             // No Op
+#define CS_TEXTURE_DELLOCK()            // No Op
+#define CS_RESARENA_INITLOCK()          // No Op
+#define CS_RESARENA_LOCK()              // No Op
+#define CS_RESARENA_UNLOCK()            // No Op
+#define CS_RESARENA_DELLOCK()           // No Op
+#define CS_CLUMP_INITLOCK(p)            // No Op
+#define CS_CLUMP_LOCK(p)                // No Op
+#define CS_CLUMP_UNLOCK(p)              // No Op
+#define CS_CLUMP_DELLOCK(p)             // No Op
+#define CS_GEOMETRY_INITLOCK(p)         // No Op
+#define CS_GEOMETRY_LOCK(p)             // No Op
+#define CS_GEOMETRY_UNLOCK(p)           // No Op
+#define CS_GEOMETRY_DELLOCK(p)          // No Op
+#define CS_GLOBAL_GEOMETRY_INITLOCK()   // No Op
+#define CS_GLOBAL_GEOMETRY_LOCK()       // No Op
+#define CS_GLOBAL_GEOMETRY_UNLOCK()     // No Op
+#define CS_GLOBAL_GEOMETRY_DELLOCK()    // No Op
+#define CS_RESENTRYHEADER_INITLOCK(p)   // No Op
+#define CS_RESENTRYHEADER_LOCK(p)       // No Op
+#define CS_RESENTRYHEADER_UNLOCK(p)     // No Op
+#define CS_RESENTRYHEADER_DELLOCK(p)    // No Op
+#define CS_FSMANAGER_INITLOCK(p)        // No Op
+#define CS_FSMANAGER_LOCK(p)            // No Op
+#define CS_FSMANAGER_UNLOCK(p)          // No Op
+#define CS_FSMANAGER_DELLOCK(p)         // No Op
+#define CS_ATOMIC_INITLOCK()            // No Op
+#define CS_ATOMIC_LOCK()                // No Op
+#define CS_ATOMIC_UNLOCK()              // No Op
+#define CS_ATOMIC_DELLOCK()             // No Op
 
 #endif /* RWPLCORE_H */

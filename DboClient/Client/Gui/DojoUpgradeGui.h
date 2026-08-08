@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: DojoUpgradeGui.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2009. 4. 6
 * Abstract		: 
 *****************************************************************************
-* Desc			: µµ¿Â æ˜±◊∑π¿ÃµÂ GUI
+* Desc			: ÎèÑÏû• ÏóÖÍ∑∏Î†àÏù¥Îìú GUI
 *****************************************************************************/
 
 #pragma once
@@ -115,19 +115,19 @@ protected:
 	gui::CButton*		m_pBtnUpgrade;
 
 	gui::CStaticBox*	m_pDialogName;
-	gui::CStaticBox*	m_pDojoNameStatic;					///< 'µµ¿Â ¿Ã∏ß'
+	gui::CStaticBox*	m_pDojoNameStatic;					///< 'ÎèÑÏû• Ïù¥Î¶Ñ'
 	gui::CStaticBox*	m_pDojoName;
 	gui::CStaticBox*	m_pDojoCurLevel;
 	gui::CStaticBox*	m_pDojoNextLevel;
-	gui::CStaticBox*	m_pNeedGuildPointStatic;			///< '« ø‰«— ¿Ø∆ƒ ∆˜¿Œ∆Æ'
+	gui::CStaticBox*	m_pNeedGuildPointStatic;			///< 'ÌïÑÏöîÌïú Ïú†Ìåå Ìè¨Ïù∏Ìä∏'
 	gui::CStaticBox*	m_pNeedGuildPoint;
-	gui::CStaticBox*	m_pConsumptionGuildPointStatic;		///< 'º“∏ ¿Ø∆ƒ ∆˜¿Œ∆Æ'
+	gui::CStaticBox*	m_pConsumptionGuildPointStatic;		///< 'ÏÜåÎ™® Ïú†Ìåå Ìè¨Ïù∏Ìä∏'
 	gui::CStaticBox*	m_pConsumptionGuildPoint;
-	gui::CStaticBox*	m_pNeedZennyStatic;					///< '« ø‰«— ¡¶¥œ'
+	gui::CStaticBox*	m_pNeedZennyStatic;					///< 'ÌïÑÏöîÌïú Ï†úÎãà'
 	gui::CStaticBox*	m_pNeedZenny;
-	gui::CStaticBox*	m_pConsumptionZennyStatic;			///< 'º“∏ ¡¶¥œ'
+	gui::CStaticBox*	m_pConsumptionZennyStatic;			///< 'ÏÜåÎ™® Ï†úÎãà'
 	gui::CStaticBox*	m_pConsumptionZenny;
-	gui::CStaticBox*	m_pNeedItemStatic;					///< '« ø‰«— æ∆¿Ã≈€'
+	gui::CStaticBox*	m_pNeedItemStatic;					///< 'ÌïÑÏöîÌïú ÏïÑÏù¥ÌÖú'
 	gui::CStaticBox*	m_pNeedItem;
 
 	CSurfaceGui			m_srfDojo[NUM_DOJO_VISUAL_LEVEL];

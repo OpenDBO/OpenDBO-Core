@@ -1,15 +1,15 @@
 /******************************************************************************
 * File			: CWarehouseGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2006. 11. 20
 * Abstract		: 
 *****************************************************************************
 * Desc			: CWarehouseGui
-*				  ÇÑ Ä³¸¯ÅÍ°¡ °¡Áö´Â 16Ä­ÀÇ ÀÏ¹ÝÃ¢°í 3°³
-*				  ÇÑ °èÁ¤ÀÇ ¸ðµç Ä³¸¯ÅÍ°¡ °øÀ¯ÇÏ´Â 16Ä­ÀÇ °øÀ¯Ã¢°í¸¦ ±¸Çö
-*				  Á¦´Ï´Â °øÀ¯Ã¢°í¿¡¸¸ ÀúÀåµÇ´Â °ÍÀ¸·Î½á ÇÑ °èÁ¤ÀÇ ¸ðµç Ä³¸¯ÅÍ
-*				  °¡ °øÀ¯ÇÑ´Ù
+*				  í•œ ìºë¦­í„°ê°€ ê°€ì§€ëŠ” 16ì¹¸ì˜ ì¼ë°˜ì°½ê³  3ê°œ
+*				  í•œ ê³„ì •ì˜ ëª¨ë“  ìºë¦­í„°ê°€ ê³µìœ í•˜ëŠ” 16ì¹¸ì˜ ê³µìœ ì°½ê³ ë¥¼ êµ¬í˜„
+*				  ì œë‹ˆëŠ” ê³µìœ ì°½ê³ ì—ë§Œ ì €ìž¥ë˜ëŠ” ê²ƒìœ¼ë¡œì¨ í•œ ê³„ì •ì˜ ëª¨ë“  ìºë¦­í„°
+*				  ê°€ ê³µìœ í•œë‹¤
 *****************************************************************************/
 
 #pragma once
@@ -43,7 +43,7 @@ public:
 	RwBool		Create();
 	VOID		Destroy();
 
-	RwInt32		SwitchDialog(bool bOpen);		///< DialogManager¿¡¼­ÀÇ Open/Close
+	RwInt32		SwitchDialog(bool bOpen);		///< DialogManagerì—ì„œì˜ Open/Close
 
 	VOID		RegisterWarehouseIndex(RwUInt8 byIndex);
 	VOID		ShowDisableSlot(RwBool bShow, RwUInt8 bySlot);
@@ -56,7 +56,7 @@ protected:
 
 	VOID			UpdateItems();
 
-	RwInt8			PtinSlot(RwInt32 iX, RwInt32 iY);				///< ¸¶¿ì½º°¡ ¿µ¿ªÀ¸·Î µé¾î¿Â ½½·ÔÀ» Ã£´Â´Ù.
+	RwInt8			PtinSlot(RwInt32 iX, RwInt32 iY);				///< ë§ˆìš°ìŠ¤ê°€ ì˜ì—­ìœ¼ë¡œ ë“¤ì–´ì˜¨ ìŠ¬ë¡¯ì„ ì°¾ëŠ”ë‹¤.
 	VOID			FocusEffect( RwBool bPush, RwInt32 iSlotIdx = -1);
 	VOID			SelectEffect( RwBool bPush, RwInt32 iSlotIdx = -1);	
 	VOID			CheckInfoWindow();
@@ -82,23 +82,23 @@ protected:
 	gui::CSlot			m_slotCloseButton;
 	gui::CSlot			m_slotCaptureMouseDown;
 
-	gui::CButton*		m_pExitButton;		///< Ã¢´Ý±â ¹öÆ°
+	gui::CButton*		m_pExitButton;		///< ì°½ë‹«ê¸° ë²„íŠ¼
 
 	RwInt8				m_byInfoWindowIndex;
-	RwInt32				m_iMouseDownSlot;	///< ¸¶¿ì½º·Î ´­¸° ½½·ÔÀÇ ÀÎµ¦½º
-	RwInt32				m_iSelectedSlot;	///< ¼¿·ºÆ® ÀÌÆåÆ® ½½·Ô
-	RwInt32				m_iClickEffectedSlot;///< ÇöÀç Å¬¸¯ ÀÌÆåÆ®°¡ »ý±ä ½½·Ô
+	RwInt32				m_iMouseDownSlot;	///< ë§ˆìš°ìŠ¤ë¡œ ëˆŒë¦° ìŠ¬ë¡¯ì˜ ì¸ë±ìŠ¤
+	RwInt32				m_iSelectedSlot;	///< ì…€ë ‰íŠ¸ ì´íŽ™íŠ¸ ìŠ¬ë¡¯
+	RwInt32				m_iClickEffectedSlot;///< í˜„ìž¬ í´ë¦­ ì´íŽ™íŠ¸ê°€ ìƒê¸´ ìŠ¬ë¡¯
 
-	gui::CStaticBox*	m_pDialogName;		///< ´ÙÀÌ¾ó·Î±×ÀÇ ÀÌ¸§ ½ºÅÂÆ½
+	gui::CStaticBox*	m_pDialogName;		///< ë‹¤ì´ì–¼ë¡œê·¸ì˜ ì´ë¦„ ìŠ¤íƒœí‹±
 
-	CSurfaceGui			m_FocusEffect;		///< ½½·Ô Æ÷Ä¿½º ÀÌÆåÆ®
-	CSurfaceGui			m_SelectEffect;		///< ½½·Ô ¼¿·ºÆ® ÀÌÆåÆ®
+	CSurfaceGui			m_FocusEffect;		///< ìŠ¬ë¡¯ í¬ì»¤ìŠ¤ ì´íŽ™íŠ¸
+	CSurfaceGui			m_SelectEffect;		///< ìŠ¬ë¡¯ ì…€ë ‰íŠ¸ ì´íŽ™íŠ¸
 
-	RwUInt8				m_byWarehouseIndex;	///< ¸î ¹øÂ° Ã¢°íÀÎÁö
+	RwUInt8				m_byWarehouseIndex;	///< ëª‡ ë²ˆì§¸ ì°½ê³ ì¸ì§€
 
-	RwBool				m_bFocus;			///< Æ÷Ä¿½º¸¦ ¾ò¾ú´Ù.
+	RwBool				m_bFocus;			///< í¬ì»¤ìŠ¤ë¥¼ ì–»ì—ˆë‹¤.
 
-	CRegularSlotGui			m_Slot[NTL_MAX_BANK_ITEM_SLOT];	///< ¾ÆÀÌÅÛ ½½·Ô
+	CRegularSlotGui			m_Slot[NTL_MAX_BANK_ITEM_SLOT];	///< ì•„ì´í…œ ìŠ¬ë¡¯
 };
 
 
@@ -134,11 +134,11 @@ protected:
 	gui::CStaticBox*	m_pZenny;
 	gui::CTexture*		m_pMoneyIconTexture;
 
-	CSurfaceGui			m_srfZennySlotDestination;	///< Á¦´Ï ½½·Ô Destination ÀÌ¹ÌÁö
+	CSurfaceGui			m_srfZennySlotDestination;	///< ì œë‹ˆ ìŠ¬ë¡¯ Destination ì´ë¯¸ì§€
 
 	RwBool				m_bZennySlotDestination;
 	RwUInt32			m_uiZenny;
-	SERIAL_HANDLE		m_hNPCSerial;		///< Ã¢°íÁö±â NPC Serial
+	SERIAL_HANDLE		m_hNPCSerial;		///< ì°½ê³ ì§€ê¸° NPC Serial
 };
 
 
@@ -155,7 +155,7 @@ public:
 	RwBool		Create();
 	VOID		Destroy();
 
-	RwInt32		SwitchDialog(bool bOpen);		///< DialogManager¿¡¼­ÀÇ Open/Close
+	RwInt32		SwitchDialog(bool bOpen);		///< DialogManagerì—ì„œì˜ Open/Close
 
 	VOID		RegisterWarehouse(RwUInt8 byIndex, CWarehouseGui* pWarehouseGui);
 	SERIAL_HANDLE	GetNPCSerial();
@@ -183,11 +183,11 @@ protected:
 	gui::CSlot			m_slotCloseButton;
 	gui::CSlot			m_slotCaptureMouseDown;
 
-	gui::CButton*		m_pWarehouseBtn[NTL_MAX_BANKSLOT_COUNT];///< Ã¢°í ¹öÆ°
-	gui::CButton*		m_p_All_Button;		///< ¸ðµç Ã¢°í ¹öÆ°
-	gui::CButton*		m_pExitButton;		///< Ã¢´Ý±â ¹öÆ°
+	gui::CButton*		m_pWarehouseBtn[NTL_MAX_BANKSLOT_COUNT];///< ì°½ê³  ë²„íŠ¼
+	gui::CButton*		m_p_All_Button;		///< ëª¨ë“  ì°½ê³  ë²„íŠ¼
+	gui::CButton*		m_pExitButton;		///< ì°½ë‹«ê¸° ë²„íŠ¼
 	
-	SERIAL_HANDLE		m_hNPCSerial;		///< Ã¢°íÁö±â NPC Serial
+	SERIAL_HANDLE		m_hNPCSerial;		///< ì°½ê³ ì§€ê¸° NPC Serial
 
 	CWarehouseGui*		m_pWareHouseGui[NTL_MAX_BANKSLOT_COUNT];
 };

@@ -30,33 +30,33 @@ protected:
 public:
     static  CClumpPane* GetInstance() {return m_pInstance;};
 
-    void    SetClump(CMTClump* pClump);                  ///< Clump¸¦ ¼³Á¤ÇÑ´Ù.
-    CMTClump* GetEditClump() {return m_pMTClump;}       ///< ÇöÀç EditÁßÀÎ Clump °´Ã¼¸¦ ¹ÝÈ¯ÇÑ´Ù.
-    void    SetEnable(BOOL bEnable);                    ///< È°¼ºÈ­ À¯¹«¸¦ ¼±ÅÃÇÑ´Ù.
-    void    Render();                                   ///< Clump °ü·Ã Á¤º¸¸¦ RenderÇÑ´Ù.    
-    void    DisplayInfo(RtCharset* pCharSet);           ///< Clump °ü·Ã Á¤º¸¸¦ È­¸é¿¡ Ç¥½ÃÇÑ´Ù. (2D UI)
+    void    SetClump(CMTClump* pClump);                  ///< Clumpë¥¼ ì„¤ì •í•œë‹¤.
+    CMTClump* GetEditClump() {return m_pMTClump;}       ///< í˜„ìž¬ Editì¤‘ì¸ Clump ê°ì²´ë¥¼ ë°˜í™˜í•œë‹¤.
+    void    SetEnable(BOOL bEnable);                    ///< í™œì„±í™” ìœ ë¬´ë¥¼ ì„ íƒí•œë‹¤.
+    void    Render();                                   ///< Clump ê´€ë ¨ ì •ë³´ë¥¼ Renderí•œë‹¤.    
+    void    DisplayInfo(RtCharset* pCharSet);           ///< Clump ê´€ë ¨ ì •ë³´ë¥¼ í™”ë©´ì— í‘œì‹œí•œë‹¤. (2D UI)
 
 
 protected:
-    RwBool  OnLoadClump(RwChar* szClumpFileName);       ///< Clump ÆÄÀÏÀ» ·ÎµùÇÑ´Ù.
-    void    OnSetCheckButtons(CHAR* szAtomicName);     ///< Ã¼Å© ¹öÆ° »óÅÂ¸¦ ¼³Á¤ÇÑ´Ù.
-    void    DisplayAtomics();                           ///< Atomic Á¤º¸¸¦ ¸®½ºÆ®¹Ú½º¿¡ Ãß°¡ÇÑ´Ù
-    void    RenderAtomicBB();                           ///< ¼±ÅÃÇÑ AtomicÀÇ BB¸¦ ±×¸°´Ù.
-    void    SetEnableAllButtons(BOOL bEnable);          ///< ¸ðµç ¹öÆ°µéÀÇ Enable/DisableÀ» ¼³Á¤ÇÑ´Ù.
-	void	SetChangeAtomicFlag(ENtlAtomicFlag eFlag, RwBool bEnable);	///< ¸®½ºÆ®¹Ú½º¿¡ ¼³Á¤µÈ aotmicµéÀÇ flag¸¦ ¼³Á¤ÇÑ´Ù
-	void	SetShadowMapSize(CHAR* szAtomicName);		///< ÄÞº¸¹Ú½º¿¡ AtomicÀÇ ShadowMap Size¸¦ ¼¼ÆÃÇÑ´Ù.
+    RwBool  OnLoadClump(RwChar* szClumpFileName);       ///< Clump íŒŒì¼ì„ ë¡œë”©í•œë‹¤.
+    void    OnSetCheckButtons(CHAR* szAtomicName);     ///< ì²´í¬ ë²„íŠ¼ ìƒíƒœë¥¼ ì„¤ì •í•œë‹¤.
+    void    DisplayAtomics();                           ///< Atomic ì •ë³´ë¥¼ ë¦¬ìŠ¤íŠ¸ë°•ìŠ¤ì— ì¶”ê°€í•œë‹¤
+    void    RenderAtomicBB();                           ///< ì„ íƒí•œ Atomicì˜ BBë¥¼ ê·¸ë¦°ë‹¤.
+    void    SetEnableAllButtons(BOOL bEnable);          ///< ëª¨ë“  ë²„íŠ¼ë“¤ì˜ Enable/Disableì„ ì„¤ì •í•œë‹¤.
+	void	SetChangeAtomicFlag(ENtlAtomicFlag eFlag, RwBool bEnable);	///< ë¦¬ìŠ¤íŠ¸ë°•ìŠ¤ì— ì„¤ì •ëœ aotmicë“¤ì˜ flagë¥¼ ì„¤ì •í•œë‹¤
+	void	SetShadowMapSize(CHAR* szAtomicName);		///< ì½¤ë³´ë°•ìŠ¤ì— Atomicì˜ ShadowMap Sizeë¥¼ ì„¸íŒ…í•œë‹¤.
     
-    void    SetEnvMap();                                ///< È¯°æ¸Ê ¼³Á¤À» È®ÀÎÇÑ´Ù.    
-    void    SaveEnvMap();                               ///< È¯°Ý¸Ê ¼³Á¤À» ÀúÀåÇÑ´Ù.
+    void    SetEnvMap();                                ///< í™˜ê²½ë§µ ì„¤ì •ì„ í™•ì¸í•œë‹¤.    
+    void    SaveEnvMap();                               ///< í™˜ê²©ë§µ ì„¤ì •ì„ ì €ìž¥í•œë‹¤.
 
 protected:    
     static CClumpPane*  m_pInstance;
-    CMTClump*           m_pMTClump;                     ///< ÇöÀç ¼³Á¤µÈ MTClump    
-    std::vector<CMTClump*> m_vMTClump;                  ///< »ý¼ºµÈ MTClump °´Ã¼µéÀ» º¸°üÇÏ´Â º¤ÅÍ(Á¾·áµÉ¶§ ÇÑ²¨¹øÇØ ÇØÁ¦µÈ´Ù)
+    CMTClump*           m_pMTClump;                     ///< í˜„ìž¬ ì„¤ì •ëœ MTClump    
+    std::vector<CMTClump*> m_vMTClump;                  ///< ìƒì„±ëœ MTClump ê°ì²´ë“¤ì„ ë³´ê´€í•˜ëŠ” ë²¡í„°(ì¢…ë£Œë ë•Œ í•œêº¼ë²ˆí•´ í•´ì œëœë‹¤)
 
-    bool                m_bFlagSetModel;                ///< ´Ù¸¥ Å¬·¡½º¿¡ ¸ðµ¨¿¡ ¼¼ÆÃµÉ¶§ »ç¿ëÇÑ´Ù.
-    bool                m_bToon;                        ///< Clump¿¡ ToonÀÌ Àû¿ëµÇ¾î ÀÖ´ÂÁöÀÇ À¯¹«
-    bool                m_bFlagCkBtn[CLUMP_CKBTN_CNT];  ///< Ã¼Å©¹öÆ°µéÀÇ »óÅÂ Àû¿ëÀ» À§ÇÑ ÇÃ·¡±×    
+    bool                m_bFlagSetModel;                ///< ë‹¤ë¥¸ í´ëž˜ìŠ¤ì— ëª¨ë¸ì— ì„¸íŒ…ë ë•Œ ì‚¬ìš©í•œë‹¤.
+    bool                m_bToon;                        ///< Clumpì— Toonì´ ì ìš©ë˜ì–´ ìžˆëŠ”ì§€ì˜ ìœ ë¬´
+    bool                m_bFlagCkBtn[CLUMP_CKBTN_CNT];  ///< ì²´í¬ë²„íŠ¼ë“¤ì˜ ìƒíƒœ ì ìš©ì„ ìœ„í•œ í”Œëž˜ê·¸    
 
 protected:
     CXTBrowseEdit m_editClumpName;

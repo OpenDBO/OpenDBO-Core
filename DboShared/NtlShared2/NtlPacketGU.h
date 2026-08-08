@@ -2002,7 +2002,7 @@ BEGIN_PROTOCOL(GU_TRADE_ADD_NFY)			// 성공일 때만
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TRADE_ADD_RES)
-	HOBJECT				hItem;				// 내 아이템 핸들
+	HOBJECT				hItem;				// 상대 아이템 핸들
 	BYTE				byCount;			// 겹쳐있는 아이템중 몇개인가? Default 1개
 	WORD				wResultCode;		// 타겟의 응답및 가능 유무 에 따른 여러가지 결과값
 END_PROTOCOL()
@@ -2012,19 +2012,19 @@ BEGIN_PROTOCOL(GU_TRADE_DEL_NFY)			// 성공일 때만
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TRADE_DEL_RES)
-	HOBJECT				hItem;				// 내 아이템 핸들
+	HOBJECT				hItem;				// 상대 아이템 핸들
 	WORD				wResultCode;		// 타겟의 응답및 가능 유무 에 따른 여러가지 결과값
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TRADE_MODIFY_NFY)
 	HOBJECT				hTarget;			// 타겟 핸들
-	HOBJECT				hItem;				// 내 아이템 핸들
+	HOBJECT				hItem;				// 상대 아이템 핸들
 	BYTE				byCount;			// 겹쳐있는 아이템중 몇개인가? Default 1개
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TRADE_MODIFY_RES)
 	HOBJECT				hTarget;			// 타겟 핸들
-	HOBJECT				hItem;				// 내 아이템 핸들
+	HOBJECT				hItem;				// 상대 아이템 핸들
 	BYTE				byCount;			// 겹쳐있는 아이템중 몇개인가? Default 1개
 	WORD				wResultCode;		// 타겟의 응답및 가능 유무 에 따른 여러가지 결과값
 END_PROTOCOL()
@@ -2089,7 +2089,7 @@ BEGIN_PROTOCOL(GU_TOBJECT_UPDATE_STATE)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_TOBJECT_ACTION_ATTACK)
-	HOBJECT				hSubject;				// 액션 주체 캐릭터 핸들
+	HOBJECT				hSubject;				// 대화 하는 캐릭터 핸들
 	HOBJECT				hTarget;				// 액션 타겟 캐릭터 핸들
 	BYTE				byAttackType;			// 액션 결과 ( eBATTLE_ATTACK_RESULT )
 	BYTE				byAttackResult;			// 액션 결과 ( eBATTLE_ATTACK_RESULT )
@@ -3314,8 +3314,8 @@ END_PROTOCOL()
 BEGIN_PROTOCOL(GU_BUS_LOCATION_NFY)
 	HOBJECT				hSubject;
 	TBLIDX				busTblidx;
-	sVECTOR2			vCurLoc;
-	sVECTOR2			vCurDir;
+	sVECTOR3			vCurLoc;
+	sVECTOR3			vCurDir;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_BUS_LOCATION_ERASED_NFY)

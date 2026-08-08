@@ -223,13 +223,13 @@ void CNtlDojo::HandleEvents( RWS::CMsg &msg)
 
 				sDOJO_SCRAMBLE_POINT* pDOJO_SCRAMBLE_POINT = (sDOJO_SCRAMBLE_POINT*)pEvent->pExData;
 
-				// °ø°ÝÆÀ Á¤º¸
+				// ê³µê²©íŒ€ ì •ë³´
 				m_pScrambleTeam[SCRAMBLE_TEAM_OFFENCE]->byPlayerCount	= pDOJO_SCRAMBLE_POINT->byAttCount;
 				m_pScrambleTeam[SCRAMBLE_TEAM_OFFENCE]->bySealCount		= pDOJO_SCRAMBLE_POINT->byAttSealCount;
 				m_pScrambleTeam[SCRAMBLE_TEAM_OFFENCE]->uiScore			= pDOJO_SCRAMBLE_POINT->dwAttCharge;
 				m_pScrambleTeam[SCRAMBLE_TEAM_OFFENCE]->uiTotalPoint	= pDOJO_SCRAMBLE_POINT->dwAttPoint;
 
-				// ¹æ¾îÆÀ Á¤º¸
+				// ë°©ì–´íŒ€ ì •ë³´
 				m_pScrambleTeam[SCRAMBLE_TEAM_DEFENCE]->byPlayerCount	= pDOJO_SCRAMBLE_POINT->byDefCount;
 				m_pScrambleTeam[SCRAMBLE_TEAM_DEFENCE]->bySealCount		= pDOJO_SCRAMBLE_POINT->byDefSealCount;
 				m_pScrambleTeam[SCRAMBLE_TEAM_DEFENCE]->uiScore			= pDOJO_SCRAMBLE_POINT->dwDefCharge;
@@ -348,7 +348,7 @@ void CNtlDojo::HandleEvents( RWS::CMsg &msg)
 		{
 			ClearScrambleInfo();
 
-			// ÀïÅ»Àü¿¡ ÀÌ°Ü¼­ ÀïÅ»ÀüÀÌ ³¡³ªµµ µµÀå¿¡ ³²¾ÆÀÖ´Â À¯ÆÄ¿øµéÀ» À§ÇØ¼­
+			// ìŸíƒˆì „ì— ì´ê²¨ì„œ ìŸíƒˆì „ì´ ëë‚˜ë„ ë„ìž¥ì— ë‚¨ì•„ìžˆëŠ” ìœ íŒŒì›ë“¤ì„ ìœ„í•´ì„œ
 			if( GetNtlWorldConcept()->IsActivePlayConcept(WORLD_PLAY_DOJO_SCRAMBLE) )
 				GetNtlWorldConcept()->DeleteGradeWorldPlayConcept(WORLD_CONCEPT_FIRST_GRADE);
 		}
@@ -380,7 +380,7 @@ void CNtlDojo::HandleEvents( RWS::CMsg &msg)
 		CNtlGuild* pGuild = pAvatar->GetGuild();		
 
 
-		// µµÀå ÀïÅ»ÀüÀ» ÁøÇàÇÏ´Â ÇØ´ç µµÀåÀÇ Å×ÀÌºí ÀÎµ¦½º
+		// ë„ìž¥ ìŸíƒˆì „ì„ ì§„í–‰í•˜ëŠ” í•´ë‹¹ ë„ìž¥ì˜ í…Œì´ë¸” ì¸ë±ìŠ¤
 		m_ScrambleInfo.uiScrambleDojoTableIndex = pEvent->uiDojoTableIndex;
 
 		if( pGuild->GetGuildID() == pEvent->uiOffenceGuildID )
@@ -389,7 +389,7 @@ void CNtlDojo::HandleEvents( RWS::CMsg &msg)
 			m_ScrambleInfo.eAvatarTeam = SCRAMBLE_TEAM_DEFENCE;
 
 
-		// °ø°ÝÆÀ Á¤º¸
+		// ê³µê²©íŒ€ ì •ë³´
 		m_pScrambleTeam[SCRAMBLE_TEAM_OFFENCE] = NTL_NEW sSCRAMBLE_TEAM;
 
 		m_pScrambleTeam[SCRAMBLE_TEAM_OFFENCE]->guildID			= pEvent->uiOffenceGuildID;
@@ -412,7 +412,7 @@ void CNtlDojo::HandleEvents( RWS::CMsg &msg)
 		
 
 
-		// ¹æ¾îÆÀ Á¤º¸
+		// ë°©ì–´íŒ€ ì •ë³´
 		m_pScrambleTeam[SCRAMBLE_TEAM_DEFENCE] = NTL_NEW sSCRAMBLE_TEAM;
 
 		m_pScrambleTeam[SCRAMBLE_TEAM_DEFENCE]->guildID			= pEvent->uiDefenceGuildID;

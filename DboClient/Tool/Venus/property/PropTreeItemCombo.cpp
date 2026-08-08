@@ -1,4 +1,4 @@
-// PropTreeItemCombo.cpp : ���� �����Դϴ�.
+// PropTreeItemCombo.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -32,18 +32,18 @@ END_MESSAGE_MAP()
 
 
 
-// CPropTreeItemCombo �޽��� ó�����Դϴ�.
+// CPropTreeItemCombo 메시지 처리기입니다.
 
 
 void CPropTreeItemCombo::OnCbnSelchange()
 {
-	// TODO: ���⿡ ��Ʈ�� �˸� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	CommitChanges();
 }
 
 void CPropTreeItemCombo::OnCbnKillfocus()
 {
-	// TODO: ���⿡ ��Ʈ�� �˸� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	CommitChanges();
 }
 

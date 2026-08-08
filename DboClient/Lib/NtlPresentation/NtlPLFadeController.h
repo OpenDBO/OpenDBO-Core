@@ -2,18 +2,18 @@
 *
 * File			: NtlPLFadeController.h
 * Author		: agebreak
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 11. 21	
-* Abstract		: Fade In/Out¿ë °ªÀ» À§ÇÑ ÄÁÆ®·Ñ·¯
+* Abstract		: Fade In/Outìš© ê°’ì„ ìœ„í•œ ì»¨íŠ¸ë¡¤ëŸ¬
 *****************************************************************************
-* Desc         : Entity¿¡´Â AlphaWeight¶ó´Â ÄÁÆ®·Ñ·¯°¡ ÀÖÁö¸¸, Entity¿Ü¿¡´Â
-*                Àû¿ëÇÒ ¼ö ¾ø±â ¶§¹®¿¡ »õ·Î ¸¸µç´Ù.
+* Desc         : Entityì—ëŠ” AlphaWeightë¼ëŠ” ì»¨íŠ¸ë¡¤ëŸ¬ê°€ ìˆì§€ë§Œ, Entityì™¸ì—ëŠ”
+*                ì ìš©í•  ìˆ˜ ì—†ê¸° ë•Œë¬¸ì— ìƒˆë¡œ ë§Œë“ ë‹¤.
 *
 *****************************************************************************/
 
 #pragma once
 
-/// Fade °ª °è»ê¿ë ÄÁÆ®·Ñ·¯
+/// Fade ê°’ ê³„ì‚°ìš© ì»¨íŠ¸ë¡¤ëŸ¬
 class CNtlPLFadeController
 {
 public:
@@ -23,14 +23,14 @@ public:
     void Set(RwReal fOrgValue, RwReal fDestValue, RwReal fFadeTime);
     void Update(RwReal fElapsedTime);
     
-    RwReal GetValue() {return m_fValue;}    ///< ÇöÀçÀÇ Fade °ªÀ» ¹İÈ¯ÇÑ´Ù.
-    RwBool IsEnd() {return m_bEnd;}         ///< Fade°¡ ³¡³µ´ÂÁö¸¦ ¹İÈ¯ÇÑ´Ù.
+    RwReal GetValue() {return m_fValue;}    ///< í˜„ì¬ì˜ Fade ê°’ì„ ë°˜í™˜í•œë‹¤.
+    RwBool IsEnd() {return m_bEnd;}         ///< Fadeê°€ ëë‚¬ëŠ”ì§€ë¥¼ ë°˜í™˜í•œë‹¤.
 
 protected:
-    RwReal m_fOrgValue;                     ///< ¿øº»°ª
-    RwReal m_fDestValue;                    ///< ³¡°ª
-    RwReal m_fValue;                        ///< ÇöÀç°ª
+    RwReal m_fOrgValue;                     ///< ì›ë³¸ê°’
+    RwReal m_fDestValue;                    ///< ëê°’
+    RwReal m_fValue;                        ///< í˜„ì¬ê°’
     RwReal m_fFadeTime;                     ///< Fade Time
-    RwReal m_fTime;                         ///< ÇöÀç Time
-    RwBool m_bEnd;                          ///< Fade°¡ ³¡³µ´ÂÁö ¿©ºÎ
+    RwReal m_fTime;                         ///< í˜„ì¬ Time
+    RwBool m_bEnd;                          ///< Fadeê°€ ëë‚¬ëŠ”ì§€ ì—¬ë¶€
 };

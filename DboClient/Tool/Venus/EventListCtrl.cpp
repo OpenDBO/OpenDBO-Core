@@ -1,4 +1,4 @@
-// EventListCtrl.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// EventListCtrl.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -44,7 +44,7 @@ END_MESSAGE_MAP()
 
 
 
-// CEventListCtrl ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CEventListCtrl ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 
 int CEventListCtrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
@@ -52,7 +52,7 @@ int CEventListCtrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CVenusGridCtrl::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// TODO:  ¿©±â¿¡ Æ¯¼öÈ­µÈ ÀÛ¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì‘ì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if(!m_image.Create(IDB_EFFECT_LIST_IMAGE,16,1,RGB(0, 255, 255)))
 		return -1;
 
@@ -96,7 +96,7 @@ void CEventListCtrl::InitializeGrid()
 
 void CEventListCtrl::OnContextMenu(CWnd* /*pWnd*/, CPoint point)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CMenu menu;
 	menu.CreatePopupMenu();
 
@@ -134,7 +134,7 @@ void CEventListCtrl::OnContextMenu(CWnd* /*pWnd*/, CPoint point)
 
 void CEventListCtrl::OnCreateEvent()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CString strName;
 	RwInt32 count = 0;
 	do {
@@ -149,7 +149,7 @@ void CEventListCtrl::OnCreateEvent()
 
 void CEventListCtrl::OnDeleteEvent()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if (AfxMessageBox("really ?", MB_OKCANCEL) != IDOK) return;
 	int nItem = GetSelectedItem();
 	if(nItem == -1) return;
@@ -171,7 +171,7 @@ void CEventListCtrl::OnDeleteEvent()
 void CEventListCtrl::OnLvnItemchanged(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	int nItem = GetSelectedItem();
 	if(nItem == -1)
 	{
@@ -204,7 +204,7 @@ void CEventListCtrl::OnLvnItemchanged(NMHDR *pNMHDR, LRESULT *pResult)
 
 void CEventListCtrl::OnLoadEvent()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if (!CVenusPlayerEventManager::GetInstance().m_svVenusPlayerEvent.empty())
 	{
 		if (AfxMessageBox(CStringManager::GetInstance().GetString(STRING_SAVE), MB_OKCANCEL) == IDOK)
@@ -247,7 +247,7 @@ void CEventListCtrl::OnLoadEvent()
 
 void CEventListCtrl::OnSaveEvent()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CString strFileName = "Venus";
 
 	CString strFilter;
@@ -299,7 +299,7 @@ void CEventListCtrl::RebuildPlayerEvent()
 
 void CEventListCtrl::OnClearEvent()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if (AfxMessageBox("Really ?", MB_OKCANCEL) == IDOK)
 	{
 		CVenusPlayerEventManager::GetInstance().Delete();
@@ -318,7 +318,7 @@ void CEventListCtrl::OnClearEvent()
 
 void CEventListCtrl::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	switch(nChar)
 	{
 	case VK_CONTROL:
@@ -368,21 +368,21 @@ void CEventListCtrl::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CEventListCtrl::OnEditCopy()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if (CVenusPlayerEventManager::GetInstance().m_pSelectPlayerEvent)
 		CVenusPlayerEventManager::GetInstance().SetCopyPlayerEvent(TRUE, CVenusPlayerEventManager::GetInstance().m_pSelectPlayerEvent);
 }
 
 void CEventListCtrl::OnEditCut()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if (CVenusPlayerEventManager::GetInstance().m_pSelectPlayerEvent)
 		CVenusPlayerEventManager::GetInstance().SetCopyPlayerEvent(FALSE, CVenusPlayerEventManager::GetInstance().m_pSelectPlayerEvent);
 }
 
 void CEventListCtrl::OnEditPaste()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	NTL_ASSERTE(CVenusPlayerEventManager::GetInstance().m_pCopyPlayerEvent != NULL);
 
 	CString strName;

@@ -2,7 +2,7 @@
  *
  * File			: NtlActionMapDef.h
  * Author		: Haesung, Cho
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2008. 1. 15	
  * Abstract		: Simulation ActionMap definition
  *****************************************************************************
@@ -97,11 +97,11 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// ActionMap Key »óÅÂ
+// ActionMap Key ìƒíƒœ
 ///////////////////////////////////////////////////////////////////////////////
 
 #define NTL_ALT_BIT   0x0100
-#define NTL_CTRL_BIT  0x0200			// Á¶ÇÕÅ°
+#define NTL_CTRL_BIT  0x0200			// ì¡°í•©í‚¤
 #define NTL_SHIFT_BIT 0x0400
 
 #define NTL_KEY_UPDATE 0x4000
@@ -113,150 +113,150 @@
 
 enum eACTION
 {
-	// 0 ~ 19 ±îÁö ¾Æ¹ÙÅ¸ Çàµ¿
-	ACTION_AVATAR_FORWARD = 0,		///< ÀüÁø
-	ACTION_AVATAR_BACKWARD,			///< ÈÄÁø
-	ACTION_AVATAR_LEFTTURN,			///< ÁÂÈ¸Àü
-	ACTION_AVATAR_RIGHTTURN,		///< ¿ìÈ¸Àü
-	ACTION_AVATAR_SITDOWN,			///< ¾É±â
-	ACTION_AVATAR_JUMP,				///< Á¡ÇÁ
-	ACTION_AVATAR_AUTORUN,			///< ÀÚµ¿´Þ¸®±â
-	ACTION_AVATAR_SCOUTER,			///< ½ºÄ«¿ìÅÍ »ç¿ëÇÏ±â
-	ACTION_AVATAR_CHARGE,			///< ±â ¸ðÀ¸±â
-	ACTION_AVATAR_LOOTING,			///< ¾ÆÀÌÅÛ ÁÝ±â
-	ACTION_AVATAR_BLOCKING,			///< ¾Æ¹ÙÅ¸ ºí·ÏÅ·
+	// 0 ~ 19 ê¹Œì§€ ì•„ë°”íƒ€ í–‰ë™
+	ACTION_AVATAR_FORWARD = 0,		///< ì „ì§„
+	ACTION_AVATAR_BACKWARD,			///< í›„ì§„
+	ACTION_AVATAR_LEFTTURN,			///< ì¢ŒíšŒì „
+	ACTION_AVATAR_RIGHTTURN,		///< ìš°íšŒì „
+	ACTION_AVATAR_SITDOWN,			///< ì•‰ê¸°
+	ACTION_AVATAR_JUMP,				///< ì í”„
+	ACTION_AVATAR_AUTORUN,			///< ìžë™ë‹¬ë¦¬ê¸°
+	ACTION_AVATAR_SCOUTER,			///< ìŠ¤ì¹´ìš°í„° ì‚¬ìš©í•˜ê¸°
+	ACTION_AVATAR_CHARGE,			///< ê¸° ëª¨ìœ¼ê¸°
+	ACTION_AVATAR_LOOTING,			///< ì•„ì´í…œ ì¤ê¸°
+	ACTION_AVATAR_BLOCKING,			///< ì•„ë°”íƒ€ ë¸”ë¡í‚¹
 	ACTION_AVATAR_LEFTSIDE,
 	ACTION_AVATAR_RIGHTSIDE,
 	ACTION_AVATAR_FREEDOWN,
 
-	// 20 ~ 39 ±îÁö Å¸°Ù Çàµ¿
-	ACTION_TARGET_SELF = 20,		///< ÀÚ½Å ¼±ÅÃ
-	ACTION_TARGET_1STPARTY,			///< ÆÄÆ¼¿ø1 ¼±ÅÃ
-	ACTION_TARGET_2NDPARTY,			///< ÆÄÆ¼¿ø2 ¼±ÅÃ
-	ACTION_TARGET_3RDPARTY,			///< ÆÄÆ¼¿ø3 ¼±ÅÃ
-	ACTION_TARGET_4THPARTY,			///< ÆÄÆ¼¿ø4 ¼±ÅÃ
+	// 20 ~ 39 ê¹Œì§€ íƒ€ê²Ÿ í–‰ë™
+	ACTION_TARGET_SELF = 20,		///< ìžì‹  ì„ íƒ
+	ACTION_TARGET_1STPARTY,			///< íŒŒí‹°ì›1 ì„ íƒ
+	ACTION_TARGET_2NDPARTY,			///< íŒŒí‹°ì›2 ì„ íƒ
+	ACTION_TARGET_3RDPARTY,			///< íŒŒí‹°ì›3 ì„ íƒ
+	ACTION_TARGET_4THPARTY,			///< íŒŒí‹°ì›4 ì„ íƒ
 	ACTION_TARGET_MEMBER,
-	ACTION_TARGET_AUTO,				///< °¡±î¿î Àû ¼±ÅÃ
-	ACTION_TARGET_AUTOATK,			///< ÀÚµ¿°ø°Ý
-	ACTION_TARGET_AUTOFOLLOW,		///< ÀÚµ¿ µû¶ó°¡±â
-	ACTION_TARGET_MARKING_1,		///< °øÀ¯ Å¸°Ù1 ÁöÁ¤
-	ACTION_TARGET_MARKING_2,		///< °øÀ¯ Å¸°Ù2 ÁöÁ¤
-	ACTION_TARGET_MARKING_3,		///< °øÀ¯ Å¸°Ù3 ÁöÁ¤
-	ACTION_TARGET_MARKING_4,		///< °øÀ¯ Å¸°Ù4 ÁöÁ¤
-	ACTION_TARGET_MARKING_5,		///< °øÀ¯ Å¸°Ù5 ÁöÁ¤
-	ACTION_TARGET_SELECTING_1,		///< °øÀ¯ Å¸°Ù1 ¼±ÅÃ
-	ACTION_TARGET_SELECTING_2,		///< °øÀ¯ Å¸°Ù2 ¼±ÅÃ
-	ACTION_TARGET_SELECTING_3,		///< °øÀ¯ Å¸°Ù3 ¼±ÅÃ
-	ACTION_TARGET_SELECTING_4,		///< °øÀ¯ Å¸°Ù4 ¼±ÅÃ
-	ACTION_TARGET_SELECTING_5,		///< °øÀ¯ Å¸°Ù5 ¼±ÅÃ
-	ACTION_TARGET_AUTOTARGET_PARTY,	///< ÆÄÆ¼¿ø ÀÚµ¿ ¼±ÅÃ
+	ACTION_TARGET_AUTO,				///< ê°€ê¹Œìš´ ì  ì„ íƒ
+	ACTION_TARGET_AUTOATK,			///< ìžë™ê³µê²©
+	ACTION_TARGET_AUTOFOLLOW,		///< ìžë™ ë”°ë¼ê°€ê¸°
+	ACTION_TARGET_MARKING_1,		///< ê³µìœ  íƒ€ê²Ÿ1 ì§€ì •
+	ACTION_TARGET_MARKING_2,		///< ê³µìœ  íƒ€ê²Ÿ2 ì§€ì •
+	ACTION_TARGET_MARKING_3,		///< ê³µìœ  íƒ€ê²Ÿ3 ì§€ì •
+	ACTION_TARGET_MARKING_4,		///< ê³µìœ  íƒ€ê²Ÿ4 ì§€ì •
+	ACTION_TARGET_MARKING_5,		///< ê³µìœ  íƒ€ê²Ÿ5 ì§€ì •
+	ACTION_TARGET_SELECTING_1,		///< ê³µìœ  íƒ€ê²Ÿ1 ì„ íƒ
+	ACTION_TARGET_SELECTING_2,		///< ê³µìœ  íƒ€ê²Ÿ2 ì„ íƒ
+	ACTION_TARGET_SELECTING_3,		///< ê³µìœ  íƒ€ê²Ÿ3 ì„ íƒ
+	ACTION_TARGET_SELECTING_4,		///< ê³µìœ  íƒ€ê²Ÿ4 ì„ íƒ
+	ACTION_TARGET_SELECTING_5,		///< ê³µìœ  íƒ€ê²Ÿ5 ì„ íƒ
+	ACTION_TARGET_AUTOTARGET_PARTY,	///< íŒŒí‹°ì› ìžë™ ì„ íƒ
 
-	// 40 ~ 59 ±îÁö Äü Çàµ¿
-	ACTION_QUICK_1 = 40,			///< Äü½½·Ô1¹ø
-	ACTION_QUICK_2,					///< Äü½½·Ô2¹ø
-	ACTION_QUICK_3,					///< Äü½½·Ô3¹ø
-	ACTION_QUICK_4,					///< Äü½½·Ô4¹ø
-	ACTION_QUICK_5,					///< Äü½½·Ô5¹ø
-	ACTION_QUICK_6,					///< Äü½½·Ô6¹ø
-	ACTION_QUICK_7,					///< Äü½½·Ô7¹ø
-	ACTION_QUICK_8,					///< Äü½½·Ô8¹ø
-	ACTION_QUICK_9,					///< Äü½½·Ô9¹ø
-	ACTION_QUICK_0,					///< Äü½½·Ô0¹ø
-	ACTION_QUICK_MIN,				///< Äü½½·Ô-¹ø
-	ACTION_QUICK_PLUS,				///< Äü½½·Ô+¹ø
-	ACTION_QUICK_PREV,				///< ÀÌÀü Äü½½·Ô
-	ACTION_QUICK_NEXT,				///< ´ÙÀ½ Äü½½·Ô
-	ACTION_QUICK_2NDCAP,			///< 2¹ø Ä¸½¶Å°Æ®
-	ACTION_QUICK_3RDCAP,			///< 3¹ø Ä¸½¶Å°Æ®
-	ACTION_QUICK_4THCAP,			///< 4¹ø Ä¸½¶Å°Æ®
-	ACTION_QUICK_5THCAP,			///< 5¹ø Ä¸½¶Å°Æ®
+	// 40 ~ 59 ê¹Œì§€ í€µ í–‰ë™
+	ACTION_QUICK_1 = 40,			///< í€µìŠ¬ë¡¯1ë²ˆ
+	ACTION_QUICK_2,					///< í€µìŠ¬ë¡¯2ë²ˆ
+	ACTION_QUICK_3,					///< í€µìŠ¬ë¡¯3ë²ˆ
+	ACTION_QUICK_4,					///< í€µìŠ¬ë¡¯4ë²ˆ
+	ACTION_QUICK_5,					///< í€µìŠ¬ë¡¯5ë²ˆ
+	ACTION_QUICK_6,					///< í€µìŠ¬ë¡¯6ë²ˆ
+	ACTION_QUICK_7,					///< í€µìŠ¬ë¡¯7ë²ˆ
+	ACTION_QUICK_8,					///< í€µìŠ¬ë¡¯8ë²ˆ
+	ACTION_QUICK_9,					///< í€µìŠ¬ë¡¯9ë²ˆ
+	ACTION_QUICK_0,					///< í€µìŠ¬ë¡¯0ë²ˆ
+	ACTION_QUICK_MIN,				///< í€µìŠ¬ë¡¯-ë²ˆ
+	ACTION_QUICK_PLUS,				///< í€µìŠ¬ë¡¯+ë²ˆ
+	ACTION_QUICK_PREV,				///< ì´ì „ í€µìŠ¬ë¡¯
+	ACTION_QUICK_NEXT,				///< ë‹¤ìŒ í€µìŠ¬ë¡¯
+	ACTION_QUICK_2NDCAP,			///< 2ë²ˆ ìº¡ìŠí‚¤íŠ¸
+	ACTION_QUICK_3RDCAP,			///< 3ë²ˆ ìº¡ìŠí‚¤íŠ¸
+	ACTION_QUICK_4THCAP,			///< 4ë²ˆ ìº¡ìŠí‚¤íŠ¸
+	ACTION_QUICK_5THCAP,			///< 5ë²ˆ ìº¡ìŠí‚¤íŠ¸
 
-	// 60 ~ 79 ±îÁö À©µµ¿ì Çàµ¿
-	ACTION_WINDOW_PROFILE = 60,			///< »ó¼¼Á¤º¸ À©µµ¿ì
-	ACTION_WINDOW_SKILL,			///< ½ºÅ³Á¤º¸ À©µµ¿ì
-	ACTION_WINDOW_QUEST,			///< Äù½ºÆ® À©µµ¿ì
-	ACTION_WINDOW_MINIMAP,			///< ¹Ì´Ï¸Ê
-	ACTION_WINDOW_WORLDMAP,			///< ¿ùµå¸Ê
-	ACTION_WINDOW_MAINCAP,			///< ¸ÞÀÎ Ä¸½¶Å°Æ®
-	ACTION_WINDOW_PARTY,			///< ÆÄÆ¼Á¤º¸					///< ±âÈ¹ ´Ü°è¿¡¼­ »ç¶óÁü
-	ACTION_WINDOW_GUILD,			///< ±æµåÁ¤º¸
-	ACTION_WINDOW_FRIEND,			///< Ä£±¸Á¤º¸
-	ACTION_WINDOW_OPTION,			///< ¿É¼Ç
-	ACTION_WINDOW_HELP,				///< µµ¿ò¸»
-	ACTION_WINDOW_MAIN,				///< ¸ÞÀÎ¸Þ´º
-	ACTION_WINDOW_RANKBOARD,		///< ·©Å©º¸µå
+	// 60 ~ 79 ê¹Œì§€ ìœˆë„ìš° í–‰ë™
+	ACTION_WINDOW_PROFILE = 60,			///< ìƒì„¸ì •ë³´ ìœˆë„ìš°
+	ACTION_WINDOW_SKILL,			///< ìŠ¤í‚¬ì •ë³´ ìœˆë„ìš°
+	ACTION_WINDOW_QUEST,			///< í€˜ìŠ¤íŠ¸ ìœˆë„ìš°
+	ACTION_WINDOW_MINIMAP,			///< ë¯¸ë‹ˆë§µ
+	ACTION_WINDOW_WORLDMAP,			///< ì›”ë“œë§µ
+	ACTION_WINDOW_MAINCAP,			///< ë©”ì¸ ìº¡ìŠí‚¤íŠ¸
+	ACTION_WINDOW_PARTY,			///< íŒŒí‹°ì •ë³´					///< ê¸°íš ë‹¨ê³„ì—ì„œ ì‚¬ë¼ì§
+	ACTION_WINDOW_GUILD,			///< ê¸¸ë“œì •ë³´
+	ACTION_WINDOW_FRIEND,			///< ì¹œêµ¬ì •ë³´
+	ACTION_WINDOW_OPTION,			///< ì˜µì…˜
+	ACTION_WINDOW_HELP,				///< ë„ì›€ë§
+	ACTION_WINDOW_MAIN,				///< ë©”ì¸ë©”ë‰´
+	ACTION_WINDOW_RANKBOARD,		///< ëž­í¬ë³´ë“œ
 	ACTION_WINDOW_HOIPOIMIX,
 	ACTION_WINDOW_MASCOT,
 	ACTION_WINDOW_DWC,
 
-	// 80 ~ 159 ±îÁö ºóÀÚ¸® ¿¹¾à
-	ACTION_QUICK_1_EX = 80,				///< Äü½½·Ô Ã¹¹øÂ° È®Àå 1¹ø
-	ACTION_QUICK_2_EX,					///< Äü½½·Ô2¹ø
-	ACTION_QUICK_3_EX,					///< Äü½½·Ô3¹ø
-	ACTION_QUICK_4_EX,					///< Äü½½·Ô4¹ø
-	ACTION_QUICK_5_EX,					///< Äü½½·Ô5¹ø
-	ACTION_QUICK_6_EX,					///< Äü½½·Ô6¹ø
-	ACTION_QUICK_7_EX,					///< Äü½½·Ô7¹ø
-	ACTION_QUICK_8_EX,					///< Äü½½·Ô8¹ø
-	ACTION_QUICK_9_EX,					///< Äü½½·Ô9¹ø
-	ACTION_QUICK_0_EX,					///< Äü½½·Ô0¹ø
-	ACTION_QUICK_MIN_EX,				///< Äü½½·Ô-¹ø
-	ACTION_QUICK_PLUS_EX,				///< Äü½½·Ô+¹ø
-	ACTION_QUICK_1_EX2,					///< Äü½½·Ô Ã¹¹øÂ° È®Àå 1¹ø
-	ACTION_QUICK_2_EX2,					///< Äü½½·Ô2¹ø
-	ACTION_QUICK_3_EX2,					///< Äü½½·Ô3¹ø
-	ACTION_QUICK_4_EX2,					///< Äü½½·Ô4¹ø
-	ACTION_QUICK_5_EX2,					///< Äü½½·Ô5¹ø
-	ACTION_QUICK_6_EX2,					///< Äü½½·Ô6¹ø
-	ACTION_QUICK_7_EX2,					///< Äü½½·Ô7¹ø
-	ACTION_QUICK_8_EX2,					///< Äü½½·Ô8¹ø
-	ACTION_QUICK_9_EX2,					///< Äü½½·Ô9¹ø
-	ACTION_QUICK_0_EX2,					///< Äü½½·Ô0¹ø
-	ACTION_QUICK_MIN_EX2,				///< Äü½½·Ô-¹ø
-	ACTION_QUICK_PLUS_EX2,				///< Äü½½·Ô+¹ø
+	// 80 ~ 159 ê¹Œì§€ ë¹ˆìžë¦¬ ì˜ˆì•½
+	ACTION_QUICK_1_EX = 80,				///< í€µìŠ¬ë¡¯ ì²«ë²ˆì§¸ í™•ìž¥ 1ë²ˆ
+	ACTION_QUICK_2_EX,					///< í€µìŠ¬ë¡¯2ë²ˆ
+	ACTION_QUICK_3_EX,					///< í€µìŠ¬ë¡¯3ë²ˆ
+	ACTION_QUICK_4_EX,					///< í€µìŠ¬ë¡¯4ë²ˆ
+	ACTION_QUICK_5_EX,					///< í€µìŠ¬ë¡¯5ë²ˆ
+	ACTION_QUICK_6_EX,					///< í€µìŠ¬ë¡¯6ë²ˆ
+	ACTION_QUICK_7_EX,					///< í€µìŠ¬ë¡¯7ë²ˆ
+	ACTION_QUICK_8_EX,					///< í€µìŠ¬ë¡¯8ë²ˆ
+	ACTION_QUICK_9_EX,					///< í€µìŠ¬ë¡¯9ë²ˆ
+	ACTION_QUICK_0_EX,					///< í€µìŠ¬ë¡¯0ë²ˆ
+	ACTION_QUICK_MIN_EX,				///< í€µìŠ¬ë¡¯-ë²ˆ
+	ACTION_QUICK_PLUS_EX,				///< í€µìŠ¬ë¡¯+ë²ˆ
+	ACTION_QUICK_1_EX2,					///< í€µìŠ¬ë¡¯ ì²«ë²ˆì§¸ í™•ìž¥ 1ë²ˆ
+	ACTION_QUICK_2_EX2,					///< í€µìŠ¬ë¡¯2ë²ˆ
+	ACTION_QUICK_3_EX2,					///< í€µìŠ¬ë¡¯3ë²ˆ
+	ACTION_QUICK_4_EX2,					///< í€µìŠ¬ë¡¯4ë²ˆ
+	ACTION_QUICK_5_EX2,					///< í€µìŠ¬ë¡¯5ë²ˆ
+	ACTION_QUICK_6_EX2,					///< í€µìŠ¬ë¡¯6ë²ˆ
+	ACTION_QUICK_7_EX2,					///< í€µìŠ¬ë¡¯7ë²ˆ
+	ACTION_QUICK_8_EX2,					///< í€µìŠ¬ë¡¯8ë²ˆ
+	ACTION_QUICK_9_EX2,					///< í€µìŠ¬ë¡¯9ë²ˆ
+	ACTION_QUICK_0_EX2,					///< í€µìŠ¬ë¡¯0ë²ˆ
+	ACTION_QUICK_MIN_EX2,				///< í€µìŠ¬ë¡¯-ë²ˆ
+	ACTION_QUICK_PLUS_EX2,				///< í€µìŠ¬ë¡¯+ë²ˆ
 	ACTION_QUICK_SUMMON,
 	ACTION_QUICK_SUMMON2,
 
-	// 160 ~ 169 ±îÁö ¹Ì´Ï¸Ê °ü·Ã
-	ACTION_MINIMAP_ZOOMOUT = 160,			///< ¹Ì´Ï¸Ê Ãà¼Ò
-	ACTION_MINIMAP_ZOOMIN,					///< ¹Ì´Ï¸Ê È®´ë
+	// 160 ~ 169 ê¹Œì§€ ë¯¸ë‹ˆë§µ ê´€ë ¨
+	ACTION_MINIMAP_ZOOMOUT = 160,			///< ë¯¸ë‹ˆë§µ ì¶•ì†Œ
+	ACTION_MINIMAP_ZOOMIN,					///< ë¯¸ë‹ˆë§µ í™•ëŒ€
 
-	// 170 ~ 179 ±îÁö Ã¤ÆÃÃ¢ °ü·Ã
-	ACTION_CHAT_PGUP = 170,				///< Ã¤ÆÃÃ¢ ÀÌÀü ÆäÀÌÁö
-	ACTION_CHAT_PGDN,					///< Ã¤ÆÃÃ¢ ´ÙÀ½ ÆäÀÌÁö
+	// 170 ~ 179 ê¹Œì§€ ì±„íŒ…ì°½ ê´€ë ¨
+	ACTION_CHAT_PGUP = 170,				///< ì±„íŒ…ì°½ ì´ì „ íŽ˜ì´ì§€
+	ACTION_CHAT_PGDN,					///< ì±„íŒ…ì°½ ë‹¤ìŒ íŽ˜ì´ì§€
 
-	// 180 ~ 199 ±îÁö ÀüÃ¼ ¸í·É °ü·Ã
-	ACTION_GLOBAL_CANCLE = 180,			///< Ãë¼Ò(Targeting, Windows, Main Menu)
-	ACTION_GLOBAL_SNAPSHOT,				///< ½ºÅ©¸°¼¦
-	ACTION_GLOBAL_CHAT,					///< Ã¤ÆÃÀÔ·Â
+	// 180 ~ 199 ê¹Œì§€ ì „ì²´ ëª…ë ¹ ê´€ë ¨
+	ACTION_GLOBAL_CANCLE = 180,			///< ì·¨ì†Œ(Targeting, Windows, Main Menu)
+	ACTION_GLOBAL_SNAPSHOT,				///< ìŠ¤í¬ë¦°ìƒ·
+	ACTION_GLOBAL_CHAT,					///< ì±„íŒ…ìž…ë ¥
 	ACTION_GLOBAL_RENDERGUI,
 
 	ACTION_NUMS = 255,
-	ACTION_INVALID = ACTION_NUMS, 				///< ¾×¼Ç IDÀÇ ³¡¹øÈ£
+	ACTION_INVALID = ACTION_NUMS, 				///< ì•¡ì…˜ IDì˜ ëë²ˆí˜¸
 };
 
-#define dNTL_KEY_EMPTY		0x8000		// Á¤ÀÇµÈ Å°°¡ ¾ø´Ù.
-#define dNTL_KEY_INVALID	0xffff		// Å° °ªÀÌ INVALID.
+#define dNTL_KEY_EMPTY		0x8000		// ì •ì˜ëœ í‚¤ê°€ ì—†ë‹¤.
+#define dNTL_KEY_INVALID	0xffff		// í‚¤ ê°’ì´ INVALID.
 
 /**
-* \breif NTLÀÇ Å° Å¸ÀÔ
+* \breif NTLì˜ í‚¤ íƒ€ìž…
 * NTL Define:
 * 0 0 0 0 0 0 0 0    00000000
 * E           C A    Key Data
-* »óÀ§ 8ºñÆ® : C = CTRL, A = ALT
-* ÇÏÀ§ 8ºñÆ® : Key Data
+* ìƒìœ„ 8ë¹„íŠ¸ : C = CTRL, A = ALT
+* í•˜ìœ„ 8ë¹„íŠ¸ : Key Data
 */
 typedef union _uNtlKey
 {
 	unsigned short key;			// 16Bit
 
 	/**
-	* key¸¦ »óÀ§ ºñÆ®¿Í ÇÏÀ§ ºñÆ®·Î ³ª´µ¾î¼­ »ç¿ëÇÏ´Â °ø¿ë ±¸Á¶Ã¼
+	* keyë¥¼ ìƒìœ„ ë¹„íŠ¸ì™€ í•˜ìœ„ ë¹„íŠ¸ë¡œ ë‚˜ë‰˜ì–´ì„œ ì‚¬ìš©í•˜ëŠ” ê³µìš© êµ¬ì¡°ì²´
 	*/
 	struct _BIT
 	{
-		unsigned short ori:8;	// ¿À¸®Áö³Î Key¿¡ »ç¿ë
-		unsigned short bit8:1;	// Á¶ÇÕÅ°·Î »ç¿ëµÇ´Â Bit flags
+		unsigned short ori:8;	// ì˜¤ë¦¬ì§€ë„ Keyì— ì‚¬ìš©
+		unsigned short bit8:1;	// ì¡°í•©í‚¤ë¡œ ì‚¬ìš©ë˜ëŠ” Bit flags
 		unsigned short bit7:1;
 		unsigned short bit6:1;
 		unsigned short bit5:1;
@@ -268,61 +268,61 @@ typedef union _uNtlKey
 } uNtlKey;
 
 /**
-* \brief ACTIONMAPÀÇ Action°ú Key¸¦ ÀúÀåÇÏ´Â µ¥ÀÌÅ¸Çü
+* \brief ACTIONMAPì˜ Actionê³¼ Keyë¥¼ ì €ìž¥í•˜ëŠ” ë°ì´íƒ€í˜•
 * KEY		: unsigned short
 * DATA		: unsigned short 
 */
 typedef std::map< unsigned short, unsigned short > ACTIONMAP;
 
 /**
-* \brief ¾×¼ÇÀ» ÀúÀåÇÏ°í ÀÖ±â À§ÇÑ º¤ÅÍ
+* \brief ì•¡ì…˜ì„ ì €ìž¥í•˜ê³  ìžˆê¸° ìœ„í•œ ë²¡í„°
 */
 typedef std::vector< unsigned short > ACTIONVEC;
 
 /**
-* \brief ¾×¼Ç¸ÊÀ» Setting ÇÏ´Âµ¥ÀÇ Result
+* \brief ì•¡ì…˜ë§µì„ Setting í•˜ëŠ”ë°ì˜ Result
 */
 enum eACTIONMAP_SET_RESULT
 {
-	SET_RESULT_FAILED = 0,					// ¾Ë¼ö ¾ø´Â ¿¡·¯
-	SET_RESULT_FIXED_KEY,					// Å°°¡ °íÁ¤µÇ¾î ÀÖ¾î¼­ º¯°æÇÏÁö ¸øÇÑ´Ù.
-	SET_RESULT_FIXED_ACTION,				// ¾×¼ÇÀÌ º¯°æÇÏÁö ¸øÇÏ´Â ¾×¼ÇÀÌ´Ù.
-	SET_RESULT_NOT_COMBINE_ACTION,			// Á¶ÇÕÅ°¸¦ »ç¿ëÇÏÁö ¸øÇÏ´Â ¾×¼ÇÀÌ´Ù.
-	SET_RESULT_ALREADY_KEY,					// Key°¡ ÀÌ¹Ì Á¸ÀçÇÔ		(±âÁ¸¿¡ ÀÖ´ø Key´Â ÀÒ¾î¹ö¸²)
-	SET_RESULT_ALREADY_ACTION,				// ActionÀÌ ÀÌ¹Ì Á¸ÀçÇÔ		(±âÁ¸¿¡ ÀÖ´ø ActionÀº ÀÒ¾î¹ö¸²)
-	SET_RESULT_SAME_KEY,					// °°Àº Key°¡ ¼¼ÆÃµÇ¾î ÀÖ¾úÀ½
-	SET_RESULT_NEGATIVE_MODE,				// ºÒ°¡´ÉÇÑ ¸ðµå
-	SET_RESULT_OK,							// Á¤»óÀûÀ¸·Î ¼º°ø
-	SET_RESULT_NUMS,						// RESULT °¹¼ö
+	SET_RESULT_FAILED = 0,					// ì•Œìˆ˜ ì—†ëŠ” ì—ëŸ¬
+	SET_RESULT_FIXED_KEY,					// í‚¤ê°€ ê³ ì •ë˜ì–´ ìžˆì–´ì„œ ë³€ê²½í•˜ì§€ ëª»í•œë‹¤.
+	SET_RESULT_FIXED_ACTION,				// ì•¡ì…˜ì´ ë³€ê²½í•˜ì§€ ëª»í•˜ëŠ” ì•¡ì…˜ì´ë‹¤.
+	SET_RESULT_NOT_COMBINE_ACTION,			// ì¡°í•©í‚¤ë¥¼ ì‚¬ìš©í•˜ì§€ ëª»í•˜ëŠ” ì•¡ì…˜ì´ë‹¤.
+	SET_RESULT_ALREADY_KEY,					// Keyê°€ ì´ë¯¸ ì¡´ìž¬í•¨		(ê¸°ì¡´ì— ìžˆë˜ KeyëŠ” ìžƒì–´ë²„ë¦¼)
+	SET_RESULT_ALREADY_ACTION,				// Actionì´ ì´ë¯¸ ì¡´ìž¬í•¨		(ê¸°ì¡´ì— ìžˆë˜ Actionì€ ìžƒì–´ë²„ë¦¼)
+	SET_RESULT_SAME_KEY,					// ê°™ì€ Keyê°€ ì„¸íŒ…ë˜ì–´ ìžˆì—ˆìŒ
+	SET_RESULT_NEGATIVE_MODE,				// ë¶ˆê°€ëŠ¥í•œ ëª¨ë“œ
+	SET_RESULT_OK,							// ì •ìƒì ìœ¼ë¡œ ì„±ê³µ
+	SET_RESULT_NUMS,						// RESULT ê°¯ìˆ˜
 	SET_RESULT_INVALID = SET_RESULT_NUMS
 };
 
 /**
-* \brief ¾×¼Ç¸ÊÀÇ ¿¡·¯ ÄÚµå¸¦ ´ã°í ÀÖ´Â º¤ÅÍ
+* \brief ì•¡ì…˜ë§µì˜ ì—ëŸ¬ ì½”ë“œë¥¼ ë‹´ê³  ìžˆëŠ” ë²¡í„°
 */
 typedef std::vector< BYTE > RESULTVEC;
 
 /**
-* \brief ¾×¼Ç¸ÊÀÇ ¼Ó¼º ( KEY¿Í ACTION µÑ´Ù °¡´É )
-* Ãß°¡µÉ ¼ö ÀÖ´Ù.
+* \brief ì•¡ì…˜ë§µì˜ ì†ì„± ( KEYì™€ ACTION ë‘˜ë‹¤ ê°€ëŠ¥ )
+* ì¶”ê°€ë  ìˆ˜ ìžˆë‹¤.
 */
-// #define TYPE_NONE			0x00000000		// ¾Æ¹« ¼Ó¼ºÀÌ ¾ø´Ù.
-#define TYPE_FIXED			0x00000001		// °íÁ¤µÈ Å¸ÀÔ, º¯°æÇÏÁö ¸øÇÑ´Ù.
-#define TYPE_COMBINE		0x00000002		// Á¶ÇÕÅ°·Î »ç¿ëµÇ´ÂÁöÀÇ ¿©ºÎ
-#define TYPE_EXCLUSIVE		0x00000004		// Á¶ÇÕÅ°·Î´Â »ç¿ëÇÏÁö ¸øÇÏ´Â ¾×¼Ç
+// #define TYPE_NONE			0x00000000		// ì•„ë¬´ ì†ì„±ì´ ì—†ë‹¤.
+#define TYPE_FIXED			0x00000001		// ê³ ì •ëœ íƒ€ìž…, ë³€ê²½í•˜ì§€ ëª»í•œë‹¤.
+#define TYPE_COMBINE		0x00000002		// ì¡°í•©í‚¤ë¡œ ì‚¬ìš©ë˜ëŠ”ì§€ì˜ ì—¬ë¶€
+#define TYPE_EXCLUSIVE		0x00000004		// ì¡°í•©í‚¤ë¡œëŠ” ì‚¬ìš©í•˜ì§€ ëª»í•˜ëŠ” ì•¡ì…˜
 
 /**
-* \brief Å°³ª ¾×¼ÇÀÇ ¼Ó¼ºÀ» ÀúÀåÇÏ°í ÀÖ´Â ¸Ê
+* \brief í‚¤ë‚˜ ì•¡ì…˜ì˜ ì†ì„±ì„ ì €ìž¥í•˜ê³  ìžˆëŠ” ë§µ
 */
 typedef std::map< unsigned short, int >		TYPEMAP;
 
 /**
-* \brief Å°ÀÇ ÀÌ¸§À» º¸°üÇÏ°í ÀÖ´Â ¸Ê
+* \brief í‚¤ì˜ ì´ë¦„ì„ ë³´ê´€í•˜ê³  ìžˆëŠ” ë§µ
 */
 typedef std::map<unsigned short, std::wstring> KEYNAMEMAP;
 
 /**
-* \brief ACTIONMAPÀ» »ç¿ëÇÏ´Â ¸ðµå¸¦ ¿­°ÅÇÑ´Ù.
+* \brief ACTIONMAPì„ ì‚¬ìš©í•˜ëŠ” ëª¨ë“œë¥¼ ì—´ê±°í•œë‹¤.
 */
 enum eACTIONMAP_MODE
 {
@@ -333,7 +333,7 @@ enum eACTIONMAP_MODE
 	ACTIONMAP_MODE_INVALID = ACTIONMAP_MODE_NUMS
 };
 
-// Å°°¡ ¹«Á¦ÇÑÀ¸·Î ¹«½ÃµÇ¾î¾ß ÇÒ ¶§ »ç¿ëµÇ´Â Count Define
+// í‚¤ê°€ ë¬´ì œí•œìœ¼ë¡œ ë¬´ì‹œë˜ì–´ì•¼ í•  ë•Œ ì‚¬ìš©ë˜ëŠ” Count Define
 #define ACTIONMAP_IGNORE_KEY_UNLIMITED_IGNORE	0xFF
 
 #endif//__NTL_ACTIONMAP_DEF_H__

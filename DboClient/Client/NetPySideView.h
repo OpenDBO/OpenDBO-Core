@@ -13,7 +13,7 @@
     
 /**
  * \ingroup Client
- * \brief NetPy Á¤º¸¸¦ Ç¥½ÃÇÏ´Â Side View
+ * \brief NetPy ì •ë³´ë¥¼ í‘œì‹œí•˜ëŠ” Side View
  *
  * \date 2009-04-20
  * \author agebreak
@@ -49,18 +49,18 @@ protected:
     VOID			OnPaint();
 
     VOID            SetState(eNetPySideViewType type);
-    VOID            OnShowInfo();           ///< ÇöÀç NetPy Á¤º¸¸¦ Ãâ·ÂÇÑ´Ù
-    VOID            OnShowNotify();         ///< NetPy ½Àµæ Á¤º¸¸¦ Ãâ·ÂÇÑ´Ù. 
+    VOID            OnShowInfo();           ///< í˜„ìž¬ NetPy ì •ë³´ë¥¼ ì¶œë ¥í•œë‹¤
+    VOID            OnShowNotify();         ///< NetPy ìŠµë“ ì •ë³´ë¥¼ ì¶œë ¥í•œë‹¤. 
 
 protected:
-    CWindowby3			m_BackPanel;		///< ¹è°æ
-    eNetPySideViewType  m_type;             ///< ÇöÀç º¸¿©Áö´Â Å¸ÀÔ
+    CWindowby3			m_BackPanel;		///< ë°°ê²½
+    eNetPySideViewType  m_type;             ///< í˜„ìž¬ ë³´ì—¬ì§€ëŠ” íƒ€ìž…
 
     gui::CSlot			m_slotPaint;
     gui::CSlot			m_slotMove;
     gui::CSlot			m_slotResize;
 
-    // ÇöÀç NetPy Á¤º¸
+    // í˜„ìž¬ NetPy ì •ë³´
     gui::CStaticBox*    m_pstbRemainTimeTitle;
     gui::CStaticBox*    m_pstbRemainTimeData;    
     gui::CStaticBox*    m_pstbGetTitle;
@@ -68,12 +68,12 @@ protected:
     gui::CStaticBox*    m_pstbCurrentTitle;
     gui::CStaticBox*    m_pstbCurrentData;   
 
-    // NetPy È¹µæ Á¤º¸
+    // NetPy íšë“ ì •ë³´
     gui::CStaticBox*    m_pstbGetPoint;
 
-    SDboEventUpdateNetPy m_UpdateNetPyInfo;                 ///< ¼­¹ö·Î ºÎÅÍ ¹ÞÀº NetPy ¾÷µ¥ÀÌÆ® Á¤º¸
-    DWORD                m_dwUpdateNetPyPoint;              ///< È¹µæ Æ÷ÀÎÆ®
-    RwReal               m_fRemainTime;                     ///< ´ÙÀ½ NetPy È¹µæ±îÁöÀÇ ³²Àº ½Ã°£
-    RwReal               m_fNotifyShowTime;                 ///< Notify Ç¥½Ã ½Ã°£    
-    RwBool               m_bIsPCBang;                       ///< PC¹æÀÎÁö¸¦ ÆÇ´ÜÇÑ´Ù.
+    SDboEventUpdateNetPy m_UpdateNetPyInfo;                 ///< ì„œë²„ë¡œ ë¶€í„° ë°›ì€ NetPy ì—…ë°ì´íŠ¸ ì •ë³´
+    DWORD                m_dwUpdateNetPyPoint;              ///< íšë“ í¬ì¸íŠ¸
+    RwReal               m_fRemainTime;                     ///< ë‹¤ìŒ NetPy íšë“ê¹Œì§€ì˜ ë‚¨ì€ ì‹œê°„
+    RwReal               m_fNotifyShowTime;                 ///< Notify í‘œì‹œ ì‹œê°„    
+    RwBool               m_bIsPCBang;                       ///< PCë°©ì¸ì§€ë¥¼ íŒë‹¨í•œë‹¤.
 };

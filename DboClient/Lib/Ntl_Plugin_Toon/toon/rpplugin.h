@@ -34,7 +34,7 @@ extern "C"
 
 #include "rwcore.h"
 /*
-//Renderware rpe Ãß°¡(HongHoDong)
+//Renderware rpe ì¶”ê°€(HongHoDong)
 enum e_rwdb_CriterionTOON
 {
 

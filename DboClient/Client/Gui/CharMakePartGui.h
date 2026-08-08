@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: CharMakePartGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 10. 10
 * Abstract		: 
 *****************************************************************************
-* Desc			: Ä³¸¯ÅÍ¸¦ ¸¸µé±â À§ÇØ Ä³¸¯ÅÍÀÇ °¢ ºÎºĞÀ» ¼±ÅÃÇÏ´Â Å¬·¡½º
+* Desc			: ìºë¦­í„°ë¥¼ ë§Œë“¤ê¸° ìœ„í•´ ìºë¦­í„°ì˜ ê° ë¶€ë¶„ì„ ì„ íƒí•˜ëŠ” í´ë˜ìŠ¤
 *****************************************************************************/
 
 #pragma once
@@ -52,8 +52,8 @@ public:
 
 	struct sCHAR_ATTRIBUTE
 	{
-		RwUInt8				byValue;		///< ÇöÀç ¼±ÅÃµÈ °ª
-		RwUInt8				byPostValue;	///< ÀÌÀü¿¡ ¼±ÅÃµÈ °ª
+		RwUInt8				byValue;		///< í˜„ì¬ ì„ íƒëœ ê°’
+		RwUInt8				byPostValue;	///< ì´ì „ì— ì„ íƒëœ ê°’
 		RwUInt8				byMaxValue;
 
 		VOID Select(RwUInt8 byIndex)
@@ -108,9 +108,9 @@ protected:
 	gui::CSlot			m_slotPaint;
 	gui::CSlot			m_slotPostPaint;
 
-	CWindowby3			m_Background;	///< ¹è°æ »ó´Ü
+	CWindowby3			m_Background;	///< ë°°ê²½ ìƒë‹¨
 
-	gui::CButton*		m_pRendomButton;	///< ÀÚµ¿ ¼±ÅÃ ¹öÆ°
+	gui::CButton*		m_pRendomButton;	///< ìë™ ì„ íƒ ë²„íŠ¼
 
 	gui::CStaticBox*	m_pTitleStatic;
 

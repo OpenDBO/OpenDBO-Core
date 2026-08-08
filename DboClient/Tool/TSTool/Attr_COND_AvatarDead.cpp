@@ -1,4 +1,4 @@
-// Attr_COND_AvatarDead.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_COND_AvatarDead.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_COND_AvatarDead.h"
 
 
-// CAttr_COND_AvatarDead ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_COND_AvatarDead ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_COND_AvatarDead, CAttr_Page, 1)
 
@@ -43,4 +43,4 @@ BEGIN_MESSAGE_MAP(CAttr_COND_AvatarDead, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_COND_AvatarDead ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_COND_AvatarDead ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

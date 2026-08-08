@@ -2,7 +2,7 @@
 #include "afxwin.h"
 #include "NtlWorldFileMemAccessor.h"
 
-// CFieldSearchDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CFieldSearchDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 //////////////////////////////////////////////////////////////////////////
 // dNTL_WORLD_FILE : DEFINE
@@ -14,10 +14,10 @@ class CFieldSearchDlg : public CDialog
 	DECLARE_DYNAMIC(CFieldSearchDlg)
 
 public:
-	CFieldSearchDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CFieldSearchDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CFieldSearchDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_SEARCH };
 
 	enum ESEARCHLIST_FIELD
@@ -33,7 +33,7 @@ public:
 	};
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 
@@ -89,10 +89,10 @@ class CFieldSearchDlg : public CDialog, public CNtlWorldFileMemAccessor
 	DECLARE_DYNAMIC(CFieldSearchDlg)
 
 public:
-	CFieldSearchDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CFieldSearchDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CFieldSearchDlg();
 
-	// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+	// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_SEARCH };
 
 	enum ESEARCHLIST_FIELD
@@ -108,7 +108,7 @@ public:
 	};
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 

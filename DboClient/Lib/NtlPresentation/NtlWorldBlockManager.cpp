@@ -421,7 +421,7 @@ RwBool CNtlWorldBlockMananger::LoadProperty()
 		// 	GetNtlWorldFieldInfo()->FieldColorLoadFromFile(pFile, m_pNtlObjectProp);
 		// 	GetNtlWorldFieldInfo()->FieldWeatherLoadFromFile(pFile, m_pNtlObjectProp);
 		// 	GetNtlWorldFieldInfo()->FieldHeatHazeLoadFromFile(pFile, m_pNtlObjectProp);
-		// FIELD PROPERTY :: ÀÎµµ¾î¿¡¼­´Â TILE PROPERTY¸¦ »ç¿ëÇÏÁö ¾Ê´Â´Ù.
+		// FIELD PROPERTY :: ì¸ë„ì–´ì—ì„œëŠ” TILE PROPERTYë¥¼ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤.
 		fread(pFieldProp->_Name, 64, 1, pFile);
 		//fread(pFieldProp->_pBitProp, sizeof(DWORD) * (dGET_WORLD_PARAM()->WorldSectorTileNum * 2) * (dGET_WORLD_PARAM()->WorldSectorTileNum * 2), 1, pFile);
 		fread(&pFieldProp->_FogColor, sizeof(RwRGBA), 1, pFile);
@@ -508,7 +508,7 @@ RwBool CNtlWorldBlockMananger::SaveProperty()
 		// 	GetNtlWorldFieldInfo()->FieldColorSaveIntoFile(pFile, pFieldProp);
 		// 	GetNtlWorldFieldInfo()->FieldWeatherSaveIntoFile(pFile, pFieldProp);
 		// 	GetNtlWorldFieldInfo()->FieldHeatHazeSaveIntoFile(pFile, pFieldProp);
-		// FIELD PROPERTY :: ÀÎµµ¾î¿¡¼­´Â TILE PROPERTY¸¦ »ç¿ëÇÏÁö ¾Ê´Â´Ù.
+		// FIELD PROPERTY :: ì¸ë„ì–´ì—ì„œëŠ” TILE PROPERTYë¥¼ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤.
 		fwrite(pFieldProp->_Name, 64, 1, pFile);
 		//fwrite(pFieldProp->_pBitProp, sizeof(DWORD) * (dGET_WORLD_PARAM()->WorldSectorTileNum * 2) * (dGET_WORLD_PARAM()->WorldSectorTileNum * 2), 1, pFile);
 		fwrite(&pFieldProp->_FogColor, sizeof(RwRGBA), 1, pFile);
@@ -611,7 +611,7 @@ RwBool CNtlWorldBlockMananger::SaveProperty(RwUInt32 iBlockIdx)
 
 	::fseek(pFile, iPropertyRange * iBlockIdx, SEEK_CUR);
 
-	// FIELD PROPERTY :: ÀÎµµ¾î¿¡¼­´Â TILE PROPERTY¸¦ »ç¿ëÇÏÁö ¾Ê´Â´Ù.
+	// FIELD PROPERTY :: ì¸ë„ì–´ì—ì„œëŠ” TILE PROPERTYë¥¼ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤.
 	// 	GetNtlWorldFieldInfo()->FieldNameSaveIntoFile(pFile, pFieldProp);
 	// 	//GetNtlWorldFieldInfo()->FieldBitPropSaveIntoFile(pFile, pFieldProp, iTileNumInField);
 	// 	GetNtlWorldFieldInfo()->FieldFogSaveIntoFile(pFile, pFieldProp);

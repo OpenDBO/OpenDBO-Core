@@ -1,4 +1,4 @@
-// DirectionPropController.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// DirectionPropController.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -47,7 +47,7 @@ END_MESSAGE_MAP()
 
 
 
-// CDirectionPropController ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CDirectionPropController ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 
 
@@ -56,7 +56,7 @@ int CDirectionPropController::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// TODO:  ¿©±â¿¡ Æ¯¼öÈ­µÈ ÀÛ¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì‘ì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if( m_PropGrid.Create(CRect(0, 0, 0, 0), this, IDS_STRING_SOUND) )
 	{
 		CString strTemp;
@@ -101,7 +101,7 @@ void CDirectionPropController::OnSize(UINT nType, int cx, int cy)
 {
 	CWnd::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CSize sz(0);
 
 	if (m_PropGrid.GetSafeHwnd())

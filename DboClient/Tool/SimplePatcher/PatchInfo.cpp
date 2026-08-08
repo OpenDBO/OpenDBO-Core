@@ -127,13 +127,13 @@ public:
 	{
 		m_strFullPathFileName = strFullPathFileName;
 
-		// ÆÄÀÏ ¼Ó¼ºÀ» Normal·Î ¹Ù²Û´Ù
+		// íŒŒì¼ ì†ì„±ì„ Normalë¡œ ë°”ê¾¼ë‹¤
 		SetFileAttributes( m_strFullPathFileName, FILE_ATTRIBUTE_NORMAL );
 	}
 
 	~CCurVerXmlSaver( void )
 	{
-		// ÆÄÀÏ ¼Ó¼ºÀ» HiddenÀ¸·Î ¹Ù²Û´Ù
+		// íŒŒì¼ ì†ì„±ì„ Hiddenìœ¼ë¡œ ë°”ê¾¼ë‹¤
 		SetFileAttributes( m_strFullPathFileName, FILE_ATTRIBUTE_HIDDEN );
 	}
 
@@ -264,7 +264,7 @@ bool CPatchHistory::LoadCurVersionList( CString strFullPathFileName )
 
 	if ( !doc.Load( (TCHAR*)pPath ) )
 	{
-		// ÇöÀç ¹öÀü¿¡ ´ëÇÑ ÆÄÀÏ Á¤º¸°¡ ¾øÀ» ¼ö µµ ÀÖ´Ù
+		// í˜„ì¬ ë²„ì „ì— ëŒ€í•œ íŒŒì¼ ì •ë³´ê°€ ì—†ì„ ìˆ˜ ë„ ìˆë‹¤
 		return true;
 	}
 
@@ -351,7 +351,7 @@ bool CPatchHistory::LoadPatchList( CString strPatchListFileName, CString strClie
 
 	//////////////////////////////////////////////////////////////////////////
 	//
-	// Client patch list¸¦ ÀĞ¾îµéÀÎ´Ù
+	// Client patch listë¥¼ ì½ì–´ë“¤ì¸ë‹¤
 	//
 	//////////////////////////////////////////////////////////////////////////
 
@@ -426,7 +426,7 @@ bool CPatchHistory::LoadPatchList( CString strPatchListFileName, CString strClie
 
 	//////////////////////////////////////////////////////////////////////////
 	//
-	// Launcher patch list¸¦ ÀĞ¾îµéÀÎ´Ù
+	// Launcher patch listë¥¼ ì½ì–´ë“¤ì¸ë‹¤
 	//
 	//////////////////////////////////////////////////////////////////////////
 

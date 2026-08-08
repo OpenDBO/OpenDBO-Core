@@ -1,17 +1,17 @@
 /******************************************************************************
 * File			: NtlPLCameraRT.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 3. 7
 * Abstract		: 
 *****************************************************************************
-* Desc			: Camera render texture »ı¼º ¼ø¼­
-*				  1. CameraBeginUpdate()ÀÇ true ¸é Rendering
-*				  2. CameraEndUpdate() È£Ãâ
-*				  3. GetTexture() ·Î ÅØ½ºÃ³ ¹İÈ¯
-* ÁÖÀÇ ) CameraBeginUpdate()¿¡ ¸Å¹ø »õ·Î¿î Framde buffer¸¦ ÇÒ´çÇÑ´Ù. µû¶ó¼­
-*		 CameraBeginUpdate()·Î ÅØ½ºÃ³¸¦ »ı¼ºÇÏ°í ¹İµå½Ã GetTexture()·Î ÅØ½ºÃ³¸¦
-*		 ¾ò¾î¿Í¼­ ÅØ½ºÃ³¸¦ ÇØÁÖ¾î¾ß ÇÑ´Ù.
+* Desc			: Camera render texture ìƒì„± ìˆœì„œ
+*				  1. CameraBeginUpdate()ì˜ true ë©´ Rendering
+*				  2. CameraEndUpdate() í˜¸ì¶œ
+*				  3. GetTexture() ë¡œ í…ìŠ¤ì²˜ ë°˜í™˜
+* ì£¼ì˜ ) CameraBeginUpdate()ì— ë§¤ë²ˆ ìƒˆë¡œìš´ Framde bufferë¥¼ í• ë‹¹í•œë‹¤. ë”°ë¼ì„œ
+*		 CameraBeginUpdate()ë¡œ í…ìŠ¤ì²˜ë¥¼ ìƒì„±í•˜ê³  ë°˜ë“œì‹œ GetTexture()ë¡œ í…ìŠ¤ì²˜ë¥¼
+*		 ì–»ì–´ì™€ì„œ í…ìŠ¤ì²˜ë¥¼ í•´ì£¼ì–´ì•¼ í•œë‹¤.
 *****************************************************************************/
 #pragma once
 
@@ -25,7 +25,7 @@ public:
 	VOID			Create(RwInt32 iWidth, RwInt32 iHeigth);
 	VOID			Destroy();
 
-	RwBool			CameraBeginUpdate();			///< t : Ä«¸Ş¶ó ÅØ½ºÃ³¿¡ ·£´õ¸µÇÒ ÁØºñ°¡ µÇ¾ú´Ù
+	RwBool			CameraBeginUpdate();			///< t : ì¹´ë©”ë¼ í…ìŠ¤ì²˜ì— ëœë”ë§í•  ì¤€ë¹„ê°€ ë˜ì—ˆë‹¤
 	VOID			CameraEndUpdate();
 
 	RwTexture*		GetTexture();

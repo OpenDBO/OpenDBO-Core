@@ -14,7 +14,7 @@ enum eRESULTCODE
 	// Base ( 0 ~ 100 )
 	//-----------------------------------------------------------------
 	RESULT_SUCCESS = 0,
-	RESULT_FAIL,					// Àü¹ÝÀûÀÎ ½ÇÆÐ
+	RESULT_FAIL,					// ì „ë°˜ì ì¸ ì‹¤íŒ¨
 	
 	//-----------------------------------------------------------------
 
@@ -22,22 +22,22 @@ enum eRESULTCODE
 	//-----------------------------------------------------------------
 	// Auth ( 100 ~ 199 )
 	//-----------------------------------------------------------------
-	AUTH_SUCCESS = 100,				// ÀÎÁõ¼­¹ö»óÀÇ ¸ðµç ¼º°ø
-	AUTH_FAIL,						// ÀÎÁõ¼­¹ö»óÀÇ Àü¹ÝÀûÀÎ ½ÇÆÐ
-	AUTH_VERSION_FAIL,              // ¹öÁ¯ ºÒÀÏÄ¡
-	AUTH_TOO_LONG_ACCOUNT,          // °èÁ¤ ÀÌ¸§ÀÇ ±æÀÌ°¡ ÃÊ°úµÇ¾ú½À´Ï´Ù. 
-	AUTH_TOO_LONG_PASSWORD,         // ÆÐ½º¿öµåÀÇ ±æÀÌ°¡ ÃÊ°úµÇ¾ú½À´Ï´Ù. 
-	AUTH_AUTHKEY_FAIL,              // ÀÎÁõÅ° ÀÎÁõÀÌ ½ÇÆÐÇÏ¿´½À´Ï´Ù.
-	AUTH_USER_SAMENAME_EXIST,       // ÀÌ¹Ì °èÁ¤¸íÀÌ Á¸ÀçÇÕ´Ï´Ù. 
-	AUTH_WRONG_PASSWORD,            // ÆÐ½º¿öµå°¡ Æ²¸³´Ï´Ù. 
-	AUTH_USER_NOT_FOUND,            // °èÁ¤¸íÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.
-	AUTH_USER_EXIST,                // ÀÌ¹Ì Á¢¼ÓÁßÀÔ´Ï´Ù.
-	AUTH_USER_EXIST_IN_CHARACTER_SERVER,		// Ä³¸¯ÅÍ ¼­¹ö¿¡ ÀÌ¹Ì Á¢¼ÓÁßÀÔ´Ï´Ù.
-	AUTH_DB_FAIL,					// DB ·Îµå ¿¡·¯
-	AUTH_NO_AVAILABLE_CHARACTER_SERVER,			// ÇöÀç Á¢¼Ó °¡´ÉÇÑ Ä³¸¯ÅÍ ¼­¹ö°¡ ¾ø½À´Ï´Ù.
-	AUTH_USER_BLOCK,				// °èÁ¤ÀÌ ºí·Ï µÇ¾ú½À´Ï´Ù. ÀÚ¼¼ÇÑ »çÇ×Àº È¨ÆäÀÌÁö¸¦ ¹®ÀÇÇÏ½Ê½Ã¿ä.
-	AUTH_USER_TEMPORARY_BLOCK,		// ¿î¿µÀÛ¾÷ÁßÀÌ¶ó Á¢¼ÓÇÏ½Ç ¼ö ¾ø½À´Ï´Ù. Àá½Ã ÈÄ Á¢¼ÓÀ» ½ÃµµÇØº¸½Ê½Ã¿ä.
-	AUTH_SERVER_LOCKED,							// ÇöÀç ¼­¹ö°¡ Àá±ä »óÅÂ¿©¼­ Á¢¼ÓÇÒ ¼ö ¾ø½À´Ï´Ù.
+	AUTH_SUCCESS = 100,				// ì¸ì¦ì„œë²„ìƒì˜ ëª¨ë“  ì„±ê³µ
+	AUTH_FAIL,						// ì¸ì¦ì„œë²„ìƒì˜ ì „ë°˜ì ì¸ ì‹¤íŒ¨
+	AUTH_VERSION_FAIL,              // ë²„ì ¼ ë¶ˆì¼ì¹˜
+	AUTH_TOO_LONG_ACCOUNT,          // ê³„ì • ì´ë¦„ì˜ ê¸¸ì´ê°€ ì´ˆê³¼ë˜ì—ˆìŠµë‹ˆë‹¤. 
+	AUTH_TOO_LONG_PASSWORD,         // íŒ¨ìŠ¤ì›Œë“œì˜ ê¸¸ì´ê°€ ì´ˆê³¼ë˜ì—ˆìŠµë‹ˆë‹¤. 
+	AUTH_AUTHKEY_FAIL,              // ì¸ì¦í‚¤ ì¸ì¦ì´ ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.
+	AUTH_USER_SAMENAME_EXIST,       // ì´ë¯¸ ê³„ì •ëª…ì´ ì¡´ìž¬í•©ë‹ˆë‹¤. 
+	AUTH_WRONG_PASSWORD,            // íŒ¨ìŠ¤ì›Œë“œê°€ í‹€ë¦½ë‹ˆë‹¤. 
+	AUTH_USER_NOT_FOUND,            // ê³„ì •ëª…ì´ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	AUTH_USER_EXIST,                // ì´ë¯¸ ì ‘ì†ì¤‘ìž…ë‹ˆë‹¤.
+	AUTH_USER_EXIST_IN_CHARACTER_SERVER,		// ìºë¦­í„° ì„œë²„ì— ì´ë¯¸ ì ‘ì†ì¤‘ìž…ë‹ˆë‹¤.
+	AUTH_DB_FAIL,					// DB ë¡œë“œ ì—ëŸ¬
+	AUTH_NO_AVAILABLE_CHARACTER_SERVER,			// í˜„ìž¬ ì ‘ì† ê°€ëŠ¥í•œ ìºë¦­í„° ì„œë²„ê°€ ì—†ìŠµë‹ˆë‹¤.
+	AUTH_USER_BLOCK,				// ê³„ì •ì´ ë¸”ë¡ ë˜ì—ˆìŠµë‹ˆë‹¤. ìžì„¸í•œ ì‚¬í•­ì€ í™ˆíŽ˜ì´ì§€ë¥¼ ë¬¸ì˜í•˜ì‹­ì‹œìš”.
+	AUTH_USER_TEMPORARY_BLOCK,		// ìš´ì˜ìž‘ì—…ì¤‘ì´ë¼ ì ‘ì†í•˜ì‹¤ ìˆ˜ ì—†ìŠµë‹ˆë‹¤. ìž ì‹œ í›„ ì ‘ì†ì„ ì‹œë„í•´ë³´ì‹­ì‹œìš”.
+	AUTH_SERVER_LOCKED,							// í˜„ìž¬ ì„œë²„ê°€ ìž ê¸´ ìƒíƒœì—¬ì„œ ì ‘ì†í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 //	Account_PASSWDNOTMATCHED,
 //	Account_DUALCONNECT,
 //	Account_ALREADYEXISTID,
@@ -50,32 +50,32 @@ enum eRESULTCODE
 	//-----------------------------------------------------------------
 	// Character ( 200 ~ 300 )
 	//-----------------------------------------------------------------
-	CHARACTER_SUCCESS = 200,		// Ä³¸¯ÅÍ ¼­¹ö»óÀÇ ¸ðµç ¼º°ø
-	CHARACTER_FAIL,                 // Ä³¸¯ÅÍ ¼­¹ö»óÀÇ Àü¹ÝÀûÀÎ ½ÇÆÐ
-	CHARACTER_AUTHKEY_FAIL,         // ÀÎÁõÅ° ÀÎÁõÀÌ ½ÇÆÐÇÏ¿´½À´Ï´Ù.
-	CHARACTER_TOO_LONG_NAME,		// Ä³¸¯ÅÍ¸íÀÇ ±æÀÌ°¡ ÃÊ°úµÇ¾ú½À´Ï´Ù.
-	CHARACTER_TOO_SHORT_NAME,		// Ä³¸¯ÅÍ¸íÀÇ ±æÀÌ°¡ ³Ê¹« Âª½À´Ï´Ù.
-	CHARACTER_SAMENAME_EXIST,		// ÀÌ¹Ì Ä³¸¯ÅÍ¸íÀÌ Á¸ÀçÇÕ´Ï´Ù.
-	CHARACTER_COUNT_OVER,           // Ä³¸¯ÅÍ »ý¼º°¹¼ö°¡ ÃÊ°úµÇ¾ú½À´Ï´Ù.
-	CHARACTER_NAME_NOT_EXIST,       // Ä³¸¯ÅÍ°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.
-	CHARACTER_CREATE_VALUE_FAIL,	// Ä³¸¯ÅÍ »ý¼º °ªÀÌ Á¤È®ÇÏÁö ¾Ê½À´Ï´Ù. 
-	CHARACTER_USER_EXIST,           // ÀÌ¹Ì Á¢¼ÓÁßÀÔ´Ï´Ù.
-	CHARACTER_USER_EXIST_IN_GAME_SERVER,		// °ÔÀÓ ¼­¹ö¿¡ ÀÌ¹Ì ÇÃ·¹ÀÌÁßÀÎ Ä³¸¯ÅÍ°¡ ÀÖ½À´Ï´Ù.
-	CHARACTER_USER_ITEM_CREATE_FAIL,// Ä³¸¯ÅÍ ¾ÆÀÌÅÛ »ý¼ºÀÌ ½ÇÆÐÇÏ¿´½À´Ï´Ù. 
-	CHARACTER_USER_SKILL_CREATE_FAIL,			// Ä³¸¯ÅÍ ½ºÅ³ »ý¼ºÀÌ ½ÇÆÐÇÏ¿´½À´Ï´Ù.
-	CHARACTER_USER_QUICK_SLOT_CREATE_FAIL,		// Ä³¸¯ÅÍ Äü½½·ÔÀ» ÃÊ±âÈ­ÇÏÁö ¸øÇß½À´Ï´Ù.
-	CHARACTER_DB_QUERY_FAIL, // Ä³¸¯ÅÍ ¼­¹ö¿¡¼­ DB Äõ¸®°¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù.
-	CHARACTER_WRONG_SERVER_FARM_SELECTED,		// Àß¸øµÈ ¼­¹ö¸¦ ¼±ÅÃÇÏ¿´½À´Ï´Ù.
-	CHARACTER_USER_BLOCK,			// Ä³¸¯ÅÍ°¡ ºí·Ï µÇ¾ú½À´Ï´Ù. ÀÚ¼¼ÇÑ »çÇ×Àº È¨ÆäÀÌÁö¸¦ ¹®ÀÇÇÏ½Ê½Ã¿ä.
-	CHARACTER_BLOCK_STRING_INCLUDED, // ºÎÀûÇÕÇÑ ½ºÆ®¸µÀÌ Æ÷ÇÔµÇ¾î ÀÖ½À´Ï´Ù.
-	CHARACTER_TEMPORARY_BLOCK,		// ¿î¿µÀÛ¾÷ÁßÀÌ¶ó Á¢¼ÓÇÏ½Ç ¼ö ¾ø½À´Ï´Ù. Àá½Ã ÈÄ Á¢¼ÓÀ» ½ÃµµÇØº¸½Ê½Ã¿ä.
+	CHARACTER_SUCCESS = 200,		// ìºë¦­í„° ì„œë²„ìƒì˜ ëª¨ë“  ì„±ê³µ
+	CHARACTER_FAIL,                 // ìºë¦­í„° ì„œë²„ìƒì˜ ì „ë°˜ì ì¸ ì‹¤íŒ¨
+	CHARACTER_AUTHKEY_FAIL,         // ì¸ì¦í‚¤ ì¸ì¦ì´ ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.
+	CHARACTER_TOO_LONG_NAME,		// ìºë¦­í„°ëª…ì˜ ê¸¸ì´ê°€ ì´ˆê³¼ë˜ì—ˆìŠµë‹ˆë‹¤.
+	CHARACTER_TOO_SHORT_NAME,		// ìºë¦­í„°ëª…ì˜ ê¸¸ì´ê°€ ë„ˆë¬´ ì§§ìŠµë‹ˆë‹¤.
+	CHARACTER_SAMENAME_EXIST,		// ì´ë¯¸ ìºë¦­í„°ëª…ì´ ì¡´ìž¬í•©ë‹ˆë‹¤.
+	CHARACTER_COUNT_OVER,           // ìºë¦­í„° ìƒì„±ê°¯ìˆ˜ê°€ ì´ˆê³¼ë˜ì—ˆìŠµë‹ˆë‹¤.
+	CHARACTER_NAME_NOT_EXIST,       // ìºë¦­í„°ê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	CHARACTER_CREATE_VALUE_FAIL,	// ìºë¦­í„° ìƒì„± ê°’ì´ ì •í™•í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. 
+	CHARACTER_USER_EXIST,           // ì´ë¯¸ ì ‘ì†ì¤‘ìž…ë‹ˆë‹¤.
+	CHARACTER_USER_EXIST_IN_GAME_SERVER,		// ê²Œìž„ ì„œë²„ì— ì´ë¯¸ í”Œë ˆì´ì¤‘ì¸ ìºë¦­í„°ê°€ ìžˆìŠµë‹ˆë‹¤.
+	CHARACTER_USER_ITEM_CREATE_FAIL,// ìºë¦­í„° ì•„ì´í…œ ìƒì„±ì´ ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤. 
+	CHARACTER_USER_SKILL_CREATE_FAIL,			// ìºë¦­í„° ìŠ¤í‚¬ ìƒì„±ì´ ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.
+	CHARACTER_USER_QUICK_SLOT_CREATE_FAIL,		// ìºë¦­í„° í€µìŠ¬ë¡¯ì„ ì´ˆê¸°í™”í•˜ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.
+	CHARACTER_DB_QUERY_FAIL, // ìºë¦­í„° ì„œë²„ì—ì„œ DB ì¿¼ë¦¬ê°€ ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.
+	CHARACTER_WRONG_SERVER_FARM_SELECTED,		// ìž˜ëª»ëœ ì„œë²„ë¥¼ ì„ íƒí•˜ì˜€ìŠµë‹ˆë‹¤.
+	CHARACTER_USER_BLOCK,			// ìºë¦­í„°ê°€ ë¸”ë¡ ë˜ì—ˆìŠµë‹ˆë‹¤. ìžì„¸í•œ ì‚¬í•­ì€ í™ˆíŽ˜ì´ì§€ë¥¼ ë¬¸ì˜í•˜ì‹­ì‹œìš”.
+	CHARACTER_BLOCK_STRING_INCLUDED, // ë¶€ì í•©í•œ ìŠ¤íŠ¸ë§ì´ í¬í•¨ë˜ì–´ ìžˆìŠµë‹ˆë‹¤.
+	CHARACTER_TEMPORARY_BLOCK,		// ìš´ì˜ìž‘ì—…ì¤‘ì´ë¼ ì ‘ì†í•˜ì‹¤ ìˆ˜ ì—†ìŠµë‹ˆë‹¤. ìž ì‹œ í›„ ì ‘ì†ì„ ì‹œë„í•´ë³´ì‹­ì‹œìš”.
 	CHARACTER_AUTHKEY_MISMATCH,
 	CHARACTER_AUTHKEY_CREATE_FAIL,
 	CHARACTER_AUTHKEY_NOT_FOUND,
-	CHARACTER_DELETE_GUILD_LEADER_FAIL, // ±æµå¸®´õ´Â Ä³¸¯À» Áö¿ï ¼ö ¾ø½À´Ï´Ù.
-	CHARACTER_SERVER_LOCKED,					// ÇöÀç ¼­¹ö°¡ Àá±ä »óÅÂ¿©¼­ Á¢¼ÓÇÒ ¼ö ¾ø½À´Ï´Ù.
-	CHARACTER_DISCONNECTED_FORCEDLY,			// Á¦Àç·Î ÀÎÇØ °­Á¦·Î Á¢¼ÓÀÌ Á¾·áµÇ¾ú½À´Ï´Ù.
-	CHARACTER_DISCONNECTED_TEMPORARILY,			// ¿î¿µÀÚ¿¡ ÀÇÇÏ¿© ÀÏ½ÃÀûÀ¸·Î ·Î±×¾Æ¿ô Ã³¸®°¡ µÇ¾ú½À´Ï´Ù.
+	CHARACTER_DELETE_GUILD_LEADER_FAIL, // ê¸¸ë“œë¦¬ë”ëŠ” ìºë¦­ì„ ì§€ìš¸ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	CHARACTER_SERVER_LOCKED,					// í˜„ìž¬ ì„œë²„ê°€ ìž ê¸´ ìƒíƒœì—¬ì„œ ì ‘ì†í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	CHARACTER_DISCONNECTED_FORCEDLY,			// ì œìž¬ë¡œ ì¸í•´ ê°•ì œë¡œ ì ‘ì†ì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.
+	CHARACTER_DISCONNECTED_TEMPORARILY,			// ìš´ì˜ìžì— ì˜í•˜ì—¬ ì¼ì‹œì ìœ¼ë¡œ ë¡œê·¸ì•„ì›ƒ ì²˜ë¦¬ê°€ ë˜ì—ˆìŠµë‹ˆë‹¤.
 //	Character_DUPLICATECHARACTER,
 //	Character_COUNTOVERCHARACTER,
 //	Character_NOT_AUTHENTICATED,
@@ -85,75 +85,75 @@ enum eRESULTCODE
 	//-----------------------------------------------------------------
 	// Community ( 300 ~ 400 )
 	//-----------------------------------------------------------------
-	CHAT_SUCCESS = 300,				// Ä¿¹Â´ÏÆ¼ ¼­¹ö »óÀÇ ¸ðµç ¼º°ø
-	COMMUNITY_FAIL,												// Ä¿¹Â´ÏÆ¼ ¼­¹ö »óÀÇ Àü¹ÝÀûÀÎ ½ÇÆÐ
+	CHAT_SUCCESS = 300,				// ì»¤ë®¤ë‹ˆí‹° ì„œë²„ ìƒì˜ ëª¨ë“  ì„±ê³µ
+	COMMUNITY_FAIL,												// ì»¤ë®¤ë‹ˆí‹° ì„œë²„ ìƒì˜ ì „ë°˜ì ì¸ ì‹¤íŒ¨
 
-	COMMUNITY_INVALID_AUTH_KEY,									// ÀÎÁõÅ° ÀÎÁõÀÌ ½ÇÆÐÇÏ¿´½À´Ï´Ù.
-	COMMUNITY_ALREADY_IN_SERVER,								// ÀÌ¹Ì Á¢¼ÓÁßÀÔ´Ï´Ù.  
-	COMMUNITY_DISCONNECTED_FORCEDLY,							// Á¦Àç·Î ÀÎÇØ °­Á¦·Î Á¢¼ÓÀÌ Á¾·áµÇ¾ú½À´Ï´Ù.
-	COMMUNITY_DISCONNECTED_TEMPORARILY,							// ¿î¿µÀÚ¿¡ ÀÇÇÏ¿© ÀÏ½ÃÀûÀ¸·Î ·Î±×¾Æ¿ô Ã³¸®°¡ µÇ¾ú½À´Ï´Ù.
+	COMMUNITY_INVALID_AUTH_KEY,									// ì¸ì¦í‚¤ ì¸ì¦ì´ ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.
+	COMMUNITY_ALREADY_IN_SERVER,								// ì´ë¯¸ ì ‘ì†ì¤‘ìž…ë‹ˆë‹¤.  
+	COMMUNITY_DISCONNECTED_FORCEDLY,							// ì œìž¬ë¡œ ì¸í•´ ê°•ì œë¡œ ì ‘ì†ì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.
+	COMMUNITY_DISCONNECTED_TEMPORARILY,							// ìš´ì˜ìžì— ì˜í•˜ì—¬ ì¼ì‹œì ìœ¼ë¡œ ë¡œê·¸ì•„ì›ƒ ì²˜ë¦¬ê°€ ë˜ì—ˆìŠµë‹ˆë‹¤.
 
-	COMMUNITY_COMMON_SYSTEM_ERROR,								// Ä¿¹Â´ÏÆ¼ ½Ã½ºÅÛ ¿¡·¯ÀÔ´Ï´Ù.
-	COMMUNITY_COMMON_NO_SUCH_A_TARGET,							// ´ë»óÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.
-	COMMUNITY_COMMON_TARGET_IS_NOT_YOUR_GUILD_MEMBER,			// ´ë»óÀÌ ´ç½ÅÀÇ ±æµå¿¡ ¼ÓÇØ ÀÖÁö ¾Ê½À´Ï´Ù.
-	COMMUNITY_COMMON_NEED_MORE_TIME_TO_DO_IT,					// Àá½Ã ÈÄ¿¡ ´Ù½Ã ½ÃµµÇÏ½Ê½Ã¿À.
+	COMMUNITY_COMMON_SYSTEM_ERROR,								// ì»¤ë®¤ë‹ˆí‹° ì‹œìŠ¤í…œ ì—ëŸ¬ìž…ë‹ˆë‹¤.
+	COMMUNITY_COMMON_NO_SUCH_A_TARGET,							// ëŒ€ìƒì´ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	COMMUNITY_COMMON_TARGET_IS_NOT_YOUR_GUILD_MEMBER,			// ëŒ€ìƒì´ ë‹¹ì‹ ì˜ ê¸¸ë“œì— ì†í•´ ìžˆì§€ ì•ŠìŠµë‹ˆë‹¤.
+	COMMUNITY_COMMON_NEED_MORE_TIME_TO_DO_IT,					// ìž ì‹œ í›„ì— ë‹¤ì‹œ ì‹œë„í•˜ì‹­ì‹œì˜¤.
 
-	COMMUNITY_PARTY_LEADER_DOESNT_EXIST,						// ¸®´õ°¡ Ä¿¹Â´ÏÆ¼ ¼­¹ö¿¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.
-	COMMUNITY_PARTY_SAME_PARTYID_ALREADY_EXIST,					// °°Àº IDÀÇ ÆÄÆ¼°¡ ÀÌ¹Ì Á¸ÀçÇÕ´Ï´Ù.
-	COMMUNITY_PARTY_NO_SUCH_A_PARTY,							// Á¸ÀçÇÏÁö ¾Ê´Â ÆÄÆ¼ÀÔ´Ï´Ù.
-	COMMUNITY_PARTY_MEMBER_ALREADY_EXIST,						// ÀÌ¹Ì ÆÄÆ¼¿¡ Á¸ÀçÇÏ´Â ¸â¹öÀÔ´Ï´Ù.
-	COMMUNITY_PARTY_NO_SUCH_A_MEMBER,							// Á¸ÀçÇÏÁö ¾Ê´Â ¸â¹öÀÔ´Ï´Ù.
+	COMMUNITY_PARTY_LEADER_DOESNT_EXIST,						// ë¦¬ë”ê°€ ì»¤ë®¤ë‹ˆí‹° ì„œë²„ì— ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	COMMUNITY_PARTY_SAME_PARTYID_ALREADY_EXIST,					// ê°™ì€ IDì˜ íŒŒí‹°ê°€ ì´ë¯¸ ì¡´ìž¬í•©ë‹ˆë‹¤.
+	COMMUNITY_PARTY_NO_SUCH_A_PARTY,							// ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” íŒŒí‹°ìž…ë‹ˆë‹¤.
+	COMMUNITY_PARTY_MEMBER_ALREADY_EXIST,						// ì´ë¯¸ íŒŒí‹°ì— ì¡´ìž¬í•˜ëŠ” ë©¤ë²„ìž…ë‹ˆë‹¤.
+	COMMUNITY_PARTY_NO_SUCH_A_MEMBER,							// ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” ë©¤ë²„ìž…ë‹ˆë‹¤.
 
-	COMMUNITY_GUILD_CREATOR_NOT_FOUND,							// ±æµå »ý¼ºÀ» ¿äÃ»ÇÑ ÇÃ·¹ÀÌ¾î¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.
-	COMMUNITY_GUILD_GUILD_MEMBER_CANT_HAVE_MORE_GUILD,			// ±æµå¿¡ °¡ÀÔÇÑ »ç¶÷Àº ´Ù¸¥ ±æµå¿¡ Áßº¹ÇØ¼­ °¡ÀÔÇÒ ¼ö ¾ø½À´Ï´Ù.
-	COMMUNITY_GUILD_NEED_MORE_PARTY_MEMBER_FOR_NEW_GUILD,		// ±æµå »ý¼ºÀ» À§ÇØ¼­´Â ÆÄÆ¼¿øÀÌ ´õ ÇÊ¿äÇÕ´Ï´Ù.
-	COMMUNITY_GUILD_YOU_DONT_BELONG_TO_GUILD,					// ±æµå¿¡ ¼ÓÇØ ÀÖÁö ¾Ê½À´Ï´Ù.
-	COMMUNITY_GUILD_YOU_ARE_NOT_GUILD_MASTER,					// ´ç½ÅÀº ±æµå ¸¶½ºÅÍ°¡ ¾Æ´Õ´Ï´Ù.
-	COMMUNITY_GUILD_GUILD_IS_BEING_DISBANDED,					// ±æµå°¡ ÇØÃ¼ »óÅÂÀÔ´Ï´Ù.
-	COMMUNITY_GUILD_GUILD_IS_NOT_BEING_DISBANDED,				// ±æµå°¡ ÇØÃ¼ »óÅÂ°¡ ¾Æ´Õ´Ï´Ù.
+	COMMUNITY_GUILD_CREATOR_NOT_FOUND,							// ê¸¸ë“œ ìƒì„±ì„ ìš”ì²­í•œ í”Œë ˆì´ì–´ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	COMMUNITY_GUILD_GUILD_MEMBER_CANT_HAVE_MORE_GUILD,			// ê¸¸ë“œì— ê°€ìž…í•œ ì‚¬ëžŒì€ ë‹¤ë¥¸ ê¸¸ë“œì— ì¤‘ë³µí•´ì„œ ê°€ìž…í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	COMMUNITY_GUILD_NEED_MORE_PARTY_MEMBER_FOR_NEW_GUILD,		// ê¸¸ë“œ ìƒì„±ì„ ìœ„í•´ì„œëŠ” íŒŒí‹°ì›ì´ ë” í•„ìš”í•©ë‹ˆë‹¤.
+	COMMUNITY_GUILD_YOU_DONT_BELONG_TO_GUILD,					// ê¸¸ë“œì— ì†í•´ ìžˆì§€ ì•ŠìŠµë‹ˆë‹¤.
+	COMMUNITY_GUILD_YOU_ARE_NOT_GUILD_MASTER,					// ë‹¹ì‹ ì€ ê¸¸ë“œ ë§ˆìŠ¤í„°ê°€ ì•„ë‹™ë‹ˆë‹¤.
+	COMMUNITY_GUILD_GUILD_IS_BEING_DISBANDED,					// ê¸¸ë“œê°€ í•´ì²´ ìƒíƒœìž…ë‹ˆë‹¤.
+	COMMUNITY_GUILD_GUILD_IS_NOT_BEING_DISBANDED,				// ê¸¸ë“œê°€ í•´ì²´ ìƒíƒœê°€ ì•„ë‹™ë‹ˆë‹¤.
 
-	COMMUNITY_GUILD_YOU_DONT_HAVE_RIGHT_TO_INVITE,				// ±æµå¿øÀ» ÃÊ´ëÇÒ ¼ö ÀÖ´Â ±ÇÇÑÀÌ ¾ø½À´Ï´Ù.
-	COMMUNITY_GUILD_TARGET_IS_ALREADY_IN_A_GUILD,				// »ó´ë°¡ ÀÌ¹Ì ±æµå¿¡ ¼ÓÇØ ÀÖ½À´Ï´Ù.
-	COMMUNITY_GUILD_TARGET_ALREADY_HAS_INVITATION,				// »ó´ë¹æÀÌ ÀÌ¹Ì ±æµå ÃÊ´ë¸¦ ¹ÞÀº »óÅÂÀÔ´Ï´Ù.
-	COMMUNITY_GUILD_YOU_HAVE_NO_INVITATION,						// ´ç½ÅÀº ±æµå·ÎºÎÅÍ ÃÊ´ë¸¦ ¹ÞÀº »óÅÂ°¡ ¾Æ´Õ´Ï´Ù.
-	COMMUNITY_COMMON_NO_SUCH_A_GUILD,							// ±æµå°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.
-	COMMUNITY_GUILD_YOU_ARE_ALREADY_IN_A_GUILD,					// ÀÌ¹Ì ±æµå¿¡ ¼ÓÇØ ÀÖ½À´Ï´Ù.
-	COMMUNITY_GUILD_MAX_NUMBER_OF_MEMBERS,						// ±æµå´Â ´õ ÀÌ»ó »õ ±æµå¿øÀ» ¹ÞÀ» ¼ö ¾ø½À´Ï´Ù.
-	COMMUNITY_GUILD_LEADER_CANT_LEAVE,							// ±æµå ¸¶½ºÅÍ´Â ±æµå¸¦ Å»ÅðÇÒ ¼ö ¾ø½À´Ï´Ù.
-	COMMUNITY_GUILD_YOU_DONT_HAVE_RIGHT_TO_KICK_OUT,			// ±æµå¿øÀ» °­Á¦·Î Å»Åð½ÃÅ³ ¼ö ÀÖ´Â ±ÇÇÑÀÌ ¾ø½À´Ï´Ù.
-	COMMUNITY_GUILD_CANT_KICK_YOURSELF_OUT,						// ÀÚ½ÅÀ» °­Á¦·Î Å»Åð½ÃÅ³ ¼ö ¾ø½À´Ï´Ù.
+	COMMUNITY_GUILD_YOU_DONT_HAVE_RIGHT_TO_INVITE,				// ê¸¸ë“œì›ì„ ì´ˆëŒ€í•  ìˆ˜ ìžˆëŠ” ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤.
+	COMMUNITY_GUILD_TARGET_IS_ALREADY_IN_A_GUILD,				// ìƒëŒ€ê°€ ì´ë¯¸ ê¸¸ë“œì— ì†í•´ ìžˆìŠµë‹ˆë‹¤.
+	COMMUNITY_GUILD_TARGET_ALREADY_HAS_INVITATION,				// ìƒëŒ€ë°©ì´ ì´ë¯¸ ê¸¸ë“œ ì´ˆëŒ€ë¥¼ ë°›ì€ ìƒíƒœìž…ë‹ˆë‹¤.
+	COMMUNITY_GUILD_YOU_HAVE_NO_INVITATION,						// ë‹¹ì‹ ì€ ê¸¸ë“œë¡œë¶€í„° ì´ˆëŒ€ë¥¼ ë°›ì€ ìƒíƒœê°€ ì•„ë‹™ë‹ˆë‹¤.
+	COMMUNITY_COMMON_NO_SUCH_A_GUILD,							// ê¸¸ë“œê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	COMMUNITY_GUILD_YOU_ARE_ALREADY_IN_A_GUILD,					// ì´ë¯¸ ê¸¸ë“œì— ì†í•´ ìžˆìŠµë‹ˆë‹¤.
+	COMMUNITY_GUILD_MAX_NUMBER_OF_MEMBERS,						// ê¸¸ë“œëŠ” ë” ì´ìƒ ìƒˆ ê¸¸ë“œì›ì„ ë°›ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	COMMUNITY_GUILD_LEADER_CANT_LEAVE,							// ê¸¸ë“œ ë§ˆìŠ¤í„°ëŠ” ê¸¸ë“œë¥¼ íƒˆí‡´í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	COMMUNITY_GUILD_YOU_DONT_HAVE_RIGHT_TO_KICK_OUT,			// ê¸¸ë“œì›ì„ ê°•ì œë¡œ íƒˆí‡´ì‹œí‚¬ ìˆ˜ ìžˆëŠ” ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤.
+	COMMUNITY_GUILD_CANT_KICK_YOURSELF_OUT,						// ìžì‹ ì„ ê°•ì œë¡œ íƒˆí‡´ì‹œí‚¬ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 
-	COMMUNITY_GUILD_TRIED_TO_APPOINT_YOURSELF,					// ÀÚ±â ÀÚ½Å¿¡ ´ëÇØ¼­´Â ÀÓ¸í ±â´ÉÀ» »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.
-	COMMUNITY_GUILD_TARGET_IS_ALREADY_SECOND_MASTER,			// ´ë»óÀÌ ÀÌ¹Ì Second MasterÀÔ´Ï´Ù.
-	COMMUNITY_GUILD_MAX_NUMBER_OF_SECOND_MASTERS,				// ±æµå´Â ´õ ÀÌ»ó »õ Second Master¸¦ ÀÓ¸íÇÒ ¼ö ¾ø½À´Ï´Ù.
-	COMMUNITY_GUILD_TARGET_IS_NOT_SECOND_MASTER,				// ´ë»óÀÌ ±æµåÀÇ Second Master°¡ ¾Æ´Õ´Ï´Ù.
-	COMMUNITY_GUILD_FUNCTION_NOT_FOUND,							// ÇØ´ç ±â´ÉÀ» »ç¿ë ÇÒ ¼ö ÀÖ´Â ±ÇÇÑÀÌ ¾ø½À´Ï´Ù.
-	COMMUNITY_GUILD_BANK_USING_NOW,								// ±æµå Ã¢°í¸¦ ´Ù¸¥ »ç¶÷ÀÌ »ç¿ë Áß ÀÔ´Ï´Ù. Á¶±Ý µÚ¿¡ ´Ù½Ã ½Ãµµ ÇØÁÖ¼¼¿ä.	
+	COMMUNITY_GUILD_TRIED_TO_APPOINT_YOURSELF,					// ìžê¸° ìžì‹ ì— ëŒ€í•´ì„œëŠ” ìž„ëª… ê¸°ëŠ¥ì„ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	COMMUNITY_GUILD_TARGET_IS_ALREADY_SECOND_MASTER,			// ëŒ€ìƒì´ ì´ë¯¸ Second Masterìž…ë‹ˆë‹¤.
+	COMMUNITY_GUILD_MAX_NUMBER_OF_SECOND_MASTERS,				// ê¸¸ë“œëŠ” ë” ì´ìƒ ìƒˆ Second Masterë¥¼ ìž„ëª…í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	COMMUNITY_GUILD_TARGET_IS_NOT_SECOND_MASTER,				// ëŒ€ìƒì´ ê¸¸ë“œì˜ Second Masterê°€ ì•„ë‹™ë‹ˆë‹¤.
+	COMMUNITY_GUILD_FUNCTION_NOT_FOUND,							// í•´ë‹¹ ê¸°ëŠ¥ì„ ì‚¬ìš© í•  ìˆ˜ ìžˆëŠ” ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤.
+	COMMUNITY_GUILD_BANK_USING_NOW,								// ê¸¸ë“œ ì°½ê³ ë¥¼ ë‹¤ë¥¸ ì‚¬ëžŒì´ ì‚¬ìš© ì¤‘ ìž…ë‹ˆë‹¤. ì¡°ê¸ˆ ë’¤ì— ë‹¤ì‹œ ì‹œë„ í•´ì£¼ì„¸ìš”.	
 
-	COMMUNITY_FRIEND_CHAR_NOT_FOUND,							// ÇØ´çÄ³¸¯ÅÍ°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.
-	COMMUNITY_FRIEND_CHAR_ARLEADY_ADDED,						// ÀÌ¹Ì µî·Ï µÈ Ä³¸¯ÀÔ´Ï´Ù.
-	COMMUNITY_FRIEND_MAX_COUNT_OVER,							// µî·Ï°¡´É Ä£±¸ °¹¼ö¸¦ ÃÊ°ú Çß½À´Ï´Ù.
-	COMMUNITY_FRIEND_CHAR_EXIST,								// Ä£±¸¸ñ·Ï¿¡ Á¸ÀçÇÏ´Â Ä³¸¯ÀÔ´Ï´Ù.
-	COMMUNITY_FRIEND_BLACK_CHAR_EXIST,							// Black List ¸ñ·Ï¿¡ Á¸ÀçÇÏ´Â Ä³¸¯ÀÔ´Ï´Ù.
-	COMMUNITY_FRIEND_SELF_FAIL,									// ÀÚ±â ÀÚ½ÅÀº Ãß°¡ ÇÒ¼ö ¾ø½À´Ï´Ù.
+	COMMUNITY_FRIEND_CHAR_NOT_FOUND,							// í•´ë‹¹ìºë¦­í„°ê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	COMMUNITY_FRIEND_CHAR_ARLEADY_ADDED,						// ì´ë¯¸ ë“±ë¡ ëœ ìºë¦­ìž…ë‹ˆë‹¤.
+	COMMUNITY_FRIEND_MAX_COUNT_OVER,							// ë“±ë¡ê°€ëŠ¥ ì¹œêµ¬ ê°¯ìˆ˜ë¥¼ ì´ˆê³¼ í–ˆìŠµë‹ˆë‹¤.
+	COMMUNITY_FRIEND_CHAR_EXIST,								// ì¹œêµ¬ëª©ë¡ì— ì¡´ìž¬í•˜ëŠ” ìºë¦­ìž…ë‹ˆë‹¤.
+	COMMUNITY_FRIEND_BLACK_CHAR_EXIST,							// Black List ëª©ë¡ì— ì¡´ìž¬í•˜ëŠ” ìºë¦­ìž…ë‹ˆë‹¤.
+	COMMUNITY_FRIEND_SELF_FAIL,									// ìžê¸° ìžì‹ ì€ ì¶”ê°€ í• ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 
-	COMMUNITY_RANK_BATTLE_LIST_NOT_FOUND,						// ·©Å©¹èÆ² ¸®½ºÆ®¿¡ ¾ø½À´Ï´Ù.
+	COMMUNITY_RANK_BATTLE_LIST_NOT_FOUND,						// ëž­í¬ë°°í‹€ ë¦¬ìŠ¤íŠ¸ì— ì—†ìŠµë‹ˆë‹¤.
 
-	COMMUNITY_GUILD_BANK_QUERY,									// ±æµå Ã¢°íÀÇ DB Ã³¸®ÁßÀÔ´Ï´Ù. Àá½ÃÈÄ ´Ù½Ã ½ÃµµÇÏ¼¼¿ä!
-	COMMUNITY_GUILD_BANK_CLOSED,								// ±æµå Ã¢°í°¡ ´ÝÇû½À´Ï´Ù.
-	COMMUNITY_GUILD_KICKOUT,									// ±æµå¿¡¼­ Ãß¹æ ´çÇß½À´Ï´Ù.
-	COMMUNITY_GUILD_LEAVE,										// ±æµå¿¡¼­ Å»Åð Çß½À´Ï´Ù.
+	COMMUNITY_GUILD_BANK_QUERY,									// ê¸¸ë“œ ì°½ê³ ì˜ DB ì²˜ë¦¬ì¤‘ìž…ë‹ˆë‹¤. ìž ì‹œí›„ ë‹¤ì‹œ ì‹œë„í•˜ì„¸ìš”!
+	COMMUNITY_GUILD_BANK_CLOSED,								// ê¸¸ë“œ ì°½ê³ ê°€ ë‹«í˜”ìŠµë‹ˆë‹¤.
+	COMMUNITY_GUILD_KICKOUT,									// ê¸¸ë“œì—ì„œ ì¶”ë°© ë‹¹í–ˆìŠµë‹ˆë‹¤.
+	COMMUNITY_GUILD_LEAVE,										// ê¸¸ë“œì—ì„œ íƒˆí‡´ í–ˆìŠµë‹ˆë‹¤.
 
-	COMMUNITY_TMQ_CHAR_NOT_FOUND,								// ÇØ´ç Ä³¸¯ÅÍ°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.
-	COMMUNITY_TMQ_DATA_NOT_FOUND,								// ÇØ´ç µ¥ÀÌÅÍ°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.
+	COMMUNITY_TMQ_CHAR_NOT_FOUND,								// í•´ë‹¹ ìºë¦­í„°ê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	COMMUNITY_TMQ_DATA_NOT_FOUND,								// í•´ë‹¹ ë°ì´í„°ê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 	//-----------------------------------------------------------------
 	// Query ( 400 ~ 500 )
 	//-----------------------------------------------------------------
-	QUERY_SUCCESS = 400,			// Äõ¸®¼­¹ö »óÀÇ ¸ðµç ¼º°ø
-	QUERY_FAIL,						// Äõ¸®¼­¹ö »óÀÇ Àü¹ÝÀûÀÎ ½ÇÆÐ
+	QUERY_SUCCESS = 400,			// ì¿¼ë¦¬ì„œë²„ ìƒì˜ ëª¨ë“  ì„±ê³µ
+	QUERY_FAIL,						// ì¿¼ë¦¬ì„œë²„ ìƒì˜ ì „ë°˜ì ì¸ ì‹¤íŒ¨
 
 	QUERY_CANNOT_FIND_SQLUNIT,		// Can not find SQL Unit
-	QUERY_EXECUTE_FAIL,				// Äõ¸® ½ÇÇà ½ÇÆÐ
+	QUERY_EXECUTE_FAIL,				// ì¿¼ë¦¬ ì‹¤í–‰ ì‹¤íŒ¨
 	
 
 	//-----------------------------------------------------------------
@@ -162,288 +162,288 @@ enum eRESULTCODE
 	//-----------------------------------------------------------------
 	// Game ( 500 ~ )
 	//-----------------------------------------------------------------
-	GAME_SUCCESS = 500,				// °ÔÀÓ¼­¹ö »óÀÇ ¸ðµç ¼º°ø
-	GAME_FAIL,						// °ÔÀÓ¼­¹ö »óÀÇ Àü¹ÝÀûÀÎ ½ÇÆÐ
+	GAME_SUCCESS = 500,				// ê²Œìž„ì„œë²„ ìƒì˜ ëª¨ë“  ì„±ê³µ
+	GAME_FAIL,						// ê²Œìž„ì„œë²„ ìƒì˜ ì „ë°˜ì ì¸ ì‹¤íŒ¨
 
-	GAME_DB_CHAR_DATA_LOAD_FAIL,	// Ä³¸¯ÅÍ µ¥ÀÌÅ¸ ·Îµù¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù.
-	GAME_DB_CHAR_NOT_FOUND,			// ÇØ´çÇÏ´Â Ä³¸¯Å¸ µ¥ÀÌÅ¸°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.
+	GAME_DB_CHAR_DATA_LOAD_FAIL,	// ìºë¦­í„° ë°ì´íƒ€ ë¡œë”©ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.
+	GAME_DB_CHAR_NOT_FOUND,			// í•´ë‹¹í•˜ëŠ” ìºë¦­íƒ€ ë°ì´íƒ€ê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 
-	GAME_INVALID_AUTH_KEY,			// ÀÎÁõÅ° ÀÎÁõÀÌ ½ÇÆÐÇÏ¿´½À´Ï´Ù.
-	GAME_USER_EXIST,				// ÀÌ¹Ì Á¢¼ÓÁßÀÔ´Ï´Ù.
-	GAME_SERVER_LOCKED,				// ÇöÀç ¼­¹ö°¡ Àá±ä »óÅÂ¿©¼­ Á¢¼ÓÇÒ ¼ö ¾ø½À´Ï´Ù.
-	GAME_WRONG_SERVER_CHANNEL_HAS_BEEN_SPECIFIED,			// Àß¸øµÈ ¼­¹ö Ã¤³ÎÀ» ¼±ÅÃÇÏ¿´½À´Ï´Ù.
+	GAME_INVALID_AUTH_KEY,			// ì¸ì¦í‚¤ ì¸ì¦ì´ ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.
+	GAME_USER_EXIST,				// ì´ë¯¸ ì ‘ì†ì¤‘ìž…ë‹ˆë‹¤.
+	GAME_SERVER_LOCKED,				// í˜„ìž¬ ì„œë²„ê°€ ìž ê¸´ ìƒíƒœì—¬ì„œ ì ‘ì†í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_WRONG_SERVER_CHANNEL_HAS_BEEN_SPECIFIED,			// ìž˜ëª»ëœ ì„œë²„ ì±„ë„ì„ ì„ íƒí•˜ì˜€ìŠµë‹ˆë‹¤.
 
-	GAME_CHAR_IS_WRONG_STATE,		// Áö±ÝÀº ÇÒ ¼ö ¾ø½À´Ï´Ù
-	GAME_INPUT_PARAMETER_WRONG,		// ¿Ã¹Ù¸£Áö ¾ÊÀº ÀÔ·Â ÀÔ´Ï´Ù.
+	GAME_CHAR_IS_WRONG_STATE,		// ì§€ê¸ˆì€ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤
+	GAME_INPUT_PARAMETER_WRONG,		// ì˜¬ë°”ë¥´ì§€ ì•Šì€ ìž…ë ¥ ìž…ë‹ˆë‹¤.
 
-	GAME_TARGET_IS_WRONG_STATE,		// ´ë»óÀÌ ÀûÀýÇÑ »óÅÂ°¡ ¾Æ´Õ´Ï´Ù.
-	GAME_TARGET_NOT_FOUND,			// ´ë»óÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù.
-	GAME_TARGET_TOO_FAR,			// ´ë»ó°úÀÇ °Å¸®°¡ ³Ê¹« ¸Ù´Ï´Ù.
-	GAME_TARGET_TOO_CLOSE,			// ´ë»ó°úÀÇ °Å¸®°¡ ³Ê¹« °¡±õ½À´Ï´Ù.
-	GAME_TARGET_HAS_NOT_FUNCTION,	// ´ë»óÀº ÇØ´ç ±â´ÉÀ» Áö¿øÇÏÁö ¾Ê½À´Ï´Ù.
+	GAME_TARGET_IS_WRONG_STATE,		// ëŒ€ìƒì´ ì ì ˆí•œ ìƒíƒœê°€ ì•„ë‹™ë‹ˆë‹¤.
+	GAME_TARGET_NOT_FOUND,			// ëŒ€ìƒì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_TARGET_TOO_FAR,			// ëŒ€ìƒê³¼ì˜ ê±°ë¦¬ê°€ ë„ˆë¬´ ë©‰ë‹ˆë‹¤.
+	GAME_TARGET_TOO_CLOSE,			// ëŒ€ìƒê³¼ì˜ ê±°ë¦¬ê°€ ë„ˆë¬´ ê°€ê¹ìŠµë‹ˆë‹¤.
+	GAME_TARGET_HAS_NOT_FUNCTION,	// ëŒ€ìƒì€ í•´ë‹¹ ê¸°ëŠ¥ì„ ì§€ì›í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 
-	GAME_DISCONNECTED_FORCEDLY,							// Á¦Àç·Î ÀÎÇØ °­Á¦·Î Á¢¼ÓÀÌ Á¾·áµÇ¾ú½À´Ï´Ù.
-	GAME_DISCONNECTED_TEMPORARILY,						// ¿î¿µÀÚ¿¡ ÀÇÇÏ¿© ÀÏ½ÃÀûÀ¸·Î ·Î±×¾Æ¿ô Ã³¸®°¡ µÇ¾ú½À´Ï´Ù.
+	GAME_DISCONNECTED_FORCEDLY,							// ì œìž¬ë¡œ ì¸í•´ ê°•ì œë¡œ ì ‘ì†ì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.
+	GAME_DISCONNECTED_TEMPORARILY,						// ìš´ì˜ìžì— ì˜í•˜ì—¬ ì¼ì‹œì ìœ¼ë¡œ ë¡œê·¸ì•„ì›ƒ ì²˜ë¦¬ê°€ ë˜ì—ˆìŠµë‹ˆë‹¤.
 
-	GAME_COMMON_YOU_ARE_NOT_IN_A_PARTY,					// ÆÄÆ¼¿¡ ¼ÓÇØ ÀÖÁö ¾Ê½À´Ï´Ù.
-	GAME_COMMON_YOU_ARE_NOT_A_PARTY_LEADER,				// ÆÄÆ¼ ¸®´õ°¡ ¾Æ´Õ´Ï´Ù.
-	GAME_COMMON_ZENNY_CANT_BE_USED_RIGHT_NOW,			// ÀÏ½ÃÀûÀ¸·Î Á¦´Ï¸¦ »ç¿ëÇÒ ¼ö ¾ø´Â »óÈ²ÀÔ´Ï´Ù. Àá½Ã ÈÄ ´Ù½Ã ½ÃµµÇÏ¼¼¿ä.
-	GAME_COMMON_CANT_DO_THAT_FOR_SOME_REASON,			// ½Ã½ºÅÛ ¹®Á¦·Î ÀÛ¾÷À» Ã³¸®ÇÒ ¼ö ¾ø½À´Ï´Ù.
-	GAME_COMMON_NON_EXISTING_PET_SPECIFIED,				// Á¸ÀçÇÏÁö ¾Ê´Â ÆêÀ» ÁöÁ¤ÇÏ¿´½À´Ï´Ù.
+	GAME_COMMON_YOU_ARE_NOT_IN_A_PARTY,					// íŒŒí‹°ì— ì†í•´ ìžˆì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_COMMON_YOU_ARE_NOT_A_PARTY_LEADER,				// íŒŒí‹° ë¦¬ë”ê°€ ì•„ë‹™ë‹ˆë‹¤.
+	GAME_COMMON_ZENNY_CANT_BE_USED_RIGHT_NOW,			// ì¼ì‹œì ìœ¼ë¡œ ì œë‹ˆë¥¼ ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ìƒí™©ìž…ë‹ˆë‹¤. ìž ì‹œ í›„ ë‹¤ì‹œ ì‹œë„í•˜ì„¸ìš”.
+	GAME_COMMON_CANT_DO_THAT_FOR_SOME_REASON,			// ì‹œìŠ¤í…œ ë¬¸ì œë¡œ ìž‘ì—…ì„ ì²˜ë¦¬í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_COMMON_NON_EXISTING_PET_SPECIFIED,				// ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” íŽ«ì„ ì§€ì •í•˜ì˜€ìŠµë‹ˆë‹¤.
 
-	GAME_COMMON_CANT_DO_THAT_IN_SPAWNING_STATE,				// ¿ùµå ÁøÀÔ µµÁß¿¡´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_STANDING_STATE,				// ¼­ ÀÖÀ» ¶§¿¡´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_STANDING_JUMPING_STATE,		// Á¦ÀÚ¸® Á¡ÇÁ Áß¿¡´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_JUMPING_STATE,				// Á¡ÇÁ Áß¿¡´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_NON_JUMPING_STATE,			// Á¡ÇÁ ÁßÀÌ ¾Æ´Ò ¶§¿¡´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_SITTING_STATE,				// ¾É¾Æ ÀÖÀ» ¶§¿¡´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_FAINTING_STATE,				// ½Ç½ÅÇÑ »óÅÂ¿¡¼­´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_CAMPING_STATE,				// Ä·ÇÎ »óÅÂ¿¡¼­´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_LEAVING_STATE,				// ¸®ºù »óÅÂ¿¡¼­´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_MOVING_STATE,				// ÀÌµ¿ Áß¿¡´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_MOVING_JUMPING_STATE,		// Á¡ÇÁ ÀÌµ¿ Áß¿¡´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_DESTMOVING_STATE,			// ÀÌµ¿ Áß¿¡´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_FOLLOWING_STATE,			// ÀÌµ¿ Áß¿¡´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_FALLING_STATE,				// ¶³¾îÁö´Â Áß¿¡´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_DASH_STATE,					// ´ë½¬ Áß¿¡´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_TELEPORTING_STATE,			// ÅÚ·¹Æ÷Æ® »óÅÂ¿¡¼­´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_SLIDING_STATE,				// ½½¶óÀÌµù Áß¿¡´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_KNOCKDOWN_STATE,			// ³Ë´Ù¿î Áß¿¡´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_FOCUSING_STATE,				// ÁýÁß »óÅÂ¿¡¼­´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_CASTING_STATE,				// ½ºÅ³ ½ÃÀü Áß¿¡´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_AFFECTING_STATE,			// ½ºÅ³ ½ÃÀü Áß¿¡´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_KEEPING_EFFECT_STATE,		// È¿°ú À¯Áö »óÅÂ¿¡¼­´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_CASTING_ITEM_STATE,			// ¾ÆÀÌÅÛ »ç¿ë Áß¿¡´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_STUNNED_STATE,				// ±âÀý »óÅÂ¿¡¼­´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_SLEEPING_STATE,				// ¼ö¸é »óÅÂ¿¡¼­´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_PARALYZED_STATE,			// ¸¶ºñ »óÅÂ¿¡¼­´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_HTB_STATE,					// HTB »óÅÂ¿¡¼­´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_SANDBAG_STATE,				// HTB ½ºÅ³¿¡ °É¸° »óÅÂ¿¡¼­´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_CHARGING_STATE,				// ±â¸¦ ¸ðÀ¸´Â Áß¿¡´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_BLOCKING_STATE,				// Block ¸ðµå¿¡¼­´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_DESPAWNING_STATE,			// ¿ùµå¿¡¼­ ¹þ¾î³ª´Â µµÁß¿¡´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_PRIVATESHOP_STATE,			// °³ÀÎ »óÁ¡À» ¿­°í ÀÖÀ» ¶§¿¡´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_DIRECT_PLAY_STATE,			// ¿¬Ãâ Áß¿¡´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_OPERATING_STATE,			// ¿ÀºêÁ§Æ® µ¿ÀÛÁß¿¡´Â »ç¿ëÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_RIDEON_STATE,				// Å»°ÍÀ» Åº»óÅÂ¿¡¼­´Â ÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_TURNING_STATE,				// ÅÏ»óÅÂ¿¡¼­´Â ÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
+	GAME_COMMON_CANT_DO_THAT_IN_SPAWNING_STATE,				// ì›”ë“œ ì§„ìž… ë„ì¤‘ì—ëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_STANDING_STATE,				// ì„œ ìžˆì„ ë•Œì—ëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_STANDING_JUMPING_STATE,		// ì œìžë¦¬ ì í”„ ì¤‘ì—ëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_JUMPING_STATE,				// ì í”„ ì¤‘ì—ëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_NON_JUMPING_STATE,			// ì í”„ ì¤‘ì´ ì•„ë‹ ë•Œì—ëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_SITTING_STATE,				// ì•‰ì•„ ìžˆì„ ë•Œì—ëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_FAINTING_STATE,				// ì‹¤ì‹ í•œ ìƒíƒœì—ì„œëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_CAMPING_STATE,				// ìº í•‘ ìƒíƒœì—ì„œëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_LEAVING_STATE,				// ë¦¬ë¹™ ìƒíƒœì—ì„œëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_MOVING_STATE,				// ì´ë™ ì¤‘ì—ëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_MOVING_JUMPING_STATE,		// ì í”„ ì´ë™ ì¤‘ì—ëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_DESTMOVING_STATE,			// ì´ë™ ì¤‘ì—ëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_FOLLOWING_STATE,			// ì´ë™ ì¤‘ì—ëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_FALLING_STATE,				// ë–¨ì–´ì§€ëŠ” ì¤‘ì—ëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_DASH_STATE,					// ëŒ€ì‰¬ ì¤‘ì—ëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_TELEPORTING_STATE,			// í…”ë ˆí¬íŠ¸ ìƒíƒœì—ì„œëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_SLIDING_STATE,				// ìŠ¬ë¼ì´ë”© ì¤‘ì—ëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_KNOCKDOWN_STATE,			// ë„‰ë‹¤ìš´ ì¤‘ì—ëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_FOCUSING_STATE,				// ì§‘ì¤‘ ìƒíƒœì—ì„œëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_CASTING_STATE,				// ìŠ¤í‚¬ ì‹œì „ ì¤‘ì—ëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_AFFECTING_STATE,			// ìŠ¤í‚¬ ì‹œì „ ì¤‘ì—ëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_KEEPING_EFFECT_STATE,		// íš¨ê³¼ ìœ ì§€ ìƒíƒœì—ì„œëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_CASTING_ITEM_STATE,			// ì•„ì´í…œ ì‚¬ìš© ì¤‘ì—ëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_STUNNED_STATE,				// ê¸°ì ˆ ìƒíƒœì—ì„œëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_SLEEPING_STATE,				// ìˆ˜ë©´ ìƒíƒœì—ì„œëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_PARALYZED_STATE,			// ë§ˆë¹„ ìƒíƒœì—ì„œëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_HTB_STATE,					// HTB ìƒíƒœì—ì„œëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_SANDBAG_STATE,				// HTB ìŠ¤í‚¬ì— ê±¸ë¦° ìƒíƒœì—ì„œëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_CHARGING_STATE,				// ê¸°ë¥¼ ëª¨ìœ¼ëŠ” ì¤‘ì—ëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_BLOCKING_STATE,				// Block ëª¨ë“œì—ì„œëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_DESPAWNING_STATE,			// ì›”ë“œì—ì„œ ë²—ì–´ë‚˜ëŠ” ë„ì¤‘ì—ëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_PRIVATESHOP_STATE,			// ê°œì¸ ìƒì ì„ ì—´ê³  ìžˆì„ ë•Œì—ëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_DIRECT_PLAY_STATE,			// ì—°ì¶œ ì¤‘ì—ëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_OPERATING_STATE,			// ì˜¤ë¸Œì íŠ¸ ë™ìž‘ì¤‘ì—ëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_RIDEON_STATE,				// íƒˆê²ƒì„ íƒ„ìƒíƒœì—ì„œëŠ” í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_TURNING_STATE,				// í„´ìƒíƒœì—ì„œëŠ” í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
 
-	GAME_COMMON_CANT_DO_THAT_IN_TERROR_CONDITION,			// °øÆ÷¿¡ °É¸° »óÅÂ¿¡¼­´Â »ç¿ë ÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_AFTEREFFECT_CONDITION,		// ÈÄÀ¯Áõ »óÅÂ¿¡¼­´Â »ç¿ë ÇÒ ¼ö ¾ø´Â ¸í·ÉÀÔ´Ï´Ù.
-	GAME_COMMON_CANT_DO_THAT_IN_CHARGING_BLOCKED_CONDITION,		// ±â ¸ðÀ¸±â°¡ ºÒ°¡´ÉÇÑ »óÅÂÀÔ´Ï´Ù.
+	GAME_COMMON_CANT_DO_THAT_IN_TERROR_CONDITION,			// ê³µí¬ì— ê±¸ë¦° ìƒíƒœì—ì„œëŠ” ì‚¬ìš© í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_AFTEREFFECT_CONDITION,		// í›„ìœ ì¦ ìƒíƒœì—ì„œëŠ” ì‚¬ìš© í•  ìˆ˜ ì—†ëŠ” ëª…ë ¹ìž…ë‹ˆë‹¤.
+	GAME_COMMON_CANT_DO_THAT_IN_CHARGING_BLOCKED_CONDITION,		// ê¸° ëª¨ìœ¼ê¸°ê°€ ë¶ˆê°€ëŠ¥í•œ ìƒíƒœìž…ë‹ˆë‹¤.
 
-	GAME_GAMERULE_REG_CANT_PLAY_IN_FREEBATTLE,				// ÇÁ¸®¹èÆ² Áß¿¡´Â ÇÒ ¼ö ¾ø½À´Ï´Ù.
-	GAME_GAMERULE_REG_CANT_PLAY_IN_RANKBATTLE,				// ·©Å©¹èÆ² Áß¿¡´Â ÇÒ ¼ö ¾ø½À´Ï´Ù.
-	GAME_GAMERULE_REG_CANT_PLAY_IN_TMQ,						// Å¸ÀÓ¸Ó½Å Äù½ºÆ® Áß¿¡´Â ÇÒ ¼ö ¾ø½À´Ï´Ù.
-	GAME_GAMERULE_REG_CANT_PLAY_IN_SUMMON_DRAGONBALL,		// µå·¡°ïº¼ ¼ÒÈ¯ Áß¿¡´Â ÇÒ ¼ö ¾ø½À´Ï´Ù.
-	GAME_GAMERULE_REG_CANT_PLAY_IN_PRIVATE_SHOP,			// °³ÀÎ»óÁ¤ Áß¿¡´Â ÇÒ ¼ö ¾ø½À´Ï´Ù.
-	GAME_GAMERULE_REG_CANT_PLAY_IN_BUDOKAI,					// ÃµÇÏÁ¦ÀÏ¹«µµÈ¸ Áß¿¡´Â ÇÒ ¼ö ¾ø½À´Ï´Ù.
+	GAME_GAMERULE_REG_CANT_PLAY_IN_FREEBATTLE,				// í”„ë¦¬ë°°í‹€ ì¤‘ì—ëŠ” í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_GAMERULE_REG_CANT_PLAY_IN_RANKBATTLE,				// ëž­í¬ë°°í‹€ ì¤‘ì—ëŠ” í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_GAMERULE_REG_CANT_PLAY_IN_TMQ,						// íƒ€ìž„ë¨¸ì‹  í€˜ìŠ¤íŠ¸ ì¤‘ì—ëŠ” í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_GAMERULE_REG_CANT_PLAY_IN_SUMMON_DRAGONBALL,		// ë“œëž˜ê³¤ë³¼ ì†Œí™˜ ì¤‘ì—ëŠ” í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_GAMERULE_REG_CANT_PLAY_IN_PRIVATE_SHOP,			// ê°œì¸ìƒì • ì¤‘ì—ëŠ” í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_GAMERULE_REG_CANT_PLAY_IN_BUDOKAI,					// ì²œí•˜ì œì¼ë¬´ë„íšŒ ì¤‘ì—ëŠ” í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 
-	GAME_GAMERULE_REG_ALREADY_JOINED_IN_FREEBATTLE,			// ÀÌ¹Ì ÇÁ¸®¹èÆ² Âü°¡ ÁßÀÔ´Ï´Ù.
-	GAME_GAMERULE_REG_ALREADY_JOINED_IN_RANKBATTLE,			// ÀÌ¹Ì ·©Å©¹èÆ² Âü°¡ ÁßÀÔ´Ï´Ù.
-	GAME_GAMERULE_REG_ALREADY_JOINED_IN_TMQ,				// ÀÌ¹Ì Å¸ÀÓ¸Ó½Å Äù½ºÆ® Âü°¡ ÁßÀÔ´Ï´Ù.
-	GAME_GAMERULE_REG_ALREADY_SUMMON_DRAGONBALL,			// ÀÌ¹Ì µå·¡°ïº¼ ¼ÒÈ¯ ÁßÀÔ´Ï´Ù.
-	GAME_GAMERULE_REG_ALREADY_OPENED_PRIVATE_SHOP,			// ÀÌ¹Ì °³ÀÎ»óÁ¡ °³¼³ ÁßÀÔ´Ï´Ù.
-	GAME_GAMERULE_REG_ALREADY_JOINED_BUDOKAI,				// ÀÌ¹Ì ÃµÇÏÁ¦ÀÏ¹«µµÈ¸ Âü°¡ ÁßÀÔ´Ï´Ù.
+	GAME_GAMERULE_REG_ALREADY_JOINED_IN_FREEBATTLE,			// ì´ë¯¸ í”„ë¦¬ë°°í‹€ ì°¸ê°€ ì¤‘ìž…ë‹ˆë‹¤.
+	GAME_GAMERULE_REG_ALREADY_JOINED_IN_RANKBATTLE,			// ì´ë¯¸ ëž­í¬ë°°í‹€ ì°¸ê°€ ì¤‘ìž…ë‹ˆë‹¤.
+	GAME_GAMERULE_REG_ALREADY_JOINED_IN_TMQ,				// ì´ë¯¸ íƒ€ìž„ë¨¸ì‹  í€˜ìŠ¤íŠ¸ ì°¸ê°€ ì¤‘ìž…ë‹ˆë‹¤.
+	GAME_GAMERULE_REG_ALREADY_SUMMON_DRAGONBALL,			// ì´ë¯¸ ë“œëž˜ê³¤ë³¼ ì†Œí™˜ ì¤‘ìž…ë‹ˆë‹¤.
+	GAME_GAMERULE_REG_ALREADY_OPENED_PRIVATE_SHOP,			// ì´ë¯¸ ê°œì¸ìƒì  ê°œì„¤ ì¤‘ìž…ë‹ˆë‹¤.
+	GAME_GAMERULE_REG_ALREADY_JOINED_BUDOKAI,				// ì´ë¯¸ ì²œí•˜ì œì¼ë¬´ë„íšŒ ì°¸ê°€ ì¤‘ìž…ë‹ˆë‹¤.
 
-	GAME_WORLD_ALREADY_WORLD_ENTERED,					// ÀÌ¹Ì ¿ùµå¿¡ ÁøÀÔÇØ ÀÖ½À´Ï´Ù.
-	GAME_WORLD_CANT_ENTER_WORLD,						// ÁøÀÔÇÒ ¼ö ÀÖ´Â ¿ùµå°¡ ¾ø½À´Ï´Ù.
-	GAME_WORLD_ALREADY_WORLD_AREA_ENTERED,				// ÀÌ¹Ì ¿ùµå ¿µ¿ª¿¡ ÁøÀÔÇØ ÀÖ½À´Ï´Ù.
-	GAME_WORLD_CANT_FIND_WORLD_AREA,					// ÁøÀÔÇÒ ¿ùµå¿µ¿ªÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù.
-	GAME_WORLD_CANT_ENTER_WORLD_AREA,					// ÁøÀÔÇÒ ¼ö ÀÖ´Â¿ùµå¿µ¿ªÀÌ ¾ø½À´Ï´Ù.
+	GAME_WORLD_ALREADY_WORLD_ENTERED,					// ì´ë¯¸ ì›”ë“œì— ì§„ìž…í•´ ìžˆìŠµë‹ˆë‹¤.
+	GAME_WORLD_CANT_ENTER_WORLD,						// ì§„ìž…í•  ìˆ˜ ìžˆëŠ” ì›”ë“œê°€ ì—†ìŠµë‹ˆë‹¤.
+	GAME_WORLD_ALREADY_WORLD_AREA_ENTERED,				// ì´ë¯¸ ì›”ë“œ ì˜ì—­ì— ì§„ìž…í•´ ìžˆìŠµë‹ˆë‹¤.
+	GAME_WORLD_CANT_FIND_WORLD_AREA,					// ì§„ìž…í•  ì›”ë“œì˜ì—­ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_WORLD_CANT_ENTER_WORLD_AREA,					// ì§„ìž…í•  ìˆ˜ ìžˆëŠ”ì›”ë“œì˜ì—­ì´ ì—†ìŠµë‹ˆë‹¤.
 	
-	GAME_SHORTCUT_KEY_ARLEADY_FOUND,					// °°Àº Å°°¡ ÀÌ¹Ì ÁöÁ¤µÇ¾î ÀÖ½À´Ï´Ù.
-	GAME_SHORTCUT_KEY_DEL_NOT_FOUND,					// »èÁ¦ÇÏ·Á´Â Å°°¡ ¾ø½À´Ï´Ù.
-	GAME_SHORTCUT_KEY_MODIFY_NOT_FOUND,					// ¼öÁ¤ÇÏ·Á´Â Å°°¡ ¾ø½À´Ï´Ù.
+	GAME_SHORTCUT_KEY_ARLEADY_FOUND,					// ê°™ì€ í‚¤ê°€ ì´ë¯¸ ì§€ì •ë˜ì–´ ìžˆìŠµë‹ˆë‹¤.
+	GAME_SHORTCUT_KEY_DEL_NOT_FOUND,					// ì‚­ì œí•˜ë ¤ëŠ” í‚¤ê°€ ì—†ìŠµë‹ˆë‹¤.
+	GAME_SHORTCUT_KEY_MODIFY_NOT_FOUND,					// ìˆ˜ì •í•˜ë ¤ëŠ” í‚¤ê°€ ì—†ìŠµë‹ˆë‹¤.
 
-	GAME_COMMON_CANT_DO_THAT_NOT_ALLOWED_TARGET,		// ¸í·É ¼öÇàÀÌ ºÒ°¡´ÉÇÑ À¯Á® ÀÔ´Ï´Ù.
+	GAME_COMMON_CANT_DO_THAT_NOT_ALLOWED_TARGET,		// ëª…ë ¹ ìˆ˜í–‰ì´ ë¶ˆê°€ëŠ¥í•œ ìœ ì ¸ ìž…ë‹ˆë‹¤.
 
-	GAME_COMMON_CANT_FIND_OBJECT,						// ÇØ´ç ¿ÀºêÁ§Æ®¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.
+	GAME_COMMON_CANT_FIND_OBJECT,						// í•´ë‹¹ ì˜¤ë¸Œì íŠ¸ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 	//-----------------------------------------------------------------
-	GAME_SKILL_NOT_ACTIVE_TYPE = 600,		// Active Å¸ÀÔÀÇ ½ºÅ³ÀÌ ¾Æ´Õ´Ï´Ù.
-	GAME_SKILL_YOU_DONT_HAVE_THE_SKILL,		// °¡Áö°í ÀÖÁö ¾ÊÀº ½ºÅ³ÀÔ´Ï´Ù.
-	GAME_SKILL_NOT_EXISTING_SKILL,			// Á¸ÀçÇÏÁö ¾Ê´Â ½ºÅ³ÀÔ´Ï´Ù.
-	GAME_SKILL_CANT_CAST_NOW,				// ÇöÀç ½ºÅ³À» ½ÃÀüÇÒ ¼ö ÀÖ´Â »óÅÂ°¡ ¾Æ´Õ´Ï´Ù.
-	GAME_SKILL_NO_TARGET_APPOINTED,				// ´ë»óÀ» ¼±ÅÃÇÏ¼Å¾ß ÇÕ´Ï´Ù.
-	GAME_SKILL_INVALID_TARGET_APPOINTED,		// ÇöÀç Å¸°Ù¿¡ ½ºÅ³À» »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.
-	GAME_SKILL_NOT_READY_TO_BE_CAST,		// ½ºÅ³ÀÇ ÄðÅ¸ÀÓÀ» ±â´Ù·Á¾ß ÇÕ´Ï´Ù.
-	GAME_SKILL_NOT_ENOUGH_LP,				// LP°¡ ÃæºÐÇÏÁö ¾Ê½À´Ï´Ù.
-	GAME_SKILL_NOT_ENOUGH_EP,				// EP°¡ ÃæºÐÇÏÁö ¾Ê½À´Ï´Ù.
-	GAME_SKILL_NOT_ENOUGH_RP_BALL,						// RP ±¸½½ÀÌ ÃæºÐÇÏÁö ¾Ê½À´Ï´Ù.
+	GAME_SKILL_NOT_ACTIVE_TYPE = 600,		// Active íƒ€ìž…ì˜ ìŠ¤í‚¬ì´ ì•„ë‹™ë‹ˆë‹¤.
+	GAME_SKILL_YOU_DONT_HAVE_THE_SKILL,		// ê°€ì§€ê³  ìžˆì§€ ì•Šì€ ìŠ¤í‚¬ìž…ë‹ˆë‹¤.
+	GAME_SKILL_NOT_EXISTING_SKILL,			// ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” ìŠ¤í‚¬ìž…ë‹ˆë‹¤.
+	GAME_SKILL_CANT_CAST_NOW,				// í˜„ìž¬ ìŠ¤í‚¬ì„ ì‹œì „í•  ìˆ˜ ìžˆëŠ” ìƒíƒœê°€ ì•„ë‹™ë‹ˆë‹¤.
+	GAME_SKILL_NO_TARGET_APPOINTED,				// ëŒ€ìƒì„ ì„ íƒí•˜ì…”ì•¼ í•©ë‹ˆë‹¤.
+	GAME_SKILL_INVALID_TARGET_APPOINTED,		// í˜„ìž¬ íƒ€ê²Ÿì— ìŠ¤í‚¬ì„ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_SKILL_NOT_READY_TO_BE_CAST,		// ìŠ¤í‚¬ì˜ ì¿¨íƒ€ìž„ì„ ê¸°ë‹¤ë ¤ì•¼ í•©ë‹ˆë‹¤.
+	GAME_SKILL_NOT_ENOUGH_LP,				// LPê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_SKILL_NOT_ENOUGH_EP,				// EPê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_SKILL_NOT_ENOUGH_RP_BALL,						// RP êµ¬ìŠ¬ì´ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 
-	GAME_SKILL_NO_REQUIRED_ITEM,			// ½ºÅ³À» »ç¿ëÇÏ±â À§ÇØ ÇÊ¿äÇÑ ¾ÆÀÌÅÛÀ» °¡Áö°í ÀÖÁö ¾Ê½À´Ï´Ù.
-	GAME_SKILL_TOO_MANY_LP_TO_USE_SKILL,				// LP°¡ 50% ÀÌÇÏÀÏ ¶§¿¡¸¸ ÀÌ ½ºÅ³À» »ç¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù.
-	GAME_SKILL_TARGET_IS_NOT_KNOCKED_DOWN,				// Å¸°ÙÀÌ knock down »óÅÂ°¡ ¾Æ´Õ´Ï´Ù.
-	GAME_SKILL_RESISTED,								// ½ºÅ³À» ÀúÇ×Çß½À´Ï´Ù.
-	GAME_SKILL_TRIED_TO_LEARN_AN_EXISTING_SKILL,		// ÀÌ¹Ì °¡Áö°í ÀÖ´Â ½ºÅ³Àº ¹è¿ï ¼ö ¾ø½À´Ï´Ù.
-	GAME_SKILL_TRIED_TO_LEARN_WRONG_CLASS_SKILL,		// Á÷¾÷¿¡ ¸ÂÁö ¾Ê´Â ½ºÅ³Àº ¹è¿ï ¼ö ¾ø½À´Ï´Ù.
-	GAME_SKILL_TOO_HIGH_LEVEL_TO_TRAIN,					// ·¹º§ÀÌ ³·¾Æ¼­ ¾ÆÁ÷ ½ºÅ³À» ¹è¿ï ¼ö ¾ø½À´Ï´Ù.
-	GAME_SKILL_NOT_ENOUGH_ZENNY,						// Zenny°¡ ¸ðÀÚ¶ó ½ºÅ³À» ¹è¿ï ¼ö ¾ø½À´Ï´Ù.
-	GAME_SKILL_NO_EMPTY_SKILL_SLOT,						// ºó ½ºÅ³ ½½·ÔÀÌ ¾ø½À´Ï´Ù.
-	GAME_SKILL_YOU_HAVE_NO_LOWER_LEVEL_SKILL,			// ¾÷±×·¹ÀÌµå¸¦ À§ÇØ¼­´Â ¼±ÅÃÇÑ ½ºÅ³º¸´Ù ÇÑ ´Ü°è ³·Àº ½ºÅ³À» °¡Áö°í ÀÖ¾î¾ß ÇÕ´Ï´Ù.
+	GAME_SKILL_NO_REQUIRED_ITEM,			// ìŠ¤í‚¬ì„ ì‚¬ìš©í•˜ê¸° ìœ„í•´ í•„ìš”í•œ ì•„ì´í…œì„ ê°€ì§€ê³  ìžˆì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_SKILL_TOO_MANY_LP_TO_USE_SKILL,				// LPê°€ 50% ì´í•˜ì¼ ë•Œì—ë§Œ ì´ ìŠ¤í‚¬ì„ ì‚¬ìš©í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
+	GAME_SKILL_TARGET_IS_NOT_KNOCKED_DOWN,				// íƒ€ê²Ÿì´ knock down ìƒíƒœê°€ ì•„ë‹™ë‹ˆë‹¤.
+	GAME_SKILL_RESISTED,								// ìŠ¤í‚¬ì„ ì €í•­í–ˆìŠµë‹ˆë‹¤.
+	GAME_SKILL_TRIED_TO_LEARN_AN_EXISTING_SKILL,		// ì´ë¯¸ ê°€ì§€ê³  ìžˆëŠ” ìŠ¤í‚¬ì€ ë°°ìš¸ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_SKILL_TRIED_TO_LEARN_WRONG_CLASS_SKILL,		// ì§ì—…ì— ë§žì§€ ì•ŠëŠ” ìŠ¤í‚¬ì€ ë°°ìš¸ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_SKILL_TOO_HIGH_LEVEL_TO_TRAIN,					// ë ˆë²¨ì´ ë‚®ì•„ì„œ ì•„ì§ ìŠ¤í‚¬ì„ ë°°ìš¸ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_SKILL_NOT_ENOUGH_ZENNY,						// Zennyê°€ ëª¨ìžë¼ ìŠ¤í‚¬ì„ ë°°ìš¸ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_SKILL_NO_EMPTY_SKILL_SLOT,						// ë¹ˆ ìŠ¤í‚¬ ìŠ¬ë¡¯ì´ ì—†ìŠµë‹ˆë‹¤.
+	GAME_SKILL_YOU_HAVE_NO_LOWER_LEVEL_SKILL,			// ì—…ê·¸ë ˆì´ë“œë¥¼ ìœ„í•´ì„œëŠ” ì„ íƒí•œ ìŠ¤í‚¬ë³´ë‹¤ í•œ ë‹¨ê³„ ë‚®ì€ ìŠ¤í‚¬ì„ ê°€ì§€ê³  ìžˆì–´ì•¼ í•©ë‹ˆë‹¤.
 
-	GAME_SKILL_ALREADY_MASTERED_SKILL,					// ÀÌ¹Ì ±Ã±ØÀÇ ½ºÅ³À» ½ÀµæÇÑ »óÅÂÀÔ´Ï´Ù.
-	GAME_SKILL_NO_PREREQUISITE_SKILLS_YOU_HAVE,			// ½ºÅ³ ½ÀµæÀ» À§ÇØ ÀÌ¹Ì ¹è¿ì°í ÀÖ¾î¾ß ÇÒ ½ºÅ³À» °¡Áö°í ÀÖÁö ¾Ê½À´Ï´Ù.
-	GAME_SKILL_UPGRADE_ONLY_SKILL,		// ¾÷±×·¹ÀÌµå·Î¸¸ ¾òÀ» ¼ö ÀÖ´Â ½ºÅ³ÀÔ´Ï´Ù.
-	GAME_SKILL_SHOULD_BE_GAINED_BY_YOURSELF,			// ½º½º·Î ¹è¿ö¾ß ÇÏ´Â ½ºÅ³ÀÔ´Ï´Ù.
-	GAME_SKILL_CANT_BE_GAINED_BY_YOURSELF,				// ½º½º·Î ¹è¿ï ¼ö ¾ø´Â ½ºÅ³ÀÔ´Ï´Ù.
-	GAME_SKILL_CANT_USE_FOR_SOME_REASON,		// ½Ã½ºÅÛ ¹®Á¦·Î ½ºÅ³À» »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.
-	GAME_SKILL_TARGET_IS_NOT_IN_FRONT_SIDE,		// Å¸°ÙÀÌ ´ç½Å ¾Õ¿¡ À§Ä¡ÇØ¾ß ÇÕ´Ï´Ù.
-	GAME_SKILL_YOU_ARE_NOT_IN_BACKSIDE_OF_TARGET,		// ´ë»óÀÇ µÚ¿¡¼­¸¸ ½ºÅ³À» »ç¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù.
-	GAME_SKILL_TARGET_IS_IN_FAINT,		// Å¸°ÙÀÌ ½Ç½ÅÇÑ »óÅÂÀÔ´Ï´Ù.
-	GAME_SKILL_CAN_BE_CAST_ONLY_ON_PLAYER,		// ÇÃ·¹ÀÌ¾î¿¡°Ô¸¸ »ç¿ëÇÒ ¼ö ÀÖ´Â ½ºÅ³ÀÔ´Ï´Ù.
+	GAME_SKILL_ALREADY_MASTERED_SKILL,					// ì´ë¯¸ ê¶ê·¹ì˜ ìŠ¤í‚¬ì„ ìŠµë“í•œ ìƒíƒœìž…ë‹ˆë‹¤.
+	GAME_SKILL_NO_PREREQUISITE_SKILLS_YOU_HAVE,			// ìŠ¤í‚¬ ìŠµë“ì„ ìœ„í•´ ì´ë¯¸ ë°°ìš°ê³  ìžˆì–´ì•¼ í•  ìŠ¤í‚¬ì„ ê°€ì§€ê³  ìžˆì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_SKILL_UPGRADE_ONLY_SKILL,		// ì—…ê·¸ë ˆì´ë“œë¡œë§Œ ì–»ì„ ìˆ˜ ìžˆëŠ” ìŠ¤í‚¬ìž…ë‹ˆë‹¤.
+	GAME_SKILL_SHOULD_BE_GAINED_BY_YOURSELF,			// ìŠ¤ìŠ¤ë¡œ ë°°ì›Œì•¼ í•˜ëŠ” ìŠ¤í‚¬ìž…ë‹ˆë‹¤.
+	GAME_SKILL_CANT_BE_GAINED_BY_YOURSELF,				// ìŠ¤ìŠ¤ë¡œ ë°°ìš¸ ìˆ˜ ì—†ëŠ” ìŠ¤í‚¬ìž…ë‹ˆë‹¤.
+	GAME_SKILL_CANT_USE_FOR_SOME_REASON,		// ì‹œìŠ¤í…œ ë¬¸ì œë¡œ ìŠ¤í‚¬ì„ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_SKILL_TARGET_IS_NOT_IN_FRONT_SIDE,		// íƒ€ê²Ÿì´ ë‹¹ì‹  ì•žì— ìœ„ì¹˜í•´ì•¼ í•©ë‹ˆë‹¤.
+	GAME_SKILL_YOU_ARE_NOT_IN_BACKSIDE_OF_TARGET,		// ëŒ€ìƒì˜ ë’¤ì—ì„œë§Œ ìŠ¤í‚¬ì„ ì‚¬ìš©í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
+	GAME_SKILL_TARGET_IS_IN_FAINT,		// íƒ€ê²Ÿì´ ì‹¤ì‹ í•œ ìƒíƒœìž…ë‹ˆë‹¤.
+	GAME_SKILL_CAN_BE_CAST_ONLY_ON_PLAYER,		// í”Œë ˆì´ì–´ì—ê²Œë§Œ ì‚¬ìš©í•  ìˆ˜ ìžˆëŠ” ìŠ¤í‚¬ìž…ë‹ˆë‹¤.
 
-	GAME_SKILL_TARGET_IS_NOT_FAINTING,					// Å¸°ÙÀÌ ½Ç½ÅÇÑ »óÅÂ°¡ ¾Æ´Õ´Ï´Ù.
-	GAME_SKILL_NOT_BATTLE_AVAILABLE_LOCATION,			// ½ºÅ³ »ç¿ëÀÚ¿Í ´ë»ó ¸ðµÎ ÀüÅõ°¡ °¡´ÉÇÑ Áö¿ª¿¡ À§Ä¡ÇØ¾ß ÇÕ´Ï´Ù.
-	GAME_SKILL_CASTING_CANCELED_BY_DAMAGE,				// °ø°ÝÀ» ¹Þ¾Æ ½ºÅ³ ½ÃÀüÀÌ Ãë¼ÒµÇ¾ú½À´Ï´Ù.
-	GAME_SKILL_CANT_SET_THAT_RP_BONUS_IN_SKILL,			// ÁöÁ¤ÇÑ ½ºÅ³¿¡¼­´Â ¼³Á¤ÇÒ ¼ö ¾ø´Â RP º¸³Ê½º Å¸ÀÔÀÔ´Ï´Ù.
-	GAME_SKILL_CANT_USE_THAT_RP_BONUS_IN_SKILL,			// ÁöÁ¤ÇÑ ½ºÅ³¿¡¼­´Â »ç¿ëÇÒ ¼ö ¾ø´Â RP º¸³Ê½º Å¸ÀÔÀÔ´Ï´Ù.
-	GAME_SKILL_NO_BUFF_TO_DROP_FOUND,					// ÇØÁ¦µÉ ¼ö ÀÖ´Â ¹öÇÁ¸¦ ¼±ÅÃÇÏ¿©¾ß ÇÕ´Ï´Ù.
-	GAME_SKILL_ALREADY_TRANSFORMED,						// ÇöÀçÀÇ º¯½Å »óÅÂ°¡ ÇØÁ¦µÇ¾î¾ß »õ·Î¿î º¯½ÅÀÌ Àû¿ëµÉ ¼ö ÀÖ½À´Ï´Ù.
-	GAME_SKILL_NOT_TRANSFORMED,							// º¯½Å »óÅÂ°¡ ¾Æ´Õ´Ï´Ù.
-	GAME_SKILL_CANT_USE_SKILL_WHEN_SUPER_SAIYAN,		// ÃÊ»çÀÌ¾îÀÎ »óÅÂ¿¡¼­´Â »ç¿ëÇÒ ¼ö ¾ø´Â ½ºÅ³ÀÔ´Ï´Ù.
-	GAME_SKILL_CANT_USE_SKILL_WHEN_PURE_MAJIN,			// ¼ø¼ö ¸¶ÀÎ »óÅÂ¿¡¼­´Â »ç¿ëÇÒ ¼ö ¾ø´Â ½ºÅ³ÀÔ´Ï´Ù.
+	GAME_SKILL_TARGET_IS_NOT_FAINTING,					// íƒ€ê²Ÿì´ ì‹¤ì‹ í•œ ìƒíƒœê°€ ì•„ë‹™ë‹ˆë‹¤.
+	GAME_SKILL_NOT_BATTLE_AVAILABLE_LOCATION,			// ìŠ¤í‚¬ ì‚¬ìš©ìžì™€ ëŒ€ìƒ ëª¨ë‘ ì „íˆ¬ê°€ ê°€ëŠ¥í•œ ì§€ì—­ì— ìœ„ì¹˜í•´ì•¼ í•©ë‹ˆë‹¤.
+	GAME_SKILL_CASTING_CANCELED_BY_DAMAGE,				// ê³µê²©ì„ ë°›ì•„ ìŠ¤í‚¬ ì‹œì „ì´ ì·¨ì†Œë˜ì—ˆìŠµë‹ˆë‹¤.
+	GAME_SKILL_CANT_SET_THAT_RP_BONUS_IN_SKILL,			// ì§€ì •í•œ ìŠ¤í‚¬ì—ì„œëŠ” ì„¤ì •í•  ìˆ˜ ì—†ëŠ” RP ë³´ë„ˆìŠ¤ íƒ€ìž…ìž…ë‹ˆë‹¤.
+	GAME_SKILL_CANT_USE_THAT_RP_BONUS_IN_SKILL,			// ì§€ì •í•œ ìŠ¤í‚¬ì—ì„œëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” RP ë³´ë„ˆìŠ¤ íƒ€ìž…ìž…ë‹ˆë‹¤.
+	GAME_SKILL_NO_BUFF_TO_DROP_FOUND,					// í•´ì œë  ìˆ˜ ìžˆëŠ” ë²„í”„ë¥¼ ì„ íƒí•˜ì—¬ì•¼ í•©ë‹ˆë‹¤.
+	GAME_SKILL_ALREADY_TRANSFORMED,						// í˜„ìž¬ì˜ ë³€ì‹  ìƒíƒœê°€ í•´ì œë˜ì–´ì•¼ ìƒˆë¡œìš´ ë³€ì‹ ì´ ì ìš©ë  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
+	GAME_SKILL_NOT_TRANSFORMED,							// ë³€ì‹  ìƒíƒœê°€ ì•„ë‹™ë‹ˆë‹¤.
+	GAME_SKILL_CANT_USE_SKILL_WHEN_SUPER_SAIYAN,		// ì´ˆì‚¬ì´ì–´ì¸ ìƒíƒœì—ì„œëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ìŠ¤í‚¬ìž…ë‹ˆë‹¤.
+	GAME_SKILL_CANT_USE_SKILL_WHEN_PURE_MAJIN,			// ìˆœìˆ˜ ë§ˆì¸ ìƒíƒœì—ì„œëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ìŠ¤í‚¬ìž…ë‹ˆë‹¤.
 
-	GAME_SKILL_CANT_USE_SKILL_WHEN_GREAT_NAMEK,			// °Å´ë ³ª¸ÞÅ© »óÅÂ¿¡¼­´Â »ç¿ëÇÒ ¼ö ¾ø´Â ½ºÅ³ÀÔ´Ï´Ù.
-	GAME_SKILL_CANT_USE_SKILL_WHEN_KAIOKEN,				// °è¿Õ±Ç »óÅÂ¿¡¼­´Â »ç¿ëÇÒ ¼ö ¾ø´Â ½ºÅ³ÀÔ´Ï´Ù.
-	GAME_SKILL_CANT_USE_SKILL_WHEN_SPINNING_ATTACK,		// È¸Àü °ø°Ý »óÅÂ¿¡¼­´Â »ç¿ëÇÒ ¼ö ¾ø´Â ½ºÅ³ÀÔ´Ï´Ù.
-	GAME_SKILL_CANT_USE_SKILL_WHEN_VEHICLE,				// Å» °Í »óÅÂ¿¡¼­´Â »ç¿ëÇÒ ¼ö ¾ø´Â ½ºÅ³ÀÔ´Ï´Ù.
-	GAME_SKILL_CANT_USE_SKILL_WHEN_NOT_TRANSFORMED,		// º¯½ÅÇÏÁö ¾ÊÀº »óÅÂ¿¡¼­´Â »ç¿ëÇÒ ¼ö ¾ø´Â ½ºÅ³ÀÔ´Ï´Ù.
-	GAME_SKILL_NOT_ENOUGH_SP_POINT,						// SP POINT °¡ ºÎÁ·ÇÕ´Ï´Ù.
-	GAME_SKILL_ERASE_FAIL,								// ½ºÅ³À» Áö¿ì´Ù°¡ ½ÇÆÐÇß½À´Ï´Ù.
-	GAME_BLOCK_ATTACK_NOW,								// ÇöÀç´Â Á¦ÀçµÇ¾î »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù. 
-	GAME_SKILL_HAVE_UPGRADED_SKILL,						// ½ºÅ³Áß ¾÷±×·¹ÀÌµå µÈ ½ºÅ³À» ½ÀµæÇÑ »óÅÂÀÔ´Ï´Ù.
-	GAME_SKILL_CANT_BE_CAST_ON_YOURSELF,				// 649 // ÀÚ½ÅÀ» ¼±ÅÃÇÏ°í »ç¿ëÇÒ ¼ö ¾ø´Â ½ºÅ³ÀÔ´Ï´Ù.
+	GAME_SKILL_CANT_USE_SKILL_WHEN_GREAT_NAMEK,			// ê±°ëŒ€ ë‚˜ë©”í¬ ìƒíƒœì—ì„œëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ìŠ¤í‚¬ìž…ë‹ˆë‹¤.
+	GAME_SKILL_CANT_USE_SKILL_WHEN_KAIOKEN,				// ê³„ì™•ê¶Œ ìƒíƒœì—ì„œëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ìŠ¤í‚¬ìž…ë‹ˆë‹¤.
+	GAME_SKILL_CANT_USE_SKILL_WHEN_SPINNING_ATTACK,		// íšŒì „ ê³µê²© ìƒíƒœì—ì„œëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ìŠ¤í‚¬ìž…ë‹ˆë‹¤.
+	GAME_SKILL_CANT_USE_SKILL_WHEN_VEHICLE,				// íƒˆ ê²ƒ ìƒíƒœì—ì„œëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ìŠ¤í‚¬ìž…ë‹ˆë‹¤.
+	GAME_SKILL_CANT_USE_SKILL_WHEN_NOT_TRANSFORMED,		// ë³€ì‹ í•˜ì§€ ì•Šì€ ìƒíƒœì—ì„œëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ìŠ¤í‚¬ìž…ë‹ˆë‹¤.
+	GAME_SKILL_NOT_ENOUGH_SP_POINT,						// SP POINT ê°€ ë¶€ì¡±í•©ë‹ˆë‹¤.
+	GAME_SKILL_ERASE_FAIL,								// ìŠ¤í‚¬ì„ ì§€ìš°ë‹¤ê°€ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.
+	GAME_BLOCK_ATTACK_NOW,								// í˜„ìž¬ëŠ” ì œìž¬ë˜ì–´ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤. 
+	GAME_SKILL_HAVE_UPGRADED_SKILL,						// ìŠ¤í‚¬ì¤‘ ì—…ê·¸ë ˆì´ë“œ ëœ ìŠ¤í‚¬ì„ ìŠµë“í•œ ìƒíƒœìž…ë‹ˆë‹¤.
+	GAME_SKILL_CANT_BE_CAST_ON_YOURSELF,				// 649 // ìžì‹ ì„ ì„ íƒí•˜ê³  ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ìŠ¤í‚¬ìž…ë‹ˆë‹¤.
 	//-----------------------------------------------------------------
-	GAME_ITEM_NUM_NULL = 800,		// ¾ÆÀÌÅÛ ¹øÈ£°¡ Àß¸øµÇ¾ú½À´Ï´Ù.
-	GAME_ITEM_POSITION_FAIL,		// ¾ÆÀÌÅÛ À§Ä¡°ªÀÌ Àß¸øµÇ¾ú½À´Ï´Ù.	
-	GAME_ITEM_OWNER_NOT_SAME,		// ¾ÆÀÌÅÛ ¼ÒÀ¯ÁÖ°¡ Àß¸øµÇ¾ú½À´Ï´Ù.	
-	GAME_ITEM_NOT_SAME,             // ¾ÆÀÌÅÛÀÌ Àß¸ø µÇ¾ú½À´Ï´Ù.
-	GAME_ITEM_OWNER_NULL,			// ¾ÆÀÌÅÛ ¼ÒÀ¯ÁÖ°¡ ¾ø½À´Ï´Ù.
-	GAME_ITEM_STACK_FAIL,           // ¾ÆÀÌÅÛ ½ºÅÃÀÌ Àß¸ø µÇ¾ú½À´Ï´Ù.
-	GAME_ITEM_NOT_FOUND,			// ¾ÆÀÌÅÛÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù.
-	GAME_NEEDITEM_NOT_FOUND,		// ¾ÆÀÌÅÛ ±¸¸Å½Ã ÇÊ¿äÇÑ ¾ÆÀÌÅÛÀ» Table¿¡¼­ Ã£À» ¼ö ¾ø½À´Ï´Ù. [7/17/2008 SGpro]
-	GAME_NEEDITEM_NOT_FOUND_INVANTORY,	// ¾ÆÀÌÅÛ ±¸¸Å½Ã ÇÊ¿äÇÑ ±³È¯¾ÆÀÌÅÛÀÌ ¾ø½À´Ï´Ù. [7/17/2008 SGpro]
-	GAME_ITEM_BAG_IS_NOT_EMPTY,		// °¡¹æÀ» ºñ¿ö¾ß ÀÌµ¿ÀÌ °¡´ÉÇÕ´Ï´Ù.
+	GAME_ITEM_NUM_NULL = 800,		// ì•„ì´í…œ ë²ˆí˜¸ê°€ ìž˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤.
+	GAME_ITEM_POSITION_FAIL,		// ì•„ì´í…œ ìœ„ì¹˜ê°’ì´ ìž˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤.	
+	GAME_ITEM_OWNER_NOT_SAME,		// ì•„ì´í…œ ì†Œìœ ì£¼ê°€ ìž˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤.	
+	GAME_ITEM_NOT_SAME,             // ì•„ì´í…œì´ ìž˜ëª» ë˜ì—ˆìŠµë‹ˆë‹¤.
+	GAME_ITEM_OWNER_NULL,			// ì•„ì´í…œ ì†Œìœ ì£¼ê°€ ì—†ìŠµë‹ˆë‹¤.
+	GAME_ITEM_STACK_FAIL,           // ì•„ì´í…œ ìŠ¤íƒì´ ìž˜ëª» ë˜ì—ˆìŠµë‹ˆë‹¤.
+	GAME_ITEM_NOT_FOUND,			// ì•„ì´í…œì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_NEEDITEM_NOT_FOUND,		// ì•„ì´í…œ êµ¬ë§¤ì‹œ í•„ìš”í•œ ì•„ì´í…œì„ Tableì—ì„œ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤. [7/17/2008 SGpro]
+	GAME_NEEDITEM_NOT_FOUND_INVANTORY,	// ì•„ì´í…œ êµ¬ë§¤ì‹œ í•„ìš”í•œ êµí™˜ì•„ì´í…œì´ ì—†ìŠµë‹ˆë‹¤. [7/17/2008 SGpro]
+	GAME_ITEM_BAG_IS_NOT_EMPTY,		// ê°€ë°©ì„ ë¹„ì›Œì•¼ ì´ë™ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.
 
-	GAME_ITEM_ALREADY_EXIST,        // ¾ÆÀÌÅÛÀÌ Á¸ÀçÇÏ¹Ç·Î ÀÌµ¿ÀÌ ºÒ°¡ ÇÕ´Ï´Ù.
-	GAME_ITEM_MAX_COUNT_OVER,       // ¾ÆÀÌÅÛ °¹¼ö¸¦ ÃÊ°úÇÏ¿´½À´Ï´Ù.
-	GAME_ITEM_STACK_FULL,           // ½ºÅÃÀÌ °¡µæÃ¡½À´Ï´Ù.
-	GAME_EQUIP_SLOT_NOT_EMPTY,		// Àåºñ ½½·ÔÀÌ ºñ¾îÀÖÁö ¾Ê½À´Ï´Ù.
-	GAME_ITEM_CLASS_FAIL,			// ¾ÆÀÌÅÛ Âø¿ë °¡´É Å¬·¡½ºÅ¸ÀÔÀÌ ¾Æ´Õ´Ï´Ù.
-	GAME_ITEM_NEED_MORE_LEVEL,		// ·¹º§ ºÎÁ·À¸·Î ¾ÆÀÌÅÛÀ» Âø¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.
-	GAME_ITEM_NEED_MORE_PARAMETER,  // ¾ÆÀÌÅÛ Âø¿ë°¡´É ´É·ÂÄ¡°¡ ºÎÁ·ÇÕ´Ï´Ù.
-	GAME_ITEM_MAX_WATT_OVER,		// Scouter ¸ÞÀÎÆÄÃ÷ÀÇ Max Watt¼ö¸¦ ÃÊ°úÇÏ¿´½À´Ï´Ù. 
-	GAME_ITEM_INVEN_FULL,			// °¡¹æÀÌ °¡µæÃ¡½À´Ï´Ù.
-	GAME_ITEM_LOOTING,				// ¾ÆÀÌÅÛÀ» ÁÝ°í ÀÖ½À´Ï´Ù.
+	GAME_ITEM_ALREADY_EXIST,        // ì•„ì´í…œì´ ì¡´ìž¬í•˜ë¯€ë¡œ ì´ë™ì´ ë¶ˆê°€ í•©ë‹ˆë‹¤.
+	GAME_ITEM_MAX_COUNT_OVER,       // ì•„ì´í…œ ê°¯ìˆ˜ë¥¼ ì´ˆê³¼í•˜ì˜€ìŠµë‹ˆë‹¤.
+	GAME_ITEM_STACK_FULL,           // ìŠ¤íƒì´ ê°€ë“ì°¼ìŠµë‹ˆë‹¤.
+	GAME_EQUIP_SLOT_NOT_EMPTY,		// ìž¥ë¹„ ìŠ¬ë¡¯ì´ ë¹„ì–´ìžˆì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_ITEM_CLASS_FAIL,			// ì•„ì´í…œ ì°©ìš© ê°€ëŠ¥ í´ëž˜ìŠ¤íƒ€ìž…ì´ ì•„ë‹™ë‹ˆë‹¤.
+	GAME_ITEM_NEED_MORE_LEVEL,		// ë ˆë²¨ ë¶€ì¡±ìœ¼ë¡œ ì•„ì´í…œì„ ì°©ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_ITEM_NEED_MORE_PARAMETER,  // ì•„ì´í…œ ì°©ìš©ê°€ëŠ¥ ëŠ¥ë ¥ì¹˜ê°€ ë¶€ì¡±í•©ë‹ˆë‹¤.
+	GAME_ITEM_MAX_WATT_OVER,		// Scouter ë©”ì¸íŒŒì¸ ì˜ Max Wattìˆ˜ë¥¼ ì´ˆê³¼í•˜ì˜€ìŠµë‹ˆë‹¤. 
+	GAME_ITEM_INVEN_FULL,			// ê°€ë°©ì´ ê°€ë“ì°¼ìŠµë‹ˆë‹¤.
+	GAME_ITEM_LOOTING,				// ì•„ì´í…œì„ ì¤ê³  ìžˆìŠµë‹ˆë‹¤.
 
-	GAME_ITEM_UNIDENTIFY,	        // ¾ÆÀÌÅÛ È®ÀÎÀÌ ¾ÈµÇ¾îÀÖ½À´Ï´Ù.
-	GAME_ITEM_UNIDENTIFY_FAIL,		// ¾ÆÀÌÅÛ È®ÀÎ ½ÇÆÐ
-	GAME_LOOTING_FAIL,			// ¾ÆÀÌÅÛ ¼ÒÀ¯±ÇÀÌ ¾ø½À´Ï´Ù.
-	GAME_ZENNY_NOT_ENOUGH,			// µ·ÀÌ ºÎÁ·ÇÕ´Ï´Ù.	
-	GAME_ITEM_IS_LOCK,				// ¾ÆÀÌÅÛÀÌ Àá±è »óÅÂÀÔ´Ï´Ù.
-	GAME_CHARM_POINT_IS_LOCKED,		// ÀÌÀüÀÇ ºÎÀû Æ÷ÀÎÆ®¿¡ ´ëÇÑ Ã³¸®°¡ ¿Ï·áµÇÁö ¾Ê¾Ò½À´Ï´Ù. Àá½Ã ÈÄ¿¡ ´Ù½Ã ½ÃµµÇÏ¿© ÁÖ½Ê½Ã¿À.
-	GAME_ZENNY_IS_LOCK,				// Á¦´ÏÀÇ Àá±è »óÅÂÀÔ´Ï´Ù.
-	GAME_REPAIR_VALUE_FAIL,			// ¼ö¸® °¡´ÉÇÑ ¾ÆÀÌÅÛÀÌ ¾Æ´Õ´Ï´Ù.
-	GAME_REPAIR_NOT_FOUND,			// ¼ö¸® °¡´ÉÇÑ ¾ÆÀÌÅÛÀÌ ¾ø½À´Ï´Ù.
-	GAME_ITEM_YOU_ARE_USING_AN_ITEM,				// ¾ÆÀÌÅÛÀ» »ç¿ëÇÏ´Â ÁßÀÔ´Ï´Ù.
+	GAME_ITEM_UNIDENTIFY,	        // ì•„ì´í…œ í™•ì¸ì´ ì•ˆë˜ì–´ìžˆìŠµë‹ˆë‹¤.
+	GAME_ITEM_UNIDENTIFY_FAIL,		// ì•„ì´í…œ í™•ì¸ ì‹¤íŒ¨
+	GAME_LOOTING_FAIL,			// ì•„ì´í…œ ì†Œìœ ê¶Œì´ ì—†ìŠµë‹ˆë‹¤.
+	GAME_ZENNY_NOT_ENOUGH,			// ëˆì´ ë¶€ì¡±í•©ë‹ˆë‹¤.	
+	GAME_ITEM_IS_LOCK,				// ì•„ì´í…œì´ ìž ê¹€ ìƒíƒœìž…ë‹ˆë‹¤.
+	GAME_CHARM_POINT_IS_LOCKED,		// ì´ì „ì˜ ë¶€ì  í¬ì¸íŠ¸ì— ëŒ€í•œ ì²˜ë¦¬ê°€ ì™„ë£Œë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤. ìž ì‹œ í›„ì— ë‹¤ì‹œ ì‹œë„í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.
+	GAME_ZENNY_IS_LOCK,				// ì œë‹ˆì˜ ìž ê¹€ ìƒíƒœìž…ë‹ˆë‹¤.
+	GAME_REPAIR_VALUE_FAIL,			// ìˆ˜ë¦¬ ê°€ëŠ¥í•œ ì•„ì´í…œì´ ì•„ë‹™ë‹ˆë‹¤.
+	GAME_REPAIR_NOT_FOUND,			// ìˆ˜ë¦¬ ê°€ëŠ¥í•œ ì•„ì´í…œì´ ì—†ìŠµë‹ˆë‹¤.
+	GAME_ITEM_YOU_ARE_USING_AN_ITEM,				// ì•„ì´í…œì„ ì‚¬ìš©í•˜ëŠ” ì¤‘ìž…ë‹ˆë‹¤.
 
-	GAME_ITEM_NOT_FOR_USE,			// »ç¿ëÇÒ ¼ö ÀÖ´Â ¾ÆÀÌÅÛÀÌ ¾Æ´Õ´Ï´Ù.
-	GAME_ITEM_NOT_BATTLE_AVAILABLE_LOCATION,		// ¾ÆÀÌÅÛ »ç¿ëÀÚ¿Í ´ë»ó ¸ðµÎ ÀüÅõ°¡ °¡´ÉÇÑ Áö¿ª¿¡ À§Ä¡ÇØ¾ß ÇÕ´Ï´Ù.
-	GAME_ITEM_CANT_USE_FOR_SOME_REASON,		// ½Ã½ºÅÛ ¹®Á¦·Î ¾ÆÀÌÅÛÀ» »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.
-	GAME_ITEM_NOT_READY_TO_BE_USED,		// ¾ÆÀÌÅÛÀÇ ÄðÅ¸ÀÓÀ» ±â´Ù·Á¾ß ÇÕ´Ï´Ù.
-	GAME_ITEM_TOO_LOW_LEVEL_TO_USE_ITEM,		// ·¹º§ÀÌ ¸ðÀÚ¶ó ¾ÆÀÌÅÛÀ» »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.
-	GAME_ITEM_NOT_ENOUGH_LP,		// LP°¡ ÃæºÐÇÏÁö ¾Ê½À´Ï´Ù.
-	GAME_ITEM_NOT_ENOUGH_EP,		// EP°¡ ÃæºÐÇÏÁö ¾Ê½À´Ï´Ù.
-	GAME_ITEM_NOT_ENOUGH_RP_BALL,						// RP ±¸½½ÀÌ ÃæºÐÇÏÁö ¾Ê½À´Ï´Ù.
-	GAME_ITEM_CASTING_CANCELED,							// ¾ÆÀÌÅÛ »ç¿ëÀÌ Ãë¼ÒµÇ¾ú½À´Ï´Ù.
-	GAME_ITEM_CANT_USE_NOW,		// ÇöÀç ¾ÆÀÌÅÛÀ» »ç¿ëÇÒ ¼ö ÀÖ´Â »óÅÂ°¡ ¾Æ´Õ´Ï´Ù.
+	GAME_ITEM_NOT_FOR_USE,			// ì‚¬ìš©í•  ìˆ˜ ìžˆëŠ” ì•„ì´í…œì´ ì•„ë‹™ë‹ˆë‹¤.
+	GAME_ITEM_NOT_BATTLE_AVAILABLE_LOCATION,		// ì•„ì´í…œ ì‚¬ìš©ìžì™€ ëŒ€ìƒ ëª¨ë‘ ì „íˆ¬ê°€ ê°€ëŠ¥í•œ ì§€ì—­ì— ìœ„ì¹˜í•´ì•¼ í•©ë‹ˆë‹¤.
+	GAME_ITEM_CANT_USE_FOR_SOME_REASON,		// ì‹œìŠ¤í…œ ë¬¸ì œë¡œ ì•„ì´í…œì„ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_ITEM_NOT_READY_TO_BE_USED,		// ì•„ì´í…œì˜ ì¿¨íƒ€ìž„ì„ ê¸°ë‹¤ë ¤ì•¼ í•©ë‹ˆë‹¤.
+	GAME_ITEM_TOO_LOW_LEVEL_TO_USE_ITEM,		// ë ˆë²¨ì´ ëª¨ìžë¼ ì•„ì´í…œì„ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_ITEM_NOT_ENOUGH_LP,		// LPê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_ITEM_NOT_ENOUGH_EP,		// EPê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_ITEM_NOT_ENOUGH_RP_BALL,						// RP êµ¬ìŠ¬ì´ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_ITEM_CASTING_CANCELED,							// ì•„ì´í…œ ì‚¬ìš©ì´ ì·¨ì†Œë˜ì—ˆìŠµë‹ˆë‹¤.
+	GAME_ITEM_CANT_USE_NOW,		// í˜„ìž¬ ì•„ì´í…œì„ ì‚¬ìš©í•  ìˆ˜ ìžˆëŠ” ìƒíƒœê°€ ì•„ë‹™ë‹ˆë‹¤.
 
-	GAME_ITEM_DUR_ZERO,			// ³»±¸µµ°¡ Á¦·ÎÀÔ´Ï´Ù.
-	GAME_SCOUTER_MAX_OVER,		// ÃøÁ¤Ä¡°¡ ¿À¹ö µÇ¾î ½ºÄ«¿ìÅÍ ¸ÞÀÎÆÄÃ÷°¡ °íÀå³µ½À´Ï´Ù.
-	GAME_ITEM_NOT_ENOUGH,		// ¾ÆÀÌÅÛÀÌ ¸¸Á·ÇÏÁö ¾Ê½À´Ï´Ù.
-	GAME_ITEM_UPGRADE_NO_SUBJECT_ITEM,			// ¾÷±×·¹ÀÌµåÇÒ Àåºñ ¾ÆÀÌÅÛÀ» ³Ö¾î ÁÖ½Ê½Ã¿À.
-	GAME_ITEM_UPGRADE_NO_HOIPOI_STONE,			// Á¶ÇÕÀ» ÇÏ±â À§ÇØ¼­´Â È£ÀÌÆ÷ÀÌ½ºÅæÀÌ ÇÊ¿äÇÕ´Ï´Ù.
-	GAME_ITEM_UPGRADE_WRONG_ITEM_TYPE,			// ¹«±â³ª ¹æ¾î±¸¸¸ ¾÷±×·¹ÀÌµå¸¦ ÇÒ ¼ö ÀÖ½À´Ï´Ù.
-	GAME_ITEM_UPGRADE_ALREADY_MAX_GRADE,		// ´õ ÀÌ»ó ¾÷±×·¹ÀÌµå¸¦ ÇÒ ¼ö ¾ø´Â ¾ÆÀÌÅÛÀÔ´Ï´Ù.
-	GAME_ITEM_UPGRADE_FAIL,     // ¾ÆÀÌÅÛ ¾÷±×·¹ÀÌµå ½ÇÆÐ
-	GAME_ITEM_UPGRADE_FAIL_AND_DEL,     // ¾÷±×·¹ÀÌµå ½ÇÆÐ·Î ¾ÆÀÌÅÛÀÌ ÆÄ±«µÇ¾ú½À´Ï´Ù.
-	GAME_BANK_NOT_READY,		// Ã¢°í°¡ ¾ÆÁ÷ ¿­·ÁÀÖÁö ¾Ê½À´Ï´Ù.
+	GAME_ITEM_DUR_ZERO,			// ë‚´êµ¬ë„ê°€ ì œë¡œìž…ë‹ˆë‹¤.
+	GAME_SCOUTER_MAX_OVER,		// ì¸¡ì •ì¹˜ê°€ ì˜¤ë²„ ë˜ì–´ ìŠ¤ì¹´ìš°í„° ë©”ì¸íŒŒì¸ ê°€ ê³ ìž¥ë‚¬ìŠµë‹ˆë‹¤.
+	GAME_ITEM_NOT_ENOUGH,		// ì•„ì´í…œì´ ë§Œì¡±í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_ITEM_UPGRADE_NO_SUBJECT_ITEM,			// ì—…ê·¸ë ˆì´ë“œí•  ìž¥ë¹„ ì•„ì´í…œì„ ë„£ì–´ ì£¼ì‹­ì‹œì˜¤.
+	GAME_ITEM_UPGRADE_NO_HOIPOI_STONE,			// ì¡°í•©ì„ í•˜ê¸° ìœ„í•´ì„œëŠ” í˜¸ì´í¬ì´ìŠ¤í†¤ì´ í•„ìš”í•©ë‹ˆë‹¤.
+	GAME_ITEM_UPGRADE_WRONG_ITEM_TYPE,			// ë¬´ê¸°ë‚˜ ë°©ì–´êµ¬ë§Œ ì—…ê·¸ë ˆì´ë“œë¥¼ í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
+	GAME_ITEM_UPGRADE_ALREADY_MAX_GRADE,		// ë” ì´ìƒ ì—…ê·¸ë ˆì´ë“œë¥¼ í•  ìˆ˜ ì—†ëŠ” ì•„ì´í…œìž…ë‹ˆë‹¤.
+	GAME_ITEM_UPGRADE_FAIL,     // ì•„ì´í…œ ì—…ê·¸ë ˆì´ë“œ ì‹¤íŒ¨
+	GAME_ITEM_UPGRADE_FAIL_AND_DEL,     // ì—…ê·¸ë ˆì´ë“œ ì‹¤íŒ¨ë¡œ ì•„ì´í…œì´ íŒŒê´´ë˜ì—ˆìŠµë‹ˆë‹¤.
+	GAME_BANK_NOT_READY,		// ì°½ê³ ê°€ ì•„ì§ ì—´ë ¤ìžˆì§€ ì•ŠìŠµë‹ˆë‹¤.
 
-	GAME_BANK_ALREADY_EXIST,		// Ã¢°í°¡ ÀÌ¹Ì Á¸ÀçÇÕ´Ï´Ù.
-	GAME_SCOUTER_PARTS_NOT_FOUND,	// ÇØ´ç ½ºÄ«¿ìÅÍ ÆÄÃ÷¸¦ Ã£Áö ¸øÇß½À´Ï´Ù.
-	GAME_SCOUTER_JAMMING,			// ÀüÆÄ¹æÇØ·Î ÀÎÇØ Ç¥½ÃÇÒ ¼ö ¾ø½À´Ï´Ù. 
-	GAME_SCOUTER_TARGET_FAIL,	 // Ç¥½Ã ´ë»óÀÌ ºÎÀûÀýÇÕ´Ï´Ù.
-	GAME_CHAR_LEVEL_FAIL,		// ·¹º§ÀÌ ¸ÂÁö ¾Ê½À´Ï´Ù.
-	GAME_CHAR_CLASS_FAIL,		// ÇØ´çÅ¬·¡½º°¡ ¸ÂÁö ¾Ê½À´Ï´Ù.
-	GAME_CHAR_RACE_FAIL,		// ÇØ´ç Á¾Á·ÀÌ ¸ÂÁö ¾Ê½À´Ï´Ù.
-	GAME_ZENNY_OVER,			// ±Ý¾×ÀÌ ¿À¹öµÇ¾ú½À´Ï´Ù.
-	GAME_QUEST_ALREADY_EXIST,	// ÀÌ¹Ì Á¸ÀçÇÏ´Â Äù½ºÆ®ÀÔ´Ï´Ù.
-	GAME_QUEST_COUNT_OVER,		// ¼öÇà°¡´ÉÇÑ Äù½ºÆ®¼ö°¡ ÃÊ°úµÇ¾ú½À´Ï´Ù.
+	GAME_BANK_ALREADY_EXIST,		// ì°½ê³ ê°€ ì´ë¯¸ ì¡´ìž¬í•©ë‹ˆë‹¤.
+	GAME_SCOUTER_PARTS_NOT_FOUND,	// í•´ë‹¹ ìŠ¤ì¹´ìš°í„° íŒŒì¸ ë¥¼ ì°¾ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.
+	GAME_SCOUTER_JAMMING,			// ì „íŒŒë°©í•´ë¡œ ì¸í•´ í‘œì‹œí•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤. 
+	GAME_SCOUTER_TARGET_FAIL,	 // í‘œì‹œ ëŒ€ìƒì´ ë¶€ì ì ˆí•©ë‹ˆë‹¤.
+	GAME_CHAR_LEVEL_FAIL,		// ë ˆë²¨ì´ ë§žì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_CHAR_CLASS_FAIL,		// í•´ë‹¹í´ëž˜ìŠ¤ê°€ ë§žì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_CHAR_RACE_FAIL,		// í•´ë‹¹ ì¢…ì¡±ì´ ë§žì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_ZENNY_OVER,			// ê¸ˆì•¡ì´ ì˜¤ë²„ë˜ì—ˆìŠµë‹ˆë‹¤.
+	GAME_QUEST_ALREADY_EXIST,	// ì´ë¯¸ ì¡´ìž¬í•˜ëŠ” í€˜ìŠ¤íŠ¸ìž…ë‹ˆë‹¤.
+	GAME_QUEST_COUNT_OVER,		// ìˆ˜í–‰ê°€ëŠ¥í•œ í€˜ìŠ¤íŠ¸ìˆ˜ê°€ ì´ˆê³¼ë˜ì—ˆìŠµë‹ˆë‹¤.
 
-	GAME_QUEST_NOT_EXIST,		// Á¸ÀçÇÏÁö ¾Ê´Â Äù½ºÆ®ÀÔ´Ï´Ù.
-	GAME_ITEM_CREATE_COUNT_OVER,// ÇÑ¹ø¿¡ »ý¼ºÇÒ ¼ö ÀÖ´Â °¹¼ö¸¦ ³Ñ¾ú´Ù.
-	GAME_ITEM_DELETE_COUNT_OVER,// ÇÑ¹ø¿¡ »èÁ¦ÇÒ ¼ö ÀÖ´Â °¹¼ö¸¦ ³Ñ¾ú´Ù.
-	GAME_GM_LEVEL_NOT_FOUND,	// GM Level ÀÌ ¾øÀ½
+	GAME_QUEST_NOT_EXIST,		// ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” í€˜ìŠ¤íŠ¸ìž…ë‹ˆë‹¤.
+	GAME_ITEM_CREATE_COUNT_OVER,// í•œë²ˆì— ìƒì„±í•  ìˆ˜ ìžˆëŠ” ê°¯ìˆ˜ë¥¼ ë„˜ì—ˆë‹¤.
+	GAME_ITEM_DELETE_COUNT_OVER,// í•œë²ˆì— ì‚­ì œí•  ìˆ˜ ìžˆëŠ” ê°¯ìˆ˜ë¥¼ ë„˜ì—ˆë‹¤.
+	GAME_GM_LEVEL_NOT_FOUND,	// GM Level ì´ ì—†ìŒ
 	GAME_GM_PUNISH_NOT_FOUND,	// Punish type error
 	GAME_SCOUTER_BODY_IS_NOT_EMPTY,
-	GAME_SCOUTER_PARTS_LEVEL_FAIL,	// ½ºÄ«¿ìÅÍ ÆÄÃ÷ ·¹º§ÀÌ ¸ÂÁö ¾Ê½À´Ï´Ù.
-	GAME_TRADE_TARGET_WRONG_STATE,		// »ó´ë¹æÀÌ ÇöÀç Æ®·¹ÀÌµå¸¦ ÇÒ ¼ö ¾ø´Â »óÅÂÀÔ´Ï´Ù.
-	GAME_TRADE_ALREADY_USE,		// Æ®·¹ÀÌµå ÁßÀÔ´Ï´Ù.
-	GAME_TRADE_DENY_USE,		// Æ®·¹ÀÌµå °ÅÀý ÁßÀÔ´Ï´Ù.
+	GAME_SCOUTER_PARTS_LEVEL_FAIL,	// ìŠ¤ì¹´ìš°í„° íŒŒì¸  ë ˆë²¨ì´ ë§žì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_TRADE_TARGET_WRONG_STATE,		// ìƒëŒ€ë°©ì´ í˜„ìž¬ íŠ¸ë ˆì´ë“œë¥¼ í•  ìˆ˜ ì—†ëŠ” ìƒíƒœìž…ë‹ˆë‹¤.
+	GAME_TRADE_ALREADY_USE,		// íŠ¸ë ˆì´ë“œ ì¤‘ìž…ë‹ˆë‹¤.
+	GAME_TRADE_DENY_USE,		// íŠ¸ë ˆì´ë“œ ê±°ì ˆ ì¤‘ìž…ë‹ˆë‹¤.
 
-	GAME_TRADE_DENY,			// Æ®·¹ÀÌµå¸¦ °ÅÀýÇÏ¿´½À´Ï´Ù.
-	GAME_TRADE_REPLY_WAIT_OVER,		// Æ®·¹ÀÌµå ÀÀ´ä½Ã°£À» ÃÊ°úÇÏ¿´½À´Ï´Ù.
-	GAME_TRADE_WRONG_STATE,		// Æ®·¹ÀÌµåÇÏ±â¿¡ ÀûÀýÇÑ »óÅÂ°¡ ¾Æ´Õ´Ï´Ù.
-	GAME_TRADE_ITEM_INVALID,	// Æ®·¹ÀÌµå ºÒ°¡´ÉÇÑ ¾ÆÀÌÅÛ ÀÔ´Ï´Ù.
-	GAME_TRADE_ALREADY_CLOSE,	// Æ®·¹ÀÌµå°¡ ÀÌ¹Ì Àá±è»óÅÂ ÀÔ´Ï´Ù.
-	GAME_TRADE_ALREADY_OPEN,	// Æ®·¹ÀÌµå°¡ ÀÌ¹Ì ¿­¸²»óÅÂ ÀÔ´Ï´Ù.
-	GAME_TRADE_CHANGED_STATE,	// Æ®·¹ÀÌµå ¹°Ç° Á¤º¸°¡ ¹Ù²î¾ú½À´Ï´Ù.
-	GAME_ITEM_NOT_GO_THERE,		// ¿Å±æ¼ö ¾ø´Â À§Ä¡ÀÔ´Ï´Ù.
-	GAME_DRAGONBALL_OBJECT_ARLEADY_USED, // Á¦´ÜÀÌ »ç¿ë ÁßÀÔ´Ï´Ù.
-	GAME_DRAGONBALL_NOT_FOUND,	 // µå·¡°ïº¼À» Ã£À»¼ö ¾ø½À´Ï´Ù.
+	GAME_TRADE_DENY,			// íŠ¸ë ˆì´ë“œë¥¼ ê±°ì ˆí•˜ì˜€ìŠµë‹ˆë‹¤.
+	GAME_TRADE_REPLY_WAIT_OVER,		// íŠ¸ë ˆì´ë“œ ì‘ë‹µì‹œê°„ì„ ì´ˆê³¼í•˜ì˜€ìŠµë‹ˆë‹¤.
+	GAME_TRADE_WRONG_STATE,		// íŠ¸ë ˆì´ë“œí•˜ê¸°ì— ì ì ˆí•œ ìƒíƒœê°€ ì•„ë‹™ë‹ˆë‹¤.
+	GAME_TRADE_ITEM_INVALID,	// íŠ¸ë ˆì´ë“œ ë¶ˆê°€ëŠ¥í•œ ì•„ì´í…œ ìž…ë‹ˆë‹¤.
+	GAME_TRADE_ALREADY_CLOSE,	// íŠ¸ë ˆì´ë“œê°€ ì´ë¯¸ ìž ê¹€ìƒíƒœ ìž…ë‹ˆë‹¤.
+	GAME_TRADE_ALREADY_OPEN,	// íŠ¸ë ˆì´ë“œê°€ ì´ë¯¸ ì—´ë¦¼ìƒíƒœ ìž…ë‹ˆë‹¤.
+	GAME_TRADE_CHANGED_STATE,	// íŠ¸ë ˆì´ë“œ ë¬¼í’ˆ ì •ë³´ê°€ ë°”ë€Œì—ˆìŠµë‹ˆë‹¤.
+	GAME_ITEM_NOT_GO_THERE,		// ì˜®ê¸¸ìˆ˜ ì—†ëŠ” ìœ„ì¹˜ìž…ë‹ˆë‹¤.
+	GAME_DRAGONBALL_OBJECT_ARLEADY_USED, // ì œë‹¨ì´ ì‚¬ìš© ì¤‘ìž…ë‹ˆë‹¤.
+	GAME_DRAGONBALL_NOT_FOUND,	 // ë“œëž˜ê³¤ë³¼ì„ ì°¾ì„ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 
-	GAME_DRAGONBALL_REWARD_NOT_FOUND,   // µå·¡°ïº¼ º¸»óÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù.
-	GAME_DRAGONBALL_TIME_OVER,	// »ç¿ë½Ã°£ÀÌ ¸¸·áµÇ¾ú½À´Ï´Ù.
-	GAME_DRAGONBALL_SAME_EXIST,		// µ¿ÀÏ ÇÑ µå·¡°ïº¼ÀÌ ÀÖ½À´Ï´Ù.
-	GAME_QUSET_ITEM_CREATE_COUNT_OVER,// Äù½ºÆ® ÀÎº¥Åä¸®¿¡¼­ µ¿ÀÏÇÑ ¾ÆÀÌÅÛÀ» »ý¼ºÇÒ ¼ö ¾ø½À´Ï´Ù.
-	GAME_ITEM_CANT_BE_USED_ON_YOURSELF,					// ÀÚ½ÅÀ» ¼±ÅÃÇÏ°í »ç¿ëÇÒ ¼ö ¾ø´Â ¾ÆÀÌÅÛÀÔ´Ï´Ù.
-	GAME_ITEM_TYPE_NOT_MISMATCHED,	// ¾ÆÀÌÅÛ Å¸ÀÔÀÌ ¸ÂÁö ¾Ê½À´Ï´Ù.
-	GAME_ITEM_RECIPE_ALREADY_EXIST,	// °°Àº ·¹½ÃÇÇ°¡ ÀÌ¹Ì Á¸Àç ÇÕ´Ï´Ù.	
-	GAME_ITEM_RECIPE_NOT_FOUND,		// ÇØ´ç ·¹½ÃÇÇ°¡ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù .	
-	GAME_ITEM_RECIPE_REGISTER_PROFESSION,	// ÇØ´ç ¾ÆÀÌÅÛ ¹Í½º Á÷¾÷À» ¸ÕÀú ¼±ÅÃÇÏ¿©¾ß ÇÕ´Ï´Ù.
-	GAME_ITEM_RECIPE_LEVEL_MISMATCHED,	// ÇØ´ç ¾ÆÀÌÅÛ ·¹½ÃÇÇ·¹º§ÀÌ ¸ÂÁö ¾Ê½À´Ï´Ù.
-	GAME_ITEM_RECIPE_TYPE_MISMATCHED,	// ÇØ´ç ¾ÆÀÌÅÛ ·¹½ÃÇÇ Å¸ÀÔÀÌ ¸ÂÁö ¾Ê½À´Ï´Ù.
-	GAME_ITEM_RECIPE_REGISTER_FAIL,		// ¾ÆÀÌÅÛ ·¹½ÃÇÇ µî·Ï¿¡ ½ÇÆÐÇß½À´Ï´Ù.
-	GAME_ZENNY_LOOTING,					// Á¦´Ï¸¦ ÁÝ°í ÀÖ½À´Ï´Ù.
-	GAME_ITEM_RECIPE_REGISTER_PROFESSION_FAIL,	// ¾ÆÀÌÅÛ ¹Í½º Á÷¾÷ÀÌ Àß¸øµÇ¾ú½À´Ï´Ù.
-	GAME_SCOUTER_MAIN_PARTS_NOT_FOUND,	// ½ºÄ«¿ìÅÍ ¸ÞÀÎ ÆÄÃ÷¸¦ Ã£Áö ¸øÇß½À´Ï´Ù.
+	GAME_DRAGONBALL_REWARD_NOT_FOUND,   // ë“œëž˜ê³¤ë³¼ ë³´ìƒì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_DRAGONBALL_TIME_OVER,	// ì‚¬ìš©ì‹œê°„ì´ ë§Œë£Œë˜ì—ˆìŠµë‹ˆë‹¤.
+	GAME_DRAGONBALL_SAME_EXIST,		// ë™ì¼ í•œ ë“œëž˜ê³¤ë³¼ì´ ìžˆìŠµë‹ˆë‹¤.
+	GAME_QUSET_ITEM_CREATE_COUNT_OVER,// í€˜ìŠ¤íŠ¸ ì¸ë²¤í† ë¦¬ì—ì„œ ë™ì¼í•œ ì•„ì´í…œì„ ìƒì„±í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_ITEM_CANT_BE_USED_ON_YOURSELF,					// ìžì‹ ì„ ì„ íƒí•˜ê³  ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ì•„ì´í…œìž…ë‹ˆë‹¤.
+	GAME_ITEM_TYPE_NOT_MISMATCHED,	// ì•„ì´í…œ íƒ€ìž…ì´ ë§žì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_ITEM_RECIPE_ALREADY_EXIST,	// ê°™ì€ ë ˆì‹œí”¼ê°€ ì´ë¯¸ ì¡´ìž¬ í•©ë‹ˆë‹¤.	
+	GAME_ITEM_RECIPE_NOT_FOUND,		// í•´ë‹¹ ë ˆì‹œí”¼ê°€ ì¡´ìž¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤ .	
+	GAME_ITEM_RECIPE_REGISTER_PROFESSION,	// í•´ë‹¹ ì•„ì´í…œ ë¯¹ìŠ¤ ì§ì—…ì„ ë¨¼ì € ì„ íƒí•˜ì—¬ì•¼ í•©ë‹ˆë‹¤.
+	GAME_ITEM_RECIPE_LEVEL_MISMATCHED,	// í•´ë‹¹ ì•„ì´í…œ ë ˆì‹œí”¼ë ˆë²¨ì´ ë§žì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_ITEM_RECIPE_TYPE_MISMATCHED,	// í•´ë‹¹ ì•„ì´í…œ ë ˆì‹œí”¼ íƒ€ìž…ì´ ë§žì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_ITEM_RECIPE_REGISTER_FAIL,		// ì•„ì´í…œ ë ˆì‹œí”¼ ë“±ë¡ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.
+	GAME_ZENNY_LOOTING,					// ì œë‹ˆë¥¼ ì¤ê³  ìžˆìŠµë‹ˆë‹¤.
+	GAME_ITEM_RECIPE_REGISTER_PROFESSION_FAIL,	// ì•„ì´í…œ ë¯¹ìŠ¤ ì§ì—…ì´ ìž˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤.
+	GAME_SCOUTER_MAIN_PARTS_NOT_FOUND,	// ìŠ¤ì¹´ìš°í„° ë©”ì¸ íŒŒì¸ ë¥¼ ì°¾ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.
 	//-----------------------------------------------------------------
 	GAME_GM_TOOL_SUCCESS = 900,			//
 	GAME_GM_TOOL_FAIL,					// GM TOOL FAIL
 	GAME_GM_TOOL_LOGIN_PASS_FAIL,		// GM TOOL LOGIN PASSWORD MISMATCHED
-	GAME_GM_TOOL_ACCOUNT_EXIST,			// ÀÌ¹Ì Á¸ÀçÇÏ´Â ¾ÆÀÌµð ÀÔ´Ï´Ù.
-	GAME_GM_TOOL_PASS_NULL,				// ÆÐ½º¿öµå¸¦ ¼³Á¤ÇÏÁö ¾Ê¾Ò½À´Ï´Ù.
-	GAME_GM_TOOL_GROUP_NOT_FOUND,		// ±×·ìÀÌ ¾ø½À´Ï´Ù ±×·ìÀ» ¸ÕÀú ¸¸µå½Ê½Ã¿ä.
-	GAME_GM_TOOL_GROUP_ALREADY_EXIST,	// ±×·ìÀÌ ÀÌ¹Ì Á¸ÀçÇÕ´Ï´Ù.
-	GAME_GM_TOOL_GROUP_NEED_ADMIN,		// ¾îµå¹Î ±×·ìÀº »èÁ¦ÇÒ¼ö ¾ø½À´Ï´Ù.
-	GAME_GM_TOOL_USER_NOT_FOUND,		// ÇØ´ç °èÁ¤ÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.
-	GAME_GM_TOOL_LOGIN_DUPLICATE,		// Áßº¹ ·Î±×ÀÎ
-	GAME_GM_TOOL_CHARACTER_IS_NOT_KICK,	// Å± »óÅÂ°¡ ¾Æ´Ï´Ù.
-	GAME_GM_TOOL_CHARACTER_EXIST,		// Ä³¸¯ÅÍ°¡ Á¸ÀçÇÕ´Ï´Ù.
-	GAME_GM_TOOL_INVALID_TOOL_VERSION,	// Åø ¹öÁ¯ÀÌ ¸ÂÁö ¾Ê½À´Ï´Ù.
-	GAME_GM_TOOL_INVALID_IP_ADDRESS,	// ÀÎ°¡µÇÁö ¾ÊÀº IPÀÔ´Ï´Ù.
-	GAME_GM_TOOL_NOTICE_OVER,			// °øÁö»çÇ× ÃÖ´ë°¹¼ö¸¦ ÃÊ°úÇß½À´Ï´Ù.
-	GAME_GM_TOOL_GUILD_NOT_FOUND,		// ±æµå¸¦ Ã£Áö ¸øÇß½À´Ï´Ù.
-	GAME_GM_TOOL_CHARACTER_NOT_EXIST,	// Ä³¸¯ÅÍ°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.
-	GAME_GM_TOOL_SERVER_CANT_BE_TURNED_ON_BY_GM_TOOL,		// GM Tool·Î ½ÇÇàÇÒ ¼ö ¾ø´Â ¼­¹öÀÔ´Ï´Ù.
-	GAME_GM_TOOL_SERVER_CANT_BE_TURNED_OFF_BY_GM_TOOL,		// GM Tool·Î Á¾·áÇÒ ¼ö ¾ø´Â ¼­¹öÀÔ´Ï´Ù.
-	GAME_GM_TOOL_WRONG_SERVER_TO_TURN_ON,					// ½ÇÇàÇÒ ¼­¹ö¸¦ Àß¸ø ÁöÁ¤ÇÏ¿´½À´Ï´Ù.
-	GAME_GM_TOOL_WRONG_SERVER_TO_TURN_OFF,					// Á¾·áÇÒ ¼­¹ö¸¦ Àß¸ø ÁöÁ¤ÇÏ¿´½À´Ï´Ù.
-	GAME_GM_TOOL_SERVERFARMID_INVALID,						// ServerFarmID°¡ InvalidÀÔ´Ï´Ù.
+	GAME_GM_TOOL_ACCOUNT_EXIST,			// ì´ë¯¸ ì¡´ìž¬í•˜ëŠ” ì•„ì´ë”” ìž…ë‹ˆë‹¤.
+	GAME_GM_TOOL_PASS_NULL,				// íŒ¨ìŠ¤ì›Œë“œë¥¼ ì„¤ì •í•˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
+	GAME_GM_TOOL_GROUP_NOT_FOUND,		// ê·¸ë£¹ì´ ì—†ìŠµë‹ˆë‹¤ ê·¸ë£¹ì„ ë¨¼ì € ë§Œë“œì‹­ì‹œìš”.
+	GAME_GM_TOOL_GROUP_ALREADY_EXIST,	// ê·¸ë£¹ì´ ì´ë¯¸ ì¡´ìž¬í•©ë‹ˆë‹¤.
+	GAME_GM_TOOL_GROUP_NEED_ADMIN,		// ì–´ë“œë¯¼ ê·¸ë£¹ì€ ì‚­ì œí• ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_GM_TOOL_USER_NOT_FOUND,		// í•´ë‹¹ ê³„ì •ì´ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_GM_TOOL_LOGIN_DUPLICATE,		// ì¤‘ë³µ ë¡œê·¸ì¸
+	GAME_GM_TOOL_CHARACTER_IS_NOT_KICK,	// í‚¥ ìƒíƒœê°€ ì•„ë‹ˆë‹¤.
+	GAME_GM_TOOL_CHARACTER_EXIST,		// ìºë¦­í„°ê°€ ì¡´ìž¬í•©ë‹ˆë‹¤.
+	GAME_GM_TOOL_INVALID_TOOL_VERSION,	// íˆ´ ë²„ì ¼ì´ ë§žì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_GM_TOOL_INVALID_IP_ADDRESS,	// ì¸ê°€ë˜ì§€ ì•Šì€ IPìž…ë‹ˆë‹¤.
+	GAME_GM_TOOL_NOTICE_OVER,			// ê³µì§€ì‚¬í•­ ìµœëŒ€ê°¯ìˆ˜ë¥¼ ì´ˆê³¼í–ˆìŠµë‹ˆë‹¤.
+	GAME_GM_TOOL_GUILD_NOT_FOUND,		// ê¸¸ë“œë¥¼ ì°¾ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.
+	GAME_GM_TOOL_CHARACTER_NOT_EXIST,	// ìºë¦­í„°ê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_GM_TOOL_SERVER_CANT_BE_TURNED_ON_BY_GM_TOOL,		// GM Toolë¡œ ì‹¤í–‰í•  ìˆ˜ ì—†ëŠ” ì„œë²„ìž…ë‹ˆë‹¤.
+	GAME_GM_TOOL_SERVER_CANT_BE_TURNED_OFF_BY_GM_TOOL,		// GM Toolë¡œ ì¢…ë£Œí•  ìˆ˜ ì—†ëŠ” ì„œë²„ìž…ë‹ˆë‹¤.
+	GAME_GM_TOOL_WRONG_SERVER_TO_TURN_ON,					// ì‹¤í–‰í•  ì„œë²„ë¥¼ ìž˜ëª» ì§€ì •í•˜ì˜€ìŠµë‹ˆë‹¤.
+	GAME_GM_TOOL_WRONG_SERVER_TO_TURN_OFF,					// ì¢…ë£Œí•  ì„œë²„ë¥¼ ìž˜ëª» ì§€ì •í•˜ì˜€ìŠµë‹ˆë‹¤.
+	GAME_GM_TOOL_SERVERFARMID_INVALID,						// ServerFarmIDê°€ Invalidìž…ë‹ˆë‹¤.
 	GAME_GM_TOOL_AGENTSERVER_NORUN,
-	GAME_GM_TOOL_RANK_BATTLE_POINT_NOT_FOUND, // ·©Å© ¹èÆ² Á¤º¸°¡ ¾ø´Â Ä³¸¯ÅÍ ÀÔ´Ï´Ù.
-	GAME_GM_TOOL_ACCOUNT_NOT_EXIST,							// Á¸ÀçÇÏÁö ¾Ê´Â ¾ÆÀÌµð ÀÔ´Ï´Ù.
+	GAME_GM_TOOL_RANK_BATTLE_POINT_NOT_FOUND, // ëž­í¬ ë°°í‹€ ì •ë³´ê°€ ì—†ëŠ” ìºë¦­í„° ìž…ë‹ˆë‹¤.
+	GAME_GM_TOOL_ACCOUNT_NOT_EXIST,							// ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” ì•„ì´ë”” ìž…ë‹ˆë‹¤.
 	
 	//-----------------------------------------------------------------
 	GAME_SKILL_SLOT_FAIL = 1000,	
@@ -454,135 +454,135 @@ enum eRESULTCODE
 	//-----------------------------------------------------------------
 	GAME_SHOP_NOT_FOUND = 1100,
 	GAME_SHOP_SO_FAR,
-	GAME_SHOP_NOT_CLOSED,					// »óÁ¡ÀÌ ¿­¸°»óÅÂÀÔ´Ï´Ù.
-	GAME_SHOP_ITEM_INVALID,					// ÆÈ¼ö ¾ø´Â ¾ÆÀÌÅÛ ÀÔ´Ï´Ù.
+	GAME_SHOP_NOT_CLOSED,					// ìƒì ì´ ì—´ë¦°ìƒíƒœìž…ë‹ˆë‹¤.
+	GAME_SHOP_ITEM_INVALID,					// íŒ”ìˆ˜ ì—†ëŠ” ì•„ì´í…œ ìž…ë‹ˆë‹¤.
 	//-----------------------------------------------------------------
-	GAME_MOVE_CANT_GO_THERE = 1200,		// °¥ ¼ö ¾ø´Â À§Ä¡ÀÔ´Ï´Ù
-	GAME_WORLD_NOT_EXIST,				// Á¸ÀçÇÏÁö ¾Ê´Â ¿ùµå ÀÔ´Ï´Ù.
-	GAME_MOVE_CANT_ALLOWED_ENTER,		// ÁøÀÔÀÌ Çã¿ëµÇÁö ¾Ê½À´Ï´Ù.
-	GAME_WORLD_CANT_MOVE_AGAIN,								// ¿ùµå¿¡ ÀçÁøÀÔ ÇÒ ¼ö ¾ø´Â »óÅÂÀÔ´Ï´Ù.
+	GAME_MOVE_CANT_GO_THERE = 1200,		// ê°ˆ ìˆ˜ ì—†ëŠ” ìœ„ì¹˜ìž…ë‹ˆë‹¤
+	GAME_WORLD_NOT_EXIST,				// ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” ì›”ë“œ ìž…ë‹ˆë‹¤.
+	GAME_MOVE_CANT_ALLOWED_ENTER,		// ì§„ìž…ì´ í—ˆìš©ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_WORLD_CANT_MOVE_AGAIN,								// ì›”ë“œì— ìž¬ì§„ìž… í•  ìˆ˜ ì—†ëŠ” ìƒíƒœìž…ë‹ˆë‹¤.
 	//-----------------------------------------------------------------
-	GAME_PARTY_ALREADY_IN_PARTY = 1300,						// ÀÌ¹Ì ÆÄÆ¼¿¡ ¼ÓÇØ ÀÖ½À´Ï´Ù.
-	GAME_PARTY_ANOTHER_PLAYER_IS_INVITING_YOU,				// ´Ù¸¥ ÇÃ·¹ÀÌ¾î°¡ ÀÌ¹Ì ´ç½ÅÀ» ÃÊ´ëÇÏ°í ÀÖ½À´Ï´Ù.
-	GAME_PARTY_ANOTHER_PARTY_IS_INVITING_YOU,				// ´Ù¸¥ ÆÄÆ¼°¡ ÀÌ¹Ì ´ç½ÅÀ» ÃÊ´ëÇÏ°í ÀÖ½À´Ï´Ù.
-	GAME_PARTY_NOT_PROPER_PARTY_NAME_LENGTH,				// ÆÄÆ¼ ÀÌ¸§ ±æÀÌ°¡ ÀûÀýÇÏÁö ¾Ê½À´Ï´Ù.
-	GAME_PARTY_PARTY_NAME_HAS_INVALID_CHARACTER,			// ÆÄÆ¼ ÀÌ¸§¿¡ »ç¿ë ºÒ°¡´ÉÇÑ ¹®ÀÚ°¡ Æ÷ÇÔµÇ¾î ÀÖ½À´Ï´Ù.
-	GAME_PARTY_NOT_CREATED_FOR_SOME_REASON,					// ½Ã½ºÅÛ ¹®Á¦·Î ÆÄÆ¼°¡ »ý¼ºµÇÁö ¾Ê¾Ò½À´Ï´Ù.
-	GAME_PARTY_YOU_ARE_NOT_IN_PARTY,						// ÆÄÆ¼¿¡ ¼ÓÇØ ÀÖÁö ¾Ê½À´Ï´Ù.
-	GAME_PARTY_ONLY_ALLOWED_TO_PARTY_LEADER,				// ÆÄÆ¼ ¸®´õ¸¸ »ç¿ëÇÒ ¼ö ÀÖ´Â ±â´ÉÀÔ´Ï´Ù.
-	GAME_PARTY_NOT_AVAILABLE_OPERATION_RIGHT_NOW,			// ÆÄÆ¼°¡ ¼öÇàÇÏ°í ÀÖ´Â ÀÛ¾÷ÀÌ ³¡³ª¾ß °¡´ÉÇÕ´Ï´Ù.
-	GAME_PARTY_NO_SUCH_A_PLAYER,							// Á¸ÀçÇÏÁö ¾Ê´Â ÇÃ·¹ÀÌ¾îÀÔ´Ï´Ù.
+	GAME_PARTY_ALREADY_IN_PARTY = 1300,						// ì´ë¯¸ íŒŒí‹°ì— ì†í•´ ìžˆìŠµë‹ˆë‹¤.
+	GAME_PARTY_ANOTHER_PLAYER_IS_INVITING_YOU,				// ë‹¤ë¥¸ í”Œë ˆì´ì–´ê°€ ì´ë¯¸ ë‹¹ì‹ ì„ ì´ˆëŒ€í•˜ê³  ìžˆìŠµë‹ˆë‹¤.
+	GAME_PARTY_ANOTHER_PARTY_IS_INVITING_YOU,				// ë‹¤ë¥¸ íŒŒí‹°ê°€ ì´ë¯¸ ë‹¹ì‹ ì„ ì´ˆëŒ€í•˜ê³  ìžˆìŠµë‹ˆë‹¤.
+	GAME_PARTY_NOT_PROPER_PARTY_NAME_LENGTH,				// íŒŒí‹° ì´ë¦„ ê¸¸ì´ê°€ ì ì ˆí•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_PARTY_PARTY_NAME_HAS_INVALID_CHARACTER,			// íŒŒí‹° ì´ë¦„ì— ì‚¬ìš© ë¶ˆê°€ëŠ¥í•œ ë¬¸ìžê°€ í¬í•¨ë˜ì–´ ìžˆìŠµë‹ˆë‹¤.
+	GAME_PARTY_NOT_CREATED_FOR_SOME_REASON,					// ì‹œìŠ¤í…œ ë¬¸ì œë¡œ íŒŒí‹°ê°€ ìƒì„±ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
+	GAME_PARTY_YOU_ARE_NOT_IN_PARTY,						// íŒŒí‹°ì— ì†í•´ ìžˆì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_PARTY_ONLY_ALLOWED_TO_PARTY_LEADER,				// íŒŒí‹° ë¦¬ë”ë§Œ ì‚¬ìš©í•  ìˆ˜ ìžˆëŠ” ê¸°ëŠ¥ìž…ë‹ˆë‹¤.
+	GAME_PARTY_NOT_AVAILABLE_OPERATION_RIGHT_NOW,			// íŒŒí‹°ê°€ ìˆ˜í–‰í•˜ê³  ìžˆëŠ” ìž‘ì—…ì´ ëë‚˜ì•¼ ê°€ëŠ¥í•©ë‹ˆë‹¤.
+	GAME_PARTY_NO_SUCH_A_PLAYER,							// ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” í”Œë ˆì´ì–´ìž…ë‹ˆë‹¤.
 
-	GAME_PARTY_TARGET_ALREADY_IN_PARTY,						// »ó´ë¹æÀÌ ÀÌ¹Ì ÆÄÆ¼¿¡ ¼ÓÇØ ÀÖ½À´Ï´Ù.
-	GAME_PARTY_TARGET_ALREADY_HAS_INVITATION,				// »ó´ë¹æÀÌ ÀÌ¹Ì ÆÄÆ¼ ÃÊ´ë¸¦ ¹ÞÀº »óÅÂÀÔ´Ï´Ù.
-	GAME_PARTY_NO_ROOM_FOR_NEW_MEMBER,						// ´õ ÀÌ»ó ¸â¹ö¸¦ ¹ÞÀ» ¼ö ¾ø½À´Ï´Ù.
-	GAME_PARTY_MEMBER_IS_ALREADY_REGISTERED_TIMEQUEST,		// »ó´ë¹æÀÌ Å¸ÀÓ¸Ó½Å Äù½ºÆ®¿¡ ÀÌ¹Ì µî·ÏµÇ¾î ÀÖ½À´Ï´Ù.
-	GAME_PARTY_YOU_HAVE_NO_INVITATION,						// ´ç½ÅÀº ÆÄÆ¼·ÎºÎÅÍ ÃÊ´ë¸¦ ¹ÞÀº »óÅÂ°¡ ¾Æ´Õ´Ï´Ù.
-	GAME_PARTY_INVITOR_PLAYER_IS_IN_A_PARTY,				// ´ç½ÅÀ» ÃÊ´ëÇß´ø ÇÃ·¹ÀÌ¾î¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.
-	GAME_PARTY_NO_SUCH_A_PARTY,								// ÆÄÆ¼°¡ Á¸ÀçÇÏ±â ¾Ê½À´Ï´Ù.
-	GAME_PARTY_COULDNT_JOIN_FOR_SOME_REASON,				// ½Ã½ºÅÛ ¹®Á¦·Î ÆÄÆ¼¿¡ °¡ÀÔÇÒ ¼ö ¾ø¾ú½À´Ï´Ù.
-	GAME_PARTY_NO_SUCH_A_PLAYER_IN_THE_PARTY,				// ÆÄÆ¼¿¡ Á¸ÀçÇÏÁö ¾Ê´Â ÇÃ·¹ÀÌ¾îÀÔ´Ï´Ù.
-	GAME_PARTY_COULDNT_KICK_OUT_FOR_SOME_REASON,			// ½Ã½ºÅÛ ¹®Á¦·Î ¸â¹ö¸¦ °­Á¦·Î Å»Åð½ÃÅ³ ¼ö ¾ø¾ú½À´Ï´Ù.
-	GAME_PARTY_CANT_KICK_OUT_HIMSELF,						// ÀÚ±â ÀÚ½ÅÀ» °­Á¦·Î Å»Åð½ÃÅ³ ¼ö ¾ø½À´Ï´Ù.
+	GAME_PARTY_TARGET_ALREADY_IN_PARTY,						// ìƒëŒ€ë°©ì´ ì´ë¯¸ íŒŒí‹°ì— ì†í•´ ìžˆìŠµë‹ˆë‹¤.
+	GAME_PARTY_TARGET_ALREADY_HAS_INVITATION,				// ìƒëŒ€ë°©ì´ ì´ë¯¸ íŒŒí‹° ì´ˆëŒ€ë¥¼ ë°›ì€ ìƒíƒœìž…ë‹ˆë‹¤.
+	GAME_PARTY_NO_ROOM_FOR_NEW_MEMBER,						// ë” ì´ìƒ ë©¤ë²„ë¥¼ ë°›ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_PARTY_MEMBER_IS_ALREADY_REGISTERED_TIMEQUEST,		// ìƒëŒ€ë°©ì´ íƒ€ìž„ë¨¸ì‹  í€˜ìŠ¤íŠ¸ì— ì´ë¯¸ ë“±ë¡ë˜ì–´ ìžˆìŠµë‹ˆë‹¤.
+	GAME_PARTY_YOU_HAVE_NO_INVITATION,						// ë‹¹ì‹ ì€ íŒŒí‹°ë¡œë¶€í„° ì´ˆëŒ€ë¥¼ ë°›ì€ ìƒíƒœê°€ ì•„ë‹™ë‹ˆë‹¤.
+	GAME_PARTY_INVITOR_PLAYER_IS_IN_A_PARTY,				// ë‹¹ì‹ ì„ ì´ˆëŒ€í–ˆë˜ í”Œë ˆì´ì–´ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_PARTY_NO_SUCH_A_PARTY,								// íŒŒí‹°ê°€ ì¡´ìž¬í•˜ê¸° ì•ŠìŠµë‹ˆë‹¤.
+	GAME_PARTY_COULDNT_JOIN_FOR_SOME_REASON,				// ì‹œìŠ¤í…œ ë¬¸ì œë¡œ íŒŒí‹°ì— ê°€ìž…í•  ìˆ˜ ì—†ì—ˆìŠµë‹ˆë‹¤.
+	GAME_PARTY_NO_SUCH_A_PLAYER_IN_THE_PARTY,				// íŒŒí‹°ì— ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” í”Œë ˆì´ì–´ìž…ë‹ˆë‹¤.
+	GAME_PARTY_COULDNT_KICK_OUT_FOR_SOME_REASON,			// ì‹œìŠ¤í…œ ë¬¸ì œë¡œ ë©¤ë²„ë¥¼ ê°•ì œë¡œ íƒˆí‡´ì‹œí‚¬ ìˆ˜ ì—†ì—ˆìŠµë‹ˆë‹¤.
+	GAME_PARTY_CANT_KICK_OUT_HIMSELF,						// ìžê¸° ìžì‹ ì„ ê°•ì œë¡œ íƒˆí‡´ì‹œí‚¬ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 
-	GAME_PARTY_YOU_ARE_ALREADY_A_LEADER,					// ÀÌ¹Ì ÀÚ½ÅÀÌ ÆÄÆ¼ ¸®´õÀÔ´Ï´Ù.
-	GAME_PARTY_COULDNT_ASSIGN_A_LEADER_FOR_SOME_REASON,		// ½Ã½ºÅÛ ¹®Á¦·Î ¸â¹ö¸¦ ¸®´õ·Î º¯°æÇÒ ¼ö ¾ø¾ú½À´Ï´Ù.
-	GAME_PARTY_COULDNT_BE_DONE_FOR_SOME_REASON,				// ½Ã½ºÅÛ ¹®Á¦·Î ¿äÃ»ÀÌ Ã³¸®µÉ ¼ö ¾ø¾ú½À´Ï´Ù.
-	GAME_PARTY_WRONG_CHARM_INVENTORY_SPECIFIED,				// ºÎÀû ÀÎº¥Åä¸®°¡ Àß¸ø ÁöÁ¤µÇ¾ú½À´Ï´Ù.
-	GAME_PARTY_CHARM_INVENTORY_IS_OPEN,						// ºÎÀû ÀÎº¥Åä¸®°¡ ¿­·Á ÀÖ½À´Ï´Ù.
-	GAME_PARTY_CHARM_INVENTORY_IS_CLOSED,					// ºÎÀû ÀÎº¥Åä¸®°¡ ´ÝÇô ÀÖ½À´Ï´Ù.
-	GAME_PARTY_CHARM_INVENTORY_SLOT_IS_NOT_EMPTY,			// ºÎÀû ÀÎº¥Åä¸® ½½·ÔÀÌ ºñ¾î ÀÖÁö ¾ÊÀº »óÅÂÀÔ´Ï´Ù.
-	GAME_PARTY_CHARM_INVENTORY_SLOT_IS_EMPTY,				// ºÎÀû ÀÎº¥Åä¸® ½½·ÔÀÌ ºñ¾î ÀÖ´Â »óÅÂÀÔ´Ï´Ù.
-	GAME_PARTY_ZENNY_IS_LOCKED_RIGHT_NOW,					// ÇöÀç ÀÎº¥Åä¸®ÀÇ Á¦´Ï¸¦ Á¶ÀÛÇÒ ¼ö ¾ø´Â »óÅÂÀÔ´Ï´Ù.
-	GAME_PARTY_NO_SUCH_A_VICTIM_ITEM,						// Á¸ÀçÇÏÁö ¾Ê´Â Á¦¹° ¾ÆÀÌÅÛÀÔ´Ï´Ù.
+	GAME_PARTY_YOU_ARE_ALREADY_A_LEADER,					// ì´ë¯¸ ìžì‹ ì´ íŒŒí‹° ë¦¬ë”ìž…ë‹ˆë‹¤.
+	GAME_PARTY_COULDNT_ASSIGN_A_LEADER_FOR_SOME_REASON,		// ì‹œìŠ¤í…œ ë¬¸ì œë¡œ ë©¤ë²„ë¥¼ ë¦¬ë”ë¡œ ë³€ê²½í•  ìˆ˜ ì—†ì—ˆìŠµë‹ˆë‹¤.
+	GAME_PARTY_COULDNT_BE_DONE_FOR_SOME_REASON,				// ì‹œìŠ¤í…œ ë¬¸ì œë¡œ ìš”ì²­ì´ ì²˜ë¦¬ë  ìˆ˜ ì—†ì—ˆìŠµë‹ˆë‹¤.
+	GAME_PARTY_WRONG_CHARM_INVENTORY_SPECIFIED,				// ë¶€ì  ì¸ë²¤í† ë¦¬ê°€ ìž˜ëª» ì§€ì •ë˜ì—ˆìŠµë‹ˆë‹¤.
+	GAME_PARTY_CHARM_INVENTORY_IS_OPEN,						// ë¶€ì  ì¸ë²¤í† ë¦¬ê°€ ì—´ë ¤ ìžˆìŠµë‹ˆë‹¤.
+	GAME_PARTY_CHARM_INVENTORY_IS_CLOSED,					// ë¶€ì  ì¸ë²¤í† ë¦¬ê°€ ë‹«í˜€ ìžˆìŠµë‹ˆë‹¤.
+	GAME_PARTY_CHARM_INVENTORY_SLOT_IS_NOT_EMPTY,			// ë¶€ì  ì¸ë²¤í† ë¦¬ ìŠ¬ë¡¯ì´ ë¹„ì–´ ìžˆì§€ ì•Šì€ ìƒíƒœìž…ë‹ˆë‹¤.
+	GAME_PARTY_CHARM_INVENTORY_SLOT_IS_EMPTY,				// ë¶€ì  ì¸ë²¤í† ë¦¬ ìŠ¬ë¡¯ì´ ë¹„ì–´ ìžˆëŠ” ìƒíƒœìž…ë‹ˆë‹¤.
+	GAME_PARTY_ZENNY_IS_LOCKED_RIGHT_NOW,					// í˜„ìž¬ ì¸ë²¤í† ë¦¬ì˜ ì œë‹ˆë¥¼ ì¡°ìž‘í•  ìˆ˜ ì—†ëŠ” ìƒíƒœìž…ë‹ˆë‹¤.
+	GAME_PARTY_NO_SUCH_A_VICTIM_ITEM,						// ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” ì œë¬¼ ì•„ì´í…œìž…ë‹ˆë‹¤.
 
-	GAME_PARTY_UNIDENTIFIED_VICTIM_ITEM,					// Á¦¹° ¾ÆÀÌÅÛÀÌ °¨Á¤ÀÌ µÇÁö ¾ÊÀº »óÅÂÀÔ´Ï´Ù.
-	GAME_PARTY_THE_ITEM_IS_LOCKED,							// ¾ÆÀÌÅÛÀ» ¿òÁ÷ÀÏ ¼ö ¾ø½À´Ï´Ù.
-	GAME_PARTY_VICTIM_ITEM_IS_NOT_YOURS,					// ´ç½ÅÀÌ µî·ÏÇÑ Á¦¹° ¾ÆÀÌÅÛÀÌ ¾Æ´Õ´Ï´Ù.
-	GAME_PARTY_CANT_UNREGISTER_CHARM_DUE_TO_VITIM,			// ÀÌ¹Ì µî·ÏÇÑ Á¦¹°ÀÌ ÀÖ¾î¼­ ºÎÀûÀ» ´Ù½Ã °¡Á®¿Ã ¼ö ¾ø½À´Ï´Ù.
-	GAME_PARTY_YOU_DONT_BELONG_TO_THE_PARTY,				// ´ç½ÅÀº ÆÄÆ¼¿¡ ¼ÓÇØ ÀÖÁö ¾ÊÀº °Í °°½À´Ï´Ù.
-	GAME_PARTY_VICTIM_ZENNY_HASNT_CHANGED,					// ºÎÀû Á¦¹°·Î µî·ÏÇÑ Á¦´ÏÀÇ ¾çÀÌ ¹Ù²îÁö ¾Ê¾Ò½À´Ï´Ù.
-	GAME_PARTY_YOU_DONT_HAVE_THAT_MUCH_ZENNY,				// ±×¸¸Å­ÀÇ Á¦´Ï¸¦ °¡Áö°í ÀÖÁö ¾Ê½À´Ï´Ù.
-	GAME_PARTY_YOU_HAVENT_REGISTERED_VICTIM_ZENNY,			// Á¦´Ï¸¦ ºÎÀû Á¦¹°·Î µî·ÏÇÑ ÀûÀÌ ¾ø½À´Ï´Ù.
-	GAME_PARTY_TOO_MUCH_VICTIM_ZENNY_TO_UNREGISTER,			// µî·ÏÇÑ Á¦´ÏÀÇ ¾çº¸´Ù ¸¹Àº ¾çÀÇ Á¦´Ï¸¦ °¡Á®¿À·Á°í Çß½À´Ï´Ù.
-	GAME_PARTY_ONLY_LEADER_CAN_REGISTER_CHARM,				// ºÎÀûÀº ÆÄÆ¼ ¸®´õ¸¸ µî·ÏÇÒ ¼ö ÀÖ½À´Ï´Ù.
+	GAME_PARTY_UNIDENTIFIED_VICTIM_ITEM,					// ì œë¬¼ ì•„ì´í…œì´ ê°ì •ì´ ë˜ì§€ ì•Šì€ ìƒíƒœìž…ë‹ˆë‹¤.
+	GAME_PARTY_THE_ITEM_IS_LOCKED,							// ì•„ì´í…œì„ ì›€ì§ì¼ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_PARTY_VICTIM_ITEM_IS_NOT_YOURS,					// ë‹¹ì‹ ì´ ë“±ë¡í•œ ì œë¬¼ ì•„ì´í…œì´ ì•„ë‹™ë‹ˆë‹¤.
+	GAME_PARTY_CANT_UNREGISTER_CHARM_DUE_TO_VITIM,			// ì´ë¯¸ ë“±ë¡í•œ ì œë¬¼ì´ ìžˆì–´ì„œ ë¶€ì ì„ ë‹¤ì‹œ ê°€ì ¸ì˜¬ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_PARTY_YOU_DONT_BELONG_TO_THE_PARTY,				// ë‹¹ì‹ ì€ íŒŒí‹°ì— ì†í•´ ìžˆì§€ ì•Šì€ ê²ƒ ê°™ìŠµë‹ˆë‹¤.
+	GAME_PARTY_VICTIM_ZENNY_HASNT_CHANGED,					// ë¶€ì  ì œë¬¼ë¡œ ë“±ë¡í•œ ì œë‹ˆì˜ ì–‘ì´ ë°”ë€Œì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
+	GAME_PARTY_YOU_DONT_HAVE_THAT_MUCH_ZENNY,				// ê·¸ë§Œí¼ì˜ ì œë‹ˆë¥¼ ê°€ì§€ê³  ìžˆì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_PARTY_YOU_HAVENT_REGISTERED_VICTIM_ZENNY,			// ì œë‹ˆë¥¼ ë¶€ì  ì œë¬¼ë¡œ ë“±ë¡í•œ ì ì´ ì—†ìŠµë‹ˆë‹¤.
+	GAME_PARTY_TOO_MUCH_VICTIM_ZENNY_TO_UNREGISTER,			// ë“±ë¡í•œ ì œë‹ˆì˜ ì–‘ë³´ë‹¤ ë§Žì€ ì–‘ì˜ ì œë‹ˆë¥¼ ê°€ì ¸ì˜¤ë ¤ê³  í–ˆìŠµë‹ˆë‹¤.
+	GAME_PARTY_ONLY_LEADER_CAN_REGISTER_CHARM,				// ë¶€ì ì€ íŒŒí‹° ë¦¬ë”ë§Œ ë“±ë¡í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
 
-	GAME_PARTY_ONLY_CHARM_ITEM_AVAILABLE_IN_THAT_SLOT,		// ºÎÀû ¾ÆÀÌÅÛ¸¸ µî·ÏÇÒ ¼ö ÀÖ´Â ½½·ÔÀÔ´Ï´Ù.
-	GAME_PARTY_SAME_CHARM_ALREADY_HAS_BEEN_REGISTERED,		// ÀÌ¹Ì È°¼ºÈ­µÇ¾î ÀÖ´Â ºÎÀû ¾ÆÀÌÅÛÀÔ´Ï´Ù.
-	GAME_PARTY_ONLY_EQUIP_ITEM_AVAILABLE_IN_THAT_SLOT,		// ÀåÂø °¡´ÉÇÑ ¾ÆÀÌÅÛ¸¸ µî·ÏÇÒ ¼ö ÀÖ´Â ½½·ÔÀÔ´Ï´Ù.
-	GAME_PARTY_CHARM_ITEM_HASNT_BEEN_REGISTERED,			// ÇöÀç ºÎÀûÀÌ µî·ÏµÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù.
-	GAME_PARTY_CHARM_SLOT_HAS_AN_ITEM_OF_IMPROPER_TYPE,		// ºÎÀû ½½·Ô¿¡ ºÎÀûÀÌ ¾Æ´Ñ ¾ÆÀÌÅÛÀÌ µî·ÏµÇ¾î ÀÖ½À´Ï´Ù.
-	GAME_PARTY_CHARM_SLOT_HAS_UNKNOWN_CHARM_ITEM,			// ºÎÀû ½½·Ô¿¡ ¾Ë ¼ö ¾ø´Â ºÎÀûÀÌ µî·ÏµÇ¾î ÀÖ½À´Ï´Ù.
-	GAME_PARTY_ITEMS_DONT_SATISFY_THE_CONDITION,			// Á¦¹° ¾ÆÀÌÅÛÀÌ ºÎÀûÀÇ Á¶°ÇÀ» ¸¸Á·½ÃÅ°Áö ¾Ê½À´Ï´Ù.
-	GAME_PARTY_ZENNY_DOESNT_SATISFY_THE_CONDITION,			// Á¦´Ï°¡ ºÎÀûÀÇ Á¶°ÇÀ» ¸¸Á·½ÃÅ°Áö ¾Ê½À´Ï´Ù.
-	GAME_PARTY_MEMBER_DOESNT_HAVE_ENOUGH_CHARM_POINT,		// µî·ÏÇÑ ºÎÀû Æ÷ÀÎÆ®º¸´Ù ÀûÀº Æ÷ÀÎÆ®¸¦ °¡Áø ÆÄÆ¼¿øÀÌ ÀÖ½À´Ï´Ù.
-	GAME_PARTY_MEMBER_DOESNT_HAVE_ENOUGH_ZENNY,				// µî·ÏÇÑ Á¦´Ïº¸´Ù ÀûÀº Á¦´Ï¸¦ °¡Áø ÆÄÆ¼¿øÀÌ ÀÖ½À´Ï´Ù.
+	GAME_PARTY_ONLY_CHARM_ITEM_AVAILABLE_IN_THAT_SLOT,		// ë¶€ì  ì•„ì´í…œë§Œ ë“±ë¡í•  ìˆ˜ ìžˆëŠ” ìŠ¬ë¡¯ìž…ë‹ˆë‹¤.
+	GAME_PARTY_SAME_CHARM_ALREADY_HAS_BEEN_REGISTERED,		// ì´ë¯¸ í™œì„±í™”ë˜ì–´ ìžˆëŠ” ë¶€ì  ì•„ì´í…œìž…ë‹ˆë‹¤.
+	GAME_PARTY_ONLY_EQUIP_ITEM_AVAILABLE_IN_THAT_SLOT,		// ìž¥ì°© ê°€ëŠ¥í•œ ì•„ì´í…œë§Œ ë“±ë¡í•  ìˆ˜ ìžˆëŠ” ìŠ¬ë¡¯ìž…ë‹ˆë‹¤.
+	GAME_PARTY_CHARM_ITEM_HASNT_BEEN_REGISTERED,			// í˜„ìž¬ ë¶€ì ì´ ë“±ë¡ë˜ì–´ ìžˆì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_PARTY_CHARM_SLOT_HAS_AN_ITEM_OF_IMPROPER_TYPE,		// ë¶€ì  ìŠ¬ë¡¯ì— ë¶€ì ì´ ì•„ë‹Œ ì•„ì´í…œì´ ë“±ë¡ë˜ì–´ ìžˆìŠµë‹ˆë‹¤.
+	GAME_PARTY_CHARM_SLOT_HAS_UNKNOWN_CHARM_ITEM,			// ë¶€ì  ìŠ¬ë¡¯ì— ì•Œ ìˆ˜ ì—†ëŠ” ë¶€ì ì´ ë“±ë¡ë˜ì–´ ìžˆìŠµë‹ˆë‹¤.
+	GAME_PARTY_ITEMS_DONT_SATISFY_THE_CONDITION,			// ì œë¬¼ ì•„ì´í…œì´ ë¶€ì ì˜ ì¡°ê±´ì„ ë§Œì¡±ì‹œí‚¤ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_PARTY_ZENNY_DOESNT_SATISFY_THE_CONDITION,			// ì œë‹ˆê°€ ë¶€ì ì˜ ì¡°ê±´ì„ ë§Œì¡±ì‹œí‚¤ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_PARTY_MEMBER_DOESNT_HAVE_ENOUGH_CHARM_POINT,		// ë“±ë¡í•œ ë¶€ì  í¬ì¸íŠ¸ë³´ë‹¤ ì ì€ í¬ì¸íŠ¸ë¥¼ ê°€ì§„ íŒŒí‹°ì›ì´ ìžˆìŠµë‹ˆë‹¤.
+	GAME_PARTY_MEMBER_DOESNT_HAVE_ENOUGH_ZENNY,				// ë“±ë¡í•œ ì œë‹ˆë³´ë‹¤ ì ì€ ì œë‹ˆë¥¼ ê°€ì§„ íŒŒí‹°ì›ì´ ìžˆìŠµë‹ˆë‹¤.
 
-	GAME_PARTY_MEMBER_CHARM_POINT_IS_IN_TRANSACTION,		// ºÎÀû Æ÷ÀÎÆ®¸¦ »ç¿ëÇÒ ¼ö ¾ø´Â »óÅÂÀÇ ÆÄÆ¼¿øÀÌ ÀÖ½À´Ï´Ù.
-	GAME_PARTY_MEMBER_ZENNY_IS_IN_TRANSACTION,				// Á¦´Ï¸¦ »ç¿ëÇÒ ¼ö ¾ø´Â »óÅÂÀÇ ÆÄÆ¼¿øÀÌ ÀÖ½À´Ï´Ù.
-	GAME_PARTY_MEMBER_DOESNT_SATISFY_THE_CONDITION,			// ºÎÀû »ç¿ë Á¶°ÇÀ» ¸¸Á·½ÃÅ°Áö ¸øÇÑ ÆÄÆ¼¿øÀÌ ÀÖ½À´Ï´Ù.
-	GAME_PARTY_CHARM_BUFF_REGISTERED_ALREADY,				// ÀÌ¹Ì µî·ÏµÈ ºÎÀû ¹öÇÁ°¡ ÀÖ½À´Ï´Ù.
-	GAME_PARTY_NO_CHARM_BUFF_REGISTERED,					// µî·ÏµÈ ºÎÀû ¹öÇÁ°¡ ¾ø½À´Ï´Ù.
-	GAME_PARTY_UNKNOWN_ZENNY_LOOTING_METHOD,				// Àß¸øµÈ Á¦´Ï ºÐ¹è ¹æ½ÄÀÔ´Ï´Ù.
-	GAME_PARTY_UNKNOWN_ITEM_LOOTING_METHOD,					// Àß¸øµÈ ¾ÆÀÌÅÛ ºÐ¹è ¹æ½ÄÀÔ´Ï´Ù.
-	GAME_PARTY_CANT_CHANGE_LOOTING_METHOD_YET,				// ´Ù½Ã Àü¸®Ç° ºÐ¹è ¹æ½ÄÀ» ¹Ù²Ü ¼ö ÀÖÀ» ¶§±îÁö ½Ã°£ÀÌ ÇÊ¿äÇÕ´Ï´Ù.
-	GAME_PARTY_INVALID_INVENTORY_SLOT_INDEX,				// ÆÄÆ¼ ÀÎº¥Åä¸®ÀÇ ¾ÆÀÌÅÛ À§Ä¡°¡ Àß¸ø ÁöÁ¤µÇ¾ú½À´Ï´Ù.
-	GAME_PARTY_TOO_MANY_CONTRIBUTION_POINTS_TO_INVEST,		// ÅõÀÚÇÒ ¼ö ÀÖ´Â ±â¿©µµÀÇ ¹üÀ§¸¦ ³Ñ¾ú½À´Ï´Ù.
+	GAME_PARTY_MEMBER_CHARM_POINT_IS_IN_TRANSACTION,		// ë¶€ì  í¬ì¸íŠ¸ë¥¼ ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ìƒíƒœì˜ íŒŒí‹°ì›ì´ ìžˆìŠµë‹ˆë‹¤.
+	GAME_PARTY_MEMBER_ZENNY_IS_IN_TRANSACTION,				// ì œë‹ˆë¥¼ ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ìƒíƒœì˜ íŒŒí‹°ì›ì´ ìžˆìŠµë‹ˆë‹¤.
+	GAME_PARTY_MEMBER_DOESNT_SATISFY_THE_CONDITION,			// ë¶€ì  ì‚¬ìš© ì¡°ê±´ì„ ë§Œì¡±ì‹œí‚¤ì§€ ëª»í•œ íŒŒí‹°ì›ì´ ìžˆìŠµë‹ˆë‹¤.
+	GAME_PARTY_CHARM_BUFF_REGISTERED_ALREADY,				// ì´ë¯¸ ë“±ë¡ëœ ë¶€ì  ë²„í”„ê°€ ìžˆìŠµë‹ˆë‹¤.
+	GAME_PARTY_NO_CHARM_BUFF_REGISTERED,					// ë“±ë¡ëœ ë¶€ì  ë²„í”„ê°€ ì—†ìŠµë‹ˆë‹¤.
+	GAME_PARTY_UNKNOWN_ZENNY_LOOTING_METHOD,				// ìž˜ëª»ëœ ì œë‹ˆ ë¶„ë°° ë°©ì‹ìž…ë‹ˆë‹¤.
+	GAME_PARTY_UNKNOWN_ITEM_LOOTING_METHOD,					// ìž˜ëª»ëœ ì•„ì´í…œ ë¶„ë°° ë°©ì‹ìž…ë‹ˆë‹¤.
+	GAME_PARTY_CANT_CHANGE_LOOTING_METHOD_YET,				// ë‹¤ì‹œ ì „ë¦¬í’ˆ ë¶„ë°° ë°©ì‹ì„ ë°”ê¿€ ìˆ˜ ìžˆì„ ë•Œê¹Œì§€ ì‹œê°„ì´ í•„ìš”í•©ë‹ˆë‹¤.
+	GAME_PARTY_INVALID_INVENTORY_SLOT_INDEX,				// íŒŒí‹° ì¸ë²¤í† ë¦¬ì˜ ì•„ì´í…œ ìœ„ì¹˜ê°€ ìž˜ëª» ì§€ì •ë˜ì—ˆìŠµë‹ˆë‹¤.
+	GAME_PARTY_TOO_MANY_CONTRIBUTION_POINTS_TO_INVEST,		// íˆ¬ìží•  ìˆ˜ ìžˆëŠ” ê¸°ì—¬ë„ì˜ ë²”ìœ„ë¥¼ ë„˜ì—ˆìŠµë‹ˆë‹¤.
 
-	GAME_PARTY_NOBODY_CANT_RECEIVE_ITEM_RIGHT_NOW,			// ¾ÆÀÌÅÛÀ» °¡Áú ¼ö ÀÖ´Â ¸â¹ö°¡ ¾Æ¹«µµ ¾ø½À´Ï´Ù.
-	GAME_PARTY_NO_EMPTY_SPACE_IN_INVENTORY,					// ÀÎº¥Åä¸®¿¡ ºó °ø°£ÀÌ ¾ø½À´Ï´Ù.
-	GAME_PARTY_NO_EMPTY_SPACE_IN_PARTY_INVENTORY,			// ÆÄÆ¼ ÀÎº¥Åä¸®¿¡ ºó °ø°£ÀÌ ¾ø½À´Ï´Ù.
-	GAME_PARTY_MEMBER_IS_TOO_FAR,							// ¸â¹ö°¡ ³Ê¹« ¸Ö¸® ¶³¾îÁ® ÀÖ½À´Ï´Ù. Äù½ºÆ® °øÀ¯ ÇÒ¶§ »ç¿ë by niam
-	GAME_PARTY_INVITING_IS_NOT_ALLOWED,						// ÀÌ ÆÄÆ¼¿¡¼­´Â ÃÊ´ë°¡ Çã¿ëµÇÁö ¾Ê½À´Ï´Ù.
-	GAME_PARTY_LEAVING_IS_NOT_ALLOWED,						// ÀÌ ÆÄÆ¼¿¡¼­´Â Å»Åð°¡ Çã¿ëµÇÁö ¾Ê½À´Ï´Ù.
-	GAME_PARTY_KICKING_OUT_IS_NOT_ALLOWED,					// ÀÌ ÆÄÆ¼¿¡¼­´Â °­Á¦ Å»Åð°¡ Çã¿ëµÇÁö ¾Ê½À´Ï´Ù.
-	GAME_PARTY_APPOINTING_A_LEADER_IS_NOT_ALLOWED,			// ÀÌ ÆÄÆ¼¿¡¼­´Â ÆÄÆ¼Àå ÀÓ¸íÀÌ Çã¿ëµÇÁö ¾Ê½À´Ï´Ù.
-	GAME_PARTY_SHARETARGET_NOTFINDOBJECT,					// ÇØ´ç ¿ÀºêÁ§Æ®°¡ ¾ø½À´Ï´Ù [3/28/2008 SGpro]
-	GAME_PARTY_SHARETARGET_SLOTID_FAIL,						// °øÀ¯Å¸°Ù ½½·ÔID°¡ Àß¸øµÇ¾ú½À´Ï´Ù[3/28/2008 SGpro]
+	GAME_PARTY_NOBODY_CANT_RECEIVE_ITEM_RIGHT_NOW,			// ì•„ì´í…œì„ ê°€ì§ˆ ìˆ˜ ìžˆëŠ” ë©¤ë²„ê°€ ì•„ë¬´ë„ ì—†ìŠµë‹ˆë‹¤.
+	GAME_PARTY_NO_EMPTY_SPACE_IN_INVENTORY,					// ì¸ë²¤í† ë¦¬ì— ë¹ˆ ê³µê°„ì´ ì—†ìŠµë‹ˆë‹¤.
+	GAME_PARTY_NO_EMPTY_SPACE_IN_PARTY_INVENTORY,			// íŒŒí‹° ì¸ë²¤í† ë¦¬ì— ë¹ˆ ê³µê°„ì´ ì—†ìŠµë‹ˆë‹¤.
+	GAME_PARTY_MEMBER_IS_TOO_FAR,							// ë©¤ë²„ê°€ ë„ˆë¬´ ë©€ë¦¬ ë–¨ì–´ì ¸ ìžˆìŠµë‹ˆë‹¤. í€˜ìŠ¤íŠ¸ ê³µìœ  í• ë•Œ ì‚¬ìš© by niam
+	GAME_PARTY_INVITING_IS_NOT_ALLOWED,						// ì´ íŒŒí‹°ì—ì„œëŠ” ì´ˆëŒ€ê°€ í—ˆìš©ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_PARTY_LEAVING_IS_NOT_ALLOWED,						// ì´ íŒŒí‹°ì—ì„œëŠ” íƒˆí‡´ê°€ í—ˆìš©ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_PARTY_KICKING_OUT_IS_NOT_ALLOWED,					// ì´ íŒŒí‹°ì—ì„œëŠ” ê°•ì œ íƒˆí‡´ê°€ í—ˆìš©ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_PARTY_APPOINTING_A_LEADER_IS_NOT_ALLOWED,			// ì´ íŒŒí‹°ì—ì„œëŠ” íŒŒí‹°ìž¥ ìž„ëª…ì´ í—ˆìš©ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_PARTY_SHARETARGET_NOTFINDOBJECT,					// í•´ë‹¹ ì˜¤ë¸Œì íŠ¸ê°€ ì—†ìŠµë‹ˆë‹¤ [3/28/2008 SGpro]
+	GAME_PARTY_SHARETARGET_SLOTID_FAIL,						// ê³µìœ íƒ€ê²Ÿ ìŠ¬ë¡¯IDê°€ ìž˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤[3/28/2008 SGpro]
 
-	GAME_PARTY_ONLY_EQUIP_ITEM_ALLOWED_FOR_CHARM_POINT,		// ÀåÂø ¾ÆÀÌÅÛÀ¸·Î¸¸ ºÎÀû Æ÷ÀÎÆ®¸¦ ¾òÀ» ¼ö ÀÖ½À´Ï´Ù.
-	GAME_PARTY_IDENTIFIED_ITEM_NEEDED_FOR_CHARM_POINT,		// °¨Á¤µÈ ¾ÆÀÌÅÛÀ¸·Î¸¸ ºÎÀû Æ÷ÀÎÆ®¸¦ ¾òÀ» ¼ö ÀÖ½À´Ï´Ù.
-	GAME_PARTY_DUNGEON_IN_PLAYER_FOUND,						// 1372 // ´øÀü¿¡ ¾ÆÁ÷ ³²¾ÆÀÖ´Â Ä³¸¯ÅÍ°¡ ÀÖ½À´Ï´Ù. 
-	GAME_PARTY_DICE_FAIL,									// ÆÄÆ¼ ÁÖ»çÀ§ °á°ú ½ÇÆÐ
-	GAME_PARTY_INVEN_ITEM_EXIST,							// ÆÄÆ¼ÀÎº¥¿¡ ¾ÆÀÌÅÛÀÌ ³²¾ÆÀÖ½À´Ï´Ù.
-	GAME_PARTY_INVEN_INVEST_ZENNY_NOT_ENOUGH,				// ÆÄÆ¼ÀÎº¥¿¡ ÅõÀÚÇÒ µ·ÀÌ ºÎÁ·ÇÕ´Ï´Ù.
-	GAME_PARTY_INVEN_LOCKED,								// ÆÄÆ¼ÀÎº¥ÀÌ Àá°å½À´Ï´Ù.
-	GAME_PARTY_ITEM_DICE_USING_NOW,							// ÆÄÆ¼ ¾ÆÀÌÅÛ ´ÙÀÌ½º°¡ »ç¿ëÁßÀÔ´Ï´Ù.
-	GAME_PARTY_INVEN_ITEM_NON_EXIST,						// ÆÄÆ¼ÀÎº¥ ÇØ´ç ½½·Ô¿¡ ¾ÆÀÌÅÛ ¾ø½À´Ï´Ù.
-	GAME_PARTY_ITEM_DICE_NOT_USING_NOW,						// ÆÄÆ¼ ¾ÆÀÌÅÛ ´ÙÀÌ½º°¡ ¾È »ç¿ëÁßÀÔ´Ï´Ù.
-	GAME_PARTY_DUNGEON_MIN_PLAYER_FAIL,						// ÆÄÆ¼ ´øÀüÀÇ ÃÖ¼ÒÀÎ¿øÀÌ ºÎÁ·ÇÕ´Ï´Ù.
-	GAME_PARTY_DUNGEON_OUT_RESERVED,						// ÆÄÆ¼ ´øÀü ³ª°¡±â ¿¹¾à NTL_MIN_DUNGEON_PARTYOUT_TIME ³²¾Ò½À´Ï´Ù..
-	GAME_PARTY_INVEN_DISTRIBUTE_METHOD_NOT_MATCH,			// ºÐ¹è¹æ½ÄÀÌ ¸ÂÁö ¾Ê½À´Ï´Ù.
-	GAME_PARTY_MEMBER_ZENNY_IS_LOCK,						// ÆÄÆ¼ ¸â¹öÁß Á¦´Ï°¡ Àá±ä »óÅÂ°¡ ÀÖ½À´Ï´Ù.
-	GAME_PARTY_MEMBER_NOT_SAME,								// ÆÄÆ¼ÀÎº¥¿¡ ¸â¹ö°¡ ´Ù¸¨´Ï´Ù.
-	GAME_PARTY_INVEN_LOCK_FIRST,							// ÆÄÆ¼ÀÎº¥ÀÌ ¿­·ÁÀÖ½À´Ï´Ù. ¸ÕÀú ´Ý¾ÆÁÖ½Ê½Ã¿ä.
-	GAME_PARTY_INVEN_UNDER_INVEST,							// ÆÄÆ¼ÀÎº¥¿¡ ÅõÀÚµÈ ÃÖ´ë±Ý¾× º¸´Ù ³ô¾Æ¾ßÇÕ´Ï´Ù.
+	GAME_PARTY_ONLY_EQUIP_ITEM_ALLOWED_FOR_CHARM_POINT,		// ìž¥ì°© ì•„ì´í…œìœ¼ë¡œë§Œ ë¶€ì  í¬ì¸íŠ¸ë¥¼ ì–»ì„ ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
+	GAME_PARTY_IDENTIFIED_ITEM_NEEDED_FOR_CHARM_POINT,		// ê°ì •ëœ ì•„ì´í…œìœ¼ë¡œë§Œ ë¶€ì  í¬ì¸íŠ¸ë¥¼ ì–»ì„ ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
+	GAME_PARTY_DUNGEON_IN_PLAYER_FOUND,						// 1372 // ë˜ì „ì— ì•„ì§ ë‚¨ì•„ìžˆëŠ” ìºë¦­í„°ê°€ ìžˆìŠµë‹ˆë‹¤. 
+	GAME_PARTY_DICE_FAIL,									// íŒŒí‹° ì£¼ì‚¬ìœ„ ê²°ê³¼ ì‹¤íŒ¨
+	GAME_PARTY_INVEN_ITEM_EXIST,							// íŒŒí‹°ì¸ë²¤ì— ì•„ì´í…œì´ ë‚¨ì•„ìžˆìŠµë‹ˆë‹¤.
+	GAME_PARTY_INVEN_INVEST_ZENNY_NOT_ENOUGH,				// íŒŒí‹°ì¸ë²¤ì— íˆ¬ìží•  ëˆì´ ë¶€ì¡±í•©ë‹ˆë‹¤.
+	GAME_PARTY_INVEN_LOCKED,								// íŒŒí‹°ì¸ë²¤ì´ ìž ê²¼ìŠµë‹ˆë‹¤.
+	GAME_PARTY_ITEM_DICE_USING_NOW,							// íŒŒí‹° ì•„ì´í…œ ë‹¤ì´ìŠ¤ê°€ ì‚¬ìš©ì¤‘ìž…ë‹ˆë‹¤.
+	GAME_PARTY_INVEN_ITEM_NON_EXIST,						// íŒŒí‹°ì¸ë²¤ í•´ë‹¹ ìŠ¬ë¡¯ì— ì•„ì´í…œ ì—†ìŠµë‹ˆë‹¤.
+	GAME_PARTY_ITEM_DICE_NOT_USING_NOW,						// íŒŒí‹° ì•„ì´í…œ ë‹¤ì´ìŠ¤ê°€ ì•ˆ ì‚¬ìš©ì¤‘ìž…ë‹ˆë‹¤.
+	GAME_PARTY_DUNGEON_MIN_PLAYER_FAIL,						// íŒŒí‹° ë˜ì „ì˜ ìµœì†Œì¸ì›ì´ ë¶€ì¡±í•©ë‹ˆë‹¤.
+	GAME_PARTY_DUNGEON_OUT_RESERVED,						// íŒŒí‹° ë˜ì „ ë‚˜ê°€ê¸° ì˜ˆì•½ NTL_MIN_DUNGEON_PARTYOUT_TIME ë‚¨ì•˜ìŠµë‹ˆë‹¤..
+	GAME_PARTY_INVEN_DISTRIBUTE_METHOD_NOT_MATCH,			// ë¶„ë°°ë°©ì‹ì´ ë§žì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_PARTY_MEMBER_ZENNY_IS_LOCK,						// íŒŒí‹° ë©¤ë²„ì¤‘ ì œë‹ˆê°€ ìž ê¸´ ìƒíƒœê°€ ìžˆìŠµë‹ˆë‹¤.
+	GAME_PARTY_MEMBER_NOT_SAME,								// íŒŒí‹°ì¸ë²¤ì— ë©¤ë²„ê°€ ë‹¤ë¦…ë‹ˆë‹¤.
+	GAME_PARTY_INVEN_LOCK_FIRST,							// íŒŒí‹°ì¸ë²¤ì´ ì—´ë ¤ìžˆìŠµë‹ˆë‹¤. ë¨¼ì € ë‹«ì•„ì£¼ì‹­ì‹œìš”.
+	GAME_PARTY_INVEN_UNDER_INVEST,							// íŒŒí‹°ì¸ë²¤ì— íˆ¬ìžëœ ìµœëŒ€ê¸ˆì•¡ ë³´ë‹¤ ë†’ì•„ì•¼í•©ë‹ˆë‹¤.
 	//-----------------------------------------------------------------
-	GAME_HTB_NO_HTB_RESULT = 1400,							// ÁøÇàÇÒ HTB°¡ ¾ø½À´Ï´Ù
-	GAME_HTB_CANT_FORWARD_ANYMORE,							// ´õÀÌ»ó ÁøÇàÇÒ HTB´Ü°è°¡ ¾ø½À´Ï´Ù.
-	GAME_HTB_NOT_ENOUGH_RP_BALL,							// RP ±¸½½ÀÌ ÃæºÐÇÏÁö ¾Ê½À´Ï´Ù.
-	GAME_HTB_YOU_ALREADY_USED_RP_BALL,						// ÀÌ¹Ì RP ±¸½½À» »ç¿ëÇÑ »óÅÂÀÔ´Ï´Ù.
-	GAME_HTB_YOU_HAVE_NO_RELATION_WITH_HTB,					// 1404 // HTB¿Í °ü·Ã ¾ø´Â »óÅÂÀÔ´Ï´Ù.
+	GAME_HTB_NO_HTB_RESULT = 1400,							// ì§„í–‰í•  HTBê°€ ì—†ìŠµë‹ˆë‹¤
+	GAME_HTB_CANT_FORWARD_ANYMORE,							// ë”ì´ìƒ ì§„í–‰í•  HTBë‹¨ê³„ê°€ ì—†ìŠµë‹ˆë‹¤.
+	GAME_HTB_NOT_ENOUGH_RP_BALL,							// RP êµ¬ìŠ¬ì´ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_HTB_YOU_ALREADY_USED_RP_BALL,						// ì´ë¯¸ RP êµ¬ìŠ¬ì„ ì‚¬ìš©í•œ ìƒíƒœìž…ë‹ˆë‹¤.
+	GAME_HTB_YOU_HAVE_NO_RELATION_WITH_HTB,					// 1404 // HTBì™€ ê´€ë ¨ ì—†ëŠ” ìƒíƒœìž…ë‹ˆë‹¤.
 
-	GAME_WORLD_ENTER_NEED_LOW_LEVEL, // ÇØ´ç Áö¿ª¿¡ ÁøÀÔÇÏ±â¿¡´Â ³·Àº ·¹º§ÀÔ´Ï´Ù.
-	GAME_WORLD_ENTER_NEED_HIGH_LEVEL, // ÇØ´ç Áö¿ª¿¡ ÁøÀÔÇÏ±â¿¡´Â ³ôÀº ·¹º§ÀÔ´Ï´Ù.
-	GAME_WORLD_ENTER_NEED_ITEM, // ÇØ´ç Áö¿ª¿¡ ÁøÀÔÇÏ±âÀ§ÇÑ ÇÊ¿ä  ¾ÆÀÌÅÛÀÌ ¾ø½À´Ï´Ù.
+	GAME_WORLD_ENTER_NEED_LOW_LEVEL, // í•´ë‹¹ ì§€ì—­ì— ì§„ìž…í•˜ê¸°ì—ëŠ” ë‚®ì€ ë ˆë²¨ìž…ë‹ˆë‹¤.
+	GAME_WORLD_ENTER_NEED_HIGH_LEVEL, // í•´ë‹¹ ì§€ì—­ì— ì§„ìž…í•˜ê¸°ì—ëŠ” ë†’ì€ ë ˆë²¨ìž…ë‹ˆë‹¤.
+	GAME_WORLD_ENTER_NEED_ITEM, // í•´ë‹¹ ì§€ì—­ì— ì§„ìž…í•˜ê¸°ìœ„í•œ í•„ìš”  ì•„ì´í…œì´ ì—†ìŠµë‹ˆë‹¤.
 
-	GAME_FREEBATTLE_TARGET_HAS_NO_MATCH, // ´ë»óÀÌ °áÅõ¸¦ ÁøÇàÇÒ ¼ö ¾÷½À´Ï´Ù.
-	GAME_FREEBATTLE_WRONG_PLACE, // °áÅõ¸¦ ÇÒ ¼ö ¾ø´Â Áö¿ªÀÔ´Ï´Ù.
-	GAME_FREEBATTLE_ALREADY_HAS_MATCH, // ÀÌ¹Ì °áÅõÁßÀÔ´Ï´Ù.
-	GAME_FREEBATTLE_TARGET_ALREADY_HAS_MATCH, // ÀÌ¹Ì °áÅõÁßÀÎ ´ë»óÀÔ´Ï´Ù.
-	GAME_FREEBATTLE_CHALLENGE_TIME_REMAIN, // ¾ÆÁ÷ µµÀü ´ë±â ½Ã°£ÀÔ´Ï´Ù.
-	GAME_FREEBATTLE_CHALLENGE_ACCEPT_DENIED, // °áÅõ ½ÅÃ»À» °ÅÀý´çÇß½À´Ï´Ù.
-	GAME_FREEBATTLE_CHALLENGE_ACCEPT_TIME_DENIED, // °áÅõ ½ÅÃ»¿¡ ÀÀ´äÀ» ÇÏÁö ¾Ê¾Æ ÀÚµ¿À¸·Î °ÅÀýµÇ¾ú½À´Ï´Ù.
-	GAME_FREEBATTLE_CHALLENGE_WAIT_TIME_DENIED, // °áÅõ ½ÅÃ»¿¡ ´ëÇÑ ÀÀ´äÀÌ ¾ø¾î ÀÚµ¿À¸·Î °ÅÀýµÇ¾ú½À´Ï´Ù.
-	GAME_FREEBATTLE_ERROR_HAS_NO_MATCH, // ¿¡·¯(¿¡·¯ÄÚµå) - °áÅõ¸¦ ÁøÇàÇÒ ¼ö ¾÷½À´Ï´Ù.
-	GAME_FREEBATTLE_ERROR_TARGET_HAS_NO_MATCH, // ¿¡·¯(¿¡·¯ÄÚµå)  - ´ë»óÀÌ °áÅõ¸¦ ÁøÇàÇÒ ¼ö ¾÷½À´Ï´Ù.
-	GAME_FREEBATTLE_ERROR_WRONG_PEER, // ¿¡·¯(¿¡·¯ÄÚµå) - Àß¸øµÈ °áÅõ ´ë»óÀ» °¡Áö°í ÀÖ½À´Ï´Ù.
-	GAME_FREEBATTLE_ERROR_TARGET_WRONG_PEER, // ¿¡·¯(¿¡·¯ÄÚµå) - ´ë»óÀÌ Àß¸øµÈ °áÅõ ´ë»óÀ» °¡Áö°í ÀÖ½À´Ï´Ù.
+	GAME_FREEBATTLE_TARGET_HAS_NO_MATCH, // ëŒ€ìƒì´ ê²°íˆ¬ë¥¼ ì§„í–‰í•  ìˆ˜ ì—…ìŠµë‹ˆë‹¤.
+	GAME_FREEBATTLE_WRONG_PLACE, // ê²°íˆ¬ë¥¼ í•  ìˆ˜ ì—†ëŠ” ì§€ì—­ìž…ë‹ˆë‹¤.
+	GAME_FREEBATTLE_ALREADY_HAS_MATCH, // ì´ë¯¸ ê²°íˆ¬ì¤‘ìž…ë‹ˆë‹¤.
+	GAME_FREEBATTLE_TARGET_ALREADY_HAS_MATCH, // ì´ë¯¸ ê²°íˆ¬ì¤‘ì¸ ëŒ€ìƒìž…ë‹ˆë‹¤.
+	GAME_FREEBATTLE_CHALLENGE_TIME_REMAIN, // ì•„ì§ ë„ì „ ëŒ€ê¸° ì‹œê°„ìž…ë‹ˆë‹¤.
+	GAME_FREEBATTLE_CHALLENGE_ACCEPT_DENIED, // ê²°íˆ¬ ì‹ ì²­ì„ ê±°ì ˆë‹¹í–ˆìŠµë‹ˆë‹¤.
+	GAME_FREEBATTLE_CHALLENGE_ACCEPT_TIME_DENIED, // ê²°íˆ¬ ì‹ ì²­ì— ì‘ë‹µì„ í•˜ì§€ ì•Šì•„ ìžë™ìœ¼ë¡œ ê±°ì ˆë˜ì—ˆìŠµë‹ˆë‹¤.
+	GAME_FREEBATTLE_CHALLENGE_WAIT_TIME_DENIED, // ê²°íˆ¬ ì‹ ì²­ì— ëŒ€í•œ ì‘ë‹µì´ ì—†ì–´ ìžë™ìœ¼ë¡œ ê±°ì ˆë˜ì—ˆìŠµë‹ˆë‹¤.
+	GAME_FREEBATTLE_ERROR_HAS_NO_MATCH, // ì—ëŸ¬(ì—ëŸ¬ì½”ë“œ) - ê²°íˆ¬ë¥¼ ì§„í–‰í•  ìˆ˜ ì—…ìŠµë‹ˆë‹¤.
+	GAME_FREEBATTLE_ERROR_TARGET_HAS_NO_MATCH, // ì—ëŸ¬(ì—ëŸ¬ì½”ë“œ)  - ëŒ€ìƒì´ ê²°íˆ¬ë¥¼ ì§„í–‰í•  ìˆ˜ ì—…ìŠµë‹ˆë‹¤.
+	GAME_FREEBATTLE_ERROR_WRONG_PEER, // ì—ëŸ¬(ì—ëŸ¬ì½”ë“œ) - ìž˜ëª»ëœ ê²°íˆ¬ ëŒ€ìƒì„ ê°€ì§€ê³  ìžˆìŠµë‹ˆë‹¤.
+	GAME_FREEBATTLE_ERROR_TARGET_WRONG_PEER, // ì—ëŸ¬(ì—ëŸ¬ì½”ë“œ) - ëŒ€ìƒì´ ìž˜ëª»ëœ ê²°íˆ¬ ëŒ€ìƒì„ ê°€ì§€ê³  ìžˆìŠµë‹ˆë‹¤.
 	//-----------------------------------------------------------------
-	GAME_WORLD_ENTER_NEED_REPUTATION, // ÇØ´ç Áö¿ª¿¡ ÁøÀÔÇÏ±âÀ§ÇÑ ÇÊ¿ä ¸í¼ºÀÌ ³·½À´Ï´Ù.
-	GMAE_WORLD_NOT_FOUND,			  // ÇØ´ç Áö¿ªÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù.
+	GAME_WORLD_ENTER_NEED_REPUTATION, // í•´ë‹¹ ì§€ì—­ì— ì§„ìž…í•˜ê¸°ìœ„í•œ í•„ìš” ëª…ì„±ì´ ë‚®ìŠµë‹ˆë‹¤.
+	GMAE_WORLD_NOT_FOUND,			  // í•´ë‹¹ ì§€ì—­ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 //	Game_ENTER_GAME_NO_CHARACTER_FOUND,
 //	Game_ENTER_GAME_WRONG_CHARACTER_POSITION,
 //	Game_NO_SUCH_AN_ITEM,
@@ -597,275 +597,275 @@ enum eRESULTCODE
 
 	//////////////////////////////////////////////////////////////////////////
 	//
-	// Trigger system °ü·Ã ¸Þ½ÃÁöµé
+	// Trigger system ê´€ë ¨ ë©”ì‹œì§€ë“¤
 	//
 	//////////////////////////////////////////////////////////////////////////
 
-	GAME_TS_WARNING_BEGIN = 1500,						// Trigger warning message ½ÃÀÛ
+	GAME_TS_WARNING_BEGIN = 1500,						// Trigger warning message ì‹œìž‘
 
-		GAME_TS_WARNING_NOT_SATISFY_REWARD_CONDITIONS = 1500,	// º¸»ó ¹ÞÀ» ¼ö ÀÖ´Â Á¶°ÇÀ» ¸¸Á·ÇÏÁö ¸øÇÕ´Ï´Ù.
-		GAME_TS_WARNING_MUST_SELECT_ONE_SEL_REWARD,		// ¼±ÅÃ º¸»óÀÌ Á¸ÀçÇÕ´Ï´Ù. ¹Ýµå½Ã ÇÏ³ªÀÇ ¼±ÅÃº¸»óÀ» ¼±ÅÃÇØ¾ß ÇÕ´Ï´Ù.
-		GAME_TS_WARNING_PROCESSING_PRE_CONFIRM_REQ,		// ÀÌÀü ÁøÇà ¿äÃ»ÀÌ Ã³¸®ÁßÀÔ´Ï´Ù. (ÁøÇà)
-		GAME_TS_WARNING_NOW_TIME_WAIT,					// ÀÌÀü ÁøÇà ¿äÃ»ÀÌ Ã³¸®ÁßÀÔ´Ï´Ù. (½Ã°£)
-		GAME_TS_WARNING_OVERFLOW_MAX_TS_NUM,			// ½ÇÇà°¡´ÉÇÑ ÃÖ´ë Æ®¸®°Å °³¼ö°¡ ³Ñ¾ú½À´Ï´Ù.
+		GAME_TS_WARNING_NOT_SATISFY_REWARD_CONDITIONS = 1500,	// ë³´ìƒ ë°›ì„ ìˆ˜ ìžˆëŠ” ì¡°ê±´ì„ ë§Œì¡±í•˜ì§€ ëª»í•©ë‹ˆë‹¤.
+		GAME_TS_WARNING_MUST_SELECT_ONE_SEL_REWARD,		// ì„ íƒ ë³´ìƒì´ ì¡´ìž¬í•©ë‹ˆë‹¤. ë°˜ë“œì‹œ í•˜ë‚˜ì˜ ì„ íƒë³´ìƒì„ ì„ íƒí•´ì•¼ í•©ë‹ˆë‹¤.
+		GAME_TS_WARNING_PROCESSING_PRE_CONFIRM_REQ,		// ì´ì „ ì§„í–‰ ìš”ì²­ì´ ì²˜ë¦¬ì¤‘ìž…ë‹ˆë‹¤. (ì§„í–‰)
+		GAME_TS_WARNING_NOW_TIME_WAIT,					// ì´ì „ ì§„í–‰ ìš”ì²­ì´ ì²˜ë¦¬ì¤‘ìž…ë‹ˆë‹¤. (ì‹œê°„)
+		GAME_TS_WARNING_OVERFLOW_MAX_TS_NUM,			// ì‹¤í–‰ê°€ëŠ¥í•œ ìµœëŒ€ íŠ¸ë¦¬ê±° ê°œìˆ˜ê°€ ë„˜ì—ˆìŠµë‹ˆë‹¤.
 
-		GAME_TS_WARNING_SYSTEM_WAIT,					// ´Ù¸¥ ½Ã½ºÅÛ°ú Ãæµ¹ÀÌ ÀÏ¾î³­ °æ¿ì. Àá½Ã ±â´Ù·Á ÁÖ¼¼¿ä.
-		GAME_TS_WARNING_INVENTORY_IS_LOCK,				// ¾ÆÀÌÅÛ ÀÎº¥Åä¸®°¡ lockÀÌ °É·Á ÀÖÀ½
-		GAME_TS_WARNING_INVENTORY_IS_FULL,				// ¾ÆÀÌÅÛ ÀÎº¥Åä¸®°¡ °¡µæÃ¡À½
-		GAME_TS_WARNING_QUEST_INVENTORY_IS_FULL,		// Äù½ºÆ® ÀÎº¥Åä¸®°¡ °¡µæ Ã¡À½
-		GAME_TS_WARNING_INVALID_QUEST_ITEM_DELETE_COUNT,// Äù½ºÆ® ¾ÆÀÌÅÛÀÇ »èÁ¦ ¿äÃ» °¹¼ö°¡ Æ²¸²
-		GAME_TS_WARNING_REWARD_FAIL,					// º¸»óÀ» ÇÏÁö ¸øÇÔ(¾Æ¸¶ ÀÌ ¸Þ½ÃÁö°¡ °¥ÀÏÀº ¾øÀ»°ÍÀÓ)
-		GAME_TS_WARNING_EQUIP_SLOT_NOT_EMPTY,			// Àåºñ ½½·ÔÀÌ ºñ¾îÀÖÁö ¾Ê½À´Ï´Ù.
-		GAME_TS_WARNING_EQUIP_SLOT_LOCK,				// Àåºñ ½½·ÔÀÌ Àá°ÜÀÖ½À´Ï´Ù.
-		GAME_TS_WARNING_CLASS_CHANGE_CLASS_FAIL,		// ÀüÁ÷ Å¬·¡½º°¡ ´Ù¸§
-		GAME_TS_WARNING_CLASS_CHANGE_LEVEL_FAIL,		// ÀüÁ÷ ·¹º§ÀÌ ¾ÈµÊ
-		GAME_TS_WARNING_NOT_YET_PROCESSED,				// Ã³¸®µÇÁö ¾Ê¾ÒÀ½
-		GAME_TS_WARNING_ROLLBACK,						// Á¤»ó Ã³¸® ÇÏ¿´À¸³ª ·Ñ¹é½ÃÅ´
-		GAME_TS_WARNING_ROLLBACK_FAIL,					// ·Ñ¹éÀ» ½ÇÆÐÇÔ
-		GAME_TS_WARNING_ESCORT_EXCEED_MEMBER,			// ¸â¹ö ÃÊ°ú
-		GAME_TS_WARNING_ESCORT_NOT_SHARED,				// °øÀ¯ ¸ðµå°¡ ¾Æ´Ô
-		GAME_TS_WARNING_ESCORT_TRIGGER_TYPE_WRONG,		// Æ®¸®°Å Å¸ÀÔÀÌ ´Ù¸§
-		GAME_TS_WARNING_ESCORT_TRIGGER_ID_WRONG,		// Æ®¸®°Å ¾ÆÀÌµð°¡ ´Ù¸§
-		GAME_TS_WARNING_ESCORT_PARTY_WRONG,				// ÆÄÆ¼°¡ ´Ù¸§
-		GAME_TS_WARNING_ESCORT_ALREADY_EXIST,			// ÀÌ¹Ì µî·ÏµÇ¾î ÀÖÀ½
-		GAME_TS_WARNING_TMQ_COUPON_NOT_ENOUGH,			// TMQ¿¡¼­ ÄíÆùÀÌ ºÎÁ·ÇÔ
+		GAME_TS_WARNING_SYSTEM_WAIT,					// ë‹¤ë¥¸ ì‹œìŠ¤í…œê³¼ ì¶©ëŒì´ ì¼ì–´ë‚œ ê²½ìš°. ìž ì‹œ ê¸°ë‹¤ë ¤ ì£¼ì„¸ìš”.
+		GAME_TS_WARNING_INVENTORY_IS_LOCK,				// ì•„ì´í…œ ì¸ë²¤í† ë¦¬ê°€ lockì´ ê±¸ë ¤ ìžˆìŒ
+		GAME_TS_WARNING_INVENTORY_IS_FULL,				// ì•„ì´í…œ ì¸ë²¤í† ë¦¬ê°€ ê°€ë“ì°¼ìŒ
+		GAME_TS_WARNING_QUEST_INVENTORY_IS_FULL,		// í€˜ìŠ¤íŠ¸ ì¸ë²¤í† ë¦¬ê°€ ê°€ë“ ì°¼ìŒ
+		GAME_TS_WARNING_INVALID_QUEST_ITEM_DELETE_COUNT,// í€˜ìŠ¤íŠ¸ ì•„ì´í…œì˜ ì‚­ì œ ìš”ì²­ ê°¯ìˆ˜ê°€ í‹€ë¦¼
+		GAME_TS_WARNING_REWARD_FAIL,					// ë³´ìƒì„ í•˜ì§€ ëª»í•¨(ì•„ë§ˆ ì´ ë©”ì‹œì§€ê°€ ê°ˆì¼ì€ ì—†ì„ê²ƒìž„)
+		GAME_TS_WARNING_EQUIP_SLOT_NOT_EMPTY,			// ìž¥ë¹„ ìŠ¬ë¡¯ì´ ë¹„ì–´ìžˆì§€ ì•ŠìŠµë‹ˆë‹¤.
+		GAME_TS_WARNING_EQUIP_SLOT_LOCK,				// ìž¥ë¹„ ìŠ¬ë¡¯ì´ ìž ê²¨ìžˆìŠµë‹ˆë‹¤.
+		GAME_TS_WARNING_CLASS_CHANGE_CLASS_FAIL,		// ì „ì§ í´ëž˜ìŠ¤ê°€ ë‹¤ë¦„
+		GAME_TS_WARNING_CLASS_CHANGE_LEVEL_FAIL,		// ì „ì§ ë ˆë²¨ì´ ì•ˆë¨
+		GAME_TS_WARNING_NOT_YET_PROCESSED,				// ì²˜ë¦¬ë˜ì§€ ì•Šì•˜ìŒ
+		GAME_TS_WARNING_ROLLBACK,						// ì •ìƒ ì²˜ë¦¬ í•˜ì˜€ìœ¼ë‚˜ ë¡¤ë°±ì‹œí‚´
+		GAME_TS_WARNING_ROLLBACK_FAIL,					// ë¡¤ë°±ì„ ì‹¤íŒ¨í•¨
+		GAME_TS_WARNING_ESCORT_EXCEED_MEMBER,			// ë©¤ë²„ ì´ˆê³¼
+		GAME_TS_WARNING_ESCORT_NOT_SHARED,				// ê³µìœ  ëª¨ë“œê°€ ì•„ë‹˜
+		GAME_TS_WARNING_ESCORT_TRIGGER_TYPE_WRONG,		// íŠ¸ë¦¬ê±° íƒ€ìž…ì´ ë‹¤ë¦„
+		GAME_TS_WARNING_ESCORT_TRIGGER_ID_WRONG,		// íŠ¸ë¦¬ê±° ì•„ì´ë””ê°€ ë‹¤ë¦„
+		GAME_TS_WARNING_ESCORT_PARTY_WRONG,				// íŒŒí‹°ê°€ ë‹¤ë¦„
+		GAME_TS_WARNING_ESCORT_ALREADY_EXIST,			// ì´ë¯¸ ë“±ë¡ë˜ì–´ ìžˆìŒ
+		GAME_TS_WARNING_TMQ_COUPON_NOT_ENOUGH,			// TMQì—ì„œ ì¿ í°ì´ ë¶€ì¡±í•¨
 
-		GAME_TS_WARNING_WPS_ALREDY_USED_BY_OTHER_PLAYER,// ÀÌ¹Ì ´Ù¸¥ À¯Àú°¡ ¼öÇàÁßÀÔ´Ï´Ù.
-		GAME_TS_WARNING_WPS_CAN_NOT_JOIN_NOW,			// Áö±ÝÀº ¼öÇà ÇÒ ¼ö ¾ø½À´Ï´Ù.
+		GAME_TS_WARNING_WPS_ALREDY_USED_BY_OTHER_PLAYER,// ì´ë¯¸ ë‹¤ë¥¸ ìœ ì €ê°€ ìˆ˜í–‰ì¤‘ìž…ë‹ˆë‹¤.
+		GAME_TS_WARNING_WPS_CAN_NOT_JOIN_NOW,			// ì§€ê¸ˆì€ ìˆ˜í–‰ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 
-		GAME_TS_WARNING_CAN_NOT_FIND_VISIT_EVT,			// °ü·ÃµÈ ¹æ¹® ÀÌº¥Æ®°¡ ¾ø½À´Ï´Ù. for visit event
-		GAME_TS_WARNING_ALREADY_VISITED,				// ÀÌ¹Ì ¿Ï·áÇß½À´Ï´Ù. for visit event
-		GAME_TS_WARNING_WRONG_CONDITION,				// ¼öÇà Á¶°ÇÀÌ ¸ÂÁö ¾Ê½À´Ï´Ù.
-		GAME_TS_WARNING_CANNOT_FIND_QUEST_ITEM,			// Äù½ºÆ® ¾ÆÀÌÅÛÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù.
+		GAME_TS_WARNING_CAN_NOT_FIND_VISIT_EVT,			// ê´€ë ¨ëœ ë°©ë¬¸ ì´ë²¤íŠ¸ê°€ ì—†ìŠµë‹ˆë‹¤. for visit event
+		GAME_TS_WARNING_ALREADY_VISITED,				// ì´ë¯¸ ì™„ë£Œí–ˆìŠµë‹ˆë‹¤. for visit event
+		GAME_TS_WARNING_WRONG_CONDITION,				// ìˆ˜í–‰ ì¡°ê±´ì´ ë§žì§€ ì•ŠìŠµë‹ˆë‹¤.
+		GAME_TS_WARNING_CANNOT_FIND_QUEST_ITEM,			// í€˜ìŠ¤íŠ¸ ì•„ì´í…œì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 	//-----------------------------------------------------------------
-	GAME_TS_WARNING_END = 1700,							// Trigger warning message Á¾·á
+	GAME_TS_WARNING_END = 1700,							// Trigger warning message ì¢…ë£Œ
 
-	GAME_TS_ERROR_BEGIN = 1700,							// Trigger error message ½ÃÀÛ
+	GAME_TS_ERROR_BEGIN = 1700,							// Trigger error message ì‹œìž‘
 
-		GAME_TS_ERROR_RUN_ERROR = 1700,	// Æ®¸®°Å ÁøÇà ¿¡·¯
-		GAME_TS_ERROR_CS_SCRIPT_MISSMATCH,				// ´ÙÀ½¿¡ ÁøÇàÇØ¾ßÇÒ ÄÁÅ×ÀÌ³Ê Å¸ÀÔÀÌ CS °£¿¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.
-		GAME_TS_ERROR_NO_IMP_CONT_TYPE,					// ±¸ÇöµÇÁö ¾ÊÀº ÄÁÅ×ÀÌ³Ê Å¸ÀÔÀÌ »ç¿ëµÇ¾ú½À´Ï´Ù.
-		GAME_TS_ERROR_CANNOT_CREATE_TS_OBJECT,			// Æ®¸®°Å ¿ÀºêÁ§Æ® »ý¼º ½ÇÆÐ.
-		GAME_TS_ERROR_CANNOT_FIND_TID,					// Æ®¸®°Å¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.
-		GAME_TS_ERROR_CANNOT_FIND_TCID,					// ÄÁÅ×ÀÌ³Ê¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.
-		GAME_TS_ERROR_CANNOT_PROGRESS_REPEAT_QUEST,		// ¹Ýº¹ Äù½ºÆ®´Â ¿À·ÎÁö ÇÑ¹ø¸¸ ÁøÇàÇÒ ¼ö ÀÖ½À´Ï´Ù
+		GAME_TS_ERROR_RUN_ERROR = 1700,	// íŠ¸ë¦¬ê±° ì§„í–‰ ì—ëŸ¬
+		GAME_TS_ERROR_CS_SCRIPT_MISSMATCH,				// ë‹¤ìŒì— ì§„í–‰í•´ì•¼í•  ì»¨í…Œì´ë„ˆ íƒ€ìž…ì´ CS ê°„ì— ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+		GAME_TS_ERROR_NO_IMP_CONT_TYPE,					// êµ¬í˜„ë˜ì§€ ì•Šì€ ì»¨í…Œì´ë„ˆ íƒ€ìž…ì´ ì‚¬ìš©ë˜ì—ˆìŠµë‹ˆë‹¤.
+		GAME_TS_ERROR_CANNOT_CREATE_TS_OBJECT,			// íŠ¸ë¦¬ê±° ì˜¤ë¸Œì íŠ¸ ìƒì„± ì‹¤íŒ¨.
+		GAME_TS_ERROR_CANNOT_FIND_TID,					// íŠ¸ë¦¬ê±°ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+		GAME_TS_ERROR_CANNOT_FIND_TCID,					// ì»¨í…Œì´ë„ˆë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+		GAME_TS_ERROR_CANNOT_PROGRESS_REPEAT_QUEST,		// ë°˜ë³µ í€˜ìŠ¤íŠ¸ëŠ” ì˜¤ë¡œì§€ í•œë²ˆë§Œ ì§„í–‰í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤
 
 
-		GAME_TS_ERROR_SYSTEM,							// ÀÏ¹ÝÀûÀÎ ½Ã½ºÅÛ»óÀÇ ¿¡·¯[¹ö±×]
-		GAME_TS_ERROR_TRIGGER_SYSTEM,					// Trigger System ¿¡¼­ ¿¡·¯°¡ ³­ °æ¿ì
-		GAME_TS_ERROR_QUERY_SERVER,						// Äõ¸® ¼­¹ö ¿¡·¯
-		GAME_TS_ERROR_CANNOT_FIND_ITEM_TBLIDX,			// Å×ÀÌºí¿¡¼­ ¾ÆÀÌÅÛÀ» Ã£À»¼ö ¾ø´Ù
-		GAME_TS_ERROR_CANNOT_FIND_SKILL_TBLIDX,			// ½ºÅ³À» Ã£À» ¼ö ¾ø½À´Ï´Ù.
-		GAME_TS_ERROR_CANNOT_LEARN_SKILL,				// ½ºÅ³À» ¹è¿ï ¼ö ¾ø½À´Ï´Ù.
-		GAME_TS_ERROR_CANNOT_ADD_QUEST_EVENT_DATA,		// ÀÌº¥Æ® ¿ÉÀú¹ö¿¡ ÀÌº¥Æ®¸¦ µî·ÏÇÒ ¼ö ¾ø½À´Ï´Ù.
-		GAME_TS_ERROR_CANNOT_FIND_QUEST_ITEM,			// Äù½ºÆ® ¾ÆÀÌÅÛÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù.
-		GAME_TS_ERROR_CREATE_ITEM_COUNT_OVER,			// ÇÑ¹ø¿¡ »ý¼ºÇÒ ¼ö ÀÖ´Â Á¦ÇÑ °¹¼ö¸¦ ³Ñ¾ú´Ù.
-		GAME_TS_ERROR_DELETE_ITEM_COUNT_OVER,			// ÇÑ¹ø¿¡ »èÁ¦ÇÒ ¼ö ÀÖ´Â Á¦ÇÑ °¹¼ö¸¦ ³Ñ¾ú´Ù
-		GAME_TS_ERROR_CANNOT_FIND_PC,					// PC¸¦ Ã£À» ¼ö ¾ø´Ù
-		GAME_TS_ERROR_TRIGGER_OBJECT_NOT_EXIST,			// Á¸ÀçÇÏÁö ¾Ê´Â Æ®¸®°Å ¿ÀºêÁ§Æ® ÀÔ´Ï´Ù.
-		GAME_TS_ERROR_TRIGGER_OBJECT_INVALID_FUNCFLAG,	// ±â´ÉÀÌ ¿Ã¹Ù¸£Áö ¾ÊÀº Æ®¸®°Å ¿ÀºêÁ§Æ®ÀÔ´Ï´Ù.
+		GAME_TS_ERROR_SYSTEM,							// ì¼ë°˜ì ì¸ ì‹œìŠ¤í…œìƒì˜ ì—ëŸ¬[ë²„ê·¸]
+		GAME_TS_ERROR_TRIGGER_SYSTEM,					// Trigger System ì—ì„œ ì—ëŸ¬ê°€ ë‚œ ê²½ìš°
+		GAME_TS_ERROR_QUERY_SERVER,						// ì¿¼ë¦¬ ì„œë²„ ì—ëŸ¬
+		GAME_TS_ERROR_CANNOT_FIND_ITEM_TBLIDX,			// í…Œì´ë¸”ì—ì„œ ì•„ì´í…œì„ ì°¾ì„ìˆ˜ ì—†ë‹¤
+		GAME_TS_ERROR_CANNOT_FIND_SKILL_TBLIDX,			// ìŠ¤í‚¬ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+		GAME_TS_ERROR_CANNOT_LEARN_SKILL,				// ìŠ¤í‚¬ì„ ë°°ìš¸ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+		GAME_TS_ERROR_CANNOT_ADD_QUEST_EVENT_DATA,		// ì´ë²¤íŠ¸ ì˜µì €ë²„ì— ì´ë²¤íŠ¸ë¥¼ ë“±ë¡í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+		GAME_TS_ERROR_CANNOT_FIND_QUEST_ITEM,			// í€˜ìŠ¤íŠ¸ ì•„ì´í…œì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+		GAME_TS_ERROR_CREATE_ITEM_COUNT_OVER,			// í•œë²ˆì— ìƒì„±í•  ìˆ˜ ìžˆëŠ” ì œí•œ ê°¯ìˆ˜ë¥¼ ë„˜ì—ˆë‹¤.
+		GAME_TS_ERROR_DELETE_ITEM_COUNT_OVER,			// í•œë²ˆì— ì‚­ì œí•  ìˆ˜ ìžˆëŠ” ì œí•œ ê°¯ìˆ˜ë¥¼ ë„˜ì—ˆë‹¤
+		GAME_TS_ERROR_CANNOT_FIND_PC,					// PCë¥¼ ì°¾ì„ ìˆ˜ ì—†ë‹¤
+		GAME_TS_ERROR_TRIGGER_OBJECT_NOT_EXIST,			// ì¡´ìž¬í•˜ì§€ ì•ŠëŠ” íŠ¸ë¦¬ê±° ì˜¤ë¸Œì íŠ¸ ìž…ë‹ˆë‹¤.
+		GAME_TS_ERROR_TRIGGER_OBJECT_INVALID_FUNCFLAG,	// ê¸°ëŠ¥ì´ ì˜¬ë°”ë¥´ì§€ ì•Šì€ íŠ¸ë¦¬ê±° ì˜¤ë¸Œì íŠ¸ìž…ë‹ˆë‹¤.
 	//-----------------------------------------------------------------
-	GAME_TS_ERROR_END = 1900,							// Trigger error message Á¾·á
+	GAME_TS_ERROR_END = 1900,							// Trigger error message ì¢…ë£Œ
 	//-----------------------------------------------------------------
-	GAME_PET_CANT_MAKE_MORE_SUMMON_PET = 2000,			// ´õ ÀÌ»ó ¼ÒÈ¯ÆêÀ» ºÎ¸¦ ¼ö ¾ø½À´Ï´Ù.
-	GAME_PET_CANT_MAKE_MORE_ITEM_PET,					 // ´õ ÀÌ»ó ¾ÆÀÌÅÛ ÆêÀ» ºÎ¸¦ ¼ö ¾ø½À´Ï´Ù.
-	GAME_PET_COULDNT_BE_DONE_FOR_SOME_REASON,			// ½Ã½ºÅÛ ¹®Á¦·Î ¿äÃ»À» Ã³¸®ÇÒ ¼ö ¾ø½À´Ï´Ù.
-	GAME_PET_TARGET_IS_NOT_SPAWNED,						// ´ë»óÀÌ ¼ÒÈ¯µÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù.
+	GAME_PET_CANT_MAKE_MORE_SUMMON_PET = 2000,			// ë” ì´ìƒ ì†Œí™˜íŽ«ì„ ë¶€ë¥¼ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_PET_CANT_MAKE_MORE_ITEM_PET,					 // ë” ì´ìƒ ì•„ì´í…œ íŽ«ì„ ë¶€ë¥¼ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_PET_COULDNT_BE_DONE_FOR_SOME_REASON,			// ì‹œìŠ¤í…œ ë¬¸ì œë¡œ ìš”ì²­ì„ ì²˜ë¦¬í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_PET_TARGET_IS_NOT_SPAWNED,						// ëŒ€ìƒì´ ì†Œí™˜ë˜ì–´ ìžˆì§€ ì•ŠìŠµë‹ˆë‹¤.
 	//-----------------------------------------------------------------
-	GAME_GUILD_NO_GUILD_MANAGER_NPC_FOUND = 2100,			// ±æµå ¸Å´ÏÀú NPC¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.
-	GAME_GUILD_NOT_GUILD_MANAGER_NPC,						// ±æµå ¸Å´ÏÀú NPC°¡ ¾Æ´Õ´Ï´Ù.
-	GAME_GUILD_GUILD_MANAGER_IS_TOO_FAR,					// ¼±ÅÃÇÑ ±æµå ¸Å´ÏÀú°¡ ³Ê¹« ¸Ö¾î ´ëÈ­¸¦ ÇÒ ¼ö ¾ø½À´Ï´Ù.
-	GAME_GUILD_NEED_MORE_ZENNY_FOR_NEW_GUILD,				// ±æµå »ý¼ºÀ» À§ÇØ¼­´Â Á¦´Ï°¡ ´õ ÇÊ¿äÇÕ´Ï´Ù.
-	GAME_GUILD_NOT_PROPER_GUILD_NAME_LENGTH,				// ±æµå ÀÌ¸§ ±æÀÌ°¡ ÀûÀýÇÏÁö ¾Ê½À´Ï´Ù.
-	GAME_GUILD_GUILD_NAME_HAS_INVALID_CHARACTER,			// ±æµå ÀÌ¸§¿¡ »ç¿ë ºÒ°¡´ÉÇÑ ¹®ÀÚ°¡ Æ÷ÇÔµÇ¾î ÀÖ½À´Ï´Ù.
-	GAME_GUILD_NOT_PROPER_GUILD_NAME,						// ±æµå ÀÌ¸§ÀÌ ÀûÀýÇÏÁö ¾Ê½À´Ï´Ù.
-	GAME_GUILD_SAME_GUILD_NAME_EXIST,						// µ¿ÀÏ ±æµå ÀÌ¸§ÀÌ Á¸ÀçÇÕ´Ï´Ù.
-	GAME_GUILD_NOT_EXIST,									// ÇØ´ç ±æµå°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.
-	GAME_GUILD_NON_EXISTING_GUILD_FUNCTION,					// ¾Ë ¼ö ¾ø´Â ±æµå ±â´ÉÀÔ´Ï´Ù.
+	GAME_GUILD_NO_GUILD_MANAGER_NPC_FOUND = 2100,			// ê¸¸ë“œ ë§¤ë‹ˆì € NPCë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_GUILD_NOT_GUILD_MANAGER_NPC,						// ê¸¸ë“œ ë§¤ë‹ˆì € NPCê°€ ì•„ë‹™ë‹ˆë‹¤.
+	GAME_GUILD_GUILD_MANAGER_IS_TOO_FAR,					// ì„ íƒí•œ ê¸¸ë“œ ë§¤ë‹ˆì €ê°€ ë„ˆë¬´ ë©€ì–´ ëŒ€í™”ë¥¼ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_GUILD_NEED_MORE_ZENNY_FOR_NEW_GUILD,				// ê¸¸ë“œ ìƒì„±ì„ ìœ„í•´ì„œëŠ” ì œë‹ˆê°€ ë” í•„ìš”í•©ë‹ˆë‹¤.
+	GAME_GUILD_NOT_PROPER_GUILD_NAME_LENGTH,				// ê¸¸ë“œ ì´ë¦„ ê¸¸ì´ê°€ ì ì ˆí•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_GUILD_GUILD_NAME_HAS_INVALID_CHARACTER,			// ê¸¸ë“œ ì´ë¦„ì— ì‚¬ìš© ë¶ˆê°€ëŠ¥í•œ ë¬¸ìžê°€ í¬í•¨ë˜ì–´ ìžˆìŠµë‹ˆë‹¤.
+	GAME_GUILD_NOT_PROPER_GUILD_NAME,						// ê¸¸ë“œ ì´ë¦„ì´ ì ì ˆí•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_GUILD_SAME_GUILD_NAME_EXIST,						// ë™ì¼ ê¸¸ë“œ ì´ë¦„ì´ ì¡´ìž¬í•©ë‹ˆë‹¤.
+	GAME_GUILD_NOT_EXIST,									// í•´ë‹¹ ê¸¸ë“œê°€ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_GUILD_NON_EXISTING_GUILD_FUNCTION,					// ì•Œ ìˆ˜ ì—†ëŠ” ê¸¸ë“œ ê¸°ëŠ¥ìž…ë‹ˆë‹¤.
 
-	GAME_GUILD_ALREADY_HAS_GUILD_FUNCTION,					// ÀÌ¹Ì °¡Áö°í ÀÖ´Â ±æµå ±â´ÉÀÔ´Ï´Ù.
-	GAME_GUILD_NEED_PREREQUISITE_GUILD_FUNCTION,			// ÇÑ ´Ü°è ³·Àº ±æµå ±â´ÉÀ» È¹µæÇÑ »óÅÂ¿©¾ß ÇÕ´Ï´Ù.
-	GAME_GUILD_NEED_MORE_GUILD_POINT,						// ´õ ¸¹Àº ±æµå Æ÷ÀÎÆ®°¡ ÇÊ¿äÇÕ´Ï´Ù.
-	GAME_GUILD_NEED_MORE_ZENNY,								// ´õ ¸¹Àº Á¦´Ï°¡ ÇÊ¿äÇÕ´Ï´Ù.
-	GAME_GUILD_NEED_LEVEL_MORE,								// ·¹º§ÀÌ ºÎÁ·ÇÕ´Ï´Ù.
-	GAME_GUILD_GIVE_ZENNY_NOT_MATCHED,						// ±æµå Æ÷ÀÎÆ®¸¦ ¾ò±âÀ§ÇØ¼­´Â 1000À¸·Î ³ª´©¾î ¶³¾îÁö°í 1000 ÀÌ»óÀÌ¿©¾ß ÇÕ´Ï´Ù.
-	GAME_GUILD_NO_GUILD_FOUND,								// ±æµå¿¡ °¡ÀÔµÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù.
-	GAME_GUILD_MARK_ARLEADY_CREATED,						// ±æµå¸¶Å©°¡ ÀÌ¹Ì »ý¼º µÇ¾î ÀÖ½À´Ï´Ù.
-	GAME_GUILD_MARK_NOT_CREATED,							// ±æµå¸¶Å©°¡ »ý¼º µÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù.
+	GAME_GUILD_ALREADY_HAS_GUILD_FUNCTION,					// ì´ë¯¸ ê°€ì§€ê³  ìžˆëŠ” ê¸¸ë“œ ê¸°ëŠ¥ìž…ë‹ˆë‹¤.
+	GAME_GUILD_NEED_PREREQUISITE_GUILD_FUNCTION,			// í•œ ë‹¨ê³„ ë‚®ì€ ê¸¸ë“œ ê¸°ëŠ¥ì„ íšë“í•œ ìƒíƒœì—¬ì•¼ í•©ë‹ˆë‹¤.
+	GAME_GUILD_NEED_MORE_GUILD_POINT,						// ë” ë§Žì€ ê¸¸ë“œ í¬ì¸íŠ¸ê°€ í•„ìš”í•©ë‹ˆë‹¤.
+	GAME_GUILD_NEED_MORE_ZENNY,								// ë” ë§Žì€ ì œë‹ˆê°€ í•„ìš”í•©ë‹ˆë‹¤.
+	GAME_GUILD_NEED_LEVEL_MORE,								// ë ˆë²¨ì´ ë¶€ì¡±í•©ë‹ˆë‹¤.
+	GAME_GUILD_GIVE_ZENNY_NOT_MATCHED,						// ê¸¸ë“œ í¬ì¸íŠ¸ë¥¼ ì–»ê¸°ìœ„í•´ì„œëŠ” 1000ìœ¼ë¡œ ë‚˜ëˆ„ì–´ ë–¨ì–´ì§€ê³  1000 ì´ìƒì´ì—¬ì•¼ í•©ë‹ˆë‹¤.
+	GAME_GUILD_NO_GUILD_FOUND,								// ê¸¸ë“œì— ê°€ìž…ë˜ì–´ ìžˆì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_GUILD_MARK_ARLEADY_CREATED,						// ê¸¸ë“œë§ˆí¬ê°€ ì´ë¯¸ ìƒì„± ë˜ì–´ ìžˆìŠµë‹ˆë‹¤.
+	GAME_GUILD_MARK_NOT_CREATED,							// ê¸¸ë“œë§ˆí¬ê°€ ìƒì„± ë˜ì–´ ìžˆì§€ ì•ŠìŠµë‹ˆë‹¤.
 	//-----------------------------------------------------------------
-	GAME_ROOM_ENTER_EXCEED_MAX_MEMBER_COUNT = 2200,			// ¹æ¿¡ ÀÎ¿øÀÌ °¡µæ Ã¡½À´Ï´Ù.
-	GAME_ROOM_ENTER_EXCEED_MAX_ROOM_COUNT,					// ´õÀÌ»ó ¹æÀ» ¸¸µé ¼ö ¾ø½À´Ï´Ù.
-	GAME_ROOM_ENTER_NEED_MORE_MEMBER,						// ¹æ¿¡ ÀÎ¿øÀÌ ´õ ÇÊ¿ä ÇÕ´Ï´Ù.
-	GAME_ROOM_ENTER_TOO_LOW_LEVEL,							// ¹æ¿¡ ÁøÀÔÇÏ±â¿¡´Â ·¹º§ÀÌ ³Ê¹« ³·½À´Ï´Ù
-	GAME_ROOM_ENTER_TOO_HIGHTLEVEL,							// ¹æ¿¡ ÁøÀÔÇÏ±â¿¡´Â ·¹º§ÀÌ ³Ê¹« ³ô½À´Ï´Ù
-	GAME_ROOM_ENTER_MUST_HAVE_NEED_ITEM,					// ¹æ¿¡ ÁøÀÔÇÏ±âÀ§ÇÑ ÇÊ¿ä ¾ÆÀÌÅÛÀÌ ¾ø½À´Ï´Ù
-	GAME_ROOM_ENTER_MUST_HAVE_NEED_ZENNY,					// ¹æ¿¡ ÁøÀÔÇÏ±âÀ§ÇÑ Á¦´Ï°¡ ºÎÁ·ÇÕ´Ï´Ù.
-	GAME_ROOM_ENTER_ROOM_NOT_EXIST,							// ¹æÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.
-	GAME_ROOM_ENTER_ROOMMANAGER_NOT_EXIST,					// °Ô½ÃÆÇÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.
-	GAME_ROOM_ENTER_NEED_MORE_PARTY_MEMEBER,				// ÆÄÆ¼¸â¹ö°¡ ´õ ÇÊ¿äÇÕ´Ï´Ù.
-	GAME_ROOM_ENTER_NOT_MATCH_MEMBER,						// ´ëÀü ¸â¹ö°¡ ¾Æ´Õ´Ï´Ù.
-	GAME_ROOM_ENTER_NOT_WAIT_STATE,							// ´ë±â »óÅÂ°¡ ¾Æ´Õ´Ï´Ù.
-	GAME_ROOM_ENTER_FAIL,									// ¹æÁøÀÔ ½Ãµµ°¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù
-	GAME_ROOM_LEAVE_LIMIT_TIME_ELAPSED,						// ´ë±â·ë¿¡¼­ ³ª°¥¼ö ¾ø´Â ½Ã°£ ÀÔ´Ï´Ù
-	GAME_ROOM_LEAVE_FAIL,									// ´ë±â·ë ³ª¿À±â ½ÇÆÐ
-	GAME_ROOM_NOT_OWNER,									// ¹æÀÇ ¼ÒÀ¯ÀÚ°¡ ¾Æ´Õ´Ï´Ù.
-	GAME_ROOM_CAN_NOT_FIND_PARTY_MEMBER,					// ÆÄÆ¼¸â¹ö¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù.
+	GAME_ROOM_ENTER_EXCEED_MAX_MEMBER_COUNT = 2200,			// ë°©ì— ì¸ì›ì´ ê°€ë“ ì°¼ìŠµë‹ˆë‹¤.
+	GAME_ROOM_ENTER_EXCEED_MAX_ROOM_COUNT,					// ë”ì´ìƒ ë°©ì„ ë§Œë“¤ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_ROOM_ENTER_NEED_MORE_MEMBER,						// ë°©ì— ì¸ì›ì´ ë” í•„ìš” í•©ë‹ˆë‹¤.
+	GAME_ROOM_ENTER_TOO_LOW_LEVEL,							// ë°©ì— ì§„ìž…í•˜ê¸°ì—ëŠ” ë ˆë²¨ì´ ë„ˆë¬´ ë‚®ìŠµë‹ˆë‹¤
+	GAME_ROOM_ENTER_TOO_HIGHTLEVEL,							// ë°©ì— ì§„ìž…í•˜ê¸°ì—ëŠ” ë ˆë²¨ì´ ë„ˆë¬´ ë†’ìŠµë‹ˆë‹¤
+	GAME_ROOM_ENTER_MUST_HAVE_NEED_ITEM,					// ë°©ì— ì§„ìž…í•˜ê¸°ìœ„í•œ í•„ìš” ì•„ì´í…œì´ ì—†ìŠµë‹ˆë‹¤
+	GAME_ROOM_ENTER_MUST_HAVE_NEED_ZENNY,					// ë°©ì— ì§„ìž…í•˜ê¸°ìœ„í•œ ì œë‹ˆê°€ ë¶€ì¡±í•©ë‹ˆë‹¤.
+	GAME_ROOM_ENTER_ROOM_NOT_EXIST,							// ë°©ì´ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_ROOM_ENTER_ROOMMANAGER_NOT_EXIST,					// ê²Œì‹œíŒì´ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_ROOM_ENTER_NEED_MORE_PARTY_MEMEBER,				// íŒŒí‹°ë©¤ë²„ê°€ ë” í•„ìš”í•©ë‹ˆë‹¤.
+	GAME_ROOM_ENTER_NOT_MATCH_MEMBER,						// ëŒ€ì „ ë©¤ë²„ê°€ ì•„ë‹™ë‹ˆë‹¤.
+	GAME_ROOM_ENTER_NOT_WAIT_STATE,							// ëŒ€ê¸° ìƒíƒœê°€ ì•„ë‹™ë‹ˆë‹¤.
+	GAME_ROOM_ENTER_FAIL,									// ë°©ì§„ìž… ì‹œë„ê°€ ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤
+	GAME_ROOM_LEAVE_LIMIT_TIME_ELAPSED,						// ëŒ€ê¸°ë£¸ì—ì„œ ë‚˜ê°ˆìˆ˜ ì—†ëŠ” ì‹œê°„ ìž…ë‹ˆë‹¤
+	GAME_ROOM_LEAVE_FAIL,									// ëŒ€ê¸°ë£¸ ë‚˜ì˜¤ê¸° ì‹¤íŒ¨
+	GAME_ROOM_NOT_OWNER,									// ë°©ì˜ ì†Œìœ ìžê°€ ì•„ë‹™ë‹ˆë‹¤.
+	GAME_ROOM_CAN_NOT_FIND_PARTY_MEMBER,					// íŒŒí‹°ë©¤ë²„ë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 
-	GAME_MATCH_CAN_NOT_USE_SKILL_IN_THIS_WORLD,				// ÇöÀç ¿ùµå¿¡¼­´Â »ç¿ëÇÒ ¼ö ¾ø´Â ½ºÅ³ÀÔ´Ï´Ù.
-	GAME_MATCH_CAN_NOT_USE_SKILL_IN_OUTOFAREA,				// Àå¿ÜÀÏ¶§´Â ½ºÅ³À» »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.
-	GAME_TIMEQUEST_CANNOT_LEAVE_IN_PARTY_WHEN_PLAYING_RANKBATTLE,	// ·©Å©¹èÆ² ÁßÀÏ¶§¿¡´Â ÆÄÆ¼¿¡¼­ ³ª°¥ ¼ö ¾ø½À´Ï´Ù.
+	GAME_MATCH_CAN_NOT_USE_SKILL_IN_THIS_WORLD,				// í˜„ìž¬ ì›”ë“œì—ì„œëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ìŠ¤í‚¬ìž…ë‹ˆë‹¤.
+	GAME_MATCH_CAN_NOT_USE_SKILL_IN_OUTOFAREA,				// ìž¥ì™¸ì¼ë•ŒëŠ” ìŠ¤í‚¬ì„ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_TIMEQUEST_CANNOT_LEAVE_IN_PARTY_WHEN_PLAYING_RANKBATTLE,	// ëž­í¬ë°°í‹€ ì¤‘ì¼ë•Œì—ëŠ” íŒŒí‹°ì—ì„œ ë‚˜ê°ˆ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 
 	
 	//-----------------------------------------------------------------
-	GAME_TIMEQUEST_WORLD_NOT_FOUND = 2300,					// Å¸ÀÓ¸Ó½Å Äù½ºÆ®¿¡ ÇØ´çÇÏ´Â ¿ùµå¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù
-	GAME_TIMEQUEST_ROOM_NOT_FOUND,							// Å¸ÀÓ¸Ó½Å Äù½ºÆ® ´ë±â¹æÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù
-	GAME_TIMEQUEST_ALREADY_JOINED,							// Å¸ÀÓ¸Ó½Å Äù½ºÆ® ´ë±â½Ç¿¡ ÀÌ¹Ì Âü¿©ÇÏ°í ÀÖ½À´Ï´Ù
-	GAME_TIMEQUEST_HAVE_NO_JOIN_ROOM,						// Å¸ÀÓ¸Ó½Å Äù½ºÆ® ´ë±â½Ç¿¡ Âü¿©ÇÏ°í ÀÖÁö ¾Ê½À´Ï´Ù
-	GAME_TIMEQUEST_CANT_MAKE_PARTY,							// Å¸ÀÓ¸Ó½Å Äù½ºÆ®¿¡ ÀÚµ¿ ÆÄÆ¼¸¦ »ý¼ºÇÒ ¼ö ¾ø½À´Ï´Ù.
-	GAME_TIMEQUEST_NEED_MORE_MEMBER,						// Å¸ÀÓ¸Ó½Å Äù½ºÆ®¸¦ ÇÒ ÀÎ¿øÀÌ ÃæºÐÇÏÁö ¾Ê½À´Ï´Ù
-	GAME_TIMEQUEST_NOT_ALLOWED_MEMBER,						// Å¸ÀÓ¸Ó½Å Äù½ºÆ®¿¡ ÁøÀÔÀÌ Çã°¡µÇÁö ¾ÊÀº ¸â¹ö ÀÔ´Ï´Ù.
-	GAME_TIMEQUEST_EXCEED_MAX_MEMBER_COUNT,					// Å¸ÀÓ¸Ó½Å Äù½ºÆ® ÁøÀÔÃÖ´ë ÀÎ¿øÀÌ ÃÊ°úµÇ¾ú½À´Ï´Ù.
-	GAME_TIMEQUEST_TOO_LOW_LEVEL,							// Å¸ÀÓ¸Ó½Å Äù½ºÆ®¸¦ ÇÏ±âÀ§ÇÑ ·¹º§ÀÌ ³Ê¹« ³·½À´Ï´Ù.
-	GAME_TIMEQUEST_TOO_HIGH_LEVEL,							// Å¸ÀÓ¸Ó½Å Äù½ºÆ®¸¦ ÇÏ±âÀ§ÇÑ ·¹º§ÀÌ ³Ê¹« ³ô½À´Ï´Ù.
-	GAME_TIMEQUEST_MUST_HAVE_NEED_ITEM,						// Å¸ÀÓ¸Ó½Å Äù½ºÆ®¿¡ ÁøÀÔÇÏ±âÀ§ÇÑ ¾ÆÀÌÅÛÀÌ ¾ø½À´Ï´Ù
-	GAME_TIMEQUEST_MUST_HAVE_NEED_ZENNY,					// Å¸ÀÓ¸Ó½Å Äù½ºÆ®¿¡ ÁøÀÔÇÏ±âÀ§ÇÑ Á¦´Ï°¡ ºÎÁ·ÇÕ´Ï´Ù.
-	GAME_TIMEQUEST_ROOM_NOT_WAIT_STATE,						// Å¸ÀÓ¸Ó½Å Äù½ºÆ® ´ë±â½Ç¿¡ ÁøÀÔÇÒ ¼ö ¾ø½À´Ï´Ù.
-	GAME_TIMEQUEST_ROOM_PARTY_JOIN_FAIL,					// Å¸ÀÓ¸Ó½Å Äù½ºÆ® ´ë±â½Ç¿¡ ÆÄÆ¼µî·ÏÀ» ÇÒ ¼ö ¾ø½À´Ï´Ù.
-	GAME_TIMEQUEST_ROOM_PARTY_ALREADY_JOINED,				// Å¸ÀÓ¸Ó½Å Äù½ºÆ® ´ë±â½Ç¿¡ ÀÌ¹Ì ÆÄÆ¼µî·ÏÀÌ µÇ¾î ÀÖ½À´Ï´Ù.
-	GAME_TIMEQUEST_ROOM_OUT_OF_ENTER_RANGE,					// Å¸ÀÓ¸Ó½Å Äù½ºÆ®ÀÇ ÁøÀÔ ¿µ¿ªÀ» ¹þ¾î³µ½À´Ï´Ù.
-	GAME_TIMEQUEST_ROOM_CANNOT_TELEPORT_NOW,				// Áö±ÝÀº Å¸ÀÓ¸Ó½ÅÀÇ À§Ä¡·Î ÀÌµ¿ÇÒ ¼ö ¾ø½À´Ï´Ù.
-	GAME_TIMEQUEST_DAYRECORD_IS_ALREADY_RESET,				// µ¥ÀÌ·¹ÄÚµå ¸®¼ÂÀÌ ÀÌ¹Ì Ã³¸®µÇ¾ú½À´Ï´Ù.
-	GAME_TIMEQUEST_WORLD_ENTER_FAIL,						// Å¸ÀÓ¸Ó½Å Äù½ºÆ® ÁøÀÔÀÌ ½ÇÆÐÇÏ¿´½À´Ï´Ù.
-	GAME_TIMEQUEST_CANNOT_LEAVE_IN_PARTY_WHEN_PLAYING_TMQ,	// Å¸ÀÓ¸Ó½Å Äù½ºÆ®¸¦ ¼öÇà ÇÒ ¶§¿¡´Â ÆÄÆ¼¿¡¼­ ³ª°¥ ¼ö ¾ø½À´Ï´Ù.
+	GAME_TIMEQUEST_WORLD_NOT_FOUND = 2300,					// íƒ€ìž„ë¨¸ì‹  í€˜ìŠ¤íŠ¸ì— í•´ë‹¹í•˜ëŠ” ì›”ë“œë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤
+	GAME_TIMEQUEST_ROOM_NOT_FOUND,							// íƒ€ìž„ë¨¸ì‹  í€˜ìŠ¤íŠ¸ ëŒ€ê¸°ë°©ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤
+	GAME_TIMEQUEST_ALREADY_JOINED,							// íƒ€ìž„ë¨¸ì‹  í€˜ìŠ¤íŠ¸ ëŒ€ê¸°ì‹¤ì— ì´ë¯¸ ì°¸ì—¬í•˜ê³  ìžˆìŠµë‹ˆë‹¤
+	GAME_TIMEQUEST_HAVE_NO_JOIN_ROOM,						// íƒ€ìž„ë¨¸ì‹  í€˜ìŠ¤íŠ¸ ëŒ€ê¸°ì‹¤ì— ì°¸ì—¬í•˜ê³  ìžˆì§€ ì•ŠìŠµë‹ˆë‹¤
+	GAME_TIMEQUEST_CANT_MAKE_PARTY,							// íƒ€ìž„ë¨¸ì‹  í€˜ìŠ¤íŠ¸ì— ìžë™ íŒŒí‹°ë¥¼ ìƒì„±í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_TIMEQUEST_NEED_MORE_MEMBER,						// íƒ€ìž„ë¨¸ì‹  í€˜ìŠ¤íŠ¸ë¥¼ í•  ì¸ì›ì´ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤
+	GAME_TIMEQUEST_NOT_ALLOWED_MEMBER,						// íƒ€ìž„ë¨¸ì‹  í€˜ìŠ¤íŠ¸ì— ì§„ìž…ì´ í—ˆê°€ë˜ì§€ ì•Šì€ ë©¤ë²„ ìž…ë‹ˆë‹¤.
+	GAME_TIMEQUEST_EXCEED_MAX_MEMBER_COUNT,					// íƒ€ìž„ë¨¸ì‹  í€˜ìŠ¤íŠ¸ ì§„ìž…ìµœëŒ€ ì¸ì›ì´ ì´ˆê³¼ë˜ì—ˆìŠµë‹ˆë‹¤.
+	GAME_TIMEQUEST_TOO_LOW_LEVEL,							// íƒ€ìž„ë¨¸ì‹  í€˜ìŠ¤íŠ¸ë¥¼ í•˜ê¸°ìœ„í•œ ë ˆë²¨ì´ ë„ˆë¬´ ë‚®ìŠµë‹ˆë‹¤.
+	GAME_TIMEQUEST_TOO_HIGH_LEVEL,							// íƒ€ìž„ë¨¸ì‹  í€˜ìŠ¤íŠ¸ë¥¼ í•˜ê¸°ìœ„í•œ ë ˆë²¨ì´ ë„ˆë¬´ ë†’ìŠµë‹ˆë‹¤.
+	GAME_TIMEQUEST_MUST_HAVE_NEED_ITEM,						// íƒ€ìž„ë¨¸ì‹  í€˜ìŠ¤íŠ¸ì— ì§„ìž…í•˜ê¸°ìœ„í•œ ì•„ì´í…œì´ ì—†ìŠµë‹ˆë‹¤
+	GAME_TIMEQUEST_MUST_HAVE_NEED_ZENNY,					// íƒ€ìž„ë¨¸ì‹  í€˜ìŠ¤íŠ¸ì— ì§„ìž…í•˜ê¸°ìœ„í•œ ì œë‹ˆê°€ ë¶€ì¡±í•©ë‹ˆë‹¤.
+	GAME_TIMEQUEST_ROOM_NOT_WAIT_STATE,						// íƒ€ìž„ë¨¸ì‹  í€˜ìŠ¤íŠ¸ ëŒ€ê¸°ì‹¤ì— ì§„ìž…í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_TIMEQUEST_ROOM_PARTY_JOIN_FAIL,					// íƒ€ìž„ë¨¸ì‹  í€˜ìŠ¤íŠ¸ ëŒ€ê¸°ì‹¤ì— íŒŒí‹°ë“±ë¡ì„ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_TIMEQUEST_ROOM_PARTY_ALREADY_JOINED,				// íƒ€ìž„ë¨¸ì‹  í€˜ìŠ¤íŠ¸ ëŒ€ê¸°ì‹¤ì— ì´ë¯¸ íŒŒí‹°ë“±ë¡ì´ ë˜ì–´ ìžˆìŠµë‹ˆë‹¤.
+	GAME_TIMEQUEST_ROOM_OUT_OF_ENTER_RANGE,					// íƒ€ìž„ë¨¸ì‹  í€˜ìŠ¤íŠ¸ì˜ ì§„ìž… ì˜ì—­ì„ ë²—ì–´ë‚¬ìŠµë‹ˆë‹¤.
+	GAME_TIMEQUEST_ROOM_CANNOT_TELEPORT_NOW,				// ì§€ê¸ˆì€ íƒ€ìž„ë¨¸ì‹ ì˜ ìœ„ì¹˜ë¡œ ì´ë™í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_TIMEQUEST_DAYRECORD_IS_ALREADY_RESET,				// ë°ì´ë ˆì½”ë“œ ë¦¬ì…‹ì´ ì´ë¯¸ ì²˜ë¦¬ë˜ì—ˆìŠµë‹ˆë‹¤.
+	GAME_TIMEQUEST_WORLD_ENTER_FAIL,						// íƒ€ìž„ë¨¸ì‹  í€˜ìŠ¤íŠ¸ ì§„ìž…ì´ ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.
+	GAME_TIMEQUEST_CANNOT_LEAVE_IN_PARTY_WHEN_PLAYING_TMQ,	// íƒ€ìž„ë¨¸ì‹  í€˜ìŠ¤íŠ¸ë¥¼ ìˆ˜í–‰ í•  ë•Œì—ëŠ” íŒŒí‹°ì—ì„œ ë‚˜ê°ˆ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 
 	//-----------------------------------------------------------------
-	GAME_TUTORIAL_CHAR_ALREADY_TUTORIAL_ACCOMPLISHED = 2350, // Ä³¸¯ÅÍ°¡ ÀÌ¹Ì Æ©Åä¸®¾óÀ» ¼öÇàÇß½À´Ï´Ù
-	GAME_TUTORIAL_CANT_FIND_TUTORIAL_WAIT_ROOM,				// Æ©Åä¸®¾ó ´ë±â·ëÀÌ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù
-	GAME_TUTORIAL_CANT_ENTER_TUTORIAL_WAIT_ROOM,			// Æ©Åä¸®¾ó ´ë±â·ë¿¡ ÁøÀÔÇÒ ¼ö ¾ø½À´Ï´Ù
-	GAME_TUTORIAL_YOU_HAVE_NO_JOIN_ROOM,					// Æ©Åä¸®¾ó ´ë±â¸¦ ÇÏ°í ÀÖÁö ¾Ê½À´Ï´Ù.
+	GAME_TUTORIAL_CHAR_ALREADY_TUTORIAL_ACCOMPLISHED = 2350, // ìºë¦­í„°ê°€ ì´ë¯¸ íŠœí† ë¦¬ì–¼ì„ ìˆ˜í–‰í–ˆìŠµë‹ˆë‹¤
+	GAME_TUTORIAL_CANT_FIND_TUTORIAL_WAIT_ROOM,				// íŠœí† ë¦¬ì–¼ ëŒ€ê¸°ë£¸ì´ ì¡´ìž¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤
+	GAME_TUTORIAL_CANT_ENTER_TUTORIAL_WAIT_ROOM,			// íŠœí† ë¦¬ì–¼ ëŒ€ê¸°ë£¸ì— ì§„ìž…í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤
+	GAME_TUTORIAL_YOU_HAVE_NO_JOIN_ROOM,					// íŠœí† ë¦¬ì–¼ ëŒ€ê¸°ë¥¼ í•˜ê³  ìžˆì§€ ì•ŠìŠµë‹ˆë‹¤.
 
 
 	//-----------------------------------------------------------------
 	GAME_PRIVATESHOP = 2400,
-	GAME_PRIVATESHOP_NOTAUTH,												// ±ÇÇÑÀÌ ¾ø½À´Ï´Ù
-	GAME_PRIVATESHOP_NOTRUNSTATE,											// Áö±Ý »óÅÂ¿¡¼­´Â ½ÇÇà ÇÒ ¼ö ¾ø½À´Ï´Ù
-	GAME_PRIVATESHOP_PRIVATESHOP_NOT_CREATE_PLACE,							// °³ÀÎ »óÁ¡À» ¿­¼ö ¾ø´Â Àå¼Ò ÀÔ´Ï´Ù
-	GAME_PRIVATESHOP_PRIVATESHOP_ANOTHER,									// ¹Ý°æ 10M ÀÌ³»¿¡ °³ÀÎ »óÁ¡ÀÌ ÇÏ³ª ÀÌ»ó ÀÖ½À´Ï´Ù
-	GAME_PRIVATESHOP_PRIVATESHOP_NULL,										// »óÁ¡ÀÌ ¾ø½À´Ï´Ù
-	GAME_PRIVATESHOP_PRIVATESHOP_INVENTORY_SAVEITEM_OVER,					// »óÁ¡ ÀÎº¥Åä¸®¿¡ ºó½½·ÔÀÌ ¾ø½À´Ï´Ù
-	GAME_PRIVATESHOP_PRIVATESHOP_INVENTORY_SLOT_ALREADY_ITEM,				// »óÁ¡ ÀÎº¥Åä¸® ½½·Ô¿¡ ÀÌ¹Ì ¾ÆÀÌÅÛÀÌ ÀÖ½À´Ï´Ù
-	GAME_PRIVATESHOP_ITEM_NULL,												// ¾ÆÀÌÅÛÀÌ ¾ø½À´Ï´Ù
-	GAME_PRIVATESHOP_ITEM_NOTVALID,											// ÆÈ¼ö ¾ø´Â ¾ÆÀÌÅÛÀÔ´Ï´Ù
-	GAME_PRIVATESHOP_VISITOR_NULL,											// ¼Õ´ÔÀÌ ¾ø½À´Ï´Ù
-	GAME_PRIVATESHOP_VISITOR_NOT_MONEY,										// ¼Õ´Ô¿¡ µ·ÀÌ ¸ðÀÚ¸¨´Ï´Ù
-	GAME_PRIVATESHOP_VISITOR_NOT_INVENTORY_EMPTY,							// ¼Õ´Ô¿¡ ÀÎº¥Åä¸® ½½·Ô¿¡ ¾ÆÀÌÅÛµéÀÌ ²Ë Â÷ ÀÖ½À´Ï´Ù
-	GAME_PRIVATESHOP_VISITOR_ALREADYENTER,									// ¼Õ´ÔÀÌ ÀÌ¹Ì »óÁ¡¿¡ ÀÔÀåÇß½À´Ï´Ù
-	GAME_PRIVATESHOP_VISITOR_SELECTITEM_NULL,								// ¼Õ´ÔÀÌ ÂòÇÑ ¾ÆÀÌÅÛÀÌ ¾ø½À´Ï´Ù
-	GAME_PRIVATESHOP_VISITOR_SELECTITEM_OVER,								// ´õÀÌ»ó ¾ÆÀÌÅÛÀ» ÂòÇÒ ¼ö ¾ø½À´Ï´Ù
-	GAME_PRIVATESHOP_VISITOR_SELECTITEM_ALREADY,							// ÀÌ¹Ì ÂòÇÑ ¾ÆÀÌÅÛÀÔ´Ï´Ù
-	GAME_PRIVATESHOP_VISITOR_SELECTITEM_ALLSELL,							// ¼±ÅÃÇÑ ¾ÆÀÌÅÛµéÀ» »ì¼ö ¾ø½À´Ï´Ù
-	GAME_PRIVATESHOP_VISITOR_SELECTITEM_INVENSOLT_SHORTOF,					// ÀÎº¥Åä¸®¿¡ ºó ½½·ÔÀÌ ºÎÁ·ÇÕ´Ï´Ù
-	GAME_PRIVATESHOP_VISITOR_FULL,											// »óÁ¡¿¡ ¼Õ´ÔÀÌ µé¾î°¥ ¼ö ÀÖ´Â ºóÀÚ¸®°¡ ¾ø½À´Ï´Ù
-	GAME_PRIVATESHOP_OWNER_MONEY_FULL,										// »óÁ¡ ÁÖÀÎ µ·ÀÌ ´õÀÌ»ó ´Ã¾î³¯¼ö ¾ø½À´Ï´Ù
-	GAME_PRIVATESHOP_OWNER_THEREISNO,										// »óÁ¡ ÁÖÀÎÀÌ ÀÚ¸®¿¡ ¾ø½À´Ï´Ù
-	GAME_PRIVATESHOP_OWNER_BUSINESS_REFUSED,								// ÁÖÀÎÀÌ ÈïÁ¤À» °ÅºÎÁßÀÌ´Ù
-	GAME_PRIVATESHOP_INVENTORY_NOTINVENTTORY,								// Àß¸øµÈ ÀÎº¥Åä¸® ÀÔ´Ï´Ù
-	GAME_PRIVATESHOP_INVENTORY_SAVEITEM_OVER,								// Inventory¿¡ ºó ½½·ÔÀÌ ¾ø½À´Ï´Ù
-	GAME_PRIVATESHOP_STOP_PROGRESS,											// Á¾·áÁßÀÔ´Ï´Ù
-	GAME_PRIVATESHOP_OWNER_BARGAINS,										// ÁÖÀÎÀÌ ´Ù¸§»ç¶÷°ú ÈïÁ¤ÁßÀÔ´Ï´Ù
-	GAME_PRIVATESHOP_ITEM_TABLE_ITEMID_DIFFERENT,							// ¾ÆÀÌÅÛÀÌ µ¿ÀÏÇÏÁö ¾Ê½À´Ï´Ù
-	GAME_PRIVATESHOP_ITEM_SELECTITEM_NOTBUSINESS,							// ÀÌ¹Ì ¼±ÅÃÇÑ ¾ÆÀÌÅÛÀº ÈïÁ¤ÇÒ ¼ö ¾ø½À´Ï´Ù
-	GAME_PRIVATESHOP_OWNER_BUSINESS_NOT_CONSENT,							// »óÁ¡ ÁÖÀÎÀÌ ÈïÁ¤À» °ÅºÎÇß½À´Ï´Ù
-	GAME_PRIVATESHOP_SAMENOT_PRICEFLUCTUATIONSCOUNTER,						// ÁÖÀÎÀÌ °¡°Ý Á¶Á¤ÇÑ È½¼ö¿Í ¼Õ´ÔÀÌ °¡°Ý Á¶Á¤ ÆÐÅ¶À» ¹ÞÀº °ªÀÌ ´Ù¸¨´Ï´Ù.
-	GAME_PRIVATESHOP_ZENNY_LOCK,											// ´Ù¸¥ »ç¶÷°ú Item BuyÁßÀÌ¿©¼­ Zenny°¡ LockÀÌ µÇ¾ú½À´Ï´Ù. Ã³¸®°¡ ³¡³¯¶§±îÁö ±â´Ù·Á ÁÖ¼¼¿ä
-	GAME_PRIVATESHOP_NOT_PROGRESS_COMPLETE,									// ÀÌÀü ¿äÃ»ÀÌ Ã³¸®µÉ¶§±îÁö ³¡³¯¶§±îÁö ±â´Ù·Á ÁÖ¼¼¿ä (ÆÐÅ¶ÀÌ Qry Srv¿¡ ¸Ó¹°°í ÀÖ´Ù)
-	GAME_PRIVATESHOP_VISITOR_SELECTITEM_ALREADYBUYANDBUSINESSITEM,			// ÀÌ¹Ì ´Ù¸¥ ¼Õ´ÔÀÌ ±¸¸ÅÇÑ ¾ÆÀÌÅÛÀÔ´Ï´Ù.
+	GAME_PRIVATESHOP_NOTAUTH,												// ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤
+	GAME_PRIVATESHOP_NOTRUNSTATE,											// ì§€ê¸ˆ ìƒíƒœì—ì„œëŠ” ì‹¤í–‰ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤
+	GAME_PRIVATESHOP_PRIVATESHOP_NOT_CREATE_PLACE,							// ê°œì¸ ìƒì ì„ ì—´ìˆ˜ ì—†ëŠ” ìž¥ì†Œ ìž…ë‹ˆë‹¤
+	GAME_PRIVATESHOP_PRIVATESHOP_ANOTHER,									// ë°˜ê²½ 10M ì´ë‚´ì— ê°œì¸ ìƒì ì´ í•˜ë‚˜ ì´ìƒ ìžˆìŠµë‹ˆë‹¤
+	GAME_PRIVATESHOP_PRIVATESHOP_NULL,										// ìƒì ì´ ì—†ìŠµë‹ˆë‹¤
+	GAME_PRIVATESHOP_PRIVATESHOP_INVENTORY_SAVEITEM_OVER,					// ìƒì  ì¸ë²¤í† ë¦¬ì— ë¹ˆìŠ¬ë¡¯ì´ ì—†ìŠµë‹ˆë‹¤
+	GAME_PRIVATESHOP_PRIVATESHOP_INVENTORY_SLOT_ALREADY_ITEM,				// ìƒì  ì¸ë²¤í† ë¦¬ ìŠ¬ë¡¯ì— ì´ë¯¸ ì•„ì´í…œì´ ìžˆìŠµë‹ˆë‹¤
+	GAME_PRIVATESHOP_ITEM_NULL,												// ì•„ì´í…œì´ ì—†ìŠµë‹ˆë‹¤
+	GAME_PRIVATESHOP_ITEM_NOTVALID,											// íŒ”ìˆ˜ ì—†ëŠ” ì•„ì´í…œìž…ë‹ˆë‹¤
+	GAME_PRIVATESHOP_VISITOR_NULL,											// ì†ë‹˜ì´ ì—†ìŠµë‹ˆë‹¤
+	GAME_PRIVATESHOP_VISITOR_NOT_MONEY,										// ì†ë‹˜ì— ëˆì´ ëª¨ìžë¦…ë‹ˆë‹¤
+	GAME_PRIVATESHOP_VISITOR_NOT_INVENTORY_EMPTY,							// ì†ë‹˜ì— ì¸ë²¤í† ë¦¬ ìŠ¬ë¡¯ì— ì•„ì´í…œë“¤ì´ ê½‰ ì°¨ ìžˆìŠµë‹ˆë‹¤
+	GAME_PRIVATESHOP_VISITOR_ALREADYENTER,									// ì†ë‹˜ì´ ì´ë¯¸ ìƒì ì— ìž…ìž¥í–ˆìŠµë‹ˆë‹¤
+	GAME_PRIVATESHOP_VISITOR_SELECTITEM_NULL,								// ì†ë‹˜ì´ ì°œí•œ ì•„ì´í…œì´ ì—†ìŠµë‹ˆë‹¤
+	GAME_PRIVATESHOP_VISITOR_SELECTITEM_OVER,								// ë”ì´ìƒ ì•„ì´í…œì„ ì°œí•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤
+	GAME_PRIVATESHOP_VISITOR_SELECTITEM_ALREADY,							// ì´ë¯¸ ì°œí•œ ì•„ì´í…œìž…ë‹ˆë‹¤
+	GAME_PRIVATESHOP_VISITOR_SELECTITEM_ALLSELL,							// ì„ íƒí•œ ì•„ì´í…œë“¤ì„ ì‚´ìˆ˜ ì—†ìŠµë‹ˆë‹¤
+	GAME_PRIVATESHOP_VISITOR_SELECTITEM_INVENSOLT_SHORTOF,					// ì¸ë²¤í† ë¦¬ì— ë¹ˆ ìŠ¬ë¡¯ì´ ë¶€ì¡±í•©ë‹ˆë‹¤
+	GAME_PRIVATESHOP_VISITOR_FULL,											// ìƒì ì— ì†ë‹˜ì´ ë“¤ì–´ê°ˆ ìˆ˜ ìžˆëŠ” ë¹ˆìžë¦¬ê°€ ì—†ìŠµë‹ˆë‹¤
+	GAME_PRIVATESHOP_OWNER_MONEY_FULL,										// ìƒì  ì£¼ì¸ ëˆì´ ë”ì´ìƒ ëŠ˜ì–´ë‚ ìˆ˜ ì—†ìŠµë‹ˆë‹¤
+	GAME_PRIVATESHOP_OWNER_THEREISNO,										// ìƒì  ì£¼ì¸ì´ ìžë¦¬ì— ì—†ìŠµë‹ˆë‹¤
+	GAME_PRIVATESHOP_OWNER_BUSINESS_REFUSED,								// ì£¼ì¸ì´ í¥ì •ì„ ê±°ë¶€ì¤‘ì´ë‹¤
+	GAME_PRIVATESHOP_INVENTORY_NOTINVENTTORY,								// ìž˜ëª»ëœ ì¸ë²¤í† ë¦¬ ìž…ë‹ˆë‹¤
+	GAME_PRIVATESHOP_INVENTORY_SAVEITEM_OVER,								// Inventoryì— ë¹ˆ ìŠ¬ë¡¯ì´ ì—†ìŠµë‹ˆë‹¤
+	GAME_PRIVATESHOP_STOP_PROGRESS,											// ì¢…ë£Œì¤‘ìž…ë‹ˆë‹¤
+	GAME_PRIVATESHOP_OWNER_BARGAINS,										// ì£¼ì¸ì´ ë‹¤ë¦„ì‚¬ëžŒê³¼ í¥ì •ì¤‘ìž…ë‹ˆë‹¤
+	GAME_PRIVATESHOP_ITEM_TABLE_ITEMID_DIFFERENT,							// ì•„ì´í…œì´ ë™ì¼í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤
+	GAME_PRIVATESHOP_ITEM_SELECTITEM_NOTBUSINESS,							// ì´ë¯¸ ì„ íƒí•œ ì•„ì´í…œì€ í¥ì •í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤
+	GAME_PRIVATESHOP_OWNER_BUSINESS_NOT_CONSENT,							// ìƒì  ì£¼ì¸ì´ í¥ì •ì„ ê±°ë¶€í–ˆìŠµë‹ˆë‹¤
+	GAME_PRIVATESHOP_SAMENOT_PRICEFLUCTUATIONSCOUNTER,						// ì£¼ì¸ì´ ê°€ê²© ì¡°ì •í•œ íšŸìˆ˜ì™€ ì†ë‹˜ì´ ê°€ê²© ì¡°ì • íŒ¨í‚·ì„ ë°›ì€ ê°’ì´ ë‹¤ë¦…ë‹ˆë‹¤.
+	GAME_PRIVATESHOP_ZENNY_LOCK,											// ë‹¤ë¥¸ ì‚¬ëžŒê³¼ Item Buyì¤‘ì´ì—¬ì„œ Zennyê°€ Lockì´ ë˜ì—ˆìŠµë‹ˆë‹¤. ì²˜ë¦¬ê°€ ëë‚ ë•Œê¹Œì§€ ê¸°ë‹¤ë ¤ ì£¼ì„¸ìš”
+	GAME_PRIVATESHOP_NOT_PROGRESS_COMPLETE,									// ì´ì „ ìš”ì²­ì´ ì²˜ë¦¬ë ë•Œê¹Œì§€ ëë‚ ë•Œê¹Œì§€ ê¸°ë‹¤ë ¤ ì£¼ì„¸ìš” (íŒ¨í‚·ì´ Qry Srvì— ë¨¸ë¬¼ê³  ìžˆë‹¤)
+	GAME_PRIVATESHOP_VISITOR_SELECTITEM_ALREADYBUYANDBUSINESSITEM,			// ì´ë¯¸ ë‹¤ë¥¸ ì†ë‹˜ì´ êµ¬ë§¤í•œ ì•„ì´í…œìž…ë‹ˆë‹¤.
 
 	//-----------------------------------------------------------------
-	GAME_MAIL_TARGET_AWAY_STATE = 2500,						// ¸ÞÀÏ ¹Þ´Â »ç¶÷Àº ºÎÀçÁßÀÌ¶ó ¼ö½ÅºÒ°¡´ÉÇÕ´Ï´Ù.
-	GAME_MAIL_NOT_FOUND,									// ¸ÞÀÏ Ã£Áö ¸øÇß½À´Ï´Ù.
-	GAME_MAIL_ALREADY_READ,									// ¸ÞÀÏÀ» ÀÌ¹Ì ÀÐÀº »óÅÂÀÔ´Ï´Ù.
-	GAME_MAIL_INVALID_DEL,									// ÇØ´ç¸ÞÀÏÀº Áö¿ï ¼ö ¾ø½À´Ï´Ù.
-	GAME_MAIL_INVALID_RETURN,								// ÇØ´ç¸ÞÀÏÀº ¸®ÅÏÇÒ ¼ö ¾ø½À´Ï´Ù.
-	GAME_MAIL_INVALID_ACCEPT,								// ÇØ´ç¸ÞÀÏÀ» ¹ÞÀ» ¼ö ¾ø´Â »óÅÂÀÔ´Ï´Ù.
-	GAME_MAIL_INVALID_LOCK,									// ÇØ´ç¸ÞÀÏÀ» Àá±Ý¼³Á¤ÀÌ º¯°æ ºÒ°¡´ÉÇÕ´Ï´Ù.
-	GAME_MAIL_INVALID_ZENNY,								// º¸³¾ ¼ö ÀÖ´Â Á¦´ÏÀÇ ÇÑµµ¸¦ ÃÊ°úÇß½À´Ï´Ù.
-	GAME_MAIL_NOT_EXISTING_PLAYER,							// ÇØ´ç Ä³¸¯ÅÍ´Â »ý¼ºµÇÁö ¾ÊÀº Ä³¸¯ÅÍÀÔ´Ï´Ù.
-	GAME_MAIL_CANT_SEND_MAIL_TO_YOURSELF,					// ÀÚ±â ÀÚ½Å¿¡°Ô´Â ¸ÞÀÏÀ» º¸³¾ ¼ö ¾ø½À´Ï´Ù.
-	GAME_MAIL_MAILING_PARTS_NOT_FOUND,						// ¸ÞÀÏ Àü¼ÛÄ¨ÀÌ ¾ø½À´Ï´Ù.
-	GAME_MAIL_TRANSMIT_PARTS_NOT_FOUND,						// ¹°Áú Àü¼ÛÄ¨ÀÌ ¾ø½À´Ï´Ù.
-	GAME_MAIL_SCOUTER_FAIL,									// ¸ÞÀÏÀü¼ÛÀ» À§ÇÑ ½ºÄ«¿ìÅÍ¸¦ »ç¿ëÇÒ ¼ö ¾ø´Â »óÅÂÀÔ´Ï´Ù.
+	GAME_MAIL_TARGET_AWAY_STATE = 2500,						// ë©”ì¼ ë°›ëŠ” ì‚¬ëžŒì€ ë¶€ìž¬ì¤‘ì´ë¼ ìˆ˜ì‹ ë¶ˆê°€ëŠ¥í•©ë‹ˆë‹¤.
+	GAME_MAIL_NOT_FOUND,									// ë©”ì¼ ì°¾ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.
+	GAME_MAIL_ALREADY_READ,									// ë©”ì¼ì„ ì´ë¯¸ ì½ì€ ìƒíƒœìž…ë‹ˆë‹¤.
+	GAME_MAIL_INVALID_DEL,									// í•´ë‹¹ë©”ì¼ì€ ì§€ìš¸ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_MAIL_INVALID_RETURN,								// í•´ë‹¹ë©”ì¼ì€ ë¦¬í„´í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_MAIL_INVALID_ACCEPT,								// í•´ë‹¹ë©”ì¼ì„ ë°›ì„ ìˆ˜ ì—†ëŠ” ìƒíƒœìž…ë‹ˆë‹¤.
+	GAME_MAIL_INVALID_LOCK,									// í•´ë‹¹ë©”ì¼ì„ ìž ê¸ˆì„¤ì •ì´ ë³€ê²½ ë¶ˆê°€ëŠ¥í•©ë‹ˆë‹¤.
+	GAME_MAIL_INVALID_ZENNY,								// ë³´ë‚¼ ìˆ˜ ìžˆëŠ” ì œë‹ˆì˜ í•œë„ë¥¼ ì´ˆê³¼í–ˆìŠµë‹ˆë‹¤.
+	GAME_MAIL_NOT_EXISTING_PLAYER,							// í•´ë‹¹ ìºë¦­í„°ëŠ” ìƒì„±ë˜ì§€ ì•Šì€ ìºë¦­í„°ìž…ë‹ˆë‹¤.
+	GAME_MAIL_CANT_SEND_MAIL_TO_YOURSELF,					// ìžê¸° ìžì‹ ì—ê²ŒëŠ” ë©”ì¼ì„ ë³´ë‚¼ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_MAIL_MAILING_PARTS_NOT_FOUND,						// ë©”ì¼ ì „ì†¡ì¹©ì´ ì—†ìŠµë‹ˆë‹¤.
+	GAME_MAIL_TRANSMIT_PARTS_NOT_FOUND,						// ë¬¼ì§ˆ ì „ì†¡ì¹©ì´ ì—†ìŠµë‹ˆë‹¤.
+	GAME_MAIL_SCOUTER_FAIL,									// ë©”ì¼ì „ì†¡ì„ ìœ„í•œ ìŠ¤ì¹´ìš°í„°ë¥¼ ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ìƒíƒœìž…ë‹ˆë‹¤.
 	//-----------------------------------------------------------------
-	GAME_PORTAL_ARLEADY_ADDED = 2600,						// ÀÌ¹Ìµî·ÏµÈ Æ÷Å»ÀÔ´Ï´Ù.
-	GAME_PORTAL_NOT_EXIST,									// ¹Ìµî·Ï Æ÷Å»ÀÔ´Ï´Ù. 
+	GAME_PORTAL_ARLEADY_ADDED = 2600,						// ì´ë¯¸ë“±ë¡ëœ í¬íƒˆìž…ë‹ˆë‹¤.
+	GAME_PORTAL_NOT_EXIST,									// ë¯¸ë“±ë¡ í¬íƒˆìž…ë‹ˆë‹¤. 
 
-	GAME_WARFOG_ARLEADY_ADDED = 2610,						// ÀÌ¹Ìµî·ÏµÈ ¿öÆ÷±×ÀÔ´Ï´Ù.
+	GAME_WARFOG_ARLEADY_ADDED = 2610,						// ì´ë¯¸ë“±ë¡ëœ ì›Œí¬ê·¸ìž…ë‹ˆë‹¤.
 	//-----------------------------------------------------------------
-	GAME_PROCESSING_DB		  = 2620,						// µðºñÃ³¸®ÁßÀÔ´Ï´Ù.
+	GAME_PROCESSING_DB		  = 2620,						// ë””ë¹„ì²˜ë¦¬ì¤‘ìž…ë‹ˆë‹¤.
 	//-----------------------------------------------------------------
-	GAME_RIDE_ON_STATE		  = 2630,						// ÇöÀç Å¸ ÀÖ´Â »óÅÂ ÀÔ´Ï´Ù.
+	GAME_RIDE_ON_STATE		  = 2630,						// í˜„ìž¬ íƒ€ ìžˆëŠ” ìƒíƒœ ìž…ë‹ˆë‹¤.
 	//-----------------------------------------------------------------
-	GAME_PETITION_NOTAUTH = 2700,							//±ÇÇÑÀÌ ¾ø½À´Ï´Ù
-	GAME_PETITION_TOO_LONG_NAME,							//Ä³¸¯ÅÍ¸íÀÇ ±æÀÌ°¡ ÃÊ°úµÇ¾ú½À´Ï´Ù.
-	GAME_PETITION_TOO_SHORT_NAME,							//Ä³¸¯ÅÍ¸íÀÇ ±æÀÌ°¡ ³Ê¹« Âª½À´Ï´Ù.
-	GAME_PETITION_TOO_LONG_QUESTION_CONTENT,				//ÁøÁ¤ ³»¿ëÀÇ ±æÀÌ°¡ ÃÊ°úµÇ¾ú½À´Ï´Ù.
-	GAME_PETITION_TOO_SHORT_QUESTION_CONTENT,				//ÁøÁ¤ ³»¿ëÀÇ ±æÀÌ°¡ ³Ê¹« Âª½À´Ï´Ù.
-	GAME_PETITION_CATEGORY_1_FAIL,							//Ä«Å×°í¸® 1ÀÇ °ªÀÌ ÀÌ»óÇÕ´Ï´Ù.
-	GAME_PETITION_CATEGORY_2_FAIL,							//Ä«Å×°í¸® 2ÀÇ °ªÀÌ ÀÌ»óÇÕ´Ï´Ù.
-	GAME_PETITION_CREATE_PETITION_FAILE ,					//ÁøÁ¤ »ý¼ºÀ» ½ÇÆÐÇß½À´Ï´Ù
-	GAME_PETITION_DELETE_FAILE_STARTED ,					//ÀÌ¹Ì »ó´ãÁß¿¡ º¸·ùÇÑ ÁøÁ¤ÀÌ±â¿¡ »èÁ¦ÇÒ ¼ö ¾ø½À´Ï´Ù
-	GAME_PETITION_ISNOT_STARTED ,							//ÁøÁ¤ »óÅÂ°¡ ½ÃÀÛÀÌ ¾Æ´Õ´Ï´Ù
-	GAME_PETITION_ALREADYSTARTED ,							//ÀÌ¹Ì ½ÃÀÛÁßÀÔ´Ï´Ù
-	GAME_PETITION_INSERT_ERROR_ZERO_ID ,					//µ¥ÀÌÅ¸ ÀúÀå ½ÇÆÐ - ID°¡ 0ÀÔ´Ï´Ù
-	GAME_PETITION_INSERT_FAILE ,							//µ¥ÀÌÅ¸ ÀúÀå ½ÇÆÐ (std::map¿¡¼­ ¿À·ù¸¦ Åëº¸, ¾Ë ¼ö ¾ø´Â ¿À·ù
-	GAME_PETITION_INSERT_ALLREADY_ID ,						//µ¥ÀÌÅ¸ ÀúÀå ½ÇÆÐ (ÀÌ¹Ì µî·ÏµÇ¾î ÀÖ´Â ID ÀÔ´Ï´Ù
-	GAME_PETITION_CREATE_PETITION_ID_FAILE ,				//Petition ID »ý¼º ½ÇÆÐ
-	GAME_PETITION_NOTRUNSTATE,								//Áö±Ý »óÅÂ¿¡¼­´Â ½ÇÇà ÇÒ ¼ö ¾ø½À´Ï´Ù
-	GAME_PETITION_ACCOUNTNOTPETITION,						//ÇØ´ç °èÁ¤¿¡ ÁøÁ¤ÀÌ ¾ø½À´Ï´Ù
-	GAME_PETITION_ALREADY_INSERT,							//ÀÌ¹Ì ÁøÁ¤ÀÌ Á¢¼öµÈ AccountÀÔ´Ï´Ù.
-	GAME_PETITION_LOCK,										// PetitionÀÌ LockµÇ¾î ÀÖ½À´Ï´Ù
-	GAME_PETITION_PETITIONID_INVALID,						// Petition ID°¡ invalid ÀÔ´Ï´Ù.
-	GAME_PETITION_ALREADYFINISH,							//ÀÌ¹Ì ¿Ï·áµÈ ÁøÁ¤ÀÔ´Ï´Ù.
-
-	//-----------------------------------------------------------------
-	GAME_BUDOKAI_INVALID_TEAM_NAME = 2800,					// ÆÀÀÇ ÀÌ¸§ÀÌ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù.
-	GAME_BUDOKAI_TOO_LONG_TEAM_NAME,						// ÆÀÀÇ ÀÌ¸§ÀÌ ³Ê¹« ±é´Ï´Ù.
-	GAME_BUDOKAI_TOO_SHORT_TEAM_NAME,						// ÆÀÀÇ ÀÌ¸§ÀÌ ³Ê¹« Âª½À´Ï´Ù.
-	GAME_BUDOKAI_NEED_MORE_MEMBER,							// ÆÀ¿øÀÌ ³Ê¹« Àû½À´Ï´Ù.
-	GAME_BUDOKAI_NOT_REGISTER_PERIOD,						// µî·Ï ±â°£ÀÌ ¾Æ´Õ´Ï´Ù.
-	GAME_BUDOKAI_OVER_COUNT,								// Âü°¡ÀÎ¿øÀÌ ÃÊ°úµÇ¾ú½À´Ï´Ù.
-	GAME_BUDOKAI_CHARACTER_ALREADY_JOIN,					// ÀÌ¹Ì ½ÅÃ»µÈ »óÅÂÀÔ´Ï´Ù.
-	GAME_BUDOKAI_CHARACTER_NOT_JOINED,						// ½ÅÃ»ÇÏÁö ¾ÊÀº »óÅÂÀÔ´Ï´Ù.
-	GAME_BUDOKAI_MEMBER_ALREADY_JOINED,						// ÀÌ¹Ì ½ÅÃ»µÈ ¸â¹ö°¡ ÀÖ½À´Ï´Ù.
-	GAME_BUDOKAI_YOU_ARE_NOT_A_TEAM_LEADER,					// ÆÀ ¸®´õ°¡ ¾Æ´Õ´Ï´Ù.
-	GAME_BUDOKAI_NOT_MATCH_PLAYING,							// ÁøÇàÁßÀÎ °æ±â°¡ ¾ø½À´Ï´Ù.
-	GAME_BUDOKAI_NOT_OPENED,								// ¿ÀÇÂ±â°£ÀÌ ¾Æ´Õ´Ï´Ù.
-	GAME_BUDOKAI_NOT_MATCH_WORLD,							// ÃµÇÏÁ¦ÀÏ¹«µµÈ¸ °æ±âÀåÀÌ ¾Æ´Õ´Ï´Ù.
-
-	GAME_CAN_NOT_TELEPORT,									// ÀÌµ¿ÇÒ ¼ö ¾ø½À´Ï´Ù.
-	GAME_CAN_NOT_TELEPORT_THIS_STATE,						// ÀÌµ¿ÇÒ ¼ö ¾ø´Â »óÅÂÀÔ´Ï´Ù. Àá½Ã ÈÄ ´Ù½Ã ½ÃµµÇÏ¼¼¿ä.
-
-	GAME_MUDOSA_NOT_OPEND,									// ¿ÀÇÂ ±â°£ÀÌ ¾Æ´Õ´Ï´Ù.
-	GAME_MUDOSA_POINT_CANT_BE_USED_RIGHT_NOW,				// ÀÏ½ÃÀûÀ¸·Î ¹«µµ»ç Æ÷ÀÎÆ®¸¦ »ç¿ëÇÒ ¼ö ¾ø´Â »óÈ²ÀÔ´Ï´Ù. Àá½Ã ÈÄ ´Ù½Ã ½ÃµµÇÏ¼¼¿ä.
-	GAME_MUDOSA_POINT_NOT_ENOUGH,							// ¹«µµ»ç Á¡¼ö°¡ ÃæºÐÇÏÁö ¾Ê½À´Ï´Ù.
-	GAME_MUDOSA_POINT_MAX_OVER,								// ¹«µµ»ç Á¡¼ö°¡ ÃÖ´ë¸¦ ÃÊ°úÇÏ¿´½À´Ï´Ù.
-
-	GAME_MINORMATCH_CANNOT_TELEPORT_THIS_STATE,				// ÇöÀçÀÇ ¿¹¼±Àü »óÅ×¿¡¼­´Â ÁøÀÔÇÒ ¼ö ¾ø½À´Ï´Ù.
+	GAME_PETITION_NOTAUTH = 2700,							//ê¶Œí•œì´ ì—†ìŠµë‹ˆë‹¤
+	GAME_PETITION_TOO_LONG_NAME,							//ìºë¦­í„°ëª…ì˜ ê¸¸ì´ê°€ ì´ˆê³¼ë˜ì—ˆìŠµë‹ˆë‹¤.
+	GAME_PETITION_TOO_SHORT_NAME,							//ìºë¦­í„°ëª…ì˜ ê¸¸ì´ê°€ ë„ˆë¬´ ì§§ìŠµë‹ˆë‹¤.
+	GAME_PETITION_TOO_LONG_QUESTION_CONTENT,				//ì§„ì • ë‚´ìš©ì˜ ê¸¸ì´ê°€ ì´ˆê³¼ë˜ì—ˆìŠµë‹ˆë‹¤.
+	GAME_PETITION_TOO_SHORT_QUESTION_CONTENT,				//ì§„ì • ë‚´ìš©ì˜ ê¸¸ì´ê°€ ë„ˆë¬´ ì§§ìŠµë‹ˆë‹¤.
+	GAME_PETITION_CATEGORY_1_FAIL,							//ì¹´í…Œê³ ë¦¬ 1ì˜ ê°’ì´ ì´ìƒí•©ë‹ˆë‹¤.
+	GAME_PETITION_CATEGORY_2_FAIL,							//ì¹´í…Œê³ ë¦¬ 2ì˜ ê°’ì´ ì´ìƒí•©ë‹ˆë‹¤.
+	GAME_PETITION_CREATE_PETITION_FAILE ,					//ì§„ì • ìƒì„±ì„ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤
+	GAME_PETITION_DELETE_FAILE_STARTED ,					//ì´ë¯¸ ìƒë‹´ì¤‘ì— ë³´ë¥˜í•œ ì§„ì •ì´ê¸°ì— ì‚­ì œí•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤
+	GAME_PETITION_ISNOT_STARTED ,							//ì§„ì • ìƒíƒœê°€ ì‹œìž‘ì´ ì•„ë‹™ë‹ˆë‹¤
+	GAME_PETITION_ALREADYSTARTED ,							//ì´ë¯¸ ì‹œìž‘ì¤‘ìž…ë‹ˆë‹¤
+	GAME_PETITION_INSERT_ERROR_ZERO_ID ,					//ë°ì´íƒ€ ì €ìž¥ ì‹¤íŒ¨ - IDê°€ 0ìž…ë‹ˆë‹¤
+	GAME_PETITION_INSERT_FAILE ,							//ë°ì´íƒ€ ì €ìž¥ ì‹¤íŒ¨ (std::mapì—ì„œ ì˜¤ë¥˜ë¥¼ í†µë³´, ì•Œ ìˆ˜ ì—†ëŠ” ì˜¤ë¥˜
+	GAME_PETITION_INSERT_ALLREADY_ID ,						//ë°ì´íƒ€ ì €ìž¥ ì‹¤íŒ¨ (ì´ë¯¸ ë“±ë¡ë˜ì–´ ìžˆëŠ” ID ìž…ë‹ˆë‹¤
+	GAME_PETITION_CREATE_PETITION_ID_FAILE ,				//Petition ID ìƒì„± ì‹¤íŒ¨
+	GAME_PETITION_NOTRUNSTATE,								//ì§€ê¸ˆ ìƒíƒœì—ì„œëŠ” ì‹¤í–‰ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤
+	GAME_PETITION_ACCOUNTNOTPETITION,						//í•´ë‹¹ ê³„ì •ì— ì§„ì •ì´ ì—†ìŠµë‹ˆë‹¤
+	GAME_PETITION_ALREADY_INSERT,							//ì´ë¯¸ ì§„ì •ì´ ì ‘ìˆ˜ëœ Accountìž…ë‹ˆë‹¤.
+	GAME_PETITION_LOCK,										// Petitionì´ Lockë˜ì–´ ìžˆìŠµë‹ˆë‹¤
+	GAME_PETITION_PETITIONID_INVALID,						// Petition IDê°€ invalid ìž…ë‹ˆë‹¤.
+	GAME_PETITION_ALREADYFINISH,							//ì´ë¯¸ ì™„ë£Œëœ ì§„ì •ìž…ë‹ˆë‹¤.
 
 	//-----------------------------------------------------------------
-	REPORT_SUCCESS = 6000,									// ¸®Æ÷ÆÃ ¼º°ø
-	REPORT_FAIL,											// ¸®Æ÷ÆÃ ½ÇÆÐ
+	GAME_BUDOKAI_INVALID_TEAM_NAME = 2800,					// íŒ€ì˜ ì´ë¦„ì´ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_BUDOKAI_TOO_LONG_TEAM_NAME,						// íŒ€ì˜ ì´ë¦„ì´ ë„ˆë¬´ ê¹ë‹ˆë‹¤.
+	GAME_BUDOKAI_TOO_SHORT_TEAM_NAME,						// íŒ€ì˜ ì´ë¦„ì´ ë„ˆë¬´ ì§§ìŠµë‹ˆë‹¤.
+	GAME_BUDOKAI_NEED_MORE_MEMBER,							// íŒ€ì›ì´ ë„ˆë¬´ ì ìŠµë‹ˆë‹¤.
+	GAME_BUDOKAI_NOT_REGISTER_PERIOD,						// ë“±ë¡ ê¸°ê°„ì´ ì•„ë‹™ë‹ˆë‹¤.
+	GAME_BUDOKAI_OVER_COUNT,								// ì°¸ê°€ì¸ì›ì´ ì´ˆê³¼ë˜ì—ˆìŠµë‹ˆë‹¤.
+	GAME_BUDOKAI_CHARACTER_ALREADY_JOIN,					// ì´ë¯¸ ì‹ ì²­ëœ ìƒíƒœìž…ë‹ˆë‹¤.
+	GAME_BUDOKAI_CHARACTER_NOT_JOINED,						// ì‹ ì²­í•˜ì§€ ì•Šì€ ìƒíƒœìž…ë‹ˆë‹¤.
+	GAME_BUDOKAI_MEMBER_ALREADY_JOINED,						// ì´ë¯¸ ì‹ ì²­ëœ ë©¤ë²„ê°€ ìžˆìŠµë‹ˆë‹¤.
+	GAME_BUDOKAI_YOU_ARE_NOT_A_TEAM_LEADER,					// íŒ€ ë¦¬ë”ê°€ ì•„ë‹™ë‹ˆë‹¤.
+	GAME_BUDOKAI_NOT_MATCH_PLAYING,							// ì§„í–‰ì¤‘ì¸ ê²½ê¸°ê°€ ì—†ìŠµë‹ˆë‹¤.
+	GAME_BUDOKAI_NOT_OPENED,								// ì˜¤í”ˆê¸°ê°„ì´ ì•„ë‹™ë‹ˆë‹¤.
+	GAME_BUDOKAI_NOT_MATCH_WORLD,							// ì²œí•˜ì œì¼ë¬´ë„íšŒ ê²½ê¸°ìž¥ì´ ì•„ë‹™ë‹ˆë‹¤.
+
+	GAME_CAN_NOT_TELEPORT,									// ì´ë™í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	GAME_CAN_NOT_TELEPORT_THIS_STATE,						// ì´ë™í•  ìˆ˜ ì—†ëŠ” ìƒíƒœìž…ë‹ˆë‹¤. ìž ì‹œ í›„ ë‹¤ì‹œ ì‹œë„í•˜ì„¸ìš”.
+
+	GAME_MUDOSA_NOT_OPEND,									// ì˜¤í”ˆ ê¸°ê°„ì´ ì•„ë‹™ë‹ˆë‹¤.
+	GAME_MUDOSA_POINT_CANT_BE_USED_RIGHT_NOW,				// ì¼ì‹œì ìœ¼ë¡œ ë¬´ë„ì‚¬ í¬ì¸íŠ¸ë¥¼ ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ìƒí™©ìž…ë‹ˆë‹¤. ìž ì‹œ í›„ ë‹¤ì‹œ ì‹œë„í•˜ì„¸ìš”.
+	GAME_MUDOSA_POINT_NOT_ENOUGH,							// ë¬´ë„ì‚¬ ì ìˆ˜ê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+	GAME_MUDOSA_POINT_MAX_OVER,								// ë¬´ë„ì‚¬ ì ìˆ˜ê°€ ìµœëŒ€ë¥¼ ì´ˆê³¼í•˜ì˜€ìŠµë‹ˆë‹¤.
+
+	GAME_MINORMATCH_CANNOT_TELEPORT_THIS_STATE,				// í˜„ìž¬ì˜ ì˜ˆì„ ì „ ìƒí…Œì—ì„œëŠ” ì§„ìž…í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+
+	//-----------------------------------------------------------------
+	REPORT_SUCCESS = 6000,									// ë¦¬í¬íŒ… ì„±ê³µ
+	REPORT_FAIL,											// ë¦¬í¬íŒ… ì‹¤íŒ¨
 
 	//-----------------------------------------------------------------
 	// Petition System ( 10000 ~ )
 	//-----------------------------------------------------------------
-	PETITION_SUCCESS = 10000,								// Petition ¼º°ø
-	PETITION_FAIL,											// Petition ½ÇÆÐ
+	PETITION_SUCCESS = 10000,								// Petition ì„±ê³µ
+	PETITION_FAIL,											// Petition ì‹¤íŒ¨
 
-	PETITION_NOT_STARTED_CLEINT_GM_CHAT,					// Å¬¶óÀÌ¾ðÆ®ÀÇ GM Ã¤ÆÃÀÌ ½ÃÀÛµÇÁö ¾Ê¾Ò½À´Ï´Ù
-	PETITION_DIFFERENT_CHAATING_GM_ID,						// Å¬¶óÀÌ¾ðÆ®°¡ Ã¤ÆÃÁßÀÎ GMÀÇ ID¿Í ´Ù¸¥ GM IDÀÌ´Ù.
-	PETITION_NOT_YET_ENTER_WORLD,							// À¯Àú°¡ ¿ùµå¿¡ µé¾î°¡Áö ¾Ê¾Ò´Ù
-	PETITION_AREADY_GM_CHATTING,							// À¯Àú°¡ ÀÌ¹Ì GM Ã¤ÆÃÁßÀÌ´Ù
+	PETITION_NOT_STARTED_CLEINT_GM_CHAT,					// í´ë¼ì´ì–¸íŠ¸ì˜ GM ì±„íŒ…ì´ ì‹œìž‘ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤
+	PETITION_DIFFERENT_CHAATING_GM_ID,						// í´ë¼ì´ì–¸íŠ¸ê°€ ì±„íŒ…ì¤‘ì¸ GMì˜ IDì™€ ë‹¤ë¥¸ GM IDì´ë‹¤.
+	PETITION_NOT_YET_ENTER_WORLD,							// ìœ ì €ê°€ ì›”ë“œì— ë“¤ì–´ê°€ì§€ ì•Šì•˜ë‹¤
+	PETITION_AREADY_GM_CHATTING,							// ìœ ì €ê°€ ì´ë¯¸ GM ì±„íŒ…ì¤‘ì´ë‹¤
 
 	RESULT_DUMMY = 0xFFFF
 	//////////////////////////////////////////////////////////////////////////

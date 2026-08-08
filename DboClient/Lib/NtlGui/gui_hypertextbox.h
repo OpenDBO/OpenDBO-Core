@@ -25,8 +25,8 @@ public:
 	//: OutputBox Constructor
 	CHyperTextBox(CComponent *pParent,
 								CSurfaceManager *pSurfaceManager,
-								int nStartRow,						// Ãâ·ÂÀÌ ½ÃÀÛµÉ row
-								int nStartColumn,					// Ãâ·ÂÀÌ ½ÃÀÛµÉ column
+								int nStartRow,						// ì¶œë ¥ì´ ì‹œì‘ë  row
+								int nStartColumn,					// ì¶œë ¥ì´ ì‹œì‘ë  column
 								int nInterval,
 								DWORD dwStyle=0);
 
@@ -34,8 +34,8 @@ public:
 	CHyperTextBox(const CRectangle &rtRect,
 								CComponent *pParent,
 								CSurfaceManager *pSurfaceManager,
-								int nStartRow,						// Ãâ·ÂÀÌ ½ÃÀÛµÉ row
-								int nStartColumn,					// Ãâ·ÂÀÌ ½ÃÀÛµÉ column
+								int nStartRow,						// ì¶œë ¥ì´ ì‹œì‘ë  row
+								int nStartColumn,					// ì¶œë ¥ì´ ì‹œì‘ë  column
 								int nInterval,
 								DWORD dwStyle=0);
 
@@ -54,7 +54,7 @@ public:
 //! Operations:
 public:
 
-	//: font¸¦ »ı¼ºÇÑ´Ù.
+	//: fontë¥¼ ìƒì„±í•œë‹¤.
 	VOID CreateFont(TCHAR * szFaceName, int nHeight, int nAttributes = 0);
 
 	//: Sets the line edit text to text, clears the selection and moves the cursor to the end of the line.

@@ -1,4 +1,4 @@
-// VenusFrame.cpp : CVenusFrame Å¬·¡½ºÀÇ ±¸Çö
+// VenusFrame.cpp : CVenusFrame í´ë˜ìŠ¤ì˜ êµ¬í˜„
 //
 
 #include "stdafx.h"
@@ -82,18 +82,18 @@ END_MESSAGE_MAP()
 
 static UINT indicators[] =
 {
-	ID_SEPARATOR,           // »óÅÂ ÁÙ Ç¥½Ã±â
+	ID_SEPARATOR,           // ìƒíƒœ ì¤„ í‘œì‹œê¸°
 	ID_INDICATOR_CAPS,
 	ID_INDICATOR_NUM,
 	ID_INDICATOR_SCRL,
 };
 
 
-// CVenusFrame »ı¼º/¼Ò¸ê
+// CVenusFrame ìƒì„±/ì†Œë©¸
 
 CVenusFrame::CVenusFrame()
 {
-	// TODO: ¿©±â¿¡ ¸â¹ö ÃÊ±âÈ­ ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©¤ë²„ ì´ˆê¸°í™” ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 CVenusFrame::~CVenusFrame()
@@ -110,8 +110,8 @@ int CVenusFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		!m_wndStatusBar.SetIndicators(indicators,
 		  sizeof(indicators)/sizeof(UINT)))
 	{
-		TRACE0("»óÅÂ Ç¥½ÃÁÙÀ» ¸¸µéÁö ¸øÇß½À´Ï´Ù.\n");
-		return -1;      // ¸¸µéÁö ¸øÇß½À´Ï´Ù.
+		TRACE0("ìƒíƒœ í‘œì‹œì¤„ì„ ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.\n");
+		return -1;      // ë§Œë“¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.
 	}
 
 	// Gfl Lib Load
@@ -170,14 +170,14 @@ BOOL CVenusFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 	if( !CFrameWnd::PreCreateWindow(cs) )
 		return FALSE;
-	// TODO: CREATESTRUCT cs¸¦ ¼öÁ¤ÇÏ¿© ¿©±â¿¡¼­
-	// Window Å¬·¡½º ¶Ç´Â ½ºÅ¸ÀÏÀ» ¼öÁ¤ÇÕ´Ï´Ù.
+	// TODO: CREATESTRUCT csë¥¼ ìˆ˜ì •í•˜ì—¬ ì—¬ê¸°ì—ì„œ
+	// Window í´ë˜ìŠ¤ ë˜ëŠ” ìŠ¤íƒ€ì¼ì„ ìˆ˜ì •í•©ë‹ˆë‹¤.
 
 	return TRUE;
 }
 
 
-// CVenusFrame Áø´Ü
+// CVenusFrame ì§„ë‹¨
 
 #ifdef _DEBUG
 void CVenusFrame::AssertValid() const
@@ -193,7 +193,7 @@ void CVenusFrame::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CVenusFrame ¸Ş½ÃÁö Ã³¸®±â
+// CVenusFrame ë©”ì‹œì§€ ì²˜ë¦¬ê¸°
 
 void CVenusFrame::InitializeEditLayer()
 {
@@ -267,7 +267,7 @@ BOOL CVenusFrame::InitializeToolbar()
 
 void CVenusFrame::ActivateFrame(int nCmdShow)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	static BOOL bFirsttime = TRUE;
 	if(bFirsttime)
 	{
@@ -290,7 +290,7 @@ void CVenusFrame::ActivateFrame(int nCmdShow)
 
 void CVenusFrame::OnClose()
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if (CVenusPropertyContainer::GetInstance().m_bSave)
 	{
 		if (AfxMessageBox(CStringManager::GetInstance().GetString(STRING_SAVE), MB_OKCANCEL) == IDOK)
@@ -312,7 +312,7 @@ void CVenusFrame::OnClose()
 
 void CVenusFrame::OnViewEffectList()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if (CInstanceEffectDialog::GetInstance().IsWindowVisible())
 		CInstanceEffectDialog::GetInstance().ShowWindow(SW_HIDE);
 	else
@@ -322,7 +322,7 @@ void CVenusFrame::OnViewEffectList()
 
 void CVenusFrame::OnViewEditDialog()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if (CEditDialog::GetInstance().IsWindowVisible())
 		CEditDialog::GetInstance().ShowWindow(SW_HIDE);
 	else
@@ -331,7 +331,7 @@ void CVenusFrame::OnViewEditDialog()
 
 void CVenusFrame::OnViewOption()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if (COptionDialog::GetInstance().IsWindowVisible())
 		COptionDialog::GetInstance().ShowWindow(SW_HIDE);
 	else
@@ -351,24 +351,24 @@ void CVenusFrame::OnViewPostEffect()
 
 void CVenusFrame::OnViewUpdateNews()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CVenusConfig::GetInstance().ShowUpdateNews();
 }
 
 void CVenusFrame::OnUpdateViewUpdateNews(CCmdUI *pCmdUI)
 {
-	// TODO: ¿©±â¿¡ ¸í·É ¾÷µ¥ÀÌÆ® UI Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì—…ë°ì´íŠ¸ UI ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 void CVenusFrame::OnUpdateViewEffectList(CCmdUI *pCmdUI)
 {
-	// TODO: ¿©±â¿¡ ¸í·É ¾÷µ¥ÀÌÆ® UI Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì—…ë°ì´íŠ¸ UI ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	pCmdUI->SetCheck(CInstanceEffectDialog::GetInstance().IsWindowVisible());
 }
 
 
 void CVenusFrame::OnViewLight()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if (CLightDialog::GetInstance().IsWindowVisible())
 		CLightDialog::GetInstance().ShowWindow(SW_HIDE);
 	else
@@ -378,43 +378,43 @@ void CVenusFrame::OnViewLight()
 
 void CVenusFrame::OnEditModeMove()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CVenusConfig::GetInstance().m_nEditMode = CVenusConfig::EDIT_MODE_MOVE;
 	CEditDialog::GetInstance().Reset();
 }
 void CVenusFrame::OnUpdateEditModeMove(CCmdUI *pCmdUI)
 {
-	// TODO: ¿©±â¿¡ ¸í·É ¾÷µ¥ÀÌÆ® UI Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì—…ë°ì´íŠ¸ UI ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	pCmdUI->SetCheck(CVenusConfig::GetInstance().m_nEditMode == CVenusConfig::EDIT_MODE_MOVE);
 }
 
 void CVenusFrame::OnEditModeRotate()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CVenusConfig::GetInstance().m_nEditMode = CVenusConfig::EDIT_MODE_ROTATE;
 	CEditDialog::GetInstance().Reset();
 }
 void CVenusFrame::OnUpdateEditModeRotate(CCmdUI *pCmdUI)
 {
-	// TODO: ¿©±â¿¡ ¸í·É ¾÷µ¥ÀÌÆ® UI Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì—…ë°ì´íŠ¸ UI ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	pCmdUI->SetCheck(CVenusConfig::GetInstance().m_nEditMode == CVenusConfig::EDIT_MODE_ROTATE);
 }
 
 void CVenusFrame::OnEditModeScale()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CVenusConfig::GetInstance().m_nEditMode = CVenusConfig::EDIT_MODE_SCALE;
 	CEditDialog::GetInstance().Reset();
 }
 void CVenusFrame::OnUpdateEditModeScale(CCmdUI *pCmdUI)
 {
-	// TODO: ¿©±â¿¡ ¸í·É ¾÷µ¥ÀÌÆ® UI Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì—…ë°ì´íŠ¸ UI ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	pCmdUI->SetCheck(CVenusConfig::GetInstance().m_nEditMode == CVenusConfig::EDIT_MODE_SCALE);
 }
 
 void CVenusFrame::OnFileEffectNew()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if (CVenusPropertyContainer::GetInstance().m_bSave)
 	{
 		if (AfxMessageBox(CStringManager::GetInstance().GetString(STRING_SAVE), MB_OKCANCEL) == IDOK)
@@ -442,7 +442,7 @@ void CVenusFrame::OnFileEffectNew()
 	CPathLayer* pPathView = (CPathLayer*)gGetEditLayer(EDIT_LAYER_PATH);
 	pPathView->RebuildSplinePath();
 
-	// Event layer ¿¡¼­ »ç¿ëÇÏ°í ÀÖ´Â ÀÌÆåÆ®ÀÇ ¸®½º°¡ ´Ş¶ó Áö¹Ç·Î °»½ÅÀ» ÇØ Áà¾ß ÇÑ´Ù.
+	// Event layer ì—ì„œ ì‚¬ìš©í•˜ê³  ìˆëŠ” ì´í™íŠ¸ì˜ ë¦¬ìŠ¤ê°€ ë‹¬ë¼ ì§€ë¯€ë¡œ ê°±ì‹ ì„ í•´ ì¤˜ì•¼ í•œë‹¤.
 	CEventLayer* pEventView = (CEventLayer*)gGetEditLayer(EDIT_LAYER_EVENT);
 	pEventView->ResetProperties();
 
@@ -453,7 +453,7 @@ void CVenusFrame::OnFileEffectNew()
 
 void CVenusFrame::OnFileEffectOpen()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	OnFileEffectNew();
 
 	OnFileEffectMerge();
@@ -490,7 +490,7 @@ void CVenusFrame::OnFileEffectMerge()
 			CPathLayer* pPathView = (CPathLayer*)gGetEditLayer(EDIT_LAYER_PATH);
 			pPathView->RebuildSplinePath();
 
-			// Event layer ¿¡¼­ »ç¿ëÇÏ°í ÀÖ´Â ÀÌÆåÆ®ÀÇ ¸®½º°¡ ´Ş¶ó Áö¹Ç·Î °»½ÅÀ» ÇØ Áà¾ß ÇÑ´Ù.
+			// Event layer ì—ì„œ ì‚¬ìš©í•˜ê³  ìˆëŠ” ì´í™íŠ¸ì˜ ë¦¬ìŠ¤ê°€ ë‹¬ë¼ ì§€ë¯€ë¡œ ê°±ì‹ ì„ í•´ ì¤˜ì•¼ í•œë‹¤.
 			CEventLayer* pEventView = (CEventLayer*)gGetEditLayer(EDIT_LAYER_EVENT);
 			pEventView->ResetProperties();
 
@@ -511,7 +511,7 @@ void CVenusFrame::OnFileEffectMerge()
 
 void CVenusFrame::OnFileEffectSave()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if (CVenusConfig::GetInstance().m_strFileName.GetLength() <= 0)
 	{
 		OnFileEffectSaveAs();
@@ -526,7 +526,7 @@ void CVenusFrame::OnFileEffectSave()
 
 void CVenusFrame::OnFileEffectSaveAs()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CString strFileName = CVenusConfig::GetInstance().m_strFileName;
 	if (strFileName.GetLength() <= 0)
 	{

@@ -2,7 +2,7 @@
  *
  * File			: NtlTriggerDirectSync.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 8. 23	
  * Abstract		: Simulation trigger direct sync manager class
  *****************************************************************************

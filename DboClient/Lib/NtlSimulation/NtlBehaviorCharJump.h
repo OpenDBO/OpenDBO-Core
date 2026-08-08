@@ -4,7 +4,7 @@
 
 /**
  * \ingroup NtlSimulation
- * \brief Ä³¸¯ÅÍÀÇ Á¡ÇÁ »óÅÂ¿¡¼­ÀÇ ÇàÀ§ Å¬·¡½º
+ * \brief ìºë¦­í„°ì˜ ì í”„ ìƒíƒœì—ì„œì˜ í–‰ìœ„ í´ë˜ìŠ¤
  *
  * \date 2009-04-17
  * \author agebreak
@@ -30,13 +30,13 @@ private:
     RwReal              m_fSyncSendTime;
     RwUInt8				m_byJumpState;	        /** jump state */
     RwReal				m_fJumpTime;		    /** jump time */
-    RwReal				m_fJumpUpSpeed;	        /** À§·Î jump ÇÏ´Â  speed */
+    RwReal				m_fJumpUpSpeed;	        /** ìœ„ë¡œ jump í•˜ëŠ”  speed */
     RwUInt8				m_byCollMoveImpossCnt;  /** collision move impossible count */
-    RwBool				m_bRandingVisualEffect;	/** landing visual effect¸¦ Ç¥Çö ÇÏ¿´´Â°¡? */
+    RwBool				m_bRandingVisualEffect;	/** landing visual effectë¥¼ í‘œí˜„ í•˜ì˜€ëŠ”ê°€? */
     RwBool				m_bStandRandingEnd;
-    RwBool              m_bCreateBubbleEffect;  /** °ÅÇ° ÀÌÆåÆ®¸¦ Ç¥ÇöÇÏ¿´´Â°¡? */
-    RwBool              m_bNoneDirJump;         ///< Á¦ÀÚ¸® Á¡ÇÁ ¿©ºÎ
-    CNtlInstanceEffect* m_pWaterBubbleEffect;   /** ¹°¼ÓÀ¸·Î ºüÁ³À»¶§ ³ª¿À´Â °ÅÇ° ÀÌÆåÆ® */
+    RwBool              m_bCreateBubbleEffect;  /** ê±°í’ˆ ì´í™íŠ¸ë¥¼ í‘œí˜„í•˜ì˜€ëŠ”ê°€? */
+    RwBool              m_bNoneDirJump;         ///< ì œìë¦¬ ì í”„ ì—¬ë¶€
+    CNtlInstanceEffect* m_pWaterBubbleEffect;   /** ë¬¼ì†ìœ¼ë¡œ ë¹ ì¡Œì„ë•Œ ë‚˜ì˜¤ëŠ” ê±°í’ˆ ì´í™íŠ¸ */
 
     void UpdatePositionMove(SMoveStuff *pMoveStuff, SJumpStuff *pJumpStuff, OUT RwV3d& vPos, RwBool bIncHeight, RwReal fElapsed, RwReal fSpeedScale = 1.0f);
 

@@ -1,14 +1,14 @@
 #pragma once
 
 #ifndef __AFXWIN_H__
-#error PCH¿¡¼­ ÀÌ ÆÄÀÏÀ» Æ÷ÇÔÇÏ±â Àü¿¡ 'stdafx.h'¸¦ Æ÷ÇÔÇÏ½Ê½Ã¿À.
+#error PCHì—ì„œ ì´ íŒŒì¼ì„ í¬í•¨í•˜ê¸° ì „ì— 'stdafx.h'ë¥¼ í¬í•¨í•˜ì‹­ì‹œì˜¤.
 #endif
 
-#include "resource.h"		// ÁÖ ±âÈ£ÀÔ´Ï´Ù.
+#include "resource.h"		// ì£¼ ê¸°í˜¸ì…ë‹ˆë‹¤.
 #include "ConverterDirectX.h"
 
 // CTextureBuildApp:
-// ÀÌ Å¬·¡½ºÀÇ ±¸Çö¿¡ ´ëÇØ¼­´Â TextureBuild.cppÀ» ÂüÁ¶ÇÏ½Ê½Ã¿À.
+// ì´ í´ë˜ìŠ¤ì˜ êµ¬í˜„ì— ëŒ€í•´ì„œëŠ” TextureBuild.cppì„ ì°¸ì¡°í•˜ì‹­ì‹œì˜¤.
 //
 
 class CTextureBuildApp : public CWinApp
@@ -23,11 +23,11 @@ public:
 public:
 	CTextureBuildApp();
 
-// ÀçÁ¤ÀÇÀÔ´Ï´Ù.
+// ì¬ì •ì˜ì…ë‹ˆë‹¤.
 	public:
 	virtual BOOL InitInstance();
 
-// ±¸ÇöÀÔ´Ï´Ù.
+// êµ¬í˜„ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 };

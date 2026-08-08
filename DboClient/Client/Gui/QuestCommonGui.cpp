@@ -30,7 +30,7 @@
 #include "DboLogic.h"
 #include "InfoWndManager.h"
 
-// QuestTextTableÀÇ °ªÀÌ ¹Ù²î¸é º¯°æÇØ ÁÖ¾î¾ßÇÔ !!!!
+// QuestTextTableì˜ ê°’ì´ ë°”ë€Œë©´ ë³€ê²½í•´ ì£¼ì–´ì•¼í•¨ !!!!
 #define QUEST_GRADE_OFFSET_FROM_TABLE 90
 
 CQuestCommonGui::CQuestCommonGui( const RwChar *pName )
@@ -61,7 +61,7 @@ CQuestCommonGui::~CQuestCommonGui(VOID)
 
 VOID CQuestCommonGui::SetQuestTitle( RwUInt32 uiTitle, RwUInt32 uiSort, RwInt32 eGrade )
 {
-	// peessi : uiSort Äù½ºÆ®ÅØ½ºÆ®¿¡¼­ Áö¿ì°í, eQuestSortTypeµ¥ÀÌÅÍ·Î ¹Ù²Û´Ù. 
+	// peessi : uiSort í€˜ìŠ¤íŠ¸í…ìŠ¤íŠ¸ì—ì„œ ì§€ìš°ê³ , eQuestSortTypeë°ì´í„°ë¡œ ë°”ê¾¼ë‹¤. 
 	CQuestTextDataTable* pQuestTextTable = API_GetTableContainer()->GetQuestTextDataTable();
 	sQUEST_TEXT_DATA_TBLDAT* pQuestText1 = reinterpret_cast<sQUEST_TEXT_DATA_TBLDAT*>( pQuestTextTable->FindData( uiTitle ) );
 	sQUEST_TEXT_DATA_TBLDAT* pQuestText2 = reinterpret_cast<sQUEST_TEXT_DATA_TBLDAT*>( pQuestTextTable->FindData( uiSort ) );
@@ -142,7 +142,7 @@ VOID CQuestCommonGui::SetRewardSlot( RwInt32 nIdx, sREWARD_INFO *pRewardInfo)
 	if( pRewardInfo->m_eType == eREWARD_TYPE_INVALID )
 		return;
 
-	// Data º¹»ç.
+	// Data ë³µì‚¬.
 	m_sReward[nIdx] = (*pRewardInfo);
 
 	switch( pRewardInfo->m_eType )
@@ -176,7 +176,7 @@ VOID CQuestCommonGui::SetRewardSlot( RwInt32 nIdx, sREWARD_INFO *pRewardInfo)
 	case eREWARD_TYPE_SKILL:
 	case eREWARD_TYPE_BUFF:
 		{
-			// peessi : REWARDÀÇ °æ¿ì, ½ºÅ³ÀÌ HTBÀÎÁö ¾Æ´ÑÁöÀÇ ±¸ºÐÀÌ ¾øÀÌ ¸ðµÎ ½ºÅ³ÀÌ¹Ç·Î ¿¹¿ÜÃ³¸® ÇØÁÖ¾î¾ß ÇÑ´Ù.
+			// peessi : REWARDì˜ ê²½ìš°, ìŠ¤í‚¬ì´ HTBì¸ì§€ ì•„ë‹Œì§€ì˜ êµ¬ë¶„ì´ ì—†ì´ ëª¨ë‘ ìŠ¤í‚¬ì´ë¯€ë¡œ ì˜ˆì™¸ì²˜ë¦¬ í•´ì£¼ì–´ì•¼ í•œë‹¤.
 			CSkillTable* pSkillTable = API_GetTableContainer()->GetSkillTable();
 			sSKILL_TBLDAT* pTableData = reinterpret_cast<sSKILL_TBLDAT*>( pSkillTable->FindData( pRewardInfo->m_uiIdx ) );
 			if( pTableData )
@@ -205,7 +205,7 @@ VOID CQuestCommonGui::SetRewardSlot( RwInt32 nIdx, sREWARD_INFO *pRewardInfo)
 		m_surReward[nIdx].SetTexture( Logic_CreateTexture( QUEST_REWARD_ICONNAME_PROB ) );
 		break;
 	case eREWARD_TYPE_REPUTATION:
-		// peessitemp: ÇöÀç ´õ¹Ì ÅØ½ºÃÄ.
+		// peessitemp: í˜„ìž¬ ë”ë¯¸ í…ìŠ¤ì³.
 		m_surReward[nIdx].SetTexture( Logic_CreateTexture( QUEST_REWARD_ICONNAME_REPUTATION ) );
 		break;
 	case eREWARD_TYPE_CHANGE_ADULT:
@@ -271,7 +271,7 @@ VOID CQuestCommonGui::ShowInfoWnd( RwInt32 nIdx )
 		break;
 	case eREWARD_TYPE_SKILL:
 		{
-			// peessi : REWARDÀÇ °æ¿ì, ½ºÅ³ÀÌ HTBÀÎÁö ¾Æ´ÑÁöÀÇ ±¸ºÐÀÌ ¾øÀÌ ¸ðµÎ ½ºÅ³ÀÌ¹Ç·Î ¿¹¿ÜÃ³¸® ÇØÁÖ¾î¾ß ÇÑ´Ù.
+			// peessi : REWARDì˜ ê²½ìš°, ìŠ¤í‚¬ì´ HTBì¸ì§€ ì•„ë‹Œì§€ì˜ êµ¬ë¶„ì´ ì—†ì´ ëª¨ë‘ ìŠ¤í‚¬ì´ë¯€ë¡œ ì˜ˆì™¸ì²˜ë¦¬ í•´ì£¼ì–´ì•¼ í•œë‹¤.
 			CSkillTable* pSkillTable = API_GetTableContainer()->GetSkillTable();
 			sSKILL_TBLDAT* pTableData = reinterpret_cast<sSKILL_TBLDAT*>( pSkillTable->FindData( m_sReward[nIdx].m_uiIdx ) );
 

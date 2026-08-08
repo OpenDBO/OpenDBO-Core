@@ -1,4 +1,4 @@
-// TextureBindDoc.cpp : CTextureBindDoc Å¬·¡½ºÀÇ ±¸Çö
+// TextureBindDoc.cpp : CTextureBindDoc í´ë˜ìŠ¤ì˜ êµ¬í˜„
 //
 
 #include "stdafx.h"
@@ -19,11 +19,11 @@ BEGIN_MESSAGE_MAP(CTextureBindDoc, CDocument)
 END_MESSAGE_MAP()
 
 
-// CTextureBindDoc »ı¼º/¼Ò¸ê
+// CTextureBindDoc ìƒì„±/ì†Œë©¸
 
 CTextureBindDoc::CTextureBindDoc()
 {
-	// TODO: ¿©±â¿¡ ÀÏÈ¸¼º »ı¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì¼íšŒì„± ìƒì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 }
 
@@ -36,8 +36,8 @@ BOOL CTextureBindDoc::OnNewDocument()
 	if (!CDocument::OnNewDocument())
 		return FALSE;
 
-	// TODO: ¿©±â¿¡ ÀçÃÊ±âÈ­ ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
-	// SDI ¹®¼­´Â ÀÌ ¹®¼­¸¦ ´Ù½Ã »ç¿ëÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì¬ì´ˆê¸°í™” ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
+	// SDI ë¬¸ì„œëŠ” ì´ ë¬¸ì„œë¥¼ ë‹¤ì‹œ ì‚¬ìš©í•©ë‹ˆë‹¤.
 
 	return TRUE;
 }
@@ -51,16 +51,16 @@ void CTextureBindDoc::Serialize(CArchive& ar)
 {
 	if (ar.IsStoring())
 	{
-		// TODO: ¿©±â¿¡ ÀúÀå ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+		// TODO: ì—¬ê¸°ì— ì €ì¥ ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	}
 	else
 	{
-		// TODO: ¿©±â¿¡ ·Îµù ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+		// TODO: ì—¬ê¸°ì— ë¡œë”© ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	}
 }
 
 
-// CTextureBindDoc Áø´Ü
+// CTextureBindDoc ì§„ë‹¨
 
 #ifdef _DEBUG
 void CTextureBindDoc::AssertValid() const
@@ -75,4 +75,4 @@ void CTextureBindDoc::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CTextureBindDoc ¸í·É
+// CTextureBindDoc ëª…ë ¹

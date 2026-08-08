@@ -34,7 +34,7 @@
 
 #define dHOIPOIMIX_CREATE_TIME 2.0f
 #define dHOIPOIMIX_HIT_RATE		0.02f
-#define dHOIPOIMIX_NOTIFY_TIME	0.5f		///< COOL °°Àº ÅØ½ºÆ®°¡ ¶° ÀÖ´Â Å¸ÀÓ
+#define dHOIPOIMIX_NOTIFY_TIME	0.5f		///< COOL ê°™ì€ í…ìŠ¤íŠ¸ê°€ ë–  ìžˆëŠ” íƒ€ìž„
 
 CHoiPoiMixCraftGui::CHoiPoiMixCraftGui(const RwChar* pName)
 	:CNtlPLGui(pName)

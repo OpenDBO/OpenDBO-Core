@@ -2,7 +2,7 @@
 #include "afxcmn.h"
 
 
-// COptionDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// COptionDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 #include "Resource.h"
 
@@ -15,7 +15,7 @@ class COptionDialog : public CDialog
 	DECLARE_DYNAMIC(COptionDialog)
 
 public:
-	COptionDialog(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	COptionDialog(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~COptionDialog();
 
 	static COptionDialog& GetInstance();
@@ -24,11 +24,11 @@ public:
 	void	BuildGridWidth();
 	void	BuildGridCount();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_OPTION };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

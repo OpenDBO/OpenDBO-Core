@@ -2202,7 +2202,7 @@ RpGeometryCreate(RwInt32 numVerts, RwInt32 numTriangles, RwUInt32 format)
         if ((flags & (RwInt32)rpGEOMETRYPRELIT) && numVerts)
         {
             geometry->preLitLum = (RwRGBA *)goffset;
-            goffset += sizeof(RwRGBA *) * numVerts;
+            goffset += sizeof(RwRGBA) * numVerts;
         }
 
         /* Create texture coordinates if necessary - in the right place */

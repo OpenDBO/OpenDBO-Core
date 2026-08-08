@@ -1,13 +1,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Name: class gui:CComboBox
-// Desc: ÀÏ¹İÀûÀÎ ComboBox. StaticBox, Button, ListBoxÀÇ ¿¬°è·Î ÀÌ·ç¾îÁü.
+// Desc: ì¼ë°˜ì ì¸ ComboBox. StaticBox, Button, ListBoxì˜ ì—°ê³„ë¡œ ì´ë£¨ì–´ì§.
 //
 //			 
 // 2006.03.13 Peessi@hitel.net   
 //
 // To Be Desired: 
-//	1. ÀÎÅÍÆäÀÌ½º °£°áÈ­. ¾²´Â ±â´É¸¸ ³²°Ü³õ°í »èÁ¦.
-//	2. ScrollBarÅ©±â ¹× Sliderµµ º¯ÇÏµµ·Ï.
+//	1. ì¸í„°í˜ì´ìŠ¤ ê°„ê²°í™”. ì“°ëŠ” ê¸°ëŠ¥ë§Œ ë‚¨ê²¨ë†“ê³  ì‚­ì œ.
+//	2. ScrollBarí¬ê¸° ë° Sliderë„ ë³€í•˜ë„ë¡.
 ////////////////////////////////////////////////////////////////////////////////
 
 #ifndef __GUI_COMBOBOX_H__
@@ -26,7 +26,7 @@ class CComboBox : public CComponent
 public:
 //! Constructor:
 	CComboBox( CComponent *pParent,CSurfaceManager *pSurfaceManager );
-	// rtRect´Â ListBox¸¦ Á¦¿ÜÇÑ Å©±â.
+	// rtRectëŠ” ListBoxë¥¼ ì œì™¸í•œ í¬ê¸°.
 	CComboBox( const CRectangle &rtRect, CComponent *pParent, CSurfaceManager *pSurfaceManager,
 			   INT nMarginX = 0, INT nMarginY = 0, INT nButtonWidth = COMBOBOX_DEFAULT_BUTTON_WSIZE, INT nButtonHeight = COMBOBOX_DEFAULT_BUTTON_WSIZE,
 			   INT nListHeight = COMBOBOX_DEFAULT_LIST_HSIZE, INT nMaxVisibleItems = COMBOBOX_DEFAULT_VISIBLEITEM );

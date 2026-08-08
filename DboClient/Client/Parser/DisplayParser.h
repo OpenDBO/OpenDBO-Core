@@ -2,7 +2,7 @@
  *
  * File			: DisplayPaser.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 9. 20	
  * Abstract		: DBO gui displayer paser
  *****************************************************************************

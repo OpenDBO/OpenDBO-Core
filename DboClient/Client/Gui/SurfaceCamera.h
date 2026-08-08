@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: SurfaceCamera.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 1. 21
 * Abstract		: 
 *****************************************************************************
-* Desc			: SurfaceGui¿ë Render texture camera
+* Desc			: SurfaceGuiìš© Render texture camera
 *****************************************************************************/
 #pragma once
 
@@ -21,10 +21,10 @@ public:
 	VOID			Create(RwInt32 iWidth, RwInt32 iHeight);
 	VOID			Destroy();
 
-	RwBool			CameraBeginUpdate();			///< t : Ä«¸Þ¶ó ÅØ½ºÃ³¿¡ ·£´õ¸µÇÒ ÁØºñ°¡ µÇ¾ú´Ù
+	RwBool			CameraBeginUpdate();			///< t : ì¹´ë©”ë¼ í…ìŠ¤ì²˜ì— ëžœë”ë§í•  ì¤€ë¹„ê°€ ë˜ì—ˆë‹¤
 	VOID			CameraEndUpdate();
 
-	VOID			CreateTexture();				///< gui::CTexture¸¦ »ý¼ºÇÑ´Ù
+	VOID			CreateTexture();				///< gui::CTextureë¥¼ ìƒì„±í•œë‹¤
 	gui::CTexture*	GetTexture();
 
 protected:

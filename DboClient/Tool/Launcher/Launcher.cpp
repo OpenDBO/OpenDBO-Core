@@ -1,4 +1,4 @@
-// Launcher.cpp : ÀÀ¿ë ÇÁ·Î±×·¥¿¡ ´ëÇÑ Å¬·¡½º µ¿ÀÛÀ» Á¤ÀÇÇÕ´Ï´Ù.
+// Launcher.cpp : ì‘ìš© í”„ë¡œê·¸ëž¨ì— ëŒ€í•œ í´ëž˜ìŠ¤ ë™ìž‘ì„ ì •ì˜í•©ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -27,17 +27,17 @@ BEGIN_MESSAGE_MAP(CLauncherApp, CWinApp)
 END_MESSAGE_MAP()
 
 
-// CLauncherApp »ý¼º
+// CLauncherApp ìƒì„±
 
 CLauncherApp::CLauncherApp()
 : m_bPatchStart(false)
 {
-	// TODO: ¿©±â¿¡ »ý¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
-	// InitInstance¿¡ ¸ðµç Áß¿äÇÑ ÃÊ±âÈ­ ÀÛ¾÷À» ¹èÄ¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ìƒì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
+	// InitInstanceì— ëª¨ë“  ì¤‘ìš”í•œ ì´ˆê¸°í™” ìž‘ì—…ì„ ë°°ì¹˜í•©ë‹ˆë‹¤.
 }
 
 
-// À¯ÀÏÇÑ CLauncherApp °³Ã¼ÀÔ´Ï´Ù.
+// ìœ ì¼í•œ CLauncherApp ê°œì²´ìž…ë‹ˆë‹¤.
 
 CLauncherApp theApp;
 
@@ -52,7 +52,7 @@ BOOL IsMultiOpen(const char *pExeName, BOOL bCreateMutex)
             if(GetLastError() == ERROR_ALREADY_EXISTS)
                 return TRUE;
         }
-        else // NULLÀÌ¸é ÀÌ¹Ì ¿­·ÁÀÖ´Â°ÍÀÌ´Ù.
+        else // NULLì´ë©´ ì´ë¯¸ ì—´ë ¤ìžˆëŠ”ê²ƒì´ë‹¤.
         {
             return TRUE;
         }
@@ -60,14 +60,14 @@ BOOL IsMultiOpen(const char *pExeName, BOOL bCreateMutex)
     else
     {
 	    HANDLE hMutex = ::OpenMutex(NULL, FALSE, pExeName);
-	    if(hMutex) // NULLÀÌ ¾Æ´Ï¸é ÀÌ¹Ì ¿­·Á ÀÖ´Â °ÍÀÌ´Ù.
+	    if(hMutex) // NULLì´ ì•„ë‹ˆë©´ ì´ë¯¸ ì—´ë ¤ ìžˆëŠ” ê²ƒì´ë‹¤.
 		    return TRUE;
     }
 
 	return FALSE;
 }
 
-// CLauncherApp ÃÊ±âÈ­
+// CLauncherApp ì´ˆê¸°í™”
 BOOL CLauncherApp::InitInstance() 
 {
     if(IsMultiOpen(MUTEX_DBO, FALSE))
@@ -82,13 +82,13 @@ BOOL CLauncherApp::InitInstance()
         return FALSE;
     }
 
-	// ÀÀ¿ë ÇÁ·Î±×·¥ ¸Å´ÏÆä½ºÆ®°¡ ComCtl32.dll ¹öÀü 6 ÀÌ»óÀ» »ç¿ëÇÏ¿© ºñÁÖ¾ó ½ºÅ¸ÀÏÀ»
-	// »ç¿ëÇÏµµ·Ï ÁöÁ¤ÇÏ´Â °æ¿ì, Windows XP »ó¿¡¼­ ¹Ýµå½Ã InitCommonControlsEx()°¡ ÇÊ¿äÇÕ´Ï´Ù.
-	// InitCommonControlsEx()¸¦ »ç¿ëÇÏÁö ¾ÊÀ¸¸é Ã¢À» ¸¸µé ¼ö ¾ø½À´Ï´Ù.
+	// ì‘ìš© í”„ë¡œê·¸ëž¨ ë§¤ë‹ˆíŽ˜ìŠ¤íŠ¸ê°€ ComCtl32.dll ë²„ì „ 6 ì´ìƒì„ ì‚¬ìš©í•˜ì—¬ ë¹„ì£¼ì–¼ ìŠ¤íƒ€ì¼ì„
+	// ì‚¬ìš©í•˜ë„ë¡ ì§€ì •í•˜ëŠ” ê²½ìš°, Windows XP ìƒì—ì„œ ë°˜ë“œì‹œ InitCommonControlsEx()ê°€ í•„ìš”í•©ë‹ˆë‹¤.
+	// InitCommonControlsEx()ë¥¼ ì‚¬ìš©í•˜ì§€ ì•Šìœ¼ë©´ ì°½ì„ ë§Œë“¤ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 	INITCOMMONCONTROLSEX InitCtrls;
 	InitCtrls.dwSize = sizeof(InitCtrls);
-	// ÀÀ¿ë ÇÁ·Î±×·¥¿¡¼­ »ç¿ëÇÒ ¸ðµç °ø¿ë ÄÁÆ®·Ñ Å¬·¡½º¸¦ Æ÷ÇÔÇÏµµ·Ï
-	// ÀÌ Ç×¸ñÀ» ¼³Á¤ÇÏ½Ê½Ã¿À.
+	// ì‘ìš© í”„ë¡œê·¸ëž¨ì—ì„œ ì‚¬ìš©í•  ëª¨ë“  ê³µìš© ì»¨íŠ¸ë¡¤ í´ëž˜ìŠ¤ë¥¼ í¬í•¨í•˜ë„ë¡
+	// ì´ í•­ëª©ì„ ì„¤ì •í•˜ì‹­ì‹œì˜¤.
 	InitCtrls.dwICC = ICC_WIN95_CLASSES;
 	InitCommonControlsEx(&InitCtrls);
 
@@ -96,14 +96,14 @@ BOOL CLauncherApp::InitInstance()
 
 	AfxEnableControlContainer();
 
-	// Ç¥ÁØ ÃÊ±âÈ­
-	// ÀÌµé ±â´ÉÀ» »ç¿ëÇÏÁö ¾Ê°í ÃÖÁ¾ ½ÇÇà ÆÄÀÏÀÇ Å©±â¸¦ ÁÙÀÌ·Á¸é
-	// ¾Æ·¡¿¡¼­ ÇÊ¿ä ¾ø´Â Æ¯Á¤ ÃÊ±âÈ­
-	// ·çÆ¾À» Á¦°ÅÇØ¾ß ÇÕ´Ï´Ù.
-	// ÇØ´ç ¼³Á¤ÀÌ ÀúÀåµÈ ·¹Áö½ºÆ®¸® Å°¸¦ º¯°æÇÏ½Ê½Ã¿À.
-	// TODO: ÀÌ ¹®ÀÚ¿­À» È¸»ç ¶Ç´Â Á¶Á÷ÀÇ ÀÌ¸§°ú °°Àº
-	// ÀûÀýÇÑ ³»¿ëÀ¸·Î ¼öÁ¤ÇØ¾ß ÇÕ´Ï´Ù.
-	SetRegistryKey(_T("·ÎÄÃ ÀÀ¿ë ÇÁ·Î±×·¥ ¸¶¹ý»ç¿¡¼­ »ý¼ºµÈ ÀÀ¿ë ÇÁ·Î±×·¥"));
+	// í‘œì¤€ ì´ˆê¸°í™”
+	// ì´ë“¤ ê¸°ëŠ¥ì„ ì‚¬ìš©í•˜ì§€ ì•Šê³  ìµœì¢… ì‹¤í–‰ íŒŒì¼ì˜ í¬ê¸°ë¥¼ ì¤„ì´ë ¤ë©´
+	// ì•„ëž˜ì—ì„œ í•„ìš” ì—†ëŠ” íŠ¹ì • ì´ˆê¸°í™”
+	// ë£¨í‹´ì„ ì œê±°í•´ì•¼ í•©ë‹ˆë‹¤.
+	// í•´ë‹¹ ì„¤ì •ì´ ì €ìž¥ëœ ë ˆì§€ìŠ¤íŠ¸ë¦¬ í‚¤ë¥¼ ë³€ê²½í•˜ì‹­ì‹œì˜¤.
+	// TODO: ì´ ë¬¸ìžì—´ì„ íšŒì‚¬ ë˜ëŠ” ì¡°ì§ì˜ ì´ë¦„ê³¼ ê°™ì€
+	// ì ì ˆí•œ ë‚´ìš©ìœ¼ë¡œ ìˆ˜ì •í•´ì•¼ í•©ë‹ˆë‹¤.
+	SetRegistryKey(_T("ë¡œì»¬ ì‘ìš© í”„ë¡œê·¸ëž¨ ë§ˆë²•ì‚¬ì—ì„œ ìƒì„±ëœ ì‘ìš© í”„ë¡œê·¸ëž¨"));
 	
 	//m_bCompletePatch
 	m_bPatchStart = false;
@@ -141,14 +141,14 @@ BOOL CLauncherApp::InitInstance()
 		INT_PTR nResponse = dlg.DoModal();        
 	}
 	
-	// ´ëÈ­ »óÀÚ°¡ ´ÝÇûÀ¸¹Ç·Î ÀÀ¿ë ÇÁ·Î±×·¥ÀÇ ¸Þ½ÃÁö ÆßÇÁ¸¦ ½ÃÀÛÇÏÁö ¾Ê°í  ÀÀ¿ë ÇÁ·Î±×·¥À» ³¡³¾ ¼ö ÀÖµµ·Ï FALSE¸¦
-	// ¹ÝÈ¯ÇÕ´Ï´Ù.
+	// ëŒ€í™” ìƒìžê°€ ë‹«í˜”ìœ¼ë¯€ë¡œ ì‘ìš© í”„ë¡œê·¸ëž¨ì˜ ë©”ì‹œì§€ íŽŒí”„ë¥¼ ì‹œìž‘í•˜ì§€ ì•Šê³   ì‘ìš© í”„ë¡œê·¸ëž¨ì„ ëë‚¼ ìˆ˜ ìžˆë„ë¡ FALSEë¥¼
+	// ë°˜í™˜í•©ë‹ˆë‹¤.
 	return FALSE;
 }
 
 int CLauncherApp::ExitInstance()
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ëž˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if(CNtlPatchManager::GetInstance()->GetPatchState() == PATCH_STATE_NEW_LAUNCHER)
 	{
 		CopyFile(LAUNCHER_CUR_EXE_FILE_NAME, LAUNCHER_PATCH_EXE_FILE_NAME, FALSE);
@@ -168,8 +168,8 @@ int CLauncherApp::ExitInstance()
 
 BOOL CLauncherApp::PumpMessage()
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
-	//È­¸éÀÌ Ã³À½ Ç¥½Ã µÈ ÈÄ°¡ ¿©±â ¹Û¿¡ Ã£À»¼ö°¡ ¾ø¾ú´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ëž˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
+	//í™”ë©´ì´ ì²˜ìŒ í‘œì‹œ ëœ í›„ê°€ ì—¬ê¸° ë°–ì— ì°¾ì„ìˆ˜ê°€ ì—†ì—ˆë‹¤.
 	if(m_bPatchStart == false)
 	{
 		m_bPatchStart = true;

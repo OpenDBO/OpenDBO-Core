@@ -5,21 +5,21 @@
 
 #include "NtlPLDojo.h"
 
-// CPaletteDojoDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteDojoDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CPaletteDojoDlg : public CDialog
 {
 	DECLARE_DYNAMIC(CPaletteDojoDlg)
 
 public:
-	CPaletteDojoDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CPaletteDojoDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CPaletteDojoDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_ORNAMENT_DOJO };
 
 protected:
-	virtual void				DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void				DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual BOOL				PreTranslateMessage(MSG* pMsg);
 
 	DECLARE_MESSAGE_MAP()

@@ -2,7 +2,7 @@
 *
 * File			: SkillAbilitySetGui.h
 * Author		: Cho HaeSung
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 11. 13
 * Abstract		: DBO Skill Ability Setting
 *****************************************************************************
@@ -29,7 +29,7 @@ public:
 	CSkillAbilitySetGui( const RwChar* pName );
 	~CSkillAbilitySetGui();
 
-	// ¾ÆÀÌÄÜ À§Ä¡
+	// ì•„ì´ì½˜ ìœ„ì¹˜
 	enum eICONPOS
 	{
 		ICONPOS_FIRST_LEFT,
@@ -43,7 +43,7 @@ public:
 		INVALID_ICON = 0xFF
 	};
 
-	// ÅøÆÁ¿¡ »ç¿ëµÉ Á¤º¸
+	// íˆ´íŒì— ì‚¬ìš©ë  ì •ë³´
 	struct SAbilityInfo
 	{
 		RwInt32		nX;

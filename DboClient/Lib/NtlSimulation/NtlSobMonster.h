@@ -2,7 +2,7 @@
  *
  * File			: NtlSobMonster.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 10. 31	
  * Abstract		: Simulation monster object
  *****************************************************************************
@@ -36,9 +36,9 @@ public:
 	virtual void*			GetBehaviorData(void);
 
 protected:
-    // ¿Ã∫•∆Æ √≥∏Æ
-    void    OnEventBotCautionNfy_Handler(RWS::CMsg& pMsg);          ///< º±∞¯∏˜¿Ã ƒ≥∏Ø≈Õ∏¶ πﬂ∞ﬂ«ﬂ¿ª∂ß
-    void    OnEventBotHelpMeNfy_Handler(RWS::CMsg& pMsg);           ///< ∏˜¿Ã ¡÷¿ß∏˜ø°∞‘ µµøÚ¿ª ø‰√ª«“∂ß
+    // Ïù¥Î≤§Ìä∏ Ï≤òÎ¶¨
+    void    OnEventBotCautionNfy_Handler(RWS::CMsg& pMsg);          ///< ÏÑ†Í≥µÎ™πÏù¥ Ï∫êÎ¶≠ÌÑ∞Î•º Î∞úÍ≤¨ÌñàÏùÑÎïå
+    void    OnEventBotHelpMeNfy_Handler(RWS::CMsg& pMsg);           ///< Î™πÏù¥ Ï£ºÏúÑÎ™πÏóêÍ≤å ÎèÑÏõÄÏùÑ ÏöîÏ≤≠Ìï†Îïå
 
 protected:
     CNtlBeCharData*         m_pBeData;				/** character behavior data */

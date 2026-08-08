@@ -156,7 +156,7 @@ VOID CNtlPLCinematicGui::Destroy(VOID)
 	UnLinkMsg(g_EventDirectPlayCancel);
 }
 
-INT CNtlPLCinematicGui::StateUpdate( RwUInt32 uiElapsedTime )
+INT CNtlPLCinematicGui::StateUpdate( uintptr_t uiElapsedTime )
 {
 	RwReal fElapsedTime = uiElapsedTime * 0.001f;
 	
@@ -276,7 +276,7 @@ VOID CNtlPLCinematicGui::SetCinematicFlash( void* pData )
 	}		
 	else 
 	{
-		// Flash´Â ´Ù Áö¿öÁø ÈÄ¿¡ Flash »èÁ¦°¡ ³¯¾Æ¿Â´Ù. 
+		// Flashå ì™ì˜™ å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹ìš¸ì˜™ Flash å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì‹£ì˜¨ëŒì˜™. 
 		if( IsStateNone( ALL ) )
 		{
 			m_pCinematicObject->SwitchDialog( false );

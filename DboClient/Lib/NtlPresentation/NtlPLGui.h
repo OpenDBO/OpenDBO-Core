@@ -2,7 +2,7 @@
  *
  * File			: NtlPLGui.h
  * Author		: HyungSuk Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 8. 11	
  * Abstract		: Presentation layer gui entity class
  *****************************************************************************

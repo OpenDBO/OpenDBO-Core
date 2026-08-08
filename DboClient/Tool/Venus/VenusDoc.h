@@ -1,4 +1,4 @@
-// VenusDoc.h : CVenusDoc Å¬·¡½ºÀÇ ÀÎÅÍÆäÀÌ½º
+// VenusDoc.h : CVenusDoc í´ë˜ìŠ¤ì˜ ì¸í„°í˜ì´ìŠ¤
 //
 
 
@@ -6,22 +6,22 @@
 
 class CVenusDoc : public CDocument
 {
-protected: // serialization¿¡¼­¸¸ ¸¸µé¾îÁı´Ï´Ù.
+protected: // serializationì—ì„œë§Œ ë§Œë“¤ì–´ì§‘ë‹ˆë‹¤.
 	CVenusDoc();
 	DECLARE_DYNCREATE(CVenusDoc)
 
-// Æ¯¼º
+// íŠ¹ì„±
 public:
 
-// ÀÛ¾÷
+// ì‘ì—…
 public:
 
-// ÀçÁ¤ÀÇ
+// ì¬ì •ì˜
 	public:
 	virtual BOOL OnNewDocument();
 	virtual void Serialize(CArchive& ar);
 
-// ±¸Çö
+// êµ¬í˜„
 public:
 	virtual ~CVenusDoc();
 #ifdef _DEBUG
@@ -31,7 +31,7 @@ public:
 
 protected:
 
-// ¸Ş½ÃÁö ¸Ê ÇÔ¼ö¸¦ »ı¼ºÇß½À´Ï´Ù.
+// ë©”ì‹œì§€ ë§µ í•¨ìˆ˜ë¥¼ ìƒì„±í–ˆìŠµë‹ˆë‹¤.
 protected:
 	DECLARE_MESSAGE_MAP()
 };

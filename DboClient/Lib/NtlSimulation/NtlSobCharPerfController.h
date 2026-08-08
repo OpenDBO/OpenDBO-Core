@@ -2,7 +2,7 @@
  *
  * File			: NtlSobCharPerfController.h
  * Author		: JeongHo, Rho
- * Copyright	: (¡÷) NTL
+ * Copyright	: (Ï£º) NTL
  * Date			: 2009. 6. 5
  * Abstract		: 
  *****************************************************************************

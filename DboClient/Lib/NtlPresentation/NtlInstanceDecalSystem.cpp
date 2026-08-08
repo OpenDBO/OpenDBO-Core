@@ -2,7 +2,7 @@
 //	File		:	NtlInstanceDecalSystem.cpp
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -152,7 +152,7 @@ void CNtlInstanceDecalSystem::BuildEmitterStandard(SNtlDecalEmitterStandard* pEm
 	// Rotate Action
 	if(m_pResourceDecalSystem->IsEmitterDataFlag(rpPRTSTDEMITTERDATAFLAGPRT2DROTATE))
 	{
-		// Rotate °¢µµ´Â 1ÃÊ¿¡ °ÉÃÄ È¸ÀüÇÏ´Â °¢µµ·Î ¼³Á¤ÇÑ´Ù. (Life Time°ú´Â °ü°è ¾ø´Ù)
+		// Rotate ê°ë„ëŠ” 1ì´ˆì— ê±¸ì³ íšŒì „í•˜ëŠ” ê°ë„ë¡œ ì„¤ì •í•œë‹¤. (Life Timeê³¼ëŠ” ê´€ê³„ ì—†ë‹¤)
 		m_pDecalSystem->Set2DRoateAction(m_pResourceDecalSystem->m_EmitterPrtRotate.prtEnd2DRotate);
 	}
 
@@ -220,7 +220,7 @@ RwBool CNtlInstanceDecalSystem::Update(RwReal fElapsedTime)
 			m_bReady	= TRUE;
 			m_bUpdate	= TRUE;
 
-			// ½ºÅ¸Æ®°¡ µÇ¸é ¶óÀÌÇÁ Å¸ÀÓÀ» ÃÊ±âÈ­ ÇÑ´Ù.
+			// ìŠ¤íƒ€íŠ¸ê°€ ë˜ë©´ ë¼ì´í”„ íƒ€ì„ì„ ì´ˆê¸°í™” í•œë‹¤.
 			m_fLifeTime = fElapsedTime;
 		}
 		else

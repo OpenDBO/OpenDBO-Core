@@ -1,4 +1,4 @@
-// AvatarPropertyDialog.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// AvatarPropertyDialog.cpp : êµ¬í˜„ íŒŒì¼ìž…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -16,7 +16,7 @@
 #include "StringManager.h"
 
 
-// CAvatarPropertyDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAvatarPropertyDialog ëŒ€í™” ìƒìžìž…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNCREATE(CAvatarPropertyDialog, CDialog)
 CAvatarPropertyDialog::CAvatarPropertyDialog(CWnd* pParent /*=NULL*/)
@@ -57,13 +57,13 @@ BEGIN_MESSAGE_MAP(CAvatarPropertyDialog, CDialog)
 END_MESSAGE_MAP()
 
 
-// CAvatarPropertyDialog ¸Þ½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAvatarPropertyDialog ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ìž…ë‹ˆë‹¤.
 
 BOOL CAvatarPropertyDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ìž‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	m_AnimationSlider.SetRange(1, 50);	
 	m_AnimationSlider.SetTic(10);
 	m_AnimationSlider.SetTicFreq(5);
@@ -94,14 +94,14 @@ BOOL CAvatarPropertyDialog::OnInitDialog()
 
 	m_Initialized = TRUE;
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹ÝÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± íŽ˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CAvatarPropertyDialog::OnSize(UINT nType, int cx, int cy)
 {
 	CDialog::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Þ½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if(m_Initialized)
 	{
 		CWnd* pPropertyStaticWindow = GetDlgItem(IDC_PROPERTY_STATIC);
@@ -121,7 +121,7 @@ void CAvatarPropertyDialog::OnSize(UINT nType, int cx, int cy)
 
 BOOL CAvatarPropertyDialog::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ëž˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if (pMsg->message == WM_KEYDOWN) 
 	{
 		if(pMsg->wParam == VK_RETURN)
@@ -145,7 +145,7 @@ BOOL CAvatarPropertyDialog::PreTranslateMessage(MSG* pMsg)
 
 void CAvatarPropertyDialog::OnTimer(UINT nIDEvent)
 {
-	// TODO: ¿©±â¿¡ ¸Þ½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	KillTimer(nIDEvent);
 
 	switch(nIDEvent)
@@ -469,8 +469,8 @@ void CAvatarPropertyDialog::ApplyProperties(CPropTreeItem* pItem)
 
 			CEventLayer* pView = (CEventLayer*)gGetEditLayer(EDIT_LAYER_EVENT);
 
-            // TODO: ÀÌ¸§À» º¯°æÇÒ½Ã¿¡ »¶ÀÌ³ª¼­ ¸·¾ÆµÐ´Ù. ¸·À¸¸é µ¥ÀÌÅÍ´Â º¯°æÀº ¹®Á¦¾øÁö¸¸ (À§¿¡¼­ Ã³¸®ÇÑ´Ù.)
-            // List CtrlÀÇ ÀÌ¸§Àº º¯°æµÇÁö ¾Ê´Â ¹®Á¦°¡ ÀÖ´Ù. ¾ÆÁ÷ ¿øÀÎÀ» ÆÄ¾ÇÇÏÁö ¸øÇß´Ù. (2006.08.21 by agebreak)
+            // TODO: ì´ë¦„ì„ ë³€ê²½í• ì‹œì— ë»‘ì´ë‚˜ì„œ ë§‰ì•„ë‘”ë‹¤. ë§‰ìœ¼ë©´ ë°ì´í„°ëŠ” ë³€ê²½ì€ ë¬¸ì œì—†ì§€ë§Œ (ìœ„ì—ì„œ ì²˜ë¦¬í•œë‹¤.)
+            // List Ctrlì˜ ì´ë¦„ì€ ë³€ê²½ë˜ì§€ ì•ŠëŠ” ë¬¸ì œê°€ ìžˆë‹¤. ì•„ì§ ì›ì¸ì„ íŒŒì•…í•˜ì§€ ëª»í–ˆë‹¤. (2006.08.21 by agebreak)
 			//pView->ResetTreeItemName(CVenusPlayerEventManager::GetInstance().m_pSelectPlayerEvent->GetName());
 //
 //			SetTimer(TIME_TYPE_EVENT_NAME, 100, NULL);
@@ -490,7 +490,7 @@ void CAvatarPropertyDialog::ApplyProperties(CPropTreeItem* pItem)
                 pAvatar->SetClumpName(strTemp);
 			}
 
-			// Clump°¡ º¯°æµÇ¸é m_nCurrentNode¸¦ ÃÊ±âÈ­ ÇØ ÁØ´Ù
+			// Clumpê°€ ë³€ê²½ë˜ë©´ m_nCurrentNodeë¥¼ ì´ˆê¸°í™” í•´ ì¤€ë‹¤
 			pAvatar->GetAnimationName().clear();
 			pEvent->nBoneIndex = -1;
 			SetTimer(TIME_TYPE_RESET_PROPERTIES, 100, NULL);
@@ -510,7 +510,7 @@ void CAvatarPropertyDialog::ApplyProperties(CPropTreeItem* pItem)
                 pAvatar->SetAnimationName(strTemp);
 			}
 
-			// ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ º¯°æµÇ¸é m_nCurrentNode¸¦ ÃÊ±âÈ­ ÇØ ÁØ´Ù
+			// ì• ë‹ˆë©”ì´ì…˜ì´ ë³€ê²½ë˜ë©´ m_nCurrentNodeë¥¼ ì´ˆê¸°í™” í•´ ì¤€ë‹¤
 			pEvent->nBoneIndex = -1;
 			SetTimer(TIME_TYPE_RESET_PROPERTIES, 100, NULL);
 		}

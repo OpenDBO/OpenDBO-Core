@@ -66,18 +66,18 @@ RwBool CCommunityParty::Create(CNtlPLGui* pParent)
 
 	m_pParent = pParent;
 
-	// 'ÆÄÆ¼ÀÌ¸§'
+	// 'íŒŒí‹°ì´ë¦„'
 	rect.SetRectWH(26, 65, 50, 14);
 	m_pPartyName = NTL_NEW gui::CStaticBox( rect, m_pParent->GetDialog(), GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER );
 	m_pPartyName->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);	
 	m_pPartyName->SetText(GetDisplayStringManager()->GetString(DST_PARTYGUI_PARTY_NAME));
 	m_pPartyName->Enable(false);
 
-	// ÆÄÆ¼ ÀÌ¸§ ¹éº¸µå
+	// íŒŒí‹° ì´ë¦„ ë°±ë³´ë“œ
 	m_PartyNameBack.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Community.srf", "PartyNameInputBack" ) );
 	m_PartyNameBack.SetPositionfromParent(86, 63);
 
-	// ÇöÀç ÆÄÆ¼ ÀÌ¸§
+	// í˜„ì¬ íŒŒí‹° ì´ë¦„
 	rect.SetRectWH(100, 63, 100, 19);
 	m_pMyPartyNameStatic = NTL_NEW gui::CStaticBox( rect, m_pParent->GetDialog(), GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT );
 	m_pMyPartyNameStatic->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
@@ -85,14 +85,14 @@ RwBool CCommunityParty::Create(CNtlPLGui* pParent)
 	m_pMyPartyNameStatic->Clear();
 	m_pMyPartyNameStatic->Enable(false);
 
-	// ÆÄÆ¼ ÀÌ¸§ ÀÔ·Â¶õ
+	// íŒŒí‹° ì´ë¦„ ì…ë ¥ë€
 	m_pPartNameInput = (gui::CInputBox*)m_pParent->GetComponent( "PartyNameInput" );
 	m_pPartNameInput->SetMaxLength(NTL_MAX_SIZE_PARTY_NAME_IN_UNICODE);
 	m_pPartNameInput->SetCaretSize(dINPUTBOX_CARET_WIDTH, dINPUTBOX_CARET_HEIGHT);
 	m_slotReturnInput = m_pPartNameInput->SigReturnPressed().Connect(this, &CCommunityParty::OnReturn_PartyNameInput);
 
 
-	// ÆÄÆ¼ »ı¼º ¹öÆ°
+	// íŒŒí‹° ìƒì„± ë²„íŠ¼
 	m_pPartyButtonCreate = (gui::CButton*)m_pParent->GetComponent("PartyButtonCreate");		
 	m_pPartyButtonCreate->SetTextStyle(COMP_TEXT_CENTER);
 	m_pPartyButtonCreate->SetTextUpColor(NTL_BUTTON_UP_COLOR);
@@ -104,28 +104,28 @@ RwBool CCommunityParty::Create(CNtlPLGui* pParent)
 	m_slotPartyCreateButton = m_pPartyButtonCreate->SigClicked().Connect(this, &CCommunityParty::ClickedPartyCreateButton);
 
 
-	// 'Zenny' ¼­ÆäÀÌ½º
+	// 'Zenny' ì„œí˜ì´ìŠ¤
 	rect = m_pParent->GetPosition();
 	m_ZennySurface.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface("Community.srf", "srfZennySurface") );
 	m_ZennySurface.SetPositionfromParent(26, 89);
 
-	// Á¦´Ï ºĞ¹è ¹æ½Ä	
+	// ì œë‹ˆ ë¶„ë°° ë°©ì‹	
 	m_ZennyDivSurface[ZDT_PICKUP_PERSON].SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface("Community.srf", "srfZennyDivPickup") );
 	m_ZennyDivSurface[ZDT_PICKUP_PERSON].SetPositionfromParent(23, 101);
 	m_ZennyDivSurface[ZDT_EQUAL].SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface("Community.srf", "srfZennyDivNumPeople") );
 	m_ZennyDivSurface[ZDT_EQUAL].SetPositionfromParent(23, 101);
 
-	// Á¦´Ï ºĞ¹è ¹æ½Ä º¯°æ ¹öÆ°
+	// ì œë‹ˆ ë¶„ë°° ë°©ì‹ ë³€ê²½ ë²„íŠ¼
 	m_pSelectZennyDivButton = (gui::CButton*)m_pParent->GetComponent("btnSelectZennyDivButton");		
 	m_pSelectZennyDivButton->SetToolTip(GetDisplayStringManager()->GetString(DST_PARTYGUI_ZENNY_LOOTING));
 	m_slotSelectZennyDivButton = m_pSelectZennyDivButton->SigClicked().Connect(this, &CCommunityParty::ClickedSelectDivButton);
 
-	// Á¦´Ï ºĞ¹è ¼³¸í ¹è°æ
+	// ì œë‹ˆ ë¶„ë°° ì„¤ëª… ë°°ê²½
 	rect = m_pParent->GetPosition();
 	m_ZennyExplainPanel.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("Community.srf", "srfExplainPanel") );
 	m_ZennyExplainPanel.SetPositionfromParent(96, 94);
 
-	// Á¦´Ï ºĞ¹è ¼³¸í
+	// ì œë‹ˆ ë¶„ë°° ì„¤ëª…
 	rect.SetRectWH(104, 98, 146, 31);
 	m_pZennyDivExplain = NTL_NEW gui::CStaticBox( rect, m_pParent->GetDialog(), GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER );
 	m_pZennyDivExplain->CreateFontStd( "detail", DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
@@ -133,18 +133,18 @@ RwBool CCommunityParty::Create(CNtlPLGui* pParent)
 	m_pZennyDivExplain->SetText( GetDisplayStringManager()->GetString(DST_PARTYGUI_ZENNY_LOOTING_GREEDILY) );
 	m_pZennyDivExplain->Enable(false);
 
-	// Á¦´Ï ºĞ¹è Àá±İ ¹öÆ°
+	// ì œë‹ˆ ë¶„ë°° ì ê¸ˆ ë²„íŠ¼
 	m_pZennyLockButton = (gui::CButton*)m_pParent->GetComponent("btnZennyLockButton");		
 	m_slotZennyLockButton = m_pZennyLockButton->SigClicked().Connect(this, &CCommunityParty::ClickedLockButton);
 
 
 
-	// 'Item' ¼­ÆäÀÌ½º
+	// 'Item' ì„œí˜ì´ìŠ¤
 	rect = m_pParent->GetPosition();
 	m_ItemSurface.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface("Community.srf", "srfItemSurface") );
 	m_ItemSurface.SetPositionfromParent(31, 133);
 
-	// ¾ÆÀÌÅÛ ºĞ¹è ¹æ½Ä	
+	// ì•„ì´í…œ ë¶„ë°° ë°©ì‹	
 	m_ItemDivSurface[IDT_PICKUP_PERSON].SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface("Community.srf", "srfItemDivPickup") );
 	m_ItemDivSurface[IDT_PICKUP_PERSON].SetPositionfromParent(23, 144);
 	m_ItemDivSurface[IDT_ORDER].SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface("Community.srf", "srfItemDivOrder") );
@@ -154,17 +154,17 @@ RwBool CCommunityParty::Create(CNtlPLGui* pParent)
 	m_ItemDivSurface[IDT_CONTIBUTION].SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface("Community.srf", "srfItemDivPoint") );
 	m_ItemDivSurface[IDT_CONTIBUTION].SetPositionfromParent(23, 144);
 
-	// ¾ÆÀÌÅÛ ºĞ¹è ¹æ½Ä º¯°æ ¹öÆ°
+	// ì•„ì´í…œ ë¶„ë°° ë°©ì‹ ë³€ê²½ ë²„íŠ¼
 	m_pSelectItemDivButton = (gui::CButton*)m_pParent->GetComponent("btnSelectItemDivButton");		
 	m_pSelectItemDivButton->SetToolTip(GetDisplayStringManager()->GetString(DST_PARTYGUI_ITEM_LOOTING));
 	m_slotSelectItemDivButton = m_pSelectItemDivButton->SigClicked().Connect(this, &CCommunityParty::ClickedSelectDivButton);
 
-	// ¾ÆÀÌÅÛ ºĞ¹è ¼³¸í ¹è°æ
+	// ì•„ì´í…œ ë¶„ë°° ì„¤ëª… ë°°ê²½
 	rect = m_pParent->GetPosition();
 	m_ItemExplainPanel.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("Community.srf", "srfExplainPanel") );
 	m_ItemExplainPanel.SetPositionfromParent(96, 137);
 
-	// ¾ÆÀÌÅÛ ºĞ¹è ¼³¸í
+	// ì•„ì´í…œ ë¶„ë°° ì„¤ëª…
 	rect.SetRectWH(104, 141, 146, 31);
 	m_pItemDivExplain = NTL_NEW gui::CStaticBox( rect, m_pParent->GetDialog(), GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER );
 	m_pItemDivExplain->CreateFontStd( "detail", DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
@@ -172,38 +172,38 @@ RwBool CCommunityParty::Create(CNtlPLGui* pParent)
 	m_pItemDivExplain->SetText( GetDisplayStringManager()->GetString(DST_PARTYGUI_ITEM_LOOTING_GREEDILY) );
 	m_pItemDivExplain->Enable(false);
 
-	// ¾ÆÀÌÅÛ ºĞ¹è Àá±İ ¹öÆ°
+	// ì•„ì´í…œ ë¶„ë°° ì ê¸ˆ ë²„íŠ¼
 	m_pItemLockButton = (gui::CButton*)m_pParent->GetComponent("btnItemLockButton");		
 	m_slotItemLockButton = m_pItemLockButton->SigClicked().Connect(this, &CCommunityParty::ClickedLockButton);
 
 
 
-	// 'ÆÄÆ¼ ¸É¹ö ÇØµå¶óÀÎ'
+	// 'íŒŒí‹° ë§´ë²„ í•´ë“œë¼ì¸'
 	m_MemberHeadLine.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Community.srf", "PartyHeadLine" ) );
 	m_MemberHeadLine.SetPositionfromParent(11, 189);
 
-	///< 'ÆÄÆ¼ ¸É¹ö'
+	///< 'íŒŒí‹° ë§´ë²„'
 	rect.SetRectWH(29, 191, 122, 13);
 	m_MemberStatic = NTL_NEW gui::CStaticBox( rect, m_pParent->GetDialog(), GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT );
 	m_MemberStatic->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_MemberStatic->SetText(GetDisplayStringManager()->GetString(DST_PARTYGUI_MEMBER));
 	m_MemberStatic->Enable(false);
 
-	///< '±â¿©Á¡¼ö'
+	///< 'ê¸°ì—¬ì ìˆ˜'
 	rect.SetRectWH(237, 195, 62, 13);
 	m_ScoreStatic = NTL_NEW gui::CStaticBox( rect, m_pParent->GetDialog(), GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER );
 	m_ScoreStatic->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_ScoreStatic->SetText(GetDisplayStringManager()->GetString(DST_PARTYGUI_SCORE));
 	m_ScoreStatic->Enable(false);
 
-	// ÆÄÆ¼Àå ¸¶Å©
+	// íŒŒí‹°ì¥ ë§ˆí¬
 	m_LeaderMark.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Community.srf", "srfPartyLeaderMark" ) );
 
-	// ¸É¹ö ¸®½ºÆ® ¹è°æ
+	// ë§´ë²„ ë¦¬ìŠ¤íŠ¸ ë°°ê²½
 	m_srfMemberboard.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Community.srf", "Memberboard" ) );
 	m_srfMemberboard.SetPositionfromParent(37, 212);
 
-	// ÆÄÆ¼¿ø ÀÌ¸§, ±â¿©µµ
+	// íŒŒí‹°ì› ì´ë¦„, ê¸°ì—¬ë„
 	RwInt32 iYPos = 212;
 	for( RwInt32 i = 0 ; i < NTL_MAX_MEMBER_IN_PARTY ; ++i )
 	{
@@ -228,12 +228,12 @@ RwBool CCommunityParty::Create(CNtlPLGui* pParent)
 	}
 
 
-	// ÀÎº¥ ¹öÆ°
+	// ì¸ë²¤ ë²„íŠ¼
 	m_PartyInvenButton = (gui::CButton*)m_pParent->GetComponent("InvenButton");
 	m_PartyInvenButton->SetToolTip(GetDisplayStringManager()->GetString(DST_PARTYGUI_INVEN));
 	m_slotInvenButton = m_PartyInvenButton->SigClicked().Connect(this, &CCommunityParty::OnClicked_InvenButton);
 
-	// ºÎÀû ¹öÆ°
+	// ë¶€ì  ë²„íŠ¼
 	m_pCharmButton = (gui::CButton*)m_pParent->GetComponent("CharmButton");
 	m_pCharmButton->SetTextStyle(COMP_TEXT_CENTER);
 	m_pCharmButton->SetTextUpColor(NTL_BUTTON_UP_COLOR);
@@ -243,11 +243,11 @@ RwBool CCommunityParty::Create(CNtlPLGui* pParent)
 	m_pCharmButton->ApplyText();
 	m_slotCharmButton = m_pCharmButton->SigClicked().Connect(this, &CCommunityParty::OnClicked_CharmButton);
 
-	// ºÎÀû ÆĞ³Î
+	// ë¶€ì  íŒ¨ë„
 	m_CharmBackpanel.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Community.srf", "CharmBackpanel" ) );
 	m_CharmBackpanel.SetPositionfromParent(218, 328);
 
-	// ºÎÀû ½½·Ô
+	// ë¶€ì  ìŠ¬ë¡¯
 	m_PartyCharmSlot[0].Create(m_pParent->GetDialog(), DIALOG_COMMUNITY, ISST_ITEM_TABLE_SERIAL);
 	m_PartyCharmSlot[0].SetPosition(220, 330);
 
@@ -256,25 +256,25 @@ RwBool CCommunityParty::Create(CNtlPLGui* pParent)
 
 
 
-	// 'CP ÇØµå¶óÀÎ'
+	// 'CP í•´ë“œë¼ì¸'
 	m_CPHeadLine.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Community.srf", "PartyHeadLine" ) );
 	m_CPHeadLine.SetPositionfromParent(11, 372);
 
-	// 'CP º¯È¯'
+	// 'CP ë³€í™˜'
 	rect.SetRectWH(29, 374, 122, 13);
 	m_CPStatic = NTL_NEW gui::CStaticBox( rect, m_pParent->GetDialog(), GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT );
 	m_CPStatic->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_CPStatic->SetText(GetDisplayStringManager()->GetString(DST_PARTYGUI_CP));
 	m_CPStatic->Enable(false);
 
-	// ½ÇÁ¦ º¸À¯ CP
+	// ì‹¤ì œ ë³´ìœ  CP
 	rect.SetRectWH(31, 398, 100, 25);
 	m_CPPoint = NTL_NEW gui::CStaticBox( rect, m_pParent->GetDialog(), GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_RIGHT );
 	m_CPPoint->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_CPPoint->SetText( pOtherParam->GetCharmPoint() );
 	m_CPPoint->Enable(false);
 
-	// CP ¼³¸í
+	// CP ì„¤ëª…
 	rect.SetRectWH(20, 425, 217, 31);
 	m_CPExplain = NTL_NEW gui::CStaticBox( rect, m_pParent->GetDialog(), GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT );
 	m_CPExplain->CreateFontStd( "detail", 80, DEFAULT_FONT_ATTR);
@@ -282,11 +282,11 @@ RwBool CCommunityParty::Create(CNtlPLGui* pParent)
 	m_CPExplain->SetText(GetDisplayStringManager()->GetString(DST_PARTYGUI_CP_EXPLAIN));
 	m_CPExplain->Enable(false);
 
-	// CP ¹öÆ°
+	// CP ë²„íŠ¼
 	m_pCPButton = (gui::CButton*)m_pParent->GetComponent("CPButton");
 	m_slotCPButton = m_pCPButton->SigClicked().Connect(this, &CCommunityParty::OnClicked_CPButton);
 
-	// ¾ÆÀÌÅÛÀ» CP·Î ÀüÈ¯ ¹öÆ°
+	// ì•„ì´í…œì„ CPë¡œ ì „í™˜ ë²„íŠ¼
 	m_pItemtoCPButton = (gui::CButton*)m_pParent->GetComponent("ItemtoCPButton");
 	m_slotItemtoCPButton = m_pItemtoCPButton->SigClicked().Connect(this, &CCommunityParty::OnClicked_ItemtoCPButton);
 
@@ -468,7 +468,7 @@ VOID CCommunityParty::ClickedPartyCreateButton(gui::CComponent* pComponent)
 	}
 	else if( GetChattingFilter()->IsSlang(pcPartyName) )
 	{
-		// »ç¿ëÇÒ ¼ö ¾ø´Â ´Ü¾î°¡ ÀÖ½À´Ï´Ù
+		// ì‚¬ìš©í•  ìˆ˜ ì—†ëŠ” ë‹¨ì–´ê°€ ìˆìŠµë‹ˆë‹¤
 		GetAlarmManager()->AlarmMessage(DST_LOBBY_CAN_NOT_USE_THE_WORD);
 		return;
 	}
@@ -535,7 +535,7 @@ VOID CCommunityParty::OnClicked_InvenButton(gui::CComponent* pComponent)
 
 VOID CCommunityParty::OnClicked_CharmButton(gui::CComponent* pComponent)
 {
-	// ÆÄÆ¼Àå¸¸ÀÌ ¿­ ¼ö ÀÖ´Ù.
+	// íŒŒí‹°ì¥ë§Œì´ ì—´ ìˆ˜ ìˆë‹¤.
 	if( Logic_I_am_PartyLeader() == false )
 	{
 		GetAlarmManager()->AlarmMessage( GAME_PARTY_ONLY_ALLOWED_TO_PARTY_LEADER, TRUE );
@@ -549,7 +549,7 @@ VOID CCommunityParty::OnClicked_CharmButton(gui::CComponent* pComponent)
 
 	for( RwInt8 i = 0 ; i < NTL_PARTY_CHARM_INVENTORY_COUNT ; ++i )
 	{
-		// ºó ½½·Ô¸¸ ¿­ ¼ö ÀÖ´Ù
+		// ë¹ˆ ìŠ¬ë¡¯ë§Œ ì—´ ìˆ˜ ìˆë‹¤
 		const sPartyCharm& rPartyCharm = pParty->GetCharmbyIndex(i);
 
 		if( rPartyCharm.pITEM_TBLDAT == NULL && 
@@ -586,12 +586,12 @@ VOID CCommunityParty::OnClicked_ItemtoCPButton(gui::CComponent* pComponent)
 		sMsgBoxData data;
 		data.sItemDeleteInfo = sInfo;
 
-		// ¾ÆÀÌÅÛÀ» CP·Î ÀüÈ¯ÇÏ½Ã°Ú½À´Ï±î?
+		// ì•„ì´í…œì„ CPë¡œ ì „í™˜í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
 		GetAlarmManager()->AlarmMessage( DST_PARTY_GET_CP_ASK, FALSE, &data );
 		//CDboEventGenerator::MsgBoxShow( GetDisplayStringManager()->GetString( DST_PARTY_GET_CP_ASK ), MBW_GET_CP_FROM_ITEM, MBT_OKCANCEL, FALSE, 0.0f, &sInfo );
 		GetIconMoveManager()->IconMoveEnd();
 
-		// °¡¹æÀÇ ¾ÆÀÌÅÛ ¶ô
+		// ê°€ë°©ì˜ ì•„ì´í…œ ë½
 		CNtlInventory* pInventory = GetNtlSLGlobal()->GetSobAvatar()->GetInventory();
 		CNtlSobItem* pSrcItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject(sInfo.hSerial) );
 		NTL_ASSERT(pSrcItem, "CCommunityParty::OnClicked_ItemtoCPButton, Not exist sob item of handle : " << sInfo.hSerial);
@@ -783,7 +783,7 @@ VOID CCommunityParty::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 {
 	CRectangle rtScreen = m_pParent->GetDialog()->GetScreenRect();
 
-	// ¾ÆÀÌÄÜ ¿µ¿ªÀ¸·Î ¸¶¿ì½º¸¦ ÀÌµ¿½ÃÄÑ¼­ ¾ÆÀÌÅÛ Á¤º¸¸¦ º¸ÀÏ ÇÊ¿ä°¡ ÀÖ´ÂÁö °Ë»ç
+	// ì•„ì´ì½˜ ì˜ì—­ìœ¼ë¡œ ë§ˆìš°ìŠ¤ë¥¼ ì´ë™ì‹œì¼œì„œ ì•„ì´í…œ ì •ë³´ë¥¼ ë³´ì¼ í•„ìš”ê°€ ìˆëŠ”ì§€ ê²€ì‚¬
 	for( RwInt32 i = 0 ; i < NTL_PARTY_CHARM_INVENTORY_COUNT ; ++i )
 	{
 		if( m_PartyCharmSlot[i].PtInRect(nX, nY) )
@@ -919,7 +919,7 @@ VOID CCommunityParty::HandleEvents( RWS::CMsg &msg )
 			}
 		case PMT_PARTY_MEMBER_ADD:
 			{
-				// °¡Àå ¸¶Áö¸·¿¡ Ãß°¡µÈ ¸É¹ö Á¤º¸¸¦ µî·Ï				
+				// ê°€ì¥ ë§ˆì§€ë§‰ì— ì¶”ê°€ëœ ë§´ë²„ ì •ë³´ë¥¼ ë“±ë¡				
 				CNtlParty* pParty = GetNtlSLGlobal()->GetSobAvatar()->GetParty();
 				RwInt32 iLastMemberIndex = pParty->GetMemberCount();
 				sPartyMember* pPartyMember = reinterpret_cast<sPartyMember*>( pParty->GetMemberbyKey( pPacket->hSerialId ) );
@@ -964,7 +964,7 @@ VOID CCommunityParty::HandleEvents( RWS::CMsg &msg )
 				{		
 					sPartyMember* pMember = reinterpret_cast<sPartyMember*>( *it );
 
-					// ÆÄÆ¼ ¸®´õ¶ó¸é ¸¶Å© Ç¥½Ã
+					// íŒŒí‹° ë¦¬ë”ë¼ë©´ ë§ˆí¬ í‘œì‹œ
 					if( hLeaderSerial == pMember->hSerial )
 					{
 						LocateLeaderMark(i+1);

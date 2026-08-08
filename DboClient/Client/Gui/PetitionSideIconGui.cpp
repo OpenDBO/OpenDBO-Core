@@ -40,7 +40,7 @@ RwBool CPetitionSideIconGui::Create()
 
 	m_pThis = (gui::CDialog*)GetComponent("dlgMain");
 
-	// ÀÏ¹Ý ¾ÆÀÌÄÜ ¹öÆ°
+	// ì¼ë°˜ ì•„ì´ì½˜ ë²„íŠ¼
 	m_pIconButton = (gui::CButton*)GetComponent("btnIcon");
 	m_slotIconButton = m_pIconButton->SigClicked().Connect(this, &CPetitionSideIconGui::OnIconButtonClicked);
 
@@ -109,21 +109,21 @@ RwBool CPetitionSideViewGui::Create()
 
 	m_pThis = (gui::CDialog*)GetComponent("dlgMain");
 
-	// ´Ý±â ¹öÆ°
+	// ë‹«ê¸° ë²„íŠ¼
 	m_pExitButton = (gui::CButton*)GetComponent("btnExit");
 	m_slotExitButton = m_pExitButton->SigClicked().Connect(this, &CPetitionSideViewGui::OnExitClicked);
 
 	m_pMessage = (gui::CStaticBox*)GetComponent("stbMessage");
 	m_pMessage->SetText( GetDisplayStringManager()->GetString("DST_PETITION_SIDEVIEW_MESSAGE") );
 
-	// ¹è°æ
+	// ë°°ê²½
 	m_BackPanel.SetType(CWindowby3::WT_HORIZONTAL);
 	m_BackPanel.SetSurface(0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface("PetitionSideView.srf", "srfBackUp"));
 	m_BackPanel.SetSurface(1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface("PetitionSideView.srf", "srfBackCenter"));
 	m_BackPanel.SetSurface(2, GetNtlGuiManager()->GetSurfaceManager()->GetSurface("PetitionSideView.srf", "srfBackDown"));
 	m_BackPanel.SetSize( m_pThis->GetWidth(), m_pThis->GetHeight() );
 
-	// Ãë¼Ò ¹öÆ°
+	// ì·¨ì†Œ ë²„íŠ¼
 	m_pCancelButton = (gui::CButton*)GetComponent("btnCancel");
 	m_pCancelButton->SetTextUpColor(RGB(0, 255, 255));
 	m_pCancelButton->SetText( GetDisplayStringManager()->GetString("DST_PETITION_CANCEL_PETITION") );

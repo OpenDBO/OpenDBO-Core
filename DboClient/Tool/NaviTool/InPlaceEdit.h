@@ -29,5 +29,5 @@ private:
 	int m_iItem;
 	int m_iSubItem;
 	CString m_sInitText;
-	BOOL m_bESC; // ESC Å°°¡ ´­·È´ÂÁö ³ªÅ¸³»±â À§ÇØ
+	BOOL m_bESC; // ESC í‚¤ê°€ ëˆŒë ¸ëŠ”ì§€ ë‚˜íƒ€ë‚´ê¸° ìœ„í•´
 };

@@ -2,9 +2,9 @@
  *
  * File			: NtlLocalizeDef.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2007. 3. 19	
- * Abstract		: Localizing¿¡ µû¸¥ Á¤ÀÇ.
+ * Abstract		: Localizingì— ë”°ë¥¸ ì •ì˜.
  *****************************************************************************
  * Desc         : 
  *
@@ -16,12 +16,12 @@
 
 
 //-------------------------------------------------------------------------
-// Localizing ÀÎ½ÄÀÚ Á¤ÀÇ 
+// Localizing ì¸ì‹ì ì •ì˜ 
 //-------------------------------------------------------------------------
 
 // localize tupe.
-#define NTL_LOCALIZE_DEV			0x01		// °³¹ßÀÚ
-#define NTL_LOCALIZE_GLOBAL			0x02		// °³¹ßÀÚ
+#define NTL_LOCALIZE_DEV			0x01		// ê°œë°œì
+#define NTL_LOCALIZE_GLOBAL			0x02		// ê°œë°œì
 
 // localize config data
 #define MAX_LOCAL_ADDR				32

@@ -2,9 +2,9 @@
 *
 * File			: RankBoardCommon.h
 * Author		: Haesung, Cho
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 12. 14	
-* Abstract		: DBO Rank Board GUI °øÅë
+* Abstract		: DBO Rank Board GUI ê³µí†µ
 *****************************************************************************
 * Desc         : 
 *
@@ -17,7 +17,7 @@
 #include "ceventhandler.h"
 #include "NtlRankBattle.h"
 
-// º¸µåÀÇ Å¸ÀÔµé
+// ë³´ë“œì˜ íƒ€ì…ë“¤
 enum eBoardType
 { 
 	eBOARD_RANKBATTLE = 0,						// RankBattle Board
@@ -27,7 +27,7 @@ enum eBoardType
 };
 
 // RankBoard Common Define
-#define dRANKBOARD_COMMON_ENABLE_IDLE			((RwReal)DBO_RANKBATTLE_RANK_REQUEST_TERM*0.001f)// ÇÑ¹øÀÇ ÆĞÅ¶ Àü¼Û ÈÄ¿¡ ÀÔ·ÂÀÌ µÉ ¼ö ÀÖ´Â ½Ã°£
+#define dRANKBOARD_COMMON_ENABLE_IDLE			((RwReal)DBO_RANKBATTLE_RANK_REQUEST_TERM*0.001f)// í•œë²ˆì˜ íŒ¨í‚· ì „ì†¡ í›„ì— ì…ë ¥ì´ ë  ìˆ˜ ìˆëŠ” ì‹œê°„
 
 // RankBoard Size
 #define dRANKBOARD_DIALOG_WIDTH					631				// Dialog Width

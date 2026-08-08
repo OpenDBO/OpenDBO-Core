@@ -13,7 +13,7 @@ CNtlPatchXmlSave::~CNtlPatchXmlSave()
 
 BOOL CNtlPatchXmlSave::SaveCurVersion(const char *pszClientVersion, const char* pszDate, const char *pszLauncherVersion, const char *pszFullPathFileName)
 {
-	//ÀĞ±â Àü¿ëÀÌ¸é ¾²±â·Î ¹Ù²Û´Ù.
+	//ì½ê¸° ì „ìš©ì´ë©´ ì“°ê¸°ë¡œ ë°”ê¾¼ë‹¤.
 	SetFileAttributes(pszFullPathFileName, 4);
 	
 	Create();

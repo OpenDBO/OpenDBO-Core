@@ -55,7 +55,7 @@ public:
 
         _faceElements.resize(mesh.faceSize(), 0);
 
-		// Face Á¤º¸´Â ±¸¼ºÇÏÁö ¾Ê´Â´Ù.
+		// Face ì •ë³´ëŠ” êµ¬ì„±í•˜ì§€ ì•ŠëŠ”ë‹¤.
         /*for(f=mesh.beginFace();f.valid();++f)
         {
             if(f->isExternal())
@@ -120,7 +120,7 @@ public:
 
 		_faceElements.resize(mesh.faceSize(), 0);
 
-		// Face Á¤º¸´Â ±¸¼ºÇÏÁö ¾Ê´Â´Ù.
+		// Face ì •ë³´ëŠ” êµ¬ì„±í•˜ì§€ ì•ŠëŠ”ë‹¤.
 		/*for(f=mesh.beginFace();f.valid();++f)
 		{
 		if(f->isExternal())

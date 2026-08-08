@@ -37,9 +37,9 @@ void CNtlPLEntityAlphaWeightBlend::Update(RwReal fElapsed)
         m_bFinish = TRUE;            
     }
 
-    if(m_byBlendType == PLEAW_END)      // ºí·»µå°¡ ³¡³µ°Å³ª ºí·»µå ¾ËÆÄ°¡ ¾Æ´Ò¶§
+    if(m_byBlendType == PLEAW_END)      // ë¸”ë Œë“œê°€ ëë‚¬ê±°ë‚˜ ë¸”ë Œë“œ ì•ŒíŒŒê°€ ì•„ë‹ë•Œ
     {
-        if(m_fStartWeightValue != m_fWeightValue)               // ¸Ç Ã³À½ ÇÑ¹ø¸¸ °è»ê ÇÃ·¡±×¸¦ ÄÑ±â À§ÇÑ ºñ±³
+        if(m_fStartWeightValue != m_fWeightValue)               // ë§¨ ì²˜ìŒ í•œë²ˆë§Œ ê³„ì‚° í”Œë˜ê·¸ë¥¼ ì¼œê¸° ìœ„í•œ ë¹„êµ
         {
             m_bCalcWeightValue = TRUE;
             m_fStartWeightValue = m_fWeightValue;
@@ -49,7 +49,7 @@ void CNtlPLEntityAlphaWeightBlend::Update(RwReal fElapsed)
             m_bCalcWeightValue = TRUE;
         }        
     }
-    else if(m_byBlendType == PLEAW_BLEND)   // ºí·»µå ÁßÀÏ¶§
+    else if(m_byBlendType == PLEAW_BLEND)   // ë¸”ë Œë“œ ì¤‘ì¼ë•Œ
     {
         if(m_fCurrTime >= m_fBlendTime)
         {
@@ -78,7 +78,7 @@ RwBool CNtlPLEntityAlphaWeightBlend::IsFinish(void)
 void CNtlPLEntityAlphaWeightBlend::SetWeight(RwReal fWeightValue, RwReal fLifeTime, RwBool bLoop)
 {
 	m_byBlendType	= PLEAW_END;	
-    m_fStartWeightValue = -1.0f;            // Ã³À½ ÇÑ¹ø¸¸ °è»êÇÏ±â À§ÇØ¼­ ºñ±³°ªÀ» ³Ö¾îÁØ´Ù.
+    m_fStartWeightValue = -1.0f;            // ì²˜ìŒ í•œë²ˆë§Œ ê³„ì‚°í•˜ê¸° ìœ„í•´ì„œ ë¹„êµê°’ì„ ë„£ì–´ì¤€ë‹¤.
 	m_fWeightValue	= fWeightValue;
 	m_fLifeTime		= fLifeTime;
 	m_bLoop			= bLoop;
@@ -256,8 +256,8 @@ CNtlPLAtomicAlphaWeightBlend* CNtlPLEntityBlendController::FindAtomicAlphaBlend(
 	return NULL;
 }
 
-// ÀÏ¹İ ¾ËÆÄ ºí·»µùÀ» Ãß°¡ÇÑ´Ù.
-// »õ·Î¿î ¾ËÆÄ ºí·»µù °´Ã¼¸¦ ¸®½ºÆ®¿¡ Ãß°¡ÇÏ°í, ±× °´Ã¼¸¦ ¹İÈ¯ÇÑ´Ù.
+// ì¼ë°˜ ì•ŒíŒŒ ë¸”ë Œë”©ì„ ì¶”ê°€í•œë‹¤.
+// ìƒˆë¡œìš´ ì•ŒíŒŒ ë¸”ë Œë”© ê°ì²´ë¥¼ ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€í•˜ê³ , ê·¸ ê°ì²´ë¥¼ ë°˜í™˜í•œë‹¤.
 CNtlPLEntityAlphaWeightBlend* CNtlPLEntityBlendController::AddAlpha(RwReal fWeightAlpha, RwReal fLifeTime, RwBool bLoop)
 {
 	CNtlPLEntityAlphaWeightBlend *pAlphaBlend = NTL_NEW CNtlPLEntityAlphaWeightBlend;
@@ -268,8 +268,8 @@ CNtlPLEntityAlphaWeightBlend* CNtlPLEntityBlendController::AddAlpha(RwReal fWeig
     return pAlphaBlend;
 }
 
-// time¿¡ µû¶ó Fade µÇ´Â ¾ËÆÄ ºí·»µùÀ» Ãß°¡ÇÑ´Ù.
-// »õ·Î¿î ¾ËÆÄ ºí·»µù °´Ã¼¸¦ ¸®½ºÆ®¿¡ Ãß°¡ÇÏ°í, ±× °´Ã¼¸¦ ¹İÈ¯ÇÑ´Ù.
+// timeì— ë”°ë¼ Fade ë˜ëŠ” ì•ŒíŒŒ ë¸”ë Œë”©ì„ ì¶”ê°€í•œë‹¤.
+// ìƒˆë¡œìš´ ì•ŒíŒŒ ë¸”ë Œë”© ê°ì²´ë¥¼ ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€í•˜ê³ , ê·¸ ê°ì²´ë¥¼ ë°˜í™˜í•œë‹¤.
 CNtlPLEntityAlphaWeightBlend* CNtlPLEntityBlendController::AddAlpha(RwReal fStartWeightAlpha, RwReal fEndWeightAlpha, RwReal fBlendTime, RwReal fLifeTime, RwBool bLoop)
 {
 	CNtlPLEntityAlphaWeightBlend *pAlphaBlend = NTL_NEW CNtlPLEntityAlphaWeightBlend;
@@ -282,7 +282,7 @@ CNtlPLEntityAlphaWeightBlend* CNtlPLEntityBlendController::AddAlpha(RwReal fStar
 
 CNtlPLAtomicAlphaWeightBlend* CNtlPLEntityBlendController::AddAtomicAlpha(const RwChar *pAtomicName, RwReal fWeightAlpha, RwReal fLifeTime /*= 0.0f*/, RwBool bLoop /*= TRUE*/)
 {
-    // ÇÑ Atomic¿¡´Â ÇÏ³ªÀÇ Alpha Blend °´Ã¼¸¸ Àû¿ëµÈ´Ù.
+    // í•œ Atomicì—ëŠ” í•˜ë‚˜ì˜ Alpha Blend ê°ì²´ë§Œ ì ìš©ëœë‹¤.
     if(FindAtomicAlphaBlend(pAtomicName))
         return NULL;
 
@@ -296,7 +296,7 @@ CNtlPLAtomicAlphaWeightBlend* CNtlPLEntityBlendController::AddAtomicAlpha(const 
 
 CNtlPLAtomicAlphaWeightBlend*  CNtlPLEntityBlendController::AddAtomicAlpha(const RwChar *pAtomicName, RwReal fStartWeightAlpha, RwReal fEndWeightAlpha, RwReal fBlendTime, RwReal fLifeTime, RwBool bLoop)
 {
-    // ÇÑ Atomic¿¡´Â ÇÏ³ªÀÇ Alpha Blend °´Ã¼¸¸ Àû¿ëµÈ´Ù.
+    // í•œ Atomicì—ëŠ” í•˜ë‚˜ì˜ Alpha Blend ê°ì²´ë§Œ ì ìš©ëœë‹¤.
     if(FindAtomicAlphaBlend(pAtomicName))
         return NULL;
 

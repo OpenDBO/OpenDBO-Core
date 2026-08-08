@@ -70,12 +70,12 @@ void CItemViewPane::OnInitialUpdate()
     SetResize(IDC_TREE_ITEM, SZ_TOP_LEFT, SZ_BOTTOM_RIGHT);
     SetResize(IDC_CHECK_ITEM, SZ_BOTTOM_LEFT, SZ_BOTTOM_RIGHT);
 
-    // ÀÌ¹ÌÁö ¸®½ºÆ® ¼³Á¤
+    // ì´ë¯¸ì§€ ë¦¬ìŠ¤íŠ¸ ì„¤ì •
     m_pImageList = new CImageList();
     m_pImageList->Create(16, 16, ILC_COLOR32, 4, 4);
     m_pImageList->Add(AfxGetApp()->LoadIcon(IDI_ICON_OPEN));
-    m_pImageList->Add(AfxGetApp()->LoadIcon(IDI_ICON_ITEM));      // ¸®¼Ò½º¿ë ¾ÆÀÌÄÜ
-    m_pImageList->Add(AfxGetApp()->LoadIcon(IDI_ICON_OBJECT_SCRIPT)); // ½ºÅ©¸³Æ®¿ë ¾ÆÀÌÄÜ
+    m_pImageList->Add(AfxGetApp()->LoadIcon(IDI_ICON_ITEM));      // ë¦¬ì†ŒìŠ¤ìš© ì•„ì´ì½˜
+    m_pImageList->Add(AfxGetApp()->LoadIcon(IDI_ICON_OBJECT_SCRIPT)); // ìŠ¤í¬ë¦½íŠ¸ìš© ì•„ì´ì½˜
     m_treeItem.SetImageList(m_pImageList, TVSIL_NORMAL);    
 
     m_ckItemView.SetCheck(TRUE);
@@ -88,10 +88,10 @@ void CItemViewPane::OnShowWindow(BOOL bShow, UINT nStatus)
     if(!bShow)
         return;
 
-    // À©µµ¿ì°¡ ³ªÅ¸³¯¶§ ³»¿ëÀ» UpdateÇÑ´Ù.
+    // ìœˆë„ìš°ê°€ ë‚˜íƒ€ë‚ ë•Œ ë‚´ìš©ì„ Updateí•œë‹¤.
     UpdateTree();
 
-    // ÇöÀç EditÁßÀÎ Ä³¸¯ÅÍ¸¦ ¼³Á¤ÇÑ´Ù.
+    // í˜„ì¬ Editì¤‘ì¸ ìºë¦­í„°ë¥¼ ì„¤ì •í•œë‹¤.
     SetCharacter(CModelToolApplication::GetInstance()->GetEditChar());
 }
 
@@ -148,16 +148,16 @@ void CItemViewPane::OnTvnSelchangedTreeItem(NMHDR *pNMHDR, LRESULT *pResult)
         
     if(m_treeItem.GetItemData(hItem))
     {
-        // ¸¸¾à Item Pane¿¡ ¼öÁ¤ÇÑ °ªÀÌ ÀÖ´Ù¸é Àû¿ëÇÑ´Ù.        
+        // ë§Œì•½ Item Paneì— ìˆ˜ì •í•œ ê°’ì´ ìˆë‹¤ë©´ ì ìš©í•œë‹¤.        
         CMTItem* pItem  = (CMTItem*)m_treeItem.GetItemData(hItem);
         pItem->GetProperty()->LoadScript((LPCSTR)(strXMLFilePath));
         EquipItem(hItem);
     }
     else
     {
-        // ¿ø·¡´Â Item Pane°ú °°ÀÌ ¾²±â À§ÇØ¼­ Item PoolÀ» ¸¸µé¾î¼­ 
-        // °ø¿ëÀ¸·Î ›§´Âµ¥.. »óÀ§ ÄÚµåÀÇ º¯°æÀ¸·Î ¹ö±×°¡ »ı°Ü¼­
-        // °á±¹ µû·Î °´Ã¼¸¦ »ı¼ºÇØ¼­ »ç¿ëÇÑ´Ù. -_-; (by agebreak)
+        // ì›ë˜ëŠ” Item Paneê³¼ ê°™ì´ ì“°ê¸° ìœ„í•´ì„œ Item Poolì„ ë§Œë“¤ì–´ì„œ 
+        // ê³µìš©ìœ¼ë¡œ ì»ëŠ”ë°.. ìƒìœ„ ì½”ë“œì˜ ë³€ê²½ìœ¼ë¡œ ë²„ê·¸ê°€ ìƒê²¨ì„œ
+        // ê²°êµ­ ë”°ë¡œ ê°ì²´ë¥¼ ìƒì„±í•´ì„œ ì‚¬ìš©í•œë‹¤. -_-; (by agebreak)
         //CMTItem* pItem = NULL;
         //pItem = CMTItemPool::GetInstance()->GetItem(W2A(m_treeItem.GetItemText(hItem)));
         //if(pItem)
@@ -213,7 +213,7 @@ void CItemViewPane::EquipItem(HTREEITEM hItem)
 
     CMTItem* pRemoveItem = (CMTItem*)m_pCharacter->SetChangeEquipItemForTool(pItem);
 
-    // Å×½ºÆ®
+    // í…ŒìŠ¤íŠ¸
     //pItem->SetUpgradeEffect(1);
 
     if(pRemoveItem && pRemoveItem != pItem)
@@ -238,7 +238,7 @@ void CItemViewPane::OnBnClickedCheckItem()
     {
         m_treeItem.EnableWindow(TRUE);
 
-        // ±âÁ¸¿¡ ºÙ¾îÀÖ´ø ItemµéÀ» ºÎÂøÇÑ´Ù.
+        // ê¸°ì¡´ì— ë¶™ì–´ìˆë˜ Itemë“¤ì„ ë¶€ì°©í•œë‹¤.
         for(UINT i = 0; i < m_vAttachItem.size(); ++i)
         {
             m_pCharacter->SetChangeEquipItem(m_vAttachItem[i]);
@@ -248,7 +248,7 @@ void CItemViewPane::OnBnClickedCheckItem()
     {
         m_treeItem.EnableWindow(FALSE);
 
-        // AttachµÈ ¸ğµç ItemÀ» Á¦°ÅÇÑ´Ù
+        // Attachëœ ëª¨ë“  Itemì„ ì œê±°í•œë‹¤
         m_vAttachItem.clear();
         while(m_pCharacter->GetEquipItem()->GetEquipItemList()->size())
         {
@@ -260,7 +260,7 @@ void CItemViewPane::OnBnClickedCheckItem()
             }
         }
 
-        // »ç½Ç»ó Clump¸¦ ´Ù½Ã Loading ÇÑ´Ù.        
+        // ì‚¬ì‹¤ìƒ Clumpë¥¼ ë‹¤ì‹œ Loading í•œë‹¤.        
         m_pCharacter->LoadClump(m_pCharacter->GetClumpName());
         RwUInt32 uiAnimKey = m_pCharacter->GetCurrentAnimKey();
         if(uiAnimKey)

@@ -32,7 +32,7 @@
 
 /**
 * \brief Construction
-* \param pName	(const RwChar*) GUIÀÇ ÀÌ¸§
+* \param pName	(const RwChar*) GUIì˜ ì´ë¦„
 */
 CTBRequestGui::CTBRequestGui( const RwChar* pName )
 : CNtlPLGui(pName)
@@ -124,7 +124,7 @@ RwBool CTBRequestGui::Create()
 		m_paMemberRankingPoint[i]	= (gui::CStaticBox*)GetComponent( acBuffer );
 	}
 
-	// °³ÀÎÀü Á¢¼öÁõ
+	// ê°œì¸ì „ ì ‘ìˆ˜ì¦
 	m_pDlgIndiTicket			= (gui::CDialog*)GetComponent("dlgIndiTicket");
 	m_pStbTicketGuide		= (gui::CStaticBox*)GetComponent("stbTicketGuide");
 	m_pStbTicketNumber		= (gui::CStaticBox*)GetComponent("stbTicketNumber");
@@ -133,7 +133,7 @@ RwBool CTBRequestGui::Create()
 	m_surEmblem.SetSize( dEMBLEM_TEXTURE_DEFAULT_SIZE, dEMBLEM_TEXTURE_DEFAULT_SIZE );
 	m_surEmblem.SetPositionfromParent( 79, 208 );
 
-	// ÆÀÀü Á¢¼öÁõ
+	// íŒ€ì „ ì ‘ìˆ˜ì¦
 	m_pDlgTeamTicket		= (gui::CDialog*)GetComponent("dlgTeamTicket");
 	m_pStbTicketTeamGuide	= (gui::CStaticBox*)GetComponent("stbTicketTeamGuide");
 	m_pStbTicketTeamNumber	= (gui::CStaticBox*)GetComponent("stbTicketTeamNumber");
@@ -148,7 +148,7 @@ RwBool CTBRequestGui::Create()
 		m_paTicketTeamMember[i] = (gui::CStaticBox*)GetComponent( acBuffer );
 	}
 
-	// Á¢¼ö¹øÈ£
+	// ì ‘ìˆ˜ë²ˆí˜¸
 	m_numTicket.Create( ND_CENTER, NVD_CENTER, 0 );
 	m_numTicket.SetSurface( 0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CommonNumber.srf", "srfTB_0" ) );
 	m_numTicket.SetSurface( 1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CommonNumber.srf", "srfTB_1" ) );
@@ -242,8 +242,8 @@ RwInt32 CTBRequestGui::SwitchDialog( bool bOpen )
 */
 void CTBRequestGui::HandleEvents( RWS::CMsg& msg )
 {
-	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ÀÇ ¸ŞÀÎ ½ºÅ×ÀÌÆ®°¡ º¯°æµÇ¾úÀ» °æ¿ì
-	//// 1. ¸ŞÀÎ ½ºÅ×ÀÌÆ®°¡ ¸¸¾à¿¡ CLOSE ¶Ç´Â CLEAR »óÅÂÀÏ ¶§ ½ÅÃ»¼­°¡ ¶° ÀÖÀ» °æ¿ì ´İ´Â´Ù.
+	// ì²œí•˜ì œì¼ ë¬´ë„íšŒì˜ ë©”ì¸ ìŠ¤í…Œì´íŠ¸ê°€ ë³€ê²½ë˜ì—ˆì„ ê²½ìš°
+	//// 1. ë©”ì¸ ìŠ¤í…Œì´íŠ¸ê°€ ë§Œì•½ì— CLOSE ë˜ëŠ” CLEAR ìƒíƒœì¼ ë•Œ ì‹ ì²­ì„œê°€ ë–  ìˆì„ ê²½ìš° ë‹«ëŠ”ë‹¤.
 	if( msg.Id == g_EventBudokaiUpdateStateNfy )
 	{
 		sNtlEventBudokaiUpdateStateNfy* pNotify = reinterpret_cast<sNtlEventBudokaiUpdateStateNfy*>( msg.pData );
@@ -257,8 +257,8 @@ void CTBRequestGui::HandleEvents( RWS::CMsg& msg )
 				GetDialogManager()->CloseDialog( DIALOG_BUDOKAI_REQUEST );
 		}
 	}
-	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ÀÇ ¸ÅÄ¡ ½ºÅ×ÀÌÆ®°¡ º¯°æµÇ¾úÀ» °æ¿ì
-	// 1. ¸ÅÄ¡ ½ºÅ×ÀÌÆ®°¡ Register ±â°£ÀÌ ¾Æ´Ñ °æ¿ì¿¡ GUIÀÇ Å¸ÀÔÀÌ ½ÅÃ»¼­¶ó¸é ´İ´Â´Ù.
+	// ì²œí•˜ì œì¼ ë¬´ë„íšŒì˜ ë§¤ì¹˜ ìŠ¤í…Œì´íŠ¸ê°€ ë³€ê²½ë˜ì—ˆì„ ê²½ìš°
+	// 1. ë§¤ì¹˜ ìŠ¤í…Œì´íŠ¸ê°€ Register ê¸°ê°„ì´ ì•„ë‹Œ ê²½ìš°ì— GUIì˜ íƒ€ì…ì´ ì‹ ì²­ì„œë¼ë©´ ë‹«ëŠ”ë‹¤.
 	else if( msg.Id == g_EventBudokaiUpdateMatchStateNfy )
 	{
 		sNtlEventBudokaiUpdateMatchStateNfy* pNotify = reinterpret_cast<sNtlEventBudokaiUpdateMatchStateNfy*>( msg.pData );
@@ -320,8 +320,8 @@ void CTBRequestGui::HandleEvents( RWS::CMsg& msg )
 				GetDialogManager()->CloseDialog( DIALOG_BUDOKAI_REQUEST );
 		}
 	}
-	// ÆÄÆ¼Àü ½ÅÃ» Ãë¼ÒÀÇ °á°ú ( ÆÀ ¸®´õ )
-	// ¼º°ø : Á¢¼öÁõÀ» ½ÅÃ»¼­·Î º¯È¯ÇÏ°í Á¤º¸¸¦ ÃÊ±âÈ­ÇÑ´Ù. ¸¸¾à ÆÄÆ¼¿øÀÌ ¾ø´Â »óÅÂ¶ó¸é °³ÀÎÀüÀÇ ½ÅÃ»¼­·Î ÀüÈ¯
+	// íŒŒí‹°ì „ ì‹ ì²­ ì·¨ì†Œì˜ ê²°ê³¼ ( íŒ€ ë¦¬ë” )
+	// ì„±ê³µ : ì ‘ìˆ˜ì¦ì„ ì‹ ì²­ì„œë¡œ ë³€í™˜í•˜ê³  ì •ë³´ë¥¼ ì´ˆê¸°í™”í•œë‹¤. ë§Œì•½ íŒŒí‹°ì›ì´ ì—†ëŠ” ìƒíƒœë¼ë©´ ê°œì¸ì „ì˜ ì‹ ì²­ì„œë¡œ ì „í™˜
 	else if( msg.Id == g_EventBudokaiLeaveTeamRes )
 	{
 		SNtlEventBudokaiLeaveTeamRes* pResult = reinterpret_cast<SNtlEventBudokaiLeaveTeamRes*>( msg.pData );
@@ -332,14 +332,14 @@ void CTBRequestGui::HandleEvents( RWS::CMsg& msg )
 				GetDialogManager()->CloseDialog( DIALOG_BUDOKAI_REQUEST );
 		}
 	}
-	// ÆÄÆ¼Àü ½ÅÃ» Ãë¼ÒÇß´Ù´Â ¾Ë¸² ( ÆÀ ¸â¹ö Àü¿ø¿¡°Ô )
-	// Á¢¼öÁõÀ» ½ÅÃ»¼­·Î º¯È¯ÇÏ°í Á¤º¸¸¦ ÃÊ±âÈ­ÇÑ´Ù. ( ÆÀ¸â¹öÀÇ °æ¿ì ÆÄÆ¼Àü ½ÅÃ»¼­¸¦ ¶ç¿ì°í ¾Æ´Ï¶ó¸é °³ÀÎÀü ½ÅÃ»¼­·Î ÀüÈ¯ )
+	// íŒŒí‹°ì „ ì‹ ì²­ ì·¨ì†Œí–ˆë‹¤ëŠ” ì•Œë¦¼ ( íŒ€ ë©¤ë²„ ì „ì›ì—ê²Œ )
+	// ì ‘ìˆ˜ì¦ì„ ì‹ ì²­ì„œë¡œ ë³€í™˜í•˜ê³  ì •ë³´ë¥¼ ì´ˆê¸°í™”í•œë‹¤. ( íŒ€ë©¤ë²„ì˜ ê²½ìš° íŒŒí‹°ì „ ì‹ ì²­ì„œë¥¼ ë„ìš°ê³  ì•„ë‹ˆë¼ë©´ ê°œì¸ì „ ì‹ ì²­ì„œë¡œ ì „í™˜ )
 	else if( msg.Id == g_EventBudokaiLeaveTeamNfy )
 	{
 		if( GetDialogManager()->IsOpenDialog( DIALOG_BUDOKAI_REQUEST ) )
 			GetDialogManager()->CloseDialog( DIALOG_BUDOKAI_REQUEST );
 	}
-	// ÆÄÆ¼Àü ¸â¹ö°¡ ÆÄÆ¼Àü ½ÅÃ» Ãë¼Ò¸¦ ÇßÀ» °æ¿ì ( ¸â¹ö º»ÀÎ )
+	// íŒŒí‹°ì „ ë©¤ë²„ê°€ íŒŒí‹°ì „ ì‹ ì²­ ì·¨ì†Œë¥¼ í–ˆì„ ê²½ìš° ( ë©¤ë²„ ë³¸ì¸ )
 	else if( msg.Id == g_EventBudokaiLeaveTeamMemberRes )
 	{
 		SNtlEventBudokaiLeaveTeamMemberRes* pResult = reinterpret_cast<SNtlEventBudokaiLeaveTeamMemberRes*>( msg.pData );
@@ -350,7 +350,7 @@ void CTBRequestGui::HandleEvents( RWS::CMsg& msg )
 				GetDialogManager()->CloseDialog( DIALOG_BUDOKAI_REQUEST );
 		}
 	}
-	// ÆÄÆ¼Àü ¸â¹ö°¡ ÆÄÆ¼Àü ½ÅÃ» Ãë¼Ò¸¦ ÇßÀ» °æ¿ì ( ÆÀ ¸â¹öµé¿¡°Ô )
+	// íŒŒí‹°ì „ ë©¤ë²„ê°€ íŒŒí‹°ì „ ì‹ ì²­ ì·¨ì†Œë¥¼ í–ˆì„ ê²½ìš° ( íŒ€ ë©¤ë²„ë“¤ì—ê²Œ )
 	else if( msg.Id == g_EventBudokaiLeaveTeamMemberNfy )
 	{
 		SNtlEventBudokaiLeaveTeamMemberNfy* pNotify = reinterpret_cast<SNtlEventBudokaiLeaveTeamMemberNfy*>( msg.pData );
@@ -363,7 +363,7 @@ void CTBRequestGui::HandleEvents( RWS::CMsg& msg )
 			}
 		}
 	}
-	// Áß°£¿¡ Å»¶ôÇÏ¿´À» °æ¿ì
+	// ì¤‘ê°„ì— íƒˆë½í•˜ì˜€ì„ ê²½ìš°
 	else if( msg.Id == g_EventBudokaiJoinStateNfy )
 	{
 		SNtlEventBudokaiJoinStateNfy* pNotify = reinterpret_cast<SNtlEventBudokaiJoinStateNfy*>( msg.pData );
@@ -404,7 +404,7 @@ void CTBRequestGui::HandleEvents( RWS::CMsg& msg )
 			//		{
 			//			if( wcscmp( pJoinInfo->sTeamInfo.aMemberInfo[i].wszName, pAvatarInfo->sCharPf.awchName ) == 0 )
 			//			{
-			//				// i °¡ 0 ÀÏ ¶§¸¸ ½ÅÃ»ÇÑ »ç¶÷ÀÌ ÆÄÆ¼ÀåÀÌ°í ±× ÀÌ¿Ü¿¡´Â ¸â¹ö·Î °£ÁÖÇÑ´Ù.
+			//				// i ê°€ 0 ì¼ ë•Œë§Œ ì‹ ì²­í•œ ì‚¬ëŒì´ íŒŒí‹°ì¥ì´ê³  ê·¸ ì´ì™¸ì—ëŠ” ë©¤ë²„ë¡œ ê°„ì£¼í•œë‹¤.
 			//				if( i == 0 )
 			//					GetDboGlobal()->GetGamePacketGenerator()->SendBudokaiLeaveTeamReq();
 			//				else
@@ -422,7 +422,7 @@ void CTBRequestGui::HandleEvents( RWS::CMsg& msg )
 }
 
 /**
-* \brief ½ÅÃ»¼­ÀÇ Å¸ÀÔÀ» ¼¼ÆÃÇÑ´Ù.
+* \brief ì‹ ì²­ì„œì˜ íƒ€ì…ì„ ì„¸íŒ…í•œë‹¤.
 */
 void CTBRequestGui::SetRequestType( RwUInt8 byRequestType )
 {
@@ -430,7 +430,7 @@ void CTBRequestGui::SetRequestType( RwUInt8 byRequestType )
 }
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ Âü°¡ »óÅÂ¿¡ µû¸¥ ½ÅÃ»¼­ÀÇ TypeÀ» ÁöÁ¤ÇÑ´Ù.
+* \brief ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì°¸ê°€ ìƒíƒœì— ë”°ë¥¸ ì‹ ì²­ì„œì˜ Typeì„ ì§€ì •í•œë‹¤.
 */
 void CTBRequestGui::UpdateJoinInfo()
 {
@@ -440,8 +440,8 @@ void CTBRequestGui::UpdateJoinInfo()
 	sBUDOKAI_UPDATE_MATCH_STATE_INFO* pSoloMatch;
 	sBUDOKAI_UPDATE_MATCH_STATE_INFO* pTeamMatch;
 
-	// NULL ÀÏ ¶§´Â ¾Æ¹ÙÅ¸ »ı¼º Àü¿¡ Á¤º¸°¡ µé¾î¿ÔÀ» °æ¿ì
-	// NULLÀÌ ¾Æ´Ò ¶§´Â Á¤»óÀûÀ¸·Î µ¥ÀÌÅÍ°¡ ¼ÂÆÃ µÇ¾úÀ» °æ¿ì
+	// NULL ì¼ ë•ŒëŠ” ì•„ë°”íƒ€ ìƒì„± ì „ì— ì •ë³´ê°€ ë“¤ì–´ì™”ì„ ê²½ìš°
+	// NULLì´ ì•„ë‹ ë•ŒëŠ” ì •ìƒì ìœ¼ë¡œ ë°ì´í„°ê°€ ì…‹íŒ… ë˜ì—ˆì„ ê²½ìš°
 	if( pSobAvatar == NULL )
 	{
 		pJoinInfo = &GetNtlSLGlobal()->GetTBudokaiStateInfo()->sJoinInfo;
@@ -457,11 +457,11 @@ void CTBRequestGui::UpdateJoinInfo()
 
 	if( pJoinInfo->byJoinState == BUDOKAI_JOIN_STATE_DROPOUT )
 	{
-		// Exception ( Å»¶ôÀÚ´Â Á¢¼öÁõ, ½ÅÃ»¼­ µÑ´Ù ¶ß¸é ¾ÈµÈ´Ù. )
+		// Exception ( íƒˆë½ìëŠ” ì ‘ìˆ˜ì¦, ì‹ ì²­ì„œ ë‘˜ë‹¤ ëœ¨ë©´ ì•ˆëœë‹¤. )
 	}
 	else if( pJoinInfo->byJoinState == BUDOKAI_JOIN_STATE_PLAY )
 	{
-		// Á¢¼öÁõÀÌ º¸¿©Áà¾ßÇÔ
+		// ì ‘ìˆ˜ì¦ì´ ë³´ì—¬ì¤˜ì•¼í•¨
 		m_byGuiType = TYPE_TICKET;
 		
 		if( pJoinInfo->byMatchType == BUDOKAI_MATCH_TYPE_INDIVIDIAUL )
@@ -509,7 +509,7 @@ void CTBRequestGui::UpdateJoinInfo()
 }
 
 /**
-* \brief ÇöÀçÀÇ »óÅÂ¿¡ µû¸¥ ÀÎÅÍÆäÀÌ½º¸¦ ¼¼ÆÃÇØÁØ´Ù. ( ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ Á¤º¸¸¦ ÀĞ¾î¼­ ¼¼ÆÃÇÑ´Ù. )
+* \brief í˜„ì¬ì˜ ìƒíƒœì— ë”°ë¥¸ ì¸í„°í˜ì´ìŠ¤ë¥¼ ì„¸íŒ…í•´ì¤€ë‹¤. ( ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì •ë³´ë¥¼ ì½ì–´ì„œ ì„¸íŒ…í•œë‹¤. )
 */
 void CTBRequestGui::UpdateInterface()
 {
@@ -522,7 +522,7 @@ void CTBRequestGui::UpdateInterface()
 	m_pDlgIndiTicket->Show( false );
 	m_pDlgTeamTicket->Show( false );
 
-	// ÇöÀç Âü°¡ »óÅÂ¸¦ Ã¼Å©ÇÑ´Ù.
+	// í˜„ì¬ ì°¸ê°€ ìƒíƒœë¥¼ ì²´í¬í•œë‹¤.
 	UpdateJoinInfo();
 
 	if( m_byGuiType == TYPE_REQUEST )
@@ -536,17 +536,17 @@ void CTBRequestGui::UpdateInterface()
 			if( pSobAvatar == NULL )
 				return;
 
-			// ÀÌ¸§, ·¹º§
+			// ì´ë¦„, ë ˆë²¨
 			m_pStbIndiNameDisplay->SetText( Logic_GetAvatarName() );
 			m_pStbIndiLevelDisplay->SetText( Logic_GetLevel( pSobAvatar ) );
 
-			// Å¬·¡½º
-			RwUInt8 byClass = Logic_GetPlayerClass(pSobAvatar);	// Å¬·¡½º
+			// í´ë˜ìŠ¤
+			RwUInt8 byClass = Logic_GetPlayerClass(pSobAvatar);	// í´ë˜ìŠ¤
 			m_pStbIndiClassDisplay->SetText( Logic_GetClassName( byClass ) );
 
 			sRANKBATTLE_SCORE_INFO* pData = pSobAvatar->GetRankBattle()->GetRankBattleScore();
 			
-			// ÀüÀû ( ¸îÀü ¸î½Â ¸îÆĞ )
+			// ì „ì  ( ëª‡ì „ ëª‡ìŠ¹ ëª‡íŒ¨ )
 			WCHAR awcBuffer[256];
 			swprintf( awcBuffer, 256, 
 				GetDisplayStringManager()->GetString( "DST_BUDOKAI_INDI_REQ_RECORD_DATA" ),
@@ -555,10 +555,10 @@ void CTBRequestGui::UpdateInterface()
 				pData->dwLose );
 			m_pStbIndiRecordDisplay->SetText( awcBuffer );
 
-			// ·©Å· Æ÷ÀÎÆ®
+			// ë­í‚¹ í¬ì¸íŠ¸
 			m_pStbIndiRankingPointDisplay->SetText( (RwInt32)pData->fPoint );
 
-			// ±æµå
+			// ê¸¸ë“œ
 			if( pSobAvatar->GetGuild()->IsHaveGroup() )
 			{
 				m_pStbIndiGuildDisplay->SetText( pSobAvatar->GetGuild()->GetGuildName() );
@@ -573,7 +573,7 @@ void CTBRequestGui::UpdateInterface()
 			m_pDlgTeam->Show( true );
 
 			
-			// Input Box¿¡ ÆÄÆ¼ ÀÌ¸§À» ±âº»À¸·Î ¼¼ÆÃÇÑ´Ù.
+			// Input Boxì— íŒŒí‹° ì´ë¦„ì„ ê¸°ë³¸ìœ¼ë¡œ ì„¸íŒ…í•œë‹¤.
 			m_pIpbTeamName->Clear();
 			CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
 			if( pAvatar )
@@ -585,7 +585,7 @@ void CTBRequestGui::UpdateInterface()
 				}
 			}
 
-			// ½ÅÃ» µÇ´Â ¸â¹öÀÇ ¸®½ºÆ®¸¦ Å¬¸®¾î ÇÏ°í ¼­¹ö¿¡ ÆÀÀÇ Á¤º¸¸¦ ¿äÃ»ÇÑ´Ù.
+			// ì‹ ì²­ ë˜ëŠ” ë©¤ë²„ì˜ ë¦¬ìŠ¤íŠ¸ë¥¼ í´ë¦¬ì–´ í•˜ê³  ì„œë²„ì— íŒ€ì˜ ì •ë³´ë¥¼ ìš”ì²­í•œë‹¤.
 			ClearRequestMemberInfo();
 			GetDboGlobal()->GetGamePacketGenerator()->SendBudokaiJoinTeamInfoReq();		
 		}
@@ -600,7 +600,7 @@ void CTBRequestGui::UpdateInterface()
 	{
 		if( m_byRequestType == REQUEST_INDIVIDUAL )
 		{
-			m_numTicket.SetPosition( 215, 192 ); // °³ÀÎÀü ½ÅÃ»¼­ À§Ä¡
+			m_numTicket.SetPosition( 215, 192 ); // ê°œì¸ì „ ì‹ ì²­ì„œ ìœ„ì¹˜
 			m_pDlgIndiTicket->Show( true );
 
 			
@@ -665,7 +665,7 @@ void CTBRequestGui::UpdateInterface()
 		}
 		else if( m_byRequestType == REQUEST_TEAM )
 		{
-			m_numTicket.SetPosition( 215, 140 ); // ÆÀÀü ½ÅÃ»¼­ À§Ä¡
+			m_numTicket.SetPosition( 215, 140 ); // íŒ€ì „ ì‹ ì²­ì„œ ìœ„ì¹˜
 			m_pDlgTeamTicket->Show( true );
 
 			CNtlSobAvatar* pSobAvatar = GetNtlSLGlobal()->GetSobAvatar();
@@ -674,7 +674,7 @@ void CTBRequestGui::UpdateInterface()
 
 			sBUDOKAI_JOIN_INFO* pInfo = pSobAvatar->GetTenkaichiBudokai()->GetBudokaiJoinInfo();
 
-			// ÆÀ µ¥ÀÌÅÍ°¡ ¾Æ´Ï¶ó¸é Àß¸øµÈ µ¥ÀÌÅÍ
+			// íŒ€ ë°ì´í„°ê°€ ì•„ë‹ˆë¼ë©´ ì˜ëª»ëœ ë°ì´í„°
 			if( pInfo->byMatchType != BUDOKAI_MATCH_TYPE_TEAM )
 				return;
 
@@ -686,11 +686,11 @@ void CTBRequestGui::UpdateInterface()
 			swprintf_s( awcBuffer, 512, GetDisplayStringManager()->GetString( "DST_BUDOKAI_SUCCESS_GUIDE" ), pInfo->sTeamInfo.wszTeamName );
 			m_pStbTicketTeamNumber->SetText( awcBuffer );
 
-			// ¸â¹öÀÇ Á¤º¸¸¦ ÃÊ±âÈ­ÇÏ°í »õ·Î¿î Á¤º¸¸¦ ³Ö´Â´Ù.
+			// ë©¤ë²„ì˜ ì •ë³´ë¥¼ ì´ˆê¸°í™”í•˜ê³  ìƒˆë¡œìš´ ì •ë³´ë¥¼ ë„£ëŠ”ë‹¤.
 			ClearTicketMemberInfo();
 			for( RwInt32 i = 0; i< dTBREQUEST_TEAM_MEMBER; ++i )
 			{
-				// Class°¡ ÀÖ°í aMemberInfoÀÇ ÀÌ¸§ÀÌ ÀÖ´Ù¸é
+				// Classê°€ ìˆê³  aMemberInfoì˜ ì´ë¦„ì´ ìˆë‹¤ë©´
 				if( ( pInfo->sTeamInfo.aMemberInfo[i].byClass != INVALID_BYTE )
 					&& ( wcslen( pInfo->sTeamInfo.aMemberInfo[i].wszName ) > 0 ) )
 				{
@@ -745,7 +745,7 @@ void CTBRequestGui::OnClickedBtnAccept( gui::CComponent* pComponent )
 			GetDboGlobal()->GetGamePacketGenerator()->SendBudokaiJoinIndividualReq();
 		else if( m_byRequestType == REQUEST_TEAM )
 		{
-			// ÆÄÆ¼ÀÇ ¸®´õ°¡ ¾Æ´Ï¶ó¸é ½ÅÃ» ÇÒ¼ö ¾ø½À´Ï´Ù.
+			// íŒŒí‹°ì˜ ë¦¬ë”ê°€ ì•„ë‹ˆë¼ë©´ ì‹ ì²­ í• ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 			if( !Logic_I_am_PartyLeader() )
 			{
 				GetAlarmManager()->AlarmMessage( "DST_BUDOKAI_NEWS_CAN_ONLY_LEADER" );
@@ -754,7 +754,7 @@ void CTBRequestGui::OnClickedBtnAccept( gui::CComponent* pComponent )
 
 			if( wcslen( m_pIpbTeamName->GetText() ) < 4 )
 			{
-				// 4±ÛÀÚ ÀÌ»óÀÌ µÇ¾î¾ß ÇÕ´Ï´Ù.
+				// 4ê¸€ì ì´ìƒì´ ë˜ì–´ì•¼ í•©ë‹ˆë‹¤.
 			}
 			else
 			{

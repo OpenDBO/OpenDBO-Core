@@ -2,14 +2,14 @@
  *
  * File			: NtlSobSyncStatus.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 11. 16	
  * Abstract		: Simulation Status object
  *****************************************************************************
- * Desc         : ¼­¹ö¿¡¼­ ³»·ÁÁÖ´Â damage¿Í hp/mp/cp Ã¤¿ì±â packet¿¡ µ¿±âÈ­ Ã³¸®¿¡ »ç¿ëÇÑ´Ù.
- *				  ¼­¹ö¿¡¼­ ¸ÕÀú damage¸¦ ³»·ÁÁÖ¾îµµ, °ø°İ animation µ¿±âÈ­·Î ÀÎÇÏ¿©, ³ªÁß¿¡ Ã³¸®µÉ ¼ö ÀÖ´Ù.
-                  ÀÌ·± °æ¿ì¿¡ current hp¸¦ ±×´ë·Î actor¿¡ Àû¿ëÇÑ´Ù¸é, avatar gui hp bar°¡ µé¾¦³¯¾¦ ÀÌ»óÇØ
-				  º¸ÀÎ´Ù. ÀÌ·± °æ¿ì¿¡ animation µ¿±âÈ­ damage ¹× hp/mp/cp Ã³¸®¸¦ ÇÏ±â À§ÇÏ¿© ¸¸µé¾ú´Ù.
+ * Desc         : ì„œë²„ì—ì„œ ë‚´ë ¤ì£¼ëŠ” damageì™€ hp/mp/cp ì±„ìš°ê¸° packetì— ë™ê¸°í™” ì²˜ë¦¬ì— ì‚¬ìš©í•œë‹¤.
+ *				  ì„œë²„ì—ì„œ ë¨¼ì € damageë¥¼ ë‚´ë ¤ì£¼ì–´ë„, ê³µê²© animation ë™ê¸°í™”ë¡œ ì¸í•˜ì—¬, ë‚˜ì¤‘ì— ì²˜ë¦¬ë  ìˆ˜ ìˆë‹¤.
+                  ì´ëŸ° ê²½ìš°ì— current hpë¥¼ ê·¸ëŒ€ë¡œ actorì— ì ìš©í•œë‹¤ë©´, avatar gui hp barê°€ ë“¤ì‘¥ë‚ ì‘¥ ì´ìƒí•´
+				  ë³´ì¸ë‹¤. ì´ëŸ° ê²½ìš°ì— animation ë™ê¸°í™” damage ë° hp/mp/cp ì²˜ë¦¬ë¥¼ í•˜ê¸° ìœ„í•˜ì—¬ ë§Œë“¤ì—ˆë‹¤.
  *****************************************************************************/
 
 #ifndef __NTL_SOB_SYNC_STATUS_H__
@@ -27,14 +27,14 @@ protected:
 	RwBool m_bFinish;
 	
 	/**
-	* »ı¼ºÀÚ
+	* ìƒì„±ì
 	*/
 	CNtlSobSyncStatus();
 	
 public:
 
 	/**
-	* ¼Ò¸êÀÚ
+	* ì†Œë©¸ì
 	*/
 	virtual ~CNtlSobSyncStatus();
 

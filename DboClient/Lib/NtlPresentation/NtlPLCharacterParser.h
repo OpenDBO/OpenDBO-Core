@@ -2,7 +2,7 @@
  *
  * File			: NtlPLCharacterFileData.h
  * Author		: HongHoDong
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 10. 27.	
  * Abstract		: NTL NtlPLCharacterFileData
  *****************************************************************************

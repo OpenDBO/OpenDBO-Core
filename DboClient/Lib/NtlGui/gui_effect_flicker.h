@@ -49,7 +49,7 @@ public:
 	VOID	StartProc( BOOL bRepeat = FALSE ) { m_bRun = TRUE; m_bRepeat = bRepeat; Reset(); }	 
 	VOID	EndProc(VOID) { m_bRun = FALSE; }
 
-	VOID	Reset(VOID) { m_fCurrentTime = m_fCurrentPulseTime = 0.0f; m_bBeginState = TRUE; }						// √≥¿Ω∫Œ≈Õ...
+	VOID	Reset(VOID) { m_fCurrentTime = m_fCurrentPulseTime = 0.0f; m_bBeginState = TRUE; }						// Ï≤òÏùåÎ∂ÄÌÑ∞...
 	VOID	ResetAttribute(VOID) { m_dwTypeFlag = 0; m_surSurface.m_SnapShot = m_surSurface.m_Original; }
 
 	VOID	Update( FLOAT fElapsedTime );
@@ -66,7 +66,7 @@ private:
 //! Variables
 	CSurface	m_surSurface;
 	
-	FLOAT		m_fLifeTime;			// 0.0f∏È π´«—¥Î
+	FLOAT		m_fLifeTime;			// 0.0fÎ©¥ Î¨¥ÌïúÎåÄ
 	FLOAT		m_fPulseTime;
 	FLOAT		m_fCurrentTime;
 	FLOAT		m_fCurrentPulseTime;

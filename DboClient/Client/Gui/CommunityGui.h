@@ -1,13 +1,13 @@
 /******************************************************************************
 * File			: CCommunityGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2006. 9. 13
 * Abstract		: 
 *****************************************************************************
-* Desc			: Ä¿¹Â´ÏÆ¼ °ü·Ã ´ÙÀÌ¾ó·Î±× ÇüÆ²
-*				  °¢°¢ÀÇ ÆäÀÌÁö ³»¿ëÀº PageType¿¡ µû¶ó ¼¼ÆÃµÇ°í
-*				  ¸Þ¼¼Áö¿Í ÀÌº¥Æ®µµ È°¼ºÈ­µÈ Page¿¡ Àü´ÞµÈ´Ù.
+* Desc			: ì»¤ë®¤ë‹ˆí‹° ê´€ë ¨ ë‹¤ì´ì–¼ë¡œê·¸ í˜•í‹€
+*				  ê°ê°ì˜ íŽ˜ì´ì§€ ë‚´ìš©ì€ PageTypeì— ë”°ë¼ ì„¸íŒ…ë˜ê³ 
+*				  ë©”ì„¸ì§€ì™€ ì´ë²¤íŠ¸ë„ í™œì„±í™”ëœ Pageì— ì „ë‹¬ëœë‹¤.
 *****************************************************************************/
 
 #pragma once
@@ -51,10 +51,10 @@ public:
 	RwBool		Create();
 	VOID		Destroy();
 
-	RwInt32		SwitchDialog(bool bOpen);			///< DialogManager¿¡¼­ÀÇ Open/Close
+	RwInt32		SwitchDialog(bool bOpen);			///< DialogManagerì—ì„œì˜ Open/Close
 
-	VOID		SetPageType(RwInt32 iPageType);			///< ÇØ´ç ÆäÀÌÁö¸¦ È°¼ºÈ­ ½ÃÅ²´Ù.
-	RwInt32		GetPageType();							///< È°¼ºÈ­µÈ ÆäÀÌÁö ÀÎµ¦½º ¹ÝÈ¯
+	VOID		SetPageType(RwInt32 iPageType);			///< í•´ë‹¹ íŽ˜ì´ì§€ë¥¼ í™œì„±í™” ì‹œí‚¨ë‹¤.
+	RwInt32		GetPageType();							///< í™œì„±í™”ëœ íŽ˜ì´ì§€ ì¸ë±ìŠ¤ ë°˜í™˜
 
 	CHARACTERID	GetGuildSelectedID();
 
@@ -64,8 +64,8 @@ protected:
 
 	VOID			SetupPage(RwInt32 iPage);
 
-	VOID			CloseButtonClicked(gui::CComponent* pComponent);	///< ´Ý±â ¹öÆ°À» ´­·¶´Ù.
-	VOID			OnTabChanged(RwInt32 nIndex, RwInt32 nOldIndex);	///< ÅÇ ¹öÆ°À» ´­·¶´Ù.
+	VOID			CloseButtonClicked(gui::CComponent* pComponent);	///< ë‹«ê¸° ë²„íŠ¼ì„ ëˆŒë €ë‹¤.
+	VOID			OnTabChanged(RwInt32 nIndex, RwInt32 nOldIndex);	///< íƒ­ ë²„íŠ¼ì„ ëˆŒë €ë‹¤.
 
 	VOID			OnPaint();
 
@@ -88,19 +88,19 @@ protected:
 	gui::CSlot			m_slotCaptureMouseDown;
 	gui::CSlot			m_slotCloseButton;
 
-	gui::CStaticBox*	m_pDialogName;				///< ´ÙÀÌ¾ó·Î±×ÀÇ ÀÌ¸§ ½ºÅÂÆ½
-	gui::CButton*		m_pExitButton;				///< Ã¢´Ý±â ¹öÆ°
-	CWindowby3			m_BackLineSurface;			///< ¹é¶óÀÎ
+	gui::CStaticBox*	m_pDialogName;				///< ë‹¤ì´ì–¼ë¡œê·¸ì˜ ì´ë¦„ ìŠ¤íƒœí‹±
+	gui::CButton*		m_pExitButton;				///< ì°½ë‹«ê¸° ë²„íŠ¼
+	CWindowby3			m_BackLineSurface;			///< ë°±ë¼ì¸
 
-	gui::CPanel*		m_pDumyPanel;				///< ´õ¹Ì
+	gui::CPanel*		m_pDumyPanel;				///< ë”ë¯¸
 
-	gui::CTabButton*	m_pTabButton;				///< ÅÇ ¹öÆ°
+	gui::CTabButton*	m_pTabButton;				///< íƒ­ ë²„íŠ¼
 
 	gui::CButton*		m_pBtnHelp;
 	gui::CSlot			m_slotClickedBtnHelp;
 
-	RwInt32				m_iPageType;				///< ÇöÀçÀÇ ÆäÀÌÁö Å¸ÀÔ
+	RwInt32				m_iPageType;				///< í˜„ìž¬ì˜ íŽ˜ì´ì§€ íƒ€ìž…
 
-	///< °¢ ÅÇº° ÆäÀÌÁö
-	CCommunityBase*		m_pTabPage[NUM_PAGE];		///< °¢ ÅÇÀÇ GUI
+	///< ê° íƒ­ë³„ íŽ˜ì´ì§€
+	CCommunityBase*		m_pTabPage[NUM_PAGE];		///< ê° íƒ­ì˜ GUI
 };

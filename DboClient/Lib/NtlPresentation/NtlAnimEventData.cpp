@@ -46,7 +46,7 @@ void SEventAnimHit::SaveSerialize(CNtlSerializer& sOut)
         break;
     }
 
-    // Ä«¸Ş¶ó ¼ÎÀÌÅ©
+    // ì¹´ë©”ë¼ ì…°ì´í¬
     if(bCameraShake)
     {
         sOut<<fCameraShakeFactor;

@@ -2,7 +2,7 @@
  *
  * File			: NtlPLEquipItem
  * Author		: HongHoDong
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2006. 11. 6.
  * Abstract		: NTL PLEquipItem
  *****************************************************************************
@@ -46,24 +46,24 @@ public:
 	~CNtlPLEquipItem();
 
 private:
-	EQUIP_ITEM_LIST			m_listItem;											// ÇöÀç ÀåÂøµÈ ItemÀÇ list 
+	EQUIP_ITEM_LIST			m_listItem;											// í˜„ì¬ ì¥ì°©ëœ Itemì˜ list 
 	DEFAULT_ITEM_MAP		m_mapDefaultItem;									// Default Body Item
 	
-	CNtlPLCharacter			*m_pOwner;											// ¼ÒÀ¯ÀÚ								
-	SEquipItemScheduleResInfo	m_sScheduleResInfo;								// ResLoad°¡ µÉ ¶§ Àû¿ë 
+	CNtlPLCharacter			*m_pOwner;											// ì†Œìœ ì								
+	SEquipItemScheduleResInfo	m_sScheduleResInfo;								// ResLoadê°€ ë  ë•Œ ì ìš© 
 	
 	RwReal					m_fFaceTexAniDefaultChangeTime;						// Face Texture Change Delay Time Default
 	RwReal					m_fFaceTexAniChangeTime;							// Face Texture Change Delay Time
 	RwReal					m_fFaceTexAniDisplayTime;							// Face Texture Display Delay Time
 	
-	RwReal					m_fFaceTexAniCounter;								// Face Time ¿ë counter
+	RwReal					m_fFaceTexAniCounter;								// Face Time ìš© counter
 	RwInt32					m_iFaceTexAniNum;									// Current Face Texture
 
 	RwTexture				*m_pFaceTexture[2];									// Face Texture;
 	RwTexture				*m_pBaseFaceTexture;								// Base Face
 	RwTexture				*m_pHeadTexture;									// Head Texture(Namek)
 
-    RwBool                  m_bFaceChange;                                      // ¾ó±¼ ÅØ½ºÃÄ º¯È­ À¯¹« ÇÃ·¡±×
+    RwBool                  m_bFaceChange;                                      // ì–¼êµ´ í…ìŠ¤ì³ ë³€í™” ìœ ë¬´ í”Œë˜ê·¸
 
 private:
 	void	SetDefItem(CNtlPLItem *pItem, RwUInt32 uiEquip);
@@ -105,7 +105,7 @@ public:
 	RwBool	Create( RwUInt32 uiClass, RwUInt32 uiRace, RwUInt32 uiGender, RwUInt32 uiHeadType, RwUInt32 uiFaceType, RwUInt32 uiSkinColorType, RwUInt32 uiHeadColorType, RwBool bIsAdult);
 
     void	SetApplyFaceData(CNtlPLItem *pItem);
-    void    SetChangeFaceEnable(RwBool bEnable);          ///< ¾ó±¼ ÅØ½ºÃÄ º¯°æ À¯¹«¸¦ ¼³Á¤ÇÑ´Ù.
+    void    SetChangeFaceEnable(RwBool bEnable);          ///< ì–¼êµ´ í…ìŠ¤ì³ ë³€ê²½ ìœ ë¬´ë¥¼ ì„¤ì •í•œë‹¤.
 	VOID	SetToonEdgeVisibility4CurEquipItem(RwBool _Visibility);
 	void	SetSimpleMaterial(RwBool _SimpleMaterial);
 	VOID	SetPetrifyMaterial(RwBool _PetrifyFlag);

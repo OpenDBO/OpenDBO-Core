@@ -2,7 +2,7 @@
  *
  * File			: NtlSobProxy.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2006. 4. 26	
  * Abstract		: Simulation object proxy base class
  *****************************************************************************
@@ -43,7 +43,7 @@ class CNtlSobProxySystemEffectScale;
 #define NTL_SHADOW_GRAY_MAX					200
 
 // proxy system flag
-#define NTL_PROXYSYSTEM_NOT_VISIBLE			0x00000001		// GM¿∫ ¥Ÿ∏• playerø°∞‘ æ»∫∏¿œ ∞ÊøÏ æ≤¿Œ¥Ÿ.
+#define NTL_PROXYSYSTEM_NOT_VISIBLE			0x00000001		// GMÏùÄ Îã§Î•∏ playerÏóêÍ≤å ÏïàÎ≥¥Ïùº Í≤ΩÏö∞ Ïì∞Ïù∏Îã§.
 #define NTL_PROXYSYSTEM_LP_VISIBLE			0x00000002		// LP GUI on/off 
 
 

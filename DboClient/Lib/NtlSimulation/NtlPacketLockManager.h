@@ -64,7 +64,7 @@ public:
 	RwBool	IsLock_withoutMessage( RwInt32 eLockPacket );
 	RwBool	IsLockType_withoutMessage( RwInt32 eLockedType );
 
-	// Req <-> Res °£ÀÇ Lock
+	// Req <-> Res ê°„ì˜ Lock
 	RwBool	IndividualLock( RwInt32 eLockPacket );
 	RwBool	IndividualUnlock( RwInt32 eLockPacket );
 	RwBool	IsIndividualLock( RwInt32 eLockPacket );
@@ -72,10 +72,10 @@ public:
 private:
 	// Variable
 
-	// LOCK TYPE º°·Î ºĞ·ùÇÏ´Â Packet
+	// LOCK TYPE ë³„ë¡œ ë¶„ë¥˜í•˜ëŠ” Packet
 	MAP_LOCKPACKET		m_mapLockPacket;
 	
-	// Request ¿Í Result ·Î ±¸ºĞÇÏ´Â Packet
+	// Request ì™€ Result ë¡œ êµ¬ë¶„í•˜ëŠ” Packet
 	SET_LOCKPACKET		m_setLockPacket;
 	LIST_LOCKED_TIME	m_listLockedTime;
 };

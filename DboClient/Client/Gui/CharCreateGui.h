@@ -1,7 +1,7 @@
 			/******************************************************************************
 * File			: CharCreateGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2006. 12. 7
 * Update		: 2007. 10. 11
 * Abstract		: 
@@ -59,7 +59,7 @@ public:
 
 	const WCHAR*	GetInputText();
 
-	// Ä³¸¯ÅÍ ½ºÅ×ÀÌÁö(·Îºñ)¿¡¼­ÀÇ GUIÀÇ ÄÁÆ®·ÑÀÇ À§ÇÑ ÇÔ¼ö
+	// ìºë¦­í„° ìŠ¤í…Œì´ì§€(ë¡œë¹„)ì—ì„œì˜ GUIì˜ ì»¨íŠ¸ë¡¤ì˜ ìœ„í•œ í•¨ìˆ˜
 	VOID		SwitchDialog(bool bShow);
 
 protected:
@@ -98,22 +98,22 @@ public:
 	gui::CSlot			m_slotCaptureMouseUp;
 	gui::CSlot			m_slotPaint;
 
-	gui::CButton*		m_pLeftRotButton;	///< ¿ŞÂÊ È¸Àü ¹öÆ°
-	gui::CButton*		m_pRightRotButton;	///< ¿À¸¥ÂÊ È¸Àü ¹öÆ°
-	gui::CButton*		m_pReturnButton;	///< µ¹¾Æ°¡±â ¹öÆ°
-	gui::CButton*		m_pMakeButton;		///< ¸¸µé±â ¹öÆ°
+	gui::CButton*		m_pLeftRotButton;	///< ì™¼ìª½ íšŒì „ ë²„íŠ¼
+	gui::CButton*		m_pRightRotButton;	///< ì˜¤ë¥¸ìª½ íšŒì „ ë²„íŠ¼
+	gui::CButton*		m_pReturnButton;	///< ëŒì•„ê°€ê¸° ë²„íŠ¼
+	gui::CButton*		m_pMakeButton;		///< ë§Œë“¤ê¸° ë²„íŠ¼
 
 	CSurfaceGui			m_srfNameBack;		///< Name Back
 
-	gui::CStaticBox*	m_pNameStatic;		///< 'ÀÌ¸§'
+	gui::CStaticBox*	m_pNameStatic;		///< 'ì´ë¦„'
 
-	gui::CInputBox*		m_pNameInput;		///< ÀÌ¸§ ÀÔ·Â¶õ
+	gui::CInputBox*		m_pNameInput;		///< ì´ë¦„ ì…ë ¥ë€
 
-	CRaceExplainGui*	m_pRaceExplainGui;	///< Á¾Á· ¼³¸í Gui
-	CClassExplainGui*	m_pClassExplainGui;	///< Å¬·¡½º ¼³¸í Gui
-	CCharMakePartGui*	m_pCharMakePartGui;	///< Ä³¸¯ÅÍÀÇ °¢ ºÎºĞÀ» ¼±ÅÃÇÏ´Â Å¬·¡½º
+	CRaceExplainGui*	m_pRaceExplainGui;	///< ì¢…ì¡± ì„¤ëª… Gui
+	CClassExplainGui*	m_pClassExplainGui;	///< í´ë˜ìŠ¤ ì„¤ëª… Gui
+	CCharMakePartGui*	m_pCharMakePartGui;	///< ìºë¦­í„°ì˜ ê° ë¶€ë¶„ì„ ì„ íƒí•˜ëŠ” í´ë˜ìŠ¤
 
-	RwUInt8				m_byRotationState;	///< Ä³¸¯ÅÍ È¸Àü»óÅÂ
+	RwUInt8				m_byRotationState;	///< ìºë¦­í„° íšŒì „ìƒíƒœ
 
 	sMOUSE_ROL			m_tMouseRol;
 };

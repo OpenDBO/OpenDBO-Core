@@ -3,7 +3,7 @@
 //|-------------------------------------------------------------------------------------------------------------------
 //|	Topic	| CNtlPLOptionManager
 //|---------|---------------------------------------------------------------------------------------------------------
-//|	Content | Visual Option Test¸¦ À§ÇÑ Class
+//|	Content | Visual Option Testë¥¼ ìœ„í•œ Class
 //|---------|---------------------------------------------------------------------------------------------------------
 //|	Author	| Cz
 //|-------------------------------------------------------------------------------------------------------------------
@@ -28,34 +28,34 @@ public:
 	RwBool		Update(const RwCamera* pCameram, RwReal fElapsed);
 
 public:
-	// Object °¡½Ã°Å¸®
+	// Object ê°€ì‹œê±°ë¦¬
 	void		SetObjectFar(RwReal fFar);
 	RwReal		GetObjectFar();	
 	
-	// Terrain °¡½Ã°Å¸®
+	// Terrain ê°€ì‹œê±°ë¦¬
 	void		SetTerrainFar(RwReal fFar);
 	RwReal		GetTerrainFar();
 
-	// Terrain Shadow Render À¯¹«
+	// Terrain Shadow Render ìœ ë¬´
 	void		SetTerrainShadow(RwBool bRender);
 	RwBool		GetTerrainShadow();
 
 	void		SetWaterSpecular(RwBool bRender);
 	RwBool		GetWaterSpecular();
 
-	// ³¯¾¾ ¼¼ºÎ ¹¦»ç
+	// ë‚ ì”¨ ì„¸ë¶€ ë¬˜ì‚¬
 	void		SetWeatherLevel(RwUInt32 uiLevel);
 	RwUInt32	GetWeatherLevel();
 
-	// Ç® °¡½Ã°Å¸®
+	// í’€ ê°€ì‹œê±°ë¦¬
 	void		SetPlantClipDist(RwReal fDist);
 	RwReal		GetPlantClipDist();
 
-	// ¾ÆÁö¶ûÀÌ À¯¹«
+	// ì•„ì§€ë‘ì´ ìœ ë¬´
 	void		SetHeatHaze(RwBool bUse);
 	RwBool		GetHeatHaze();
 
-	// ÅØ½ºÃÄ ·¹º§ // ³·À»¼ö·Ï ³ôÀ½. 0 == ¿øº».
+	// í…ìŠ¤ì³ ë ˆë²¨ // ë‚®ì„ìˆ˜ë¡ ë†’ìŒ. 0 == ì›ë³¸.
 	void		SetTextureQuality(RwUInt32 uiQualityLevel);
 	RwUInt32	GetTextureQuality();
 

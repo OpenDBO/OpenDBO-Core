@@ -1,4 +1,4 @@
-// Attr_EVT_ColObject.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_EVT_ColObject.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_EVT_ColObject.h"
 
 
-// CAttr_EVT_ColObject ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_EVT_ColObject ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_EVT_ColObject, CAttr_Page, 1)
 
@@ -57,4 +57,4 @@ BEGIN_MESSAGE_MAP(CAttr_EVT_ColObject, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_EVT_ColObject ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_EVT_ColObject ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

@@ -5,8 +5,8 @@
 typedef std::map<std::string, CMTItem*> MapItem;
 /**
  * \ingroup ModelTool2
- * \brief Model Tool¿¡¼­ »ı¼ºµÈ ItemµéÀ» °ü¸®ÇÏ´Â Pool Å¬·¡½º. ItemÀº TreeItem°ú ItemView Pane µÎ±ºµ¥¼­ °°ÀÌ »ç¿ëÇÏ±â ¶§¹®¿¡
- * Pool Å¬·¡½º¸¦ ÅëÇØ¼­ »ç¿ëÇÑ´Ù.
+ * \brief Model Toolì—ì„œ ìƒì„±ëœ Itemë“¤ì„ ê´€ë¦¬í•˜ëŠ” Pool í´ë˜ìŠ¤. Itemì€ TreeItemê³¼ ItemView Pane ë‘êµ°ë°ì„œ ê°™ì´ ì‚¬ìš©í•˜ê¸° ë•Œë¬¸ì—
+ * Pool í´ë˜ìŠ¤ë¥¼ í†µí•´ì„œ ì‚¬ìš©í•œë‹¤.
  * \date 2006-11-02
  * \author agebreak
  */
@@ -18,12 +18,12 @@ public:
 
     static CMTItemPool* GetInstance() {return m_pInstance;}
 
-    void        AddItem(CMTItem* pItem);        ///< ItemÀ» Map¿¡ Ãß°¡ÇÑ´Ù.
-    CMTItem*    GetItem(RwChar* strItemName);   ///< Map¿¡¼­ ItemÀ» °¡Á®¿Â´Ù.
+    void        AddItem(CMTItem* pItem);        ///< Itemì„ Mapì— ì¶”ê°€í•œë‹¤.
+    CMTItem*    GetItem(RwChar* strItemName);   ///< Mapì—ì„œ Itemì„ ê°€ì ¸ì˜¨ë‹¤.
 
 protected:
     static CMTItemPool* m_pInstance;
 
-    MapItem     m_mapItem;          ///< »ı¼ºµÈ ItemµéÀÇ Map
+    MapItem     m_mapItem;          ///< ìƒì„±ëœ Itemë“¤ì˜ Map
 
 };

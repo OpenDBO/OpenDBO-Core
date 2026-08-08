@@ -45,7 +45,7 @@ RwBool CCommunityGui::Create()
 
 	m_pThis = (gui::CDialog*)GetComponent("dlgMain");
 
-	// ½½·Ô Æ÷Ä¿½º ÀÌÆåÆ®
+	// ìŠ¬ë¡¯ í¬ì»¤ìŠ¤ ì´í™íŠ¸
 	m_pSlotFocusEffect = (gui::CPanel*)GetComponent("SlotEffect");
 	m_pSlotFocusEffect->Enable(false);
 

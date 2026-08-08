@@ -2,21 +2,21 @@
 #include "afxwin.h"
 
 
-// CSaveDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CSaveDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CSaveDlg : public CDialog
 {
 	DECLARE_DYNAMIC(CSaveDlg)
 
 public:
-	CSaveDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CSaveDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CSaveDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_DIALOG_SAVE };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

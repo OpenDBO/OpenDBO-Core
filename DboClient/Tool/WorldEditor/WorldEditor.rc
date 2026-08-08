@@ -13,7 +13,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// ÇÑ±¹¾î resources
+// í•œêµ­ì–´ resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 #ifdef _WIN32
@@ -48,9 +48,9 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)\r\n"
     "LANGUAGE 18, 1\r\n"
     "#pragma code_page(949)\r\n"
-    "#include ""res\\WorldEditor.rc2""  // Microsoft Visual C++¿¡¼­ ÆíÁýµÇÁö ¾ÊÀº ¸®¼Ò½º\r\n"
-    "#include ""afxres.rc""         // Ç¥ÁØ ±¸¼º ¿ä¼Ò\r\n"
-    "#include ""afxprint.rc""       // ÀÎ¼â ¹Ì¸® º¸±â ¸®¼Ò½º\r\n"
+    "#include ""res\\WorldEditor.rc2""  // Microsoft Visual C++ì—ì„œ íŽ¸ì§‘ë˜ì§€ ì•Šì€ ë¦¬ì†ŒìŠ¤\r\n"
+    "#include ""afxres.rc""         // í‘œì¤€ êµ¬ì„± ìš”ì†Œ\r\n"
+    "#include ""afxprint.rc""       // ì¸ì‡„ ë¯¸ë¦¬ ë³´ê¸° ë¦¬ì†ŒìŠ¤\r\n"
     "#endif\r\n"
     "\0"
 END
@@ -185,14 +185,14 @@ END
 IDD_ABOUTBOX DIALOGEX 0, 0, 235, 55
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
-CAPTION "WorldEditor Á¤º¸"
+CAPTION "WorldEditor ì •ë³´"
 FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
     LTEXT           "WorldEditor Version 1.0",IDC_STATIC,40,10,119,8,
                     SS_NOPREFIX
     LTEXT           "Copyright (C) 2005",IDC_STATIC,40,25,119,8
-    DEFPUSHBUTTON   "È®ÀÎ",IDOK,178,7,50,16,WS_GROUP
+    DEFPUSHBUTTON   "í™•ì¸",IDOK,178,7,50,16,WS_GROUP
 END
 
 IDD_CONSOLE DIALOGEX 0, 0, 348, 27
@@ -208,7 +208,7 @@ END
 IDD_ASSETOBJECTDLG DIALOGEX 0, 0, 186, 95
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
-CAPTION "´ëÈ­ »óÀÚ"
+CAPTION "ëŒ€í™” ìƒìž"
 FONT 9, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
 END
@@ -225,8 +225,8 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "È®ÀÎ",IDOK,129,7,50,14
-    PUSHBUTTON      "Ãë¼Ò",IDCANCEL,129,24,50,14
+    DEFPUSHBUTTON   "í™•ì¸",IDOK,129,7,50,14
+    PUSHBUTTON      "ì·¨ì†Œ",IDCANCEL,129,24,50,14
 END
 
 IDD_INSTANCE DIALOGEX 0, 0, 186, 90
@@ -241,13 +241,13 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "È®ÀÎ",IDOK,129,7,50,14
-    PUSHBUTTON      "Ãë¼Ò",IDCANCEL,129,24,50,14
+    DEFPUSHBUTTON   "í™•ì¸",IDOK,129,7,50,14
+    PUSHBUTTON      "ì·¨ì†Œ",IDCANCEL,129,24,50,14
 END
 
 IDD_INSTANCE_PROPERTY_FORMVIEW DIALOGEX 0, 0, 203, 296
 STYLE DS_SETFONT | WS_CHILD
-FONT 9, "±¼¸²", 0, 0, 0x0
+FONT 9, "êµ´ë¦¼", 0, 0, 0x0
 BEGIN
 END
 
@@ -274,19 +274,19 @@ BEGIN
     BEGIN
         BLOCK "041203b5"
         BEGIN
-            VALUE "CompanyName", "TODO: <È¸»ç ÀÌ¸§>"
-            VALUE "FileDescription", "TODO: <ÆÄÀÏ ¼³¸í>"
+            VALUE "CompanyName", "TODO: <íšŒì‚¬ ì´ë¦„>"
+            VALUE "FileDescription", "TODO: <íŒŒì¼ ì„¤ëª…>"
             VALUE "FileVersion", "1.0.0.1"
             VALUE "InternalName", "WorldEditor.exe"
-            VALUE "LegalCopyright", "TODO: (c) <È¸»ç ÀÌ¸§>.  All rights reserved."
+            VALUE "LegalCopyright", "TODO: (c) <íšŒì‚¬ ì´ë¦„>.  All rights reserved."
             VALUE "OriginalFilename", "WorldEditor.exe"
-            VALUE "ProductName", "TODO: <Á¦Ç° ÀÌ¸§>"
+            VALUE "ProductName", "TODO: <ì œí’ˆ ì´ë¦„>"
             VALUE "ProductVersion", "1.0.0.1"
         END
     END
     BLOCK "VarFileInfo"
     BEGIN
-        VALUE "º¯È¯", 0x412, 949
+        VALUE "ë³€í™˜", 0x412, 949
     END
 END
 
@@ -323,7 +323,7 @@ END
 STRINGTABLE 
 BEGIN
     AFX_IDS_APP_TITLE       "WorldEditor"
-    AFX_IDS_IDLEMESSAGE     "ÁØºñ"
+    AFX_IDS_IDLEMESSAGE     "ì¤€ë¹„"
 END
 
 STRINGTABLE 
@@ -340,13 +340,13 @@ STRINGTABLE
 BEGIN
     ID_FILE_NEW             "Create New Document.\nNew"
     ID_FILE_OPEN            "Open an Exist Document.\nOpen"
-    ID_FILE_CLOSE           "¾×Æ¼ºê ¹®¼­¸¦ ´Ý½À´Ï´Ù.\n´Ý±â"
+    ID_FILE_CLOSE           "ì•¡í‹°ë¸Œ ë¬¸ì„œë¥¼ ë‹«ìŠµë‹ˆë‹¤.\në‹«ê¸°"
     ID_FILE_SAVE            "Save Active Document.\nSave"
     ID_FILE_SAVE_AS         "Save Active Document As New Name.\nSave As"
-    ID_FILE_PAGE_SETUP      "ÀÎ¼â ¿É¼ÇÀ» º¯°æÇÕ´Ï´Ù.\nÆäÀÌÁö ¼³Á¤"
-    ID_FILE_PRINT_SETUP     "ÇÁ¸°ÅÍ ¹× ÀÎ¼â ¿É¼ÇÀ» º¯°æÇÕ´Ï´Ù.\nÀÎ¼â ¼³Á¤"
-    ID_FILE_PRINT           "¾×Æ¼ºê ¹®¼­¸¦ ÀÎ¼âÇÕ´Ï´Ù.\nÀÎ¼â"
-    ID_FILE_PRINT_PREVIEW   "ÀüÃ¼ ÆäÀÌÁö¸¦ Ç¥½ÃÇÕ´Ï´Ù.\nÀÎ¼â ¹Ì¸® º¸±â"
+    ID_FILE_PAGE_SETUP      "ì¸ì‡„ ì˜µì…˜ì„ ë³€ê²½í•©ë‹ˆë‹¤.\níŽ˜ì´ì§€ ì„¤ì •"
+    ID_FILE_PRINT_SETUP     "í”„ë¦°í„° ë° ì¸ì‡„ ì˜µì…˜ì„ ë³€ê²½í•©ë‹ˆë‹¤.\nì¸ì‡„ ì„¤ì •"
+    ID_FILE_PRINT           "ì•¡í‹°ë¸Œ ë¬¸ì„œë¥¼ ì¸ì‡„í•©ë‹ˆë‹¤.\nì¸ì‡„"
+    ID_FILE_PRINT_PREVIEW   "ì „ì²´ íŽ˜ì´ì§€ë¥¼ í‘œì‹œí•©ë‹ˆë‹¤.\nì¸ì‡„ ë¯¸ë¦¬ ë³´ê¸°"
 END
 
 STRINGTABLE 
@@ -358,47 +358,47 @@ END
 STRINGTABLE 
 BEGIN
     ID_FILE_MRU_FILE1       "Open Current Document."
-    ID_FILE_MRU_FILE2       "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE3       "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE4       "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE5       "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE6       "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE7       "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE8       "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE9       "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE10      "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE11      "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE12      "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE13      "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE14      "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE15      "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
-    ID_FILE_MRU_FILE16      "ÇöÀç ¹®¼­¸¦ ¿±´Ï´Ù."
+    ID_FILE_MRU_FILE2       "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE3       "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE4       "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE5       "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE6       "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE7       "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE8       "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE9       "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE10      "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE11      "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE12      "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE13      "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE14      "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE15      "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
+    ID_FILE_MRU_FILE16      "í˜„ìž¬ ë¬¸ì„œë¥¼ ì—½ë‹ˆë‹¤."
 END
 
 STRINGTABLE 
 BEGIN
-    ID_NEXT_PANE            "´ÙÀ½ Ã¢À¸·Î ÀüÈ¯ÇÕ´Ï´Ù.\n´ÙÀ½ Ã¢"
-    ID_PREV_PANE            "ÀÌÀü Ã¢À¸·Î ÀüÈ¯ÇÕ´Ï´Ù.\nÀÌÀü Ã¢"
+    ID_NEXT_PANE            "ë‹¤ìŒ ì°½ìœ¼ë¡œ ì „í™˜í•©ë‹ˆë‹¤.\në‹¤ìŒ ì°½"
+    ID_PREV_PANE            "ì´ì „ ì°½ìœ¼ë¡œ ì „í™˜í•©ë‹ˆë‹¤.\nì´ì „ ì°½"
 END
 
 STRINGTABLE 
 BEGIN
-    ID_WINDOW_SPLIT         "È°¼º Ã¢À» ¿©·¯ °³ÀÇ Ã¢À¸·Î ºÐÇÒÇÕ´Ï´Ù.\nºÐÇÒ"
+    ID_WINDOW_SPLIT         "í™œì„± ì°½ì„ ì—¬ëŸ¬ ê°œì˜ ì°½ìœ¼ë¡œ ë¶„í• í•©ë‹ˆë‹¤.\në¶„í• "
 END
 
 STRINGTABLE 
 BEGIN
-    ID_EDIT_CLEAR           "¼±ÅÃ ¿µ¿ªÀ» Áö¿ó´Ï´Ù.\nÁö¿ì±â"
-    ID_EDIT_CLEAR_ALL       "¸ðµç °ÍÀ» Áö¿ó´Ï´Ù.\n¸ðµÎ Áö¿ì±â"
+    ID_EDIT_CLEAR           "ì„ íƒ ì˜ì—­ì„ ì§€ì›ë‹ˆë‹¤.\nì§€ìš°ê¸°"
+    ID_EDIT_CLEAR_ALL       "ëª¨ë“  ê²ƒì„ ì§€ì›ë‹ˆë‹¤.\nëª¨ë‘ ì§€ìš°ê¸°"
     ID_EDIT_COPY            "Copy Opject To Clipboard\nCopy"
     ID_EDIT_CUT             "Cut Object and Insert to Clipboard\nCut"
-    ID_EDIT_FIND            "ÁöÁ¤ÇÑ ÅØ½ºÆ®¸¦ Ã£½À´Ï´Ù.\nÃ£±â"
+    ID_EDIT_FIND            "ì§€ì •í•œ í…ìŠ¤íŠ¸ë¥¼ ì°¾ìŠµë‹ˆë‹¤.\nì°¾ê¸°"
     ID_EDIT_PASTE           "Paste Object in Clipboard.\nPaste"
-    ID_EDIT_REPEAT          "¸¶Áö¸· ÀÛ¾÷À» ¹Ýº¹ÇÕ´Ï´Ù.\n¹Ýº¹"
-    ID_EDIT_REPLACE         "Æ¯Á¤ ÅØ½ºÆ®¸¦ ´Ù¸¥ ÅØ½ºÆ®·Î ¹Ù²ß´Ï´Ù.\n¹Ù²Ù±â"
-    ID_EDIT_SELECT_ALL      "ÀüÃ¼ ¹®¼­¸¦ ¼±ÅÃÇÕ´Ï´Ù.\n¸ðµÎ ¼±ÅÃ"
+    ID_EDIT_REPEAT          "ë§ˆì§€ë§‰ ìž‘ì—…ì„ ë°˜ë³µí•©ë‹ˆë‹¤.\në°˜ë³µ"
+    ID_EDIT_REPLACE         "íŠ¹ì • í…ìŠ¤íŠ¸ë¥¼ ë‹¤ë¥¸ í…ìŠ¤íŠ¸ë¡œ ë°”ê¿‰ë‹ˆë‹¤.\në°”ê¾¸ê¸°"
+    ID_EDIT_SELECT_ALL      "ì „ì²´ ë¬¸ì„œë¥¼ ì„ íƒí•©ë‹ˆë‹¤.\nëª¨ë‘ ì„ íƒ"
     ID_EDIT_UNDO            "Undo Last Command.\nUndo"
-    ID_EDIT_REDO            "ÀÌÀü¿¡ ½ÇÇà Ãë¼ÒµÈ ÀÛ¾÷À» ´Ù½Ã ½ÇÇàÇÕ´Ï´Ù.\n´Ù½Ã ½ÇÇà"
+    ID_EDIT_REDO            "ì´ì „ì— ì‹¤í–‰ ì·¨ì†Œëœ ìž‘ì—…ì„ ë‹¤ì‹œ ì‹¤í–‰í•©ë‹ˆë‹¤.\në‹¤ì‹œ ì‹¤í–‰"
 END
 
 STRINGTABLE 
@@ -409,27 +409,27 @@ END
 
 STRINGTABLE 
 BEGIN
-    AFX_IDS_SCSIZE          "Ã¢ Å©±â¸¦ º¯°æÇÕ´Ï´Ù."
-    AFX_IDS_SCMOVE          "Ã¢ À§Ä¡¸¦ º¯°æÇÕ´Ï´Ù."
-    AFX_IDS_SCMINIMIZE      "Ã¢À» ¾ÆÀÌÄÜÀ¸·Î Ãà¼ÒÇÕ´Ï´Ù."
-    AFX_IDS_SCMAXIMIZE      "Ã¢À» ÀüÃ¼ È­¸é Å©±â·Î È®´ëÇÕ´Ï´Ù."
-    AFX_IDS_SCNEXTWINDOW    "´ÙÀ½ ¹®¼­ Ã¢À¸·Î ÀüÈ¯ÇÕ´Ï´Ù."
-    AFX_IDS_SCPREVWINDOW    "ÀÌÀü ¹®¼­ Ã¢À¸·Î ÀüÈ¯ÇÕ´Ï´Ù."
-    AFX_IDS_SCCLOSE         "¹®¼­¸¦ ÀúÀåÇÒ °ÍÀÎÁö È®ÀÎÇÏ°í È°¼º Ã¢À» ´Ý½À´Ï´Ù."
+    AFX_IDS_SCSIZE          "ì°½ í¬ê¸°ë¥¼ ë³€ê²½í•©ë‹ˆë‹¤."
+    AFX_IDS_SCMOVE          "ì°½ ìœ„ì¹˜ë¥¼ ë³€ê²½í•©ë‹ˆë‹¤."
+    AFX_IDS_SCMINIMIZE      "ì°½ì„ ì•„ì´ì½˜ìœ¼ë¡œ ì¶•ì†Œí•©ë‹ˆë‹¤."
+    AFX_IDS_SCMAXIMIZE      "ì°½ì„ ì „ì²´ í™”ë©´ í¬ê¸°ë¡œ í™•ëŒ€í•©ë‹ˆë‹¤."
+    AFX_IDS_SCNEXTWINDOW    "ë‹¤ìŒ ë¬¸ì„œ ì°½ìœ¼ë¡œ ì „í™˜í•©ë‹ˆë‹¤."
+    AFX_IDS_SCPREVWINDOW    "ì´ì „ ë¬¸ì„œ ì°½ìœ¼ë¡œ ì „í™˜í•©ë‹ˆë‹¤."
+    AFX_IDS_SCCLOSE         "ë¬¸ì„œë¥¼ ì €ìž¥í•  ê²ƒì¸ì§€ í™•ì¸í•˜ê³  í™œì„± ì°½ì„ ë‹«ìŠµë‹ˆë‹¤."
 END
 
 STRINGTABLE 
 BEGIN
-    AFX_IDS_SCRESTORE       "Ã¢À» º¸Åë Å©±â·Î º¹¿øÇÕ´Ï´Ù."
-    AFX_IDS_SCTASKLIST      "ÀÛ¾÷ ¸ñ·Ï È°¼ºÈ­"
+    AFX_IDS_SCRESTORE       "ì°½ì„ ë³´í†µ í¬ê¸°ë¡œ ë³µì›í•©ë‹ˆë‹¤."
+    AFX_IDS_SCTASKLIST      "ìž‘ì—… ëª©ë¡ í™œì„±í™”"
 END
 
 STRINGTABLE 
 BEGIN
-    AFX_IDS_PREVIEW_CLOSE   "ÀÎ¼â ¹Ì¸® º¸±â ¸ðµå¸¦ ´Ý½À´Ï´Ù.\n¹Ì¸® º¸±â Ãë¼Ò"
+    AFX_IDS_PREVIEW_CLOSE   "ì¸ì‡„ ë¯¸ë¦¬ ë³´ê¸° ëª¨ë“œë¥¼ ë‹«ìŠµë‹ˆë‹¤.\në¯¸ë¦¬ ë³´ê¸° ì·¨ì†Œ"
 END
 
-#endif    // ÇÑ±¹¾î resources
+#endif    // í•œêµ­ì–´ resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -447,9 +447,9 @@ END
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 LANGUAGE 18, 1
 #pragma code_page(949)
-#include "res\WorldEditor.rc2"  // Microsoft Visual C++¿¡¼­ ÆíÁýµÇÁö ¾ÊÀº ¸®¼Ò½º
-#include "afxres.rc"         // Ç¥ÁØ ±¸¼º ¿ä¼Ò
-#include "afxprint.rc"       // ÀÎ¼â ¹Ì¸® º¸±â ¸®¼Ò½º
+#include "res\WorldEditor.rc2"  // Microsoft Visual C++ì—ì„œ íŽ¸ì§‘ë˜ì§€ ì•Šì€ ë¦¬ì†ŒìŠ¤
+#include "afxres.rc"         // í‘œì¤€ êµ¬ì„± ìš”ì†Œ
+#include "afxprint.rc"       // ì¸ì‡„ ë¯¸ë¦¬ ë³´ê¸° ë¦¬ì†ŒìŠ¤
 #endif
 
 /////////////////////////////////////////////////////////////////////////////

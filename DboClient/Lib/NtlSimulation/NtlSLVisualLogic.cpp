@@ -13,7 +13,7 @@
 
 void Logic_SkillUseVisualEffect(CNtlSobActor *pActor, SERIAL_HANDLE hSkillSerialId)
 {
-	// skill »ç¿ë effect Ãâ·Â
+	// skill ì‚¬ìš© effect ì¶œë ¥
 	CNtlSobProxy *pSobProxy = pActor->GetSobProxy();
 	RwV3d vPos = pActor->GetPosition();
 	vPos.y += pSobProxy->GetPLEntityHeight() * 0.9f;

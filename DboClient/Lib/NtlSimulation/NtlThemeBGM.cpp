@@ -210,7 +210,7 @@ VOID CNtlThemeBGM::LoadScript()
 		if( NULL == pcData )
 			return;
 
-		// ¹öÆÛ +1 »ý¼º
+		// ë²„í¼ +1 ìƒì„±
 		char* pcBuffer = NTL_NEW char[iSize+1];
 		memcpy(pcBuffer, pcData, sizeof(char)*iSize);
 		pcBuffer[iSize] = '\0';
@@ -267,7 +267,7 @@ VOID CNtlThemeBGM::LoadScript()
 
 		IXMLDOMNodeList* pChildNodeList = NULL;
 
-		// ¿ùµå Å¸ÀÔ
+		// ì›”ë“œ íƒ€ìž…
 		pNode->selectNodes(L"world", &pChildNodeList);
 		if(pChildNodeList)
 		{
@@ -300,7 +300,7 @@ VOID CNtlThemeBGM::LoadScript()
 			continue;
 		}
 
-		// Å×ÀÌºí Å¸ÀÔ°ú ÀÎµ¦½º
+		// í…Œì´ë¸” íƒ€ìž…ê³¼ ì¸ë±ìŠ¤
 		pNode->selectNodes(L"table", &pChildNodeList);
 		if(pChildNodeList)
 		{
@@ -356,7 +356,7 @@ VOID CNtlThemeBGM::LoadScript()
 			continue;
 		}
 
-		// »ç¿îµå
+		// ì‚¬ìš´ë“œ
 		pNode->selectNodes(L"sound", &pChildNodeList);
 		if(pChildNodeList)
 		{
@@ -389,7 +389,7 @@ VOID CNtlThemeBGM::LoadScript()
 			continue;
 		}
 
-		// ¹üÀ§
+		// ë²”ìœ„
 		pNode->selectNodes(L"range", &pChildNodeList);
 		if(pChildNodeList)
 		{
@@ -422,7 +422,7 @@ VOID CNtlThemeBGM::LoadScript()
 			continue;
 		}
 
-		// ¹Ýº¹¿©ºÎ
+		// ë°˜ë³µì—¬ë¶€
 		pNode->selectNodes(L"loop", &pChildNodeList);
 		if(pChildNodeList)
 		{
@@ -477,7 +477,7 @@ VOID CNtlThemeBGM::HandleEvents(RWS::CMsg &pMsg)
 	{
 		SNtlEventWorldConceptState* pEvent = reinterpret_cast<SNtlEventWorldConceptState*>( pMsg.pData );
 
-		// Theme BGMÀÇ ¿ùµå Å¸ÀÔÀ» °áÁ¤ÇÏ±â À§ÇØ
+		// Theme BGMì˜ ì›”ë“œ íƒ€ìž…ì„ ê²°ì •í•˜ê¸° ìœ„í•´
 		if( GetNtlWorldConcept()->IsGrade(WORLD_CONCEPT_FIRST_GRADE, pEvent->eWorldConcept) )
 		{
 			if( pEvent->uiState == WORLD_STATE_EXIT )

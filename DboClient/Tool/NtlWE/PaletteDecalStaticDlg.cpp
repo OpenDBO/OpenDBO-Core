@@ -1,4 +1,4 @@
-// PaletteDecalStaticDlg.cpp : ���� �����Դϴ�.
+// PaletteDecalStaticDlg.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -9,7 +9,7 @@
 #include "PaletteDecalStaticDlg.h"
 
 
-// PaletteDecalStaticDlg ��ȭ �����Դϴ�.
+// PaletteDecalStaticDlg 대화 상자입니다.
 
 IMPLEMENT_DYNAMIC(CPaletteDecalStaticDlg, CDialog)
 
@@ -34,7 +34,7 @@ BEGIN_MESSAGE_MAP(CPaletteDecalStaticDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// PaletteDecalStaticDlg �޽��� ó�����Դϴ�.
+// PaletteDecalStaticDlg 메시지 처리기입니다.
 
 BOOL CPaletteDecalStaticDlg::OnInitDialog()
 {
@@ -42,7 +42,7 @@ BOOL CPaletteDecalStaticDlg::OnInitDialog()
 
 
 	return TRUE;  // return TRUE unless you set the focus to a controldf
-	// ����: OCX �Ӽ� �������� FALSE�� ��ȯ�ؾ� �մϴ�.
+	// 예외: OCX 속성 페이지는 FALSE를 반환해야 합니다.
 }
 
 LRESULT CPaletteDecalStaticDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
@@ -99,6 +99,6 @@ void CPaletteDecalStaticDlg::OnBnClickedOk()
  	}
  	dGET_BRUSH_ENTITY()  = GetSceneManager()->CreateEntity(PLENTITY_DECAL_STATIC, NULL, NULL);
 
-	// TODO: ���⿡ ��Ʈ�� �˸� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	//OnOK();
 }

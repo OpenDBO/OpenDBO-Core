@@ -84,7 +84,7 @@ VOID CComponentManager_Generic::RemovePage(COMPPAGE_HANDLE& h)
 			it!=m_stlPage.end() ; 
 			it++)
 			{
-				if(h == (DWORD)*it)
+				if(h == (COMPPAGE_HANDLE)*it)
 				{
 					h = 0;
 
@@ -120,7 +120,7 @@ bool CComponentManager_Generic::CreateComponents(COMPPAGE_HANDLE h,CComponent *p
 	std::list<CComponentPage*>::iterator it;
 	for(it=m_stlPage.begin(); it!=m_stlPage.end(); it++)
 			{
-				if(h == (DWORD)*it)
+				if(h == (COMPPAGE_HANDLE)*it)
 				{
 					pPage = *it;
 					break;
@@ -156,7 +156,7 @@ VOID CComponentManager_Generic::DestroyComponents(COMPPAGE_HANDLE& h)
 	std::list<CComponentPage*>::iterator it;
 	for(it=m_stlPage.begin() ; it!=m_stlPage.end(); it++)
 	{
-		if(h == (DWORD)*it)
+		if(h == (COMPPAGE_HANDLE)*it)
 		{
 			pPage = *it;
 			break;
@@ -193,7 +193,7 @@ CComponentPage* CComponentManager_Generic::GetPage(COMPPAGE_HANDLE h)
 	std::list<CComponentPage*>::iterator it;
 	for(it=m_stlPage.begin(); it!=m_stlPage.end(); it++)
 	{
-		if(h == (DWORD)*it)
+		if(h == (COMPPAGE_HANDLE)*it)
 		{
 			pPage = *it;
 			break;

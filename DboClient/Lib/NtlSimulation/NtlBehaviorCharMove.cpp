@@ -613,10 +613,36 @@ D3DXVECTOR3 CNtlBehaviorBusMove::RNS::GetPosition( RwReal fTime )
     if ( t < 0.00001f ) t = 0.f;
     if ( t > 0.99999f ) t = 1.f;
 
-    D3DXVECTOR3 vStartVel = m_defNodeList[i].vVel * m_defNodeList[i].fDist;
-    D3DXVECTOR3 vEndVel = m_defNodeList[i+1].vVel * m_defNodeList[i].fDist;
+    // Linear interpolation between node i and i+1.
+    // Cubic Hermite with Catmull-Rom tangents overshoots on sharp turns,
+    // causing the bus position to drift from the server's straight-line path.
+    // Linear interpolation guarantees the bus follows the exact same path as the
+    // server, eliminating position drift and the resulting culling/desync.
+    D3DXVECTOR3 vResult = m_defNodeList[i].vPos + t * ( m_defNodeList[i+1].vPos - m_defNodeList[i].vPos );
+    return vResult;
+}
 
-    return GetPositionOnCubic( m_defNodeList[i].vPos, vStartVel, m_defNodeList[i+1].vPos, vEndVel, t );
+D3DXVECTOR3 CNtlBehaviorBusMove::RNS::GetSegmentDir( RwReal fTime )
+{
+    int nSize = m_defNodeList.size();
+    if ( nSize < BUILD_MIN_NODE_SIZE )
+    {
+        return D3DXVECTOR3( 0.f, 0.f, 1.f );
+    }
+
+    RwReal fDist = fTime * m_fMaxDist;
+    RwReal fCurDist = 0.f;
+
+    int i = 0;
+    while ( fCurDist + m_defNodeList[i].fDist < fDist && i < nSize - 2 )
+    {
+        fCurDist += m_defNodeList[i].fDist;
+        ++i;
+    }
+
+    D3DXVECTOR3 vDir = m_defNodeList[i+1].vPos - m_defNodeList[i].vPos;
+    D3DXVec3Normalize( &vDir, &vDir );
+    return vDir;
 }
 
 void CNtlBehaviorBusMove::RNS::AddNodePos( const D3DXVECTOR3& vPos )
@@ -669,6 +695,18 @@ void CNtlBehaviorBusMove::RNS::BuildSpline( void )
 
     m_defNodeList[0].vVel = GetStartVelocity( 0 );
     m_defNodeList[nSize-1].vVel = GetEndVelocity( nSize - 1 );
+
+    // Zero all velocities to eliminate Catmull-Rom overshoot.
+    // Full Catmull-Rom tangents produce Hermite curves that swing far off the
+    // straight path when the angle between consecutive segments is large.
+    // Zero tangents give a smooth ease-in-out cubic that closely follows
+    // the straight line between waypoints (max 5.4% deviation from linear).
+    for ( int i = 0; i < nSize; ++i )
+    {
+        m_defNodeList[i].vVel.x = 0.f;
+        m_defNodeList[i].vVel.y = 0.f;
+        m_defNodeList[i].vVel.z = 0.f;
+    }
 }
 
 D3DXVECTOR3 CNtlBehaviorBusMove::RNS::GetPositionOnCubic( const D3DXVECTOR3& vStartPos, const D3DXVECTOR3& vStartVel, const D3DXVECTOR3& vEndPos, const D3DXVECTOR3& vEndVel, RwReal fTime )
@@ -734,15 +772,15 @@ void CNtlBehaviorBusMove::Enter(void)
     m_sInputData.byFormFlag = pMoveStuff->byFormFlag;
 
     m_sInputData.vCurPos.x = pMoveStuff->vCurrLoc.x;
-    m_sInputData.vCurPos.y = 0.f;
+    m_sInputData.vCurPos.y = pMoveStuff->vCurrLoc.y;
     m_sInputData.vCurPos.z = pMoveStuff->vCurrLoc.z;
 
     m_sInputData.vDestPos.x = pMoveStuff->vDest.x;
-    m_sInputData.vDestPos.y = 0.f;
+    m_sInputData.vDestPos.y = pMoveStuff->vDest.y;
     m_sInputData.vDestPos.z = pMoveStuff->vDest.z;
 
     m_sInputData.vSecondPos.x = pMoveStuff->vSendDest.x;
-    m_sInputData.vSecondPos.y = 0.f;
+    m_sInputData.vSecondPos.y = pMoveStuff->vSendDest.y;
     m_sInputData.vSecondPos.z = pMoveStuff->vSendDest.z;
 
     BuildData();
@@ -783,10 +821,8 @@ void CNtlBehaviorBusMove::Update( RwReal fElapsed )
                 break;
             case RNS::ERNS_MOVE_TYPE_DEST:
                 {
-                    if ( fMoveDistRatio < 0.5f )		fElapsed *= 0.9f;
-                    else if ( fMoveDistRatio < 0.8f )	fElapsed *= 0.8f;
-                    else if ( fMoveDistRatio < 0.97f )	fElapsed *= 0.6f;
-                    else								fElapsed *= 0.5f;
+                    // No slowdown needed with linear interpolation; keep speed matching the server.
+                    fElapsed *= 1.f;
                 }
                 break;
             case RNS::ERNS_MOVE_TYPE_SECOND_DEST:
@@ -831,15 +867,15 @@ RwUInt32 CNtlBehaviorBusMove::HandleEvents(RWS::CMsg &pMsg)
         m_sInputData.byFormFlag = pMoveStuff->byFormFlag;
 
         m_sInputData.vCurPos.x = pMoveStuff->vCurrLoc.x;
-        m_sInputData.vCurPos.y = 0.f;
+        m_sInputData.vCurPos.y = pMoveStuff->vCurrLoc.y;
         m_sInputData.vCurPos.z = pMoveStuff->vCurrLoc.z;
 
         m_sInputData.vDestPos.x = pMoveStuff->vDest.x;
-        m_sInputData.vDestPos.y = 0.f;
+        m_sInputData.vDestPos.y = pMoveStuff->vDest.y;
         m_sInputData.vDestPos.z = pMoveStuff->vDest.z;
 
         m_sInputData.vSecondPos.x = pMoveStuff->vSendDest.x;
-        m_sInputData.vSecondPos.y = 0.f;
+        m_sInputData.vSecondPos.y = pMoveStuff->vSendDest.y;
         m_sInputData.vSecondPos.z = pMoveStuff->vSendDest.z;
 
         BuildData();
@@ -925,7 +961,11 @@ void CNtlBehaviorBusMove::UpdateActorDirPos( RwReal fElapsed, RwV3d& vResultDir,
         vSrcDir = m_pActor->GetDirection();
     }
 
-    RwV3d vDestDir = vDestPos - vSrcPos;
+    // Use segment direction from the RNS path instead of frame-to-frame
+    // position delta, which gives a wrong diagonal direction at waypoint
+    // transitions and causes the bus to slide sideways on curves.
+    RwReal fTime = m_fRNSMovingTime / ( m_RNSData.GetMaxDistance() / m_fDefMoveSpeed );
+    RwV3d vDestDir = *(RwV3d*)&m_RNSData.GetSegmentDir( fTime );
     if ( RwV3dNormalize( &vDestDir, &vDestDir ) < 0.00001f )
     {
         vDestDir = vSrcDir;

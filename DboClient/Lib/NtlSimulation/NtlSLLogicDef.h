@@ -2,7 +2,7 @@
  *
  * File			: NtlSLLogicDef.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 8. 10	
  * Abstract		: Simulation game logic definition
  *****************************************************************************
@@ -125,11 +125,11 @@ struct SSkillAreaSortStuff
 enum EQuestMarkType
 {
 	EQuestMarkNone,
-	EQuestMarkNew,			// quest°¡ ½ÃÀÛÀÌÁö¸¸ °Å¸®°¡ ¸Ö¶§.
-	EQuestMarkProgress,		// quest°¡ ÁøÇàÁßÀÏ¶§
-	EQuestMarkReward,		// quest°¡ º¸»óÁßÀÏ¶§
-	EQuestMarkVisit,		// quest Áß ¹æ¹® ¼­¹ö ÀÌº¥Æ®°¡ µ¿ÀÛ ÁßÀÎ °æ¿ì
-	EQuestMarkBalloonNew,	// quest°¡ ½ÃÀÛÀÌÁö¸¸, °Å¸®°¡ °¡±î¿ï¶§
+	EQuestMarkNew,			// questê°€ ì‹œì‘ì´ì§€ë§Œ ê±°ë¦¬ê°€ ë©€ë•Œ.
+	EQuestMarkProgress,		// questê°€ ì§„í–‰ì¤‘ì¼ë•Œ
+	EQuestMarkReward,		// questê°€ ë³´ìƒì¤‘ì¼ë•Œ
+	EQuestMarkVisit,		// quest ì¤‘ ë°©ë¬¸ ì„œë²„ ì´ë²¤íŠ¸ê°€ ë™ì‘ ì¤‘ì¸ ê²½ìš°
+	EQuestMarkBalloonNew,	// questê°€ ì‹œì‘ì´ì§€ë§Œ, ê±°ë¦¬ê°€ ê°€ê¹Œìš¸ë•Œ
 };
 
 enum EQuestMarkFlag

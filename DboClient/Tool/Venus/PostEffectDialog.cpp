@@ -40,7 +40,7 @@ END_MESSAGE_MAP()
 
 // CPostEffectDialog message handlers
 
-// CLightDialog ¸Þ½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CLightDialog ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ìž…ë‹ˆë‹¤.
 CPostEffectDialog& CPostEffectDialog::GetInstance()
 {
 	static CPostEffectDialog dlg;

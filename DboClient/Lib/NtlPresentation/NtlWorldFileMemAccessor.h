@@ -5,7 +5,7 @@
 
 /*
 WorldFileFormat - SectorInfo, FieldProperty
-WorldData¸¦ Memory¿¡ LoadÇÏ¿© Á¶ÀÛÇÏ±â À§ÇØ »ç¿ëµÈ´Ù.
+WorldDataë¥¼ Memoryì— Loadí•˜ì—¬ ì¡°ì‘í•˜ê¸° ìœ„í•´ ì‚¬ìš©ëœë‹¤.
 */
 
 //////////////////////////////////////////////////////////////////////////
@@ -53,7 +53,7 @@ public:
 	BYTE* Skip_LightObject(BYTE* _pFileMem);
 	BYTE* Skip_Dojo(BYTE* _pFileMem);
 
-	// ÀÎµµ¾î
+	// ì¸ë„ì–´
 	BYTE* Skip_DoodadsIndoor(BYTE* _pFileMem);
 	BYTE* Skip_LightMap(BYTE* _pFileMem);
 	BYTE* Skip_DecalVolume(BYTE* _pFileMem);
@@ -74,7 +74,7 @@ public:
 	BYTE* Skip_Weather(BYTE* _pFileMem);
 	BYTE* Skip_FieldHeatHaze(BYTE* _pFileMem);
 
-	// ÀÎµµ¾î
+	// ì¸ë„ì–´
 	BYTE* Skip_BlockGameProperty(BYTE* _pFileMem);
 
 	// interfaces for sector method
@@ -117,7 +117,7 @@ public:
 	BYTE*	Save_LightObject(BYTE* _pFileMem, FILE* _pFile, RwInt32 IdxSrcField = -1, RwInt32 IdxDstField = -1, CNtlWorldFieldManager* pFieldMgr = NULL);
 	BYTE*	Save_Dojo(BYTE* _pFileMem, FILE* _pFile, RwInt32 IdxSrcField = -1, RwInt32 IdxDstField = -1, CNtlWorldFieldManager* pFieldMgr = NULL);
 	
-	// ÀÎµµ¾î
+	// ì¸ë„ì–´
 	BYTE*	Save_DoodadsIndoor(BYTE* _pFileMem, FILE* _pFile);	
 	BYTE*	Save_DecalVolume(BYTE* _pFileMem, FILE* _pFile, RwInt32 IdxSrcField = -1, RwInt32 IdxDstField = -1, CNtlWorldFieldManager* pFieldMgr = NULL);
 	BYTE*	Save_GameProperty(BYTE* _pFileMem, FILE* _pFile, RwInt32 IdxSrcField = -1, RwInt32 IdxDstField = -1, CNtlWorldFieldManager* pFieldMgr = NULL);
@@ -137,7 +137,7 @@ public:
 	BYTE* Save_Weather(BYTE* _pFileMem, FILE* _pFile);
 	BYTE* Save_FieldHeatHaze(BYTE* _pFileMem, FILE* _pFile);
 
-	// ÀÎµµ¾î
+	// ì¸ë„ì–´
 	BYTE* Save_BlockGameProperty(BYTE* _pFileMem, FILE* _pFile);
 	
 	// only outdoor use

@@ -83,7 +83,7 @@ private:
 	gui::CSlot	m_slotClickPrevInven;
 	gui::CSlot	m_slotClickDiscardButton;
 	
-	gui::CDialog*		m_pBack;			// ¾ÆÀÌÄÜ ¼±ÅÃ¿µ¿ª.
+	gui::CDialog*		m_pBack;			// ì•„ì´ì½˜ ì„ íƒì˜ì—­.
 	gui::CButton*		m_pbtnDiscard;
 	gui::CButton*		m_pNextInvenBtn;
 	gui::CButton*		m_pPrevInvenBtn;

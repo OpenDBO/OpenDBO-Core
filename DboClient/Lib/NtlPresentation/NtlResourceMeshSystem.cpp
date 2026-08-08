@@ -2,7 +2,7 @@
 //	File		:	NtlResourceMeshSystem.cpp
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -150,8 +150,8 @@ RwBool CNtlResourceMeshSystem::Load(FILE* pFile)
 			fread(&m_EmitterTrail, sizeof(SNtlPrtStdEmitterTrail), 1, pFile);
 		}
         
-        // TrailÀÇ Max Count°¡ µğÆúÆ®°¡ 1000ÀÌ¶ó¼­ ¸Ş¸ğ¸® ºÎÁ· ¹ö±×°¡ ÀÏ¾î³µ¾ú´Ù. 
-        // µğÆúÆ®°ªÀ» º¯°æÇÏÁö¸¸ ±âÁ¸ÀÇ ÀÌÆåÆ®¸¦ À§ÇØ¼­ º¯°æ ÄÚµå¸¦ Ãß°¡ÇÑ´Ù.
+        // Trailì˜ Max Countê°€ ë””í´íŠ¸ê°€ 1000ì´ë¼ì„œ ë©”ëª¨ë¦¬ ë¶€ì¡± ë²„ê·¸ê°€ ì¼ì–´ë‚¬ì—ˆë‹¤. 
+        // ë””í´íŠ¸ê°’ì„ ë³€ê²½í•˜ì§€ë§Œ ê¸°ì¡´ì˜ ì´í™íŠ¸ë¥¼ ìœ„í•´ì„œ ë³€ê²½ ì½”ë“œë¥¼ ì¶”ê°€í•œë‹¤.
         m_EmitterTrail.nMaxEdgeCount = m_EmitterTrail.nMaxEdgeCount == 1000 ? 100 : m_EmitterTrail.nMaxEdgeCount;
     }
 

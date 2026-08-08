@@ -1,6 +1,6 @@
 #pragma once
 
-/// Ã¼Å©¼¶ Á¤º¸¸¦ ´ãÀ» ±¸Á¶Ã¼
+/// ì²´í¬ì„¬ ì •ë³´ë¥¼ ë‹´ì„ êµ¬ì¡°ì²´
 struct SChecksumInfo
 {
     char szFileName[MAX_PATH];
@@ -15,7 +15,7 @@ struct SChecksumInfo
 
 /**
  * \ingroup MD5SumTest
- * \brief ÆÄÀÏµéÀ» MD5 ChecksumÀ» ÀÌ¿ëÇÏ¿©, ¹«°á¼º °Ë»ç¸¦ ÁøÇàÇÏ´Â Å¬·¡½º
+ * \brief íŒŒì¼ë“¤ì„ MD5 Checksumì„ ì´ìš©í•˜ì—¬, ë¬´ê²°ì„± ê²€ì‚¬ë¥¼ ì§„í–‰í•˜ëŠ” í´ë˜ìŠ¤
  *
  * \date 2009-02-23
  * \author agebreak
@@ -26,25 +26,25 @@ public:
     CNtlMD5CheckSum(void);
     virtual ~CNtlMD5CheckSum(void);
 
-	unsigned int CheckSumBuildCount(char* szFolder);					///< ºôµåµÇ´Â Ã¼Å©¼¶ ÆÄÀÏÀÇ ÃÑ °³¼ö
-    int CheckSumBuild(char* szChecksumFileName, char* szFolder);		///< Æú´õÀÇ ÆÄÀÏµé(ÇÏÀ§ Æú´õ Æ÷ÇÔ)·Î ºÎÅÍ Ã¼Å©¼¶ ÆÄÀÏÀ» »ı¼ºÇÑ´Ù.
-	unsigned int CheckSumTestCount(char* szChecksumFileName);			///< ºôµåµÇ¾îÀÖ´Â Ã¼Å©¼¶ ÆÄÀÏÀÇ ÃÑ °³¼ö
-    int ChecksumTest(char* szChecksumFileName);							///< »ı¼ºµÈ Ã¼Å©¼¶ ÆÄÀÏµéÀ» ºñ±³ÇÑ´Ù.
+	unsigned int CheckSumBuildCount(char* szFolder);					///< ë¹Œë“œë˜ëŠ” ì²´í¬ì„¬ íŒŒì¼ì˜ ì´ ê°œìˆ˜
+    int CheckSumBuild(char* szChecksumFileName, char* szFolder);		///< í´ë”ì˜ íŒŒì¼ë“¤(í•˜ìœ„ í´ë” í¬í•¨)ë¡œ ë¶€í„° ì²´í¬ì„¬ íŒŒì¼ì„ ìƒì„±í•œë‹¤.
+	unsigned int CheckSumTestCount(char* szChecksumFileName);			///< ë¹Œë“œë˜ì–´ìˆëŠ” ì²´í¬ì„¬ íŒŒì¼ì˜ ì´ ê°œìˆ˜
+    int ChecksumTest(char* szChecksumFileName);							///< ìƒì„±ëœ ì²´í¬ì„¬ íŒŒì¼ë“¤ì„ ë¹„êµí•œë‹¤.
 
 protected:
     int md5_wrapper( char *filename, unsigned char *sum );
     int md5_print(const char *filename, char* checksum );
     int md5_check( char *filename );
 
-    bool RecursiveChecksumBuild( bool bForCounter, unsigned int& uiCnt );		///< ÇÏÀ§ Æú´õµéÀ» Àç±Í·çÇÁ·Î µ¹¸é¼­ Ã¼Å©¼¶ Á¤º¸¸¦ ¸¸µç´Ù.
-    int  WriteChecksumBuild(char* szFileName);									///< ¸¸µé¾îÁø Ã¼Å©¼¶ Á¤º¸¸¦ ÆÄÀÏ¿¡ ±â·ÏÇÑ´Ù.
+    bool RecursiveChecksumBuild( bool bForCounter, unsigned int& uiCnt );		///< í•˜ìœ„ í´ë”ë“¤ì„ ì¬ê·€ë£¨í”„ë¡œ ëŒë©´ì„œ ì²´í¬ì„¬ ì •ë³´ë¥¼ ë§Œë“ ë‹¤.
+    int  WriteChecksumBuild(char* szFileName);									///< ë§Œë“¤ì–´ì§„ ì²´í¬ì„¬ ì •ë³´ë¥¼ íŒŒì¼ì— ê¸°ë¡í•œë‹¤.
 
 	virtual bool IsSkipFileOnChecksumBuild(char* szFileName, bool bFolder) { return false; }
 
-    virtual bool OnEvent_ChecksumBuild(const char* szFileName, int returnCode);		///< Ã¼Å©¼¶ »ı¼º °á°ú¸¦ ¹Ş´Â ÇÔ¼ö
-    virtual bool OnEvent_ChecksumTest(const char* szFileName, int returnCode);		///< Ã¼Å©¼¶ ºñ±³ °á°ú¸¦ ¹Ş´Â ÇÔ¼ö
+    virtual bool OnEvent_ChecksumBuild(const char* szFileName, int returnCode);		///< ì²´í¬ì„¬ ìƒì„± ê²°ê³¼ë¥¼ ë°›ëŠ” í•¨ìˆ˜
+    virtual bool OnEvent_ChecksumTest(const char* szFileName, int returnCode);		///< ì²´í¬ì„¬ ë¹„êµ ê²°ê³¼ë¥¼ ë°›ëŠ” í•¨ìˆ˜
 
 protected:
-    std::list<SChecksumInfo*>       m_listCheksum;                      ///< Ã¼Å©¼¶ Á¤º¸ ¸®½ºÆ®
-    size_t                          m_nWorkingFolderLength;             ///< ÀÛ¾÷ Æú´õ ÀÌ¸§ÀÇ ±æÀÌ
+    std::list<SChecksumInfo*>       m_listCheksum;                      ///< ì²´í¬ì„¬ ì •ë³´ ë¦¬ìŠ¤íŠ¸
+    size_t                          m_nWorkingFolderLength;             ///< ì‘ì—… í´ë” ì´ë¦„ì˜ ê¸¸ì´
 };

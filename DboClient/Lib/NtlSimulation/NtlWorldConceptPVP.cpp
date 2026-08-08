@@ -40,7 +40,7 @@ void CNtlWorldConceptPVP::Update( RwReal fElapsedTime )
 
 		if(m_FreeBattleInfo.pCharacter)
 		{
-			// PVP ¸¶Å©(½ÉÆÇ Ä³¸¯ÅÍ)ÀÇ µîÀå ºÎºÐ. ¾ËÆÄ°ª°ú Ink¸¦ Á¶ÀýÇÑ´Ù.
+			// PVP ë§ˆí¬(ì‹¬íŒ ìºë¦­í„°)ì˜ ë“±ìž¥ ë¶€ë¶„. ì•ŒíŒŒê°’ê³¼ Inkë¥¼ ì¡°ì ˆí•œë‹¤.
 			RwUInt8 byAlpha = (RwUInt8)((RwReal)255*m_fStateTime/2.0f);
 			m_FreeBattleInfo.pCharacter->SetAlpha(byAlpha);
 
@@ -67,7 +67,7 @@ void CNtlWorldConceptPVP::Update( RwReal fElapsedTime )
 	case WORLD_STATE_EXIT:
 		if(m_FreeBattleInfo.pCharacter)
 		{
-			// PVP ¸¶Å©(½ÉÆÇ Ä³¸¯ÅÍ)ÀÇ ¼Ò¸ê ºÎºÐ
+			// PVP ë§ˆí¬(ì‹¬íŒ ìºë¦­í„°)ì˜ ì†Œë©¸ ë¶€ë¶„
 			RwUInt8 byAlpha = 255 - (RwUInt8)((RwReal)255*m_fStateTime/2.0f);
 			m_FreeBattleInfo.pCharacter->SetAlpha(byAlpha);
 

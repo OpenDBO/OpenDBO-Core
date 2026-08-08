@@ -24,7 +24,7 @@ public:
     static CTreeNPCPane* GetInstance() {return m_pInstance;}
 
 protected:
-    virtual void InitClass();                        ///< °¢ Å¬·¡½º¿¡ ¸Â´Â ÃÊ±âÈ­¸¦ ¼öÇàÇÑ´Ù.
+    virtual void InitClass();                        ///< ê° í´ëž˜ìŠ¤ì— ë§žëŠ” ì´ˆê¸°í™”ë¥¼ ìˆ˜í–‰í•œë‹¤.
     
 protected:
     static CTreeNPCPane* m_pInstance;

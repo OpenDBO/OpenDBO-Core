@@ -37,7 +37,7 @@ RwBool CNtlPLLensFlare::Create( const SPLEntityCreateParam * pParam /*= NULL */ 
 	AddSpots();
 
 
-	// LensFlare ¼³Á¤°ªÀ» ¼³Á¤ÇÏ±â À§ÇÑ Å×½ºÆ® ÇÔ¼ö
+	// LensFlare ì„¤ì •ê°’ì„ ì„¤ì •í•˜ê¸° ìœ„í•œ í…ŒìŠ¤íŠ¸ í•¨ìˆ˜
 	//AddSpotForTest(".\\Tool\\VenusData\\LensFlare.xml");
 
 	return TRUE;
@@ -86,7 +86,7 @@ void CNtlPLLensFlare::SetMatrix( RwMatrix& matWorld )
 
 void CNtlPLLensFlare::AddSpots() 
 {
-	// Texture¸¦ ·ÎµùÇÑ´Ù.
+	// Textureë¥¼ ë¡œë”©í•œë‹¤.
 	RwTexture* tex1 = GetNtlResourceManager()->LoadTexture("LensFlare_01", PATH_EFFECT_TEXTURE);
 	RwTexture* tex2 = GetNtlResourceManager()->LoadTexture("LensFlare_02", PATH_EFFECT_TEXTURE);
 	RwTexture* tex3 = GetNtlResourceManager()->LoadTexture("LensFlare_03", PATH_EFFECT_TEXTURE);
@@ -97,7 +97,7 @@ void CNtlPLLensFlare::AddSpots()
 	DBO_ASSERT(tex3, "Texture load failed.");
 	DBO_ASSERT(tex4, "Texture load failed.");
 
-	// ¾Æ·¡ °ªµéÀº ±×·¡ÇÈÆÀ¿¡¼­ Å×½ºÆ®ÇÏ¿© ÁöÁ¤ÇÑ °ªÀÌ´Ù. 
+	// ì•„ë˜ ê°’ë“¤ì€ ê·¸ë˜í”½íŒ€ì—ì„œ í…ŒìŠ¤íŠ¸í•˜ì—¬ ì§€ì •í•œ ê°’ì´ë‹¤. 
 	AddSpot(SNtlPLLensFlareSpot(tex2, 0.30f,  0.7f,  1.0f, 1.0f,  1.0f, 0.3f));
 	AddSpot(SNtlPLLensFlareSpot(tex1, 0.20f,  0.5f,  1.0f, 1.0f,  1.0f, 0.2f));
 	AddSpot(SNtlPLLensFlareSpot(tex4, 0.06f,  0.4f,  0.6f, 1.0f,  0.9f, 0.1f));
@@ -184,7 +184,7 @@ void CNtlPLLensFlare::UpdateVertices(RwReal fElapsedTime)
 	RwInt32 nScreenWidth = CNtlPLGlobal::m_RwCamera->frameBuffer->width;
 	RwInt32 nScreenHeight = CNtlPLGlobal::m_RwCamera->frameBuffer->height;
 
-	// ±¤¿øÀÇ 2D À§Ä¡	
+	// ê´‘ì›ì˜ 2D ìœ„ì¹˜	
 	RwV2d posLight = API_PL_Calc3DPosTo2D(RwMatrixGetPos(&m_matWorld), nScreenWidth, nScreenHeight, TRUE);
 	if(posLight.x >= 9999.0f && posLight.y >= 9999.0f)
 	{
@@ -192,7 +192,7 @@ void CNtlPLLensFlare::UpdateVertices(RwReal fElapsedTime)
 		return;
 	}
 
-	// °­µµ °è»ê
+	// ê°•ë„ ê³„ì‚°
 	RwReal fRealIntensity;
 	RwReal iAwayX = (posLight.x < 0) ? -posLight.x : 
 		(posLight.x > nScreenWidth) ? posLight.x - nScreenWidth : 0;
@@ -213,7 +213,7 @@ void CNtlPLLensFlare::UpdateVertices(RwReal fElapsedTime)
 
 	if(fRealIntensity > 0.0f)
 	{
-		// Picking Å×½ºÆ®¸¦ ÇÑ´Ù.
+		// Picking í…ŒìŠ¤íŠ¸ë¥¼ í•œë‹¤.
 		m_fPickingTickTime += fElapsedTime;
 		m_bPrevPickingResult = CalcPicking(posLight);
 		if(m_bPrevPickingResult)
@@ -272,12 +272,12 @@ void CNtlPLLensFlare::UpdateVertices(RwReal fElapsedTime)
 	}
 	else
 	{
-		// °­µµ°¡ 0º¸´Ù ÀÛÀ¸¸é È­¸é¿¡ ¾È³ª¿À±â ¶§¹®¿¡, °è»êµµ ·»´õ¸µµµ ÇÊ¿ä¾ø´Ù
+		// ê°•ë„ê°€ 0ë³´ë‹¤ ì‘ìœ¼ë©´ í™”ë©´ì— ì•ˆë‚˜ì˜¤ê¸° ë•Œë¬¸ì—, ê³„ì‚°ë„ ë Œë”ë§ë„ í•„ìš”ì—†ë‹¤
 		m_bRender = FALSE;
 		return;
 	}
 
-	// Vertex À§Ä¡¸¦ °è»êÇÏ¿© ¼³Á¤ÇÑ´Ù.
+	// Vertex ìœ„ì¹˜ë¥¼ ê³„ì‚°í•˜ì—¬ ì„¤ì •í•œë‹¤.
 
 	RwInt32 nCenterOfScreenX = nScreenWidth / 2;
 	RwInt32 nCenterOfScreenY = nScreenHeight / 2;
@@ -286,16 +286,16 @@ void CNtlPLLensFlare::UpdateVertices(RwReal fElapsedTime)
 
 	for(UINT i = 0; i < m_vecSpots.size(); ++i)
 	{
-		// spotÀÇ À§Ä¡¸¦ °è»êÇÑ´Ù.
+		// spotì˜ ìœ„ì¹˜ë¥¼ ê³„ì‚°í•œë‹¤.
 		RwInt32 nSpotCenterPosX = (RwInt32)(nCenterOfScreenX - (RwReal)nDistanceX * m_vecSpots[i].m_fLinePos);
 		RwInt32 nSpotCenterPosY = (RwInt32)(nCenterOfScreenY - (RwReal)nDistanceY * m_vecSpots[i].m_fLinePos);
 		RwInt32 nSpotSizeHalf = (RwInt32)(nScreenWidth * m_vecSpots[i].m_fSize * 0.5f);		
 
-		// »ö»ó °áÁ¤
+		// ìƒ‰ìƒ ê²°ì •
 		RwRGBAReal color = m_vecSpots[i].m_color;
 		color.alpha *= fRealIntensity;		
 
-		if(GetDnController()->IsDNEffectApplied())	// D&NÀÌ ÄÑÁ®ÀÖÀ¸¸é LensFlare¿¡µµ ¿µÇâÀ» ÁØ´Ù
+		if(GetDnController()->IsDNEffectApplied())	// D&Nì´ ì¼œì ¸ìˆìœ¼ë©´ LensFlareì—ë„ ì˜í–¥ì„ ì¤€ë‹¤
 		{
 			RwReal TFactor = static_cast<RwReal>(dGET_WORLD_PARAM()->ClrDayAndNight & 0x000000ff) / 255.0f;
 			TFactor = 1.0f - TFactor * CNtlPLGlobal::m_fLensFlareForDNRatio;
@@ -373,7 +373,7 @@ RwBool CNtlPLLensFlare::CalcPicking( const RwV2d& posLight )
 		m_fPickingTickTime = 0.0f;
 	}
 
-	// ÁöÇüÀ» ÇÇÅ·ÇÑ´Ù.	
+	// ì§€í˜•ì„ í”¼í‚¹í•œë‹¤.	
 	CNtlPLWorldEntity* pWorldEntity = reinterpret_cast<CNtlPLVisualManager*>(GetSceneManager())->GetWorld();
 	if(!pWorldEntity)
 	{
@@ -386,7 +386,7 @@ RwBool CNtlPLLensFlare::CalcPicking( const RwV2d& posLight )
 		return TRUE;
 	}
 
-	// ¿ÀºêÁ§Æ®¸¦ ÇÇÅ·ÇÑ´Ù.		
+	// ì˜¤ë¸Œì íŠ¸ë¥¼ í”¼í‚¹í•œë‹¤.		
 	SWorldPickInfo pickInfo;
 	ZeroMemory(&pickInfo, sizeof(pickInfo));
 	pickInfo.fMinDist = RwRealMAXVAL;	

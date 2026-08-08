@@ -39,7 +39,7 @@ RwBool CNtlPLEmblem::Create( const SPLEntityCreateParam * pParam )
 	
 	NTL_ASSERT( pParam != NULL, RWSTRING( "NULL Param" ) );
 
-	// font »ı¼º
+	// font ìƒì„±
 	m_pFont = g_FontMgr.CreateGuiFont( DEFAULT_FONT, 100, DEFAULT_FONT_ATTR );
 	if(m_pFont == NULL)
 	{
@@ -51,7 +51,7 @@ RwBool CNtlPLEmblem::Create( const SPLEntityCreateParam * pParam )
 	m_fCullDist = pEmblem->fCullDist;
 
 	
-	// texture »ı¼º(·ÎÁ÷ÀÇ ¿¡·¯... 256À¸·Î ÇÒ·Á¸é.. 255°¡ ÃÖ°í´Ù ¹ö±×¸¦ ÀâÀÚ.)
+	// texture ìƒì„±(ë¡œì§ì˜ ì—ëŸ¬... 256ìœ¼ë¡œ í• ë ¤ë©´.. 255ê°€ ìµœê³ ë‹¤ ë²„ê·¸ë¥¼ ì¡ì.)
 	m_pTexture = g_TextureMgr.CreateTexture(255, size.y);
 	if(m_pTexture == NULL)
 	{
@@ -175,7 +175,7 @@ void CNtlPLEmblem::VertexAssin(void)
 
 void CNtlPLEmblem::SetPosition(const RwV3d *pPos)
 {
-	// positionÀ» update ¾ÈÇÒ °æ¿ì.
+	// positionì„ update ì•ˆí•  ê²½ìš°.
 	if(!IsVisible())
 		return;
 	

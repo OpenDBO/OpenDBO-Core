@@ -227,7 +227,7 @@ RwBBoxAddPoint(RwBBox *boundBox, const RwV3d *vertex)
 /**
  * \ingroup rwbbox
  * \ref RwBBoxContainsPoint is used to test whether the specified vertex
- * falls within the given bounding-box. Points lying exactly on the box’s
+ * falls within the given bounding-box. Points lying exactly on the boxë­©
  * boundary are considered to be inside the box.
  *
  * \param boundBox  Pointer to the bounding-box.

@@ -33,7 +33,7 @@ void CLayerMisc::SetLayer( LAYER nIndex )
 	LAYER OldLayer = m_nCurrentLayer;
 	m_nCurrentLayer = nIndex;
 
-	// TODO : ÁÖ·Î Focus°¡ ¹Ù²ð¶§ È£ÃâµÇ´Â ÇÔ¼ö ÀÌ¹Ç·Î Layer¿¡ µû¸¥ ÀüÈ¯ÃÊ±âÈ­¸¦ ÇØÁØ´Ù.
+	// TODO : ì£¼ë¡œ Focusê°€ ë°”ë€”ë•Œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜ ì´ë¯€ë¡œ Layerì— ë”°ë¥¸ ì „í™˜ì´ˆê¸°í™”ë¥¼ í•´ì¤€ë‹¤.
 	CMainFrame* pMainFrm = (CMainFrame*)AfxGetMainWnd();
 	pMainFrm->m_wndLayerBar.SetActiveView( m_nCurrentLayer );
 }

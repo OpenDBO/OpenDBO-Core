@@ -18,7 +18,7 @@
 
 /**
 * \brief Construction
-* \param pName	(const RwChar*) GUI ÀÌ¸§
+* \param pName	(const RwChar*) GUI ì´ë¦„
 */
 CTBMatchObserverVersusGui::CTBMatchObserverVersusGui( const RwChar* pName )
 : CNtlPLGui( pName )
@@ -38,7 +38,7 @@ CTBMatchObserverVersusGui::~CTBMatchObserverVersusGui()
 
 /**
 * \brief Create
-* ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ °³ÀÎÀü ¶Ç´Â ÆÀÀüÀÇ °üÀüÀÚ Versus¸¦ ±¸¼ºÇÑ´Ù.
+* ì²œí•˜ì œì¼ ë¬´ë„íšŒ ê°œì¸ì „ ë˜ëŠ” íŒ€ì „ì˜ ê´€ì „ì Versusë¥¼ êµ¬ì„±í•œë‹¤.
 */
 RwBool CTBMatchObserverVersusGui::Create()
 {
@@ -78,7 +78,7 @@ RwBool CTBMatchObserverVersusGui::Create()
 }
 
 /**
-* \brief ·¹µåÆÀÀÇ Á¡¼ö¿¡ ¾²ÀÏ ¼ıÀÚ¸¦ »ı¼ºÇÑ´Ù.
+* \brief ë ˆë“œíŒ€ì˜ ì ìˆ˜ì— ì“°ì¼ ìˆ«ìë¥¼ ìƒì„±í•œë‹¤.
 */
 VOID CTBMatchObserverVersusGui::CreateRedScoreNumber()
 {
@@ -100,7 +100,7 @@ VOID CTBMatchObserverVersusGui::CreateRedScoreNumber()
 }
 
 /**
-* \brief ºí·çÆÀÀÇ Á¡¼ö¿¡ ¾²ÀÏ ¼ıÀÚ¸¦ »ı¼ºÇÑ´Ù.
+* \brief ë¸”ë£¨íŒ€ì˜ ì ìˆ˜ì— ì“°ì¼ ìˆ«ìë¥¼ ìƒì„±í•œë‹¤.
 */
 VOID CTBMatchObserverVersusGui::CreateBlueScoreNumber()
 {
@@ -122,7 +122,7 @@ VOID CTBMatchObserverVersusGui::CreateBlueScoreNumber()
 }
 
 /**
-* \brief TIME¿¡ ¾²ÀÏ ¼ıÀÚ¸¦ »ı¼ºÇÑ´Ù.
+* \brief TIMEì— ì“°ì¼ ìˆ«ìë¥¼ ìƒì„±í•œë‹¤.
 */
 VOID CTBMatchObserverVersusGui::CreateLeftTimeNumber()
 {
@@ -167,7 +167,7 @@ VOID CTBMatchObserverVersusGui::Destroy()
 
 /**
 * \brief Update
-* \param fElapsed	(RwReal) ÀÌÀü ÇÁ·¹ÀÓ¿¡¼­ °æ°úµÈ ½Ã°£
+* \param fElapsed	(RwReal) ì´ì „ í”„ë ˆì„ì—ì„œ ê²½ê³¼ëœ ì‹œê°„
 */
 VOID CTBMatchObserverVersusGui::Update( RwReal fElapsed )
 {
@@ -189,7 +189,7 @@ VOID CTBMatchObserverVersusGui::Update( RwReal fElapsed )
 
 /**
 * \brief HandleEvents
-* \param msg		(RWS::CMsg&) Event ¸Ş½ÃÁö ±¸Á¶Ã¼
+* \param msg		(RWS::CMsg&) Event ë©”ì‹œì§€ êµ¬ì¡°ì²´
 */
 VOID CTBMatchObserverVersusGui::HandleEvents( RWS::CMsg& msg )
 {
@@ -199,21 +199,21 @@ VOID CTBMatchObserverVersusGui::HandleEvents( RWS::CMsg& msg )
 
 		if( pData->bEnterState )
 		{
-			// Match Ready »óÅÂ¶ó¸é Á¡¼ö¸¦ ÃÊ±âÈ­½ÃÄÑÁØ´Ù.
+			// Match Ready ìƒíƒœë¼ë©´ ì ìˆ˜ë¥¼ ì´ˆê¸°í™”ì‹œì¼œì¤€ë‹¤.
 			if( pData->byMatchState == BUDOKAI_MAJORMATCH_STATE_MATCH_READY )
 			{
 				SetScore( 0, 0 );
 				return;
 			}
 
-			// READY, RUN, FINISH »óÅÂ°¡ ¾Æ´Ï¶ó¸é ÇØÁ¦ÇÑ´Ù.
+			// READY, RUN, FINISH ìƒíƒœê°€ ì•„ë‹ˆë¼ë©´ í•´ì œí•œë‹¤.
 			if( pData->byMatchState == BUDOKAI_MAJORMATCH_STATE_STAGE_READY ||
 				pData->byMatchState == BUDOKAI_MAJORMATCH_STATE_STAGE_RUN	||
 				pData->byMatchState == BUDOKAI_MAJORMATCH_STATE_STAGE_FINISH )
 			{
 				if( !IsShow() )
 				{
-					// Âü°¡ÀÚ¶ó¸é ¸®ÅÏ
+					// ì°¸ê°€ìë¼ë©´ ë¦¬í„´
 					CNtlWorldConceptTB*	pTBWorldConcept = reinterpret_cast<CNtlWorldConceptTB*>( GetNtlWorldConcept()->GetWorldConceptController( WORLD_PLAY_T_BUDOKAI ) );
 					stTBudokaiMember* pMember = pTBWorldConcept->FindMember( Logic_GetAvatarHandle() );
 					if( pMember )
@@ -245,7 +245,7 @@ VOID CTBMatchObserverVersusGui::HandleEvents( RWS::CMsg& msg )
 
 		if( pData->bEnterState )
 		{
-			// Match Ready »óÅÂ¶ó¸é Á¡¼ö¸¦ ÃÊ±âÈ­½ÃÄÑÁØ´Ù.
+			// Match Ready ìƒíƒœë¼ë©´ ì ìˆ˜ë¥¼ ì´ˆê¸°í™”ì‹œì¼œì¤€ë‹¤.
 			if( pData->byMatchState == BUDOKAI_MAJORMATCH_STATE_MATCH_READY )
 			{
 				SetScore( 0, 0 );
@@ -258,7 +258,7 @@ VOID CTBMatchObserverVersusGui::HandleEvents( RWS::CMsg& msg )
 			{
 				if( !IsShow() )
 				{
-					// Âü°¡ÀÚ¶ó¸é ¸®ÅÏ
+					// ì°¸ê°€ìë¼ë©´ ë¦¬í„´
 					CNtlWorldConceptTB*	pTBWorldConcept = reinterpret_cast<CNtlWorldConceptTB*>( GetNtlWorldConcept()->GetWorldConceptController( WORLD_PLAY_T_BUDOKAI ) );
 					stTBudokaiMember* pMember = pTBWorldConcept->FindMember( Logic_GetAvatarHandle() );
 					if( pMember )
@@ -305,19 +305,19 @@ VOID CTBMatchObserverVersusGui::HandleEvents( RWS::CMsg& msg )
 }
 
 /**
-* \brief ÇöÀç VS GUIÀÇ Å¸ÀÔÀ» ¼³Á¤ÇÑ´Ù.
+* \brief í˜„ì¬ VS GUIì˜ íƒ€ì…ì„ ì„¤ì •í•œë‹¤.
 */
 VOID CTBMatchObserverVersusGui::SetVersusType()
 {
 	CNtlWorldConceptTB* pTBWorldConcept = reinterpret_cast<CNtlWorldConceptTB*>( GetNtlWorldConcept()->GetWorldConceptController( WORLD_PLAY_T_BUDOKAI ) );
 	DBO_ASSERT( pTBWorldConcept, "CTBMatchObserverVersusGui : must World concept is valid" );
 
-	// °³ÀÎÀü
+	// ê°œì¸ì „
 	if( !pTBWorldConcept->IsPartyBattle() )
 	{
 		m_byType = TYPE_INDI;
 	}
-	// ÆÀÀü
+	// íŒ€ì „
 	else
 	{
 		m_byType = TYPE_TEAM;
@@ -325,7 +325,7 @@ VOID CTBMatchObserverVersusGui::SetVersusType()
 }
 
 /**
-* \brief Å¸ÀÔ¿¡ µû¸¥ Interface¸¦ ¼¼ÆÃÇÑ´Ù.
+* \brief íƒ€ì…ì— ë”°ë¥¸ Interfaceë¥¼ ì„¸íŒ…í•œë‹¤.
 * \param byType		(RwUInt8) Interface Type
 */
 VOID CTBMatchObserverVersusGui::SetInterfaceByType( RwUInt8 byType )
@@ -342,12 +342,12 @@ VOID CTBMatchObserverVersusGui::SetInterfaceByType( RwUInt8 byType )
 		break;
 	case TYPE_TEAM:
 		{
-			// Red ÆÀ ÀÌ¸§ ¼ÂÆÃ
-			// Blue ÆÀ ÀÌ¸§ ¼¼ÆÃ
+			// Red íŒ€ ì´ë¦„ ì…‹íŒ…
+			// Blue íŒ€ ì´ë¦„ ì„¸íŒ…
 			CNtlWorldConceptTB* pTBWorldConcept = reinterpret_cast<CNtlWorldConceptTB*>( GetNtlWorldConcept()->GetWorldConceptController( WORLD_PLAY_T_BUDOKAI ) );
 			DBO_ASSERT( pTBWorldConcept, "CTBMatchObserverVersusGui : must World concept is valid" );		
 
-			// ÇĞÆÀÀÌ Red
+			// í•™íŒ€ì´ Red
 			stTBudokaiTeam* pRedTeam = pTBWorldConcept->GetRedTeam();
 			DBO_ASSERT( pRedTeam, "CTBMatchObserverVersusGui : must Budokai red team is valid" );
 
@@ -383,7 +383,7 @@ VOID CTBMatchObserverVersusGui::SetCurrentScore()
 }
 
 /**
-* \brief Á¡¼ö¸¦ ÁöÁ¤ÇÑ´Ù.
+* \brief ì ìˆ˜ë¥¼ ì§€ì •í•œë‹¤.
 */
 VOID CTBMatchObserverVersusGui::SetScore( RwUInt8 byRedScore, RwUInt8 byBlueScore )
 {
@@ -391,7 +391,7 @@ VOID CTBMatchObserverVersusGui::SetScore( RwUInt8 byRedScore, RwUInt8 byBlueScor
 	m_numBlueScore.SetNumber( byBlueScore );
 }
 /**
-* \brief ½Ã°£À» ÁöÁ¤ÇÑ´Ù.
+* \brief ì‹œê°„ì„ ì§€ì •í•œë‹¤.
 */
 VOID CTBMatchObserverVersusGui::SetTime( RwUInt32 nTime )
 {

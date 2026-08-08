@@ -1,4 +1,4 @@
-// MainMenuListView.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// MainMenuListView.cpp : êµ¬í˜„ íŒŒì¼ìž…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -30,7 +30,7 @@ BEGIN_MESSAGE_MAP(CMainMenuListCtrl, CListCtrl)
 END_MESSAGE_MAP()
 
 
-// CMainMenuListCtrl Áø´ÜÀÔ´Ï´Ù.
+// CMainMenuListCtrl ì§„ë‹¨ìž…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CMainMenuListCtrl::AssertValid() const
@@ -71,12 +71,12 @@ void CMainMenuListCtrl::AddList( const CString& strName )
 	InsertItem( &lvItem );
 }
 
-// CMainMenuListCtrl ¸Þ½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CMainMenuListCtrl ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ìž…ë‹ˆë‹¤.
 
 
 BOOL CMainMenuListCtrl::OnEraseBkgnd(CDC* pDC)
 {
-	// ¹è°æÀ» ´Ù½Ã ±×¸®Áö ¾Ê´Â´Ù
+	// ë°°ê²½ì„ ë‹¤ì‹œ ê·¸ë¦¬ì§€ ì•ŠëŠ”ë‹¤
 	return TRUE;
 }
 
@@ -113,7 +113,7 @@ void CMainMenuListCtrl::OnNMDblclk(NMHDR *pNMHDR, LRESULT *pResult)
 
 		CTSDoc::GetInstance()->SelMainGroup();
 
-		// Trigger ¼Ó¼º
+		// Trigger ì†ì„±
 		CTSTrigger& clTrig = CTSDoc::GetInstance()->GetProjectObject()->GetTrigger();
 
 		CAttr_Trigger AttrPage;

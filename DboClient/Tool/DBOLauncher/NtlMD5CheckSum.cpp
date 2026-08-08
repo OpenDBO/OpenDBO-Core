@@ -86,7 +86,7 @@ int CNtlMD5CheckSum::md5_check( char *filename )
         if( line[n - 1] == '\r' ) { n--; line[n] = '\0'; }
 
 
-        // 35¹øÂ° ÀÌÈÄºÎÅÍ°¡ ÆÄÀÏ ÀÌ¸§ÀÌ´Ù. ÀÌ°ÍÀ» °¡Áö°í Ã¼Å©¼¶À» »ı¼ºÇÑ´Ù.
+        // 35ë²ˆì§¸ ì´í›„ë¶€í„°ê°€ íŒŒì¼ ì´ë¦„ì´ë‹¤. ì´ê²ƒì„ ê°€ì§€ê³  ì²´í¬ì„¬ì„ ìƒì„±í•œë‹¤.
         strFileName = line + 35;
         errCode = md5_wrapper((char*)strFileName.c_str(), sum );        
         if(errCode != CHECKSUM_SUCCESS)
@@ -118,7 +118,7 @@ int CNtlMD5CheckSum::md5_check( char *filename )
         }
         else
         {
-			// Ã¼Å©¼¶ ºñ±³ ¼º°ø
+			// ì²´í¬ì„¬ ë¹„êµ ì„±ê³µ
 			if ( !OnEvent_ChecksumTest(strFileName.c_str(), CHECKSUM_SUCCESS) )
 			{
 				fclose( f );
@@ -162,7 +162,7 @@ int CNtlMD5CheckSum::CheckSumBuild( char* szChecksumFileName, char* szFolder )
 	SetCurrentDirectoryA( szCheckSumFolder );
     m_nWorkingFolderLength = strlen( szCheckSumFolder ) - 1;
 
-    // Ã¼Å©¼¶ Á¤º¸¸¦ ¸¸µé¾î¼­ ¸®½ºÆ®¿¡ ÀúÀåÇÑ´Ù.
+    // ì²´í¬ì„¬ ì •ë³´ë¥¼ ë§Œë“¤ì–´ì„œ ë¦¬ìŠ¤íŠ¸ì— ì €ì¥í•œë‹¤.
 	bool bForCounter = false;
 	unsigned int uiCnt = 0;
 
@@ -175,13 +175,13 @@ int CNtlMD5CheckSum::CheckSumBuild( char* szChecksumFileName, char* szFolder )
 
     SetCurrentDirectoryA( szCurPath );    
 
-    // ÆÄÀÏ¿¡ Ãâ·ÂÇÑ´Ù.
+    // íŒŒì¼ì— ì¶œë ¥í•œë‹¤.
     return WriteChecksumBuild( szChecksumFileName );
 }
 
 bool CNtlMD5CheckSum::RecursiveChecksumBuild( bool bForCounter, unsigned int& uiCnt ) 
 {
-    // ÇÏÀ§ Æú´õ¸¦ ¸ğµÎ µ¹¸é¼­ ÆÄÀÏµéÀÇ Ã¼Å©¼¶À» ¸¸µç´Ù.
+    // í•˜ìœ„ í´ë”ë¥¼ ëª¨ë‘ ëŒë©´ì„œ íŒŒì¼ë“¤ì˜ ì²´í¬ì„¬ì„ ë§Œë“ ë‹¤.
     char strCurPath[1024];
     GetCurrentDirectoryA( 1024, strCurPath );
 
@@ -204,10 +204,10 @@ bool CNtlMD5CheckSum::RecursiveChecksumBuild( bool bForCounter, unsigned int& ui
 
         if(FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
         {
-            //  µğ·ºÅä¸®ÀÌ¸é
+            //  ë””ë ‰í† ë¦¬ì´ë©´
             if(FindFileData.cFileName[0] == '.')
             {
-                //  Dot µğ·ºÅä¸®´Â ½ºÅµÇÑ´Ù.
+                //  Dot ë””ë ‰í† ë¦¬ëŠ” ìŠ¤í‚µí•œë‹¤.
             } 
             else
             {
@@ -229,12 +229,12 @@ bool CNtlMD5CheckSum::RecursiveChecksumBuild( bool bForCounter, unsigned int& ui
 			{
 				if ( !bForCounter )
 				{
-					// ÆÄÀÏÀÇ Ã¼Å©¼¶À» ¸®½ºÆ®¿¡ ÀúÀåÇÑ´Ù.
+					// íŒŒì¼ì˜ ì²´í¬ì„¬ì„ ë¦¬ìŠ¤íŠ¸ì— ì €ì¥í•œë‹¤.
 					SChecksumInfo* pInfo = new SChecksumInfo();
 
 					retCode = md5_print(strFullFileName.c_str(), pInfo->checksum);
 		            
-					// »ó´ë °æ·Î¸¸ ÀúÀåÇÑ´Ù.
+					// ìƒëŒ€ ê²½ë¡œë§Œ ì €ì¥í•œë‹¤.
 					strFullFileName.replace(0, m_nWorkingFolderLength + 1, "");
 
 					if(retCode == CHECKSUM_SUCCESS)

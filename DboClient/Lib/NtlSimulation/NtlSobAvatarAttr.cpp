@@ -27,9 +27,9 @@ CNtlSobAvatarAttr::CNtlSobAvatarAttr()
 	m_uiSp = 0;
 
 	m_uiHonorPoint = 0;
-	m_uiMudosaPoint = 0;			///< ¹«µµ»ç Æ÷ÀÎÆ®
+	m_uiMudosaPoint = 0;			///< ë¬´ë„ì‚¬ í¬ì¸íŠ¸
 
-    // PC¹æ °ü·Ã
+    // PCë°© ê´€ë ¨
     m_dwNetPy = 0;
 	m_dwHlsCash = 0;
 

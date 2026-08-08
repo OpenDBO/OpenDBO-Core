@@ -1,4 +1,4 @@
-// PointEditDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PointEditDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -252,7 +252,7 @@ void CPointEditDlg::CPointEditView::OnGridPaint(CPaintDC& dc)
 	ptCenter.x += nScrollOffsetX;
 	ptCenter.y += nScrollOffsetY;
 
-	// °¡·Î
+	// ê°€ë¡œ
 	int nStartGridY = ptCenter.y - (m_nGridYNum + 1)*m_nGridRulerSize;
 	nCenterOffsetY -= (m_nGridYNum + 1);
 
@@ -276,7 +276,7 @@ void CPointEditDlg::CPointEditView::OnGridPaint(CPaintDC& dc)
 		nCenterOffsetY++;
 	}
 
-	// ¼¼·Î.
+	// ì„¸ë¡œ.
 
 	int nStartGridX = ptCenter.x - (m_nGridXNum + 1)*m_nGridRulerSize;
 	nCenterOffsetX -= (m_nGridXNum + 1);
@@ -309,7 +309,7 @@ void CPointEditDlg::CPointEditView::OnGridPaint(CPaintDC& dc)
 
 void CPointEditDlg::CPointEditView::OnNumberPaint(CPaintDC& dc)
 {
-	// name Ãâ·Â.
+	// name ì¶œë ¥.
 	dc.SetBkMode(TRANSPARENT);
 	if(m_bActive)
 		dc.SetTextColor(RGB(50, 50, 200));
@@ -722,7 +722,7 @@ int CPointEditDlg::CPointEditView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CStatic::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// TODO:  ¿©±â¿¡ Æ¯¼öÈ­µÈ ÀÛ¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì‘ì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	m_bActive			= FALSE;
 	m_fScale			= 1.0f;
@@ -750,7 +750,7 @@ void CPointEditDlg::CPointEditView::OnDestroy()
 {
 	CStatic::OnDestroy();
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	m_penCenter.DeleteObject();
 	m_penBlock.DeleteObject();
@@ -761,8 +761,8 @@ void CPointEditDlg::CPointEditView::OnDestroy()
 void CPointEditDlg::CPointEditView::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
-	// ±×¸®±â ¸Ş½ÃÁö¿¡ ´ëÇØ¼­´Â CStatic::OnPaint()À»(¸¦) È£ÃâÇÏÁö ¸¶½Ê½Ã¿À.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
+	// ê·¸ë¦¬ê¸° ë©”ì‹œì§€ì— ëŒ€í•´ì„œëŠ” CStatic::OnPaint()ì„(ë¥¼) í˜¸ì¶œí•˜ì§€ ë§ˆì‹­ì‹œì˜¤.
 
 	dc.SaveDC();
 
@@ -781,7 +781,7 @@ void CPointEditDlg::CPointEditView::OnSize(UINT nType, int cx, int cy)
 {
 	CStatic::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	
 	CalcBackgourndSize();
 	CalcGridNum();
@@ -790,13 +790,13 @@ void CPointEditDlg::CPointEditView::OnSize(UINT nType, int cx, int cy)
 
 BOOL CPointEditDlg::CPointEditView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	return CStatic::OnMouseWheel(nFlags, zDelta, pt);
 }
 
 
-// CPointEditDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPointEditDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPointEditDlg, CDialog)
 
@@ -960,13 +960,13 @@ void CPointEditDlg::OnPropSelectUpdate(int nSx, int nEx)
 }
 
 
-// CPointEditDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPointEditDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CPointEditDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	m_bQuaterView	= TRUE;
 	m_nActiveView	= POINT_EDIT_VIEW_TYPE_FRONT;
@@ -1012,14 +1012,14 @@ BOOL CPointEditDlg::OnInitDialog()
 	CalcControlPosition(rtClient.right, rtClient.bottom);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CPointEditDlg::OnSize(UINT nType, int cx, int cy)
 {
 	CDialog::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	if (m_EditView[0].GetSafeHwnd())
 	{
@@ -1069,7 +1069,7 @@ void CPointEditDlg::OnLButtonDown(UINT nFlags, CPoint point)
 		m_ptOldPointMove = point;
 	}
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	CDialog::OnLButtonDown(nFlags, point);
 }
@@ -1119,7 +1119,7 @@ void CPointEditDlg::OnLButtonUp(UINT nFlags, CPoint point)
 	m_bPointMove	= FALSE;
 	m_bWndZoomInOut	= FALSE;
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	CDialog::OnLButtonUp(nFlags, point);
 }
@@ -1179,7 +1179,7 @@ void CPointEditDlg::OnLButtonDblClk(UINT nFlags, CPoint point)
 		Invalidate(TRUE);
 	}
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	CDialog::OnLButtonDblClk(nFlags, point);
 }
@@ -1197,7 +1197,7 @@ BOOL CPointEditDlg::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 	float fScale = m_EditView[m_nActiveView].GetScale();
 	VisibleScale(fScale);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	return CDialog::OnMouseWheel(nFlags, zDelta, pt);
 }
@@ -1299,7 +1299,7 @@ void CPointEditDlg::OnMouseMove(UINT nFlags, CPoint point)
 			}
 		}
 	}
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	CDialog::OnMouseMove(nFlags, point);
 }
@@ -1316,7 +1316,7 @@ void CPointEditDlg::OnRButtonDown(UINT nFlags, CPoint point)
 		SetCapture();
 	}
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	CDialog::OnRButtonDown(nFlags, point);
 }
@@ -1328,14 +1328,14 @@ void CPointEditDlg::OnRButtonUp(UINT nFlags, CPoint point)
 
 	m_bPaneActive = FALSE;
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	CDialog::OnRButtonUp(nFlags, point);
 }
 
 void CPointEditDlg::OnBnClickedPointeditCenterMove()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	m_EditView[m_nActiveView].OnPaneCenter();
 	m_EditView[m_nActiveView].Invalidate(FALSE);
@@ -1343,7 +1343,7 @@ void CPointEditDlg::OnBnClickedPointeditCenterMove()
 
 void CPointEditDlg::OnBnClickedPointeditSearchMove()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	m_EditView[m_nActiveView].OnPaneSerachPoint(0);
 	m_EditView[m_nActiveView].Invalidate(FALSE);
 }
@@ -1352,7 +1352,7 @@ void CPointEditDlg::OnShowWindow(BOOL bShow, UINT nStatus)
 {
 	CDialog::OnShowWindow(bShow, nStatus);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	if(bShow)
 	{
@@ -1363,8 +1363,8 @@ void CPointEditDlg::OnShowWindow(BOOL bShow, UINT nStatus)
 void CPointEditDlg::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
-	// ±×¸®±â ¸Ş½ÃÁö¿¡ ´ëÇØ¼­´Â CDialog::OnPaint()À»(¸¦) È£ÃâÇÏÁö ¸¶½Ê½Ã¿À.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
+	// ê·¸ë¦¬ê¸° ë©”ì‹œì§€ì— ëŒ€í•´ì„œëŠ” CDialog::OnPaint()ì„(ë¥¼) í˜¸ì¶œí•˜ì§€ ë§ˆì‹­ì‹œì˜¤.
 
 	dc.FillSolidRect(m_rtWndZoomInOut, RGB(170, 60, 60));
 }

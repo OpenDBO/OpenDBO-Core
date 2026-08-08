@@ -28,7 +28,7 @@ CBackManager::~CBackManager(void)
 
 void CBackManager::LoadBack( const TCHAR* texname, int nOffsetX, int nOffsetY )
 {
-	// ¿Ã∏ß¿Ã ¥Ÿ∏£¥Ÿ∏È
+	// Ïù¥Î¶ÑÏù¥ Îã§Î•¥Îã§Î©¥
 	if( _tcscmp( texname, m_tcBackName ) != 0 )
 	{
 		m_TexBack.Unload();

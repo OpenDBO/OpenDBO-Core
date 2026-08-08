@@ -27,20 +27,20 @@ protected:
     
 public:
     static CPagePC*    GetInstance() {return m_pInstance;};
-    void OnSaveScript(const WCHAR* szScriptName, BOOL bVisible);                   ///< ½ºÅ©¸³Æ® ÆÄÀÏÀ» ÀúÀåÇÑ´Ù.
+    void OnSaveScript(const WCHAR* szScriptName, BOOL bVisible);                   ///< ìŠ¤í¬ë¦½íŠ¸ íŒŒì¼ì„ ì €ìž¥í•œë‹¤.
 
 protected:
-    BOOL OnDisplayScriptInfo(CString strFileName);      ///< ½ºÅ©¸³Æ® ÆÄÀÏÀ» ÀÐ¾î¼­ ³»¿ëÀ» Ç¥½ÃÇÑ´Ù.        
+    BOOL OnDisplayScriptInfo(CString strFileName);      ///< ìŠ¤í¬ë¦½íŠ¸ íŒŒì¼ì„ ì½ì–´ì„œ ë‚´ìš©ì„ í‘œì‹œí•œë‹¤.        
     
 
 protected:
     static CPagePC* m_pInstance;
-    CNtlPLCharacterProperty* m_pCharacterProperty;        ///< ¸ðµ¨ÀÇ ÇÁ·ÎÆÛÆ¼ Æ÷ÀÎÅÍ
-    std::vector<CMTCharacter*> m_vCharacter;              ///< Edit¿¡ »ç¿ëµÇ´Â Ä³¸¯ÅÍ ÀÎ½ºÅÏ½ºµéÀÇ Vector    
-    CString m_sSaveFolderName;                             ///< ½ºÅ©¸³Æ®¸¦ ÀúÀåÇÒ Æú´õ¸í
+    CNtlPLCharacterProperty* m_pCharacterProperty;        ///< ëª¨ë¸ì˜ í”„ë¡œí¼í‹° í¬ì¸í„°
+    std::vector<CMTCharacter*> m_vCharacter;              ///< Editì— ì‚¬ìš©ë˜ëŠ” ìºë¦­í„° ì¸ìŠ¤í„´ìŠ¤ë“¤ì˜ Vector    
+    CString m_sSaveFolderName;                             ///< ìŠ¤í¬ë¦½íŠ¸ë¥¼ ì €ìž¥í•  í´ë”ëª…
 
 protected:            
-    CEdit m_edScriptFileName;                            ///< ½ºÅ©¸³Æ® ÆÄÀÏ¸íÀ» Ç¥½ÃÇÑ´Ù.
+    CEdit m_edScriptFileName;                            ///< ìŠ¤í¬ë¦½íŠ¸ íŒŒì¼ëª…ì„ í‘œì‹œí•œë‹¤.
     CEdit m_edClumpFileName;
     CButton m_btLoadClump;
     CButton m_btSaveScript;

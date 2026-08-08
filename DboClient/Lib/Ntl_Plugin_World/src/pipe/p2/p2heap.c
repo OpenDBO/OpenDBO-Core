@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdint.h>
 
 #include "batypes.h"
 #include "balibtyp.h"
@@ -206,7 +207,7 @@ HeapSuperBlockCreate(RwUInt32 size)
     if (superBlock != NULL)
     {
         superBlock->start = (void *)
-            ((((RwUInt32) & superBlock[1]) + SBAL) & ~SBAL);
+            (( (uintptr_t)((char*)(&superBlock[1]) + SBAL) ) & ~(uintptr_t)(SBAL));
         superBlock->size = size;
         superBlock->next = (rxHeapSuperBlockDescriptor *) NULL;
     }
@@ -1324,3 +1325,5 @@ RxHeapCreate(RwUInt32 size)
 
     RWRETURN((RxHeap *) NULL);
 }
+
+

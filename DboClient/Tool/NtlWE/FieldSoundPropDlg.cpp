@@ -1,4 +1,4 @@
-// FieldSoundPropDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// FieldSoundPropDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -14,7 +14,7 @@
 
 #include "FieldSoundPropDlg.h"
 
-// CFieldSoundPropDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CFieldSoundPropDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CFieldSoundPropDlg, CDialog)
 
@@ -50,7 +50,7 @@ BEGIN_MESSAGE_MAP(CFieldSoundPropDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CFieldSoundPropDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CFieldSoundPropDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 BOOL CFieldSoundPropDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();

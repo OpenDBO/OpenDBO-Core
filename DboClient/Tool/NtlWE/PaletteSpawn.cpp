@@ -1,4 +1,4 @@
-// PaletteSpawn.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PaletteSpawn.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -17,7 +17,7 @@
 #include "PaletteSpawnPath.h"
 #include "PaletteSpawnMacroModify.h"
 
-// CPaletteSpawn ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteSpawn ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPaletteSpawn, CDialog)
 
@@ -167,7 +167,7 @@ BEGIN_MESSAGE_MAP(CPaletteSpawn, CDialog)
 END_MESSAGE_MAP()
 
 
-// CPaletteSpawn ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPaletteSpawn ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CPaletteSpawn::OnInitDialog()
 {
@@ -178,7 +178,7 @@ BOOL CPaletteSpawn::OnInitDialog()
 	UpdateData(FALSE);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 VOID CPaletteSpawn::Refresh()
@@ -414,7 +414,7 @@ void CPaletteSpawn::OnTvnSelchangedTree(NMHDR *pNMHDR, LRESULT *pResult)
 	// trim
 	StrObjName.Delete(StrObjName.Find('('), StrObjName.GetLength());
 	StrLvlName.Delete(0, StrLvlName.Find('(') + 1);
-	StrLvlName.Delete(StrLvlName.Find("·¹"), StrLvlName.GetLength());
+	StrLvlName.Delete(StrLvlName.Find("ë ˆ"), StrLvlName.GetLength());
 
 	StrGUID.Delete(0, StrGUID.Find(',') + 2);
 	StrGUID.Delete(StrGUID.Find("'"), StrGUID.GetLength());

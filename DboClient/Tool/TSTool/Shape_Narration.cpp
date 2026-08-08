@@ -103,7 +103,7 @@ void CShape_Narration::ShowContAttrEditBox( void )
 
 void CShape_Narration::ShowEntityAttrAddBox( void )
 {
-	AfxMessageBox( _T("µî·Ï ½ÃÅ³ ¼ö ÀÖ´Â ¿£Æ¼Æ¼µéÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù") );
+	AfxMessageBox( _T("ë“±ë¡ ì‹œí‚¬ ìˆ˜ ìˆëŠ” ì—”í‹°í‹°ë“¤ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤") );
 }
 
 void CShape_Narration::GetProperty( CNtlTSScrProperty& clProperty )

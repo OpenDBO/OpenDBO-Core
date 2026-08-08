@@ -4,11 +4,11 @@
 *
 * File			: NtlPLSun
 * Author		: Agebreak 
-* Copyright	: (ÁÖ)NTL
+* Copyright	: (ì£¼)NTL
 * Date			: 2007. 4. 12	
 * Abstract		: Presentation layer Sun & Moon entity class
 *****************************************************************************
-* Desc         : ÅÂ¾ç°ú ´ŞÀ» Ç¥ÇöÇÏ±â À§ÇÑ Entity. ºôº¸µå Æò¸éÀÌ¸ç, Ä«¸Ş¶óÀÇ °Å¸®¸¦ °è¼Ó À¯ÁöÇÏ¸ç ¿òÁ÷ÀÎ´Ù.
+* Desc         : íƒœì–‘ê³¼ ë‹¬ì„ í‘œí˜„í•˜ê¸° ìœ„í•œ Entity. ë¹Œë³´ë“œ í‰ë©´ì´ë©°, ì¹´ë©”ë¼ì˜ ê±°ë¦¬ë¥¼ ê³„ì† ìœ ì§€í•˜ë©° ì›€ì§ì¸ë‹¤.
 *
 *****************************************************************************/
 
@@ -25,8 +25,8 @@ enum eSKY_FLOATING_BILLBOARD_TYPE
 
 struct SPLSunCreateParam : public SPLEntityCreateParam
 {
-	std::string		strTexture;						///< Àû¿ëÇÒ Texture ÀÌ¸§ 
-	RwBool			bAttachLensFlare;				///< LensFlare Àû¿ë À¯¹«
+	std::string		strTexture;						///< ì ìš©í•  Texture ì´ë¦„ 
+	RwBool			bAttachLensFlare;				///< LensFlare ì ìš© ìœ ë¬´
 	RwReal			Scale;
 };
 
@@ -55,10 +55,10 @@ public:
 	virtual RwBool	GetVisibility();
 	virtual void	SetVisibility(RwBool bVisible);
 			
-	void	SetFadeEffect(RwBool bFadeIn, RwReal fTime = 1.0f);					///< Fade È¿°ú¸¦ Àû¿ëÇÑ´Ù. True¸é ³ªÅ¸³ª°í, False¸é »ç¶óÁø´Ù. timeÀº °É¸®´Â ½Ã°£
-	void	SetFadeEffect(RwRGBA colorFade, RwReal fTime = 1.0f);				///< Fade È¿°ú¸¦ Àû¿ëÇÑ´Ù. time¿¡ °ÉÃÄ fadeColor·Î º¯È¯µÈ´Ù.
+	void	SetFadeEffect(RwBool bFadeIn, RwReal fTime = 1.0f);					///< Fade íš¨ê³¼ë¥¼ ì ìš©í•œë‹¤. Trueë©´ ë‚˜íƒ€ë‚˜ê³ , Falseë©´ ì‚¬ë¼ì§„ë‹¤. timeì€ ê±¸ë¦¬ëŠ” ì‹œê°„
+	void	SetFadeEffect(RwRGBA colorFade, RwReal fTime = 1.0f);				///< Fade íš¨ê³¼ë¥¼ ì ìš©í•œë‹¤. timeì— ê±¸ì³ fadeColorë¡œ ë³€í™˜ëœë‹¤.
 
-	void	ReFreshLensFlareData();												///< LensFlare Test¸¦ À§ÇÑ Refresh ÇÔ¼ö
+	void	ReFreshLensFlareData();												///< LensFlare Testë¥¼ ìœ„í•œ Refresh í•¨ìˆ˜
 
 protected:
 	void	CreateVertexBuffer();
@@ -72,15 +72,15 @@ protected:
 	RwMatrix		m_matWorld;
 	RwRGBA			m_color;	
 
-	RwBool			m_bVisible;									///< SunÀº ±¸¸§°ú SkyBox »çÀÌ¿¡ Render µÇ¹Ç·Î Entity VisibleÀ» »ç¿ëÇÏ¸é ¾ÈµÈ´Ù.
+	RwBool			m_bVisible;									///< Sunì€ êµ¬ë¦„ê³¼ SkyBox ì‚¬ì´ì— Render ë˜ë¯€ë¡œ Entity Visibleì„ ì‚¬ìš©í•˜ë©´ ì•ˆëœë‹¤.
 
-	// Fade¿ë	
-	RwBool			m_bFading;									///< Fade ÁßÀÎÁö À¯¹« ÇÃ·¡±×
+	// Fadeìš©	
+	RwBool			m_bFading;									///< Fade ì¤‘ì¸ì§€ ìœ ë¬´ í”Œë˜ê·¸
 	RwRGBA			m_FadeColor;
 	RwRGBA			m_OriginColor;
 	RwReal			m_fFadeTime;
 	RwReal			m_fFadingTime;
 
-	// LensFlare °´Ã¼
+	// LensFlare ê°ì²´
 	CNtlPLLensFlare* m_pLensFlare;
 };

@@ -477,7 +477,7 @@ void CTSView::Dump( CDumpContext& dc ) const
 	CScrollView::Dump( dc );
 }
 
-CTSDoc* CTSView::GetDocument( void ) const // µğ¹ö±×µÇÁö ¾ÊÀº ¹öÀüÀº ÀÎ¶óÀÎÀ¸·Î ÁöÁ¤µË´Ï´Ù.
+CTSDoc* CTSView::GetDocument( void ) const // ë””ë²„ê·¸ë˜ì§€ ì•Šì€ ë²„ì „ì€ ì¸ë¼ì¸ìœ¼ë¡œ ì§€ì •ë©ë‹ˆë‹¤.
 {
 	ASSERT( m_pDocument->IsKindOf( RUNTIME_CLASS(CTSDoc) ) );
 	return (CTSDoc*)m_pDocument;
@@ -511,7 +511,7 @@ void CTSView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	if ( VK_DELETE == nChar && !m_Selection.IsEmpty() )
 	{
 		CString strMessage;
-		strMessage.Format( _T("%d°³ÀÇ °´Ã¼°¡ ¼±ÅÃµÇ¾ú½À´Ï´Ù.\nÁ¤¸»·Î Áö¿ì½Ã°Ú½À´Ï±î?"), m_Selection.GetSize() );
+		strMessage.Format( _T("%dê°œì˜ ê°ì²´ê°€ ì„ íƒë˜ì—ˆìŠµë‹ˆë‹¤.\nì •ë§ë¡œ ì§€ìš°ì‹œê² ìŠµë‹ˆê¹Œ?"), m_Selection.GetSize() );
 		int nRet = AfxMessageBox( strMessage, MB_OKCANCEL );
 		if ( IDOK == nRet )
 		{
@@ -560,7 +560,7 @@ void CTSView::OnMouseMove(UINT nFlags, CPoint point)
 
 BOOL CTSView::OnEraseBkgnd(CDC* pDC)
 {
-	// ¹è°æÀ» ´Ù½Ã ±×¸®Áö ¾Ê´Â´Ù
+	// ë°°ê²½ì„ ë‹¤ì‹œ ê·¸ë¦¬ì§€ ì•ŠëŠ”ë‹¤
 	return TRUE;
 }
 
@@ -956,7 +956,7 @@ void CTSView::OnUpdateFinder( CCmdUI *pCmdUI )
 
 BOOL CTSView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if ( nFlags == MK_CONTROL )
 	{
 		m_dScale += (zDelta/abs((float)zDelta)) * 0.1f;

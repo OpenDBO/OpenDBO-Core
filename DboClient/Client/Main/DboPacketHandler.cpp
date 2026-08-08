@@ -4463,8 +4463,8 @@ void PacketHandler_GUBusLocationNfy( void* pPacket )
 	// 아바타가 위치하고 있는 존의 버스 위치, 방향 정보를 받았다
 	sGU_BUS_LOCATION_NFY* pResult = (sGU_BUS_LOCATION_NFY*)pPacket;
 
-	RwV3d v3Pos = {pResult->vCurLoc.x, 0.f, pResult->vCurLoc.z};
-	RwV3d v3Dir = {pResult->vCurDir.x, 0.f, pResult->vCurDir.z};
+	RwV3d v3Pos = {pResult->vCurLoc.x, pResult->vCurLoc.y, pResult->vCurLoc.z};
+	RwV3d v3Dir = {pResult->vCurDir.x, pResult->vCurDir.y, pResult->vCurDir.z};
 	
 	CNtlSLEventGenerator::BusMove(BUS_MOVE_POS_DIR, pResult->hSubject, pResult->busTblidx, &v3Pos, &v3Dir);
 }

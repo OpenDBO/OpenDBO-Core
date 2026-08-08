@@ -2,11 +2,11 @@
 *
 * File			: NtlSobCharDecorationProxy.h
 * Author		: agebreak
-* Copyright	: (ÁÖ)NTL
+* Copyright	: (ì£¼)NTL
 * Date			: 2005. 11. 30	
 * Abstract		: Simulation object attribute base class
 *****************************************************************************
-* Desc         : Ä³¸¯ÅÍÀÇ ÀÌÆåÆ®, ±×¸²ÀÚµîÀÇ µ¥ÄÚ·¹ÀÌ¼Ç °ü·Ã Å¬·¡½º
+* Desc         : ìºë¦­í„°ì˜ ì´í™íŠ¸, ê·¸ë¦¼ìë“±ì˜ ë°ì½”ë ˆì´ì…˜ ê´€ë ¨ í´ë˜ìŠ¤
 *
 *****************************************************************************/
 
@@ -26,12 +26,12 @@ class CNtlShareTargetMark;
 
 struct sEmblemFactor;
 
-/// Ä³¸¯ÅÍÀÇ ÀÌÆåÆ®, ±×¸²ÀÚµîÀÇ µ¥ÄÚ·¹ÀÌ¼Ç °ü·Ã Å¬·¡½º
+/// ìºë¦­í„°ì˜ ì´í™íŠ¸, ê·¸ë¦¼ìë“±ì˜ ë°ì½”ë ˆì´ì…˜ ê´€ë ¨ í´ë˜ìŠ¤
 class CNtlSobCharDecorationProxy
 {
 public:
 
-	static RwBool				m_bShadowCreate;			/** shadowÀ» »ı¼º on/off flag Æ¯Á¤ character shadow »ı¼ºÀ» Á¦¾î*/
+	static RwBool				m_bShadowCreate;			/** shadowì„ ìƒì„± on/off flag íŠ¹ì • character shadow ìƒì„±ì„ ì œì–´*/
     static RwBool				m_bShadowRender;			/** shadow rendering on/off flag */
 
 private:
@@ -46,28 +46,30 @@ private:
     RwReal						m_fTransShadowScale;		/** shadow scale */
     RwBool						m_bResLoaded;
     RwBool						m_bResLoadComplete;
-    RwInt32                     m_nPrevSectorIdx;           // ÀÌÀüÀÇ ¿ùµå ¼½ÅÍ ÀÎµ¦½º (±×¸²ÀÚ ÆÇº°¿¡ »ç¿ë)    
+    RwInt32                     m_nPrevSectorIdx;           // ì´ì „ì˜ ì›”ë“œ ì„¹í„° ì¸ë±ìŠ¤ (ê·¸ë¦¼ì íŒë³„ì— ì‚¬ìš©)    
 
     CNtlPLDecal					*m_pShadowDecal;			/** shadow decal */
     CNtlPLPlayerName			*m_pPlayerName;				/** presentation player name entity */
     CNtlPLEntity				*m_pTargetMark;				/** character target mark */
-    CNtlPLEntity                *m_pTargetMark02;           // µ¥Ä® Å¸°Ù ¸¶Å©
+    CNtlPLEntity                *m_pTargetMark02;           // ë°ì¹¼ íƒ€ê²Ÿ ë§ˆí¬
     CNtlPLEntity				*m_pAttackMark;				/** character attack mark */
-    CNtlPLEntity                *m_pAttackMark02;           // µ¥Ä® ¾îÅÃ ¸¶Å©
+    CNtlPLEntity                *m_pAttackMark02;           // ë°ì¹¼ ì–´íƒ ë§ˆí¬
     CNtlPLEntity				*m_pQuestMark;				/**	character quest mark */        
-    CNtlPLEntity                *m_pTenkaichiMark;          ///< ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ÄªÈ£ ¸¶Å· ÀÌÆåÆ®
-    CNtlPLEntity                *m_pTargetMarkingMark;      /// Å¸°Ù ¸¶Å· ¸¶Å© (¸Ş°¡ µµµ¿ÆÄ)
+    CNtlPLEntity                *m_pTenkaichiMark;          ///< ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì¹­í˜¸ ë§ˆí‚¹ ì´í™íŠ¸
+    CNtlPLEntity                *m_pTargetMarkingMark;      /// íƒ€ê²Ÿ ë§ˆí‚¹ ë§ˆí¬ (ë©”ê°€ ë„ë™íŒŒ)
     CDBODirectorIndicate        *m_pDBODirectorIndicate;    /** TMQ/Quest Directore Indicate */    
-	sEmblemFactor				*m_pEmblemFactor;			/** Emblem ±¸¼º ¿ä¼Ò */
-    CNtlShareTargetMark         *m_pShareTargetMark;        ///< °øÀ¯ Å¸°Ù ¸¶Å© °ü¸® °´Ã¼
+	sEmblemFactor				*m_pEmblemFactor;			/** Emblem êµ¬ì„± ìš”ì†Œ */
+    CNtlShareTargetMark         *m_pShareTargetMark;        ///< ê³µìœ  íƒ€ê²Ÿ ë§ˆí¬ ê´€ë¦¬ ê°ì²´
 
-    std::vector<CNtlInstanceEffect*> m_vecRPBonusEffect;    ///< »ı¼ºµÈ RPBonus¿ë ÀÌÆåÆ®¸¦ ÀúÀåÇÏ±â À§ÇÑ º¤ÅÍ
+    std::vector<CNtlInstanceEffect*> m_vecRPBonusEffect;    ///< ìƒì„±ëœ RPBonusìš© ì´í™íŠ¸ë¥¼ ì €ì¥í•˜ê¸° ìœ„í•œ ë²¡í„°
 
-    CNtlSobCharProxyTransform   *m_pProxyTransform;         ///< º¯½Å °ü·Ã ÇÁ·Ï½Ã °´Ã¼    
+    CNtlSobCharProxyTransform   *m_pProxyTransform;         ///< ë³€ì‹  ê´€ë ¨ í”„ë¡ì‹œ ê°ì²´    
 
 	CNtlPLEntity*				m_pTitleEffect;
 	CNtlPLEntity*				m_pGuardEffect;
 	CNtlPLEntity*				m_pRpChargeEffect;
+    CNtlPLEntity*               m_pRpChargeGroundEffect;
+    CNtlPLEntity*               m_pRpGuardGroundEffect;
 
     bool bCreatePlayTitle{ false };
     bool bCreatePlayDBSInfo{ true };
@@ -77,11 +79,11 @@ private:
 protected:
 
     /** 
-    * shadow decal »ı¼º
+    * shadow decal ìƒì„±
     */
     void CreatePLShadowDecal(void);
     void DeletePLShadowDecal(void);
-    void ChangePLShadowDecal();             // ±×¸²ÀÚ »ö»óÀ» º¯°æÇÑ´Ù.
+    void ChangePLShadowDecal();             // ê·¸ë¦¼ì ìƒ‰ìƒì„ ë³€ê²½í•œë‹¤.
 
 	/** 
 	* Player Name
@@ -105,7 +107,7 @@ protected:
     // character target mark
     void CreatePLTargetMark(void);
     void DeletePLTargetMark(void);
-    RwBool IsNotCreateDecalMark();                                          ///< Å¸°Ù ¸¶Å©Áß ¹Ù´Ú µ¥Ä®À» Ç¥½ÃÇÏÁö ¾Ê´Â °´Ã½ÀÎÁö È®ÀÎ
+    RwBool IsNotCreateDecalMark();                                          ///< íƒ€ê²Ÿ ë§ˆí¬ì¤‘ ë°”ë‹¥ ë°ì¹¼ì„ í‘œì‹œí•˜ì§€ ì•ŠëŠ” ê°ì²µì¸ì§€ í™•ì¸
 
     /** 
     * character quest mark
@@ -113,15 +115,15 @@ protected:
     void CreatePLQuestMark(const RwChar *pKey);
     void DeletePLQuestMark(void);
 
-    /// °øÀ¯ Å¸°Ù ¸¶Å©
+    /// ê³µìœ  íƒ€ê²Ÿ ë§ˆí¬
     void CreateShareTargetMark(RwUInt8 bySlot, RwUInt32 type);
     void DeleteShareTargetMark();
 
-    // ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ÄªÈ£ ÀÌº¥Æ®
+    // ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì¹­í˜¸ ì´ë²¤íŠ¸
     void CreateTenkaichiMark(BYTE byType);
     void DeleteTenkaichiMark();
 
-    // Å¸°Ù ¸¶Å· ÀÌº¥Æ® (¸Ş°¡ µµµ¿ÆÄ)
+    // íƒ€ê²Ÿ ë§ˆí‚¹ ì´ë²¤íŠ¸ (ë©”ê°€ ë„ë™íŒŒ)
     void CreateTargetMarkingMark();
     void DeleteTargetMarkingMark();
     
@@ -147,9 +149,9 @@ public:
     void	SobAttackMarkReleaseEventHandler(RWS::CMsg &pMsg);
     void	SobQuestMark(RWS::CMsg &pMsg);
     void    SobDirectionNfy(RWS::CMsg &pMsg);    
-    void    SobShareTargetSelectHandler(RWS::CMsg& pMsg);                   ///< °øÀ¯ Å¸°Ù ¸¶Å© ¼³Á¤ ÀÌº¥Æ® Ã³¸®
-    void    SobShareTargetReleaseHandler(RWS::CMsg& pMsg);                  ///< °øÀ¯ Å¸°Ù ¸¶Å© ÇØÁ¦ ÀÌº¥Æ® Ã³¸®        
-    void    SobTenkaichiMarkingHandler(RWS::CMsg& pMsg);                    ///< ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ÄªÈ£ ÀÌº¥Æ® Ã³¸®    
+    void    SobShareTargetSelectHandler(RWS::CMsg& pMsg);                   ///< ê³µìœ  íƒ€ê²Ÿ ë§ˆí¬ ì„¤ì • ì´ë²¤íŠ¸ ì²˜ë¦¬
+    void    SobShareTargetReleaseHandler(RWS::CMsg& pMsg);                  ///< ê³µìœ  íƒ€ê²Ÿ ë§ˆí¬ í•´ì œ ì´ë²¤íŠ¸ ì²˜ë¦¬        
+    void    SobTenkaichiMarkingHandler(RWS::CMsg& pMsg);                    ///< ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì¹­í˜¸ ì´ë²¤íŠ¸ ì²˜ë¦¬    
 
 	void    SobTitleEffectHandler(RWS::CMsg& pMsg);
 
@@ -190,8 +192,8 @@ public:
     void DeleteDirectorIndicate();
 
     // Rp Bonus Skill
-    RwBool AttachRPBonusEffect();             ///< RP Bonus Effect¸¦ »ı¼ºÇÑ´Ù.
-    RwBool DetachRPBonusEffect();             ///< RP Bonus Effect¸¦ Á¦°ÅÇÑ´Ù.
+    RwBool AttachRPBonusEffect();             ///< RP Bonus Effectë¥¼ ìƒì„±í•œë‹¤.
+    RwBool DetachRPBonusEffect();             ///< RP Bonus Effectë¥¼ ì œê±°í•œë‹¤.
 
 	 // Guard Skill
 	void CreateGuardEffect(RwChar *pKey);
@@ -201,7 +203,9 @@ public:
 	void CreateRpChargeEffect(RwChar *pKey);
 	void DeleteRpChargeEffect();
 
+    CNtlPLEntity* CreateAttachedGroundEffect(const RwChar* pKey, const RwChar* pPurpleKey, const RwChar* pRedKey);
+
     // Transform
-    void						SobChangeAdult(CNtlPLCharacter* pPLCharacter);                    ///< UI ModelÀÌ Ã¼ÀÎÁö µÇ¾úÀ»¶§
+    void						SobChangeAdult(CNtlPLCharacter* pPLCharacter);                    ///< UI Modelì´ ì²´ì¸ì§€ ë˜ì—ˆì„ë•Œ
     CNtlSobCharProxyTransform*  GetProxyTransform() {return m_pProxyTransform;}    
 };

@@ -2,12 +2,12 @@
 *
 * File			: NtlChannelGroup.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2006. 7. 11	
 * Abstract		: Sound channel group
 *****************************************************************************
-* Desc			: °ÔÀÓ »ó¿¡¼­ÀÇ »ç¿îµå Channel ¼º°İ¿¡ µû¶ó Group Áö¾îÁø channel
-*				À» ÀÏ°ı °ü¸®ÇÒ ¼ö ÀÖ´Ù.
+* Desc			: ê²Œì„ ìƒì—ì„œì˜ ì‚¬ìš´ë“œ Channel ì„±ê²©ì— ë”°ë¼ Group ì§€ì–´ì§„ channel
+*				ì„ ì¼ê´„ ê´€ë¦¬í•  ìˆ˜ ìˆë‹¤.
 *****************************************************************************/
 
 #pragma once
@@ -40,8 +40,8 @@ public:
 
 
 	virtual bool			Create(FMOD::ChannelGroup* pChannelGroup, unsigned int uiSoundDuplicatoin = 0);
-	///< FMOD::System¿¡ ÀÇÇØ¼­ ¸¸µé¾îÁø Ã¤³Î ±×·ìÀ» µî·ÏÇÑ´Ù
-	///< uiSoundDuplicatoin : °°Àº »ç¿îµå¸¦ µ¿½Ã¿¡ Áßº¹ÇØ¼­ ¿¬ÁÖÇÒ ¼ö ÀÖ´Â È½¼ö
+	///< FMOD::Systemì— ì˜í•´ì„œ ë§Œë“¤ì–´ì§„ ì±„ë„ ê·¸ë£¹ì„ ë“±ë¡í•œë‹¤
+	///< uiSoundDuplicatoin : ê°™ì€ ì‚¬ìš´ë“œë¥¼ ë™ì‹œì— ì¤‘ë³µí•´ì„œ ì—°ì£¼í•  ìˆ˜ ìˆëŠ” íšŸìˆ˜
 
 	virtual void			Reset();
 	virtual void			Update(float fElapsed);
@@ -94,14 +94,14 @@ protected:
 	virtual void			ReleaseFinishedSound(float fElapsed);
 
 public:	
-	eChannelGroupType			m_eGroup;					///< Ã¤³Î ±×·ì
-	unsigned int				m_uiSoundDuplication;		///< °°Àº »ç¿îµå¸¦ µ¿½Ã¿¡ Áßº¹ÇØ¼­ ¿¬ÁÖÇÒ ¼ö ÀÖ´Â È½¼ö
+	eChannelGroupType			m_eGroup;					///< ì±„ë„ ê·¸ë£¹
+	unsigned int				m_uiSoundDuplication;		///< ê°™ì€ ì‚¬ìš´ë“œë¥¼ ë™ì‹œì— ì¤‘ë³µí•´ì„œ ì—°ì£¼í•  ìˆ˜ ìˆëŠ” íšŸìˆ˜
 
 	sNtlVolume					m_tVolume;
 	sNtlPitch					m_tPitch;
 
-	float						m_fValidRange;				///< ¿¬ÁÖ °¡´ÉÇÑ ¸®½º³Ê·ÎºÎÅÍÀÇ °Å¸®
-	RwBool						m_bProhibition;				///< Mute ±â´ÉÀÌ ¾Æ´Ñ ¾Æ¿¹ ÇÃ·¹ÀÌ¸¦ ÇÏÁö ¾Ê´Â »óÅÂ	
+	float						m_fValidRange;				///< ì—°ì£¼ ê°€ëŠ¥í•œ ë¦¬ìŠ¤ë„ˆë¡œë¶€í„°ì˜ ê±°ë¦¬
+	RwBool						m_bProhibition;				///< Mute ê¸°ëŠ¥ì´ ì•„ë‹Œ ì•„ì˜ˆ í”Œë ˆì´ë¥¼ í•˜ì§€ ì•ŠëŠ” ìƒíƒœ	
 
 	CNtlSoundDSP*				m_pDSP;
 	FMOD::ChannelGroup*			m_pMasterLayer;				///< FMOD channel group master layer

@@ -1,4 +1,4 @@
-// PathLayer.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PathLayer.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -29,16 +29,16 @@ BEGIN_MESSAGE_MAP(CPathLayer, CView)
 END_MESSAGE_MAP()
 
 
-// CPathLayer ±×¸®±âÀÔ´Ï´Ù.
+// CPathLayer ê·¸ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CPathLayer::OnDraw(CDC* pDC)
 {
 	CDocument* pDoc = GetDocument();
-	// TODO: ¿©±â¿¡ ±×¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ê·¸ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 
-// CPathLayer Áø´ÜÀÔ´Ï´Ù.
+// CPathLayer ì§„ë‹¨ì…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CPathLayer::AssertValid() const
@@ -53,13 +53,13 @@ void CPathLayer::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CPathLayer ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPathLayer ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CPathLayer::OnInitialUpdate()
 {
 	CView::OnInitialUpdate();
 
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	m_RollupControl.Create(WS_VISIBLE|WS_CHILD, CRect(0,1,190,400), this, IDD_ROLLUPPAGEID);
 
 	m_RollupControl.InsertPage("Spline Path List",			IDD_SPLINE_PATH_LIST,		RUNTIME_CLASS(CSplinePathListDialog));	
@@ -74,7 +74,7 @@ void CPathLayer::OnSize(UINT nType, int cx, int cy)
 {
 	CView::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if(m_bInitialized)
 	{
 		m_RollupControl.MoveWindow(0, 0, cx, cy);
@@ -85,7 +85,7 @@ void CPathLayer::OnSetFocus(CWnd* pOldWnd)
 {
 	CView::OnSetFocus(pOldWnd);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	gSetEditLayer(EDIT_LAYER_PATH);
 }
 

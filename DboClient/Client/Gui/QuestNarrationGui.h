@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File: QuestNarrationGui.h
 // Desc: QuestNarrationGui
-//		 Narration °ü·Ã
+//		 Narration å ì™ì˜™å ì™ì˜™
 //
 // 2006.12.5 Peessi@hitel.net   
 //
@@ -32,7 +32,7 @@ public:
 	RwBool	Create( CQuestGui* pQuestGui );
 	VOID	Destroy(VOID);	
 
-	INT		StateUpdate( RwUInt32 uiElapsedTime );
+	INT		StateUpdate( uintptr_t uiElapsedTime );
 
 	//! Event
 	VOID	HandleEvents( RWS::CMsg& msg );		
@@ -82,19 +82,19 @@ private:
 	CNtlTCUnit*			m_pTCUnit;
 	sTS_KEY				m_TSKey;
 	
-	STATE				m_eUIState;					// UIÀÚÃ¼ÀÇ State
-	RwInt32				m_eTSState;					// TS·Î ºÎÅÍÀÇ State
-	RwInt32				m_eTextOutType;				// Text Ãâ·Â ¹æ½Ä
-	RwUInt32			m_uiMaxLifeTime;			// ÀÌ ½Ã°£ÀÌ Áö³ª¸é °­Á¦·Î true¸¦ ³Ñ°ÜÁØ´Ù.
+	STATE				m_eUIState;					// UIå ì™ì˜™ì²´å ì™ì˜™ State
+	RwInt32				m_eTSState;					// TSå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ State
+	RwInt32				m_eTextOutType;				// Text ì¶œë ¥ ë°©ì‹
+	RwUInt32			m_uiMaxLifeTime;			// å ì™ì˜™ å ì‹œê³¤ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ trueå ì™ì˜™ å ì‹¼ê³¤ì˜™å ìŒ”ëŒì˜™.
 	RwUInt32			m_uiCurrentTime;			//
-	RwUInt32			m_flagOwnerType;			// OWNERTYPE Flag, ÀÌÀü¿¡ ¾î¶² Å¸ÀÔÀÌ ½ÇÇàµÇ¾ú³ª. Begin ~ End
-	OWNERTYPE			m_eCurrentType;				// ÇöÀçÀÇ Å¸ÀÔ¸¸.
+	RwUInt32			m_flagOwnerType;			// OWNERTYPE Flag, ì´ì „ì— ì–´ë–¤ íƒ€ì…ì´ ì‹¤í–‰ë˜ì—ˆë‚˜. Begin ~ End
+	OWNERTYPE			m_eCurrentType;				// å ì™ì˜™å ì™ì˜™å ì™ì˜™ íƒ€å ìŒ‰ëªŒì˜™.
 
 	RwUInt8				m_byPCSelectID[CINEMATIC_MAX_PC_SELECT];
 	
-	bool				m_bResult;					// °­Á¦ Á¾·áÀÎ°¡ Á¤»óÁ¾·á ÀÎ°¡.
+	bool				m_bResult;					// å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¸ê³¤ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹¸ê³¤ì˜™.
 	RwUInt8				m_bySelectID;				// User Select Value;
-	//RwBool				m_bShowPCMessageOnPCSelect;	// PCSelect½Ã PCMessage¸¦ Ç¥½ÃÇÒÁö ¿©ºÎ. BeginÀ¸·Î µé¾î¿Ã¶§ Ing¿¡¼­ ÆÇº°ÇÏ±â À§ÇØ.
+	//RwBool				m_bShowPCMessageOnPCSelect;	// PCSelectå ì™ì˜™ PCMessageå ì™ì˜™ í‘œå ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™. Beginå ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì‹œë°ì˜™ Ingå ì™ì˜™å ì™ì˜™ å ì‹¤ë¸ì˜™å ì‹¹ê¹ì˜™ å ì™ì˜™å ì™ì˜™.
 
 	CQuestGui*			m_pQuestGui;
 

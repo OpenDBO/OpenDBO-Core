@@ -1,4 +1,4 @@
-// PaletteDojo.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PaletteDojo.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -10,7 +10,7 @@
 
 #include "NtlWorldEntityPreview.h"
 
-// CPaletteDojoDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteDojoDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPaletteDojoDlg, CDialog)
 
@@ -52,7 +52,7 @@ BEGIN_MESSAGE_MAP(CPaletteDojoDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CPaletteDojoDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPaletteDojoDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CPaletteDojoDlg::PreTranslateMessage(MSG* pMsg)
 {
@@ -181,19 +181,19 @@ LRESULT CPaletteDojoDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 }
 void CPaletteDojoDlg::OnBnClickedOk()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	//OnOK();
 }
 
 void CPaletteDojoDlg::OnBnClickedCancel()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	//OnCancel();
 }
 
 void CPaletteDojoDlg::InsertItemRecursive(SItemNode* pItemNode, HTREEITEM hParentItem) 
 {
-	// ÀÚ½ÅÀ» Ãß°¡ÇÑ´Ù.
+	// ìì‹ ì„ ì¶”ê°€í•œë‹¤.
 	TV_INSERTSTRUCT sTvStruct;
 	sTvStruct.hParent = hParentItem;
 	sTvStruct.hInsertAfter = TVI_SORT;
@@ -202,12 +202,12 @@ void CPaletteDojoDlg::InsertItemRecursive(SItemNode* pItemNode, HTREEITEM hParen
 
 	if(pItemNode->eNodeType == NODE_SCIRPT)
 	{
-		// ½ºÅ©¸³Æ®¶ó¸é ÀÚ½ÅÀ» Ãß°¡ÇÏ°í ³¡³½´Ù.
+		// ìŠ¤í¬ë¦½íŠ¸ë¼ë©´ ìì‹ ì„ ì¶”ê°€í•˜ê³  ëë‚¸ë‹¤.
 		sTvStruct.item.iImage = 2;
 		sTvStruct.item.iSelectedImage = 2;
 		m_TreeOrnament.InsertItem(&sTvStruct);
 	}
-	else	// Æú´õ¶ó¸é ÀÚ½ÄµéÀ» Àç±Í·Î µ·´Ù.
+	else	// í´ë”ë¼ë©´ ìì‹ë“¤ì„ ì¬ê·€ë¡œ ëˆë‹¤.
 	{
 		sTvStruct.item.iImage = 0;
 		sTvStruct.item.iSelectedImage = 0;

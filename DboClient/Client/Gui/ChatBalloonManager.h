@@ -4,9 +4,9 @@
 //
 // 2006.08.22 Peessi@hitel.net   
 // 2007.08.28 Peessi@hitel.net 
-//    - ¿ÀºêÁ§Æ®¿¡ ·¹ÀÌ¾î°¡ ¼­·Î ´Ù¸¥ º¹¼ö°³ÀÇ Ç³¼±µµ¿ò¸»ÀÌ ´Ş¸± ¼ö ÀÖ´Ù. 
-//	  - Å¸ÀÔ¿¡ µû¶ó ·£´õµÇ´Â ¿ì¼±¼øÀ§¸¦ Á¤ÇÏ°í ·£´õ ¿©ºÎ¸¦ Á¤ÇÒ ¼ö ÀÖ´Ù. 
-//	  - º¹¼ö°³ÀÇ Ç³¼±µµ¿ò¸»ÀÇ À§Ä¡ÁöÁ¤ÀÌ ¸Å¿ì ÇÏµåÇÏ°Ô ÄÚµùµÇ¾îÀÖ´Ù. -_-
+//    - ì˜¤ë¸Œì íŠ¸ì— ë ˆì´ì–´ê°€ ì„œë¡œ ë‹¤ë¥¸ ë³µìˆ˜ê°œì˜ í’ì„ ë„ì›€ë§ì´ ë‹¬ë¦´ ìˆ˜ ìˆë‹¤. 
+//	  - íƒ€ì…ì— ë”°ë¼ ëœë”ë˜ëŠ” ìš°ì„ ìˆœìœ„ë¥¼ ì •í•˜ê³  ëœë” ì—¬ë¶€ë¥¼ ì •í•  ìˆ˜ ìˆë‹¤. 
+//	  - ë³µìˆ˜ê°œì˜ í’ì„ ë„ì›€ë§ì˜ ìœ„ì¹˜ì§€ì •ì´ ë§¤ìš° í•˜ë“œí•˜ê²Œ ì½”ë”©ë˜ì–´ìˆë‹¤. -_-
 ////////////////////////////////////////////////////////////////////////////////
 
 #ifndef __CHAT_BALLOON_MANAGER_H__
@@ -42,8 +42,8 @@ public:
 
 	enum STATE { FADE_IN, SHOW, FADE_OUT, HIDE };
 
-	enum PRIORITY { MORE_PRIORITY, EQUAL_PRIORITY, LESS_PRIORITY,	// °°Àº ·¹ÀÌ¾îÀÎ °æ¿ì
-		UPPER_LAYER, LOWER_LAYER };						// ´Ù¸¥ ·¹ÀÌ¾îÀÎ °æ¿ì
+	enum PRIORITY { MORE_PRIORITY, EQUAL_PRIORITY, LESS_PRIORITY,	// ê°™ì€ ë ˆì´ì–´ì¸ ê²½ìš°
+		UPPER_LAYER, LOWER_LAYER };						// ë‹¤ë¥¸ ë ˆì´ì–´ì¸ ê²½ìš°
 
 	CBalloonGui( CNtlSob* pOwnerObject, RwReal fLifeTime, CPos& posOffsetDelta, RwInt32 eType ) 
 		:m_fCurrentTime( 0.0f ), m_pOwnerSobObject( pOwnerObject ), m_hSerialID( pOwnerObject->GetSerialID() ), m_fLifeTime( fLifeTime ), 
@@ -71,7 +71,7 @@ public:
 	CPos&		GetOffset(VOID) { return m_posOffset; }
 	CPos&		GetOffsetDelta(VOID) { return m_posOffsetDelta; }
 
-	RwInt32		PriorityCheck( RwUInt32 eType );	// return value : PRIORITY  °´Ã¼°¡ ¸Å°³º¯¼öÀÇ Å¸ÀÔ¿¡ ºñÇØ ¾î¶°ÇÑ°¡.
+	RwInt32		PriorityCheck( RwUInt32 eType );	// return value : PRIORITY  ê°ì²´ê°€ ë§¤ê°œë³€ìˆ˜ì˜ íƒ€ì…ì— ë¹„í•´ ì–´ë– í•œê°€.
 
 	VOID		Show3DName( RwBool bShow );
 
@@ -132,7 +132,7 @@ protected:
 	RwUInt8				m_byBalloonType;
 	RwBool				m_bStandardSize;
 
-	std::wstring		m_wstrString;	// ¿øº» ¸Ş¼¼Áö ÀúÀå.
+	std::wstring		m_wstrString;	// ì›ë³¸ ë©”ì„¸ì§€ ì €ì¥.
 };
 
 class CPrivateShopBalloonGui : public CBalloonGui

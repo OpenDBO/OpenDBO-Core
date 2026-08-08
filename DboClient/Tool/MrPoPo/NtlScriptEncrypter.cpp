@@ -14,9 +14,9 @@ CNtlScriptEncrypter::~CNtlScriptEncrypter(void)
 }
 
 /**
- * ÄÁÇÇ±× ¼³Á¤ ÆÄÀÏÀ» ·ÎµåÇÑ´Ù. È®ÀåÀÚ·Î XML,EDF¸¦ ±¸º°ÇÑ´Ù.
- * \param pConfigData ·ÎµåÇÑ µ¥ÀÌÅÍ¸¦ ÀúÀåÇÒ Æ÷ÀÎÅÍ
- * \param szFileName ·ÎµåÇÒ ÆÄÀÏ ÀÌ¸§
+ * ì»¨í”¼ê·¸ ì„¤ì • íŒŒì¼ì„ ë¡œë“œí•œë‹¤. í™•ì¥ìë¡œ XML,EDFë¥¼ êµ¬ë³„í•œë‹¤.
+ * \param pConfigData ë¡œë“œí•œ ë°ì´í„°ë¥¼ ì €ì¥í•  í¬ì¸í„°
+ * \param szFileName ë¡œë“œí•  íŒŒì¼ ì´ë¦„
  * \return 
  */
 BOOL CNtlScriptEncrypter::LoadConfigOption( OUT SConfigData* pConfigData, char* szFileName ) 
@@ -56,7 +56,7 @@ BOOL CNtlScriptEncrypter::LoadConfigOptionXML( OUT SConfigData* pConfigData, cha
 
     char chBuffer[1024];
 
-    // config operationÀ» ¾ò¾î¿Â´Ù.
+    // config operationì„ ì–»ì–´ì˜¨ë‹¤.
     IXMLDOMNode* pNode = doc.SelectSingleNode((char*)"/config_options/op");
 
     if(!doc.GetTextWithAttributeName(pNode, "ver", chBuffer, 1024))
@@ -80,7 +80,7 @@ BOOL CNtlScriptEncrypter::LoadConfigOptionXML( OUT SConfigData* pConfigData, cha
 
     pNode->Release(); 
 
-    // config localÀ» ¾ò¾î¿Â´Ù.
+    // config localì„ ì–»ì–´ì˜¨ë‹¤.
 
     pNode = doc.SelectSingleNode((char*)"/config_options/local");
 

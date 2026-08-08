@@ -17,7 +17,7 @@ CSpawnTreeElement::CSpawnTreeElement(string& _Name, string& _MdlName, RwUInt32 _
 	RwChar Tmp[64];
 	string Lvl;
 
-	sprintf_s(Tmp, 64, "(%d·¹º§, %d's)", m_MdlLvl, m_MdlGUID);
+	sprintf_s(Tmp, 64, "(%dë ˆë²¨, %d's)", m_MdlLvl, m_MdlGUID);
 	Lvl		= Tmp;
 	m_Name	= m_Name + Lvl;
 }

@@ -2,7 +2,7 @@
 //	File		:	NtlResourceLightningSystem.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -13,7 +13,7 @@
 
 /**
  * \ingroup NtlPresentation
- * \brief LightingÀ» »ı¼ºÇÏ´Â ¸®¼Ò½º Å¬·¡½º
+ * \brief Lightingì„ ìƒì„±í•˜ëŠ” ë¦¬ì†ŒìŠ¤ í´ë˜ìŠ¤
  * \date 2006-08-11
  * \author agebreak
  */

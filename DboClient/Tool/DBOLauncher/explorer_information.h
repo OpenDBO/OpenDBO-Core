@@ -1,12 +1,12 @@
 #pragma once
 
-// ÄÄÇ»ÅÍ¿¡¼­ Microsoft Visual C++¸¦ »ç¿ëÇÏ¿© »ý¼ºÇÑ IDispatch ·¡ÆÛ Å¬·¡½ºÀÔ´Ï´Ù.
+// ì»´í“¨í„°ì—ì„œ Microsoft Visual C++ë¥¼ ì‚¬ìš©í•˜ì—¬ ìƒì„±í•œ IDispatch ëž˜í¼ í´ëž˜ìŠ¤ìž…ë‹ˆë‹¤.
 
-// Âü°í: ÀÌ ÆÄÀÏÀÇ ³»¿ëÀ» ¼öÁ¤ÇÏÁö ¸¶½Ê½Ã¿À. Microsoft Visual C++¿¡¼­
-//  ÀÌ Å¬·¡½º¸¦ ´Ù½Ã »ý¼ºÇÒ ¶§ ¼öÁ¤ÇÑ ³»¿ëÀ» µ¤¾î¾¹´Ï´Ù.
+// ì°¸ê³ : ì´ íŒŒì¼ì˜ ë‚´ìš©ì„ ìˆ˜ì •í•˜ì§€ ë§ˆì‹­ì‹œì˜¤. Microsoft Visual C++ì—ì„œ
+//  ì´ í´ëž˜ìŠ¤ë¥¼ ë‹¤ì‹œ ìƒì„±í•  ë•Œ ìˆ˜ì •í•œ ë‚´ìš©ì„ ë®ì–´ì”ë‹ˆë‹¤.
 
 /////////////////////////////////////////////////////////////////////////////
-// CExplorer_information ·¡ÆÛ Å¬·¡½ºÀÔ´Ï´Ù.
+// CExplorer_information ëž˜í¼ í´ëž˜ìŠ¤ìž…ë‹ˆë‹¤.
 
 class CExplorer_information : public CWnd
 {
@@ -34,7 +34,7 @@ public:
 		pPersist, bStorage, bstrLicKey); 
 	}
 
-// Æ¯¼ºÀÔ´Ï´Ù.
+// íŠ¹ì„±ìž…ë‹ˆë‹¤.
 public:
 enum
 {
@@ -151,7 +151,7 @@ enum
 }ShellWindowFindWindowOptions;
 
 
-// ÀÛ¾÷ÀÔ´Ï´Ù.
+// ìž‘ì—…ìž…ë‹ˆë‹¤.
 public:
 
 // IWebBrowser2

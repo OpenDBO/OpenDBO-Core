@@ -1,13 +1,13 @@
 /******************************************************************************
 * File			: ScrambleStatusGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2009. 4. 10
 * Abstract		: 
 *****************************************************************************
-* Desc			: µµÀåÀü ÁøÇà»óÅÂ¸¦ Ç¥½ÃÇÑ´Ù.
+* Desc			: ë„ì¥ì „ ì§„í–‰ìƒíƒœë¥¼ í‘œì‹œí•œë‹¤.
 *
-*				  ¶ÇÇÑ µµÀåÀü ¸»Ç³¼± °ü¸®ÀÚÀÇ »ı¼º, ¼Ò¸êÀ» ÁÖ°üÇÑ´Ù
+*				  ë˜í•œ ë„ì¥ì „ ë§í’ì„  ê´€ë¦¬ìì˜ ìƒì„±, ì†Œë©¸ì„ ì£¼ê´€í•œë‹¤
 *****************************************************************************/
 
 #pragma once
@@ -109,7 +109,7 @@ protected:
 
 	gui::CPanel*		m_pEnemyTeam_PeoplePanel;	
 	gui::CPanel*		m_pEnemyTeam_SealPanel;
-	gui::CPanel*		m_pStatus_Seal[dNUM_SEAL];			///< ÀÎÀå »óÅÂ Ç¥½Ã
+	gui::CPanel*		m_pStatus_Seal[dNUM_SEAL];			///< ì¸ì¥ ìƒíƒœ í‘œì‹œ
 	gui::CPanel*		m_pMyTeam_PeoplePanel;
 	gui::CPanel*		m_pMyTeam_SealPanel;
 

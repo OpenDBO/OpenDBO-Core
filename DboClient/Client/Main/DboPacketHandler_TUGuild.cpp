@@ -1,11 +1,11 @@
 /*****************************************************************************
 * File			: DboPackethandler_TU.cpp
 * Author		: Hong sungbock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 2. 25
 * Abstract		: 
 *****************************************************************************
-* Desc         : °ÔÀÓ ¼­¹ö & Ä¿¹Â´ÏÆ¼ ¼­¹ö ±æµå ÆÐÅ¶ ÇÚµé
+* Desc         : ê²Œìž„ ì„œë²„ & ì»¤ë®¤ë‹ˆí‹° ì„œë²„ ê¸¸ë“œ íŒ¨í‚· í•¸ë“¤
 *****************************************************************************/
 
 #include "precomp_dboclient.h"
@@ -38,7 +38,7 @@ void PacketHandler_GSGuild_Create_Res(void *pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock( GU_GUILD_CREATE_RES );
 
-	// ±æµå »ý¼º °á°ú
+	// ê¸¸ë“œ ìƒì„± ê²°ê³¼
 	sGU_GUILD_CREATE_RES* pResult = (sGU_GUILD_CREATE_RES*)pPacket;
 
 	if( pResult->wResultCode != GAME_SUCCESS )
@@ -47,7 +47,7 @@ void PacketHandler_GSGuild_Create_Res(void *pPacket)
 		return;
 	}
 
-	// ±æµå¸¦ ¸¸µé¾ú½À´Ï´Ù
+	// ê¸¸ë“œë¥¼ ë§Œë“¤ì—ˆìŠµë‹ˆë‹¤
 	GetAlarmManager()->AlarmMessage("DST_GUILD_CREATE");
 }
 
@@ -55,7 +55,7 @@ void PacketHandler_GSGuild_Invite_Res(void* pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock( GU_GUILD_INVITE_RES );
 
-	// ±æµå ÃÊ´ë °á°ú
+	// ê¸¸ë“œ ì´ˆëŒ€ ê²°ê³¼
 	sGU_GUILD_INVITE_RES* pResult = (sGU_GUILD_INVITE_RES*)pPacket;
 
 	if( pResult->wResultCode != GAME_SUCCESS )
@@ -64,22 +64,22 @@ void PacketHandler_GSGuild_Invite_Res(void* pPacket)
 		return;
 	}
 
-	// %s´ÔÀ» ±æµå¿¡ ÃÊ´ëÇÏ¿´½À´Ï´Ù
+	// %së‹˜ì„ ê¸¸ë“œì— ì´ˆëŒ€í•˜ì˜€ìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_GUILD_INVITE", FALSE, NULL, pResult->wszTargetName);
 }
 
 void PacketHandler_TUGuild_CreateNfy(void *pPacket)
 {
-	// ±æµå°¡ »ý¼ºµÇ¾úÀ½À» ±âÅ¸ ¸É¹ö¿¡°Ô ¾Ë¸°´Ù
+	// ê¸¸ë“œê°€ ìƒì„±ë˜ì—ˆìŒì„ ê¸°íƒ€ ë§´ë²„ì—ê²Œ ì•Œë¦°ë‹¤
 	sTU_GUILD_CREATED_NFY *pResult = (sTU_GUILD_CREATED_NFY*)pPacket;
 
-	// %s ±æµå°¡ »ý¼ºµÇ¾ú½À´Ï´Ù
+	// %s ê¸¸ë“œê°€ ìƒì„±ë˜ì—ˆìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_GUILD_CREATE_NFY", FALSE, NULL, pResult->wszGuildName);
 }
 
 void PacketHandler_TUGuild_Info(void *pPacket)
 {
-	// ±æµå Á¤º¸¸¦ ¹Þ´Â´Ù
+	// ê¸¸ë“œ ì •ë³´ë¥¼ ë°›ëŠ”ë‹¤
 	sTU_GUILD_INFO* pResult = (sTU_GUILD_INFO*)pPacket;
 
 	CNtlSLEventGenerator::SLGuildEvent(SLGE_NOTICE, wcslen(pResult->guildInfo.awchNotice),
@@ -91,7 +91,7 @@ void PacketHandler_TUGuild_Info(void *pPacket)
 
 void PacketHandler_TUGuild_MemberInfo(void *pPacket)
 {
-	// ±æµå ¸É¹ö Á¤º¸¸¦ ¹Þ´Â´Ù
+	// ê¸¸ë“œ ë§´ë²„ ì •ë³´ë¥¼ ë°›ëŠ”ë‹¤
 	sTU_GUILD_MEMBER_INFO *pResult = (sTU_GUILD_MEMBER_INFO*)pPacket;
 
 	CNtlSLEventGenerator::SLGuildEvent(SLGE_ADD_MEMBER, INVALID_SERIAL_ID, (void*)&pResult->guildMemberInfo);
@@ -125,7 +125,7 @@ void PacketHandler_TUGuild_DisbandRes(void *pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock(TU_GUILD_DISBAND_RES);
 
-	// ±æµå°¡ ÇØ»ê ´ë±â°¡ µÇ¾úÀ½À» ±æµåÀå¿¡°Ô ¾Ë¸°´Ù
+	// ê¸¸ë“œê°€ í•´ì‚° ëŒ€ê¸°ê°€ ë˜ì—ˆìŒì„ ê¸¸ë“œìž¥ì—ê²Œ ì•Œë¦°ë‹¤
 	sTU_GUILD_DISBAND_RES *pResult = (sTU_GUILD_DISBAND_RES*)pPacket;
 
 	if( pResult->wResultCode != CHAT_SUCCESS )
@@ -139,7 +139,7 @@ void PacketHandler_TUGuild_DisbandRes(void *pPacket)
 
 void PacketHandler_TUGuild_BeingDisbanded_Nfy(void *pPacket)
 {
-	// ±æµå°¡ ÇØ»ê ´ë±âÁßÀÓÀ» ±æµå ¸É¹ö¿¡°Ô ¾Ë¸°´Ù
+	// ê¸¸ë“œê°€ í•´ì‚° ëŒ€ê¸°ì¤‘ìž„ì„ ê¸¸ë“œ ë§´ë²„ì—ê²Œ ì•Œë¦°ë‹¤
 	sTU_GUILD_BEING_DISBANDED_NFY *pResult = (sTU_GUILD_BEING_DISBANDED_NFY*)pPacket;
 
 	CNtlSLEventGenerator::SLGuildEvent(SLGE_BEING_DISBAND, INVALID_SERIAL_ID, (void*)&pResult->timeToDisband);
@@ -149,7 +149,7 @@ void PacketHandler_TUGuild_Disband_Cancel_Res(void *pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock(TU_GUILD_DISBAND_CANCEL_RES);
 
-	// ±æµå°¡ ÇØ»ê ´ë±âÁß¿¡¼­ Ãë¼ÒµÇ¾úÀ½À» ±æµåÀå¿¡°Ô ¾Ë¸°´Ù
+	// ê¸¸ë“œê°€ í•´ì‚° ëŒ€ê¸°ì¤‘ì—ì„œ ì·¨ì†Œë˜ì—ˆìŒì„ ê¸¸ë“œìž¥ì—ê²Œ ì•Œë¦°ë‹¤
 	sTU_GUILD_DISBAND_CANCEL_RES *pResult = (sTU_GUILD_DISBAND_CANCEL_RES*)pPacket;
 
 	if( pResult->wResultCode != CHAT_SUCCESS )
@@ -163,25 +163,25 @@ void PacketHandler_TUGuild_Disband_Cancel_Res(void *pPacket)
 
 void PacketHandler_TUGuild_Disband_Canceled_Nfy(void *pPacket)
 {
-	// ±æµå°¡ ÇØ»ê ´ë±âÁß¿¡¼­ Ãë¼ÒµÇ¾úÀ½À» ºÎ±æµåÀå°ú ±æµå¿ø¿¡°Ô ¾Ë¸°´Ù
+	// ê¸¸ë“œê°€ í•´ì‚° ëŒ€ê¸°ì¤‘ì—ì„œ ì·¨ì†Œë˜ì—ˆìŒì„ ë¶€ê¸¸ë“œìž¥ê³¼ ê¸¸ë“œì›ì—ê²Œ ì•Œë¦°ë‹¤
 	CNtlSLEventGenerator::SLGuildEvent(SLGE_CANCLE_DISBAND);
 }
 
 void PacketHandler_TUGuild_Disband_Nfy(void *pPacket)
 {
-	// ±æµå°¡ ÇØ»êµÇ¾úÀ½À» ºÎ±æµåÀå°ú ±æµå¿ø¿¡°Ô ¾Ë¸°´Ù
+	// ê¸¸ë“œê°€ í•´ì‚°ë˜ì—ˆìŒì„ ë¶€ê¸¸ë“œìž¥ê³¼ ê¸¸ë“œì›ì—ê²Œ ì•Œë¦°ë‹¤
 	CNtlSLEventGenerator::SLGuildEvent(SLGE_DISBAND);
 
-	// ±æµå°¡ ÇØ»êµÇ¾ú½À´Ï´Ù
+	// ê¸¸ë“œê°€ í•´ì‚°ë˜ì—ˆìŠµë‹ˆë‹¤
 	GetAlarmManager()->AlarmMessage("DST_GUILD_DISBAND");
 }
 
 void PacketHandler_TUGuild_Invited_Nfy(void *pPacket)
 {
-	// ±æµå °¡ÀÔ ±ÇÀ¯¸¦ ¹Þ´Â´Ù
+	// ê¸¸ë“œ ê°€ìž… ê¶Œìœ ë¥¼ ë°›ëŠ”ë‹¤
 	sTU_GUILD_INVITED_NFY *pResult = (sTU_GUILD_INVITED_NFY*)pPacket;
 
-	// %s ±æµå¿¡ °¡ÀÔÇÏ½Ã°Ú½À´Ï±î?
+	// %s ê¸¸ë“œì— ê°€ìž…í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
 	GetAlarmManager()->FormattedAlarmMessage( "DST_GUILD_INVITE_REQ", FALSE, NULL, pResult->wszGuildName );
 }
 
@@ -189,7 +189,7 @@ void PacketHandler_TUGuild_Response_Invitation_Res(void *pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock(TU_GUILD_RESPONSE_INVITATION_RES);
 
-	// ÀÚ½ÅÀÇ ±æµå °¡ÀÔ °á°ú¸¦ ¾Ë·ÁÁØ´Ù
+	// ìžì‹ ì˜ ê¸¸ë“œ ê°€ìž… ê²°ê³¼ë¥¼ ì•Œë ¤ì¤€ë‹¤
 	sTU_GUILD_RESPONSE_INVITATION_RES *pResult = (sTU_GUILD_RESPONSE_INVITATION_RES*)pPacket;
 
 	if( pResult->wResultCode != CHAT_SUCCESS )
@@ -201,30 +201,30 @@ void PacketHandler_TUGuild_Response_Invitation_Res(void *pPacket)
 
 void PacketHandler_TUGuild_Member_Joined_Nfy(void *pPacket)
 {
-	// ±âÁ¸ ±æµå ¸É¹ö¿¡°Ô »õ·Î¿î ±æµå¿øÀÌ °¡ÀÔÇßÀ½À» ¾Ë¸°´Ù
+	// ê¸°ì¡´ ê¸¸ë“œ ë§´ë²„ì—ê²Œ ìƒˆë¡œìš´ ê¸¸ë“œì›ì´ ê°€ìž…í–ˆìŒì„ ì•Œë¦°ë‹¤
 	sTU_GUILD_MEMBER_JOINED_NFY *pResult = (sTU_GUILD_MEMBER_JOINED_NFY*)pPacket;
 
 	CNtlSLEventGenerator::SLGuildEvent(SLGE_ADD_MEMBER, INVALID_SERIAL_ID, (void*)&pResult->memberInfo);
 
-	// %s´ÔÀÌ ±æµå¿¡ °¡ÀÔÇÏ¿´½À´Ï´Ù
+	// %së‹˜ì´ ê¸¸ë“œì— ê°€ìž…í•˜ì˜€ìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_GUILD_NEW_MEMBER", FALSE, NULL, pResult->memberInfo.wszMemberName);
 }
 
 void PacketHandler_TUGuild_Invitation_Declined_Nfy(void *pPacket)
 {
-	// ±æµå ÃÊ´ë¿¡ °ÅÀýÇÏ¿´´Ù
+	// ê¸¸ë“œ ì´ˆëŒ€ì— ê±°ì ˆí•˜ì˜€ë‹¤
 	sTU_GUILD_INVITATION_DECLINED_NFY *pResult = (sTU_GUILD_INVITATION_DECLINED_NFY*)pPacket;
 
-	// %s´ÔÀÌ ±æµå °¡ÀÔÀ» °ÅÀýÇÏ¿´½À´Ï´Ù
+	// %së‹˜ì´ ê¸¸ë“œ ê°€ìž…ì„ ê±°ì ˆí•˜ì˜€ìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_GUILD_DECLINE", FALSE, NULL, pResult->wszTargetName);
 }
 
 void PacketHandler_TUGuild_Invitation_Expired_Nfy(void *pPacket)
 {
-	// ±æµå ÃÊ´ë¿¡ ÀÀ´äÇÏÁö ¾Ê¾Ò´Ù
+	// ê¸¸ë“œ ì´ˆëŒ€ì— ì‘ë‹µí•˜ì§€ ì•Šì•˜ë‹¤
 	sTU_GUILD_INVITATION_EXPIRED_NFY *pResult = (sTU_GUILD_INVITATION_EXPIRED_NFY*)pPacket;
 
-	// %s´Ô ±æµå °¡ÀÔ¿¡ ÀÀ´äÇÏÁö ¾Ê¾Ò½À´Ï´Ù
+	// %së‹˜ ê¸¸ë“œ ê°€ìž…ì— ì‘ë‹µí•˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_GUILD_EXPIRED", FALSE, NULL, pResult->wszTargetName);
 }
 
@@ -232,7 +232,7 @@ void PacketHandler_TUGuild_Leave_Res(void *pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock(TU_GUILD_LEAVE_RES);
 
-	// ÀÚ½ÅÀÌ ±æµå¸¦ Å»ÅðÇÏ¿´´Ù
+	// ìžì‹ ì´ ê¸¸ë“œë¥¼ íƒˆí‡´í•˜ì˜€ë‹¤
 	sTU_GUILD_LEAVE_RES *pResult = (sTU_GUILD_LEAVE_RES*)pPacket;
 
 	if( pResult->wResultCode != CHAT_SUCCESS )
@@ -246,7 +246,7 @@ void PacketHandler_TUGuild_Leave_Res(void *pPacket)
 
 void PacketHandler_TUGuild_Member_Left_Nfy(void *pPacket)
 {
-	// ±æµå¿øÀÌ Å»ÅðÇÏ¿´À½À» ºÎ±æµåÀå°ú ±æµå¸É¹ö¿¡°Ô ¾Ë¸°´Ù
+	// ê¸¸ë“œì›ì´ íƒˆí‡´í•˜ì˜€ìŒì„ ë¶€ê¸¸ë“œìž¥ê³¼ ê¸¸ë“œë§´ë²„ì—ê²Œ ì•Œë¦°ë‹¤
 	sTU_GUILD_MEMBER_LEFT_NFY *pResult = (sTU_GUILD_MEMBER_LEFT_NFY*)pPacket;	
 
 	CNtlGuild* pGuild = GetNtlSLGlobal()->GetSobAvatar()->GetGuild();
@@ -258,7 +258,7 @@ void PacketHandler_TUGuild_Member_Left_Nfy(void *pPacket)
 		return;
 	}
 
-	// %s´ÔÀÌ ±æµå¸¦ Å»ÅðÇÏ¿´½À´Ï´Ù
+	// %së‹˜ì´ ê¸¸ë“œë¥¼ íƒˆí‡´í•˜ì˜€ìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_GUILD_LEAVE_MEMBER", FALSE, NULL, pMember->wszMemberName);
 	CNtlSLEventGenerator::SLGuildEvent(SLGE_DEL_MEMBER, pResult->memberCharId);
 }
@@ -267,7 +267,7 @@ void PacketHandler_TUGuild_Kick_Out_Res(void *pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock(TU_GUILD_KICK_OUT_RES);
 
-	// ±æµå¿øÀ» Ãß¹æ½ÃÄ×´Ù
+	// ê¸¸ë“œì›ì„ ì¶”ë°©ì‹œì¼°ë‹¤
 	sTU_GUILD_KICK_OUT_RES *pResult = (sTU_GUILD_KICK_OUT_RES*)pPacket;
 
 	if( pResult->wResultCode != CHAT_SUCCESS )
@@ -292,7 +292,7 @@ void PacketHandler_TUGuild_Kick_Out_Res(void *pPacket)
 
 void PacketHandler_TUGuild_Member_Kicked_Out_Nfy(void *pPacket)
 {
-	// ±æµå¿øÀÌ Ãß¹æµÇ¾úÀ½À» ±æµå ¸É¹ö¿¡°Ô ¾Ë¸°´Ù
+	// ê¸¸ë“œì›ì´ ì¶”ë°©ë˜ì—ˆìŒì„ ê¸¸ë“œ ë§´ë²„ì—ê²Œ ì•Œë¦°ë‹¤
 	sTU_GUILD_MEMBER_KICKED_OUT_NFY* pResult = (sTU_GUILD_MEMBER_KICKED_OUT_NFY*)pPacket;
 
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
@@ -308,7 +308,7 @@ void PacketHandler_TUGuild_Member_Kicked_Out_Nfy(void *pPacket)
 		return;
 	}
 
-	// %s´ÔÀÌ ±æµå¿¡¼­ Ãß¹æµÇ¾ú½À´Ï´Ù
+	// %së‹˜ì´ ê¸¸ë“œì—ì„œ ì¶”ë°©ë˜ì—ˆìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_GUILD_KICKOUT_MEMBER", FALSE, NULL, pMember->wszMemberName);
 	CNtlSLEventGenerator::SLGuildEvent(SLGE_DEL_MEMBER, pResult->memberCharId);
 }
@@ -318,7 +318,7 @@ void PacketHandler_TUGuild_Appoint_Second_Master_Res(void *pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock(TU_GUILD_APPOINT_SECOND_MASTER_RES);
 
-	// ºÎ±æµåÀåÀÌ ÀÓ¸íµÇ¾úÀ½À» ±æµåÀå¿¡°Ô ¾Ë¸°´Ù
+	// ë¶€ê¸¸ë“œìž¥ì´ ìž„ëª…ë˜ì—ˆìŒì„ ê¸¸ë“œìž¥ì—ê²Œ ì•Œë¦°ë‹¤
 	sTU_GUILD_APPOINT_SECOND_MASTER_RES* pResult = (sTU_GUILD_APPOINT_SECOND_MASTER_RES*)pPacket;
 
 	if( pResult->wResultCode != CHAT_SUCCESS )
@@ -340,14 +340,14 @@ void PacketHandler_TUGuild_Appoint_Second_Master_Res(void *pPacket)
 		return;
 	}
 
-	// %s´ÔÀÌ ºÎ±æµåÀåÀÌ µÇ¾ú½À´Ï´Ù
+	// %së‹˜ì´ ë¶€ê¸¸ë“œìž¥ì´ ë˜ì—ˆìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_GUILD_SECOND_MASTER_APPOINTED", FALSE, NULL, pMember->wszMemberName);
 	CNtlSLEventGenerator::SLGuildEvent(SLGE_APPOINT_SECOND_MASTER, pResult->secondMasterCharId);
 }
 
 void PacketHandler_TUGuild_Second_Master_Appointed_Nfy(void *pPacket)
 {
-	// ºÎ±æµåÀåÀÌ ÀÓ¸íµÇ¾úÀ½À» ºÎ±æµåÀå°ú ±æµå¿ø¿¡°Ô ¾Ë¸°´Ù
+	// ë¶€ê¸¸ë“œìž¥ì´ ìž„ëª…ë˜ì—ˆìŒì„ ë¶€ê¸¸ë“œìž¥ê³¼ ê¸¸ë“œì›ì—ê²Œ ì•Œë¦°ë‹¤
 	sTU_GUILD_SECOND_MASTER_APPOINTED_NFY* pResult = (sTU_GUILD_SECOND_MASTER_APPOINTED_NFY*)pPacket;
 
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
@@ -363,7 +363,7 @@ void PacketHandler_TUGuild_Second_Master_Appointed_Nfy(void *pPacket)
 		return;
 	}
 
-	// %s´ÔÀÌ ºÎ±æµåÀåÀÌ µÇ¾ú½À´Ï´Ù
+	// %së‹˜ì´ ë¶€ê¸¸ë“œìž¥ì´ ë˜ì—ˆìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_GUILD_SECOND_MASTER_APPOINTED", FALSE, NULL, pMember->wszMemberName);
 	CNtlSLEventGenerator::SLGuildEvent(SLGE_APPOINT_SECOND_MASTER, pResult->memberCharId);
 }
@@ -372,7 +372,7 @@ void PacketHandler_TUGuild_DismissSecondMasterRes(void *pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock(TU_GUILD_DISMISS_SECOND_MASTER_RES);
 
-	// ºÎ±æµåÀåÀÇ Á÷À§ ÇØÁ¦ °á°ú
+	// ë¶€ê¸¸ë“œìž¥ì˜ ì§ìœ„ í•´ì œ ê²°ê³¼
 	sTU_GUILD_DISMISS_SECOND_MASTER_RES* pResult = (sTU_GUILD_DISMISS_SECOND_MASTER_RES*)pPacket;
 
 	if( pResult->wResultCode != CHAT_SUCCESS )
@@ -394,14 +394,14 @@ void PacketHandler_TUGuild_DismissSecondMasterRes(void *pPacket)
 		return;
 	}
 
-	// %s´ÔÀÌ ºÎ±æµå ¸¶½ºÅÍ¿¡¼­ ÀÏ¹Ý ±æµå¸É¹ö°¡ µÇ¾ú½À´Ï´Ù
+	// %së‹˜ì´ ë¶€ê¸¸ë“œ ë§ˆìŠ¤í„°ì—ì„œ ì¼ë°˜ ê¸¸ë“œë§´ë²„ê°€ ë˜ì—ˆìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_GUILD_DISMISS_SECOND_MASTER", FALSE, NULL, pMember->wszMemberName);
 	CNtlSLEventGenerator::SLGuildEvent(SLGE_DISMISS_SECOND_MASTER, pResult->secondMasterCharId);
 }
 
 void PacketHandler_TUGuild_SecondMasterDismissedNfy(void *pPacket)
 {
-	// ºÎ±æµåÀåÀÌ Á÷À§ ÇØÁ¦ µÇ¾úÀ½À» ±æµå ¸É¹ö¿¡°Ô ¾Ë¸°´Ù
+	// ë¶€ê¸¸ë“œìž¥ì´ ì§ìœ„ í•´ì œ ë˜ì—ˆìŒì„ ê¸¸ë“œ ë§´ë²„ì—ê²Œ ì•Œë¦°ë‹¤
 	sTU_GUILD_SECOND_MASTER_DISMISSED_NFY* pResult = (sTU_GUILD_SECOND_MASTER_DISMISSED_NFY*)pPacket;
 
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
@@ -417,7 +417,7 @@ void PacketHandler_TUGuild_SecondMasterDismissedNfy(void *pPacket)
 		return;
 	}
 
-	// %s´ÔÀÌ ºÎ±æµå ¸¶½ºÅÍ¿¡¼­ ÀÏ¹Ý ±æµå¸É¹ö°¡ µÇ¾ú½À´Ï´Ù
+	// %së‹˜ì´ ë¶€ê¸¸ë“œ ë§ˆìŠ¤í„°ì—ì„œ ì¼ë°˜ ê¸¸ë“œë§´ë²„ê°€ ë˜ì—ˆìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_GUILD_DISMISS_SECOND_MASTER", FALSE, NULL, pMember->wszMemberName);
 	CNtlSLEventGenerator::SLGuildEvent(SLGE_DISMISS_SECOND_MASTER, pResult->memberCharId);
 }
@@ -426,7 +426,7 @@ void PacketHandler_TUGuild_Change_Guild_Master_Res(void *pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock(TU_GUILD_CHANGE_GUILD_MASTER_RES);
 
-	// ±æµåÀåÀÌ ¹Ù²î¾úÀ½À» ÀÌÀü ±æµåÀå¿¡°Ô ¾Ë¸°´Ù
+	// ê¸¸ë“œìž¥ì´ ë°”ë€Œì—ˆìŒì„ ì´ì „ ê¸¸ë“œìž¥ì—ê²Œ ì•Œë¦°ë‹¤
 	sTU_GUILD_CHANGE_GUILD_MASTER_RES* pResult = (sTU_GUILD_CHANGE_GUILD_MASTER_RES*)pPacket;
 
 	if( pResult->wResultCode != CHAT_SUCCESS )
@@ -448,14 +448,14 @@ void PacketHandler_TUGuild_Change_Guild_Master_Res(void *pPacket)
 		return;
 	}
 
-	// %s´ÔÀÌ ±æµåÀåÀÌ µÇ¾ú½À´Ï´Ù
+	// %së‹˜ì´ ê¸¸ë“œìž¥ì´ ë˜ì—ˆìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_GUILD_CHANGE_MASTER", FALSE, NULL, pMember->wszMemberName);
 	CNtlSLEventGenerator::SLGuildEvent(SLGE_APPOINT_MASTER, pResult->newMasterCharId);
 }
 
 void PacketHandler_TUGuild_Guild_Master_Changed_Nfy(void *pPacket)
 {
-	// ±æµåÀåÀÌ ¹Ù²î¾úÀ½À» ±æµå ¸É¹ö¿¡°Ô ¾Ë¸°´Ù
+	// ê¸¸ë“œìž¥ì´ ë°”ë€Œì—ˆìŒì„ ê¸¸ë“œ ë§´ë²„ì—ê²Œ ì•Œë¦°ë‹¤
 	sTU_GUILD_GUILD_MASTER_CHANGED_NFY* pResult = (sTU_GUILD_GUILD_MASTER_CHANGED_NFY*)pPacket;
 
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
@@ -471,14 +471,14 @@ void PacketHandler_TUGuild_Guild_Master_Changed_Nfy(void *pPacket)
 		return;
 	}
 
-	// %s´ÔÀÌ ±æµåÀåÀÌ µÇ¾ú½À´Ï´Ù
+	// %së‹˜ì´ ê¸¸ë“œìž¥ì´ ë˜ì—ˆìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_GUILD_CHANGE_MASTER", FALSE, NULL, pMember->wszMemberName);
 	CNtlSLEventGenerator::SLGuildEvent(SLGE_APPOINT_MASTER, pResult->memberCharId);
 }
 
 void PacketHandler_TUGuild_MemberPositionChangedNfy(void* pPacket)
 {
-	// ±æµå ¸É¹öÀÇ Áö¿ª º¯°æ
+	// ê¸¸ë“œ ë§´ë²„ì˜ ì§€ì—­ ë³€ê²½
 	sTU_GUILD_MEMBER_POSITION_CHANGED_NFY* pResult = (sTU_GUILD_MEMBER_POSITION_CHANGED_NFY*)pPacket;
 
 	CNtlSLEventGenerator::SLGuildEvent(SLGE_MEM_POS, pResult->memberCharId, (void*)&pResult->newMapNameTblidx);
@@ -486,7 +486,7 @@ void PacketHandler_TUGuild_MemberPositionChangedNfy(void* pPacket)
 
 void PacketHandler_TUGuild_MemberClassChangedNfy(void* pPacket)
 {
-	// ±æµå ¸É¹öÀÇ Å¬·¡½º º¯°æ
+	// ê¸¸ë“œ ë§´ë²„ì˜ í´ëž˜ìŠ¤ ë³€ê²½
 	sTU_GUILD_MEMBER_CLASS_CHANGED_NFY* pResult = (sTU_GUILD_MEMBER_CLASS_CHANGED_NFY*)pPacket;
 
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
@@ -502,14 +502,14 @@ void PacketHandler_TUGuild_MemberClassChangedNfy(void* pPacket)
 		return;
 	}
 
-	// %s´ÔÀÌ %s Å¬·¡½º°¡ µÇ¾ú½À´Ï´Ù
+	// %së‹˜ì´ %s í´ëž˜ìŠ¤ê°€ ë˜ì—ˆìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_GUILD_CLASS_CHANGE_MEMBER", FALSE, NULL, pMember->wszMemberName, Logic_GetClassName(pResult->byNewClass));
 	CNtlSLEventGenerator::SLGuildEvent(SLGE_MEM_CLASS, pResult->memberCharId, (void*)&pResult->byNewClass);
 }
 
 void PacketHandler_TUGuild_MemberLevelChangedNfy(void* pPacket)
 {
-	// ±æµå ¸É¹öÀÇ ·¹º§ º¯°æ
+	// ê¸¸ë“œ ë§´ë²„ì˜ ë ˆë²¨ ë³€ê²½
 	sTU_GUILD_MEMBER_LEVEL_CHANGED_NFY* pResult = (sTU_GUILD_MEMBER_LEVEL_CHANGED_NFY*)pPacket;
 
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
@@ -525,14 +525,14 @@ void PacketHandler_TUGuild_MemberLevelChangedNfy(void* pPacket)
 		return;
 	}
 
-	// %s´ÔÀÌ %d ·¹º§ÀÌ µÇ¾ú½À´Ï´Ù
+	// %së‹˜ì´ %d ë ˆë²¨ì´ ë˜ì—ˆìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_GUILD_LEVEL_CHANGE_MEMBER", FALSE, NULL, pMember->wszMemberName, pResult->byNewLevel);
 	CNtlSLEventGenerator::SLGuildEvent(SLGE_MEM_LEVEL, pResult->memberCharId, (void*)&pResult->byNewLevel);
 }
 
 void PacketHandler_TUGuild_ReputationChangedNfy(void* pPacket)
 {
-	// ±æµå ¸É¹öÀÇ ÆòÆÇ º¯°æ
+	// ê¸¸ë“œ ë§´ë²„ì˜ í‰íŒ ë³€ê²½
 	sTU_GUILD_MEMBER_REPUTATION_CHANGED_NFY* pResult = (sTU_GUILD_MEMBER_REPUTATION_CHANGED_NFY*)pPacket;
 
 	CNtlSLEventGenerator::SLGuildEvent(SLGE_MEM_REPUTATION, pResult->memberCharId, (void*)&pResult->dwNewReputation);
@@ -540,7 +540,7 @@ void PacketHandler_TUGuild_ReputationChangedNfy(void* pPacket)
 
 void PacketHandler_TUGuild_MemberOnlineNfy(void* pPacket)
 {
-	// ±æµå ¸É¹ö°¡ °ÔÀÓ¿¡ Á¢¼ÓÇÏ¿´´Ù
+	// ê¸¸ë“œ ë§´ë²„ê°€ ê²Œìž„ì— ì ‘ì†í•˜ì˜€ë‹¤
 	sTU_GUILD_MEMBER_ONLINE_NFY* pResult = (sTU_GUILD_MEMBER_ONLINE_NFY*)pPacket;
 
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
@@ -556,14 +556,14 @@ void PacketHandler_TUGuild_MemberOnlineNfy(void* pPacket)
 		return;
 	}
 
-	// %s´ÔÀÌ Á¢¼ÓÇß½À´Ï´Ù
+	// %së‹˜ì´ ì ‘ì†í–ˆìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_GUILD_ONLINE_MEMBER", FALSE, NULL, pMember->wszMemberName);
 	CNtlSLEventGenerator::SLGuildEvent(SLGE_MEM_ONLINE, pResult->memberCharId, (void*)&pResult->newMapNameTblidx);
 }
 
 void PacketHandler_TUGuild_MemberOfflineNfy(void* pPacket)
 {
-	// ±æµå ¸É¹ö°¡ °ÔÀÓÀ» ³ª°¬´Ù
+	// ê¸¸ë“œ ë§´ë²„ê°€ ê²Œìž„ì„ ë‚˜ê°”ë‹¤
 	sTU_GUILD_MEMBER_OFFLINE_NFY *pResult = (sTU_GUILD_MEMBER_OFFLINE_NFY*)pPacket;
 
 	CNtlSLEventGenerator::SLGuildEvent(SLGE_MEM_OFFLINE, pResult->memberCharId);
@@ -571,7 +571,7 @@ void PacketHandler_TUGuild_MemberOfflineNfy(void* pPacket)
 
 void PacketHandler_GSGuild_NameChanged_Res(void* pPacket)
 {
-	// ±æµåÀÇ ÀÌ¸§ÀÌ º¯°æµÇ¾úÀ½À» ±æµåÀå¿¡°Ô ¾Ë¸°´Ù
+	// ê¸¸ë“œì˜ ì´ë¦„ì´ ë³€ê²½ë˜ì—ˆìŒì„ ê¸¸ë“œìž¥ì—ê²Œ ì•Œë¦°ë‹¤
 	API_GetSLPacketLockManager()->Unlock(GU_GUILD_CHANGE_NAME_RES);
 
 	Logic_CancelNpcFacing();
@@ -584,7 +584,7 @@ void PacketHandler_GSGuild_NameChanged_Res(void* pPacket)
 		return;
 	}
 
-	// ±æµå ÀÌ¸§ÀÌ º¯°æµÇ¾ú½À´Ï´Ù
+	// ê¸¸ë“œ ì´ë¦„ì´ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤
 	GetAlarmManager()->AlarmMessage("DST_GUILD_CHANGED_GUILD_NAME");
 }
 
@@ -597,9 +597,9 @@ void PacketHandler_GSGuild_NameChanged_Nfy(void* pPacket)
 	CNtlGuild* pGuild = GetNtlSLGlobal()->GetSobAvatar()->GetGuild();
 	if( pGuild->IsHaveGroup() )
 	{
-		// ¼­¹öÂÊ ÆÐÅ¶ Á¤¸®°¡ µÉ ¶§±îÁö ¸·´Â´Ù
+		// ì„œë²„ìª½ íŒ¨í‚· ì •ë¦¬ê°€ ë  ë•Œê¹Œì§€ ë§‰ëŠ”ë‹¤
 		/*
-		// ±æµå ÀÌ¸§ÀÌ º¯°æµÇ¾ú½À´Ï´Ù
+		// ê¸¸ë“œ ì´ë¦„ì´ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤
 		GetAlarmManager()->AlarmMessage(DST_GUILD_CHANGED_GUILD_NAME);
 		*/
 	}
@@ -607,7 +607,7 @@ void PacketHandler_GSGuild_NameChanged_Nfy(void* pPacket)
 
 void PacketHandler_GSGuild_FunctionAdd_Res(void* pPacket)
 {
-	// ±æµåÀÇ ±â´ÉÀÌ º¯°æµÇ¾úÀ½À» ¾Ë¸°´Ù
+	// ê¸¸ë“œì˜ ê¸°ëŠ¥ì´ ë³€ê²½ë˜ì—ˆìŒì„ ì•Œë¦°ë‹¤
 	API_GetSLPacketLockManager()->Unlock(GU_GUILD_FUNCTION_ADD_RES);
 
 	Logic_CancelNpcFacing();
@@ -620,7 +620,7 @@ void PacketHandler_GSGuild_FunctionAdd_Res(void* pPacket)
 		return;
 	}	
 
-	// ½ÇÁ¦ ±â´É º¯°æ°ú ¸Þ¼¼Áö¸¦ º¸¿©ÁÖ´Â ÆÐÅ¶ : PacketHandler_TUGuild_FunctionChange_Nfy
+	// ì‹¤ì œ ê¸°ëŠ¥ ë³€ê²½ê³¼ ë©”ì„¸ì§€ë¥¼ ë³´ì—¬ì£¼ëŠ” íŒ¨í‚· : PacketHandler_TUGuild_FunctionChange_Nfy
 }
 
 void PacketHandler_TUGuild_FunctionChange_Nfy(void* pPacket)
@@ -661,7 +661,7 @@ void PacketHandler_TUGuild_FunctionChange_Nfy(void* pPacket)
 
 void PacketHandler_GSGuild_GiveZenny_Res(void* pPacket)
 {
-	// Á¦´Ï¸¦ ±æµå¿¡ ÅõÀÚÇÏ¿´´Ù
+	// ì œë‹ˆë¥¼ ê¸¸ë“œì— íˆ¬ìží•˜ì˜€ë‹¤
 	API_GetSLPacketLockManager()->Unlock(GU_GUILD_GIVE_ZENNY_RES);
 
 	Logic_CancelNpcFacing();
@@ -674,16 +674,16 @@ void PacketHandler_GSGuild_GiveZenny_Res(void* pPacket)
 		return;
 	}
 
-	// ¾ÆÁ÷ ¹Ì±¸Çö
+	// ì•„ì§ ë¯¸êµ¬í˜„
 	CNtlSLEventGenerator::SLGuildEvent(SLGE_CHANGE_INVEST_ZENNY);
 
-	// Á¦´Ï¸¦ ±âºÎÇÏ¿´½À´Ï´Ù
+	// ì œë‹ˆë¥¼ ê¸°ë¶€í•˜ì˜€ìŠµë‹ˆë‹¤
 	GetAlarmManager()->AlarmMessage("DST_GUILD_CONTRIBUTION_ZENNY_NOTIFY");
 }
 
 void PacketHandler_TUGuild_GiveZenny_Nfy(void* pPacket)
 {
-	// ±æµå¿øÀÌ Á¦´Ï¸¦ ÅõÀÚÇßÀ½À» ¾Ë¸°´Ù
+	// ê¸¸ë“œì›ì´ ì œë‹ˆë¥¼ íˆ¬ìží–ˆìŒì„ ì•Œë¦°ë‹¤
 	sTU_GUILD_GIVE_ZENNY_NFY* pResult = (sTU_GUILD_GIVE_ZENNY_NFY*)pPacket;
 
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
@@ -699,13 +699,13 @@ void PacketHandler_TUGuild_GiveZenny_Nfy(void* pPacket)
 		return;
 	}
 
-	// %s´ÔÀÌ %d Á¦´Ï¸¦ ±âºÎÇÏ¿´½À´Ï´Ù
+	// %së‹˜ì´ %d ì œë‹ˆë¥¼ ê¸°ë¶€í•˜ì˜€ìŠµë‹ˆë‹¤
 	GetAlarmManager()->FormattedAlarmMessage("DST_GUILD_CONTRIBUTION_ZENNY_OTHERS", FALSE, NULL, pMember->wszMemberName, Logic_FormatZeni(pResult->dwZenny));
 }
 
 void PacketHandler_GSGuild_WarehouseStart_Res(void* pPacket)
 {
-	// ±æµå Ã¢°í¸¦ ¿¬´Ù
+	// ê¸¸ë“œ ì°½ê³ ë¥¼ ì—°ë‹¤
 	API_GetSLPacketLockManager()->Unlock(GU_GUILD_BANK_START_RES);
 
 	sGU_GUILD_BANK_START_RES* pResult = (sGU_GUILD_BANK_START_RES*)pPacket;
@@ -714,9 +714,9 @@ void PacketHandler_GSGuild_WarehouseStart_Res(void* pPacket)
 	{
 		Logic_CancelNpcFacing();
 
-		// ¿ø·¡´Â ¾Æ·¡ÀÇ ÀÌº¥Æ®¸¦ ¹Þ¾Æ¼­ Ã³¸®ÇÏ´Â °ÍÀÌ ¸ÂÀ¸³ª ÀÌ ½ÃÁ¡¿¡´Â ±æµåÃ¢°íGUIÅ¬·¡½º °´Ã¼°¡
-		// »ý¼ºµÇ¾î ÀÖÁö ¾Ê¾Æ¼­ ÀÌº¥Æ®¸¦ ¹Þ¾ÒÀ» ¶§ÀÇ Ã³¸®¸¦ ¿©±â¿¡¼­ ÇØÁØ´Ù.
-		// ÀÌº¥Æ®¸¦ ¹ß»ý½ÃÅ°´Â °ÍÀº DIALOGEVENT_OPEN_FAIL_NPC_DIALOG¸¦ ¹ß»ý½ÃÅ°´Â ´Ù¸¥ ·ÎÁ÷µé°úÀÇ ÅëÀÏ¼º ¶§¹®ÀÌ´Ù
+		// ì›ëž˜ëŠ” ì•„ëž˜ì˜ ì´ë²¤íŠ¸ë¥¼ ë°›ì•„ì„œ ì²˜ë¦¬í•˜ëŠ” ê²ƒì´ ë§žìœ¼ë‚˜ ì´ ì‹œì ì—ëŠ” ê¸¸ë“œì°½ê³ GUIí´ëž˜ìŠ¤ ê°ì²´ê°€
+		// ìƒì„±ë˜ì–´ ìžˆì§€ ì•Šì•„ì„œ ì´ë²¤íŠ¸ë¥¼ ë°›ì•˜ì„ ë•Œì˜ ì²˜ë¦¬ë¥¼ ì—¬ê¸°ì—ì„œ í•´ì¤€ë‹¤.
+		// ì´ë²¤íŠ¸ë¥¼ ë°œìƒì‹œí‚¤ëŠ” ê²ƒì€ DIALOGEVENT_OPEN_FAIL_NPC_DIALOGë¥¼ ë°œìƒì‹œí‚¤ëŠ” ë‹¤ë¥¸ ë¡œì§ë“¤ê³¼ì˜ í†µì¼ì„± ë•Œë¬¸ì´ë‹¤
 		CDboEventGenerator::DialogEvent(DIALOGEVENT_OPEN_FAIL_NPC_DIALOG, PLACE_NONE, DIALOG_GUILD_WAREHOUSEBAR);
 		GetAlarmManager()->AlarmMessage(Logic_GetResultCodeString(pResult->wResultCode, "GU_GUILD_BANK_START_RES"), TRUE );
 		return;
@@ -730,7 +730,7 @@ void PacketHandler_GSGuild_WarehouseStart_Res(void* pPacket)
 
 void PacketHandler_GSGuild_WarehouseMove_Res(void* pPacket)
 {
-	// ±æµå Ã¢°íÀÇ ¾ÆÀÌÅÛÀ» ¿Å±ä´Ù
+	// ê¸¸ë“œ ì°½ê³ ì˜ ì•„ì´í…œì„ ì˜®ê¸´ë‹¤
 	API_GetSLPacketLockManager()->Unlock(GU_GUILD_BANK_MOVE_RES);
 
 	sGU_GUILD_BANK_MOVE_RES* pResult = (sGU_GUILD_BANK_MOVE_RES*)pPacket;
@@ -749,7 +749,7 @@ void PacketHandler_GSGuild_WarehouseMove_Res(void* pPacket)
 
 void PacketHandler_GSGuild_WarehouseMoveStack_Res(void* pPacket)
 {
-	// ±æµå Ã¢°íÀÇ ½ºÅØ ¾ÆÀÌÅÛÀ» ¿Å±ä´Ù
+	// ê¸¸ë“œ ì°½ê³ ì˜ ìŠ¤í… ì•„ì´í…œì„ ì˜®ê¸´ë‹¤
 	API_GetSLPacketLockManager()->Unlock(GU_GUILD_BANK_MOVE_STACK_RES);
 
 	sGU_GUILD_BANK_MOVE_STACK_RES* pResult = (sGU_GUILD_BANK_MOVE_STACK_RES*)pPacket;
@@ -769,7 +769,7 @@ void PacketHandler_GSGuild_WarehouseMoveStack_Res(void* pPacket)
 
 void PacketHandler_GSGuild_WarehouseZenny_Res(void* pPacket)
 {
-	// ±æµå Ã¢°íÀÇ Á¦´Ï¸¦ º¯°æÇÑ´Ù
+	// ê¸¸ë“œ ì°½ê³ ì˜ ì œë‹ˆë¥¼ ë³€ê²½í•œë‹¤
 	API_GetSLPacketLockManager()->Unlock(GU_GUILD_BANK_ZENNY_RES);
 
 	sGU_GUILD_BANK_ZENNY_RES* pResult = (sGU_GUILD_BANK_ZENNY_RES*)pPacket;
@@ -784,14 +784,14 @@ void PacketHandler_GSGuild_WarehouseZenny_Res(void* pPacket)
 
 	if( pResult->bIsSave )
 	{
-		// %d Á¦´Ï¸¦ Àú±ÝÇÏ¿´½À´Ï´Ù
+		// %d ì œë‹ˆë¥¼ ì €ê¸ˆí•˜ì˜€ìŠµë‹ˆë‹¤
 		GetAlarmManager()->FormattedAlarmMessage("DST_GUILD_WAREHOUSE_SAVE_ZENNY", FALSE, NULL, Logic_FormatZeni(pResult->dwZenny));
 
 		CNtlSLEventGenerator::GuildWarehouseEvent(GUILD_WAREHOUSE_EVENT_ADD_ZENNY, pResult->dwZenny);
 	}
 	else
 	{
-		// %d Á¦´Ï¸¦ Ãâ±ÝÇÏ¿´½À´Ï´Ù
+		// %d ì œë‹ˆë¥¼ ì¶œê¸ˆí•˜ì˜€ìŠµë‹ˆë‹¤
 		GetAlarmManager()->FormattedAlarmMessage("DST_GUILD_WAREHOUSE_ZENNY_DRAW_OUT", FALSE, NULL, Logic_FormatZeni(pResult->dwZenny));
 
 		CNtlSLEventGenerator::GuildWarehouseEvent(GUILD_WAREHOUSE_EVENT_SUB_ZENNY, pResult->dwZenny);
@@ -800,7 +800,7 @@ void PacketHandler_GSGuild_WarehouseZenny_Res(void* pPacket)
 
 void PacketHandler_GSGuild_WarehouseZennyInfo(void* pPacket)
 {
-	// ±æµå Ã¢°íÀÇ Á¦´Ï Á¤º¸¸¦ ¹Þ¾Ò´Ù
+	// ê¸¸ë“œ ì°½ê³ ì˜ ì œë‹ˆ ì •ë³´ë¥¼ ë°›ì•˜ë‹¤
 	sGU_GUILD_BANK_ZENNY_INFO* pResult = (sGU_GUILD_BANK_ZENNY_INFO*)pPacket;
 
 	CNtlSLEventGenerator::GuildWarehouseEvent(GUILD_WAREHOUSE_EVENT_SET_ZENNY, pResult->dwZenny);
@@ -808,7 +808,7 @@ void PacketHandler_GSGuild_WarehouseZennyInfo(void* pPacket)
 
 void PacketHandler_GSGuild_WarehouseItemInfo(void* pPacket)
 {
-	// ±æµå Ã¢°íÀÇ ¾ÆÀÌÅÛ Á¤º¸¸¦ ¹Þ¾Ò´Ù
+	// ê¸¸ë“œ ì°½ê³ ì˜ ì•„ì´í…œ ì •ë³´ë¥¼ ë°›ì•˜ë‹¤
 	sGU_GUILD_BANK_ITEM_INFO* pResult = (sGU_GUILD_BANK_ITEM_INFO*)pPacket;
 
 	CNtlSLEventGenerator::GuildWarehouseItemInfo(pResult->byPlace, pResult->byItemCount, (VOID*)&pResult->aItemProfile);
@@ -816,7 +816,7 @@ void PacketHandler_GSGuild_WarehouseItemInfo(void* pPacket)
 
 void PacketHandler_GSGuild_WarehouseEnd_Res(void* pPacket)
 {
-	// ±æµå Ã¢°í¸¦ ´Ý¾Ò´Ù
+	// ê¸¸ë“œ ì°½ê³ ë¥¼ ë‹«ì•˜ë‹¤
 	API_GetSLPacketLockManager()->Unlock(GU_GUILD_BANK_END_RES);
 
 	sGU_GUILD_BANK_END_RES* pResult = (sGU_GUILD_BANK_END_RES*)pPacket;
@@ -832,7 +832,7 @@ void PacketHandler_GSGuild_WarehouseEnd_Res(void* pPacket)
 
 void PacketHandler_TUGuild_Reputation_Change_Nfy(void* pPacket)
 {
-	// ±æµåÀÇ ¸í¼ºÀÌ º¯°æµÇ¾ú´Ù
+	// ê¸¸ë“œì˜ ëª…ì„±ì´ ë³€ê²½ë˜ì—ˆë‹¤
 	sTU_GUILD_REPUTATION_CHANGE_NFY* pResult = (sTU_GUILD_REPUTATION_CHANGE_NFY*)pPacket;
 
 	CNtlSLEventGenerator::SLGuildEvent(SLGE_CHANGE_REPUTATION, INVALID_DWORD, (VOID*)&pResult->dwReputation, (VOID*)&pResult->dwMaxGuildPointEver);
@@ -842,7 +842,7 @@ void PacketHandler_TUGuild_ChangeNotice_Res(void* pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock(TU_GUILD_CHANGE_NOTICE_RES);
 
-	// ±æµå °øÁö°¡ º¯°æµÇ¾úÀ½À» °øÁö¸¦ º¯°æÇÑ »ç¶÷¿¡°Ô ¾Ë¸°´Ù
+	// ê¸¸ë“œ ê³µì§€ê°€ ë³€ê²½ë˜ì—ˆìŒì„ ê³µì§€ë¥¼ ë³€ê²½í•œ ì‚¬ëžŒì—ê²Œ ì•Œë¦°ë‹¤
 	sTU_GUILD_CHANGE_NOTICE_RES* pResult = (sTU_GUILD_CHANGE_NOTICE_RES*)pPacket;
 
 	if( pResult->wResultCode != CHAT_SUCCESS )
@@ -854,13 +854,13 @@ void PacketHandler_TUGuild_ChangeNotice_Res(void* pPacket)
 
 	CDboEventGenerator::DialogPostEvent(DIALOGEVENT_CLOSE_GUILD_NOTICE);
 
-	// ±æµå °øÁö¸¦ ¹ß¼ÛÇÏ¿´½À´Ï´Ù
+	// ê¸¸ë“œ ê³µì§€ë¥¼ ë°œì†¡í•˜ì˜€ìŠµë‹ˆë‹¤
 	GetAlarmManager()->AlarmMessage("DST_GUILD_CHANGED_GUILD_NOTICE_SUCCESS");
 }
 
 void PacketHandler_TUGuild_changeNotice_Nfy(void* pPacket)
 {
-	// ±æµå °øÁö°¡ º¯°æµÇ¾úÀ½À» ±æµå¿ø¿¡°Ô ¾Ë¸°´Ù
+	// ê¸¸ë“œ ê³µì§€ê°€ ë³€ê²½ë˜ì—ˆìŒì„ ê¸¸ë“œì›ì—ê²Œ ì•Œë¦°ë‹¤
 	sTU_GUILD_CHANGE_NOTICE_NFY* pResult = (sTU_GUILD_CHANGE_NOTICE_NFY*)pPacket;
 
 	CNtlSLEventGenerator::SLGuildEvent(SLGE_NOTICE, pResult->wNoticeLengthInUnicode, 
@@ -870,7 +870,7 @@ void PacketHandler_TUGuild_changeNotice_Nfy(void* pPacket)
 	CNtlGuild* pGuild = GetNtlSLGlobal()->GetSobAvatar()->GetGuild();
 	if( pGuild->IsHaveGroup() )
 	{
-		// »õ·Î¿î ±æµå °øÁö°¡ ÀÖ½À´Ï´Ù
+		// ìƒˆë¡œìš´ ê¸¸ë“œ ê³µì§€ê°€ ìžˆìŠµë‹ˆë‹¤
 		GetAlarmManager()->AlarmMessage("DST_GUILD_CHANGED_GUILD_NOTICE");
 	}	
 }
@@ -879,7 +879,7 @@ void PacketHandler_GSGuild_Create_Emblem_Res(void* pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock(GU_GUILD_CREATE_MARK_RES);
 
-	// ±æµå ¹®ÀåÀ» »ý¼ºÇÏ¿´´Ù
+	// ê¸¸ë“œ ë¬¸ìž¥ì„ ìƒì„±í•˜ì˜€ë‹¤
 	sGU_GUILD_CREATE_MARK_RES* pResult = (sGU_GUILD_CREATE_MARK_RES*)pPacket;
 
 	if( pResult->wResultCode != GAME_SUCCESS )
@@ -891,7 +891,7 @@ void PacketHandler_GSGuild_Create_Emblem_Res(void* pPacket)
 
 	CDboEventGenerator::DialogPostEvent(DIALOGEVENT_CLOSE_EMBLEM_MAKER);
 
-	// ±æµå ¹®ÀåÀÌ »ý¼ºµÇ¾ú½À´Ï´Ù
+	// ê¸¸ë“œ ë¬¸ìž¥ì´ ìƒì„±ë˜ì—ˆìŠµë‹ˆë‹¤
 	GetAlarmManager()->AlarmMessage("DST_GUILD_CREATE_GUILD_EMBLEM");	
 }
 
@@ -899,7 +899,7 @@ void PacketHandler_GSGuild_Change_Emblem_Res(void* pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock(GU_GUILD_CHANGE_MARK_RES);
 
-	// ±æµå ¹®ÀåÀ» º¯°æÇÏ¿´´Ù
+	// ê¸¸ë“œ ë¬¸ìž¥ì„ ë³€ê²½í•˜ì˜€ë‹¤
 	sGU_GUILD_CHANGE_MARK_RES* pResult = (sGU_GUILD_CHANGE_MARK_RES*)pPacket;
 
 	if( pResult->wResultCode != GAME_SUCCESS )
@@ -911,7 +911,7 @@ void PacketHandler_GSGuild_Change_Emblem_Res(void* pPacket)
 
 	CDboEventGenerator::DialogPostEvent(DIALOGEVENT_CLOSE_EMBLEM_MAKER);
 
-	// ±æµå ¹®ÀåÀÌ º¯°æµÇ¾ú½À´Ï´Ù
+	// ê¸¸ë“œ ë¬¸ìž¥ì´ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤
 	GetAlarmManager()->AlarmMessage("DST_GUILD_CHANGE_GUILD_EMBLEM");	
 }
 
@@ -927,13 +927,13 @@ void PacketHandler_GSGuild_Change_Emblem_Nfy(void* pPacket)
 	CNtlGuild* pGuild = GetNtlSLGlobal()->GetSobAvatar()->GetGuild();
 	if( pGuild->IsHaveGroup() )
 	{
-		// ¼­¹öÂÊ ÆÐÅ¶ Á¤¸®°¡ µÉ ¶§±îÁö ¸·´Â´Ù
+		// ì„œë²„ìª½ íŒ¨í‚· ì •ë¦¬ê°€ ë  ë•Œê¹Œì§€ ë§‰ëŠ”ë‹¤
 		/*
 		if( pGuild->IsHaveEmblem() )
-			// ±æµå ¹®ÀåÀÌ º¯°æµÇ¾ú½À´Ï´Ù
+			// ê¸¸ë“œ ë¬¸ìž¥ì´ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤
 			GetAlarmManager()->AlarmMessage(DST_GUILD_CHANGE_GUILD_EMBLEM);	
 		else
-			// ±æµå ¹®ÀåÀÌ »ý¼ºµÇ¾ú½À´Ï´Ù
+			// ê¸¸ë“œ ë¬¸ìž¥ì´ ìƒì„±ë˜ì—ˆìŠµë‹ˆë‹¤
 			GetAlarmManager()->AlarmMessage(DST_GUILD_CREATE_GUILD_EMBLEM);	
 			*/
 
@@ -943,7 +943,7 @@ void PacketHandler_GSGuild_Change_Emblem_Nfy(void* pPacket)
 
 
 //////////////////////////////////////////////////////////////////////////
-//								µµ Àå									//
+//								ë„ ìž¥									//
 //////////////////////////////////////////////////////////////////////////
 
 void PacketHandler_GSDojo_CreateRes(void* pPacket)
@@ -952,7 +952,7 @@ void PacketHandler_GSDojo_CreateRes(void* pPacket)
 
 	Logic_CancelNpcFacing();
 
-	// µµÀåÀ» ¼³¸³ÇÏ¿´À½À» À¯ÆÄÀå¿¡°Ô ¾Ë¸°´Ù
+	// ë„ìž¥ì„ ì„¤ë¦½í•˜ì˜€ìŒì„ ìœ íŒŒìž¥ì—ê²Œ ì•Œë¦°ë‹¤
 	sGU_DOJO_CREATE_RES* pResult = (sGU_DOJO_CREATE_RES*)pPacket;
 
 	if( pResult->wResultCode != GAME_SUCCESS )
@@ -964,7 +964,7 @@ void PacketHandler_GSDojo_CreateRes(void* pPacket)
 
 void PacketHandler_TUDojo_CreateNfy(void* pPacket)
 {
-	// µµÀåÀ» ¼³¸³ÇßÀ½À» ¸ðµç À¯ÆÄ¿ø¿¡°Ô ¾Ë¸°´Ù
+	// ë„ìž¥ì„ ì„¤ë¦½í–ˆìŒì„ ëª¨ë“  ìœ íŒŒì›ì—ê²Œ ì•Œë¦°ë‹¤
 	//sTU_DOJO_CREATED_NFY* pResult = (sTU_DOJO_CREATED_NFY*)pPacket;
 
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
@@ -975,7 +975,7 @@ void PacketHandler_TUDojo_CreateNfy(void* pPacket)
 	GetAlarmManager()->FormattedAlarmMessage("DST_DOJO_SUCCESS_ESTABLISHMENT", FALSE, NULL, pGuild->GetGuildName() );
 
 
-	// ±âÁ¸¿¡ ¼³Á¤µÈ µµÀå µµº¹ »ö»óÀÌ ÀÖ´Ù¸é Àû¿ëÇÑ´Ù
+	// ê¸°ì¡´ì— ì„¤ì •ëœ ë„ìž¥ ë„ë³µ ìƒ‰ìƒì´ ìžˆë‹¤ë©´ ì ìš©í•œë‹¤
 	RwUInt8 byColorIndex = pGuild->GetDojoDogiColorIndex();
 	if( INVALID_BYTE == byColorIndex )
 		return;
@@ -999,7 +999,7 @@ void PacketHandler_TUDojo_CreateNfy(void* pPacket)
 
 				if( pSobPlayer->GetCharID() == pGuildMember->charID )
 				{
-					// µµº¹ »ö»ó
+					// ë„ë³µ ìƒ‰ìƒ
 					Logic_SetDogiItemColor(pSobPlayer, byColorIndex);
 					break;
 				}
@@ -1010,7 +1010,7 @@ void PacketHandler_TUDojo_CreateNfy(void* pPacket)
 
 void PacketHandler_TUDojo_DestoryNfy(void* pPacket)
 {
-	// À¯ÆÄ¸¦ ÇØÃ¼ÇÏ¿© µµÀåÀÇ ¼ÒÀ¯±ÇÀ» ÀÒ¾î¹ö·ÈÀ½À» ¸ðµç À¯ÆÄ¿ø¿¡°Ô ¾Ë¸°´Ù
+	// ìœ íŒŒë¥¼ í•´ì²´í•˜ì—¬ ë„ìž¥ì˜ ì†Œìœ ê¶Œì„ ìžƒì–´ë²„ë ¸ìŒì„ ëª¨ë“  ìœ íŒŒì›ì—ê²Œ ì•Œë¦°ë‹¤
 	sTU_DOJO_DESTROYED_NFY* pResult = (sTU_DOJO_DESTROYED_NFY*)pPacket;
 
 	sDOJO_TBLDAT* pDOJO_TBLDAT = reinterpret_cast<sDOJO_TBLDAT*>( API_GetTableContainer()->GetDojoTable()->FindData(pResult->dojoTblidx) );
@@ -1030,7 +1030,7 @@ void PacketHandler_TUDojo_DestoryNfy(void* pPacket)
 
 	CNtlGuild* pGuild = pAvatar->GetGuild();
 
-	// ±âÁ¸¿¡ ¼³Á¤µÈ À¯ÆÄ µµº¹ »ö»óÀÌ ÀÖ´Ù¸é Àû¿ëÇÑ´Ù
+	// ê¸°ì¡´ì— ì„¤ì •ëœ ìœ íŒŒ ë„ë³µ ìƒ‰ìƒì´ ìžˆë‹¤ë©´ ì ìš©í•œë‹¤
 	RwUInt8 byColorIndex = pGuild->GetGuildDogiColorIndex();
 	if( INVALID_BYTE == byColorIndex )
 		return;
@@ -1054,7 +1054,7 @@ void PacketHandler_TUDojo_DestoryNfy(void* pPacket)
 
 				if( pSobPlayer->GetCharID() == pGuildMember->charID )
 				{
-					// µµº¹ »ö»ó
+					// ë„ë³µ ìƒ‰ìƒ
 					Logic_SetDogiItemColor(pSobPlayer, byColorIndex);
 					break;
 				}
@@ -1067,7 +1067,7 @@ void PacketHandler_GSDojo_FunctionAddRes(void* pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock(GU_DOJO_FUNCTION_ADD_RES);
 
-	// µµÀå ±â´ÉÀ» Ãß°¡ÇÏ¿´À½À» À¯ÆÄÀå¿¡°Ô ¾Ë¸°´Ù
+	// ë„ìž¥ ê¸°ëŠ¥ì„ ì¶”ê°€í•˜ì˜€ìŒì„ ìœ íŒŒìž¥ì—ê²Œ ì•Œë¦°ë‹¤
 	sGU_DOJO_FUNCTION_ADD_RES* pResult = (sGU_DOJO_FUNCTION_ADD_RES*)pPacket;
 
 	switch( pResult->byFunction )
@@ -1095,12 +1095,12 @@ void PacketHandler_GSDojo_FunctionAddRes(void* pPacket)
 		return;
 	}
 
-	// ½ÇÁ¦ ±â´É º¯°æ°ú ¸Þ¼¼Áö¸¦ º¸¿©ÁÖ´Â ÆÐÅ¶ : PacketHandler_TUGuild_FunctionChange_Nfy
+	// ì‹¤ì œ ê¸°ëŠ¥ ë³€ê²½ê³¼ ë©”ì„¸ì§€ë¥¼ ë³´ì—¬ì£¼ëŠ” íŒ¨í‚· : PacketHandler_TUGuild_FunctionChange_Nfy
 }
 
 void PacketHandler_GSDojo_LevelChangedNfy(void* pPacket)
 {
-	// À¯Àú¿¡°Ô µµÀå ·¹º§ÀÌ º¯°æµÇ¾úÀ½À» ¾Ë¸°´Ù
+	// ìœ ì €ì—ê²Œ ë„ìž¥ ë ˆë²¨ì´ ë³€ê²½ë˜ì—ˆìŒì„ ì•Œë¦°ë‹¤
 	sGU_DOJO_LEVEL_CHANGED_NFY* pResult = (sGU_DOJO_LEVEL_CHANGED_NFY*)pPacket;
 
 	CNtlSLEventGenerator::DojoEvent(DOJO_EVENT_CHANGE_LEVEL, pResult->dojoTblidx, (VOID*)&pResult->byLevel);
@@ -1123,7 +1123,7 @@ void PacketHandler_GSDojo_LevelChangedNfy(void* pPacket)
 
 void PacketHandler_GSDojo_MarkChangedNfy(void* pPacket)
 {
-	// À¯Àú¿¡°Ô µµÀå¿¡ ºÙ¿©ÀÖ´Â ¿¥ºí·½ Á¤º¸°¡ º¯°æµÇ¾úÀ½À» ¾Ë¸°´Ù
+	// ìœ ì €ì—ê²Œ ë„ìž¥ì— ë¶™ì—¬ìžˆëŠ” ì— ë¸”ë ˜ ì •ë³´ê°€ ë³€ê²½ë˜ì—ˆìŒì„ ì•Œë¦°ë‹¤
 	sGU_DOJO_MARK_CHANGED_NFY* pResult = (sGU_DOJO_MARK_CHANGED_NFY*)pPacket;
 
 	{
@@ -1156,7 +1156,7 @@ void PacketHandler_GSDojo_ScrambleRes(void* pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock(GU_DOJO_SCRAMBLE_RES);
 
-	// ÀïÅ»ÀüÀ» ½ÅÃ»ÇÑ ±æµå ¸¶½ºÅÍ¿¡°Ô ÀÀ´ä
+	// ìŸíƒˆì „ì„ ì‹ ì²­í•œ ê¸¸ë“œ ë§ˆìŠ¤í„°ì—ê²Œ ì‘ë‹µ
 	sGU_DOJO_SCRAMBLE_RES* pResult = (sGU_DOJO_SCRAMBLE_RES*)pPacket;
 
 	if( pResult->wResultCode != GAME_SUCCESS )
@@ -1170,7 +1170,7 @@ void PacketHandler_GSDojo_ScrambleRes(void* pPacket)
 
 void PacketHandler_TUDojo_ScrambleNfy(void* pPacket)
 {
-	// ÀïÅ»ÀüÀ» ½ÅÃ»¹ÞÀº ±æµå ¸¶½ºÅÍ¿¡°Ô ÀïÅ»Àü ¼ö¶ô ¿©ºÎ¸¦ ¹°¾îº»´Ù
+	// ìŸíƒˆì „ì„ ì‹ ì²­ë°›ì€ ê¸¸ë“œ ë§ˆìŠ¤í„°ì—ê²Œ ìŸíƒˆì „ ìˆ˜ë½ ì—¬ë¶€ë¥¼ ë¬¼ì–´ë³¸ë‹¤
 	sTU_DOJO_SCRAMBLE_NFY* pResult = (sTU_DOJO_SCRAMBLE_NFY*)pPacket;
 
 	GetAlarmManager()->FormattedAlarmMessage("DST_DOJO_SCRAMBLE_ACCEPT_CHALLENGE", FALSE, NULL, pResult->wszName, DBO_DOJO_SCRAMBLE_REJECT_FARE);
@@ -1178,7 +1178,7 @@ void PacketHandler_TUDojo_ScrambleNfy(void* pPacket)
 
 void PacketHandler_TUDojo_ScrambleReceiveNfy(void* pPacket)
 {
-	// ÀïÅ»ÀüÀ» ½ÅÃ»ÇÑ ±æµå ¸¶½ºÅÍ¿¡°Ô ÀïÅ»Àü ½ÅÃ»À» ¹ÞÀº ±æµå ¸¶½ºÅÍÀÇ ÀÀ´ä °á°ú¸¦ ¾Ë¸°´Ù
+	// ìŸíƒˆì „ì„ ì‹ ì²­í•œ ê¸¸ë“œ ë§ˆìŠ¤í„°ì—ê²Œ ìŸíƒˆì „ ì‹ ì²­ì„ ë°›ì€ ê¸¸ë“œ ë§ˆìŠ¤í„°ì˜ ì‘ë‹µ ê²°ê³¼ë¥¼ ì•Œë¦°ë‹¤
 	sTU_DOJO_SCRAMBLE_RECEIVE_NFY* pResult = (sTU_DOJO_SCRAMBLE_RECEIVE_NFY*)pPacket;
 
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
@@ -1201,7 +1201,7 @@ void PacketHandler_TUDojo_ScrambleReceiveNfy(void* pPacket)
 
 void PacketHandler_TUDojo_ScrambleReceiveInfoNfy(void* pPacket)
 {
-	// ÀïÅ»Àü¿¡ Âü°¡ÇÏ´Â À¯ÆÄÀÇ ¸ðµç À¯ÆÄ¿øµéÀÌ ÀïÅ»Àü ±âº» Á¤º¸¸¦ ¹Þ¾Ò´Ù
+	// ìŸíƒˆì „ì— ì°¸ê°€í•˜ëŠ” ìœ íŒŒì˜ ëª¨ë“  ìœ íŒŒì›ë“¤ì´ ìŸíƒˆì „ ê¸°ë³¸ ì •ë³´ë¥¼ ë°›ì•˜ë‹¤
 	sTU_DOJO_SCRAMBLE_RECEIVE_INFO_NFY* pResult = (sTU_DOJO_SCRAMBLE_RECEIVE_INFO_NFY*)pPacket;
 
 	CNtlSLEventGenerator::ScrambleDefaultInfo(pResult->dojoTblidx, pResult->defGuildId, pResult->attGuildId,
@@ -1213,7 +1213,7 @@ void PacketHandler_GSDojo_ScrambleResponseRes(void* pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock(GU_DOJO_SCRAMBLE_RESPONSE_RES);
 
-	// ÀïÅ»ÀüÀ» ½ÅÃ»¹ÞÀº ±æµå ¸¶½ºÅÍ°¡ ´ë´äÇÑ °á°ú
+	// ìŸíƒˆì „ì„ ì‹ ì²­ë°›ì€ ê¸¸ë“œ ë§ˆìŠ¤í„°ê°€ ëŒ€ë‹µí•œ ê²°ê³¼
 	sGU_DOJO_SCRAMBLE_RESPONSE_RES* pResult = (sGU_DOJO_SCRAMBLE_RESPONSE_RES*)pPacket;
 
 	if( pResult->bIsRetry )
@@ -1232,7 +1232,7 @@ void PacketHandler_GSDojo_NPCInfoRes(void* pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock(GU_DOJO_NPC_INFO_RES);
 
-	// µµÀå Á¤º¸Ã¢ÀÇ Á¤º¸¸¦ ¹Þ¾Ò´Ù
+	// ë„ìž¥ ì •ë³´ì°½ì˜ ì •ë³´ë¥¼ ë°›ì•˜ë‹¤
 	sGU_DOJO_NPC_INFO_RES* pResult = (sGU_DOJO_NPC_INFO_RES*)pPacket;
 
 	if( pResult->wResultCode != GAME_SUCCESS )
@@ -1246,7 +1246,7 @@ void PacketHandler_GSDojo_NPCInfoRes(void* pPacket)
 
 void PacketHandler_GSDojo_SealCurrentStateNfy(void* pPacket)
 {
-	// µµÀå ÀïÅ»Àü ÁøÀÔ½Ã ÃÊ±â ÀÎÀå Á¤º¸¸¦ ¹Þ´Â´Ù
+	// ë„ìž¥ ìŸíƒˆì „ ì§„ìž…ì‹œ ì´ˆê¸° ì¸ìž¥ ì •ë³´ë¥¼ ë°›ëŠ”ë‹¤
 	sGU_DOJO_SEAL_CURRENT_STATE_NFY* pResult = (sGU_DOJO_SEAL_CURRENT_STATE_NFY*)pPacket;
 
 	if( GetNtlWorldConcept()->IsActivePlayConcept(WORLD_PLAY_DOJO_SCRAMBLE) )
@@ -1258,7 +1258,7 @@ void PacketHandler_GSDojo_SealCurrentStateNfy(void* pPacket)
 
 void PacketHandler_GSDojo_SealAttackBeginNfy(void* pPacket)
 {
-	// µµÀå ÀïÅ»ÀüÁß ÀÎÀåÀ» »¯±â À§ÇÑ Ä³½ºÆÃÀ» ½ÃÀÛÇÑ´Ù
+	// ë„ìž¥ ìŸíƒˆì „ì¤‘ ì¸ìž¥ì„ ëºê¸° ìœ„í•œ ìºìŠ¤íŒ…ì„ ì‹œìž‘í•œë‹¤
 	sGU_DOJO_SEAL_ATTACK_BEGIN_NFY* pResult = (sGU_DOJO_SEAL_ATTACK_BEGIN_NFY*)pPacket;
 
 	if( GetNtlWorldConcept()->IsActivePlayConcept(WORLD_PLAY_DOJO_SCRAMBLE) )
@@ -1270,7 +1270,7 @@ void PacketHandler_GSDojo_SealAttackBeginNfy(void* pPacket)
 
 void PacketHandler_GSDojo_SealAttackEndNfy(void* pPacket)
 {
-	// µµÀå ÀïÅ»ÀüÁß ÀÎÀåÀ» »¯±â À§ÇÑ Ä³½ºÆÃÀ» Á¾·áÇÑ´Ù.
+	// ë„ìž¥ ìŸíƒˆì „ì¤‘ ì¸ìž¥ì„ ëºê¸° ìœ„í•œ ìºìŠ¤íŒ…ì„ ì¢…ë£Œí•œë‹¤.
 	sGU_DOJO_SEAL_ATTACK_END_NFY* pResult = (sGU_DOJO_SEAL_ATTACK_END_NFY*)pPacket;
 
 	if( GetNtlWorldConcept()->IsActivePlayConcept(WORLD_PLAY_DOJO_SCRAMBLE) )
@@ -1281,7 +1281,7 @@ void PacketHandler_GSDojo_SealAttackEndNfy(void* pPacket)
 
 void PacketHandler_GSDojo_ScrambleShiftStateNfy(void* pPacket)
 {
-	// µµÀå ÀïÅ»ÀüÁß ÀÎÀåÀÇ »óÅÂ°¡ º¯°æµÇ¾úÀ½À» °ø/¹æ À¯ÆÄ¿ø¿¡°Ô ¾Ë¸°´Ù
+	// ë„ìž¥ ìŸíƒˆì „ì¤‘ ì¸ìž¥ì˜ ìƒíƒœê°€ ë³€ê²½ë˜ì—ˆìŒì„ ê³µ/ë°© ìœ íŒŒì›ì—ê²Œ ì•Œë¦°ë‹¤
 	sGU_DOJO_SCRAMBLE_SHIFT_SEAL_STATE_NFY* pResult = (sGU_DOJO_SCRAMBLE_SHIFT_SEAL_STATE_NFY*)pPacket;
 
 	if( FALSE == GetNtlWorldConcept()->IsActivePlayConcept(WORLD_PLAY_DOJO_SCRAMBLE) )
@@ -1313,7 +1313,7 @@ void PacketHandler_GSDojo_ScrambleShiftStateNfy(void* pPacket)
 
 void PacketHandler_TUDojo_BriefNfy(void* pPacket)
 {
-	// (¼­¹öÀÇ ¸ðµç À¯Àú¿¡°Ô)µµÀå Á¤º¸¸¦ ¹Þ¾Ò´Ù
+	// (ì„œë²„ì˜ ëª¨ë“  ìœ ì €ì—ê²Œ)ë„ìž¥ ì •ë³´ë¥¼ ë°›ì•˜ë‹¤
 	sTU_DOJO_BRIEF_NFY* pResult = (sTU_DOJO_BRIEF_NFY*)pPacket;
 
 	CNtlSLEventGenerator::DojoEvent(DOJO_EVENT_DOJO_INFO, 0xffffffff, (VOID*)&pResult->sDojoData);
@@ -1321,7 +1321,7 @@ void PacketHandler_TUDojo_BriefNfy(void* pPacket)
 
 void PacketHandler_TUDojo_ScrambleRejectNfy(void* pPacket)
 {
-	// ÀïÅ»ÀüÀ» ½ÅÃ»ÇÑ ±æµå ¸¶½ºÅÍ¿¡°Ô °ÅÀý´çÇßÀ½À» ¾Ë¸°´Ù
+	// ìŸíƒˆì „ì„ ì‹ ì²­í•œ ê¸¸ë“œ ë§ˆìŠ¤í„°ì—ê²Œ ê±°ì ˆë‹¹í–ˆìŒì„ ì•Œë¦°ë‹¤
 	//sTU_DOJO_SCRAMBLE_REJECT_NFY* pResult = (sTU_DOJO_SCRAMBLE_REJECT_NFY*)pPacket;
 
 	GetAlarmManager()->AlarmMessage("DST_DOJO_REJECT_SCRAMBLE");
@@ -1329,8 +1329,8 @@ void PacketHandler_TUDojo_ScrambleRejectNfy(void* pPacket)
 
 void PacketHandler_TUDojo_ScrambleInformNfy(void* pPacket)
 {
-	// ÀïÅ»ÀüÀ» ½ÅÃ»ÇÑ ±æµå ¸¶½ºÅÍ¿Í ÀïÅ»ÀüÀ» ½ÅÃ»¹ÞÀº ±æµå ¸¶½ºÅÍ¿¡°Ô
-	// µµÀåÀÇ »óÅÂ¿Í Á¤º¸¸¦ º¸³½´Ù
+	// ìŸíƒˆì „ì„ ì‹ ì²­í•œ ê¸¸ë“œ ë§ˆìŠ¤í„°ì™€ ìŸíƒˆì „ì„ ì‹ ì²­ë°›ì€ ê¸¸ë“œ ë§ˆìŠ¤í„°ì—ê²Œ
+	// ë„ìž¥ì˜ ìƒíƒœì™€ ì •ë³´ë¥¼ ë³´ë‚¸ë‹¤
 	sTU_DOJO_SCRAMBLE_INFORM_NFY* pResult = (sTU_DOJO_SCRAMBLE_INFORM_NFY*)pPacket;
 	CNtlSLEventGenerator::DojoState(pResult->dojoTblidx, pResult->byState, pResult->tmNextStepTime);
 }
@@ -1339,7 +1339,7 @@ void PacketHandler_TUDojo_AddBudokaiSeedAddRes(void* pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock(TU_DOJO_BUDOKAI_SEED_ADD_RES);
 
-	// ºÎµµÄ«ÀÌ ½Ãµå Âü°¡ÀÚ¸¦ Ãß°¡ÇÑ °á°ú¸¦ À¯ÆÄÀå¿¡°Ô ¾Ë¸°´Ù
+	// ë¶€ë„ì¹´ì´ ì‹œë“œ ì°¸ê°€ìžë¥¼ ì¶”ê°€í•œ ê²°ê³¼ë¥¼ ìœ íŒŒìž¥ì—ê²Œ ì•Œë¦°ë‹¤
 	sTU_DOJO_BUDOKAI_SEED_ADD_RES* pResult = (sTU_DOJO_BUDOKAI_SEED_ADD_RES*)pPacket;
 
 	if( pResult->wResultCode != CHAT_SUCCESS )
@@ -1353,7 +1353,7 @@ void PacketHandler_TUDojo_AddBudokaiSeedAddRes(void* pPacket)
 
 void PacketHandler_TUDojo_ScramblePointNfy(void* pPacket)
 {
-	// µµÀå ÀïÅ»Àü Á¡¼ö¸¦ À¯ÆÄ¿ø¿¡°Ô ¾Ë¸°´Ù
+	// ë„ìž¥ ìŸíƒˆì „ ì ìˆ˜ë¥¼ ìœ íŒŒì›ì—ê²Œ ì•Œë¦°ë‹¤
 	sTU_DOJO_SCRAMBLE_POINT_NFY* pResult = (sTU_DOJO_SCRAMBLE_POINT_NFY*)pPacket;
 
 	CNtlSLEventGenerator::DojoEvent(DOJO_EVENT_SCRAMBLE_SCORE, pResult->sData.dojoTblidx, (VOID*)&pResult->sData);
@@ -1363,7 +1363,7 @@ void PacketHandler_TUDojo_NoticeChangeRes(void* pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock(TU_DOJO_NOTICE_CHANGE_RES);
 
-	// µµÀå °øÁö¸¦ º¯°æÇÑ °á°ú¸¦ À¯ÆÄÀå¿¡°Ô ¾Ë·ÁÁØ´Ù
+	// ë„ìž¥ ê³µì§€ë¥¼ ë³€ê²½í•œ ê²°ê³¼ë¥¼ ìœ íŒŒìž¥ì—ê²Œ ì•Œë ¤ì¤€ë‹¤
 	sTU_DOJO_NOTICE_CHANGE_RES* pResult = (sTU_DOJO_NOTICE_CHANGE_RES*)pPacket;
 
 	if( pResult->wResultCode != CHAT_SUCCESS )
@@ -1378,8 +1378,8 @@ void PacketHandler_TUDojo_NoticeChangeRes(void* pPacket)
 
 void PacketHandler_TUDojo_NoticeChangeNfy(void* pPacket)
 {
-	// µµÀå °øÁö°¡ º¯°æµÇ¾úÀ½À» À¯ÆÄÀå¿¡°Ô ¾Ë¸°´Ù
-	// ±âÈ¹ÀÌ º¯°æµÇ¾î ´Ù¸¥ »ç¶÷µµ µµÀå °øÁö°¡ º¯°æµÇ¾úÀ½À» ¾Ë°Ô µÉ ¼öµµ ÀÖ´Ù. ÀÌ ¶§ º°µµ ÀÛ¾÷ ºÒÇÊ¿ä
+	// ë„ìž¥ ê³µì§€ê°€ ë³€ê²½ë˜ì—ˆìŒì„ ìœ íŒŒìž¥ì—ê²Œ ì•Œë¦°ë‹¤
+	// ê¸°íšì´ ë³€ê²½ë˜ì–´ ë‹¤ë¥¸ ì‚¬ëžŒë„ ë„ìž¥ ê³µì§€ê°€ ë³€ê²½ë˜ì—ˆìŒì„ ì•Œê²Œ ë  ìˆ˜ë„ ìžˆë‹¤. ì´ ë•Œ ë³„ë„ ìž‘ì—… ë¶ˆí•„ìš”
 	sTU_DOJO_NOTICE_CHANGE_NFY* pResult = (sTU_DOJO_NOTICE_CHANGE_NFY*)pPacket;
 
 	if( NTL_MAX_LENGTH_OF_GUILD_NOTICE < pResult->wNoticeLengthInUnicode )
@@ -1395,7 +1395,7 @@ void PacketHandler_TUDojo_NoticeChangeNfy(void* pPacket)
 
 void PacketHandler_TUDojo_ScrambleResultNfy(void* pPacket)
 {
-	// µµÀå ÀïÅ»Àü °á°ú¸¦ À¯ÆÄ¿øµé¿¡°Ô ¾Ë¸°´Ù
+	// ë„ìž¥ ìŸíƒˆì „ ê²°ê³¼ë¥¼ ìœ íŒŒì›ë“¤ì—ê²Œ ì•Œë¦°ë‹¤
 	sTU_DOJO_SCRAMBLE_RESULT_NFY* pResult = (sTU_DOJO_SCRAMBLE_RESULT_NFY*)pPacket;
 
 	CNtlSLEventGenerator::DojoEvent(DOJO_EVENT_SCRAMBLE_RESULT, pResult->winGuildId);
@@ -1403,7 +1403,7 @@ void PacketHandler_TUDojo_ScrambleResultNfy(void* pPacket)
 
 void PacketHandler_TUDojo_ScrambleRewardNfy(void* pPacket)
 {
-	// µµÀå ÀïÅ»Àü¿¡ ÀÌ±ä À¯ÆÄ¿øµé¿¡°Ô º¸»óÀ» ¾Ë¸°´Ù
+	// ë„ìž¥ ìŸíƒˆì „ì— ì´ê¸´ ìœ íŒŒì›ë“¤ì—ê²Œ ë³´ìƒì„ ì•Œë¦°ë‹¤
 	sTU_DOJO_SCRAMBLE_REWARD_NFY* pResult = (sTU_DOJO_SCRAMBLE_REWARD_NFY*)pPacket;
 
 	CNtlSLEventGenerator::DojoEvent(DOJO_EVENT_SCRAMBLE_REWARD, pResult->dwAddGuildReputation,
@@ -1411,14 +1411,14 @@ void PacketHandler_TUDojo_ScrambleRewardNfy(void* pPacket)
 }
 
 //////////////////////////////////////////////////////////////////////////
-//								µµ º¹									//
+//								ë„ ë³µ									//
 //////////////////////////////////////////////////////////////////////////
 
 void PacketHandler_GSDogi_CreateRes(void* pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock(GU_DOGI_CREATE_RES);
 
-	// À¯ÆÄ µµº¹À» ¸¸µé¾úÀ½À» À¯ÆÄÀå¿¡°Ô ¾Ë¸°´Ù
+	// ìœ íŒŒ ë„ë³µì„ ë§Œë“¤ì—ˆìŒì„ ìœ íŒŒìž¥ì—ê²Œ ì•Œë¦°ë‹¤
 	sGU_DOGI_CREATE_RES* pResult = (sGU_DOGI_CREATE_RES*)pPacket;
 
 	if( pResult->wResultCode != GAME_SUCCESS )
@@ -1435,7 +1435,7 @@ void PacketHandler_GSDogi_ChangeRes(void* pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock(GU_DOGI_CHANGE_RES);
 
-	// À¯ÆÄ µµº¹À» º¯°æÇßÀ½À» À¯ÆÄÀå¿¡°Ô ¾Ë¸°´Ù
+	// ìœ íŒŒ ë„ë³µì„ ë³€ê²½í–ˆìŒì„ ìœ íŒŒìž¥ì—ê²Œ ì•Œë¦°ë‹¤
 	sGU_DOGI_CHANGE_RES* pResult = (sGU_DOGI_CHANGE_RES*)pPacket;
 
 	if( pResult->wResultCode != GAME_SUCCESS )
@@ -1449,7 +1449,7 @@ void PacketHandler_GSDogi_ChangeRes(void* pPacket)
 
 void PacketHandler_GSDogi_UpdateNfy(void* pPacket)
 {
-	// ¾î¶² À¯ÆÄÀÇ µµº¹¿¡ º¯È­°¡ ÀÖÀ½À» ÁÖº¯ À¯Àú¿¡°Ô ¾Ë¸°´Ù
+	// ì–´ë–¤ ìœ íŒŒì˜ ë„ë³µì— ë³€í™”ê°€ ìžˆìŒì„ ì£¼ë³€ ìœ ì €ì—ê²Œ ì•Œë¦°ë‹¤
 	sGU_DOGI_UPDATE_NFY* pResult = (sGU_DOGI_UPDATE_NFY*)pPacket;
 
 	if( Logic_GetAvatarHandle() == pResult->handle )
@@ -1480,7 +1480,7 @@ void PacketHandler_GSGuildDogi_CreateRes(void* pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock(GU_GUILD_DOGI_CREATE_RES);
 
-	// À¯ÆÄ µµº¹À» ¸¸µé¾úÀ½À» À¯ÆÄÀå¿¡°Ô ¾Ë¸°´Ù
+	// ìœ íŒŒ ë„ë³µì„ ë§Œë“¤ì—ˆìŒì„ ìœ íŒŒìž¥ì—ê²Œ ì•Œë¦°ë‹¤
 	sGU_GUILD_DOGI_CREATE_RES* pResult = (sGU_GUILD_DOGI_CREATE_RES*)pPacket;
 
 	if( pResult->wResultCode != GAME_SUCCESS )
@@ -1496,7 +1496,7 @@ void PacketHandler_GSGuildDogi_ChangeRes(void* pPacket)
 {
 	API_GetSLPacketLockManager()->Unlock(GU_GUILD_DOGI_CHANGE_RES);
 
-	// À¯ÆÄ µµº¹À» º¯°æÇßÀ½À» À¯ÆÄÀå¿¡°Ô ¾Ë¸°´Ù
+	// ìœ íŒŒ ë„ë³µì„ ë³€ê²½í–ˆìŒì„ ìœ íŒŒìž¥ì—ê²Œ ì•Œë¦°ë‹¤
 	sGU_GUILD_DOGI_CHANGE_RES* pResult = (sGU_GUILD_DOGI_CHANGE_RES*)pPacket;
 
 	if( pResult->wResultCode != GAME_SUCCESS )

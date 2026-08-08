@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: RankBattleBoard.h
 * Author		: Cho Hae sung
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 12. 14
 * Abstract		: 
 *****************************************************************************
-* Desc			: ·©Å©¹èÆ²ÀÇ ¼øÀ§ °Ô½ÃÆÇ
+* Desc			: ë­í¬ë°°í‹€ì˜ ìˆœìœ„ ê²Œì‹œíŒ
 *****************************************************************************/
 
 #ifndef __RANKBATTLE_H__
@@ -28,19 +28,19 @@
 
 struct sRANKBATTLE_ITEM
 {
-	RwInt32		nRank;												///< ¼øÀ§
-	WCHAR		awcName[NTL_MAX_SIZE_CHAR_NAME+1];			///< Ä³¸¯ÅÍ ÀÌ¸§
-	RwInt32		nLevel;												///< ·¹º§
-	RwUInt8		byClass;											///< Å¬·¡½º
-	WCHAR		awcGuildName[NTL_MAX_SIZE_GUILD_NAME+1];	///< ±æµå ÀÌ¸§
-	RwInt32		nPoint;												///< Á¡¼ö
-	RwUInt16	wStraightWin;										///< ¿¬½Â
-	RwUInt32	nCompare;											///< ºñ±³³¯Â¥
+	RwInt32		nRank;												///< ìˆœìœ„
+	WCHAR		awcName[NTL_MAX_SIZE_CHAR_NAME+1];			///< ìºë¦­í„° ì´ë¦„
+	RwInt32		nLevel;												///< ë ˆë²¨
+	RwUInt8		byClass;											///< í´ë˜ìŠ¤
+	WCHAR		awcGuildName[NTL_MAX_SIZE_GUILD_NAME+1];	///< ê¸¸ë“œ ì´ë¦„
+	RwInt32		nPoint;												///< ì ìˆ˜
+	RwUInt16	wStraightWin;										///< ì—°ìŠ¹
+	RwUInt32	nCompare;											///< ë¹„êµë‚ ì§œ
 };
 
 /**
 * \ingroup client
-* \brief ·©Å©¹èÆ²ÀÇ Ç×¸ñµé
+* \brief ë­í¬ë°°í‹€ì˜ í•­ëª©ë“¤
 */
 class CRankBattleRowItem
 {
@@ -63,35 +63,35 @@ public:
 	VOID OnMouseLeaveFromClass( gui::CComponent* pComponent );
 
 protected:
-	gui::CStaticBox*	m_pStbRank;				///< ¼øÀ§
-	gui::CStaticBox*	m_pStbName;				///< ÀÌ¸§
-	gui::CStaticBox*	m_pStbLevel;			///< ·¹º§
-	gui::CPanel*		m_pPanClass;			///< Á÷¾÷
-	gui::CStaticBox*	m_pStbGuildName;		///< ±æµåÀÌ¸§
-	gui::CStaticBox*	m_pStbPoint;			///< Á¡¼ö
-	gui::CStaticBox*	m_pStbStraightWin;		///< ¿¬½Â
-	gui::CStaticBox*	m_pStbCompare;			///< ºñ±³
-	gui::CPanel*		m_pPanCompareMark;		///< ºñ±³¸¶Å©
+	gui::CStaticBox*	m_pStbRank;				///< ìˆœìœ„
+	gui::CStaticBox*	m_pStbName;				///< ì´ë¦„
+	gui::CStaticBox*	m_pStbLevel;			///< ë ˆë²¨
+	gui::CPanel*		m_pPanClass;			///< ì§ì—…
+	gui::CStaticBox*	m_pStbGuildName;		///< ê¸¸ë“œì´ë¦„
+	gui::CStaticBox*	m_pStbPoint;			///< ì ìˆ˜
+	gui::CStaticBox*	m_pStbStraightWin;		///< ì—°ìŠ¹
+	gui::CStaticBox*	m_pStbCompare;			///< ë¹„êµ
+	gui::CPanel*		m_pPanCompareMark;		///< ë¹„êµë§ˆí¬
 	gui::CDialog*		m_pDlgItem;
 
 	gui::CSlot			m_slotMouseEnterFromClass;
 	gui::CSlot			m_slotMouseLeaveFromClass;
 
-	RwInt32				m_nRank;				///< ¼øÀ§
+	RwInt32				m_nRank;				///< ìˆœìœ„
 
-	RwUInt8				m_byClass;				///< Á÷¾÷
+	RwUInt8				m_byClass;				///< ì§ì—…
 
 
 };
 
 /**
 * \ingroup client
-* \brief ·©Å©¹èÆ² ¼øÀ§ °Ô½ÃÆÇ
+* \brief ë­í¬ë°°í‹€ ìˆœìœ„ ê²Œì‹œíŒ
 */
 class CRankBattleBoard : public CBoard
 {
 public:
-	// ¼­¹ö¿¡¼­ ¹ŞÀº µ¥ÀÌÅ¸ÀÇ À¯È¿°ª
+	// ì„œë²„ì—ì„œ ë°›ì€ ë°ì´íƒ€ì˜ ìœ íš¨ê°’
 	enum eDataResult
 	{
 		eDATA_OK = 0,
@@ -104,10 +104,10 @@ public:
 		eDATA_INVALID = 0xFF
 	};
 
-	// °Ë»ö ¸ğµå
+	// ê²€ìƒ‰ ëª¨ë“œ
 	enum eSearchMode
 	{
-		eSEARCH_RANK = 0,	// ·©Å©·Î °Ë»ö
+		eSEARCH_RANK = 0,	// ë­í¬ë¡œ ê²€ìƒ‰
 		eSEARCH_NAME,
 
 		eSEARCH_NUMS,
@@ -141,11 +141,11 @@ public:
 	void		OnInputReturnSearch();
 	void		OnClickedBtnSearch(gui::CComponent* pComponent);
 
-	// ¼­Ä¡ °ü·Ã ÄŞº¸¹Ú½º
+	// ì„œì¹˜ ê´€ë ¨ ì½¤ë³´ë°•ìŠ¤
 	VOID		OnSearchItemSelect( INT nIndex );
 	VOID		OnSearchListToggled( RwBool bToggled, gui::CComponent* pComponent );
 
-	// Compare °ü·Ã ÄŞº¸¹Ú½º 
+	// Compare ê´€ë ¨ ì½¤ë³´ë°•ìŠ¤ 
 	VOID		OnItemSelect( INT nIndex );
 	VOID		OnListToggled( RwBool bToggled, gui::CComponent* pComponent );
 	VOID		OnClickedCompare( gui::CComponent* pComponent );
@@ -169,10 +169,10 @@ protected:
 	gui::CSlot			m_slotSearchListToggled;
 
 	RwInt32				m_nSearchMode;
-	RwBool				m_bSearchRank;				///< ¼øÀ§ ¸ğµåÀÓ
+	RwBool				m_bSearchRank;				///< ìˆœìœ„ ëª¨ë“œì„
 
-	RwInt32				m_nSearchRankPage;			///< ¼øÀ§ ¸ğµåÀÏ¶§ÀÇ ÆäÀÌÁö
-	RwInt32				m_nSearchRankIndex;			///< ¼øÀ§ ¸ğµåÀÏ¶§ ÇÏÀÌ¶óÀÌÆ® ÇØÁÙ À§Ä¡
+	RwInt32				m_nSearchRankPage;			///< ìˆœìœ„ ëª¨ë“œì¼ë•Œì˜ í˜ì´ì§€
+	RwInt32				m_nSearchRankIndex;			///< ìˆœìœ„ ëª¨ë“œì¼ë•Œ í•˜ì´ë¼ì´íŠ¸ í•´ì¤„ ìœ„ì¹˜
 
 	gui::CInputBox*		m_pIpbSearch;
 	gui::CButton*		m_pBtnSearch;
@@ -185,19 +185,19 @@ protected:
 	gui::CSlot			m_slotIpbSearchGotFocus;
 	gui::CSlot			m_slotIpbSearchLostFocus;
 
-	gui::CStaticBox*	m_pStbRank;					///< ¼øÀ§
-	gui::CStaticBox*	m_pStbName;					///< ÀÌ¸§
-	gui::CStaticBox*	m_pStbLevel;				///< ·¹º§
-	gui::CStaticBox*	m_pStbClass;				///< Á÷¾÷
-	gui::CStaticBox*	m_pStbGuildName;			///< ±æµåÀÌ¸§
-	gui::CStaticBox*	m_pStbPoint;				///< Á¡¼ö
-	gui::CStaticBox*	m_pStbStraightWin;			///< ¿¬½Â
-	/*gui::CComboBox*		m_pCbbCompare;				///< ºñ±³³¯Â¥( ÄŞº¸¹Ú½º )*/
-	gui::CStaticBox*	m_pStbRankBattleCompare;		///< º¯µ¿ »çÇ×
+	gui::CStaticBox*	m_pStbRank;					///< ìˆœìœ„
+	gui::CStaticBox*	m_pStbName;					///< ì´ë¦„
+	gui::CStaticBox*	m_pStbLevel;				///< ë ˆë²¨
+	gui::CStaticBox*	m_pStbClass;				///< ì§ì—…
+	gui::CStaticBox*	m_pStbGuildName;			///< ê¸¸ë“œì´ë¦„
+	gui::CStaticBox*	m_pStbPoint;				///< ì ìˆ˜
+	gui::CStaticBox*	m_pStbStraightWin;			///< ì—°ìŠ¹
+	/*gui::CComboBox*		m_pCbbCompare;				///< ë¹„êµë‚ ì§œ( ì½¤ë³´ë°•ìŠ¤ )*/
+	gui::CStaticBox*	m_pStbRankBattleCompare;		///< ë³€ë™ ì‚¬í•­
 
-	gui::CSlot			m_slotItemSelect;			///< ¾ÆÀÌÅÛ ¼¿·ºÆ®
-	gui::CSlot			m_slotListToggled;			///< ¸®½ºÆ®¹Ú½º Åä±Û
-	gui::CSlot			m_slotClickedCompare;		///< ¸®½ºÆ®¹Ú½ºÀÇ ÄÄÆä¾î ¹öÆ° Å¬¸¯
+	gui::CSlot			m_slotItemSelect;			///< ì•„ì´í…œ ì…€ë ‰íŠ¸
+	gui::CSlot			m_slotListToggled;			///< ë¦¬ìŠ¤íŠ¸ë°•ìŠ¤ í† ê¸€
+	gui::CSlot			m_slotClickedCompare;		///< ë¦¬ìŠ¤íŠ¸ë°•ìŠ¤ì˜ ì»´í˜ì–´ ë²„íŠ¼ í´ë¦­
 
 	RwInt32				m_nCurrentPage;
 	RwInt32				m_nCurrentCompareDay;

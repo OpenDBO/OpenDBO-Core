@@ -1,4 +1,4 @@
-// Attr_CONT_GAct.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_CONT_GAct.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_CONT_GAct.h"
 
 
-// CAttr_CONT_GAct ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_CONT_GAct ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_CONT_GAct, CAttr_Page, 1)
 
@@ -51,4 +51,4 @@ BEGIN_MESSAGE_MAP(CAttr_CONT_GAct, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_CONT_GAct ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_CONT_GAct ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

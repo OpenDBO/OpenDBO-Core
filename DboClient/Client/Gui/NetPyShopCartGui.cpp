@@ -36,7 +36,7 @@
 
 namespace
 {
-#define dMAX_TRADE_OVERLAP_COUNT			20	///< ÇÑ ½½·Ô´ç °Å·¡ÇÒ ¼ö ÀÖ´Â ÃÖ´ë ¾ÆÀÌÅÛ °¹¼ö
+#define dMAX_TRADE_OVERLAP_COUNT			20	///< í•œ ìŠ¬ë¡¯ë‹¹ ê±°ë˜í•  ìˆ˜ ìˆëŠ” ìµœëŒ€ ì•„ì´í…œ ê°¯ìˆ˜
 
 #define dGUI_BUY_SELL_SLOT_GAP				97
 #define dGUI_SLOT_HORI_GAP					42
@@ -93,7 +93,7 @@ RwBool CNetPyShopCartGui::Create()
 
 	m_pMoneyIconTexture = Logic_CreateTexture( MONEYICON_NAME );
 
-	// ´ÙÀÌ¾ó·Î±× ÀÌ¸§ ½ºÅÂÆ½
+	// ë‹¤ì´ì–¼ë¡œê·¸ ì´ë¦„ ìŠ¤íƒœí‹±
 	rect.SetRectWH(DBOGUI_DIALOG_TITLE_X, DBOGUI_DIALOG_TITLE_Y, 130, 14);
 	m_pDialogName = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT );
 	m_pDialogName->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
@@ -103,11 +103,11 @@ RwBool CNetPyShopCartGui::Create()
 	m_pExitButton = (gui::CButton*)GetComponent( "ExitButton" );
 	m_slotCloseButton = m_pExitButton->SigClicked().Connect(this, &CNetPyShopCartGui::ClickedCloseButton);
 
-	// ±¸ÀÔ ¹öÆ°
+	// êµ¬ì… ë²„íŠ¼
 	m_pBuyButton = (gui::CButton*)GetComponent( "BuyButton" );	
 	m_slotClickedBuy = m_pBuyButton->SigClicked().Connect(this, &CNetPyShopCartGui::ClickedBuyButton);	
 
-	// ¾ÆÀÌÅÛ °¹¼ö ´õÇÏ±â/»©±â ¹öÆ°
+	// ì•„ì´í…œ ê°¯ìˆ˜ ë”í•˜ê¸°/ë¹¼ê¸° ë²„íŠ¼
 	RwInt32 iButtonX = 16;
 	for( RwInt32 i = 0 ; i < SLOTKIND_NUM ; ++i )
 	{		
@@ -120,7 +120,7 @@ RwBool CNetPyShopCartGui::Create()
 			else
 				iButtonX = 16 + dGUI_SLOT_HORI_GAP;
 
-			// ¾ÆÀÌÅÛ °¹¼ö ´õÇÏ±â ¹öÆ°
+			// ì•„ì´í…œ ê°¯ìˆ˜ ë”í•˜ê¸° ë²„íŠ¼
 			rect.SetRectWH(iButtonX, iButtonY, 18, 15);
 			m_pUpButton[i][j] = NTL_NEW gui::CButton(rect, "",
 				GetNtlGuiManager()->GetSurfaceManager()->GetSurface( acSurfaceName, "srfUpButtonUp" ),
@@ -131,7 +131,7 @@ RwBool CNetPyShopCartGui::Create()
 				GUI_BUTTON_DOWN_COORD_X, GUI_BUTTON_DOWN_COORD_Y, m_pThis, GetNtlGuiManager()->GetSurfaceManager() );
 			m_slotUpButton[i][j] = m_pUpButton[i][j]->SigClicked().Connect(this, &CNetPyShopCartGui::ClickUpButton);
 
-			// ¾ÆÀÌÅÛ °¹¼ö »©±â ¹öÆ°
+			// ì•„ì´í…œ ê°¯ìˆ˜ ë¹¼ê¸° ë²„íŠ¼
 			rect.SetRectWH(iButtonX + dGUI_BUTTON_HORI_GAP, iButtonY, 18, 15);
 			m_pDownButton[i][j] = NTL_NEW gui::CButton(rect, "",
 				GetNtlGuiManager()->GetSurfaceManager()->GetSurface( acSurfaceName, "srfDownButtonUp" ),
@@ -170,14 +170,14 @@ RwBool CNetPyShopCartGui::Create()
 			iSlotY += dGUI_SLOT_VERT_GAP;
 	}
 
-	// ÃÑ ±¸ÀÔ ±İ¾×
+	// ì´ êµ¬ì… ê¸ˆì•¡
 	rect.SetRectWH( 14, 411, 61, 16);
 	m_pTotalBuyMoney = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_RIGHT );
 	m_pTotalBuyMoney->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pTotalBuyMoney->SetText( "0");
 	m_pTotalBuyMoney->Enable(false);
 
-	// ½½·Ô Æ÷Ä¿½º ÀÌÆåÆ®
+	// ìŠ¬ë¡¯ í¬ì»¤ìŠ¤ ì´í™íŠ¸
 	m_FocusEffect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", "srfSlotFocusEffect" ) );
 
 	// Sig
@@ -301,11 +301,11 @@ VOID CNetPyShopCartGui::ClickedBuyButton(gui::CComponent* pComponent)
 		}
 	}
 
-	// Ä«¿îÆ®°¡ ¾ø´Ù¸é ¾Æ¹«°Íµµ »çÁö ¾Ê´Â ´Ù´Â °ÍÀÌ´Ù.
+	// ì¹´ìš´íŠ¸ê°€ ì—†ë‹¤ë©´ ì•„ë¬´ê²ƒë„ ì‚¬ì§€ ì•ŠëŠ” ë‹¤ëŠ” ê²ƒì´ë‹¤.
 	if( byCount == 0 )
 		return;
 
-	// »ç´Â ÆĞÅ¶ º¸³»±â
+	// ì‚¬ëŠ” íŒ¨í‚· ë³´ë‚´ê¸°
 	GetDboGlobal()->GetGamePacketGenerator()->SendShopNetPyItemBuyReq( byCount, aBuyCart );	
 }
 
@@ -432,22 +432,22 @@ VOID CNetPyShopCartGui::OnMouseUp(const CKey& key)
 
 	for(RwInt32 i = 0 ; i < MAX_SLOT ; ++i )
 	{
-		// ±¸ÀÔ ½½·Ô
+		// êµ¬ì… ìŠ¬ë¡¯
 		if( m_BuySlotInfo[i].slot.PtInRect((RwInt32)key.m_fX, (RwInt32)key.m_fY) )
 		{				
-			if( key.m_nID == UD_LEFT_BUTTON )	// ÁÂ¹öÆ°
+			if( key.m_nID == UD_LEFT_BUTTON )	// ì¢Œë²„íŠ¼
 			{
 				if( !GetIconMoveManager()->IsActive() )
 					break;
 
-				// NPC »óÁ¡¿¡¼­ ¸Ş¼¼Áö¸¦ º¸³½ °æ¿ì
+				// NPC ìƒì ì—ì„œ ë©”ì„¸ì§€ë¥¼ ë³´ë‚¸ ê²½ìš°
 				if( GetIconMoveManager()->GetSrcPlace() == PLACE_NPCSHOP )
 				{
 					RegBuyItemByDrag(i);
 					GetIconMoveManager()->IconMoveEnd();
 				}					
 			}
-			else if( key.m_nID == UD_RIGHT_BUTTON )	// ¿ì¹öÆ°
+			else if( key.m_nID == UD_RIGHT_BUTTON )	// ìš°ë²„íŠ¼
 			{
 				if( GetIconMoveManager()->IsActive() )
 					break;
@@ -460,7 +460,7 @@ VOID CNetPyShopCartGui::OnMouseUp(const CKey& key)
 				}					
 			}	
 
-			// ÇØ´ç½½·ÔÀÇ ¾Æ¹«·± Ã³¸®µµ ÇÏÁö ¾Ê¾ÒÀ» ¶§
+			// í•´ë‹¹ìŠ¬ë¡¯ì˜ ì•„ë¬´ëŸ° ì²˜ë¦¬ë„ í•˜ì§€ ì•Šì•˜ì„ ë•Œ
 			break;
 		}
 
@@ -488,12 +488,12 @@ VOID CNetPyShopCartGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 {
 	FocusEffect(FALSE);	
 
-	// ¾ÆÀÌÅÛ Á¤º¸¸¦ Ç¥½ÃÇÏ°í Æ÷Ä¿½º ÀÌÆåÆ®¸¦ º¸¿©ÁØ´Ù
+	// ì•„ì´í…œ ì •ë³´ë¥¼ í‘œì‹œí•˜ê³  í¬ì»¤ìŠ¤ ì´í™íŠ¸ë¥¼ ë³´ì—¬ì¤€ë‹¤
 	for( RwInt32 i = 0 ; i < MAX_SLOT ; ++i )
 	{		
 		if( m_BuySlotInfo[i].slot.PtInRect(nX, nY) )
 		{
-			// ¼¿·ºÆ® Æ÷Ä¿½º
+			// ì…€ë ‰íŠ¸ í¬ì»¤ìŠ¤
 			FocusEffect(TRUE, BUY_SLOT, i);
 
 			if( GetIconMoveManager()->IsActive() )
@@ -503,7 +503,7 @@ VOID CNetPyShopCartGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 			{
 				if( m_byInfoWindowIndex != i )
 				{
-					// ¹ÌÈ®ÀÎ ¾ÆÀÌÅÛ
+					// ë¯¸í™•ì¸ ì•„ì´í…œ
 					CRectangle rtScreen = m_pThis->GetScreenRect();
 					GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_UNIDENTIFIED_ITEM,
 						rtScreen.left + m_BuySlotInfo[i].slot.GetX_fromParent(),
@@ -529,7 +529,7 @@ VOID CNetPyShopCartGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 			{
 				if( m_byInfoWindowIndex != i )
 				{
-					// ´ç½ÅÀÇ °¡¹æ¿¡ ºó °ø°£ÀÌ ¸ğÀÚ¶ø´Ï´Ù
+					// ë‹¹ì‹ ì˜ ê°€ë°©ì— ë¹ˆ ê³µê°„ì´ ëª¨ìëë‹ˆë‹¤
 					CRectangle rtScreen = m_pThis->GetScreenRect();
 					const WCHAR* pwcText = GetDisplayStringManager()->GetString("DST_TRADE_YOUR_BAG_NOT_ENOUGH");
 					GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_JUST_WTEXT,
@@ -577,10 +577,10 @@ VOID CNetPyShopCartGui::FocusEffect( RwBool bPush, RwInt32 iSlotKind /* =0 */, R
 
 VOID CNetPyShopCartGui::OpenCart()
 {
-	// TradeCart¸¦ ¿¬´Ù.
+	// TradeCartë¥¼ ì—°ë‹¤.
 	GetDialogManager()->OpenDialog(DIALOG_NETPYSHOP_TRADE);
 
-	// °¡¹æÀ» ¿¬´Ù
+	// ê°€ë°©ì„ ì—°ë‹¤
 	GetDialogManager()->SwitchBag( TRUE );
 }
 
@@ -645,7 +645,7 @@ VOID CNetPyShopCartGui::RegBuyItemByDrag(RwInt32 iSlot)
 	RwUInt8 byMerchantTab	= (BYTE)GetIconMoveManager()->GetEXData1();
 	RwUInt8 byItemPos		= (BYTE)GetIconMoveManager()->GetSrcSlotIdx();
 
-	// ±â°£Á¦ ¾ÆÀÌÅÛ
+	// ê¸°ê°„ì œ ì•„ì´í…œ
 	if( eDURATIONTYPE_FLATSUM		== pITEM_DATA->byDurationType ||
 		eDURATIONTYPE_METERRATE		== pITEM_DATA->byDurationType )
 	{
@@ -666,7 +666,7 @@ VOID CNetPyShopCartGui::RegBuyItemByDrag(RwInt32 iSlot)
 
 	if( m_BuySlotInfo[iSlot].slot.GetCount() <= 0 )
 	{
-		// ºó ½½·ÔÀÌ¸é µî·Ï
+		// ë¹ˆ ìŠ¬ë¡¯ì´ë©´ ë“±ë¡
 		RwInt32 iCount = GetIconMoveManager()->GetStackCount();	
 		RwInt32 iPrice = GetIconMoveManager()->GetEXData2();
 
@@ -687,7 +687,7 @@ VOID CNetPyShopCartGui::RegBuyItemByDrag(RwInt32 iSlot)
 	{
 		if( pITEM_DATA->byMax_Stack > m_BuySlotInfo[iSlot].NPCShopBuyInfo.byStack)
 		{
-			// ÀÌÀü¿¡ µî·ÏµÈ ¾ÆÀÌÅÛ°ú °°Àº ¾ÆÀÌÅÛÀÌ ½½·Ô¿¡ ³õÀÏ ¼ö ÀÖ´Â ÃÖ´ë °¹¼ö¸¦ ÃÊ°úÇÏÁö ¾Ê¾Ò´Ù¸é
+			// ì´ì „ì— ë“±ë¡ëœ ì•„ì´í…œê³¼ ê°™ì€ ì•„ì´í…œì´ ìŠ¬ë¡¯ì— ë†“ì¼ ìˆ˜ ìˆëŠ” ìµœëŒ€ ê°¯ìˆ˜ë¥¼ ì´ˆê³¼í•˜ì§€ ì•Šì•˜ë‹¤ë©´
 			AddItem(BUY_SLOT, iSlot, 1);
 		}			
 	}
@@ -703,7 +703,7 @@ VOID CNetPyShopCartGui::RegBuyItemByEvent(RwInt32 iSlot, SDboEventNetPyShopEvent
 	}
 
 
-	// ±â°£Á¦ ¾ÆÀÌÅÛ
+	// ê¸°ê°„ì œ ì•„ì´í…œ
 	if( eDURATIONTYPE_FLATSUM		== pITEM_DATA->byDurationType ||
 		eDURATIONTYPE_METERRATE		== pITEM_DATA->byDurationType )
 	{
@@ -857,14 +857,14 @@ VOID CNetPyShopCartGui::HandleEvents( RWS::CMsg &msg )
 			{
 				RwInt32 iSlot = dNETPYSHOP_CART_INVALID_INDEX;
 
-				// ±âÁ¸¿¡ µî·ÏµÈ ¾ÆÀÌÅÛÀÌ¸é ´õÇÑ´Ù.				
+				// ê¸°ì¡´ì— ë“±ë¡ëœ ì•„ì´í…œì´ë©´ ë”í•œë‹¤.				
 				for( RwInt32 i = 0 ; i < MAX_SLOT ; ++i )
 				{
 					if( m_BuySlotInfo[i].slot.GetSerial() == pData->uiSerial )
 					{
 						if(m_BuySlotInfo[i].slot.GetItemTable()->byMax_Stack > m_BuySlotInfo[i].NPCShopBuyInfo.byStack)
 						{
-							// ÃÖ´ë ½ºÅÃ°¹¼ö¸¦ ÃÊ°úÇÏÁö ¾Ê¾Ò´Ù¸é
+							// ìµœëŒ€ ìŠ¤íƒê°¯ìˆ˜ë¥¼ ì´ˆê³¼í•˜ì§€ ì•Šì•˜ë‹¤ë©´
 							AddItem(BUY_SLOT, i, 1);
 							iSlot = i;
 
@@ -873,7 +873,7 @@ VOID CNetPyShopCartGui::HandleEvents( RWS::CMsg &msg )
 					}
 				}
 
-				// ±âÁ¸¿¡ µî·ÏµÈ ¾ÆÀÌÅÛÀÌ ¾Æ´Ï¸é ºó ½½·ÔÀ» Ã£¾Æ µî·ÏÇÑ´Ù.
+				// ê¸°ì¡´ì— ë“±ë¡ëœ ì•„ì´í…œì´ ì•„ë‹ˆë©´ ë¹ˆ ìŠ¬ë¡¯ì„ ì°¾ì•„ ë“±ë¡í•œë‹¤.
 				if(iSlot == dNETPYSHOP_CART_INVALID_INDEX)
 				{
 					iSlot = (RwInt8)FindEmptySlot(BUY_SLOT);
@@ -882,7 +882,7 @@ VOID CNetPyShopCartGui::HandleEvents( RWS::CMsg &msg )
 						RegBuyItemByEvent(iSlot, *pData);
 					else
 					{
-						// Ä«Æ®¿¡ ½½·ÔÀÌ ºÎÁ·ÇÕ´Ï´Ù
+						// ì¹´íŠ¸ì— ìŠ¬ë¡¯ì´ ë¶€ì¡±í•©ë‹ˆë‹¤
 						GetAlarmManager()->AlarmMessage("DST_TRADECART_NO_MORE_SLOT");
 					}
 				}		
@@ -893,7 +893,7 @@ VOID CNetPyShopCartGui::HandleEvents( RWS::CMsg &msg )
 				RwInt8 iSlot = (RwInt8)FindEmptySlot(BUY_SLOT);
 				if( iSlot >= 0 )
 				{
-					// ºó ½½·ÔÀ» Ã£¾Æ¼­ 20°³¸¦ µî·ÏÇÑ´Ù
+					// ë¹ˆ ìŠ¬ë¡¯ì„ ì°¾ì•„ì„œ 20ê°œë¥¼ ë“±ë¡í•œë‹¤
 					RegBuyItemByEvent(iSlot, *pData);
 				}
 				else
@@ -902,10 +902,10 @@ VOID CNetPyShopCartGui::HandleEvents( RWS::CMsg &msg )
 					{
 						if( m_BuySlotInfo[i].slot.GetSerial() == pData->uiSerial )
 						{
-							// ÃÖ´ë ½ºÅÃ°¹¼ö¸¦ ÃÊ°úÇÏÁö ¾Ê¾Ò´Ù¸é
+							// ìµœëŒ€ ìŠ¤íƒê°¯ìˆ˜ë¥¼ ì´ˆê³¼í•˜ì§€ ì•Šì•˜ë‹¤ë©´
 							if(m_BuySlotInfo[i].slot.GetItemTable()->byMax_Stack > m_BuySlotInfo[i].slot.GetCount())
 							{
-								// ¸¶Àú ´õÇØ¼­ 20°³¸¦ Ã¤¿î´Ù
+								// ë§ˆì € ë”í•´ì„œ 20ê°œë¥¼ ì±„ìš´ë‹¤
 								AddItem(BUY_SLOT, i, m_BuySlotInfo[i].slot.GetItemTable()->byMax_Stack - m_BuySlotInfo[i].slot.GetCount());
 								break;
 							}							

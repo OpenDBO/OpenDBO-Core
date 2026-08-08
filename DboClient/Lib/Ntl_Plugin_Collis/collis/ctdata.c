@@ -37,9 +37,9 @@ typedef struct
 
 #define rpCOLL_PRE36001_BRANCHNODEID  2
 
-#define ISALIGNED(_mem, _alignment) (!(((_alignment)-1) & (RwUInt32)(_mem)))
+#define ISALIGNED(_mem, _alignment) (!(((_alignment)-1) & (uintptr_t)(_mem)))
 #define ALIGN(_mem, _alignment) \
-    (((RwUInt32)(_mem) + ((_alignment)-1)) & ~((_alignment)-1))
+    (((uintptr_t)(_mem) + ((_alignment)-1)) & ~((uintptr_t)(_alignment)-1))
 
 /******************************************************************************
  *  Functions

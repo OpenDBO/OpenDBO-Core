@@ -93,7 +93,7 @@ public:
 	VOID	FormattedAlarmMessage( WCHAR* szText, ... ); 
 	VOID	vFormattedAlarmMessage( WCHAR* szText, va_list ArgList );
 
-	/// MsgBoxÀÎ °æ¿ì Msg ¹× DataÀÇ ±³Ã¼¸¸ ÀÌ·ç¾îÁü. ½Ã°£¼Ó¼º »ç¿ë ºÒ°¡. 
+	/// MsgBoxì¸ ê²½ìš° Msg ë° Dataì˜ êµì²´ë§Œ ì´ë£¨ì–´ì§. ì‹œê°„ì†ì„± ì‚¬ìš© ë¶ˆê°€. 
 	VOID	UpdateAlarmMessage(std::string& string, RwBool bServerSync /* = FALSE */, sMsgBoxData* pExData /* = NULL */ );
 	VOID	UpdateAlarmMessage(const WCHAR* text, std::string& strKey, RwBool bServerSync /* = FALSE */, sMsgBoxData* pExData /* = NULL */);
 	VOID	UpdateFormattedAlarmMessage(std::string string, RwBool bServerSync, sMsgBoxData* pExData, ... );

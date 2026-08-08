@@ -2,7 +2,7 @@
  *
  * File			: NtlTokenOption.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 9. 22	
  * Abstract		: tokenizer token option
  *****************************************************************************

@@ -1,13 +1,13 @@
 /******************************************************************************
 * File			: PortalGui.h
 * Author		: agebreak
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 10. 22
 * Abstract		: 
 *****************************************************************************
 * Desc			: CPortalGui
-*                 Æ÷Å» NPC¸¦ Å¬¸¯ÇÏ¸é ³ª¿À´Â Portal GUI
-*                 Æ÷Å»¸Ê¿¡¼­ °¡°í ½ÍÀº Àå¼Ò¸¦ Å¬¸¯ÇÏ¸é ¼ø°£ÀÌµ¿ µÈ´Ù.
+*                 í¬íƒˆ NPCë¥¼ í´ë¦­í•˜ë©´ ë‚˜ì˜¤ëŠ” Portal GUI
+*                 í¬íƒˆë§µì—ì„œ ê°€ê³  ì‹¶ì€ ì¥ì†Œë¥¼ í´ë¦­í•˜ë©´ ìˆœê°„ì´ë™ ëœë‹¤.
 *				  
 *****************************************************************************/
 
@@ -81,18 +81,18 @@ public:
 
     RwBool      Create();
     VOID        Destroy();
-    RwInt32     SwitchDialog(bool bOpen);                   ///< DialogManager¿¡¼­ÀÇ Open/Close
+    RwInt32     SwitchDialog(bool bOpen);                   ///< DialogManagerì—ì„œì˜ Open/Close
 
 protected:
     VOID        HandleEvents(RWS::CMsg &pMsg);
     VOID        Init();    
     
-    VOID        SetupPortalInfo();                          ///< Æ÷Å»µéÀÇ Á¤º¸µéÀ» ¼¼ÆÃÇÑ´Ù (ÃÖÃÊ¿¡ ÇÑ¹ø¸¸ È£Ãâ)
-    VOID        UpdatePortalInfo();                         ///< Æ÷Å»µéÀÇ Á¤º¸µéÀ» ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
-    RwBool      CheckRegist(RwUInt32 hNPCSerialID);         ///< ÇöÀç Æ÷Å» Æ÷ÀÎÆ®°¡ µî·ÏµÇ¾î ÀÖ´Â °÷ÀÎÁö¸¦ Ã¼Å©ÇÏ°í, µî·ÏµÇ¾î ÀÖÁö¾ÊÀ¸¸é µî·ÏÇÑ´Ù.    
-    RwBool      IsConnect(RwUInt32 nPortalID, DWORD& nZenny);    ///< ÇöÀç Æ÷ÀÎÆ®¿Í ¿¬°áµÇ¾î ÀÖ´Â Æ÷ÀÎÆ®ÀÎÁö È®ÀÎÇÑ´Ù. (µî·ÏµÇ¾î ÀÖÀ¸¸é True¿Í ÇÊ¿ä Zenny¸¦ ¹İÈ¯ÇÑ´Ù)
+    VOID        SetupPortalInfo();                          ///< í¬íƒˆë“¤ì˜ ì •ë³´ë“¤ì„ ì„¸íŒ…í•œë‹¤ (ìµœì´ˆì— í•œë²ˆë§Œ í˜¸ì¶œ)
+    VOID        UpdatePortalInfo();                         ///< í¬íƒˆë“¤ì˜ ì •ë³´ë“¤ì„ ì—…ë°ì´íŠ¸í•œë‹¤.
+    RwBool      CheckRegist(RwUInt32 hNPCSerialID);         ///< í˜„ì¬ í¬íƒˆ í¬ì¸íŠ¸ê°€ ë“±ë¡ë˜ì–´ ìˆëŠ” ê³³ì¸ì§€ë¥¼ ì²´í¬í•˜ê³ , ë“±ë¡ë˜ì–´ ìˆì§€ì•Šìœ¼ë©´ ë“±ë¡í•œë‹¤.    
+    RwBool      IsConnect(RwUInt32 nPortalID, DWORD& nZenny);    ///< í˜„ì¬ í¬ì¸íŠ¸ì™€ ì—°ê²°ë˜ì–´ ìˆëŠ” í¬ì¸íŠ¸ì¸ì§€ í™•ì¸í•œë‹¤. (ë“±ë¡ë˜ì–´ ìˆìœ¼ë©´ Trueì™€ í•„ìš” Zennyë¥¼ ë°˜í™˜í•œë‹¤)
 
-    RwInt32     FindPointIndex(RwUInt32 nCurrPortalID, RwUInt32 nTargetPortalID); ///< Å¸°Ù Æ÷Å»ÀÇ ÇöÀçÆ÷ÀÎÆ®¿¡¼­ÀÇ ÀÎµ¦½º¸¦ Ã£¾Æ¼­ ¹İÈ¯ÇÑ´Ù. 
+    RwInt32     FindPointIndex(RwUInt32 nCurrPortalID, RwUInt32 nTargetPortalID); ///< íƒ€ê²Ÿ í¬íƒˆì˜ í˜„ì¬í¬ì¸íŠ¸ì—ì„œì˜ ì¸ë±ìŠ¤ë¥¼ ì°¾ì•„ì„œ ë°˜í™˜í•œë‹¤. 
 
 	void		SetCurrentPortalIndex(RwUInt32 hNPCSerialID);
 	void		SetWorldMapSurface();
@@ -101,7 +101,7 @@ protected:
 
 	void		UpdatePortalIcon(); // shows portal icons from current selected map
 
-    inline RwBool      IsRegist(RwUInt32 nPortalID);               ///< ÇöÀç µî·ÏµÇ¾î ÀÖ´ÂÁö È®ÀÎÇÑ´Ù.;
+    inline RwBool      IsRegist(RwUInt32 nPortalID);               ///< í˜„ì¬ ë“±ë¡ë˜ì–´ ìˆëŠ”ì§€ í™•ì¸í•œë‹¤.;
 
     // CallBack
     VOID        OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY);

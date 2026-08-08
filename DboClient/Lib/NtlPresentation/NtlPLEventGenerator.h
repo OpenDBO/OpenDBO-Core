@@ -2,7 +2,7 @@
  *
  * File			: NtlPLEventGenerator.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 9. 29	
  * Abstract		: Presentation layer event function
  *****************************************************************************
@@ -28,14 +28,14 @@ public:
 	static void AnimEventSubWeaponActive(RwUInt32 uiSerialId);
 	static void AnimEventSubWeaponDeActive(RwUInt32 uiSerialId);
 	static void AnimEventSummonActive(RwUInt32 uiSerialId);
-    static void AnimEventAlpha(RwUInt32 uiSerialId, void* pData);           ///< æ÷¥œ∏ﬁ¿Ãº«¿« æÀ∆ƒ ¿Ã∫•∆Æ∏¶ πﬂª˝ Ω√≈≤¥Ÿ
-    static void AnimEventTMQ(RwUInt32 uiSerialID, RwBool bIn);              ///< TMQ ¡¯¿‘ ¿Ã∫•∆Æ∏¶ πﬂª˝ Ω√≈≤¥Ÿ.
-    static void AnimEventExplosion(RwUInt32 uiSerialID, void* pData);       ///< ∆¯πﬂ ¿Ã∫•∆Æ∏¶ πﬂª˝ Ω√≈≤¥Ÿ.
-    static void AnimEventPostEffect(RwUInt32 uiSerialID, void* pData);      ///< ∆˜Ω∫∆Æ ¿Ã∆Â∆Æ ¿Ã∫•∆Æ∏¶ πﬂª˝ Ω√≈≤¥Ÿ.    
-    static void AnimEventDirect(RwUInt32 uiSerialID, void* pData);          ///< ø¨√‚ ¿Ã∫•∆Æ∏¶ πﬂª˝Ω√≈≤¥Ÿ.
-    static void AnimEventColorChange(RwUInt32 uiSerialID, void* pData);     ///< ƒ√∑Ø ∫Ø∞Ê ¿Ã∫•∆Æ∏¶ πﬂª˝Ω√≈≤¥Ÿ.
-    static void AnimEventStretch(RwUInt32 uiSerialID, void* pData);         ///< ∆»¥√∏Æ¥¬ ¿Ã∫•∆Æ∏¶ πﬂª˝Ω√≈≤¥Ÿ.
-    static void AnimEventTrigger(RwUInt32 uiSerialID, void* pData);         ///< ∆Æ∏Æ∞≈ ¿Ã∫•∆Æ
+    static void AnimEventAlpha(RwUInt32 uiSerialId, void* pData);           ///< Ïï†ÎãàÎ©îÏù¥ÏÖòÏùò ÏïåÌåå Ïù¥Î≤§Ìä∏Î•º Î∞úÏÉù ÏãúÌÇ®Îã§
+    static void AnimEventTMQ(RwUInt32 uiSerialID, RwBool bIn);              ///< TMQ ÏßÑÏûÖ Ïù¥Î≤§Ìä∏Î•º Î∞úÏÉù ÏãúÌÇ®Îã§.
+    static void AnimEventExplosion(RwUInt32 uiSerialID, void* pData);       ///< Ìè≠Î∞ú Ïù¥Î≤§Ìä∏Î•º Î∞úÏÉù ÏãúÌÇ®Îã§.
+    static void AnimEventPostEffect(RwUInt32 uiSerialID, void* pData);      ///< Ìè¨Ïä§Ìä∏ Ïù¥ÌéôÌä∏ Ïù¥Î≤§Ìä∏Î•º Î∞úÏÉù ÏãúÌÇ®Îã§.    
+    static void AnimEventDirect(RwUInt32 uiSerialID, void* pData);          ///< Ïó∞Ï∂ú Ïù¥Î≤§Ìä∏Î•º Î∞úÏÉùÏãúÌÇ®Îã§.
+    static void AnimEventColorChange(RwUInt32 uiSerialID, void* pData);     ///< Ïª¨Îü¨ Î≥ÄÍ≤Ω Ïù¥Î≤§Ìä∏Î•º Î∞úÏÉùÏãúÌÇ®Îã§.
+    static void AnimEventStretch(RwUInt32 uiSerialID, void* pData);         ///< ÌåîÎäòÎ¶¨Îäî Ïù¥Î≤§Ìä∏Î•º Î∞úÏÉùÏãúÌÇ®Îã§.
+    static void AnimEventTrigger(RwUInt32 uiSerialID, void* pData);         ///< Ìä∏Î¶¨Í±∞ Ïù¥Î≤§Ìä∏
 	static void AnimEventSkillCancel(RwUInt32 uiSerialID);
 
 	// world field switching effects

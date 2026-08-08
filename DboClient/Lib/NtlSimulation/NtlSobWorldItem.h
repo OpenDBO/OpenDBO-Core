@@ -2,7 +2,7 @@
 *
 * File			: NtlSobWorldItem.h
 * Author		: Peessi
-* Copyright		: ( ¡÷ )NTL
+* Copyright		: ( Ï£º )NTL
 * Date			: 2006. 7. 11	
 * Abstract		: Simulation World Item object
 *****************************************************************************

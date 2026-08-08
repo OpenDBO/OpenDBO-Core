@@ -1,4 +1,4 @@
-// ProjectMainMenu.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// ProjectMainMenu.cpp : êµ¬í˜„ íŒŒì¼ìž…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -54,7 +54,7 @@ BEGIN_MESSAGE_MAP(CTSProjectMainMenuForm, CFormView)
 END_MESSAGE_MAP()
 
 
-// CTSProjectMainMenuForm Áø´ÜÀÔ´Ï´Ù.
+// CTSProjectMainMenuForm ì§„ë‹¨ìž…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CTSProjectMainMenuForm::AssertValid() const
@@ -71,7 +71,7 @@ void CTSProjectMainMenuForm::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CTSProjectMainMenuForm ¸Þ½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CTSProjectMainMenuForm ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ìž…ë‹ˆë‹¤.
 void CTSProjectMainMenuForm::OnSize(UINT nType, int cx, int cy)
 {
 	CSize size( cx, cy );
@@ -220,7 +220,7 @@ void CTSProjectMainMenuForm::OnBnClickedExceptionTLimitGroupCreate()
 		NTL_TS_TG_ID tgID = (NTL_TS_TG_ID)clDlg.m_ctrGroupID;
 		if ( CTSDoc::GetInstance()->GetProjectObject()->GetTrigger().GetExceptionGroup( tgID ) )
 		{
-			AfxMessageBox( _T("ÇØ´ç ¾ÆÀÌµð°¡ ÀÌ¹Ì Á¸ÀçÇÕ´Ï´Ù") );
+			AfxMessageBox( _T("í•´ë‹¹ ì•„ì´ë””ê°€ ì´ë¯¸ ì¡´ìž¬í•©ë‹ˆë‹¤") );
 			return;
 		}
 
@@ -243,7 +243,7 @@ void CTSProjectMainMenuForm::OnBnClickedExceptionServerGroupCreate()
 		NTL_TS_TG_ID tgID = (NTL_TS_TG_ID)clDlg.m_ctrGroupID;
 		if ( CTSDoc::GetInstance()->GetProjectObject()->GetTrigger().GetExceptionGroup( tgID ) )
 		{
-			AfxMessageBox( _T("ÇØ´ç ¾ÆÀÌµð°¡ ÀÌ¹Ì Á¸ÀçÇÕ´Ï´Ù") );
+			AfxMessageBox( _T("í•´ë‹¹ ì•„ì´ë””ê°€ ì´ë¯¸ ì¡´ìž¬í•©ë‹ˆë‹¤") );
 			return;
 		}
 
@@ -267,7 +267,7 @@ void CTSProjectMainMenuForm::OnBnClickedExceptionClientGroupCreate()
 		NTL_TS_TG_ID tgID = (NTL_TS_TG_ID)clDlg.m_ctrGroupID;
 		if ( CTSDoc::GetInstance()->GetProjectObject()->GetTrigger().GetExceptionGroup( tgID ) )
 		{
-			AfxMessageBox( _T("ÇØ´ç ¾ÆÀÌµð°¡ ÀÌ¹Ì Á¸ÀçÇÕ´Ï´Ù") );
+			AfxMessageBox( _T("í•´ë‹¹ ì•„ì´ë””ê°€ ì´ë¯¸ ì¡´ìž¬í•©ë‹ˆë‹¤") );
 			return;
 		}
 
@@ -290,7 +290,7 @@ void CTSProjectMainMenuForm::OnBnClickedExceptionGiveUpGroupCreate()
 		NTL_TS_TG_ID tgID = (NTL_TS_TG_ID)clDlg.m_ctrGroupID;
 		if ( CTSDoc::GetInstance()->GetProjectObject()->GetTrigger().GetExceptionGroup( tgID ) )
 		{
-			AfxMessageBox( _T("ÇØ´ç ¾ÆÀÌµð°¡ ÀÌ¹Ì Á¸ÀçÇÕ´Ï´Ù") );
+			AfxMessageBox( _T("í•´ë‹¹ ì•„ì´ë””ê°€ ì´ë¯¸ ì¡´ìž¬í•©ë‹ˆë‹¤") );
 			return;
 		}
 
@@ -306,7 +306,7 @@ void CTSProjectMainMenuForm::OnBnClickedExceptionGroupDelete()
 	HTREEITEM hItem = m_ctrMainMenu.GetSelectedItem();
 	if ( NULL == hItem )
 	{
-		AfxMessageBox( _T("»èÁ¦ÇÏ°íÀÚ ÇÏ´Â ±×·ìÀ» ¼±ÅÃÇØÁÖ¼¼¿ä") );
+		AfxMessageBox( _T("ì‚­ì œí•˜ê³ ìž í•˜ëŠ” ê·¸ë£¹ì„ ì„ íƒí•´ì£¼ì„¸ìš”") );
 		return;
 	}
 
@@ -314,11 +314,11 @@ void CTSProjectMainMenuForm::OnBnClickedExceptionGroupDelete()
 
 	if ( 0 == tgID )
 	{
-		AfxMessageBox( _T("¸ÞÀÎ ±×·ìÀº »èÁ¦ÇÒ ¼ö ¾ø½À´Ï´Ù") );
+		AfxMessageBox( _T("ë©”ì¸ ê·¸ë£¹ì€ ì‚­ì œí•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤") );
 		return;
 	}
 
-	if ( IDOK == AfxMessageBox( _T("Á¤¸» ÇØ´ç ±×·ìÀ» Áö¿ì½Ã°Ú½À´Ï±î?"), MB_OKCANCEL ) )
+	if ( IDOK == AfxMessageBox( _T("ì •ë§ í•´ë‹¹ ê·¸ë£¹ì„ ì§€ìš°ì‹œê² ìŠµë‹ˆê¹Œ?"), MB_OKCANCEL ) )
 	{
 		CTSDoc::GetInstance()->GetProjectObject()->GetTrigger().DelExceptionGroup( tgID );
 		CTSDoc::GetInstance()->SetModifiedFlag();

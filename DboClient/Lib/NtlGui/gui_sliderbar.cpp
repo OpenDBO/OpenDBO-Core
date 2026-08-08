@@ -265,7 +265,7 @@ VOID CSliderBar::SetMinSliderLength(int nLength)
 }
 
 /////////////////////////////////////////////////////////////////
-// slider surface¸¦ Ãß°¡ÇÑ´Ù.
+// slider surfaceë¥¼ ì¶”ê°€í•œë‹¤.
 /////////////////////////////////////////////////////////////////
 
 VOID CSliderBar::AddSurfaceSlider(CSurface surface)
@@ -280,7 +280,7 @@ VOID CSliderBar::AddSurfaceSlider(CSurface surface)
 
 
 /////////////////////////////////////////////////////////////////
-// layout surface¸¦ Ãß°¡ÇÑ´Ù.
+// layout surfaceë¥¼ ì¶”ê°€í•œë‹¤.
 /////////////////////////////////////////////////////////////////
 
 VOID CSliderBar::AddSurface(CSurface surface)
@@ -449,7 +449,7 @@ VOID CSliderBar::OnPaint(VOID)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
-//: thumb track or slider bar¸¦ Àâ°í ÀÌµ¿ÇßÀ» °æ¿ì È£ÃâµÇ´Â function
+//: thumb track or slider barë¥¼ ì¡ê³  ì´ë™í–ˆì„ ê²½ìš° í˜¸ì¶œë˜ëŠ” function
 
 VOID CSliderBar::SliderMovePaint(VOID)
 {

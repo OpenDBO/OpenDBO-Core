@@ -57,7 +57,7 @@ VOID Logic_NtlSoundLog(const RwChar* pcContition, const RwChar* pcSoundFileName 
 		sprintf_s(acBuffer, 1024, "[Sound] Condition : %s\n", pcContition);
 		
 
-	// ¾ÖÇÃ¸®ÄÉÀÌ¼Ç ½ÇÇàÁß ÀÌÀü¿¡ ¹ß»ıÇß´ø ¿¡·¯ ¸Ş¼¼Áö´Â ¸®ÅÏ	
+	// ì• í”Œë¦¬ì¼€ì´ì…˜ ì‹¤í–‰ì¤‘ ì´ì „ì— ë°œìƒí–ˆë˜ ì—ëŸ¬ ë©”ì„¸ì§€ëŠ” ë¦¬í„´	
 	if( Logic_IsExistLog(acBuffer) )
 		return;
 
@@ -76,7 +76,7 @@ VOID Logic_NtlSoundLog(const RwChar* pcContition, RwInt32 iChannelGroup, const R
 		sprintf_s(acBuffer, 1024, "[Sound] Condition : %s, Channel group : %s\n", pcContition, acChannelGroupName);
 
 
-	// ¾ÖÇÃ¸®ÄÉÀÌ¼Ç ½ÇÇàÁß ÀÌÀü¿¡ ¹ß»ıÇß´ø ¿¡·¯ ¸Ş¼¼Áö´Â ¸®ÅÏ	
+	// ì• í”Œë¦¬ì¼€ì´ì…˜ ì‹¤í–‰ì¤‘ ì´ì „ì— ë°œìƒí–ˆë˜ ì—ëŸ¬ ë©”ì„¸ì§€ëŠ” ë¦¬í„´	
 	if( Logic_IsExistLog(acBuffer) )
 		return;
 
@@ -97,7 +97,7 @@ VOID Logic_NtlSoundLog(const RwChar* pcContition, FMOD_RESULT result, const RwCh
 		sprintf_s(acBuffer, 1024, "[Sound] Condition : %s, FMOD log : %s\n", pcContition, pcResult);
 
 
-	// ¾ÖÇÃ¸®ÄÉÀÌ¼Ç ½ÇÇàÁß ÀÌÀü¿¡ ¹ß»ıÇß´ø ¿¡·¯ ¸Ş¼¼Áö´Â ¸®ÅÏ	
+	// ì• í”Œë¦¬ì¼€ì´ì…˜ ì‹¤í–‰ì¤‘ ì´ì „ì— ë°œìƒí–ˆë˜ ì—ëŸ¬ ë©”ì„¸ì§€ëŠ” ë¦¬í„´	
 	if( Logic_IsExistLog(acBuffer) )
 		return;
 
@@ -130,7 +130,7 @@ RwReal Logic_GetFMODValidVolume(RwReal fVolume)
 
 RwReal Logic_CalcPlayVolume(sNtlVolume* pNtlVolume)
 {
-	// ¸ğµç º¼·ı ÀÎÀÚ´Â Logic_GetFMODValidVolume() ÇÔ¼ö¸¦ °ÅÄ£ ÈÄ¿©¾ß ÇÑ´Ù
+	// ëª¨ë“  ë³¼ë¥¨ ì¸ìëŠ” Logic_GetFMODValidVolume() í•¨ìˆ˜ë¥¼ ê±°ì¹œ í›„ì—¬ì•¼ í•œë‹¤
 	if( !pNtlVolume )
 		return 1.f;
 
@@ -203,7 +203,7 @@ SOUND_HANDLE Logic_GetNewSoundHandle()
 			{				
 				bExist = GetSoundManager()->GetChannelGroup(i)->IsExistSound(hSound);
 
-				// ÇöÀç ¾²°í ÀÖÁö ¾ÊÀº ÇÚµéÀ» Ã£¾Ò´Ù
+				// í˜„ì¬ ì“°ê³  ìˆì§€ ì•Šì€ í•¸ë“¤ì„ ì°¾ì•˜ë‹¤
 				if( !bExist )
 				{
 					return hSound;
@@ -227,17 +227,17 @@ SOUND_HANDLE Logic_GetNewSoundHandle()
 
 FMOD_RESULT API_Create_Stream(CNtlSound* pSound, sNtlSoundPlayParameta* pParameta, FMOD_MODE mode, std::string& strFullName)
 {
-	// Sound ¹İº¹ ¿¬ÁÖ
+	// Sound ë°˜ë³µ ì—°ì£¼
 	if( pParameta->bLoop )				
 		mode |= FMOD_LOOP_NORMAL;
 
 	
-	// File¿¡ Á÷Á¢ Á¢±Ù
+	// Fileì— ì§ì ‘ ì ‘ê·¼
 	if( !g_fnCallback_LoadSound_from_Memory )
 		return CNtlSoundGlobal::m_pFMODSystem->createStream(strFullName.c_str(), mode, 0, &(pSound->m_pFMODSound) );
 
 
-	// Pack ¸ğµå
+	// Pack ëª¨ë“œ
 	FMOD_CREATESOUNDEXINFO exinfo;
 	memset(&exinfo, 0, sizeof(FMOD_CREATESOUNDEXINFO));
 	exinfo.cbsize = sizeof(FMOD_CREATESOUNDEXINFO);
@@ -245,7 +245,7 @@ FMOD_RESULT API_Create_Stream(CNtlSound* pSound, sNtlSoundPlayParameta* pParamet
 	(*g_fnCallback_LoadSound_from_Memory)(strFullName.c_str(), (void**)&pSound->pMemoryData, (int*)&exinfo.length);
 
 
-	// Pack µÇÁö ¾ÊÀº »ç¿îµå ÆÄÀÏÀÎÁö °Ë»ç
+	// Pack ë˜ì§€ ì•Šì€ ì‚¬ìš´ë“œ íŒŒì¼ì¸ì§€ ê²€ì‚¬
 	if( !pSound->pMemoryData )		
 		return FMOD_ERR_MEMORY_CANTPOINT;
 
@@ -256,7 +256,7 @@ FMOD_RESULT API_Create_Stream(CNtlSound* pSound, sNtlSoundPlayParameta* pParamet
 
 FMOD_RESULT API_Create_Sound(CNtlSound* pSound, sNtlSoundPlayParameta* pParameta, FMOD_MODE mode, std::string& strFullName)
 {
-	// Sound ¹İº¹ ¿¬ÁÖ
+	// Sound ë°˜ë³µ ì—°ì£¼
 	if( pParameta->bLoop )				
 		mode |= FMOD_LOOP_NORMAL;
 
@@ -272,12 +272,12 @@ FMOD_RESULT API_Create_Sound(CNtlSound* pSound, sNtlSoundPlayParameta* pParameta
 	}
 
 	
-	// File¿¡ Á÷Á¢ Á¢±Ù
+	// Fileì— ì§ì ‘ ì ‘ê·¼
 	if( !g_fnCallback_LoadSound_from_Memory )
 		return CNtlSoundGlobal::m_pFMODSystem->createSound(strFullName.c_str(), mode, 0, &(pSound->m_pFMODSound) );
 	
 
-	// Pack ¸ğµå
+	// Pack ëª¨ë“œ
 	void* pData = NULL;
 	FMOD_CREATESOUNDEXINFO exinfo;
 	memset(&exinfo, 0, sizeof(FMOD_CREATESOUNDEXINFO));
@@ -286,7 +286,7 @@ FMOD_RESULT API_Create_Sound(CNtlSound* pSound, sNtlSoundPlayParameta* pParameta
 	(*g_fnCallback_LoadSound_from_Memory)(strFullName.c_str(), (void**)&pData, (int*)&exinfo.length);
 
 
-	// Pack µÇÁö ¾ÊÀº »ç¿îµå ÆÄÀÏÀÎÁö °Ë»ç
+	// Pack ë˜ì§€ ì•Šì€ ì‚¬ìš´ë“œ íŒŒì¼ì¸ì§€ ê²€ì‚¬
 	if( !pData )
 		return FMOD_ERR_MEMORY_CANTPOINT;
 

@@ -87,7 +87,7 @@ RwBool CNtlPLEntity::CullingTest(RwCamera* pRwCamera, RwUInt16 uiRenderFrame)
 	if (m_uiRenderFrame != uiRenderFrame)
 	{
 		m_uiRenderFrame= uiRenderFrame;
-		// PVS Flag�� ������ ������ ���� �ؾ� �Ѵ�.
+		// PVS Flag占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占쌔억옙 占싼댐옙.
 		// �� Frame���� �ѹ��� �õ� �Ǿ�� �ϸ�, �ѹ��� ������ ���� �Ǿ�� �Ѵ�.
 		m_uiCullFlags &= NTL_PLEFLAG_CULLED_PVS;
 	}

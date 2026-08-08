@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: ObjectClickGui.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2007. 11. 14
 * Abstract		: 
 *****************************************************************************
-* Desc			: ∆Æ∏Æ∞≈ ø¿∫Í¡ß∆Æ∏¶ ≈¨∏Ø«ﬂ¿ª ∂ß¿« ¿Ã∫•∆Æ∏¶ ∫∏ø©¡ÿ¥Ÿ
+* Desc			: Ìä∏Î¶¨Í±∞ Ïò§Î∏åÏ†ùÌä∏Î•º ÌÅ¥Î¶≠ÌñàÏùÑ ÎïåÏùò Ïù¥Î≤§Ìä∏Î•º Î≥¥Ïó¨Ï§ÄÎã§
 *****************************************************************************/
 
 #pragma once
@@ -40,7 +40,7 @@ public:
 	VOID		Update(RwReal fElapsed);
 	VOID		Destroy();
 
-	RwInt32		SwitchDialog(bool bOpen);			///< DialogManagerø°º≠¿« Open/Close
+	RwInt32		SwitchDialog(bool bOpen);			///< DialogManagerÏóêÏÑúÏùò Open/Close
 
 protected:
 	CObjectClickGui() {}
@@ -55,8 +55,8 @@ protected:
 
 	gui::CRadarEffect	m_TimeEffect;
 
-	CSurfaceGui			m_srfNeedle;				///< πŸ¥√ ±◊∏≤
-	CSurfaceGui			m_srfReflectedLight;		///< π›ªÁ±§	
+	CSurfaceGui			m_srfNeedle;				///< Î∞îÎäò Í∑∏Î¶º
+	CSurfaceGui			m_srfReflectedLight;		///< Î∞òÏÇ¨Í¥ë	
 
 	RwReal				m_fLastTime;
 	RwReal				m_fRemainTime;

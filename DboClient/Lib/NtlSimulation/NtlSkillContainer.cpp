@@ -483,7 +483,7 @@ void CNtlAvatarSkillContainer::SkillAction(RWS::CMsg &pMsg)
 		return;
 	}
 
-	// RpBonusType¿¡ µû¸¥ ÄğÅ¸ÀÓ °¨¼ÒÈ¿°ú°¡ Ãß°¡µÇ¾ú±â ¶§¹®¿¡ ½ºÅ³¾ÆÀÌÄÜ ÄğÅ¸ÀÓÀº ¹ØÀÇ ÇÔ¼ö¸¦ ÀÌ¿ëÇØ¾ß ÇÑ´Ù.
+	// RpBonusTypeì— ë”°ë¥¸ ì¿¨íƒ€ì„ ê°ì†Œíš¨ê³¼ê°€ ì¶”ê°€ë˜ì—ˆê¸° ë•Œë¬¸ì— ìŠ¤í‚¬ì•„ì´ì½˜ ì¿¨íƒ€ì„ì€ ë°‘ì˜ í•¨ìˆ˜ë¥¼ ì´ìš©í•´ì•¼ í•œë‹¤.
 	CNtlSobSkillIcon *pSobSkillIcon = reinterpret_cast<CNtlSobSkillIcon*>( pSobSkill->GetIcon() );
 	pSobSkillIcon->SetSkillIconState( CNtlSobSkillIcon::ICON_STATE_COOLING, pSkillAction->byRpBonusType, TRUE );
 }
@@ -731,7 +731,7 @@ void CNtlPetSkillContainer::HandleEvents(RWS::CMsg &pMsg)
 	{
 		SNtlEventSobPetCreate *pPetCreate = reinterpret_cast<SNtlEventSobPetCreate*>( pMsg.pData );
 
-		// SkillÀÇ AI Á¶°ÇÀ» ÀĞ±â À§ÇØ NPC Å×ÀÌºíÀ» ÀĞ¾î³õ´Â´Ù.
+		// Skillì˜ AI ì¡°ê±´ì„ ì½ê¸° ìœ„í•´ NPC í…Œì´ë¸”ì„ ì½ì–´ë†“ëŠ”ë‹¤.
 		sNPC_TBLDAT *pNpcTblData;
 		CNPCTable *pNpcTable = API_GetTableContainer()->GetNpcTable();
 
@@ -756,12 +756,12 @@ void CNtlPetSkillContainer::HandleEvents(RWS::CMsg &pMsg)
 
 			SetSkillSerial(pSummonPetSkillInfo->aSkillInfo[i].skillIndex, pSobSkill->GetSerialID());
 			
-			// Table Index¿Í ¸ÅÄªµÇ´Â AI µ¥ÀÌÅ¸¸¦ ÀĞ¾î¼­ Skill¿¡ ¼¼ÆÃÇÑ´Ù.
+			// Table Indexì™€ ë§¤ì¹­ë˜ëŠ” AI ë°ì´íƒ€ë¥¼ ì½ì–´ì„œ Skillì— ì„¸íŒ…í•œë‹¤.
 			for(RwInt32 j = 0; j < NTL_MAX_NPC_HAVE_SKILL; ++j )
 			{
 				if( pSummonPetSkillInfo->aSkillInfo[i].tblidx == pNpcTblData->use_Skill_Tblidx[j] )
 				{
-					// AI ¼¼ÆÃ
+					// AI ì„¸íŒ…
 					SetSkillUseBasis( pSummonPetSkillInfo->aSkillInfo[i].skillIndex, pNpcTblData->byUse_Skill_Basis[j] );
 					SetSkillUseLp( pSummonPetSkillInfo->aSkillInfo[i].skillIndex, pNpcTblData->wUse_Skill_LP[j] );
 					SetSkillUseTime( pSummonPetSkillInfo->aSkillInfo[i].skillIndex, pNpcTblData->wUse_Skill_Time[j] );
@@ -777,7 +777,7 @@ void CNtlPetSkillContainer::HandleEvents(RWS::CMsg &pMsg)
 			return;
 
 		CNtlSobSkillIcon *pSobSkillIcon = reinterpret_cast<CNtlSobSkillIcon*>( pSobSkill->GetIcon() );
-		// Skill Icon ÀÇ Äğ¸µ Å¸ÀÓ
+		// Skill Icon ì˜ ì¿¨ë§ íƒ€ì„
 		pSobSkillIcon->SetSkillIconState( CNtlSobSkillIcon::ICON_STATE_COOLING, INVALID_BYTE, TRUE );
 	}
 }

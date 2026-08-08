@@ -151,7 +151,7 @@ RwReal CNtlMath::MathRwV3dSquaredLength(const RwV3d *pIn)
 }
 
 /**
- * curPos¿Í desPos°£ÀÇ °¢µµ¸¦ ±¸ÇÑ´Ù(degree)ÀÓ
+ * curPosì™€ desPosê°„ì˜ ê°ë„ë¥¼ êµ¬í•œë‹¤(degree)ì„
  */
 RwReal CNtlMath::GetLineAngle(const RwV3d &curPos, const RwV3d &desPos)
 {
@@ -234,9 +234,9 @@ void CNtlMath::LineToAngleXY(const RwV3d *pLine, RwReal& fAxisAngleX, RwReal& fA
 }
 
 /**
- * Matrix¿¡¼­ Euler Angle °ªÀ» ¾ò¾î ¿À´Â ÇÔ¼ö
- * ÁÖÀÇ »çÇ×: xÃà °¢µµ´Â -90 - 90 »çÀÌ¸¸ Á¤»óÀûÀ¸·Î ¾òÀ» ¼ö ÀÖ´Ù. (-90, 90 Àº ¾ÈµÊ)
- * ±×¸®°í Rotation°ú Translation¸¸ Àû¿ëµÈ Matrix¿¡¼­¸¸ ÇöÀç Test¸¦ ÇØº½
+ * Matrixì—ì„œ Euler Angle ê°’ì„ ì–»ì–´ ì˜¤ëŠ” í•¨ìˆ˜
+ * ì£¼ì˜ ì‚¬í•­: xì¶• ê°ë„ëŠ” -90 - 90 ì‚¬ì´ë§Œ ì •ìƒì ìœ¼ë¡œ ì–»ì„ ìˆ˜ ìˆë‹¤. (-90, 90 ì€ ì•ˆë¨)
+ * ê·¸ë¦¬ê³  Rotationê³¼ Translationë§Œ ì ìš©ëœ Matrixì—ì„œë§Œ í˜„ì¬ Testë¥¼ í•´ë´„
  */
 void CNtlMath::MathGetMatrixEulerAngle(const RwMatrix *pMatrix, RwV3d *pvAngle)
 {
@@ -283,7 +283,7 @@ void CNtlMath::MathGetRotationMatrix(RwMatrix* pMatrix, const RwV3d* pvUnit_A, c
 	RwV3d	vCross;
 	RwReal	f = (1.0f + RwV3dDotProduct(pvUnit_A, pvUnit_B)) * 2.0f; 
 	
- 	if (f <= 0.0f) // f°¡ 0ÀÌ µÉ ¼ö ÀÖÀ¸¹Ç·Î... ¿À·ù°¡ ³ª¿Ã ¼ö ÀÖ´Ù.
+ 	if (f <= 0.0f) // fê°€ 0ì´ ë  ìˆ˜ ìˆìœ¼ë¯€ë¡œ... ì˜¤ë¥˜ê°€ ë‚˜ì˜¬ ìˆ˜ ìˆë‹¤.
 	{
 		f = 0.0001f;
 	}
@@ -441,7 +441,7 @@ RwReal CNtlMath::GetLength( const RwV2d& v1, const RwV2d& v2 )
     return RwV2dLength(&vTemp);
 }
 
-/// 3D º¤ÅÍ°£ÀÇ ´õÇÏ±â
+/// 3D ë²¡í„°ê°„ì˜ ë”í•˜ê¸°
 const RwV3d operator+(const RwV3d& lhs, const RwV3d& rhs)
 {
     RwV3d v3Return;
@@ -452,7 +452,7 @@ const RwV3d operator+(const RwV3d& lhs, const RwV3d& rhs)
     return v3Return;
 }
 
-/// 3D º¤ÅÍ°£ÀÇ •û±â
+/// 3D ë²¡í„°ê°„ì˜ ëº´ê¸°
 const RwV3d operator-(const RwV3d& lhs, const RwV3d& rhs)
 {
     RwV3d v3Return;
@@ -463,7 +463,7 @@ const RwV3d operator-(const RwV3d& lhs, const RwV3d& rhs)
     return v3Return;
 }
 
-/// 3D º¤ÅÍ * ½ºÄ®¶ó°ª
+/// 3D ë²¡í„° * ìŠ¤ì¹¼ë¼ê°’
 const RwV3d operator*(const RwV3d& lhs, const RwReal& rhs)
 {
     RwV3d v3Return;
@@ -473,7 +473,7 @@ const RwV3d operator*(const RwV3d& lhs, const RwReal& rhs)
 
     return v3Return;
 }
-/// 3D º¤ÅÍ *= ½ºÄ®¶ó°ª
+/// 3D ë²¡í„° *= ìŠ¤ì¹¼ë¼ê°’
 const void operator*=( RwV3d& lhs, const RwReal& rhs ) 
 {
 	lhs.x *= rhs;
@@ -493,7 +493,7 @@ const RwMatrix operator*( const RwMatrix& lhs, const RwMatrix& rhs )
 	return matResult;
 }
 
-/// 3D º¤ÅÍ / ½ºÄ®¶ó°ª
+/// 3D ë²¡í„° / ìŠ¤ì¹¼ë¼ê°’
 const RwV3d operator/(const RwV3d& lhs, const RwReal& rhs)
 {
     assert(rhs != 0);
@@ -512,7 +512,7 @@ const RwV3d operator/(const RwReal& lhs, const RwV3d& rhs)
 }
 
 
-/// 3D º¤ÅÍ += ¿¬»ê
+/// 3D ë²¡í„° += ì—°ì‚°
 const void operator+=(RwV3d& lhs, const RwV3d& rhs)
 {
     lhs.x += rhs.x;
@@ -520,7 +520,7 @@ const void operator+=(RwV3d& lhs, const RwV3d& rhs)
     lhs.z += rhs.z;
 }
 
-/// 3Dº¤ÅÍ -= ¿¬»ê
+/// 3Dë²¡í„° -= ì—°ì‚°
 const void operator-=(RwV3d& lhs, const RwV3d& rhs)
 {
     lhs.x -= rhs.x;
@@ -528,7 +528,7 @@ const void operator-=(RwV3d& lhs, const RwV3d& rhs)
     lhs.z -= rhs.z;
 }
 
-/// 3Dº¤ÅÍ == ¿¬»ê
+/// 3Dë²¡í„° == ì—°ì‚°
 const RwBool operator==(const RwV3d& lhs, const RwV3d& rhs)
 {
 	if( lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z )
@@ -537,7 +537,7 @@ const RwBool operator==(const RwV3d& lhs, const RwV3d& rhs)
 	return false;
 }
 
-/// 3Dº¤ÅÍ != ¿¬»ê
+/// 3Dë²¡í„° != ì—°ì‚°
 const RwBool operator!=(const RwV3d& lhs, const RwV3d& rhs)
 {
 	if( lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z )
@@ -836,8 +836,8 @@ RwBool CNtlOBB::IntersectionOBBvsOBB(CNtlOBB* pA, CNtlOBB* pB) // Game Physics P
 
 RwInt32 CNtlMath::GetSafeIdx3D(RwV3d& vPos, RwInt32 iHalfSize, RwInt32 iChunkSize, RwInt32 iChunkNum)
 {	
-	// float À¯È¿¼öÀÇ ¹®Á¦·Î 0.9995 °°Àº °æ¿ì ¿Ã¸²À¸·Î 1ÀÌ µÇ¾î ¹ö¸®´Â Çö»óÀ¸·Î Idx°¡ Àß¸ø °è»ê µÇ¾ú´Ù.
-	// ÀÌ·± ¹®Á¦¸¦ ÇØ°áÇÏ±â À§ÇØ¼­ floor¸¦ »ç¿ëÇÏ¿© ¼Ò¼öºÎ¸¦ ³»¸²ÇÏ¿© ÇØ°áÇÏ¿´´Ù.
+	// float ìœ íš¨ìˆ˜ì˜ ë¬¸ì œë¡œ 0.9995 ê°™ì€ ê²½ìš° ì˜¬ë¦¼ìœ¼ë¡œ 1ì´ ë˜ì–´ ë²„ë¦¬ëŠ” í˜„ìƒìœ¼ë¡œ Idxê°€ ì˜ëª» ê³„ì‚° ë˜ì—ˆë‹¤.
+	// ì´ëŸ° ë¬¸ì œë¥¼ í•´ê²°í•˜ê¸° ìœ„í•´ì„œ floorë¥¼ ì‚¬ìš©í•˜ì—¬ ì†Œìˆ˜ë¶€ë¥¼ ë‚´ë¦¼í•˜ì—¬ í•´ê²°í•˜ì˜€ë‹¤.
 	RwReal fX = floor(vPos.x);
 	RwReal fZ = floor(vPos.z);
 

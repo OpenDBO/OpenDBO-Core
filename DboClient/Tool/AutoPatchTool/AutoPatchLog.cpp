@@ -23,7 +23,7 @@ void CAutoPacthLog::Out(const char *pFileName, const char *Log)
 		return;
 #endif
 
-    // ÇöÀç ½Ã°£À» ÀúÀåÇÑ´Ù.
+    // í˜„ì¬ ì‹œê°„ì„ ì €ì¥í•œë‹¤.
     tm time;
     __time64_t long_time;
     _time64( &long_time ); 

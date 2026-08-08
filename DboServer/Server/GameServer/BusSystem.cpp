@@ -5,7 +5,7 @@
 
 CBusSystem::CBusSystem()
 {
-	dwTime = 2000;
+	dwTime = 500;
 }
 
 CBusSystem::~CBusSystem()
@@ -20,7 +20,7 @@ void CBusSystem::TickProcess(DWORD dwTickCount)
 
 	if (dwTime == 0)
 	{
-		dwTime = 2000;
+		dwTime = 500;
 
 		for (std::map<HOBJECT, sBUS*>::iterator it = m_mapBus.begin(); it != m_mapBus.end(); it++)
 		{
@@ -28,20 +28,22 @@ void CBusSystem::TickProcess(DWORD dwTickCount)
 
 		//	printf("run:%f walk:%f \n", pNPC->GetRunSpeed(), pNPC->GetWalkingSpeed());
 
-			if (pNPC->GetCurWorldZone())
-			{
-				CNtlPacket packet(sizeof(sGU_BUS_LOCATION_NFY));
-				sGU_BUS_LOCATION_NFY * res = (sGU_BUS_LOCATION_NFY *)packet.GetPacketData();
-				res->wOpCode = GU_BUS_LOCATION_NFY;
-				res->hSubject = pNPC->GetID();
-				res->busTblidx = pNPC->GetTblidx();
-				res->vCurDir.x = pNPC->GetCurDir().x;
-				res->vCurDir.z = pNPC->GetCurDir().z;
-				res->vCurLoc.x = pNPC->GetCurLoc().x;
-				res->vCurLoc.z = pNPC->GetCurLoc().z;
-				packet.SetPacketLen(sizeof(sGU_BUS_LOCATION_NFY));
-				BroadCast(&packet, pNPC->GetCurWorldZone()->GetZoneId()); //broadcast to people which watch the world map
-			}
+			CNtlPacket packet(sizeof(sGU_BUS_LOCATION_NFY));
+			sGU_BUS_LOCATION_NFY * res = (sGU_BUS_LOCATION_NFY *)packet.GetPacketData();
+			res->wOpCode = GU_BUS_LOCATION_NFY;
+			res->hSubject = pNPC->GetID();
+			res->busTblidx = pNPC->GetTblidx();
+			res->vCurDir.x = pNPC->GetCurDir().x;
+			res->vCurDir.y = pNPC->GetCurDir().y;
+			res->vCurDir.z = pNPC->GetCurDir().z;
+			res->vCurLoc.x = pNPC->GetCurLoc().x;
+			res->vCurLoc.y = pNPC->GetCurLoc().y;
+			res->vCurLoc.z = pNPC->GetCurLoc().z;
+			packet.SetPacketLen(sizeof(sGU_BUS_LOCATION_NFY));
+			// Use stored zone ID — works even when NPC is despawned (GetCurWorldZone() is NULL)
+			ZONEID zoneId = it->second->worldZoneId;
+			if (zoneId != INVALID_ZONEID)
+				BroadCast(&packet, zoneId);
 		}
 	}
 }
@@ -50,8 +52,29 @@ void CBusSystem::AddBus(CNpc * pNpc)
 {
 	sBUS* bus = new sBUS;
 	bus->pNpc = pNpc;
+	bus->worldZoneId = pNpc->GetCurWorldZone() ? pNpc->GetCurWorldZone()->GetZoneId() : INVALID_ZONEID;
 
 	m_mapBus.insert({ pNpc->GetID(), bus });
+}
+
+void CBusSystem::BroadcastBusPosition(CNpc* pNpc)
+{
+	if (!pNpc || !pNpc->GetCurWorldZone())
+		return;
+
+	CNtlPacket packet(sizeof(sGU_BUS_LOCATION_NFY));
+	sGU_BUS_LOCATION_NFY * res = (sGU_BUS_LOCATION_NFY *)packet.GetPacketData();
+	res->wOpCode = GU_BUS_LOCATION_NFY;
+	res->hSubject = pNpc->GetID();
+	res->busTblidx = pNpc->GetTblidx();
+	res->vCurDir.x = pNpc->GetCurDir().x;
+	res->vCurDir.y = pNpc->GetCurDir().y;
+	res->vCurDir.z = pNpc->GetCurDir().z;
+	res->vCurLoc.x = pNpc->GetCurLoc().x;
+	res->vCurLoc.y = pNpc->GetCurLoc().y;
+	res->vCurLoc.z = pNpc->GetCurLoc().z;
+	packet.SetPacketLen(sizeof(sGU_BUS_LOCATION_NFY));
+	BroadCast(&packet, pNpc->GetCurWorldZone()->GetZoneId());
 }
 
 void CBusSystem::RemoveBus(CNpc * pNpc)
@@ -131,13 +154,10 @@ void CBusSystem::BroadCast(CNtlPacket* pPacket, const ZONEID worldZoneId)
 {
 	for (std::map<HOBJECT, ZONEID>::iterator it = m_mapPlayerSync.begin(); it != m_mapPlayerSync.end(); it++)
 	{
-		if (it->second == worldZoneId)
+		CCharacter* pPlayer = g_pObjectManager->GetChar(it->first);
+		if (pPlayer->IsPC())
 		{
-			CCharacter* pPlayer = g_pObjectManager->GetChar(it->first);
-			if (pPlayer->IsPC())
-			{
-				pPlayer->SendPacket(pPacket);
-			}
+			pPlayer->SendPacket(pPacket);
 		}
 	}
 }

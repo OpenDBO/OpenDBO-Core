@@ -44,7 +44,7 @@ CTeleportProposalManager::~CTeleportProposalManager()
 
 /**
 * \brief Create
-* TeleportProposalManagerÀÇ Event¸¦ ¿¬°áÇÑ´Ù.
+* TeleportProposalManagerì˜ Eventë¥¼ ì—°ê²°í•œë‹¤.
 */
 RwBool CTeleportProposalManager::Create()
 {
@@ -64,7 +64,7 @@ RwBool CTeleportProposalManager::Create()
 
 /**
 * \brief Destroy
-* LinkµÈ eventµéÀ» ÇØÁ¦ÇÑ´Ù.
+* Linkëœ eventë“¤ì„ í•´ì œí•œë‹¤.
 */
 VOID CTeleportProposalManager::Destroy()
 {
@@ -87,7 +87,7 @@ VOID CTeleportProposalManager::Destroy()
 /**
 * \brief HandleEvents
 * \param msg			(RWS::CMsg&) Event message class
-* LinkµÇ¾î ÀÖ´Â Events ¸¦ ¾Ë¸ÂÀº ÇÔ¼ö¿¡ ¿¬°áÇØÁØ´Ù.
+* Linkë˜ì–´ ìˆëŠ” Events ë¥¼ ì•Œë§ì€ í•¨ìˆ˜ì— ì—°ê²°í•´ì¤€ë‹¤.
 */
 void CTeleportProposalManager::HandleEvents( RWS::CMsg& msg )
 {
@@ -100,13 +100,13 @@ void CTeleportProposalManager::HandleEvents( RWS::CMsg& msg )
 
 /**
 * \brief Update
-* \param fElapsed		(RwReal) ÀÌÀü ÇÁ·¹ÀÓ¿¡¼­ °æ°úµÈ ½Ã°£
+* \param fElapsed		(RwReal) ì´ì „ í”„ë ˆì„ì—ì„œ ê²½ê³¼ëœ ì‹œê°„
 */
 void CTeleportProposalManager::Update( RwReal fElapsed )
 {
 	m_fElapsedTime += fElapsed;
 
-	// ÃÊ´ç ÇÑ¹ø ¾÷µ¥ÀÌÆ® ÇÑ´Ù.
+	// ì´ˆë‹¹ í•œë²ˆ ì—…ë°ì´íŠ¸ í•œë‹¤.
 	if( m_fElapsedTime > 1.0f )
 	{
 		m_fElapsedTime -= 1.0f;
@@ -118,7 +118,7 @@ void CTeleportProposalManager::Update( RwReal fElapsed )
 			if( pProposal->dataNotify.wWaitTime > 0 )
 				pProposal->dataNotify.wWaitTime--;
 
-			// Proposal µÇÁö ¾Ê¾Ò¾ú´Ù¸é Proposal À» ¶ç¿öÁØ´Ù.
+			// Proposal ë˜ì§€ ì•Šì•˜ì—ˆë‹¤ë©´ Proposal ì„ ë„ì›Œì¤€ë‹¤.
 			if( !pProposal->bProposal )
 			{
 				if( IsGameStage() && IsAvatar() )
@@ -132,14 +132,14 @@ void CTeleportProposalManager::Update( RwReal fElapsed )
 }
 
 /**
-* \brief TeleportProposalNfy¸¦ Á¦¾îÇÑ´Ù.
-* ¼­¹ö¿¡¼­ ³»·Á¿Â ¿äÃ»µÈ ÅÚ·¹Æ÷Æ® ProposalÀ» Áö±İ ÇöÀç º¸¿© ÁÙ°ÍÀÎÁö º¸°üÇÏ°í ÀÖÀ» °ÍÀÎÁö Ã³¸®ÇÑ´Ù.
+* \brief TeleportProposalNfyë¥¼ ì œì–´í•œë‹¤.
+* ì„œë²„ì—ì„œ ë‚´ë ¤ì˜¨ ìš”ì²­ëœ í…”ë ˆí¬íŠ¸ Proposalì„ ì§€ê¸ˆ í˜„ì¬ ë³´ì—¬ ì¤„ê²ƒì¸ì§€ ë³´ê´€í•˜ê³  ìˆì„ ê²ƒì¸ì§€ ì²˜ë¦¬í•œë‹¤.
 */
 void CTeleportProposalManager::HandleTeleportProposalNfy( RWS::CMsg& msg )
 {
 	SDboEventTeleportProposalNfy* pNotify = reinterpret_cast<SDboEventTeleportProposalNfy*>(msg.pData);
 
-	// Proposal ÀÌ Á¸ÀçÇÏÁö ¾Ê´Â´Ù¸é Ãß°¡ÇÏ°í ÇöÀç »óÅÂ¸¦ °Ë»çÇÏ¿© ProposalÀ» º¸³½´Ù.
+	// Proposal ì´ ì¡´ì¬í•˜ì§€ ì•ŠëŠ”ë‹¤ë©´ ì¶”ê°€í•˜ê³  í˜„ì¬ ìƒíƒœë¥¼ ê²€ì‚¬í•˜ì—¬ Proposalì„ ë³´ë‚¸ë‹¤.
 	MapTeleportProposal::iterator it = m_mapTeleportProposal.find( pNotify->byInfoIndex );
 	if( it == m_mapTeleportProposal.end() )
 	{
@@ -147,13 +147,13 @@ void CTeleportProposalManager::HandleTeleportProposalNfy( RWS::CMsg& msg )
 		memcpy( &pProposal->dataNotify, pNotify, sizeof( SDboEventTeleportProposalNfy ) );
 		m_mapTeleportProposal.insert( std::make_pair( pNotify->byInfoIndex, pProposal ) );
 
-		// °ÔÀÓ »óÅÂÀÌ°í ¾Æ¹ÙÅ¸°¡ Á¸´ëÇÑ´Ù¸é Proposal ÇÑ´Ù.
+		// ê²Œì„ ìƒíƒœì´ê³  ì•„ë°”íƒ€ê°€ ì¡´ëŒ€í•œë‹¤ë©´ Proposal í•œë‹¤.
 		if( IsGameStage() && IsAvatar() )
 			SendTeleportProposal( pProposal );
 	}
 	else
 	{
-		// ÀÖ´Ù¸é ÀúÀåµÇ¾î ÀÖ´ø ÀÎµ¦½º¸¦ Áö¿ì°í »õ·Î¿î µ¥ÀÌÅÍ·Î Ã¤¿ö³Ö´Â´Ù.
+		// ìˆë‹¤ë©´ ì €ì¥ë˜ì–´ ìˆë˜ ì¸ë±ìŠ¤ë¥¼ ì§€ìš°ê³  ìƒˆë¡œìš´ ë°ì´í„°ë¡œ ì±„ì›Œë„£ëŠ”ë‹¤.
 		STeleportProposal* pProposal = (*it).second;
 		NTL_DELETE( pProposal );
 		m_mapTeleportProposal.erase( it );
@@ -162,37 +162,37 @@ void CTeleportProposalManager::HandleTeleportProposalNfy( RWS::CMsg& msg )
 		memcpy( &pProposal->dataNotify, pNotify, sizeof( SDboEventTeleportProposalNfy ) );
 		m_mapTeleportProposal.insert( std::make_pair( pNotify->byInfoIndex, pProposal ) );
 
-		// °ÔÀÓ »óÅÂÀÌ°í ¾Æ¹ÙÅ¸°¡ Á¸´ëÇÑ´Ù¸é Proposal ÇÑ´Ù.
+		// ê²Œì„ ìƒíƒœì´ê³  ì•„ë°”íƒ€ê°€ ì¡´ëŒ€í•œë‹¤ë©´ Proposal í•œë‹¤.
 		if( IsGameStage() && IsAvatar() )
 			SendTeleportProposal( pProposal );
 	}
 }
 
 /**
-* \brief TeleportConfirmRes¸¦ Á¦¾îÇÑ´Ù.
-* »ç¿ëÀÚ°¡ ¼±ÅÃÇÑ TeleportConfirmReqÀÇ ÀÀ´äÀ» ¹Ş¾Æ¼­ ÅÚ·¹Æ÷Æ® ¸Ş½ÃÁö¸¦ ´Ù½Ã ¶ç¿öÁØ´Ù°Å³ª »èÁ¦ÇÏ´Â Ã³¸®¸¦ ÇÑ´Ù.
+* \brief TeleportConfirmResë¥¼ ì œì–´í•œë‹¤.
+* ì‚¬ìš©ìê°€ ì„ íƒí•œ TeleportConfirmReqì˜ ì‘ë‹µì„ ë°›ì•„ì„œ í…”ë ˆí¬íŠ¸ ë©”ì‹œì§€ë¥¼ ë‹¤ì‹œ ë„ì›Œì¤€ë‹¤ê±°ë‚˜ ì‚­ì œí•˜ëŠ” ì²˜ë¦¬ë¥¼ í•œë‹¤.
 */
 void CTeleportProposalManager::HandleTeleportConfirmRes( RWS::CMsg& msg )
 {
 	SDboEventTeleportConfirmRes* pResult = reinterpret_cast<SDboEventTeleportConfirmRes*>(msg.pData);
 
-	// ¼º°øÀÌ ¾Æ´Ï¶ó¸é ResultCode Ãâ·Â ÈÄ
+	// ì„±ê³µì´ ì•„ë‹ˆë¼ë©´ ResultCode ì¶œë ¥ í›„
 	if( pResult->wResultCode != GAME_SUCCESS )
 		GetAlarmManager()->AlarmMessage(Logic_GetResultCodeString(pResult->wResultCode, ""), TRUE );
 
-	// ÇöÀç ÀÖ´Â Index¸¦ Ã£´Â´Ù.
+	// í˜„ì¬ ìˆëŠ” Indexë¥¼ ì°¾ëŠ”ë‹¤.
 	MapTeleportProposal::iterator it = m_mapTeleportProposal.find( pResult->byTeleportIndex );
 	if( it != m_mapTeleportProposal.end() )
 	{
 		STeleportProposal* pProposal = (*it).second;
 
-		// Á¦¾ÈÀ» ÇÑ Interface¸¸ Ã£´Â´Ù.
+		// ì œì•ˆì„ í•œ Interfaceë§Œ ì°¾ëŠ”ë‹¤.
 		if( pProposal->bProposal )
 		{
-			// ResultCode¿¡¼­ bClearInterface´Â Á¦¾ÈÀ» ´Ù½Ã ÇÒ °ÍÀÎÁö ¾Æ´ÑÁö¸¦ °áÁ¤ÇÑ´Ù.
+			// ResultCodeì—ì„œ bClearInterfaceëŠ” ì œì•ˆì„ ë‹¤ì‹œ í•  ê²ƒì¸ì§€ ì•„ë‹Œì§€ë¥¼ ê²°ì •í•œë‹¤.
 			if( pResult->bClearInterface )
 			{
-				// Áö¿öÁØ´Ù.
+				// ì§€ì›Œì¤€ë‹¤.
 				NTL_DELETE( pProposal );
 				m_mapTeleportProposal.erase( it );
 			}
@@ -208,8 +208,8 @@ void CTeleportProposalManager::HandleTeleportConfirmRes( RWS::CMsg& msg )
 }
 
 /**
-* \brief MsgBoxResult¸¦ Ã³¸®ÇÑ´Ù.
-* MessageBox¿¡¼­ ¿À´Â WorkIDÀÇ ÀÀ´äµéÀ» Ã³¸®ÇÑ´Ù.
+* \brief MsgBoxResultë¥¼ ì²˜ë¦¬í•œë‹¤.
+* MessageBoxì—ì„œ ì˜¤ëŠ” WorkIDì˜ ì‘ë‹µë“¤ì„ ì²˜ë¦¬í•œë‹¤.
 */
 void CTeleportProposalManager::HandleMsgBoxResult( RWS::CMsg& msg )
 {
@@ -271,7 +271,7 @@ void CTeleportProposalManager::SendTeleportProposal( STeleportProposal* pProposa
 	}
 	
 
-	// À¯Àú¿¡°Ô Proposal ÇÑ´Ù
+	// ìœ ì €ì—ê²Œ Proposal í•œë‹¤
 	
 	std::string nMsgBoxID = "DST_TELEPORT_COMMON_CONFIRM_MSG";
 	if( bFinalConfirm )
@@ -297,7 +297,7 @@ void CTeleportProposalManager::SendTeleportProposal( STeleportProposal* pProposa
 				awcBuffer);
 		}
 		break;
-		case TELEPORT_TYPE_BUDOKAI:		// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ¼­¹ö·Î ÀÌµ¿ÇÏ½Ã°Ú½À´Ï±î?
+		case TELEPORT_TYPE_BUDOKAI:		// ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì„œë²„ë¡œ ì´ë™í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
 		{
 			sMsgBoxData data;
 			data.byIndex = pProposal->dataNotify.byInfoIndex;
@@ -308,9 +308,9 @@ void CTeleportProposalManager::SendTeleportProposal( STeleportProposal* pProposa
 				GetDisplayStringManager()->GetString( "DST_BUDOKAI_TELEPORT_MSG_TBSERVER" ) );
 		}
 		break;
-		case TELEPORT_TYPE_MINORMATCH:	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ¿¹¼±Àü ÅÚ·¹Æ÷Æ®
+		case TELEPORT_TYPE_MINORMATCH:	// ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì˜ˆì„ ì „ í…”ë ˆí¬íŠ¸
 		{
-			// make string '¿¹¼± °æ±âÀå'
+			// make string 'ì˜ˆì„  ê²½ê¸°ì¥'
 			WCHAR awcBuffer[128];
 			swprintf_s( awcBuffer, 128, GetDisplayStringManager()->GetString( "DST_BUDOKAI_TELEPORT_MSG_MATCH" ),
 				GetDisplayStringManager()->GetString( "DST_BUDOKAI_REQUEST_MINOR" ) );
@@ -324,7 +324,7 @@ void CTeleportProposalManager::SendTeleportProposal( STeleportProposal* pProposa
 				awcBuffer );
 		}
 		break;
-		case TELEPORT_TYPE_MAJORMATCH:	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ º»¼± ÅÚ·¹Æ÷Æ®
+		case TELEPORT_TYPE_MAJORMATCH:	// ì²œí•˜ì œì¼ ë¬´ë„íšŒ ë³¸ì„  í…”ë ˆí¬íŠ¸
 		{
 			RwUInt8 nDepth = pProposal->dataNotify.byBudokaiMatchDepth;
 			std::string nStringID = "DST_BUDOKAI_MAJORMATCH_INFO_TITLE_32";
@@ -350,7 +350,7 @@ void CTeleportProposalManager::SendTeleportProposal( STeleportProposal* pProposa
 				break;
 			}
 
-			// make string 'º»¼± ?? °­ °æ±âÀå'
+			// make string 'ë³¸ì„  ?? ê°• ê²½ê¸°ì¥'
 			WCHAR awcBuffer1[32];
 			swprintf_s( awcBuffer1, 32, L"%s %s", 
 				GetDisplayStringManager()->GetString( "DST_BUDOKAI_REQUEST_MAJOR" ),
@@ -369,9 +369,9 @@ void CTeleportProposalManager::SendTeleportProposal( STeleportProposal* pProposa
 				awcBuffer2 );
 		}
 		break;
-		case TELEPORT_TYPE_FINALMATCH:	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ °á¼± ÅÚ·¹Æ÷Æ®
+		case TELEPORT_TYPE_FINALMATCH:	// ì²œí•˜ì œì¼ ë¬´ë„íšŒ ê²°ì„  í…”ë ˆí¬íŠ¸
 		{
-			// make string '°á¼± °æ±âÀå'
+			// make string 'ê²°ì„  ê²½ê¸°ì¥'
 			WCHAR awcBuffer[64];
 			swprintf_s( awcBuffer, 64, GetDisplayStringManager()->GetString( "DST_BUDOKAI_TELEPORT_MSG_MATCH" ),
 				GetDisplayStringManager()->GetString( "DST_BUDOKAI_REQUEST_FINAL" ) );

@@ -85,8 +85,8 @@ void CNtlPLGuiManager::Destroy(void)
 		NTL_DELETE(m_pResMgr);
 	}
 
-	// ø©±‚¥¬ ¥ı ¡°∞À¿ª «ÿ ∫¡æﬂ «—¥Ÿ...
-	// ø÷ ¿Ã∑∏∞‘ ∏∏µÈæ˙¡„? ¿Ã«ÿ∞° æ»µ«≥◊... ≥ª∞° «œ∞Ìº≠∏Æ...;; 
+	// Ïó¨Í∏∞Îäî Îçî Ï†êÍ≤ÄÏùÑ Ìï¥ Î¥êÏïº ÌïúÎã§...
+	// Ïôú Ïù¥Î†áÍ≤å ÎßåÎì§ÏóàÏ•ê? Ïù¥Ìï¥Í∞Ä ÏïàÎêòÎÑ§... ÎÇ¥Í∞Ä ÌïòÍ≥†ÏÑúÎ¶¨...;; 
 	CEventListener_Win32::RemoveAll();
 
 	/*
@@ -213,7 +213,7 @@ RwBool CNtlPLGuiManager::LoadUserOption(CNtlSerializer& s)
 		unit_s.Refresh();
 		gui_s.Out(unit_s, iUnitSize);
 
-		// PL gui∏¶ √£¥¬¥Ÿ.
+		// PL guiÎ•º Ï∞æÎäîÎã§.
 		pPLGui = FindPLGui(chName);
 		if(pPLGui)
 		{
@@ -243,7 +243,7 @@ RwBool CNtlPLGuiManager::SaveUserOption(CNtlSerializer& s)
 			RwInt32 iUnitNameSize = strlen(pPLGui->GetName());
 			NTL_ASSERT(iUnitNameSize != 0, "CNtlPLGuiManager::SaveUserOption => PLGui name is null !!!");
 
-			// unit ¿Ã∏ß.
+			// unit Ïù¥Î¶Ñ.
 			gui_s << iUnitNameSize;
 			gui_s << pPLGui->GetName();
 

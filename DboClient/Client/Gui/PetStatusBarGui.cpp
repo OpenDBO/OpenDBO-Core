@@ -216,7 +216,7 @@ void CPetStatusBarGui::UpdateBeforeCamera( RwReal fElapsed )
 	if(!IsShow())
 		return;
 
-	// TODO: ÀÏ·¯½ºÆ®·Î ´ëÃ¼
+	// TODO: ì¼ëŸ¬ìŠ¤íŠ¸ë¡œ ëŒ€ì²´
 	if (m_uiPetID)
 	{
 		CNtlSobPet* pSobPet = reinterpret_cast<CNtlSobPet*>(GetNtlSobManager()->GetSobObject(m_uiPetID));		
@@ -240,7 +240,7 @@ VOID CPetStatusBarGui::OnMove( RwInt32 iOldX, RwInt32 iOldY )
 {
 	CRectangle rect = m_pThis->GetScreenRect();
 
-	// ÀÏ·¯½ºÆ®
+	// ì¼ëŸ¬ìŠ¤íŠ¸
 	m_surCharacter.SetRectWH( rect.left + SUR_CHAR_LEFT_OFFSET, rect.top + SUR_CHAR_TOP_OFFSET, 38, 38 );
 
 	// Emergency Effect
@@ -249,7 +249,7 @@ VOID CPetStatusBarGui::OnMove( RwInt32 iOldX, RwInt32 iOldY )
 	surface.m_Original.rtRect.GetCenterPosition(&nCenterX, &nCenterY);
 	m_feEmergency.SetCenterPos(rect.left + nCenterX, rect.top + nCenterY);
 
-	// ¹öÇÁ ¾ÆÀÌÄÜ
+	// ë²„í”„ ì•„ì´ì½˜
 	m_pBuff->SetMove(rect);
 }
 
@@ -286,7 +286,7 @@ void CPetStatusBarGui::DeleteInstance()
 
 void CPetStatusBarGui::HandleEvents( RWS::CMsg &pMsg )
 {
-	if(pMsg.Id == g_EventSobInfoUpdate)	// PetÀÇ Á¤º¸°¡ Update µÇ¾úÀ»¶§
+	if(pMsg.Id == g_EventSobInfoUpdate)	// Petì˜ ì •ë³´ê°€ Update ë˜ì—ˆì„ë•Œ
 	{
 		SNtlEventSobInfoUpdate *pUpdate = reinterpret_cast<SNtlEventSobInfoUpdate*>(pMsg.pData); 
 
@@ -308,7 +308,7 @@ void CPetStatusBarGui::HandleEvents( RWS::CMsg &pMsg )
 
 		/*UpdatePetPowerValue();*/
 	}
-	else if(pMsg.Id == g_EventSummonPet)		// PetÀÌ Á×¾úÀ»¶§ UIµµ »èÁ¦ÇÑ´Ù.
+	else if(pMsg.Id == g_EventSummonPet)		// Petì´ ì£½ì—ˆì„ë•Œ UIë„ ì‚­ì œí•œë‹¤.
 	{
 		SDboEventSummonPet* pData = reinterpret_cast<SDboEventSummonPet*>(pMsg.pData);
 
@@ -342,7 +342,7 @@ void CPetStatusBarGui::SetPetID( RwUInt32 uiSerialId )
 		if( pPetAttr == NULL)
 			DBO_ASSERT( 0 , "CPetStatusBarGui::SetPetID - pPetAttr is NULL" );
 
-		// ÀÌÀü¿¡ ÀÖ´ø Texture »èÁ¦
+		// ì´ì „ì— ìˆë˜ Texture ì‚­ì œ
 		if( m_surCharacter.GetTexture() )
 		{
 			Logic_DeleteTexture( m_surCharacter.GetTexture() );
@@ -389,19 +389,19 @@ void CPetStatusBarGui::UpdatePetInfo()
     sprintf_s(buf, "%u", uiEP);
     m_pSttInfoEP->SetText(buf);
 
-    // PetÀÇ Status´Â Â÷ÈÄ¿¡ ¼­¹ö·Î ºÎÅÍ Á¤º¸¸¦ ¹Ş¾Æ¼­ Ç¥½ÃÇÑ´Ù.
+    // Petì˜ StatusëŠ” ì°¨í›„ì— ì„œë²„ë¡œ ë¶€í„° ì •ë³´ë¥¼ ë°›ì•„ì„œ í‘œì‹œí•œë‹¤.
     sprintf_s(buf, "%u", pPetAttr->m_wAttackRate);
     m_pSttInfoHR->SetText(buf);
 
     sprintf_s(buf, "%u", pPetAttr->m_wDodgeRate);
     m_pSttInfoDR->SetText(buf);
 
-    // ¹°¸®/±â°ø ¼Ó¼º¿¡ µû¶ó¼­ ÆêÀÇ °ø°İ·ÂÀ» Ç¥½ÃÇÑ´Ù.
-    if(BATTLE_ATTACK_TYPE_PHYSICAL == pPetAttr->m_pNpcTbl->byAttack_Type)  // ¹°¸® °ø°İ Æê
+    // ë¬¼ë¦¬/ê¸°ê³µ ì†ì„±ì— ë”°ë¼ì„œ í«ì˜ ê³µê²©ë ¥ì„ í‘œì‹œí•œë‹¤.
+    if(BATTLE_ATTACK_TYPE_PHYSICAL == pPetAttr->m_pNpcTbl->byAttack_Type)  // ë¬¼ë¦¬ ê³µê²© í«
     {
         sprintf_s(buf, "%u", pPetAttr->m_wPhysicalOffence);    
     }
-    else // ±â°ø °ø°İ Æê
+    else // ê¸°ê³µ ê³µê²© í«
     {
         sprintf_s(buf, "%u", pPetAttr->m_wEnergyOffence);    
     }

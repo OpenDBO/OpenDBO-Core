@@ -50,7 +50,7 @@ public:
 	bool					Apply( unsigned int uiFlags );
 	
 public:
-	// °ËÁõµÈ Key¸¸ »ç¿ëÇÒ ¼ö ÀÖÀ½
+	// ê²€ì¦ëœ Keyë§Œ ì‚¬ìš©í•  ìˆ˜ ìˆìŒ
 	bool				GetBoolData(unsigned int uiKey);
 	int					GetIntData(unsigned int uiKey);
 	float				GetFloatData(unsigned int uiKey);

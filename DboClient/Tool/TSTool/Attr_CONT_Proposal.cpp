@@ -1,4 +1,4 @@
-// Attr_CONT_Proposal.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_CONT_Proposal.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_CONT_Proposal.h"
 
 
-// CAttr_CONT_Proposal ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_CONT_Proposal ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_CONT_Proposal, CAttr_Page, 1)
 
@@ -138,7 +138,7 @@ BOOL CAttr_CONT_Proposal::OnInitDialog()
 {
 	CAttr_Page::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	m_ctrDisplaySummary.SetCheck( BST_CHECKED );
 
 	m_ctrGradeType.SetItemData( m_ctrGradeType.AddString( _T("Very easy") ), eGRADE_TYPE_VERY_EASY );
@@ -154,11 +154,11 @@ BOOL CAttr_CONT_Proposal::OnInitDialog()
 	if ( m_strData.GetLength() > 0 ) SetPageData( m_strData );
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 BEGIN_MESSAGE_MAP(CAttr_CONT_Proposal, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_CONT_Proposal ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_CONT_Proposal ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

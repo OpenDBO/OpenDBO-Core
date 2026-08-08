@@ -2,11 +2,11 @@
  *
  * File			: NtlWorldConceptDefine.h
  * Author		: Hong Sungbock
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2007. 7. 13
  * Abstract		: Simulation world concept defines
  *****************************************************************************
- * Desc         : World Concept¿¡ °ü·ÃµÈ »çÇ×À» Á¤ÀÇÇØ µĞ´Ù
+ * Desc         : World Conceptì— ê´€ë ¨ëœ ì‚¬í•­ì„ ì •ì˜í•´ ë‘”ë‹¤
  *
  *****************************************************************************/
 
@@ -19,36 +19,36 @@
 #define WORLD_CONCEPT_THIRD_GRADE	0x00040000
 #define WORLD_CONCEPT_FOURTH_GRADE	0x00080000
 
-/// World Concept Å¬·¡½º¿¡¼­ Á¦¾îÇÏ´Â »óÅÂÀÇ Á¾·ù
-// avooo's comment : Logic_WorldConceptMessage ¿¡ ÀÎµ¦½º¸¦ Ãß°¡ÇØ ÁÖ¼¼¿ä
+/// World Concept í´ë˜ìŠ¤ì—ì„œ ì œì–´í•˜ëŠ” ìƒíƒœì˜ ì¢…ë¥˜
+// avooo's comment : Logic_WorldConceptMessage ì— ì¸ë±ìŠ¤ë¥¼ ì¶”ê°€í•´ ì£¼ì„¸ìš”
 enum EWorldPlayConcept
 {
 	WORLD_PLAY_NONE					= 0,
 
-	//-- 1´Ü°è ÄÁ¼Á--//
-	WORLD_PLAY_TUTORIAL				= 0x00010001,		///< Æ©ÅÍ¸®¾ó
-	WORLD_PLAY_TIME_MACHINE			= 0x00010002,		///< Å¸ÀÓ¸Ó½Å Äù½ºÆ®
-	WORLD_PLAY_RANK_BATTLE			= 0x00010003,		///< ·©Å© ¹èÆ²
-	WORLD_PLAY_T_BUDOKAI			= 0x00010004,		///< ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸(¹èÆ²»óÅÂ)
+	//-- 1ë‹¨ê³„ ì»¨ì…‰--//
+	WORLD_PLAY_TUTORIAL				= 0x00010001,		///< íŠœí„°ë¦¬ì–¼
+	WORLD_PLAY_TIME_MACHINE			= 0x00010002,		///< íƒ€ì„ë¨¸ì‹  í€˜ìŠ¤íŠ¸
+	WORLD_PLAY_RANK_BATTLE			= 0x00010003,		///< ë­í¬ ë°°í‹€
+	WORLD_PLAY_T_BUDOKAI			= 0x00010004,		///< ì²œí•˜ì œì¼ ë¬´ë„íšŒ(ë°°í‹€ìƒíƒœ)
 	WORLD_PLAY_PARTY_DUNGEON		= 0x00010005,		///< Party Dungeon
-	WORLD_PLAY_TLQ					= 0x00010006,		///< Å¸ÀÓ ¸³ Äù½ºÆ® ( TLQ )
-	WORLD_PLAY_DOJO_SCRAMBLE		= 0x00010007,		///< µµÀå ÀïÅ»Àü
-	WORLD_PLAY_DOJO_DUEL			= 0x00010008,		///< µµÀå ºñ¹«Àü
+	WORLD_PLAY_TLQ					= 0x00010006,		///< íƒ€ì„ ë¦½ í€˜ìŠ¤íŠ¸ ( TLQ )
+	WORLD_PLAY_DOJO_SCRAMBLE		= 0x00010007,		///< ë„ì¥ ìŸíƒˆì „
+	WORLD_PLAY_DOJO_DUEL			= 0x00010008,		///< ë„ì¥ ë¹„ë¬´ì „
 	WORLD_PLAY_CCBD					= 0x00010009,
 	WORLD_PLAY_DWC					= 0x00010010,
 
-	//-- 2´Ü°è ÄÁ¼Á --//
+	//-- 2ë‹¨ê³„ ì»¨ì…‰ --//
 	WORLD_PLAY_FREEPVP				= 0x00020000,		///< PVP(Battle) state
-	WORLD_PLAY_NPC_COMMU			= 0x00020001,		///< NPC ´ëÈ­ »óÅÂ
-	WORLD_PLAY_TRADE				= 0x00020002,		///< À¯Àú Trade »óÅÂ
-	WORLD_PLAY_DRAGONBALL_COLLECT	= 0x00020003,		///< µå·¡°ïº¼À» ¼öÁıÇÏ¿©, ¿ë½ÅÀ» ºÒ·¯³»´Â ÀÌº¥Æ® »óÅÂ
-	WORLD_PLAY_PRIVATESHOP			= 0x00020004,		///< °³ÀÎ»óÁ¡ »óÅÂ(ÆÇ¸ÅÀÚ)
-	WORLD_PLAY_PRIVATESHOP_VISITOR	= 0x00020005,		///< °³ÀÎ»óÁ¡ »óÅÂ(±¸¸ÅÀÚ)
+	WORLD_PLAY_NPC_COMMU			= 0x00020001,		///< NPC ëŒ€í™” ìƒíƒœ
+	WORLD_PLAY_TRADE				= 0x00020002,		///< ìœ ì € Trade ìƒíƒœ
+	WORLD_PLAY_DRAGONBALL_COLLECT	= 0x00020003,		///< ë“œë˜ê³¤ë³¼ì„ ìˆ˜ì§‘í•˜ì—¬, ìš©ì‹ ì„ ë¶ˆëŸ¬ë‚´ëŠ” ì´ë²¤íŠ¸ ìƒíƒœ
+	WORLD_PLAY_PRIVATESHOP			= 0x00020004,		///< ê°œì¸ìƒì  ìƒíƒœ(íŒë§¤ì)
+	WORLD_PLAY_PRIVATESHOP_VISITOR	= 0x00020005,		///< ê°œì¸ìƒì  ìƒíƒœ(êµ¬ë§¤ì)
 	WORLD_PLAY_REMOTE_BEHAVIOUR		= 0x00020006,
 	WORLD_PLAY_MASCOTEX_SKILL		= 0x00020007,
 	
-	//-- 3´Ü°è ÄÁ¼Á --//
-	WORLD_PLAY_DIRECT				= 0x00040006,		///< ¿¬Ãâ »óÅÂ(cinematic, narraion)
+	//-- 3ë‹¨ê³„ ì»¨ì…‰ --//
+	WORLD_PLAY_DIRECT				= 0x00040006,		///< ì—°ì¶œ ìƒíƒœ(cinematic, narraion)
 
 	WORLD_PLAY_DRAGONBALL_SCRAMBLE	= 0x00080001,
 
@@ -56,7 +56,7 @@ enum EWorldPlayConcept
 };
 
 
-/// World ConceptÀÇ ÀüÀÌ »óÅÂ ÇÃ·¡±×
+/// World Conceptì˜ ì „ì´ ìƒíƒœ í”Œë˜ê·¸
 enum EWorldState
 {
 	WORLD_STATE_NONE,
@@ -64,7 +64,7 @@ enum EWorldState
 	WORLD_STATE_IDLE,
 	WORLD_STATE_EXIT,
 
-	// µå·¡°ïº¼ ÄÃ·º¼Ç °ü·Ã »óÅÂ
+	// ë“œë˜ê³¤ë³¼ ì»¬ë ‰ì…˜ ê´€ë ¨ ìƒíƒœ
 	WORLD_DBC_ALTAR_UI,
 	WORLD_DBC_NIGHT_ON,
 	WORLD_DBC_ALTAR_EFFECT,
@@ -86,7 +86,7 @@ enum EWorldStateNPC
 	WORLD_NPC_GUILD_WAREHOUSE,
 };
 
-/// ¾Æ¹ÙÅ¸ ¾×¼Ç °¡´É À¯¹«¸¦ ÆÇ´ÜÇÏ±â À§ÇÑ ÇÃ·¡±× ¸®½ºÆ®
+/// ì•„ë°”íƒ€ ì•¡ì…˜ ê°€ëŠ¥ ìœ ë¬´ë¥¼ íŒë‹¨í•˜ê¸° ìœ„í•œ í”Œë˜ê·¸ ë¦¬ìŠ¤íŠ¸
 enum EAvatarAction
 {
 	E_ACTION_MOVE,
@@ -103,18 +103,18 @@ enum EAvatarAction
 
 enum EWorldStateTMQ
 {
-	WORLD_STATE_TMQ_WAIT,					// TMQ »ı¼ºÇÏ°í ÇÃ·¹ÀÌ¾î ÁøÀÔ ´ë±â
-	WORLD_STATE_TMQ_TERRAIN_READY,			// ÁöÇü ·Îµù ¿Ï·á
-	WORLD_STATE_TMQ_PREPARE,				// ¸ğµç ÇÃ·¹ÀÌ¾î ÁøÀÔÈÄ ÄÁµğ¼Ç Ã¼Å© ÈÄ ½ÃÀÛ ¿©ºÎ °áÁ¤
-	WORLD_STATE_TMQ_ARRIVE,					// ¿¬Ãâ »óÅÂ ( TSºÎÅÍÀÇ ÀÌº¥Æ® ´ë±â, À¯Àú ³ªÅ¸³ª´Â ½Ã°£ ÀÌº¥Æ® ´ë±â )
-	WORLD_STATE_TMQ_BEGIN,					// °ÔÀÓ ½ÃÀÛ ( ½ºÅ©¸³Æ® Á¦¾î )
-	WORLD_STATE_TMQ_STAGE_READY,			// ½ºÅ×ÀÌÁö ÁØºñ ( ½ºÅ©¸³Æ® Á¦¾î )
-	WORLD_STATE_TMQ_STAGE_START,			// ½ºÅ×ÀÌÁö ½ÃÀÛ ( ½ºÅ©¸³Æ® Á¦¾î )
-	WORLD_STATE_TMQ_STAGE_FINISH,			// ½ºÅ×ÀÌÁö Á¾·á ( ½ºÅ©¸³Æ® Á¦¾î )
-	WORLD_STATE_TMQ_END,					// °ÔÀÓ ³¡
-	WORLD_STATE_TMQ_LEAVE,					// °ÔÀÓ ³ª°¡±â »óÅÂ
-	WORLD_STATE_TMQ_FAIL,					// °ÔÀÓ ³¡ ( TMQ ½ÇÆĞ )
-	WORLD_STATE_TMQ_CLOSE,					// TMQ Á¾·á
+	WORLD_STATE_TMQ_WAIT,					// TMQ ìƒì„±í•˜ê³  í”Œë ˆì´ì–´ ì§„ì… ëŒ€ê¸°
+	WORLD_STATE_TMQ_TERRAIN_READY,			// ì§€í˜• ë¡œë”© ì™„ë£Œ
+	WORLD_STATE_TMQ_PREPARE,				// ëª¨ë“  í”Œë ˆì´ì–´ ì§„ì…í›„ ì»¨ë””ì…˜ ì²´í¬ í›„ ì‹œì‘ ì—¬ë¶€ ê²°ì •
+	WORLD_STATE_TMQ_ARRIVE,					// ì—°ì¶œ ìƒíƒœ ( TSë¶€í„°ì˜ ì´ë²¤íŠ¸ ëŒ€ê¸°, ìœ ì € ë‚˜íƒ€ë‚˜ëŠ” ì‹œê°„ ì´ë²¤íŠ¸ ëŒ€ê¸° )
+	WORLD_STATE_TMQ_BEGIN,					// ê²Œì„ ì‹œì‘ ( ìŠ¤í¬ë¦½íŠ¸ ì œì–´ )
+	WORLD_STATE_TMQ_STAGE_READY,			// ìŠ¤í…Œì´ì§€ ì¤€ë¹„ ( ìŠ¤í¬ë¦½íŠ¸ ì œì–´ )
+	WORLD_STATE_TMQ_STAGE_START,			// ìŠ¤í…Œì´ì§€ ì‹œì‘ ( ìŠ¤í¬ë¦½íŠ¸ ì œì–´ )
+	WORLD_STATE_TMQ_STAGE_FINISH,			// ìŠ¤í…Œì´ì§€ ì¢…ë£Œ ( ìŠ¤í¬ë¦½íŠ¸ ì œì–´ )
+	WORLD_STATE_TMQ_END,					// ê²Œì„ ë
+	WORLD_STATE_TMQ_LEAVE,					// ê²Œì„ ë‚˜ê°€ê¸° ìƒíƒœ
+	WORLD_STATE_TMQ_FAIL,					// ê²Œì„ ë ( TMQ ì‹¤íŒ¨ )
+	WORLD_STATE_TMQ_CLOSE,					// TMQ ì¢…ë£Œ
 };
 
 #endif

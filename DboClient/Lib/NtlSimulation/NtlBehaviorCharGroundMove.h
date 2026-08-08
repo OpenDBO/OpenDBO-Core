@@ -4,7 +4,7 @@
 
 /**
  * \ingroup NtlSimulation
- * \brief ÀÏ¹İÀûÀÎ ÁöÇü ÀÌµ¿À» Ã³¸®ÇÏ´Â Çàµ¿ Å¬·¡½º
+ * \brief ì¼ë°˜ì ì¸ ì§€í˜• ì´ë™ì„ ì²˜ë¦¬í•˜ëŠ” í–‰ë™ í´ë˜ìŠ¤
  *
  * \date 2009-04-15
  * \author agebreak
@@ -44,9 +44,9 @@ protected:
     void	SetTransform(void);
     void	SetAnim(RwUInt8 byMoveFlags);
     void	SetDashAnimEnd(void);
-    void    SetIdle2RunAnim(void);                 ///< Idle -> Run º¸°£ ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ¼³Á¤ÇÑ´Ù.
+    void    SetIdle2RunAnim(void);                 ///< Idle -> Run ë³´ê°„ ì• ë‹ˆë©”ì´ì…˜ì„ ì„¤ì •í•œë‹¤.
     void	SetServerSyncPosition(RwV3d vSyncPos);    
-    RwBool  IsIdleAnimationPlaying();              ///< Idle ¾Ö´Ï¸ŞÀÌ¼Ç ÇÃ·¹ÀÌÁßÀÎÁö È®ÀÎÇÑ´Ù.
+    RwBool  IsIdleAnimationPlaying();              ///< Idle ì• ë‹ˆë©”ì´ì…˜ í”Œë ˆì´ì¤‘ì¸ì§€ í™•ì¸í•œë‹¤.
 
 
     RwBool	UpdateDirectionMove(RwReal fElapsed);
@@ -57,7 +57,7 @@ protected:
     RwBool	UpdateDashMove(RwReal fElapsed);
     RwBool	UpdateDashTargetMove(RwReal fElapsed);    
 
-    RwBool  UpdateMoveSync(RwReal fElapsedTime, OUT RwV3d* pDestPos, OUT RwV3d* pNewDir);       ///< ÇöÀçÀÇ MoveSync °ªÀ» °è»êÇÏ´Â Udpate ÇÔ¼ö
+    RwBool  UpdateMoveSync(RwReal fElapsedTime, OUT RwV3d* pDestPos, OUT RwV3d* pNewDir);       ///< í˜„ì¬ì˜ MoveSync ê°’ì„ ê³„ì‚°í•˜ëŠ” Udpate í•¨ìˆ˜
     void	UpdateServerSyncPosition(RwReal fElapsed);
     void	UpdateSendSyncCheck(RwReal fElapsed);
 
@@ -72,9 +72,9 @@ protected:
 
     void	FootStepMaterialProc(RWS::CMsg &pMsg);
 
-    // position º¯È­ check
+    // position ë³€í™” check
     void	LimitPositionChangeCheck(RwReal fElapsed);
-    RwBool  CheckFalling(RwReal fOldActorHeight, RwReal fFinalHeight, RwReal fSpeed, RwUInt8 byMoveFlag, RwV3d* pNewPos = NULL);              ///< Æú¸µ »óÅÂ Ã¼Å© 
+    RwBool  CheckFalling(RwReal fOldActorHeight, RwReal fFinalHeight, RwReal fSpeed, RwUInt8 byMoveFlag, RwV3d* pNewPos = NULL);              ///< í´ë§ ìƒíƒœ ì²´í¬ 
 
 protected:
 
@@ -82,7 +82,7 @@ protected:
     SMoveStuff			m_MoveStuff;
     SWorldHeightStuff	m_sHStuff;				/** world height stuff */
     RwBool				m_bSlowMove;			/** If the target is near to the target when the movement is first started ... */
-    RwReal				m_fSlowMoveTime;		/** slow moveÀÏ °æ¿ì ´©Àû ½Ã°£À» À§ÇØ »ç¿ë */
+    RwReal				m_fSlowMoveTime;		/** slow moveì¼ ê²½ìš° ëˆ„ì  ì‹œê°„ì„ ìœ„í•´ ì‚¬ìš© */
 
     // speed
     RwReal				m_fDefaultWalkSpeed;
@@ -105,7 +105,7 @@ protected:
     // camera
     RwBool				m_bDashCameraEnable;
 
-    // possible º¯È­ check
+    // possible ë³€í™” check
     RwReal				m_fPosChangeTime;
     RwUInt8				m_byPosChangeCnt;
     RwV3d				m_vChangeOldPos;
@@ -113,7 +113,7 @@ protected:
     // collision
     RwUInt8				m_byCollMoveImpossCnt;		// collision move impossible count
 
-    // server µ¿±â À§Ä¡ º¸Á¤.
+    // server ë™ê¸° ìœ„ì¹˜ ë³´ì •.
     RwBool				m_bServerSyncPos;
     RwV3d				m_vServerSyncDir;
     RwReal				m_fServerSyncDist;
@@ -124,7 +124,7 @@ protected:
     RwBool				m_bSyncSendCheck;
     RwReal				m_fSyncSendTime;
 
-    // º¸°£ ¾Ö´Ï¸ŞÀÌ¼ÇÀ» À§ÇÑ º¯¼öµé
+    // ë³´ê°„ ì• ë‹ˆë©”ì´ì…˜ì„ ìœ„í•œ ë³€ìˆ˜ë“¤
     RwBool              m_bInterAnimEnd;
     RwReal              m_fInterAnimTime;   
 };

@@ -1,4 +1,4 @@
-// DataTreeCtrl.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// DataTreeCtrl.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -26,7 +26,7 @@ END_MESSAGE_MAP()
 
 
 
-// CDataTreeCtrl ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CDataTreeCtrl ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CDataTreeCtrl::InitTreeCtrl()
 {
@@ -97,10 +97,10 @@ void CDataTreeCtrl::SerializeList(HTREEITEM hParentItem)
 
 		if(FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 		{
-			//  µğ·ºÅä¸®ÀÌ¸é
+			//  ë””ë ‰í† ë¦¬ì´ë©´
 			if(FindFileData.cFileName[0] == '.')
 			{
-				//  Dot µğ·ºÅä¸®´Â ½ºÅµÇÑ´Ù.
+				//  Dot ë””ë ‰í† ë¦¬ëŠ” ìŠ¤í‚µí•œë‹¤.
 			} 
 			else
 			{
@@ -122,7 +122,7 @@ void CDataTreeCtrl::SerializeList(HTREEITEM hParentItem)
 		}
 	} while(FindNextFile(hFile, &FindFileData));
 
-	// ¸®½ºÆ®¿¡ ´ã¾Æ ³õÀº ÆÄÀÏ ¸®½ºÆ®¸¦ ¼ø¼­´ë·Î Ãâ·ÂÇÑ´Ù.
+	// ë¦¬ìŠ¤íŠ¸ì— ë‹´ì•„ ë†“ì€ íŒŒì¼ ë¦¬ìŠ¤íŠ¸ë¥¼ ìˆœì„œëŒ€ë¡œ ì¶œë ¥í•œë‹¤.
 	smdef_File::iterator it;
 	for (it = smList.begin(); it != smList.end(); ++ it)
 	{

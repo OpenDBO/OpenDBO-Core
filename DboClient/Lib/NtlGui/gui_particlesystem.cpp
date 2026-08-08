@@ -13,13 +13,13 @@
 START_GUI
 
 /**
-* \brief  ÆÄÆ¼Å¬ ½Ã½ºÅÛÀÇ »ý¼ºÀÚ
-* \param pRect			(CRectangle*) ÆÄÆ¼Å¬ ½Ã½ºÅÛÀÇ À§Ä¡Á¤º¸
-* \param pSurfaceMgr	(CSurfaceManager*) ÆÄÆ¼Å¬ ½Ã½ºÅÛ¿¡¼­ »ç¿ëµÉ ¼­ÆäÀÌ½º ¸Å´ÏÀú
+* \brief  íŒŒí‹°í´ ì‹œìŠ¤í…œì˜ ìƒì„±ìž
+* \param pRect			(CRectangle*) íŒŒí‹°í´ ì‹œìŠ¤í…œì˜ ìœ„ì¹˜ì •ë³´
+* \param pSurfaceMgr	(CSurfaceManager*) íŒŒí‹°í´ ì‹œìŠ¤í…œì—ì„œ ì‚¬ìš©ë  ì„œíŽ˜ì´ìŠ¤ ë§¤ë‹ˆì €
 */
 CParticleSystem::CParticleSystem( CRectangle* pRect, CSurfaceManager* pSurfaceMgr )
 {
-	// ÃÊ±âÈ­
+	// ì´ˆê¸°í™”
 	m_nParticleLimit = 100;
 
 	m_pPath = NULL;
@@ -68,7 +68,7 @@ void CParticleSystem::Stop()
 
 void CParticleSystem::Update( float fElapsed )
 {
-	// ÆÄÆ¼Å¬°ú ¾îÆåÅÍ´Â Play ÁßÀÌ ¾Æ´Ï´õ¶óµµ ¾÷µ¥ÀÌÆ® ÇÑ´Ù.
+	// íŒŒí‹°í´ê³¼ ì–´íŽ™í„°ëŠ” Play ì¤‘ì´ ì•„ë‹ˆë”ë¼ë„ ì—…ë°ì´íŠ¸ í•œë‹¤.
 	// Particle Update
 	if( !m_listParticle.empty() )
 	{
@@ -105,14 +105,14 @@ void CParticleSystem::Update( float fElapsed )
 	
 	m_fPlayTime += fElapsed;
 
-	// Ã¹¹øÂ° ¾÷µ¥ÀÌÆ®´Â Æ÷ÇÔ½ÃÅ°Áö ¾Ê´Â´Ù.
+	// ì²«ë²ˆì§¸ ì—…ë°ì´íŠ¸ëŠ” í¬í•¨ì‹œí‚¤ì§€ ì•ŠëŠ”ë‹¤.
 	if( m_bFirstUpdate )
 	{
 		m_bFirstUpdate = FALSE;
 		m_fPlayTime = 0.0f;
 	}
 
-	// ¹Ýº¹ ¸ðµå¶ó¸é °è¼ÓÇØ¼­ µÇÇ®ÀÌ
+	// ë°˜ë³µ ëª¨ë“œë¼ë©´ ê³„ì†í•´ì„œ ë˜í’€ì´
 	if( m_fPlayTime > m_fLifeTime )
 	{
 		if( !m_bRepeat )
@@ -137,7 +137,7 @@ void CParticleSystem::Update( float fElapsed )
 	{
 		if( m_pEmitter )
 			m_pEmitter->Update( fElapsed );
-		// TODO : ÀÌ¹ÌÅÍ¿¡ µû¶ó¼­ ¾÷µ¥ÀÌÆ®
+		// TODO : ì´ë¯¸í„°ì— ë”°ë¼ì„œ ì—…ë°ì´íŠ¸
 	}
 }
 
@@ -145,7 +145,7 @@ void CParticleSystem::Render()
 {
 	if( !m_listParticle.empty() )
 	{
-		// Todo : °³¼±»çÇ×Àº ÇÑ¹ø¿¡ ·»´õ¸µ ÇÏ´Â ÄÚµå·Î °íÃÄ¾ß ÇÑ´Ù´Â °Í
+		// Todo : ê°œì„ ì‚¬í•­ì€ í•œë²ˆì— ë Œë”ë§ í•˜ëŠ” ì½”ë“œë¡œ ê³ ì³ì•¼ í•œë‹¤ëŠ” ê²ƒ
 		PARTICLELISTIT itParticle = m_listParticle.begin();
 		while( itParticle != m_listParticle.end() )
 		{
@@ -225,7 +225,7 @@ VOID CParticleSystem::AddBoxEmitter( int nPosX, int nPosY, int nWidth, int nHeig
 
 	m_pEmitter = NTL_NEW CBoxEmitter( &m_listParticle, m_pSurfaceMgr );
 
-	// Box Emitter ¸¸ÀÇ ¼Ó¼º
+	// Box Emitter ë§Œì˜ ì†ì„±
 	CBoxEmitter* pEmitter = (CBoxEmitter*)m_pEmitter;
 	pEmitter->SetWidthHeight( nWidth, nHeight );
 	

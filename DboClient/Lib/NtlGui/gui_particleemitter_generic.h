@@ -43,21 +43,21 @@
 //	std::list<CParticle*> m_listParticle;
 //	std::vector<stControlData> m_vecControl;
 //
-//	DWORD		m_dwEmitMaxCount;		// ÇÑ¹øÀÇ ½ºÅ¸Æ®¿¡ »ý±â´Â ÆÄÆ¼Å¬ÀÇ °¹¼ö : 0xffffffffÀÌ¸é ¹«ÇÑ.
+//	DWORD		m_dwEmitMaxCount;		// í•œë²ˆì˜ ìŠ¤íƒ€íŠ¸ì— ìƒê¸°ëŠ” íŒŒí‹°í´ì˜ ê°¯ìˆ˜ : 0xffffffffì´ë©´ ë¬´í•œ.
 //	DWORD		m_dwEmitCurCount;
 //
-//	FLOAT		m_fEmitRate1;			// ÆÄÆ¼Å¬ »ý¼º ¼Óµµ : µÎ°ª»çÀÌÀÇ ·£´ý°ª. µÑ´Ù 0ÀÌ¸é ÃÊ±â ÇÑ¹ø¸¸ »ý¼º.
+//	FLOAT		m_fEmitRate1;			// íŒŒí‹°í´ ìƒì„± ì†ë„ : ë‘ê°’ì‚¬ì´ì˜ ëžœë¤ê°’. ë‘˜ë‹¤ 0ì´ë©´ ì´ˆê¸° í•œë²ˆë§Œ ìƒì„±.
 //	FLOAT		m_fEmitRate2;
 //
-//	FLOAT		m_fLifeTime1;			// ÆÄÆ¼Å¬ »ý¸í ½Ã°£ : µÎ°ª»çÀÌÀÇ ·£´ý°ª
+//	FLOAT		m_fLifeTime1;			// íŒŒí‹°í´ ìƒëª… ì‹œê°„ : ë‘ê°’ì‚¬ì´ì˜ ëžœë¤ê°’
 //	FLOAT		m_fLifeTime2;
 //	
-//	CRectangle	m_rtEmitterPos;			// ÆÄÆ¼Å¬ ÃÊ±â À§Ä¡ : »ç°¢Çü ¾ÈÀÇ ·£´ý°ª.
+//	CRectangle	m_rtEmitterPos;			// íŒŒí‹°í´ ì´ˆê¸° ìœ„ì¹˜ : ì‚¬ê°í˜• ì•ˆì˜ ëžœë¤ê°’.
 //	
-//	CRectangle	m_rtSize1;				// ÆÄÆ¼Å¬ÀÇ ÃÊ±â Å©±â : µÎ°ª»çÀÌÀÇ ·£´ý°ª
+//	CRectangle	m_rtSize1;				// íŒŒí‹°í´ì˜ ì´ˆê¸° í¬ê¸° : ë‘ê°’ì‚¬ì´ì˜ ëžœë¤ê°’
 //	CRectangle	m_rtSize2;	
 //
-//	BYTE		m_ucRed1;				// ÆÄÆ¼Å¬ÀÇ ÃÊ±â »ö»ó : µÎ°ª»çÀÌÀÇ ·£´ý°ª
+//	BYTE		m_ucRed1;				// íŒŒí‹°í´ì˜ ì´ˆê¸° ìƒ‰ìƒ : ë‘ê°’ì‚¬ì´ì˜ ëžœë¤ê°’
 //	BYTE		m_ucGreen1;
 //	BYTE		m_ucBlue1;
 //	BYTE		m_ucAlpha1;
@@ -66,10 +66,10 @@
 //	BYTE		m_ucBlue2;
 //	BYTE		m_ucAlpha2;
 //
-//	FLOAT		m_fZRot1;				// ÆÄÆ¼Å¬ÀÇ ÃÊ±â È¸Àü°ª : µÎ°ª»çÀÌÀÇ ·£´ý°ª
+//	FLOAT		m_fZRot1;				// íŒŒí‹°í´ì˜ ì´ˆê¸° íšŒì „ê°’ : ë‘ê°’ì‚¬ì´ì˜ ëžœë¤ê°’
 //	FLOAT		m_fZRot2;
 //
-//	BYTE		m_ucSurfaceIndex1;		// ÆÄÆ¼Å¬ÀÇ ÃÊ±â ¼­ÇÇ½º°ª : µÎ°ª»çÀÌÀÇ ·£´ý°ª
+//	BYTE		m_ucSurfaceIndex1;		// íŒŒí‹°í´ì˜ ì´ˆê¸° ì„œí”¼ìŠ¤ê°’ : ë‘ê°’ì‚¬ì´ì˜ ëžœë¤ê°’
 //	BYTE		m_ucSurfaceIndex2;
 //	
 //	CParticleEmitter* m_pParticleEmitter;

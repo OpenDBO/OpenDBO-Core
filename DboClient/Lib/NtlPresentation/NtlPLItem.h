@@ -2,7 +2,7 @@
  *
  * File			: NtlPLItem.h
  * Author		: HongHoDong
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 11. 2.	
  * Abstract		: NTL CNtlPLItem
  *****************************************************************************
@@ -47,14 +47,14 @@ protected:
 	CNtlPLItemProperty		*m_pProperty;							///< Item Property
 	CNtlPLResource			*m_pResourceClump;						///< Item Resource
 	
-	RwMatrix				m_matWorld;								///< Item¿« World Matrix
+	RwMatrix				m_matWorld;								///< ItemÏùò World Matrix
 
 	FRAME_MAP				m_mapFrame;								///< Bone Info
 	ENTITY_ATOMIC_VEC		m_vecAtomicList;						///< Atomic List
 	
-	CNtlPLCharacter			*m_pOwner;								///< Equip Item¿œ ∞ÊøÏ º“¿Ø¿⁄
+	CNtlPLCharacter			*m_pOwner;								///< Equip ItemÏùº Í≤ΩÏö∞ ÏÜåÏú†Ïûê
 	
-	SItemScheduleResInfo	m_sScheduleResInfo;						///< Schedule Loading ∞¸∑√ Resource ¡§∫∏µÈ	
+	SItemScheduleResInfo	m_sScheduleResInfo;						///< Schedule Loading Í¥ÄÎ†® Resource Ï†ïÎ≥¥Îì§	
 	EItemEquipSlotType		m_eInstanceEquipSlotType;				///< Instance Equip Slot Type
 	
 
@@ -65,24 +65,24 @@ protected:
 	RwRGBA					m_sAddColor;
 	RwBool					m_bRunTimeAlpha;
 
-	SToonData				m_ToonData;								///< Toon Ink, Toon Paint (Itemø°º≠¥¬ ±‚∫ª¿∏∑Œ ª˝º∫¿Ã µ«¡ˆ æ ¥¬¥Ÿ.)
-																	///< Characterø°∏∏ ¿˚øÎ¿Ã µ«π«∑Œ Character Equip µ… ∂ß ª˝º∫¿Ã µ»¥Ÿ.
+	SToonData				m_ToonData;								///< Toon Ink, Toon Paint (ItemÏóêÏÑúÎäî Í∏∞Î≥∏ÏúºÎ°ú ÏÉùÏÑ±Ïù¥ ÎêòÏßÄ ÏïäÎäîÎã§.)
+																	///< CharacterÏóêÎßå Ï†ÅÏö©Ïù¥ ÎêòÎØÄÎ°ú Character Equip Îê† Îïå ÏÉùÏÑ±Ïù¥ ÎêúÎã§.
 
-	CNtlPLLinkEffect        m_LinkEffectInstance;					///< LinkEffect InstanceµÈ¿ª ∞¸∏Æ«œ¥¬ ∞¥√º
-	RwBool                  m_bEnableTrace;                         ///< ±À¿˚ ¿Ã∆Â∆Æ «•«ˆ ¿Øπ´    
-    RwBool                  m_bEnableUpgradeEffect;                 ///< Upgrade Effect «•«ˆ ¿Øπ´ «√∑°±◊
+	CNtlPLLinkEffect        m_LinkEffectInstance;					///< LinkEffect InstanceÎì§ÏùÑ Í¥ÄÎ¶¨ÌïòÎäî Í∞ùÏ≤¥
+	RwBool                  m_bEnableTrace;                         ///< Í∂§Ï†Å Ïù¥ÌéôÌä∏ ÌëúÌòÑ Ïú†Î¨¥    
+    RwBool                  m_bEnableUpgradeEffect;                 ///< Upgrade Effect ÌëúÌòÑ Ïú†Î¨¥ ÌîåÎûòÍ∑∏
 
-    // Item¿« Animation ∞¸∑√
-    RpHAnimHierarchy*       m_pBaseHierarchy;                       ///< Item¿« Hierarchy
-    CNtlAnimLayer*          m_pAnimLayer;                           ///< æ÷¥œ∏ﬁ¿Ãº« ∑π¿ÃæÓ
+    // ItemÏùò Animation Í¥ÄÎ†®
+    RpHAnimHierarchy*       m_pBaseHierarchy;                       ///< ItemÏùò Hierarchy
+    CNtlAnimLayer*          m_pAnimLayer;                           ///< Ïï†ÎãàÎ©îÏù¥ÏÖò Î†àÏù¥Ïñ¥
     CNtlInstanceAnimTable*  m_pInstanceAnimTable;                   ///< Animation Resource Instance Table
-    RwUInt32                m_uiCurAnimKey;                         ///< «ˆ¿Á ¿˚øÎµ«∞Ì ¿÷¥¬ AnimKey
-    RwBool                  m_bAnimUpdate;                          ///< Animation Update ¿Øπ´
+    RwUInt32                m_uiCurAnimKey;                         ///< ÌòÑÏû¨ Ï†ÅÏö©ÎêòÍ≥† ÏûàÎäî AnimKey
+    RwBool                  m_bAnimUpdate;                          ///< Animation Update Ïú†Î¨¥
 	
-	RwBool                  m_bVisualEffect;                        ///< VisualEffect ∫Œ¬¯ ¿Øπ´
+	RwBool                  m_bVisualEffect;                        ///< VisualEffect Î∂ÄÏ∞© Ïú†Î¨¥
 
-    RwInt32                 m_nGrade;                               ///< Item¿« Grade    
-    std::vector<CNtlInstanceEffect*> m_pUpgradeEffects;             ///< ª˝º∫µ» Upgrade EffectµÈ¿« ∫§≈Õ
+    RwInt32                 m_nGrade;                               ///< ItemÏùò Grade    
+    std::vector<CNtlInstanceEffect*> m_pUpgradeEffects;             ///< ÏÉùÏÑ±Îêú Upgrade EffectÎì§Ïùò Î≤°ÌÑ∞
 
 	RwTexture				*m_pUVTexture;							///< U,V Texture
 	RwMatrix				*m_pUVMatrix;							///< U,V Texture Matrix
@@ -107,7 +107,7 @@ protected:
 	RwBool m_PetrifyMaterial;
 
 protected:
-	RwBool  CreateAnimData(RwUInt32 uiAnimKey);														///< Animation ∞¸∑√ µ•¿Ã≈Õ∏¶ º≥¡§«—¥Ÿ.
+	RwBool  CreateAnimData(RwUInt32 uiAnimKey);														///< Animation Í¥ÄÎ†® Îç∞Ïù¥ÌÑ∞Î•º ÏÑ§Ï†ïÌïúÎã§.
 
 	RwBool	SetThreadSafeProperty(const CNtlPLProperty *pData);
 	RwBool	CreateScheduling(const SPLEntityCreateParam * pParam);
@@ -121,7 +121,7 @@ public:
 	void* operator new(size_t size);
 	void operator delete(void *pObj);
 	
-    // ø¿πˆ∂Û¿Ãµ˘ ∏ﬁº“µÂ
+    // Ïò§Î≤ÑÎùºÏù¥Îî© Î©îÏÜåÎìú
 	virtual RwBool Create(const SPLEntityCreateParam *pParam = NULL);
 	virtual void   Destroy(void);
 	virtual RwBool Update(RwReal fElapsed);
@@ -194,33 +194,33 @@ public:
 
 	CNtlPLCharacter *GetOwner() { return m_pOwner; }
 
-    RwBool          GetEnableVisualEffect() {return m_bVisualEffect;}                               ///< Visual Effect ∫Œ¬¯ ¿Øπ´∏¶ π›»Ø«—¥Ÿ.
+    RwBool          GetEnableVisualEffect() {return m_bVisualEffect;}                               ///< Visual Effect Î∂ÄÏ∞© Ïú†Î¨¥Î•º Î∞òÌôòÌïúÎã§.
     RwBool          AttachVisualEffect( CNtlInstanceEffect* pInstanceEffect, 
 		                                SEventVisualEffect* pEventVisualEffect);
     
-    VecLinkEffect*      GetVecLinkEffect() { return &(m_LinkEffectInstance.m_vecLinkEffect); }	    ///< LinkEffect Vector∏¶ π›»Ø«—¥Ÿ.
-    CNtlInstanceEffect* AttachLinkEffect( SEventLinkEffect* pEventLinkEffect );                     ///< Link Effect∏¶ Attach Ω√≈≤¥Ÿ.
+    VecLinkEffect*      GetVecLinkEffect() { return &(m_LinkEffectInstance.m_vecLinkEffect); }	    ///< LinkEffect VectorÎ•º Î∞òÌôòÌïúÎã§.
+    CNtlInstanceEffect* AttachLinkEffect( SEventLinkEffect* pEventLinkEffect );                     ///< Link EffectÎ•º Attach ÏãúÌÇ®Îã§.
     RwBool              DetachLinkEffect( CNtlInstanceEffect* pLinkEffect );     
 
-    void                SetEnableTrace(RwBool bEnable) {m_bEnableTrace = bEnable; }					///< ±À¿˚ ¿Ã∆Â∆Æ «•«ˆ¿Øπ´∏¶ º≥¡§«—¥Ÿ.
-    RwBool              GetEnableTrace() { return m_bEnableTrace; }									///< ±À¿˚ ¿Ã∆Â∆Æ «•«ˆ¿Øπ´∏¶ π›»Ø«—¥Ÿ.
-    RwBool              ActiveTraceEffect( SEventTrace* pEventTrace );								///< ±À¿˚ ¿Ã∆Â∆Æ∏¶ «•«ˆ«—¥Ÿ.
+    void                SetEnableTrace(RwBool bEnable) {m_bEnableTrace = bEnable; }					///< Í∂§Ï†Å Ïù¥ÌéôÌä∏ ÌëúÌòÑÏú†Î¨¥Î•º ÏÑ§Ï†ïÌïúÎã§.
+    RwBool              GetEnableTrace() { return m_bEnableTrace; }									///< Í∂§Ï†Å Ïù¥ÌéôÌä∏ ÌëúÌòÑÏú†Î¨¥Î•º Î∞òÌôòÌïúÎã§.
+    RwBool              ActiveTraceEffect( SEventTrace* pEventTrace );								///< Í∂§Ï†Å Ïù¥ÌéôÌä∏Î•º ÌëúÌòÑÌïúÎã§.
 
-    RwBool              SetUpgradeEffect( ENtlPLItemGrade eGrade );									///< Item¿« Grade Effect∏¶ º≥¡§«—¥Ÿ.
+    RwBool              SetUpgradeEffect( ENtlPLItemGrade eGrade );									///< ItemÏùò Grade EffectÎ•º ÏÑ§Ï†ïÌïúÎã§.
     RwInt32             GetUpgradeEffect() {return m_nGrade;}
-    void                SetEnableUpgradeEffect( RwBool bEnable );									///< Item¿« Grade Effect ªÁøÎ ¿Øπ´∏¶ º≥¡§«—¥Ÿ.
+    void                SetEnableUpgradeEffect( RwBool bEnable );									///< ItemÏùò Grade Effect ÏÇ¨Ïö© Ïú†Î¨¥Î•º ÏÑ§Ï†ïÌïúÎã§.
 	
 	void				SetEffect(ENtlPLItemGrade eGrade, char* effect, RwChar* bone1 = nullptr, RwChar* bone2 = nullptr);
 
 	RwV3d	GetSubWeaponOffset() { return m_pProperty->GetAttachOffset();}
 
-    RwBool	SetAnimation(RwUInt32 uiAnimKey, RwReal fStartTime = 0.0f, RwBool bLoop = TRUE);		///< Animation¿ª ¿˚øÎ«—¥Ÿ.
-    virtual int CallBackBaseAnim(void* pEventData);												///< Animation Event¿« CallBack «‘ºˆ    
+    RwBool	SetAnimation(RwUInt32 uiAnimKey, RwReal fStartTime = 0.0f, RwBool bLoop = TRUE);		///< AnimationÏùÑ Ï†ÅÏö©ÌïúÎã§.
+    virtual int CallBackBaseAnim(void* pEventData);												///< Animation EventÏùò CallBack Ìï®Ïàò    
     
-	void    SetAnimUpdate(RwBool bAnimUpdate) {m_bAnimUpdate = bAnimUpdate;}						///< Animation¿« æ˜µ•¿Ã∆Æ ¿Øπ´∏¶ º≥¡§«—¥Ÿ.
-    RwBool  GetAnimUpdate() {return m_bAnimUpdate;}													///< Animation¿« æ˜µ•¿Ã∆Æ ¿Øπ´∏¶ π›»Ø«—¥Ÿ.
-    RwReal  GetBaseDurationAnimTime();																///< Animation¿« Play Time¿ª π›»Ø«—¥Ÿ.
-    RwBool  IsHaveAnimData();                                                                       ///< æ÷¥œ∏ﬁ¿Ãº« µ•¿Ã≈Õ∞° ºº∆√µ«æÓ ¿÷¥¬¡ˆ π›»Ø«—¥Ÿ.
+	void    SetAnimUpdate(RwBool bAnimUpdate) {m_bAnimUpdate = bAnimUpdate;}						///< AnimationÏùò ÏóÖÎç∞Ïù¥Ìä∏ Ïú†Î¨¥Î•º ÏÑ§Ï†ïÌïúÎã§.
+    RwBool  GetAnimUpdate() {return m_bAnimUpdate;}													///< AnimationÏùò ÏóÖÎç∞Ïù¥Ìä∏ Ïú†Î¨¥Î•º Î∞òÌôòÌïúÎã§.
+    RwReal  GetBaseDurationAnimTime();																///< AnimationÏùò Play TimeÏùÑ Î∞òÌôòÌïúÎã§.
+    RwBool  IsHaveAnimData();                                                                       ///< Ïï†ÎãàÎ©îÏù¥ÏÖò Îç∞Ïù¥ÌÑ∞Í∞Ä ÏÑ∏ÌåÖÎêòÏñ¥ ÏûàÎäîÏßÄ Î∞òÌôòÌïúÎã§.
 
 	// DOGI interfaces
 	RwTexture*	GetDogiEmblem() { return m_pDogiEmblemTex; }

@@ -1,4 +1,4 @@
-// FieldsInformation.cpp : ���� �����Դϴ�.
+// FieldsInformation.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -23,7 +23,7 @@
 //////////////////////////////////////////////////////////////////////////
 #ifdef dNTL_WORLD_FILE
 
-// CFieldsInformation ��ȭ �����Դϴ�.
+// CFieldsInformation 대화 상자입니다.
 
 IMPLEMENT_DYNAMIC(CFieldsInformation, CDialog)
 
@@ -50,7 +50,7 @@ BEGIN_MESSAGE_MAP(CFieldsInformation, CDialog)
 END_MESSAGE_MAP()
 
 
-// CFieldsInformation �޽��� ó�����Դϴ�.
+// CFieldsInformation 메시지 처리기입니다.
 
 BOOL CFieldsInformation::PreTranslateMessage(MSG* pMsg)
 {
@@ -150,7 +150,7 @@ BOOL CFieldsInformation::OnInitDialog()
 	UpdateData(FALSE);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ����: OCX �Ӽ� �������� FALSE�� ��ȯ�ؾ� �մϴ�.
+	// 예외: OCX 속성 페이지는 FALSE를 반환해야 합니다.
 }
 
 VOID CFieldsInformation::RefreshInfo(RwInt32 FieldIdx)
@@ -178,7 +178,7 @@ VOID CFieldsInformation::RefreshInfo(RwInt32 FieldIdx)
 	}
 	
 	m_Result = m_StrBGMName;
-	m_StrBGMName.Format("�ѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤ�\r\n");
+	m_StrBGMName.Format("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\r\n");
 	m_Result += m_StrBGMName;
 
 	// Env Name
@@ -193,7 +193,7 @@ VOID CFieldsInformation::RefreshInfo(RwInt32 FieldIdx)
 	}
 
 	m_Result += m_StrEnvName;
-	m_StrEnvName.Format("�ѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤ�\r\n");
+	m_StrEnvName.Format("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\r\n");
 	m_Result += m_StrEnvName;
 
 	// 2. Normal Map Prop.
@@ -250,7 +250,7 @@ VOID CFieldsInformation::RefreshInfo(RwInt32 FieldIdx)
 		m_Result += m_StrNMapSpec;
 	}
 
-	m_StrNMapSpec.Format("�ѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤ�\r\n");
+	m_StrNMapSpec.Format("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\r\n");
 	m_Result += m_StrNMapSpec;
 
 	// 3. Map Name
@@ -272,7 +272,7 @@ VOID CFieldsInformation::RefreshInfo(RwInt32 FieldIdx)
 		m_Result += m_MapName;
 	}
 
-	m_MapName.Format("�ѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤ�\r\n");
+	m_MapName.Format("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\r\n");
 	m_Result += m_MapName;
 
 	// 4. Trigger Object
@@ -450,7 +450,7 @@ VOID CFieldsInformation::RefreshInfo(RwInt32 FieldIdx)
 
 	FileMem.Free();
 
-	m_Trigger.Format("�ѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤ�\r\n");
+	m_Trigger.Format("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\r\n");
 	m_Result += m_Trigger;
 
 	// 5. MOB Spawn
@@ -461,7 +461,7 @@ VOID CFieldsInformation::RefreshInfo(RwInt32 FieldIdx)
 	m_MobSpawn.Format("- Total Counts : [%d]\r\n", SpawnCnt);
 	m_Result += m_MobSpawn;
 
-	m_MobSpawn.Format("�ѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤ�\r\n");
+	m_MobSpawn.Format("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\r\n");
 	m_Result += m_MobSpawn;
 
 	// The last one to display
@@ -493,7 +493,7 @@ void CFieldsInformation::OnLbnSelchangeFiFields()
 //////////////////////////////////////////////////////////////////////////
 #else
 
-// CFieldsInformation ��ȭ �����Դϴ�.
+// CFieldsInformation 대화 상자입니다.
 
 IMPLEMENT_DYNAMIC(CFieldsInformation, CDialog)
 
@@ -520,7 +520,7 @@ BEGIN_MESSAGE_MAP(CFieldsInformation, CDialog)
 END_MESSAGE_MAP()
 
 
-// CFieldsInformation �޽��� ó�����Դϴ�.
+// CFieldsInformation 메시지 처리기입니다.
 
 BOOL CFieldsInformation::PreTranslateMessage(MSG* pMsg)
 {
@@ -620,7 +620,7 @@ BOOL CFieldsInformation::OnInitDialog()
 	UpdateData(FALSE);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ����: OCX �Ӽ� �������� FALSE�� ��ȯ�ؾ� �մϴ�.
+	// 예외: OCX 속성 페이지는 FALSE를 반환해야 합니다.
 }
 
 VOID CFieldsInformation::RefreshInfo(RwInt32 FieldIdx)
@@ -648,7 +648,7 @@ VOID CFieldsInformation::RefreshInfo(RwInt32 FieldIdx)
 	}
 
 	m_Result = m_StrBGMName;
-	m_StrBGMName.Format("�ѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤ�\r\n");
+	m_StrBGMName.Format("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\r\n");
 	m_Result += m_StrBGMName;
 
 	// Env Name
@@ -663,7 +663,7 @@ VOID CFieldsInformation::RefreshInfo(RwInt32 FieldIdx)
 	}
 
 	m_Result += m_StrEnvName;
-	m_StrEnvName.Format("�ѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤ�\r\n");
+	m_StrEnvName.Format("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\r\n");
 	m_Result += m_StrEnvName;
 
 	// 2. Normal Map Prop.
@@ -720,7 +720,7 @@ VOID CFieldsInformation::RefreshInfo(RwInt32 FieldIdx)
 		m_Result += m_StrNMapSpec;
 	}
 
-	m_StrNMapSpec.Format("�ѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤ�\r\n");
+	m_StrNMapSpec.Format("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\r\n");
 	m_Result += m_StrNMapSpec;
 
 	// 3. Map Name
@@ -742,7 +742,7 @@ VOID CFieldsInformation::RefreshInfo(RwInt32 FieldIdx)
 		m_Result += m_MapName;
 	}
 
-	m_MapName.Format("�ѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤ�\r\n");
+	m_MapName.Format("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\r\n");
 	m_Result += m_MapName;
 
 	// 4. Trigger Object
@@ -1051,7 +1051,7 @@ VOID CFieldsInformation::RefreshInfo(RwInt32 FieldIdx)
 
 	FileMem.Free();
 
-	m_Trigger.Format("�ѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤ�\r\n");
+	m_Trigger.Format("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\r\n");
 	m_Result += m_Trigger;
 
 	// 5. MOB Spawn
@@ -1062,7 +1062,7 @@ VOID CFieldsInformation::RefreshInfo(RwInt32 FieldIdx)
 	m_MobSpawn.Format("- Total Counts : [%d]\r\n", SpawnCnt);
 	m_Result += m_MobSpawn;
 
-	m_MobSpawn.Format("�ѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤѤ�\r\n");
+	m_MobSpawn.Format("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ\r\n");
 	m_Result += m_MobSpawn;
 
 	// The last one to display

@@ -5,7 +5,7 @@
 #include "afxwin.h"
 
 
-// CAttr_ACT_SendSvrEvt ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_ACT_SendSvrEvt ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CAttr_ACT_SendSvrEvt : public CAttr_Page
 {
@@ -26,7 +26,7 @@ public:
 	CAttr_ACT_SendSvrEvt();
 	virtual ~CAttr_ACT_SendSvrEvt();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_TS_ACT_SEND_SVR_EVT_ATTR_DIAG };
 
 	void InitData( void );
@@ -36,7 +36,7 @@ public:
 	virtual void	UnPakingPageData( CString& strKey, CString& strValue );
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual BOOL OnInitDialog();
 
 	DECLARE_MESSAGE_MAP()

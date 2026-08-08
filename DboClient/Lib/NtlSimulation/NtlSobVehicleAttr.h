@@ -2,7 +2,7 @@
 *
 * File			: NtlSobVehicleAttr.h
  * Author		: JeongHo, Rho
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2008. 11. 4	
 * Abstract		: Simulation vehicle attribute base class
 *****************************************************************************

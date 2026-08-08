@@ -2,7 +2,7 @@
 //	File		:	CVenusPropertyContainer.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -476,7 +476,7 @@ RwBool CVenusPropertyContainer::DeleteResourceSystem(CNtlResourceEffect* pResour
 	it = std::find(pResourceEffect->m_svResourceSystem.begin(), pResourceEffect->m_svResourceSystem.end(), pResourceSystem);
 	if (it != pResourceEffect->m_svResourceSystem.end())
 	{
-		// ½Ã½ºÅÛÀ» »èÁ¦ÇÏ±âÀü¿¡ ÀÌ ½Ã½ºÅÛÀ» ¼­ºê ½Ã½ºÅÛÀ¸·Î »ç¿ëÇÏ´Â°÷ÀÌ ÀÖ´ÂÁö Ã¼Å©ÇØ¼­ Áö¿öÁØ´Ù.
+		// ì‹œìŠ¤í…œì„ ì‚­ì œí•˜ê¸°ì „ì— ì´ ì‹œìŠ¤í…œì„ ì„œë¸Œ ì‹œìŠ¤í…œìœ¼ë¡œ ì‚¬ìš©í•˜ëŠ”ê³³ì´ ìˆëŠ”ì§€ ì²´í¬í•´ì„œ ì§€ì›Œì¤€ë‹¤.
 		CNtlResourceEffect::svdef_ResourceComponentSystem::iterator kt;
 		for (kt = pResourceEffect->m_svResourceSystem.begin(); kt != pResourceEffect->m_svResourceSystem.end(); ++kt)
 		{
@@ -490,7 +490,7 @@ RwBool CVenusPropertyContainer::DeleteResourceSystem(CNtlResourceEffect* pResour
 			}
 		}
 
-		// resource List ¿¡¼­ »èÁ¦ÇÏ±â
+		// resource List ì—ì„œ ì‚­ì œí•˜ê¸°
 		pResourceEffect->m_svResourceSystem.erase(it);
 		pResourceEffect->ResetSubSystem();
 
@@ -1982,7 +1982,7 @@ void CVenusPropertyContainer::InitialMultiTexturesEmitter(RpPrtAdvEmtPrtMultiTex
 	pMultiTexturesEmitter->bLoop = TRUE;
 
 	pMultiTexturesEmitter->list = NTL_NEW RpPrtAdvEmtPrtTextureItem[pMultiTexturesEmitter->numTextures];
-	// std::string °¡ ÀÖ¾î¼­ memset ´Â ÇÒ¼ö ¾ø´Ù
+	// std::string ê°€ ìˆì–´ì„œ memset ëŠ” í• ìˆ˜ ì—†ë‹¤
 //	memset(pMultiTexturesEmitter->list, 0, sizeof(RpPrtAdvEmtPrtTexCoordsItem) * pMultiTexCoordsEmitter->numTex);
 
 	pMultiTexturesEmitter->list[0].time = 1.0f;
@@ -2017,12 +2017,12 @@ void CVenusPropertyContainer::InitialEmitterSplinePath(SNtlPrtEmitterSplinePath*
 void CVenusPropertyContainer::CopySystem_Component(CNtlResourceComponentSystem* pDestSystem, CNtlResourceComponentSystem* pSrcSystem)
 {
 	//RESOURCE_SYSTEMTYPE_NONE;
-/*	RwInt32				m_nSystemType;						// º¹»ç ÇÊ¿ä ¾øÀ½
-	std::string			m_strName;							// º¹»ç ÇÊ¿ä ¾øÀ½
+/*	RwInt32				m_nSystemType;						// ë³µì‚¬ í•„ìš” ì—†ìŒ
+	std::string			m_strName;							// ë³µì‚¬ í•„ìš” ì—†ìŒ
 
 	RwUInt32			m_nEmitterDataFlag;
 
-	RwBool				m_bSubSystem;						// »õ·Î °áÁ¤ ÇÏ¹Ç·Î ÇÊ¿ä ¾ø´Ù
+	RwBool				m_bSubSystem;						// ìƒˆë¡œ ê²°ì • í•˜ë¯€ë¡œ í•„ìš” ì—†ë‹¤
 
 	RwBool				m_bEternity;
 	RwReal				m_fStartTime;
@@ -2052,8 +2052,8 @@ void CVenusPropertyContainer::CopySystem_Component(CNtlResourceComponentSystem* 
 	pDestSystem->m_nPathEmitterDataFlag			= pSrcSystem->m_nPathEmitterDataFlag;
 	memcpy(&pDestSystem->m_EmitterPrtSplinePath, &pSrcSystem->m_EmitterPrtSplinePath, sizeof(SNtlPrtEmitterSplinePath));
 
-	// SetEmitterDataFlag_ParticleSystem ¿¡¼­ nEmitterDataFlag °¡ assert °¡ °É·Á ÀÖ±â ¶§¹®¿¡ 
-	// ¿©±â¼­ ÃÊ±âÈ­¸¦ ÇÏ°í ¾×¼ÇµéÀ» ´Ù º¹»çÇÑ´ÙÀ½ ´Ù½Ã ¿ø·¡´ë·Î ¼¼ÆÃÇÑ´Ù.
+	// SetEmitterDataFlag_ParticleSystem ì—ì„œ nEmitterDataFlag ê°€ assert ê°€ ê±¸ë ¤ ìˆê¸° ë•Œë¬¸ì— 
+	// ì—¬ê¸°ì„œ ì´ˆê¸°í™”ë¥¼ í•˜ê³  ì•¡ì…˜ë“¤ì„ ë‹¤ ë³µì‚¬í•œë‹¤ìŒ ë‹¤ì‹œ ì›ë˜ëŒ€ë¡œ ì„¸íŒ…í•œë‹¤.
 	RwUInt32 nEmitterDataFlag = pDestSystem->m_nEmitterDataFlag;
 	pDestSystem->m_nEmitterDataFlag = 0;
 
@@ -2110,7 +2110,7 @@ void CVenusPropertyContainer::CopySystem_Particle(CNtlResourceParticleSystem* pD
 	RpPrtAdvSphereEmitter			m_EmitterPtrSphere;
     RpPrtAdvCircleEmitter			m_EmitterPtrCircle;
 
-	std::string						m_strSubSystem;					// sub system Àº ¾øÀ¸¹Ç·Î º¹»çÇÏÁö ¾Ê´Â´Ù
+	std::string						m_strSubSystem;					// sub system ì€ ì—†ìœ¼ë¯€ë¡œ ë³µì‚¬í•˜ì§€ ì•ŠëŠ”ë‹¤
 
 	RwBool							m_bAlphaBlend;
 	RwBlendFunction					m_nSrcBlend;
@@ -2123,8 +2123,8 @@ void CVenusPropertyContainer::CopySystem_Particle(CNtlResourceParticleSystem* pD
 	memcpy(&pDestSystem->m_EmitterStandard, &pSrcSystem->m_EmitterStandard, sizeof(RpPrtStdEmitterStandard));
 	pDestSystem->m_strTextureName				= pSrcSystem->m_strTextureName.c_str();
 
-	// SetEmitterDataFlag_ParticleSystem ¿¡¼­ nEmitterDataFlag °¡ assert °¡ °É·Á ÀÖ±â ¶§¹®¿¡ 
-	// ¿©±â¼­ ÃÊ±âÈ­¸¦ ÇÏ°í ¾×¼ÇµéÀ» ´Ù º¹»çÇÑ´ÙÀ½ ´Ù½Ã ¿ø·¡´ë·Î ¼¼ÆÃÇÑ´Ù.
+	// SetEmitterDataFlag_ParticleSystem ì—ì„œ nEmitterDataFlag ê°€ assert ê°€ ê±¸ë ¤ ìˆê¸° ë•Œë¬¸ì— 
+	// ì—¬ê¸°ì„œ ì´ˆê¸°í™”ë¥¼ í•˜ê³  ì•¡ì…˜ë“¤ì„ ë‹¤ ë³µì‚¬í•œë‹¤ìŒ ë‹¤ì‹œ ì›ë˜ëŒ€ë¡œ ì„¸íŒ…í•œë‹¤.
 	RwUInt32 nEmitterDataFlag = pDestSystem->m_nEmitterDataFlag;
 	pDestSystem->m_nEmitterDataFlag = 0;
 
@@ -2181,8 +2181,8 @@ void CVenusPropertyContainer::CopySystem_Mesh(CNtlResourceMeshSystem* pDestSyste
 	pDestSystem->m_strUvFileName				= pSrcSystem->m_strUvFileName.c_str();
 	memcpy(&pDestSystem->m_EmitterStandard, &pSrcSystem->m_EmitterStandard, sizeof(SNtlMeshEmitterStandard));
 
-	// SetEmitterDataFlag_ParticleSystem ¿¡¼­ nEmitterDataFlag °¡ assert °¡ °É·Á ÀÖ±â ¶§¹®¿¡ 
-	// ¿©±â¼­ ÃÊ±âÈ­¸¦ ÇÏ°í ¾×¼ÇµéÀ» ´Ù º¹»çÇÑ´ÙÀ½ ´Ù½Ã ¿ø·¡´ë·Î ¼¼ÆÃÇÑ´Ù.
+	// SetEmitterDataFlag_ParticleSystem ì—ì„œ nEmitterDataFlag ê°€ assert ê°€ ê±¸ë ¤ ìˆê¸° ë•Œë¬¸ì— 
+	// ì—¬ê¸°ì„œ ì´ˆê¸°í™”ë¥¼ í•˜ê³  ì•¡ì…˜ë“¤ì„ ë‹¤ ë³µì‚¬í•œë‹¤ìŒ ë‹¤ì‹œ ì›ë˜ëŒ€ë¡œ ì„¸íŒ…í•œë‹¤.
 	RwUInt32 nEmitterDataFlag = pDestSystem->m_nEmitterDataFlag;
 	pDestSystem->m_nEmitterDataFlag = 0;
 
@@ -2219,8 +2219,8 @@ void CVenusPropertyContainer::CopySystem_ImVertex(CNtlResourceImVertexSystem* pD
 */
 	pDestSystem->m_strTextureName			= pSrcSystem->m_strTextureName.c_str();
 
-	// SetEmitterDataFlag_ParticleSystem ¿¡¼­ nEmitterDataFlag °¡ assert °¡ °É·Á ÀÖ±â ¶§¹®¿¡ 
-	// ¿©±â¼­ ÃÊ±âÈ­¸¦ ÇÏ°í ¾×¼ÇµéÀ» ´Ù º¹»çÇÑ´ÙÀ½ ´Ù½Ã ¿ø·¡´ë·Î ¼¼ÆÃÇÑ´Ù.
+	// SetEmitterDataFlag_ParticleSystem ì—ì„œ nEmitterDataFlag ê°€ assert ê°€ ê±¸ë ¤ ìˆê¸° ë•Œë¬¸ì— 
+	// ì—¬ê¸°ì„œ ì´ˆê¸°í™”ë¥¼ í•˜ê³  ì•¡ì…˜ë“¤ì„ ë‹¤ ë³µì‚¬í•œë‹¤ìŒ ë‹¤ì‹œ ì›ë˜ëŒ€ë¡œ ì„¸íŒ…í•œë‹¤.
 	RwUInt32 nEmitterDataFlag = pDestSystem->m_nEmitterDataFlag;
 	pDestSystem->m_nEmitterDataFlag = 0;
 
@@ -2325,8 +2325,8 @@ void CVenusPropertyContainer::CopySystem_PostEffect(CNtlResourcePostEffectSystem
 
 	memcpy(&pDestSystem->m_EmitterStandard, &pSrcSystem->m_EmitterStandard, sizeof(SNtlPostEffectEmitterStandard));
 
-    // SetEmitterDataFlag_ParticleSystem ¿¡¼­ nEmitterDataFlag °¡ assert °¡ °É·Á ÀÖ±â ¶§¹®¿¡ 
-    // ¿©±â¼­ ÃÊ±âÈ­¸¦ ÇÏ°í ¾×¼ÇµéÀ» ´Ù º¹»çÇÑ´ÙÀ½ ´Ù½Ã ¿ø·¡´ë·Î ¼¼ÆÃÇÑ´Ù.
+    // SetEmitterDataFlag_ParticleSystem ì—ì„œ nEmitterDataFlag ê°€ assert ê°€ ê±¸ë ¤ ìˆê¸° ë•Œë¬¸ì— 
+    // ì—¬ê¸°ì„œ ì´ˆê¸°í™”ë¥¼ í•˜ê³  ì•¡ì…˜ë“¤ì„ ë‹¤ ë³µì‚¬í•œë‹¤ìŒ ë‹¤ì‹œ ì›ë˜ëŒ€ë¡œ ì„¸íŒ…í•œë‹¤.
     RwUInt32 nEmitterDataFlag = pDestSystem->m_nEmitterDataFlag;
     pDestSystem->m_nEmitterDataFlag = 0;
 
@@ -2915,7 +2915,7 @@ RwBool CVenusPropertyContainer::Load(const RwChar* strPathName)
 {
 	return CNtlPLPropertyContainer::LoadEffect(strPathName);
 
-    // ÀÌÆåÆ® »ç¿ë ¸Ş¸ğ¸®¸¦ ÆÄÀÏ¿¡ Ãâ·ÂÇÑ´Ù.
+    // ì´í™íŠ¸ ì‚¬ìš© ë©”ëª¨ë¦¬ë¥¼ íŒŒì¼ì— ì¶œë ¥í•œë‹¤.
     //OutputUsedMemory();    
 }
 

@@ -68,18 +68,18 @@ void CNtlPrivateShop::HandleEvents_PrivateShopState(RWS::CMsg &pMsg)
 	{
 		switch (pShopState->uiEventType)
 		{
-		case PRIVATESHOP_EVENT_CREATE: // »óÁ¡ ½ÃÀÛ
+		case PRIVATESHOP_EVENT_CREATE: // ìƒì  ì‹œìž‘
 			SetPrivateShopState((ePRIVATESHOP_STATE)pShopState->uiPrivateShopState, pShopState->pPrivateShopData);
 			ClearPrivateShopItem(true);
 			break;
-		case PRIVATESHOP_EVENT_EXIT: // »óÁ¡ ³¡
+		case PRIVATESHOP_EVENT_EXIT: // ìƒì  ë
 			SetPrivateShopState((ePRIVATESHOP_STATE)pShopState->uiPrivateShopState, pShopState->pPrivateShopData);
 			ClearPrivateShopItem(true);
 			break;
-		case PRIVATESHOP_EVENT_OPEN: // ÆÇ¸Å °³½Ã
+		case PRIVATESHOP_EVENT_OPEN: // íŒë§¤ ê°œì‹œ
 			SetPrivateShopState((ePRIVATESHOP_STATE)pShopState->uiPrivateShopState, pShopState->pPrivateShopData);
 			break;
-		case PRIVATESHOP_EVENT_CLOSE: // ÆÇ¸Å ÁßÁö
+		case PRIVATESHOP_EVENT_CLOSE: // íŒë§¤ ì¤‘ì§€
 			SetPrivateShopState((ePRIVATESHOP_STATE)pShopState->uiPrivateShopState, pShopState->pPrivateShopData);
 			break;
 		}

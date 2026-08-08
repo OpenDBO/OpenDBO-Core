@@ -114,7 +114,7 @@ RwBool CFriendListGui::Create()
 
     CreateInfoStaticBox();
 
-    // ΩΩ∑‘ º≥¡§        
+    // Ïä¨Î°Ø ÏÑ§Ï†ï        
     m_slotMouseLeave    = m_pThis->SigMouseLeave().Connect(this, &CFriendListGui::OnMouseLeave);
     m_slotClose         = m_pBtnClose->SigClicked().Connect(this, &CFriendListGui::OnCloseBtnClicked);
     m_slotBtnTitleName  = m_pBtnTitleName->SigClicked().Connect(this, &CFriendListGui::OnTitleNameClicked);
@@ -135,24 +135,24 @@ RwBool CFriendListGui::Create()
 	m_slotCaptureMouseDown = GetNtlGuiManager()->GetGuiManager()->SigCaptureMouseDown().Connect(this, &CFriendListGui::OnCaptureMouseDown); // required to put friendlist above other UI's
     
     
-    // ªÛ¡° ¿Ã∏ß ¿ßƒ° º≥¡§
+    // ÏÉÅÏ†ê Ïù¥Î¶Ñ ÏúÑÏπò ÏÑ§Ï†ï
     m_pSttDialogTitle->SetPosition(DBOGUI_DIALOG_TITLE_X, DBOGUI_DIALOG_TITLE_Y);
     m_pSttDialogTitle->SetText(GetDisplayStringManager()->GetString("DST_FRIEND_TAB_FRIEND"));
 
-    // ≈« º≥¡§            
+    // ÌÉ≠ ÏÑ§Ï†ï            
     std::wstring wstrTabFriend = GetDisplayStringManager()->GetString("DST_FRIEND_TAB_FRIEND");
     std::wstring wstrTabBlack = GetDisplayStringManager()->GetString("DST_FRIEND_TAB_BLACKLIST");
     m_pTabMode->AddTab(wstrTabFriend);
     m_pTabMode->AddTab(wstrTabBlack);
     m_pTabMode->SelectTab(0);
 
-    // ≈ÿΩ∫∆Æ º≥¡§
+    // ÌÖçÏä§Ìä∏ ÏÑ§Ï†ï
     m_pBtnTitleName->SetText(GetDisplayStringManager()->GetString("DST_FRIEND_SUBJECT_NAME"));
     m_pBtnTitleLevel->SetText(GetDisplayStringManager()->GetString("DST_FRIEND_SUBJECT_LEVEL"));
     m_pBtnTitleLoc->SetText(GetDisplayStringManager()->GetString("DST_FRIEND_SUBJECT_LOC"));
     m_pBtnTitleChannel->SetText(GetDisplayStringManager()->GetString("DST_FRIEND_SUBJECT_CHANNEL"));
 
-    // ∏ÆΩ∫∆Æ º≥¡§
+    // Î¶¨Ïä§Ìä∏ ÏÑ§Ï†ï
     m_InfoList.Create(m_pThis, this, 
                       &CFriendListGui::OnCreateItem,
                       &CFriendListGui::OnDestroyItem,
@@ -163,7 +163,7 @@ RwBool CFriendListGui::Create()
 	for(int i = 0; i < FRIEND_LIST_MAX_VISIBLE; ++i)
 	{
 		CRectangle rectIcon;
-		// æ∆¿Ãƒ‹ ª˝º∫
+		// ÏïÑÏù¥ÏΩò ÏÉùÏÑ±
 		rectIcon.left = FRIEND_ICON_X;
 		rectIcon.right = rectIcon.left + 19;
 		rectIcon.top = FRIEND_ICON_Y + i * (19 + FRIEND_LIST_MARGIN);
@@ -238,7 +238,7 @@ VOID CFriendListGui::HandleEvents( RWS::CMsg &pMsg )
             break;
         }
     }
-    else if(pMsg.Id == g_EventMsgBoxResult)     // ƒ£±∏ ªË¡¶ø°º≠ »Æ¿Œ πˆ∆∞ ≈¨∏ØΩ√
+    else if(pMsg.Id == g_EventMsgBoxResult)     // ÏπúÍµ¨ ÏÇ≠Ï†úÏóêÏÑú ÌôïÏù∏ Î≤ÑÌäº ÌÅ¥Î¶≠Ïãú
     {
         SDboEventMsgBoxResult *pMsgBoxResult = reinterpret_cast<SDboEventMsgBoxResult*>( pMsg.pData );
         if( pMsgBoxResult->eResult == MBR_OK )
@@ -293,7 +293,7 @@ VOID CFriendListGui::HandleEvents( RWS::CMsg &pMsg )
 			}
         }        
     }
-    else if(pMsg.Id == g_EventIconPopupResult)          // ≈∏∞Ÿ¿« ∏ﬁ¥∫√¢ø°º≠ ƒ£±∏√ﬂ∞° πˆ∆∞¿ª ≈¨∏Ø«ﬂ¿ª∂ß
+    else if(pMsg.Id == g_EventIconPopupResult)          // ÌÉÄÍ≤üÏùò Î©îÎâ¥Ï∞ΩÏóêÏÑú ÏπúÍµ¨Ï∂îÍ∞Ä Î≤ÑÌäºÏùÑ ÌÅ¥Î¶≠ÌñàÏùÑÎïå
     {
         SDboEventIconPopupResult* pData = (SDboEventIconPopupResult*)pMsg.pData;
 		if (pData->nWorkId == PMW_FRIEND_ADD)
@@ -385,7 +385,7 @@ VOID CFriendListGui::OnBlackListAddRes(RwUInt32 uiTargetID)
     UpdateInfo(pMember->charID);
 }
 
-// ∆ƒ∆º √ ¥Î πˆ∆∞¿ª ≈¨∏Ø«ﬂ¿ª∂ß
+// ÌååÌã∞ Ï¥àÎåÄ Î≤ÑÌäºÏùÑ ÌÅ¥Î¶≠ÌñàÏùÑÎïå
 VOID CFriendListGui::OnPartyBtnClicked( gui::CComponent* pComponent ) 
 {
     if(m_uiCurrentCharID == INVALID_SERIAL_ID)
@@ -433,11 +433,11 @@ VOID CFriendListGui::OnMailBtnClicked( gui::CComponent* pComponent )
     if(!pMember)
         return;
     
-    // ∏ﬁ¿œ ¿¸º€ ¿Ã∫•∆Æ
+    // Î©îÏùº Ï†ÑÏÜ° Ïù¥Î≤§Ìä∏
     CDboEventGenerator::OpenSendMail(pMember->wszMemberName);
 }
 
-// ƒ£±∏∏ÆΩ∫∆Æø° ¿÷¥¬ ƒ£±∏∏¶ ∫Ì∑¢∏ÆΩ∫∆Æ∑Œ ¿Ãµø¿ª ø‰√ª«—¥Ÿ.
+// ÏπúÍµ¨Î¶¨Ïä§Ìä∏Ïóê ÏûàÎäî ÏπúÍµ¨Î•º Î∏îÎûôÎ¶¨Ïä§Ìä∏Î°ú Ïù¥ÎèôÏùÑ ÏöîÏ≤≠ÌïúÎã§.
 VOID CFriendListGui::OnBlockClicked( gui::CComponent* pComponent ) 
 {
     if(m_uiCurrentCharID == INVALID_SERIAL_ID)
@@ -453,7 +453,7 @@ VOID CFriendListGui::OnFriendMoveRes(RwUInt32 uiTargetID)
 {
     if(uiTargetID == GetDboGlobal()->GetCommunityTarget())
     {
-        // UI ¡¶∞≈
+        // UI Ï†úÍ±∞
         CNtlSLEventGenerator::CommuTargetRelease(uiTargetID);
 
 		Logic_SobTarget(INVALID_HOBJECT, INVALID_BYTE);
@@ -462,7 +462,7 @@ VOID CFriendListGui::OnFriendMoveRes(RwUInt32 uiTargetID)
     RefreshList();       
 }
 
-/// ƒ£±∏/∫Ì∑¢∏ÆΩ∫∆Æ ªË¡¶ ø‰√ª
+/// ÏπúÍµ¨/Î∏îÎûôÎ¶¨Ïä§Ìä∏ ÏÇ≠Ï†ú ÏöîÏ≤≠
 VOID CFriendListGui::OnDeleteClicked( gui::CComponent* pComponent ) 
 {
     if(m_uiCurrentCharID == INVALID_SERIAL_ID)
@@ -471,7 +471,7 @@ VOID CFriendListGui::OnDeleteClicked( gui::CComponent* pComponent )
         return;
     }
 
-    // »Æ¿Œ UI √‚∑¬
+    // ÌôïÏù∏ UI Ï∂úÎ†•
     if(m_eListMode == FRIEND_LIST)
     {
 		GetAlarmManager()->FormattedAlarmMessage( "DST_FRIEND_MSG_FRIEND_DEL", FALSE, 0.0f, NULL, GetNtlSLGlobal()->GetSobAvatar()->GetFriendList()->GetMemberbyKey(m_uiCurrentCharID)->wszMemberName );	
@@ -489,7 +489,7 @@ VOID CFriendListGui::OnFriendDelRes(RwUInt32 uiTargetID)
 
     if(uiTargetID == GetDboGlobal()->GetCommunityTarget())
     {
-        // UI ¡¶∞≈
+        // UI Ï†úÍ±∞
         CNtlSLEventGenerator::CommuTargetRelease(uiTargetID);
 
 		Logic_SobTarget(INVALID_HOBJECT, INVALID_BYTE);
@@ -509,11 +509,11 @@ VOID CFriendListGui::OnBlackListDelRes(RwUInt32 uiTargetID)
 // Receive friend list information when first connecting.
 VOID CFriendListGui::OnFriendListInfo()
 {
-    // UI∏¶ ∞ªΩ≈«—¥Ÿ.
+    // UIÎ•º Í∞±Ïã†ÌïúÎã§.
     OnTabChanged(m_eListMode, NULL);
 }
 
-// ƒ£±∏∏ÆΩ∫∆Æø° ¿÷¥¬ ƒ£±∏¡ﬂø° ªı∑Œ ¡¢º”«— ƒ£±∏∞° ¿÷¿ª∂ß ≥Ø∂Ûø¬¥Ÿ.
+// ÏπúÍµ¨Î¶¨Ïä§Ìä∏Ïóê ÏûàÎäî ÏπúÍµ¨Ï§ëÏóê ÏÉàÎ°ú Ï†ëÏÜçÌïú ÏπúÍµ¨Í∞Ä ÏûàÏùÑÎïå ÎÇ†ÎùºÏò®Îã§.
 VOID CFriendListGui::OnFriendInfo(RwUInt32 uiTargetID)
 {
     if(m_eListMode != FRIEND_LIST)
@@ -522,7 +522,7 @@ VOID CFriendListGui::OnFriendInfo(RwUInt32 uiTargetID)
     UpdateInfo(uiTargetID);
 }
 
-// ¡¢º”¡ﬂ¿Œ ƒ£±∏¿« ¡§∫∏∞° ∫Ø∞Êµ«æ˙¿ª∂ß ≥Ø∂Ûø¬¥Ÿ.
+// Ï†ëÏÜçÏ§ëÏù∏ ÏπúÍµ¨Ïùò Ï†ïÎ≥¥Í∞Ä Î≥ÄÍ≤ΩÎêòÏóàÏùÑÎïå ÎÇ†ÎùºÏò®Îã§.
 VOID CFriendListGui::OnFriendInfoChange(RwUInt32 uiTargetID)
 {
     if(m_eListMode != FRIEND_LIST)
@@ -531,10 +531,10 @@ VOID CFriendListGui::OnFriendInfoChange(RwUInt32 uiTargetID)
     UpdateInfo(uiTargetID);
 }
 
-// √≥¿Ω ƒ£±∏∞° ∑Œ±◊¿Œ«ﬂ¿ª∂ß æÀ∏≤ æ∆¿Ãƒ‹¿ª «•Ω√«—¥Ÿ.
+// Ï≤òÏùå ÏπúÍµ¨Í∞Ä Î°úÍ∑∏Ïù∏ÌñàÏùÑÎïå ÏïåÎ¶º ÏïÑÏù¥ÏΩòÏùÑ ÌëúÏãúÌïúÎã§.
 VOID CFriendListGui::OnFriendLogin( RwUInt32 uiTargetID ) 
 {
-    // ∏ﬁ¿Œ æÀ∏≤UIø° ƒ£±∏¿« ¡¢º”¿ª æÀ∏∞¥Ÿ.    
+    // Î©îÏù∏ ÏïåÎ¶ºUIÏóê ÏπúÍµ¨Ïùò Ï†ëÏÜçÏùÑ ÏïåÎ¶∞Îã§.    
 	CNtlSLFriendList* pFriendList = GetNtlSLGlobal()->GetSobAvatar()->GetFriendList();
 	sFriendMember* pMember = reinterpret_cast<sFriendMember*>( pFriendList->GetMemberbyKey(uiTargetID) );
     if(!pMember)
@@ -546,7 +546,7 @@ VOID CFriendListGui::OnFriendLogin( RwUInt32 uiTargetID )
 	swprintf_s( awcBuffer, 128, GetDisplayStringManager()->GetString( "DST_SIDEICON_HINT_FRIEND_TEXT") , pMember->wszMemberName );
 
 	CNtlSLEventGenerator::PopoNotify( GetDisplayStringManager()->GetString( "DST_SIDEICON_HINT_FRIEND_TITLE" ),
-		awcBuffer, TRUE, 5.0f ); // 5√  µøæ» ∫∏ø©¡‹
+		awcBuffer, TRUE, 5.0f ); // 5Ï¥à ÎèôÏïà Î≥¥Ïó¨Ï§å
 
 }
 
@@ -562,7 +562,7 @@ VOID CFriendListGui::CreateInfoStaticBox()
     CRectangle rectLevel, rectLoc, rectChannel, rectJob, rectBackSpace, rectIcon;
     for(int i = 0; i < FRIEND_LIST_MAX_VISIBLE; ++i)
     {
-        // πˆ∆∞ πË∞Ê ª˝º∫
+        // Î≤ÑÌäº Î∞∞Í≤Ω ÏÉùÏÑ±
         rectBackSpace.left  = FRIEND_LIST_X;
         rectBackSpace.right = rectBackSpace.left + FRIEND_ITEM_WITH;
         rectBackSpace.top   = FRIEND_LIST_Y + i * (FRIEND_ITEM_HEIGHT + FRIEND_LIST_MARGIN);
@@ -570,7 +570,7 @@ VOID CFriendListGui::CreateInfoStaticBox()
 
         m_pPnlBackSpace[i] = NTL_NEW gui::CPanel(rectBackSpace, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), GetNtlGuiManager()->GetSurfaceManager()->GetSurface("FriendList.srf", "srfBackSpace"));
 
-        //// æ∆¿Ãƒ‹ ª˝º∫
+        //// ÏïÑÏù¥ÏΩò ÏÉùÏÑ±
         //rectIcon.left = FRIEND_ICON_X;
         //rectIcon.right = rectIcon.left + 19;
         //rectIcon.top = FRIEND_ICON_Y + i * (19 + FRIEND_LIST_MARGIN);
@@ -578,7 +578,7 @@ VOID CFriendListGui::CreateInfoStaticBox()
 
         //m_pPnlIcon[i] = NTL_NEW gui::CPanel(rectIcon, m_pThis, GetNtlGuiManager()->GetSurfaceManager());
 
-        // Info πˆ∆∞π◊ ∞¥√º ª˝º∫
+        // Info Î≤ÑÌäºÎ∞è Í∞ùÏ≤¥ ÏÉùÏÑ±
         rectLevel.left = FRIEND_LEVEL_X;
         rectLevel.right = FRIEND_LEVEL_X + FRIEND_LEVE_WIDTH;
         rectLoc.left = FRIEND_LOC_X;
@@ -639,18 +639,18 @@ void CFriendListGui::OnClickedItem( RwInt32 iIndex )
 
     if(m_eListMode == FRIEND_LIST)
     {
-        if(pMember->bOnline)      // ø¬∂Û¿Œ¿Ã∏È
+        if(pMember->bOnline)      // Ïò®ÎùºÏù∏Ïù¥Î©¥
         {
             m_pBtnParty->Show(true);
             m_pBtnWhisper->Show(true);
         }
-        else                            // ø¿«¡∂Û¿Œ¿Ã∏È
+        else                            // Ïò§ÌîÑÎùºÏù∏Ïù¥Î©¥
         {
             m_pBtnParty->Show(false);
             m_pBtnWhisper->Show(false);
         }
 
-        // ƒøπ¬¥œ∆º ≈∏∞Ÿ∆√¿ª º≥¡§«—¥Ÿ.
+        // Ïª§ÎÆ§ÎãàÌã∞ ÌÉÄÍ≤üÌåÖÏùÑ ÏÑ§Ï†ïÌïúÎã§.
         OnTargeting(pMember);
     }
 
@@ -701,7 +701,7 @@ VOID CFriendListGui::OnTargeting( sFriendMember* pMember )
         // If your community is targeted -> Turn off community target UI
         if(GetDboGlobal()->GetCommunityTarget() != INVALID_SERIAL_ID)
         {
-            // UI ¡¶∞≈
+            // UI Ï†úÍ±∞
             CNtlSLEventGenerator::CommuTargetRelease(pMember->uiSerialID);
 			Logic_SobTarget(INVALID_HOBJECT, INVALID_BYTE);
         }
@@ -724,7 +724,7 @@ VOID CFriendListGui::OnTabChanged( RwInt32 nIndex, RwInt32 nOldIndex )
     {
     case FRIEND_LIST:
         {
-            // ƒ¡∆Æ∑— »∞º∫»≠
+            // Ïª®Ìä∏Î°§ ÌôúÏÑ±Ìôî
             m_pBtnParty->Show(true);
             m_pBtnMail->Show(true);
             m_pBtnWhisper->Show(true);
@@ -740,7 +740,7 @@ VOID CFriendListGui::OnTabChanged( RwInt32 nIndex, RwInt32 nOldIndex )
         break;
     case BLACK_LIST:
         {
-            // ƒ¡∆Æ∑— ∫Ò»∞º∫»≠
+            // Ïª®Ìä∏Î°§ ÎπÑÌôúÏÑ±Ìôî
             m_pBtnParty->Show(false);
             m_pBtnMail->Show(false);
             m_pBtnWhisper->Show(false);
@@ -771,7 +771,7 @@ VOID CFriendListGui::RefreshList()
     UpdateInfo(NULL);
 }
 
-// NULL¿Ã∏È «ˆ¿Á »≠∏Èø° ∫∏¿Ã¥¬ ∏ÆΩ∫∆ÆªÛ¿« ∏µÁ ≥ªøÎ¿ª æ˜µ•¿Ã∆Æ«—¥Ÿ.
+// NULLÏù¥Î©¥ ÌòÑÏû¨ ÌôîÎ©¥Ïóê Î≥¥Ïù¥Îäî Î¶¨Ïä§Ìä∏ÏÉÅÏùò Î™®Îì† ÎÇ¥Ïö©ÏùÑ ÏóÖÎç∞Ïù¥Ìä∏ÌïúÎã§.
 VOID CFriendListGui::UpdateInfo( RwUInt32 uiCharID ) 
 {
     RwInt32 nCurValue = m_InfoList.GetValue();    
@@ -788,9 +788,9 @@ VOID CFriendListGui::UpdateInfo( RwUInt32 uiCharID )
 
             if(uiCharID == NULL || pMember->charID == uiCharID) 
             {
-                if(pMember->bOnline)  // ø¬∂Û¿Œ
+                if(pMember->bOnline)  // Ïò®ÎùºÏù∏
                 {
-                    // ¡§∫∏π◊ πˆ∆∞
+                    // Ï†ïÎ≥¥Î∞è Î≤ÑÌäº
                     m_pSttLevel[i - nCurValue]->SetText(pMember->byLevel);                
                     m_pSttChannel[i - nCurValue]->SetText(pMember->byChannel);
                     m_pSttChannel[i - nCurValue]->SetTextColor(FRIEND_ITEM_COLOR_ONLINE, TRUE);                
@@ -814,11 +814,11 @@ VOID CFriendListGui::UpdateInfo( RwUInt32 uiCharID )
                         m_pBtnWhisper->Show(true);
                     }
 
-                    // ¡˜æ˜ æ∆¿Ãƒ‹ «•Ω√
+                    // ÏßÅÏóÖ ÏïÑÏù¥ÏΩò ÌëúÏãú
                     m_pPnlIcon[i - nCurValue]->AddSurface(Logic_GetPCClassIconSurface(pMember->byClass, FALSE));
 
                 }
-                else    // ø¿«¡∂Û¿Œ
+                else    // Ïò§ÌîÑÎùºÏù∏
                 {
                     m_pSttLevel[i - nCurValue]->Clear();
                     m_pSttLoc[i - nCurValue]->Clear();
@@ -843,7 +843,7 @@ VOID CFriendListGui::UpdateInfo( RwUInt32 uiCharID )
 					m_pPnlIcon[i - nCurValue]->ClearSurface();
                 }    
 
-                // «—∏Ìø° ¥Î«— ∞ªΩ≈¿Ã∏È ∞ªΩ≈¿Ã ≥°≥≠»ƒ ¥ıµπ¡ˆæ ∞Ì ≥°≥Ω¥Ÿ.
+                // ÌïúÎ™ÖÏóê ÎåÄÌïú Í∞±Ïã†Ïù¥Î©¥ Í∞±Ïã†Ïù¥ ÎÅùÎÇúÌõÑ ÎçîÎèåÏßÄÏïäÍ≥† ÎÅùÎÇ∏Îã§.
                 if(pMember->charID == uiCharID)
                     break;
             }
@@ -867,7 +867,7 @@ VOID CFriendListGui::UpdateInfo( RwUInt32 uiCharID )
         }   
     }
 
-    // Ω∫≈©∑—πŸ æ˜µ•¿Ã∆Æ       
+    // Ïä§ÌÅ¨Î°§Î∞î ÏóÖÎç∞Ïù¥Ìä∏       
     RwInt32 nMax = m_InfoList.GetSize() - FRIEND_LIST_MAX_VISIBLE;
     m_pSbScroll->SetRange(0, max(0, nMax));    
     m_pSbScroll->SetValue(nCurValue);
@@ -919,7 +919,7 @@ VOID CFriendListGui::OnMouseMove( RwInt32 nFlags, RwInt32 nX, RwInt32 nY )
         CButtonList<CFriendListGui, sCommunityMember*>::SItem sItem = m_InfoList.GetItem(i);
         sFriendMember* pMember = reinterpret_cast<sFriendMember*>( sItem.TData );
 
-        // ø¿«¡∂Û¿Œ¿∫ «•Ω√«œ¡ˆ æ ¥¬¥Ÿ.
+        // Ïò§ÌîÑÎùºÏù∏ÏùÄ ÌëúÏãúÌïòÏßÄ ÏïäÎäîÎã§.
         if(!pMember->bOnline)
             continue;
 

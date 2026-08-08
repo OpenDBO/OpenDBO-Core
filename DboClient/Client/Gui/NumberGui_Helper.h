@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: NumberGui_Helper.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 11. 21
 * Abstract		: 
 *****************************************************************************
-* Desc			: CNumberGui¿¡ ¿©·¯°¡Áö À¯¿äÇÑ ±â´ÉÀ» ¸ğ¾ÆµĞ´Ù
+* Desc			: CNumberGuiì— ì—¬ëŸ¬ê°€ì§€ ìœ ìš”í•œ ê¸°ëŠ¥ì„ ëª¨ì•„ë‘”ë‹¤
 *****************************************************************************/
 
 #pragma once
@@ -17,10 +17,10 @@ class CNumberGui;
 
 
 //////////////////////////////////////////////////////////////////////////
-//	ÀÔ·ÂµÈ CNumberGui°¡ Â÷·ÊµÇ·Î Å©±â°¡ º¯ÇÑ´Ù
-//  1. AddNumberGui() ÇÔ¼ö¸¦ Àû¿ëÇÒ CNumberGui¸¸Å­ È£Ãâ
-//  2. Play(true) È£Ãâ
-//  3. Update() ÇÔ¼ö¸¦ Á÷Á¢ È£ÃâÇØ ÁØ´Ù
+//	ì…ë ¥ëœ CNumberGuiê°€ ì°¨ë¡€ë˜ë¡œ í¬ê¸°ê°€ ë³€í•œë‹¤
+//  1. AddNumberGui() í•¨ìˆ˜ë¥¼ ì ìš©í•  CNumberGuië§Œí¼ í˜¸ì¶œ
+//  2. Play(true) í˜¸ì¶œ
+//  3. Update() í•¨ìˆ˜ë¥¼ ì§ì ‘ í˜¸ì¶œí•´ ì¤€ë‹¤
 //////////////////////////////////////////////////////////////////////////
 
 class CNumberGui_ZoomHelper
@@ -46,8 +46,8 @@ public:
 	VOID		Play(RwBool bPlay);
 	VOID		Restart();
 
-	// fStartRate ¿¡¼­ fEndRate ±îÁö fRemainTime ½Ã°£µ¿¾È Å©±â°¡ º¯°æµÈ´Ù
-	// Scale È¿°ú¸¦ ÁÙ CNumberGuiÀÇ Ãß°¡¿¡ ½ÇÆĞÇÒ °æ¿ì false¸¦ ¹İÈ¯ÇÑ´Ù
+	// fStartRate ì—ì„œ fEndRate ê¹Œì§€ fRemainTime ì‹œê°„ë™ì•ˆ í¬ê¸°ê°€ ë³€ê²½ëœë‹¤
+	// Scale íš¨ê³¼ë¥¼ ì¤„ CNumberGuiì˜ ì¶”ê°€ì— ì‹¤íŒ¨í•  ê²½ìš° falseë¥¼ ë°˜í™˜í•œë‹¤
 	RwBool		AddNumberGui(CNumberGui* pNumberGui, RwReal fStartRate, RwReal fEndRate, RwReal fRemainTime);
 	VOID		RemoveAll();
 

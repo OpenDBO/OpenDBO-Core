@@ -44,13 +44,13 @@ public:
 protected:
 	static CLeftTreeView* m_pInstance;	
 public:
-	CLeftPropSheet		  m_propSheet;					///< Property Sheet °´Ã¼
-	CPagePC				  m_pagePC;						///< PC Property Page °´Ã¼
-	CPageNPC			  m_pageNPC;					///< NPC Property Page °´Ã¼
-	CPageMob			  m_pageMob;					///< Mob Property Page °´Ã¼
-	CPageItem			  m_pageItem;					///< Item Property Page °´Ã¼
-	CPageGround			  m_pageGround;					///< Ground Property Page °´Ã¼
-	CPageClump			  m_pageClump;					///< Clump Property Page °´Ã¼
+	CLeftPropSheet		  m_propSheet;					///< Property Sheet ê°ì²´
+	CPagePC				  m_pagePC;						///< PC Property Page ê°ì²´
+	CPageNPC			  m_pageNPC;					///< NPC Property Page ê°ì²´
+	CPageMob			  m_pageMob;					///< Mob Property Page ê°ì²´
+	CPageItem			  m_pageItem;					///< Item Property Page ê°ì²´
+	CPageGround			  m_pageGround;					///< Ground Property Page ê°ì²´
+	CPageClump			  m_pageClump;					///< Clump Property Page ê°ì²´
 	
 public:
     afx_msg void OnSize(UINT nType, int cx, int cy);

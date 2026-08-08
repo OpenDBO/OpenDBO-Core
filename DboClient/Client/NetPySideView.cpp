@@ -17,7 +17,7 @@
 
 #include "DboGlobal.h"
 
-#define NOTIFY_SHOWTIME_MAX     5.0f                        ///< Notify Á¤º¸¸¦ º¸¿©ÁÙ ½Ã°£ (ÃÊ)
+#define NOTIFY_SHOWTIME_MAX     5.0f                        ///< Notify ì •ë³´ë¥¼ ë³´ì—¬ì¤„ ì‹œê°„ (ì´ˆ)
 
 
 CNetPySideViewGui::CNetPySideViewGui(const RwChar* pName)
@@ -46,7 +46,7 @@ RwBool CNetPySideViewGui::Create()
     
     m_pThis = (gui::CDialog*)GetComponent("dlgMain");
 
-    // ¹è°æ
+    // ë°°ê²½
     m_BackPanel.SetType(CWindowby3::WT_HORIZONTAL);    
     m_BackPanel.SetSurface(0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface("NetPySideView.srf", "srfDialogBackUp"));
     m_BackPanel.SetSurface(1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface("NetPySideView.srf", "srfDialogBackCenter"));
@@ -58,10 +58,10 @@ RwBool CNetPySideViewGui::Create()
     m_slotResize		= m_pThis->SigMove().Connect(this, &CNetPySideViewGui::OnResize);
 
     //////////////////////////////////////////////////////////////////////////
-    // ÇöÀç NetPy Á¤º¸
+    // í˜„ìž¬ NetPy ì •ë³´
     CRectangle rect;
     rect.SetRectWH(20, 10, 250, 14);
-    // ´ÙÀ½ NetPy È¹µæ±îÁö ³²Àº ½Ã°£
+    // ë‹¤ìŒ NetPy íšë“ê¹Œì§€ ë‚¨ì€ ì‹œê°„
     m_pstbRemainTimeTitle = NTL_NEW gui::CStaticBox(rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT );
     m_pstbRemainTimeTitle->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);	        
     m_pstbRemainTimeTitle->SetTextColor(INFOCOLOR_13);
@@ -74,7 +74,7 @@ RwBool CNetPySideViewGui::Create()
     m_pstbRemainTimeData->SetTextColor(RGB(255, 255, 255));    
     
 
-    // ´©Àû È¹µæ ³ÝÇÇ
+    // ëˆ„ì  íšë“ ë„·í”¼
     rect.SetRectWH(20, 50, 250, 14);
     m_pstbGetTitle = NTL_NEW gui::CStaticBox(rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT );
     m_pstbGetTitle->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);	        
@@ -88,7 +88,7 @@ RwBool CNetPySideViewGui::Create()
     m_pstbGetData->SetTextColor(RGB(255, 255, 255));    
     
 
-    // ÇöÀç ³ÝÇÇ
+    // í˜„ìž¬ ë„·í”¼
     rect.SetRectWH(20, 90, 250, 14);
     m_pstbCurrentTitle = NTL_NEW gui::CStaticBox(rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT );
     m_pstbCurrentTitle->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);	        
@@ -102,7 +102,7 @@ RwBool CNetPySideViewGui::Create()
     m_pstbCurrentData->SetTextColor(RGB(255, 255, 255));
     
     //////////////////////////////////////////////////////////////////////////
-    // NetpY È¹µæ Á¤º¸
+    // NetpY íšë“ ì •ë³´
 
     rect.SetRectWH(20, 10, 250, 14);
     m_pstbGetPoint = NTL_NEW gui::CStaticBox(rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT );
@@ -239,19 +239,19 @@ VOID CNetPySideViewGui::OnShowInfo()
 
         m_pThis->SetHeight(NETPY_SIDEVIEW_HEIGHT_PCBANG);            
 
-        // ³²Àº ½Ã°£
+        // ë‚¨ì€ ì‹œê°„
         WCHAR wcRemainTime[128] = {0,};
-        if(m_UpdateNetPyInfo.timeNextGainTime > 60) // ºÐ´ÜÀ§
+        if(m_UpdateNetPyInfo.timeNextGainTime > 60) // ë¶„ë‹¨ìœ„
         {
             swprintf_s(wcRemainTime, L"%d %s", m_UpdateNetPyInfo.timeNextGainTime / 60, GetDisplayStringManager()->GetString("DST_TIME_MINUTE"));
         }
-        else // ÃÊ ´ÜÀ§
+        else // ì´ˆ ë‹¨ìœ„
         {
             swprintf_s(wcRemainTime, L"%d %s", m_UpdateNetPyInfo.timeNextGainTime, GetDisplayStringManager()->GetString("DST_TIME_SECOND"));
         }
         m_pstbRemainTimeData->SetText(wcRemainTime);
 
-        // È¹µæ ³ÝÇÇ
+        // íšë“ ë„·í”¼
         WCHAR wcAccumNetPy[128] = {0,};
         swprintf_s(wcAccumNetPy, L"%d %s", m_UpdateNetPyInfo.dwAccumlationNetPy, GetDisplayStringManager()->GetString("DST_NETPY_POINT"));
         m_pstbGetData->SetText(wcAccumNetPy);
@@ -268,7 +268,7 @@ VOID CNetPySideViewGui::OnShowInfo()
 
     LocateComponent();
 
-    // ÃÑ ³ÝÇÇ
+    // ì´ ë„·í”¼
     WCHAR wcTotalNetPy[128] = {0,};
     swprintf_s(wcTotalNetPy, L"%d %s", Logic_GetNetPy(), GetDisplayStringManager()->GetString("DST_NETPY_POINT"));
     m_pstbCurrentData->SetText(wcTotalNetPy);
@@ -282,7 +282,7 @@ VOID CNetPySideViewGui::OnShowNotify()
 
     LocateComponent();
     
-    // ¸Þ½ÃÁö
+    // ë©”ì‹œì§€
     WCHAR wcNotify[128] = {0,};
     swprintf_s(wcNotify, GetDisplayStringManager()->GetString("DST_NETPY_GET_NOTIFY"), m_dwUpdateNetPyPoint);
     m_pstbGetPoint->SetText(wcNotify);
@@ -290,7 +290,7 @@ VOID CNetPySideViewGui::OnShowNotify()
 
 VOID CNetPySideViewGui::Update( RwReal fElapsed ) 
 {
-    // ³²Àº ½Ã°£ °è»ê
+    // ë‚¨ì€ ì‹œê°„ ê³„ì‚°
     if(m_UpdateNetPyInfo.timeNextGainTime > 0 && m_fRemainTime > 0.0f)
     {
         m_fRemainTime -= fElapsed;
@@ -305,7 +305,7 @@ VOID CNetPySideViewGui::Update( RwReal fElapsed )
 
         }
 
-        if(m_pstbCurrentData->IsVisible())  // Info Á¤º¸ Ç¥½ÃÁßÀÌ¸é °»½ÅÇÑ´Ù.
+        if(m_pstbCurrentData->IsVisible())  // Info ì •ë³´ í‘œì‹œì¤‘ì´ë©´ ê°±ì‹ í•œë‹¤.
         {
             OnShowInfo();
         }        

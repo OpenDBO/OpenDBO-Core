@@ -321,14 +321,14 @@ VOID CRBSideViewGui::HandleEvents( RWS::CMsg& msg )
 	//			SetCancelData( wResultCode, CDisplayStringManager::SERVER_SYNC_RESULT_MSG );
 	//		}				
 	//	}
-	//	// Match_Start¿¡¼­ ½ÇÆÐ ÇÑ °æ¿ì¸¸ µé¾î¿È.
+	//	// Match_Startì—ì„œ ì‹¤íŒ¨ í•œ ê²½ìš°ë§Œ ë“¤ì–´ì˜´.
 	//	else if( pMatchData->type == SNtlEventRBMatch::MATCH_CANCELED )
 	//	{
 	//		SetWaitData();
 	//		SetLifeTimeInfo( 0.0f );									
 	//	}
-	//	// ÀÚ½ÅÀÌ Ãë¼Ò¸¦ ´©¸¥ °æ¿ì ÆÄÆ¼ÀüÀÎ °æ¿ì BattleEnd¸¦ ±â´Ù¸². 
-	//	// °³ÀÎÀüÀÌ°Å³ª Àü¿ø Ãë¼ÒÀÎ °æ¿ì´Â RoomLeave¿¡¼­ »èÁ¦.
+	//	// ìžì‹ ì´ ì·¨ì†Œë¥¼ ëˆ„ë¥¸ ê²½ìš° íŒŒí‹°ì „ì¸ ê²½ìš° BattleEndë¥¼ ê¸°ë‹¤ë¦¼. 
+	//	// ê°œì¸ì „ì´ê±°ë‚˜ ì „ì› ì·¨ì†Œì¸ ê²½ìš°ëŠ” RoomLeaveì—ì„œ ì‚­ì œ.
 	//	else if( pMatchData->type == SNtlEventRBMatch::MATCH_CANCEL )
 	//	{
 	//		SetCancelData( DST_RANKBATTLE_CANCELED, CDisplayStringManager::CLIENT_ONLY_MSG );

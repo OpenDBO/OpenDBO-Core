@@ -1,4 +1,4 @@
-// SurfaceAttributeDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// SurfaceAttributeDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -12,7 +12,7 @@
 #include "LayerMisc.h"
 
 
-// CSurfaceAttributeDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CSurfaceAttributeDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNCREATE(CSurfaceAttributeDlg, CDialog)
 CSurfaceAttributeDlg::CSurfaceAttributeDlg(CWnd* pParent /*=NULL*/)
@@ -38,13 +38,13 @@ BEGIN_MESSAGE_MAP(CSurfaceAttributeDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CSurfaceAttributeDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CSurfaceAttributeDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CSurfaceAttributeDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	DWORD dwStyle;
 	CRect rc;
 
@@ -74,14 +74,14 @@ BOOL CSurfaceAttributeDlg::OnInitDialog()
 	InitProperty();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CSurfaceAttributeDlg::OnSize(UINT nType, int cx, int cy)
 {
 	CDialog::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if( m_bInitialized )
 	{
 		CWnd* pWindow = GetDlgItem( IDC_PROPERTY_STATIC );
@@ -374,7 +374,7 @@ BOOL CSurfaceAttributeDlg::InputData( SURFACEDATA* pSurfaceData, BOOL bFix /* = 
 	pSurfaceData->_nHandle = (INT)pEdit->GetItemValue();
 
 	pEdit = (CPropTreeItemEdit*)m_PropertyTree.FindItem( PROPERTY_BLEND );
-	// ÃßÈÄ ¼öÁ¤.
+	// ì¶”í›„ ìˆ˜ì •.
 	pSurfaceData->_strBlendFunction = CString( "0" );
 
 	if( !InputCheck( pSurfaceData, bFix ) )
@@ -390,12 +390,12 @@ void CSurfaceAttributeDlg::FillSurfaceProperty( SURFACEDATA* pSurfaceData )
 
 	if( !pSurfaceData )
 	{
-		AfxMessageBox( "ÇØ´ç ¼­ÇÇ½º°¡ ¾ø½À´Ï´Ù" );
+		AfxMessageBox( "í•´ë‹¹ ì„œí”¼ìŠ¤ê°€ ì—†ìŠµë‹ˆë‹¤" );
 		pDlg->FillResourceProperty( NULL );
 		return;
 	}
 
-	// ÇØ´çÇÏ´Â ¸®¼Ò½ºÆÄÀÏ ·Îµå.
+	// í•´ë‹¹í•˜ëŠ” ë¦¬ì†ŒìŠ¤íŒŒì¼ ë¡œë“œ.
 	CString strFullPath = pSurfaceData->_strResourceFileName;
 	if( !g_pDocument->GetDataManager().LoadRsrFile( strFullPath, pSurfaceData->_strResourceFileName ) )
 	{
@@ -411,18 +411,18 @@ void CSurfaceAttributeDlg::FillSurfaceProperty( SURFACEDATA* pSurfaceData )
 
 				if( !g_pDocument->GetDataManager().LoadRsrFile( strFullPath, pSurfaceData->_strResourceFileName ) )
 				{
-					AfxMessageBox( "ÇØ´ç ¸®¼Ò½ºÆÄÀÏÀÌ ¾ø½À´Ï´Ù" );
+					AfxMessageBox( "í•´ë‹¹ ë¦¬ì†ŒìŠ¤íŒŒì¼ì´ ì—†ìŠµë‹ˆë‹¤" );
 				}
 			}
 		}
 	}
 		
-	// ÇØ´çÇÏ´Â ¸®¼Ò½º ·Îµå. ( ±×¸²Àº ¸®¼Ò½º¿¡¼­ ·ÎµåµÊ )
+	// í•´ë‹¹í•˜ëŠ” ë¦¬ì†ŒìŠ¤ ë¡œë“œ. ( ê·¸ë¦¼ì€ ë¦¬ì†ŒìŠ¤ì—ì„œ ë¡œë“œë¨ )
 	RESOURCEDATA* pResourceData = g_pDocument->GetDataManager().GetResourceData( pSurfaceData->_strResourceName );
 	if( pResourceData )
 		pDlg->FillResourceProperty( pResourceData );
 
-	// µ¥ÀÌÅÍ Ç¥½Ã
+	// ë°ì´í„° í‘œì‹œ
 	CPropTreeItemEdit* pEdit = (CPropTreeItemEdit*)m_PropertyTree.FindItem( PROPERTY_SURFACENAME );
 	pEdit->SetItemValue( (LPARAM)( (LPCTSTR)pSurfaceData->_strName ) );
 	
@@ -472,12 +472,12 @@ void CSurfaceAttributeDlg::FillSurfaceProperty( SURFACEDATA* pSurfaceData )
 	pEdit->SetItemValue( (LPARAM)pSurfaceData->_nHandle );
 
 	pEdit = (CPropTreeItemEdit*)m_PropertyTree.FindItem( PROPERTY_BLEND );
-	// ÃßÈÄ ¼öÁ¤.
+	// ì¶”í›„ ìˆ˜ì •.
 	pEdit->SetItemValue( (LPARAM)0 );
 
 	m_PropertyTree.UpdatedItems();
 
-	// ¼±ÅÃ¹Ú½º ¼³Á¤
+	// ì„ íƒë°•ìŠ¤ ì„¤ì •
 	g_pResourceView->SetSelectBox( pSurfaceData->_rcUV );
 }
 
@@ -491,7 +491,7 @@ void CSurfaceAttributeDlg::OnBnClickedFixSurfacelist()
 
 	if( nFocusID < 1 )
 	{
-		AfxMessageBox( "¼öÁ¤ÇÒ ¾ÆÀÌÅÛÀ» Å¬¸¯ÇÏ¼¼¿ä" );
+		AfxMessageBox( "ìˆ˜ì •í•  ì•„ì´í…œì„ í´ë¦­í•˜ì„¸ìš”" );
 		return;
 	}
 
@@ -527,20 +527,20 @@ BOOL CSurfaceAttributeDlg::InputCheck( SURFACEDATA* pSurfaceData, BOOL bFix /* =
 {
 	if( pSurfaceData->_strName == CString( "" ) )
 	{
-		AfxMessageBox( "ÀÌ¸§À» ÀÔ·ÂÇØ¾ß ÇÕ´Ï´Ù" );
+		AfxMessageBox( "ì´ë¦„ì„ ì…ë ¥í•´ì•¼ í•©ë‹ˆë‹¤" );
 		return FALSE;
 	}
 
 	if( g_pDocument->GetDataManager().GetSurfaceData( pSurfaceData->_strName ) && !bFix )
 	{
-		AfxMessageBox( "°°Àº ÀÌ¸§À» ÀÔ·ÂÇÒ ¼ö ¾ø½À´Ï´Ù" );
+		AfxMessageBox( "ê°™ì€ ì´ë¦„ì„ ì…ë ¥í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤" );
 		return FALSE;
 	}
 
 	if( pSurfaceData->_strResourceName == CString( "" ) ||
 		pSurfaceData->_strResourceFileName == CString( "" ) )
 	{
-		AfxMessageBox( "¸®¼Ò½ºÁ¤º¸°¡ ¾ø½À´Ï´Ù\n¸®¼Ò½ºÆÄÀÏÀ» ·ÎµåÇÏ¼¼¿ä" );
+		AfxMessageBox( "ë¦¬ì†ŒìŠ¤ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤\në¦¬ì†ŒìŠ¤íŒŒì¼ì„ ë¡œë“œí•˜ì„¸ìš”" );
 		return FALSE;
 	}
 

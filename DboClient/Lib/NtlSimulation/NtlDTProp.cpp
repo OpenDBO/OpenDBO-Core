@@ -1653,7 +1653,7 @@ void SelectPointBox(const RwV3d *pPos, const RwRGBA *pColor, RwMatrix *pWorldMat
 
 	RwRenderStateSet(rwRENDERSTATETEXTURERASTER, (void *)NULL);
 
-	// ¹Ú½º ¶óÀÎ 1.
+	// ë°•ìŠ¤ ë¼ì¸ 1.
 	RwIm3DVertexSetPos(&LineVertex[0], pPos->x-fOffset, pPos->y+fOffset, pPos->z+fOffset);
 	RwIm3DVertexSetRGBA(&LineVertex[0], pColor->red, pColor->green, pColor->blue, pColor->alpha);
 

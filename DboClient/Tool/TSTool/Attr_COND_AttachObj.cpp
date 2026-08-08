@@ -1,4 +1,4 @@
-// Attr_COND_AttachObj.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_COND_AttachObj.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_COND_AttachObj.h"
 
 
-// CAttr_COND_AttachObj ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_COND_AttachObj ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_COND_AttachObj, CAttr_Page, 1)
 
@@ -58,4 +58,4 @@ BEGIN_MESSAGE_MAP(CAttr_COND_AttachObj, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_COND_AttachObj ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_COND_AttachObj ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

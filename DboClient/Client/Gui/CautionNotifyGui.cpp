@@ -56,8 +56,8 @@ CNotifyTimer::~CNotifyTimer()
 }
 
 /**
-* \brief Å¸ÀÌ¸Ó°¡ ¹ßµ¿µÉ °£°İÀ» ¼³Á¤ÇØÁØ´Ù.
-* \param fIntervalTIme	(RwReal) Å¸ÀÌ¸Ó°¡ ¹ßµ¿µÉ °£°İ
+* \brief íƒ€ì´ë¨¸ê°€ ë°œë™ë  ê°„ê²©ì„ ì„¤ì •í•´ì¤€ë‹¤.
+* \param fIntervalTIme	(RwReal) íƒ€ì´ë¨¸ê°€ ë°œë™ë  ê°„ê²©
 */
 void CNotifyTimer::SetIntervalTime( RwReal fIntervalTime ) 
 {
@@ -66,7 +66,7 @@ void CNotifyTimer::SetIntervalTime( RwReal fIntervalTime )
 
 /**
 * \brief Update
-* \param fElapsed	(RwReal) ÀÌÀü ¾÷µ¥ÀÌÆ®¿¡¼­ °æ°úµÈ ½Ã°£
+* \param fElapsed	(RwReal) ì´ì „ ì—…ë°ì´íŠ¸ì—ì„œ ê²½ê³¼ëœ ì‹œê°„
 */
 void CNotifyTimer::Update( RwReal fElapsed ) 
 {
@@ -83,7 +83,7 @@ void CNotifyTimer::Update( RwReal fElapsed )
 
 
 /**
-* \brief CNtlCallbackParam1float ¿¡ CallbackÀÌ µî·ÏµÇ¾î ÀÖ´Ù¸é ÇØÁ¦ÇØÁØ´Ù.
+* \brief CNtlCallbackParam1float ì— Callbackì´ ë“±ë¡ë˜ì–´ ìˆë‹¤ë©´ í•´ì œí•´ì¤€ë‹¤.
 */
 void CNotifyTimer::UnLinkIntervalTimer( void ) 
 {
@@ -129,7 +129,7 @@ CCautionNotifyContinuance::~CCautionNotifyContinuance()
 
 /**
 * \brief Update
-* \param fElapsed	(RwReal) ÀÌÀü ¾÷µ¥ÀÌÆ®¿¡¼­ °æ°úµÈ ½Ã°£
+* \param fElapsed	(RwReal) ì´ì „ ì—…ë°ì´íŠ¸ì—ì„œ ê²½ê³¼ëœ ì‹œê°„
 */
 void CCautionNotifyContinuance::Update( RwReal fElapsed ) 
 {
@@ -137,8 +137,8 @@ void CCautionNotifyContinuance::Update( RwReal fElapsed )
 }
 
 /**
-* \brief ³²Àº ½Ã°£À» Ã£´Â´Ù.
-* \return ³²Àº ½Ã°£
+* \brief ë‚¨ì€ ì‹œê°„ì„ ì°¾ëŠ”ë‹¤.
+* \return ë‚¨ì€ ì‹œê°„
 */
 RwReal CCautionNotifyContinuance::IsRemain() 
 {
@@ -146,7 +146,7 @@ RwReal CCautionNotifyContinuance::IsRemain()
 }
 
 /**
-* \brief CNotifyTimer¿¡ µî·ÏµÈ Callback
+* \brief CNotifyTimerì— ë“±ë¡ëœ Callback
 * \param fElapsed	(RwReal) IntervalTime
 */
 int CCautionNotifyContinuance::OnIntervalTimer( RwReal fIntervalTime ) 
@@ -215,7 +215,7 @@ CCautionNotifyGui::~CCautionNotifyGui()
 
 /**
 * \brief Create
-* \return ¼º°ø¿©ºÎ
+* \return ì„±ê³µì—¬ë¶€
 */
 RwBool CCautionNotifyGui::Create( VOID ) 
 {
@@ -242,7 +242,7 @@ RwBool CCautionNotifyGui::Create( VOID )
 	LinkMsg( g_EventTimeFixedNotify, 0 );
 	LinkMsg( g_EventResize, 0 );
 	
-	// Event¸¦ µî·ÏÇÑ´Ù.
+	// Eventë¥¼ ë“±ë¡í•œë‹¤.
 	RegisterHandler();
 
 	NTL_RETURN(TRUE);
@@ -268,22 +268,22 @@ VOID CCautionNotifyGui::Destroy( VOID )
 
 /**
 * \brief Update
-* \param fElapsed	(RwReal) ÀÌÀü ¾÷µ¥ÀÌÆ®¿¡¼­ °æ°úµÈ ½Ã°£
+* \param fElapsed	(RwReal) ì´ì „ ì—…ë°ì´íŠ¸ì—ì„œ ê²½ê³¼ëœ ì‹œê°„
 */
 VOID CCautionNotifyGui::Update( RwReal fElapsed ) 
 {
-	// ¸¸¾à Continuance ÀÇ ¸®½ºÆ®°¡ ºñ¾î ÀÖÁö ¾Ê´Ù¸é ¾÷µ¥ÀÌÆ® ÇØÁØ´Ù.
+	// ë§Œì•½ Continuance ì˜ ë¦¬ìŠ¤íŠ¸ê°€ ë¹„ì–´ ìˆì§€ ì•Šë‹¤ë©´ ì—…ë°ì´íŠ¸ í•´ì¤€ë‹¤.
 	if( !m_listContinuance.empty() )
 	{
 		CONTINUANCELIST::iterator it = m_listContinuance.begin();
 
 		while( it != m_listContinuance.end() )
 		{
-			// ¾÷µ¥ÀÌÆ®ÇÏ°í RemainTimeÀÌ 1.0 ÃÊº¸´Ù ³·´Ù¸é »èÁ¦ÇØÁØ´Ù. ( ±×Àü¿¡ ÀÌ¹Ì CallbackÀº È£ÃâµÈ »óÅÂ )
+			// ì—…ë°ì´íŠ¸í•˜ê³  RemainTimeì´ 1.0 ì´ˆë³´ë‹¤ ë‚®ë‹¤ë©´ ì‚­ì œí•´ì¤€ë‹¤. ( ê·¸ì „ì— ì´ë¯¸ Callbackì€ í˜¸ì¶œëœ ìƒíƒœ )
 			(*it)->Update( fElapsed );
 			if( (*it)->IsRemain() <= 1.0f )
 			{
-				// »èÁ¦
+				// ì‚­ì œ
 				CCautionNotifyContinuance *pContinuance = (*it);
 				it = m_listContinuance.erase(it);
 				NTL_DELETE( pContinuance );
@@ -300,13 +300,13 @@ VOID CCautionNotifyGui::Update( RwReal fElapsed )
 
 	m_fCurrentTime += fElapsed;
 	
-	// Áö¼Ó½Ã°£º¸´Ù ÇöÀç ½Ã°£ÀÌ ´õ Áö³µÀ¸¸é Fade Out½ÃÅ²´Ù.
+	// ì§€ì†ì‹œê°„ë³´ë‹¤ í˜„ì¬ ì‹œê°„ì´ ë” ì§€ë‚¬ìœ¼ë©´ Fade Outì‹œí‚¨ë‹¤.
 	if( m_fCurrentTime > m_fLifeTime )
 	{
 		m_bFadeOut = TRUE;
 	}
 
-	// FadeOut µÇ°í, FadeOutÀÌ ¿Ï·á°¡ µÇ¸é Áö¿öÁø´Ù.
+	// FadeOut ë˜ê³ , FadeOutì´ ì™„ë£Œê°€ ë˜ë©´ ì§€ì›Œì§„ë‹¤.
 	if(m_bFadeOut)
 	{
 		m_fFadeOutTime += fElapsed;
@@ -326,7 +326,7 @@ VOID CCautionNotifyGui::Update( RwReal fElapsed )
 
 /**
 * \brief HandleEvents
-* \param msg	(RWS::CMsg*) ÀÌº¥Æ® ¸Ş½ÃÁö ±¸Á¶Ã¼
+* \param msg	(RWS::CMsg*) ì´ë²¤íŠ¸ ë©”ì‹œì§€ êµ¬ì¡°ì²´
 */
 VOID CCautionNotifyGui::HandleEvents( RWS::CMsg& msg ) 
 {
@@ -334,7 +334,7 @@ VOID CCautionNotifyGui::HandleEvents( RWS::CMsg& msg )
 	{
 		SDboEventTimeFixedNotify* pNotify = reinterpret_cast<SDboEventTimeFixedNotify*>( msg.pData );
 
-		// ÇÚµé·¯¿¡ µî·ÏµÇ¾î ÀÖ´Ù¸é °ü·Ã ÇÔ¼ö¸¦ È£ÃâÇÏ°í ReturnÇÑ´Ù.
+		// í•¸ë“¤ëŸ¬ì— ë“±ë¡ë˜ì–´ ìˆë‹¤ë©´ ê´€ë ¨ í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ê³  Returní•œë‹¤.
 		HANDLEMAP::iterator it = m_mapNotifyHandler.find( pNotify->strStringID );
 		if( it != m_mapNotifyHandler.end() )
 		{
@@ -344,21 +344,21 @@ VOID CCautionNotifyGui::HandleEvents( RWS::CMsg& msg )
 
 		ShowCautionNotify( pNotify->bActive, pNotify->strStringID, pNotify->pString );
 
-		// °°Àº ¸Ş¼¼Áö Áßº¹½Ã ÇöÀç´Â ¸Ş¼¼Áö µé¾î¿Ã¶§¸¶´Ù Ãâ·Â, Áßº¹À» ½ÃÅ³¶ó¸é  ShowCautionNotify ³»¿¡¼­ Ã³¸®ÇÒ°Í,
+		// ê°™ì€ ë©”ì„¸ì§€ ì¤‘ë³µì‹œ í˜„ì¬ëŠ” ë©”ì„¸ì§€ ë“¤ì–´ì˜¬ë•Œë§ˆë‹¤ ì¶œë ¥, ì¤‘ë³µì„ ì‹œí‚¬ë¼ë©´  ShowCautionNotify ë‚´ì—ì„œ ì²˜ë¦¬í• ê²ƒ,
 		Logic_PlayGUISound(GSD_SYSTEM_WARNING_NOTIFY);		
 	}
-	// ÇØ»óµµ°¡ º¯°æµÇ¾úÀ» ¶§ ³¯¶ó¿À´Â ÀÌº¥Æ®
+	// í•´ìƒë„ê°€ ë³€ê²½ë˜ì—ˆì„ ë•Œ ë‚ ë¼ì˜¤ëŠ” ì´ë²¤íŠ¸
 	else if( msg.Id == g_EventResize )
 	{
 		SNtlPLEventResize *pData = reinterpret_cast<SNtlPLEventResize*>( msg.pData );
 
-		// ¸®»çÀÌÁî
+		// ë¦¬ì‚¬ì´ì¦ˆ
 		PositionAlign( pData->iWidht, pData->iHeight );
 	}
 }
 
 /**
-* \brief Ãâ·ÂµÉ ÅØ½ºÆ®ÀÇ À§Ä¡¸¦ Á¤·ÄÇÑ´Ù.
+* \brief ì¶œë ¥ë  í…ìŠ¤íŠ¸ì˜ ìœ„ì¹˜ë¥¼ ì •ë ¬í•œë‹¤.
 */
 VOID CCautionNotifyGui::PositionAlign( RwInt32 nScreenWidth, RwInt32 nScreenHeight ) 
 {
@@ -367,7 +367,7 @@ VOID CCautionNotifyGui::PositionAlign( RwInt32 nScreenWidth, RwInt32 nScreenHeig
 }
 
 /**
-* \brief ÇöÀçÀÇ Caution ¿¡ Text¸¦ ¼¼ÆÃÇÏ°í ÃÊ±âÈ­ÇÑ´Ù.
+* \brief í˜„ì¬ì˜ Caution ì— Textë¥¼ ì„¸íŒ…í•˜ê³  ì´ˆê¸°í™”í•œë‹¤.
 */
 VOID CCautionNotifyGui::SetCurrentCautionNotify(std::string& strStringID, const WCHAR* pwcString )
 {
@@ -388,19 +388,19 @@ VOID CCautionNotifyGui::SetCurrentCautionNotify(std::string& strStringID, const 
 }
 
 /**
-* \brief °æ°í¸Ş½ÃÁö¸¦ Ãâ·ÂÇÏ´Â ÇÔ¼ö ( ÀÌ¹Ì ¶ç¿ì°í ÀÖÀ¸¸é ±âÁ¸¿¡ ÀÖ´ø °ÍÀ» SideIconÀ¸·Î º¸³»¹ö¸°´Ù. )
+* \brief ê²½ê³ ë©”ì‹œì§€ë¥¼ ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜ ( ì´ë¯¸ ë„ìš°ê³  ìˆìœ¼ë©´ ê¸°ì¡´ì— ìˆë˜ ê²ƒì„ SideIconìœ¼ë¡œ ë³´ë‚´ë²„ë¦°ë‹¤. )
 */
 VOID CCautionNotifyGui::ShowCautionNotify( RwBool bActive, std::string& strStringID, const WCHAR* pwcString )
 {
 	if( bActive )
 	{
-		// ÀÌ¹Ì Ãâ·ÂÇÏ°í ÀÖ´Â CautionNotify°¡ ¾ø´Ù¸é ¹Ù·Î Ãâ·ÂÇÑ´Ù.
+		// ì´ë¯¸ ì¶œë ¥í•˜ê³  ìˆëŠ” CautionNotifyê°€ ì—†ë‹¤ë©´ ë°”ë¡œ ì¶œë ¥í•œë‹¤.
 		if( m_bFinish )
 			SetCurrentCautionNotify( strStringID, pwcString );
 		else
 		{
-			// Ãâ·ÂÇÏ°í ÀÖ´Â CautionNotify°¡ ÀÖ´Ù¸é SideIconÀ¸·Î ÇöÀçÀÇ Ãâ·ÂµÇ°í ÀÖ´Â CautionNotify¸¦ º¸³»¹ö¸®°í
-			// »õ·Î¿î CautionNotify¸¦ µî·ÏÇÑ´Ù.
+			// ì¶œë ¥í•˜ê³  ìˆëŠ” CautionNotifyê°€ ìˆë‹¤ë©´ SideIconìœ¼ë¡œ í˜„ì¬ì˜ ì¶œë ¥ë˜ê³  ìˆëŠ” CautionNotifyë¥¼ ë³´ë‚´ë²„ë¦¬ê³ 
+			// ìƒˆë¡œìš´ CautionNotifyë¥¼ ë“±ë¡í•œë‹¤.
 			CDboEventGenerator::CautionSideNotify( TRUE, strStringID, m_pStbOut->GetText().c_str(), m_fLifeTime-m_fCurrentTime);
 
 			SetCurrentCautionNotify( strStringID, pwcString );
@@ -408,7 +408,7 @@ VOID CCautionNotifyGui::ShowCautionNotify( RwBool bActive, std::string& strStrin
 	}
 	else
 	{
-		// ÇöÀç Ãâ·ÂµÇ°í ÀÖ´Â ID¿Í »èÁ¦ÇÏ¶ó°í ³¯¶ó¿Â ID°¡ µ¿ÀÏÇÑ °æ¿ì Áö¿öÁØ´Ù.
+		// í˜„ì¬ ì¶œë ¥ë˜ê³  ìˆëŠ” IDì™€ ì‚­ì œí•˜ë¼ê³  ë‚ ë¼ì˜¨ IDê°€ ë™ì¼í•œ ê²½ìš° ì§€ì›Œì¤€ë‹¤.
 		if( m_bFinish )
 		{
 			if( m_strStringID == strStringID )
@@ -418,7 +418,7 @@ VOID CCautionNotifyGui::ShowCautionNotify( RwBool bActive, std::string& strStrin
 }
 
 /**
-* \brief ÇöÀçÀÇ CautionNotify¸¦ ÃÊ±âÈ­ÇÑ´Ù.
+* \brief í˜„ì¬ì˜ CautionNotifyë¥¼ ì´ˆê¸°í™”í•œë‹¤.
 */
 VOID CCautionNotifyGui::ClearCurrentCautionNotify() 
 {
@@ -437,22 +437,22 @@ VOID CCautionNotifyGui::ClearCurrentCautionNotify()
 }
 
 /**
-* \brief Free PVP Àå¿Ü Ã³¸® ¾Æ¿ô ¸Ş½ÃÁöÀÇ ÇÚµé·¯
-* \param bActive	(RwBool) µî·ÏÀÎÁö »èÁ¦ÀÎÁö
-* \param uiStringID	(RwUInt32) ¹®ÀÚ¿­ ÀÎµ¦½º
+* \brief Free PVP ì¥ì™¸ ì²˜ë¦¬ ì•„ì›ƒ ë©”ì‹œì§€ì˜ í•¸ë“¤ëŸ¬
+* \param bActive	(RwBool) ë“±ë¡ì¸ì§€ ì‚­ì œì¸ì§€
+* \param uiStringID	(RwUInt32) ë¬¸ìì—´ ì¸ë±ìŠ¤
 */
 VOID CCautionNotifyGui::FreePvpOutSideHandler( RwBool bActive, std::string strStringID)
 {
-	// bActive °¡ FALSE¸é Á¦°ÅÇÑ´Ù.
+	// bActive ê°€ FALSEë©´ ì œê±°í•œë‹¤.
 	if( bActive )
 	{
 		if( !m_listContinuance.empty() )
 			DeleteContinuance( strStringID );
 	
-		// µî·Ï
+		// ë“±ë¡
 		AddContinuance( strStringID, dFREEPVP_OUTSIDE_STAGE_LIMIT_TIME, dDEFAULT_NOTIFY_TIMER_INVERVAL_TIME );
 
-		// ÇÑ¹øÀº Ãâ·ÂÇØÁØ´Ù.
+		// í•œë²ˆì€ ì¶œë ¥í•´ì¤€ë‹¤.
 		WCHAR awcBuffer[256];
 		swprintf_s( awcBuffer, 256, GetDisplayStringManager()->GetString( "DST_FREEPVP_OUTSIDE_STAGE" ), (RwInt32)dFREEPVP_OUTSIDE_STAGE_LIMIT_TIME );
 		ShowCautionNotify( TRUE, strStringID, awcBuffer );
@@ -460,14 +460,14 @@ VOID CCautionNotifyGui::FreePvpOutSideHandler( RwBool bActive, std::string strSt
 	}
 	else
 	{
-		// ¸®½ºÆ®¿¡ ¾Æ¹«°Íµµ ¾È µé¾î ÀÖ´Ù¸é ±×³É ¸®ÅÏ½ÃÅ²´Ù.
+		// ë¦¬ìŠ¤íŠ¸ì— ì•„ë¬´ê²ƒë„ ì•ˆ ë“¤ì–´ ìˆë‹¤ë©´ ê·¸ëƒ¥ ë¦¬í„´ì‹œí‚¨ë‹¤.
 		if( !m_listContinuance.empty() )
 			DeleteContinuance( strStringID );
 	}
 }
 
 /**
-* \brief ÇÚµé·¯¿¡ µî·ÏµÉ °ÍµéÀ» µî·ÏÇÑ´Ù.
+* \brief í•¸ë“¤ëŸ¬ì— ë“±ë¡ë  ê²ƒë“¤ì„ ë“±ë¡í•œë‹¤.
 */
 VOID CCautionNotifyGui::RegisterHandler() 
 {
@@ -475,10 +475,10 @@ VOID CCautionNotifyGui::RegisterHandler()
 }
 
 /**
-* \brief StringID¸¦ Continuance·Î µî·ÏÇÑ´Ù.
-* \param uiStringID		(RwUInt32) ¹®ÀÚ¿­ ÀÎµ¦½º
-* \param fLimitTime		(RwReal) Á¦ÇÑ½Ã°£
-* \param fIntervalTime	(RwReal) °£°İ
+* \brief StringIDë¥¼ Continuanceë¡œ ë“±ë¡í•œë‹¤.
+* \param uiStringID		(RwUInt32) ë¬¸ìì—´ ì¸ë±ìŠ¤
+* \param fLimitTime		(RwReal) ì œí•œì‹œê°„
+* \param fIntervalTime	(RwReal) ê°„ê²©
 */
 VOID CCautionNotifyGui::AddContinuance(std::string& strStringID, RwReal fLimitTime, RwReal fIntervalTime )
 {
@@ -487,8 +487,8 @@ VOID CCautionNotifyGui::AddContinuance(std::string& strStringID, RwReal fLimitTi
 }
 
 /**
-* \brief Continuance List¿¡ µî·ÏµÇ¾î ÀÖ´Â µ¿ÀÏÇÑ StringID¸¦ °¡Áø Continuance¸¦ »èÁ¦ÇÑ´Ù.
-* \param uiStringID		(RwUInt32) ¹®ÀÚ¿­ ÀÎµ¦½º
+* \brief Continuance Listì— ë“±ë¡ë˜ì–´ ìˆëŠ” ë™ì¼í•œ StringIDë¥¼ ê°€ì§„ Continuanceë¥¼ ì‚­ì œí•œë‹¤.
+* \param uiStringID		(RwUInt32) ë¬¸ìì—´ ì¸ë±ìŠ¤
 */
 VOID CCautionNotifyGui::DeleteContinuance(std::string& strStringID)
 {	
@@ -497,7 +497,7 @@ VOID CCautionNotifyGui::DeleteContinuance(std::string& strStringID)
 	{
 		if( (*it)->GetStringID() == strStringID )
 		{
-			// »èÁ¦
+			// ì‚­ì œ
 			CCautionNotifyContinuance *pContinuance = (*it);
 			it = m_listContinuance.erase(it);
 			NTL_DELETE( pContinuance );

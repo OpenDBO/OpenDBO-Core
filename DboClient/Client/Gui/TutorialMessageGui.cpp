@@ -106,7 +106,7 @@ VOID CTutorialMessageGui::Update(RwReal fElapsed)
 	m_pflashBackground->Update(fElapsed);
 
 
-	// ¸Þ¼¼Áö ¾ËÆÄ º¯°æ
+	// ë©”ì„¸ì§€ ì•ŒíŒŒ ë³€ê²½
 	if( m_ShowHideMessage.fRemainTime > 0.f )
 	{
 		RwUInt8 byAlpha;
@@ -138,7 +138,7 @@ VOID CTutorialMessageGui::Update(RwReal fElapsed)
 		}
 	}	
 
-	// »ö»ó º¯°æ
+	// ìƒ‰ìƒ ë³€ê²½
 	if( m_ChangeColor.fRemainTime > 0.f )
 	{
 		m_ChangeColor.fElapsedTime += fElapsed;
@@ -164,7 +164,7 @@ VOID CTutorialMessageGui::OnClick_SkipButton(gui::CComponent* pComponent)
 
 VOID CTutorialMessageGui::OnMove(RwInt32 iOldX, RwInt32 iOldY)
 {
-	// ±âÈ¹ÀÇ º¯°æÀ¸·Î È­¸é Áß¾Ó Á¤·Ä¿¡¼­ È­¸é »ó´Ü Á¤·Ä·Î º¯°æ
+	// ê¸°íšì˜ ë³€ê²½ìœ¼ë¡œ í™”ë©´ ì¤‘ì•™ ì •ë ¬ì—ì„œ í™”ë©´ ìƒë‹¨ ì •ë ¬ë¡œ ë³€ê²½
 	CRectangle rtFlashBackground = m_pflashBackground->GetFrameResolution();
 	
 	CRectangle rtRect, rtButton;
@@ -236,7 +236,7 @@ VOID CTutorialMessageGui::HandleEvents( RWS::CMsg &msg )
 		}
 
 
-		// ±âÁ¸¿¡ ÅØ½ºÆ®°¡ º¸¿©Áö°í ÀÖÁö ¾Ê¾Ò´Ù¸é ¹è°æ ÇÃ·¡½¬¸¦ ·ÎµùÇÑ´Ù
+		// ê¸°ì¡´ì— í…ìŠ¤íŠ¸ê°€ ë³´ì—¬ì§€ê³  ìžˆì§€ ì•Šì•˜ë‹¤ë©´ ë°°ê²½ í”Œëž˜ì‰¬ë¥¼ ë¡œë”©í•œë‹¤
 		if( pEvent->bShow )
 		{
 			if( !m_ShowHideMessage.bShow )

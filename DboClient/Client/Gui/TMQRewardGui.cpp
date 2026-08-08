@@ -39,7 +39,7 @@ namespace
 	#define dNUMEFFECT_END_RATE				1.f
 	#define dNUMEFFECT_TIME					0.5f
 
-	// °¢ CNumberGui°¡ ÇÑÀÚ¸® ¼ıÀÚ¸¸À» Ç¥½ÃÇÏ±â¿¡ ºÎµæÀÌ ¿©±â¼­ ÇÏµåÄÚµùÀ¸·Î ¼ıÀÚ°£ °£°İÀ» Á¶ÀıÇÑ´Ù
+	// ê° CNumberGuiê°€ í•œìë¦¬ ìˆ«ìë§Œì„ í‘œì‹œí•˜ê¸°ì— ë¶€ë“ì´ ì—¬ê¸°ì„œ í•˜ë“œì½”ë”©ìœ¼ë¡œ ìˆ«ìê°„ ê°„ê²©ì„ ì¡°ì ˆí•œë‹¤
 	#define dNUM_GAP						-2
 };
 
@@ -254,13 +254,13 @@ VOID CTMQRewardGui::OnMove(RwInt32 iOldX, RwInt32 iOldY)
 
 	m_pConfirmButton->SetPosition(iPibotX + 300, iPibotY + 60);
 
-	// ¹è°æ ÇÃ·¡½¬
+	// ë°°ê²½ í”Œë˜ì‰¬
 	rtRect = rtScreen;
 	rtRect.top		= (rtScreen.GetHeight() - m_pFlashResult->GetHeight())/2;
 	rtRect.bottom	= rtRect.top + m_pFlashBackground->GetHeight();
 	m_pFlashBackground->SetPosition(rtRect);
 
-	// °á°ú ÇÃ·¡½¬
+	// ê²°ê³¼ í”Œë˜ì‰¬
 	m_pFlashResult->SetPosition((rtScreen.GetWidth() - m_pFlashResult->GetWidth())/2,
 								(rtScreen.GetHeight() - m_pFlashResult->GetHeight())/2);
 
@@ -324,7 +324,7 @@ VOID CTMQRewardGui::HandleEvents( RWS::CMsg &msg )
 		GetDialogManager()->CloseAll();
 		SwitchDialog(true);
 
-		// NPC ³ª·¹ÀÌ¼Ç
+		// NPC ë‚˜ë ˆì´ì…˜
 		if( !m_pNarrationGui )
 		{
 			m_pNarrationGui = NTL_NEW CResultNarrationGui("TMQNarrationGui");
@@ -346,7 +346,7 @@ VOID CTMQRewardGui::HandleEvents( RWS::CMsg &msg )
 	{
 		SNtlEventTMQNotify* pEvent = reinterpret_cast<SNtlEventTMQNotify*>( msg.pData );
 
-		// Á¦ÇÑ½Ã°£
+		// ì œí•œì‹œê°„
 		if( pEvent->uiEventType == TET_TIME_UNTIL_TELEPORT_TO_MAINWORLD )
 		{
 			float fLimitedTime = (float)pEvent->uiValue/1000.f;

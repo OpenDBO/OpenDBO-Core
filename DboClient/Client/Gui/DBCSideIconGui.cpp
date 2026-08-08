@@ -51,15 +51,15 @@ RwBool CDBCSideIconGui::Create()
 
 	m_pThis = (gui::CDialog*)GetComponent("dlgMain");
 
-	// ºñ½ÃÁğ ¾ÆÀÌÄÜ ¹öÆ°
+	// ë¹„ì‹œì¦Œ ì•„ì´ì½˜ ë²„íŠ¼
 	m_pBtnNoSeason = (gui::CButton*)GetComponent("btnDBCSideIconNoSeason");
 	m_slotNoSeasonButton = m_pBtnNoSeason->SigClicked().Connect(this, &CDBCSideIconGui::OnIconButtonClicked);
 
-	// ½ÃÁğ ¾ÆÀÌÄÜ ¹öÆ°
+	// ì‹œì¦Œ ì•„ì´ì½˜ ë²„íŠ¼
 	m_pBtnSeason = (gui::CButton*)GetComponent("btnDBCSideIconSeason");
 	m_slotSeasonButton = m_pBtnSeason->SigClicked().Connect(this, &CDBCSideIconGui::OnIconButtonClicked);
 
-	// ¼öÁı ¿Ï·á ¾ÆÀÌÄÜ ¹öÆ°
+	// ìˆ˜ì§‘ ì™„ë£Œ ì•„ì´ì½˜ ë²„íŠ¼
 	m_pBtnCollect = (gui::CButton*)GetComponent("btnDBCSideIconCollect");
 	m_slotCollectButton = m_pBtnCollect->SigClicked().Connect(this, &CDBCSideIconGui::OnIconButtonClicked);
 
@@ -119,9 +119,9 @@ VOID CDBCSideIconGui::HandleEvents( RWS::CMsg &msg )
 {
 	NTL_FUNCTION("CDBCSideIconGui::HandleEvents");
 
-	if(msg.Id == g_EventDBCShedule_Info || msg.Id == g_EventSobCheckItemInOut)		// ¼­¹ö·ÎºÎÅÍ Á¤º¸¸¦ ¹Ş°Å³ª ÀÎº¥Åä¸®ÀÇ ¾ÆÀÌÅÛÀÌ º¯°æµÇ¾úÀ»¶§
+	if(msg.Id == g_EventDBCShedule_Info || msg.Id == g_EventSobCheckItemInOut)		// ì„œë²„ë¡œë¶€í„° ì •ë³´ë¥¼ ë°›ê±°ë‚˜ ì¸ë²¤í† ë¦¬ì˜ ì•„ì´í…œì´ ë³€ê²½ë˜ì—ˆì„ë•Œ
 	{
-		if(IsCollectComplete())					// µå·¡°ïº¼À» ´Ù ¸ğ¾Ò´ÂÁö Ã¼Å©ÇÑ´Ù.
+		if(IsCollectComplete())					// ë“œë˜ê³¤ë³¼ì„ ë‹¤ ëª¨ì•˜ëŠ”ì§€ ì²´í¬í•œë‹¤.
 		{
 			if( GetIconImageType() != E_ICON_COLLECT )
 			{
@@ -142,7 +142,7 @@ VOID CDBCSideIconGui::HandleEvents( RWS::CMsg &msg )
 
 RwBool CDBCSideIconGui::IsCollectComplete() 
 {
-	// ÀÎº¥Åä¸®¿¡¼­ µå·¡°ïº¼À» °Ë»çÇÑ´Ù.
+	// ì¸ë²¤í† ë¦¬ì—ì„œ ë“œë˜ê³¤ë³¼ì„ ê²€ì‚¬í•œë‹¤.
 	for(BYTE type = DRAGON_BALL_TYPE_BASIC; type < DRAGON_BALL_TYPE_COUNT; ++type)
 	{
 		sDRAGONBALL_TBLDAT* pData = (sDRAGONBALL_TBLDAT*)API_GetTableContainer()->GetDragonBallTable()->GetDBTbldat(type);
@@ -169,8 +169,8 @@ RwBool CDBCSideIconGui::IsCollectComplete()
 
 VOID CDBCSideIconGui::ResetSheduleInfo() 
 {
-	// Kell's comment : µå·¡°ïº¼ ¼öÁı ±â°£ÀÌ ¾Æ´Ñ °æ¿ì¿¡´Â Ãâ·ÂÇÏÁö ¾ÊÀ½À¸·Î º¯°æ( 08. 07. 03 )
-	if(GetDboGlobal()->GetDBCScheduleInfo()->bIsAlive)	// ±â°£ÁßÀÎÁö À¯¹«
+	// Kell's comment : ë“œë˜ê³¤ë³¼ ìˆ˜ì§‘ ê¸°ê°„ì´ ì•„ë‹Œ ê²½ìš°ì—ëŠ” ì¶œë ¥í•˜ì§€ ì•ŠìŒìœ¼ë¡œ ë³€ê²½( 08. 07. 03 )
+	if(GetDboGlobal()->GetDBCScheduleInfo()->bIsAlive)	// ê¸°ê°„ì¤‘ì¸ì§€ ìœ ë¬´
 	{
 		SetIconImageType(E_ICON_SEASON);
 
@@ -216,23 +216,23 @@ RwBool CDBCSideViewGui::Create()
 
 	m_pThis = (gui::CDialog*)GetComponent("dlgMain");
 
-	// ´İ±â ¹öÆ°
+	// ë‹«ê¸° ë²„íŠ¼
 	m_pExitButton = (gui::CButton*)GetComponent("btnClose");
 	m_slotCloseButton = m_pExitButton->SigClicked().Connect(this, &CDBCSideViewGui::OnExitClicked);
 
-	// ¹è°æ
+	// ë°°ê²½
 	m_BackPanel.SetType(CWindowby3::WT_HORIZONTAL);
 	m_BackPanel.SetSurface(0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface("DBCSideView.srf", "srfDialogBackUp"));
 	m_BackPanel.SetSurface(1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface("DBCSideView.srf", "srfDialogBackCenter"));
 	m_BackPanel.SetSurface(2, GetNtlGuiManager()->GetSurfaceManager()->GetSurface("DBCSideView.srf", "srfDialogBackDown"));	
 
-	// Side View Á¦¸ñ
+	// Side View ì œëª©
 	rect.SetRectWH(20, 20, 250, 14);
 	m_pTitle = NTL_NEW gui::CStaticBox(rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT );
 	m_pTitle->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);	    
 	m_pTitle->Enable(false);	
 
-	// ¾Ë¸² ¸Ş¼¼Áö
+	// ì•Œë¦¼ ë©”ì„¸ì§€
 	rect.SetRectWH(20, 50, 250, 14);
 	m_pNotify = NTL_NEW gui::CStaticBox(rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT );
 	m_pNotify->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
@@ -304,7 +304,7 @@ VOID CDBCSideViewGui::SetState(eDBCSideIconType eState)
 			m_pTitle->SetTextColor(RGB(43, 255, 243));
 			m_pTitle->SetText(wstrTitle.c_str());
 
-			// ±â°£ : -¿ù -ÀÏ ~ -¿ù -ÀÏ			
+			// ê¸°ê°„ : -ì›” -ì¼ ~ -ì›” -ì¼			
 			WCHAR buf[64] = {0,};
 			tm tmStart, tmEnd;
 			localtime_s(&tmStart, &GetDboGlobal()->GetDBCScheduleInfo()->nStartTime);

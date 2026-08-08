@@ -129,7 +129,7 @@ private:
 
 	//arrow , meters
 	VOID	    CalcDistance(gui::CStaticBox* m_pDistanceLabel, CNtlSobAvatar* pAvatar, RwV3d m_indicatorTargetPos);          ///< �Ÿ��� ����Ѵ�.
-	VOID        UpdateDirection(gui::CPanel* pArrow, CNtlSobAvatar* pAvatar, RwV3d m_indicatorTargetPos);       ///< ������Ʈ�� ������ ������Ʈ�Ѵ�.
+	VOID        UpdateDirection(gui::CPanel* pArrow, CNtlSobAvatar* pAvatar, RwV3d m_indicatorTargetPos);       ///< 占쏙옙占쏙옙占쏙옙트占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙트占싼댐옙.
 
 	//! Variables
 	gui::CSlot			m_slotPaint;

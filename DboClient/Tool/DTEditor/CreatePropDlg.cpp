@@ -1,4 +1,4 @@
-// CreatePropDlg.cpp : ���� �����Դϴ�.
+// CreatePropDlg.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -11,7 +11,7 @@
 #include "CreatePropDlg.h"
 
 
-// CCreatePropDlg ��ȭ �����Դϴ�.
+// CCreatePropDlg 대화 상자입니다.
 
 IMPLEMENT_DYNAMIC(CCreatePropDlg, CDialog)
 
@@ -54,13 +54,13 @@ BEGIN_MESSAGE_MAP(CCreatePropDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CCreatePropDlg �޽��� ó�����Դϴ�.
+// CCreatePropDlg 메시지 처리기입니다.
 
 BOOL CCreatePropDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ���⿡ �߰� �ʱ�ȭ �۾��� �߰��մϴ�.
+	// TODO:  여기에 추가 초기화 작업을 추가합니다.
 
 	switch( m_nCreateType )
 	{
@@ -92,14 +92,14 @@ BOOL CCreatePropDlg::OnInitDialog()
 	}
 	
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ����: OCX �Ӽ� �������� FALSE�� ��ȯ�ؾ� �մϴ�.
+	// 예외: OCX 속성 페이지는 FALSE를 반환해야 합니다.
 }
 
 void CCreatePropDlg::OnShowWindow(BOOL bShow, UINT nStatus)
 {
 	CDialog::OnShowWindow(bShow, nStatus);
 
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 
 	if(bShow)
 	{
@@ -114,7 +114,7 @@ void CCreatePropDlg::OnShowWindow(BOOL bShow, UINT nStatus)
 
 void CCreatePropDlg::OnLbnSelchangeAddPropList()
 {
-	// TODO: ���⿡ ��Ʈ�� �˸� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 
 	m_nIndex = m_PropList.GetCurSel();	
 

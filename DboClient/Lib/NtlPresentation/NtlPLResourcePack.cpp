@@ -112,6 +112,12 @@ RwInt32 CNtlPLResourcePack::LoadPack(const RwChar *pFileName)
 	CNtlFileSerializer s;
 	
 	bool bSuccess = s.LoadFile((char*)pFileName, true, NTL_PACK_CRYPT_KEY);
+#if defined(_WIN64)
+	OutputDebugStringA("LoadPack file: ");
+	OutputDebugStringA(pFileName);
+	OutputDebugStringA(bSuccess ? " OK" : " FAILED");
+	OutputDebugStringA("\n");
+#endif
 	if(!bSuccess)
 		return NTL_FILEPACK_ERROR;
 
@@ -326,10 +332,10 @@ void CNtlPLResoucePackManager::GetAllFiles(std::string& strOffsetFolder, std::li
 
 		if(FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 		{
-			//  µ∑∫≈‰∏Æ¿Ã∏È
+			//  ÔøΩÔøΩÔøΩ‰∏ÆÔøΩÃ∏ÔøΩ
 			if(FindFileData.cFileName[0] == '.')
 			{
-				//  Dot µ∑∫≈‰∏Æ¥¬ Ω∫≈µ«—¥Ÿ.
+				//  Dot ÔøΩÔøΩÔøΩ‰∏ÆÔøΩÔøΩ ÔøΩÔøΩ≈µÔøΩ—¥ÔøΩ.
 			} 
 			else
 			{
@@ -444,7 +450,7 @@ RwInt32 CNtlPLResoucePackManager::SavePackFile(CNtlPLResourcePack *pResPack, std
 			{
 				uiProcFileNum++;
 				RwUInt32 uiPercent = (RwUInt32)(((RwReal)uiProcFileNum/(RwReal)uiTotalFileNum) * 100.0f);
-				m_pCallMakePackNotify->Call((unsigned int)(*it).c_str(), uiPercent);
+				m_pCallMakePackNotify->Call((uintptr_t)(*it).c_str(), uiPercent);
 			}
 		}
 	}
@@ -491,7 +497,7 @@ RwInt32 CNtlPLResoucePackManager::SavePack(RwUInt8 byPackType, std::list<std::st
 	pResPack->ClearHeader();
 
 	//----------------------------------------------------
-	// «ˆ¿Á¿« directory∏¶ º≥¡§«—¥Ÿ.
+	// Âç†ÏèôÏòôÂç†ÏèôÏòôÂç†ÏèôÏòô directoryÂç†ÏèôÏòô Âç†ÏèôÏòôÂç†ÏèôÏòôÂç†ÏãºÎåêÏòô.
 	RwChar strCurPath[NTL_MAX_DIR_PATH];
 	::GetCurrentDirectory(NTL_MAX_DIR_PATH, strCurPath);
 
@@ -644,7 +650,7 @@ RwChar*	CNtlPLResoucePackManager::UnPackLeadBuffer(RwChar* pBuffer, const RwChar
 
 void CNtlPLResoucePackManager::UnPackSaveBuffer(const RwChar *pFileName, const RwChar *pBuffer, SFilePackHeaderElement *pElement)
 {
-    // ¿–±‚ ¿¸øÎµµ µ§æÓæµºˆ ¿÷µµ∑œ º”º∫¿ª ∫Ø»Ø«—¥Ÿ.
+    // ÔøΩ–±ÔøΩ ÔøΩÔøΩÔøΩÎµµ ÔøΩÔøΩÔøΩÓæµÔøΩÔøΩ ÔøΩ÷µÔøΩÔøΩÔøΩ ÔøΩ”ºÔøΩÔøΩÔøΩ ÔøΩÔøΩ»ØÔøΩ—¥ÔøΩ.
     ::SetFileAttributes(pFileName, FILE_ATTRIBUTE_NORMAL);
 
 	FILE *fp = NULL;
@@ -742,7 +748,7 @@ RwInt32 CNtlPLResoucePackManager::SavePack(RwUInt8 byPackType)
 {
 	if(m_pCallMakePackNotify)
 	{
-		m_pCallMakePackNotify->Call((unsigned int)"Pack file ready !!!", 0);
+		m_pCallMakePackNotify->Call((uintptr_t)"Pack file ready !!!", 0);
 	}
 
 	switch(byPackType)
@@ -777,7 +783,7 @@ RwInt32	CNtlPLResoucePackManager::UnPack(void)
 {
 	if(m_pCallMakePackNotify)
 	{
-		m_pCallMakePackNotify->Call((unsigned int)"Pack file loading !!!", 0);
+		m_pCallMakePackNotify->Call((uintptr_t)"Pack file loading !!!", 0);
 	}
 
 	LoadPackHeader();
@@ -825,7 +831,7 @@ RwInt32 CNtlPLResoucePackManager::UnPack( EFilePackType ePackType )
 {
     if(m_pCallMakePackNotify)
     {
-        m_pCallMakePackNotify->Call((unsigned int)"Pack file loading !!!", 0);
+        m_pCallMakePackNotify->Call((uintptr_t)"Pack file loading !!!", 0);
     }
 
     RwInt32 iCurrNum = 0;
@@ -878,7 +884,7 @@ void CNtlPLResoucePackManager::FilterPathBuffer(const RwChar *pPath, const RwCha
 	RwInt32 iOffset = 0;
 	RwInt32 iLen = 0;
 
-	// »Æ¿Â¿⁄ filter ∏∏µÈ±‚.
+	// ÌôïÏû•Ïûê filter ÎßåÎì§Í∏∞.
 	iLen = (RwInt32)strlen(pFileName);
 	for(RwInt32 i = 0; i < iLen; i++)
 	{
@@ -901,7 +907,7 @@ void CNtlPLResoucePackManager::FilterPathBuffer(const RwChar *pPath, const RwCha
 	if(pPath == NULL)
 		return;
 
-	// path∏¶ º“πÆ¿⁄∑Œ ∏∏µÈ±‚.
+	// pathÎ•º ÏÜåÎ¨∏ÏûêÎ°ú ÎßåÎì§Í∏∞.
 	m_iCurrPathNum = 0;
 	iOffset = 0;
 	iLen = (RwInt32)strlen(pPath);
@@ -964,7 +970,7 @@ RwTexture* CNtlPLResoucePackManager::LoadTexture(const RwChar *pPath, const RwCh
 	CNtlPLResourcePack *pResPack = m_pResPack[NTL_PACK_TYPE_TEXTURE];
 	RwUInt8 byExtType = 0;
 	
-	for(RwInt32 j = 0; j <= m_iCurrPathNum; j++)
+	for (RwInt32 j = 0; j <= m_iCurrPathNum; j++)
 	{
 		RwChar *pPathRoot = rwstrstr(m_chPathBuffer[j], "texture");
 		if (pPathRoot == NULL)
@@ -1044,8 +1050,6 @@ ResourcPackTextureLoad_Exit:
 	
 	m_chFullBuffer[m_iBufferSize] = 0;
 
-	RwTexture *pTexture = NULL;
-
 	SNtlPackImage sPackImage;
 	sPackImage.pName				= pFileName;
 	sPackImage.pMaskName			= pMaskName;
@@ -1053,7 +1057,7 @@ ResourcPackTextureLoad_Exit:
 	sPackImage.uiPackOffset			= pElement->uiOffset;
 	sPackImage.uiPackSize			= pElement->uiSize;
 
-
+	RwTexture *pTexture = NULL;
 	if(byExtType == PACK_TEXUTRE_EXT_DDS)
 		pTexture = Ntl_D3D9DDSTextureRead(&sPackImage);
 	else if(byExtType == PACK_TEXUTRE_EXT_PNG)
@@ -1263,7 +1267,7 @@ void CNtlPLResoucePackManager::LoadFlash(const RwChar *pFileName, void **pData, 
 	if(pElement == NULL)
 		return;
 
-	// Flash Size¥¬ int∑Œ «—¡§.
+	// Flash SizeÂç†ÏèôÏòô intÂç†ÏèôÏòô Âç†ÏèôÏòôÂç†ÏèôÏòô.
 	if(pElement->uiSize >= 0x80000000 )
 		return;
 
@@ -1414,6 +1418,17 @@ void CNtlPLResoucePackManager::LoadScript( const RwChar* pFileName, void** pData
 
     CNtlPLResourcePack *pResPack = m_pResPack[NTL_PACK_TYPE_SCRIPT];
     pElement = pResPack->FindHeader(m_chFullBuffer);
+#if defined(_WIN64)
+    OutputDebugStringA("LoadScript lookup: ");
+    OutputDebugStringA(m_chFullBuffer);
+    OutputDebugStringA("\nPack keys:\n");
+    auto& headers = pResPack->GetHeaders();
+    for (auto& h : headers) {
+        OutputDebugStringA(h.first.c_str());
+        OutputDebugStringA("\n");
+    }
+    OutputDebugStringA("---\n");
+#endif
     if(pElement == NULL)
         return;
 

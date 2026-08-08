@@ -537,7 +537,7 @@ bool CItemOptionRestructureGui::SetItemSlot(RwUInt32 hSerialID, RwUInt32 eSrcpla
 		return false;
 	}
 
-	// ¾ÆÀÌÄÜ ¹«ºê ¿Ï·á
+	// ì•„ì´ì½˜ ë¬´ë¸Œ ì™„ë£Œ
 	if (bNeedToIconMoveEnd)
 		GetIconMoveManager()->IconMoveEnd();
 

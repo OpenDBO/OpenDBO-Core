@@ -2,12 +2,12 @@
  *
  * File			: TBGambleResultGui.h
  * Author		: Haesung, Cho
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2008. 8. 20	
  * Abstract		: Tenkaichi budokai gamble npc result
  *****************************************************************************
  * Desc         : 
- * °×ºíNPC°¡ ¹ñ¾î³»´Â ¾ÆÀÌÅÛÀ» ¶ç¿ö¼­ È®ÀÎ½ÃÄÑÁØ´Ù.
+ * ê²œë¸”NPCê°€ ë±‰ì–´ë‚´ëŠ” ì•„ì´í…œì„ ë„ì›Œì„œ í™•ì¸ì‹œì¼œì¤€ë‹¤.
  *****************************************************************************/
 
 #ifndef __TBGAMBLERESULT__H__
@@ -20,7 +20,7 @@
 
 /**
 * \ingroup client
-* \brief °×ºí NPC¿¡°Ô¼­ °×ºíÀ» ÇßÀ» °æ¿ì ¾î¶² ¾ÆÀÌÅÛÀÌ ³ª¿Ô´ÂÁö È­¸éÀ¸·Î º¸¿©ÁØ´Ù.
+* \brief ê²œë¸” NPCì—ê²Œì„œ ê²œë¸”ì„ í–ˆì„ ê²½ìš° ì–´ë–¤ ì•„ì´í…œì´ ë‚˜ì™”ëŠ”ì§€ í™”ë©´ìœ¼ë¡œ ë³´ì—¬ì¤€ë‹¤.
 */
 class CTBGambleResultGui : public CNtlPLGui, public RWS::CEventHandler
 {

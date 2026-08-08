@@ -7,7 +7,7 @@
 
 /**
 * \ingroup NtlSimulation
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸, ÀüÅõ »óÅÂ¸¦ Á¦¾î.
+* \brief ì²œí•˜ì œì¼ ë¬´ë„íšŒ, ì „íˆ¬ ìƒíƒœë¥¼ ì œì–´.
 * \date 2008-05-09
 * \author peessi
 */
@@ -36,7 +36,7 @@ struct stTBudokaiMember
 	RwUInt16		wWinCount;
 	RwUInt16		wLoseCount;
 	RwUInt16		wDrawCount;
-	RwUInt8			byIndex;		///< ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ÀÇ ¸â¹ö Index
+	RwUInt8			byIndex;		///< ì²œí•˜ì œì¼ ë¬´ë„íšŒì˜ ë©¤ë²„ Index
 	std::wstring	wstrGuildName;
 	std::wstring	wstrName;		
 	stTBudokaiTeam*	pTeam;
@@ -63,7 +63,7 @@ struct stTBudokaiTeam
 typedef std::map<RwUInt32,stTBudokaiMember*>				MAP_TBMEMBER;		// first SerialID
 typedef std::map<RwUInt32,stTBudokaiMember*>::iterator		MAP_TBMEMBER_ITER;
 
-typedef std::map<RwUInt16,stTBudokaiTeam*>					MAP_TBTEAM;			// first°¡ TeamID
+typedef std::map<RwUInt16,stTBudokaiTeam*>					MAP_TBTEAM;			// firstê°€ TeamID
 typedef std::map<RwUInt16,stTBudokaiTeam*>::iterator		MAP_TBTEAM_ITER;
 
 class CNtlWorldConceptTB : public CNtlWorldConceptController
@@ -87,7 +87,7 @@ public:
 	virtual RwBool		IsMoveableArea(CNtlSobActor *pActor, const RwV3d *pPos, const RwV3d *pDestPos);
 	virtual RwBool		IsVisiblePCInCinematic(VOID) { return TRUE; }
 	virtual RwBool		CanUseSkill(RwUInt32 hSerialID, RwUInt32& uiResultCode);
-	RwBool				IsRingOut( RwUInt32 hSerialID );							// Á×°Ç»ì°Ç ¸µ ¾È¿¡ Á¸ÀçÇÒ¶§¸¸ FALSE, ¸µ ¹Û¿¡ ÀÖÀ»¶© ´Ù TRUE
+	RwBool				IsRingOut( RwUInt32 hSerialID );							// ì£½ê±´ì‚´ê±´ ë§ ì•ˆì— ì¡´ì¬í• ë•Œë§Œ FALSE, ë§ ë°–ì— ìˆì„ë• ë‹¤ TRUE
 	RwBool				IsAttackableEnemy( RwUInt32 hSerialId );
 	CNtlSobActor*		GetNearAttackableEnemy( CNtlSobActor* pActor );
 	RwBool				IsPartyBattle(VOID);
@@ -95,10 +95,10 @@ public:
 	stTBudokaiMember*	FindMember(RwUInt32 hSerialID);
 	stTBudokaiTeam*		FindTeam(RwUInt16 wTeamID);	
 	stTBudokaiTeam*		GetMyTeam(VOID);											
-	stTBudokaiTeam*		GetEnemyTeam(VOID);											// º»¼±,°á¼±¿ë first¸¦ ReturnÇÒ »Ó.
-	stTBudokaiTeam*		GetBlueTeam(VOID);											// º»¼±,°á¼±¿ë first¸¦ ReturnÇÒ »Ó.
-	stTBudokaiTeam*		GetRedTeam(VOID);											// º»¼±,°á¼±¿ë first¸¦ ReturnÇÒ »Ó.
-	MAP_TBTEAM*			GetTeams(VOID) { return &m_mapTeams; }						// ¿¹¼±¿ë
+	stTBudokaiTeam*		GetEnemyTeam(VOID);											// ë³¸ì„ ,ê²°ì„ ìš© firstë¥¼ Returní•  ë¿.
+	stTBudokaiTeam*		GetBlueTeam(VOID);											// ë³¸ì„ ,ê²°ì„ ìš© firstë¥¼ Returní•  ë¿.
+	stTBudokaiTeam*		GetRedTeam(VOID);											// ë³¸ì„ ,ê²°ì„ ìš© firstë¥¼ Returní•  ë¿.
+	MAP_TBTEAM*			GetTeams(VOID) { return &m_mapTeams; }						// ì˜ˆì„ ìš©
 	MAP_TBMEMBER*		GetMembers(VOID) { return &m_mapMembers; }
 
 	RwUInt16			GetMyTeamType(VOID) { return m_wMyTeamType; }
@@ -130,7 +130,7 @@ protected:
 	RwUInt8				m_byMatchDepth;
 	RwUInt8				m_byMatchIndex;				
 	
-	sRANKBATTLE_TBLDAT*	m_pMatchTblDat;												// ·©Å©¹èÆ² Å×ÀÌºí ¿ùµåÀÎÆ÷¿¡¼­ ¼¼ÆÃ. 
+	sRANKBATTLE_TBLDAT*	m_pMatchTblDat;												// ë­í¬ë°°í‹€ í…Œì´ë¸” ì›”ë“œì¸í¬ì—ì„œ ì„¸íŒ…. 
 
 public:
 	void	EventHandler_MinorMatchStateUpdate(void* pData);

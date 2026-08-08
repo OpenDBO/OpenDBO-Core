@@ -2,37 +2,37 @@
 *
 * File			: NtlPLAccelController
 * Author		: agebreak
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 12. 29	
-* Abstract		: °¡¼Óµµ °è»ê¿ë ÄÁÆ®·Ñ·¯
+* Abstract		: ê°€ì†ë„ ê³„ì‚°ìš© ì»¨íŠ¸ë¡¤ëŸ¬
 *****************************************************************************
-* Desc         : UIÀÇ ½½¶óÀÌµåµî¿¡¼­ »ç¿ëµÇ´Â °¡¼Óµµ °è»ê¿ë ÄÁÆ®·Ñ·¯
+* Desc         : UIì˜ ìŠ¬ë¼ì´ë“œë“±ì—ì„œ ì‚¬ìš©ë˜ëŠ” ê°€ì†ë„ ê³„ì‚°ìš© ì»¨íŠ¸ë¡¤ëŸ¬
 *
 *****************************************************************************/
 
 #pragma once
 
-/// °¡¼Óµµ °è»ê ÄÁÆ®·Ñ·¯
+/// ê°€ì†ë„ ê³„ì‚° ì»¨íŠ¸ë¡¤ëŸ¬
 class CNtlPLAccelController
 {
 public:
     CNtlPLAccelController(void);
     ~CNtlPLAccelController(void);
 	
-    void    SetAccel(RwReal fStartVal, RwReal fEndVal, RwReal fStartVelocity, RwReal fAccel);       /// °ªÀ» ¼³Á¤ÇÑ´Ù.
-    RwBool  Update(RwReal fElapsed);                           ///< ¾÷µ¥ÀÌÆ®
+    void    SetAccel(RwReal fStartVal, RwReal fEndVal, RwReal fStartVelocity, RwReal fAccel);       /// ê°’ì„ ì„¤ì •í•œë‹¤.
+    RwBool  Update(RwReal fElapsed);                           ///< ì—…ë°ì´íŠ¸
 	void	Stop();
-    RwReal  GetCurrentValue() {return m_fCurrentVal;}          ///< ÇöÀç°ª
-    RwReal  GetCurrentVelocity() {return m_fCurrVel;}          ///< ÇöÀç ¼Óµµ
-	RwReal	GetCurrentProgress();								///< 0.0(½ÃÀÛ) ~ 1.0(³¡) ±âÁØÀÇ ÇöÀç ÁøÇà
+    RwReal  GetCurrentValue() {return m_fCurrentVal;}          ///< í˜„ì¬ê°’
+    RwReal  GetCurrentVelocity() {return m_fCurrVel;}          ///< í˜„ì¬ ì†ë„
+	RwReal	GetCurrentProgress();								///< 0.0(ì‹œì‘) ~ 1.0(ë) ê¸°ì¤€ì˜ í˜„ì¬ ì§„í–‰
 
 protected:
-    RwReal  m_fStartVal;                      ///< ½ÃÀÛ°ª
-    RwReal  m_fEndVal;                        ///< ³¡°ª
-    RwReal  m_fCurrentVal;                    ///< ÇöÀç°ª
-    RwReal  m_fStartVelocity;                 ///< ½ÃÀÛ ¼Óµµ
-    RwReal  m_fAccel;                         ///< °¡¼Óµµ
-    RwReal  m_fCurrVel;                       ///< ÇöÀç ¼Óµµ
-	RwReal	m_fCurrProgress;				  ///< ÇöÀç ÁøÇàÄ¡ ( 0.0f ~ 1.0f )
-    RwBool  m_bUpdate;                        ///< ¾÷µ¥ÀÌÆ® À¯¹« ÇÃ·¡±×
+    RwReal  m_fStartVal;                      ///< ì‹œì‘ê°’
+    RwReal  m_fEndVal;                        ///< ëê°’
+    RwReal  m_fCurrentVal;                    ///< í˜„ì¬ê°’
+    RwReal  m_fStartVelocity;                 ///< ì‹œì‘ ì†ë„
+    RwReal  m_fAccel;                         ///< ê°€ì†ë„
+    RwReal  m_fCurrVel;                       ///< í˜„ì¬ ì†ë„
+	RwReal	m_fCurrProgress;				  ///< í˜„ì¬ ì§„í–‰ì¹˜ ( 0.0f ~ 1.0f )
+    RwBool  m_bUpdate;                        ///< ì—…ë°ì´íŠ¸ ìœ ë¬´ í”Œë˜ê·¸
 };

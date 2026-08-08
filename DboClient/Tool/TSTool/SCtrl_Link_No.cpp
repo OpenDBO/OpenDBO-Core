@@ -39,7 +39,7 @@ void CSCtrl_Link_No::OnLButtonDown( const CPoint &point, UINT nFlags )
 	}
 	else
 	{
-		AfxMessageBox( _T("ÇØ´ç ÄÁÅ×ÀÌ³Ê¿¡ No ¸µÅ©´Â ³õÀ» ¼ö ¾ø½À´Ï´Ù") );
+		AfxMessageBox( _T("í•´ë‹¹ ì»¨í…Œì´ë„ˆì— No ë§í¬ëŠ” ë†“ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤") );
 	}
 }
 

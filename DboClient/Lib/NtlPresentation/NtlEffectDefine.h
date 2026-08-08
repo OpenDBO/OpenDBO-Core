@@ -30,11 +30,11 @@ const RwRGBA RGBA_BASE = { 255, 255, 255, 255 };
 #define EFFECT_NAME_TRACE       "TraceEffect"
 #define EFFECT_NAME_GRADE       "GradeEffect"
 
-// Blur Effect ¼³Á¤
+// Blur Effect ì„¤ì •
 #define EFFECT_BLUR_TEXTURE_WIDTH   512
 #define EFFECT_BLUR_TEXTURE_HEIGHT  384
 
-#define EFFECT_BLUR_ALPHA   100         ///< Blur Alpha °ª (0 ~ 255)
+#define EFFECT_BLUR_ALPHA   100         ///< Blur Alpha ê°’ (0 ~ 255)
 
 
 // Predefined flags in renderware.
@@ -60,12 +60,12 @@ const RwRGBA RGBA_BASE = { 255, 255, 255, 255 };
 
 */
 
-// »ç¿ëÀÚ Á¤ÀÇ Flag
+// ì‚¬ìš©ì ì •ì˜ Flag
 #define rpPRTSTDEMITTERDATAFLAGPRTORBITPOINT				0x00000080
 
 #define rpPRTADVEMITTERDATAFLAGMULTIROTATE					0x00002000
-#define rpPRTSTDEMITTERDATAFLAGTRAIL                        0x00004000                  ///< Trail Action ÇÃ·¡±× 
-#define rpPRTSTDEMITTERDATAFLAGUVANIM						0x00008000                  ///< UV Anim ÇÃ·¡±× (Decal¿¡¼­ »ç¿ë)
+#define rpPRTSTDEMITTERDATAFLAGTRAIL                        0x00004000                  ///< Trail Action í”Œë˜ê·¸ 
+#define rpPRTSTDEMITTERDATAFLAGUVANIM						0x00008000                  ///< UV Anim í”Œë˜ê·¸ (Decalì—ì„œ ì‚¬ìš©)
 
 #define rpPRTADVEMITTERDATAFLAGMULTITEXTURES				0x01000000
 #define rpPRTSTDEMITTERDATAFLAGPRTHURRICANE					0x02000000
@@ -74,17 +74,17 @@ const RwRGBA RGBA_BASE = { 255, 255, 255, 255 };
 #define rpPRTADVEMITTERDATAFLAGSPLINEPATH					0x10000000
 #define rpPRTSTDEMITTERDATAFLAGPRTFINISH                    0x40000000
 
-// ÆÄÆ¼Å¬ Àü¿ë Á¤ÀÇ Flag
-#define NTLrpPRTADVEMITTERDATAFLAGFOLLOW                    0x80000000                  ///< »ı¼º À§Ä¡¸¦ µû¶ó´Ù´Ï´Â ÆÄÆ¼Å¬ ÇÃ·¡±×
-#define NTLrpPRTSTDEMITTERDATAFLAGPRTYBILLBOARD             0x00100000                  ///< ÆÄÆ¼Å¬ÀÇ Yºôº¸µå ÇÃ·¡±×
-#define NTLrpPRTSTDEMITTERDATAFLAGPRTXBILLBOARD             0x00200000                  ///< ÆÄÆ¼Å¬ÀÇ Xºôº¸µå ÇÃ·¡±×
-#define NTLrpPRTSTDEMITTERDATAFLAGPRTZBILLBOARD             0x00400000                  ///< ÆÄÆ¼Å¬ÀÇ Zºôº¸µå ÇÃ·¡±×
-#define NTLrpPRTSTDEMITTERDATAFLAGPRTZWRITE					0x00800000					///< ÆÄÆ¼Å¬¿¡¼­ Z Write À¯¹« ÇÃ·¡±×
+// íŒŒí‹°í´ ì „ìš© ì •ì˜ Flag
+#define NTLrpPRTADVEMITTERDATAFLAGFOLLOW                    0x80000000                  ///< ìƒì„± ìœ„ì¹˜ë¥¼ ë”°ë¼ë‹¤ë‹ˆëŠ” íŒŒí‹°í´ í”Œë˜ê·¸
+#define NTLrpPRTSTDEMITTERDATAFLAGPRTYBILLBOARD             0x00100000                  ///< íŒŒí‹°í´ì˜ Yë¹Œë³´ë“œ í”Œë˜ê·¸
+#define NTLrpPRTSTDEMITTERDATAFLAGPRTXBILLBOARD             0x00200000                  ///< íŒŒí‹°í´ì˜ Xë¹Œë³´ë“œ í”Œë˜ê·¸
+#define NTLrpPRTSTDEMITTERDATAFLAGPRTZBILLBOARD             0x00400000                  ///< íŒŒí‹°í´ì˜ Zë¹Œë³´ë“œ í”Œë˜ê·¸
+#define NTLrpPRTSTDEMITTERDATAFLAGPRTZWRITE					0x00800000					///< íŒŒí‹°í´ì—ì„œ Z Write ìœ ë¬´ í”Œë˜ê·¸
 
-// Æ÷½ºÆ® ÀÌÆåÆ® Àü¿ë Flag
-#define NTLrpPRTSTDEMITTERDATAFLAGPRTCENTERFIX			    0x08000000					///< ÆÄÆ¼Å¬¿¡¼­ Z Write À¯¹« ÇÃ·¡±×
+// í¬ìŠ¤íŠ¸ ì´í™íŠ¸ ì „ìš© Flag
+#define NTLrpPRTSTDEMITTERDATAFLAGPRTCENTERFIX			    0x08000000					///< íŒŒí‹°í´ì—ì„œ Z Write ìœ ë¬´ í”Œë˜ê·¸
 
-// Fade In/Out½Ã »ç¿ëµÇ´Â ÇÃ·¡±×
+// Fade In/Outì‹œ ì‚¬ìš©ë˜ëŠ” í”Œë˜ê·¸
 enum EFadeStatus
 {
 	FADE_STATUS_IN,
@@ -186,12 +186,12 @@ struct SNtlPrtStdEmitterPrtFadeOut
 	RwChar			strFollowSystem[MAX_PATH];
 };
 
-/// UV Animation °ü·Ã ÇÁ·ÎÆÛÆ¼ ±¸Á¶Ã¼ (Decal¿¡¼­ »ç¿ëÇÑ´Ù)
+/// UV Animation ê´€ë ¨ í”„ë¡œí¼í‹° êµ¬ì¡°ì²´ (Decalì—ì„œ ì‚¬ìš©í•œë‹¤)
 struct SNtlPrtStdEmitterPrtUVAnim
 {
-	RwV3d			vDir;			///< UV Anim¹æÇâ (X, Z °ªÀ» »ç¿ë)
-	RwReal			fVelocity;		///< UV Anim ¼Óµµ
-	RwReal			fMaxOffset;		///< Max Offset °ª (ÀÌ °ªÀ» ¼³Á¤ÇÏ¸é Offset ±îÁö ¿Õº¹ÇÏ´Â UV AnimÀÌ µÈ´Ù)
+	RwV3d			vDir;			///< UV Animë°©í–¥ (X, Z ê°’ì„ ì‚¬ìš©)
+	RwReal			fVelocity;		///< UV Anim ì†ë„
+	RwReal			fMaxOffset;		///< Max Offset ê°’ (ì´ ê°’ì„ ì„¤ì •í•˜ë©´ Offset ê¹Œì§€ ì™•ë³µí•˜ëŠ” UV Animì´ ëœë‹¤)
 	
 	SNtlPrtStdEmitterPrtUVAnim()
 	{
@@ -222,8 +222,8 @@ struct SNtlPostEffectEmitterStandard
 {
 	RwBool			bDrawFullScreen;
 	RwInt32			nLoopCount;
-    RwInt32         nVertexCount;               ///< Post EffectÀÇ Vertex °³¼ö
-    RwReal          fRadius;                    ///< ¹İÁö¸§ (±æÀÌ)
+    RwInt32         nVertexCount;               ///< Post Effectì˜ Vertex ê°œìˆ˜
+    RwReal          fRadius;                    ///< ë°˜ì§€ë¦„ (ê¸¸ì´)
 
     SNtlPostEffectEmitterStandard()
     : nVertexCount(16), nLoopCount(1), bDrawFullScreen(FALSE), fRadius(512.0f)
@@ -267,13 +267,13 @@ struct SNtlLightningEmitterStandard
 	RwReal			fUpdateTime;
 };
 
-/// Decal SystemÀÇ Á¤º¸¸¦ °¡Áö°í ÀÖ´Â ±¸Á¶Ã¼
+/// Decal Systemì˜ ì •ë³´ë¥¼ ê°€ì§€ê³  ìˆëŠ” êµ¬ì¡°ì²´
 struct SNtlDecalEmitterStandard_Old
 {
-	RwTextureAddressMode 			eWrapType;			///< TextureÀÇ Wrap Type
-	RwReal							fVisibleDistance;	///< Decal Effect°¡ º¸ÀÌ´Â ½Ã¾ß °Å¸®
-	RwV3d							vSize;				///< DecalÀÇ Size
-	RwReal							fScale;				///< Decal EffectÀÇ Scale°ª    
+	RwTextureAddressMode 			eWrapType;			///< Textureì˜ Wrap Type
+	RwReal							fVisibleDistance;	///< Decal Effectê°€ ë³´ì´ëŠ” ì‹œì•¼ ê±°ë¦¬
+	RwV3d							vSize;				///< Decalì˜ Size
+	RwReal							fScale;				///< Decal Effectì˜ Scaleê°’    
 	
 	SNtlDecalEmitterStandard_Old()
 	: eWrapType(rwTEXTUREADDRESSCLAMP), fVisibleDistance(40.0f),
@@ -283,15 +283,15 @@ struct SNtlDecalEmitterStandard_Old
 	}
 };
 
-/// Y Offset °ªÀ» Ãß°¡ÇÑ µ¥ÀÌÅÍ (½ºÅ©¸³Æ® ¹öÀü 8¿¡ Ãß°¡)
+/// Y Offset ê°’ì„ ì¶”ê°€í•œ ë°ì´í„° (ìŠ¤í¬ë¦½íŠ¸ ë²„ì „ 8ì— ì¶”ê°€)
 struct SNtlDecalEmitterStandard
 {
-    RwTextureAddressMode 			eWrapType;			///< TextureÀÇ Wrap Type
-    RwReal							fVisibleDistance;	///< Decal Effect°¡ º¸ÀÌ´Â ½Ã¾ß °Å¸®
-    RwV3d							vSize;				///< DecalÀÇ Size
-    RwReal							fScale;				///< Decal EffectÀÇ Scale°ª   
+    RwTextureAddressMode 			eWrapType;			///< Textureì˜ Wrap Type
+    RwReal							fVisibleDistance;	///< Decal Effectê°€ ë³´ì´ëŠ” ì‹œì•¼ ê±°ë¦¬
+    RwV3d							vSize;				///< Decalì˜ Size
+    RwReal							fScale;				///< Decal Effectì˜ Scaleê°’   
     RwReal                          fYOffset;           ///< Y Offset
-    RwRGBA                          color;              ///< ±âº» ÄÃ·¯°ª
+    RwRGBA                          color;              ///< ê¸°ë³¸ ì»¬ëŸ¬ê°’
 
     SNtlDecalEmitterStandard()
     : eWrapType(rwTEXTUREADDRESSCLAMP), fVisibleDistance(40.0f),
@@ -322,24 +322,24 @@ struct SNtlHurricaneEmitterStandard
 	RwReal			revolutionAngle;
 };
 
-/// Line SystemÀÇ ±âº» ¼Ó¼º°ªµé
+/// Line Systemì˜ ê¸°ë³¸ ì†ì„±ê°’ë“¤
 struct SNtlLineEmitterStandard
 {
-    // ÇÁ·ÎÆÛÆ¼ ¼Ó¼ºµé
-    RwReal  m_fLineLifeTime;            ///< ¶óÀÎÀÇ LifeTime
-    RwInt32 m_nMaxCount;                ///< ¶óÀÎÀÇ ÃÖ´ë »ı¼º °³¼ö
-    RwInt32 m_nEmitterCount;            ///< ÇÑ Frame¿¡ »ı¼ºµÇ´Â ¶óÀÎÀÇ °³¼ö
-    RwReal  m_fEmitterGap;              ///< Emitter¿¡¼­ Æò¸éÀÌ »ı¼ºµÇ´Â Gap
-    RwReal  m_fEmitterRaduis;           ///< EmitterÀÇ ¹İÁö¸§
-    RwReal  m_fEmitterBias;             ///< EmitterÀÇ Bias°ª
-    RwReal  m_fTargetRadius;            ///< ¶óÀÎÀÌ ÀÌµ¿ÇÒ TargetÀÇ ¹İÁö¸§
-    RwV2d   m_sizeLine;                 ///< »ı¼ºµÇ´Â LineÀÇ Å©±â (x: ³ĞÀÌ, y:±æÀÌ)
-    RwReal  m_fVelocity;                ///< ¶óÀÎÀÌ ÀÌµ¿ÇÏ´Â ¼Óµµ    
-    RwBool  m_bShake;                   ///< ¶óÀÎÀÇ Èçµé¸² ¿©ºÎ
-    RwReal  m_fShakeBias;               ///< Èçµé¸² °ª
-    RwBool  m_bMoveLine;                ///< ¶óÀÎÀÌ Dir¹æÇâÀ¸·Î ÀÌµ¿ÇÒÁö, ´ÜÁö ´Ã¾î³ª±â¸¸ ÇÒÁö ¿©ºÎ
-    RwBool  m_bZBufferEnable;           ///< Z-Buffer »ç¿ë À¯¹«
-    RwBool  m_bZBiilBoard;              ///< Z-BillBoard Àû¿ë À¯¹«
+    // í”„ë¡œí¼í‹° ì†ì„±ë“¤
+    RwReal  m_fLineLifeTime;            ///< ë¼ì¸ì˜ LifeTime
+    RwInt32 m_nMaxCount;                ///< ë¼ì¸ì˜ ìµœëŒ€ ìƒì„± ê°œìˆ˜
+    RwInt32 m_nEmitterCount;            ///< í•œ Frameì— ìƒì„±ë˜ëŠ” ë¼ì¸ì˜ ê°œìˆ˜
+    RwReal  m_fEmitterGap;              ///< Emitterì—ì„œ í‰ë©´ì´ ìƒì„±ë˜ëŠ” Gap
+    RwReal  m_fEmitterRaduis;           ///< Emitterì˜ ë°˜ì§€ë¦„
+    RwReal  m_fEmitterBias;             ///< Emitterì˜ Biasê°’
+    RwReal  m_fTargetRadius;            ///< ë¼ì¸ì´ ì´ë™í•  Targetì˜ ë°˜ì§€ë¦„
+    RwV2d   m_sizeLine;                 ///< ìƒì„±ë˜ëŠ” Lineì˜ í¬ê¸° (x: ë„“ì´, y:ê¸¸ì´)
+    RwReal  m_fVelocity;                ///< ë¼ì¸ì´ ì´ë™í•˜ëŠ” ì†ë„    
+    RwBool  m_bShake;                   ///< ë¼ì¸ì˜ í”ë“¤ë¦¼ ì—¬ë¶€
+    RwReal  m_fShakeBias;               ///< í”ë“¤ë¦¼ ê°’
+    RwBool  m_bMoveLine;                ///< ë¼ì¸ì´ Dirë°©í–¥ìœ¼ë¡œ ì´ë™í• ì§€, ë‹¨ì§€ ëŠ˜ì–´ë‚˜ê¸°ë§Œ í• ì§€ ì—¬ë¶€
+    RwBool  m_bZBufferEnable;           ///< Z-Buffer ì‚¬ìš© ìœ ë¬´
+    RwBool  m_bZBiilBoard;              ///< Z-BillBoard ì ìš© ìœ ë¬´
 
     SNtlLineEmitterStandard() : m_fLineLifeTime(1.0f),
                                 m_nMaxCount(100),
@@ -360,7 +360,7 @@ struct SNtlLineEmitterStandard
     }
 };
 
-// ±¸Çü Emitter ÇÁ·ÎÆÛÆ¼ (Å¸¿øÇüµµ ¼³Á¤°¡´É, Line SystemÀÇ Emitter¿¡ »ç¿ëµÈ´Ù)
+// êµ¬í˜• Emitter í”„ë¡œí¼í‹° (íƒ€ì›í˜•ë„ ì„¤ì •ê°€ëŠ¥, Line Systemì˜ Emitterì— ì‚¬ìš©ëœë‹¤)
 struct SNtlPrtStdEmitterPrtSphere
 {
     RwV3d   m_vEmitterSize;    
@@ -373,19 +373,19 @@ struct SNtlPrtStdEmitterPrtSphere
     }
 };
 
-// EffectÀÇ Finish Å¸ÀÔ ÇÃ·¡±×
+// Effectì˜ Finish íƒ€ì… í”Œë˜ê·¸
 enum EPrtFinishType
 {
-    FINISH_TYPE_ALPHA   = 1,      ///< ¾ËÆÄ°¡ ¾ø¾îÁö¸é¼­ »ç¶óÁø´Ù.
-    FINISH_TYPE_SIZE    = 2,      ///< »çÀÌÁî°¡ ÀÛ¾ÆÁö¸é¼­ »ç¶óÁø´Ù.
-    FINISH_TYPE_FOLLOW  = 4,      ///< ³¡Á¡À» µû¶ó¼­ Ã¹Á¡ÀÌ ÀÌµ¿ÇÏ¸é¼­ ±æÀÌ°¡ ÀÛ¾ÆÁö¸é¼­ »ç¶óÁø´Ù.
+    FINISH_TYPE_ALPHA   = 1,      ///< ì•ŒíŒŒê°€ ì—†ì–´ì§€ë©´ì„œ ì‚¬ë¼ì§„ë‹¤.
+    FINISH_TYPE_SIZE    = 2,      ///< ì‚¬ì´ì¦ˆê°€ ì‘ì•„ì§€ë©´ì„œ ì‚¬ë¼ì§„ë‹¤.
+    FINISH_TYPE_FOLLOW  = 4,      ///< ëì ì„ ë”°ë¼ì„œ ì²«ì ì´ ì´ë™í•˜ë©´ì„œ ê¸¸ì´ê°€ ì‘ì•„ì§€ë©´ì„œ ì‚¬ë¼ì§„ë‹¤.
 };
 
-// Finish Action¿¡ »ç¿ëµÉ ÇÁ·ÎÆÛÆ¼
+// Finish Actionì— ì‚¬ìš©ë  í”„ë¡œí¼í‹°
 struct SNtlPrtStdEmitterPrtFinish
 {
     RwInt32        m_nFinishTypeFlag;
-    RwReal         m_fFinishTime;       ///< Finish ÀÛ¾÷¿¡ °É¸®´Â ½Ã°£
+    RwReal         m_fFinishTime;       ///< Finish ì‘ì—…ì— ê±¸ë¦¬ëŠ” ì‹œê°„
 
     SNtlPrtStdEmitterPrtFinish()
     {
@@ -395,20 +395,20 @@ struct SNtlPrtStdEmitterPrtFinish
 };
 
 
-/// Trace Action¿¡ »ç¿ëµÉ ÇÁ·ÎÆÛÆ¼ ±¸Á¶Ã¼
+/// Trace Actionì— ì‚¬ìš©ë  í”„ë¡œí¼í‹° êµ¬ì¡°ì²´
 struct SNtlPrtStdEmitterTrail
 {
-    RwReal  fEdgeLifeTime;            ///< EdgeÀÇ Life Time       
-    RwReal  fMaxLength;               ///< ±ËÀûÀÇ ÃÖ´ë ±æÀÌ
-    RwReal  fWidth;                   ///< ±ËÀûÀÇ ³ĞÀÌ  
+    RwReal  fEdgeLifeTime;            ///< Edgeì˜ Life Time       
+    RwReal  fMaxLength;               ///< ê¶¤ì ì˜ ìµœëŒ€ ê¸¸ì´
+    RwReal  fWidth;                   ///< ê¶¤ì ì˜ ë„“ì´  
     RwChar  strTexture[MAX_PATH];     ///< Texture File Name
     RwReal  fEdgeGap;                 ///< The value of whether Edge should be generated every few seconds
-    RwInt32 nSplinePointCount;        ///< SplineÀ¸·Î »ı¼ºÇÏ´Â ¹öÅØ½ºÀÇ °¹¼ö (µÎ°³ÀÇ Edge»çÀÌ¿¡ »ı¼ºµÇ´Â ¹öÅØ½ºÀÇ °³¼öÀÌ´Ù)
-    RwInt32 nMaxEdgeCount;            ///< ÃÖ´ë Edge Count    
+    RwInt32 nSplinePointCount;        ///< Splineìœ¼ë¡œ ìƒì„±í•˜ëŠ” ë²„í…ìŠ¤ì˜ ê°¯ìˆ˜ (ë‘ê°œì˜ Edgeì‚¬ì´ì— ìƒì„±ë˜ëŠ” ë²„í…ìŠ¤ì˜ ê°œìˆ˜ì´ë‹¤)
+    RwInt32 nMaxEdgeCount;            ///< ìµœëŒ€ Edge Count    
     RwBlendFunction eSrcBlend;        ///< Src Blend State
     RwBlendFunction eDestBlend;       ///< Dest Blend State
-    RwRGBA  colStartColor;            ///< ½ÃÀÛ Color°ª
-    RwRGBA  colEndColor;              ///< ³¡ Color°ª   
+    RwRGBA  colStartColor;            ///< ì‹œì‘ Colorê°’
+    RwRGBA  colEndColor;              ///< ë Colorê°’   
     RwV3d   vOffset;                  ///< Offset from center point where trajectory will occur
 
     SNtlPrtStdEmitterTrail() : fEdgeLifeTime(0.3f),
@@ -429,18 +429,18 @@ struct SNtlPrtStdEmitterTrail
     }
 };
 
-/// ÀÌÆåÆ® »ç¿îµå ±¸Á¶Ã¼
+/// ì´í™íŠ¸ ì‚¬ìš´ë“œ êµ¬ì¡°ì²´
 struct SEffectSound
 {
-    RwChar	chSoundName[128]; ///< Sound ÆÄÀÏ¸í (Sound Æú´õ¹× °æ·Î¸í Æ÷ÇÔ)
-    RwChar	chSoundName2[128]; ///< Sound ÆÄÀÏ¸í (Sound Æú´õ¹× °æ·Î¸í Æ÷ÇÔ)
-    RwChar	chSoundName3[128]; ///< Sound ÆÄÀÏ¸í (Sound Æú´õ¹× °æ·Î¸í Æ÷ÇÔ)
-    RwChar	chSoundName4[128]; ///< Sound ÆÄÀÏ¸í (Sound Æú´õ¹× °æ·Î¸í Æ÷ÇÔ)    
-    RwBool  bLoop;                              ///< Sound Loop À¯¹«
+    RwChar	chSoundName[128]; ///< Sound íŒŒì¼ëª… (Sound í´ë”ë° ê²½ë¡œëª… í¬í•¨)
+    RwChar	chSoundName2[128]; ///< Sound íŒŒì¼ëª… (Sound í´ë”ë° ê²½ë¡œëª… í¬í•¨)
+    RwChar	chSoundName3[128]; ///< Sound íŒŒì¼ëª… (Sound í´ë”ë° ê²½ë¡œëª… í¬í•¨)
+    RwChar	chSoundName4[128]; ///< Sound íŒŒì¼ëª… (Sound í´ë”ë° ê²½ë¡œëª… í¬í•¨)    
+    RwBool  bLoop;                              ///< Sound Loop ìœ ë¬´
     RwReal  fSoundVolume;                       ///< Sound Volume
-    RwReal  fSoundDist;                         ///< À¯È¿ °Å¸®
-    RwReal  fSoundDecayDist;                    ///< »ç¿îµå °¨¼è °Å¸®
-    RwReal  fSoundPitchMin;                     ///< »ç¿îµå ÇÇÄ¡ ÃÖ¼Ò°ª    
+    RwReal  fSoundDist;                         ///< ìœ íš¨ ê±°ë¦¬
+    RwReal  fSoundDecayDist;                    ///< ì‚¬ìš´ë“œ ê°ì‡  ê±°ë¦¬
+    RwReal  fSoundPitchMin;                     ///< ì‚¬ìš´ë“œ í”¼ì¹˜ ìµœì†Œê°’    
 
     SEffectSound()
     {
@@ -466,11 +466,11 @@ struct SEffectSoundEx : public SEffectSound
     }
 };
 
-/// ÀÌÆåÆ® ¹Ù¿îµù ½ºÇÇ¾î
+/// ì´í™íŠ¸ ë°”ìš´ë”© ìŠ¤í”¼ì–´
 struct SEffectBoundingSphere
 {
-    RwBool      bDisableAuto;           ///< ¹Ù¿îµù ½ºÇÇ¾î¸¦ ¼öµ¿À¸·Î Á¶ÀıÇÒ¶§ True, False¸é ÀÚµ¿»ı¼ºµÈ ¹Ù¿îµù ½ºÇÇ¾î »ç¿ë
-    RwReal      fRadius;                ///< ¹Ù¿îµù ½ºÇÇ¾î ¹İÁö¸§. ¼öµ¿ ¼³Á¤ÀÏ¶§¸¸ À¯È¿
+    RwBool      bDisableAuto;           ///< ë°”ìš´ë”© ìŠ¤í”¼ì–´ë¥¼ ìˆ˜ë™ìœ¼ë¡œ ì¡°ì ˆí• ë•Œ True, Falseë©´ ìë™ìƒì„±ëœ ë°”ìš´ë”© ìŠ¤í”¼ì–´ ì‚¬ìš©
+    RwReal      fRadius;                ///< ë°”ìš´ë”© ìŠ¤í”¼ì–´ ë°˜ì§€ë¦„. ìˆ˜ë™ ì„¤ì •ì¼ë•Œë§Œ ìœ íš¨
 
     SEffectBoundingSphere()
     {
@@ -481,24 +481,24 @@ struct SEffectBoundingSphere
 
 /**
 * \ingroup NtlPresentation
-* \brief LoopEffect List¿¡ »ç¿ëµÇ´Â ±¸Á¶Ã¼, Effect-Bone ½ÖÀ¸·Î ±¸ÇöµÈ´Ù.
+* \brief LoopEffect Listì— ì‚¬ìš©ë˜ëŠ” êµ¬ì¡°ì²´, Effect-Bone ìŒìœ¼ë¡œ êµ¬í˜„ëœë‹¤.
 * \date 2006-08-21
 * \author agebreak
 */
 struct SLoopEffect
 {
-	CNtlInstanceEffect* pLoopEffectIntance;     ///< LoopEffectÀÇ Æ÷ÀÎÅÍ
-	char*               szBoneName;             ///< LoopEffect°¡ ºÙ´Â BoneÀÇ ÀÌ¸§
+	CNtlInstanceEffect* pLoopEffectIntance;     ///< LoopEffectì˜ í¬ì¸í„°
+	char*               szBoneName;             ///< LoopEffectê°€ ë¶™ëŠ” Boneì˜ ì´ë¦„
 };
 
 typedef std::list<SLoopEffect*> ListLoopEffect;
 typedef std::list<SOUND_HANDLE> ListSoundHandle;
 
-/// ¹Ù´Ú¿¡¼­ Ç¥½ÃµÇ´Â ÀÌÆåÆ® ½Ã½ºÅÛÀ» ¼³Á¤ÇÏ±â À§ÇÑ ±¸Á¶Ã¼
+/// ë°”ë‹¥ì—ì„œ í‘œì‹œë˜ëŠ” ì´í™íŠ¸ ì‹œìŠ¤í…œì„ ì„¤ì •í•˜ê¸° ìœ„í•œ êµ¬ì¡°ì²´
 struct SGroundFlag
 {
-    RwBool bGround;                             ///< Áö¸éÀÇ ³ôÀÌ¿¡¼­ Ç¥½ÃµÉÁöÀÇ À¯¹« ÇÃ·¡±×
-    RwReal fOffsetY;                            ///< Y Offset ¼³Á¤
+    RwBool bGround;                             ///< ì§€ë©´ì˜ ë†’ì´ì—ì„œ í‘œì‹œë ì§€ì˜ ìœ ë¬´ í”Œë˜ê·¸
+    RwReal fOffsetY;                            ///< Y Offset ì„¤ì •
 
     SGroundFlag()
     {

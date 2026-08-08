@@ -80,7 +80,7 @@ RwBool CFieldMethodImp::Analyze()
 // 			}
 // 			else
 // 			{
-// 				// ¸Þ¸ð¸® ´©¼ö ³². void Çü »èÁ¦·Î ÀÎÇØ ¼Ò¸êÀÚ È£ÃâÀÌ ¾ÈµÊ.
+// 				// ë©”ëª¨ë¦¬ ëˆ„ìˆ˜ ë‚¨. void í˜• ì‚­ì œë¡œ ì¸í•´ ì†Œë©¸ìž í˜¸ì¶œì´ ì•ˆë¨.
 // 				NTL_DELETE(pAnalysis[0]);
 // 				NTL_DELETE(pAnalysis[1]);
 // 				NTL_DELETE(pAnalysis[2]);

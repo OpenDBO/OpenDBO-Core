@@ -37,10 +37,10 @@ public:
 //! Variables:
 	CDynamicOutline*	m_pOutline;
 
-	CPos				m_ptTailLT;		// TailÀÇ Screen Left Top ÁÂÇ¥.
-	FLOAT				m_fTailFactor;	// TailÀÌ ¾î´À°÷¿¡ ÂïÈ÷´ÂÁö °è¼ö. ( 0 ~ 1 )
+	CPos				m_ptTailLT;		// Tailì˜ Screen Left Top ì¢Œí‘œ.
+	FLOAT				m_fTailFactor;	// Tailì´ ì–´ëŠê³³ì— ì°íˆëŠ”ì§€ ê³„ìˆ˜. ( 0 ~ 1 )
 
-	INT					m_nMarginX;		// ÅØ½ºÆ®°¡ ÂïÈ÷´Â ¿©¹é.
+	INT					m_nMarginX;		// í…ìŠ¤íŠ¸ê°€ ì°íˆëŠ” ì—¬ë°±.
 	INT					m_nMarginY;
 	
 	CBalloon*			m_pBalloon;		// Reference Pointer.

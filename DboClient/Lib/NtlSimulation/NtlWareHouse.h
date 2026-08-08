@@ -2,7 +2,7 @@
 *
 * File			: NtlWareHouse.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2006. 11. 20	
 * Abstract		: Simulation Warehouse class
 *****************************************************************************
@@ -28,12 +28,12 @@ public:
 
 	void			Destroy(void);
 
-	SERIAL_HANDLE	GetSlotSerailID(RwUInt8 bySlot);		///< «ÿ¥Á ΩΩ∑‘¿« «⁄µÈ¿ª π›»Ø«—¥Ÿ
-	RwUInt8			FindWarehouseSlot(SERIAL_HANDLE hSerial);///< ¿Œ¿⁄∑Œ πﬁ¿∫ «⁄µÈ¿ª ∞°¡ˆ∞Ì ¿÷¥¬ ΩΩ∑‘¿ª √£¥¬¥Ÿ
-	RwUInt32		GetZenny();								///< √¢∞Ìæ»¿« ¡¶¥œ∏¶ π›»Ø«—¥Ÿ
+	SERIAL_HANDLE	GetSlotSerailID(RwUInt8 bySlot);		///< Ìï¥Îãπ Ïä¨Î°ØÏùò Ìï∏Îì§ÏùÑ Î∞òÌôòÌïúÎã§
+	RwUInt8			FindWarehouseSlot(SERIAL_HANDLE hSerial);///< Ïù∏ÏûêÎ°ú Î∞õÏùÄ Ìï∏Îì§ÏùÑ Í∞ÄÏßÄÍ≥† ÏûàÎäî Ïä¨Î°ØÏùÑ Ï∞æÎäîÎã§
+	RwUInt32		GetZenny();								///< Ï∞ΩÍ≥†ÏïàÏùò Ï†úÎãàÎ•º Î∞òÌôòÌïúÎã§
 
-	RwBool			IsHaveCommonWarehouse();				///< ∞¯¿Ø √¢∞Ì∏¶ ∞°¡ˆ∞Ì ¿÷¥¬¡ˆ æÀæ∆∫ª¥Ÿ	
-	RwBool			IsRecieveData_from_Server();			///< º≠πˆ∑Œ ∫Œ≈Õ √¢∞Ì µ•¿Ã≈Õ∏¶ ∏µŒ πﬁæ“¥¬¡ˆ ø©∫Œ
+	RwBool			IsHaveCommonWarehouse();				///< Í≥µÏú† Ï∞ΩÍ≥†Î•º Í∞ÄÏßÄÍ≥† ÏûàÎäîÏßÄ ÏïåÏïÑÎ≥∏Îã§	
+	RwBool			IsRecieveData_from_Server();			///< ÏÑúÎ≤ÑÎ°ú Î∂ÄÌÑ∞ Ï∞ΩÍ≥† Îç∞Ïù¥ÌÑ∞Î•º Î™®Îëê Î∞õÏïòÎäîÏßÄ Ïó¨Î∂Ä
 
 	virtual	void	HandleEvents(RWS::CMsg &pMsg);
 
@@ -48,11 +48,11 @@ protected:
 	void ItemStackMoveEventHandler(RWS::CMsg &msg);
 
 protected:
-	SERIAL_HANDLE	m_hWareHouseSlot[NTL_MAX_BANKSLOT_COUNT];///< √¢∞Ì ΩΩ∑‘
-	RwUInt32		m_uiZenny;								///< ¡¶¥œ
+	SERIAL_HANDLE	m_hWareHouseSlot[NTL_MAX_BANKSLOT_COUNT];///< Ï∞ΩÍ≥† Ïä¨Î°Ø
+	RwUInt32		m_uiZenny;								///< Ï†úÎãà
 
-	RwBool			m_bHaveCommonWarehouse;					///< ∞¯¿Ø√¢∞Ì º“¿Øø©∫Œ
-	RwBool			m_bRecieveData_from_Server;				///< º≠πˆ∑Œ ∫Œ≈Õ √¢∞Ì µ•¿Ã≈Õ∏¶ ∏µŒ πﬁæ“¥¬¡ˆ ø©∫Œ
+	RwBool			m_bHaveCommonWarehouse;					///< Í≥µÏú†Ï∞ΩÍ≥† ÏÜåÏú†Ïó¨Î∂Ä
+	RwBool			m_bRecieveData_from_Server;				///< ÏÑúÎ≤ÑÎ°ú Î∂ÄÌÑ∞ Ï∞ΩÍ≥† Îç∞Ïù¥ÌÑ∞Î•º Î™®Îëê Î∞õÏïòÎäîÏßÄ Ïó¨Î∂Ä
 };
 
 #endif

@@ -56,28 +56,28 @@ CGuildMemberGui::CGuildMemberGui(CNtlPLGui* pParent)
 
 	m_pParent = pParent;
 
-	// ÀÌ¸§
+	// ì´ë¦„
 	rect.SetRectWH(dMAGIN, dMAGIN, 109, 13);
 	m_pName = NTL_NEW gui::CStaticBox( rect, pParent->GetDialog(), GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT );
 	m_pName->CreateFontStd( "detail", DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pName->Show(false);
 	m_pName->Enable(false);
 
-	// ·¹º§
+	// ë ˆë²¨
 	rect.SetRectWH(dMAGIN + 117, dMAGIN, 43, 13);
 	m_pLevel = NTL_NEW gui::CStaticBox( rect, pParent->GetDialog(), GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER );
 	m_pLevel->CreateFontStd( "detail", DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pLevel->Show(false);
 	m_pLevel->Enable(false);
 
-	// Áö¿ª
+	// ì§€ì—­
 	rect.SetRectWH(dMAGIN + 176, dMAGIN, 73, 13);
 	m_pArea = NTL_NEW gui::CStaticBox( rect, pParent->GetDialog(), GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT );
 	m_pArea->CreateFontStd( "detail", DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pArea->Show(false);
 	m_pArea->Enable(false);
 
-	// ¸É¹ö ¸Þ´º ¹öÆ°
+	// ë§´ë²„ ë©”ë‰´ ë²„íŠ¼
 	rect.SetRectWH(273, 151, 20, 20);
 	m_pMemberMenuButton = (gui::CButton*) NTL_NEW gui::CButton(rect, "",
 		GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "gui\\Community.srf", "srfDownArrowBtnUp" ),
@@ -89,7 +89,7 @@ CGuildMemberGui::CGuildMemberGui(CNtlPLGui* pParent)
 	m_pMemberMenuButton->Show(false);
 	m_slotMemberMenuButton = m_pMemberMenuButton->SigClicked().Connect(this, &CGuildMemberGui::ClickedMemberButton);
 
-	// Å¬·¡½º ¼­ÆäÀÌ½º
+	// í´ëž˜ìŠ¤ ì„œíŽ˜ì´ìŠ¤
 	rect.SetRectWH(0, 0, dMARK_SIZE, dMARK_SIZE);
 	pTributarySimbol = NTL_NEW gui::CPanel( rect, m_pParent->GetDialog(), GetNtlGuiManager()->GetSurfaceManager() );
 }
@@ -279,7 +279,7 @@ RwBool CGuildMemberGui::PtInRect(RwInt32 iXPos, RwInt32 iYPos)
 
 VOID CGuildMemberGui::ClickedMemberButton(gui::CComponent* pComponent)
 {
-	// ¸É¹ö ¹öÆ° On/Off
+	// ë§´ë²„ ë²„íŠ¼ On/Off
 	CRectangle rect = m_pParent->GetPosition();
 	CDboEventGenerator::IconPopupShow( TRUE, m_charID, PLACE_SUB_GUILD_DIALOG, 0,
 										rect.left + m_pMemberMenuButton->GetPosition().left,
@@ -318,17 +318,17 @@ RwBool CCommunityGuild::Create(CNtlPLGui* pParent)
 	CRectangle rect;
 	CRectangle rtParent = m_pParent->GetPosition();
 
-	// ±æµå ¹®Àå ¹öÆ°
+	// ê¸¸ë“œ ë¬¸ìž¥ ë²„íŠ¼
 	m_pEmblemButton = (gui::CButton*)m_pParent->GetComponent("GuildEmblemButton");
 	m_pEmblemButton->SetToolTip( GetDisplayStringManager()->GetString("DST_GUILD_EMBLEM_INFO") );
 	m_slotEmblemButton = m_pEmblemButton->SigClicked().Connect(this, &CCommunityGuild::ClickedEmblemButton);	
 
-	// ±æµå ¹®Àå ¼öÁ¤ ¹öÆ°
+	// ê¸¸ë“œ ë¬¸ìž¥ ìˆ˜ì • ë²„íŠ¼
 	m_pEmblemModifyButton = (gui::CButton*)m_pParent->GetComponent("GuildEmblemModifyButton");
 	m_pEmblemModifyButton->SetToolTip( GetDisplayStringManager()->GetString("DST_GUILD_EMBLEM_MODIFY_INFO") );
 	m_slotEmblemModifyButton = m_pEmblemModifyButton->SigClicked().Connect(this, &CCommunityGuild::ClickedEmblemButton);	
 
-	// ±æµå ÀÌ¸§
+	// ê¸¸ë“œ ì´ë¦„
 	rect.SetRectWH(78, 71, 130, 13);
 	m_pGuildName = NTL_NEW gui::CStaticBox( rect, m_pParent->GetDialog(), GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT );
 	m_pGuildName->CreateFontStd( "detail", DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);	
@@ -373,19 +373,19 @@ RwBool CCommunityGuild::Create(CNtlPLGui* pParent)
 	m_pCurGuildPoint->Enable(false);
 	m_pCurGuildPoint->Show(false);
 
-	// ±æµå Å»Åð ¹öÆ°
+	// ê¸¸ë“œ íƒˆí‡´ ë²„íŠ¼
 	m_pLeaveButton = (gui::CButton*)m_pParent->GetComponent("GuildLeaveButton");
 	m_pLeaveButton->SetToolTip( GetDisplayStringManager()->GetString("DST_GUILD_LEAVE") );
 	m_slotLeaveButton = m_pLeaveButton->SigClicked().Connect(this, &CCommunityGuild::ClickedLeaveButton);
 
-	// ±æµå µµÀå ¹öÆ°
+	// ê¸¸ë“œ ë„ìž¥ ë²„íŠ¼
 	m_pGhymButton = (gui::CButton*)m_pParent->GetComponent("GuildGhymButton");
 	m_pGhymButton->SetToolTip( GetDisplayStringManager()->GetString("DST_GUILD_GYM") );
 	m_slotGhymButton = m_pGhymButton->SigClicked().Connect(this, &CCommunityGuild::ClickedGhymButton);
 
 
 
-	// ÀÌ¸§ Á¤·Ä ¹öÆ°
+	// ì´ë¦„ ì •ë ¬ ë²„íŠ¼
 	m_pNameButton = (gui::CButton*)m_pParent->GetComponent("GuildNameButton");
 	m_pNameButton->SetTextStyle(COMP_TEXT_CENTER);
 	m_pNameButton->SetTextUpColor(NTL_BUTTON_UP_COLOR);
@@ -395,7 +395,7 @@ RwBool CCommunityGuild::Create(CNtlPLGui* pParent)
 	m_pNameButton->ApplyText();
 	m_slotNameButton = m_pNameButton->SigClicked().Connect(this, &CCommunityGuild::ClickedNameButton);
 
-	// ·¹º§ Á¤·Ä ¹öÆ°
+	// ë ˆë²¨ ì •ë ¬ ë²„íŠ¼
 	m_pLevelButton = (gui::CButton*)m_pParent->GetComponent("GuildLevelButton");
 	m_pLevelButton->SetTextStyle(COMP_TEXT_CENTER);
 	m_pLevelButton->SetTextUpColor(NTL_BUTTON_UP_COLOR);
@@ -405,7 +405,7 @@ RwBool CCommunityGuild::Create(CNtlPLGui* pParent)
 	m_pLevelButton->ApplyText();
 	m_slotLevelButton = m_pLevelButton->SigClicked().Connect(this, &CCommunityGuild::ClickedLevelButton);
 
-	// Áö¿ª Á¤·Ä ¹öÆ°
+	// ì§€ì—­ ì •ë ¬ ë²„íŠ¼
 	m_pAreaButton = (gui::CButton*)m_pParent->GetComponent("GuildAreaButton");
 	m_pAreaButton->SetTextStyle(COMP_TEXT_CENTER);
 	m_pAreaButton->SetTextUpColor(NTL_BUTTON_UP_COLOR);
@@ -415,7 +415,7 @@ RwBool CCommunityGuild::Create(CNtlPLGui* pParent)
 	m_pAreaButton->ApplyText();
 	m_slotAreaButton = m_pAreaButton->SigClicked().Connect(this, &CCommunityGuild::ClickedAreaButton);
 
-	// ±æµå ¸É¹ö ¹è°æ
+	// ê¸¸ë“œ ë§´ë²„ ë°°ê²½
 	m_GuildMemBackSurface.SetSurface(0,  GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Community.srf", "srfMemberPanelLeft" ) );
 	m_GuildMemBackSurface.SetSurface(1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Community.srf", "srfMemberPanelCenter" ) );
 	m_GuildMemBackSurface.SetSurface(2, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Community.srf", "srfMemberPanelRight" ) );
@@ -424,11 +424,11 @@ RwBool CCommunityGuild::Create(CNtlPLGui* pParent)
 
 
 
-	// »ç¶÷ ¸ð¾ç
+	// ì‚¬ëžŒ ëª¨ì–‘
 	m_srfHumanShapeSurface.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Community.srf", "srfHumanShape" ) );
 	m_srfHumanShapeSurface.SetPositionfromParent(280, 336);
 
-	// ±æµå ÀÎ¿ø
+	// ê¸¸ë“œ ì¸ì›
 	rect.SetRectWH(203, 336, 65, 13);
 	m_pGuildNum = NTL_NEW gui::CStaticBox( rect, m_pParent->GetDialog(), GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_RIGHT );
 	m_pGuildNum->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);	
@@ -440,23 +440,23 @@ RwBool CCommunityGuild::Create(CNtlPLGui* pParent)
 
 
 
-	// ±æµå °øÁö ¹Ù
+	// ê¸¸ë“œ ê³µì§€ ë°”
 	m_srfNoticeBar.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Community.srf", "PartyHeadLine" ) );
 	m_srfNoticeBar.SetPositionfromParent(10, 346);
 
-	// ±æµå °øÁö ¹è°æ
+	// ê¸¸ë“œ ê³µì§€ ë°°ê²½
 	m_NoticeSurface.SetSurface(0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Community.srf", "srfNoticePanelLeft" ) );
 	m_NoticeSurface.SetSurface(1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Community.srf", "srfNoticePanelCenter" ) );
 	m_NoticeSurface.SetSurface(2, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Community.srf", "srfNoticePanelRight" ) );
 	m_NoticeSurface.SetSize(290, 90);
 	m_NoticeSurface.SetPositionfromParent(16, 365);
 
-	// ±æµå °øÁö ¹öÆ°
+	// ê¸¸ë“œ ê³µì§€ ë²„íŠ¼
 	m_pNoticeButton = (gui::CButton*)m_pParent->GetComponent("GuildNoticeButton");
 	m_pNoticeButton->SetToolTip( GetDisplayStringManager()->GetString("DST_GUILD_NOTICE") );
 	m_slotNoticeButton = m_pNoticeButton->SigClicked().Connect(this, &CCommunityGuild::ClickedNoticeButton);
 
-	// '±æµå °øÁö'
+	// 'ê¸¸ë“œ ê³µì§€'
 	rect.SetRectWH(31, 348, 123, 13);
 	m_pGuildNoticeStatic = NTL_NEW gui::CStaticBox( rect, m_pParent->GetDialog(), GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT );
 	m_pGuildNoticeStatic->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);	
@@ -464,7 +464,7 @@ RwBool CCommunityGuild::Create(CNtlPLGui* pParent)
 	m_pGuildNoticeStatic->Enable(false);
 	m_pGuildNoticeStatic->Show(false);
 
-	// °øÁö ³¯Â¥
+	// ê³µì§€ ë‚ ì§œ
 	rect.SetRectWH(31, 371, 140, 13);
 	m_pGuildNoticeTime = NTL_NEW gui::CStaticBox( rect, m_pParent->GetDialog(), GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT );
 	m_pGuildNoticeTime->CreateFontStd( "detail", DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);	
@@ -473,7 +473,7 @@ RwBool CCommunityGuild::Create(CNtlPLGui* pParent)
 	m_pGuildNoticeTime->Enable(false);
 	m_pGuildNoticeTime->Show(false);
 
-	// °øÁöÀÚ
+	// ê³µì§€ìž
 	rect.SetRectWH(164, 371, 101, 13);
 	m_pGuildNoticer = NTL_NEW gui::CStaticBox( rect, m_pParent->GetDialog(), GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT );
 	m_pGuildNoticer->CreateFontStd( "detail", DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);	
@@ -482,14 +482,14 @@ RwBool CCommunityGuild::Create(CNtlPLGui* pParent)
 	m_pGuildNoticer->Enable(false);
 	m_pGuildNoticer->Show(false);
 
-	// °øÁö ³»¿ë
+	// ê³µì§€ ë‚´ìš©
 	m_pNotice = (gui::COutputBox*)m_pParent->GetComponent("NoticeContent");
 	m_pNotice->CreateFontStd( "detail", DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);	
 	m_pNotice->SetLineSpace(3);
 	m_pNotice->SetTextColor(RGB(255, 210, 0));
 	m_pNotice->Show(false);
 	
-	// ½ºÅ©·Ñ
+	// ìŠ¤í¬ë¡¤
 	m_pScrollbar = (gui::CScrollBar*)m_pParent->GetComponent("scbScroll");
 	m_pScrollbar->SetMaxValue(0);
 
@@ -499,7 +499,7 @@ RwBool CCommunityGuild::Create(CNtlPLGui* pParent)
 		m_aGuildMemberGui[i]->Show(false);
 	}
 
-	// ¿¥ºí·½ ¹öÆ° ÀÌ¹ÌÁö
+	// ì— ë¸”ë ˜ ë²„íŠ¼ ì´ë¯¸ì§€
 	CRectangle rtEmblemModifyButton = m_pEmblemButton->GetPosition();
 	m_pEmblemButtonImage = NTL_NEW CRwTextureGui;
 	m_pEmblemButtonImage->SetPositionfromParent(rtEmblemModifyButton.left, rtEmblemModifyButton.top);
@@ -670,7 +670,7 @@ VOID CCommunityGuild::AddMember(CHARACTERID charID)
 {
 	CNtlGuild* pGuild = GetNtlSLGlobal()->GetSobAvatar()->GetGuild();
 
-	// ½ºÅ©·Ñ ÃÖ´ë°ª Á¶Á¤
+	// ìŠ¤í¬ë¡¤ ìµœëŒ€ê°’ ì¡°ì •
 	m_pScrollbar->SetMaxValue( pGuild->GetMemberCount() - dVISIBLE_LIST_COUNT );
 
 	RefreshList(m_iVisibleStart);
@@ -692,7 +692,7 @@ VOID CCommunityGuild::DelMember(CHARACTERID charID)
 		}
 	}
 
-	// ½ºÅ©·Ñ ÃÖ´ë°ª Á¶Á¤
+	// ìŠ¤í¬ë¡¤ ìµœëŒ€ê°’ ì¡°ì •
 	m_pScrollbar->SetMaxValue( pGuild->GetMemberCount() - dVISIBLE_LIST_COUNT );
 
 	if( iDelIndex < m_pScrollbar->GetValue() + dVISIBLE_LIST_COUNT )
@@ -820,7 +820,7 @@ VOID CCommunityGuild::ClickedEmblemButton(gui::CComponent* pComponent)
 		return;
 	}
 
-	// ¿¥ºí·½ ¸ÞÀÌÄ¿ GUI
+	// ì— ë¸”ë ˜ ë©”ì´ì»¤ GUI
 	if( !m_pEmblemMakerGui )
 	{
 		CRectangle rtScreen = m_pParent->GetPosition();
@@ -850,21 +850,21 @@ VOID CCommunityGuild::ClickedLeaveButton(gui::CComponent* pComponent)
 
 	if( pGuild->IsHaveGroup() )
 	{
-		// ±æµå¸¦ Å»ÅðÇÑ´Ù
+		// ê¸¸ë“œë¥¼ íƒˆí‡´í•œë‹¤
 		//const WCHAR* pwcText = GetDisplayStringManager()->GetString(DST_GUILD_LEAVE_ASK);
 		//CDboEventGenerator::MsgBoxShow(pwcText, MBW_GUILD_LEAVE, MBTF_OK | MBTF_CANCEL);	
 		GetAlarmManager()->AlarmMessage( "DST_GUILD_LEAVE_ASK" );
 	}
 	else
 	{
-		// ±æµå¿¡ °¡ÀÔÇÏÁö ¾Ê¾Ò½À´Ï´Ù
+		// ê¸¸ë“œì— ê°€ìž…í•˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤
 		GetAlarmManager()->AlarmMessage("DST_GUILD_NOT_JOIN");
 	}
 }
 
 VOID CCommunityGuild::ClickedGhymButton(gui::CComponent* pComponent)
 {
-	// ±æµå µµÀå GUI¸¦ ¿¬´Ù
+	// ê¸¸ë“œ ë„ìž¥ GUIë¥¼ ì—°ë‹¤
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
 	if( !pAvatar )
 	{
@@ -883,7 +883,7 @@ VOID CCommunityGuild::ClickedGhymButton(gui::CComponent* pComponent)
 
 VOID CCommunityGuild::ClickedNameButton(gui::CComponent* pComponent)
 {
-	// ±æµå ¸®½ºÆ®¸¦ ÀÌ¸§º°·Î Á¤·ÄÇÑ´Ù
+	// ê¸¸ë“œ ë¦¬ìŠ¤íŠ¸ë¥¼ ì´ë¦„ë³„ë¡œ ì •ë ¬í•œë‹¤
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
 	if( !pAvatar )
 	{
@@ -900,7 +900,7 @@ VOID CCommunityGuild::ClickedNameButton(gui::CComponent* pComponent)
 }
 VOID CCommunityGuild::ClickedLevelButton(gui::CComponent* pComponent)
 {
-	// ±æµå ¸®½ºÆ®¸¦ ·¹º§º°·Î Á¤·ÄÇÑ´Ù
+	// ê¸¸ë“œ ë¦¬ìŠ¤íŠ¸ë¥¼ ë ˆë²¨ë³„ë¡œ ì •ë ¬í•œë‹¤
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
 	if( !pAvatar )
 	{
@@ -917,7 +917,7 @@ VOID CCommunityGuild::ClickedLevelButton(gui::CComponent* pComponent)
 }
 VOID CCommunityGuild::ClickedAreaButton(gui::CComponent* pComponent)
 {
-	// ±æµå ¸®½ºÆ®¸¦ Áö¿ªº°·Î Á¤·ÄÇÑ´Ù
+	// ê¸¸ë“œ ë¦¬ìŠ¤íŠ¸ë¥¼ ì§€ì—­ë³„ë¡œ ì •ë ¬í•œë‹¤
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
 	if( !pAvatar )
 	{
@@ -983,7 +983,7 @@ VOID CCommunityGuild::EmblemButton_Change()
 	if( FALSE == Logic_GetEmblemFactor(&emblemFactor, GetNtlSLGlobal()->GetSobAvatar()) )
 		return;
 	
-	// ±æµå ¹®Àå ¹öÆ°ÀÇ ¾Æ·¡¿¡ ±ò¸± ¹®Àå ÀÌ¹ÌÁö
+	// ê¸¸ë“œ ë¬¸ìž¥ ë²„íŠ¼ì˜ ì•„ëž˜ì— ê¹”ë¦´ ë¬¸ìž¥ ì´ë¯¸ì§€
 	if( !m_pEmblemButtonImage )
 		return;
 
@@ -1034,7 +1034,7 @@ VOID CCommunityGuild::ClickedNoticeButton(gui::CComponent* pComponent)
 		return;
 	}
 
-	// °øÁö¸¦ ¶ç¿î´Ù
+	// ê³µì§€ë¥¼ ë„ìš´ë‹¤
 	if( !m_pNoticeGui )
 	{
 		CRectangle rtScreen = m_pParent->GetPosition();
@@ -1207,10 +1207,10 @@ VOID CCommunityGuild::HandleEvents( RWS::CMsg &msg )
 
 				RefreshList(0);
 
-				// Á¢¼ÓÀÎ¿ø
+				// ì ‘ì†ì¸ì›
 				SetOnlineMemberCount(pGuild);
 
-				// ÇØ»ê °øÁö°¡ ÀÖ´Ù¸é
+				// í•´ì‚° ê³µì§€ê°€ ìžˆë‹¤ë©´
 				if( pGuild->IsBeingDisband() )
 				{
 					sDetailTime detailTime;

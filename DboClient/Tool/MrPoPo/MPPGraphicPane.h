@@ -4,14 +4,14 @@
 
 
 
-// CMPPGraphicPane Æû ºäÀÔ´Ï´Ù.
+// CMPPGraphicPane í¼ ë·°ì…ë‹ˆë‹¤.
 
 class CMPPGraphicPane : public CXTResizeFormView
 {
 	DECLARE_DYNCREATE(CMPPGraphicPane)
 
 protected:
-	CMPPGraphicPane();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CMPPGraphicPane();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CMPPGraphicPane();
 
 public:
@@ -24,7 +24,7 @@ public:
 #endif
 
 protected:
-    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù. 
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤. 
     DECLARE_MESSAGE_MAP()
 
 public:

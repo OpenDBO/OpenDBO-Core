@@ -2,7 +2,7 @@
 //	File		:	NtlBlurCamera.h
 //	Desc		:	
 //	Begin		:	2006. 2.13
-//	Copyright	:	¨Ï 2006 by Mahwang CO., Ltd
+//	Copyright	:	å ì™ì˜™ 2006 by Mahwang CO., Ltd
 //	Author		:	Mahwang
 //	Update		:	
 //***********************************************************************************
@@ -136,10 +136,10 @@ private:
 	RwInt32				m_nFakeHDRBlurCount;
 
 
-	// °¡¿ì½Ã¾È 
-	enum { GAUSSION_WEIGHT_COUNT = 7, };									// °¡ÁßÄ¡ °è»êÇÒ °³¼ö
-	RwReal				m_fGaussainDispersion_sq;						// ºĞ»êÀÇ Æò¹æ±Ù
-	RwReal				m_fGaussainWeightTable[GAUSSION_WEIGHT_COUNT];	// °¡ÁßÄ¡ ¹è¿­
+	// ê°€ìš°ì‹œì•ˆ 
+	enum { GAUSSION_WEIGHT_COUNT = 7, };									// ê°€ì¤‘ì¹˜ ê³„ì‚°í•  ê°œìˆ˜
+	RwReal				m_fGaussainDispersion_sq;						// å ì‹»ì‚¼ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
+	RwReal				m_fGaussainWeightTable[GAUSSION_WEIGHT_COUNT];	// ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½è¿­
 
 
 	INPUT_HANDLE		m_handleKeyDown;
@@ -157,7 +157,7 @@ public:
 	void		Destroy();
 	void		DestroyBlurCamera(RwCamera*& pCamera, RwTexture*& pTexture);
 
-	int			KeyboardDownHandler(unsigned int uiKeyData);
+	int			KeyboardDownHandler(uintptr_t uiKeyData);
 
 	RwBool		CreateBlurCamera(RwCamera*& pCamera, RwTexture*& pTexture, RwInt32 nWidth, RwInt32 nHeight, RwReal fNearClipPlane, RwReal fFarClipPlane);
 	RwBool		CreateEffect();

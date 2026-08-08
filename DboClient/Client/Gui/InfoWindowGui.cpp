@@ -2732,6 +2732,9 @@ VOID CInfoWindowGui::SetSkillInfo_NameGradeClass( sSKILL_TBLDAT* pData, RwBool b
 	pString = const_cast<WCHAR*>( GetDisplayStringManager()->GetString( "DST_SKILL_GRADE" ) );
 	m_pmdBox->Format( "SkillGrade", FONT_TEXT, COMP_TEXT_RIGHT, uiColor, 10, TRUE, pString, pData->bySkill_Grade );
 
+	m_pmdBox->SetBlankLine(INFOWND_BLANKLINE_HEIGHT);
+	m_pmdBox->Format("Tblidx", FONT_TEXT, COMP_TEXT_LEFT, RGB(255, 218, 75), 0, FALSE,  L"tblidx:%u", pData->tblidx);
+
 	// 종류
 	m_pmdBox->SetBlankLine( INFOWND_BLANKLINE_HEIGHT );
 	if( pData->bySkill_Class == NTL_SKILL_CLASS_PASSIVE )

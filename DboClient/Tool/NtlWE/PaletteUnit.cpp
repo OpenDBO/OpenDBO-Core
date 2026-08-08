@@ -1,4 +1,4 @@
-// PaletteUnit.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PaletteUnit.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "PaletteUnit.h"
 
 
-// CPaletteUnit ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteUnit ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPaletteUnit, CDialog)
 CPaletteUnit::CPaletteUnit(CWnd* pParent /*=NULL*/)
@@ -31,4 +31,4 @@ BEGIN_MESSAGE_MAP(CPaletteUnit, CDialog)
 END_MESSAGE_MAP()
 
 
-// CPaletteUnit ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPaletteUnit ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

@@ -7,7 +7,7 @@
 template <class T> class NCSgtObject;
 
 
-// NCSgtObject<classname>¿Í µ¿ÀÏ.
+// NCSgtObject<classname>ì™€ ë™ì¼.
 #if !defined (NCSGT)
 #define NCSGT(classname) \
 	Sgt##classname
@@ -15,15 +15,15 @@ template <class T> class NCSgtObject;
 
 
 //-------------------------------------------------------------
-/*! '½Ì±ÛÅæ-¿ÀºêÁ§Æ®' °ü·Ã ¸ÅÅ©·Î Á¤ÀÇ.
-# NCDeclareSGT	: ÇØ´çÅ¬·¡½º ¾Õ¿¡ Sgt¸¦ ºÙÀÎ ÀÌ¸§À»
-#				 '½Ì±ÛÅæ-¿ÀºêÁ§Æ®'·Î ¸íÇÑ´Ù.
+/*! 'ì‹±ê¸€í†¤-ì˜¤ë¸Œì íŠ¸' ê´€ë ¨ ë§¤í¬ë¡œ ì •ì˜.
+# NCDeclareSGT	: í•´ë‹¹í´ëž˜ìŠ¤ ì•žì— Sgtë¥¼ ë¶™ì¸ ì´ë¦„ì„
+#				 'ì‹±ê¸€í†¤-ì˜¤ë¸Œì íŠ¸'ë¡œ ëª…í•œë‹¤.
 #
 # NCDefInitSGT,	
-# NCInitSGT		: '½Ì±ÛÅæ-¿ÀºêÁ§Æ®'¸¦ ÃÊ±âÈ­ÇÏ´Â ÇÔ¼ö¸¦ È£Ãâ.
-# NCDestroySGT	: '½Ì±ÛÅæ-¿ÀºêÁ§Æ®'¸¦ ÇØÁ¦½ÃÅ°´Â ÇÔ¼ö¸¦ È£Ãâ.
+# NCInitSGT		: 'ì‹±ê¸€í†¤-ì˜¤ë¸Œì íŠ¸'ë¥¼ ì´ˆê¸°í™”í•˜ëŠ” í•¨ìˆ˜ë¥¼ í˜¸ì¶œ.
+# NCDestroySGT	: 'ì‹±ê¸€í†¤-ì˜¤ë¸Œì íŠ¸'ë¥¼ í•´ì œì‹œí‚¤ëŠ” í•¨ìˆ˜ë¥¼ í˜¸ì¶œ.
 #
-# NCGetSGT		: '½Ì±ÛÅæ-¿ÀºêÁ§Æ®'¸¦ ÂüÁ¶ÇÏ´Âµ¥ »ç¿ë.
+# NCGetSGT		: 'ì‹±ê¸€í†¤-ì˜¤ë¸Œì íŠ¸'ë¥¼ ì°¸ì¡°í•˜ëŠ”ë° ì‚¬ìš©.
 */
 //------------------------------------------------------------
 #if !defined (NCDeclareSGT)
@@ -66,29 +66,29 @@ class classname; \
 
 
 //----------------------------------------------------
-/*! '½Ì±ÛÅæ(Singleton)-¿ÀºêÁ§Æ®' Å¬·¡½º
-# ¸¸¾à, Å¬·¡½ºÀÇ TÀÇ »ý¼ºÀÚ¿Í ¼Ò¸êÀÚ µÑ Áß ÇÏ³ª¶óµµ
-#public µÇ¾îÀÖÁö ¾ÊÀ» °æ¿ì,
-# ½Ì±ÛÅæ-¿ÀºêÁ§Æ®·Î »ç¿ëÇÒ ¼ö ¾ø´Ù.
-* \brief ½Ì±ÛÅæ-¿ÀºêÁ§Æ® Å¬·¡½º
+/*! 'ì‹±ê¸€í†¤(Singleton)-ì˜¤ë¸Œì íŠ¸' í´ëž˜ìŠ¤
+# ë§Œì•½, í´ëž˜ìŠ¤ì˜ Tì˜ ìƒì„±ìžì™€ ì†Œë©¸ìž ë‘˜ ì¤‘ í•˜ë‚˜ë¼ë„
+#public ë˜ì–´ìžˆì§€ ì•Šì„ ê²½ìš°,
+# ì‹±ê¸€í†¤-ì˜¤ë¸Œì íŠ¸ë¡œ ì‚¬ìš©í•  ìˆ˜ ì—†ë‹¤.
+* \brief ì‹±ê¸€í†¤-ì˜¤ë¸Œì íŠ¸ í´ëž˜ìŠ¤
 */
 //----------------------------------------------------
 template <class T> class NCSgtObject
 { 
 public:
-	/*! ½Ì±ÛÅæ-¿ÀºêÁ§Æ®¸¦ ÃÊ±âÈ­(¸Þ¸ð¸® ÇÒ´ç)½ÃÅ²´Ù.
-	# ¸¸¾à, ÀÌ¹Ì ÇÒ´çµÇ¾î ÀÖÀ» °æ¿ì¿¡´Â ¸Þ¸ð¸®¸¦ ÀçÇÒ´çÇÏÁö ¾Ê´Â´Ù.
+	/*! ì‹±ê¸€í†¤-ì˜¤ë¸Œì íŠ¸ë¥¼ ì´ˆê¸°í™”(ë©”ëª¨ë¦¬ í• ë‹¹)ì‹œí‚¨ë‹¤.
+	# ë§Œì•½, ì´ë¯¸ í• ë‹¹ë˜ì–´ ìžˆì„ ê²½ìš°ì—ëŠ” ë©”ëª¨ë¦¬ë¥¼ ìž¬í• ë‹¹í•˜ì§€ ì•ŠëŠ”ë‹¤.
 	*/
 	static void Init();
 	static void Init( bool binit );
 
-	/*! ½Ì±ÛÅæ-¿ÀºêÁ§Æ®¸¦ ÇØÁ¦½ÃÅ²´Ù.
-	# ÃÊ±âÈ­ µÈ ¿ÀºêÁ§Æ®´Â ¹Ýµå½Ã Destory()¸¦ È£ÃâÇØ ÁÖ¾î¾ß ÇÑ´Ù.
+	/*! ì‹±ê¸€í†¤-ì˜¤ë¸Œì íŠ¸ë¥¼ í•´ì œì‹œí‚¨ë‹¤.
+	# ì´ˆê¸°í™” ëœ ì˜¤ë¸Œì íŠ¸ëŠ” ë°˜ë“œì‹œ Destory()ë¥¼ í˜¸ì¶œí•´ ì£¼ì–´ì•¼ í•œë‹¤.
 	*/
 	static void Destroy();
 
-	/*! ½Ì±ÛÅæ-¿ÀºêÁ§Æ®¸¦ ÂüÁ¶ÇÑ´Ù.
-	# ¹Ýµå½Ã ÃÊ±âÈ­(Init) ÈÄ È£ÃâÇÑ´Ù.
+	/*! ì‹±ê¸€í†¤-ì˜¤ë¸Œì íŠ¸ë¥¼ ì°¸ì¡°í•œë‹¤.
+	# ë°˜ë“œì‹œ ì´ˆê¸°í™”(Init) í›„ í˜¸ì¶œí•œë‹¤.
 	*/
 	static T* Get();
 
@@ -97,7 +97,7 @@ public:
 
 
 	//---------------
-	// »ý¼ºÀÚ/¼Ò¸êÀÚ
+	// ìƒì„±ìž/ì†Œë©¸ìž
 	//---------------
 private:
 	NCSgtObject( bool binit = true );
@@ -106,7 +106,7 @@ public:
 	virtual ~NCSgtObject();
 
 	//----------
-	// ¸É¹öº¯¼ö
+	// ë§´ë²„ë³€ìˆ˜
 	//----------
 public:
 	static T* ms_pObject;

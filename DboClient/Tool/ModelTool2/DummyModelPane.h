@@ -28,8 +28,8 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 protected:
-    CMTCharacter*   m_pCharacter;               ///< »ç¿ëÇÒ Ä³¸¯ÅÍ °´Ã¼ (ÇÏ³ª¸¸ »ý¼ºÇØ¼­ »ç¿ëÇÑ´Ù)
-    RwReal          m_fSensitive;               ///< ¸ðµ¨ÀÌµ¿½ÃÀÇ º¯°æ¼öÄ¡
+    CMTCharacter*   m_pCharacter;               ///< ì‚¬ìš©í•  ìºë¦­í„° ê°ì²´ (í•˜ë‚˜ë§Œ ìƒì„±í•´ì„œ ì‚¬ìš©í•œë‹¤)
+    RwReal          m_fSensitive;               ///< ëª¨ë¸ì´ë™ì‹œì˜ ë³€ê²½ìˆ˜ì¹˜
 
     CXTBrowseEdit m_edClumpName;
     CButton m_ckVisible;

@@ -35,30 +35,30 @@ public:
 
     void    SetAnimData(CMTCharacter* pCharacter, STypeAnimData* pAnimData);	
 	void	SetTriggerObjectAnimData(CMTObject* pObject, STypeAnimData* pAnimData);
-    void    SetAnimTime(RwReal fCurrentTime, RwReal fTotalTime);       ///< ¾Ö´Ï¸ÞÀÌ¼ÇÀÇ ½Ã°£À» ¼³Á¤ÇÑ´Ù.
-    void    Update();                                                  ///< ÇÃ·¹ÀÌ Å¸ÀÓÀ» ¾÷µ¥ÀÌÆ® ÇÑ´Ù.
-    void    SetMarkerPos(SEventAnim* pEventAnim);                      ///< ¸¶Ä¿ÀÇ À§Ä¡¸¦ º¯°æÇÑ´Ù.    
-    void    ChangeAnimPlay();                                          ///< ÇöÀç ¾Ö´Ï¸ÞÀÌ¼Ç ÇÃ·¹ÀÌ»óÅÂ¸¦ Åä±ÛÇÑ´Ù.
+    void    SetAnimTime(RwReal fCurrentTime, RwReal fTotalTime);       ///< ì• ë‹ˆë©”ì´ì…˜ì˜ ì‹œê°„ì„ ì„¤ì •í•œë‹¤.
+    void    Update();                                                  ///< í”Œë ˆì´ íƒ€ìž„ì„ ì—…ë°ì´íŠ¸ í•œë‹¤.
+    void    SetMarkerPos(SEventAnim* pEventAnim);                      ///< ë§ˆì»¤ì˜ ìœ„ì¹˜ë¥¼ ë³€ê²½í•œë‹¤.    
+    void    ChangeAnimPlay();                                          ///< í˜„ìž¬ ì• ë‹ˆë©”ì´ì…˜ í”Œë ˆì´ìƒíƒœë¥¼ í† ê¸€í•œë‹¤.
 
 protected:
-    void    SetEnable(BOOL bEnable);                                   ///< È°¼ºÈ­ À¯¹«¸¦ ¼³Á¤ÇÑ´Ù.
-    void    InitMarker();                                              ///< ½½¶óÀÌµå ºäÀÇ ¸¶Ä¿Ç¥½Ã¸¦ ¼³Á¤ÇÑ´Ù.
-    RwReal  PosToTime(int nPos);					                   ///< À§Ä¡°ªÀ» ½Ã°£°ªÀ¸·Î º¯°æÇÑ´Ù.
-    int     TimeToPos(RwReal fTime);                                   ///< Time°ªÀ» PosÀ§Ä¡·Î º¯È¯ÇÑ´Ù.    
+    void    SetEnable(BOOL bEnable);                                   ///< í™œì„±í™” ìœ ë¬´ë¥¼ ì„¤ì •í•œë‹¤.
+    void    InitMarker();                                              ///< ìŠ¬ë¼ì´ë“œ ë·°ì˜ ë§ˆì»¤í‘œì‹œë¥¼ ì„¤ì •í•œë‹¤.
+    RwReal  PosToTime(int nPos);					                   ///< ìœ„ì¹˜ê°’ì„ ì‹œê°„ê°’ìœ¼ë¡œ ë³€ê²½í•œë‹¤.
+    int     TimeToPos(RwReal fTime);                                   ///< Timeê°’ì„ Posìœ„ì¹˜ë¡œ ë³€í™˜í•œë‹¤.    
 	void	UpdateEventComboBox();									   ///< Event Comobo Box Setup
-    RwBool  CheckSkillCancel(RwReal fTime);                            ///< Skill Cancel ÀÌº¥Æ®¸¦ Ãß°¡ÇÒ¼ö ÀÖ´ÂÁö È®ÀÎÇÑ´Ù.
+    RwBool  CheckSkillCancel(RwReal fTime);                            ///< Skill Cancel ì´ë²¤íŠ¸ë¥¼ ì¶”ê°€í• ìˆ˜ ìžˆëŠ”ì§€ í™•ì¸í•œë‹¤.
 
 protected:
     static CAnimPlayPane* m_pIntance;
 
-    CMTCharacter*       m_pCharacter;                                   ///< ¾Ö´Ï¸ÞÀÌ¼Ç ½Ã°£ ¾÷µ¥ÀÌÆ®½Ã¿¡ »ç¿ëÇÒ Ä³¸¯ÅÍ °´Ã¼
-	CMTObject*			m_pObject;										///< ¿ÀºêÁ§Æ® ¾Ö´Ï¸ÞÀÌ¼Ç½Ã »ç¿ëÇÒ ¿ÀºêÁ§Æ® °´Ã¼
-    STypeAnimData*      m_pAnimData;                                    ///< Anim Data Æ÷ÀÎÅÍ
-    SEventAnim*         m_pEventHit;                                    ///< ÇöÀç Hit Ç¥½Ã¸¦ ÇÏ°í ÀÖ´Â ÀÌº¥Æ® °´Ã¼
-    SEventAnim*         m_pEventSound;                                  ///< ÇöÀç Sound¸¦ ÇÃ·¹ÀÌÇÏ°í ÀÖ´Â ÀÌº¥Æ® °´Ã¼
-    SEventAnim*         m_pEventClipBoard;                               ///< copy&paste¿ë event
+    CMTCharacter*       m_pCharacter;                                   ///< ì• ë‹ˆë©”ì´ì…˜ ì‹œê°„ ì—…ë°ì´íŠ¸ì‹œì— ì‚¬ìš©í•  ìºë¦­í„° ê°ì²´
+	CMTObject*			m_pObject;										///< ì˜¤ë¸Œì íŠ¸ ì• ë‹ˆë©”ì´ì…˜ì‹œ ì‚¬ìš©í•  ì˜¤ë¸Œì íŠ¸ ê°ì²´
+    STypeAnimData*      m_pAnimData;                                    ///< Anim Data í¬ì¸í„°
+    SEventAnim*         m_pEventHit;                                    ///< í˜„ìž¬ Hit í‘œì‹œë¥¼ í•˜ê³  ìžˆëŠ” ì´ë²¤íŠ¸ ê°ì²´
+    SEventAnim*         m_pEventSound;                                  ///< í˜„ìž¬ Soundë¥¼ í”Œë ˆì´í•˜ê³  ìžˆëŠ” ì´ë²¤íŠ¸ ê°ì²´
+    SEventAnim*         m_pEventClipBoard;                               ///< copy&pasteìš© event
 
-	EAnimPlayPaneState	m_eAnimPlayPaneState;							///< ÇöÀç »óÅÂ
+	EAnimPlayPaneState	m_eAnimPlayPaneState;							///< í˜„ìž¬ ìƒíƒœ
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support

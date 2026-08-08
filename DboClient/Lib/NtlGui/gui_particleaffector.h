@@ -1,11 +1,11 @@
 /*****************************************************************************
 * File			: gui_particleaffector.h
 * Author		: HaeSung, Cho
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 9. 19
 * Abstract		: 
 *****************************************************************************
-* Desc          : DBO ÆÄÆ¼Å¬ÀÇ ¿µÇâÀ» ³¢Ä¡´Â Å¬·¡½º
+* Desc          : DBO íŒŒí‹°í´ì˜ ì˜í–¥ì„ ë¼ì¹˜ëŠ” í´ë˜ìŠ¤
 *****************************************************************************/
 
 #ifndef _GUI_PARTICLE_AFFECTOR_H_
@@ -18,7 +18,7 @@ START_GUI
 class CSurfaceManager;
 
 /**
-* \brief ParticleÀÇ Fector
+* \brief Particleì˜ Fector
 */
 class CParticleAffector
 {
@@ -32,7 +32,7 @@ public:
 	int					m_nAffectorID;
 
 protected:
-	// EmitterÀÇ ¼Ó¼º
+	// Emitterì˜ ì†ì„±
 	PARTICLELIST*		m_pParticleList;
 	CSurfaceManager*	m_pSurfaceManager;
 };

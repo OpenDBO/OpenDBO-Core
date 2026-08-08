@@ -85,7 +85,7 @@ RwBool CNtlPLLightObject::Create(const SPLEntityCreateParam *pParam)
 	m_bWorldLight	= pCreateParam->bWorldLight;
 
 	//CNtlWorldRpLightManager::GetInstance()->RequestCreateRpLight(m_pLight, this);
-	SetRealLight(pCreateParam->bRealLight); // SetRealLight ¿¡¼­ À§ÀÇ ÀÌº¥Æ®¸¦ È£ÃâÇÑ´Ù.
+	SetRealLight(pCreateParam->bRealLight); // SetRealLight ì—ì„œ ìœ„ì˜ ì´ë²¤íŠ¸ë¥¼ í˜¸ì¶œí•œë‹¤.
 
 	if (pCreateParam->bDecal && pCreateParam->bRealLight)
 	{

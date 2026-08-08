@@ -1,4 +1,4 @@
-// GUIFileView.cpp : ���� �����Դϴ�.
+// GUIFileView.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -25,16 +25,16 @@ BEGIN_MESSAGE_MAP(CGUIFileView, CView)
 END_MESSAGE_MAP()
 
 
-// CGUIFileView �׸����Դϴ�.
+// CGUIFileView 그리기입니다.
 
 void CGUIFileView::OnDraw(CDC* pDC)
 {
 	CDocument* pDoc = GetDocument();
-	// TODO: ���⿡ �׸��� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 그리기 코드를 추가합니다.
 }
 
 
-// CGUIFileView �����Դϴ�.
+// CGUIFileView 진단입니다.
 
 #ifdef _DEBUG
 void CGUIFileView::AssertValid() const
@@ -49,11 +49,11 @@ void CGUIFileView::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CGUIFileView �޽��� ó�����Դϴ�.
+// CGUIFileView 메시지 처리기입니다.
 
 BOOL CGUIFileView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext)
 {
-	// TODO: ���⿡ Ư��ȭ�� �ڵ带 �߰� ��/�Ǵ� �⺻ Ŭ������ ȣ���մϴ�.
+	// TODO: 여기에 특수화된 코드를 추가 및/또는 기본 클래스를 호출합니다.
 
 	BOOL  bRet;
 
@@ -80,7 +80,7 @@ void CGUIFileView::OnSize(UINT nType, int cx, int cy)
 {
 	CView::OnSize(nType, cx, cy);
 
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	if ( m_DirTree.m_hWnd )
 		m_DirTree.SetWindowPos( NULL, 0, 0, cx, cy, SWP_NOZORDER | SWP_NOMOVE );
 }

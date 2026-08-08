@@ -53,7 +53,7 @@ void CNtlBehaviorCharJump::Enter(void)
 {
     ChangeJumpState(JUMPSTATE_START);
 
-    // ³ªÁß¿¡ base class enter¸¦ È£ÃâÇÑ´Ù.
+    // å ì™ì˜™å ìŒ©ìš¸ì˜™ base class enterå ì™ì˜™ í˜¸å ì™ì˜™å ì‹¼ëŒì˜™.
     CNtlBehaviorBase::Enter(); 
 }
 
@@ -159,7 +159,7 @@ void CNtlBehaviorCharJump::UpdatePositionMove(SMoveStuff *pMoveStuff, SJumpStuff
         CNtlMath::MathRwV3dAssign(&vNewDir, vHeading.x, 0.0f, vHeading.z); 
         m_pActor->SetDirection(&vNewDir);
 
-        // Á¦ÀÚ¸® Á¡ÇÁ¶ó¸é À§Ä¡ ÀÌµ¿Àº ¸·´Â´Ù.
+        // ì œìžë¦¬ ì í”„ë¼ë©´ ìœ„ì¹˜ ì´ë™ì€ ë§‰ëŠ”ë‹¤.
         if(m_bNoneDirJump)
             return;
 
@@ -172,12 +172,12 @@ void CNtlBehaviorCharJump::UpdatePositionMove(SMoveStuff *pMoveStuff, SJumpStuff
         //{
         //    UpdateMoveSync(vPos, fElapsed);        
         //    
-        //    // °è»êÇÑ °á°ú¸¦ Àû¿ëÇÑ´Ù.
+        //    // ê³„ì‚°í•œ ê²°ê³¼ë¥¼ ì ìš©í•œë‹¤.
         //    vPos = m_pActor->GetPosition();            
         //    return;
         //}
 
-        // Ãæµ¹ Ã¼Å©.
+        // ï¿½æµ¹ Ã¼Å©.
         if(m_pActor->GetFlags() & SLFLAG_OBJECT_COLLISION)
         {
             RwReal fCurrHeight = vPos.y;
@@ -201,7 +201,7 @@ void CNtlBehaviorCharJump::UpdatePositionMove(SMoveStuff *pMoveStuff, SJumpStuff
             }
         }
     }
-    else // Á¦ÀÚ¸® Á¡ÇÁ 
+    else // å ì™ì˜™å ìŒ˜ëªŒì˜™ å ì™ì˜™å ì™ì˜™ 
     {
         if((m_pActor->GetFlags() & SLFLAG_OBJECT_COLLISION) && m_fJumpUpSpeed > 0.0f)
         {
@@ -233,25 +233,25 @@ RwBool CNtlBehaviorCharJump::UpdateMoveSync(RwV3d vPos, RwReal fElapsedTime)
 
     if(pMoveSyncStuff->m_pMoveSyncCurr == NULL)
     {
-        if(pMoveSyncStuff->Next() == NULL)         // ¾ÆÁ÷ ÆÐÅ¶À» ¸ø¹Þ¾Ò´Ù        
+        if(pMoveSyncStuff->Next() == NULL)         // å ì™ì˜™å ì™ì˜™ å ì™ì˜™í‚·å ì™ì˜™ å ì™ì˜™å ìŒ¨ì•˜ëŒì˜™        
             return FALSE;
     }
     else
     {
-        if(!pMoveSyncStuff->m_MoveSyncQ.empty())        // ´ÙÀ½ ÆÐÅ¶À» ¹Þ¾Æ¼­ Ã³¸®ÇÑ´Ù.
+        if(!pMoveSyncStuff->m_MoveSyncQ.empty())        // å ì™ì˜™å ì™ì˜™ å ì™ì˜™í‚·å ì™ì˜™ å ìŒ¨ì•„ì‡½ì˜™ ì²˜å ì™ì˜™å ì‹¼ëŒì˜™.
         {
             pMoveSyncStuff->Next();
         }
     }    
     
-    // ¿ø·¡ MoveSync¿¡ ¸ÂÃç ÀÖ¾î¾ßÇÒ À§Ä¡¸¦ °è»êÇÑ ÈÄ, ±× À§Ä¡·Î °¡±âÀ§ÇÑ Æ÷½º¸¦ °áÁ¤ÇÑ´Ù.        
+    // ì›ëž˜ MoveSyncì— ë§žì¶° ìžˆì–´ì•¼í•  ìœ„ì¹˜ë¥¼ ê³„ì‚°í•œ í›„, ê·¸ ìœ„ì¹˜ë¡œ ê°€ê¸°ìœ„í•œ í¬ìŠ¤ë¥¼ ê²°ì •í•œë‹¤.        
     RwV3d vSyncDir = pMoveSyncStuff->m_pMoveSyncCurr->vLoc - vPos;    
     vSyncDir.y = 0.0f;
     RwReal vSyncDistance = RwV3dLength(&vSyncDir);
     RwV3dNormalize(&vSyncDir, &vSyncDir);    
     vPos += vSyncDir * (vSyncDistance / MOVE_SYNC_SPEED) * fElapsedTime * 2.0f;    
 
-    // ÃÖÁ¾ À§Ä¡
+    // å ì™ì˜™å ì™ì˜™ å ì™ì˜™ì¹˜
     m_pActor->SetPosition(&vPos);
     //m_pActor->SetPosition(&pMoveSyncStuff->m_pMoveSyncCurr->vLoc);
 
@@ -305,7 +305,7 @@ void CNtlBehaviorCharJump::UpdateJumpLoop(SMoveStuff *pMoveStuff, SJumpStuff *pJ
 
     Logic_GetWorldHeight(m_pActor, &vPos, m_sHStuff);
 
-    // Ãæµ¹ Çß´Âµ¥ ¾î´ÀÂÊÀ¸·Îµµ ÀÌµ¿ÀÌ ºÒ°¡´ÉÇÒ °æ¿ì ¸ØÃçÁØ´Ù.
+    // ï¿½æµ¹ ï¿½ß´Âµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îµï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½Ò°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
     if(pMoveStuff->byMoveFlags != NTL_MOVE_NONE)
     {
         if(vNextPos.y <= m_sHStuff.fFinialHeight + 0.5f || m_byCollMoveImpossCnt >= COLLISION_MOVE_IMPOSSIBLE_COUNT)
@@ -382,11 +382,13 @@ void CNtlBehaviorCharJump::UpdateJumpStandLanding(SMoveStuff *pMoveStuff, SJumpS
 
         if(!m_bRandingVisualEffect && !m_sHStuff.bWaterAttr)
         {
-            // »ç¿îµå¿Í  effect¸¦ ÄÒ´Ù.
+            // ï¿½ï¿½ï¿½ï¿½ï¿½  effectï¿½ï¿½ ï¿½Ò´ï¿½.
             RwV3d vPosOrg = m_pActor->GetPosition();
 
             sNtlSoundPlayParameta tSoundParam;
-            tSoundParam.iChannelGroup	= CHANNEL_GROUP_EFFECT_SOUND;
+            tSoundParam.iChannelGroup	= (m_pActor->GetClassID() == SLCLASS_AVATAR)
+                                        ? CHANNEL_GROUP_AVATAR_EFFECT_SOUND
+                                        : CHANNEL_GROUP_EFFECT_SOUND;
             tSoundParam.pcFileName		= SOUND_JUMP_LANDING;
             tSoundParam.fXPos			= vPosOrg.x;
             tSoundParam.fYPos			= vPosOrg.y;
@@ -394,7 +396,7 @@ void CNtlBehaviorCharJump::UpdateJumpStandLanding(SMoveStuff *pMoveStuff, SJumpS
 
 			GetSoundManager()->Play(&tSoundParam);
 
-            // visual effect¸¦ ³Ö´Â´Ù.
+            // visual effectå ì™ì˜™ å ìŒëŠ”ëŒì˜™.
             CNtlSobProxy *pSobProxy = m_pActor->GetSobProxy();
             pSobProxy->CreatePLEffect(NTL_VID_JUMP_LANDING, &vPosOrg);
 
@@ -440,11 +442,13 @@ void CNtlBehaviorCharJump::UpdateJumpMoveLanding(SMoveStuff *pMoveStuff, SJumpSt
 
         if(!m_bRandingVisualEffect)
         {
-            // »ç¿îµå¿Í  effect¸¦ ÄÒ´Ù.
+            // ï¿½ï¿½ï¿½ï¿½ï¿½  effectï¿½ï¿½ ï¿½Ò´ï¿½.
             RwV3d vPosOrg = m_pActor->GetPosition();
 
             sNtlSoundPlayParameta tSoundParam;
-            tSoundParam.iChannelGroup	= CHANNEL_GROUP_EFFECT_SOUND;
+            tSoundParam.iChannelGroup	= (m_pActor->GetClassID() == SLCLASS_AVATAR)
+                                        ? CHANNEL_GROUP_AVATAR_EFFECT_SOUND
+                                        : CHANNEL_GROUP_EFFECT_SOUND;
             tSoundParam.pcFileName		= SOUND_JUMP_LANDING;
             tSoundParam.fXPos			= vPosOrg.x;
             tSoundParam.fYPos			= vPosOrg.y;
@@ -452,7 +456,7 @@ void CNtlBehaviorCharJump::UpdateJumpMoveLanding(SMoveStuff *pMoveStuff, SJumpSt
 
 			 GetSoundManager()->Play(&tSoundParam);
 
-            // visual effect¸¦ ³Ö´Â´Ù.
+            // visual effectå ì™ì˜™ å ìŒëŠ”ëŒì˜™.
             CNtlSobProxy *pSobProxy = m_pActor->GetSobProxy();
             //pSobProxy->CreatePLEffect(NTL_VID_JUMP_LANDING, &vPosOrg);
             pSobProxy->CreatePLEffect(NTL_VID_JUMP_LANDING, &vPos);
@@ -504,7 +508,7 @@ void CNtlBehaviorCharJump::UpdateJumpWaterLanding(SMoveStuff *pMoveStuff, SJumpS
                 vPos.z = vDest.z;
             }
 
-            // °ÅÇ° ÀÌÆåÆ®¸¦ Ç¥ÇöÇÑ´Ù.
+            // å ì™ì˜™í’ˆ å ì™ì˜™å ì™ì˜™íŠ¸å ì™ì˜™ í‘œå ì™ì˜™å ì‹¼ëŒì˜™.
             if(!m_bCreateBubbleEffect)
             {
                 m_pWaterBubbleEffect = (CNtlInstanceEffect*)GetSceneManager()->CreateEntity(PLENTITY_EFFECT, NTL_VID_SWIM_BUBBLE);
@@ -532,7 +536,7 @@ void CNtlBehaviorCharJump::UpdateJumpWaterLanding(SMoveStuff *pMoveStuff, SJumpS
             vPos.y = fSwimmingHeight;            
             Finish();
 
-            // °ÅÇ° ÀÌÆåÆ®¸¦ ¾ø¾Ø´Ù.
+            // å ì™ì˜™í’ˆ å ì™ì˜™å ì™ì˜™íŠ¸å ì™ì˜™ å ì™ì˜™å ìŒ”ëŒì˜™.
             if(m_pWaterBubbleEffect)
             {
                 m_pWaterBubbleEffect->Finish();
@@ -568,7 +572,9 @@ void CNtlBehaviorCharJump::ChangeJumpState(RwUInt8 byJumpState)
         RwV3d vPos = m_pActor->GetPosition();
 
         sNtlSoundPlayParameta tSoundParam;
-        tSoundParam.iChannelGroup	= CHANNEL_GROUP_EFFECT_SOUND;
+        tSoundParam.iChannelGroup	= (m_pActor->GetClassID() == SLCLASS_AVATAR)
+                                    ? CHANNEL_GROUP_AVATAR_EFFECT_SOUND
+                                    : CHANNEL_GROUP_EFFECT_SOUND;
         tSoundParam.pcFileName		= SOUND_JUMP_KICK;
         tSoundParam.fXPos			= vPos.x;
         tSoundParam.fYPos			= vPos.y;
@@ -601,7 +607,7 @@ void CNtlBehaviorCharJump::ChangeJumpState(RwUInt8 byJumpState)
     }
     else if(byJumpState == JUMPSTATE_WATER_LANDING)
     {
-        // ¹° effect¸¦ Ç¥ÇöÇÑ´Ù. 
+        // å ì™ì˜™ effectå ì™ì˜™ í‘œå ì™ì˜™å ì‹¼ëŒì˜™. 
         RwV3d vPos = m_pActor->GetPosition();
         vPos.y = m_sHStuff.fWaterHeight;
         CNtlSobProxy *pSobProxy = m_pActor->GetSobProxy();
@@ -621,7 +627,7 @@ void CNtlBehaviorCharJump::ChangeJumpState(RwUInt8 byJumpState)
     pJumpStuff->eState = (ECharJumpState)byJumpState;
 }
 
-/// ¼­¹ö¿¡ MoveSync ÆÐÅ¶À» º¸³»¼­ µ¿±â¸¦ ¸ÂÃá´Ù
+/// ì„œë²„ì— MoveSync íŒ¨í‚·ì„ ë³´ë‚´ì„œ ë™ê¸°ë¥¼ ë§žì¶˜ë‹¤
 void CNtlBehaviorCharJump::UpdateSendSyncCheck( RwReal fElapsedTime ) 
 {
     if(m_pActor->GetClassID() != SLCLASS_AVATAR)

@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: WorldSoundDefine.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2009. 4. 1
 * Abstract		: 
 *****************************************************************************
-* Desc			: 3D World¿¡¼­ ¾²ÀÌ´Â »ç¿îµå ÆÄÀÏÀÇ ÀÌ¸§À» Á¤ÀÇ
+* Desc			: 3D Worldì—ì„œ ì“°ì´ëŠ” ì‚¬ìš´ë“œ íŒŒì¼ì˜ ì´ë¦„ì„ ì •ì˜
 *****************************************************************************/
 
 #pragma once
@@ -13,16 +13,16 @@
 #include "NtlSoundManager.h"
 
 
-// Æ÷Æ÷½ºÅæ¿¡ ¹ÙÀÎµù ÇÒ ¶§
+// í¬í¬ìŠ¤í†¤ì— ë°”ì¸ë”© í•  ë•Œ
 #define WORLD_SOUND_POPOSTONE						"System\\GENERAL_Binding.wav"
 
-// Ã¼Å© Æ÷ÀÎÆ®¿¡ µµÂøÇßÀ»¶§ »ç¿îµå
+// ì²´í¬ í¬ì¸íŠ¸ì— ë„ì°©í–ˆì„ë•Œ ì‚¬ìš´ë“œ
 #define WORLD_SOUND_CHECKPOINT						"System\\GENERAL_Checkpoint.wav"
 
-// ½ºÄ«¿ìÅÍ
+// ìŠ¤ì¹´ìš°í„°
 #define WORLD_SOUND_SCOUTER_ON						"System\\GENERAL_Scouter_On.wav"
 #define WORLD_SOUND_SCOUTER_OFF						"System\\GENERAL_Scouter_Off.wav"
 #define WORLD_SOUND_SCOUTER_LOOP					"System\\GENERAL_Scouter_Loop.wav"
 
-// LP°¡ À§Çè»óÅÂÀÏ¶§ Àç»ıµÇ´Â »ç¿îµå
+// LPê°€ ìœ„í—˜ìƒíƒœì¼ë•Œ ì¬ìƒë˜ëŠ” ì‚¬ìš´ë“œ
 #define WORLD_SOUND_HEART_BEAT						"System\\GENERAL_Heart_Beat.wav"

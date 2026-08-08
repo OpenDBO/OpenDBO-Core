@@ -43,14 +43,14 @@ RwBool CAccountGui::Create()
 
 	CRectangle rect;
 
-	// ¹è°æ
+	// ë°°ê²½
 	m_Background.SetType(CWindowby3::WT_HORIZONTAL);
 	m_Background.SetSurface(0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface("CharSelect_Account.srf", "srfBackgroundUp"));
 	m_Background.SetSurface(1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface("CharSelect_Account.srf", "srfBackgroundCenter"));
 	m_Background.SetSurface(2, GetNtlGuiManager()->GetSurfaceManager()->GetSurface("CharSelect_Account.srf", "srfBackgroundBottom"));
 	m_Background.SetSize(233, 172);
 
-	// °èÁ¤ Á¤º¸ ¹è°æ
+	// ê³„ì • ì •ë³´ ë°°ê²½
 	m_srtAccountBack.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("CharSelect_Account.srf", "srfBar"));
 
 	// 'title box'
@@ -60,33 +60,33 @@ RwBool CAccountGui::Create()
 	m_pTitleStatic->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_SERVER_INFO"));
 	m_pTitleStatic->Enable(false);
 
-	// '¼­¹ö ÀÌ¸§'
+	// 'ì„œë²„ ì´ë¦„'
 	rect.SetRect(30, 70, 130, 84);
 	m_pServerNameStatic = NTL_NEW gui::CStaticBox(rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT);
 	m_pServerNameStatic->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pServerNameStatic->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_SERVER_NAME"));
 	m_pServerNameStatic->Enable(false);
 
-	// '¼­¹ö »óÅÂ'
+	// 'ì„œë²„ ìƒíƒœ'
 	rect.SetRect(30, 90, 130, 104);
 	m_pServerStateStatic = NTL_NEW gui::CStaticBox(rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT);
 	m_pServerStateStatic->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pServerStateStatic->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_SERVER_STATE"));
 	m_pServerStateStatic->Enable(false);
 
-	// ¼­¹ö ÀÌ¸§
+	// ì„œë²„ ì´ë¦„
 	rect.SetRect(90, 70, 210, 84);
 	m_pServerName = NTL_NEW gui::CStaticBox(rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT);
 	m_pServerName->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pServerName->Enable(false);
 
-	// ¼­¹ö »óÅÂ
+	// ì„œë²„ ìƒíƒœ
 	rect.SetRect(90, 90, 210, 104);
 	m_pServerState = NTL_NEW gui::CStaticBox(rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT);
 	m_pServerState->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pServerState->Enable(false);
 
-	// ¼­¹ö ¼±ÅÃ ¹öÆ°
+	// ì„œë²„ ì„ íƒ ë²„íŠ¼
 	m_pServerSelectButton = (gui::CButton*)GetComponent("btnServerSelect");
 	m_pServerSelectButton->SetTextFocusColor(INFOCOLOR_LOBBY_FOC);
 	m_pServerSelectButton->SetTextDownColor(INFOCOLOR_LOBBY_DOWN);
@@ -203,12 +203,12 @@ VOID CAccountGui::OnClicked_ServerSelectButton(gui::CComponent* pComponent)
 
 	if (GetLobbyManager()->IsWaitingServerListInfo())
 	{
-		// ¾ÆÁ÷ ¼­¹ö ¸®½ºÆ®¸¦ ¹ÞÁö ¾Ê¾Ò´Ù¸é
+		// ì•„ì§ ì„œë²„ ë¦¬ìŠ¤íŠ¸ë¥¼ ë°›ì§€ ì•Šì•˜ë‹¤ë©´
 		GetDboGlobal()->GetLobbyPacketGenerator()->SendCharServerListReq();
 	}
 	else
 	{
-		// ¼­¹ö ¼¿·ºÆ® È­¸éÀ¸·Î ÀüÈ¯
+		// ì„œë²„ ì…€ë ‰íŠ¸ í™”ë©´ìœ¼ë¡œ ì „í™˜
 		GetCharStageState()->ReservateState(CHAR_STATE_SERVER_ENTER);
 		GetCharStageState()->ChangeState(CHAR_STATE_SELECT_EXIT);
 	}

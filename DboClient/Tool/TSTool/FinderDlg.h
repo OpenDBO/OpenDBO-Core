@@ -2,7 +2,7 @@
 #include "afxwin.h"
 
 
-// CFinderDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CFinderDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CFinderDlg : public CDialog
 {
@@ -12,14 +12,14 @@ protected:
 	typedef std::map< CString, CRuntimeClass* > mapdef_KeyValList;
 
 public:
-	CFinderDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CFinderDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CFinderDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_FINDER_DLG };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 

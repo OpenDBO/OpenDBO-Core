@@ -94,7 +94,7 @@ RwBool CNtlSobActor::Create(void)
 	m_mapEventFunc[g_EventSobAttackSelect.Get_pEventId()]			= &CNtlSobActor::SobAttackSelectEventHandler;
 	m_mapEventFunc[g_EventSobTargetSelectRelease.Get_pEventId()]	= &CNtlSobActor::SobTargetSelectReleaseEventHandler;	
     
-    // Proxyø°º≠ √≥∏Æ«œ¥¬ ¿Ã∫•∆Æ∏¶ 
+    // ProxyÏóêÏÑú Ï≤òÎ¶¨ÌïòÎäî Ïù¥Î≤§Ìä∏Î•º 
     m_mapEventFunc[g_EventSobAttackMarkRelease.Get_pEventId()]		= &CNtlSobActor::SobProxyEventHandler;	
     m_mapEventFunc[g_EventSobGotFocus.Get_pEventId()]				= &CNtlSobActor::SobProxyEventHandler;
     m_mapEventFunc[g_EventSobLostFocus.Get_pEventId()]				= &CNtlSobActor::SobProxyEventHandler;    

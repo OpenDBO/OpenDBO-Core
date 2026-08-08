@@ -2,7 +2,7 @@
 *
 * File			: CNtlSobTriggerObjectProxy
 * Author		: Peessi
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2006. 10. 23	
 * Abstract		: Simulation trigger object Proxy
 *****************************************************************************
@@ -45,7 +45,7 @@ private:
 	CNtlPLEntity			*m_pTargetMark;					/** trigger object target mark */
 	CNtlPLEntity			*m_pQuestMark;					/**	trigger object quest mark */
 	CNtlPLEntity			*m_pDojoSealEff;				/**	Dojo seal effect */
-    CNtlShareTargetMark     *m_pShareTargetMark;            ///< ∞¯¿Ø ≈∏∞Ÿ ∏∂≈©
+    CNtlShareTargetMark     *m_pShareTargetMark;            ///< Í≥µÏú† ÌÉÄÍ≤ü ÎßàÌÅ¨
 
 	RwReal					m_fObjectWidth;					/** trigger object width */
 	RwReal					m_fObjectHeight;				/** trigger object height */
@@ -66,7 +66,7 @@ private:
 protected:
 
 	/** 
-	* trigger object ¿Ã∏ß ª˝º∫.
+	* trigger object Ïù¥Î¶Ñ ÏÉùÏÑ±.
 	*/
 	void CreatePLObjectName(void);
 	void DeletePLObjectName(void);
@@ -89,7 +89,7 @@ protected:
 	void CreateDojoSealEffect(RwUInt8 uiMainState);
 	void DeleteDojoSealEffect(void);
 
-    /// ∞¯¿Ø ≈∏∞Ÿ ∏∂≈©
+    /// Í≥µÏú† ÌÉÄÍ≤ü ÎßàÌÅ¨
     void CreateShareTargetMark(RwUInt8 bySlot, RwInt32 type);
     void DeleteShareTargetMark();
 	
@@ -122,11 +122,11 @@ public:
 public:
 
 	//---------------------------------------------------
-	// main presentation entityø° ∞¸∑√µ» «‘ºˆ 
+	// main presentation entityÏóê Í¥ÄÎ†®Îêú Ìï®Ïàò 
 	//---------------------------------------------------
 
 	/**
-	* transformø° ∞¸«ˆµ» «‘ºˆ.
+	* transformÏóê Í¥ÄÌòÑÎêú Ìï®Ïàò.
 	*/
 
 	virtual void	SetPosition(const RwV3d *pPos);
@@ -138,32 +138,32 @@ public:
 	virtual void EnableVisible(RwBool bEnable);
 
 	/**
-	* entity ¡§∫∏ø° ∞¸«— «‘ºˆ.
+	* entity Ï†ïÎ≥¥Ïóê Í¥ÄÌïú Ìï®Ïàò.
 	*/
 
 	// presentation main entity
 	CNtlPLEntity*			GetPLMainEntity(void);
 
-	// pl entity¿« ∆¯¿ª æÚæÓø¬¥Ÿ.
+	// pl entityÏùò Ìè≠ÏùÑ ÏñªÏñ¥Ïò®Îã§.
 	virtual RwReal			GetPLEntityWidth(void); 
 
-	// pl entity¿« ≥Ù¿Ã∏¶ æÚæÓø¬¥Ÿ.
+	// pl entityÏùò ÎÜíÏù¥Î•º ÏñªÏñ¥Ïò®Îã§.
 	virtual RwReal			GetPLEntityHeight(void);
 
-	// pl entity¿« depth¿ª æÚæÓø¬¥Ÿ.
+	// pl entityÏùò depthÏùÑ ÏñªÏñ¥Ïò®Îã§.
 	virtual RwReal			GetPLEntityDepth(void); 
 
-    // materialø° ∞¸«ˆµ» «‘ºˆ.
+    // materialÏóê Í¥ÄÌòÑÎêú Ìï®Ïàò.
     virtual void			SetAlpha(RwUInt8 byAlpha);
 
 	/**
-	* Decorationø° ∞¸∑√µ» «‘ºˆ
+	* DecorationÏóê Í¥ÄÎ†®Îêú Ìï®Ïàò
 	*/
 
-	// Entity ªÛ¥‹¿« ¿Ã∏ß¿ª ∫∏ø©¡Ÿ¡ˆ ø©∫Œ
+	// Entity ÏÉÅÎã®Ïùò Ïù¥Î¶ÑÏùÑ Î≥¥Ïó¨Ï§ÑÏßÄ Ïó¨Î∂Ä
 	void					EnableNameVisible(RwBool bVisible);
 
-	// Entity ªÛ¥‹¿« ¿Ã∏ß ªˆªÛ¿ª ∫Ø∞Ê«—¥Ÿ
+	// Entity ÏÉÅÎã®Ïùò Ïù¥Î¶Ñ ÏÉâÏÉÅÏùÑ Î≥ÄÍ≤ΩÌïúÎã§
 	virtual void			SetNameColor(const WCHAR* pwcName, COLORREF color);
 
 protected:

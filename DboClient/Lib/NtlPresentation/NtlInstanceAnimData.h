@@ -2,7 +2,7 @@
  *
  * File			: NtlInstanceAnimData.h
  * Author		: HongHoDong
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2006. 4. 11	
  * Abstract		: NTL NtlInstanceAnimData
  *****************************************************************************
@@ -19,8 +19,8 @@
 
 /*!
  * \Animation
- * SInstanceAnimData: º¯ÇÏ´Â Data(Read, Write °¡´É)
- * ½ÇÁ¦ Resourceµé(RtAnimAnimation)À» °ü¸®
+ * SInstanceAnimData: ë³€í•˜ëŠ” Data(Read, Write ê°€ëŠ¥)
+ * ì‹¤ì œ Resourceë“¤(RtAnimAnimation)ì„ ê´€ë¦¬
  */
 struct SInstanceAnimData
 {

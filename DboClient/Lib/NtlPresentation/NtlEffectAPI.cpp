@@ -2,7 +2,7 @@
 //	File		:	NtlEffectSystemFreeList.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -141,9 +141,9 @@ RpMaterial* AddAnimatedMaterialToList(RpMaterial *material, void *data)
 }
 //------------------------------------------------------------------
 //	FuncName	: API_AddAnimatedMaterialsList();
-//	Desc		: UVAnimÀÌ Àû¿ëµÈ MaterialÀ» Ã£¾Æ¼­ ¸®½ºÆ®¿¡ ´ã´Â´Ù.
+//	Desc		: UVAnimì´ ì ìš©ëœ Materialì„ ì°¾ì•„ì„œ ë¦¬ìŠ¤íŠ¸ì— ë‹´ëŠ”ë‹¤.
 //	Parameter	: 
-//	Return		: UVAnimÀÌ Àû¿ëµµ´Ï MaterialµéÀÇ List
+//	Return		: UVAnimì´ ì ìš©ë„ë‹ˆ Materialë“¤ì˜ List
 //------------------------------------------------------------------
 RwSList* API_AddAnimatedMaterialsList(RwSList* pList, RpClump* pClump)
 {
@@ -157,7 +157,7 @@ RwSList* API_AddAnimatedMaterialsList(RwSList* pList, RpClump* pClump)
 
 //------------------------------------------------------------------
 //	FuncName	: API_MaterialsInterpolatorsAddAnimTime();
-//	Desc		: UVAnimÀ» ¾÷µ¥ÀÌÆ®ÇÑ´Ù. (½Ã°£À» ´õÇÑ´Ù)
+//	Desc		: UVAnimì„ ì—…ë°ì´íŠ¸í•œë‹¤. (ì‹œê°„ì„ ë”í•œë‹¤)
 //	Parameter	: 
 //	Return		: 
 //------------------------------------------------------------------
@@ -172,9 +172,9 @@ void API_MaterialsInterpolatorsAddAnimTime(RwSList *animatedMaterials, RwReal de
 }
 
 /**
- * UVAnimÀ» ¾÷µ¥ÀÌÆ® ÇÑ´Ù. (ÇöÀç ½Ã°£À» Àû¿ëÇÑ´Ù)
- * \param animatedMaterials ¾÷µ¥ÀÌÆ®ÇÒ Material List
- * \param fTime Àû¿ëÇÑ Time 
+ * UVAnimì„ ì—…ë°ì´íŠ¸ í•œë‹¤. (í˜„ì¬ ì‹œê°„ì„ ì ìš©í•œë‹¤)
+ * \param animatedMaterials ì—…ë°ì´íŠ¸í•  Material List
+ * \param fTime ì ìš©í•œ Time 
  */
 void API_MaterialsInterpolatorsSetCurrentTime(RwSList* animatedMaterials, RwReal fTime)
 {

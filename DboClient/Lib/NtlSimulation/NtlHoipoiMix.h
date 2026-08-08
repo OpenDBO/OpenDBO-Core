@@ -2,7 +2,7 @@
  *
  * File			: NtlHoipoiMix.h
  * Author		: HaeSung, Cho
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2009. 1. 12
  * Abstract		: Simulation HoipoiMix Recipe & Level data container
  *****************************************************************************

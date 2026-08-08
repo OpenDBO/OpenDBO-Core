@@ -1,21 +1,21 @@
 #pragma once
 
 
-// CTSGroupIDInputDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CTSGroupIDInputDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CTSGroupIDInputDlg : public CDialog
 {
 	DECLARE_DYNAMIC(CTSGroupIDInputDlg)
 
 public:
-	CTSGroupIDInputDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CTSGroupIDInputDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CTSGroupIDInputDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_GROUP_ID_INPUT_DLG };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 

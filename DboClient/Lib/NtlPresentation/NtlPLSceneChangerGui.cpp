@@ -129,18 +129,18 @@ VOID CNtlPLSceneChangerGui::OnPaintShutDownTV()
 {
 	CRectangle rtScreen = GetNtlGuiManager()->GetGuiManager()->GetScreenRect();
 	RwReal fRate = m_InterData.fCurTime/m_InterData.fUpdateTime;	
-	RwReal fHalfHeight = (RwReal)rtScreen.GetHeight()/2.f + 1; // 1 : ¼Ò¼öÁ¡ ¿ÀÂ÷·Î ÀÎÇÑ ¼öÄ¡ º¸Á¤
+	RwReal fHalfHeight = (RwReal)rtScreen.GetHeight()/2.f + 1; // 1 : ì†Œìˆ˜ì  ì˜¤ì°¨ë¡œ ì¸í•œ ìˆ˜ì¹˜ ë³´ì •
 
 	if( m_eFadeInOut == EFADE_IN )
 	{
 
 		RwInt32 iHeight = (RwInt32)(fHalfHeight - (fHalfHeight * fRate));
 
-		// »ó´Ü ±×¸®±â
+		// ìƒë‹¨ ê·¸ë¦¬ê¸°
 		m_srfSurface.m_SnapShot.rtRect.SetRectWH(rtScreen.left, rtScreen.top, rtScreen.right, iHeight);
 		g_GuiRenderer.RenderQueue(&m_srfSurface.m_SnapShot, m_srfSurface.m_pTexture, true, m_srfSurface.m_fAngle);		
 
-		// ÇÏ´Ü ±×¸®±â
+		// í•˜ë‹¨ ê·¸ë¦¬ê¸°
 		m_srfSurface.m_SnapShot.rtRect.SetRectWH(rtScreen.left, rtScreen.bottom - iHeight, rtScreen.right, iHeight);
 		g_GuiRenderer.RenderQueue(&m_srfSurface.m_SnapShot, m_srfSurface.m_pTexture, true, m_srfSurface.m_fAngle);
 	}
@@ -148,11 +148,11 @@ VOID CNtlPLSceneChangerGui::OnPaintShutDownTV()
 	{
 		RwInt32 iHeight = (RwInt32)(fHalfHeight * fRate);
 
-		// »ó´Ü ±×¸®±â
+		// ìƒë‹¨ ê·¸ë¦¬ê¸°
 		m_srfSurface.m_SnapShot.rtRect.SetRectWH(rtScreen.left, rtScreen.top, rtScreen.right, iHeight);
 		g_GuiRenderer.RenderQueue(&m_srfSurface.m_SnapShot, m_srfSurface.m_pTexture, true, m_srfSurface.m_fAngle);
 
-		// ÇÏ´Ü ±×¸®±â
+		// í•˜ë‹¨ ê·¸ë¦¬ê¸°
 		m_srfSurface.m_SnapShot.rtRect.SetRectWH(rtScreen.left, rtScreen.bottom - iHeight, rtScreen.right, iHeight);
 		g_GuiRenderer.RenderQueue(&m_srfSurface.m_SnapShot, m_srfSurface.m_pTexture, true, m_srfSurface.m_fAngle);
 	}	
@@ -174,7 +174,7 @@ RwInt32 CNtlPLSceneChangerGui::SwitchDialog(bool bOpen)
 	}
 	else
 	{
-		// ´ÙÀÌ¾ó·Î±×°¡ ´İÈú ¶§ ÃÊ±âÈ­
+		// ë‹¤ì´ì–¼ë¡œê·¸ê°€ ë‹«í ë•Œ ì´ˆê¸°í™”
 		Show(false);
 		SetColor(dDEFAULT_RED, dDEFAULT_GREEN, dDEFAULT_BLUE);
 		SetAlpha(dDEFAULT_ALPHA);
@@ -216,7 +216,7 @@ VOID CNtlPLSceneChangerGui::HandleEvents( RWS::CMsg &msg )
 		m_eFadeInOut				= EFADE_OUT;
 
 
-		// avooo's comment : Â÷ÈÄ¿¡ ÀÌº¥Æ®ÀÇ ÀÎÀÚ·Î ¹ŞÀ» ¿©Áö°¡ ÀÖ´Ù
+		// avooo's comment : ì°¨í›„ì— ì´ë²¤íŠ¸ì˜ ì¸ìë¡œ ë°›ì„ ì—¬ì§€ê°€ ìˆë‹¤
 		if( m_byTransitionMode == CINEMATIC_FADEINOUT_SCREEN_PANEL )
 		{
 			m_InterData.byStartAlpha	= 0;

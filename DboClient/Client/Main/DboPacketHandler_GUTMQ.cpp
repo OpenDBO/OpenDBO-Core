@@ -1,9 +1,9 @@
 /*****************************************************************************
 * File			: DboPackethandler_GUTMQ.cpp
 * Author		: Hong sungbock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 1. 16
-* Abstract		: Time Machine Quest °ü·Ã ÆÐÅ¶ ÇÚµé
+* Abstract		: Time Machine Quest ê´€ë ¨ íŒ¨í‚· í•¸ë“¤
 *****************************************************************************
 * Desc         : 
 *****************************************************************************/
@@ -116,13 +116,13 @@ void PacketHandler_GUTimeQuest_Reward_Nfy(void *pPacket)
 {
 	sGU_TIMEQUEST_REWARD_NFY* pResult = (sGU_TIMEQUEST_REWARD_NFY*)pPacket;
 
-	// TMQ Á¤º¸ °»½Å
+	// TMQ ì •ë³´ ê°±ì‹ 
 	CNtlSLEventGenerator::SLTMQEvent(TET_DAY_RECORD, INVALID_SERIAL_ID, pResult->bIsDayRecord);
 	CNtlSLEventGenerator::SLTMQEvent(TET_IS_BEST_RECORD, INVALID_SERIAL_ID, pResult->bIsBestRecord);
 
 	CNtlSLEventGenerator::SLTMQNotify(TET_TIME_UNTIL_TELEPORT_TO_MAINWORLD, pResult->dwWaitTime);
 
-	// Æ®¸®°Å ½ÇÇà
+	// íŠ¸ë¦¬ê±° ì‹¤í–‰
 	switch ( pResult->byTriggerType )
 	{
 		case TS_TYPE_QUEST_CS:
@@ -191,7 +191,7 @@ void PacketHandler_GUTimeQuest_GameState(void *pPacket)
 
 void PacketHandler_GUTimeQuest_CouponCount(void *pPacket)
 {
-	// TMQ ÄíÆù Á¤º¸
+	// TMQ ì¿ í° ì •ë³´
 	sGU_TIMEQUEST_UPDATE_COUPON_COUNT* pResult = (sGU_TIMEQUEST_UPDATE_COUPON_COUNT*)pPacket;
 
 	CNtlSLEventGenerator::SLTMQEvent(TET_COUPON_COUNT, INVALID_SERIAL_ID, pResult->byCouponCount);
@@ -199,7 +199,7 @@ void PacketHandler_GUTimeQuest_CouponCount(void *pPacket)
 
 void PacketHandler_GUTimeQuest_TMQPoint(void *pPacket)
 {
-	// TMQ Æ÷ÀÎÆ®
+	// TMQ í¬ì¸íŠ¸
 	sGU_TIMEQUEST_UPDATE_TMQ_POINT* pResult = (sGU_TIMEQUEST_UPDATE_TMQ_POINT*)pPacket;
 
 	CNtlSLEventGenerator::SLTMQEvent(TET_TMQ_POINT, INVALID_SERIAL_ID, pResult->wTmqPoint);

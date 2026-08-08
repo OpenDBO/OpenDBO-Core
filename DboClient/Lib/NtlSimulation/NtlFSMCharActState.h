@@ -2,7 +2,7 @@
  *
  * File			: NtlFSMStateBase.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2006. 2. 13	
  * Abstract		: Finite state machine character action base class
  *****************************************************************************
@@ -43,7 +43,7 @@ public:
 	CNtlFSMCharActCreateState();
 
 	/**
-	*  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+	*  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	virtual void Enter(void);
 	virtual void Exit(void);
@@ -68,7 +68,7 @@ public:
 	CNtlFSMCharActSpawnState();
 
 	/**
-    *  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+    *  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
     */
 	virtual void Enter(void);
 	virtual void Exit(void);
@@ -115,8 +115,8 @@ protected:
 	void UpdateTopDown(RwReal fElapsed);
 	void UpdateSlipping(RwReal fElapsed);
 	void UpdateLoop(RwReal fElapsed);
-    void UpdateCalcHeight(RwReal fElapsed);             ///< ³ôÀÌ¸¦ ´Ù½Ã °è»êÇÑ´Ù.
-    void UpdateTerror(RwReal fElapsed);                 ///< °øÆ÷ÀÎ °æ¿ì Ã³¸®ÇÑ´Ù.
+    void UpdateCalcHeight(RwReal fElapsed);             ///< ë†’ì´ë¥¼ ë‹¤ì‹œ ê³„ì‚°í•œë‹¤.
+    void UpdateTerror(RwReal fElapsed);                 ///< ê³µí¬ì¸ ê²½ìš° ì²˜ë¦¬í•œë‹¤.
 
 	virtual void ChangeIdleState(RwUInt8 byState);
 
@@ -126,7 +126,7 @@ public:
 	~CNtlFSMCharActIdleState();
 
 	/**
-    *  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+    *  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
     */
 	virtual void Enter(void);
 	virtual void Exit(void);
@@ -153,7 +153,7 @@ public:
 	~CNtlFSMCharActMoveState();
 
 	/**
-    *  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+    *  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
     */
 	virtual void Enter(void);
 	virtual void Exit(void);
@@ -174,7 +174,7 @@ public:
 	CNtlFSMCharActMoveSwimming();
 
 	/**
-    *  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+    *  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
     */
 	virtual void Enter(void);
 	virtual void Exit(void);
@@ -195,7 +195,7 @@ public:
 	CNtlFSMCharActAdjustMoveState();
 
 	/**
-	/* stateÀÇ update/event Ã³¸® ÇÔ¼ö.                                                                     
+	/* stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.                                                                     
 	*/
 	virtual void Enter(void);
 	virtual void Exit(void);
@@ -220,7 +220,7 @@ public:
 	CNtlFSMCharActDashState();
 
 	/**
-	/* stateÀÇ update/event Ã³¸® ÇÔ¼ö.                                                                     
+	/* stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.                                                                     
 	*/
 	virtual void Enter(void);
 	virtual void Exit(void);
@@ -241,7 +241,7 @@ public:
 	CNtlFSMCharActSitDownState();
 
 	/**
-	*  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+	*  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	virtual void Enter(void);
 	virtual void Exit(void);
@@ -262,7 +262,7 @@ public:
 	CNtlFSMCharActSitState();
 
 	/**
-	*  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+	*  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	virtual void Enter(void);
 	virtual void Exit(void);
@@ -283,7 +283,7 @@ public:
 	CNtlFSMCharActStandUpState();
 
 	/**
-	*  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+	*  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	virtual void Enter(void);
 	virtual void Exit(void);
@@ -305,7 +305,7 @@ public:
 	CNtlFSMCharActSmoothHeadingState();
 
 	/**
-	*  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+	*  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	virtual void Enter(void);
 	virtual void Exit(void);
@@ -332,7 +332,7 @@ public:
 	CNtlFSMCharActTriggerOperateState();
 
 	/**
-	*  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+	*  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	virtual void Enter(void);
 	virtual void Exit(void);
@@ -362,7 +362,7 @@ public:
 	~CNtlFSMCharActJumpState();
 
 	/**
-	*  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+	*  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	virtual void Enter(void);
 	virtual void Exit(void);
@@ -390,7 +390,7 @@ public:
 	~CNtlFSMCharActAirJumpState();
 
 	/**
-	*  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+	*  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	virtual void Enter(void);
 	virtual void Exit(void);
@@ -412,7 +412,7 @@ public:
 	CNtlFSMCharActFallingState();
 
 	/**
-	*  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+	*  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	virtual void Enter(void);
 	virtual void Exit(void);
@@ -438,7 +438,7 @@ public:
 	CNtlFSMCharActChargingState();
 
 	/**
-	*  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+	*  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	virtual void Enter(void);
 	virtual void Exit(void);
@@ -467,7 +467,7 @@ public:
 	CNtlFSMCharActBlockingState();
 
 	/**
-	*  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+	*  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	virtual void Enter(void);
 	virtual void Exit(void);
@@ -488,7 +488,7 @@ public:
 	CNtlFSMCharActFollowState();
 
 	/**
-	*  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+	*  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	virtual void Enter(void);
 	virtual void Exit(void);
@@ -496,7 +496,7 @@ public:
 	virtual RwUInt32 HandleEvents(RWS::CMsg &pMsg);
 
 protected:
-    RwUInt8 m_byMoveForm;                       ///< ÇöÀçÀÇ ÀÌµ¿ °´Ã¼ Á¾·ù(Áö»ó/¼ö¿µ)
+    RwUInt8 m_byMoveForm;                       ///< í˜„ì¬ì˜ ì´ë™ ê°ì²´ ì¢…ë¥˜(ì§€ìƒ/ìˆ˜ì˜)
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -512,7 +512,7 @@ public:
 	CNtlFSMCharActFightingFollowState();
 
 	/**
-    *  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+    *  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
     */
 	virtual void Enter(void);
 	virtual void Exit(void);
@@ -520,7 +520,7 @@ public:
 	virtual RwUInt32 HandleEvents(RWS::CMsg &pMsg);
 
 protected:
-    RwUInt8 m_byMoveForm;                       ///< ÇöÀçÀÇ ÀÌµ¿ °´Ã¼ Á¾·ù(Áö»ó/¼ö¿µ)
+    RwUInt8 m_byMoveForm;                       ///< í˜„ì¬ì˜ ì´ë™ ê°ì²´ ì¢…ë¥˜(ì§€ìƒ/ìˆ˜ì˜)
 };
 
 
@@ -535,7 +535,7 @@ class CNtlFSMCharActFightingPoseState : public CNtlFSMCharActStateBase
 private:
 
 	RwReal m_fTime;
-    RwBool m_bIsPlayInterAni;                   ///< º¸°£ ¾Ö´Ï¸ŞÀÌ¼Ç ÇÃ·¹ÀÌÁßÀÎÁö ÆÇ´ÜÇÏ´Â ÇÃ·¡±×
+    RwBool m_bIsPlayInterAni;                   ///< ë³´ê°„ ì• ë‹ˆë©”ì´ì…˜ í”Œë ˆì´ì¤‘ì¸ì§€ íŒë‹¨í•˜ëŠ” í”Œë˜ê·¸
 	RwBool m_bAdjustMoveCheck;
 
 public:
@@ -543,14 +543,14 @@ public:
 	CNtlFSMCharActFightingPoseState();
 
 	/**
-    *  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+    *  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
     */
 	virtual void Enter(void);
 	virtual void Exit(void);
 	virtual void Update(RwReal fElapsed);
     virtual RwUInt32 HandleEvents(RWS::CMsg &pMsg);
 
-    void    SetPose2IdleAnim();                 ///< Idle·ÎÀÇ º¸°£ ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ÇÃ·¹ÀÌÇÑ´Ù.
+    void    SetPose2IdleAnim();                 ///< Idleë¡œì˜ ë³´ê°„ ì• ë‹ˆë©”ì´ì…˜ì„ í”Œë ˆì´í•œë‹¤.
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -606,7 +606,7 @@ public:
 	CNtlFSMCharActFightingState();
 
 	/**
-    *  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+    *  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
     */
 	virtual void Enter(void);
 	virtual void Exit(void);
@@ -630,7 +630,7 @@ public:
 	CNtlFSMCharActFightingShrinkState();
 
 	/**
-	*  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+	*  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	virtual void Enter(void);
 	virtual void Exit(void);
@@ -651,7 +651,7 @@ public:
 	CNtlFSMCharActHurtState();
 
 	/**
-    *  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+    *  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
     */
 	virtual void Enter(void);
 	virtual void Exit(void);
@@ -667,14 +667,14 @@ class CNtlFSMCharActKnockDownState : public CNtlFSMCharActStateBase
 
 private:
 
-	RwBool m_bDirectEnd;   /** ¼­¹ö¿¡¼­ Ä³¸¯ÅÍ »ı¼ºÇÒ ¶§ »óÅÂ°¡ knockdown »óÅÂÀÏ °æ¿ì. */
+	RwBool m_bDirectEnd;   /** ì„œë²„ì—ì„œ ìºë¦­í„° ìƒì„±í•  ë•Œ ìƒíƒœê°€ knockdown ìƒíƒœì¼ ê²½ìš°. */
 
 public:
 
 	CNtlFSMCharActKnockDownState();
 
 	/**
-	*  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+	*  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	virtual void Enter(void);
 	virtual void Exit(void);
@@ -694,7 +694,7 @@ public:
 	CNtlFSMCharActSlidingState();
 
 	/**
-	*  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+	*  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	virtual void Enter(void);
 	virtual void Exit(void);
@@ -714,7 +714,7 @@ public:
 	CNtlFSMCharActStunState();
 
 	/**
-	*  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+	*  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	virtual void Enter(void);
 	virtual void Exit(void);
@@ -722,12 +722,12 @@ public:
 	virtual RwUInt32 HandleEvents(RWS::CMsg &pMsg);
 
 protected:    
-    void    OnStone(RwBool bEffect);                      ///< ¼®È­ »óÅÂ Ã³¸®
-    void    OnCandy(RwBool bEffect);                      ///< Äµµğ »óÅÂ Ã³¸®
+    void    OnStone(RwBool bEffect);                      ///< ì„í™” ìƒíƒœ ì²˜ë¦¬
+    void    OnCandy(RwBool bEffect);                      ///< ìº”ë”” ìƒíƒœ ì²˜ë¦¬
 
 protected:
-    BYTE              m_byStunType;                               ///< Stun Å¸ÀÔ eDBO_STUN_TYPE
-    RwReal            m_fOrgAnimSpeed;                            ///< ¿ø·¡ ¾Ö´Ï¸ŞÀÌ¼Ç ¼Óµµ
+    BYTE              m_byStunType;                               ///< Stun íƒ€ì… eDBO_STUN_TYPE
+    RwReal            m_fOrgAnimSpeed;                            ///< ì›ë˜ ì• ë‹ˆë©”ì´ì…˜ ì†ë„
     RwBool            m_bApplyStun;
 };
 
@@ -744,7 +744,7 @@ public:
 	CNtlFSMCharActSleepState();
 
 	/**
-	*  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+	*  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	virtual void Enter(void);
 	virtual void Exit(void);
@@ -765,7 +765,7 @@ public:
 	CNtlFSMCharActParalyzeState();
 
 	/**
-	*  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+	*  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	virtual void Enter(void);
 	virtual void Exit(void);
@@ -796,10 +796,10 @@ public:
 	virtual RwUInt32 HandleEvents(RWS::CMsg &pMsg);
 
 protected:
-    RwBool  CheckInFollowRange();               ///< ½ºÅ³ »ç¿ë°Å¸®¾È¿¡ µé¾î¿Ô´ÂÁö Ã¼Å©ÇÑ´Ù.
+    RwBool  CheckInFollowRange();               ///< ìŠ¤í‚¬ ì‚¬ìš©ê±°ë¦¬ì•ˆì— ë“¤ì–´ì™”ëŠ”ì§€ ì²´í¬í•œë‹¤.
 
 protected:
-    RwUInt8 m_byMoveForm;                       ///< ÇöÀçÀÇ ÀÌµ¿ °´Ã¼ Á¾·ù(Áö»ó/¼ö¿µ)
+    RwUInt8 m_byMoveForm;                       ///< í˜„ì¬ì˜ ì´ë™ ê°ì²´ ì¢…ë¥˜(ì§€ìƒ/ìˆ˜ì˜)
 
 };
 
@@ -864,7 +864,7 @@ private:
 
 	RwUInt8 m_byCastingState;
 	RwBool	m_bSkillSuccess;
-    RwReal  m_fOcclusionCheckTime;                      ///< Ä³½ºÆÃÁß¿¡ ¿ÀºêÁ§Æ® ¿ÀÅ¬·ùÁ¯À» Ã¼Å©ÇÏ´Â Å¸ÀÓ
+    RwReal  m_fOcclusionCheckTime;                      ///< ìºìŠ¤íŒ…ì¤‘ì— ì˜¤ë¸Œì íŠ¸ ì˜¤í´ë¥˜ì ¼ì„ ì²´í¬í•˜ëŠ” íƒ€ì„
 	
 private:
 
@@ -913,7 +913,7 @@ protected:
 
 /**
 * \ingroup NtlSimulation
-* \brief ½ºÅ³ Action Loop »óÅÂ
+* \brief ìŠ¤í‚¬ Action Loop ìƒíƒœ
 *
 * \date 2008-11-20
 * \author agebreak
@@ -1011,9 +1011,9 @@ private:
 	RwBool		m_bSimulationMode;
 	RwBool		m_byHTPStepState;
 	RwUInt8		m_byHTBNextStep;
-	RwUInt8		m_byFirstActiveStep;	// Ã³À½À¸·Î skill ÀÌ ¿¬ÃâµÇ´Â step
+	RwUInt8		m_byFirstActiveStep;	// ì²˜ìŒìœ¼ë¡œ skill ì´ ì—°ì¶œë˜ëŠ” step
 	RwBool		m_bHTBSuccess;
-	RwUInt32	m_uiSkillTblId;		// ÇöÀç »ç¿ëÇÏ°í ÀÖ´Â htb setÀÇ skill id
+	RwUInt32	m_uiSkillTblId;		// í˜„ì¬ ì‚¬ìš©í•˜ê³  ìˆëŠ” htb setì˜ skill id
 	RwUInt8		m_byHTBSetType;
 	CNtlSobElapsedController *m_pHTBElapController;
 	CNtlSobElapsedController *m_pSandbagElapController;
@@ -1050,7 +1050,7 @@ private:
 
 	RwBool	m_bFinishSandbag;
 	RwUInt8	m_bySetType;
-    RwBool  m_bSobFaint;                        ///< ¸Â´ÂÁß¿¡ »ç¸ÁÇß´ÂÁö À¯¹«    
+    RwBool  m_bSobFaint;                        ///< ë§ëŠ”ì¤‘ì— ì‚¬ë§í–ˆëŠ”ì§€ ìœ ë¬´    
 
 private:
 
@@ -1151,7 +1151,7 @@ private:
 		DIE_END
 	};
 
-	RwBool m_bDirectDie;		/**  Ä³¸¯ÅÍ°¡ Ã³À½ »ı¼ºÇÏÀÚ¸¶ÀÚ ¹Ù·Î die »óÅÂ·Î °¡¾ßÇÒ °æ¿ì »ç¿ëµÈ´Ù */
+	RwBool m_bDirectDie;		/**  ìºë¦­í„°ê°€ ì²˜ìŒ ìƒì„±í•˜ìë§ˆì ë°”ë¡œ die ìƒíƒœë¡œ ê°€ì•¼í•  ê²½ìš° ì‚¬ìš©ëœë‹¤ */
 	RwUInt8 m_byDieState;		/**  die state */
 	
 	void UpdateFadeOut(RwReal fElapsed);
@@ -1310,8 +1310,8 @@ private:
 	void						UpdateNpcPortal(RwReal fElapsed);
 
 	void						ExitDragonBallNpc(void);
-    void						OnEffectDragonDespawn(void);                ///< ¿ë½ÅÀÏ °æ¿ì¿¡ »ç¿ëµÇ´Â ¼Ò¸ê ÀÌÆåÆ® Ã³¸®
-    void                        CreateDespawnEffect(CNtlSobActor* pActor);  ///< µğ½ºÆù ÀÌÆåÆ®¸¦ »ı¼ºÇÑ´Ù.
+    void						OnEffectDragonDespawn(void);                ///< ìš©ì‹ ì¼ ê²½ìš°ì— ì‚¬ìš©ë˜ëŠ” ì†Œë©¸ ì´í™íŠ¸ ì²˜ë¦¬
+    void                        CreateDespawnEffect(CNtlSobActor* pActor);  ///< ë””ìŠ¤í° ì´í™íŠ¸ë¥¼ ìƒì„±í•œë‹¤.
 
 public:
 
@@ -1345,7 +1345,7 @@ public:
 	virtual RwUInt32 HandleEvents(RWS::CMsg &pMsg);
 };
 
-// ¹ö½º¿¡ Åº »óÅÂ
+// ë²„ìŠ¤ì— íƒ„ ìƒíƒœ
 // 2008.04.07 by agebreak
 class CNtlFSMCharActOnBus : public CNtlFSMCharActStateBase
 {
@@ -1373,7 +1373,7 @@ protected:
     CNtlSobProxySystemEffect* m_pSystemEffect;
 };
 
-// Å»°Í¿¡ Åº »óÅÂ
+// íƒˆê²ƒì— íƒ„ ìƒíƒœ
 // 2008.11.08 by lleo52
 class CNtlFSMCharActOnVehicle : public CNtlFSMCharActStateBase
 {
@@ -1400,7 +1400,7 @@ protected:
 	RwReal			m_fFallingSpeed;
 };
 
-// ¹ö½º(NPC)°¡ È¸Àü ÇÏ´Â »óÅÂ
+// ë²„ìŠ¤(NPC)ê°€ íšŒì „ í•˜ëŠ” ìƒíƒœ
 // 2008.04.14 by agebreak
 class CNtlFSMCharActTurning : public CNtlFSMCharActStateBase
 {
@@ -1419,7 +1419,7 @@ protected:
     void    SetNextDirection(RwV3d& vDir);
 };
 
-// ÃÊ»çÀÌ¾îÀÎ º¯½ÅÈÄ º¯½Å ÈŞÀ¯Áõ »óÅÂ
+// ì´ˆì‚¬ì´ì–´ì¸ ë³€ì‹ í›„ ë³€ì‹  íœ´ìœ ì¦ ìƒíƒœ
 // 2008.04.17 by agebreak
 class CNtlFSMCharTransformSequela : public CNtlFSMCharActIdleState
 {
@@ -1443,7 +1443,7 @@ protected:
 
 /**
  * \ingroup NtlSimulation
- * \brief È¸Àü °ø°İ »óÅÂ
+ * \brief íšŒì „ ê³µê²© ìƒíƒœ
  *
  * \date 2008-10-21
  * \author agebreak
@@ -1493,7 +1493,7 @@ protected:
 
 /**
  * \ingroup NtlSimulation
- * \brief È¸Àü °ø°İÀ» ´çÇØ¼­ Push ´çÇÏ´Â »óÅÂ
+ * \brief íšŒì „ ê³µê²©ì„ ë‹¹í•´ì„œ Push ë‹¹í•˜ëŠ” ìƒíƒœ
  *
  * \date 2008-10-28
  * \author agebreak
@@ -1518,7 +1518,7 @@ protected:
 
 /**
 * \ingroup NtlSimulation
-* \brief Vehicle¿¡ Å¸°Å³ª ³»¸®´Â »óÅÂ
+* \brief Vehicleì— íƒ€ê±°ë‚˜ ë‚´ë¦¬ëŠ” ìƒíƒœ
 *
 * \date 2008-11-06
 * \author lleo52

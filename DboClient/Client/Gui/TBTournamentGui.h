@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File: TBTournamentGui.h
-// Desc: ÃµÇÏÁ¦ÀÏ¹«µµÈ¸ ´ëÀüÇ¥
+// Desc: ì²œí•˜ì œì¼ë¬´ë„íšŒ ëŒ€ì „í‘œ
 //
 // 2008.09.25 Peessi@hitel.net   
 //
@@ -15,7 +15,7 @@
 #include "NtlBudokai.h"
 #include "NtlTimeQuest.h"
 
-// ´ëÀüÁ¤º¸
+// ëŒ€ì „ì •ë³´
 class CTBTournamentFightInfo
 {
 public:
@@ -41,19 +41,19 @@ public:
 	~CTBTournamentFightInfo(VOID);
 
 	//! Operation
-	// 1. ´ëÀü °á°ú ¹Ş¾ÒÀ»¶§ Lineµ¥ÀÌÅÍ Ã¤¿ì±â, ÇÑ¹ø µé¾î¿Â °á°ú´Â ÇÃ·¡±×¸¦ ÄÑÁØ´Ù.	¾Ö´Ï¸ŞÀÌ¼Ç ÇÃ·¡±×µµ ¿Â~!!
+	// 1. ëŒ€ì „ ê²°ê³¼ ë°›ì•˜ì„ë•Œ Lineë°ì´í„° ì±„ìš°ê¸°, í•œë²ˆ ë“¤ì–´ì˜¨ ê²°ê³¼ëŠ” í”Œë˜ê·¸ë¥¼ ì¼œì¤€ë‹¤.	ì• ë‹ˆë©”ì´ì…˜ í”Œë˜ê·¸ë„ ì˜¨~!!
 	VOID	SetFightResult( RwUInt8 byMatchResult, RwUInt16 wWinnerJoinID, RwUInt16 wJoinID1, RwUInt16 wJoinID2, RwUInt8 byScore1, RwUInt8 byScore2 );
 
-	// 2. °¢ ÁøÃâÇßÀ»¶§, ¹Ø¿¡¼­ ¿Ã¶ó¿Â µ¥ÀÌÅÍ·Î Ã¤¿öÁØ´Ù. 
+	// 2. ê° ì§„ì¶œí–ˆì„ë•Œ, ë°‘ì—ì„œ ì˜¬ë¼ì˜¨ ë°ì´í„°ë¡œ ì±„ì›Œì¤€ë‹¤. 
 	VOID	SetEntryData( RwUInt8 byIdx, RwUInt16 wJoinID );
 
-	// 3. Á¤º¸º¸±â ¹öÆ° ´­·¶À» ¶§ µ¿ÀÛ
+	// 3. ì •ë³´ë³´ê¸° ë²„íŠ¼ ëˆŒë €ì„ ë•Œ ë™ì‘
 	VOID	ClickFightInfo(VOID);
 
-	// 4. ÀÌ¸§ Ãâ·Â
+	// 4. ì´ë¦„ ì¶œë ¥
 	VOID	ShowNameToInfoWnd( RwUInt8 byTeamPos );
 	
-	// 4. ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ³¡³µÀ»¶§.
+	// 4. ì• ë‹ˆë©”ì´ì…˜ì´ ëë‚¬ì„ë•Œ.
 	VOID	EndOfAnimation(VOID);
 
 	//! Attribute
@@ -70,19 +70,19 @@ public:
 
 private:
 	//! Variable
-	// À§Ä¡ Á¤º¸( ¸î°­ ¸î¹øÂ° °æ±â )
-	RwUInt8			m_byMatchNumber;	// ¿ŞÂÊºÎÅÍ 0¹ø, ¼­¹ö³Ñ¹ö
-	RwUInt8			m_byMatchLevel;		// °á½ÂºÎÅÍ 0¹ø, ¼­¹ö³Ñ¹ö
-	// ¾Ö´Ï¸ŞÀÌ¼ÇµÇ¾ßÇÏ´Â ÇÃ·¡±×( ÇÏÀ§ ³ëµå 2°³·Î ºÎÅÍ Á¾·á ½ÅÈ£¸¦ ¹Ş¾Æ¾ßÇÔ. Áï 2°¡ µÇ¾î¾ß ÇÔ
+	// ìœ„ì¹˜ ì •ë³´( ëª‡ê°• ëª‡ë²ˆì§¸ ê²½ê¸° )
+	RwUInt8			m_byMatchNumber;	// ì™¼ìª½ë¶€í„° 0ë²ˆ, ì„œë²„ë„˜ë²„
+	RwUInt8			m_byMatchLevel;		// ê²°ìŠ¹ë¶€í„° 0ë²ˆ, ì„œë²„ë„˜ë²„
+	// ì• ë‹ˆë©”ì´ì…˜ë˜ì•¼í•˜ëŠ” í”Œë˜ê·¸( í•˜ìœ„ ë…¸ë“œ 2ê°œë¡œ ë¶€í„° ì¢…ë£Œ ì‹ í˜¸ë¥¼ ë°›ì•„ì•¼í•¨. ì¦‰ 2ê°€ ë˜ì–´ì•¼ í•¨
 	RwInt32			m_nEndOfBelowAnimation;	
-	// °¢ ´ëÀüÀÚÀÇ Âü°¡ ID
+	// ê° ëŒ€ì „ìì˜ ì°¸ê°€ ID
 	stENTRYINFO		m_stEntry[2];			
-	// ´ëÀü °á°ú
+	// ëŒ€ì „ ê²°ê³¼
 	RwUInt8			m_byMatchResult;	// eMATCH_RESULT
 	RwUInt16		m_wWinnerTeamJoinID;	
-	// »óÀ§ ³ëµå 
+	// ìƒìœ„ ë…¸ë“œ 
 	CTBTournamentFightInfo* m_pAboveFightInfo;
-	// ÆÄÆ¼ ¸ğµåÀÎ°¡
+	// íŒŒí‹° ëª¨ë“œì¸ê°€
 	RwBool			m_bParty;	
 };
 
@@ -197,21 +197,21 @@ private:
 	//! Variable
 	CTBTournamentInfoGroup*			m_pInfoGroup[NUM_PAGE];
 
-	RwUInt8							m_byMaxEntry;							// ÃÖ´ë ¸î°­. 
-	ePage							m_eCurrentPage;							// ÇöÀç º¸ÀÌ´Â ÆäÀÌÁö.
-	RwUInt8							m_byIndividualFightInfoInputDoneCount;	// ÇöÀç ÀÔ·ÂµÈ FightInfo °¹¼ö.(¼­¹ö ¸®Äù½ºÆ® ¿ë) °³ÀÎÀü
-	RwUInt8							m_byTeamFightInfoInputDoneCount;		// ÇöÀç ÀÔ·ÂµÈ FightInfo °¹¼ö.(¼­¹ö ¸®Äù½ºÆ® ¿ë) ÆÄÆ¼Àü		
+	RwUInt8							m_byMaxEntry;							// ìµœëŒ€ ëª‡ê°•. 
+	ePage							m_eCurrentPage;							// í˜„ì¬ ë³´ì´ëŠ” í˜ì´ì§€.
+	RwUInt8							m_byIndividualFightInfoInputDoneCount;	// í˜„ì¬ ì…ë ¥ëœ FightInfo ê°¯ìˆ˜.(ì„œë²„ ë¦¬í€˜ìŠ¤íŠ¸ ìš©) ê°œì¸ì „
+	RwUInt8							m_byTeamFightInfoInputDoneCount;		// í˜„ì¬ ì…ë ¥ëœ FightInfo ê°¯ìˆ˜.(ì„œë²„ ë¦¬í€˜ìŠ¤íŠ¸ ìš©) íŒŒí‹°ì „		
 
 	gui::CButton*					m_pbtnRightArrow;
 	gui::CButton*					m_pbtnLeftArrow;
 	gui::CStaticBox*				m_pstbIndividualGroupType;
 
-	gui::CButton*					m_pbtnParty;			// ToggleÇü½Ä ¹öÆ°. ÆÄÆ¼½Ã À§ÀÇ ¼¼ ÄÄÆ÷³ÍÆ®°¡ »ç¶óÁö°Å³ª, ºñÈ°¼ºÈ­
+	gui::CButton*					m_pbtnParty;			// Toggleí˜•ì‹ ë²„íŠ¼. íŒŒí‹°ì‹œ ìœ„ì˜ ì„¸ ì»´í¬ë„ŒíŠ¸ê°€ ì‚¬ë¼ì§€ê±°ë‚˜, ë¹„í™œì„±í™”
 	gui::CButton*					m_pbtnIndividual;
 
 	gui::CStaticBox*				m_pstbTitle;			
-	gui::CStaticBox*				m_pstbInfomation;		// ¼³¸í.	
-	gui::CButton*					m_pbtnNextInfomation;	// ´ÙÀ½ ¼³¸í ¹öÆ°.
+	gui::CStaticBox*				m_pstbInfomation;		// ì„¤ëª….	
+	gui::CButton*					m_pbtnNextInfomation;	// ë‹¤ìŒ ì„¤ëª… ë²„íŠ¼.
 
 	gui::CButton*					m_pbtnClose;
 

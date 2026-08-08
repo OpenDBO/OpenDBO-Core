@@ -77,7 +77,7 @@ public:
     virtual void freeBuffer(char* buffer)=0;
 
     virtual void setMesh(iMesh* mesh)=0;
-	virtual void setMesh(const char* filename)=0;	// Ãß°¡ -by Kell(09. 07. 24)
+	virtual void setMesh(const char* filename)=0;	// ì¶”ê°€ -by Kell(09. 07. 24)
     virtual void releaseMesh()=0;
     virtual iMesh* getMesh()=0;
 

@@ -1,4 +1,4 @@
-// PaletteLightIndoor.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PaletteLightIndoor.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -14,7 +14,7 @@
 #include "NtlWorldPaletteDefine.h"
 #include "UpdateEvent.h"
 
-// CPaletteLightIndoor ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteLightIndoor ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPaletteLightIndoor, CDialog)
 
@@ -77,7 +77,7 @@ BEGIN_MESSAGE_MAP(CPaletteLightIndoor, CDialog)
 END_MESSAGE_MAP()
 
 
-// PaletteLightIndoor ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// PaletteLightIndoor ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 VOID CPaletteLightIndoor::InitializeWorldData()
 {

@@ -1,7 +1,7 @@
 #pragma once
 
 
-// CLightDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CLightDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 #include "MacSliderCtrl.h"
 #include "MacButtons.h"
@@ -16,7 +16,7 @@ public:
 	int		m_nLightColorAll;
 
 public:
-	CLightDialog(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CLightDialog(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CLightDialog();
 
 	static CLightDialog& GetInstance();
@@ -31,11 +31,11 @@ public:
 	void	BuildLightRadius();
 	void	BuildLightAngle();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_LIGHT };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

@@ -1,4 +1,4 @@
-// Attr_ACT_InSSM.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_ACT_InSSM.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_ACT_InSSM.h"
 
 
-// CAttr_ACT_InSSM ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_ACT_InSSM ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_ACT_InSSM, CAttr_Page, 1)
 
@@ -74,7 +74,7 @@ BOOL CAttr_ACT_InSSM::OnInitDialog()
 {
 	CAttr_Page::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	m_ctrSSMId.SetItemData( m_ctrSSMId.AddString( _T("Slot 0") ), eSSM_ID_0 );
 	m_ctrSSMId.SetItemData( m_ctrSSMId.AddString( _T("Slot 1") ), eSSM_ID_1 );
 	m_ctrSSMId.SetItemData( m_ctrSSMId.AddString( _T("Slot 2") ), eSSM_ID_2 );
@@ -90,11 +90,11 @@ BOOL CAttr_ACT_InSSM::OnInitDialog()
 	if ( m_strData.GetLength() > 0 ) SetPageData( m_strData );
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 BEGIN_MESSAGE_MAP(CAttr_ACT_InSSM, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_ACT_InSSM ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_ACT_InSSM ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

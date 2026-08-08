@@ -5,10 +5,10 @@
 #include "stdafx.h"
 
 
-// »ý¼ºÀÚ : ¹Ýµå½Ã À©µµ¿ì ÇÚµéÀ» ÀÎÀÚ·Î ¼³Á¤ÇØ¾ß ÇÑ´Ù
+// ìƒì„±ìž : ë°˜ë“œì‹œ ìœˆë„ìš° í•¸ë“¤ì„ ì¸ìžë¡œ ì„¤ì •í•´ì•¼ í•œë‹¤
 CGDIPlusDBuffer::CGDIPlusDBuffer(HWND hWnd)
 {
-    // ¸â¹ö º¯¼ö ÃÊ±âÈ­
+    // ë©¤ë²„ ë³€ìˆ˜ ì´ˆê¸°í™”
     m_hWnd = hWnd;
     m_pGraphics = NULL;
     m_pMemBmp = NULL;	
@@ -16,39 +16,39 @@ CGDIPlusDBuffer::CGDIPlusDBuffer(HWND hWnd)
     CRect rcClient;
     ::GetClientRect(hWnd, &rcClient);
 
-    // ¸Þ¸ð¸® ºñÆ®¸ÊÀ» »ý¼ºÇÑ´Ù
+    // ë©”ëª¨ë¦¬ ë¹„íŠ¸ë§µì„ ìƒì„±í•œë‹¤
     m_pMemBmp = new Bitmap(rcClient.Width(), rcClient.Height());
-    // ¸Þ¸ð¸® ºñÆ®¸Ê¿¡ ±×·¡ÇÈÀ» Ãâ·ÂÇÒ ¼ö ÀÖ´Â Graphics °´Ã¼¸¦ »ý¼ºÇÑ´Ù
+    // ë©”ëª¨ë¦¬ ë¹„íŠ¸ë§µì— ê·¸ëž˜í”½ì„ ì¶œë ¥í•  ìˆ˜ ìžˆëŠ” Graphics ê°ì²´ë¥¼ ìƒì„±í•œë‹¤
     m_pGraphics = Graphics::FromImage(m_pMemBmp);
 }
 
 
 
-// ¼Ò¸êÀÚ : ¹öÆÛ¿¡ Ãâ·ÂµÈ ±×·¡ÇÈÀ» È­¸é¿¡ Ãâ·ÂÇÑ´Ù
+// ì†Œë©¸ìž : ë²„í¼ì— ì¶œë ¥ëœ ê·¸ëž˜í”½ì„ í™”ë©´ì— ì¶œë ¥í•œë‹¤
 CGDIPlusDBuffer::~CGDIPlusDBuffer()
 {
 
-    // ¸¸¾à °´Ã¼µéÀÌ »ý¼ºµÇ¾î ÀÖ´Ù¸é
+    // ë§Œì•½ ê°ì²´ë“¤ì´ ìƒì„±ë˜ì–´ ìžˆë‹¤ë©´
     if(m_pGraphics && m_pMemBmp)
     {
-        // À©µµ¿ìÀÇ DC¸¦ ¾ò´Â´Ù
+        // ìœˆë„ìš°ì˜ DCë¥¼ ì–»ëŠ”ë‹¤
         HDC hDC = ::GetDC(m_hWnd);
-        // À©µµ¿ìÀÇ È­¸é Graphics °´Ã¼¸¦ »ý¼ºÇÑ´Ù
+        // ìœˆë„ìš°ì˜ í™”ë©´ Graphics ê°ì²´ë¥¼ ìƒì„±í•œë‹¤
         Graphics graphics(hDC);
 
-        // È­¸é Graphics °´Ã¼¸¦ »ç¿ëÇÏ¿© ¸Þ¸ð¸® ºñÆ®¸ÊÀÇ ³»¿ëÀ» º¹»çÇÏ¿© Ä³½¬ ºñÆ®¸ÊÀ» »ý¼ºÇÑ´Ù
+        // í™”ë©´ Graphics ê°ì²´ë¥¼ ì‚¬ìš©í•˜ì—¬ ë©”ëª¨ë¦¬ ë¹„íŠ¸ë§µì˜ ë‚´ìš©ì„ ë³µì‚¬í•˜ì—¬ ìºì‰¬ ë¹„íŠ¸ë§µì„ ìƒì„±í•œë‹¤
         CachedBitmap *pCachedBmp =  new CachedBitmap(m_pMemBmp, &graphics);
 
-        // Ä³½¬ ºñÆ®¸ÊÀ» È­¸é¿¡ Ãâ·ÂÇÑ´Ù
+        // ìºì‰¬ ë¹„íŠ¸ë§µì„ í™”ë©´ì— ì¶œë ¥í•œë‹¤
         graphics.DrawCachedBitmap(pCachedBmp, 0, 0);
 
-        // Ä³½¬ ºñÆ®¸ÊÀ» Á¦°ÅÇÑ´Ù
+        // ìºì‰¬ ë¹„íŠ¸ë§µì„ ì œê±°í•œë‹¤
         delete pCachedBmp;
-        // DC¸¦ ¹ÝÈ¯ÇÑ´Ù
+        // DCë¥¼ ë°˜í™˜í•œë‹¤
         ::ReleaseDC(m_hWnd, hDC);
     }
 
-    // °´Ã¼µéÀ» Á¦°ÅÇÑ´Ù
+    // ê°ì²´ë“¤ì„ ì œê±°í•œë‹¤
     if(m_pGraphics)		delete m_pGraphics;
     if(m_pMemBmp)		delete m_pMemBmp;	
 

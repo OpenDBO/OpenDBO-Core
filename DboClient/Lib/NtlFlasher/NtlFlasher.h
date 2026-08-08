@@ -48,7 +48,7 @@ public:
 	BOOL Create( CONST CHAR* szFileName, int nID);
 	VOID Destroy(VOID);
 
-	BOOL Update( FLOAT fElapsed );			// return FALSE -> ÇÑÅ¸ÀÓ Á¾·áµÊ.
+	BOOL Update( FLOAT fElapsed );			// return FALSE -> í•œíƒ€ì„ ì¢…ë£Œë¨.
 	VOID Render(VOID);
 
 	INT	 GetResolutionWidth(VOID) { return m_nResolutionWidth; }

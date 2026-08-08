@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File: GuiLineTree.h
-// Desc: GuiLineTree - QuestList, Quest Windowµî¿¡¼­ »ç¿ëµÉ ¸ğµâ.
-//		 Æ®¸®±¸Á¶¿Í LineID¸¸ °üÇÒÇÏ¸ç, ÁÂÇ¥¿Í ·»´õ¸µ, ÀÎÅÍ·¢Æ¼ºê´Â »ó¼ÓÇÏ¿© ±¸Çö
+// Desc: GuiLineTree - QuestList, Quest Windowë“±ì—ì„œ ì‚¬ìš©ë  ëª¨ë“ˆ.
+//		 íŠ¸ë¦¬êµ¬ì¡°ì™€ LineIDë§Œ ê´€í• í•˜ë©°, ì¢Œí‘œì™€ ë Œë”ë§, ì¸í„°ë™í‹°ë¸ŒëŠ” ìƒì†í•˜ì—¬ êµ¬í˜„
 //
 // 2006.10.16 Peessi@hitel.net   
 //
@@ -54,19 +54,19 @@ public:
 	//! Virtual
 	virtual VOID		Expand( RwBool bExpand );
 	virtual VOID		ExpandChild( RwBool bExpand );
-	virtual VOID		ShowProc(VOID);		// Æ÷ÇÔ ÄÄÆ÷³ÍÆ®ÀÇ Show, ÁÂÇ¥ÁöÁ¤µîÀ» ¿À¹ö¶óÀÌµå.
-	virtual VOID		HideProc(VOID);		// Æ÷ÇÔ ÄÄÆ÷³ÍÆ®ÀÇ HideµîÀ¸·Î ¿À¹ö¶óÀÌµå.			
+	virtual VOID		ShowProc(VOID);		// í¬í•¨ ì»´í¬ë„ŒíŠ¸ì˜ Show, ì¢Œí‘œì§€ì •ë“±ì„ ì˜¤ë²„ë¼ì´ë“œ.
+	virtual VOID		HideProc(VOID);		// í¬í•¨ ì»´í¬ë„ŒíŠ¸ì˜ Hideë“±ìœ¼ë¡œ ì˜¤ë²„ë¼ì´ë“œ.			
 
 protected:
 	CGuiLineTree*		m_pMgr;		
 	CGuiLineTreeNode*	m_pParent;
 	LIST_LINENODE		m_listpChild;
-	RwInt32				m_nID;			// °íÀ¯ ID
-	RwInt32				m_nLineID;		// ¶óÀÎ ID
-	RwInt32				m_nPosX;		// ½ÃÀÛÁ¡
+	RwInt32				m_nID;			// ê³ ìœ  ID
+	RwInt32				m_nLineID;		// ë¼ì¸ ID
+	RwInt32				m_nPosX;		// ì‹œì‘ì 
 	RwInt32				m_nPosY;		
 	RwBool				m_bIsExpand;	
-	RwBool				m_bShow;		// ÀÌ ³ëµå°¡ º¸ÀÌ´Â ³ëµåÀÎ°¡.
+	RwBool				m_bShow;		// ì´ ë…¸ë“œê°€ ë³´ì´ëŠ” ë…¸ë“œì¸ê°€.
 };
 
 inline CGuiLineTreeNode* CGuiLineTreeNode::GetParentNode(VOID)
@@ -137,12 +137,12 @@ public:
 							RwInt32 nLineHeight = GUILINETREE_DEFAULT_HEIGHT,
 							RwInt32 nLineMargin = GUILINETREE_DEFAULT_MARGIN,
 							RwInt32 nChildXMargin = GUILINETREE_DEFAULT_CHILDMARGINX,
-							RwInt32 nScrollBarWidth = GUILINETREE_DEFAULT_SCROLLBARWIDTH );	// ±×¸²µîÀ» Ãß°¡ÇÒ ¶§ ¿À¹ö¶óÀÌµå ÇÑ´Ù. 		
+							RwInt32 nScrollBarWidth = GUILINETREE_DEFAULT_SCROLLBARWIDTH );	// ê·¸ë¦¼ë“±ì„ ì¶”ê°€í•  ë•Œ ì˜¤ë²„ë¼ì´ë“œ í•œë‹¤. 		
 	virtual	VOID	Destroy(VOID);		
 	
-	virtual VOID	AddNode( CGuiLineTreeNode* pNode, RwInt32 nParentID = GUILINETREE_ROOTNODE_ID ); // Add, Delete½Ã Àû¿ë±âÁØÀÌ ÀÖ´Ù¸é Override È¤Àº Overload ÇØ¾ßÇÔ.
+	virtual VOID	AddNode( CGuiLineTreeNode* pNode, RwInt32 nParentID = GUILINETREE_ROOTNODE_ID ); // Add, Deleteì‹œ ì ìš©ê¸°ì¤€ì´ ìˆë‹¤ë©´ Override í˜¹ì€ Overload í•´ì•¼í•¨.
 	virtual VOID	DeleteNode( RwInt32 nID );
-	virtual VOID	ClearNodes(VOID);			// ·çÆ®³ëµå´Â Áö¿ìÁö ¾ÊÀ½.
+	virtual VOID	ClearNodes(VOID);			// ë£¨íŠ¸ë…¸ë“œëŠ” ì§€ìš°ì§€ ì•ŠìŒ.
 
 	CGuiLineTreeNode*	FindNode( RwInt32 nID );
 	VOID				RecalcLineID(VOID);
@@ -165,12 +165,12 @@ protected:
 	gui::CSlot			m_slotScrollMoved;
 
 	// Variable
-	RwInt32				m_nLineHeight;	// ¶óÀÎÆø.
-	RwInt32				m_nLineMargin;	// ¶óÀÎ°£ ¿©¹é.
-	RwInt32				m_nScrollOffset;// ½ºÅ©·Ñ ¿É¼Â.
-	RwInt32				m_nMaxLine;		// ÃÖ´ë ¶óÀÎ¼ö.
-	RwInt32				m_nChildXMargin;// child nodeÀÇ µé¿©¾²±â °ª.
-	gui::CScrollBar*	m_pScroll;		// ½ºÅ©·Ñ ¹Ù
+	RwInt32				m_nLineHeight;	// ë¼ì¸í­.
+	RwInt32				m_nLineMargin;	// ë¼ì¸ê°„ ì—¬ë°±.
+	RwInt32				m_nScrollOffset;// ìŠ¤í¬ë¡¤ ì˜µì…‹.
+	RwInt32				m_nMaxLine;		// ìµœëŒ€ ë¼ì¸ìˆ˜.
+	RwInt32				m_nChildXMargin;// child nodeì˜ ë“¤ì—¬ì“°ê¸° ê°’.
+	gui::CScrollBar*	m_pScroll;		// ìŠ¤í¬ë¡¤ ë°”
 	gui::CDialog*		m_pLineTree;	// Line Tree Dialog
 
 	CGuiLineTreeNode*	m_pRootNode;		

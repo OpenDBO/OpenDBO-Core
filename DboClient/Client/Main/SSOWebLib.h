@@ -17,35 +17,35 @@ typedef void (SWEBCALLBACK_ONBN2)(LPCTSTR lpszURL, DWORD nFlags, LPCTSTR lpszTar
 typedef void (SWEBCALLBACK_ONNC2)(LPCTSTR strURL);
 typedef void (SWEBCALLBACK_ONQUIT)();
 
-// SSO À¥ºê¶ó¿ìÀú¸¦ Shared DLL·Î »ç¿ëÇÏ±â À§ÇØ È£ÃâÇÏ´Â ÇÔ¼ö(InitSSOWebBrowser() ÀÌÀü¿¡ È£ÃâµÇ¾î¾ß ÇÔ)
+// SSO ì›¹ë¸Œë¼ìš°ì €ë¥¼ Shared DLLë¡œ ì‚¬ìš©í•˜ê¸° ìœ„í•´ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜(InitSSOWebBrowser() ì´ì „ì— í˜¸ì¶œë˜ì–´ì•¼ í•¨)
 void PresetSSOWebBrowserToSharedDll();
 
-// ¼­ºñ½º »çÀÌÆ®¿¡ µû¸¥ ÄíÅ° ÀÌ¸§À» º¯°æÇÏ±â À§ÇÏ¿© È£ÃâÇÏ´Â ÇÔ¼ö(InitSSOWebBrowser() ÀÌÀü¿¡ È£ÃâµÇ¾î¾ß ÇÔ)
-// ´ÙÀ½°ÔÀÓÀÎ °æ¿ì "daum"À» ³Ñ±è(³Ý¸¶ºíÀÎ °æ¿ì´Â È£ÃâÇÒ ÇÊ¿ä°¡ ¾øÀ½)
+// ì„œë¹„ìŠ¤ ì‚¬ì´íŠ¸ì— ë”°ë¥¸ ì¿ í‚¤ ì´ë¦„ì„ ë³€ê²½í•˜ê¸° ìœ„í•˜ì—¬ í˜¸ì¶œí•˜ëŠ” í•¨ìˆ˜(InitSSOWebBrowser() ì´ì „ì— í˜¸ì¶œë˜ì–´ì•¼ í•¨)
+// ë‹¤ìŒê²Œìž„ì¸ ê²½ìš° "daum"ì„ ë„˜ê¹€(ë„·ë§ˆë¸”ì¸ ê²½ìš°ëŠ” í˜¸ì¶œí•  í•„ìš”ê°€ ì—†ìŒ)
 void PresetSSOWebBrowserSetSiteName(LPCTSTR strSiteName);
 
 void PresetSSOWebBrowserBaseFolder(LPCTSTR strFolder);
 
-// SSO À¥ºê¶ó¿ìÀú ÃÊ±âÈ­ ÇÔ¼ö
+// SSO ì›¹ë¸Œë¼ìš°ì € ì´ˆê¸°í™” í•¨ìˆ˜
 BOOL InitSSOWebBrowser(HWND hWndMain, LPCTSTR strAuthCookie, LPCTSTR strDataCookie, LPCTSTR strCpCookie);
 
-// Å×½ºÆ®¿ë ÃÊ±âÈ­ ÇÔ¼ö
+// í…ŒìŠ¤íŠ¸ìš© ì´ˆê¸°í™” í•¨ìˆ˜
 BOOL InitSSOWebBrowser2(LPCSTR strBaseDir, HWND hWndMain, LPCTSTR strAuthCookie, LPCTSTR strDataCookie, LPCTSTR strCpCookie);
 
-// SSO À¥ºê¶ó¿ìÀú ÆÄ±« ÇÔ¼ö(¸ÞÀÎ À©µµ¿ì°¡ ÆÄ±«µÇ±â Àü¿¡ È£ÃâÇØ¾ßÇÑ´Ù)
+// SSO ì›¹ë¸Œë¼ìš°ì € íŒŒê´´ í•¨ìˆ˜(ë©”ì¸ ìœˆë„ìš°ê°€ íŒŒê´´ë˜ê¸° ì „ì— í˜¸ì¶œí•´ì•¼í•œë‹¤)
 BOOL UnInitSSOWebBrowser();
 
-// ÄíÅ° È°¼ºÈ­ ÆäÀÌÁö URLÀ» ¾ò´Â ÇÔ¼ö
+// ì¿ í‚¤ í™œì„±í™” íŽ˜ì´ì§€ URLì„ ì–»ëŠ” í•¨ìˆ˜
 LPCTSTR GetActCookieURL();
 
-// ÄíÅ° ¸®ÇÁ·¹½¬ ÆäÀÌÁö URLÀ» ¾ò´Â ÇÔ¼ö
+// ì¿ í‚¤ ë¦¬í”„ë ˆì‰¬ íŽ˜ì´ì§€ URLì„ ì–»ëŠ” í•¨ìˆ˜
 LPCTSTR GetRefreshCookieURL();
 
-// SSO À¥ºê¶ó¿ìÀú·ÎºÎÅÍ ÄíÅ°¸¦ ¾ò´Â ÇÔ¼ö(³»ºÎÀûÀ¸·Î º¯È¯µÇ±â ¶§¹®¿¡ ¾òÀº ±×´ë·Î put_cookieÇÏ¸é µÈ´Ù)
+// SSO ì›¹ë¸Œë¼ìš°ì €ë¡œë¶€í„° ì¿ í‚¤ë¥¼ ì–»ëŠ” í•¨ìˆ˜(ë‚´ë¶€ì ìœ¼ë¡œ ë³€í™˜ë˜ê¸° ë•Œë¬¸ì— ì–»ì€ ê·¸ëŒ€ë¡œ put_cookieí•˜ë©´ ëœë‹¤)
 BOOL GetSSOWebCookieString(LPSTR pstrAuth, LPSTR pstrData, LPSTR pstrCp);
 
 //////////////////////////////////////////////////////////////////////
-// SSO À¥ºê¶ó¿ìÀú Å¬·¡½º
+// SSO ì›¹ë¸Œë¼ìš°ì € í´ëž˜ìŠ¤
 
 class CSSOWebBrowser  
 {
@@ -56,7 +56,7 @@ public:
 	CSSOWebBrowser();
 	virtual ~CSSOWebBrowser();
 
-	// À¥ ºê¶ó¿ìÀú ÃÊ±âÈ­ ¹× »ý¼º
+	// ì›¹ ë¸Œë¼ìš°ì € ì´ˆê¸°í™” ë° ìƒì„±
 	BOOL Create(DWORD dwStyle, RECT& rect, HWND hWndParent, UINT nID);
 	void Destroy();
 
@@ -80,7 +80,7 @@ public:
 	//virtual void OnNavigateComplete2( LPCTSTR strURL );
 	//virtual void OnQuit();
 
-	// ÄÝ¹é ÇÔ¼ö
+	// ì½œë°± í•¨ìˆ˜
 	//void (*m_pCallback_OnBeforeNavigate2)(LPCTSTR lpszURL, DWORD nFlags, LPCTSTR lpszTargetFrameName, void* pbaPostedData, LPCTSTR lpszHeaders, BOOL* pbCancel);
 	//void (*m_pCallback_OnNavigateComplete2)( LPCTSTR strURL );
 	//void (*m_pCallback_OnQuit)();

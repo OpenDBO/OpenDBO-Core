@@ -57,6 +57,10 @@ VOID CComboBox_Generic::ToggleList(VOID)
 		rtRect.bottom -= m_pComboBox->m_pListBox->GetHeight();
 		m_SigListToggled( FALSE, m_pComboBox );
 		m_pComboBox->Popup( false );
+		// The open dropdown must draw above the components below it in the
+		// same dialog, so lift it while open and restore while closed.
+		m_pComboBox->m_pListBox->SetRenderTop( false );
+		m_pComboBox->m_pListBox->GetScrollBar()->SetRenderTop( false );
 	}
 	else
 	{
@@ -64,6 +68,8 @@ VOID CComboBox_Generic::ToggleList(VOID)
 		rtRect.bottom += m_pComboBox->m_pListBox->GetHeight();
 		m_SigListToggled( TRUE, m_pComboBox );
 		m_pComboBox->Popup( true );
+		m_pComboBox->m_pListBox->SetRenderTop( true );
+		m_pComboBox->m_pListBox->GetScrollBar()->SetRenderTop( true );
 	}
 
 	m_pComboBox->SetPosition( rtRect );

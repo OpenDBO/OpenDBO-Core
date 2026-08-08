@@ -33,7 +33,7 @@ CSliderBar_Generic::CSliderBar_Generic(
 	SetValue(nValue);
 
 	//----------------------------------------------------------------------
-	// slider bar size °è»ê 
+	// slider bar size ê³„ì‚° 
 	if(m_bVertical)
 		SetSliderSize(m_pSliderBar->GetWidth(),m_pSliderBar->GetWidth());
 	else

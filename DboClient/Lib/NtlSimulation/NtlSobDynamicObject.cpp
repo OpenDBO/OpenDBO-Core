@@ -27,7 +27,7 @@ DEFINITION_MEMORY_POOL(CNtlSobDynamicObject)
 CNtlSobDynamicObject::CNtlSobDynamicObject( VOID )
 {
 	m_byCurState = eDYNAMIC_OBJECT_STATE_SPAWN;
-	// m_byFareRate = ±âº»°ª;
+	// m_byFareRate = ê¸°ë³¸ê°’;
 
 	SetFlags(SLFLAG_ADD_UPDATE | SLFLAG_TARGET_NEAR_APPROACH );
 	SetActorFlags( SLFLAG_ACTOR_HAVE_LIFE);
@@ -42,7 +42,7 @@ RwBool CNtlSobDynamicObject::Create( VOID )
 {
 	NTL_FUNCTION( "CNtlSobDynamicObject::Create");
 
-	// TODO: Proxy ¼³Á¤
+	// TODO: Proxy ì„¤ì •
 	m_pSobProxy = NTL_NEW CNtlSobDynamicObjectProxy;
 	m_pSobProxy->Create(0);
 	m_pSobProxy->SetSobObj(this);
@@ -80,7 +80,7 @@ void CNtlSobDynamicObject::HandleEvents( RWS::CMsg& pMsg )
 	{
 		SNtlEventSobDynamicObjectCreate *pSobCreate = reinterpret_cast<SNtlEventSobDynamicObjectCreate*>(pMsg.pData);
 
-		//// ÁÂÇ¥¿Í ¹æÇâ ¼¼ÆÃ.
+		//// ì¢Œí‘œì™€ ë°©í–¥ ì„¸íŒ….
 		SWorldHeightStuff sHStuff;
 		RwV3d vPos = pSobCreate->vLoc;
 		Logic_GetWorldHeight(this, &vPos, sHStuff);

@@ -1,7 +1,7 @@
 ﻿/******************************************************************************
 * File			: Vehicle.h
 * Author		: Hong SungBock
-* Copyright		: (?)NTL
+* Copyright		: (주)NTL
 * Date			: 2009. 1. 5
 * Abstract		: 
 * Update		: 
@@ -37,7 +37,7 @@ class CVehicleGui : public CNtlPLGui, public RWS::CEventHandler
 
 	struct sFUEL
 	{
-		CRegularSlotGui				FuelSlot;				///< ? ?
+		CRegularSlotGui			FuelSlot;				///< 연료 슬롯
 		SET_LOCKED_BAGSLOT		setLockedBagSlot;
 		SET_LOCKED_BAGSLOT		setNewLockBagSlot;
 	};

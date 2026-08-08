@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="BuildAll" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rtpng\rtpng.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rphanim\rphanim.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rplogo\rplogo.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rpuserdat\rpuserdat.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rpid\rpid.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rpmatfx\rpmatfx.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rpuvanim\rpuvanim.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rpprtstd\rpprtstd.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rpprtadv\rpprtadv.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rpptank\rpptank.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rpskintoon\rpskintoon.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rpskin2\rpskin2.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rprandom\rprandom.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rplodatm\rplodatm.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rppvs\rppvs.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rpltmap\rpltmap.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rpmipkl\rpmipkl.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rtdict\rtdict.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rtcharse\rtcharse.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rtfsyst\rtfsyst.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rtbmp\rtbmp.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rtintsec\rtintsec.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rtpick\rtpick.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rttoc\rttoc.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rpworld\rpworld.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rtanim\rtanim.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rtquat\rtquat.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rtimport\rtimport.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rtgcond\rtgcond.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rtwing\rtwing.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rtray\rtray.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rtpitexd\rtpitexd.vcxproj" />
+    <RWProject Include="C:\dboDevelop\OpenDBO-Core\DboClient\Renderware\Include\rtbary\rtbary.vcxproj" />
+  </ItemGroup>
+  <Target Name="BuildAll">
+    <MSBuild Projects="@(RWProject)" BuildInParallel="false"
+             Properties="Configuration=Release;Platform=Win32;SolutionDir=C:\dboDevelop\OpenDBO-Core\DboClient\"
+             StopOnFirstFailure="false" />
+  </Target>
+</Project>

@@ -1,7 +1,7 @@
 #pragma once
 
 
-// CMeshListDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CMeshListDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 #include "DataTreeCtrl.h"
 
@@ -10,7 +10,7 @@ class CMeshListDialog : public CDialog
 	DECLARE_DYNCREATE(CMeshListDialog)
 
 public:
-	CMeshListDialog(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CMeshListDialog(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CMeshListDialog();
 
 	void	SerializeList();
@@ -18,11 +18,11 @@ public:
 public:
 	BOOL					m_Initialized;
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_MESH_LIST };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:
@@ -32,7 +32,7 @@ public:
 	afx_msg void OnTvnSelchangedMeshList(NMHDR *pNMHDR, LRESULT *pResult);
 
 protected:
-    void OnRefresh();                               ///< Mesh List¸¦ ´Ù½Ã ÀĞ¾î µéÀÎ´Ù.
+    void OnRefresh();                               ///< Mesh Listë¥¼ ë‹¤ì‹œ ì½ì–´ ë“¤ì¸ë‹¤.
 
 protected:
     CDataTreeCtrl m_MeshList;

@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: GMChatGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 10. 21
 * Abstract		: 
 *****************************************************************************
-* Desc			: GM°úÀÇ Ã¤ÆÃ ´ÙÀÌ¾ó·Î±×
+* Desc			: GMê³¼ì˜ ì±„íŒ… ë‹¤ì´ì–¼ë¡œê·¸
 *****************************************************************************/
 
 #pragma once
@@ -31,9 +31,9 @@ public:
 
 	RwInt32		SwitchDialog(bool bOpen);
 
-	// avooo's comment : GM Ã¤ÆÃÀº °ÔÀÓÀÇ ³»¿ëÀÌ ¾Æ´Ï¸ç ÀÌ¹Ì ´Ù¸¥ ´ÙÀÌ¾ó·Î±×°¡
-	//					 ²Ë µé¾îÂù »óÅÂ¿¡¼­ °íÁ¤ÀûÀ¸·Î GM Ã¤ÆÃÀ» À§ÇØ ÀÚ¸®¸¦ ¸¸µé ¼öµµ ¾ø´Ù.
-	//					 GM Ã¤ÆÃÀº ¾ğÁ¦³ª À¯Àú°¡ À§Ä¡¸¦ º¯°æÇÒ ¼ö ÀÖµµ·Ï ÇÑ´Ù.
+	// avooo's comment : GM ì±„íŒ…ì€ ê²Œì„ì˜ ë‚´ìš©ì´ ì•„ë‹ˆë©° ì´ë¯¸ ë‹¤ë¥¸ ë‹¤ì´ì–¼ë¡œê·¸ê°€
+	//					 ê½‰ ë“¤ì–´ì°¬ ìƒíƒœì—ì„œ ê³ ì •ì ìœ¼ë¡œ GM ì±„íŒ…ì„ ìœ„í•´ ìë¦¬ë¥¼ ë§Œë“¤ ìˆ˜ë„ ì—†ë‹¤.
+	//					 GM ì±„íŒ…ì€ ì–¸ì œë‚˜ ìœ ì €ê°€ ìœ„ì¹˜ë¥¼ ë³€ê²½í•  ìˆ˜ ìˆë„ë¡ í•œë‹¤.
 	virtual void	SetMovable(RwBool bMovable) {}
 
 	VOID		SetGMText(const WCHAR* pwcText);
@@ -60,11 +60,11 @@ protected:
 	gui::CSlot			m_slotMove;
 	gui::CSlot			m_slotPaint;
 
-	gui::COutputBox*	m_pOutDisplay;			// ´ëÈ­³»¿ë
-	gui::CStaticBox*	m_pDialogName;			// ´ÙÀÌ¾ó·Î±× Á¦¸ñ
-	gui::CStaticBox*	m_pIME;					// IME »óÅÂ
-	gui::CInputBox*		m_pInput;				// À¯Àú ÀÎÇ²Ã¢
+	gui::COutputBox*	m_pOutDisplay;			// ëŒ€í™”ë‚´ìš©
+	gui::CStaticBox*	m_pDialogName;			// ë‹¤ì´ì–¼ë¡œê·¸ ì œëª©
+	gui::CStaticBox*	m_pIME;					// IME ìƒíƒœ
+	gui::CInputBox*		m_pInput;				// ìœ ì € ì¸í’‹ì°½
 
-	CWindowby3			m_BackPanel;			// ¹è°æ
-	CSurfaceGui			m_InputBack;			// ÀÎÇ² ¹è°æ
+	CWindowby3			m_BackPanel;			// ë°°ê²½
+	CSurfaceGui			m_InputBack;			// ì¸í’‹ ë°°ê²½
 };

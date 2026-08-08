@@ -2,7 +2,7 @@
  *
  * File			: DataType.h
  * Author		: HongHoDong
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2007. 2. 5.
  * Abstract		: 
  *****************************************************************************
@@ -18,16 +18,16 @@
 
 #define		PATCH_CUR_VER_FILE_NAME				"CurrentPatchVer.XML"
 #define		PATCH_VER_LIST_FILE_NAME			"PatchVerList.XML"
-#define     PATCH_SERVER_CONFIG_FILE_NAME       "PatchServerConfig.XML" ///< ∆–ƒ° º≠πˆ ƒ¡««±◊ ∆ƒ¿œ∏Ì
+#define     PATCH_SERVER_CONFIG_FILE_NAME       "PatchServerConfig.XML" ///< Ìå®Ïπò ÏÑúÎ≤Ñ Ïª®ÌîºÍ∑∏ ÌååÏùºÎ™Ö
 
 #define		LAUNCHER_CONFIG						"LauncherConfig.XML"
-#define		LAUNCHER_CUR_EXE_FILE_NAME			"DBOLauncher.exe"		///< «ˆ¿Á Launcher Ω««‡ ∆ƒ¿œ ¿Ã∏ß
-#define		LAUNCHER_PATCH_EXE_FILE_NAME		"Temp4566.exe"			///< Launcher∏¶ ∆–ƒ° «“ Launcher¿« ¿Ã∏ß
-#define		LAUNCHER_MAIN_EXE_FILE_NAME			"DBO.exe"				///< Launcherø°º≠ Ω««‡¿ª Ω√ƒ—æﬂ «“ Main File ¿Ã∏ß
+#define		LAUNCHER_CUR_EXE_FILE_NAME			"DBOLauncher.exe"		///< ÌòÑÏû¨ Launcher Ïã§Ìñâ ÌååÏùº Ïù¥Î¶Ñ
+#define		LAUNCHER_PATCH_EXE_FILE_NAME		"Temp4566.exe"			///< LauncherÎ•º Ìå®Ïπò Ìï† LauncherÏùò Ïù¥Î¶Ñ
+#define		LAUNCHER_MAIN_EXE_FILE_NAME			"DBO.exe"				///< LauncherÏóêÏÑú Ïã§ÌñâÏùÑ ÏãúÏºúÏïº Ìï† Main File Ïù¥Î¶Ñ
 
-#define		LAUNCHER_CMD_LAUNCHER_PATCH			"Cmd_LauncherPatch"		///< ∆–ƒ°«“ Launcer exe∆ƒ¿œø° ≥—æÓ∞• Argument
-//#define		LAUNCHER_CMD_MAIN					"Cmd_Main"				///< Main Program¿ª Ω««‡ Ω√≈≥ ∞ÊøÏ ≥—æÓ∞• Argument
-#define		LAUNCHER_CMD_MAIN					""				///< Main Program¿ª Ω««‡ Ω√≈≥ ∞ÊøÏ ≥—æÓ∞• Argument
+#define		LAUNCHER_CMD_LAUNCHER_PATCH			"Cmd_LauncherPatch"		///< Ìå®ÏπòÌï† Launcer exeÌååÏùºÏóê ÎÑòÏñ¥Í∞à Argument
+//#define		LAUNCHER_CMD_MAIN					"Cmd_Main"				///< Main ProgramÏùÑ Ïã§Ìñâ ÏãúÌÇ¨ Í≤ΩÏö∞ ÎÑòÏñ¥Í∞à Argument
+#define		LAUNCHER_CMD_MAIN					""				///< Main ProgramÏùÑ Ïã§Ìñâ ÏãúÌÇ¨ Í≤ΩÏö∞ ÎÑòÏñ¥Í∞à Argument
 
 #define		ERROR_PATCH_SERVER_CONNECT			"Connect Patch Server Fail"
 #define		ERROR_PATCH_SERVER_FILE_DOWN		": download Fail"

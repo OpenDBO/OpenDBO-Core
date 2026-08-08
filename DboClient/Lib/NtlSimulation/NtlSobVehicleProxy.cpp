@@ -238,7 +238,7 @@ CNtlPLCharacter* CNtlSobVehicleProxy::CreateVehicleEntity(const RwV3d& vLoc, con
 		sprintf_s(szVehicleModelName, 1024, "%s", pVehicleTbl->szModelName);
 	}
 
-	// lleo52 ÃßÈÄ ¼öÁ¤ ÇÊ¿ä
+	// lleo52 ì¶”í›„ ìˆ˜ì • í•„ìš”
 	int nStrLen = strlen( szVehicleModelName );
 	for ( int i = 0; i < nStrLen; ++i )
 	{

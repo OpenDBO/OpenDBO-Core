@@ -117,7 +117,7 @@ void CTrueColorToolBar::AddDropDownButton(CWnd* pParent, UINT uButtonID, UINT uM
 void CTrueColorToolBar::OnTbnDropDown(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMTOOLBAR pNMTB = reinterpret_cast<LPNMTOOLBAR>(pNMHDR);
-	// TODO: ©╘╠Б©║ даф╝╥я ╬к╦╡ цЁ╦╝╠Б дз╣Е╦╕ цъ╟║гу╢о╢ы.
+	// TODO: Л≈╛Й╦╟Л≈░ Л╩╗М┼╦К║╓ Л∙▄К╕╪ Л╡≤К╕╛Й╦╟ Л╫■К⌠°К╔╪ Л╤■Й╟─М∙╘К▀┬К▀╓.
 	for (int i = 0; i < m_lstDropDownButton.GetSize(); i++) {
 		
 		stDropDownInfo DropDownInfo = m_lstDropDownButton.GetAt(i);

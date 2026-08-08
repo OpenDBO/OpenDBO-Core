@@ -1,4 +1,4 @@
-// Attr_ACT_TWaitTS.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_ACT_TWaitTS.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_ACT_TWaitTS.h"
 
 
-// CAttr_ACT_TWaitTS ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_ACT_TWaitTS ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_ACT_TWaitTS, CAttr_Page, 1)
 
@@ -59,4 +59,4 @@ BEGIN_MESSAGE_MAP(CAttr_ACT_TWaitTS, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_ACT_TWaitTS ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_ACT_TWaitTS ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

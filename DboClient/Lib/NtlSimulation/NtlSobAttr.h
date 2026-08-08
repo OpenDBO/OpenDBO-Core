@@ -2,7 +2,7 @@
  *
  * File			: NtlSobAtt.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 11. 30	
  * Abstract		: Simulation object attribute base class
  *****************************************************************************
@@ -254,12 +254,12 @@ public:
 	WORD wBaseEng;
 	WORD wLastEng;
 
-	RwInt32		m_Str;		// ±Ù·Â
-	RwInt32		m_Con;		// °Ç°­
-	RwInt32		m_Foc;		// Á¾Á·°ú Å¬·¡½º¿¡ µû¸¥ »ı¼º½ÃÀÇ ÁıÁßÀ» ±âÀÔ
-	RwInt32		m_Dex;		// ¹ÎÃ¸
-	RwInt32		m_Sol;		// Á¾Á·°ú Å¬·¡½º¿¡ µû¸¥ »ı¼º½ÃÀÇ Á¤½ÅÀ» ±âÀÔ
-	RwInt32		m_Eng;		// Á¾Á·°ú Å¬·¡½º¿¡ µû¸¥ »ı¼º½ÃÀÇ ¿ø±â¸¦ ±âÀÔ
+	RwInt32		m_Str;		// ê·¼ë ¥
+	RwInt32		m_Con;		// ê±´ê°•
+	RwInt32		m_Foc;		// ì¢…ì¡±ê³¼ í´ë˜ìŠ¤ì— ë”°ë¥¸ ìƒì„±ì‹œì˜ ì§‘ì¤‘ì„ ê¸°ì…
+	RwInt32		m_Dex;		// ë¯¼ì²©
+	RwInt32		m_Sol;		// ì¢…ì¡±ê³¼ í´ë˜ìŠ¤ì— ë”°ë¥¸ ìƒì„±ì‹œì˜ ì •ì‹ ì„ ê¸°ì…
+	RwInt32		m_Eng;		// ì¢…ì¡±ê³¼ í´ë˜ìŠ¤ì— ë”°ë¥¸ ìƒì„±ì‹œì˜ ì›ê¸°ë¥¼ ê¸°ì…
 
 	FLOAT fHonestOffense;
 	FLOAT fHonestDefense;
@@ -367,9 +367,9 @@ public:
 private:
 
 	RwReal			m_fAttackRange;
-	RwReal			m_fCastingTimeModifier;	// Ä³½ºÆÃÅ¸ÀÓ Modifier (% value)
-	RwReal			m_fCoolingTimeModifier;	// ÄğÅ¸ÀÓ Modifier (% value)
-	RwReal			m_fKeepingTimeModifier; // ÅµÅ¸ÀÓ Modifier (% value)
+	RwReal			m_fCastingTimeModifier;	// ìºìŠ¤íŒ…íƒ€ì„ Modifier (% value)
+	RwReal			m_fCoolingTimeModifier;	// ì¿¨íƒ€ì„ Modifier (% value)
+	RwReal			m_fKeepingTimeModifier; // í‚µíƒ€ì„ Modifier (% value)
 	RwReal			m_fDOTValueModifier;	// DOT Modifier (% value)
 	RwReal			m_fDOTTimeModifier;		// DOT Time Modifier (absloute value)
 	RwReal			m_fRequiredEPModifier;	// RequireEP Modifier(% value)
@@ -420,7 +420,7 @@ private:
 	RwUInt8		m_byHairColor;
 	RwUInt8		m_bySkinColor;
 
-	RwUInt32	m_uiReputation;	// ¸í¼º point
+	RwUInt32	m_uiReputation;	// ëª…ì„± point
 
 
 protected:

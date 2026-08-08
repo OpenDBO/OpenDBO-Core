@@ -4,17 +4,17 @@
 #include "NtlAnimEventData.h"
 #include "GDIPlusDBuffer.h"
 
-/// ½½¶óÀÌ´õ¿¡ »ç¿ëµÇ´Â ¸¶Ä¿ ±¸Á¶Ã¼
+/// ìŠ¬ë¼ì´ë”ì— ì‚¬ìš©ë˜ëŠ” ë§ˆì»¤ êµ¬ì¡°ì²´
 struct SSliderMarker
 {
-    int          m_nPoint;           ///< ¸¶Ä¿°¡ °¡¸£Å°´Â À§Ä¡
-    CRect        m_rt;               ///< ¸¶Ä¿ÀÇ ¿µ¿ª
-    SEventAnim*  m_pAnimEvent;       ///< ¸¶Ä¿¿Í ¸ÅÄªµÉ µ¥ÀÌÅÍ 
+    int          m_nPoint;           ///< ë§ˆì»¤ê°€ ê°€ë¥´í‚¤ëŠ” ìœ„ì¹˜
+    CRect        m_rt;               ///< ë§ˆì»¤ì˜ ì˜ì—­
+    SEventAnim*  m_pAnimEvent;       ///< ë§ˆì»¤ì™€ ë§¤ì¹­ë  ë°ì´í„° 
 };
 
 typedef std::vector<SSliderMarker> VMarker;
 
-// ¸Ş½ÃÁö Á¤ÀÇ
+// ë©”ì‹œì§€ ì •ì˜
 #define EXSM_MARKER_ADD     (WM_USER + 100)
 #define EXSM_MARKER_REMOVE  (WM_USER + 101)
 #define EXSM_MARKER_SELECT  (WM_USER + 102)
@@ -29,147 +29,147 @@ class CExSliderCtrl : public CSliderCtrl
 	DECLARE_DYNAMIC(CExSliderCtrl)
 
 private:
-	/// Bar ³ôÀÌ
+	/// Bar ë†’ì´
 	int m_nBarHeight;
 
-	/// Tick ³Êºñ
+	/// Tick ë„ˆë¹„
 	int m_nTickWidth;
 
-	/// Point ³Êºñ
+	/// Point ë„ˆë¹„
 	int m_nPntWidth;
 
-	/// Æ÷ÀÎÆ® ³ôÀÌ
+	/// í¬ì¸íŠ¸ ë†’ì´
 	int m_nPntHeight;
 
-	/// ÀüÃ¼ ¿µ¿ª
+	/// ì „ì²´ ì˜ì—­
 	CRect m_rtWnd;
 
-    CRect m_rtMarkerSpace;          ///< ¸¶Ä¿ ¿µ¿ª
-	/// Bar ¿µ¿ª
+    CRect m_rtMarkerSpace;          ///< ë§ˆì»¤ ì˜ì—­
+	/// Bar ì˜ì—­
 	CRect m_rtBar;
 
-	/// ½ÃÀÛ Á¡ ¿µ¿ª
+	/// ì‹œì‘ ì  ì˜ì—­
 	CRect m_rtStart;
 
-	/// Á¾·á Á¡ ¿µ¿ª
+	/// ì¢…ë£Œ ì  ì˜ì—­
 	CRect m_rtEnd;
 
-	/// Tick ¿µ¿ª
+	/// Tick ì˜ì—­
 	CRect m_rtTick;
 
-	/// ½ÃÀÛÁ¡ °ª
+	/// ì‹œì‘ì  ê°’
 	int m_nStartPnt;
 
-	/// Á¾·áÁ¡ °ª
+	/// ì¢…ë£Œì  ê°’
 	int m_nEndPnt;
 
-    BOOL m_bClickMarker;            ///< ¸¶Ä¿°¡ Å¬¸¯µÇ¾ú´ÂÁö ¿©ºÎ
-    int  m_nClickMarkerID;          ///< Å¬¸¯µÈ ¸¶Ä¿ÀÇ ID
+    BOOL m_bClickMarker;            ///< ë§ˆì»¤ê°€ í´ë¦­ë˜ì—ˆëŠ”ì§€ ì—¬ë¶€
+    int  m_nClickMarkerID;          ///< í´ë¦­ëœ ë§ˆì»¤ì˜ ID
 
-	/// ½ÃÀÛ Á¡ÀÌ Å¬¸¯µÇ¾ú´ÂÁö ¿©ºÎ
+	/// ì‹œì‘ ì ì´ í´ë¦­ë˜ì—ˆëŠ”ì§€ ì—¬ë¶€
 	BOOL m_bClickStart;
 
-	/// Á¾·á Á¡ÀÌ Å¬¸¯µÇ¾ú´ÂÁö ¿©ºÎ
+	/// ì¢…ë£Œ ì ì´ í´ë¦­ë˜ì—ˆëŠ”ì§€ ì—¬ë¶€
 	BOOL m_bClickEnd;
 
-	/// TickÀÌ Å¬¸¯µÇ¾ú´ÂÁö ¿©ºÎ
+	/// Tickì´ í´ë¦­ë˜ì—ˆëŠ”ì§€ ì—¬ë¶€
 	BOOL m_bClickTick;
 
-	/// ¼³Á¤ Á¡ÀÌ Å¬¸¯µÇ¾úÀ» ´ç½Ã ¸¶¿ì½º ÁÂÇ¥
+	/// ì„¤ì • ì ì´ í´ë¦­ë˜ì—ˆì„ ë‹¹ì‹œ ë§ˆìš°ìŠ¤ ì¢Œí‘œ
 	CPoint m_ptClick;	
 
-	/// ÅøÆÁ ÄÁÆ®·Ñ
+	/// íˆ´íŒ ì»¨íŠ¸ë¡¤
 	CToolTipCtrl m_ctrTip;
 
-	/// ¹üÀ§ ¼³Á¤À» ¼öÇàÇß´ÂÁö ¿©ºÎ
+	/// ë²”ìœ„ ì„¤ì •ì„ ìˆ˜í–‰í–ˆëŠ”ì§€ ì—¬ë¶€
 	BOOL m_bSetRange;
 
-    VMarker m_vMarker;          ///< ¸¶Ä¿µéÀÇ º¤ÅÍ
-    EAnimEventType m_eEventMode; ///< ½½¶óÀÌµå¿¡ ¼³Á¤µÈ Anim EventMode
+    VMarker m_vMarker;          ///< ë§ˆì»¤ë“¤ì˜ ë²¡í„°
+    EAnimEventType m_eEventMode; ///< ìŠ¬ë¼ì´ë“œì— ì„¤ì •ëœ Anim EventMode
 
 public:
 	CExSliderCtrl();
 	virtual ~CExSliderCtrl();
 
 	/**
-	¹üÀ§¸¦ ¼³Á¤ÇÑ´Ù. ¹üÀ§¸¦ ¼³Á¤ÇÏ°Ô µÇ¸é Start Point¿Í End Pointµµ
-	Min°ª°ú Max°ª¿¡ µû¶ó Àç ¼³Á¤µÈ´Ù.
+	ë²”ìœ„ë¥¼ ì„¤ì •í•œë‹¤. ë²”ìœ„ë¥¼ ì„¤ì •í•˜ê²Œ ë˜ë©´ Start Pointì™€ End Pointë„
+	Minê°’ê³¼ Maxê°’ì— ë”°ë¼ ì¬ ì„¤ì •ëœë‹¤.
 
-	* @ param nMin		ÃÖ¼Ò °ª
-	* @ param nMax		ÃÖ´ë °ª
-	* @ param bRedraw	´Ù½Ã ±×¸®±â ¿©ºÎ
+	* @ param nMin		ìµœì†Œ ê°’
+	* @ param nMax		ìµœëŒ€ ê°’
+	* @ param bRedraw	ë‹¤ì‹œ ê·¸ë¦¬ê¸° ì—¬ë¶€
 	*/
 	void SetRange(int nMin, int nMax, BOOL bRedraw = FALSE);	
 	void SetRangeMin(int nMin, BOOL bRedraw = FALSE);	
 	void SetRangeMax(int nMax, BOOL bRedraw = FALSE);
 
 	/**
-	½ÃÀÛÁ¡ÀÇ °ªÀ» ¾ò¾î¿Â´Ù. 
+	ì‹œì‘ì ì˜ ê°’ì„ ì–»ì–´ì˜¨ë‹¤. 
 
-	* @ return ½ÃÀÛÁ¡ °ª
+	* @ return ì‹œì‘ì  ê°’
 	*/
 	int GetStartPnt(){return m_nStartPnt;};
 
 	/**
-	½ÃÀÛÁ¡ °ªÀ» ¼³Á¤ÇÑ´Ù. °ªÀº ÃÖ¼Ò °ªº¸´Ù ÀÛÀ» ¼ö ¾ø°í, Á¾·á Á¡ °ªº¸´Ù Å¬ ¼ö ¾ø´Ù.
-	ÃÖ¼Ò °ªº¸´Ù ÀÛÀº °æ¿ì = ÃÖ¼Ò °ªÀ¸·Î ¼³Á¤
-	Á¾·á °ªº¸´Ù Å«   °æ¿ì = Á¾·á °ªÀ¸·Î ¼³Á¤
+	ì‹œì‘ì  ê°’ì„ ì„¤ì •í•œë‹¤. ê°’ì€ ìµœì†Œ ê°’ë³´ë‹¤ ì‘ì„ ìˆ˜ ì—†ê³ , ì¢…ë£Œ ì  ê°’ë³´ë‹¤ í´ ìˆ˜ ì—†ë‹¤.
+	ìµœì†Œ ê°’ë³´ë‹¤ ì‘ì€ ê²½ìš° = ìµœì†Œ ê°’ìœ¼ë¡œ ì„¤ì •
+	ì¢…ë£Œ ê°’ë³´ë‹¤ í°   ê²½ìš° = ì¢…ë£Œ ê°’ìœ¼ë¡œ ì„¤ì •
 
-	* @ param nVal ¼³Á¤ °ª
+	* @ param nVal ì„¤ì • ê°’
 	*/
 	void SetStartPnt(int nVal);
 
 	/**
-	Á¾·áÁ¡ÀÇ °ªÀ» ¾ò¾î¿Â´Ù.
+	ì¢…ë£Œì ì˜ ê°’ì„ ì–»ì–´ì˜¨ë‹¤.
 
-	* @ return ¼³Á¤ °ª
+	* @ return ì„¤ì • ê°’
 	*/
 	int GetEndPnt(){return m_nEndPnt;};
 
     
 
 	/**
-	Á¾·á °ªÀ» ¼³Á¤ÇÑ´Ù. °ªÀº ÃÖ´ë °ªº¸´Ù Å¬ ¼ö ¾ø°í, ½ÃÀÛÁ¡ °ªº¸´Ù ÀÛÀ» ¼ö ¾ø´Ù.
-	ÃÖ´ë °ªº¸´Ù Å« °æ¿ì = ÃÖ´ë °ªÀ¸·Î ¼³Á¤
-	½ÃÀÛÁ¡ °ªº¸´Ù ÀÛÀº °æ¿ì = ½ÃÀÛÁ¡ °ªÀ¸·Î ¼³Á¤
+	ì¢…ë£Œ ê°’ì„ ì„¤ì •í•œë‹¤. ê°’ì€ ìµœëŒ€ ê°’ë³´ë‹¤ í´ ìˆ˜ ì—†ê³ , ì‹œì‘ì  ê°’ë³´ë‹¤ ì‘ì„ ìˆ˜ ì—†ë‹¤.
+	ìµœëŒ€ ê°’ë³´ë‹¤ í° ê²½ìš° = ìµœëŒ€ ê°’ìœ¼ë¡œ ì„¤ì •
+	ì‹œì‘ì  ê°’ë³´ë‹¤ ì‘ì€ ê²½ìš° = ì‹œì‘ì  ê°’ìœ¼ë¡œ ì„¤ì •
 
-	* @ param nVal ¼³Á¤ °ª
+	* @ param nVal ì„¤ì • ê°’
 	*/
 	void SetEndPnt(int nVal);
 
-    SSliderMarker* GetSelectMarker();           ///< ÇöÀç ¼±ÅÃµÈ ¸¶Ä¿¸¦ ¹İÈ¯ÇÑ´Ù.
-    void SelectMarker(int nPos);                ///< ¸¶Ä¿¸¦ ¼±ÅÃÇÑ´Ù.
-    void AddMarker(int nPos, SEventAnim* pEventAnim = NULL);                   ///< ¸¶Ä¿¸¦ Ãß°¡ÇÑ´Ù.
-    void RemoveMarker(int nPos);                ///< ±âÁ¸¿¡ ÀÖ´ø ¸¶Ä¿¸¦ Á¦°ÅÇÑ´Ù.
-    void ClearMarker();                         ///< ¸ğµç ¸¶Ä¿¸¦ »èÁ¦ÇÑ´Ù.
-    void SetSelectMarkerPos(int nPos);          ///< ¼±ÅÃµÈ ¸¶Ä¿ÀÇ À§Ä¡¸¦ º¯°æÇÑ´Ù.
-    void SetEventMode(EAnimEventType eMode);    ///< ¾î¶² ¸¶Ä¿¸¦ Ç¥½ÃÇÒÁö ¸ğµå¸¦ ¼±ÅÃÇÑ´Ù.
-    EAnimEventType GetEventMode() {return m_eEventMode;}; ///< ÇöÀç ¾î¶² ÀÌº¥Æ® ¸ğµåÀÎÁö¸¦ ¹İÈ¯ÇÑ´Ù.
+    SSliderMarker* GetSelectMarker();           ///< í˜„ì¬ ì„ íƒëœ ë§ˆì»¤ë¥¼ ë°˜í™˜í•œë‹¤.
+    void SelectMarker(int nPos);                ///< ë§ˆì»¤ë¥¼ ì„ íƒí•œë‹¤.
+    void AddMarker(int nPos, SEventAnim* pEventAnim = NULL);                   ///< ë§ˆì»¤ë¥¼ ì¶”ê°€í•œë‹¤.
+    void RemoveMarker(int nPos);                ///< ê¸°ì¡´ì— ìˆë˜ ë§ˆì»¤ë¥¼ ì œê±°í•œë‹¤.
+    void ClearMarker();                         ///< ëª¨ë“  ë§ˆì»¤ë¥¼ ì‚­ì œí•œë‹¤.
+    void SetSelectMarkerPos(int nPos);          ///< ì„ íƒëœ ë§ˆì»¤ì˜ ìœ„ì¹˜ë¥¼ ë³€ê²½í•œë‹¤.
+    void SetEventMode(EAnimEventType eMode);    ///< ì–´ë–¤ ë§ˆì»¤ë¥¼ í‘œì‹œí• ì§€ ëª¨ë“œë¥¼ ì„ íƒí•œë‹¤.
+    EAnimEventType GetEventMode() {return m_eEventMode;}; ///< í˜„ì¬ ì–´ë–¤ ì´ë²¤íŠ¸ ëª¨ë“œì¸ì§€ë¥¼ ë°˜í™˜í•œë‹¤.
 
 protected:
 	/**
-	½½¶óÀÌ´õ ÄÁÆ®·ÑÀÇ °¢ ±¸¼º¿ä¼Ò(Æ½, ¹Ù, ¼³Á¤ Æ÷ÀÎÆ® µî)ÀÇ ¿µ¿ªÀ» °è»êÇÑ´Ù.
-	ÇÁ·Î±×·¥ Áß°£Áß°£¿¡ ÀÌ ÇÔ¼ö°¡ ÀÚÁÖ ºÒ¸®¿ì´Âµ¥, ¾Æ¹«·¡µµ °³¼±ÀÇ ¿©Áö°¡
-	ÇÊ¿äÇÒµí ½Í´Ù. ÄÁÆ®·ÑÀÇ »çÀÌÁî°¡ º¯°æµÇÁö ¾Ê´Â ÀÌ»ó ¸î¸î °ªµéÀº º¯°æµÇÁö 
-	¾Ê±â ¶§¹®ÀÌ´Ù.
+	ìŠ¬ë¼ì´ë” ì»¨íŠ¸ë¡¤ì˜ ê° êµ¬ì„±ìš”ì†Œ(í‹±, ë°”, ì„¤ì • í¬ì¸íŠ¸ ë“±)ì˜ ì˜ì—­ì„ ê³„ì‚°í•œë‹¤.
+	í”„ë¡œê·¸ë¨ ì¤‘ê°„ì¤‘ê°„ì— ì´ í•¨ìˆ˜ê°€ ìì£¼ ë¶ˆë¦¬ìš°ëŠ”ë°, ì•„ë¬´ë˜ë„ ê°œì„ ì˜ ì—¬ì§€ê°€
+	í•„ìš”í• ë“¯ ì‹¶ë‹¤. ì»¨íŠ¸ë¡¤ì˜ ì‚¬ì´ì¦ˆê°€ ë³€ê²½ë˜ì§€ ì•ŠëŠ” ì´ìƒ ëª‡ëª‡ ê°’ë“¤ì€ ë³€ê²½ë˜ì§€ 
+	ì•Šê¸° ë•Œë¬¸ì´ë‹¤.
 	*/
 	void CalcLayout();
 
 	/**
-	PosÀÇ °ªÀÌ Bar ¿µ¿ªÀÇ ¾î¶²°÷¿¡ À§Ä¡ÇÏ´ÂÁö ¾Ë±â À§ÇØ »ç¿ëÇÏ´Â ÇÔ¼öÀÌ´Ù.
+	Posì˜ ê°’ì´ Bar ì˜ì—­ì˜ ì–´ë–¤ê³³ì— ìœ„ì¹˜í•˜ëŠ”ì§€ ì•Œê¸° ìœ„í•´ ì‚¬ìš©í•˜ëŠ” í•¨ìˆ˜ì´ë‹¤.
 
-	* @ param rtBar Bar ¿µ¿ª
-	* @ param nPos	Pos °ª
-	* @ return		Bar ¿µ¿ªÀÇ XÁÂÇ¥(ÁÂÇ¥ ±âÁØÀº ÀüÃ¼ Å¬¶óÀÌ¾ğÆ® ¿µ¿ªÀÌ´Ù.)
+	* @ param rtBar Bar ì˜ì—­
+	* @ param nPos	Pos ê°’
+	* @ return		Bar ì˜ì—­ì˜ Xì¢Œí‘œ(ì¢Œí‘œ ê¸°ì¤€ì€ ì „ì²´ í´ë¼ì´ì–¸íŠ¸ ì˜ì—­ì´ë‹¤.)
 	*/
 	int PosToPixel(CRect rtBar, int nPos);
 
 	/**
-	PosToPixelÀÇ ¹İ´ë °³³äÀÌ´Ù. Bar ¿µ¿ªÀÇ XÁÂÇ¥ °ªÀ» ÁÖ¸é ÀÌ¸¦ Pos °ªÀ¸·Î È¯»êÇÑ´Ù.
+	PosToPixelì˜ ë°˜ëŒ€ ê°œë…ì´ë‹¤. Bar ì˜ì—­ì˜ Xì¢Œí‘œ ê°’ì„ ì£¼ë©´ ì´ë¥¼ Pos ê°’ìœ¼ë¡œ í™˜ì‚°í•œë‹¤.
 
-	* @ param rtBar		Bar ¿µ¿ª
-	* @ param nPixel	XÁÂÇ¥
-	* @ return			Pos °ª
+	* @ param rtBar		Bar ì˜ì—­
+	* @ param nPixel	Xì¢Œí‘œ
+	* @ return			Pos ê°’
 	*/
 	int PixelToPos(CRect rtBar, int nPixel);
 

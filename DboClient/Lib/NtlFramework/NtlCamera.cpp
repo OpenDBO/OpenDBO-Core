@@ -2,7 +2,7 @@
  *
  * File			: NTLCamera.cpp
  * Author		: HongHoDong
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 7. 14	
  * Abstract		: NTl Camera
  *****************************************************************************
@@ -25,12 +25,12 @@ CNtlCamera::~CNtlCamera(void)
 }
 
 /**
- * Camera »ı¼º
- * \param width FrameBuffer ZBufferÀÇ °¡·Î Å©±â
- * \param height FrameBuffer ZBufferÀÇ ¼¼·Î Å©±â
- * \param fNearClipPlane NearPlane °Å¸®
- * \param fFarClipPlane FarPlane °Å¸®
- * \return Camera »ı¼º ¼º°ø½Ã RwCamera or Null
+ * Camera ìƒì„±
+ * \param width FrameBuffer ZBufferì˜ ê°€ë¡œ í¬ê¸°
+ * \param height FrameBuffer ZBufferì˜ ì„¸ë¡œ í¬ê¸°
+ * \param fNearClipPlane NearPlane ê±°ë¦¬
+ * \param fFarClipPlane FarPlane ê±°ë¦¬
+ * \return Camera ìƒì„± ì„±ê³µì‹œ RwCamera or Null
  */
 RwCamera* CNtlCamera::Create(RwInt32 width, 
 							 RwInt32 height, 
@@ -71,9 +71,9 @@ RwCamera* CNtlCamera::Create(RwInt32 width,
 }
 
 /**
- * CameraÀÇ BufferµéÀÇ Å©±â ¼³Á¤ ¹× Fov¿¡ µû¸¥ ¼³Á¤
- * Window Ã¢ÀÌ ¹Ù²ğ ¶§ ºÒ¸®¾îÁö´Â ÇÔ¼öÀÌ´Ù.
- * \param rect CameraÀÇ °¡·Î, ¼¼·Î Size
+ * Cameraì˜ Bufferë“¤ì˜ í¬ê¸° ì„¤ì • ë° Fovì— ë”°ë¥¸ ì„¤ì •
+ * Window ì°½ì´ ë°”ë€” ë•Œ ë¶ˆë¦¬ì–´ì§€ëŠ” í•¨ìˆ˜ì´ë‹¤.
+ * \param rect Cameraì˜ ê°€ë¡œ, ì„¸ë¡œ Size
  */
 void CNtlCamera::SetCameraSize(RwRect* rect)
 {
@@ -81,9 +81,9 @@ void CNtlCamera::SetCameraSize(RwRect* rect)
 }
 
 /**
- * CameraÀÇ BufferµéÀÇ Å©±â ¼³Á¤ ¹× Fov¿¡ µû¸¥ ¼³Á¤
- * \param pCamera CameraÀÇ ¼³Á¤À» ÇÒ Camera
- * \param rect CameraÀÇ °¡·Î, ¼¼·Î Size
+ * Cameraì˜ Bufferë“¤ì˜ í¬ê¸° ì„¤ì • ë° Fovì— ë”°ë¥¸ ì„¤ì •
+ * \param pCamera Cameraì˜ ì„¤ì •ì„ í•  Camera
+ * \param rect Cameraì˜ ê°€ë¡œ, ì„¸ë¡œ Size
  */
 void CNtlCamera::SetCameraResize(RwCamera* pCamera, RwRect* rect)
 {
@@ -167,7 +167,7 @@ void CNtlCamera::SetCalcFov(RwReal fFov)
 }
 
 /**
- * CameraÀÇ ¼Ò¸ê
+ * Cameraì˜ ì†Œë©¸
  */
 void CNtlCamera::Destroy()
 {
@@ -362,7 +362,7 @@ RwCamera* RpNtlActiveCameraSetFarDistance(RwReal fFarDistance)
 
 		RwCameraSetFarClipPlane(pCamera, fFarDistance);	
 
-		pCamera = RwCameraBeginUpdate(pCamera); // BeginUpdate ½Ã Fog °Å¸®°¡ º¯°æµÈ´Ù.
+		pCamera = RwCameraBeginUpdate(pCamera); // BeginUpdate ì‹œ Fog ê±°ë¦¬ê°€ ë³€ê²½ëœë‹¤.
 
 		RwD3D9SetRenderState(D3DRS_FOGSTART, uiFogStart);
 		RwD3D9SetRenderState(D3DRS_FOGEND, uiFogEnd);
@@ -382,7 +382,7 @@ RwCamera* RpNtlActiveCameraSetFarDistance(RwReal fFarDistance)
 // 				RwD3D9GetRenderState(D3DRS_FOGSTART, (void*)&uiFogStart);
 // 				RwD3D9GetRenderState(D3DRS_FOGEND, (void*)&uiFogEnd);
 // 
-// 				pCamera = RwCameraBeginUpdate(pCamera); // BeginUpdate ½Ã Fog °Å¸®°¡ º¯°æµÈ´Ù.
+// 				pCamera = RwCameraBeginUpdate(pCamera); // BeginUpdate ì‹œ Fog ê±°ë¦¬ê°€ ë³€ê²½ëœë‹¤.
 // 
 // 				RwD3D9SetRenderState(D3DRS_FOGSTART, uiFogStart);
 // 				RwD3D9SetRenderState(D3DRS_FOGEND, uiFogEnd);

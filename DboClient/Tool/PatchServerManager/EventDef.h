@@ -2,7 +2,7 @@
 *
 * File			: EventDef.h
 * Author		: 
-* Copyright		: (¡÷) NTL
+* Copyright		: (Ï£º) NTL
 * Date			:
 * Abstract		: 
 *****************************************************************************
@@ -27,13 +27,13 @@ enum eEVENT
 	eEVENT_PATCH_START_NFY,
 
 	// Integrity
-	eEVENT_DO_BUILD_INTEGRITY,					// π´∞·º∫ ∫ÙµÂ Ω√¿€
+	eEVENT_DO_BUILD_INTEGRITY,					// Î¨¥Í≤∞ÏÑ± ÎπåÎìú ÏãúÏûë
 	eEVENT_INTEGRITY_START_NFY,
 	eEVENT_INTEGRITY_UPDATE_NFY,
 	eEVENT_INTEGRITY_COMPLETE_NFY,
 
 	// Quit
-	eEVENT_USER_EXIT							// ªÁøÎ¿⁄ ¡æ∑·
+	eEVENT_USER_EXIT							// ÏÇ¨Ïö©Ïûê Ï¢ÖÎ£å
 };
 
 

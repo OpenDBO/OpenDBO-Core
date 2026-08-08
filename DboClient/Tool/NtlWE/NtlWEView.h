@@ -1,4 +1,4 @@
-// NtlWEView.h : iCNtlWEView Å¬·¡½ºÀÇ ÀÎÅÍÆäÀÌ½º
+// NtlWEView.h : iCNtlWEView í´ë˜ìŠ¤ì˜ ì¸í„°í˜ì´ìŠ¤
 //
 
 
@@ -7,27 +7,27 @@
 
 class CNtlWEView : public CView
 {
-protected: // serialization¿¡¼­¸¸ ¸¸µé¾îÁı´Ï´Ù.
+protected: // serializationì—ì„œë§Œ ë§Œë“¤ì–´ì§‘ë‹ˆë‹¤.
 	CNtlWEView();
 	DECLARE_DYNCREATE(CNtlWEView)
 
-// Æ¯¼º
+// íŠ¹ì„±
 public:
 	CNtlWEDoc* GetDocument() const;
 
-// ÀÛ¾÷
+// ì‘ì—…
 public:
 
-// ÀçÁ¤ÀÇ
+// ì¬ì •ì˜
 	public:
-	virtual void OnDraw(CDC* pDC);  // ÀÌ ºä¸¦ ±×¸®±â À§ÇØ ÀçÁ¤ÀÇµÇ¾ú½À´Ï´Ù.
+	virtual void OnDraw(CDC* pDC);  // ì´ ë·°ë¥¼ ê·¸ë¦¬ê¸° ìœ„í•´ ì¬ì •ì˜ë˜ì—ˆìŠµë‹ˆë‹¤.
 virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 protected:
 	virtual BOOL OnPreparePrinting(CPrintInfo* pInfo);
 	virtual void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
 	virtual void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
 
-// ±¸Çö
+// êµ¬í˜„
 public:
 	virtual ~CNtlWEView();
 #ifdef _DEBUG
@@ -37,7 +37,7 @@ public:
 
 protected:
 
-// ¸Ş½ÃÁö ¸Ê ÇÔ¼ö¸¦ »ı¼ºÇß½À´Ï´Ù.
+// ë©”ì‹œì§€ ë§µ í•¨ìˆ˜ë¥¼ ìƒì„±í–ˆìŠµë‹ˆë‹¤.
 protected:
 	DECLARE_MESSAGE_MAP()
 public:
@@ -64,7 +64,7 @@ public:
 	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
 };
 
-#ifndef _DEBUG  // NtlWEView.cppÀÇ µğ¹ö±× ¹öÀü
+#ifndef _DEBUG  // NtlWEView.cppì˜ ë””ë²„ê·¸ ë²„ì „
 inline CNtlWEDoc* CNtlWEView::GetDocument() const
    { return reinterpret_cast<CNtlWEDoc*>(m_pDocument); }
 #endif

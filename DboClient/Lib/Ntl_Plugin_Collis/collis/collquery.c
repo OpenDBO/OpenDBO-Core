@@ -1677,9 +1677,9 @@ RpWorldForAllWorldSectorIntersections(
  *                      \li rpINTERSECTSPHERE   Sphere intersections.
  *                      \li rpINTERSECTBOX      Box intersections.
  *                      \li rpINTERSECTATOMIC   Atomic intersections. Only
- *                          the atomic’s world-space bounding sphere is tested
+ *                          the atomicë­© world-space bounding sphere is tested
  *                          against triangles in the world. A fine-grained
- *                          intersection test between the atomic’s
+ *                          intersection test between the atomicë­©
  *                          triangles and the world is not performed.
  * \param callBack      Pointer to the \ref RpIntersectionCallBackWorldTriangle
  *                      callback function.

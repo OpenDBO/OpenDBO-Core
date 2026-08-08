@@ -27,7 +27,7 @@ bool CNtlJingleGroup::Stop(SOUND_HANDLE hHandle)
 {
 	bool bResult = CNtlChannelGroup::Stop(hHandle);
 
-	// ¸ğµç Jingle MusicÀÌ Á¾·áµÇ¾ú´Ù
+	// ëª¨ë“  Jingle Musicì´ ì¢…ë£Œë˜ì—ˆë‹¤
 	if( bResult && m_mapGroup.size() == 0 )
 		CNtlSoundEventGenerator::SendEventMusic(EVENT_MUSIC_ALL_EVENT_MUSIC_FINISH);
 
@@ -40,7 +40,7 @@ void CNtlJingleGroup::StopGroup()
 
 	CNtlChannelGroup::StopGroup();
 
-	// ÇÃ·¹ÀÌ µÇ´ø ¸ğµç Jingle MusicÀÌ Á¾·áµÇ¾ú´Ù
+	// í”Œë ˆì´ ë˜ë˜ ëª¨ë“  Jingle Musicì´ ì¢…ë£Œë˜ì—ˆë‹¤
 	if( bExistChannel )
 		CNtlSoundEventGenerator::SendEventMusic(EVENT_MUSIC_ALL_EVENT_MUSIC_FINISH);
 }
@@ -51,7 +51,7 @@ void CNtlJingleGroup::ReleaseFinishedSound(float fElapsed)
 
 	CNtlChannelGroup::ReleaseFinishedSound(fElapsed);
 
-	// ÇÃ·¹ÀÌ µÇ´ø ¸ğµç Jingle MusicÀÌ Á¾·áµÇ¾ú´Ù
+	// í”Œë ˆì´ ë˜ë˜ ëª¨ë“  Jingle Musicì´ ì¢…ë£Œë˜ì—ˆë‹¤
 	if( bExistChannel && m_mapGroup.size() == 0 )
 		CNtlSoundEventGenerator::SendEventMusic(EVENT_MUSIC_ALL_EVENT_MUSIC_FINISH);
 }

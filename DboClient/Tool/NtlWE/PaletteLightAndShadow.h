@@ -2,17 +2,17 @@
 #include "afxcmn.h"
 
 
-// CPaletteLightAndShadow ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteLightAndShadow ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CPaletteLightAndShadow : public CDialog
 {
 	DECLARE_DYNAMIC(CPaletteLightAndShadow)
 
 public:
-	CPaletteLightAndShadow(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CPaletteLightAndShadow(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CPaletteLightAndShadow();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_LIGHT_SHADOW };
 	enum ETAB_ID
 	{
@@ -30,7 +30,7 @@ protected:
 	ETAB_ID m_eTabID[ETAB_ID_NUM];
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 

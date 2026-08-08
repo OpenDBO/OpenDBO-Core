@@ -45,9 +45,9 @@ RwBool CMTItem::Create(const RwChar* szDffFileName, RwBool bEquip /* = FALSE */)
    if(!m_pResourceClump)
        return FALSE;
 
-   // Atomic List¸¦ º¸°üÀ» ÇÏ°í ÀÖ´Â´Ù. m_pOwner¿¡ ÀåÂøÀÌ µÇ´Â SkinÀÎ °æ¿ì´Â
-   // CloneÀ» ÇÑ´Ù -> ¿Ö? Ä³¸¯ÅÍÀÇ Clump°¡ atomicÀ» µé°í ÀÖ°í, Item °´Ã¼µµ AtomicÀ» µé°í ÀÖ±â ¶§¹®¿¡
-   // CloneÀ» ÇÏÁö ¾ÊÀ¸¸é µÎ¹ø deleteµÇ¾î »¶ÀÌ³­´Ù.   
+   // Atomic Listë¥¼ ë³´ê´€ì„ í•˜ê³  ìˆëŠ”ë‹¤. m_pOwnerì— ì¥ì°©ì´ ë˜ëŠ” Skinì¸ ê²½ìš°ëŠ”
+   // Cloneì„ í•œë‹¤ -> ì™œ? ìºë¦­í„°ì˜ Clumpê°€ atomicì„ ë“¤ê³  ìˆê³ , Item ê°ì²´ë„ Atomicì„ ë“¤ê³  ìˆê¸° ë•Œë¬¸ì—
+   // Cloneì„ í•˜ì§€ ì•Šìœ¼ë©´ ë‘ë²ˆ deleteë˜ì–´ ë»‘ì´ë‚œë‹¤.   
    if(bEquip && g_CheckItemBody(GetResType()) )
    {
        Helper_SetClumpAllAtomics(m_pResourceClump->GetClump(), &m_vecAtomicList, true);
@@ -93,7 +93,7 @@ RwBool CMTItem::Create(const RwChar* szDffFileName, RwBool bEquip /* = FALSE */)
 
    m_MTClump.SetCartoon();
    
-   // Link Effect¸¦ ¼³Á¤ÇÑ´Ù.
+   // Link Effectë¥¼ ì„¤ì •í•œë‹¤.
    for(UINT i = 0; i < m_pProperty->m_vLinkEffect.size(); ++i)
    {
        SEventLinkEffect* pEventLinkEffect = m_pProperty->m_vLinkEffect[i];       
@@ -157,7 +157,7 @@ void CMTItem::SetVisible( RwBool bVisible )
 
     CNtlPLAttach::SetVisible(bVisible);
     
-    // Link Effectµµ Áö¿î´Ù.
+    // Link Effectë„ ì§€ìš´ë‹¤.
     m_LinkEffectInstance.SetVisible(bVisible);    
 
     if(!bVisible)

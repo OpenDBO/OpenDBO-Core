@@ -1,15 +1,15 @@
 // ===============================
 // Date : 2005.11.04
 // ===============================
-¤· Copy and Cut and Paste ±â´É Ãß°¡(Keyboard ·Î »ç¿ë °¡´É)
-¤· Dummy Object Render(Terrain, Sky)
-¤· Light Ãß°¡
-¤· Test ¿ë Lightning System Ãß°¡
-¤· UpdateNews Dialog Ãß°¡
-¤· Config File Save
+ã…‡ Copy and Cut and Paste ê¸°ëŠ¥ ì¶”ê°€(Keyboard ë¡œ ì‚¬ìš© ê°€ëŠ¥)
+ã…‡ Dummy Object Render(Terrain, Sky)
+ã…‡ Light ì¶”ê°€
+ã…‡ Test ìš© Lightning System ì¶”ê°€
+ã…‡ UpdateNews Dialog ì¶”ê°€
+ã…‡ Config File Save
 
 // ===============================
 // Date : 2005.10.28
 // ===============================
-¤· Path ¸¦ ¿¬°á ½ÃÅ°Áö ¾Ê°í Path Action À» Ãß°¡ÇÏ¿© Instance Effect ¸¦ »ı¼ºÇÒ¶§ ³ª´ø ¿¡·¯ ÇØ°á
-¤· Instance Effect ÀÇ Path Line Á¦´ë·Î Ãâ·Â µÇÁö ¾Êµç ¹®Á¦ ÇØ°á
+ã…‡ Path ë¥¼ ì—°ê²° ì‹œí‚¤ì§€ ì•Šê³  Path Action ì„ ì¶”ê°€í•˜ì—¬ Instance Effect ë¥¼ ìƒì„±í• ë•Œ ë‚˜ë˜ ì—ëŸ¬ í•´ê²°
+ã…‡ Instance Effect ì˜ Path Line ì œëŒ€ë¡œ ì¶œë ¥ ë˜ì§€ ì•Šë“  ë¬¸ì œ í•´ê²°

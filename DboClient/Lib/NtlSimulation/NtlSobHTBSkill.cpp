@@ -35,7 +35,7 @@ RwBool CNtlSobHTBSkill::Create(void)
 		NTL_RETURN(FALSE);
 	}
 
-	// class name ¼³Á¤.
+	// class name ì„¤ì •.
 	SetClassName(SLCLASS_NAME_HTBSKILL);
 
 	m_pIcon->Create(); 

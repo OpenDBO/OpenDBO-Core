@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------------------
 // Name: class CCoordManager
-// Desc: ViewÀÇ È®´ë Ãà¼Ò½Ã ¸¶¿ì½º Æ÷ÀÎÅÍ ¹× DrawµÉ ¿µ¿ªÀ» Á¶ÀıÇÑ´Ù. 
+// Desc: Viewì˜ í™•ëŒ€ ì¶•ì†Œì‹œ ë§ˆìš°ìŠ¤ í¬ì¸í„° ë° Drawë  ì˜ì—­ì„ ì¡°ì ˆí•œë‹¤. 
 //
 //			 
 // 2006.01.20 Peessi@hitel.net  
@@ -18,10 +18,10 @@ public:
 	CCoordManager(void);
 	~CCoordManager(void);
 
-	void	InitMember();	// ¸ğµç¸â¹öÀÇ ÃÊ±âÈ­.
-	void	Reset();		// ±×¸²ÀÌ ´Ù½Ã ·ÎµåµÉ¶§.
+	void	InitMember();	// ëª¨ë“ ë©¤ë²„ì˜ ì´ˆê¸°í™”.
+	void	Reset();		// ê·¸ë¦¼ì´ ë‹¤ì‹œ ë¡œë“œë ë•Œ.
 
-	void    Create( CScrollView* pView, INT nMargin );// OnCreate¿¡¼­ ÇÑ¹ø¸¸ È£ÃâÇÑ´Ù.
+	void    Create( CScrollView* pView, INT nMargin );// OnCreateì—ì„œ í•œë²ˆë§Œ í˜¸ì¶œí•œë‹¤.
 	void	Destroy() { InitMember(); }							 
 
 	CPoint  FixMousePt( CPoint& point );
@@ -35,15 +35,15 @@ public:
 	CPoint	GetOffset() { return m_ptOffset; }
 	CRect	GetViewRect() { return m_rcView; }
     
-	void	SetMargin( INT nMargin );							// ¸¶ÁøÀ» º¯°æÇÒ¶§ È£Ãâ.
-	void	SetMouseDelta( INT nDelta );						// WM_MOUSEWHEEL¿¡¼­ È£Ãâ
+	void	SetMargin( INT nMargin );							// ë§ˆì§„ì„ ë³€ê²½í• ë•Œ í˜¸ì¶œ.
+	void	SetMouseDelta( INT nDelta );						// WM_MOUSEWHEELì—ì„œ í˜¸ì¶œ
 
-	void	SetClientRect( INT cx, INT cy );					// WM_SIZE¿¡¼­ È£Ãâ.
-	void	SetImageRect( CRect& rcImage ) { m_rcImage = rcImage; }	// ±×¸² ·Îµå½Ã È£Ãâ.
+	void	SetClientRect( INT cx, INT cy );					// WM_SIZEì—ì„œ í˜¸ì¶œ.
+	void	SetImageRect( CRect& rcImage ) { m_rcImage = rcImage; }	// ê·¸ë¦¼ ë¡œë“œì‹œ í˜¸ì¶œ.
 
 	void	ResetOffset() { m_ptOffset = CPoint( 0, 0 ); }
-	void	SetOffset( CPoint& point );							// ¿É¼ÂÀÇ À§Ä¡¸¦ point·Î ÀÌµ¿½ÃÅ²´Ù.
-	void	MoveOffset( CPoint& point );						// ¿É¼ÂÀÇ À§Ä¡¸¦ point'¸¸Å­' ÀÌµ¿½ÃÅ²´Ù.
+	void	SetOffset( CPoint& point );							// ì˜µì…‹ì˜ ìœ„ì¹˜ë¥¼ pointë¡œ ì´ë™ì‹œí‚¨ë‹¤.
+	void	MoveOffset( CPoint& point );						// ì˜µì…‹ì˜ ìœ„ì¹˜ë¥¼ point'ë§Œí¼' ì´ë™ì‹œí‚¨ë‹¤.
 	
 	MARGINRECT PtInMargin( CPoint& point );
 	void	MarginMove( MARGINRECT eMarginRect );
@@ -56,22 +56,22 @@ public:
 	void	FixOffset();
 
 private:
-	void	SetViewRect();										// ¹İµå½Ã ¸¶Áø, Client¿µ¿ª ÁöÁ¤ÈÄ¿¡ »ç¿ë.
+	void	SetViewRect();										// ë°˜ë“œì‹œ ë§ˆì§„, Clientì˜ì—­ ì§€ì •í›„ì— ì‚¬ìš©.
 	void	SetFixScaleFactor();
 	
 private:
 	
-	CRect	m_rcImage;				// ·ÎµåµÈ ±×¸²ÀÇ Å©±â.
-	CRect   m_rcView;				// ÂïÈ÷´Â ¿µ¿ªÀÇ Å©±â.	( À©µµ¿ì ¿µ¿ª - ¿©¹é )
-	CRect	m_rcClient;				// À©µµ¿ì ¿µ¿ªÀÇ Å©±â.
-	CPoint	m_ptOffset;				// ±×¸²ÀÇ Ãâ·Â ¿É¼Â.( ¿À¸®Áö³ÎÀÌ¹ÌÁö ±âÁØ )
+	CRect	m_rcImage;				// ë¡œë“œëœ ê·¸ë¦¼ì˜ í¬ê¸°.
+	CRect   m_rcView;				// ì°íˆëŠ” ì˜ì—­ì˜ í¬ê¸°.	( ìœˆë„ìš° ì˜ì—­ - ì—¬ë°± )
+	CRect	m_rcClient;				// ìœˆë„ìš° ì˜ì—­ì˜ í¬ê¸°.
+	CPoint	m_ptOffset;				// ê·¸ë¦¼ì˜ ì¶œë ¥ ì˜µì…‹.( ì˜¤ë¦¬ì§€ë„ì´ë¯¸ì§€ ê¸°ì¤€ )
 		
-	INT		m_nMargin;				// ¿©¹é ( À©µµ¿ì ÇÈ¼¿ )
+	INT		m_nMargin;				// ì—¬ë°± ( ìœˆë„ìš° í”½ì…€ )
 	INT		m_nMouseDelta;			
 		
-	FLOAT	m_fScaleFactor;			// È®´ë Ãà¼Ò ºñÀ².
-	FLOAT	m_fFixXScaleFactor;		// ¼öÁ¤µÈ XÃà ºñÀ².
-	FLOAT	m_fFixYScaleFactor;		// ¼öÁ¤µÈ YÃà ºñÀ².
+	FLOAT	m_fScaleFactor;			// í™•ëŒ€ ì¶•ì†Œ ë¹„ìœ¨.
+	FLOAT	m_fFixXScaleFactor;		// ìˆ˜ì •ëœ Xì¶• ë¹„ìœ¨.
+	FLOAT	m_fFixYScaleFactor;		// ìˆ˜ì •ëœ Yì¶• ë¹„ìœ¨.
 	
 	CScrollView* m_pView;
 };

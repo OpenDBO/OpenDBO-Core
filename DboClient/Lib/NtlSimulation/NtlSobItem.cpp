@@ -59,7 +59,7 @@ RwBool CNtlSobItem::Create(void)
 		NTL_RETURN(FALSE);
 	}
 
-	// class name ¼³Á¤.
+	// class name ì„¤ì •.
 	SetClassName(SLCLASS_NAME_SLOT_ITEM);
 
 	m_pIcon->Create(); 
@@ -72,7 +72,7 @@ void CNtlSobItem::Destroy(void)
 {
 	NTL_FUNCTION("CNtlSobItem::Destroy");
 
-	// Update °¡ °É·ÁÀÖ´Â °æ¿ì »èÁ¦.
+	// Update ê°€ ê±¸ë ¤ìˆëŠ” ê²½ìš° ì‚­ì œ.
 	if( reinterpret_cast<CNtlSobItemAttr*>( GetSobAttr() )->GetDurationType() )
 		GetNtlSobManager()->RemoveUpdateQueue( this );
 
@@ -84,14 +84,14 @@ void CNtlSobItem::Destroy(void)
 		NTL_DELETE( m_pIcon );
 	}
 
-	// parent¿¡ ÀÚ½ÅÀ» µî·ÏÀ» ¾ø¾ÖÁØ´Ù.
+	// parentì— ìì‹ ì„ ë“±ë¡ì„ ì—†ì• ì¤€ë‹¤.
 	CNtlSobItem *pParentSobItem = GetParentItem();
 	if(pParentSobItem)
 	{
 		pParentSobItem->SetChildSerial(GetItemSlotIdx(), INVALID_SERIAL_ID);
 	}
 
-	// child itemÀ» ¾ø¾ÖÁØ´Ù.
+	// child itemì„ ì—†ì• ì¤€ë‹¤.
 	if(m_pChildSerial)
 	{
 		for(RwInt32 i = 0; i < m_iChildNum; ++i)
@@ -130,11 +130,11 @@ void CNtlSobItem::CreateEventHandler(RWS::CMsg &pMsg)
 	SNtlEventSobItemCreate *pSobItemCreate = reinterpret_cast<SNtlEventSobItemCreate*>(pMsg.pData);
 	CNtlSobItemAttr *pItemAttr = reinterpret_cast<CNtlSobItemAttr*>( GetSobAttr() );
 
-	// ÇöÀç ¾ÆÀÌÅÛÀÌ Child SlotÀ» °¡Áö´Â ¾ÆÀÌÅÛÀÌ¸é
+	// í˜„ì¬ ì•„ì´í…œì´ Child Slotì„ ê°€ì§€ëŠ” ì•„ì´í…œì´ë©´
 	if(pItemAttr->IsContainerItem())
 		AllocateChild(pItemAttr->GetChildSlotSize());
 
-	// peessi : »ç¿ë±â°£ Á¦ÇÑ ¾ÆÀÌÅÛÀº Update
+	// peessi : ì‚¬ìš©ê¸°ê°„ ì œí•œ ì•„ì´í…œì€ Update
 	if( pSobItemCreate->byDurationType )
 		GetNtlSobManager()->AddUpdate( this );
 

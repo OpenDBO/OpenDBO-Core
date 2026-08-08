@@ -45,7 +45,7 @@ sCommunityMember* CNtlSLCommunityGroup::GetMemberbyName(WCHAR* pwcName)
 	if( !pwcName )
 		return NULL;
 
-    // NOTE: ¼­¹ö¿¡¼­ º¸³»´Â ÀÌ¸§Àº NULL º¸ÀåÀ» ¾ÈÇÑ´Ù. ±×·¡¼­ »õ·Î ´ã¾Æ¾ß ÇÑ´Ù.
+    // NOTE: ì„œë²„ì—ì„œ ë³´ë‚´ëŠ” ì´ë¦„ì€ NULL ë³´ì¥ì„ ì•ˆí•œë‹¤. ê·¸ë˜ì„œ ìƒˆë¡œ ë‹´ì•„ì•¼ í•œë‹¤.
     std::wstring strCharName = pwcName;
 
 	COMMUNITY_ITER it_list = m_listMember.begin();

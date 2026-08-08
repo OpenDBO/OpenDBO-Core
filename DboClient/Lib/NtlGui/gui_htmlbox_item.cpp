@@ -143,7 +143,7 @@ VOID CHtml_StringItem::SetText(const WCHAR *pString, INT nPosX, INT nPosY,
 	m_pFont = g_FontMgr.CreateGuiFont( chBuffer , m_nFontSize, m_nFontAttr);
 	m_pUniBuffer = NTL_NEW CUniBuffer(0);
 	m_pUniBuffer->SetFont(m_pFont);
-	m_pUniBuffer->SetSizeCalcEnable();	// °¢ ±ÛÀÚÀÇ ³ĞÀÌ¸¦ °è»êÇÏµµ·Ï ÇÑ´Ù.
+	m_pUniBuffer->SetSizeCalcEnable();	// ê° ê¸€ìì˜ ë„“ì´ë¥¼ ê³„ì‚°í•˜ë„ë¡ í•œë‹¤.
 	m_pUniBuffer->SetText(pString);
 
 	m_nTextLen = m_pUniBuffer->GetTextSize();
@@ -170,7 +170,7 @@ VOID CHtml_StringItem::SetText(const WCHAR *pString, INT nPosX, INT nPosY,
 	m_pFont = g_FontMgr.CreateGuiFont( chBuffer , (int)((float)m_nFontSize*fFontRatio), m_nFontAttr);
 	m_pUniBuffer = NTL_NEW CUniBuffer(0);
 	m_pUniBuffer->SetFont(m_pFont);
-	m_pUniBuffer->SetSizeCalcEnable();	// °¢ ±ÛÀÚÀÇ ³ĞÀÌ¸¦ °è»êÇÏµµ·Ï ÇÑ´Ù.
+	m_pUniBuffer->SetSizeCalcEnable();	// ê° ê¸€ìì˜ ë„“ì´ë¥¼ ê³„ì‚°í•˜ë„ë¡ í•œë‹¤.
 	m_pUniBuffer->SetText(pString);
 
 	m_nTextLen = m_pUniBuffer->GetTextSize();
@@ -185,7 +185,7 @@ const WCHAR* CHtml_StringItem::GetText(VOID)
 }
 
 /**
-* \brief ¾ÆÀÌÅÛÀÇ »ö»óÀ» ¹İÀü½ÃÅ²´Ù.
+* \brief ì•„ì´í…œì˜ ìƒ‰ìƒì„ ë°˜ì „ì‹œí‚¨ë‹¤.
 */
 BOOL CHtml_LinkItem::SetInverseColor( BOOL bInverse )
 {
@@ -245,7 +245,7 @@ CHtml_Item* CHtml_StringItem::ItemDisposition(CRectangle& rect, CRectangle rtCli
 				memcpy(wchBuffer, m_pUniBuffer->GetBuffer() + nPrevIndex, sizeof(WCHAR)*nCopyNum);
 				wchBuffer[nCopyNum] = 0;
 
-				// string item »ı¼º
+				// string item ìƒì„±
 				CHtml_StringItem *pStringItem = NTL_NEW CHtml_StringItem(m_pParentComp);
 				pStringItem->SetCurrLine(0);
 				pStringItem->SetText(wchBuffer, rtClipping.left + nCurrX, rtClipping.top + nCurrY, m_wstrFontName.c_str(), m_nFontSize, m_nFontAttr, m_fFontRatio, m_TextColor, m_BgColor, m_dwAlign);
@@ -266,7 +266,7 @@ CHtml_Item* CHtml_StringItem::ItemDisposition(CRectangle& rect, CRectangle rtCli
 	memcpy(wchBuffer, m_pUniBuffer->GetBuffer() + nPrevIndex, sizeof(WCHAR)*nCopyNum);
 	wchBuffer[nCopyNum] = 0;
 
-	// string item »ı¼º
+	// string item ìƒì„±
 	CHtml_StringItem *pStringItem = NTL_NEW CHtml_StringItem(m_pParentComp);
 	pStringItem->SetCurrLine(0);
 	pStringItem->SetText(wchBuffer, rtClipping.left + nCurrX, rtClipping.top + nCurrY, m_wstrFontName.c_str(), m_nFontSize, m_nFontAttr, m_fFontRatio, m_TextColor, m_BgColor, m_dwAlign);
@@ -319,8 +319,8 @@ VOID CHtml_StringItem::OnPrePaint(INT nOffsetX, INT nOffsetY, const CRectangle& 
 
 VOID CHtml_StringItem::GetItemRect( std::list<CRectangle>& list ) 
 {
-	// UniBuffer¿¡ µé¾îÀÖ´Â °¢°¢ÀÇ ¾ÆÀÌÅÛµéÀ» ²¨³»¿Â´Ù.
-	// UniBufferÀÇ ±ÛÀÚÀÇ ÀÎµ¦½º´Â 1ºÎÅÍ ½ÃÀÛÇÑ´Ù.
+	// UniBufferì— ë“¤ì–´ìˆëŠ” ê°ê°ì˜ ì•„ì´í…œë“¤ì„ êº¼ë‚´ì˜¨ë‹¤.
+	// UniBufferì˜ ê¸€ìì˜ ì¸ë±ìŠ¤ëŠ” 1ë¶€í„° ì‹œì‘í•œë‹¤.
 	int nUniSize = m_pUniBuffer->GetTextSize();
 	for( int i = 1; i <= nUniSize; ++i )
 	{
@@ -339,7 +339,7 @@ VOID CHtml_StringItem::SetFontRatio(  float fRatio  )
 	char chBuffer[128];
 	::WideCharToMultiByte( GetACP(), 0, m_wstrFontName.c_str(), -1, chBuffer, 128, NULL, NULL );
 	m_pFont = g_FontMgr.CreateGuiFont( chBuffer , (int)((float)m_nFontSize * fRatio) , m_nFontAttr);
-	m_pUniBuffer->SetSizeCalcEnable();	// °¢ ±ÛÀÚÀÇ ³ĞÀÌ¸¦ °è»êÇÏµµ·Ï ÇÑ´Ù.
+	m_pUniBuffer->SetSizeCalcEnable();	// ê° ê¸€ìì˜ ë„“ì´ë¥¼ ê³„ì‚°í•˜ë„ë¡ í•œë‹¤.
 	m_pUniBuffer->SetFont(m_pFont);
 	
 		
@@ -396,7 +396,7 @@ VOID CHtml_LinkItem::SetText(const WCHAR *pString, INT nPosX, INT nPosY,
 	m_pFont = g_FontMgr.CreateGuiFont( chBuffer , m_nFontSize, m_nFontAttr);
 	m_pUniBuffer = NTL_NEW CUniBuffer(0);
 	m_pUniBuffer->SetFont(m_pFont);
-	m_pUniBuffer->SetSizeCalcEnable();	// °¢ ±ÛÀÚÀÇ ³ĞÀÌ¸¦ °è»êÇÏµµ·Ï ÇÑ´Ù.
+	m_pUniBuffer->SetSizeCalcEnable();	// ê° ê¸€ìì˜ ë„“ì´ë¥¼ ê³„ì‚°í•˜ë„ë¡ í•œë‹¤.
 	m_pUniBuffer->SetText(pString);
 
 	m_nTextLen = m_pUniBuffer->GetTextSize();
@@ -423,7 +423,7 @@ VOID CHtml_LinkItem::SetText(const WCHAR *pString, INT nPosX, INT nPosY,
 	m_pFont = g_FontMgr.CreateGuiFont( chBuffer , (int)((float)m_nFontSize*fFontRatio), m_nFontAttr);
 	m_pUniBuffer = NTL_NEW CUniBuffer(0);
 	m_pUniBuffer->SetFont(m_pFont);
-	m_pUniBuffer->SetSizeCalcEnable();	// °¢ ±ÛÀÚÀÇ ³ĞÀÌ¸¦ °è»êÇÏµµ·Ï ÇÑ´Ù.
+	m_pUniBuffer->SetSizeCalcEnable();	// ê° ê¸€ìì˜ ë„“ì´ë¥¼ ê³„ì‚°í•˜ë„ë¡ í•œë‹¤.
 	m_pUniBuffer->SetText(pString);
 
 	m_nTextLen = m_pUniBuffer->GetTextSize();
@@ -516,7 +516,7 @@ CHtml_Item* CHtml_LinkItem::ItemDisposition(CRectangle& rect, CRectangle rtClipp
 				memcpy(wchBuffer, m_pUniBuffer->GetBuffer() + nPrevIndex, sizeof(WCHAR)*nCopyNum);
 				wchBuffer[nCopyNum] = 0;
 
-				// string item »ı¼º
+				// string item ìƒì„±
 				CHtml_LinkItem *pLinkItem = NTL_NEW CHtml_LinkItem(m_pParentComp);
 				pLinkItem->SetCurrLine(0);
 				pLinkItem->SetText(wchBuffer, rtClipping.left + nCurrX, rtClipping.top + nCurrY, m_wstrFontName.c_str(), m_nFontSize, m_nFontAttr, m_fFontRatio, m_TextColor, m_BgColor, m_dwAlign);
@@ -539,7 +539,7 @@ CHtml_Item* CHtml_LinkItem::ItemDisposition(CRectangle& rect, CRectangle rtClipp
 	memcpy(wchBuffer, m_pUniBuffer->GetBuffer() + nPrevIndex, sizeof(WCHAR)*nCopyNum);
 	wchBuffer[nCopyNum] = 0;
 
-	// string item »ı¼º
+	// string item ìƒì„±
 	CHtml_LinkItem *pLinkItem = NTL_NEW CHtml_LinkItem(m_pParentComp);
 	pLinkItem->SetCurrLine(0);
 	pLinkItem->SetText(wchBuffer, rtClipping.left + nCurrX, rtClipping.top + nCurrY, m_wstrFontName.c_str(), m_nFontSize, m_nFontAttr, m_fFontRatio, m_TextColor, m_BgColor, m_dwAlign);
@@ -593,8 +593,8 @@ VOID CHtml_LinkItem::OnPrePaint(INT nOffsetX, INT nOffsetY, const CRectangle& re
 
 VOID CHtml_LinkItem::GetItemRect( std::list<CRectangle>& list ) 
 {
-	// UniBuffer¿¡ µé¾îÀÖ´Â °¢°¢ÀÇ ¾ÆÀÌÅÛµéÀ» ²¨³»¿Â´Ù.
-	// UniBufferÀÇ ±ÛÀÚÀÇ ÀÎµ¦½º´Â 1ºÎÅÍ ½ÃÀÛÇÑ´Ù.
+	// UniBufferì— ë“¤ì–´ìˆëŠ” ê°ê°ì˜ ì•„ì´í…œë“¤ì„ êº¼ë‚´ì˜¨ë‹¤.
+	// UniBufferì˜ ê¸€ìì˜ ì¸ë±ìŠ¤ëŠ” 1ë¶€í„° ì‹œì‘í•œë‹¤.
 	int nUniSize = m_pUniBuffer->GetTextSize();
 	for( int i = 1; i <= nUniSize; ++i )
 	{
@@ -613,7 +613,7 @@ VOID CHtml_LinkItem::SetFontRatio(  float fRatio  )
 	char chBuffer[128];
 	::WideCharToMultiByte( GetACP(), 0, m_wstrFontName.c_str(), -1, chBuffer, 128, NULL, NULL );
 	m_pFont = g_FontMgr.CreateGuiFont( chBuffer , (int)((float)m_nFontSize * fRatio) , m_nFontAttr);
-	m_pUniBuffer->SetSizeCalcEnable();	// °¢ ±ÛÀÚÀÇ ³ĞÀÌ¸¦ °è»êÇÏµµ·Ï ÇÑ´Ù.
+	m_pUniBuffer->SetSizeCalcEnable();	// ê° ê¸€ìì˜ ë„“ì´ë¥¼ ê³„ì‚°í•˜ë„ë¡ í•œë‹¤.
 	m_pUniBuffer->SetFont(m_pFont);
 
 
@@ -699,7 +699,7 @@ VOID CHtml_PictureItem::SetPicture(const WCHAR *pPic, INT nWidth, INT nHeight, I
 	m_SnapShot.UVs[2]	= 1;
 	m_SnapShot.UVs[3]	= 1;
 
-	// nWidth³ª nHeight°ªÀÌ 0ÀÌ³ª 0º¸´Ù ³·Àº ¼ıÀÚ¶ó¸é ÀÌ¹ÌÁö ¿øº»ÀÇ Å©±â´ë·Î Ãâ·ÂÇÑ´Ù.
+	// nWidthë‚˜ nHeightê°’ì´ 0ì´ë‚˜ 0ë³´ë‹¤ ë‚®ì€ ìˆ«ìë¼ë©´ ì´ë¯¸ì§€ ì›ë³¸ì˜ í¬ê¸°ëŒ€ë¡œ ì¶œë ¥í•œë‹¤.
 	INT nRealWidth = nWidth;
 	INT nRealHeight = nHeight;
 
@@ -884,7 +884,7 @@ VOID CHtml_FlashItem::SetFlash(const WCHAR *pFlash, INT& nWidth, INT& nHeight,
 	m_bAutoRewind	= bAutoRewind;
 	m_nResizeType	= nResizeType;
 
-	// bRender°¡ FALSE·Î µé¾î¿À¸é °¡Àå Ã³À½ ÀÚ·á¸¦ °ü¸®ÇÏ±â À§ÇÏ¿© ÇÃ·¡½¬ÀÇ Á¤º¸¸¸ ´ã°í ÀÖ°í ½ÇÁ¦·Î LoadÇÏÁö´Â ¾Ê´Â´Ù.
+	// bRenderê°€ FALSEë¡œ ë“¤ì–´ì˜¤ë©´ ê°€ì¥ ì²˜ìŒ ìë£Œë¥¼ ê´€ë¦¬í•˜ê¸° ìœ„í•˜ì—¬ í”Œë˜ì‰¬ì˜ ì •ë³´ë§Œ ë‹´ê³  ìˆê³  ì‹¤ì œë¡œ Loadí•˜ì§€ëŠ” ì•ŠëŠ”ë‹¤.
 	if( !m_pFlash || !bRender)
 		return;
 	
@@ -1038,7 +1038,7 @@ VOID CHtml_BackPicItem::SetPicture(const WCHAR *pPic, INT nWidth, INT nHeight)
 	m_SnapShot.UVs[2]	= 1;
 	m_SnapShot.UVs[3]	= 1;
 
-	// nWidth³ª nHeight°ªÀÌ 0ÀÌ³ª 0º¸´Ù ³·Àº ¼ıÀÚ¶ó¸é ÀÌ¹ÌÁö ¿øº»ÀÇ Å©±â´ë·Î Ãâ·ÂÇÑ´Ù.
+	// nWidthë‚˜ nHeightê°’ì´ 0ì´ë‚˜ 0ë³´ë‹¤ ë‚®ì€ ìˆ«ìë¼ë©´ ì´ë¯¸ì§€ ì›ë³¸ì˜ í¬ê¸°ëŒ€ë¡œ ì¶œë ¥í•œë‹¤.
 	INT nRealWidth = nWidth;
 	INT nRealHeight = nHeight;
 

@@ -4,24 +4,24 @@
 #include "Attr_Page.h"
 
 
-// CAttr_EVT_ItemIdentity ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_EVT_ItemIdentity ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CAttr_EVT_ItemIdentity : public CAttr_Page
 {
 	DECLARE_SERIAL(CAttr_EVT_ItemIdentity)
 
 public:
-	CAttr_EVT_ItemIdentity(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CAttr_EVT_ItemIdentity(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CAttr_EVT_ItemIdentity();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_TS_EVT_ITEMIDENTITY_ATTR_DIAG };
 
 	virtual CString	GetPageData( void );
 	virtual void	UnPakingPageData( CString& strKey, CString& strValue );
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual BOOL OnInitDialog();
 
 	DECLARE_MESSAGE_MAP()

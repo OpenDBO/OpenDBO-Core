@@ -3,21 +3,21 @@
 #include "NtlPlResourcePack.h"
 
 
-// CUnPackSelectDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CUnPackSelectDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CUnPackSelectDlg : public CDialog
 {
 	DECLARE_DYNAMIC(CUnPackSelectDlg)
 
 public:
-	CUnPackSelectDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CUnPackSelectDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CUnPackSelectDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_UNPACK_SELECT };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

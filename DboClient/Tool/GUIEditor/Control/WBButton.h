@@ -172,6 +172,6 @@ public:
 /////////////////////////////////////////////////////////////////////////////
 
 //{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ �͑O�s�̒��O�ɒǉ��̐錾��?�����܂��B
+// Microsoft Visual C++ 궼멟뛱궻뮳멟궸믁돿궻먬뙻귩?볺궢귏궥갃
 
 #endif // !defined(AFX_WBBUTTON_H__518122CF_358F_11D4_8F4F_00402656D980__INCLUDED_)

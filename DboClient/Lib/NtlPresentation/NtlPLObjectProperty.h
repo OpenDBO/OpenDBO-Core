@@ -2,7 +2,7 @@
  *
  * File			: NtlPLObjectProperty.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 8. 22	
  * Abstract		: Presentation layer object property class
  *****************************************************************************
@@ -18,14 +18,14 @@
 
 #define XML_PARSING_BUFFER_SIZE		( 1024 )
 
-/// ø¿∫Í¡ß∆Æ¿« ≈∏¿‘
+/// Ïò§Î∏åÏ†ùÌä∏Ïùò ÌÉÄÏûÖ
 enum EPLObjectType
 {
-    E_OBJECT_NORMAL = 0,                        ///< ¿œπ› ø¿∫Í¡ß∆Æ
-    E_OBJECT_MILEPOST,                          ///< ¿Ã¡§«•øÎ ø¿∫Í¡ß∆Æ (»≠ªÏ«•)
+    E_OBJECT_NORMAL = 0,                        ///< ÏùºÎ∞ò Ïò§Î∏åÏ†ùÌä∏
+    E_OBJECT_MILEPOST,                          ///< Ïù¥Ï†ïÌëúÏö© Ïò§Î∏åÏ†ùÌä∏ (ÌôîÏÇ¥Ìëú)
 };
 
-/// ø¿∫Í¡ß∆Æ «√∑°±◊ (±‚¡∏¿« Bool∞™µÈµµ «√∑°±◊∑Œ πŸ≤Ÿ∞Ì ΩÕ¡ˆ∏∏, ±◊∑Ø∏È «œ¿ß »£»Øº∫¿Ã ±˙¡¯¥Ÿ)
+/// Ïò§Î∏åÏ†ùÌä∏ ÌîåÎûòÍ∑∏ (Í∏∞Ï°¥Ïùò BoolÍ∞íÎì§ÎèÑ ÌîåÎûòÍ∑∏Î°ú Î∞îÍæ∏Í≥† Ïã∂ÏßÄÎßå, Í∑∏Îü¨Î©¥ ÌïòÏúÑ Ìò∏ÌôòÏÑ±Ïù¥ Íπ®ÏßÑÎã§)
 #define OBJ_FLAG_SORT_BY_POS        0x00000001
 #define OBJ_FLAG_FORCE_PICKING      0x00000002
 #define OBJ_FLAG_PE_NAVI_PRESS      0x00000004
@@ -33,8 +33,8 @@ enum EPLObjectType
 
 /**
 * \ingroup NtlPresentation
-* CNtlPLObjectø° «ÿ¥Á«œ¥¬ property class¿Ã¥Ÿ.
-* property data¥¬ xml file∑Œ ¿€º∫µ«æÓ¡Æ ¿÷¥Ÿ.
+* CNtlPLObjectÏóê Ìï¥ÎãπÌïòÎäî property classÏù¥Îã§.
+* property dataÎäî xml fileÎ°ú ÏûëÏÑ±ÎêòÏñ¥Ï†∏ ÏûàÎã§.
 *
 */
 class CNtlPLObjectProperty : public CNtlPLProperty
@@ -43,30 +43,30 @@ public:
 
 	static unsigned int m_strVer;			/* property file version **/
 	static std::string m_strObjectDataPath;	/* Object Data File Path(*.xml) **/
-	static std::string m_strMeshPath;		/* object mesh file¿« path name **/
-	static std::string m_strAniPath;		/* object animation file¿« path name **/
-	static std::string m_strTexPath;		/* object texture file¿« path name **/
+	static std::string m_strMeshPath;		/* object mesh fileÏùò path name **/
+	static std::string m_strAniPath;		/* object animation fileÏùò path name **/
+	static std::string m_strTexPath;		/* object texture fileÏùò path name **/
 
 	std::string m_strDffFile;				/* object mesh file name **/
-    std::string m_strUVAnimFileName;        ///< UVAnim File Name (ªÛ¥Î ∞Ê∑Œ ∆˜«‘)
-    std::string m_strAnimFileName;          ///< AnimFileName (ªÛ¥Î ∞Ê∑Œ ∆˜«‘)    
-    std::string m_strCollisionMeshName;     ///< Path EngineøÎ Collision Mesh File Name
+    std::string m_strUVAnimFileName;        ///< UVAnim File Name (ÏÉÅÎåÄ Í≤ΩÎ°ú Ìè¨Ìï®)
+    std::string m_strAnimFileName;          ///< AnimFileName (ÏÉÅÎåÄ Í≤ΩÎ°ú Ìè¨Ìï®)    
+    std::string m_strCollisionMeshName;     ///< Path EngineÏö© Collision Mesh File Name
 
-	std::vector<SEventLinkEffect*> m_vLinkEffect; ///< Link Effect¿« ∏ÆΩ∫∆Æ 
+	std::vector<SEventLinkEffect*> m_vLinkEffect; ///< Link EffectÏùò Î¶¨Ïä§Ìä∏ 
 
 protected:
-    RwBBox          m_bbox;                         ///< Server Object¿« BBox 
-    RwBool          m_bCollision;                   ///< Server Collision ¿Øπ´
-	RwBool          m_bShadow;                      ///< Shadow «•Ω√ ¿Øπ´    
+    RwBBox          m_bbox;                         ///< Server ObjectÏùò BBox 
+    RwBool          m_bCollision;                   ///< Server Collision Ïú†Î¨¥
+	RwBool          m_bShadow;                      ///< Shadow ÌëúÏãú Ïú†Î¨¥    
     RwReal          m_fUvAnimSpeed;                 ///< UVAnim Speed    
     RwReal          m_fCullingDistance;             ///< Culling Distance
-    RwBool          m_bApplyPVS;                    ///< PVS øµ«‚¿ª πﬁ¥¬¡ˆ æ»πﬁ¥¬¡ˆ ¿Øπ´
+    RwBool          m_bApplyPVS;                    ///< PVS ÏòÅÌñ•ÏùÑ Î∞õÎäîÏßÄ ÏïàÎ∞õÎäîÏßÄ Ïú†Î¨¥
     RwInt32         m_nObjectFlag;
 
 	CNtlTypeAnimTable m_TypeAnimTable;				///< Animation Table
     EPLObjectType   m_eObjectType;                  ///< Object Type
 
-    SEventSound     m_SoundProp;                    ///< ±‚∫ª ¿Áª˝ ªÁøÓµÂ «¡∑Œ∆€∆º
+    SEventSound     m_SoundProp;                    ///< Í∏∞Î≥∏ Ïû¨ÏÉù ÏÇ¨Ïö¥Îìú ÌîÑÎ°úÌçºÌã∞
 
     
 
@@ -74,15 +74,15 @@ public:
 	CNtlPLObjectProperty();
 	virtual ~CNtlPLObjectProperty();
 
-	// 'ObjectPropertyList.xml'ø°º≠ «¡∑Œ∆€∆º ∆ƒ¿œ∏Ì¿ª ∞°¡Æø¿¥¬ «‘ºˆ
+	// 'ObjectPropertyList.xml'ÏóêÏÑú ÌîÑÎ°úÌçºÌã∞ ÌååÏùºÎ™ÖÏùÑ Í∞ÄÏ†∏Ïò§Îäî Ìï®Ïàò
 	virtual RwBool	Load(CNtlXMLDoc *pDoc, IXMLDOMNode *pNode);	
 	virtual RwBool	Save(CNtlXMLDoc *pDoc, IXMLDOMNode *pNode );
 
-    virtual RwBool  SaveScript(const std::string &strFileName);          ///< XML Ω∫≈©∏≥∆Æ ∆ƒ¿œ∑Œ ¿˙¿Â«—¥Ÿ.
-    virtual RwBool  LoadScript(const RwChar* strFileName);          ///< XML Ω∫≈©∏≥∆Æ∑Œ ∫Œ≈Õ µ•¿Ã≈Õ∏¶ ∑ŒµÂ«—¥Ÿ.
+    virtual RwBool  SaveScript(const std::string &strFileName);          ///< XML Ïä§ÌÅ¨Î¶ΩÌä∏ ÌååÏùºÎ°ú Ï†ÄÏû•ÌïúÎã§.
+    virtual RwBool  LoadScript(const RwChar* strFileName);          ///< XML Ïä§ÌÅ¨Î¶ΩÌä∏Î°ú Î∂ÄÌÑ∞ Îç∞Ïù¥ÌÑ∞Î•º Î°úÎìúÌïúÎã§.
 
-	virtual void	SaveSerialize(CNtlSerializer& sOut);											///< Serializeø° µ•¿Ã≈Õ∏¶ ¿˙¿Â«œ¥¬ «‘ºˆ
-	virtual void	LoadSerialize(CNtlSerializer& sIn);												///< Serialize∑Œ∫Œ≈Õ µ•¿Ã≈Õ∏¶ ∞°¡Æø¿¥¬ «‘ºˆ
+	virtual void	SaveSerialize(CNtlSerializer& sOut);											///< SerializeÏóê Îç∞Ïù¥ÌÑ∞Î•º Ï†ÄÏû•ÌïòÎäî Ìï®Ïàò
+	virtual void	LoadSerialize(CNtlSerializer& sIn);												///< SerializeÎ°úÎ∂ÄÌÑ∞ Îç∞Ïù¥ÌÑ∞Î•º Í∞ÄÏ†∏Ïò§Îäî Ìï®Ïàò
 	
 	void                    SetDffName(const RwChar* strDffName) {m_strDffFile = strDffName;}
 	const char *			GetDffName( void ) const { return m_strDffFile.c_str(); }
@@ -90,33 +90,33 @@ public:
     void    SetEnableShadow(RwBool bEnable) {m_bShadow = bEnable;}
     RwBool  GetEnableShadow() {return m_bShadow;}
 
-    void    SetBBox(RwBBox bbox) {m_bbox = bbox;};                                  ///< BBox∏¶ º≥¡§«—¥Ÿ
-    RwBBox* GetBBox() {return &m_bbox;}                                             ///< º≥¡§µ» BBox∏¶ π›»Ø«—¥Ÿ.
+    void    SetBBox(RwBBox bbox) {m_bbox = bbox;};                                  ///< BBoxÎ•º ÏÑ§Ï†ïÌïúÎã§
+    RwBBox* GetBBox() {return &m_bbox;}                                             ///< ÏÑ§Ï†ïÎêú BBoxÎ•º Î∞òÌôòÌïúÎã§.
 
-    void    SetUVAnimSpeed(RwReal fSpeed) {m_fUvAnimSpeed = fSpeed;}                ///< UVAnim º”µµ∏¶ º≥¡§«—¥Ÿ
-    RwReal  GetUVAnimSpeed() {return m_fUvAnimSpeed;}                               ///< UVAnim º”µµ∏¶ π›»Ø«—¥Ÿ.
+    void    SetUVAnimSpeed(RwReal fSpeed) {m_fUvAnimSpeed = fSpeed;}                ///< UVAnim ÏÜçÎèÑÎ•º ÏÑ§Ï†ïÌïúÎã§
+    RwReal  GetUVAnimSpeed() {return m_fUvAnimSpeed;}                               ///< UVAnim ÏÜçÎèÑÎ•º Î∞òÌôòÌïúÎã§.
 
-    void    SetCollision(RwBool bCollision) {m_bCollision = bCollision;}            ///< Collision ∞°¥… ¿Øπ´∏¶ º≥¡§«—¥Ÿ.
-    RwBool  GetCollision() {return m_bCollision;}                                   ///< Collision ∞°¥… ¿Øπ´∏¶ π›»Ø«—¥Ÿ.
+    void    SetCollision(RwBool bCollision) {m_bCollision = bCollision;}            ///< Collision Í∞ÄÎä• Ïú†Î¨¥Î•º ÏÑ§Ï†ïÌïúÎã§.
+    RwBool  GetCollision() {return m_bCollision;}                                   ///< Collision Í∞ÄÎä• Ïú†Î¨¥Î•º Î∞òÌôòÌïúÎã§.
 
-    void    SetCullingDistance(RwReal fDistance) {m_fCullingDistance = fDistance;}  ///< Culling Distance∏¶ º≥¡§«—¥Ÿ.
-    RwReal  GetCullingDistance() {return m_fCullingDistance;}                       ///< Culling Distance∏¶ π›»Ø«—¥Ÿ.
+    void    SetCullingDistance(RwReal fDistance) {m_fCullingDistance = fDistance;}  ///< Culling DistanceÎ•º ÏÑ§Ï†ïÌïúÎã§.
+    RwReal  GetCullingDistance() {return m_fCullingDistance;}                       ///< Culling DistanceÎ•º Î∞òÌôòÌïúÎã§.
 
-	CNtlTypeAnimTable* GetAnimTable() {return &m_TypeAnimTable;}                        ///< AnimTable¿ª π›»Ø«—¥Ÿ.
+	CNtlTypeAnimTable* GetAnimTable() {return &m_TypeAnimTable;}                        ///< AnimTableÏùÑ Î∞òÌôòÌïúÎã§.
 
-    void    SetObjectType(EPLObjectType eObjectType) {m_eObjectType = eObjectType;} ///< Object Type¿ª º≥¡§«—¥Ÿ.
-    EPLObjectType GetObjectType() {return m_eObjectType;}                           ///< Object Type¿ª π›»Ø«—¥Ÿ.
+    void    SetObjectType(EPLObjectType eObjectType) {m_eObjectType = eObjectType;} ///< Object TypeÏùÑ ÏÑ§Ï†ïÌïúÎã§.
+    EPLObjectType GetObjectType() {return m_eObjectType;}                           ///< Object TypeÏùÑ Î∞òÌôòÌïúÎã§.
 
-    void    SetApplyPVS(RwBool bApplyPVS) {m_bApplyPVS = bApplyPVS;}                ///< PVSø° øµ«‚¿ª πﬁ¥¬¡ˆ æ»πﬁ¥¬¡ˆ º≥¡§«—¥Ÿ.
-    RwBool  GetApplyPVS() {return m_bApplyPVS;}                                     ///< PVSø° øµ«‚¿ª πﬁ¥¬¡ˆ æ»πﬁ¥¬¡ˆ π›»Ø«—¥Ÿ.
+    void    SetApplyPVS(RwBool bApplyPVS) {m_bApplyPVS = bApplyPVS;}                ///< PVSÏóê ÏòÅÌñ•ÏùÑ Î∞õÎäîÏßÄ ÏïàÎ∞õÎäîÏßÄ ÏÑ§Ï†ïÌïúÎã§.
+    RwBool  GetApplyPVS() {return m_bApplyPVS;}                                     ///< PVSÏóê ÏòÅÌñ•ÏùÑ Î∞õÎäîÏßÄ ÏïàÎ∞õÎäîÏßÄ Î∞òÌôòÌïúÎã§.
 
-    SEventSound* GetSoundProp() {return &m_SoundProp;}                              ///< ø¿∫Í¡ß∆Æ¿« ªÁøÓµÂ º≥¡§¿ª π›»Ø«—¥Ÿ.
+    SEventSound* GetSoundProp() {return &m_SoundProp;}                              ///< Ïò§Î∏åÏ†ùÌä∏Ïùò ÏÇ¨Ïö¥Îìú ÏÑ§Ï†ïÏùÑ Î∞òÌôòÌïúÎã§.
 
-    // «√∑°±◊ ∞¸∑√ «‘ºˆµÈ
+    // ÌîåÎûòÍ∑∏ Í¥ÄÎ†® Ìï®ÏàòÎì§
     RwBool  IsSortByPos() {return (GetFlag() & OBJ_FLAG_SORT_BY_POS);}
     RwBool  IsForcePicking() {return (GetFlag() & OBJ_FLAG_FORCE_PICKING);}
-    RwBool  IsNaviPress()   {return (GetFlag() & OBJ_FLAG_PE_NAVI_PRESS);}           ///< ∆–Ω∫ ø£¡¯øÎ¿∏∑Œ Obstacle Meshø° ¥Î«— º≥¡§
-    RwBool  IsCullTestAllAtomic() {return (GetFlag() & OBJ_FLAG_CULLTEST_ATOMIC);}     ///< æ÷¥œ∏ﬁ¿Ãº«ø°º≠ Atomicø° ¥Î«ÿº≠ Culling Test∏¶ «“¡ˆ ¿Øπ´∏¶ π›»Ø«—¥Ÿ.
+    RwBool  IsNaviPress()   {return (GetFlag() & OBJ_FLAG_PE_NAVI_PRESS);}           ///< Ìå®Ïä§ ÏóîÏßÑÏö©ÏúºÎ°ú Obstacle MeshÏóê ÎåÄÌïú ÏÑ§Ï†ï
+    RwBool  IsCullTestAllAtomic() {return (GetFlag() & OBJ_FLAG_CULLTEST_ATOMIC);}     ///< Ïï†ÎãàÎ©îÏù¥ÏÖòÏóêÏÑú AtomicÏóê ÎåÄÌï¥ÏÑú Culling TestÎ•º Ìï†ÏßÄ Ïú†Î¨¥Î•º Î∞òÌôòÌïúÎã§.
 
 };
 #endif

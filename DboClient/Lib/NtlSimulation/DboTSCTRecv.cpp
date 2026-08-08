@@ -47,8 +47,8 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 //////////////////////////////////////////////////////////////////////////
 //
 //	Event
-//	Å¬¶óÀÌ¾ğÆ®¿¡¼­´Â ÀÌº¥Æ®¿¡ ÇÑÇØ¼­´Â ¼± °Ë»ç Ã³¸®°¡ µÇ¹Ç·Î ÀÌ°÷¿¡¼­´Â
-//	°Ë»ç¸¦ ½ÇÇàÇÏÁö ¾Ê´Â´Ù
+//	í´ë¼ì´ì–¸íŠ¸ì—ì„œëŠ” ì´ë²¤íŠ¸ì— í•œí•´ì„œëŠ” ì„  ê²€ì‚¬ ì²˜ë¦¬ê°€ ë˜ë¯€ë¡œ ì´ê³³ì—ì„œëŠ”
+//	ê²€ì‚¬ë¥¼ ì‹¤í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤
 //
 //////////////////////////////////////////////////////////////////////////
 
@@ -224,12 +224,12 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 			{
 				CSkillTable* pSkillTable = API_GetTableContainer()->GetSkillTable();
 
-				// Skill type °Ë»ç
+				// Skill type ê²€ì‚¬
 				if ( eEVENT_SKILL_TYPE_SKILLIDX == pTParam->GetCtrl()->GetEventGenSkillUseInfo().eSkillType )
 				{
 					if ( 0xffffffff == ((CDboTSSkillUse*)pEntity)->GetSkillIdx() || ( pSkillTable->FindBasicSkillTblidx( ((CDboTSSkillUse*)pEntity)->GetSkillIdx() ) == pSkillTable->FindBasicSkillTblidx( pTParam->GetCtrl()->GetEventGenId() ) ) )
 					{
-						// Skill target °Ë»ç
+						// Skill target ê²€ì‚¬
 						eEVENT_SKILL_TARGET_TYPE eTargetType = ((CDboTSSkillUse*)pEntity)->GetSkillTargetType();
 						if ( eEVENT_SKILL_TARGET_TYPE_ALL != eTargetType )
 						{
@@ -272,11 +272,11 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 					}
 				}
 
-				// Skill RP °Ë»ç
+				// Skill RP ê²€ì‚¬
 				{
 					unsigned int uiSkillRPFlags = ((CDboTSSkillUse*)pEntity)->GetSkillRPFlags();
 
-					// uiSkillRPFlags == 0 ÀÌ¸é RP °Ë»ç¸¦ ¼öÇàÇÏÁö ¾Ê´Â´Ù
+					// uiSkillRPFlags == 0 ì´ë©´ RP ê²€ì‚¬ë¥¼ ìˆ˜í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤
 					if ( 0 != uiSkillRPFlags )
 					{
 						unsigned char byRpBonusType = pTParam->GetCtrl()->GetEventGenSkillUseInfo().byRpBonusType;
@@ -620,7 +620,7 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 //////////////////////////////////////////////////////////////////////////
 //
 //	Condition
-//	Å¬¶óÀÌ¾ğÆ® ¸ğµâ¿¡¼­ Ã³¸® µÇ¾î¾ß ÇÔ
+//	í´ë¼ì´ì–¸íŠ¸ ëª¨ë“ˆì—ì„œ ì²˜ë¦¬ ë˜ì–´ì•¼ í•¨
 //
 //////////////////////////////////////////////////////////////////////////
 
@@ -748,7 +748,7 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_COND_TYPE_ID_CHECK_STOCEVT:
 		{
-			// ÀÌ Á¶°ÇÀº Äù½ºÆ® Àü¿ëÀÌ¹Ç·Î Æ®¸®°Å¿¡¼­´Â °Ë»ç¸¦ ¼öÇàÇÏÁö ¾Ê´Â´Ù
+			// ì´ ì¡°ê±´ì€ í€˜ìŠ¤íŠ¸ ì „ìš©ì´ë¯€ë¡œ íŠ¸ë¦¬ê±°ì—ì„œëŠ” ê²€ì‚¬ë¥¼ ìˆ˜í–‰í•˜ì§€ ì•ŠëŠ”ë‹¤
 			CNtlTSLog::Log( "It must be only used in the quest trigger. Info[%d,%d,%d,%d]. [%s]",
 							pTParam->GetCtrl()->GetTrigger()->GetID(),
 							((CNtlTSGroup*)pEntity->GetParent()->GetParent())->GetID(),
@@ -767,7 +767,7 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 			int nSumCnt = 0;
 
-			// Equip Ã¢À» °Ë»ö
+			// Equip ì°½ì„ ê²€ìƒ‰
 			for ( int i = 0; i < NTL_MAX_EQUIP_ITEM_SLOT; ++i )
 			{
 				CNtlSobItem* pSobItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( pInventory->GetEquipItem( i ) ) );
@@ -780,7 +780,7 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 				}
 			}
 
-			// Bag Ã¢À» °Ë»ö
+			// Bag ì°½ì„ ê²€ìƒ‰
 			for ( int i = 0; i < NTL_MAX_BAGSLOT_COUNT; ++i )
 			{
 				CNtlSobItem* pSobItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( pInventory->GetBagItem( i ) ) );
@@ -821,7 +821,7 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 			bool bFind = false;
 
-			// Equip Ã¢À» °Ë»ö
+			// Equip ì°½ì„ ê²€ìƒ‰
 			for ( int i = 0; i < NTL_MAX_EQUIP_ITEM_SLOT; ++i )
 			{
 				CNtlSobItem* pSobItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( pInventory->GetEquipItem( i ) ) );
@@ -873,8 +873,8 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_COND_TYPE_ID_CHECK_OBJITEM:
 		{
-			// Object °¡ ¾ÆÀÌÅÛÀ» ÁÙ ¼ö ÀÖ´ÂÁö °Ë»çÇÏ´Â Á¶°ÇÀº
-			// Äù½ºÆ®¿¡¼­´Â µ¿ÀÛÇÏÁö ¾Ê´Â´Ù
+			// Object ê°€ ì•„ì´í…œì„ ì¤„ ìˆ˜ ìˆëŠ”ì§€ ê²€ì‚¬í•˜ëŠ” ì¡°ê±´ì€
+			// í€˜ìŠ¤íŠ¸ì—ì„œëŠ” ë™ì‘í•˜ì§€ ì•ŠëŠ”ë‹¤
 			CNtlTSLog::Log( "Not supported condition. Info[%d,%d,%d]. [%s]",
 							((CDboTSCTCtrl*)pTParam->GetCtrl())->GetTrigger()->GetID(),
 							((CNtlTSGroup*)pEntity->GetParent()->GetParent())->GetID(),
@@ -910,7 +910,7 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_COND_TYPE_ID_CHECK_OBJ_STATE:
 		{
-			// Æ®¸®°Å¿¡¼­´Â µ¿ÀÛÇÏÁö ¾Ê´Â´Ù
+			// íŠ¸ë¦¬ê±°ì—ì„œëŠ” ë™ì‘í•˜ì§€ ì•ŠëŠ”ë‹¤
 			CNtlTSLog::Log( "Not supported condition. Info[%d,%d,%d]. [%s]",
 							((CDboTSCTCtrl*)pTParam->GetCtrl())->GetTrigger()->GetID(),
 							((CNtlTSGroup*)pEntity->GetParent()->GetParent())->GetID(),
@@ -934,7 +934,7 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_COND_TYPE_ID_CHECK_OPERATEOBJECT:
 		{
-			// Æ®¸®°Å¿¡¼­´Â µ¿ÀÛÇÏÁö ¾Ê´Â´Ù
+			// íŠ¸ë¦¬ê±°ì—ì„œëŠ” ë™ì‘í•˜ì§€ ì•ŠëŠ”ë‹¤
 			CNtlTSLog::Log( "Not supported condition. Info[%d,%d,%d]. [%s]",
 							((CDboTSCTCtrl*)pTParam->GetCtrl())->GetTrigger()->GetID(),
 							((CNtlTSGroup*)pEntity->GetParent()->GetParent())->GetID(),
@@ -947,7 +947,7 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_COND_TYPE_ID_CHECK_HASCOUPON:
 		{
-			// Æ®¸®°Å¿¡¼­´Â µ¿ÀÛÇÏÁö ¾Ê´Â´Ù
+			// íŠ¸ë¦¬ê±°ì—ì„œëŠ” ë™ì‘í•˜ì§€ ì•ŠëŠ”ë‹¤
 			CNtlTSLog::Log( "Not supported condition. Info[%d,%d,%d]. [%s]",
 							((CDboTSCTCtrl*)pTParam->GetCtrl())->GetTrigger()->GetID(),
 							((CNtlTSGroup*)pEntity->GetParent()->GetParent())->GetID(),
@@ -960,7 +960,7 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_COND_TYPE_ID_CHECK_NPCDEAD:
 		{
-			// Æ®¸®°Å¿¡¼­´Â µ¿ÀÛÇÏÁö ¾Ê´Â´Ù
+			// íŠ¸ë¦¬ê±°ì—ì„œëŠ” ë™ì‘í•˜ì§€ ì•ŠëŠ”ë‹¤
 			CNtlTSLog::Log( "Not supported condition. Info[%d,%d,%d]. [%s]",
 							((CDboTSCTCtrl*)pTParam->GetCtrl())->GetTrigger()->GetID(),
 							((CNtlTSGroup*)pEntity->GetParent()->GetParent())->GetID(),
@@ -973,7 +973,7 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_COND_TYPE_ID_CHECK_DIST_WITH_NPC:
 		{
-			// Æ®¸®°Å¿¡¼­´Â µ¿ÀÛÇÏÁö ¾Ê´Â´Ù
+			// íŠ¸ë¦¬ê±°ì—ì„œëŠ” ë™ì‘í•˜ì§€ ì•ŠëŠ”ë‹¤
 			CNtlTSLog::Log( "Not supported condition. Info[%d,%d,%d]. [%s]",
 							((CDboTSCTCtrl*)pTParam->GetCtrl())->GetTrigger()->GetID(),
 							((CNtlTSGroup*)pEntity->GetParent()->GetParent())->GetID(),
@@ -986,7 +986,7 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_COND_TYPE_ID_CHECK_STOC_DELIVERTY:
 		{
-			// Æ®¸®°Å¿¡¼­´Â µ¿ÀÛÇÏÁö ¾Ê´Â´Ù
+			// íŠ¸ë¦¬ê±°ì—ì„œëŠ” ë™ì‘í•˜ì§€ ì•ŠëŠ”ë‹¤
 			CNtlTSLog::Log( "Not supported condition. Info[%d,%d,%d]. [%s]",
 							((CDboTSCTCtrl*)pTParam->GetCtrl())->GetTrigger()->GetID(),
 							((CNtlTSGroup*)pEntity->GetParent()->GetParent())->GetID(),
@@ -999,7 +999,7 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_COND_TYPE_ID_CHECK_ATTACH_OBJ:
 		{
-			// Object trigger¿¡¼­¸¸ µ¿ÀÛÇÏ´Â condition
+			// Object triggerì—ì„œë§Œ ë™ì‘í•˜ëŠ” condition
 			CNtlTSLog::Log( "Not supported condition. Info[%d,%d,%d]. [%s]",
 							((CDboTSCTCtrl*)pTParam->GetCtrl())->GetTrigger()->GetID(),
 							((CNtlTSGroup*)pEntity->GetParent()->GetParent())->GetID(),
@@ -1084,7 +1084,7 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 //////////////////////////////////////////////////////////////////////////
 
 	case DBO_ACT_TYPE_ID_ACT_ITEM:
-		// Å¬¶óÀÌ¾ğÆ®¿¡¼­´Â µ¿ÀÛÇÏÁö ¾Ê´Â ¼­¹ö Àü¿ë ¾×¼Ç
+		// í´ë¼ì´ì–¸íŠ¸ì—ì„œëŠ” ë™ì‘í•˜ì§€ ì•ŠëŠ” ì„œë²„ ì „ìš© ì•¡ì…˜
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_EXCEPT_TIMER_S:
@@ -1116,7 +1116,7 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_STOCEVT:
-		// ÀÌ ¾×¼ÇÀº Äù½ºÆ® Àü¿ëÀ¸·Î Æ®¸®°Å¿¡¼­´Â »ç¿ëµÇÁö ¾Ê´Â´Ù
+		// ì´ ì•¡ì…˜ì€ í€˜ìŠ¤íŠ¸ ì „ìš©ìœ¼ë¡œ íŠ¸ë¦¬ê±°ì—ì„œëŠ” ì‚¬ìš©ë˜ì§€ ì•ŠëŠ”ë‹¤
 		CNtlTSLog::Log( "It must be only used in the quest trigger. Info[%d,%d,%d,%d]. [%s]",
 						pTParam->GetCtrl()->GetTrigger()->GetID(),
 						((CNtlTSGroup*)pEntity->GetParent()->GetParent())->GetID(),
@@ -1126,7 +1126,7 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_QITEM:
-		// Å¬¶óÀÌ¾ğÆ®¿¡¼­´Â µ¿ÀÛÇÏÁö ¾Ê´Â ¼­¹ö Àü¿ë ¾×¼Ç
+		// í´ë¼ì´ì–¸íŠ¸ì—ì„œëŠ” ë™ì‘í•˜ì§€ ì•ŠëŠ” ì„œë²„ ì „ìš© ì•¡ì…˜
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_NPCCONV:
@@ -1144,7 +1144,7 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_REGQINFO:
-		// ÀÌ ¾×¼ÇÀº Äù½ºÆ® Àü¿ëÀ¸·Î Æ®¸®°Å¿¡¼­´Â »ç¿ëµÇÁö ¾Ê´Â´Ù
+		// ì´ ì•¡ì…˜ì€ í€˜ìŠ¤íŠ¸ ì „ìš©ìœ¼ë¡œ íŠ¸ë¦¬ê±°ì—ì„œëŠ” ì‚¬ìš©ë˜ì§€ ì•ŠëŠ”ë‹¤
 		CNtlTSLog::Log( "It must be only used in the quest trigger. Info[%d,%d,%d,%d]. [%s]",
 						pTParam->GetCtrl()->GetTrigger()->GetID(),
 						((CNtlTSGroup*)pEntity->GetParent()->GetParent())->GetID(),
@@ -1155,7 +1155,7 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_ACT_TYPE_ID_ACT_DIR:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­´Â ¾Æ¹«°Íµµ ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œëŠ” ì•„ë¬´ê²ƒë„ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
@@ -1217,19 +1217,19 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_ACT_TYPE_ID_ACT_PORTAL:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ Æ÷Å»Àº µ¿ÀÛÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ í¬íƒˆì€ ë™ì‘í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_OBJSTATE:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ ¿ÀºêÁ§Æ®ÀÇ »óÅÂ¸¦ º¯°æÇÏ´Â ÄÚµå´Â µ¿ÀÛÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ ì˜¤ë¸Œì íŠ¸ì˜ ìƒíƒœë¥¼ ë³€ê²½í•˜ëŠ” ì½”ë“œëŠ” ë™ì‘í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_CONC_CHECK:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ µ¿½Ã Ã¼Å©¿¡ ´ëÇÑ µ¿ÀÛÀº ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ ë™ì‹œ ì²´í¬ì— ëŒ€í•œ ë™ì‘ì€ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
@@ -1264,7 +1264,7 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 	case DBO_ACT_TYPE_ID_ACT_SEND_SVR_EVT:
 	case DBO_ACT_TYPE_ID_ACT_TMQ_STAGE:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­´Â µ¿ÀÛÇÏÁö ¾Ê´Â ¼­¹ö Àü¿ë ¾×¼Ç
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œëŠ” ë™ì‘í•˜ì§€ ì•ŠëŠ” ì„œë²„ ì „ìš© ì•¡ì…˜
 		}
 		break;
 
@@ -1284,43 +1284,43 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_ACT_TYPE_ID_ACT_TMQ_TIMEBONUS:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ Å¸ÀÓ º¸³Ê½º¿¡ ´ëÇÑ µ¿ÀÛÀº ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ íƒ€ì„ ë³´ë„ˆìŠ¤ì— ëŒ€í•œ ë™ì‘ì€ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_TELECAST:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ ¹æ¼Û¿¡ ´ëÇÑ µ¿ÀÛÀº ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ ë°©ì†¡ì— ëŒ€í•œ ë™ì‘ì€ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_DIRINDICATOR:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ ¹æÇâ Áö½Ã¿¡ ´ëÇÑ µ¿ÀÛÀº ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ ë°©í–¥ ì§€ì‹œì— ëŒ€í•œ ë™ì‘ì€ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_OPERATEOBJECT:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ ¿ÀºêÁ§Æ® µ¿ÀÛ¿¡ ´ëÇÑ µ¿ÀÛÀº ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ ì˜¤ë¸Œì íŠ¸ ë™ì‘ì— ëŒ€í•œ ë™ì‘ì€ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_DROP:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ µå¶ø¿¡ ´ëÇÑ µ¿ÀÛÀº ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ ë“œëì— ëŒ€í•œ ë™ì‘ì€ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_RMV_COUPON:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ ÄíÆù °ü·ÃÇØ¼­´Â µ¿ÀÛ ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ ì¿ í° ê´€ë ¨í•´ì„œëŠ” ë™ì‘ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_ESCORT:
 		{
-			// ÀÌ ¾×¼ÇÀº Äù½ºÆ® Àü¿ëÀ¸·Î Æ®¸®°Å¿¡¼­´Â »ç¿ëµÇÁö ¾Ê´Â´Ù
+			// ì´ ì•¡ì…˜ì€ í€˜ìŠ¤íŠ¸ ì „ìš©ìœ¼ë¡œ íŠ¸ë¦¬ê±°ì—ì„œëŠ” ì‚¬ìš©ë˜ì§€ ì•ŠëŠ”ë‹¤
 			CNtlTSLog::Log( "It must be only used in the quest trigger. Info[%d,%d,%d,%d]. [%s]",
 							pTParam->GetCtrl()->GetTrigger()->GetID(),
 							((CNtlTSGroup*)pEntity->GetParent()->GetParent())->GetID(),
@@ -1332,13 +1332,13 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_ACT_TYPE_ID_ACT_TMQINFOTYPE:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ TMQ info type °ü·ÃÇØ¼­´Â µ¿ÀÛ ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ TMQ info type ê´€ë ¨í•´ì„œëŠ” ë™ì‘ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_WORLDPLAYSCRIPT:
 		{
-			// ÀÌ ¾×¼ÇÀº Äù½ºÆ® Àü¿ëÀ¸·Î Æ®¸®°Å¿¡¼­´Â »ç¿ëµÇÁö ¾Ê´Â´Ù
+			// ì´ ì•¡ì…˜ì€ í€˜ìŠ¤íŠ¸ ì „ìš©ìœ¼ë¡œ íŠ¸ë¦¬ê±°ì—ì„œëŠ” ì‚¬ìš©ë˜ì§€ ì•ŠëŠ”ë‹¤
 			CNtlTSLog::Log( "It must be only used in the quest trigger. Info[%d,%d,%d,%d]. [%s]",
 							pTParam->GetCtrl()->GetTrigger()->GetID(),
 							((CNtlTSGroup*)pEntity->GetParent()->GetParent())->GetID(),
@@ -1350,7 +1350,7 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_ACT_TYPE_ID_ACT_SWPROBSF:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ Switch probability success fail °ü·ÃÇØ¼­´Â µ¿ÀÛ ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ Switch probability success fail ê´€ë ¨í•´ì„œëŠ” ë™ì‘ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
@@ -1370,7 +1370,7 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_ACT_TYPE_ID_ACT_CUSTOMEVT:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ custom event¿¡ °ü·ÃÇØ¼­´Â µ¿ÀÛ ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ custom eventì— ê´€ë ¨í•´ì„œëŠ” ë™ì‘ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
@@ -1390,13 +1390,13 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_ACT_TYPE_ID_ACT_TELMINORMATCH:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ teleport minor match¿¡ °ü·ÃÇØ¼­´Â µ¿ÀÛ ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ teleport minor matchì— ê´€ë ¨í•´ì„œëŠ” ë™ì‘ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_PIDGN:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ Party instance dungeon¿¡ °ü·ÃÇØ¼­´Â µ¿ÀÛ ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ Party instance dungeonì— ê´€ë ¨í•´ì„œëŠ” ë™ì‘ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
@@ -1408,31 +1408,31 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_ACT_TYPE_ID_ACT_DO_SKILL:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ Do skill ¿¡ °ü·ÃÇØ¼­´Â µ¿ÀÛ ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ Do skill ì— ê´€ë ¨í•´ì„œëŠ” ë™ì‘ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_TOBJ_FRIENDLY:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ Trigger object friendly ¿¡ °ü·ÃÇØ¼­´Â µ¿ÀÛ ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ Trigger object friendly ì— ê´€ë ¨í•´ì„œëŠ” ë™ì‘ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_BROAD_MSG:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ Broad message ¿¡ °ü·ÃÇØ¼­´Â µ¿ÀÛ ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ Broad message ì— ê´€ë ¨í•´ì„œëŠ” ë™ì‘ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_MINI_NARRATION:
 		{
-			// Å¬¶óÀÌ¾ğÆ®¿¡¼­ Mini narration ¿¡ °ü·ÃÇØ¼­´Â µ¿ÀÛ ÇÏÁö ¾Ê´Â´Ù
+			// í´ë¼ì´ì–¸íŠ¸ì—ì„œ Mini narration ì— ê´€ë ¨í•´ì„œëŠ” ë™ì‘ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
 		break;
 
 	case DBO_ACT_TYPE_ID_ACT_REG_C_TIMING:
 		{
-			// ÀÌ ¾×¼ÇÀº Äù½ºÆ® Àü¿ëÀ¸·Î Æ®¸®°Å¿¡¼­´Â »ç¿ëµÇÁö ¾Ê´Â´Ù
+			// ì´ ì•¡ì…˜ì€ í€˜ìŠ¤íŠ¸ ì „ìš©ìœ¼ë¡œ íŠ¸ë¦¬ê±°ì—ì„œëŠ” ì‚¬ìš©ë˜ì§€ ì•ŠëŠ”ë‹¤
 			CNtlTSLog::Log( "It must be only used in the quest trigger. Info[%d,%d,%d,%d]. [%s]",
 							pTParam->GetCtrl()->GetTrigger()->GetID(),
 							((CNtlTSGroup*)pEntity->GetParent()->GetParent())->GetID(),
@@ -1444,7 +1444,7 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_ACT_TYPE_ID_ACT_EXC_C_GROUP:
 		{
-			// ÀÌ ¾×¼ÇÀº Äù½ºÆ® Àü¿ëÀ¸·Î Æ®¸®°Å¿¡¼­´Â »ç¿ëµÇÁö ¾Ê´Â´Ù
+			// ì´ ì•¡ì…˜ì€ í€˜ìŠ¤íŠ¸ ì „ìš©ìœ¼ë¡œ íŠ¸ë¦¬ê±°ì—ì„œëŠ” ì‚¬ìš©ë˜ì§€ ì•ŠëŠ”ë‹¤
 			CNtlTSLog::Log( "It must be only used in the quest trigger. Info[%d,%d,%d,%d]. [%s]",
 							pTParam->GetCtrl()->GetTrigger()->GetID(),
 							((CNtlTSGroup*)pEntity->GetParent()->GetParent())->GetID(),
@@ -1456,7 +1456,7 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_ACT_TYPE_ID_ACT_SKIP_CONT:
 		{
-			// ÀÌ ¾×¼ÇÀº Äù½ºÆ® Àü¿ëÀ¸·Î Æ®¸®°Å¿¡¼­´Â »ç¿ëµÇÁö ¾Ê´Â´Ù
+			// ì´ ì•¡ì…˜ì€ í€˜ìŠ¤íŠ¸ ì „ìš©ìœ¼ë¡œ íŠ¸ë¦¬ê±°ì—ì„œëŠ” ì‚¬ìš©ë˜ì§€ ì•ŠëŠ”ë‹¤
 			CNtlTSLog::Log( "It must be only used in the quest trigger. Info[%d,%d,%d,%d]. [%s]",
 							pTParam->GetCtrl()->GetTrigger()->GetID(),
 							((CNtlTSGroup*)pEntity->GetParent()->GetParent())->GetID(),
@@ -1468,7 +1468,7 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 	case DBO_ACT_TYPE_ID_ACT_OBJ_WPS:
 		{
-			// ÀÌ ¾×¼ÇÀº Äù½ºÆ® Àü¿ëÀ¸·Î Æ®¸®°Å¿¡¼­´Â »ç¿ëµÇÁö ¾Ê´Â´Ù
+			// ì´ ì•¡ì…˜ì€ í€˜ìŠ¤íŠ¸ ì „ìš©ìœ¼ë¡œ íŠ¸ë¦¬ê±°ì—ì„œëŠ” ì‚¬ìš©ë˜ì§€ ì•ŠëŠ”ë‹¤
 			CNtlTSLog::Log( "It must be only used in the quest trigger. Info[%d,%d,%d,%d]. [%s]",
 							pTParam->GetCtrl()->GetTrigger()->GetID(),
 							((CNtlTSGroup*)pEntity->GetParent()->GetParent())->GetID(),

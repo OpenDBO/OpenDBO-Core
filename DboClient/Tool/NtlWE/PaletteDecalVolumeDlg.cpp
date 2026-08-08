@@ -1,4 +1,4 @@
-// PaletteDecalVolumeDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PaletteDecalVolumeDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -9,7 +9,7 @@
 #include "PaletteDecalVolumeDlg.h"
 
 
-// PaletteDecalVolumeDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// PaletteDecalVolumeDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPaletteDecalVolumeDlg, CDialog)
 
@@ -75,7 +75,7 @@ BEGIN_MESSAGE_MAP(CPaletteDecalVolumeDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// PaletteDecalVolumeDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// PaletteDecalVolumeDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CPaletteDecalVolumeDlg::OnInitDialog()
 {
@@ -83,7 +83,7 @@ BOOL CPaletteDecalVolumeDlg::OnInitDialog()
 
 
 	return TRUE;  // return TRUE unless you set the focus to a controldf
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 LRESULT CPaletteDecalVolumeDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
@@ -193,13 +193,13 @@ void CPaletteDecalVolumeDlg::InitializeWorldData()
 
 void CPaletteDecalVolumeDlg::OnBnClickedOk()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	//OnOK();
 }
 
 void CPaletteDecalVolumeDlg::OnBnClickedCancel()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	//OnCancel();
 }
 

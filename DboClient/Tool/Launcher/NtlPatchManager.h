@@ -2,11 +2,11 @@
  *
  * File			: NtlHttpDownLoader.h
  * Author		: HongHoDong
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2007. 2. 5.
  * Abstract		: 
  *****************************************************************************
- * Desc         : Patch ProcessµéÀ» Á¦¾î¸¦ ÇÑ´Ù.
+ * Desc         : Patch Processë“¤ì„ ì œì–´ë¥¼ í•œë‹¤.
  *
  *****************************************************************************/
 #pragma once
@@ -96,12 +96,12 @@ public:
 	int PatcherCallBack(unsigned int uiEventID, unsigned int pParam);
 
 protected:
-    // ½Ì±ÛÅæ Å¬·¡½ºÀÌ±â ¶§¹®¿¡ »ı¼ºÀÚÀÇ È£ÃâÀ» ¸·´Â´Ù.
+    // ì‹±ê¸€í†¤ í´ë˜ìŠ¤ì´ê¸° ë•Œë¬¸ì— ìƒì„±ìì˜ í˜¸ì¶œì„ ë§‰ëŠ”ë‹¤.
     CNtlPatchManager();
     CNtlPatchManager(const CNtlPatchManager& rhs) {}
 
-    BOOL CheckPatchEnable();                                ///< ÇöÀç ÆĞÄ¡ ¼­¹ö°¡ ÆĞÄ¡°¡ °¡´ÉÇÑ »óÅÂÀÎÁö¸¦ È®ÀÎÇÑ´Ù.
-    BOOL ProcessMissingFiles();                             ///< ÆĞÄ¡Áß¿¡ ¿¡·¯³­ ÆÄÀÏµéÀ» Ç®¹öÀü ¼­¹ö¿¡¼­ ´Ù¿î ¹Ş´Â´Ù.    
+    BOOL CheckPatchEnable();                                ///< í˜„ì¬ íŒ¨ì¹˜ ì„œë²„ê°€ íŒ¨ì¹˜ê°€ ê°€ëŠ¥í•œ ìƒíƒœì¸ì§€ë¥¼ í™•ì¸í•œë‹¤.
+    BOOL ProcessMissingFiles();                             ///< íŒ¨ì¹˜ì¤‘ì— ì—ëŸ¬ë‚œ íŒŒì¼ë“¤ì„ í’€ë²„ì „ ì„œë²„ì—ì„œ ë‹¤ìš´ ë°›ëŠ”ë‹¤.    
 
 protected:
     std::list<CNtlCallbackParam2*> m_listCallBack;
@@ -115,8 +115,8 @@ protected:
     CNtlDownLoader		*m_pDownLoader;
     CNtlPatchHistory	*m_pPatchHistory;
     CNtlPatcher			*m_pPatcher;
-    std::string         m_strCurrentPatchFileName;        ///< ÇöÀç ÆĞÄ¡µÇ°í ÀÖ´Â ÆÄÀÏ¸í(ÆĞÄ¡ÆÄÀÏ¾ÈÀÇ ½ÇÁ¦ÆÄÀÏ)    
-    std::set<std::string> m_setErrFiles;                  ///< ¿¡·¯³­ ÆÄÀÏµéÀÇ ¸®½ºÆ®
+    std::string         m_strCurrentPatchFileName;        ///< í˜„ì¬ íŒ¨ì¹˜ë˜ê³  ìˆëŠ” íŒŒì¼ëª…(íŒ¨ì¹˜íŒŒì¼ì•ˆì˜ ì‹¤ì œíŒŒì¼)    
+    std::set<std::string> m_setErrFiles;                  ///< ì—ëŸ¬ë‚œ íŒŒì¼ë“¤ì˜ ë¦¬ìŠ¤íŠ¸
 };
 
 

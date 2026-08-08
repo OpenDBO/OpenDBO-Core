@@ -2,7 +2,7 @@
  *
  * File			: NtlFSMAgent.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2006. 2. 9	
  * Abstract		: FSM agent base class
  *****************************************************************************
@@ -46,15 +46,15 @@ public:
 	virtual void		NotifyUpdateChangeState(RwUInt32 uiOldState, RwUInt32 uiNextState);        ///< update notify function(state change).
 	virtual void		NotifyEvents(RWS::CMsg &pMsg, RwUInt32 uiEventResult, RwUInt32 uiParam1, RwUInt32 uiParam2); ///< event notify function.
 
-	virtual RwUInt32	AcquireNextState(RwUInt32 uiCurrStateId) = 0;      ///< Next State∏¶ ∞·¡§«—¥Ÿ.	
-    void				SetController(const CNtlFSMController *pController);           ///< Agentø° Controller∏¶ √ﬂ∞°«—¥Ÿ.
+	virtual RwUInt32	AcquireNextState(RwUInt32 uiCurrStateId) = 0;      ///< Next StateÎ•º Í≤∞Ï†ïÌïúÎã§.	
+    void				SetController(const CNtlFSMController *pController);           ///< AgentÏóê ControllerÎ•º Ï∂îÍ∞ÄÌïúÎã§.
 
-    virtual void		AddEvent(RWS::CMsg &pMsg);                             ///< Agentø° Event∏¶ Queuing «—¥Ÿ.
-	virtual void		RemoveAllEvents(void);                                 ///< Agentø° Queuingµ» ∏µÁ Event∏¶ ªË¡¶«—¥Ÿ.
-	virtual void		EventProc(void);                                       ///< Agentø° Queuingµ» Event∏¶ √≥∏Æ«—¥Ÿ.
+    virtual void		AddEvent(RWS::CMsg &pMsg);                             ///< AgentÏóê EventÎ•º Queuing ÌïúÎã§.
+	virtual void		RemoveAllEvents(void);                                 ///< AgentÏóê QueuingÎêú Î™®Îì† EventÎ•º ÏÇ≠Ï†úÌïúÎã§.
+	virtual void		EventProc(void);                                       ///< AgentÏóê QueuingÎêú EventÎ•º Ï≤òÎ¶¨ÌïúÎã§.
 	RwBool				IsQueuingEventExist(void);
 
-    //-- ∞‘¿”¿˚¿Œ º”º∫∞™µÈ¿ª æÚæÓø¿¥¬ «‘ºˆµÈ
+    //-- Í≤åÏûÑÏ†ÅÏù∏ ÏÜçÏÑ±Í∞íÎì§ÏùÑ ÏñªÏñ¥Ïò§Îäî Ìï®ÏàòÎì§
     virtual RwBool		IsFightingMode(void);
 	virtual RwBool		IsAirMode(void);
 	virtual RwBool		IsClickDisable(void);

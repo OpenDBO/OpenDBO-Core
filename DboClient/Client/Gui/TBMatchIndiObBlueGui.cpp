@@ -19,7 +19,7 @@
 
 /**
 * \brief Construction
-* \param pName	(const RwChar*) GUI ÀÌ¸§
+* \param pName	(const RwChar*) GUI ì´ë¦„
 */
 CTBMatchIndiObBlueGui::CTBMatchIndiObBlueGui( const RwChar* pName )
 : CNtlPLGui( pName )
@@ -39,7 +39,7 @@ CTBMatchIndiObBlueGui::~CTBMatchIndiObBlueGui()
 
 /**
 * \brief Create
-* ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ °³ÀÎÀü °üÀüÀÚ RED ÆÀÀÇ StatusBar¿¡ °ü·ÃµÈ GUI¸¦ »ı¼ºÇÑ´Ù.
+* ì²œí•˜ì œì¼ ë¬´ë„íšŒ ê°œì¸ì „ ê´€ì „ì RED íŒ€ì˜ StatusBarì— ê´€ë ¨ëœ GUIë¥¼ ìƒì„±í•œë‹¤.
 */
 RwBool CTBMatchIndiObBlueGui::Create()
 {
@@ -93,7 +93,7 @@ VOID CTBMatchIndiObBlueGui::Destroy()
 
 /**
 * \brief Update
-* \param fElapsed	(RwReal) ÀÌÀü ÇÁ·¹ÀÓ¿¡¼­ °æ°úµÈ ½Ã°£
+* \param fElapsed	(RwReal) ì´ì „ í”„ë ˆì„ì—ì„œ ê²½ê³¼ëœ ì‹œê°„
 */
 VOID CTBMatchIndiObBlueGui::Update( RwReal fElapsed )
 {
@@ -103,7 +103,7 @@ VOID CTBMatchIndiObBlueGui::Update( RwReal fElapsed )
 
 /**
 * \brief HandleEvents
-* \param msg		(RWS::CMsg&) Event ¸Ş½ÃÁö ±¸Á¶Ã¼
+* \param msg		(RWS::CMsg&) Event ë©”ì‹œì§€ êµ¬ì¡°ì²´
 */
 VOID CTBMatchIndiObBlueGui::HandleEvents( RWS::CMsg& msg )
 {
@@ -116,11 +116,11 @@ VOID CTBMatchIndiObBlueGui::HandleEvents( RWS::CMsg& msg )
 
 		stTBudokaiMember* pMember = GetBlueTeamUser();
 
-		// ÇöÀç ºí·çÆÀÀÇ ÇÃ·¹ÀÌ¾î¸¸ ¾÷µ¥ÀÌÆ® ÇØÁØ´Ù.
+		// í˜„ì¬ ë¸”ë£¨íŒ€ì˜ í”Œë ˆì´ì–´ë§Œ ì—…ë°ì´íŠ¸ í•´ì¤€ë‹¤.
 		if( pMember->hSerial != pUpdate->hSerialId )
 			return;
 
-		// Attribute °ü·Ã Update
+		// Attribute ê´€ë ¨ Update
 		if( pUpdate->uiUpdateType & EVENT_AIUT_ATTR )
 		{
 			UpdateUserData( pUpdate->hSerialId );
@@ -138,7 +138,7 @@ VOID CTBMatchIndiObBlueGui::HandleEvents( RWS::CMsg& msg )
 			{
 				if( !IsShow() )
 				{
-					// Âü°¡ÀÚ¶ó¸é ¸®ÅÏ
+					// ì°¸ê°€ìë¼ë©´ ë¦¬í„´
 					CNtlWorldConceptTB*	pTBWorldConcept = reinterpret_cast<CNtlWorldConceptTB*>( GetNtlWorldConcept()->GetWorldConceptController( WORLD_PLAY_T_BUDOKAI ) );
 					DBO_ASSERT( pTBWorldConcept, "CTBMatchIndiObBlueGui::HandleEvents : must World concept is valid" );
 
@@ -146,11 +146,11 @@ VOID CTBMatchIndiObBlueGui::HandleEvents( RWS::CMsg& msg )
 					if( pMember )
 						return;
 
-					// ÆÄÆ¼ ÇÃ·¹ÀÌ¶ó¸é ¸®ÅÏ
+					// íŒŒí‹° í”Œë ˆì´ë¼ë©´ ë¦¬í„´
 					if( pTBWorldConcept->IsPartyBattle() )
 						return;
 
-					// Team Á¤º¸°¡ ¿À¸é À¯ÀúÀÇ Data¸¦ ÀÔ·ÂÇÑ´Ù.
+					// Team ì •ë³´ê°€ ì˜¤ë©´ ìœ ì €ì˜ Dataë¥¼ ì…ë ¥í•œë‹¤.
 					SetUserData();
 
 					// SetPosition : Blue
@@ -177,7 +177,7 @@ VOID CTBMatchIndiObBlueGui::HandleEvents( RWS::CMsg& msg )
 			{
 				if( !IsShow() )
 				{
-					// Âü°¡ÀÚ¶ó¸é ¸®ÅÏ
+					// ì°¸ê°€ìë¼ë©´ ë¦¬í„´
 					CNtlWorldConceptTB*	pTBWorldConcept = reinterpret_cast<CNtlWorldConceptTB*>( GetNtlWorldConcept()->GetWorldConceptController( WORLD_PLAY_T_BUDOKAI ) );
 					DBO_ASSERT( pTBWorldConcept, "CTBMatchIndiObBlueGui::HandleEvents : must World concept is valid" );
 
@@ -185,7 +185,7 @@ VOID CTBMatchIndiObBlueGui::HandleEvents( RWS::CMsg& msg )
 					if( pMember )
 						return;
 
-					// ÆÄÆ¼ ÇÃ·¹ÀÌ¶ó¸é ¸®ÅÏ
+					// íŒŒí‹° í”Œë ˆì´ë¼ë©´ ë¦¬í„´
 					if( pTBWorldConcept->IsPartyBattle() )
 						return;
 
@@ -193,7 +193,7 @@ VOID CTBMatchIndiObBlueGui::HandleEvents( RWS::CMsg& msg )
 					if( !pMember )
 						return;
 
-					// Team Á¤º¸°¡ ¿À¸é À¯ÀúÀÇ Data¸¦ ÀÔ·ÂÇÑ´Ù.
+					// Team ì •ë³´ê°€ ì˜¤ë©´ ìœ ì €ì˜ Dataë¥¼ ì…ë ¥í•œë‹¤.
 					SetUserData();
 
 					// SetPosition : Blue
@@ -211,14 +211,14 @@ VOID CTBMatchIndiObBlueGui::HandleEvents( RWS::CMsg& msg )
 }
 
 /**
-* \brief Blue ÆÀÀÇ Plyaer Data ¾÷µ¥ÀÌÆ®
+* \brief Blue íŒ€ì˜ Plyaer Data ì—…ë°ì´íŠ¸
 */
 VOID CTBMatchIndiObBlueGui::SetUserData()
 {
 	stTBudokaiMember* pMember = GetBlueTeamUser();
 	DBO_ASSERT( pMember, "CTBMatchIndiObBlueGui : must Budokai member is valid" );
 
-	// User¸¦ °Ë»çÇØ¼­ ÇöÀçÀÇ À¯Àú°¡ NOAPPLY¶Ç´Â GIVEUPÀÏ °æ¿ì ¾÷µ¥ÀÌÆ®¸¦ ÇÏÁö ¾Ê´Â´Ù.
+	// Userë¥¼ ê²€ì‚¬í•´ì„œ í˜„ì¬ì˜ ìœ ì €ê°€ NOAPPLYë˜ëŠ” GIVEUPì¼ ê²½ìš° ì—…ë°ì´íŠ¸ë¥¼ í•˜ì§€ ì•ŠëŠ”ë‹¤.
 	if( pMember->byState == MATCH_MEMBER_STATE_NOAPPLY ||
 		pMember->byState == MATCH_MEMBER_STATE_GIVEUP )
 	{
@@ -227,7 +227,7 @@ VOID CTBMatchIndiObBlueGui::SetUserData()
 
 	m_bSetData = TRUE;
 
-	// ÀÌ¸§
+	// ì´ë¦„
 	m_pStbName->SetText( pMember->wstrName.c_str() );
 
 	UpdateUserData( pMember->hSerial );
@@ -235,7 +235,7 @@ VOID CTBMatchIndiObBlueGui::SetUserData()
 
 VOID CTBMatchIndiObBlueGui::UpdateUserData( SERIAL_HANDLE hSerial )
 {
-	// ÀÌ¸§, ·¹º§ ¹× °¢Á¾ Status ¼¼ÆÃ
+	// ì´ë¦„, ë ˆë²¨ ë° ê°ì¢… Status ì„¸íŒ…
 	CNtlSobPlayer* pPlayer = reinterpret_cast<CNtlSobPlayer*>(GetNtlSobManager()->GetSobObject( hSerial ));
 	DBO_ASSERT( pPlayer, "CTBMatchIndiObBlueGui : must player handle is valid" );
 
@@ -257,7 +257,7 @@ VOID CTBMatchIndiObBlueGui::UpdateUserData( SERIAL_HANDLE hSerial )
 }
 
 /**
-* \brief Blue ÆÀÀÇ User Data¸¦ ¸®ÅÏ
+* \brief Blue íŒ€ì˜ User Dataë¥¼ ë¦¬í„´
 */
 stTBudokaiMember* CTBMatchIndiObBlueGui::GetBlueTeamUser()
 {
@@ -271,7 +271,7 @@ stTBudokaiMember* CTBMatchIndiObBlueGui::GetBlueTeamUser()
 		return NULL;
 	}
 
-	// ÆÀ Á¤º¸°¡ ¾ø´Ù.
+	// íŒ€ ì •ë³´ê°€ ì—†ë‹¤.
 	if( pRedTeam->vecpMember.size() <= 0 )
 		return NULL;
 

@@ -65,7 +65,7 @@ void CNtlSobEventObjectProxy::HandleEvents( RWS::CMsg &pMsg )
         
         if(m_pPLObject->GetMilepostID())
         {
-            // Å¬¶óÀÌ¾ðÆ® ·¹ÀÌ¾îÀÇ UIÂÊÀ¸·Î ¸Þ½ÃÁö¸¦ ½÷¼­ ÅøÆÁ Ç¥½Ã        
+            // í´ë¼ì´ì–¸íŠ¸ ë ˆì´ì–´ì˜ UIìª½ìœ¼ë¡œ ë©”ì‹œì§€ë¥¼ ì´ì„œ íˆ´íŒ í‘œì‹œ        
             std::wstring& wstrString = API_GetTableContainer()->GetTextAllTable()->GetMilePostTable()->GetText(m_pPLObject->GetMilepostID());
             CNtlSLEventGenerator::ShowToolTip(TRUE, 0, 0, wstrString.c_str());
         }
@@ -76,7 +76,7 @@ void CNtlSobEventObjectProxy::HandleEvents( RWS::CMsg &pMsg )
 
         if(m_pPLObject->GetMilepostID())
         {
-            // Å¬¶óÀÌ¾ðÆ® ·¹ÀÌ¾îÀÇ UIÂÊÀ¸·Î ¸Þ½ÃÁö¸¦ ½÷¼­ ÅøÆÁ Á¦°Å
+            // í´ë¼ì´ì–¸íŠ¸ ë ˆì´ì–´ì˜ UIìª½ìœ¼ë¡œ ë©”ì‹œì§€ë¥¼ ì´ì„œ íˆ´íŒ ì œê±°
             CNtlSLEventGenerator::ShowToolTip(FALSE, 0, 0, L"");
         }        
 	}		

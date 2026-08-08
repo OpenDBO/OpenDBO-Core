@@ -2,7 +2,7 @@
  *
  * File			: NtlWorldConcept.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 12. 04	
  * Abstract		: Simulation world concept class
  *****************************************************************************
@@ -23,8 +23,8 @@ class CNtlSobActor;
 
 /**
  * \ingroup NtlSimulation
- * \brief °ÔÀÓ³»ÀÇ ¿©·¯ ½Ã½ºÅÛ¿¡ °ü·ÃµÈ World Concept¸¦ Á¤ÀÇÇÏ´Â Å¬·¡½º 
- * (ÇÑ¹ø¿¡ È°¼ºÈ­µÇ´Â World ConceptÀº 2°³ÀÌ»óÀÌ µÉ ¼öµµ ÀÖ´Ù)
+ * \brief ê²Œì„ë‚´ì˜ ì—¬ëŸ¬ ì‹œìŠ¤í…œì— ê´€ë ¨ëœ World Conceptë¥¼ ì •ì˜í•˜ëŠ” í´ë˜ìŠ¤ 
+ * (í•œë²ˆì— í™œì„±í™”ë˜ëŠ” World Conceptì€ 2ê°œì´ìƒì´ ë  ìˆ˜ë„ ìˆë‹¤)
  * \date 2007-06-14
  * \author agebreak
  */
@@ -44,14 +44,14 @@ public:
 
 	void						Update(RwReal fElapsed);
 
-	void						AddWorldPlayConcept(EWorldPlayConcept ePlayConcept);		///< È°¼ºÈ­µÈ WorldConcept ¸®½ºÆ®¿¡ »õ·Î¿î World Concept¸¦ Ãß°¡ÇÑ´Ù.
-	void						RemoveWorldPlayConcept(EWorldPlayConcept ePlayConcept);		///< È°¼ºÈ­µÈ WorldConcept ¸®½ºÆ®¿¡¼­ World ConceptÀ» Á¦°ÅÇÑ´Ù.
+	void						AddWorldPlayConcept(EWorldPlayConcept ePlayConcept);		///< í™œì„±í™”ëœ WorldConcept ë¦¬ìŠ¤íŠ¸ì— ìƒˆë¡œìš´ World Conceptë¥¼ ì¶”ê°€í•œë‹¤.
+	void						RemoveWorldPlayConcept(EWorldPlayConcept ePlayConcept);		///< í™œì„±í™”ëœ WorldConcept ë¦¬ìŠ¤íŠ¸ì—ì„œ World Conceptì„ ì œê±°í•œë‹¤.
 
 	void						DeleteGradeWorldPlayConcept(RwUInt32 uiGrade);
 		
-	RwBool						IsActivePlayConcept(EWorldPlayConcept ePlayConcept);		///< ÇöÀç WorldConceptÀÌ È°¼ºÈ­ µÇ¾î ÀÖ´ÂÁö¸¦ ¹İÈ¯ÇÑ´Ù.	
-	RwBool						IsActivePlayGrade(RwUInt32 uiGrade);						///< ÇöÀç Grade°¡ È°¼ºÈ­ µÇ¾îÀÖ´Â°¡.
-	CNtlWorldConceptController* GetWorldConceptController(EWorldPlayConcept eWorldConcept);	///< World Concept¿¡ ÇØ´çÇÏ´Â ÄÁÆ®·Ñ·¯ °´Ã¼¸¦ ¹İÈ¯ÇÑ´Ù.
+	RwBool						IsActivePlayConcept(EWorldPlayConcept ePlayConcept);		///< í˜„ì¬ WorldConceptì´ í™œì„±í™” ë˜ì–´ ìˆëŠ”ì§€ë¥¼ ë°˜í™˜í•œë‹¤.	
+	RwBool						IsActivePlayGrade(RwUInt32 uiGrade);						///< í˜„ì¬ Gradeê°€ í™œì„±í™” ë˜ì–´ìˆëŠ”ê°€.
+	CNtlWorldConceptController* GetWorldConceptController(EWorldPlayConcept eWorldConcept);	///< World Conceptì— í•´ë‹¹í•˜ëŠ” ì»¨íŠ¸ë¡¤ëŸ¬ ê°ì²´ë¥¼ ë°˜í™˜í•œë‹¤.
 	CNtlWorldConceptController* FindGradeExtController(RwUInt32 uiGrade);		
 	
 	void						BeforeLoadingDirect(void);
@@ -91,13 +91,13 @@ protected:
 	ListController				m_listController;
 
 	RwBool						m_bActionEnable;
-    RwBool                      m_bIsNightOn;                           ///< ÇöÀç Night°¡ OnÀÎÁö OffÀÎÁö ÆÇº°ÇÏ´Â ÇÃ·¡±×
+    RwBool                      m_bIsNightOn;                           ///< í˜„ì¬ Nightê°€ Onì¸ì§€ Offì¸ì§€ íŒë³„í•˜ëŠ” í”Œë˜ê·¸
 
 	RwBool						m_bHasTutorialWorldConcept;
 };
 
 
-/// World Concept Å¬·¡½ºÀÇ ½Ì±ÛÅæ °´Ã¼¸¦ ¹İÈ¯ÇÑ´Ù.
+/// World Concept í´ë˜ìŠ¤ì˜ ì‹±ê¸€í†¤ ê°ì²´ë¥¼ ë°˜í™˜í•œë‹¤.
 static CNtlWorldConcept* GetNtlWorldConcept(void)
 {
 	return CNtlWorldConcept::GetInstance();

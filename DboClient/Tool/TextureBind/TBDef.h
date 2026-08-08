@@ -12,6 +12,6 @@ static const RwV3d  ZAxis = { 0.0f, 0.0f, 1.0f };
 static const RwV3d  ZeroAxis = { 0.0f, 0.0f, 0.0f };
 
 // define
-#define rsRESOURCESDEFAULTARENASIZE (4<<20)
+#define rsRESOURCESDEFAULTARENASIZE (128<<20)
 
 #endif//__TB_DEF_H__

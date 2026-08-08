@@ -11,8 +11,83 @@
 #ifndef ASSEMBLYMATH_INCLUDED
 #define ASSEMBLYMATH_INCLUDED
 
+#if defined(_M_X64) || defined(_WIN64)
+#include <intrin.h>
+#endif
+
 namespace nAssemblyMath
 {
+
+#if defined(_M_X64) || defined(_WIN64)
+// x64 versions using intrinsics and standard C++
+inline void add(tUnsigned32 source, tUnsigned32 &dest, tUnsigned32 &carry)
+{
+    uint64_t result = (uint64_t)dest + source;
+    dest = (tUnsigned32)result;
+    carry = (tUnsigned32)(result >> 32);
+}
+
+inline void adc(tUnsigned32 source, tUnsigned32 &dest, tUnsigned32 &carry)
+{
+    uint64_t result = (uint64_t)dest + carry + source;
+    dest = (tUnsigned32)result;
+    carry = (tUnsigned32)(result >> 32);
+}
+
+inline void sub(tUnsigned32 source, tUnsigned32 &dest, tUnsigned32 &borrow)
+{
+    uint64_t result = (uint64_t)dest - source;
+    dest = (tUnsigned32)result;
+    borrow = (tUnsigned32)(result >> 32);
+}
+
+inline void sbb(tUnsigned32 source, tUnsigned32 &dest, tUnsigned32 &borrow)
+{
+    uint64_t result = (uint64_t)dest - borrow - source;
+    dest = (tUnsigned32)result;
+    borrow = (tUnsigned32)(result >> 32);
+}
+
+inline void mul(tUnsigned32 source1, tUnsigned32 source2, tUnsigned32 &dest_high, tUnsigned32 &dest_low)
+{
+    uint64_t result = (uint64_t)source1 * source2;
+    dest_low = (tUnsigned32)result;
+    dest_high = (tUnsigned32)(result >> 32);
+}
+
+inline void imul(tSigned32 source1, tSigned32 source2, tUnsigned32 &dest_high, tUnsigned32 &dest_low)
+{
+    int64_t result = (int64_t)source1 * source2;
+    dest_low = (tUnsigned32)result;
+    dest_high = (tUnsigned32)(result >> 32);
+}
+
+inline void div(tUnsigned32 dividend_high, tUnsigned32 dividend_low, tUnsigned32 divisor, tUnsigned32 &quotient, tUnsigned32 &remainder)
+{
+    uint64_t dividend = ((uint64_t)dividend_high << 32) | dividend_low;
+    quotient = (tUnsigned32)(dividend / divisor);
+    remainder = (tUnsigned32)(dividend % divisor);
+}
+
+inline int bitCount(tUnsigned32 input, tUnsigned32& output)
+{
+    int count = __popcnt(input);
+    output = input;
+    return count;
+}
+
+inline int notindexForTopBit(tUnsigned32 input)
+{
+    assertD(input != 0);
+    return 31 - __lzcnt(input);
+    unsigned long index;
+    _BitScanReverse(&index, input);
+    return (int)index;
+}
+
+#endif // x64 versions with intrinsics
+
+#else // x86 versions with inline asm
 
 inline void add(tUnsigned32 source, tUnsigned32 &dest, tUnsigned32 &carry)
 {

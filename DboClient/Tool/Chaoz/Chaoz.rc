@@ -13,7 +13,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// ÇÑ±¹¾î resources
+// í•œêµ­ì–´ resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 #ifdef _WIN32
@@ -48,8 +48,8 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)\r\n"
     "LANGUAGE 18, 1\r\n"
     "#pragma code_page(949)\r\n"
-    "#include ""res\\Chaoz.rc2""  // Microsoft Visual C++ ÀÌ¿ÜÀÇ ´Ù¸¥ µµ±¸¿¡¼­ ÆíÁýÇÑ ¸®¼Ò½ºÀÔ´Ï´Ù.\r\n"
-    "#include ""afxres.rc""     // Ç¥ÁØ ±¸¼º ¿ä¼ÒÀÔ´Ï´Ù.\r\n"
+    "#include ""res\\Chaoz.rc2""  // Microsoft Visual C++ ì´ì™¸ì˜ ë‹¤ë¥¸ ë„êµ¬ì—ì„œ íŽ¸ì§‘í•œ ë¦¬ì†ŒìŠ¤ìž…ë‹ˆë‹¤.\r\n"
+    "#include ""afxres.rc""     // í‘œì¤€ êµ¬ì„± ìš”ì†Œìž…ë‹ˆë‹¤.\r\n"
     "#endif\r\n"
     "\0"
 END
@@ -73,20 +73,20 @@ IDR_MAINFRAME           ICON                    "res\\Chaoz.ico"
 
 IDD_ABOUTBOX DIALOGEX 0, 0, 235, 55
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Chaoz Á¤º¸"
-FONT 9, "MS ¼Ð ´ëÈ­ »óÀÚ", 0, 0, 0x1
+CAPTION "Chaoz ì •ë³´"
+FONT 9, "MS ì…¸ ëŒ€í™” ìƒìž", 0, 0, 0x1
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
-    LTEXT           "Chaoz ¹öÀü 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Chaoz ë²„ì „ 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
     LTEXT           "Copyright (C) 2008",IDC_STATIC,40,25,119,8
-    DEFPUSHBUTTON   "È®ÀÎ",IDOK,178,7,50,16,WS_GROUP
+    DEFPUSHBUTTON   "í™•ì¸",IDOK,178,7,50,16,WS_GROUP
 END
 
 IDD_CHAOZ_DIALOG DIALOGEX 0, 0, 370, 193
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_APPWINDOW
 CAPTION "Chaoz"
-FONT 9, "MS ¼Ð ´ëÈ­ »óÀÚ", 0, 0, 0x1
+FONT 9, "MS ì…¸ ëŒ€í™” ìƒìž", 0, 0, 0x1
 BEGIN
     GROUPBOX        "Static",IDC_STATIC,6,72,360,114
     PUSHBUTTON      "Play",IDC_BUTTON1,228,168,60,12
@@ -142,13 +142,13 @@ BEGIN
     BEGIN
         BLOCK "041203b5"
         BEGIN
-            VALUE "CompanyName", "TODO: <È¸»ç ÀÌ¸§>"
-            VALUE "FileDescription", "TODO: <ÆÄÀÏ ¼³¸í>"
+            VALUE "CompanyName", "TODO: <íšŒì‚¬ ì´ë¦„>"
+            VALUE "FileDescription", "TODO: <íŒŒì¼ ì„¤ëª…>"
             VALUE "FileVersion", "1.0.0.1"
             VALUE "InternalName", "Chaoz.exe"
-            VALUE "LegalCopyright", "TODO: (c) <È¸»ç ÀÌ¸§>.  All rights reserved."
+            VALUE "LegalCopyright", "TODO: (c) <íšŒì‚¬ ì´ë¦„>.  All rights reserved."
             VALUE "OriginalFilename", "Chaoz.exe"
-            VALUE "ProductName", "TODO: <Á¦Ç° ÀÌ¸§>"
+            VALUE "ProductName", "TODO: <ì œí’ˆ ì´ë¦„>"
             VALUE "ProductVersion", "1.0.0.1"
         END
     END
@@ -193,10 +193,10 @@ END
 
 STRINGTABLE 
 BEGIN
-    IDS_ABOUTBOX            "Chaoz Á¤º¸(&A)..."
+    IDS_ABOUTBOX            "Chaoz ì •ë³´(&A)..."
 END
 
-#endif    // ÇÑ±¹¾î resources
+#endif    // í•œêµ­ì–´ resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -214,8 +214,8 @@ END
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 LANGUAGE 18, 1
 #pragma code_page(949)
-#include "res\Chaoz.rc2"  // Microsoft Visual C++ ÀÌ¿ÜÀÇ ´Ù¸¥ µµ±¸¿¡¼­ ÆíÁýÇÑ ¸®¼Ò½ºÀÔ´Ï´Ù.
-#include "afxres.rc"     // Ç¥ÁØ ±¸¼º ¿ä¼ÒÀÔ´Ï´Ù.
+#include "res\Chaoz.rc2"  // Microsoft Visual C++ ì´ì™¸ì˜ ë‹¤ë¥¸ ë„êµ¬ì—ì„œ íŽ¸ì§‘í•œ ë¦¬ì†ŒìŠ¤ìž…ë‹ˆë‹¤.
+#include "afxres.rc"     // í‘œì¤€ êµ¬ì„± ìš”ì†Œìž…ë‹ˆë‹¤.
 #endif
 
 /////////////////////////////////////////////////////////////////////////////

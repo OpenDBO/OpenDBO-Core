@@ -2,12 +2,12 @@
  *
  * File			: NtlFSMEventQueuingHelper.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2006. 9. 26	
  * Abstract		: FSM event queuing helper
  *****************************************************************************
- * Desc         :  Àá½Ã Àá±ñ ÀÓ½Ã·Î ¾´´Ù.
- *				  - state¸¦ stack ÇÏ´Â ±â´ÉÀ» agent¿¡ ¸¸µç´Ù.
+ * Desc         :  ì ì‹œ ì ê¹ ì„ì‹œë¡œ ì“´ë‹¤.
+ *				  - stateë¥¼ stack í•˜ëŠ” ê¸°ëŠ¥ì„ agentì— ë§Œë“ ë‹¤.
  *
  *****************************************************************************/
 

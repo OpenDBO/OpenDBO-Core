@@ -2,7 +2,7 @@
  *
  * File			: NtlDebug.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 08. 09	
  * Abstract		: memory handler
  *****************************************************************************

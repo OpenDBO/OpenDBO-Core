@@ -4,7 +4,7 @@
 #include "afxwin.h"
 #include "CommandEdit.h"
 
-// CConsoleDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CConsoleDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CConsoleDialog : public CDialog
 {
@@ -12,10 +12,10 @@ class CConsoleDialog : public CDialog
 
 	CString				m_Command;
 public:
-	CConsoleDialog(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CConsoleDialog(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CConsoleDialog();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_CONSOLE };
 
 	virtual BOOL OnInitDialog();
@@ -26,7 +26,7 @@ public:
 	void SetCommand( TCHAR * pCommand ) { m_Command = pCommand; m_Command.AppendChar( '\n' ); OnOK(); }
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

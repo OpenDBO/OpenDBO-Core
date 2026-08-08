@@ -1,4 +1,4 @@
-// TSGroupIDInputDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// TSGroupIDInputDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "TSGroupIDInputDlg.h"
 
 
-// CTSGroupIDInputDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CTSGroupIDInputDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CTSGroupIDInputDlg, CDialog)
 
@@ -34,4 +34,4 @@ BEGIN_MESSAGE_MAP(CTSGroupIDInputDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CTSGroupIDInputDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CTSGroupIDInputDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

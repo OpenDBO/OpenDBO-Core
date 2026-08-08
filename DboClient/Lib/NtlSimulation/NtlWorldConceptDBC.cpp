@@ -100,7 +100,7 @@ void CNtlWorldConceptDBC::Update( RwReal fElapsedTime )
 			ChangeState(WORLD_DBC_SPAWN_DRAGON);
 		}
 		break;	
-	case WORLD_DBC_SPAWN_DRAGON: // ¿ë½ÅÀÌ ¿ÏÀüÈ÷ µîÀåÇßÀ»¶§
+	case WORLD_DBC_SPAWN_DRAGON: // ìš©ì‹ ì´ ì™„ì „íˆ ë“±ì¥í–ˆì„ë•Œ
 		if(m_fStateTime >= TIME_SPAWN_DRAGON)
 		{
 			ChangeState(WORLD_DBC_NARRATION_START);
@@ -109,7 +109,7 @@ void CNtlWorldConceptDBC::Update( RwReal fElapsedTime )
 	case WORLD_DBC_NARRATION_START:
 		if(m_fStateTime >= TIME_NARRATION)
 		{
-			// ³ª·¹ÀÌ¼ÇÀ» ²ö´Ù.
+			// ë‚˜ë ˆì´ì…˜ì„ ëˆë‹¤.
 			CNtlSLEventGenerator::DBCNarration("", L"", SNtlEventDBCNarration::DBC_NARRATION_END_ATONCE);
 			ChangeState(WORLD_DBC_REWARD_UI);
 		}
@@ -119,7 +119,7 @@ void CNtlWorldConceptDBC::Update( RwReal fElapsedTime )
 	case WORLD_DBC_NARRATION_END:
 		if(m_fStateTime >= TIME_NARRATION)
 		{
-			// ³ª·¹ÀÌ¼ÇÀ» ²ö´Ù.
+			// ë‚˜ë ˆì´ì…˜ì„ ëˆë‹¤.
 			CNtlSLEventGenerator::DBCNarration("", L"", SNtlEventDBCNarration::DBC_NARRATION_END_ATONCE);
 			ChangeState(WORLD_DBC_DESTROY_DRAGON);
 		}
@@ -159,7 +159,7 @@ void CNtlWorldConceptDBC::ChangeState( RwInt32 iState )
 	{
 	case WORLD_DBC_NIGHT_ON:			
         {
-            // ¿ë½Å µîÀå½ÃÀÇ ¹è°æÀ½¾Ç Àç»ı
+            // ìš©ì‹  ë“±ì¥ì‹œì˜ ë°°ê²½ìŒì•… ì¬ìƒ
             CNtlSob* pSobAltar = GetNtlSobManager()->GetSobObject(GetAltarSerialID());
             RwV3d vPos = pSobAltar->GetPosition();
             sNtlSoundPlayParameta tSoundParam;
@@ -183,7 +183,7 @@ void CNtlWorldConceptDBC::ChangeState( RwInt32 iState )
 			sDRAGONBALL_TBLDAT* pData = (sDRAGONBALL_TBLDAT*)API_GetTableContainer()->GetDragonBallTable()->GetDBTbldat((BYTE)m_eDragonBallKind);
 			if(pData)
 			{
-                // ÀÏ·¯½ºÆ®
+                // ì¼ëŸ¬ìŠ¤íŠ¸
                 std::string strIllust = "";
                 sBOT_TBLDAT* pDragonTable = (sBOT_TBLDAT*)API_GetTableContainer()->GetNpcTable()->FindData(pData->dragonNPCTblidx);
                 if(pDragonTable)
@@ -199,14 +199,14 @@ void CNtlWorldConceptDBC::ChangeState( RwInt32 iState )
 	case WORLD_DBC_REWARD_UI:				
 		break;
 	case WORLD_DBC_DESTROY_DB:
-        CNtlSLEventGenerator::DBCScatter();         ///< µå·¡°ïº¼ Èğ¾îÁö´Â ¿¬ÃâÀ» Ä«¸Ş¶ó ¿¬ÃâÀ» À§ÇØ ¸Å´ÏÀú¿¡°Ô ¾Ë·ÁÁØ´Ù.
+        CNtlSLEventGenerator::DBCScatter();         ///< ë“œë˜ê³¤ë³¼ í©ì–´ì§€ëŠ” ì—°ì¶œì„ ì¹´ë©”ë¼ ì—°ì¶œì„ ìœ„í•´ ë§¤ë‹ˆì €ì—ê²Œ ì•Œë ¤ì¤€ë‹¤.
 		break;
 	case WORLD_DBC_NARRATION_END:
 		{
 			sDRAGONBALL_TBLDAT* pData = (sDRAGONBALL_TBLDAT*)API_GetTableContainer()->GetDragonBallTable()->GetDBTbldat((BYTE)m_eDragonBallKind);
 			if(pData)
 			{
-                // ÀÏ·¯½ºÆ®
+                // ì¼ëŸ¬ìŠ¤íŠ¸
                 std::string strIllust = "";
                 sBOT_TBLDAT* pDragonTable = (sBOT_TBLDAT*)API_GetTableContainer()->GetNpcTable()->FindData(pData->dragonNPCTblidx);
                 if(pDragonTable)
@@ -229,7 +229,7 @@ void CNtlWorldConceptDBC::ChangeState( RwInt32 iState )
 
 void CNtlWorldConceptDBC::ResetRemainTime() 
 {
-    // ¼­¹ö¿ÍÀÇ ½Ã°£ ¾ÅÅ©¸¦ À§ÇØ¼­ ¾à°£ÀÇ ¿ÀÇÁ¼Â°ªÀ» ÁØ´Ù. (Á¤È®ÇÏ°Ô ¸ÂÃß´Â°ÍÀº ºÒ°¡´ÉÇÏ´Ù)
+    // ì„œë²„ì™€ì˜ ì‹œê°„ ì”½í¬ë¥¼ ìœ„í•´ì„œ ì•½ê°„ì˜ ì˜¤í”„ì…‹ê°’ì„ ì¤€ë‹¤. (ì •í™•í•˜ê²Œ ë§ì¶”ëŠ”ê²ƒì€ ë¶ˆê°€ëŠ¥í•˜ë‹¤)
 	m_uiRemainTime = DBO_MAX_TIMER_DB_UI_OK - 2000;
     m_bUpdateRemainTime = TRUE;
 }

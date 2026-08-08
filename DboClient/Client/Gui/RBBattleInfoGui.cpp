@@ -24,7 +24,7 @@
 #include "DisplayStringManager.h"
 #include "DboEventGenerator.h"
 
-#define RBENEMY_PARTYINFO_CLASSICON_X	-24		// °¢ ÆÄÆ¼ÀÎÆ÷¾ÆÀÌÅÛ ±âÁØ ÁÂÇ¥.
+#define RBENEMY_PARTYINFO_CLASSICON_X	-24		// ê° íŒŒí‹°ì¸í¬ì•„ì´í…œ ê¸°ì¤€ ì¢Œí‘œ.
 #define RBENEMY_PARTYINFO_CLASSICON_Y	0	
 
 #define RB_BATTLEINFO_KAMESCORE_X		127
@@ -195,7 +195,7 @@ RwBool CRBBattleInfoGui::Create(VOID)
 	m_pstbTitle = (gui::CStaticBox*)GetComponent( "stbTitle" );
 	m_pstbEnemyMember = (gui::CStaticBox*)GetComponent( "stbEnemyMember" );
 
-	// »ö¼³Á¤
+	// ìƒ‰ì„¤ì •
 	m_pstbKameTeamName->SetTextColor( NTL_BLUE_TEAM_COLOR );
 	m_pstbTsuruTeamName->SetTextColor( NTL_RED_TEAM_COLOR );
 	m_pstbKameTeamName->SetEffectColor( RANKBATTLE_COLOR_GREEN );
@@ -244,7 +244,7 @@ RwBool CRBBattleInfoGui::Create(VOID)
 
 	Show( false );
 
-	//LinkMsg( g_EventRBBattleTeamInfo );	// WorldConceptChangeÀÌÀü¿¡ ³¯¶ó¿À´Â ÀÌº¥Æ®, ¿©±â¿¡¼­´Â »ı¼ºµÇ±â Àü¿¡ È£ÃâµÇ¹Ç·Î ºÒ¿ë.
+	//LinkMsg( g_EventRBBattleTeamInfo );	// WorldConceptChangeì´ì „ì— ë‚ ë¼ì˜¤ëŠ” ì´ë²¤íŠ¸, ì—¬ê¸°ì—ì„œëŠ” ìƒì„±ë˜ê¸° ì „ì— í˜¸ì¶œë˜ë¯€ë¡œ ë¶ˆìš©.
 	LinkMsg( g_EventRBBattlePlayerState );
 	LinkMsg( g_EventRBBattleStateUpdate );
 	LinkMsg( g_EventRBBattleStageFinish );

@@ -2,7 +2,7 @@
 //	File		:	NtlResourceImVertexSystem.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -23,7 +23,7 @@ public:
 	RpPrtAdvPrtMultiColorEmitter	m_EmitterPrtMultiCol;
 	SNtlAdvMultiSizeEmitter			m_EmitterPrtMultiSize;
 
-    SNtlPrtStdEmitterPrtFinish      m_EmitterPrtFinish;             ///< Finish ¿¬Ãâ¿¡ »ç¿ëµÇ´Â ÇÁ·ÎÆÛÆ¼
+    SNtlPrtStdEmitterPrtFinish      m_EmitterPrtFinish;             ///< Finish ì—°ì¶œì— ì‚¬ìš©ë˜ëŠ” í”„ë¡œí¼í‹°
 
 public:
 	CNtlResourceImVertexSystem(const RwChar* strName);

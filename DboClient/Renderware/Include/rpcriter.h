@@ -5,6 +5,15 @@
  *                                                                         *
  **************************************************************************/
 
+#ifndef RwCoreRpcriter_H
+#define RwCoreRpcriter_H
+
+#include <rwplcore.h>
+
+#ifndef MAKECHUNKID
+#define MAKECHUNKID(vendorID, chunkID) (((vendorID & 0xFFFFFF) << 8) | (chunkID & 0xFF))
+#endif
+
 /* These are plugins */
 
 #define rwID_METRICSPLUGIN   MAKECHUNKID(rwVENDORID_CRITERIONTK, 0x01)
@@ -233,13 +242,6 @@
  */
 #define rwID_IDPLUGIN    MAKECHUNKID(rwVENDORID_CRITERIONTK, 0x37)
 
- /**
- * \ingroup rwengine
- * \def rwID_IDPLUGIN defineds the pluginID for the \ref rpid plugin
- * \See \ref RwEngineRegisterPlugin
- */
-#define rwID_PSPMIPMAPSLOPE    MAKECHUNKID(rwVENDORID_CRITERIONTK, 0x38)
-
 /* These are toolkits */
 
 /**
@@ -312,7 +314,7 @@
 #define rwID_MIPMAPPLUGIN      MAKECHUNKID(rwVENDORID_CRITERIONTK, 0x97)
 /**
  * \ingroup rwengine
- * \def rwID_MIPMAPKPLUGIN defines the pluginID for the \ref rtmipk toolkit.
+ * \def rwID_MIPMAPKPLUGIN defines the pluginID for the \ref rpmipkl toolkit.
  * See \ref RwEngineRegisterPlugin
  */
 #define rwID_MIPMAPKPLUGIN     MAKECHUNKID(rwVENDORID_CRITERIONTK, 0x98)
@@ -461,12 +463,7 @@
  * See \ref RwEngineRegisterPlugin
  */
 #define rwID_UVANIMPARAM       MAKECHUNKID(rwVENDORID_CRITERIONTK, 0xc1)
-/**
- * \ingroup rwengine
- * \def rwID_MIPMAPSLOPEPLUGIN defines the pluginID for the \ref rtmipslope toolkit.
- * See \ref RwEngineRegisterPlugin
- */
-#define rwID_MIPMAPSLOPEPLUGIN     MAKECHUNKID(rwVENDORID_CRITERIONTK, 0xc2)
 
+#endif /* RwCoreRpcriter_H */
 
 

@@ -4,7 +4,7 @@
 //
 // 2006.10.21 Peessi@hitel.net   
 //
-// To Be Desired: Quest Proposal, Quest Reward Gui¿Í ÅëÇÕÇÒ °ÍÀÎ°¡ ÃßÈÄ °áÁ¤.
+// To Be Desired: Quest Proposal, Quest Reward Guiì™€ í†µí•©í•  ê²ƒì¸ê°€ ì¶”í›„ ê²°ì •.
 //
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -78,14 +78,14 @@ private:
 		
 	//! Variables	
 	gui::CPanel*		m_ppnlConversationBack;
-	gui::CHtmlBox*		m_phbxConversation;		// Quest ´ëÈ­
+	gui::CHtmlBox*		m_phbxConversation;		// Quest ëŒ€í™”
 	
 	gui::CPanel*		m_ppnlAimBack;
-	gui::CHtmlBox*		m_phbxAim;				// Quest ¸ñÇ¥
+	gui::CHtmlBox*		m_phbxAim;				// Quest ëª©í‘œ
 
-	gui::CStaticBox*	m_pstbAimTargetTitle;	// ÀÇ·ÚÃ³, º¸°íÃ³
-	gui::CStaticBox*	m_pstbAimTargetValue;	// ÀÇ·ÚÃ³, º¸°íÃ³ÀÇ ÀÌ¸§
-	gui::CStaticBox*	m_pstbAimTitle;			// ¸ñÇ¥ Å¸ÀÌÆ². (ÅÇÀÌ¿Ü¿¡ ÀÇ·ÚÃ³,º¸°íÃ³°¡ ³ª¿Ã¶§ ¹Ø¿¡ ³ª¿Â´Ù.)
+	gui::CStaticBox*	m_pstbAimTargetTitle;	// ì˜ë¢°ì²˜, ë³´ê³ ì²˜
+	gui::CStaticBox*	m_pstbAimTargetValue;	// ì˜ë¢°ì²˜, ë³´ê³ ì²˜ì˜ ì´ë¦„
+	gui::CStaticBox*	m_pstbAimTitle;			// ëª©í‘œ íƒ€ì´í‹€. (íƒ­ì´ì™¸ì— ì˜ë¢°ì²˜,ë³´ê³ ì²˜ê°€ ë‚˜ì˜¬ë•Œ ë°‘ì— ë‚˜ì˜¨ë‹¤.)
 	
 	gui::CStaticBox*	m_pstbProgressTitle;
 	gui::CStaticBox*	m_pstbTimeTitle;

@@ -1,14 +1,14 @@
 /******************************************************************************
 * File			: OptionWindowGui.h
 * Author		: Kim Jinsung
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. . 
 * Abstract		: 
 *****************************************************************************
 * Desc			: COptionWindowGui
-* Modify		: 2007. 10. 1 - Cho haesung Ãß°¡(COptionControl)
+* Modify		: 2007. 10. 1 - Cho haesung ì¶”ê°€(COptionControl)
 
-¿É¼Ç À©µµ¿ì GUI
+ì˜µì…˜ ìœˆë„ìš° GUI
 *****************************************************************************/
 
 #ifndef _OPTIONWINDOWGUI_H_
@@ -27,14 +27,14 @@ class COptionETC;
 class COptionChatting;
 class COptionFilter;
 
-#define dOPTION_VIRTUAL_NUM				9			// º¸¿©Áú ¸®½ºÆ®ÀÇ °¹¼ö
-#define dOPTION_VIRTUAL_NUM_CONTROL		9			// Á¶ÀÛÅ°¿¡¼­ º¸¿©Áú ¸®½ºÆ®ÀÇ °¹¼ö
+#define dOPTION_VIRTUAL_NUM				9			// ë³´ì—¬ì§ˆ ë¦¬ìŠ¤íŠ¸ì˜ ê°¯ìˆ˜
+#define dOPTION_VIRTUAL_NUM_CONTROL		9			// ì¡°ì‘í‚¤ì—ì„œ ë³´ì—¬ì§ˆ ë¦¬ìŠ¤íŠ¸ì˜ ê°¯ìˆ˜
 #define	dOPTION_VIRTUAL_HEIGHT			21			// The height of the list
-#define	dOPTION_VIRTUAL_HEIGHT_EX		300			// ÄŞº¸¹Ú½º Å¬¸¯ ÈÄ ³ôÀÌ
-#define dOPTION_SCROLL_HEIGHT			345			// ½ºÅ©·Ñ¹Ù ³ôÀÌ
-#define dOPTION_SCROLL_HEIGHT_CONRTOL	200			// Á¶ÀÛÅ°¿¡¼­ ½ºÅ©·Ñ¹Ù ³ôÀÌ
+#define	dOPTION_VIRTUAL_HEIGHT_EX		300			// ì½¤ë³´ë°•ìŠ¤ í´ë¦­ í›„ ë†’ì´
+#define dOPTION_SCROLL_HEIGHT			345			// ìŠ¤í¬ë¡¤ë°” ë†’ì´
+#define dOPTION_SCROLL_HEIGHT_CONRTOL	200			// ì¡°ì‘í‚¤ì—ì„œ ìŠ¤í¬ë¡¤ë°” ë†’ì´
 //
-//// Video Mode ¸®½ºÆ®
+//// Video Mode ë¦¬ìŠ¤íŠ¸
 //typedef struct _SVideoModeInfo
 //{
 //	RwInt32 iWidth;
@@ -46,7 +46,7 @@ class COptionFilter;
 
 /**
 * \ingroup Client
-* ¿É¼ÇÀ©µµ¿ìÀÇ ¸Å´ÏÀú Å¬·¡½º
+* ì˜µì…˜ìœˆë„ìš°ì˜ ë§¤ë‹ˆì € í´ë˜ìŠ¤
 */
 class COptionWindowGui : public CNtlPLGui, public RWS::CEventHandler
 {
@@ -152,10 +152,10 @@ public:
 
 /**
 * \ingroup client
-* \brief »ç¿îµå ¿É¼Ç
-* ÇöÀç º¼·ıÀ» ÁöÁ¤ÇÏ´Â ¼öÄ¡¸¦ 0 ºÎÅÍ 50±îÁö ¼³Á¤ÇØ³õÀ½
-* »ç¿îµå ¶óÀÌºê·¯¸®¿Í BGMÀÇ µ¿±â¸¦ ¸ÂÃß±â À§ÇÏ¿©
-* BGMÀÇ º¼·ı¸¸ Get * 200  ,  Set * 0.005 ¸¦ ÇÔ. Comment by Kell(2007. 12. 31)
+* \brief ì‚¬ìš´ë“œ ì˜µì…˜
+* í˜„ì¬ ë³¼ë¥¨ì„ ì§€ì •í•˜ëŠ” ìˆ˜ì¹˜ë¥¼ 0 ë¶€í„° 50ê¹Œì§€ ì„¤ì •í•´ë†“ìŒ
+* ì‚¬ìš´ë“œ ë¼ì´ë¸ŒëŸ¬ë¦¬ì™€ BGMì˜ ë™ê¸°ë¥¼ ë§ì¶”ê¸° ìœ„í•˜ì—¬
+* BGMì˜ ë³¼ë¥¨ë§Œ Get * 200  ,  Set * 0.005 ë¥¼ í•¨. Comment by Kell(2007. 12. 31)
 */
 class COptionSound : public COptionBase
 {

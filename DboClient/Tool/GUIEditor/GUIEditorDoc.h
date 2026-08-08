@@ -1,4 +1,4 @@
-// GUIEditorDoc.h : CGUIEditorDoc Å¬·¡½ºÀÇ ÀÎÅÍÆäÀÌ½º
+// GUIEditorDoc.h : CGUIEditorDoc í´ë˜ìŠ¤ì˜ ì¸í„°í˜ì´ìŠ¤
 //
 #pragma once
 
@@ -6,23 +6,23 @@
 
 class CGUIEditorDoc : public CDocument
 {
-protected: // serialization¿¡¼­¸¸ ¸¸µé¾îÁı´Ï´Ù.
+protected: // serializationì—ì„œë§Œ ë§Œë“¤ì–´ì§‘ë‹ˆë‹¤.
 	CGUIEditorDoc();
 	DECLARE_DYNCREATE(CGUIEditorDoc)
 
-// Æ¯¼º
+// íŠ¹ì„±
 public:
 	CDataManager&	GetDataManager() { return m_DataManager; }
 	
-// ÀÛ¾÷
+// ì‘ì—…
 public:
 	
-// ÀçÁ¤ÀÇ
+// ì¬ì •ì˜
 	public:
 	virtual BOOL OnNewDocument();
 	virtual void Serialize(CArchive& ar);
 
-// ±¸Çö
+// êµ¬í˜„
 public:
 	virtual ~CGUIEditorDoc();
 #ifdef _DEBUG
@@ -33,7 +33,7 @@ public:
 protected:
 	CDataManager	m_DataManager;
 	
-// ¸Ş½ÃÁö ¸Ê ÇÔ¼ö¸¦ »ı¼ºÇß½À´Ï´Ù.
+// ë©”ì‹œì§€ ë§µ í•¨ìˆ˜ë¥¼ ìƒì„±í–ˆìŠµë‹ˆë‹¤.
 protected:
 	DECLARE_MESSAGE_MAP()
 };

@@ -216,7 +216,7 @@ BOOL CAnimToolView::OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT
 
 void CAnimToolView::OnSlidePosChanged()
 {
-    // ½½¶óÀÌ´õÀÇ °ªÀÌ º¯°æµÇ¾úÀ»¶§.
+    // ìŠ¬ë¼ì´ë”ì˜ ê°’ì´ ë³€ê²½ë˜ì—ˆì„ë•Œ.
     int nPos = m_slideAnimTime.GetPos();
     float fTime = (float)nPos / 100.0f;
     m_pCharacter->SetBaseCurrentAnimTime(fTime);
@@ -227,12 +227,12 @@ void CAnimToolView::OnSlidePosChanged()
 
 void CAnimToolView::OnSlideMarkerSelect()
 {
-    // NOTE: AddMarker‹šµµ ÀÌ ¸Ş¼Òµå°¡ È£ÃâµÈ´Ù.
+    // NOTE: AddMarkerë–„ë„ ì´ ë©”ì†Œë“œê°€ í˜¸ì¶œëœë‹¤.
 
     SSliderMarker* pSliderMarker = m_slideAnimTime.GetSelectMarker();
     if(pSliderMarker && m_pCharacter && m_pAnimData)
     {
-        // µ¥ÀÌÅÍ°¡ ¾ø´Â °æ¿ì »ı¼ºÇÏ¿© ÇÁ·ÎÆÛÆ¼¿¡ Ãß°¡ÇÑ´Ù.
+        // ë°ì´í„°ê°€ ì—†ëŠ” ê²½ìš° ìƒì„±í•˜ì—¬ í”„ë¡œí¼í‹°ì— ì¶”ê°€í•œë‹¤.
         if(pSliderMarker->m_pAnimEvent == NULL)
         {
             SEventAnimHit* pEventHit = new SEventAnimHit();
@@ -248,7 +248,7 @@ void CAnimToolView::OnSlideMarkerSelect()
 
 void CAnimToolView::OnSlideMarkerMove()
 {
-    // ¸¶Ä¿°¡ ¿òÁ÷ÀÏ¶§ ¿À¸¥ÂÊ AttrViewÀÇ Á¤º¸µµ °»½ÅÇÏ¿© ÁØ´Ù.
+    // ë§ˆì»¤ê°€ ì›€ì§ì¼ë•Œ ì˜¤ë¥¸ìª½ AttrViewì˜ ì •ë³´ë„ ê°±ì‹ í•˜ì—¬ ì¤€ë‹¤.
     SSliderMarker* pSliderMarker = m_slideAnimTime.GetSelectMarker();
     if(pSliderMarker && m_pCharacter && m_pAnimData)
     {
@@ -260,7 +260,7 @@ void CAnimToolView::OnSlideMarkerMove()
 
 void CAnimToolView::OnSlideMarkerChanged()
 {
-    // ÀÌµ¿ÀÌ ¿Ï·áµÇ¾úÀ»¶§ È£ÃâÇÑ´Ù.
+    // ì´ë™ì´ ì™„ë£Œë˜ì—ˆì„ë•Œ í˜¸ì¶œí•œë‹¤.
     CRightToolView::GetInstance()->SetAnimEventData(m_pAnimData);
 }
 
@@ -274,7 +274,7 @@ void CAnimToolView::OnSlideMarkerRemove(SSliderMarker* pRemovedMarker)
             SEventAnim* pEventAnim = *it;
             if(pEventAnim && (pEventAnim == pRemovedMarker->m_pAnimEvent))
             {
-                // vector¿¡¼­ »èÁ¦ÇÑ´Ù.
+                // vectorì—ì„œ ì‚­ì œí•œë‹¤.
                 m_pAnimData->vecAnimEvent.erase(it);
                 break;
             }

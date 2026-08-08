@@ -821,7 +821,7 @@ CGameLoadingScene::~CGameLoadingScene( void )
 	CNtlSoundEventGenerator::SendEventMusic(EVENT_MUSIC_END_MAIN_THEME);
 
 
-	// °ÔÀÓ ·ÎµùÀÌ ³¡³µÀ» ¶§ ·ÎµùÁß ¼­¹ö¿ÍÀÇ ¿¬°áÀÌ ²ö°å´Ù¸é ±×¿¡ ´ëÇÑ Ã³¸®¸¦ ÇÑ´Ù
+	// ê²Œìž„ ë¡œë”©ì´ ëë‚¬ì„ ë•Œ ë¡œë”©ì¤‘ ì„œë²„ì™€ì˜ ì—°ê²°ì´ ëˆê²¼ë‹¤ë©´ ê·¸ì— ëŒ€í•œ ì²˜ë¦¬ë¥¼ í•œë‹¤
 	SConnectData* pConnectData = GetDboGlobal()->GetConnectData();
 	if( pConnectData )
 	{

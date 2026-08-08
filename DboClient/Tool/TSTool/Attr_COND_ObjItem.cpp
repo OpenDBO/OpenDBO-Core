@@ -1,4 +1,4 @@
-// Attr_COND_ObjItem.cpp : ���� �����Դϴ�.
+// Attr_COND_ObjItem.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_COND_ObjItem.h"
 
 
-// CAttr_COND_ObjItem ��ȭ �����Դϴ�.
+// CAttr_COND_ObjItem 대화 상자입니다.
 
 IMPLEMENT_SERIAL(CAttr_COND_ObjItem, CAttr_Page, 1)
 
@@ -52,4 +52,4 @@ BEGIN_MESSAGE_MAP(CAttr_COND_ObjItem, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_COND_ObjItem �޽��� ó�����Դϴ�.
+// CAttr_COND_ObjItem 메시지 처리기입니다.

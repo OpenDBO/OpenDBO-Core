@@ -51,13 +51,13 @@ class CTSTrigger : public CObject
 protected:
 	DWORD								m_dwVersion;
 
-	// 飘府芭狼 加己
+	// 韸鸽Μ瓯办潣 靻嶌劚
 	CString								m_strAttr;
 
-	// 飘府芭狼 皋牢 弊缝
+	// 韸鸽Μ瓯办潣 氅旍澑 攴鸽９
 	CTSGroup*							m_pMainGroup;
 
-	// 飘府芭狼 抗寇 弊缝
+	// 韸鸽Μ瓯办潣 鞓堨櫢 攴鸽９
 	CArray<CTSGroup*, CTSGroup*>		m_ExceptGroup;
 
 // Constructions and Destructions

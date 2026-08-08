@@ -2,7 +2,7 @@
 //	File		:	CVenusPropertyContainer.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -40,8 +40,8 @@ CNtlEffectSplinePath* CVenusPropertyContainer::BuildSplinePath(CNtlEffectSplineP
 		return pEffectSpline;
 	}
 
-	// ½Ã°£
-	// Çü¼® 2005 ¹öÀü ¼öÁ¤ÇÏ¸é¼­ for¹®ÀÇ i º¯¼ö¸¦ ¹ÛÀ¸·Î »©³Â´Ù.
+	// ì‹œê°„
+	// í˜•ì„ 2005 ë²„ì „ ìˆ˜ì •í•˜ë©´ì„œ forë¬¸ì˜ i ë³€ìˆ˜ë¥¼ ë°–ìœ¼ë¡œ ë¹¼ëƒˆë‹¤.
 	RwInt32 i = 0;
 	for(i = 0; i < pEffectSpline->m_Info.nControlCount; ++ i)
 	{
@@ -333,7 +333,7 @@ void CVenusPropertyContainer::BuildSplineCurvePoint(CNtlEffectSplinePath* pEffec
 			u_2 = u * u;
 			u_3 = u_2 * u;
 
-			// ¿ø·¡ Curve Æ÷ÀÎÅÍ´Â Control Æ÷ÀÎÅÍÀÇ +1 ÀÚ¸®ºÎÅÍ »ı±â¹Ç·Î ¿©±â¼­ ¹Ì¸® ÇÑÄ­ À§·Î °áÁ¤ÇÑ´Ù.
+			// ì›ë˜ Curve í¬ì¸í„°ëŠ” Control í¬ì¸í„°ì˜ +1 ìë¦¬ë¶€í„° ìƒê¸°ë¯€ë¡œ ì—¬ê¸°ì„œ ë¯¸ë¦¬ í•œì¹¸ ìœ„ë¡œ ê²°ì •í•œë‹¤.
 			RwMatrix matRotate1, matRotate2;
 			RwMatrixRotate(&matRotate1, &VEC_X, pEffectSpline->m_pControlPoint[i+1].rotate.x, rwCOMBINEREPLACE);
 			RwMatrixRotate(&matRotate1, &VEC_Y, pEffectSpline->m_pControlPoint[i+1].rotate.y, rwCOMBINEPOSTCONCAT);
@@ -596,7 +596,7 @@ void CVenusPropertyContainer::IntersectionSplineControlPoint(POINT point, RwBool
 {
 	if (m_pEffectSplinePath == NULL) return;
 
-	// °è¼ÓÇØ¼­ ´õÇØÁö´Â ´Ü°è°¡ ¾Æ´Ï¸é ¸®½ºÆ®¸¦ »õ·Î Áö¿ì°í ÇÑ´Ù.
+	// ê³„ì†í•´ì„œ ë”í•´ì§€ëŠ” ë‹¨ê³„ê°€ ì•„ë‹ˆë©´ ë¦¬ìŠ¤íŠ¸ë¥¼ ìƒˆë¡œ ì§€ìš°ê³  í•œë‹¤.
 	if (!bShiftButton && !bCtrlButton)
 	{
 		m_svSelectSplineControlPoint.clear();
@@ -639,7 +639,7 @@ void CVenusPropertyContainer::IntersectionSplineControlPoint(POINT OldPoint, POI
 {
 	if (m_pEffectSplinePath == NULL) return;
 
-	// °è¼ÓÇØ¼­ ´õÇØÁö´Â ´Ü°è°¡ ¾Æ´Ï¸é ¸®½ºÆ®¸¦ »õ·Î Áö¿ì°í ÇÑ´Ù.
+	// ê³„ì†í•´ì„œ ë”í•´ì§€ëŠ” ë‹¨ê³„ê°€ ì•„ë‹ˆë©´ ë¦¬ìŠ¤íŠ¸ë¥¼ ìƒˆë¡œ ì§€ìš°ê³  í•œë‹¤.
 	if (!bShiftButton && !bCtrlButton)
 	{
 		m_svSelectSplineControlPoint.clear();

@@ -303,7 +303,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		m_paneManager.SetIcons(IDB_BITMAP_ICONS, nIDIcons,
 		_countof(nIDIcons), RGB(0, 255, 0));*/
 
-    // TODO: Å×½ºÆ®¸¦ À§ÇØ¼­ ·¹ÀÌ¾Æ¿ô ÀúÀå ±â´ÉÀ» ²ö´Ù.
+    // TODO: í…ŒìŠ¤íŠ¸ë¥¼ ìœ„í•´ì„œ ë ˆì´ì•„ì›ƒ ì €ìž¥ ê¸°ëŠ¥ì„ ëˆë‹¤.
 	//// Load the previous state for docking panes.
 	//CXTPDockingPaneLayout layoutNormal(&m_paneManager);
 	//if (layoutNormal.Load(_T("NormalLayout")))
@@ -444,7 +444,7 @@ int CMainFrame::OnCreateControl(LPCREATECONTROLSTRUCT lpCreateControl)
 void CMainFrame::OnClose()
 {
 
-    // Á¾·á½Ã ÀúÀåÇÒ°ÍÀÎÁö È®ÀÎÇÑ´Ù.
+    // ì¢…ë£Œì‹œ ì €ìž¥í• ê²ƒì¸ì§€ í™•ì¸í•œë‹¤.
     GetSafeInstance(CTreePCPane)->OnShowSaveForChanges();
     GetSafeInstance(CTreeItemPane)->OnShowSaveForChanges();
     GetSafeInstance(CTreeObjectPane)->OnShowSaveForChanges();

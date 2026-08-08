@@ -1,7 +1,7 @@
 /*****************************************************************************
 * File			: gui_line_renderer.h
 * Author		: HaeSung, Cho
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 11. 10
 * Abstract		: 
 *****************************************************************************
@@ -30,7 +30,7 @@ struct SLineItem
 };
 
 /**
-* \brief ÀÌ¾îÁö´Â ¼±À» ±×¸± ¼ö ÀÖ´Ù.
+* \brief ì´ì–´ì§€ëŠ” ì„ ì„ ê·¸ë¦´ ìˆ˜ ìˆë‹¤.
 */
 class CGuiLine
 {
@@ -38,7 +38,7 @@ public:
 	CGuiLine();
 	~CGuiLine();
 
-	// Particle Editor Åø ¿ë
+	// Particle Editor íˆ´ ìš©
 	VOID SetLine( SLineItem* pLineItem, int nItemNum );
 	VOID SetLine( RwReal fPosX1, RwReal fPosY1, RwReal fPosX2, RwReal fPosY2 );
 	VOID SetLineAt( RwUInt32 uiIndex, RwReal fPosX, RwReal fPosY );

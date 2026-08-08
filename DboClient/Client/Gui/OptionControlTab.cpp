@@ -31,9 +31,9 @@
 // class : COptionControlCategoryNode
 
 /**
-* \brief COptionControlCategoryNodeÀÇ »ı¼ºÀÚ
+* \brief COptionControlCategoryNodeì˜ ìƒì„±ì
 *
-* »ı¼ºÀÚ¿¡ Ç¥½ÃµÉ ÅØ½ºÆ®¿Í ActionÀÇ GroupÀ» ¸¸µå´Â ID¸¦ ÁöÁ¤ÇÑ´Ù.
+* ìƒì„±ìì— í‘œì‹œë  í…ìŠ¤íŠ¸ì™€ Actionì˜ Groupì„ ë§Œë“œëŠ” IDë¥¼ ì§€ì •í•œë‹¤.
 */
 COptionControlCategoryNode::COptionControlCategoryNode(CGuiLineTree* pMgr, std::wstring strTitle, RwInt32 nID)
 : CGuiLineTreeNode( pMgr, nID )
@@ -41,7 +41,7 @@ COptionControlCategoryNode::COptionControlCategoryNode(CGuiLineTree* pMgr, std::
 , m_pBtnExpand( NULL )
 , m_pBtnReduce( NULL )
 {
-	// CategoryNode StaticBoxÀÇ Size¿Í Text, Color¸¦ ¼³Á¤ÇÑ´Ù.
+	// CategoryNode StaticBoxì˜ Sizeì™€ Text, Colorë¥¼ ì„¤ì •í•œë‹¤.
 	CRectangle rect;
 	rect.SetRectWH( dOPTIONCONTROL_CATEGORY_TITLE_X, dOPTIONCONTROL_CATEGORY_TITLE_Y, 
 		dOPTIONCONTROL_CATEGORY_TITLE_WIDTH, dOPTIONCONTROL_CATEGORY_TITLE_HEIGHT );
@@ -50,26 +50,26 @@ COptionControlCategoryNode::COptionControlCategoryNode(CGuiLineTree* pMgr, std::
 	m_pStbTitle->SetTextColor( dOPTIONCONTROL_CATEGORY_TITLE_COLOR );
 	m_pStbTitle->Enable( false );
 
-	// +¹öÆ°
+	// +ë²„íŠ¼
 	rect.SetRectWH(dOPTIONCONTROL_CATEGORY_BUTTON_X, dOPTIONCONTROL_CATEGORY_BUTTON_Y, dOPTIONCONTROL_CATEGORY_BUTTON_WIDTH, dOPTIONCONTROL_CATEGORY_BUTTON_HEIGHT);
 	m_pBtnExpand = NTL_NEW gui::CButton( rect, std::string(),pMgr->GetParentGui(), GetNtlGuiManager()->GetSurfaceManager());
 	m_pBtnExpand->AddSurfaceUp(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("QuestList.srf", "srfExpandBtnUp"));
 	m_pBtnExpand->AddSurfaceFocus(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("QuestList.srf", "srfExpandBtnFoc"));
 	m_pBtnExpand->AddSurfaceDown(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("QuestList.srf", "srfExpandBtnDown"));
 
-	// -¹öÆ°
+	// -ë²„íŠ¼
 	m_pBtnReduce = NTL_NEW gui::CButton(rect, std::string(),pMgr->GetParentGui(), GetNtlGuiManager()->GetSurfaceManager());
 	m_pBtnReduce->AddSurfaceUp(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("QuestList.srf", "srfReduceBtnUp"));
 	m_pBtnReduce->AddSurfaceFocus(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("QuestList.srf", "srfReduceBtnFoc"));
 	m_pBtnReduce->AddSurfaceDown(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("QuestList.srf", "srfReduceBtnDown"));
 
-	// ButtonÀÇ Signal ¿¬°á
+	// Buttonì˜ Signal ì—°ê²°
 	m_slotClickedBtnExpand = m_pBtnExpand->SigClicked().Connect(this, &COptionControlCategoryNode::OnClickBtnExpand);
 	m_slotClickedBtnReduce = m_pBtnReduce->SigClicked().Connect(this, &COptionControlCategoryNode::OnClickBtnReduce);
 }
 
 /**
-* \biref COptionControlCategoryNodeÀÇ ¼Ò¸êÀÚ
+* \biref COptionControlCategoryNodeì˜ ì†Œë©¸ì
 */
 COptionControlCategoryNode::~COptionControlCategoryNode()
 {
@@ -79,10 +79,10 @@ COptionControlCategoryNode::~COptionControlCategoryNode()
 }
 
 /**
-* \brief CategoryNode¸¦ Ç¥½Ã
+* \brief CategoryNodeë¥¼ í‘œì‹œ
 *
-* CGuiLineTreeNodeÀÇ ShowProc()À» ¿À¹ö¶óÀÌµå ÇÏ¿© ³ëµåµéÀÌ È®ÀåµÊ¿¡ µû¶ó ÀÚ½Ä ³ëµåµé°úÀÇ °ü°è¸¦ Àç °è»êÇÏ¿©
-* ¹èÄ¡ÇØÁÖ°í ÇöÀç ¹öÆ°ÀÇ »óÅÂ°¡ + ÀÎÁö - ÀÎÁö ±¸ºĞÇØ¼­ Ãâ·ÂÇØÁØ´Ù.
+* CGuiLineTreeNodeì˜ ShowProc()ì„ ì˜¤ë²„ë¼ì´ë“œ í•˜ì—¬ ë…¸ë“œë“¤ì´ í™•ì¥ë¨ì— ë”°ë¼ ìì‹ ë…¸ë“œë“¤ê³¼ì˜ ê´€ê³„ë¥¼ ì¬ ê³„ì‚°í•˜ì—¬
+* ë°°ì¹˜í•´ì£¼ê³  í˜„ì¬ ë²„íŠ¼ì˜ ìƒíƒœê°€ + ì¸ì§€ - ì¸ì§€ êµ¬ë¶„í•´ì„œ ì¶œë ¥í•´ì¤€ë‹¤.
 */
 void COptionControlCategoryNode::ShowProc()
 {
@@ -102,14 +102,14 @@ void COptionControlCategoryNode::ShowProc()
 		m_pStbTitle->SetTextColor( dOPTIONCONTROL_CATEGORY_TITLE_COLOR, TRUE );
 	}
 
-	// Ä«Å×°í¸® ³ëµåµéÀÇ À§Ä¡¸¦ Àç °è»ê
+	// ì¹´í…Œê³ ë¦¬ ë…¸ë“œë“¤ì˜ ìœ„ì¹˜ë¥¼ ì¬ ê³„ì‚°
 	m_pBtnExpand->SetPosition(m_nPosX + dOPTIONCONTROL_CATEGORY_BUTTON_X, m_nPosY + dOPTIONCONTROL_CATEGORY_BUTTON_Y);
 	m_pBtnReduce->SetPosition(m_nPosX + dOPTIONCONTROL_CATEGORY_BUTTON_X, m_nPosY + dOPTIONCONTROL_CATEGORY_BUTTON_Y);
 	m_pStbTitle->SetPosition(m_nPosX + dOPTIONCONTROL_CATEGORY_TITLE_X, m_nPosY + dOPTIONCONTROL_CATEGORY_TITLE_Y);
 }
 
 /**
-* \brief CategoryNode¸¦ ¼û±è
+* \brief CategoryNodeë¥¼ ìˆ¨ê¹€
 */
 void COptionControlCategoryNode::HideProc()
 {
@@ -121,7 +121,7 @@ void COptionControlCategoryNode::HideProc()
 }
 
 /**
-* \brief +¹öÆ°À» ´­·¶À» ¶§ÀÇ Çàµ¿
+* \brief +ë²„íŠ¼ì„ ëˆŒë €ì„ ë•Œì˜ í–‰ë™
 */
 void COptionControlCategoryNode::OnClickBtnExpand(gui::CComponent* pComponent)
 {
@@ -129,7 +129,7 @@ void COptionControlCategoryNode::OnClickBtnExpand(gui::CComponent* pComponent)
 }
 
 /**
-* \brief -¹öÆ°À» ´­·¶À» ¶§ÀÇ Çàµ¿
+* \brief -ë²„íŠ¼ì„ ëˆŒë €ì„ ë•Œì˜ í–‰ë™
 */
 void COptionControlCategoryNode::OnClickBtnReduce(gui::CComponent* pComponent)
 {
@@ -141,20 +141,20 @@ void COptionControlCategoryNode::OnClickBtnReduce(gui::CComponent* pComponent)
 // class : COptionControlActionNode
 
 /**
-* \brief COptionControlActionNodeÀÇ »ı¼ºÀÚ
+* \brief COptionControlActionNodeì˜ ìƒì„±ì
 *
-* COptionControlCategoryNodeÀÇ ÀÚ½Äµé·Î µé¾î°¡°Ô µÉ Node, Çàµ¿ÀÇ str°ú ActionÀÇ ID¸¦ ¹Ş¾Æ¼­ »ı¼ºÇÑ´Ù.
+* COptionControlCategoryNodeì˜ ìì‹ë“¤ë¡œ ë“¤ì–´ê°€ê²Œ ë  Node, í–‰ë™ì˜ strê³¼ Actionì˜ IDë¥¼ ë°›ì•„ì„œ ìƒì„±í•œë‹¤.
 */
 COptionControlActionNode::COptionControlActionNode(CGuiLineTree* pMgr, std::wstring wstrTitle, RwUInt32 nAction, RwBool bFixed)
 : CGuiLineTreeNode( pMgr, nAction )
 , m_pStbTitle( NULL )
 , m_pBtnSetKey( NULL )
 {
-	// ÃÊ±âÈ­°ª ÀúÀå
+	// ì´ˆê¸°í™”ê°’ ì €ì¥
 	m_nAction = nAction;
 	m_bFixed = bFixed;
 
-	// ActionNode StaticBoxÀÇ Size¿Í Text, Color¸¦ ¼³Á¤ÇÑ´Ù.
+	// ActionNode StaticBoxì˜ Sizeì™€ Text, Colorë¥¼ ì„¤ì •í•œë‹¤.
 	CRectangle rect;
 	rect.SetRectWH( dOPTIONCONTROL_ACTIONNODE_TITLE_X, dOPTIONCONTROL_ACTIONNODE_TITLE_Y, 
 		dOPTIONCONTROL_ACTIONNODE_TITLE_WIDTH, dOPTIONCONTROL_CATEGORY_TITLE_HEIGHT );
@@ -166,8 +166,8 @@ COptionControlActionNode::COptionControlActionNode(CGuiLineTree* pMgr, std::wstr
 	m_pStbTitle->SetTextStyle(COMP_TEXT_CENTER);
 	m_pStbTitle->SetText( wstrTitle.c_str() );
 	
-	// Å° ÁöÁ¤ ¹öÆ°(Action Id¿¡ µû¸¥ Ç¥±â¸¦ ÇØÁà¾ß ÇÑ´Ù.)
-	// ÀÓ½Ã·Î Å©±â°¡ ¶È°°Àº ¸®¼Ò½º »ç¿ë
+	// í‚¤ ì§€ì • ë²„íŠ¼(Action Idì— ë”°ë¥¸ í‘œê¸°ë¥¼ í•´ì¤˜ì•¼ í•œë‹¤.)
+	// ì„ì‹œë¡œ í¬ê¸°ê°€ ë˜‘ê°™ì€ ë¦¬ì†ŒìŠ¤ ì‚¬ìš©
 	rect.SetRectWH( dOPTIONCONTROL_ACTIONNODE_BUTTON_X, dOPTIONCONTROL_ACTIONNODE_BUTTON_Y,
 		dOPTIONCONTROL_ACTIONNODE_BUTTON_WIDTH, dOPTIONCONTROL_ACTIONNODE_BUTTON_HEIGHT );
 	m_pBtnSetKey = NTL_NEW gui::CButton(rect, std::string(),pMgr->GetParentGui(), GetNtlGuiManager()->GetSurfaceManager());
@@ -178,21 +178,21 @@ COptionControlActionNode::COptionControlActionNode(CGuiLineTree* pMgr, std::wstr
 	m_pBtnSetKey->SetTextStyle(COMP_TEXT_CENTER);
 	m_pBtnSetKey->SetTextFont( DETAIL_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR );
 
-	// ¾×¼Ç ID¿¡ µû¸¥ ¹®ÀÚ¿­À» Ãâ·ÂÇØÁØ´Ù.
+	// ì•¡ì…˜ IDì— ë”°ë¥¸ ë¬¸ìì—´ì„ ì¶œë ¥í•´ì¤€ë‹¤.
 	std::wstring wstrKeyName = GetInputActionMap()->GetKeyName( nAction );
 
-	// ºñ¾î ÀÖ´Ù¸é "ÁöÁ¤¾ÈµÊ" Ãâ·Â, ¾Æ´Ï¶ó¸é Å°ÀÇ ÀÌ¸§À» ±×´ë·Î Ãâ·ÂÇÑ´Ù.
+	// ë¹„ì–´ ìˆë‹¤ë©´ "ì§€ì •ì•ˆë¨" ì¶œë ¥, ì•„ë‹ˆë¼ë©´ í‚¤ì˜ ì´ë¦„ì„ ê·¸ëŒ€ë¡œ ì¶œë ¥í•œë‹¤.
 	if( wstrKeyName.empty() )
 		m_pBtnSetKey->SetText( GetDisplayStringManager()->GetString( "DST_OPTION_CONTROL_TEXT_EMPTYKEY" ) );
 	else
 		m_pBtnSetKey->SetText( wstrKeyName.c_str() );
 
-	// ButtonÀÇ Signal ¿¬°á
+	// Buttonì˜ Signal ì—°ê²°
 	m_slotClickedBtnSetKey = m_pBtnSetKey->SigClicked().Connect(this, &COptionControlActionNode::OnClickBtnSetKey);
 }
 
 /**
-* \biref COptionControlActionNodeÀÇ ¼Ò¸êÀÚ
+* \biref COptionControlActionNodeì˜ ì†Œë©¸ì
 */
 COptionControlActionNode::~COptionControlActionNode()
 {
@@ -201,7 +201,7 @@ COptionControlActionNode::~COptionControlActionNode()
 }
 
 /**
-* \brief COptionControlActionNode¸¦ Ç¥½Ã
+* \brief COptionControlActionNodeë¥¼ í‘œì‹œ
 */
 void COptionControlActionNode::ShowProc()
 {
@@ -215,7 +215,7 @@ void COptionControlActionNode::ShowProc()
 }
 
 /**
-* \brief COptionControlActionNode¸¦ ¼û±è
+* \brief COptionControlActionNodeë¥¼ ìˆ¨ê¹€
 */
 void COptionControlActionNode::HideProc()
 {
@@ -235,20 +235,20 @@ void COptionControlActionNode::HideProc()
 }
 
 /**
-* \brief Å° ÁöÁ¤ ¹öÆ°À» ´­·¶À» ¶§ ¹ß»ıµÇ´Â °Í
+* \brief í‚¤ ì§€ì • ë²„íŠ¼ì„ ëˆŒë €ì„ ë•Œ ë°œìƒë˜ëŠ” ê²ƒ
 */
 void COptionControlActionNode::OnClickBtnSetKey(gui::CComponent* pComponent)
 {
 	COptionControlList* pMgr = static_cast<COptionControlList *>(m_pMgr);
 
-	// InputActionMap ÀÌ º¯°æ ºÒ°¡´ÉÇÑ mdoeÀÏ ¶§
+	// InputActionMap ì´ ë³€ê²½ ë¶ˆê°€ëŠ¥í•œ mdoeì¼ ë•Œ
 	if( GetInputActionMap()->GetActionMapMode() == ACTIONMAP_MODE_DEFAULT )
 	{
 		pMgr->GetParentTab()->SetGuideNegativeMode();
 		return;
 	}
 
-	// º¯°æ ºÒ°¡¸é º¯°æºÒ°¡¶ó°í ¾Ë·ÁÁà¾ßÇÔ.
+	// ë³€ê²½ ë¶ˆê°€ë©´ ë³€ê²½ë¶ˆê°€ë¼ê³  ì•Œë ¤ì¤˜ì•¼í•¨.
 	if( m_bFixed )
 	{
 		pMgr->GetParentTab()->SetGuideFixed( m_nID );
@@ -259,7 +259,7 @@ void COptionControlActionNode::OnClickBtnSetKey(gui::CComponent* pComponent)
 		pMgr->UpdateNode();
 		GetInputActionMap()->SetInputMode( m_nAction );
 	
-		// ¹öÆ°À» ºñÈ°¼ºÈ­ÇÑ´Ù.
+		// ë²„íŠ¼ì„ ë¹„í™œì„±í™”í•œë‹¤.
 		m_pBtnSetKey->Enable(false);
 	}
 }
@@ -273,10 +273,10 @@ void COptionControlActionNode::Update()
 {
 	m_pBtnSetKey->Enable( true );
 
-	// ¾×¼Ç ID¿¡ µû¸¥ ¹®ÀÚ¿­À» Ãâ·ÂÇØÁØ´Ù.
+	// ì•¡ì…˜ IDì— ë”°ë¥¸ ë¬¸ìì—´ì„ ì¶œë ¥í•´ì¤€ë‹¤.
 	std::wstring wstrKeyName = GetInputActionMap()->GetKeyName( m_nID );
 
-	// ºñ¾î ÀÖ´Ù¸é "ÁöÁ¤¾ÈµÊ" Ãâ·Â, ¾Æ´Ï¶ó¸é Å°ÀÇ ÀÌ¸§À» ±×´ë·Î Ãâ·ÂÇÑ´Ù.
+	// ë¹„ì–´ ìˆë‹¤ë©´ "ì§€ì •ì•ˆë¨" ì¶œë ¥, ì•„ë‹ˆë¼ë©´ í‚¤ì˜ ì´ë¦„ì„ ê·¸ëŒ€ë¡œ ì¶œë ¥í•œë‹¤.
 	if( wstrKeyName.empty() )
 		m_pBtnSetKey->SetText( GetDisplayStringManager()->GetString( "DST_OPTION_CONTROL_TEXT_EMPTYKEY" ) );
 	else
@@ -288,23 +288,23 @@ void COptionControlActionNode::Update()
 // class : COptionControlCategoryNode
 
 /**
-* \brief COptionControlListÀÇ »ı¼ºÀÚ
+* \brief COptionControlListì˜ ìƒì„±ì
 */
 COptionControlList::COptionControlList()
 {
 }
 
 /**
-* \brief COptionControlListÀÇ ¼Ò¸êÀÚ
+* \brief COptionControlListì˜ ì†Œë©¸ì
 */
 COptionControlList::~COptionControlList()
 {
 }
 
 /**
-* \brief COptionControlList¿¡ CGuiLineTree¸¦ ¸¸µå´Â ÇÔ¼ö
+* \brief COptionControlListì— CGuiLineTreeë¥¼ ë§Œë“œëŠ” í•¨ìˆ˜
 *
-* LineTree¸¦ ¸¸µé°í ½ºÅ©·Ñ¹ÙÀÇ ¼Ó¼ºÀ» ¼³Á¤ÇÑ´Ù.
+* LineTreeë¥¼ ë§Œë“¤ê³  ìŠ¤í¬ë¡¤ë°”ì˜ ì†ì„±ì„ ì„¤ì •í•œë‹¤.
 *
 * \param rect (CRectangle&)
 */
@@ -332,29 +332,29 @@ RwBool COptionControlList::Create(CRectangle& rect, gui::CComponent* pParent, Rw
 }
 
 /**
-* \brief OptionControlÀÇ Ç×¸ñµéÀ» »ı¼º
+* \brief OptionControlì˜ í•­ëª©ë“¤ì„ ìƒì„±
 */
 void COptionControlList::CreateTree() 
 {
 	//////////////////////////////////////////////////////////////////////////////
-	// ¾Æ¹ÙÅ¸ °ü·Ã Ä«Å×°í¸®
+	// ì•„ë°”íƒ€ ê´€ë ¨ ì¹´í…Œê³ ë¦¬
 	CGuiLineTreeNode* pNode = NTL_NEW COptionControlCategoryNode(this, 
-		GetDisplayStringManager()->GetString( "DST_OPTION_CONTROL_CATEGORY_AVATAR" ) ,	// Ä«Å×°í¸® Á¦¸ñ
-		dOPTIONCONTROL_CATEGORY_AVATAR );												// Ä«Å×°í¸® ID
-	CGuiLineTree::AddNode( pNode, GUILINETREE_ROOTNODE_ID );							// CGuiLineTree ·çÆ®¸¦ ºÎ¸ğ·Î °¡Áø´Ù
+		GetDisplayStringManager()->GetString( "DST_OPTION_CONTROL_CATEGORY_AVATAR" ) ,	// ì¹´í…Œê³ ë¦¬ ì œëª©
+		dOPTIONCONTROL_CATEGORY_AVATAR );												// ì¹´í…Œê³ ë¦¬ ID
+	CGuiLineTree::AddNode( pNode, GUILINETREE_ROOTNODE_ID );							// CGuiLineTree ë£¨íŠ¸ë¥¼ ë¶€ëª¨ë¡œ ê°€ì§„ë‹¤
 	pNode->Expand( true );
 
-	// ¿­°ÅÇüµéÀÇ ¼ø¼­´Â È®½ÇÈ÷ ÁöÄÑÁà¾ß ÇÑ´Ù. ¼ø¼­´ë·Î ÀÖÁö ¾ÊÀ¸¸é ²¿ÀÌ°Ô µÈ´Ù.
+	// ì—´ê±°í˜•ë“¤ì˜ ìˆœì„œëŠ” í™•ì‹¤íˆ ì§€ì¼œì¤˜ì•¼ í•œë‹¤. ìˆœì„œëŒ€ë¡œ ìˆì§€ ì•Šìœ¼ë©´ ê¼¬ì´ê²Œ ëœë‹¤.
 	for(RwUInt32 nActionID = ACTION_AVATAR_FORWARD; nActionID <= ACTION_AVATAR_RIGHTSIDE; ++nActionID)
 	{
 		pNode = NTL_NEW COptionControlActionNode(this,
-			GetActionDisplayStringNum(nActionID),								// Action Á¦¸ñ
+			GetActionDisplayStringNum(nActionID),								// Action ì œëª©
 			nActionID );															// Action ID
-		CGuiLineTree::AddNode( pNode, dOPTIONCONTROL_CATEGORY_AVATAR );							// Ä«Å×°í¸®¸¦ ºÎ¸ğ·Î °¡Áø´Ù.
+		CGuiLineTree::AddNode( pNode, dOPTIONCONTROL_CATEGORY_AVATAR );							// ì¹´í…Œê³ ë¦¬ë¥¼ ë¶€ëª¨ë¡œ ê°€ì§„ë‹¤.
 	}
 	
 	//////////////////////////////////////////////////////////////////////////////
-	// Å¸°Ù °ü·Ã Ä«Å×°í¸®
+	// íƒ€ê²Ÿ ê´€ë ¨ ì¹´í…Œê³ ë¦¬
 	pNode = NTL_NEW COptionControlCategoryNode(this, 
 		GetDisplayStringManager()->GetString( "DST_OPTION_CONTROL_CATEGORY_TARGET") , 
 		dOPTIONCONTROL_CATEGORY_TARGET );
@@ -383,7 +383,7 @@ void COptionControlList::CreateTree()
 	}
 
 	//////////////////////////////////////////////////////////////////////////////
-	// Äü½½·Ô °ü·Ã Ä«Å×°í¸®
+	// í€µìŠ¬ë¡¯ ê´€ë ¨ ì¹´í…Œê³ ë¦¬
 	pNode = NTL_NEW COptionControlCategoryNode(this, 
 		GetDisplayStringManager()->GetString( "DST_OPTION_CONTROL_CATEGORY_QUICKSLOT") , 
 		dOPTIONCONTROL_CATEGORY_QUICKSLOT );
@@ -399,8 +399,8 @@ void COptionControlList::CreateTree()
 	}
 
 	//////////////////////////////////////////////////////////////////////////
-	// È®Àå
-	// 80 ~ 159 ±îÁö ºóÀÚ¸® ¿¹¾à
+	// í™•ì¥
+	// 80 ~ 159 ê¹Œì§€ ë¹ˆìë¦¬ ì˜ˆì•½
 	for(RwUInt32 nActionID = ACTION_QUICK_1_EX; nActionID <= ACTION_QUICK_PLUS_EX2; ++nActionID )
 	{
 		pNode = NTL_NEW COptionControlActionNode(this,
@@ -409,7 +409,7 @@ void COptionControlList::CreateTree()
 		CGuiLineTree::AddNode( pNode, dOPTIONCONTROL_CATEGORY_QUICKSLOT );
 	}
 
-	// Äü½½·Ô Á¶ÀÛ °ü·Ã
+	// í€µìŠ¬ë¡¯ ì¡°ì‘ ê´€ë ¨
 	for(RwUInt32 nActionID = ACTION_QUICK_PREV; nActionID <= ACTION_QUICK_5THCAP; ++nActionID )
 	{
 		pNode = NTL_NEW COptionControlActionNode(this,
@@ -419,7 +419,7 @@ void COptionControlList::CreateTree()
 	}
 
 	//////////////////////////////////////////////////////////////////////////////
-	// À©µµ¿ì °ü·Ã Ä«Å×°í¸®
+	// ìœˆë„ìš° ê´€ë ¨ ì¹´í…Œê³ ë¦¬
 	pNode = NTL_NEW COptionControlCategoryNode(this, 
 		GetDisplayStringManager()->GetString( "DST_OPTION_CONTROL_CATEGORY_WINDOW") , 
 		dOPTIONCONTROL_CATEGORY_WINDOW );
@@ -435,63 +435,63 @@ void COptionControlList::CreateTree()
 	}
 
 	//////////////////////////////////////////////////////////////////////////////
-	// °íÁ¤ Ä«Å×°í¸®
+	// ê³ ì • ì¹´í…Œê³ ë¦¬
 	pNode = NTL_NEW COptionControlCategoryNode(this, 
 		GetDisplayStringManager()->GetString( "DST_OPTION_CONTROL_CATEGORY_FIXED") , 
 		dOPTIONCONTROL_CATEGORY_FIXED );
 	CGuiLineTree::AddNode( pNode, GUILINETREE_ROOTNODE_ID );
 	pNode->Expand( true );
 
-	// ¹Ì´Ï¸Ê Ãà¼Ò
+	// ë¯¸ë‹ˆë§µ ì¶•ì†Œ
 	pNode = NTL_NEW COptionControlActionNode(this,
 		GetDisplayStringManager()->GetString( "DST_OPTION_CONTROL_ACTION_MINIMAP_ZOOMOUT" ),
 		ACTION_MINIMAP_ZOOMOUT , true);
 	CGuiLineTree::AddNode( pNode, dOPTIONCONTROL_CATEGORY_FIXED );
 
-	// ¹Ì´Ï¸Ê È®´ë
+	// ë¯¸ë‹ˆë§µ í™•ëŒ€
 	pNode = NTL_NEW COptionControlActionNode(this,
 		GetDisplayStringManager()->GetString( "DST_OPTION_CONTROL_ACTION_MINIMAP_ZOOMIN" ),
 		ACTION_MINIMAP_ZOOMIN , true);
 	CGuiLineTree::AddNode( pNode, dOPTIONCONTROL_CATEGORY_FIXED );
 
-	// Ã¤ÆÃÃ¢ ÀÌÀü ÆäÀÌÁö
+	// ì±„íŒ…ì°½ ì´ì „ í˜ì´ì§€
 	pNode = NTL_NEW COptionControlActionNode(this,
 		GetDisplayStringManager()->GetString( "DST_OPTION_CONTROL_ACTION_CHAT_PGUP" ),
 		ACTION_CHAT_PGUP , true);
 	CGuiLineTree::AddNode( pNode, dOPTIONCONTROL_CATEGORY_FIXED );
 
-	// Ã¤ÆÃÃ¢ ´ÙÀ½ ÆäÀÌÁö
+	// ì±„íŒ…ì°½ ë‹¤ìŒ í˜ì´ì§€
 	pNode = NTL_NEW COptionControlActionNode(this,
 		GetDisplayStringManager()->GetString( "DST_OPTION_CONTROL_ACTION_CHAT_PGDN" ),
 		ACTION_CHAT_PGDN , true);
 	CGuiLineTree::AddNode( pNode, dOPTIONCONTROL_CATEGORY_FIXED );
 
-	// Ãë¼Ò
+	// ì·¨ì†Œ
 	pNode = NTL_NEW COptionControlActionNode(this,
 		GetDisplayStringManager()->GetString( "DST_OPTION_CONTROL_ACTION_GLOBAL_CANCLE" ),
 		ACTION_GLOBAL_CANCLE , true);
 	CGuiLineTree::AddNode( pNode, dOPTIONCONTROL_CATEGORY_FIXED );
 
-	// ½ºÅ©¸°¼¦
+	// ìŠ¤í¬ë¦°ìƒ·
 	pNode = NTL_NEW COptionControlActionNode(this,
 		GetDisplayStringManager()->GetString( "DST_OPTION_CONTROL_ACTION_GLOBAL_SNAPSHOT" ),
 		ACTION_GLOBAL_SNAPSHOT , true);
 	CGuiLineTree::AddNode( pNode, dOPTIONCONTROL_CATEGORY_FIXED );
 
-	// Ã¤ÆÃÀÔ·Â
+	// ì±„íŒ…ì…ë ¥
 	pNode = NTL_NEW COptionControlActionNode(this,
 		GetDisplayStringManager()->GetString( "DST_OPTION_CONTROL_ACTION_GLOBAL_CHAT" ),
 		ACTION_GLOBAL_CHAT , true);
 	CGuiLineTree::AddNode( pNode, dOPTIONCONTROL_CATEGORY_FIXED );
 
 
-//		ACTION_DEVUSER_ONLYRENDERGUI = 200,	///< °³¹ß¿ë¸ğµå (GUI¸¸ ±×¸°´Ù. ÀÓ½Ã)
+//		ACTION_DEVUSER_ONLYRENDERGUI = 200,	///< ê°œë°œìš©ëª¨ë“œ (GUIë§Œ ê·¸ë¦°ë‹¤. ì„ì‹œ)
 }
 
 /**
-* \brief °¢°¢ÀÇ ³ëµå¸¦ ¾÷µ¥ÀÌÆ® ÇØÁØ´Ù.
+* \brief ê°ê°ì˜ ë…¸ë“œë¥¼ ì—…ë°ì´íŠ¸ í•´ì¤€ë‹¤.
 *
-* COptionControlActionNodeµéÀÇ Update() ÇÔ¼ö¸¦ È£ÃâÇÑ´Ù.
+* COptionControlActionNodeë“¤ì˜ Update() í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•œë‹¤.
 */
 void COptionControlList::UpdateNode() 
 {
@@ -554,31 +554,31 @@ RwBool COptionControl::Create(COptionWindowGui* pOptionWindow)
 	NTL_FUNCTION("COptionControl::Create");
 	COptionBase::Create(pOptionWindow);
 
-	// Á¶ÀÛÄÁÆ®·Ñ Å¸ÀÌÆ²
+	// ì¡°ì‘ì»¨íŠ¸ë¡¤ íƒ€ì´í‹€
 	m_pStbControlTitle = (gui::CStaticBox*)GetComponent("stbControlTitle");
 	m_pStbControlTitle->SetText( GetDisplayStringManager()->GetString( "DST_OPTION_CONTROL_TEXT_TITLE" ) );
 
-	// GUI LineTree¸¦ »ç¿ëÇÏ±â À§ÇÑ °¡»ó Dialog
+	// GUI LineTreeë¥¼ ì‚¬ìš©í•˜ê¸° ìœ„í•œ ê°€ìƒ Dialog
 	m_pDlgControlList = (gui::CDialog*)GetComponent("dlgControlList");
 
-	// Gui Line TreeÀÇ Å©±â¸¦ rect·Î ¼³Á¤ÇÑ´Ù.
+	// Gui Line Treeì˜ í¬ê¸°ë¥¼ rectë¡œ ì„¤ì •í•œë‹¤.
 	CRectangle rect;
 	rect.SetRectWH(dOPTIONCONTROL_LIST_X, dOPTIONCONTROL_LIST_Y, 
 		dOPTIONCONTROL_LIST_WIDTH, dOPTIONCONTROL_LIST_HEIGHT);
 
-	// GuiLineTree¸¦ »ı¼ºÇÑ´Ù.
+	// GuiLineTreeë¥¼ ìƒì„±í•œë‹¤.
 	m_pOptionControlList = NTL_NEW COptionControlList;
 	if (!m_pOptionControlList->Create(rect, m_pDlgControlList, 
-		dOPTIONCONTROL_LINE_HEIGHT,			// °¢ ¶óÀÎÀÇ ³ôÀÌ
-		dOPTIONCONTROL_LINE_MARGIN,			// °¢ ¶óÀÎÀÇ °£°İ
-		dOPTIONCONTROL_CHILD_MARGIN_WIDTH,	// ÀÚ½ÄµéÀÇ °£°İ
-		dOPTIONCONTROL_LIST_SLIDER_WIDTH, this))	// ½½¶óÀÌ´õÀÇ ³ĞÀÌ
+		dOPTIONCONTROL_LINE_HEIGHT,			// ê° ë¼ì¸ì˜ ë†’ì´
+		dOPTIONCONTROL_LINE_MARGIN,			// ê° ë¼ì¸ì˜ ê°„ê²©
+		dOPTIONCONTROL_CHILD_MARGIN_WIDTH,	// ìì‹ë“¤ì˜ ê°„ê²©
+		dOPTIONCONTROL_LIST_SLIDER_WIDTH, this))	// ìŠ¬ë¼ì´ë”ì˜ ë„“ì´
 		return FALSE;
 
-	// Á¶ÀÛÅ°¸¦ ÁöÁ¤ÇÒ ¼ö ÀÖ´Â ¾ÆÀÌÅÛµéÀ» »ı¼º
+	// ì¡°ì‘í‚¤ë¥¼ ì§€ì •í•  ìˆ˜ ìˆëŠ” ì•„ì´í…œë“¤ì„ ìƒì„±
 	m_pOptionControlList->CreateTree();
 
-	// TextBox¸¦ »ı¼º
+	// TextBoxë¥¼ ìƒì„±
 	m_pStbControlBack = (gui::CStaticBox*)GetComponent("stbControlBack");
 	m_pStbControlText = (gui::CStaticBox*)GetComponent("stbControlText");
 
@@ -600,14 +600,14 @@ void COptionControl::Destroy()
 
 void COptionControl::Show()
 {
-	// COptionBaseÀÇ ScrollBar¸¦ »ç¿ëÇÏÁö ¾Ê´Â´Ù.
+	// COptionBaseì˜ ScrollBarë¥¼ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤.
 	m_pScrollBar->Show(false);
 
 	m_pStbControlTitle->Show(true);
 	m_pDlgControlList->Show(true);
 	m_pStbControlBack->Show(true);
 	
-	// ±âº» ¾È³» ¸Ş½ÃÁö ¼ÂÆÃ
+	// ê¸°ë³¸ ì•ˆë‚´ ë©”ì‹œì§€ ì…‹íŒ…
 	SetGuideDefault(); 
 	m_pStbControlText->Show(true);
 
@@ -616,7 +616,7 @@ void COptionControl::Show()
 
 void COptionControl::Hide()
 {	
-	// COptionBaseÀÇ ScrollBar »ç¿ë
+	// COptionBaseì˜ ScrollBar ì‚¬ìš©
 	m_pScrollBar->Show(true);
 
 	m_pDlgControlList->Show(false);
@@ -624,10 +624,10 @@ void COptionControl::Hide()
 	m_pStbControlBack->Show(false);
 	m_pStbControlText->Show(false);
 
-	GetInputActionMap()->InitInputMode();	   ///< ¾×¼Ç¸Ê ÀÔ·Â ¸ğµåÀÇ ÇØÁ¦
-	//GetInputActionMap()->CancleActionMap();	   ///< ¾×¼Ç¸ÊÀÇ ÀÓ½Ã ÀúÀåµÈ°ÍÀ» ·Îµå
+	GetInputActionMap()->InitInputMode();	   ///< ì•¡ì…˜ë§µ ì…ë ¥ ëª¨ë“œì˜ í•´ì œ
+	//GetInputActionMap()->CancleActionMap();	   ///< ì•¡ì…˜ë§µì˜ ì„ì‹œ ì €ì¥ëœê²ƒì„ ë¡œë“œ
 	
-	// ³ëµåÀÇ ¾÷µ¥ÀÌÆ®
+	// ë…¸ë“œì˜ ì—…ë°ì´íŠ¸
 	m_pOptionControlList->UpdateNode();
 		
 	COptionBase::Hide();
@@ -639,7 +639,7 @@ void COptionControl::OnInit()
 
 void COptionControl::OnReset()
 {
-	// ÀÌÀü¿¡ º¯°æµÇ¾ú´ø ¾×¼ÇÀ» ÇØÁ¦½ÃÄÑÁØ´Ù.
+	// ì´ì „ì— ë³€ê²½ë˜ì—ˆë˜ ì•¡ì…˜ì„ í•´ì œì‹œì¼œì¤€ë‹¤.
 	GetInputActionMap()->InitInputMode();
 	GetInputActionMap()->InitDefaultActionMap();
 
@@ -651,7 +651,7 @@ void COptionControl::OnOk()
 {
 	GetInputActionMap()->InitInputMode();
 	
-	// ¸¸¾à º¯°æÁ¡ÀÌ ÀÖ°í Àû¿ëÀÌ µÇ¾ú´Ù¸é Node¸¦ ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
+	// ë§Œì•½ ë³€ê²½ì ì´ ìˆê³  ì ìš©ì´ ë˜ì—ˆë‹¤ë©´ Nodeë¥¼ ì—…ë°ì´íŠ¸í•œë‹¤.
 	if( GetInputActionMap()->ApplyActionMap() )
 	{
 		m_pOptionControlList->UpdateNode();
@@ -671,7 +671,7 @@ void COptionControl::OnCancel()
 */
 void COptionControl::OnHandleEvents( RWS::CMsg &pMsg ) 
 {
-	// ¾×¼Ç¸Ê¿¡¼­ Á¤º¸¸¦ º¸³½ °ÍÀ» Ã³¸®ÇÑ´Ù.
+	// ì•¡ì…˜ë§µì—ì„œ ì •ë³´ë¥¼ ë³´ë‚¸ ê²ƒì„ ì²˜ë¦¬í•œë‹¤.
 	if( pMsg.Id == g_EventActionMapClientNotify )
 	{
 		SNtlEventActionMapClientNotify* pData = reinterpret_cast<SNtlEventActionMapClientNotify*>( pMsg.pData );
@@ -680,16 +680,16 @@ void COptionControl::OnHandleEvents( RWS::CMsg &pMsg )
 
 		switch( pData->byType )
 		{
-		case SNtlEventActionMapClientNotify::ACTIONMAP_OK:							// ¼­¹ö¿¡ Àû¿ëµÆ´Ù°í ¾Ë¸²
+		case SNtlEventActionMapClientNotify::ACTIONMAP_OK:							// ì„œë²„ì— ì ìš©ëë‹¤ê³  ì•Œë¦¼
 			SetGuideDefault();
 			break;
-		case SNtlEventActionMapClientNotify::ACTIONMAP_RELEASE:							// Å°°¡ º¯°æµÆ´Ù°í ¾Ë¸²
+		case SNtlEventActionMapClientNotify::ACTIONMAP_RELEASE:							// í‚¤ê°€ ë³€ê²½ëë‹¤ê³  ì•Œë¦¼
 			SetGuideChange( pData->wParam1 );
 			break;
-		case SNtlEventActionMapClientNotify::ACTIONMAP_FIXEDKEY:						// Å°°¡ °íÁ¤µÈ Å°¶ó°í ¾Ë¸²
+		case SNtlEventActionMapClientNotify::ACTIONMAP_FIXEDKEY:						// í‚¤ê°€ ê³ ì •ëœ í‚¤ë¼ê³  ì•Œë¦¼
 			SetGuideText( dOPTIONCONTROL_STATICBOX_GUIDE_COLOR, L"DST_OPTION_CONTROL_TEXT_FIXEDKEYGUIDE" );
 			break;
-		case SNtlEventActionMapClientNotify::ACTIONMAP_NOTCOMBINE:						// Á¶ÇÕÅ°·Î´Â ÁöÁ¤¸øÇÑ´Ù°í ¾Ë¸²
+		case SNtlEventActionMapClientNotify::ACTIONMAP_NOTCOMBINE:						// ì¡°í•©í‚¤ë¡œëŠ” ì§€ì •ëª»í•œë‹¤ê³  ì•Œë¦¼
 			SetGuideText( dOPTIONCONTROL_STATICBOX_GUIDE_COLOR, L"DST_OPTION_CONTROL_TEXT_NOTCOMBINEGUIDE" );
 			break;
 		case SNtlEventActionMapClientNotify::ACTIONMAP_SAMEKEY:
@@ -708,7 +708,7 @@ void COptionControl::SetGuideText( RwUInt32 uiColor, const WCHAR* pString )
 }
 
 /**
-* \brief ±âº»ÀûÀÎ ´ÜÃàÅ° º¯°æÀÇ ¾È³»
+* \brief ê¸°ë³¸ì ì¸ ë‹¨ì¶•í‚¤ ë³€ê²½ì˜ ì•ˆë‚´
 */
 void COptionControl::SetGuideDefault() 
 {
@@ -720,7 +720,7 @@ void COptionControl::SetGuideDefault()
 }
 
 /**
-* \brief Å°°¡ Áßº¹µÇ¾î ÁöÁ¤¾ÈµÊÀ¸·Î ÇØÁ¦µÈ Å°¸¦ ¾È³»
+* \brief í‚¤ê°€ ì¤‘ë³µë˜ì–´ ì§€ì •ì•ˆë¨ìœ¼ë¡œ í•´ì œëœ í‚¤ë¥¼ ì•ˆë‚´
 */
 void COptionControl::SetGuideChange(RwUInt32 nAction) 
 {
@@ -735,7 +735,7 @@ void COptionControl::SetGuideChange(RwUInt32 nAction)
 }
 
 /**
-* \brief º¯°æ ºÒ°¡´ÉÇÑ Å°¶ó´Â °ÍÀ» ¾È³»
+* \brief ë³€ê²½ ë¶ˆê°€ëŠ¥í•œ í‚¤ë¼ëŠ” ê²ƒì„ ì•ˆë‚´
 */
 void COptionControl::SetGuideFixed( RwUInt32 nAction ) 
 {
@@ -747,7 +747,7 @@ void COptionControl::SetGuideFixed( RwUInt32 nAction )
 }
 
 /**
-* \brief ÇöÀç ¸ğµå¿¡¼­´Â º¯°æÀÌ ºÒ°¡´ÉÇÕ´Ï´Ù ¶ó´Â °ÍÀ» ¾È³»
+* \brief í˜„ì¬ ëª¨ë“œì—ì„œëŠ” ë³€ê²½ì´ ë¶ˆê°€ëŠ¥í•©ë‹ˆë‹¤ ë¼ëŠ” ê²ƒì„ ì•ˆë‚´
 */
 void COptionControl::SetGuideNegativeMode()
 {

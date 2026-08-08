@@ -50,7 +50,7 @@ char* CJudgeActionDump::GetDump_SendPacket(void* pPacket)
 	sNTLPACKETHEADER *pHeader = (sNTLPACKETHEADER*)pPacket;
 	RwUInt16 wOpCode = pHeader->wOpCode;
 
-	// avooo's command : ³Ê¹« ¸¹Àº ÆĞÅ¶ÀÌ Ãâ·ÂÀÌ µÇ¾î ÁÖ¼®Ã³¸® ÇÏ°Ú½À´Ï´Ù
+	// avooo's command : ë„ˆë¬´ ë§ì€ íŒ¨í‚·ì´ ì¶œë ¥ì´ ë˜ì–´ ì£¼ì„ì²˜ë¦¬ í•˜ê² ìŠµë‹ˆë‹¤
 	/*
 	const char *pOpString = NtlGetPacketName(wOpCode);
 	if(pOpString)

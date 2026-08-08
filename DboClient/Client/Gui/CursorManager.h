@@ -54,7 +54,7 @@ protected:
 
 public:
 
-	 ///< ÀÏÁ¤ÇÑ ½Ã°£¸¶´Ù ¸¶¿ì½º Ä¿¼­ Á¶°ÇÀ» °Ë»ç, º¯°æÇÑ´Ù
+	 ///< ì¼ì •í•œ ì‹œê°„ë§ˆë‹¤ ë§ˆìš°ìŠ¤ ì»¤ì„œ ì¡°ê±´ì„ ê²€ì‚¬, ë³€ê²½í•œë‹¤
 	VOID Update(RwReal fElapsed, sWorldPickInfo_for_Cursor* pWorldPickInfo_for_Cursor);
 
 	VOID InitLobbyCursor();
@@ -67,7 +67,7 @@ public:
 	VOID SetRace( RwUInt8 eRace );	
 	VOID ShowMouseCursor( RwBool bShow = TRUE );	
 
-	VOID SetDesignatedCursor( STATE eCursorState );	// CS_INVALID_CURSOR ÇØÁ¦.
+	VOID SetDesignatedCursor( STATE eCursorState );	// CS_INVALID_CURSOR í•´ì œ.
 
 	RwUInt8 GetCursorState();
 	
@@ -98,7 +98,7 @@ private:
 	RwInt32 m_iOldXPos, m_iOldYPos;
 
 	RwUInt8	m_eCurCursor;
-	RwUInt8	m_eDesignatedCursor;		// ÁöÁ¤µÈ Ä¿¼­, INVALIDÀÌ¿ÜÀÇ °ªÀÎ °æ¿ì Ç×»ó ±× Ä¿¼­·Î °íÁ¤µÈ´Ù.
+	RwUInt8	m_eDesignatedCursor;		// ì§€ì •ëœ ì»¤ì„œ, INVALIDì´ì™¸ì˜ ê°’ì¸ ê²½ìš° í•­ìƒ ê·¸ ì»¤ì„œë¡œ ê³ ì •ëœë‹¤.
 
 	bool	m_bSkillSelectMode;
 

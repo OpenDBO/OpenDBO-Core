@@ -2,11 +2,11 @@
  *
  * File			: NtlText.h
  * Author		: HongHoDong
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 7. 14	
  * Abstract		: NtlText
  *****************************************************************************
- * Desc         : Renderware È­¸é¿¡ Ãâ·ÂÇÏ±â À§ÇÑ 
+ * Desc         : Renderware í™”ë©´ì— ì¶œë ¥í•˜ê¸° ìœ„í•œ 
  *
  *****************************************************************************/
 #ifndef __NTL_TEXT__

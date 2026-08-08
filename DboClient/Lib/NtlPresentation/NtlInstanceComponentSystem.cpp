@@ -2,7 +2,7 @@
 //	File		:	NtlInstanceParticleSystem.cpp
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -127,7 +127,7 @@ RwBool CNtlInstanceComponentSystem::Create( CNtlResourceEffect* pResourceEffect,
 {
 	m_pResourceComponentSystem = pResourceComponentSystem;
 
-	// Hurricane Action ÀÌ ¾øÀ»¶§¸¸ Spline Path À» »ý¼ºÇÑ´Ù.
+	// Hurricane Action ì´ ì—†ì„ë•Œë§Œ Spline Path ì„ ìƒì„±í•œë‹¤.
 	if (!pResourceComponentSystem->IsEmitterDataFlag(rpPRTSTDEMITTERDATAFLAGPRTHURRICANE) &&
 		pResourceComponentSystem->m_nPathEmitterDataFlag == rpPRTADVEMITTERDATAFLAGSPLINEPATH)
 	{
@@ -529,8 +529,8 @@ RwUInt8 CNtlInstanceComponentSystem::UpdateFinishAlpha( RwUInt8 uiOriginAlpha, R
     
     if(nDeltaAlpha < 1)
     {
-        // °ªÀÌ ³Ê¹« ÀÛ¾Æ¼­ 1º¸´Ù ÀÛ°Ô ³ª¿Í¼­ Àû¿ëÀÌ ¾ÈµÇ´Â °æ¿ì°¡ ÀÖ´Ù.
-        // ÀÌ·± °æ¿ì¿£ °­Á¦·Î 1À» Á¦°ÅÇÑ´Ù.
+        // ê°’ì´ ë„ˆë¬´ ìž‘ì•„ì„œ 1ë³´ë‹¤ ìž‘ê²Œ ë‚˜ì™€ì„œ ì ìš©ì´ ì•ˆë˜ëŠ” ê²½ìš°ê°€ ìžˆë‹¤.
+        // ì´ëŸ° ê²½ìš°ì—” ê°•ì œë¡œ 1ì„ ì œê±°í•œë‹¤.
         return 1;
     }    
 

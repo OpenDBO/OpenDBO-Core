@@ -1,4 +1,4 @@
-// UnPackSelectDlg.cpp : ���� �����Դϴ�.
+// UnPackSelectDlg.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "UnPackSelectDlg.h"
 
 
-// CUnPackSelectDlg ��ȭ �����Դϴ�.
+// CUnPackSelectDlg 대화 상자입니다.
 
 IMPLEMENT_DYNAMIC(CUnPackSelectDlg, CDialog)
 
@@ -35,7 +35,7 @@ BEGIN_MESSAGE_MAP(CUnPackSelectDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CUnPackSelectDlg �޽��� ó�����Դϴ�.
+// CUnPackSelectDlg 메시지 처리기입니다.
 
 BOOL CUnPackSelectDlg::OnInitDialog()
 {

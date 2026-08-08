@@ -2,7 +2,7 @@
 //	File		:	VenusGrid.h
 //	Desc		:	
 //	Begin		:	2004.9.30
-//	Copyright	:	¨Ï 2004 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2004 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -14,7 +14,7 @@
 
 /**
  * \ingroup Venus
- * \brief È­¸é¿¡ Grid¸¦ ±×¸®´Â Å¬·¡½º
+ * \brief í™”ë©´ì— Gridë¥¼ ê·¸ë¦¬ëŠ” í´ë˜ìŠ¤
  * \date 2006-08-01
  * \author agebreak
  */
@@ -29,33 +29,33 @@ public:
 	RwBool	Create();
 	RwBool	Destroy();
 
-	RwBool	CreateGrid(RwInt32 nTileCount);                     ///< ±×¸®µå¸¦ »ı¼ºÇÑ´Ù.
+	RwBool	CreateGrid(RwInt32 nTileCount);                     ///< ê·¸ë¦¬ë“œë¥¼ ìƒì„±í•œë‹¤.
 	
 
-	RwBool	Render();                                           ///< ±×¸®µå¸¦ È­¸é¿¡ ·»´õ¸µ ÇÑ´Ù.
+	RwBool	Render();                                           ///< ê·¸ë¦¬ë“œë¥¼ í™”ë©´ì— ë Œë”ë§ í•œë‹¤.
 
-    /// IntersectionµÈ Æ÷ÀÎÅÍ¸¦ Ã£´Â´Ù.
+    /// Intersectionëœ í¬ì¸í„°ë¥¼ ì°¾ëŠ”ë‹¤.
     RwBool	Intersection3dPoint(RwV3d* pIntersectionPoint, const RwV3d* pCenter, const RwV3d* pRayPos, const RwV3d* pRayDir);
     RwBool	IntersectionStart(POINT point, const RwV3d* pCenter);
     void	IntersectionEnd();
     RwBool	IntersectionMove(RwV3d* pMove, POINT point, const RwV3d* pCenter);
 
-    // Get/Set ¸Ş¼Òµå
-    void    SetTileCount(RwInt32 nTileCont) {m_nTileCount = nTileCont;} ///< Å¸ÀÏ °³¼ö¸¦ ¼³Á¤ÇÑ´Ù.
-    RwInt32 GetTileCount() {return m_nTileCount;}                       ///< Å¸ÀÏ °³¼ö¸¦ ¹İÈ¯ÇÑ´Ù.
+    // Get/Set ë©”ì†Œë“œ
+    void    SetTileCount(RwInt32 nTileCont) {m_nTileCount = nTileCont;} ///< íƒ€ì¼ ê°œìˆ˜ë¥¼ ì„¤ì •í•œë‹¤.
+    RwInt32 GetTileCount() {return m_nTileCount;}                       ///< íƒ€ì¼ ê°œìˆ˜ë¥¼ ë°˜í™˜í•œë‹¤.
 
-    RwBool	SetGridWidth(RwReal fGridWidth);                            ///< ±×¸®µåÀÇ ³ĞÀÌ¸¦ ¼³Á¤ÇÑ´Ù.
-    RwReal  GetGridWidth() {return m_fGridWidth;}                       ///< ±×¸®µğÀÇ ³ĞÀÌ¸¦ ¹İÈ¯ÇÑ´Ù.
+    RwBool	SetGridWidth(RwReal fGridWidth);                            ///< ê·¸ë¦¬ë“œì˜ ë„“ì´ë¥¼ ì„¤ì •í•œë‹¤.
+    RwReal  GetGridWidth() {return m_fGridWidth;}                       ///< ê·¸ë¦¬ë””ì˜ ë„“ì´ë¥¼ ë°˜í™˜í•œë‹¤.
 
-    RwBool  GetIntersection() {return m_bIntersection;}                 ///< Intersection À¯¹«¸¦ ¹İÈ¯ÇÑ´Ù.
+    RwBool  GetIntersection() {return m_bIntersection;}                 ///< Intersection ìœ ë¬´ë¥¼ ë°˜í™˜í•œë‹¤.
 
 protected:
-    RwInt32					m_nTileCount;                       ///< Å¸ÀÏ °³¼ö
-    RwInt32					m_nVertexCount;                     ///< ¹öÅØ½º °³¼ö
-    RwReal					m_fGridWidth;                       ///< Grid ³ĞÀÌ
-    RwIm3DVertex*			m_pVertex;                          ///< ¹öÅØ½º ¹öÆÛÀÇ Æ÷ÀÎÅÍ
-    RwBool					m_bIntersection;                    ///< Intersection À¯¹«
-    RwV3d					m_vOldIntersectionPoint;            ///< ÀÌÀü Intersection À§Ä¡
-    RwIm3DVertex			m_IntersectionPlaneVertex[4];       ///< IntersectionµÈ PlaneÀÇ ¹öÅØ½º
-    RwV3d					m_vOldCenter;                       ///< ÀÌÀü Áß½ÉÁ¡
+    RwInt32					m_nTileCount;                       ///< íƒ€ì¼ ê°œìˆ˜
+    RwInt32					m_nVertexCount;                     ///< ë²„í…ìŠ¤ ê°œìˆ˜
+    RwReal					m_fGridWidth;                       ///< Grid ë„“ì´
+    RwIm3DVertex*			m_pVertex;                          ///< ë²„í…ìŠ¤ ë²„í¼ì˜ í¬ì¸í„°
+    RwBool					m_bIntersection;                    ///< Intersection ìœ ë¬´
+    RwV3d					m_vOldIntersectionPoint;            ///< ì´ì „ Intersection ìœ„ì¹˜
+    RwIm3DVertex			m_IntersectionPlaneVertex[4];       ///< Intersectionëœ Planeì˜ ë²„í…ìŠ¤
+    RwV3d					m_vOldCenter;                       ///< ì´ì „ ì¤‘ì‹¬ì 
 };

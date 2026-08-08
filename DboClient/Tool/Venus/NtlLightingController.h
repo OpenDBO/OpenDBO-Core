@@ -2,7 +2,7 @@
 //	File		:	CNtlLightingController.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -19,14 +19,14 @@
 #define	LIGHTNING_CLOUDFLASH_TEX_NAME	"lightning_cloudflash"
 
 //-------------------------------------------------------------
-// ¹ø°³ ¼Ó¼º.
+// ë²ˆê°œ ì†ì„±.
 
 #define LIGHTNING_LEVEL				5
 #define LIGHTNING_SUBCOUNT			2
 #define LIGHTNING_SRATIO			0.2f		// start width 
 #define LIGHTNING_ERATIO			0.2f		// end width
-#define LIGHTNING_AMP				1.0f		// ¹ø°³°¡ ¿·À¸·Î ¹ş¾î³ª´Â ´ÜÀ§
-#define LIGHTNING_ROUGH				1.0f		// ¹ø°³°¡ Âõ¾îÁö´Â ´ÜÀ§
+#define LIGHTNING_AMP				1.0f		// ë²ˆê°œê°€ ì˜†ìœ¼ë¡œ ë²—ì–´ë‚˜ëŠ” ë‹¨ìœ„
+#define LIGHTNING_ROUGH				1.0f		// ë²ˆê°œê°€ ì°¢ì–´ì§€ëŠ” ë‹¨ìœ„
 
 
 #define	LIGHTNING_SHOW_TIME			30.0f

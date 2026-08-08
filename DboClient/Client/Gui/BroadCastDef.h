@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: BroadCastDef.h
 * Author		: Haesung Cho
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 10. 27
 * Abstract		: 
 *****************************************************************************
-* Desc			: °ÔÀÓ TS message, Server emergency, Mini narrationÀ» ´ã´çÇÏ´Â GUI
+* Desc			: ê²Œì„ TS message, Server emergency, Mini narrationì„ ë‹´ë‹¹í•˜ëŠ” GUI
 *****************************************************************************/
 
 #ifndef __BROAD_CAST_DEF_H__

@@ -2,7 +2,7 @@
 //	File		:	VenusConfig.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -29,7 +29,7 @@ const DWORD	DATA_VERSION = 0x00000000;
 
 /**
  * \ingroup Venus
- * \brief °øÅëÀ¸·Î »ç¿ëµÇ´Â Config ¼³Á¤°ú Save/Load¸¦ ´ã´çÇÏ´Â Å¬·¡½º
+ * \brief ê³µí†µìœ¼ë¡œ ì‚¬ìš©ë˜ëŠ” Config ì„¤ì •ê³¼ Save/Loadë¥¼ ë‹´ë‹¹í•˜ëŠ” í´ë˜ìŠ¤
  * \date 2006-08-01
  * \author agebreak
  */
@@ -101,7 +101,7 @@ enum EDIT_MODE
 	// Render State
 	D3DFILLMODE			m_D3DFillMode;
 
-    RwRGBA              m_BackGroundColor;            ///< BackGround Color Load½Ã ÀÓ½Ã·Î »ç¿ëÇÏ´Â º¯¼ö
+    RwRGBA              m_BackGroundColor;            ///< BackGround Color Loadì‹œ ì„ì‹œë¡œ ì‚¬ìš©í•˜ëŠ” ë³€ìˆ˜
 
     RwBool              m_bRenderBoundingSphere;
 
@@ -112,8 +112,8 @@ public:
 
 	void	SetMainDirectory();
 
-	void	Save();                     ///< ÀÛ¾÷³»¿ë¹× Config¸¦ SaveÇÑ´Ù.
-	void	Load();                     ///< ÀÛ¾÷³»¿ë¹× Config¸¦ LoadÇÑ´Ù.
+	void	Save();                     ///< ì‘ì—…ë‚´ìš©ë° Configë¥¼ Saveí•œë‹¤.
+	void	Load();                     ///< ì‘ì—…ë‚´ìš©ë° Configë¥¼ Loadí•œë‹¤.
 
 	void	GetString(RwChar* strDest, RwChar* strSrc);
 	void	ShowUpdateNews();
@@ -121,18 +121,18 @@ public:
 	RwBool	SubFindWinword(std::string& strWinwordPath);
     
 protected:
-    void	SaveGrid(FILE* pFile, CString strHead);     ///< Grid ¼³Á¤À» ÀúÀåÇÑ´Ù.
-    void	SaveTime(FILE* pFile, CString strHead);     ///< Time ¼³Á¤À» ÀúÀåÇÑ´Ù.
-    void	SaveDummy(FILE* pFile, CString strHead);    ///< Dummy ¼³Á¤À» ÀúÀåÇÑ´Ù.
-    void	SaveLight(FILE* pFile, CString strHead);    ///< Light ¼³Á¤À» ÀúÀåÇÑ´Ù.
-    void	SaveEvent(FILE* pFile, CString strHead);    ///< Event ¼³Á¤À» ÀúÀåÇÑ´Ù.
-    void	SavePath(FILE* pFile, CString strHead);     ///< Path ¼³Á¤À» ÀúÀåÇÑ´Ù.
+    void	SaveGrid(FILE* pFile, CString strHead);     ///< Grid ì„¤ì •ì„ ì €ì¥í•œë‹¤.
+    void	SaveTime(FILE* pFile, CString strHead);     ///< Time ì„¤ì •ì„ ì €ì¥í•œë‹¤.
+    void	SaveDummy(FILE* pFile, CString strHead);    ///< Dummy ì„¤ì •ì„ ì €ì¥í•œë‹¤.
+    void	SaveLight(FILE* pFile, CString strHead);    ///< Light ì„¤ì •ì„ ì €ì¥í•œë‹¤.
+    void	SaveEvent(FILE* pFile, CString strHead);    ///< Event ì„¤ì •ì„ ì €ì¥í•œë‹¤.
+    void	SavePath(FILE* pFile, CString strHead);     ///< Path ì„¤ì •ì„ ì €ì¥í•œë‹¤.
 
-    void	LoadGrid(FILE* pFile);                      ///< Grid ¼³Á¤À» ·ÎµåÇÑ´Ù.
-    void	LoadTime(FILE* pFile);                      ///< Time ¼³Á¤À» ·ÎµåÇÑ´Ù.
-    void	LoadDummy(FILE* pFile);                     ///< Dummy ¼³Á¤À» ·ÎµåÇÑ´Ù.
-    void	LoadLight(FILE* pFile);                     ///< Light ¼³Á¤À» ·ÎµåÇÑ´Ù.
-    void	LoadEvent(FILE* pFile);                     ///< Event ¼³Á¤À» ·ÎµåÇÑ´Ù.
-    void	LoadPath(FILE* pFile);                      ///< Path ¼³Á¤À» ·ÎµåÇÑ´Ù.
+    void	LoadGrid(FILE* pFile);                      ///< Grid ì„¤ì •ì„ ë¡œë“œí•œë‹¤.
+    void	LoadTime(FILE* pFile);                      ///< Time ì„¤ì •ì„ ë¡œë“œí•œë‹¤.
+    void	LoadDummy(FILE* pFile);                     ///< Dummy ì„¤ì •ì„ ë¡œë“œí•œë‹¤.
+    void	LoadLight(FILE* pFile);                     ///< Light ì„¤ì •ì„ ë¡œë“œí•œë‹¤.
+    void	LoadEvent(FILE* pFile);                     ///< Event ì„¤ì •ì„ ë¡œë“œí•œë‹¤.
+    void	LoadPath(FILE* pFile);                      ///< Path ì„¤ì •ì„ ë¡œë“œí•œë‹¤.
 
 };

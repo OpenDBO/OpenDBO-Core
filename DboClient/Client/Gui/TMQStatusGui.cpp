@@ -78,50 +78,50 @@ RwBool CTMQStatusGui::Create()
 	m_pCurPoint->SetText(L"0%");
 	m_pQuest->SetText(GetDisplayStringManager()->GetString("DST_TMQ_STATUS_QUEST"));
 
-	// ½ºÅ×ÀÌÁö Á¤º¸
+	// ìŠ¤í…Œì´ì§€ ì •ë³´
 	m_pStageButton = (gui::CButton*)GetComponent( "btnStageInfo" );
 	m_pStageButton->SetToolTip(GetDisplayStringManager()->GetString("DST_TMQ_STATUS_STATUS_INFO"));
 	m_slotStageButton = m_pStageButton->SigClicked().Connect(this, &CTMQStatusGui::OnClicked_InfoButton);
 
-	// ÃÖ¼ÒÈ­ ¹öÆ°
+	// ìµœì†Œí™” ë²„íŠ¼
 	m_pMinimizeButton = (gui::CButton*)GetComponent( "btnMinimize" );
 	m_slotMinimizeButton = m_pMinimizeButton->SigClicked().Connect(this, &CTMQStatusGui::OnClicked_MinimizeButton);
 
-	// ½Ã³ª¸®¿À ¹öÆ°
+	// ì‹œë‚˜ë¦¬ì˜¤ ë²„íŠ¼
 	m_pSenarioButton = (gui::CButton*)GetComponent( "btnSenario" );
 	m_pSenarioButton->SetToolTip(GetDisplayStringManager()->GetString("DST_TMQ_STATUS_SENARIO"));
 	m_slotSenarioButton = m_pSenarioButton->SigClicked().Connect(this, &CTMQStatusGui::OnClicked_SenarioButton);	
 
-	// ´ÙÀ½ Äù½ºÆ® ¹öÆ°
+	// ë‹¤ìŒ í€˜ìŠ¤íŠ¸ ë²„íŠ¼
 	m_pNextButton = (gui::CButton*)GetComponent( "btnNextQuest" );
 	m_slotNextButton = m_pNextButton->SigClicked().Connect(this, &CTMQStatusGui::OnClicked_NextButton);
 
-	// ½Ã³ª¸®¿À ¹öÆ° ¾÷µ¥ÀÌÆ® ¾Ë¸²
+	// ì‹œë‚˜ë¦¬ì˜¤ ë²„íŠ¼ ì—…ë°ì´íŠ¸ ì•Œë¦¼
 	gui::CSurface surface = GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "TMQStatus.srf", "srfButtonEffect" );
 	m_SenarioButtonFlicker.SetSurface( surface );
 	m_SenarioButtonFlicker.SetTime( 1000.0f, 0.5f );
 	m_SenarioButtonFlicker.SetAlpha( 0, 255 );
 
-	// ½ºÅ×ÀÌÁö ¹öÆ° ¾÷µ¥ÀÌÆ® ¾Ë¸²
+	// ìŠ¤í…Œì´ì§€ ë²„íŠ¼ ì—…ë°ì´íŠ¸ ì•Œë¦¼
 	surface = GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "TMQStatus.srf", "srfButtonEffect" );
 	m_StageButtonFlicker.SetSurface( surface );
 	m_StageButtonFlicker.SetTime( 1000.0f, 0.5f );
 	m_StageButtonFlicker.SetAlpha( 0, 255 );
 
-	// TMQ Æ÷ÀÎÆ® °ÔÀÌÁö
+	// TMQ í¬ì¸íŠ¸ ê²Œì´ì§€
 	m_pTMQGauge = (gui::CProgressBar*)GetComponent( "TMQGauge" );
 	m_pTMQGauge->SetToolTip(GetDisplayStringManager()->GetString("DST_TMQ_STATUS_EXPLAIN_POINT"));
 
-	// TMQ Æ÷ÀÎÆ® ¹è°æ
+	// TMQ í¬ì¸íŠ¸ ë°°ê²½
 	m_srfGaugeBack.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "TMQStatus.srf", "srfGaugeBack" ));
 	m_srfGaugeBack.SetPositionfromParent(8, 116);
 
-	// ÄíÆù ½½·Ô
+	// ì¿ í° ìŠ¬ë¡¯
 	m_CouponSlot.Create(m_pThis, SDIALOG_TMQ_STATUS, REGULAR_SLOT_SIMPLE_ICON, SDS_COUNT);
 	m_CouponSlot.SetIcon(dCOUPON_ICON_NAME, 0);
 	m_CouponSlot.SetPosition_fromParent(122, 93);
 
-	// ±¸ºÐ¼±
+	// êµ¬ë¶„ì„ 
 	m_srfTMQContourLine_1.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", "srfSideContourLine" ));
 	m_srfTMQContourLine_2.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", "srfSideContourLine" ));
 	m_srfTMQContourLine_3.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", "srfSideContourLine" ));
@@ -130,7 +130,7 @@ RwBool CTMQStatusGui::Create()
 	m_srfTMQContourLine_2.SetPositionfromParent(0, 72);
 	m_srfTMQContourLine_3.SetPositionfromParent(0, 135);
 
-	// ÄíÆù ½½·Ô ¹è°æ
+	// ì¿ í° ìŠ¬ë¡¯ ë°°ê²½
 	m_srfCouponSlot.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "TMQStatus.srf", "srfCouponSlot" ));
 	m_srfCouponSlot.SetPositionfromParent(120, 91);
 

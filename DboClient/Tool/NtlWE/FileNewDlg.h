@@ -2,21 +2,21 @@
 #include "afxwin.h"
 
 
-// CFileNewDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CFileNewDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CFileNewDlg : public CDialog
 {
 	DECLARE_DYNAMIC(CFileNewDlg)
 
 public:
-	CFileNewDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CFileNewDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CFileNewDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_FILE_NEW };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 

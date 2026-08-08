@@ -1,4 +1,4 @@
-// Attr_Group.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_Group.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_Group.h"
 
 
-// CAttr_Group ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_Group ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_Group, CAttr_Page, 1)
 
@@ -52,4 +52,4 @@ BEGIN_MESSAGE_MAP(CAttr_Group, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_Group ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_Group ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

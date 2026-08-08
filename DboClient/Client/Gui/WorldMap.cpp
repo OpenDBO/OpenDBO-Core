@@ -944,12 +944,6 @@ VOID CWorldMapGui::UpdateBusPosition()
 	if(m_byMapMode != WORLDMAP_TYPE_ZONE && m_byMapMode != WORLDMAP_TYPE_ZONE2)
 		return;
 
-	if( m_uiActiveWorldID != m_uiRenderingWorldID )
-		return;
-
-	if( m_uiActiveZoneID != m_uiRenderingZoneID )
-		return;
-
 	CNtlOtherParam* pOtherParam = GetNtlSLGlobal()->GetSobAvatar()->GetOtherParam();
 
 	// 아바타 주위의 Sob 객체중 버스 NPC 업데이트
@@ -977,12 +971,10 @@ VOID CWorldMapGui::UpdateBusPosition()
 			RwV3d& v3BusPos = pSobNPC->GetPosition();
 
 			const sBusRoute* pBusRoute = pOtherParam->GetBusRoute(pSobNPC->GetSerialID());
-			if( !pBusRoute )
-				continue;
 
 			tBusPos.hBus			= pSobNPC->GetSerialID();
-			tBusPos.eBusShapeType	= pBusRoute->eBusShapeType;
-			tBusPos.eBusDirection	= GetBusDirectionType( GetAngle( pSobNPC->GetDirection() ) );
+			tBusPos.eBusShapeType	= pBusRoute ? pBusRoute->eBusShapeType : BUS_SHAPE_HUMAN;
+			tBusPos.eBusDirection	= pBusRoute ? GetBusDirectionType( GetAngle( pBusRoute->v3Dir ) ) : GetBusDirectionType( GetAngle( pSobNPC->GetDirection() ) );
 			GetMapPos_from_RealPos(v3BusPos.x, v3BusPos.z, tBusPos.position.x, tBusPos.position.y);
 
 			m_mapBusPos[pSobNPC->GetSerialID()] = tBusPos;
@@ -990,16 +982,30 @@ VOID CWorldMapGui::UpdateBusPosition()
 	}
 
 
-	// 아바타 주위에 없는 Sob 객체중 버스 NPC 업데이트	
+	// 아바타 주위에 없는 Sob 객체중 버스 NPC 업데이트
+	CNtlPLWorldEntity* pWorldEntity = reinterpret_cast<CNtlPLVisualManager*>( GetSceneManager() )->GetWorld();
 	for( MAP_BUS_ROUTE_ITER it = pOtherParam->GetBusRouteBegin() ; it != pOtherParam->GetBusRouteEnd(); ++it )
 	{
-		sBusPosition busPosition;
 		sBusRoute& rBusRoute = it->second;
 
 		// 아바타 주위(클라이언트 내부 정보)에 있는 정보를 가지고 이미 위치를 업데이트 했다
 		BUS_POS_ITER it_BusPos = m_mapBusPos.find(rBusRoute.hBus);
 		if( it_BusPos != m_mapBusPos.end() )
 			continue;
+
+		// Only show buses in the currently viewed zone
+		if( pWorldEntity )
+		{
+			TBLIDX idxAreaInfoIndex = pWorldEntity->GetMapNameCode( rBusRoute.v3Pos );
+			if( idxAreaInfoIndex != 0xffffffff )
+			{
+				RwUInt32 iTemp = idxAreaInfoIndex / 1000;
+				RwUInt32 iPureTemp = iTemp / 100 * 100;
+				RwUInt32 iZone = iTemp - iPureTemp;
+				if( iZone != m_uiRenderingZoneID )
+					continue;
+			}
+		}
 
 		sBusPosition tBusPos;
 
@@ -1193,6 +1199,10 @@ RwBool CWorldMapGui::AnalysisAreaInfo()
 	UpdateBindInfo();
 	UpdateWarFog();
 	UpdateAvatarMark(pAvatar);
+
+	// Resync bus location zone with server when zone changes while map is open
+	if (IsShow())
+		GetDboGlobal()->GetGamePacketGenerator()->SendBusWorldMapStatus(true, m_uiRenderingZoneID);
 
 	return TRUE;
 }
@@ -2967,7 +2977,7 @@ RwInt32 CWorldMapGui::SwitchDialog(bool bOpen)
 
 		CNtlSLEventGenerator::BusMove(BUS_MOVE_RESET, INVALID_SERIAL_ID, INVALID_TBLIDX, NULL, NULL);
 	}
-	GetDboGlobal()->GetGamePacketGenerator()->SendBusWorldMapStatus(bOpen);
+	GetDboGlobal()->GetGamePacketGenerator()->SendBusWorldMapStatus(bOpen, bOpen ? m_uiRenderingZoneID : INVALID_ZONEID);
 	Show(bOpen);
 	return 1;
 }

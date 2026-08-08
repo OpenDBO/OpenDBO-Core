@@ -2,7 +2,7 @@
 
 #include "Control/RollupCtrl.h"
 
-// CSurfaceLayer ºäÀÔ´Ï´Ù.
+// CSurfaceLayer ë·°ì…ë‹ˆë‹¤.
 
 class CSurfaceLayer : public CView
 {
@@ -12,11 +12,11 @@ public:
 	enum SURFACEDLG { /*SURFACEFILEDLG = 0,*/ RECTINFODLG, SURFACELISTDLG , SURFACEATTRIBUTEDLG };
 
 protected:
-	CSurfaceLayer();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CSurfaceLayer();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CSurfaceLayer();
 
 public:
-	virtual void OnDraw(CDC* pDC);      // ÀÌ ºä¸¦ ±×¸®±â À§ÇØ ÀçÁ¤ÀÇµÇ¾ú½À´Ï´Ù.
+	virtual void OnDraw(CDC* pDC);      // ì´ ë·°ë¥¼ ê·¸ë¦¬ê¸° ìœ„í•´ ì¬ì •ì˜ë˜ì—ˆìŠµë‹ˆë‹¤.
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;
@@ -31,7 +31,7 @@ protected:
 protected:
 	//variables
 	CRollupCtrl	m_RollUpCtrl;
-	BOOL		m_bInitialized;			// RollUpCtrlÀÌ InitµÇ¸é TRUE;
+	BOOL		m_bInitialized;			// RollUpCtrlì´ Initë˜ë©´ TRUE;
 
 public:
 	

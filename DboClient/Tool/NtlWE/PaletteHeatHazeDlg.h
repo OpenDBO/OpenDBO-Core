@@ -2,21 +2,21 @@
 #include "afxcmn.h"
 
 
-// CPaletteHeatHazeDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteHeatHazeDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CPaletteHeatHazeDlg : public CDialog
 {
 	DECLARE_DYNAMIC(CPaletteHeatHazeDlg)
 
 public:
-	CPaletteHeatHazeDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CPaletteHeatHazeDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CPaletteHeatHazeDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_ORNAMENT_HEATHAZE };
 
 protected:
-	virtual void	DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void	DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
 	virtual BOOL	PreTranslateMessage(MSG* pMsg);
 

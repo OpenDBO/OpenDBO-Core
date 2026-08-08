@@ -52,7 +52,7 @@ static const D3DPRIMITIVETYPE _RwD3D9PrimConvTable[NUMPRIMTYPES] =
 
 #define BUFFER_MAX_INDEX    10000
 
-#define BUFFER_MAX_VERTEX_SIZE    (256 * 1024)
+#define BUFFER_MAX_VERTEX_SIZE    (512 * 1024)
 #define BUFFER_MAX_VERTEX_INDEX    (BUFFER_MAX_VERTEX_SIZE / sizeof(RwIm2DVertex))
 
 static RwBool                   UseOwnVertexBuffer = FALSE;

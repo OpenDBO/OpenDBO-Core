@@ -31,7 +31,7 @@ public:
 	VOID		SetPosition( INT nPosX, INT nPosY );
 	VOID		SetSurface( const CSurface& surface );
 
-	// bDirClock : TRUE ½Ã°è¹æÇâÀ¸·Î È¸Àü. bFill : TRUE -> ÁøÇà¿¡ µû¶ó Ã¤¿öÁü.
+	// bDirClock : TRUE ì‹œê³„ë°©í–¥ìœ¼ë¡œ íšŒì „. bFill : TRUE -> ì§„í–‰ì— ë”°ë¼ ì±„ì›Œì§.
 	BOOL		StartProc( FLOAT fEffectTime, RwBool bDirClock = TRUE, RwBool bFill = FALSE ); 
 	void		EndProc();
 
@@ -82,8 +82,8 @@ private:
 	RwBool		m_bClipping;
 
 	BOOL		m_bShow;
-	BOOL		m_bRotDirClock;		// È¸Àü¹æÇâ.
-	BOOL		m_bClockDirFill;	// ½Ã°è¹æÇâ ±âÁØÀ¸·Î TRUE : ÅØ½ºÃÄ°¡ ÆîÃÄÁø´Ù. FALSE : ÅØ½ºÃÄ°¡ »ç¶óÁø´Ù.	
+	BOOL		m_bRotDirClock;		// íšŒì „ë°©í–¥.
+	BOOL		m_bClockDirFill;	// ì‹œê³„ë°©í–¥ ê¸°ì¤€ìœ¼ë¡œ TRUE : í…ìŠ¤ì³ê°€ íŽ¼ì³ì§„ë‹¤. FALSE : í…ìŠ¤ì³ê°€ ì‚¬ë¼ì§„ë‹¤.	
 };
 
 END_GUI

@@ -1,4 +1,4 @@
-// ExportEventDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// ExportEventDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -12,7 +12,7 @@
 #include "NtlCipher.h"
 
 
-// CExportEventDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CExportEventDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CExportEventDlg, CDialog)
 
@@ -42,7 +42,7 @@ BEGIN_MESSAGE_MAP(CExportEventDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CExportEventDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CExportEventDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CExportEventDlg::OnBnClickedTablePath()
 {
@@ -210,7 +210,7 @@ void CExportEventDlg::OnOK()
 	std::string strOutputName = strExportFolder + "evt.e";
 
 	{
-		// ÆÄÀÏ ·Îµù
+		// íŒŒì¼ ë¡œë”©
 		FILE* pFile;
 		fopen_s( &pFile, strZipName.c_str(), "rb" );
 		fseek( pFile, 0, SEEK_END );
@@ -220,7 +220,7 @@ void CExportEventDlg::OnOK()
 		fread( pReadBuf, 1, nReadSize, pFile );
 		fclose( pFile );
 
-		// ¾ÏÈ£È­
+		// ì•”í˜¸í™”
 		std::string strKey = "dnfldbofmftkfkdgowntpdy";
 		CNtlCipher Cipher;
 		Cipher.SetKey( DES_CIPHER, strKey.c_str(), strKey.size() );
@@ -228,7 +228,7 @@ void CExportEventDlg::OnOK()
 		ZeroMemory( pEncryptBuf, nReadSize+256 );
 		int nEncSize = Cipher.Encrypt( pReadBuf, nReadSize, pEncryptBuf, nReadSize+256 );
 
-		// ÆÄÀÏ¿¡ ±â·Ï
+		// íŒŒì¼ì— ê¸°ë¡
 		fopen_s( &pFile, strOutputName.c_str(), "wb" );
 		fwrite( &nReadSize, sizeof(int), 1, pFile );
 		fwrite( pEncryptBuf, 1, nEncSize, pFile );

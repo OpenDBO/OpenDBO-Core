@@ -2,7 +2,7 @@
  *
  * File			: NtlPLResourcePack.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2007. 3. 20	
  * Abstract		: Presentation layer resource pack class
  *****************************************************************************
@@ -29,7 +29,7 @@ struct SResourceScheduleNode
 };
 
 /**
-* \brief Serial ID ·Î ÇÏ³ª¾¿ ¹­¾î¼­ »ç¿ëÇÏ±â À§ÇÑ CharUnitÀÇ ±¸Á¶Ã¼
+* \brief Serial ID ë¡œ í•˜ë‚˜ì”© ë¬¶ì–´ì„œ ì‚¬ìš©í•˜ê¸° ìœ„í•œ CharUnitì˜ êµ¬ì¡°ì²´
 */
 struct SResourceScheduleCharUnit
 {
@@ -84,7 +84,7 @@ public:
 
 /**
 * \ingroup client
-* \brief Ä³¸¯ÅÍ¸¦ À§ÇÑ Schedule Unit
+* \brief ìºë¦­í„°ë¥¼ ìœ„í•œ Schedule Unit
 */
 class CNtlResourceScheduleCharUnit : public CNtlResourceScheduleUnit
 {

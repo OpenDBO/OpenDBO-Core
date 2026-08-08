@@ -6,7 +6,7 @@
 #include "afxwin.h"
 
 
-// CBookmarkDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CBookmarkDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CBookmarkDlg : public CDialog
 {
@@ -25,14 +25,14 @@ class CBookmarkDlg : public CDialog
 	};
 
 public:
-	CBookmarkDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CBookmarkDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CBookmarkDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_BOOKMARK };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 

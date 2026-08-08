@@ -142,7 +142,7 @@ RwBool CSM_GetRuleOutDoodad::CheckSector(BYTE* _pFileMemPos)
 		RwV3d	vTranslation;
 
 		//////////////////////////////////////////////////////////////////////////
-		// �ʿ��� ������ �����صΰ� ���������͸� ��ŵ�صд�.
+		// 占십울옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쌔두곤옙 占쏙옙占쏙옙占쏙옙占쏙옙占싶몌옙 占쏙옙킵占쌔둔댐옙.
 		//////////////////////////////////////////////////////////////////////////
 		// Use : Name
 		if (dNTL_WORLD_VERSION_COMPARE(dGET_WORLD_PARAM()->WorldVer, dNTL_WORLD_VERSION_OLD))
@@ -525,7 +525,7 @@ RwBool CSM_GetRuleOutDoodad::Report()
 		RwInt32 nSecond = (RwInt32)systemTime.wSecond;
 		RwInt32 nMinute = (RwInt32)systemTime.wMinute;
 		RwReal fMilliseconds = (RwReal)systemTime.wMilliseconds / 1000.f;
-		sprintf_s(szBuffer, "%d�� %d�� %d�� %d�� %d�� %d��", nYear, nMonth, nDay, nHour, nMinute, nSecond);
+		sprintf_s(szBuffer, "%d占쏙옙 %d占쏙옙 %d占쏙옙 %d占쏙옙 %d占쏙옙 %d占쏙옙", nYear, nMonth, nDay, nHour, nMinute, nSecond);
 
 		fprintf(pFile, "========== %s ==========\n", szBuffer);
 
@@ -688,7 +688,7 @@ RwBool CSM_GetRuleOutDoodad::CheckSector(BYTE* _pFileMemPos)
 		RwV3d	vTranslation;
 
 		//////////////////////////////////////////////////////////////////////////
-		// �ʿ��� ������ �����صΰ� ���������͸� ��ŵ�صд�.
+		// 占십울옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쌔두곤옙 占쏙옙占쏙옙占쏙옙占쏙옙占싶몌옙 占쏙옙킵占쌔둔댐옙.
 		//////////////////////////////////////////////////////////////////////////
 		// Use : Name
 		CopyMemory(acName, _pFileMemPos, sizeof(RwChar) * 128);
@@ -1084,7 +1084,7 @@ RwBool CSM_GetRuleOutDoodad::Report()
 		RwInt32 nSecond = (RwInt32)systemTime.wSecond;
 		RwInt32 nMinute = (RwInt32)systemTime.wMinute;
 		RwReal fMilliseconds = (RwReal)systemTime.wMilliseconds / 1000.f;
-		sprintf_s(szBuffer, "%d�� %d�� %d�� %d�� %d�� %d��", nYear, nMonth, nDay, nHour, nMinute, nSecond);
+		sprintf_s(szBuffer, "%d占쏙옙 %d占쏙옙 %d占쏙옙 %d占쏙옙 %d占쏙옙 %d占쏙옙", nYear, nMonth, nDay, nHour, nMinute, nSecond);
 
 		fprintf(pFile, "========== %s ==========\n", szBuffer);
 

@@ -39,9 +39,9 @@ typedef std::multimap<QM_KEY, sNextQuest>::iterator		MAP_NEXTQUEST_ITER;
 
 struct sBindInfo
 {
-	RwUInt8				byBindType;					///< ¹ÙÀÎµå Å¸ÀÔ(eDBO_BIND_TYPE)
-	WORLDID				BindedWorldID;				///< ¹ÙÀÎµå µÈ ¿ùµåÀÇ ¾ÆÀÌµð
-	RwUInt32			uiBindedObejcTblIdx;		///< ¹ÙÀÎµå µÈ ¿ÀºêÁ§Æ® Å×ÀÌºí ÀÎµ¦½º
+	RwUInt8				byBindType;					///< ë°”ì¸ë“œ íƒ€ìž…(eDBO_BIND_TYPE)
+	WORLDID				BindedWorldID;				///< ë°”ì¸ë“œ ëœ ì›”ë“œì˜ ì•„ì´ë””
+	RwUInt32			uiBindedObejcTblIdx;		///< ë°”ì¸ë“œ ëœ ì˜¤ë¸Œì íŠ¸ í…Œì´ë¸” ì¸ë±ìŠ¤
 };
 
 
@@ -110,7 +110,7 @@ public:
 protected:
 	RwUInt32		m_uiHelpHint;
 
-	SERIAL_HANDLE	m_hRegisteredFuelItem;		///< Å» °ÍÀ» »ç¿ëÇÒ ¶§¸¸ ¿Ã¹Ù¸¥ ÇÚµéÀ» °»½ÅÇÑ´Ù
+	SERIAL_HANDLE	m_hRegisteredFuelItem;		///< íƒˆ ê²ƒì„ ì‚¬ìš©í•  ë•Œë§Œ ì˜¬ë°”ë¥¸ í•¸ë“¤ì„ ê°±ì‹ í•œë‹¤
 	TBLIDX			m_idxRegisteredFuelItem;
 
 	MAP_NEXTQUEST	m_multimapNextQuest;

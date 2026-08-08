@@ -2,7 +2,7 @@
  *
  * File			: NtlSobActorCtrlData.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 10. 31	
  * Abstract		: Simulation object actor control data
  *****************************************************************************
@@ -143,7 +143,7 @@ public:
     RwUInt32 m_uiMoveFlags;
 	RwV3d m_vDir;
 	RwV3d m_vDest;
-	RwUInt32 m_uiTime;				// fighting pos øÕ keyboard move timeø° ªÁøÎ.
+	RwUInt32 m_uiTime;				// fighting pos ÏôÄ keyboard move timeÏóê ÏÇ¨Ïö©.
 	RwUInt32 m_uiTargetSerialId;	// follow target serial id;
     
 	// adjust move

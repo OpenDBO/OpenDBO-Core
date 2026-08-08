@@ -2,7 +2,7 @@
  *
  * File			: NtlPLItemData.h
  * Author		: HongHoDong
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2006. 8. 29.	
  * Abstract		: NTL CNtlPLItem
  *****************************************************************************
@@ -30,11 +30,11 @@
 
 enum EItemResType
 {
-	ITEM_RES_EQUIP_BODY				= 0,			// Body¿ë Item(Owner¿¡ ÀåÂøÀÌ µÊ)
+	ITEM_RES_EQUIP_BODY				= 0,			// Bodyìš© Item(Ownerì— ì¥ì°©ì´ ë¨)
 	ITEM_RES_EQUIP_MAIN				= 1,			// Main Item
 	ITEM_RES_EQUIP_SUB				= 100,			// Sub Item
 	
-	ITEM_RES_NOT_EQUIP				= 200,			// World¿ë Item
+	ITEM_RES_NOT_EQUIP				= 200,			// Worldìš© Item
 };
 
 enum EItemEquipSlotType
@@ -52,7 +52,7 @@ enum EItemEquipSlotType
 	ITEM_EQUIP_R_HAND = 10,							// Weapon
 	ITEM_EQUIP_L_HAND,								// Weapon
 	ITEM_EQUIP_BACK,								// SubWeapon....
-    ITEM_EQUIP_MASK,                                // ¸¶ÀÎ¿ë ¸¶½ºÅ©
+    ITEM_EQUIP_MASK,                                // ë§ˆì¸ìš© ë§ˆìŠ¤í¬
 	
 	ITEM_EQUIP_USER_MOVE1 = 20,						// In the Weapon (Gem) Model Tool, decrease by the Offset value.
 	ITEM_EQUIP_SCOUTER	= 100,						// Scouter (Offset value applied, Offset value applied)
@@ -60,16 +60,16 @@ enum EItemEquipSlotType
 
 struct SItemScheduleResInfo
 {
-	RwBool	bEquip;									// ÀåÂøÀ» ÇÏ´ÂÁö
-	RwBool	bAttach;								// ½ÇÁ¦ Attach¸¦ ÇÏ´ÂÁö
-	RwBool	bVisible;								// È­¸é¿¡ º¸¿©ÁÖ´ÂÁö
+	RwBool	bEquip;									// ì¥ì°©ì„ í•˜ëŠ”ì§€
+	RwBool	bAttach;								// ì‹¤ì œ Attachë¥¼ í•˜ëŠ”ì§€
+	RwBool	bVisible;								// í™”ë©´ì— ë³´ì—¬ì£¼ëŠ”ì§€
 
-	RwBool	bApplyedEquip;							// ÀåÂøÀÌ µÇ¾ú´ÂÁö
-	RwBool	bLoadComplete;							// Resource Load°¡ ¿Ï·á µÇ¾ú´ÂÁö
+	RwBool	bApplyedEquip;							// ì¥ì°©ì´ ë˜ì—ˆëŠ”ì§€
+	RwBool	bLoadComplete;							// Resource Loadê°€ ì™„ë£Œ ë˜ì—ˆëŠ”ì§€
 
-	RwV3d	vOffset;								// ÀåÂø½Ã Offset
-	RwV3d	vScale;									// ¿øº» Scale
-    RwUInt32 uiAnimKey;                             ///< ¾Ö´Ï¸ŞÀÌ¼Ç ID
+	RwV3d	vOffset;								// ì¥ì°©ì‹œ Offset
+	RwV3d	vScale;									// ì›ë³¸ Scale
+    RwUInt32 uiAnimKey;                             ///< ì• ë‹ˆë©”ì´ì…˜ ID
 	
 
 	SItemScheduleResInfo() :  bEquip(FALSE),
@@ -89,7 +89,7 @@ struct SItemScheduleResInfo
 	}
 };
 
-// Body ItemÀÇ °æ¿ì´Â Owner¿¡¼­ World¿¡ Add°¡ µÈ´Ù.
+// Body Itemì˜ ê²½ìš°ëŠ” Ownerì—ì„œ Worldì— Addê°€ ëœë‹¤.
 inline RwBool	g_CheckItemBody(EItemResType	eItemResType)
 {
 	if(eItemResType == ITEM_RES_EQUIP_BODY)
@@ -105,7 +105,7 @@ inline RwBool	g_CheckItemWeapon(EItemResType	eItemResType)
 	return FALSE;
 };
 
-/// Upgrade Effect °ü·Ã ¼Ó¼º
+/// Upgrade Effect ê´€ë ¨ ì†ì„±
 struct SUpgradeEffectProperty
 {
     RwChar  szBone1[MAX_DEFAULT_NAME];

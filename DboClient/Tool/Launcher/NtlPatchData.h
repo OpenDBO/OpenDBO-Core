@@ -2,7 +2,7 @@
  *
  * File			: NtlPatchData.h
  * Author		: HongHoDong
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2007. 2. 5.
  * Abstract		: 
  *****************************************************************************
@@ -126,10 +126,10 @@ public:
 	~CNtlPatchHistory();
 
 protected:
-	CNtlPatchVersion				m_CurVerClient;					// ÇöÀç Client Version
-	CNtlPatchVersion				m_CurVerLauncher;				// ÇöÀç Launcher Version
-	CString							m_CurVerFullPathFileName;		// ÇöÀç Version FileÀÌ¸§
-    CString                         m_strPatchDate;                 // ÆĞÄ¡ÆÄÀÏ ³¯Â¥
+	CNtlPatchVersion				m_CurVerClient;					// í˜„ì¬ Client Version
+	CNtlPatchVersion				m_CurVerLauncher;				// í˜„ì¬ Launcher Version
+	CString							m_CurVerFullPathFileName;		// í˜„ì¬ Version Fileì´ë¦„
+    CString                         m_strPatchDate;                 // íŒ¨ì¹˜íŒŒì¼ ë‚ ì§œ
 
 	std::vector<CNtlPatchData *>	m_vecNewVerClientRtDiff;		// Client Diff RtPatch List
 	CNtlPatchData					m_NewVerClientRtFull;			// Client Full RtPatch

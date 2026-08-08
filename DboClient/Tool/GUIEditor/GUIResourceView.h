@@ -1,4 +1,4 @@
-// GUIResourceView.h : iCGUIResourceView Å¬·¡½ºÀÇ ÀÎÅÍÆäÀÌ½º
+// GUIResourceView.h : iCGUIResourceView í´ë˜ìŠ¤ì˜ ì¸í„°í˜ì´ìŠ¤
 //
 
 #pragma once
@@ -11,26 +11,26 @@ class CGUIEditorDoc;
 
 class CGUIResourceView : public CScrollView
 {
-protected: // serialization¿¡¼­¸¸ ¸¸µé¾îÁı´Ï´Ù.
+protected: // serializationì—ì„œë§Œ ë§Œë“¤ì–´ì§‘ë‹ˆë‹¤.
 	CGUIResourceView();
 	DECLARE_DYNCREATE(CGUIResourceView)
 
-// Æ¯¼º
+// íŠ¹ì„±
 public:
 	CGUIEditorDoc* GetDocument() const;
 	
-// ÀÛ¾÷
+// ì‘ì—…
 public:
 	//void SSetClientSizeFromImage();
 
-// ÀçÁ¤ÀÇ
+// ì¬ì •ì˜
 	public:
-	virtual void OnDraw(CDC* pDC);  // ÀÌ ºä¸¦ ±×¸®±â À§ÇØ ÀçÁ¤ÀÇµÇ¾ú½À´Ï´Ù.
+	virtual void OnDraw(CDC* pDC);  // ì´ ë·°ë¥¼ ê·¸ë¦¬ê¸° ìœ„í•´ ì¬ì •ì˜ë˜ì—ˆìŠµë‹ˆë‹¤.
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 protected:
-	virtual void OnInitialUpdate(); // »ı¼º ÈÄ Ã³À½ È£ÃâµÇ¾ú½À´Ï´Ù.
+	virtual void OnInitialUpdate(); // ìƒì„± í›„ ì²˜ìŒ í˜¸ì¶œë˜ì—ˆìŠµë‹ˆë‹¤.
 
-// ±¸Çö
+// êµ¬í˜„
 public:
 	virtual ~CGUIResourceView();
 #ifdef _DEBUG
@@ -39,7 +39,7 @@ public:
 #endif
 
 	BOOL	LoadImage( CString& strFullPath, CString& strFileName );
-	void	SetSelectBox( CRect rcRect );							// ¼±ÅÃ ¹Ú½º ¿Å±è.
+	void	SetSelectBox( CRect rcRect );							// ì„ íƒ ë°•ìŠ¤ ì˜®ê¹€.
 	void	ResizeBuffer();
 	void	UpdateRectInfo();					
 	void	UpdateRsrInfo( CString& strFilename );
@@ -49,14 +49,14 @@ public:
 // Variables
 protected:
 	CKMSelectBox	m_selectBox;	// RectTracker.
-	CKMMemDC		m_dcBuffer;		// ´õºí¹öÆÛ¸µ.
-	CCoordManager	m_CoordMgr;		// ÁÂÇ¥°ü¸®.
+	CKMMemDC		m_dcBuffer;		// ë”ë¸”ë²„í¼ë§.
+	CCoordManager	m_CoordMgr;		// ì¢Œí‘œê´€ë¦¬.
 
-	CPoint			m_ptRBtnDown;	// RButtonDown½Ã ÁÂÇ¥.
+	CPoint			m_ptRBtnDown;	// RButtonDownì‹œ ì¢Œí‘œ.
 	
 	BOOL			m_bInitialized;	
 			
-// ¸Ş½ÃÁö ¸Ê ÇÔ¼ö¸¦ »ı¼ºÇß½À´Ï´Ù.
+// ë©”ì‹œì§€ ë§µ í•¨ìˆ˜ë¥¼ ìƒì„±í–ˆìŠµë‹ˆë‹¤.
 protected:
 	DECLARE_MESSAGE_MAP()
 public:
@@ -74,7 +74,7 @@ public:
 	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 };
 
-#ifndef _DEBUG  // GUIResourceView.cppÀÇ µğ¹ö±× ¹öÀü
+#ifndef _DEBUG  // GUIResourceView.cppì˜ ë””ë²„ê·¸ ë²„ì „
 inline CGUIEditorDoc* CGUIResourceView::GetDocument() const
    { return reinterpret_cast<CGUIEditorDoc*>(m_pDocument); }
 #endif

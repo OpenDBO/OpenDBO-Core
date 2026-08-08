@@ -60,32 +60,32 @@ RwBool CGMQuickSlotGui::Create()
 	//				Main Group
 	//////////////////////////////////////////////////////////////////////////
 
-	// GM Ä³¸¯ÅÍ º¸ÀÌ±â ¹öÆ°
+	// GM ìºå ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì‹±ê¹ì˜™ å ì™ì˜™íŠ¼
 	m_pCharShowButton = (gui::CButton*)GetComponent("btnCharShow");
 	m_pCharShowButton->SetToolTip( GetDisplayStringManager()->GetString("DST_OBSERVER_SHOW_AVATAR") );
 	m_slotCharShowButton = m_pCharShowButton->SigClicked().Connect( this, &CGMQuickSlotGui::OnClicked_CharShowHide );
 
-	// GM Ä³¸¯ÅÍ ¼û±â±â ¹öÆ°
+	// GM Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
 	m_pCharHideButton = (gui::CButton*)GetComponent("btnCharHide");
 	m_pCharHideButton->SetToolTip( GetDisplayStringManager()->GetString("DST_OBSERVER_HIDE_AVATAR") );
 	m_slotCharHideButton = m_pCharHideButton->SigClicked().Connect( this, &CGMQuickSlotGui::OnClicked_CharShowHide );
 
-	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ¸Ş´º »óÀ§ ¹öÆ°
+	// ì²œå ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™íšŒ å ìŒ¨ëŒì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™íŠ¼
 	m_pTenkaichiButton = (gui::CButton*)GetComponent("btnTenkaichi");
 	m_pTenkaichiButton->SetToolTip( GetDisplayStringManager()->GetString("DST_OBSERVER_TENKAICHI") );
 	m_slotTenkaichiButton = m_pTenkaichiButton->SigClicked().Connect( this, &CGMQuickSlotGui::OnClicked_Tenkaichi );
 
-	// ¾Æ¹ÙÅ¸ ÀÌµ¿ ¹öÆ°
+	// å ì‹£ë±„ì˜™íƒ€ å ì‹±ë“¸ì˜™ å ì™ì˜™íŠ¼
 	m_pPortalButton = (gui::CButton*)GetComponent("btnPortal");
 	m_pPortalButton->SetToolTip( GetDisplayStringManager()->GetString("DST_OBSERVER_PORTAL") );
 	m_slotPortalButton = m_pPortalButton->SigClicked().Connect( this, &CGMQuickSlotGui::OnClicked_Portal );
 
-	// ÇÁ¸® Ä«¸Ş¶ó ¹öÆ°
+	// å ì™ì˜™å ì™ì˜™ ì¹´å ìŒ¨ë°ì˜™ å ì™ì˜™íŠ¼
 	m_pFreeCameraButton = (gui::CButton*)GetComponent("btnFreeCamera");
 	m_pFreeCameraButton->SetToolTip( GetDisplayStringManager()->GetString("DST_OBSERVER_FREE_CAMERA") );
 	m_slotFreeCameraButton = m_pFreeCameraButton->SigClicked().Connect( this, &CGMQuickSlotGui::OnClicked_FreeCamera );
 
-	// 3ÀÎÄª Ä«¸Ş¶ó ¹öÆ°
+	// 3å ì™ì˜™ì¹­ ì¹´å ìŒ¨ë°ì˜™ å ì™ì˜™íŠ¼
 	m_pNormalCameraButton = (gui::CButton*)GetComponent("btnNormalCamera");
 	m_pNormalCameraButton->SetToolTip( GetDisplayStringManager()->GetString("DST_OBSERVER_NORMAL_CAMERA") );
 	m_slotNormalCameraButton = m_pNormalCameraButton->SigClicked().Connect( this, &CGMQuickSlotGui::OnClicked_FreeCamera );
@@ -96,33 +96,33 @@ RwBool CGMQuickSlotGui::Create()
 	//				Tenkaichi Group
 	//////////////////////////////////////////////////////////////////////////
 
-	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ Ä«¸Ş¶ó À§Ä¡ º¯°æ ¹öÆ°
+	// ì²œå ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™íšŒ ì¹´å ìŒ¨ë°ì˜™ å ì™ì˜™ì¹˜ å ì™ì˜™å ì™ì˜™ å ì™ì˜™íŠ¼
 	m_pTenkaichi_CameraLocButton = (gui::CButton*)GetComponent("btnCameraLoc");
 	m_pTenkaichi_CameraLocButton->SetToolTip( GetDisplayStringManager()->GetString("DST_OBSERVER_CAMERA_LOC") );
 	m_slotTenkaichi_CameraLoc = m_pTenkaichi_CameraLocButton->SigClicked().Connect( this, &CGMQuickSlotGui::OnClicked_Tenkaichi_CameraLoc );
 
-	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ Ä«¸Ş¶ó ÀÌµ¿ ¹öÆ°
+	// ì²œå ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™íšŒ ì¹´å ìŒ¨ë°ì˜™ å ì‹±ë“¸ì˜™ å ì™ì˜™íŠ¼
 	m_pTenkaichi_CameraMoveButton = (gui::CButton*)GetComponent("btnCameraMove");
 	m_pTenkaichi_CameraMoveButton->SetToolTip( GetDisplayStringManager()->GetString("DST_OBSERVER_CAMERA_MOVE") );
 	m_slotTenkaichi_CameraMove = m_pTenkaichi_CameraMoveButton->SigClicked().Connect( this, &CGMQuickSlotGui::OnClicked_Tenkaichi_CameraMove );
 
-	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ Á¤ÇØÁø ¸Ş´º Show ¹öÆ°
+	// ì²œå ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™íšŒ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ìŒ¨ëŒì˜™ Show å ì™ì˜™íŠ¼
 	m_pTenkaichi_MenuShowButton = (gui::CButton*)GetComponent("btnMenuShow");
 	m_pTenkaichi_MenuShowButton->SetToolTip( GetDisplayStringManager()->GetString("DST_OBSERVER_MENU_ON") );
 	m_pTenkaichi_MenuShowButton->Show(false);
 	m_slotTenkaichi_MenuShow = m_pTenkaichi_MenuShowButton->SigClicked().Connect( this, &CGMQuickSlotGui::OnClicked_Tenkaichi_MenuShowHide );
 	
-	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ Á¤ÇØÁø ¸Ş´º Hide ¹öÆ°
+	// ì²œå ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™íšŒ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ìŒ¨ëŒì˜™ Hide å ì™ì˜™íŠ¼
 	m_pTenkaichi_MenuHideButton = (gui::CButton*)GetComponent("btnMenuHide");
 	m_pTenkaichi_MenuHideButton->SetToolTip( GetDisplayStringManager()->GetString("DST_OBSERVER_MENU_OFF") );
 	m_slotTenkaichi_MenuHide = m_pTenkaichi_MenuHideButton->SigClicked().Connect( this, &CGMQuickSlotGui::OnClicked_Tenkaichi_MenuShowHide );
 
-	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ¼±¼ö Á¤º¸ ¹öÆ°
+	// ì²œå ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™íšŒ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™íŠ¼
 	m_pTenkaichi_PlayerButton = (gui::CButton*)GetComponent("btnPlayerInfo");
 	m_pTenkaichi_PlayerButton->SetToolTip( GetDisplayStringManager()->GetString("DST_OBSERVER_PLAYER_INFO") );
 	m_slotTenkaichi_Player = m_pTenkaichi_PlayerButton->SigClicked().Connect( this, &CGMQuickSlotGui::OnClicked_Tenkaichi_Player );
 
-	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ´ëÁøÇ¥ º¸±â ¹öÆ°
+	// ì²œå ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™íšŒ å ì™ì˜™å ì™ì˜™í‘œ å ì™ì˜™å ì™ì˜™ å ì™ì˜™íŠ¼
 	m_pTenkaichi_TournamentButton = (gui::CButton*)GetComponent("btnTournament");
 	m_pTenkaichi_TournamentButton->SetToolTip( GetDisplayStringManager()->GetString("DST_OBSERVER_TOURNAMENT") );
 	m_slotTenkaichi_Tournament = m_pTenkaichi_TournamentButton->SigClicked().Connect( this, &CGMQuickSlotGui::OnClicked_Tenkaichi_Tournament );
@@ -134,7 +134,7 @@ RwBool CGMQuickSlotGui::Create()
 	m_slotReturn = m_pReturnButton->SigClicked().Connect( this, &CGMQuickSlotGui::OnClicked_Return );
 
 
-	// GM Popup ¸Ş´º
+	// GM Popup å ìŒ¨ëŒì˜™
 	m_pPopupGui = NTL_NEW CGMPopupGui("GMPopup");
 	if(!m_pPopupGui->Create())
 	{
@@ -375,14 +375,14 @@ VOID CGMQuickSlotGui::OnClicked_Tenkaichi( gui::CComponent* pComponent )
 
 VOID CGMQuickSlotGui::OnClicked_Portal( gui::CComponent* pComponent )
 {
-	// GM ÀÌµ¿
+	// GM å ì‹±ë“¸ì˜™
 	m_pPopupGui->PopupType(CGMPopupGui::POPUP_PORTAL);	
 	ShowPopup(TRUE, 2);
 }
 
 VOID CGMQuickSlotGui::OnClicked_FreeCamera( gui::CComponent* pComponent )
 {
-	// Free Camera ÀüÈ¯
+	// Free Camera å ì™ì˜™í™˜
 	if( GetNtlGameCameraManager()->IsActiveFreeCamera() )
 	{
 		CNtlSLEventGenerator::CameraControlDelete(CAMERA_CONTROL_FREE);
@@ -399,21 +399,21 @@ VOID CGMQuickSlotGui::OnClicked_FreeCamera( gui::CComponent* pComponent )
 
 VOID CGMQuickSlotGui::OnClicked_Tenkaichi_CameraLoc( gui::CComponent* pComponent )
 {
-	// Ä«¸Ş¶ó À§Ä¡ º¯°æ
+	// ì¹´å ìŒ¨ë°ì˜™ å ì™ì˜™ì¹˜ å ì™ì˜™å ì™ì˜™
 	m_pPopupGui->PopupType(CGMPopupGui::POPUP_CAMERA_LOC);
 	ShowPopup(TRUE, 0);
 }
 
 VOID CGMQuickSlotGui::OnClicked_Tenkaichi_CameraMove( gui::CComponent* pComponent )
 {
-	// Ä«¸Ş¶ó ÀÌµ¿ÇÏ±â
+	// ì¹´å ìŒ¨ë°ì˜™ å ì‹±ë“¸ì˜™å ì‹¹ê¹ì˜™
 	m_pPopupGui->PopupType(CGMPopupGui::POPUP_CAMERA_MOVE);
 	ShowPopup(TRUE, 1);
 }
 
 VOID CGMQuickSlotGui::OnClicked_Tenkaichi_MenuShowHide( gui::CComponent* pComponent )
 {
-	// Á¤ÇØÁø ¸Ş´º Show/Hide
+	// å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ìŒ¨ëŒì˜™ Show/Hide
 	if( GetDialogManager()->IsOpenDialog(DIALOG_HP) )
 	{
 		m_pTenkaichi_MenuShowButton->Show(true);
@@ -448,14 +448,14 @@ VOID CGMQuickSlotGui::OnClicked_Tenkaichi_MenuShowHide( gui::CComponent* pCompon
 
 VOID CGMQuickSlotGui::OnClicked_Tenkaichi_Player( gui::CComponent* pComponent )
 {
-	// ¼±¼ö Á¤º¸ º¸±â
+	// å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
 	m_pPopupGui->PopupType(CGMPopupGui::POPUP_PLAYER_INFO);
 	ShowPopup(TRUE, 3);
 }
 
 VOID CGMQuickSlotGui::OnClicked_Tenkaichi_Tournament( gui::CComponent* pComponent )
 {
-	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ´ëÁøÇ¥
+	// ì²œå ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™íšŒ å ì™ì˜™å ì™ì˜™í‘œ
 	GetDialogManager()->OpenDialog(DIALOG_BUDOKAI_TOURNAMENT);
 	ShowPopup(FALSE, 0);
 }
@@ -478,12 +478,12 @@ VOID CGMQuickSlotGui::OnMove(RwInt32 iOldX, RwInt32 iOldY)
 	}
 }
 
-RwInt32 CGMQuickSlotGui::ActionMapQuickSlotDown( RwUInt32 uiKey )
+RwInt32 CGMQuickSlotGui::ActionMapQuickSlotDown( uintptr_t uiKey )
 {
 	return 1;
 }
 
-RwInt32 CGMQuickSlotGui::ActionMapQuickSlotUp( RwUInt32 uiKey )
+RwInt32 CGMQuickSlotGui::ActionMapQuickSlotUp( uintptr_t uiKey )
 {
 	if( GetNtlWorldConcept()->IsActivePlayConcept(WORLD_PLAY_DIRECT) )
 		return 1;
@@ -666,7 +666,7 @@ VOID CGMQuickSlotGui::HandleEvents( RWS::CMsg &msg )
 
 		if( pEvent->bWorldChange )
 		{
-			// ´Ù½Ã ¼³Á¤ÇÑ´Ù
+			// å ìŒ•ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¼ëŒì˜™
 			SetMenuGroup(m_eMenuGroup);
 		}
 	}

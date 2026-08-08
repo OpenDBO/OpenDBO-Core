@@ -2,7 +2,7 @@
 *
 * File			: NtlPLElapsedController.h
 * Author		: Peessi
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2006. 8. 17	
 * Abstract		: Presentation entity elapsed controller
 *****************************************************************************
@@ -20,8 +20,8 @@ class CNtlElapsedController
 public:
 
 	CNtlPLEntity *m_pPLEntity;	/** control entity */
-	RwReal m_fCurrTime;				/** ÇöÀç Èå¸¥ ½Ã°£ */ 
-	RwReal m_fLifeTime;				/** control ½Ã°£ */
+	RwReal m_fCurrTime;				/** í˜„ì¬ íë¥¸ ì‹œê°„ */ 
+	RwReal m_fLifeTime;				/** control ì‹œê°„ */
 	RwReal m_fWeightValue;			/** elapsed weight value */
 	
 	RwBool m_bFinish;

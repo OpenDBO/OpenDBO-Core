@@ -31,8 +31,8 @@ public:
 
 	enum STATE { FADE_IN, SHOW, FADE_OUT, HIDE };
 
-	enum PRIORITY { MORE_PRIORITY, EQUAL_PRIORITY, LESS_PRIORITY,	// °°Àº ·¹ÀÌ¾îÀÎ °æ¿ì
-					UPPER_LAYER, LOWER_LAYER };						// ´Ù¸¥ ·¹ÀÌ¾îÀÎ °æ¿ì
+	enum PRIORITY { MORE_PRIORITY, EQUAL_PRIORITY, LESS_PRIORITY,	// ê°™ì€ ë ˆì´ì–´ì¸ ê²½ìš°
+					UPPER_LAYER, LOWER_LAYER };						// ë‹¤ë¥¸ ë ˆì´ì–´ì¸ ê²½ìš°
 
 	CNtlPLBalloonGui( RwReal fLifeTime, RwInt32 eType ) 
 		:m_fCurrentTime( 0.0f ), m_fLifeTime( fLifeTime ), m_eType( eType ), m_eState( FADE_IN ) {}
@@ -49,7 +49,7 @@ public:
 	RwInt32		GetType(VOID) { return m_eType; }
 	RwInt32		GetState(VOID) { return m_eState; }
 
-	RwInt32		PriorityCheck( RwUInt32 eType );	// return value : PRIORITY  °´Ã¼°¡ ¸Å°³º¯¼öÀÇ Å¸ÀÔ¿¡ ºñÇØ ¾î¶°ÇÑ°¡.	
+	RwInt32		PriorityCheck( RwUInt32 eType );	// return value : PRIORITY  ê°ì²´ê°€ ë§¤ê°œë³€ìˆ˜ì˜ íƒ€ì…ì— ë¹„í•´ ì–´ë– í•œê°€.	
 
 protected:
 
@@ -82,7 +82,7 @@ protected:
 	RwUInt8				m_byBalloonType;
 	RwBool				m_bStandardSize;
 
-	std::wstring		m_wstrString;	// ¿øº» ¸Ş¼¼Áö ÀúÀå.
+	std::wstring		m_wstrString;	// ì›ë³¸ ë©”ì„¸ì§€ ì €ì¥.
 	RwReal				m_fFadeInTime;
 };
 

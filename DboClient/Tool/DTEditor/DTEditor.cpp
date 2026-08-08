@@ -152,13 +152,13 @@ void CDTEditorApp::OnAppAbout()
 
 BOOL CDTEditorApp::OnIdle(LONG lCount)
 {
-	// �����찡 �ּ�ȭ �Ǿ������� �������� �ʴ´�.
+	// 윈도우가 최소화 되어있으면 갱신하지 않는다.
    if(m_pMainWnd->IsIconic())
       return FALSE;
 
     m_DirectApp.OnIdle();
 
-    // �������� ������ ���ؼ� �ʿ��ϴ�.
+    // 매프레임 갱신을 위해서 필요하다.
     __super::OnIdle(lCount);
     return TRUE;
 }
@@ -167,7 +167,7 @@ BOOL CDTEditorApp::PreTranslateMessage(MSG* pMsg)
 {
 	m_DirectApp.PreTranslateMessage(pMsg->hwnd, pMsg->message, pMsg->wParam, pMsg->lParam);
 
-	// TODO: ���⿡ Ư��ȭ�� �ڵ带 �߰� ��/�Ǵ� �⺻ Ŭ������ ȣ���մϴ�.
+	// TODO: 여기에 특수화된 코드를 추가 및/또는 기본 클래스를 호출합니다.
 
 	return CWinApp::PreTranslateMessage(pMsg);
 }
@@ -176,7 +176,7 @@ int CDTEditorApp::ExitInstance()
 {
 	m_DirectApp.Destroy();
 
-	// TODO: ���⿡ Ư��ȭ�� �ڵ带 �߰� ��/�Ǵ� �⺻ Ŭ������ ȣ���մϴ�.
+	// TODO: 여기에 특수화된 코드를 추가 및/또는 기본 클래스를 호출합니다.
 
 	return CWinApp::ExitInstance();
 }

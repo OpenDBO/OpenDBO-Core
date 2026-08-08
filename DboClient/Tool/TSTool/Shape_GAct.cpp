@@ -263,7 +263,7 @@ void CShape_GAct::ShowEntityAttrAddBox( void )
 		}
 		else if ( eSEL_GROUP_TYPE_EXCEPTION == eGroupType )
 		{
-			AfxMessageBox( _T("µî·Ï ½ÃÅ³ ¼ö ÀÖ´Â ¿£Æ¼Æ¼µéÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù") );
+			AfxMessageBox( _T("ë“±ë¡ ì‹œí‚¬ ìˆ˜ ìžˆëŠ” ì—”í‹°í‹°ë“¤ì´ ì¡´ìž¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤") );
 		}
 	}
 	else if ( TS_TYPE_OBJECT_TRIGGER_S == dwProjMode )

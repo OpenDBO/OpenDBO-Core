@@ -104,7 +104,7 @@ LONG WINAPI MSJExceptionHandler::MSJUnhandledExceptionFilter(PEXCEPTION_POINTERS
 	if ( m_pApplicationFilter )
 		m_pApplicationFilter( pExceptionInfo );
 
-	// file ±â·ÏÀº ÀÓ½ÃÀûÀ¸·Î »«´Ù(Çü¼®)
+	// file ê¸°ë¡ì€ ìž„ì‹œì ìœ¼ë¡œ ëº€ë‹¤(í˜•ì„)
 	/*
     if ( bResult )
     {
@@ -250,7 +250,7 @@ BOOL MSJExceptionHandler::GetLogicalAddress(
     if ( !VirtualQuery( addr, &mbi, sizeof(mbi) ) )
         return FALSE;
 
-    DWORD hMod = (DWORD)mbi.AllocationBase;
+    DWORD_PTR hMod = (DWORD_PTR)mbi.AllocationBase;
 
     if ( !GetModuleFileName( (HMODULE)hMod, szModule, len ) )
         return FALSE;
@@ -263,7 +263,7 @@ BOOL MSJExceptionHandler::GetLogicalAddress(
 
     PIMAGE_SECTION_HEADER pSection = IMAGE_FIRST_SECTION( pNtHdr );
 
-    DWORD rva = (DWORD)addr - hMod; // RVA is offset from module load address
+    DWORD_PTR rva = (DWORD_PTR)addr - hMod; // RVA is offset from module load address
 
     // Iterate through the section table, looking for the one that encompasses
     // the linear address.
@@ -299,10 +299,15 @@ void MSJExceptionHandler::IntelStackWalk( PCONTEXT pContext )
 
     _tprintf( _T("Address   Frame     Logical addr  Module\n") );
 
+#ifdef _WIN64
+    DWORD64 pc = pContext->Rip;
+    DWORD64 pFrame, pPrevFrame;
+    pFrame = pContext->Rbp;
+#else
     DWORD pc = pContext->Eip;
     PDWORD pFrame, pPrevFrame;
-    
     pFrame = (PDWORD)pContext->Ebp;
+#endif
 
     do
     {
@@ -312,22 +317,25 @@ void MSJExceptionHandler::IntelStackWalk( PCONTEXT pContext )
         GetLogicalAddress((PVOID)pc, szModule,sizeof(szModule),section,offset );
 
         _tprintf( _T("%08X  %08X  %04X:%08X %s\n"),
-                  pc, pFrame, section, offset, szModule );
+                  (DWORD)pc, (DWORD)pFrame, section, offset, szModule );
 
-        pc = pFrame[1];
-
+#ifdef _WIN64
+        pc = ((DWORD64*)pFrame)[1];
         pPrevFrame = pFrame;
+        pFrame = ((DWORD64*)pFrame)[0];
+#else
+        pc = pFrame[1];
+        pPrevFrame = pFrame;
+        pFrame = (PDWORD_PTR)pFrame[0];
+#endif
 
-        pFrame = (PDWORD)pFrame[0]; // proceed to next higher frame on stack
-
-        if ( (DWORD)pFrame & 3 )    // Frame pointer must be aligned on a
-            break;                  // DWORD boundary.  Bail if not so.
+        if ( (DWORD_PTR)pFrame & (sizeof(DWORD_PTR)-1) )
+            break;
 
         if ( pFrame <= pPrevFrame )
             break;
 
-        // Can two DWORDs be read from the supposed frame address?          
-        if ( IsBadWritePtr(pFrame, sizeof(PVOID)*2) )
+        if ( IsBadWritePtr((PVOID)pFrame, sizeof(PVOID)*2) )
             break;
 
     } while ( 1 );
@@ -347,19 +355,31 @@ void MSJExceptionHandler::ImagehlpStackWalk( PCONTEXT pContext )
     STACKFRAME sf;
     memset( &sf, 0, sizeof(sf) );
 
-    // Initialize the STACKFRAME structure for the first call.  This is only
-    // necessary for Intel CPUs, and isn't mentioned in the documentation.
+#if defined(_WIN64)
+    sf.AddrPC.Offset       = pContext->Rip;
+    sf.AddrPC.Mode         = AddrModeFlat;
+    sf.AddrStack.Offset    = pContext->Rsp;
+    sf.AddrStack.Mode      = AddrModeFlat;
+    sf.AddrFrame.Offset    = pContext->Rbp;
+    sf.AddrFrame.Mode      = AddrModeFlat;
+#else
     sf.AddrPC.Offset       = pContext->Eip;
     sf.AddrPC.Mode         = AddrModeFlat;
     sf.AddrStack.Offset    = pContext->Esp;
     sf.AddrStack.Mode      = AddrModeFlat;
     sf.AddrFrame.Offset    = pContext->Ebp;
     sf.AddrFrame.Mode      = AddrModeFlat;
+#endif
 
     while ( 1 )
     {
 
-        if ( ! _StackWalk(  IMAGE_FILE_MACHINE_I386,
+        if ( ! _StackWalk(
+#if defined(_WIN64)
+                            IMAGE_FILE_MACHINE_AMD64,
+#else
+                            IMAGE_FILE_MACHINE_I386,
+#endif
                             GetCurrentProcess(),
                             GetCurrentThread(),
                             &sf,
@@ -389,7 +409,11 @@ void MSJExceptionHandler::ImagehlpStackWalk( PCONTEXT pContext )
         pSymbol->SizeOfStruct = sizeof(symbolBuffer);
         pSymbol->MaxNameLength = 512;
                         
+#if defined(_WIN64)
+        DWORD64 symDisplacement = 0;  // Displacement of the input address,
+#else
         DWORD symDisplacement = 0;  // Displacement of the input address,
+#endif
                                     // relative to the start of the symbol
 
         if ( _SymGetSymFromAddr(GetCurrentProcess(), sf.AddrPC.Offset,

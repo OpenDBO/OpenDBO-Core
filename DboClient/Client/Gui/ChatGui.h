@@ -2,7 +2,7 @@
  *
  * File			: ChatGui.h
  * Author		: Peessi
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Âç†ÏèôÏòô)NTL
  * Date			: 2007. 5. 10	
  * Abstract		: DBO chatting gui.
  *****************************************************************************
@@ -34,7 +34,7 @@ public:
 
 	struct sChatOption
 	{
-		RwBool				bAlwaysInput;				///< √§∆√¿‘∑¬»ƒ ¿‘∑¬∏µÂ∞° ¿Ø¡ˆµ«¥¬¡ˆ ø©∫Œ
+		RwBool				bAlwaysInput;				///< √§ÔøΩÔøΩÔøΩ‘∑ÔøΩÔøΩÔøΩ ÔøΩ‘∑¬∏ÔøΩÂ∞° ÔøΩÔøΩÔøΩÔøΩÔøΩ«¥ÔøΩÔøΩÔøΩ ÔøΩÔøΩÔøΩÔøΩ
 		bool				bLockChatDisplay;
 		bool				bShowChatScroll;
 		RwUInt8				byAlpha;
@@ -42,7 +42,7 @@ public:
 
 	struct sPositionInfo
 	{
-		RwInt32				iOldScreenHeight;			///< ≈¨∂Û¿Ãæ∆Æ ResizeΩ√ «œ¥‹ø°º≠ ¿œ¡§«— ∞≈∏Æ ¿Ø¡ˆ ¿ß«ÿ
+		RwInt32				iOldScreenHeight;			///< ÌÅ¥Âç†ÏèôÏòôÂç†Ïã±ÏñµÏòôÌä∏ ResizeÂç†ÏèôÏòô Âç†ÏãπÎã®Ïö∏ÏòôÂç†ÏèôÏòô Âç†ÏèôÏòôÂç†ÏèôÏòôÂç†ÏèôÏòô Âç†Ïã†Î™åÏòô Âç†ÏèôÏòôÂç†ÏèôÏòô Âç†ÏèôÏòôÂç†ÏèôÏòô
 	};
 
 
@@ -56,7 +56,7 @@ public:
 
 	RwInt32 SwitchDialog(bool bOpen);
 	RwInt32 ActionMapTabKey(VOID);
-	RwInt32 ActionMapChangeTab(RwUInt32 uiOption);
+	RwInt32 ActionMapChangeTab(uintptr_t uiOption);
 
 	RwBool	IsFocused(VOID);
 
@@ -96,7 +96,7 @@ private:
 	VOID	Option_Alpha(RwUInt8 byAlpha);
 	VOID	Option_DisplayChatLogType(RwUInt8 byDisplayIndex, eChatType eType, RwBool bEnable);
 
-	// Option_DisplayChatLogType «‘ºˆ∏¶ ∏µŒ »£√‚«— µ⁄ø° ±◊ ∞·∞˙∏¶ ¿˚øÎ«œ±‚ ¿ß«— «‘ºˆ
+	// Option_DisplayChatLogType Ìï®ÏàòÎ•º Î™®Îëê Ìò∏Ï∂úÌïú Îí§Ïóê Í∑∏ Í≤∞Í≥ºÎ•º Ï†ÅÏö©ÌïòÍ∏∞ ÏúÑÌïú Ìï®Ïàò
 	VOID	Option_RefreshDisplayChatLog(RwUInt8 byDisplayIndex);
 
 	//! Callbacks
@@ -152,7 +152,7 @@ protected:
 
 	RwBool				m_bChatModeEndReturn;
 	RwBool				m_bRenderBackground;
-	RwBool				m_bInitializedOption;			/// ø…º«ø° µ˚∏• √ ±‚»≠∏¶ «ﬂ¥Ÿ
+	RwBool				m_bInitializedOption;			/// Âç†Ïã¨ÏÖòÏö∏Ïòô Âç†ÏèôÏòôÂç†ÏèôÏòô Âç†Ïã≠ÍπçÏòôÌôîÂç†ÏèôÏòô Âç†Ïå©ÎåêÏòô
 	eChatType			m_eChatType;
 	sChatOption			m_ChatOption;
 	sPositionInfo		m_tPositionInfo;	

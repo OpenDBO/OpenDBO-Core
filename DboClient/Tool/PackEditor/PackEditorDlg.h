@@ -46,7 +46,7 @@ public:
 
 	void			UpdateNotifyWindow(void);
 
-	int				MakePackNotify(unsigned int uiNotifyString ,unsigned int uiPersent);
+	int				MakePackNotify(uintptr_t uiNotifyString ,uintptr_t uiPersent);
 
 	CPackEditorDlg(CWnd* pParent = NULL);	// standard constructor
 

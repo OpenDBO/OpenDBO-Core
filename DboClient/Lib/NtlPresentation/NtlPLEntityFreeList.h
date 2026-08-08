@@ -2,7 +2,7 @@
  *
  * File			: NtlPLEntityFreeList.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 8. 11	
  * Abstract		: Presentation layer entity free list
  *****************************************************************************
@@ -19,8 +19,8 @@
 
 /**
  * \ingroup NtlPresentation
- * memory ´ÜÆíÈ­¸¦ ¹æÁöÇÏ±â À§ÇÑ entity memory pool class.
- * renderwareÀÇ free list¸¦ »ç¿ëÇÑ´Ù.
+ * memory ë‹¨í¸í™”ë¥¼ ë°©ì§€í•˜ê¸° ìœ„í•œ entity memory pool class.
+ * renderwareì˜ free listë¥¼ ì‚¬ìš©í•œë‹¤.
  *
  */
 
@@ -44,33 +44,33 @@ private:
 	static RwFreeList *m_pDamageBoxFreeList;
 	static RwFreeList *m_pDecalFreeList;
 	static RwFreeList *m_pSunFreeList;			// Sun free list by agebreak
-	static RwFreeList *m_pPlanetFreeList;		// Sun free list ¹®Á¦·Î Planet freelist Ãß°¡
+	static RwFreeList *m_pPlanetFreeList;		// Sun free list ë¬¸ì œë¡œ Planet freelist ì¶”ê°€
 public:
 
 	/**
-	*  entity free list °´Ã¼¸¦ initialize½ÃÅ°´Â ÇÔ¼ö.
+	*  entity free list ê°ì²´ë¥¼ initializeì‹œí‚¤ëŠ” í•¨ìˆ˜.
 	*  \see Destroy
 	*/
 	static RwBool AllocFreeList(void);
 
 	/**
-	*  entity free list °´Ã¼¸¦ terminate½ÃÅ°´Â ÇÔ¼ö.
+	*  entity free list ê°ì²´ë¥¼ terminateì‹œí‚¤ëŠ” í•¨ìˆ˜.
 	*  \see Destroy
 	*/
 	static void DeAllocFreeList(void);
 
 	/**
-	*  free list memory¸¦ ÇÒ´çÇÑ´Ù.
+	*  free list memoryë¥¼ í• ë‹¹í•œë‹¤.
 	*  \param eType entity type
-	*  \return ¼º°øÇÏ¸é ¿äÃ»ÇÑ free list memory , ½ÇÆĞÇÏ¸é NULL
+	*  \return ì„±ê³µí•˜ë©´ ìš”ì²­í•œ free list memory , ì‹¤íŒ¨í•˜ë©´ NULL
 	*  \see Free
 	*/
 	static void* Alloc(const ENtlPLEntityType eType);
 
 	/**
-	*  free list memory¸¦ ÇØÁ¦ÇÑ´Ù.
+	*  free list memoryë¥¼ í•´ì œí•œë‹¤.
 	*  \param eType entity type
-	*  \param pObj ÇØÁ¦ÇÒ free list memory.
+	*  \param pObj í•´ì œí•  free list memory.
 	*  \see Alloc
 	*/
 	static void Free(const ENtlPLEntityType eType, void *pObj);

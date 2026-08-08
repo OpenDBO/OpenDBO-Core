@@ -1,4 +1,4 @@
-// ColorButton.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// ColorButton.cpp : êµ¬í˜„ íŒŒì¼ìž…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -24,11 +24,11 @@ END_MESSAGE_MAP()
 
 
 
-// CColorButton ¸Þ½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CColorButton ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ìž…ë‹ˆë‹¤.
 
 void CColorButton::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 {
-	// TODO:  ÁöÁ¤µÈ Ç×¸ñÀ» ±×¸®´Â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì§€ì •ëœ í•­ëª©ì„ ê·¸ë¦¬ëŠ” ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CDC *pDC = CDC::FromHandle(lpDrawItemStruct->hDC);
 
 	DWORD r, g, b;

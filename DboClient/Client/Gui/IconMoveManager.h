@@ -64,17 +64,17 @@ private:
 	gui::CSlot	m_slotCaptureEndMouseDown;
 
 //! Variable
-	RwBool m_bActive;			// DragDrop»óÅÂ
+	RwBool m_bActive;			// DragDropìƒíƒœ
 	
 	RwUInt32 m_hSrcSerial;
 	RwUInt32 m_eSrcPlace;
 	RwUInt32 m_uiSrcSlotIdx;
 
-	RwUInt32 m_uiStackCount;	// ³ª´«°¹¼ö 0 ÀÌ¸é ÀüÃ¼.
+	RwUInt32 m_uiStackCount;	// ë‚˜ëˆˆê°¯ìˆ˜ 0 ì´ë©´ ì „ì²´.
 
 	CSurfaceGui m_surIcon;	
 
-	RwUInt32	m_ExData1;			// È®Àåµ¥ÀÌÅÍ.
+	RwUInt32	m_ExData1;			// í™•ì¥ë°ì´í„°.
 	RwUInt32	m_ExData2;
 	RwUInt32	m_ExData3;
 	RwUInt32	m_ExData4;

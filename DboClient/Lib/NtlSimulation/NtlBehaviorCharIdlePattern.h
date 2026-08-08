@@ -2,7 +2,7 @@
  *
  * File			: NtlBehaviorCharIdlePattern.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2008. 12. 23	
  *****************************************************************************
  * Desc         : 

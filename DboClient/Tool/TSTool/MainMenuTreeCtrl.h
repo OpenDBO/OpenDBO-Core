@@ -4,14 +4,14 @@
 #include "TSToolDefine.h"
 
 
-// CMainMenuTreeCtrl ºäÀÔ´Ï´Ù.
+// CMainMenuTreeCtrl ë·°ì…ë‹ˆë‹¤.
 
 class CMainMenuTreeCtrl : public CTreeCtrl
 {
 	DECLARE_DYNCREATE(CMainMenuTreeCtrl)
 
 public:
-	CMainMenuTreeCtrl();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CMainMenuTreeCtrl();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CMainMenuTreeCtrl();
 
 public:

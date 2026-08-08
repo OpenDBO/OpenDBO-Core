@@ -2,7 +2,7 @@
 //	File		:	CVenusVisualManager.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -92,7 +92,7 @@ CVenusVisualManager& CVenusVisualManager::GetInstance()
 RwBool CVenusVisualManager::Create(void)
 {
 	m_lpDevice = (LPDIRECT3DDEVICE9)RwD3D9GetCurrentD3DDevice();
-	MarkAutoDeleteFlag(PLENTITY_EFFECT);		// Effect°¡ Auto Delete µÉ¶§ °¡»óÇÔ¼ö¸¦ È£ÃâÇÏ±â À§ÇØ¼­ »ç¿ëÇÑ´Ù.
+	MarkAutoDeleteFlag(PLENTITY_EFFECT);		// Effectê°€ Auto Delete ë ë•Œ ê°€ìƒí•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ê¸° ìœ„í•´ì„œ ì‚¬ìš©í•œë‹¤.
 	return CNtlPLVisualManager::Create();
 }
 
@@ -213,7 +213,7 @@ void CVenusVisualManager::Render(void)
 
 	CNtlPLVisualManager::Render();
 
-    // ¹Ù¿îµù ½ºÇÇ¾î ÀÚµ¿ »ı¼º½Ã¿¡ ·»´õ¸µ
+    // ë°”ìš´ë”© ìŠ¤í”¼ì–´ ìë™ ìƒì„±ì‹œì— ë Œë”ë§
     if(m_bGenerateBS && m_pBSCurrEffect)
     {
         m_pBSCurrEffect->RenderBoundingSphere();
@@ -230,7 +230,7 @@ void CVenusVisualManager::Render(void)
 				RwV3d vPosition = *RwMatrixGetPos(&pInstanceEffect->m_matWorld);				
                 vTotalPosition += vPosition;
 
-                // ¹Ù¿îµù ½ºÇÇ¾î ·»´õ¸µ
+                // ë°”ìš´ë”© ìŠ¤í”¼ì–´ ë Œë”ë§
                 if(CVenusConfig::GetInstance().m_bRenderBoundingSphere)
                 {
                     pInstanceEffect->RenderBoundingSphere();
@@ -249,7 +249,7 @@ void CVenusVisualManager::Render(void)
 
 //------------------------------------------------------------------
 //	FuncName	: GetRenderingEffectCount
-//	Desc		: ÇöÀç ·»´õ¸µÁßÀÎ EffectÀÇ °³¼ö¸¦ ¹İÈ¯ÇÑ´Ù.
+//	Desc		: í˜„ì¬ ë Œë”ë§ì¤‘ì¸ Effectì˜ ê°œìˆ˜ë¥¼ ë°˜í™˜í•œë‹¤.
 //	Parameter	: 
 //	Return		: 
 //------------------------------------------------------------------
@@ -267,7 +267,7 @@ RwInt32 CVenusVisualManager::GetRenderingEffectCount()
 
 //------------------------------------------------------------------
 //	FuncName	: GetRenderingPolygonCount
-//	Desc		: ÇöÀç ·»´õ¸µÁßÀÎ Æú¸®°ïÀÇ °³¼ö(ÆÄÆ¼Å¬ °³¼ö)¸¦ ¹İÈ¯ÇÑ´Ù.
+//	Desc		: í˜„ì¬ ë Œë”ë§ì¤‘ì¸ í´ë¦¬ê³¤ì˜ ê°œìˆ˜(íŒŒí‹°í´ ê°œìˆ˜)ë¥¼ ë°˜í™˜í•œë‹¤.
 //	Parameter	: 
 //	Return		: 
 //------------------------------------------------------------------
@@ -387,9 +387,9 @@ RwBool CVenusVisualManager::ResetInstanceEffectFromSplinePath(const RwChar* strN
 }
 
 /**
- * EffectSystemÀÇ Property Data°¡ º¯°æÀÌ µÇ¾úÀ» °æ¿ì È£ÃâÀÌ µÈ´Ù.
- * \param strName: Effect EntityÀÇ ÀÌ¸§
- * \return ½ÇÆĞ À¯¹«
+ * EffectSystemì˜ Property Dataê°€ ë³€ê²½ì´ ë˜ì—ˆì„ ê²½ìš° í˜¸ì¶œì´ ëœë‹¤.
+ * \param strName: Effect Entityì˜ ì´ë¦„
+ * \return ì‹¤íŒ¨ ìœ ë¬´
  */
 RwBool CVenusVisualManager::ResetInstanceEffect(const RwChar* strName)
 {
@@ -411,7 +411,7 @@ RwBool CVenusVisualManager::ResetInstanceEffect(const RwChar* strName)
 			pInstanceEffect->Destroy();
 			pInstanceEffect->SetProperty(pResourceEffect);
 			pInstanceEffect->SetMatrix(matWorld);
-			pInstanceEffect->SetScale(pResourceEffect->m_fScaleForTool);	// VENUS¿¡¼­ ScaleÀ» Å×½ºÆ®ÇÏ±â À§ÇÑ ±â´É
+			pInstanceEffect->SetScale(pResourceEffect->m_fScaleForTool);	// VENUSì—ì„œ Scaleì„ í…ŒìŠ¤íŠ¸í•˜ê¸° ìœ„í•œ ê¸°ëŠ¥
 		}
 		++it;
 	}
@@ -420,13 +420,13 @@ RwBool CVenusVisualManager::ResetInstanceEffect(const RwChar* strName)
 }
 
 /**
- * EffectEntity°¡ »èÁ¦°¡ µÇ¾úÀ» °æ¿ì È£ÃâÀÌ µÈ´Ù.
- * \param strName: EffectEntityÀÇ ÀÌ¸§
- * \return ½ÇÆĞ À¯¹«
+ * EffectEntityê°€ ì‚­ì œê°€ ë˜ì—ˆì„ ê²½ìš° í˜¸ì¶œì´ ëœë‹¤.
+ * \param strName: EffectEntityì˜ ì´ë¦„
+ * \return ì‹¤íŒ¨ ìœ ë¬´
  */
 RwBool CVenusVisualManager::DeleteInstanceEffect(const RwChar* strName)
 {
-	//NameÀ¸·Î Entity¸¦ Ã£¾Æ¼­ Visual Manager¿¡¼­ »èÁ¦¸¦ ÇÑ´Ù.
+	//Nameìœ¼ë¡œ Entityë¥¼ ì°¾ì•„ì„œ Visual Managerì—ì„œ ì‚­ì œë¥¼ í•œë‹¤.
 	CNtlPLRenderGroup *pGroup = FindInstanceGroup(PLENTITY_EFFECT);
     if(pGroup)
     {
@@ -447,7 +447,7 @@ RwBool CVenusVisualManager::DeleteInstanceEffect(const RwChar* strName)
         }        
     }
 	
-	//Instance Effect ListÀÇ Effect¸¦ »èÁ¦¸¦ ÇÑ´Ù.
+	//Instance Effect Listì˜ Effectë¥¼ ì‚­ì œë¥¼ í•œë‹¤.
 	CInstanceEffectDialog::GetInstance().BuildInstanceEffect();
 	return TRUE;
 }
@@ -492,7 +492,7 @@ void CVenusVisualManager::EditInstanceEffect(RwMatrix* pEditMatrix)
         if(!pInstanceEffect)
             continue;
 
-		// È¸ÀüÀÌ³ª ½ºÄÉÀÏÀÇ °æ¿ì ÇöÀç ÁÂÇ¥°¡ º¯ÇÏ¹Ç·Î µû·Î »©¼­ º¸°üÇß´Ù°¡ ³ªÁß¿¡ ´õÇØÁØ´Ù.
+		// íšŒì „ì´ë‚˜ ìŠ¤ì¼€ì¼ì˜ ê²½ìš° í˜„ì¬ ì¢Œí‘œê°€ ë³€í•˜ë¯€ë¡œ ë”°ë¡œ ë¹¼ì„œ ë³´ê´€í–ˆë‹¤ê°€ ë‚˜ì¤‘ì— ë”í•´ì¤€ë‹¤.
 		RwV3d vPosition = *RwMatrixGetPos(&pInstanceEffect->m_matWorld);
 		RwMatrixGetPos(&pInstanceEffect->m_matWorld)->x = RwMatrixGetPos(&pInstanceEffect->m_matWorld)->y = RwMatrixGetPos(&pInstanceEffect->m_matWorld)->z = 0.f;
 
@@ -518,14 +518,14 @@ void CVenusVisualManager::EditInstanceEffect(RwMatrix* pEditMatrix)
 
 //------------------------------------------------------------------
 //	FuncName	: IntersectionEffect
-//	Desc		: Effect°¡ ¼±ÅÃ¿µ¿ª¾È¿¡ Æ÷ÇÔµÇ¾ú´ÂÁö Ã¼Å©ÇÑ´Ù.
+//	Desc		: Effectê°€ ì„ íƒì˜ì—­ì•ˆì— í¬í•¨ë˜ì—ˆëŠ”ì§€ ì²´í¬í•œë‹¤.
 //	Parameter	: 
 //	Return		: 
 //------------------------------------------------------------------
 void CVenusVisualManager::IntersectionEffect(POINT point, RwBool bShiftButton, RwBool bCtrlButton)
 {
 	
-	// °è¼ÓÇØ¼­ ´õÇØÁö´Â ´Ü°è°¡ ¾Æ´Ï¸é ¸®½ºÆ®¸¦ »õ·Î Áö¿ì°í ÇÑ´Ù.
+	// ê³„ì†í•´ì„œ ë”í•´ì§€ëŠ” ë‹¨ê³„ê°€ ì•„ë‹ˆë©´ ë¦¬ìŠ¤íŠ¸ë¥¼ ìƒˆë¡œ ì§€ìš°ê³  í•œë‹¤.
 	if (!bShiftButton && !bCtrlButton)
 	{
 		m_svSelectInstanceEffect.clear();
@@ -568,14 +568,14 @@ void CVenusVisualManager::IntersectionEffect(POINT point, RwBool bShiftButton, R
 
 //------------------------------------------------------------------
 //	FuncName	: IntersectionEffect
-//	Desc		: Effect°¡ ¼±ÅÃ¿µ¿ª¾È¿¡ Æ÷ÇÔµÇ¾îÀÖ´ÂÁö °Ë»çÇÑ´Ù.
+//	Desc		: Effectê°€ ì„ íƒì˜ì—­ì•ˆì— í¬í•¨ë˜ì–´ìˆëŠ”ì§€ ê²€ì‚¬í•œë‹¤.
 //	Parameter	: 
 //	Return		: 
 //------------------------------------------------------------------
 void CVenusVisualManager::IntersectionEffect(POINT OldPoint, POINT CurPoint, RwBool bShiftButton, RwBool bCtrlButton)
 {
 	
-	// °è¼ÓÇØ¼­ ´õÇØÁö´Â ´Ü°è°¡ ¾Æ´Ï¸é ¸®½ºÆ®¸¦ »õ·Î Áö¿ì°í ÇÑ´Ù.
+	// ê³„ì†í•´ì„œ ë”í•´ì§€ëŠ” ë‹¨ê³„ê°€ ì•„ë‹ˆë©´ ë¦¬ìŠ¤íŠ¸ë¥¼ ìƒˆë¡œ ì§€ìš°ê³  í•œë‹¤.
 	if (!bShiftButton && !bCtrlButton)
 	{
 		m_svSelectInstanceEffect.clear();
@@ -616,7 +616,7 @@ void CVenusVisualManager::IntersectionEffect(POINT OldPoint, POINT CurPoint, RwB
 
 //------------------------------------------------------------------
 //	FuncName	: InsertSelectEffect
-//	Desc		: ¼±ÅÃµÈ Effect ¸®½ºÆ®¿¡ Ãß°¡ÇÑ´Ù.
+//	Desc		: ì„ íƒëœ Effect ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€í•œë‹¤.
 //	Parameter	: 
 //	Return		: 
 //------------------------------------------------------------------
@@ -846,11 +846,11 @@ void CVenusVisualManager::DeleteEventEffect(CNtlPLEntity *pEntity)
 	NTL_RETURNVOID();
 }
 
-// Effect°¡ Update ½ÇÆĞÇØ¼­ »èÁ¦ µÉ¶§ È£ÃâµÇ´Â ÇÔ¼ö
-// Repeat ±â´É¿¡ ´ëÇÑ Ã³¸®¸¦ ¿©±â¼­ ÇÑ´Ù.
+// Effectê°€ Update ì‹¤íŒ¨í•´ì„œ ì‚­ì œ ë ë•Œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜
+// Repeat ê¸°ëŠ¥ì— ëŒ€í•œ ì²˜ë¦¬ë¥¼ ì—¬ê¸°ì„œ í•œë‹¤.
 void CVenusVisualManager::AlarmAutoDelete( CNtlPLEntity *pEntity ) 
 {
-	CNtlInstanceEffect* pInstanceEffect = (CNtlInstanceEffect*)pEntity;		// ÀÌ ÇÔ¼ö¿¡ µé¾î¿À´Â Entity´Â Effect »ÓÀÌ´Ù.
+	CNtlInstanceEffect* pInstanceEffect = (CNtlInstanceEffect*)pEntity;		// ì´ í•¨ìˆ˜ì— ë“¤ì–´ì˜¤ëŠ” EntityëŠ” Effect ë¿ì´ë‹¤.
 
     if(m_bGenerateBS && m_pBSCurrEffect == pEntity)
     {
@@ -860,8 +860,8 @@ void CVenusVisualManager::AlarmAutoDelete( CNtlPLEntity *pEntity )
 
 	if(CVenusConfig::GetInstance().m_bTimeRepeat)
 	{
-		// ±âÁ¸ÀÇ Á¤º¸·Î »õ·Î¿î ÀÌÆåÆ®¸¦ »ı¼ºÇÑ´Ù.
-		// Instance°¡ »ı¼ºÈÄ ResourceÀÇ ÀÌ¸§ÀÌ º¯°æµÉ¼öµµ ÀÖ±â ¶§¹®¿¡, Resource¿¡¼­ ÀÌ¸§À» °¡Á®¿Â´Ù.
+		// ê¸°ì¡´ì˜ ì •ë³´ë¡œ ìƒˆë¡œìš´ ì´í™íŠ¸ë¥¼ ìƒì„±í•œë‹¤.
+		// Instanceê°€ ìƒì„±í›„ Resourceì˜ ì´ë¦„ì´ ë³€ê²½ë ìˆ˜ë„ ìˆê¸° ë•Œë¬¸ì—, Resourceì—ì„œ ì´ë¦„ì„ ê°€ì ¸ì˜¨ë‹¤.
 		std::string strName = pInstanceEffect->m_pResourceEffect->GetName();
 		RwMatrix matWorld = pInstanceEffect->m_matWorld;
 
@@ -872,7 +872,7 @@ void CVenusVisualManager::AlarmAutoDelete( CNtlPLEntity *pEntity )
 		}
 		pNewInstanceEffect->SetMatrix(matWorld);
 
-		// ¼±ÅÃ ¸®½ºÆ®¿¡ ÀÖÀ¸¸é ±âÁ¸ÀÇ °ÍÀ» »©°í »õ·Î¿î °ÍÀ» ³Ö´Â´Ù.
+		// ì„ íƒ ë¦¬ìŠ¤íŠ¸ì— ìˆìœ¼ë©´ ê¸°ì¡´ì˜ ê²ƒì„ ë¹¼ê³  ìƒˆë¡œìš´ ê²ƒì„ ë„£ëŠ”ë‹¤.
 		svdef_InstanceEffect::iterator selete_it = std::find(m_svSelectInstanceEffect.begin(), m_svSelectInstanceEffect.end(), pInstanceEffect);
 		if (selete_it != m_svSelectInstanceEffect.end())
 		{
@@ -882,7 +882,7 @@ void CVenusVisualManager::AlarmAutoDelete( CNtlPLEntity *pEntity )
 	}
 	else
 	{
-		// ¼±ÅÃÇÑ ÀÌÆåÆ®¸®½ºÆ®Áß¿¡ ¼ÓÇØ ÀÖ´Ù¸é Áö¿î´Ù.
+		// ì„ íƒí•œ ì´í™íŠ¸ë¦¬ìŠ¤íŠ¸ì¤‘ì— ì†í•´ ìˆë‹¤ë©´ ì§€ìš´ë‹¤.
 		svdef_InstanceEffect::iterator selete_it = std::find(m_svSelectInstanceEffect.begin(), m_svSelectInstanceEffect.end(), pInstanceEffect);
 		if (selete_it != m_svSelectInstanceEffect.end())
 		{
@@ -910,8 +910,8 @@ CNtlInstanceEffect* CVenusVisualManager::CreateEffect( RwUInt32 nIndex )
     return NULL;
 }
 
-// ÀÌº¥Æ® ¼³Á¤Áß¿¡´Â ÀÌº¥Æ® °ü·Ã ÀÌÆåÆ®¸¸ ·»´õ¸µÇÏ±â À§ÇÑ ÇÔ¼ö
-// ÀÌº¥Æ®¿¡¼­ »ı¼ºµÈ ÀÌÆåÆ®¿¡´Â ¿µÇâÀ» ³¢Ä¡Áö ¾Ê´Â´Ù.
+// ì´ë²¤íŠ¸ ì„¤ì •ì¤‘ì—ëŠ” ì´ë²¤íŠ¸ ê´€ë ¨ ì´í™íŠ¸ë§Œ ë Œë”ë§í•˜ê¸° ìœ„í•œ í•¨ìˆ˜
+// ì´ë²¤íŠ¸ì—ì„œ ìƒì„±ëœ ì´í™íŠ¸ì—ëŠ” ì˜í–¥ì„ ë¼ì¹˜ì§€ ì•ŠëŠ”ë‹¤.
 void CVenusVisualManager::RenderEffect( RwBool bRender ) 
 {
     CNtlPLRenderGroup::MapEntity::iterator it;

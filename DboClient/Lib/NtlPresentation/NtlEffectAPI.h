@@ -14,14 +14,14 @@ void		API_SetAnimation(RpClump* pClump, RtAnimAnimation* pAnimation);
 
 RpAtomic*	API_MeshColorUpdate(RpAtomic *pAtomic, void *data __RWUNUSED__);
 
-/// Clump¿¡¼­ UVAnimÀÌ Àû¿ëµÈ MaterialÀ» Ã£¾Æ¼­ List¿¡ Ãß°¡ÇÑ´Ù.
+/// Clumpì—ì„œ UVAnimì´ ì ìš©ëœ Materialì„ ì°¾ì•„ì„œ Listì— ì¶”ê°€í•œë‹¤.
 RwSList*	API_AddAnimatedMaterialsList(RwSList* pList, RpClump* pClump);
 
-/// UVAnimÀÇ ½Ã°£À» ¾÷µ¥ÀÌÆ®ÇÑ´Ù (½Ã°£ Ãß°¡)
+/// UVAnimì˜ ì‹œê°„ì„ ì—…ë°ì´íŠ¸í•œë‹¤ (ì‹œê°„ ì¶”ê°€)
 void		API_MaterialsInterpolatorsAddAnimTime(RwSList *animatedMaterials, RwReal deltaTime);
-/// UVAnimÀÇ ½Ã°£À» ¾÷µ¥ÀÌÆ® ÇÑ´Ù (½Ã°£ ¼³Á¤)
+/// UVAnimì˜ ì‹œê°„ì„ ì—…ë°ì´íŠ¸ í•œë‹¤ (ì‹œê°„ ì„¤ì •)
 void        API_MaterialsInterpolatorsSetCurrentTime(RwSList* animatedMaterials, RwReal fTime);
-/// UVAnimÀ» ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
+/// UVAnimì„ ì—…ë°ì´íŠ¸í•œë‹¤.
 void		API_MaterialsAnimApply(RwSList *animatedMaterials);
 
 #endif

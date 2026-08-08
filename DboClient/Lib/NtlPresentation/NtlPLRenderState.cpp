@@ -9,7 +9,7 @@
 #include "NtlPLRenderState.h"
 
 
-// ����
+// 占쏙옙占쏙옙
 typedef void (*fnRenderState)(void);
 
 fnRenderState g_BeginRS[PLENTITY_LAYER_MAX] = {	NULL,
@@ -440,7 +440,21 @@ void BeginEffectParticleSystemState(void)
 {
 	BeginLightState(FALSE);
 	
-	RwRenderStateSet(rwRENDERSTATEZWRITEENABLE, (void *)FALSE);    
+	RwRenderStateSet(rwRENDERSTATEZWRITEENABLE, (void *)FALSE);
+
+	// Disable stages 1-6 to prevent leftover state from previous draw calls
+	RwD3D9SetTextureStageState(1, D3DTSS_COLOROP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(1, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(2, D3DTSS_COLOROP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(2, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(3, D3DTSS_COLOROP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(3, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(4, D3DTSS_COLOROP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(4, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(5, D3DTSS_COLOROP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(5, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(6, D3DTSS_COLOROP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(6, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
 }
 void EndEffectParticleSystemState(void)
 {
@@ -453,6 +467,20 @@ void BeginEffectMeshSystemState(RwBool bBlend, RwBlendFunction srcBlend, RwBlend
 {
 	RwRenderStateSet(rwRENDERSTATECULLMODE,					(void *)rwCULLMODECULLNONE);
 	RwRenderStateSet(rwRENDERSTATEZWRITEENABLE,				(void *)bZwrite);
+
+	// Disable stages 1-6 to prevent leftover state from previous draw calls
+	RwD3D9SetTextureStageState(1, D3DTSS_COLOROP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(1, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(2, D3DTSS_COLOROP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(2, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(3, D3DTSS_COLOROP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(3, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(4, D3DTSS_COLOROP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(4, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(5, D3DTSS_COLOROP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(5, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(6, D3DTSS_COLOROP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(6, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
 
 	if (bBlend)
 	{
@@ -482,6 +510,21 @@ void EndEffectMeshSystemState(RwBool bBlend)
 //------------------------------------------------------------------
 void BeginEffectImVertexSystemState(RwBool bBlend, RwBlendFunction srcBlend, RwBlendFunction destBlend)
 {
+	// Disable stages 1-6 to prevent leftover state from previous draw calls
+	// (e.g. toon character shading) from tinting effects blue
+	RwD3D9SetTextureStageState(1, D3DTSS_COLOROP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(1, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(2, D3DTSS_COLOROP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(2, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(3, D3DTSS_COLOROP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(3, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(4, D3DTSS_COLOROP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(4, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(5, D3DTSS_COLOROP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(5, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(6, D3DTSS_COLOROP, D3DTOP_DISABLE);
+	RwD3D9SetTextureStageState(6, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+
 	if (bBlend)
 	{
         
@@ -526,6 +569,20 @@ void BeginEffectTraceSystem( RwBool bBlend, RwBlendFunction srcBlend, RwBlendFun
         RwRenderStateSet(rwRENDERSTATEDESTBLEND,			(void *)destBlend);
     }
     RwRenderStateSet(rwRENDERSTATECULLMODE,					(void *)rwCULLMODECULLNONE);
+
+    // Disable stages 1-6 to prevent leftover state from previous draw calls
+    RwD3D9SetTextureStageState(1, D3DTSS_COLOROP, D3DTOP_DISABLE);
+    RwD3D9SetTextureStageState(1, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+    RwD3D9SetTextureStageState(2, D3DTSS_COLOROP, D3DTOP_DISABLE);
+    RwD3D9SetTextureStageState(2, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+    RwD3D9SetTextureStageState(3, D3DTSS_COLOROP, D3DTOP_DISABLE);
+    RwD3D9SetTextureStageState(3, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+    RwD3D9SetTextureStageState(4, D3DTSS_COLOROP, D3DTOP_DISABLE);
+    RwD3D9SetTextureStageState(4, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+    RwD3D9SetTextureStageState(5, D3DTSS_COLOROP, D3DTOP_DISABLE);
+    RwD3D9SetTextureStageState(5, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
+    RwD3D9SetTextureStageState(6, D3DTSS_COLOROP, D3DTOP_DISABLE);
+    RwD3D9SetTextureStageState(6, D3DTSS_ALPHAOP, D3DTOP_DISABLE);
 
     //RwRenderStateSet(rwRENDERSTATESTENCILENABLE, (void*)TRUE);
     //RwRenderStateSet(rwRENDERSTATESTENCILFUNCTION, (void*)rwSTENCILFUNCTIONGREATER);
@@ -799,7 +856,7 @@ void SetWaterRenderStateBegin(/*DWORD SrcAlpha, DWORD DstAlpha, RwBool IsDepthMa
 	RwD3D9SetTextureStageState(3, D3DTSS_COLORARG1, D3DTA_CURRENT); 
 	RwD3D9SetTextureStageState(3, D3DTSS_COLORARG2, D3DTA_TFACTOR);
 	
-	// CNtlPLWater::OnRender �ȿ��� ����
+	// CNtlPLWater::OnRender 占싫울옙占쏙옙 占쏙옙占쏙옙
 	//RwD3D9SetTextureStageState(3, D3DTSS_ALPHAOP, D3DTOP_SELECTARG1);
 	//RwD3D9SetTextureStageState(3, D3DTSS_ALPHAARG1, D3DTA_TEXTURE);
 	//RwD3D9SetTextureStageState(3, D3DTSS_ALPHAARG2, D3DTA_CURRENT);

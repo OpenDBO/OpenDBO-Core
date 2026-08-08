@@ -1,4 +1,4 @@
-// Attr_ACT_RegQInfo.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_ACT_RegQInfo.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_ACT_RegQInfo.h"
 
 
-// CAttr_ACT_RegQInfo ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_ACT_RegQInfo ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_ACT_RegQInfo, CAttr_Page, 1)
 
@@ -75,7 +75,7 @@ CString CAttr_ACT_RegQInfo::GetPageData( void )
 	}
 	if ( nCnt > 1 )
 	{
-		AfxMessageBox( CString( _T("Äù½ºÆ® µî·Ï Á¤º¸¿¡¼­ Äù½ºÆ® Á¾·ù´Â ÇÏ³ª ÀÌ»ó ¼±ÅÃÇÒ ¼ö ¾ø½À´Ï´Ù. ÇÏ³ª¸¸ ¼±ÅÃÇØÁÖ¼¼¿ä") ) );
+		AfxMessageBox( CString( _T("í€˜ìŠ¤íŠ¸ ë“±ë¡ ì •ë³´ì—ì„œ í€˜ìŠ¤íŠ¸ ì¢…ë¥˜ëŠ” í•˜ë‚˜ ì´ìƒ ì„ íƒí•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤. í•˜ë‚˜ë§Œ ì„ íƒí•´ì£¼ì„¸ìš”") ) );
 	}
 
 	strData += PakingPageData( _T("sort"), m_uiSort );
@@ -159,7 +159,7 @@ void CAttr_ACT_RegQInfo::UnPakingPageData( CString& strKey, CString& strValue )
 		}
 		if ( nCnt > 1 )
 		{
-			AfxMessageBox( CString( _T("Äù½ºÆ® µî·Ï Á¤º¸¿¡¼­ Äù½ºÆ® Á¾·ù´Â ÇÏ³ª ÀÌ»ó ¼±ÅÃÇÒ ¼ö ¾ø½À´Ï´Ù. ÇÏ³ª¸¸ ¼±ÅÃÇØÁÖ¼¼¿ä") ) );
+			AfxMessageBox( CString( _T("í€˜ìŠ¤íŠ¸ ë“±ë¡ ì •ë³´ì—ì„œ í€˜ìŠ¤íŠ¸ ì¢…ë¥˜ëŠ” í•˜ë‚˜ ì´ìƒ ì„ íƒí•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤. í•˜ë‚˜ë§Œ ì„ íƒí•´ì£¼ì„¸ìš”") ) );
 		}
 	}
 	else if ( _T("sort") == strKey )
@@ -289,7 +289,7 @@ BOOL CAttr_ACT_RegQInfo::OnInitDialog()
 {
 	CAttr_Page::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	m_ctrGradeType.SetItemData( m_ctrGradeType.AddString( _T("Very easy") ), eGRADE_TYPE_VERY_EASY );
 	m_ctrGradeType.SetItemData( m_ctrGradeType.AddString( _T("Easy") ), eGRADE_TYPE_EASY );
 	m_ctrGradeType.SetItemData( m_ctrGradeType.AddString( _T("Normal") ), eGRADE_TYPE_NORMAL );
@@ -309,7 +309,7 @@ BOOL CAttr_ACT_RegQInfo::OnInitDialog()
 	if ( m_strData.GetLength() > 0 ) SetPageData( m_strData );
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 
@@ -322,7 +322,7 @@ BEGIN_MESSAGE_MAP(CAttr_ACT_RegQInfo, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_ACT_RegQInfo ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_ACT_RegQInfo ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CAttr_ACT_RegQInfo::OnBnClickedTsActAttrRegqinfoStTaskCheck()
 {

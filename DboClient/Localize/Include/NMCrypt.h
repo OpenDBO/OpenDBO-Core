@@ -16,7 +16,7 @@
 void EncryptString(const char *psSource, const char *psKey, char *psTarget);
 int DecryptString(const char *psSource, const char *psKey, char *psTarget);	
 
-// Å¬¸³º¸µå¸¦ ÅëÇÑ ¾ÏÈ£È­/º¹È£È­(°³¼±µÈ ¹öÀü)
+// í´ë¦½ë³´ë“œë¥¼ í†µí•œ ì•”í˜¸í™”/ë³µí˜¸í™”(ê°œì„ ëœ ë²„ì „)
 bool SetNMClipData(const char *str, const char *key);
 bool GetNMClipData(char *pstr, unsigned int maxlen, const char *key, bool bClearData=true);
 

@@ -25,7 +25,7 @@
 #include "DisplayStringManager.h"
 #include "DboEventGenerator.h"
 
-#define TB_MAJOR_ENEMY_PARTYINFO_CLASSICON_X	-24		// °¢ ÆÄÆ¼ÀÎÆ÷¾ÆÀÌÅÛ ±âÁØ ÁÂÇ¥.
+#define TB_MAJOR_ENEMY_PARTYINFO_CLASSICON_X	-24		// ê° íŒŒí‹°ì¸í¬ì•„ì´í…œ ê¸°ì¤€ ì¢Œí‘œ.
 #define TB_MAJOR_ENEMY_PARTYINFO_CLASSICON_Y	0	
 
 #define TB_MAJOR_BATTLEINFO_BLUESCORE_X		127
@@ -255,7 +255,7 @@ RwInt32 CTBMajorMatchInfoGui::SwitchDialog( bool bOpen )
 		CNtlWorldConceptTB* pTBWorldConcept = reinterpret_cast<CNtlWorldConceptTB*>( GetNtlWorldConcept()->GetWorldConceptController( WORLD_PLAY_T_BUDOKAI ) );
 		NTL_ASSERT( pTBWorldConcept, "CNtlTBudokai::HandleEvents : must World concept is valid" );	
 
-		// Âü°¡ÀÚ°¡ ¾Æ´Ï¶ó¸é
+		// ì°¸ê°€ìê°€ ì•„ë‹ˆë¼ë©´
 		if( !pTBWorldConcept->GetMyTeam() )
 			return -1;
 
@@ -290,7 +290,7 @@ VOID CTBMajorMatchInfoGui::HandleEvents( RWS::CMsg& msg )
 
 		if( pData->bEnterState )
 		{
-			// Âü°¡ÀÚ°¡ ¾Æ´Ï¶ó¸é
+			// ì°¸ê°€ìê°€ ì•„ë‹ˆë¼ë©´
 			if( !pTBWorldConcept->GetMyTeam() )
 				return;
 

@@ -12,8 +12,8 @@ void UnLinkGuiScriptLoad(void);
 
 START_GUI
 
-// Kell Comment : CComponentTokenizer´Â ¸®¼Ò½º ½ºÅ©¸³Æ®µµ ÆÄ½ÌÇÏ±â ¶§¹®¿¡ HtmlMetaTag¿¡¼­ »ç¿ëÇÏ±â À§ÇÏ¿©
-// Unicode¿ë Å¬·¡½º¸¦ Ãß°¡·Î ¸¸µë
+// Kell Comment : CComponentTokenizerëŠ” ë¦¬ì†ŒìŠ¤ ìŠ¤í¬ë¦½íŠ¸ë„ íŒŒì‹±í•˜ê¸° ë•Œë¬¸ì— HtmlMetaTagì—ì„œ ì‚¬ìš©í•˜ê¸° ìœ„í•˜ì—¬
+// Unicodeìš© í´ë˜ìŠ¤ë¥¼ ì¶”ê°€ë¡œ ë§Œë“¬
 
 // MultiByte
 class CComponentTokenizer
