@@ -43,7 +43,7 @@
 // Execution file name
 #define DL_LAUNCHER_CUR_EXE_FILE_NAME		( _T( "DBOLauncher.exe" ) )
 #define	DL_LAUNCHER_PATCH_EXE_FILE_NAME		( _T( "Temp4566.exe" ) )
-#define DL_CLIENT_NAME						( _T( "DBO.exe" ) )
+#define DL_CLIENT_NAME						( _T( "Client.exe" ) )
 
 // Launcher command
 #define DL_CMD_LAUNCHER_PATCH				_T( "Cmd_LauncherPatch" )
