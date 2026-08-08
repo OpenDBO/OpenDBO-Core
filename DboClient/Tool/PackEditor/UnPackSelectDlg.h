@@ -21,7 +21,7 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 public:
-    CXTCheckListBox m_listPack;    
+    CCheckListBox m_listPack;
 
     static int m_LoadPackType[MAX_NTL_PACK_TYPE];
 

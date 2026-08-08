@@ -14,7 +14,6 @@
 #define new DEBUG_NEW
 #endif
 
-
 // CAboutDlg dialog used for App About
 
 class CAboutDlg : public CDialog
@@ -399,7 +398,7 @@ void CPackEditorDlg::OnBnClickedBtnUnpack()
     if(dlg.DoModal() == IDOK)
     {
         m_dwPackTime	= GetTickCount();
-        m_bUnPack		= TRUE;	
+        m_bUnPack		= TRUE;
         m_byPackType	= NTL_PACK_TYPE_GUI;
 
         SetTimer(EXPORT_TIMER_ID, 100, NULL);

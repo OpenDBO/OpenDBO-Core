@@ -41,10 +41,8 @@ BOOL CUnPackSelectDlg::OnInitDialog()
 {
     CDialog::OnInitDialog();
 
-    m_listPack.Initialize();
-
     m_listPack.AddString(_T("Texture"));
-    m_listPack.AddString(_T("Object"));    
+    m_listPack.AddString(_T("Object"));
     m_listPack.AddString(_T("GUI"));
     m_listPack.AddString(_T("Flash"));
     m_listPack.AddString(_T("Sound"));
@@ -60,7 +58,7 @@ BOOL CUnPackSelectDlg::OnInitDialog()
         m_listPack.SetCheck(i, TRUE);
     }
 
-    return TRUE;  // return TRUE unless you set the focus to a control    
+    return TRUE;  // return TRUE unless you set the focus to a control
 }
 
 void CUnPackSelectDlg::OnBnClickedOk()
