@@ -2,7 +2,7 @@
  *
  * File			: NtlSobSkill.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2006. 4. 24	
  * Abstract		: Simulation skill object
  *****************************************************************************

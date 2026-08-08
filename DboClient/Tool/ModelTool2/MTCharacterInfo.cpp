@@ -5,7 +5,7 @@
 #include "ModelToolApplication.h"
 #include "MTCharacterInfo.h"
 
-SToonData   CMTClump::m_ToonData;                     ///< Toon¿¡ »ç¿ëµÉ °´Ã¼
+SToonData   CMTClump::m_ToonData;                     ///< Toonì— ì‚¬ìš©ë  ê°ì²´
 int         CMTClump::m_nTotalVertices   = 0;
 int         CMTClump::m_nTotalTriangels  = 0;
 RpAtomic*   CMTClump::m_pTempAtomic      = NULL;
@@ -28,7 +28,7 @@ CMTClump::~CMTClump(void)
 }
 
 //////////////////////////////////////////////////////////////////////////
-// CallBack ÇÔ¼ö ¼³Á¤
+// CallBack í•¨ìˆ˜ ì„¤ì •
 //////////////////////////////////////////////////////////////////////////
 RpAtomic* CMTClump::GetClumpAllAtomics(RpAtomic* pAtomic, void* pData)
 {
@@ -45,7 +45,7 @@ RpAtomic* CMTClump::GetClumpAllAtomics(RpAtomic* pAtomic, void* pData)
 		(*pTable)[chBuffer] = pAtomic;
 	}
 
-    // È­¸é¿¡ Ç¥½ÃµÉ Á¤º¸µéÀ» ¼³Á¤ÇÑ´Ù.
+    // í™”ë©´ì— í‘œì‹œë  ì •ë³´ë“¤ì„ ì„¤ì •í•œë‹¤.
     RpGeometry* pGeom = RpAtomicGetGeometry(pAtomic);
     if(pGeom)
     {
@@ -87,7 +87,7 @@ RpMaterial* CMTClump::GetAllMaterials(RpMaterial* material, void* pData)
 		{
 			pThisCharInfo->m_mapMaterialtable[chBuffer] = material;
 
-            // Material - Atomic MapÀ» ¸¸µç´Ù.
+            // Material - Atomic Mapì„ ë§Œë“ ë‹¤.
             pThisCharInfo->m_mapMaterialAtomicTable[material] = m_pTempAtomic;
 		}
 	}
@@ -121,7 +121,7 @@ RwBool CMTClump::Load( RwChar* szFileName )
     SetClumpInfo();
     SetCartoon();
 
-    // world¿¡ clump¸¦ Ãß°¡ÇÑ´Ù.
+    // worldì— clumpë¥¼ ì¶”ê°€í•œë‹¤.
     RpWorldAddClump(CNtlPLGlobal::m_pRpWorld, m_pClump);
 
     return TRUE;
@@ -143,9 +143,9 @@ RwBool CMTClump::Save( RwChar* szFileName )
 }
 
 /**
- * clumpÀÇ Á¤º¸ Å×ÀÌºíÀ» »ı¼ºÇÑ´Ù.
- * \param pClump Á¤º¸¸¦ »ı¼ºÇÒ clump
- * return ¼º°ø À¯¹«
+ * clumpì˜ ì •ë³´ í…Œì´ë¸”ì„ ìƒì„±í•œë‹¤.
+ * \param pClump ì •ë³´ë¥¼ ìƒì„±í•  clump
+ * return ì„±ê³µ ìœ ë¬´
  */
 RwBool CMTClump::Create(RpClump* pClump, RwChar* szClumpName)
 {
@@ -159,7 +159,7 @@ RwBool CMTClump::Create(RpClump* pClump, RwChar* szClumpName)
 	m_pClump = pClump;
     sprintf_s(m_strClumpName, 1024, "%s", szClumpName);    
 
-	SetClumpInfo();     // Clump ³»ºÎ Á¤º¸ »ı¼º
+	SetClumpInfo();     // Clump ë‚´ë¶€ ì •ë³´ ìƒì„±
 
 	return TRUE;
 }
@@ -198,12 +198,12 @@ void CMTClump::SetClumpInfo()
     m_nTotalTriangels = 0;
     m_nTotalVertices  = 0;
 
-	// ¸ğµç AtomicÀ» ¸Ê¿¡ ´ã´Â´Ù.
+	// ëª¨ë“  Atomicì„ ë§µì— ë‹´ëŠ”ë‹¤.
 	RpClumpForAllAtomics(m_pClump, GetClumpAllAtomics, &m_mapAtomicTable);
-	// ¸ğµç FrameÀ» ¸Ê¿¡ ´ä´Â´Ù.
+	// ëª¨ë“  Frameì„ ë§µì— ë‹µëŠ”ë‹¤.
 	RwFrameForAllChildren(RpClumpGetFrame(m_pClump), GetChildFrame, &m_mapFrameTable);
 
-	// ¸ğµç MaterialÀ» ¸Ê¿¡ ´ã´Â´Ù.
+	// ëª¨ë“  Materialì„ ë§µì— ë‹´ëŠ”ë‹¤.
 	RpGeometry* pGeom = NULL;
 	ATOMIC_TABLE_ITER mapIter;
 	for(mapIter = m_mapAtomicTable.begin(); mapIter != m_mapAtomicTable.end(); ++mapIter)
@@ -211,13 +211,13 @@ void CMTClump::SetClumpInfo()
 		pGeom = RpAtomicGetGeometry(mapIter->second);
 		if(pGeom)
 		{
-            // ÇöÀç Atomic Æ÷ÀÎÅÍ¸¦ ÀúÀåÇÑ´Ù.
+            // í˜„ì¬ Atomic í¬ì¸í„°ë¥¼ ì €ì¥í•œë‹¤.
             m_pTempAtomic = mapIter->second;
 
-            // Material - Atomic ¼¼Æ®¸¦ ¸¸µé±â À§ÇØ¼­ this Æ÷ÀÎÅÍ¸¦ ³Ñ°ÜÁØ´Ù.
+            // Material - Atomic ì„¸íŠ¸ë¥¼ ë§Œë“¤ê¸° ìœ„í•´ì„œ this í¬ì¸í„°ë¥¼ ë„˜ê²¨ì¤€ë‹¤.
 			RpGeometryForAllMaterials(pGeom, GetAllMaterials, this);
 
-            // ¸ÓÅ×¸®¾ó ·»´õ¸µ ÆÄÀÌÇÁ¶óÀÎÀ» ¼³Á¤ÇÑ´Ù.
+            // ë¨¸í…Œë¦¬ì–¼ ë Œë”ë§ íŒŒì´í”„ë¼ì¸ì„ ì„¤ì •í•œë‹¤.
             RwInt32 nMatCount = RpGeometryGetNumMaterials(pGeom);
             for(int i = 0; i < nMatCount; i++)
             {//
@@ -238,7 +238,7 @@ void CMTClump::SetClumpInfo()
 		}
 	}
     
-    // ³ôÀÌ¿Í ³ĞÀÌ¸¦ °»½ÅÇÑ´Ù.
+    // ë†’ì´ì™€ ë„“ì´ë¥¼ ê°±ì‹ í•œë‹¤.
     UpdateHeightWidth();
 
 }
@@ -248,7 +248,7 @@ void CMTClump::UpdateHeightWidth()
     m_fClumpWidth  = 0.0f;
     m_fClumpHeight = 0.0f;
 
-    // ¹Ù¿îµù ¹Ú½º¸¦ ¸¸µé¾î¼­ °è»êÇÑ´Ù.
+    // ë°”ìš´ë”© ë°•ìŠ¤ë¥¼ ë§Œë“¤ì–´ì„œ ê³„ì‚°í•œë‹¤.
     RwBBox boundingBox;
     boundingBox.sup.x = boundingBox.sup.y = boundingBox.sup.z = -RwRealMAXVAL;
     boundingBox.inf.x = boundingBox.inf.y = boundingBox.inf.z = RwRealMAXVAL;
@@ -350,19 +350,19 @@ void CMTClump::DisplayInfo(RtCharset* pCharSet)
 
     RwChar caption[256] = {0,};
 
-    // Atomic °³¼ö
+    // Atomic ê°œìˆ˜
     RsSprintf(caption, RWSTRING("Atomics : %d"),m_mapAtomicTable.size());
     RsCharsetPrint(pCharSet, caption, 0, -4, rsPRINTPOSBOTTOMRIGHT);
 
-    // Triangle °³¼ö
+    // Triangle ê°œìˆ˜
     RsSprintf(caption, RWSTRING("Triangels : %d"), m_nTotalTriangels);
     RsCharsetPrint(pCharSet, caption, 0, -3, rsPRINTPOSBOTTOMRIGHT);
     
-    // vertices °³¼ö
+    // vertices ê°œìˆ˜
     RsSprintf(caption, RWSTRING("Vertices : %d"), m_nTotalVertices);
     RsCharsetPrint(pCharSet, caption, 0, -2, rsPRINTPOSBOTTOMRIGHT);
 
-    // ³ĞÀÌ¿Í ³ôÀÌ
+    // ë„“ì´ì™€ ë†’ì´
     RsSprintf(caption, RWSTRING("Hieght : %.2f (m)"), m_fClumpHeight);
     RsCharsetPrint(pCharSet, caption, 0, -1, rsPRINTPOSBOTTOMRIGHT);
     RsSprintf(caption, RWSTRING("Width : %.2f (m)"), m_fClumpWidth);
@@ -484,10 +484,10 @@ void CMTClump::SetMaterialColor( RwChar* chMaterialName, int r, int g, int b )
     color.blue = b;
     color.alpha = 255;
     
-	//by HongHoDong (2006. 7. 19.) Material °ü·Ã »èÁ¦
+	//by HongHoDong (2006. 7. 19.) Material ê´€ë ¨ ì‚­ì œ
     //RpNtlToonMaterialSetColor(pMaterial, &color);
 
-    // Color¸¦ ¼³Á¤ÇÒ¶§¸¸ MATERIAL_COLOR Flag¸¦ ¼¼ÆÃÇÑ´Ù.
+    // Colorë¥¼ ì„¤ì •í• ë•Œë§Œ MATERIAL_COLOR Flagë¥¼ ì„¸íŒ…í•œë‹¤.
     RpAtomic* pAtomic = GetAtomicByMaterial(pMaterial);
     RwInt32 flag = RpNtlAtomicGetFlag(pAtomic);
    // flag |= NTL_TOON_MATERIAL_COLOR;
@@ -503,7 +503,7 @@ RwBool CMTClump::SetMultiTexture( RwChar* chMaterialName, RwChar* chTextureName,
     if(!pMaterial)
         return FALSE;
 
-    // ¸ÖÆ¼ ÅØ½ºÃÄ Á¦°Å
+    // ë©€í‹° í…ìŠ¤ì³ ì œê±°
     if(chTextureName == NULL)
     {
         RwBool bReturn = NtlMatExtSetMultiTexture(pMaterial, NULL);
@@ -511,16 +511,16 @@ RwBool CMTClump::SetMultiTexture( RwChar* chMaterialName, RwChar* chTextureName,
     }
 
 
-    // Texture¸¦ »ı¼ºÇÑ´Ù.    
+    // Textureë¥¼ ìƒì„±í•œë‹¤.    
     RwTexture* pMultiTexture = CNtlPLResourceManager::GetInstance()->LoadTexture(chTextureName, chTexturePath);
 
     if(!pMultiTexture)
         return FALSE;
 
-    // ³ªÁß¿¡ ÇØÁ¦¸¦ À§ÇØ¼­ Vector¿¡ ³Ö´Â´Ù.
+    // ë‚˜ì¤‘ì— í•´ì œë¥¼ ìœ„í•´ì„œ Vectorì— ë„£ëŠ”ë‹¤.
     m_vMultiTexture.push_back(pMultiTexture);
 
-    // Material¿¡ Àû¿ëÇÑ´Ù.
+    // Materialì— ì ìš©í•œë‹¤.
     RwBool bReturn = NtlMatExtSetMultiTexture(pMaterial, pMultiTexture);
 
     return bReturn;
@@ -575,7 +575,7 @@ void CMTClump::UpdateAtomicBB()
 {
     for(UINT i = 0; i < m_vecBB.size(); ++i)
     {
-        // 1. ¿ì¼± Name¿¡ ÇØ´çÇÏ´Â AtomicÀ» Ã£¾Æ³½´Ù.
+        // 1. ìš°ì„  Nameì— í•´ë‹¹í•˜ëŠ” Atomicì„ ì°¾ì•„ë‚¸ë‹¤.
         RpAtomic* pAtomic = GetAtomicByName(m_vecBB[i]);
         if(!pAtomic)
             return;

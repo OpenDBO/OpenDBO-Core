@@ -39,9 +39,9 @@
 
 /*!
  * \brief
- * Model ToolÀÇ App Å¬·¡½º
+ * Model Toolì˜ App í´ë˜ìŠ¤
  * 
- * NtlApplication Å¬·¡½º¿¡¼­ »ó¼Ó¹Ş¾Æ¼­ Render WareÀÇ Application Class°¡ µÈ´Ù.
+ * NtlApplication í´ë˜ìŠ¤ì—ì„œ ìƒì†ë°›ì•„ì„œ Render Wareì˜ Application Classê°€ ëœë‹¤.
  * 
  * \remarks
  * Write remarks for CModelToolApplication here.
@@ -64,80 +64,80 @@ public:
 	CModelToolApplication(void);
 	virtual ~CModelToolApplication(void);
 
-	virtual void Destroy();											///< »ı¼ºµÈ °´Ã¼µéÀ» ÆÄ±«ÇÑ´Ù.
+	virtual void Destroy();											///< ìƒì„±ëœ ê°ì²´ë“¤ì„ íŒŒê´´í•œë‹¤.
 	RwBool	Update(RwReal fTime, RwReal fElapsedTime);				///< Update Method
 	RwBool	OnIdle() {return CNtlApplication::Update();}			///< Idle Update 
-    RwBool  Resize(RwUInt32 iWidth, RwUInt32 iHeight, RwBool zBuffer); ///< È­¸é Å©±â¸¦ Á¶ÀıÇÒ¶§ È£ÃâµÈ´Ù.
+    RwBool  Resize(RwUInt32 iWidth, RwUInt32 iHeight, RwBool zBuffer); ///< í™”ë©´ í¬ê¸°ë¥¼ ì¡°ì ˆí• ë•Œ í˜¸ì¶œëœë‹¤.
 
-	RwBool	LoadClump(RwChar * filename );							///< Clump ÆÄÀÏÀ» LoadingÇÑ´Ù.
-	char*	GetWorkDir() {return m_chCurrentPath;};					///< ÇöÀç ÆÄÀÏÀÇ °æ·Î¸¦ ¹İÈ¯ÇÑ´Ù.
+	RwBool	LoadClump(RwChar * filename );							///< Clump íŒŒì¼ì„ Loadingí•œë‹¤.
+	char*	GetWorkDir() {return m_chCurrentPath;};					///< í˜„ì¬ íŒŒì¼ì˜ ê²½ë¡œë¥¼ ë°˜í™˜í•œë‹¤.
 	
-	/// ½Ì±ÛÅæ È£Ãâ ÇÔ¼ö
+	/// ì‹±ê¸€í†¤ í˜¸ì¶œ í•¨ìˆ˜
 	static	CModelToolApplication* GetInstance() {return (CModelToolApplication*)m_pInstance; }
-	CMTCharacter* GetCharcter() {return m_pCharacter;};				///< Ä³¸¯ÅÍ °´Ã¼¸¦ ¹İÈ¯ÇÑ´Ù.
+	CMTCharacter* GetCharcter() {return m_pCharacter;};				///< ìºë¦­í„° ê°ì²´ë¥¼ ë°˜í™˜í•œë‹¤.
 
-    // ÇÃ·¡±× °ü·Ã
-    void SetWorldView(RwBool bView) {m_bViewWorld = bView;};        ///< ÁöÇü Ç¥Çö À¯¹«¸¦ ¼±ÅÃÇÑ´Ù.
-    BOOL GetWorldView() {return m_bViewWorld;};                     ///< ÁöÇü Ç¥Çö À¯¹«¸¦ ¹İÈ¯ÇÑ´Ù.
+    // í”Œë˜ê·¸ ê´€ë ¨
+    void SetWorldView(RwBool bView) {m_bViewWorld = bView;};        ///< ì§€í˜• í‘œí˜„ ìœ ë¬´ë¥¼ ì„ íƒí•œë‹¤.
+    BOOL GetWorldView() {return m_bViewWorld;};                     ///< ì§€í˜• í‘œí˜„ ìœ ë¬´ë¥¼ ë°˜í™˜í•œë‹¤.
 
-    void SetWireView(RwBool bView) {m_bViewWire = bView;};          ///< Wireframe Ç¥Çö À¯¹«¸¦ ¼±ÅÃÇÑ´Ù.
-    BOOL GetWireView() {return m_bViewWire;};                       ///< Wireframe Ç¥Çö À¯¹«¸¦ ¹İÈ¯ÇÑ´Ù.
+    void SetWireView(RwBool bView) {m_bViewWire = bView;};          ///< Wireframe í‘œí˜„ ìœ ë¬´ë¥¼ ì„ íƒí•œë‹¤.
+    BOOL GetWireView() {return m_bViewWire;};                       ///< Wireframe í‘œí˜„ ìœ ë¬´ë¥¼ ë°˜í™˜í•œë‹¤.
 
-    void SetHierarchyView(RwBool bView) {m_bViewHierarchy = bView;}; ///< Hierarchy Ç¥Çö À¯¹«¸¦ ¼±ÅÃÇÑ´Ù.
-    BOOL GetHierarchyView() {return m_bViewHierarchy;};              ///< Hierarchy Ç¥Çö À¯¹«¸¦ ¹İÈ¯ÇÑ´Ù.
+    void SetHierarchyView(RwBool bView) {m_bViewHierarchy = bView;}; ///< Hierarchy í‘œí˜„ ìœ ë¬´ë¥¼ ì„ íƒí•œë‹¤.
+    BOOL GetHierarchyView() {return m_bViewHierarchy;};              ///< Hierarchy í‘œí˜„ ìœ ë¬´ë¥¼ ë°˜í™˜í•œë‹¤.
 
     void SetEditChar(CMTCharacter* pCharacter) {m_pAnimEditChar = pCharacter;}; 
 
-    // ÇöÀç ÅøÀÇ »óÅÂ °ü·Ã
+    // í˜„ì¬ íˆ´ì˜ ìƒíƒœ ê´€ë ¨
     void SetAppMode(EModelToolMode eMode) {m_eAppMode = eMode;}
     EModelToolMode GetAppMode() {return m_eAppMode;}
 
-	virtual LRESULT WndProc(HWND window, UINT message, WPARAM wParam, LPARAM lParam);		///< À©µµ¿ì ÇÁ·Î½ÃÁ® ÇÔ¼ö
+	virtual LRESULT WndProc(HWND window, UINT message, WPARAM wParam, LPARAM lParam);		///< ìœˆë„ìš° í”„ë¡œì‹œì ¸ í•¨ìˆ˜
 
 protected:
-	RwBool CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, RwBool zBuffer);  ///< ¿£ÁøÀÌ ½Ãµ¿µÈÈÄ¿¡ SubSystemµéÀ» »ı¼ºÇÑ´Ù.
-	RwBool AttachPlugin();														///< ÇÊ¿äÇÑ PlugInµéÀ» Attach ÇÑ´Ù.
-    RwBool CreateWorld();                                                       ///< ¹è°æÀ¸·Î ¾²ÀÏ ÁöÇüÀ» ¸¸µç´Ù.                                                    
-    void   DisplayInfo();                                                       ///< View Á¤º¸¸¦ Ç¥½ÃÇÑ´Ù.
-    void   DisplayHitTime();                                                    ///< Hit TimeÀ» È­¸é¿¡ Ç¥½ÃÇÑ´Ù
+	RwBool CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, RwBool zBuffer);  ///< ì—”ì§„ì´ ì‹œë™ëœí›„ì— SubSystemë“¤ì„ ìƒì„±í•œë‹¤.
+	RwBool AttachPlugin();														///< í•„ìš”í•œ PlugInë“¤ì„ Attach í•œë‹¤.
+    RwBool CreateWorld();                                                       ///< ë°°ê²½ìœ¼ë¡œ ì“°ì¼ ì§€í˜•ì„ ë§Œë“ ë‹¤.                                                    
+    void   DisplayInfo();                                                       ///< View ì •ë³´ë¥¼ í‘œì‹œí•œë‹¤.
+    void   DisplayHitTime();                                                    ///< Hit Timeì„ í™”ë©´ì— í‘œì‹œí•œë‹¤
 
 protected:
-    CNtlGameCamera*	        m_pCamera;								///< Viewer¿¡ »ç¿ëµÉ Camera
+    CNtlGameCamera*	        m_pCamera;								///< Viewerì— ì‚¬ìš©ë  Camera
 	RtCharset*				m_pCharset;	
-    RtCharset*              m_pCharsetHitTime;                      ///< HitTime Ç¥½Ã¿ë CharSet
-	RwRGBA					m_BackgroundColor;						///< ViewerÀÇ Background Color
-    RwRGBA					m_ForegorundColor;						///< ViewerÀÇ Foreground Color
+    RtCharset*              m_pCharsetHitTime;                      ///< HitTime í‘œì‹œìš© CharSet
+	RwRGBA					m_BackgroundColor;						///< Viewerì˜ Background Color
+    RwRGBA					m_ForegorundColor;						///< Viewerì˜ Foreground Color
 
 	CNtlPLVisualManager*	m_pVisualManager;						///< Visual Manager (?)	
 
-	RpWorld*				m_pWorld;								///< World °´Ã¼
+	RpWorld*				m_pWorld;								///< World ê°ì²´
 	RpLight*				m_pLtAmbient;							///< Ambient Light
 	RpLight*				m_pLtDirectional;						///< Directional Light 
 
-	CNtlPLPropertyContainer	m_PropContainer;						///< ÇÁ·ÎÆÛÆ¼ Container ½Ì±ÛÅæ °´Ã¼
-	CNtlPLResourceManager   m_ResoureManager;						///< Resource Manager ½Ì±ÛÅæ °´Ã¼
+	CNtlPLPropertyContainer	m_PropContainer;						///< í”„ë¡œí¼í‹° Container ì‹±ê¸€í†¤ ê°ì²´
+	CNtlPLResourceManager   m_ResoureManager;						///< Resource Manager ì‹±ê¸€í†¤ ê°ì²´
 
 	
-	CMTCharacter*			m_pCharacter;							///< Ä³¸¯ÅÍ °´Ã¼
-    CMTCharacter*           m_pAnimEditChar;                        ///< Anim Edit¸¦ À§ÇÑ Char ÀÎ½ºÅÏ½º
+	CMTCharacter*			m_pCharacter;							///< ìºë¦­í„° ê°ì²´
+    CMTCharacter*           m_pAnimEditChar;                        ///< Anim Editë¥¼ ìœ„í•œ Char ì¸ìŠ¤í„´ìŠ¤
 	
-	char					m_chCurrentPath[256];					///< ÇöÀç µğ·ºÅä¸®¸¦ ÀúÀåÇÒ º¯¼ö
+	char					m_chCurrentPath[256];					///< í˜„ì¬ ë””ë ‰í† ë¦¬ë¥¼ ì €ì¥í•  ë³€ìˆ˜
 
 	DWORD					m_dwPrevLMouseDownTime;
 	DWORD					m_dwPrevRMouseDownTime;
 
-    CNtlPLResource*         m_pResWorld;                            ///< ÁöÇü ¸®¼Ò½º
-    CNtlPLResource*         m_pResSky;                              ///< ÇÏ´Ã ¸®¼Ò½º    
+    CNtlPLResource*         m_pResWorld;                            ///< ì§€í˜• ë¦¬ì†ŒìŠ¤
+    CNtlPLResource*         m_pResSky;                              ///< í•˜ëŠ˜ ë¦¬ì†ŒìŠ¤    
 
-    // View °ü·Ã Flag
-    RwBool                  m_bViewWorld;                           ///< ÁöÇü ·»´õ¸µ À¯¹«
-    RwBool                  m_bViewWire;                            ///< WireFrame Ç¥Çö À¯¹«
-    RwBool                  m_bViewHierarchy;                       ///< Hierarchy Ç¥Çö À¯¹«
+    // View ê´€ë ¨ Flag
+    RwBool                  m_bViewWorld;                           ///< ì§€í˜• ë Œë”ë§ ìœ ë¬´
+    RwBool                  m_bViewWire;                            ///< WireFrame í‘œí˜„ ìœ ë¬´
+    RwBool                  m_bViewHierarchy;                       ///< Hierarchy í‘œí˜„ ìœ ë¬´
 
-    // ¸Ş¸ğ¸® ³»¿ª °ü·Ã
-    LPDIRECTDRAW7           m_lpDD;                                 ///< ¸Ş¸ğ¸®¸¦ Ç¥½ÃÇÏ±â À§ÇÑ DirectX7 °´Ã¼
+    // ë©”ëª¨ë¦¬ ë‚´ì—­ ê´€ë ¨
+    LPDIRECTDRAW7           m_lpDD;                                 ///< ë©”ëª¨ë¦¬ë¥¼ í‘œì‹œí•˜ê¸° ìœ„í•œ DirectX7 ê°ì²´
 
-    EModelToolMode          m_eAppMode;                             ///< ÇöÀç ¸ğµ¨ÅøÀÇ »óÅÂ ÇÃ·¡±×
+    EModelToolMode          m_eAppMode;                             ///< í˜„ì¬ ëª¨ë¸íˆ´ì˜ ìƒíƒœ í”Œë˜ê·¸
 
    
 };

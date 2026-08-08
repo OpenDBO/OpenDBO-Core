@@ -43,11 +43,11 @@ void CNtlStorageGroup::Destroy()
 }
 
 /**
-* \brief NtlStorageGroupÀÇ °³³äÀûÀÎ Base load ÇÔ¼ö
-* Æ¯Á¤ÇÑ ·ÎµùÀ» ÇØ¾ß ÇÏ´Â GroupÀÌ »ı±æ °æ¿ì´Â ÀÌ Class¸¦ »ó¼Ó¹Ş´Â
-* ÀÚ½Ä Å¬·¡½º¿¡¼­ ¿À¹ö¶óÀÌµùÇØ¼­ »ç¿ëÀ» ÇÑ´Ù.
-* \param pS		(CNtlStorageSerializer*) Load¿¡ »ç¿ëµÉ Serializer buffer
-* \return ¼º°ø¿©ºÎ
+* \brief NtlStorageGroupì˜ ê°œë…ì ì¸ Base load í•¨ìˆ˜
+* íŠ¹ì •í•œ ë¡œë”©ì„ í•´ì•¼ í•˜ëŠ” Groupì´ ìƒê¸¸ ê²½ìš°ëŠ” ì´ Classë¥¼ ìƒì†ë°›ëŠ”
+* ìì‹ í´ë˜ìŠ¤ì—ì„œ ì˜¤ë²„ë¼ì´ë”©í•´ì„œ ì‚¬ìš©ì„ í•œë‹¤.
+* \param pS		(CNtlStorageSerializer*) Loadì— ì‚¬ìš©ë  Serializer buffer
+* \return ì„±ê³µì—¬ë¶€
 */
 bool CNtlStorageGroup::Load(CNtlStorageSerializer* pS)
 {
@@ -59,7 +59,7 @@ bool CNtlStorageGroup::Load(CNtlStorageSerializer* pS)
 
 		// Text Parser
 
-		// [Ä«Å×°í¸®]
+		// [ì¹´í…Œê³ ë¦¬]
 		// [KEY] = [VALUE];
 		
 		eNTL_STORAGE_TYPE eCurrentType = eNTL_STORAGE_INVALID;
@@ -78,7 +78,7 @@ bool CNtlStorageGroup::Load(CNtlStorageSerializer* pS)
 		{
 			std::string& token = lexer.PeekNextToken();
 
-			// ÇöÀç ÅäÅ«ÀÌ Ä«Å×°í¸®ÀÎÁö È®ÀÎÇÏ°í Ä«Å×°í¸®ÀÌ¸é ´ÙÀ½ °ªÀº Å° -> = -> °ª -> ; À¸·Î µ¥ÀÌÅÍ¸¦ È®ÀÎÇÑ´Ù.
+			// í˜„ì¬ í† í°ì´ ì¹´í…Œê³ ë¦¬ì¸ì§€ í™•ì¸í•˜ê³  ì¹´í…Œê³ ë¦¬ì´ë©´ ë‹¤ìŒ ê°’ì€ í‚¤ -> = -> ê°’ -> ; ìœ¼ë¡œ ë°ì´í„°ë¥¼ í™•ì¸í•œë‹¤.
 			for( int i=0; i < eNTL_STORAGE_NUMS; ++i )
 			{
 				if( token.compare( g_acNtlStorageTypeString[i] ) == 0 )
@@ -143,16 +143,16 @@ bool CNtlStorageGroup::Load(CNtlStorageSerializer* pS)
 					}
 					else
 					{
-						// eTEXT_SEMICOLON ÀÌ È®ÀÎµÇ¸é ÀúÀåÇÏ°í ÀÖ´Â Key¿Í Value¸¦ ÇöÀçÀÇ Current Type¿¡ ¸Â´Â
-						// Unit¿¡ ³Ö¾îÁØ´Ù. ¸¸¾à eCurrentTypeÀÇ ÇöÀçÀÇ Group¿¡ Æ÷ÇÔµÇÁö ¾ÊÀº UnitÀÌ¶ó¸é
-						// ¿À·ù¸¦ ¹ß»ıÇÏ°í return ÇÑ´Ù. ±×·¸°Ô µÇ¸é ÇöÀç±îÁö ÀúÀåÇÑ Key Value¸¦ Á¦¿ÜÇÏ°í ÀÌ¿ÜÀÇ
-						// Ç×¸ñµéÀº ´Ù Default·Î ³²¾Æ ÀÖ°Ô µÈ´Ù.
+						// eTEXT_SEMICOLON ì´ í™•ì¸ë˜ë©´ ì €ì¥í•˜ê³  ìˆëŠ” Keyì™€ Valueë¥¼ í˜„ì¬ì˜ Current Typeì— ë§ëŠ”
+						// Unitì— ë„£ì–´ì¤€ë‹¤. ë§Œì•½ eCurrentTypeì˜ í˜„ì¬ì˜ Groupì— í¬í•¨ë˜ì§€ ì•Šì€ Unitì´ë¼ë©´
+						// ì˜¤ë¥˜ë¥¼ ë°œìƒí•˜ê³  return í•œë‹¤. ê·¸ë ‡ê²Œ ë˜ë©´ í˜„ì¬ê¹Œì§€ ì €ì¥í•œ Key Valueë¥¼ ì œì™¸í•˜ê³  ì´ì™¸ì˜
+						// í•­ëª©ë“¤ì€ ë‹¤ Defaultë¡œ ë‚¨ì•„ ìˆê²Œ ëœë‹¤.
 						UNITMAP::iterator it = m_mapStorageUnit.find( eCurrentType );
 						if( it == m_mapStorageUnit.end() )
 							return false;
 
-						// ÇöÀç µé¾î¿Â KEY°ªÀÌ MappingTable¿¡ Á¸ÀçÇÏÁö ¾Ê´Â °æ¿ì, ÇöÀçÀÇ ¶óÀÎÀ»³¯·Á¹ö¸°´Ù. ±×·¸°Ô µÇ¸é Àß¸øµÈ
-						// KEY°ªÀÇ Ç×¸ñ¸¸ ÀúÀåÀÌ µÇÁö ¾Ê°í ³ª¸ÓÁö´Â Á¤»óÀûÀ¸·Î Ã³¸®ÇÑ´Ù.
+						// í˜„ì¬ ë“¤ì–´ì˜¨ KEYê°’ì´ MappingTableì— ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ê²½ìš°, í˜„ì¬ì˜ ë¼ì¸ì„ë‚ ë ¤ë²„ë¦°ë‹¤. ê·¸ë ‡ê²Œ ë˜ë©´ ì˜ëª»ëœ
+						// KEYê°’ì˜ í•­ëª©ë§Œ ì €ì¥ì´ ë˜ì§€ ì•Šê³  ë‚˜ë¨¸ì§€ëŠ” ì •ìƒì ìœ¼ë¡œ ì²˜ë¦¬í•œë‹¤.
 						unsigned int uiKey = 0;
 						if( !GetNtlStorageMTContainer()->GetKeyFromString( strKey, uiKey ) )
 						{
@@ -177,7 +177,7 @@ bool CNtlStorageGroup::Load(CNtlStorageSerializer* pS)
 	}
 	else if( eNTL_STORAGE_SERIALIZER_BINARY == pS->GetStorageSerializerType() )
 	{
-		// Binary´Â °¢°¢ÀÇ ¾Ë¸ÂÀº Å°¸¦ °¡Á®¿Í¾ßÇÔ.
+		// BinaryëŠ” ê°ê°ì˜ ì•Œë§ì€ í‚¤ë¥¼ ê°€ì ¸ì™€ì•¼í•¨.
 		/*CNtlStorageBinarySerializer* pBianrySerializer = (CNtlStorageBinarySerializer*)pS;*/
 
 		unsigned int uiKey;
@@ -187,7 +187,7 @@ bool CNtlStorageGroup::Load(CNtlStorageSerializer* pS)
 		RwBool bLoaded = FALSE;
 		while(!bLoaded)
 		{
-			// ¹«ÇÑ·çÇÁ ¹æÁö
+			// ë¬´í•œë£¨í”„ ë°©ì§€
 			if( ++nCount > 1000000 )
 				break;
 
@@ -200,11 +200,11 @@ bool CNtlStorageGroup::Load(CNtlStorageSerializer* pS)
 				// Case By Case
 			case dSTORAGE_CATEGORY:
 				{
-					// Ä«Å×°í¸®¿¡ ¾Ë¸ÂÀº À¯´ÖÀ» ¸¸µç´Ù.
+					// ì¹´í…Œê³ ë¦¬ì— ì•Œë§ì€ ìœ ë‹›ì„ ë§Œë“ ë‹¤.
 					std::string strCategory;
 					(*pS) >> strCategory;
 
-					// ¾î¶°ÇÑ Ä«Å×°í¸®ÀÎÁö È®ÀÎ
+					// ì–´ë– í•œ ì¹´í…Œê³ ë¦¬ì¸ì§€ í™•ì¸
 					eNTL_STORAGE_TYPE eType = eNTL_STORAGE_INVALID;;
 					for( int i=0; i < (int)eNTL_STORAGE_NUMS; ++i )
 					{
@@ -218,7 +218,7 @@ bool CNtlStorageGroup::Load(CNtlStorageSerializer* pS)
 
 					if( eType == eNTL_STORAGE_INVALID )
 					{
-						// Á¤ÀÇµÇ¾î ÀÖ´Â Ä«Å×°í¸®¸¦ Ã£Áö ¸øÇßÀ¸¸é µ¥ÀÌÅ¸°¡ Àß¸øµÈ °ÍÀÌ´Ù.
+						// ì •ì˜ë˜ì–´ ìˆëŠ” ì¹´í…Œê³ ë¦¬ë¥¼ ì°¾ì§€ ëª»í–ˆìœ¼ë©´ ë°ì´íƒ€ê°€ ì˜ëª»ëœ ê²ƒì´ë‹¤.
 						return false;
 					}
 
@@ -238,14 +238,14 @@ bool CNtlStorageGroup::Load(CNtlStorageSerializer* pS)
 				break;
 			case dSTORAGE_EOF:
 				{
-					// Á¤»óÀûÀ¸·Î ·ÎµùÀÌ ¿Ï·á
+					// ì •ìƒì ìœ¼ë¡œ ë¡œë”©ì´ ì™„ë£Œ
 					bLoaded = TRUE;
 				}
 				break;
 			default:
 				{
-					// Ä«Å×°í¸®°¡ ¾Æ´Ñ °ÍÀº ¸ğµÎ ´Ù uiKey¿¡ µû¸¥ µ¥ÀÌÅ¸ÀÌ´Ù.
-					// ÇöÀç Ä¿·»Æ® Å¸ÀÔÀ» °¡Á®¿Í¼­
+					// ì¹´í…Œê³ ë¦¬ê°€ ì•„ë‹Œ ê²ƒì€ ëª¨ë‘ ë‹¤ uiKeyì— ë”°ë¥¸ ë°ì´íƒ€ì´ë‹¤.
+					// í˜„ì¬ ì»¤ë ŒíŠ¸ íƒ€ì…ì„ ê°€ì ¸ì™€ì„œ
 					UNITMAP::iterator it = m_mapStorageUnit.find( eCurrentType );
 					if( it == m_mapStorageUnit.end() )
 					{
@@ -261,7 +261,7 @@ bool CNtlStorageGroup::Load(CNtlStorageSerializer* pS)
 			}
 		}
 
-		// ByNarySerializer¿¡ ´Ù½Ã Data¸¦ ³Ö¾îÁÙ ÇÊ¿ä°¡ ¾ø´Ù.
+		// ByNarySerializerì— ë‹¤ì‹œ Dataë¥¼ ë„£ì–´ì¤„ í•„ìš”ê°€ ì—†ë‹¤.
 		/*for each( std::pair< eNTL_STORAGE_TYPE, CNtlStorageUnit* > pair in m_mapStorageUnit )
 		{
 			if( pair.second )
@@ -285,11 +285,11 @@ bool CNtlStorageGroup::Load(CNtlStorageSerializer* pS)
 }
 
 /**
-* \brief NtlStorageGroupÀÇ °³³äÀûÀÎ Base save ÇÔ¼ö
-* Æ¯º°ÇÑ ÀúÀåÀ» ÇØ¾ß ÇÏ´Â GroupÀÌ »ı±æ °æ¿ì´Â ÀÌ Class¸¦ »ó¼Ó¹Ş´Â
-* ÀÚ½Ä Å¬·¡½º¿¡¼­ ¿À¹ö¶óÀÌµùÇØ¼­ »ç¿ëÀ» ÇÑ´Ù.
-* \param pS		(CNtlStorageSerializer*) save¿¡ »ç¿ëµÉ Serializer buffer
-* \return ¼º°ø¿©ºÎ
+* \brief NtlStorageGroupì˜ ê°œë…ì ì¸ Base save í•¨ìˆ˜
+* íŠ¹ë³„í•œ ì €ì¥ì„ í•´ì•¼ í•˜ëŠ” Groupì´ ìƒê¸¸ ê²½ìš°ëŠ” ì´ Classë¥¼ ìƒì†ë°›ëŠ”
+* ìì‹ í´ë˜ìŠ¤ì—ì„œ ì˜¤ë²„ë¼ì´ë”©í•´ì„œ ì‚¬ìš©ì„ í•œë‹¤.
+* \param pS		(CNtlStorageSerializer*) saveì— ì‚¬ìš©ë  Serializer buffer
+* \return ì„±ê³µì—¬ë¶€
 */
 bool CNtlStorageGroup::Save(CNtlStorageSerializer* pS)
 {

@@ -1,4 +1,4 @@
-// ProgressDialog.cpp : ���� �����Դϴ�.
+// ProgressDialog.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -7,7 +7,7 @@
 #include ".\progressdialog.h"
 
 
-// CProgressDialog ��ȭ �����Դϴ�.
+// CProgressDialog 대화 상자입니다.
 
 IMPLEMENT_DYNAMIC(CProgressDialog, CDialog)
 CProgressDialog::CProgressDialog(CWnd* pParent /*=NULL*/)
@@ -35,13 +35,13 @@ BEGIN_MESSAGE_MAP(CProgressDialog, CDialog)
 END_MESSAGE_MAP()
 
 
-// CProgressDialog �޽��� ó�����Դϴ�.
+// CProgressDialog 메시지 처리기입니다.
 
 BOOL CProgressDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ���⿡ �߰� �ʱ�ȭ �۾��� �߰��մϴ�.
+	// TODO:  여기에 추가 초기화 작업을 추가합니다.
 	CRect rect;
 	GetWindowRect(&rect);
 	CPoint posStart;
@@ -55,12 +55,12 @@ BOOL CProgressDialog::OnInitDialog()
 	MoveWindow(rect);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ����: OCX �Ӽ� �������� FALSE�� ��ȯ�ؾ� �մϴ�.
+	// 예외: OCX 속성 페이지는 FALSE를 반환해야 합니다.
 }
 
 void CProgressDialog::OnTimer(UINT nIDEvent)
 {
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 	switch(nIDEvent)
 	{
 	case 0:

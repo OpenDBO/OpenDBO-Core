@@ -59,7 +59,7 @@ VOID CDBCNarrationGui::Destroy(VOID)
 	UnLinkMsg( g_EventResetCinematic );
 }
 
-INT CDBCNarrationGui::StateUpdate( RwUInt32 uiElapsedTime )
+INT CDBCNarrationGui::StateUpdate( uintptr_t uiElapsedTime )
 {
 	switch( m_eUIState )
 	{
@@ -144,7 +144,7 @@ VOID CDBCNarrationGui::SetUIData( const RwChar* szTextureName, const WCHAR* wszT
 		SetState( STATE_ING );
 	}
 
-	// ÀÌ¹ÌÁö ·Îµå ¹× ÀÌ¸§ Ãâ·Â
+	// ì´ë¯¸ì§€ ë¡œë“œ ë° ì´ë¦„ ì¶œë ¥
 	if( szTextureName )
 	{
 		m_pCinematicObject->SetImageTexture( const_cast<RwChar*>( szTextureName ) );

@@ -298,7 +298,7 @@ RwBool CConvertingDlg::UpdateAnimData(const char* szName, CNtlTypeAnimTable* pAn
         pResource = CNtlPLResourceManager::GetInstance()->LoadAnimation(szAnimFile);
         it->second->fPlayTime = pResource->GetAnimation()->duration;
 
-        // ½Ã°£À» ³Ñ¾î°¡´Â Event°¡ ÀÖ´ÂÁö Ã¼Å©
+        // ì‹œê°„ì„ ë„˜ì–´ê°€ëŠ” Eventê°€ ìžˆëŠ”ì§€ ì²´í¬
         CheckAnimEventTime(szName, it->second);
 
         CNtlPLResourceManager::GetInstance()->UnLoad(pResource);

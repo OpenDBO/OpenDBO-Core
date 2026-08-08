@@ -1,4 +1,4 @@
-// Attr_ACT_RegCTiming.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_ACT_RegCTiming.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_ACT_RegCTiming.h"
 
 
-// CAttr_ACT_RegCTiming ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_ACT_RegCTiming ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_ACT_RegCTiming, CAttr_Page, 1)
 
@@ -318,9 +318,9 @@ BOOL CAttr_ACT_RegCTiming::OnInitDialog()
 {
 	CAttr_Page::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
-	m_ctrRegType.SetItemData( m_ctrRegType.AddString( _T("ÇØÁ¦") ), eREG_TYPE_UNREG );
-	int nIdx = m_ctrRegType.AddString( _T("µî·Ï") );
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
+	m_ctrRegType.SetItemData( m_ctrRegType.AddString( _T("í•´ì œ") ), eREG_TYPE_UNREG );
+	int nIdx = m_ctrRegType.AddString( _T("ë“±ë¡") );
 	m_ctrRegType.SetItemData( nIdx, eREG_TYPE_REG );
 	m_ctrRegType.SetCurSel( nIdx );
 
@@ -348,7 +348,7 @@ BOOL CAttr_ACT_RegCTiming::OnInitDialog()
 	OnCbnSelchangeTsActAttrRegCTimingTypeCombo();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 
@@ -358,7 +358,7 @@ BEGIN_MESSAGE_MAP(CAttr_ACT_RegCTiming, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_ACT_RegCTiming ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_ACT_RegCTiming ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CAttr_ACT_RegCTiming::OnCbnSelchangeTsActAttrRegCTimingTypeCombo()
 {

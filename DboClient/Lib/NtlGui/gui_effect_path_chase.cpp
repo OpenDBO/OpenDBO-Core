@@ -100,7 +100,7 @@ VOID CPathParticle::Reset(VOID)
 
 BOOL CPathParticle::Update( FLOAT fElapsedTIme, BOOL bRepeat )
 {
-	// return FALSE : ªË¡¶.
+	// return FALSE : ÏÇ≠Ï†ú.
 	
 	m_fCurrentTime += fElapsedTIme;
 

@@ -4,8 +4,8 @@
 
 ERSMConfig::ERSMConfig(void)
 {
-    m_nRunTime = 30;            ///< µðÆúÆ® 30ºÐ
-    m_nSMTPRunTime = 3 * 60;    ///< µðÆúÆ® 3½Ã°£
+    m_nRunTime = 30;            ///< ë””í´íŠ¸ 30ë¶„
+    m_nSMTPRunTime = 3 * 60;    ///< ë””í´íŠ¸ 3ì‹œê°„
 }
 
 ERSMConfig::~ERSMConfig(void)

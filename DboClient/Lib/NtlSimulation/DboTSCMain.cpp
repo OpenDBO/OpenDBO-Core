@@ -411,15 +411,15 @@ bool CDboTSCMain::LoadFactories( void )
 {
 	UnloadFactories();
 
-	// Entity factory 积己
+	// Entity factory 靸濎劚
 	m_pEntityFactory = NTL_NEW CDboTSEntityFactory;
 	m_pEntityFactory->RegisterEntityType();
 
-	// Control factory 积己
+	// Control factory 靸濎劚
 	m_pCtrlFactory = NTL_NEW CDboTSCCtrlFactory;
 	m_pCtrlFactory->RegisterCtrlType();
 
-	// UI factory 积己
+	// UI factory 靸濎劚
 	m_pUIFactory = NTL_NEW CDboTSCUIFactory;
 	m_pUIFactory->RegisterUIType();
 
@@ -702,7 +702,7 @@ bool CDboTSCMain::LoadEventMapperFromFile( void )
 	char* pDecryptBuf = NULL;
 	char* pBuf = NULL;
 
-	// 颇老 肺爹
+	// 韺岇澕 搿滊敥
 	FILE* pFile;
 	fopen_s( &pFile, strEvtPath.c_str(), "rb" );
 	if ( NULL == pFile )
@@ -719,7 +719,7 @@ bool CDboTSCMain::LoadEventMapperFromFile( void )
 	fread( pReadBuf, 1, nReadSize, pFile );
 	fclose( pFile );
 
-	// 鞠龋拳甫 乾促
+	// 鞎旐樃頇旊ゼ 響茧嫟
 	std::string strKey = "dnfldbofmftkfkdgowntpdy";
 	CNtlCipher Cipher;
 	Cipher.SetKey( DES_CIPHER, strKey.c_str(), (int)strKey.size() );

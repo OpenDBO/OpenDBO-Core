@@ -1,4 +1,4 @@
-// LauncherDlg.h : Çì´õ ÆÄÀÏ
+// LauncherDlg.h : í—¤ë” íŒŒì¼
 //
 
 #pragma once
@@ -9,25 +9,25 @@
 #include "OutputBox.h"
 #include "HTTPTransparent.h"
 
-// CLauncherDlg ´ëÈ­ »óÀÚ
+// CLauncherDlg ëŒ€í™” ìƒì
 class CLauncherDlg : public CBitmapDlg
 {
-// »ı¼ºÀÔ´Ï´Ù.
+// ìƒì„±ì…ë‹ˆë‹¤.
 public:
-	CLauncherDlg(CWnd* pParent = NULL);	// Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CLauncherDlg(CWnd* pParent = NULL);	// í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_LAUNCHER_DIALOG };
 
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 
-// ±¸ÇöÀÔ´Ï´Ù.
+// êµ¬í˜„ì…ë‹ˆë‹¤.
 protected:
 	HICON m_hIcon;
 
-	// »ı¼ºµÈ ¸Ş½ÃÁö ¸Ê ÇÔ¼ö
+	// ìƒì„±ëœ ë©”ì‹œì§€ ë§µ í•¨ìˆ˜
 	virtual BOOL OnInitDialog();
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnPaint();
@@ -58,8 +58,8 @@ public:
 	CImageTextButton m_ButtonGameStart;
 	CImageTextButton m_ButtonCancel;
 
-    CString m_strPatchVer;                          ///< ÇöÀç±îÁö ÆĞÄ¡µÈ Å¬¶óÀÌ¾ğÆ® ¹öÀü
-    CString m_strLauncherVer;                       ///< ·±Ã³ ¹öÀü
+    CString m_strPatchVer;                          ///< í˜„ì¬ê¹Œì§€ íŒ¨ì¹˜ëœ í´ë¼ì´ì–¸íŠ¸ ë²„ì „
+    CString m_strLauncherVer;                       ///< ëŸ°ì²˜ ë²„ì „
 	
 	CHTTPTransparent m_ExplorerInformation;
 };

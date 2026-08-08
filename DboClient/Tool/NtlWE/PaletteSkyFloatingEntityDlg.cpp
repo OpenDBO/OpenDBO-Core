@@ -1,4 +1,4 @@
-// PaletteSkyFloatingEntityDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PaletteSkyFloatingEntityDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -19,7 +19,7 @@
 #include "WorldViewDlg.h"
 #include "NtlWorldPaletteDefine.h"
 
-// CPaletteSkyFloatingEntityDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteSkyFloatingEntityDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPaletteSkyFloatingEntityDlg, CDialog)
 
@@ -106,15 +106,15 @@ BEGIN_MESSAGE_MAP(CPaletteSkyFloatingEntityDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CPaletteSkyFloatingEntityDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPaletteSkyFloatingEntityDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 BOOL CPaletteSkyFloatingEntityDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 VOID CPaletteSkyFloatingEntityDlg::Reset()
@@ -453,7 +453,7 @@ void CPaletteSkyFloatingEntityDlg::OnBnClickedCancel()
 {
 	((CNtlWEApp*)(AfxGetApp()))->m_pFrm->m_pFieldUI->SetCheckSkyPaletteShow(FALSE);
 
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	OnCancel();
 }
 
@@ -620,7 +620,7 @@ void CPaletteSkyFloatingEntityDlg::OnBnClickedSetprop()
 	dGETDOC()->ApplyFieldProp(((CNtlWEApp*)(AfxGetApp()))->m_pDoc->m_pNtlFieldProp, eNFP_PLANET);
 	dGETDOC()->ApplyFieldProp(((CNtlWEApp*)(AfxGetApp()))->m_pDoc->m_pNtlFieldProp, eNFP_SPECULAR);
 	
-	// ÀÎµµ¾î
+	// ì¸ë„ì–´
 // 	switch (GetSceneManager()->GetActiveWorldType())
 // 	{
 // 	case AW_HEGITHFIELD:
@@ -707,7 +707,7 @@ void CPaletteSkyFloatingEntityDlg::OnBnClickedGetprop()
 
 void CPaletteSkyFloatingEntityDlg::OnBnClickedSpecularCreate()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if (!(m_SpecularCreate.GetCheck() && m_Entity00Create.GetCheck()))
 	{
 		m_SpecularCreate.SetCheck(FALSE);
@@ -724,7 +724,7 @@ void CPaletteSkyFloatingEntityDlg::OnBnClickedSpecularCreate()
 
 void CPaletteSkyFloatingEntityDlg::OnBnClickedSpecularReflash()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	sNTL_SPECULAR sSpecular;
 	sSpecular._SpecularExistence	= m_SpecularCreate.GetCheck();
 	sSpecular._Power				= (RwUInt8)(CNtlWEUtil::GetRwRealVal(m_SpecularPower) * 255.0f);

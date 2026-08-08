@@ -32,19 +32,19 @@ protected:
 public:
     static CItemViewPane* GetInstance() {return m_pInstance;}
 
-    void SetCharacter(CMTCharacter* pCharacter);       ///< EditÇÒ Ä³¸¯ÅÍ¸¦ ¼³Á¤ÇÑ´Ù.
+    void SetCharacter(CMTCharacter* pCharacter);       ///< Edití•  ìºë¦­í„°ë¥¼ ì„¤ì •í•œë‹¤.
 
 protected:            
-    void UpdateTree();                                 ///< TreeÀÇ ³»¿ëÀ» UpdateÇÑ´Ù.
-    void EquipItem(HTREEITEM hItem);                   ///< ItemÀ» Âø¿ëÇÑ´Ù.
+    void UpdateTree();                                 ///< Treeì˜ ë‚´ìš©ì„ Updateí•œë‹¤.
+    void EquipItem(HTREEITEM hItem);                   ///< Itemì„ ì°©ìš©í•œë‹¤.
 
 protected:
     static CItemViewPane* m_pInstance;
     CExTreeCtrl   m_treeItem;
-    CImageList*   m_pImageList;                        ///< Æ®¸®¿¡ »ç¿ëÇÒ ÀÌ¹ÌÁö ¸®½ºÆ®
-    CMTCharacter* m_pCharacter;                        ///< ÇöÀç EditÇÒ Ä³¸¯ÅÍ °´Ã¼
+    CImageList*   m_pImageList;                        ///< íŠ¸ë¦¬ì— ì‚¬ìš©í•  ì´ë¯¸ì§€ ë¦¬ìŠ¤íŠ¸
+    CMTCharacter* m_pCharacter;                        ///< í˜„ìž¬ Edití•  ìºë¦­í„° ê°ì²´
 
-    std::vector<CNtlPLItem*>    m_vAttachItem;         ///< AttachµÈ ItemµéÀÇ vector
+    std::vector<CNtlPLItem*>    m_vAttachItem;         ///< Attachëœ Itemë“¤ì˜ vector
 
     COLORREF      m_colorSelect;
     COLORREF      m_colorNon;

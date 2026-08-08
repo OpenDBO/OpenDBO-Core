@@ -151,9 +151,9 @@ protected:
 	DEF_ITEM_PARTS_MAP					m_mapParts;					///< Default Parts
 	DEF_ITEM_SCOUTER_ATTACH_INFO_MAP	m_mapScouterAttachInfo;		///< Scouter Attach Info
 
-    // ÃÊ»çÀÌ¾îÀÎ¿ë µ¥ÀÌÅÍ
-    DEF_ITEM_HEAD_KEY_NAME              m_mapSuperSaiyanHeadKeyName;    ///< ÃÊ»çÀÌ¾îÀÎ¿ë Head
-    DEF_ITEM_FACE_MULTI_TEX_NAME_MAP    m_mapSuperSaiyanFaceMultiTexName;   ///< ÃÊ»çÀÌ¾îÀÎ¿ë Face
+    // ì´ˆì‚¬ì´ì–´ì¸ìš© ë°ì´í„°
+    DEF_ITEM_HEAD_KEY_NAME              m_mapSuperSaiyanHeadKeyName;    ///< ì´ˆì‚¬ì´ì–´ì¸ìš© Head
+    DEF_ITEM_FACE_MULTI_TEX_NAME_MAP    m_mapSuperSaiyanFaceMultiTexName;   ///< ì´ˆì‚¬ì´ì–´ì¸ìš© Face
 
 public:
 	void operator = (CNtlDefaultItemTable& _TmpTbl);

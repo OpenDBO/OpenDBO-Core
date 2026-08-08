@@ -173,7 +173,7 @@ void cTestBed::setMesh(iMesh *mesh)
     _mesh = static_cast<cMesh*>(mesh);
     if(_mesh->getTestBedUserData() == 0)
     {
-		// Edge 备己
+		// Edge 甑劚
         _mesh->setTestBedUserData(new cTestBedUserData);
         meshUserData()._meshRenderInfo = new cMeshRenderInfo;
 		meshUserData()._edgeRenderInfo = new cEdgeRenderInfo;
@@ -182,7 +182,7 @@ void cTestBed::setMesh(iMesh *mesh)
 
         GenerateMeshLOSPreprocess(_mesh->ref3D(), meshUserData()._losPreprocess);
 
-		// Obstacle 备己
+		// Obstacle 甑劚
 		meshUserData()._baseCircuitsRecorder = new cGraphicsInterfaceRecorder(gip);
 		meshUserData()._obstacleRenderInfo = new cObstacleRenderInfo;
 		cHandle<tMeshCircuits> baseCircuits = _mesh->generateOldStyleBaseCircuitsForBaseObstacles();

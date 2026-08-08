@@ -23,7 +23,7 @@ public:
     static CTreeMobPane* GetInstance() {return m_pInstance;}
 
 protected:
-    virtual void InitClass();                                ///< °¢ Å¬·¡½º¿¡ ¸Â´Â ÃÊ±âÈ­
+    virtual void InitClass();                                ///< ê° í´ëž˜ìŠ¤ì— ë§žëŠ” ì´ˆê¸°í™”
 
 
 protected:

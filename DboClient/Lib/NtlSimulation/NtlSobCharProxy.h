@@ -2,7 +2,7 @@
 *
 * File			: NtlSobAtt.h
 * Author		: HyungSuk, Jang
-* Copyright	: (¡÷)NTL
+* Copyright	: (Ï£º)NTL
 * Date			: 2005. 11. 30	
 * Abstract		: Simulation object attribute base class
 *****************************************************************************
@@ -161,9 +161,9 @@ private:
 	RwReal						m_fWeightInk;
 	RwReal						m_fCurrHalfOneSecTime;
 	RwBool						m_bEnableHighlight;
-    CNtlSobProxySystemEffect*   m_pFocusColorEffect;       ///< «»≈∑Ω√ «œ¿Ã∂Û¿Ã∆Æ ¿Ã∆Â∆Æ
+    CNtlSobProxySystemEffect*   m_pFocusColorEffect;       ///< ÌîΩÌÇπÏãú ÌïòÏù¥ÎùºÏù¥Ìä∏ Ïù¥ÌéôÌä∏
 	RwBool						m_bResLoaded;
-	RwUInt8						m_byAnimBlendNoneOneTime;	/** animation blending¿ª «—π¯∏∏ «œ¡ˆ æ ¥¬¥Ÿ */
+	RwUInt8						m_byAnimBlendNoneOneTime;	/** animation blendingÏùÑ ÌïúÎ≤àÎßå ÌïòÏßÄ ÏïäÎäîÎã§ */
     
 
 	SUICharacter				*m_pUIPcStatusWnd;
@@ -174,8 +174,8 @@ private:
 	SUIPcStatusRotate			*m_pUIPcDogiRotate;
 
 
-    RwBool                      m_bRemoveColorChangeEffect;  ///< ªˆªÛ ∫Ø∞Ê ¿Ã∆Â∆Æ ªË¡¶ «√∑°±◊
-    CNtlSobProxySystemEffect*   m_ppColorChangeEffect[2];    ///< ªˆªÛ ∫Ø∞Ê ¿Ã∫•∆Æø° ªÁøÎµ«¥¬ Ω√Ω∫≈€ ¿Ã∆Â∆Æ
+    RwBool                      m_bRemoveColorChangeEffect;  ///< ÏÉâÏÉÅ Î≥ÄÍ≤Ω Ïù¥ÌéôÌä∏ ÏÇ≠Ï†ú ÌîåÎûòÍ∑∏
+    CNtlSobProxySystemEffect*   m_ppColorChangeEffect[2];    ///< ÏÉâÏÉÅ Î≥ÄÍ≤Ω Ïù¥Î≤§Ìä∏Ïóê ÏÇ¨Ïö©ÎêòÎäî ÏãúÏä§ÌÖú Ïù¥ÌéôÌä∏
 
 //-------------------------------------------------------------------------------
 // event handler
@@ -208,7 +208,7 @@ public:
 protected:
 
 	/** 
-	* character ª˝º∫
+	* character ÏÉùÏÑ±
 	*/
 	CNtlPLCharacter* CreatePLCharacter(RwBool bNotShading);
 	void DeletePLCharacter(void);
@@ -272,55 +272,55 @@ public:
 	virtual void HandleEvents(RWS::CMsg &pMsg);
 
 	//---------------------------------------------------
-	// proxy system flag º≥¡§ø° ∞¸«— «‘ºˆ.
+	// proxy system flag ÏÑ§Ï†ïÏóê Í¥ÄÌïú Ìï®Ïàò.
 	//---------------------------------------------------
 
 	void EnableProxySystemVisible(RwBool bVisible);
 
 	//---------------------------------------------------
-	// character º”º∫ø° ∞¸∑√µ» «‘ºˆ.
+	// character ÏÜçÏÑ±Ïóê Í¥ÄÎ†®Îêú Ìï®Ïàò.
 	//---------------------------------------------------
 	void EnablePlayerNameVisible(RwBool bVisible);
 	RwBool GetActiveSubWeapon(void);
 
 	//---------------------------------------------------
-	// Inventory UI ø° ∞¸∑√µ» «‘ºˆ.
+	// Inventory UI Ïóê Í¥ÄÎ†®Îêú Ìï®Ïàò.
 	//---------------------------------------------------
 	RwTexture* UIPcStatusWndRender(void);
 	RwTexture* UIPcStatusBarRender(void);
 	RwTexture* UIPcDogiWndRender(void);
-	SUICharacter* GetUICharacter() {return m_pUIPcStatusWnd;}		///< UI»≠∏ÈªÛ¿« ƒ≥∏Ø≈Õ ∞¥√º∏¶ π›»Ø«—¥Ÿ.
-	SUICharacter* GetUIDogiCharacter() {return m_pUIPcDogiWnd;}		///< UI»≠∏ÈªÛ¿« ƒ≥∏Ø≈Õ ∞¥√º∏¶ π›»Ø«—¥Ÿ.
+	SUICharacter* GetUICharacter() {return m_pUIPcStatusWnd;}		///< UIÌôîÎ©¥ÏÉÅÏùò Ï∫êÎ¶≠ÌÑ∞ Í∞ùÏ≤¥Î•º Î∞òÌôòÌïúÎã§.
+	SUICharacter* GetUIDogiCharacter() {return m_pUIPcDogiWnd;}		///< UIÌôîÎ©¥ÏÉÅÏùò Ï∫êÎ¶≠ÌÑ∞ Í∞ùÏ≤¥Î•º Î∞òÌôòÌïúÎã§.
 
 	//---------------------------------------------------
-	// owner simulation object  º≥¡§ø° ∞¸«— «‘ºˆ.
+	// owner simulation object  ÏÑ§Ï†ïÏóê Í¥ÄÌïú Ìï®Ïàò.
 	//---------------------------------------------------
 	void	NotifyStateEnter(RwUInt32 uiStateId);	
 	void	NotifyStateExit(RwUInt32 uiOldState, RwUInt32 uiNewState);
 
 	//---------------------------------------------------
-	// presentation entity ª˝º∫ «‘ºˆ.                                                                      
+	// presentation entity ÏÉùÏÑ± Ìï®Ïàò.                                                                      
 	//---------------------------------------------------
 
-	// bone attachΩ√≈∞∏Èº≠ effect ª˝º∫.
+	// bone attachÏãúÌÇ§Î©¥ÏÑú effect ÏÉùÏÑ±.
 	virtual CNtlPLEntity* CreatePLChildEffect(const RwChar* pKey, const RwChar* pAttachBoneName, RwV3d vOffset = ZeroAxis, RwBool bIgnoreVisible = FALSE, RwReal fEffectScale = 0);
 
-	// offset positionø° attachΩ√≈∞∏Èº≠ effect ª˝º∫.
+	// offset positionÏóê attachÏãúÌÇ§Î©¥ÏÑú effect ÏÉùÏÑ±.
 	virtual CNtlPLEntity*	CreatePLChildEffect(const RwChar *pKey, RwV3d vOffset, RwBool bIgnoreVisible = FALSE, RwBool bApplyRotate = FALSE);
 
 	//---------------------------------------------------
-	// main presentation entityø° ∞¸∑√µ» «‘ºˆ 
+	// main presentation entityÏóê Í¥ÄÎ†®Îêú Ìï®Ïàò 
 	//---------------------------------------------------
 
 	/**
-	* worldø° add π◊ remove ∞¸∑√µ» «‘ºˆ.
+	* worldÏóê add Î∞è remove Í¥ÄÎ†®Îêú Ìï®Ïàò.
 	*/
 
 	virtual void			AddWorld(void);		
 	virtual void			RemoveWorld(void);
 
 	/**
-	* transformø° ∞¸«ˆµ» «‘ºˆ.
+	* transformÏóê Í¥ÄÌòÑÎêú Ìï®Ïàò.
 	*/
 
 	virtual void SetPosition(const RwV3d *pPos);
@@ -332,7 +332,7 @@ public:
 	virtual void SetScale(RwReal fScale);
 
 	/**
-	* materialø° ∞¸«ˆµ» «‘ºˆ.
+	* materialÏóê Í¥ÄÌòÑÎêú Ìï®Ïàò.
 	*/
 
 	void SetAlpha(RwUInt8 byAlpha);
@@ -344,7 +344,7 @@ public:
     void SetStoneMaterial(RwBool bApply);
 
 	/**
-	* animationø° ∞¸∑√µ» «‘ºˆ.
+	* animationÏóê Í¥ÄÎ†®Îêú Ìï®Ïàò.
 	*/
 
 	// animation
@@ -358,35 +358,35 @@ public:
     void        SetSkillCancel();
 
 	/**
-	* entity ¡§∫∏ø° ∞¸«— «‘ºˆ.
+	* entity Ï†ïÎ≥¥Ïóê Í¥ÄÌïú Ìï®Ïàò.
 	*/
 	CNtlPLEntity* GetPLMainEntity(void);    // presentation main entity
-	virtual RwV3d GetBonePosition(const RwChar *pBoneName); 	// bone position¿ª ±∏«—¥Ÿ.
-	virtual RwV3d GetWeaponBonePosition(const RwChar *pBoneName);   // ¿Â¬¯«— π´±‚¿« bone position
-	virtual RwV3d GetSubWeaponBonePosition(const RwChar *pBoneName);    // ¿Â¬¯«— sub weapon¿« bone position
+	virtual RwV3d GetBonePosition(const RwChar *pBoneName); 	// bone positionÏùÑ Íµ¨ÌïúÎã§.
+	virtual RwV3d GetWeaponBonePosition(const RwChar *pBoneName);   // Ïû•Ï∞©Ìïú Î¨¥Í∏∞Ïùò bone position
+	virtual RwV3d GetSubWeaponBonePosition(const RwChar *pBoneName);    // Ïû•Ï∞©Ìïú sub weaponÏùò bone position
 
-	virtual RwReal GetPLEntityHeight(void); // pl entity¿« ≥Ù¿Ã∏¶ æÚæÓø¬¥Ÿ.
-	virtual RwReal GetPLEntityWidth(void);  // pl entity¿« ∆¯¿ª æÚæÓø¬¥Ÿ.
-	virtual RwReal GetPLEntityDepth(void);  // pl entity¿« ±Ì¿Ã¿ª æÚæÓø¬¥Ÿ.
-	virtual RwReal GetPLEntityBaseScale(void);  // pl entity¿« base scale¿ª æÚæÓø¬¥Ÿ.
+	virtual RwReal GetPLEntityHeight(void); // pl entityÏùò ÎÜíÏù¥Î•º ÏñªÏñ¥Ïò®Îã§.
+	virtual RwReal GetPLEntityWidth(void);  // pl entityÏùò Ìè≠ÏùÑ ÏñªÏñ¥Ïò®Îã§.
+	virtual RwReal GetPLEntityDepth(void);  // pl entityÏùò ÍπäÏù¥ÏùÑ ÏñªÏñ¥Ïò®Îã§.
+	virtual RwReal GetPLEntityBaseScale(void);  // pl entityÏùò base scaleÏùÑ ÏñªÏñ¥Ïò®Îã§.
     virtual RwReal GetScale();
-    void           ChangeModel(CNtlPLCharacter* pCharacter, RwBool bEquipItem, RwBool bDeleteOrgModel = FALSE);        ///< ∏ﬁ¿Œ Entity ∏µ®¿ª ∫Ø∞Ê«—¥Ÿ.
-	void           ChangeUIModel(CNtlPLCharacter* pCharacter);                         ///< UI√¢ø° ∑ª¥ı∏µµ… ∏µ®¿ª ∫Ø∞Ê«—¥Ÿ.
-	void           ChangeUIModel_Dogi(CNtlPLCharacter* pCharacter);                         ///< UI√¢ø° ∑ª¥ı∏µµ… ∏µ®¿ª ∫Ø∞Ê«—¥Ÿ.
+    void           ChangeModel(CNtlPLCharacter* pCharacter, RwBool bEquipItem, RwBool bDeleteOrgModel = FALSE);        ///< Î©îÏù∏ Entity Î™®Îç∏ÏùÑ Î≥ÄÍ≤ΩÌïúÎã§.
+	void           ChangeUIModel(CNtlPLCharacter* pCharacter);                         ///< UIÏ∞ΩÏóê Î†åÎçîÎßÅÎê† Î™®Îç∏ÏùÑ Î≥ÄÍ≤ΩÌïúÎã§.
+	void           ChangeUIModel_Dogi(CNtlPLCharacter* pCharacter);                         ///< UIÏ∞ΩÏóê Î†åÎçîÎßÅÎê† Î™®Îç∏ÏùÑ Î≥ÄÍ≤ΩÌïúÎã§.
 
-    // Item ∞¸∑√ «‘ºˆ
-    SEquipItem*    GetEquipItem(RwUInt8 bySlotIdx);                         ///< ¿Â¬¯«œ∞Ì ¿÷¥¬ Item¿ª π›»Ø«—¥Ÿ.
-    void           CreateEquipItem(RwUInt32 uiTblId, RwUInt8 bySlotIdx, RwUInt8 byGrade);           ///< Item¿ª ¿Â¬¯«—¥Ÿ.
+    // Item Í¥ÄÎ†® Ìï®Ïàò
+    SEquipItem*    GetEquipItem(RwUInt8 bySlotIdx);                         ///< Ïû•Ï∞©ÌïòÍ≥† ÏûàÎäî ItemÏùÑ Î∞òÌôòÌïúÎã§.
+    void           CreateEquipItem(RwUInt32 uiTblId, RwUInt8 bySlotIdx, RwUInt8 byGrade);           ///< ItemÏùÑ Ïû•Ï∞©ÌïúÎã§.
     void           DeleteEquipItem(RwUInt8 bySlotIdx);    
-    void           SetVisibleEquipItem(RwBool bVisible, RwUInt8 bySlotIdx);                  ///< ¿Â¬¯«œ∞Ì ¿÷¥¬ Item¿« Visible¿ª º≥¡§«—¥Ÿ.   
+    void           SetVisibleEquipItem(RwBool bVisible, RwUInt8 bySlotIdx);                  ///< Ïû•Ï∞©ÌïòÍ≥† ÏûàÎäî ItemÏùò VisibleÏùÑ ÏÑ§Ï†ïÌïúÎã§.   
 
 	/**
-	* Decorationø° ∞¸∑√µ» «‘ºˆ
+	* DecorationÏóê Í¥ÄÎ†®Îêú Ìï®Ïàò
 	*/
 
     // Rp Bonus Skill
-    void AttachRPBonusEffect();             ///< RP Bonus Effect∏¶ ª˝º∫«—¥Ÿ.
-    void DetachRPBonusEffect();             ///< RP Bonus Effect∏¶ ¡¶∞≈«—¥Ÿ.
+    void AttachRPBonusEffect();             ///< RP Bonus EffectÎ•º ÏÉùÏÑ±ÌïúÎã§.
+    void DetachRPBonusEffect();             ///< RP Bonus EffectÎ•º Ï†úÍ±∞ÌïúÎã§.
 
 	// Guard Skill
 	void				CreateGuardEffect();
@@ -396,7 +396,7 @@ public:
 	void				CreateRpChargeEffect();
 	void				DeleteRpChargeEffect();
 
-	// Entity ªÛ¥‹¿« ¿Ã∏ß ªˆªÛ¿ª ∫Ø∞Ê«—¥Ÿ
+	// Entity ÏÉÅÎã®Ïùò Ïù¥Î¶Ñ ÏÉâÏÉÅÏùÑ Î≥ÄÍ≤ΩÌïúÎã§
 	virtual void SetNameColor(const WCHAR* pwcName, COLORREF nameColor,
 							  const WCHAR* pwcGuildName, COLORREF guildColor,
 							  const WCHAR* pwcTitleName, COLORREF titlecolor);
@@ -434,13 +434,13 @@ public:
 	virtual void DeleteElapsedController(void);
 
 	//---------------------------------------------------
-	// eventø° ∞¸∑√µ» «‘ºˆ.  
+	// eventÏóê Í¥ÄÎ†®Îêú Ìï®Ïàò.  
 	//---------------------------------------------------
 
-	// mouse focus∏¶ πﬁæ“¿ª ∞ÊøÏ.
+	// mouse focusÎ•º Î∞õÏïòÏùÑ Í≤ΩÏö∞.
 	virtual void SetFocus(void);
 
-    // mouse focus∏¶ ¿–æÓ πˆ∑»¿ª ∞ÊøÏ.
+    // mouse focusÎ•º ÏùΩÏñ¥ Î≤ÑÎ†∏ÏùÑ Í≤ΩÏö∞.
 	virtual void ReleaseFocus(void);
 
     CNtlSobCharDecorationProxy* GetDecorationProxy() {return m_pDecorationProxy;}

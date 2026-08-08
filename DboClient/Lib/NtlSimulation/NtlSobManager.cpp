@@ -620,7 +620,7 @@ void CNtlSobManager::UpdateOptionRangeOut(RwReal fElapsed)
 					if(CNtlSobFactory::IsClientCreateSerialId(hSerialId))
 						continue;
 
-					// camera�� ���� �Ÿ� check
+					// camera占쏙옙 占쏙옙占쏙옙 占신몌옙 check
 					vPos = pSobObj->GetPosition();
 					v2dSobPos.x = vPos.x;
 					v2dSobPos.y = vPos.z;
@@ -637,7 +637,7 @@ void CNtlSobManager::UpdateOptionRangeOut(RwReal fElapsed)
 					{
 						if(bRangeOut)
 						{
-							// Range Out List���� �����Ѵ�.
+							// Range Out List占쏙옙占쏙옙 占쏙옙占쏙옙占싼댐옙.
 							RemoveOptionRangeOut(hSerialId);
 						}
 					}
@@ -645,7 +645,7 @@ void CNtlSobManager::UpdateOptionRangeOut(RwReal fElapsed)
 					{
 						if(!bRangeOut)
 						{
-							// Range Out List�� �߰��Ѵ�.
+							// Range Out List占쏙옙 占쌩곤옙占싼댐옙.
 							pSobProxy = pSobObj->GetSobProxy();
 							if(pSobProxy == NULL)
 								continue;
@@ -713,7 +713,7 @@ void CNtlSobManager::Update(RwReal fElapsed)
 	// elapsed control update
 	GetNtlSobElapsedControlManager()->Update(fElapsed);
 
-	// remove queue ó��.
+	// remove queue 처占쏙옙.
 	if(m_listRemoveQueue.size() == 0)
 		return;
 
@@ -1616,8 +1616,8 @@ void CNtlSobManager::PostEffectEventHandler( RWS::CMsg& pMsg )
 {
     SNtlEventPostEffect* pData = (SNtlEventPostEffect*)pMsg.pData;    
 
-    // �Ʒ� ���ǵ� Ŭ������ �̺�Ʈ�� �����Ѵ�.
-    // �ٸ� PC���� �̺�Ʈ�� �������� �ʴ´�.
+    // 占싣뤄옙 占쏙옙占실듸옙 클占쏙옙占쏙옙占쏙옙 占싱븝옙트占쏙옙 占쏙옙占쏙옙占싼댐옙.
+    // 占쌕몌옙 PC占쏙옙占쏙옙 占싱븝옙트占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占십는댐옙.
     CNtlSob* pSob = GetSobObject(pData->uiSerialID);
     if(pSob->GetClassID() == SLCLASS_AVATAR || 
        pSob->GetClassID() == SLCLASS_NPC || 
@@ -1634,7 +1634,7 @@ void CNtlSobManager::EventCreateWorldHandler( RWS::CMsg& pMsg )
     
     if(pData->bCreate)      // ���尡 ���� �����ɶ�
     {
-        // �ƹ�Ÿ�� �߰��Ѵ�.
+        // 占싣뱄옙타占쏙옙 占쌩곤옙占싼댐옙.
         GetNtlSLGlobal()->GetSobAvatar()->GetSobProxy()->AddWorld();
     }
     else    // ���尡 ���� �ɶ�

@@ -1,4 +1,4 @@
-// Attr_CONT_End.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_CONT_End.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_CONT_End.h"
 
 
-// CAttr_CONT_End ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_CONT_End ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_CONT_End, CAttr_Page, 1)
 
@@ -66,7 +66,7 @@ BOOL CAttr_CONT_End::OnInitDialog()
 {
 	CAttr_Page::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	m_ctlEndType.SetItemData( m_ctlEndType.AddString( _T("Complete") ), eEND_TYPE_COMPLETE );
 	int nSel = m_ctlEndType.AddString( _T("Not progress") );
 	m_ctlEndType.SetItemData( nSel, eEND_TYPE_NOT_PROGRESS );
@@ -75,7 +75,7 @@ BOOL CAttr_CONT_End::OnInitDialog()
 	if ( m_strData.GetLength() > 0 ) SetPageData( m_strData );
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 
@@ -83,5 +83,5 @@ BEGIN_MESSAGE_MAP(CAttr_CONT_End, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_CONT_End ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_CONT_End ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 

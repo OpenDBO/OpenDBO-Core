@@ -41,7 +41,7 @@
 #include "NtlSobMascotProxy.h"
 
 
-MEMORYSTATUS				g_memStaus;
+MEMORYSTATUSEX				g_memStaus;
 
 RwUInt32					g_uiSystemMouseClickInterval = (RwUInt32)MAX_MOUSE_CLICK_INTERVAL;
 RwReal						g_fCurMouseClickInterval	= 0.f;
@@ -72,7 +72,7 @@ CNtlDTCinematicManager		*g_pDTCinematicManager	= NULL;
 CNtlCamera					*g_pCamera				= NULL;
 
 
-MEMORYSTATUS* API_GetGlobalMemoryStatus(void)
+MEMORYSTATUSEX* API_GetGlobalMemoryStatus(void)
 {
 	return &g_memStaus;
 }
@@ -379,8 +379,8 @@ RwBool API_SLInit(RwBool bVirtualNet, CNtlCamera *pCamera, RwUInt8 byLoadMethod,
 	NTL_FUNCTION("API_SLInit");
 
 	// system memory check
-	::GlobalMemoryStatus(&g_memStaus);
-	Logic_CalcLimitMemory(g_memStaus.dwTotalPhys);
+	::GlobalMemoryStatusEx(&g_memStaus);
+	Logic_CalcLimitMemory((SIZE_T)g_memStaus.ullTotalPhys);
     	
 	// simulation event handler
 	g_pSLEventHander = NTL_NEW CNtlSLEventHandler;

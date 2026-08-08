@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: PetitionSatisFactionGui.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2008. 10. 23
 * Abstract		: 
 *****************************************************************************
-* Desc			: GM∞˙¿« ªÛ¥„ ≥ªøÎ ∏∏¡∑µµ º≥πÆ¡∂ªÁ GUI
+* Desc			: GMÍ≥ºÏùò ÏÉÅÎã¥ ÎÇ¥Ïö© ÎßåÏ°±ÎèÑ ÏÑ§Î¨∏Ï°∞ÏÇ¨ GUI
 *****************************************************************************/
 
 #pragma once
@@ -42,15 +42,15 @@ protected:
 	gui::CSlot			m_slotRadioButton[dTEMP_GG];
 	gui::CSlot			m_slotSendButton;
 
-	gui::CStaticBox*	m_pDialogName;					///< ¥Ÿ¿ÃæÛ∑Œ±◊ ¡¶∏Ò
-	gui::CStaticBox*	m_pMessage;						///< æ»≥ª ∏ﬁºº¡ˆ
-	gui::CStaticBox*	m_pToggleText[dTEMP_GG];		///< ∏∏¡∑µµ ≈ÿΩ∫∆Æ
+	gui::CStaticBox*	m_pDialogName;					///< Îã§Ïù¥ÏñºÎ°úÍ∑∏ Ï†úÎ™©
+	gui::CStaticBox*	m_pMessage;						///< ÏïàÎÇ¥ Î©îÏÑ∏ÏßÄ
+	gui::CStaticBox*	m_pToggleText[dTEMP_GG];		///< ÎßåÏ°±ÎèÑ ÌÖçÏä§Ìä∏
 
-	gui::CButton*		m_pCloseButton;					///< ¥›±‚ πˆ∆∞
-	gui::CButton*		m_pRadioButton[dTEMP_GG];		///< ∏∏¡∑µµ º±≈√ ∂Ûµø¿ πˆ∆∞
-	gui::CButton*		m_pSendButton;					///< ∏∏¡∑µµ ∫∏≥ª±‚ πˆ∆∞
+	gui::CButton*		m_pCloseButton;					///< Îã´Í∏∞ Î≤ÑÌäº
+	gui::CButton*		m_pRadioButton[dTEMP_GG];		///< ÎßåÏ°±ÎèÑ ÏÑ†ÌÉù ÎùºÎîîÏò§ Î≤ÑÌäº
+	gui::CButton*		m_pSendButton;					///< ÎßåÏ°±ÎèÑ Î≥¥ÎÇ¥Í∏∞ Î≤ÑÌäº
 
-	RwInt32				m_iSelectedIndex;				///< º±≈√«— ∏∏¡∑µµ ¿Œµ¶Ω∫
+	RwInt32				m_iSelectedIndex;				///< ÏÑ†ÌÉùÌïú ÎßåÏ°±ÎèÑ Ïù∏Îç±Ïä§
 
 	PETITIONID			m_petitionID;
 	ACCOUNTID			m_GMID;

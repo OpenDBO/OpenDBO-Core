@@ -1,4 +1,4 @@
-// PaletteSpawnMacroModify.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PaletteSpawnMacroModify.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -8,7 +8,7 @@
 #include "SpawnManager.h"
 
 
-// CPaletteSpawnMacroModify ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteSpawnMacroModify ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPaletteSpawnMacroModify, CDialog)
 
@@ -44,7 +44,7 @@ BEGIN_MESSAGE_MAP(CPaletteSpawnMacroModify, CDialog)
 END_MESSAGE_MAP()
 
 
-// CPaletteSpawnMacroModify ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPaletteSpawnMacroModify ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CPaletteSpawnMacroModify::OnInitDialog()
 {
@@ -57,7 +57,7 @@ BOOL CPaletteSpawnMacroModify::OnInitDialog()
 	UpdateData(FALSE);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 BOOL CPaletteSpawnMacroModify::PreTranslateMessage(MSG* pMsg)
@@ -83,7 +83,7 @@ void CPaletteSpawnMacroModify::OnBnClickedOk()
 {
 	UpdateData(TRUE);
 	
-	// ÇöÀçÀÇ ¼Ó¼ºÀ» ¼±ÅÃµÇ¾î ÀÖ´Â ¸ğµç ½ºÆù¿ÀºêÁ§Æ® ¸ÅÅ©·Î¿¡ Àû¿ëÇÑ´Ù.
+	// í˜„ì¬ì˜ ì†ì„±ì„ ì„ íƒë˜ì–´ ìˆëŠ” ëª¨ë“  ìŠ¤í°ì˜¤ë¸Œì íŠ¸ ë§¤í¬ë¡œì— ì ìš©í•œë‹¤.
 	CSpawnMacro CurSpawnMacro;
 	CurSpawnMacro.m_CoolTime	= atoi(m_StrCoolTime.GetBuffer(0));
 	CurSpawnMacro.m_MoveType	= m_MoveTypeCombo.GetCurSel();
@@ -101,11 +101,11 @@ void CPaletteSpawnMacroModify::OnBnClickedOk()
 
 void CPaletteSpawnMacroModify::OnBnClickedCancel()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	OnCancel();
 }
 
 void CPaletteSpawnMacroModify::OnCbnSelchangeMovetype()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }

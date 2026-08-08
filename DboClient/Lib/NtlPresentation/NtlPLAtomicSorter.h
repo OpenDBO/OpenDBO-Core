@@ -3,7 +3,7 @@
  *
  * File			: NtlPLAtomicSorter.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 12. 06	
  * Abstract		: Presentation atomic sorter
  *****************************************************************************
@@ -33,8 +33,8 @@ public:
 	struct SSortData
 	{
 		EPlSortType eSortType;
-		void* pRenderEntity;		// ·¹´õ¸µÇÒ °´Ã¼ÀÇ Æ÷ÀÎÅÍ
-		RwReal fDepth;				// Ä«¸Ş¶ó¿Í ·»´õ¸µ °´Ã¼¿ÍÀÇ °Å¸®
+		void* pRenderEntity;		// ë ˆë”ë§í•  ê°ì²´ì˜ í¬ì¸í„°
+		RwReal fDepth;				// ì¹´ë©”ë¼ì™€ ë Œë”ë§ ê°ì²´ì™€ì˜ ê±°ë¦¬
 	};
 	
 private:

@@ -2,7 +2,7 @@
 *
 * File			: DLState.h
 * Author		: 
-* Copyright		: (аж) NTL
+* Copyright		: (Лё╪) NTL
 * Date			:
 * Abstract		: 
 *****************************************************************************
@@ -26,8 +26,8 @@
 
 enum eDL_STATE_RESULT
 {
-	eDL_CMD_RESULT_CONTINUE,		// гЖюГ ╩Себ ю╞аЖ
-	eDL_CMD_RESULT_FINISH,			// гЖюГ ╩Себ а╬╥А
+	eDL_CMD_RESULT_CONTINUE,		// М≤└Л·╛ Л┐│М┐° Л°═Л╖─
+	eDL_CMD_RESULT_FINISH,			// М≤└Л·╛ Л┐│М┐° Л╒┘Кё▄
 };
 
 
@@ -40,19 +40,19 @@ enum eDL_STATE_RESULT
 
 enum eDL_STATE
 {
-	eDL_STATE_START,					// ╩Себ╟║ цЁю╫ ╫цюш╣г╦И ╧╚а╤╟г юл ╩Себ╨нем ╫цюшгт.
+	eDL_STATE_START,					// Л┐│М┐°Й╟─ Л╡≤Л²▄ Л▀°Л·▒К░≤К╘╢ К╛╢Л║╟Й╠╢ Л²╢ Л┐│М┐°К╤─М└╟ Л▀°Л·▒М∙╗.
 
-	eDL_STATE_DISPATCH_DECISION,		// ╨п╠Б ╟Аа╓ ╩Себ
+	eDL_STATE_DISPATCH_DECISION,		// К╤└Й╦╟ Й╡╟Л═∙ Л┐│М┐°
 
-	eDL_STATE_LAUNCHER_PATCH,			// ╥╠цЁ фпд║ ╩Себ
+	eDL_STATE_LAUNCHER_PATCH,			// К÷╟Л╡≤ М▄╗Л╧≤ Л┐│М┐°
 
-	eDL_STATE_CLIENT_PATCH,				// е╛╤Сюл╬Пф╝ фпд║ ╩Себ
+	eDL_STATE_CLIENT_PATCH,				// М│╢К²╪Л²╢Л√╦М┼╦ М▄╗Л╧≤ Л┐│М┐°
 
-	eDL_STATE_IDLE,						// ╩Г©Кюзюг ют╥бю╩ ╢К╠Бго╢б ╩Себ
+	eDL_STATE_IDLE,						// Л┌╛Л ╘Л·░Л²≤ Л·┘К═╔Л²└ К▄─Й╦╟М∙≤К┼■ Л┐│М┐°
 
-	eDL_STATE_INTEGRITY_CHECK,			// ╧╚╟А╪╨ ╟к╩Г ╩Себ
+	eDL_STATE_INTEGRITY_CHECK,			// К╛╢Й╡╟Л└╠ Й╡─Л┌╛ Л┐│М┐°
 
-	eDL_STATE_END,						// а╬╥А ╩Себ
+	eDL_STATE_END,						// Л╒┘Кё▄ Л┐│М┐°
 
 	eDL_STATE_INVALID
 };

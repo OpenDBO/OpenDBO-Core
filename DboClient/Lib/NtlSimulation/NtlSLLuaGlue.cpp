@@ -79,41 +79,41 @@ SSLLuaGlueDef SLGlue[] =
 	{"LuaGlue_RegisterExplosionCamera",			LuaGlue_RegisterExplosionCamera},
     {"LuaGlue_RegisterObserverCamera",          LuaGlue_RegisterObserverCamera},
 
-	// ¹°¸®Àû/³í¸®Àû °´Ã¼ »ı¼º ÇÔ¼ö
+	// ë¬¼ë¦¬ì /ë…¼ë¦¬ì  ê°ì²´ ìƒì„± í•¨ìˆ˜
 	{"LuaGlue_CreateEffect",					LuaGlue_CreateEffect},
 	{"LuaGlue_CreateSound",						LuaGlue_CreateSound},
 	
-	// data¸¦ ÂüÁ¶ÇÒ actor °´Ã¼ ¼³Á¤
+	// dataë¥¼ ì°¸ì¡°í•  actor ê°ì²´ ì„¤ì •
 	{"LuaGlue_ActiveActor",						LuaGlue_ActiveActor},
 	{"LuaGlue_ActiveObject",					LuaGlue_ActiveObject},
 	{"LuaGlue_ActiveActorEdit",					LuaGlue_ActiveActorEdit},
 	{"LuaGlue_ActiveObjectEdit",				LuaGlue_ActiveObjectEdit},
 
-	// transform position¿¡ °ü·ÃµÈ ÇÔ¼ö
+	// transform positionì— ê´€ë ¨ëœ í•¨ìˆ˜
 	{"LuaGlue_BeginTransform",					LuaGlue_BeginTransform},
 	{"LuaGlue_EndTransform",					LuaGlue_EndTransform},
 	{"LuaGlue_SetPosition",						LuaGlue_SetPosition},
 	{"LuaGlue_SetBonePosition",					LuaGlue_SetBonePosition},
 	{"LuaGlue_AddPosition",						LuaGlue_AddPosition},
 
-	// transform direction¿¡ °ü·ÃµÈ ÇÔ¼ö
+	// transform directionì— ê´€ë ¨ëœ í•¨ìˆ˜
 	{"LuaGlue_SetDirection",					LuaGlue_SetDirection},
 	
-	// transform scale¿¡ °ü·ÃµÈ ÇÔ¼ö
+	// transform scaleì— ê´€ë ¨ëœ í•¨ìˆ˜
 	{"LuaGlue_SetScale",						LuaGlue_SetScale},
 
-	// attach¿¡ °ü·ÃµÈ ÇÔ¼ö.
+	// attachì— ê´€ë ¨ëœ í•¨ìˆ˜.
 	{"LuaGlue_AttachWorld",						LuaGlue_AttachWorld},
 	{"LuaGlue_AttachBone",						LuaGlue_AttachBone},
 
-	// actor Á¤º¸¿Í °ü·ÃµÈ ÇÔ¼ö.
+	// actor ì •ë³´ì™€ ê´€ë ¨ëœ í•¨ìˆ˜.
 	{"LuaGlue_GetActorPosition",				LuaGlue_GetActorPosition},
 	{"LuaGlue_GetActorFrontPosition",			LuaGlue_GetActorFrontPosition},
 	{"LuaGlue_GetActorBackPosition",			LuaGlue_GetActorBackPosition},
 	{"LuaGlue_GetActorLeftPosition",			LuaGlue_GetActorLeftPosition},
 	{"LuaGlue_GetActorRightPosition",			LuaGlue_GetActorRightPosition},
 
-	// camera¿¡ °ü·ÃµÈ ÇÔ¼ö.
+	// cameraì— ê´€ë ¨ëœ í•¨ìˆ˜.
 	{"LuaGlue_CameraShake",								LuaGlue_CameraShake},
 	{"LuaGlue_SetCameraShakeFactor",					LuaGlue_SetCameraShakeFactor},
 	{"LuaGlue_ResetCameraShakeFactor",					LuaGlue_ResetCameraShakeFactor},
@@ -130,20 +130,20 @@ SSLLuaGlueDef SLGlue[] =
 	{"LuaGlue_AddSkillSplineActorRefSelfNode",			LuaGlue_AddSkillSplineActorRefSelfNode},
     {"LuaGlue_AddSplineCameraSelfNode",                 LuaGlue_AddSplineCameraSelfNode},
 
-	// actor¿¡ °ü·ÃµÈ ÇÔ¼ö.
+	// actorì— ê´€ë ¨ëœ í•¨ìˆ˜.
 	{"LuaGlue_GetOwnerSerialId",						LuaGlue_GetOwnerSerialId},
 	{"LuaGlue_GetActorType",							LuaGlue_GetActorType},
 	{"LuaGlue_IsAvatarActor",							LuaGlue_IsAvatarActor},
 
-	// Logic => Skill camera control ¼Ó¼º¿¡ °ü·ÃµÈ ÇÔ¼ö.
+	// Logic => Skill camera control ì†ì„±ì— ê´€ë ¨ëœ í•¨ìˆ˜.
 	{"LuaGlue_GetSkillAttackSerialId",					LuaGlue_GetSkillAttackSerialId},
 	{"LuaGlue_GetSkillTargetSerialId",					LuaGlue_GetSkillTargetSerialId},
 
-	// presentation => day and night¿¡ °ü·ÃµÈ ÇÔ¼ö.
+	// presentation => day and nightì— ê´€ë ¨ëœ í•¨ìˆ˜.
 	{"LuaGlue_AddDNNode",								LuaGlue_AddDNNode},
 	{"LuaGlue_AddDNNodeCurrentStart",					LuaGlue_AddDNNodeCurrentStart},
 
-	// Logic => cinematic ¿¬Ãâ¿¡ °ü·ÃµÈ ÇÔ¼ö.
+	// Logic => cinematic ì—°ì¶œì— ê´€ë ¨ëœ í•¨ìˆ˜.
 	{"LuaGlue_BeginCinematic",							LuaGlue_BeginCinematic},
 	{"LuaGlue_EndCinematic",							LuaGlue_EndCinematic},
 	{"LuaGlue_BeignCinematicLayer",						LuaGlue_BeignCinematicLayer},
@@ -216,7 +216,7 @@ SSLLuaGlueDef SLGlue[] =
 	{"LuaGlue_AddSinExplosionAlgorithm_ZAxis",			LuaGlue_AddSinExplosionAlgorithm_ZAxis},
 	{"LuaGlue_AddCNCinematicScale",						LuaGlue_AddCNCinematicScale},
 
-	// ¿¬Ãâ °ü·Ã
+	// ì—°ì¶œ ê´€ë ¨
 	{"LuaGlue_DTAddController",							LuaGlue_DTAddController},
 	{"LuaGlue_DTRemoveController",						LuaGlue_DTRemoveController},    
 
@@ -311,7 +311,7 @@ void SLLua_Compile(void)
 		g_pLuaState->RunScript("script\\sl.lua");
 	}
 
-	// sl setup data setting lua ½ÇÇà.
+	// sl setup data setting lua ì‹¤í–‰.
 	LuaExec_SLSetupData();
 }
 
@@ -343,7 +343,7 @@ void LuaExec_SLSetupData(void)
 
 void LuaExec_SobCreate(CNtlSob *pSobObj)
 {
-	// (Çü¼® - ¾ÆÁ÷ »ç¿ë ¾ÈÇÔ)
+	// (í˜•ì„ - ì•„ì§ ì‚¬ìš© ì•ˆí•¨)
 	return;
 
 	if(g_pLuaState == NULL)
@@ -359,7 +359,7 @@ void LuaExec_SobCreate(CNtlSob *pSobObj)
 
 void LuaExec_SobDestroy(CNtlSob *pSobObj)
 {
-	// (Çü¼® - ¾ÆÁ÷ »ç¿ë ¾ÈÇÔ)
+	// (í˜•ì„ - ì•„ì§ ì‚¬ìš© ì•ˆí•¨)
 	return;
 
 	if(g_pLuaState == NULL)
@@ -375,7 +375,7 @@ void LuaExec_SobDestroy(CNtlSob *pSobObj)
 
 void LuaExec_CharStateEnter(unsigned int uiSerialId, CNtlFSMStateBase *pState)
 {
-	// (Çü¼® - ¾ÆÁ÷ »ç¿ë ¾ÈÇÔ)
+	// (í˜•ì„ - ì•„ì§ ì‚¬ìš© ì•ˆí•¨)
 	return;
 
 	if(g_pLuaState == NULL)
@@ -391,7 +391,7 @@ void LuaExec_CharStateEnter(unsigned int uiSerialId, CNtlFSMStateBase *pState)
 
 void LuaExec_CharStateExit(unsigned int uiSerialId, CNtlFSMStateBase *pState)
 {
-	// (Çü¼® - ¾ÆÁ÷ »ç¿ë ¾ÈÇÔ)
+	// (í˜•ì„ - ì•„ì§ ì‚¬ìš© ì•ˆí•¨)
 	return;
 
 	if(g_pLuaState == NULL)
@@ -407,7 +407,7 @@ void LuaExec_CharStateExit(unsigned int uiSerialId, CNtlFSMStateBase *pState)
 
 void LuaExec_CharBehaviorEnter(unsigned int uiSerialId, CNtlBehaviorBase *pBehavior)
 {
-	// (Çü¼® - ¾ÆÁ÷ »ç¿ë ¾ÈÇÔ)
+	// (í˜•ì„ - ì•„ì§ ì‚¬ìš© ì•ˆí•¨)
 	return;
 
 	if(g_pLuaState == NULL)
@@ -423,7 +423,7 @@ void LuaExec_CharBehaviorEnter(unsigned int uiSerialId, CNtlBehaviorBase *pBehav
 
 void LuaExec_CharBehaviorExit(unsigned int uiSerialId, CNtlBehaviorBase *pBehavior)
 {
-	// (Çü¼® - ¾ÆÁ÷ »ç¿ë ¾ÈÇÔ)
+	// (í˜•ì„ - ì•„ì§ ì‚¬ìš© ì•ˆí•¨)
 	return;
 
 	if(g_pLuaState == NULL)
@@ -456,7 +456,7 @@ void LuaExec_Attack(unsigned int uiAttackerSerialId, unsigned int uiDefenderSeri
 
 void LuaExec_Hurt(unsigned int uiAttackerSerialId, unsigned int uiDefenderSerialId, const SHitStuff *pHit)
 {
-	// (Çü¼® - ¾ÆÁ÷ »ç¿ë ¾ÈÇÔ)
+	// (í˜•ì„ - ì•„ì§ ì‚¬ìš© ì•ˆí•¨)
 	return;
 
 	if(g_pLuaState == NULL)
@@ -758,12 +758,12 @@ int LuaGlue_RegisterObserverCamera( lua_State* L )
 
 
 ////////////////////////////////////////////////////////////////////////////
-// lua ¹°¸®Àû/³í¸®Àû °´Ã¼ »ı¼º ÇÔ¼ö
+// lua ë¬¼ë¦¬ì /ë…¼ë¦¬ì  ê°ì²´ ìƒì„± í•¨ìˆ˜
 ////////////////////////////////////////////////////////////////////////////
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : effect¸¦ »ı¼ºÇÏ´Â lua glue ÇÔ¼ö.
+//  des : effectë¥¼ ìƒì„±í•˜ëŠ” lua glue í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : effect property key name.
@@ -816,7 +816,7 @@ int LuaGlue_CreateEffect(lua_State *L)
 
 
 ///////////////////////////////////////////////////////////////////////////
-//  des : sound play lua glue ÇÔ¼ö.
+//  des : sound play lua glue í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : sound file name.
@@ -830,7 +830,7 @@ int LuaGlue_CreateSound(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : active actor¸¦ ¼³Á¤ÇÏ´Â lua glue ÇÔ¼ö.
+//  des : active actorë¥¼ ì„¤ì •í•˜ëŠ” lua glue í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : actor serial id
@@ -853,7 +853,7 @@ int LuaGlue_ActiveActor(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : active presentation entity¸¦ ¼³Á¤ÇÏ´Â lua glue ÇÔ¼ö.
+//  des : active presentation entityë¥¼ ì„¤ì •í•˜ëŠ” lua glue í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : presentation entity serial id
@@ -865,9 +865,9 @@ int LuaGlue_ActiveObject(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : editÇÒ °´Ã¼°¡ simulation actor·Î ¼³Á¤ÇÑ´Ù
+//  des : edití•  ê°ì²´ê°€ simulation actorë¡œ ì„¤ì •í•œë‹¤
 //  ------------------------------------------------------------------------
-//  paramater : ¾ø½¿
+//  paramater : ì—†ìŠ´
 ////////////////////////////////////////////////////////////////////////////
 
 int LuaGlue_ActiveActorEdit(lua_State *L)
@@ -878,9 +878,9 @@ int LuaGlue_ActiveActorEdit(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : editÇÒ °´Ã¼°¡ presentation entity·Î ¼³Á¤ÇÑ´Ù.
+//  des : edití•  ê°ì²´ê°€ presentation entityë¡œ ì„¤ì •í•œë‹¤.
 //  ------------------------------------------------------------------------
-//  paramater : ¾ø½¿
+//  paramater : ì—†ìŠ´
 ////////////////////////////////////////////////////////////////////////////
 
 int LuaGlue_ActiveObjectEdit(lua_State *L)
@@ -891,7 +891,7 @@ int LuaGlue_ActiveObjectEdit(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : editÇÒ active°´Ã¼ÀÇ ÁÂÇ¥¸¦ ¼³Á¤ÇÑ´Ù.
+// des : edití•  activeê°ì²´ì˜ ì¢Œí‘œë¥¼ ì„¤ì •í•œë‹¤.
 ////////////////////////////////////////////////////////////////////////////
 
 bool LuaGlue_PreTransformResearch(char *pString)
@@ -915,9 +915,9 @@ bool LuaGlue_PreTransformResearch(char *pString)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : editÇÒ active°´Ã¼ÀÇ transform ½ÃÀÛÀ» ¼³Á¤ÇÑ´Ù.
+// des : edití•  activeê°ì²´ì˜ transform ì‹œì‘ì„ ì„¤ì •í•œë‹¤.
 //  ------------------------------------------------------------------------
-//  paramater : ¾ø½¿
+//  paramater : ì—†ìŠ´
 ////////////////////////////////////////////////////////////////////////////
 
 int LuaGlue_BeginTransform(lua_State *L)
@@ -928,10 +928,10 @@ int LuaGlue_BeginTransform(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : editÇÒ active°´Ã¼ÀÇ transformÀ» ³¡³µÀ½À» ¾Ë¸®°í, ½ÇÁ¦ transformÀ» 
-//       Àû¿ëÇÑ´Ù. 
+// des : edití•  activeê°ì²´ì˜ transformì„ ëë‚¬ìŒì„ ì•Œë¦¬ê³ , ì‹¤ì œ transformì„ 
+//       ì ìš©í•œë‹¤. 
 //  ------------------------------------------------------------------------
-//  paramater : ¾ø½¿
+//  paramater : ì—†ìŠ´
 ////////////////////////////////////////////////////////////////////////////
 
 int LuaGlue_EndTransform(lua_State *L)
@@ -942,7 +942,7 @@ int LuaGlue_EndTransform(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : editÇÒ active°´Ã¼ÀÇ ÁÂÇ¥¸¦ ¼³Á¤ÇÑ´Ù.
+// des : edití•  activeê°ì²´ì˜ ì¢Œí‘œë¥¼ ì„¤ì •í•œë‹¤.
 //  ------------------------------------------------------------------------
 //  paramater1 : offfset x(number)
 //  paramater2 : offfset y(number)
@@ -969,7 +969,7 @@ int LuaGlue_SetPosition(lua_State *L)
 
 
 ////////////////////////////////////////////////////////////////////////////
-// des : editÇÒ active°´Ã¼ÀÇ ÁÂÇ¥¸¦ ¼³Á¤ÇÑ´Ù.
+// des : edití•  activeê°ì²´ì˜ ì¢Œí‘œë¥¼ ì„¤ì •í•œë‹¤.
 //  ------------------------------------------------------------------------
 //  paramater1 : bone name(string)
 //  paramater2 : offset x(number)
@@ -1027,7 +1027,7 @@ int LuaGlue_SetBonePosition(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : editÇÒ active°´Ã¼ÀÇ ¼³Á¤µÈ ÁÂÇ¥¿¡ offset¸¸Å­ ´õÇÑ´Ù.
+// des : edití•  activeê°ì²´ì˜ ì„¤ì •ëœ ì¢Œí‘œì— offsetë§Œí¼ ë”í•œë‹¤.
 //  ------------------------------------------------------------------------
 //  paramater1 : offset x(number)
 //  paramater2 : offset y(number)
@@ -1049,13 +1049,13 @@ int LuaGlue_AddPosition(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// lua : transform direction¿¡ °ü·ÃµÈ ÇÔ¼ö.
+// lua : transform directionì— ê´€ë ¨ëœ í•¨ìˆ˜.
 ////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////
-// des : editÇÒ active°´Ã¼ÀÇ ¼³Á¤µÈ ¹æÇâÀ» ¼³Á¤ÇÑ´Ù.(reference actor ¹æÇâ ÂüÁ¶)
+// des : edití•  activeê°ì²´ì˜ ì„¤ì •ëœ ë°©í–¥ì„ ì„¤ì •í•œë‹¤.(reference actor ë°©í–¥ ì°¸ì¡°)
 //  ------------------------------------------------------------------------
-//  paramater1 : ¾ø½¿.
+//  paramater1 : ì—†ìŠ´.
 ////////////////////////////////////////////////////////////////////////////
 int LuaGlue_SetDirection(lua_State *L)
 {
@@ -1072,13 +1072,13 @@ int LuaGlue_SetDirection(lua_State *L)
 
 
 ////////////////////////////////////////////////////////////////////////////
-// lua : transform scale¿¡ °ü·ÃµÈ ÇÔ¼ö.
+// lua : transform scaleì— ê´€ë ¨ëœ í•¨ìˆ˜.
 ////////////////////////////////////////////////////////////////////////////
 
 
 
 ////////////////////////////////////////////////////////////////////////////
-// des : editÇÒ active°´Ã¼ÀÇ scaleÀ» ¼³Á¤ÇÑ´Ù.
+// des : edití•  activeê°ì²´ì˜ scaleì„ ì„¤ì •í•œë‹¤.
 //  ------------------------------------------------------------------------
 //  paramater1 : scale x(number)
 //  paramater2 : scale y(number)
@@ -1101,7 +1101,7 @@ int LuaGlue_SetScale(lua_State *L)
 
 
 ////////////////////////////////////////////////////////////////////////////
-// lua : attach¿¡ °ü·ÃµÈ ÇÔ¼ö.
+// lua : attachì— ê´€ë ¨ëœ í•¨ìˆ˜.
 ////////////////////////////////////////////////////////////////////////////
 
 int LuaGlue_AttachWorld(lua_State *L)
@@ -1168,11 +1168,11 @@ int LuaGlue_AttachBone(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// lua : actor Á¤º¸¿Í °ü·ÃµÈ ÇÔ¼ö.
+// lua : actor ì •ë³´ì™€ ê´€ë ¨ëœ í•¨ìˆ˜.
 ////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////
-// des : serial¿¡ ÇØ´çÇÏ´Â actorÀÇ positionÀ» ±¸ÇÑ´Ù.
+// des : serialì— í•´ë‹¹í•˜ëŠ” actorì˜ positionì„ êµ¬í•œë‹¤.
 //  ------------------------------------------------------------------------
 //  paramater1 : actor serial id
 //  paramater2 : actor height offset rate
@@ -1211,7 +1211,7 @@ int LuaGlue_GetActorPosition(lua_State *L)
 
 
 ////////////////////////////////////////////////////////////////////////////
-// des : serial¿¡ ÇØ´çÇÏ´Â actorÀÇ front ¹æÇâÀÇ positionÀ» ±¸ÇÑ´Ù.
+// des : serialì— í•´ë‹¹í•˜ëŠ” actorì˜ front ë°©í–¥ì˜ positionì„ êµ¬í•œë‹¤.
 //  ------------------------------------------------------------------------
 //  paramater1 : actor serial id
 //  paramater2 : actor height offset rate
@@ -1255,7 +1255,7 @@ int LuaGlue_GetActorFrontPosition(lua_State *L)
 
 
 ////////////////////////////////////////////////////////////////////////////
-// des : serial¿¡ ÇØ´çÇÏ´Â actorÀÇ front ¹æÇâÀÇ positionÀ» ±¸ÇÑ´Ù.
+// des : serialì— í•´ë‹¹í•˜ëŠ” actorì˜ front ë°©í–¥ì˜ positionì„ êµ¬í•œë‹¤.
 //  ------------------------------------------------------------------------
 //  paramater1 : actor serial id
 //  paramater2 : actor height offset rate
@@ -1298,7 +1298,7 @@ int LuaGlue_GetActorBackPosition(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : serial¿¡ ÇØ´çÇÏ´Â actorÀÇ left ¹æÇâÀÇ positionÀ» ±¸ÇÑ´Ù.
+// des : serialì— í•´ë‹¹í•˜ëŠ” actorì˜ left ë°©í–¥ì˜ positionì„ êµ¬í•œë‹¤.
 //  ------------------------------------------------------------------------
 //  paramater1 : actor serial id
 //  paramater2 : actor height offset rate
@@ -1345,7 +1345,7 @@ int LuaGlue_GetActorLeftPosition(lua_State *L)
 
 
 ////////////////////////////////////////////////////////////////////////////
-// des : serial¿¡ ÇØ´çÇÏ´Â actorÀÇ right ¹æÇâÀÇ positionÀ» ±¸ÇÑ´Ù.
+// des : serialì— í•´ë‹¹í•˜ëŠ” actorì˜ right ë°©í–¥ì˜ positionì„ êµ¬í•œë‹¤.
 //  ------------------------------------------------------------------------
 //  paramater1 : actor serial id
 //  paramater2 : actor height offset rate
@@ -1391,7 +1391,7 @@ int LuaGlue_GetActorRightPosition(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// lua : Logic : camera¿¡ °ü·ÃµÈ ÇÔ¼ö.
+// lua : Logic : cameraì— ê´€ë ¨ëœ í•¨ìˆ˜.
 ////////////////////////////////////////////////////////////////////////////
 
 int LuaGlue_CameraShake(lua_State *L)
@@ -1402,7 +1402,7 @@ int LuaGlue_CameraShake(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : camera shake factor °ªÀ» º¯°æÇÑ´Ù.
+// des : camera shake factor ê°’ì„ ë³€ê²½í•œë‹¤.
 //  ------------------------------------------------------------------------
 //  paramater1 : shake weight value
 //  paramater1 : shake height value
@@ -1419,7 +1419,7 @@ int LuaGlue_SetCameraShakeFactor(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : camera shake factor °ªÀ» Reset ÇÑ´Ù.
+// des : camera shake factor ê°’ì„ Reset í•œë‹¤.
 //  ------------------------------------------------------------------------
 ////////////////////////////////////////////////////////////////////////////
 
@@ -1432,7 +1432,7 @@ int LuaGlue_ResetCameraShakeFactor(lua_State *L)
 
 
 ////////////////////////////////////////////////////////////////////////////
-// des : camera fov¸¦ ¼³Á¤ÇÑ´Ù.
+// des : camera fovë¥¼ ì„¤ì •í•œë‹¤.
 //  ------------------------------------------------------------------------
 //  paramater1 : fov value
 ////////////////////////////////////////////////////////////////////////////
@@ -1447,7 +1447,7 @@ int LuaGlue_SetCameraFov(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : camera direction node previous node¿¡ attach ½ÃÅ°´Â flag¸¦ enable ÇÑ´Ù.
+// des : camera direction node previous nodeì— attach ì‹œí‚¤ëŠ” flagë¥¼ enable í•œë‹¤.
 //  ------------------------------------------------------------------------
 //
 ////////////////////////////////////////////////////////////////////////////
@@ -1461,7 +1461,7 @@ int LuaGlue_CameraDirectChildBegin(lua_State *L)
 
 
 ////////////////////////////////////////////////////////////////////////////
-// des : camera direction node previous node¿¡ attach ½ÃÅ°´Â flag¸¦ disable ÇÑ´Ù.
+// des : camera direction node previous nodeì— attach ì‹œí‚¤ëŠ” flagë¥¼ disable í•œë‹¤.
 //  ------------------------------------------------------------------------
 //
 ////////////////////////////////////////////////////////////////////////////
@@ -1488,9 +1488,9 @@ int LuaGlue_CameraDirectClear(lua_State *L)
 
 
 ////////////////////////////////////////////////////////////////////////////
-// des : soft direct node¸¦ Ãß°¡ÇÑ´Ù.
-//       ÁöÁ¤µÈ actorÀÇ À§Ä¡¸¦ ±¸ÇÑ ´ÙÀ½, actorÀÇ À§¿¡ È¸ÀüÇÑ ´ÙÀ½ °Å¸®¸¦ °è»êÇÑ¿©, 
-//		 ÃÖÁ¾ camera À§Ä¡¸¦ ±¸ÇÑ´Ù.
+// des : soft direct nodeë¥¼ ì¶”ê°€í•œë‹¤.
+//       ì§€ì •ëœ actorì˜ ìœ„ì¹˜ë¥¼ êµ¬í•œ ë‹¤ìŒ, actorì˜ ìœ„ì— íšŒì „í•œ ë‹¤ìŒ ê±°ë¦¬ë¥¼ ê³„ì‚°í•œì—¬, 
+//		 ìµœì¢… camera ìœ„ì¹˜ë¥¼ êµ¬í•œë‹¤.
 //  ------------------------------------------------------------------------
 //  paramater1 : actor serial id
 //  paramater2 : actor height offset
@@ -1517,15 +1517,15 @@ int LuaGlue_SetSoftCameraActorLookAt(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : soft direct node¸¦ Ãß°¡ÇÑ´Ù.
-//       ÁöÁ¤µÈ actorÀÇ À§Ä¡¸¦ ±¸ÇÑ ´ÙÀ½, actorÀÇ À§¿¡ È¸ÀüÇÑ ´ÙÀ½ °Å¸®¸¦ °è»êÇÑ¿©, 
-//		 ÃÖÁ¾ camera À§Ä¡¸¦ ±¸ÇÑ´Ù.
+// des : soft direct nodeë¥¼ ì¶”ê°€í•œë‹¤.
+//       ì§€ì •ëœ actorì˜ ìœ„ì¹˜ë¥¼ êµ¬í•œ ë‹¤ìŒ, actorì˜ ìœ„ì— íšŒì „í•œ ë‹¤ìŒ ê±°ë¦¬ë¥¼ ê³„ì‚°í•œì—¬, 
+//		 ìµœì¢… camera ìœ„ì¹˜ë¥¼ êµ¬í•œë‹¤.
 //  ------------------------------------------------------------------------
 //  paramater1 : actor serial id
 //  paramater2 : actor height offset
-//  paramater3 : actor °¡ ¹Ù¶óº¸´Â ¹æÇâ¿¡¼­ x ÃàÀ¸·Î È¸Àü½ÃÅ²´Ù.
-//  paramater4 : actor °¡ ¹Ù¶óº¸´Â ¹æÇâ¿¡¼­ y ÃàÀ¸·Î È¸Àü½ÃÅ²´Ù.
-//  paramater5 : actor ¿¡¼­ÀÇ ¶³¾îÁø distance
+//  paramater3 : actor ê°€ ë°”ë¼ë³´ëŠ” ë°©í–¥ì—ì„œ x ì¶•ìœ¼ë¡œ íšŒì „ì‹œí‚¨ë‹¤.
+//  paramater4 : actor ê°€ ë°”ë¼ë³´ëŠ” ë°©í–¥ì—ì„œ y ì¶•ìœ¼ë¡œ íšŒì „ì‹œí‚¨ë‹¤.
+//  paramater5 : actor ì—ì„œì˜ ë–¨ì–´ì§„ distance
 //
 ////////////////////////////////////////////////////////////////////////////
 
@@ -1548,15 +1548,15 @@ int LuaGlue_AddSoftCameraActorDistNode(lua_State *L)
 
 
 ////////////////////////////////////////////////////////////////////////////
-// des : soft direct node¸¦ Ãß°¡ÇÑ´Ù.
-//       ÁöÁ¤µÈ actorÀÇ À§Ä¡¸¦ ±¸ÇÑ ´ÙÀ½, actorÀÇ À§¿¡ È¸ÀüÇÑ ´ÙÀ½ °Å¸®¸¦ °è»êÇÑ¿©, 
-//		 ÃÖÁ¾ camera À§Ä¡¸¦ ±¸ÇÑ´Ù.
+// des : soft direct nodeë¥¼ ì¶”ê°€í•œë‹¤.
+//       ì§€ì •ëœ actorì˜ ìœ„ì¹˜ë¥¼ êµ¬í•œ ë‹¤ìŒ, actorì˜ ìœ„ì— íšŒì „í•œ ë‹¤ìŒ ê±°ë¦¬ë¥¼ ê³„ì‚°í•œì—¬, 
+//		 ìµœì¢… camera ìœ„ì¹˜ë¥¼ êµ¬í•œë‹¤.
 //  ------------------------------------------------------------------------
 //  paramater1 : actor serial id
 //  paramater2 : actor height offset
-//  paramater3 : actor °¡ ¹Ù¶óº¸´Â ¹æÇâ¿¡¼­ x ÃàÀ¸·Î È¸Àü½ÃÅ²´Ù.
-//  paramater4 : actor °¡ ¹Ù¶óº¸´Â ¹æÇâ¿¡¼­ y ÃàÀ¸·Î È¸Àü½ÃÅ²´Ù.
-//  paramater5 : actor ¿¡¼­ÀÇ ¶³¾îÁø distance
+//  paramater3 : actor ê°€ ë°”ë¼ë³´ëŠ” ë°©í–¥ì—ì„œ x ì¶•ìœ¼ë¡œ íšŒì „ì‹œí‚¨ë‹¤.
+//  paramater4 : actor ê°€ ë°”ë¼ë³´ëŠ” ë°©í–¥ì—ì„œ y ì¶•ìœ¼ë¡œ íšŒì „ì‹œí‚¨ë‹¤.
+//  paramater5 : actor ì—ì„œì˜ ë–¨ì–´ì§„ distance
 //
 ////////////////////////////////////////////////////////////////////////////
 
@@ -1576,8 +1576,8 @@ int LuaGlue_AddSoftCameraActorDynamicLookAtDistNode(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : soft direct node¸¦ Ãß°¡ÇÑ´Ù.
-//       Ä«¸Ş¶ó x Ãà È¸Àü
+// des : soft direct nodeë¥¼ ì¶”ê°€í•œë‹¤.
+//       ì¹´ë©”ë¼ x ì¶• íšŒì „
 //  ------------------------------------------------------------------------
 //  paramater1 : last angle
 //  paramater2 : life time
@@ -1597,8 +1597,8 @@ int LuaGlue_AddSoftCameraCurrentRotateX(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : soft direct node¸¦ Ãß°¡ÇÑ´Ù.
-//       Ä«¸Ş¶ó y Ãà È¸Àü
+// des : soft direct nodeë¥¼ ì¶”ê°€í•œë‹¤.
+//       ì¹´ë©”ë¼ y ì¶• íšŒì „
 //  ------------------------------------------------------------------------
 //  paramater1 : last angle
 //  paramater2 : life time
@@ -1618,8 +1618,8 @@ int LuaGlue_AddSoftCameraCurrentRotateY(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : soft direct node¸¦ Ãß°¡ÇÑ´Ù.
-//       Ä«¸Ş¶ó z Ãà È¸Àü
+// des : soft direct nodeë¥¼ ì¶”ê°€í•œë‹¤.
+//       ì¹´ë©”ë¼ z ì¶• íšŒì „
 //  ------------------------------------------------------------------------
 //  paramater1 : last angle
 //  paramater2 : life time
@@ -1639,11 +1639,11 @@ int LuaGlue_AddSoftCameraCurrentRotateZ(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : soft direct node¸¦ Ãß°¡ÇÑ´Ù.
-//       fov º¯È­.
+// des : soft direct nodeë¥¼ ì¶”ê°€í•œë‹¤.
+//       fov ë³€í™”.
 //  ------------------------------------------------------------------------
 //  paramater1 : last fov
-//  paramater2 : º¸°£ time
+//  paramater2 : ë³´ê°„ time
 //
 ////////////////////////////////////////////////////////////////////////////
 
@@ -1658,7 +1658,7 @@ int LuaGlue_AddSoftCameraCurrentFov(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : soft direct pause node¸¦ Ãß°¡ÇÑ´Ù.
+// des : soft direct pause nodeë¥¼ ì¶”ê°€í•œë‹¤.
 //  ------------------------------------------------------------------------
 //
 ////////////////////////////////////////////////////////////////////////////
@@ -1674,8 +1674,8 @@ int LuaGlue_AddCameraPauseNode(lua_State *L)
 
 
 ////////////////////////////////////////////////////////////////////////////
-// des : camera ÇöÀç À§Ä¡¿¡¼­ camera actor¸¦ ¹Ù¶óº¸¸é¼­ spline data¸¦ Àû¿ëÇÑ´Ù.
-//		 spline dataÀÇ ¹æÇâÀº »ç¿ëÇÏÁö ¾Ê´Â´Ù.
+// des : camera í˜„ì¬ ìœ„ì¹˜ì—ì„œ camera actorë¥¼ ë°”ë¼ë³´ë©´ì„œ spline dataë¥¼ ì ìš©í•œë‹¤.
+//		 spline dataì˜ ë°©í–¥ì€ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤.
 //  ------------------------------------------------------------------------
 //  paramater1 : actor serial id
 //  paramater2 : actor height offset
@@ -1696,8 +1696,8 @@ int LuaGlue_AddSplineCurrentDynamicLookAtNode(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : Skill position actorÀÇ ÇöÀç À§Ä¡¿¡¼­ look at actor¸¦ ¹Ù¶óº¸¸é¼­ spline data¸¦ Àû¿ëÇÑ´Ù.
-//		 spline dataÀÇ ¹æÇâÀº »ç¿ëÇÏÁö ¾Ê´Â´Ù.
+// des : Skill position actorì˜ í˜„ì¬ ìœ„ì¹˜ì—ì„œ look at actorë¥¼ ë°”ë¼ë³´ë©´ì„œ spline dataë¥¼ ì ìš©í•œë‹¤.
+//		 spline dataì˜ ë°©í–¥ì€ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤.
 //  ------------------------------------------------------------------------
 //  paramater1 : position actor serial id
 //  paramater1 : look at actor serial id
@@ -1718,9 +1718,9 @@ int LuaGlue_AddSkillSplineDynamicLookAtNode(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : Skill position actorÀÇ ÇöÀç À§Ä¡¿¡¼­ pos actor ¿Í look at actorÀÇ center À§Ä¡¸¦
-//       ¹Ù¶óº¸¸é¼­ spline data¸¦ Àû¿ëÇÑ´Ù.
-//		 spline dataÀÇ ¹æÇâÀº »ç¿ëÇÏÁö ¾Ê´Â´Ù.
+// des : Skill position actorì˜ í˜„ì¬ ìœ„ì¹˜ì—ì„œ pos actor ì™€ look at actorì˜ center ìœ„ì¹˜ë¥¼
+//       ë°”ë¼ë³´ë©´ì„œ spline dataë¥¼ ì ìš©í•œë‹¤.
+//		 spline dataì˜ ë°©í–¥ì€ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤.
 //  ------------------------------------------------------------------------
 //  paramater1 : position actor serial id
 //  paramater1 : look at actor serial id
@@ -1773,7 +1773,7 @@ int LuaGlue_AddSkillSplineStaticPosDynamicLookAtNode(lua_State *L)
 
 
 ////////////////////////////////////////////////////////////////////////////
-// des : cameraÀÇ look atÀº spline data¿¡ ÀÇÇØ °áÁ¤µÇ°í, ÀüÇô transform ½ÃÅ°Áö ¾Ê´Â´Ù. 
+// des : cameraì˜ look atì€ spline dataì— ì˜í•´ ê²°ì •ë˜ê³ , ì „í˜€ transform ì‹œí‚¤ì§€ ì•ŠëŠ”ë‹¤. 
 //		 
 //  ------------------------------------------------------------------------
 //  paramater1 : start position x
@@ -1800,7 +1800,7 @@ int LuaGlue_AddSplineCameraSelfNode(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : cameraÀÇ look atÀº spline data¿¡ ÀÇÇØ °áÁ¤µÇ°í, skill °ø°İ actorÀÇ ÇöÀç ÁÂÇ¥¸¸ ÂüÁ¶ÇÑ´Ù.
+// des : cameraì˜ look atì€ spline dataì— ì˜í•´ ê²°ì •ë˜ê³ , skill ê³µê²© actorì˜ í˜„ì¬ ì¢Œí‘œë§Œ ì°¸ì¡°í•œë‹¤.
 //		 
 //  ------------------------------------------------------------------------
 //  paramater1 : spline name 
@@ -1825,7 +1825,7 @@ int LuaGlue_AddSkillAttackerSplineCameraSelfNode(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : cameraÀÇ look atÀº spline data¿¡ ÀÇÇØ °áÁ¤µÇ°í, skill target actorÀÇ ÇöÀç ÁÂÇ¥¸¸ ÂüÁ¶ÇÑ´Ù.
+// des : cameraì˜ look atì€ spline dataì— ì˜í•´ ê²°ì •ë˜ê³ , skill target actorì˜ í˜„ì¬ ì¢Œí‘œë§Œ ì°¸ì¡°í•œë‹¤.
 //		 
 //  ------------------------------------------------------------------------
 //  paramater1 : spline name 
@@ -1852,8 +1852,8 @@ int LuaGlue_AddSkillTargetSplineCameraSelfNode(lua_State *L)
 
 
 ////////////////////////////////////////////////////////////////////////////
-// des : cameraÀÇ look atÀº spline data¿¡ ÀÇÇØ °áÁ¤µÇ°í, 
-//       node°¡ ½ÇÇàµÇ´Â ½ÃÁ¡¿¡ actorÀÇ ÁÂÇ¥ ¹× ¹æÇâÀ» ÂüÁ¶ÇÑ´Ù.
+// des : cameraì˜ look atì€ spline dataì— ì˜í•´ ê²°ì •ë˜ê³ , 
+//       nodeê°€ ì‹¤í–‰ë˜ëŠ” ì‹œì ì— actorì˜ ì¢Œí‘œ ë° ë°©í–¥ì„ ì°¸ì¡°í•œë‹¤.
 //		 
 //  ------------------------------------------------------------------------
 //  paramater1 : actor serial id
@@ -1876,7 +1876,7 @@ int LuaGlue_AddSkillSplineActorRefSelfNode(lua_State *L)
 ////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////
-// des : serial¿¡ ÇØ´çÇÏ´Â owner serial id¸¦ ±¸ÇÑ´Ù.
+// des : serialì— í•´ë‹¹í•˜ëŠ” owner serial idë¥¼ êµ¬í•œë‹¤.
 //  ------------------------------------------------------------------------
 //  paramater1 : serial id(number)
 ////////////////////////////////////////////////////////////////////////////
@@ -1898,7 +1898,7 @@ int LuaGlue_GetOwnerSerialId(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : serial¿¡ ÇØ´çÇÏ´Â target serial id¸¦ ±¸ÇÑ´Ù.
+// des : serialì— í•´ë‹¹í•˜ëŠ” target serial idë¥¼ êµ¬í•œë‹¤.
 //  ------------------------------------------------------------------------
 //  paramater1 : serial id(number)
 ////////////////////////////////////////////////////////////////////////////
@@ -1919,7 +1919,7 @@ int LuaGlue_GetActorType(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : serial¿¡ ÇØ´çÇÏ´Â actor°¡ avatarÀÎ°¡?
+// des : serialì— í•´ë‹¹í•˜ëŠ” actorê°€ avatarì¸ê°€?
 //  ------------------------------------------------------------------------
 //  paramater1 : serial id(number)
 ////////////////////////////////////////////////////////////////////////////
@@ -1943,11 +1943,11 @@ int LuaGlue_IsAvatarActor(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// lua : Logic => Skill camera control ¼Ó¼º¿¡ °ü·ÃµÈ ÇÔ¼ö.
+// lua : Logic => Skill camera control ì†ì„±ì— ê´€ë ¨ëœ í•¨ìˆ˜.
 ////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////
-// des : skill °ø°İÀÚ serial id¸¦ ±¸ÇÑ´Ù.
+// des : skill ê³µê²©ì serial idë¥¼ êµ¬í•œë‹¤.
 // ------------------------------------------------------------------------
 ////////////////////////////////////////////////////////////////////////////
 
@@ -1960,7 +1960,7 @@ int LuaGlue_GetSkillAttackSerialId(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : skill °ø°İÀÚ target id¸¦ ±¸ÇÑ´Ù.
+// des : skill ê³µê²©ì target idë¥¼ êµ¬í•œë‹¤.
 // ------------------------------------------------------------------------
 ////////////////////////////////////////////////////////////////////////////
 
@@ -1977,10 +1977,10 @@ int LuaGlue_GetSkillTargetSerialId(lua_State *L)
 ////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////
-// des : day and night control node¸¦ Ãß°¡ÇÑ´Ù.
-//       start value¿Í finish value¸¦ °°ÀÌ ³Ö¾îÁØ´Ù.
+// des : day and night control nodeë¥¼ ì¶”ê°€í•œë‹¤.
+//       start valueì™€ finish valueë¥¼ ê°™ì´ ë„£ì–´ì¤€ë‹¤.
 // ------------------------------------------------------------------------
-// paramater1 : Ã³À½ delay time.
+// paramater1 : ì²˜ìŒ delay time.
 // paramater2 : duration time
 // paramater3 : start control value
 // paramater4 : finish control value
@@ -2001,10 +2001,10 @@ int LuaGlue_AddDNNode(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : day and night control node¸¦ Ãß°¡ÇÑ´Ù.
-//       start value´Â ÇöÀçÀÇ °ªÀ¸·Î ÇÏ°í finish value¸¸ ³Ö¾îÁØ´Ù.
+// des : day and night control nodeë¥¼ ì¶”ê°€í•œë‹¤.
+//       start valueëŠ” í˜„ì¬ì˜ ê°’ìœ¼ë¡œ í•˜ê³  finish valueë§Œ ë„£ì–´ì¤€ë‹¤.
 // ------------------------------------------------------------------------
-// paramater1 : Ã³À½ delay time.
+// paramater1 : ì²˜ìŒ delay time.
 // paramater2 : duration time
 // paramater4 : finish control value
 // paramater5 : blend factor
@@ -2023,7 +2023,7 @@ int LuaGlue_AddDNNodeCurrentStart(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : cinematic node Ãß°¡ÇÏ±â(begin)
+// des : cinematic node ì¶”ê°€í•˜ê¸°(begin)
 // ------------------------------------------------------------------------
 //
 ////////////////////////////////////////////////////////////////////////////
@@ -2039,7 +2039,7 @@ int LuaGlue_BeginCinematic(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : cinematic node Ãß°¡ÇÏ±â(end)
+// des : cinematic node ì¶”ê°€í•˜ê¸°(end)
 // ------------------------------------------------------------------------
 //
 ////////////////////////////////////////////////////////////////////////////
@@ -2053,7 +2053,7 @@ int LuaGlue_EndCinematic(lua_State *L)
 
 
 ////////////////////////////////////////////////////////////////////////////
-// des : cinematic begin layer »ı¼ºÇÏ±â
+// des : cinematic begin layer ìƒì„±í•˜ê¸°
 // ------------------------------------------------------------------------
 //
 ////////////////////////////////////////////////////////////////////////////
@@ -2066,7 +2066,7 @@ int LuaGlue_BeignCinematicLayer(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : cinematic end layer »ı¼ºÇÏ±â
+// des : cinematic end layer ìƒì„±í•˜ê¸°
 // ------------------------------------------------------------------------
 //
 ////////////////////////////////////////////////////////////////////////////
@@ -2079,7 +2079,7 @@ int LuaGlue_EndCinematicLayer(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : cinematic begin group »ı¼ºÇÏ±â
+// des : cinematic begin group ìƒì„±í•˜ê¸°
 // ------------------------------------------------------------------------
 //
 ////////////////////////////////////////////////////////////////////////////
@@ -2092,7 +2092,7 @@ int LuaGlue_BeignCinematicGroup(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : cinematic begin group »ı¼ºÇÏ±â
+// des : cinematic begin group ìƒì„±í•˜ê¸°
 // ------------------------------------------------------------------------
 //
 ////////////////////////////////////////////////////////////////////////////
@@ -2105,7 +2105,7 @@ int LuaGlue_EndCinematicGroup(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : cinematic node º´·Ä·Î Ãß°¡ÇÏ±â(begin)
+// des : cinematic node ë³‘ë ¬ë¡œ ì¶”ê°€í•˜ê¸°(begin)
 // ------------------------------------------------------------------------
 //
 ////////////////////////////////////////////////////////////////////////////
@@ -2118,7 +2118,7 @@ int LuaGlue_BeginCinematicSibling(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : cinematic node º´·Ä·Î Ãß°¡ÇÏ±â(end)
+// des : cinematic node ë³‘ë ¬ë¡œ ì¶”ê°€í•˜ê¸°(end)
 // ------------------------------------------------------------------------
 //
 ////////////////////////////////////////////////////////////////////////////
@@ -2132,7 +2132,7 @@ int LuaGlue_EndCinematicSibling(lua_State *L)
 
 
 ////////////////////////////////////////////////////////////////////////////
-// des : cinematic camera node sync¸¦ ½ÃÅ°Áö ¾Ê´Â´Ù.
+// des : cinematic camera node syncë¥¼ ì‹œí‚¤ì§€ ì•ŠëŠ”ë‹¤.
 // ------------------------------------------------------------------------
 //
 ////////////////////////////////////////////////////////////////////////////
@@ -2145,7 +2145,7 @@ int LuaGlue_BeginCinematicCameraAsync(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : cinematic camera node sync ½ÃÅ²´Ù.
+// des : cinematic camera node sync ì‹œí‚¨ë‹¤.
 // ------------------------------------------------------------------------
 //
 ////////////////////////////////////////////////////////////////////////////
@@ -2158,7 +2158,7 @@ int LuaGlue_EndCinematicCameraAsync(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : cinematic camera node lock ½ÃÅ²´Ù.
+// des : cinematic camera node lock ì‹œí‚¨ë‹¤.
 // ------------------------------------------------------------------------
 //
 ////////////////////////////////////////////////////////////////////////////
@@ -2172,7 +2172,7 @@ int LuaGlue_BeginCinematicCameraLock(lua_State *L)
 
 
 ////////////////////////////////////////////////////////////////////////////
-// des : cinematic camera node unlock ½ÃÅ²´Ù.
+// des : cinematic camera node unlock ì‹œí‚¨ë‹¤.
 // ------------------------------------------------------------------------
 //
 ////////////////////////////////////////////////////////////////////////////
@@ -2330,8 +2330,8 @@ int LuaGlue_CNFlash(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : monsterÀ» »ı¼ºÇÏ´Â cinematic node¸¦ Ãß°¡ÇÑ´Ù.
-//       ¸®ÅÏ°ªÀ¸·Î simulation objectÀÇ serialÀ» ³Ñ°ÜÁØ´Ù.
+// des : monsterì„ ìƒì„±í•˜ëŠ” cinematic nodeë¥¼ ì¶”ê°€í•œë‹¤.
+//       ë¦¬í„´ê°’ìœ¼ë¡œ simulation objectì˜ serialì„ ë„˜ê²¨ì¤€ë‹¤.
 // ------------------------------------------------------------------------
 // paramater1 : monster table id.
 // paramater2 : create position x
@@ -2362,8 +2362,8 @@ int LuaGlue_AddCNMobCreate(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : npcÀ» »ı¼ºÇÏ´Â cinematic node¸¦ Ãß°¡ÇÑ´Ù.
-//       ¸®ÅÏ°ªÀ¸·Î simulation objectÀÇ serialÀ» ³Ñ°ÜÁØ´Ù.
+// des : npcì„ ìƒì„±í•˜ëŠ” cinematic nodeë¥¼ ì¶”ê°€í•œë‹¤.
+//       ë¦¬í„´ê°’ìœ¼ë¡œ simulation objectì˜ serialì„ ë„˜ê²¨ì¤€ë‹¤.
 // ------------------------------------------------------------------------
 // paramater1 : monster table id.
 // paramater2 : create position x
@@ -2394,9 +2394,9 @@ int LuaGlue_AddCNNpcCreate(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : simulation object¸¦ »èÁ¦ÇÑ´Ù.
+// des : simulation objectë¥¼ ì‚­ì œí•œë‹¤.
 // ------------------------------------------------------------------------
-// paramater1 : »èÁ¦ÇÒ simulation object serial id.
+// paramater1 : ì‚­ì œí•  simulation object serial id.
 // paramater2 : delay time
 ////////////////////////////////////////////////////////////////////////////
 
@@ -2411,12 +2411,12 @@ int LuaGlue_AddCNSobDelete(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : simulation object¸¦ ÀÌµ¿½ÃÅ²´Ù.
+// des : simulation objectë¥¼ ì´ë™ì‹œí‚¨ë‹¤.
 // ------------------------------------------------------------------------
 // paramater1 : simulation object serial id.
-// paramater2 : ÀÌµ¿ÇÒ À§Ä¡ x
-// paramater3 : ÀÌµ¿ÇÒ À§Ä¡ y
-// paramater4 : ÀÌµ¿ÇÒ À§Ä¡ z
+// paramater2 : ì´ë™í•  ìœ„ì¹˜ x
+// paramater3 : ì´ë™í•  ìœ„ì¹˜ y
+// paramater4 : ì´ë™í•  ìœ„ì¹˜ z
 // paramater5 : dealy time
 ////////////////////////////////////////////////////////////////////////////
 
@@ -2438,7 +2438,7 @@ int LuaGlue_AddCNSobMove(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : simulation object¸¦ spline line data¿¡ µû¶ó run ÀÌµ¿½ÃÅ²´Ù.
+// des : simulation objectë¥¼ spline line dataì— ë”°ë¼ run ì´ë™ì‹œí‚¨ë‹¤.
 // ------------------------------------------------------------------------
 // paramater1 : simulation object serial id.
 // paramater2 : spline data start position - x
@@ -2467,7 +2467,7 @@ int LuaGlue_AddCNSobSplineMove(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : simulation object¸¦ spline line data¿¡ µû¶ó walk ÀÌµ¿½ÃÅ²´Ù. 
+// des : simulation objectë¥¼ spline line dataì— ë”°ë¼ walk ì´ë™ì‹œí‚¨ë‹¤. 
 // ------------------------------------------------------------------------
 // paramater1 : simulation object serial id.
 // paramater2 : spline data start position - x
@@ -2497,7 +2497,7 @@ int LuaGlue_AddCNSobSplineWalkMove(lua_State *L)
 
 
 ////////////////////////////////////////////////////////////////////////////
-// des : simulation object¸¦ spline line data¿¡ µû¶ó ÀÌµ¿½ÃÅ²´Ù. (world height¸¦ check ÇÏÁö ¾Ê´Â´Ù.)
+// des : simulation objectë¥¼ spline line dataì— ë”°ë¼ ì´ë™ì‹œí‚¨ë‹¤. (world heightë¥¼ check í•˜ì§€ ì•ŠëŠ”ë‹¤.)
 // ------------------------------------------------------------------------
 // paramater1 : simulation object serial id.
 // paramater2 : spline data start position - x
@@ -2527,7 +2527,7 @@ int LuaGlue_AddCNSobSplineFlyMove(lua_State *L)
 
 
 ////////////////////////////////////////////////////////////////////////////
-// des : simulation object¸¦ spline line data¿¡ µû¶ó ÀÌµ¿½ÃÅ²´Ù.
+// des : simulation objectë¥¼ spline line dataì— ë”°ë¼ ì´ë™ì‹œí‚¨ë‹¤.
 // ------------------------------------------------------------------------
 // paramater1 : simulation trigger object table id.
 // paramater2 : main state
@@ -2549,7 +2549,7 @@ int LuaGlue_AddCNSobTriggerObjectState(lua_State *L)
 
 
 ////////////////////////////////////////////////////////////////////////////
-// des : simulation object¸¦ direct play
+// des : simulation objectë¥¼ direct play
 // ------------------------------------------------------------------------
 // paramater1 : simulation object serial id.
 // paramater2 : table id
@@ -2569,7 +2569,7 @@ int LuaGlue_AddCNSobDirectPlay(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : simulation object¸¦ anim play
+// des : simulation objectë¥¼ anim play
 // ------------------------------------------------------------------------
 // paramater1 : simulation object serial id.
 // paramater2 : animation id
@@ -2592,7 +2592,7 @@ int LuaGlue_AddCNSobAnimPlay(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : simulation object¸¦ anim play
+// des : simulation objectë¥¼ anim play
 // ------------------------------------------------------------------------
 // paramater1 : simulation object serial id.
 // paramater2 : animation id
@@ -2620,7 +2620,7 @@ int LuaGlue_AddCNSobAnimPlayPositionSetting(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : simulation object¸¦ position setting
+// des : simulation objectë¥¼ position setting
 // ------------------------------------------------------------------------
 // paramater1 : simulation object serial id.
 // paramater2 : position x
@@ -2646,7 +2646,7 @@ int LuaGlue_AddCNSobPositionSetting(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : simulation object¸¦ direct setting
+// des : simulation objectë¥¼ direct setting
 // ------------------------------------------------------------------------
 // paramater1 : simulation object serial id.
 // paramater2 : direct x
@@ -2672,7 +2672,7 @@ int LuaGlue_AddCNSobDirectSetting(lua_State *L)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// des : simulation object¸¦ rotate y setting
+// des : simulation objectë¥¼ rotate y setting
 // ------------------------------------------------------------------------
 // paramater1 : simulation object serial id.
 // paramater2 : rotate y angle

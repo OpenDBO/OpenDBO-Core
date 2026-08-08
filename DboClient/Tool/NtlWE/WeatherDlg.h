@@ -2,21 +2,21 @@
 #include "afxwin.h"
 
 
-// WeatherDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// WeatherDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CWeatherDlg : public CDialog
 {
 	DECLARE_DYNAMIC(CWeatherDlg)
 
 public:
-	CWeatherDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CWeatherDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CWeatherDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_ATTR_WEATHER };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 

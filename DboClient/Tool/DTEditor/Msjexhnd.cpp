@@ -104,7 +104,7 @@ LONG WINAPI MSJExceptionHandler::MSJUnhandledExceptionFilter(PEXCEPTION_POINTERS
 	if ( m_pApplicationFilter )
 		m_pApplicationFilter( pExceptionInfo );
 
-	// file ±‚∑œ¿∫ ¿”Ω√¿˚¿∏∑Œ ª´¥Ÿ(«¸ºÆ)
+	// file Í∏∞Î°ùÏùÄ ÏûÑÏãúÏ†ÅÏúºÎ°ú Î∫ÄÎã§(ÌòïÏÑù)
 	/*
     if ( bResult )
     {
@@ -250,7 +250,7 @@ BOOL MSJExceptionHandler::GetLogicalAddress(
     if ( !VirtualQuery( addr, &mbi, sizeof(mbi) ) )
         return FALSE;
 
-    DWORD hMod = (DWORD)mbi.AllocationBase;
+    DWORD_PTR hMod = (DWORD_PTR)mbi.AllocationBase;
 
     if ( !GetModuleFileName( (HMODULE)hMod, szModule, len ) )
         return FALSE;
@@ -263,7 +263,7 @@ BOOL MSJExceptionHandler::GetLogicalAddress(
 
     PIMAGE_SECTION_HEADER pSection = IMAGE_FIRST_SECTION( pNtHdr );
 
-    DWORD rva = (DWORD)addr - hMod; // RVA is offset from module load address
+    DWORD_PTR rva = (DWORD_PTR)addr - hMod; // RVA is offset from module load address
 
     // Iterate through the section table, looking for the one that encompasses
     // the linear address.
@@ -318,10 +318,10 @@ void MSJExceptionHandler::IntelStackWalk( PCONTEXT pContext )
 
         pPrevFrame = pFrame;
 
-        pFrame = (PDWORD)pFrame[0]; // proceed to next higher frame on stack
+        pFrame = (PDWORD_PTR)pFrame[0]; // proceed to next higher frame on stack
 
-        if ( (DWORD)pFrame & 3 )    // Frame pointer must be aligned on a
-            break;                  // DWORD boundary.  Bail if not so.
+        if ( (DWORD_PTR)pFrame & (sizeof(DWORD_PTR)-1) )    // Frame pointer must be aligned on a
+            break;                  // pointer-sized boundary.  Bail if not so.
 
         if ( pFrame <= pPrevFrame )
             break;

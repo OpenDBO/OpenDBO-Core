@@ -5,7 +5,7 @@ class CNtlPLEntity;
 
 /**
  * \ingroup NtlSimulation
- * \brief °øÀ¯ Å¸°Ù ¸¶Å©¸¦ °ü¸®ÇÏ´Â Å¬·¡½º
+ * \brief ê³µìœ  íƒ€ê²Ÿ ë§ˆí¬ë¥¼ ê´€ë¦¬í•˜ëŠ” í´ë˜ìŠ¤
  *
  * \date 2009-08-13
  * \author agebreak
@@ -13,7 +13,7 @@ class CNtlPLEntity;
 class CNtlShareTargetMark
 {
 public:
-    // °øÀ¯ Å¸°Ù Å¸ÀÔ
+    // ê³µìœ  íƒ€ê²Ÿ íƒ€ì…
     enum EShareTargetType
     {
         SHARE_TARGET_NORMAL,        
@@ -25,17 +25,17 @@ public:
     CNtlShareTargetMark(CNtlSob* pSobObject);
     virtual ~CNtlShareTargetMark();
 
-    void    CreateShareTargetMark(RwUInt8 bySlot, RwInt32 type);               ///< °øÀ¯Å¸°Ù ¸¶Å©¸¦ »ı¼ºÇÑ´Ù.
-    void    DeleteShareTargetMark();                                            ///< °øÀ¯Å¸°Ù ¸¶Å©¸¦ ÇØÁ¦ÇÑ´Ù.
-    RwBool  IsShareTargeting();                                                 ///< °øÀ¯Å¸°ÙÀÌ ¼³Á¤µÇ¾îÀÖ´ÂÁö¸¦ ¹İÈ¯ÇÑ´Ù.
-    RwUInt8 GetSlot() {return m_bySlot;}                                        ///< ÇöÀç ¼³Á¤µÈ ½½·ÔÀ» ¹İÈ¯ÇÑ´Ù.    
+    void    CreateShareTargetMark(RwUInt8 bySlot, RwInt32 type);               ///< ê³µìœ íƒ€ê²Ÿ ë§ˆí¬ë¥¼ ìƒì„±í•œë‹¤.
+    void    DeleteShareTargetMark();                                            ///< ê³µìœ íƒ€ê²Ÿ ë§ˆí¬ë¥¼ í•´ì œí•œë‹¤.
+    RwBool  IsShareTargeting();                                                 ///< ê³µìœ íƒ€ê²Ÿì´ ì„¤ì •ë˜ì–´ìˆëŠ”ì§€ë¥¼ ë°˜í™˜í•œë‹¤.
+    RwUInt8 GetSlot() {return m_bySlot;}                                        ///< í˜„ì¬ ì„¤ì •ëœ ìŠ¬ë¡¯ì„ ë°˜í™˜í•œë‹¤.    
 
 protected:
 
 protected:
-    CNtlSob*            m_pSobObj;                  ///< °øÀ¯Å¸°ÙÀÌ ºÙÀ» ¸ŞÀÎ ¿£Æ¼Æ¼
-    CNtlPLEntity*       m_pShareTargetMark;         ///< °øÀ¯Å¸°Ù ÀÌÆåÆ®
-    RwUInt8             m_bySlot;                   ///< °øÀ¯Å¸°Ù ³Ñ¹ö(½½·Ô)
-    EShareTargetType    m_type;                     ///< °øÀ¯Å¸°Ù Å¸ÀÔ  
+    CNtlSob*            m_pSobObj;                  ///< ê³µìœ íƒ€ê²Ÿì´ ë¶™ì„ ë©”ì¸ ì—”í‹°í‹°
+    CNtlPLEntity*       m_pShareTargetMark;         ///< ê³µìœ íƒ€ê²Ÿ ì´í™íŠ¸
+    RwUInt8             m_bySlot;                   ///< ê³µìœ íƒ€ê²Ÿ ë„˜ë²„(ìŠ¬ë¡¯)
+    EShareTargetType    m_type;                     ///< ê³µìœ íƒ€ê²Ÿ íƒ€ì…  
     
 };

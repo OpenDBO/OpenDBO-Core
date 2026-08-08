@@ -1,4 +1,4 @@
-// PalettePlantDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PalettePlantDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -15,7 +15,7 @@
 
 #define dPLANT_MAX_IN_SECTOR 100
 
-// CPalettePlantDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPalettePlantDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPalettePlantDlg, CDialog)
 
@@ -60,7 +60,7 @@ BEGIN_MESSAGE_MAP(CPalettePlantDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CPalettePlantDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPalettePlantDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 LRESULT CPalettePlantDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -342,7 +342,7 @@ void CPalettePlantDlg::OnWork(RwV3d vCenter, RwReal fRadius, RwBool bIsCreate)
 			}
 		}
 	}
-	// Plant´Â Update TickÀ» °¡Áö°í ÀÖ±â ¶§¹®¿¡ Áö¿öÁø °´Ã¼¿¡ ´ëÇÑ Á¤º¸ °»½ÅÀ» À§ÇÏ¿© ¿©±â¼­ ¼öµ¿ÀûÀ¸·Î Update¸¦ ÇØÁØ´Ù.
+	// PlantëŠ” Update Tickì„ ê°€ì§€ê³  ìˆê¸° ë•Œë¬¸ì— ì§€ì›Œì§„ ê°ì²´ì— ëŒ€í•œ ì •ë³´ ê°±ì‹ ì„ ìœ„í•˜ì—¬ ì—¬ê¸°ì„œ ìˆ˜ë™ì ìœ¼ë¡œ Updateë¥¼ í•´ì¤€ë‹¤.
 	if (bIsCreate)
 	{
 		for (int i = 0; i < (int)g_vecVisibleSectors.size(); ++i)

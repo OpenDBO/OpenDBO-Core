@@ -4,7 +4,7 @@ class CNtlPLOccluder_Base;
 class CNtlOccluderManager;
 
 /*
-	OccluderProxy ´Â Mananger¿Í Object °£ÀÇ ¿¬°á °í¸® ¿ªÈ°¸¸ ÇØ ÁØ´Ù.
+	OccluderProxy ëŠ” Manangerì™€ Object ê°„ì˜ ì—°ê²° ê³ ë¦¬ ì—­í™œë§Œ í•´ ì¤€ë‹¤.
 */
 
 class COccluderProxy

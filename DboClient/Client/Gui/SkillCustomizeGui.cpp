@@ -89,7 +89,7 @@ RwBool CSkillCustomizeGui::Create(VOID)
 	// Tab Setting
 	m_pTitle->SetText( GetDisplayStringManager()->GetString( "DST_SKILL_WINDOW_TITLE" ) );
 
-	// ÅÇ ¼¼ÆÃÀº ³ªÁß¿¡....
+	// íƒ­ ì„¸íŒ…ì€ ë‚˜ì¤‘ì—....
 	m_pTabBtn->AddTab( std::wstring( L"Skill1" ) );// GetDisplayStringManager()->GetString( DST_SKILL_TAB_BATTLE_SKILL ) ) );
 	m_pTabBtn->AddTab( std::wstring( L"Skill2_1" ) );// GetDisplayStringManager()->GetString( DST_SKILL_TAB_SUB_SKILL ) ) );
 	m_pTabBtn->AddTab( std::wstring( L"Skill2_2" ) );// GetDisplayStringManager()->GetString( DST_SKILL_TAB_ACTION_SKILL ) ) );
@@ -99,7 +99,7 @@ RwBool CSkillCustomizeGui::Create(VOID)
 	CTableContainer* pTableContainer = API_GetTableContainer();
 	CSkillCustomizeParser::SetCommonData( pTableContainer->GetSkillTable(), pTableContainer->GetHTBSetTable(), pTableContainer->GetActionTable(), pTableContainer->GetTextAllTable(), GetNtlGuiManager()->GetSurfaceManager() );
 
-	// Item Group »ı¼º	
+	// Item Group ìƒì„±	
 	for( RwInt32 i = 0 ; i < NUM_OF_CLASS ; ++i )
 		m_pSkillGroup[i] = NTL_NEW CSkillCustomizeItemGroup( m_pSkillDlg, m_pScrollBar );	
 
@@ -109,7 +109,7 @@ RwBool CSkillCustomizeGui::Create(VOID)
 	// serialize 
 	EnableSerialize( TRUE );
 
-	// Event¿¬°á
+	// Eventì—°ê²°
 	LinkMsg( g_EventSobInfoUpdate );
 	LinkMsg( g_EventSobCooling );
 	LinkMsg( g_EventPickedUpHide );

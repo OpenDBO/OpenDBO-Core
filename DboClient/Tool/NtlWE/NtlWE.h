@@ -1,19 +1,19 @@
-// NtlWE.h : NtlWE ÀÀ¿ë ÇÁ·Î±×·¥¿¡ ´ëÇÑ ÁÖ Çì´õ ÆÄÀÏ
+// NtlWE.h : NtlWE ì‘ìš© í”„ë¡œê·¸ë¨ì— ëŒ€í•œ ì£¼ í—¤ë” íŒŒì¼
 //
 #pragma once
 
 #ifndef __AFXWIN_H__
-	#error PCH¿¡¼­ ÀÌ ÆÄÀÏÀ» Æ÷ÇÔÇÏ±â Àü¿¡ 'stdafx.h'¸¦ Æ÷ÇÔÇÏ½Ê½Ã¿À.
+	#error PCHì—ì„œ ì´ íŒŒì¼ì„ í¬í•¨í•˜ê¸° ì „ì— 'stdafx.h'ë¥¼ í¬í•¨í•˜ì‹­ì‹œì˜¤.
 #endif
 
-#include "resource.h"       // ÁÖ ±âÈ£
+#include "resource.h"       // ì£¼ ê¸°í˜¸
 #include "ntlweapplication.h"
 #include "NtlWorldDI.h"
 #include "NtlWEFrm.h"
 
 
 // CNtlWEApp:
-// ÀÌ Å¬·¡½ºÀÇ ±¸Çö¿¡ ´ëÇØ¼­´Â NtlWE.cppÀ» ÂüÁ¶ÇÏ½Ê½Ã¿À.
+// ì´ í´ë˜ìŠ¤ì˜ êµ¬í˜„ì— ëŒ€í•´ì„œëŠ” NtlWE.cppì„ ì°¸ì¡°í•˜ì‹­ì‹œì˜¤.
 //
 
 class CNtlWEFrm;
@@ -42,11 +42,11 @@ private:
 public:
 	void SetDiffusePickerClr(CString R, CString G, CString B);
 
-// ÀçÁ¤ÀÇ
+// ì¬ì •ì˜
 public:
 	virtual BOOL InitInstance();
 
-// ±¸Çö
+// êµ¬í˜„
 	afx_msg void OnAppAbout();
 	DECLARE_MESSAGE_MAP()
 	virtual BOOL OnIdle(LONG lCount);
@@ -54,27 +54,27 @@ public:
 	virtual int ExitInstance();
 //	virtual void OnFinalRelease();
 
-	// ÀÎµµ¾î
+	// ì¸ë„ì–´
 public:
 	void	SetIdleMode();
 	void	SetIndoorMode();
 	void	SetOutdoorMode();
 };
 
-// ÀÀ¿ë ÇÁ·Î±×·¥ Á¤º¸¿¡ »ç¿ëµÇ´Â CAboutDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// ì‘ìš© í”„ë¡œê·¸ë¨ ì •ë³´ì— ì‚¬ìš©ë˜ëŠ” CAboutDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CAboutDlg : public CDialog
 {
 public:
 	CAboutDlg();
 
-	// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍ
+	// ëŒ€í™” ìƒì ë°ì´í„°
 	enum { IDD = IDD_ABOUTBOX };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿ø
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›
 
-	// ±¸Çö
+	// êµ¬í˜„
 protected:
 	DECLARE_MESSAGE_MAP()
 public:

@@ -2,7 +2,7 @@
 *
 * File			: NtlSobGroup.h
 * Author		: HyungSuk, Jang
-* Copyright	: (ÁÖ)NTL
+* Copyright	: (ì£¼)NTL
 * Date			: 2005. 8. 23	
 * Abstract		: Simulation layer visual entity id declear
 *****************************************************************************
@@ -16,34 +16,34 @@
 
 
 // visual effect key name
-#define NTL_VID_MARK_COMMON_MOVE            "GME_Cursor_Ground"             // ¸¶¿ì½º ÀÌµ¿ À§Ä¡ effect(°ø¿ë)
-#define NTL_VID_MARK_TARGET					"GME_Cursor_Target"		        // object target mark ¸Ó¸®À§
-#define NTL_VID_MARK_TARGET_02              "GME_Cursor_Target_02"          // ¹ß¹Ø µ¥Ä®
-#define NTL_VID_MARK_ATTACK					"GME_Cursor_Attack"		        // object attack mark ¸Ó¸®À§
-#define NTL_VID_MARK_ATTACK_02              "GME_Cursor_Attack_02"          // ¹ß¹Ø µ¥Ä®
+#define NTL_VID_MARK_COMMON_MOVE            "GME_Cursor_Ground"             // ë§ˆìš°ìŠ¤ ì´ë™ ìœ„ì¹˜ effect(ê³µìš©)
+#define NTL_VID_MARK_TARGET					"GME_Cursor_Target"		        // object target mark ë¨¸ë¦¬ìœ„
+#define NTL_VID_MARK_TARGET_02              "GME_Cursor_Target_02"          // ë°œë°‘ ë°ì¹¼
+#define NTL_VID_MARK_ATTACK					"GME_Cursor_Attack"		        // object attack mark ë¨¸ë¦¬ìœ„
+#define NTL_VID_MARK_ATTACK_02              "GME_Cursor_Attack_02"          // ë°œë°‘ ë°ì¹¼
 #define NTL_VID_MARK_BOUNDARY				"GME_Cursor_Boundary"			// object attack mark
-#define NTL_VID_MARK_CAUTION                "GME_Recognize"                 // ¸÷ÀÌ ÇÃ·¹ÀÌ¾î¸¦ ¹ß°¢ÇßÀ»¶§ ÀÌÆåÆ®
-#define NTL_VID_MARK_HELPME_REQUESTER       "GME_Mob_SOS_01"                // µµ¿òÀ» ¿äÃ»ÇÏ´Â ¸÷ ÀÌÆåÆ®
-#define NTL_VID_MARK_HELPME_REQUESTEE       "GME_Mob_SOS_02"                // µµ¿òÀ» ¿äÃ»¹ŞÀº ¸÷ ÀÌÆåÆ®
-#define NTL_VID_MARK_TARGET_MARKING         "M_TPP_MEGADODON_TARGET_01"    // ¸÷¿¡°Ô Å¸°ÙÀ¸·Î ¼³Á¤µÆÀ»¶§ÀÇ ÀÌÆåÆ® (¸Ş°¡ µµµ¿ÆÄ)
+#define NTL_VID_MARK_CAUTION                "GME_Recognize"                 // ëª¹ì´ í”Œë ˆì´ì–´ë¥¼ ë°œê°í–ˆì„ë•Œ ì´í™íŠ¸
+#define NTL_VID_MARK_HELPME_REQUESTER       "GME_Mob_SOS_01"                // ë„ì›€ì„ ìš”ì²­í•˜ëŠ” ëª¹ ì´í™íŠ¸
+#define NTL_VID_MARK_HELPME_REQUESTEE       "GME_Mob_SOS_02"                // ë„ì›€ì„ ìš”ì²­ë°›ì€ ëª¹ ì´í™íŠ¸
+#define NTL_VID_MARK_TARGET_MARKING         "M_TPP_MEGADODON_TARGET_01"    // ëª¹ì—ê²Œ íƒ€ê²Ÿìœ¼ë¡œ ì„¤ì •ëì„ë•Œì˜ ì´í™íŠ¸ (ë©”ê°€ ë„ë™íŒŒ)
 
-#define NTL_VID_MARK_SHARE_TARGET_0_NORAML	"GME_Cursor_Party_Assign_01"	// °øÀ¯ Å¸°Ù ¸¶Å© 1
-#define NTL_VID_MARK_SHARE_TARGET_1_NORAML	"GME_Cursor_Party_Assign_02"	// °øÀ¯ Å¸°Ù ¸¶Å© 1
-#define NTL_VID_MARK_SHARE_TARGET_2_NORAML	"GME_Cursor_Party_Assign_03"	// °øÀ¯ Å¸°Ù ¸¶Å© 1
-#define NTL_VID_MARK_SHARE_TARGET_3_NORAML	"GME_Cursor_Party_Assign_04"	// °øÀ¯ Å¸°Ù ¸¶Å© 1
-#define NTL_VID_MARK_SHARE_TARGET_4_NORAML	"GME_Cursor_Party_Assign_05"	// °øÀ¯ Å¸°Ù ¸¶Å© 1
+#define NTL_VID_MARK_SHARE_TARGET_0_NORAML	"GME_Cursor_Party_Assign_01"	// ê³µìœ  íƒ€ê²Ÿ ë§ˆí¬ 1
+#define NTL_VID_MARK_SHARE_TARGET_1_NORAML	"GME_Cursor_Party_Assign_02"	// ê³µìœ  íƒ€ê²Ÿ ë§ˆí¬ 1
+#define NTL_VID_MARK_SHARE_TARGET_2_NORAML	"GME_Cursor_Party_Assign_03"	// ê³µìœ  íƒ€ê²Ÿ ë§ˆí¬ 1
+#define NTL_VID_MARK_SHARE_TARGET_3_NORAML	"GME_Cursor_Party_Assign_04"	// ê³µìœ  íƒ€ê²Ÿ ë§ˆí¬ 1
+#define NTL_VID_MARK_SHARE_TARGET_4_NORAML	"GME_Cursor_Party_Assign_05"	// ê³µìœ  íƒ€ê²Ÿ ë§ˆí¬ 1
 
-#define NTL_VID_MARK_SHARE_TARGET_0_TARGET	"GME_Cursor_Party_Target_01"	// °øÀ¯ Å¸°Ù ¸¶Å© 1
-#define NTL_VID_MARK_SHARE_TARGET_1_TARGET	"GME_Cursor_Party_Target_02"	// °øÀ¯ Å¸°Ù ¸¶Å© 1
-#define NTL_VID_MARK_SHARE_TARGET_2_TARGET	"GME_Cursor_Party_Target_03"	// °øÀ¯ Å¸°Ù ¸¶Å© 1
-#define NTL_VID_MARK_SHARE_TARGET_3_TARGET	"GME_Cursor_Party_Target_04"	// °øÀ¯ Å¸°Ù ¸¶Å© 1
-#define NTL_VID_MARK_SHARE_TARGET_4_TARGET	"GME_Cursor_Party_Target_05"	// °øÀ¯ Å¸°Ù ¸¶Å© 1
+#define NTL_VID_MARK_SHARE_TARGET_0_TARGET	"GME_Cursor_Party_Target_01"	// ê³µìœ  íƒ€ê²Ÿ ë§ˆí¬ 1
+#define NTL_VID_MARK_SHARE_TARGET_1_TARGET	"GME_Cursor_Party_Target_02"	// ê³µìœ  íƒ€ê²Ÿ ë§ˆí¬ 1
+#define NTL_VID_MARK_SHARE_TARGET_2_TARGET	"GME_Cursor_Party_Target_03"	// ê³µìœ  íƒ€ê²Ÿ ë§ˆí¬ 1
+#define NTL_VID_MARK_SHARE_TARGET_3_TARGET	"GME_Cursor_Party_Target_04"	// ê³µìœ  íƒ€ê²Ÿ ë§ˆí¬ 1
+#define NTL_VID_MARK_SHARE_TARGET_4_TARGET	"GME_Cursor_Party_Target_05"	// ê³µìœ  íƒ€ê²Ÿ ë§ˆí¬ 1
 
-#define NTL_VID_MARK_SHARE_TARGET_0_ATTACK	"GME_Cursor_Party_Attack_01"	// °øÀ¯ Å¸°Ù ¸¶Å© 1
-#define NTL_VID_MARK_SHARE_TARGET_1_ATTACK	"GME_Cursor_Party_Attack_02"	// °øÀ¯ Å¸°Ù ¸¶Å© 1
-#define NTL_VID_MARK_SHARE_TARGET_2_ATTACK	"GME_Cursor_Party_Attack_03"	// °øÀ¯ Å¸°Ù ¸¶Å© 1
-#define NTL_VID_MARK_SHARE_TARGET_3_ATTACK	"GME_Cursor_Party_Attack_04"	// °øÀ¯ Å¸°Ù ¸¶Å© 1
-#define NTL_VID_MARK_SHARE_TARGET_4_ATTACK	"GME_Cursor_Party_Attack_05"	// °øÀ¯ Å¸°Ù ¸¶Å© 1
+#define NTL_VID_MARK_SHARE_TARGET_0_ATTACK	"GME_Cursor_Party_Attack_01"	// ê³µìœ  íƒ€ê²Ÿ ë§ˆí¬ 1
+#define NTL_VID_MARK_SHARE_TARGET_1_ATTACK	"GME_Cursor_Party_Attack_02"	// ê³µìœ  íƒ€ê²Ÿ ë§ˆí¬ 1
+#define NTL_VID_MARK_SHARE_TARGET_2_ATTACK	"GME_Cursor_Party_Attack_03"	// ê³µìœ  íƒ€ê²Ÿ ë§ˆí¬ 1
+#define NTL_VID_MARK_SHARE_TARGET_3_ATTACK	"GME_Cursor_Party_Attack_04"	// ê³µìœ  íƒ€ê²Ÿ ë§ˆí¬ 1
+#define NTL_VID_MARK_SHARE_TARGET_4_ATTACK	"GME_Cursor_Party_Attack_05"	// ê³µìœ  íƒ€ê²Ÿ ë§ˆí¬ 1
 
 #define NTL_VID_WORLD_IN					"GME_Spawn1"
 #define NTL_VID_TELEPORT_SPAWN				"GME_Spawn2"
@@ -166,8 +166,8 @@
 #define NTL_VID_QUEST_ACCEPT_REWARD_04		"GME_Quest_Clear_Effect_04"
 
 // PVP
-#define NTL_VID_FREEPVP_MARK				"N_REF_A1"                      ///< ½ÉÆÇ Ä³¸¯ÅÍ NPC 
-#define NTL_VID_FREEPVP_BOUND_EFFECT        "N_REF_001"                     ///< PVP ¹Ù¿îµå ÀÌÆåÆ®
+#define NTL_VID_FREEPVP_MARK				"N_REF_A1"                      ///< ì‹¬íŒ ìºë¦­í„° NPC 
+#define NTL_VID_FREEPVP_BOUND_EFFECT        "N_REF_001"                     ///< PVP ë°”ìš´ë“œ ì´í™íŠ¸
 
 // TMQ Direction
 #define NTL_VID_DIRECTOR_EFFECT             "GME_Direction_Arrow"
@@ -205,11 +205,11 @@
 #define NTL_VID_PURE_MAJIN_CHANGE           "MAJ_SKL_AVE_001"
 #define NTL_VID_PURE_MAJIN_CHANGE_ORG       "MAJ_SKL_AVE_001_02"
 
-// °è¿Õ±Ç
+// ê³„ì™•ê¶Œ
 #define NTL_VID_KAIOUKEN_SMALL              "COM_SKL_AVE_011_01"
 #define NTL_VID_KAIOUKEN_BIG                "COM_SKL_AVE_011_02"
 
-// Äµµğ º¯½Å
+// ìº”ë”” ë³€ì‹ 
 #define NTL_VID_CANDY_CHANGE_ORG            "GME_ITM_BOMB"
 
 // Class Change
@@ -233,7 +233,7 @@
 #define NAMING_SOUND_FOOTSTEP				"Footsteps\\SE_FOOTSTEP"		// SE_FOOTSTEP_[MATERIALTYPE(0-7)]_[RAND(0-3)]
 #define NAMING_EFFECT_FOOTSTEP				"GME_FOOTSTEP"					// GME_FOOTSTEP_[MATERIALTYPE(0-7)]_[STEP(L,R)]_[RAND(0-1)]
 
-// ÄªÈ£ ÀÌÆåÆ®
+// ì¹­í˜¸ ì´í™íŠ¸
 #define NTL_VID_TENKAICHI_WINNNER_01        "GME_TENKAICHI_WINNER_01"
 #define NTL_VID_TENKAICHI_WINNNER_02        "GME_TENKAICHI_WINNER_02"
 #define NTL_VID_TENKAICHI_WINNNER_03        "GME_TENKAICHI_WINNER_03"

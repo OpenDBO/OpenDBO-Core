@@ -2,7 +2,7 @@
 *
 * File			: NtlSobMerchantItem.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2006. 8. 1
 * Abstract		: Simulation Merchant item object
 *****************************************************************************

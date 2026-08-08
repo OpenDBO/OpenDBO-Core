@@ -1,17 +1,17 @@
 /******************************************************************************
 * File			: CNumberGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 9. 4
 * Abstract		: 
 *****************************************************************************
-* Desc			: GUI´Ü¿¡¼­ ÀÌ¹ÌÁö·Î ±¸¼ºµÈ ¼ýÀÚ·Î Ç¥½ÃÇÏ±â À§ÇÑ Å¬·¡½º
-*				  m_rtRectÀÇ ¿µ¿ªÀÌ ½ÇÁ¦·Î Ç¥½ÃµÇ´Â °ø°£À» °¡¸®Å°´Â °ÍÀÌ ¾Æ´Ï´Ù
-*				  m_rtRectÀÇ ±¸¼º¿ä¼ÒÁß left, top(ÀÌ¹ÌÁöÀÇ ÃÖ»ó´Ü)Àº ¼ýÀÚ°¡
-*				  Ç¥½ÃµÇ´Â ºÎ¸ð·ÎºÎÅÍÀÇ Á¤·Ä¿¡ µû¸¥ ±âÁØ ÁÂÇ¥ right, bottomÀº
-*				  Á¤·Ä¹æ¹ý¿¡ »ó°ü¾øÀÌ left, top¿¡¼­ºÎÅÍ ¹«Á¶°Ç ³ÐÀÌ¿Í ³ôÀÌ¸¦ °¡¸®Å²´Ù
+* Desc			: GUIë‹¨ì—ì„œ ì´ë¯¸ì§€ë¡œ êµ¬ì„±ëœ ìˆ«ìžë¡œ í‘œì‹œí•˜ê¸° ìœ„í•œ í´ëž˜ìŠ¤
+*				  m_rtRectì˜ ì˜ì—­ì´ ì‹¤ì œë¡œ í‘œì‹œë˜ëŠ” ê³µê°„ì„ ê°€ë¦¬í‚¤ëŠ” ê²ƒì´ ì•„ë‹ˆë‹¤
+*				  m_rtRectì˜ êµ¬ì„±ìš”ì†Œì¤‘ left, top(ì´ë¯¸ì§€ì˜ ìµœìƒë‹¨)ì€ ìˆ«ìžê°€
+*				  í‘œì‹œë˜ëŠ” ë¶€ëª¨ë¡œë¶€í„°ì˜ ì •ë ¬ì— ë”°ë¥¸ ê¸°ì¤€ ì¢Œí‘œ right, bottomì€
+*				  ì •ë ¬ë°©ë²•ì— ìƒê´€ì—†ì´ left, topì—ì„œë¶€í„° ë¬´ì¡°ê±´ ë„“ì´ì™€ ë†’ì´ë¥¼ ê°€ë¦¬í‚¨ë‹¤
 *
-*				  ÀÌ¹ÌÁöÀÇ ³ÐÀÌ, ³ôÀÌ´Â ¸ðµÎ °°´Ù°í °¡Á¤ÇÑ´Ù
+*				  ì´ë¯¸ì§€ì˜ ë„“ì´, ë†’ì´ëŠ” ëª¨ë‘ ê°™ë‹¤ê³  ê°€ì •í•œë‹¤
 *****************************************************************************/
 
 #pragma once
@@ -24,7 +24,7 @@
 #include "SurfaceGui.h"
 
 
-#define dMAX_CHPHER			10		///< ¼ýÀÚ¸¦ Ç¥½ÃÇÒ ¼ö ÀÖ´Â ÃÖ´ë ÀÚ¸´¼ö
+#define dMAX_CHPHER			10		///< ìˆ«ìžë¥¼ í‘œì‹œí•  ìˆ˜ ìžˆëŠ” ìµœëŒ€ ìžë¦¿ìˆ˜
 
 #define dNCFLAG_NONE		0x00
 #define dNCFLAG_MINUS		0x01
@@ -92,13 +92,13 @@ public:
 	CNumberGui();
 	virtual ~CNumberGui();
 	
-	/*	byHoriAlign		: ÁÖ¾îÁø ÁÂÇ¥¿¡¼­ ¼ýÀÚ ¹× Ç¥½ÄÀÌ Á¤·ÄµÇ´Â ÁÂ¿ì ¹æÇâ
-		byVertAlign		: ÁÖ¾îÁø ÁÂÇ¥¿¡¼­ ¼ýÀÚ ¹× Ç¥½ÄÀÌ Á¤·ÄµÇ´Â »óÇÏ ¹æÇâ
-		byNumGap		: ¼ýÀÚ ¹× Ç¥½Ä°£ÀÇ °£°Ý
-		byFlag			: ¼ýÀÚ ¿ÜÀÇ »ç¿ëÇÒ Ç¥½ÄÀÇ ÇÃ·¡±×¸¦ µî·Ï
-		byRemainCipher	: ¹Ýµå½Ã Ç¥½ÃÇØ¾ß ÇÒ ¼ýÀÚÀÇ ÀÚ¸´¼ö
-						  ¿¹) byRemainCipher = 2 ÀÏ ¶§ SetNumber(1) ÀÌ¸é 01À» Ç¥½Ã
-							  byRemainCipher = 4 ÀÏ ¶§ SetNumber(1) ÀÌ¸é 0001À» Ç¥½Ã */	
+	/*	byHoriAlign		: ì£¼ì–´ì§„ ì¢Œí‘œì—ì„œ ìˆ«ìž ë° í‘œì‹ì´ ì •ë ¬ë˜ëŠ” ì¢Œìš° ë°©í–¥
+		byVertAlign		: ì£¼ì–´ì§„ ì¢Œí‘œì—ì„œ ìˆ«ìž ë° í‘œì‹ì´ ì •ë ¬ë˜ëŠ” ìƒí•˜ ë°©í–¥
+		byNumGap		: ìˆ«ìž ë° í‘œì‹ê°„ì˜ ê°„ê²©
+		byFlag			: ìˆ«ìž ì™¸ì˜ ì‚¬ìš©í•  í‘œì‹ì˜ í”Œëž˜ê·¸ë¥¼ ë“±ë¡
+		byRemainCipher	: ë°˜ë“œì‹œ í‘œì‹œí•´ì•¼ í•  ìˆ«ìžì˜ ìžë¦¿ìˆ˜
+						  ì˜ˆ) byRemainCipher = 2 ì¼ ë•Œ SetNumber(1) ì´ë©´ 01ì„ í‘œì‹œ
+							  byRemainCipher = 4 ì¼ ë•Œ SetNumber(1) ì´ë©´ 0001ì„ í‘œì‹œ */	
 	RwBool			Create(RwUInt8 byHoriAlign = ND_LEFT, RwUInt8 byVertAlign = NVD_TOP, RwInt32 iNumGap = 0, RwUInt8 byFlag = dNCFLAG_NONE, RwUInt8 byRemainCipher = 1);
 	VOID			Update(RwReal fElapsed);
 	VOID			Destroy();
@@ -126,7 +126,7 @@ public:
 	CRectangle		GetScreenRect();
 	RwReal			GetRate();
 
-	// CNumberGui_ZoomHelper Å¬·¡½º¸¦ ÀÌ¿ëÇÏ¼¼¿ä. ÀÌ ÇÔ¼ö´Â Â÷ÈÄ Áö¿ï ¿¹Á¤ÀÔ´Ï´Ù
+	// CNumberGui_ZoomHelper í´ëž˜ìŠ¤ë¥¼ ì´ìš©í•˜ì„¸ìš”. ì´ í•¨ìˆ˜ëŠ” ì°¨í›„ ì§€ìš¸ ì˜ˆì •ìž…ë‹ˆë‹¤
 	VOID			EffectRate(RwReal fStartRate, RwReal fEndRate, RwReal fRemainTime);
 
 	VOID			UnsetSurface(RwUInt8 byIndex);
@@ -155,7 +155,7 @@ protected:
 	VOID			CalcWidth();
 
 protected:
-	CSurfaceGui			m_srfNumber[NUM_NC];			///< ÀüÅõ·ÂÀ» Ç¥½ÃÇÏ´Â ¼ýÀÚ
+	CSurfaceGui			m_srfNumber[NUM_NC];			///< ì „íˆ¬ë ¥ì„ í‘œì‹œí•˜ëŠ” ìˆ«ìž
 	
 	RwUInt8				m_byFlag;
 	RwUInt8				m_byHoriDirection;
@@ -167,10 +167,10 @@ protected:
 	CPos				m_ParentPos;
 	RwReal				m_fRate;
 
-	RwUInt8				m_byCurCipher;					///< ÇöÀç ÀÚ¸´¼ö
-	RwUInt8				m_byCipher[dMAX_CHPHER];		///< °¢ ÀÚ¸´¼öº° ¼ýÀÚ
-	RwUInt8				m_byRemainCipher;				///< À¯ÁöµÇ¾ßÇÒ ÃÖ¼Ò ÀÚ¸´¼ö
-	RwInt64				m_i64Number;					///< ÀÔ·Â¹ÞÀº ¼ýÀÚ
+	RwUInt8				m_byCurCipher;					///< í˜„ìž¬ ìžë¦¿ìˆ˜
+	RwUInt8				m_byCipher[dMAX_CHPHER];		///< ê° ìžë¦¿ìˆ˜ë³„ ìˆ«ìž
+	RwUInt8				m_byRemainCipher;				///< ìœ ì§€ë˜ì•¼í•  ìµœì†Œ ìžë¦¿ìˆ˜
+	RwInt64				m_i64Number;					///< ìž…ë ¥ë°›ì€ ìˆ«ìž
 
 	sEffectRate			m_EffectRate;
 };
@@ -249,7 +249,7 @@ inline RwInt32 CNumberGui::GetHeight()
 
 inline CRectangle CNumberGui::GetPosition()
 {
-	// ºÎ¸ð·ÎºÎÅÍÀÇ ±âÁØ ÁÂÇ¥¿Í ³ÐÀÌ, ³ôÀÌ¸¸À» Âü°íÇÏÀÚ
+	// ë¶€ëª¨ë¡œë¶€í„°ì˜ ê¸°ì¤€ ì¢Œí‘œì™€ ë„“ì´, ë†’ì´ë§Œì„ ì°¸ê³ í•˜ìž
 	CRectangle rtRect;
 
 	rtRect.left		= m_iX_fromParent;
@@ -278,7 +278,7 @@ inline VOID CNumberGui::UnsetAll()
 
 inline RwBool CNumberGui::PtInRect(RwInt32 iPosX, RwInt32 iPosY)
 {
-	// È­¸é ÁÂÇ¥°¡ ¾Æ´Ñ ºÎ¸ð·ÎºÎÅÍÀÇ ÁÂÇ¥¸¦ ÀÔ·ÂÇØ¾ß ÇÑ´Ù
+	// í™”ë©´ ì¢Œí‘œê°€ ì•„ë‹Œ ë¶€ëª¨ë¡œë¶€í„°ì˜ ì¢Œí‘œë¥¼ ìž…ë ¥í•´ì•¼ í•œë‹¤
 	CRectangle rtRect = GetRect();
 
 	return rtRect.PtInRect(iPosX, iPosY);

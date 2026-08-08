@@ -2,7 +2,7 @@
 #include "afxcmn.h"
 
 
-// CEffectListDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CEffectListDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 #include "EffectListCtrl.h"
 #include "afxwin.h"
@@ -12,7 +12,7 @@ class CEffectListDialog : public CDialog
 	DECLARE_DYNCREATE(CEffectListDialog)
 
 public:
-	CEffectListDialog(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CEffectListDialog(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CEffectListDialog();
 
 public:
@@ -25,11 +25,11 @@ public:
     RwBool  SaveXMLTree(RwChar* szFileName);
 
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_EFFECT_LIST };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 
@@ -41,5 +41,5 @@ public:
     afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 
 protected:
-    CStatic m_EffectFrame;                              /// ³»ºÎÀÇ ¸®½ºÆ® ÄÁÆ®·Ñ À§Ä¡¸¦ Àâ±âÀ§ÇÑ ´õ¹Ì ÄÁÆ®·Ñ
+    CStatic m_EffectFrame;                              /// ë‚´ë¶€ì˜ ë¦¬ìŠ¤íŠ¸ ì»¨íŠ¸ë¡¤ ìœ„ì¹˜ë¥¼ ì¡ê¸°ìœ„í•œ ë”ë¯¸ ì»¨íŠ¸ë¡¤
 };

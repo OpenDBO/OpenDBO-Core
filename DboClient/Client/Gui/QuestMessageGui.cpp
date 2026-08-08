@@ -31,7 +31,7 @@
 
 
 #define QUEST_MESSAGE_FONT_INTERVAL		(0.025f)
-#define QUEST_MESSAGE_FONT_PRESENT_NUM	(1)			// Ãß°¡ -by Kell(09. 07. 15)
+#define QUEST_MESSAGE_FONT_PRESENT_NUM	(1)			// ì¶”ê°€ -by Kell(09. 07. 15)
 #define QUEST_MESSAGE_BTN_PUSLE			(1.0f)
 
 //RwBool stMESSAGEBUTTONITEM::m_bSyncState = TRUE;
@@ -107,7 +107,7 @@ RwBool CQuestMessageGui::Create( CQuestGui* pQuestGui )
 	m_slotHtmlPageDone = m_phbxMessage->SigPageDone().Connect( this, &CQuestMessageGui::OnHtmlPageDone );
 	m_slotCaptureMouseDown = GetNtlGuiManager()->GetGuiManager()->SigCaptureMouseDown().Connect( this, &CQuestMessageGui::OnCaptureMouseDown );
 
-	// PresentNum ÀÇ °¹¼ö¸¦ DefineÀ¸·Î ¼öÁ¤ÇÕ´Ï´Ù. -by Kell(09. 07. 15)
+	// PresentNum ì˜ ê°¯ìˆ˜ë¥¼ Defineìœ¼ë¡œ ìˆ˜ì •í•©ë‹ˆë‹¤. -by Kell(09. 07. 15)
 	m_phbxMessage->SetIntervalTextEnable( QUEST_MESSAGE_FONT_INTERVAL );
 	m_phbxMessage->SetPresentNum( QUEST_MESSAGE_FONT_PRESENT_NUM );
 	m_phbxMessage->SetLineSpace( 11 );
@@ -194,7 +194,7 @@ VOID CQuestMessageGui::HandleEvents( RWS::CMsg& msg )
 	{
 		SNtlEventQuestDirect_Forward* pData = reinterpret_cast<SNtlEventQuestDirect_Forward*>( msg.pData );
 
-		// Áßº¹ÇØ¼­ ProposalÀÌ ³¯¶ó¿À¸é »õ·Îµé¾î¿Â ³à¼®Àº ¹«½Ã. ÀÀ´äÀº Proposal¿¡¼­ º¸³½´Ù. 
+		// ì¤‘ë³µí•´ì„œ Proposalì´ ë‚ ë¼ì˜¤ë©´ ìƒˆë¡œë“¤ì–´ì˜¨ ë…€ì„ì€ ë¬´ì‹œ. ì‘ë‹µì€ Proposalì—ì„œ ë³´ë‚¸ë‹¤. 
 		if( IsShow() )
 			return;
 		
@@ -231,11 +231,11 @@ VOID CQuestMessageGui::HandleEvents( RWS::CMsg& msg )
 			m_nReadPage = -1;
 			m_eType = QUEST_MESSAGE_QUEST_TEXT_TABLE;
 
-			// Visit Äù½ºÆ® °ü·Ã µ¥ÀÌÅÍ ÃÊ±âÈ­
+			// Visit í€˜ìŠ¤íŠ¸ ê´€ë ¨ ë°ì´í„° ì´ˆê¸°í™”
 			m_uiEventGenType = (RwUInt32)eEVENT_GEN_TYPE_INVALID;
 			m_uiID = 0;
 
-			// ¿­·Á ÀÖ´Â °æ¿ìµµ »ý°¢ÇØ¾ßÇÔ. À§¿¡¼­ ¿­·ÁÀÖÁö ¾ÊÀº °æ¿ì¿¡¸¸ µé¾î¿À¹Ç·Î ÀÌ°Í¸¸ °Ë»ç
+			// ì—´ë ¤ ìžˆëŠ” ê²½ìš°ë„ ìƒê°í•´ì•¼í•¨. ìœ„ì—ì„œ ì—´ë ¤ìžˆì§€ ì•Šì€ ê²½ìš°ì—ë§Œ ë“¤ì–´ì˜¤ë¯€ë¡œ ì´ê²ƒë§Œ ê²€ì‚¬
 			if( !GetDialogManager()->OpenDialog( DIALOG_QUESTMESSAGE, GetNtlSLGlobal()->GetSobAvatar()->GetSerialID() ) )
 				m_pQuestGui->GetQuestProposalGui()->SendEchoEvent( false );
 		}		
@@ -248,7 +248,7 @@ VOID CQuestMessageGui::HandleEvents( RWS::CMsg& msg )
 		SDboEventQuestMessage* pData = reinterpret_cast<SDboEventQuestMessage*>( msg.pData );
 		CQuestTextDataTable* pQuestTextTable = API_GetTableContainer()->GetQuestTextDataTable();
 
-		// Á¦¸ñ
+		// ì œëª©
 		CNtlTMQ* pTMQ = GetNtlSLGlobal()->GetSobAvatar()->GetTMQ();
 		sTIMEQUEST_TBLDAT* pTIMEQUEST_TBLDAT = pTMQ->GetTMQTable();
 		sTIMEQUEST_DATASET* pTIMEQUEST_DATASET = &pTIMEQUEST_TBLDAT->sTimeQuestDataset[pTMQ->GetDifficult()];
@@ -287,11 +287,11 @@ VOID CQuestMessageGui::HandleEvents( RWS::CMsg& msg )
 		m_nReadPage = -1;
 		m_eType = QUEST_MESSAGE_TMQ_SCRIPT;
 
-		// Visit Äù½ºÆ® °ü·Ã µ¥ÀÌÅÍ ÃÊ±âÈ­
+		// Visit í€˜ìŠ¤íŠ¸ ê´€ë ¨ ë°ì´í„° ì´ˆê¸°í™”
 		m_uiEventGenType = (RwUInt32)eEVENT_GEN_TYPE_INVALID;
 		m_uiID = 0;
 
-		// DirectForward´Â QuestGui¿¡¼­ ´ÙÀÌ¾ó·Î±×¸¦ ¿ÀÇÂÇÏÁö¸¸ ¿©±â¼± Á÷Á¢ÇØ¾ßÇÔ.
+		// DirectForwardëŠ” QuestGuiì—ì„œ ë‹¤ì´ì–¼ë¡œê·¸ë¥¼ ì˜¤í”ˆí•˜ì§€ë§Œ ì—¬ê¸°ì„  ì§ì ‘í•´ì•¼í•¨.
 		GetDialogManager()->OpenDialog( DIALOG_QUESTMESSAGE );	
 	}
 	else if( msg.Id == g_EventQuestMessage2 )
@@ -339,7 +339,7 @@ VOID CQuestMessageGui::HandleEvents( RWS::CMsg& msg )
 		m_uiEventGenType	= pData->uiEventGenType;
 		m_uiID				= pData->uiID;
 
-		// DirectForward´Â QuestGui¿¡¼­ ´ÙÀÌ¾ó·Î±×¸¦ ¿ÀÇÂÇÏÁö¸¸ ¿©±â¼± Á÷Á¢ÇØ¾ßÇÔ.
+		// DirectForwardëŠ” QuestGuiì—ì„œ ë‹¤ì´ì–¼ë¡œê·¸ë¥¼ ì˜¤í”ˆí•˜ì§€ë§Œ ì—¬ê¸°ì„  ì§ì ‘í•´ì•¼í•¨.
 		GetDialogManager()->OpenDialog( DIALOG_QUESTMESSAGE );
 	}
 	else if( msg.Id == g_EventChangeWorldConceptState )
@@ -396,7 +396,7 @@ VOID CQuestMessageGui::OnPaint(VOID)
 
 VOID CQuestMessageGui::OnClickNextButton( gui::CComponent* pComponent )
 {
-	// ¸¶Áö¸· ÆäÀÌÁö
+	// ë§ˆì§€ë§‰ íŽ˜ì´ì§€
 	if( m_phbxMessage->GetCurrentPage() + 1 >= m_phbxMessage->GetIntervalPageNums() )
 	{
 		LastPageProc();

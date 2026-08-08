@@ -142,7 +142,7 @@ void CNtlPLCharMeshRenderPipeFarAway::Execute(void* _pParam)
 		RwRenderStateSet(rwRENDERSTATESRCBLEND,(void *)rwBLENDONE);
 		RwRenderStateSet(rwRENDERSTATEDESTBLEND,(void*)rwBLENDONE);
 
-		RwD3D9SetTextureStageState(0, D3DTSS_COLOROP,   D3DTOP_MODULATE2X);
+		RwD3D9SetTextureStageState(0, D3DTSS_COLOROP,   D3DTOP_MODULATE);
 		RwD3D9SetTextureStageState(0, D3DTSS_COLORARG1, D3DTA_TFACTOR);
 		RwD3D9SetTextureStageState(0, D3DTSS_COLORARG2, D3DTA_TEXTURE);
 		RwD3D9SetTextureStageState(0, D3DTSS_ALPHAOP,   D3DTOP_SELECTARG1);

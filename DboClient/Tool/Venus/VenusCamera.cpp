@@ -2,7 +2,7 @@
 //	File		:	VenusFramework.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -39,7 +39,7 @@ CVenusCamera::CVenusCamera(void)
     
     SetPostEffectFilters(POST_EFFECT_FILTER_NONE);
 
-    // °ÔÀÓÀÌ 60.0fÀÌ±â¶§¹®¿¡ °ÔÀÓ°ú ¶È°°ÀÌ ¸ÂÃá´Ù.
+    // ê²Œì„ì´ 60.0fì´ê¸°ë•Œë¬¸ì— ê²Œì„ê³¼ ë˜‘ê°™ì´ ë§ì¶˜ë‹¤.
     SetFov(60.0f);
 }
 
@@ -476,7 +476,7 @@ void CVenusCamera::SetStaticView( EVenusCameraStaticView eStaticView )
     *RwMatrixGetPos(pmatCamera)   = vPos;
     RwMatrixUpdate(pmatCamera);
 
-    // FakeHDR Ä«¸Ş¶óµµ ¾÷µ¥ÀÌÆ® ÇØÁà¾ß ÇÑ´Ù.
+    // FakeHDR ì¹´ë©”ë¼ë„ ì—…ë°ì´íŠ¸ í•´ì¤˜ì•¼ í•œë‹¤.
     RwFrame* pFrame = RwCameraGetFrame(m_pFakeHDRCamera);
     RwMatrix* pmatHDRCamera = RwFrameGetMatrix(pFrame);
     *pmatHDRCamera = *pmatCamera;

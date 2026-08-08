@@ -1,4 +1,4 @@
-// MaterialPropDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// MaterialPropDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -12,7 +12,7 @@
 
 #include "MaterialPropDlg.h"
 
-// MaterialPropDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// MaterialPropDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CMaterialPropDlg, CDialog)
 
@@ -44,7 +44,7 @@ BEGIN_MESSAGE_MAP(CMaterialPropDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// MaterialPropDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// MaterialPropDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CMaterialPropDlg::OnInitDialog()
 {
@@ -55,7 +55,7 @@ BOOL CMaterialPropDlg::OnInitDialog()
 	UpdateData(FALSE);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 BOOL CMaterialPropDlg::PreTranslateMessage(MSG* pMsg)
@@ -85,7 +85,7 @@ BOOL CMaterialPropDlg::PreTranslateMessage(MSG* pMsg)
 
 LRESULT CMaterialPropDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	return CDialog::WindowProc(message, wParam, lParam);
 }
@@ -97,7 +97,7 @@ void CMaterialPropDlg::OnBnClickedOk()
 
 void CMaterialPropDlg::OnBnClickedExport()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	WorkProc(eWORK_EXPORT);
 }
 void CMaterialPropDlg::OnBnClickedDelete()

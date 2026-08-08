@@ -1,11 +1,11 @@
 //-----------------------------------------------------------------------------
 // Name: class CDevIL
-// Desc: DevIL SDK¸¦ ÀÌ¿ëÇÏ¿© ÀÌ¹ÌÁö¸¦ ·ÎµåÇÏ´Â Å¬·¡½º.
+// Desc: DevIL SDKë¥¼ ì´ìš©í•˜ì—¬ ì´ë¯¸ì§€ë¥¼ ë¡œë“œí•˜ëŠ” í´ë˜ìŠ¤.
 //
 //			 
 // 2006.01.16 Peessi@hitel.net  
 //
-// TODO: ÇÏ³ªÀÇ ÀÌ¹ÌÁö¸¸ ·ÎµåÇÏ°Ô µÇ¾î ÀÖ´Ù. 
+// TODO: í•˜ë‚˜ì˜ ì´ë¯¸ì§€ë§Œ ë¡œë“œí•˜ê²Œ ë˜ì–´ ìˆë‹¤. 
 //-----------------------------------------------------------------------------
 
 #ifndef	__CDEVIL_H__
@@ -17,7 +17,7 @@
 
 #include <windows.h>
 
-// TODO: ÆÄÀÏÀ§Ä¡¸¦ ¸ÂÃçÁØ´Ù.
+// TODO: íŒŒì¼ìœ„ì¹˜ë¥¼ ë§ì¶°ì¤€ë‹¤.
 #include "DevIL/include/il/il.h"
 #include "DevIL/include/il/ilu.h"
 #include "DevIL/include/il/ilut.h"
@@ -26,7 +26,7 @@ class CDevIL
 {
 protected:
 
-	ILuint		m_imageIdx;			// ÀÌ¹ÌÁö ÀÎµ¦½º. 0ÀÌ ¾Æ´Ï¸é ·ÎµåµÇ¾î ÀÖ´Ù.
+	ILuint		m_imageIdx;			// ì´ë¯¸ì§€ ì¸ë±ìŠ¤. 0ì´ ì•„ë‹ˆë©´ ë¡œë“œë˜ì–´ ìˆë‹¤.
 	
 	// Infomation Variable
 	INT			m_nWidth;  

@@ -376,7 +376,7 @@ DEFINITION_MEMORY_POOL(CNtlBeCharData)
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : actor
-//  \param2 : º¸Á¤ÇÒ À§Ä¡
+//  \param2 : ë³´ì •í•  ìœ„ì¹˜
 ////////////////////////////////////////////////////////////////////////////
 
 void Behavior_AdjustPositionJumping(CNtlSobActor *pActor, const RwV3d *pTarLoc)

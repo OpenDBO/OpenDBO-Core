@@ -1,4 +1,4 @@
-// SaberView2.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// SaberView2.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "SaberView2.h"
 
 
-// CSaberView2 ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CSaberView2 ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CSaberView2, CDialog)
 
@@ -30,4 +30,4 @@ BEGIN_MESSAGE_MAP(CSaberView2, CDialog)
 END_MESSAGE_MAP()
 
 
-// CSaberView2 ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CSaberView2 ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

@@ -2,7 +2,7 @@
 //	File		:	CNtlLighting.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -132,12 +132,12 @@ void CNtlLightingController::EnterState(RwInt32 nState)
 	}
 	else if(nState == LIGHTNING_ACTIVE)
 	{
-		// ¹ø°³ »ı¼º.
+		// ë²ˆê°œ ìƒì„±.
 		m_fCurrTime = 0.0f;
 
 		RwReal fDelayTime;
 		CNtlLighting *pLightning;
-		// Ã¹¹øÂ° ¹ø°³.
+		// ì²«ë²ˆì§¸ ë²ˆê°œ.
 		fDelayTime = 1.f;
 
 		RwV3d vTemp = {0, 0, 0};

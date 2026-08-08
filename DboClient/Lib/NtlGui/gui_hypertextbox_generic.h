@@ -32,9 +32,9 @@ public:
 	COLORREF		m_dwTextColor;			// default text color
 	COLORREF	m_dwTextBkColor;		// default text background color
 	int				m_nBkMode;					// default text backgrond mode;
-	int				m_nRow,m_nColumn;		// ½ÃÀÛÇÒ row,colum ÁÂÇ¥.
-	int				m_nInterval;				// ¶óÀÎ °£°İ.
-	int				m_nBlank;						// ÇÑ¶óÀÎ¿¡ blank·Î Ã¤¿öÁú ¼ö ÀÖ´Â blank °¹¼ö.
+	int				m_nRow,m_nColumn;		// ì‹œì‘í•  row,colum ì¢Œí‘œ.
+	int				m_nInterval;				// ë¼ì¸ ê°„ê²©.
+	int				m_nBlank;						// í•œë¼ì¸ì— blankë¡œ ì±„ì›Œì§ˆ ìˆ˜ ìˆëŠ” blank ê°¯ìˆ˜.
 
 	VOID Clear(VOID);
 	//-------------------------------------------------------------------------

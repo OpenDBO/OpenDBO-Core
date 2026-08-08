@@ -1,12 +1,12 @@
 /******************************************************************************
 * File			: Lobby.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2009. 8. 6
 * Abstract		: 
 * Update		: 
 *****************************************************************************
-* Desc			: Ω«¡¶ ∫ª ∞‘¿”¿¸±Ó¡ˆ¿« ∑Œ∫Ò µ•¿Ã≈Õ∏¶ ∞¸∏Æ«—¥Ÿ
+* Desc			: Ïã§Ï†ú Î≥∏ Í≤åÏûÑÏ†ÑÍπåÏßÄÏùò Î°úÎπÑ Îç∞Ïù¥ÌÑ∞Î•º Í¥ÄÎ¶¨ÌïúÎã§
 *****************************************************************************/
 
 #pragma once
@@ -25,9 +25,9 @@ typedef BYTE		SERVER_HANDLE;
 
 struct sLOBBY_CHARACTER
 {
-	sPC_SUMMARY					tSummary;				///< ƒ≥∏Ø≈Õ ¡§∫∏
-	RwBool						bReservatedDelete;		///< ªË¡¶ ¥Î±‚ ø©∫Œ
-	RwReal						fTime_util_Deletion;	///< ªË¡¶±Ó¡ˆ ≥≤¿∫ Ω√∞£
+	sPC_SUMMARY					tSummary;				///< Ï∫êÎ¶≠ÌÑ∞ Ï†ïÎ≥¥
+	RwBool						bReservatedDelete;		///< ÏÇ≠Ï†ú ÎåÄÍ∏∞ Ïó¨Î∂Ä
+	RwReal						fTime_util_Deletion;	///< ÏÇ≠Ï†úÍπåÏßÄ ÎÇ®ÏùÄ ÏãúÍ∞Ñ
 
 	sLOBBY_CHARACTER()
 	:bReservatedDelete(FALSE)
@@ -48,7 +48,7 @@ public:
 	VOID				Destroy();	
 
 
-	// º≠πˆ
+	// ÏÑúÎ≤Ñ
 	VOID				SetServerInfo(sDBO_GAME_SERVER_FARM_INFO* pServerInfo);
 	VOID				RefreshServerInfo(eDBO_SERVER_STATUS eStatus, RwUInt32 uiUseRate);
 
@@ -57,7 +57,7 @@ public:
 	eDBO_SERVER_STATUS	GetServerStatus();
 	RwUInt32			GetServerUseRate();
 
-	// √§≥Œ
+	// Ï±ÑÎÑê
 	VOID				SetChannelInfo(RwUInt8 byCount, sDBO_GAME_SERVER_CHANNEL_INFO* pChannelInfo);	
 	VOID				SetSelectedChannelIndex(RwUInt8 byIndex);
 
@@ -65,12 +65,12 @@ public:
 	RwUInt8				GetChannelCount();
 	sDBO_GAME_SERVER_CHANNEL_INFO*	GetChannel(RwUInt8 byIndex);
 
-	// ∫∏¿Ø«— ƒ≥∏Ø≈Õ
+	// Î≥¥Ïú†Ìïú Ï∫êÎ¶≠ÌÑ∞
 	VOID				SetCharacterInfo(RwUInt8 byCount, sPC_SUMMARY* pPC_SUMMARY);
 	VOID				SetDeletingCharcterInfo(sDELETE_WAIT_CHARACTER_INFO* pDELETE_WAIT_CHARACTER_INFO);
 
 	RwBool				AddCharacter(sPC_SUMMARY* pSummary);
-	RwUInt8				RemoveCharacter(CHARACTERID charID);		///< ¡ˆøÓ ƒ≥∏Ø≈Õ¿« ΩΩ∑‘ ¿Œµ¶Ω∫∏¶ π›»Ø, ¡ˆøÏ¡ˆ æ æ“¥Ÿ∏È INVALID_BYTE π›»Ø
+	RwUInt8				RemoveCharacter(CHARACTERID charID);		///< ÏßÄÏö¥ Ï∫êÎ¶≠ÌÑ∞Ïùò Ïä¨Î°Ø Ïù∏Îç±Ïä§Î•º Î∞òÌôò, ÏßÄÏö∞ÏßÄ ÏïäÏïòÎã§Î©¥ INVALID_BYTE Î∞òÌôò
 
 	VOID				SetSelectedCharacterIndex(RwUInt8 byIndex);
 	VOID				SetLoadedLastCharacter(RwBool bLoaded);

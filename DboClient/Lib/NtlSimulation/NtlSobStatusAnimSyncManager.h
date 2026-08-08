@@ -2,9 +2,9 @@
 *
 * File			: NtlSobStatusSyncManager.h
 * Author		: HyungSuk, Jang
-* Copyright	: (ÁÖ)NTL
+* Copyright	: (ì£¼)NTL
 * Date			: 2008. 11. 08	
-* Abstract		: Simulation object LP/EP Animation Hit Event µ¿±â °ü¸®ÀÚ.
+* Abstract		: Simulation object LP/EP Animation Hit Event ë™ê¸° ê´€ë¦¬ì.
 *****************************************************************************
 * Desc         : 
 *

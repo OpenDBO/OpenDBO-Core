@@ -30,7 +30,7 @@ RwBool CNtlSobEventObject::Create(VOID)
 {
 	NTL_FUNCTION(__FUNCTION__);
 
-	// proxy ¼³Á¤
+	// proxy ì„¤ì •
 	m_pSobProxy = NTL_NEW CNtlSobEventObjectProxy();
 	m_pSobProxy->Create(0);
 	m_pSobProxy->SetSobObj(this);
@@ -40,7 +40,7 @@ RwBool CNtlSobEventObject::Create(VOID)
 		NTL_RETURN(FALSE);
 	}
 
-	// class name ¼³Á¤.
+	// class name ì„¤ì •.
 	SetClassName(SLCLASS_NAME_EVENT_OBJECT);
 
 	NTL_RETURN(TRUE);
@@ -72,7 +72,7 @@ void CNtlSobEventObject::HandleEvents( RWS::CMsg& pMsg )
 		// proxy setting
 		GetSobProxy()->HandleEvents(pMsg);
 
-		// ÁÂÇ¥¿Í ¹æÇâ ¼¼ÆÃ.
+		// ì¢Œí‘œì™€ ë°©í–¥ ì„¸íŒ….
 		//RwV3dAssignMacro(&m_vPos, &pSobCreate->vLoc);		
 	}
 

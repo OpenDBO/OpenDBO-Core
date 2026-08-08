@@ -1,12 +1,12 @@
 /******************************************************************************
 * File			: TMQBoardGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 7. 3
 * Update		: 1/24/2019
 * Abstract		: 
 *****************************************************************************
-* Desc			: ÁøÇà ¿¹Á¤ÀÎ Å¸ÀÓ¸Ó½Å Äù½ºÆ®ÀÇ ¸®½ºÆ®¸¦ º¸¿©ÁØ´Ù
+* Desc			: ì§„í–‰ ì˜ˆì •ì¸ íƒ€ì„ë¨¸ì‹  í€˜ìŠ¤íŠ¸ì˜ ë¦¬ìŠ¤íŠ¸ë¥¼ ë³´ì—¬ì¤€ë‹¤
 *****************************************************************************/
 #pragma once
 
@@ -42,7 +42,7 @@ public:
 
 	SERIAL_HANDLE	GetNPCHandle();
 
-	int			SwitchDialog(bool bOpen);			///< DialogManager¿¡¼­ÀÇ Open/Close
+	int			SwitchDialog(bool bOpen);			///< DialogManagerì—ì„œì˜ Open/Close
 
 protected:
 

@@ -1,7 +1,7 @@
 /******************************************************************************
 * File			: OptionChattingTab.h
 * Author		: Hae sung, Cho
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2008. 9. 11 
 * Abstract		: 
 *****************************************************************************
@@ -15,24 +15,24 @@
 
 #include "GuiLineTree.h"
 
-// Option Chatting List¿« Size
+// Option Chatting ListÏùò Size
 #define dOPTIONCHATTING_LIST_X			0
 #define dOPTIONCHATTING_LIST_Y			0
 #define dOPTIONCHATTING_LIST_WIDTH		288
 #define dOPTIONCHATTING_LIST_HEIGHT		304
 
-// OptionChattingList ScrollBar¿« Size
+// OptionChattingList ScrollBarÏùò Size
 #define dOPTIONCHATTING_LIST_SCROLL_WIDTH			12
 #define dOPTIONCHATTING_LIST_SCROLL_HEIGHT			19
 #define dOPTIONCHATTING_LIST_SLIDER_WIDTH			12
 #define dOPTIONCHATTING_LIST_SLIDER_HEIGHT			39
 
-// CGuiLineTree∏¶ ±∏º∫«œ¥¬ ItemµÈ¿« Size
+// CGuiLineTreeÎ•º Íµ¨ÏÑ±ÌïòÎäî ItemÎì§Ïùò Size
 #define dOPTIONCHATTING_LINE_HEIGHT				20
 #define dOPTIONCHATTING_LINE_MARGIN				4	
 #define dOPTIONCHATTING_CHILD_MARGIN_WIDTH		20
 
-// √§∆√√¢¿« ø…º«¿ª ±◊∑Ï¡˛¥¬ ID
+// Ï±ÑÌåÖÏ∞ΩÏùò ÏòµÏÖòÏùÑ Í∑∏Î£πÏßìÎäî ID
 #define dOPTIONCHATTING_CATEGORY_COMMON			-2
 #define dOPTIONCHATTING_CATEGORY_BASIC			-3
 #define dOPTIONCHATTING_CATEGORY_ADDED			-4
@@ -91,11 +91,11 @@ public:
 	COptionChattingCategoryNode(CGuiLineTree* pMgr, std::wstring strTitle, RwInt32 nID);
 	virtual ~COptionChattingCategoryNode();
 
-	virtual void ShowProc();				///< CGuiLineTreeNodeø°º≠¿« Override
-	virtual void HideProc();				///< CGuiLineTreeNodeø°º≠¿« Override
+	virtual void ShowProc();				///< CGuiLineTreeNodeÏóêÏÑúÏùò Override
+	virtual void HideProc();				///< CGuiLineTreeNodeÏóêÏÑúÏùò Override
 
-	void OnClickBtnExpand(gui::CComponent* pComponent);		///< + πˆ∆∞¿ª ≈¨∏Ø«“∂ß Ω««‡µ«¥¬ «‘ºˆ
-	void OnClickBtnReduce(gui::CComponent* pComponent);		///< - πˆ∆∞¿ª ≈¨∏Ø«“∂ß Ω««‡µ«¥¬ «‘ºˆ
+	void OnClickBtnExpand(gui::CComponent* pComponent);		///< + Î≤ÑÌäºÏùÑ ÌÅ¥Î¶≠Ìï†Îïå Ïã§ÌñâÎêòÎäî Ìï®Ïàò
+	void OnClickBtnReduce(gui::CComponent* pComponent);		///< - Î≤ÑÌäºÏùÑ ÌÅ¥Î¶≠Ìï†Îïå Ïã§ÌñâÎêòÎäî Ìï®Ïàò
 
 protected:
 	gui::CButton* m_pBtnExpand;				// + Button
@@ -107,7 +107,7 @@ protected:
 
 /**
 * \ingroup client
-* √º≈©π⁄Ω∫∏¶ ªÁøÎ«œ¥¬ ø…º«
+* Ï≤¥ÌÅ¨Î∞ïÏä§Î•º ÏÇ¨Ïö©ÌïòÎäî ÏòµÏÖò
 */
 class CCheckBoxNode : public CGuiLineTreeNode
 {
@@ -132,7 +132,7 @@ protected:
 
 /**
 * \ingroup client
-* ΩΩ∂Û¿Ã¥ı∏¶ ªÁøÎ«œ¥¬ ø…º«
+* Ïä¨ÎùºÏù¥ÎçîÎ•º ÏÇ¨Ïö©ÌïòÎäî ÏòµÏÖò
 */
 class CSliderNode : public CGuiLineTreeNode
 {
@@ -167,9 +167,9 @@ public:
 
 	RwBool	Create(CRectangle& rect, gui::CComponent* pParent, RwInt32 nLineHeight, RwInt32 nLineMargin, RwInt32 nChildXMargin, RwInt32 nScrollBarWidth, COptionChatting* pOptionChatting = NULL);
 
-	void CreateTree();									///< ∆Æ∏Æ∏¶ ±∏√‡«—¥Ÿ.
+	void CreateTree();									///< Ìä∏Î¶¨Î•º Íµ¨Ï∂ïÌïúÎã§.
 
-	///< Ω∫≈©∑— πŸ∏¶ »Ÿ∏∂øÏΩ∫ ¡∂¿€¿ª «œ±‚ ¿ß«ÿ
+	///< Ïä§ÌÅ¨Î°§ Î∞îÎ•º Ìú†ÎßàÏö∞Ïä§ Ï°∞ÏûëÏùÑ ÌïòÍ∏∞ ÏúÑÌï¥
 	void OnCaptureWheelMove( RwInt32 nFlag, RwInt16 sDelta, CPos& pos );
 
 	
@@ -181,8 +181,8 @@ protected:
 
 /**
 * \ingroup client
-* COptionBase ∏¶ ªÛº” πﬁæ∆º≠ ø…º« ¿©µµøÏ¿« ≈« ¡ﬂ¿« «œ≥™¿Œ √§∆√√¢ ∞¸∑√ ≈«¿ª Ç∞§∑
-* CGuiLineTree∏¶ ªÁøÎ«œø© √§∆√√¢∞˙ ∞¸∑√µ» ∞¢¡æ ø…º«¿ª º≥¡§«“ ºˆ ¿÷∞‘ «œ¥¬ ≈¨∑°Ω∫
+* COptionBase Î•º ÏÉÅÏÜç Î∞õÏïÑÏÑú ÏòµÏÖò ÏúàÎèÑÏö∞Ïùò ÌÉ≠ Ï§ëÏùò ÌïòÎÇòÏù∏ Ï±ÑÌåÖÏ∞Ω Í¥ÄÎ†® ÌÉ≠ÏùÑ Í∂õ„Öá
+* CGuiLineTreeÎ•º ÏÇ¨Ïö©ÌïòÏó¨ Ï±ÑÌåÖÏ∞ΩÍ≥º Í¥ÄÎ†®Îêú Í∞ÅÏ¢Ö ÏòµÏÖòÏùÑ ÏÑ§Ï†ïÌï† Ïàò ÏûàÍ≤å ÌïòÎäî ÌÅ¥ÎûòÏä§
 */
 class COptionChatting : public COptionBase
 {
@@ -202,14 +202,14 @@ public:
 	virtual void		OnCancel();
 	virtual void		OnHandleEvents(RWS::CMsg &pMsg);
 
-	// ±∏«ˆ
+	// Íµ¨ÌòÑ
 	VOID				LoadSerializer();
 	VOID				SaveSerializer();
 	VOID				DefaultOption();
 
 protected:
-	COptionChattingList* m_pOptionChattingList;		///< ∂Û¿Œ∆Æ∏Æ¿« ∏≈¥œ¿˙
-	gui::CDialog*		m_pDlgChattingList;			///< ∂Û¿Œ∆Æ∏Æ¿« ∫Œ∏∞° µ… Dialog
+	COptionChattingList* m_pOptionChattingList;		///< ÎùºÏù∏Ìä∏Î¶¨Ïùò Îß§ÎãàÏ†Ä
+	gui::CDialog*		m_pDlgChattingList;			///< ÎùºÏù∏Ìä∏Î¶¨Ïùò Î∂ÄÎ™®Í∞Ä Îê† Dialog
 };
 
 #endif

@@ -1,4 +1,4 @@
-// AttrRenameDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// AttrRenameDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "AttrRenameDlg.h"
 
 
-// CAttrRenameDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttrRenameDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CAttrRenameDlg, CDialog)
 
@@ -38,15 +38,15 @@ void CAttrRenameDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CAttrRenameDlg, CDialog)
 END_MESSAGE_MAP()
 
-// CAttrRenameDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttrRenameDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CAttrRenameDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	SetWindowPos( &wndTop, m_rect.left, m_rect.top, m_rect.Width(), m_rect.Height(), 0 );
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }

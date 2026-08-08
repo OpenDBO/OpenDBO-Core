@@ -1,9 +1,9 @@
 /*****************************************************************************
 * File			: DboPackethandler_GUPrivateShop.cpp
 * Author		: Hong sungbock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 1. 16
-* Abstract		: °³ÀÎ»óÁ¡ °ü·Ã ÆĞÅ¶ ÇÚµé
+* Abstract		: ê°œì¸ìƒì  ê´€ë ¨ íŒ¨í‚· í•¸ë“¤
 *****************************************************************************
 * Desc         : 
 *****************************************************************************/
@@ -58,7 +58,7 @@ void PacketHandler_GUPrivateShop_Create_Res(void *pPacket)
 }
 
 /**
-* \brief ÁÖº¯¿¡ °³ÀÎ»óÁ¡ÀÌ ¿­·ÈÀ» °æ¿ì ºê·Îµå Ä³½ºÆÃÀ» ¹Ş´Â´Ù.
+* \brief ì£¼ë³€ì— ê°œì¸ìƒì ì´ ì—´ë ¸ì„ ê²½ìš° ë¸Œë¡œë“œ ìºìŠ¤íŒ…ì„ ë°›ëŠ”ë‹¤.
 */
 void PacketHandler_GUPrivateShop_Create_Nfy(void *pPacket)
 {

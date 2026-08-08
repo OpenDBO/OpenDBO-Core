@@ -98,7 +98,7 @@ void CPropertiesWnd::LoadTableData(int nTableType, sTBLDAT* pTbldat)
 					}
 				}
 			}
-			ADD_SUB_ITEM("Name", pTableData->Name, wszNameDesc); // Tooltip com tradução
+			ADD_SUB_ITEM("Name", pTableData->Name, wszNameDesc); // Tooltip com traduè±«o
 			ADD_SUB_ITEM("wszNameText", pTableData->wszNameText, "Internal Item Name (Max 32 chars)");
             ADD_SUB_ITEM("szIcon_Name",					pTableData->szIcon_Name,				 "Icon Name");
 			CString* pStr = new CString(pTableData->szIcon_Name);// Create a CString to hold the icon name

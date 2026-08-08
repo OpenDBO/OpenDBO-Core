@@ -1,7 +1,7 @@
 #pragma once
 
 
-// CActionListDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CActionListDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 #include "ActionListCtrl.h"
 #include "afxwin.h"
@@ -11,7 +11,7 @@ class CActionListDialog : public CDialog
 	DECLARE_DYNCREATE(CActionListDialog)
 
 public:
-	CActionListDialog(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CActionListDialog(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CActionListDialog();
 
 	void	ResetResourceSystem();
@@ -20,11 +20,11 @@ public:
 	BOOL					m_Initialized;
 	CActionListCtrl			m_List;
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_ACTION_LIST };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

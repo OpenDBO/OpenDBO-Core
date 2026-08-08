@@ -3,7 +3,7 @@
 #include "afxwin.h"
 #include "NtlMtXml.h"
 
-// CPaletteOrnament ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteOrnament ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 
 #define dNTL_ORNAMENT_OBJ_NUM 13
@@ -17,17 +17,17 @@ class CPaletteOrnament : public CDialog
 	DECLARE_DYNAMIC(CPaletteOrnament)
 
 public:
-	CPaletteOrnament(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CPaletteOrnament(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CPaletteOrnament();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_ORNAMENT };
 
 public:
 	void InitializeWorldData();
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 
 	DECLARE_MESSAGE_MAP()

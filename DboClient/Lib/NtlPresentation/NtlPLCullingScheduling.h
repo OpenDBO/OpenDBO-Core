@@ -2,7 +2,7 @@
  *
  * File			: NtlPLCullingScheduling.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2009. 06. 06	
  * Abstract		: Presentation Entity Culling Scheduling
  *****************************************************************************

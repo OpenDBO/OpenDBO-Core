@@ -45,9 +45,9 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 public:
-	HWND GetViewWindow();				///< Áß¾ÓÀÇ Viewer WindowÀÇ ÇÚµéÀ» ¹ÝÈ¯ÇÑ´Ù.
-	HWND GetTabWindow();				///< ¿ÞÂÊ Tab WindowÀÇ ÇÚµéÀ» ¹ÝÈ¯ÇÑ´Ù.
-    HWND GetRightWindow();              ///< ¿À¸¥ÂÊ ÇÁ·ÎÆÛÆ¼ WindowÀÇ ÇÚµéÀ» ¹ÝÈ¯ÇÑ´Ù.
+	HWND GetViewWindow();				///< ì¤‘ì•™ì˜ Viewer Windowì˜ í•¸ë“¤ì„ ë°˜í™˜í•œë‹¤.
+	HWND GetTabWindow();				///< ì™¼ìª½ Tab Windowì˜ í•¸ë“¤ì„ ë°˜í™˜í•œë‹¤.
+    HWND GetRightWindow();              ///< ì˜¤ë¥¸ìª½ í”„ë¡œí¼í‹° Windowì˜ í•¸ë“¤ì„ ë°˜í™˜í•œë‹¤.
 public:
     afx_msg void OnSize(UINT nType, int cx, int cy);
 };

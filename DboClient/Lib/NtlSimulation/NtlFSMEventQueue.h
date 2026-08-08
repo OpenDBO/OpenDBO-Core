@@ -2,7 +2,7 @@
  *
  * File			: NtlFSMEventQueue.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2006. 2. 14	
  * Abstract		: FSM event queue class
  *****************************************************************************

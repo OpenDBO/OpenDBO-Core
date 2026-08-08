@@ -205,7 +205,7 @@ struct stSKILLCUSTOMIZEPARSEDSKILL : public stSKILLCUSTOMIZEPARSEDDATA
 	RwUInt8		bySkillType;
 };
 
-// LineÀº ÀÏ´Ü ´ã¾ÆµÎ¾ú´Ù°¡ SkillÀÌ »ı¼º Á¾·áµÇ¸é »ı¼º, ±× ¶§¸¦ À§ÇÑ º¸Á¸°´Ã¼.
+// Lineì€ ì¼ë‹¨ ë‹´ì•„ë‘ì—ˆë‹¤ê°€ Skillì´ ìƒì„± ì¢…ë£Œë˜ë©´ ìƒì„±, ê·¸ ë•Œë¥¼ ìœ„í•œ ë³´ì¡´ê°ì²´.
 struct stSKILLCUSTOMIZEPARSEDLINE : public stSKILLCUSTOMIZEPARSEDDATA
 {
 	stSKILLCUSTOMIZEPARSEDLINE( RwUInt8 byType );
@@ -224,10 +224,10 @@ class CSkillCustomizeParser
 {
 public:
 	//! Type
-	typedef std::map<std::string,CSkillCustomizeSkillItem*>					MAP_SKILLITEM;	// ÀÌ µ¥ÀÌÅÍ°¡ ¿øº». 
+	typedef std::map<std::string,CSkillCustomizeSkillItem*>					MAP_SKILLITEM;	// ì´ ë°ì´í„°ê°€ ì›ë³¸. 
 	typedef std::map<std::string,CSkillCustomizeSkillItem*>::iterator		MAP_SKILLITEM_ITER;	
 	
-	// SKILL ItemÀÌ »ı¼ºµÈ ÈÄ »èÁ¦.
+	// SKILL Itemì´ ìƒì„±ëœ í›„ ì‚­ì œ.
 	typedef std::map<std::string,stSKILLCUSTOMIZEPARSEDLINE*>				MAP_PARSED_LINEDATA;		
 	typedef std::map<std::string,stSKILLCUSTOMIZEPARSEDLINE*>::iterator		MAP_PARSED_LINEDATA_ITER;	
 	typedef std::map<std::string,stSKILLCUSTOMIZEPARSEDSKILL*>				MAP_PARSED_SKILLDATA;
@@ -244,7 +244,7 @@ public:
 
 	stSKILLCUSTOMIZEPARSEDDATA* IsValidType( const RwChar* szTypeName );
 
-	//! Static Operation »ı¼ºÀü¿¡ ¹Ì¸® ÁöÁ¤ÁÖ¾î¾ß ÇÔ. 
+	//! Static Operation ìƒì„±ì „ì— ë¯¸ë¦¬ ì§€ì •ì£¼ì–´ì•¼ í•¨. 
 	static	VOID	SetCommonData( CSkillTable* pSkillTable, CHTBSetTable* pHTBTable, CActionTable* pActionTable, CTextAllTable* pTextTable, gui::CSurfaceManager* pSurfaceManager );
 
 private:

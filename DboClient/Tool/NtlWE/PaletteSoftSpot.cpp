@@ -1,4 +1,4 @@
-// PaletteSoftSpot.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PaletteSoftSpot.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -14,7 +14,7 @@
 // #include "UpdateEvent.h"
 // 
 // 
-// // CPaletteSoftSpot ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// // CPaletteSoftSpot ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 // 
 // IMPLEMENT_DYNAMIC(CPaletteSoftSpot, CDialog)
 // 
@@ -63,7 +63,7 @@
 // END_MESSAGE_MAP()
 // 
 // 
-// // CPaletteSoftSpot ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// // CPaletteSoftSpot ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 // VOID CPaletteSoftSpot::InitializeWorldData()
 // {
 // 	UpdateData(TRUE);

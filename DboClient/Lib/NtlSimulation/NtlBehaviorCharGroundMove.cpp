@@ -94,7 +94,7 @@ void CNtlBehaviorCharGroundMove::Enter(void)
     //{
         SetAnim(m_MoveStuff.byMoveFlags);
 
-        // Idle -> Run º¸°£ ¾Ö´Ï¸ŞÀÌ¼Ç
+        // Idle -> Run å ì™ì˜™å ì™ì˜™ å ìŒë‹ˆëªŒì˜™å ì‹±ì‡½ì˜™
         SetIdle2RunAnim();
 
         //m_fSyncSendTime = MOVE_SYNC_SEND_TIME;
@@ -114,11 +114,11 @@ void CNtlBehaviorCharGroundMove::SetIdle2RunAnim( void )
     if(m_pActor->GetSobProxy()->GetDisableAniChange() || Logic_IsTransformSpinAttack(m_pActor) || Logic_IsTransformRollingAttack(m_pActor))
         return;
 
-    // º¯½Å½Ã¿¡´Â º¸°£ ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ¾ÈÇÑ´Ù.
+    // å ì™ì˜™å ì‹ ì‹œìš¸ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ìŒë‹ˆëªŒì˜™å ì‹±ì‡½ì˜™å ì™ì˜™ å ì™ì˜™å ì‹¼ëŒì˜™.
     if(Logic_GetPlayerRace(m_pActor) == RACE_NAMEK && Logic_IsTransform(m_pActor))
         return;
 
-    // Idle ¾Ö´Ï¸ŞÀÌ¼Ç ÁßÀÏ¶§¸¸ ÀüÈ¯ÇÑ´Ù.
+    // Idle å ìŒë‹ˆëªŒì˜™å ì‹±ì‡½ì˜™ å ì™ì˜™å ì‹¹ë°ì˜™å ì™ì˜™ å ì™ì˜™í™˜å ì‹¼ëŒì˜™.
     if(!IsIdleAnimationPlaying())
         return;
 
@@ -129,11 +129,11 @@ void CNtlBehaviorCharGroundMove::SetIdle2RunAnim( void )
         {
             CNtlSobCharProxy *pSobProxy = reinterpret_cast<CNtlSobCharProxy*>(m_pActor->GetSobProxy());            
             sITEM_TBLDAT *pItemTblData = Logic_GetEquipedWeaponItemTableData(m_pActor);
-            if(pItemTblData && Logic_IsEquipedStaffWeapon(pItemTblData))    // ½ºÅÂÇÁ¸¦ µé°í ÀÖÀ»¶§
+            if(pItemTblData && Logic_IsEquipedStaffWeapon(pItemTblData))    // ìŠ¤íƒœí”„ë¥¼ ë“¤ê³  ìˆì„ë•Œ
             {
                 pSobProxy->SetBaseAnimation(NML_STAFF_IDLE_RUN_FRONT, FALSE);
             }
-            else    // ¾Æ¹«°Íµµ µé°í ÀÖÁö ¾ÊÀ»¶§
+            else    // ï¿½Æ¹ï¿½ï¿½Íµï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             {
                 pSobProxy->SetBaseAnimation(IDLE_RUN_FRONT, FALSE);   
             }
@@ -159,7 +159,7 @@ void CNtlBehaviorCharGroundMove::Exit(void)
     }
     
 
-    // ³ªÁß¿¡ base class enter¸¦ È£ÃâÇÑ´Ù.
+    // å ì™ì˜™å ìŒ©ìš¸ì˜™ base class enterå ì™ì˜™ í˜¸å ì™ì˜™å ì‹¼ëŒì˜™.
     CNtlBehaviorBase::Exit(); 
 }
 
@@ -167,10 +167,10 @@ void CNtlBehaviorCharGroundMove::Update(RwReal fElapsed)
 {
     fElapsed = min(fElapsed, 0.2f);
 
-    if(IsFinish() && !m_pActor->GetSobProxy()->GetDisableAniChange()) // ¾Ö´Ï¸ŞÀÌ¼Ç º¯°æ¾ÈµÇ´Â »óÅÂ¿¡¼­´Â ³¡³»Áö ¾Ê´Â´Ù. (È¸Àü°ø°İÀ» À§ÇØ)
+    if(IsFinish() && !m_pActor->GetSobProxy()->GetDisableAniChange()) // ì• ë‹ˆë©”ì´ì…˜ ë³€ê²½ì•ˆë˜ëŠ” ìƒíƒœì—ì„œëŠ” ëë‚´ì§€ ì•ŠëŠ”ë‹¤. (íšŒì „ê³µê²©ì„ ìœ„í•´)
         return;
 
-    // º¸°£ ¾Ö´Ï¸ŞÀÌ¼Ç Ã³¸® (2Frame ÈÄºÎÅÍ ÀÌµ¿ÇÑ´Ù)
+    // å ì™ì˜™å ì™ì˜™ å ìŒë‹ˆëªŒì˜™å ì‹±ì‡½ì˜™ ì²˜å ì™ì˜™ (2Frame å ì‹ë¸ì˜™å ì™ì˜™ å ì‹±ë“¸ì˜™å ì‹¼ëŒì˜™)
     if(!m_bInterAnimEnd)
     {
         if(m_fInterAnimTime < FRAME_2)
@@ -279,7 +279,7 @@ RwUInt32 CNtlBehaviorCharGroundMove::HandleEvents(RWS::CMsg &pMsg)
     else if(pMsg.Id == g_EventTransform)
     {
         SNtlEventTransform* pEvent = (SNtlEventTransform*)pMsg.pData;
-        if(pEvent->sApsectState.sAspectStateBase.byAspectStateId == ASPECTSTATE_INVALID)     // º¯½Å ÇØÁ¦
+        if(pEvent->sApsectState.sAspectStateBase.byAspectStateId == ASPECTSTATE_INVALID)     // å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
         {
             SetAnim(m_MoveStuff.byMoveFlags);
         }
@@ -316,20 +316,24 @@ void CNtlBehaviorCharGroundMove::FootStepMaterialProc(RWS::CMsg &pMsg)
         BYTE						byMaterial	= 0;
         RwReal						fHeight		= 0.0f;
 
-        // Cz : CNtlPLGlobal::m_pWHEntity º¸Àå¼ºÀ» ¶§¹®¿¡ GetWorldHeight¸¦ È£ÃâÇÕ´Ï´Ù.
-        //		Performance¿¡ ¹®Á¦°¡ µÉ ¿äÁö°¡ º¸ÀÌÁö ¾ÊÀ¸¹Ç·Î »ç¿ëÇÏ±â·Î ÇÏ¿´½À´Ï´Ù.
-        //		¹®Á¦ÀÇ ¿äÁö°¡ ÀÖÀ» °æ¿ì Áø¼ºÀÌ¸¦ È£ÃâÇØ ÁÖ¼¼¿ä.
+        // Cz : CNtlPLGlobal::m_pWHEntity ï¿½ï¿½ï¿½å¼ºï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ GetWorldHeightï¿½ï¿½ È£ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
+        //		Performanceå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¤ë¤„ì˜™ å ì™ì˜™å ì™ì˜™æ­å ì™ì˜™ å ì‹¹ìš¸ì˜™å ì™ì˜™å ì‹¹ëŒì˜™.
+        //		ë¬¸ì œì˜ ìš”ì§€ê°€ ìˆì„ ê²½ìš° ì§„ì„±ì´ë¥¼ í˜¸ì¶œí•´ ì£¼ì„¸ìš”.
         if (!(GetSceneManager()->GetWorldHeight(&vPos, fHeight, NULL) && CNtlPLGlobal::m_pWHEntity))
         {
             byMaterial = GetSceneManager()->GetWorldMaterialAttribute(vPos);
         }
 
-        if(pEvent->eFootStepMobType == FOOT_TYPE_LARGE || (m_pActor->GetFlags() & SLFLAG_LARGE_FOOT_SOUND)) // ´ëÇü ¸÷ ¹ßÀÚ±¹ ¼Ò¸®
+        RwInt32 iChannelGroup = (m_pActor->GetClassID() == SLCLASS_AVATAR)
+            ? CHANNEL_GROUP_AVATAR_EFFECT_SOUND
+            : CHANNEL_GROUP_EFFECT_SOUND;
+
+        if(pEvent->eFootStepMobType == FOOT_TYPE_LARGE || (m_pActor->GetFlags() & SLFLAG_LARGE_FOOT_SOUND)) // å ì™ì˜™å ì™ì˜™ å ì™ì˜™ å ì™ì˜™å ìŒ˜ê¹ì˜™ å ìŒ€ëªŒì˜™
         {
             sprintf_s(cSoundResoureName, 64, "%s_L_%u.wav", NAMING_SOUND_FOOTSTEP, NtlRandomNumber(0, 3));
 
             sNtlSoundPlayParameta tSoundParam;
-            tSoundParam.iChannelGroup	= CHANNEL_GROUP_EFFECT_SOUND;
+            tSoundParam.iChannelGroup	= iChannelGroup;
             tSoundParam.pcFileName		= cSoundResoureName;
             tSoundParam.bLoop			= FALSE;
             tSoundParam.fVolume			= NtlRandomNumber(0.7f, 1.0f);
@@ -342,12 +346,12 @@ void CNtlBehaviorCharGroundMove::FootStepMaterialProc(RWS::CMsg &pMsg)
 
 			GetSoundManager()->Play(&tSoundParam);
         }
-        else    // ÀÏ¹İ ¸÷ ¹ßÀÚ±¹ ¼Ò¸®
+        else    // å ì‹¹ë±„ì˜™ å ì™ì˜™ å ì™ì˜™å ìŒ˜ê¹ì˜™ å ìŒ€ëªŒì˜™
         {
             sprintf_s(cSoundResoureName, 64, "%s_%u_%u.wav", NAMING_SOUND_FOOTSTEP, byMaterial, NtlRandomNumber(0, 3));
 
             sNtlSoundPlayParameta tSoundParam;
-            tSoundParam.iChannelGroup	= CHANNEL_GROUP_EFFECT_SOUND;
+            tSoundParam.iChannelGroup	= iChannelGroup;
             tSoundParam.pcFileName		= cSoundResoureName;
             tSoundParam.bLoop			= FALSE;
             tSoundParam.fVolume			= NtlRandomNumber(0.7f, 1.0f);
@@ -471,7 +475,10 @@ void CNtlBehaviorCharGroundMove::SetTransform(void)
         RwV3d vDir;
         RwV3dSubMacro(&vDir, &m_MoveStuff.vDest, &vPos);
         vDir.y = 0.0f;
-        RwV3dNormalize(&vDir, &vDir); 
+        if(RwV3dLength(&vDir) > 0.001f)
+            RwV3dNormalize(&vDir, &vDir); 
+        else
+            RwV3dAssignMacro(&vDir, &m_pActor->GetDirection());
 
         m_pActor->SetDirection(&vDir); 
     }
@@ -484,7 +491,7 @@ void CNtlBehaviorCharGroundMove::SetTransform(void)
         {	
             RwV3d vDestPos = pTargetActor->GetPosition(); 
 
-            // ÁöÇü À§¸¦ ³·°Ô ¶°¼­ ³¯¶ó´Ù´Ï´Â °´Ã¼ÀÏ °æ¿ì.
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ù´Ï´ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½.
             if(pTargetActor->GetFlags() & SLFLAG_CAN_GROUND_FLY)
                 vDestPos.y -= Logic_GetGroundFlyHeight(pTargetActor);
 
@@ -641,7 +648,7 @@ void CNtlBehaviorCharGroundMove::SetAnim(RwUInt8 byMoveFlags)
         }
         else
         {
-            if(Logic_IsTransformGreatNamek(m_pActor))  // º¯½Å½Ã
+            if(Logic_IsTransformGreatNamek(m_pActor))  // å ì™ì˜™å ì‹ ì™ì˜™
             {
                 uiNextAnimKey = TRANS_RUN_FRONT;
             }
@@ -935,7 +942,16 @@ void CNtlBehaviorCharGroundMove::SetServerSyncPosition(RwV3d vSyncPos)
         m_fServerSyncDist = 0.0f;
     }
 
-    RwV3dNormalize(&m_vServerSyncDir, &vSub);
+    if(m_fServerSyncDist > 0.001f)
+        RwV3dNormalize(&m_vServerSyncDir, &vSub);
+    else
+    {
+        m_vServerSyncDir.x = 0.f;
+        m_vServerSyncDir.y = 0.f;
+        m_vServerSyncDir.z = 0.f;
+        m_fServerSyncDist = 0.f;
+        m_bServerSyncPos = FALSE;
+    }
 }
 
 void CNtlBehaviorCharGroundMove::UpdateSendSyncCheck(RwReal fElapsed)
@@ -1076,7 +1092,7 @@ RwBool CNtlBehaviorCharGroundMove::UpdateDirectionMove(RwReal fElapsed)
     m_pActor->SetPosition(&vNewPos);
     m_pActor->SetDirection(&vNewDir);
 
-    // ÀÏÁ¤ ½Ã°£ µ¿¾È ÀÌµ¿ÇÑ °Å¸®°¡ limit °Å¸® ¾È¿¡ ÀÖÀ¸¸é? ¸ØÃá´Ù.
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ limit ï¿½Å¸ï¿½ ï¿½È¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½? ï¿½ï¿½ï¿½ï¿½ï¿½.
     if( !bTurn && byColliResult != NTL_CHARACTER_COLLI_WORLD_ATTR_TERRAIN_SLANT)
     {
         LimitPositionChangeCheck(fElapsed);        
@@ -1088,7 +1104,7 @@ RwBool CNtlBehaviorCharGroundMove::UpdateDirectionMove(RwReal fElapsed)
 RwBool CNtlBehaviorCharGroundMove::UpdateLocationMove(RwReal fElapsed)
 {
     //-------------------------------------
-    // speed ¹× anim speed °áÁ¤.
+    // speed å ì™ì˜™ anim speed å ì™ì˜™å ì™ì˜™.
     RwBool bWalkMove = Logic_IsActorWalkMove(m_pActor, m_MoveStuff.byFormFlag);
     RwReal fSpeed; 
     if(bWalkMove)
@@ -1111,7 +1127,10 @@ RwBool CNtlBehaviorCharGroundMove::UpdateLocationMove(RwReal fElapsed)
     RwV3d vDir = vDestPos - vPos;    
     vDir.y = 0.0f;
     RwReal fCurrLen = RwV3dLength(&vDir);
-    RwV3dNormalize(&vDir, &vDir);    
+    if(fCurrLen > 0.001f)
+        RwV3dNormalize(&vDir, &vDir);
+    else
+        RwV3dAssignMacro(&vDir, &m_pActor->GetDirection()); // Keep current direction if at destination
     RwV3d vDelta = vDir * fElapsed * fSpeed;
 
     if(m_bServerSyncPos)
@@ -1144,7 +1163,9 @@ RwBool CNtlBehaviorCharGroundMove::UpdateLocationMove(RwReal fElapsed)
         }
 
         Logic_GetWorldHeight(m_pActor, &vPos, m_sHStuff);
-        vPos.y = m_sHStuff.fFinialHeight;
+        // Only apply terrain height if valid (not the -999 sentinel when sector is unloaded)
+        if(m_sHStuff.fFinialHeight > -500.f)
+            vPos.y = m_sHStuff.fFinialHeight;
 
         m_pActor->SetPosition(&vPos);
 
@@ -1176,9 +1197,11 @@ RwBool CNtlBehaviorCharGroundMove::UpdateLocationMove(RwReal fElapsed)
         vPos += vDelta;
 
         Logic_GetWorldHeight(m_pActor, &vPos, m_sHStuff);
-        vPos.y = m_sHStuff.fFinialHeight;
+        // Only apply terrain height if valid (not the -999 sentinel when sector is unloaded)
+        if(m_sHStuff.fFinialHeight > -500.f)
+            vPos.y = m_sHStuff.fFinialHeight;
 
-        // object Ãæµ¹ Ã³¸®.
+        // object ï¿½æµ¹ Ã³ï¿½ï¿½.
         RwUInt8 byColliResult = NTL_CHARACTER_COLLI_NONE;
         if (ObjectCollision(vPos, fOldActorHeight, fSpeed, fElapsed, &byColliResult))
 		{
@@ -1233,7 +1256,7 @@ RwBool CNtlBehaviorCharGroundMove::UpdateTargetMove(RwReal fElapsed)
     RwV3d vDestPos = pTargetActor->GetPosition(); 
     RwReal fOldActorHeight = vPos.y;
 
-    // ÁöÇü À§¸¦ ³·°Ô ¶°¼­ ³¯¶ó´Ù´Ï´Â °´Ã¼ÀÏ °æ¿ì.
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ù´Ï´ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½.
     if(pTargetActor->GetFlags() & SLFLAG_CAN_GROUND_FLY)
         vDestPos.y -= Logic_GetGroundFlyHeight(pTargetActor);
 
@@ -1298,13 +1321,13 @@ RwBool CNtlBehaviorCharGroundMove::UpdateTargetMove(RwReal fElapsed)
         return TRUE;
     }
 
-    // ÁÂÇ¥ update
+    // å ì™ì˜™í‘œ update
     vPos += vDelta;    
 
     Logic_GetWorldHeight(m_pActor, &vPos, m_sHStuff);
     vPos.y = m_sHStuff.fFinialHeight;
 
-    // slow moveÀÏ °æ¿ì.
+    // slow moveì¼ ê²½ìš°.
     if(m_bSlowMove)
     {
         m_fSlowMoveTime += fElapsed;
@@ -1312,7 +1335,7 @@ RwBool CNtlBehaviorCharGroundMove::UpdateTargetMove(RwReal fElapsed)
             return TRUE;
     }
 
-    // Ãæµ¹ Ã¼Å©.
+    // ï¿½æµ¹ Ã¼Å©.
     RwUInt8 byColliResult = NTL_CHARACTER_COLLI_NONE;
 
     if(m_pActor->GetFlags() & SLFLAG_OBJECT_COLLISION)
@@ -1356,7 +1379,7 @@ RwBool CNtlBehaviorCharGroundMove::UpdateTargetMove(RwReal fElapsed)
         }
     }
 
-    // Æú¸µ Ã¼Å©
+    // å ì™ì˜™å ì™ì˜™ ì²´í¬
     if(CheckFalling(fOldActorHeight, m_sHStuff.fFinialHeight, fSpeed, NTL_MOVE_F))
         return TRUE;
 
@@ -1365,7 +1388,7 @@ RwBool CNtlBehaviorCharGroundMove::UpdateTargetMove(RwReal fElapsed)
     if(byColliResult == NTL_CHARACTER_COLLI_NONE)
         return FALSE;
 
-    // ÀÏÁ¤ ½Ã°£ µ¿¾È ÀÌµ¿ÇÑ °Å¸®°¡ limit °Å¸® ¾È¿¡ ÀÖÀ¸¸é? ¸ØÃá´Ù.
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ limit ï¿½Å¸ï¿½ ï¿½È¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½? ï¿½ï¿½ï¿½ï¿½ï¿½.
     if(byColliResult != NTL_CHARACTER_COLLI_WORLD_ATTR_TERRAIN_SLANT)
     {
         LimitPositionChangeCheck(fElapsed);
@@ -1486,7 +1509,7 @@ RwBool CNtlBehaviorCharGroundMove::UpdateDashMove(RwReal fElapsed)
     RwV3dNormalize(&vDir, &vDir); 
     RwReal fSpeed = fDashSpeed * fElapsed;
 
-    // data¸¦ ·ÎµùÇÏ¿© °ªÀÚ±â elapsed timeÀÌ Å©°Ô µé¾î¿Ã °æ¿ì ÀÌ·± °æ¿ì°¡ »ı±ä´Ù
+    // dataï¿½ï¿½ ï¿½Îµï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½Ú±ï¿½ elapsed timeï¿½ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ì·ï¿½ ï¿½ï¿½ì°¡ ï¿½ï¿½ï¿½ï¿½ï¿½
     if(fSpeed >= fCurrLen)
     {
         fSpeed = fCurrLen;
@@ -1580,7 +1603,7 @@ RwBool CNtlBehaviorCharGroundMove::UpdateDashMove(RwReal fElapsed)
 
     m_pActor->SetPosition(&vPos);
 
-    // ÀÏÁ¤ ½Ã°£ µ¿¾È ÀÌµ¿ÇÑ °Å¸®°¡ limit °Å¸® ¾È¿¡ ÀÖÀ¸¸é? ¸ØÃá´Ù.
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ limit ï¿½Å¸ï¿½ ï¿½È¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½? ï¿½ï¿½ï¿½ï¿½ï¿½.
     if(byColliResult != NTL_CHARACTER_COLLI_WORLD_ATTR_TERRAIN_SLANT)
     {
         LimitPositionChangeCheck(fElapsed);
@@ -1613,14 +1636,14 @@ RwBool CNtlBehaviorCharGroundMove::UpdateDashTargetMove(RwReal fElapsed)
     RwV3d vPos = m_pActor->GetPosition();
     RwV3d vDestPos = pTargetActor->GetPosition(); 
 
-    // ÁöÇü À§¸¦ ³·°Ô ¶°¼­ ³¯¶ó´Ù´Ï´Â °´Ã¼ÀÏ °æ¿ì.
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ù´Ï´ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½.
     if(pTargetActor->GetFlags() & SLFLAG_CAN_GROUND_FLY)
         vDestPos.y -= Logic_GetGroundFlyHeight(pTargetActor);
 
     RwV3d vDir;
     RwV3dSubMacro(&vDir, &vDestPos, &vPos); 
 
-    // ÇöÀç ³²Àº °Å¸®¸¦ ±¸ÇÑ´Ù.
+    // å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì‹ ëªŒì˜™å ì™ì˜™ å ì™ì˜™å ì‹¼ëŒì˜™.
     RwReal fCurrLen = RwV3dLength(&vDir);
     vDir.y = 0.0f;
     RwV3dNormalize(&vDir, &vDir);
@@ -1710,10 +1733,10 @@ RwBool CNtlBehaviorCharGroundMove::UpdateDashTargetMove(RwReal fElapsed)
         }
     }
 
-    // »õ·Î¿î ÁÂÇ¥ setting
+    // å ì™ì˜™å ì‹¸ìš¸ì˜™ å ì™ì˜™í‘œ setting
     m_pActor->SetPosition(&vPos);
 
-    // ÀÏÁ¤ ½Ã°£ µ¿¾È ÀÌµ¿ÇÑ °Å¸®°¡ limit °Å¸® ¾È¿¡ ÀÖÀ¸¸é? ¸ØÃá´Ù.
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ limit ï¿½Å¸ï¿½ ï¿½È¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½? ï¿½ï¿½ï¿½ï¿½ï¿½.
     if(byColliResult != NTL_CHARACTER_COLLI_WORLD_ATTR_TERRAIN_SLANT)
     {
         LimitPositionChangeCheck(fElapsed);
@@ -1776,7 +1799,7 @@ void CNtlBehaviorCharGroundMove::UpdateDashEffect(RwUInt32 uiMoveDirFlags, RwV3d
 {
     RwV3d vPos = m_pActor->GetPosition();
 
-    // µÚ¿¡ µû¶ó ºÙ´Â effect
+    // å ìŒ˜ìš¸ì˜™ å ì™ì˜™å ì™ì˜™ å ìŒ•ëŒì˜™ effect
     RwMatrix mat;
     RwMatrixSetIdentity(&mat);
 
@@ -1788,7 +1811,7 @@ void CNtlBehaviorCharGroundMove::UpdateDashEffect(RwUInt32 uiMoveDirFlags, RwV3d
     RwV3dAssignMacro(&mat.up, &CNtlPLGlobal::m_vYAxisV3);
     RwMatrixUpdate(&mat);
 
-    // effect ¹æÇâ setting.
+    // effect å ì™ì˜™å ì™ì˜™ setting.
     if(uiMoveDirFlags == NTL_MOVE_F)
         CNtlMath::MathRwV3dAssign(&m_vDashEffOffset, vDir.x*0.6f, 0.86f, vDir.z*0.6f);
     else if(uiMoveDirFlags == NTL_MOVE_B)
@@ -1817,7 +1840,7 @@ void CNtlBehaviorCharGroundMove::UpdateDashLineEffect(RwV3d& vPos, RwV3d& vDir)
     {
         m_pDashLine->SetPosition(&vPos);
 
-        // Ä«¸Ş¶ó ¹æÇâ ¾ò¾î¿À±â
+        // ì¹´å ìŒ¨ë°ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™
         RwMatrix *pMatrix = RwFrameGetMatrix( RwCameraGetFrame( CNtlPLGlobal::m_RwCamera ) );
         RwV3d *pCamDir = RwMatrixGetAt( pMatrix );
 
@@ -1855,13 +1878,13 @@ RwBool CNtlBehaviorCharGroundMove::UpdateMoveSync(RwReal fElapsedTime, OUT RwV3d
 
     RwReal fSpeed = GetMoveSpeed(pMoveSyncStuff->m_pMoveSyncCurr->byMoveFlag);                
 
-    //keyboard ÀÌµ¿À» Ã³¸®ÇÑ´Ù	
+    //keyboard å ì‹±ë“¸ì˜™å ì™ì˜™ ì²˜å ì™ì˜™å ì‹¼ëŒì˜™	
     CNtlVector vHeading, vDest;
     NtlGetDestination_Keyboard(vMoveDir.x, vMoveDir.y, vMoveDir.z, fSpeed, vPos.x, vPos.y, vPos.z, byMoveFlags, fElapsedTime * 1000.f, 1.0f, &vHeading, &vDest);
     CNtlMath::MathRwV3dAssign(&vDestPos, vDest.x, vDest.y, vDest.z);      
     CNtlMath::MathRwV3dAssign(&vDestDir, vHeading.x, 0.0f, vHeading.z);
 
-    // ¿ø·¡ MoveSync¿¡ ¸ÂÃç ÀÖ¾î¾ßÇÒ À§Ä¡¸¦ °è»êÇÑ ÈÄ, ±× À§Ä¡·Î °¡±âÀ§ÇÑ Æ÷½º¸¦ °áÁ¤ÇÑ´Ù.    
+    // ì›ë˜ MoveSyncì— ë§ì¶° ìˆì–´ì•¼í•  ìœ„ì¹˜ë¥¼ ê³„ì‚°í•œ í›„, ê·¸ ìœ„ì¹˜ë¡œ ê°€ê¸°ìœ„í•œ í¬ìŠ¤ë¥¼ ê²°ì •í•œë‹¤.    
     RwV3d vSyncDir = pMoveSyncStuff->m_pMoveSyncCurr->vLoc - vDestPos;
     vSyncDir.y = 0.0f;
     RwV3dNormalize(&vSyncDir, &vSyncDir);
@@ -1869,12 +1892,12 @@ RwBool CNtlBehaviorCharGroundMove::UpdateMoveSync(RwReal fElapsedTime, OUT RwV3d
     RwV3d vMoveDest = vSyncDir * (fSyncDistance / MOVE_SYNC_SPEED) * fElapsedTime;    
     vDestPos += vMoveDest;
 
-    // ¹æÇâ °áÁ¤
+    // å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
     *pNewDir = pMoveSyncStuff->m_pMoveSyncCurr->vDir;
     //*pNewDir = vSyncDir;  // If you set the direction to go, you will have problems when you go back, and there will be collisions in other parts.
     
     
-    // ÃÖÁ¾ À§Ä¡    
+    // å ì™ì˜™å ì™ì˜™ å ì™ì˜™ì¹˜    
     Logic_GetWorldHeight(m_pActor, &vDestPos, m_sHStuff);
     vDestPos.y = m_sHStuff.fFinialHeight;
     *pDestPos = vDestPos;    

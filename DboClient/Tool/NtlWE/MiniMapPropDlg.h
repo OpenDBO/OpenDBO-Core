@@ -2,21 +2,21 @@
 #include "afxwin.h"
 
 
-// CMiniMapPropDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CMiniMapPropDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CMiniMapPropDlg : public CDialog
 {
 	DECLARE_DYNAMIC(CMiniMapPropDlg)
 
 public:
-	CMiniMapPropDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CMiniMapPropDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CMiniMapPropDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_MINIMAP };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 protected:
 	virtual LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam);

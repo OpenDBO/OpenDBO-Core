@@ -349,7 +349,7 @@ RwBool CGameGuiGroup::Create(void)
 	// Dialog manager 
 	GetDialogManager()->CreateInstance( CNtlPLGuiManager::GetInstance()->GetGuiManager() );
 
-	// Á¾Á·º° ¸®¼Ò½º Æú´õ ÁöÁ¤
+	// ì¢…ì¡±ë³„ ë¦¬ì†ŒìŠ¤ í´ë” ì§€ì •
 	LoadCommonScript();	
 
 	// PLGuiGroup
@@ -516,7 +516,7 @@ RwBool CGameGuiGroup::Create(void)
 
 	AddDialog(m_pWarehouseBar, CWarehouseBarGui, "WarehouseBarGui", DIALOG_WAREHOUSEBAR);
 
-	// Ã¢°í 1
+	// ì°½ê³  1
 	m_pWarehouse_1 = NTL_NEW CWarehouseGui("WarehouseGui_1");
 	m_pWarehouse_1->RegisterWarehouseIndex(0);
 	if(!m_pWarehouse_1->Create())
@@ -529,7 +529,7 @@ RwBool CGameGuiGroup::Create(void)
 	CNtlPLGuiManager::GetInstance()->AddGui(m_pWarehouse_1);
 	GetDialogManager()->RegistDialog(DIALOG_WAREHOUSE_1, m_pWarehouse_1, &CWarehouseGui::SwitchDialog);
 
-	// Ã¢°í 2
+	// ì°½ê³  2
 	m_pWarehouse_2 = NTL_NEW CWarehouseGui("WarehouseGui_2");
 	m_pWarehouse_2->RegisterWarehouseIndex(1);
 	if(!m_pWarehouse_2->Create())
@@ -542,7 +542,7 @@ RwBool CGameGuiGroup::Create(void)
 	CNtlPLGuiManager::GetInstance()->AddGui(m_pWarehouse_2);
 	GetDialogManager()->RegistDialog(DIALOG_WAREHOUSE_2, m_pWarehouse_2, &CWarehouseGui::SwitchDialog);
 
-	// Ã¢°í 3
+	// ì°½ê³  3
 	m_pWarehouse_3 = NTL_NEW CWarehouseGui("WarehouseGui_3");
 	m_pWarehouse_3->RegisterWarehouseIndex(2);
 	if(!m_pWarehouse_3->Create())
@@ -555,7 +555,7 @@ RwBool CGameGuiGroup::Create(void)
 	CNtlPLGuiManager::GetInstance()->AddGui(m_pWarehouse_3);
 	GetDialogManager()->RegistDialog(DIALOG_WAREHOUSE_3, m_pWarehouse_3, &CWarehouseGui::SwitchDialog);
 
-	// °øÀ¯Ã¢°í
+	// ê³µìœ ì°½ê³ 
 	m_pWarehouseCommon = NTL_NEW CWarehouseCommonGui("WarehouseCommonGui");
 	m_pWarehouseCommon->RegisterWarehouseIndex(3);
 	if(!m_pWarehouseCommon->Create())
@@ -709,7 +709,7 @@ RwBool CGameGuiGroup::Create(void)
 	// party
 	AddDialog(m_pPartyMenu, CPartyMenu, "PartyMenuGui", DIALOG_PARTYMENU );	
 
-	// »çÀÌµå ´ÙÀÌ¾ó·Î±× ÄÁÆ®·Ñ
+	// ì‚¬ì´ë“œ ë‹¤ì´ì–¼ë¡œê·¸ ì»¨íŠ¸ë¡¤
 	AddDialog(m_pSideDialogControl, CSideDialogControlGui, "SideDialogControlGui", DIALOG_SIDEDIALOG_CONTROLLER );
 
 	// BroadCast Gui
@@ -1044,7 +1044,7 @@ void CGameGuiGroup::HandleEvents(RWS::CMsg &pMsg)
 			Logic_ShowRegenBox();
 		}
 	}
-    else if(pMsg.Id == g_EventSummonPet)		// ¼ÒÈ¯¼ö°¡ ¼ÒÈ¯µÇ¸é ¼ÒÈ¯¼ö UIµéÀÇ °´Ã¼¸¦ »ı¼ºÇÏ°í Ç¥½ÃÇÑ´Ù.
+    else if(pMsg.Id == g_EventSummonPet)		// ì†Œí™˜ìˆ˜ê°€ ì†Œí™˜ë˜ë©´ ì†Œí™˜ìˆ˜ UIë“¤ì˜ ê°ì²´ë¥¼ ìƒì„±í•˜ê³  í‘œì‹œí•œë‹¤.
     {
         SDboEventSummonPet* pData = reinterpret_cast<SDboEventSummonPet*>(pMsg.pData);
 
@@ -1163,7 +1163,7 @@ void CGameGuiGroup::HandleEvents(RWS::CMsg &pMsg)
 
 		if( pEvent->iMessage == PMT_PARTY_CREATE )
 		{
-			// ÆÄÆ¼ »ı¼º½Ã ÆÄÆ¼ ÀÎº¥ÀÌ TMQ »çÀÌµå ´ÙÀÌ¾ó·Î±×¸¦ °¡¸®´Â °ÍÀ» ¸·±â À§ÇØ
+			// íŒŒí‹° ìƒì„±ì‹œ íŒŒí‹° ì¸ë²¤ì´ TMQ ì‚¬ì´ë“œ ë‹¤ì´ì–¼ë¡œê·¸ë¥¼ ê°€ë¦¬ëŠ” ê²ƒì„ ë§‰ê¸° ìœ„í•´
 			CSideDialogControlGui* pSideDialogControlGui = (CSideDialogControlGui*)GetDialogManager()->GetDialog(DIALOG_SIDEDIALOG_CONTROLLER);
 			if( pSideDialogControlGui )
 				pSideDialogControlGui->SelectButtonType(SDIALOG_TMQ_STATUS);
@@ -1176,12 +1176,12 @@ void CGameGuiGroup::HandleEvents(RWS::CMsg &pMsg)
 	}
 	else if( pMsg.Id == g_EventGameServerChangeOut )
 	{
-		// ±æµå Á¤º¸ »èÁ¦
+		// ê¸¸ë“œ ì •ë³´ ì‚­ì œ
 		GetDialogManager()->CloseDialog(DIALOG_GUILD_WAREHOUSEBAR);
 		GetDialogManager()->SwitchBag(FALSE);
 		CGuildWarehouseBar::DestroyInstance();
 
-		// ÆÄÆ¼ Á¤º¸ »èÁ¦
+		// íŒŒí‹° ì •ë³´ ì‚­ì œ
 		m_pPartyMenu->ResetPartyMenu();
 	}	
 	else if( pMsg.Id == g_EventGuildWarehouseNotify )
@@ -1247,7 +1247,7 @@ void CGameGuiGroup::HandleEvents(RWS::CMsg &pMsg)
 
 				if( GetPetitionManager()->IsNeedSatisfation() )
 				{
-					// À¯Àú ÁøÁ¤ ¸¸Á·µµ Á¶»ç
+					// ìœ ì € ì§„ì • ë§Œì¡±ë„ ì¡°ì‚¬
 					AddDialog_no_return(m_pPetitionSatisfaction, CPetitionSatisfaction, "PetitionSatisfaction", DIALOG_PETITION_SATISFACTION );
 					GetDialogManager()->LocationDialogs(GetDboGlobal()->GetScreenWidth(), GetDboGlobal()->GetScreenHeight());
 					GetDialogManager()->OpenDialog(DIALOG_PETITION_SATISFACTION);
@@ -1341,8 +1341,8 @@ void CGameGuiGroup::HandleEvents(RWS::CMsg &pMsg)
 
 		if( DIALOGEVENT_CREATE_DOJO_GUI == pEvent->iType )
 		{
-			// °ÔÀÓÁß ÀÌ GUI°¡ ÇÊ¿äÇÏÁö ¾ÊÀ» ¼öµµ ºó¹øÇÏ°Ô È£ÃâÇÒ ¼öµµ ÀÖ±â¿¡
-			// Ã³À½ È£Ãâ½Ã »ı¼ºÇÏ°í Á¾·áÇÒ ¶§±îÁö º¸Á¸ÇÑ´Ù
+			// ê²Œì„ì¤‘ ì´ GUIê°€ í•„ìš”í•˜ì§€ ì•Šì„ ìˆ˜ë„ ë¹ˆë²ˆí•˜ê²Œ í˜¸ì¶œí•  ìˆ˜ë„ ìˆê¸°ì—
+			// ì²˜ìŒ í˜¸ì¶œì‹œ ìƒì„±í•˜ê³  ì¢…ë£Œí•  ë•Œê¹Œì§€ ë³´ì¡´í•œë‹¤
 			if( m_pDojoInfoGui == NULL )
 				AddDialog_no_return(m_pDojoInfoGui, CDojoInfoGui, "DojoInfo", DIALOG_DOJO_INFO);
 

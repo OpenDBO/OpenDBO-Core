@@ -201,7 +201,7 @@ VOID CNtlOtherParam::HandleEvents(RWS::CMsg &pMsg)
 
 				if(!nextQuest.pNPC_TBLDAT)
 				{
-					// Release ¹öÀü¿¡¼­ »¶³ª´Â °ÍÀ» ¹æÁöÇÏ±â À§ÇØ
+					// Release å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ê¹ì˜™ å ì™ì˜™å ì™ì˜™
 					char acBuffer[256] = "";
 					WCHAR awcBuffer[256] = L"";
 					sprintf_s(acBuffer, 256, "preparation NPC table of index : %d", nextQuest.Tblidx);
@@ -225,7 +225,7 @@ VOID CNtlOtherParam::HandleEvents(RWS::CMsg &pMsg)
 
 				if(!pOBJECT_TBLDAT)
 				{
-					// Release ¹öÀü¿¡¼­ »¶³ª´Â °ÍÀ» ¹æÁöÇÏ±â À§ÇØ
+					// Release å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ê¹ì˜™ å ì™ì˜™å ì™ì˜™
 					char acBuffer[128] = "";
 					WCHAR awcBuffer[256] = L"";
 					sprintf_s(acBuffer, 128, "preparation Object table of index : %d", nextQuest.Tblidx);
@@ -249,7 +249,7 @@ VOID CNtlOtherParam::HandleEvents(RWS::CMsg &pMsg)
 
 				if(!pQUEST_TEXT_DATA_TBLDAT)
 				{
-					// Release ¹öÀü¿¡¼­ »¶³ª´Â °ÍÀ» ¹æÁöÇÏ±â À§ÇØ
+					// Release å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ê¹ì˜™ å ì™ì˜™å ì™ì˜™
 					char acBuffer[128] = "";
 					WCHAR awcBuffer[256] = L"";
 					sprintf_s(acBuffer, 128, "preparation quest text table of index : %d", nextQuest.Tblidx);
@@ -319,41 +319,42 @@ VOID CNtlOtherParam::HandleEvents(RWS::CMsg &pMsg)
 				sBusRoute& rBusRoute = it_BusRoute->second;
 				rBusRoute.v3Pos			= *pEvent->pV3Pos;
 				rBusRoute.v3Dir			= *pEvent->pV3Dir;
-				NTL_RETURNVOID();
-			}
-
-			sBusRoute tBusRoute;
-
-			tBusRoute.hBus			= pEvent->hBus;
-			tBusRoute.v3Pos			= *pEvent->pV3Pos;
-			tBusRoute.v3Dir			= *pEvent->pV3Dir;
-
-			tBusRoute.pNPC_TBLDAT = reinterpret_cast<sNPC_TBLDAT*>( API_GetTableContainer()->GetNpcTable()->FindData(pEvent->idxBusTable) );
-			if( !tBusRoute.pNPC_TBLDAT )
-			{
-				DBO_FAIL("Not exist NPC table of index : " << pEvent->idxBusTable);
-				NTL_RETURNVOID();
-			}
-
-			if( strcmp(tBusRoute.pNPC_TBLDAT->szModel, "N_BUS_A1") == 0 )
-			{
-				tBusRoute.eBusShapeType = BUS_SHAPE_HUMAN;
-			}
-			else if( strcmp(tBusRoute.pNPC_TBLDAT->szModel, "N_BUS_C1") == 0 )
-			{
-				tBusRoute.eBusShapeType = BUS_SHAPE_NAMEK;
-			}
-			else if( strcmp(tBusRoute.pNPC_TBLDAT->szModel, "N_BUS_B1") == 0 )
-			{
-				tBusRoute.eBusShapeType = BUS_SHAPE_MAJIN;
 			}
 			else
 			{
-				DBO_FAIL("Invalid bus model name : " << tBusRoute.pNPC_TBLDAT->szModel);
-				return;
-			}
+				sBusRoute tBusRoute;
+
+				tBusRoute.hBus			= pEvent->hBus;
+				tBusRoute.v3Pos			= *pEvent->pV3Pos;
+				tBusRoute.v3Dir			= *pEvent->pV3Dir;
+
+				tBusRoute.pNPC_TBLDAT = reinterpret_cast<sNPC_TBLDAT*>( API_GetTableContainer()->GetNpcTable()->FindData(pEvent->idxBusTable) );
+				if( !tBusRoute.pNPC_TBLDAT )
+				{
+					DBO_FAIL("Not exist NPC table of index : " << pEvent->idxBusTable);
+					NTL_RETURNVOID();
+				}
+
+				if( strcmp(tBusRoute.pNPC_TBLDAT->szModel, "N_BUS_A1") == 0 )
+				{
+					tBusRoute.eBusShapeType = BUS_SHAPE_HUMAN;
+				}
+				else if( strcmp(tBusRoute.pNPC_TBLDAT->szModel, "N_BUS_C1") == 0 )
+				{
+					tBusRoute.eBusShapeType = BUS_SHAPE_NAMEK;
+				}
+				else if( strcmp(tBusRoute.pNPC_TBLDAT->szModel, "N_BUS_B1") == 0 )
+				{
+					tBusRoute.eBusShapeType = BUS_SHAPE_MAJIN;
+				}
+				else
+				{
+					DBO_FAIL("Invalid bus model name : " << tBusRoute.pNPC_TBLDAT->szModel);
+					return;
+				}
 
 			m_mapBusRoute[tBusRoute.hBus] = tBusRoute;
+		}
 		}
 		else if( BUS_MOVE_DELETE_BUS == pEvent->byMessage )
 		{

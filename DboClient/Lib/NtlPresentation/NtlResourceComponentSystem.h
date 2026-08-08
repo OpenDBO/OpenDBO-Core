@@ -2,7 +2,7 @@
 //	File		:	NtlResourceComponentSystem.h
 //	Desc		:	
 //	Begin		:	2006. 7.28
-//	Copyright	:	¨Ï 2006 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2006 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -35,8 +35,8 @@ public:
         RESOURCE_SYSTEMTYPE_LINE,
         RESOURCE_SYSTEMTYPE_UPGRADE,
         RESOURCE_SYSTEMTYPE_TRAIL,
-        RESOURCE_VERTEX_1024,                       /// ¸®¼Ò½º ½Ã½ºÅÛÀº ¾Æ´ÏÁö¸¸, Vertex ¸Ş¸ğ¸® Ç®À» À§ÇØ Ãß°¡ÇÑ´Ù.
-        RESOURCE_VERTEX_5120,                       /// ¸®¼Ò½º ½Ã½ºÅÛÀº ¾Æ´ÏÁö¸¸, Vertex ¸Ş¸ğ¸® Ç®À» À§ÇØ Ãß°¡ÇÑ´Ù.
+        RESOURCE_VERTEX_1024,                       /// ë¦¬ì†ŒìŠ¤ ì‹œìŠ¤í…œì€ ì•„ë‹ˆì§€ë§Œ, Vertex ë©”ëª¨ë¦¬ í’€ì„ ìœ„í•´ ì¶”ê°€í•œë‹¤.
+        RESOURCE_VERTEX_5120,                       /// ë¦¬ì†ŒìŠ¤ ì‹œìŠ¤í…œì€ ì•„ë‹ˆì§€ë§Œ, Vertex ë©”ëª¨ë¦¬ í’€ì„ ìœ„í•´ ì¶”ê°€í•œë‹¤.
 	};
 
 //#ifdef RWDEBUG
@@ -69,8 +69,8 @@ public:
 	RwMatrix			m_matWorld;
 	RwMatrix			m_matPathWorld;
 
-    SGroundFlag         m_sGroundFlag;              ///< Áö¸é¿¡¼­ Ç¥½ÃµÉ ÀÌÆåÆ®¸¦ ¼³Á¤ÇÏ´Â ±¸Á¶Ã¼
-    RwReal              m_fBoundSphereRadius;       ///< ¹Ù¿îµù ½ºÇÇ¾î ¹İÁö¸§    
+    SGroundFlag         m_sGroundFlag;              ///< ì§€ë©´ì—ì„œ í‘œì‹œë  ì´í™íŠ¸ë¥¼ ì„¤ì •í•˜ëŠ” êµ¬ì¡°ì²´
+    RwReal              m_fBoundSphereRadius;       ///< ë°”ìš´ë”© ìŠ¤í”¼ì–´ ë°˜ì§€ë¦„    
 
 public:
 	CNtlResourceComponentSystem(const RwChar* strName);

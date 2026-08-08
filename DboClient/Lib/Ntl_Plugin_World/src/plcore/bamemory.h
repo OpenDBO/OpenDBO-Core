@@ -53,7 +53,7 @@
 #endif /* (!defined(rwFREELISTCLEANLANDFILL)) */
 
 #define RWFREELISTALIGNED(_pData, _freelist) \
-  (! (((RwUInt32)(_pData)) & ((_freelist)->alignment - 1)) )
+  (! (((uintptr_t)(_pData)) & ((_freelist)->alignment - 1)) )
 
 /*****************************
  * REGULAR MEMORY ALLOCATION *

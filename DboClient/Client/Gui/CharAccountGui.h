@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: CharAccountGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 10. 15
 * Abstract		:
 *****************************************************************************
-* Desc			: °èÁ¤Á¤º¸¸¦ Ç¥½ÃÇÑ´Ù
+* Desc			: ê³„ì •ì •ë³´ë¥¼ í‘œì‹œí•œë‹¤
 *****************************************************************************/
 
 #pragma once
@@ -49,16 +49,16 @@ protected:
 	gui::CSlot			m_slotSelectServer;
 	gui::CSlot			m_slotPaint;
 
-	CWindowby3			m_Background;		///< ¹è°æ
+	CWindowby3			m_Background;		///< ë°°ê²½
 
-	CSurfaceGui			m_srtAccountBack;	///< °èÁ¤ Á¤º¸ ¹è°æ
+	CSurfaceGui			m_srtAccountBack;	///< ê³„ì • ì •ë³´ ë°°ê²½
 
 	gui::CStaticBox*	m_pTitleStatic;
 
-	gui::CStaticBox*	m_pServerNameStatic;///< '¼­¹ö ÀÌ¸§'
-	gui::CStaticBox*	m_pServerStateStatic;///< '¼­¹ö »óÅÂ'	
-	gui::CStaticBox*	m_pServerName;		///< ¼­¹ö ÀÌ¸§
-	gui::CStaticBox*	m_pServerState;		///< ¼­¹ö »óÅÂ
+	gui::CStaticBox*	m_pServerNameStatic;///< 'ì„œë²„ ì´ë¦„'
+	gui::CStaticBox*	m_pServerStateStatic;///< 'ì„œë²„ ìƒíƒœ'	
+	gui::CStaticBox*	m_pServerName;		///< ì„œë²„ ì´ë¦„
+	gui::CStaticBox*	m_pServerState;		///< ì„œë²„ ìƒíƒœ
 
-	gui::CButton*		m_pServerSelectButton;///< ¼­¹ö ¼±ÅÃ ¹öÆ°
+	gui::CButton*		m_pServerSelectButton;///< ì„œë²„ ì„ íƒ ë²„íŠ¼
 };

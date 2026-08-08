@@ -1,4 +1,4 @@
-// PropertiesPane.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PropertiesPane.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -12,7 +12,7 @@
 
 // CPropertiesPane
 
-///< ÇÁ·ÎÆÛÆ¼¸¦ ID¿Í ÇÔ²² µî·ÏÇÏ±â À§ÇÑ ¸ÅÅ©·Î
+///< í”„ë¡œí¼í‹°ë¥¼ IDì™€ í•¨ê»˜ ë“±ë¡í•˜ê¸° ìœ„í•œ ë§¤í¬ë¡œ
 #define Mac_AddChildItem( pParent, cProperty, pItem, strName, initValue, nID )					\
 	pItem		= (cProperty*)pParent->AddChildItem( new cProperty( strName , initValue ) );	\
 	pItem->SetID( nID );
@@ -46,13 +46,13 @@ END_MESSAGE_MAP()
 
 
 
-// CPropertiesPane ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPropertiesPane ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 int CPropertiesPane::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// Á¤ÇØÁø ÇÁ·ÎÆÛÆ¼ »ı¼º
+	// ì •í•´ì§„ í”„ë¡œí¼í‹° ìƒì„±
 	if( m_PropGrid.Create( CRect(0, 0, 0, 0), this, IDC_PROPERTY_GRID ) )
 	{
 		m_PropGrid.SetTheme( xtpGridThemeOffice2003 );
@@ -86,9 +86,9 @@ int CPropertiesPane::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		Mac_AddChildItem( m_pEmitterItem, CXTPPropertyGridItemNumber, m_pEmitPosY, _T("Y\nSets the Y coordinate where the particle emitter will be located.\n"), 0, ITEM_EMITTER_POSY );
 		Mac_AddChildItem( m_pEmitterItem, CXTPPropertyGridItemNumber, m_pEmitWidth, _T("Width\nSets the width of the particle emitter.\n"), 0, ITEM_EMITTER_WIDTH );
 		Mac_AddChildItem( m_pEmitterItem, CXTPPropertyGridItemNumber, m_pEmitHeight, _T("Height\nThe particle emitter sets the height.\n"), 0, ITEM_EMITTER_HEIGHT );
-		Mac_AddChildItem( m_pEmitterItem, CXTPPropertyGridItemNumber, m_pEmissivity, _T("Emissivity\nSets the emissivity per second of the emitter.\n1000 : ÃÊ´ç 1000°³ ¹ß»ç"), 0, ITEM_EMITTER_EMISSIVITY );
-		Mac_AddChildItem( m_pEmitterItem, CXTPPropertyGridItemDouble, m_pLifeMin, _T("Life[Min]\nThe emitter sets the minimum life of the particles to emit.\n5.5 : 5.5ÃÊ"), 0.0f, ITEM_EMITTER_LIFEMIN );
-		Mac_AddChildItem( m_pEmitterItem, CXTPPropertyGridItemDouble, m_pLifeMax, _T("Life[Max]\nThe emitter sets the maximum life of the particles to emit.\n5.5 : 5.5ÃÊ"), 0.0f, ITEM_EMITTER_LIFEMAX );
+		Mac_AddChildItem( m_pEmitterItem, CXTPPropertyGridItemNumber, m_pEmissivity, _T("Emissivity\nSets the emissivity per second of the emitter.\n1000 : ì´ˆë‹¹ 1000ê°œ ë°œì‚¬"), 0, ITEM_EMITTER_EMISSIVITY );
+		Mac_AddChildItem( m_pEmitterItem, CXTPPropertyGridItemDouble, m_pLifeMin, _T("Life[Min]\nThe emitter sets the minimum life of the particles to emit.\n5.5 : 5.5ì´ˆ"), 0.0f, ITEM_EMITTER_LIFEMIN );
+		Mac_AddChildItem( m_pEmitterItem, CXTPPropertyGridItemDouble, m_pLifeMax, _T("Life[Max]\nThe emitter sets the maximum life of the particles to emit.\n5.5 : 5.5ì´ˆ"), 0.0f, ITEM_EMITTER_LIFEMAX );
 		Mac_AddChildItem( m_pEmitterItem, CXTPPropertyGridItemDouble, m_pVelMin, _T("Velocity[Min]\nSets the minimum velocity of the particles that the emitter will emit.\n200 : Per second 200px move"), 0.0f, ITEM_EMITTER_VELMIN );
 		Mac_AddChildItem( m_pEmitterItem, CXTPPropertyGridItemDouble, m_pVelMax, _T("Velocity[Max]\nSets the maximum velocity of the particles that the emitter will emit.\n200 : Per second 200px move"), 0.0f, ITEM_EMITTER_VELMAX );
 		Mac_AddChildItem( m_pEmitterItem, CXTPPropertyGridItemDouble, m_pEmitDirX, _T("EmitDir X\nSets the X property of the direction vector emitted by the emitter.\n-1 is left, 1 is right"), 0.0f, ITEM_EMITTER_DIRX );
@@ -175,7 +175,7 @@ void CPropertiesPane::OnSize(UINT nType, int cx, int cy)
 {
 	CWnd::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CSize sz(0);
 
 	if( m_PropGrid.GetSafeHwnd() )
@@ -189,7 +189,7 @@ void CPropertiesPane::SetProperty()
 	if( m_pActiveItem == NULL )
 		return;
 
-	// ÆÄÆ¼Å¬ Ä«Å×°í¸®
+	// íŒŒí‹°í´ ì¹´í…Œê³ ë¦¬
 	m_pParticleItem->SetHidden( FALSE );
 	m_pEmitterItem->SetHidden( FALSE );
 	m_pUseAffectorItem->SetHidden( FALSE );
@@ -823,7 +823,7 @@ LRESULT CPropertiesPane::OnGridNotify( WPARAM wParam, LPARAM lParam )
 						_stprintf_s( tchar, 256, _T("%f"), (float)m_pPathTime->GetDouble() );
 						pValueItem->AddValue( "path_time", tchar );
 
-						// PathManager¿¡¼­ ¼öÁ¤
+						// PathManagerì—ì„œ ìˆ˜ì •
 						CPathManager::GetInstance()->SetTotalTime( (float)m_pPathTime->GetDouble() );
 						CPathManager::GetInstance()->UpdateCurrentPathData();
 						CPathManager::GetInstance()->SaveCurrentPathData();
@@ -836,10 +836,10 @@ LRESULT CPropertiesPane::OnGridNotify( WPARAM wParam, LPARAM lParam )
 						_stprintf_s( tchar, 256, _T("%d"), nCtrlNum );						
 						pValueItem->AddValue( "path_ctrlnum", tchar );
 
-						// PathManager¿¡¼­ ¼öÁ¤ ( Build ÈÄ¿¡ )
+						// PathManagerì—ì„œ ìˆ˜ì • ( Build í›„ì— )
 						CPathManager::GetInstance()->SetActivePathItem( pValueItem );
 
-						// PathManager¿¡¼­ ¼öÁ¤
+						// PathManagerì—ì„œ ìˆ˜ì •
 						CPathManager::GetInstance()->SetTotalTime( (float)m_pPathTime->GetDouble() );
 						CPathManager::GetInstance()->UpdateCurrentPathData();
 						CPathManager::GetInstance()->SaveCurrentPathData();

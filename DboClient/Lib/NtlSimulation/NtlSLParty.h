@@ -2,7 +2,7 @@
 *
 * File			: NtlParty.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2006. 10. 20	
 * Abstract		: Simulation party info class
 *****************************************************************************
@@ -33,18 +33,18 @@ struct sCHARM_TBLDAT;
 
 struct sPartyMember : public sCommunityMember
 {
-	SERIAL_HANDLE	hSerial;		///< ∏…πˆ «⁄µÈ
-	RwUInt8			byRace;			///< ¡æ¡∑
-	RwUInt8			byClass;		///< ¡˜æ˜
-	RwUInt8			byLevel;		///< ∑π∫ß
-	RwUInt16		wCurLP;			///< «ˆ¿Á LP
-	RwUInt16		wMaxLP;			///< √÷¥Î LP
-	RwUInt16		wCurEP;			///< «ˆ¿Á EP
-	RwUInt16		wMaxEP;			///< √÷¥Î EP
-	RwUInt32		uiWorldID;		///< ø˘µÂ ID
-	RwUInt32		uiWorldTbl;		///< ø˘µÂ ≈◊¿Ã∫Ì Index
-	RwV3d			vPos;			///< ¿ßƒ°(∞°Ω√∞≈∏Æ π€ø° ¿÷¿ª ∂ß¥¬ ∆–≈∂¿ª πﬁ¥¬¥Ÿ)
-	SERIAL_HANDLE	hBusSerial;		///< ≈∏∞Ì ¿÷¥¬ πˆΩ∫¿« «⁄µÈ
+	SERIAL_HANDLE	hSerial;		///< Îß¥Î≤Ñ Ìï∏Îì§
+	RwUInt8			byRace;			///< Ï¢ÖÏ°±
+	RwUInt8			byClass;		///< ÏßÅÏóÖ
+	RwUInt8			byLevel;		///< Î†àÎ≤®
+	RwUInt16		wCurLP;			///< ÌòÑÏû¨ LP
+	RwUInt16		wMaxLP;			///< ÏµúÎåÄ LP
+	RwUInt16		wCurEP;			///< ÌòÑÏû¨ EP
+	RwUInt16		wMaxEP;			///< ÏµúÎåÄ EP
+	RwUInt32		uiWorldID;		///< ÏõîÎìú ID
+	RwUInt32		uiWorldTbl;		///< ÏõîÎìú ÌÖåÏù¥Î∏î Index
+	RwV3d			vPos;			///< ÏúÑÏπò(Í∞ÄÏãúÍ±∞Î¶¨ Î∞ñÏóê ÏûàÏùÑ ÎïåÎäî Ìå®ÌÇ∑ÏùÑ Î∞õÎäîÎã§)
+	SERIAL_HANDLE	hBusSerial;		///< ÌÉÄÍ≥† ÏûàÎäî Î≤ÑÏä§Ïùò Ìï∏Îì§
 
 	CNtlFakeBuffContainer*	pFakeBuffContainer;		///< Save buff information of members except yourself
 };
@@ -71,13 +71,13 @@ public:
 
 	virtual	void	HandleEvents(RWS::CMsg &pMsg);
 
-	VOID			SetPartyName(WCHAR* pcName);			///< ∆ƒ∆º ¿Ã∏ß º≥¡§
+	VOID			SetPartyName(WCHAR* pcName);			///< ÌååÌã∞ Ïù¥Î¶Ñ ÏÑ§Ï†ï
 
-	const WCHAR*	GetPartyName();							///< ∆ƒ∆º ¿Ã∏ß¿ª π›»Ø«—¥Ÿ
-	SERIAL_HANDLE	GetLeaderHandle();						///< ∏Æ¥ı «⁄µÈ¿ª π›»Ø«—¥Ÿ
+	const WCHAR*	GetPartyName();							///< ÌååÌã∞ Ïù¥Î¶ÑÏùÑ Î∞òÌôòÌïúÎã§
+	SERIAL_HANDLE	GetLeaderHandle();						///< Î¶¨Îçî Ìï∏Îì§ÏùÑ Î∞òÌôòÌïúÎã§
 	RwInt32			GetAvatarIndex();
 
-	// ∫–πË πÊΩƒ π›»Ø
+	// Î∂ÑÎ∞∞ Î∞©Ïãù Î∞òÌôò
 	RwUInt8				 GetZennyLootingMethod();
 	RwUInt8				 GetItemLootingMethod();
 
@@ -88,23 +88,23 @@ public:
 
 	virtual RwBool	IsHaveGroup();
 
-    sSHARETARGET_INFO*  GetShareTargetInfos() {return m_aShareTargetInfo;}      ///< ∆ƒ∆º ∞¯¿Ø≈∏∞Ÿ ¡§∫∏∏¶ π›»Ø«—¥Ÿ
+    sSHARETARGET_INFO*  GetShareTargetInfos() {return m_aShareTargetInfo;}      ///< ÌååÌã∞ Í≥µÏú†ÌÉÄÍ≤ü Ï†ïÎ≥¥Î•º Î∞òÌôòÌïúÎã§
 
 protected:
-    void            PartyShareTargetResHandler(RWS::CMsg& pMsg);         ///< ∆ƒ∆º ∞¯¿Ø ≈∏∞Ÿ ¿¿¥‰ √≥∏Æ
-    void            PartyShareTargetNfyHandler(RWS::CMsg& pMsg);         ///< ∆ƒ∆º ∞¯¿Ø ≈∏∞Ÿ æÀ∏≤ √≥∏Æ 
+    void            PartyShareTargetResHandler(RWS::CMsg& pMsg);         ///< ÌååÌã∞ Í≥µÏú† ÌÉÄÍ≤ü ÏùëÎãµ Ï≤òÎ¶¨
+    void            PartyShareTargetNfyHandler(RWS::CMsg& pMsg);         ///< ÌååÌã∞ Í≥µÏú† ÌÉÄÍ≤ü ÏïåÎ¶º Ï≤òÎ¶¨ 
 
 protected:
-	WCHAR					m_pwPartyName[NTL_MAX_SIZE_PARTY_NAME+1];	///< ∆ƒ∆º ¿Ã∏ß
+	WCHAR					m_pwPartyName[NTL_MAX_SIZE_PARTY_NAME+1];	///< ÌååÌã∞ Ïù¥Î¶Ñ
 
-	SERIAL_HANDLE			m_hLeaderHandle;			///< ∆ƒ∆º ∏Æ¥ı «⁄µÈ
+	SERIAL_HANDLE			m_hLeaderHandle;			///< ÌååÌã∞ Î¶¨Îçî Ìï∏Îì§
 
-	sSHARETARGET_INFO       m_aShareTargetInfo[NTL_MAX_SHARETARGET_COUNT];        // ∆ƒ∆º ∞¯¿Ø ≈∏∞Ÿ ¡§∫∏, πËø≠¿« ¿Œµ¶Ω∫∞° ∞¯¿Ø ≈∏∞Ÿ π¯»£¿Ã¥Ÿ
+	sSHARETARGET_INFO       m_aShareTargetInfo[NTL_MAX_SHARETARGET_COUNT];        // ÌååÌã∞ Í≥µÏú† ÌÉÄÍ≤ü Ï†ïÎ≥¥, Î∞∞Ïó¥Ïùò Ïù∏Îç±Ïä§Í∞Ä Í≥µÏú† ÌÉÄÍ≤ü Î≤àÌò∏Ïù¥Îã§
 
-	RwUInt8					m_byZennyLootingMethod;		///< ¡¶¥œ ∫–πË πÊΩƒ
-	RwUInt8					m_byItemLootingMethod;		///< æ∆¿Ã≈€ ∫–πË πÊΩƒ
+	RwUInt8					m_byZennyLootingMethod;		///< Ï†úÎãà Î∂ÑÎ∞∞ Î∞©Ïãù
+	RwUInt8					m_byItemLootingMethod;		///< ÏïÑÏù¥ÌÖú Î∂ÑÎ∞∞ Î∞©Ïãù
 
-	ePARTY_DUNGEON_STATE	m_eDungeonState;			///< ∆ƒ∆º ¿ŒΩ∫≈œΩ∫ ¥¯¿¸¿« ªÛ≈¬
+	ePARTY_DUNGEON_STATE	m_eDungeonState;			///< ÌååÌã∞ Ïù∏Ïä§ÌÑ¥Ïä§ ÎçòÏ†ÑÏùò ÏÉÅÌÉú
 };
 
 inline RwUInt8 CNtlParty::GetZennyLootingMethod()

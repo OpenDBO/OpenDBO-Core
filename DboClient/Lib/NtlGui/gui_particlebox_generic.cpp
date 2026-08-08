@@ -98,7 +98,7 @@ void CParticleBox_Generic::Load( const char* pParticleName )
 	if( m_pDoc == NULL )
 		return;
 
-	// ±âÁ¸¿¡ ÀÖ´ø ÆÄÆ¼Å¬ ½Ã½ºÅÛµéÀ» »èÁ¦ÇÑ´Ù.
+	// ê¸°ì¡´ì— ìžˆë˜ íŒŒí‹°í´ ì‹œìŠ¤í…œë“¤ì„ ì‚­ì œí•œë‹¤.
 	LISTPSIT it = m_listParticle.begin();
 	while( it != m_listParticle.end() )
 	{
@@ -108,20 +108,20 @@ void CParticleBox_Generic::Load( const char* pParticleName )
 	}
 	m_listParticle.clear();
 
-	// ÆÄÆ¼Å¬ ±×·ìÀ» ÀÐ¾î¿Â´Ù.
+	// íŒŒí‹°í´ ê·¸ë£¹ì„ ì½ì–´ì˜¨ë‹¤.
 	CParticleGroup* pGroup = m_pDoc->GetParticleGroup( pParticleName );
 	if( pGroup == NULL )
 		return;
 
-	// ÆÄÆ¼Å¬ ±×·ì¿¡ ÀÖ´Â ÆÄÆ¼Å¬µéÀ» ¼øÈ¸ÇÏ¸ç °¢Á¾ ¼Ó¼ºµéÀ» ÀÐ¾î¿Â´Ù. :: µ¿ÀÛÇÏ´ÂÁö È®ÀÎ ÇØ¾ßÇÔ
+	// íŒŒí‹°í´ ê·¸ë£¹ì— ìžˆëŠ” íŒŒí‹°í´ë“¤ì„ ìˆœíšŒí•˜ë©° ê°ì¢… ì†ì„±ë“¤ì„ ì½ì–´ì˜¨ë‹¤. :: ë™ìž‘í•˜ëŠ”ì§€ í™•ì¸ í•´ì•¼í•¨
 	CParticleItem* pItem = pGroup->GetFirstParticle();
 	while( pItem )
 	{
-		// ÆÄÆ¼Å¬ ½Ã½ºÅÛÀ» »ý¼º
+		// íŒŒí‹°í´ ì‹œìŠ¤í…œì„ ìƒì„±
 		CRectangle rect = m_pParticleBox->GetScreenRect();
 		CParticleSystem* pParticle = NTL_NEW CParticleSystem( &rect, m_pParticleBox->GetSurfaceManager() );
 		
-		// °øÅë ¼Ó¼º ÀÐ±â
+		// ê³µí†µ ì†ì„± ì½ê¸°
 		CValueItem* pValueItem = pItem->GetValueItem( CParticleItem::ITEM_COMMON );
 
 		SNTL_COMMON sCommon;
@@ -132,7 +132,7 @@ void CParticleBox_Generic::Load( const char* pParticleName )
 		pParticle->SetLife( sCommon.fLifeTime );
 		pParticle->SetLimit( sCommon.nLimit );
 		
-		// Emitter ¼Ó¼º ÀÐ±â
+		// Emitter ì†ì„± ì½ê¸°
 		pValueItem = pItem->GetValueItem( CParticleItem::ITEM_EMITTER );
 		if( !pValueItem->GetName().compare( "point" ) )
 		{
@@ -206,7 +206,7 @@ void CParticleBox_Generic::Load( const char* pParticleName )
 			}
 		}
 
-		// Gravity ¼Ó¼º ÀÐ±â
+		// Gravity ì†ì„± ì½ê¸°
 		pValueItem = pItem->GetValueItem( CParticleItem::ITEM_GRAVITY );
 
 		if( pValueItem->GetSize() > 0 )
@@ -264,7 +264,7 @@ void CParticleBox_Generic::Load( const char* pParticleName )
 			NTL_ARRAY_DELETE( pPointBuffer );
 		}
 
-		// ÆÄÆ¼Å¬ ½Ã½ºÅÛÀÇ ¸®½ºÆ®¿¡ ³Ö¾îÁØ´Ù.
+		// íŒŒí‹°í´ ì‹œìŠ¤í…œì˜ ë¦¬ìŠ¤íŠ¸ì— ë„£ì–´ì¤€ë‹¤.
 		m_listParticle.push_back( pParticle );
 
 		pItem = pGroup->GetNextParticle();

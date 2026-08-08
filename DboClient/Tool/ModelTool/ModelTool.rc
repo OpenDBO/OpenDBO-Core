@@ -126,7 +126,7 @@ END
 
 IDR_MENU1 MENU 
 BEGIN
-    POPUP "∆˙¥ı"
+    POPUP "Ìè¥Îçî"
     BEGIN
         MENUITEM "New Folder",                  ID_MENU_ADD_FOLDER
         MENUITEM "New Script",                  ID_MENU_NEW_SCRIPT
@@ -134,14 +134,14 @@ BEGIN
         MENUITEM "Rename",                      ID_MENU_RENAME_FOLDER
         MENUITEM "Delete",                      ID_MENU_DELETE_FOLDER
     END
-    POPUP "Ω∫≈©∏≥∆Æ"
+    POPUP "Ïä§ÌÅ¨Î¶ΩÌä∏"
     BEGIN
         MENUITEM "Save",                        ID_MENU_SCRIPT_SAVE
         MENUITEM "Sava As...",                  ID_MENU_SCRIPT_SAVEAS
         MENUITEM "Rename",                      ID_MENU_SCRIPT_RENAME
         MENUITEM "Delete",                      ID_MENU_DELETE_SCRIPT
     END
-    POPUP "æ÷¥œ∏ﬁ¿Ãº« º≥¡§"
+    POPUP "Ïï†ÎãàÎ©îÏù¥ÏÖò ÏÑ§Ï†ï"
     BEGIN
         MENUITEM "Set Animation...",            ID_MENU_ANIM_SET
         MENUITEM "Remove Animation",            ID_MENU_ANIM_DELETE
@@ -279,8 +279,8 @@ BEGIN
     EDITTEXT        IDC_EDIT12,304,84,27,14,ES_AUTOHSCROLL | WS_DISABLED
     GROUPBOX        "Bone",IDC_STATIC,3,0,157,111
     EDITTEXT        IDC_EDIT13,6,20,48,14,ES_AUTOHSCROLL | ES_READONLY
-    PUSHBUTTON      "¢∏",IDC_BT_BONE_PREV,55,20,11,14,WS_DISABLED
-    PUSHBUTTON      "¢∫",IDC_BT_BONE_NEXT,65,20,11,14,WS_DISABLED
+    PUSHBUTTON      "‚óÄ",IDC_BT_BONE_PREV,55,20,11,14,WS_DISABLED
+    PUSHBUTTON      "‚ñ∂",IDC_BT_BONE_NEXT,65,20,11,14,WS_DISABLED
     LTEXT           "+Insert",IDC_STATIC,83,41,26,8
     LTEXT           "+Home",IDC_STATIC,83,57,24,8
     LTEXT           "+PageUp",IDC_STATIC,83,72,32,9
@@ -310,8 +310,8 @@ IDD_ANIMTOOLVIEW DIALOGEX 0, 0, 477, 29
 STYLE DS_SETFONT | WS_CHILD
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
-    PUSHBUTTON      "¢∫",IDC_BUTTON1,7,3,18,20,WS_DISABLED
-    PUSHBUTTON      "°·",IDC_BUTTON2,31,3,18,20,WS_DISABLED
+    PUSHBUTTON      "‚ñ∂",IDC_BUTTON1,7,3,18,20,WS_DISABLED
+    PUSHBUTTON      "‚ñ†",IDC_BUTTON2,31,3,18,20,WS_DISABLED
     CONTROL         "",IDC_SLIDER1,"msctls_trackbar32",TBS_AUTOTICKS | TBS_NOTICKS | WS_TABSTOP,60,1,329,23
     EDITTEXT        IDC_EDIT1,390,4,40,14,ES_AUTOHSCROLL | ES_READONLY
     EDITTEXT        IDC_EDIT2,438,4,17,14,ES_AUTOHSCROLL | ES_READONLY,WS_EX_RIGHT

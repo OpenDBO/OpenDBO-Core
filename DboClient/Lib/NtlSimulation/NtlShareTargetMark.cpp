@@ -117,7 +117,7 @@ void CNtlShareTargetMark::CreateShareTargetMark( RwUInt8 bySlot, RwInt32 type )
         return;        
     }
 
-    // Å¸°ÙÀÇ À§Ä¡¿¡ Attach ÇÑ´Ù.
+    // íƒ€ê²Ÿì˜ ìœ„ì¹˜ì— Attach í•œë‹¤.
     if(m_pShareTargetMark)
     {
         RwV3d vOffset = ZeroAxis;
@@ -136,7 +136,7 @@ void CNtlShareTargetMark::DeleteShareTargetMark()
     m_bySlot  = INVALID_BYTE;
     m_type    = SHARE_TARGET_NONE;
 
-    // °øÀ¯ Å¸°Ù Á¤º¸µµ »èÁ¦ÇÑ´Ù.
+    // ê³µìœ  íƒ€ê²Ÿ ì •ë³´ë„ ì‚­ì œí•œë‹¤.
     RwInt32 nSlot = Logic_isPartyShareTarget(m_pSobObj->GetSerialID());
     if(nSlot != -1)
     {

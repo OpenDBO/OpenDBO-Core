@@ -1,4 +1,4 @@
-// PaletteLightAndShadow.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PaletteLightAndShadow.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -15,7 +15,7 @@
 #include "NtlPLWorldEntity.h"
 #include "NtlWorldFieldManager.h"
 
-// CPaletteLightAndShadow ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteLightAndShadow ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPaletteLightAndShadow, CDialog)
 
@@ -42,14 +42,14 @@ BEGIN_MESSAGE_MAP(CPaletteLightAndShadow, CDialog)
 END_MESSAGE_MAP()
 
 
-// CPaletteLightAndShadow ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPaletteLightAndShadow ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CPaletteLightAndShadow::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 BOOL CPaletteLightAndShadow::PreTranslateMessage(MSG* pMsg)

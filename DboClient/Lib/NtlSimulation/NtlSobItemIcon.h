@@ -2,7 +2,7 @@
  *
  * File			: NtlSobItemIcon.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2006. 3. 07	
  * Abstract		: Simulation item icon object
  *****************************************************************************

@@ -87,14 +87,14 @@ RwBool CMTCharacter::Create(const SPLEntityCreateParam *pParam /* = NULL  */)
 {
 	CreateCartoon();
 
-	//BoneData º¯°æÀ¸·Î ÀÎÇØ ¼öÁ¤À» Çß½À´Ï´Ù(2006.4.26 HongHoDong)
+	//BoneData ë³€ê²½ìœ¼ë¡œ ì¸í•´ ìˆ˜ì •ì„ í–ˆìŠµë‹ˆë‹¤(2006.4.26 HongHoDong)
 	//ScaleBone Data
     m_pTypeBoneData = m_pProperty->GetBoneScaleData();
 
 	m_pTypeBoneData->bBoneScale = TRUE;
     //m_bBoneScaleFlag = TRUE;
 
-    // BoneÀ» ±×¸®±âÀ§ÇØ Vertex Indices¸¦ ÃÊ±âÈ­ÇÑ´Ù.
+    // Boneì„ ê·¸ë¦¬ê¸°ìœ„í•´ Vertex Indicesë¥¼ ì´ˆê¸°í™”í•œë‹¤.
     if(m_pTypeBoneData->bBoneScale)
     {
         RwUInt32	i, j;
@@ -111,8 +111,8 @@ RwBool CMTCharacter::Create(const SPLEntityCreateParam *pParam /* = NULL  */)
 }
 
 /*!
- * \brief Ä«Å÷·£´õ¸µ ¸®¼Ò½º¸¦ »ý¼ºÇÑ´Ù.
- * \returns ¼º°ø À¯¹«
+ * \brief ì¹´íˆ°ëžœë”ë§ ë¦¬ì†ŒìŠ¤ë¥¼ ìƒì„±í•œë‹¤.
+ * \returns ì„±ê³µ ìœ ë¬´
  */
 RwBool CMTCharacter::CreateCartoon()
 {
@@ -134,15 +134,15 @@ RwBool CMTCharacter::CreateCartoon()
 }
 
 /*!
- * \brief dff ÆÄÀÏÀ» ·ÎµùÇÑ´Ù. (path ¼³Á¤ ¶§¹®¿¡)
- * \param szDffName ·ÎµùÇÒ ÆÄÀÏ ÀÌ¸§ (*.dff) 
- * \returns ¼º°ø À¯¹« 
+ * \brief dff íŒŒì¼ì„ ë¡œë”©í•œë‹¤. (path ì„¤ì • ë•Œë¬¸ì—)
+ * \param szDffName ë¡œë”©í•  íŒŒì¼ ì´ë¦„ (*.dff) 
+ * \returns ì„±ê³µ ìœ ë¬´ 
  */
 RwBool CMTCharacter::CreateMesh(const char *szDffName)
 {
 	NTL_PRE(szDffName);
 
-    // ÇÊ¿äÇÑ ÃÊ±âÈ­
+    // í•„ìš”í•œ ì´ˆê¸°í™”
     m_nCurrentSelectBoneIndex = 0;
 
 	// File Loading 
@@ -167,7 +167,7 @@ RwBool CMTCharacter::CreateMesh(const char *szDffName)
 		return FALSE;
 
     
-    // Hierarchy Á¤º¸¸¦ °¡Á®¿Â´Ù.
+    // Hierarchy ì •ë³´ë¥¼ ê°€ì ¸ì˜¨ë‹¤.
     m_pBaseHierarchy = Helper_GetHierarchyClump(m_pClump);
     NTL_ASSERTE(m_pBaseHierarchy);
     if(m_pBaseHierarchy == NULL)
@@ -177,7 +177,7 @@ RwBool CMTCharacter::CreateMesh(const char *szDffName)
     m_nBoneCount = m_pBaseHierarchy->numNodes;
     m_pProperty->GetBoneScaleData()->nBoneCount = m_nBoneCount;    
 
-    // ¸ðµ¨Åø¿¡¼± ÀÌ ¸ÊÀ» ¾²Áö ¾Ê´Â´Ù.
+    // ëª¨ë¸íˆ´ì—ì„  ì´ ë§µì„ ì“°ì§€ ì•ŠëŠ”ë‹¤.
     //RwFrameForAllChildren(RpClumpGetFrame(m_pClump), GetChildFrame, &m_mapFrame);    
     
     
@@ -185,7 +185,7 @@ RwBool CMTCharacter::CreateMesh(const char *szDffName)
     // Toon Setting
 	Helper_SetToonClump(m_pClump, &m_ToonData);
 
-    // world¿¡ clump¸¦ Ãß°¡ÇÑ´Ù.
+    // worldì— clumpë¥¼ ì¶”ê°€í•œë‹¤.
     RpWorldAddClump(CNtlPLGlobal::m_pRpWorld, m_pClump);
 	//GetBone List
 	RwFrameForAllChildren( RpClumpGetFrame(m_pClump), GetChildFrame, &m_mapFrame);
@@ -206,7 +206,7 @@ RwBool CMTCharacter::LoadClump(RwChar * filename)
 	NTL_PRE(filename);
 
 
-	// ÀÌ¹Ì ·ÎµùµÇ¾îÀÖÀ¸¸é Á¦°ÅÇØÁØ´Ù.
+	// ì´ë¯¸ ë¡œë”©ë˜ì–´ìžˆìœ¼ë©´ ì œê±°í•´ì¤€ë‹¤.
 	if(m_pResourceClump)
 	{
 		RpWorldRemoveClump(CNtlPLGlobal::m_pRpWorld, m_pClump);
@@ -216,7 +216,7 @@ RwBool CMTCharacter::LoadClump(RwChar * filename)
 	if(!CreateMesh(filename))
 		return FALSE;
 
-	// Clump °ü·Ã Á¤º¸¸¦ ¼³Á¤ÇÏ°í Ç¥½ÃÇÑ´Ù.
+	// Clump ê´€ë ¨ ì •ë³´ë¥¼ ì„¤ì •í•˜ê³  í‘œì‹œí•œë‹¤.
 	UpdateClumpInfo();
 
     m_bAnim = FALSE;
@@ -291,9 +291,9 @@ void CMTCharacter::DisplayClumpInfo()
 	NTL_PRE(m_pClump);
 
 	USES_CONVERSION;
-	// °¡Á®¿Â Á¤º¸¸¦ View¿¡ Ç¥½ÃÇÑ´Ù.
+	// ê°€ì ¸ì˜¨ ì •ë³´ë¥¼ Viewì— í‘œì‹œí•œë‹¤.
 
-    // 1. Atomic Á¤º¸¸¦ Ç¥½ÃÇÑ´Ù.
+    // 1. Atomic ì •ë³´ë¥¼ í‘œì‹œí•œë‹¤.
 	CListBox* pAtomicListBox = (CListBox*)CPageClump::GetInstance()->GetDlgItem(IDC_LIST_ATOMIC);
 	pAtomicListBox->ResetContent();
 
@@ -304,7 +304,7 @@ void CMTCharacter::DisplayClumpInfo()
 		pAtomicListBox->AddString(A2W(atomicName.c_str()));
 	}
 
-    // 2. Material Á¤º¸¸¦ Ç¥½ÃÇÑ´Ù.
+    // 2. Material ì •ë³´ë¥¼ í‘œì‹œí•œë‹¤.
     CListBox* pMaterialListBox = (CListBox*)CPageClump::GetInstance()->GetDlgItem(IDC_LIST_MATERIAL);
     pMaterialListBox->ResetContent();
 
@@ -315,10 +315,10 @@ void CMTCharacter::DisplayClumpInfo()
         pMaterialListBox->AddString(A2W(strMaterialName.c_str()));
     }
 
-    // 3. ÇÏ´Üºä¿¡ ³»¿ëÀ» Ç¥½ÃÇÑ´Ù.
+    // 3. í•˜ë‹¨ë·°ì— ë‚´ìš©ì„ í‘œì‹œí•œë‹¤.
     CBottomToolView::GetInstance()->SetInit(this);
 
-    // 4. ¿ìÃøºä¿¡ ³»¿ëÀ» Ç¥½ÃÇÑ´Ù.
+    // 4. ìš°ì¸¡ë·°ì— ë‚´ìš©ì„ í‘œì‹œí•œë‹¤.
     CRightToolView::GetInstance()->SetInit(this);
 
 }
@@ -334,11 +334,11 @@ void CMTCharacter::DisplayMaterialAttribute(RwChar* chMaterialName)
     RpMaterial* pMaterial = m_charInfo.GetMaterialByName(chMaterialName);
     if(pMaterial)
     {
-        // ÅØ½ºÃÄ ¼³Á¤
+        // í…ìŠ¤ì³ ì„¤ì •
         RwTexture* pTexture = RpNtlToonMaterialGetTexture(pMaterial);
         if(pTexture)
         {
-            // ÀÌ¸§ ¼³Á¤
+            // ì´ë¦„ ì„¤ì •
             std::string strTextureName = RwTextureGetName(pTexture);
             RwRaster* pRaster = RwTextureGetRaster(pTexture);
             RwInt32 nWidth = RwRasterGetWidth(pRaster);
@@ -348,11 +348,11 @@ void CMTCharacter::DisplayMaterialAttribute(RwChar* chMaterialName)
         }
         else
         {
-            // MultiTexture°¡ ¾øÀ»¶§
+            // MultiTextureê°€ ì—†ì„ë•Œ
             CPageClump::GetInstance()->SetMultiTextureInfo(NULL, 0, 0);
         }
 
-        // Ä®¶ó ¼³Á¤
+        // ì¹¼ë¼ ì„¤ì •
         const RwRGBAReal* pColor = RpNtlToonMaterialGetColor(pMaterial);
         if(pColor)
         {
@@ -374,7 +374,7 @@ RwBool CMTCharacter::SetMultiTexture(RwChar* chMaterialName, RwChar* chTextureNa
     if(!pMaterial)
         return FALSE;
     
-    // ¸ÖÆ¼ ÅØ½ºÃÄ Á¦°Å
+    // ë©€í‹° í…ìŠ¤ì³ ì œê±°
     if(chTextureName == NULL)
     {
         RwBool bReturn = RpNtlToonMaterialSetTexture(pMaterial, NULL);
@@ -382,15 +382,15 @@ RwBool CMTCharacter::SetMultiTexture(RwChar* chMaterialName, RwChar* chTextureNa
     }
 
 
-    // Texture¸¦ »ý¼ºÇÑ´Ù.    
+    // Textureë¥¼ ìƒì„±í•œë‹¤.    
     RwTexture* pMultiTexture = CNtlPLResourceManager::GetInstance()->LoadTexture(chTextureName, chTexturePath);
     if(!pMultiTexture)
         return FALSE;
 
-    // ³ªÁß¿¡ ÇØÁ¦¸¦ À§ÇØ¼­ Vector¿¡ ³Ö´Â´Ù.
+    // ë‚˜ì¤‘ì— í•´ì œë¥¼ ìœ„í•´ì„œ Vectorì— ë„£ëŠ”ë‹¤.
     m_vMultiTexture.push_back(pMultiTexture);
 
-    // Material¿¡ Àû¿ëÇÑ´Ù.
+    // Materialì— ì ìš©í•œë‹¤.
     RwBool bReturn = RpNtlToonMaterialSetTexture(pMaterial, pMultiTexture);
 
     return bReturn;
@@ -414,7 +414,7 @@ void CMTCharacter::SetMaterialColor(RwChar* chMaterialName, int r, int g, int b)
     RwRGBARealFromRwRGBA(&realColor, &color);
     RpNtlToonMaterialSetColor(pMaterial, &realColor);
 
-    // Color¸¦ ¼³Á¤ÇÒ¶§¸¸ MATERIAL_COLOR Flag¸¦ ¼¼ÆÃÇÑ´Ù.
+    // Colorë¥¼ ì„¤ì •í• ë•Œë§Œ MATERIAL_COLOR Flagë¥¼ ì„¸íŒ…í•œë‹¤.
     RpAtomic* pAtomic = m_charInfo.GetAtomicByMaterial(pMaterial);
     RwInt32 flag = RpNtlAtomicGetRenderFlag(pAtomic);
     flag |= NTL_MATERIAL_COLOR;
@@ -425,7 +425,7 @@ void CMTCharacter::CreateBB(RwChar* chAtomicName)
 {
 	NTL_PRE(chAtomicName);
 
-	// 1. ¿ì¼± Name¿¡ ÇØ´çÇÏ´Â AtomicÀ» Ã£¾Æ³½´Ù.
+	// 1. ìš°ì„  Nameì— í•´ë‹¹í•˜ëŠ” Atomicì„ ì°¾ì•„ë‚¸ë‹¤.
 	RpAtomic* pAtomic = m_charInfo.GetAtomicByName(chAtomicName);
 	if(!pAtomic)
 		return;
@@ -506,7 +506,7 @@ RwBool CMTCharacter::Update(RwReal fElapsed)
 {
     if(m_bAnim)
     {
-		//Update¸¦ ÀÌ·±½ÄÀ¸·Î ÇØÁÖ¾î¾ß ÇÑ´Ù.(by HoDong 2006.4.26)
+		//Updateë¥¼ ì´ëŸ°ì‹ìœ¼ë¡œ í•´ì£¼ì–´ì•¼ í•œë‹¤.(by HoDong 2006.4.26)
 		CNtlPLCharacter::Update(fElapsed);
     }
 
@@ -524,10 +524,10 @@ RwBool CMTCharacter::Render()
     //if(m_bAnim && m_bRenderBone)
     if(m_bRenderBone)
     {
-		//Render ºÎºÐ¿¡¼­ ÀÌ°ÍÀ» ÇÏ¸é ¾ÈµÈ´Ù. (by HoDong 2006.4.26)
+		//Render ë¶€ë¶„ì—ì„œ ì´ê²ƒì„ í•˜ë©´ ì•ˆëœë‹¤. (by HoDong 2006.4.26)
         //UpdatePreBoneScale();        
         
-        // ÇöÀç ¼±ÅÃµÈ BoneÀ» ·»´õ¸µ ÇÑ´Ù.
+        // í˜„ìž¬ ì„ íƒëœ Boneì„ ë Œë”ë§ í•œë‹¤.
         RenderSelectedBoneScale(m_pBaseHierarchy, m_nCurrentSelectBoneIndex);
         
         //UpdatePostBoneScale();        
@@ -542,12 +542,12 @@ void CMTCharacter::DisplayInfo(RtCharset* pCharSet)
     if(!pCharSet)
         return;
     
-    // È­¸é¿¡ °ü·Ã Á¤º¸¸¦ Ç¥½ÃÇÑ´Ù.
+    // í™”ë©´ì— ê´€ë ¨ ì •ë³´ë¥¼ í‘œì‹œí•œë‹¤.
     m_charInfo.DisplayInfo(pCharSet);
 
     RwChar caption[256] = {0,};
 
-    // Atomic °³¼ö
+    // Atomic ê°œìˆ˜
     RsSprintf(caption, RWSTRING("Bones : %d"),m_nBoneCount);
     RsCharsetPrint(pCharSet, caption, 0, 0, rsPRINTPOSBOTTOMLEFT);
 }
@@ -917,7 +917,7 @@ RwBool CMTCharacter::SetAnim(RwUInt32 uiKey)
     if( !m_pClump)
         return FALSE;
 
-	//Animation ÆÄÀÏÀÌ ÀÖ°í ´Ù½Ã º¯°æÀÌ µÉ°æ¿ì ¹®Á¦ÀÇ ¼ÒÁö°¡ ÀÖÀ½ (by HoDong 2006.4.26)
+	//Animation íŒŒì¼ì´ ìžˆê³  ë‹¤ì‹œ ë³€ê²½ì´ ë ê²½ìš° ë¬¸ì œì˜ ì†Œì§€ê°€ ìžˆìŒ (by HoDong 2006.4.26)
     //if(m_uiCurrentAnimKey == uiKey)
        // return TRUE;
     
@@ -930,7 +930,7 @@ RwBool CMTCharacter::SetAnim(RwUInt32 uiKey)
             rpHANIMHIERARCHYUPDATEMODELLINGMATRICES));
         RpHAnimHierarchyAttach(m_pBaseHierarchy);
 
-		// AnimationÃ³¸®´Â ÀÌ·±½ÄÀ¸·Î ÇÏ¸é µÈ´Ù. (by HoDong 2006.4.26)
+		// Animationì²˜ë¦¬ëŠ” ì´ëŸ°ì‹ìœ¼ë¡œ í•˜ë©´ ëœë‹¤. (by HoDong 2006.4.26)
 		//m_pProperty->GetAnimTable()->SetAnimPath(m_pProperty->GetAnimPath());
 		m_InstanceAnimTable.Create(m_pProperty->GetAnimTable());
 		
@@ -941,7 +941,7 @@ RwBool CMTCharacter::SetAnim(RwUInt32 uiKey)
 
 		m_bAnim = TRUE;
 
-		// Default AnimationÀÌ Load°¡ µÇ°í Àû¿ëÀÌ µÇ¾úÀ» °æ¿ì(by HoDong 2006.4.26)
+		// Default Animationì´ Loadê°€ ë˜ê³  ì ìš©ì´ ë˜ì—ˆì„ ê²½ìš°(by HoDong 2006.4.26)
 		m_bResourceLoad = TRUE;
     }
 	else
@@ -952,7 +952,7 @@ RwBool CMTCharacter::SetAnim(RwUInt32 uiKey)
 		STypeAnimData *pTypeAnimData = pTypeAnimTable->Get(uiKey);
 		if(pTypeAnimData != NULL)
 		{
-			// »õ·Î Animaiton¸¦ ÀÐ¾îµéÀÏ °æ¿ì(by HoDong 2006.4.26)
+			// ìƒˆë¡œ Animaitonë¥¼ ì½ì–´ë“¤ì¼ ê²½ìš°(by HoDong 2006.4.26)
 			pTypeAnimData->m_bReLoad = FALSE;
 			SetBaseAnimation(uiKey);
 		}
@@ -1075,7 +1075,7 @@ void CMTCharacter::ResetProperty()
     if(!m_pProperty)
         return;
     
-    //  ¿ì¼±Àº ¾Ö´Ï¸ÞÀÌ¼Ç µ¥ÀÌÅÍ¿Í BoneData¸¸ ÃÊ±âÈ­ ÇÑ´Ù.
+    //  ìš°ì„ ì€ ì• ë‹ˆë©”ì´ì…˜ ë°ì´í„°ì™€ BoneDataë§Œ ì´ˆê¸°í™” í•œë‹¤.
     CNtlTypeAnimTable* pAnimTable = m_pProperty->GetAnimTable();
     pAnimTable->Destroy();
 

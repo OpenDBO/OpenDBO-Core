@@ -2,7 +2,7 @@
 //	File		:	NtlResourceParticleSystem.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by NTL-inc CO., Ltd
+//	Copyright	:	â“’ 2005 by NTL-inc CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -11,11 +11,11 @@
 #ifndef _VENUS_DEFINE_H_
 #define _VENUS_DEFINE_H_
 
-// Version Á¤º¸
+// Version ì •ë³´
 #define VERSION_VENUS   "VENUS 9.7.29 by agebreak"
 
-#define FRAME_FIX_FPS 30.0f                           ///< Frame Fix ¼öÄ¡
-#define PATH_TREE_XML   ".\\Tool\\VenusData\\"        ///< Æ®¸® XML ÆÄÀÏµéÀÌ º¸°üµÇ´Â Æú´õ °æ·Î
+#define FRAME_FIX_FPS 30.0f                           ///< Frame Fix ìˆ˜ì¹˜
+#define PATH_TREE_XML   ".\\Tool\\VenusData\\"        ///< íŠ¸ë¦¬ XML íŒŒì¼ë“¤ì´ ë³´ê´€ë˜ëŠ” í´ë” ê²½ë¡œ
 
 static CString GetFileNameFromPath(CString strFilePath)
 {

@@ -137,7 +137,7 @@ BOOL CSimplePatcherDlg::OnInitDialog()
 
 	if ( !m_pLocalConfig->Load( _T( "SimplePatch/PatchConfig.XML" ) ) )
 	{
-		AfxMessageBox( _T("SimplePatch/PatchConfig.XML ÆÄÀÏ ·Îµù ½ÇÆĞ") );
+		AfxMessageBox( _T("SimplePatch/PatchConfig.XML íŒŒì¼ ë¡œë”© ì‹¤íŒ¨") );
 
 		::PostMessage( NULL, WM_QUIT, 0, 0 );
 
@@ -148,7 +148,7 @@ BOOL CSimplePatcherDlg::OnInitDialog()
 
 	if ( !m_pPatchHistory->LoadCurVersionList( _T( "CurrentPatchVer.XML" ) ) )
 	{
-		AfxMessageBox( _T("CurrentPatchVer.XML ÆÄÀÏ ·Îµù ½ÇÆĞ.") );
+		AfxMessageBox( _T("CurrentPatchVer.XML íŒŒì¼ ë¡œë”© ì‹¤íŒ¨.") );
 
 		::PostMessage( NULL, WM_QUIT, 0, 0 );
 
@@ -157,7 +157,7 @@ BOOL CSimplePatcherDlg::OnInitDialog()
 
 	if ( m_pLocalConfig->GetPatchFileVer() == m_pPatchHistory->GetCurVerClient()->Get() )
 	{
-		AfxMessageBox( _T( "ÇöÀç Å¬¶óÀÌ¾ğÆ®°¡ ÃÖ½Å¹öÀüÀÌ¾î¼­ ÆĞÄ¡¸¦ ¼öÇàÇÒ ¼ö ¾ø½À´Ï´Ù." ) );
+		AfxMessageBox( _T( "í˜„ì¬ í´ë¼ì´ì–¸íŠ¸ê°€ ìµœì‹ ë²„ì „ì´ì–´ì„œ íŒ¨ì¹˜ë¥¼ ìˆ˜í–‰í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤." ) );
 
 		::PostMessage( NULL, WM_QUIT, 0, 0 );
 
@@ -229,13 +229,13 @@ void CSimplePatcherDlg::OnBnClickedSimplepatcherPatchStart()
 
 		m_pPatchHistory->SetCurVerClient( &clVer );
 
-		AfxMessageBox( _T( "ÆĞÄ¡°¡ ¼º°øÀûÀ¸·Î ¾÷µ¥ÀÌÆ® µÇ¾ú½À´Ï´Ù." ) );
+		AfxMessageBox( _T( "íŒ¨ì¹˜ê°€ ì„±ê³µì ìœ¼ë¡œ ì—…ë°ì´íŠ¸ ë˜ì—ˆìŠµë‹ˆë‹¤." ) );
 
 		::PostMessage( NULL, WM_QUIT, 0, 0 );
 	}
 	else
 	{
-		AfxMessageBox( _T( "ÆĞÄ¡°¡ Ãë¼Ò µÇ¾ú½À´Ï´Ù." ) );
+		AfxMessageBox( _T( "íŒ¨ì¹˜ê°€ ì·¨ì†Œ ë˜ì—ˆìŠµë‹ˆë‹¤." ) );
 
 		::PostMessage( NULL, WM_QUIT, 0, 0 );
 	}
@@ -243,7 +243,7 @@ void CSimplePatcherDlg::OnBnClickedSimplepatcherPatchStart()
 
 void CSimplePatcherDlg::OnCancel()
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	CPatcher::s_bCancelPatch = true;
 

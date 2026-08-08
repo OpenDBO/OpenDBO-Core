@@ -9,36 +9,36 @@
 #define USING_GUI	using namespace gui
 
 /**
-* \brief ������Ʈ�� ������ �����ϴ� ������
+* \brief 占쏙옙占쏙옙占쏙옙트占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占싹댐옙 占쏙옙占쏙옙占쏙옙
 */
 enum COMPONENT_STYLE
 {
-	COMP_HER_SCROLL				= 0x00000001,		///< ���� ��ũ�� ( Horizontal scroll )
-	COMP_VER_SCROLL				= 0x00000002,		///< ���� ��ũ�� ( Vertical scroll )
-	COMP_TEXT_LEFT				= 0x00000004,		///< Text : ���� ����
-	COMP_TEXT_CENTER			= 0x00000008,		///< Text : �߾� ����
-	COMP_TEXT_RIGHT				= 0x00000010,		///< Text : ������ ����
-	COMP_TEXT_UP				= 0x00000020,		///< Text : ��� ����
-	COMP_TEXT_VERTICAL_CENTER	= 0x00000040,		///< Text : �ߴ� ����
-	COMP_TEXT_DOWN				= 0x00000080		///< Text : �ϴ� ����
+	COMP_HER_SCROLL				= 0x00000001,		///< 占쏙옙占쏙옙 占쏙옙크占쏙옙 ( Horizontal scroll )
+	COMP_VER_SCROLL				= 0x00000002,		///< 占쏙옙占쏙옙 占쏙옙크占쏙옙 ( Vertical scroll )
+	COMP_TEXT_LEFT				= 0x00000004,		///< Text : 占쏙옙占쏙옙 占쏙옙占쏙옙
+	COMP_TEXT_CENTER			= 0x00000008,		///< Text : 占쌩억옙 占쏙옙占쏙옙
+	COMP_TEXT_RIGHT				= 0x00000010,		///< Text : 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙
+	COMP_TEXT_UP				= 0x00000020,		///< Text : 상단 정렬
+	COMP_TEXT_VERTICAL_CENTER	= 0x00000040,		///< Text : 占쌩댐옙 占쏙옙占쏙옙
+	COMP_TEXT_DOWN				= 0x00000080		///< Text : 占싹댐옙 占쏙옙占쏙옙
 };
 
 /**
-* \brief Text�� ��� ó��
+* \brief Text�� ��� ó��
 */
 enum TEXT_BK
 {
-	BK_TRANSPARENT,			///< ����
-	BK_OPAQUE				///< ������
+	BK_TRANSPARENT,			///< 占쏙옙占쏙옙
+	BK_OPAQUE				///< 占쏙옙占쏙옙占쏙옙
 };
 
 /**
-* \brief Text�� ȿ��
+* \brief Text占쏙옙 효占쏙옙
 */
 enum TEXT_EFFECT
 {
 	TE_NONE,
-	TE_SHADOW,				///< �׸���
+	TE_SHADOW,				///< 占쌓몌옙占쏙옙
 	TE_OUTLINE				///< outline
 };
 
@@ -133,8 +133,8 @@ enum TEXT_EFFECT
 
 #define GUI_MOUSE_WHEEL_DELTA		120
 
-typedef unsigned int	COMPPAGE_HANDLE;
-typedef unsigned int	RESOURCE_HANDLE;
+typedef uintptr_t	COMPPAGE_HANDLE;
+	typedef uintptr_t	RESOURCE_HANDLE;
 
 #define UNISCRIBE_DLLNAME L"\\usp10.dll"
 
@@ -155,7 +155,7 @@ typedef unsigned int	RESOURCE_HANDLE;
 
 //////////////////////////////////////////////////////////////////////////////////////
 // staticbox symbol macro
-// desc : ��ħǥ, ������ǥ ��.
+// desc : 占쏙옙침표, 占쏙옙占쏙옙占쏙옙표 占쏙옙.
 //////////////////////////////////////////////////////////////////////////////////////
 #define STATICBOX_SYMBOL_CHARACTER_PERIOD	L'.'
 #define STATICBOX_SYMBOL_STRING_ELLIPSIS	L"..."

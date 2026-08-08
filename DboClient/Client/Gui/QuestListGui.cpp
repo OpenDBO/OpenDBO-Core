@@ -408,7 +408,7 @@ VOID CQuestList::RegistQuest( VOID* pData )
 {
 	SNtlEventRegQuest_Nfy* pAddData = reinterpret_cast<SNtlEventRegQuest_Nfy*>( pData );
 
-	// °°Àº ¾ÆÀÌµð°¡ ÀÖ´Ù¸é ¸ÕÀú Áö¿î´Ù.///////////////////
+	// ê°™ì€ ì•„ì´ë””ê°€ ìžˆë‹¤ë©´ ë¨¼ì € ì§€ìš´ë‹¤.///////////////////
 	UnRegistQuest( pAddData->sTSKey.tID );
 	///////////////////////////////////////////////////////
 	
@@ -547,7 +547,7 @@ VOID CQuestList::ToggleIndicator( sTS_KEY& stTSKey, bool bToggle, RwBool bAuto /
 	
 RwInt32 CQuestList::RegionNameToID( std::wstring wstrRegion )
 {
-	static RwInt32 sRegionID = 0x00010000;		// QuestID´Â Short;
+	static RwInt32 sRegionID = 0x00010000;		// QuestIDëŠ” Short;
 
 	MAP_REGIONID::iterator it;
 
@@ -677,7 +677,7 @@ CQuestNode::CQuestNode( CGuiLineTree* pTree, sTS_KEY stTSKey, std::wstring wstrT
 	m_pbtnTitle->SetTextCoord( QUESTNODE_TEXT_X, 0 );
 	m_pbtnTitle->SetTextStyle( COMP_TEXT_LEFT );
 
-	// »õ·Î »ý±ä ³à¼®ÀÌ°Å³ª, ÀÌÀü °ÔÀÓ¿¡¼­ »õ·Î »ý±ä ÈÄ ÇÑ¹øµµ ¾È³»¸¦ º¸Áö ¾Ê¾ÒÀ¸¸é »õÄù½ºÆ® Ã³¸®
+	// ìƒˆë¡œ ìƒê¸´ ë…€ì„ì´ê±°ë‚˜, ì´ì „ ê²Œìž„ì—ì„œ ìƒˆë¡œ ìƒê¸´ í›„ í•œë²ˆë„ ì•ˆë‚´ë¥¼ ë³´ì§€ ì•Šì•˜ìœ¼ë©´ ìƒˆí€˜ìŠ¤íŠ¸ ì²˜ë¦¬
 		CNtlStorageGroupQuest* pGroupQuest = (CNtlStorageGroupQuest*)GetNtlStorageManager()->GetStorageGroup( eNTL_STORAGE_GROUP_QUEST );
 	SMemoryQuestData* pMemoryData = pGroupQuest->GetQuestData( stTSKey.tID );
 	m_wstrTitle = gui::GetHtmlFromMemoryString( wstrTitle.c_str(), wstrTitle.size() );
@@ -731,7 +731,7 @@ CQuestNode::CQuestNode( CGuiLineTree* pTree, sTS_KEY stTSKey, std::wstring wstrT
 	m_slotTitlePressed	= m_pbtnTitle->SigPressed().Connect( this, &CQuestNode::OnPressedCommand );
 	m_slotTitleReleased	= m_pbtnTitle->SigReleased().Connect( this, &CQuestNode::OnReleasedCommand );
 
-	// Key Data ÀÔ·Â.
+	// Key Data ìž…ë ¥.
 	m_TSKey = stTSKey;
 	m_uiSortType = uiType;
 	SetState( uiState );
@@ -844,7 +844,7 @@ RwBool CQuestNode::CanShowShareButton(VOID)
 
 VOID CQuestNode::ShowProc(VOID)
 {
-	CGuiLineTreeNode::ShowProc();	// m_nPosY °è»ê
+	CGuiLineTreeNode::ShowProc();	// m_nPosY ê³„ì‚°
 
 	if( CanShowShareButton() )
 		m_pbtnShare->Show( true );

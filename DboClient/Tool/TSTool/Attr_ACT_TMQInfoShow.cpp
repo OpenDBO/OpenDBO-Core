@@ -1,4 +1,4 @@
-// Attr_ACT_TMQInfoShow.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_ACT_TMQInfoShow.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -7,7 +7,7 @@
 #include "NtlTimeQuest.h"
 
 
-// CAttr_ACT_TMQInfoShow ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_ACT_TMQInfoShow ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_ACT_TMQInfoShow, CAttr_Page, 1)
 
@@ -70,7 +70,7 @@ BOOL CAttr_ACT_TMQInfoShow::OnInitDialog()
 {
 	CAttr_Page::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	m_ctrInfoType.SetItemData( m_ctrInfoType.AddString( _T("Scenario") ), TIMEQUEST_INFORMATION_TYPE_SCENARIO );
 	m_ctrInfoType.SetItemData( m_ctrInfoType.AddString( _T("Stage") ), TIMEQUEST_INFORMATION_TYPE_STAGE );
 	int nIdx = m_ctrInfoType.AddString( _T("Invalid") );
@@ -80,7 +80,7 @@ BOOL CAttr_ACT_TMQInfoShow::OnInitDialog()
 	if ( m_strData.GetLength() > 0 ) SetPageData( m_strData );
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 
@@ -88,4 +88,4 @@ BEGIN_MESSAGE_MAP(CAttr_ACT_TMQInfoShow, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_ACT_TMQInfoShow ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_ACT_TMQInfoShow ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

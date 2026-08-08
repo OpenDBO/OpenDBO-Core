@@ -80,12 +80,12 @@ void CLinkEffectPane::InitEffectList()
     if(CModelToolApplication::GetInstance()->IsNotChangeMode() && m_cbEffect.GetCount())    
         return;
 
-    // OnInitialUpdate½Ã¿¡ ºÎ¸£¸é Map¿¡ ¾ÆÁ÷ ³»¿ëÀÌ ¾ø´Ù. ÃÊ±âÈ­ ÈÄ¿¡ ºÒ·¯¾ß ÇÑ´Ù.
+    // OnInitialUpdateì‹œì— ë¶€ë¥´ë©´ Mapì— ì•„ì§ ë‚´ìš©ì´ ì—†ë‹¤. ì´ˆê¸°í™” í›„ì— ë¶ˆëŸ¬ì•¼ í•œë‹¤.
     USES_CONVERSION;
 
     m_cbEffect.ResetContent();
 
-    // ÆÄ¼­·ÎºÎÅÍ µ¥ÀÌÅÍ¸¦ °¡Á®¿Í¼­ ¼³Á¤ÇÑ´Ù.
+    // íŒŒì„œë¡œë¶€í„° ë°ì´í„°ë¥¼ ê°€ì ¸ì™€ì„œ ì„¤ì •í•œë‹¤.
     CNtlPLPropertyContainer::MapProp mapEffectProperty = CNtlPLPropertyContainer::GetInstance()->Gets(PLENTITY_EFFECT);
     CNtlPLPropertyContainer::MapProp::iterator it = mapEffectProperty.begin();
     for(; it != mapEffectProperty.end(); ++it)
@@ -142,7 +142,7 @@ void CLinkEffectPane::SetCharacter( CMTCharacter* pCharacter )
     {
         m_pClump = pCharacter->GetClump();
 
-        // ListBox ³»¿ëÀ» UpdateÇÑ´Ù.
+        // ListBox ë‚´ìš©ì„ Updateí•œë‹¤.
         for(UINT i = 0; i < pCharacter->GetProperty()->m_vLinkEffect.size(); ++i)
         {
             SEventLinkEffect* pEventEffect = pCharacter->GetProperty()->m_vLinkEffect[i];
@@ -182,7 +182,7 @@ void CLinkEffectPane::SetItem( CMTItem* pItem )
     {
         m_pClump = pItem->GetClumpInfo()->GetClump();
 
-        // ListBox ³»¿ëÀ» UpdateÇÑ´Ù.
+        // ListBox ë‚´ìš©ì„ Updateí•œë‹¤.
         for(UINT i = 0; i < pItem->GetProperty()->m_vLinkEffect.size(); ++i)
         {
             SEventLinkEffect* pEventEffect = pItem->GetProperty()->m_vLinkEffect[i];
@@ -223,7 +223,7 @@ void CLinkEffectPane::SetObject( CMTObject* pObject )
     {
         m_pClump = pObject->GetClump();
         
-        // ListBox ³»¿ëÀ» UpdateÇÑ´Ù.
+        // ListBox ë‚´ìš©ì„ Updateí•œë‹¤.
         for(UINT i = 0; i < pObject->GetProperty()->m_vLinkEffect.size(); ++i)
         {
             SEventLinkEffect* pEventEffect = pObject->GetProperty()->m_vLinkEffect[i];
@@ -253,9 +253,9 @@ void CLinkEffectPane::OnCbnSelchangeCbEffect()
 }
 
 /**
- * Link Effect¸¦ Ãß°¡ÇÑ´Ù.
- * \param streffectName Ãß°¡ÇÒ EffectÀÇ ÀÌ¸§
- * return Ãß°¡µÈ Link EffectÀÇ Æ÷ÀÎÅÍ, ½ÇÆĞÇÏ¸é NULLÀ» ¹İÈ¯ÇÑ´Ù.
+ * Link Effectë¥¼ ì¶”ê°€í•œë‹¤.
+ * \param streffectName ì¶”ê°€í•  Effectì˜ ì´ë¦„
+ * return ì¶”ê°€ëœ Link Effectì˜ í¬ì¸í„°, ì‹¤íŒ¨í•˜ë©´ NULLì„ ë°˜í™˜í•œë‹¤.
  */
 SEventLinkEffect* CLinkEffectPane::AddLinkEffect( CString streffectName ) 
 {
@@ -274,7 +274,7 @@ SEventLinkEffect* CLinkEffectPane::AddLinkEffect( CString streffectName )
         return pEventLinkEffect;
     }
 
-    // ¸®½ºÆ® ¹Ú½º¿¡ Ãß°¡ÇÑ´Ù.
+    // ë¦¬ìŠ¤íŠ¸ ë°•ìŠ¤ì— ì¶”ê°€í•œë‹¤.
     SLinkEffectItemData* pItemData = new SLinkEffectItemData();
     pItemData->pEffectInstance = pEffect;
     pItemData->pEventLinkEffect = pEventLinkEffect;
@@ -283,7 +283,7 @@ SEventLinkEffect* CLinkEffectPane::AddLinkEffect( CString streffectName )
     m_lbEffect.SetItemData(nIndex, (DWORD_PTR)pItemData);
     m_lbEffect.SetCurSel(nIndex);
 
-    // ÇÁ·ÎÆÛÆ¼¿¡ Ãß°¡ÇÑ´Ù.
+    // í”„ë¡œí¼í‹°ì— ì¶”ê°€í•œë‹¤.
     if(m_pCharacter)
     {
         m_pCharacter->GetProperty()->m_vLinkEffect.push_back(pEventLinkEffect);
@@ -307,7 +307,7 @@ void CLinkEffectPane::OnLbnSelchangeListEffect()
     if(!m_pClump)
         return;
 
-    // ¸®½ºÆ® ¹Ú½º¿¡¼­ Ç×¸ñÀ» ¼±ÅÃÇÏ¸é, Property Pane¿¡ µ¥ÀÌÅÍ¸¦ ¼³Á¤ÇÑ´Ù.
+    // ë¦¬ìŠ¤íŠ¸ ë°•ìŠ¤ì—ì„œ í•­ëª©ì„ ì„ íƒí•˜ë©´, Property Paneì— ë°ì´í„°ë¥¼ ì„¤ì •í•œë‹¤.
     int nIndex = m_lbEffect.GetCurSel();
     if(nIndex < 0)
         return;
@@ -320,9 +320,9 @@ void CLinkEffectPane::OnLbnSelchangeListEffect()
 }
 
 /**
- * LinkEffect¸¦ »ı¼ºÇÏ¿© ºÎÂøÇÑ´Ù.
- * \param pEventLinkEffect »ı¼ºÇÒ EffectÀÇ ÇÁ·ÎÆÛÆ¼
- * return »ı¼ºµÈ Effect°´Ã¼. ½ÇÆĞ½Ã¿¡´Â NULLÀ» ¹İÈ¯
+ * LinkEffectë¥¼ ìƒì„±í•˜ì—¬ ë¶€ì°©í•œë‹¤.
+ * \param pEventLinkEffect ìƒì„±í•  Effectì˜ í”„ë¡œí¼í‹°
+ * return ìƒì„±ëœ Effectê°ì²´. ì‹¤íŒ¨ì‹œì—ëŠ” NULLì„ ë°˜í™˜
  */
 CNtlInstanceEffect* CLinkEffectPane::AttachEffect(SEventLinkEffect* pEventLinkEffect)
 {

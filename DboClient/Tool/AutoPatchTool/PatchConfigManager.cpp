@@ -47,7 +47,7 @@ bool CPatchFTPUploadScript::Parse(const char *key, const char *data)
 
 	memcpy(pBefore, m_strBuffer.c_str(), nCopyIdx);
 
-	// put data filename °ËÃâ.
+	// put data filename ê²€ì¶œ.
 	nStart = nCopyIdx;
 
 	nCopyIdx = nSize;
@@ -64,7 +64,7 @@ bool CPatchFTPUploadScript::Parse(const char *key, const char *data)
 	memcpy(pFileName, m_strBuffer.c_str()+nStart, nCopyIdx - nStart);
 	memcpy(pAfter, m_strBuffer.c_str()+nCopyIdx, nSize - nCopyIdx);
 
-	// file ÀÌ¸§ °íÄ¡±â.
+	// file ì´ë¦„ ê³ ì¹˜ê¸°.
 
 	int nInsertLen = (int)strlen(data);
 	int nFileLen = (int)strlen(pFileName);
@@ -279,17 +279,17 @@ bool CPatchConfigManager::IsFolder(const char *pFileName)
 
 bool CPatchConfigManager::CopyFolder(const char *pSrcFolder, const char *pDestFolder)
 {
-    // Ä«ÇÇÀü¿¡ Æú´õ¸¦ ¸¸µé¾î Áà¾ß ÇÑ´Ù.
+    // ì¹´í”¼ì „ì— í´ë”ë¥¼ ë§Œë“¤ì–´ ì¤˜ì•¼ í•œë‹¤.
     CreateDirectory(pDestFolder, NULL);
 
-    // ÆÄÀÏ º¹»ç ÇÁ·Î±×·¥(TeraCopy)¸¦ »ç¿ëÇÑ´Ù.   
+    // íŒŒì¼ ë³µì‚¬ í”„ë¡œê·¸ëž¨(TeraCopy)ë¥¼ ì‚¬ìš©í•œë‹¤.   
     STARTUPINFO si;
     PROCESS_INFORMATION pi;
     ZeroMemory( &si, sizeof(si) );
     ZeroMemory( &pi, sizeof(pi) );			
     si.cb = sizeof(si);
 
-    // Æú´õ Ä«ÇÇ´Â ÇÏÀ§ Æú´õ·Î »ý¼ºµÈ´Ù. ±×·¡¼­ destFolder¿¡¼­ ÇÑ´Ü°è À§ Æú´õ·Î Á¤ÇØ¾ßÇÑ´Ù.
+    // í´ë” ì¹´í”¼ëŠ” í•˜ìœ„ í´ë”ë¡œ ìƒì„±ëœë‹¤. ê·¸ëž˜ì„œ destFolderì—ì„œ í•œë‹¨ê³„ ìœ„ í´ë”ë¡œ ì •í•´ì•¼í•œë‹¤.
     std::string strDestFolderRoot = pDestFolder;
     size_t nPos = strDestFolderRoot.rfind("\\");
     strDestFolderRoot.replace(nPos, strDestFolderRoot.length() - (nPos), "\0");
@@ -305,7 +305,7 @@ bool CPatchConfigManager::CopyFolder(const char *pSrcFolder, const char *pDestFo
         return true;
     }
 
-    // Teracopy°¡ ¾øÀ¸¸é ÀÏ¹Ý Ä«ÇÇ API »ç¿ë
+    // Teracopyê°€ ì—†ìœ¼ë©´ ì¼ë°˜ ì¹´í”¼ API ì‚¬ìš©
     sprintf_s(szCommand, "Copy Folder - Teracopy is Not Install. Process Normal Copy API");
     OutLog(szCommand);
 
@@ -326,10 +326,10 @@ bool CPatchConfigManager::CopyFolder(const char *pSrcFolder, const char *pDestFo
 	{
 		if(FileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 		{
-			//  µð·ºÅä¸®ÀÌ¸é
+			//  ë””ë ‰í† ë¦¬ì´ë©´
 			if(FileData.cFileName[0] == '.')
 			{
-				//  Dot µð·ºÅä¸®´Â ½ºÅµÇÑ´Ù.
+				//  Dot ë””ë ‰í† ë¦¬ëŠ” ìŠ¤í‚µí•œë‹¤.
 			} 
 			else
 			{
@@ -379,14 +379,14 @@ bool CPatchConfigManager::CopyFolder(const char *pSrcFolder, const char *pDestFo
 
 bool CPatchConfigManager::CopyFile(const std::string& srcFile, const std::string& destFile)
 {
-    // ÆÄÀÏ º¹»ç ÇÁ·Î±×·¥(TeraCopy)¸¦ »ç¿ëÇÑ´Ù.   
+    // íŒŒì¼ ë³µì‚¬ í”„ë¡œê·¸ëž¨(TeraCopy)ë¥¼ ì‚¬ìš©í•œë‹¤.   
     STARTUPINFO si;
     PROCESS_INFORMATION pi;
     ZeroMemory( &si, sizeof(si) );
     ZeroMemory( &pi, sizeof(pi) );			
     si.cb = sizeof(si);
 
-    // TeraCopy´Â ÆÄÀÏ Ä«ÇÇ¶§ ´ë»ó Æú´õ¸í¸¸ ½á¾ß µÈ´Ù.
+    // TeraCopyëŠ” íŒŒì¼ ì¹´í”¼ë•Œ ëŒ€ìƒ í´ë”ëª…ë§Œ ì¨ì•¼ ëœë‹¤.
     char szDrive[64] = {0,};
     char szDir[128] = {0,};      
     _splitpath(destFile.c_str(), szDrive, szDir, NULL, NULL);
@@ -407,7 +407,7 @@ bool CPatchConfigManager::CopyFile(const std::string& srcFile, const std::string
     sprintf_s(szCommand, "Copy File - Teracopy is Not Install. Process Normal Copy API");
     OutLog(szCommand);
 
-    // Teracopy°¡ ¾øÀ¸¸é ÀÏ¹Ý API »ç¿ë
+    // Teracopyê°€ ì—†ìœ¼ë©´ ì¼ë°˜ API ì‚¬ìš©
     if(::CopyFile(srcFile.c_str(), destFile.c_str(), FALSE))
     {
         return true;
@@ -445,10 +445,10 @@ bool CPatchConfigManager::DeleteFolder(const char *pFolder, bool bRootFolderDele
 	{
 		if(FileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 		{
-			//  µð·ºÅä¸®ÀÌ¸é
+			//  ë””ë ‰í† ë¦¬ì´ë©´
 			if(FileData.cFileName[0] == '.')
 			{
-				//  Dot µð·ºÅä¸®´Â ½ºÅµÇÑ´Ù.
+				//  Dot ë””ë ‰í† ë¦¬ëŠ” ìŠ¤í‚µí•œë‹¤.
 			} 
 			else
 			{
@@ -523,10 +523,10 @@ void CPatchConfigManager::FolderReadOnlyRelease(const char *pFolder)
 	{
 		if(FileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 		{
-			//  µð·ºÅä¸®ÀÌ¸é
+			//  ë””ë ‰í† ë¦¬ì´ë©´
 			if(FileData.cFileName[0] == '.')
 			{
-				//  Dot µð·ºÅä¸®´Â ½ºÅµÇÑ´Ù.
+				//  Dot ë””ë ‰í† ë¦¬ëŠ” ìŠ¤í‚µí•œë‹¤.
 			} 
 			else
 			{
@@ -719,7 +719,7 @@ bool CPatchConfigManager::CopyDump(BOOL bFastMode /* = FALSE */)
 
 	//-----------------------------------------------------------------------------------------------------------------------
 
-    // µð¹ö±ë¿¡ ÇÊ¿äÇÑ ÆÄÀÏµé Ä«ÇÇ
+    // ë””ë²„ê¹…ì— í•„ìš”í•œ íŒŒì¼ë“¤ ì¹´í”¼
 
 	std::string strSrcDump, strSrcExe, strDestDump, strDestExe, strSrcMAP, strDestMAP;
 
@@ -1091,7 +1091,7 @@ bool CPatchConfigManager::LoadConfig(const char *pFileName)
 	pNode->Release(); 
 
 	//-----------------------------------------------------------------------------
-	// rtpatch °æ·Î
+	// rtpatch ê²½ë¡œ
 	pNode = doc.SelectSingleNode((char*)"/PatchConfig/RtPatch");
 	if(!doc.GetTextWithAttributeName(pNode, "Exe", chBuffer, 1024))
 	{
@@ -1325,7 +1325,7 @@ bool CPatchConfigManager::SaveVersion(const char *pFileName)
 	IXMLDOMDocument *pXMLDoc = doc.GetDocument();
 	pNode = doc.SelectSingleNode((char*)"/PatchList/ClientDiffRtPatch");
 
-	// »õ·Î¿î node »ý¼º.
+	// ìƒˆë¡œìš´ node ìƒì„±.
 	varValue = NODE_ELEMENT;
 	bstrName = "Data";
 	bstrNamespaceURI = "";
@@ -1415,7 +1415,7 @@ bool CPatchConfigManager::SaveVersion(const char *pFileName)
 	varValue = "\n\t";
 	pNewRefNode->put_nodeValue(varValue);
 
-	// ÀúÀå..
+	// ì €ìž¥..
 	pXMLDoc->save(bstrSaveFile);
 
 	if(pNode)

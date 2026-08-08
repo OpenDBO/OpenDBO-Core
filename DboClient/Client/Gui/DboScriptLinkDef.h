@@ -1,9 +1,9 @@
 /****************************************************************************
 * File			: DboScriptLinkDef.h
 * Author		: HaeSung, Cho
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 5. 26	
-* Abstract		: DBO ÀÇ ½ºÅ©¸³Æ® ¸µÅ© Å×ÀÌºíÀÇ Á¤ÀÇµÈ IDµé
+* Abstract		: DBO ì˜ ìŠ¤í¬ë¦½íŠ¸ ë§í¬ í…Œì´ë¸”ì˜ ì •ì˜ëœ IDë“¤
 *****************************************************************************
 * Desc         : 
 *
@@ -12,7 +12,7 @@
 #ifndef __DBO_SCRIPT_LINK_DEF_H___
 #define __DBO_SCRIPT_LINK_DEF_H___
 
-// ¿¬°áµÈ ÄÁÅÙÃ÷ÀÇ Å¸ÀÔ
+// ì—°ê²°ëœ ì»¨í…ì¸ ì˜ íƒ€ì…
 enum eScriptLinkType
 {
 	eLINKTYPE_TENKAICHIBUDOKAI = 0,
@@ -23,14 +23,14 @@ enum eScriptLinkType
 	eLINKTYPE_INVALID = 0xFF
 };
 
-// ÃµÇÏÁ¦ÀÏ¹«µµÈ¸ÀÇ ¾×¼Ç ³Ñ¹ö
+// ì²œí•˜ì œì¼ë¬´ë„íšŒì˜ ì•¡ì…˜ ë„˜ë²„
 enum eTenKaichiBudokaiAction
 {
-	eBUDOKAI_NEWSMAIN = 0,					///< ¼Ò½ÄÁö NEWS ¸ŞÀÎÀ» ¿¬´Ù.
-	eBUDOKAI_REQUEST,						///< ½ÅÃ»¼­ UI¸¦ º»´Ù.
-	eBUDOKAI_TOURNAMENT,					///< Åä³Ê¸ÕÆ® ´ëÁøÇ¥ º¸±â
-	eBUDOKAI_HTML,							///< °ø¿ë HTML ¿­±â
-	eBUDOKAI_CLOSE,							///< ÀÎÅÍÆäÀÌ½º ´İ±â
+	eBUDOKAI_NEWSMAIN = 0,					///< ì†Œì‹ì§€ NEWS ë©”ì¸ì„ ì—°ë‹¤.
+	eBUDOKAI_REQUEST,						///< ì‹ ì²­ì„œ UIë¥¼ ë³¸ë‹¤.
+	eBUDOKAI_TOURNAMENT,					///< í† ë„ˆë¨¼íŠ¸ ëŒ€ì§„í‘œ ë³´ê¸°
+	eBUDOKAI_HTML,							///< ê³µìš© HTML ì—´ê¸°
+	eBUDOKAI_CLOSE,							///< ì¸í„°í˜ì´ìŠ¤ ë‹«ê¸°
 
 	eBUDOKAI_NUMS,
 	eBUDOKAI_INVALID = 0xFF

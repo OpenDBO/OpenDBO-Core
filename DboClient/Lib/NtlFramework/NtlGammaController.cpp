@@ -8,7 +8,7 @@
 #include "NtlSysEvent.h"
 #include "NtlCoreApi.h"
 
-// Gamma ±Ù»çÄ¡
+// Gamma ê·¼ì‚¬ì¹˜
 #define dNTL_GAMMA_OFFSET		0.01f
 
 CNtlGammaController::CNtlGammaController()
@@ -108,7 +108,7 @@ void CNtlGammaController::SetGamma( RwReal fGamma )
 		HWND				hWnd = CNtlApplication::GetInstance()->GetHWnd();
 		HDC					hDC	= GetDC( hWnd );
 
-		// ÀúÀåµÇ¾î ÀÖ´Â °¨¸¶°ªÀÌ »õ·Î µé¾î¿Â °¨¸¶°ª°ú ¶È°°´Ù¸é ±Ù»ç°ªÀ» Áà¼­ Àû¿ëÇÑ´Ù.
+		// ì €ì¥ë˜ì–´ ìˆëŠ” ê°ë§ˆê°’ì´ ìƒˆë¡œ ë“¤ì–´ì˜¨ ê°ë§ˆê°’ê³¼ ë˜‘ê°™ë‹¤ë©´ ê·¼ì‚¬ê°’ì„ ì¤˜ì„œ ì ìš©í•œë‹¤.
 		if( m_fGamma == fGamma )
 		{
 			if( m_bGammaOffset )
@@ -132,11 +132,11 @@ void CNtlGammaController::SetGamma( RwReal fGamma )
 }
 
 /**
-* \brief GAMMA RAMP°ªÀ» ¸¸µç´Ù.
-* \param pGammaRamp			unsigned shortÇüÀÇ 256*3 Å©±âÀÇ ¸Ş¸ğ¸® °ø°£
-* \param fGamma				°¨¸¶°ª ( 0 ~ 4 )
-* \param fOverBright		¹à±â
-* \param fContrast			´ëºñ
+* \brief GAMMA RAMPê°’ì„ ë§Œë“ ë‹¤.
+* \param pGammaRamp			unsigned shortí˜•ì˜ 256*3 í¬ê¸°ì˜ ë©”ëª¨ë¦¬ ê³µê°„
+* \param fGamma				ê°ë§ˆê°’ ( 0 ~ 4 )
+* \param fOverBright		ë°ê¸°
+* \param fContrast			ëŒ€ë¹„
 */
 void CNtlGammaController::GetGammaRamp( void* pGammapRamp, RwReal fGamma, RwReal fOverBright /*= 1.0f*/, RwReal fContrast /*= 1.0f*/ )
 {
@@ -170,12 +170,12 @@ void CNtlGammaController::HandleEvents(	RWS::CMsg &pMsg )
 
 			if( !(*pbFullScreen) )
 			{
-				// ¹ÙÅÁÈ­¸éÀÇ Gamma¸¦ º¹¿ø½ÃÅ²´Ù.
+				// ë°”íƒ•í™”ë©´ì˜ Gammaë¥¼ ë³µì›ì‹œí‚¨ë‹¤.
 				RestoreBackGroundGamma();
 			}
 			else
 			{
-				// ¾îÇÃ¸®ÄÉÀÌ¼ÇÀÇ °¨¸¶·Î º¹±Í
+				// ì–´í”Œë¦¬ì¼€ì´ì…˜ì˜ ê°ë§ˆë¡œ ë³µê·€
 				SetCurrentGamma();
 			}
 		}

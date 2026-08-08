@@ -1,4 +1,4 @@
-// Attr_EVT_RcvSvrEvt.cpp : ���� �����Դϴ�.
+// Attr_EVT_RcvSvrEvt.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_EVT_RcvSvrEvt.h"
 
 
-// CAttr_EVT_RcvSvrEvt ��ȭ �����Դϴ�.
+// CAttr_EVT_RcvSvrEvt 대화 상자입니다.
 
 IMPLEMENT_SERIAL(CAttr_EVT_RcvSvrEvt, CAttr_Page, 1)
 
@@ -51,4 +51,4 @@ BEGIN_MESSAGE_MAP(CAttr_EVT_RcvSvrEvt, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_EVT_RcvSvrEvt �޽��� ó�����Դϴ�.
+// CAttr_EVT_RcvSvrEvt 메시지 처리기입니다.

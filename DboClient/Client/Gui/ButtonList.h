@@ -1,7 +1,7 @@
 #pragma once
 
-// ¹öÆ°¸®½ºÆ®ÀÇ ÇÃ·¡±×µé
-#define BL_MULTI_SELECT       0x00000001                    ///< Åä±Û¹öÆ°À» ÀÌ¿ëÇÑ ¸ÖÆ¼ ¼±ÅÃ °¡´É
+// ë²„íŠ¼ë¦¬ìŠ¤íŠ¸ì˜ í”Œëž˜ê·¸ë“¤
+#define BL_MULTI_SELECT       0x00000001                    ///< í† ê¸€ë²„íŠ¼ì„ ì´ìš©í•œ ë©€í‹° ì„ íƒ ê°€ëŠ¥
 
 template <typename _TClass, typename _TData = void*>
 class CButtonList
@@ -17,7 +17,7 @@ public:
 	{
 		gui::CButton*	pButton;
 		gui::CSlot		slotClicked;
-        gui::CSlot      slotToggled;        ///< Åä±ÛÀÌ ´­·¯Áú¶§·Î Å¬¸¯À¸·Î ÀÎ½ÄÇÑ´Ù (by agebreak)
+        gui::CSlot      slotToggled;        ///< í† ê¸€ì´ ëˆŒëŸ¬ì§ˆë•Œë¡œ í´ë¦­ìœ¼ë¡œ ì¸ì‹í•œë‹¤ (by agebreak)
 		SItem*			pItem;
 	};
 
@@ -74,7 +74,7 @@ public:
 	void	ClearItem();
 	SItem	GetItem(RwInt32 iValue)	{ return *m_vecItem.at(iValue); }
 
-    RwInt32 GetSelect();                            ///< ÇöÀç ¼±ÅÃµÈ ¹öÆ°ÀÇ ÀÎµ¦½º¸¦ ¹ÝÈ¯ÇÑ´Ù. ¼±ÅÃµÈ°Ô ¾øÀ¸¸é -1À» ¹ÝÈ¯. Select »óÅÂ¿¡¼­ »ç¿ëÇÑ´Ù.
+    RwInt32 GetSelect();                            ///< í˜„ìž¬ ì„ íƒëœ ë²„íŠ¼ì˜ ì¸ë±ìŠ¤ë¥¼ ë°˜í™˜í•œë‹¤. ì„ íƒëœê²Œ ì—†ìœ¼ë©´ -1ì„ ë°˜í™˜. Select ìƒíƒœì—ì„œ ì‚¬ìš©í•œë‹¤.
 
 	void	LocateItem();
 	void	UpdateItem();
@@ -215,7 +215,7 @@ void CButtonList<_TClass, _TData>::OnButtonToggled(gui::CComponent* pComponent, 
     if(!bToggle)
         return;
 
-    if(!(m_nFlag & BL_MULTI_SELECT))    ///< ¸ÖÆ¼ ¼¿·ºÆ®°¡ ¾Æ´Ï¸é ÇÏ³ª¸¸ ¼±ÅÃ °¡´É
+    if(!(m_nFlag & BL_MULTI_SELECT))    ///< ë©€í‹° ì…€ë ‰íŠ¸ê°€ ì•„ë‹ˆë©´ í•˜ë‚˜ë§Œ ì„ íƒ ê°€ëŠ¥
     {
         for (int i = 0; i < (int)m_vecButtonItem.size(); ++i)
         {        
@@ -254,7 +254,7 @@ void CButtonList<_TClass, _TData>::ClearItem()
     {
         if (m_vecButtonItem.at(i)->pButton->IsToggleButton())
         {
-            // Åä±ÛµÈ ¹öÆ°ÀÌ ÀÖÀ¸¸é ¸ðµÎ ÇØÁ¦ÇÑ´Ù.
+            // í† ê¸€ëœ ë²„íŠ¼ì´ ìžˆìœ¼ë©´ ëª¨ë‘ í•´ì œí•œë‹¤.
             m_vecButtonItem[i]->pButton->SetDown(false);
         }
     }

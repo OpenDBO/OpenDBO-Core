@@ -37,7 +37,7 @@ bool CNtlMTXml::Save(WCHAR* szFileName)
     if(!m_pXMLDocument || !szFileName)
         return false;
 
-    // ½ºÅ¸ÀÏ ½ÃÆ®¸¦ Àû¿ëÇÏ¿© ¼¼ÀÌºê ÇÑ´Ù.
+    // ìŠ¤íƒ€ì¼ ì‹œíŠ¸ë¥¼ ì ìš©í•˜ì—¬ ì„¸ì´ë¸Œ í•œë‹¤.
     IXMLDOMDocument* pXSL = NULL;
     CoCreateInstance(__uuidof(DOMDocument30), NULL, CLSCTX_INPROC_SERVER, __uuidof(IXMLDOMDocument), (void**)&pXSL);
     if(!pXSL)
@@ -79,7 +79,7 @@ bool CNtlMTXml::LoadTreeXML(WCHAR* szFileName, SItemNode* itemNode)
     if(!Load(szFileName))
         return FALSE;
 
-	// Ã¹¹øÂ° Æú´õ ³ëµå¸¦ Ã£´Â´Ù.
+	// ì²«ë²ˆì§¸ í´ë” ë…¸ë“œë¥¼ ì°¾ëŠ”ë‹¤.
 	IXMLDOMNodeList* pNodeList = SelectNodeList(L"FOLDER");
 	if(pNodeList)
 	{
@@ -109,7 +109,7 @@ void CNtlMTXml::LoadScipt(IXMLDOMNode* pNode, SItemNode* pParentItem, bool bRoot
 		pItemNode = new SItemNode();
 	}
 
-	// ³ëµå ÀÚ½ÅÀÇ Á¤º¸¸¦ ¼³Á¤ÇÑ´Ù.
+	// ë…¸ë“œ ìì‹ ì˜ ì •ë³´ë¥¼ ì„¤ì •í•œë‹¤.
 	WCHAR szNodeName[32] = {0,};
 	GetTextWithAttributeName(pNode, L"NAME", szNodeName, 32);
 	
@@ -117,7 +117,7 @@ void CNtlMTXml::LoadScipt(IXMLDOMNode* pNode, SItemNode* pParentItem, bool bRoot
 	pItemNode->eNodeType = NODE_FOLDER;
 
 	
-	// ÀÚ½ÅÀÇ ÀÚ½ÄÀ¸·Î ½ºÅ©¸³Æ®°¡ ÀÖÀ¸¸é Ãß°¡ÇÑ´Ù.
+	// ìì‹ ì˜ ìì‹ìœ¼ë¡œ ìŠ¤í¬ë¦½íŠ¸ê°€ ìˆìœ¼ë©´ ì¶”ê°€í•œë‹¤.
 	IXMLDOMNodeList* pNodeList = NULL;	
 	pNode->get_childNodes(&pNodeList);
 	if(pNodeList)
@@ -131,7 +131,7 @@ void CNtlMTXml::LoadScipt(IXMLDOMNode* pNode, SItemNode* pParentItem, bool bRoot
 			if(!pNodeChild)
 				continue;
 
-			// Æú´õ¸é Àç±Í ÇÔ¼ö¿¡ µ¹°í, ½ºÅ©¸³Æ®¸é ÀÚ½ÄÀ¸·Î Ãß°¡ÇÑ´Ù.
+			// í´ë”ë©´ ì¬ê·€ í•¨ìˆ˜ì— ëŒê³ , ìŠ¤í¬ë¦½íŠ¸ë©´ ìì‹ìœ¼ë¡œ ì¶”ê°€í•œë‹¤.
 			BSTR strNodeName;
 			pNodeChild->get_nodeName(&strNodeName);
 			if(wcscmp(L"FOLDER", strNodeName) == 0)
@@ -142,7 +142,7 @@ void CNtlMTXml::LoadScipt(IXMLDOMNode* pNode, SItemNode* pParentItem, bool bRoot
 			{
 				SItemNode* pItemChild = new SItemNode();
 
-				// µ¥ÀÌÅÍ ³»¿ë
+				// ë°ì´í„° ë‚´ìš©
 				BSTR strText;
 				pNodeChild->get_text(&strText);
 
@@ -164,9 +164,9 @@ void CNtlMTXml::LoadScipt(IXMLDOMNode* pNode, SItemNode* pParentItem, bool bRoot
 }
 
 /**
- * »õ·Î¿î Æú´õ ³ëµå¸¦ Ãß°¡ÇÑ´Ù
- * \param szParentFolder ºÙÀÏ ºÎ¸ğ Æú´õÀÇ ÀÌ¸§, NULLÀÎ °æ¿ì¿¡´Â ·çÆ®¿¡ ºÙÀÎ´Ù.
- * \param szFolderName Ãß°¡ÇÒ Æú´õ³ëµåÀÇ ÀÌ¸§ 
+ * ìƒˆë¡œìš´ í´ë” ë…¸ë“œë¥¼ ì¶”ê°€í•œë‹¤
+ * \param szParentFolder ë¶™ì¼ ë¶€ëª¨ í´ë”ì˜ ì´ë¦„, NULLì¸ ê²½ìš°ì—ëŠ” ë£¨íŠ¸ì— ë¶™ì¸ë‹¤.
+ * \param szFolderName ì¶”ê°€í•  í´ë”ë…¸ë“œì˜ ì´ë¦„ 
  */
 void CNtlMTXml::AddFolderNode( WCHAR* szParentFolder,  WCHAR* szFolderName)
 {
@@ -186,12 +186,12 @@ void CNtlMTXml::AddFolderNode( WCHAR* szParentFolder,  WCHAR* szFolderName)
 
     if(szParentFolder == NULL)
     {
-        // ·çÆ® ³ëµå¿¡ ºÙÀÎ´Ù.        
+        // ë£¨íŠ¸ ë…¸ë“œì— ë¶™ì¸ë‹¤.        
         m_pRootElem->appendChild(pElem, NULL);        
     }
     else
     {
-        // ºÎ¸ğ³ëµå¸¦ Ã£¾Æ¼­ ±× ¹Ø¿¡ ºÙÀÎ´Ù.
+        // ë¶€ëª¨ë…¸ë“œë¥¼ ì°¾ì•„ì„œ ê·¸ ë°‘ì— ë¶™ì¸ë‹¤.
         WCHAR szNodeName[128] = {0,};
         swprintf(szNodeName, L"//FOLDER[@NAME=\"%S\"]", szParentFolder);
         IXMLDOMNode* pNode = NULL;

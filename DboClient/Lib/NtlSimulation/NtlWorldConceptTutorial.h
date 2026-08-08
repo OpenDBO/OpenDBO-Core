@@ -10,10 +10,10 @@
 
 /**
  * \ingroup NtlSimulation
- * \brief Tutorial½ÃÀÇ Á¦¾î Å¬·¡½º
+ * \brief Tutorialì‹œì˜ ì œì–´ í´ë˜ìŠ¤
  * \date 2007-07-20
  * \author avooo
- * TMQ¿Í µ¿ÀÏÇÑ Å¬¶óÀÌ¾ğÆ® »óÅÂ¸¦ À¯ÁöÇÑ´Ù
+ * TMQì™€ ë™ì¼í•œ í´ë¼ì´ì–¸íŠ¸ ìƒíƒœë¥¼ ìœ ì§€í•œë‹¤
  */
 class CNtlWorldConceptTutorial : public CNtlWorldConceptController
 {
@@ -37,7 +37,7 @@ public:
 	RwBool				IsStepSkipping();
 
 	void					SetTMQState(eTIMEQUEST_GAME_STATE eState);
-	void					SetTMQState_from_Cleint(RwUInt8 byState);	// Å¬¶óÀÌ¾ğÆ® ÀÚÃ¼ÀûÀ¸·Î »óÅÂ¸¦ º¯°æÇÑ´Ù
+	void					SetTMQState_from_Cleint(RwUInt8 byState);	// í´ë¼ì´ì–¸íŠ¸ ìì²´ì ìœ¼ë¡œ ìƒíƒœë¥¼ ë³€ê²½í•œë‹¤
 
 	void					NotifyTMQStateUpdate();
 	eTIMEQUEST_GAME_STATE	GetTMQState();

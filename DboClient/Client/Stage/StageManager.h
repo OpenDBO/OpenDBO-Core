@@ -2,7 +2,7 @@
  *
  * File			: NtlStageManager.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 7. 15	
  * Abstract		: DBO Stage Manager.
  *****************************************************************************
@@ -18,8 +18,8 @@
 
 /**
  * \ingroup Client
- * DBO¿¡¼­ »ç¿ëµÇ´Â Stage Manager °´Ã¼ÀÌ¸ç, CNtlStageManager class¸¦ »ó¼Ó¹Ş´Â´Ù.
- * ¿©±â¿¡´Â ½ÇÁ¦ »ç¿ëµÈ stage¸¦ »ı¼ºÇÏ´Â ºÎºĞÀÌ Á¸ÀçÇÑ´Ù.
+ * DBOì—ì„œ ì‚¬ìš©ë˜ëŠ” Stage Manager ê°ì²´ì´ë©°, CNtlStageManager classë¥¼ ìƒì†ë°›ëŠ”ë‹¤.
+ * ì—¬ê¸°ì—ëŠ” ì‹¤ì œ ì‚¬ìš©ëœ stageë¥¼ ìƒì„±í•˜ëŠ” ë¶€ë¶„ì´ ì¡´ì¬í•œë‹¤.
  * 
  */
 class CStageManager : public CNtlStageManager
@@ -32,7 +32,7 @@ protected:
 
 	/**
 	* 
-    *  \return stage name¿¡ ÇØ´çÇÏ´Â stage¸¦ »ı¼ºÇÏ¿© ¸®ÅÏÇÑ´Ù. 
+    *  \return stage nameì— í•´ë‹¹í•˜ëŠ” stageë¥¼ ìƒì„±í•˜ì—¬ ë¦¬í„´í•œë‹¤. 
 	*/
 	virtual CNtlStage* CreateStage(const char *pStageName);
 	

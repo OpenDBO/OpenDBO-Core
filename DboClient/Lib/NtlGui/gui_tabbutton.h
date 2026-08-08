@@ -1,16 +1,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Name: class gui:CTabButton
-// Desc: TabÇü½ÄÀÇ ¹öÆ° °ü¸®. ÀÓÀÇÀÇ ¼öÀÇ ButtonÀ» Æ÷ÇÔ, °ü¸®ÇÔ.
+// Desc: Tabí˜•ì‹ì˜ ë²„íŠ¼ ê´€ë¦¬. ì„ì˜ì˜ ìˆ˜ì˜ Buttonì„ í¬í•¨, ê´€ë¦¬í•¨.
 //
 //
 // 2006.03.28 Peessi@hitel.net   
 // 2007.04.04 Peessi@hitel.net 
-//		- µ¿Àû Å©±âº¯È¯ °¹¼ö º¯È¯ °¡´É.
+//		- ë™ì  í¬ê¸°ë³€í™˜ ê°¯ìˆ˜ ë³€í™˜ ê°€ëŠ¥.
 // 2008.03.03 Peessi@hitel.net
-//		- ÅÇ¹öÆ° ÃÖ´ëÆø ÀÌ»ó ´Ã¾î³ªÁö ¾ÊÀ½. ºñ¼±ÅÃ»çÀÌÁî * °¹¼ö°¡ ÅÇ¹öÆ° ÀüÃ¼Æø ÃÊ°ú½Ã Assert
-//      - ÅÇ¹öÆ° »çÀÌÁî ºÎÁ·À¸·Î ¹ÌÇ¥½ÃÀÎ °æ¿ì ÀÚµ¿À¸·Î ÅøÆÁÀ» ¶ç¿î´Ù. 
+//		- íƒ­ë²„íŠ¼ ìµœëŒ€í­ ì´ìƒ ëŠ˜ì–´ë‚˜ì§€ ì•ŠìŒ. ë¹„ì„ íƒì‚¬ì´ì¦ˆ * ê°¯ìˆ˜ê°€ íƒ­ë²„íŠ¼ ì „ì²´í­ ì´ˆê³¼ì‹œ Assert
+//      - íƒ­ë²„íŠ¼ ì‚¬ì´ì¦ˆ ë¶€ì¡±ìœ¼ë¡œ ë¯¸í‘œì‹œì¸ ê²½ìš° ìë™ìœ¼ë¡œ íˆ´íŒì„ ë„ìš´ë‹¤. 
 //
-// Use : 1. SetTabSurface¸¦ »ç¿ë, Surface¸¦ µî·ÏÇÏ±â Àü¿¡ AddÇÑ °æ¿ì ²À RefreshÇÒ °Í.
+// Use : 1. SetTabSurfaceë¥¼ ì‚¬ìš©, Surfaceë¥¼ ë“±ë¡í•˜ê¸° ì „ì— Addí•œ ê²½ìš° ê¼­ Refreshí•  ê²ƒ.
 ////////////////////////////////////////////////////////////////////////////////
 
 #ifndef __GUI_TABBUTTON_H__
@@ -39,8 +39,8 @@ public:
 						   CSurface& focusleft, CSurface& focuscenter, CSurface& focusright, CSurface& line );
 						   
 	////////////////////////////////////////////////////////////////////////////
-	// ÀÌ ´Ü¶ôÀÇ ¼Ó¼ºÀº TabÀ» AddÇÏ±â Àü¿¡ ¼¼ÆÃÇÑ´Ù. TabÀÌ ÀÖÀ¸¸é ClearÈÄ.
-	// ±× ÀÌ¿ÜÀÇ °æ¿ì´Â Àû¿ë ÈÄ ApplyAttribute()ÇÔ¼ö¸¦ È£ÃâÇÑ´Ù. 
+	// ì´ ë‹¨ë½ì˜ ì†ì„±ì€ Tabì„ Addí•˜ê¸° ì „ì— ì„¸íŒ…í•œë‹¤. Tabì´ ìˆìœ¼ë©´ Clearí›„.
+	// ê·¸ ì´ì™¸ì˜ ê²½ìš°ëŠ” ì ìš© í›„ ApplyAttribute()í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•œë‹¤. 
 	VOID	SetTextColor( BYTE ucRed, BYTE ucGreen, BYTE ucBlue );
 	VOID	SetTextSelectedColor( BYTE ucRed, BYTE ucGreen, BYTE ucBlue );
 	VOID	SetTextFocusedColor( BYTE ucRed, BYTE ucGreen, BYTE ucBlue );
@@ -53,7 +53,7 @@ public:
 	VOID	SetTextAlign( DWORD dwAlign );
 	VOID	SetTabTextMargin( INT nMarginX, INT nMarginY );
 	////////////////////////////////////////////////////////////////////////////
-	// ApplyAttribute È£Ãâ½Ã ÀÌÀüÀÇ ÅÇ¼±ÅÃÀº À¯ÁöµÈ´Ù.
+	// ApplyAttribute í˜¸ì¶œì‹œ ì´ì „ì˜ íƒ­ì„ íƒì€ ìœ ì§€ëœë‹¤.
 	VOID	ApplyAttribute(VOID);
 
 	VOID	SetUnselTabWidth( INT nWidth, BOOL bRedraw = TRUE );

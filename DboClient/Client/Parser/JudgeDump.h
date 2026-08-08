@@ -1,19 +1,19 @@
 /*****************************************************************************
  * File			: JudgeDump.h
  * Author		: Hong Sungbock
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2008. 11. 29
  * Abstract		: 
  *****************************************************************************
- * Desc			: ¸Þ¼¼Áö¸¦ ´ýÇÁ ¶ã ¼ö ÀÖ´ÂÁö ¿©ºÎ¸¦ ÆÇ´ÜÇÏ¿© °¡´ÉÇÏ¸é ¸Þ¼¼Áö¸¦
- *				  ¹ÝÈ¯ÇÑ´Ù
+ * Desc			: ë©”ì„¸ì§€ë¥¼ ë¤í”„ ëœ° ìˆ˜ ìžˆëŠ”ì§€ ì—¬ë¶€ë¥¼ íŒë‹¨í•˜ì—¬ ê°€ëŠ¥í•˜ë©´ ë©”ì„¸ì§€ë¥¼
+ *				  ë°˜í™˜í•œë‹¤
  *****************************************************************************/
 
 #pragma once
 
 enum eDUMP_TYPE
 {
-	DUMP_DEFAULT,			// Default Dump Message´Â ¿äÃ»ÇÏ¸é ¾ðÁ¦³ª Ãâ·ÂÀÌ °¡´ÉÇÏ´Ù
+	DUMP_DEFAULT,			// Default Dump MessageëŠ” ìš”ì²­í•˜ë©´ ì–¸ì œë‚˜ ì¶œë ¥ì´ ê°€ëŠ¥í•˜ë‹¤
 	DUMP_ACTION,
 	DUMP_SOB_CREATE_DESTROY,
 	DUMP_FSM,

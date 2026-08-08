@@ -1,8 +1,8 @@
 #pragma once
 #include "ceventhandler.h"
 
-/// Addin ¶óÀÌºê·¯¸®µéÀ» °ü¸®ÇÏ´Â Å¬·¡½º
-/// ÇöÀç´Â ½ºÅ©¸°¼¦À» À§ÇÑ DevilÀ» °ü¸®ÇÑ´Ù.
+/// Addin ë¼ì´ë¸ŒëŸ¬ë¦¬ë“¤ì„ ê´€ë¦¬í•˜ëŠ” í´ë˜ìŠ¤
+/// í˜„ì¬ëŠ” ìŠ¤í¬ë¦°ìƒ·ì„ ìœ„í•œ Devilì„ ê´€ë¦¬í•œë‹¤.
 class CDBOAddinManager : public RWS::CEventHandler
 {
 public:
@@ -15,7 +15,7 @@ public:
 protected:
     virtual void			HandleEvents(RWS::CMsg &pMsg); 
 
-    void    OnEventScreenShot(RWS::CMsg& pMsg);                 ///< ½ºÅ©¸°¼¦ ÂïÀºÈÄ¿¡ ÆÄÀÏ º¯°æ Ã³¸®
+    void    OnEventScreenShot(RWS::CMsg& pMsg);                 ///< ìŠ¤í¬ë¦°ìƒ· ì°ì€í›„ì— íŒŒì¼ ë³€ê²½ ì²˜ë¦¬
 
 protected:
     static CDBOAddinManager* m_pInstance;

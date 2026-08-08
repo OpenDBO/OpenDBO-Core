@@ -3,11 +3,11 @@
 /**
 * \ingroup Client
 * \brief
-*		Netmarble¿¡¼­ Á¦°øÇÏ´Â CSSOWebBrowser¸¦ ¸â¹ö·Î ±¸¼ºÇØ¼­ ÅëÁ¦ÇÏ´Â ¸Å´ÏÂ¡ Å¬·¡½º CSSOWebBrowsingManager
+*		Netmarbleì—ì„œ ì œê³µí•˜ëŠ” CSSOWebBrowserë¥¼ ë©¤ë²„ë¡œ êµ¬ì„±í•´ì„œ í†µì œí•˜ëŠ” ë§¤ë‹ˆì§• í´ëž˜ìŠ¤ CSSOWebBrowsingManager
 *
-*		¿©·¯°³ÀÇ À¥ºê¶ó¿ìÀú¸¦ ¶Ù¿ï ¼ö ÀÖ´Ù.
+*		ì—¬ëŸ¬ê°œì˜ ì›¹ë¸Œë¼ìš°ì €ë¥¼ ë›°ìš¸ ìˆ˜ ìžˆë‹¤.
 *	
-*		À¥ºê¶ó¿ìÀú´Â ¿Å±æ ¼ö ¾ø´Ù.
+*		ì›¹ë¸Œë¼ìš°ì €ëŠ” ì˜®ê¸¸ ìˆ˜ ì—†ë‹¤.
 *
 * 
 * \date 2009-08-22

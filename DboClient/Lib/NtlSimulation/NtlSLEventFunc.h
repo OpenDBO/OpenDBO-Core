@@ -160,14 +160,14 @@ public:
 
     static void AvatarTargetStateChange(void);
 
-    // õ������ ����ȸ Īȣ 
+    // 천占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙회 칭호 
 	static void TenkaichiMarking(SERIAL_HANDLE hSerialID, BYTE byType);
 
 	//
 	static void SobEventTitleEffect(SERIAL_HANDLE hSerialID, bool bCreate, const char* pchBone, const char* pchEffect);
 
 	//---------------------------------------------------------
-	// create/delete�� ���� �Լ�.
+	// create/delete占쏙옙 占쏙옙占쏙옙 占쌉쇽옙.
 
 	static void* SobAvatarCreate(RwUInt32 uiClassId, SERIAL_HANDLE hSerialId, sCHARSTATE *pCharState, RwBool bUIAvatarCreate = FALSE);
 
@@ -222,7 +222,7 @@ public:
 	static void SobPetSkillInfo(RwUInt8 bySkillCount, const sSKILL_INFO_PET* pSkillInfoPet);
 
 	//---------------------------------------------------------
-	// move�� ���� �Լ�.
+	// move占쏙옙 占쏙옙占쏙옙 占쌉쇽옙.
 	static void SobMove(SERIAL_HANDLE hSerialId, RwUInt8 byMoveFlags, RwUInt8 byFormFlag, RwV3d vCurrLoc, RwV3d vDir, RwUInt32 uiTimeStamp);
     static void SobMoveSync(SERIAL_HANDLE hSerialId, RwV3d& vCurLoc, RwV3d& vCurDir, DWORD dwTimeStamp);
 	static void SobSplineMove(SERIAL_HANDLE hSerialId, RwBool bGroundCheck, RwBool bRunCheck, RwChar *pSplineName, RwV3d vStartPos);
@@ -242,7 +242,7 @@ public:
 	static void SobAirAccel(SERIAL_HANDLE hSerialId, RwUInt8 byMoveFlag, RwUInt8 byMoveDirection, RwV3d& vLoc, RwV3d& vDir);
 	
 	//---------------------------------------------------------
-	// object item�� ���� �Լ�.
+	// object item占쏙옙 占쏙옙占쏙옙 占쌉쇽옙.
 	static void SobItemAdd(SERIAL_HANDLE hSerialId, SERIAL_HANDLE hItemSerialId, RwUInt32 uiItemTblId, 
 		sITEM_OPTION_SET* sOptionSet, RwUInt8 byPlace, RwUInt8 bySlotIdx, RwUInt8 byStackCount,
 		RwUInt8 byRank, RwUInt8 byGrade, RwUInt8 byDur, RwUInt8 byMaxDur, RwBool bNeedToIdentify, RwUInt8 byBattleAttribute,
@@ -307,11 +307,11 @@ public:
 	static void EventBattleDungeonRewardFinish();
 
 	//---------------------------------------------------------
-	// object item�� ���� �Լ�.
+	// object item占쏙옙 占쏙옙占쏙옙 占쌉쇽옙.
 	static void SobDeleteQuickSlotIcon(SERIAL_HANDLE hSerialId);
 
 	//---------------------------------------------------------
-	// object Warehouse item�� ���� �Լ�.
+	// object Warehouse item占쏙옙 占쏙옙占쏙옙 占쌉쇽옙.
 	static void SobWarehouseUpdate(RwUInt32 uiMessageType, RwUInt32 uiSerial, RwUInt32 uiValue = 0 , RwInt32 iValue2 = 0);
 
 	static void SobWarehouseItemCreate(RwUInt8 byItemCount, void* pData);
@@ -330,7 +330,7 @@ public:
 		SERIAL_HANDLE hDestSerial, RwUInt8 byDestPlace, RwUInt8 byDestSlotIdx, RwUInt8 byDestStackCount);
 
 	//---------------------------------------------------------
-	// object quest item�� ���� �Լ�.
+	// object quest item占쏙옙 占쏙옙占쏙옙 占쌉쇽옙.
 	static void SobQuestItemAdd(SERIAL_HANDLE hSerialId, RwUInt32 uiQuestItemTblId, RwUInt8 bySlotIdx, RwUInt8 byStackCount);
 
 	static void SobAvatarQuestItemMove(SERIAL_HANDLE hSerialId, RwUInt8 ucSrcSlotIdx, RwUInt32 uiSrcTblIdx, RwUInt8 ucDestSlotIdx, RwUInt32 uiDestTblIdx);
@@ -339,8 +339,8 @@ public:
 
 	static void SobQuestItemUpdate(SERIAL_HANDLE hSerialId, RwUInt8 ucSlotIdx, RwUInt8 ucCount);
 	//---------------------------------------------------------
-	// ���ݿ� ���� �Լ�.
-	// attack animation�� �ߵ��Ǵ� ����.
+	// 占쏙옙占쌥울옙 占쏙옙占쏙옙 占쌉쇽옙.
+	// attack animation占쏙옙 占쌩듸옙占실댐옙 占쏙옙占쏙옙.
 	static void SobStanding(SERIAL_HANDLE hSerialId, RwV3d vLoc, RwV3d vDir);
 
 	static void SobFightingMode(SERIAL_HANDLE hSerialId, RwBool bFightingMode);
@@ -363,7 +363,7 @@ public:
 
 	static void SobHit(SERIAL_HANDLE hSerialId, const SHitStuff *pHitStuff);
 	static void SobAutoAttackMode(SERIAL_HANDLE hSerialId, RwBool bAttackMode);                                             ///< �ڵ� ���� ��� On/Off�� �˷��ش�.    
-    static void SobSendAttackEnd(SERIAL_HANDLE hSerialId);                                                                  ///< ������ ���û��� ���Ḧ �˷��ش�.
+    static void SobSendAttackEnd(SERIAL_HANDLE hSerialId);                                                                  ///< 占쏙옙占쏙옙占쏙옙 占쏙옙占시삼옙占쏙옙 占쏙옙占써를 占싯뤄옙占쌔댐옙.
 	static void SobJump(SERIAL_HANDLE hSerialId, RwUInt8 byMoveDirection, RwV3d vDir, RwV3d vJumpDir);
 	static void SobJumpDirection(SERIAL_HANDLE hSerialId, RwV3d vJumpDir, RwUInt32 uiTimeStamp);
 	static void SobJumpEnd(SERIAL_HANDLE hSerialId);
@@ -382,12 +382,12 @@ public:
 	static void SobProxyGUIUpdate(SERIAL_HANDLE hSerialId, RwUInt32 uiUpdateFlags, RwBool bShow);
 
 	//---------------------------------------------------------
-	// cooling�� ���� �Լ�.
+	// cooling占쏙옙 占쏙옙占쏙옙 占쌉쇽옙.
 
 	static void SobCooling(SERIAL_HANDLE hSerialId, RwBool bStart);
 
 	//---------------------------------------------------------
-	// skill�� ���� �Լ�.
+	// skill占쏙옙 占쏙옙占쏙옙 占쌉쇽옙.
 
 	static void SobSkillCancel(SERIAL_HANDLE hSerialId, RwUInt16 wReason);
 
@@ -423,7 +423,7 @@ public:
 	static void SobSkillInfoText(WCHAR* wchMsg, unsigned int uiColor, BYTE byMsgType);
 
 	//---------------------------------------------------------
-	// buff�� ���� �Լ�.
+	// buff占쏙옙 占쏙옙占쏙옙 占쌉쇽옙.
 
 	static void SobBuffAdd(SERIAL_HANDLE hSerialId, BYTE byBuffIndex, BYTE byBuffType, RwUInt32 uiTblId, RwUInt32 uiRemainTime, RwUInt32 uiKeepTime, sDBO_BUFF_PARAMETER* aBuffParameter);
 	static void SobBuffDrop(SERIAL_HANDLE hSerialId, BYTE byBuffIndex, BYTE byBuffType);
@@ -437,7 +437,7 @@ public:
 	static void SobFakeBuffActivate(SERIAL_HANDLE hSerial, sBUFF_INFO* pBuffInfo);
 
 	//---------------------------------------------------------
-	// simulation object state transition�� ���� �Լ�.
+	// simulation object state transition占쏙옙 占쏙옙占쏙옙 占쌉쇽옙.
 	static void SobStateTransition(SERIAL_HANDLE hSerialId, RwUInt32 uiTransState);
 	static void SobServerUpdateState(SERIAL_HANDLE hSerialId, sCHARSTATE *pState);
 	static void SobServerUpdateStatePostMsg(SERIAL_HANDLE hSerialId, sCHARSTATE *pState);
@@ -447,7 +447,7 @@ public:
     static void SobUpdateLPStatusNfy(SERIAL_HANDLE hSerialId, RwBool bEmergency);                            ///< ��� ����/ �Ϲ� ����
 
 	//---------------------------------------------------------
-	// simulation object information update�� ���� �Լ�.
+	// simulation object information update占쏙옙 占쏙옙占쏙옙 占쌉쇽옙.
 	static void SobUpdate(SERIAL_HANDLE hSerialId, RwUInt32 uiUpdateType, RwUInt32 uiParam1);
 	static void SobNpcCommunity(SERIAL_HANDLE hSerialId, RwBool bShow, RwUInt32 uiTriggerId, RwUInt8 byInputType);
 	static void SobTriggerObjCommunity(SERIAL_HANDLE hSerialId, RwBool bShow, RwUInt32 uiTriggerId, RwUInt8 byInputType);
@@ -461,7 +461,7 @@ public:
     static void NPCCommuExit();
 
 	//---------------------------------------------------------
-	// party�� ���� �Լ�
+	// party占쏙옙 占쏙옙占쏙옙 占쌉쇽옙
 	static void PartyUpdate(RwInt32 iMessage, SERIAL_HANDLE hSerial = INVALID_SERIAL_ID, RwUInt32 uiValue = 0, RwInt32 iValue2 = 0);
 
 	static void PartyCreate(WCHAR* pcName);
@@ -481,10 +481,10 @@ public:
 	static void PartyMemberLocation(RwUInt32 uiSerial, RwUInt32 uiWorldID, RwUInt32 uiWorldTbl, RwV3d& vCurLoc);
 
 	static void PartyShareTargetRes(WORD wResultCode);                      ///< ���� Ÿ�� ��û�� ���� ��� ��Ŷ �̺�Ʈ
-	static void PartyShareTargetNfy(sSHARETARGET_INFO* aShareTargetInfos);  ///< ���� Ÿ�ٿ� ���� �˸� ��Ŷ �̺�Ʈ
+	static void PartyShareTargetNfy(sSHARETARGET_INFO* aShareTargetInfos);  ///< 占쏙옙占쏙옙 타占쌕울옙 占쏙옙占쏙옙 占싯몌옙 占쏙옙킷 占싱븝옙트
 
 	//---------------------------------------------------------
-	// guild�� ���� �Լ�
+	// guild占쏙옙 占쏙옙占쏙옙 占쌉쇽옙
 	static void SLGuildEvent(RwInt32 iMessage, RwUInt32 uiParam = 0xffffffff, void* pData = NULL, void* pExData = NULL);
 	static void NotifyGuildEvent(RwInt32 iMessage, RwUInt32 uiParam = 0xffffffff);
 	static void ChangeGuildName(SERIAL_HANDLE hHandle, WCHAR* pwcGuildName);
@@ -501,7 +501,7 @@ public:
 	static void GuildWarehouseItemStackMove(SERIAL_HANDLE hSrcItem, SERIAL_HANDLE hDestItem, RwUInt8 bySrcPlace, RwUInt8 bySrcPos, RwUInt8 byDestPlace, RwUInt8 byDestPos, RwUInt8 byStackCount, RwUInt8 byStackCount2);
 
 	//---------------------------------------------------------
-	// ����
+	// 占쏙옙占쏙옙
 	static void DojoEvent(RwUInt8 byDojoEvent, RwUInt32 uiParam = 0xffffffff, VOID* pExData = NULL, VOID* pExData2 = NULL, VOID* pExData3 = NULL);
 	static void DojoEventNotify(RwUInt8 byDojoEvent, RwUInt32 uiParam = 0xffffffff, VOID* pExData = NULL, VOID* pExData2 = NULL, VOID* pExData3 = NULL);
 	static void DojoState(RwUInt32 uiDojoTableIndex, RwUInt8 byDojoState, RwUInt64 ui64time);
@@ -517,7 +517,7 @@ public:
 	static void HTBRPResult(RwInt32 iAttackPoint, RwInt32 iDefenderPoint, RwBool bWin, RwBool bAttacker);
 
 	//---------------------------------------------------------
-	// otherparam�� ���� �Լ�
+	// otherparam占쏙옙 占쏙옙占쏙옙 占쌉쇽옙
 	static void HelpHintEvent(RwUInt32 uiHelpHint);
 	static void BindEvent(RwUInt8 byBindType, RwUInt32 uiWorldID, RwUInt32 uiBindObjectTblIdx);
 	static void BindNotify();
@@ -562,7 +562,7 @@ public:
 	static void BroadMsgNfy_Emergency( std::wstring& wstrSpeech );
 	static void BroadMsgNfy_MiniNarration( RwUInt32 uiMiniNarrationTblIdx );
 
-	//--- DragonBall Collection ����
+	//--- DragonBall Collection 占쏙옙占쏙옙
 	static void NightEffect(RwBool bOn);
 	static void DBCNarration(const char* pszTextureName, const WCHAR* pwszText, RwInt32 eNarrationState);
 	static void DBCNarrationEnd(void);	
@@ -630,7 +630,7 @@ public:
 	static void ActionMapClientNotify( RwUInt8 byType, RwUInt16 wParam1 = 0xFFFF, RwUInt16 wParam2 = 0xFFFF );
 
 	//---------------------------------------------------------
-	// ���� ������
+	// 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
 	static void SobGetState(SERIAL_HANDLE hSerialId, RwUInt8& byServerState, RwUInt8& byClientState, char* chClientState);
 
 	static void SobGetFightingMode(SERIAL_HANDLE hSerialId, RwBool& bFightingMode);	
@@ -643,45 +643,45 @@ public:
 
 	static void RegQuest_Nfy( sTS_KEY& sTSKey,
 		bool bNewRegister,						// ����Ʈ ��Ͻ� New type�� ��� ����
-		bool bQuestShare,						// ����Ʈ ����
-		RwUInt32 uiQuestAreaName,				// ����Ʈ ���� �̸�
-		RwUInt32 uiQuestState,					// ����Ʈ ����
-		RwUInt32 uiQuestTitle,					// ����Ʈ ����
-		RwUInt32 uiQuestGoal,					// ����Ʈ ����
-		eQUEST_SORT_TYPE eQuestSortType );		// ����Ʈ ������ Ÿ��
+		bool bQuestShare,						// 占쏙옙占쏙옙트 占쏙옙占쏙옙
+		RwUInt32 uiQuestAreaName,				// 占쏙옙占쏙옙트 占쏙옙占쏙옙 占싱몌옙
+		RwUInt32 uiQuestState,					// 占쏙옙占쏙옙트 占쏙옙占쏙옙
+		RwUInt32 uiQuestTitle,					// 占쏙옙占쏙옙트 占쏙옙占쏙옙
+		RwUInt32 uiQuestGoal,					// 占쏙옙占쏙옙트 占쏙옙占쏙옙
+		eQUEST_SORT_TYPE eQuestSortType );		// 占쏙옙占쏙옙트 占쏙옙占쏙옙占쏙옙 타占쏙옙
 
 	static void UnregQuest_Nfy( sTS_KEY& sTSKey );
 
 	static void ShowQuestWindow( sTS_KEY& sTSKey );
 
 	static void ShowQuestWindow_Nfy( sTS_KEY& sTSKey,
-		RwUInt32 uiQuestAreaName,			// ����Ʈ ���� �̸�
-		RwUInt32 uiQuestTitle,				// ����Ʈ ����
-		RwUInt32 uiQuestSort,				// ����Ʈ ����
-		RwUInt32 uiQuestGrade,				// ����Ʈ ���̵�
-		eGRADE_TYPE eGradeType,				// ����Ʈ ���̵� Ÿ��
-		RwUInt32 uiQuestGoal,				// ����Ʈ ��ǥ
-		RwUInt32 uiQuestContents,			// ����Ʈ ����
-		sREWARD_INFO* psDefaultReward,		// ����Ʈ ���� ���� - �⺻ ����
-		sREWARD_INFO* psSelectReward,		// ����Ʈ ���� ���� - ���� ����
+		RwUInt32 uiQuestAreaName,			// 占쏙옙占쏙옙트 占쏙옙占쏙옙 占싱몌옙
+		RwUInt32 uiQuestTitle,				// 占쏙옙占쏙옙트 占쏙옙占쏙옙
+		RwUInt32 uiQuestSort,				// 占쏙옙占쏙옙트 占쏙옙占쏙옙
+		RwUInt32 uiQuestGrade,				// 占쏙옙占쏙옙트 占쏙옙占싱듸옙
+		eGRADE_TYPE eGradeType,				// 占쏙옙占쏙옙트 占쏙옙占싱듸옙 타占쏙옙
+		RwUInt32 uiQuestGoal,				// 占쏙옙占쏙옙트 占쏙옙표
+		RwUInt32 uiQuestContents,			// 占쏙옙占쏙옙트 占쏙옙占쏙옙
+		sREWARD_INFO* psDefaultReward,		// 占쏙옙占쏙옙트 占쏙옙占쏙옙 占쏙옙占쏙옙 - 占썩본 占쏙옙占쏙옙
+		sREWARD_INFO* psSelectReward,		// 占쏙옙占쏙옙트 占쏙옙占쏙옙 占쏙옙占쏙옙 - 占쏙옙占쏙옙 占쏙옙占쏙옙
 		unsigned int uiRewardExp,
 		unsigned int uiRewardZeni,
-		eSTOC_EVT_DATA_TYPE eEvtInfoType,	// ���� �̺�Ʈ ���� - ������ Ÿ��
-		const uSTOC_EVT_DATA& uEvtInfoData,	// ���� �̺�Ʈ ���� - ������
-		RwUInt32 uiTimeLimit,				// Ÿ�� ���� ����
+		eSTOC_EVT_DATA_TYPE eEvtInfoType,	// 占쏙옙占쏙옙 占싱븝옙트 占쏙옙占쏙옙 - 占쏙옙占쏙옙占쏙옙 타占쏙옙
+		const uSTOC_EVT_DATA& uEvtInfoData,	// 占쏙옙占쏙옙 占싱븝옙트 占쏙옙占쏙옙 - 占쏙옙占쏙옙占쏙옙
+		RwUInt32 uiTimeLimit,				// 타占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙
 		RwUInt32 uiEventType,				// eEVENT_GEN_TYPE ( ����� eEVENT_GEN_TYPE_CLICK_NPC �� ����� )
-		RwUInt32 uiEventID,					// uiEventType �� ���� �ε���, eEVENT_GEN_TYPE_CLICK_NPC : Mob table index
+		RwUInt32 uiEventID,					// uiEventType 占쏙옙 占쏙옙占쏙옙 占싸듸옙占쏙옙, eEVENT_GEN_TYPE_CLICK_NPC : Mob table index
 		RwBool bIsEventStarter );			// Event type [ True : Starter, False : Reward ]
 
 	static void UpdateQuestState_Nfy( sTS_KEY& sTSKey,
 		RwBool bOutStateMsg,					// ����Ʈ ���� �޽��� ��� ����
-		RwUInt32 uiUpdatedQuestFlag,			// ���ŵ� ����Ʈ ���� �÷���
-		RwUInt32 uiQuestState,					// ����Ʈ ����
-		RwUInt32 uiQuestTitle,					// ����Ʈ ����
-		eSTOC_EVT_DATA_TYPE eEvtInfoType,		// ���� �̺�Ʈ ���� - ������ Ÿ��
-		const uSTOC_EVT_DATA& uEvtInfoData,		// ���� �̺�Ʈ ���� - ������
+		RwUInt32 uiUpdatedQuestFlag,			// 占쏙옙占신듸옙 占쏙옙占쏙옙트 占쏙옙占쏙옙 占시뤄옙占쏙옙
+		RwUInt32 uiQuestState,					// 占쏙옙占쏙옙트 占쏙옙占쏙옙
+		RwUInt32 uiQuestTitle,					// 占쏙옙占쏙옙트 占쏙옙占쏙옙
+		eSTOC_EVT_DATA_TYPE eEvtInfoType,		// 占쏙옙占쏙옙 占싱븝옙트 占쏙옙占쏙옙 - 占쏙옙占쏙옙占쏙옙 타占쏙옙
+		const uSTOC_EVT_DATA& uEvtInfoData,		// 占쏙옙占쏙옙 占싱븝옙트 占쏙옙占쏙옙 - 占쏙옙占쏙옙占쏙옙
 		RwUInt32 uiEventType,					// eEVENT_GEN_TYPE ( ����� eEVENT_GEN_TYPE_CLICK_NPC �� ����� )
-		RwUInt32 uiEventID,						// uiEventType �� ���� �ε���, eEVENT_GEN_TYPE_CLICK_NPC : Mob table index
+		RwUInt32 uiEventID,						// uiEventType 占쏙옙 占쏙옙占쏙옙 占싸듸옙占쏙옙, eEVENT_GEN_TYPE_CLICK_NPC : Mob table index
 		RwBool bIsEventStarter,					// Event type [ True : Starter, False : Reward ]
 		RwV3d indicatorTargetPos,
 		RwUInt32 indicatorTargetWorldID,
@@ -689,9 +689,9 @@ public:
 
 
 	static void UpdateQuestProgressInfo_Nfy( sTS_KEY& sTSKey,
-		eSTOC_EVT_DATA_TYPE eEvtInfoType,	// ���� �̺�Ʈ ���� - ������ Ÿ��
-		uSTOC_EVT_DATA& uEvtInfoData,	// ���� �̺�Ʈ ���� - ������
-		RwUInt32 uiTimeLimit );			// Ÿ�� ���� ����
+		eSTOC_EVT_DATA_TYPE eEvtInfoType,	// 占쏙옙占쏙옙 占싱븝옙트 占쏙옙占쏙옙 - 占쏙옙占쏙옙占쏙옙 타占쏙옙
+		uSTOC_EVT_DATA& uEvtInfoData,	// 占쏙옙占쏙옙 占싱븝옙트 占쏙옙占쏙옙 - 占쏙옙占쏙옙占쏙옙
+		RwUInt32 uiTimeLimit );			// 타占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙
 
 	static void GiveUpQuest( sTS_KEY& sTSKey );
 
@@ -700,60 +700,60 @@ public:
 	static void HideIndicator( sTS_KEY& sTSKey );
 
 	static void ShowIndicator_Nfy( sTS_KEY& sTSKey,
-		RwUInt32 uiQState,						// ����Ʈ ����
-		RwUInt32 uiQuestTitle,					// ����Ʈ ����
-		RwUInt32 uiQuestGoal,					// ����Ʈ ����
-		eSTOC_EVT_DATA_TYPE eEvtInfoType,		// ���� �̺�Ʈ ���� - ������ Ÿ��
-		const uSTOC_EVT_DATA& uEvtInfoData,		// ���� �̺�Ʈ ���� - ������
-		RwUInt32 uiTimeLimit,					// Ÿ�� ���� ����
+		RwUInt32 uiQState,						// 占쏙옙占쏙옙트 占쏙옙占쏙옙
+		RwUInt32 uiQuestTitle,					// 占쏙옙占쏙옙트 占쏙옙占쏙옙
+		RwUInt32 uiQuestGoal,					// 占쏙옙占쏙옙트 占쏙옙占쏙옙
+		eSTOC_EVT_DATA_TYPE eEvtInfoType,		// 占쏙옙占쏙옙 占싱븝옙트 占쏙옙占쏙옙 - 占쏙옙占쏙옙占쏙옙 타占쏙옙
+		const uSTOC_EVT_DATA& uEvtInfoData,		// 占쏙옙占쏙옙 占싱븝옙트 占쏙옙占쏙옙 - 占쏙옙占쏙옙占쏙옙
+		RwUInt32 uiTimeLimit,					// 타占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙
 		RwBool bAuto,
 		RwV3d indicatorTargetPos,
 		RwUInt32 indicatorTargetWorldID,
 		RwUInt32 indicatorNpcTblidx,
 		eGRADE_TYPE m_eGradeType);
 
-	static void DoQuest( sQUEST_INFO& sQuestInfo,							// Quest ����
-						 eEVENT_GEN_TYPE eEventGenType,						// Event ����
+	static void DoQuest( sQUEST_INFO& sQuestInfo,							// Quest 占쏙옙占쏙옙
+						 eEVENT_GEN_TYPE eEventGenType,						// Event 占쏙옙占쏙옙
 						 RwUInt32 uiOwnerID,								// Owner ID
 						 RwBool bTransCameraCtrlRight);						// ī�޶� ������� �ѱ�� ��� TRUE
 
 	static void QuestProposalDialog_Req( sTS_KEY& sTSKey,
 		RwBool bDisplaySummary,				// ����Ʈ ��� ���� �̸����� �����ֱ� ����
-		RwUInt32 uiQuestTitle,					// ����Ʈ ����
-		RwUInt32 uiQuestGoal,					// ����Ʈ ��ǥ
-		RwUInt32 uiQuestSort,					// ����Ʈ ����
-		RwUInt32 uiQuestGrade,					// ����Ʈ ���̵�
-		eGRADE_TYPE eGradeType,				// ����Ʈ ���̵� Ÿ��
-		RwUInt32 uiQuestContents,				// ����Ʈ ����
-		const sREWARD_INFO* psDefaultReward,	// ����Ʈ ���� ���� - �⺻ ����
+		RwUInt32 uiQuestTitle,					// 占쏙옙占쏙옙트 占쏙옙占쏙옙
+		RwUInt32 uiQuestGoal,					// 占쏙옙占쏙옙트 占쏙옙표
+		RwUInt32 uiQuestSort,					// 占쏙옙占쏙옙트 占쏙옙占쏙옙
+		RwUInt32 uiQuestGrade,					// 占쏙옙占쏙옙트 占쏙옙占싱듸옙
+		eGRADE_TYPE eGradeType,				// 占쏙옙占쏙옙트 占쏙옙占싱듸옙 타占쏙옙
+		RwUInt32 uiQuestContents,				// 占쏙옙占쏙옙트 占쏙옙占쏙옙
+		const sREWARD_INFO* psDefaultReward,	// 占쏙옙占쏙옙트 占쏙옙占쏙옙 占쏙옙占쏙옙 - 占썩본 占쏙옙占쏙옙
 		const sREWARD_INFO* psSelectReward,
 		unsigned int uiRewardExp,
-		unsigned int uiRewardZeni);	// ����Ʈ ���� ���� - ���� ����
+		unsigned int uiRewardZeni);	// 占쏙옙占쏙옙트 占쏙옙占쏙옙 占쏙옙占쏙옙 - 占쏙옙占쏙옙 占쏙옙占쏙옙
 
-	static void QuestProposalDialog_Res( bool bResult,							// ����Ʈ ����(true) �Ǵ� ����(false)
+	static void QuestProposalDialog_Res( bool bResult,							// 占쏙옙占쏙옙트 占쏙옙占쏙옙(true) 占실댐옙 占쏙옙占쏙옙(false)
 		sTS_KEY& sTSKey );
 
 	static void QuestUserSelectDialog_Req( sTS_KEY& sTSKey,
-		RwUInt32 uiTargetType,				// Ÿ���� ���� ( eUSER_SEL_TARGET_TYPE -> eUSER_SEL_TARGET_TYPE_NPC, eUSER_SEL_TARGET_TYPE_OBJECT, eUSER_SEL_TARGET_TYPE_INVALID )
-		RwUInt32 uiTargetTblIdx,				// Ÿ���� ���̺� �ε��� 
-		RwUInt32 uiQuestTitle,				// ����Ʈ ����
-		RwUInt32 uiConv,						// ��ȭ
+		RwUInt32 uiTargetType,				// 타占쏙옙占쏙옙 占쏙옙占쏙옙 ( eUSER_SEL_TARGET_TYPE -> eUSER_SEL_TARGET_TYPE_NPC, eUSER_SEL_TARGET_TYPE_OBJECT, eUSER_SEL_TARGET_TYPE_INVALID )
+		RwUInt32 uiTargetTblIdx,				// 타占쏙옙占쏙옙 占쏙옙占싱븝옙 占싸듸옙占쏙옙 
+		RwUInt32 uiQuestTitle,				// 占쏙옙占쏙옙트 占쏙옙占쏙옙
+		RwUInt32 uiConv,						// 占쏙옙화
 		RwInt32 nBranchCnt,					// ���� ������� Branch�� ����
 		sTS_BRANCH_INFO* pBranchInfo );		// Branch info
 
-	static void QuestUserSelectDialog_Res( bool bResult,						// Ok(true) �Ǵ� Cancel(false)
+	static void QuestUserSelectDialog_Res( bool bResult,						// Ok(true) 占실댐옙 Cancel(false)
 		sTS_KEY& sTSKey,
-		NTL_TS_TC_ID tcSelID );				// ���õ� ����Ʈ ���̵�
+		NTL_TS_TC_ID tcSelID );				// 占쏙옙占시듸옙 占쏙옙占쏙옙트 占쏙옙占싱듸옙
 
 	static void QuestNarrationUserSelectDialog_Req( sTS_KEY& sTSKey,
-		eUSER_SEL_PROGRESS_STATE eProgState,	// �����̼� ���� ����
-		RwUInt32 uiConv,						// ��ȭ
+		eUSER_SEL_PROGRESS_STATE eProgState,	// 占쏙옙占쏙옙占싱쇽옙 占쏙옙占쏙옙 占쏙옙占쏙옙
+		RwUInt32 uiConv,						// 占쏙옙화
 		RwInt32 nBranchCnt,						// ���� ������� Branch�� ����
 		sTS_BRANCH_INFO* pBranchInfo );			// Branch info
 
-	static void QuestNarrationUserSelectDialog_Res( bool bResult,							// Ok(true) �Ǵ� Cancel(false)
+	static void QuestNarrationUserSelectDialog_Res( bool bResult,							// Ok(true) 占실댐옙 Cancel(false)
 		sTS_KEY& sTSKey,
-		NTL_TS_TC_ID tcSelID );					// ���õ� ����Ʈ ���̵�
+		NTL_TS_TC_ID tcSelID );					// 占쏙옙占시듸옙 占쏙옙占쏙옙트 占쏙옙占싱듸옙
 
 	static void TSFinished( unsigned char byTSType,								// Trigger type ( TS_TYPE_QUEST_CS, TS_TYPE_PC_TRIGGER_CS )
 		NTL_TS_T_ID tID );									// ����Ǵ� Ʈ���� ���̵�
@@ -762,41 +762,41 @@ public:
 		NTL_TS_TC_ID tcID );
 
 	static void QuestRewardDialog_Req( sTS_KEY& sTSKey,
-		eREWARD_CONTAINER_TYPE eRewardType,		// ���� Ÿ��
-		RwUInt32 uiLimitTime,					// ���� ���ѽð�
-		RwUInt32 uiQuestTitle,					// ����Ʈ ����
-		RwUInt32 uiQuestGoal,					// ����Ʈ ��ǥ
-		RwUInt32 uiQuestSort,					// ����Ʈ ����
-		RwUInt32 uiQuestGrade,					// ����Ʈ ���̵�
-		eGRADE_TYPE eGradeType,					// ����Ʈ ���̵� Ÿ��
-		RwUInt32 uiQuestContents,				// ����Ʈ ����
-		const sREWARD_INFO* psDefaultReward,		// ����Ʈ ���� ���� - �⺻ ����
+		eREWARD_CONTAINER_TYPE eRewardType,		// 占쏙옙占쏙옙 타占쏙옙
+		RwUInt32 uiLimitTime,					// 占쏙옙占쏙옙 占쏙옙占싼시곤옙
+		RwUInt32 uiQuestTitle,					// 占쏙옙占쏙옙트 占쏙옙占쏙옙
+		RwUInt32 uiQuestGoal,					// 占쏙옙占쏙옙트 占쏙옙표
+		RwUInt32 uiQuestSort,					// 占쏙옙占쏙옙트 占쏙옙占쏙옙
+		RwUInt32 uiQuestGrade,					// 占쏙옙占쏙옙트 占쏙옙占싱듸옙
+		eGRADE_TYPE eGradeType,					// 占쏙옙占쏙옙트 占쏙옙占싱듸옙 타占쏙옙
+		RwUInt32 uiQuestContents,				// 占쏙옙占쏙옙트 占쏙옙占쏙옙
+		const sREWARD_INFO* psDefaultReward,		// 占쏙옙占쏙옙트 占쏙옙占쏙옙 占쏙옙占쏙옙 - 占썩본 占쏙옙占쏙옙
 		const sREWARD_INFO* psSelectReward,
 		unsigned int uiRewardExp,
-		unsigned int uiRewardZeni);	// ����Ʈ ���� ���� - ���� ����
+		unsigned int uiRewardZeni);	// 占쏙옙占쏙옙트 占쏙옙占쏙옙 占쏙옙占쏙옙 - 占쏙옙占쏙옙 占쏙옙占쏙옙
 
-	static void QuestRewardDialog_Res( bool bResult,							// Ok(true) �Ǵ� Cancel(false)
+	static void QuestRewardDialog_Res( bool bResult,							// Ok(true) 占실댐옙 Cancel(false)
 		sTS_KEY& sTSKey,
-		int nSelRwdIdx );						// ���� ������ ���õ� �ε���
+		int nSelRwdIdx );						// 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占시듸옙 占싸듸옙占쏙옙
 
 
 	static void QuestNarrationDialog_Req( sTS_KEY& sTSKey,
-		eNARRATION_PROGRESS_STATE eProgState,			// Narration ���� ����
-		eNARRATION_OWNER_TYPE eOwnerType,				// Owner�� ����
-		RwUInt32 uiOwnerIdx,							// Owner�� ���̺� �ε���
-		eNARRATION_OWNER_STATE eOwnerState,			// Owner�� ����
-		eNARRATION_DIALOG_DIR_TYPE eDialogDirType,	// ��ȭ ���� ����
-		RwUInt32 uiDialog,							// ��ȭ ����
-		eNARRATION_GUI_TYPE eGUIType,					// GUI ����
+		eNARRATION_PROGRESS_STATE eProgState,			// Narration 占쏙옙占쏙옙 占쏙옙占쏙옙
+		eNARRATION_OWNER_TYPE eOwnerType,				// Owner占쏙옙 占쏙옙占쏙옙
+		RwUInt32 uiOwnerIdx,							// Owner占쏙옙 占쏙옙占싱븝옙 占싸듸옙占쏙옙
+		eNARRATION_OWNER_STATE eOwnerState,			// Owner占쏙옙 占쏙옙占쏙옙
+		eNARRATION_DIALOG_DIR_TYPE eDialogDirType,	// 占쏙옙화 占쏙옙占쏙옙 占쏙옙占쏙옙
+		RwUInt32 uiDialog,							// 占쏙옙화 占쏙옙占쏙옙
+		eNARRATION_GUI_TYPE eGUIType,					// GUI 占쏙옙占쏙옙
 		RwUInt32 uiMaxLifeTime );						// �� �ð� �̻� �����̼� â�� ���� �Ǵ� ��� �ڵ����� Next�� �Ѿ�� �Ѵ�.
 
-	static void QuestNarrationDialog_Res( bool bResult,							// Ok(true) �Ǵ� Cancel(false)
+	static void QuestNarrationDialog_Res( bool bResult,							// Ok(true) 占실댐옙 Cancel(false)
 		sTS_KEY& sTSKey );
 
 	static void QuestNPCDialog_Req( sTS_KEY& sTSKey,
-		eNPCCONV_TYPE eNPCConvType,					// NPC ��ȭ Ÿ��
-		unsigned int uiNPCIdx,						// NPC ���̺� �ε���
-		RwUInt32 uiDesc );							// NPC ��ȭ
+		eNPCCONV_TYPE eNPCConvType,					// NPC 占쏙옙화 타占쏙옙
+		unsigned int uiNPCIdx,						// NPC 占쏙옙占싱븝옙 占싸듸옙占쏙옙
+		RwUInt32 uiDesc );							// NPC 占쏙옙화
 
 	static void QuestNPCDialog_Res( sTS_KEY& sTSKey );
 
@@ -822,10 +822,10 @@ public:
 	static void ShowQuestPosMark( sTS_KEY& sTSKey, RwBool bShow );
 
 	static void QuestObjDialog_Req( sTS_KEY& sTSKey,
-		eOBJCONV_TYPE eObjConvType,				// Object ��ȭ Ÿ��
-		RwUInt32 uiWorldIdx,					// Object �Ҽ� world index
-		RwUInt32 uiObjIdx,						// Object ���̺� �ε���
-		RwUInt32 uiDesc );						// Object ��ȭ
+		eOBJCONV_TYPE eObjConvType,				// Object 占쏙옙화 타占쏙옙
+		RwUInt32 uiWorldIdx,					// Object 占쌀쇽옙 world index
+		RwUInt32 uiObjIdx,						// Object 占쏙옙占싱븝옙 占싸듸옙占쏙옙
+		RwUInt32 uiDesc );						// Object 占쏙옙화
 
 	static void QuestObjDialog_Res( sTS_KEY& sTSKey );
 
@@ -903,7 +903,7 @@ public:
 	static void TObjectUpdateState( SERIAL_HANDLE hSerialId, TBLIDX tblIdx, RwUInt8 byMainState, RwUInt8 bySubState, RwUInt32 uiStateTime );
 
 	//---------------------------------------------------------
-	// Ʈ���� ������Ʈ ��ī���� ���� ����
+	// 트占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙트 占쏙옙카占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙
 	static void ScouterEvent(int iType, RwUInt32 uiSerailID = 0, int iUserData2 = 0, int iUserData3 = 0, 
 		int iUserData4 = 0, int iUserData5 = 0, int iUserData6 = 0, int iUserData7 = 0, int iUserData8 = 0);
 
@@ -939,7 +939,7 @@ public:
 	static void BlackListDelRes(WORD wResultCode, RwUInt32 uiTargetID);
 	static void FriendInfo(sFRIEND_INFO* pInfo, bool bIsFirst);
 	static void FriendInfoChange(RwUInt32 uiTargetID, BYTE byChangeType, DWORD dwChangeValue);
-	static void FriendInfoNotify(RwInt32 nNotifyType, RwUInt32 uiTargetID);             ///< UI ������ ���� �̺�Ʈ (������->UI)
+	static void FriendInfoNotify(RwInt32 nNotifyType, RwUInt32 uiTargetID);             ///< UI 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占싱븝옙트 (占쏙옙占쏙옙占쏙옙->UI)
 
 	// KnockDownNotify -> Client Wakeup
 	static void KnockDownNfy();
@@ -950,7 +950,7 @@ public:
 	// Popo Icon Notify
 	static void PopoNotify( const WCHAR* pwcTitle, const WCHAR* pwcBuffer, RwBool bImmediate = FALSE, RwReal fLifeTime = 0.0f );
 
-	// ���� �� Ż�� ���� �̺�Ʈ
+	// 占쏙옙占쏙옙 占쏙옙 탈占쏙옙 占쏙옙占쏙옙 占싱븝옙트
 	static void SobOnBus(SERIAL_HANDLE hSerialId, RwBool bRideOn, SERIAL_HANDLE hBusSerialId);
 	static void SobOnVehicle( SERIAL_HANDLE hSerialId, RwBool bRideOn, SERIAL_HANDLE hDriverId, RwUInt32 uiVehicleTblIdx );
 
@@ -965,19 +965,19 @@ public:
 	static void CharmPointUpdate(RwUInt32 uiCharmPoint);
 	static void CharmPointNotify(RwUInt32 uiCharmPoint);
 
-	// ���� ���� �̺�Ʈ
-	static void SobTransform(SERIAL_HANDLE hSerialId, const sASPECTSTATE& aspectState);                                 ///< PC�� ���� �̺�Ʈ
-    static void SobMobTransform(SERIAL_HANDLE hSerialId, TBLIDX tblTransformMobId);                                     ///< Mob�� ���� �̺�Ʈ
-    static void SobTransformCandy(SERIAL_HANDLE hSerialId, RwBool bTransform);                                          ///< ���� ���� �̺�Ʈ
-    static void SobTransformSequela(SERIAL_HANDLE hSerialId);                                                           ///< �ʻ��̾��� ���� ������ �̺�Ʈ (�ƹ�Ÿ ����)
+	// 占쏙옙占쏙옙 占쏙옙占쏙옙 占싱븝옙트
+	static void SobTransform(SERIAL_HANDLE hSerialId, const sASPECTSTATE& aspectState);                                 ///< PC占쏙옙 占쏙옙占쏙옙 占싱븝옙트
+    static void SobMobTransform(SERIAL_HANDLE hSerialId, TBLIDX tblTransformMobId);                                     ///< Mob占쏙옙 占쏙옙占쏙옙 占싱븝옙트
+    static void SobTransformCandy(SERIAL_HANDLE hSerialId, RwBool bTransform);                                          ///< 占쏙옙占쏙옙 占쏙옙占쏙옙 占싱븝옙트
+    static void SobTransformSequela(SERIAL_HANDLE hSerialId);                                                           ///< 占십삼옙占싱억옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占싱븝옙트 (占싣뱄옙타 占쏙옙占쏙옙)
 
 	static void SobCinematicScale(SERIAL_HANDLE hSerialId, float fScale, float fTime);
 
 	// ����� ���� �̺�Ʈ
-	static void SobAfterEffectRemainTimeNfy(DWORD dwTimeRemaining);                                                     ///< ���������� ���� �ð�
-	static void SobCondConfused(RwBool bAffect, SERIAL_HANDLE hSubject, SERIAL_HANDLE hTargetSerialId);                 ///< ȥ�� ����
-	static void SobCondTerror(RwBool bAffect, SERIAL_HANDLE hSubject, SERIAL_HANDLE hAttackerSerialId);                 ///< ���� ����
-    static void SobCondHidingKi(RwBool bAffect, SERIAL_HANDLE hSubject);                                                ///< ������
+	static void SobAfterEffectRemainTimeNfy(DWORD dwTimeRemaining);                                                     ///< 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 占시곤옙
+	static void SobCondConfused(RwBool bAffect, SERIAL_HANDLE hSubject, SERIAL_HANDLE hTargetSerialId);                 ///< 혼占쏙옙 占쏙옙占쏙옙
+	static void SobCondTerror(RwBool bAffect, SERIAL_HANDLE hSubject, SERIAL_HANDLE hAttackerSerialId);                 ///< 占쏙옙占쏙옙 占쏙옙占쏙옙
+    static void SobCondHidingKi(RwBool bAffect, SERIAL_HANDLE hSubject);                                                ///< 占쏙옙占쏙옙占쏙옙
 
 	// Tutorial
 	static void TLDefaultSkin( const char* pFontName, RwRGBA& rgbFontBackColor, RwRGBA& rgbFontColor, RwInt32 nFontSize, RwUInt32 uiFontAllign, RwV2d& vFontOffset, RwV2d& vMsgLayerOffset, RwV2d& vOkOffset, RwV2d& vIMGOffset );
@@ -1001,7 +1001,7 @@ public:
 	static void TLDisableDialogMoveOption(RwBool bDiableDialogMoveOption);
 	static void TLEnableSkip(RwBool bEnableSkip);
 
-	// õ������ ����ȸ
+	// 천占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙회
 	static void MinorMatchStateUpdate( RwUInt8 byMatchState, RwUInt8 byStage, RwUInt32 dwRemainTime, RwBool bEnterState );
 	static void MinorMatchTeamInfo( RwUInt8 byMatchIndex, RwUInt8 byTeamCount, RwUInt16 wTeamInfo_var, sVARIABLE_DATA* pData );
 	static void MinorMatchPlayerState( RwUInt32 hPlayer, RwUInt8 byPcState );

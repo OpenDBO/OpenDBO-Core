@@ -2,7 +2,7 @@
  *
  * File			: NtlStage.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 7. 14	
  * Abstract		: Stage.
  *****************************************************************************
@@ -19,8 +19,8 @@
 
 /**
  * \ingroup Client
- * client ¸ğµç °´Ã¼¸¦ °ÔÀÓ »óÅÂ ´ÜÀ§ º°·Î ±×·ìÇÏ¿© Á¤º¸¸¦ °¡Áö°í ÀÖ´Â base classÀÌ´Ù.
- * MMORPG¿¡¼­´Â Login Stage, Lobby Stage, Character Create Stage, Character Select Stage, Game Stageµîµî Á¸ÀçÇÒ ¼ö ÀÖ´Ù.
+ * client ëª¨ë“  ê°ì²´ë¥¼ ê²Œì„ ìƒíƒœ ë‹¨ìœ„ ë³„ë¡œ ê·¸ë£¹í•˜ì—¬ ì •ë³´ë¥¼ ê°€ì§€ê³  ìˆëŠ” base classì´ë‹¤.
+ * MMORPGì—ì„œëŠ” Login Stage, Lobby Stage, Character Create Stage, Character Select Stage, Game Stageë“±ë“± ì¡´ì¬í•  ìˆ˜ ìˆë‹¤.
  */
 
 class CNtlStage 
@@ -34,15 +34,15 @@ public:
 	CNtlStage(const char *pStageName);
 	virtual ~CNtlStage();
 
-	// stage °´Ã¼°¡ »ı¼ºµÈ ´ÙÀ½ °ğ¹Ù·Î È£ÃâµÈ´Ù. ÀÌ´Â ÇÏÀ§ °´Ã¼¿¡¼­ »ó¼Ó¹Ş¾Æ ÀûÀıÇÑ Ã³¸®¸¦ ÇÑ´Ù.
+	// stage ê°ì²´ê°€ ìƒì„±ëœ ë‹¤ìŒ ê³§ë°”ë¡œ í˜¸ì¶œëœë‹¤. ì´ëŠ” í•˜ìœ„ ê°ì²´ì—ì„œ ìƒì†ë°›ì•„ ì ì ˆí•œ ì²˜ë¦¬ë¥¼ í•œë‹¤.
 	virtual bool Create(void);
 
-	// stage °´Ã¼°¡ »èÁ¦µÇ±â Àü¿¡ È£ÃâµÈ´Ù. ÀÌ´Â ÇÏÀ§ °´Ã¼¿¡¼­ »ó¼Ó¹Ş¾Æ ÀûÀıÇÑ Ã³¸®¸¦ ÇÑ´Ù.
+	// stage ê°ì²´ê°€ ì‚­ì œë˜ê¸° ì „ì— í˜¸ì¶œëœë‹¤. ì´ëŠ” í•˜ìœ„ ê°ì²´ì—ì„œ ìƒì†ë°›ì•„ ì ì ˆí•œ ì²˜ë¦¬ë¥¼ í•œë‹¤.
 	virtual void Destroy(void);
 
 	virtual void PostRender(void);
 
-	// stage nameÀ» ¾ò¾î¿Â´Ù.
+	// stage nameì„ ì–»ì–´ì˜¨ë‹¤.
 	const char* GetName(void);
 };
 

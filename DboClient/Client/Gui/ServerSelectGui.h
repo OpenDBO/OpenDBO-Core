@@ -1,7 +1,7 @@
 /******************************************************************************
 * File			: ServerSelectGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2006. 12. 11
 * Update		: 2007. 10. 12
 * Abstract		: 
@@ -40,9 +40,9 @@ public:
 		gui::CStaticBox*	pState;
 
 		SERVER_HANDLE		hServer;
-		wchar_t				awcServerName[NTL_MAX_SIZE_SERVER_FARM_NAME_UNICODE + 1];	///< ¼­¹ö ÀÌ¸§
-		RwUInt8				byCharacterCount;			///< ¼ÒÀ¯ÇÑ Ä³¸¯ÅÍ
-		RwUInt32			uiUserRate;					///< À¯Àú Á¢¼Ó ºñÀ²
+		wchar_t				awcServerName[NTL_MAX_SIZE_SERVER_FARM_NAME_UNICODE + 1];	///< ì„œë²„ ì´ë¦„
+		RwUInt8				byCharacterCount;			///< ì†Œìœ í•œ ìºë¦­í„°
+		RwUInt32			uiUserRate;					///< ìœ ì € ì ‘ì† ë¹„ìœ¨
 	};
 
 	typedef std::list<CServerItem*>					SERVERITEM_LIST;
@@ -55,7 +55,7 @@ public:
 	RwBool		Create();
 	VOID		Destroy();
 
-	// Ä³¸¯ÅÍ ½ºÅ×ÀÌÁö(·Îºñ)¿¡¼­ÀÇ GUIÀÇ ÄÁÆ®·ÑÀÇ À§ÇÑ ÇÔ¼ö
+	// ìºë¦­í„° ìŠ¤í…Œì´ì§€(ë¡œë¹„)ì—ì„œì˜ GUIì˜ ì»¨íŠ¸ë¡¤ì˜ ìœ„í•œ í•¨ìˆ˜
 	VOID		SwitchDialog(bool bShow);
 
 protected:
@@ -95,41 +95,41 @@ protected:
 	VOID		OnPostPaint();
 
 protected:
-	///< ¼­¹ö ¸®½ºÆ®¸¦ Á¤·ÄÇÏ±â À§ÇÑ ¾î´ğÅÍ Å¬·¡½º
+	///< ì„œë²„ ë¦¬ìŠ¤íŠ¸ë¥¼ ì •ë ¬í•˜ê¸° ìœ„í•œ ì–´ëŒ‘í„° í´ë˜ìŠ¤
 	class CServerListSort
 	{
 	public:
-		///< ÀÌ¸§ ¿À¸§Â÷¼øÀ¸·Î Á¤·Ä
+		///< ì´ë¦„ ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬
 		static bool CompareAscentName(CServerItem* pServerItem, CServerItem* pServerItem2)
 		{
 			return (wcscmp(pServerItem->awcServerName, pServerItem2->awcServerName) < 0 );
 		}		
 
-		///< ÀÌ¸§ ³»¸²Â÷¼øÀ¸·Î Á¤·Ä
+		///< ì´ë¦„ ë‚´ë¦¼ì°¨ìˆœìœ¼ë¡œ ì •ë ¬
 		static bool CompareDecentName(CServerItem* pServerItem, CServerItem* pServerItem2)
 		{
 			return (wcscmp(pServerItem->awcServerName, pServerItem2->awcServerName) > 0 );
 		}
 
-		///< Ä³¸¯ÅÍ¼ö ¿À¸§Â÷¼øÀ¸·Î Á¤·Ä
+		///< ìºë¦­í„°ìˆ˜ ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬
 		static bool CompareAscentCharacter(CServerItem* pServerItem, CServerItem* pServerItem2)
 		{
 			return (pServerItem->byCharacterCount < pServerItem2->byCharacterCount);
 		}
 
-		///< Ä³¸¯ÅÍ¼ö ³»¸²Â÷¼øÀ¸·Î Á¤·Ä
+		///< ìºë¦­í„°ìˆ˜ ë‚´ë¦¼ì°¨ìˆœìœ¼ë¡œ ì •ë ¬
 		static bool CompareDecentCharacter(CServerItem* pServerItem, CServerItem* pServerItem2)
 		{
 			return (pServerItem->byCharacterCount > pServerItem2->byCharacterCount);
 		}
 
-		///< ¼­¹ö »óÅÂ ¿À¸§Â÷¼øÀ¸·Î Á¤·Ä
+		///< ì„œë²„ ìƒíƒœ ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬
 		static bool CompareAscentState(CServerItem* pServerItem, CServerItem* pServerItem2)
 		{
 			return ( pServerItem->uiUserRate < pServerItem2->uiUserRate);
 		}		
 
-		///< ¼­¹ö »óÅÂ ³»¸²Â÷¼øÀ¸·Î Á¤·Ä
+		///< ì„œë²„ ìƒíƒœ ë‚´ë¦¼ì°¨ìˆœìœ¼ë¡œ ì •ë ¬
 		static bool CompareDecentState(CServerItem* pServerItem, CServerItem* pServerItem2)
 		{
 			return ( pServerItem->uiUserRate > pServerItem2->uiUserRate);
@@ -153,13 +153,13 @@ protected:
 
 	gui::CStaticBox*	m_pTitleStatic;
 
-	gui::CStaticBox*	m_pSelectServer;			///< '¼­¹ö¸¦ ¼±ÅÃÇÏ¼¼¿ä'
+	gui::CStaticBox*	m_pSelectServer;			///< 'ì„œë²„ë¥¼ ì„ íƒí•˜ì„¸ìš”'
 
-	gui::CButton*		m_pServerButton;			///< ¼­¹ö ÀÌ¸§ Á¤·Ä ¹öÆ°
-	gui::CButton*		m_pCharButton;				///< Ä³¸¯ÅÍ ¼ö Á¤·Ä ¹öÆ°
-	gui::CButton*		m_pStateButton;				///< ¼­¹ö »óÅÂ Á¤·Ä ¹öÆ°
-	gui::CButton*		m_pOKButton;				///< È®ÀÎ ¹öÆ°
-	gui::CButton*		m_pCancelButton;			///< Ãë¼Ò ¹öÆ°
+	gui::CButton*		m_pServerButton;			///< ì„œë²„ ì´ë¦„ ì •ë ¬ ë²„íŠ¼
+	gui::CButton*		m_pCharButton;				///< ìºë¦­í„° ìˆ˜ ì •ë ¬ ë²„íŠ¼
+	gui::CButton*		m_pStateButton;				///< ì„œë²„ ìƒíƒœ ì •ë ¬ ë²„íŠ¼
+	gui::CButton*		m_pOKButton;				///< í™•ì¸ ë²„íŠ¼
+	gui::CButton*		m_pCancelButton;			///< ì·¨ì†Œ ë²„íŠ¼
 
 	CSurfaceGui			m_srfServerArrowUp;
 	CSurfaceGui			m_srfServerArrowDown;
@@ -173,9 +173,9 @@ protected:
 
 	gui::CScrollBar*	m_pScrollBar;
 
-	RwBool				m_bServerAscendingSort;		///< ¼­¹öÀÇ ¿À¸§Â÷¼øÀÎÁö ¿©ºÎ
-	RwBool				m_bCharacterAscendingSort;	///< Ä³¸¯ÅÍÀÇ ¿À¸§Â÷¼øÀÎÁö ¿©ºÎ
-	RwBool				m_bChannelAscendingSort;	///< Ã¤³ÎÀÇ ¿À¸§Â÷¼øÀÌÁö ¿©ºÎ
+	RwBool				m_bServerAscendingSort;		///< ì„œë²„ì˜ ì˜¤ë¦„ì°¨ìˆœì¸ì§€ ì—¬ë¶€
+	RwBool				m_bCharacterAscendingSort;	///< ìºë¦­í„°ì˜ ì˜¤ë¦„ì°¨ìˆœì¸ì§€ ì—¬ë¶€
+	RwBool				m_bChannelAscendingSort;	///< ì±„ë„ì˜ ì˜¤ë¦„ì°¨ìˆœì´ì§€ ì—¬ë¶€
 	
 	RwUInt8				m_byFocusIndex;
 	RwUInt8				m_byDownIndex;

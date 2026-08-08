@@ -1,4 +1,4 @@
-// EffectListDialog.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// EffectListDialog.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -7,7 +7,7 @@
 #include ".\effectlistdialog.h"
 
 
-// CEffectListDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CEffectListDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNCREATE(CEffectListDialog, CDialog)
 CEffectListDialog::CEffectListDialog(CWnd* pParent /*=NULL*/)
@@ -34,24 +34,24 @@ BEGIN_MESSAGE_MAP(CEffectListDialog, CDialog)
 END_MESSAGE_MAP()
 
 
-// CEffectListDialog ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CEffectListDialog ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CEffectListDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	m_Initialized = TRUE;
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CEffectListDialog::OnSize(UINT nType, int cx, int cy)
 {
 	CDialog::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if (m_Initialized)
 	{
 		CRect rc;
@@ -66,7 +66,7 @@ void CEffectListDialog::OnSize(UINT nType, int cx, int cy)
 
 BOOL CEffectListDialog::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if (pMsg->message == WM_KEYDOWN) 
 	{
 		if(pMsg->wParam == VK_RETURN) return FALSE;	
@@ -81,7 +81,7 @@ int CEffectListDialog::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CDialog::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// TODO:  ¿©±â¿¡ Æ¯¼öÈ­µÈ ÀÛ¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì‘ì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	m_List.Create(WS_CHILD | WS_VISIBLE | WS_TABSTOP, CRect(0,0,0,0),this,0x1001);	
 	m_List.InitializeGrid();
 //	m_List.SetExtendedStyle(0);
@@ -108,8 +108,8 @@ void CEffectListDialog::RebuildResourceEffect()
 	m_List.RebuildResourceEffect();
 }
 
-// ³»ºÎÀÇ ¸®½ºÆ® ÄÁÆ®·ÑÀ» Á¦¿ÜÇÑ Æ²À» Å¬¸¯ÇßÀ»¶§ È£ÃâµÈ´Ù.
-// ¸®½ºÆ® ÄÁÆ®·Ñ¿¡¼­ ¼±ÅÃÇÑ ÀÌÆåÆ®¸¦ ÇØÁ¦ÇÑ´Ù.
+// ë‚´ë¶€ì˜ ë¦¬ìŠ¤íŠ¸ ì»¨íŠ¸ë¡¤ì„ ì œì™¸í•œ í‹€ì„ í´ë¦­í–ˆì„ë•Œ í˜¸ì¶œëœë‹¤.
+// ë¦¬ìŠ¤íŠ¸ ì»¨íŠ¸ë¡¤ì—ì„œ ì„ íƒí•œ ì´í™íŠ¸ë¥¼ í•´ì œí•œë‹¤.
 void CEffectListDialog::OnLButtonUp(UINT nFlags, CPoint point)
 {
     int nSelect = m_List.GetSelectedItem();

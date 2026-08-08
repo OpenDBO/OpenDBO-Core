@@ -107,7 +107,7 @@ VOID CCommuTargetGui::OnEventTargetSelect( SNtlEventCommuTargetSelect* data )
     }
 
     m_pSttName->SetText(data->wchName);    
-    switch(data->eTargetType)       // Å¸ÀÔ¿¡ µû¸¥ ÅØ½ºÆ® ¼³Á¤
+    switch(data->eTargetType)       // íƒ€ìž…ì— ë”°ë¥¸ í…ìŠ¤íŠ¸ ì„¤ì •
     {
     case COMMU_TARGET_FRIEND:
         m_pSttType->SetText(GetDisplayStringManager()->GetString("DST_COMMU_TARGET_FRIEND"));

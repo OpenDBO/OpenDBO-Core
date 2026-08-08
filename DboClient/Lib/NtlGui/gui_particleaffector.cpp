@@ -27,8 +27,8 @@ CParticleAffector::~CParticleAffector()
 }
 
 /**
-* \brief Affector¸¦ ¾÷µ¥ÀÌÆ® ÇÑ´Ù. ( ÆÄÆ¼Å¬À» »ı¼ºÇÏ°Å³ª AffectorÀÇ Çàµ¿À» °áÁ¤ÇÑ´Ù. )
-* \param fElapsed		(float) ÀÌÀü ÇÁ·¹ÀÓ¿¡¼­ÀÇ °æ°ú½Ã°£
+* \brief Affectorë¥¼ ì—…ë°ì´íŠ¸ í•œë‹¤. ( íŒŒí‹°í´ì„ ìƒì„±í•˜ê±°ë‚˜ Affectorì˜ í–‰ë™ì„ ê²°ì •í•œë‹¤. )
+* \param fElapsed		(float) ì´ì „ í”„ë ˆì„ì—ì„œì˜ ê²½ê³¼ì‹œê°„
 */
 void CParticleAffector::Update( float fElapsed )
 {
@@ -41,7 +41,7 @@ void CParticleAffector::Update( float fElapsed, CParticle* pParticle )
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Class : CGravityAffector
-// Áß·ÂÀÇ ÆåÅÍ
+// ì¤‘ë ¥ì˜ í™í„°
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 CGravityAffector::CGravityAffector( PARTICLELIST* pParList)
 : CParticleAffector( pParList )
@@ -87,7 +87,7 @@ void CGravityAffector::Update( float fElapsed, CParticle* pParticle )
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Class : CColorAffector
-// »ö»óº¯È­ affector
+// ìƒ‰ìƒë³€í™” affector
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 CColorAffector::CColorAffector( PARTICLELIST* pParList )

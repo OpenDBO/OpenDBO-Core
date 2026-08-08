@@ -11,12 +11,12 @@ class CNtlSobNpc;
 
 #define dDIRECTION_FILE_EXT		"dtf"
 
-#define dDIRECTION_FILE_BUFFER	1024*1024			// ±âº» ¹öÆÛ¸¦ 1¸Ş°¡·Î Àâ´Â´Ù.
+#define dDIRECTION_FILE_BUFFER	1024*1024			// ê¸°ë³¸ ë²„í¼ë¥¼ 1ë©”ê°€ë¡œ ì¡ëŠ”ë‹¤.
 #define dDIRECTION_FILE_GLOW	1024*1024
 
 #define dDIRECTION_GAME_DATA_FILE		".\\property\\TenkaichiDirection.dtf"
 
-/// °üÁßÀÇ»óÅÂ
+/// ê´€ì¤‘ì˜ìƒíƒœ
 enum ETBCrowdStepType
 {
 	E_STEP_BASIC,
@@ -38,7 +38,7 @@ enum ETBCrowdStepType
 
 /**
 * \ingroup NtlSimulation
-* \brief °üÁß ¿¬ÃâÀ» °ü¸®ÇÏ´Â ¸Å´ÏÀú Å¬·¡½º
+* \brief ê´€ì¤‘ ì—°ì¶œì„ ê´€ë¦¬í•˜ëŠ” ë§¤ë‹ˆì € í´ë˜ìŠ¤
 *
 * \date 2008-07-21
 * \author agebreak
@@ -73,10 +73,10 @@ public:
 	void	RemovePlayController(const std::string& keyName);
 
 	void	AddStep(ETBCrowdStepType eStep);
-	void	ChangeStep(ETBCrowdStepType eStep);                 ///< ½ºÅÜ »óÅÂ¸¦ º¯°æÇÑ´Ù.
-	void	ReserveStep(ETBCrowdStepType eStep);				///< ´ÙÀ½ »óÅÂ¸¦ Ãß°¡·Î ¿¹¾àÇÑ´Ù.    
+	void	ChangeStep(ETBCrowdStepType eStep);                 ///< ìŠ¤í… ìƒíƒœë¥¼ ë³€ê²½í•œë‹¤.
+	void	ReserveStep(ETBCrowdStepType eStep);				///< ë‹¤ìŒ ìƒíƒœë¥¼ ì¶”ê°€ë¡œ ì˜ˆì•½í•œë‹¤.    
 
-    CNtlSobNpc* GetRefreeActor();                               ///< ½ÉÆÇ °´Ã¼¸¦ ¹İÈ¯ÇÑ´Ù.    
+    CNtlSobNpc* GetRefreeActor();                               ///< ì‹¬íŒ ê°ì²´ë¥¼ ë°˜í™˜í•œë‹¤.    
 
 protected:
 	CNtlSLTBCrowdManager(void);
@@ -84,9 +84,9 @@ protected:
 
 	void    Create();
 	void    Destroy();
-	ETBCrowdStepType    ConvertServerState(SNtlEventMinorMatchStateUpdate* pData);                ///< ¼­¹ö ½ºÅ×ÀÌÆ®¸¦ Å¬¶óÀÌ¾ğÆ® ½ºÅ×ÀÌÆ®·Î º¯°æÇÑ´Ù.
-	ETBCrowdStepType    ConvertServerState(SNtlEventMajorMatchStateUpdate* pData);                ///< ¼­¹ö ½ºÅ×ÀÌÆ®¸¦ Å¬¶óÀÌ¾ğÆ® ½ºÅ×ÀÌÆ®·Î º¯°æÇÑ´Ù.	
-    ETBCrowdStepType    ConvertServerState(SNtlEventFinalMatchStateUpdate* pData);                ///< ¼­¹ö ½ºÅ×ÀÌÆ®¸¦ Å¬¶óÀÌ¾ğÆ® ½ºÅ×ÀÌÆ®·Î º¯°æÇÑ´Ù.
+	ETBCrowdStepType    ConvertServerState(SNtlEventMinorMatchStateUpdate* pData);                ///< ì„œë²„ ìŠ¤í…Œì´íŠ¸ë¥¼ í´ë¼ì´ì–¸íŠ¸ ìŠ¤í…Œì´íŠ¸ë¡œ ë³€ê²½í•œë‹¤.
+	ETBCrowdStepType    ConvertServerState(SNtlEventMajorMatchStateUpdate* pData);                ///< ì„œë²„ ìŠ¤í…Œì´íŠ¸ë¥¼ í´ë¼ì´ì–¸íŠ¸ ìŠ¤í…Œì´íŠ¸ë¡œ ë³€ê²½í•œë‹¤.	
+    ETBCrowdStepType    ConvertServerState(SNtlEventFinalMatchStateUpdate* pData);                ///< ì„œë²„ ìŠ¤í…Œì´íŠ¸ë¥¼ í´ë¼ì´ì–¸íŠ¸ ìŠ¤í…Œì´íŠ¸ë¡œ ë³€ê²½í•œë‹¤.
 	void				GetLuaFuncName(ETBCrowdStepType eStep, char* pcLuaFuncName, RwInt32 iBufferSize);
     void                CreateSobRefree();
 
@@ -98,7 +98,7 @@ protected:
 	LIST_CONTROLLER							m_listCurController;
 	ETBCrowdStepType						m_eReservatedStep;
 
-    CNtlSobNpc*                             m_pRefreeActor;     ///< ½ÉÆÇ °´Ã¼ (¸Å´ÏÀú¿¡¼­¸¸ »ı¼ºÇØ¼­ °ø¿ëÀ¸·Î »ç¿ë)
+    CNtlSobNpc*                             m_pRefreeActor;     ///< ì‹¬íŒ ê°ì²´ (ë§¤ë‹ˆì €ì—ì„œë§Œ ìƒì„±í•´ì„œ ê³µìš©ìœ¼ë¡œ ì‚¬ìš©)
 
 	RwBool									m_bToolMode;
 };

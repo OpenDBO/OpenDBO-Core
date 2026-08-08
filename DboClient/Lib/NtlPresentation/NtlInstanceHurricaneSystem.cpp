@@ -2,7 +2,7 @@
 //	File		:	NtlInstanceHurricaneSystem.cpp
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -111,7 +111,7 @@ RwBool CNtlInstanceHurricaneSystem::Create(CNtlResourceEffect* pResourceEffect, 
 
 	BuildEmitterStandard(&m_pResourceHurricaneSystem->m_EmitterStandard);
 
-    // Ã¹ À§Ä¡´Â ¿øÁ¡À¸·Î ¼³Á¤ÇÑ´Ù.
+    // ì²« ìœ„ì¹˜ëŠ” ì›ì ìœ¼ë¡œ ì„¤ì •í•œë‹¤.
     //RwIm3DVertexSetPos(&m_pVertices[m_nCurrentPoint * 2 + 0], 0.0f, 0.0f, 0.0f);
     //RwIm3DVertexSetPos(&m_pVertices[m_nCurrentPoint * 2 + 1], 0.0f, 0.0f, 0.0f);
 
@@ -145,7 +145,7 @@ RwBool CNtlInstanceHurricaneSystem::Create(CNtlResourceEffect* pResourceEffect, 
 //------------------------------------------------------------------
 void CNtlInstanceHurricaneSystem::SetVertexColor(RwRGBA& color)
 {
-    // NOTE: ¾ËÆÄ°ªÀº ¹Ù²ÙÁú ¾Ê´Â´Ù. (Çã¸®ÄÉÀÎÀÇ Æ¯¼º»ó ¹öÅØ½ºµéÀÇ ¾ËÆÄ°ªÀÌ ÀüºÎ´Ù¸£±â ¶§¹®)
+    // NOTE: ì•ŒíŒŒê°’ì€ ë°”ê¾¸ì§ˆ ì•ŠëŠ”ë‹¤. (í—ˆë¦¬ì¼€ì¸ì˜ íŠ¹ì„±ìƒ ë²„í…ìŠ¤ë“¤ì˜ ì•ŒíŒŒê°’ì´ ì „ë¶€ë‹¤ë¥´ê¸° ë•Œë¬¸)
 	RwInt32 nAlpha;
 	for(RwInt32 i = 0; i < m_nVertexCount; ++i)
 	{
@@ -158,8 +158,8 @@ void CNtlInstanceHurricaneSystem::SetVertexColor(RwRGBA& color)
 
 void CNtlInstanceHurricaneSystem::SetAlpha( RwUInt8 byValue ) 
 {
-    // NOTE: Çã¸®ÄÉÀÎ¿¡¼­ SetVertexColor ¸Ş¼Òµå´Â ¾ËÆÄ°ªÀ» º¯°æÇÏÁö ¾Ê´Â´Ù.
-    // ¾ËÆÄ°ªÀ» º¯°æÇÒ¶§´Â ÀÌ ¸Ş¼Òµå¸¦ »ç¿ëÇÑ´Ù.
+    // NOTE: í—ˆë¦¬ì¼€ì¸ì—ì„œ SetVertexColor ë©”ì†Œë“œëŠ” ì•ŒíŒŒê°’ì„ ë³€ê²½í•˜ì§€ ì•ŠëŠ”ë‹¤.
+    // ì•ŒíŒŒê°’ì„ ë³€ê²½í• ë•ŒëŠ” ì´ ë©”ì†Œë“œë¥¼ ì‚¬ìš©í•œë‹¤.
 
     m_sColor.alpha = byValue;
 
@@ -207,7 +207,7 @@ RwBool CNtlInstanceHurricaneSystem::Update(RwReal fElapsedTime)
 			m_bReady	= TRUE;
 			m_bUpdate	= TRUE;
 
-			// ½ºÅ¸Æ®°¡ µÇ¸é ¶óÀÌÇÁ Å¸ÀÓÀ» ÃÊ±âÈ­ ÇÑ´Ù.
+			// ìŠ¤íƒ€íŠ¸ê°€ ë˜ë©´ ë¼ì´í”„ íƒ€ì„ì„ ì´ˆê¸°í™” í•œë‹¤.
 			m_fLifeTime = fElapsedTime;
 		}
 		else
@@ -316,7 +316,7 @@ void CNtlInstanceHurricaneSystem::UpdateVertices(RwReal fElapsedTime, RwReal fLi
 	if (m_nCurrentPoint > (m_pResourceHurricaneSystem->m_EmitterStandard.maxPolygonCount / 2)-1) return;
 
 	// ===============================================================================
-	// Æú¸®°ï Á¶°¢ °¢µµ °è»ê
+	// í´ë¦¬ê³¤ ì¡°ê° ê°ë„ ê³„ì‚°
 	// ===============================================================================
 	RwReal fFramePerSecond = (RwReal)m_pResourceHurricaneSystem->m_EmitterStandard.revolutionCount * 360.f;
 	m_fDeltaAngle += (fElapsedTime * fFramePerSecond);
@@ -394,7 +394,7 @@ void CNtlInstanceHurricaneSystem::UpdateVertices(RwReal fElapsedTime, RwReal fLi
 
     //++m_nCurrentPoint;
 
-	// °¢µµ·Î °è»êÇÑ´Ù.
+	// ê°ë„ë¡œ ê³„ì‚°í•œë‹¤.
 	//while(m_fDeltaAngle >=m_pResourceHurricaneSystem->m_EmitterStandard.revolutionAngle)
 	//{
 	//	m_fDeltaAngle -= m_pResourceHurricaneSystem->m_EmitterStandard.revolutionAngle;
@@ -454,7 +454,7 @@ void CNtlInstanceHurricaneSystem::UpdateVanish( RwReal fElapsedTime )
     m_fDeltaAlpha += fElapsedTime;
 
     // ===============================================================================
-    // ¾ËÆÄ ¸¶ÀÌ³Ê½º ÇÏ±â
+    // ì•ŒíŒŒ ë§ˆì´ë„ˆìŠ¤ í•˜ê¸°
     // ===============================================================================
     if (m_fDeltaAlpha > fManus)
     {

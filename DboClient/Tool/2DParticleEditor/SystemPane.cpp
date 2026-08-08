@@ -1,4 +1,4 @@
-// SystemPane.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// SystemPane.cpp : êµ¬í˜„ íŒŒì¼ìž…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -40,7 +40,7 @@ BEGIN_MESSAGE_MAP(CSystemPane, CFormView)
 END_MESSAGE_MAP()
 
 
-// CSystemPane Áø´ÜÀÔ´Ï´Ù.
+// CSystemPane ì§„ë‹¨ìž…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CSystemPane::AssertValid() const
@@ -64,13 +64,13 @@ void CSystemPane::SetBackData( const TCHAR* pBackName, int nOffSetX, int nOffset
 	UpdateData( FALSE );
 }
 
-// CSystemPane ¸Þ½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CSystemPane ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ìž…ë‹ˆë‹¤.
 
 void CSystemPane::OnBnClickedSystemBackFind()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
-	// FileDialog ¿­±â
+	// FileDialog ì—´ê¸°
 	char szFilter[] = "DBO 2D Background Picture File (*.png)|*.png|All Files(*.*)|*.*|";
 	CFileDialog dlg( TRUE, "png", "*.png", 0, szFilter );
 	
@@ -86,7 +86,7 @@ void CSystemPane::OnBnClickedSystemApply()
 {
 	UpdateData( TRUE );
 
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	GetBackManager()->LoadBack( m_szBackName.GetBuffer(),
 		_ttoi( m_szOffsetX.GetBuffer() ), 
 		_ttoi( m_szOffsetX.GetBuffer() ) );

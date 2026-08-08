@@ -1,13 +1,13 @@
 /******************************************************************************
 * File			: CGuildWarehouseGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 2. 22
 * Abstract		: 
 *****************************************************************************
-* Desc			: ±âÁ¸ÀÇ ÀÛ¼ºµÈ CWarehouse ¸¦ È°¿ëÇÏÁö ¾Ê´Â´Ù.
-*				  Â÷ÈÄ GuildWarehouse¸¸ÀÌ ±âÈ¹ÀÌ ´Ù¸£°Ô º¯ÇÒ °æ¿ì µîÀ» »ı°¢ÇÏ¿©
-*				  CWarehouse Å¬·¡½º¿Í´Â ¿¬°ü¼º ¾øÀÌ Á¦ÀÛÇÑ´Ù
+* Desc			: ê¸°ì¡´ì˜ ì‘ì„±ëœ CWarehouse ë¥¼ í™œìš©í•˜ì§€ ì•ŠëŠ”ë‹¤.
+*				  ì°¨í›„ GuildWarehouseë§Œì´ ê¸°íšì´ ë‹¤ë¥´ê²Œ ë³€í•  ê²½ìš° ë“±ì„ ìƒê°í•˜ì—¬
+*				  CWarehouse í´ë˜ìŠ¤ì™€ëŠ” ì—°ê´€ì„± ì—†ì´ ì œì‘í•œë‹¤
 *****************************************************************************/
 
 #pragma once
@@ -56,7 +56,7 @@ protected:
 
 	VOID			SetupItems();
 
-	RwInt8			PtinSlot(RwInt32 iX, RwInt32 iY);				///< ¸¶¿ì½º°¡ ¿µ¿ªÀ¸·Î µé¾î¿Â ½½·ÔÀ» Ã£´Â´Ù.
+	RwInt8			PtinSlot(RwInt32 iX, RwInt32 iY);				///< ë§ˆìš°ìŠ¤ê°€ ì˜ì—­ìœ¼ë¡œ ë“¤ì–´ì˜¨ ìŠ¬ë¡¯ì„ ì°¾ëŠ”ë‹¤.
 	VOID			FocusEffect( RwBool bPush, RwInt32 iSlotIdx = -1);
 	VOID			SelectEffect( RwBool bPush, RwInt32 iSlotIdx = -1);
 	VOID			ShowDisableSlot(RwBool bShow, RwUInt8 bySlot);
@@ -83,23 +83,23 @@ protected:
 	gui::CSlot			m_slotCloseButton;
 	gui::CSlot			m_slotCaptureMouseDown;
 
-	gui::CButton*		m_pExitButton;		///< Ã¢´İ±â ¹öÆ°
+	gui::CButton*		m_pExitButton;		///< ì°½ë‹«ê¸° ë²„íŠ¼
 
 	RwInt8				m_byInfoWindowIndex;
-	RwInt32				m_iMouseDownSlot;	///< ¸¶¿ì½º·Î ´­¸° ½½·ÔÀÇ ÀÎµ¦½º
-	RwInt32				m_iSelectedSlot;	///< ¼¿·ºÆ® ÀÌÆåÆ® ½½·Ô
-	RwInt32				m_iClickEffectedSlot;///< ÇöÀç Å¬¸¯ ÀÌÆåÆ®°¡ »ı±ä ½½·Ô
+	RwInt32				m_iMouseDownSlot;	///< ë§ˆìš°ìŠ¤ë¡œ ëˆŒë¦° ìŠ¬ë¡¯ì˜ ì¸ë±ìŠ¤
+	RwInt32				m_iSelectedSlot;	///< ì…€ë ‰íŠ¸ ì´í™íŠ¸ ìŠ¬ë¡¯
+	RwInt32				m_iClickEffectedSlot;///< í˜„ì¬ í´ë¦­ ì´í™íŠ¸ê°€ ìƒê¸´ ìŠ¬ë¡¯
 
-	gui::CStaticBox*	m_pDialogName;		///< ´ÙÀÌ¾ó·Î±×ÀÇ ÀÌ¸§ ½ºÅÂÆ½
+	gui::CStaticBox*	m_pDialogName;		///< ë‹¤ì´ì–¼ë¡œê·¸ì˜ ì´ë¦„ ìŠ¤íƒœí‹±
 
-	CSurfaceGui			m_FocusEffect;		///< ½½·Ô Æ÷Ä¿½º ÀÌÆåÆ®
-	CSurfaceGui			m_SelectEffect;		///< ½½·Ô ¼¿·ºÆ® ÀÌÆåÆ®
+	CSurfaceGui			m_FocusEffect;		///< ìŠ¬ë¡¯ í¬ì»¤ìŠ¤ ì´í™íŠ¸
+	CSurfaceGui			m_SelectEffect;		///< ìŠ¬ë¡¯ ì…€ë ‰íŠ¸ ì´í™íŠ¸
 
-	RwUInt8				m_byWarehouseIndex;	///< ¸î ¹øÂ° Ã¢°íÀÎÁö
+	RwUInt8				m_byWarehouseIndex;	///< ëª‡ ë²ˆì§¸ ì°½ê³ ì¸ì§€
 
-	RwBool				m_bFocus;			///< Æ÷Ä¿½º¸¦ ¾ò¾ú´Ù.
+	RwBool				m_bFocus;			///< í¬ì»¤ìŠ¤ë¥¼ ì–»ì—ˆë‹¤.
 
-	CRegularSlotGui			m_Slot[NTL_MAX_GUILD_ITEM_SLOT];	///< ¾ÆÀÌÅÛ ½½·Ô
+	CRegularSlotGui			m_Slot[NTL_MAX_GUILD_ITEM_SLOT];	///< ì•„ì´í…œ ìŠ¬ë¡¯
 };
 
 
@@ -134,7 +134,7 @@ protected:
 	gui::CStaticBox*	m_pZenny;
 	gui::CTexture*		m_pMoneyIconTexture;
 
-	CSurfaceGui			m_srfZennySlotDestination;	///< Á¦´Ï ½½·Ô Destination ÀÌ¹ÌÁö
+	CSurfaceGui			m_srfZennySlotDestination;	///< ì œë‹ˆ ìŠ¬ë¡¯ Destination ì´ë¯¸ì§€
 
 	RwBool				m_bZennySlotDestination;
 };
@@ -156,7 +156,7 @@ public:
 	RwBool		Create();
 	VOID		Destroy();
 
-	RwInt32		SwitchDialog(bool bOpen);		///< DialogManager¿¡¼­ÀÇ Open/Close
+	RwInt32		SwitchDialog(bool bOpen);		///< DialogManagerì—ì„œì˜ Open/Close
 
 protected:
 	CGuildWarehouseBar() {}
@@ -180,9 +180,9 @@ protected:
 	gui::CSlot			m_slotMove;
 	gui::CSlot			m_slotCaptureMouseDown;
 
-	gui::CButton*		m_pWarehouseBtn[NTL_MAX_GUILD_BANK_COUNT];///< Ã¢°í ¹öÆ°
-	gui::CButton*		m_p_All_Button;		///< ¸ğµç Ã¢°í ¹öÆ°
-	gui::CButton*		m_pExitButton;		///< Ã¢´İ±â ¹öÆ°
+	gui::CButton*		m_pWarehouseBtn[NTL_MAX_GUILD_BANK_COUNT];///< ì°½ê³  ë²„íŠ¼
+	gui::CButton*		m_p_All_Button;		///< ëª¨ë“  ì°½ê³  ë²„íŠ¼
+	gui::CButton*		m_pExitButton;		///< ì°½ë‹«ê¸° ë²„íŠ¼
 
 	CGuildWarehouseGui*		m_pWareHouseGui[NTL_MAX_GUILD_BANK_COUNT];
 };

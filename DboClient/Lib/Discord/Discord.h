@@ -14,8 +14,12 @@
 #define __DISCORD_H__
 
 #include <string>
+#if defined(_M_X64) || defined(_WIN64)
+#include "discord_rpc_minimal.h"
+#else
 #include "discord_rpc.h"
 #pragma comment(lib, "discord-rpc.lib")
+#endif
 
 class CDiscord
 {

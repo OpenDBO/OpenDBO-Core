@@ -219,15 +219,15 @@ RwBool CNtlFSMCharAct::Create(void)
     pState = NTL_NEW CNtlFSMCharActTurning();
     Register(pState);
 
-    // º¯½Å ÈŞÀ¯Áõ
+    // ë³€ì‹  íœ´ìœ ì¦
     pState = NTL_NEW CNtlFSMCharTransformSequela();
     Register(pState);
 
-    // È¸Àü ¾îÅÃ
+    // íšŒì „ ì–´íƒ
     pState = NTL_NEW CNtlFSMCharSpinAttack();
     Register(pState);
 
-	// È¸Àü ¾îÅÃ
+	// íšŒì „ ì–´íƒ
 	pState = NTL_NEW CNtlFSMCharRollingAttack();
 	Register(pState);
 

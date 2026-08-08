@@ -24,7 +24,7 @@
 
 #define NTL_FILEPACK_NAME_SIZE		128
 #define NTL_FILEPACK_BUFFER_SIZE	1024
-#define NTL_MAX_FILEPACK_SIZE		20000000 // 20mb
+#define NTL_MAX_FILEPACK_SIZE		100000000 // 100mb
 
 //------------------------------------------------------------------------------
 // pack result
@@ -287,7 +287,7 @@ public:
 	bool					IsExistSoundFile(const RwChar *pFileName);
 
 	template <class Callbackclass>
-	void LinkMakePackNotify(Callbackclass *cbclass,int (Callbackclass::*callback)(unsigned int uiParam0, unsigned int uiProgess))
+	void LinkMakePackNotify(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiParam0, uintptr_t uiProgess))
 	{
 		if(m_pCallMakePackNotify)
 			return;

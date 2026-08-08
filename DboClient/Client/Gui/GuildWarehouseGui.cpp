@@ -121,7 +121,7 @@ VOID CGuildWarehouseGui::Init()
 {
 	CRectangle rect;
 
-	// ´ÙÀÌ¾ó·Î±× ÀÌ¸§ ½ºÅÂÆ½
+	// ë‹¤ì´ì–¼ë¡œê·¸ ì´ë¦„ ìŠ¤íƒœí‹±
 	rect.SetRectWH(DBOGUI_DIALOG_TITLE_X, DBOGUI_DIALOG_TITLE_Y, 175, 16);
 	m_pDialogName = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT );
 	m_pDialogName->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
@@ -134,14 +134,14 @@ VOID CGuildWarehouseGui::Init()
 	else if( m_byWarehouseIndex == 2 )
 		m_pDialogName->SetText(GetDisplayStringManager()->GetString("DST_GUILDWAREHOUSE_TITLE_3"));
 
-	// Ã¢´İ±â ¹öÆ°
+	// ì°½ë‹«ê¸° ë²„íŠ¼
 	m_pExitButton= (gui::CButton*)GetComponent("btnExit");
 	m_slotCloseButton = m_pExitButton->SigClicked().Connect(this, &CGuildWarehouseGui::ClickedCloseButton);
 
-	// ½½·Ô Æ÷Ä¿½º ÀÌÆåÆ®
+	// ìŠ¬ë¡¯ í¬ì»¤ìŠ¤ ì´í™íŠ¸
 	m_FocusEffect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", "srfSlotFocusEffect") );
 
-	// ½½·Ô ¼¿·ºÆ® ÀÌÆåÆ®
+	// ìŠ¬ë¡¯ ì…€ë ‰íŠ¸ ì´í™íŠ¸
 	m_SelectEffect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", "srfSlotGrayedEffect" ) );
 
 	SetupItems();
@@ -299,7 +299,7 @@ VOID CGuildWarehouseGui::OnMouseDown(const CKey& key)
 		m_iMouseDownSlot = iPtinSlot;
 		m_pThis->CaptureMouse();
 
-		// Å¬¸¯ ÀÌº¥Æ® ½ÃÀÛ
+		// í´ë¦­ ì´ë²¤íŠ¸ ì‹œì‘
 		m_iClickEffectedSlot = iPtinSlot;	
 		m_Slot[m_iClickEffectedSlot].ClickEffect(TRUE);
 	}
@@ -317,7 +317,7 @@ VOID CGuildWarehouseGui::OnMouseUp(const CKey& key)
 {
 	m_pThis->ReleaseMouse();
 
-	// Å¬¸¯ ÀÌº¥Æ® Á¾·á	
+	// í´ë¦­ ì´ë²¤íŠ¸ ì¢…ë£Œ	
 	if( m_iClickEffectedSlot != INVALID_INDEX )
 	{		
 		m_Slot[m_iClickEffectedSlot].ClickEffect(FALSE);
@@ -343,7 +343,7 @@ VOID CGuildWarehouseGui::OnMouseUp(const CKey& key)
 
 				if( GetIconMoveManager()->IsActive() )
 				{
-					// Ã¢°í·Î ¹°°ÇÀ» ¿Å±ä´Ù. ¼±ÅÃÇÑ ¾ÆÀÌÅÛÀÇ ºÎ¸ğ ÇÚµéÀÌ ¾Æ´Ï¶ó Ã¢°íÀÇ ÀÎµ¦½º¸¦ º¸³½´Ù
+					// ì°½ê³ ë¡œ ë¬¼ê±´ì„ ì˜®ê¸´ë‹¤. ì„ íƒí•œ ì•„ì´í…œì˜ ë¶€ëª¨ í•¸ë“¤ì´ ì•„ë‹ˆë¼ ì°½ê³ ì˜ ì¸ë±ìŠ¤ë¥¼ ë³´ë‚¸ë‹¤
 					GetIconMoveManager()->IconMovePutDown(PLACE_GUILD_WAREHOUSE, m_byWarehouseIndex, m_iMouseDownSlot);
 				}
 				else
@@ -355,13 +355,13 @@ VOID CGuildWarehouseGui::OnMouseUp(const CKey& key)
 
 						if( key.m_dwVKey & UD_MK_CONTROL )
 						{
-							// Ã¢°í¿¡¼­ ¾ÆÀÌÅÛÀ» ³ª´©±â À§ÇØ °è»ê±â¸¦ ¿¬´Ù
+							// ì°½ê³ ì—ì„œ ì•„ì´í…œì„ ë‚˜ëˆ„ê¸° ìœ„í•´ ê³„ì‚°ê¸°ë¥¼ ì—°ë‹¤
 							CRectangle rtScreen = m_pThis->GetScreenRect();
 							CDboEventGenerator::CalcPopupShow( TRUE, pSlotData->hHandle, PLACE_GUILD_WAREHOUSE, rtScreen.left, rtScreen.top, m_Slot[m_iMouseDownSlot].GetCount() );
 						}
 						else
 						{
-							// Ã¢°í¿¡¼­ ¹°°ÇÀ» Áı´Â´Ù.
+							// ì°½ê³ ì—ì„œ ë¬¼ê±´ì„ ì§‘ëŠ”ë‹¤.
 							GetIconMoveManager()->IconMovePickUp(pSlotData->hHandle, PLACE_GUILD_WAREHOUSE,
 								m_iMouseDownSlot, pSlotData->byStackcount, m_Slot[m_iMouseDownSlot].GetTexture(), pSlotData->pITEM_TBLDAT->tblidx);
 
@@ -386,7 +386,7 @@ VOID CGuildWarehouseGui::OnMouseUp(const CKey& key)
 						sGuildWarehouseSlot* pSlotData = pGuildWarehouse->GetItem(m_byWarehouseIndex, (RwUInt8)m_iMouseDownSlot);
 						NTL_ASSERT(pSlotData, "CGuildWarehouseGui::OnMouseUp, Not exist guild warehouse item of index : " << m_byWarehouseIndex << " of slot : " << m_iMouseDownSlot);
 
-						// ¹Ù·Î °¡¹æÀ¸·Î ¿Å±ä´Ù
+						// ë°”ë¡œ ê°€ë°©ìœ¼ë¡œ ì˜®ê¸´ë‹¤
 						Logic_ItemMoveProc(pSlotData->hHandle, PLACE_GUILD_WAREHOUSE, (RwUInt8)m_iMouseDownSlot,
 							PLACE_BAG, hBagHandle, (RwUInt8)uiSlot_of_Bag, m_Slot[m_iMouseDownSlot].GetCount());
 
@@ -425,7 +425,7 @@ VOID CGuildWarehouseGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 	{
 		FocusEffect(TRUE, iPtinSlot);
 
-		// ½½·Ô Å¬¸¯ ÀÌÆåÆ®
+		// ìŠ¬ë¡¯ í´ë¦­ ì´í™íŠ¸
 		if( m_iClickEffectedSlot != INVALID_INDEX )
 		{
 			if( m_iClickEffectedSlot == iPtinSlot )
@@ -557,7 +557,7 @@ VOID CGuildWarehouseGui::HandleEvents( RWS::CMsg &msg )
 		{
 			CNtlGuildWarehouse* pGuildWarehouse = GetNtlSLGlobal()->GetSobAvatar()->GetGuildWarehouse();
 
-			// 3°³ÀÇ Ã¢°íÁß¿¡ ÇØ´ç ¾ÆÀÌÅÛÀ» °¡Áö°í ÀÖ´Â °ÍÀ» Ã£´Â´Ù
+			// 3ê°œì˜ ì°½ê³ ì¤‘ì— í•´ë‹¹ ì•„ì´í…œì„ ê°€ì§€ê³  ìˆëŠ” ê²ƒì„ ì°¾ëŠ”ë‹¤
 			sGuildWarehouseSlot* pSlotData = pGuildWarehouse->GetItem(pEvent->uiSerial);
 			NTL_ASSERT(pSlotData, "CGuildWarehouseGui::HandleEvents, Not exist item of handle : " << pEvent->uiSerial <<" in guild warehouse");
 
@@ -573,7 +573,7 @@ VOID CGuildWarehouseGui::HandleEvents( RWS::CMsg &msg )
 		if( pEvent->nSrcPlace != PLACE_GUILD_WAREHOUSE )
 			return;
 
-		// 3°³ÀÇ Ã¢°íÁß¿¡ ÇØ´ç ¾ÆÀÌÅÛÀ» °¡Áö°í ÀÖ´Â °ÍÀ» Ã£´Â´Ù
+		// 3ê°œì˜ ì°½ê³ ì¤‘ì— í•´ë‹¹ ì•„ì´í…œì„ ê°€ì§€ê³  ìˆëŠ” ê²ƒì„ ì°¾ëŠ”ë‹¤
 		CNtlGuildWarehouse* pGuildWarehouse = GetNtlSLGlobal()->GetSobAvatar()->GetGuildWarehouse();
 		sGuildWarehouseSlot* pSlotData = pGuildWarehouse->GetItem(pEvent->uiSerial);
 		NTL_ASSERT(pSlotData, "CGuildWarehouseGui::HandleEvents, Not exist item of handle : " << pEvent->uiSerial <<" in guild warehouse");
@@ -647,11 +647,11 @@ RwBool CGuildWarehouseAddonGui::Create()
 
 	Init();
 
-	// Á¦´Ï ¹öÆ°
+	// ì œë‹ˆ ë²„íŠ¼
 	m_pZennyButton = (gui::CButton*)GetComponent("btnZenny");
 	m_slotZennyButton = m_pZennyButton->SigClicked().Connect(this, &CGuildWarehouseAddonGui::ClickedZennyButton);
 
-	// Á¦´Ï ½ºÅÂÆ½
+	// ì œë‹ˆ ìŠ¤íƒœí‹±
 	rect.SetRectWH(56, 36, 82, 14);
 	m_pZenny = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_RIGHT );
 	m_pZenny->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);	
@@ -662,7 +662,7 @@ RwBool CGuildWarehouseAddonGui::Create()
 
 	m_pMoneyIconTexture = Logic_CreateTexture( MONEYICON_NAME );
 
-	// Á¦´Ï ½½·Ô Destination ÀÌ¹ÌÁö
+	// ì œë‹ˆ ìŠ¬ë¡¯ Destination ì´ë¯¸ì§€
 	m_srfZennySlotDestination.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "BasicBag.srf", "srfMoneyBtnWayFocus" ) );
 	m_srfZennySlotDestination.SetPositionfromParent(31, 32);
 
@@ -703,7 +703,7 @@ VOID CGuildWarehouseAddonGui::ClickedZennyButton(gui::CComponent* pComponent)
 	{
 		CNtlGuildWarehouse* pGuildWarehouse = GetNtlSLGlobal()->GetSobAvatar()->GetGuildWarehouse();
 
-		// Á¦´Ï º¸°ü
+		// ì œë‹ˆ ë³´ê´€
 		GetIconMoveManager()->IconMovePutDown(PLACE_SUB_GUILD_WAREHOUSE_ZENNY, pGuildWarehouse->GetNPCHandle(), INVALID_INDEX);
 	}
 	else
@@ -712,7 +712,7 @@ VOID CGuildWarehouseAddonGui::ClickedZennyButton(gui::CComponent* pComponent)
 
 		if( pGuildWarehouse->GetZenny() > 0 )
 		{
-			// Ã¢°í¿¡ Á¦´Ï°¡ ÀÖ´Ù¸é...ÀÎÃâ
+			// ì°½ê³ ì— ì œë‹ˆê°€ ìˆë‹¤ë©´...ì¸ì¶œ
 			CRectangle rect = m_pZennyButton->GetScreenRect();
 			CDboEventGenerator::CalcPopupShow(TRUE, INVALID_SERIAL_ID, PLACE_SUB_GUILD_WAREHOUSE_ZENNY, 
 				rect.right, rect.bottom, pGuildWarehouse->GetZenny());
@@ -743,7 +743,7 @@ VOID CGuildWarehouseAddonGui::HandleEvents( RWS::CMsg &msg )
 		SDboEventCalcPopupResult* pEvent = reinterpret_cast<SDboEventCalcPopupResult*>( msg.pData );
 		if( pEvent->nSrcPlace == PLACE_SUB_GUILD_WAREHOUSE_ZENNY )
 		{
-			// Ã¢°í(ÀºÇà)¿¡¼­ µ·À» »«´Ù
+			// ì°½ê³ (ì€í–‰)ì—ì„œ ëˆì„ ëº€ë‹¤
 			GetIconMoveManager()->IconMovePickUp(INVALID_SERIAL_ID, PLACE_SUB_GUILD_WAREHOUSE_ZENNY, INVALID_INDEX, pEvent->uiValue, m_pMoneyIconTexture);
 		}		
 	}
@@ -796,27 +796,27 @@ RwBool CGuildWarehouseBar::Create()
 
 	m_pThis = (gui::CDialog*)GetComponent("dlgMain");
 
-	// 1¹ø Ã¢°í ¹öÆ°
+	// 1ë²ˆ ì°½ê³  ë²„íŠ¼
 	m_pWarehouseBtn[0] = (gui::CButton*)GetComponent("btnAddon");
 	m_pWarehouseBtn[0]->SetToolTip(GetDisplayStringManager()->GetString("DST_WAREHOUSE_NAME_1"));
 	m_slotWarehouseBtn[0] = m_pWarehouseBtn[0]->SigClicked().Connect(this, &CGuildWarehouseBar::Clicked_1_Button);
 
-	// 2¹ø Ã¢°í ¹öÆ°
+	// 2ë²ˆ ì°½ê³  ë²„íŠ¼
 	m_pWarehouseBtn[1] = (gui::CButton*)GetComponent("btn1");
 	m_pWarehouseBtn[1]->SetToolTip(GetDisplayStringManager()->GetString("DST_WAREHOUSE_NAME_2"));
 	m_slotWarehouseBtn[1] = m_pWarehouseBtn[1]->SigClicked().Connect(this, &CGuildWarehouseBar::Clicked_2_Button);
 
-	// 3¹ø Ã¢°í ¹öÆ°
+	// 3ë²ˆ ì°½ê³  ë²„íŠ¼
 	m_pWarehouseBtn[2] = (gui::CButton*)GetComponent("btn2");
 	m_pWarehouseBtn[2]->SetToolTip(GetDisplayStringManager()->GetString("DST_WAREHOUSE_NAME_3"));
 	m_slotWarehouseBtn[2] = m_pWarehouseBtn[2]->SigClicked().Connect(this, &CGuildWarehouseBar::Clicked_3_Button);
 
-	// ¸ğµç Ã¢°í ¹öÆ°
+	// ëª¨ë“  ì°½ê³  ë²„íŠ¼
 	m_p_All_Button = (gui::CButton*)GetComponent("btnAll");
 	m_p_All_Button->SetToolTip(GetDisplayStringManager()->GetString("DST_WAREHOUSE_ALL"));
 	m_slot_All_Button = m_p_All_Button->SigClicked().Connect(this, &CGuildWarehouseBar::ClickedAllButton);
 
-	// Ã¢´İ±â ¹öÆ°
+	// ì°½ë‹«ê¸° ë²„íŠ¼
 	m_pExitButton= (gui::CButton*)GetComponent("btnExit");
 	m_slotCloseButton = m_pExitButton->SigClicked().Connect(this, &CGuildWarehouseBar::ClickedCloseButton);
 
@@ -838,7 +838,7 @@ RwBool CGuildWarehouseBar::Create()
 		Link( m_pWareHouseGui[i]->GetDialog() );
 	}	
 
-	// À§Ä¡ ÁöÁ¤
+	// ìœ„ì¹˜ ì§€ì •
 	CRectangle rtScreen = m_pThis->GetScreenRect();
 	RwInt32 iXPos = rtScreen.left;
 	RwInt32 iYPos = rtScreen.bottom + NTL_LINKED_DIALOG_GAP;
@@ -947,7 +947,7 @@ VOID CGuildWarehouseBar::Clicked_3_Button(gui::CComponent* pComponent)
 
 VOID CGuildWarehouseBar::ClickedAllButton(gui::CComponent* pComponent)
 {
-	// Ã¢°í°¡ ÇÏ³ª¶óµµ ¿­·ÁÀÖ´Ù¸é ÀüºÎ ´İ´Â´Ù
+	// ì°½ê³ ê°€ í•˜ë‚˜ë¼ë„ ì—´ë ¤ìˆë‹¤ë©´ ì „ë¶€ ë‹«ëŠ”ë‹¤
 
 	RwBool bAlreadyOpen = FALSE;
 	for( RwUInt8 i = 0 ; i < NTL_MAX_GUILD_BANK_COUNT ; ++i )
@@ -1018,7 +1018,7 @@ RwInt32 CGuildWarehouseBar::SwitchDialog(bool bOpen)
 
 		CNtlSLEventGenerator::GuildWarehousePostEvent(GUILD_WAREHOUSE_EVENT_END);
 
-		// ¼­¹ö¿¡ ±æµå Ã¢°í ÀÌ¿ëÀÌ ³¡³µÀ½À» ¾Ë¸°´Ù
+		// ì„œë²„ì— ê¸¸ë“œ ì°½ê³  ì´ìš©ì´ ëë‚¬ìŒì„ ì•Œë¦°ë‹¤
 		GetDboGlobal()->GetGamePacketGenerator()->SendGuildWarehouseEnd();
 
 		Show(false);
@@ -1052,7 +1052,7 @@ VOID CGuildWarehouseBar::HandleEvents( RWS::CMsg &msg )
 	}
 	else if( msg.Id == g_EventCharObjDelete )
 	{
-		// °©ÀÚ±â Ä³¸¯ÅÍ°¡ »ç¶ó º´Ù
+		// ê°‘ìê¸° ìºë¦­í„°ê°€ ì‚¬ë¼ì¡‹ë‹¤
 		SERIAL_HANDLE* pDeleteSerial = reinterpret_cast<SERIAL_HANDLE*>( msg.pData );
 		SERIAL_HANDLE hNPC = GetNtlSLGlobal()->GetSobAvatar()->GetGuildWarehouse()->GetNPCHandle();
 
@@ -1060,7 +1060,7 @@ VOID CGuildWarehouseBar::HandleEvents( RWS::CMsg &msg )
 		{
 			CNtlSLEventGenerator::GuildWarehousePostEvent(GUILD_WAREHOUSE_EVENT_END);
 
-			// ¼­¹ö¿¡ ±æµå Ã¢°í ÀÌ¿ëÀÌ ³¡³µÀ½À» ¾Ë¸°´Ù
+			// ì„œë²„ì— ê¸¸ë“œ ì°½ê³  ì´ìš©ì´ ëë‚¬ìŒì„ ì•Œë¦°ë‹¤
 			GetDboGlobal()->GetGamePacketGenerator()->SendGuildWarehouseEnd();
 		}
 	}
@@ -1077,7 +1077,7 @@ VOID CGuildWarehouseBar::HandleEvents( RWS::CMsg &msg )
 
 				CNtlSLEventGenerator::GuildWarehousePostEvent(GUILD_WAREHOUSE_EVENT_END);
 
-				// ¼­¹ö¿¡ ±æµå Ã¢°í ÀÌ¿ëÀÌ ³¡³µÀ½À» ¾Ë¸°´Ù
+				// ì„œë²„ì— ê¸¸ë“œ ì°½ê³  ì´ìš©ì´ ëë‚¬ìŒì„ ì•Œë¦°ë‹¤
 				GetDboGlobal()->GetGamePacketGenerator()->SendGuildWarehouseEnd();
 			}
 			else if( pEvent->iType == DIALOGEVENT_OPEN_FAIL_NPC_DIALOG )

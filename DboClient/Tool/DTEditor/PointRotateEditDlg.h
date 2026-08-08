@@ -5,7 +5,7 @@
 
 class CNtlCamera;
 
-// CPointRotateEditDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPointRotateEditDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CPointRotateEditDlg : public CDialog
 {
@@ -30,7 +30,7 @@ private:
 
 	RwReal		m_fMinDist;			// minimun distance.
 	RwReal		m_fMaxDist;			// maximun distance.	
-	RwReal		m_fDist;				// camera ÇöÀç °Å¸®.
+	RwReal		m_fDist;				// camera í˜„ì¬ ê±°ë¦¬.
 
 	RwReal		m_fMinPitch;		// camera min pitch.
 	RwReal		m_fMaxPitch;		// camera max pitch.	
@@ -77,14 +77,14 @@ public:
 	void Render(float fElapsed);
 
 public:
-	CPointRotateEditDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CPointRotateEditDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CPointRotateEditDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_POINTROTATEEDIT };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

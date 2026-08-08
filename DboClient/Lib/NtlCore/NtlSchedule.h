@@ -52,19 +52,19 @@ public:
 	virtual RwReal			GetUsedTime()		{ return m_fUsedTime; }
 	virtual ESCHEDULE_STEP	GetScheduleStep()	{ return m_eScheduleStep; }
 
-	// ½ºÄÉÁì¸µ ÁØºñ.
-	// RETURN : TRUE(ÁØºñ¼º°ø)
-	//			FALSE(ÁØºñ½ÇÆÐ) - SchedulerÀÇ List¿¡¼­ Á¦°Å µÈ´Ù.
+	// ìŠ¤ì¼€ì¥´ë§ ì¤€ë¹„.
+	// RETURN : TRUE(ì¤€ë¹„ì„±ê³µ)
+	//			FALSE(ì¤€ë¹„ì‹¤íŒ¨) - Schedulerì˜ Listì—ì„œ ì œê±° ëœë‹¤.
 	virtual RwBool	Begin() = 0;
 
-	// ½ºÄÉÁì¸µÀ» ½ÇÇà.
-	// RETURN : TRUE(´ÙÀ½¿¡ ´Ù½Ã ÇÑ¹ø È£ÃâÀ» ¿ä±¸ÇÒ¶§)
-	//          FALSE(½ºÄÉÁì¸µ ÇÒ °ÍÀÌ ¾øÀ» °æ¿ì³ª ½ºÄÉÁì¸µÀÌ ³¡³¯ °æ¿ì)
+	// ìŠ¤ì¼€ì¥´ë§ì„ ì‹¤í–‰.
+	// RETURN : TRUE(ë‹¤ìŒì— ë‹¤ì‹œ í•œë²ˆ í˜¸ì¶œì„ ìš”êµ¬í• ë•Œ)
+	//          FALSE(ìŠ¤ì¼€ì¥´ë§ í•  ê²ƒì´ ì—†ì„ ê²½ìš°ë‚˜ ìŠ¤ì¼€ì¥´ë§ì´ ëë‚  ê²½ìš°)
 	virtual RwBool	Scheduling() = 0;
 
-	// ½ºÄÉÁì¸µÀÇ Á¾·á.
-	// RETURN : ½ºÄÉÁì¸µÀÌ ³¡³ª°í ³ª¼­ È£ÃâµÈ´Ù. RETURNÀÇ ÀÇ¹Ì´Â ¾ø´Ù.
-	//          È£ÃâµÈ ÈÄ SchedulerÀÇ List¿¡¼­ Á¦°Å µÈ´Ù.  
+	// ìŠ¤ì¼€ì¥´ë§ì˜ ì¢…ë£Œ.
+	// RETURN : ìŠ¤ì¼€ì¥´ë§ì´ ëë‚˜ê³  ë‚˜ì„œ í˜¸ì¶œëœë‹¤. RETURNì˜ ì˜ë¯¸ëŠ” ì—†ë‹¤.
+	//          í˜¸ì¶œëœ í›„ Schedulerì˜ Listì—ì„œ ì œê±° ëœë‹¤.  
 	virtual RwBool	End() = 0;
 
 	friend class CScheduler;

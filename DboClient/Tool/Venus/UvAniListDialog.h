@@ -2,7 +2,7 @@
 #include "afxcmn.h"
 
 
-// CUvAniListDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CUvAniListDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 #include "DataTreeCtrl.h"
 
 class CUvAniListDialog : public CDialog
@@ -12,16 +12,16 @@ class CUvAniListDialog : public CDialog
 public:
 
 public:
-	CUvAniListDialog(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CUvAniListDialog(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CUvAniListDialog();
 
 	void	SerializeList();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_UVANI_LIST };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

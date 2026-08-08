@@ -111,8 +111,8 @@ VOID CNtlDNController::Update( RwReal fElapsedTime )
 
 	if( m_listDNNode.size() <= 0)
 	{
-		// »ì¾Æ ÀÖ´Â Node°¡ ¾ø´õ¶ó°í, ÇöÀç DNEffect°¡ Àû¿ëµÈ »óÅÂ(ÇöÀç DNValue°¡ 0ÀÌ ¾Æ´Ñ »óÅÂ)¿¡¼­´Â 
-		// DN Effect°¡ Àû¿ëµÇ¾ú´Ù°í ÆÇ´ÜÇÑ´Ù. (2007.7.12 by agebreak)
+		// ì‚´ì•„ ìžˆëŠ” Nodeê°€ ì—†ë”ë¼ê³ , í˜„ìž¬ DNEffectê°€ ì ìš©ëœ ìƒíƒœ(í˜„ìž¬ DNValueê°€ 0ì´ ì•„ë‹Œ ìƒíƒœ)ì—ì„œëŠ” 
+		// DN Effectê°€ ì ìš©ë˜ì—ˆë‹¤ê³  íŒë‹¨í•œë‹¤. (2007.7.12 by agebreak)
 		if(m_ucLastValue == 0)
 		{
 			m_bSetDNEffect = FALSE;

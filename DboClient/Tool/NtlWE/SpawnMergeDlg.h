@@ -1,7 +1,7 @@
 #pragma once
 
 
-// CSpawnMergeDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CSpawnMergeDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 #include "NtlSpawnMergeManager.h"
 #include "afxcmn.h"
@@ -11,14 +11,14 @@ class CSpawnMergeDlg : public CDialog
 	DECLARE_DYNAMIC(CSpawnMergeDlg)
 
 public:
-	CSpawnMergeDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CSpawnMergeDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CSpawnMergeDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_SPAWN_MERGE };
 
 protected:
-	virtual void	DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void	DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual	BOOL	PreTranslateMessage(MSG* pMsg);
 	virtual BOOL	OnInitDialog();
 

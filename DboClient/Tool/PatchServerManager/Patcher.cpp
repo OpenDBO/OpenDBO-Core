@@ -2,11 +2,11 @@
 *
 * File			: Patcher.cpp
 * Author		:
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			:
 * Abstract		: 
 *****************************************************************************
-* Desc         : Patch Data¸¦ Patch¸¦ ÇÑ´Ù. ( Download°¡ ¾Æ´Ô )
+* Desc         : Patch Dataë¥¼ Patchë¥¼ í•œë‹¤. ( Downloadê°€ ì•„ë‹˜ )
 *
 *****************************************************************************/
 
@@ -65,7 +65,7 @@ bool CPatcher::DoPatch( CString strFullPatchFileName, CString strDestPatchPath )
 
 LPVOID CPatcher::CallBack( UINT Id, LPVOID lpParm )
 {
-	// Patch message Ã³¸®
+	// Patch message ì²˜ë¦¬
 	LPVOID lpRetVal = "";
 
 	switch( Id )

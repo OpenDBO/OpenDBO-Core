@@ -134,7 +134,7 @@ VOID stSCROLLINFO::OnScrollFSCallBack( const RwChar* szCommand, const RwChar* sz
 
 VOID stSCROLLINFO::OnScrollPageDone( RwInt32 nPage )
 {
-	// ¸¶Áö¸· ÆäÀÌÁö°¡ ³¡³µÀ» ¶§
+	// ë§ˆì§€ë§‰ íŽ˜ì´ì§€ê°€ ëë‚¬ì„ ë•Œ
 	if( nPage + 1 >= phtmlText->GetIntervalPageNums() )
 		pflaScroll->Invoke( "CloseScroll", "" );
 	else
@@ -259,7 +259,7 @@ VOID stTWOLINE::LoadFlash( const RwChar* szFirst, const RwChar* szSecond, RwUInt
 		byObjectID = byID;
 		bAutoFoward = autoFoward;		
 
-		// ÃÊ±âÈ­ 
+		// ì´ˆê¸°í™” 
 		EndMovie();
 	}	
 }
@@ -564,7 +564,7 @@ VOID stPARTYMEMBERITEM::SetData( stTBudokaiMember* pMember )
 	ppnlClass->AddSurface( Logic_GetPCClassIconSurface( pMember->byClass, FALSE ) );
 	ppnlClass->SetToolTip( Logic_GetClassName( pMember->byClass ) );
 
-	// ¼­¹öµ¥ÀÌÅÍ ÇÊ¿ä
+	// ì„œë²„ë°ì´í„° í•„ìš”
 	pstbLevel->Format( GetDisplayStringManager()->GetString( "DST_BUDOKAI_TEAMINFO_LEVEL_VALUE" ), pMember->byLevel );	
 }
 

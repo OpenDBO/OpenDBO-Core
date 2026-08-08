@@ -52,7 +52,7 @@ public:
 
 protected:
 	TCHAR*					GetCalendar( void );
-    void                    SetWorkingDirectory();          ///< ÇöÀç ½ÇÇàÆÄÀÏ °æ·Î¸¦ ÀÛ¾÷ °æ·Î·Î ¼³Á¤ÇÑ´Ù.
+    void                    SetWorkingDirectory();          ///< í˜„ìž¬ ì‹¤í–‰íŒŒì¼ ê²½ë¡œë¥¼ ìž‘ì—… ê²½ë¡œë¡œ ì„¤ì •í•œë‹¤.
 
 	static BOOL WINAPI		ConsoleHandlerRoutine( DWORD dwCtrlType );
 

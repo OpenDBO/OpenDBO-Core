@@ -3,7 +3,7 @@
  *
  * File			: GameStageState.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2007. 09. 13	
  * Abstract		: Game stage state
  *****************************************************************************
@@ -28,7 +28,7 @@ private:
 
 	enum
 	{
-		GSS_TIME_SERVER_CONNECT = 30000,	// 3∫–.
+		GSS_TIME_SERVER_CONNECT = 30000,	// 3Î∂Ñ.
 	};
 
 	static CGameStageState *m_pGameState;

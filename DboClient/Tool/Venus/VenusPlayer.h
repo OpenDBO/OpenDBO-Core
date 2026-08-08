@@ -2,7 +2,7 @@
 //	File		:	VenusPlayer.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by NTL CO., Ltd
+//	Copyright	:	â“’ 2005 by NTL CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -26,7 +26,7 @@
 
 /**
  * \ingroup Venus
- * \brief Event Layer¿¡¼­ »ç¿ëÇÏ´Â Ä³¸¯ÅÍ °´Ã¼
+ * \brief Event Layerì—ì„œ ì‚¬ìš©í•˜ëŠ” ìºë¦­í„° ê°ì²´
  * \date 2006-08-02
  * \author agebreak
  */
@@ -73,8 +73,8 @@ public:
 
 	void	SetWorldMatrix(const RwMatrix& matWorld);
 
-			RwInt32		GetNumNode();                       ///< BoneÀÇ °³¼ö¸¦ ¹İÈ¯ÇÑ´Ù.
-            RwChar*     GetBoneName(int nIndex);            ///< BoneÀÇ ÀÌ¸§À» ¹İÈ¯ÇÑ´Ù.
+			RwInt32		GetNumNode();                       ///< Boneì˜ ê°œìˆ˜ë¥¼ ë°˜í™˜í•œë‹¤.
+            RwChar*     GetBoneName(int nIndex);            ///< Boneì˜ ì´ë¦„ì„ ë°˜í™˜í•œë‹¤.
 	const	RwMatrix*	GetNodeMatrix(RwInt32 nNode);
 
 	RwBool	Save(FILE* pFile);
@@ -82,36 +82,36 @@ public:
 
 	CVenusPlayer::EVENT*	GetEvent(RwInt32 nIndex)		{ return m_svEvent[nIndex]; }
 
-    // Get/Set ¸Ş¼Òµå
-    std::string GetClumpName() {return m_strClumpName;}             ///< Clump ÀÌ¸§À» ¹İÈ¯ÇÑ´Ù.
-    void        SetClumpName(std::string& strClumpName) {m_strClumpName = strClumpName;} ///< Clump ÀÌ¸§À» ¼³Á¤ÇÑ´Ù.
+    // Get/Set ë©”ì†Œë“œ
+    std::string GetClumpName() {return m_strClumpName;}             ///< Clump ì´ë¦„ì„ ë°˜í™˜í•œë‹¤.
+    void        SetClumpName(std::string& strClumpName) {m_strClumpName = strClumpName;} ///< Clump ì´ë¦„ì„ ì„¤ì •í•œë‹¤.
 
-    std::string GetAnimationName() {return m_strAnimationName;}     ///< Animation ÀÌ¸§À» ¹İÈ¯ÇÑ´Ù.
-    void        SetAnimationName(std::string& strAnimName) { m_strAnimationName = strAnimName;} ///< Animation ÀÌ¸§À» ¼³Á¤ÇÑ´Ù.
+    std::string GetAnimationName() {return m_strAnimationName;}     ///< Animation ì´ë¦„ì„ ë°˜í™˜í•œë‹¤.
+    void        SetAnimationName(std::string& strAnimName) { m_strAnimationName = strAnimName;} ///< Animation ì´ë¦„ì„ ì„¤ì •í•œë‹¤.
 
-    CNtlPLResource* GetAnimationResource() {return m_pAnimationResource;} ///< Animation Resource¸¦ ¹İÈ¯ÇÑ´Ù.
+    CNtlPLResource* GetAnimationResource() {return m_pAnimationResource;} ///< Animation Resourceë¥¼ ë°˜í™˜í•œë‹¤.
 
-    svdef_EVENT& GetEventVector() {return m_svEvent;}               ///< Event Vector¸¦ ¹İÈ¯ÇÑ´Ù.
+    svdef_EVENT& GetEventVector() {return m_svEvent;}               ///< Event Vectorë¥¼ ë°˜í™˜í•œë‹¤.
 
-    RwReal      GetAnimCurrentTime() {return m_fCurrentTime;}       ///< ÇöÀç ¾Ö´Ï¸ŞÀÌ¼Ç ½Ã°£À» ¹İÈ¯ÇÑ´Ù.
-    RwUInt32    GetMaxTime() {return m_nMaxTime;}                   ///< MaxTime¸¦ ¹İÈ¯ÇÑ´Ù.
+    RwReal      GetAnimCurrentTime() {return m_fCurrentTime;}       ///< í˜„ì¬ ì• ë‹ˆë©”ì´ì…˜ ì‹œê°„ì„ ë°˜í™˜í•œë‹¤.
+    RwUInt32    GetMaxTime() {return m_nMaxTime;}                   ///< MaxTimeë¥¼ ë°˜í™˜í•œë‹¤.
 
 protected:
     void	DeleteEvent();
 
 protected:
-    svdef_EVENT			m_svEvent;                      ///< Event °´Ã¼µéÀÇ Vector
+    svdef_EVENT			m_svEvent;                      ///< Event ê°ì²´ë“¤ì˜ Vector
 
     std::string			m_strClumpName;                 ///< Clump Name
     std::string			m_strAnimationName;             ///< Animation Name
 
     CNtlPLResource*		m_pClumpResource;               ///< Clump Resource
     CNtlPLResource*		m_pAnimationResource;           ///< Animation Resource
-    RpHAnimHierarchy*   m_pBaseHierarchy;               ///< Ä³¸¯ÅÍ ¸ğµ¨ÀÇ Hierarchy
+    RpHAnimHierarchy*   m_pBaseHierarchy;               ///< ìºë¦­í„° ëª¨ë¸ì˜ Hierarchy
 
     RwReal				m_fLifeTime;    
 
     RwReal				m_fCurrentTime;
     RwUInt32			m_nMaxTime;
-    SToonData*          m_pToonData;                     ///< Å÷ÀÌ Àû¿ëµÈ ¸Ş½Ã¸¦ À§ÇÑ Å÷ Á¤º¸
+    SToonData*          m_pToonData;                     ///< íˆ°ì´ ì ìš©ëœ ë©”ì‹œë¥¼ ìœ„í•œ íˆ° ì •ë³´
 };

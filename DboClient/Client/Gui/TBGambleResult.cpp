@@ -95,7 +95,7 @@ VOID CTBGambleResultGui::Destroy()
 
 /**
 * \brief HandleEvents
-* \param msg		(RWS::CMsg&) ÀÌº¥Æ® ¸Ş½ÃÁö ±¸Á¶Ã¼
+* \param msg		(RWS::CMsg&) ì´ë²¤íŠ¸ ë©”ì‹œì§€ êµ¬ì¡°ì²´
 */
 VOID CTBGambleResultGui::HandleEvents( RWS::CMsg &msg )
 {
@@ -117,7 +117,7 @@ VOID CTBGambleResultGui::HandleEvents( RWS::CMsg &msg )
 }
 
 /**
-* \brief Dialog manager¿¡¼­ Show/Hide ÇØÁÖ´Â interface
+* \brief Dialog managerì—ì„œ Show/Hide í•´ì£¼ëŠ” interface
 */
 RwInt32 CTBGambleResultGui::SwitchDialog( bool bOpen )
 {
@@ -127,7 +127,7 @@ RwInt32 CTBGambleResultGui::SwitchDialog( bool bOpen )
 }
 
 /**
-* \brief GuiÀÇ Slot¿¡ °×ºíµÈ ¾ÆÀÌÅÛÀÇ ¾ÆÀÌÄÜÀ» Á¤ÀÇÇÑ´Ù.
+* \brief Guiì˜ Slotì— ê²œë¸”ëœ ì•„ì´í…œì˜ ì•„ì´ì½˜ì„ ì •ì˜í•œë‹¤.
 */
 VOID CTBGambleResultGui::SetGambleItem( RwInt32 hItemHandle )
 {
@@ -143,7 +143,7 @@ VOID CTBGambleResultGui::SetGambleItem( RwInt32 hItemHandle )
 }
 
 /**
-* \brief ÇöÀçÀÇ ºÎ¸ğ Dialog°¡ MoveµÉ¶§ È£Ãâ
+* \brief í˜„ì¬ì˜ ë¶€ëª¨ Dialogê°€ Moveë ë•Œ í˜¸ì¶œ
 */
 VOID CTBGambleResultGui::OnMove( RwInt32 iOldX, RwInt32 iOldY )
 {
@@ -152,7 +152,7 @@ VOID CTBGambleResultGui::OnMove( RwInt32 iOldX, RwInt32 iOldY )
 }
 
 /**
-* \brief ÇöÀçÀÇ ºÎ¸ğ Dialog°¡ Paint µÉ¶§ È£Ãâ
+* \brief í˜„ì¬ì˜ ë¶€ëª¨ Dialogê°€ Paint ë ë•Œ í˜¸ì¶œ
 */
 VOID CTBGambleResultGui::OnPaint()
 {
@@ -160,7 +160,7 @@ VOID CTBGambleResultGui::OnPaint()
 }
 
 /**
-* \brief ´İ±â ¹öÆ°À» Å¬¸¯ ÇßÀ» ¶§
+* \brief ë‹«ê¸° ë²„íŠ¼ì„ í´ë¦­ í–ˆì„ ë•Œ
 */
 VOID CTBGambleResultGui::OnClickedBtnClose( gui::CComponent* pComponent )
 {

@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: BroadCastGui.h
 * Author		: Haesung Cho
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 10. 27
 * Abstract		: 
 *****************************************************************************
-* Desc			: °ÔÀÓ TS message, Server emergency, Mini narrationÀ» ´ã´çÇÏ´Â GUI
+* Desc			: ê²Œìž„ TS message, Server emergency, Mini narrationì„ ë‹´ë‹¹í•˜ëŠ” GUI
 *****************************************************************************/
 
 #ifndef __BROAD_CAST_GUI_H__
@@ -40,7 +40,7 @@
 #define dBROAD_HTML_TEXT_SMALL_POSITION_X	-185
 #define dBROAD_HTML_TEXT_POSITION_Y			60
 
-// Àü¹æ ¼±¾ð
+// ì „ë°© ì„ ì–¸
 class CNtlPLAccelController;
 class CBroadCastUnit;
 
@@ -53,17 +53,17 @@ typedef std::deque< CBroadCastUnit > deqBroadUnit;
 class CBroadCastGui : public CNtlPLGui, public RWS::CEventHandler
 {
 public:
-	// ºê·ÎµåÄ³½ºÆ® GUIÀÇ »óÅÂ
+	// ë¸Œë¡œë“œìºìŠ¤íŠ¸ GUIì˜ ìƒíƒœ
 	enum eBroadState
 	{
-		STATE_DIRECTION_IN_START,	// ³ªÅº³ª´Â ¿¬Ãâ ½ÃÀÛ
-		STATE_DIRECTION_IN,			// ³ªÅ¸³ª´Â ¿¬Ãâ Áß
-		STATE_DIRECTION_IN_END,		// ³ªÅ¸³ª´Â ¿¬Ãâ ³¡			- ½½¶óÀÌµåÀÇ °æ¿ì ¸»Ç³¼±À» ¶ç¿öÁØ´Ù.
-		STATE_OPEN,					// ¿­¸° »óÅÂ
-		STATE_DIRECTION_OUT_START,	// »ç¶óÁö´Â ¿¬Ãâ ½ÃÀÛ		- ½½¶óÀÌµåÀÇ °æ¿ì ¸»Ç³¼±À» ´Ý´Â´Ù.
-		STATE_DIRECTION_OUT,		// »ç¶óÁö´Â ¿¬Ãâ Áß
-		STATE_DIRECTION_OUT_END,	// »ç¶óÁö´Â ¿¬Ãâ ³¡
-		STATE_CLOSE,				// ´ÝÈù »óÅÂ
+		STATE_DIRECTION_IN_START,	// ë‚˜íƒ„ë‚˜ëŠ” ì—°ì¶œ ì‹œìž‘
+		STATE_DIRECTION_IN,			// ë‚˜íƒ€ë‚˜ëŠ” ì—°ì¶œ ì¤‘
+		STATE_DIRECTION_IN_END,		// ë‚˜íƒ€ë‚˜ëŠ” ì—°ì¶œ ë			- ìŠ¬ë¼ì´ë“œì˜ ê²½ìš° ë§í’ì„ ì„ ë„ì›Œì¤€ë‹¤.
+		STATE_OPEN,					// ì—´ë¦° ìƒíƒœ
+		STATE_DIRECTION_OUT_START,	// ì‚¬ë¼ì§€ëŠ” ì—°ì¶œ ì‹œìž‘		- ìŠ¬ë¼ì´ë“œì˜ ê²½ìš° ë§í’ì„ ì„ ë‹«ëŠ”ë‹¤.
+		STATE_DIRECTION_OUT,		// ì‚¬ë¼ì§€ëŠ” ì—°ì¶œ ì¤‘
+		STATE_DIRECTION_OUT_END,	// ì‚¬ë¼ì§€ëŠ” ì—°ì¶œ ë
+		STATE_CLOSE,				// ë‹«ížŒ ìƒíƒœ
 
 		STATE_NUMS,
 		INVALID_STATE = 0xFF
@@ -127,31 +127,31 @@ protected:
 	gui::CSlot			m_slotMove;
 
 protected:
-	// ¾÷µ¥ÀÌÆ® ÇÔ¼öÀÇ ÇÔ¼ö Æ÷ÀÎÅÍ
+	// ì—…ë°ì´íŠ¸ í•¨ìˆ˜ì˜ í•¨ìˆ˜ í¬ì¸í„°
 	typedef				VOID (CBroadCastGui::*UpdateState)( RwReal );
-	UpdateState			m_aCallUpdateState[STATE_NUMS];	///< Update ÇÔ¼ö Æ÷ÀÎÅÍ
+	UpdateState			m_aCallUpdateState[STATE_NUMS];	///< Update í•¨ìˆ˜ í¬ì¸í„°
 
-	RwUInt8				m_byState;			///< UIÀÇ ÇöÀç »óÅÂ
-	deqBroadUnit		m_deqUnit;			///< UnitÀÇ ´ë±â¿­
+	RwUInt8				m_byState;			///< UIì˜ í˜„ìž¬ ìƒíƒœ
+	deqBroadUnit		m_deqUnit;			///< Unitì˜ ëŒ€ê¸°ì—´
 	
-	CBroadCastUnit		m_CurUnit;			///< ÇöÀç Ãâ·ÂÁßÀÎ UnitÀÇ Data
-	RwBool				m_bCurUnit;			///< ÇöÀç Ãâ·ÂÁßÀÎ UnitÀÇ µ¥ÀÌÅ¸ À¯È¿/¹«È¿ ¿©ºÎ
+	CBroadCastUnit		m_CurUnit;			///< í˜„ìž¬ ì¶œë ¥ì¤‘ì¸ Unitì˜ Data
+	RwBool				m_bCurUnit;			///< í˜„ìž¬ ì¶œë ¥ì¤‘ì¸ Unitì˜ ë°ì´íƒ€ ìœ íš¨/ë¬´íš¨ ì—¬ë¶€
 
-	sBROAD_MSG_DATA		m_sCurData;			///< ÇöÀç Ãâ·ÂµÇ°í ÀÖ´Â Data ( Setting )	
-	RwUInt8				m_uSlidingFadeAlpha;		///< ÇöÀçÀÇ Alpha ( Sliding/Fade ÀÏ ¶§¸¸ ¾²ÀÓ )
-	RwBool				m_bSmallText;		///< ÇöÀç Ãâ·ÂµÇ°í ÀÖ´Â Text°¡ LargeÀÎÁöÀÇ ¿©ºÎ
+	sBROAD_MSG_DATA		m_sCurData;			///< í˜„ìž¬ ì¶œë ¥ë˜ê³  ìžˆëŠ” Data ( Setting )	
+	RwUInt8				m_uSlidingFadeAlpha;		///< í˜„ìž¬ì˜ Alpha ( Sliding/Fade ì¼ ë•Œë§Œ ì“°ìž„ )
+	RwBool				m_bSmallText;		///< í˜„ìž¬ ì¶œë ¥ë˜ê³  ìžˆëŠ” Textê°€ Largeì¸ì§€ì˜ ì—¬ë¶€
 
-	RwReal				m_fElapsed;			///< ÇöÀç GUI¿¡¼­ ¼Ò¸ðµÇ°í ÀÖ´Â time
+	RwReal				m_fElapsed;			///< í˜„ìž¬ GUIì—ì„œ ì†Œëª¨ë˜ê³  ìžˆëŠ” time
 
-	RwReal				m_fShakeTime;		///< Illust Shake¿¡ ¾²ÀÌ´Â Å¸ÀÓ º¯¼ö
-	CRectangle			m_rectBackIllust;	///< ÀÏ·¯½ºÆ®ÀÇ Èçµé¸² Áß½É ÁÂÇ¥
+	RwReal				m_fShakeTime;		///< Illust Shakeì— ì“°ì´ëŠ” íƒ€ìž„ ë³€ìˆ˜
+	CRectangle			m_rectBackIllust;	///< ì¼ëŸ¬ìŠ¤íŠ¸ì˜ í”ë“¤ë¦¼ ì¤‘ì‹¬ ì¢Œí‘œ
 
 	CNtlPLAccelController	m_conAccel;		///< AccelController
 	CNtlPLAccelController	m_conAlpha;		///< Alpha AccelController
 
-	RwBool				m_bPlay;			///< ÇöÀç ÇÃ·¹ÀÌ µÇ°í ÀÖ´Â°¡?
+	RwBool				m_bPlay;			///< í˜„ìž¬ í”Œë ˆì´ ë˜ê³  ìžˆëŠ”ê°€?
 
-	SUIConfigBroadCast*	m_pBroadCastConfig;	///< Broad Cast ¿¬Ãâ °ü·Ã ¿É¼Çµé
+	SUIConfigBroadCast*	m_pBroadCastConfig;	///< Broad Cast ì—°ì¶œ ê´€ë ¨ ì˜µì…˜ë“¤
 };
 
 #endif//__BROAD_CAST_GUI_H__

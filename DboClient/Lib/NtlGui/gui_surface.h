@@ -7,7 +7,7 @@
 
 struct PlaneSnapShot
 {
-	CRectangle		rtRect;		// Plane ÁÂÇ¥
+	CRectangle		rtRect;		// Plane ì¢Œí‘œ
 	unsigned char	uRed;
 	unsigned char	uGreen;
 	unsigned char	uBlue;

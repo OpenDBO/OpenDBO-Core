@@ -1,7 +1,7 @@
 #pragma once
 
 
-// CSplinePathListDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CSplinePathListDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 #include "SplinePathListCtrl.h"
 #include "afxwin.h"
 
@@ -20,14 +20,14 @@ public:
 	void	ResetTreeItemName(const RwChar* strName);
 
 public:
-	CSplinePathListDialog(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CSplinePathListDialog(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CSplinePathListDialog();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_SPLINE_PATH_LIST };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

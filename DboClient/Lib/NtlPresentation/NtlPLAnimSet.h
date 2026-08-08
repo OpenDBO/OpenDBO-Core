@@ -2,7 +2,7 @@
  *
  * File			: NTLAnimSet.h
  * Author		: HongHoDong
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 8. 20	
  * Abstract		: NTL PLAnimSet
  *****************************************************************************
@@ -27,7 +27,7 @@
 
 /**
  * \ingroup Client
- * Animation °ü·Ã Ã³¸®ÇÏ´Â Class ÀÌ´Ù.
+ * Animation ê´€ë ¨ ì²˜ë¦¬í•˜ëŠ” Class ì´ë‹¤.
  * 
  */
 
@@ -40,16 +40,16 @@ enum EAnimChannel
 
 enum EBlendType
 {
-	BLEND_MIX,		//ÀÌÀüÀÇ Animation¸¦ Play¸¦ ÇÏ°í, ÇöÀçÀÇ Animationµµ Play¸¦ ÇÏ¸é¼­ º¸°£À» ÇÑ´Ù.
-	BLEND_TWEEN		//ÀÌÀüÀÇ AnimationÀº ¸ØÃß°í, ÇöÀçÀÇ AnimationÀÇ Start±îÁö º¸°£À» ÇÑ´Ù.
+	BLEND_MIX,		//ì´ì „ì˜ Animationë¥¼ Playë¥¼ í•˜ê³ , í˜„ì¬ì˜ Animationë„ Playë¥¼ í•˜ë©´ì„œ ë³´ê°„ì„ í•œë‹¤.
+	BLEND_TWEEN		//ì´ì „ì˜ Animationì€ ë©ˆì¶”ê³ , í˜„ì¬ì˜ Animationì˜ Startê¹Œì§€ ë³´ê°„ì„ í•œë‹¤.
 };
 
 
 struct SAnimChannel
 {
 	RpHAnimHierarchy	*pHierarchy;
-	RwBool				bLoop;				//loop·Î ÀÛµ¿À» ÇØ¾ß ÇÏ´Â Animation ÀÎÁö
-	RwBool				bNotLoopEnd;		//loop°¡ ¾Æ´Ñ AnimationÀÌ ³¡³µ´ÂÁö
+	RwBool				bLoop;				//loopë¡œ ì‘ë™ì„ í•´ì•¼ í•˜ëŠ” Animation ì¸ì§€
+	RwBool				bNotLoopEnd;		//loopê°€ ì•„ë‹Œ Animationì´ ëë‚¬ëŠ”ì§€
 	RwReal				fAnimSpeed;         //Animation Speed
 	unsigned int		uiAnimKey;
 
@@ -73,7 +73,7 @@ public:
 	~CNtlPLAnimSet();
 private:
 	RpClump	*m_pTargetClump;						 //Target Clump
-	CNtlPLCharacter *m_pOwner;                       //ÇöÀç Class¸¦ ¼ÒÀ¯ÇÏ´Â Class
+	CNtlPLCharacter *m_pOwner;                       //í˜„ì¬ Classë¥¼ ì†Œìœ í•˜ëŠ” Class
 
 	RpHAnimHierarchy *m_pMainHierarchy;				 //Character Main Hierarchy
 	
@@ -81,9 +81,9 @@ private:
 	SAnimChannel		m_Channel[ANIM_CHANNEL_END]; //AnimChannel
 	EBlendType			m_eBlendType;
 
-	RwReal	m_fBlendAlpha;							 // Blend °ª (0.. 1)
+	RwReal	m_fBlendAlpha;							 // Blend ê°’ (0.. 1)
 	RwReal	m_fBlendTargetAlpha;					 // Target Blend
-	RwReal	m_fBlendTargetInterval;					 // Blend µÉ ½Ã°£(ÃÊ)
+	RwReal	m_fBlendTargetInterval;					 // Blend ë  ì‹œê°„(ì´ˆ)
 
 	RwBool	m_bAnimChanging;
 	

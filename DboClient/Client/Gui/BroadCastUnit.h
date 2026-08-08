@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: BroadCastUnit.h
 * Author		: Haesung Cho
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 10. 27
 * Abstract		: 
 *****************************************************************************
-* Desc			: °ÔÀÓ TS message, Server emergency, Mini narrationÀ» ´ã´çÇÏ´Â GUIÀÇ Unit
+* Desc			: ê²Œì„ TS message, Server emergency, Mini narrationì„ ë‹´ë‹¹í•˜ëŠ” GUIì˜ Unit
 *****************************************************************************/
 
 #ifndef __BROAD_CAST_UNIT_H__

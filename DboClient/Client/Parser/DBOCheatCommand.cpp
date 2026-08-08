@@ -142,7 +142,7 @@ void CDBOCheatCommand::Register()
 	m_mapCheatHandler["perf"]				= &CDBOCheatCommand::OnPerf;
 
 	m_mapCheatHandler["dialog"]				= &CDBOCheatCommand::OnDialog;			/// woosungs_test	
-	// _ENABLE_PACKET_TRACE_	/// Defalut·Î Disable /// ÇÁ·ÎÅäÄİÀÌ º¯°æµÉ¼öÀÖ´Ù. ÀÚµ¿ºôµå°¡ ½ÇÆĞÇÒ ¼ö ÀÖÀ½
+	// _ENABLE_PACKET_TRACE_	/// Defalutë¡œ Disable /// í”„ë¡œí† ì½œì´ ë³€ê²½ë ìˆ˜ìˆë‹¤. ìë™ë¹Œë“œê°€ ì‹¤íŒ¨í•  ìˆ˜ ìˆìŒ
 	m_mapCheatHandler["packettrace"]		= &CDBOCheatCommand::OnPacketTrace;		/// woosungs_test 20090804	
 
 	// sound
@@ -165,7 +165,7 @@ RwBool CDBOCheatCommand::OnCmdParsing( const std::string& strCmd )
     if(!lexer.IsSuccess())
         return FALSE;
 
-    // Ã¹ ½ÃÀÛÀº '/'·Î ½ÃÀÛÇØ¾ß ÇÑ´Ù.
+    // ì²« ì‹œì‘ì€ '/'ë¡œ ì‹œì‘í•´ì•¼ í•œë‹¤.
     RwInt32 iLine;
     std::string strToken = lexer.PeekNextToken(NULL, &iLine);
     if(strToken != "/")
@@ -528,7 +528,7 @@ RwBool CDBOCheatCommand::OnShadow(CNtlTokenizer* pLexer)
 }
 
 /**
-* \brief PL´ÜÀÇ Ä³¸¯ÅÍ ½ºÄÉÁì¸µ ·Îµù¿¡ ¾²ÀÏ º¯¼ö
+* \brief PLë‹¨ì˜ ìºë¦­í„° ìŠ¤ì¼€ì¥´ë§ ë¡œë”©ì— ì“°ì¼ ë³€ìˆ˜
 */
 RwBool CDBOCheatCommand::OnCharLoadTime( CNtlTokenizer* pLexer ) 
 {
@@ -969,7 +969,7 @@ RwBool CDBOCheatCommand::OnCreatePC(CNtlTokenizer* pLexer)
 	RwV3d vDir = pAvatar->GetDirection();
 
 	//////////////////////////////////////////////////////////////////////////
-	// Brief Á¤º¸ Ã¤¿ö ³Ö±â
+	// Brief ì •ë³´ ì±„ì›Œ ë„£ê¸°
 	//////////////////////////////////////////////////////////////////////////
 
 	sPC_BRIEF sPcBrief;
@@ -978,8 +978,8 @@ RwBool CDBOCheatCommand::OnCreatePC(CNtlTokenizer* pLexer)
 	sPcBrief.tblidx			= pAvatarAttr->GetPcTbl()->tblidx;;
 	sPcBrief.bIsAdult		= B2b(pAvatarAttr->IsAdult());
 
-	wcscpy_s( sPcBrief.awchName, NTL_MAX_SIZE_CHAR_NAME, L"ÀÌ¸§1" );
-	wcscpy_s( sPcBrief.wszGuildName, NTL_MAX_SIZE_CHAR_NAME, L"±æµå1" );
+	wcscpy_s( sPcBrief.awchName, NTL_MAX_SIZE_CHAR_NAME, L"ì´ë¦„1" );
+	wcscpy_s( sPcBrief.wszGuildName, NTL_MAX_SIZE_CHAR_NAME, L"ê¸¸ë“œ1" );
 
 	sPcBrief.sPcShape.byFace		= 1;
 	sPcBrief.sPcShape.byHair		= 1;
@@ -1008,7 +1008,7 @@ RwBool CDBOCheatCommand::OnCreatePC(CNtlTokenizer* pLexer)
 	memset( &sPcBrief.sDogi, 0xffffffff, sizeof( sPcBrief.sDogi ) );
 
 	//////////////////////////////////////////////////////////////////////////
-	// State Á¤º¸ Ã¤¿ö ³Ö±â
+	// State ì •ë³´ ì±„ì›Œ ë„£ê¸°
 	//////////////////////////////////////////////////////////////////////////
 
 	sCHARSTATE sCharState;
@@ -1189,7 +1189,7 @@ RwBool CDBOCheatCommand::OnDialog( CNtlTokenizer* pLexer )			/// woosungs_test
 				if(1 == iDialogType)
 					GetSideDialogManager()->ShowAllDialogTEST(bOpen);				/// side
 				else
-					GetDialogManager()->ShowAllDialogTEST(bOpen);					/// side Æ÷ÇÔ all
+					GetDialogManager()->ShowAllDialogTEST(bOpen);					/// side í¬í•¨ all
 			}
 			else if(strCommand1 == "inc")
 			{
@@ -1227,7 +1227,7 @@ RwBool CDBOCheatCommand::OnDialog( CNtlTokenizer* pLexer )			/// woosungs_test
 				else
 					return FALSE;
 			}
-			else if(strCommand1.c_str()[0] <= '9' && strCommand1.c_str()[0] >= '0')	/// dialog¹øÈ£·Î ÇØ´ç dialog open(close)
+			else if(strCommand1.c_str()[0] <= '9' && strCommand1.c_str()[0] >= '0')	/// dialogë²ˆí˜¸ë¡œ í•´ë‹¹ dialog open(close)
 			{
 				m_iCurrOpenedDialogIndex = atoi( strCommand1.c_str());
 				if(DIALOG_UNKNOWN - 1 < m_iCurrOpenedDialogIndex)
@@ -1236,7 +1236,7 @@ RwBool CDBOCheatCommand::OnDialog( CNtlTokenizer* pLexer )			/// woosungs_test
 				GetDialogManager()->ShowDialogTEST((eDialogType) m_iCurrOpenedDialogIndex, 
 					bOpen);
 			}
-			else																	/// dialog frm file¸íÀ¸·Î open(close)
+			else																	/// dialog frm fileëª…ìœ¼ë¡œ open(close)
 			{
 				CNtlPLGui* pDialog = GetDialogManager()->GetpDialogTEST(strCommand1.c_str());
 				if(pDialog)
@@ -1276,12 +1276,12 @@ RwBool CDBOCheatCommand::OnPacketTrace(CNtlTokenizer* pLexer)	/// woosungs_test
 			 if(!strCommand2.empty())
 			 {
 				 if(strCommand2 == "on")		
-				 {	/// packet ±â·Ï ½ÃÀÛ
+				 {	/// packet ê¸°ë¡ ì‹œì‘
 					 if(CPacketTracer::GetInstance())
 						CPacketTracer::GetInstance()->Activate();
 				 }
 				 else if(strCommand2 == "off")		
-				 {  /// packet ±â·Ï Á¾·á
+				 {  /// packet ê¸°ë¡ ì¢…ë£Œ
 					 if(CPacketTracer::GetInstance())
 						 CPacketTracer::GetInstance()->Deactivate();			
 				 }
@@ -1417,7 +1417,7 @@ RwBool CDBOCheatCommand::OnPlaySound(CNtlTokenizer* pLexer)
 	enum eParametaType
 	{
 		PT_PLAY_TYPE,			// 1 : 2D sound, 2 : 3D sound
-		PT_FILE_NAME,			// DBO_Resource\sound Æú´õ¿¡¼­¸¸ ÆÄÀÏÀ» Ã£´Â´Ù
+		PT_FILE_NAME,			// DBO_Resource\sound í´ë”ì—ì„œë§Œ íŒŒì¼ì„ ì°¾ëŠ”ë‹¤
 		PT_POS_X,
 		PT_POS_Y,
 		PT_POS_Z,
@@ -1434,9 +1434,9 @@ RwBool CDBOCheatCommand::OnPlaySound(CNtlTokenizer* pLexer)
 	RwUInt8			byPlayType = 0xff;
 	std::string		strFileName;
 
-	// SoundManager¿¡¼­ÀÇ µğÆúÆ® °ª°ú ÀÏÄ¡½ÃÄÑ¼­ Â÷ÈÄ ÀÎÀÚ·Î ¹ŞÁö ¾ÊÀº °ÍÀÌ
-	// ÀÖ´õ¶óµµ µû·Î ¹ŞÀº ÀÎÀÚ°¡ ¹«¾ù¹«¾ùÀÎÁö °Ë»çÇÏÁö ¾Ê°í ÀüºÎ ÀÎÀÚ·Î ³Ñ±æ ¼ö
-	// ÀÖµµ·Ï ÇÑ´Ù
+	// SoundManagerì—ì„œì˜ ë””í´íŠ¸ ê°’ê³¼ ì¼ì¹˜ì‹œì¼œì„œ ì°¨í›„ ì¸ìë¡œ ë°›ì§€ ì•Šì€ ê²ƒì´
+	// ìˆë”ë¼ë„ ë”°ë¡œ ë°›ì€ ì¸ìê°€ ë¬´ì—‡ë¬´ì—‡ì¸ì§€ ê²€ì‚¬í•˜ì§€ ì•Šê³  ì „ë¶€ ì¸ìë¡œ ë„˜ê¸¸ ìˆ˜
+	// ìˆë„ë¡ í•œë‹¤
 	RwV3d			v3Pos;
 	bool			bLoop = false;
 	RwReal			fVolume = 1.f;

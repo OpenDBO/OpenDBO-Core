@@ -4,7 +4,7 @@
 
 /**
 * \ingroup Client
-* \brief Å¬¶óÀÌ¾ğÆ® ¼­Æ÷Æ® Åø(Mr.PoPo)·Î ºÎÅÍ ³¯¶ó¿À´Â ÀÌº¥Æ®¸¦ Ã³¸®ÇÏ´Â Å¬·¡½º
+* \brief í´ë¼ì´ì–¸íŠ¸ ì„œí¬íŠ¸ íˆ´(Mr.PoPo)ë¡œ ë¶€í„° ë‚ ë¼ì˜¤ëŠ” ì´ë²¤íŠ¸ë¥¼ ì²˜ë¦¬í•˜ëŠ” í´ë˜ìŠ¤
 *
 * \date 2008-08-01
 * \author agebreak
@@ -34,7 +34,7 @@ protected:
     void            OnTargetMarking(RwBool bSelect);
     void            OnPushTest();
 
-    // ±×·¡ÇÈ ¼³Á¤ °ü·Ã ÀÌº¥Æ®
+    // ê·¸ë˜í”½ ì„¤ì • ê´€ë ¨ ì´ë²¤íŠ¸
     void            OnTerrainDist(RwUInt32 uiDist);
     void            OnTerrainShadow(RwBool bEnable);
     void            OnWaterSpecular(RwBool bEnable);

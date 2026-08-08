@@ -2,7 +2,7 @@
 *
 * File			: NtlPLObject.h
 * Author		: HyungSuk Jang
-* Copyright	: (ÁÖ)NTL
+* Copyright	: (ì£¼)NTL
 * Date			: 2005. 8. 11	
 * Abstract		: Presentation layer object entity class
 *****************************************************************************
@@ -13,9 +13,9 @@
 #ifndef __NTL_PLOBJECT_H__
 #define __NTL_PLOBJECT_H__
 
-// Çü¼® Àá½Ã ÁÖ¼®Ã³¸®.
-// #define FADE_OBJECT_TIME        2.0f                ///< Object°¡ Fade In/Out¿¡ °É¸®´Â ½Ã°£ 
-#define FADE_EFFECT_GAP_TIME    1.0f                ///< Effect°¡ Ç¥½ÃµÈÈÄ ¾ó¸¶ÈÄ¿¡ Object¸¦ Ç¥½ÃÇÒÁöÀÇ Gap
+// í˜•ì„ ì ì‹œ ì£¼ì„ì²˜ë¦¬.
+// #define FADE_OBJECT_TIME        2.0f                ///< Objectê°€ Fade In/Outì— ê±¸ë¦¬ëŠ” ì‹œê°„ 
+#define FADE_EFFECT_GAP_TIME    1.0f                ///< Effectê°€ í‘œì‹œëœí›„ ì–¼ë§ˆí›„ì— Objectë¥¼ í‘œì‹œí• ì§€ì˜ Gap
 
 #include "NtlPLAttach.h"
 #include "NtlPLGlobal.h"
@@ -65,7 +65,7 @@ struct sSCHEDULING_LM_PROP
 	vector<sSCHEDULING_LM_ATOM_PROP*> _vecSchedulingLMAtomProp;
 };
 
-/// ½ºÄÉÁì¸µ ·Îµù½Ã ÇÊ¿äÇÑ Á¤º¸¸¦ ´ã´Â ±¸Á¶Ã¼
+/// ìŠ¤ì¼€ì¥´ë§ ë¡œë”©ì‹œ í•„ìš”í•œ ì •ë³´ë¥¼ ë‹´ëŠ” êµ¬ì¡°ì²´
 struct SObjectSchedulingInfo
 {
     RwBool      bLoadComplete;
@@ -86,7 +86,7 @@ class CNtlPLEntityAlphaWeightBlend;
 
 struct SPLObjectCreateParam : public SPLEntityCreateParam
 {
-	RwBool bLoadMap;            // ¸ÊÀ» ·ÎµåÇÒ¶§(Fade°¡ Àû¿ëµÇÁö ¾Ê¾Æ¾ß ÇÒ¶§)´Â True, ¾Æ´Ï¸é False
+	RwBool bLoadMap;            // ë§µì„ ë¡œë“œí• ë•Œ(Fadeê°€ ì ìš©ë˜ì§€ ì•Šì•„ì•¼ í• ë•Œ)ëŠ” True, ì•„ë‹ˆë©´ False
 };
 
 struct SCollisionInfo;
@@ -105,7 +105,7 @@ class CNtlWorldShadow;
 class CNtlPLObject : public CNtlPLAttach, public COccluderProxy
 {
 public:
-	/// Fade System¿¡ »ç¿ëµÉ Flag°ª
+	/// Fade Systemì— ì‚¬ìš©ë  Flagê°’
 	enum EObjectFadeState
 	{
 		FADE_VISIBLE,
@@ -130,7 +130,7 @@ public:
 	virtual RwBool Render(void);
 	virtual RwBool RenderToTexture();
 
-	// Occluder Proxy »ı¼º °ü·Ã.
+	// Occluder Proxy ìƒì„± ê´€ë ¨.
 	virtual RwBool CreateOccluderProxy();
 
 #ifdef dNTL_WORLD_CULLING_NEW
@@ -138,7 +138,7 @@ public:
 #else
 	virtual RwBool CullingTest(RwCamera* pRwCamera);
 #endif
-	virtual RwBool  IsCullingTestAllAtomic();                                       ///< ÇöÀç ¼³Á¤µÈ ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ Culling Atomic Ã¼Å©ÀÎÁö ¹İÈ¯ÇÑ´Ù.
+	virtual RwBool  IsCullingTestAllAtomic();                                       ///< í˜„ì¬ ì„¤ì •ëœ ì• ë‹ˆë©”ì´ì…˜ì´ Culling Atomic ì²´í¬ì¸ì§€ ë°˜í™˜í•œë‹¤.
 
 	virtual RwBool SetProperty(const CNtlPLProperty *pData);
 	virtual CNtlPLObjectProperty* GetProperty() {return m_pProperty;}
@@ -161,12 +161,12 @@ public:
 
 	virtual RwReal GetVisibleCullingDistance(void);
 
-	virtual void  SetVisible(RwBool bVisible);													///< ¿ÀºêÁ§Æ®ÀÇ Ç¥Çö À¯¹«¸¦ ¼³Á¤ÇÑ´Ù.
-	void SetEffectVisible(RwBool bVisible);														///< ÀÌÆåÆ®ÀÇ Ç¥Çö À¯¹«¸¦ ¼³Á¤ÇÑ´Ù.
+	virtual void  SetVisible(RwBool bVisible);													///< ì˜¤ë¸Œì íŠ¸ì˜ í‘œí˜„ ìœ ë¬´ë¥¼ ì„¤ì •í•œë‹¤.
+	void SetEffectVisible(RwBool bVisible);														///< ì´í™íŠ¸ì˜ í‘œí˜„ ìœ ë¬´ë¥¼ ì„¤ì •í•œë‹¤.
 
-	void SetAlpha(RwUInt8 byValue);																///< ¿ÀºêÁ§Æ®ÀÇ Alpha¸¦ ¼³Á¤ÇÑ´Ù.
-	void SetColor(RwUInt8 byRed, RwUInt8 byGreen, RwUInt8 byBlue);								///< ¿ÀºêÁ§Æ®¿¡ Color¸¦ ¼³Á¤ÇÑ´Ù.
-	RwRGBA	*GetColor() { return &m_sColor; }													///< ¿ÀºêÁ§Æ®ÀÇ Color¸¦ ¾ò´Â´Ù.
+	void SetAlpha(RwUInt8 byValue);																///< ì˜¤ë¸Œì íŠ¸ì˜ Alphaë¥¼ ì„¤ì •í•œë‹¤.
+	void SetColor(RwUInt8 byRed, RwUInt8 byGreen, RwUInt8 byBlue);								///< ì˜¤ë¸Œì íŠ¸ì— Colorë¥¼ ì„¤ì •í•œë‹¤.
+	RwRGBA	*GetColor() { return &m_sColor; }													///< ì˜¤ë¸Œì íŠ¸ì˜ Colorë¥¼ ì–»ëŠ”ë‹¤.
 
 	void SetAddColor(RwUInt8 byRed, RwUInt8 byGreen, RwUInt8 byBlue);
 	RwRGBA	*GetAddColor() { return &m_sAddColor; }
@@ -183,59 +183,59 @@ public:
 	virtual void		CalcBoundingSphere();
 
 	RwBool			IsActiveUpdate( void ) { return m_bActiveUpdate; }
-	RwBool          IsSchedulingLoadingComplete() {return m_sScheduleInfo.bLoadComplete;}       ///< ½ºÄÉÁì ·ÎµùÀÌ ¿Ï·á
+	RwBool          IsSchedulingLoadingComplete() {return m_sScheduleInfo.bLoadComplete;}       ///< ìŠ¤ì¼€ì¥´ ë¡œë”©ì´ ì™„ë£Œ
 
 	RpClump *GetClump( void ) const;
 
-	RwBool          SetUVAnim(const RwChar* szUVAnimFileName);									///< UVAnimÀ» ¼³Á¤ÇÑ´Ù.
-	CNtlPLUVAnim*   GetUVAnim() {return m_pUVAnim;}												///< UVAnim °´Ã¼¸¦ ¹İÈ¯ÇÑ´Ù.
+	RwBool          SetUVAnim(const RwChar* szUVAnimFileName);									///< UVAnimì„ ì„¤ì •í•œë‹¤.
+	CNtlPLUVAnim*   GetUVAnim() {return m_pUVAnim;}												///< UVAnim ê°ì²´ë¥¼ ë°˜í™˜í•œë‹¤.
 
-	RwBool          SetAnimation(const RwChar* szAnimFileName);									///< ¾Ö´Ï¸ŞÀÌ¼ÇÀ» Àû¿ëÇÑ´Ù.
-	virtual RwBool	SetTriggerAnimation(RwUInt32 uiAnimKey, RwReal fStartTime = 0.0f, RwBool bLoop = TRUE);				///< Trigger AnimationÀ» Àç»ıÇÑ´Ù.
-	virtual int		CallBackBaseAnim(void* pEventData);										///< Animation EventÀÇ CallBack ÇÔ¼ö    
-	void            SetAnimUpdate(RwBool bPlay) {m_bAnimPlay = bPlay;}								///< ¾Ö´Ï¸ŞÀÌ¼Ç ÇÃ·¹ÀÌ/½ºÅéÀ» Àû¿ëÇÑ´Ù.
-	RwBool			GetPlayAnim() { return m_bAnimPlay; }										///< ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ÇÃ·¹ÀÌ°¡ µÇ´ÂÁö
-	RwBool			SetPlayAnimTime(RwReal fStartAnimTime);										///< Animation Play ½ÃÀÛ ½Ã°£ (0.f - 1.f)
+	RwBool          SetAnimation(const RwChar* szAnimFileName);									///< ì• ë‹ˆë©”ì´ì…˜ì„ ì ìš©í•œë‹¤.
+	virtual RwBool	SetTriggerAnimation(RwUInt32 uiAnimKey, RwReal fStartTime = 0.0f, RwBool bLoop = TRUE);				///< Trigger Animationì„ ì¬ìƒí•œë‹¤.
+	virtual int		CallBackBaseAnim(void* pEventData);										///< Animation Eventì˜ CallBack í•¨ìˆ˜    
+	void            SetAnimUpdate(RwBool bPlay) {m_bAnimPlay = bPlay;}								///< ì• ë‹ˆë©”ì´ì…˜ í”Œë ˆì´/ìŠ¤í†±ì„ ì ìš©í•œë‹¤.
+	RwBool			GetPlayAnim() { return m_bAnimPlay; }										///< ì• ë‹ˆë©”ì´ì…˜ì´ í”Œë ˆì´ê°€ ë˜ëŠ”ì§€
+	RwBool			SetPlayAnimTime(RwReal fStartAnimTime);										///< Animation Play ì‹œì‘ ì‹œê°„ (0.f - 1.f)
 	RwBool			SetPlayAnimSpeed(RwReal fAnimSpeed);										///< Animaiton Speed (1.f: Default )
-	RwReal			GetBaseCurrentAnimTime();															///< ÇöÀç Base Layer AnimationÀÇ ½Ã°£À» ¾ò´Â ÇÔ¼ö
-	RwReal			GetAnimPlayTime(RwUInt32 uiAnimKey);										///< Key¿¡ ÇØ´çÇÏ´Â AnimÀÇ Play TimeÀ» ¹İÈ¯ÇÑ´Ù.
-	RwReal			GetBaseDurationAnimTime();													///< AnimationÀÇ Play TimeÀ» ¹İÈ¯ÇÑ´Ù.
-	void			SetBaseCurrentAnimTime(RwReal fCurrTime);								    		///< ½Ã°£À» °­Á¦·Î ³Ö´Â ÇÔ¼öµµ ÇÊ¿ä
+	RwReal			GetBaseCurrentAnimTime();															///< í˜„ì¬ Base Layer Animationì˜ ì‹œê°„ì„ ì–»ëŠ” í•¨ìˆ˜
+	RwReal			GetAnimPlayTime(RwUInt32 uiAnimKey);										///< Keyì— í•´ë‹¹í•˜ëŠ” Animì˜ Play Timeì„ ë°˜í™˜í•œë‹¤.
+	RwReal			GetBaseDurationAnimTime();													///< Animationì˜ Play Timeì„ ë°˜í™˜í•œë‹¤.
+	void			SetBaseCurrentAnimTime(RwReal fCurrTime);								    		///< ì‹œê°„ì„ ê°•ì œë¡œ ë„£ëŠ” í•¨ìˆ˜ë„ í•„ìš”
 
-	RwBool			GetEnableShadow();															///< Shadow¸¦ ¸¸µé°ÍÀÎÁö
+	RwBool			GetEnableShadow();															///< Shadowë¥¼ ë§Œë“¤ê²ƒì¸ì§€
 
 	// Doodads PSM
-	RwBool				GetEnableGenShadowMap();													///< ShadowMapÀ» »ı¼ºÀ» ÇØ¾ß ÇÏ´ÂÁö
+	RwBool				GetEnableGenShadowMap();													///< ShadowMapì„ ìƒì„±ì„ í•´ì•¼ í•˜ëŠ”ì§€
 	RwBool				AreThereObjPSMap();
 	VOID				DeleteDoodadShadow();
-	ENTITY_ATOMIC_VEC*	GetAtomicList();															///< Atomic List ReturnÀ» ÇÑ´Ù.	
+	ENTITY_ATOMIC_VEC*	GetAtomicList();															///< Atomic List Returnì„ í•œë‹¤.	
 	VOID				SetAtomicPSMap();
 
-	virtual const RwBBox* GetBoundingBox(void) {return &m_bbox;}								///< Bounding Box¸¦ ¹İÈ¯ÇÑ´Ù.
+	virtual const RwBBox* GetBoundingBox(void) {return &m_bbox;}								///< Bounding Boxë¥¼ ë°˜í™˜í•œë‹¤.
 
-	// Link Effect °ü·Ã
-	VecLinkEffect*      GetVecLinkEffect() {return &(m_LinkEffectInstance.m_vecLinkEffect);}	///< LinkEffect Vector¸¦ ¹İÈ¯ÇÑ´Ù.
-	CNtlInstanceEffect* AttachLinkEffect(SEventLinkEffect* pEventLinkEffect);					///< Link Effect¸¦ Attach ½ÃÅ²´Ù.
-	RwBool              DetachLinkEffect(CNtlInstanceEffect* pLinkEffect);						///< Link Effect¸¦ Detach ½ÃÅ²´Ù.
+	// Link Effect ê´€ë ¨
+	VecLinkEffect*      GetVecLinkEffect() {return &(m_LinkEffectInstance.m_vecLinkEffect);}	///< LinkEffect Vectorë¥¼ ë°˜í™˜í•œë‹¤.
+	CNtlInstanceEffect* AttachLinkEffect(SEventLinkEffect* pEventLinkEffect);					///< Link Effectë¥¼ Attach ì‹œí‚¨ë‹¤.
+	RwBool              DetachLinkEffect(CNtlInstanceEffect* pLinkEffect);						///< Link Effectë¥¼ Detach ì‹œí‚¨ë‹¤.
 
-	// World Editor¸¦ À§ÇÑ ÇÔ¼ö
-	virtual RwBBox  GetTriggerAABBInfo();														///< ¿ùµå¿¡µğÅÍÀÇ Æ®¸®°Å Á¤º¸¿¡ »ç¿ëÇÏ±â À§ÇÑ AABBÀÇ Á¤º¸¸¦ ¹İÈ¯ÇÑ´Ù.
+	// World Editorë¥¼ ìœ„í•œ í•¨ìˆ˜
+	virtual RwBBox  GetTriggerAABBInfo();														///< ì›”ë“œì—ë””í„°ì˜ íŠ¸ë¦¬ê±° ì •ë³´ì— ì‚¬ìš©í•˜ê¸° ìœ„í•œ AABBì˜ ì •ë³´ë¥¼ ë°˜í™˜í•œë‹¤.
 	virtual RwBBox  GetTriggerAABBInfo( const RwV3d& vPos, 
 		const RwV3d& vRotate, 
 		const RwV3d& vScale);	
 
-	// Fade System °ü·Ã
-	RwBool          UpdateFadeSystem();                                                         ///< ¼³Á¤µÈ Culling Distance¿¡ µû¶ó¼­ Object¸¦ Fade ½ÃÅ²´Ù.
-	void            SetFadeEnable(RwBool bEnable);                                              ///< Fade Enable À¯¹«¸¦ ¼³Á¤ÇÑ´Ù
+	// Fade System ê´€ë ¨
+	RwBool          UpdateFadeSystem();                                                         ///< ì„¤ì •ëœ Culling Distanceì— ë”°ë¼ì„œ Objectë¥¼ Fade ì‹œí‚¨ë‹¤.
+	void            SetFadeEnable(RwBool bEnable);                                              ///< Fade Enable ìœ ë¬´ë¥¼ ì„¤ì •í•œë‹¤
 
 	void    SetTransform(void);
 
-	// Milepost °ü·Ã ÇÁ·ÎÆÛÆ¼
-	RwUInt32        GetMilepostID() {return m_uiMilepostTextID;}                                ///< Milepost Text ID¸¦ ¹İÈ¯ÇÑ´Ù.
-	void            SetMilepostID(RwUInt32 uiMilepostTextID) {m_uiMilepostTextID = uiMilepostTextID;} ///< Milepost Text ID¸¦ ¼³Á¤ÇÑ´Ù.
+	// Milepost ê´€ë ¨ í”„ë¡œí¼í‹°
+	RwUInt32        GetMilepostID() {return m_uiMilepostTextID;}                                ///< Milepost Text IDë¥¼ ë°˜í™˜í•œë‹¤.
+	void            SetMilepostID(RwUInt32 uiMilepostTextID) {m_uiMilepostTextID = uiMilepostTextID;} ///< Milepost Text IDë¥¼ ì„¤ì •í•œë‹¤.
 
-	// Toon °ü·Ã
-	void            CheckToonData();                                                            ///< Toon Àû¿ëÀÌ °¡´ÉÇÑÁö È®ÀÎÇÑ´Ù.
+	// Toon ê´€ë ¨
+	void            CheckToonData();                                                            ///< Toon ì ìš©ì´ ê°€ëŠ¥í•œì§€ í™•ì¸í•œë‹¤.
 	SToonData*      GetToonData() {return m_pToonData;}
 
 	void		ResetUV();
@@ -261,22 +261,22 @@ protected:
 	RwBool	CreateScheduling(const SPLEntityCreateParam * pParam);
 	RwBool	CreateThreadSafe(void);
 
-	RwBool  CreateAnim();																		///< Anim °ü·Ã Á¤º¸¹× °´Ã¼¸¦ »ı¼ºÇÑ´Ù.
-	RwBBox  CreateDefaultAABB();																///< Property¿¡ AABBÁ¤º¸°¡ ¾øÀ»¶§ ±âº» AABBÁ¤º¸¸¦ »ı¼ºÇÑ´Ù	
-	RwBool  UpdateFading(RwReal fElapsedTime);                                                  ///< ÆäÀÌµùÇÑ´Ù.
+	RwBool  CreateAnim();																		///< Anim ê´€ë ¨ ì •ë³´ë° ê°ì²´ë¥¼ ìƒì„±í•œë‹¤.
+	RwBBox  CreateDefaultAABB();																///< Propertyì— AABBì •ë³´ê°€ ì—†ì„ë•Œ ê¸°ë³¸ AABBì •ë³´ë¥¼ ìƒì„±í•œë‹¤	
+	RwBool  UpdateFading(RwReal fElapsedTime);                                                  ///< í˜ì´ë”©í•œë‹¤.
 
-	// Loop Effect °ü·Ã
-	void    AddLoopEffect(SLoopEffect* pLoopEffect) {m_listLoopEffect.push_back(pLoopEffect);} ///< LoopEffect List¿¡ LoopEffect¸¦ Ãß°¡ÇÑ´Ù.
-	void    ClearLoopEffect();                                                                 ///< LoopEffect List¿¡ µé¾îÀÖ´Â EffectInstanceµéÀ» ¼Ò¸ê½ÃÅ²´Ù.
-	RwBool  IsExistLoopEffect(const RwChar* szEffectName, const RwChar* szBoneName);           ///< LoopEffect List¾È¿¡ ÀÌ¸§-Bone ½ÖÀÇ LoopEffect°¡ ÀÖ´ÂÁö È®ÀÎÇÑ´Ù.
+	// Loop Effect ê´€ë ¨
+	void    AddLoopEffect(SLoopEffect* pLoopEffect) {m_listLoopEffect.push_back(pLoopEffect);} ///< LoopEffect Listì— LoopEffectë¥¼ ì¶”ê°€í•œë‹¤.
+	void    ClearLoopEffect();                                                                 ///< LoopEffect Listì— ë“¤ì–´ìˆëŠ” EffectInstanceë“¤ì„ ì†Œë©¸ì‹œí‚¨ë‹¤.
+	RwBool  IsExistLoopEffect(const RwChar* szEffectName, const RwChar* szBoneName);           ///< LoopEffect Listì•ˆì— ì´ë¦„-Bone ìŒì˜ LoopEffectê°€ ìˆëŠ”ì§€ í™•ì¸í•œë‹¤.
 
-	// Loop Sound °ü·Ã
-	void    AddLoopSound(SOUND_HANDLE hSound) {m_listLoopSound.push_back(hSound);}             ///< LoopSound List¿¡ SoundHandleÀ» Ãß°¡ÇÑ´Ù.
-	void    ClearLoopSound();                                                                  ///< LoopSound List¿¡ µé¾îÀÖ´Â LoopSoundµéÀ» ¼Ò¸êÇÑ´Ù.
-	RwBool  IsExistLoopSound(RwChar* szSoundName);                                             ///< LoopSound List¿¡ µ¿ÀÏÇÑ SoundHandleÀÌ ÀÖ´ÂÁö È®ÀÎÇÑ´Ù.
-	void    UpdateLoopSoundPos();                                                              ///< LoopSound À§Ä¡¸¦ ¾÷µ¥ÀÌÆ® ÇÑ´Ù.
+	// Loop Sound ê´€ë ¨
+	void    AddLoopSound(SOUND_HANDLE hSound) {m_listLoopSound.push_back(hSound);}             ///< LoopSound Listì— SoundHandleì„ ì¶”ê°€í•œë‹¤.
+	void    ClearLoopSound();                                                                  ///< LoopSound Listì— ë“¤ì–´ìˆëŠ” LoopSoundë“¤ì„ ì†Œë©¸í•œë‹¤.
+	RwBool  IsExistLoopSound(RwChar* szSoundName);                                             ///< LoopSound Listì— ë™ì¼í•œ SoundHandleì´ ìˆëŠ”ì§€ í™•ì¸í•œë‹¤.
+	void    UpdateLoopSoundPos();                                                              ///< LoopSound ìœ„ì¹˜ë¥¼ ì—…ë°ì´íŠ¸ í•œë‹¤.
 
-	// Animation Event °ü·Ã
+	// Animation Event ê´€ë ¨
 	virtual void OnEventAnimEnd(SEventAnimEnd* pEventAnimEnd);
 	virtual void OnEventVisualSound(SEventSound* pEventSound);									
 	virtual void OnEventVisualEffect(SEventVisualEffect* pEventVisualEffect);    
@@ -284,7 +284,7 @@ protected:
 	virtual void OnEventTMQ(SEventAnimCinematic* pEventTMQ);
 	virtual void OnEventExplosion(SEventExplosion* pEventExplosion);
 
-	void    SetAtomicWeightAlpha(const RwChar *pAtomicName, RwReal fWeightValue);               ///< Atomic Weight Alpha Value¸¦ ¼¼ÆÃÇÑ´Ù.
+	void    SetAtomicWeightAlpha(const RwChar *pAtomicName, RwReal fWeightValue);               ///< Atomic Weight Alpha Valueë¥¼ ì„¸íŒ…í•œë‹¤.
 
 	void	AddSceneUpdate();
 	void	RemoveSceneUpdate();
@@ -325,7 +325,7 @@ public:
 
 protected:
 	sSCHEDULING_LM_PROP*		m_pSchedulingLMProp;
-	SObjectSchedulingInfo       m_sScheduleInfo;        ///< ½ºÄÉÁì¸µ ·Îµù °ü·Ã Á¤º¸ 
+	SObjectSchedulingInfo       m_sScheduleInfo;        ///< ìŠ¤ì¼€ì¥´ë§ ë¡œë”© ê´€ë ¨ ì •ë³´ 
 	RwUInt32					m_uiObjectSerialID;
 
 	CNtlPLObjectType*			m_pObjectType;
@@ -334,58 +334,58 @@ protected:
 	RwBool						m_bLoadMap;
 
 	CNtlPLResource *			m_pClumpResource;
-	ENTITY_ATOMIC_VEC	        m_vecAtomicList;         ///< ÇöÀç Clump¸¦ ±¸¼ºÇÏ°í ÀÖ´Â AtomicµéÀÇ ¸®½ºÆ®
+	ENTITY_ATOMIC_VEC	        m_vecAtomicList;         ///< í˜„ì¬ Clumpë¥¼ êµ¬ì„±í•˜ê³  ìˆëŠ” Atomicë“¤ì˜ ë¦¬ìŠ¤íŠ¸
 	FRAME_MAP				    m_mapFrame;				 ///< Bone Info
 
 	RwV3d						m_vModelAngle;
 	RwV3d						m_vModelScale;
 	RwV3d						m_vWorldPosition;
 
-	CNtlPLObjectProperty*       m_pProperty;            ///< ¿ÀºêÁ§Æ® ÇÁ·ÎÆÛÆ¼ °´Ã¼	
+	CNtlPLObjectProperty*       m_pProperty;            ///< ì˜¤ë¸Œì íŠ¸ í”„ë¡œí¼í‹° ê°ì²´	
 
-	CNtlPLUVAnim*               m_pUVAnim;              ///< UVAnim ÆÄÀÏ °´Ã¼                
+	CNtlPLUVAnim*               m_pUVAnim;              ///< UVAnim íŒŒì¼ ê°ì²´                
 	RpHAnimHierarchy*           m_pBaseHierarchy;		///< Base Hierarchy
 	CNtlPLResource*             m_pAnimResource;        ///< Anim Resource
-	RwBool                      m_bAnimPlay;            ///< Anim Play À¯¹«
-	RwBool						m_bHaveAnim;			///< Anim Á¸Àç À¯¹«.
+	RwBool                      m_bAnimPlay;            ///< Anim Play ìœ ë¬´
+	RwBool						m_bHaveAnim;			///< Anim ì¡´ì¬ ìœ ë¬´.
 
 	RwReal						m_fAnimSpeed;			///< Anim Speed
 
 	RwRGBA						m_sColor;				///< Color				
 	RwRGBA						m_sAddColor;			///< AddColor
 
-	RwSphere					m_BSphere;				///< PositionÀÌ ¿¬»êµÇÁö ¾ÊÀº BoundSphere
-	RwSphere					m_BSphereCur;			///< PositionÀÌ ¿¬»êµÈ BoundingSphere : GetBoundingSphere¸¦ È£ÃâÇÏ°Ô µÇ¸é ¾÷µ¥ÀÌÆ® µÈ´Ù.
+	RwSphere					m_BSphere;				///< Positionì´ ì—°ì‚°ë˜ì§€ ì•Šì€ BoundSphere
+	RwSphere					m_BSphereCur;			///< Positionì´ ì—°ì‚°ëœ BoundingSphere : GetBoundingSphereë¥¼ í˜¸ì¶œí•˜ê²Œ ë˜ë©´ ì—…ë°ì´íŠ¸ ëœë‹¤.
 
-	CNtlPLLinkEffect            m_LinkEffectInstance;   ///< LinkEffect InstanceµéÀ» °ü¸®ÇÏ´Â °´Ã¼
+	CNtlPLLinkEffect            m_LinkEffectInstance;   ///< LinkEffect Instanceë“¤ì„ ê´€ë¦¬í•˜ëŠ” ê°ì²´
 
-	RwBBox                      m_bbox;                 ///< ObjectÀÇ Bounding Box
+	RwBBox                      m_bbox;                 ///< Objectì˜ Bounding Box
 
-	// Fade System °ü·Ã
-	EObjectFadeState            m_eFadeState;           ///< ÇöÀç ObjectÀÇ Fade State
-	RwReal                      m_fPrevCameraDistance;  ///< ÀÌÀüÀÇ Ä«¸Ş¶ó¿ÍÀÇ °Å¸®
+	// Fade System ê´€ë ¨
+	EObjectFadeState            m_eFadeState;           ///< í˜„ì¬ Objectì˜ Fade State
+	RwReal                      m_fPrevCameraDistance;  ///< ì´ì „ì˜ ì¹´ë©”ë¼ì™€ì˜ ê±°ë¦¬
 	RwReal                      m_fFadeTime;            ///< Fade Time    
-	CNtlPLEntityAlphaWeightBlend* m_pFadeBlend;         ///< Fade Blend ¼³Á¤¿ë ¾ËÆÄ ºí·»µù °´Ã¼
+	CNtlPLEntityAlphaWeightBlend* m_pFadeBlend;         ///< Fade Blend ì„¤ì •ìš© ì•ŒíŒŒ ë¸”ë Œë”© ê°ì²´
 
-	// Trigger ObjectÀÇ Animation °ü·Ã
-	CNtlAnimLayer*				m_pAnimLayer;			///< ¾Ö´Ï¸ŞÀÌ¼Ç ·¹ÀÌ¾î
+	// Trigger Objectì˜ Animation ê´€ë ¨
+	CNtlAnimLayer*				m_pAnimLayer;			///< ì• ë‹ˆë©”ì´ì…˜ ë ˆì´ì–´
 	CNtlInstanceAnimTable*		m_pInstanceAnimTable;	///< Animation Resource Instance Table
-	RwUInt32					m_uiCurAnimKey;			///< ÇöÀç Àû¿ëµÇ°í ÀÖ´Â AnimKey
+	RwUInt32					m_uiCurAnimKey;			///< í˜„ì¬ ì ìš©ë˜ê³  ìˆëŠ” AnimKey
 
-	ListSoundHandle				m_listLoopSound;        ///< LoopSoundµéÀÇ HANDLE List
-	ListLoopEffect				m_listLoopEffect;       ///< LoopEffectÀÇ list
+	ListSoundHandle				m_listLoopSound;        ///< LoopSoundë“¤ì˜ HANDLE List
+	ListLoopEffect				m_listLoopEffect;       ///< LoopEffectì˜ list
 
-	// ÁöÇü ¿ÀºêÁ§Æ® ±×¸²ÀÚ °ü·Ã
+	// ì§€í˜• ì˜¤ë¸Œì íŠ¸ ê·¸ë¦¼ì ê´€ë ¨
 	vector<CNtlWorldShadow*>    m_vecNtlWorldShadow;
 
-	RwUInt32                    m_uiMilepostTextID;      ///< ÀÌÁ¤Ç¥·Î »ç¿ëµÉ¶§ ¿¬°áµÉ ÅØ½ºÆ® Å×ÀÌºíÀÇ ID
+	RwUInt32                    m_uiMilepostTextID;      ///< ì´ì •í‘œë¡œ ì‚¬ìš©ë ë•Œ ì—°ê²°ë  í…ìŠ¤íŠ¸ í…Œì´ë¸”ì˜ ID
 
-	// Å÷°ü·Ã
+	// íˆ°ê´€ë ¨
 	SToonData*				    m_pToonData;			///< Toon Ink, Toon Paint, Toon Resource
 
-	// ÀÎµµ¾î
-	CNtlOBB						m_OBB;					///< ÀÎµµ¾î¿¡¼­ »ç¿ëµÇ¸ç, RpWorldSector¸¦ °Ë»öÇÏ±â À§ÇØ »ç¿ë.
-	vector<RpWorldSector*>		m_vecRpWorldSector;		///< ÀÎµµ¾î¿¡¼­ »ç¿ëµÇ¸ç, Æ÷ÇÔµÇ¾î ÀÖ´Â RpWorldSectorlist
+	// ì¸ë„ì–´
+	CNtlOBB						m_OBB;					///< ì¸ë„ì–´ì—ì„œ ì‚¬ìš©ë˜ë©°, RpWorldSectorë¥¼ ê²€ìƒ‰í•˜ê¸° ìœ„í•´ ì‚¬ìš©.
+	vector<RpWorldSector*>		m_vecRpWorldSector;		///< ì¸ë„ì–´ì—ì„œ ì‚¬ìš©ë˜ë©°, í¬í•¨ë˜ì–´ ìˆëŠ” RpWorldSectorlist
 
 	// Dojo
 	CNtlPLEntity*				m_pDojoEntity;
@@ -418,7 +418,7 @@ public:
 	static	BYTE*		SavePSMapFromFileMem(FILE* pFile, BYTE* pFileMem);
 	static	BYTE*		SkipPSMapToFileMem(BYTE* pFileMem);
 
-	// lightmap °ü·Ã
+	// lightmap ê´€ë ¨
 	virtual RwBool		SaveLightmap(FILE* pFile);
 	virtual RwBool		LoadLightmap(FILE* pFile);
 	static  RwInt32		SkipLightmap(FILE* pFile);
@@ -445,7 +445,7 @@ public:
 class CNtlPLObject : public CNtlPLAttach, public COccluderProxy
 {
 public:
-	/// Fade System¿¡ »ç¿ëµÉ Flag°ª
+	/// Fade Systemì— ì‚¬ìš©ë  Flagê°’
 	enum EObjectFadeState
 	{
 		FADE_VISIBLE,
@@ -470,7 +470,7 @@ public:
 	virtual RwBool Render(void);
 	virtual RwBool RenderToTexture();
 
-	// Occluder Proxy »ı¼º °ü·Ã.
+	// Occluder Proxy ìƒì„± ê´€ë ¨.
 	virtual RwBool CreateOccluderProxy();
 
 #ifdef dNTL_WORLD_CULLING_NEW
@@ -478,7 +478,7 @@ public:
 #else
 	virtual RwBool CullingTest(RwCamera* pRwCamera);
 #endif
-    virtual RwBool  IsCullingTestAllAtomic();                                       ///< ÇöÀç ¼³Á¤µÈ ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ Culling Atomic Ã¼Å©ÀÎÁö ¹İÈ¯ÇÑ´Ù.
+    virtual RwBool  IsCullingTestAllAtomic();                                       ///< í˜„ì¬ ì„¤ì •ëœ ì• ë‹ˆë©”ì´ì…˜ì´ Culling Atomic ì²´í¬ì¸ì§€ ë°˜í™˜í•œë‹¤.
 
 	virtual RwBool SetProperty(const CNtlPLProperty *pData);
 	virtual CNtlPLObjectProperty* GetProperty() {return m_pProperty;}
@@ -501,12 +501,12 @@ public:
 
 	virtual RwReal GetVisibleCullingDistance(void);
 
-	virtual void  SetVisible(RwBool bVisible);													///< ¿ÀºêÁ§Æ®ÀÇ Ç¥Çö À¯¹«¸¦ ¼³Á¤ÇÑ´Ù.
-	void SetEffectVisible(RwBool bVisible);														///< ÀÌÆåÆ®ÀÇ Ç¥Çö À¯¹«¸¦ ¼³Á¤ÇÑ´Ù.
+	virtual void  SetVisible(RwBool bVisible);													///< ì˜¤ë¸Œì íŠ¸ì˜ í‘œí˜„ ìœ ë¬´ë¥¼ ì„¤ì •í•œë‹¤.
+	void SetEffectVisible(RwBool bVisible);														///< ì´í™íŠ¸ì˜ í‘œí˜„ ìœ ë¬´ë¥¼ ì„¤ì •í•œë‹¤.
 
-	void SetAlpha(RwUInt8 byValue);																///< ¿ÀºêÁ§Æ®ÀÇ Alpha¸¦ ¼³Á¤ÇÑ´Ù.
-	void SetColor(RwUInt8 byRed, RwUInt8 byGreen, RwUInt8 byBlue);								///< ¿ÀºêÁ§Æ®¿¡ Color¸¦ ¼³Á¤ÇÑ´Ù.
-	RwRGBA	*GetColor() { return &m_sColor; }													///< ¿ÀºêÁ§Æ®ÀÇ Color¸¦ ¾ò´Â´Ù.
+	void SetAlpha(RwUInt8 byValue);																///< ì˜¤ë¸Œì íŠ¸ì˜ Alphaë¥¼ ì„¤ì •í•œë‹¤.
+	void SetColor(RwUInt8 byRed, RwUInt8 byGreen, RwUInt8 byBlue);								///< ì˜¤ë¸Œì íŠ¸ì— Colorë¥¼ ì„¤ì •í•œë‹¤.
+	RwRGBA	*GetColor() { return &m_sColor; }													///< ì˜¤ë¸Œì íŠ¸ì˜ Colorë¥¼ ì–»ëŠ”ë‹¤.
 
 	void SetAddColor(RwUInt8 byRed, RwUInt8 byGreen, RwUInt8 byBlue);
 	RwRGBA	*GetAddColor() { return &m_sAddColor; }
@@ -523,64 +523,64 @@ public:
 	virtual void		CalcBoundingSphere();
 
 	RwBool			IsActiveUpdate( void ) { return m_bActiveUpdate; }
-    RwBool          IsSchedulingLoadingComplete() {return m_sScheduleInfo.bLoadComplete;}       ///< ½ºÄÉÁì ·ÎµùÀÌ ¿Ï·á
+    RwBool          IsSchedulingLoadingComplete() {return m_sScheduleInfo.bLoadComplete;}       ///< ìŠ¤ì¼€ì¥´ ë¡œë”©ì´ ì™„ë£Œ
 
 	RpClump *GetClump( void ) const;
 
-	RwBool          SetUVAnim(const RwChar* szUVAnimFileName);									///< UVAnimÀ» ¼³Á¤ÇÑ´Ù.
-	CNtlPLUVAnim*   GetUVAnim() {return m_pUVAnim;}												///< UVAnim °´Ã¼¸¦ ¹İÈ¯ÇÑ´Ù.
+	RwBool          SetUVAnim(const RwChar* szUVAnimFileName);									///< UVAnimì„ ì„¤ì •í•œë‹¤.
+	CNtlPLUVAnim*   GetUVAnim() {return m_pUVAnim;}												///< UVAnim ê°ì²´ë¥¼ ë°˜í™˜í•œë‹¤.
 
-	RwBool          SetAnimation(const RwChar* szAnimFileName);									///< ¾Ö´Ï¸ŞÀÌ¼ÇÀ» Àû¿ëÇÑ´Ù.
-	virtual RwBool	SetTriggerAnimation(RwUInt32 uiAnimKey, RwReal fStartTime = 0.0f, RwBool bLoop = TRUE);				///< Trigger AnimationÀ» Àç»ıÇÑ´Ù.
-	virtual int		CallBackBaseAnim(void* pEventData);										///< Animation EventÀÇ CallBack ÇÔ¼ö    
-	void            SetAnimUpdate(RwBool bPlay) {m_bAnimPlay = bPlay;}								///< ¾Ö´Ï¸ŞÀÌ¼Ç ÇÃ·¹ÀÌ/½ºÅéÀ» Àû¿ëÇÑ´Ù.
-	RwBool			GetPlayAnim() { return m_bAnimPlay; }										///< ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ÇÃ·¹ÀÌ°¡ µÇ´ÂÁö
-	RwBool			SetPlayAnimTime(RwReal fStartAnimTime);										///< Animation Play ½ÃÀÛ ½Ã°£ (0.f - 1.f)
+	RwBool          SetAnimation(const RwChar* szAnimFileName);									///< ì• ë‹ˆë©”ì´ì…˜ì„ ì ìš©í•œë‹¤.
+	virtual RwBool	SetTriggerAnimation(RwUInt32 uiAnimKey, RwReal fStartTime = 0.0f, RwBool bLoop = TRUE);				///< Trigger Animationì„ ì¬ìƒí•œë‹¤.
+	virtual int		CallBackBaseAnim(void* pEventData);										///< Animation Eventì˜ CallBack í•¨ìˆ˜    
+	void            SetAnimUpdate(RwBool bPlay) {m_bAnimPlay = bPlay;}								///< ì• ë‹ˆë©”ì´ì…˜ í”Œë ˆì´/ìŠ¤í†±ì„ ì ìš©í•œë‹¤.
+	RwBool			GetPlayAnim() { return m_bAnimPlay; }										///< ì• ë‹ˆë©”ì´ì…˜ì´ í”Œë ˆì´ê°€ ë˜ëŠ”ì§€
+	RwBool			SetPlayAnimTime(RwReal fStartAnimTime);										///< Animation Play ì‹œì‘ ì‹œê°„ (0.f - 1.f)
 	RwBool			SetPlayAnimSpeed(RwReal fAnimSpeed);										///< Animaiton Speed (1.f: Default )
-	RwReal			GetBaseCurrentAnimTime();															///< ÇöÀç Base Layer AnimationÀÇ ½Ã°£À» ¾ò´Â ÇÔ¼ö
-	RwReal			GetAnimPlayTime(RwUInt32 uiAnimKey);										///< Key¿¡ ÇØ´çÇÏ´Â AnimÀÇ Play TimeÀ» ¹İÈ¯ÇÑ´Ù.
-	RwReal			GetBaseDurationAnimTime();													///< AnimationÀÇ Play TimeÀ» ¹İÈ¯ÇÑ´Ù.
-	void			SetBaseCurrentAnimTime(RwReal fCurrTime);								    		///< ½Ã°£À» °­Á¦·Î ³Ö´Â ÇÔ¼öµµ ÇÊ¿ä
+	RwReal			GetBaseCurrentAnimTime();															///< í˜„ì¬ Base Layer Animationì˜ ì‹œê°„ì„ ì–»ëŠ” í•¨ìˆ˜
+	RwReal			GetAnimPlayTime(RwUInt32 uiAnimKey);										///< Keyì— í•´ë‹¹í•˜ëŠ” Animì˜ Play Timeì„ ë°˜í™˜í•œë‹¤.
+	RwReal			GetBaseDurationAnimTime();													///< Animationì˜ Play Timeì„ ë°˜í™˜í•œë‹¤.
+	void			SetBaseCurrentAnimTime(RwReal fCurrTime);								    		///< ì‹œê°„ì„ ê°•ì œë¡œ ë„£ëŠ” í•¨ìˆ˜ë„ í•„ìš”
 
-	RwBool			GetEnableShadow();															///< Shadow¸¦ ¸¸µé°ÍÀÎÁö
+	RwBool			GetEnableShadow();															///< Shadowë¥¼ ë§Œë“¤ê²ƒì¸ì§€
 
 	// Doodads PSM
-	RwBool				GetEnableGenShadowMap();													///< ShadowMapÀ» »ı¼ºÀ» ÇØ¾ß ÇÏ´ÂÁö
+	RwBool				GetEnableGenShadowMap();													///< ShadowMapì„ ìƒì„±ì„ í•´ì•¼ í•˜ëŠ”ì§€
 	RwBool				AreThereObjPSMap();
 	VOID				DeleteDoodadShadow();
-	ENTITY_ATOMIC_VEC*	GetAtomicList();															///< Atomic List ReturnÀ» ÇÑ´Ù.
+	ENTITY_ATOMIC_VEC*	GetAtomicList();															///< Atomic List Returnì„ í•œë‹¤.
 	VOID				SavePSMap(FILE* _pFile);
 	VOID				LoadPSMap(FILE* _pFile);
 	VOID				SetAtomicPSMap();
 
-	virtual const RwBBox* GetBoundingBox(void) {return &m_bbox;}								///< Bounding Box¸¦ ¹İÈ¯ÇÑ´Ù.
+	virtual const RwBBox* GetBoundingBox(void) {return &m_bbox;}								///< Bounding Boxë¥¼ ë°˜í™˜í•œë‹¤.
 
-	// Link Effect °ü·Ã
-	VecLinkEffect*      GetVecLinkEffect() {return &(m_LinkEffectInstance.m_vecLinkEffect);}	///< LinkEffect Vector¸¦ ¹İÈ¯ÇÑ´Ù.
-	CNtlInstanceEffect* AttachLinkEffect(SEventLinkEffect* pEventLinkEffect);					///< Link Effect¸¦ Attach ½ÃÅ²´Ù.
-	RwBool              DetachLinkEffect(CNtlInstanceEffect* pLinkEffect);						///< Link Effect¸¦ Detach ½ÃÅ²´Ù.
+	// Link Effect ê´€ë ¨
+	VecLinkEffect*      GetVecLinkEffect() {return &(m_LinkEffectInstance.m_vecLinkEffect);}	///< LinkEffect Vectorë¥¼ ë°˜í™˜í•œë‹¤.
+	CNtlInstanceEffect* AttachLinkEffect(SEventLinkEffect* pEventLinkEffect);					///< Link Effectë¥¼ Attach ì‹œí‚¨ë‹¤.
+	RwBool              DetachLinkEffect(CNtlInstanceEffect* pLinkEffect);						///< Link Effectë¥¼ Detach ì‹œí‚¨ë‹¤.
 
-	// World Editor¸¦ À§ÇÑ ÇÔ¼ö
-	virtual RwBBox  GetTriggerAABBInfo();														///< ¿ùµå¿¡µğÅÍÀÇ Æ®¸®°Å Á¤º¸¿¡ »ç¿ëÇÏ±â À§ÇÑ AABBÀÇ Á¤º¸¸¦ ¹İÈ¯ÇÑ´Ù.
+	// World Editorë¥¼ ìœ„í•œ í•¨ìˆ˜
+	virtual RwBBox  GetTriggerAABBInfo();														///< ì›”ë“œì—ë””í„°ì˜ íŠ¸ë¦¬ê±° ì •ë³´ì— ì‚¬ìš©í•˜ê¸° ìœ„í•œ AABBì˜ ì •ë³´ë¥¼ ë°˜í™˜í•œë‹¤.
 	virtual RwBBox  GetTriggerAABBInfo( const RwV3d& vPos, 
 		const RwV3d& vRotate, 
 		const RwV3d& vScale);	
 
-	// Fade System °ü·Ã
-	RwBool          UpdateFadeSystem();                                                         ///< ¼³Á¤µÈ Culling Distance¿¡ µû¶ó¼­ Object¸¦ Fade ½ÃÅ²´Ù.
-	void            SetFadeEnable(RwBool bEnable);                                              ///< Fade Enable À¯¹«¸¦ ¼³Á¤ÇÑ´Ù
+	// Fade System ê´€ë ¨
+	RwBool          UpdateFadeSystem();                                                         ///< ì„¤ì •ëœ Culling Distanceì— ë”°ë¼ì„œ Objectë¥¼ Fade ì‹œí‚¨ë‹¤.
+	void            SetFadeEnable(RwBool bEnable);                                              ///< Fade Enable ìœ ë¬´ë¥¼ ì„¤ì •í•œë‹¤
 
 	void    SetTransform(void);
 
-	// Milepost °ü·Ã ÇÁ·ÎÆÛÆ¼
-	RwUInt32        GetMilepostID() {return m_uiMilepostTextID;}                                ///< Milepost Text ID¸¦ ¹İÈ¯ÇÑ´Ù.
-	void            SetMilepostID(RwUInt32 uiMilepostTextID) {m_uiMilepostTextID = uiMilepostTextID;} ///< Milepost Text ID¸¦ ¼³Á¤ÇÑ´Ù.
+	// Milepost ê´€ë ¨ í”„ë¡œí¼í‹°
+	RwUInt32        GetMilepostID() {return m_uiMilepostTextID;}                                ///< Milepost Text IDë¥¼ ë°˜í™˜í•œë‹¤.
+	void            SetMilepostID(RwUInt32 uiMilepostTextID) {m_uiMilepostTextID = uiMilepostTextID;} ///< Milepost Text IDë¥¼ ì„¤ì •í•œë‹¤.
 
-    // Toon °ü·Ã
-    void            CheckToonData();                                                            ///< Toon Àû¿ëÀÌ °¡´ÉÇÑÁö È®ÀÎÇÑ´Ù.
+    // Toon ê´€ë ¨
+    void            CheckToonData();                                                            ///< Toon ì ìš©ì´ ê°€ëŠ¥í•œì§€ í™•ì¸í•œë‹¤.
     SToonData*      GetToonData() {return m_pToonData;}
 
-	// lightmap °ü·Ã
+	// lightmap ê´€ë ¨
 	virtual RwBool		SaveLightmap(FILE* pFile);
 	virtual RwBool		LoadLightmap(FILE* pFile);
 	static  RwInt32		SkipLightmap(FILE* pFile);
@@ -619,22 +619,22 @@ protected:
 	RwBool	CreateScheduling(const SPLEntityCreateParam * pParam);
 	RwBool	CreateThreadSafe(void);
 
-	RwBool  CreateAnim();																		///< Anim °ü·Ã Á¤º¸¹× °´Ã¼¸¦ »ı¼ºÇÑ´Ù.
-	RwBBox  CreateDefaultAABB();																///< Property¿¡ AABBÁ¤º¸°¡ ¾øÀ»¶§ ±âº» AABBÁ¤º¸¸¦ »ı¼ºÇÑ´Ù	
-	RwBool  UpdateFading(RwReal fElapsedTime);                                                  ///< ÆäÀÌµùÇÑ´Ù.
+	RwBool  CreateAnim();																		///< Anim ê´€ë ¨ ì •ë³´ë° ê°ì²´ë¥¼ ìƒì„±í•œë‹¤.
+	RwBBox  CreateDefaultAABB();																///< Propertyì— AABBì •ë³´ê°€ ì—†ì„ë•Œ ê¸°ë³¸ AABBì •ë³´ë¥¼ ìƒì„±í•œë‹¤	
+	RwBool  UpdateFading(RwReal fElapsedTime);                                                  ///< í˜ì´ë”©í•œë‹¤.
 
-	// Loop Effect °ü·Ã
-	void    AddLoopEffect(SLoopEffect* pLoopEffect) {m_listLoopEffect.push_back(pLoopEffect);} ///< LoopEffect List¿¡ LoopEffect¸¦ Ãß°¡ÇÑ´Ù.
-	void    ClearLoopEffect();                                                                 ///< LoopEffect List¿¡ µé¾îÀÖ´Â EffectInstanceµéÀ» ¼Ò¸ê½ÃÅ²´Ù.
-	RwBool  IsExistLoopEffect(const RwChar* szEffectName, const RwChar* szBoneName);           ///< LoopEffect List¾È¿¡ ÀÌ¸§-Bone ½ÖÀÇ LoopEffect°¡ ÀÖ´ÂÁö È®ÀÎÇÑ´Ù.
+	// Loop Effect ê´€ë ¨
+	void    AddLoopEffect(SLoopEffect* pLoopEffect) {m_listLoopEffect.push_back(pLoopEffect);} ///< LoopEffect Listì— LoopEffectë¥¼ ì¶”ê°€í•œë‹¤.
+	void    ClearLoopEffect();                                                                 ///< LoopEffect Listì— ë“¤ì–´ìˆëŠ” EffectInstanceë“¤ì„ ì†Œë©¸ì‹œí‚¨ë‹¤.
+	RwBool  IsExistLoopEffect(const RwChar* szEffectName, const RwChar* szBoneName);           ///< LoopEffect Listì•ˆì— ì´ë¦„-Bone ìŒì˜ LoopEffectê°€ ìˆëŠ”ì§€ í™•ì¸í•œë‹¤.
 
-	// Loop Sound °ü·Ã
-	void    AddLoopSound(SOUND_HANDLE hSound) {m_listLoopSound.push_back(hSound);}             ///< LoopSound List¿¡ SoundHandleÀ» Ãß°¡ÇÑ´Ù.
-	void    ClearLoopSound();                                                                  ///< LoopSound List¿¡ µé¾îÀÖ´Â LoopSoundµéÀ» ¼Ò¸êÇÑ´Ù.
-	RwBool  IsExistLoopSound(RwChar* szSoundName);                                             ///< LoopSound List¿¡ µ¿ÀÏÇÑ SoundHandleÀÌ ÀÖ´ÂÁö È®ÀÎÇÑ´Ù.
-	void    UpdateLoopSoundPos();                                                              ///< LoopSound À§Ä¡¸¦ ¾÷µ¥ÀÌÆ® ÇÑ´Ù.
+	// Loop Sound ê´€ë ¨
+	void    AddLoopSound(SOUND_HANDLE hSound) {m_listLoopSound.push_back(hSound);}             ///< LoopSound Listì— SoundHandleì„ ì¶”ê°€í•œë‹¤.
+	void    ClearLoopSound();                                                                  ///< LoopSound Listì— ë“¤ì–´ìˆëŠ” LoopSoundë“¤ì„ ì†Œë©¸í•œë‹¤.
+	RwBool  IsExistLoopSound(RwChar* szSoundName);                                             ///< LoopSound Listì— ë™ì¼í•œ SoundHandleì´ ìˆëŠ”ì§€ í™•ì¸í•œë‹¤.
+	void    UpdateLoopSoundPos();                                                              ///< LoopSound ìœ„ì¹˜ë¥¼ ì—…ë°ì´íŠ¸ í•œë‹¤.
 
-	// Animation Event °ü·Ã
+	// Animation Event ê´€ë ¨
 	virtual void OnEventAnimEnd(SEventAnimEnd* pEventAnimEnd);
 	virtual void OnEventVisualSound(SEventSound* pEventSound);									
 	virtual void OnEventVisualEffect(SEventVisualEffect* pEventVisualEffect);    
@@ -642,7 +642,7 @@ protected:
 	virtual void OnEventTMQ(SEventAnimCinematic* pEventTMQ);
 	virtual void OnEventExplosion(SEventExplosion* pEventExplosion);
 
-	void    SetAtomicWeightAlpha(const RwChar *pAtomicName, RwReal fWeightValue);               ///< Atomic Weight Alpha Value¸¦ ¼¼ÆÃÇÑ´Ù.
+	void    SetAtomicWeightAlpha(const RwChar *pAtomicName, RwReal fWeightValue);               ///< Atomic Weight Alpha Valueë¥¼ ì„¸íŒ…í•œë‹¤.
 
 	void	AddSceneUpdate();
 	void	RemoveSceneUpdate();
@@ -683,7 +683,7 @@ public:
 	
 protected:
 	sSCHEDULING_LM_PROP*		m_pSchedulingLMProp;
-    SObjectSchedulingInfo       m_sScheduleInfo;        ///< ½ºÄÉÁì¸µ ·Îµù °ü·Ã Á¤º¸ 
+    SObjectSchedulingInfo       m_sScheduleInfo;        ///< ìŠ¤ì¼€ì¥´ë§ ë¡œë”© ê´€ë ¨ ì •ë³´ 
 	RwUInt32					m_uiObjectSerialID;
 
 	CNtlPLObjectType*			m_pObjectType;
@@ -692,58 +692,58 @@ protected:
 	RwBool						m_bLoadMap;
 
 	CNtlPLResource *			m_pClumpResource;
-	ENTITY_ATOMIC_VEC	        m_vecAtomicList;         ///< ÇöÀç Clump¸¦ ±¸¼ºÇÏ°í ÀÖ´Â AtomicµéÀÇ ¸®½ºÆ®
+	ENTITY_ATOMIC_VEC	        m_vecAtomicList;         ///< í˜„ì¬ Clumpë¥¼ êµ¬ì„±í•˜ê³  ìˆëŠ” Atomicë“¤ì˜ ë¦¬ìŠ¤íŠ¸
 	FRAME_MAP				    m_mapFrame;				 ///< Bone Info
 
 	RwV3d						m_vModelAngle;
 	RwV3d						m_vModelScale;
 	RwV3d						m_vWorldPosition;
 
-	CNtlPLObjectProperty*       m_pProperty;            ///< ¿ÀºêÁ§Æ® ÇÁ·ÎÆÛÆ¼ °´Ã¼	
+	CNtlPLObjectProperty*       m_pProperty;            ///< ì˜¤ë¸Œì íŠ¸ í”„ë¡œí¼í‹° ê°ì²´	
 
-	CNtlPLUVAnim*               m_pUVAnim;              ///< UVAnim ÆÄÀÏ °´Ã¼                
+	CNtlPLUVAnim*               m_pUVAnim;              ///< UVAnim íŒŒì¼ ê°ì²´                
 	RpHAnimHierarchy*           m_pBaseHierarchy;		///< Base Hierarchy
 	CNtlPLResource*             m_pAnimResource;        ///< Anim Resource
-	RwBool                      m_bAnimPlay;            ///< Anim Play À¯¹«
-	RwBool						m_bHaveAnim;			///< Anim Á¸Àç À¯¹«.
+	RwBool                      m_bAnimPlay;            ///< Anim Play ìœ ë¬´
+	RwBool						m_bHaveAnim;			///< Anim ì¡´ì¬ ìœ ë¬´.
 
 	RwReal						m_fAnimSpeed;			///< Anim Speed
 
 	RwRGBA						m_sColor;				///< Color				
 	RwRGBA						m_sAddColor;			///< AddColor
 
-	RwSphere					m_BSphere;				///< PositionÀÌ ¿¬»êµÇÁö ¾ÊÀº BoundSphere
-	RwSphere					m_BSphereCur;			///< PositionÀÌ ¿¬»êµÈ BoundingSphere : GetBoundingSphere¸¦ È£ÃâÇÏ°Ô µÇ¸é ¾÷µ¥ÀÌÆ® µÈ´Ù.
+	RwSphere					m_BSphere;				///< Positionì´ ì—°ì‚°ë˜ì§€ ì•Šì€ BoundSphere
+	RwSphere					m_BSphereCur;			///< Positionì´ ì—°ì‚°ëœ BoundingSphere : GetBoundingSphereë¥¼ í˜¸ì¶œí•˜ê²Œ ë˜ë©´ ì—…ë°ì´íŠ¸ ëœë‹¤.
 
-	CNtlPLLinkEffect            m_LinkEffectInstance;   ///< LinkEffect InstanceµéÀ» °ü¸®ÇÏ´Â °´Ã¼
+	CNtlPLLinkEffect            m_LinkEffectInstance;   ///< LinkEffect Instanceë“¤ì„ ê´€ë¦¬í•˜ëŠ” ê°ì²´
 
-	RwBBox                      m_bbox;                 ///< ObjectÀÇ Bounding Box
+	RwBBox                      m_bbox;                 ///< Objectì˜ Bounding Box
 
-	// Fade System °ü·Ã
-	EObjectFadeState            m_eFadeState;           ///< ÇöÀç ObjectÀÇ Fade State
-	RwReal                      m_fPrevCameraDistance;  ///< ÀÌÀüÀÇ Ä«¸Ş¶ó¿ÍÀÇ °Å¸®
+	// Fade System ê´€ë ¨
+	EObjectFadeState            m_eFadeState;           ///< í˜„ì¬ Objectì˜ Fade State
+	RwReal                      m_fPrevCameraDistance;  ///< ì´ì „ì˜ ì¹´ë©”ë¼ì™€ì˜ ê±°ë¦¬
 	RwReal                      m_fFadeTime;            ///< Fade Time    
-	CNtlPLEntityAlphaWeightBlend* m_pFadeBlend;         ///< Fade Blend ¼³Á¤¿ë ¾ËÆÄ ºí·»µù °´Ã¼
+	CNtlPLEntityAlphaWeightBlend* m_pFadeBlend;         ///< Fade Blend ì„¤ì •ìš© ì•ŒíŒŒ ë¸”ë Œë”© ê°ì²´
 
-	// Trigger ObjectÀÇ Animation °ü·Ã
-	CNtlAnimLayer*				m_pAnimLayer;			///< ¾Ö´Ï¸ŞÀÌ¼Ç ·¹ÀÌ¾î
+	// Trigger Objectì˜ Animation ê´€ë ¨
+	CNtlAnimLayer*				m_pAnimLayer;			///< ì• ë‹ˆë©”ì´ì…˜ ë ˆì´ì–´
 	CNtlInstanceAnimTable*		m_pInstanceAnimTable;	///< Animation Resource Instance Table
-	RwUInt32					m_uiCurAnimKey;			///< ÇöÀç Àû¿ëµÇ°í ÀÖ´Â AnimKey
+	RwUInt32					m_uiCurAnimKey;			///< í˜„ì¬ ì ìš©ë˜ê³  ìˆëŠ” AnimKey
 
-	ListSoundHandle				m_listLoopSound;        ///< LoopSoundµéÀÇ HANDLE List
-	ListLoopEffect				m_listLoopEffect;       ///< LoopEffectÀÇ list
+	ListSoundHandle				m_listLoopSound;        ///< LoopSoundë“¤ì˜ HANDLE List
+	ListLoopEffect				m_listLoopEffect;       ///< LoopEffectì˜ list
 
-	// ÁöÇü ¿ÀºêÁ§Æ® ±×¸²ÀÚ °ü·Ã
+	// ì§€í˜• ì˜¤ë¸Œì íŠ¸ ê·¸ë¦¼ì ê´€ë ¨
 	vector<CNtlWorldShadow*>    m_vecNtlWorldShadow;
 
-	RwUInt32                    m_uiMilepostTextID;      ///< ÀÌÁ¤Ç¥·Î »ç¿ëµÉ¶§ ¿¬°áµÉ ÅØ½ºÆ® Å×ÀÌºíÀÇ ID
+	RwUInt32                    m_uiMilepostTextID;      ///< ì´ì •í‘œë¡œ ì‚¬ìš©ë ë•Œ ì—°ê²°ë  í…ìŠ¤íŠ¸ í…Œì´ë¸”ì˜ ID
 
-    // Å÷°ü·Ã
+    // íˆ°ê´€ë ¨
     SToonData*				    m_pToonData;			///< Toon Ink, Toon Paint, Toon Resource
 
-	// ÀÎµµ¾î
-	CNtlOBB						m_OBB;					///< ÀÎµµ¾î¿¡¼­ »ç¿ëµÇ¸ç, RpWorldSector¸¦ °Ë»öÇÏ±â À§ÇØ »ç¿ë.
-	vector<RpWorldSector*>		m_vecRpWorldSector;		///< ÀÎµµ¾î¿¡¼­ »ç¿ëµÇ¸ç, Æ÷ÇÔµÇ¾î ÀÖ´Â RpWorldSectorlist
+	// ì¸ë„ì–´
+	CNtlOBB						m_OBB;					///< ì¸ë„ì–´ì—ì„œ ì‚¬ìš©ë˜ë©°, RpWorldSectorë¥¼ ê²€ìƒ‰í•˜ê¸° ìœ„í•´ ì‚¬ìš©.
+	vector<RpWorldSector*>		m_vecRpWorldSector;		///< ì¸ë„ì–´ì—ì„œ ì‚¬ìš©ë˜ë©°, í¬í•¨ë˜ì–´ ìˆëŠ” RpWorldSectorlist
 
 	// Dojo
 	CNtlPLEntity*				m_pDojoEntity;

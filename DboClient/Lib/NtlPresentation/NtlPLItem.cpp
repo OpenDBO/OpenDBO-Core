@@ -15,7 +15,7 @@
 #include "NtlPLPalette.h"
 
 
-// ±âÈ¹ÂÊ ¿äÃ»À¸·Î µµº¹ÀÇ ±âº» »ö»óÀ» Èò»öÀ¸·Î ÇÑ´Ù
+// ê¸°íšìª½ ìš”ì²­ìœ¼ë¡œ ë„ë³µì˜ ê¸°ë³¸ ìƒ‰ìƒì„ í°ìƒ‰ìœ¼ë¡œ í•œë‹¤
 #define dDEFAULT_DOGI_COLOR_RED				(255)
 #define dDEFAULT_DOGI_COLOR_GREEN			(255)
 #define dDEFAULT_DOGI_COLOR_BLUE			(255)
@@ -89,7 +89,7 @@ CNtlPLItem::CNtlPLItem() : m_pProperty(NULL),
 	m_DogiBeltClr.blue	= 0;
 	m_DogiBeltClr.alpha = 255;
 
-	// µµº¹ »ö»ó
+	// ë„ë³µ ìƒ‰ìƒ
 	m_DogiEditedColor.red	= dDEFAULT_DOGI_COLOR_RED;
 	m_DogiEditedColor.green = dDEFAULT_DOGI_COLOR_GREEN;
 	m_DogiEditedColor.blue	= dDEFAULT_DOGI_COLOR_BLUE;
@@ -206,14 +206,14 @@ RwBool CNtlPLItem::CreateThreadSafe(void)
 
 	//SetEMUV();
 
-    // Link Effect¸¦ ¼³Á¤ÇÑ´Ù.
+    // Link Effectë¥¼ ì„¤ì •í•œë‹¤.
     for(UINT i = 0; i < m_pProperty->m_vLinkEffect.size(); ++i)
     {
         SEventLinkEffect* pEventLinkEffect = m_pProperty->m_vLinkEffect[i];        
         m_LinkEffectInstance.AttachLinkEffect(this, pEventLinkEffect);
     }
 
-    // ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ¼³Á¤ÇÑ´Ù.
+    // ì• ë‹ˆë©”ì´ì…˜ì„ ì„¤ì •í•œë‹¤.
     if(m_sScheduleResInfo.uiAnimKey > 0)
     {
         SetAnimation(m_sScheduleResInfo.uiAnimKey, 0.0f, TRUE);
@@ -705,10 +705,10 @@ void CNtlPLItem::SetApplyEquipDataOwner(RpAtomic *pAtomic, CNtlPLCharacter *pOwn
 	//RpAtomicSetRenderCallBack(pAtomic, RpAtomicGetRenderCallBack(pAtomic));
 	RpAtomicSetRenderCallBack(pAtomic, AtomicDefaultRenderCallBack);
 
-	// Toon¼³Á¤
+	// Toonì„¤ì •
 	Helper_SetToonAtomic(pAtomic, &m_ToonData);
 
-	// RenderCallBack ¼³Á¤
+	// RenderCallBack ì„¤ì •
 	//if(RpAtomicGetRenderCallBack(pAtomic) != CNtlPLCharacter::RenderCallBack)
 	{
 		RpNtlAtomicSetRenderCallBack( pAtomic, RpAtomicGetRenderCallBack(pAtomic) );
@@ -953,14 +953,14 @@ RwBool CNtlPLItem::Render( void )
 }
 
 /**
-* ±ËÀû ÀÌÆåÆ®¸¦ »ı¼ºÇÑ´Ù.
-* \param pEventTrace ±ËÀû ÀÌÆåÆ®¸¦ ¼³Á¤ÇÑ ÀÌº¥Æ® °´Ã¼ÀÇ Æ÷ÀÎÅÍ. 
-*        NULLÀÌ¸é Item Property¿¡ ¼³Á¤µÈ ±ËÀû ÀÌº¥Æ® ¼³Á¤°ªÀ» »ç¿ëÇÑ´Ù.
-* return »ı¼º ¼º°ø À¯¹«
+* ê¶¤ì  ì´í™íŠ¸ë¥¼ ìƒì„±í•œë‹¤.
+* \param pEventTrace ê¶¤ì  ì´í™íŠ¸ë¥¼ ì„¤ì •í•œ ì´ë²¤íŠ¸ ê°ì²´ì˜ í¬ì¸í„°. 
+*        NULLì´ë©´ Item Propertyì— ì„¤ì •ëœ ê¶¤ì  ì´ë²¤íŠ¸ ì„¤ì •ê°’ì„ ì‚¬ìš©í•œë‹¤.
+* return ìƒì„± ì„±ê³µ ìœ ë¬´
 */
 RwBool CNtlPLItem::ActiveTraceEffect( SEventTrace* pEventTrace) 
 {
-    // Å×½ºÆ®
+    // í…ŒìŠ¤íŠ¸
     m_bEnableTrace = TRUE;
 
     if(!m_bEnableTrace || !pEventTrace)
@@ -980,7 +980,7 @@ RwBool CNtlPLItem::ActiveTraceEffect( SEventTrace* pEventTrace)
             m_pProperty->m_eventTrace.fLifeTime = pEventTrace->fLifeTime;
             m_pProperty->m_eventTrace.fEdgeLifeTime = pEventTrace->fEdgeLifeTime;
 
-            // ¹«±âÀÇ BoneÀ» ¼³Á¤ÇÑ´Ù.
+            // ë¬´ê¸°ì˜ Boneì„ ì„¤ì •í•œë‹¤.
             strcpy_s(m_pProperty->m_eventTrace.strStartBoneName, MAX_DEFAULT_NAME, g_strTraceBoneName[i * 2]);
             strcpy_s(m_pProperty->m_eventTrace.strEndBoneName, MAX_DEFAULT_NAME, g_strTraceBoneName[i * 2 + 1]);
 
@@ -988,7 +988,7 @@ RwBool CNtlPLItem::ActiveTraceEffect( SEventTrace* pEventTrace)
         }
         else if(pEventTrace->eTraceKind == SEventTrace::EVENT_TRACE)
         {
-            // ¹«±âÀÇ BoneÀ» ¼³Á¤ÇÑ´Ù.
+            // ë¬´ê¸°ì˜ Boneì„ ì„¤ì •í•œë‹¤.
             strcpy_s(pEventTrace->strStartBoneName, MAX_DEFAULT_NAME, g_strTraceBoneName[i * 2]);
             strcpy_s(pEventTrace->strEndBoneName, MAX_DEFAULT_NAME, g_strTraceBoneName[i * 2 + 1]);
 
@@ -1008,13 +1008,13 @@ RwBool CNtlPLItem::ActiveTraceEffect( SEventTrace* pEventTrace)
 
 RwBool CNtlPLItem::CreateAnimData(RwUInt32 uiAnimKey)
 {
-    // ItemÀº AnimationÀÌ Àû¿ëµÇÁö ¾ÊÀº°ÍÀÌ ¸¹±â ¶§¹®¿¡, ÇÊ¿äÇÑ °æ¿ì¿¡¸¸ Animation °ü·Ã µ¥ÀÌÅÍµéÀ» »ı¼ºÇÑ´Ù.
+    // Itemì€ Animationì´ ì ìš©ë˜ì§€ ì•Šì€ê²ƒì´ ë§ê¸° ë•Œë¬¸ì—, í•„ìš”í•œ ê²½ìš°ì—ë§Œ Animation ê´€ë ¨ ë°ì´í„°ë“¤ì„ ìƒì„±í•œë‹¤.
     
     NTL_FUNCTION(__FUNCTION__);
     if(!m_pResourceClump)
         NTL_RETURN(FALSE);
 
-    // Instance Anim Table »ı¼º
+    // Instance Anim Table ìƒì„±
     m_pInstanceAnimTable = NTL_NEW CNtlInstanceAnimTable();
     m_pInstanceAnimTable->Create(m_pProperty->GetAnimTable());
     SInstanceAnimData* pInstanceAnimData = m_pInstanceAnimTable->Get(uiAnimKey);
@@ -1025,7 +1025,7 @@ RwBool CNtlPLItem::CreateAnimData(RwUInt32 uiAnimKey)
         NTL_RETURN(FALSE);
     }
 
-    // Hierarchy ¼³Á¤
+    // Hierarchy ì„¤ì •
     m_pBaseHierarchy = Helper_GetHierarchyClump( m_pResourceClump->GetClump() );
     if(!m_pBaseHierarchy)
         NTL_RETURN(FALSE);
@@ -1109,7 +1109,7 @@ RwBool CNtlPLItem::AttachVisualEffect(CNtlInstanceEffect* pInstanceEffect, SEven
 
 	pInstanceEffect->SetSerialID(GetSerialID());
 
-    // ItemÀÇ Visual Effect´Â ¹«Á¶°Ç ItemÀÇ Bone¿¡ ºÙ´Â´Ù.
+    // Itemì˜ Visual EffectëŠ” ë¬´ì¡°ê±´ Itemì˜ Boneì— ë¶™ëŠ”ë‹¤.
     return AttachBone(pInstanceEffect, pEventVisualEffect->chBoneName);
 }
 

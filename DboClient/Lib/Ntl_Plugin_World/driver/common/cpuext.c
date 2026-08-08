@@ -5,6 +5,7 @@
  */
 
 #include <string.h>
+#include <intrin.h>
 
 #include "batypes.h"
 #include "barwtyp.h"
@@ -22,205 +23,67 @@
 
 #define CPUID_EXT_3DNOW (1 << 31)
 
-/**************************************************************************
- CPUHaveCPUID
-
- Does the processor support the CPUID function?
-
- On entry   : Nothing
- On exit    : TRUE if processor supports CPUID, FALSE otherwise
- */
 static RwBool
 CPUHaveCPUID(void)
 {
-    RwUInt32  cpuidOkay = 0;
-
+    RwUInt32  cpuidOkay = 1;
     RWFUNCTION( RWSTRING( "CPUHaveCPUID" ) );
-
-#if (!defined(__GNUC__))
-    __asm
-    {
-        push    ebx
-
-        pushf
-
-        pop     eax
-        mov     ebx, eax
-        xor     eax, 0x00200000
-        push    eax
-        popf
-        pushf
-        pop     eax
-        xor     eax, ebx
-        je      cq_endex
-
-        mov     cpuidOkay, 1
-
-    cq_endex:
-        push    ebx
-        popf
-        pop     ebx
-    }
-#endif /* (!defined(__GNUC__)) */
-
     RWRETURN( 0 != cpuidOkay );
 }
 
-/**
- * CPUGetFeatures Get CPU features flags
- *
- * Returns value of EDX
- */
 static RwUInt32
 CPUGetFeatures(void)
 {
-    RwUInt32    result = 0;
-
+    int cpuInfo[4] = { 0 };
     RWFUNCTION(RWSTRING("CPUGetFeatures"));
-
-#if (!defined(__GNUC__))
-    __asm
-    {
-        mov     eax, 1
-        xor     ebx, ebx
-        xor     ecx, ecx
-        xor     edx, edx
-        _emit   0x0f;
-        _emit   0xa2;
-        mov     result, edx
-    }
-#endif /* (!defined(__GNUC__)) */
-
-    RWRETURN(result);
+    __cpuid(cpuInfo, 1);
+    RWRETURN((RwUInt32)cpuInfo[3]);
 }
 
-/**
- * CPUHaveExtFeatures Does the CPU support extended features
- *
- * Returns value of EDX
- */
 static RwBool
 CPUHaveExtFeatures(void)
 {
-    RwBool  extFeaturesOkay = FALSE;
-
+    int cpuInfo[4] = { 0 };
     RWFUNCTION(RWSTRING("CPUHaveExtFeatures"));
-
-#if (!defined(__GNUC__))
-    __asm
-    {
-        mov     eax, 0x80000000
-        xor     ebx, ebx
-        xor     ecx, ecx
-        xor     edx, edx
-        _emit   0x0f;
-        _emit   0xa2;
-        cmp     eax, 0x80000000
-        jbe     NO_EXT_FEATURES
-
-        mov     extFeaturesOkay, 1
-
-    NO_EXT_FEATURES:
-    }
-#endif /* (!defined(__GNUC__)) */
-
-    RWRETURN(extFeaturesOkay);
+    __cpuid(cpuInfo, 0x80000000);
+    RWRETURN(cpuInfo[0] >= 0x80000001);
 }
 
-/**
- * CPUGetExtFeatures Get CPU extended features flags
- *
- * Returns value of EDX
- */
 static RwUInt32
 CPUGetExtFeatures(void)
 {
-    RwUInt32    result = 0;
-
+    int cpuInfo[4] = { 0 };
     RWFUNCTION(RWSTRING("CPUGetExtFeatures"));
-
-#if (!defined(__GNUC__))
-    __asm
-    {
-        mov     eax, 0x80000001
-        xor     ebx, ebx
-        xor     ecx, ecx
-        xor     edx, edx
-        _emit   0x0f;
-        _emit   0xa2;
-        mov     result, edx
-    }
-#endif /* (!defined(__GNUC__)) */
-
-    RWRETURN(result);
+    __cpuid(cpuInfo, 0x80000001);
+    RWRETURN((RwUInt32)cpuInfo[3]);
 }
 
 #if (!defined(__GNUC__))
-/**
- * CPUGetProcessorFamilyModel Get CPU processor flags
- *
- * Returns value of EDX
- */
 static void
 CPUGetProcessorFamilyModel(RwUInt32 *family, RwUInt32 *model)
 {
     RWFUNCTION(RWSTRING("CPUGetProcessorFamilyModel"));
 
-    *family = 0;
-    *model = 0;
-
     if (CPUHaveCPUID())
     {
-        #if (!defined(__GNUC__))
-        __asm
+        int cpuInfo[4] = { 0 };
+        __cpuid(cpuInfo, 0x80000000);
+        if (cpuInfo[0] >= 0x80000001)
         {
-            mov     eax, 0x80000000
-            xor     ebx, ebx
-            xor     ecx, ecx
-            xor     edx, edx
-            _emit   0x0f;
-            _emit   0xa2;
-            cmp     eax, 0x80000001
-            jb      NO_EXT_FEATURES
-
-            mov     eax, 0x80000001
-            xor     ebx, ebx
-            xor     ecx, ecx
-            xor     edx, edx
-            _emit   0x0f;
-            _emit   0xa2;
-            test    eax, eax
-            jnz short GETFAMILYMODEL
-
-NO_EXT_FEATURES:
-            mov     eax, 1
-            xor     ebx, ebx
-            xor     ecx, ecx
-            xor     edx, edx
-            _emit   0x0f;
-            _emit   0xa2;
-
-GETFAMILYMODEL:
-            mov     ebx, eax
-            mov     esi, family
-            mov     edi, model
-            shr     eax, 8
-            shr     ebx, 4
-            and     eax, 0xf
-            and     ebx, 0xf
-            mov     [esi], eax
-            mov     [edi], ebx
+            __cpuid(cpuInfo, 0x80000001);
         }
-        #endif /* (!defined(__GNUC__)) */
+        else
+        {
+            __cpuid(cpuInfo, 1);
+        }
+        *family = (cpuInfo[0] >> 8) & 0xf;
+        *model = (cpuInfo[0] >> 4) & 0xf;
     }
 
     RWRETURNVOID();
 }
 #endif /* (!defined(__GNUC__)) */
 
-/*
- * _rwCPUGetCPUName copies the cpu name to the buffer
- */
 void
 _rwCPUGetCPUName(RwChar *cpuName)
 {
@@ -232,78 +95,42 @@ _rwCPUGetCPUName(RwChar *cpuName)
     {
 #if (!defined(__GNUC__))
         RwBool  fakeCPUName = FALSE;
-
-        __asm
         {
-            mov     eax, 0x080000000    ; Check for support of extended functions.
-            xor     ebx, ebx
-            xor     ecx, ecx
-            xor     edx, edx
-            _emit   0x0f;
-            _emit   0xa2;
-            ; Check which extended functions can be called
-            cmp     eax, 0x080000004    ; CPU Name string
-            jb short no_ext_feature_name
+            int cpuInfo[4] = { 0 };
 
-            ; Query and save the CPU name string
-            mov     edi, cpuName
-            mov     eax, 0x080000002
-            _emit   0x0f;
-            _emit   0xa2;
-            mov     [edi+0],eax
-            mov     [edi+4],ebx
-            mov     [edi+8],ecx
-            mov     [edi+12],edx
-            mov     eax, 0x080000003
-            _emit   0x0f;
-            _emit   0xa2;
-            mov     [edi+16],eax
-            mov     [edi+20],ebx
-            mov     [edi+24],ecx
-            mov     [edi+28],edx
-            mov     eax, 0x080000004
-            _emit   0x0f;
-            _emit   0xa2;
-            mov     [edi+32],eax
-            mov     [edi+36],ebx
-            mov     [edi+40],ecx
-            mov     [edi+44],edx
-            mov     [edi+48],0      ; just in case
+            /* Check for support of extended functions. */
+            __cpuid(cpuInfo, 0x80000000);
+            if (cpuInfo[0] >= 0x80000004)
+            {
+                /* Query and save the CPU name string */
+                __cpuid(cpuInfo, 0x80000002);
+                memcpy(cpuName + 0, cpuInfo, 16);
+                __cpuid(cpuInfo, 0x80000003);
+                memcpy(cpuName + 16, cpuInfo, 16);
+                __cpuid(cpuInfo, 0x80000004);
+                memcpy(cpuName + 32, cpuInfo, 16);
+                cpuName[48] = 0;
 
-            ; remove leading spaces
-            xor     edx, edx
-searchspaces:
-            mov     al, [edi + edx]
-            cmp     al, 0x20
-            jnz short removespaces
-            inc     edx
-            jmp short searchspaces
+                /* remove leading spaces */
+                {
+                    RwChar *p = cpuName;
+                    while (*p == ' ') p++;
+                    if (p != cpuName)
+                    {
+                        memmove(cpuName, p, 49 - (p - cpuName));
+                    }
+                }
+            }
+            else
+            {
+                __cpuid(cpuInfo, 0);
+                memcpy(cpuName, cpuInfo + 1, 4);
+                memcpy(cpuName + 4, cpuInfo + 3, 4);
+                memcpy(cpuName + 8, cpuInfo + 2, 4);
+                cpuName[12] = 0;
 
-removespaces:
-            test    edx, edx
-            jz short end_getname
-            lea     esi, [edi + edx]
-            mov     ecx, 49
-            sub     ecx, edx
-            rep     movsb
-            jmp short end_getname
-
-no_ext_feature_name:
-            mov     eax, 0
-            xor     ebx, ebx
-            xor     ecx, ecx
-            xor     edx, edx
-            _emit   0x0f;
-            _emit   0xa2;
-            mov     eax, cpuName
-            mov     [eax], ebx
-            mov     [eax+ 4], edx
-            mov     [eax + 8], ecx
-            mov     [eax + 12], 0
-
-            mov     fakeCPUName, 1
-
-end_getname:
+                fakeCPUName = TRUE;
+            }
         }
 
         if (fakeCPUName)
@@ -441,15 +268,12 @@ end_getname:
                 }
             }
         }
-        #endif /* (!defined(__GNUC__)) */
+#endif /* (!defined(__GNUC__)) */
     }
 
     RWRETURNVOID();
 }
 
-/*
- * _rwCPUHaveMMX checks whether CPU supports MMX functions
- */
 RwBool
 _rwCPUHaveMMX(void)
 {
@@ -467,9 +291,6 @@ _rwCPUHaveMMX(void)
     RWRETURN(result);
 }
 
-/*
- * _rwCPUHaveSSE checks whether CPU supports SSE functions
- */
 RwBool
 _rwCPUHaveSSE(void)
 {
@@ -487,9 +308,6 @@ _rwCPUHaveSSE(void)
     RWRETURN(result);
 }
 
-/*
- * _rwCPUHaveSSE2 checks whether CPU supports SSE functions
- */
 RwBool
 _rwCPUHaveSSE2(void)
 {
@@ -507,9 +325,6 @@ _rwCPUHaveSSE2(void)
     RWRETURN(result);
 }
 
-/*
- * _rwCPUHave3DNow checks whether CPU supports 3DNow functions
- */
 RwBool
 _rwCPUHave3DNow(void)
 {
@@ -530,9 +345,6 @@ _rwCPUHave3DNow(void)
     RWRETURN(result);
 }
 
-/*
- * _rwGetWindowsVersion copies the operating system version name to the buffer
- */
 #if defined(WIN32)
 RwBool
 _rwCPUGetOSName(RwChar *osName)
@@ -543,9 +355,6 @@ _rwCPUGetOSName(RwChar *osName)
     RWFUNCTION(RWSTRING("_rwCPUGetWindowsVersion"));
 
     osName[0] = 0;
-
-    /* Try calling GetVersionEx using the OSVERSIONINFOEX structure.
-       If that fails, try using the OSVERSIONINFO structure. */
 
     memset(&osvi, 0, sizeof(OSVERSIONINFOEX));
 
@@ -562,9 +371,7 @@ _rwCPUGetOSName(RwChar *osName)
 
     switch (osvi.dwPlatformId)
     {
-        /* Test for the Windows NT product family. */
         case VER_PLATFORM_WIN32_NT:
-            /* Test for the specific product family. */
             if ( osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 2 )
             {
                 osName += rwsprintf(osName, "Microsoft Windows .NET Server 2003 family, ");
@@ -582,11 +389,9 @@ _rwCPUGetOSName(RwChar *osName)
                 osName += rwsprintf(osName, "Microsoft Windows NT ");
             }
 
-            /* Test for specific product on Windows NT 4.0 SP6 and later. */
             #if defined(VER_NT_WORKSTATION) && defined(VER_NT_SERVER)
             if (osVersionInfoEx)
             {
-                /* Test for the workstation type. */
                 if ( osvi.wProductType == VER_NT_WORKSTATION )
                 {
                     if ( osvi.dwMajorVersion == 4 )
@@ -602,7 +407,6 @@ _rwCPUGetOSName(RwChar *osName)
                         osName += rwsprintf(osName, "Professional " );
                     }
                 }
-                /* Test for the server type. */
                 else if ( osvi.wProductType == VER_NT_SERVER )
                 {
                     if ( osvi.dwMajorVersion == 5 && osvi.dwMinorVersion == 2 )
@@ -620,7 +424,7 @@ _rwCPUGetOSName(RwChar *osName)
                         {
                             osName += rwsprintf(osName, "Web Edition " );
                         }
-#endif /* (!defined(__GNUC__)) */
+#endif
                         else
                         {
                             osName += rwsprintf(osName, "Standard Edition " );
@@ -641,7 +445,7 @@ _rwCPUGetOSName(RwChar *osName)
                             osName += rwsprintf(osName, "Server " );
                         }
                     }
-                    else  /* Windows NT 4.0 */
+                    else
                     {
                         if ( osvi.wSuiteMask & VER_SUITE_ENTERPRISE )
                         {
@@ -655,7 +459,7 @@ _rwCPUGetOSName(RwChar *osName)
                 }
             }
             else
-            #endif /* defined(VER_NT_WORKSTATION) && defined(VER_NT_SERVER) */
+            #endif
             {
                 if ( osvi.dwMajorVersion <= 4 )
                 {
@@ -663,7 +467,6 @@ _rwCPUGetOSName(RwChar *osName)
                 }
             }
 
-            /* Test Service Pack info. */
             if (osVersionInfoEx)
             {
                 if (osvi.wServicePackMajor)
@@ -680,7 +483,6 @@ _rwCPUGetOSName(RwChar *osName)
             }
             break;
 
-        /* Test for the Windows 9x product family. */
         case VER_PLATFORM_WIN32_WINDOWS:
             if (osvi.dwMajorVersion == 4 && osvi.dwMinorVersion == 0)
             {

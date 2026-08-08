@@ -50,7 +50,7 @@ namespace RWS
       {
          RWS_FUNCTION("RWS::NULL::SendTestEvent");
       
-		 // Çü¼®
+		 // í˜•ì„
          // RwChar *buffer = static_cast<char*>(::RWS_OP_NEW(rChunkHeader.length) );
 		 RwChar *buffer = static_cast<char*>(NTL_NEW char[rChunkHeader.length]);
       
@@ -70,7 +70,7 @@ namespace RWS
          CEventHandler::UnRegisterMsg(testevent); 
       
 		 RWS_ARRAY_DELETE(buffer);
-		 // Çü¼®
+		 // í˜•ì„
          //operator delete (buffer);
       
          RWS_RETURNVOID();

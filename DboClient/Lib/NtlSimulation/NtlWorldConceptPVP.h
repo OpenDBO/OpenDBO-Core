@@ -7,7 +7,7 @@ class CNtlPLEntity;
 
 /**
  * \ingroup NtlSimulation
- * \brief PVP¸¦ ÇÒ¶§ÀÇ Á¦¾î Å¬·¡½º 
+ * \brief PVPë¥¼ í• ë•Œì˜ ì œì–´ í´ë˜ìŠ¤ 
  * \date 2007-06-14
  * \author agebreak
  */
@@ -20,20 +20,20 @@ public:
 	virtual void	Update(RwReal fElapsedTime);	
 	virtual void	ChangeState(RwInt32 iState);
 
-	//---- PVP °ü·Ã ¸Ş¼Òµå
-	void				SetFreePvPTarget(SERIAL_HANDLE hTarget);					///< PVP Å¸°ÙÀ» ¼³Á¤ÇÑ´Ù.
-	SERIAL_HANDLE		GetFreePvPTarget(void) const;								///< ÇöÀç ¼³Á¤µÈ PVP TargetÀÇ Serail ID¸¦ ¹İÈ¯ÇÑ´Ù.
+	//---- PVP ê´€ë ¨ ë©”ì†Œë“œ
+	void				SetFreePvPTarget(SERIAL_HANDLE hTarget);					///< PVP íƒ€ê²Ÿì„ ì„¤ì •í•œë‹¤.
+	SERIAL_HANDLE		GetFreePvPTarget(void) const;								///< í˜„ì¬ ì„¤ì •ëœ PVP Targetì˜ Serail IDë¥¼ ë°˜í™˜í•œë‹¤.
 
 	void				SetFreePvPReferPos(RwV3d vPos);
 	RwV3d				GetFreePvPReferPos(void) const;
 
-	void				CreateFreePvPMark(void);							///< PVP ¸¶Å©(ÇöÀç´Â ½ÉÆÇ)À» »ı¼ºÇÑ´Ù.
-	void				DestroyFreePvPMark(void);							///< PVP ¸¶Å©¸¦ Á¦°ÅÇÑ´Ù.
+	void				CreateFreePvPMark(void);							///< PVP ë§ˆí¬(í˜„ì¬ëŠ” ì‹¬íŒ)ì„ ìƒì„±í•œë‹¤.
+	void				DestroyFreePvPMark(void);							///< PVP ë§ˆí¬ë¥¼ ì œê±°í•œë‹¤.
 
 	void				SetPvpName(SERIAL_HANDLE hTarget);
 
 protected:
-	/// PVP °ü·Ã Á¤º¸ ±¸Á¶Ã¼
+	/// PVP ê´€ë ¨ ì •ë³´ êµ¬ì¡°ì²´
 	struct FreeBattleInfo
 	{
 		CNtlPLCharacter		*pCharacter;
@@ -43,11 +43,11 @@ protected:
 	};
 
 protected:
-	FreeBattleInfo		m_FreeBattleInfo;		///< PVP °ü·Ã ±¸Á¶Ã¼
+	FreeBattleInfo		m_FreeBattleInfo;		///< PVP ê´€ë ¨ êµ¬ì¡°ì²´
 };
 
 
-// ÀÎ¶óÀÎ ÇÔ¼öµé
+// ì¸ë¼ì¸ í•¨ìˆ˜ë“¤
 
 inline void	CNtlWorldConceptPVP::SetFreePvPTarget(SERIAL_HANDLE hTarget)
 {

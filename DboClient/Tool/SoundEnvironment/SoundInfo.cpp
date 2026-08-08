@@ -32,7 +32,7 @@ void CSoundInfo::ReportSoundEnvironment()
 		return;
 	}
 
-	// FMOD ½Ã½ºÅÛ »ı¼º
+	// FMOD ì‹œìŠ¤í…œ ìƒì„±
 	result = FMOD::System_Create(&pFMODSystem);
 	if( IsExistError(fp, result) )
 	{
@@ -51,36 +51,36 @@ void CSoundInfo::ReportSoundEnvironment()
 
 void CSoundInfo::DisplaySoundEnvironment(FILE* fp, FMOD::System* pFMODSystem)
 {
-	unsigned int			uiVersion;				// FMOD ¶óÀÌºê·¯¸® ¹öÀü
-	FMOD_SPEAKERMODE		SpeakerMode;			// ÇöÀç ÄÄÇ»ÅÍÀÇ ½ºÇÇÄ¿ ¸ğµå
-	char					acDriverName[256];		// »ç¿îµå Ä«µå ÀÌ¸§
-	int						iHardware2DChannels;	// »ç¿îµå Ä«µåÀÇ 2D Ã¤³Î
-	int						iHardware3DChannels;	// »ç¿îµå Ä«µåÀÇ 3D Ã¤³Î
-	int						iHardwareTotalChannels;	// »ç¿îµå Ä«µåÀÇ ÃÑ Ã¤³Î¼ö
+	unsigned int			uiVersion;				// FMOD ë¼ì´ë¸ŒëŸ¬ë¦¬ ë²„ì „
+	FMOD_SPEAKERMODE		SpeakerMode;			// í˜„ì¬ ì»´í“¨í„°ì˜ ìŠ¤í”¼ì»¤ ëª¨ë“œ
+	char					acDriverName[256];		// ì‚¬ìš´ë“œ ì¹´ë“œ ì´ë¦„
+	int						iHardware2DChannels;	// ì‚¬ìš´ë“œ ì¹´ë“œì˜ 2D ì±„ë„
+	int						iHardware3DChannels;	// ì‚¬ìš´ë“œ ì¹´ë“œì˜ 3D ì±„ë„
+	int						iHardwareTotalChannels;	// ì‚¬ìš´ë“œ ì¹´ë“œì˜ ì´ ì±„ë„ìˆ˜
 	
 	FMOD_RESULT				result;
 	FMOD_CAPS				caps;
 	FMOD_SPEAKERMODE		userSetSpeakMode;	
 
 
-	// ¹öÀü Ã¼Å©
+	// ë²„ì „ ì²´í¬
 	result = pFMODSystem->getVersion(&uiVersion);
 	if( IsExistError(fp, result) )
 		return;
 
-	// »ç¿îµå µå¶óÀÌ¹ö Á¤º¸
+	// ì‚¬ìš´ë“œ ë“œë¼ì´ë²„ ì •ë³´
 	result = pFMODSystem->getDriverCaps(0, &caps, 0, 0, &SpeakerMode);
 	if( IsExistError(fp, result) )
 		return;
 
-	// ÄÄÇ»ÅÍÀÇ ½ºÇÇÄ¿ ¸ğµå
+	// ì»´í“¨í„°ì˜ ìŠ¤í”¼ì»¤ ëª¨ë“œ
 	result = pFMODSystem->setSpeakerMode(SpeakerMode);  /* Set the user selected speaker mode. */
 	if( IsExistError(fp, result) )
 		return;
 
 	userSetSpeakMode = SpeakerMode;
 
-	// À¯Àú°¡ ¼¼ÆÃÇÑ »ç¿îµå ¸ğµå¸¦ »ç¿îµåÄ«µå°¡ Áö¿øÇÒ ¼ö ¾øÀ¸¸é ½ºÅ×·¹¿À ¸ğµå·Î ÇÃ·¹ÀÌ ÇÑ´Ù
+	// ìœ ì €ê°€ ì„¸íŒ…í•œ ì‚¬ìš´ë“œ ëª¨ë“œë¥¼ ì‚¬ìš´ë“œì¹´ë“œê°€ ì§€ì›í•  ìˆ˜ ì—†ìœ¼ë©´ ìŠ¤í…Œë ˆì˜¤ ëª¨ë“œë¡œ í”Œë ˆì´ í•œë‹¤
 	result = pFMODSystem->init(100, FMOD_INIT_NORMAL, 0);    /* Replace with whatever channel count and flags you use! */
 	if (result == FMOD_ERR_OUTPUT_CREATEBUFFER)         /* Ok, the speaker mode selected isn't supported by this soundcard.  Switch it back to stereo... */
 	{
@@ -93,9 +93,9 @@ void CSoundInfo::DisplaySoundEnvironment(FILE* fp, FMOD::System* pFMODSystem)
 			return;
 	}
 
-	// »ç¿îµå Ä«µå°¡ ¿©·¯°³ÀÏ ½Ã °¡Àå ¸¶Áö¸·(°¡Àå ÃÖ½Å)»ç¿îµå Ä«µåÀÇ ÀÌ¸§
-	// »ç¿îµå Ä«µå°¡ ÇÏ³ªÀÏ ¶§µµ ÁÖµå¶óÀÌ¹ö°¡ ÀÖ´Ù°í ¿À·ù°¡ ³ª¿Í¼­ »ç¿îµå
-	// Ä«µå ÀüºÎ¸¦ °Ë»çÇÏÁö´Â ¾Ê´Â´Ù
+	// ì‚¬ìš´ë“œ ì¹´ë“œê°€ ì—¬ëŸ¬ê°œì¼ ì‹œ ê°€ì¥ ë§ˆì§€ë§‰(ê°€ì¥ ìµœì‹ )ì‚¬ìš´ë“œ ì¹´ë“œì˜ ì´ë¦„
+	// ì‚¬ìš´ë“œ ì¹´ë“œê°€ í•˜ë‚˜ì¼ ë•Œë„ ì£¼ë“œë¼ì´ë²„ê°€ ìˆë‹¤ê³  ì˜¤ë¥˜ê°€ ë‚˜ì™€ì„œ ì‚¬ìš´ë“œ
+	// ì¹´ë“œ ì „ë¶€ë¥¼ ê²€ì‚¬í•˜ì§€ëŠ” ì•ŠëŠ”ë‹¤
 	int iCount;
 	result = pFMODSystem->getNumDrivers(&iCount);
 	if( IsExistError(fp, result) )
@@ -105,7 +105,7 @@ void CSoundInfo::DisplaySoundEnvironment(FILE* fp, FMOD::System* pFMODSystem)
 	if( IsExistError(fp, result) )
 		return;
 
-	// »ç¿îµå Ä«µåÀÇ Ã¤³Î °¹¼ö
+	// ì‚¬ìš´ë“œ ì¹´ë“œì˜ ì±„ë„ ê°¯ìˆ˜
 	pFMODSystem->getHardwareChannels(&iHardware2DChannels, &iHardware3DChannels, &iHardwareTotalChannels);
 	if( IsExistError(fp, result) )
 		return;
@@ -118,31 +118,31 @@ void CSoundInfo::DisplaySoundEnvironment(FILE* fp, FMOD::System* pFMODSystem)
 
 	if( SpeakerMode != userSetSpeakMode )
 	{
-		fprintf_s(fp, "À¯Àú°¡ ÁöÁ¤ÇÑ ½ºÇÇÄ¿ ¸ğµå¸¦ »ç¿îµå Ä«µå¿¡¼­ Áö¿øÇÏÁö ¾Ê½À´Ï´Ù\n");
-		printf("À¯Àú°¡ ÁöÁ¤ÇÑ ½ºÇÇÄ¿ ¸ğµå¸¦ »ç¿îµå Ä«µå¿¡¼­ Áö¿øÇÏÁö ¾Ê½À´Ï´Ù\n");
+		fprintf_s(fp, "ìœ ì €ê°€ ì§€ì •í•œ ìŠ¤í”¼ì»¤ ëª¨ë“œë¥¼ ì‚¬ìš´ë“œ ì¹´ë“œì—ì„œ ì§€ì›í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤\n");
+		printf("ìœ ì €ê°€ ì§€ì •í•œ ìŠ¤í”¼ì»¤ ëª¨ë“œë¥¼ ì‚¬ìš´ë“œ ì¹´ë“œì—ì„œ ì§€ì›í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤\n");
 
 		GetSpeakerModeName(pcText, 256, userSetSpeakMode);
-		fprintf_s(fp, "À¯ÀúÁöÁ¤ ½ºÇÇÄ¿ ¸ğµå ¸ğµå : %s\n\n", pcText);
-		printf("À¯ÀúÁöÁ¤ ½ºÇÇÄ¿ ¸ğµå : %s\n\n", pcText);
+		fprintf_s(fp, "ìœ ì €ì§€ì • ìŠ¤í”¼ì»¤ ëª¨ë“œ ëª¨ë“œ : %s\n\n", pcText);
+		printf("ìœ ì €ì§€ì • ìŠ¤í”¼ì»¤ ëª¨ë“œ : %s\n\n", pcText);
 	}
 
 	GetSpeakerModeName(pcText, 256, SpeakerMode);
-	fprintf_s(fp, "½ºÇÇÄ¿ ¸ğµå : %s\n\n", pcText);
-	printf("½ºÇÇÄ¿ ¸ğµå : %s\n\n", pcText);
+	fprintf_s(fp, "ìŠ¤í”¼ì»¤ ëª¨ë“œ : %s\n\n", pcText);
+	printf("ìŠ¤í”¼ì»¤ ëª¨ë“œ : %s\n\n", pcText);
 
 
 
-	fprintf_s(fp, "µå¶óÀÌ¹ö : %s\n", acDriverName);
-	printf("µå¶óÀÌ¹ö : %s\n", acDriverName);
+	fprintf_s(fp, "ë“œë¼ì´ë²„ : %s\n", acDriverName);
+	printf("ë“œë¼ì´ë²„ : %s\n", acDriverName);
 
-	fprintf_s(fp, "»ç¿îµå Ä«µå 2D Ã¤³Î : %d\n", iHardware2DChannels);
-	printf("»ç¿îµå Ä«µå 2D Ã¤³Î : %d\n", iHardware2DChannels);
+	fprintf_s(fp, "ì‚¬ìš´ë“œ ì¹´ë“œ 2D ì±„ë„ : %d\n", iHardware2DChannels);
+	printf("ì‚¬ìš´ë“œ ì¹´ë“œ 2D ì±„ë„ : %d\n", iHardware2DChannels);
 
-	fprintf_s(fp, "»ç¿îµå Ä«µå 3D Ã¤³Î : %d\n", iHardware3DChannels);
-	printf("»ç¿îµå Ä«µå 3D Ã¤³Î : %d\n", iHardware3DChannels);
+	fprintf_s(fp, "ì‚¬ìš´ë“œ ì¹´ë“œ 3D ì±„ë„ : %d\n", iHardware3DChannels);
+	printf("ì‚¬ìš´ë“œ ì¹´ë“œ 3D ì±„ë„ : %d\n", iHardware3DChannels);
 
-	fprintf_s(fp, "»ç¿îµå Ä«µå ÃÑ Ã¤³Î : %d\n", iHardwareTotalChannels);
-	printf("»ç¿îµå Ä«µå ÃÑ Ã¤³Î : %d\n", iHardwareTotalChannels);
+	fprintf_s(fp, "ì‚¬ìš´ë“œ ì¹´ë“œ ì´ ì±„ë„ : %d\n", iHardwareTotalChannels);
+	printf("ì‚¬ìš´ë“œ ì¹´ë“œ ì´ ì±„ë„ : %d\n", iHardwareTotalChannels);
 }
 
 bool CSoundInfo::GetSpeakerModeName(char* pcResultText, int ibufferSize, FMOD_SPEAKERMODE mode)

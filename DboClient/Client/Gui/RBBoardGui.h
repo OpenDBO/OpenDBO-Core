@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File: RBBoardGui.h
-// Desc: Rank Battle °Ô½ÃÆÇ Gui
+// Desc: Rank Battle ê²Œì‹œíŒ Gui
 //
 // 2007.07.20 Peessi@hitel.net   
 ////////////////////////////////////////////////////////////////////////////////
@@ -17,7 +17,7 @@ struct sRANKBATTLE_ARENA_INFO;
 
 struct sRBBoardData
 {
-	UINT32			_uiFieldID;			// µ¥ÀÌÅÍÀÇ TableIndex;
+	UINT32			_uiFieldID;			// ë°ì´í„°ì˜ TableIndex;
 	std::wstring	_wstrFieldName;		
 	UINT32			_uiAppliedCount;
 	UINT32			_infoIndex;		// tooltip
@@ -55,7 +55,7 @@ protected:
 			
 //! Variables	
 	RwUInt32			m_uiFieldID;				
-	RwInt32				m_nItemID;				// À§¿¡¼­ ºÎÅÍ 0 ~ 4, GUI No.
+	RwInt32				m_nItemID;				// ìœ„ì—ì„œ ë¶€í„° 0 ~ 4, GUI No.
 
 	gui::CStaticBox*	m_pTitle;
 	gui::CPanel*		m_pGaugeBack;
@@ -172,8 +172,8 @@ private:
 	RwInt32				m_nOffset;			
 	RwUInt32			m_uiSelectedItemFieldID;		// FieldID	
 		
-	RwReal				m_fCurrentTime;					// ¸®½ºÆ® ¾÷µ¥ÀÌÆ® Ã¼Å©¸¦ À§ÇÑ ½Ã°£. 
-	RwReal				m_fMatchRemainTime;				// °ÔÀÓÀÌ ½ÃÀÛ
+	RwReal				m_fCurrentTime;					// ë¦¬ìŠ¤íŠ¸ ì—…ë°ì´íŠ¸ ì²´í¬ë¥¼ ìœ„í•œ ì‹œê°„. 
+	RwReal				m_fMatchRemainTime;				// ê²Œì„ì´ ì‹œì‘
 };
 
 #endif//__RB_BOARD_GUI_H__

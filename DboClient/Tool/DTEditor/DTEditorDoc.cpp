@@ -211,14 +211,14 @@ void CDTEditorDoc::Dump(CDumpContext& dc) const
 
 void CDTEditorDoc::OnFileNew()
 {
-	// TODO: ���⿡ ���� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
 
 	
 }
 
 void CDTEditorDoc::OnFileOpen()
 {
-	// TODO: ���⿡ ���� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
 
 	TCHAR chCurDir[MAX_DIR_PATH];
 	GetCurrentDirectory(MAX_DIR_PATH, chCurDir);
@@ -282,7 +282,7 @@ void CDTEditorDoc::OnImportFile(void)
 
 void CDTEditorDoc::OnFileSave()
 {
-	// TODO: ���⿡ ���� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
 
 	if(m_strWorkFull.GetLength() == 0)
 	{

@@ -86,13 +86,13 @@ protected:
 	gui::CSlot			m_slotToggledFilter4;
 
 	typedef std::vector< CRecipeDlgItem* > RECIPE_VEC;
-	RECIPE_VEC			m_vecAvatarRecipe;					///< ¾Æ¹ÙÅ¸°¡ °¡Áö°í ÀÖ´Â ·¹½ÃÇÇ ¸®½ºÆ®
+	RECIPE_VEC			m_vecAvatarRecipe;					///< ì•„ë°”íƒ€ê°€ ê°€ì§€ê³  ìžˆëŠ” ë ˆì‹œí”¼ ë¦¬ìŠ¤íŠ¸
 
 	RECIPE_VEC			m_vecShowListRecipe;
 
 	gui::CSlot			m_slotAbsoluteMouseWheel;
 
-	RwUInt8				m_byDiscountRate;					///< È£ÀÌÆ÷ÀÌ ¹Í½º ¸Ó½ÅÀÇ °¡°Ý ÇÒÀÎ·ü ( 0 ~ 100% )
+	RwUInt8				m_byDiscountRate;					///< í˜¸ì´í¬ì´ ë¯¹ìŠ¤ ë¨¸ì‹ ì˜ ê°€ê²© í• ì¸ë¥  ( 0 ~ 100% )
 
 	CRecipeDlgItem*		m_pSelectDlgItem;
 

@@ -4,7 +4,7 @@ NCDeclareSGT(ERSMConfig);
 
 /**
  * \ingroup ERSManager
- * \brief ERSManÀÇ Config ÆÄÀÏ(XML)·ÎºÎÅÍ ¼³Á¤°ªÀ» ÀĞ¾î¿À´Â Å¬·¡½º
+ * \brief ERSManì˜ Config íŒŒì¼(XML)ë¡œë¶€í„° ì„¤ì •ê°’ì„ ì½ì–´ì˜¤ëŠ” í´ë˜ìŠ¤
  * \date 2007-01-26
  * \author agebreak
  */
@@ -14,7 +14,7 @@ public:
     ERSMConfig(void);
     virtual ~ERSMConfig(void);
 
-    bool ReadConfig(const std::string& strFileName);            ///< Config ÆÄÀÏ·ÎºÎÅÍ Á¤º¸¸¦ ÀĞ¾î ¿Â´Ù.
+    bool ReadConfig(const std::string& strFileName);            ///< Config íŒŒì¼ë¡œë¶€í„° ì •ë³´ë¥¼ ì½ì–´ ì˜¨ë‹¤.
 
     // Get Methods
     std::string     GetERSFolder() {return m_strERSFolder;}
@@ -25,11 +25,11 @@ public:
     int             GetSMTPRunTime {return m_nSMTPRunTime;}
 
 protected:
-    std::string     m_strERSFolder;                             ///< ¿¡·¯ ¸®Æ÷Æ® Æú´õ
-    int             m_nRunTime;                                 ///< Á¤¸® ÀÛ¾÷ ½Ã°£ ÅÒ (ºĞ)
-    std::string     m_strSMTPServerIP;                          ///< SMTP ¼­¹ö IP
-    std::string     m_strSMTPID;                                ///< SMTP ¼­¹ö ID
-    std::string     m_strSMTPPass;                              ///< SMTP ¼­¹ö ÆĞ½º¿öµå
-    int             m_nSMTPRunTime;                             ///< ¸ŞÀÏÀ» ¹ß¼ÛÇÒ ½Ã°£ ÅÒ (ºĞ)	
-	std::string		m_strSMTPSender;							///< ¸ŞÀÏ ¹ß¼ÛÀÚ ÀÌ¸§
+    std::string     m_strERSFolder;                             ///< ì—ëŸ¬ ë¦¬í¬íŠ¸ í´ë”
+    int             m_nRunTime;                                 ///< ì •ë¦¬ ì‘ì—… ì‹œê°„ í…€ (ë¶„)
+    std::string     m_strSMTPServerIP;                          ///< SMTP ì„œë²„ IP
+    std::string     m_strSMTPID;                                ///< SMTP ì„œë²„ ID
+    std::string     m_strSMTPPass;                              ///< SMTP ì„œë²„ íŒ¨ìŠ¤ì›Œë“œ
+    int             m_nSMTPRunTime;                             ///< ë©”ì¼ì„ ë°œì†¡í•  ì‹œê°„ í…€ (ë¶„)	
+	std::string		m_strSMTPSender;							///< ë©”ì¼ ë°œì†¡ì ì´ë¦„
 };

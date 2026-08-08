@@ -41,13 +41,13 @@ public:
 	//: Component page add
 //	bool AddPage(const std::string& str);
 	//: Component page add
-	// Çü¼®
+	// í˜•ì„
 	COMPPAGE_HANDLE AddPage(const std::string& str);
 
 	//: Component page remove
 //	VOID RemovePage(const std::string& str);
 	//: Component page remove
-	// Çü¼®.
+	// í˜•ì„.
 	VOID RemovePage(COMPPAGE_HANDLE& h);
 
 	//: Create Components

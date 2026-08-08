@@ -2,7 +2,7 @@
  *
  * File			: NtlInventory.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2006. 4. 24	
  * Abstract		: Simulation Inventory
  *****************************************************************************
@@ -27,7 +27,7 @@ class CNtlSobItem;
 class CNtlSobQuestItem;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
-// player »ç¿ë
+// player ì‚¬ìš©
 
 class CNtlInventoryBase : public RWS::CEventHandler
 {
@@ -48,7 +48,7 @@ public:
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
-// avatar »ç¿ë
+// avatar ì‚¬ìš©
 
 typedef struct _stCOOLTIMEDATA
 {
@@ -64,7 +64,7 @@ private:
 
 	SERIAL_HANDLE m_hEquipItem[NTL_MAX_EQUIP_ITEM_SLOT];	/** inventory item serial data */
 	SERIAL_HANDLE m_hBagItem[NTL_MAX_BAGSLOT_COUNT];		/** inventory item serial data */
-	stCOOLTIMEDATA	m_stCoolTimeGroup[ITEM_COOL_TIME_GROUP_COUNT];	// ¾ÆÀÌÅÛ »ç¿ë ±×·ìº° ÄğÅ¸ÀÓ °ü¸®
+	stCOOLTIMEDATA	m_stCoolTimeGroup[ITEM_COOL_TIME_GROUP_COUNT];	// ì•„ì´í…œ ì‚¬ìš© ê·¸ë£¹ë³„ ì¿¨íƒ€ì„ ê´€ë¦¬
 	
 private:
 
@@ -126,7 +126,7 @@ public:
 
 	SERIAL_HANDLE GetScouterItem(VOID);
 
-	// item ÀüÃ¼¿¡ ´ëÇÏ¿©.
+	// item ì „ì²´ì— ëŒ€í•˜ì—¬.
 	void InvalidItem(SERIAL_HANDLE hItemSerial);
 
 	// cooltime

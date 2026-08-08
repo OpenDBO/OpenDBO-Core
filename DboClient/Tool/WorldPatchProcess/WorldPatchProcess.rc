@@ -13,7 +13,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// ÇÑ±¹¾î resources
+// í•œêµ­ì–´ resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 #ifdef _WIN32
@@ -48,8 +48,8 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)\r\n"
     "LANGUAGE 18, 1\r\n"
     "#pragma code_page(949)\r\n"
-    "#include ""res\\WorldPatchProcess.rc2""  // Microsoft Visual C++ ÀÌ¿ÜÀÇ ´Ù¸¥ µµ±¸¿¡¼­ ÆíÁýÇÑ ¸®¼Ò½ºÀÔ´Ï´Ù.\r\n"
-    "#include ""afxres.rc""     // Ç¥ÁØ ±¸¼º ¿ä¼ÒÀÔ´Ï´Ù.\r\n"
+    "#include ""res\\WorldPatchProcess.rc2""  // Microsoft Visual C++ ì´ì™¸ì˜ ë‹¤ë¥¸ ë„êµ¬ì—ì„œ íŽ¸ì§‘í•œ ë¦¬ì†ŒìŠ¤ìž…ë‹ˆë‹¤.\r\n"
+    "#include ""afxres.rc""     // í‘œì¤€ êµ¬ì„± ìš”ì†Œìž…ë‹ˆë‹¤.\r\n"
     "#endif\r\n"
     "\0"
 END
@@ -75,10 +75,10 @@ IDD_WORLDPATCHPROCESS_DIALOG DIALOGEX 0, 0, 319, 227
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_ACCEPTFILES | WS_EX_APPWINDOW
 CAPTION "Saber Patcher"
-FONT 9, "±¼¸²", 400, 0, 0x81
+FONT 9, "êµ´ë¦¼", 400, 0, 0x81
 BEGIN
-    DEFPUSHBUTTON   "È®ÀÎ",IDOK,0,0,6,6,NOT WS_VISIBLE
-    PUSHBUTTON      "Ãë¼Ò",IDCANCEL,313,0,6,6,NOT WS_VISIBLE
+    DEFPUSHBUTTON   "í™•ì¸",IDOK,0,0,6,6,NOT WS_VISIBLE
+    PUSHBUTTON      "ì·¨ì†Œ",IDCANCEL,313,0,6,6,NOT WS_VISIBLE
     CONTROL         "",IDC_LIST_WORLD_PROJECT,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,5,11,254,130,WS_EX_DLGMODALFRAME
     PUSHBUTTON      "clear",IDC_BUTTON_CLEAR,263,11,50,14,0,WS_EX_STATICEDGE
     PUSHBUTTON      "add",IDC_BUTTON_ADD,263,27,50,14,0,WS_EX_STATICEDGE
@@ -130,7 +130,7 @@ BEGIN
     END
 END
 
-#endif    // ÇÑ±¹¾î resources
+#endif    // í•œêµ­ì–´ resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -148,8 +148,8 @@ END
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 LANGUAGE 18, 1
 #pragma code_page(949)
-#include "res\WorldPatchProcess.rc2"  // Microsoft Visual C++ ÀÌ¿ÜÀÇ ´Ù¸¥ µµ±¸¿¡¼­ ÆíÁýÇÑ ¸®¼Ò½ºÀÔ´Ï´Ù.
-#include "afxres.rc"     // Ç¥ÁØ ±¸¼º ¿ä¼ÒÀÔ´Ï´Ù.
+#include "res\WorldPatchProcess.rc2"  // Microsoft Visual C++ ì´ì™¸ì˜ ë‹¤ë¥¸ ë„êµ¬ì—ì„œ íŽ¸ì§‘í•œ ë¦¬ì†ŒìŠ¤ìž…ë‹ˆë‹¤.
+#include "afxres.rc"     // í‘œì¤€ êµ¬ì„± ìš”ì†Œìž…ë‹ˆë‹¤.
 #endif
 
 /////////////////////////////////////////////////////////////////////////////

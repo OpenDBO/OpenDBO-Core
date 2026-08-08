@@ -34,7 +34,7 @@ VOID CWindowby3::SetSize(RwUInt32 uiWidth, RwUInt32 uiHeight)
 {
 	m_bSetSize = TRUE;
 
-	// À©µµ¿ì À§Ä¡ Á¶Á¤
+	// ìœˆë„ìš° ìœ„ì¹˜ ì¡°ì •
 	CRectangle rect[WINDOWS_NUM];
 	m_Window[0].GetRect(rect[0]);
 	m_Window[1].GetRect(rect[1]);

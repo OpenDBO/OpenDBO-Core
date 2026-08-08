@@ -114,7 +114,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	pCommandBars->GetShortcutManager()->SetAccelerators(IDR_MAINFRAME);
 
-	// °³¹ß Áß¿¡´Â Ä¿¸Çµå¹ÙÀÇ À§Ä¡¸¦ ·ÎµåÇÏÁö ¾Ê´Â´Ù.
+	// ê°œë°œ ì¤‘ì—ëŠ” ì»¤ë§¨ë“œë°”ì˜ ìœ„ì¹˜ë¥¼ ë¡œë“œí•˜ì§€ ì•ŠëŠ”ë‹¤.
 	// Load the previous state for toolbars and menus.
 	// LoadCommandBars(_T("CommandBars"));
 
@@ -149,7 +149,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	//	m_paneManager.SetIcons(IDB_BITMAP_ICONS, nIDIcons,
 	//	_countof(nIDIcons), RGB(0, 255, 0));
 
-	// ÀÌÀü »óÅÂÀÇ pane µéÀÇ À§Ä¡³ª »óÅÂ¸¦ ÀúÀåÇÏ¿© ·ÎµåÇÑ´Ù. 
+	// ì´ì „ ìƒíƒœì˜ pane ë“¤ì˜ ìœ„ì¹˜ë‚˜ ìƒíƒœë¥¼ ì €ì¥í•˜ì—¬ ë¡œë“œí•œë‹¤. 
 	/*CXTPDockingPaneLayout layoutNormal(&m_paneManager);
 	if (layoutNormal.Load(_T("NormalLayout")))
 	{

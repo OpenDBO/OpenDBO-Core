@@ -1,4 +1,4 @@
-// Attr_CONT_Reward.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_CONT_Reward.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_CONT_Reward.h"
 
 
-// CAttr_CONT_Reward ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_CONT_Reward ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_CONT_Reward, CAttr_Page, 1)
 
@@ -56,7 +56,7 @@ CString CAttr_CONT_Reward::GetPageData( void )
 
 	eREWARD_TYPE eType;
 
-	// ±âº» º¸»ó
+	// ê¸°ë³¸ ë³´ìƒ
 	eType = (eREWARD_TYPE)m_ctrDefRwdType0.GetItemData( m_ctrDefRwdType0.GetCurSel() );
 	if ( eREWARD_TYPE_INVALID != eType )
 	{
@@ -86,7 +86,7 @@ CString CAttr_CONT_Reward::GetPageData( void )
 		strData += PakingPageData( _T("dval3"), m_nDefValue3 );
 	}
 
-	// ¼±ÅÃ º¸»ó
+	// ì„ íƒ ë³´ìƒ
 	eType = (eREWARD_TYPE)m_ctrSelRwdType0.GetItemData( m_ctrSelRwdType0.GetCurSel() );
 	if ( eREWARD_TYPE_INVALID != eType )
 	{
@@ -166,7 +166,7 @@ void CAttr_CONT_Reward::UnPakingPageData( CString& strKey, CString& strValue )
 		m_dwRewardTbl = atoi( strValue.GetBuffer() );
 	}
 
-	// ±âº» º¸»ó
+	// ê¸°ë³¸ ë³´ìƒ
 	if ( _T("dtype0") == strKey )
 	{
 		int nValue = atoi( strValue.GetBuffer() );
@@ -252,7 +252,7 @@ void CAttr_CONT_Reward::UnPakingPageData( CString& strKey, CString& strValue )
 		m_nDefValue3 = atoi( strValue.GetBuffer() );
 	}
 
-	// ¼±ÅÃ º¸»ó
+	// ì„ íƒ ë³´ìƒ
 	if ( _T("stype0") == strKey )
 	{
 		int nValue = atoi( strValue.GetBuffer() );
@@ -396,12 +396,12 @@ BOOL CAttr_CONT_Reward::OnInitDialog()
 
 	int nIdx;
 
-	// TMQ º¸»ó
+	// TMQ ë³´ìƒ
 	m_ctrRwdType.SetItemData( m_ctrRwdType.AddString( _T("TMQ") ), eREWARD_CONTAINER_TYPE_TMQ );
 	nIdx = m_ctrRwdType.AddString( _T("Quest") ); m_ctrRwdType.SetItemData( nIdx, eREWARD_CONTAINER_TYPE_QUEST );
 	m_ctrRwdType.SetCurSel( nIdx );
 
-	// ±âº» º¸»ó
+	// ê¸°ë³¸ ë³´ìƒ
 	m_ctrDefRwdType0.SetItemData( m_ctrDefRwdType0.AddString( _T("Normal item") ), eREWARD_TYPE_NORMAL_ITEM );
 	m_ctrDefRwdType0.SetItemData( m_ctrDefRwdType0.AddString( _T("Quest item") ), eREWARD_TYPE_QUEST_ITEM );
 	m_ctrDefRwdType0.SetItemData( m_ctrDefRwdType0.AddString( _T("Exp") ), eREWARD_TYPE_EXP );
@@ -462,7 +462,7 @@ BOOL CAttr_CONT_Reward::OnInitDialog()
 	m_ctrDefRwdType3.SetItemData( nIdx, eREWARD_TYPE_INVALID );
 	m_ctrDefRwdType3.SetCurSel( nIdx );
 
-	// ¼±ÅÃ º¸»ó
+	// ì„ íƒ ë³´ìƒ
 	m_ctrSelRwdType0.SetItemData( m_ctrSelRwdType0.AddString( _T("Normal item") ), eREWARD_TYPE_NORMAL_ITEM );
 	m_ctrSelRwdType0.SetItemData( m_ctrSelRwdType0.AddString( _T("Quest item") ), eREWARD_TYPE_QUEST_ITEM );
 	m_ctrSelRwdType0.SetItemData( m_ctrSelRwdType0.AddString( _T("Exp") ), eREWARD_TYPE_EXP );
@@ -526,7 +526,7 @@ BOOL CAttr_CONT_Reward::OnInitDialog()
 	if ( m_strData.GetLength() > 0 ) SetPageData( m_strData );
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 
@@ -534,4 +534,4 @@ BEGIN_MESSAGE_MAP(CAttr_CONT_Reward, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_CONT_Reward ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_CONT_Reward ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

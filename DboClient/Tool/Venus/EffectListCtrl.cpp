@@ -1,4 +1,4 @@
-// EffectListCtrl.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// EffectListCtrl.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -70,7 +70,7 @@ END_MESSAGE_MAP()
 
 
 
-// CEffectListCtrl ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CEffectListCtrl ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 
 int CEffectListCtrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
@@ -78,7 +78,7 @@ int CEffectListCtrl::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CVenusGridCtrl::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// TODO:  ¿©±â¿¡ Æ¯¼öÈ­µÈ ÀÛ¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì‘ì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if(!m_image.Create(IDB_EFFECT_LIST_IMAGE,16,1,RGB(0, 255, 255)))
 		return -1;
 
@@ -125,7 +125,7 @@ void CEffectListCtrl::OnContextMenu(CWnd* /*pWnd*/, CPoint point)
 
 	if(GetSelectedItem() == -1)
 	{
-        //  Æú´õ »ı¼º ¸Ş´º Ãß°¡
+        //  í´ë” ìƒì„± ë©”ë‰´ ì¶”ê°€
 		menu.AppendMenu(MF_STRING, POPUP_CREATE_FOLDER, "Create &Folder");
 		menu.AppendMenu(MF_STRING, POPUP_EFFECT_SORT, "Effect Sort");
 
@@ -147,7 +147,7 @@ void CEffectListCtrl::OnContextMenu(CWnd* /*pWnd*/, CPoint point)
 	{
     case E_ITEM_LEVEL_FOLDER:        
         {
-            // Æú´õ¿ë ÆË¾÷ ¸Ş´º ±¸Çö
+            // í´ë”ìš© íŒì—… ë©”ë‰´ êµ¬í˜„
             menu.AppendMenu(MF_STRING, POPUP_CREATE_FOLDER, "Create &Folder");
             menu.AppendMenu(MF_STRING, POPUP_CREATE_EFFECT, "Create &Effect");            
             menu.AppendMenu(MF_STRING, ID_EDIT_COPY, "Copy\tCtrl+C(&C)");
@@ -473,7 +473,7 @@ void CEffectListCtrl::OnCreateEffect()
     pNewNode->strNodeName = strName;
     pSelectNode->vecChildList.push_back(pNewNode);
 
-	// Event layer ¿¡¼­ »ç¿ëÇÏ°í ÀÖ´Â ÀÌÆåÆ®ÀÇ ¸®½ºÆ®°¡ ´Ş¶ó Áö¹Ç·Î °»½ÅÀ» ÇØ Áà¾ß ÇÑ´Ù.
+	// Event layer ì—ì„œ ì‚¬ìš©í•˜ê³  ìˆëŠ” ì´í™íŠ¸ì˜ ë¦¬ìŠ¤íŠ¸ê°€ ë‹¬ë¼ ì§€ë¯€ë¡œ ê°±ì‹ ì„ í•´ ì¤˜ì•¼ í•œë‹¤.
 	CEventLayer* pView = (CEventLayer*)gGetEditLayer(EDIT_LAYER_EVENT);
 	pView->ResetProperties();
 }
@@ -496,7 +496,7 @@ void CEffectListCtrl::OnDeleteEffect()
 	{
 		DeleteItemEx(GetTreeItem(GetSelectedItem()), GetSelectedItem());
 	}
-	// Event layer ¿¡¼­ »ç¿ëÇÏ°í ÀÖ´Â ÀÌÆåÆ®ÀÇ ¸®½º°¡ ´Ş¶ó Áö¹Ç·Î °»½ÅÀ» ÇØ Áà¾ß ÇÑ´Ù.
+	// Event layer ì—ì„œ ì‚¬ìš©í•˜ê³  ìˆëŠ” ì´í™íŠ¸ì˜ ë¦¬ìŠ¤ê°€ ë‹¬ë¼ ì§€ë¯€ë¡œ ê°±ì‹ ì„ í•´ ì¤˜ì•¼ í•œë‹¤.
 	CEventLayer* pView = (CEventLayer*)gGetEditLayer(EDIT_LAYER_EVENT);
 	pView->ResetProperties();    
 
@@ -601,7 +601,7 @@ void CEffectListCtrl::OnLvnItemchanged(NMHDR *pNMHDR, LRESULT *pResult)
 
 	switch(pSelectItem->m_lpNodeInfo->GetImage())
 	{
-    case IMAGE_INDEX_RESOURCE_FOLDER:   // Æú´õ
+    case IMAGE_INDEX_RESOURCE_FOLDER:   // í´ë”
         {
             if(ItemHasChildren(pSelectItem))
                 return;
@@ -609,14 +609,14 @@ void CEffectListCtrl::OnLvnItemchanged(NMHDR *pNMHDR, LRESULT *pResult)
             BuildChildScript(pSelectItem);            
         }
         break;
-	case IMAGE_INDEX_RESOURCE_EFFECT:   // ÀÌÆåÆ®
+	case IMAGE_INDEX_RESOURCE_EFFECT:   // ì´í™íŠ¸
 		{
 			CNtlResourceEffect* pResourceEffect = (CNtlResourceEffect*)pItem->m_lParam;
             if(pResourceEffect)
             {
                 pResourceEffect->m_bShow = GetCheck(nItem);
 
-                // ¸¸¾à ¾ÆÁ÷ ÀÚ½Ä ¾ÆÀÌÅÛµéÀ» °¡Áö°í ÀÖÁö ¾ÊÀ¸¸é »ı¼ºÇØÁØ´Ù.
+                // ë§Œì•½ ì•„ì§ ìì‹ ì•„ì´í…œë“¤ì„ ê°€ì§€ê³  ìˆì§€ ì•Šìœ¼ë©´ ìƒì„±í•´ì¤€ë‹¤.
                 if(!ItemHasChildren(pSelectItem))
                 {
                     for each(CNtlResourceComponentSystem* pResourceSystem in pResourceEffect->m_svResourceSystem)
@@ -632,7 +632,7 @@ void CEffectListCtrl::OnLvnItemchanged(NMHDR *pNMHDR, LRESULT *pResult)
             }
 		}
 		break;
-    default:    // ±×¿Ü´Â ½Ã½ºÅÛ
+    default:    // ê·¸ì™¸ëŠ” ì‹œìŠ¤í…œ
         {
             CNtlResourceComponentSystem* pResourceSystem = (CNtlResourceComponentSystem*)pItem->m_lParam;
             pResourceSystem->m_bShow = GetCheck(nItem);
@@ -653,7 +653,7 @@ void CEffectListCtrl::OnNMClick(NMHDR *pNMHDR, LRESULT *pResult)
 		pView->ResetProperties();
 	}
 
-    // ºÎ¸ğ Node Ã¼Å©½Ã ÇÏÀ§ Nodeµµ Ã¼Å©µÇ°Ô ¸¸µç´Ù.        
+    // ë¶€ëª¨ Node ì²´í¬ì‹œ í•˜ìœ„ Nodeë„ ì²´í¬ë˜ê²Œ ë§Œë“ ë‹¤.        
     SetAllChildCheck();
 
 	*pResult = 0;
@@ -661,13 +661,13 @@ void CEffectListCtrl::OnNMClick(NMHDR *pNMHDR, LRESULT *pResult)
 
 void CEffectListCtrl::OnTestEffect()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CNtlResourceEffect* pResourceEffect = GetSelectResourceEffect();
 	NTL_ASSERTE(pResourceEffect);
 
-	// Popup menu ¸¦ ¶ç¿ì°í ÀÖ´Â½Ã°£ÀÌ ÀÖ±â ¶§¹®¿¡ fElapsedTime Å¸ÀÓÀÌ Áõ°¡ÇÑ´Ù.
-	// ±×·¡¼­ ÀÌÆåÆ®ÀÇ ½Ã°£Â÷°¡ Ä¿¼­ ÀÌ»óÇÑ ¸ğ¾çÀ¸·Î ³ª¿À±â ¶§¹®¿¡ ±× ½Ã°£À» ¾ø¾Ö´Â ¹æÇâÀ¸·Î
-	// timer ¸¦ ÀÌ¿ëÇÑ´Ù.
+	// Popup menu ë¥¼ ë„ìš°ê³  ìˆëŠ”ì‹œê°„ì´ ìˆê¸° ë•Œë¬¸ì— fElapsedTime íƒ€ì„ì´ ì¦ê°€í•œë‹¤.
+	// ê·¸ë˜ì„œ ì´í™íŠ¸ì˜ ì‹œê°„ì°¨ê°€ ì»¤ì„œ ì´ìƒí•œ ëª¨ì–‘ìœ¼ë¡œ ë‚˜ì˜¤ê¸° ë•Œë¬¸ì— ê·¸ ì‹œê°„ì„ ì—†ì• ëŠ” ë°©í–¥ìœ¼ë¡œ
+	// timer ë¥¼ ì´ìš©í•œë‹¤.
 	m_strInstanceEffectName = pResourceEffect->GetName();
 	SetTimer(0, 100, NULL);
 }
@@ -737,7 +737,7 @@ void CEffectListCtrl::OnEditPaste()
     if(selecteditem != -1)    
        pParentItem = GetTreeItem(selecteditem);
 
-    // Æú´õÀÇ Ä«ÇÇ Ã³¸® ±¸Çö
+    // í´ë”ì˜ ì¹´í”¼ ì²˜ë¦¬ êµ¬í˜„
     if(CVenusPropertyContainer::GetInstance().m_nCopySystemDataFlag == CVenusPropertyContainer::E_COPY_FOLDER)
     {
         if(GetTreeItemLevel(pParentItem) != E_ITEM_LEVEL_FOLDER)
@@ -753,7 +753,7 @@ void CEffectListCtrl::OnEditPaste()
             InvalidateRect(NULL, TRUE);
         }
     }
-    // ÀÌÆåÆ®ÀÇ Ä«ÇÇ
+    // ì´í™íŠ¸ì˜ ì¹´í”¼
     else if(CVenusPropertyContainer::GetInstance().m_nCopySystemDataFlag == CVenusPropertyContainer::E_COPY_EFFECT)
     {
         if(GetTreeItemLevel(pParentItem) != E_ITEM_LEVEL_FOLDER)
@@ -771,12 +771,12 @@ void CEffectListCtrl::OnEditPaste()
 
         InsertTreeItem(strName, IMAGE_INDEX_RESOURCE_EFFECT, (DWORD_PTR)pResourceEffect, pParentItem);
 
-        // ÇÏÀ§ ½Ã½ºÅÛµéÀº ÀÚµ¿À¸·Î Ä«ÇÇµÈ´Ù.
+        // í•˜ìœ„ ì‹œìŠ¤í…œë“¤ì€ ìë™ìœ¼ë¡œ ì¹´í”¼ëœë‹¤.
         CEventLayer* pView = (CEventLayer*)gGetEditLayer(EDIT_LAYER_EVENT);
         pView->ResetProperties();
         
     }
-    // ÇÏÀ§ ½Ã½ºÅÛÀÇ Ä«ÇÇ
+    // í•˜ìœ„ ì‹œìŠ¤í…œì˜ ì¹´í”¼
     else if(CVenusPropertyContainer::GetInstance().m_nCopySystemDataFlag == CVenusPropertyContainer::E_COPY_SYSTEM)
     {
         if(selecteditem >= 0 && GetTreeItemLevel(GetTreeItem(selecteditem)) == E_ITEM_LEVEL_EFFECT)
@@ -788,8 +788,8 @@ void CEffectListCtrl::OnEditPaste()
 
             if (!CVenusPropertyContainer::GetInstance().m_bCopyResourceData)
             {
-                // ¹Ø ¶óÀÎÀÇ DeleteResourceSystem ¿¡¼­ CVenusPropertyContainer::GetInstance().m_pCopyResourceEffect °¡
-                // ÃÊ±âÈ­°¡ µÇ±â ¶§¹®¿¡ ¿©±â¼­ ÀÌ¸§À» °¡Áö°í ÀÖ´Ù°¡ ResetInstanceEffect ÇÒ¶§ »ç¿ëÇÑ´Ù.
+                // ë°‘ ë¼ì¸ì˜ DeleteResourceSystem ì—ì„œ CVenusPropertyContainer::GetInstance().m_pCopyResourceEffect ê°€
+                // ì´ˆê¸°í™”ê°€ ë˜ê¸° ë•Œë¬¸ì— ì—¬ê¸°ì„œ ì´ë¦„ì„ ê°€ì§€ê³  ìˆë‹¤ê°€ ResetInstanceEffect í• ë•Œ ì‚¬ìš©í•œë‹¤.
                 std::string strResourceEffectName = CVenusPropertyContainer::GetInstance().m_pCopyResourceEffect->GetName();
                 CVenusPropertyContainer::GetInstance().DeleteResourceSystem(
                     CVenusPropertyContainer::GetInstance().m_pCopyResourceEffect,
@@ -865,7 +865,7 @@ void CEffectListCtrl::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			{
 				if(GetSelectedItem() == -1)
 				{
-                    // Æú´õ¸¸ ¸ŞÀÎ ·çÆ®¿¡ Ä«ÇÇ °¡´É
+                    // í´ë”ë§Œ ë©”ì¸ ë£¨íŠ¸ì— ì¹´í”¼ ê°€ëŠ¥
                     if(CVenusPropertyContainer::GetInstance().m_nCopySystemDataFlag == CVenusPropertyContainer::E_COPY_FOLDER)					
 					{
 						OnEditPaste();
@@ -897,7 +897,7 @@ void CEffectListCtrl::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CEffectListCtrl::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	switch(nChar)
 	{
 		case VK_CONTROL:
@@ -913,7 +913,7 @@ void CEffectListCtrl::OnLvnColumnclick(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
 
-    // ÀÌ¸§À» Å¬¸¯ÇÏ¸é Æú´õÀÇ ÇÏÀ§ ÀÌÆåÆ®µé¸¸ ¼ÒÆ® µÈ´Ù.
+    // ì´ë¦„ì„ í´ë¦­í•˜ë©´ í´ë”ì˜ í•˜ìœ„ ì´í™íŠ¸ë“¤ë§Œ ì†ŒíŠ¸ ëœë‹¤.
     CTreeItem* pParentItem = NULL;
     CTreeItem* pSelectItem = GetTreeItem(GetSelectedItem());
     if(GetTreeItemLevel(pSelectItem) == E_ITEM_LEVEL_FOLDER)
@@ -978,7 +978,7 @@ void CEffectListCtrl::SetAllChildCheck()
     if(pSelectItem->m_lpNodeInfo->GetImage() != IMAGE_INDEX_RESOURCE_EFFECT)
         return;
 
-    // È®ÀåµÇ¾î ÀÖÁö¾ÊÀ¸¸é ÀÚ½ÄµéÀ» Ã¼Å©ÇÏÁö ¾Ê´Â´Ù.   
+    // í™•ì¥ë˜ì–´ ìˆì§€ì•Šìœ¼ë©´ ìì‹ë“¤ì„ ì²´í¬í•˜ì§€ ì•ŠëŠ”ë‹¤.   
     if(IsCollapsed(pSelectItem))
     {
         return;
@@ -998,7 +998,7 @@ void CEffectListCtrl::SetAllChildCheck()
                 }
                 else
                 {
-                    // Show°¡ Àû¿ëµÈ°Í¸¸ Check ÇØÁØ´Ù.
+                    // Showê°€ ì ìš©ëœê²ƒë§Œ Check í•´ì¤€ë‹¤.
                     CItemInfo* pItemData = GetData(pChildItem);
                     CNtlResourceComponentSystem* pResourceComponent = (CNtlResourceComponentSystem*)pItemData->m_lParam;
                     SetCheck(pChildItem->m_nIndex, pResourceComponent->m_bShow);
@@ -1011,7 +1011,7 @@ void CEffectListCtrl::SetAllChildCheck()
 
 void CEffectListCtrl::OnLButtonUp(UINT nFlags, CPoint point)
 {
-    // µå·¡±× & µå·Ó½Ã¿¡ ¾ÆÀÌÅÛÀÇ À§Ä¡¸¦ º¯°æÇÏ¿© ÁØ´Ù.    
+    // ë“œë˜ê·¸ & ë“œë¡­ì‹œì— ì•„ì´í…œì˜ ìœ„ì¹˜ë¥¼ ë³€ê²½í•˜ì—¬ ì¤€ë‹¤.    
 
     if(m_bIsDragging)
     {
@@ -1055,8 +1055,8 @@ void CEffectListCtrl::OnLButtonUp(UINT nFlags, CPoint point)
                     
                     DeleteItemEx(pSource, m_nDragItem);
                     
-                    // NOTE: ÀÚ½ÄÀ» ¾È°¡Áö°í ÀÖ´Â °æ¿ì¿¡´Â ItemChange¿¡¼­ °Ë»öÇØ¼­ ÀÚ½ÄÀ» Ãß°¡ÇÏ±â ¶§¹®¿¡
-                    // ¿©±â¼­´Â Ãß°¡ÇÏÁö ¾Ê¾Æ¾ß ÇÑ´Ù.
+                    // NOTE: ìì‹ì„ ì•ˆê°€ì§€ê³  ìˆëŠ” ê²½ìš°ì—ëŠ” ItemChangeì—ì„œ ê²€ìƒ‰í•´ì„œ ìì‹ì„ ì¶”ê°€í•˜ê¸° ë•Œë¬¸ì—
+                    // ì—¬ê¸°ì„œëŠ” ì¶”ê°€í•˜ì§€ ì•Šì•„ì•¼ í•œë‹¤.
                     if(ItemHasChildren(pTarget))
                     {
                         InsertItemRecursive(pItemNode, pTarget, TRUE);                    
@@ -1122,13 +1122,13 @@ void CEffectListCtrl::InsertItemRecursive(SItemNode* pItemNode, CSuperGridCtrl::
 {
     if(pItemNode->eNodeType == NODE_SCIRPT)
     {
-        // ½ºÅ©¸³Æ®¶ó¸é ÀÚ½ÅÀ» Ãß°¡ÇÏ°í ³¡³½´Ù.        
+        // ìŠ¤í¬ë¦½íŠ¸ë¼ë©´ ìì‹ ì„ ì¶”ê°€í•˜ê³  ëë‚¸ë‹¤.        
         //InsertTreeItem(pItemNode->strNodeName, IMAGE_INDEX_RESOURCE_EFFECT, NULL, pParentItem);
     }
-    else	// Æú´õ¶ó¸é ÀÚ½ÄµéÀ» Àç±Í·Î µ·´Ù.
+    else	// í´ë”ë¼ë©´ ìì‹ë“¤ì„ ì¬ê·€ë¡œ ëˆë‹¤.
     {
         CSuperGridCtrl::CTreeItem* pItem = NULL;
-        if(pItemNode != &m_sItemNode)   // ¸ŞÀÎ ·çÆ® Æú´õ´Â Á¦¿ÜÇÑ´Ù.
+        if(pItemNode != &m_sItemNode)   // ë©”ì¸ ë£¨íŠ¸ í´ë”ëŠ” ì œì™¸í•œë‹¤.
         {
             pItem = BuildTreeItem(pItemNode->strNodeName, IMAGE_INDEX_RESOURCE_FOLDER, (DWORD_PTR)pItemNode, pParentItem, bUpdate);
         }        
@@ -1179,7 +1179,7 @@ ETreeItemLevel CEffectListCtrl::GetTreeItemLevel(CTreeItem* pItem)
     return level;    
 }
 
-// »õ·Î¿î Æú´õ¸¦ »ı¼ºÇÑ´Ù.
+// ìƒˆë¡œìš´ í´ë”ë¥¼ ìƒì„±í•œë‹¤.
 void CEffectListCtrl::OnCreateFolder()
 {
     std::string strNewFolderName;
@@ -1219,7 +1219,7 @@ void CEffectListCtrl::OnCreateFolder()
     }
 }
 
-// Æú´õ¸¦ »èÁ¦ÇÑ´Ù.
+// í´ë”ë¥¼ ì‚­ì œí•œë‹¤.
 void CEffectListCtrl::OnDeleteFolder()
 {
     if (AfxMessageBox("really Delete Folder?", MB_OKCANCEL) != IDOK) 
@@ -1254,7 +1254,7 @@ void CEffectListCtrl::DeleteItemRecursive( SItemNode* pItemNode )
     }
 }
 
-// Æú´õÀÇ ÀÌ¸§À» º¯°æÇÑ´Ù.
+// í´ë”ì˜ ì´ë¦„ì„ ë³€ê²½í•œë‹¤.
 void CEffectListCtrl::OnRenameFolder()
 {
     CTreeItem* pSelectItem = GetTreeItem(GetSelectedItem());
@@ -1327,7 +1327,7 @@ RwBool CEffectListCtrl::SaveXMLTree( RwChar* szFileName )
                     break;
                 if(pCur == pItem)
                     break;
-                if(GetTreeItemLevel(pCur) == E_ITEM_LEVEL_SYSTEM)   // ½Ã½ºÅÛÀº ÀúÀå¾ÈÇÑ´Ù. 
+                if(GetTreeItemLevel(pCur) == E_ITEM_LEVEL_SYSTEM)   // ì‹œìŠ¤í…œì€ ì €ì¥ì•ˆí•œë‹¤. 
                 {
                     pItem = pCur;
                     continue;
@@ -1379,10 +1379,10 @@ void CEffectListCtrl::BuildChildScript( CTreeItem* pParentItem )
     {
         for each(SItemNode* pChildNode in pItemNode->vecChildList)
         {
-            if(pChildNode->eNodeType == NODE_SCIRPT)    // ÇÏÀ§ ½ºÅ©¸³Æ®(ÀÌÆåÆ®)µéÀ» Ãß°¡ÇÑ´Ù.
+            if(pChildNode->eNodeType == NODE_SCIRPT)    // í•˜ìœ„ ìŠ¤í¬ë¦½íŠ¸(ì´í™íŠ¸)ë“¤ì„ ì¶”ê°€í•œë‹¤.
             {
                 CNtlResourceEffect* pResourceEffect = CVenusPropertyContainer::GetInstance().FindProperty(pChildNode->strNodeName);
-                // Áßº¹µÈ ÀÌ¸§ÀÇ ÀÌÆåÆ®°¡ ÀÌ¹Ì Á¸ÀçÇÏ¸é »õ·Î Ãß°¡ÇÏÁö ¾Ê´Â´Ù.
+                // ì¤‘ë³µëœ ì´ë¦„ì˜ ì´í™íŠ¸ê°€ ì´ë¯¸ ì¡´ì¬í•˜ë©´ ìƒˆë¡œ ì¶”ê°€í•˜ì§€ ì•ŠëŠ”ë‹¤.
                 if(pResourceEffect)
                 {
                     BuildTreeItem(pChildNode->strNodeName, IMAGE_INDEX_RESOURCE_EFFECT, (DWORD_PTR)pResourceEffect, pParentItem);
@@ -1402,10 +1402,10 @@ void CEffectListCtrl::CreateDefaultXMLTree()
     CTreeItem* pRootItem = NULL;
     SItemNode* pRootNode = NULL;
 
-    // ·çÆ® ³ëµå »ı¼º
+    // ë£¨íŠ¸ ë…¸ë“œ ìƒì„±
     CString strRootNodeName = "NewTree";
     pRootItem = Search(strRootNodeName, NULL);
-    if(!pRootItem || GetTreeItemLevel(pRootItem) != E_ITEM_LEVEL_FOLDER)      // µ¿ÀÏ ÀÌ¸§ÀÇ Æú´õ°¡ Á¸ÀçÇÏÁö ¾ÊÀ½. 
+    if(!pRootItem || GetTreeItemLevel(pRootItem) != E_ITEM_LEVEL_FOLDER)      // ë™ì¼ ì´ë¦„ì˜ í´ë”ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŒ. 
     {
         pRootNode = NTL_NEW SItemNode();
         pRootNode->eNodeType = NODE_FOLDER;
@@ -1413,15 +1413,15 @@ void CEffectListCtrl::CreateDefaultXMLTree()
         m_sItemNode.vecChildList.push_back(pRootNode);
         pRootItem = BuildTreeItem(strRootNodeName, IMAGE_INDEX_RESOURCE_FOLDER, (DWORD_PTR)pRootNode, NULL);
     }    
-    else // µ¿ÀÏ ÀÌ¸§ÀÇ Æú´õ°¡ Á¸ÀçÇÔ (Merge)
+    else // ë™ì¼ ì´ë¦„ì˜ í´ë”ê°€ ì¡´ì¬í•¨ (Merge)
     {
         pRootNode = (SItemNode*)pRootItem->m_lpNodeInfo->m_lParam;
     }
 
-    // ÀÌÆåÆ®º° ³ëµå »ı¼º
+    // ì´í™íŠ¸ë³„ ë…¸ë“œ ìƒì„±
     for each(CNtlResourceEffect* pResourceEffect in CVenusPropertyContainer::GetInstance().m_svEffectProperty)
     {
-        // ÀÌ¹Ì µ¿ÀÏÇÑ ³ëµå°¡ ÀÖ´Â °æ¿ì´Â »õ·Î Ãß°¡ÇÏÁö ¾Ê´Â´Ù.        
+        // ì´ë¯¸ ë™ì¼í•œ ë…¸ë“œê°€ ìˆëŠ” ê²½ìš°ëŠ” ìƒˆë¡œ ì¶”ê°€í•˜ì§€ ì•ŠëŠ”ë‹¤.        
         if(CNtlTreeXml::m_mapNode.find(pResourceEffect->GetName()) != CNtlTreeXml::m_mapNode.end())
             continue;
 
@@ -1438,9 +1438,9 @@ void CEffectListCtrl::CreateDefaultXMLTree()
 
 void CEffectListCtrl::ResetTreeItemName( const RwChar* strName ) 
 {
-    // ÀÌÆåÆ® ¾ÆÀÌÅÛÀº SData¸¦ ¾È°¡Áö°í ÀÖ´Ù.
+    // ì´í™íŠ¸ ì•„ì´í…œì€ SDataë¥¼ ì•ˆê°€ì§€ê³  ìˆë‹¤.
     CTreeItem* pSelectItem = GetTreeItem(GetSelectedItem());    
-    if(GetTreeItemLevel(pSelectItem) != E_ITEM_LEVEL_SYSTEM)    // SystemÀº Node¿¡ Æ÷ÇÔµÇÁö ¾Ê±â¶§¹®¿¡ Ãß°¡ ÀÛ¾÷ÀÌ ¾ø´Ù.
+    if(GetTreeItemLevel(pSelectItem) != E_ITEM_LEVEL_SYSTEM)    // Systemì€ Nodeì— í¬í•¨ë˜ì§€ ì•Šê¸°ë•Œë¬¸ì— ì¶”ê°€ ì‘ì—…ì´ ì—†ë‹¤.
     {
         CTreeItem* pParentItem = pSelectItem->m_pParent;
 

@@ -111,7 +111,7 @@ void CRightToolView::OnInitialUpdate()
 {
     CFormView::OnInitialUpdate();
 
-    // Animation SetÀ» ÃÊ±âÈ­ÇÑ´Ù.
+    // Animation Setì„ ì´ˆê¸°í™”í•œë‹¤.
     m_cbAnimSet.InsertString(COMMON_ANIM_SET, L"Common Animation Set");
     m_cbAnimSet.InsertString(ATTACK_ANIM_SET, L"Attack Animation Set");
     m_cbAnimSet.InsertString(BATTLE_ANIM_SET, L"Battle Animation Set");
@@ -128,7 +128,7 @@ void CRightToolView::OnInitialUpdate()
     {
         m_vEventAnimHit[i] = NULL;
     }
-    // Ã³À½¿¡´Â ¸ğµÎ Disable µÇ¾î ÀÖ´Ù.
+    // ì²˜ìŒì—ëŠ” ëª¨ë‘ Disable ë˜ì–´ ìˆë‹¤.
     SetEnable(DISABLE_ALL);
 }
 
@@ -137,7 +137,7 @@ void CRightToolView::SetInit(CMTCharacter* pCharacter)
 {
     if(pCharacter == NULL)
     {
-        // Anim Edit ±â´ÉÀ» Disable ½ÃÅ²´Ù.
+        // Anim Edit ê¸°ëŠ¥ì„ Disable ì‹œí‚¨ë‹¤.
         SetEnable(DISABLE_ALL);
         return;
     }
@@ -146,11 +146,11 @@ void CRightToolView::SetInit(CMTCharacter* pCharacter)
     m_pAnimTable  = pCharacter->GetProperty()->GetAnimTable();
     
 
-    // UI ÃÊ±âÈ­
+    // UI ì´ˆê¸°í™”
     m_cbAnimSet.SetCurSel(0);
     OnCbnSelchangeCbAnimSet();
 
-    // AnimData ÃÊ±âÈ­    
+    // AnimData ì´ˆê¸°í™”    
     m_nCurrentAnimKey = 0;
 
 }
@@ -187,7 +187,7 @@ void CRightToolView::SetActiveLeftView(ELeftPage eActiveLeftPage)
 
 void CRightToolView::OnCbnSelchangeCbAnimSet()
 {
-    // ÄŞº¸¹Ú½º°¡ º¯°æµÇ¾úÀ»¶§, ¸®½ºÆ®ÀÇ ¾ÆÀÌÅÛ Ç×¸ñÀ» º¯°æÇÑ´Ù.
+    // ì½¤ë³´ë°•ìŠ¤ê°€ ë³€ê²½ë˜ì—ˆì„ë•Œ, ë¦¬ìŠ¤íŠ¸ì˜ ì•„ì´í…œ í•­ëª©ì„ ë³€ê²½í•œë‹¤.
     USES_CONVERSION;
 
     if(!m_pCharacter || !m_pAnimTable)
@@ -243,14 +243,14 @@ void CRightToolView::OnCbnSelchangeCbAnimSet()
             m_ltAnimItem.InsertItem(nCount, sAnimID);  
             m_ltAnimItem.SetItem(nCount, 1, LVIF_TEXT, A2W(sAnimName->c_str()), 0, 0, 0, 0);
 
-            // µ¥ÀÌÅÍ°¡ ÀÖÀ»°æ¿ì¿¡´Â Ç¥½ÃÇÑ´Ù.
+            // ë°ì´í„°ê°€ ìˆì„ê²½ìš°ì—ëŠ” í‘œì‹œí•œë‹¤.
             if(m_pAnimTable)
             {
                 STypeAnimData* pAnimData = m_pAnimTable->Get(i);
                 if(pAnimData && pAnimData->strAnimName.size() > 0)
                 {
                     
-                    // »ó´ë °æ·Î¸¦ Á¦°ÅÇÑ´Ù.
+                    // ìƒëŒ€ ê²½ë¡œë¥¼ ì œê±°í•œë‹¤.
                     WCHAR* pChar = wcsstr(A2W(pAnimData->strAnimName.c_str()), L"\\");
                     WCHAR* pAnimName;
                     while(pChar)
@@ -280,7 +280,7 @@ void CRightToolView::SetUIStatus(EAnimSet eAnimSet)
     case COMMON_ANIM_SET:
         for(int i = 0; i < MAX_HIT_EVENT_COUNT; ++i)
         {
-            // ¸ğµÎ disable
+            // ëª¨ë‘ disable
             m_edDamage[i].EnableWindow(FALSE);                     
         }
         m_raPhysical.EnableWindow(FALSE);
@@ -309,11 +309,11 @@ void CRightToolView::OnLvnItemchangedLtAnimItem(NMHDR *pNMHDR, LRESULT *pResult)
 
     LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
 
-    // ¼±ÅÃµÈ ¾ÆÀÌÅÛÀÌ º¯°æµÇ¾úÀ»¶§ ±×¿¡ ¸Â´Â ¾Ö´Ï¸ŞÀÌ¼ÇÀ» Àû¿ëÇÑ´Ù.
+    // ì„ íƒëœ ì•„ì´í…œì´ ë³€ê²½ë˜ì—ˆì„ë•Œ ê·¸ì— ë§ëŠ” ì• ë‹ˆë©”ì´ì…˜ì„ ì ìš©í•œë‹¤.
 
     int nIndex = pNMLV->iItem;
 
-    // ¼³Á¤µÈ ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ÀÖÀ¸¸é, ±× ¾Ö´Ï¸ŞÀÌ¼ÇÀ¸·Î ¾Ö´Ï¸ŞÀÌ¼ÇÀ» º¯°æÇÑ´Ù.    
+    // ì„¤ì •ëœ ì• ë‹ˆë©”ì´ì…˜ì´ ìˆìœ¼ë©´, ê·¸ ì• ë‹ˆë©”ì´ì…˜ìœ¼ë¡œ ì• ë‹ˆë©”ì´ì…˜ì„ ë³€ê²½í•œë‹¤.    
     CNtlPLCharacterProperty*  pCharacterProp = m_pCharacter->GetProperty();
     if(pCharacterProp)
     {
@@ -327,7 +327,7 @@ void CRightToolView::OnLvnItemchangedLtAnimItem(NMHDR *pNMHDR, LRESULT *pResult)
         }
         else
         {
-            // ¼³Á¤µÈ ¾Ö´Ï¸ŞÀÌ¼ÇÆÄÀÏÀÌ ¾øÀ¸¸é Edit UI¸¦ Disable ½ÃÅ²´Ù.
+            // ì„¤ì •ëœ ì• ë‹ˆë©”ì´ì…˜íŒŒì¼ì´ ì—†ìœ¼ë©´ Edit UIë¥¼ Disable ì‹œí‚¨ë‹¤.
             SetEnable(ENABLE_ANIMSET);
         }
     }
@@ -336,7 +336,7 @@ void CRightToolView::OnLvnItemchangedLtAnimItem(NMHDR *pNMHDR, LRESULT *pResult)
 
 void CRightToolView::OnNMRclickLtAnimItem(NMHDR *pNMHDR, LRESULT *pResult)
 {
-    // ¿À¸¥ÂÊ Å¬¸¯½Ã ÆË¾÷¸Ş´º¸¦ ¶Ù¿î´Ù.
+    // ì˜¤ë¥¸ìª½ í´ë¦­ì‹œ íŒì—…ë©”ë‰´ë¥¼ ë›°ìš´ë‹¤.
     int nIndex = m_ltAnimItem.GetSelectionMark();
     if(nIndex >= 0)
     {
@@ -346,7 +346,7 @@ void CRightToolView::OnNMRclickLtAnimItem(NMHDR *pNMHDR, LRESULT *pResult)
         menuPopup.LoadMenu(IDR_MENU1);
         CMenu*  subMenu = menuPopup.GetSubMenu(2);
 
-        // ¾Ö´Ï¸ŞÀÌ¼ÇÆÄÀÏ Á¤º¸ÀÇ Á¸Àç¿©ºÎ¿¡ µû¶ó ¸Ş´º¸¦ ¼³Á¤ÇÑ´Ù.
+        // ì• ë‹ˆë©”ì´ì…˜íŒŒì¼ ì •ë³´ì˜ ì¡´ì¬ì—¬ë¶€ì— ë”°ë¼ ë©”ë‰´ë¥¼ ì„¤ì •í•œë‹¤.
         CString sAnimFileName = m_ltAnimItem.GetItemText(nIndex, 2);
         if(sAnimFileName == "")
         {
@@ -370,7 +370,7 @@ void CRightToolView::SetAnimData(RwUInt32 uiKey)
     if(!m_pCharacter || !m_pAnimTable)
         return;
 
-	// ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ¸ğµ¨¿¡ Àû¿ëÇÑ´Ù.
+	// ì• ë‹ˆë©”ì´ì…˜ì„ ëª¨ë¸ì— ì ìš©í•œë‹¤.
     m_pCharacter->SetAnim(uiKey);
 
     if(m_nCurrentAnimKey == uiKey)
@@ -381,20 +381,20 @@ void CRightToolView::SetAnimData(RwUInt32 uiKey)
 
     m_nCurrentAnimKey = uiKey;
     
-    // µ¥ÀÌÅÍµéÀ» UI¿¡ Àû¿ëÇÑ´Ù.
+    // ë°ì´í„°ë“¤ì„ UIì— ì ìš©í•œë‹¤.
     m_pAnimTable = m_pCharacter->GetProperty()->GetAnimTable();
     m_pCurrentAnimData = m_pAnimTable->Get(uiKey);
     if(!m_pCurrentAnimData)
         return;
 
-    // ÇÏ´ÜºäÀÇ Bone Edit¸¦ È°¼ºÈ­ ½ÃÅ²´Ù.
+    // í•˜ë‹¨ë·°ì˜ Bone Editë¥¼ í™œì„±í™” ì‹œí‚¨ë‹¤.
     CBottomToolView::GetInstance()->SetBoneEditEnable(TRUE);
 
-    // ¾Ö´Ï¸ŞÀÌ¼Ç ÇÃ·¹ÀÌ Åøºä¸¦ È°¼ºÈ­ ½ÃÅ²´Ù.
+    // ì• ë‹ˆë©”ì´ì…˜ í”Œë ˆì´ íˆ´ë·°ë¥¼ í™œì„±í™” ì‹œí‚¨ë‹¤.
     CAnimToolView::GetInstance()->SetInit(m_pCharacter, m_pCurrentAnimData);
     CAnimToolView::GetInstance()->SetEnable(TRUE);
 
-    // HitEvent Data¸¦ ¼³Á¤ÇÑ´Ù. (Damage ¶§¹®)
+    // HitEvent Dataë¥¼ ì„¤ì •í•œë‹¤. (Damage ë•Œë¬¸)
     SetAnimEventData(m_pCurrentAnimData);
 
     SetUIStatus(m_eAnimSetKind);
@@ -453,7 +453,7 @@ void CRightToolView::SetAnimEventData(STypeAnimData* pAnimData)
 
 void CRightToolView::OnMenuAnimSet()
 {
-    // Ç×¸ñ¿¡ ¾Ö´Ï¸ŞÀÌ¼Ç ÆÄÀÏÀ» ¼³Á¤ÇÑ´Ù.
+    // í•­ëª©ì— ì• ë‹ˆë©”ì´ì…˜ íŒŒì¼ì„ ì„¤ì •í•œë‹¤.
     USES_CONVERSION;
 
     int nIndex = m_ltAnimItem.GetSelectionMark();
@@ -466,14 +466,14 @@ void CRightToolView::OnMenuAnimSet()
         CString sLoadFileName = fileDlg.GetFileName();       
         m_ltAnimItem.SetItem(nIndex, 2, LVIF_TEXT, sLoadFileName, 0, 0, 0, 0);
 
-        // Ä³¸¯ÅÍÀÇ Property¿¡ ¼³Á¤ÇØ ÁØ´Ù.        
+        // ìºë¦­í„°ì˜ Propertyì— ì„¤ì •í•´ ì¤€ë‹¤.        
         CNtlPLCharacterProperty*  pCharacterProp = m_pCharacter->GetProperty();
         if(pCharacterProp)
         {
-            // Property¿¡ Anim Æú´õ °æ·Î¸¦ ÁöÁ¤ÇÑ´Ù. (»ó´ë °æ·Î)
+            // Propertyì— Anim í´ë” ê²½ë¡œë¥¼ ì§€ì •í•œë‹¤. (ìƒëŒ€ ê²½ë¡œ)
             //pCharacterProp->SetAnimPath(GetAnimPath(sLoadFilePath));
             
-            // property¿¡ ¾Ö´Ï¸ŞÀÌ¼Ç ÆÄÀÏ Á¤º¸¸¦ Ãß°¡ÇÑ´Ù.
+            // propertyì— ì• ë‹ˆë©”ì´ì…˜ íŒŒì¼ ì •ë³´ë¥¼ ì¶”ê°€í•œë‹¤.
             CString sAnimID = m_ltAnimItem.GetItemText(nIndex, 0);
             RwUInt32 uiAnimKey = (RwUInt32)_wtoi(sAnimID);
             //
@@ -484,7 +484,7 @@ void CRightToolView::OnMenuAnimSet()
 
             SetAnimData(uiAnimKey);      
 
-            // Play TimeÀ» ÀúÀåÇÑ´Ù.
+            // Play Timeì„ ì €ì¥í•œë‹¤.
             m_pCharacter->Update(0.1f);
             pAnimData->fPlayTime = m_pCharacter->GetBaseDurationAnimTime();
         }
@@ -493,7 +493,7 @@ void CRightToolView::OnMenuAnimSet()
 
 void CRightToolView::OnMenuAnimDelete()
 {
-    // Ç×¸ñ¿¡ ÀÖ´Â ¾Ö´Ï¸ŞÀÌ¼ÇÀ» »èÁ¦ÇÑ´Ù.
+    // í•­ëª©ì— ìˆëŠ” ì• ë‹ˆë©”ì´ì…˜ì„ ì‚­ì œí•œë‹¤.
     if(!m_pCharacter)
         return;
 
@@ -504,17 +504,17 @@ void CRightToolView::OnMenuAnimDelete()
     CString sAnimID = m_ltAnimItem.GetItemText(nIndex, 0);
     RwUInt32 uiAnimKey = (RwUInt32)_wtoi(sAnimID);
 
-    // ÇÁ·ÎÆÛÆ¼ÀÇ Å×ÀÌºí¿¡¼­ »èÁ¦ÇÑ´Ù.
+    // í”„ë¡œí¼í‹°ì˜ í…Œì´ë¸”ì—ì„œ ì‚­ì œí•œë‹¤.
     m_pAnimTable->Remove(uiAnimKey);
 
-    // ¸®½ºÆ® ¸ñ·Ï¿¡¼­ Á¦°ÅÇÑ´Ù.
+    // ë¦¬ìŠ¤íŠ¸ ëª©ë¡ì—ì„œ ì œê±°í•œë‹¤.
     m_ltAnimItem.SetItemText(nIndex, 2, L"");
 }
 
 /**
- * Àı´ë°æ·Î¸¦ ÀÔ·Â¹Ş¾Æ »ó´ë°æ·Î·Î ¹İÈ¯ÇÑ´Ù.
- * \param sPathName animÆÄÀÏÀÇ Àı´ë °æ·Î
- * return Peoperty¿¡ ¼³Á¤ÇÏ±â À§ÇÑ »ó´ë °æ·Î
+ * ì ˆëŒ€ê²½ë¡œë¥¼ ì…ë ¥ë°›ì•„ ìƒëŒ€ê²½ë¡œë¡œ ë°˜í™˜í•œë‹¤.
+ * \param sPathName animíŒŒì¼ì˜ ì ˆëŒ€ ê²½ë¡œ
+ * return Peopertyì— ì„¤ì •í•˜ê¸° ìœ„í•œ ìƒëŒ€ ê²½ë¡œ
  */
 std::string CRightToolView::GetAnimPath(CString sPathName)
 {
@@ -557,7 +557,7 @@ std::string CRightToolView::GetAnimPath(CString sPathName)
 
 void CRightToolView::OnBnClickedRaEnergy()
 {
-    // ÇÁ·ÎÆÛÆ¼¿¡ ¼³Á¤ÇÑ´Ù.    
+    // í”„ë¡œí¼í‹°ì— ì„¤ì •í•œë‹¤.    
     for(int i = 0; i < MAX_HIT_EVENT_COUNT; ++i)
     {
         if(m_vEventAnimHit[i])
@@ -569,7 +569,7 @@ void CRightToolView::OnBnClickedRaEnergy()
 
 void CRightToolView::OnBnClickedRaPhysical()
 {
-    // ÇÁ·ÎÆÛÆ¼¿¡ ¼³Á¤ÇÑ´Ù.
+    // í”„ë¡œí¼í‹°ì— ì„¤ì •í•œë‹¤.
     for(int i = 0; i < MAX_HIT_EVENT_COUNT; ++i)
     {
         if(m_vEventAnimHit[i])
@@ -586,7 +586,7 @@ void CRightToolView::ChangeDamage(int nIndex)
     if(!m_vEventAnimHit[nIndex])
         return;
 
-    // ÃÑÇÕÀÌ 100ÀÌ ³ÑÀ¸¸é ¿¡·¯¸¦ Ãâ·ÂÇÏ°í ¿ø·¡°ªÀ¸·Î µÇµ¹¸°´Ù.
+    // ì´í•©ì´ 100ì´ ë„˜ìœ¼ë©´ ì—ëŸ¬ë¥¼ ì¶œë ¥í•˜ê³  ì›ë˜ê°’ìœ¼ë¡œ ë˜ëŒë¦°ë‹¤.
     int nTotalDamage = 0;
     for(int i = 0; i < MAX_HIT_EVENT_COUNT; ++i)
     {
@@ -602,7 +602,7 @@ void CRightToolView::ChangeDamage(int nIndex)
         m_edDamage[nIndex].GetWindowText(sDamage);        
         m_vEventAnimHit[nIndex]->uiDamage = (RwUInt32)(_wtoi(sDamage));        
     }   
-    else    // 100º¸´Ù Å©¸é
+    else    // 100ë³´ë‹¤ í¬ë©´
     {
         sDamage.Format(L"%d", m_vEventAnimHit[nIndex]->uiDamage);
         m_edDamage[nIndex].SetWindowText(sDamage);
@@ -701,6 +701,6 @@ void CRightToolView::CreateAnimFileMap()
 {
     m_mapAnimFile.clear();
         
-    //TODO: µğÆúÆ® ÆÄÀÏ¸íÀ» À§ÇÑ ¸ÊÀ» Á¤ÀÇÇÑ´Ù.
+    //TODO: ë””í´íŠ¸ íŒŒì¼ëª…ì„ ìœ„í•œ ë§µì„ ì •ì˜í•œë‹¤.
     
 }

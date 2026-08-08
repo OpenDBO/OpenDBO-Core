@@ -1,7 +1,7 @@
 /******************************************************************************
 * File			: ScrambleNotifyGui.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2009. 5. 6
 * Abstract		: 
 *****************************************************************************
@@ -44,10 +44,10 @@ class CScrambleNotifyGui : public CNtlPLGui, public RWS::CEventHandler
 	{
 		gui::CDialog*				pParentDialog;
 		gui::CFlash*				pFlash;
-		gui::CStaticBox*			pGuildNameStatic;				///< '¿Ø∆ƒ¿Ã∏ß'
-		gui::CStaticBox*			pDojoNameStatic;				///< 'º“¿Øµµ¿Â'
-		gui::CStaticBox*			pRewardReputationPointStatic;	///< '¿Ø∆ƒ∆˜¿Œ∆Æ'
-		gui::CStaticBox*			pRewardItemStatic;				///< '»πµÊæ∆¿Ã≈€'
+		gui::CStaticBox*			pGuildNameStatic;				///< 'Ïú†ÌååÏù¥Î¶Ñ'
+		gui::CStaticBox*			pDojoNameStatic;				///< 'ÏÜåÏú†ÎèÑÏû•'
+		gui::CStaticBox*			pRewardReputationPointStatic;	///< 'Ïú†ÌååÌè¨Ïù∏Ìä∏'
+		gui::CStaticBox*			pRewardItemStatic;				///< 'ÌöçÎìùÏïÑÏù¥ÌÖú'
 		gui::CStaticBox*			pGuildName;
 		gui::CStaticBox*			pDojoName;
 		gui::CStaticBox*			pRewardReputationPoint;

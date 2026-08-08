@@ -64,7 +64,7 @@ END_MESSAGE_MAP()
 void CPageClump::OnBnClickedButton1()
 {
 	// TODO: Add your control notification handler code here
-	// Clump ÆÄÀÏÀ» ·ÎµùÇÑ´Ù.
+	// Clump íŒŒì¼ì„ ë¡œë”©í•œë‹¤.
 	USES_CONVERSION;
 
 	WCHAR szOpenFilter[] = L"Clump File (*.dff)|*.dff||";
@@ -75,7 +75,7 @@ void CPageClump::OnBnClickedButton1()
         m_strLoadFileName = fileDlg.GetFileName();
 		CString strFileExt = fileDlg.GetFileExt();
 
-		if(strFileExt.MakeUpper() == "DFF")		// clump ÆÄÀÏ
+		if(strFileExt.MakeUpper() == "DFF")		// clump íŒŒì¼
 		{
 			RwBool retBool = CModelToolApplication::GetInstance()->LoadClump(W2A(m_strLoadFilePath));
 			if(retBool == (RwBool)TRUE)
@@ -90,7 +90,7 @@ void CPageClump::OnBnClickedButton1()
 void CPageClump::OnLbnSelchangeListAtomic()
 {
 	// TODO: Add your control notification handler code here
-	// ListBoxÀÇ AtomicÀ» ¼±ÅÃÇŞÀ»¶§ ¹Ù¿îµù¹Ú½º¸¦ ±×·ÁÁØ´Ù.
+	// ListBoxì˜ Atomicì„ ì„ íƒí–‡ì„ë•Œ ë°”ìš´ë”©ë°•ìŠ¤ë¥¼ ê·¸ë ¤ì¤€ë‹¤.
 	USES_CONVERSION;
 
 	CMTCharacter* pCharacter = CModelToolApplication::GetInstance()->GetCharcter();
@@ -121,7 +121,7 @@ void CPageClump::OnBnClickedBtDelete()
     // TODO: Add your control notification handler code here
     USES_CONVERSION;
 
-    // ¼±ÅÃµÇÁö ¾ÊÀº AtomicÀ» °ñ¶ó¼­ »èÁ¦ÇÑ´Ù.
+    // ì„ íƒë˜ì§€ ì•Šì€ Atomicì„ ê³¨ë¼ì„œ ì‚­ì œí•œë‹¤.
     int nCount = m_listBoxAtomic.GetSelCount();
     if(nCount > 0)
     {
@@ -145,7 +145,7 @@ void CPageClump::OnBnClickedBtDelete()
                 }
             }
 
-            if(bExist == FALSE) // ¸®½ºÆ® ¹Ú½º¿¡ Á¸ÀçÇÏÁö ¾ÊÀ¸¸é »èÁ¦ÇÑ´Ù.
+            if(bExist == FALSE) // ë¦¬ìŠ¤íŠ¸ ë°•ìŠ¤ì— ì¡´ì¬í•˜ì§€ ì•Šìœ¼ë©´ ì‚­ì œí•œë‹¤.
             {
                 WCHAR szAtomicName[128] = {0,};
                 m_listBoxAtomic.GetText(i, szAtomicName);
@@ -168,7 +168,7 @@ void CPageClump::OnBnClickedBtClumpSave()
     // TODO: Add your control notification handler code here
     USES_CONVERSION;
 
-    // ¼±ÅÃÇÑ Atomicµé¸¸ SaveÇÑ´Ù.
+    // ì„ íƒí•œ Atomicë“¤ë§Œ Saveí•œë‹¤.
 
     WCHAR szOpenFilter[] = L"Clump File (*.dff)|*.dff||";
     CFileDialog fileDlg(FALSE, L"dff", m_strLoadFileName, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, szOpenFilter);
@@ -203,7 +203,7 @@ void CPageClump::OnBnClickedBtMaterialAdd()
     // TODO: Add your control notification handler code here
     USES_CONVERSION;
 
-    // ¸ÖÆ¼ÅØ½ºÃ³ Ãß°¡ ±â´É
+    // ë©€í‹°í…ìŠ¤ì²˜ ì¶”ê°€ ê¸°ëŠ¥
     WCHAR szOpenFilter[] = L"Texture File (*.dds;*.png)|*.dds; *.png||";
     CFileDialog dlgTextureFile(TRUE, NULL, NULL, OFN_HIDEREADONLY, szOpenFilter);
     if(dlgTextureFile.DoModal() == IDOK)
@@ -216,7 +216,7 @@ void CPageClump::OnBnClickedBtMaterialAdd()
         CMTCharacter* pCharacter = CModelToolApplication::GetInstance()->GetCharcter();
         if(pCharacter)
         {
-            // ListBox¿¡¼­ Material ÀÌ¸§À» °¡Á®¿Â´Ù.
+            // ListBoxì—ì„œ Material ì´ë¦„ì„ ê°€ì ¸ì˜¨ë‹¤.
             int nIndex = m_listBoxMaterial.GetCurSel();
             WCHAR szMaterialName[256] = {0,};
             m_listBoxMaterial.GetText(nIndex, szMaterialName);
@@ -224,7 +224,7 @@ void CPageClump::OnBnClickedBtMaterialAdd()
             RwBool bReturn = pCharacter->SetMultiTexture(W2A(szMaterialName), W2A(strFileName), W2A(strFilePath));
             if(bReturn == (RwBool)TRUE)
             {
-                // È­¸é Á¤º¸¸¦ °»½ÅÇÑ´Ù.
+                // í™”ë©´ ì •ë³´ë¥¼ ê°±ì‹ í•œë‹¤.
                 pCharacter->DisplayMaterialAttribute(W2A(szMaterialName));
             }
             else
@@ -240,12 +240,12 @@ void CPageClump::OnBnClickedBtMaterialDel()
     // TODO: Add your control notification handler code here
     USES_CONVERSION;
 
-    // ±âÁ¸¿¡ ÀÖ´ø ¸ÖÆ¼ ÅØ½ºÃ³¸¦ Á¦°ÅÇÑ´Ù.
+    // ê¸°ì¡´ì— ìˆë˜ ë©€í‹° í…ìŠ¤ì²˜ë¥¼ ì œê±°í•œë‹¤.
 
     CMTCharacter* pCharacter = CModelToolApplication::GetInstance()->GetCharcter();
     if(pCharacter)
     {
-        // ListBox¿¡¼­ Material ÀÌ¸§À» °¡Á®¿Â´Ù.
+        // ListBoxì—ì„œ Material ì´ë¦„ì„ ê°€ì ¸ì˜¨ë‹¤.
         int nIndex = m_listBoxMaterial.GetCurSel();
         WCHAR szMaterialName[256] = {0,};
         m_listBoxMaterial.GetText(nIndex, szMaterialName);
@@ -253,7 +253,7 @@ void CPageClump::OnBnClickedBtMaterialDel()
         RwBool bReturn = pCharacter->SetMultiTexture(W2A(szMaterialName), NULL, NULL);
         if(bReturn == (RwBool)TRUE)
         {
-            // È­¸é Á¤º¸¸¦ °»½ÅÇÑ´Ù.
+            // í™”ë©´ ì •ë³´ë¥¼ ê°±ì‹ í•œë‹¤.
             pCharacter->DisplayMaterialAttribute(W2A(szMaterialName));
         }
         else
@@ -276,13 +276,13 @@ void CPageClump::OnBnClickedButton3()
         m_btColor.SetColor(GetRValue(color), GetGValue(color), GetBValue(color));
         Invalidate(FALSE);
 
-        // Material¿¡ Color¸¦ Àû¿ëÇÑ´Ù.
+        // Materialì— Colorë¥¼ ì ìš©í•œë‹¤.
         int nIndex = m_listBoxMaterial.GetCurSel();
-        if(nIndex < 0)  // MaterialÀÌ ¼±ÅÃµÇÁö ¾Ê¾ÒÀ»¶§
+        if(nIndex < 0)  // Materialì´ ì„ íƒë˜ì§€ ì•Šì•˜ì„ë•Œ
             return;
         
         CMTCharacter* pCharacter = CModelToolApplication::GetInstance()->GetCharcter();
-        if(!pCharacter) // Character°¡ Load µÇÁö ¾Ê¾ÒÀ»¶§
+        if(!pCharacter) // Characterê°€ Load ë˜ì§€ ì•Šì•˜ì„ë•Œ
             return;
         
         WCHAR strMaterialName[256] = {0,};
@@ -296,7 +296,7 @@ void CPageClump::OnLbnSelchangeListMaterial()
     // TODO: Add your control notification handler code here
     USES_CONVERSION;
 
-    // Material (Texture) Á¤º¸¸¦ °¡Á®¿Í¼­ ¸®½ºÆ® ¹Ú½º¿¡ ¼¼ÆÃÇÑ´Ù.
+    // Material (Texture) ì •ë³´ë¥¼ ê°€ì ¸ì™€ì„œ ë¦¬ìŠ¤íŠ¸ ë°•ìŠ¤ì— ì„¸íŒ…í•œë‹¤.
     CMTCharacter* pCharacter = CModelToolApplication::GetInstance()->GetCharcter();
     if(pCharacter)
     {
@@ -313,7 +313,7 @@ void CPageClump::SetMultiTextureInfo(RwChar* chTextureName, RwInt32 iWidth, RwIn
 
     if(chTextureName == NULL)
     {
-        // MultiTexture Á¤º¸°¡ ¾øÀ»¶§, Add ¹öÆ°¸¸ È°¼ºÈ­ ½ÃÅ²´Ù.
+        // MultiTexture ì •ë³´ê°€ ì—†ì„ë•Œ, Add ë²„íŠ¼ë§Œ í™œì„±í™” ì‹œí‚¨ë‹¤.
         m_btTextureAdd.EnableWindow(TRUE);
         m_btTextureDelete.EnableWindow(FALSE);      
         m_editTextureName.SetWindowText(L"");
@@ -322,7 +322,7 @@ void CPageClump::SetMultiTextureInfo(RwChar* chTextureName, RwInt32 iWidth, RwIn
     }
     else
     {
-        // MultiTexture Á¤º¸°¡ ÀÖÀ»¶§, Delete ¹öÆ°¸¸ È°¼ºÈ­ ½ÃÅ²´Ù.
+        // MultiTexture ì •ë³´ê°€ ìˆì„ë•Œ, Delete ë²„íŠ¼ë§Œ í™œì„±í™” ì‹œí‚¨ë‹¤.
         m_btTextureAdd.EnableWindow(FALSE);
         m_btTextureDelete.EnableWindow(TRUE);
 

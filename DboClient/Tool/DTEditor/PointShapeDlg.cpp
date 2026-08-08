@@ -1,4 +1,4 @@
-// PointShapeDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PointShapeDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "PointShapeDlg.h"
 
 
-// PointShapeDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// PointShapeDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPointShapeDlg, CDialog)
 
@@ -30,4 +30,4 @@ BEGIN_MESSAGE_MAP(CPointShapeDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CPointShapeDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPointShapeDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

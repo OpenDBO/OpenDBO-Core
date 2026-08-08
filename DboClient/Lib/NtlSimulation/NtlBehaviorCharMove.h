@@ -2,7 +2,7 @@
  *
  * File			: NtlBehaviorCharMove.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (å ì™ì˜™)NTL
  * Date			: 2006. 2. 9	
  * Abstract		: character move behavior class
  *****************************************************************************
@@ -33,7 +33,7 @@ struct SNtlEventSobMoveSync;
 #define COLLISION_MOVE_IMPOSSIBLE_COUNT		3
 
 // dash 
-#define DASH_LANDING_TIME					0.166f  // 0.8ÃÊ¿¡ DASH_LANDING_DIST ¸¸Å­ °£´Ù.
+#define DASH_LANDING_TIME					0.166f  // 0.8å ì‹­ìš¸ì˜™ DASH_LANDING_DIST å ì™ì˜™í¼ å ì™ì˜™å ì™ì˜™.
 
 // jump
 #define JUMP_GRAVITY_SPEED					11.0f
@@ -62,15 +62,15 @@ public:
 	void	AddPathNode(RwV3d vPos);
 	RwBool	PopPathNode(RwV3d& vPos);
 	void	ClearPathNode(void);
-    RwBool  IsMoveSyncState();                                  ///< MoveSyncÀ» ¸ÂÃç¾ßÇÏ´Â »óÅÂÀÎÁö¸¦ ¹İÈ¯ÇÑ´Ù (´Ù¸¥ Ä³¸¯ÅÍ¿ë)
-    RwBool  IsMoveSyncSend();                                   ///< MoveSync ÆĞÅ¶À» º¸³»¾ßÇÏ´Â »óÅÂÀÎÁö¸¦ ¹İÈ¯ÇÑ´Ù (¾Æ¹ÙÅ¸¿ë)
+    RwBool  IsMoveSyncState();                                  ///< MoveSyncì„ ë§ì¶°ì•¼í•˜ëŠ” ìƒíƒœì¸ì§€ë¥¼ ë°˜í™˜í•œë‹¤ (ë‹¤ë¥¸ ìºë¦­í„°ìš©)
+    RwBool  IsMoveSyncSend();                                   ///< MoveSync å ì™ì˜™í‚·å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì‹¹ëŒì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™í™˜å ì‹¼ëŒì˜™ (å ì‹£ë±„ì˜™íƒ€å ì™ì˜™)
 
     virtual RwUInt32 HandleEvents(RWS::CMsg &pMsg);    
 
 protected:    
     virtual void	 UpdateAnimSpeed(void);    
-    virtual RwReal   GetMoveSpeed(RwUInt8 byMoveFlag);          ///< Move Flag¿¡ ¸Â´Â ¼Óµµ¸¦ ¹İÈ¯ÇÑ´Ù.
-    virtual RwBool   IsMoveSyncEmpty();                         ///< ÇöÀç MoveSyncQ¿¡ SyncÇÒ µ¥ÀÌÅÍ°¡ ÀÖ´ÂÁö¸¦ ¹İÈ¯ÇÑ´Ù.
+    virtual RwReal   GetMoveSpeed(RwUInt8 byMoveFlag);          ///< Move Flagå ì™ì˜™ å ìŠ¹ëŒì˜™ å ìŒˆë“¸ì˜™å ì™ì˜™ å ì™ì˜™í™˜å ì‹¼ëŒì˜™.
+    virtual RwBool   IsMoveSyncEmpty();                         ///< å ì™ì˜™å ì™ì˜™ MoveSyncQå ì™ì˜™ Syncå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¶ê³¤ì˜™ å ìŒëŒì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™í™˜å ì‹¼ëŒì˜™.
 
 protected:    
 
@@ -224,6 +224,7 @@ protected:
 
 		void					GetMoveDistRatio( RwReal fTime, ERNS_MOVE_TYPE& eMoveType, RwReal& fMoveDistRatio );
 		D3DXVECTOR3				GetPosition( RwReal fTime );
+		D3DXVECTOR3				GetSegmentDir( RwReal fTime );
 		void					AddNodePos( const D3DXVECTOR3& vPos );
 
 		void					BuildSpline( void );
@@ -234,8 +235,8 @@ protected:
 		D3DXVECTOR3				GetEndVelocity( int nIndex);
 	};
 
-	#define	ROT_PER_SEC_MIN	(0.f)
-	#define ROT_PER_SEC_MAX	(1.f)
+	#define	ROT_PER_SEC_MIN	(3.f)
+	#define ROT_PER_SEC_MAX	(12.f)
 
 // Member variables
 protected:

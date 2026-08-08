@@ -71,33 +71,33 @@ RwBool CChannelChangeGui::Create()
 	m_pExitButton = (gui::CButton*)GetComponent("ExitButton");
 	m_slotCloseButton = m_pExitButton->SigClicked().Connect( this, &CChannelChangeGui::OnClickCancleButton );
 
-	// 'Ã¤³Î¼±ÅÃ'
+	// 'ì±„ë„ì„ íƒ'
 	rect.SetRectWH(145, 40, 83, 14);
 	m_pChannelSelect = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER );
 	m_pChannelSelect->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pChannelSelect->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_CHOICE_CHANNEL"));
 	m_pChannelSelect->Enable(false);
 
-	// ¼­¹ö ÀÌ¸§
+	// ì„œë²„ ì´ë¦„
 	rect.SetRectWH(30, 77, 186, 14);
 	m_pServerlName = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER );
 	m_pServerlName->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pServerlName->SetTextColor(RGB(255, 192, 0));
 	m_pServerlName->Enable(false);
 
-	// ½ºÅ©·Ñ
+	// ìŠ¤í¬ë¡¤
 	m_pScrollBar = (gui::CScrollBar*)GetComponent("scbScroll");
 	m_slotServerScrollChanged		= m_pScrollBar->SigValueChanged().Connect( this, &CChannelChangeGui::OnScrollChanged );
 	m_slotServerScrollSliderMoved	= m_pScrollBar->SigSliderMoved().Connect( this, &CChannelChangeGui::OnScrollChanged );
 
-	// È®ÀÎ ¹öÆ°
+	// í™•ì¸ ë²„íŠ¼
 	m_pOkButton = (gui::CButton*)GetComponent("btnOk");
 	m_pOkButton->SetTextFocusColor(INFOCOLOR_LOBBY_FOC);
 	m_pOkButton->SetTextDownColor(INFOCOLOR_LOBBY_DOWN);
 	m_pOkButton->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_OK"));
 	m_slotOKButton = m_pOkButton->SigClicked().Connect( this, &CChannelChangeGui::OnClickOKButton );
 
-	// Ãë¼Ò ¹öÆ°
+	// ì·¨ì†Œ ë²„íŠ¼
 	m_pCancelButton = (gui::CButton*)GetComponent("btnCancel");
 	m_pCancelButton->SetTextFocusColor(INFOCOLOR_LOBBY_FOC);
 	m_pCancelButton->SetTextDownColor(INFOCOLOR_LOBBY_DOWN);
@@ -461,7 +461,7 @@ VOID CChannelChangeGui::OnClickOKButton(gui::CComponent* pComponent)
 {
 	if( m_bySelectIndex == INVALID_BYTE )
 	{
-		// Ã¤³ÎÀ» ¼±ÅÃÇÏ½Ê½Ã¿ä
+		// ì±„ë„ì„ ì„ íƒí•˜ì‹­ì‹œìš”
 		GetAlarmManager()->AlarmMessage( "DST_LOBBY_MUST_CHOICE_CHANNEL" );
 		return;
 	}
@@ -471,7 +471,7 @@ VOID CChannelChangeGui::OnClickOKButton(gui::CComponent* pComponent)
 	sMsgBoxData data;
 	data.byIndex = m_bySelectIndex;
 
-	// Ã¤³ÎÀ» º¯°æÇÏ½Ã°Ú½À´Ï±î?
+	// ì±„ë„ì„ ë³€ê²½í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
 	GetAlarmManager()->AlarmMessage( "DST_ASK_CHANGE_CHANNEL", FALSE, &data );
 }
 

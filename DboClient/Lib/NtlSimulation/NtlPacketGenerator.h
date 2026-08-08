@@ -2,7 +2,7 @@
  *
  * File			: NtlPacketGenerator.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 9. 27	
  * Abstract		: simulation layer packet generator
  *****************************************************************************

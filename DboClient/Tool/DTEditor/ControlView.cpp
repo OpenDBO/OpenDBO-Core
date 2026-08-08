@@ -1,4 +1,4 @@
-// ControlView.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// ControlView.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -29,7 +29,7 @@ BEGIN_MESSAGE_MAP(CControlView, CXTResizeFormView)
 END_MESSAGE_MAP()
 
 
-// CControlView Áø´ÜÀÔ´Ï´Ù.
+// CControlView ì§„ë‹¨ì…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CControlView::AssertValid() const
@@ -46,4 +46,4 @@ void CControlView::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CControlView ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CControlView ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

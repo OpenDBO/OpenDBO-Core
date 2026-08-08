@@ -1,7 +1,7 @@
 #pragma once
 
 
-// CCreateSplinePathDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CCreateSplinePathDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 #include <string>
 #include "PropTree.h"
 
@@ -13,7 +13,7 @@ class CCreateSplinePathDialog : public CDialog
 	DECLARE_DYNAMIC(CCreateSplinePathDialog)
 
 public:
-	CCreateSplinePathDialog(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CCreateSplinePathDialog(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CCreateSplinePathDialog();
 
 	
@@ -84,11 +84,11 @@ public:
 	void	ApplyProperties(CPropTreeItem* pItem);
 
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_CREATE_SPLINE_PATH };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	afx_msg void OnItemChanged(NMHDR* pNotifyStruct, LRESULT* plResult);
 
 	DECLARE_MESSAGE_MAP()

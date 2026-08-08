@@ -84,7 +84,7 @@ CNtlWorldSector::~CNtlWorldSector(void)
 
 	NTL_DELETE(m_pNtlWorldSectorPVS);
 
-	// Momery »óÀÇ ³²´Â °ÍÀÌ ÀÖ´ÂÁö È®ÀÎÇØ¾ß ÇÑ´Ù.
+	// Momery ìƒì˜ ë‚¨ëŠ” ê²ƒì´ ìžˆëŠ”ì§€ í™•ì¸í•´ì•¼ í•œë‹¤.
 	DBO_ASSERT(m_pAtomic == NULL, "Sector Memory Leak.");
 	DBO_ASSERT(m_pWater == NULL, "Sector Memory Leak.");
 	DBO_ASSERT(m_vecPlantSet.size() == 0, "Sector Memory Leak.");
@@ -909,11 +909,11 @@ void CNtlWorldSector::SetTransparentTile(RwBool _IsTileTransparency, RwV3d& Pos)
 	{
 		RwRGBA *pPrelights = RpGeometryGetPreLightColors(m_pAtomic->geometry);
 
-		//|¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ| 4
+		//|ã…¡ã…¡ã…¡ã…¡ã…¡| 4
 		//|		     | 3
 		//|		     | 2
 		//|		     | 1
-		//|¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ| 0
+		//|ã…¡ã…¡ã…¡ã…¡ã…¡| 0
 		// 0 1 2 3 4
 
 		RwInt32 ArrayIdx = dGET_WORLD_PARAM()->WorldSectorVertNum * ZCnt + XCnt;

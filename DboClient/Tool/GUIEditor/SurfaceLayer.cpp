@@ -1,4 +1,4 @@
-// SurfaceLayer.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// SurfaceLayer.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -31,16 +31,16 @@ BEGIN_MESSAGE_MAP(CSurfaceLayer, CView)
 END_MESSAGE_MAP()
 
 
-// CSurfaceLayer ±×¸®±âÀÔ´Ï´Ù.
+// CSurfaceLayer ê·¸ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CSurfaceLayer::OnDraw(CDC* pDC)
 {
 	CDocument* pDoc = GetDocument();
-	// TODO: ¿©±â¿¡ ±×¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ê·¸ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 
-// CSurfaceLayer Áø´ÜÀÔ´Ï´Ù.
+// CSurfaceLayer ì§„ë‹¨ì…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CSurfaceLayer::AssertValid() const
@@ -55,13 +55,13 @@ void CSurfaceLayer::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CSurfaceLayer ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CSurfaceLayer ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CSurfaceLayer::OnInitialUpdate()
 {
 	CView::OnInitialUpdate();
 
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	m_RollUpCtrl.Create( WS_VISIBLE|WS_CHILD, CRect(0,1,190,400), this, IDD_ROLLUPPAGEID );
 
 	//m_RollUpCtrl.InsertPage( "File View", IDD_FILEVIEWDLG, RUNTIME_CLASS( CFileViewDlg ) );
@@ -78,7 +78,7 @@ void CSurfaceLayer::OnSize(UINT nType, int cx, int cy)
 {
 	CView::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	if( m_bInitialized )
 		m_RollUpCtrl.MoveWindow( 0, 0, cx, cy );
@@ -88,7 +88,7 @@ void CSurfaceLayer::OnSetFocus(CWnd* pOldWnd)
 {
 	CView::OnSetFocus(pOldWnd);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	//CLayerMisc::GetInstance().SetLayer( CLayerMisc::SURFACE_LAYER );
 }
 

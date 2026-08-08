@@ -1,7 +1,7 @@
 /******************************************************************************
 * File			: OptionBase.h
 * Author		: Cho Hae sung
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 10. 15 
 * Abstract		: 
 *****************************************************************************
@@ -17,7 +17,7 @@ class COptionWindowGui;
 
 /**
 * \ingroup Client
-* OptionWindow °¢ TabµéÀÇ Base
+* OptionWindow ê° Tabë“¤ì˜ Base
 */
 class COptionBase
 {
@@ -60,10 +60,10 @@ public:
 	virtual void		Hide();
 	virtual void		Update();
 
-	virtual void		OnInit()	= 0; // ÄÁÆ®·Ñ »ı¼º½Ã ¼³Á¤°ª
-	virtual void		OnReset()	= 0; // ÄÁÆ®·ÑÀ» ±âº»°ªÀ¸·Î º¯°æ. ½Ã½ºÅÛ °ªÀº º¯°æ µÇÁö ¾Ê´Â´Ù.
-	virtual void		OnOk()		= 0; // ÄÁÆ®·Ñ·Î ÁöÁ¤µÈ °ªÀ¸·Î ½Ã½ºÅÛ °ª º¯°æ
-	virtual void		OnCancel()	= 0; // ÇöÀçÀÇ ½Ã½ºÅÛ°ªÀ¸·Î  ÄÁÆ®·Ñ °ª ´Ù½Ã ¼³Á¤
+	virtual void		OnInit()	= 0; // ì»¨íŠ¸ë¡¤ ìƒì„±ì‹œ ì„¤ì •ê°’
+	virtual void		OnReset()	= 0; // ì»¨íŠ¸ë¡¤ì„ ê¸°ë³¸ê°’ìœ¼ë¡œ ë³€ê²½. ì‹œìŠ¤í…œ ê°’ì€ ë³€ê²½ ë˜ì§€ ì•ŠëŠ”ë‹¤.
+	virtual void		OnOk()		= 0; // ì»¨íŠ¸ë¡¤ë¡œ ì§€ì •ëœ ê°’ìœ¼ë¡œ ì‹œìŠ¤í…œ ê°’ ë³€ê²½
+	virtual void		OnCancel()	= 0; // í˜„ì¬ì˜ ì‹œìŠ¤í…œê°’ìœ¼ë¡œ  ì»¨íŠ¸ë¡¤ ê°’ ë‹¤ì‹œ ì„¤ì •
 	virtual void		OnHandleEvents(RWS::CMsg &pMsg)	= 0;
 
 	gui::CComponent*	GetComponent(const std::string& str);
@@ -84,7 +84,7 @@ public:
 #else
 
 /**
-* \brief ¿É¼Ç¿¡ ÄŞº¸¹Ú½º Ç×¸ñ
+* \brief ì˜µì…˜ì— ì½¤ë³´ë°•ìŠ¤ í•­ëª©
 */
 struct sOptionCombo
 {

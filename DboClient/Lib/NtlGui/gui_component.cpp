@@ -36,7 +36,7 @@ CComponent::CComponent(const CRectangle &rtPos, CComponent *pParent, CSurfaceMan
 
 CComponent::~CComponent()
 {
-	// GUI Manager pointer¸¦ ±¸ÇÑ´Ù.
+	// GUI Manager pointerë¥¼ êµ¬í•œë‹¤.
 	CComponent *pGuiMgr = GetGuiManager();
 	
 	if(IsPopup())
@@ -224,7 +224,7 @@ CRectangle CComponent::GetChildrenRect(VOID)
 	return rect;
 }
 
-// ¾Æ·¡¿¡ ÂïÈ÷´Â ÀÚ½ÄºÎÅÍ Ã£À½
+// ì•„ë˜ì— ì°íˆëŠ” ìì‹ë¶€í„° ì°¾ìŒ
 CComponent *CComponent::GetComponentAt(int nPosX, int nPosY)
 {
 	std::list<CComponent *>::reverse_iterator it;
@@ -247,7 +247,7 @@ CComponent *CComponent::GetComponentAt(int nPosX, int nPosY)
 	return this;
 }
 
-// À§¿¡ ÂïÈ÷´Â ÀÚ½ÄºÎÅÍ Ã£À½
+// ìœ„ì— ì°íˆëŠ” ìì‹ë¶€í„° ì°¾ìŒ
 CComponent *CComponent::GetComponentReverseAt(int nPosX, int nPosY)
 {
 	std::list<CComponent *>::iterator it;
@@ -507,7 +507,7 @@ VOID CComponent::SetTabID(int id)
 	m_pImpl->m_nTabID = id;
 }
 
-// 1. Priority º¯°æ½Ã º¯°æµÈ Priority Á¦ÀÏ ¾Õ¿¡ À§Ä¡ÇÏ°Ô µÈ´Ù. 
+// 1. Priority ë³€ê²½ì‹œ ë³€ê²½ëœ Priority ì œì¼ ì•ì— ìœ„ì¹˜í•˜ê²Œ ëœë‹¤. 
 VOID CComponent::SetPriority( WORD wPriority )
 {
 	if( wPriority == m_pImpl->m_wPriority )
@@ -837,9 +837,9 @@ VOID CComponent::ClearRemoveflag(VOID)
 	m_pImpl->m_bRemoveflag = false;
 }
 
-// 1. Priority°¡ °°Àº ³à¼®µéÁß Á¦ÀÏ¾Õ(°¡ÀåÀ§¿¡¶á´Ù.)¿¡ ³¢¿ö³Ö´Â´Ù.
-// 2. Priority°¡ ³·Àº ³à¼®µéÀº µÚ·Î º¸³½´Ù. 
-// 3. Priority°¡ ³ôÀº ³à¼®µéÀº ¾ÕÀ¸·Î º¸³½´Ù. 
+// 1. Priorityê°€ ê°™ì€ ë…€ì„ë“¤ì¤‘ ì œì¼ì•(ê°€ì¥ìœ„ì—ëœ¬ë‹¤.)ì— ë¼ì›Œë„£ëŠ”ë‹¤.
+// 2. Priorityê°€ ë‚®ì€ ë…€ì„ë“¤ì€ ë’¤ë¡œ ë³´ë‚¸ë‹¤. 
+// 3. Priorityê°€ ë†’ì€ ë…€ì„ë“¤ì€ ì•ìœ¼ë¡œ ë³´ë‚¸ë‹¤. 
 
 VOID CComponent::AddChild( CComponent* pChild )
 {
@@ -920,7 +920,7 @@ CComponent* CComponent::FindTabID(int nTabID)
 	return NULL;
 }
 
-// ÇöÀç Raise¿Í º°´Ù¸¥ Â÷ÀÌ °¡ ¾ø´Â ±â´ÉÀ» ÇÏ°í ÀÖÀ½. ÁÖ¼®Ã³¸®ÇÔ.
+// í˜„ì¬ Raiseì™€ ë³„ë‹¤ë¥¸ ì°¨ì´ ê°€ ì—†ëŠ” ê¸°ëŠ¥ì„ í•˜ê³  ìˆìŒ. ì£¼ì„ì²˜ë¦¬í•¨.
 VOID CComponent::TopTabOrder(CComponent *pComp)
 {
 	//std::list<CComponent*>::iterator it;
@@ -939,8 +939,8 @@ VOID CComponent::TopTabOrder(CComponent *pComp)
 	//m_pImpl->m_stlChildren.push_front(pComp);
 }
 
-// º° ÀÇ¹Ì ¾ø´Â ·ÎÁ÷À» ¼öÇàÇÏ°í ÀÖ¾î ÁÖ¼®Ã³¸®ÇÔ. 
-// pParent->TopTabOrder( this ); ·Î ÇØ¾ß ÇÔ.
+// ë³„ ì˜ë¯¸ ì—†ëŠ” ë¡œì§ì„ ìˆ˜í–‰í•˜ê³  ìˆì–´ ì£¼ì„ì²˜ë¦¬í•¨. 
+// pParent->TopTabOrder( this ); ë¡œ í•´ì•¼ í•¨.
 VOID CComponent::TopTabOrder(VOID)
 {
 //	CComponent *pParent = GetParent();
@@ -950,12 +950,12 @@ VOID CComponent::TopTabOrder(VOID)
 
 VOID CComponent::SetAlpha( unsigned char ucAlpha, BOOL bMemo /* = TRUE  */ )
 {
-	// ¼³Á¤°ª ÀúÀå
+	// ì„¤ì •ê°’ ì €ì¥
 	if( bMemo )
 		m_pImpl->m_ucAlpha = ucAlpha;
-	// ÀÚ½Å º¯°æ
+	// ìì‹  ë³€ê²½
 	m_pImpl->m_SigSetAlpha( ucAlpha );
-	// ÀÚ½Ä º¯°æ
+	// ìì‹ ë³€ê²½
 	for ( std::list<CComponent *>::iterator it = m_pImpl->m_stlChildren.begin() ; it != m_pImpl->m_stlChildren.end() ; ++it )
 	{
 		(*it)->SetAlpha( ucAlpha );
@@ -964,12 +964,12 @@ VOID CComponent::SetAlpha( unsigned char ucAlpha, BOOL bMemo /* = TRUE  */ )
 
 VOID CComponent::SetColor(unsigned char ucRed, unsigned char ucGreen, unsigned char ucBlue, BOOL bMemo /* = TRUE  */)
 {
-	// ¼³Á¤°ª ÀúÀå
+	// ì„¤ì •ê°’ ì €ì¥
 	if( bMemo )
 		m_pImpl->m_uiColor = RGB( ucRed, ucGreen, ucBlue );
-	// ÀÚ½Å º¯°æ
+	// ìì‹  ë³€ê²½
 	m_pImpl->m_SigSetColor( ucRed, ucGreen, ucBlue );
-	// ÀÚ½Ä º¯°æ
+	// ìì‹ ë³€ê²½
 	for ( std::list<CComponent *>::iterator it = m_pImpl->m_stlChildren.begin() ; it != m_pImpl->m_stlChildren.end() ; ++it )
 	{
 		(*it)->SetColor( ucRed, ucGreen, ucBlue );

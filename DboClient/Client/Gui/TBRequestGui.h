@@ -1,9 +1,9 @@
 /*****************************************************************************
 * File			: TBRequestGui.h
 * Author		: Haesung, Cho
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 10. 22
-* Abstract		: DBO ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ¼Ò½ÄÁö ¸®´º¾ó
+* Abstract		: DBO ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì†Œì‹ì§€ ë¦¬ë‰´ì–¼
 *****************************************************************************
 * Desc         : 
 *****************************************************************************/
@@ -16,7 +16,7 @@
 #include "NumberGui.h"
 #include "SurfaceGui.h"
 
-// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ½ÅÃ»¼­ GUI ½ºÅ©¸³Æ® ÆÄÀÏ
+// ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì‹ ì²­ì„œ GUI ìŠ¤í¬ë¦½íŠ¸ íŒŒì¼
 #define dTBREQUEST_GUI_FRAMEWORK_FILE		"gui\\TBRequestGui.frm"
 #define dTBREQUEST_GUI_SURFACE_FILE			"gui\\TBRequestGui.srf"
 
@@ -24,7 +24,7 @@
 
 /**
 * \ingroup client
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ½ÅÃ»¼­ GUI
+* \brief ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì‹ ì²­ì„œ GUI
 */
 class CTBRequestGui : public CNtlPLGui, public RWS::CEventHandler
 {
@@ -86,7 +86,7 @@ protected:
 	gui::CSlot			m_slotClickedBtnAccept;
 	gui::CSlot			m_slotClickedBtnCancel;
 	
-	// °³ÀÎ ½ÅÃ»¼­
+	// ê°œì¸ ì‹ ì²­ì„œ
 	gui::CDialog*		m_pDlgIndividual;
 	gui::CStaticBox*	m_pStbIndiName;
 	gui::CStaticBox*	m_pStbIndiNameDisplay;
@@ -101,7 +101,7 @@ protected:
 	gui::CStaticBox*	m_pStbIndiGuild;
 	gui::CStaticBox*	m_pStbIndiGuildDisplay;
 
-	// ÆÀ ½ÅÃ»¼­
+	// íŒ€ ì‹ ì²­ì„œ
 	gui::CDialog*		m_pDlgTeam;
 	gui::CStaticBox*	m_pStbTeamName;
 	gui::CInputBox*		m_pIpbTeamName;
@@ -110,7 +110,7 @@ protected:
 	gui::CStaticBox*	m_paMemberLevel[dTBREQUEST_TEAM_MEMBER];
 	gui::CStaticBox*	m_paMemberRankingPoint[dTBREQUEST_TEAM_MEMBER];
 
-	// °³ÀÎ Á¢¼öÁõ
+	// ê°œì¸ ì ‘ìˆ˜ì¦
 	gui::CDialog*		m_pDlgIndiTicket;
 	gui::CStaticBox*	m_pStbTicketGuide;
 	gui::CStaticBox*	m_pStbTicketNumber;
@@ -120,7 +120,7 @@ protected:
 	gui::CStaticBox*	m_pStbDojoRecommned;
 	std::string			m_strEmblemTextureName;
 
-	// ÆÀ Á¢¼öÁõ
+	// íŒ€ ì ‘ìˆ˜ì¦
 	gui::CDialog*		m_pDlgTeamTicket;
 	gui::CStaticBox*	m_pStbTicketTeamGuide;
 	gui::CStaticBox*	m_pStbTicketTeamNumber;

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <PropertyGroup Condition="'$(Configuration)'=='Release' And '$(Platform)'=='x64'">
+    <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    <OutDir>$(MSBuildThisFileDirectory)..\Lib\Release_x64\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Release' And '$(Platform)'=='x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory);$(MSBuildThisFileDirectory)plcore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release' And '$(Platform)'=='Win32'">
+    <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    <OutDir>$(MSBuildThisFileDirectory)..\Lib\Release\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Release' And '$(Platform)'=='Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>NOASM;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)d3d9;$(ProjectDir)win;$(MSBuildThisFileDirectory)rpltmap;$(MSBuildThisFileDirectory);$(MSBuildThisFileDirectory)win;$(MSBuildThisFileDirectory)d3d9;$(MSBuildThisFileDirectory)pipe\p2;$(MSBuildThisFileDirectory)plcore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+</Project>

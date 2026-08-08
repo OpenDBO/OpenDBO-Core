@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------------------
 // Name: class CDevILMFCMemDC
-// Desc: DevIL SDK¸¦ ÀÌ¿ëÇÏ¿© MFCMemDC¿¡ ¶ç¿î´Ù.
+// Desc: DevIL SDKë¥¼ ì´ìš©í•˜ì—¬ MFCMemDCì— ë„ìš´ë‹¤.
 //
 //			 
 // 2006.01.16 Peessi@hitel.net  
@@ -14,8 +14,8 @@
 
 class CDevILMFCMemDC : public CDevIL
 {
-	CKMMemDC	m_MemDCalpha;		// ¾ËÆÄ°ª ÀúÀå
-	CKMMemDC	m_MemDCimage;		// ÇÈ¼¿°ª ÀúÀå
+	CKMMemDC	m_MemDCalpha;		// ì•ŒíŒŒê°’ ì €ì¥
+	CKMMemDC	m_MemDCimage;		// í”½ì…€ê°’ ì €ì¥
 
 	BOOL		m_bShowAlpha;
 	CString		m_strFilename;

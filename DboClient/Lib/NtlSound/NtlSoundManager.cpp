@@ -71,7 +71,7 @@ void CNtlSoundManager::Init(const char* pcPath, float fMasterVolume /* = 1.0 */,
 	m_iDebugFlag =_CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 #endif
 
-	// »ç¿îµå ÆÄÀÏÀÇ °æ·Î ÁöÁ¤
+	// 사운드 파일의 경로 지정
 	CNtlSoundGlobal::m_strFilePath = pcPath;
 
 
@@ -125,7 +125,7 @@ void CNtlSoundManager::Init(const char* pcPath, float fMasterVolume /* = 1.0 */,
 
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// FMOD::SystemÀ¸·Î ºÎÅÍ MasterChannelGroup ¾ò¾î¿À±â
+	// FMOD::System으로 부터 MasterChannelGroup 얻어오기
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	result = CNtlSoundGlobal::m_pFMODSystem->getMasterChannelGroup(&m_pMasterChannelGroup);
 	if( result != FMOD_OK )
@@ -161,13 +161,13 @@ void CNtlSoundManager::CreateChannelGroups()
 	FMOD::ChannelGroup *m_pFMODChannelGroup;
 
 	// so that changing the order of eChannelGroupType in NtlSoundDefines.h will not affect
-	// create a class against each index Õë¶ÔÃ¿¸öË÷Òý´´½¨Ò»¸öÀà
+	// create a class against each index 濾뚤첼몸乞多눼쉔寧몸잚
 	for( RwUInt8 i = CHANNEL_GROUP_FIRST ; i < NUM_CHANNEL_GROUP ; ++i )
 	{
 		if( i == CHANNEL_GROUP_UI_SOUND )
 		{
 			m_apChannelGroup[i] = NTL_NEW CNtlChannelGroup(CHANNEL_GROUP_UI_SOUND);
-			CNtlSoundGlobal::m_pFMODSystem->createChannelGroup("CHANNEL_GROUP_UI_SOUND", &m_pFMODChannelGroup);	// »õ·Î¿î FMOD::ChannelGroup À» »ý¼ºÇÑ´Ù
+			CNtlSoundGlobal::m_pFMODSystem->createChannelGroup("CHANNEL_GROUP_UI_SOUND", &m_pFMODChannelGroup);	// 새로운 FMOD::ChannelGroup 을 생성한다
 			m_pMasterChannelGroup->addGroup(m_pFMODChannelGroup);				// MasterChannelÀÇ subGroupÀ¸·Î µî·Ï
 			m_apChannelGroup[i]->Create(m_pFMODChannelGroup, 0);				// CNtlChannelGroup ÃÊ±âÈ­
 		}
@@ -386,7 +386,7 @@ int CNtlSoundManager::Play(sNtlSoundPlayParameta* pParameta)
 
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////
-	// Sound µ¥ÀÌÅÍ ÃÊ±âÈ­
+	// Sound 데이터 초기화
 	///////////////////////////////////////////////////////////////////////////////////////////////////////
 	CNtlSound* pSound = NTL_NEW CNtlSound(Logic_GetNewSoundHandle(), pParameta->pcFileName );
 	pSound->m_iChannelGroup				= pParameta->iChannelGroup;
@@ -424,6 +424,22 @@ int CNtlSoundManager::Play(sNtlSoundPlayParameta* pParameta)
 		break;
 		case CHANNEL_GROUP_AVATAR_VOICE_SOUND:
 		case CHANNEL_GROUP_AVATAR_EFFECT_SOUND:
+		{
+			unsigned int iCount = 0;
+
+			iCount += m_apChannelGroup[CHANNEL_GROUP_AVATAR_VOICE_SOUND]->GetPlayingChannels();
+			iCount += m_apChannelGroup[CHANNEL_GROUP_AVATAR_EFFECT_SOUND]->GetPlayingChannels();
+			iCount += m_apChannelGroup[CHANNEL_GROUP_VOICE_SOUND]->GetPlayingChannels();
+			iCount += m_apChannelGroup[CHANNEL_GROUP_EFFECT_SOUND]->GetPlayingChannels();
+			if( iCount >= MAX_EFFECT_CHANNELS )
+			{
+				pSound->Release();
+				return SOUNDRESULT_MAX_EFFECT_CHANNELS;
+			}
+
+			result = API_Create_Sound(pSound, pParameta, d2D_SOUND_MODE, fullName);
+		}
+		break;
 		case CHANNEL_GROUP_VOICE_SOUND:
 		case CHANNEL_GROUP_EFFECT_SOUND:
 		{
@@ -433,7 +449,6 @@ int CNtlSoundManager::Play(sNtlSoundPlayParameta* pParameta)
 			iCount += m_apChannelGroup[CHANNEL_GROUP_AVATAR_EFFECT_SOUND]->GetPlayingChannels();
 			iCount += m_apChannelGroup[CHANNEL_GROUP_VOICE_SOUND]->GetPlayingChannels();
 			iCount += m_apChannelGroup[CHANNEL_GROUP_EFFECT_SOUND]->GetPlayingChannels();
-			//DBO_WARNING_MESSAGE("EFFECT SOUNDS: " << iCount);
 			if( iCount >= MAX_EFFECT_CHANNELS )
 			{
 				pSound->Release();
@@ -500,8 +515,6 @@ int CNtlSoundManager::Play(sNtlSoundPlayParameta* pParameta)
 
 	switch(pSound->m_iChannelGroup)
 	{
-			case CHANNEL_GROUP_AVATAR_VOICE_SOUND:
-			case CHANNEL_GROUP_AVATAR_EFFECT_SOUND:
 			case CHANNEL_GROUP_VOICE_SOUND:
 			case CHANNEL_GROUP_EFFECT_SOUND:
 			case CHANNEL_GROUP_OBJECT_MUSIC:
@@ -562,7 +575,7 @@ int CNtlSoundManager::ReplayEnvironmentSound(CNtlSound* pSound)
 	if( !CNtlSoundGlobal::m_pFMODSystem )
 		return SOUNDRESULT_OK;
 	/*
-	// ÇÃ·¹ÀÌ À§Ä¡ ·Î±×¸¦ ÂïÀ» ¶§
+	// 플레이 위치 로그를 찍을 때
 	char pcResult[256] = "";
 	sprintf_s(pcResult, "Group : %s, File : %s, X : %f, Y : %f, Z : %f, Volmue : %f, mix : %f, max : %f\n",
 	GetChannelGroupName(iChannelGroup), pcName, fXPos, fYPos, fZPos, fVolume, fMinDistance, fMaxDistance);
@@ -571,7 +584,7 @@ int CNtlSoundManager::ReplayEnvironmentSound(CNtlSound* pSound)
 
 	FMOD_RESULT		result;
 
-	// »õ·Î¿î »ç¿îµå¸¦ ÇÃ·¹ÀÌ ÇÒ ¼ö ÀÖ´Â »óÈ²ÀÎÁö Ã¼Å©
+	// 새로운 사운드를 플레이 할 수 있는 상황인지 체크
 	int iResult = CanPlay(CHANNEL_GROUP_OBJECT_MUSIC, pSound->m_strName.c_str(), pSound->m_fXPos, pSound->m_fYPos, pSound->m_fZPos);
 	if( iResult != SOUNDRESULT_OK )
 	{
@@ -582,7 +595,7 @@ int CNtlSoundManager::ReplayEnvironmentSound(CNtlSound* pSound)
 
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////
-	// Sound¸¦ ºÒ·¯µéÀÎ´Ù
+	// Sound를 불러들인다
 	///////////////////////////////////////////////////////////////////////////////////////////////////////
 	CNtlObjectGroup* pEnvironmentGroup = reinterpret_cast<CNtlObjectGroup*>(m_apChannelGroup[CHANNEL_GROUP_OBJECT_MUSIC]);
 	if (LengthFromListenerToSound(pSound->m_fXPos, pSound->m_fYPos, pSound->m_fZPos) > pSound->m_fMaxDistance)
@@ -628,9 +641,9 @@ int CNtlSoundManager::ReplayEnvironmentSound(CNtlSound* pSound)
 	}
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////
-	// Sound¸¦ ¿¬ÁÖÇÑ´Ù
+	// Sound를 연주한다
 	///////////////////////////////////////////////////////////////////////////////////////////////////////
-	// 3¹øÂ° ÀÎÀÚ¸¦ true¸¦ ÁÖ¾î ¸ðµç »ç¿îµåÀÇ ¼¼ÆÃÀÌ ³¡³¯ ¶§ ±îÁö »ç¿îµå ÇÃ·¹ÀÌ¸¦ ÇÏÁö ¾Ê´Â´Ù.
+	// 3번째 인자를 true를 주어 모든 사운드의 세팅이 끝날 때 까지 사운드 플레이를 하지 않는다.
 	result = CNtlSoundGlobal::m_pFMODSystem->playSound(pSound->m_pFMODSound, 0, true, &(pSound->m_pFMODChannel) );
 	if( result != FMOD_OK )
 	{
@@ -647,7 +660,7 @@ int CNtlSoundManager::ReplayEnvironmentSound(CNtlSound* pSound)
 	pSound->SetMinMax(pSound->m_fMinDistance, pSound->m_fMaxDistance);
 
 
-	// ½ÇÁ¦·Î »ç¿îµå¸¦ ÇÃ·¹ÀÌ ÇÑ´Ù.
+	// 실제로 사운드를 플레이 한다.
 	pSound->m_pFMODChannel->setPaused(false);
 
 
@@ -656,13 +669,13 @@ int CNtlSoundManager::ReplayEnvironmentSound(CNtlSound* pSound)
 	pSound->m_strName = pSound->m_strName;
 
 
-	// Channel Group¿¡ ¿¬ÁÖÁ¤º¸¸¦ ÀúÀåÇÑ´Ù
+	// Channel Group에 연주정보를 저장한다
 	eStoreResult EStoreResult = m_apChannelGroup[CHANNEL_GROUP_OBJECT_MUSIC]->StoreSound(pSound, NULL);
 	switch( EStoreResult )
 	{
 		case STORE_READY_TO_PLAY:
 		{
-			// ½ÇÁ¦·Î »ç¿îµå¸¦ ÇÃ·¹ÀÌ ÇÑ´Ù.
+			// 실제로 사운드를 플레이 한다.
 			pSound->m_pFMODChannel->setPaused(false);
 			break;
 		}
@@ -729,9 +742,9 @@ void CNtlSoundManager::Stop(SOUND_HANDLE& rHandle)
 			break;
 	}
 
-	// »ç¿îµå ÇÚµéÀÌ °¡Áö°í ÀÖ´Â sNtlSoundÀÇ µ¥ÀÌÅÍÀÇ ¹«°á¼ºÀº º¸ÀåÇÏÁö ¾Ê´Â´Ù.
-	// °¡Áö°í ÀÖ´Â »ç¿îµå ÇÚµé¿¡ ÇØ´çÇÏ´Â sNtlSoundÀÇ ÇÃ·¹ÀÌ°¡ ³¡³ª¼­ µ¥ÀÌÅÍ°¡ Á¸ÀçÇÏÁö ¾ÊÀ» ¼öµµ ÀÖ´Ù.
-	// ¾îÂ¶µç StopÀ» È£ÃâÇÏ¸é INVALID_SOUND_HANDLEÀ» ³Ö¾îÁÖÀÚ
+	// 사운드 핸들이 가지고 있는 sNtlSound의 데이터의 무결성은 보장하지 않는다.
+	// 가지고 있는 사운드 핸들에 해당하는 sNtlSound의 플레이가 끝나서 데이터가 존재하지 않을 수도 있다.
+	// 어쨋든 Stop을 호출하면 INVALID_SOUND_HANDLE을 넣어주자
 	rHandle = INVALID_SOUND_HANDLE;
 }
 
@@ -890,7 +903,7 @@ const char* CNtlSoundManager::GetSoundName(SOUND_HANDLE hHandle)
 
 	for( int i = CHANNEL_GROUP_FIRST ; i < NUM_CHANNEL_GROUP ; ++i )
 	{
-		// ¾îÂ÷ÇÇ ¾î¶² Ã¤³Î ±×·ìÀÎÁö¸¦ ¾Ë¾Æ¾ß ÇÏ±â¿¡ °¢°¢ÀÇ Ã¤³Î ±×·ìÀ» °Ë»öÇØ¾ß ÇÑ´Ù
+		// 어차피 어떤 채널 그룹인지를 알아야 하기에 각각의 채널 그룹을 검색해야 한다
 		CNtlSound* pSound = m_apChannelGroup[i]->GetSound(hHandle);
 		if(pSound)
 		{
@@ -1116,9 +1129,9 @@ int CNtlSoundManager::CanPlay(sNtlSoundPlayParameta* pParameta)
 	CNtlSoundGlobal::m_pFMODSystem->getChannelsPlaying(&iChannelCount);
 
 	if( iChannelCount  >= MAX_DBO_CHANNELS )
-	{	// Á¦ÇÑµÈ ÃÖ´ë Ã¤³Î °¹¼ö¸¦ ³Ñ¾ú´Ù. ¿ì¼± ¼øÀ§°¡ ³·Àº Ã¤³ÎÀ» Á¦¿Ü½ÃÅ²´Ù.
+	{	// 제한된 최대 채널 갯수를 넘었다. 우선 순위가 낮은 채널을 제외시킨다.
 		int iLowRankChannelGroup = NUM_CHANNEL_GROUP - 1;
-		unsigned int uiCurChannelCount; // Ã¤³Î ±×·ì¿¡ ¼ÓÇÑ ÇÃ·¹ÀÌÁßÀÎ Ã¤³Î
+		unsigned int uiCurChannelCount; // 채널 그룹에 속한 플레이중인 채널
 
 		for( ; iLowRankChannelGroup > pParameta->iChannelGroup &&
 			iLowRankChannelGroup > CHANNEL_GROUP_AMBIENT_MUSIC ; --iLowRankChannelGroup )
@@ -1126,7 +1139,7 @@ int CNtlSoundManager::CanPlay(sNtlSoundPlayParameta* pParameta)
 			uiCurChannelCount = m_apChannelGroup[iLowRankChannelGroup]->GetPlayingChannels();
 
 			if( uiCurChannelCount > 0 )
-			{	// ÇÏÀ§ ±×·ì¿¡ ÇÃ·¹ÀÌÁßÀÎ Ã¤³ÎÀÌ ÀÖ´Ù¸é °­Á¦ Release ½ÃÅ²´Ù.
+			{	// 하위 그룹에 플레이중인 채널이 있다면 강제 Release 시킨다.
 				if( m_apChannelGroup[iLowRankChannelGroup]->ReleaseLowRankChannel() )
 					return SOUNDRESULT_OK;
 			}
@@ -1153,7 +1166,7 @@ int CNtlSoundManager::CanPlay(int iChannelGroups, const char* pcName, float fPos
 		return SOUNDRESULT_EMPTY_FILENAME;
 	}
 
-	// °¢ Ã¤³Î±×·ìº° ¿¬ÁÖ °¡´ÉÇÑ Áö¿ª ¹üÀ§ÀÇ »ç¿îµåÀÎÁö °Ë»ç
+	// 각 채널그룹별 연주 가능한 지역 범위의 사운드인지 검사
 	if( !IsValidGroupRange(iChannelGroups, fPosX, fPosY, fPosZ) )
 	{
 #ifdef SOUND_DEBUG_LOG
@@ -1169,17 +1182,17 @@ int CNtlSoundManager::CanPlay(int iChannelGroups, const char* pcName, float fPos
 	if( iResult != SOUNDRESULT_OK )
 		return iResult;
 
-	// ´õ ÀÌ»ó ¿©ºÐÀÇ Ã¤³ÎÀÌ ¾øÀ» ½Ã
-	// °¡Àå ÇÏÀ§ Ã¤³Î ±×·ìÀÇ ÀÓÀÇÀÇ Ã¤³ÎÀ» Áß´Ü½ÃÅ°°í »õ·Î¿î »ç¿îµå¸¦ ÇÃ·¹ÀÌ
-	// ÇÑ´Ù. »õ·Î ÇÃ·¹ÀÌÇÏ·Á´Â »ç¿îµå°¡ ÃÖÇÏÀ§ ±×·ìÀÌ¶ó¸é ÇÃ·¹ÀÌµÇÁö ¾Ê´Â´Ù.
-	// ¶ÇÇÑ Jingle Music, BGM ±×·ìÀº ¿ì¼±¼øÀ§¿¡ ¿µÇâÀ» ¹Þ¾Æ Áß´ÜµÇÁö ¾Ê´Â´Ù.
+	// 더 이상 여분의 채널이 없을 시
+	// 가장 하위 채널 그룹의 임의의 채널을 중단시키고 새로운 사운드를 플레이
+	// 한다. 새로 플레이하려는 사운드가 최하위 그룹이라면 플레이되지 않는다.
+	// 또한 Jingle Music, BGM 그룹은 우선순위에 영향을 받아 중단되지 않는다.
 	int iChannelCount = 0;
 	CNtlSoundGlobal::m_pFMODSystem->getChannelsPlaying(&iChannelCount);
 
 	if( iChannelCount  >= MAX_DBO_CHANNELS )
-	{	// Á¦ÇÑµÈ ÃÖ´ë Ã¤³Î °¹¼ö¸¦ ³Ñ¾ú´Ù. ¿ì¼± ¼øÀ§°¡ ³·Àº Ã¤³ÎÀ» Á¦¿Ü½ÃÅ²´Ù.
+	{	// 제한된 최대 채널 갯수를 넘었다. 우선 순위가 낮은 채널을 제외시킨다.
 		int iLowRankChannelGroup = NUM_CHANNEL_GROUP - 1;
-		unsigned int uiCurChannelCount; // Ã¤³Î ±×·ì¿¡ ¼ÓÇÑ ÇÃ·¹ÀÌÁßÀÎ Ã¤³Î
+		unsigned int uiCurChannelCount; // 채널 그룹에 속한 플레이중인 채널
 
 		for( ; iLowRankChannelGroup > iChannelGroups &&
 			iLowRankChannelGroup > CHANNEL_GROUP_AMBIENT_MUSIC ; --iLowRankChannelGroup )
@@ -1187,7 +1200,7 @@ int CNtlSoundManager::CanPlay(int iChannelGroups, const char* pcName, float fPos
 			uiCurChannelCount = m_apChannelGroup[iLowRankChannelGroup]->GetPlayingChannels();
 
 			if( uiCurChannelCount > 0 )
-			{	// ÇÏÀ§ ±×·ì¿¡ ÇÃ·¹ÀÌÁßÀÎ Ã¤³ÎÀÌ ÀÖ´Ù¸é °­Á¦ Release ½ÃÅ²´Ù.
+			{	// 하위 그룹에 플레이중인 채널이 있다면 강제 Release 시킨다.
 				if( m_apChannelGroup[iLowRankChannelGroup]->ReleaseLowRankChannel() )
 					return SOUNDRESULT_OK;
 			}

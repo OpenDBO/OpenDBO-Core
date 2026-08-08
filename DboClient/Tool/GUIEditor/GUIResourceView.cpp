@@ -1,4 +1,4 @@
-// GUIResourceView.cpp : CGUIResourceView Å¬·¡½ºÀÇ ±¸Çö
+// GUIResourceView.cpp : CGUIResourceView í´ë˜ìŠ¤ì˜ êµ¬í˜„
 //
 
 #include "stdafx.h"
@@ -39,11 +39,11 @@ BEGIN_MESSAGE_MAP(CGUIResourceView, CScrollView)
 	ON_WM_KEYDOWN()
 END_MESSAGE_MAP()
 
-// CGUIResourceView »ı¼º/¼Ò¸ê
+// CGUIResourceView ìƒì„±/ì†Œë©¸
 
 CGUIResourceView::CGUIResourceView()
 {
-	// TODO: ¿©±â¿¡ »ı¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ìƒì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	m_ptRBtnDown = CPoint( 0, 0 );
 	m_bInitialized = FALSE;
 }
@@ -54,13 +54,13 @@ CGUIResourceView::~CGUIResourceView()
 
 BOOL CGUIResourceView::PreCreateWindow(CREATESTRUCT& cs)
 {
-	// TODO: CREATESTRUCT cs¸¦ ¼öÁ¤ÇÏ¿© ¿©±â¿¡¼­
-	// Window Å¬·¡½º ¶Ç´Â ½ºÅ¸ÀÏÀ» ¼öÁ¤ÇÕ´Ï´Ù.
+	// TODO: CREATESTRUCT csë¥¼ ìˆ˜ì •í•˜ì—¬ ì—¬ê¸°ì—ì„œ
+	// Window í´ë˜ìŠ¤ ë˜ëŠ” ìŠ¤íƒ€ì¼ì„ ìˆ˜ì •í•©ë‹ˆë‹¤.
 
 	return CScrollView::PreCreateWindow(cs);
 }
 
-// CGUIResourceView ±×¸®±â
+// CGUIResourceView ê·¸ë¦¬ê¸°
 
 void CGUIResourceView::OnDraw(CDC* pDC)
 {
@@ -69,7 +69,7 @@ void CGUIResourceView::OnDraw(CDC* pDC)
 	if (!pDoc)
 		return;
 
-	// TODO: ¿©±â¿¡ ¿ø½Ã µ¥ÀÌÅÍ¿¡ ´ëÇÑ ±×¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì›ì‹œ ë°ì´í„°ì— ëŒ€í•œ ê·¸ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	g_DevILImage.DrawMemDC( m_dcBuffer.GetMDC(), 0, 0 );
 	m_selectBox.Erase();
 
@@ -86,14 +86,14 @@ void CGUIResourceView::OnDraw(CDC* pDC)
 	//pDlg->SetOffset( m_CoordMgr.GetOffset() );
 	pDlg->SetSelectedRect( CRect( m_selectBox.GetCurRect() ) );
 
-	m_dcBuffer.FillColor();	// ¹öÆÛ Áö¿ì±â.
+	m_dcBuffer.FillColor();	// ë²„í¼ ì§€ìš°ê¸°.
 }
 
 void CGUIResourceView::OnInitialUpdate()
 {
 	CScrollView::OnInitialUpdate();
 	CSize sizeTotal;
-	// TODO: ÀÌ ºäÀÇ ÀüÃ¼ Å©±â¸¦ °è»êÇÕ´Ï´Ù.
+	// TODO: ì´ ë·°ì˜ ì „ì²´ í¬ê¸°ë¥¼ ê³„ì‚°í•©ë‹ˆë‹¤.
 	sizeTotal.cx = sizeTotal.cy = 100;
 	SetScrollSizes(MM_TEXT, sizeTotal);
 
@@ -101,7 +101,7 @@ void CGUIResourceView::OnInitialUpdate()
 }
 
 
-// CGUIResourceView Áø´Ü
+// CGUIResourceView ì§„ë‹¨
 
 #ifdef _DEBUG
 void CGUIResourceView::AssertValid() const
@@ -114,7 +114,7 @@ void CGUIResourceView::Dump(CDumpContext& dc) const
 	CScrollView::Dump(dc);
 }
 
-CGUIEditorDoc* CGUIResourceView::GetDocument() const // µğ¹ö±×µÇÁö ¾ÊÀº ¹öÀüÀº ÀÎ¶óÀÎÀ¸·Î ÁöÁ¤µË´Ï´Ù.
+CGUIEditorDoc* CGUIResourceView::GetDocument() const // ë””ë²„ê·¸ë˜ì§€ ì•Šì€ ë²„ì „ì€ ì¸ë¼ì¸ìœ¼ë¡œ ì§€ì •ë©ë‹ˆë‹¤.
 {
 	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CGUIEditorDoc)));
 	return (CGUIEditorDoc*)m_pDocument;
@@ -122,12 +122,12 @@ CGUIEditorDoc* CGUIResourceView::GetDocument() const // µğ¹ö±×µÇÁö ¾ÊÀº ¹öÀüÀº À
 #endif //_DEBUG
 
 
-// CGUIResourceView ¸Ş½ÃÁö Ã³¸®±â
+// CGUIResourceView ë©”ì‹œì§€ ì²˜ë¦¬ê¸°
 
 
 void CGUIResourceView::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if( nFlags & MK_RBUTTON )
 	{
 		
@@ -140,7 +140,7 @@ void CGUIResourceView::OnLButtonDown(UINT nFlags, CPoint point)
 	m_selectBox.BoxBegin( fixpoint );
 	m_selectBox.Draw( fixpoint );
 
-	// ¿©¹é °ø°£À§Ä¡½Ã ÀÌµ¿
+	// ì—¬ë°± ê³µê°„ìœ„ì¹˜ì‹œ ì´ë™
 	SetTimer( 0, 40, NULL );
 
 	Invalidate( FALSE );
@@ -152,7 +152,7 @@ void CGUIResourceView::OnSize(UINT nType, int cx, int cy)
 {
 	CScrollView::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if( m_dcBuffer.GetMDC() )
 		m_dcBuffer.Delete();
 
@@ -169,7 +169,7 @@ void CGUIResourceView::OnSize(UINT nType, int cx, int cy)
 
 void CGUIResourceView::OnMouseMove(UINT nFlags, CPoint point)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if( nFlags == MK_LBUTTON )
 	{
 		CPoint fixpoint;
@@ -206,17 +206,17 @@ void CGUIResourceView::OnMouseMove(UINT nFlags, CPoint point)
 
 void CGUIResourceView::OnLButtonUp(UINT nFlags, CPoint point)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	m_selectBox.BoxEnd();
 	KillTimer( 0 );
 
-	// ¼Ó¼ºÃ¢¿¡ ¼±ÅÃ¹Ú½º Á¤º¸ Ãâ·Â.
+	// ì†ì„±ì°½ì— ì„ íƒë°•ìŠ¤ ì •ë³´ ì¶œë ¥.
 	UpdateRectInfo();
 
-	// Debug View¿¡ ¼±ÅÃ¿µ¿ª ¼³Á¤
+	// Debug Viewì— ì„ íƒì˜ì—­ ì„¤ì •
 	//ShowSelected();
 
-	// ÀÌ¸§ ºñ¿ì±â.
+	// ì´ë¦„ ë¹„ìš°ê¸°.
 	CSurfaceLayer* pLayer = (CSurfaceLayer*)CLayerMisc::GetInstance().GetLayer( CLayerMisc::SURFACE_LAYER );
 	CSurfaceAttributeDlg* pDlg = (CSurfaceAttributeDlg*)pLayer->GetRollupDlg( CSurfaceLayer::SURFACEATTRIBUTEDLG );
 	pDlg->SetName( CString( "" ) );
@@ -239,7 +239,7 @@ int CGUIResourceView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 BOOL CGUIResourceView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	m_CoordMgr.SetMouseDelta( -zDelta );
 	Invalidate( TRUE );	
 
@@ -259,7 +259,7 @@ BOOL CGUIResourceView::LoadImage( CString& strFullPath, CString& strFileName )
 	//m_CoordMgr.Reset();
 	m_CoordMgr.SetImageRect( CRect( 0, 0, g_DevILImage.GetWidth(), g_DevILImage.GetHeight() ) );
 
-	//¼Ó¼ºÃ¢¿¡ ÆÄÀÏÀÌ¸§ Ãâ·Â.
+	//ì†ì„±ì°½ì— íŒŒì¼ì´ë¦„ ì¶œë ¥.
 	CResourceLayer* pLayer = (CResourceLayer*)CLayerMisc::GetInstance().GetLayer( CLayerMisc::RESOURCE_LAYER );
 	CResourceAttributeDlg* pDlg = (CResourceAttributeDlg*)pLayer->GetRollupDlg( CResourceLayer::RESOURCEATTRIBUTEDLG );
 	pDlg->SetBlank();
@@ -278,7 +278,7 @@ BOOL CGUIResourceView::LoadImage( CString& strFullPath, CString& strFileName )
 
 void CGUIResourceView::OnTimer(UINT nIDEvent)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if( nIDEvent == 0 )
 	{
 		CPoint point;
@@ -295,7 +295,7 @@ void CGUIResourceView::OnTimer(UINT nIDEvent)
 
 void CGUIResourceView::OnRButtonUp(UINT nFlags, CPoint point)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	ReleaseCapture();
 	m_ptRBtnDown = CPoint( 0, 0 );
@@ -305,7 +305,7 @@ void CGUIResourceView::OnRButtonUp(UINT nFlags, CPoint point)
 
 void CGUIResourceView::OnRButtonDown(UINT nFlags, CPoint point)
 {
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	if( nFlags & MK_LBUTTON )
 		return;
 
@@ -319,7 +319,7 @@ void CGUIResourceView::OnDestroy()
 {
 	CScrollView::OnDestroy();
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 void CGUIResourceView::ResizeBuffer()
@@ -341,7 +341,7 @@ void CGUIResourceView::ResizeBuffer()
 
     m_dcBuffer.Create( this, cx, cy );
 
-	// ¼±ÅÃ¹Ú½º ¿µ¿ªµµ Á¶Á¤.
+	// ì„ íƒë°•ìŠ¤ ì˜ì—­ë„ ì¡°ì •.
 	m_selectBox.SetDC( m_dcBuffer.GetMDC() );
 	m_selectBox.UpdateClientSize( g_DevILImage.GetWidth(), g_DevILImage.GetHeight() );
 }

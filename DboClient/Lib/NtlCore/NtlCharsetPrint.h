@@ -2,7 +2,7 @@
  *
  * File			: NtlCharsetPrint.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 10. 11	
  * Abstract		: screen display charset print
  *****************************************************************************

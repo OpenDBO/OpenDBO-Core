@@ -26,38 +26,38 @@ public:
 public:
     static CTreePCPane* GetInstance() {return m_pInstance;};
 
-    virtual void SetModel(CMTCharacter* pCharacter); ///< »ç¿ëÇÒ ¸ðµ¨À» ¼±ÅÃÇÑ´Ù.
-    void   OnDataChanged();                          ///< Ä³¸¯ÅÍ µ¥ÀÌÅÍ°¡ º¯°æµÇ¾úÀ»¶§ È£ÃâµÈ´Ù.
-    void   OnShowSaveForChanges();                  ///< Á¾·áÇÏ±âÀü¿¡ º¯°æµÈ°ÍÀ» ÀúÀåÇÒ°ÍÀÎÁö ¹°¾îº»´Ù.
+    virtual void SetModel(CMTCharacter* pCharacter); ///< ì‚¬ìš©í•  ëª¨ë¸ì„ ì„ íƒí•œë‹¤.
+    void   OnDataChanged();                          ///< ìºë¦­í„° ë°ì´í„°ê°€ ë³€ê²½ë˜ì—ˆì„ë•Œ í˜¸ì¶œëœë‹¤.
+    void   OnShowSaveForChanges();                  ///< ì¢…ë£Œí•˜ê¸°ì „ì— ë³€ê²½ëœê²ƒì„ ì €ìž¥í• ê²ƒì¸ì§€ ë¬¼ì–´ë³¸ë‹¤.
 
 protected:
-    virtual void InitClass();                            ///< °¢ Å¬·¡½º¿¡ ¸Â´Â ÃÊ±âÈ­
+    virtual void InitClass();                            ///< ê° í´ëž˜ìŠ¤ì— ë§žëŠ” ì´ˆê¸°í™”
 
-    // Tree ³»¿ë ÀúÀå °ü·Ã
-    RwBool LoadTreeXML(const CHAR* szXmlFileName);  ///< Æ®¸®±¸Á¶¸¦ ÀúÀåÇÏ°í ÀÖ´Â XML ÆÄÀÏÀ» ·ÎµùÇÑ´Ù.    
-    void   GetAllChildNode(HTREEITEM hItem, TREEITEM_VECTOR& vTreeItem); ///< Àç±Í¸¦ µ¹¸é¼­ ¸ðµç ÀÚ½Ä ¾ÆÀÌÅÛÀ» Ã£´Â´Ù.
-    RwBool SaveTreeXML(const CHAR* szXmlFileName);  ///< Æ®¸®±¸Á¶¸¦ XML ÆÄÀÏ¿¡ ÀúÀåÇÑ´Ù.    
+    // Tree ë‚´ìš© ì €ìž¥ ê´€ë ¨
+    RwBool LoadTreeXML(const CHAR* szXmlFileName);  ///< íŠ¸ë¦¬êµ¬ì¡°ë¥¼ ì €ìž¥í•˜ê³  ìžˆëŠ” XML íŒŒì¼ì„ ë¡œë”©í•œë‹¤.    
+    void   GetAllChildNode(HTREEITEM hItem, TREEITEM_VECTOR& vTreeItem); ///< ìž¬ê·€ë¥¼ ëŒë©´ì„œ ëª¨ë“  ìžì‹ ì•„ì´í…œì„ ì°¾ëŠ”ë‹¤.
+    RwBool SaveTreeXML(const CHAR* szXmlFileName);  ///< íŠ¸ë¦¬êµ¬ì¡°ë¥¼ XML íŒŒì¼ì— ì €ìž¥í•œë‹¤.    
 
-    RwBool OnSetClump();                             ///< ¸ðµ¨ÀÇ Clump¸¦ º¯°æÇÑ´Ù.
-    RwBool OnSaveScript(HTREEITEM hItem, const CHAR* szScriptName, BOOL bVisible);  ///< ½ºÅ©¸³Æ®¸¦ ÀúÀåÇÑ´Ù.
+    RwBool OnSetClump();                             ///< ëª¨ë¸ì˜ Clumpë¥¼ ë³€ê²½í•œë‹¤.
+    RwBool OnSaveScript(HTREEITEM hItem, const CHAR* szScriptName, BOOL bVisible);  ///< ìŠ¤í¬ë¦½íŠ¸ë¥¼ ì €ìž¥í•œë‹¤.
     void   InsertItemRecursive(SItemNode* pItemNode, HTREEITEM hParentItem);
     void   OnMoveItem(HTREEITEM hItem, HTREEITEM hParentItem, BOOL bRecrusive = FALSE);
 
 protected:
     static CTreePCPane* m_pInstance;
-    CMTCharacter*   m_pCharacter;                   ///< ÇöÀç Ç¥½ÃÇÏ°í ÀÖ´Â Ä³¸¯ÅÍ
+    CMTCharacter*   m_pCharacter;                   ///< í˜„ìž¬ í‘œì‹œí•˜ê³  ìžˆëŠ” ìºë¦­í„°
 
-    CImageList*     m_pImageList;                   ///< ÀÌ¹ÌÁö ¸®½ºÆ®
+    CImageList*     m_pImageList;                   ///< ì´ë¯¸ì§€ ë¦¬ìŠ¤íŠ¸
     CString         m_strRootName;                  ///< Root Item Name
-    std::vector<CMTCharacter*> m_vCharacter;        ///< Edit¿¡ »ç¿ëµÇ´Â Ä³¸¯ÅÍ ÀÎ½ºÅÏ½ºµéÀÇ Vector    
-    CString         m_sSaveFolderName;              ///< ½ºÅ©¸³Æ®¸¦ ÀúÀåÇÒ Æú´õ¸í
-    CString         m_strTreeFileName;              ///< Æ®¸®±¸Á¶¸¦ ÀúÀåÇÏ´Â XML ÆÄÀÏ¸í
-    CString         m_strPropertyListFileName;      ///< ÇÁ·ÎÆÛÆ¼ ¸®½ºÆ®¸¦ ÀúÀåÇÑ ÆÄÀÏ¸í
-    CString         m_strPrevScriptName;            ///< ½ºÅ©¸³Æ® ÀÌ¸§ º¯°æ½Ã¿¡ »ç¿ë    
-	SItemNode		m_itemNode;				        ///< ½ºÅ©¸³Æ®¹× Æú´õ ¾ÆÀÌÅÛ Á¤º¸¸¦ °¡Áö°í ÀÖ´Â °´Ã¼
-    RwBool          m_bDrag;                        ///< ¾ÆÀÌÅÛ µå·¡±× À¯¹« ÇÃ·¡±×
-    HTREEITEM       m_hCurItem;                     ///< Ä¿¼­°¡ À§Ä¡ÇÑ ¾ÆÀÌÅÛ
-    HTREEITEM       m_hDragItem;                    ///< ÇöÀç µå·¡±× ÇÏ°í ÀÖ´Â ¾ÆÀÌÅÛ
+    std::vector<CMTCharacter*> m_vCharacter;        ///< Editì— ì‚¬ìš©ë˜ëŠ” ìºë¦­í„° ì¸ìŠ¤í„´ìŠ¤ë“¤ì˜ Vector    
+    CString         m_sSaveFolderName;              ///< ìŠ¤í¬ë¦½íŠ¸ë¥¼ ì €ìž¥í•  í´ë”ëª…
+    CString         m_strTreeFileName;              ///< íŠ¸ë¦¬êµ¬ì¡°ë¥¼ ì €ìž¥í•˜ëŠ” XML íŒŒì¼ëª…
+    CString         m_strPropertyListFileName;      ///< í”„ë¡œí¼í‹° ë¦¬ìŠ¤íŠ¸ë¥¼ ì €ìž¥í•œ íŒŒì¼ëª…
+    CString         m_strPrevScriptName;            ///< ìŠ¤í¬ë¦½íŠ¸ ì´ë¦„ ë³€ê²½ì‹œì— ì‚¬ìš©    
+	SItemNode		m_itemNode;				        ///< ìŠ¤í¬ë¦½íŠ¸ë° í´ë” ì•„ì´í…œ ì •ë³´ë¥¼ ê°€ì§€ê³  ìžˆëŠ” ê°ì²´
+    RwBool          m_bDrag;                        ///< ì•„ì´í…œ ë“œëž˜ê·¸ ìœ ë¬´ í”Œëž˜ê·¸
+    HTREEITEM       m_hCurItem;                     ///< ì»¤ì„œê°€ ìœ„ì¹˜í•œ ì•„ì´í…œ
+    HTREEITEM       m_hDragItem;                    ///< í˜„ìž¬ ë“œëž˜ê·¸ í•˜ê³  ìžˆëŠ” ì•„ì´í…œ
 
 protected:
 	DECLARE_MESSAGE_MAP()

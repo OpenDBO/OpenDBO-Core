@@ -25,11 +25,11 @@ public:
 #endif
 
 protected:
-    // Item¿¡ ¼³Á¤ÇÒ µ¥ÀÌÅÍ ±¸Á¶Ã¼
+    // Itemì— ì„¤ì •í•  ë°ì´í„° êµ¬ì¡°ì²´
     struct SLinkEffectItemData
     {
         SEventLinkEffect* pEventLinkEffect;  ///< Link Effect Proeprty
-        CNtlInstanceEffect* pEffectInstance; ///< »ı¼ºµÈ EffectÀÇ Æ÷ÀÎÅÍ
+        CNtlInstanceEffect* pEffectInstance; ///< ìƒì„±ëœ Effectì˜ í¬ì¸í„°
     };
 
 protected:
@@ -40,18 +40,18 @@ protected:
 public:
     static CLinkEffectPane* GetInstance() {return m_pInstance;}
 
-    void SetCharacter(CMTCharacter* pCharacter);        ///< Ä³¸¯ÅÍ¸¦ ¼³Á¤ÇÑ´Ù.
-    void SetItem(CMTItem* pItem);                       ///< ¾ÆÀÌÅÛÀ» ¼³Á¤ÇÑ´Ù    
-    void SetObject(CMTObject* pObject);                 ///< Object¸¦ ¼³Á¤ÇÑ´Ù.
-    CNtlInstanceEffect*  AttachEffect(SEventLinkEffect* pEventLinkEffect);  ///< Effect¸¦ Attach ÇÑ´Ù.    
-    RwBool UpdateEffect(SEventLinkEffect* pEventLinkEffect);  ///< ÀÌ¹Ì »ı¼ºµÈ EffectÀÇ Á¤º¸¸¦ °»½ÅÇÑ´Ù.
+    void SetCharacter(CMTCharacter* pCharacter);        ///< ìºë¦­í„°ë¥¼ ì„¤ì •í•œë‹¤.
+    void SetItem(CMTItem* pItem);                       ///< ì•„ì´í…œì„ ì„¤ì •í•œë‹¤    
+    void SetObject(CMTObject* pObject);                 ///< Objectë¥¼ ì„¤ì •í•œë‹¤.
+    CNtlInstanceEffect*  AttachEffect(SEventLinkEffect* pEventLinkEffect);  ///< Effectë¥¼ Attach í•œë‹¤.    
+    RwBool UpdateEffect(SEventLinkEffect* pEventLinkEffect);  ///< ì´ë¯¸ ìƒì„±ëœ Effectì˜ ì •ë³´ë¥¼ ê°±ì‹ í•œë‹¤.
 
 protected:  
-    void SetEnable(BOOL bEnable);                       ///< ControlµéÀÇ EnableÀ» ¼³Á¤ÇÑ´Ù.
-    void InitEffectList();                              ///< Effect List¸¦ Parser·ÎºÎÅÍ °¡Á®¿Í¼­ ¼³Á¤ÇÑ´Ù.
-    SEventLinkEffect* AddLinkEffect(CString streffectName);          ///< Link Effect¸¦ Ãß°¡ÇÑ´Ù.    
-    void DeleteEffect(SLinkEffectItemData* pLinkEffectItemData); ///< Effect¸¦ »èÁ¦ÇÑ´Ù.
-    void ClearListItem();                              ///< ¸®½ºÆ® ¹Ú½º Ç×¸ñÀÇ ItemData¸¦ Á¦°ÅÇÑ´Ù.
+    void SetEnable(BOOL bEnable);                       ///< Controlë“¤ì˜ Enableì„ ì„¤ì •í•œë‹¤.
+    void InitEffectList();                              ///< Effect Listë¥¼ Parserë¡œë¶€í„° ê°€ì ¸ì™€ì„œ ì„¤ì •í•œë‹¤.
+    SEventLinkEffect* AddLinkEffect(CString streffectName);          ///< Link Effectë¥¼ ì¶”ê°€í•œë‹¤.    
+    void DeleteEffect(SLinkEffectItemData* pLinkEffectItemData); ///< Effectë¥¼ ì‚­ì œí•œë‹¤.
+    void ClearListItem();                              ///< ë¦¬ìŠ¤íŠ¸ ë°•ìŠ¤ í•­ëª©ì˜ ItemDataë¥¼ ì œê±°í•œë‹¤.
 
 protected:
     static CLinkEffectPane* m_pInstance;
@@ -61,11 +61,11 @@ protected:
     CListBox m_lbEffect;
 
     // Member
-    CMTCharacter* m_pCharacter;                          ///< ÇöÀç Edit ÇÏ°í ÀÖ´Â Ä³¸¯ÅÍ °´Ã¼
-    CMTItem*      m_pItem;                               ///< ÇöÀç Edit ÇÏ°í ÀÖ´Â Item °´Ã¼
-    CMTObject*    m_pObject;                             ///< ÇöÀç Edit ÇÏ°í ÀÖ´Â Object °´Ã¼
-    RpClump*      m_pClump;                              ///< ÇöÀç Edit ÇÏ°í ÀÖ´Â °´Ã¼ÀÇ Clump
-    EModelToolMode m_ePrevMode;                          ///< ÀÌÀü ¸ğµ¨Åø ¸ğµå
+    CMTCharacter* m_pCharacter;                          ///< í˜„ì¬ Edit í•˜ê³  ìˆëŠ” ìºë¦­í„° ê°ì²´
+    CMTItem*      m_pItem;                               ///< í˜„ì¬ Edit í•˜ê³  ìˆëŠ” Item ê°ì²´
+    CMTObject*    m_pObject;                             ///< í˜„ì¬ Edit í•˜ê³  ìˆëŠ” Object ê°ì²´
+    RpClump*      m_pClump;                              ///< í˜„ì¬ Edit í•˜ê³  ìˆëŠ” ê°ì²´ì˜ Clump
+    EModelToolMode m_ePrevMode;                          ///< ì´ì „ ëª¨ë¸íˆ´ ëª¨ë“œ
 
 public:
     virtual void OnInitialUpdate();

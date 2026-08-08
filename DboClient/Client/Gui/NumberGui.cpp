@@ -63,7 +63,7 @@ VOID CNumberGui::SetNumber(RwInt64 iNumber)
 
 	m_i64Number = iNumber;
 
-	// ÀÚ¸´¼ö¸¦ ¾Ë¾Æº¸±â À§ÇØ
+	// ìë¦¿ìˆ˜ë¥¼ ì•Œì•„ë³´ê¸° ìœ„í•´
 	iNumber = abs((long)iNumber);
 
 	if( m_i64Number < dMAX_NUMBER_ABS )
@@ -76,7 +76,7 @@ VOID CNumberGui::SetNumber(RwInt64 iNumber)
 
 			iNumber = iNumber / 10;
 
-			// ¸îÀÚ¸® ¼ıÀÚÀÎ°¡
+			// ëª‡ìë¦¬ ìˆ«ìì¸ê°€
 			if( iNumber == 0 )
 			{
 				m_byCurCipher = i + 1;
@@ -169,7 +169,7 @@ CRectangle CNumberGui::GetRect()
 {
 	CRectangle rtRect;
 
-	// ÁÂ¿ì
+	// ì¢Œìš°
 	if( m_byHoriDirection == ND_LEFT )
 	{
 		rtRect.left		= m_iX_fromParent - m_iWidth;
@@ -186,7 +186,7 @@ CRectangle CNumberGui::GetRect()
 		rtRect.right	= m_iX_fromParent + m_iWidth;
 	}
 
-	// »óÇÏ
+	// ìƒí•˜
 	if( m_byVertDirection == NVD_CENTER )
 	{
 		rtRect.top		= m_iY_fromParent - m_iHeight/2;
@@ -231,7 +231,7 @@ VOID CNumberGui::CalcWidth()
 		m_iWidth += m_iNumGap;
 	}
 
-	// À¯ÁöµÇ¾ßÇÒ ÃÖ¼Ò ÀÚ¸´¼öº¸´Ù ½ÇÁ¦ ÀÚ¸´¼ö°¡ ÀÛ´Ù¸é
+	// ìœ ì§€ë˜ì•¼í•  ìµœì†Œ ìë¦¿ìˆ˜ë³´ë‹¤ ì‹¤ì œ ìë¦¿ìˆ˜ê°€ ì‘ë‹¤ë©´
 	if( m_byCurCipher < m_byRemainCipher )
 	{
 		RwInt8 byExpendCipher = m_byRemainCipher - m_byCurCipher;
@@ -268,7 +268,7 @@ VOID CNumberGui::Render(bool bRenderTop /* = false */)
 	RwInt32 iPosX = m_ParentPos.x + m_iX_fromParent;
 	RwInt32 iPosY = m_ParentPos.y + m_iY_fromParent;
 
-	// ¼öÆò À§Ä¡
+	// ìˆ˜í‰ ìœ„ì¹˜
 	if( m_byHoriDirection == ND_LEFT )
 	{
 		iPosX -= m_iWidth;
@@ -278,7 +278,7 @@ VOID CNumberGui::Render(bool bRenderTop /* = false */)
 		iPosX -= m_iWidth/2;
 	}
 
-	// »óÇÏ À§Ä¡
+	// ìƒí•˜ ìœ„ì¹˜
 	if( m_byVertDirection == NVD_CENTER )
 	{
 		iPosY -= m_iHeight/2;
@@ -306,7 +306,7 @@ VOID CNumberGui::Render(bool bRenderTop /* = false */)
 		iPosX += m_iNumGap;
 	}
 
-	// À¯ÁöµÇ¾ßÇÒ ÃÖ¼Ò ÀÚ¸´¼öº¸´Ù ½ÇÁ¦ ÀÚ¸´¼ö°¡ ÀÛ´Ù¸é 0À¸·Î ¸ÕÀú Ã¤¿î´Ù
+	// ìœ ì§€ë˜ì•¼í•  ìµœì†Œ ìë¦¿ìˆ˜ë³´ë‹¤ ì‹¤ì œ ìë¦¿ìˆ˜ê°€ ì‘ë‹¤ë©´ 0ìœ¼ë¡œ ë¨¼ì € ì±„ìš´ë‹¤
 	if( m_byCurCipher < m_byRemainCipher )
 	{
 		RwInt8 byExpendCipher = m_byRemainCipher - m_byCurCipher;

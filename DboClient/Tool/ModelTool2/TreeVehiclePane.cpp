@@ -27,7 +27,7 @@ BEGIN_MESSAGE_MAP(CTreeVehiclePane, CTreePCPane)
 END_MESSAGE_MAP()
 
 
-// CTreeVehiclePane Áø´ÜÀÔ´Ï´Ù.
+// CTreeVehiclePane ì§„ë‹¨ìž…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CTreeVehiclePane::AssertValid() const
@@ -60,7 +60,7 @@ void CTreeVehiclePane::InitClass()
 }
 
 
-// CTreeVehiclePane ¸Þ½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CTreeVehiclePane ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ìž…ë‹ˆë‹¤.
 
 void CTreeVehiclePane::OnSetFocus(CWnd* pOldWnd)
 {

@@ -1,4 +1,4 @@
-// VenusView.h : iCVenusView Å¬·¡½ºÀÇ ÀÎÅÍÆäÀÌ½º
+// VenusView.h : iCVenusView í´ë˜ìŠ¤ì˜ ì¸í„°í˜ì´ìŠ¤
 //
 
 
@@ -7,29 +7,29 @@
 
 class CVenusView : public CView
 {
-protected: // serialization¿¡¼­¸¸ ¸¸µé¾îÁı´Ï´Ù.
+protected: // serializationì—ì„œë§Œ ë§Œë“¤ì–´ì§‘ë‹ˆë‹¤.
 	CVenusView();
 	DECLARE_DYNCREATE(CVenusView)
 
-// Æ¯¼º
+// íŠ¹ì„±
 public:
 	CVenusDoc* GetDocument() const;
 
-// ÀÛ¾÷
+// ì‘ì—…
 public:
 
 	POINT		m_PointButtonDown;
 
-// ÀçÁ¤ÀÇ
+// ì¬ì •ì˜
 	public:
-	virtual void OnDraw(CDC* pDC);  // ÀÌ ºä¸¦ ±×¸®±â À§ÇØ ÀçÁ¤ÀÇµÇ¾ú½À´Ï´Ù.
+	virtual void OnDraw(CDC* pDC);  // ì´ ë·°ë¥¼ ê·¸ë¦¬ê¸° ìœ„í•´ ì¬ì •ì˜ë˜ì—ˆìŠµë‹ˆë‹¤.
 virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 protected:
 	virtual BOOL OnPreparePrinting(CPrintInfo* pInfo);
 	virtual void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
 	virtual void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
 
-// ±¸Çö
+// êµ¬í˜„
 public:
 	virtual ~CVenusView();
 #ifdef _DEBUG
@@ -39,7 +39,7 @@ public:
 
 protected:
 
-// ¸Ş½ÃÁö ¸Ê ÇÔ¼ö¸¦ »ı¼ºÇß½À´Ï´Ù.
+// ë©”ì‹œì§€ ë§µ í•¨ìˆ˜ë¥¼ ìƒì„±í–ˆìŠµë‹ˆë‹¤.
 protected:
 	DECLARE_MESSAGE_MAP()
 public:
@@ -72,7 +72,7 @@ public:
     afx_msg void OnUpdateViewLowspeceffect(CCmdUI *pCmdUI);
 };
 
-#ifndef _DEBUG  // VenusView.cppÀÇ µğ¹ö±× ¹öÀü
+#ifndef _DEBUG  // VenusView.cppì˜ ë””ë²„ê·¸ ë²„ì „
 inline CVenusDoc* CVenusView::GetDocument() const
    { return reinterpret_cast<CVenusDoc*>(m_pDocument); }
 #endif

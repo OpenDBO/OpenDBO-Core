@@ -1,9 +1,9 @@
 /*****************************************************************************
 * File			: DboPackethandler_GUTMail.cpp
 * Author		: Hong sungbock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 1. 16
-* Abstract		: ¸ŞÀÏ °ü·Ã ÆĞÅ¶ ÇÚµé
+* Abstract		: ë©”ì¼ ê´€ë ¨ íŒ¨í‚· í•¸ë“¤
 *****************************************************************************
 * Desc         : 
 *****************************************************************************/
@@ -31,7 +31,7 @@ void PacketHandler_GUMailStartRes(void* pPacket)
 	{
 		CNtlSLEventGenerator::SysMsg(INVALID_SERIAL_ID, Logic_GetResultCodeString(pResult->wResultCode, "").c_str());
 		CNtlSLEventGenerator::MailStart(pResult->hObject, pResult->bIsAway, FALSE);
-		// MailÀÇ °æ¿ì ÀÚÃ¼ÀûÀÎ Dialog ¿ÀÇÂ ½ÇÆĞ »óÈ² Ã³¸® ¾Ë°í¸®ÁòÀÌ Á¸Àç
+		// Mailì˜ ê²½ìš° ìì²´ì ì¸ Dialog ì˜¤í”ˆ ì‹¤íŒ¨ ìƒí™© ì²˜ë¦¬ ì•Œê³ ë¦¬ì¦˜ì´ ì¡´ì¬
 		// CDboEventGenerator::DialogEvent( DIALOGEVENT_OPEN_FAIL_NPC_DIALOG, PLACE_NONE, PLACE_NONE, DIALOG_MAILSYSTEM );
 		return;
 	}
@@ -101,7 +101,7 @@ void PacketHandler_GUMailSendRes(void* pPacket)
 
 	Logic_PlayGUISound( GSD_SYSTEM_MAIL_SEND );
 
-	// ¸ŞÀÏ Äù½ºÆ®
+	// ë©”ì¼ í€˜ìŠ¤íŠ¸
 	CNtlSLEventGenerator::TSUseMail();
 }
 

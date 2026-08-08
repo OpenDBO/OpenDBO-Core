@@ -1,4 +1,4 @@
-// WorldEditorDoc.cpp : CWorldEditorDoc Ŭ������ ����
+// WorldEditorDoc.cpp : CWorldEditorDoc 클래스의 구현
 //
 
 #include "stdafx.h"
@@ -21,11 +21,11 @@ BEGIN_MESSAGE_MAP(CWorldEditorDoc, CDocument)
 END_MESSAGE_MAP()
 
 
-// CWorldEditorDoc ����/�Ҹ�
+// CWorldEditorDoc 생성/소멸
 
 CWorldEditorDoc::CWorldEditorDoc()
 {
-	// TODO: ���⿡ ��ȸ�� ���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 일회성 생성 코드를 추가합니다.
 
 }
 
@@ -38,8 +38,8 @@ BOOL CWorldEditorDoc::OnNewDocument()
 	if (!CDocument::OnNewDocument())
 		return FALSE;
 
-	// TODO: ���⿡ �ٽ� �ʱ�ȭ �ڵ带 �߰��մϴ�.
-	// SDI ������ �� ������ �ٽ� ����մϴ�.
+	// TODO: 여기에 다시 초기화 코드를 추가합니다.
+	// SDI 문서는 이 문서를 다시 사용합니다.
 
 	return TRUE;
 }
@@ -62,16 +62,16 @@ void CWorldEditorDoc::Serialize(CArchive& ar)
 {
 	if (ar.IsStoring())
 	{
-		// TODO: ���⿡ ���� �ڵ带 �߰��մϴ�.
+		// TODO: 여기에 저장 코드를 추가합니다.
 	}
 	else
 	{
-		// TODO: ���⿡ �ε� �ڵ带 �߰��մϴ�.
+		// TODO: 여기에 로딩 코드를 추가합니다.
 	}
 }
 
 
-// CWorldEditorDoc ����
+// CWorldEditorDoc 진단
 
 #ifdef _DEBUG
 void CWorldEditorDoc::AssertValid() const
@@ -86,4 +86,4 @@ void CWorldEditorDoc::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CWorldEditorDoc ����
+// CWorldEditorDoc 명령

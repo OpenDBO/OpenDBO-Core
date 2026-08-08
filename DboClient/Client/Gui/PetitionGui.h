@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: PetitionGui.h
 * Author		: Hong SungBock
-* Copyright		: (��)NTL
+* Copyright		: (주)NTL
 * Date			: 2008. 10. 23
 * Abstract		: 
 *****************************************************************************
-* Desc			: GM ��� ��ûâ
+* Desc			: GM 상담 요청창
 *****************************************************************************/
 
 #pragma once
@@ -34,9 +34,9 @@ public:
 
 	RwInt32		SwitchDialog(bool bOpen);
 
-	// avooo's comment : GM ��� ��ûâ�� ������ ������ �ƴϸ� �̹� �ٸ� ���̾�αװ�
-	//					 �� ����� ���¿��� ���������� �ڸ��� ���� ���� ����.
-	//					 ������ ������ ��ġ�� ������ �� �ֵ��� �Ѵ�.
+	// avooo's comment : GM 상담 요청창은 게임의 내용이 아니며 이미 다른 다이얼로그가
+	//					 꽉 들어찬 상태에서 고정적으로 자리를 정할 수도 없다.
+	//					 언제나 유저가 위치를 변경할 수 있도록 한다.
 	virtual void	SetMovable(RwBool bMovable) {}
 
 protected:
@@ -72,22 +72,22 @@ protected:
 	gui::CSlot			m_slotMove;
 	gui::CSlot			m_slotPaint;
 
-	gui::CButton*		m_pCloseButton;			///< �ݱ� ��ư
+	gui::CButton*		m_pCloseButton;			///< 닫기 버튼
 
-	gui::CComboBox*		m_pCategory;			///< ��з� ī�װ���
-	gui::CComboBox*		m_pCategory2;			///< �Һз� ī�װ���
+	gui::CComboBox*		m_pCategory;			///< 대분류 카테고리
+	gui::CComboBox*		m_pCategory2;			///< 소분류 카테고리
 	
-	gui::CInputBox*		m_pInput;				///< ��������
+	gui::CInputBox*		m_pInput;				///< 진정내용
 	
-	gui::CStaticBox*	m_pDialogName;			///< ���̾�α� ����
-	gui::CStaticBox*	m_pCategoryStatic;		///< ��з� ī�װ���
-	gui::CStaticBox*	m_pCategoryStatic2;		///< �Һз� ī�װ���
-	gui::CStaticBox*	m_pCategoryMessage;		///< ��з� ī�װ��� ���� �޼���
-	gui::CStaticBox*	m_pCategoryMessage2;	///< �Һз� ī�װ��� ���� �޼���
+	gui::CStaticBox*	m_pDialogName;			///< 다이얼로그 제목
+	gui::CStaticBox*	m_pCategoryStatic;		///< 대분류 카테고리
+	gui::CStaticBox*	m_pCategoryStatic2;		///< 소분류 카테고리
+	gui::CStaticBox*	m_pCategoryMessage;		///< 대분류 카테고리 선택 메세지
+	gui::CStaticBox*	m_pCategoryMessage2;	///< 소분류 카테고리 선택 메세지
 	
-	gui::CButton*		m_pSendButton;			///< ���۹�ư
+	gui::CButton*		m_pSendButton;			///< 전송버튼
 
-	CWindowby3			m_BackPanel;			///< ���
-	CSurfaceGui			m_srfCaregoryBack;		///< ī�װ��� 1 ���
-	CSurfaceGui			m_srfCaregoryBack2;		///< ī�װ��� 2 ���
+	CWindowby3			m_BackPanel;			///< 배경
+	CSurfaceGui			m_srfCaregoryBack;		///< 카테고리 1 배경
+	CSurfaceGui			m_srfCaregoryBack2;		///< 카테고리 2 배경
 };

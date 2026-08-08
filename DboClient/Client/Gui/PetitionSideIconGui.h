@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: PetitionSideIconGui.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2008. 10. 27
 * Abstract		: 
 *****************************************************************************
-* Desc			: ¿Ø¿˙ ¡¯¡§(Petition) ªÁ¿ÃµÂ æ∆¿Ãƒ‹
+* Desc			: Ïú†Ï†Ä ÏßÑÏ†ï(Petition) ÏÇ¨Ïù¥Îìú ÏïÑÏù¥ÏΩò
 *****************************************************************************/
 
 #pragma once
@@ -68,8 +68,8 @@ protected:
 	gui::CSlot			m_slotCancelButton;
 	gui::CSlot			m_slotPaint;
 
-	CWindowby3			m_BackPanel;		///< πË∞Ê
-	gui::CStaticBox*	m_pMessage;			///< ∏ﬁºº¡ˆ
-	gui::CButton*		m_pExitButton;		///< ¥›±‚ πˆ∆∞
-	gui::CButton*		m_pCancelButton;	///< √Îº“ πˆ∆∞
+	CWindowby3			m_BackPanel;		///< Î∞∞Í≤Ω
+	gui::CStaticBox*	m_pMessage;			///< Î©îÏÑ∏ÏßÄ
+	gui::CButton*		m_pExitButton;		///< Îã´Í∏∞ Î≤ÑÌäº
+	gui::CButton*		m_pCancelButton;	///< Ï∑®ÏÜå Î≤ÑÌäº
 };

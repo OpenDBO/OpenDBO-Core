@@ -373,7 +373,7 @@ void CWorldPatchProcessDlg::DeleteThread()
 	{
 		WaitForSingleObject(m_hThread, INFINITE);
 
-		// Thread ÇÚµéÀ» ´İ´Â´Ù
+		// Thread í•¸ë“¤ì„ ë‹«ëŠ”ë‹¤
 		CloseHandle(m_hThread);
 
 		m_hThread		= 0;

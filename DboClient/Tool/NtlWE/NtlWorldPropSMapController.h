@@ -17,4 +17,4 @@ protected:
 	VOID SavePropImage(RwInt32 Width, RwInt32 Height, RwInt32 Depth, RwInt32 IdxProp, RwChar* pIdxName);
 };
 
-// ÇÏÀ§ 4¹ÙÀÌÆ®·Î Ç¥ÇöÇÒ¼ö ÀÖ´Â ¸ðµç ¼öÄ¡°ªµéÀ» ½ºÅ©¸³Æ® ÀÎµ¦½º·Î Ç¥ÇöÇÏÀÚ°í ¾ê±âÇß´Ù. ÀÌ¶§ Å×ÀÌºíÀº µû·Î ÀÛ¼º
+// í•˜ìœ„ 4ë°”ì´íŠ¸ë¡œ í‘œí˜„í• ìˆ˜ ìžˆëŠ” ëª¨ë“  ìˆ˜ì¹˜ê°’ë“¤ì„ ìŠ¤í¬ë¦½íŠ¸ ì¸ë±ìŠ¤ë¡œ í‘œí˜„í•˜ìžê³  ì–˜ê¸°í–ˆë‹¤. ì´ë•Œ í…Œì´ë¸”ì€ ë”°ë¡œ ìž‘ì„±

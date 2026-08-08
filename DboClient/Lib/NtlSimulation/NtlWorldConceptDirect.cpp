@@ -58,11 +58,11 @@ void CNtlWorldConceptDirect::ChangeState(RwInt32 iState)
 			GetInputActionMap()->Reset();
 			CNtlSLEventGenerator::ActionMapHalt();
 
-            // Entity Culling�� ���� (by agebreak)
+            // Entity Culling占쏙옙 占쏙옙占쏙옙 (by agebreak)
             CNtlPLGlobal::m_bEntityNotCulling = TRUE;
 
 			// ���� �þ� �Ÿ�, �繰 �þ� �Ÿ� �ɼ��� �ִ�� �����Ѵ�.
-			// ���� �þ߰Ÿ� ( 1lv : 200, 2lv : 300, 3lv : 400, 4lv : 512 )
+			// 占쏙옙占쏙옙 占시야거몌옙 ( 1lv : 200, 2lv : 300, 3lv : 400, 4lv : 512 )
 			if( GetNtlPLOptionManager()->GetTerrainFar() != dDIRECT_TERRAIN_FAR )
 				GetNtlPLOptionManager()->SetTerrainFar( dDIRECT_TERRAIN_FAR );
 			
@@ -76,8 +76,8 @@ void CNtlWorldConceptDirect::ChangeState(RwInt32 iState)
 		{
 			CNtlWorldConceptController::ChangeState(WORLD_PLAY_NONE);
 
-			// �ɼ� ����
-			// ���� �þ߰Ÿ� ( 1lv : 200, 2lv : 300, 3lv : 400, 4lv : 512 )
+			// 占심쇽옙 占쏙옙占쏙옙
+			// 占쏙옙占쏙옙 占시야거몌옙 ( 1lv : 200, 2lv : 300, 3lv : 400, 4lv : 512 )
 			RwInt32 nTerrainRangeLevel = GetNtlStorageManager()->GetIntData( dSTORAGE_GRAPHIC_TERRAIN_RANGE );
 			RwReal fTerranRange = 512.f;
 			switch( nTerrainRangeLevel )

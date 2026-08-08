@@ -1,3 +1,4 @@
+﻿#include <windows.h>
 /**
  * \ingroup rpatomic
  * \page rpatomicoverview RpAtomic Overview
@@ -139,6 +140,15 @@ struct rpAtomicBinary
     RwInt32             geomIndex;
     RwInt32             flags;
     RwInt32             unused;
+
+	RwInt16				renderType;
+	RwInt16				blendMode;
+
+	//@{ Jaewon 20041222
+	// atomic identification number
+	// 2005.3.1. unused
+	RwInt32				id;
+	//@} Jaewon
 };
 
 typedef struct rpAtomicLightData _rpAtomicLightData;
@@ -628,7 +638,9 @@ GeometryListInitialize(rpGeometryList * geomList, RpClump * clump)
 {
     RwInt32             numGeoms;
     RpGeometry        **fppCur;
-    RwLLLink           *cur, *end;
+    /* 2005.3.1 gemani: atomicList is now a direct RpAtomic* circular list */
+    RpAtomic           *cur_atomic, *next_atomic;
+    //RwLLLink           *cur, *end;
 
     RWFUNCTION(RWSTRING("GeometryListInitialize"));
     RWASSERT(geomList);
@@ -655,25 +667,39 @@ GeometryListInitialize(rpGeometryList * geomList, RpClump * clump)
 
     /* fill it with _unique_ geometries */
     fppCur = geomList->geometries;
-    cur = rwLinkListGetFirstLLLink(&clump->atomicList);
-    end = rwLinkListGetTerminator(&clump->atomicList);
-    while (cur != end)
+    if (clump->atomicList)
     {
-        RpAtomic           *apAtom =
-
-            rwLLLinkGetData(cur, RpAtomic, inClumpLink);
-        RpGeometry         *geom = RpAtomicGetGeometry(apAtom);
-
-        /* is it already in the list? (should really mark atomic) */
-        if (!GeometryListFindGeometry(geomList, geom, (RwInt32 *)NULL))
+        cur_atomic = clump->atomicList;
+        do
         {
-            RpGeometryAddRef(geom);
-            *fppCur++ = geom;
-            geomList->numGeoms++;
-        }
+            RpGeometry *geom = RpAtomicGetGeometry(cur_atomic);
+            next_atomic = cur_atomic->next;
 
-        cur = rwLLLinkGetNext(cur);
+            /* is it already in the list? (should really mark atomic) */
+            if (!GeometryListFindGeometry(geomList, geom, (RwInt32 *)NULL))
+            {
+                RpGeometryAddRef(geom);
+                *fppCur++ = geom;
+                geomList->numGeoms++;
+            }
+
+            cur_atomic = next_atomic;
+        } while (cur_atomic != clump->atomicList);
     }
+    //cur = rwLinkListGetFirstLLLink(&clump->atomicList);
+    //end = rwLinkListGetTerminator(&clump->atomicList);
+    //while (cur != end)
+    //{
+    //    RpAtomic *apAtom = rwLLLinkGetData(cur, RpAtomic, inClumpLink);
+    //    RpGeometry *geom = RpAtomicGetGeometry(apAtom);
+    //    if (!GeometryListFindGeometry(geomList, geom, (RwInt32 *)NULL))
+    //    {
+    //        RpGeometryAddRef(geom);
+    //        *fppCur++ = geom;
+    //        geomList->numGeoms++;
+    //    }
+    //    cur = rwLLLinkGetNext(cur);
+    //}
 
     /* Done */
     RWRETURN(geomList);
@@ -1231,6 +1257,8 @@ ClumpAtomicStreamWrite(RpAtomic * atomic, void *pData)
     RWASSERTISTYPE(atomic, rpATOMIC);
     RWASSERT(status);
 
+	memset(&a, 0, sizeof(a));
+
     if (status->gl.numGeoms == 0)
     {
         /* wrap structured data */
@@ -1341,9 +1369,9 @@ ClumpAtomicStreamRead(RwStream * stream, rwFrameList * fl,
     if ((version >= rwLIBRARYBASEVERSION) &&
         (version <= rwLIBRARYCURRENTVERSION))
     {
-        RpAtomic           *atom;
+        RpAtomic           *atom = NULL;
         _rpAtomicBinary     a;
-        RpGeometry         *geom;
+        RpGeometry         *geom = NULL;
 
         /* Read the atomic */
         RWASSERT(size <= sizeof(a));
@@ -1365,7 +1393,7 @@ ClumpAtomicStreamRead(RwStream * stream, rwFrameList * fl,
 
         /* Set the atomic types */
         RpAtomicSetFlags(atom, a.flags);
-        if (fl->numFrames)
+        if (fl->numFrames && a.frameIndex >= 0 && a.frameIndex < fl->numFrames && fl->frames)
         {
             RpAtomicSetFrame(atom, fl->frames[a.frameIndex]);
         }
@@ -1373,7 +1401,18 @@ ClumpAtomicStreamRead(RwStream * stream, rwFrameList * fl,
         /* get the geometry */
         if (gl->numGeoms)
         {
-            RpAtomicSetGeometry(atom, gl->geometries[a.geomIndex], 0);
+            if (a.geomIndex >= 0 && a.geomIndex < gl->numGeoms && gl->geometries)
+            {
+                RpAtomicSetGeometry(atom, gl->geometries[a.geomIndex], 0);
+            }
+            else
+            {
+                char dbg[256];
+                sprintf_s(dbg, "BOUNDS: geomIdx=%d out of numGeoms=%d\n", a.geomIndex, gl->numGeoms);
+                OutputDebugStringA(dbg);
+                RpAtomicDestroy(atom);
+                RWRETURN((RpAtomic *)NULL);
+            }
         }
         else
         {
@@ -2128,35 +2167,48 @@ RpAtomicRender(RpAtomic * atomic)
 RpClump            *
 RpClumpRender(RpClump * clump)
 {
+    /* 2005.3.1 gemani: atomicList is now a direct RpAtomic* circular list */
     RpClump *result = clump;
-    RwLLLink           *cur, *end;
+    RpAtomic *cur_atomic, *next_atomic;
+    //RwLLLink           *cur, *end;
 
     RWAPIFUNCTION(RWSTRING("RpClumpRender"));
     RWASSERT(clumpModule.numInstances);
     RWASSERT(clump);
     RWASSERTISTYPE(clump, rpCLUMP);
 
-    cur = rwLinkListGetFirstLLLink(&clump->atomicList);
-    end = rwLinkListGetTerminator(&clump->atomicList);
-
-    while (cur != end)
+    if (clump->atomicList)
     {
-        RpAtomic *apAtom = rwLLLinkGetData(cur, RpAtomic, inClumpLink);
-
-        if (rwObjectTestFlags(apAtom, rpATOMICRENDER))
+        cur_atomic = clump->atomicList;
+        do
         {
-            /* Force this baby to be synced */
-            RwFrameGetLTM((RwFrame *) rwObjectGetParent(apAtom));
-
-            /* Then try and render it */
-            if( NULL == RpAtomicRender(apAtom) )
+            next_atomic = cur_atomic->next;
+            if (rwObjectTestFlags(cur_atomic, rpATOMICRENDER))
             {
-                result = NULL;
-            }
-        }
+                /* Force this baby to be synced */
+                RwFrameGetLTM((RwFrame *) rwObjectGetParent(cur_atomic));
 
-        cur = rwLLLinkGetNext(cur);
+                /* Then try and render it */
+                if (NULL == RpAtomicRender(cur_atomic))
+                {
+                    result = NULL;
+                }
+            }
+            cur_atomic = next_atomic;
+        } while (cur_atomic != clump->atomicList);
     }
+    //cur = rwLinkListGetFirstLLLink(&clump->atomicList);
+    //end = rwLinkListGetTerminator(&clump->atomicList);
+    //while (cur != end)
+    //{
+    //    RpAtomic *apAtom = rwLLLinkGetData(cur, RpAtomic, inClumpLink);
+    //    if (rwObjectTestFlags(apAtom, rpATOMICRENDER))
+    //    {
+    //        RwFrameGetLTM((RwFrame *) rwObjectGetParent(apAtom));
+    //        if( NULL == RpAtomicRender(apAtom) ) { result = NULL; }
+    //    }
+    //    cur = rwLLLinkGetNext(cur);
+    //}
 
     RWRETURN(result);
 }
@@ -2197,7 +2249,10 @@ RpClumpRender(RpClump * clump)
 RpClump            *
 RpClumpForAllAtomics(RpClump * clump, RpAtomicCallBack callback, void *pData)
 {
-    RwLLLink           *cur, *end, *next;
+    /* 2005.3.1 gemani: atomicList is now a direct RpAtomic* circular list */
+    RpAtomic           *cur_atomic, *next_atomic;
+    RwBool              end;
+    //RwLLLink           *cur, *end, *next;
 
     RWAPIFUNCTION(RWSTRING("RpClumpForAllAtomics"));
     RWASSERT(clumpModule.numInstances);
@@ -2206,26 +2261,35 @@ RpClumpForAllAtomics(RpClump * clump, RpAtomicCallBack callback, void *pData)
     RWASSERTISTYPE(clump, rpCLUMP);
 
     /* Enumerate all of the atomics in this clump */
-    cur = rwLinkListGetFirstLLLink(&clump->atomicList);
-    end = rwLinkListGetTerminator(&clump->atomicList);
-
-    while (cur != end)
+    if (clump->atomicList)
     {
-        RpAtomic *atomic = rwLLLinkGetData(cur, RpAtomic, inClumpLink);
-        RWASSERTISTYPE(atomic, rpATOMIC);
-
-        /* Find next now, just in case we destroy the link */
-        next = rwLLLinkGetNext(cur);
-
-        if (!callback(atomic, pData))
+        cur_atomic = clump->atomicList;
+        do
         {
-            /* Early out */
-            RWRETURN(clump);
-        }
+            /* Test end condition before the callback, in case the atomic is removed */
+            end = (cur_atomic->next == clump->atomicList);
+            next_atomic = cur_atomic->next;
 
-        /* Onto the next atomic */
-        cur = next;
+            RWASSERTISTYPE(cur_atomic, rpATOMIC);
+            if (!callback(cur_atomic, pData))
+            {
+                /* Early out */
+                RWRETURN(clump);
+            }
+
+            cur_atomic = next_atomic;
+        } while (!end);
     }
+    //cur = rwLinkListGetFirstLLLink(&clump->atomicList);
+    //end = rwLinkListGetTerminator(&clump->atomicList);
+    //while (cur != end)
+    //{
+    //    RpAtomic *atomic = rwLLLinkGetData(cur, RpAtomic, inClumpLink);
+    //    RWASSERTISTYPE(atomic, rpATOMIC);
+    //    next = rwLLLinkGetNext(cur);
+    //    if (!callback(atomic, pData)) { RWRETURN(clump); }
+    //    cur = next;
+    //}
 
     RWRETURN(clump);
 }
@@ -2481,7 +2545,9 @@ RpAtomicCreate(void)
         (rpINTERPOLATORDIRTYINSTANCE | rpINTERPOLATORDIRTYSPHERE);
 
     /* membership of clump */
-    rwLLLinkInitialize(&atomic->inClumpLink);
+    /* x64 port: init circular list pointers instead of inClumpLink */
+    atomic->prev = atomic;
+    atomic->next = atomic;
     atomic->clump = (RpClump *)NULL;
 
     /* use the default atomic object pipeline */
@@ -3814,7 +3880,8 @@ RpClumpCreate(void)
     RpClumpSetFrame(clump, NULL);
 
     /* Contains nothing */
-    rwLinkListInitialize(&clump->atomicList);
+    /* x64 port: atomicList is now RpAtomic* circular list - init to NULL */
+    clump->atomicList = (RpAtomic *)NULL;
     rwLinkListInitialize(&clump->lightList);
     rwLinkListInitialize(&clump->cameraList);
 
@@ -3929,7 +3996,22 @@ RpClumpAddAtomic(RpClump * clump, RpAtomic * atomic)
      * clump might be
      */
 
-    rwLinkListAddLLLink(&clump->atomicList, &atomic->inClumpLink);
+    /* x64 port: insert atomic into clump's circular list */
+    if (!clump->atomicList)
+    {
+        clump->atomicList = atomic;
+        atomic->prev = atomic;
+        atomic->next = atomic;
+    }
+    else
+    {
+        RpAtomic *head = clump->atomicList;
+        RpAtomic *tail = head->prev;
+        tail->next = atomic;
+        atomic->prev = tail;
+        atomic->next = head;
+        head->prev = atomic;
+    }
     atomic->clump = clump;
 
     RWRETURN(clump);
@@ -3970,7 +4052,21 @@ RpClumpRemoveAtomic(RpClump * clump, RpAtomic * atomic)
     RWASSERTISTYPE(atomic, rpATOMIC);
 
     /* NOTE !!!! - this assumes the clump is NOT IN THE WORLD */
-    rwLinkListRemoveLLLink(&atomic->inClumpLink);
+    /* x64 port: remove atomic from clump's circular list */
+    if (atomic->next == atomic)
+    {
+        /* Last atomic in clump */
+        clump->atomicList = (RpAtomic *)NULL;
+    }
+    else
+    {
+        if (clump->atomicList == atomic)
+            clump->atomicList = atomic->next;
+        atomic->prev->next = atomic->next;
+        atomic->next->prev = atomic->prev;
+    }
+    atomic->prev = atomic;
+    atomic->next = atomic;
     atomic->clump = (RpClump *)NULL;
 
     RWRETURN(clump);
@@ -4669,8 +4765,11 @@ RpClumpStreamRead(RwStream * stream)
                 RWRETURN((RpClump *)NULL);
             }
 
-            /* Add the light to the clump */
-            RpLightSetFrame(light, fl.frames[frameIndex]);
+            /* Add the light to the clump (with bounds check) */
+            if (fl.numFrames && frameIndex >= 0 && frameIndex < fl.numFrames && fl.frames)
+            {
+                RpLightSetFrame(light, fl.frames[frameIndex]);
+            }
             RpClumpAddLight(clump, light);
         }
 
@@ -4708,8 +4807,11 @@ RpClumpStreamRead(RwStream * stream)
                 RWRETURN((RpClump *)NULL);
             }
 
-            /* Add the cameras to the clump */
-            RwCameraSetFrame(camera, fl.frames[frameIndex]);
+            /* Add the cameras to the clump (with bounds check) */
+            if (fl.numFrames && frameIndex >= 0 && frameIndex < fl.numFrames && fl.frames)
+            {
+                RwCameraSetFrame(camera, fl.frames[frameIndex]);
+            }
             RpClumpAddCamera(clump, camera);
         }
 

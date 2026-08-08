@@ -1,4 +1,4 @@
-// NtlWEDoc.h : CNtlWEDoc Å¬·¡½ºÀÇ ÀÎÅÍÆäÀÌ½º
+// NtlWEDoc.h : CNtlWEDoc í´ë˜ìŠ¤ì˜ ì¸í„°í˜ì´ìŠ¤
 //
 
 #include "FogPropDlg.h"
@@ -27,14 +27,14 @@ enum EFIELDPROP_MODE
 
 class CNtlWEDoc : public CDocument
 {
-protected: // serialization¿¡¼­¸¸ ¸¸µé¾îÁı´Ï´Ù.
+protected: // serializationì—ì„œë§Œ ë§Œë“¤ì–´ì§‘ë‹ˆë‹¤.
 	CNtlWEDoc();
 	DECLARE_DYNCREATE(CNtlWEDoc)
 
-// Æ¯¼º
+// íŠ¹ì„±
 public:
 
-// ÀÛ¾÷
+// ì‘ì—…
 public:
 	RwUInt32				m_uiFieldPropMode;
 
@@ -64,12 +64,12 @@ public:
 	CFieldColorPropDlg	m_FieldColorPropDlg;
 	CWeatherDlg			m_WeatherDlg;
 
-	// ÀÎµµ¾î
+	// ì¸ë„ì–´
 	CGamePropDlg		m_GamePropDlg;
 
 	std::wstring		m_MapNameStr;
 
-// ÀçÁ¤ÀÇ
+// ì¬ì •ì˜
 	public:
 	virtual BOOL OnNewDocument();
 	virtual void Serialize(CArchive& ar);
@@ -77,7 +77,7 @@ public:
 public:
 	void CreateWorldData();
 
-// ±¸Çö
+// êµ¬í˜„
 public:
 	virtual ~CNtlWEDoc();
 #ifdef _DEBUG
@@ -87,7 +87,7 @@ public:
 
 protected:
 
-// ¸Ş½ÃÁö ¸Ê ÇÔ¼ö¸¦ »ı¼ºÇß½À´Ï´Ù.
+// ë©”ì‹œì§€ ë§µ í•¨ìˆ˜ë¥¼ ìƒì„±í–ˆìŠµë‹ˆë‹¤.
 protected:
 	DECLARE_MESSAGE_MAP()
 public:

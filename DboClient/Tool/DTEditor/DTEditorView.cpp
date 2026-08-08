@@ -90,7 +90,7 @@ void CDTEditorView::Picking(CPoint point)
 	FLOAT fFocusDistance;
 	int nSelIdx = GetFocusControlPointIndex(point, fFocusDistance);
 	
-	// picking ����.
+	// picking 검출.
 	SWorldPickInfo sPickInfo;
 	sPickInfo.pPLEntity = NULL;
 	sPickInfo.bTerrainExclusion		= FALSE;
@@ -160,7 +160,7 @@ void CDTEditorView::Picking(CPoint point)
 
 		API_GetSLPacketGenerator()->SendCharTargetSelect(GetSelectTarget());
 
-		// ������ control point
+		// 선택한 control point
 		if(nSelIdx >= 0)
 		{
 			SetActiveSelectControlPoint(nSelIdx, nSelIdx+1);
@@ -272,7 +272,7 @@ void CDTEditorView::OnMouseMove(UINT nFlags, CPoint point)
 	m_ptPrev = point;
 	
 
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 
 	CView::OnMouseMove(nFlags, point);
 }
@@ -285,7 +285,7 @@ BOOL CDTEditorView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 		RwReal fDelta = -zDelta * NTL_ZOOM_INOUT_SENSITIVITY;
 		GetNtlGameCameraManager()->ZoomInOut(fDelta);
 	}
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 
 	return CView::OnMouseWheel(nFlags, zDelta, pt);
 }
@@ -293,7 +293,7 @@ BOOL CDTEditorView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 void CDTEditorView::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
 
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 
 	CView::OnLButtonDblClk(nFlags, point);
 }
@@ -306,7 +306,7 @@ void CDTEditorView::OnLButtonUp(UINT nFlags, CPoint point)
 	if(GetEditModeType() == EDIT_MODE_THIRD_CAMERA && nFlags & MK_CONTROL)
 		SplineModeMouseLBtnUp(point);
 
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 
 	CView::OnLButtonUp(nFlags, point);
 }
@@ -315,14 +315,14 @@ void CDTEditorView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	ViewerModeMouseLBtnDown(point);
 
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 
 	CView::OnLButtonDown(nFlags, point);
 }
 
 void CDTEditorView::OnMButtonUp(UINT nFlags, CPoint point)
 {
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 
 	CView::OnMButtonUp(nFlags, point);
 }
@@ -331,7 +331,7 @@ void CDTEditorView::OnRButtonDown(UINT nFlags, CPoint point)
 {
 	ViewerModeMouseRBtnDown(point);
 
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 
 	CView::OnRButtonDown(nFlags, point);
 }
@@ -347,7 +347,7 @@ void CDTEditorView::OnRButtonUp(UINT nFlags, CPoint point)
 			SplineModeMouseRBtnUp(point);
 	}
 			
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 
 	CView::OnRButtonUp(nFlags, point);
 }
@@ -356,7 +356,7 @@ void CDTEditorView::OnSize(UINT nType, int cx, int cy)
 {
 	CView::OnSize(nType, cx, cy);
 
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 
 	CDirectApplication *pApp = (CDirectApplication*)CNtlApplication::GetInstance();
 	if(pApp)
@@ -417,7 +417,7 @@ void CDTEditorView::ViewerModeMouseLBtnUp(UINT nFlags, CPoint point)
 	{
 		if(timeGetTime() - m_dwLBtnDownTime <= 300)
 		{
-			// picking ����.
+			// picking 검출.
 			SWorldPickInfo sPickInfo;
 			sPickInfo.bTerrainExclusion		= FALSE;
 			sPickInfo.bCharacterExclusion	= FALSE;
@@ -434,7 +434,7 @@ void CDTEditorView::ViewerModeMouseLBtnUp(UINT nFlags, CPoint point)
 					RwUInt32 uiMoveFlags = pApp->GetMoveFlags();
 					if(uiMoveFlags == 0)
 					{
-						// ���� ���.
+						// 사운드 출력.
 						CNtlSobAvatar *pSobAvatar = GetNtlSLGlobal()->GetSobAvatar(); 
 						RwV3d vPos = pSobAvatar->GetPosition(); 
 
@@ -442,7 +442,7 @@ void CDTEditorView::ViewerModeMouseLBtnUp(UINT nFlags, CPoint point)
 
 						if(pSobAvatar->CanMove())
 						{
-							//Mark�� ���� ������ ������ �Ѵ�. �����ս��� �϶��� ���������� ����
+							//Mark를 찍을 때마다 생성을 한다. 퍼포먼스의 하락이 있을것으로 예상
 							CreateMoveMark(&sPickInfo.vPickPos);
 						}
 					}
@@ -640,7 +640,7 @@ void CDTEditorView::ViewerModeMouseMoveRBtn(CPoint point)
 
 				if(bSuccess && !m_bChangeHeadingFlag)
 				{
-					// ī�޶�� Ʋ���� target ������ �����.
+					// 카메라와 틀어진 target 방향을 맞춘다.
 					RwReal fYaw = GetNtlGameCameraManager()->GetYaw();
 					CNtlSobAvatar *pSobAvatar = GetNtlSLGlobal()->GetSobAvatar();
 					pSobAvatar->SetAngleY(fYaw);
@@ -718,20 +718,20 @@ void CDTEditorView::UpdateCameraRotateToCharBack(RwReal fElapsed)
 	if(fCovAngleY >= 360.0f)
 		fCovAngleY -= 360.0f;
 
-	//  ȸ���� �ð� �ݴ� ���� ȸ���̴�.
-	//  ī�޶� angle ���� character angle ����.
+	//  회전은 시계 반대 방향 회전이다.
+	//  카메라 angle 에서 character angle 뺀다.
 	RwReal fSubAngleY = fCovAngleY - fAngleY;
 
 	if(fSubAngleY > 0.0f)
-		if(fSubAngleY > 180.0f) // ������ ������Ų��.
+		if(fSubAngleY > 180.0f) // 각도를 증가시킨다.
 			fSubAngleY = 360.0f - fSubAngleY;
-		else // ������ ���ҽ�Ų��.
-			fSubAngleY = -fSubAngleY; //(�ð� �ݴ� �����̹Ƿ� ����� �Ѵ�.)
+		else // 각도를 감소시킨다.
+			fSubAngleY = -fSubAngleY; //(시계 반대 방향이므로 빼줘야 한다.)
 	else
-		if(fSubAngleY > -180.0f) // ������ ������Ų��.
+		if(fSubAngleY > -180.0f) // 각도를 증가시킨다.
 			fSubAngleY = fabs(fSubAngleY); 
-		else // ������ ���ҽ�Ų��.
-			fSubAngleY = -(360.0f - fabs(fSubAngleY)); // �ð� �ݴ� �����̹Ƿ� ����� �Ѵ�.
+		else // 각도를 감소시킨다.
+			fSubAngleY = -(360.0f - fabs(fSubAngleY)); // 시계 반대 방향이므로 빼줘야 한다.
 
 	if(fabs(fSubAngleY) < fDeltaAngleY)
 		m_eRotFlag = CAMERA_ROTATE_FLAG_ACCORD;
@@ -771,7 +771,7 @@ void CDTEditorView::DeleteMoveMark(void)
 
 void CDTEditorView::UpdateMoveMark(RwReal fElapsed)
 {
-	// move mark�� ��� ����ٰ� ���ش�.
+	// move mark를 잠깐 띄웠다가 없앤다.
 	if(m_pMoveMark)
 	{
 		m_fMoveMarkTime += fElapsed;
@@ -820,7 +820,7 @@ void CDTEditorView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		pAttrDlg->OnBnClickedPointattrPointPos();
 	}
 	
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 
 	CView::OnKeyDown(nChar, nRepCnt, nFlags);
 }
@@ -829,7 +829,7 @@ void CDTEditorView::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	CInputHandler::GetInstance()->KeyUpHandler(nChar,  nRepCnt);
 
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰� ��/�Ǵ� �⺻���� ȣ���մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
 
 	CView::OnKeyUp(nChar, nRepCnt, nFlags);
 }

@@ -85,24 +85,24 @@ protected:
 public:
 	//////////////////////////////////////////////////////////////////////////
 	//
-	//	Client <-> Server ¸Ş½ÃÁöµé
+	//	Client <-> Server ë©”ì‹œì§€ë“¤
 	//
 	//////////////////////////////////////////////////////////////////////////
 
-	// Æ®¸®°Å ½Ã½ºÅÛ Èå¸§ ÁøÇà °ü·Ã ¸Ş½ÃÁöµé
+	// íŠ¸ë¦¬ê±° ì‹œìŠ¤í…œ íë¦„ ì§„í–‰ ê´€ë ¨ ë©”ì‹œì§€ë“¤
 	void								UG_Avatar_TS_Confirm_Step( NTL_TS_T_ID tId, NTL_TS_TC_ID tcCurId, NTL_TS_TC_ID tcNextId, unsigned int* uiParam, unsigned char byEventType, unsigned int uiEventData );
 	void								GU_Avatar_TS_Confirm_Step( WORD wResultCode, NTL_TS_T_ID tId, NTL_TS_TC_ID tcCurId, NTL_TS_TC_ID tcNextId );
 
-	// TS »óÅÂ ¾÷µ¥ÀÌÆ® ¸Ş½ÃÁö
+	// TS ìƒíƒœ ì—…ë°ì´íŠ¸ ë©”ì‹œì§€
 	void								GU_TS_Update_State( NTL_TS_T_ID tId, unsigned char byType, unsigned short wTSState, unsigned int uiParam = 0xffffffff );
 	void								UG_TS_Update_State( NTL_TS_T_ID tId, unsigned char byType, unsigned short wTSState, unsigned int uiParam = 0xffffffff );
 
-	// ¼­¹ö·ÎºÎÅÍ ¹Ş´Â TS ÁøÇà ÀÌº¥Æ®
+	// ì„œë²„ë¡œë¶€í„° ë°›ëŠ” TS ì§„í–‰ ì´ë²¤íŠ¸
 	void								GU_TS_Update_Event_Nfy( NTL_TS_EVENT_ID eID );
 
 	//////////////////////////////////////////////////////////////////////////
 	//
-	//	Client <-> Client TS ¸Ş½ÃÁöµé
+	//	Client <-> Client TS ë©”ì‹œì§€ë“¤
 	//
 	//////////////////////////////////////////////////////////////////////////
 
@@ -130,23 +130,23 @@ public:
 		//
 		//////////////////////////////////////////////////////////////////////////
 
-	// Á¦¾È ´ëÈ­ »óÀÚ
+	// ì œì•ˆ ëŒ€í™” ìƒì
 	void								TU_ShowProposalDialog( sTS_KEY& sKey, CDboTSContProposal* pCont, CDboTSContReward* pContRwd );
 	void								UT_ShowProposalDialog( sTS_KEY& sKey, bool bAccept );
 
-	// »ç¿ëÀÚ º¸»ó ¼±ÅÃ ´ëÈ­ »óÀÚ
+	// ì‚¬ìš©ì ë³´ìƒ ì„ íƒ ëŒ€í™” ìƒì
 	void								TU_ShowRewardDialog( sTS_KEY& sKey, CDboTSCTCtrl* pTCtrl, CDboTSContReward* pContRwd );
 	void								UT_ShowRewardDialog( sTS_KEY& sKey, int nSelIdx, bool bCancel );
 
-	// »ç¿ëÀÚ ¼±ÅÃ ´ëÈ­ »óÀÚ
+	// ì‚¬ìš©ì ì„ íƒ ëŒ€í™” ìƒì
 	void								TU_ShowUserSelectionDialog( sTS_KEY& sKey, CDboTSCTCtrl* pTCtrl, CDboTSContUsrSel* pCont );
 	void								UT_ShowUserSelectionDialog( sTS_KEY& sKey, NTL_TS_TC_ID tcSelId, bool bCancel );
 
-	// ³ª·¡ÀÌ¼Ç ´ëÈ­ »óÀÚ
+	// ë‚˜ë˜ì´ì…˜ ëŒ€í™” ìƒì
 	void								TU_ShowNarrationDialog( sTS_KEY& sKey, CDboTSContNarration* pCont );
 	void								UT_ShowNarrationDialog( sTS_KEY& sKey, bool bCancel );
 
-	// ÅëÇÕ ³ª·¡ÀÌ¼Ç ´ëÈ­ »óÀÚ
+	// í†µí•© ë‚˜ë˜ì´ì…˜ ëŒ€í™” ìƒì
 	void								TU_ShowUnifiedNarrationDialog( sTS_KEY& sKey, CDboTSContUnifiedNarration* pCont );
 	void								UT_ShowUnifiedNarrationDialog( sTS_KEY& sKey, bool bCancel );
 
@@ -156,15 +156,15 @@ public:
 		//
 		//////////////////////////////////////////////////////////////////////////
 
-	// NPC ´ëÈ­
+	// NPC ëŒ€í™”
 	void								TU_ShowNPCConv( sTS_KEY& sKey, CDboTSActNPCConv* pAct );
 	void								UT_ShowNPCConv( sTS_KEY& sKey );
 
-	// Ä«¸Ş¶ó ¿¬Ãâ
+	// ì¹´ë©”ë¼ ì—°ì¶œ
 	void								TU_CameraDirection( sTS_KEY& sKey, CDboTSActOPCam* pAct );
 	void								UT_CameraDirection( sTS_KEY& sKey );
 
-	// Object ´ëÈ­
+	// Object ëŒ€í™”
 	void								TU_ShowObjConv( sTS_KEY& sKey, CDboTSActObjConv* pAct );
 	void								UT_ShowObjConv( sTS_KEY& sKey );
 

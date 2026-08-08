@@ -1,9 +1,9 @@
 /*****************************************************************************
 * File			: NtlStorageGroupSystem.h
 * Author		: HaeSung, Cho
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2009. 2. 5	
-* Abstract		: System¿« Storage group
+* Abstract		: SystemÏùò Storage group
 *****************************************************************************
 * Desc         : 
 *

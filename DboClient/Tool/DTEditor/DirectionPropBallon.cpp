@@ -1,4 +1,4 @@
-// DirectionPropBallon.cpp : ���� �����Դϴ�.
+// DirectionPropBallon.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -50,7 +50,7 @@ END_MESSAGE_MAP()
 
 
 
-// CDirectionPropBallon �޽��� ó�����Դϴ�.
+// CDirectionPropBallon 메시지 처리기입니다.
 
 
 
@@ -59,7 +59,7 @@ int CDirectionPropBallon::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// TODO:  ���⿡ Ư��ȭ�� �ۼ� �ڵ带 �߰��մϴ�.
+	// TODO:  여기에 특수화된 작성 코드를 추가합니다.
 	if( m_PropGrid.Create(CRect(0, 0, 0, 0), this, IDS_STRING_BALLON) )
 	{
 		CString strTemp;
@@ -133,7 +133,7 @@ void CDirectionPropBallon::OnSize(UINT nType, int cx, int cy)
 {
 	CWnd::OnSize(nType, cx, cy);
 
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	CSize sz(0);
 
 	if (m_PropGrid.GetSafeHwnd())
@@ -146,7 +146,7 @@ void CDirectionPropBallon::OnShowWindow(BOOL bShow, UINT nStatus)
 {
 	CWnd::OnShowWindow(bShow, nStatus);
 
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	if( !bShow )
 		m_ePositionModifyMode = PM_INVALID;
 }

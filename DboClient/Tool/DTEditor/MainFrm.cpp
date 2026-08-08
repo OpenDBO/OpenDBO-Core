@@ -228,7 +228,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	*/
 
-	// ¿¬Ãâ °ü·Ã Å¬·¡½º
+	// ì—°ì¶œ ê´€ë ¨ í´ë˜ìŠ¤
 	m_pDirectionPane					= NTL_NEW CDirectionPane;
 	m_pDirectionController				= NTL_NEW CDirectionPropController;
 	m_pDirectionPropEffect				= NTL_NEW CDirectionPropEffect;
@@ -252,7 +252,7 @@ void CMainFrame::OnDestroy()
 {
 	CXTPFrameWnd::OnDestroy();
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.	
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.	
 }
 
 
@@ -556,7 +556,7 @@ void CButtonOptions::OnOptionShow()
 
 void CMainFrame::OnSplinemarkControlline()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	BYTE byMarkFlags = CNtlDTRender::GetRenderMarkFlags();
 	if(byMarkFlags & DT_RENDER_MARK_CONTROL_POINT)
@@ -567,7 +567,7 @@ void CMainFrame::OnSplinemarkControlline()
 
 void CMainFrame::OnSplinemarkCurveline()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	BYTE byMarkFlags = CNtlDTRender::GetRenderMarkFlags();
 	if(byMarkFlags & DT_RENDER_MARK_CURVE_POINT)
 		CNtlDTRender::ExcludeRenderMarkFlag(DT_RENDER_MARK_CURVE_POINT);
@@ -577,7 +577,7 @@ void CMainFrame::OnSplinemarkCurveline()
 
 void CMainFrame::OnSplinemarkCurverotateline()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	BYTE byMarkFlags = CNtlDTRender::GetRenderMarkFlags();
 	if(byMarkFlags & DT_RENDER_MARK_CURVE_ROTATE)
 		CNtlDTRender::ExcludeRenderMarkFlag(DT_RENDER_MARK_CURVE_ROTATE);
@@ -587,7 +587,7 @@ void CMainFrame::OnSplinemarkCurverotateline()
 
 void CMainFrame::OnUpdateSplinemarkControlline(CCmdUI *pCmdUI)
 {
-	// TODO: ¿©±â¿¡ ¸í·É ¾÷µ¥ÀÌÆ® UI Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì—…ë°ì´íŠ¸ UI ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	BYTE byMarkFlags = CNtlDTRender::GetRenderMarkFlags();
 	if(byMarkFlags & DT_RENDER_MARK_CONTROL_POINT)
@@ -598,7 +598,7 @@ void CMainFrame::OnUpdateSplinemarkControlline(CCmdUI *pCmdUI)
 
 void CMainFrame::OnSplinemarkCurveCustomdataVisible()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if(IsCustomDataRender())
 		EnableCustomDataRender(FALSE);
 	else
@@ -607,7 +607,7 @@ void CMainFrame::OnSplinemarkCurveCustomdataVisible()
 
 void CMainFrame::OnUpdateSplinemarkCurveCustomdataVisible(CCmdUI *pCmdUI)
 {
-	// TODO: ¿©±â¿¡ ¸í·É ¾÷µ¥ÀÌÆ® UI Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì—…ë°ì´íŠ¸ UI ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if(IsCustomDataRender())
 		pCmdUI->SetCheck(TRUE);
 	else
@@ -617,7 +617,7 @@ void CMainFrame::OnUpdateSplinemarkCurveCustomdataVisible(CCmdUI *pCmdUI)
 
 void CMainFrame::OnUpdateSplinemarkCurveline(CCmdUI *pCmdUI)
 {
-	// TODO: ¿©±â¿¡ ¸í·É ¾÷µ¥ÀÌÆ® UI Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì—…ë°ì´íŠ¸ UI ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	BYTE byMarkFlags = CNtlDTRender::GetRenderMarkFlags();
 	if(byMarkFlags & DT_RENDER_MARK_CURVE_POINT)
@@ -628,7 +628,7 @@ void CMainFrame::OnUpdateSplinemarkCurveline(CCmdUI *pCmdUI)
 
 void CMainFrame::OnUpdateSplinemarkCurverotateline(CCmdUI *pCmdUI)
 {
-	// TODO: ¿©±â¿¡ ¸í·É ¾÷µ¥ÀÌÆ® UI Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì—…ë°ì´íŠ¸ UI ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	BYTE byMarkFlags = CNtlDTRender::GetRenderMarkFlags();
 	if(byMarkFlags & DT_RENDER_MARK_CURVE_ROTATE)
 		pCmdUI->SetCheck(TRUE);
@@ -638,14 +638,14 @@ void CMainFrame::OnUpdateSplinemarkCurverotateline(CCmdUI *pCmdUI)
 
 void CMainFrame::OnRenderviewWorldrenderOnoff()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	CNtlPLGlobal::m_bWorldTerrainVisible = !CNtlPLGlobal::m_bWorldTerrainVisible;
 }
 
 void CMainFrame::OnUpdateRenderviewWorldrenderOnoff(CCmdUI *pCmdUI)
 {
-	// TODO: ¿©±â¿¡ ¸í·É ¾÷µ¥ÀÌÆ® UI Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì—…ë°ì´íŠ¸ UI ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if(CNtlPLGlobal::m_bWorldTerrainVisible)
 		pCmdUI->SetCheck(TRUE);
 	else
@@ -671,7 +671,7 @@ void CMainFrame::OnSelchangeEditMode()
 
 void CMainFrame::OnWorldChange()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	EEditModeType eEditMode = GetEditModeType();
 
@@ -703,7 +703,7 @@ void CMainFrame::OnAvatrRaceClassGender()
 
 void CMainFrame::OnAvatarTeleport()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	EEditModeType eEditMode = GetEditModeType();
 
@@ -720,7 +720,7 @@ void CMainFrame::OnAvatarTeleport()
 
 void CMainFrame::OnAvatarSpeed()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	EEditModeType eEditMode = GetEditModeType();
 
@@ -737,7 +737,7 @@ void CMainFrame::OnAvatarSpeed()
 
 void CMainFrame::OnOptionSound()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	CSoundOption dlgSoundOption;
 	dlgSoundOption.DoModal();
 }

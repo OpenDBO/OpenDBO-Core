@@ -2,7 +2,7 @@
  *
  * File			: NtlPLRenderState.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 12. 06	
  * Abstract		: Presentation render state 
  *****************************************************************************

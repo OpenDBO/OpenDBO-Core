@@ -2,7 +2,7 @@
  *
  * File			: NtlSob.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 8. 10	
  * Abstract		: Simulation object entity base class
  *****************************************************************************
@@ -31,7 +31,7 @@ class CNtlSobElapsedController;
 // simualtion object factory macro
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// Àá½Ã ÁÖ¼®Ã³¸®(ÀåÇü¼®)
+// ì ì‹œ ì£¼ì„ì²˜ë¦¬(ì¥í˜•ì„)
 /*
 class CNtlSLFactory
 {
@@ -85,7 +85,7 @@ protected:
 	SERIAL_HANDLE m_hLastAttackerID;		/** LastAttacker id */
 	RwUInt32 m_uiVisualLuaID;				/** visual lua id */
 
-	CNtlSob *m_pSobParent;					/** owner id¿Í´Â ´Ù¸£´Ù */
+	CNtlSob *m_pSobParent;					/** owner idì™€ëŠ” ë‹¤ë¥´ë‹¤ */
 	CNtlSobAttr *m_pSobAttr;				/** simulation object attribute */
 	CNtlSobProxy *m_pSobProxy;				/** simulation object rendering proxy */
 
@@ -94,11 +94,11 @@ protected:
 	RwV3d m_vDirection;						/** direction */
 
 	// weight elapsed time
-	RwReal m_fWeightElapsedTime;			/** °¡ÁßÄ¡ elapsed time */
+	RwReal m_fWeightElapsedTime;			/** ê°€ì¤‘ì¹˜ elapsed time */
 
 	RwBool m_bEventHook;
 
-	// »ı¼ºÀÚ.
+	// ìƒì„±ì.
 	CNtlSob(); 
 
 public:
@@ -199,13 +199,13 @@ public:
 
 public:
 	
-	// ¿òÁ÷ÀÏ ¼ö ÀÖ´Â°¡?
+	// ì›€ì§ì¼ ìˆ˜ ìˆëŠ”ê°€?
 	virtual RwBool CanMove(void);
 
-	// °ø°İÇÒ ¼ö ÀÖ´Â°¡?
+	// ê³µê²©í•  ìˆ˜ ìˆëŠ”ê°€?
 	virtual RwBool CanAttack(void);
 
-	// °ø°İ ¹ŞÀ» ¼ö ÀÖ´Â°¡?
+	// ê³µê²© ë°›ì„ ìˆ˜ ìˆëŠ”ê°€?
 	virtual RwBool CanHurted(void);
 };
 

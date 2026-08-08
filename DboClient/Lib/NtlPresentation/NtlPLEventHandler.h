@@ -2,7 +2,7 @@
 *
 * File			: NtlPLEventHandler.h
 * Author		: HyungSuk, Jang
-* Copyright	: (¡÷)NTL
+* Copyright	: (Ï£º)NTL
 * Date			: 2006. 5. 09	
 * Abstract		: presentation layer event handler
 *****************************************************************************

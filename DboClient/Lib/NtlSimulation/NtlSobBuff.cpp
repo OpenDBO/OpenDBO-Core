@@ -40,10 +40,10 @@ RwBool CNtlSobBuff::Create(void)
 		NTL_RETURN(FALSE);
 	}
 
-	// class name ¼³Á¤.
+	// class name ì„¤ì •.
 	SetClassName(SLCLASS_NAME_BUFF);
 
-	// icon »ý¼º.
+	// icon ìƒì„±.
 	m_pIcon->Create(); 
 	m_pIcon->PostCreate();
 

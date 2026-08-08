@@ -2,21 +2,21 @@
 #include "afxwin.h"
 
 
-// CPaletteSpawnMacroModify ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteSpawnMacroModify ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CPaletteSpawnMacroModify : public CDialog
 {
 	DECLARE_DYNAMIC(CPaletteSpawnMacroModify)
 
 public:
-	CPaletteSpawnMacroModify(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CPaletteSpawnMacroModify(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CPaletteSpawnMacroModify();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_SPAWN_MACRO_MODIFY };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 

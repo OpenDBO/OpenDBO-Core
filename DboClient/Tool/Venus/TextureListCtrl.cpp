@@ -1,4 +1,4 @@
-// TextureListCtrl.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// TextureListCtrl.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -41,10 +41,10 @@ END_MESSAGE_MAP()
 
 
 
-// CTextureListCtrl ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CTextureListCtrl ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 //void CTextureListCtrl::OnContextMenu(CWnd* /*pWnd*/, CPoint point)
 //{
-//	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+//	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 //	POSITION pos = GetFirstSelectedItemPosition();
 //
 //	CMenu menu;
@@ -64,7 +64,7 @@ END_MESSAGE_MAP()
 
 //void CTextureListCtrl::OnInsertTexture()
 //{
-//	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+//	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 //	CFileDialog dlg(TRUE, NULL, "Venus", OFN_HIDEREADONLY|OFN_OVERWRITEPROMPT|OFN_ALLOWMULTISELECT, "Texture File|*.*");
 //	dlg.m_ofn.nMaxFile = 10000;
 //	dlg.m_ofn.lpstrFile = NTL_NEW TCHAR[10000];
@@ -106,8 +106,8 @@ END_MESSAGE_MAP()
 
 //void CTextureListCtrl::OnDeleteTexture()
 //{
-//	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
-//	RwUInt32 result = AfxMessageBox("ÇöÀç ÅØ½ºÃÄ »ç¿ë ¿©ºÎ¿¡ ´ëÇÑ ¿¡·¯ Ã¼Å©¸¦ ÇÏÁö ¾Ê´Â´Ù \n´Ù¸¥°÷¿¡¼­ »ç¿ëÇÏ´Â ÅØ½ºÃÄ¸¦ Áö¿ï·Á°í ÇÏ¸é ¿¡·¯ ³¯°ÍÀÌ´Ù\n±×·¡µµ Áö¿ï°ÍÀÎ°¡ ?", MB_OKCANCEL);
+//	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
+//	RwUInt32 result = AfxMessageBox("í˜„ì¬ í…ìŠ¤ì³ ì‚¬ìš© ì—¬ë¶€ì— ëŒ€í•œ ì—ëŸ¬ ì²´í¬ë¥¼ í•˜ì§€ ì•ŠëŠ”ë‹¤ \në‹¤ë¥¸ê³³ì—ì„œ ì‚¬ìš©í•˜ëŠ” í…ìŠ¤ì³ë¥¼ ì§€ìš¸ë ¤ê³  í•˜ë©´ ì—ëŸ¬ ë‚ ê²ƒì´ë‹¤\nê·¸ë˜ë„ ì§€ìš¸ê²ƒì¸ê°€ ?", MB_OKCANCEL);
 //	if (result != IDOK) return;
 //
 //	POSITION pos = GetFirstSelectedItemPosition();
@@ -128,7 +128,7 @@ END_MESSAGE_MAP()
 
 void CTextureListCtrl::OnInitControl()
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	m_ImageList.Create(THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT, ILC_COLOR24, 0, 1);
 	SetImageList(&m_ImageList, LVSIL_NORMAL);
 	SetIconSpacing(80, 90);
@@ -250,7 +250,7 @@ RwBool CTextureListCtrl::InsertTextureImage(RwInt32 index, const RwChar* strPath
 void CTextureListCtrl::OnLvnItemchanged(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	POSITION pos = GetFirstSelectedItemPosition();
 	if (pos == NULL) return;
 

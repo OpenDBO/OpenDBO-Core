@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File: TBMinorDirectionGui.h
-// Desc: ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ¿¹¼± ¿¬Ãâ Gui
+// Desc: ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì˜ˆì„  ì—°ì¶œ Gui
 //
 // 2008.09.18 Peessi@hitel.net   
 ////////////////////////////////////////////////////////////////////////////////
@@ -93,8 +93,8 @@ public:
 	stWINNERINFO		m_stWinner;	
 
 	//! Timer
-	CTimerHandle		m_hDiceWinnerSelectTimer;		// ÃßÃ·»óÅÂ¿¡¼­ ÁÖ»çÀ§°¡ ´øÁ®Áö±â ±îÁöÀÇ ½Ã°£.	
-	CTimerHandle		m_hDiceWinnerShowTimer;			// ÃßÃ·»óÅÂ¿¡¼­ ÁÖ»çÀ§ÀÇ °á°ú°¡ º¸¿©Áö´Â ½Ã°£.
+	CTimerHandle		m_hDiceWinnerSelectTimer;		// ì¶”ì²¨ìƒíƒœì—ì„œ ì£¼ì‚¬ìœ„ê°€ ë˜ì ¸ì§€ê¸° ê¹Œì§€ì˜ ì‹œê°„.	
+	CTimerHandle		m_hDiceWinnerShowTimer;			// ì¶”ì²¨ìƒíƒœì—ì„œ ì£¼ì‚¬ìœ„ì˜ ê²°ê³¼ê°€ ë³´ì—¬ì§€ëŠ” ì‹œê°„.
 
 	//! SelectionData
 	TEAMTYPE					m_WinnerTeam;

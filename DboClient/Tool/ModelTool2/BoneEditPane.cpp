@@ -84,7 +84,7 @@ void CBoneEditPane::OnInitialUpdate()
 {
     CFormView::OnInitialUpdate();
 
-    // ÅøÆÁ Àû¿ë
+    // íˆ´íŒ ì ìš©
     m_ToolTip.Create(this);
     m_ckEnableBoneEdit.EnableToolTips(TRUE);
     m_ckEnableBaseScale.EnableToolTips(TRUE);
@@ -118,7 +118,7 @@ void CBoneEditPane::SetModel(CMTCharacter* pCharacter)
         m_pCharacter = pCharacter;
         m_pProperty  = pCharacter->GetProperty();
 
-        // UI ÃÊ±âÈ­ ÀÛ¾÷        
+        // UI ì´ˆê¸°í™” ìž‘ì—…        
         m_cbBoneName.ResetContent();        
         for(int i = 0; i < m_pCharacter->GetBoneNum(); ++i)
         {
@@ -135,7 +135,7 @@ void CBoneEditPane::SetModel(CMTCharacter* pCharacter)
         sBaseScale.Format("%.2f", m_pCharacter->GetBaseScale());
         m_edBoneBaseScale.SetWindowText(sBaseScale);
 
-        // ¾Ö´Ï¸ÞÀÌ¼ÇÀÌ ¼³Á¤µÉ¶§±îÁö´Â ºñÈ°¼ºÈ­·Î µÐ´Ù.
+        // ì• ë‹ˆë©”ì´ì…˜ì´ ì„¤ì •ë ë•Œê¹Œì§€ëŠ” ë¹„í™œì„±í™”ë¡œ ë‘”ë‹¤.
         SetEnable(FALSE);
     }
 }
@@ -175,7 +175,7 @@ void CBoneEditPane::OnCbnSelchangeCbBone()
 
     STypeBoneData* pBoneData = m_pProperty->GetBoneScaleData();
 
-    //Data°¡ º¯°æ µÇ¾î¼­ ¼öÁ¤ ÇÕ´Ï´Ù (2006.4.27 HoHoDong)
+    //Dataê°€ ë³€ê²½ ë˜ì–´ì„œ ìˆ˜ì • í•©ë‹ˆë‹¤ (2006.4.27 HoHoDong)
     m_fBoneLength = pBoneData->BoneScale[m_nSelectBoneIndex].fLength;
     m_fBoneWidth  = pBoneData->BoneScale[m_nSelectBoneIndex].fWidth;    
 
@@ -192,8 +192,8 @@ void CBoneEditPane::OnCbnSelchangeCbBone()
 
 void CBoneEditPane::OnBnClickedCkBoneEdit()
 {
-    // BoneÀ» EditÇÒÁö ¿©ºÎ¸¦ ¼±ÅÃÇÑ´Ù.
-    // BoneÀ» EditÇÒ¶§¸¸ BoneÀ» ·»´õ¸µÇÑ´Ù.
+    // Boneì„ Edití• ì§€ ì—¬ë¶€ë¥¼ ì„ íƒí•œë‹¤.
+    // Boneì„ Edití• ë•Œë§Œ Boneì„ ë Œë”ë§í•œë‹¤.
     BOOL bEnable = m_ckEnableBoneEdit.GetCheck();    
 
     m_cbBoneName.EnableWindow(bEnable);
@@ -207,7 +207,7 @@ void CBoneEditPane::OnBnClickedCkBoneEdit()
     m_spBoneMove.EnableWindow(bEnable);
     //m_spBoneSensitive.EnableWindow(bEnable);
 
-    // Ä³¸¯ÅÍ¿¡µµ ¼³Á¤ÇÑ´Ù.        
+    // ìºë¦­í„°ì—ë„ ì„¤ì •í•œë‹¤.        
     if(m_pCharacter && m_pProperty)
     {
         m_pCharacter->SetRenderBone(bEnable); 
@@ -217,7 +217,7 @@ void CBoneEditPane::OnBnClickedCkBoneEdit()
 
 void CBoneEditPane::OnBnClickedCkBoneEdit2()
 {
-    // Base Scale ¼³Á¤À» On/Off ÇÑ´Ù.
+    // Base Scale ì„¤ì •ì„ On/Off í•œë‹¤.
     BOOL bEnable = m_ckEnableBaseScale.GetCheck();
 
     m_edBoneBaseScale.EnableWindow(bEnable);
@@ -227,7 +227,7 @@ void CBoneEditPane::OnBnClickedCkBoneEdit2()
     {
         m_pProperty->GetBoneScaleData()->bBaseScale = bEnable;
 
-        // Ä³¸¯ÅÍ Å¬·¡½º ÀÚÃ¼¿¡¼­ ¸øÇØÁÖ±â ¶§¹®¿¡ ¿©±â¼­ ÇØÁØ´Ù.
+        // ìºë¦­í„° í´ëž˜ìŠ¤ ìžì²´ì—ì„œ ëª»í•´ì£¼ê¸° ë•Œë¬¸ì— ì—¬ê¸°ì„œ í•´ì¤€ë‹¤.
 
         RwV3d vZeroPos;
         ZeroMemory(&vZeroPos, sizeof(vZeroPos));
@@ -239,7 +239,7 @@ void CBoneEditPane::OnBnClickedCkBoneEdit2()
 
 void CBoneEditPane::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-    // Å°º¸µå ÀÔ·ÂÀ¸·Î BoneÀ» º¯°æÇÑ´Ù.
+    // í‚¤ë³´ë“œ ìž…ë ¥ìœ¼ë¡œ Boneì„ ë³€ê²½í•œë‹¤.
     if(m_ckEnableBoneEdit.GetCheck() == FALSE || !m_pCharacter || !m_pProperty)
         return;
 
@@ -276,7 +276,7 @@ BOOL CBoneEditPane::PreTranslateMessage(MSG* pMsg)
 {
     if(pMsg->message == WM_MOUSEMOVE)
     {
-        // ÅøÆÁÀ» Àû¿ëÇÑ´Ù.
+        // íˆ´íŒì„ ì ìš©í•œë‹¤.
         m_ToolTip.RelayEvent(pMsg);
     }
     WindowProc(pMsg->message, pMsg->wParam, pMsg->lParam);
@@ -290,7 +290,7 @@ void CBoneEditPane::OnEnChangeEdBoneLength()
     {
         CString sBoneLength;
         m_edBoneLength.GetWindowText(sBoneLength);
-        //BoneData°¡ ¼öÁ¤µÇ¾î¼­ ¼öÁ¤ÇÔ(2006.4.26 HongHoDong)
+        //BoneDataê°€ ìˆ˜ì •ë˜ì–´ì„œ ìˆ˜ì •í•¨(2006.4.26 HongHoDong)
         pBoneData->BoneScale[m_nSelectBoneIndex].fLength = (RwReal)atof(sBoneLength);
     }
 }
@@ -302,7 +302,7 @@ void CBoneEditPane::OnEnChangeEdBoneWidth()
     {
         CString sBoneWidth;
         m_edBoneWidth.GetWindowText(sBoneWidth);
-        //BoneData°¡ ¼öÁ¤µÇ¾î¼­ ¼öÁ¤ÇÔ(2006.4.26 HongHoDong)
+        //BoneDataê°€ ìˆ˜ì •ë˜ì–´ì„œ ìˆ˜ì •í•¨(2006.4.26 HongHoDong)
         pBoneData->BoneScale[m_nSelectBoneIndex].fWidth= (RwReal)atof(sBoneWidth);
     }
 

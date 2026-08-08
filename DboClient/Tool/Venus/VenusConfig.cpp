@@ -2,7 +2,7 @@
 //	File		:	VenusConfig.cpp
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -675,10 +675,10 @@ RwBool CVenusConfig::SubFindWinword(std::string& strWinwordPath)
 
 		if(FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 		{
-			//  µğ·ºÅä¸®ÀÌ¸é
+			//  ë””ë ‰í† ë¦¬ì´ë©´
 			if(FindFileData.cFileName[0] == '.')
 			{
-				//  Dot µğ·ºÅä¸®´Â ½ºÅµÇÑ´Ù.
+				//  Dot ë””ë ‰í† ë¦¬ëŠ” ìŠ¤í‚µí•œë‹¤.
 			} 
 			else
 			{

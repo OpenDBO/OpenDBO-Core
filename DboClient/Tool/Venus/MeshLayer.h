@@ -1,7 +1,7 @@
 #pragma once
 
 
-// CMeshLayer ºäÀÔ´Ï´Ù.
+// CMeshLayer ë·°ì…ë‹ˆë‹¤.
 #include "RollupCtrl.h"
 
 class CMeshLayer : public CView
@@ -9,7 +9,7 @@ class CMeshLayer : public CView
 	DECLARE_DYNCREATE(CMeshLayer)
 
 protected:
-	CMeshLayer();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CMeshLayer();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CMeshLayer();
 
 public:
@@ -28,7 +28,7 @@ public:
 
 	void	InitializeList();
 
-	virtual void OnDraw(CDC* pDC);      // ÀÌ ºä¸¦ ±×¸®±â À§ÇØ ÀçÁ¤ÀÇµÇ¾ú½À´Ï´Ù.
+	virtual void OnDraw(CDC* pDC);      // ì´ ë·°ë¥¼ ê·¸ë¦¬ê¸° ìœ„í•´ ì¬ì •ì˜ë˜ì—ˆìŠµë‹ˆë‹¤.
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;

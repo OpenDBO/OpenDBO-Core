@@ -1,9 +1,9 @@
 /*****************************************************************************
 * File			: TBMatchTeamObBlueGui.h
 * Author		: Haesung, Cho
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 11. 24
-* Abstract		: ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ °üÀüÀÚ ÆÀÀü ºí·çÆÀ GUI
+* Abstract		: ì²œí•˜ì œì¼ ë¬´ë„íšŒ ê´€ì „ì íŒ€ì „ ë¸”ë£¨íŒ€ GUI
 *****************************************************************************
 * Desc         : 
 *****************************************************************************/
@@ -23,7 +23,7 @@
 
 
 /**
-* \brief °¢ ¸â¹öµéÀÇ GUI
+* \brief ê° ë©¤ë²„ë“¤ì˜ GUI
 */
 class CTBMatchTeamBlueMemberGui : public CNtlPLGui, RWS::CEventHandler
 {
@@ -61,7 +61,7 @@ protected:
 };
 
 /**
-* \brief Blue ÆÀÀÇ GUI
+* \brief Blue íŒ€ì˜ GUI
 */
 class CTBMatchTeamObBlueGui : public CNtlPLGui, RWS::CEventHandler
 {

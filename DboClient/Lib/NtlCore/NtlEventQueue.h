@@ -2,7 +2,7 @@
  *
  * File			: NtlEventQueue.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 08. 09	
  * Abstract		: Simulation layer event queue.
  *****************************************************************************
@@ -41,8 +41,8 @@ public:
 
 	CNtlEventQueueSlot(RWS::CMsg &Msg, void *pData, RwInt32 iDataLen, RwReal fDelayTime);
 	/**
-	*  memory poolÀ» »ç¿ëÇÏ¿© SEventData ¸Ş¸ğ¸®¸¦ ÇÒ´çÇÏ´Â ÇÔ¼ö.
-	*  renerwareÀÇ RwFreeList¸¦ »ç¿ëÇÏ°í ÀÖ´Ù.
+	*  memory poolì„ ì‚¬ìš©í•˜ì—¬ SEventData ë©”ëª¨ë¦¬ë¥¼ í• ë‹¹í•˜ëŠ” í•¨ìˆ˜.
+	*  renerwareì˜ RwFreeListë¥¼ ì‚¬ìš©í•˜ê³  ìˆë‹¤.
 	*/
 	static RwBool AllocFreeList(void);
 	static void FreeFreeList(void);
@@ -86,27 +86,27 @@ public:
 	~CNtlEventQueue();
 
 	/**
-	*  classÀÇ ¸â¹ö Á¢±ÙÀº ÀÌ ÇÔ¼ö¸¦ »ç¿ëÇÑ´Ù.
+	*  classì˜ ë©¤ë²„ ì ‘ê·¼ì€ ì´ í•¨ìˆ˜ë¥¼ ì‚¬ìš©í•œë‹¤.
     *
     */
 	static CNtlEventQueue* GetInstance(void);
 
 	/**
-    *  create ÇÔ¼ö.
-	*  \return create¿¡ ¼º°øÇÏ¸é TRUE, ½ÇÆĞÇÏ¸é FALSE
+    *  create í•¨ìˆ˜.
+	*  \return createì— ì„±ê³µí•˜ë©´ TRUE, ì‹¤íŒ¨í•˜ë©´ FALSE
     *  \see Destroy
     */
 	RwBool Create(void);
 
 	/**
-    *  destroy ÇÔ¼ö.
+    *  destroy í•¨ìˆ˜.
 	*  \see Create
     */
 	void Destroy(void);
 
 	/**
-    *  event¸¦ queue¿¡ pushÇÏ´Â ÇÔ¼ö.
-	*  \return push¿¡ ¼º°øÇÏ¸é TRUE, ½ÇÆĞÇÏ¸é FALSE
+    *  eventë¥¼ queueì— pushí•˜ëŠ” í•¨ìˆ˜.
+	*  \return pushì— ì„±ê³µí•˜ë©´ TRUE, ì‹¤íŒ¨í•˜ë©´ FALSE
 	*  \param &Msg event message data
 	*  \param *pData event data data
 	*  \param iDataLen event data length
@@ -115,19 +115,19 @@ public:
 	RwBool Push(RWS::CMsg &Msg, void *pData, RwInt32 iDataLen, RwReal fDelayTime);
 
 	/**
-    *  queue¿¡ ½×ÀÎ event¸¦ Ã³¸®ÇÏ´Â ÇÔ¼ö.
+    *  queueì— ìŒ“ì¸ eventë¥¼ ì²˜ë¦¬í•˜ëŠ” í•¨ìˆ˜.
 	*  \param fElapsed delta time
     */
 	void Process(RwReal fElapsed);
 
 	/**
-    *  queue¿¡ ½×ÀÎ event¸¦ filtering ÇÑ´Ù.
+    *  queueì— ìŒ“ì¸ eventë¥¼ filtering í•œë‹¤.
 	*  \param fElapsed delta time
     */
 	void CurrentProcessFilterMsg(RWS::CEventId& id);
 
 	/**
-    *  queue¿¡ ½×ÀÎ event¸¦ filtering ÇÑ´Ù.
+    *  queueì— ìŒ“ì¸ eventë¥¼ filtering í•œë‹¤.
 	*  \param fElapsed delta time
     */
 	RwBool IsFilterMsg(RWS::CMsg& msg);

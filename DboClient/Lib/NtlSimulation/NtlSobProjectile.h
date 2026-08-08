@@ -2,15 +2,15 @@
  *
  * File			: NtlSobProjectile.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 12. 08	
  * Abstract		: Simulation projectile object
  *****************************************************************************
- * Desc         : ¹ß»çÃ¼ ¿ÀºêÁ§Æ®·Î¼­, È­»ì, ÆøÅº, ¹Ì»çÀÏ, ¸¶¹ı ¹ß»çÃ¼¿¡ ÇØ´çÇÑ´Ù.
- *				  °£´ÜÇÑ »óÅÂ ¸Ó½ÅÀ» °¡Áö°í ÀÖ´Ù.
-                  ÀÚ½ÅÀÇ owner serial¸¦ ±â¾ïÇÏ°í ÀÖ´Ù.
-				  ¹ß»çÃ¼´Â ¹üÀ§ °ø°İ, Å¸°Ù °ø°İ, °üÅë ½ºÅ¸ÀÏÀÌ Á¸ÀçÇÏ¸ç, Å¸°Ù °ø°İÀÇ °æ¿ì¿¡´Â 
-				  targetÀ» µû¶ó°¥ ¼ö µµ ÀÖ´Ù.
+ * Desc         : ë°œì‚¬ì²´ ì˜¤ë¸Œì íŠ¸ë¡œì„œ, í™”ì‚´, í­íƒ„, ë¯¸ì‚¬ì¼, ë§ˆë²• ë°œì‚¬ì²´ì— í•´ë‹¹í•œë‹¤.
+ *				  ê°„ë‹¨í•œ ìƒíƒœ ë¨¸ì‹ ì„ ê°€ì§€ê³  ìˆë‹¤.
+                  ìì‹ ì˜ owner serialë¥¼ ê¸°ì–µí•˜ê³  ìˆë‹¤.
+				  ë°œì‚¬ì²´ëŠ” ë²”ìœ„ ê³µê²©, íƒ€ê²Ÿ ê³µê²©, ê´€í†µ ìŠ¤íƒ€ì¼ì´ ì¡´ì¬í•˜ë©°, íƒ€ê²Ÿ ê³µê²©ì˜ ê²½ìš°ì—ëŠ” 
+				  targetì„ ë”°ë¼ê°ˆ ìˆ˜ ë„ ìˆë‹¤.
  *****************************************************************************/
 
 #ifndef __NTL_SOB_PROJECTILE_H__
@@ -36,8 +36,8 @@ protected:
 	std::list<SHitStuff> m_listHitStuff;			/** hit list */
 	std::list<CNtlBehaviorBase*> m_listBehavior;	/** behavior list */
 
-	RwBool	m_bDamageProc;							/** projectileÀÇ damage procedure */
-	RwBool	m_bFinish;								/** projectileÀÇ life flag */
+	RwBool	m_bDamageProc;							/** projectileì˜ damage procedure */
+	RwBool	m_bFinish;								/** projectileì˜ life flag */
 
 	
 	// transform

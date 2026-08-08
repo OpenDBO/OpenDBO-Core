@@ -3,7 +3,7 @@
  *
  * File			: CharStageState.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2006. 12. 11	
  * Abstract		: Character stage state
  *****************************************************************************
@@ -28,15 +28,15 @@ class CCharStageState
 protected:
 	enum eChangeDelayTime
 	{		
-		CDT_WAITFOR_SERVER_REPLY			= 30, // ¼­¹ö·Î ºÎÅÍ ÆĞÅ¶À» ¹Ş±â±îÁö ±â´Ù¸®´Â ½Ã°£(´ÜÀ§ : ÃÊ)
+		CDT_WAITFOR_SERVER_REPLY			= 30, // ì„œë²„ë¡œ ë¶€í„° íŒ¨í‚·ì„ ë°›ê¸°ê¹Œì§€ ê¸°ë‹¤ë¦¬ëŠ” ì‹œê°„(ë‹¨ìœ„ : ì´ˆ)
 
-		CDT_IMMEDIATLY_RETURN_LOGIN_MESSAGE	= 3, // Áï½Ã ·Î±×ÀÎÀ¸·Î µ¹¾Æ°£´Ù´Â ¸Ş¼¼Áö¸¦ º¸¿©ÁÖ´Â ½Ã°£
+		CDT_IMMEDIATLY_RETURN_LOGIN_MESSAGE	= 3, // ì¦‰ì‹œ ë¡œê·¸ì¸ìœ¼ë¡œ ëŒì•„ê°„ë‹¤ëŠ” ë©”ì„¸ì§€ë¥¼ ë³´ì—¬ì£¼ëŠ” ì‹œê°„
 	};
 
 	static CCharStageState* m_pInstance;
 
-	ECharacterStageState	m_eState;			///< ÇöÀç »óÅÂ
-	ECharacterStageState	m_eReservateState;	///< ¿¹¾àµÈ »óÅÂ
+	ECharacterStageState	m_eState;			///< í˜„ì¬ ìƒíƒœ
+	ECharacterStageState	m_eReservateState;	///< ì˜ˆì•½ëœ ìƒíƒœ
 
 	CBackboardGui*			m_pTurnOverBackboard;
 	CCharCreateGuiGui*		m_pCharCreateGui;
@@ -45,8 +45,8 @@ protected:
 
 	RwReal					m_fElapedTime;
 	
-	RwBool					m_bReadyModel;		///< ¸ğµ¨ ·ÎµùÀÌ ³¡³µ´Ù
-	RwBool					m_bReadyWorld;		///< ¹è°æ ·ÎµùÀÌ ³¡³µ´Ù
+	RwBool					m_bReadyModel;		///< ëª¨ë¸ ë¡œë”©ì´ ëë‚¬ë‹¤
+	RwBool					m_bReadyWorld;		///< ë°°ê²½ ë¡œë”©ì´ ëë‚¬ë‹¤
 	RwBool					m_bShowMessageBox;
 	RwBool					m_bSendGameEnterPacket;
 

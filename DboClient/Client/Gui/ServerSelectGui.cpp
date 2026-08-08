@@ -71,54 +71,54 @@ RwBool CServerSelectGui::Create()
 	m_pTitleStatic->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pTitleStatic->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_CHOICE_SERVER"));
 
-	// '¼­¹ö¸¦ ¼±ÅÃÇÏ¼¼¿ä'
+	// 'ì„œë²„ë¥¼ ì„ íƒí•˜ì„¸ìš”'
 	rect.SetRect(195, 41, 395, 55);
 	m_pSelectServer = NTL_NEW gui::CStaticBox(rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_RIGHT );
 	m_pSelectServer->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pSelectServer->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_YOU_CAN_CHOICE_SERVER"));
 	m_pSelectServer->Enable(false);
 
-	// ¼­¹ö ÀÌ¸§ Á¤·Ä ¹öÆ°
+	// ì„œë²„ ì´ë¦„ ì •ë ¬ ë²„íŠ¼
 	m_pServerButton = (gui::CButton*)GetComponent("btnServer");
 	m_pServerButton->SetTextFocusColor(INFOCOLOR_LOBBY_FOC);
 	m_pServerButton->SetTextDownColor(INFOCOLOR_LOBBY_DOWN);
 	m_pServerButton->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_SERVER"));
 	m_slotServerDown = m_pServerButton->SigClicked().Connect( this, &CServerSelectGui::OnClickedServerButton );
 
-	// Ä³¸¯ÅÍ ¼ö Á¤·Ä ¹öÆ°
+	// ìºë¦­í„° ìˆ˜ ì •ë ¬ ë²„íŠ¼
 	m_pCharButton = (gui::CButton*)GetComponent("btnChar");
 	m_pCharButton->SetTextFocusColor(INFOCOLOR_LOBBY_FOC);
 	m_pCharButton->SetTextDownColor(INFOCOLOR_LOBBY_DOWN);
 	m_pCharButton->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_CHAR"));
 	m_slotCharDown = m_pCharButton->SigClicked().Connect( this, &CServerSelectGui::OnClickedCharacterButton );
 
-	// Á¢¼ÓÀÚ ¼ö Á¤·Ä ¹öÆ°
+	// ì ‘ì†ìž ìˆ˜ ì •ë ¬ ë²„íŠ¼
 	m_pStateButton = (gui::CButton*)GetComponent("btnState");
 	m_pStateButton->SetTextFocusColor(INFOCOLOR_LOBBY_FOC);
 	m_pStateButton->SetTextDownColor(INFOCOLOR_LOBBY_DOWN);
 	m_pStateButton->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_STATE"));
 	m_slotStateDown = m_pStateButton->SigClicked().Connect( this, &CServerSelectGui::OnClickedServerStateButton );
 
-	// ½ºÅ©·Ñ
+	// ìŠ¤í¬ë¡¤
 	m_pScrollBar = (gui::CScrollBar*)GetComponent("scbScroll");
 	m_slotServerScrollChanged		= m_pScrollBar->SigValueChanged().Connect( this, &CServerSelectGui::OnScrollChanged );
 	m_slotServerScrollSliderMoved	= m_pScrollBar->SigSliderMoved().Connect( this, &CServerSelectGui::OnScrollChanged );
 
-	// È®ÀÎ ¹öÆ°
+	// í™•ì¸ ë²„íŠ¼
 	m_pOKButton = (gui::CButton*)GetComponent("btnOk");
 	m_pOKButton->SetTextFocusColor(INFOCOLOR_LOBBY_FOC);
 	m_pOKButton->SetTextDownColor(INFOCOLOR_LOBBY_DOWN);
 	m_pOKButton->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_OK"));
 	m_slotOKDown = m_pOKButton->SigClicked().Connect( this, &CServerSelectGui::OnClickedOKButton );
 
-	// Ãë¼Ò ¹öÆ°
+	// ì·¨ì†Œ ë²„íŠ¼
 	m_pCancelButton = (gui::CButton*)GetComponent("btnCancel");
 	m_pCancelButton->SetTextFocusColor(INFOCOLOR_LOBBY_FOC);
 	m_pCancelButton->SetTextDownColor(INFOCOLOR_LOBBY_DOWN);
 	m_pCancelButton->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_CANCLE2"));
 	m_slotCancelDown = m_pCancelButton->SigClicked().Connect( this, &CServerSelectGui::OnClickedCancleButton );
 
-	// È­»ìÇ¥
+	// í™”ì‚´í‘œ
 	m_srfServerArrowUp		.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "ServerSelect.srf", "srfUpArrow" ));
 	m_srfServerArrowDown	.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "ServerSelect.srf", "srfDownArrow" ));
 	m_srfCharArrowUp		.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "ServerSelect.srf", "srfUpArrow" ));
@@ -193,37 +193,37 @@ VOID CServerSelectGui::CreateServerInfo()
 
 		CLobby* pLobby = it_Lobby->second;
 
-		// ¼­¹ö ¾ÆÀÌµð
+		// ì„œë²„ ì•„ì´ë””
 		pServetItem->hServer = pLobby->GetServerHandle();
 
-		// ¼­¹ö ÀÌ¸§
+		// ì„œë²„ ì´ë¦„
 		rect.SetRectWH(dCHANNEL_TEXT__SERVER_NAME_X, iTextY, 130, 14);
 		pServetItem->pServerName = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT );	
 		pServetItem->pServerName->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 		pServetItem->pServerName->SetText(pLobby->GetServerName());
 		pServetItem->pServerName->Enable(false);
 
-		// Ä³¸¯ÅÍ ¼ö
+		// ìºë¦­í„° ìˆ˜
 		rect.SetRectWH(dCHANNEL_TEXT__SERVER_CHARNUM_X, iTextY, 40, 14);
 		pServetItem->pCharCount = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER );	
 		pServetItem->pCharCount->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 		pServetItem->pCharCount->SetText(pLobby->GetCharacterCount());
 		pServetItem->pCharCount->Enable(false);
 
-		// ¼­¹ö »óÅÂ
+		// ì„œë²„ ìƒíƒœ
 		rect.SetRectWH(dCHANNEL_TEXT__SERVER_STATE_X, iTextY, 100, 14);
 		pServetItem->pState = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER );	
 		pServetItem->pState->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);		
 		pServetItem->pState->Enable(false);
 
 
-		// ¼­¹ö ¸®½ºÆ® Á¤·ÄÀ» À§ÇÑ µ¥ÀÌÅÍ ÀúÀå
+		// ì„œë²„ ë¦¬ìŠ¤íŠ¸ ì •ë ¬ì„ ìœ„í•œ ë°ì´í„° ì €ìž¥
 		size_t nameSize = sizeof(WCHAR) * (NTL_MAX_SIZE_SERVER_FARM_NAME_UNICODE + 1);
 		memcpy_s(pServetItem->awcServerName, nameSize, pLobby->GetServerName(), nameSize);
 		pServetItem->byCharacterCount	= pLobby->GetCharacterCount();
 		pServetItem->uiUserRate			= pLobby->GetServerUseRate();
 
-		// ¼­¹ö »óÅÂ Ç¥½Ã
+		// ì„œë²„ ìƒíƒœ í‘œì‹œ
 		SetState(pServetItem, pLobby);
 
 		iTextY		+= dSERVER_HEIGHT_GAP;
@@ -249,7 +249,7 @@ VOID CServerSelectGui::DestroyServerInfo()
 
 VOID CServerSelectGui::RefreshServerInfo(SERVER_HANDLE hServer)
 {
-	// ¿¡ÀÕ! ÁöÀúºÐÇØ¶ó
+	// ì—ìž‡! ì§€ì €ë¶„í•´ë¼
 	SERVERITEM_ITER it = m_listServerItem.begin();
 	for( ; it != m_listServerItem.end() ; ++it )
 	{
@@ -552,7 +552,7 @@ VOID CServerSelectGui::OnClickedServerButton(gui::CComponent* pComponent)
 		return;
 
 
-	// Á¢¼ÓÀÚ ¼ö¿¡ µû¶ó Á¤·ÄÇÑ´Ù
+	// ì ‘ì†ìž ìˆ˜ì— ë”°ë¼ ì •ë ¬í•œë‹¤
 	if(m_bServerAscendingSort)
 		std::stable_sort(m_listServerItem.begin(), m_listServerItem.end(), CServerListSort::CompareAscentName);
 	else
@@ -570,7 +570,7 @@ VOID CServerSelectGui::OnClickedCharacterButton(gui::CComponent* pComponent)
 		return;
 
 	
-	// Á¢¼ÓÀÚ ¼ö¿¡ µû¶ó Á¤·ÄÇÑ´Ù
+	// ì ‘ì†ìž ìˆ˜ì— ë”°ë¼ ì •ë ¬í•œë‹¤
 	if(m_bCharacterAscendingSort)
 		std::stable_sort(m_listServerItem.begin(), m_listServerItem.end(), CServerListSort::CompareAscentCharacter);
 	else
@@ -588,7 +588,7 @@ VOID CServerSelectGui::OnClickedServerStateButton(gui::CComponent* pComponent)
 		return;
 
 
-	// Á¢¼ÓÀÚ ¼ö¿¡ µû¶ó Á¤·ÄÇÑ´Ù
+	// ì ‘ì†ìž ìˆ˜ì— ë”°ë¼ ì •ë ¬í•œë‹¤
 	if(m_bChannelAscendingSort)
 		std::stable_sort(m_listServerItem.begin(), m_listServerItem.end(), CServerListSort::CompareAscentState);
 	else
@@ -610,7 +610,7 @@ VOID CServerSelectGui::OnClickedOKButton(gui::CComponent* pComponent)
 
 	if( pServerItem == NULL )
 	{		
-		// ¼­¹ö¸¦ ¼±ÅÃÇÏ½Ê½Ã¿ä
+		// ì„œë²„ë¥¼ ì„ íƒí•˜ì‹­ì‹œìš”
 		GetAlarmManager()->AlarmMessage( "DST_LOBBY_MUST_CHOICE_SERVER" );
 		return;
 	}
@@ -619,12 +619,12 @@ VOID CServerSelectGui::OnClickedOKButton(gui::CComponent* pComponent)
 	{		
 		CLobby* pLobby = GetLobbyManager()->GetLobby(pServerItem->hServer);
 
-		// ¼¿·ºÆ® ¼­¹ö ÀúÀå
+		// ì…€ë ‰íŠ¸ ì„œë²„ ì €ìž¥
 		GetLobbyManager()->SetSelectedServerHandle(pServerItem->hServer);
 
 		if(pLobby->GetCharacterCount() == 0 && pLobby->GetChannelCount() == 0)
 		{
-			// Ä³¸¯ÅÍ Á¤º¸¸¦ ¿äÃ»ÇÑ´Ù. ´ÙÀ½ÀÇ 2°¡Áö ÆÐÅ¶ÀÌ ÀÀ´äÀ¸·Î ¿Â´Ù
+			// ìºë¦­í„° ì •ë³´ë¥¼ ìš”ì²­í•œë‹¤. ë‹¤ìŒì˜ 2ê°€ì§€ íŒ¨í‚·ì´ ì‘ë‹µìœ¼ë¡œ ì˜¨ë‹¤
 			// CU_SERVER_CHANNEL_INFO, CU_CHARACTER_LOAD_RES	
 			SConnectData *pConData = GetDboGlobal()->GetConnectData();
 			GetDboGlobal()->GetLobbyPacketGenerator()->SendCharLoadReq(pConData->uiAccountId,
@@ -652,8 +652,8 @@ VOID CServerSelectGui::OnClickedCancleButton(gui::CComponent* pComponent)
 	if( GetCharStageState()->GetCurrentState() != CHAR_STATE_SERVER_IDLE )
 		return;
 
-	// ½Å±Ô À¯Àú´Â È¤Àº ¸¶Áö¸·À¸·Î Á¢¼ÓÇß´ø ¼­¹ö°¡ »ç¶óÁ®¼­
-	// °ÔÀÓ ½ÃÀÛ½Ã ¹Ù·Î ¼­¹ö ¼¿·ºÆ® È­¸éÀ¸·Î ¿Ô´Ù¸é ·Î±×ÀÎÀ¸·Î µ¹¾Æ°£´Ù
+	// ì‹ ê·œ ìœ ì €ëŠ” í˜¹ì€ ë§ˆì§€ë§‰ìœ¼ë¡œ ì ‘ì†í–ˆë˜ ì„œë²„ê°€ ì‚¬ë¼ì ¸ì„œ
+	// ê²Œìž„ ì‹œìž‘ì‹œ ë°”ë¡œ ì„œë²„ ì…€ë ‰íŠ¸ í™”ë©´ìœ¼ë¡œ ì™”ë‹¤ë©´ ë¡œê·¸ì¸ìœ¼ë¡œ ëŒì•„ê°„ë‹¤
 	if( GetLobbyManager()->GetSelectedServerHandle() == INVALID_SERVERFARMID )
 	{
 		GetDboGlobal()->GetLobbyPacketGenerator()->SendCharDisconnectReq(0);

@@ -3,7 +3,7 @@
 
 class CEntityPropertyTree;
 
-// CInstancePropertyDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CInstancePropertyDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CInstancePropertyDialog : public CDialog
 {
@@ -12,7 +12,7 @@ class CInstancePropertyDialog : public CDialog
 	CEntityPropertyTree *		m_pPropertyTree;
 
 public:
-	CInstancePropertyDialog(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CInstancePropertyDialog(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CInstancePropertyDialog();
 
 
@@ -29,7 +29,7 @@ public:
 
 protected:
 
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	//{{AFX_MSG(CDlgDlg)
 	afx_msg void OnSize(UINT nType, int cx, int cy);

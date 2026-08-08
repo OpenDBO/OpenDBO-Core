@@ -21,7 +21,7 @@ bool CNtlMovieManager::CreateInstance( HWND hWnd )
 		return true;
 	}
 
-	// OS Check - 98 Àº Áö¿øÇÏÁö ¾Ê´Â´Ù
+	// OS Check - 98 ì€ ì§€ì›í•˜ì§€ ì•ŠëŠ”ë‹¤
 	OSVERSIONINFO osv;
 	osv.dwOSVersionInfoSize = sizeof( OSVERSIONINFO );
 	if ( GetVersionEx( &osv ) == FALSE || osv.dwPlatformId <= VER_PLATFORM_WIN32_WINDOWS )

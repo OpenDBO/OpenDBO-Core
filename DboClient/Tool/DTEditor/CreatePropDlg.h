@@ -2,7 +2,7 @@
 #include "afxwin.h"
 
 
-// CCreatePropDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CCreatePropDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 enum eCreateType
 {
@@ -17,10 +17,10 @@ class CCreatePropDlg : public CDialog
 	DECLARE_DYNAMIC(CCreatePropDlg)
 
 public:
-	CCreatePropDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CCreatePropDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CCreatePropDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_ADD_PROP };
 
 public:
@@ -35,7 +35,7 @@ public:
 	CString	GetSelectedString();
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

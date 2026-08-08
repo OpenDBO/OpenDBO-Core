@@ -1,4 +1,4 @@
-// EffectPropertyDialog.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// EffectPropertyDialog.cpp : êµ¬í˜„ íŒŒì¼ìž…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -22,7 +22,7 @@
 #include "VenusAPI.h"
 
 
-// CEffectPropertyDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CEffectPropertyDialog ëŒ€í™” ìƒìžìž…ë‹ˆë‹¤.
 
 const RwChar* g_BlendString[] = {	"rwBLENDZERO",			\
 									"rwBLENDONE",			\
@@ -95,7 +95,7 @@ BEGIN_MESSAGE_MAP(CEffectPropertyDialog, CDialog)
 END_MESSAGE_MAP()
 
 
-// CEffectPropertyDialog ¸Þ½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CEffectPropertyDialog ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ìž…ë‹ˆë‹¤.
 
 BOOL CEffectPropertyDialog::OnInitDialog()
 {
@@ -546,7 +546,7 @@ void CEffectPropertyDialog::SetProperties_ResourceEffect(CNtlResourceEffect* pRe
 	pEdit->SetItemValue((LPARAM)&pResourceEffect->m_fScaleForTool);	
 	pEdit->SetCtrlID(_PROPERTY_CONTROL_EFFECT_SCALE);
 
-    // Sound °ü·Ã
+    // Sound ê´€ë ¨
     CPropTreeItem* pSoundRoot = m_PropertyTree.InsertItem(new CPropTreeItem(), pRoot);
     pSoundRoot->Expand(TRUE);
     pSoundRoot->SetLabelText(_T("Effect Sound"));
@@ -603,7 +603,7 @@ void CEffectPropertyDialog::SetProperties_ResourceEffect(CNtlResourceEffect* pRe
     pEdit->SetItemValue((LPARAM)&pResourceEffect->m_EffectSound.fSoundPitchMax);
     pEdit->SetCtrlID(_PROPERTY_CONTROL_EFFECT_SOUND_PITCH_MAX);
 
-    // ¹Ù¿îµù ¹Ú½º ¼³Á¤ °ü·Ã
+    // ë°”ìš´ë”© ë°•ìŠ¤ ì„¤ì • ê´€ë ¨
     CPropTreeItem* pBoundingSphere = m_PropertyTree.InsertItem(new CPropTreeItem(), pRoot);
     pBoundingSphere->SetLabelText(_T("Bounding Sphere"));
     pBoundingSphere->Expand(FALSE);
@@ -698,7 +698,7 @@ void CEffectPropertyDialog::SetProperties_ResourceComponentSystem(CNtlResourceCo
 	pEdit->SetItemValue((LPARAM)&pResourceComponentSystem->m_vPosition.z);
 	pEdit->SetCtrlID(_PROPERTY_CONTROL_SYSTEM_MATRIX_POSITION_Z);
 
-    // Lightning¿¡´Â Rotation Á¤º¸¸¦ Ç¥½ÃÇÏÁö ¾Ê´Â´Ù. (Rotation °ªÀ» EndPoint °ªÀ¸·Î »ç¿ëÇÑ´Ù.
+    // Lightningì—ëŠ” Rotation ì •ë³´ë¥¼ í‘œì‹œí•˜ì§€ ì•ŠëŠ”ë‹¤. (Rotation ê°’ì„ EndPoint ê°’ìœ¼ë¡œ ì‚¬ìš©í•œë‹¤.
     if(pResourceComponentSystem->GetSystemType() != CNtlResourceComponentSystem::RESOURCE_SYSTEMTYPE_LIGHTNING)    
     {
         CPropTreeItem* pRotateRoot = m_PropertyTree.InsertItem(new CPropTreeItem(), pRoot);		
@@ -731,7 +731,7 @@ void CEffectPropertyDialog::SetProperties_ResourceComponentSystem(CNtlResourceCo
         pSlider->SetCtrlID(_PROPERTY_CONTROL_SYSTEM_MATRIX_ROTATE_Z);
     }
 
-    // Ground : ÀÌÆåÆ®°¡ Áö¸é¿¡ ºÙ¿©¼­ Ç¥½ÃµÉÁöÀÇ ¼³Á¤°ª
+    // Ground : ì´íŽ™íŠ¸ê°€ ì§€ë©´ì— ë¶™ì—¬ì„œ í‘œì‹œë ì§€ì˜ ì„¤ì •ê°’
     CPropTreeItem* pGroundRoot = m_PropertyTree.InsertItem(new CPropTreeItem(), pRoot);		
     pGroundRoot->Expand(TRUE);
     pGroundRoot->SetLabelText("Ground Attach");
@@ -799,7 +799,7 @@ void CEffectPropertyDialog::SetProperties_ResourceParticleSystem(CNtlResourcePar
 	pCombo->SetItemValue(GetBlendIndex(pResourceParticleSystem->m_nDestBlend));
 	pCombo->SetCtrlID(_PROPERTY_CONTROL_SYSTEM_ALPHA_DEST);
 
-    // Follow Particle À¯¹«
+    // Follow Particle ìœ ë¬´
     pCombo = (CPropTreeItemCombo*)m_PropertyTree.InsertItem(new CPropTreeItemCombo(), pRoot);
     pCombo->SetLabelText("Follow Emitter");
     pCombo->SetInfoText("Set up Follow to Emitter");
@@ -1152,7 +1152,7 @@ void CEffectPropertyDialog::SetProperties_PrtEmitterEmitter(RpPrtAdvPrtEmitterEm
 	for (it = pResourceEffect->m_svResourceSystem.begin(); it != pResourceEffect->m_svResourceSystem.end(); ++ it)
 	{
 		CNtlResourceComponentSystem* pResourceSystem = (*it);
-		// ÀÚ±â ÀÚ½ÅÀº Á¦¿ÜÇÑ´Ù.
+		// ìžê¸° ìžì‹ ì€ ì œì™¸í•œë‹¤.
 		if (_stricmp(pResourceSystem->GetSystemName(), pResourceParticleSystem->GetSystemName()) != 0)
 		{
 			if (pResourceSystem->GetSystemType() == CNtlResourceComponentSystem::RESOURCE_SYSTEMTYPE_PARTICLE)
@@ -1401,9 +1401,9 @@ void CEffectPropertyDialog::SetProperties_SphereEmitter(RpPrtAdvSphereEmitter* p
 
 
 /**
- * Line System Àü¿ë Sphere Emitter
- * \param pSphereEmitter Sphere Emitter Á¤º¸¸¦ ´ã°íÀÖ´Â ±¸Á¶Ã¼ÀÇ Æ÷ÀÎÅÍ
- * \param pRoot Æ®¸® ÄÁÆ®·ÑÀÇ ·çÆ® ¾ÆÀÌÅÛ 
+ * Line System ì „ìš© Sphere Emitter
+ * \param pSphereEmitter Sphere Emitter ì •ë³´ë¥¼ ë‹´ê³ ìžˆëŠ” êµ¬ì¡°ì²´ì˜ í¬ì¸í„°
+ * \param pRoot íŠ¸ë¦¬ ì»¨íŠ¸ë¡¤ì˜ ë£¨íŠ¸ ì•„ì´í…œ 
  */
 void CEffectPropertyDialog::SetProperties_SphereEmitter( SNtlPrtStdEmitterPrtSphere* pSphereEmitter, CPropTreeItem* pRoot ) 
 {
@@ -2008,8 +2008,8 @@ void CEffectPropertyDialog::SetProperties_EmitterPrtSize(SNtlPrtStdEmitterPrtSiz
 //------------------------------------------------------------------
 void CEffectPropertyDialog::SetProperties_EmitterPrtMatrix(RpPrtStdEmitterPrtMatrix* pEmitterPrtMatrix, CPropTreeItem* pRoot, RwUInt32 nEmitterFlag)
 {
-    //NOTE : LookAt, LookUp Vector¸¦ °¡Áö°í Rotation À¸·Î º¯°æÇÑ´Ù.
-    // Rotation °ª
+    //NOTE : LookAt, LookUp Vectorë¥¼ ê°€ì§€ê³  Rotation ìœ¼ë¡œ ë³€ê²½í•œë‹¤.
+    // Rotation ê°’
     //RwV3d vRotAngle = API_GetAngle(pEmitterPrtMatrix->prtPosMtxUp, pEmitterPrtMatrix->prtPosMtxAt);
     RwV3d vRotAngle = pEmitterPrtMatrix->prtCnsMtx.pos;
     CPropTreeItem* pRotateRoot = m_PropertyTree.InsertItem(new CPropTreeItem(), pRoot);		
@@ -2041,7 +2041,7 @@ void CEffectPropertyDialog::SetProperties_EmitterPrtMatrix(RpPrtStdEmitterPrtMat
     pSlider->SetItemValue((LPARAM)(RwInt32)(vRotAngle.z));
     pSlider->SetCtrlID(_PROPERTY_CONTROL_ACTION_EMITTER_PRT_MATRIX_ROTATION_Z);
 
-    // BillBoard ¼³Á¤   
+    // BillBoard ì„¤ì •   
     CPropTreeItemCombo* pCombo;
     pCombo = (CPropTreeItemCombo*)m_PropertyTree.InsertItem(new CPropTreeItemCombo(), pRotateRoot);
     pCombo->SetLabelText("BillBoard Setting");
@@ -2198,7 +2198,7 @@ void CEffectPropertyDialog::SetProperties_EmitterPrtFadeOut(SNtlPrtStdEmitterPrt
 	for (it = pResourceEffect->m_svResourceSystem.begin(); it != pResourceEffect->m_svResourceSystem.end(); ++ it)
 	{
 		CNtlResourceComponentSystem* pResourceSystem = (*it);
-		// ÀÚ±â ÀÚ½ÅÀº Á¦¿ÜÇÑ´Ù.
+		// ìžê¸° ìžì‹ ì€ ì œì™¸í•œë‹¤.
 		if (_stricmp(pResourceSystem->GetSystemName(), pResourceComponentSystem->GetSystemName()) != 0)
 		{
 			strPropertiesTitle.Format(_T(pResourceSystem->GetSystemName()));
@@ -3520,7 +3520,7 @@ void CEffectPropertyDialog::SetProperties_EmitterStandard(CNtlResourceBeamSystem
 	for (it = pResourceEffect->m_svResourceSystem.begin(); it != pResourceEffect->m_svResourceSystem.end(); ++ it)
 	{
 		CNtlResourceComponentSystem* pResourceSystem = (*it);
-		// ÀÚ±â ÀÚ½ÅÀº Á¦¿ÜÇÑ´Ù.
+		// ìžê¸° ìžì‹ ì€ ì œì™¸í•œë‹¤.
 		if (_stricmp(pResourceSystem->GetSystemName(), pResourceBeamSystem->GetSystemName()) != 0)
 		{
 			strPropertiesTitle.Format(_T(pResourceSystem->GetSystemName()));
@@ -3987,7 +3987,7 @@ void CEffectPropertyDialog::SetProperties_EmitterStandard(CNtlResourceDecalSyste
 	pCombo->AddString("MIRROR"); pCombo->SetItemData(1, 1);
 	pCombo->AddString("CLAMP"); pCombo->SetItemData(2, 2);
 	pCombo->AddString("BORDER"); pCombo->SetItemData(3, 3);
-	pCombo->SetItemValue(pResourceDecalSystem->m_EmitterStandard.eWrapType - 1);	/// ³ÖÀ»¶§´Â Index °ªÀ¸·Î ³Ö¾îÁà¾ß µÈ´Ù
+	pCombo->SetItemValue(pResourceDecalSystem->m_EmitterStandard.eWrapType - 1);	/// ë„£ì„ë•ŒëŠ” Index ê°’ìœ¼ë¡œ ë„£ì–´ì¤˜ì•¼ ëœë‹¤
 	pCombo->SetCtrlID(_PROPERTY_CONTROL_EMITTER_STANDARD_DECAL_WRAP_TYPE);
 	
     // Visible Distance
@@ -4642,7 +4642,7 @@ void CEffectPropertyDialog::ApplyProperties_ResourceMeshSystem(CPropTreeItem* pI
 				pResourceMeshSystem->m_strMeshFileName.clear();
 			}
 
-			// Mesh °¡ ¹Ù²î¸é ¿¬°áÇß´ø animation ÆÄÀÏ°ú uv animation ÆÄÀÏÀ» ÇØÁ¦ÇÑ´Ù.
+			// Mesh ê°€ ë°”ë€Œë©´ ì—°ê²°í–ˆë˜ animation íŒŒì¼ê³¼ uv animation íŒŒì¼ì„ í•´ì œí•œë‹¤.
 			if (!pResourceMeshSystem->m_strAniFileName.empty() || !pResourceMeshSystem->m_strUvFileName.empty())
 			{
 				pResourceMeshSystem->m_strAniFileName.clear();
@@ -4883,7 +4883,7 @@ void CEffectPropertyDialog::ApplyProperties_EmitterStandard(CPropTreeItem* pItem
 		break;
 	case _PROPERTY_CONTROL_EMITTER_STANDARD_PTR_COLOR_A:
 		{
-			// slider ÀÌ±â ¶§¹®¿¡ (RwReal)pItem->GetItemValue(); À¸·Î Ã³¸®ÇØ¾ß ÇÑ´Ù.
+			// slider ì´ê¸° ë•Œë¬¸ì— (RwReal)pItem->GetItemValue(); ìœ¼ë¡œ ì²˜ë¦¬í•´ì•¼ í•œë‹¤.
 			pEmitterStandard->prtColor.alpha = (RwUInt8)pItem->GetItemValue();
 		}
 		break;
@@ -5048,7 +5048,7 @@ void CEffectPropertyDialog::ApplyProperties_EmitterStandard(CPropTreeItem* pItem
 		break;
 	case _PROPERTY_CONTROL_EMITTER_STANDARD_MESH_COLOR_A:
 		{
-			// slider ÀÌ±â ¶§¹®¿¡ (RwReal)pItem->GetItemValue(); À¸·Î Ã³¸®ÇØ¾ß ÇÑ´Ù.
+			// slider ì´ê¸° ë•Œë¬¸ì— (RwReal)pItem->GetItemValue(); ìœ¼ë¡œ ì²˜ë¦¬í•´ì•¼ í•œë‹¤.
 			pEmitterStandard->prtColor.alpha = (RwUInt8)pItem->GetItemValue();
 		}
 		break;
@@ -5107,7 +5107,7 @@ void CEffectPropertyDialog::ApplyProperties_EmitterStandard(CPropTreeItem* pItem
 		break;
 	case _PROPERTY_CONTROL_EMITTER_STANDARD_IMVERTEX_COLOR_A:
 		{
-			// slider ÀÌ±â ¶§¹®¿¡ (RwReal)pItem->GetItemValue(); À¸·Î Ã³¸®ÇØ¾ß ÇÑ´Ù.
+			// slider ì´ê¸° ë•Œë¬¸ì— (RwReal)pItem->GetItemValue(); ìœ¼ë¡œ ì²˜ë¦¬í•´ì•¼ í•œë‹¤.
 			pEmitterStandard->prtColor.alpha = (RwUInt8)pItem->GetItemValue();
 		}
 		break;
@@ -5128,7 +5128,7 @@ void CEffectPropertyDialog::ApplyProperties_EmitterStandard(CPropTreeItem* pItem
 		break;
 	case _PROPERTY_CONTROL_EMITTER_STANDARD_BEAM_HEAD_SYSTEM:
 		{
-			// ¿ì¼± ÀÓ½Ã·Î ¿©±â¼­ Ä³½ºÆÃÇÑ´Ù. Â÷ÈÄ ¼öÁ¤ÇØ¾ß¸¸ ÇÑ´Ù
+			// ìš°ì„  ìž„ì‹œë¡œ ì—¬ê¸°ì„œ ìºìŠ¤íŒ…í•œë‹¤. ì°¨í›„ ìˆ˜ì •í•´ì•¼ë§Œ í•œë‹¤
 			NTL_ASSERTE(CVenusVisualManager::GetInstance().m_pResourceSystem != NULL);
 			CNtlResourceBeamSystem* pResourceBeamSystem = (CNtlResourceBeamSystem*)CVenusVisualManager::GetInstance().m_pResourceSystem;
 			NTL_ASSERTE(pResourceBeamSystem);
@@ -5174,7 +5174,7 @@ void CEffectPropertyDialog::ApplyProperties_EmitterStandard(CPropTreeItem* pItem
 		break;
 	case _PROPERTY_CONTROL_EMITTER_STANDARD_IMVERTEX_COLOR_A:
 		{
-			// slider ÀÌ±â ¶§¹®¿¡ (RwReal)pItem->GetItemValue(); À¸·Î Ã³¸®ÇØ¾ß ÇÑ´Ù.
+			// slider ì´ê¸° ë•Œë¬¸ì— (RwReal)pItem->GetItemValue(); ìœ¼ë¡œ ì²˜ë¦¬í•´ì•¼ í•œë‹¤.
 			pEmitterStandard->prtColor.alpha = (RwUInt8)pItem->GetItemValue();
 		}
 		break;
@@ -5233,7 +5233,7 @@ void CEffectPropertyDialog::ApplyProperties_EmitterStandard(CPropTreeItem* pItem
 		break;
 	case _PROPERTY_CONTROL_EMITTER_STANDARD_IMVERTEX_COLOR_A:
 		{
-			// slider ÀÌ±â ¶§¹®¿¡ (RwReal)pItem->GetItemValue(); À¸·Î Ã³¸®ÇØ¾ß ÇÑ´Ù.
+			// slider ì´ê¸° ë•Œë¬¸ì— (RwReal)pItem->GetItemValue(); ìœ¼ë¡œ ì²˜ë¦¬í•´ì•¼ í•œë‹¤.
 			pEmitterStandard->prtColor.alpha = (RwUInt8)pItem->GetItemValue();
 		}
 		break;
@@ -5287,7 +5287,7 @@ void CEffectPropertyDialog::ApplyProperties_EmitterStandard(CPropTreeItem* pItem
 		break;
 	case _PROPERTY_CONTROL_EMITTER_STANDARD_IMVERTEX_COLOR_A:
 		{
-			// slider ÀÌ±â ¶§¹®¿¡ (RwReal)pItem->GetItemValue(); À¸·Î Ã³¸®ÇØ¾ß ÇÑ´Ù.
+			// slider ì´ê¸° ë•Œë¬¸ì— (RwReal)pItem->GetItemValue(); ìœ¼ë¡œ ì²˜ë¦¬í•´ì•¼ í•œë‹¤.
 			pEmitterStandard->color.alpha = (RwUInt8)pItem->GetItemValue();
 		}
 		break;	
@@ -5430,7 +5430,7 @@ void CEffectPropertyDialog::ApplyProperties_EmitterPrtColor(CPropTreeItem* pItem
 		break;
 	case _PROPERTY_CONTROL_ACTION_EMITTER_PRT_COLOR_START_COLOR_A:
 		{
-			// slider ÀÌ±â ¶§¹®¿¡ (RwReal)pItem->GetItemValue(); À¸·Î Ã³¸®ÇØ¾ß ÇÑ´Ù.
+			// slider ì´ê¸° ë•Œë¬¸ì— (RwReal)pItem->GetItemValue(); ìœ¼ë¡œ ì²˜ë¦¬í•´ì•¼ í•œë‹¤.
 			pEmitterPrtCol->prtStartCol.alpha = (RwReal)pItem->GetItemValue();
 		}
 		break;
@@ -5812,7 +5812,7 @@ void CEffectPropertyDialog::ApplyProperties_EmitterPrtMatrix(CPropTreeItem* pIte
     case _PROPERTY_CONTROL_ACTION_EMITTER_PRT_MATRIX_ROTATION_Y:
     case _PROPERTY_CONTROL_ACTION_EMITTER_PRT_MATRIX_ROTATION_Z:
         {
-            // Rotate -> LookAt, LookUp À¸·Î º¯È¯           
+            // Rotate -> LookAt, LookUp ìœ¼ë¡œ ë³€í™˜           
             CPropTreeItem* pItemXRot = m_PropertyTree.FindItem(_PROPERTY_CONTROL_ACTION_EMITTER_PRT_MATRIX_ROTATION_X);
             CPropTreeItem* pItemYRot = m_PropertyTree.FindItem(_PROPERTY_CONTROL_ACTION_EMITTER_PRT_MATRIX_ROTATION_Y);
             CPropTreeItem* pItemZRot = m_PropertyTree.FindItem(_PROPERTY_CONTROL_ACTION_EMITTER_PRT_MATRIX_ROTATION_Z);
@@ -5824,7 +5824,7 @@ void CEffectPropertyDialog::ApplyProperties_EmitterPrtMatrix(CPropTreeItem* pIte
 
             API_GetAtUpVecApplyAngle(&pEmitterPrtMatrix->prtPosMtxAt, &pEmitterPrtMatrix->prtPosMtxUp, vAngle);
 
-            // Cns Mtx°ªÀ» º¸°ü¿ëÀ¸·Î »ç¿ëÇÑ´Ù.
+            // Cns Mtxê°’ì„ ë³´ê´€ìš©ìœ¼ë¡œ ì‚¬ìš©í•œë‹¤.
             //pEmitterPrtMatrix->prtPosMtxUpBias = vAngle;
             pEmitterPrtMatrix->prtCnsMtx.pos = vAngle;
             
@@ -5832,7 +5832,7 @@ void CEffectPropertyDialog::ApplyProperties_EmitterPrtMatrix(CPropTreeItem* pIte
         break;
     case _PROPERTY_CONTROL_ACTION_EMITTER_PRT_MATRIX_BILLBOARD:
         {
-            // ±âÁ¸¿¡ ¼³Á¤µÇ¾î ÀÖ´Â Flag¸¦ Á¦°ÅÇØ ÁØ´Ù.
+            // ê¸°ì¡´ì— ì„¤ì •ë˜ì–´ ìžˆëŠ” Flagë¥¼ ì œê±°í•´ ì¤€ë‹¤.
             pResourceParticleSystem->m_nEmitterDataFlag &= (~NTLrpPRTSTDEMITTERDATAFLAGPRTYBILLBOARD);
             pResourceParticleSystem->m_nEmitterDataFlag &= (~NTLrpPRTSTDEMITTERDATAFLAGPRTXBILLBOARD);
             pResourceParticleSystem->m_nEmitterDataFlag &= (~NTLrpPRTSTDEMITTERDATAFLAGPRTZBILLBOARD);           
@@ -5926,7 +5926,7 @@ void CEffectPropertyDialog::ApplyProperties_EmitterPrtFadeOut(CPropTreeItem* pIt
 		break;
 	case _PROPERTY_CONTROL_ACTION_EMITTER_PRT_FADE_OUT_FOLLOW_SYSTEM:
 		{
-			// ¿ì¼± ÀÓ½Ã·Î ¿©±â¼­ Ä³½ºÆÃÇÑ´Ù. Â÷ÈÄ ¼öÁ¤ÇØ¾ß¸¸ ÇÑ´Ù
+			// ìš°ì„  ìž„ì‹œë¡œ ì—¬ê¸°ì„œ ìºìŠ¤íŒ…í•œë‹¤. ì°¨í›„ ìˆ˜ì •í•´ì•¼ë§Œ í•œë‹¤
 			NTL_ASSERTE(CVenusVisualManager::GetInstance().m_pResourceSystem != NULL);
 			CNtlResourceComponentSystem* pResourceComponentSystem = CVenusVisualManager::GetInstance().m_pResourceSystem;
 			NTL_ASSERTE(pResourceComponentSystem);
@@ -6108,7 +6108,7 @@ void CEffectPropertyDialog::ApplyProperties_PrtEmitterEmitter(CPropTreeItem* pIt
 	{
 	case _PROPERTY_CONTROL_ACTION_PRT_EMITTER_EMITTER_SYSTEM:
 		{
-			// ¿ì¼± ÀÓ½Ã·Î ¿©±â¼­ Ä³½ºÆÃÇÑ´Ù. Â÷ÈÄ ¼öÁ¤ÇØ¾ß¸¸ ÇÑ´Ù
+			// ìš°ì„  ìž„ì‹œë¡œ ì—¬ê¸°ì„œ ìºìŠ¤íŒ…í•œë‹¤. ì°¨í›„ ìˆ˜ì •í•´ì•¼ë§Œ í•œë‹¤
 			NTL_ASSERTE(CVenusVisualManager::GetInstance().m_pResourceSystem != NULL);
 			CNtlResourceParticleSystem* pResourceParticleSystem = (CNtlResourceParticleSystem*)CVenusVisualManager::GetInstance().m_pResourceSystem;
 
@@ -6211,7 +6211,7 @@ void CEffectPropertyDialog::ApplyProperties_MultiColorEmitter(CPropTreeItem* pIt
 		break;
 	case _PROPERTY_CONTROL_ACTION_MULTI_COLOR_EMITTER_COLOR_A:
 		{
-			// slider ÀÌ±â ¶§¹®¿¡ (RwReal)pItem->GetItemValue(); À¸·Î Ã³¸®ÇØ¾ß ÇÑ´Ù.
+			// slider ì´ê¸° ë•Œë¬¸ì— (RwReal)pItem->GetItemValue(); ìœ¼ë¡œ ì²˜ë¦¬í•´ì•¼ í•œë‹¤.
 			pEmitterPrtMultiCol->list[m_nCurrentPoint].midCol.alpha = (RwReal)pItem->GetItemValue();
 		}
 		break;

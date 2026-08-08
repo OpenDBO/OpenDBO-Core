@@ -220,7 +220,7 @@ void CAnimPlayPane::InitMarker()
 	case ANIMPLAYPANE_CHARACTER:
 		m_pCharacter->Update(0.1f);
 		SetAnimTime(m_pCharacter->GetBaseCurrentAnimTime(), m_pCharacter->GetBaseDurationAnimTime());        
-        m_pAnimData->fPlayTime = m_pCharacter->GetBaseDurationAnimTime();   // ¾Ö´Ï¸ŞÀÌ¼Ç ¸®¼Ò½º°¡ ¹Ù²î´Â °æ¿ì°¡ ÀÖ´Ù. ±×·²¶§¸¦ ´ëºñÇØ¼­ Play½Ã¿¡ ½Ã°£À» ¾÷µ¥ÀÌÆ®ÇÑ´Ù.
+        m_pAnimData->fPlayTime = m_pCharacter->GetBaseDurationAnimTime();   // ì• ë‹ˆë©”ì´ì…˜ ë¦¬ì†ŒìŠ¤ê°€ ë°”ë€ŒëŠ” ê²½ìš°ê°€ ìˆë‹¤. ê·¸ëŸ´ë•Œë¥¼ ëŒ€ë¹„í•´ì„œ Playì‹œì— ì‹œê°„ì„ ì—…ë°ì´íŠ¸í•œë‹¤.
 		break;
 	case ANIMPLAYPANE_OBJECT:
 		//m_pObject->Update(0.1f);
@@ -332,7 +332,7 @@ BOOL CAnimPlayPane::OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT
 
 void CAnimPlayPane::OnSlidePosChanged()
 {
-    // ½½¶óÀÌ´õÀÇ °ªÀÌ º¯°æµÇ¾úÀ»¶§.
+    // ìŠ¬ë¼ì´ë”ì˜ ê°’ì´ ë³€ê²½ë˜ì—ˆì„ë•Œ.
     int nPos = m_slideAnimTime.GetPos();
     float fTime = (float)nPos / 100.0f;
 	CString sAnimTime;
@@ -365,7 +365,7 @@ void CAnimPlayPane::OnSlideMarkerAdd(SSliderMarker* pSliderMarker)
     if(!pSliderMarker || !m_pAnimData)
         return;
 
-    // µ¥ÀÌÅÍ°¡ ¾ø´Â °æ¿ì »ı¼ºÇÏ¿© ÇÁ·ÎÆÛÆ¼¿¡ Ãß°¡ÇÑ´Ù.
+    // ë°ì´í„°ê°€ ì—†ëŠ” ê²½ìš° ìƒì„±í•˜ì—¬ í”„ë¡œí¼í‹°ì— ì¶”ê°€í•œë‹¤.
     if(pSliderMarker->m_pAnimEvent == NULL)
     {
         switch(m_slideAnimTime.GetEventMode())
@@ -437,7 +437,7 @@ void CAnimPlayPane::OnSlideMarkerAdd(SSliderMarker* pSliderMarker)
 
 void CAnimPlayPane::OnSlideMarkerSelect()
 {
-    // NOTE: AddMarker‹šµµ ÀÌ ¸Ş¼Òµå°¡ È£ÃâµÈ´Ù.
+    // NOTE: AddMarkerë–„ë„ ì´ ë©”ì†Œë“œê°€ í˜¸ì¶œëœë‹¤.
 
     SSliderMarker* pSliderMarker = m_slideAnimTime.GetSelectMarker();
     if(pSliderMarker && m_pAnimData)
@@ -456,7 +456,7 @@ void CAnimPlayPane::OnSlideMarkerSelect()
 
 void CAnimPlayPane::OnSlideMarkerMove()
 {
-    // ¸¶Ä¿°¡ ¿òÁ÷ÀÏ¶§ ¿À¸¥ÂÊ AttrViewÀÇ Á¤º¸µµ °»½ÅÇÏ¿© ÁØ´Ù.
+    // ë§ˆì»¤ê°€ ì›€ì§ì¼ë•Œ ì˜¤ë¥¸ìª½ AttrViewì˜ ì •ë³´ë„ ê°±ì‹ í•˜ì—¬ ì¤€ë‹¤.
     SSliderMarker* pSliderMarker = m_slideAnimTime.GetSelectMarker();
     if(pSliderMarker && m_pAnimData)
     {
@@ -467,7 +467,7 @@ void CAnimPlayPane::OnSlideMarkerMove()
 
 void CAnimPlayPane::OnSlideMarkerChanged()
 {
-    // ÀÌµ¿ÀÌ ¿Ï·áµÇ¾úÀ»¶§ È£ÃâµÈ´Ù.
+    // ì´ë™ì´ ì™„ë£Œë˜ì—ˆì„ë•Œ í˜¸ì¶œëœë‹¤.
     if(m_slideAnimTime.GetEventMode() == EVENT_ANIM_HIT)
     {
         GetSafeInstance(CAttackTypePane)->SetAnimEventData(m_pAnimData);
@@ -484,7 +484,7 @@ void CAnimPlayPane::OnSlideMarkerRemove(SSliderMarker* pRemovedMarker)
             SEventAnim* pEventAnim = *it;
             if(pEventAnim && (pEventAnim == pRemovedMarker->m_pAnimEvent))
             {
-                // vector¿¡¼­ »èÁ¦ÇÑ´Ù.
+                // vectorì—ì„œ ì‚­ì œí•œë‹¤.
                 m_pAnimData->vecAnimEvent.erase(it);
                 break;
             }
@@ -608,7 +608,7 @@ void CAnimPlayPane::OnCbnSelchangeCbEvent()
     EAnimEventType eEventType = (EAnimEventType)m_cbEvent.GetItemData(m_cbEvent.GetCurSel());
     m_slideAnimTime.SetEventMode(eEventType);
 
-    // AttackType PaneÀº Hit½Ã¿¡¸¸ Ç¥½ÃÇÑ´Ù.
+    // AttackType Paneì€ Hitì‹œì—ë§Œ í‘œì‹œí•œë‹¤.
     if(eEventType == EVENT_ANIM_HIT)
     {
         GetSafeInstance(CAttackTypePane)->SetAnimEventData(m_pAnimData);
@@ -708,8 +708,8 @@ void CAnimPlayPane::UpdateEventComboBox()
 }
 
 /**
- * ½ºÅ³ Äµ½½ ÀÌº¥Æ® ÀÌÈÄ¿¡´Â Hit Event°¡ ÀÖÀ¸¸é ¾ÈµÈ´Ù. ÀÌ°ÍÀ» Ã¼Å©ÇÑ´Ù.
- * \param fTime ½ºÅ³ Äµ½½ ÀÌº¥Æ® Å¸ÀÓ 
+ * ìŠ¤í‚¬ ìº”ìŠ¬ ì´ë²¤íŠ¸ ì´í›„ì—ëŠ” Hit Eventê°€ ìˆìœ¼ë©´ ì•ˆëœë‹¤. ì´ê²ƒì„ ì²´í¬í•œë‹¤.
+ * \param fTime ìŠ¤í‚¬ ìº”ìŠ¬ ì´ë²¤íŠ¸ íƒ€ì„ 
  */
 RwBool CAnimPlayPane::CheckSkillCancel( RwReal fTime ) 
 {

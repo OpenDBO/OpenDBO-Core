@@ -16,20 +16,20 @@ class CNtlWorldConceptDBC;
 
 #define REWARD_LIST_MAX_VISIBLE		4
 
-/// º¸»ó GUI »óÅÂ
+/// ë³´ìƒ GUI ìƒíƒœ
 enum ERewardUIStatus
 {
-	E_REWARD_STATUS_SELECT,			///< º¸»ó ¼±ÅÃ ´Ü°è
-	E_REWARD_STATUS_CONFIRM,		///< º¸»ó È®ÀÎ ´Ü°è
+	E_REWARD_STATUS_SELECT,			///< ë³´ìƒ ì„ íƒ ë‹¨ê³„
+	E_REWARD_STATUS_CONFIRM,		///< ë³´ìƒ í™•ì¸ ë‹¨ê³„
 };
 
 
-/// º¸»ó Ç×¸ñµéÀÇ Æ®¸® ±¸Á¶¸¦ ±¸¼ºÇÏ´Â ³ëµå
+/// ë³´ìƒ í•­ëª©ë“¤ì˜ íŠ¸ë¦¬ êµ¬ì¡°ë¥¼ êµ¬ì„±í•˜ëŠ” ë…¸ë“œ
 struct SRewardItem
 {
 	sDRAGONBALL_REWARD_TBLDAT* pData;			///< Reward Table Data
 	SRewardItem* pParent;
-	std::vector<SRewardItem*> itemChild;	///< ÀÚ½Ä ¾ÆÀÌÅÛµé
+	std::vector<SRewardItem*> itemChild;	///< ìì‹ ì•„ì´í…œë“¤
 
 	SRewardItem()
 	{
@@ -48,7 +48,7 @@ struct SRewardItem
 
 /**
  * \ingroup Client
- * \brief ¿ë½Å ¼ÒÈ¯ÈÄ ¼Ò¿øº¸»ó GUI
+ * \brief ìš©ì‹  ì†Œí™˜í›„ ì†Œì›ë³´ìƒ GUI
  * \date 2007-06-24
  * \author agebreak
  */
@@ -68,11 +68,11 @@ public:
 	// Event
 	VOID		HandleEvents(RWS::CMsg &pMsg);
 
-	// ½Ì±ÛÅæ »ı¼º/Á¦°Å 
+	// ì‹±ê¸€í†¤ ìƒì„±/ì œê±° 
 	static	void	CreateInstance();
 	static	void	DeleteInstance();
 
-	VOID			AdjustDialog();							///< ´ÙÀÌ¾ó·Î±× À§Ä¡¸¦ Á¤·Ä
+	VOID			AdjustDialog();							///< ë‹¤ì´ì–¼ë¡œê·¸ ìœ„ì¹˜ë¥¼ ì •ë ¬
 
 protected:
 	// CallBack
@@ -88,40 +88,40 @@ protected:
     VOID	OnCaptureWheelMove( RwInt32 nFlag, RwInt16 sDelta, CPos& pos );
 
 	
-	// Ç×¸ñ ¼±ÅÃ CallBack
+	// í•­ëª© ì„ íƒ CallBack
 	gui::CButton*	OnCreateItem();
 	void			OnDestroyItem(gui::CButton* pButton);
 	void			OnClickedItem(RwInt32 iIndex);
 
 
-	VOID			SetStatus(ERewardUIStatus eStatus);		///< º¸»óÃ¢ UIÀÇ ÇöÀç »óÅÂ¸¦ ¼³Á¤ÇÑ´Ù.
+	VOID			SetStatus(ERewardUIStatus eStatus);		///< ë³´ìƒì°½ UIì˜ í˜„ì¬ ìƒíƒœë¥¼ ì„¤ì •í•œë‹¤.
 	
 	void			ShowList(SRewardItem* pItem, RwInt32 nPos);
-	void			CreateRewardTree(SRewardItem* pParent, RwInt32 nDepth);						///< º¸»ó µ¥ÀÌÅÍµéÀ» Æ®¸®·Î ±¸ÃàÇÑ´Ù.
-	void			ShowItemInfo(SRewardItem* pItem);		///< º¸»ó ¾ÆÀÌÅÛ Á¤º¸¸¦ Ç¥½ÃÇÑ´Ù.
-	void			UnLockDragonBall();						///< LockÀ»°Ç µå·¡°ïº¼µéÀ» ¸ğµÎ UnLockÇÑ´Ù.	
-	RwBool			IsExistSkill(RwUInt32 nTblIdx);			///< ÀÌ¹Ì °¡Áö°í ÀÖ´Â ½ºÅ³ÀÎÁö È®ÀÎÇÑ´Ù.	
+	void			CreateRewardTree(SRewardItem* pParent, RwInt32 nDepth);						///< ë³´ìƒ ë°ì´í„°ë“¤ì„ íŠ¸ë¦¬ë¡œ êµ¬ì¶•í•œë‹¤.
+	void			ShowItemInfo(SRewardItem* pItem);		///< ë³´ìƒ ì•„ì´í…œ ì •ë³´ë¥¼ í‘œì‹œí•œë‹¤.
+	void			UnLockDragonBall();						///< Lockì„ê±´ ë“œë˜ê³¤ë³¼ë“¤ì„ ëª¨ë‘ UnLockí•œë‹¤.	
+	RwBool			IsExistSkill(RwUInt32 nTblIdx);			///< ì´ë¯¸ ê°€ì§€ê³  ìˆëŠ” ìŠ¤í‚¬ì¸ì§€ í™•ì¸í•œë‹¤.	
 
 protected:
-	static	CDBCRewardGUI*	m_pInstance;			///< ½Ì±ÛÅæ ÀÎ½ºÅÏ½º °´Ã¼
+	static	CDBCRewardGUI*	m_pInstance;			///< ì‹±ê¸€í†¤ ì¸ìŠ¤í„´ìŠ¤ ê°ì²´
 
 	WCHAR					m_pBuf[20];
-	RwBool					m_bDisplayHurryUp;		///< ½Ã°£ÀÌ ¾ø´Ù¶ó´Â ¸Ş½ÃÁö¸¦ Ç¥½ÃÇß´ÂÁö À¯¹« ÇÃ·¡±×
-	RwBool					m_bDelete;				///< »èÁ¦ÇÒÁö ¿©ºÎ ÇÃ·¡±×
-	DWORD					m_nDepthIdx;			///< ¼±ÅÃ Ç×¸ñ ±íÀÌÀÇ ÀÎµ¦½º °ª	
-	DWORD					m_nPrevDepthIdx;		///< ÀÌÀü Ç×¸ñ ±íÀÌÀÇ ÀÎµ¦½º °ª
-    RwInt32                 m_nBtnCount;            ///< ¹öÆ° »ı¼º °¹¼ö
+	RwBool					m_bDisplayHurryUp;		///< ì‹œê°„ì´ ì—†ë‹¤ë¼ëŠ” ë©”ì‹œì§€ë¥¼ í‘œì‹œí–ˆëŠ”ì§€ ìœ ë¬´ í”Œë˜ê·¸
+	RwBool					m_bDelete;				///< ì‚­ì œí• ì§€ ì—¬ë¶€ í”Œë˜ê·¸
+	DWORD					m_nDepthIdx;			///< ì„ íƒ í•­ëª© ê¹Šì´ì˜ ì¸ë±ìŠ¤ ê°’	
+	DWORD					m_nPrevDepthIdx;		///< ì´ì „ í•­ëª© ê¹Šì´ì˜ ì¸ë±ìŠ¤ ê°’
+    RwInt32                 m_nBtnCount;            ///< ë²„íŠ¼ ìƒì„± ê°¯ìˆ˜
 	
-	CTextTable*				m_pDBRewardTextTable;	///< º¸»ó °ü·Ã ÅØ½ºÆ® Å×ÀÌºí	
-	CDragonBallTable*		m_pDragonBallTable;		///< µå·¡°ïº¼ Å×ÀÌºí
-	CDragonBallRewardTable* m_pDragonBallRewardTable; ///< º¸»ó Å×ÀÌºí
+	CTextTable*				m_pDBRewardTextTable;	///< ë³´ìƒ ê´€ë ¨ í…ìŠ¤íŠ¸ í…Œì´ë¸”	
+	CDragonBallTable*		m_pDragonBallTable;		///< ë“œë˜ê³¤ë³¼ í…Œì´ë¸”
+	CDragonBallRewardTable* m_pDragonBallRewardTable; ///< ë³´ìƒ í…Œì´ë¸”
 
-	SRewardItem				m_RewardItemRoot;		///< º¸»ó ¾ÆÀÌÅÛ Æ®¸®ÀÇ ·çÆ® ³ëµå
-	SRewardItem*			m_pPrevItem;			///< ÇÑ´Ü°èÀüÀÇ Æ®¸® ³ëµå
-	SRewardItem*			m_pRewardItem;			///< ÃÖÁ¾ º¸»ó ¾ÆÀÌÅÛ
-	sTBLDAT*				m_pRewardItemTblData;	///< º¸»ó ¾ÆÀÌÅÛÀÇ Å×ÀÌºí µ¥ÀÌÅÍ		
+	SRewardItem				m_RewardItemRoot;		///< ë³´ìƒ ì•„ì´í…œ íŠ¸ë¦¬ì˜ ë£¨íŠ¸ ë…¸ë“œ
+	SRewardItem*			m_pPrevItem;			///< í•œë‹¨ê³„ì „ì˜ íŠ¸ë¦¬ ë…¸ë“œ
+	SRewardItem*			m_pRewardItem;			///< ìµœì¢… ë³´ìƒ ì•„ì´í…œ
+	sTBLDAT*				m_pRewardItemTblData;	///< ë³´ìƒ ì•„ì´í…œì˜ í…Œì´ë¸” ë°ì´í„°		
 
-	CNtlWorldConceptDBC*	m_pWorldConceptDBC;		///< DBC Concept ÄÁÆ®·Ñ·¯
+	CNtlWorldConceptDBC*	m_pWorldConceptDBC;		///< DBC Concept ì»¨íŠ¸ë¡¤ëŸ¬
 
 
 	// gui
@@ -134,9 +134,9 @@ protected:
 	gui::CStaticBox*		m_pSttItemName;
 	gui::CStaticBox*		m_pSttItemText;	
 	gui::CScrollBar*		m_pScrollBar;
-	CSurfaceGui				m_sufItem;				///< ¾ÆÀÌÅÛÀÇ IconÀ» Ç¥½ÃÇÒ Surface
+	CSurfaceGui				m_sufItem;				///< ì•„ì´í…œì˜ Iconì„ í‘œì‹œí•  Surface
 
-	CButtonList<CDBCRewardGUI, SRewardItem*>	m_ButtonList;	///< Ç×¸ñ ¹öÆ° ¸®šÀ
+	CButtonList<CDBCRewardGUI, SRewardItem*>	m_ButtonList;	///< í•­ëª© ë²„íŠ¼ ë¦¬ìŠ½
 
 	// slot
 	gui::CSlot				m_slotClickExitBtn;

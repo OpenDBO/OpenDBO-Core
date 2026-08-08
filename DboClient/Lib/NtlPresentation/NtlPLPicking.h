@@ -2,7 +2,7 @@
 *
 * File			: NtlPLPinking.h
 * Author		: All Author
-* Copyright	: (ÁÖ)NTL
+* Copyright	: (ì£¼)NTL
 * Date			: 2005. 8. 11	
 * Abstract		: Presentation picking.
 *****************************************************************************
@@ -32,11 +32,11 @@ typedef struct _SWorldIntersect
 
 typedef struct _SWorldPickInfo
 {
-	RwBool bTerrainExclusion;		// ÁöÇüÀº Á¦¿ÜÇÒ °ÍÀÎ°¡?
-	RwBool bCharacterExclusion;		// characterÀº Á¦¿ÜÇÒ °ÍÀÎ°¡?
-	RwReal fMinDist;				// °è»ê¿¡ ÇÊ¿äÇÑ ÂüÁ¶ º¯¼ö
-	RpAtomic *pAtomic;				// °è»ê¿¡ ÇÊ¿äÇÑ ÂüÁ¶ º¯¼ö
-	CNtlPLEntity *pPLEntity;		// picking¿¡ ¼º°øÇÏ¸é NULLÀÌ ¾Æ´Ï°í, ½ÇÆĞÇÏ¸é NULL
+	RwBool bTerrainExclusion;		// ì§€í˜•ì€ ì œì™¸í•  ê²ƒì¸ê°€?
+	RwBool bCharacterExclusion;		// characterì€ ì œì™¸í•  ê²ƒì¸ê°€?
+	RwReal fMinDist;				// ê³„ì‚°ì— í•„ìš”í•œ ì°¸ì¡° ë³€ìˆ˜
+	RpAtomic *pAtomic;				// ê³„ì‚°ì— í•„ìš”í•œ ì°¸ì¡° ë³€ìˆ˜
+	CNtlPLEntity *pPLEntity;		// pickingì— ì„±ê³µí•˜ë©´ NULLì´ ì•„ë‹ˆê³ , ì‹¤íŒ¨í•˜ë©´ NULL
 	RwV3d vPickPos;
 
 	_SWorldPickInfo()
@@ -63,7 +63,7 @@ typedef struct _SWorldCharIntersectionData
 
 typedef struct _SWorldCharIntersectionInfo
 {
-	RwUInt8 byAtomicCount;							// character°¡ Ãæµ¹ÇÏ´Â object atomic °¹¼ö.
+	RwUInt8 byAtomicCount;							// characterê°€ ì¶©ëŒí•˜ëŠ” object atomic ê°¯ìˆ˜.
 	RpAtomic *pAtomic[NTL_MAX_CHAR_INTERSECION];	// atomic buffer.
 }SWorldCharIntersectionInfo;
 
@@ -89,62 +89,62 @@ typedef struct _SWorldCameraIntersectionData
 }SWorldCameraIntersectionData;
 
 /**
-* Ãæµ¹ °¡´É AtomicÀÎÁö °Ë»çÇÑ´Ù
+* ì¶©ëŒ ê°€ëŠ¥ Atomicì¸ì§€ ê²€ì‚¬í•œë‹¤
 **/
 RwBool IsCollisionAtomic(RpAtomic* pAtomic);
 
 /**
-* mouse pickingÀ» ÇÑ´Ù.
+* mouse pickingì„ í•œë‹¤.
 */
 void Pick_WorldIntersectionLine(RwLine& Line, SWorldPickInfo& sPickInfo, RwReal fRayDist);
 
 /**
-* Ãæµ¹µÇ´Â height field ³ôÀÌ¸¦ ±¸ÇÏ´Â collision logic¿¡ optimize µÇ¾î ÀÖ´Ù.
+* ì¶©ëŒë˜ëŠ” height field ë†’ì´ë¥¼ êµ¬í•˜ëŠ” collision logicì— optimize ë˜ì–´ ìˆë‹¤.
 */
 RwBool Collision_HeightFieldIntersectionLineTopDown(RwLine& Line, SWorldIntersect& sInter);
 
 /**
-* Ãæµ¹µÇ´Â Indoor ³ôÀÌ¸¦ ±¸ÇÏ´Â collision logic¿¡ optimize µÇ¾î ÀÖ´Ù.
+* ì¶©ëŒë˜ëŠ” Indoor ë†’ì´ë¥¼ êµ¬í•˜ëŠ” collision logicì— optimize ë˜ì–´ ìˆë‹¤.
 */
 RwBool Collision_IndoorIntersectionLineTopDown(RwLine& Line, SWorldIntersect& sInter);
 
 /**
-* Ãæµ¹µÇ´Â object ³ôÀÌ¸¦ ±¸ÇÏ´Â collision logic¿¡ optimize µÇ¾î ÀÖ´Ù.
+* ì¶©ëŒë˜ëŠ” object ë†’ì´ë¥¼ êµ¬í•˜ëŠ” collision logicì— optimize ë˜ì–´ ìˆë‹¤.
 */
 RwBool Collision_WorldIntersectionLineTopDown(RwLine& Line, SWorldIntersect& sInter);
 
 /**
-* Ãæµ¹µÇ´Â mini indoor object ³ôÀÌ¸¦ ±¸ÇÏ´Â collision logic¿¡ optimize µÇ¾î ÀÖ´Ù.
+* ì¶©ëŒë˜ëŠ” mini indoor object ë†’ì´ë¥¼ êµ¬í•˜ëŠ” collision logicì— optimize ë˜ì–´ ìˆë‹¤.
 */
 RwBool Collision_MiniIndoorIntersectionLineTopDown(RwLine& Line, SWorldIntersect& sInter);
 
 /**
-* world objectÁß¿¡ Ãæµ¹µÇ´Â atomicÀ» ±¸ÇÑ´Ù.
+* world objectì¤‘ì— ì¶©ëŒë˜ëŠ” atomicì„ êµ¬í•œë‹¤.
 */
 RwBool Collision_WorldIntersectionCharacter(RwBBox& box, SWorldCharIntersectionInfo& sCharInfo);
 
 /**
-* world Áß¿¡ Ãæµ¹µÇ´Â RpWorldSector(Indoor) TriangleÀ» ±¸ÇÑ´Ù.
+* world ì¤‘ì— ì¶©ëŒë˜ëŠ” RpWorldSector(Indoor) Triangleì„ êµ¬í•œë‹¤.
 */
 RwBool Collision_WorldIntersectionWorldSector(RwLine& Line, SWorldCharIntersectionData& sCharDataInfo);
 
 /**
-* world objectÁß¿¡ Ãæµ¹µÇ´Â atomicÀ» ±¸ÇÑ´Ù.
+* world objectì¤‘ì— ì¶©ëŒë˜ëŠ” atomicì„ êµ¬í•œë‹¤.
 */
 RwBool Collision_WorldIntersectionCharacterData(RwLine& Line, RpAtomic *pAtomic, SWorldCharIntersectionData& sCharDataInfo);
 
 /**
-* world»óÀÇ °ø°£¿¡¼­ camera Ãæµ¹ Á¤º¸¸¦ ±¸ÇÑ´Ù.
+* worldìƒì˜ ê³µê°„ì—ì„œ camera ì¶©ëŒ ì •ë³´ë¥¼ êµ¬í•œë‹¤.
 */
 RwBool Collision_WorldIntersectionCameraData(const RwV3d *pCameraPos, const RwV3d *pLookAt, RwReal fRadius, RwV3d& vNewPos);
 
 /**
-* Ãæµ¹µÇ´Â Object°¡ ÀÖ´ÂÁö ¿©ºÎ¸¦ °Ë»çÇÑ´Ù. (LensFlare¿ë. by agebreak)
+* ì¶©ëŒë˜ëŠ” Objectê°€ ìˆëŠ”ì§€ ì—¬ë¶€ë¥¼ ê²€ì‚¬í•œë‹¤. (LensFlareìš©. by agebreak)
 */
 RwBool Collision_WorldIntersectionObject(const RwLine& line, SWorldPickInfo* pPickInfo );
 
 /**
-* Ãæµ¹µÇ´Â Object°¡ ÀÖ´ÂÁö ¿©ºÎ¸¦ °Ë»çÇÑ´Ù. (Targeting¿ë)
+* ì¶©ëŒë˜ëŠ” Objectê°€ ìˆëŠ”ì§€ ì—¬ë¶€ë¥¼ ê²€ì‚¬í•œë‹¤. (Targetingìš©)
 */
 RwBool Collision_WorldIntersectionObjectForTarget(const RwLine& line, SWorldPickInfo* pPickInfo );
 

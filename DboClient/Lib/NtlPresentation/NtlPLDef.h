@@ -2,7 +2,7 @@
 *
 * File			: NtlPLDef.h
 * Author		: HyungSuk, Jang
-* Copyright	: (ÁÖ)NTL
+* Copyright	: (ì£¼)NTL
 * Date			: 2005. 8. 01	
 * Abstract		: Presentation layer standard define
 *****************************************************************************
@@ -22,7 +22,7 @@ enum ENtlPLEntityLayer
 	PLENTITY_LAYER_NONE,
 	PLENTITY_LAYER_FOG,
 	PLENTITY_LAYER_SKY,	
-	PLENTITY_LAYER_RWWORLD,				// renderware·Î Æ÷ÇÔµÇ´Â ¸ğµç entityµé(woody1019, jhssugi)
+	PLENTITY_LAYER_RWWORLD,				// renderwareë¡œ í¬í•¨ë˜ëŠ” ëª¨ë“  entityë“¤(woody1019, jhssugi)
 	PLENTITY_LAYER_DECAL,
 	PLENTITY_LAYER_PLAYERNAME,
 	PLENTITY_LAYER_DAMAGEBOX,
@@ -64,7 +64,7 @@ enum ENtlPLEntityType
 	PLENTITY_SOUND_BGM,
 	PLENTITY_BLOOM,
 	PLENTITY_SUN,			// by agebreak
-	PLENTITY_SUN_PLANET,	// FreeList ¹®Á¦·Î Å¬·¡½ºÇüÀ» ±¸ºĞÇÏ±â À§ÇØ Ãß°¡.
+	PLENTITY_SUN_PLANET,	// FreeList ë¬¸ì œë¡œ í´ë˜ìŠ¤í˜•ì„ êµ¬ë¶„í•˜ê¸° ìœ„í•´ ì¶”ê°€.
 	PLENTITY_PLANT,
 	PLENTITY_WORLD_LIGHT,
 	PLENTITY_WEATHER,
@@ -78,7 +78,7 @@ enum ENtlPLEntityType
 	PLENTITY_INVALID_TYPE = 0xffffffff
 };
 
-// PLEN => presentation layer entity nameÀÇ ¾à¾î.
+// PLEN => presentation layer entity nameì˜ ì•½ì–´.
 #define NTL_PLEN_SKY			"PLSky"
 #define NTL_PLEN_WORLD			"PLWorld"		// woody1019
 #define NTL_PLEN_DUMMY_WORLD	"PLDummyWorld"	// jhssugi
@@ -110,32 +110,32 @@ enum ENtlPLEntityType
 #define NTL_PLEN_DOJO			"PLDojo"
 
 /// entity flag
-// CNtlPLEntity::SetFlags(RwUInt32 uiFlags); ÇÔ¼ö¸¦ »ç¿ëÇÏ¿© setting ÇØ ÁØ´Ù.
-#define NTL_PLEFLAG_NOTUPDATE					0x00000001	// entityµéÁß update °¡ ÇÊ¿ä ¾øÀ» ¶§ setting ÇÑ´Ù(¿¹ : animationÀÌ ¾ø´Â object).
-#define NTL_PLEFLAG_FRUSTUMOUT_NOTUPDATE		0x00000002	// entityµéÁß camera frustum ¹Û¿¡ ÀÖÀ» °æ¿ì update¸¦ ÇÏÁö ¾Ê¾Æµµ µÇ´Â °æ¿ì¿¡ setting ÇØ ÁØ´Ù.
-#define NTL_PLEFLAG_ALPHA						0x00000004	// entity¿¡ alpha flag¸¦ setting ÇØ ÁØ´Ù.
-#define NTL_PLEFLAG_PICKING						0x00000008	// entityµéÁß mouse pickingÀ» ÇÒ ¼ö ÀÖ´Â ³Ñµé.( ¼Óµµ¸¦ À§ÇÏ¿©...)
-#define NTL_PLEFLAG_NOT_ADD_WORLD				0x00000010  // entityµéÁß RpWorld¿¡ Ãß°¡ÇÏÁö ¾Ê¾Æµµ µÇ´Â entityÀÎ °æ¿ì.
-#define NTL_PLEFLAG_NOT_PROPERTY_USED			0x00000020	// entityµéÁß CNtlPLProperty ¸¦ ÀüÇô »ç¿ëÇÏÁö ¾Ê´Â entity °æ¿ì.
-#define NTL_PLEFLAG_NOT_VISIBLE					0x00000040	// entityµéÁß rendering on/off flags.
-#define NTL_PLEFLAG_ATTACH						0x00000080	// ÇöÀç entity´Â attach °¡´ÉÇÑ entity ÀÌ´Ù.
-#define NTL_PLEFLAG_COLLISION					0x00000100  // ÇöÀç entity´Â CollisionÀÌ °¡´ÉÇÏ°í, ¿Ã¶ó°¡´Â°ÍÀÌ °¡´ÉÇÏ´Ù.
-#define NTL_PLEFLAG_WEIGHT_ELAPSED_TIME			0x00000200  // ÇöÀç entity´Â update elapsed time ¼Óµµ¸¦ Á¶ÀıÇÑ´Ù.
-#define NTL_PLEFLAG_SELECTION					0x00000400	// Æ®¸®°Å°¡ ÀÖ´Â ¿ÀºêÁ§Æ®Áß¿¡¼­ ¼±ÅÃÀÌ µÇ´Â°¡ ¸¶´Â°¡¸¦ °áÁ¤ÇÑ´Ù.
-#define NTL_PLEFLAG_TRIGGER					    0x00000800	// Æ®¸®°Å°¡ ÀÖ´ÂÁö ¾ø´ÂÁö¸¦ ÆÇ´ÜÇÑ´Ù.
-#define NTL_PLEFLAG_ALTERABLE					0x00001000	// ¿ÀºêÁ§Æ®°¡ µ¿Àûº¯ÇüÀÌ ÀÖ´ÂÁö¸¦ ÆÇ´ÜÇÑ´Ù.
-#define NTL_PLEFLAG_PORTAL						0x00002000	// Æ÷Å»±â´ÉÀÌ ÀÖ´ÂÁö ¾ø´ÂÁö¸¦ ÆÇ´ÜÇÑ´Ù.
-#define NTL_PLEFLAG_PECOLLISION					0x00004000	// Path engine¿ë 2D collision meshÀÇ »ç¿ëÀ¯¹«¸¦ ÆÇ´ÜÇÑ´Ù.
-#define NTL_PLEFLAG_FADE                        0x00008000  // Fade Àû¿ë À¯¹« ÇÃ·¡±×
-#define NTL_PLEFLAG_SHADOW                      0x00010000  // EntityÀÇ Shadow Ç¥½Ã À¯¹« ÇÃ·¡±×
+// CNtlPLEntity::SetFlags(RwUInt32 uiFlags); í•¨ìˆ˜ë¥¼ ì‚¬ìš©í•˜ì—¬ setting í•´ ì¤€ë‹¤.
+#define NTL_PLEFLAG_NOTUPDATE					0x00000001	// entityë“¤ì¤‘ update ê°€ í•„ìš” ì—†ì„ ë•Œ setting í•œë‹¤(ì˜ˆ : animationì´ ì—†ëŠ” object).
+#define NTL_PLEFLAG_FRUSTUMOUT_NOTUPDATE		0x00000002	// entityë“¤ì¤‘ camera frustum ë°–ì— ìˆì„ ê²½ìš° updateë¥¼ í•˜ì§€ ì•Šì•„ë„ ë˜ëŠ” ê²½ìš°ì— setting í•´ ì¤€ë‹¤.
+#define NTL_PLEFLAG_ALPHA						0x00000004	// entityì— alpha flagë¥¼ setting í•´ ì¤€ë‹¤.
+#define NTL_PLEFLAG_PICKING						0x00000008	// entityë“¤ì¤‘ mouse pickingì„ í•  ìˆ˜ ìˆëŠ” ë„˜ë“¤.( ì†ë„ë¥¼ ìœ„í•˜ì—¬...)
+#define NTL_PLEFLAG_NOT_ADD_WORLD				0x00000010  // entityë“¤ì¤‘ RpWorldì— ì¶”ê°€í•˜ì§€ ì•Šì•„ë„ ë˜ëŠ” entityì¸ ê²½ìš°.
+#define NTL_PLEFLAG_NOT_PROPERTY_USED			0x00000020	// entityë“¤ì¤‘ CNtlPLProperty ë¥¼ ì „í˜€ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” entity ê²½ìš°.
+#define NTL_PLEFLAG_NOT_VISIBLE					0x00000040	// entityë“¤ì¤‘ rendering on/off flags.
+#define NTL_PLEFLAG_ATTACH						0x00000080	// í˜„ì¬ entityëŠ” attach ê°€ëŠ¥í•œ entity ì´ë‹¤.
+#define NTL_PLEFLAG_COLLISION					0x00000100  // í˜„ì¬ entityëŠ” Collisionì´ ê°€ëŠ¥í•˜ê³ , ì˜¬ë¼ê°€ëŠ”ê²ƒì´ ê°€ëŠ¥í•˜ë‹¤.
+#define NTL_PLEFLAG_WEIGHT_ELAPSED_TIME			0x00000200  // í˜„ì¬ entityëŠ” update elapsed time ì†ë„ë¥¼ ì¡°ì ˆí•œë‹¤.
+#define NTL_PLEFLAG_SELECTION					0x00000400	// íŠ¸ë¦¬ê±°ê°€ ìˆëŠ” ì˜¤ë¸Œì íŠ¸ì¤‘ì—ì„œ ì„ íƒì´ ë˜ëŠ”ê°€ ë§ˆëŠ”ê°€ë¥¼ ê²°ì •í•œë‹¤.
+#define NTL_PLEFLAG_TRIGGER					    0x00000800	// íŠ¸ë¦¬ê±°ê°€ ìˆëŠ”ì§€ ì—†ëŠ”ì§€ë¥¼ íŒë‹¨í•œë‹¤.
+#define NTL_PLEFLAG_ALTERABLE					0x00001000	// ì˜¤ë¸Œì íŠ¸ê°€ ë™ì ë³€í˜•ì´ ìˆëŠ”ì§€ë¥¼ íŒë‹¨í•œë‹¤.
+#define NTL_PLEFLAG_PORTAL						0x00002000	// í¬íƒˆê¸°ëŠ¥ì´ ìˆëŠ”ì§€ ì—†ëŠ”ì§€ë¥¼ íŒë‹¨í•œë‹¤.
+#define NTL_PLEFLAG_PECOLLISION					0x00004000	// Path engineìš© 2D collision meshì˜ ì‚¬ìš©ìœ ë¬´ë¥¼ íŒë‹¨í•œë‹¤.
+#define NTL_PLEFLAG_FADE                        0x00008000  // Fade ì ìš© ìœ ë¬´ í”Œë˜ê·¸
+#define NTL_PLEFLAG_SHADOW                      0x00010000  // Entityì˜ Shadow í‘œì‹œ ìœ ë¬´ í”Œë˜ê·¸
 #define NTL_PLEFLAG_NEST_MEMBER                 0x00020000  // Nest Spawn Member
 #define NTL_PLEFLAG_RESIZE_PICKING_BBOX         0x00040000  // Flag to dynamically bound the bounding box for picking
-#define NTL_PLEFLAG_TOOL_PICK					0x00080000	// Åø¿¡¼­´Â ´õºñ¿ÀºêÁ§µîÀ» ¿òÁ÷ÀÌ¸é¼­ ¹èÄ¡ÇÏ´Â °æ¿ì°¡ ÀÖ´Ù. ÀÌ°æ¿ì¶§¹®¿¡ ÇÈÄ¿¿Í Ãæµ¹ÀÌ »ı±â°Ô µÇ´Âµ¥ ÀÌ¸¦ ¹æÁöÇÏ±â À§ÇØ ÀÌ ÇÃ·¡±×¸¦ ¾´´Ù. ÀÌÇÃ·¡±×°¡ ¾ø´Â °æ¿ì¿¡¸¸ ÇÈÅ·ÀÌ µÇµµ·Ï NTLPicking¿¡¼­ Ã³¸®µÈ´Ù.
-#define NTL_PLEFLAG_OBJECT_FORCE_VISIBLE		0x00100000	// ¿ÀºêÁ§Æ®°¡ ³»ºÎÀûÀÎ Ã³¸®(Fade, Distance Culling...)¿¡ ¿µÇâÀ» ¹ŞÁö¾Ê°í, ¿ÀÁ÷ ¿ÜºÎ¿¡¼­¸¸ Visible, Alpha°ªÀ» Á¶Á¤ÇÏ±â À§ÇÑ ÇÃ·¡±× (Æ®¸®°Å ¿ÀºêÁ§Æ®ÀÇ »óÅÂÃ³¸® À§ÇØ¼­ »ç¿ëµÈ´Ù) - ¸ÊÅø¿¡¼­´Â Àû¿ëµÇÁö ¾Ê´Â´Ù
-#define NTL_PLEFLAG_SHADOW_PROP					0x00200000	// terrain property¸¦ Àû¿ëÇØ¾ß ÇÒ °æ¿ì.
-#define NTL_PLEFLAG_DUMMY						0X00400000	// ex. GUIÀü¿ë character°¡ »ı¼ºµÇ´Â °æ¿ì¿¡ »ç¿ëÇÑ´Ù.
+#define NTL_PLEFLAG_TOOL_PICK					0x00080000	// íˆ´ì—ì„œëŠ” ë”ë¹„ì˜¤ë¸Œì ë“±ì„ ì›€ì§ì´ë©´ì„œ ë°°ì¹˜í•˜ëŠ” ê²½ìš°ê°€ ìˆë‹¤. ì´ê²½ìš°ë•Œë¬¸ì— í”½ì»¤ì™€ ì¶©ëŒì´ ìƒê¸°ê²Œ ë˜ëŠ”ë° ì´ë¥¼ ë°©ì§€í•˜ê¸° ìœ„í•´ ì´ í”Œë˜ê·¸ë¥¼ ì“´ë‹¤. ì´í”Œë˜ê·¸ê°€ ì—†ëŠ” ê²½ìš°ì—ë§Œ í”½í‚¹ì´ ë˜ë„ë¡ NTLPickingì—ì„œ ì²˜ë¦¬ëœë‹¤.
+#define NTL_PLEFLAG_OBJECT_FORCE_VISIBLE		0x00100000	// ì˜¤ë¸Œì íŠ¸ê°€ ë‚´ë¶€ì ì¸ ì²˜ë¦¬(Fade, Distance Culling...)ì— ì˜í–¥ì„ ë°›ì§€ì•Šê³ , ì˜¤ì§ ì™¸ë¶€ì—ì„œë§Œ Visible, Alphaê°’ì„ ì¡°ì •í•˜ê¸° ìœ„í•œ í”Œë˜ê·¸ (íŠ¸ë¦¬ê±° ì˜¤ë¸Œì íŠ¸ì˜ ìƒíƒœì²˜ë¦¬ ìœ„í•´ì„œ ì‚¬ìš©ëœë‹¤) - ë§µíˆ´ì—ì„œëŠ” ì ìš©ë˜ì§€ ì•ŠëŠ”ë‹¤
+#define NTL_PLEFLAG_SHADOW_PROP					0x00200000	// terrain propertyë¥¼ ì ìš©í•´ì•¼ í•  ê²½ìš°.
+#define NTL_PLEFLAG_DUMMY						0X00400000	// ex. GUIì „ìš© characterê°€ ìƒì„±ë˜ëŠ” ê²½ìš°ì— ì‚¬ìš©í•œë‹¤.
 
-// entity cull flags : ¿ì¼± ¼øÀ§°¡ ³ôÀ» ¼ö·Ï ºñÆ®¼ö°¡ ³·´Ù.
+// entity cull flags : ìš°ì„  ìˆœìœ„ê°€ ë†’ì„ ìˆ˜ë¡ ë¹„íŠ¸ìˆ˜ê°€ ë‚®ë‹¤.
 #define NTL_PLEFLAG_CULLED_PVS							0x00000001 // pvs test
 #define NTL_PLEFLAG_CULLED_CAMERA_FRUSTUM_OUT			0x00000002 // camera frustum out
 #define NTL_PLEFLAG_CULLED_OCCLUDER						0x00000004 // occluder culled
@@ -151,7 +151,7 @@ enum ENtlPLEntityType
 
 // item
 
-// ItemÀÇ Grade Enum
+// Itemì˜ Grade Enum
 enum ENtlPLItemGrade
 {
 	ITEM_GRADE_NONE = 0,
@@ -207,13 +207,13 @@ enum eEmblemType
 #define PATH_EFFECT_RESOURCE	"Effect\\"
 #define PATH_EFFECT_TEXTURE		".\\Texture\\ntlwe\\Planet\\;.\\Texture\\Effect\\;.\\Texture\\character\\;.\\Texture\\Effect\\text\\;.\\Texture\\Effect\\qest_icon\\;"
 
-// XML ¾ÏÈ£È­ ÆĞ½º¿öµå
+// XML ì•”í˜¸í™” íŒ¨ìŠ¤ì›Œë“œ
 #define ENC_DATA_PASSWORD				"@#)!agebreak"
 
 // Rendering flag
 #define dFLAG_EXCEPT_GUI			0x00000001
 
-typedef unsigned int BITFLAG;                   // ºñÆ® ÇÃ·¡±×¿ë Å¸ÀÔ
+typedef unsigned int BITFLAG;                   // ë¹„íŠ¸ í”Œë˜ê·¸ìš© íƒ€ì…
 
 
 

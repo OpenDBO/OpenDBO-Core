@@ -4,7 +4,7 @@
 
 /**
  * \ingroup ModelTool2
- * \brief Å»°Í °ü·Ã Pane
+ * \brief íƒˆê²ƒ ê´€ë ¨ Pane
  *
  * \date 2008-11-04
  * \author agebreak
@@ -14,7 +14,7 @@ class CTreeVehiclePane : public CTreePCPane
 	DECLARE_DYNCREATE(CTreeVehiclePane)
 
 protected:
-	CTreeVehiclePane();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CTreeVehiclePane();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CTreeVehiclePane();
 
 public:

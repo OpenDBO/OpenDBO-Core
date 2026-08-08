@@ -372,7 +372,7 @@ void CNtlPLWorldEntity::OnBtnDN(RwReal x, RwReal y)
 		break;
 	case ePM_TEXTURE:
 		{
-			// ÇöÀç ÇÊµå ´Ù¿­·Î±×¸¦ Ã¤¿ö¾ß ÇÑ´Ù.
+			// í˜„ì¬ í•„ë“œ ë‹¤ì—´ë¡œê·¸ë¥¼ ì±„ì›Œì•¼ í•œë‹¤.
 		}
 		break;
 	case ePM_ORNAMENT:
@@ -511,7 +511,7 @@ RwBool CNtlPLWorldEntity::Update(RwReal fElapsed)
 			return TRUE;
 		}
 
-		// Camera´Â WorldÀÇ ÀüÃ¼Å©±â ¹ÛÀ¸·Î¸¸ ³ª°¡Áö ¾ÊÀ¸¸é µÇ¹Ç·Î AOI ¿µ¿ªÀ» Á¦¿ÜÇÏ°í °Ë»çÇÏÁö ¾Ê´Â´Ù.
+		// CameraëŠ” Worldì˜ ì „ì²´í¬ê¸° ë°–ìœ¼ë¡œë§Œ ë‚˜ê°€ì§€ ì•Šìœ¼ë©´ ë˜ë¯€ë¡œ AOI ì˜ì—­ì„ ì œì™¸í•˜ê³  ê²€ì‚¬í•˜ì§€ ì•ŠëŠ”ë‹¤.
 		RwReal Max = static_cast<RwReal>(dGET_WORLD_PARAM()->WorldValueMax - 1);
 		RwReal Min = static_cast<RwReal>(dGET_WORLD_PARAM()->WorldValueMin + 1);
 		if(m_AvatarPos.x > Max || m_AvatarPos.x < Min || m_AvatarPos.z > Max || m_AvatarPos.z < Min)

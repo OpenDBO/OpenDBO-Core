@@ -50,7 +50,10 @@ All required third party tools can be obtained from [our 3rd party repository](h
 
 10. **In Solution Explorer, go to DBO\Client.vcxproj and repeat step 7.**
 
-11. **In Solution Explorer, navigate to Tools\2DParticleEditor, right-click, and unload it.**
+11. **Unload all Tool projects:**
+    - In Solution Explorer, expand the `Tool` solution folder.
+    - Right-click each tool project (2DParticleEditor, DTEditor, GUIEditor, GuiDevTool, ModelTool2, NaviTool, NtlWE, PackEditor, SkillCustomizeViewer, TSEvtMaker, TSTool, Venus, WorldEditor, WorldPatchProcess) and select **Unload project**.
+    - These tools are not required for building the Client and may cause compilation errors if left loaded.
 
 12. **Right-click on Client.vcxproj -> Build**
     - You should encounter only one error after compiling: 'libjpeg.lib'
@@ -61,9 +64,15 @@ All required third party tools can be obtained from [our 3rd party repository](h
         - `$(GFXSDK_DIR)\Lib\$(PlatformName)\Msvc80\Release`
         - `$(GFXSDK_DIR)\3rdParty\jpeg-6b\lib\$(PlatformName)\Msvc142\Release`
 
-14. **Right-click on Client.vcxproj -> Rebuild**
+14. **Compile RenderWare x64 libraries:**
+    - Open `DboClient\RenderwareX64\Include\rwcore.vcxproj` in Visual Studio 2019.
+    - Build each RenderWare plugin project in `DboClient\RenderwareX64\Include\` with **Release|x64** configuration.
+    - The compiled `.lib` files will output to `DboClient\RenderwareX64\Lib\Release_x64\`.
+    - This step is required before building the Client for x64.
 
-15. **The Client should have compiled successfully.**
+15. **Right-click on Client.vcxproj -> Rebuild**
+
+16. **The Client should have compiled successfully.**
 
 </details>
 
@@ -138,3 +147,5 @@ Alternatively there's a video showcasing this process: https://www.youtube.com/w
 
 ## Acknowledgements
 All and any copyrighted material belongs to their respective owners, this is just a non-profit fan project aiming for game preservation. Thanks to DBOG for providing the base for this source code.
+
+This x64 port is based on the OpenDBO project ([OpenDBO](https://github.com/OpenDBO)) and was ported and fixed by [kingkaibr](https://github.com/kingkaibr). Any use of this work must credit both OpenDBO and kingkaibr.

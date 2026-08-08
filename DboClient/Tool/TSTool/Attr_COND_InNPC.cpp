@@ -1,4 +1,4 @@
-// Attr_COND_InNPC.cpp : ���� �����Դϴ�.
+// Attr_COND_InNPC.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_COND_InNPC.h"
 
 
-// CAttr_COND_InNPC ��ȭ �����Դϴ�.
+// CAttr_COND_InNPC 대화 상자입니다.
 
 IMPLEMENT_SERIAL(CAttr_COND_InNPC, CAttr_Page, 1)
 
@@ -58,4 +58,4 @@ BEGIN_MESSAGE_MAP(CAttr_COND_InNPC, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_COND_InNPC �޽��� ó�����Դϴ�.
+// CAttr_COND_InNPC 메시지 처리기입니다.

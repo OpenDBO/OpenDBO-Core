@@ -2,14 +2,14 @@
 
 #include "AssetObjectDlg.h"
 
-// CAssetObjectView ºäÀÔ´Ï´Ù.
+// CAssetObjectView ë·°ì…ë‹ˆë‹¤.
 
 class CAssetObjectView : public CView
 {
 	DECLARE_DYNCREATE(CAssetObjectView)
 
 protected:
-	CAssetObjectView();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CAssetObjectView();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CAssetObjectView();
 
 public:
@@ -17,7 +17,7 @@ public:
 	CAssetObjectDlg m_ObjDlg;
 
 public:
-	virtual void OnDraw(CDC* pDC);      // ÀÌ ºä¸¦ ±×¸®±â À§ÇØ ÀçÁ¤ÀÇµÇ¾ú½À´Ï´Ù.
+	virtual void OnDraw(CDC* pDC);      // ì´ ë·°ë¥¼ ê·¸ë¦¬ê¸° ìœ„í•´ ì¬ì •ì˜ë˜ì—ˆìŠµë‹ˆë‹¤.
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;

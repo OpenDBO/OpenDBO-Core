@@ -64,7 +64,7 @@ RwBool CTBMatchTeamBlueMemberGui::Create( const WCHAR* pCharName, SERIAL_HANDLE 
 	// Member Data Update
 	UpdateMemberData( hMemberSerial );
 
-	// ÀÌ¸§, ·¹º§ ¹× °¢Á¾ Status ¼¼ÆÃ
+	// ì´ë¦„, ë ˆë²¨ ë° ê°ì¢… Status ì„¸íŒ…
 	CNtlSobPlayer* pPlayer = reinterpret_cast<CNtlSobPlayer*>(GetNtlSobManager()->GetSobObject( hMemberSerial ));
 	if( pPlayer == NULL )
 	{
@@ -134,7 +134,7 @@ VOID CTBMatchTeamBlueMemberGui::HandleEvents( RWS::CMsg& msg )
 
 VOID CTBMatchTeamBlueMemberGui::UpdateMemberData( SERIAL_HANDLE hSerial )
 {
-	// ÀÌ¸§, ·¹º§ ¹× °¢Á¾ Status ¼¼ÆÃ
+	// ì´ë¦„, ë ˆë²¨ ë° ê°ì¢… Status ì„¸íŒ…
 	CNtlSobPlayer* pPlayer = reinterpret_cast<CNtlSobPlayer*>(GetNtlSobManager()->GetSobObject( hSerial ));
 	if( pPlayer == NULL )
 	{
@@ -217,7 +217,7 @@ VOID CTBMatchTeamObBlueGui::Destroy()
 
 VOID CTBMatchTeamObBlueGui::CreateMemberGui()
 {
-	// ºí·çÆÀÀÇ ÀÎ¿øÀ» ÀĞ¾î¿Â´Ù.
+	// ë¸”ë£¨íŒ€ì˜ ì¸ì›ì„ ì½ì–´ì˜¨ë‹¤.
 	CNtlWorldConceptTB* pTBWorldConcept = reinterpret_cast<CNtlWorldConceptTB*>( GetNtlWorldConcept()->GetWorldConceptController( WORLD_PLAY_T_BUDOKAI ) );
 	DBO_ASSERT( pTBWorldConcept, "CTBMatchIndiObBlueGui : must World concept is valid" );		
 
@@ -227,11 +227,11 @@ VOID CTBMatchTeamObBlueGui::CreateMemberGui()
 	// Size
 	m_byMemberNums = (RwUInt8)pBlueTeam->vecpMember.size();
 	
-	// ¸â¹ö°¡ 0ÀÌ¶ó¸é ¸®ÅÏ
+	// ë©¤ë²„ê°€ 0ì´ë¼ë©´ ë¦¬í„´
 	if( m_byMemberNums == 0 )
 		return;
 
-	// Size¼ö¿¡ ¸ÂÃç¼­ »ı¼º
+	// Sizeìˆ˜ì— ë§ì¶°ì„œ ìƒì„±
 	m_pMemberGui = NTL_NEW CTBMatchTeamBlueMemberGui[m_byMemberNums];
 
 	for(RwInt32 i=0; i < m_byMemberNums; ++i )
@@ -239,7 +239,7 @@ VOID CTBMatchTeamObBlueGui::CreateMemberGui()
 		m_pMemberGui[i].Create( pBlueTeam->vecpMember[i]->wstrName.c_str(), pBlueTeam->vecpMember[i]->hSerial );
 	}
 
-	// ÀüÃ¼È­¸é¿¡¼­ Áß°£¿¡ ¸ÂÃß±â À§ÇÏ¿©
+	// ì „ì²´í™”ë©´ì—ì„œ ì¤‘ê°„ì— ë§ì¶”ê¸° ìœ„í•˜ì—¬
 	int nHeight = (m_byMemberNums * dTEAMMEMBER_GUI_OFFSET_Y) - (dTEAMMEMBER_GUI_OFFSET_Y - dTEAMMEMBER_GUI_HEIGHT);
 	int nStartPosY = (GetDboGlobal()->GetScreenHeight()/2) - (nHeight/2);
 	int nStartPosX = (GetDboGlobal()->GetScreenWidth()-dTEAMMEMBER_GUI_WIDTH);
@@ -266,7 +266,7 @@ VOID CTBMatchTeamObBlueGui::DestroyMemberGui()
 
 /**
 * \brief Update
-* \param fElapsed	(RwReal) ÀÌÀü ¾÷µ¥ÀÌÆ®¿¡¼­ °æ°úÇÑ ½Ã°£
+* \param fElapsed	(RwReal) ì´ì „ ì—…ë°ì´íŠ¸ì—ì„œ ê²½ê³¼í•œ ì‹œê°„
 */
 VOID CTBMatchTeamObBlueGui::Update( RwReal fElapsed )
 {
@@ -292,19 +292,19 @@ VOID CTBMatchTeamObBlueGui::HandleEvents( RWS::CMsg& msg )
 
 		if( pData->bEnterState )
 		{
-			// READY, RUN, FINISH »óÅÂ°¡ ¾Æ´Ï¶ó¸é ÇØÁ¦ÇÑ´Ù.
+			// READY, RUN, FINISH ìƒíƒœê°€ ì•„ë‹ˆë¼ë©´ í•´ì œí•œë‹¤.
 			if( pData->byMatchState == BUDOKAI_MAJORMATCH_STATE_STAGE_READY ||
 				pData->byMatchState == BUDOKAI_MAJORMATCH_STATE_STAGE_RUN	||
 				pData->byMatchState == BUDOKAI_MAJORMATCH_STATE_STAGE_FINISH )
 			{
 				if( !m_bCreate )
 				{
-					// Âü°¡ÀÚ¶ó¸é ¸®ÅÏ				
+					// ì°¸ê°€ìë¼ë©´ ë¦¬í„´				
 					stTBudokaiMember* pMember = pTBWorldConcept->FindMember( Logic_GetAvatarHandle() );
 					if( pMember )
 						return;
 
-					// ½Ì±Û ÇÃ·¹ÀÌ ÁßÀÌ¶ó¸é ¸®ÅÏ
+					// ì‹±ê¸€ í”Œë ˆì´ ì¤‘ì´ë¼ë©´ ë¦¬í„´
 					if( !pTBWorldConcept->IsPartyBattle() )
 						return;
 
@@ -326,23 +326,23 @@ VOID CTBMatchTeamObBlueGui::HandleEvents( RWS::CMsg& msg )
 
 		if( pData->bEnterState )
 		{	
-			// READY, RUN, FINISH »óÅÂ°¡ ¾Æ´Ï¶ó¸é ÇØÁ¦ÇÑ´Ù.
+			// READY, RUN, FINISH ìƒíƒœê°€ ì•„ë‹ˆë¼ë©´ í•´ì œí•œë‹¤.
 			if( pData->byMatchState == BUDOKAI_FINALMATCH_STATE_STAGE_READY ||
 				pData->byMatchState == BUDOKAI_FINALMATCH_STATE_STAGE_RUN	||
 				pData->byMatchState == BUDOKAI_FINALMATCH_STATE_STAGE_FINISH )
 			{
 				if( !m_bCreate )
 				{
-					// Âü°¡ÀÚ¶ó¸é ¸®ÅÏ				
+					// ì°¸ê°€ìë¼ë©´ ë¦¬í„´				
 					stTBudokaiMember* pMember = pTBWorldConcept->FindMember( Logic_GetAvatarHandle() );
 					if( pMember )
 						return;
 
-					// ½Ì±Û ÇÃ·¹ÀÌ ÁßÀÌ¶ó¸é ¸®ÅÏ
+					// ì‹±ê¸€ í”Œë ˆì´ ì¤‘ì´ë¼ë©´ ë¦¬í„´
 					if( !pTBWorldConcept->IsPartyBattle() )
 						return;
 
-					// Team Info°¡ µé¾î¿À¸é »ı¼ºÇÑ´Ù.
+					// Team Infoê°€ ë“¤ì–´ì˜¤ë©´ ìƒì„±í•œë‹¤.
 					CreateMemberGui();
 				}
 			}

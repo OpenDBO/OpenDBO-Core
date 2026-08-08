@@ -2,7 +2,7 @@
  *
  * File			: NtlAtomicExt
  * Author		: HongHoDong
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 11. 27	
  * Abstract		: NTl Atomic Extension
  *****************************************************************************
@@ -15,26 +15,26 @@
 #include <rwcore.h>
 #include <rpworld.h>
 
-/**< !!!!!!!!!!!!!!!!!!!!!!Clumpø° ¿˙¿Â¿Ã µ«π«∑Œ ±‚¡∏ ∞™µÈ¿ª ¿˝¥Î ∫Ø∞Ê «œΩ√∏È æ»µÀ¥œ¥Ÿ.!!!!!!!!!!!!!!!!!!!!!!! */
+/**< !!!!!!!!!!!!!!!!!!!!!!ClumpÏóê Ï†ÄÏû•Ïù¥ ÎêòÎØÄÎ°ú Í∏∞Ï°¥ Í∞íÎì§ÏùÑ Ï†àÎåÄ Î≥ÄÍ≤Ω ÌïòÏãúÎ©¥ ÏïàÎê©ÎãàÎã§.!!!!!!!!!!!!!!!!!!!!!!! */
 enum ENtlAtomicFlag
 {
 	NTL_ATOMIC_FLAG_INVALID	= 0x00000000,
 
-	NTL_TOON_NOT_EDGE		= 0x00000001, /**<Edge∞° Rendering¿Ã µ«¡ˆæ ¿Ω */
-	NTL_TOON_DETAIL_EDGE	= 0x00000002, /**<Edge∏∏ Vertex∑Œ ∏∏µÁ Detail«— Edge∞° ¬Ô»˚*/
+	NTL_TOON_NOT_EDGE		= 0x00000001, /**<EdgeÍ∞Ä RenderingÏù¥ ÎêòÏßÄÏïäÏùå */
+	NTL_TOON_DETAIL_EDGE	= 0x00000002, /**<EdgeÎßå VertexÎ°ú ÎßåÎì† DetailÌïú EdgeÍ∞Ä Ï∞çÌûò*/
 	
-	NTL_TWOSIDE             = 0x00000010, /**<TwoSide ∞¯≈Î */
-	NTL_ALPHATEST			= 0x00000020, /**<AlphaTest ∞¯≈Î */
-	NTL_ALPHA				= 0x00000040, /**<Alpha ∞¯≈Î */
+	NTL_TWOSIDE             = 0x00000010, /**<TwoSide Í≥µÌÜµ */
+	NTL_ALPHATEST			= 0x00000020, /**<AlphaTest Í≥µÌÜµ */
+	NTL_ALPHA				= 0x00000040, /**<Alpha Í≥µÌÜµ */
 	
-	NTL_COLLISION			= 0x00001000, /**<Collision¿ª «“∞«¡ˆ ∏ª∞«¡ˆ */
-	NTL_NOT_VISIBLE			= 0x00002000, /**<»≠∏Èø° ±◊∏±¡ˆ æ»±◊∏±¡ˆ¿« ¿Øπ´*/
-	NTL_DECAL_VISIBLE		= 0x00004000, /**<Decal¿ª «•Ω√«“ ∞«¡ˆ ¿Øπ´ */
-    NTL_CAMERA_COLLISION    = 0x00020000, /**<Not Visible √º≈©∞° µ»∞Õ¡ﬂø°º≠ ƒ´∏ﬁ∂Û √Êµπ¿ª «“¡ˆ¿« ¿Øπ´ */
+	NTL_COLLISION			= 0x00001000, /**<CollisionÏùÑ Ìï†Í±¥ÏßÄ ÎßêÍ±¥ÏßÄ */
+	NTL_NOT_VISIBLE			= 0x00002000, /**<ÌôîÎ©¥Ïóê Í∑∏Î¶¥ÏßÄ ÏïàÍ∑∏Î¶¥ÏßÄÏùò Ïú†Î¨¥*/
+	NTL_DECAL_VISIBLE		= 0x00004000, /**<DecalÏùÑ ÌëúÏãúÌï† Í±¥ÏßÄ Ïú†Î¨¥ */
+    NTL_CAMERA_COLLISION    = 0x00020000, /**<Not Visible Ï≤¥ÌÅ¨Í∞Ä ÎêúÍ≤ÉÏ§ëÏóêÏÑú Ïπ¥Î©îÎùº Ï∂©ÎèåÏùÑ Ìï†ÏßÄÏùò Ïú†Î¨¥ */
 
-	NTL_SHADOW_MAP			= 0x00008000, /**<ShadowMap¿ª ª˝º∫«“ ∞«¡ˆ(ShadowMap¿Ã ¿÷¥¬¡ˆ ¿Øπ´) */
+	NTL_SHADOW_MAP			= 0x00008000, /**<ShadowMapÏùÑ ÏÉùÏÑ±Ìï† Í±¥ÏßÄ(ShadowMapÏù¥ ÏûàÎäîÏßÄ Ïú†Î¨¥) */
 	
-	NTL_RUNTIME_ALPHA		= 0x00010000, /**<RunTimeø° Alpha∞° ¿˚øÎ¿Ã µ«¥¬ ∞ÊøÏ */
+	NTL_RUNTIME_ALPHA		= 0x00010000, /**<RunTimeÏóê AlphaÍ∞Ä Ï†ÅÏö©Ïù¥ ÎêòÎäî Í≤ΩÏö∞ */
 	NTL_TOON_EDGE_OFF		= 0x00040000,
 	NTL_ENVMAP_TEX			= 0x00080000, /**<Enviroment map texture name */
 	NTL_EMBLEM_MARK			= 0x00100000,

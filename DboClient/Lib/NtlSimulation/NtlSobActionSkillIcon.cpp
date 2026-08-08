@@ -20,7 +20,7 @@
 #include "ResultCodeString.h"
 
 
-// peessitemp : table data·Î ¹Ù²ð ¿¹Á¤.
+// peessitemp : table dataë¡œ ë°”ë€” ì˜ˆì •.
 #define MAX_ACTION_COOLTIME	3.0f
 
 DEFINITION_MEMORY_POOL(CNtlSobActionSkillIcon)
@@ -65,7 +65,7 @@ RwBool CNtlSobActionSkillIcon::IsUsePossible(void)
 
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
 
-	// ºñÈ÷Å¬, ½ºÇÇ´×¾îÅÃÁßÀÏ¶§´Â ¾×¼Ç½ºÅ³Àº »ç¿ëÇÏÁö ¸øÇÑ´Ù
+	// ë¹„ížˆí´, ìŠ¤í”¼ë‹ì–´íƒì¤‘ì¼ë•ŒëŠ” ì•¡ì…˜ìŠ¤í‚¬ì€ ì‚¬ìš©í•˜ì§€ ëª»í•œë‹¤
 	if(Logic_IsTransform(pAvatar))
 	{
 		BYTE byAspectStateID = pAvatar->GetAspectState()->sAspectStateBase.byAspectStateId;
@@ -105,7 +105,7 @@ RwBool CNtlSobActionSkillIcon::Use(SERIAL_HANDLE hTargetSerialId, RwUInt32 uiRPB
 
 	NTL_ASSERT(pActionTblData, "CNtlSobActionSkillIcon::Use => table data is not exist");
 
-	// ÄðÅ¸ÀÓ °Ë»ç. 
+	// ì¿¨íƒ€ìž„ ê²€ì‚¬. 
 	if( m_byIconState == ICON_STATE_COOLING )
 	{
 		CNtlSLEventGenerator::SysMsg( m_pSobObj->GetOwnerID(), "GAME_SKILL_NOT_READY_TO_BE_CAST" );
@@ -138,7 +138,7 @@ RwBool CNtlSobActionSkillIcon::Use(SERIAL_HANDLE hTargetSerialId, RwUInt32 uiRPB
         switch(pActionTblData->byETC_Action_Type)
         {
 			case ACTION_FUNC_TYPE_PC_SHOP_OPEN:
-            // 10M ÀÌ³»¿¡ °³ÀÎ»óÁ¡ÀÌ ÀÖ´ÂÁö ¹°¾îº¸°í ÀÖ´Ù¸é °³ÀÎ»óÁ¡À» ¿­Áö ¸øÇÏ°Ô ÇÑ´Ù.
+            // 10M ì´ë‚´ì— ê°œì¸ìƒì ì´ ìžˆëŠ”ì§€ ë¬¼ì–´ë³´ê³  ìžˆë‹¤ë©´ ê°œì¸ìƒì ì„ ì—´ì§€ ëª»í•˜ê²Œ í•œë‹¤.
             if ( Logic_IsCanCreatePrivateShop() )
             {
                 CNtlSLEventGenerator::ActionMapPrivateShopOpen();	

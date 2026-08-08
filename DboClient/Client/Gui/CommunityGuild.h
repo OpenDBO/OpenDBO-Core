@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: CommunityGuild.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 4. 19
 * Abstract		: 
 *****************************************************************************
-* Desc			: ±æµå Ä¿¹Â´ÏÆ¼ Ã¢
+* Desc			: ê¸¸ë“œ ì»¤ë®¤ë‹ˆí‹° ì°½
 *****************************************************************************/
 
 #pragma once
@@ -65,7 +65,7 @@ public:
 
 	CNtlPLGui*			m_pParent;
 
-	gui::CPanel*		pTributarySimbol;///< Á¾Á·°ú Á÷¾÷ ±×¸²
+	gui::CPanel*		pTributarySimbol;///< ì¢…ì¡±ê³¼ ì§ì—… ê·¸ë¦¼
 	gui::CStaticBox*	m_pName;
 	gui::CStaticBox*	m_pLevel;
 	gui::CStaticBox*	m_pArea;
@@ -152,16 +152,16 @@ protected:
 
 	CNtlPLGui*			m_pParent;					///< Owner class	
 
-	gui::CButton*		m_pEmblemButton;			///< ±æµå ¹®Àå ¹öÆ°
-	gui::CButton*		m_pEmblemModifyButton;		///< ±æµå ¹®Àå ¼öÁ¤ ¹öÆ°
-	gui::CButton*		m_pLeaveButton;				///< ±æµå Å»Åð ¹öÆ°
-	gui::CButton*		m_pGhymButton;				///< ±æµå µµÀå ¹öÆ°
-	gui::CButton*		m_pNameButton;				///< ÀÌ¸§ Á¤·Ä ¹öÆ°
-	gui::CButton*		m_pLevelButton;				///< ·¹º§ Á¤·Ä ¹öÆ°
-	gui::CButton*		m_pAreaButton;				///< Áö¿ª Á¤·Ä ¹öÆ°
-	gui::CButton*		m_pNoticeButton;			///< °øÁö ¹öÆ°
+	gui::CButton*		m_pEmblemButton;			///< ê¸¸ë“œ ë¬¸ìž¥ ë²„íŠ¼
+	gui::CButton*		m_pEmblemModifyButton;		///< ê¸¸ë“œ ë¬¸ìž¥ ìˆ˜ì • ë²„íŠ¼
+	gui::CButton*		m_pLeaveButton;				///< ê¸¸ë“œ íƒˆí‡´ ë²„íŠ¼
+	gui::CButton*		m_pGhymButton;				///< ê¸¸ë“œ ë„ìž¥ ë²„íŠ¼
+	gui::CButton*		m_pNameButton;				///< ì´ë¦„ ì •ë ¬ ë²„íŠ¼
+	gui::CButton*		m_pLevelButton;				///< ë ˆë²¨ ì •ë ¬ ë²„íŠ¼
+	gui::CButton*		m_pAreaButton;				///< ì§€ì—­ ì •ë ¬ ë²„íŠ¼
+	gui::CButton*		m_pNoticeButton;			///< ê³µì§€ ë²„íŠ¼
 
-	gui::CStaticBox*	m_pGuildName;				///< ±æµå ÀÌ¸§
+	gui::CStaticBox*	m_pGuildName;				///< ê¸¸ë“œ ì´ë¦„
 
 	gui::CStaticBox*	m_pCurGuildPointText;		///< Current guild points
 	gui::CStaticBox*	m_pMaxGuildPointText;		///< Max guild points
@@ -170,31 +170,31 @@ protected:
 	gui::CStaticBox*	m_pMaxGuildPoint;			///< Max guild points
 
 
-	gui::CStaticBox*	m_pGuildNum;				///< ±æµåÀÎ¿ø
-	gui::CStaticBox*	m_pGuildNoticeStatic;		///< '±æµå °øÁö'
-	gui::CStaticBox*	m_pGuildNoticeTime;			///< °øÁö ³¯Â¥
-	gui::CStaticBox*	m_pGuildNoticer;			///< °øÁöÀÚ
-	gui::COutputBox*	m_pNotice;					///< °øÁö³»¿ë
+	gui::CStaticBox*	m_pGuildNum;				///< ê¸¸ë“œì¸ì›
+	gui::CStaticBox*	m_pGuildNoticeStatic;		///< 'ê¸¸ë“œ ê³µì§€'
+	gui::CStaticBox*	m_pGuildNoticeTime;			///< ê³µì§€ ë‚ ì§œ
+	gui::CStaticBox*	m_pGuildNoticer;			///< ê³µì§€ìž
+	gui::COutputBox*	m_pNotice;					///< ê³µì§€ë‚´ìš©
 
 	gui::CScrollBar*	m_pScrollbar;
 
 	CRwTextureGui*		m_pEmblemButtonImage;
 
-	CWindowby3			m_GuildMemBackSurface;		///< ±æµå ¸É¹ö ¹è°æ
-	CWindowby3			m_NoticeSurface;			///< ±æµå °øÁö ¹è°æ
+	CWindowby3			m_GuildMemBackSurface;		///< ê¸¸ë“œ ë§´ë²„ ë°°ê²½
+	CWindowby3			m_NoticeSurface;			///< ê¸¸ë“œ ê³µì§€ ë°°ê²½
 
-	CSurfaceGui			m_srfHumanShapeSurface;		///< »ç¶÷ ¸ð¾ç
-	CSurfaceGui			m_srfNoticeBar;				///< ±æµå °øÁö ¹Ù	
+	CSurfaceGui			m_srfHumanShapeSurface;		///< ì‚¬ëžŒ ëª¨ì–‘
+	CSurfaceGui			m_srfNoticeBar;				///< ê¸¸ë“œ ê³µì§€ ë°”	
 
-	RwBool				m_bNameAscendingSort;		///< ÀÌ¸§ÀÇ ¿À¸§Â÷¼øÀÎÁö ¿©ºÎ
-	RwBool				m_bLevelAscendingSort;		///< ·¹º§ÀÇ ¿À¸§Â÷¼øÀÎÁö ¿©ºÎ
-	RwBool				m_bAreaAscendingSort;		///< Áö¿ªÀÇ ¿À¸§Â÷¼øÀÌÁö ¿©ºÎ	
+	RwBool				m_bNameAscendingSort;		///< ì´ë¦„ì˜ ì˜¤ë¦„ì°¨ìˆœì¸ì§€ ì—¬ë¶€
+	RwBool				m_bLevelAscendingSort;		///< ë ˆë²¨ì˜ ì˜¤ë¦„ì°¨ìˆœì¸ì§€ ì—¬ë¶€
+	RwBool				m_bAreaAscendingSort;		///< ì§€ì—­ì˜ ì˜¤ë¦„ì°¨ìˆœì´ì§€ ì—¬ë¶€	
 
-	RwInt32				m_iOnlineMember;			///< ÇöÀç Á¢¼ÓÁßÀÎ ±æµå ¸É¹ö¼ö
+	RwInt32				m_iOnlineMember;			///< í˜„ìž¬ ì ‘ì†ì¤‘ì¸ ê¸¸ë“œ ë§´ë²„ìˆ˜
 
-	CHARACTERID			m_SelectedCharID;			///< ÇöÀç ¼±ÅÃµÈ ±æµå¿ø ID
+	CHARACTERID			m_SelectedCharID;			///< í˜„ìž¬ ì„ íƒëœ ê¸¸ë“œì› ID
 
-	RwInt32				m_iVisibleStart;			///< È­¸é¿¡ º¸ÀÌ´Â MemGUIÀÇ ÃÖÃÊ ÀÎµ¦½º
+	RwInt32				m_iVisibleStart;			///< í™”ë©´ì— ë³´ì´ëŠ” MemGUIì˜ ìµœì´ˆ ì¸ë±ìŠ¤
 	RwInt8				m_byInfoMemberIndex;	
 
 	CGuildMemberGui*	m_aGuildMemberGui[dVISIBLE_LIST_COUNT];

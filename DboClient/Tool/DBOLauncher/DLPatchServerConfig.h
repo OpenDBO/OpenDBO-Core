@@ -2,12 +2,12 @@
 *
 * File			: DLPatchServerConfig.h
 * Author		: agebreak
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 10. 4.
 * Abstract		: 
 *****************************************************************************
-* Desc          : Patch Server¿¡ Á¸ÀçÇÏ´Â PatchServerConfig.XML ÆÄÀÏÀÇ ³»¿ëÀ»
-*				  ÀĞ¾î¼­ ºĞ¼®ÇÏ´Â Å¬·¡½º
+* Desc          : Patch Serverì— ì¡´ì¬í•˜ëŠ” PatchServerConfig.XML íŒŒì¼ì˜ ë‚´ìš©ì„
+*				  ì½ì–´ì„œ ë¶„ì„í•˜ëŠ” í´ë˜ìŠ¤
 *
 *****************************************************************************/
 
@@ -28,22 +28,22 @@ protected:
 	// Caption name
 	CString						m_strCaptionName;
 
-	// ·±Ã³¿¡¼­ À¥ÆäÀÌÁö¿¡ ÆĞÄ¡ Á¤º¸¸¦ Ãâ·ÂÇÏ±â À§ÇØ »ç¿ëµÇ´Â Á¤º¸
+	// ëŸ°ì²˜ì—ì„œ ì›¹í˜ì´ì§€ì— íŒ¨ì¹˜ ì •ë³´ë¥¼ ì¶œë ¥í•˜ê¸° ìœ„í•´ ì‚¬ìš©ë˜ëŠ” ì •ë³´
 	CString						m_strWebPatchHistoryPath;
 
-	// ·±Ã³¿¡¼­ Ãâ·ÂµÇ´Â ¹®ÀÚ¿­À» °ü¸®ÇÏ±â À§ÇÑ Á¤º¸
+	// ëŸ°ì²˜ì—ì„œ ì¶œë ¥ë˜ëŠ” ë¬¸ìì—´ì„ ê´€ë¦¬í•˜ê¸° ìœ„í•œ ì •ë³´
 	CString						m_strLanguageSvrIP;
 	CString						m_strLanguageSvrPath;
 	CString						m_strLanguageSvrFileName;
 
-	// ÆĞÄ¡ °ü·Ã Á¤º¸
+	// íŒ¨ì¹˜ ê´€ë ¨ ì •ë³´
 	bool						m_bPatchMasterMode;
 	bool						m_bPatchSvrEnable;
 	CString						m_strPatchSvrIP;
 	CString						m_strPatchSvrPath;
 	CString						m_strPatchSvrFileName;
 
-	// ¹«°á¼º °ü·Ã Á¤º¸
+	// ë¬´ê²°ì„± ê´€ë ¨ ì •ë³´
 	bool						m_bIntegritySvrEnable;
 	CString						m_strIntegritySvrIP;
 	CString						m_strIntegritySvrPath;
@@ -54,11 +54,11 @@ public:
 	~CDLPatchServerConfig( void );
 
 public:    
-	bool						LoadServerConfigFile( CString strPath );									// XML ÆÄÀÏÀ» ·ÎµùÇÑ´Ù.
+	bool						LoadServerConfigFile( CString strPath );									// XML íŒŒì¼ì„ ë¡œë”©í•œë‹¤.
 
 	CString						GetCaptionName( void )				{ return m_strCaptionName; }
 
-	CString						GetWebPatchHistoryPath( void )		{ return m_strWebPatchHistoryPath; }	// Web Patch History ÆÄÀÏÀÌ Á¸ÀçÇÏ´Â ÆĞ½º ¹İÈ¯ÇÑ´Ù.
+	CString						GetWebPatchHistoryPath( void )		{ return m_strWebPatchHistoryPath; }	// Web Patch History íŒŒì¼ì´ ì¡´ì¬í•˜ëŠ” íŒ¨ìŠ¤ ë°˜í™˜í•œë‹¤.
 
 	CString						GetLanguageSvrIP( void )			{ return m_strLanguageSvrIP; }
 	CString						GetLanguageSvrPath( void )			{ return m_strLanguageSvrPath; }

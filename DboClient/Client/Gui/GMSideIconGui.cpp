@@ -74,7 +74,7 @@ void CGMSideIconGui::OnSideViewClosed()
 
 void CGMSideIconGui::OnIconButtonClicked(gui::CComponent* pComponent)
 {
-	// ¿­°í ´Ý±â
+	// ì—´ê³  ë‹«ê¸°
 	if( GetDialogManager()->GetDialog(DIALOG_GM_QUICKSLOT) )
 	{
 		GetDialogManager()->CloseGMDialog();

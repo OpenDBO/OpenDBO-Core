@@ -2,7 +2,7 @@
 //	File		:	VenusAPI.cpp
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -34,11 +34,11 @@ void VENUS_TRACE(const RwChar* fmt, ...)
 	_vsnprintf(str_buffer, sizeof(str_buffer), fmt, ArgPtr);
 	va_end(ArgPtr);
 
-	//; Trace message Ãâ·Â
+	//; Trace message ì¶œë ¥
 	CStatusBarDialog::GetInstance().InsertTrace(str_buffer);
 }
 
-// CTextureDataDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CTextureDataDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 void GetDIBFromBitmap(GFL_BITMAP *bitmap, BITMAPINFOHEADER *bitmap_info, unsigned char **data)
 {
 	int i, j, bytes_per_line; 
@@ -108,19 +108,19 @@ void GetDIBFromBitmap(GFL_BITMAP *bitmap, BITMAPINFOHEADER *bitmap_info, unsigne
 
 //------------------------------------------------------------------
 //	FuncName	: N3API_IntersectionPolygonFromRay();
-//	Desc		: ÀÓÀÇÀÇ Á¡¿¡¼­ Ãâ¹ßÇÏ´Â ÇÑ º¤ÅÍ°¡ Æú¸®°ïÀ» Åë°úÇÏ´ÂÁö °Ë»çÇÑ´Ù.
-//				  ¸¸¾à º¤ÅÍ°¡ Æú¸®°ïÀ» Åë°úÇÏ¸é ÀÓÀÇÀÇ Á¡¿¡¼­ Æú¸®°ïÀÇ ±³Â÷Á¡±îÁöÀÇ °Å¸®¸¦ ±¸ÇÒ¼ö ÀÖ´Ù
-//	Parameter	: fSize - ÀÓÀÇÀÇ Á¡¿¡¼­ Æú¸®°ï ±³Â÷Á¡±îÁöÀÇ °Å¸®
-//				  v3RayPos - ÀÓÀÇÀÇ Á¡
-//				  v3RayDir - ÀÓÀÇÀÇ Á¡¿¡¼­ Ãâ¹ßÇÏ´Â º¤ÅÍ
-//				  v0, v1, v2 - Æú¸®°ïÀ» ±¸¼ºÇÏ´Â ¼¼ Á¡
-//	Return		: bool - º¤ÅÍ°¡ Æú¸®°ïÀ» Åë°úÇÏ¸é true, Åë°úÇÏÁö ¾ÊÀ¸¸é false ¸¦ ¸®ÅÏÇÑ´Ù.
+//	Desc		: ì„ì˜ì˜ ì ì—ì„œ ì¶œë°œí•˜ëŠ” í•œ ë²¡í„°ê°€ í´ë¦¬ê³¤ì„ í†µê³¼í•˜ëŠ”ì§€ ê²€ì‚¬í•œë‹¤.
+//				  ë§Œì•½ ë²¡í„°ê°€ í´ë¦¬ê³¤ì„ í†µê³¼í•˜ë©´ ì„ì˜ì˜ ì ì—ì„œ í´ë¦¬ê³¤ì˜ êµì°¨ì ê¹Œì§€ì˜ ê±°ë¦¬ë¥¼ êµ¬í• ìˆ˜ ìˆë‹¤
+//	Parameter	: fSize - ì„ì˜ì˜ ì ì—ì„œ í´ë¦¬ê³¤ êµì°¨ì ê¹Œì§€ì˜ ê±°ë¦¬
+//				  v3RayPos - ì„ì˜ì˜ ì 
+//				  v3RayDir - ì„ì˜ì˜ ì ì—ì„œ ì¶œë°œí•˜ëŠ” ë²¡í„°
+//				  v0, v1, v2 - í´ë¦¬ê³¤ì„ êµ¬ì„±í•˜ëŠ” ì„¸ ì 
+//	Return		: bool - ë²¡í„°ê°€ í´ë¦¬ê³¤ì„ í†µê³¼í•˜ë©´ true, í†µê³¼í•˜ì§€ ì•Šìœ¼ë©´ false ë¥¼ ë¦¬í„´í•œë‹¤.
 //------------------------------------------------------------------
 RwBool API_IntersectionPolygonFromRay(const RwV3d* pRayPos, const RwV3d* pRayDir, const RwV3d* v0, const RwV3d* v1, const RwV3d* v2, FLOAT* pfSize)
 {
 	FLOAT u, v;
 
-	// ÇÑÁ¡À» Áß½ÉÀ¸·Î ÇÏ¿© ´Ù¸¥ÂÊ Á¡À¸·Î ³ª¾Æ °¡´Â º¤ÅÍ¸¦ ±¸ÇÑ´Ù
+	// í•œì ì„ ì¤‘ì‹¬ìœ¼ë¡œ í•˜ì—¬ ë‹¤ë¥¸ìª½ ì ìœ¼ë¡œ ë‚˜ì•„ ê°€ëŠ” ë²¡í„°ë¥¼ êµ¬í•œë‹¤
 	RwV3d edge1;
 	RwV3d edge2;
 
@@ -131,7 +131,7 @@ RwBool API_IntersectionPolygonFromRay(const RwV3d* pRayPos, const RwV3d* pRayDir
 	RwV3d pvec;
 	RwV3dCrossProduct (&pvec, pRayDir, &edge2);
 
-	// ¸éÀÌ µÚÁı¾î Á® ÀÖ´ÂÁö Ã¼Å©
+	// ë©´ì´ ë’¤ì§‘ì–´ ì ¸ ìˆëŠ”ì§€ ì²´í¬
 	FLOAT det = RwV3dDotProduct (&edge1, &pvec);
 	if(det < _ZERO)
 		return FALSE;
@@ -179,9 +179,9 @@ RwBool API_IntersectionPolygonFromRay(const RwV3d* pRayPos, const RwV3d* pRayDir
 
 //------------------------------------------------------------------
 //	FuncName	: API_DistancePointFromRay();
-//	Desc		: Ray ¿Í ÀÓÀÇÀÇ ÇÑÁ¡°úÀÇ ±æÀÌ ±¸ÇÏ±â
-//	Parameter	: vRayPos, vRayDir - ray ÀÇ À§Ä¡¿Í ¹æÇâ
-//				  v3Point - ÀÓÀÇÀÇ ÇÑÁ¡
+//	Desc		: Ray ì™€ ì„ì˜ì˜ í•œì ê³¼ì˜ ê¸¸ì´ êµ¬í•˜ê¸°
+//	Parameter	: vRayPos, vRayDir - ray ì˜ ìœ„ì¹˜ì™€ ë°©í–¥
+//				  v3Point - ì„ì˜ì˜ í•œì 
 //	Return		: float - 
 //------------------------------------------------------------------
 RwReal API_DistancePointFromRay(const RwV3d* pRayPos, const RwV3d* pRayDir, RwV3d* pPoint, RwReal* pfParam)
@@ -210,9 +210,9 @@ RwReal API_DistancePointFromRay(const RwV3d* pRayPos, const RwV3d* pRayDir, RwV3
 
 //------------------------------------------------------------------
 //	FuncName	: API_IntersectionSphereFromRay();
-//	Desc		: Ray ¿Í ±¸ÀÇ ±³Â÷ ¿©ºÎ
-//	Parameter	: vRayPos, vRayDir - ray ÀÇ À§Ä¡¿Í ¹æÇâ
-//				  v3SpherePos, fRadius - ±¸ÀÇ À§Ä¡¿Í ¹İÁö¸§
+//	Desc		: Ray ì™€ êµ¬ì˜ êµì°¨ ì—¬ë¶€
+//	Parameter	: vRayPos, vRayDir - ray ì˜ ìœ„ì¹˜ì™€ ë°©í–¥
+//				  v3SpherePos, fRadius - êµ¬ì˜ ìœ„ì¹˜ì™€ ë°˜ì§€ë¦„
 //	Return		: 
 //------------------------------------------------------------------
 RwBool API_IntersectionSphereFromRay(const RwV3d* pRayPos, const RwV3d* pRayDir, RwV3d* pPoint, RwReal fSphrerRadius, RwReal* pfParam)
@@ -391,10 +391,10 @@ RwBool API_GetAtUpVecApplyAngle(RwV3d* outLookAtVec, RwV3d* outLookUpVec, const 
 }
 
 /**
- * ÁÖ¾îÁø Vectorµé·Î AngleÀ» ±¸ÇÑ´Ù.
+ * ì£¼ì–´ì§„ Vectorë“¤ë¡œ Angleì„ êµ¬í•œë‹¤.
  * \param vUpVec LookUp Vector
  * \param vAtVec LookAt Vector
- * return AngleÀ» ´ãÀº RwV3d°ª (X, Y, Z Angle, Degree)
+ * return Angleì„ ë‹´ì€ RwV3dê°’ (X, Y, Z Angle, Degree)
  */
 RwV3d API_GetAngle(RwV3d vUpVec, RwV3d vAtVec)
 {

@@ -91,7 +91,7 @@ VOID CCounterGui::Destroy()
 
 	GetNtlGuiManager()->RemoveUpdateFuncWithoutRefCheck( this );
 
-	// ³ªÁß¿¡ m_pThis¸¦ ½ºÅ©¸³Æ®¸¦ »ç¿ëÇØ¼­ »ı¼ºÇÏ¸é ÀÌ ÄÚµåÀÇ ÁÖ¼®À» Ç®ÀÚ
+	// ë‚˜ì¤‘ì— m_pThisë¥¼ ìŠ¤í¬ë¦½íŠ¸ë¥¼ ì‚¬ìš©í•´ì„œ ìƒì„±í•˜ë©´ ì´ ì½”ë“œì˜ ì£¼ì„ì„ í’€ì
 	//CNtlPLGui::DestroyComponents();
 	//CNtlPLGui::Destroy();
 
@@ -120,7 +120,7 @@ VOID CCounterGui::Update(RwReal fElapsed)
 		m_fElapsed = 0.f;
 
 	
-	// ¸Å ÃÊ¸¶´Ù Â°±ï ¼Ò¸®¸¦ ³»±â À§ÇÏ¿©
+	// ë§¤ ì´ˆë§ˆë‹¤ ì§¸ê¹ ì†Œë¦¬ë¥¼ ë‚´ê¸° ìœ„í•˜ì—¬
 	if( m_bAlarmSound )
 	{
 		if( m_fElapsed < m_fUsableAlarmTime )
@@ -135,7 +135,7 @@ VOID CCounterGui::Update(RwReal fElapsed)
 	}
 
 
-	// ÇÊ¿äÇÑ ÀÌÆåÆ®°¡ ÀÖ´ÂÁö °Ë»ç
+	// í•„ìš”í•œ ì´í™íŠ¸ê°€ ìˆëŠ”ì§€ ê²€ì‚¬
 	if( m_eDisplayType == COUNTER_DISPLAY_1 )
 	{
 		if( BIT_FLAG_TEST(m_byDisplayFlag, dCOUNTER_DISPLAY_FLAG_BIGGER) )
@@ -159,7 +159,7 @@ VOID CCounterGui::Update(RwReal fElapsed)
 	}
 	
 
-	// ÇöÀç ³²Àº ½Ã°£À» ¼³Á¤
+	// í˜„ì¬ ë‚¨ì€ ì‹œê°„ì„ ì„¤ì •
 	if( m_fElapsed >= 60.f )
 		m_MinuteNumberGui.SetNumber((RwInt64)m_fElapsed);
 	else

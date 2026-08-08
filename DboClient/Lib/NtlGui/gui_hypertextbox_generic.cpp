@@ -360,13 +360,13 @@ VOID CHyperTextBox_Generic::NodePasing(CTextNode *pText)
 		}
 	}
 
-	// texture »ı¼º.
+	// texture ìƒì„±.
 	CreatureTexture(rect.GetWidth(),nCurrY);  
 
 	// item draw
 	DrawItem();
 
-	// ÅØ½ºÃÄ ÁÂÇ¥.
+	// í…ìŠ¤ì³ ì¢Œí‘œ.
 	CascadeTexture();
 	*/
 }

@@ -18,7 +18,7 @@ enum EItemID
 
 /**
  * \ingroup MrPoPo
- * \brief   Config ÆÄÀÏ ¼³Á¤¹× ¾ÏÈ£È­ ºä Å¬·¡½º
+ * \brief   Config íŒŒì¼ ì„¤ì •ë° ì•”í˜¸í™” ë·° í´ë˜ìŠ¤
  *
  * \date 2008-07-31
  * \author agebreak
@@ -28,7 +28,7 @@ class CMPPConfigSetting : public CXTResizeFormView
 	DECLARE_DYNCREATE(CMPPConfigSetting)
 
 protected:
-	CMPPConfigSetting();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CMPPConfigSetting();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CMPPConfigSetting();
 
 public:
@@ -48,12 +48,12 @@ public:
 
 protected:
     DECLARE_MESSAGE_MAP()
-    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
     afx_msg LRESULT OnGridNotify(WPARAM, LPARAM);
         afx_msg void OnBnClickedBtnLuaCompile();
 
-    void    UpdateConfigData();                         ///< ÄÁÇÇ±× µ¥ÀÌÅÍ¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù.
+    void    UpdateConfigData();                         ///< ì»¨í”¼ê·¸ ë°ì´í„°ë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤.
     void    LoadLuaFiles();
 
 protected:
@@ -72,7 +72,7 @@ protected:
     CXTPPropertyGridItem*   m_pBugTrapIp;
     CXTPPropertyGridItem*   m_pBugTrapPort;
 
-    SConfigData             m_configData;               ///< ÄÁÇÇ±× Á¤º¸ µ¥ÀÌÅÍ
+    SConfigData             m_configData;               ///< ì»¨í”¼ê·¸ ì •ë³´ ë°ì´í„°
 public:
     afx_msg void OnEnChangeEdLua();
 };

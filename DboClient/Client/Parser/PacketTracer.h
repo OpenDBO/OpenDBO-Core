@@ -1,11 +1,11 @@
 /*****************************************************************************
 * File			: PacketTracer.h
 * Author		: woosung
-* Copyright	: (ÁÖ)NTL
+* Copyright	: (ì£¼)NTL
 * Date			: 2009. 08. 04
 * Abstract		: 
 *****************************************************************************
-* Desc			:ÆĞÅ¶ÃßÀûÀ» À§ÇØ ÆĞÅ¶À» ÆĞÅ¶¸í°ú ½Ã°£À» dump
+* Desc			:íŒ¨í‚·ì¶”ì ì„ ìœ„í•´ íŒ¨í‚·ì„ íŒ¨í‚·ëª…ê³¼ ì‹œê°„ì„ dump
 *****************************************************************************/
 
 #pragma once
@@ -17,8 +17,8 @@
 
 using namespace	std;
 
-#ifdef _DEBUG		/// ¾ÈÀüÀåÄ¡					
-//#define	_ENABLE_PACKET_TRACE_		/// Defalut·Î Disable /// ÇÁ·ÎÅäÄİÀÌ º¯°æµÉ¼öÀÖ´Ù. ÀÚµ¿ºôµå°¡ ½ÇÆĞÇÒ ¼ö ÀÖÀ½
+#ifdef _DEBUG		/// ì•ˆì „ì¥ì¹˜					
+//#define	_ENABLE_PACKET_TRACE_		/// Defalutë¡œ Disable /// í”„ë¡œí† ì½œì´ ë³€ê²½ë ìˆ˜ìˆë‹¤. ìë™ë¹Œë“œê°€ ì‹¤íŒ¨í•  ìˆ˜ ìˆìŒ
 #endif
 
 class CPacketTracer : public RWS::CEventHandler
@@ -46,10 +46,10 @@ public:
 	//! Event
 	virtual VOID HandleEvents( RWS::CMsg& msg );
 
-	//! ½Ì±ÛÅæ »ı¼º/Á¦°Å 
+	//! ì‹±ê¸€í†¤ ìƒì„±/ì œê±° 
 	static	void	CreateInstance();
 	static	void	DeleteInstance();
-	static CPacketTracer*	GetInstance();						///< ½Ì±ÛÅæ ÀÎ½ºÅÏ½º °´Ã¼
+	static CPacketTracer*	GetInstance();						///< ì‹±ê¸€í†¤ ì¸ìŠ¤í„´ìŠ¤ ê°ì²´
 
 private:
 	RwBool m_bAvtivate;

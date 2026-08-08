@@ -28,7 +28,7 @@ public:
 		const CString strPath);
 	RwBool		SaveTexCurrentData( CBindingTexManager::eSize size, const CString strPath );
 
-	// ½Ì±ÛÅæ
+	// ì‹±ê¸€í†¤
 	static CTBApp* GetInstance()
 	{
 		static CTBApp instance;

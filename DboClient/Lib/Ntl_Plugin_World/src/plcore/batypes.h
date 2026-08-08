@@ -279,7 +279,7 @@ struct RwV3d
 };
 
 #define RWV4DALIGNMENT(_v4d) \
-   (! (((rwV4DALIGNMENT)-1) & ((RwUInt32)(_v4d))))
+   (! (((rwV4DALIGNMENT)-1) & ((uintptr_t)(_v4d))))
 
 
 #if (!defined(DOXYGEN))

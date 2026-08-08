@@ -4,17 +4,17 @@
 
 class CNtlPLItem;
 
-///< Grade Effect°¡ ºÙ´Â Bone ½ÖÀÇ °³¼ö
+///< Grade Effectê°€ ë¶™ëŠ” Bone ìŒì˜ ê°œìˆ˜
 enum EGradeBoneIndex
 {
-    GRADE_EFFECT_BONE1,     ///< Ã¹¹øÂ° ½ÖÀÇ Bone¿¡ ºÙÀÎ´Ù. (Ä®µîÀÇ ÀÏ¹Ý ¹«±â)
-    GRADE_EFFECT_BONE2,     ///< µÎ¹øÂ° ½ÖÀÇ Bone¿¡ ºÙÀÎ´Ù. (±Û·¯ºê, Å¬·Î¿ì.)
+    GRADE_EFFECT_BONE1,     ///< ì²«ë²ˆì§¸ ìŒì˜ Boneì— ë¶™ì¸ë‹¤. (ì¹¼ë“±ì˜ ì¼ë°˜ ë¬´ê¸°)
+    GRADE_EFFECT_BONE2,     ///< ë‘ë²ˆì§¸ ìŒì˜ Boneì— ë¶™ì¸ë‹¤. (ê¸€ëŸ¬ë¸Œ, í´ë¡œìš°.)
 };
 
 /**
  * \ingroup NtlPresentation
- * \brief ItemÀÇ Upgrade Effect¸¦ ±¸ÇöÇÑ Å¬·¡½º (NOTE: Resource Å¬·¡½º ¾øÀÌ ´Üµ¶À¸·Î ¾²ÀÎ´Ù.)
- * Effect Tool¿¡¼­ Á¦ÀÛ µÇÁö ¾Ê´Â Effect
+ * \brief Itemì˜ Upgrade Effectë¥¼ êµ¬í˜„í•œ í´ëž˜ìŠ¤ (NOTE: Resource í´ëž˜ìŠ¤ ì—†ì´ ë‹¨ë…ìœ¼ë¡œ ì“°ì¸ë‹¤.)
+ * Effect Toolì—ì„œ ì œìž‘ ë˜ì§€ ì•ŠëŠ” Effect
  * \date 2006-12-13
  * \author agebreak
  */
@@ -33,7 +33,7 @@ public:
     virtual RwBool Update(RwReal fElapsedTime);
     virtual RwBool Render();
 
-    void    SetTexture(RwChar* szTextureName);             ///< Texture¸¦ ¼³Á¤ÇÑ´Ù.    
+    void    SetTexture(RwChar* szTextureName);             ///< Textureë¥¼ ì„¤ì •í•œë‹¤.    
 protected:
     virtual void Init();
     virtual void Reset();
@@ -41,12 +41,12 @@ protected:
     RwBool  UpdateVertices(RwReal fElapsedTime);
 
 private:
-    // ÀÌ Create ÇÔ¼ö´Â »ç¿ëÇÏÁö ¾Ê´Â´Ù.
+    // ì´ Create í•¨ìˆ˜ëŠ” ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤.
     virtual RwBool Create(CNtlResourceEffect* pResourceEffect, CNtlResourceComponentSystem* pResourceComponentSystem, const RwMatrix& matWorld) {return TRUE;}
 
 protected:
-    CNtlPLItem*     m_pItem;                        ///< Effect°¡ ºÙÀº Item °´Ã¼ÀÇ Æ÷ÀÎÅÍ    
+    CNtlPLItem*     m_pItem;                        ///< Effectê°€ ë¶™ì€ Item ê°ì²´ì˜ í¬ì¸í„°    
     RwReal          m_fEffetWidthRatio;
     RwBool          m_bWidthSizeUp;    
-    EGradeBoneIndex      m_eGradeBone;                   ///< ¾î´À º»¿¡ ºÙÀ»ÁöÀÇ ¼³Á¤°ª
+    EGradeBoneIndex      m_eGradeBone;                   ///< ì–´ëŠ ë³¸ì— ë¶™ì„ì§€ì˜ ì„¤ì •ê°’
 };

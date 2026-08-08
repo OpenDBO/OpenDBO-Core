@@ -44,10 +44,10 @@ protected:
 protected:
 	void SetState(EConverState eState);
 	static DWORD WINAPI ConvertBinary(LPVOID pParam);    
-    static DWORD WINAPI PropDataResave(LPVOID pParam);                  ///< ÇÁ·ÎÆÛÆ¼¸¸ ¾÷µ¥ÀÌÆ®ÇÏ¿© ½ºÅ©¸³Æ®¿¡ ÀúÀåÇÑ´Ù.
+    static DWORD WINAPI PropDataResave(LPVOID pParam);                  ///< í”„ë¡œí¼í‹°ë§Œ ì—…ë°ì´íŠ¸í•˜ì—¬ ìŠ¤í¬ë¦½íŠ¸ì— ì €ìž¥í•œë‹¤.
 
-    RwBool  UpdateAnimData(const char* szName, CNtlTypeAnimTable* pAnimTable);              ///< ¾Ö´Ï¸ÞÀÌ¼Ç Á¤º¸¸¦ UpdateÇÑ´Ù. (duration time)
-    void    CheckAnimEventTime(const char* szName, STypeAnimData* pAnimData);               ///< ¾Ö´Ï¸ÞÀÌ¼Ç ÇÃ·¹ÀÌ ½Ã°£º¸´Ù ´õ ´ÊÀº ÀÌº¥Æ®°¡ ÀÖ´ÂÁö Ã¼Å©ÇÑ´Ù. 
+    RwBool  UpdateAnimData(const char* szName, CNtlTypeAnimTable* pAnimTable);              ///< ì• ë‹ˆë©”ì´ì…˜ ì •ë³´ë¥¼ Updateí•œë‹¤. (duration time)
+    void    CheckAnimEventTime(const char* szName, STypeAnimData* pAnimData);               ///< ì• ë‹ˆë©”ì´ì…˜ í”Œë ˆì´ ì‹œê°„ë³´ë‹¤ ë” ëŠ¦ì€ ì´ë²¤íŠ¸ê°€ ìžˆëŠ”ì§€ ì²´í¬í•œë‹¤. 
 
 public:
 	afx_msg void OnShowWindow(BOOL bShow, UINT nStatus);

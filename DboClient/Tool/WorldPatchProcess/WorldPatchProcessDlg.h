@@ -10,8 +10,8 @@
 #define WORLD_PROJECT_STATE_FAILED		(2)
 #define WORLD_PROJECT_STATE_SUCCEEDED	(3)
 
-#define LIST_SUBITEM_EMPTY				(0)	 // »ç¿ëÇÏÁö ¾Ê´Â´Ù
-#define LIST_SUBITEM_STATE				(1)  // 1ºÎÅÍ ½ÃÀÛÇØ¾ß ÇÑ´Ù.
+#define LIST_SUBITEM_EMPTY				(0)	 // ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤
+#define LIST_SUBITEM_STATE				(1)  // 1ë¶€í„° ì‹œìž‘í•´ì•¼ í•œë‹¤.
 #define LIST_SUBITEM_WORLD_VERSION		(2)
 #define LIST_SUBITEM_WORLD_NAME			(3)
 #define LIST_SUBITEM_WORLD_FULLPATH		(4)
@@ -119,10 +119,10 @@ protected:
 // 	if (NULL != hglobal)
 // 	{
 // 		hdrop = (HDROP)GlobalLock(hglobal);
-// 		uNumFiles = DragQueryFile(hdrop, 0xFFFFFFFF, NULL, 0); //³Ñ¾î¿Â ÆÄÀÏ°¹¼ö
+// 		uNumFiles = DragQueryFile(hdrop, 0xFFFFFFFF, NULL, 0); //ë„˜ì–´ì˜¨ íŒŒì¼ê°¯ìˆ˜
 // 		for (UINT uFile = 0; uFile < uNumFiles; ++uFile) 
 // 		{
-// 			DragQueryFile(hdrop, uFile, szItem, MAX_PATH); // ³Ñ¾î¿Â ÆÄÀÏ¸í ÃßÃâ
+// 			DragQueryFile(hdrop, uFile, szItem, MAX_PATH); // ë„˜ì–´ì˜¨ íŒŒì¼ëª… ì¶”ì¶œ
 // 		}
 // 		GlobalUnlock (hglobal);
 // 

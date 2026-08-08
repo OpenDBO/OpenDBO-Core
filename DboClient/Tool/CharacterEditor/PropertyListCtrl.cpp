@@ -137,7 +137,7 @@ void CPropertyListCtrl::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 		}
 	}
 
-	// Vertik?a v ¾avo
+	// Vertik?a v í‘”vo
 	CPen pen(PS_SOLID, 1, RGB(198, 198, 198));
 	CPen* pOldPen = dc.SelectObject(&pen);
 
@@ -153,13 +153,13 @@ void CPropertyListCtrl::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 	dc.MoveTo(nLeftBorder, nBottom);
 	dc.LineTo(rect.right, nBottom);
 
-	// Odde¾ova?st?cov
+	// Oddeí‘¥va?st?cov
 	nLeftBorder += rect.Width() / 2;
 
 	dc.MoveTo(nLeftBorder, rect.top);
 	dc.LineTo(nLeftBorder, nBottom);
 
-	// Text položky
+	// Text poloì—’y
 	rect.left += 1;
 	rect.bottom -= 1;
 	rect.right = nLeftBorder;
@@ -202,7 +202,7 @@ void CPropertyListCtrl::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 		pOldFont = dc.SelectObject(&fontLabel);
 	}
 
-	// Popis položky
+	// Popis poloì—’y
 	dc.DrawText(pPropertyItem->GetName(), &rect, DT_SINGLELINE|DT_VCENTER);
 
 	dc.SelectObject(pOldPen);
@@ -213,7 +213,7 @@ void CPropertyListCtrl::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 	if(pOldFont != NULL)
 		dc.SelectObject(pOldFont);
 
-	// Hodnota položky
+	// Hodnota poloì—’y
 	if(!(lpDrawItemStruct->itemState & ODS_SELECTED))
 	{
 		rect = lpDrawItemStruct->rcItem;
@@ -588,7 +588,7 @@ void CPropertyItemManagerAdaptable::CheckState(CPropertyListCtrl* pWndPropertyLi
 				pPropertyItemTab->SetChildrenVisible();
 			}
 			else
-				// T?o z?ožka nieje pr?tupn?
+				// T?o z?oì—’a nieje pr?tupn?
 				continue;
 		}
 		
@@ -603,12 +603,12 @@ void CPropertyItemManagerAdaptable::CheckState(CPropertyListCtrl* pWndPropertyLi
 			}
 			else if(nFromPropertyItemID == pPropertyItem->GetPropertyID())
 			{
-				// Našiel si položku od ktorej by mali nasledova?zmeny
+				// Naì‰el si poloì—’u od ktorej by mali nasledova?zmeny
 				int nItems = pWndPropertyListCtrl->GetCount();
 
 				if(nItems != nFromControlIndex + 1)
 				{
-					// Zma?všetky položky 
+					// Zma?vì‰‹tky poloì—’y 
 					int i = nItems - 1;
 					nItems -= (nFromControlIndex + 1);
 					

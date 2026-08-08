@@ -1,4 +1,4 @@
-// PointCustomEditDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PointCustomEditDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -24,7 +24,7 @@
 #define CUSTOM_CURVE_SEL_RECT_SIZE		24
 
 
-// CPointCustomEditDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPointCustomEditDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPointCustomEditDlg, CDialog)
 
@@ -158,13 +158,13 @@ CRect CPointCustomEditDlg::GetCurveRect(INT nIdx)
 	return rt;
 }
 
-// CPointCustomEditDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPointCustomEditDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CPointCustomEditDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	CRect rtCustom, rtDlg, rtCurve;
 
@@ -185,14 +185,14 @@ BOOL CPointCustomEditDlg::OnInitDialog()
 	m_rtCurveArea.bottom = m_rtCurveArea.top + CUSTOM_CURVE_RECT_SIZE;
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CPointCustomEditDlg::OnSize(UINT nType, int cx, int cy)
 {
 	CDialog::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 LRESULT CPointCustomEditDlg::OnAttributeNotify(WPARAM wParam, LPARAM lParam)
@@ -212,8 +212,8 @@ LRESULT CPointCustomEditDlg::OnAttributeNotify(WPARAM wParam, LPARAM lParam)
 void CPointCustomEditDlg::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
-	// ±×¸®±â ¸Ş½ÃÁö¿¡ ´ëÇØ¼­´Â CDialog::OnPaint()À»(¸¦) È£ÃâÇÏÁö ¸¶½Ê½Ã¿À.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
+	// ê·¸ë¦¬ê¸° ë©”ì‹œì§€ì— ëŒ€í•´ì„œëŠ” CDialog::OnPaint()ì„(ë¥¼) í˜¸ì¶œí•˜ì§€ ë§ˆì‹­ì‹œì˜¤.
 
 	CRect rt;
 
@@ -241,7 +241,7 @@ void CPointCustomEditDlg::OnDestroy()
 {
 	CDialog::OnDestroy();
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 void CPointCustomEditDlg::OnLButtonDown(UINT nFlags, CPoint point)
@@ -261,33 +261,33 @@ void CPointCustomEditDlg::OnLButtonDown(UINT nFlags, CPoint point)
 		}
 	}
 	
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	CDialog::OnLButtonDown(nFlags, point);
 }
 
 void CPointCustomEditDlg::OnBnClickedCusveSoundLoop()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	OutData();
 }
 
 void CPointCustomEditDlg::OnEnChangeCusveSoundFilename()
 {
-	// TODO:  RICHEDIT ÄÁÆ®·ÑÀÎ °æ¿ì, ÀÌ ÄÁÆ®·ÑÀº
-	// CDialog::OnInitDialog() ÇÔ¼ö¸¦ ÀçÁöÁ¤ÇÏ°í  ¸¶½ºÅ©¿¡ OR ¿¬»êÇÏ¿© ¼³Á¤µÈ
-	// ENM_CHANGE ÇÃ·¡±×¸¦ ÁöÁ¤ÇÏ¿© CRichEditCtrl().SetEventMask()¸¦ È£ÃâÇØ¾ß¸¸
-	// ÇØ´ç ¾Ë¸² ¸Ş½ÃÁö¸¦ º¸³À´Ï´Ù.
+	// TODO:  RICHEDIT ì»¨íŠ¸ë¡¤ì¸ ê²½ìš°, ì´ ì»¨íŠ¸ë¡¤ì€
+	// CDialog::OnInitDialog() í•¨ìˆ˜ë¥¼ ì¬ì§€ì •í•˜ê³   ë§ˆìŠ¤í¬ì— OR ì—°ì‚°í•˜ì—¬ ì„¤ì •ëœ
+	// ENM_CHANGE í”Œë˜ê·¸ë¥¼ ì§€ì •í•˜ì—¬ CRichEditCtrl().SetEventMask()ë¥¼ í˜¸ì¶œí•´ì•¼ë§Œ
+	// í•´ë‹¹ ì•Œë¦¼ ë©”ì‹œì§€ë¥¼ ë³´ëƒ…ë‹ˆë‹¤.
 
-	// TODO:  ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	OutData();
 }
 
 void CPointCustomEditDlg::OnBnClickedCusveSoundClear()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	m_btnLoop.SetCheck(FALSE);
 	SetDlgItemText(IDC_CUSVE_SOUND_FILENAME, "");

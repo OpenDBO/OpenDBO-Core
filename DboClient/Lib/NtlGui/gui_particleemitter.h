@@ -1,11 +1,11 @@
 /*****************************************************************************
 * File			: gui_particleemitter.h
 * Author		: HaeSung, Cho
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 9. 19
 * Abstract		: 
 *****************************************************************************
-* Desc          : DBO ÆÄÆ¼Å¬ÀÇ »ı¼º±â
+* Desc          : DBO íŒŒí‹°í´ì˜ ìƒì„±ê¸°
 *****************************************************************************/
 
 #ifndef _GUI_PARTICLE_EMITTER_H_
@@ -27,7 +27,7 @@ enum e2DParticleEmitterType
 };
 
 /**
-* \brief ParticleÀÇ »ı¼ºÀ» ÇÏ´Â Å¬·¡½º
+* \brief Particleì˜ ìƒì„±ì„ í•˜ëŠ” í´ë˜ìŠ¤
 */
 class CParticleEmitter
 {
@@ -53,21 +53,21 @@ public:
 	virtual void SetSurface( std::string strSurPage, std::string strSurface );
 	virtual void SetSurface( const char* surpage, const char* surface );
 
-	int				m_nID;			// Emitter°£¿¡ ±¸º°ÇÒ¼ö ÀÖ´Â ID
+	int				m_nID;			// Emitterê°„ì— êµ¬ë³„í• ìˆ˜ ìˆëŠ” ID
 
-	int				m_nPosX;		// À§Ä¡
+	int				m_nPosX;		// ìœ„ì¹˜
 	int				m_nPosY;
 
-	float			m_fLifeMin;		// »ı¸í ÃÖ¼Ò ~ ÃÖ´ë
+	float			m_fLifeMin;		// ìƒëª… ìµœì†Œ ~ ìµœëŒ€
 	float			m_fLifeMax;
 
-	float			m_fVelMin;		// ¼Óµµ ÃÖ¼Ò ~ ÃÖ´ë
+	float			m_fVelMin;		// ì†ë„ ìµœì†Œ ~ ìµœëŒ€
 	float			m_fVelMax;
 
 	float			m_fEmissivity;
 
-	RwV2d			m_v2dDir;			// »ı¼º ¹æÇâ
-	float			m_fAngle;			// ¹æ»ç°¢
+	RwV2d			m_v2dDir;			// ìƒì„± ë°©í–¥
+	float			m_fAngle;			// ë°©ì‚¬ê°
 
 	float			m_fRotateAngleMin;	// Rotate per sec
 	float			m_fRotateAngleMax;
@@ -94,14 +94,14 @@ protected:
 	virtual void AddParticle( int nEmitNums ) = 0;
 
 protected:
-	// EmitterÀÇ ¼Ó¼º
+	// Emitterì˜ ì†ì„±
 	PARTICLELIST*		m_pParticleList;
 	CSurfaceManager*	m_pSurfaceManager;
 
 	
 
 protected:
-	// EmitterÀÇ µ¿ÀÛ °ü·Ã
+	// Emitterì˜ ë™ì‘ ê´€ë ¨
 	BOOL			m_bPlay;
 	float			m_fEmissivityRate;
 };

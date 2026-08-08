@@ -127,7 +127,7 @@ void CNtlSobDieSyncStatus::Destroy(void)
 void CNtlSobDieSyncStatus::EventGenerator(void)
 {
 	CNtlSLEventGenerator::SobFainting(GetSobParent()->GetSerialID());
-	// ¿Ã∫•∆Æ∏¶ ∫∏≥Ω¥Ÿ.
+	// Ïù¥Î≤§Ìä∏Î•º Î≥¥ÎÇ∏Îã§.
 	CNtlSobSyncStatus::Destroy();
 }
 

@@ -2,7 +2,7 @@
  *
  * File			: NTLAnimLayer.h
  * Author		: HongHoDong
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2006. 4. 11	
  * Abstract		: NTL NtlAnimLayer
  *****************************************************************************
@@ -26,15 +26,15 @@ enum EAnimChannel
 
 enum EBlendType
 {
-	BLEND_MIX,							///< Current∏¶ Play∏¶ «œ∞Ì Next∏¶ Play∏¶ «œ∏Èº≠ ∫∏∞£¿ª «—¥Ÿ.
-	BLEND_TWEEN							///< Current∏¶ Stop«œ∞Ì Next¿« Start±Ó¡ˆ ∫∏∞£¿ª «—¥Ÿ.
+	BLEND_MIX,							///< CurrentÎ•º PlayÎ•º ÌïòÍ≥† NextÎ•º PlayÎ•º ÌïòÎ©¥ÏÑú Î≥¥Í∞ÑÏùÑ ÌïúÎã§.
+	BLEND_TWEEN							///< CurrentÎ•º StopÌïòÍ≥† NextÏùò StartÍπåÏßÄ Î≥¥Í∞ÑÏùÑ ÌïúÎã§.
 };
 
 struct SBlendData
 {
-	RwReal		fBlendAlpha;			///< Current Blend∞™(0.f - 1.f)
-	RwReal		fBlendTargetAlpha;		///< Target Blend∞™
-	RwReal		fBlendTargetInterval;	///< ∫Ø»≠∑Æ
+	RwReal		fBlendAlpha;			///< Current BlendÍ∞í(0.f - 1.f)
+	RwReal		fBlendTargetAlpha;		///< Target BlendÍ∞í
+	RwReal		fBlendTargetInterval;	///< Î≥ÄÌôîÎüâ
 	EBlendType	eBlendType;				///< BlendType
 
 	SBlendData() : fBlendAlpha(0.f), fBlendTargetAlpha(1.f), fBlendTargetInterval(0.1f),
@@ -43,7 +43,7 @@ struct SBlendData
 
 /*!
  * \Animation
- * Animation¿« Blending¿ª √≥∏Æ«œ±‚ ¿ß«— Class	
+ * AnimationÏùò BlendingÏùÑ Ï≤òÎ¶¨ÌïòÍ∏∞ ÏúÑÌïú Class	
  * 
  */
 class CNtlAnimLayer
@@ -54,14 +54,14 @@ public:
 
 protected:
 	RpHAnimHierarchy	*m_pBaseHierarchy;					///< Base Hierarchy Reference
-	CNtlAnimChannel		m_AnimChannel[ANIM_CHANNEL_END];	///< Blending¿∫ √÷¥Î 2∞≥
+	CNtlAnimChannel		m_AnimChannel[ANIM_CHANNEL_END];	///< BlendingÏùÄ ÏµúÎåÄ 2Í∞ú
 	
-	SBlendData			m_CurBlendData;						///< «ˆ¿Á Blend ∞™
-	SBlendData			m_DefaultBlendData;					///< Default Blend ∞™
-	RwBool				m_bBlendChange; 					///< Blending ¡ﬂ¿Œ¡ˆ
+	SBlendData			m_CurBlendData;						///< ÌòÑÏû¨ Blend Í∞í
+	SBlendData			m_DefaultBlendData;					///< Default Blend Í∞í
+	RwBool				m_bBlendChange; 					///< Blending Ï§ëÏù∏ÏßÄ
 
-	RwInt32				m_iLastSendEventIndex;				///< ∏∂¡ˆ∏∑¿∏∑Œ ∫∏≥Ω Event Index
-	RwReal				m_fLastSendEventTime;				///< ∏∂¡ˆ∏∑¿∏∑Œ ∫∏≥Ω Event∏¶ ∫∏≥Ω Ω√∞£
+	RwInt32				m_iLastSendEventIndex;				///< ÎßàÏßÄÎßâÏúºÎ°ú Î≥¥ÎÇ∏ Event Index
+	RwReal				m_fLastSendEventTime;				///< ÎßàÏßÄÎßâÏúºÎ°ú Î≥¥ÎÇ∏ EventÎ•º Î≥¥ÎÇ∏ ÏãúÍ∞Ñ
 
 	CNtlCallbackVPParam1	*m_pCallBack;
 
@@ -75,14 +75,14 @@ public:
 	RwBool	SetBlend(EBlendType eBlendType, RwReal fBlendAlpha = 0.f, RwReal fBlendInterval = 0.1f);
 	
 	RwReal	GetCurrentAnimTime();
-    void    SetCurrentAnimTime(RwReal fCurrTime);				///< æ÷¥œ∏ﬁ¿Ãº«¿« «ˆ¿Á «√∑π¿Ã ≈∏¿”¿ª º≥¡§«—¥Ÿ. (By agebreak 2006.05.01)
-	RwReal	GetDurationAnimTime();								///< æ÷πÃ∏ﬁ¿Ãº«¿« ¿¸√º Ω√∞£
+    void    SetCurrentAnimTime(RwReal fCurrTime);				///< Ïï†ÎãàÎ©îÏù¥ÏÖòÏùò ÌòÑÏû¨ ÌîåÎ†àÏù¥ ÌÉÄÏûÑÏùÑ ÏÑ§Ï†ïÌïúÎã§. (By agebreak 2006.05.01)
+	RwReal	GetDurationAnimTime();								///< Ïï†ÎØ∏Î©îÏù¥ÏÖòÏùò Ï†ÑÏ≤¥ ÏãúÍ∞Ñ
 
 	RwBool	GetCurrentAnimEnd();
 
 	RwBool	IsBlendEnable(void);
 
-    void    OnAfterAnimEventRun();                              ///< «ˆ¿Á Ω√∞£ ¿Ã»ƒ Anim Event∏¶ ∏µŒ Ω««‡Ω√≈≤¥Ÿ.
+    void    OnAfterAnimEventRun();                              ///< ÌòÑÏû¨ ÏãúÍ∞Ñ Ïù¥ÌõÑ Anim EventÎ•º Î™®Îëê Ïã§ÌñâÏãúÌÇ®Îã§.
 	
 	template <class Callbackclass>
 	void SetCallBack(Callbackclass *cbclass,int (Callbackclass::*callback)(void* EventData))

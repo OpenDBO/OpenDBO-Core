@@ -1,4 +1,4 @@
-// AssetObjectDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// AssetObjectDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "CInstanceDialog.h"
 
 
-// CAssetObjectDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAssetObjectDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC( CInstanceDialog, CDialog )
 
@@ -31,13 +31,13 @@ BEGIN_MESSAGE_MAP(CInstanceDialog, CDialog)
 END_MESSAGE_MAP()
 
 
-// CAssetObjectDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAssetObjectDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CInstanceDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	CRect FrameRect(0,0,100,100);
 
@@ -45,14 +45,14 @@ BOOL CInstanceDialog::OnInitDialog()
 					TVS_LINESATROOT | TVS_SHOWSELALWAYS | TVS_TRACKSELECT, FrameRect, this, 1006);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CInstanceDialog::OnSize(UINT nType, int cx, int cy)
 {
 	CDialog::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	if( m_TreeCtrl.GetSafeHwnd())
 		m_TreeCtrl.MoveWindow(0, 0, cx, cy);

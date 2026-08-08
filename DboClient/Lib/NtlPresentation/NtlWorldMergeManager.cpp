@@ -542,7 +542,7 @@ RwBool CNtlWorldMergeManager::OnExportMapObj(const char* _pPathNameOfProject, co
 {
 	/*
 	WorldFileFormat - Export
-	Export Ã³¸®¸¦ À§ÇÑ ºÎºĞÀÌ´Ù.
+	Export ì²˜ë¦¬ë¥¼ ìœ„í•œ ë¶€ë¶„ì´ë‹¤.
 	*/
 
 	sNtlWorldParam	sTmpPrjParam;
@@ -781,7 +781,7 @@ RwBool CNtlWorldMergeManager::OnExportHeightfield(const char* _pPathNameOfProjec
 {
 	/*
 	WorldFileFormat - Export
-	Export Ã³¸®¸¦ À§ÇÑ ºÎºĞÀÌ´Ù.
+	Export ì²˜ë¦¬ë¥¼ ìœ„í•œ ë¶€ë¶„ì´ë‹¤.
 	*/
 
 	sNtlWorldParam	sTmpPrjParam;
@@ -1147,7 +1147,7 @@ RwBool CNtlWorldMergeManager::OnExportMapPropPE(const char* _pPathNameOfProject,
 		// total count of path tile in a field
 		fwrite(&uiTemp, sizeof(RwUInt32), 1, pFile);
 
-		// ¿©±â¼­ À§¿¡¼­ ÀĞÀº pBitPropÀ» fwrite ÇØÁØ´Ù. Chunk Å©±â¿¡ µû¶ó °¹¼ö¸¦ ´Ã·Á¾ß ÇÑ´Ù.
+		// ì—¬ê¸°ì„œ ìœ„ì—ì„œ ì½ì€ pBitPropì„ fwrite í•´ì¤€ë‹¤. Chunk í¬ê¸°ì— ë”°ë¼ ê°¯ìˆ˜ë¥¼ ëŠ˜ë ¤ì•¼ í•œë‹¤.
 
 		for (int e = 0; e < (sTmpPrjParam.WorldSectorTileNum * 2); ++e)
 		{
@@ -1874,7 +1874,7 @@ RwBool CNtlWorldMergeManager::OnExportPathEngineInDoor(const char* _pPathNameOfP
 					pNtlNaviPropInDoorInfo->AttachEntityInfo_Sphere(sGamePropertyData.vPos.x, sGamePropertyData.vPos.y, sGamePropertyData.vPos.z, sGamePropertyData.vSize.x);
 					break;
 				case ENTL_PL_GAME_PROPERTY_SHAPE_PLANE:
-					pNtlNaviPropInDoorInfo->AttachEntityInfo_Plane(sGamePropertyData.vPos.x, sGamePropertyData.vPos.y, sGamePropertyData.vPos.z, sGamePropertyData.vSize.x * 2.0f, sGamePropertyData.vSize.z * 2.0f); // Half SizeÀÌ±â ¶§¹®¿¡
+					pNtlNaviPropInDoorInfo->AttachEntityInfo_Plane(sGamePropertyData.vPos.x, sGamePropertyData.vPos.y, sGamePropertyData.vPos.z, sGamePropertyData.vSize.x * 2.0f, sGamePropertyData.vSize.z * 2.0f); // Half Sizeì´ê¸° ë•Œë¬¸ì—
 					break;
 				}
 
@@ -2356,7 +2356,7 @@ RwBool CNtlWorldMergeManager::OnExportHeightfieldY(const char* _pPathNameOfProje
 {
 	/*
 	WorldFileFormat - Export
-	Export Ã³¸®¸¦ À§ÇÑ ºÎºĞÀÌ´Ù.
+	Export ì²˜ë¦¬ë¥¼ ìœ„í•œ ë¶€ë¶„ì´ë‹¤.
 	*/
 
 	sNtlWorldParam	sTmpPrjParam;
@@ -2464,7 +2464,7 @@ RwBool CNtlWorldMergeManager::OnExportPECollision(const char* _pPathNameOfProjec
 {
 	/*
 	WorldFileFormat - Export
-	Export Ã³¸®¸¦ À§ÇÑ ºÎºĞÀÌ´Ù.
+	Export ì²˜ë¦¬ë¥¼ ìœ„í•œ ë¶€ë¶„ì´ë‹¤.
 	*/
 
 	sNtlWorldParam	sTmpPrjParam;
@@ -3030,7 +3030,7 @@ RwBool CNtlWorldMergeManager::MergeInformation(sMERGE_PARAM &sParam, RwInt32 Idx
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		// Information Update : Shadow : Field Index°¡ ´Ù¸£¸é ¾ÈµÈ´Ù.
+		// Information Update : Shadow : Field Indexê°€ ë‹¤ë¥´ë©´ ì•ˆëœë‹¤.
 		//////////////////////////////////////////////////////////////////////////
 		if (sParam.bShadow && IdxFieldDst == IdxFieldSrc)
 		{
@@ -4517,7 +4517,7 @@ RwBool CNtlWorldMergeManager::OnExportMapObj(const char* _pPathNameOfProject, co
 {
 	/*
 	WorldFileFormat - Export
-	Export Ã³¸®¸¦ À§ÇÑ ºÎºĞÀÌ´Ù.
+	Export ì²˜ë¦¬ë¥¼ ìœ„í•œ ë¶€ë¶„ì´ë‹¤.
 	*/
 
 	sNtlWorldParam	sTmpPrjParam;
@@ -4755,7 +4755,7 @@ RwBool CNtlWorldMergeManager::OnExportHeightfield(const char* _pPathNameOfProjec
 {
 	/*
 	WorldFileFormat - Export
-	Export Ã³¸®¸¦ À§ÇÑ ºÎºĞÀÌ´Ù.
+	Export ì²˜ë¦¬ë¥¼ ìœ„í•œ ë¶€ë¶„ì´ë‹¤.
 	*/
 
 	sNtlWorldParam	sTmpPrjParam;
@@ -5115,7 +5115,7 @@ RwBool CNtlWorldMergeManager::OnExportMapPropPE(const char* _pPathNameOfProject,
 		// total count of path tile in a field
 		fwrite(&uiTemp, sizeof(RwUInt32), 1, pFile);
 
-		// ¿©±â¼­ À§¿¡¼­ ÀĞÀº pBitPropÀ» fwrite ÇØÁØ´Ù. Chunk Å©±â¿¡ µû¶ó °¹¼ö¸¦ ´Ã·Á¾ß ÇÑ´Ù.
+		// ì—¬ê¸°ì„œ ìœ„ì—ì„œ ì½ì€ pBitPropì„ fwrite í•´ì¤€ë‹¤. Chunk í¬ê¸°ì— ë”°ë¼ ê°¯ìˆ˜ë¥¼ ëŠ˜ë ¤ì•¼ í•œë‹¤.
 
 		for (int e = 0; e < (sTmpPrjParam.WorldSectorTileNum * 2); ++e)
 		{
@@ -5901,7 +5901,7 @@ RwBool CNtlWorldMergeManager::OnExportPathEngineInDoor(const char* _pPathNameOfP
 					pNtlNaviPropInDoorInfo->AttachEntityInfo_Sphere(sGamePropertyData.vPos.x, sGamePropertyData.vPos.y, sGamePropertyData.vPos.z, sGamePropertyData.vSize.x);
 					break;
 				case ENTL_PL_GAME_PROPERTY_SHAPE_PLANE:
-					pNtlNaviPropInDoorInfo->AttachEntityInfo_Plane(sGamePropertyData.vPos.x, sGamePropertyData.vPos.y, sGamePropertyData.vPos.z, sGamePropertyData.vSize.x * 2.0f, sGamePropertyData.vSize.z * 2.0f); // Half SizeÀÌ±â ¶§¹®¿¡
+					pNtlNaviPropInDoorInfo->AttachEntityInfo_Plane(sGamePropertyData.vPos.x, sGamePropertyData.vPos.y, sGamePropertyData.vPos.z, sGamePropertyData.vSize.x * 2.0f, sGamePropertyData.vSize.z * 2.0f); // Half Sizeì´ê¸° ë•Œë¬¸ì—
 					break;
 				}
 
@@ -6427,7 +6427,7 @@ RwBool CNtlWorldMergeManager::OnExportHeightfieldY(const char* _pPathNameOfProje
 {
 	/*
 	WorldFileFormat - Export
-	Export Ã³¸®¸¦ À§ÇÑ ºÎºĞÀÌ´Ù.
+	Export ì²˜ë¦¬ë¥¼ ìœ„í•œ ë¶€ë¶„ì´ë‹¤.
 	*/
 
 	sNtlWorldParam	sTmpPrjParam;
@@ -6536,7 +6536,7 @@ RwBool CNtlWorldMergeManager::OnExportPECollision(const char* _pPathNameOfProjec
 {
 	/*
 	WorldFileFormat - Export
-	Export Ã³¸®¸¦ À§ÇÑ ºÎºĞÀÌ´Ù.
+	Export ì²˜ë¦¬ë¥¼ ìœ„í•œ ë¶€ë¶„ì´ë‹¤.
 	*/
 
 	sNtlWorldParam	sTmpPrjParam;
@@ -7286,9 +7286,9 @@ RwBool CNtlWorldMergeManager::MergeInformation(sMERGE_PARAM &sParam, RwInt32 Idx
 		{
 			// merge area : doodads
 			Save_Doodads_Num(pPosCurFileMemSrc, pPosCurFileMemDst, pFileMerge);
-			// Dest StreamÀÌ ²À ÀÎÀÚ·Î µé¾î°¡¾ß ÇÑ´Ù. ³»ºÎ¿¡¼­ Pos ÀÌµ¿À» ÇÏÁö ¾Ê´Â ¿Ö³Ä¸é Dest¿¡ ÀÖ´Â Trigger¸¦ ±×´ë·Î À¯ÁöÇÏ±â À§ÇØ¼­´Ù.
+			// Dest Streamì´ ê¼­ ì¸ìë¡œ ë“¤ì–´ê°€ì•¼ í•œë‹¤. ë‚´ë¶€ì—ì„œ Pos ì´ë™ì„ í•˜ì§€ ì•ŠëŠ” ì™œëƒë©´ Destì— ìˆëŠ” Triggerë¥¼ ê·¸ëŒ€ë¡œ ìœ ì§€í•˜ê¸° ìœ„í•´ì„œë‹¤.
 			Save_Doodads_Trigger(pPosCurFileMemDst, pFileMerge, IdxFieldSrc, IdxFieldDst, m_pFieldMgr);
-			// Src StreamÀÌ ²À ÀÎÀÚ·Î µé¾î°¡¾ß ÇÑ´Ù. ³»ºÎ¿¡¼­ Idx °è»ê¿¡ µû¶ó Pos°¡ ÀÌµ¿ µÈ´Ù.
+			// Src Streamì´ ê¼­ ì¸ìë¡œ ë“¤ì–´ê°€ì•¼ í•œë‹¤. ë‚´ë¶€ì—ì„œ Idx ê³„ì‚°ì— ë”°ë¼ Posê°€ ì´ë™ ëœë‹¤.
 			Save_Doodads_NonTrigger(pPosCurFileMemSrc, pFileMerge, IdxFieldSrc, IdxFieldDst, m_pFieldMgr);
 			pPosCurFileMemSrc = Skip_Doodads(pPosCurFileMemSrc);
 			pPosCurFileMemDst = Skip_Doodads(pPosCurFileMemDst);
@@ -7317,7 +7317,7 @@ RwBool CNtlWorldMergeManager::MergeInformation(sMERGE_PARAM &sParam, RwInt32 Idx
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		// Information Update : Shadow : Field Index°¡ ´Ù¸£¸é ¾ÈµÈ´Ù.
+		// Information Update : Shadow : Field Indexê°€ ë‹¤ë¥´ë©´ ì•ˆëœë‹¤.
 		//////////////////////////////////////////////////////////////////////////
 		if (sParam.bShadow && IdxFieldDst == IdxFieldSrc)
 		{

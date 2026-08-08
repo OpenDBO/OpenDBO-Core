@@ -2,11 +2,11 @@
  *
  * File			: NtlDTCinematicNode.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2007. 06. 27	
  * Abstract		: direct cinematic node
  *****************************************************************************
- * Desc         : cinematic ø¨√‚¿ª ¿ß«— node
+ * Desc         : cinematic Ïó∞Ï∂úÏùÑ ÏúÑÌïú node
  *
  *****************************************************************************/
 

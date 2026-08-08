@@ -2,7 +2,7 @@
 //	File		:	NtlInstanceHurricaneSystem.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -43,7 +43,7 @@ public:
 	virtual RwBool	Create(CNtlResourceEffect* pResourceEffect, CNtlResourceComponentSystem* pResourceComponentSystem, const RwMatrix& matWorld);
 
 	virtual void	SetVertexColor(RwRGBA& color);
-    virtual void    SetAlpha(RwUInt8 byValue);                     ///< ¾ËÆÄ°ªÀ» ¼³Á¤ÇÑ´Ù.
+    virtual void    SetAlpha(RwUInt8 byValue);                     ///< ì•ŒíŒŒê°’ì„ ì„¤ì •í•œë‹¤.
 
 	virtual RwBool	Update(RwReal fElapsedTime);
 	virtual RwBool	Render();
@@ -52,7 +52,7 @@ public:
 protected:
     void	BuildEmitterStandard(SNtlHurricaneEmitterStandard* pEmitterStandard);
 	void	UpdateVertices(RwReal fElapsedTime, RwReal fLifeTime);
-    void    UpdateVanish(RwReal fElapsedTime);                      ///< ¾ËÆÄ¸¦ ¾ø¾Ö¼­ ¼Ò¸êÈ¿°ú¸¦ ¸¸µç´Ù.
-    virtual RwBool  UpdateFinish(RwReal fElapsedTime);              ///< Finish È¿°ú¸¦ Ã³¸®ÇÑ´Ù.
+    void    UpdateVanish(RwReal fElapsedTime);                      ///< ì•ŒíŒŒë¥¼ ì—†ì• ì„œ ì†Œë©¸íš¨ê³¼ë¥¼ ë§Œë“ ë‹¤.
+    virtual RwBool  UpdateFinish(RwReal fElapsedTime);              ///< Finish íš¨ê³¼ë¥¼ ì²˜ë¦¬í•œë‹¤.
 
 };

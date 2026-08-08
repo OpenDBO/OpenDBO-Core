@@ -9,7 +9,7 @@ class CNtlPLEntity;
 
 
 template<class _Ty>
-class CCompare : public std::binary_function<_Ty, _Ty, bool>
+class CCompare
 {
 public:
 	bool operator()(const _Ty& _Left, const _Ty& _Right) const
@@ -194,12 +194,12 @@ public:
 
 // Implementations
 protected:
-	// Bounding check¸¦ À§ÇÑ ÇÔ¼öµé
+	// Bounding checkå ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ìŒ‰ì‡½ì˜™å ì™ì˜™
 	static const RwSphere*				ResizeBoundingSphereCB( RpAtomic* pAtomic, void* pData );
 	static RpAtomic*					PickAtomicBoundBoxCB( RpIntersection* pInters, RpWorldSector* pWorldSector, RpAtomic* pAtomic, RwReal fDistance, void* pData );
 	static RpCollisionTriangle*			PickAtomicPolygonCB( RpIntersection* pInters, RpCollisionTriangle* pRpColTri, RwReal fRatio, void* pData );
 
-	// Polygon check¸¦ À§ÇÑ ÇÔ¼öµé
+	// Polygon checkå ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ìŒ‰ì‡½ì˜™å ì™ì˜™
 	bool								CreateRaster( RwRaster*& pRaster, RwRaster*& pZRaster, RwTexture*& pTexture );
 	void								DeleteRaster( RwRaster*& pRaster, RwRaster*& pZRaster, RwTexture*& pTexture );
 	void								UpdateCamera_Begin( RwCamera* pCamera );
@@ -216,7 +216,7 @@ protected:
 
 //////////////////////////////////////////////////////////////////////////
 //
-//	Bounding box resizing ÃÖÀûÀÇ Å©±â¸¦ ±¸ÇÏ±â À§ÇÑ Å×½ºÆ®¿ë Å¬·¡½º
+//	Bounding box resizing å ì™ì˜™å ì™ì˜™å ì™ì˜™ í¬å ì©ë¥¼ å ì™ì˜™å ì‹¹ê¹ì˜™ å ì™ì˜™å ì™ì˜™ å ìŒ“ì™ì˜™íŠ¸å ì™ì˜™ í´å ì™ì˜™å ì™ì˜™
 //
 //////////////////////////////////////////////////////////////////////////
 

@@ -2,7 +2,7 @@
  *
  * File			: DboDef.h
  * Author		: HyungSuk, Jang
- * Copyright	: (��)NTL
+ * Copyright	: (占쏙옙)NTL
  * Date			: 2005. 9. 28	
  * Abstract		: DBO standard definition.
  *****************************************************************************
@@ -23,8 +23,8 @@
 #define DEFAULT_SCREEN_WIDTH	1024	
 #define DEFAULT_SCREEN_HEIGHT	768
 
-#define EXTRA_SCREEN_WIDTH		1280		// cj�� ��û�� ���ؼ�.
-#define EXTRA_SCREEN_HEIGHT		1024		// cj�� ��û�� ���ؼ�.
+#define EXTRA_SCREEN_WIDTH		1280		// cj占쏙옙 占쏙옙청占쏙옙 占쏙옙占쌔쇽옙.
+#define EXTRA_SCREEN_HEIGHT		1024		// cj占쏙옙 占쏙옙청占쏙옙 占쏙옙占쌔쇽옙.
 
 #define DEFAULT_CAMERA_NEAR		0.5f
 #define DEFAULT_CAMERA_FAR		768.0f
@@ -62,7 +62,7 @@
 #define GAME_LOADING_STAGE_NAME		"GameLoading"
 
 //-----------------------------------------------------------------------------
-// client ��ü buffer length
+// client 占쏙옙체 buffer length
 
 #define MAX_VIRTUAL_SERVER_PACKET_SIZE		2048
 #define MAX_MSG_BOX_STRING_LEN				512
@@ -89,7 +89,7 @@
 
 //-----------------------------------------------------------------------------
 // Flash Notify Invalid index && file name
-#define dDELAY_BEFORE_VISIBLE_MESSAGEBOX		7.f		// �޼��� �ڽ��� �߱������� �ִ� �����ð�
+#define dDELAY_BEFORE_VISIBLE_MESSAGEBOX		7.f		// 占쌨쇽옙占쏙옙 占쌘쏙옙占쏙옙 占쌩깍옙占쏙옙占쏙옙占쏙옙 占쌍댐옙 占쏙옙占쏙옙占시곤옙
 #define dREMAIN_FOR_SERVER_REPLY				60.f	// ���� ������ ��ٸ��� �ִ� �ð�
 
 //-----------------------------------------------------------------------------
@@ -116,7 +116,7 @@ enum EMsgBoxResult
 {
 	MBR_OPENCANCELED	= -1,				/// �޽����ڽ� ������ü�� ���. �޽��� �ڽ��� �ߺ��� ���.
 	MBR_CANCEL			= 0,				/// ���.
-	MBR_OK				= 1,				/// Ȯ��, ����,	
+	MBR_OK				= 1,				/// 확占쏙옙, 占쏙옙占쏙옙,	
 };
 
 struct sMsgBoxCustomBtn
@@ -141,57 +141,57 @@ struct sMsgBoxCustomBtn
 //-----------------------------------------------------------------------------
 
 ///< avooo : ǥ�õǴ� �켱������ ���� �����Ͽ���.
-///< peessi : Display String Define�� ���ǵ� ���ڿ��� ������ ��ġ�ؾ���.
+///< peessi : Display String Define占쏙옙 占쏙옙占실듸옙 占쏙옙占쌘울옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙치占쌔억옙占쏙옙.
 enum EIconPopupWork
 {
 	PMW_USE = 0,						    ///< ����ϱ�
-	PMW_OPEN,								///< (����)����
-	PMW_EQUIP,								///< �����ϱ�
-	PMW_CANCEL_EQUIP,						///< ��������
-	PMW_VIEW,								///< ����
-	PMW_PICKUP,								///< ����
+	PMW_OPEN,								///< (占쏙옙占쏙옙)占쏙옙占쏙옙
+	PMW_EQUIP,								///< 占쏙옙占쏙옙占싹깍옙
+	PMW_CANCEL_EQUIP,						///< 占쏙옙占쏙옙占쏙옙占쏙옙
+	PMW_VIEW,								///< 占쏙옙占쏙옙
+	PMW_PICKUP,								///< 占쏙옙占쏙옙
 	PMW_STOP_USE,							///< �������
-	PMW_PULLOUT,							///< ������
-	PMW_SELL,								///< �ȱ�
-	PMW_DIVIDE,								///< ������
-	PMW_CLEAR,								///< ����
-	PMW_DELETE,								///< ������
+	PMW_PULLOUT,							///< 占쏙옙占쏙옙占쏙옙
+	PMW_SELL,								///< 占싫깍옙
+	PMW_DIVIDE,								///< 占쏙옙占쏙옙占쏙옙
+	PMW_CLEAR,								///< 占쏙옙占쏙옙
+	PMW_DELETE,								///< 占쏙옙占쏙옙占쏙옙
 	PMW_PARTY_CREATE,						///< ��Ƽ �����
-	PMW_PARTY_INVITE,						///< ��Ƽ �ʴ�
-	PMW_PARTY_LEADER_CHANGE,				///< ��Ƽ�� ����
-	PMW_PARTY_KICK_OUT,						///< ��Ƽ ����
-	PMW_PARTY_LEAVE,						///< ��Ƽ Ż��
+	PMW_PARTY_INVITE,						///< 占쏙옙티 占십댐옙
+	PMW_PARTY_LEADER_CHANGE,				///< 占쏙옙티占쏙옙 占쏙옙占쏙옙
+	PMW_PARTY_KICK_OUT,						///< 占쏙옙티 占쏙옙占쏙옙
+	PMW_PARTY_LEAVE,						///< 占쏙옙티 탈占쏙옙
 	PMW_PVP_REQUEST_FIGHT,					///< ��� ��û
-	PMW_USER_TRADE,							///< ���� Ʈ���̵�
+	PMW_USER_TRADE,							///< 占쏙옙占쏙옙 트占쏙옙占싱듸옙
 	PMW_GUILD_INVITE,						///< ��� �ʴ�
 	PMW_GUILD_CHANGE_MASTER,				///< ����� �̾�
 	PMW_GUILD_APPOINT_SECOND_MASTER,		///< �α���� �Ӹ�
 	PMW_GUILD_DISAPPOINT_SECOND_MASTER,		///< �α���� �Ӹ� ����
 	PMW_GUILD_KICK_OUT,						///< ��� �߹�
-	PMW_GUILD_POST,							///< ���� ������
-	PMW_FRIEND_ADD,							///< ģ�� �߰�
-	PMW_FOLLOW,								///< ���� ����
+	PMW_GUILD_POST,							///< 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙
+	PMW_FRIEND_ADD,							///< 친占쏙옙 占쌩곤옙
+	PMW_FOLLOW,								///< 占쏙옙占쏙옙 占쏙옙占쏙옙
 	PMW_SEND_WHISPER,
 	PMW_CANCEL,								///< ���
-	PMW_SET_SHARETARGET_1,					// 1�� ����Ÿ�� ����
-	PMW_SET_SHARETARGET_2,					// 2�� ����Ÿ�� ����
-	PMW_SET_SHARETARGET_3,					// 3�� ����Ÿ�� ����
-	PMW_SET_SHARETARGET_4,					// 4�� ����Ÿ�� ����
-	PMW_SET_SHARETARGET_5,					// 5�� ����Ÿ�� ����
-	PMW_UNSET_SHARETARGET_1,				// 1�� ����Ÿ�� ����
-	PMW_UNSET_SHARETARGET_2,				// 2�� ����Ÿ�� ����
-	PMW_UNSET_SHARETARGET_3,				// 3�� ����Ÿ�� ����
-	PMW_UNSET_SHARETARGET_4,				// 4�� ����Ÿ�� ����
-	PMW_UNSET_SHARETARGET_5,				// 5�� ����Ÿ�� ����
-	PMW_PARTY_MENU_SWITCH_MEMBER,			///< ��Ƽ �ɹ�â ����ġ
-	PMW_PARTY_MENU_SWITCH_MEMBER_BUFF,		///< ��Ƽ �ɹ�â ���� ����ġ
-	PMW_PARTY_DUNGEON_INIT,					///< ���� �ʱ�ȭ
-	PMW_PARTY_DUNGEON_NORMAL,				///< ���� ���̵� ����
+	PMW_SET_SHARETARGET_1,					// 1占쏙옙 占쏙옙占쏙옙타占쏙옙 占쏙옙占쏙옙
+	PMW_SET_SHARETARGET_2,					// 2占쏙옙 占쏙옙占쏙옙타占쏙옙 占쏙옙占쏙옙
+	PMW_SET_SHARETARGET_3,					// 3占쏙옙 占쏙옙占쏙옙타占쏙옙 占쏙옙占쏙옙
+	PMW_SET_SHARETARGET_4,					// 4占쏙옙 占쏙옙占쏙옙타占쏙옙 占쏙옙占쏙옙
+	PMW_SET_SHARETARGET_5,					// 5占쏙옙 占쏙옙占쏙옙타占쏙옙 占쏙옙占쏙옙
+	PMW_UNSET_SHARETARGET_1,				// 1占쏙옙 占쏙옙占쏙옙타占쏙옙 占쏙옙占쏙옙
+	PMW_UNSET_SHARETARGET_2,				// 2占쏙옙 占쏙옙占쏙옙타占쏙옙 占쏙옙占쏙옙
+	PMW_UNSET_SHARETARGET_3,				// 3占쏙옙 占쏙옙占쏙옙타占쏙옙 占쏙옙占쏙옙
+	PMW_UNSET_SHARETARGET_4,				// 4占쏙옙 占쏙옙占쏙옙타占쏙옙 占쏙옙占쏙옙
+	PMW_UNSET_SHARETARGET_5,				// 5占쏙옙 占쏙옙占쏙옙타占쏙옙 占쏙옙占쏙옙
+	PMW_PARTY_MENU_SWITCH_MEMBER,			///< 占쏙옙티 占심뱄옙창 占쏙옙占쏙옙치
+	PMW_PARTY_MENU_SWITCH_MEMBER_BUFF,		///< 占쏙옙티 占심뱄옙창 占쏙옙占쏙옙 占쏙옙占쏙옙치
+	PMW_PARTY_DUNGEON_INIT,					///< 占쏙옙占쏙옙 占십깍옙화
+	PMW_PARTY_DUNGEON_NORMAL,				///< 占쏙옙占쏙옙 占쏙옙占싱듸옙 占쏙옙占쏙옙
 	PMW_PARTY_DUNGEON_HARD,					///< ���� ���̵� �����
 	PMW_PARTY_DUNGEON_LEGENDARY,
 	PMW_PARTY_DIVIDE_PICKUP_PERSON,			///< �ݴ� ��� ȹ��
-	PMW_PARTY_DIVIDE_EQUAL,					///< �Ȱ��� ������
-	PMW_PARTY_DIVIDE_ORDER,					///< �����Ƿ� �й�
+	PMW_PARTY_DIVIDE_EQUAL,					///< 占싫곤옙占쏙옙 占쏙옙占쏙옙占쏙옙
+	PMW_PARTY_DIVIDE_ORDER,					///< 占쏙옙占쏙옙占실뤄옙 占싻뱄옙
 	PMW_PARTY_GRADE_ITEM,					///< ��޺� �����Ƿ� �й�
 	PMW_PARTY_LOOTING_BY_DICE,
 	PMW_PARTY_LOOTING_BY_DICE_BY_EQUIPPED,
@@ -228,8 +228,8 @@ enum EPlace
 	PLACE_QUESTBAG,
 	PLACE_ITEMUPGRADE,
 	PLACE_WAREHOUSE,
-	PLACE_PRIVATESHOP,				///< ���λ���
-	PLACE_PRIVATESHOP_TRADEBOX,		///< ���λ��� ���� (���� ����)
+	PLACE_PRIVATESHOP,				///< 占쏙옙占싸삼옙占쏙옙
+	PLACE_PRIVATESHOP_TRADEBOX,		///< 占쏙옙占싸삼옙占쏙옙 占쏙옙占쏙옙 (占쏙옙占쏙옙 占쏙옙占쏙옙)
 	PLACE_GUILD_WAREHOUSE,
 	PLACE_DOJO_UPRAGE,
 	PLACE_DOGI,
@@ -295,7 +295,7 @@ enum ECharacterStageState
 
 	CHAR_STATE_BEGIN,
 	
-	CHAR_STATE_SERVER_INFORMAION,		// server information ���� ������ ��.
+	CHAR_STATE_SERVER_INFORMAION,		// server information 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙.
 	CHAR_STATE_SERVER_ENTER,
 	CHAR_STATE_SERVER_IDLE,
 	CHAR_STATE_SERVER_CHANGE,
@@ -306,7 +306,7 @@ enum ECharacterStageState
 	CHAR_STATE_MAKE_EXIT,
 	CHAR_STATE_MAKE_REQUEST,
 
-	CHAR_STATE_SELECT_INFOMATION,		// Channel Infomation ���� ������ ��
+	CHAR_STATE_SELECT_INFOMATION,		// Channel Infomation 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙
 	CHAR_STATE_SELECT_INFOMATION_FROM_SERVER_LIST,		// ���� ����Ʈ ȭ�鿡�� ä�� ���� ��û��	// 13 on tw
 	CHAR_STATE_SELECT_ENTER,	// 21 in tw
 	CHAR_STATE_SELECT_IDLE,		// on tw its 19
@@ -385,7 +385,7 @@ struct sMsgChangeItemBattleAttribute
 };
 
 /**
-* \brief UNION - ���� ����
+* \brief UNION - 占쏙옙占쏙옙 占쏙옙占쏙옙
 */
 struct sMsgBoxData
 {
@@ -465,9 +465,9 @@ struct sDetailTime
 	RwUInt8				byMinute;
 	RwUInt8				bySecond;
 
-	std::wstring		strDay;			///< ����
+	std::wstring		strDay;			///< 占쏙옙占쏙옙
 
-	RwUInt8				byDay_of_Year;	///< �� ���� �� ��° ���ΰ�
+	RwUInt8				byDay_of_Year;	///< 占쏙옙 占쏙옙占쏙옙 占쏙옙 占쏙옙째 占쏙옙占싸곤옙
 };
 
 struct sWorldPickInfo_for_Cursor

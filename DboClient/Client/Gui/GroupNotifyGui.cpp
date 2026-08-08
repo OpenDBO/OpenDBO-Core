@@ -50,7 +50,7 @@ RwBool CGroupNotifyGui::Create()
 	m_pThis = (gui::CDialog*)GetComponent( "dlgMain" );
 	m_pThis->SetPriority(dDIALOGPRIORITY_NOTIFY);
 
-	// ¸Þ¼¼Áö
+	// ë©”ì„¸ì§€
 	rect.SetRectWH(0, 0, m_pThis->GetWidth(), m_pThis->GetHeight());
 	m_pMessageStatic = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER );
 	m_pMessageStatic->CreateFontStd(DEFAULT_FONT, 140, DEFAULT_FONT_ATTR);	

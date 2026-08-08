@@ -2,7 +2,7 @@
  *
  * File			: NtlSLVisualLogic.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2008. 11. 21	
  * Abstract		: simulation logic.h
  *****************************************************************************

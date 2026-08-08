@@ -1,4 +1,4 @@
-// MPPConfigSetting.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// MPPConfigSetting.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -42,7 +42,7 @@ BEGIN_MESSAGE_MAP(CMPPConfigSetting, CXTResizeFormView)
 END_MESSAGE_MAP()
 
 
-// CMPPConfigSetting Áø´ÜÀÔ´Ï´Ù.
+// CMPPConfigSetting ì§„ë‹¨ì…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CMPPConfigSetting::AssertValid() const
@@ -59,7 +59,7 @@ void CMPPConfigSetting::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CMPPConfigSetting ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CMPPConfigSetting ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CMPPConfigSetting::OnInitialUpdate()
 {
@@ -214,13 +214,13 @@ void CMPPConfigSetting::OnBnClickedBtnSaveenc()
 }
 
 /**
- * ·ç¾ÆÆÄÀÏÀ» ÄÄÆÄÀÏÇÑ´Ù.
+ * ë£¨ì•„íŒŒì¼ì„ ì»´íŒŒì¼í•œë‹¤.
  */
 void CMPPConfigSetting::OnBnClickedBtnLuaCompile()
 {
     //USES_CONVERSION;
 
-    //// Script Æú´õ¾È¿¡ ÀÖ´Â ¸ğµç Lua ÆÄÀÏµéÀ» ÄÄÆÄÀÏÇÑ´Ù.
+    //// Script í´ë”ì•ˆì— ìˆëŠ” ëª¨ë“  Lua íŒŒì¼ë“¤ì„ ì»´íŒŒì¼í•œë‹¤.
     //CString strLuaPath, strOutPath;
     //m_edLuaDir.GetWindowText(strLuaPath);    
     //m_edOutDir.GetWindowText(strOutPath);

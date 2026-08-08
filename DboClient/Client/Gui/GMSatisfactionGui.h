@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: GMChatGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 10. 21
 * Abstract		: 
 *****************************************************************************
-* Desc			: GM°úÀÇ Ã¤ÆÃ ´ÙÀÌ¾ó·Î±×
+* Desc			: GMê³¼ì˜ ì±„íŒ… ë‹¤ì´ì–¼ë¡œê·¸
 *****************************************************************************/
 
 #pragma once
@@ -27,9 +27,9 @@ public:
 
 	RwInt32		SwitchDialog(bool bOpen);
 
-	// avooo's comment : GM Ã¤ÆÃÀº °ÔÀÓÀÇ ³»¿ëÀÌ ¾Æ´Ï¸ç ÀÌ¹Ì ´Ù¸¥ ´ÙÀÌ¾ó·Î±×°¡
-	//					 ²Ë µé¾îÂù »óÅÂ¿¡¼­ °íÁ¤ÀûÀ¸·Î GM Ã¤ÆÃÀ» À§ÇØ ÀÚ¸®¸¦ ¸¸µé ¼öµµ ¾ø´Ù.
-	//					 GM Ã¤ÆÃÀº ¾ðÁ¦³ª À¯Àú°¡ À§Ä¡¸¦ º¯°æÇÒ ¼ö ÀÖµµ·Ï ÇÑ´Ù.
+	// avooo's comment : GM ì±„íŒ…ì€ ê²Œìž„ì˜ ë‚´ìš©ì´ ì•„ë‹ˆë©° ì´ë¯¸ ë‹¤ë¥¸ ë‹¤ì´ì–¼ë¡œê·¸ê°€
+	//					 ê½‰ ë“¤ì–´ì°¬ ìƒíƒœì—ì„œ ê³ ì •ì ìœ¼ë¡œ GM ì±„íŒ…ì„ ìœ„í•´ ìžë¦¬ë¥¼ ë§Œë“¤ ìˆ˜ë„ ì—†ë‹¤.
+	//					 GM ì±„íŒ…ì€ ì–¸ì œë‚˜ ìœ ì €ê°€ ìœ„ì¹˜ë¥¼ ë³€ê²½í•  ìˆ˜ ìžˆë„ë¡ í•œë‹¤.
 	virtual void	SetMovable(RwBool bMovable) {}
 
 	VOID		SetGMText(const WCHAR* pwcText);

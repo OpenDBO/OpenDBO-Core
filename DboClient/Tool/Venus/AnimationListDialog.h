@@ -2,7 +2,7 @@
 #include "afxcmn.h"
 
 
-// CAnimationListDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAnimationListDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 #include "DataTreeCtrl.h"
 
 class CAnimationListDialog : public CDialog
@@ -12,16 +12,16 @@ class CAnimationListDialog : public CDialog
 public:
 
 public:
-	CAnimationListDialog(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CAnimationListDialog(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CAnimationListDialog();
 
 	void	SerializeList();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_ANIMATION_LIST };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

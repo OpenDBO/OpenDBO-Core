@@ -4,7 +4,7 @@
 //
 // 2006.10.21 Peessi@hitel.net   
 //
-// To Be Desired: Quest Progress, Quest Reward Gui¿Í ÅëÇÕÇÒ °ÍÀÎ°¡ ÃßÈÄ °áÁ¤.
+// To Be Desired: Quest Progress, Quest Reward Guiì™€ í†µí•©í•  ê²ƒì¸ê°€ ì¶”í›„ ê²°ì •.
 //	
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -65,7 +65,7 @@ private:
 
 	//! Variables
 	gui::CStaticBox*	m_pstbConversationTitle;
-	gui::CHtmlBox*		m_phbxConversation;		// Quest ´ëÈ­
+	gui::CHtmlBox*		m_phbxConversation;		// Quest ëŒ€í™”
 
 	gui::CButton*		m_pbtnQuestReward;
 	gui::CButton*		m_pbtnRewardCancel;

@@ -2,7 +2,7 @@
  *
  * File			: .h
  * Author		: HongHoDong
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 8. 26	
  * Abstract		: Input handler 
  *****************************************************************************

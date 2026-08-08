@@ -22,7 +22,7 @@ CGUIFileParser::CGUIFileParser(const std::string &filename)
 
 	enum EParseState
 	{
-		PARSE_GLOBAL,						// ÀüÃ¼ frame
+		PARSE_GLOBAL,						// ì „ì²´ frame
 		PARSE_COMPONENT_TYPE,   // component type
 		PARSE_COMPONENT_NAME,   // component name
 		PARSE_COMPONENT,        // component 
@@ -106,10 +106,10 @@ CGUIFileParser::CGUIFileParser(const std::string &filename)
 				{
 #if defined(_MSC_VER) && (_MSC_VER >= 1400)
 					char buf[1024];
-					sprintf_s(buf, 1024, "Error ==>  gui component file¿¡ µ¿ÀÏÇÑ ÀÌ¸§ Á¸Àç. [ %s ]",token.c_str());
+					sprintf_s(buf, 1024, "Error ==>  gui component fileì— ë™ì¼í•œ ì´ë¦„ ì¡´ì¬. [ %s ]",token.c_str());
 #else
 					char buf[1024];
-					sprintf(buf, "Error ==>  gui component file¿¡ µ¿ÀÏÇÑ ÀÌ¸§ Á¸Àç. [ %s ]",token.c_str());
+					sprintf(buf, "Error ==>  gui component fileì— ë™ì¼í•œ ì´ë¦„ ì¡´ì¬. [ %s ]",token.c_str());
 #endif
 					m_strError = buf;
 					return;
@@ -194,7 +194,7 @@ CGUIFileParser::CGUIFileParser(const std::string &filename)
 					{
 						// the component being finalized is the child of another component
 						// add finalized component to parent's child list.
-						// frame component¿¡ buttonµîÀÇ component¸¦ child·Î µî·ÏÇÑ´Ù...
+						// frame componentì— buttonë“±ì˜ componentë¥¼ childë¡œ ë“±ë¡í•œë‹¤...
 						stlNAMED_COMPONENT_PAIR &parent_comp = stlCompStack.top();
 						parent_comp.second.m_stlChildren.push_back(&(*it.first).second);
 					}

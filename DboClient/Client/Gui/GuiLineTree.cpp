@@ -115,7 +115,7 @@ RwInt32 CGuiLineTreeNode::RecursiveSetLineID( RwInt32 nLineID )
 		RecursiveChildHide();
 	}
 
-	// Return Value : ´ÙÀ½ ÇàÀÇ LineID
+	// Return Value : ë‹¤ìŒ í–‰ì˜ LineID
 	return nLineID;	
 }
 

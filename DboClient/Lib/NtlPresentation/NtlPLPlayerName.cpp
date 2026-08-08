@@ -39,7 +39,7 @@ CNtlPLPlayerName::CNtlPLPlayerName()
 	m_posNickNameSize.SetPos( 0, 0 );
 	m_posTitleNameSize.SetPos(0, 0);
 
-	// World Position ÃÊ±âÈ­
+	// World Position ì´ˆê¸°í™”
 	CNtlMath::MathRwV3dAssign(&m_v3WorldPosition, 0.0f, 0.0f, 0.0f);
 
 	SetLayer(PLENTITY_LAYER_PLAYERNAME);
@@ -59,8 +59,8 @@ CNtlPLPlayerName::~CNtlPLPlayerName()
 
 /**
 * \brief Create
-* \param pParam		(SPLEntityCreateParam*) EntityÀÇ Create ÆÄ¶ó¸ŞÅÍ ±¸Á¶Ã¼
-* \return ¼º°ø¿©ºÎ
+* \param pParam		(SPLEntityCreateParam*) Entityì˜ Create íŒŒë¼ë©”í„° êµ¬ì¡°ì²´
+* \return ì„±ê³µì—¬ë¶€
 */
 RwBool CNtlPLPlayerName::Create( const SPLEntityCreateParam * pParam )
 {
@@ -161,15 +161,15 @@ void CNtlPLPlayerName::Destroy(void)
 
 /**
 * \brief Update
-* \param fElapsed	(RwReal) ÀÌÀü ¾÷µ¥ÀÌÆ®¿¡¼­ °æ°úµÈ ½Ã°£
+* \param fElapsed	(RwReal) ì´ì „ ì—…ë°ì´íŠ¸ì—ì„œ ê²½ê³¼ëœ ì‹œê°„
 */
 RwBool CNtlPLPlayerName::Update(RwReal fElapsed)
 {
-	// Entity°¡ ÇöÀç º¸ÀÌ´Â »óÅÂ°¡ ¾Æ´Ï¶ó¸é UpdateÇÏÁö ¾Ê´Â´Ù.
+	// Entityê°€ í˜„ì¬ ë³´ì´ëŠ” ìƒíƒœê°€ ì•„ë‹ˆë¼ë©´ Updateí•˜ì§€ ì•ŠëŠ”ë‹¤.
 	if(!IsVisible())
 		return TRUE;
 
-	// Ä«¸Ş¶ó ÄÃ¸µ Ã¼Å©
+	// ì¹´ë©”ë¼ ì»¬ë§ ì²´í¬
 	RwSphere sphere;
 	sphere.center = m_v3WorldPosition;
 	sphere.radius = PLAYERNAME_CAMERA__BOUNDING_RADIUS;
@@ -200,7 +200,7 @@ RwBool CNtlPLPlayerName::Update(RwReal fElapsed)
 		}
 	}
 
-	// Flag¿¡ µû¶ó¼­ ´Ù¸¥ ÇÔ¼ö¸¦ Àû¿ëÇÑ´Ù.
+	// Flagì— ë”°ë¼ì„œ ë‹¤ë¥¸ í•¨ìˆ˜ë¥¼ ì ìš©í•œë‹¤.
 	if( m_byFlag & dNTL_PL_FLAG_EMBLEM )
 		EmblemVertexAssign();
 	else
@@ -246,7 +246,7 @@ RwBool CNtlPLPlayerName::Update(RwReal fElapsed)
 		}
 	}
 
-	// Alpha ÀÇ °¡ÁßÄ¡°¡ 1.0f ¾Æ´Ï¶ó¸é EntityÀÇ ¾ËÆÄ °¡ÁßÄ¡ °ª¿¡ ÇöÀç ¿£Æ¼Æ¼ÀÇ ¾ËÆÄ°ªÀ» Àû¿ëÇÑ´Ù.
+	// Alpha ì˜ ê°€ì¤‘ì¹˜ê°€ 1.0f ì•„ë‹ˆë¼ë©´ Entityì˜ ì•ŒíŒŒ ê°€ì¤‘ì¹˜ ê°’ì— í˜„ì¬ ì—”í‹°í‹°ì˜ ì•ŒíŒŒê°’ì„ ì ìš©í•œë‹¤.
     if(GetWeightAlpha() != 1.0f)
     {
         RwUInt8 byAlpha = (RwUInt8)(m_byAlpha * GetWeightAlpha());
@@ -261,7 +261,7 @@ RwBool CNtlPLPlayerName::Update(RwReal fElapsed)
 
 /**
 * \brief Render
-* ÀÌ¸§°ú EmblemÀ» ·»´õ¸µÇÑ´Ù.
+* ì´ë¦„ê³¼ Emblemì„ ë Œë”ë§í•œë‹¤.
 */
 RwBool CNtlPLPlayerName::Render(void)
 {
@@ -276,8 +276,8 @@ RwBool CNtlPLPlayerName::Render(void)
 }
 
 /**
-* \brief PlayerName Entity¿¡ ¾ËÆÄ¸¦ ÁöÁ¤ÇÑ´Ù.
-* \param byValue	(RwUInt8) ¾ËÆÄ°ª
+* \brief PlayerName Entityì— ì•ŒíŒŒë¥¼ ì§€ì •í•œë‹¤.
+* \param byValue	(RwUInt8) ì•ŒíŒŒê°’
 */
 void CNtlPLPlayerName::SetAlpha(RwUInt8 byValue)
 {
@@ -300,9 +300,9 @@ void CNtlPLPlayerName::SetAlpha(RwUInt8 byValue)
 }
 
 /**
-* \brief new ¿¬»êÀÚ ¿À¹ö·Îµù
-* \param size	(size_t) ¸Ş¸ğ¸® »çÀÌÁî
-* \return (void*) CNtlPLEntityFreeListÀÇ AllocÀÇ ¸®ÅÏ°ª
+* \brief new ì—°ì‚°ì ì˜¤ë²„ë¡œë”©
+* \param size	(size_t) ë©”ëª¨ë¦¬ ì‚¬ì´ì¦ˆ
+* \return (void*) CNtlPLEntityFreeListì˜ Allocì˜ ë¦¬í„´ê°’
 */
 void* CNtlPLPlayerName::operator new(size_t size)
 {
@@ -312,8 +312,8 @@ void* CNtlPLPlayerName::operator new(size_t size)
 }
 
 /**
-* \brief delte ¿¬»êÀÚ ¿À¹ö·Îµù
-* \param pObj	(void*) CNtlPLEntityFreeListÀÇ Free·Î ÇØÁ¦ÇØÁà¾ß ÇÏ´Â °´Ã¼ÀÇ void pointer
+* \brief delte ì—°ì‚°ì ì˜¤ë²„ë¡œë”©
+* \param pObj	(void*) CNtlPLEntityFreeListì˜ Freeë¡œ í•´ì œí•´ì¤˜ì•¼ í•˜ëŠ” ê°ì²´ì˜ void pointer
 */
 void CNtlPLPlayerName::operator delete(void *pObj)
 {
@@ -321,7 +321,7 @@ void CNtlPLPlayerName::operator delete(void *pObj)
 }
 
 /**
-* \brief ¸ğµç ¹öÅØ½º Á¤º¸¸¦ 0À¸·Î ÃÊ±âÈ­ÇÑ´Ù.
+* \brief ëª¨ë“  ë²„í…ìŠ¤ ì •ë³´ë¥¼ 0ìœ¼ë¡œ ì´ˆê¸°í™”í•œë‹¤.
 */
 void CNtlPLPlayerName::AllVertexInit( void ) 
 {
@@ -334,7 +334,7 @@ void CNtlPLPlayerName::AllVertexInit( void )
 }
 
 /**
-* \brief PlayerName¿¡¼­ ¾²ÀÌ´Â ¸ğµç ¹öÅØ½ºµéÀÇ UV¿Í RGB°ªÀ» ¼ÂÆÃ
+* \brief PlayerNameì—ì„œ ì“°ì´ëŠ” ëª¨ë“  ë²„í…ìŠ¤ë“¤ì˜ UVì™€ RGBê°’ì„ ì…‹íŒ…
 */
 void CNtlPLPlayerName::VertexAssign( void ) 
 {
@@ -399,7 +399,7 @@ void CNtlPLPlayerName::VertexAssign( void )
 }
 
 /**
-* \brief PlayerName ÀÌ³ª Guild Name ±îÁö¸¸ Ãâ·ÂÇÒ¶§ »ç¿ëµÇ´Â ¹öÅØ½º Á¤·Ä
+* \brief PlayerName ì´ë‚˜ Guild Name ê¹Œì§€ë§Œ ì¶œë ¥í• ë•Œ ì‚¬ìš©ë˜ëŠ” ë²„í…ìŠ¤ ì •ë ¬
 */
 void CNtlPLPlayerName::NameVertexAssign(void) 
 {
@@ -536,20 +536,20 @@ void CNtlPLPlayerName::NickNameVertexAssign( void )
 }
 
 /**
-* \brief Texture »çÀÌÁî°¡ °¡Àå Àß º¸ÀÏ¸¸ÇÑ Æú¸®°ïÀÇ »çÀÌÁî¸¦ ¸®ÅÏÇÑ´Ù.
-* \param nSize	(RwInt32) ÅØ½ºÃÄÀÇ °¡·Î »çÀÌÁî
-* \return (RwReal) Æú¸®°ïÀÇ »çÀÌÁî
+* \brief Texture ì‚¬ì´ì¦ˆê°€ ê°€ì¥ ì˜ ë³´ì¼ë§Œí•œ í´ë¦¬ê³¤ì˜ ì‚¬ì´ì¦ˆë¥¼ ë¦¬í„´í•œë‹¤.
+* \param nSize	(RwInt32) í…ìŠ¤ì³ì˜ ê°€ë¡œ ì‚¬ì´ì¦ˆ
+* \return (RwReal) í´ë¦¬ê³¤ì˜ ì‚¬ì´ì¦ˆ
 */
 RwReal CNtlPLPlayerName::GetAdjustPolygonWidth( RwInt32 nSize ) 
 {
-	// Texture Size 1 À» ±âÁØÀ¸·Î ±¸ÇÏ´Â Æú¸®°ï »çÀÌÁî
+	// Texture Size 1 ì„ ê¸°ì¤€ìœ¼ë¡œ êµ¬í•˜ëŠ” í´ë¦¬ê³¤ ì‚¬ì´ì¦ˆ
 	return nSize * PLAYERNAME_BOX_BASIS_CX;
 }
 
 /**
-* \brief Texture »çÀÌÁî°¡ °¡Àå Àß º¸ÀÏ¸¸ÇÑ Æú¸®°ïÀÇ »çÀÌÁî¸¦ ¸®ÅÏÇÑ´Ù.
-* \param nSize	(RwInt32) ÅØ½ºÃÄÀÇ ³ôÀÌ »çÀÌÁî
-* \return (RwReal) Æú¸®°ïÀÇ »çÀÌÁî
+* \brief Texture ì‚¬ì´ì¦ˆê°€ ê°€ì¥ ì˜ ë³´ì¼ë§Œí•œ í´ë¦¬ê³¤ì˜ ì‚¬ì´ì¦ˆë¥¼ ë¦¬í„´í•œë‹¤.
+* \param nSize	(RwInt32) í…ìŠ¤ì³ì˜ ë†’ì´ ì‚¬ì´ì¦ˆ
+* \return (RwReal) í´ë¦¬ê³¤ì˜ ì‚¬ì´ì¦ˆ
 */
 RwReal CNtlPLPlayerName::GetAdjustPolygonHeight( RwInt32 nSize ) 
 {
@@ -557,9 +557,9 @@ RwReal CNtlPLPlayerName::GetAdjustPolygonHeight( RwInt32 nSize )
 }
 
 /**
-* \brief ÀÌ¸§ÀÇ ÅØ½ºÃÄ¸¦ »ı¼ºÇÑ´Ù. (ÀÌ¸§ÀÇ Å©±â¸¸ °í·Á)
-* \param pName	(const WCHAR*) ÀÌ¸§ÀÇ ¹®ÀÚ¿­ Æ÷ÀÎÅÍ
-* \return (RwBool) ¼º°ø ¿©ºÎ
+* \brief ì´ë¦„ì˜ í…ìŠ¤ì³ë¥¼ ìƒì„±í•œë‹¤. (ì´ë¦„ì˜ í¬ê¸°ë§Œ ê³ ë ¤)
+* \param pName	(const WCHAR*) ì´ë¦„ì˜ ë¬¸ìì—´ í¬ì¸í„°
+* \return (RwBool) ì„±ê³µ ì—¬ë¶€
 */
 RwBool CNtlPLPlayerName::CreateNameTexture( const WCHAR* pName ) 
 {
@@ -609,7 +609,7 @@ RwBool CNtlPLPlayerName::CreateNameTexture( const WCHAR* pName )
 	rect.right = rect.left + size.x;
 	rect.bottom = rect.top + size.y;
 
-	// texture¿¡ string copy
+	// textureì— string copy
 	g_FontMgr.BitmapToTexture(m_pTexture, rect, color, TE_OUTLINE, 0, 2);
 #endif
 
@@ -656,9 +656,9 @@ RwBool CNtlPLPlayerName::CreateTitleNameTexture(const WCHAR * pTitleName)
 }
 
 /**
-* \brief ±æµå ÀÌ¸§±îÁö Ãâ·ÂÇÏ´Â ÅØ½ºÃÄ¸¦ ¸¸µç´Ù.
-* \param pGuildName	(const WCHAR*) ±æµåÀÌ¸§ÀÇ ¹®ÀÚ¿­
-* \return ¼º°ø¿©ºÎ
+* \brief ê¸¸ë“œ ì´ë¦„ê¹Œì§€ ì¶œë ¥í•˜ëŠ” í…ìŠ¤ì³ë¥¼ ë§Œë“ ë‹¤.
+* \param pGuildName	(const WCHAR*) ê¸¸ë“œì´ë¦„ì˜ ë¬¸ìì—´
+* \return ì„±ê³µì—¬ë¶€
 */
 RwBool CNtlPLPlayerName::CreateGuildNameTexture(const WCHAR* pGuildName) 
 {
@@ -700,9 +700,9 @@ RwBool CNtlPLPlayerName::CreateGuildNameTexture(const WCHAR* pGuildName)
 }
 
 /**
-* \brief ±æµå ¿¥ºí·½ÀÇ ÅØ½ºÃÄ¸¦ ¸¸µç´Ù. ( EmblemMaker¿¡¼­ ¸¸µé¾îÁø ÅØ½ºÃÄÀÇ Æ÷ÀÎÅÍ¸¸ °¡Áö°í ¿Â´Ù.)
-* \param pEmblemFactor	(sEmblemFactor*) ¿¥ºí·½ Á¤º¸ ±¸Á¶Ã¼
-* \return ¼º°ø¿©ºÎ
+* \brief ê¸¸ë“œ ì— ë¸”ë ˜ì˜ í…ìŠ¤ì³ë¥¼ ë§Œë“ ë‹¤. ( EmblemMakerì—ì„œ ë§Œë“¤ì–´ì§„ í…ìŠ¤ì³ì˜ í¬ì¸í„°ë§Œ ê°€ì§€ê³  ì˜¨ë‹¤.)
+* \param pEmblemFactor	(sEmblemFactor*) ì— ë¸”ë ˜ ì •ë³´ êµ¬ì¡°ì²´
+* \return ì„±ê³µì—¬ë¶€
 */
 RwBool CNtlPLPlayerName::CreateGuildEmblemTexture(sEmblemFactor *pEmblemFactor) 
 {
@@ -723,7 +723,7 @@ RwBool CNtlPLPlayerName::CreateGuildEmblemTexture(sEmblemFactor *pEmblemFactor)
 
 RwBool CNtlPLPlayerName::CreateNickNameTexture( const WCHAR* pNickName )
 {
-	// ±æµå ÀÌ¸§ÀÇ ÆùÆ®¸¦ ¸¸µç´Ù.
+	// ê¸¸ë“œ ì´ë¦„ì˜ í°íŠ¸ë¥¼ ë§Œë“ ë‹¤.
 	m_pNickFont = g_FontMgr.CreateGuiFont( DEFAULT_FONT, dNTL_PLAYERNAME_FONTSIZE_NICK, DEFAULT_FONT_ATTR ); 
 	if(m_pNickFont == NULL)
 	{
@@ -737,7 +737,7 @@ RwBool CNtlPLPlayerName::CreateNickNameTexture( const WCHAR* pNickName )
 		m_pNickTexture = NULL;
 	}
 
-	// ±ÛÀÚÀÇ »çÀÌÁî¸¦ ÀúÀåÇÏ°í »çÀÌÁî¿¡ ¾Ë¸ÂÀº ÅØ½ºÃÄ¸¦ ¸¸µç´Ù.
+	// ê¸€ìì˜ ì‚¬ì´ì¦ˆë¥¼ ì €ì¥í•˜ê³  ì‚¬ì´ì¦ˆì— ì•Œë§ì€ í…ìŠ¤ì³ë¥¼ ë§Œë“ ë‹¤.
 	CPos size = m_pNickFont->GetTextWSize( pNickName, (int)wcslen(pNickName)); 
 	m_posNickNameSize.SetPos( size.x, size.y );
 
@@ -763,7 +763,7 @@ RwBool CNtlPLPlayerName::RenderName( void )
 	else
 	{
 		RwD3D9SetTexture(NULL, 0);
-		return FALSE; // m_pTexture°¡ NULLÀÌ¸é ·»´õ¸µÇÏÁö ¾Ê´Â´Ù.
+		return FALSE; // m_pTextureê°€ NULLì´ë©´ ë Œë”ë§í•˜ì§€ ì•ŠëŠ”ë‹¤.
 	}
 
 	RwUInt32 nTransformFlags = rwIM3D_VERTEXUV | rwIM3D_ALLOPAQUE;
@@ -779,8 +779,8 @@ RwBool CNtlPLPlayerName::RenderName( void )
 }
 
 /**
-* \brief ¿¥ºí·½À» ·»´õ¸µÇÑ´Ù.
-* \param ¼º°ø ¿©ºÎ
+* \brief ì— ë¸”ë ˜ì„ ë Œë”ë§í•œë‹¤.
+* \param ì„±ê³µ ì—¬ë¶€
 */
 RwBool CNtlPLPlayerName::RenderEmblem( void ) 
 {
@@ -792,7 +792,7 @@ RwBool CNtlPLPlayerName::RenderEmblem( void )
 	else
 	{
 		RwD3D9SetTexture(NULL, 0);
-		return FALSE; // m_pTexture°¡ NULLÀÌ¸é ·»´õ¸µÇÏÁö ¾Ê´Â´Ù.
+		return FALSE; // m_pTextureê°€ NULLì´ë©´ ë Œë”ë§í•˜ì§€ ì•ŠëŠ”ë‹¤.
 	}
 
 	RwUInt32 nTransformFlags = rwIM3D_VERTEXUV | rwIM3D_ALLOPAQUE;
@@ -814,7 +814,7 @@ RwBool CNtlPLPlayerName::RenderNick( void )
 	else
 	{
 		RwD3D9SetTexture(NULL, 0);
-		return FALSE; // m_pNickTexture°¡ NULLÀÌ¸é ·»´õ¸µÇÏÁö ¾Ê´Â´Ù.
+		return FALSE; // m_pNickTextureê°€ NULLì´ë©´ ë Œë”ë§í•˜ì§€ ì•ŠëŠ”ë‹¤.
 	}
 
 	RwUInt32 nTransformFlags = rwIM3D_VERTEXUV | rwIM3D_ALLOPAQUE;
@@ -830,22 +830,22 @@ RwBool CNtlPLPlayerName::RenderNick( void )
 }
 
 /**
-* \brief ÀÌ¸§°ú ¿¥ºí·½ Æ÷Áö¼ÇÀ» ¾÷µ¥ÀÌÆ® ÇÑ´Ù.
-* \param pPos	(const RwV3d) Á¤·ÄÀÇ ±âÁØÀÌ µÉ Æ÷Áö¼Ç
+* \brief ì´ë¦„ê³¼ ì— ë¸”ë ˜ í¬ì§€ì…˜ì„ ì—…ë°ì´íŠ¸ í•œë‹¤.
+* \param pPos	(const RwV3d) ì •ë ¬ì˜ ê¸°ì¤€ì´ ë  í¬ì§€ì…˜
 */
 void CNtlPLPlayerName::SetPosition(const RwV3d *pPos)
 {
-	// positionÀ» update ¾ÈÇÒ °æ¿ì.
+	// positionì„ update ì•ˆí•  ê²½ìš°.
 	if(!IsVisible())
 		return;
 
-	// World PositionÀ» ÁöÁ¤
+	// World Positionì„ ì§€ì •
 	m_v3WorldPosition = *pPos;
 }
 
 /**
-* \brief ÇöÀç ¿ùµå Çà·ÄÀÇ ÁÂÇ¥¸¦ ¸®ÅÏ
-* \return ¿ùµå Çà·ÄÀÇ ÁÂÇ¥ ( Ä«¸Ş¶óÀÇ ¿ªÇà·Ä )
+* \brief í˜„ì¬ ì›”ë“œ í–‰ë ¬ì˜ ì¢Œí‘œë¥¼ ë¦¬í„´
+* \return ì›”ë“œ í–‰ë ¬ì˜ ì¢Œí‘œ ( ì¹´ë©”ë¼ì˜ ì—­í–‰ë ¬ )
 */
 RwV3d CNtlPLPlayerName::GetPosition(void)
 {
@@ -870,18 +870,18 @@ void CNtlPLPlayerName::SetNameColor(const WCHAR* pwcName, COLORREF color)
 		rect.right	= rect.left + size.x;
 		rect.bottom = rect.top + size.y;
 
-		// texture¿¡ string copy
+		// textureì— string copy
 		g_FontMgr.BitmapToTexture(m_pTexture, rect, color, TE_OUTLINE, 0, 2);
 	}
 }
 
 /**
-* \brief ÀÌ¸§°ú ÄÃ·¯¸¦ ÁöÁ¤ÇØÁØ´Ù.
-* \param pwcName		(const WCHAR*) ÀÌ¸§
-* \param color			(COLORREF) ÀÌ¸§ÀÇ »ö»ó
-* \param pwcGuildName	(const WCHAR*) ±æµå ÀÌ¸§
-* \param guildcolor		(COLORREF) ±æµå ÀÌ¸§ÀÇ »ö»ó
-* \param pEmblemFactor	(sEmblemFactor*) ¿¥ºí·½ Á¤º¸ÀÇ ±¸Á¶Ã¼
+* \brief ì´ë¦„ê³¼ ì»¬ëŸ¬ë¥¼ ì§€ì •í•´ì¤€ë‹¤.
+* \param pwcName		(const WCHAR*) ì´ë¦„
+* \param color			(COLORREF) ì´ë¦„ì˜ ìƒ‰ìƒ
+* \param pwcGuildName	(const WCHAR*) ê¸¸ë“œ ì´ë¦„
+* \param guildcolor		(COLORREF) ê¸¸ë“œ ì´ë¦„ì˜ ìƒ‰ìƒ
+* \param pEmblemFactor	(sEmblemFactor*) ì— ë¸”ë ˜ ì •ë³´ì˜ êµ¬ì¡°ì²´
 */
 void CNtlPLPlayerName::SetNameColor( const WCHAR* pwcName, COLORREF color, const WCHAR* pwcGuildName, COLORREF guildcolor
 									,sEmblemFactor* pEmblemFactor, const WCHAR* pwcTitleName, COLORREF titlecolor)
@@ -1096,7 +1096,7 @@ void CNtlPLPlayerName::SetVisible( RwBool bVisible )
 {
 	if( bVisible )
 	{
-		// SetVisible(TRUE) ¸¦ ÇßÀ» ¶§ NameVisible ÀÌ TRUE ¶ó¸é ÀÌ¸§À» º¸¿©ÁØ´Ù.
+		// SetVisible(TRUE) ë¥¼ í–ˆì„ ë•Œ NameVisible ì´ TRUE ë¼ë©´ ì´ë¦„ì„ ë³´ì—¬ì¤€ë‹¤.
 		if( m_bNameVisible )
 		{
 			CNtlPLEntity::SetVisible( bVisible );
@@ -1104,7 +1104,7 @@ void CNtlPLPlayerName::SetVisible( RwBool bVisible )
 	}
 	else
 	{
-		// SetVisible(FALSE) ¸¦ ÇßÀ» ¶§´Â ¹«Á¶°Ç ²¨ÁØ´Ù.
+		// SetVisible(FALSE) ë¥¼ í–ˆì„ ë•ŒëŠ” ë¬´ì¡°ê±´ êº¼ì¤€ë‹¤.
 		CNtlPLEntity::SetVisible( bVisible );
 	}
 }
@@ -1131,7 +1131,7 @@ void CNtlPLPlayerName::SetNickNameColor( const WCHAR* pwcTitle, COLORREF color )
 	if( m_pNickTexture )
 		m_pNickTexture->FillClear();
 
-	// ÀÌ¸§ À¯È¿¼º ÆÇ´Ü
+	// ì´ë¦„ ìœ íš¨ì„± íŒë‹¨
 	if( pwcTitle == NULL || (RwInt32)wcslen( pwcTitle ) <= 0 )
 	{
 		if( m_pNickTexture )
@@ -1143,7 +1143,7 @@ void CNtlPLPlayerName::SetNickNameColor( const WCHAR* pwcTitle, COLORREF color )
 		return;
 	}	
 
-	// ÆÇ´Ü
+	// íŒë‹¨
 	if( CreateNickNameTexture( pwcTitle ) )
 	{
 		m_byFlag |= dNTL_PL_FLAG_NICK;
@@ -1163,7 +1163,7 @@ void CNtlPLPlayerName::SetNickNameColor( const WCHAR* pwcTitle, COLORREF color )
 		rect.right	= rect.left + size.x;
 		rect.bottom = rect.top + size.y;
 
-		// texture¿¡ string copy
+		// textureì— string copy
 		g_FontMgr.BitmapToTexture(m_pNickTexture, rect, color, TE_OUTLINE, 0, 2);
 	}
 }

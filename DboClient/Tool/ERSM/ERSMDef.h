@@ -2,12 +2,12 @@
 
 #define CONFIG_FILE_NAME    "ERSMConfig.xml"      
 
-#define ERSM_ID_FILE_NAME	"DboErrorInfo.xml"			///< DBOÀÇ À¯ÀúID Á¤º¸¸¦ °¡Áö°í ÀÖ´Â ·Î±× ÆÄÀÏÀÌ¸§
+#define ERSM_ID_FILE_NAME	"DboErrorInfo.xml"			///< DBOì˜ ìœ ì €ID ì •ë³´ë¥¼ ê°€ì§€ê³  ìžˆëŠ” ë¡œê·¸ íŒŒì¼ì´ë¦„
 
 #define RCAST				reinterpret_cast
 #define CCAST				const_cast
 
-#define ERSM_BUF_SIZE		64							///< ±âº» ¹öÆÛ »çÀÌÁî 
-#define ERSM_FILE_BUF_SIZE	4096						///< ÆÄÀÏ ¹öÆÛ »çÀÌÁî
+#define ERSM_BUF_SIZE		64							///< ê¸°ë³¸ ë²„í¼ ì‚¬ì´ì¦ˆ 
+#define ERSM_FILE_BUF_SIZE	4096						///< íŒŒì¼ ë²„í¼ ì‚¬ì´ì¦ˆ
 
-#define ERSM_NODE_USER_ID	"EXTRA_ERROR_INFO/USER_ID"	///< À¯Àú ID°¡ ´ã°ÜÀÖ´Â ³ëµå
+#define ERSM_NODE_USER_ID	"EXTRA_ERROR_INFO/USER_ID"	///< ìœ ì € IDê°€ ë‹´ê²¨ìžˆëŠ” ë…¸ë“œ

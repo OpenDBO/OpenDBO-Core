@@ -13,7 +13,7 @@ CScrollBar::CScrollBar(CComponent *pParent, CSurfaceManager *pSurfaceManager)
 	m_pImpl = NTL_NEW CScrollBar_Generic(this, 0, 100, 0, false, false);
 
 	//------------------------------------------
-	// decrease and increase buttonÀ» »ı¼ºÇÑ´Ù.
+	// decrease and increase buttonì„ ìƒì„±í•œë‹¤.
 
 	m_pBtnInc = NTL_NEW CButton(CRectangle(0,0,0,0),"",this,pSurfaceManager);
 	m_pBtnDec = NTL_NEW CButton(CRectangle(0,0,0,0),"",this,pSurfaceManager);
@@ -37,7 +37,7 @@ CScrollBar::CScrollBar(const CRectangle &rtPos, int nMin, int nMax, bool bOrient
 	m_pImpl = NTL_NEW CScrollBar_Generic(this, nMin, nMax, 0, bOrientation, false);
 
 	//------------------------------------------
-	// decrease and increase buttonÀ» »ı¼ºÇÑ´Ù.
+	// decrease and increase buttonì„ ìƒì„±í•œë‹¤.
 
 	m_pBtnInc = NTL_NEW CButton(CRectangle(0,0,0,0),"",this,pSurfaceManager);
 	m_pBtnDec = NTL_NEW CButton(CRectangle(0,0,0,0),"",this,pSurfaceManager);
@@ -62,7 +62,7 @@ CScrollBar::CScrollBar(const CRectangle &ptPos,bool bOrientation,CComponent *pPa
 	m_pImpl = NTL_NEW CScrollBar_Generic(this, 0, 100, 0, bOrientation, false);
 
 	//------------------------------------------
-	// decrease and increase buttonÀ» »ı¼ºÇÑ´Ù.
+	// decrease and increase buttonì„ ìƒì„±í•œë‹¤.
 
 	m_pBtnInc = NTL_NEW CButton(CRectangle(0,0,0,0),"",this,pSurfaceManager);
 	m_pBtnDec = NTL_NEW CButton(CRectangle(0,0,0,0),"",this,pSurfaceManager);
@@ -283,7 +283,7 @@ VOID CScrollBar::SetMinSliderLength(int nLength)
 }
 
 /////////////////////////////////////////////////////////////////
-// slider surface¸¦ Ãß°¡ÇÑ´Ù.
+// slider surfaceë¥¼ ì¶”ê°€í•œë‹¤.
 /////////////////////////////////////////////////////////////////
 
 VOID CScrollBar::AddSurfaceSlider(CSurface surface)
@@ -298,7 +298,7 @@ VOID CScrollBar::AddSurfaceSlider(CSurface surface)
 
 
 /////////////////////////////////////////////////////////////////
-// layout surface¸¦ Ãß°¡ÇÑ´Ù.
+// layout surfaceë¥¼ ì¶”ê°€í•œë‹¤.
 /////////////////////////////////////////////////////////////////
 
 VOID CScrollBar::AddSurfaceLayout(CSurface surface)
@@ -575,7 +575,7 @@ VOID CScrollBar::OnPaint(VOID)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
-//: thumb track or slider bar¸¦ Àâ°í ÀÌµ¿ÇßÀ» °æ¿ì È£ÃâµÇ´Â function
+//: thumb track or slider barë¥¼ ì¡ê³  ì´ë™í–ˆì„ ê²½ìš° í˜¸ì¶œë˜ëŠ” function
 
 VOID CScrollBar::SliderMovePaint(VOID)
 {

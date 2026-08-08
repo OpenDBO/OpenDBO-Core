@@ -63,7 +63,7 @@ void CTSProject::Load( const CString& strFullName )
 	ar >> strHeader;
 	if ( strHeader != m_strHeader )
 	{
-		AfxMessageBox( _T("TS project fileÀÌ ¾Æ´Õ´Ï´Ù") );
+		AfxMessageBox( _T("TS project fileì´ ì•„ë‹™ë‹ˆë‹¤") );
 		return;
 	}
 	ar >> m_strProjName;
@@ -100,7 +100,7 @@ void CTSProject::Reload( void )
 	if ( !LoadTS( m_strPath ) )
 	{
 		CString strMessage;
-		strMessage.Format( _T("%s¿¡¼­ ÆÄÀÏÀ» Æ®¸®°Å ÆÄÀÏµéÀ» ÀĞ¾î µéÀÌ´Âµ¥ ½ÇÆĞÇß½À´Ï´Ù"), m_strPath.GetString() );
+		strMessage.Format( _T("%sì—ì„œ íŒŒì¼ì„ íŠ¸ë¦¬ê±° íŒŒì¼ë“¤ì„ ì½ì–´ ë“¤ì´ëŠ”ë° ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤"), m_strPath.GetString() );
 		AfxMessageBox( strMessage );
 
 		Delete();
@@ -116,7 +116,7 @@ void CTSProject::Create( const CString& strProjPath )
 	if ( !LoadTS( strProjPath ) )
 	{
 		CString strMessage;
-		strMessage.Format( _T("%s¿¡¼­ ÆÄÀÏÀ» Æ®¸®°Å ÆÄÀÏµéÀ» ÀĞ¾î µéÀÌ´Âµ¥ ½ÇÆĞÇß½À´Ï´Ù"), strProjPath.GetString() );
+		strMessage.Format( _T("%sì—ì„œ íŒŒì¼ì„ íŠ¸ë¦¬ê±° íŒŒì¼ë“¤ì„ ì½ì–´ ë“¤ì´ëŠ”ë° ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤"), strProjPath.GetString() );
 		AfxMessageBox( strMessage );
 
 		Delete();

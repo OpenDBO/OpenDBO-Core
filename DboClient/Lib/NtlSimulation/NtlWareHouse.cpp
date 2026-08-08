@@ -84,24 +84,24 @@ VOID CNtlWarehouse::HandleEvents(RWS::CMsg &pMsg)
 		{
 		case NESWUT_RECIEVE_DATA:
 			{
-				// °ÔÀÓÁß Ã³À½ Ã¢°í µ¥ÀÌÅÍ¸¦ ¹Þ¾Ò´Ù
+				// ê²Œìž„ì¤‘ ì²˜ìŒ ì°½ê³  ë°ì´í„°ë¥¼ ë°›ì•˜ë‹¤
 				m_bRecieveData_from_Server = TRUE;
 				break;
 			}
 		case NESWUT_WAREHOUSE_START:
 			{
-				// °ÔÀÓÁß Ã³À½À¸·Î Ã¢°í¸¦ ¿­¾ú´Ù
+				// ê²Œìž„ì¤‘ ì²˜ìŒìœ¼ë¡œ ì°½ê³ ë¥¼ ì—´ì—ˆë‹¤
 				break;
 			}
 		case NESWUT_ADD_ZENNY:
 			{
-				// Ã¢°í¿¡ Á¦´Ï°¡ ´Ã¾ú´Ù
+				// ì°½ê³ ì— ì œë‹ˆê°€ ëŠ˜ì—ˆë‹¤
 				m_uiZenny += pSobWarehouseUpdate->uiValue;
 				break;
 			}
 		case NESWUT_SUB_ZENNY:
 			{
-				// Ã¢°í¿¡ Á¦´Ï°¡ ÁÙ¾ú´Ù
+				// ì°½ê³ ì— ì œë‹ˆê°€ ì¤„ì—ˆë‹¤
 				m_uiZenny -= pSobWarehouseUpdate->uiValue;
 				break;
 			}
@@ -217,15 +217,15 @@ void CNtlWarehouse::CreateEventHandler(RWS::CMsg &pMsg)
 			RwInt8 bySlot = (RwInt8)(pItemProfile[i].byPos + CONTAINER_TYPE_BANK1);
 			if(bySlot == CONTAINER_TYPE_BANK4)
 			{
-				// °øÀ¯ Ã¢°í¸¦ ±¸ÀÔÇÏ¿´´Ù
+				// ê³µìœ  ì°½ê³ ë¥¼ êµ¬ìž…í•˜ì˜€ë‹¤
 				m_bHaveCommonWarehouse = TRUE;
 			}
 			else if(bySlot >= CONTAINER_TYPE_BANK1 && bySlot <= CONTAINER_TYPE_BANK3)
 			{
-				// ÀÏ¹Ý Ã¢°í¸¦ ±¸ÀÔÇÏ¿´´Ù
+				// ì¼ë°˜ ì°½ê³ ë¥¼ êµ¬ìž…í•˜ì˜€ë‹¤
 			}
 
-			// Ã¢°í¸¦ ±¸ÀÔÇßÀ½À» Å¬¶óÀÌ¾ðÆ® ´Ü¿¡ ¾Ë¸°´Ù			
+			// ì°½ê³ ë¥¼ êµ¬ìž…í–ˆìŒì„ í´ë¼ì´ì–¸íŠ¸ ë‹¨ì— ì•Œë¦°ë‹¤			
 			CNtlSLEventGenerator::SobUpdate(GetNtlSLGlobal()->GetSobAvatar()->GetSerialID(), EVENT_AIUT_WAREHOUSE, NESWUT_BUY_SLOT);
 		}
 		else if(byPlace >= CONTAINER_TYPE_BANK1 && byPlace <= CONTAINER_TYPE_BANK4)
@@ -252,7 +252,7 @@ void CNtlWarehouse::AddEventHandler(RWS::CMsg &pMsg)
 
 	RwUInt8 byPlace = pSobItemAdd->byPlace;
 	if(byPlace == CONTAINER_TYPE_BANK1)
-	{	// ±âº»ÀûÀ¸·Î Ã¢°í ÇÏ³ª´Â ÁÖ¾îÁö±â¿¡ »ç½Ç»ó ÀÌ °æ¿ì´Â ½ÇÇàµÇÁö ¾Ê´Â´Ù
+	{	// ê¸°ë³¸ì ìœ¼ë¡œ ì°½ê³  í•˜ë‚˜ëŠ” ì£¼ì–´ì§€ê¸°ì— ì‚¬ì‹¤ìƒ ì´ ê²½ìš°ëŠ” ì‹¤í–‰ë˜ì§€ ì•ŠëŠ”ë‹¤
 		CreateItem(GetNtlSobManager()->GetSobObject(m_hWareHouseSlot[0]), pSobItemAdd);
 	}
 	else if(byPlace == CONTAINER_TYPE_BANK2)
@@ -329,7 +329,7 @@ void CNtlWarehouse::ItemMoveEventHandler(RWS::CMsg &pMsg)
 
 	if(pItemMove->byDestPlace > CONTAINER_TYPE_BANK_FIRST && pItemMove->byDestPlace <= CONTAINER_TYPE_BANK_LAST)
 	{	
-		// Ã¢°í·Î ¾ÆÀÌÅÛÀ» ³Ö´Â °æ¿ì
+		// ì°½ê³ ë¡œ ì•„ì´í…œì„ ë„£ëŠ” ê²½ìš°
 
 		RwUInt8 byDestParentSlotIdx = (RwUInt8)(pItemMove->byDestPlace - CONTAINER_TYPE_BANK1);
 
@@ -346,7 +346,7 @@ void CNtlWarehouse::ItemMoveEventHandler(RWS::CMsg &pMsg)
 			NTL_RETURNVOID();
 		}		
 
-		// source ÀÌµ¿.
+		// source ì´ë™.
 		pSrcSobItem->SetParentItemSerial(m_hWareHouseSlot[byDestParentSlotIdx]);
 		pDestParentBagSobItem->SetChildSerial(pItemMove->byDestSlotIdx, pItemMove->hSrcSerial);
 
@@ -367,7 +367,7 @@ void CNtlWarehouse::ItemMoveEventHandler(RWS::CMsg &pMsg)
 				NTL_RETURNVOID();
 			}
 
-			// dest ÀÌµ¿.															
+			// dest ì´ë™.															
 			if(pItemMove->hDestSerial != INVALID_SERIAL_ID)
 			{
 				CNtlSobItem* pDestSobItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( pItemMove->hDestSerial ) );
@@ -384,7 +384,7 @@ void CNtlWarehouse::ItemMoveEventHandler(RWS::CMsg &pMsg)
 		}
 		else if(pItemMove->bySrcPlace == CONTAINER_TYPE_BAGSLOT)
 		{	
-			// dest ÀÌµ¿.
+			// dest ì´ë™.
 			CNtlInventory* pInventory = GetNtlSLGlobal()->GetSobAvatar()->GetInventory();
 			pInventory->SetBagItem(pItemMove->bySrcSlotIdx, pItemMove->hDestSerial);
 		}
@@ -400,7 +400,7 @@ void CNtlWarehouse::ItemMoveEventHandler(RWS::CMsg &pMsg)
 				NTL_RETURNVOID();
 			}
 
-			// dest ÀÌµ¿.
+			// dest ì´ë™.
 			if(pItemMove->hDestSerial != INVALID_SERIAL_ID)
 			{
 				CNtlSobItem *pDestSobItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( pItemMove->hDestSerial ) );
@@ -419,7 +419,7 @@ void CNtlWarehouse::ItemMoveEventHandler(RWS::CMsg &pMsg)
 		{	
 			CNtlInventory* pInventory = GetNtlSLGlobal()->GetSobAvatar()->GetInventory();
 
-			// dest ÀÌµ¿.						
+			// dest ì´ë™.						
 			if(pItemMove->hDestSerial != INVALID_SERIAL_ID)
 			{
 				CNtlSobItem *pDestSobItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( pItemMove->hDestSerial ) );
@@ -437,7 +437,7 @@ void CNtlWarehouse::ItemMoveEventHandler(RWS::CMsg &pMsg)
 	}
 	else if(pItemMove->bySrcPlace > CONTAINER_TYPE_BANK_FIRST && pItemMove->bySrcPlace <= CONTAINER_TYPE_BANK_LAST)
 	{
-		// Ã¢°í¿¡¼­ ¾ÆÀÌÅÛÀ» ´Ù¸¥ ÄÁÅ×ÀÌ³Ê·Î ¿Å±â´Â °æ¿ì
+		// ì°½ê³ ì—ì„œ ì•„ì´í…œì„ ë‹¤ë¥¸ ì»¨í…Œì´ë„ˆë¡œ ì˜®ê¸°ëŠ” ê²½ìš°
 		
 		CNtlInventory* pInventory = GetNtlSLGlobal()->GetSobAvatar()->GetInventory();
 		RwUInt8 bySrcParentSlotIdx = (RwUInt8)(pItemMove->bySrcPlace - CONTAINER_TYPE_BANK1);
@@ -455,7 +455,7 @@ void CNtlWarehouse::ItemMoveEventHandler(RWS::CMsg &pMsg)
 			NTL_RETURNVOID();
 		}
 
-		// dest ÀÌµ¿.
+		// dest ì´ë™.
 		if(pItemMove->hDestSerial != INVALID_SERIAL_ID)
 		{
 			CNtlSobItem* pDestSobItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( pItemMove->hDestSerial ) );
@@ -472,13 +472,13 @@ void CNtlWarehouse::ItemMoveEventHandler(RWS::CMsg &pMsg)
 
 		if(pItemMove->byDestPlace == CONTAINER_TYPE_BAGSLOT)
 		{
-			// source ÀÌµ¿.
+			// source ì´ë™.
 			pSrcSobItem->SetParentItemSerial(INVALID_SERIAL_ID);
 			pInventory->SetBagItem(pItemMove->byDestSlotIdx, pItemMove->hSrcSerial);			
 		}
 		else if(pItemMove->byDestPlace >= CONTAINER_TYPE_BAG_FIRST && pItemMove->byDestPlace <= CONTAINER_TYPE_BAG_LAST)
 		{
-			// source ÀÌµ¿.
+			// source ì´ë™.
 			RwUInt8 byDestParentSlotIdx = (RwUInt8)(pItemMove->byDestPlace - CONTAINER_TYPE_BAG1);
 			SERIAL_HANDLE hDestItemHandle = pInventory->GetBagItem(byDestParentSlotIdx);
 			CNtlSobItem *pDestParentBagSobItem = reinterpret_cast<CNtlSobItem*>(GetNtlSobManager()->GetSobObject( hDestItemHandle ) );
@@ -493,7 +493,7 @@ void CNtlWarehouse::ItemMoveEventHandler(RWS::CMsg &pMsg)
 		}
 		else if(pItemMove->byDestPlace == CONTAINER_TYPE_EQUIP)
 		{
-			// source ÀÌµ¿.
+			// source ì´ë™.
 			pSrcSobItem->SetParentItemSerial(INVALID_SERIAL_ID);
 			pInventory->SetEquipItem(pItemMove->byDestSlotIdx, pItemMove->hSrcSerial);
 		}
@@ -563,7 +563,7 @@ void CNtlWarehouse::ItemStackMoveEventHandler(RWS::CMsg &msg)
 		NTL_RETURNVOID();
 	}	
 
-	// µÑ·Î ³ª´· ¶§
+	// ë‘˜ë¡œ ë‚˜ë‰  ë•Œ
 	if( pDestBag->GetChildSerial( pItemStackMove->byDestSlotIdx ) == INVALID_SERIAL_ID )
 	{		
 		CNtlSobItemAttr* pSrcItemAttr = reinterpret_cast<CNtlSobItemAttr*>( pSrcItem->GetSobAttr() );
@@ -597,7 +597,7 @@ void CNtlWarehouse::ItemStackMoveEventHandler(RWS::CMsg &msg)
 		pSrcItem->HandleEvents( msg );
 	}
 
-	//  ÇÏ³ª·Î ÇÕÃÄÁú ¶§
+	//  í•˜ë‚˜ë¡œ í•©ì³ì§ˆ ë•Œ
 	else if( pItemStackMove->bySrcStackCount == 0 )
 	{
 		CNtlSobItem* pDestItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( pItemStackMove->hDestSerial ) );
@@ -619,11 +619,11 @@ void CNtlWarehouse::ItemStackMoveEventHandler(RWS::CMsg &msg)
 				pItemStackMove->hSrcSerial, pItemStackMove->bySrcPlace, pItemStackMove->bySrcSlotIdx );
 		}		
 
-		// Stack Àû¿ë
+		// Stack ì ìš©
 		pDestItem->HandleEvents( msg );
 	}
 
-	// µÑ´Ù Á¸ÀçÇÒ ¶§
+	// ë‘˜ë‹¤ ì¡´ìž¬í•  ë•Œ
 	else
 	{
 		CNtlSobItem* pDestItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( pItemStackMove->hDestSerial ) );

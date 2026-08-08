@@ -1,4 +1,4 @@
-// GamePropVisibleDlg.cpp : ���� �����Դϴ�.
+// GamePropVisibleDlg.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "GamePropVisibleDlg.h"
 
 
-// CGamePropVisibleDlg ��ȭ �����Դϴ�.
+// CGamePropVisibleDlg 대화 상자입니다.
 
 IMPLEMENT_DYNAMIC(CGamePropVisibleDlg, CDialog)
 
@@ -48,7 +48,7 @@ BEGIN_MESSAGE_MAP(CGamePropVisibleDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CGamePropVisibleDlg �޽��� ó�����Դϴ�.
+// CGamePropVisibleDlg 메시지 처리기입니다.
 
 LRESULT CGamePropVisibleDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -102,13 +102,13 @@ BOOL CGamePropVisibleDlg::OnInitDialog()
 
 void CGamePropVisibleDlg::OnBnClickedOk()
 {
-	// TODO: ���⿡ ��Ʈ�� �˸� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	OnOK();
 }
 
 void CGamePropVisibleDlg::OnBnClickedCancel()
 {
-	// TODO: ���⿡ ��Ʈ�� �˸� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	OnCancel();
 }
 

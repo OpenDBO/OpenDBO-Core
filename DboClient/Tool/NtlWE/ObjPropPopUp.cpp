@@ -1,4 +1,4 @@
-// ObjPropPopUp.cpp : ���� �����Դϴ�.
+// ObjPropPopUp.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -24,7 +24,7 @@
 
 #include "ObjPropPopUp.h"
 
-// CObjPropPopUp ��ȭ �����Դϴ�.
+// CObjPropPopUp 대화 상자입니다.
 
 IMPLEMENT_DYNAMIC(CObjPropPopUp, CDialog)
 
@@ -79,7 +79,7 @@ BEGIN_MESSAGE_MAP(CObjPropPopUp, CDialog)
 END_MESSAGE_MAP()
 
 
-// CObjPropPopUp �޽��� ó�����Դϴ�.
+// CObjPropPopUp 메시지 처리기입니다.
 
 BOOL CObjPropPopUp::OnInitDialog()
 {
@@ -373,7 +373,7 @@ BOOL CObjPropPopUp::OnInitDialog()
 	UpdateData(TRUE);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ����: OCX �Ӽ� �������� FALSE�� ��ȯ�ؾ� �մϴ�.
+	// 예외: OCX 속성 페이지는 FALSE를 반환해야 합니다.
 }
 
 BOOL CObjPropPopUp::PreTranslateMessage(MSG* pMsg)
@@ -467,7 +467,7 @@ void CObjPropPopUp::OnDestroy()
 
 	CDialog::OnDestroy();
 
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 }
 
 void CObjPropPopUp::OnBnClickedTrigger()
@@ -490,12 +490,12 @@ void CObjPropPopUp::OnBnClickedTrigger()
 
 void CObjPropPopUp::OnEnChangeVisibilityDist()
 {
-	// TODO:  RICHEDIT ��Ʈ���� ���, �� ��Ʈ����
-	// CDialog::OnInitDialog() �Լ��� �������ϰ�  ����ũ�� OR �����Ͽ� ������
-	// ENM_CHANGE �÷��׸� �����Ͽ� CRichEditCtrl().SetEventMask()�� ȣ���ؾ߸�
-	// �ش� �˸� �޽����� �����ϴ�.
+	// TODO:  RICHEDIT 컨트롤인 경우, 이 컨트롤은
+	// CDialog::OnInitDialog() 함수를 재지정하고  마스크에 OR 연산하여 설정된
+	// ENM_CHANGE 플래그를 지정하여 CRichEditCtrl().SetEventMask()를 호출해야만
+	// 해당 알림 메시지를 보냅니다.
 
-	// TODO:  ���⿡ ��Ʈ�� �˸� ó���� �ڵ带 �߰��մϴ�.
+	// TODO:  여기에 컨트롤 알림 처리기 코드를 추가합니다.
 	UpdateData(TRUE);
 	m_NtlDoodadsPropParam.VisibilityDist = static_cast<RwReal>(atof(m_strVisibilityDist.GetBuffer(0)));
 }
@@ -506,8 +506,8 @@ void CObjPropPopUp::OnBnClickedOk()
 
 	CNtlPLObject* pNtlPLObject = dGETHDL()->GetCurDoodad();
 
-	// LightMap Flags �� OBJECT_CREATE_PARAM �ȿ� �����Ƿ� ���⼭ ���� ���� �Ѵ�.
-	// ���߿� �ٸ� �κе� �������� ��� ������ �ű��.
+	// LightMap Flags 는 OBJECT_CREATE_PARAM 안에 없으므로 여기서 직접 셋팅 한다.
+	// 나중에 다른 부분도 이쪽으로 모두 로직을 옮긴다.
 	
 	sNTL_FIELD_PROP sNtlFieldProp;
 	dGETMGR()->GetAFieldProp(pNtlPLObject->GetPosition(), sNtlFieldProp);

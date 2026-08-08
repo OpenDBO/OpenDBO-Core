@@ -34,96 +34,96 @@
 #define BANDI_VIDEO_LIBRARY_VERSION			_BVL_MAKE_VER(1,1,0,5)		// 1.1.0.5
 
 ///e// Notification Messages
-///k// ÀÌº¥Æ® ¹ß»ı½Ã NOTIFY ¸Ş½ÃÁö
+///k// å ì‹±ë¸ì˜™íŠ¸ å ìŒ©ì‚¼ì˜™å ì™ì˜™ NOTIFY å ìŒ¨ì™ì˜™å ì™ì˜™
 ///e// Use RegisterWindowMessage() function to register messages
-///k// RegisterWindowMessage()·Î ¼±¾ğÇÑÈÄ »ç¿ëÇÑ´Ù.
+///k// RegisterWindowMessage()ë¡œ ì„ ì–¸í•œí›„ ì‚¬ìš©í•œë‹¤.
 
 extern UINT	WM_BVNOTIFY_EOF;				// END OF FILE NOTIFICATION, WPARAM: BandiVideo * pBV 
-extern UINT	WM_BVNOTIFY_OPENED;				///k// OpenAsync() È£Ãâ½Ã ÆÄÀÏ ¿­±â °á°ú Åëº¸, WPARAM: ¼º°ø ¿©ºÎ(HRESULT) ///e// result of OpenAsync(), WPARAM: HRESULT value of OpenAsync()
+extern UINT	WM_BVNOTIFY_OPENED;				///k// OpenAsync() È£ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ëº¸, WPARAM: ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(HRESULT) ///e// result of OpenAsync(), WPARAM: HRESULT value of OpenAsync()
 
 ///e// definition of volume min, volume max
-///k// º¼·ı ÃÖ´ë, ÃÖ¼Ò°ª
+///k// å ì™ì˜™å ì™ì˜™ å ìŒëŒì˜™, å ìŒì†Œê³¤ì˜™
 #define	BVL_MIN_VOLUME	0
 #define	BVL_MAX_VOLUME	255
 
 
 ///e// pixel type of video in movie file
-///k// ÀÌ¹ÌÁöÀÇ ÇÈ¼¿ Æ÷¸Ë(Å¸ÀÔ)
+///k// å ì‹±ë±„ì˜™å ì™ì˜™å ì™ì˜™ å ì‹«ì‡½ì˜™ å ì™ì˜™å ì™ì˜™(íƒ€å ì™ì˜™)
 enum BVL_PIXEL_FORMAT
 {
-	BVLPF_X8R8G8B8,							///e// use D3DFMT_X8R8G8B8 in D3D9	///k // D3DFMT_X8R8G8B8 »ç¿ë
-	BVLPF_A8R8G8B8,							///e// use D3DFMT_A8R8G8B8 in D3D9	///k // D3DFMT_A8R8G8B8 »ç¿ë
-	BVLPF_R5G6B5,							///e// use D3DFMT_R5G6B5 in D3D9	///k // D3DFMT_R5G6B5 »ç¿ë
+	BVLPF_X8R8G8B8,							///e// use D3DFMT_X8R8G8B8 in D3D9	///k // D3DFMT_X8R8G8B8 ì‚¬ìš©
+	BVLPF_A8R8G8B8,							///e// use D3DFMT_A8R8G8B8 in D3D9	///k // D3DFMT_A8R8G8B8 ì‚¬ìš©
+	BVLPF_R5G6B5,							///e// use D3DFMT_R5G6B5 in D3D9	///k // D3DFMT_R5G6B5 ì‚¬ìš©
 };
 
 ///e// Options for Open() option
-///k// Open() ÇÔ¼ö ¿É¼Ç
+///k// Open() å ìŒ‰ì‡½ì˜™ å ì‹¬ì‡½ì˜™
 enum BVL_OPEN_OPT
 {
-	BVL_OPEN_OPT_NONE,						///k // ÆÄÀÏ ¿­±â¸¸ ÇÏ°í Àç»ıÀº ÇÏÁö ¾ÊÀ½	///e// Open only
-	BVL_OPEN_OPT_AUTOPLAY,					///k // ÆÄÀÏ ¿­±â°¡ ¿Ï·áµÇ¸é ÀÚµ¿ Àç»ı		///e// Open and play
-	BVL_OPEN_OPT_AUTOPLAY_REPEAT,			///k // ÆÄÀÏ ¿­±â°¡ ¿Ï·áµÇ¸é ÀÚµ¿ ¹İº¹ Àç»ı	///e// Open and play repeatedly
+	BVL_OPEN_OPT_NONE,						///k // íŒŒì¼ ì—´ê¸°ë§Œ í•˜ê³  ì¬ìƒì€ í•˜ì§€ ì•ŠìŒ	///e// Open only
+	BVL_OPEN_OPT_AUTOPLAY,					///k // íŒŒì¼ ì—´ê¸°ê°€ ì™„ë£Œë˜ë©´ ìë™ ì¬ìƒ		///e// Open and play
+	BVL_OPEN_OPT_AUTOPLAY_REPEAT,			///k // íŒŒì¼ ì—´ê¸°ê°€ ì™„ë£Œë˜ë©´ ìë™ ë°˜ë³µ ì¬ìƒ	///e// Open and play repeatedly
 };
 
 ///e// Audio devide enumerations
-///k// ¿Àµğ¿À ÀåÄ¡ ¼³Á¤
+///k// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
 enum BVL_AUDIO_DEVICE
 {
-	BVL_AUDIO_DEVICE_NULL,					///e // disable audio track										///k // À½¼ºÀç»ı ¾øÀ½		
-	BVL_AUDIO_DEVICE_DSOUND					///e // select Direct Sound to play audio track in video file	///k // DirectSound ¸¦ ÀÌ¿ëÇÏ¿© À½¼ºÀ» Àç»ıÇÔ
+	BVL_AUDIO_DEVICE_NULL,					///e // disable audio track										///k // ìŒì„±ì¬ìƒ ì—†ìŒ		
+	BVL_AUDIO_DEVICE_DSOUND					///e // select Direct Sound to play audio track in video file	///k // DirectSound ë¥¼ ì´ìš©í•˜ì—¬ ìŒì„±ì„ ì¬ìƒí•¨
 };
 
 
 enum BVL_CONTEXT_TYPE
 {
-	BVL_CONTEXT_MEMORYBUFFER,				///k // ¸Ş¸ğ¸® ¹öÆÛ¿¡ ¿µ»ó µ¥ÀÌÅ¸¸¦ ÀúÀå		///e// Use MemoryBuffer to decode video frame
-	BVL_CONTEXT_DIRECTX9,					///k // DX9 ÅØ½ºÃ³¿¡ ¿µ»ó µ¥ÀÌÅ¸¸¦ ÀúÀå			///e// Use DirectX 9.0 to decode video frame
+	BVL_CONTEXT_MEMORYBUFFER,				///k // å ìŒ¨ëªŒì˜™ å ì™ì˜™å ìŒœìš¸ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™íƒ€å ì™ì˜™ å ì™ì˜™å ì™ì˜™		///e// Use MemoryBuffer to decode video frame
+	BVL_CONTEXT_DIRECTX9,					///k // DX9 å ìŒ”ì™ì˜™ì²˜å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™íƒ€å ì™ì˜™ å ì™ì˜™å ì™ì˜™			///e// Use DirectX 9.0 to decode video frame
 };
 
 ///e// Current status of Video player
-///k// ºñµğ¿ÀÀÇ ÇöÀç »óÅÂ
+///k// å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
 enum BVL_STATUS
 {
-	BVL_STATUS_UNINITIALIZED=0,				///k // ºñµğ¿À ¶óÀÌºê·¯¸®°¡ Create µÇÁö ¾ÊÀ½								///e// Video library object is not initialized
-	BVL_STATUS_CREATED=1,					///k // ºñµğ¿À ¶óÀÌºê·¯¸®°¡ »ı¼ºµÇ¾úÀ¸³ª ÆÄÀÏÀ» Open ÇÏÁö´Â ¾Ê¾ÒÀ½			///e// Video library object is initialized but video file is not opened
-	BVL_STATUS_STANDBY=1,					///k // ºñµğ¿À ¶óÀÌºê·¯¸®°¡ »ı¼ºµÇ¾úÀ¸³ª ÆÄÀÏÀ» Open ÇÏÁö´Â ¾Ê¾ÒÀ½			///e// Video library object is initialized but video file is not opened
-	BVL_STATUS_OPENED,						///k // ºñµğ¿À ¶óÀÌºê·¯¸®°¡ »ı¼ºµÇ¾ú°í ÆÄÀÏÀÌ Open µÇ¾î Àç»ı°¡´ÉÇÑ »óÅÂÀÓ	///e// Video library object is initialized and video file is opened
-	BVL_STATUS_PLAYING,						///k // ºñµğ¿À°¡ Àç»ıÁßÀÓ													///e// and video player is in playing.
-	BVL_STATUS_PAUSED,						///k // ºñµğ¿À°¡ Àç»ıÁß Á¤ÁöµÈ »óÅÂÀÓ										///e// Video player is paused.
-	BVL_STATUS_SEEKING						///k // ºñµğ¿À°¡ SEEKING Ã³¸®¸¦ ÇÏ°í ÀÖÀ½									///e// Video player is in seeking.
+	BVL_STATUS_UNINITIALIZED=0,				///k // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºê·¯ï¿½ï¿½ï¿½ï¿½ Create ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½								///e// Video library object is not initialized
+	BVL_STATUS_CREATED=1,					///k // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºê·¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Open ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾ï¿½ï¿½ï¿½			///e// Video library object is initialized but video file is not opened
+	BVL_STATUS_STANDBY=1,					///k // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºê·¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Open ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾ï¿½ï¿½ï¿½			///e// Video library object is initialized but video file is not opened
+	BVL_STATUS_OPENED,						///k // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºê·¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Open ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	///e// Video library object is initialized and video file is opened
+	BVL_STATUS_PLAYING,						///k // ë¹„ë””ì˜¤ê°€ ì¬ìƒì¤‘ì„													///e// and video player is in playing.
+	BVL_STATUS_PAUSED,						///k // ë¹„ë””ì˜¤ê°€ ì¬ìƒì¤‘ ì •ì§€ëœ ìƒíƒœì„										///e// Video player is paused.
+	BVL_STATUS_SEEKING						///k // å ì™ì˜™å ì™ì˜™å ì™ì˜™ SEEKING ì²˜å ì™ì˜™å ì™ì˜™ å ì‹¹ê³¤ì˜™ å ì™ì˜™å ì™ì˜™									///e// Video player is in seeking.
 };
 
 ///e// Video Information
-///k// ºñµğ¿À Á¤º¸
+///k// å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
 struct	BVLVideoInfo
 {
-	BVL_STATUS			Status;				///k // ÇöÀçÀÇ Àç»ı»óÅÂ¸¦ ÀúÀåÇÏ°í ÀÖ½À´Ï´Ù.										///e// Current status of video player
-	BVL_PIXEL_FORMAT	Format;				///k // µ¿¿µ»ó Àç»ı ¶óÀÌºê·¯¸®¿¡¼­ µ¿¿µ»óÀ» ·»´õ¸µÇÑ Ç¥¸éÁ¤º¸¸¦ ÀúÀåÇÏ°í ÀÖ½À´Ï´Ù.	///e// Current surface type of video player
-	BVL_OPEN_OPT		Playflag;			///k // ÇÃ·¹ÀÌ½Ã¿¡ »ç¿ëµÇ´Â ¿É¼ÇÀ» ÀúÀåÇÏ°í ÀÖ½À´Ï´Ù.								///e// Current playflag of video player
+	BVL_STATUS			Status;				///k // í˜„ì¬ì˜ ì¬ìƒìƒíƒœë¥¼ ì €ì¥í•˜ê³  ìˆìŠµë‹ˆë‹¤.										///e// Current status of video player
+	BVL_PIXEL_FORMAT	Format;				///k // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºê·¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ö½ï¿½ï¿½Ï´ï¿½.	///e// Current surface type of video player
+	BVL_OPEN_OPT		Playflag;			///k // å ì‹œë¤„ì˜™å ì‹±ì‹œìš¸ì˜™ å ì™ì˜™å ì‹¤ëŒì˜™ å ì‹¬ì‡½ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ê³¤ì˜™ å ìŒì™ì˜™å ì‹¹ëŒì˜™.								///e// Current playflag of video player
 
-	UINT				width;				///k // ÇöÀç Open µÈ µ¿¿µ»óÀÇ °¡·ÎÅ©±â¸¦ ÀúÀåÇÏ°í ÀÖ½À´Ï´Ù.							///e// Width of video frame
-	UINT				height;				///k // ÇöÀç Open µÈ µ¿¿µ»óÀÇ ¼¼·ÎÅ©±â¸¦ ÀúÀåÇÏ°í ÀÖ½À´Ï´Ù.							///e// Height of video frame
+	UINT				width;				///k // å ì™ì˜™å ì™ì˜™ Open å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™í¬å ì©ë¥¼ å ì™ì˜™å ì™ì˜™å ì‹¹ê³¤ì˜™ å ìŒì™ì˜™å ì‹¹ëŒì˜™.							///e// Width of video frame
+	UINT				height;				///k // å ì™ì˜™å ì™ì˜™ Open å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™í¬å ì©ë¥¼ å ì™ì˜™å ì™ì˜™å ì‹¹ê³¤ì˜™ å ìŒì™ì˜™å ì‹¹ëŒì˜™.							///e// Height of video frame
 
-	UINT				ErrorFrames;		///k // µ¿¿µ»ó Àç»ı ¶óÀÌºê·¯¸®¿¡¼­ ¿¡·¯°¡ »ı±ä ÇÁ·¹ÀÓ¼ö¸¦ ³ªÅ¸³À´Ï´Ù.				///e// Total number of error frames
-	double				CurrentPlayTime;	///k // ÇöÀç Àç»ıÀÌ µÇ°íÀÖ´Â ÇÁ·¹ÀÓÀÇ ½Ã°£Á¤º¸¸¦ ³ªÅ¸³À´Ï´Ù.						///e// Timestamp of current frame in video player 
-	double				CurrentRenderTime;	///k // °¡ÀåÃÖ±Ù¿¡ Á¦°øµÈ ÇÁ·¹ÀÓÀÇ ½Ã°£À» ´ã°í ÀÖ½À´Ï´Ù.							///e// Timestamp of last presented frame 
-	double				TotalPlayTime;		///k // ÇöÀç Àç»ıÀÌ µÇ°íÀÖ´Â µ¿¿µ»óÀÇ ÃÑ Àç»ı ½Ã°£À» ÃÊ´ÜÀ§·Î ³ªÅ¸³À´Ï´Ù.			///e// Total duration of video file
+	UINT				ErrorFrames;		///k // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºê·¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½Ï´ï¿½.				///e// Total number of error frames
+	double				CurrentPlayTime;	///k // í˜„ì¬ ì¬ìƒì´ ë˜ê³ ìˆëŠ” í”„ë ˆì„ì˜ ì‹œê°„ì •ë³´ë¥¼ ë‚˜íƒ€ëƒ…ë‹ˆë‹¤.						///e// Timestamp of current frame in video player 
+	double				CurrentRenderTime;	///k // ê°€ì¥ìµœê·¼ì— ì œê³µëœ í”„ë ˆì„ì˜ ì‹œê°„ì„ ë‹´ê³  ìˆìŠµë‹ˆë‹¤.							///e// Timestamp of last presented frame 
+	double				TotalPlayTime;		///k // í˜„ì¬ ì¬ìƒì´ ë˜ê³ ìˆëŠ” ë™ì˜ìƒì˜ ì´ ì¬ìƒ ì‹œê°„ì„ ì´ˆë‹¨ìœ„ë¡œ ë‚˜íƒ€ëƒ…ë‹ˆë‹¤.			///e// Total duration of video file
 };
 
 typedef	struct IBVLMemoryBuffer *LPBVLFRAME, *LPGDIFRAME;
 struct IDirect3DTexture9;
 
 ///e// Buffer Class when using HBITMAP or DIB section
-///k// HBITMAP ÀÌ³ª DIB¸¦ ÀÌ¿ëÇÒ °æ¿ì¿¡ »ç¿ëÇÒ ¹öÆÛ Å¬·¡½º
+///k// HBITMAP ï¿½Ì³ï¿½ DIBï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½ï¿½ì¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 struct IBVLMemoryBuffer
 {
-	virtual	HBITMAP		GetHBitmap(void)		const PURE;	///k // IBVLMemoryBufferÀÇ HBitmapÀ» ¾òÀ½		///e// Get HBitmap of current video frame
-	virtual	BYTE*		GetRasterBuffer(void)	const PURE; ///k // IBVLMemoryBufferÀÇ ¸Ş¸ğ¸®ÁÖ¼Ò¸¦ ¾òÀ½	///e// Get memory address of current video frame
+	virtual	HBITMAP		GetHBitmap(void)		const PURE;	///k // IBVLMemoryBufferå ì™ì˜™ HBitmapå ì™ì˜™ å ì™ì˜™å ì™ì˜™		///e// Get HBitmap of current video frame
+	virtual	BYTE*		GetRasterBuffer(void)	const PURE; ///k // IBVLMemoryBufferå ì™ì˜™ å ìŒ¨ëªŒì˜™å ìŒì†ŒëªŒì˜™ å ì™ì˜™å ì™ì˜™	///e// Get memory address of current video frame
 };
 
 
 ///e// Video Source interface
-///k// ºñµğ¿À ¼Ò½º ÀÎÅÍÆäÀÌ½º
+///k// å ì™ì˜™å ì™ì˜™ å ìŒ€ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì‹±ì™ì˜™
 struct IBandiVideoSource
 {
 public:
@@ -135,7 +135,7 @@ public:
 
 
 ///e// Video Library interface
-///k// ºñµğ¿À Àç»ı ÀÎÅÍÆäÀÌ½º
+///k// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½
 struct IBandiVideo
 {
 public:
@@ -192,7 +192,13 @@ public:
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #ifdef _WIN64
-#	error Not implemented yet
+//#	error Not implemented yet
+#	ifdef _DEBUG
+#		define BANDIVIDEO_DLL_FILE_NAME		_T("BVL64_d.dll")
+#	else
+#		define BANDIVIDEO_DLL_FILE_NAME		_T("BVL64.dll")
+#	endif
+#	define BANDIVIDEO_RELEASE_DLL_FILE_NAME	_T("BVL64.dll")
 #else
 #	ifdef _DEBUG
 #		define BANDIVIDEO_DLL_FILE_NAME		_T("BVL32_d.dll")
@@ -202,40 +208,40 @@ public:
 #	define BANDIVIDEO_RELEASE_DLL_FILE_NAME	_T("BVL32.dll")
 #endif
 ///e// error code
-///k// ¿¡·¯ÄÚµå
-#define BVERR_LOAD_LIBRARY_FAIL				MAKE_BVHRESULT(0x1020)		///k // LoadLibrary ÇÔ¼ö ½ÇÇàÁß ¿¡·¯											///e // Faild to LoadLibrary()
-#define BVERR_ALREADY_CREATED				MAKE_BVHRESULT(0x1021)		///k // ºñµğ¿À ¶óÀÌºê·¯¸®ÀÇ ÀÎ½ºÅÏ½º°¡ ÀÌ¹Ì »ı¼ºµÇ¾úÀ½							///e // Video library instance is already created
-#define BVERR_GET_PROC_ADDRESS_FAIL			MAKE_BVHRESULT(0x1022)		///k // ºñµğ¿À ¶óÀÌºê·¯¸®ÀÇ CreateBandiVideo ÇÔ¼öÀÇ ÁÖ¼Ò¸¦ ¾ò´Âµ¥ ½ÇÆĞÇÏ¿´À½	///e // Failed to get proc address of CreateBandiVideo()
-#define BVERR_LIBRARY_NOT_LOADED			MAKE_BVHRESULT(0x1023)		///k // ¶óÀÌºê·¯¸®°¡ ·ÎµåµÇÁö ¾Ê¾ÒÀ½											///e // Video library is not loaded
-#define BVERR_UNSUPPORTED_OS				MAKE_BVHRESULT(0x1024)		///k // Áö¿øµÇÁö ¾Ê´Â ¿î¿µÃ¼Á¦ÀÓ												///e // Unsupported operating system
-#define BVERR_INVALID_VERSION				MAKE_BVHRESULT(0x1025)		///k // ºñµğ¿À ¶óÀÌºê·¯¸®ÀÇ Çì´õ¿Í DLL ÀÇ ¹öÁ¯ÀÌ ¾È¸ÂÀ½							///e // Mismatch DLL version and header file version
-#define BVERR_OUT_OF_MEMORY					MAKE_BVHRESULT(0x1026)		///k // ¸Ş¸ğ¸®°¡ ºÎÁ·ÇÏ¿© ºñµğ¿À¶óÀÌºê·¯¸®ÀÇ ÀÎ½ºÅÏ½º¸¦ »ı¼ºÇÒ¼ö ¾øÀ½			///e //	Out of memory to create video library instance
-#define BVERR_FAILED						MAKE_BVHRESULT(0x1027)		///k // ÇÔ¼öÀÇ Á¤ÇØÁø ¸í·ÉÀ» Ã³¸®ÇÏ´Âµ¥ ½ÇÆĞÇÏ¿´À½								///e // Failed to appropriate operatio
-#define BVERR_NOT_INITIALIZED				MAKE_BVHRESULT(0x1028)		///k // ÃÊ±âÈ­ µÇÁö ¾ÊÀº ÇÔ¼ö¸¦ »ç¿ëÇÏ¿´À½										///e //	Uninitialied function is used 
-#define BVERR_TIMEOUT						MAKE_BVHRESULT(0x1029)      ///k // ºñµğ¿ÀÆÄÀÏÀ» ÀĞ´ÂÁß ÁöÁ¤µÈ ½Ã°£À» ÃÊ°úÇÏ¿´À½							///e // Timeout in video playing
-#define BVERR_NOT_ENOUGH_DATA				MAKE_BVHRESULT(0x102a)		///k // ºñµğ¿ÀÆÄÀÏÀ» ÀĞ´ÂÁß ¿ÏÀüÇÑ µ¥ÀÌÅÍ¸¦ ÀĞÁö ¸øÇßÀ½							///e // Timeout in video file reading
-#define BVERR_NULL_PTR						MAKE_BVHRESULT(0x102b)      ///k // ÀÎÀÚ·Î NULL ÀÎÀÚ°¡ ´ëÀÔµÇ¾úÀ½											///e // unsupported NULL pointer is in parameter 
-#define BVERR_INIT							MAKE_BVHRESULT(0x102c)      ///k // ÃÊ±âÈ­¿¡ ½ÇÆĞÇÏ¿´À½														///e // failed to initialize video library
-#define BVERR_SYNC							MAKE_BVHRESULT(0x102d)      ///k // AVSYNC¸¦ ¸ÂÃß´Âµ¥ ½ÇÆĞÇÏ¿´À½											///e // Failed to sync audio and video
-#define BVERR_NOT_ENOUGH_BUFFER				MAKE_BVHRESULT(0x102e)      ///k // ÆÄÀÏ ÀĞ±â ¹öÆÛ¸¦ »ı¼ºÇÏ´Âµ¥ ½ÇÆĞÇÏ¿´À½									///e // Failed to create file read buffer
-#define BVERR_END_OF_STREAM					MAKE_BVHRESULT(0x102f)		///k // ÆÄÀÏÀÇ ³¡±îÁö Àç»ıÇÏ¿´À½												///e // End of stream
-#define BVERR_OPEN_FAILED					MAKE_BVHRESULT(0x1030)      ///k // ÆÄÀÏÀÌ ¾ø°Å³ª Áö¿øµÇÁö ¾Ê´Â ÄÁÅ×ÀÌ³Ê Çü½ÄÀÓ								///e // Unsupported file or not exist
-#define BVERR_ALLOC							MAKE_BVHRESULT(0x1031)      ///k // ¸Ş¸ğ¸®¸¦ ÇÒ´çÇÏ±â°¡ ½ÇÆĞÇÏ¿´À½											///e // Failed to create memory buffer
-#define BVERR_INVALID_STREAM				MAKE_BVHRESULT(0x1032)		///k // Àç»ıÆÄÀÏÀÇ Çü½ÄÀÌ ´Ù¸§													///e // Invalid stream in video file
-#define BVERR_UNSUPPORTED					MAKE_BVHRESULT(0x1033)		///k // Áö¿øµÇÁö¾Ê´Â ÆÄÀÏÀÓ														///e //	Unsupported file 
-#define BVERR_NOT_IMPLEMENTED				MAKE_BVHRESULT(0x1034)		///k // ¾ÆÁ÷ ±¸ÇöµÇÁö ¾ÊÀº ±â´ÉÀÓ												///e // Unsupported function
-#define BVERR_INVALID_PARAMS				MAKE_BVHRESULT(0x1035)		///k // Àß¸øµÈ ÆÄ¶ó¸ŞÅÍ															///e // Invalid parameter 
-#define BVERR_ALREADY_PLAYING				MAKE_BVHRESULT(0x1037)		///k // ÇöÀç ÀÌ¹Ì ÇÃ·¹ÀÌ ÁßÀÓ													///e // video library is in playing
-#define BVERR_NOT_OPENED					MAKE_BVHRESULT(0x1038)		///k // Open µÇÁö ¾ÊÀº ÆÄÀÏ¿¡¼­ Àç»ı½Ãµµ										///e // Unopened video file 
-#define BVERR_CREATE_FAILED					MAKE_BVHRESULT(0x1039)		///k // CreateÇÔ¼ö°¡ Á¦´ë·Î Á¾·áµÇÁö ¾ÊÀ½										///e // Create function is not completed
-#define BVERR_ASYNCQUEUE_FULL				MAKE_BVHRESULT(0x103a)		///k // ASYNC ¸í·ÉÅ¥°¡ °¡µæÂü													///e // Async operation queue is full
-#define BVERR_UNSUPPORTED_V_CODEC			MAKE_BVHRESULT(0x103b)		///k // Áö¿øµÇÁö ¾Ê´Â ºñµğ¿À ÄÚµ¦												///e //	Unsupported video codec.
-#define BVERR_UNSUPPORTED_A_CODEC			MAKE_BVHRESULT(0x103c)		///k // Áö¿øµÇÁö ¾Ê´Â ¿Àµğ¿À ÄÚµ¦												///e //	Unsupported audio codec.
+///k// å ì™ì˜™å ì™ì˜™å ìŒ˜ë“¸ì˜™
+#define BVERR_LOAD_LIBRARY_FAIL				MAKE_BVHRESULT(0x1020)		///k // LoadLibrary å ìŒ‰ì‡½ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™											///e // Faild to LoadLibrary()
+#define BVERR_ALREADY_CREATED				MAKE_BVHRESULT(0x1021)		///k // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºê·¯ï¿½ï¿½ï¿½ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½							///e // Video library instance is already created
+#define BVERR_GET_PROC_ADDRESS_FAIL			MAKE_BVHRESULT(0x1022)		///k // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºê·¯ï¿½ï¿½ï¿½ï¿½ CreateBandiVideo ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½Ö¼Ò¸ï¿½ ï¿½ï¿½Âµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½	///e // Failed to get proc address of CreateBandiVideo()
+#define BVERR_LIBRARY_NOT_LOADED			MAKE_BVHRESULT(0x1023)		///k // ï¿½ï¿½ï¿½Ìºê·¯ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ï¿½ ï¿½Ê¾ï¿½ï¿½ï¿½											///e // Video library is not loaded
+#define BVERR_UNSUPPORTED_OS				MAKE_BVHRESULT(0x1024)		///k // å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹­ëŒì˜™ å ì˜ì˜ì²´å ì™ì˜™å ì™ì˜™												///e // Unsupported operating system
+#define BVERR_INVALID_VERSION				MAKE_BVHRESULT(0x1025)		///k // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºê·¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ DLL ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½È¸ï¿½ï¿½ï¿½							///e // Mismatch DLL version and header file version
+#define BVERR_OUT_OF_MEMORY					MAKE_BVHRESULT(0x1026)		///k // ï¿½Ş¸ğ¸®°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìºê·¯ï¿½ï¿½ï¿½ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò¼ï¿½ ï¿½ï¿½ï¿½ï¿½			///e //	Out of memory to create video library instance
+#define BVERR_FAILED						MAKE_BVHRESULT(0x1027)		///k // å ìŒ‰ì‡½ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ ì²˜å ì™ì˜™å ì‹¹ëŠ”ë“¸ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ìš¸ì˜™å ì™ì˜™								///e // Failed to appropriate operatio
+#define BVERR_NOT_INITIALIZED				MAKE_BVHRESULT(0x1028)		///k // ì´ˆê¸°í™” ë˜ì§€ ì•Šì€ í•¨ìˆ˜ë¥¼ ì‚¬ìš©í•˜ì˜€ìŒ										///e //	Uninitialied function is used 
+#define BVERR_TIMEOUT						MAKE_BVHRESULT(0x1029)      ///k // å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹»ëŒì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹œê³¤ì˜™å ì™ì˜™ å ì‹­ê³¤ì˜™å ì‹¹ìš¸ì˜™å ì™ì˜™							///e // Timeout in video playing
+#define BVERR_NOT_ENOUGH_DATA				MAKE_BVHRESULT(0x102a)		///k // å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹»ëŒì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¶ëªŒì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™							///e // Timeout in video file reading
+#define BVERR_NULL_PTR						MAKE_BVHRESULT(0x102b)      ///k // å ì™ì˜™å ìŒ˜ë¤„ì˜™ NULL å ì™ì˜™å ìŒ˜ê³¤ì˜™ å ì™ì˜™å ìŒ‰ë˜ì–µì˜™å ì™ì˜™											///e // unsupported NULL pointer is in parameter 
+#define BVERR_INIT							MAKE_BVHRESULT(0x102c)      ///k // å ì‹­ê¹ì˜™í™”å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ìš¸ì˜™å ì™ì˜™														///e // failed to initialize video library
+#define BVERR_SYNC							MAKE_BVHRESULT(0x102d)      ///k // AVSYNCå ì™ì˜™ å ì™ì˜™å ìŒ©ëŠ”ë“¸ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ìš¸ì˜™å ì™ì˜™											///e // Failed to sync audio and video
+#define BVERR_NOT_ENOUGH_BUFFER				MAKE_BVHRESULT(0x102e)      ///k // å ì™ì˜™å ì™ì˜™ å ì‹»ê¹ì˜™ å ì™ì˜™å ìŒœëªŒì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ëŠ”ë“¸ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ìš¸ì˜™å ì™ì˜™									///e // Failed to create file read buffer
+#define BVERR_END_OF_STREAM					MAKE_BVHRESULT(0x102f)		///k // íŒŒì¼ì˜ ëê¹Œì§€ ì¬ìƒí•˜ì˜€ìŒ												///e // End of stream
+#define BVERR_OPEN_FAILED					MAKE_BVHRESULT(0x1030)      ///k // å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì‹ ë†‚ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹­ëŒì˜™ å ì™ì˜™å ì™ì˜™å ì‹±ë†‚ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™								///e // Unsupported file or not exist
+#define BVERR_ALLOC							MAKE_BVHRESULT(0x1031)      ///k // å ìŒ¨ëª¨ë¦¬ëªŒì˜™ å ìŒ€ëŒì˜™å ì‹¹ê¸°ê°€ å ì™ì˜™å ì™ì˜™å ì‹¹ìš¸ì˜™å ì™ì˜™											///e // Failed to create memory buffer
+#define BVERR_INVALID_STREAM				MAKE_BVHRESULT(0x1032)		///k // ì¬ìƒíŒŒì¼ì˜ í˜•ì‹ì´ ë‹¤ë¦„													///e // Invalid stream in video file
+#define BVERR_UNSUPPORTED					MAKE_BVHRESULT(0x1033)		///k // å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì‹­ëŒì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™														///e //	Unsupported file 
+#define BVERR_NOT_IMPLEMENTED				MAKE_BVHRESULT(0x1034)		///k // ì•„ì§ êµ¬í˜„ë˜ì§€ ì•Šì€ ê¸°ëŠ¥ì„												///e // Unsupported function
+#define BVERR_INVALID_PARAMS				MAKE_BVHRESULT(0x1035)		///k // ì˜ëª»ëœ íŒŒë¼ë©”í„°															///e // Invalid parameter 
+#define BVERR_ALREADY_PLAYING				MAKE_BVHRESULT(0x1037)		///k // å ì™ì˜™å ì™ì˜™ å ì‹±ë±„ì˜™ å ì‹œë¤„ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™													///e // video library is in playing
+#define BVERR_NOT_OPENED					MAKE_BVHRESULT(0x1038)		///k // Open ë˜ì§€ ì•Šì€ íŒŒì¼ì—ì„œ ì¬ìƒì‹œë„										///e // Unopened video file 
+#define BVERR_CREATE_FAILED					MAKE_BVHRESULT(0x1039)		///k // Createí•¨ìˆ˜ê°€ ì œëŒ€ë¡œ ì¢…ë£Œë˜ì§€ ì•ŠìŒ										///e // Create function is not completed
+#define BVERR_ASYNCQUEUE_FULL				MAKE_BVHRESULT(0x103a)		///k // ASYNC å ì™ì˜™å ì™ì˜™íå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™													///e // Async operation queue is full
+#define BVERR_UNSUPPORTED_V_CODEC			MAKE_BVHRESULT(0x103b)		///k // å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹­ëŒì˜™ å ì™ì˜™å ì™ì˜™ å ìŒ˜ë“¸ì˜™												///e //	Unsupported video codec.
+#define BVERR_UNSUPPORTED_A_CODEC			MAKE_BVHRESULT(0x103c)		///k // ì§€ì›ë˜ì§€ ì•ŠëŠ” ì˜¤ë””ì˜¤ ì½”ë±												///e //	Unsupported audio codec.
 
 #define BVL_OK								S_OK
-#define BVWRN_INVALID_STREAM				MAKE_BVSTATUS(0x0001)		///k // ½ºÆ®¸²À» ÀĞ´ÂµµÁß ¿¡·¯°¡ ¹ß»ıÇÏ¿´À¸³ª Àç»ıÀº °¡´ÉÇÔ						///e // Video file has an error but playing is possible. 
-#define BVWRN_REPOSITION_INPROGRESS			MAKE_BVSTATUS(0x0002)		///k // ½ºÆ®¸² SeekingÀÌ µ¿ÀÛÁßÀÓ												///e // Seeking is in progress
-#define BVWRN_INFO_NOT_READY				MAKE_BVSTATUS(0x0003)		///k // ¿Àµğ¿À/ ºñµğ¿À Á¤º¸¸¦ ¾òÀ»¼ö ¾øÀ½										///e // Cannot obtain A/V information
+#define BVWRN_INVALID_STREAM				MAKE_BVSTATUS(0x0001)		///k // ìŠ¤íŠ¸ë¦¼ì„ ì½ëŠ”ë„ì¤‘ ì—ëŸ¬ê°€ ë°œìƒí•˜ì˜€ìœ¼ë‚˜ ì¬ìƒì€ ê°€ëŠ¥í•¨						///e // Video file has an error but playing is possible. 
+#define BVWRN_REPOSITION_INPROGRESS			MAKE_BVSTATUS(0x0002)		///k // å ì™ì˜™íŠ¸å ì™ì˜™ Seekingå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™												///e // Seeking is in progress
+#define BVWRN_INFO_NOT_READY				MAKE_BVSTATUS(0x0003)		///k // ì˜¤ë””ì˜¤/ ë¹„ë””ì˜¤ ì •ë³´ë¥¼ ì–»ì„ìˆ˜ ì—†ìŒ										///e // Cannot obtain A/V information
 
 typedef HRESULT (*LPCREATEBANDIVIDEO)(DWORD version,void **p);
 
@@ -261,7 +267,7 @@ public :
 	}
 
 	///e// Initialize
-	///k// ¶óÀÌºê·¯¸® ÃÊ±âÈ­
+	///k// ï¿½ï¿½ï¿½Ìºê·¯ï¿½ï¿½ ï¿½Ê±ï¿½È­
 
 	HRESULT InitLibrary(LPCTSTR szDllPathName)
 	{
@@ -277,7 +283,7 @@ public :
 		}
 
 		///e	// Load DLL
-		///k	// DLL ·Îµå
+		///k	// DLL å ì‹¸ë“¸ì˜™
 		m_hDll = LoadLibrary(szDllPathName);
 		if(m_hDll==NULL)
 		{
@@ -300,12 +306,12 @@ public :
 		}
 
 		///e	// Create internal object
-		///k	// ³»ºÎ °´Ã¼ »ı¼º
+		///k	// å ì™ì˜™å ì™ì˜™ å ì™ì˜™ì²´ å ì™ì˜™å ì™ì˜™
 		return CreateBandiVideo(m_pBVL);
 	}
 
 	///e	// Release Library and Unload
-	///k	// ¶óÀÌºê·¯¸® ÇØÁ¦
+	///k	// ï¿½ï¿½ï¿½Ìºê·¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	void DestroyLibrary()
 	{
 		if(m_pBVL) m_pBVL->Release();
@@ -330,21 +336,21 @@ public :
 	///e // IBandiVideo object create function
 	///e // Except for several instances to create, please do not call this function directly.
 
-	///k // IBandiVideo °´Ã¼ »ı¼ºÇÔ¼ö
-	///k // ¿©·¯°³ÀÇ ÀÎ½ºÅÏ½º¸¦ »ı¼ºÇÏ´Â °æ¿ì¸¦ Á¦¿ÜÇÏ°í´Â ÀÌ ÇÔ¼ö´Â Á÷Á¢ È£ÃâÇÏÁö 
-	///k // ¸¶½Ã±â ¹Ù¶ø´Ï´Ù.
+	///k // IBandiVideo å ì™ì˜™ì²´ å ì™ì˜™å ì™ì˜™å ìŒ‰ì‡½ì˜™
+	///k // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ì¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+	///k // å ì™ì˜™å ì‹œê¹ì˜™ å ìŒ•ë°ì˜™å ì‹¹ëŒì˜™.
 
 	HRESULT CreateBandiVideo(IBandiVideo*& pBVL)
 	{
 		HRESULT hr;
 
 		///e // Check if library is initialized
-		///k // ¶óÀÌºê·¯¸® ÃÊ±âÈ­ °Ë»ç
+		///k // ï¿½ï¿½ï¿½Ìºê·¯ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½Ë»ï¿½
 
 		if(m_pCreateBandiVideo==NULL) {ASSERT(0); return BVERR_LIBRARY_NOT_LOADED;}
 
 		///e // Create Bandi Video Library object
-		///k // ºñµğ¿À Àç»ı°´Ã¼ »ı¼º
+		///k // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 
 		hr = m_pCreateBandiVideo(BANDI_VIDEO_LIBRARY_VERSION, (void**)&pBVL);
 		if(FAILED(hr)){ASSERT(0);return hr;}
@@ -534,7 +540,7 @@ public :	// IBandiVideo
 
 public :
 	///e	// type casting helper function
-	///k	// GetLastFrame ÇÔ¼ö¸¦ ÀÎÀÚ¿¡µû¶ó ´Ù¸¥ ÇÔ¼ö°¡ È£ÃâµÇ°Ô ÇÔ
+	///k	// GetLastFrame í•¨ìˆ˜ë¥¼ ì¸ìì—ë”°ë¼ ë‹¤ë¥¸ í•¨ìˆ˜ê°€ í˜¸ì¶œë˜ê²Œ í•¨
 	virtual	HRESULT	GetLastFrame(IBVLMemoryBuffer **ppRenderTarget)
 	{
 		if(m_pBVL==NULL) {ASSERT(0); return E_FAIL;}

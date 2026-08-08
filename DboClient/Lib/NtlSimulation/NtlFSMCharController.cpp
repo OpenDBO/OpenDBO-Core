@@ -120,7 +120,7 @@ CNtlFSMPlayerController::~CNtlFSMPlayerController()
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : auto command AI °´Ã¼ »ı¼º.
+//  des : auto command AI ê°ì²´ ìƒì„±.
 //  ------------------------------------------------------------------------
 //  paramater : 
 ////////////////////////////////////////////////////////////////////////////
@@ -136,7 +136,7 @@ void CNtlFSMPlayerController::CreateAutoCmdAI(void)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : auto command AI °´Ã¼ »èÁ¦.
+//  des : auto command AI ê°ì²´ ì‚­ì œ.
 //  ------------------------------------------------------------------------
 //  paramater : 
 ////////////////////////////////////////////////////////////////////////////
@@ -211,7 +211,7 @@ void CNtlFSMPlayerController::UpdateFollowCheck(RwReal fElapsed)
 
 			CNtlSLEventGenerator::SobStateTransition(m_pActor->GetSerialID(), NTL_FSMSID_FIGHTING_FOLLOW);
 
-			// follow packetÀ» º¸³½´Ù.			
+			// follow packetì„ ë³´ë‚¸ë‹¤.			
 			if(!pCharActAgent->IsFightingMode())
 			{
 				pCharActAgent->SetFightingMode(TRUE);
@@ -428,7 +428,7 @@ RwUInt32 CNtlFSMPlayerController::ServerStateUpdateAnalysis(SNtlEventSobServerUp
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : player controller¸¦ update ÇÑ´Ù.
+//  des : player controllerë¥¼ update í•œë‹¤.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : delta time.
@@ -442,7 +442,7 @@ void CNtlFSMPlayerController::Update(RwReal fElapsed)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : event Ã³¸® ÇÔ¼ö.
+//  des : event ì²˜ë¦¬ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : event message
@@ -1074,14 +1074,14 @@ RwUInt32 CNtlFSMPlayerController::SobFaintingEventHandler(RWS::CMsg &pMsg)
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : update¿¡ ÀÇÇØ¼­ »óÅÂ°¡ ¹Ù²î¾úÀ» °æ¿ì notify ÇØ ÁÖ´Â ÇÔ¼ö.
+//  des : updateì— ì˜í•´ì„œ ìƒíƒœê°€ ë°”ë€Œì—ˆì„ ê²½ìš° notify í•´ ì£¼ëŠ” í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : previous state.
 //  \param2 : next state.
 ////////////////////////////////////////////////////////////////////////////
 
-// »óÅÂ update¿¡ ÀÇÇØ¼­ »óÅÂ°¡ ¹Ù²î´Â °æ¿ì.
+// ìƒíƒœ updateì— ì˜í•´ì„œ ìƒíƒœê°€ ë°”ë€ŒëŠ” ê²½ìš°.
 void CNtlFSMPlayerController::NotifyUpdateChangeState(RwUInt32 uiOldState, RwUInt32 uiNextState)
 {
 	///DBO_WARNING_MESSAGE("CNtlFSMPlayerController::NotifyUpdateChangeState");
@@ -1130,7 +1130,7 @@ void CNtlFSMPlayerController::NotifyUpdateChangeState(RwUInt32 uiOldState, RwUIn
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : update¿¡ ÀÇÇÑ idle state change µÉ °æ¿ì Ã³¸® ÇÔ¼ö.
+//  des : updateì— ì˜í•œ idle state change ë  ê²½ìš° ì²˜ë¦¬ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : previous state
@@ -1236,7 +1236,7 @@ void CNtlFSMPlayerController::NotifyOldUpdateStateProc(RwUInt32 uiOldState, RwUI
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : update¿¡ ÀÇÇÑ spawn state change µÉ °æ¿ì Ã³¸® ÇÔ¼ö.
+//  des : updateì— ì˜í•œ spawn state change ë  ê²½ìš° ì²˜ë¦¬ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : previous state
@@ -1248,7 +1248,7 @@ void CNtlFSMPlayerController::NotifyNextUpdateStateSpawnProc(RwUInt32 uiOldState
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : update¿¡ ÀÇÇÑ idle state change µÉ °æ¿ì Ã³¸® ÇÔ¼ö.
+//  des : updateì— ì˜í•œ idle state change ë  ê²½ìš° ì²˜ë¦¬ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : previous state
@@ -1276,7 +1276,7 @@ void CNtlFSMPlayerController::NotifyNextUpdateStateIdleProc(RwUInt32 uiOldState)
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : update¿¡ ÀÇÇÑ hurt state change µÉ °æ¿ì Ã³¸® ÇÔ¼ö.
+//  des : updateì— ì˜í•œ hurt state change ë  ê²½ìš° ì²˜ë¦¬ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : previous state
@@ -1295,7 +1295,7 @@ void CNtlFSMPlayerController::NotifyNextUpdateStateHurtProc(RwUInt32 uiOldState)
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : update¿¡ ÀÇÇÑ skill ready state change µÉ °æ¿ì Ã³¸® ÇÔ¼ö.
+//  des : updateì— ì˜í•œ skill ready state change ë  ê²½ìš° ì²˜ë¦¬ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : previous state
@@ -1312,7 +1312,7 @@ void CNtlFSMPlayerController::NotifyNextUpdateStateSkillReadyProc(RwUInt32 uiOld
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : update¿¡ ÀÇÇÑ HTB ready state change µÉ °æ¿ì Ã³¸® ÇÔ¼ö.
+//  des : updateì— ì˜í•œ HTB ready state change ë  ê²½ìš° ì²˜ë¦¬ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : previous state
@@ -1328,7 +1328,7 @@ void CNtlFSMPlayerController::NotifyNextUpdateStateHTBReadyProc(RwUInt32 uiOldSt
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : update¿¡ ÀÇÇÑ fighting follow state change µÉ °æ¿ì Ã³¸® ÇÔ¼ö.
+//  des : updateì— ì˜í•œ fighting follow state change ë  ê²½ìš° ì²˜ë¦¬ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : previous state
@@ -1345,7 +1345,7 @@ void CNtlFSMPlayerController::NotifyNextUpdateStateChaseFollowProc(RwUInt32 uiOl
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : update¿¡ ÀÇÇÑ fighting follow state change µÉ °æ¿ì Ã³¸® ÇÔ¼ö.
+//  des : updateì— ì˜í•œ fighting follow state change ë  ê²½ìš° ì²˜ë¦¬ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : previous state
@@ -1368,7 +1368,7 @@ void CNtlFSMPlayerController::NotifyNextUpdateStateFightingFollowProc(RwUInt32 u
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : update¿¡ ÀÇÇÑ skill follow state change µÉ °æ¿ì Ã³¸® ÇÔ¼ö.
+//  des : updateì— ì˜í•œ skill follow state change ë  ê²½ìš° ì²˜ë¦¬ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : previous state
@@ -1383,7 +1383,7 @@ void CNtlFSMPlayerController::NotifyNextUpdateStateSkillFollowProc(RwUInt32 uiOl
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : update¿¡ ÀÇÇÑ falling state change µÉ °æ¿ì Ã³¸® ÇÔ¼ö.
+//  des : updateì— ì˜í•œ falling state change ë  ê²½ìš° ì²˜ë¦¬ í•¨ìˆ˜.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : previous state
@@ -1415,7 +1415,7 @@ void CNtlFSMPlayerController::NotifyNextUpdateStateFallingProc(RwUInt32 uiOldSta
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : update¿¡ ÀÇÇÑ state change½Ã attack range check.
+//  des : updateì— ì˜í•œ state changeì‹œ attack range check.
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : previous state
@@ -1438,16 +1438,16 @@ void CNtlFSMPlayerController::NotifyUpdateStateAttackRangeCheck(RwUInt32 uiOldSt
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : event¿¡ ÀÇÇÑ Ã³¸® °á°ú¸¦ notify ÇØÁÖ´Â ÇÔ¼ö. .
+//  des : eventì— ì˜í•œ ì²˜ë¦¬ ê²°ê³¼ë¥¼ notify í•´ì£¼ëŠ” í•¨ìˆ˜. .
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : event message.
-//  \param2 : event Ã³¸® °á°ú.
+//  \param2 : event ì²˜ë¦¬ ê²°ê³¼.
 //  \param3 : previous state.
 //  \param4 : next state.
 ////////////////////////////////////////////////////////////////////////////
 
-// event¿¡ ÀÇÇØ¼­ »óÅÂ°¡ ¹Ù²î´Â °æ¿ì.
+// eventì— ì˜í•´ì„œ ìƒíƒœê°€ ë°”ë€ŒëŠ” ê²½ìš°.
 void CNtlFSMPlayerController::NotifyEvents(RWS::CMsg &pMsg, RwUInt32 uiEventResult, RwUInt32 uiParam1, RwUInt32 uiParam2)
 {
 	RwUInt32 uiCurrState = uiParam1; 
@@ -1493,11 +1493,11 @@ void CNtlFSMPlayerController::NotifyEvents(RWS::CMsg &pMsg, RwUInt32 uiEventResu
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : ActionMapJump event¿¡ ÀÇÇÑ Ã³¸® °á°ú¸¦ notify ÇØÁÖ´Â ÇÔ¼ö. .
+//  des : ActionMapJump eventì— ì˜í•œ ì²˜ë¦¬ ê²°ê³¼ë¥¼ notify í•´ì£¼ëŠ” í•¨ìˆ˜. .
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : event message.
-//  \param2 : event Ã³¸® °á°ú.
+//  \param2 : event ì²˜ë¦¬ ê²°ê³¼.
 //  \param3 : previous state.
 //  \param4 : next state.
 ////////////////////////////////////////////////////////////////////////////
@@ -1527,11 +1527,11 @@ void CNtlFSMPlayerController::NotifyActionMapJumpEventHandler(RWS::CMsg &pMsg, R
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : ActionMapAirJump event¿¡ ÀÇÇÑ Ã³¸® °á°ú¸¦ notify ÇØÁÖ´Â ÇÔ¼ö. .
+//  des : ActionMapAirJump eventì— ì˜í•œ ì²˜ë¦¬ ê²°ê³¼ë¥¼ notify í•´ì£¼ëŠ” í•¨ìˆ˜. .
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : event message.
-//  \param2 : event Ã³¸® °á°ú.
+//  \param2 : event ì²˜ë¦¬ ê²°ê³¼.
 //  \param3 : previous state.
 //  \param4 : next state.
 ////////////////////////////////////////////////////////////////////////////
@@ -1548,11 +1548,11 @@ void CNtlFSMPlayerController::NotifyActionMapAirJumpEventHandler(RWS::CMsg &pMsg
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : ActionMapCharging event¿¡ ÀÇÇÑ Ã³¸® °á°ú¸¦ notify ÇØÁÖ´Â ÇÔ¼ö. .
+//  des : ActionMapCharging eventì— ì˜í•œ ì²˜ë¦¬ ê²°ê³¼ë¥¼ notify í•´ì£¼ëŠ” í•¨ìˆ˜. .
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : event message.
-//  \param2 : event Ã³¸® °á°ú.
+//  \param2 : event ì²˜ë¦¬ ê²°ê³¼.
 //  \param3 : previous state.
 //  \param4 : next state.
 ////////////////////////////////////////////////////////////////////////////
@@ -1591,11 +1591,11 @@ void CNtlFSMPlayerController::NotifyActionMapChargingEventHandler(RWS::CMsg &pMs
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : ActionMapBlocking event¿¡ ÀÇÇÑ Ã³¸® °á°ú¸¦ notify ÇØÁÖ´Â ÇÔ¼ö. .
+//  des : ActionMapBlocking eventì— ì˜í•œ ì²˜ë¦¬ ê²°ê³¼ë¥¼ notify í•´ì£¼ëŠ” í•¨ìˆ˜. .
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : event message.
-//  \param2 : event Ã³¸® °á°ú.
+//  \param2 : event ì²˜ë¦¬ ê²°ê³¼.
 //  \param3 : previous state.
 //  \param4 : next state.
 ////////////////////////////////////////////////////////////////////////////
@@ -1625,11 +1625,11 @@ void CNtlFSMPlayerController::NotifyActionMapBlockingEventHandler(RWS::CMsg &pMs
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : ActionMapSitAndDown event¿¡ ÀÇÇÑ Ã³¸® °á°ú¸¦ notify ÇØÁÖ´Â ÇÔ¼ö. .
+//  des : ActionMapSitAndDown eventì— ì˜í•œ ì²˜ë¦¬ ê²°ê³¼ë¥¼ notify í•´ì£¼ëŠ” í•¨ìˆ˜. .
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : event message.
-//  \param2 : event Ã³¸® °á°ú.
+//  \param2 : event ì²˜ë¦¬ ê²°ê³¼.
 //  \param3 : previous state.
 //  \param4 : next state.
 ////////////////////////////////////////////////////////////////////////////
@@ -1642,7 +1642,7 @@ void CNtlFSMPlayerController::NotifyActionMapSitAndDownEventHandler(RWS::CMsg &p
 
 	if(uiParam1 == NTL_FSMSID_SKILL_READY || uiParam1 == NTL_FSMSID_SKILL_CASTING)
 	{
-		// skill cancel À» º¸³½´Ù.
+		// skill cancel ì„ ë³´ë‚¸ë‹¤.
 	}
 
 	// agent
@@ -1654,11 +1654,11 @@ void CNtlFSMPlayerController::NotifyActionMapSitAndDownEventHandler(RWS::CMsg &p
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : ActionSkillUse event¿¡ ÀÇÇÑ Ã³¸® °á°ú¸¦ notify ÇØÁÖ´Â ÇÔ¼ö. .
+//  des : ActionSkillUse eventì— ì˜í•œ ì²˜ë¦¬ ê²°ê³¼ë¥¼ notify í•´ì£¼ëŠ” í•¨ìˆ˜. .
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : event message.
-//  \param2 : event Ã³¸® °á°ú.
+//  \param2 : event ì²˜ë¦¬ ê²°ê³¼.
 //  \param3 : previous state.
 //  \param4 : next state.
 ////////////////////////////////////////////////////////////////////////////
@@ -1691,7 +1691,7 @@ void CNtlFSMPlayerController::NotifyActionMapSkillUseEventHandler(RWS::CMsg &pMs
 		API_GetSLPacketGenerator()->SendCharSkillReq(m_pActor, pSkillStuff->hTargetSerialId, pSkillStuff->bySlotIdx, pSkillStuff->byRpBonusType, m_pActor->GetServerSyncAvatarType());
 	}
 
-	// war mode·Î º¯°æ
+	// war modeë¡œ ë³€ê²½
 	if(m_pActor->GetSerialID() != pActionMapSkillUse->hTargetSerialId)
 	{
 		if(!pCharActAgent->IsFightingMode() && Logic_IsSkillUseAfterAttack(pActionMapSkillUse->hSkillSerialId))
@@ -1706,11 +1706,11 @@ void CNtlFSMPlayerController::NotifyActionMapSkillUseEventHandler(RWS::CMsg &pMs
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : ActionSocialUse event¿¡ ÀÇÇÑ Ã³¸® °á°ú¸¦ notify ÇØÁÖ´Â ÇÔ¼ö. .
+//  des : ActionSocialUse eventì— ì˜í•œ ì²˜ë¦¬ ê²°ê³¼ë¥¼ notify í•´ì£¼ëŠ” í•¨ìˆ˜. .
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : event message.
-//  \param2 : event Ã³¸® °á°ú.
+//  \param2 : event ì²˜ë¦¬ ê²°ê³¼.
 //  \param3 : previous state.
 //  \param4 : next state.
 ////////////////////////////////////////////////////////////////////////////
@@ -1720,7 +1720,7 @@ void CNtlFSMPlayerController::NotifyActionMapSocialUseEventHandler(RWS::CMsg &pM
 	if( !(uiEventResult == NTL_FSM_EVENTRES_PASS ||  uiEventResult == NTL_FSM_EVENTRES_CHANGE_STATE) )
 		return;
 
-	// social action use¸¦ º¸³½´Ù.
+	// social action useë¥¼ ë³´ë‚¸ë‹¤.
 	RwUInt32 uiOldState = uiParam1;
 	if(uiOldState != NTL_FSMSID_IDLE)
 	{
@@ -1744,7 +1744,7 @@ void CNtlFSMPlayerController::NotifyActionMapSocialUseEventHandler(RWS::CMsg &pM
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : event message.
-//  \param2 : event Ã³¸® °á°ú.
+//  \param2 : event ì²˜ë¦¬ ê²°ê³¼.
 //  \param3 : previous state.
 //  \param4 : next state.
 ////////////////////////////////////////////////////////////////////////////
@@ -1759,11 +1759,11 @@ void CNtlFSMPlayerController::NotifyActionMapPrivateShopOpenEventHandler(RWS::CM
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : ActionHTBUse event¿¡ ÀÇÇÑ Ã³¸® °á°ú¸¦ notify ÇØÁÖ´Â ÇÔ¼ö. .
+//  des : ActionHTBUse eventì— ì˜í•œ ì²˜ë¦¬ ê²°ê³¼ë¥¼ notify í•´ì£¼ëŠ” í•¨ìˆ˜. .
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : event message.
-//  \param2 : event Ã³¸® °á°ú.
+//  \param2 : event ì²˜ë¦¬ ê²°ê³¼.
 //  \param3 : previous state.
 //  \param4 : next state.
 ////////////////////////////////////////////////////////////////////////////
@@ -1782,11 +1782,11 @@ void CNtlFSMPlayerController::NotifyActionMapHTBUseEventHandler(RWS::CMsg &pMsg,
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : ActionItemUse event¿¡ ÀÇÇÑ Ã³¸® °á°ú¸¦ notify ÇØÁÖ´Â ÇÔ¼ö. .
+//  des : ActionItemUse eventì— ì˜í•œ ì²˜ë¦¬ ê²°ê³¼ë¥¼ notify í•´ì£¼ëŠ” í•¨ìˆ˜. .
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : event message.
-//  \param2 : event Ã³¸® °á°ú.
+//  \param2 : event ì²˜ë¦¬ ê²°ê³¼.
 //  \param3 : previous state.
 //  \param4 : next state.
 ////////////////////////////////////////////////////////////////////////////
@@ -1801,11 +1801,11 @@ void CNtlFSMPlayerController::NotifyActionMapItemUseEventHandler(RWS::CMsg &pMsg
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : ActionItemUse event¿¡ ÀÇÇÑ Ã³¸® °á°ú¸¦ notify ÇØÁÖ´Â ÇÔ¼ö. .
+//  des : ActionItemUse eventì— ì˜í•œ ì²˜ë¦¬ ê²°ê³¼ë¥¼ notify í•´ì£¼ëŠ” í•¨ìˆ˜. .
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : event message.
-//  \param2 : event Ã³¸® °á°ú.
+//  \param2 : event ì²˜ë¦¬ ê²°ê³¼.
 //  \param3 : previous state.
 //  \param4 : next state.
 ////////////////////////////////////////////////////////////////////////////
@@ -1827,11 +1827,11 @@ void CNtlFSMPlayerController::NotifyActionMapAutoFollowEventHandler(RWS::CMsg &p
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : ActionSkillUse event¿¡ ÀÇÇÑ Ã³¸® °á°ú¸¦ notify ÇØÁÖ´Â ÇÔ¼ö. .
+//  des : ActionSkillUse eventì— ì˜í•œ ì²˜ë¦¬ ê²°ê³¼ë¥¼ notify í•´ì£¼ëŠ” í•¨ìˆ˜. .
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : event message.
-//  \param2 : event Ã³¸® °á°ú.
+//  \param2 : event ì²˜ë¦¬ ê²°ê³¼.
 //  \param3 : previous state.
 //  \param4 : next state.
 ////////////////////////////////////////////////////////////////////////////
@@ -1861,11 +1861,11 @@ void CNtlFSMPlayerController::NotifyInputChangeHeadingEventHandler(RWS::CMsg &pM
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : skill cancel event¿¡ ÀÇÇÑ Ã³¸® °á°ú¸¦ notify ÇØÁÖ´Â ÇÔ¼ö. .
+//  des : skill cancel eventì— ì˜í•œ ì²˜ë¦¬ ê²°ê³¼ë¥¼ notify í•´ì£¼ëŠ” í•¨ìˆ˜. .
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : event message.
-//  \param2 : event Ã³¸® °á°ú.
+//  \param2 : event ì²˜ë¦¬ ê²°ê³¼.
 //  \param3 : previous state.
 //  \param4 : next state.
 ////////////////////////////////////////////////////////////////////////////
@@ -1878,7 +1878,7 @@ void CNtlFSMPlayerController::NotifySobSkillCancelEventHandler(RWS::CMsg &pMsg, 
 	if(uiParam2 != NTL_FSMSID_SKILL_FOLLOW)
 		return;
 
-    // Rp Bonus°¡ Àû¿ëµÇ¾î ÀÖÀ¸¸é ÀÌÆåÆ®¸¦ Á¦°ÅÇÑ´Ù.
+    // Rp Bonusê°€ ì ìš©ë˜ì–´ ìˆìœ¼ë©´ ì´í™íŠ¸ë¥¼ ì œê±°í•œë‹¤.
     CNtlSobCharProxy* pProxy = (CNtlSobCharProxy*)m_pActor->GetSobProxy();
     pProxy->DetachRPBonusEffect();   
 
@@ -1889,11 +1889,11 @@ void CNtlFSMPlayerController::NotifySobSkillCancelEventHandler(RWS::CMsg &pMsg, 
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : TerraionClick event¿¡ ÀÇÇÑ Ã³¸® °á°ú¸¦ notify ÇØÁÖ´Â ÇÔ¼ö. .
+//  des : TerraionClick eventì— ì˜í•œ ì²˜ë¦¬ ê²°ê³¼ë¥¼ notify í•´ì£¼ëŠ” í•¨ìˆ˜. .
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : event message.
-//  \param2 : event Ã³¸® °á°ú.
+//  \param2 : event ì²˜ë¦¬ ê²°ê³¼.
 //  \param3 : previous state.
 //  \param4 : next state.
 ////////////////////////////////////////////////////////////////////////////
@@ -1909,7 +1909,7 @@ void CNtlFSMPlayerController::NotifyTerrainClickEventHandler(RWS::CMsg &pMsg, Rw
 	RwUInt32 uiCurrState = uiParam1; 
 	if(uiCurrState == NTL_FSMSID_SKILL_READY || uiCurrState == NTL_FSMSID_SKILL_CASTING)
 	{
-		// skill cancel À» º¸³½´Ù.
+		// skill cancel ì„ ë³´ë‚¸ë‹¤.
 	}
 	
 	SNtlEventTerrainClick *pTerrainClick = reinterpret_cast<SNtlEventTerrainClick*>(pMsg.pData); 
@@ -1930,11 +1930,11 @@ void CNtlFSMPlayerController::NotifyTerrainClickEventHandler(RWS::CMsg &pMsg, Rw
 }
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : KeyboardMove event¿¡ ÀÇÇÑ Ã³¸® °á°ú¸¦ notify ÇØÁÖ´Â ÇÔ¼ö. .
+//  des : KeyboardMove eventì— ì˜í•œ ì²˜ë¦¬ ê²°ê³¼ë¥¼ notify í•´ì£¼ëŠ” í•¨ìˆ˜. .
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : event message.
-//  \param2 : event Ã³¸® °á°ú.
+//  \param2 : event ì²˜ë¦¬ ê²°ê³¼.
 //  \param3 : previous state.
 //  \param4 : next state.
 ////////////////////////////////////////////////////////////////////////////
@@ -1950,7 +1950,7 @@ void CNtlFSMPlayerController::NotifyKeyboardMoveEventHandler(RWS::CMsg &pMsg, Rw
 	RwUInt32 uiCurrState = uiParam1; 
 	if(uiCurrState == NTL_FSMSID_SKILL_READY || uiCurrState == NTL_FSMSID_SKILL_CASTING)
 	{
-		// skill cancel À» º¸³½´Ù.
+		// skill cancel ì„ ë³´ë‚¸ë‹¤.
 	}
 
 	if (uiCurrState == NTL_FSMSID_DASH || uiCurrState == NTL_FSMSID_FALLING) // by daneos
@@ -1981,11 +1981,11 @@ void CNtlFSMPlayerController::NotifyKeyboardMoveEventHandler(RWS::CMsg &pMsg, Rw
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : KeyboardMoveStop event¿¡ ÀÇÇÑ Ã³¸® °á°ú¸¦ notify ÇØÁÖ´Â ÇÔ¼ö. .
+//  des : KeyboardMoveStop eventì— ì˜í•œ ì²˜ë¦¬ ê²°ê³¼ë¥¼ notify í•´ì£¼ëŠ” í•¨ìˆ˜. .
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : event message.
-//  \param2 : event Ã³¸® °á°ú.
+//  \param2 : event ì²˜ë¦¬ ê²°ê³¼.
 //  \param3 : previous state.
 //  \param4 : next state.
 ////////////////////////////////////////////////////////////////////////////
@@ -1998,7 +1998,7 @@ void CNtlFSMPlayerController::NotifyKeyboardMoveStopEventHandler(RWS::CMsg &pMsg
 	RwUInt32 uiCurrState = uiParam1; 
 	if(uiCurrState == NTL_FSMSID_SKILL_READY || uiCurrState == NTL_FSMSID_SKILL_CASTING)
 	{
-		// skill cancel À» º¸³½´Ù.
+		// skill cancel ì„ ë³´ë‚¸ë‹¤.
 	}
 
 	SNtlEventKeyboardMove *pKeyboardMove = reinterpret_cast<SNtlEventKeyboardMove*>(pMsg.pData); 
@@ -2030,11 +2030,11 @@ void CNtlFSMPlayerController::NotifyKeyboardMoveStopEventHandler(RWS::CMsg &pMsg
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : Mouse Dash Move event¿¡ ÀÇÇÑ Ã³¸® °á°ú¸¦ notify ÇØÁÖ´Â ÇÔ¼ö. .
+//  des : Mouse Dash Move eventì— ì˜í•œ ì²˜ë¦¬ ê²°ê³¼ë¥¼ notify í•´ì£¼ëŠ” í•¨ìˆ˜. .
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : event message.
-//  \param2 : event Ã³¸® °á°ú.
+//  \param2 : event ì²˜ë¦¬ ê²°ê³¼.
 //  \param3 : previous state.
 //  \param4 : next state.
 ////////////////////////////////////////////////////////////////////////////
@@ -2058,11 +2058,11 @@ void CNtlFSMPlayerController::NotifyMouseDashMoveEventHandler(RWS::CMsg &pMsg, R
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : Keyboard Dash Move event¿¡ ÀÇÇÑ Ã³¸® °á°ú¸¦ notify ÇØÁÖ´Â ÇÔ¼ö. .
+//  des : Keyboard Dash Move eventì— ì˜í•œ ì²˜ë¦¬ ê²°ê³¼ë¥¼ notify í•´ì£¼ëŠ” í•¨ìˆ˜. .
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : event message.
-//  \param2 : event Ã³¸® °á°ú.
+//  \param2 : event ì²˜ë¦¬ ê²°ê³¼.
 //  \param3 : previous state.
 //  \param4 : next state.
 ////////////////////////////////////////////////////////////////////////////
@@ -2103,11 +2103,11 @@ void CNtlFSMPlayerController::NotifyAirAccelMoveEventHandler(RWS::CMsg& pMsg, Rw
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : SobDbClick event¿¡ ÀÇÇÑ Ã³¸® °á°ú¸¦ notify ÇØÁÖ´Â ÇÔ¼ö. .
+//  des : SobDbClick eventì— ì˜í•œ ì²˜ë¦¬ ê²°ê³¼ë¥¼ notify í•´ì£¼ëŠ” í•¨ìˆ˜. .
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : event message.
-//  \param2 : event Ã³¸® °á°ú.
+//  \param2 : event ì²˜ë¦¬ ê²°ê³¼.
 //  \param3 : previous state.
 //  \param4 : next state.
 ////////////////////////////////////////////////////////////////////////////
@@ -2137,11 +2137,11 @@ void CNtlFSMPlayerController::NotifySobTargetSelectEventHandler(RWS::CMsg &pMsg,
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : SobDbClick event¿¡ ÀÇÇÑ Ã³¸® °á°ú¸¦ notify ÇØÁÖ´Â ÇÔ¼ö. .
+//  des : SobDbClick eventì— ì˜í•œ ì²˜ë¦¬ ê²°ê³¼ë¥¼ notify í•´ì£¼ëŠ” í•¨ìˆ˜. .
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : event message.
-//  \param2 : event Ã³¸® °á°ú.
+//  \param2 : event ì²˜ë¦¬ ê²°ê³¼.
 //  \param3 : previous state.
 //  \param4 : next state.
 ////////////////////////////////////////////////////////////////////////////
@@ -2183,11 +2183,11 @@ void CNtlFSMPlayerController::NotifySobAttackSelectEventHandler(RWS::CMsg &pMsg,
 
 
 ////////////////////////////////////////////////////////////////////////////
-//  des : SobFollowMove event¿¡ ÀÇÇÑ Ã³¸® °á°ú¸¦ notify ÇØÁÖ´Â ÇÔ¼ö. .
+//  des : SobFollowMove eventì— ì˜í•œ ì²˜ë¦¬ ê²°ê³¼ë¥¼ notify í•´ì£¼ëŠ” í•¨ìˆ˜. .
 //  ------------------------------------------------------------------------
 //  paramater : 
 //  \param1 : event message.
-//  \param2 : event Ã³¸® °á°ú.
+//  \param2 : event ì²˜ë¦¬ ê²°ê³¼.
 //  \param3 : previous state.
 //  \param4 : next state.
 ////////////////////////////////////////////////////////////////////////////
@@ -2322,7 +2322,7 @@ void CNtlFSMServerController::Update(RwReal fElapsed)
 	CNtlFSMCharActAgent *pCharActAgent = reinterpret_cast<CNtlFSMCharActAgent*>(m_pAgent);
 	RwUInt8 byServerState = pCharActAgent->GetServerState();
 
-	// follow Ã³¸®.
+	// follow ì²˜ë¦¬.
 	if(byServerState == CHARSTATE_FOLLOWING)
 	{
 		UpdateServerFollowState(fElapsed);
@@ -2375,7 +2375,7 @@ void CNtlFSMServerController::UpdateServerFollowState(RwReal fElapsed)
 		pMoveStuff->byFormFlag = NTL_MOVE_FLAG_RUN;
 		pMoveStuff->hFollowSerialId = pCtrlStuff->hTargetSerialId;
 
-		// ÇöÀç À§Ä¡°¡ À°ÁöÀÎÁö ¹°¼ÓÀÎÁö ÆÄ¾ÇÇÑ´Ù.    
+		// í˜„ì¬ ìœ„ì¹˜ê°€ ìœ¡ì§€ì¸ì§€ ë¬¼ì†ì¸ì§€ íŒŒì•…í•œë‹¤.    
 		SWorldHeightStuff hStuff;
 		if(Logic_IsSwimmingActor(m_pActor, &m_pActor->GetPosition(), hStuff))
 			pMoveStuff->byForm = NTL_MOVEFORM_SWIMMING;

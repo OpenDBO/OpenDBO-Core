@@ -2,7 +2,7 @@
 //	File		:	NtlInstanceLightningSystem.cpp
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -117,9 +117,9 @@ RwBool CNtlInstanceLightningSystem::Create(CNtlResourceEffect* pResourceEffect, 
 
 	BuildEmitterStandard(&m_pResourceLightningSystem->m_EmitterStandard);
 
-    // Start, End Point ¼³Á¤
+    // Start, End Point ì„¤ì •
     m_vStartPoint = m_pResourceLightningSystem->m_vPosition;
-    m_vEndPoint   = m_pResourceLightningSystem->m_vRotate; // »ç¿ëÇÏÁö ¾Ê´Â Rotate°ªÀ» EndPoint °ªÀ¸·Î »ç¿ëÇÑ´Ù.
+    m_vEndPoint   = m_pResourceLightningSystem->m_vRotate; // ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” Rotateê°’ì„ EndPoint ê°’ìœ¼ë¡œ ì‚¬ìš©í•œë‹¤.
     m_vFinishPoint = m_vStartPoint;
     
     UpdateVertices();
@@ -176,7 +176,7 @@ RwBool CNtlInstanceLightningSystem::Update(RwReal fElapsedTime)
 			m_bReady	= TRUE;
 			m_bUpdate	= TRUE;
 
-			// ½ºÅ¸Æ®°¡ µÇ¸é ¶óÀÌÇÁ Å¸ÀÓÀ» ÃÊ±âÈ­ ÇÑ´Ù.
+			// ìŠ¤íƒ€íŠ¸ê°€ ë˜ë©´ ë¼ì´í”„ íƒ€ìž„ì„ ì´ˆê¸°í™” í•œë‹¤.
 			m_fLifeTime = fElapsedTime;
 		}
 		else
@@ -403,7 +403,7 @@ RwBool CNtlInstanceLightningSystem::UpdateFinish( RwReal fElapsedTime )
 
     if(m_pResourceLightningSystem->m_EmitterPrtFinish.m_nFinishTypeFlag & FINISH_TYPE_FOLLOW)
     {
-        // ¹æÇâ º¤ÅÍ¸¦ ±¸ÇØ¼­. ±× ¹æÇâÀ¸·Î º¸°£µÉ ±æÀÌ¸¸Å­ StartPoint¸¦ ¿Å±ä´Ù.
+        // ë°©í–¥ ë²¡í„°ë¥¼ êµ¬í•´ì„œ. ê·¸ ë°©í–¥ìœ¼ë¡œ ë³´ê°„ë  ê¸¸ì´ë§Œí¼ StartPointë¥¼ ì˜®ê¸´ë‹¤.
 
         RwV3d vDir = m_vEndPoint - m_vFinishPoint;
         RwReal vLength = RwV3dLength(&vDir) * fElapsedTime / m_pResourceLightningSystem->m_EmitterPrtFinish.m_fFinishTime; 

@@ -2,12 +2,12 @@
 *
 * File			: NtlPLEmblemMaker.h
 * Author		: Hong sungbock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 3. 4
 * Abstract		: Presentation layer emblem maker
 *****************************************************************************
-* Desc          : ±æµå ¿¥ºí·½À» »ı¼º/¹İÈ¯ ÇÑ´Ù
-*				  Àç·á ÅØ½ºÃ³ : ¿¥ºí·½À» ¸¸µé±â À§ÇØ Á¶ÇÕÇÏ´Â ·ÎÄÃ»óÀÇ ÅØ½ºÃ³
+* Desc          : ê¸¸ë“œ ì— ë¸”ë ˜ì„ ìƒì„±/ë°˜í™˜ í•œë‹¤
+*				  ì¬ë£Œ í…ìŠ¤ì²˜ : ì— ë¸”ë ˜ì„ ë§Œë“¤ê¸° ìœ„í•´ ì¡°í•©í•˜ëŠ” ë¡œì»¬ìƒì˜ í…ìŠ¤ì²˜
 *****************************************************************************/
 
 #ifndef __NTL_PLEMBLEM_MAKER_H__
@@ -74,37 +74,37 @@ public:
 	VOID		DestoyEmblem(const char* pcTextureName);
 	VOID		DestoyEmblem(RwTexture* pTexture);
 
-	///< ±âÁ¸ ÅØ½ºÃ³¸¦ ¹İÈ¯, ¾ø´Ù¸é »õ·Î »ı¼ºÇÏ¿© ¹İÈ¯
-	///< ÁÖÀÇ : ·£´õ¸µ Å¸ÀÓ¿¡ ÀÌ ÇÔ¼ö°¡ È£ÃâµÇ°í ¹İÈ¯µÇ´Â RwTexture°¡ NULLÀÌ ¾Æ´Ï¸é »¶ÀÌ ³­´Ù.
-	///<		ÀÌ ÇÔ¼öÀÇ ³»ºÎ¿¡¼­ È£ÃâµÇ´Â Camera->CameraBeginUpdate´Â ÇöÀç ·£´õ¸µµÇ°í ÀÖ´Â
-	///<		Current CameraÀÇ Æ÷ÀÎÅÍ¸¦ º¯°æÇÏ´Ï ¹İµå½Ã ÀÌ ÇÔ¼ö´Â ·£´õ¸µ ÀÌ¿ÜÀÇ Å¸ÀÓ¿¡ È£ÃâÇÑ´Ù.
+	///< ê¸°ì¡´ í…ìŠ¤ì²˜ë¥¼ ë°˜í™˜, ì—†ë‹¤ë©´ ìƒˆë¡œ ìƒì„±í•˜ì—¬ ë°˜í™˜
+	///< ì£¼ì˜ : ëœë”ë§ íƒ€ì„ì— ì´ í•¨ìˆ˜ê°€ í˜¸ì¶œë˜ê³  ë°˜í™˜ë˜ëŠ” RwTextureê°€ NULLì´ ì•„ë‹ˆë©´ ë»‘ì´ ë‚œë‹¤.
+	///<		ì´ í•¨ìˆ˜ì˜ ë‚´ë¶€ì—ì„œ í˜¸ì¶œë˜ëŠ” Camera->CameraBeginUpdateëŠ” í˜„ì¬ ëœë”ë§ë˜ê³  ìˆëŠ”
+	///<		Current Cameraì˜ í¬ì¸í„°ë¥¼ ë³€ê²½í•˜ë‹ˆ ë°˜ë“œì‹œ ì´ í•¨ìˆ˜ëŠ” ëœë”ë§ ì´ì™¸ì˜ íƒ€ì„ì— í˜¸ì¶œí•œë‹¤.
 	RwTexture*	CreateEmblem(const sEmblemFactor* pEmblemFactor,
 							 RwUInt8 byEmblemSize = dEMBLEM_TEXTURE_DEFAULT_SIZE,
 							 const RwChar* pcBaseTextureName = NULL);
 
 
-	///< ·ÎÄÃ»ó¿¡ Á¸ÀçÇÏ´Â ¿¥ºí·½ Àç·á ÅØ½ºÃ³ÀÇ ÀÌ¸§ÀÇ ÇüÅÂ·Î ¸¸µé¾î¼­ ¹İÈ¯ÇÑ´Ù
+	///< ë¡œì»¬ìƒì— ì¡´ì¬í•˜ëŠ” ì— ë¸”ë ˜ ì¬ë£Œ í…ìŠ¤ì²˜ì˜ ì´ë¦„ì˜ í˜•íƒœë¡œ ë§Œë“¤ì–´ì„œ ë°˜í™˜í•œë‹¤
 	VOID		MakeEmblemResourceName(eEmblemType eType, RwUInt8 byValue, char* pcOutBuffer, RwInt32 iBufferLength,
 									   RwUInt8 byEmblemSize = dEMBLEM_TEXTURE_DEFAULT_SIZE);
 	
 	const MAP_STUFF* GetStuffList(eEmblemType eType);
 
 protected:
-	///< Àç·á ÅØ½ºÃ³ÀÇ ÀÎÀÚ·Î ¸¸µé¾îÁø ¿¥ºí·½ ÅØ½ºÃ³ÀÇ ÀÌ¸§À» ¹İÈ¯ÇÑ´Ù, Ä³¸¯ÅÍ ¸ğµ¨ÀÇ ¿¥ºí·½Àº À¯È¿ÇÏÁö ¾Ê´Ù
-	///< Suffix : Á¢¹Ì»ç
+	///< ì¬ë£Œ í…ìŠ¤ì²˜ì˜ ì¸ìë¡œ ë§Œë“¤ì–´ì§„ ì— ë¸”ë ˜ í…ìŠ¤ì²˜ì˜ ì´ë¦„ì„ ë°˜í™˜í•œë‹¤, ìºë¦­í„° ëª¨ë¸ì˜ ì— ë¸”ë ˜ì€ ìœ íš¨í•˜ì§€ ì•Šë‹¤
+	///< Suffix : ì ‘ë¯¸ì‚¬
 	VOID		MakeEmblemTextureName(char* pcOutBuffer, RwInt32 iBufferLength, const sEmblemFactor* pEmblemFactor,
 									  RwUInt8 byEmblemSize, const RwChar* pcBaseTextureName);
 
 	RwTexture*	MakeEmblemImmidately(const sEmblemFactor* pEmblemFactor, const char* pcEmblemName,
 									 RwUInt8 byEmblemSize, const RwChar* pcBaseTextureName = NULL);
 
-	///< º°µµÀÇ ¹öÆÛ¿¡ ³Ñ°Ü¹ŞÀº ÅØ½ºÃ³¸¦ ±×¸°´Ù
+	///< ë³„ë„ì˜ ë²„í¼ì— ë„˜ê²¨ë°›ì€ í…ìŠ¤ì²˜ë¥¼ ê·¸ë¦°ë‹¤
 	VOID		RecoatEmblem(RwTexture* pTexture, RwUInt8 byRed, RwUInt8 byGreen, RwUInt8 byBlue);
 	RwTexture*	CopyToTexture(RwTexture* pTexture);
 
-	///< ÅØ½ºÃ³ »çÀÌÁî¿¡ ¸Â´Â Ä«¸Ş¶ó ¹İÈ¯
-	///< ¿¥ºí·½¿¡ ¾µ ÅØ½ºÃ³ÀÇ »çÀÌÁî°¡ ¾ÆÁÖ ´Ù¾çÇÏÁö´Â ¾ÊÀ» °ÍÀÌ±â¿¡ »çÀÌÁî º°·Î
-	///< Ä«¸Ş¶ó¸¦ µû·Î ¸¸µé¾î ÅØ½ºÃ³¸¦ Âï´Â´Ù
+	///< í…ìŠ¤ì²˜ ì‚¬ì´ì¦ˆì— ë§ëŠ” ì¹´ë©”ë¼ ë°˜í™˜
+	///< ì— ë¸”ë ˜ì— ì“¸ í…ìŠ¤ì²˜ì˜ ì‚¬ì´ì¦ˆê°€ ì•„ì£¼ ë‹¤ì–‘í•˜ì§€ëŠ” ì•Šì„ ê²ƒì´ê¸°ì— ì‚¬ì´ì¦ˆ ë³„ë¡œ
+	///< ì¹´ë©”ë¼ë¥¼ ë”°ë¡œ ë§Œë“¤ì–´ í…ìŠ¤ì²˜ë¥¼ ì°ëŠ”ë‹¤
 	CNtlPLCameraRT* GetRTCamera(RwUInt8 bySize);
 
 protected:

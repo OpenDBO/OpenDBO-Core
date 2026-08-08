@@ -1,4 +1,4 @@
-// WorldEditor.cpp : ÀÀ¿ë ÇÁ·Î±×·¥¿¡ ´ëÇÑ Å¬·¡½º µ¿ÀÛÀ» Á¤ÀÇÇÕ´Ï´Ù.
+// WorldEditor.cpp : ì‘ìš© í”„ë¡œê·¸ëž¨ì— ëŒ€í•œ í´ëž˜ìŠ¤ ë™ìž‘ì„ ì •ì˜í•©ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -29,8 +29,8 @@
 
 BEGIN_MESSAGE_MAP(CWorldEditorApp, CWinApp)
 	ON_COMMAND(ID_APP_ABOUT, OnAppAbout)
-	// Ç¥ÁØ ÆÄÀÏÀ» ±âÃÊ·Î ÇÏ´Â ¹®¼­ ¸í·ÉÀÔ´Ï´Ù.
-	// Ç¥ÁØ ÀÎ¼â ¼³Á¤ ¸í·ÉÀÔ´Ï´Ù.
+	// í‘œì¤€ íŒŒì¼ì„ ê¸°ì´ˆë¡œ í•˜ëŠ” ë¬¸ì„œ ëª…ë ¹ìž…ë‹ˆë‹¤.
+	// í‘œì¤€ ì¸ì‡„ ì„¤ì • ëª…ë ¹ìž…ë‹ˆë‹¤.
 	ON_COMMAND(ID_FILE_PRINT_SETUP, CWinApp::OnFilePrintSetup)
 	ON_COMMAND(ID_FILE_NEW, CWorldEditorApp::OnFileNew)
 	ON_COMMAND(ID_FILE_OPEN, CWorldEditorApp::OnFileOpen)
@@ -51,7 +51,7 @@ BEGIN_MESSAGE_MAP(CWorldEditorApp, CWinApp)
 END_MESSAGE_MAP()
 
 
-// CWorldEditorApp »ý¼º
+// CWorldEditorApp ìƒì„±
 
 CWorldEditorApp::CWorldEditorApp()
 : m_pDocName(NULL)
@@ -82,58 +82,58 @@ CWorldEditorApp::~CWorldEditorApp()
 }
 
 
-// À¯ÀÏÇÑ CWorldEditorApp °³Ã¼ÀÔ´Ï´Ù.
+// ìœ ì¼í•œ CWorldEditorApp ê°œì²´ìž…ë‹ˆë‹¤.
 
 CWorldEditorApp theApp;
 
-// CWorldEditorApp ÃÊ±âÈ­
+// CWorldEditorApp ì´ˆê¸°í™”
 
 BOOL CWorldEditorApp::InitInstance()
 {
-	// ÀÀ¿ë ÇÁ·Î±×·¥ ¸Å´ÏÆä½ºÆ®°¡ ComCtl32.dll ¹öÀü 6 ÀÌ»óÀ» »ç¿ëÇÏ¿© ºñÁÖ¾ó ½ºÅ¸ÀÏÀ»
-	// »ç¿ëÇÏµµ·Ï ÁöÁ¤ÇÏ´Â °æ¿ì, Windows XP »ó¿¡¼­ ¹Ýµå½Ã InitCommonControls()°¡ ÇÊ¿äÇÕ´Ï´Ù. 
-	// InitCommonControls()¸¦ »ç¿ëÇÏÁö ¾ÊÀ¸¸é Ã¢À» ¸¸µé ¼ö ¾ø½À´Ï´Ù.
+	// ì‘ìš© í”„ë¡œê·¸ëž¨ ë§¤ë‹ˆíŽ˜ìŠ¤íŠ¸ê°€ ComCtl32.dll ë²„ì „ 6 ì´ìƒì„ ì‚¬ìš©í•˜ì—¬ ë¹„ì£¼ì–¼ ìŠ¤íƒ€ì¼ì„
+	// ì‚¬ìš©í•˜ë„ë¡ ì§€ì •í•˜ëŠ” ê²½ìš°, Windows XP ìƒì—ì„œ ë°˜ë“œì‹œ InitCommonControls()ê°€ í•„ìš”í•©ë‹ˆë‹¤. 
+	// InitCommonControls()ë¥¼ ì‚¬ìš©í•˜ì§€ ì•Šìœ¼ë©´ ì°½ì„ ë§Œë“¤ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 	InitCommonControls();
 
 	CWinApp::InitInstance();
 
-	// OLE ¶óÀÌºê·¯¸®¸¦ ÃÊ±âÈ­ÇÕ´Ï´Ù.
+	// OLE ë¼ì´ë¸ŒëŸ¬ë¦¬ë¥¼ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
 	if (!AfxOleInit())
 	{
 		AfxMessageBox(IDP_OLE_INIT_FAILED);
 		return FALSE;
 	}
 	AfxEnableControlContainer();
-	// Ç¥ÁØ ÃÊ±âÈ­
-	// ÀÌµé ±â´ÉÀ» »ç¿ëÇÏÁö ¾Ê°í ÃÖÁ¾ ½ÇÇà ÆÄÀÏÀÇ Å©±â¸¦ ÁÙÀÌ·Á¸é
-	// ¾Æ·¡¿¡¼­ ÇÊ¿ä ¾ø´Â Æ¯Á¤ ÃÊ±âÈ­ ·çÆ¾À» Á¦°ÅÇØ¾ß ÇÕ´Ï´Ù.
-	// ÇØ´ç ¼³Á¤ÀÌ ÀúÀåµÈ ·¹Áö½ºÆ®¸® Å°¸¦ º¯°æÇÏ½Ê½Ã¿À.
-	// TODO: ÀÌ ¹®ÀÚ¿­À» È¸»ç ¶Ç´Â Á¶Á÷ÀÇ ÀÌ¸§°ú °°Àº
-	// ÀûÀýÇÑ ³»¿ëÀ¸·Î ¼öÁ¤ÇØ¾ß ÇÕ´Ï´Ù.
-	SetRegistryKey(RWSTRING("·ÎÄÃ ÀÀ¿ë ÇÁ·Î±×·¥ ¸¶¹ý»ç¿¡¼­ »ý¼ºµÈ ÀÀ¿ë ÇÁ·Î±×·¥"));
-	LoadStdProfileSettings(4);  // MRU¸¦ Æ÷ÇÔÇÏ¿© Ç¥ÁØ INI ÆÄÀÏ ¿É¼ÇÀ» ·ÎµåÇÕ´Ï´Ù.
-	// ÀÀ¿ë ÇÁ·Î±×·¥ÀÇ ¹®¼­ ÅÛÇÃ¸´À» µî·ÏÇÕ´Ï´Ù. ¹®¼­ ÅÛÇÃ¸´Àº
-	// ¹®¼­, ÇÁ·¹ÀÓ Ã¢ ¹× ºä »çÀÌÀÇ ¿¬°á ¿ªÇÒÀ» ÇÕ´Ï´Ù.
+	// í‘œì¤€ ì´ˆê¸°í™”
+	// ì´ë“¤ ê¸°ëŠ¥ì„ ì‚¬ìš©í•˜ì§€ ì•Šê³  ìµœì¢… ì‹¤í–‰ íŒŒì¼ì˜ í¬ê¸°ë¥¼ ì¤„ì´ë ¤ë©´
+	// ì•„ëž˜ì—ì„œ í•„ìš” ì—†ëŠ” íŠ¹ì • ì´ˆê¸°í™” ë£¨í‹´ì„ ì œê±°í•´ì•¼ í•©ë‹ˆë‹¤.
+	// í•´ë‹¹ ì„¤ì •ì´ ì €ìž¥ëœ ë ˆì§€ìŠ¤íŠ¸ë¦¬ í‚¤ë¥¼ ë³€ê²½í•˜ì‹­ì‹œì˜¤.
+	// TODO: ì´ ë¬¸ìžì—´ì„ íšŒì‚¬ ë˜ëŠ” ì¡°ì§ì˜ ì´ë¦„ê³¼ ê°™ì€
+	// ì ì ˆí•œ ë‚´ìš©ìœ¼ë¡œ ìˆ˜ì •í•´ì•¼ í•©ë‹ˆë‹¤.
+	SetRegistryKey(RWSTRING("ë¡œì»¬ ì‘ìš© í”„ë¡œê·¸ëž¨ ë§ˆë²•ì‚¬ì—ì„œ ìƒì„±ëœ ì‘ìš© í”„ë¡œê·¸ëž¨"));
+	LoadStdProfileSettings(4);  // MRUë¥¼ í¬í•¨í•˜ì—¬ í‘œì¤€ INI íŒŒì¼ ì˜µì…˜ì„ ë¡œë“œí•©ë‹ˆë‹¤.
+	// ì‘ìš© í”„ë¡œê·¸ëž¨ì˜ ë¬¸ì„œ í…œí”Œë¦¿ì„ ë“±ë¡í•©ë‹ˆë‹¤. ë¬¸ì„œ í…œí”Œë¦¿ì€
+	// ë¬¸ì„œ, í”„ë ˆìž„ ì°½ ë° ë·° ì‚¬ì´ì˜ ì—°ê²° ì—­í• ì„ í•©ë‹ˆë‹¤.
 	CSingleDocTemplate* pDocTemplate;
 	pDocTemplate = new CSingleDocTemplate(
 		IDR_MAINFRAME,
 		RUNTIME_CLASS(CWorldEditorDoc),
-		RUNTIME_CLASS(CMainFrame),       // ÁÖ SDI ÇÁ·¹ÀÓ Ã¢ÀÔ´Ï´Ù.
+		RUNTIME_CLASS(CMainFrame),       // ì£¼ SDI í”„ë ˆìž„ ì°½ìž…ë‹ˆë‹¤.
 		RUNTIME_CLASS(CWorldEditorView));
 	if (!pDocTemplate)
 		return FALSE;
 	AddDocTemplate(pDocTemplate);
-	// Ç¥ÁØ ¼Ð ¸í·É, DDE, ÆÄÀÏ ¿­±â¿¡ ´ëÇÑ ¸í·ÉÁÙÀ» ±¸¹® ºÐ¼®ÇÕ´Ï´Ù.
+	// í‘œì¤€ ì…¸ ëª…ë ¹, DDE, íŒŒì¼ ì—´ê¸°ì— ëŒ€í•œ ëª…ë ¹ì¤„ì„ êµ¬ë¬¸ ë¶„ì„í•©ë‹ˆë‹¤.
 	CCommandLineInfo cmdInfo;
 	ParseCommandLine(cmdInfo);
-	// ¸í·ÉÁÙ¿¡ ÁöÁ¤µÈ ¸í·ÉÀ» µð½ºÆÐÄ¡ÇÕ´Ï´Ù. ÀÀ¿ë ÇÁ·Î±×·¥ÀÌ /RegServer, /Register, /Unregserver ¶Ç´Â /Unregister·Î ½ÃÀÛµÈ °æ¿ì FALSE¸¦ ¹ÝÈ¯ÇÕ´Ï´Ù.
+	// ëª…ë ¹ì¤„ì— ì§€ì •ëœ ëª…ë ¹ì„ ë””ìŠ¤íŒ¨ì¹˜í•©ë‹ˆë‹¤. ì‘ìš© í”„ë¡œê·¸ëž¨ì´ /RegServer, /Register, /Unregserver ë˜ëŠ” /Unregisterë¡œ ì‹œìž‘ëœ ê²½ìš° FALSEë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
 	if (!ProcessShellCommand(cmdInfo))
 		return FALSE;
-	// Ã¢ ÇÏ³ª¸¸ ÃÊ±âÈ­µÇ¾úÀ¸¹Ç·Î ÀÌ¸¦ Ç¥½ÃÇÏ°í ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù.
+	// ì°½ í•˜ë‚˜ë§Œ ì´ˆê¸°í™”ë˜ì—ˆìœ¼ë¯€ë¡œ ì´ë¥¼ í‘œì‹œí•˜ê³  ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤.
 	m_pMainWnd->ShowWindow(SW_SHOW);
 	m_pMainWnd->UpdateWindow();
-	// Á¢¹Ì»ç°¡ ÀÖÀ» °æ¿ì¿¡¸¸ DragAcceptFiles¸¦ È£ÃâÇÕ´Ï´Ù.
-	// SDI ÀÀ¿ë ÇÁ·Î±×·¥¿¡¼­´Â ProcessShellCommand ÈÄ¿¡ ÀÌ·¯ÇÑ È£ÃâÀÌ ¹ß»ýÇØ¾ß ÇÕ´Ï´Ù.
+	// ì ‘ë¯¸ì‚¬ê°€ ìžˆì„ ê²½ìš°ì—ë§Œ DragAcceptFilesë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
+	// SDI ì‘ìš© í”„ë¡œê·¸ëž¨ì—ì„œëŠ” ProcessShellCommand í›„ì— ì´ëŸ¬í•œ í˜¸ì¶œì´ ë°œìƒí•´ì•¼ í•©ë‹ˆë‹¤.
 
 	HWND hWnd = ((CMainFrame*)AfxGetMainWnd())->GetActiveView()->GetSafeHwnd(); 
 	g_pEngineApp->Create( hWnd, FALSE );
@@ -147,20 +147,20 @@ BOOL CWorldEditorApp::InitInstance()
 
 
 
-// ÀÀ¿ë ÇÁ·Î±×·¥ Á¤º¸¿¡ »ç¿ëµÇ´Â CAboutDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// ì‘ìš© í”„ë¡œê·¸ëž¨ ì •ë³´ì— ì‚¬ìš©ë˜ëŠ” CAboutDlg ëŒ€í™” ìƒìžìž…ë‹ˆë‹¤.
 
 class CAboutDlg : public CDialog
 {
 public:
 	CAboutDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍ
+// ëŒ€í™” ìƒìž ë°ì´í„°
 	enum { IDD = IDD_ABOUTBOX };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿ø
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›
 
-// ±¸Çö
+// êµ¬í˜„
 protected:
 	DECLARE_MESSAGE_MAP()
 };
@@ -178,7 +178,7 @@ BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// ´ëÈ­ »óÀÚ¸¦ ½ÇÇàÇÏ±â À§ÇÑ ÀÀ¿ë ÇÁ·Î±×·¥ ¸í·ÉÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒìžë¥¼ ì‹¤í–‰í•˜ê¸° ìœ„í•œ ì‘ìš© í”„ë¡œê·¸ëž¨ ëª…ë ¹ìž…ë‹ˆë‹¤.
 void CWorldEditorApp::OnAppAbout()
 {
 	CAboutDlg aboutDlg;
@@ -197,7 +197,7 @@ BOOL CWorldEditorApp::OnIdle( LONG nCount )
 
 int CWorldEditorApp::ExitInstance()
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ëž˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	g_pEngineApp->Destroy();
 
@@ -206,7 +206,7 @@ int CWorldEditorApp::ExitInstance()
 
 void CWorldEditorApp::OnFileOpen()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	CFileDialog		OpenFileDialog( TRUE, _T( "prj" ), NULL, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
 									_T( "Project Files (*.prj)|*.prj|All Files (*.*)|*.*||" ), NULL );
@@ -226,7 +226,7 @@ void CWorldEditorApp::OnFileOpen()
 
 void CWorldEditorApp::OnFileSave()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	if( m_pDocName->IsEquivalent( _T( "default" ) ) != FALSE )
 	{
@@ -248,7 +248,7 @@ void CWorldEditorApp::OnFileSave()
 
 void CWorldEditorApp::OnFileSaveAs()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	CFileDialog		OpenFileDialog( FALSE, _T( "prj" ), NULL, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
 									_T( "Project Files (*.prj)|*.prj|All Files (*.*)|*.*||" ), NULL );
@@ -271,7 +271,7 @@ void CWorldEditorApp::OnFileSaveAs()
 
 void CWorldEditorApp::OnFileNew()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	static bool	bFirst = true;
 
@@ -297,7 +297,7 @@ void CWorldEditorApp::OnFileNew()
 
 void CWorldEditorApp::OnModeObjectMove()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	g_pEngineApp->SetEditMode( E_EDIT_MODE_OBJECT_MOVE_XZ );
 
@@ -332,7 +332,7 @@ void CWorldEditorApp::OnModeObjectMove()
 
 void CWorldEditorApp::OnModeObjectRotate()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	g_pEngineApp->SetEditMode( E_EDIT_MODE_OBJECT_ROTATE_Y );
 
@@ -367,7 +367,7 @@ void CWorldEditorApp::OnModeObjectRotate()
 
 void CWorldEditorApp::OnModeObjectScale()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	g_pEngineApp->SetEditMode( E_EDIT_MODE_OBJECT_SCALE_Y );
 
@@ -402,7 +402,7 @@ void CWorldEditorApp::OnModeObjectScale()
 
 void CWorldEditorApp::OnModeCameraViewFree()
 {
-	// TODO: ¿©±â¿¡ ¸í·É Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ëª…ë ¹ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	g_pEngineApp->SetCameraMovementMode( E_CAMERA_MOVEMENT_MODE_FREE );
 

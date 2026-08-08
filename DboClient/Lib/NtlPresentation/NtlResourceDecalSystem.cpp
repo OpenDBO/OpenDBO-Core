@@ -36,7 +36,7 @@ RwBool CNtlResourceDecalSystem::Load(FILE* pFile)
 {
 	CNtlResourceImVertexSystem::Load(pFile);
 
-    // YOffset Ãß°¡ (¹öÀü 8)
+    // YOffset ì¶”ê°€ (ë²„ì „ 8)
     if(CNtlResourceEffect::m_nVersion > 0x00000007)
     {
         fread(&m_EmitterStandard, sizeof(SNtlDecalEmitterStandard), 1, pFile);

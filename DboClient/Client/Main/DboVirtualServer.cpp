@@ -77,10 +77,10 @@
 #define VIRTUAL_AVATAR_POSX			4583.0f
 #define VIRTUAL_AVATAR_POSZ			4070.0f
 
-// #define VIRTUAL_AVATAR_POSX			5473.0f  // π∞
+// #define VIRTUAL_AVATAR_POSX			5473.0f  // Î¨º
 // #define VIRTUAL_AVATAR_POSZ			4902.0f
 
-// #define VIRTUAL_AVATAR_POSX			5999.0f  // ƒ´∏∞≈æ ∏∂¿ª
+// #define VIRTUAL_AVATAR_POSX			5999.0f  // Ïπ¥Î¶∞ÌÉë ÎßàÏùÑ
 // #define VIRTUAL_AVATAR_POSZ			253.0f
 
 
@@ -454,7 +454,7 @@ void CDboVirtualServer::SendServerListRes(void *pPacket)
 	sCU_SERVER_FARM_INFO sPackeFarmInfo;
 	sPackeFarmInfo.wOpCode = CU_SERVER_FARM_INFO;
 	sPackeFarmInfo.serverFarmInfo.serverFarmId = 0;
-	wcscpy_s(sPackeFarmInfo.serverFarmInfo.wszGameServerFarmName, NTL_MAX_SIZE_SERVER_FARM_NAME_UNICODE, L"πŸ∫∏º≠πˆ");
+	wcscpy_s(sPackeFarmInfo.serverFarmInfo.wszGameServerFarmName, NTL_MAX_SIZE_SERVER_FARM_NAME_UNICODE, L"Î∞îÎ≥¥ÏÑúÎ≤Ñ");
 
 	SendEvent(sizeof(sPackeFarmInfo), &sPackeFarmInfo);
 
@@ -472,7 +472,7 @@ void CDboVirtualServer::SendOneServerRes(void *pPacket)
 	sCU_SERVER_FARM_INFO sPackeFarmInfo;
 	sPackeFarmInfo.wOpCode = CU_SERVER_FARM_INFO;
 	sPackeFarmInfo.serverFarmInfo.serverFarmId = 0;
-	wcscpy_s(sPackeFarmInfo.serverFarmInfo.wszGameServerFarmName, NTL_MAX_SIZE_SERVER_FARM_NAME_UNICODE, L"πŸ∫∏º≠πˆ");
+	wcscpy_s(sPackeFarmInfo.serverFarmInfo.wszGameServerFarmName, NTL_MAX_SIZE_SERVER_FARM_NAME_UNICODE, L"Î∞îÎ≥¥ÏÑúÎ≤Ñ");
 
 	SendEvent(sizeof(sPackeFarmInfo), &sPackeFarmInfo);
 
@@ -483,7 +483,7 @@ void CDboVirtualServer::SendOneServerRes(void *pPacket)
 
 	SendEvent(sizeof(sPackeOneRes), &sPackeOneRes);
 
-	// channel ¡§∫∏.
+	// channel Ï†ïÎ≥¥.
 	sCU_SERVER_CHANNEL_INFO sPacketChannel;
 	sPackeOneRes.wOpCode = CU_SERVER_CHANNEL_INFO;
 	sPacketChannel.byCount = 1;
@@ -820,7 +820,7 @@ void CDboVirtualServer::SendPlayerCreate(void)
 	sPacket.sObjectInfo.objType = OBJTYPE_PC;
 	sPacket.sObjectInfo.pcBrief.byLevel = 1;
 	sPacket.sObjectInfo.pcBrief.tblidx = 1;
-	wcscpy_s(sPacket.sObjectInfo.pcBrief.awchName, NTL_MAX_SIZE_CHAR_NAME, L"«œ«œ«œ");
+	wcscpy_s(sPacket.sObjectInfo.pcBrief.awchName, NTL_MAX_SIZE_CHAR_NAME, L"ÌïòÌïòÌïò");
 	sPacket.sObjectInfo.pcBrief.wCurLP = 100;
 	sPacket.sObjectInfo.pcBrief.wMaxLP = 100;
 	sPacket.sObjectInfo.pcBrief.fSpeed = 7.0f;
@@ -1307,7 +1307,7 @@ void CDboVirtualServer::SendCharActionAttack(RwUInt32 uiSerialId)
 		SendCharUpdateLp(m_iCurrentHp);
 	}
 
-	// fainting ∞ÀªÁ.
+	// fainting Í≤ÄÏÇ¨.
 	if(m_iCurrentHp <= 0)
 	{
 		SendCharUpdateFaintingState();
@@ -1382,7 +1382,7 @@ RwBool CDboVirtualServer::IsSkillCastingExist(void)
 
 void CDboVirtualServer::SendCharSkillRes(void *pPacket)
 {
-	// rect data √≥∏Æ.
+	// rect data Ï≤òÎ¶¨.
 	sUG_CHAR_SKILL_REQ *pCharSkillReq = (sUG_CHAR_SKILL_REQ*)pPacket;
 	
 	m_bySkillActiveType = VIRTUAL_SKILL_TYPE_CASTING;
@@ -1416,7 +1416,7 @@ void CDboVirtualServer::SendCharSkillRes(void *pPacket)
 
 void CDboVirtualServer::SendCharHTBSkillRes(void *pPacket)
 {
-	// rect data √≥∏Æ.
+	// rect data Ï≤òÎ¶¨.
 	sUG_HTB_START_REQ *pCharHTBSkillReq = (sUG_HTB_START_REQ*)pPacket;
 
 	CNtlSobAvatar *pSobAvatar = GetNtlSLGlobal()->GetSobAvatar();
@@ -1589,10 +1589,10 @@ CDboVirtualServer* CDboVirtualServer::GetInstance(void)
 
 void CDboVirtualServer::Update(RwReal fElapsed)
 {
-	// packet¿ª pop«—¥Ÿ.
+	// packetÏùÑ popÌïúÎã§.
 	PopPacket();
 
-	// ∞¯∞› √≥∏Æ
+	// Í≥µÍ≤© Ï≤òÎ¶¨
 	SVirtualBattleData *pBattleData;
 	ListAttackBegin::iterator it;
 	for(it = m_listAttackBegin.begin(); it != m_listAttackBegin.end(); it++)
@@ -1605,14 +1605,14 @@ void CDboVirtualServer::Update(RwReal fElapsed)
 		}
 	}
 
-	// ¿Ãµø √≥∏Æ
+	// Ïù¥Îèô Ï≤òÎ¶¨
 	if(timeGetTime() - m_uiMobMoveCurrTime >= VIRTUAL_MONSTER_MOVE_UPDATE_TICK)
 	{
 //		SendMobMove();
 		m_uiMobMoveCurrTime = timeGetTime();
 	}
 
-	// skill √≥∏Æ. 
+	// skill Ï≤òÎ¶¨. 
 	if(m_bySkillActiveType == VIRTUAL_SKILL_TYPE_CASTING)
 	{
 		CSkillTable *pSkillTbl = API_GetTableContainer()->GetSkillTable();

@@ -47,10 +47,10 @@ RwBool CCharMakePartGui::Create(CCharCreateGuiGui* pCreateGui)
 
 	CRectangle rect;
 
-	// Create GUIÀÇ Æ÷ÀÎÅÍ¸¦ º¸°ü
+	// Create GUIì˜ í¬ì¸í„°ë¥¼ ë³´ê´€
 	m_pCreateGui = pCreateGui;
 
-	// ¹è°æ »ó´Ü
+	// ë°°ê²½ ìƒë‹¨
 	m_Background.SetType(CWindowby3::WT_HORIZONTAL);
 	m_Background.SetSurface(0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharMakePart.srf", "srfBackgroundUp" ));
 	m_Background.SetSurface(1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharMakePart.srf", "srfBackgroundCenter" ));
@@ -64,7 +64,7 @@ RwBool CCharMakePartGui::Create(CCharCreateGuiGui* pCreateGui)
 	m_pTitleStatic->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_CHARACTER_ATTRIBUTE"));
 
 
-	// Á¾Á· ¹öÆ°
+	// ì¢…ì¡± ë²„íŠ¼
 	sDISPLAY_RACE_BUTTONS* pRaceDisplay = NTL_NEW sDISPLAY_RACE_BUTTONS;
 	m_aptAttributeDisplay[ATTIRIBUTE_RACE] = pRaceDisplay;
 
@@ -91,7 +91,7 @@ RwBool CCharMakePartGui::Create(CCharCreateGuiGui* pCreateGui)
 	pRaceDisplay->srfSelect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharMakePart.srf", "srfSelect" ));
 
 
-	// Å¬·¡½º ¹öÆ°
+	// í´ë˜ìŠ¤ ë²„íŠ¼
 	sDISPLAY_CLASS_BUTTONS* pClassDisplay = NTL_NEW sDISPLAY_CLASS_BUTTONS;
 	m_aptAttributeDisplay[ATTIRIBUTE_CLASS] = pClassDisplay;
 
@@ -128,7 +128,7 @@ RwBool CCharMakePartGui::Create(CCharCreateGuiGui* pCreateGui)
 	pClassDisplay->srfSelect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharMakePart.srf", "srfSelect" ));
 
 
-	// ¼ºº° ¹öÆ°
+	// ì„±ë³„ ë²„íŠ¼
 	sDISPLAY_SEX_BUTTONS* pSexDisplay = NTL_NEW sDISPLAY_SEX_BUTTONS;
 	m_aptAttributeDisplay[ATTIRIBUTE_SEX] = pSexDisplay;
 
@@ -153,14 +153,14 @@ RwBool CCharMakePartGui::Create(CCharCreateGuiGui* pCreateGui)
 	pSexDisplay->srfSelect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharMakePart.srf", "srfSelect" ));
 
 
-	// ¸Ó¸®, ¸Ó¸®»ö, ¾ó±¼, ÇÇºÎ»ö
+	// ë¨¸ë¦¬, ë¨¸ë¦¬ìƒ‰, ì–¼êµ´, í”¼ë¶€ìƒ‰
 	RwInt32 iStartLeftRightY = 327;
 	for( RwUInt8 i = ATTIRIBUTE_HAIR ; i < ATTIRIBUTE_NUM ; ++i )
 	{
 		sDISPLAY_LEFT_RIGHT_BUTTONS* pDisplayLR = NTL_NEW sDISPLAY_LEFT_RIGHT_BUTTONS;
 		m_aptAttributeDisplay[i] = pDisplayLR;
 
-		// ¿ŞÂÊ ¹öÆ°
+		// ì™¼ìª½ ë²„íŠ¼
 		rect.SetRectWH(35, iStartLeftRightY, 20, 20);
 		pDisplayLR->pLeftButton = (gui::CButton*) NTL_NEW gui::CButton(rect, "",
 									GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharMakePart.srf", "srfLeftBtnUp" ),
@@ -171,7 +171,7 @@ RwBool CCharMakePartGui::Create(CCharCreateGuiGui* pCreateGui)
 									GUI_BUTTON_DOWN_COORD_X, GUI_BUTTON_DOWN_COORD_Y, m_pThis, GetNtlGuiManager()->GetSurfaceManager() );
 		pDisplayLR->m_slotLeftButton = pDisplayLR->pLeftButton->SigClicked().Connect(this, &CCharMakePartGui::OnClick_LeftButton);
 
-		// ¿À¸¥ÂÊ ¹öÆ°
+		// ì˜¤ë¥¸ìª½ ë²„íŠ¼
 		rect.SetRectWH(168, iStartLeftRightY, 20, 20);
 		pDisplayLR->pRightButton = (gui::CButton*) NTL_NEW gui::CButton(rect, "",
 									GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharMakePart.srf", "srfRightBtnUp" ),
@@ -182,7 +182,7 @@ RwBool CCharMakePartGui::Create(CCharCreateGuiGui* pCreateGui)
 									GUI_BUTTON_DOWN_COORD_X, GUI_BUTTON_DOWN_COORD_Y, m_pThis, GetNtlGuiManager()->GetSurfaceManager() );
 		pDisplayLR->m_slotRightButton = pDisplayLR->pRightButton->SigClicked().Connect(this, &CCharMakePartGui::OnClick_RightButton);
 
-		// ¼Ó¼º ÀÌ¸§
+		// ì†ì„± ì´ë¦„
 		rect.SetRectWH(64, iStartLeftRightY + 3, 100, 14);
 		pDisplayLR->pAttributeName = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER );
 		pDisplayLR->pAttributeName->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
@@ -198,14 +198,14 @@ RwBool CCharMakePartGui::Create(CCharCreateGuiGui* pCreateGui)
 
 		pDisplayLR->pAttributeName->Enable(false);
 
-		// ¹è°æ¹Ù
+		// ë°°ê²½ë°”
 		pDisplayLR->srfBackground.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharMakePart.srf", "srfLeftRightBackground" ));
 		pDisplayLR->srfBackground.SetPositionfromParent(49, iStartLeftRightY + 1);
 
 		iStartLeftRightY	+= 46;
 	}
 
-	// ÀÚµ¿ ¼±ÅÃ ¹öÆ°
+	// ìë™ ì„ íƒ ë²„íŠ¼
 	m_pRendomButton = (gui::CButton*)GetComponent("btnRendom");
 	m_pRendomButton->SetText( GetDisplayStringManager()->GetString("DST_LOBBY_RANDOM_CHOICE") );
 	m_slotRendomButton = m_pRendomButton->SigClicked().Connect(this, &CCharMakePartGui::OnClick_RendomButton);
@@ -281,7 +281,7 @@ VOID CCharMakePartGui::UpdateAttribute()
 		}
 	case RACE_NAMEK:
 		{
-			m_atAttributeChar[ATTIRIBUTE_SEX].byMaxValue	= 0;	// ¼ºº°ÀÌ ¾ø´Ù
+			m_atAttributeChar[ATTIRIBUTE_SEX].byMaxValue	= 0;	// ì„±ë³„ì´ ì—†ë‹¤
 			m_atAttributeChar[ATTIRIBUTE_CLASS].byMaxValue	= dNUM_NAMEK_DEFAULT_CLASS;
 			break;
 		}
@@ -298,18 +298,18 @@ VOID CCharMakePartGui::UpdateAttribute()
 		}
 	}	
 
-	// ±âº»°ª
+	// ê¸°ë³¸ê°’
 	for( RwUInt8 i = ATTIRIBUTE_CLASS ; i < ATTIRIBUTE_NUM ; ++i )
 	{		
 		m_atAttributeChar[i].Select(0);
 		m_atAttributeChar[i].byPostValue = 0;
 	}
 
-	// Á¾Á·º° ±âº» Å¬·¡½º º¸¿©ÁÖ±â
+	// ì¢…ì¡±ë³„ ê¸°ë³¸ í´ë˜ìŠ¤ ë³´ì—¬ì£¼ê¸°
 	sDISPLAY_CLASS_BUTTONS* pDisplay = reinterpret_cast<sDISPLAY_CLASS_BUTTONS*>( m_aptAttributeDisplay[ATTIRIBUTE_CLASS] );
 	pDisplay->ActivateClass(m_atAttributeChar[ATTIRIBUTE_RACE].byValue);
 
-	// ¸®½ºÆ®°¡ ¹Ù²î¸é ¸ğµ¨Àº Á¤ÁöÇÑ »óÅÂ·Î Á¤¸éÀ» ¹Ù¶óº¸³ª
+	// ë¦¬ìŠ¤íŠ¸ê°€ ë°”ë€Œë©´ ëª¨ë¸ì€ ì •ì§€í•œ ìƒíƒœë¡œ ì •ë©´ì„ ë°”ë¼ë³´ë‚˜
 	CDboEventGenerator::LobbyEvent(LMT_ROTATION_FOREWARD);
 }
 
@@ -333,7 +333,7 @@ VOID CCharMakePartGui::SetAttribute(RwUInt8 byAttribute, RwUInt8 byIndex)
 
 VOID CCharMakePartGui::CheckEnableButton()
 {
-	// Á¾Á· ºñÈ°¼ºÈ­ ¿©ºÎ ÆÇ´Ü
+	// ì¢…ì¡± ë¹„í™œì„±í™” ì—¬ë¶€ íŒë‹¨
 	sDISPLAY_RACE_BUTTONS* pDisplayRace = reinterpret_cast<sDISPLAY_RACE_BUTTONS*>( m_aptAttributeDisplay[ATTIRIBUTE_RACE] );
 	for( RwUInt8 i = 0 ; i < DBO_ALLOWED_FUNC_FOR_DEV_COUNT ; ++i )
 	{
@@ -356,13 +356,13 @@ VOID CCharMakePartGui::CheckEnableButton()
 			{
 				if( m_atAttributeChar[ATTIRIBUTE_HAIR].byValue == 1 )
 				{
-					// ÈŞ¸Õ ´ë¸Ó¸®´Â ¸Ó¸®»öÀ» ¼±ÅÃÇÒ ¼ö ¾ø´Ù
+					// íœ´ë¨¼ ëŒ€ë¨¸ë¦¬ëŠ” ë¨¸ë¦¬ìƒ‰ì„ ì„ íƒí•  ìˆ˜ ì—†ë‹¤
 					m_aptAttributeDisplay[ATTIRIBUTE_HAIR_COLOR]->Enable(false);					
 				}
 				else if( m_atAttributeChar[ATTIRIBUTE_HAIR].byPostValue == 1 &&
 						 m_atAttributeChar[ATTIRIBUTE_HAIR].byPostValue != m_atAttributeChar[ATTIRIBUTE_HAIR].byValue )
 				{
-					// ´ë¸Ó¸®¿´´Ù
+					// ëŒ€ë¨¸ë¦¬ì˜€ë‹¤
 					m_aptAttributeDisplay[ATTIRIBUTE_HAIR_COLOR]->Enable(true);
 					m_atAttributeChar[ATTIRIBUTE_HAIR_COLOR].Select( m_atAttributeChar[ATTIRIBUTE_HAIR_COLOR].byValue );
 				}
@@ -381,21 +381,21 @@ VOID CCharMakePartGui::CheckEnableButton()
 					m_aptAttributeDisplay[i]->Enable(true);
 				}
 
-				// ³²ÀÚ·Î ¼±ÅÃµÇ¾î ÀÖÀ» ¶§ ´ë¸Ó¸®¿´À»Áöµµ ¸ğ¸£±â¿¡ ´Ù½Ã ¼³Á¤
+				// ë‚¨ìë¡œ ì„ íƒë˜ì–´ ìˆì„ ë•Œ ëŒ€ë¨¸ë¦¬ì˜€ì„ì§€ë„ ëª¨ë¥´ê¸°ì— ë‹¤ì‹œ ì„¤ì •
 				m_atAttributeChar[ATTIRIBUTE_HAIR_COLOR].Select( m_atAttributeChar[ATTIRIBUTE_HAIR_COLOR].byValue );
 			}
 			break;
 		}
 	case RACE_NAMEK:
 		{
-			// ³ª¸ŞÅ©ÀÎÀÇ °æ¿ì ¼ºº°, ¸Ó¸®»öÀ» °í¸¦ ¼ö ¾ø´Ù
+			// ë‚˜ë©”í¬ì¸ì˜ ê²½ìš° ì„±ë³„, ë¨¸ë¦¬ìƒ‰ì„ ê³ ë¥¼ ìˆ˜ ì—†ë‹¤
 			m_aptAttributeDisplay[ATTIRIBUTE_SEX]->Enable(false);
 			m_aptAttributeDisplay[ATTIRIBUTE_HAIR_COLOR]->Enable(false);
 			break;
 		}
 	case RACE_MAJIN:
 		{
-			// ¸¶ÀÎÀÇ °æ¿ì ¸Ó¸®»öÀ» °í¸¦ ¼ö ¾ø´Ù
+			// ë§ˆì¸ì˜ ê²½ìš° ë¨¸ë¦¬ìƒ‰ì„ ê³ ë¥¼ ìˆ˜ ì—†ë‹¤
 			m_aptAttributeDisplay[ATTIRIBUTE_HAIR_COLOR]->Enable(false);
 			break;
 		}
@@ -445,7 +445,7 @@ VOID CCharMakePartGui::CreateCharacter()
 	byClass = ConverIndexToClass(m_atAttributeChar[ATTIRIBUTE_CLASS].byValue);
 	byGender = ConverIndexToGenderbyRace(m_atAttributeChar[ATTIRIBUTE_RACE].byValue);
 
-	// +1 : ¸ğµ¨ ÀÎµ¦½º°¡ 1ºÎÅÍ ½ÃÀÛÇÏ´Â °Íµµ ÀÖ´Ù
+	// +1 : ëª¨ë¸ ì¸ë±ìŠ¤ê°€ 1ë¶€í„° ì‹œì‘í•˜ëŠ” ê²ƒë„ ìˆë‹¤
 	GetDboGlobal()->GetLobbyPacketGenerator()->SendCharAddReq(pwcNameText,
 										m_atAttributeChar[ATTIRIBUTE_RACE].byValue,
 										byClass, 
@@ -563,7 +563,7 @@ VOID CCharMakePartGui::OnClick_RendomButton(gui::CComponent* pComponent)
 	if( GetCharStageState()->GetCurrentState() != CHAR_STATE_MAKE_IDLE )
 		return;
 
-	// ·£´ı°ª ¾ò¾î¿À±â
+	// ëœë¤ê°’ ì–»ì–´ì˜¤ê¸°
 	m_atAttributeChar[ATTIRIBUTE_HAIR]		.Select((RwUInt8)NtlRandomNumber(0, DBO_CHAR_HAIR_SHAPE_COUNT - 1));
 	m_atAttributeChar[ATTIRIBUTE_HAIR_COLOR].Select((RwUInt8)NtlRandomNumber(0, DBO_CHAR_HAIR_COLOR_COUNT - 1));
 	m_atAttributeChar[ATTIRIBUTE_FACE]		.Select((RwUInt8)NtlRandomNumber(0, DBO_CHAR_FACE_SHAPE_COUNT - 1));
@@ -571,7 +571,7 @@ VOID CCharMakePartGui::OnClick_RendomButton(gui::CComponent* pComponent)
 
 	CheckEnableButton();
 
-	// ½ÇÁ¦ ¸ğµ¨ ¹Ù²Ù±â
+	// ì‹¤ì œ ëª¨ë¸ ë°”ê¾¸ê¸°
 	ChangeModel(false);
 }
 
@@ -645,7 +645,7 @@ VOID CCharMakePartGui::OnPostPaint()
 {
 	for( RwUInt8 i = 0 ; i < ATTIRIBUTE_NUM ; ++i )
 	{
-		// ³ª¸ŞÅ© ÀÏ ¶§´Â ¼ºº°ÀÇ ¼±ÅÃ»çÇ×À» Ç¥½ÃÇÏÁö ¾Ê´Â´Ù
+		// ë‚˜ë©”í¬ ì¼ ë•ŒëŠ” ì„±ë³„ì˜ ì„ íƒì‚¬í•­ì„ í‘œì‹œí•˜ì§€ ì•ŠëŠ”ë‹¤
 		if( m_atAttributeChar[ATTIRIBUTE_RACE].byValue == RACE_NAMEK )
 		{
 			if( ATTIRIBUTE_SEX == i )
@@ -682,7 +682,7 @@ VOID CCharMakePartGui::HandleEvents( RWS::CMsg &msg )
 		{
 			m_atAttributeChar[ATTIRIBUTE_SEX].byValue = GENDER_UNKNOWN;
 
-			// Á¾Á· ºñÈ°¼ºÈ­ ¿©ºÎ ÆÇ´Ü
+			// ì¢…ì¡± ë¹„í™œì„±í™” ì—¬ë¶€ íŒë‹¨
 			for( RwUInt8 i = 0 ; i < DBO_ALLOWED_FUNC_FOR_DEV_COUNT ; ++i )
 			{
 				if( GetDboGlobal()->HaveFunction((eDBO_ALLOWED_FUNC_FOR_DEV)i) )
@@ -700,7 +700,7 @@ VOID CCharMakePartGui::HandleEvents( RWS::CMsg &msg )
 			
 			if( GENDER_UNKNOWN == m_atAttributeChar[ATTIRIBUTE_SEX].byValue )
 			{
-				// ¼­¹ö¿¡¼­ ¸ğµç Á¾Á·À» ¸¸µé ¼ö ¾ø°Ô ¸¸µç °æ¿ìÀÌ´Ù
+				// ì„œë²„ì—ì„œ ëª¨ë“  ì¢…ì¡±ì„ ë§Œë“¤ ìˆ˜ ì—†ê²Œ ë§Œë“  ê²½ìš°ì´ë‹¤
 				EnableButtons(false);
 				NTL_RETURNVOID();
 			}

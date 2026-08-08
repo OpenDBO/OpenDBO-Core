@@ -1,4 +1,4 @@
-// Attr_COND_WItem.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_COND_WItem.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_COND_WItem.h"
 
 
-// CAttr_COND_WItem ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_COND_WItem ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_COND_WItem, CAttr_Page, 1)
 
@@ -51,4 +51,4 @@ BEGIN_MESSAGE_MAP(CAttr_COND_WItem, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_COND_WItem ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_COND_WItem ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

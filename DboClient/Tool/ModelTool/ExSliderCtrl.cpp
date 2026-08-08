@@ -1,13 +1,13 @@
-// ExSliderCtrl.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// ExSliderCtrl.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
 #include "ExSliderCtrl.h"
 
-//-- Æ÷ÀÎÆ® »ó¼¼ ¼³Á¤½Ã »ç¿ëÇÒ ´ÙÀÌ¾ó·Î±×
+//-- í¬ì¸íŠ¸ ìƒì„¸ ì„¤ì •ì‹œ ì‚¬ìš©í•  ë‹¤ì´ì–¼ë¡œê·¸
 
 
-// ¸Ş´º Ã³¸®¸¦ À§ÇØ »ç¿ëµÇ´Â ¾ÆÀÌµğ
+// ë©”ë‰´ ì²˜ë¦¬ë¥¼ ìœ„í•´ ì‚¬ìš©ë˜ëŠ” ì•„ì´ë””
 #define ID_SET_RANGE	31244
 #define ID_SET_START	31245
 #define ID_SET_END		31246
@@ -56,7 +56,7 @@ BEGIN_MESSAGE_MAP(CExSliderCtrl, CSliderCtrl)
 	ON_WM_KEYDOWN()
 END_MESSAGE_MAP()
 
-// CExSliderCtrl ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CExSliderCtrl ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CExSliderCtrl::SetRange(int nMin, int nMax, BOOL bRedraw /* = FALSE */)
 {
@@ -124,26 +124,26 @@ void CExSliderCtrl::CalcLayout()
 
 	int nPos = GetPos();
 
-	// Bar ¿µ¿ª ±¸ÇÏ±â
+	// Bar ì˜ì—­ êµ¬í•˜ê¸°
 	m_rtBar.left	= m_rtWnd.left + 7;
 	m_rtBar.right	= m_rtWnd.right - 8;
 	m_rtBar.top		= m_rtWnd.bottom - m_nBarHeight - 3;
 	m_rtBar.bottom	= m_rtWnd.bottom - 3;
 
-    // ¸¶Ä¿ ¿µ¿ª ±¸ÇÏ±â
+    // ë§ˆì»¤ ì˜ì—­ êµ¬í•˜ê¸°
     m_rtMarkerSpace.left = m_rtWnd.left + 7;
     m_rtMarkerSpace.right = m_rtWnd.right - 8;
     m_rtMarkerSpace.top = m_rtWnd.top + 3;
     m_rtMarkerSpace.bottom = m_rtBar.top;
 
 
-	// Tick ¿µ¿ª ±¸ÇÏ±â
+	// Tick ì˜ì—­ êµ¬í•˜ê¸°
 	m_rtTick.left	= PosToPixel(m_rtBar, nPos) - (m_nTickWidth / 2);
 	m_rtTick.right	= m_rtTick.left + m_nTickWidth;
 	m_rtTick.top	= m_rtBar.top - 2;
 	m_rtTick.bottom	= m_rtBar.bottom + 2;
 
-    // ¸¶Ä¿µéÀÇ ¿µ¿ª ±¸ÇÏ±â
+    // ë§ˆì»¤ë“¤ì˜ ì˜ì—­ êµ¬í•˜ê¸°
     for(size_t i = 0; i < m_vMarker.size(); ++i)
     {
         m_vMarker[i].m_rt.left   = PosToPixel(m_rtBar, m_vMarker[i].m_nPoint) - (m_nPntWidth / 2);
@@ -153,13 +153,13 @@ void CExSliderCtrl::CalcLayout()
     }
 
 
-	//// ½ÃÀÛ Á¡ ¿µ¿ª ±¸ÇÏ±â
+	//// ì‹œì‘ ì  ì˜ì—­ êµ¬í•˜ê¸°
 	//m_rtStart.left		= PosToPixel(m_rtBar, m_nStartPnt) - (m_nPntWidth / 2);
 	//m_rtStart.right		= m_rtStart.left + m_nPntWidth;
 	//m_rtStart.top		= m_rtBar.top - m_nPntHeight - 5;
 	//m_rtStart.bottom	= m_rtBar.top - 5;
 
-	//// ³¡ Á¡ ¿µ¿ª ±¸ÇÏ±â
+	//// ë ì  ì˜ì—­ êµ¬í•˜ê¸°
 	//m_rtEnd.left	= PosToPixel(m_rtBar, m_nEndPnt) - (m_nPntWidth / 2);
 	//m_rtEnd.right	= m_rtEnd.left + m_nPntWidth;
 	//m_rtEnd.top		= m_rtBar.top - m_nPntHeight - 5;
@@ -170,15 +170,15 @@ void CExSliderCtrl::OnPaint()
 {
 	CPaintDC dc(this);
 
-	// ´õºí ¹öÆÛ¸µ °´Ã¼¸¦ »ı¼ºÇÑ´Ù
+	// ë”ë¸” ë²„í¼ë§ ê°ì²´ë¥¼ ìƒì„±í•œë‹¤
 	CGDIPlusDBuffer dbGraphics(this->GetSafeHwnd());
-	// ´õºí ¹öÆÛ¸µ °´Ã¼¿¡¼­ Graphics Æ÷ÀÎÅÍ¸¦ ¾ò´Â´Ù
+	// ë”ë¸” ë²„í¼ë§ ê°ì²´ì—ì„œ Graphics í¬ì¸í„°ë¥¼ ì–»ëŠ”ë‹¤
 	Graphics* pGrp = dbGraphics.GetGraphics();
 
 	CalcLayout();
 
 	//---------------------------------------------------------
-	// ÀüÃ¼ ¹è°æ ±×¸®±â  
+	// ì „ì²´ ë°°ê²½ ê·¸ë¦¬ê¸°  
 	//---------------------------------------------------------
 	{
 		LinearGradientBrush linerUp(Point(m_rtWnd.left, m_rtWnd.top - 1),
@@ -210,7 +210,7 @@ void CExSliderCtrl::OnPaint()
 	}		
 
 	//---------------------------------------------------------
-	// ÇöÀç ÁøÇàµÈ ¿µ¿ª ±×¸®±â: ÃÊ·Ï»öÀ¸·Î,,,  
+	// í˜„ì¬ ì§„í–‰ëœ ì˜ì—­ ê·¸ë¦¬ê¸°: ì´ˆë¡ìƒ‰ìœ¼ë¡œ,,,  
 	//---------------------------------------------------------
 	{
 		int nWidth = PosToPixel(m_rtBar, m_nStartPnt);
@@ -221,11 +221,11 @@ void CExSliderCtrl::OnPaint()
 		rt.top		= m_rtBar.top + 2;
 		rt.bottom	= m_rtBar.bottom - 2;
 
-		// ¿Í°û¼± ±×¸®±â
+		// ì™€ê³½ì„  ê·¸ë¦¬ê¸°
 		Pen penOut(Color(255, 29, 168, 0));
 		pGrp->DrawRectangle(&penOut, rt.left, rt.top, rt.Width(), rt.Height());
 
-		// ¾ÈÂÊ Ã¤¿ì±â
+		// ì•ˆìª½ ì±„ìš°ê¸°
 		LinearGradientBrush linerBr(Point(rt.left, rt.bottom),
 			Point(rt.left, rt.top), 
 			Color(255, 68, 184, 0),
@@ -234,7 +234,7 @@ void CExSliderCtrl::OnPaint()
 	}
 
     //---------------------------------------------------------
-    // ¸¶Ä¿µé ±×¸®±â
+    // ë§ˆì»¤ë“¤ ê·¸ë¦¬ê¸°
     //---------------------------------------------------------
     for(size_t i = 0; i < m_vMarker.size(); ++i)
     {
@@ -242,64 +242,64 @@ void CExSliderCtrl::OnPaint()
                             Point(m_vMarker[i].m_rt.right, m_vMarker[i].m_rt.top),
                             Point(m_vMarker[i].m_rt.left + m_vMarker[i].m_rt.Width() / 2, m_vMarker[i].m_rt.bottom)};
 
-        if(i == m_nClickMarkerID) // ¼±ÅÃµÈ ¸¶Ä¿´Â ´Ù¸£°Ô ±×·ÁÁØ´Ù.
+        if(i == m_nClickMarkerID) // ì„ íƒëœ ë§ˆì»¤ëŠ” ë‹¤ë¥´ê²Œ ê·¸ë ¤ì¤€ë‹¤.
         {
-            // ¾ÈÂÊ Ä¥ÇÏ±â
+            // ì•ˆìª½ ì¹ í•˜ê¸°
             SolidBrush brOut(Color(255, 50, 50, 255));
             pGrp->FillPolygon(&brOut, pntLine, 3);
 
-            // ¿Ü°û¼± ±×¸®±â
+            // ì™¸ê³½ì„  ê·¸ë¦¬ê¸°
             Pen penOut(Color(255, 128, 128, 255));
             pGrp->DrawPolygon(&penOut, pntLine, 3);
         }
         else
         {
-            // ¾ÈÂÊ Ä¥ÇÏ±â
+            // ì•ˆìª½ ì¹ í•˜ê¸°
             SolidBrush brOut(Color(255, 255, 50, 50));
             pGrp->FillPolygon(&brOut, pntLine, 3);
 
-            // ¿Ü°û¼± ±×¸®±â
+            // ì™¸ê³½ì„  ê·¸ë¦¬ê¸°
             Pen penOut(Color(255, 255, 128, 128));
             pGrp->DrawPolygon(&penOut, pntLine, 3);
         }        
     }
 	////---------------------------------------------------------
-	//// ½ÃÀÛ Á¡ ±×¸®±â  
+	//// ì‹œì‘ ì  ê·¸ë¦¬ê¸°  
 	////---------------------------------------------------------
 	//{
 	//	Point pntLine[3] = {Point(m_rtStart.left, m_rtStart.top), 
 	//		Point(m_rtStart.right, m_rtStart.top),
 	//		Point(m_rtStart.left + m_rtStart.Width() / 2, m_rtStart.bottom)};
 
-	//	// ¾ÈÂÊ Ä¥ÇÏ±â
+	//	// ì•ˆìª½ ì¹ í•˜ê¸°
 	//	SolidBrush brOut(Color(255, 255, 50, 50));
 	//	pGrp->FillPolygon(&brOut, pntLine, 3);
 
-	//	// ¿Ü°û¼± ±×¸®±â
+	//	// ì™¸ê³½ì„  ê·¸ë¦¬ê¸°
 	//	Pen penOut(Color(255, 255, 128, 128));
 	//	pGrp->DrawPolygon(&penOut, pntLine, 3);	
 	//}
 
  //   //---------------------------------------------------------
- //   // Á¾·á Á¡ ±×¸®±â  
+ //   // ì¢…ë£Œ ì  ê·¸ë¦¬ê¸°  
  //   //---------------------------------------------------------
  //   {
  //       Point pntLine[3] = {Point(m_rtEnd.left, m_rtEnd.top), 
  //           Point(m_rtEnd.right, m_rtEnd.top),
  //           Point(m_rtEnd.left + m_rtEnd.Width() / 2, m_rtEnd.bottom)};
 
- //       // ¾ÈÂÊ Ä¥ÇÏ±â
+ //       // ì•ˆìª½ ì¹ í•˜ê¸°
  //       SolidBrush brOut(Color(255, 255, 50, 50));
  //       pGrp->FillPolygon(&brOut, pntLine, 3);
 
- //       // ¿Ü°û¼± ±×¸®±â
+ //       // ì™¸ê³½ì„  ê·¸ë¦¬ê¸°
  //       Pen penOut(Color(255, 255, 128, 128));
  //       pGrp->DrawPolygon(&penOut, pntLine, 3);	
  //   }
 
 
 	////---------------------------------------------------------
-	//// Head ÂÊ ºñÈ°¼º ¿µ¿ª ±×¸®±â  
+	//// Head ìª½ ë¹„í™œì„± ì˜ì—­ ê·¸ë¦¬ê¸°  
 	////---------------------------------------------------------
 	//{
 	//	int nWidth = PosToPixel(m_rtBar, m_nStartPnt);
@@ -310,11 +310,11 @@ void CExSliderCtrl::OnPaint()
 	//	rt.top		= m_rtBar.top + 2;
 	//	rt.bottom	= m_rtBar.bottom - 2;
 
-	//	// ¿Ü°û¼± ±×¸®±â
+	//	// ì™¸ê³½ì„  ê·¸ë¦¬ê¸°
 	//	Pen penOut(Color(255, 200, 200, 200));
 	//	pGrp->DrawRectangle(&penOut, rt.left, rt.top, rt.Width(), rt.Height());
 
-	//	// ¾ÈÂÊ Ã¤¿ì±â
+	//	// ì•ˆìª½ ì±„ìš°ê¸°
 	//	LinearGradientBrush linerBr(Point(rt.left, rt.bottom),
 	//		Point(rt.left, rt.top), 
 	//		Color(255, 100, 100, 100),
@@ -325,7 +325,7 @@ void CExSliderCtrl::OnPaint()
 
 
 	////---------------------------------------------------------
-	//// Tail ÂÊ ºñÈ°¼º ¿µ¿ª ±×¸®±â  
+	//// Tail ìª½ ë¹„í™œì„± ì˜ì—­ ê·¸ë¦¬ê¸°  
 	////---------------------------------------------------------
 	//{
 	//	int nLeft = PosToPixel(m_rtBar, m_nEndPnt);
@@ -336,11 +336,11 @@ void CExSliderCtrl::OnPaint()
 	//	rt.top		= m_rtBar.top + 2;
 	//	rt.bottom	= m_rtBar.bottom - 2;
 
-	//	// ¿Ü°û¼± ±×¸®±â
+	//	// ì™¸ê³½ì„  ê·¸ë¦¬ê¸°
 	//	Pen penOut(Color(255, 200, 200, 200));
 	//	pGrp->DrawRectangle(&penOut, rt.left, rt.top, rt.Width(), rt.Height());
 
-	//	// ¾ÈÂÊ Ã¤¿ì±â
+	//	// ì•ˆìª½ ì±„ìš°ê¸°
 	//	LinearGradientBrush linerBr(Point(rt.left, rt.bottom),
 	//		Point(rt.left, rt.top), 
 	//		Color(255, 100, 100, 100),
@@ -349,10 +349,10 @@ void CExSliderCtrl::OnPaint()
 	//}
 
 	//---------------------------------------------------------
-	// Tick ±×¸®±â. °¡Àå ¸¶Áö¸·¿¡ ±×·ÁÁ®¾ß ÇÑ´Ù.
+	// Tick ê·¸ë¦¬ê¸°. ê°€ì¥ ë§ˆì§€ë§‰ì— ê·¸ë ¤ì ¸ì•¼ í•œë‹¤.
 	//---------------------------------------------------------
 	{
-		// Tick À§ÂÊ Ä¥ÇÏ±â
+		// Tick ìœ„ìª½ ì¹ í•˜ê¸°
 		LinearGradientBrush linerUp(Point(m_rtTick.left, m_rtTick.top - 1),
 			Point(m_rtTick.left, m_rtTick.top + m_rtTick.Height() / 2), 
 			Color(255, 246, 248, 252), 
@@ -363,7 +363,7 @@ void CExSliderCtrl::OnPaint()
 			m_rtTick.Width(),
 			m_rtTick.Height() / 2);
 
-		// Tick ¾Æ·¡ÂÊ Ä¥ÇÏ±â
+		// Tick ì•„ë˜ìª½ ì¹ í•˜ê¸°
 		LinearGradientBrush linerDown(Point(m_rtTick.left, m_rtTick.top + m_rtTick.Height() / 2),
 			Point(m_rtTick.left, m_rtTick.bottom), 
 			Color(255, 172, 184, 225),
@@ -374,7 +374,7 @@ void CExSliderCtrl::OnPaint()
 			m_rtTick.Width(),
 			m_rtTick.Height() / 2);
 
-		// Tick ¿Ü°û¼± ±×¸®±â
+		// Tick ì™¸ê³½ì„  ê·¸ë¦¬ê¸°
 		Pen penTickOut(Color(255, 41, 92, 164));
 		pGrp->DrawRectangle(&penTickOut,
 			m_rtTick.left,
@@ -409,11 +409,11 @@ void CExSliderCtrl::OnMouseMove(UINT /*nFlags*/, CPoint point)
 	//{
 	//	int nPos = PixelToPos(m_rtBar, point.x);
 
-	//	// Start´Â End¸¦ ³Ñ¾î°¥ ¼ö ¾ø´Ù.
+	//	// StartëŠ” Endë¥¼ ë„˜ì–´ê°ˆ ìˆ˜ ì—†ë‹¤.
 	//	if(nPos >= m_nEndPnt)
 	//		nPos = m_nEndPnt - 1;
 
-	//	// Start°¡ ÇöÀç Tick Posº¸´Ù Ä¿Áö¸é Tickµµ °°ÀÌ ÀÌµ¿ÇÑ´Ù.
+	//	// Startê°€ í˜„ì¬ Tick Posë³´ë‹¤ ì»¤ì§€ë©´ Tickë„ ê°™ì´ ì´ë™í•œë‹¤.
 	//	if(nPos > GetPos())
 	//		SetPos(nPos);
 
@@ -423,11 +423,11 @@ void CExSliderCtrl::OnMouseMove(UINT /*nFlags*/, CPoint point)
 	//{
 	//	int nPos = PixelToPos(m_rtBar, point.x);
 
-	//	// End´Â Start¸¦ ³Ñ¾î°¥ ¼ö ¾ø´Ù.
+	//	// EndëŠ” Startë¥¼ ë„˜ì–´ê°ˆ ìˆ˜ ì—†ë‹¤.
 	//	if(nPos <= m_nStartPnt)
 	//		nPos = m_nStartPnt + 1;
 
-	//	// End°¡ ÇöÀç Tick Posº¸´Ù ÀÛ¾ÆÁö¸é Tickµµ °°ÀÌ ÀÌµ¿ÇÑ´Ù.
+	//	// Endê°€ í˜„ì¬ Tick Posë³´ë‹¤ ì‘ì•„ì§€ë©´ Tickë„ ê°™ì´ ì´ë™í•œë‹¤.
 	//	if(nPos < GetPos())
 	//		SetPos(nPos);
 
@@ -441,7 +441,7 @@ void CExSliderCtrl::OnMouseMove(UINT /*nFlags*/, CPoint point)
 		if(nPos == 100)
 			TRACE("Pos = %d\n", nPos);
 
-		// Pos °ªÀº Start Point ~ End Point »çÀÌ¿¡¸¸ Á¸ÀçÇØ¾ß ÇÑ´Ù.
+		// Pos ê°’ì€ Start Point ~ End Point ì‚¬ì´ì—ë§Œ ì¡´ì¬í•´ì•¼ í•œë‹¤.
 		if(nPos < m_nStartPnt)
 			nPos = m_nStartPnt;
 
@@ -465,7 +465,7 @@ BOOL CExSliderCtrl::OnMouseWheel(UINT /*nFlags*/, short zDelta, CPoint /*pt*/)
 	int nPos = GetPos();
 
 	//---------------------------------------------------------
-	// zDelta: ÈÙÀ» À§·Î ¿Ã¸®¸é -120, ¾Æ·¡·Î ³»¸®¸é 120ÀÌ´Ù.  
+	// zDelta: íœ ì„ ìœ„ë¡œ ì˜¬ë¦¬ë©´ -120, ì•„ë˜ë¡œ ë‚´ë¦¬ë©´ 120ì´ë‹¤.  
 	//---------------------------------------------------------
 	if(zDelta < 0)
 	{
@@ -490,14 +490,14 @@ BOOL CExSliderCtrl::OnMouseWheel(UINT /*nFlags*/, short zDelta, CPoint /*pt*/)
 
 void CExSliderCtrl::OnLButtonDown(UINT /*nFlags*/, CPoint point)
 {
-	SetCapture();	// ¸¶¿ì½º ÀÌº¥Æ® Ã³¸® À§ÇØ
-	SetFocus();		// ¸¶¿ì½º ÈÙ Ã³¸®¸¦ À§ÇØ	
+	SetCapture();	// ë§ˆìš°ìŠ¤ ì´ë²¤íŠ¸ ì²˜ë¦¬ ìœ„í•´
+	SetFocus();		// ë§ˆìš°ìŠ¤ íœ  ì²˜ë¦¬ë¥¼ ìœ„í•´	
 
 	m_ptClick = point;
 
     m_bClickMarker = FALSE;
 
-    // ¸¶Ä¿¸¦ Å¬¸¯ÇßÀ»¶§ ¸¶Ä¿¸¦ ¼±ÅÃÇÑ´Ù.
+    // ë§ˆì»¤ë¥¼ í´ë¦­í–ˆì„ë•Œ ë§ˆì»¤ë¥¼ ì„ íƒí•œë‹¤.
     for(size_t i = 0; i < m_vMarker.size(); ++i)
     {
         if(m_vMarker[i].m_rt.PtInRect(point))
@@ -527,9 +527,9 @@ void CExSliderCtrl::OnLButtonDown(UINT /*nFlags*/, CPoint point)
 	    else if(m_rtBar.PtInRect(point))
 	    {
 		    //---------------------------------------------------------
-		    // BarÀÇ ºó ºÎºĞÀ» Å¬¸¯ÇßÀ» °æ¿ì, ±×°÷ÀÌ ÀÌµ¿ °¡´ÉÇÑ °÷ÀÌ¸é
-		    // ¹Ù·Î ÀÌµ¿À» ½ÃÅ°°í, ±×·¸Áö ¾Ê°í ÀÌµ¿ÇÒ ¼ö ¾ø´Â ¿µ¿ªÀÌ¸é
-		    // ¿Õ ¹«½ÃÇÑ´Ù.
+		    // Barì˜ ë¹ˆ ë¶€ë¶„ì„ í´ë¦­í–ˆì„ ê²½ìš°, ê·¸ê³³ì´ ì´ë™ ê°€ëŠ¥í•œ ê³³ì´ë©´
+		    // ë°”ë¡œ ì´ë™ì„ ì‹œí‚¤ê³ , ê·¸ë ‡ì§€ ì•Šê³  ì´ë™í•  ìˆ˜ ì—†ëŠ” ì˜ì—­ì´ë©´
+		    // ì™• ë¬´ì‹œí•œë‹¤.
 		    //---------------------------------------------------------
 		    int nWhere = PixelToPos(m_rtBar, point.x);
 		    if(nWhere >= m_nStartPnt && nWhere <= m_nEndPnt)
@@ -543,7 +543,7 @@ void CExSliderCtrl::OnLButtonDown(UINT /*nFlags*/, CPoint point)
 	    }
         else if(m_rtMarkerSpace.PtInRect(point))
         {
-            // ¸¶Ä¿ ¿µ¿ª ºÎºĞÀ» Å¬¸¯ÇßÀ»¶§ ±×ÀÚ¸®¿¡ ¸¶Ä¿¸¦ Ãß°¡ÇÑ´Ù.
+            // ë§ˆì»¤ ì˜ì—­ ë¶€ë¶„ì„ í´ë¦­í–ˆì„ë•Œ ê·¸ìë¦¬ì— ë§ˆì»¤ë¥¼ ì¶”ê°€í•œë‹¤.
             int nPos = PixelToPos(m_rtMarkerSpace, point.x);
             if(nPos >= m_nStartPnt && nPos <= m_nEndPnt)
             {
@@ -590,7 +590,7 @@ void CExSliderCtrl::OnRButtonDown(UINT nFlags, CPoint point)
 {
     //PopupMenu(point);
 
-    // ¿ìÃø ¹öÆ°À» Å¬¸¯ÇÏ¸é ¸¶Ä¿¸¦ Áö¿î´Ù.
+    // ìš°ì¸¡ ë²„íŠ¼ì„ í´ë¦­í•˜ë©´ ë§ˆì»¤ë¥¼ ì§€ìš´ë‹¤.
     VMarker::iterator it = m_vMarker.begin();
     for(; it != m_vMarker.end(); ++it)
     {
@@ -697,7 +697,7 @@ void CExSliderCtrl::OnNeedText(NMHDR* pnmh, LRESULT* pResult)
 BOOL CExSliderCtrl::OnEraseBkgnd(CDC* /*pDC*/)
 {
 	//---------------------------------------------------------
-	// ±ô¹Ú°Å¸²À» ¾ø¾Ö±â À§ÇØ¼­ ¹è°æÀ» Áö¿ìÁö ¾Ê´Â´Ù.  
+	// ê¹œë°•ê±°ë¦¼ì„ ì—†ì• ê¸° ìœ„í•´ì„œ ë°°ê²½ì„ ì§€ìš°ì§€ ì•ŠëŠ”ë‹¤.  
 	//---------------------------------------------------------
 	return TRUE;
 }
@@ -710,7 +710,7 @@ void CExSliderCtrl::OnKeyDown(UINT /*nChar*/, UINT /*nRepCnt*/, UINT /*nFlags*/)
 	if(::GetKeyState(VK_LEFT) < 0 || ::GetKeyState(VK_UP) < 0)
 	{
 		//---------------------------------------------------------
-		// °¨¼Ò  
+		// ê°ì†Œ  
 		//---------------------------------------------------------
 		int nPos = GetPos();
 		--nPos;
@@ -724,7 +724,7 @@ void CExSliderCtrl::OnKeyDown(UINT /*nChar*/, UINT /*nRepCnt*/, UINT /*nFlags*/)
 	else if(::GetKeyState(VK_RIGHT) < 0 || ::GetKeyState(VK_DOWN) < 0)
 	{
 		//---------------------------------------------------------
-		// Áõ°¡  
+		// ì¦ê°€  
 		//---------------------------------------------------------
 		int nPos = GetPos();
 		++nPos;

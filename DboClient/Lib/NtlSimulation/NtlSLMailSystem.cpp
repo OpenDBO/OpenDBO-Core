@@ -272,7 +272,7 @@ void CNtlMailSystem::ClearMail()
 
 void CNtlMailSystem::ReloadMail(RwUInt8 uiCount, MAILID* pmailID)
 {
-	// MailStart¸¦ ÇÑ¹øÀÌ¶óµµ Çß³ª ¾ÈÇß³ª && ÀÐ´Â °ÍÀÌ °¡´ÉÇÑ »óÅÂÀÎ°¡ ÆÇ´Ü
+	// MailStartë¥¼ í•œë²ˆì´ë¼ë„ í–ˆë‚˜ ì•ˆí–ˆë‚˜ && ì½ëŠ” ê²ƒì´ ê°€ëŠ¥í•œ ìƒíƒœì¸ê°€ íŒë‹¨
 	if (!m_bMailStart)
 		return;
 
@@ -386,11 +386,11 @@ void CNtlMailSystem::CheckMailSystemNotify(RwUInt32 uiMailCount, RwUInt32 uiUnre
 {
 	RwUInt32 uiNotify = MAILSYSTEM_NOTIFY_VALUE_NONE;
 
-	m_uiMailCount				= uiMailCount;				// ¼­¹ö¿¡ ÀÖ´Â ÃÑ ¸ÞÀÏ °¹¼ö
-	m_uiUnreadMailCountNormal	= uiUnreadMailCountNormal;	// ÀÐÁö ¾ÊÀº ÀÏ¹Ý ¸ÞÀÏ
-	m_uiUnreadMailCountManager	= uiUnreadMailCountManager; // ÀÐÁö ¾ÊÀº ½Ã½ºÅÛ ¸ÞÀÏ( ½Ã½ºÅÛ¿¡¼­ ÀÚµ¿À¸·Î º¸³»´Â ¸ÞÀÏ )
+	m_uiMailCount				= uiMailCount;				// ì„œë²„ì— ìžˆëŠ” ì´ ë©”ì¼ ê°¯ìˆ˜
+	m_uiUnreadMailCountNormal	= uiUnreadMailCountNormal;	// ì½ì§€ ì•Šì€ ì¼ë°˜ ë©”ì¼
+	m_uiUnreadMailCountManager	= uiUnreadMailCountManager; // ì½ì§€ ì•Šì€ ì‹œìŠ¤í…œ ë©”ì¼( ì‹œìŠ¤í…œì—ì„œ ìžë™ìœ¼ë¡œ ë³´ë‚´ëŠ” ë©”ì¼ )
 
-	// ¸ÞÀÏ ¹ß¼Û
+	// ë©”ì¼ ë°œì†¡
 	if (m_uiMailCount == NTL_MAX_MAIL_SLOT_COUNT)
 	{
 		uiNotify |= MAILSYSTEM_NOTIFY_VALUE_MAIL_FULL;
@@ -408,7 +408,7 @@ void CNtlMailSystem::CheckMailSystemNotify(RwUInt32 uiMailCount, RwUInt32 uiUnre
 	m_uiNotify = uiNotify;
 	CNtlSLEventGenerator::MailSystemNfy(MAILSYSTEM_NOTIFY_TYPE_NONE, uiNotify);
 
-	// »õ·Î¿î ¸ÞÀÏÀÌ °»½ÅµÇ¾ú´ÂÁö È®ÀÎ
+	// ìƒˆë¡œìš´ ë©”ì¼ì´ ê°±ì‹ ë˜ì—ˆëŠ”ì§€ í™•ì¸
 	RwBool bNewMail = FALSE;
 	if( m_uiUnreadMailCountNormal > m_uiOldUnreadMailCountNormal )
 	{

@@ -2,9 +2,9 @@
 *
 * File			: NtlSoundDSP.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2008. 4. 3
-* Abstract		: FMOD¿« DSP(Disital Signal Processor)∏¶ ∞¸∏Æ«—¥Ÿ
+* Abstract		: FMODÏùò DSP(Disital Signal Processor)Î•º Í¥ÄÎ¶¨ÌïúÎã§
 *****************************************************************************
 * Desc: A class for applying effects to FMOD systems, channel groups, and channels.
 * You can apply the same effect to duplicate objects

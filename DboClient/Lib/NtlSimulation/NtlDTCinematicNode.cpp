@@ -95,9 +95,9 @@ CNtlDTCinematicViewNode::CNtlDTCinematicViewNode()
 
 CNtlDTCinematicViewNode::~CNtlDTCinematicViewNode()
 {
-	// <Çü¼®>
-	// cinematic view¸¦ close¸¦ ÇÏÁö ¾Ê¾ÒÀ» °æ¿ì...
-	// ¹æ¾î ÄÚµå¸¦ ÀÛ¼ºÇß´Ù.
+	// <í˜•ì„>
+	// cinematic viewë¥¼ closeë¥¼ í•˜ì§€ ì•Šì•˜ì„ ê²½ìš°...
+	// ë°©ì–´ ì½”ë“œë¥¼ ì‘ì„±í–ˆë‹¤.
 
 	if(!m_bShow && !m_bViewClose)
 	{
@@ -109,7 +109,7 @@ void CNtlDTCinematicViewNode::Enter(void)
 {
 	if(m_fDelayTime <= 0.0f)
 	{
-		// event ¹ß»ı.
+		// event ë°œìƒ.
 		CNtlPLEventGenerator::CinematicViewShow(m_bShow);
 	}
 }
@@ -126,7 +126,7 @@ void CNtlDTCinematicViewNode::Update(RwReal fElapsed)
 	m_fCurrTime += fElapsed;
 	if(m_fCurrTime >= m_fDelayTime)
 	{
-		// event ¹ß»ı.
+		// event ë°œìƒ.
 		CNtlPLEventGenerator::CinematicViewShow(m_bShow);
 		Finish();
 	}
@@ -159,7 +159,7 @@ void CNtlDTCinematicBalloon::Enter(void)
 {
 	if(m_fDelayTime <= 0.0f)
 	{
-		// ballon »ı¼º event ¹ß»ı.
+		// ballon ìƒì„± event ë°œìƒ.
 
 		RwUInt8 byBalloonPlayType = GetBallonPlayType();
 
@@ -216,7 +216,7 @@ void CNtlDTCinematicBalloon::Update(RwReal fElapsed)
 	{
 		if(m_fCurrTime >= 1.0f)
 		{
-			// ¼Ò¸ê delay
+			// ì†Œë©¸ delay
 			Finish();
 		}
 	}
@@ -315,7 +315,7 @@ void CNtlDTCinematicFlash::Enter(void)
 {
 	if(m_fDelayTime <= 0.0f)
 	{
-		// flash »ı¼º event ¹ß»ı.
+		// flash ìƒì„± event ë°œìƒ.
 		PlayFlash();
 		m_byState = DTCI_FLASH_IDLE;
 	}
@@ -336,7 +336,7 @@ void CNtlDTCinematicFlash::Update(RwReal fElapsed)
 	{
 		if(m_fCurrTime >= m_fDelayTime)
 		{
-			// flash »ı¼º event ¹ß»ı.
+			// flash ìƒì„± event ë°œìƒ.
 			PlayFlash();
 
 			m_fCurrTime = 0.0f;
@@ -1508,7 +1508,7 @@ void CNtlDTCinematicSoundNode::PlaySound(void)
 	tSoundParam.fYPos			= m_vPos.y;
 	tSoundParam.fZPos			= m_vPos.z;
 
-	// Loop ±â´ÉÀº ¸·¾ÆµĞ´Ù. Loop ±â´ÉÀ» ¾²·Á¸é Stopµµ ÇÒ ¼ö ÀÖ¾î¾ß ÇÑ´Ù.
+	// Loop ê¸°ëŠ¥ì€ ë§‰ì•„ë‘”ë‹¤. Loop ê¸°ëŠ¥ì„ ì“°ë ¤ë©´ Stopë„ í•  ìˆ˜ ìˆì–´ì•¼ í•œë‹¤.
 	//tSoundParam.bLoop			= B2b(m_bLoop);
 
 	if( tSoundParam.iChannelGroup == CHANNEL_GROUP_BGM )
@@ -1814,7 +1814,7 @@ void CNtlDTCinematicNodeChain::Enter(void)
 			pChainNode->Enter();
 		}
 
-		// sibling ½ÇÇà.
+		// sibling ì‹¤í–‰.
 		if(!m_listSibling.empty())
 		{
 			ListChild::iterator itsibling;
@@ -1849,7 +1849,7 @@ void CNtlDTCinematicNodeChain::Update(RwReal fElapsed)
 
 	CNtlDTCinematicNodeChain *pChainNode;
 
-	// child ½ÇÇà.
+	// child ì‹¤í–‰.
 	if(!m_listChild.empty())
 	{
 		ListChild::iterator itchild = m_listChild.begin();
@@ -1872,7 +1872,7 @@ void CNtlDTCinematicNodeChain::Update(RwReal fElapsed)
 		}
 	}
 
-	// sibling ½ÇÇà.
+	// sibling ì‹¤í–‰.
 	if(!m_listSibling.empty())
 	{
 		ListChild::iterator itsibling;

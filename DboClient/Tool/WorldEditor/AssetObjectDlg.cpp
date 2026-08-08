@@ -1,4 +1,4 @@
-// AssetObjectDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// AssetObjectDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "AssetObjectDlg.h"
 
 
-// CAssetObjectDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAssetObjectDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CAssetObjectDlg, CDialog)
 CAssetObjectDlg::CAssetObjectDlg(CWnd* pParent /*=NULL*/)
@@ -29,7 +29,7 @@ BEGIN_MESSAGE_MAP(CAssetObjectDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CAssetObjectDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAssetObjectDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CAssetObjectDlg::OnInitDialog()
 {

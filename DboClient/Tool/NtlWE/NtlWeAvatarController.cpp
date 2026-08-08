@@ -192,7 +192,7 @@ void CNtlWeAvatarController::SetVisibleWeAvatar(bool bVisible)
 		GetNtlGameCameraManager()->SetActiveActor(NULL);
 }
 
-int CNtlWeAvatarController::ActionMapKeyboardMove(unsigned int uiMoveFlags)
+int CNtlWeAvatarController::ActionMapKeyboardMove(uintptr_t uiMoveFlags)
 {
 	if(m_bActive)
 	{
@@ -209,7 +209,7 @@ int CNtlWeAvatarController::ActionMapKeyboardMove(unsigned int uiMoveFlags)
 	return 1;
 }
 
-int CNtlWeAvatarController::ActionJump(unsigned int uiMoveFlags)
+int CNtlWeAvatarController::ActionJump(uintptr_t uiMoveFlags)
 {
 	if(m_bActive)
 		CNtlSLEventGenerator::ActionMapJump(uiMoveFlags);
@@ -260,7 +260,7 @@ int	CNtlWeAvatarController::MouseUpHandler(unsigned int uiMouseData)
 	{
 		MouseUpRBtnHandler(pData);
 	}
-	// camera auto rotate�� �����Ѵ�.
+	// camera auto rotate占쏙옙 占쏙옙占쏙옙占싼댐옙.
 	CalcCameraRotateToCharBack();
 	NTL_RETURN(1);
 }
@@ -323,20 +323,20 @@ void CNtlWeAvatarController::CalcCameraRotateToCharBack(void)
 			if(fCovAngleY >= 360.0f)
 				fCovAngleY -= 360.0f;
 
-			//  ȸ���� �ð� �ݴ� ���� ȸ���̴�.
-			//  ī�޶� angle ���� character angle ����.
+			//  회占쏙옙占쏙옙 占시곤옙 占쌥댐옙 占쏙옙占쏙옙 회占쏙옙占싱댐옙.
+			//  카占쌨띰옙 angle 占쏙옙占쏙옙 character angle 占쏙옙占쏙옙.
 			RwReal fSubAngleY = fCovAngleY - fAngleY;
 
 			if(fSubAngleY > 0.0f)
-				if(fSubAngleY > 180.0f) // ������ ������Ų��.
+				if(fSubAngleY > 180.0f) // 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙킨占쏙옙.
 					m_sRotCharBack.fDelta = 360.0f - fSubAngleY;
-				else // ������ ���ҽ�Ų��.
-					m_sRotCharBack.fDelta = -fSubAngleY; //(�ð� �ݴ� �����̹Ƿ� ����� �Ѵ�.)
+				else // 占쏙옙占쏙옙占쏙옙 占쏙옙占쌀쏙옙킨占쏙옙.
+					m_sRotCharBack.fDelta = -fSubAngleY; //(시계 반대 방향이므로 빼줘야 한다.)
 			else
-				if(fSubAngleY > -180.0f) // ������ ������Ų��.
+				if(fSubAngleY > -180.0f) // 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙킨占쏙옙.
 					m_sRotCharBack.fDelta = fabs(fSubAngleY); 
-				else // ������ ���ҽ�Ų��.
-					m_sRotCharBack.fDelta = -(360.0f - fabs(fSubAngleY)); // �ð� �ݴ� �����̹Ƿ� ����� �Ѵ�.
+				else // 占쏙옙占쏙옙占쏙옙 占쏙옙占쌀쏙옙킨占쏙옙.
+					m_sRotCharBack.fDelta = -(360.0f - fabs(fSubAngleY)); // 시계 반대 방향이므로 빼줘야 한다.
 			
 			m_sRotCharBack.fCurr = 0.0f;
 			m_sRotCharBack.bActive = TRUE;

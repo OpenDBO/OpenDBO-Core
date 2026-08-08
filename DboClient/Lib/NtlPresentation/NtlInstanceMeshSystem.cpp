@@ -3,7 +3,7 @@
 //	Desc		:	
 //	Begin		:	2005. 7.28
 //                  2006. 8.17
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -20,7 +20,7 @@
 #include "NtlMaterialExt.h"
 #include "NtlPLCharacter.h"
 
-// ÀÌÀ¯´Â ¾Ë¼ö ¾øÀ¸³ª rpPRTSTDEMITTERDATAFLAGPRTSIZE °¡ Á¤ÀÇ µÇÁö ¾Ê¾Ò´Ù°í ³ª¿Í¼­ ÇÒ¼ö ¾øÀÌ include ÇÑ´Ù
+// ì´ìœ ëŠ” ì•Œìˆ˜ ì—†ìœ¼ë‚˜ rpPRTSTDEMITTERDATAFLAGPRTSIZE ê°€ ì •ì˜ ë˜ì§€ ì•Šì•˜ë‹¤ê³  ë‚˜ì™€ì„œ í• ìˆ˜ ì—†ì´ include í•œë‹¤
 #include "rpprtstd.h"
 
 void* CNtlInstanceMeshSystem::operator new(size_t size)
@@ -46,7 +46,7 @@ CNtlInstanceMeshSystem::~CNtlInstanceMeshSystem(void)
 }
 
 /**
- * MeshSystem ÃÊ±âÈ­
+ * MeshSystem ì´ˆê¸°í™”
  */
 void CNtlInstanceMeshSystem::Init()
 {
@@ -137,9 +137,9 @@ void CNtlInstanceMeshSystem::Delete()
 }
 
 /**
- * MeshSystem »ı¼º
- * \param pResourceEffect ¸®¼Ò½º
- * \param pResourceComponentSystem ¸®¼Ò½º Container
+ * MeshSystem ìƒì„±
+ * \param pResourceEffect ë¦¬ì†ŒìŠ¤
+ * \param pResourceComponentSystem ë¦¬ì†ŒìŠ¤ Container
  */
 RwBool CNtlInstanceMeshSystem::Create( CNtlResourceEffect* pResourceEffect, 
 									   CNtlResourceComponentSystem* pResourceComponentSystem, 
@@ -258,8 +258,8 @@ RtDict* CNtlInstanceMeshSystem::UVAnimDictLoad(const RwChar* strFullName)
 }
 
 /**
- * MeshSystemÀ» Update¸¦ ÇÑ´Ù.
- * \param fElapsedTime ÀÌÀü Frame¿¡¼­ ÇöÀç Frame±îÁö Èå¸¥ ½Ã°£
+ * MeshSystemì„ Updateë¥¼ í•œë‹¤.
+ * \param fElapsedTime ì´ì „ Frameì—ì„œ í˜„ì¬ Frameê¹Œì§€ íë¥¸ ì‹œê°„
  */
 RwBool CNtlInstanceMeshSystem::Update(RwReal fElapsedTime)
 {
@@ -268,7 +268,7 @@ RwBool CNtlInstanceMeshSystem::Update(RwReal fElapsedTime)
 	m_fLifeTime += fElapsedTime;
 	if (m_bStart)
 	{
-		//Start½Ã¿¡ °¢ º¯¼ö °ªµéÀ» ÃÊ±âÈ­ ÇÑ´Ù.
+		//Startì‹œì— ê° ë³€ìˆ˜ ê°’ë“¤ì„ ì´ˆê¸°í™” í•œë‹¤.
 		if (m_pResourceMeshSystem->m_fStartTime < m_fLifeTime )
 		{
 			m_bStart	= FALSE;
@@ -357,7 +357,7 @@ RwBool CNtlInstanceMeshSystem::Update(RwReal fElapsedTime)
         }
 	}
 
-    // ¹Ù¿îµù ½ºÇÇ¾î¸¦ °è»êÇÑ´Ù.
+    // ë°”ìš´ë”© ìŠ¤í”¼ì–´ë¥¼ ê³„ì‚°í•œë‹¤.
     if(CNtlResourceEffect::m_bUpdateBoundingSphere)
     {
         CalcBoundingSphere();
@@ -433,7 +433,7 @@ void CNtlInstanceMeshSystem::SetWorldMatrix(const RwMatrix& matWorld)
 
     if (m_pSplinePath != NULL)
 	{
-		// Spline Çà·ÄÀº È¸ÀüÀÌ Àû¿ëµÇ¾î ÀÖÁö ¾Ê´Ù. WorldMatrixÀÇ È¸ÀüÀ» Spline Çà·Ä¿¡ Àû¿ëÇÑ´Ù.
+		// Spline í–‰ë ¬ì€ íšŒì „ì´ ì ìš©ë˜ì–´ ìˆì§€ ì•Šë‹¤. WorldMatrixì˜ íšŒì „ì„ Spline í–‰ë ¬ì— ì ìš©í•œë‹¤.
 		RwMatrix tempMatrix = matWorld;
 		*RwMatrixGetPos(&tempMatrix) = ZeroAxis;
 
@@ -447,7 +447,7 @@ void CNtlInstanceMeshSystem::SetWorldMatrix(const RwMatrix& matWorld)
         }
 	}
 
-    // Rotate Action ÀÌ ÀÖ°Å³ª Default Rotate °ªÀÌ ÀÖÀ¸¸é.
+    // Rotate Action ì´ ìˆê±°ë‚˜ Default Rotate ê°’ì´ ìˆìœ¼ë©´.
     if ( m_pResourceMeshSystem && 
         m_pResourceMeshSystem->IsEmitterDataFlag(rpPRTSTDEMITTERDATAFLAGPRT2DROTATE) || 
         m_bDefaultRotate)
@@ -569,7 +569,7 @@ RwBool CNtlInstanceMeshSystem::UpdateFinish( RwReal fElapsedTime )
         {
             RwUInt8 uiDeltaAlpha = UpdateFinishAlpha(m_pResourceMeshSystem->m_EmitterStandard.prtColor.alpha, fElapsedTime, m_pResourceMeshSystem->m_EmitterPrtFinish.m_fFinishTime);
             
-            // UINTÀÇ Æ¯¼º»ó À½¼ö°¡ µÇ¸é ´Ù½Ã MAX°ªÀÌ µÇ¹ö¸®±â ¶§¹®¿¡ À½¼ö Ã¼Å©¸¦ ÇÑ´Ù.
+            // UINTì˜ íŠ¹ì„±ìƒ ìŒìˆ˜ê°€ ë˜ë©´ ë‹¤ì‹œ MAXê°’ì´ ë˜ë²„ë¦¬ê¸° ë•Œë¬¸ì— ìŒìˆ˜ ì²´í¬ë¥¼ í•œë‹¤.
             if((RwInt32)m_Color.alpha - (RwInt32)uiDeltaAlpha < 0)
             {
                 m_Color.alpha = 0;
@@ -583,7 +583,7 @@ RwBool CNtlInstanceMeshSystem::UpdateFinish( RwReal fElapsedTime )
 
     if(m_pResourceMeshSystem->m_EmitterPrtFinish.m_nFinishTypeFlag & FINISH_TYPE_SIZE)
     {
-        // Å©±â¸¦ Á¡Á¡ ÁÙÀÎ´Ù.
+        // í¬ê¸°ë¥¼ ì ì  ì¤„ì¸ë‹¤.
         m_bUpdateRenderMatrix = TRUE;
 
         RwReal fDeltaSize = fElapsedTime / m_pResourceMeshSystem->m_EmitterPrtFinish.m_fFinishTime;
@@ -647,7 +647,7 @@ void CNtlInstanceMeshSystem::CalcBoundingSphere()
 
 void CNtlInstanceMeshSystem::CreateToonData(RpClump* pClump, SToonData* pToonData)
 {
-    // Ä«Å÷ÀÌ Àû¿ëµÇ¾î ÀÖÀ¸¸é Àû¿ëÇÑ´Ù.
+    // ì¹´íˆ°ì´ ì ìš©ë˜ì–´ ìˆìœ¼ë©´ ì ìš©í•œë‹¤.
     if(!Helper_IsToonClump(pClump))
         return;
 

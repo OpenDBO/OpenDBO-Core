@@ -2,7 +2,7 @@
  *
  * File			: NtlSLPacketGenerator.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 9. 27	
  * Abstract		: simulation layer simulation object packet generator
  *****************************************************************************
@@ -37,7 +37,7 @@ public:
 
 	bool SendPetDismissReq(RwUInt8 byAvatarType);
 
-	// ÀÌµ¿
+	// ì´ë™
 	bool SendMouseMove(RwV3d vCurr, RwV3d vDest, RwUInt8 byAvatarType);
 
 	bool SendKeyboardMove(RwV3d vCurr, RwV3d vDir, RwUInt8 byMoveFlag, RwUInt8 byAvatarType);
@@ -81,7 +81,7 @@ public:
 
 	bool SendBlockingEnd(void);
 
-	// ¾É±â/¼­±â
+	// ì•‰ê¸°/ì„œê¸°
 	bool SendSitAndStand(RwBool bSitDown);
 
 	// falling
@@ -91,7 +91,7 @@ public:
 	bool SendAirFalling(RwV3d vCurrPos, RwV3d vCurrDir, RwUInt8 byMoveDirection);
 	bool SendAirEnd(RwV3d vCurrPos, RwV3d vCurrDir);
 
-	// °ø°İ
+	// ê³µê²©
 	bool SendCharToggleFighting(RwBool bFightingMode, RwUInt8 byAvatarType);
 	bool SendCharAttackBegin(RwUInt8 byType, RwUInt8 byAvatarType);
 	bool SendCharAttackEnd(RwUInt8 byType, RwUInt8 byAvatarType);
@@ -106,15 +106,15 @@ public:
 	bool SendCharDirectPlayAck(void);
     bool SendCharSkillCastingCanceledNfy(WORD uiResultCode);
 
-    // µ¥¹ÌÁö ÀÔ¾úÀ»¶§ ÀÌµ¿ °ü·Ã Ã³¸® (³Ë´Ù¿î, ½½¶óÀÌµù, Push)
+    // ë°ë¯¸ì§€ ì…ì—ˆì„ë•Œ ì´ë™ ê´€ë ¨ ì²˜ë¦¬ (ë„‰ë‹¤ìš´, ìŠ¬ë¼ì´ë”©, Push)
     bool SendCharLocAfterKnockdownNfy(const RwV3d& vLoc, const RwV3d& vDir);
     bool SendCharLocAfterSlidingNfy(const RwV3d& vLoc, const RwV3d& vDir);
     bool SendCharLocAfterPushNfy(const RwV3d& vLoc, const RwV3d& vDir);
 
-	// ¹ÙÀÎµå
+	// ë°”ì¸ë“œ
 	bool SendCharBindReq( TBLIDX bindObjectTblidx );
 
-	// Äù½ºÆ®
+	// í€˜ìŠ¤íŠ¸
 	bool SendTSConfirmStepReq( BYTE byTSType, NTL_TS_T_ID tId, NTL_TS_TC_ID tcCurId, NTL_TS_TC_ID tcNextId, RwUInt32* uiParam, RwUInt8 byEventType, RwUInt32 uiEventData );
 	bool SendQuestGiveUpReq( NTL_TS_T_ID tId );
 	bool SendTSUpdateState( NTL_TS_T_ID tId, RwUInt8 byTSType, RwUInt8 byType, RwUInt16 wTSState, RwUInt32 uiParam );
@@ -131,12 +131,12 @@ public:
 	// MailSystem
 	bool SendMailLoadReq(RwUInt32 hSerialID, RwUInt8 uiCount, MAILID aMailID[NTL_MAX_MAIL_SLOT_COUNT]);
 
-	// °øÀ¯ target
+	// ê³µìœ  target
 	bool SendCrossFireReq(RwUInt32 hSerialID);
 
-    // ¹ö½º¹× Å»°Í
-    bool SendRideOnBus(RwUInt32 hTargetId);                     ///< ¹ö½º Å¾½ÂÀ» ¿äÃ»ÇÑ´Ù.    
-    bool SendRideOffBus();                                      ///< ¹ö½º ÇÏÂ÷¸¦ ¿äÃ»ÇÑ´Ù.    
+    // ë²„ìŠ¤ë° íƒˆê²ƒ
+    bool SendRideOnBus(RwUInt32 hTargetId);                     ///< ë²„ìŠ¤ íƒ‘ìŠ¹ì„ ìš”ì²­í•œë‹¤.    
+    bool SendRideOffBus();                                      ///< ë²„ìŠ¤ í•˜ì°¨ë¥¼ ìš”ì²­í•œë‹¤.    
 
 	// vehicle
 	bool SendVehicle_EngineFuelRemoveNfy();
@@ -147,7 +147,7 @@ public:
 
 	bool SendVehicleStuntNfy();
 
-	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ °ü·Ã
+	// ì²œí•˜ì œì¼ ë¬´ë„íšŒ ê´€ë ¨
 	bool SendBudokaiMudosaTeleport(RwUInt8 byMudosaIndex);
 	bool SendBudokaiJoinStateReq();
 	bool SendBudokaiSocialAction(RwUInt32 uiAnimId);

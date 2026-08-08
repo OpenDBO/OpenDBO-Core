@@ -1,7 +1,7 @@
 #pragma once
 
 
-// CPointEditDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPointEditDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 
 class CPointEditDlg : public CDialog
@@ -137,14 +137,14 @@ public:
 
 
 public:
-	CPointEditDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CPointEditDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CPointEditDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_POINTEDIT };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

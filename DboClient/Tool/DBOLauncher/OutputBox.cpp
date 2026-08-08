@@ -2,7 +2,7 @@
 *
 * File			: OutputBox.cpp
 * Author		:
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			:
 * Abstract		: 
 *****************************************************************************

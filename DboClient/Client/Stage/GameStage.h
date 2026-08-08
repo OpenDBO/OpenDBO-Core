@@ -2,7 +2,7 @@
  *
  * File			: GameStage.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (å ì™ì˜™)NTL
  * Date			: 2005. 8. 17	
  * Abstract		: Game stage class
  *****************************************************************************
@@ -92,14 +92,14 @@ private:
 
 public:
 	// Multi thread loading
-		// ¸ÞÀÎ ¾²·¹µå°¡ È£ÃâÇÏ´Â ÇÔ¼ö
-		// ¿ëµµ : ¾²·¹µå µ¥ÀÌÅÍ ·ÎµùÀ» ½ÃÀÛÇÏ±â Àü »çÀü ÀÛ¾÷À» ¼öÇàÇÑ´Ù
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½å°¡ È£ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+		// ï¿½ëµµ : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
 	void PreMutiThreadLoading( void );
-		// µ¥ÀÌÅÍ ·Îµù ¾²·¹µå°¡ È£ÃâÇÏ´Â ÇÔ¼ö
-		// ¿ëµµ : ¾²·¹µå¸¦ ÀÌ¿ëÇØ µ¥ÀÌÅÍ ·ÎµùÀ» ¼öÇàÇÑ´Ù
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½å°¡ È£ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+		// ï¿½ëµµ : ï¿½ï¿½ï¿½ï¿½ï¿½å¸¦ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
 	void MutiThreadLoading( void );
-		// ¸ÞÀÎ ¾²·¹µå°¡ È£ÃâÇÏ´Â ÇÔ¼ö
-		// ¿ëµµ : ¾²·¹µå µ¥ÀÌÅÍ ·Îµù ÈÄ »çÈÄ ÀÛ¾÷À» ¼öÇàÇÑ´Ù
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½å°¡ È£ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
+		// ï¿½ëµµ : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
 	void PostMutiThreadLoading( void );
 
 	virtual void PostRender(void);
@@ -136,7 +136,7 @@ protected:
 	void	UpdateTeleportLoadingSpawnReadyScene(RwReal fElapsed);
 	void	UpdateTeleportLoadingLoadFinishScene(RwReal fElapsed);
 
-    void    UpdateSoundListener();                              ///< »óÈ²¿¡ µû¸¥ »ç¿îµå ¸®½º³Ê¸¦ ¼¼ÆÃÇÑ´Ù.
+    void    UpdateSoundListener();                              ///< å ì™ì˜™í™©å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹­ëªŒì˜™ å ì™ì˜™å ì™ì˜™å ì‹¼ëŒì˜™.
 	
 	void	UpdateDebugDisplay(RwReal fElapsed);
 
@@ -162,7 +162,7 @@ public:
 	virtual void HandleEvents(RWS::CMsg &pMsg);
 
 	// input
-	int KeyboardDownHandler(unsigned int uiKeyData);
+	int KeyboardDownHandler(uintptr_t uiKeyData);
 };
 
 #endif

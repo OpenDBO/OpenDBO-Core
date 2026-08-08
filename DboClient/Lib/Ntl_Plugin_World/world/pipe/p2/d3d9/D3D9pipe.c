@@ -372,6 +372,9 @@ _rwD3D9ResourceEntryInstanceDataDestroy(RwResEntry *repEntry)
         vertexStream->dynamicLock = FALSE;
     }
 
+    // 2005.3.31 gemani
+    resEntryHeader->isLive = 0;
+
     RWRETURNVOID();
 }
 
@@ -725,6 +728,9 @@ _rxD3D9Instance(void *object,
             RWRETURN(NULL);
         }
     }
+
+    // 2005.3.31 gemani
+    resEntryHeader->isLive = 1;
 
     RWRETURN(resEntry);
 }

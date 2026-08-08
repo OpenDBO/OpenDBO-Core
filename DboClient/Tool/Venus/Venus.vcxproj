@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug4ClientLocalizeCJIKor|Win32">
@@ -55,21 +55,21 @@
     <PlatformToolset>v142</PlatformToolset>
     <UseOfMfc>Static</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release4ClientLocalizeDev|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v142</PlatformToolset>
     <UseOfMfc>Static</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release4Client|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v142</PlatformToolset>
     <UseOfMfc>Static</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -85,8 +85,7 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="ExtensionSettings">
-  </ImportGroup>
+  <ImportGroup Label="ExtensionSettings"></ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug4ClientLocalizeDev|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
@@ -161,7 +160,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(DXSDK_DIR)/Include;.\;.\Control;.\Gfl;.\Property;..\..\RenderWare\Include;..\..\Lib\NtlCore;..\..\Lib\NtlFramework;..\..\Lib\NtlPresentation;..\..\Lib\NtlSound;..\..\..\DboShared\NtlShared2;..\..\..\DboShared\NtlShared;..\..\..\DboShared\NtlGameTable;..\..\..\NtlLib\Shared\Util;..\..\..\NtlLib\Shared\NtlXMLLoader;..\..\..\NtlLib\Shared\NtlTrigger;$(SolutionDir)..\NtlLib\Shared\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(DXSDK_DIR)/Include;.\;.\Control;.\Gfl;.\Property;..\..\\Include;..\..\Lib\NtlCore;..\..\Lib\NtlFramework;..\..\Lib\NtlPresentation;..\..\Lib\NtlSound;..\..\..\DboShared\NtlShared2;..\..\..\DboShared\NtlShared;..\..\..\DboShared\NtlGameTable;..\..\..\NtlLib\Shared\Util;..\..\..\NtlLib\Shared\NtlXMLLoader;..\..\..\NtlLib\Shared\NtlTrigger;$(SolutionDir)..\NtlLib\Shared\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;RWDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -198,7 +197,7 @@
     </Midl>
     <ClCompile>
       <Optimization>MinSpace</Optimization>
-      <AdditionalIncludeDirectories>.\;.\Control;.\Gfl;.\Property;..\..\RenderWare\Include;..\..\Lib\NtlCore;..\..\Lib\NtlFramework;..\..\Lib\NtlPresentation;..\..\Lib\NtlSound;..\..\..\DboShared\NtlXMLLoader;..\..\..\DboShared\NtlShared2;..\..\..\DboShared\NtlShared;..\..\..\DboShared\NtlGameTable;..\..\..\NtlLib\Shared\Util;..\..\..\NtlLib\Shared\NtlXMLLoader;..\..\..\NtlLib\Shared\NtlTrigger;$(SolutionDir)..\NtlLib\Shared\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;.\Control;.\Gfl;.\Property;..\..\\Include;..\..\Lib\NtlCore;..\..\Lib\NtlFramework;..\..\Lib\NtlPresentation;..\..\Lib\NtlSound;..\..\..\DboShared\NtlXMLLoader;..\..\..\DboShared\NtlShared2;..\..\..\DboShared\NtlShared;..\..\..\DboShared\NtlGameTable;..\..\..\NtlLib\Shared\Util;..\..\..\NtlLib\Shared\NtlXMLLoader;..\..\..\NtlLib\Shared\NtlTrigger;$(SolutionDir)..\NtlLib\Shared\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -232,7 +231,7 @@
     </Midl>
     <ClCompile>
       <Optimization>MinSpace</Optimization>
-      <AdditionalIncludeDirectories>.\;.\Control;.\Gfl;.\Property;..\..\RenderWare\Include;..\..\Lib\NtlCore;..\..\Lib\NtlFramework;..\..\Lib\NtlPresentation;..\..\Lib\NtlSound;..\..\..\DboShared\NtlShared2;..\..\..\DboShared\NtlShared;..\..\..\DboShared\NtlGameTable;..\..\..\NtlLib\Shared\Util;..\..\..\NtlLib\Shared\NtlXMLLoader;..\..\..\NtlLib\Shared\NtlTrigger;$(SolutionDir)..\NtlLib\Shared\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;.\Control;.\Gfl;.\Property;..\..\\Include;..\..\Lib\NtlCore;..\..\Lib\NtlFramework;..\..\Lib\NtlPresentation;..\..\Lib\NtlSound;..\..\..\DboShared\NtlShared2;..\..\..\DboShared\NtlShared;..\..\..\DboShared\NtlGameTable;..\..\..\NtlLib\Shared\Util;..\..\..\NtlLib\Shared\NtlXMLLoader;..\..\..\NtlLib\Shared\NtlTrigger;$(SolutionDir)..\NtlLib\Shared\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -268,7 +267,7 @@
     </Midl>
     <ClCompile>
       <Optimization>MinSpace</Optimization>
-      <AdditionalIncludeDirectories>.\;.\Control;.\Gfl;.\Property;..\..\RenderWare\Include;..\..\Lib\NtlCore;..\..\Lib\NtlFramework;..\..\Lib\NtlPresentation;..\..\Lib\NtlSound;..\..\..\DboShared\NtlShared2;..\..\..\DboShared\NtlShared;..\..\..\DboShared\NtlGameTable;..\..\..\NtlLib\Shared\Util;..\..\..\NtlLib\Shared\NtlXMLLoader;..\..\..\NtlLib\Shared\NtlTrigger;$(SolutionDir)..\NtlLib\Shared\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;.\Control;.\Gfl;.\Property;..\..\\Include;..\..\Lib\NtlCore;..\..\Lib\NtlFramework;..\..\Lib\NtlPresentation;..\..\Lib\NtlSound;..\..\..\DboShared\NtlShared2;..\..\..\DboShared\NtlShared;..\..\..\DboShared\NtlGameTable;..\..\..\NtlLib\Shared\Util;..\..\..\NtlLib\Shared\NtlXMLLoader;..\..\..\NtlLib\Shared\NtlTrigger;$(SolutionDir)..\NtlLib\Shared\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -303,7 +302,7 @@
     </Midl>
     <ClCompile>
       <Optimization>MinSpace</Optimization>
-      <AdditionalIncludeDirectories>.\;.\Control;.\Gfl;.\Property;..\..\RenderWare\Include;..\..\Lib\NtlCore;..\..\Lib\NtlFramework;..\..\Lib\NtlPresentation;..\..\Lib\NtlSound;..\..\..\DboShared\NtlShared2;..\..\..\DboShared\NtlShared;..\..\..\DboShared\NtlGameTable;..\..\..\NtlLib\Shared\Util;..\..\..\NtlLib\Shared\NtlXMLLoader;..\..\..\NtlLib\Shared\NtlTrigger;$(SolutionDir)..\NtlLib\Shared\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;.\Control;.\Gfl;.\Property;..\..\\Include;..\..\Lib\NtlCore;..\..\Lib\NtlFramework;..\..\Lib\NtlPresentation;..\..\Lib\NtlSound;..\..\..\DboShared\NtlShared2;..\..\..\DboShared\NtlShared;..\..\..\DboShared\NtlGameTable;..\..\..\NtlLib\Shared\Util;..\..\..\NtlLib\Shared\NtlXMLLoader;..\..\..\NtlLib\Shared\NtlTrigger;$(SolutionDir)..\NtlLib\Shared\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -338,7 +337,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.\;.\Control;.\Gfl;.\Property;..\..\RenderWare\Include;..\..\Lib\NtlCore;..\..\Lib\NtlFramework;..\..\Lib\NtlPresentation;..\..\Lib\NtlSound;..\..\..\DboShared\NtlShared2;..\..\..\DboShared\NtlShared;..\..\..\DboShared\NtlGameTable;..\..\..\NtlLib\Shared\Util;..\..\..\NtlLib\Shared\NtlXMLLoader;..\..\..\NtlLib\Shared\NtlTrigger;$(SolutionDir)..\NtlLib\Shared\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;.\Control;.\Gfl;.\Property;..\..\\Include;..\..\Lib\NtlCore;..\..\Lib\NtlFramework;..\..\Lib\NtlPresentation;..\..\Lib\NtlSound;..\..\..\DboShared\NtlShared2;..\..\..\DboShared\NtlShared;..\..\..\DboShared\NtlGameTable;..\..\..\NtlLib\Shared\Util;..\..\..\NtlLib\Shared\NtlXMLLoader;..\..\..\NtlLib\Shared\NtlTrigger;$(SolutionDir)..\NtlLib\Shared\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;RWDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -375,7 +374,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.\;.\Control;.\Gfl;.\Property;..\..\RenderWare\Include;..\..\Lib\NtlCore;..\..\Lib\NtlFramework;..\..\Lib\NtlPresentation;..\..\Lib\NtlSound;..\..\..\DboShared\NtlShared2;..\..\..\DboShared\NtlShared;..\..\..\DboShared\NtlGameTable;..\..\..\NtlLib\Shared\Util;..\..\..\NtlLib\Shared\NtlXMLLoader;..\..\..\NtlLib\Shared\NtlTrigger;$(SolutionDir)..\NtlLib\Shared\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;.\Control;.\Gfl;.\Property;..\..\\Include;..\..\Lib\NtlCore;..\..\Lib\NtlFramework;..\..\Lib\NtlPresentation;..\..\Lib\NtlSound;..\..\..\DboShared\NtlShared2;..\..\..\DboShared\NtlShared;..\..\..\DboShared\NtlGameTable;..\..\..\NtlLib\Shared\Util;..\..\..\NtlLib\Shared\NtlXMLLoader;..\..\..\NtlLib\Shared\NtlTrigger;$(SolutionDir)..\NtlLib\Shared\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;RWDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -439,12 +438,9 @@
     <ClCompile Include="EventListCtrl.cpp" />
     <ClCompile Include="EventListDialog.cpp" />
     <ClCompile Include="InputBox.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug4ClientLocalizeCJIKor|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug4ClientLocalizeDev|Win32'">
-      </PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug4ClientLocalizeCJIKor|Win32'"></PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug4ClientLocalizeDev|Win32'"></PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'"></PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="InstanceEffectDialog.cpp" />
     <ClCompile Include="LightDialog.cpp" />
@@ -484,6 +480,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release4ClientLocalizeDev|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release4Client|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="StringDialog.cpp" />
     <ClCompile Include="StringManager.cpp" />
@@ -653,8 +650,7 @@
     <Text Include="StringType.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets"></ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
       <UserProperties RESOURCE_FILE="Venus.rc" />

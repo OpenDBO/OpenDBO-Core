@@ -1,4 +1,4 @@
-// PaletteWaterTab.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PaletteWaterTab.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -10,7 +10,7 @@
 #include "NtlWorldPaletteDefine.h"
 
 
-// CPaletteWaterTab ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteWaterTab ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPaletteWaterTab, CDialog)
 
@@ -37,7 +37,7 @@ BEGIN_MESSAGE_MAP(CPaletteWaterTab, CDialog)
 END_MESSAGE_MAP()
 
 
-// CPaletteWaterTab ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPaletteWaterTab ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CPaletteWaterTab::OnInitDialog()
 {
@@ -57,7 +57,7 @@ BOOL CPaletteWaterTab::OnInitDialog()
 	m_TabCtrl.SetCurSel(0);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 BOOL CPaletteWaterTab::PreTranslateMessage(MSG* pMsg)

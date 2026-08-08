@@ -8,7 +8,7 @@
 class CNtlSobItem;
 class CNtlWorldConceptDBC;
 
-/// µå·¡°ïº¼ Å¸ÀÔ
+/// ë“œëž˜ê³¤ë³¼ íƒ€ìž…
 enum EDragonBallType
 {
 	E_DRAGONBALL_NONE,
@@ -21,13 +21,13 @@ enum EDragonBallType
 	E_DRAGONBALL_7,
 };
 
-/// µå·¡°ïº¼ ½½·Ô ±¸Á¶Ã¼
+/// ë“œëž˜ê³¤ë³¼ ìŠ¬ë¡¯ êµ¬ì¡°ì²´
 struct DragonBallSlot
 {
-	CRectangle		 m_rt;		///< µå·¡°ïº¼ ½½·ÔÀÇ ¿µ¿ª
-	CSurfaceGui		 m_surface;	///< µå·¡°ïº¼ ½½·ÔÀÇ ¼­ÆäÀÌ½º (ÅØ½ºÃÄ ¼³Á¤¿¡ ÇÊ¿ä)
-	EDragonBallType	 m_eDBType;	///< ½½·Ô¿¡ ÀÖ´Â µå·¡°ïº¼ Å¸ÀÔ
-	CNtlSobItem*	 m_pSobItem; ///< ½½·Ô¿¡ ÀÖ´Â ¾ÆÀÌÅÛÀÇ Æ÷ÀÎÅÍ
+	CRectangle		 m_rt;		///< ë“œëž˜ê³¤ë³¼ ìŠ¬ë¡¯ì˜ ì˜ì—­
+	CSurfaceGui		 m_surface;	///< ë“œëž˜ê³¤ë³¼ ìŠ¬ë¡¯ì˜ ì„œíŽ˜ì´ìŠ¤ (í…ìŠ¤ì³ ì„¤ì •ì— í•„ìš”)
+	EDragonBallType	 m_eDBType;	///< ìŠ¬ë¡¯ì— ìžˆëŠ” ë“œëž˜ê³¤ë³¼ íƒ€ìž…
+	CNtlSobItem*	 m_pSobItem; ///< ìŠ¬ë¡¯ì— ìžˆëŠ” ì•„ì´í…œì˜ í¬ì¸í„°
 
 	DragonBallSlot()
 	{
@@ -39,8 +39,8 @@ struct DragonBallSlot
 
 /**
  * \ingroup Client
- * \brief µå·¡°ïº¼ ¿ë½Å ¼ÒÈ¯ Á¦´Ü Å¬¸¯½Ã ³ª¿À´Â GUI
- * µå·¡°ïº¼ 7°³¸¦ ¼¼ÆÃÇÏ¿© ¿ë½ÅÀ» ¼ÒÈ¯ÇÏ±â À§ÇØ¼­ »ç¿ëÇÑ´Ù.
+ * \brief ë“œëž˜ê³¤ë³¼ ìš©ì‹  ì†Œí™˜ ì œë‹¨ í´ë¦­ì‹œ ë‚˜ì˜¤ëŠ” GUI
+ * ë“œëž˜ê³¤ë³¼ 7ê°œë¥¼ ì„¸íŒ…í•˜ì—¬ ìš©ì‹ ì„ ì†Œí™˜í•˜ê¸° ìœ„í•´ì„œ ì‚¬ìš©í•œë‹¤.
  * \date 2007-06-20
  * \author agebreak
  */
@@ -79,25 +79,25 @@ protected:
     VOID	OnCaptureMouseDown(const CKey& key);
 
 
-	RwInt32	GetChildSlotIdx(RwInt32 nX, RwInt32 nY);	///< ¸¶¿ì½º¸¦ Å¬¸¯ÇÒ¶§ ¾î¶² Slot¿¡ ÇØ´çÇÏ´ÂÁö °è»êÇÑ´Ù.
+	RwInt32	GetChildSlotIdx(RwInt32 nX, RwInt32 nY);	///< ë§ˆìš°ìŠ¤ë¥¼ í´ë¦­í• ë•Œ ì–´ë–¤ Slotì— í•´ë‹¹í•˜ëŠ”ì§€ ê³„ì‚°í•œë‹¤.
 
-	VOID	SetDragonBallSlot(RwInt32 nSlotIdx, EDragonBallType eDragonBallType);	///< µå·¡°ïº¼À» slot¿¡ ¼¼ÆÃÇÑ´Ù.
-	VOID	RemoveDragonBallSlot(RwInt32 nSlotIdx);									///< ¼¼ÆÃÇÑ µå·¡°ïº¼À» slotÀ¸·ÎºÎÅÍ ÇØÁ¦ÇÑ´Ù.
-    RwBool  IsExistSameType(EDragonBallType eType);                                 ///< °°Àº Å¸ÀÔ(¹øÈ£)ÀÇ µå·¡°ïº¼ÀÌ ÀÌ¹Ì ³õ¿©ÀÖ´ÂÁö Ã¼Å©ÇÑ´Ù.
+	VOID	SetDragonBallSlot(RwInt32 nSlotIdx, EDragonBallType eDragonBallType);	///< ë“œëž˜ê³¤ë³¼ì„ slotì— ì„¸íŒ…í•œë‹¤.
+	VOID	RemoveDragonBallSlot(RwInt32 nSlotIdx);									///< ì„¸íŒ…í•œ ë“œëž˜ê³¤ë³¼ì„ slotìœ¼ë¡œë¶€í„° í•´ì œí•œë‹¤.
+    RwBool  IsExistSameType(EDragonBallType eType);                                 ///< ê°™ì€ íƒ€ìž…(ë²ˆí˜¸)ì˜ ë“œëž˜ê³¤ë³¼ì´ ì´ë¯¸ ë†“ì—¬ìžˆëŠ”ì§€ ì²´í¬í•œë‹¤.
 
-	VOID	SpawnDragon();								///< ¿ë½Å ¼ÒÈ¯ ¿¬ÃâÀ» ½ÇÇàÇÑ´Ù.
+	VOID	SpawnDragon();								///< ìš©ì‹  ì†Œí™˜ ì—°ì¶œì„ ì‹¤í–‰í•œë‹¤.
 
 	
 
 protected:
-	static CAltarGui*	m_pInstance;			///< ½Ì±ÛÅæ ÀÎ½ºÅÏ½º °´Ã¼	
+	static CAltarGui*	m_pInstance;			///< ì‹±ê¸€í†¤ ì¸ìŠ¤í„´ìŠ¤ ê°ì²´	
 
-	gui::CButton*		m_pBtnExit;				///< Exit ¹öÆ°
-	gui::CButton*		m_pBtnOK;				///< OK ¹öÆ°
-	gui::CInputBox*		m_pInKeyword;			///< ÁÖ¹® ÀÎÇ² ¹Ú½º
-	gui::CPanel*		m_pPnlInputBack;		///< ÀÎÇ² ¹Ú½º ¹è°æ
-	gui::CPanel*		m_apPnlLight[7];		///< µå·¡°ïº¼ÀÌ »ðÀÔµÇ¸é º¯°æµÉ ¹è°æ
-	gui::CStaticBox*	m_pStaticKeyword;		///< ÁÖ¹® ÀÎÇ² ¹Ú½ºÀÇ ¾ÕÀÇ ÅØ½ºÆ®
+	gui::CButton*		m_pBtnExit;				///< Exit ë²„íŠ¼
+	gui::CButton*		m_pBtnOK;				///< OK ë²„íŠ¼
+	gui::CInputBox*		m_pInKeyword;			///< ì£¼ë¬¸ ì¸í’‹ ë°•ìŠ¤
+	gui::CPanel*		m_pPnlInputBack;		///< ì¸í’‹ ë°•ìŠ¤ ë°°ê²½
+	gui::CPanel*		m_apPnlLight[7];		///< ë“œëž˜ê³¤ë³¼ì´ ì‚½ìž…ë˜ë©´ ë³€ê²½ë  ë°°ê²½
+	gui::CStaticBox*	m_pStaticKeyword;		///< ì£¼ë¬¸ ì¸í’‹ ë°•ìŠ¤ì˜ ì•žì˜ í…ìŠ¤íŠ¸
 
 	gui::CSlot			m_slotClickExitBtn;	
 	gui::CSlot			m_slotClickOKBtn;	
@@ -109,11 +109,11 @@ protected:
 	gui::CSlot			m_slotLostFocus;
     gui::CSlot			m_slotCaptureMouseDown;
 
-    DragonBallSlot      m_DBSlot[DRAGON_BALL_TYPE_COUNT][NTL_ITEM_MAX_DRAGONBALL];          ///< µå·¡°ïº¼ ¾ÆÀÌÄÜÀ» Ç¥½ÃÇÒ ½½·Ô
-	RwInt32				m_nDBCount;				///< ÇöÀç ÀåÂøµÇ¾î ÀÖ´Â µå·¡°ïº¼ Count
-	RwBool				m_bSpawnDragon;			///< ¿ë½ÅÀ» ¼ÒÈ¯Çß´ÂÁö ¿©ºÎ
+    DragonBallSlot      m_DBSlot[DRAGON_BALL_TYPE_COUNT][NTL_ITEM_MAX_DRAGONBALL];          ///< ë“œëž˜ê³¤ë³¼ ì•„ì´ì½˜ì„ í‘œì‹œí•  ìŠ¬ë¡¯
+	RwInt32				m_nDBCount;				///< í˜„ìž¬ ìž¥ì°©ë˜ì–´ ìžˆëŠ” ë“œëž˜ê³¤ë³¼ Count
+	RwBool				m_bSpawnDragon;			///< ìš©ì‹ ì„ ì†Œí™˜í–ˆëŠ”ì§€ ì—¬ë¶€
 	RwBool				m_bDelete;
 
-	CNtlWorldConceptDBC*	m_pWorldConceptDBC;	///< µå·¡°ïº¼ ÄÃ·º¼Ç ÄÁÆ®·Ñ·¯ÀÇ Æ÷ÀÎÅÍ
+	CNtlWorldConceptDBC*	m_pWorldConceptDBC;	///< ë“œëž˜ê³¤ë³¼ ì»¬ë ‰ì…˜ ì»¨íŠ¸ë¡¤ëŸ¬ì˜ í¬ì¸í„°
 
 };

@@ -31,7 +31,7 @@ BOOL CNtlHttpDownLoader::RequestFile( const char *pszServerName,
 	CString	strServerFullPathFileName = pszServerPath;
 	strServerFullPathFileName += "/";
 	strServerFullPathFileName += pszServerFileName;
-    strServerFullPathFileName.Replace("\\", "/"); // HTTP¿¡¼­´Â \À» ¾²Áö¾Ê´Â´Ù. RTPatch ³»ºÎ¿¡¼­ ³ª¿Â ÆÄÀÏ¸íÀÌ \À¸·Î °æ·Î¸¦ Ç¥½ÃÇÏ±â¶§¹®¿¡ /À¸·Î º¯°æÇØÁØ´Ù.
+    strServerFullPathFileName.Replace("\\", "/"); // HTTPì—ì„œëŠ” \ì„ ì“°ì§€ì•ŠëŠ”ë‹¤. RTPatch ë‚´ë¶€ì—ì„œ ë‚˜ì˜¨ íŒŒì¼ëª…ì´ \ìœ¼ë¡œ ê²½ë¡œë¥¼ í‘œì‹œí•˜ê¸°ë•Œë¬¸ì— /ìœ¼ë¡œ ë³€ê²½í•´ì¤€ë‹¤.
 
 	CString strClientFullPathFileName = pszClientPath;	
     if(strClientFullPathFileName.GetLength())
@@ -56,7 +56,7 @@ BOOL CNtlHttpDownLoader::RequestFile( const char *pszServerName,
 		{
 			pSaveFile = new CFile;
 
-			//Directory°¡ ¾ø´Â °æ¿ì FileÀÌ »ı¼º ¾ÈµÊ, ¿ÜºÎ¿¡¼­ Directory¸¦ »ı¼ºÇØ ÁÖ°í ÀÖÀ½            
+			//Directoryê°€ ì—†ëŠ” ê²½ìš° Fileì´ ìƒì„± ì•ˆë¨, ì™¸ë¶€ì—ì„œ Directoryë¥¼ ìƒì„±í•´ ì£¼ê³  ìˆìŒ            
             CreateDirectoryFromFullPath(strClientFullPathFileName);
 
             CFileException ex;
@@ -68,7 +68,7 @@ BOOL CNtlHttpDownLoader::RequestFile( const char *pszServerName,
 
                 if(ex.m_cause == CFileException::accessDenied)
                 {
-                    // ÆÄÀÏÀÌ ÀĞ±âÀü¿ëÀÌ¾î¼­ ¿­¸®Áö ¾ÊÀ»¼öµµ ÀÖ´Ù. ±×·¡¼­ ÆÄÀÏÀ» ¹Ì¸® ÀĞ±âÀü¿ëÀ» ÇØÁ¦ÇÑ´Ù.
+                    // íŒŒì¼ì´ ì½ê¸°ì „ìš©ì´ì–´ì„œ ì—´ë¦¬ì§€ ì•Šì„ìˆ˜ë„ ìˆë‹¤. ê·¸ë˜ì„œ íŒŒì¼ì„ ë¯¸ë¦¬ ì½ê¸°ì „ìš©ì„ í•´ì œí•œë‹¤.
                     CFileStatus fileStatus;
                     fileStatus.m_attribute = 0x00;
                     CFile::SetStatus(strClientFullPathFileName, fileStatus);
@@ -98,7 +98,7 @@ BOOL CNtlHttpDownLoader::RequestFile( const char *pszServerName,
 				nFileSaveSize += nRead;
 				pSaveFile->Write( downBuffer, nRead);
 				
-				//Current »óÅÂ¸¦ º¸³½´Ù.
+				//Current ìƒíƒœë¥¼ ë³´ë‚¸ë‹¤.
 				EventDLCompleteThisFileMsg sDLCompleteThisFileMsg;
 				sDLCompleteThisFileMsg.pszFileName = (char *)pszServerFileName;
 				sDLCompleteThisFileMsg.uiFileSize = nFileSize;
@@ -115,7 +115,7 @@ BOOL CNtlHttpDownLoader::RequestFile( const char *pszServerName,
 			if(GetAbort() == FALSE)
 			{
 				ASSERT( nFileSize == nFileSaveSize );
-				//ÆÄÀÏÀ» Á¦´ë·Î ¹ŞÁö ¸øÇßÀ½
+				//íŒŒì¼ì„ ì œëŒ€ë¡œ ë°›ì§€ ëª»í–ˆìŒ
 				if(nFileSize != nFileSaveSize)
 				{
 					EventDLTextMsg sTextMsg;

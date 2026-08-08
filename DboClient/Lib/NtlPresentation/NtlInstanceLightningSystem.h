@@ -2,7 +2,7 @@
 //	File		:	NtlInstanceLightningSystem.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -29,7 +29,7 @@ public:
 protected:
     RwV3d							m_vStartPoint;
     RwV3d							m_vEndPoint;
-    RwV3d                           m_vFinishPoint;                 ///< Finish¿¡ »ç¿ëµÉ ÀÓ½Ã º¯¼ö
+    RwV3d                           m_vFinishPoint;                 ///< Finishì— ì‚¬ìš©ë  ìž„ì‹œ ë³€ìˆ˜
 
 public:
 	CNtlInstanceLightningSystem(void);
@@ -58,5 +58,5 @@ protected:
     void	UpdateVertices();    
     void	CalculateMatrix(RwMatrix& matWorld, const RwV3d& vStart, const RwV3d& vEnd);
     void	CalculatePoints(const RwV3d& vStart, const RwV3d& vEnd, RwReal fAmp, RwReal fRough);
-    virtual RwBool  UpdateFinish(RwReal fElapsedTime);                  ///< Finish ÀÛ¾÷À» Ã³¸®ÇÑ´Ù.
+    virtual RwBool  UpdateFinish(RwReal fElapsedTime);                  ///< Finish ìž‘ì—…ì„ ì²˜ë¦¬í•œë‹¤.
 };

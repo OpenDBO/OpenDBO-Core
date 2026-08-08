@@ -31,7 +31,7 @@
 // Return		: 
 //-----------------------------------------------------------------------------
 
-// ¿ìµð
+// ìš°ë””
 RwBool CWorldSectorEntity::RenderWorldSectorAtomic( CEntity * pRenderer )
 {
 	RpWorldSector *		pRpWorldSector = GetRpWorldSector();

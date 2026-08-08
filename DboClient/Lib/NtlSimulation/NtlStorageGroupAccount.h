@@ -1,9 +1,9 @@
 /*****************************************************************************
 * File			: NtlStorageGroupAccount.h
 * Author		: HaeSung, Cho
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2009. 2. 5	
-* Abstract		: Account¿« Storage group
+* Abstract		: AccountÏùò Storage group
 *****************************************************************************
 * Desc         : 
 *

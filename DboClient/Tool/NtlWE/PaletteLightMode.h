@@ -11,14 +11,14 @@ class CPaletteLightMode : public CDialog
 	DECLARE_DYNAMIC(CPaletteLightMode)
 
 public:
-	CPaletteLightMode(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CPaletteLightMode(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CPaletteLightMode();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_LIGHT_MODE };
 
 protected:
-	virtual void			DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void			DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 
@@ -35,16 +35,16 @@ public:
 	afx_msg void			OnLbnSelchangeListLight();
 
 public:
-	// pEntity °ªÀ¸·Î Dlg Data¸¦ º¯°æÇÑ´Ù.
+	// pEntity ê°’ìœ¼ë¡œ Dlg Dataë¥¼ ë³€ê²½í•œë‹¤.
 	void					UpdatePropertyData(SLightModeData* pLightModeData);
 
-	// Dlg Data¸¦ º¯°æÇÑ´Ù.
+	// Dlg Dataë¥¼ ë³€ê²½í•œë‹¤.
 	void					EnableDlg(RwBool bEnable);
 	void					SetLightData(RwInt32 iIdx);
 	void					SetColorData(RwUInt8 r, RwUInt8 g, RwUInt8 b);
 	void					SetRotationData(RwReal x, RwReal y, RwReal z);
 
-	// Entity¸¦ Dlg °ªÀ¸·Î ¼¼ÆÃÇÑ´Ù.
+	// Entityë¥¼ Dlg ê°’ìœ¼ë¡œ ì„¸íŒ…í•œë‹¤.
 	void					ApplyColor();
 	void					ApplyRotate();
 

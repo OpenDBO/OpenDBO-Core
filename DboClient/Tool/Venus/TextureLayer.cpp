@@ -1,4 +1,4 @@
-// TextureLayer.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// TextureLayer.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -30,16 +30,16 @@ BEGIN_MESSAGE_MAP(CTextureLayer, CView)
 END_MESSAGE_MAP()
 
 
-// CTextureLayer ±×¸®±âÀÔ´Ï´Ù.
+// CTextureLayer ê·¸ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CTextureLayer::OnDraw(CDC* pDC)
 {
 	CDocument* pDoc = GetDocument();
-	// TODO: ¿©±â¿¡ ±×¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ê·¸ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 
-// CTextureLayer Áø´ÜÀÔ´Ï´Ù.
+// CTextureLayer ì§„ë‹¨ì…ë‹ˆë‹¤.
 
 #ifdef _DEBUG
 void CTextureLayer::AssertValid() const
@@ -54,13 +54,13 @@ void CTextureLayer::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 
-// CTextureLayer ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CTextureLayer ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CTextureLayer::OnInitialUpdate()
 {
 	CView::OnInitialUpdate();
 
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	m_RollupControl.Create( WS_VISIBLE|WS_CHILD, CRect(0,1,190,400), this, IDD_ROLLUPPAGEID);
 
 	m_RollupControl.InsertPage("Texture List",			IDD_TEXTURE_LIST,		RUNTIME_CLASS(CTextureListDialog));	
@@ -75,7 +75,7 @@ void CTextureLayer::OnSize(UINT nType, int cx, int cy)
 {
 	CView::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if(m_bInitialized)
 	{
 		m_RollupControl.MoveWindow(0, 0, cx, cy);
@@ -86,7 +86,7 @@ void CTextureLayer::OnSetFocus(CWnd* pOldWnd)
 {
 	CView::OnSetFocus(pOldWnd);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	gSetEditLayer(EDIT_LAYER_TEXTURE);
 }
 

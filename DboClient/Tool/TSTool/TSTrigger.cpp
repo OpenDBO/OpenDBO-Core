@@ -215,7 +215,7 @@ void CTSTrigger::ClearAll( void )
 
 void CTSTrigger::Load( CArchive& ar )
 {
-	// ¹öÀü ·Îµù
+	// ë²„ì „ ë¡œë”©
 	ar >> m_dwVersion;
 	if ( m_dwVersion < eTS_VERSION )
 	{
@@ -223,10 +223,10 @@ void CTSTrigger::Load( CArchive& ar )
 		return;
 	}
 
-	// Æ®¸®°ÅÀÇ ¼Ó¼º ·Îµù
+	// íŠ¸ë¦¬ê±°ì˜ ì†ì„± ë¡œë”©
 	ar >> m_strAttr;
 
-	// ¸ŞÀÎ ±×·ì ·Îµù
+	// ë©”ì¸ ê·¸ë£¹ ë¡œë”©
 	bool bMain;
 	ar >> bMain;
 
@@ -239,7 +239,7 @@ void CTSTrigger::Load( CArchive& ar )
 		m_pMainGroup->NoteLayer.Serialize( ar );
 	}
 
-	// ¿¹¿Ü ±×·ì ·Îµù
+	// ì˜ˆì™¸ ê·¸ë£¹ ë¡œë”©
 	int nSize;
 	ar >> nSize;
 
@@ -256,13 +256,13 @@ void CTSTrigger::Load( CArchive& ar )
 
 void CTSTrigger::Save( CArchive& ar )
 {
-	// ¹öÀü ÀúÀå
+	// ë²„ì „ ì €ì¥
 	ar << eTS_VERSION;
 
-	// Æ®¸®°ÅÀÇ ¼Ó¼º ÀúÀå
+	// íŠ¸ë¦¬ê±°ì˜ ì†ì„± ì €ì¥
 	ar << m_strAttr;
 
-	// ¸ŞÀÎ ±×·ì ÀúÀå
+	// ë©”ì¸ ê·¸ë£¹ ì €ì¥
 	ar << (m_pMainGroup ? true : false);
 
 	if ( m_pMainGroup )
@@ -272,7 +272,7 @@ void CTSTrigger::Save( CArchive& ar )
 		m_pMainGroup->NoteLayer.Serialize( ar );
 	}
 
-	// ¿¹¿Ü ±×·ì ÀúÀå
+	// ì˜ˆì™¸ ê·¸ë£¹ ì €ì¥
 	int nSize = (int)m_ExceptGroup.GetSize();
 	ar << nSize;
 

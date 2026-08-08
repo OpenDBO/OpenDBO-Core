@@ -74,8 +74,8 @@ private:
 	RwReal					m_fOffsetNear;
 	RwV3d					m_vDirection;
 
-	sNTL_SPECULAR			m_sNtlSpecular;		// ÇöÀç ½ºÆäÅ§¶ó
-	sNTL_SPECULAR			m_sNtlSpecularNew;	// ÀÌÁ¦ Àû¿ëµÉ ½ºÆäÅ§¶ó
+	sNTL_SPECULAR			m_sNtlSpecular;		// í˜„ìž¬ ìŠ¤íŽ˜í˜ë¼
+	sNTL_SPECULAR			m_sNtlSpecularNew;	// ì´ì œ ì ìš©ë  ìŠ¤íŽ˜í˜ë¼
 };
 
 /*

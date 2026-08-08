@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: NetPyShopCartGui.h
 * Author		: Cho Haesung
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2009. 6. 25
 * Abstract		: 
 *****************************************************************************
-* Desc			: Commercial ±â´É Áß NetPyShopÀÇ Cart GUI ¹× ±â´ÉÀ» Á¤ÀÇÇÏ´Â Class
+* Desc			: Commercial ê¸°ëŠ¥ ì¤‘ NetPyShopì˜ Cart GUI ë° ê¸°ëŠ¥ì„ ì •ì˜í•˜ëŠ” Class
 *****************************************************************************/
 
 #ifndef __NETPYSHOP_CART_GUI_H__
@@ -48,7 +48,7 @@ public:
 
 	enum eNetPyShopCartDefinedValue
 	{		
-		MAX_SLOT				= 12,	///< Buy, SellÀ» À§ÇØ Á¦°øµÇ´Â °¢°¢ÀÇ ÃÖ´ë ½½·Ô °¹¼ö		
+		MAX_SLOT				= 12,	///< Buy, Sellì„ ìœ„í•´ ì œê³µë˜ëŠ” ê°ê°ì˜ ìµœëŒ€ ìŠ¬ë¡¯ ê°¯ìˆ˜		
 	};
 
 	struct MouseDownSlot
@@ -72,22 +72,22 @@ public:
 
 	struct BuySlotInfo
 	{
-		sSHOP_BUY_CART		NPCShopBuyInfo;		///< ¼­¹ö·Î ³Ñ±â±â À§ÇÑ Á¤º¸		
+		sSHOP_BUY_CART		NPCShopBuyInfo;		///< ì„œë²„ë¡œ ë„˜ê¸°ê¸° ìœ„í•œ ì •ë³´		
 		CRegularSlotGui			slot;
 	};
 
 	RwBool			Create();
 	VOID			Destroy();
 
-	VOID			OpenCart();		///< Ä«Æ® UI¸¦ ¿¬´Ù
-	VOID			CloseCart();						///< Ä«Æ®¸¦ ´İ´Â´Ù.
+	VOID			OpenCart();		///< ì¹´íŠ¸ UIë¥¼ ì—°ë‹¤
+	VOID			CloseCart();						///< ì¹´íŠ¸ë¥¼ ë‹«ëŠ”ë‹¤.
 
-	RwInt32			SwitchDialog(bool bOpen);			///< DialogManager¿¡¼­ÀÇ Open/Close
+	RwInt32			SwitchDialog(bool bOpen);			///< DialogManagerì—ì„œì˜ Open/Close
 
-	///< ÀÚ½ÅÀÌ »ç°í ÆÈ ¾ÆÀÌÅÛÀ» ´õÇÏ°Å³ª »«´Ù.
+	///< ìì‹ ì´ ì‚¬ê³  íŒ” ì•„ì´í…œì„ ë”í•˜ê±°ë‚˜ ëº€ë‹¤.
 	///< iSlotKind : BUY_SLOT
 	///< iSlotY : Trade Slot Index
-	///< iCount : °¹¼ö
+	///< iCount : ê°¯ìˆ˜
 	VOID			AddItem(RwInt32 iSlotKind, RwInt32 iSlotY, RwInt32 iCount);
 	VOID			SubItem(RwInt32 iSlotKind, RwInt32 iSlotY, RwInt32 iCount);
 
@@ -95,33 +95,33 @@ protected:
 	CNetPyShopCartGui() {}
 	virtual VOID	HandleEvents( RWS::CMsg &pMsg );
 
-	VOID			Clear();									///< Æ®·¹ÀÌµå Ä«Æ®ÀÇ Á¤º¸¸¦ Áö¿î´Ù.
-	VOID			ClearSlot(RwInt32 iSlotKind, RwInt32 iSlot);///< ÇØ´ç ½½·ÔÀÇ ³»¿ëÀ» Áö¿î´Ù.
+	VOID			Clear();									///< íŠ¸ë ˆì´ë“œ ì¹´íŠ¸ì˜ ì •ë³´ë¥¼ ì§€ìš´ë‹¤.
+	VOID			ClearSlot(RwInt32 iSlotKind, RwInt32 iSlot);///< í•´ë‹¹ ìŠ¬ë¡¯ì˜ ë‚´ìš©ì„ ì§€ìš´ë‹¤.
 
-	VOID			AddItemCount(RwInt32 iSlotKind, RwInt32 iSlot, RwInt32 iCount);	///< ½½·ÔÀÇ ¾ÆÀÌÅÛ °¹¼ö¸¦ ´õÇÏ°Å³ª »«´Ù.
+	VOID			AddItemCount(RwInt32 iSlotKind, RwInt32 iSlot, RwInt32 iCount);	///< ìŠ¬ë¡¯ì˜ ì•„ì´í…œ ê°¯ìˆ˜ë¥¼ ë”í•˜ê±°ë‚˜ ëº€ë‹¤.
 	VOID			UpdateCount(RwUInt8 bySlotKind, RwUInt8 bySlot, RwUInt8 byCount);
 
-	VOID			CalcTotalBuyPrice();						///< ÃÑ ±¸ÀÔ¾× °è»ê
+	VOID			CalcTotalBuyPrice();						///< ì´ êµ¬ì…ì•¡ ê³„ì‚°
 
-	///< NPCShop ¶Ç´Â ÀÎº¥¿¡¼­ ¾ÆÀÌÅÛÀ» ¿Ã¸®´Â ¹æ¹ı¿¡ µû¶ó ºĞ·ù
+	///< NPCShop ë˜ëŠ” ì¸ë²¤ì—ì„œ ì•„ì´í…œì„ ì˜¬ë¦¬ëŠ” ë°©ë²•ì— ë”°ë¼ ë¶„ë¥˜
 	VOID			RegBuyItemByDrag(RwInt32 iSlot);	
 	VOID			RegBuyItemByEvent(RwInt32 iSlot, SDboEventNetPyShopEvent& TradeInfo);	
 
-	RwInt32			FindEmptySlot(RwInt32 iSlotType);			///< Slot Á¾·ùº° ºñ¾îÀÖ´Â °¡Àå ºü¸¥ ¼ø¼­ÀÇ ½½·ÔÀÇ Ã£´Â´Ù.
+	RwInt32			FindEmptySlot(RwInt32 iSlotType);			///< Slot ì¢…ë¥˜ë³„ ë¹„ì–´ìˆëŠ” ê°€ì¥ ë¹ ë¥¸ ìˆœì„œì˜ ìŠ¬ë¡¯ì˜ ì°¾ëŠ”ë‹¤.
 	RwInt32			FindSlot(RwUInt8 bySlotType, RwUInt32 uiSerial);
 	RwInt32			PtinSlot(RwInt32 iSlotKind, RwInt32 iX, RwInt32 iY);
 
-	VOID			CheckInfoWindow();							///< »óÈ²¿¡ µû¶ó ÀÎÆ÷À©µµ¿ì¸¦ ´İ´Â´Ù
+	VOID			CheckInfoWindow();							///< ìƒí™©ì— ë”°ë¼ ì¸í¬ìœˆë„ìš°ë¥¼ ë‹«ëŠ”ë‹¤
 
-	VOID			FocusEffect( RwBool bPush, RwInt32 iSlotKind = 0, RwInt32 iSlotIdx = -1 );		///< ½½·Ô Æ÷Ä¿½º ÀÌÆåÆ®
+	VOID			FocusEffect( RwBool bPush, RwInt32 iSlotKind = 0, RwInt32 iSlotIdx = -1 );		///< ìŠ¬ë¡¯ í¬ì»¤ìŠ¤ ì´í™íŠ¸
 
 	VOID			OnPaint();
 
 	VOID			ClickedCloseButton(gui::CComponent* pComponent);
-	VOID			ClickedBuyButton(gui::CComponent* pComponent);		///< ¼±ÅÃÇÑ ¹°Ç°µéÀ» »ê´Ù.
+	VOID			ClickedBuyButton(gui::CComponent* pComponent);		///< ì„ íƒí•œ ë¬¼í’ˆë“¤ì„ ì‚°ë‹¤.
 	
-	VOID			ClickUpButton(gui::CComponent* pComponent);	///< ¾ÆÀÌÅÛ °¹¼ö ´õÇÏ±â ¹öÆ°À» ´­·¶´Ù
-	VOID			ClickDownButton(gui::CComponent* pComponent);	///< ¾ÆÀÌÅÛ °¹¼ö »©±â ¹öÆ°À» ´­·¶´Ù
+	VOID			ClickUpButton(gui::CComponent* pComponent);	///< ì•„ì´í…œ ê°¯ìˆ˜ ë”í•˜ê¸° ë²„íŠ¼ì„ ëˆŒë €ë‹¤
+	VOID			ClickDownButton(gui::CComponent* pComponent);	///< ì•„ì´í…œ ê°¯ìˆ˜ ë¹¼ê¸° ë²„íŠ¼ì„ ëˆŒë €ë‹¤
 
 	VOID			OnMouseDown(const CKey& key);
 	VOID			OnMouseUp(const CKey& key);
@@ -148,30 +148,30 @@ protected:
 	gui::CSlot			m_slotDownButton[SLOTKIND_NUM][MAX_SLOT];
 
 	RwInt8				m_byInfoWindowIndex;
-	MouseDownSlot		m_MouseDownSlot;			///< ¸¶¿ì½º·Î ´­¸° ½½·Ô
+	MouseDownSlot		m_MouseDownSlot;			///< ë§ˆìš°ìŠ¤ë¡œ ëˆŒë¦° ìŠ¬ë¡¯
 
 	gui::CTexture*		m_pMoneyIconTexture;
 
-	gui::CButton*		m_pExitButton;				///< Ã¢´İ±â ¹öÆ°
-	gui::CButton*		m_pBuyButton;				///< ±¸ÀÔ ¹öÆ°
+	gui::CButton*		m_pExitButton;				///< ì°½ë‹«ê¸° ë²„íŠ¼
+	gui::CButton*		m_pBuyButton;				///< êµ¬ì… ë²„íŠ¼
 
-	gui::CButton*		m_pUpButton[SLOTKIND_NUM][MAX_SLOT];	///< ¾ÆÀÌÅÛ °¹¼ö ´õÇÏ±â ¹öÆ°
-	gui::CButton*		m_pDownButton[SLOTKIND_NUM][MAX_SLOT];	///< ¾ÆÀÌÅÛ °¹¼ö »©±â ¹öÆ°
+	gui::CButton*		m_pUpButton[SLOTKIND_NUM][MAX_SLOT];	///< ì•„ì´í…œ ê°¯ìˆ˜ ë”í•˜ê¸° ë²„íŠ¼
+	gui::CButton*		m_pDownButton[SLOTKIND_NUM][MAX_SLOT];	///< ì•„ì´í…œ ê°¯ìˆ˜ ë¹¼ê¸° ë²„íŠ¼
 
-	gui::CStaticBox*	m_pDialogName;				///< ´ÙÀÌ¾ó·Î±×ÀÇ ÀÌ¸§ ½ºÅÂÆ½
-	gui::CStaticBox*	m_pTotalBuyMoney;			///< ÃÑ ±¸ÀÔ ±İ¾×
-	gui::CStaticBox*	m_pTotalSellMoney;			///< ÃÑ ÆÇ¸Å ±İ¾×
+	gui::CStaticBox*	m_pDialogName;				///< ë‹¤ì´ì–¼ë¡œê·¸ì˜ ì´ë¦„ ìŠ¤íƒœí‹±
+	gui::CStaticBox*	m_pTotalBuyMoney;			///< ì´ êµ¬ì… ê¸ˆì•¡
+	gui::CStaticBox*	m_pTotalSellMoney;			///< ì´ íŒë§¤ ê¸ˆì•¡
 
-	CSurfaceGui			m_FocusEffect;				///< ½½·Ô Æ÷Ä¿½º ÀÌÆåÆ®
-	CSurfaceGui			m_BuyBar;					///< »ç±â ¼­ÆäÀÌ½º
+	CSurfaceGui			m_FocusEffect;				///< ìŠ¬ë¡¯ í¬ì»¤ìŠ¤ ì´í™íŠ¸
+	CSurfaceGui			m_BuyBar;					///< ì‚¬ê¸° ì„œí˜ì´ìŠ¤
 
-	RwBool				m_bFocus;					///< Æ÷Ä¿½º¸¦ ¾ò¾ú´Ù.	
+	RwBool				m_bFocus;					///< í¬ì»¤ìŠ¤ë¥¼ ì–»ì—ˆë‹¤.	
 
-	RwInt32				m_iCurTabIndex;				///< ÇöÀçÀÇ ÅÇ ÀÎµ¦½º
+	RwInt32				m_iCurTabIndex;				///< í˜„ì¬ì˜ íƒ­ ì¸ë±ìŠ¤
 
-	BuySlotInfo			m_BuySlotInfo[MAX_SLOT];	///< ¿ŞÂÊ ½½·Ô Á¤º¸
+	BuySlotInfo			m_BuySlotInfo[MAX_SLOT];	///< ì™¼ìª½ ìŠ¬ë¡¯ ì •ë³´
 	
-	RwUInt32			m_uiTotalBuyPrice;			///< ÃÑ ±¸ÀÔ ±İ¾×
+	RwUInt32			m_uiTotalBuyPrice;			///< ì´ êµ¬ì… ê¸ˆì•¡
 };
 
 

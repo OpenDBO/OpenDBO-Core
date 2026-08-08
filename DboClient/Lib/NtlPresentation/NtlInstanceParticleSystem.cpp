@@ -19,6 +19,14 @@ RwInt32 g_nVelocityOffset = 0;
 RwReal g_fElapsedTime1 = 0;
 RwV3d g_vOrbitPoint;
 
+static RwBool NtlValidParticleVector(const RwV3d& v)
+{
+	return v.x == v.x && v.y == v.y && v.z == v.z &&
+		v.x > -1000000.0f && v.x < 1000000.0f &&
+		v.y > -1000000.0f && v.y < 1000000.0f &&
+		v.z > -1000000.0f && v.z < 1000000.0f;
+}
+
 CNtlInstanceParticleSystem::CNtlInstanceParticleSystem(void)
 :m_pEmitterPrtMatrix(NULL)
 {
@@ -115,11 +123,11 @@ void CNtlInstanceParticleSystem::Delete()
 	}
 	if (m_pEmitterStandard != NULL)
 	{
-		if (m_pEmitterStandard->texture != NULL)
-		{			
-			CNtlPLResourceManager::GetInstance()->UnLoadTexture(m_pEmitterStandard->texture);
-			m_pEmitterStandard->texture = NULL;
-		}
+		// NOTE: m_pEmitterStandard->texture is the SAME pointer as m_pStandardTexture
+		// (both are set from CreateTexture() in Create()). It is released by
+		// CNtlInstanceComponentSystem::Delete() below. Unloading it here double-frees
+		// the texture once the atomic (tank) releases its own material reference.
+		m_pEmitterStandard->texture = NULL;
 	}
 
 	if(NULL != m_pAtomic)
@@ -282,7 +290,7 @@ RwBool CNtlInstanceParticleSystem::Create(CNtlResourceEffect* pResourceEffect, C
 //------------------------------------------------------------------
 void CNtlInstanceParticleSystem::Stop()
 {
-	// update °¡ ´õ ÀÌ»ó ÇÊ¿ä ¾øÀ¸¸é »ı¼ºµÇ´Â ÆÄÆ¼Å¬°¹¼ö¸¦ 0À¸·Î ÇØ ¹ö¸°´Ù
+	// update ê°€ ë” ì´ìƒ í•„ìš” ì—†ìœ¼ë©´ ìƒì„±ë˜ëŠ” íŒŒí‹°í´ê°¯ìˆ˜ë¥¼ 0ìœ¼ë¡œ í•´ ë²„ë¦°ë‹¤
 	m_pEmitterStandard->emtPrtEmit = 0;
 	m_pEmitterStandard->emtPrtEmitBias = 0;
 	m_fFadeOutTime = 0.f;
@@ -358,7 +366,7 @@ RwBool CNtlInstanceParticleSystem::Update(RwReal fElapsedTime)
 			m_bReady	= TRUE;
 			m_bUpdate	= TRUE;
 
-			// ½ºÅ¸Æ®°¡ µÇ¸é ¶óÀÌÇÁ Å¸ÀÓÀ» ÃÊ±âÈ­ ÇÑ´Ù.
+			// ìŠ¤íƒ€íŠ¸ê°€ ë˜ë©´ ë¼ì´í”„ íƒ€ì„ì„ ì´ˆê¸°í™” í•œë‹¤.
 			m_fLifeTime = fElapsedTime;
 		}
 		else
@@ -469,7 +477,7 @@ RwBool CNtlInstanceParticleSystem::Update(RwReal fElapsedTime)
         }
     }
 
-    // ¹Ù¿îµù ¹Ú½º °è»ê    
+    // ë°”ìš´ë”© ë°•ìŠ¤ ê³„ì‚°    
     if(CNtlResourceEffect::m_bUpdateBoundingSphere)
     {
         m_pResourceParticleSystem->SetBoundingSphereRadius(RpAtomicGetWorldBoundingSphere(m_pAtomic)->radius);
@@ -579,7 +587,7 @@ void CNtlInstanceParticleSystem::BuildHurricanePoint(RwV3d& vPosition, RwReal fL
 }
 
 /**
- * Follow ÆÄÆ¼Å¬ÀÇ À§Ä¡¸¦ °»½ÅÇÑ´Ù. 
+ * Follow íŒŒí‹°í´ì˜ ìœ„ì¹˜ë¥¼ ê°±ì‹ í•œë‹¤. 
  */
 void CNtlInstanceParticleSystem::UpdateFollow()
 {
@@ -631,24 +639,43 @@ void CNtlInstanceParticleSystem::UpdateBillboard()
             RwMatrix* pMatParticle = (RwMatrix*)posLock.data;
 
             RwV3d vParticlePos = *RwMatrixGetPos(pMatParticle);
-            *RwMatrixGetPos(pMatParticle) = ZeroAxis;
-
             RwV3d vAtParticle = *RwMatrixGetAt(pMatParticle);
+
+            if (!NtlValidParticleVector(vParticlePos) || !NtlValidParticleVector(vAtParticle))
+				{
+					posLock.data += posLock.stride;
+					continue;
+				}
+
+				RwReal fRightScale = RwV3dLength(RwMatrixGetRight(pMatParticle));
+				RwReal fUpScale = RwV3dLength(RwMatrixGetUp(pMatParticle));
+				if (fRightScale != fRightScale || fUpScale != fUpScale ||
+					fRightScale > 1000.0f || fUpScale > 1000.0f)
+				{
+					RwMatrixSetIdentity(pMatParticle);
+					*RwMatrixGetPos(pMatParticle) = vParticlePos;
+					posLock.data += posLock.stride;
+					continue;
+				}
 
             RwMatrix matParticle, matBillboard;
 
             if(m_pResourceParticleSystem->IsEmitterDataFlag(NTLrpPRTSTDEMITTERDATAFLAGPRTYBILLBOARD))
             {
                 vAtParticle.y = 0.0f;
-                if(RwV3dLength(&vAtParticle) == 0)
-                    continue;
+                if(!NtlValidParticleVector(vAtParticle) || RwV3dLength(&vAtParticle) <= 0.0001f)
+                {
+						posLock.data += posLock.stride;
+						continue;
+					}
+
 
                 RwV3dNormalize(&vAtParticle, &vAtParticle);
                 RwV3d vRightParticle;
                 RwV3dCrossProduct(&vRightParticle, &vAtParticle, &YAxis);
                 RwV3dNormalize(&vRightParticle, &vRightParticle);
 
-                // ÆÄÆ¼Å¬ÀÇ At ¹æÇâÀ» °¡Áö°í ÆÄÆ¼Å¬ÀÇ ±âº»Ãà Çà·ÄÀ» ¸¸µç´Ù.
+                // íŒŒí‹°í´ì˜ At ë°©í–¥ì„ ê°€ì§€ê³  íŒŒí‹°í´ì˜ ê¸°ë³¸ì¶• í–‰ë ¬ì„ ë§Œë“ ë‹¤.
                 matParticle = *pMatParticle;
                 *RwMatrixGetAt(&matParticle) = vAtParticle;
                 *RwMatrixGetRight(&matParticle) = vRightParticle;
@@ -659,6 +686,11 @@ void CNtlInstanceParticleSystem::UpdateBillboard()
                 RwV3d vParticlePosTemp = vParticlePos;
                 vParticlePosTemp.y = 0.0f;
                 RwV3d vAt = vCameraPos - vParticlePosTemp;
+						if(!NtlValidParticleVector(vAt) || RwV3dLength(&vAt) <= 0.0001f)
+						{
+							posLock.data += posLock.stride;
+							continue;
+						}
                 RwV3dNormalize(&vAt, &vAt);
 
                 RwV3d vRight;
@@ -674,15 +706,19 @@ void CNtlInstanceParticleSystem::UpdateBillboard()
             else if(m_pResourceParticleSystem->IsEmitterDataFlag(NTLrpPRTSTDEMITTERDATAFLAGPRTXBILLBOARD))
             {
                 vAtParticle.x = 0.0f;
-                if(RwV3dLength(&vAtParticle) == 0)
-                    continue;
+                if(!NtlValidParticleVector(vAtParticle) || RwV3dLength(&vAtParticle) <= 0.0001f)
+                {
+						posLock.data += posLock.stride;
+						continue;
+					}
+
 
                 RwV3dNormalize(&vAtParticle, &vAtParticle);
                 RwV3d vRightParticle;
                 RwV3dCrossProduct(&vRightParticle, &vAtParticle, &XAxis);
                 RwV3dNormalize(&vRightParticle, &vRightParticle);
 
-                // ÆÄÆ¼Å¬ÀÇ At ¹æÇâÀ» °¡Áö°í ÆÄÆ¼Å¬ÀÇ ±âº»Ãà Çà·ÄÀ» ¸¸µç´Ù.
+                // íŒŒí‹°í´ì˜ At ë°©í–¥ì„ ê°€ì§€ê³  íŒŒí‹°í´ì˜ ê¸°ë³¸ì¶• í–‰ë ¬ì„ ë§Œë“ ë‹¤.
                 matParticle = *pMatParticle;
                 *RwMatrixGetAt(&matParticle) = vAtParticle;
                 *RwMatrixGetRight(&matParticle) = vRightParticle;
@@ -693,6 +729,11 @@ void CNtlInstanceParticleSystem::UpdateBillboard()
                 RwV3d vParticlePosTemp = vParticlePos;
                 vParticlePosTemp.x = 0.0f;
                 RwV3d vAt = vCameraPos - vParticlePosTemp;
+						if(!NtlValidParticleVector(vAt) || RwV3dLength(&vAt) <= 0.0001f)
+						{
+							posLock.data += posLock.stride;
+							continue;
+						}
                 RwV3dNormalize(&vAt, &vAt);
 
                 RwV3d vRight;
@@ -708,15 +749,19 @@ void CNtlInstanceParticleSystem::UpdateBillboard()
             else if(m_pResourceParticleSystem->IsEmitterDataFlag(NTLrpPRTSTDEMITTERDATAFLAGPRTZBILLBOARD))
             {
                 vAtParticle.z = 0.0f;
-                if(RwV3dLength(&vAtParticle) == 0)
-                    continue;
+                if(!NtlValidParticleVector(vAtParticle) || RwV3dLength(&vAtParticle) <= 0.0001f)
+                {
+						posLock.data += posLock.stride;
+						continue;
+					}
+
 
                 RwV3dNormalize(&vAtParticle, &vAtParticle);
                 RwV3d vRightParticle;
                 RwV3dCrossProduct(&vRightParticle, &vAtParticle, &ZAxis);
                 RwV3dNormalize(&vRightParticle, &vRightParticle);
 
-                // ÆÄÆ¼Å¬ÀÇ At ¹æÇâÀ» °¡Áö°í ÆÄÆ¼Å¬ÀÇ ±âº»Ãà Çà·ÄÀ» ¸¸µç´Ù.
+                // íŒŒí‹°í´ì˜ At ë°©í–¥ì„ ê°€ì§€ê³  íŒŒí‹°í´ì˜ ê¸°ë³¸ì¶• í–‰ë ¬ì„ ë§Œë“ ë‹¤.
                 matParticle = *pMatParticle;
                 *RwMatrixGetAt(&matParticle) = vAtParticle;
                 *RwMatrixGetRight(&matParticle) = vRightParticle;
@@ -727,6 +772,11 @@ void CNtlInstanceParticleSystem::UpdateBillboard()
                 RwV3d vParticlePosTemp = vParticlePos;
                 vParticlePosTemp.z = 0.0f;
                 RwV3d vAt = vCameraPos - vParticlePosTemp;
+						if(!NtlValidParticleVector(vAt) || RwV3dLength(&vAt) <= 0.0001f)
+						{
+							posLock.data += posLock.stride;
+							continue;
+						}
                 RwV3dNormalize(&vAt, &vAt);
 
                 RwV3d vRight;
@@ -746,16 +796,42 @@ void CNtlInstanceParticleSystem::UpdateBillboard()
 
             // A * M = B
             // M = A(-1) * B
-            // ±âº»Ãà Çà·ÄÀ» ºôº¸µå Çà·Ä·Î º¯È¯ÇÏ´Â º¯È¯Çà·ÄÀ» ±¸ÇÑ´Ù.
+            // ê¸°ë³¸ì¶• í–‰ë ¬ì„ ë¹Œë³´ë“œ í–‰ë ¬ë¡œ ë³€í™˜í•˜ëŠ” ë³€í™˜í–‰ë ¬ì„ êµ¬í•œë‹¤.
             RwMatrix matTemp = matParticle;
-            RwMatrixInvert(&matParticle, &matTemp);            
+				// NOTE: the axes above are unit vectors, but the flags were copied
+				// from the PTank buffer (garbage from RwMalloc). RwMatrixInvert/
+				// RwMatrixMultiply branch on those flags; a stale identity bit set
+				// makes them skip the actual math and the billboard ends up with a
+				// wrongly-rotated, huge quad that depends on the camera angle.
+				// Set the type explicitly so the inversion is always exact.
+				rwMatrixSetFlags(&matParticle, rwMATRIXTYPEORTHONORMAL);
+				rwMatrixSetFlags(&matBillboard, rwMATRIXTYPEORTHONORMAL);
+				rwMatrixSetFlags(&matTemp, rwMATRIXTYPEORTHONORMAL);
+				if (RwMatrixInvert(&matParticle, &matTemp) == NULL)
+				{
+					posLock.data += posLock.stride;
+					continue;
+				}
             RwMatrix matResult;            
             RwMatrixMultiply(&matResult, &matParticle, &matBillboard);
+				rwMatrixSetFlags(&matResult, rwMATRIXTYPEORTHONORMAL);
 
-            // º¯È¯Çà·ÄÀ» ¿ø·¡ ÆÄÆ¼Å¬ÀÇ Çà·Ä¿¡ Àû¿ëÇÑ´Ù.
+            // ë³€í™˜í–‰ë ¬ì„ ì›ë˜ íŒŒí‹°í´ì˜ í–‰ë ¬ì— ì ìš©í•œë‹¤.
             matTemp = *pMatParticle;
+				rwMatrixSetFlags(&matTemp, 0);
             RwMatrixMultiply(pMatParticle, &matTemp, &matResult);
             *RwMatrixGetPos(pMatParticle) = vParticlePos;
+				// The result carries scale (right/up lengths), so clear the type
+				// flags - otherwise the next frame's invert would take the
+				// orthonormal fast path on a scaled matrix.
+				rwMatrixSetFlags(pMatParticle, 0);
+				if (!NtlValidParticleVector(*RwMatrixGetRight(pMatParticle)) ||
+					!NtlValidParticleVector(*RwMatrixGetUp(pMatParticle)) ||
+					!NtlValidParticleVector(*RwMatrixGetAt(pMatParticle)))
+				{
+					RwMatrixSetIdentity(pMatParticle);
+					*RwMatrixGetPos(pMatParticle) = vParticlePos;
+				}
 
             posLock.data += posLock.stride;
         }
@@ -766,7 +842,7 @@ void CNtlInstanceParticleSystem::UpdateBillboard()
 
 void CNtlInstanceParticleSystem::UpdateRotate() 
 {
-    // Matrix ActionÀÌ Àû¿ëµÇ¾î ÀÖÁö ¾Ê°Å³ª, ºôº¸µå°¡ Àû¿ëµÇ¾î ÀÖÀ¸¸é Rotate¸¦ ¸ÔÁö ¾Ê´Â´Ù.
+    // Matrix Actionì´ ì ìš©ë˜ì–´ ìˆì§€ ì•Šê±°ë‚˜, ë¹Œë³´ë“œê°€ ì ìš©ë˜ì–´ ìˆìœ¼ë©´ Rotateë¥¼ ë¨¹ì§€ ì•ŠëŠ”ë‹¤.
     if(!m_pEmitterPrtMatrix || m_pResourceParticleSystem->IsEmitterDataFlag(NTLrpPRTSTDEMITTERDATAFLAGPRTYBILLBOARD) ||
                                m_pResourceParticleSystem->IsEmitterDataFlag(NTLrpPRTSTDEMITTERDATAFLAGPRTXBILLBOARD) || 
                                m_pResourceParticleSystem->IsEmitterDataFlag(NTLrpPRTSTDEMITTERDATAFLAGPRTZBILLBOARD))
@@ -781,9 +857,9 @@ void CNtlInstanceParticleSystem::UpdateRotate()
 
 void CNtlInstanceParticleSystem::SetScale( RwReal fScale ) 
 {
-    RwReal fFinalScale = fScale / m_fScale;         // ScaleÀÇ ´©ÀûÀ» ¸·±âÀ§ÇØ, ÇöÀç ½ºÄÉÀÏ°ªÀ» ³ª´«ÈÄ¿¡ ´Ù½Ã °öÇØÁØ´Ù.
+    RwReal fFinalScale = fScale / m_fScale;         // Scaleì˜ ëˆ„ì ì„ ë§‰ê¸°ìœ„í•´, í˜„ì¬ ìŠ¤ì¼€ì¼ê°’ì„ ë‚˜ëˆˆí›„ì— ë‹¤ì‹œ ê³±í•´ì¤€ë‹¤.
 
-    // ±âº» Size
+    // ê¸°ë³¸ Size
     m_pEmitterStandard->emtSize *= fFinalScale;
     m_pEmitterStandard->prtSize *= fFinalScale;
 	
@@ -844,8 +920,8 @@ static RpPrtStdParticleBatch* NtlStdParticleUpdateCB(RpPrtStdEmitter *emt, RpPrt
 
     RwV3d*						prtVelIn;
 
-    // emPTank´Â ÀÎ½ºÅÏ½ºÀÇ EmitterPTank Æ÷ÀÎÅÍÀÌ´Ù.
-    // Static ¸Ş¼Òµå ÀÌ±â¶§¹®¿¡ Static º¯¼ö¿¡´Ù ÇÒ´çÇØ¼­ »ç¿ëÇÑ´Ù.
+    // emPTankëŠ” ì¸ìŠ¤í„´ìŠ¤ì˜ EmitterPTank í¬ì¸í„°ì´ë‹¤.
+    // Static ë©”ì†Œë“œ ì´ê¸°ë•Œë¬¸ì— Static ë³€ìˆ˜ì—ë‹¤ í• ë‹¹í•´ì„œ ì‚¬ìš©í•œë‹¤.
 	if (emtPTank)
 	{
 		i = 0;
@@ -916,8 +992,8 @@ static RpPrtStdParticleBatch* NtlStdParticleUpdateCB(RpPrtStdEmitter *emt, RpPrt
 		pTankPosIn += nTankPosStride;
     }
 
-    // Àü¿ª º¯¼öµéÀÎµ¥ UpdateÇÒ¶§¸¶´Ù »õ·Î °»½ÅµÇ±â ¶§¹®¿¡
-    // Ã³¸®°¡ ³¡³­ÈÄ¿¡ NULLÀ» ³Ö¾îÁØ´Ù.
+    // ì „ì—­ ë³€ìˆ˜ë“¤ì¸ë° Updateí• ë•Œë§ˆë‹¤ ìƒˆë¡œ ê°±ì‹ ë˜ê¸° ë•Œë¬¸ì—
+    // ì²˜ë¦¬ê°€ ëë‚œí›„ì— NULLì„ ë„£ì–´ì¤€ë‹¤.
     emtPTank = NULL;
     emtStd   = NULL;
 

@@ -2,7 +2,7 @@
 *
 * File			: SkillAbilityUseGui.h
 * Author		: Cho HaeSung
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2008. 11. 17
 * Abstract		: DBO Skill Ability Use
 *****************************************************************************
@@ -17,14 +17,14 @@
 
 #define dSKILL_HTB_RP_HEIGHT			100
 
-#define dSKILL_HTB_RP_WIDTH_OFFSET		50					///< ∞¢ æ∆¿Ãƒ‹∞£¿« ∞£∞›
-#define dSKILL_HTB_RP_ICON_WIDTH		64					///< ICON ≥–¿Ã
-#define dSKILL_HTB_RP_ICON_HEIGHT		64					///< ICON ≥Ù¿Ã
-#define dSKILL_HTB_RP_ICON_NUMS			7					///< ICON ∞πºˆ
+#define dSKILL_HTB_RP_WIDTH_OFFSET		50					///< Í∞Å ÏïÑÏù¥ÏΩòÍ∞ÑÏùò Í∞ÑÍ≤©
+#define dSKILL_HTB_RP_ICON_WIDTH		64					///< ICON ÎÑìÏù¥
+#define dSKILL_HTB_RP_ICON_HEIGHT		64					///< ICON ÎÜíÏù¥
+#define dSKILL_HTB_RP_ICON_NUMS			7					///< ICON Í∞ØÏàò
 #define dSKILL_HTB_RP_FLASH_BALL		"HTB_ball.swf"
 #define dSKILL_HTB_RP_FLASH_NONE		"HTB_cancel.swf"
 
-#define dSKILL_HTP_RP_TIME_OFFSET_Y		75					///< PROGRESS BAR¿« ¿ßƒ°
+#define dSKILL_HTP_RP_TIME_OFFSET_Y		75					///< PROGRESS BARÏùò ÏúÑÏπò
 #define dSKILL_HTB_RP_PGB_OFFSET_X		23
 #define dSKILL_HTB_RP_PGB_OFFSET_Y		7
 
@@ -131,7 +131,7 @@ protected:
 	RwBool				m_bSelect;								///< is select rp ball?
 	RwBool				m_bInput;
 	
-	RwUInt32			m_uiCurRpStock;							///< Active ¿œ ∂ß∏∏ ¿Ø»ø«— Rp
+	RwUInt32			m_uiCurRpStock;							///< Active Ïùº ÎïåÎßå Ïú†Ìö®Ìïú Rp
 };
 
 

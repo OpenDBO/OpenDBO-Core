@@ -19,14 +19,14 @@ class CWorldViewDlg : public CDialog
 	DECLARE_DYNAMIC(CWorldViewDlg)
 
 public:
-	CWorldViewDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CWorldViewDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CWorldViewDlg();
 
-	// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+	// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_WORLD_VIEW };
 
 protected:
-	virtual void	DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void	DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 	virtual BOOL	PreTranslateMessage(MSG* pMsg);
 	virtual LRESULT	WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
 	virtual BOOL	OnInitDialog();

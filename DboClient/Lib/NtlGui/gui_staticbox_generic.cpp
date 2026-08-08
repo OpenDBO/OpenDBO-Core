@@ -252,7 +252,7 @@ INT CStaticBox_Generic::GetFitHeightToString( VOID )
 			nCurCX = nNextXPos - nPrevXPos;
 	}
 
-	// LineÀ¸·Î ³ôÀÌ ±¸ÇÏ±â.
+	// Lineìœ¼ë¡œ ë†’ì´ êµ¬í•˜ê¸°.
 	INT nFontHeight = m_pFont->GetHeight(); 
 	INT nFontInternal = m_pFont->GetInternal();
 
@@ -432,7 +432,7 @@ VOID CStaticBox_Generic::AdjustRectToString(VOID)
 			nCurCX = nNextXPos - nPrevXPos;
 	}
 
-	// LineÀ¸·Î ³ôÀÌ ±¸ÇÏ±â.
+	// Lineìœ¼ë¡œ ë†’ì´ êµ¬í•˜ê¸°.
 	INT nFontHeight = m_pFont->GetHeight(); 
 	INT nFontInternal = m_pFont->GetInternal();
 
@@ -905,7 +905,7 @@ VOID CStaticBox_Generic::OnMove(INT nOldX,INT nOldY)
 
 VOID CStaticBox_Generic::OnResize( INT nOldCX, INT nOldCY )
 {
-	// Dynamic ÀÇ °æ¿ì´Â Resize¿¡¼­ TextSurface¸¦ Á¶Á¤ÇÏÁö ¾Ê´Â´Ù.
+	// Dynamic ì˜ ê²½ìš°ëŠ” Resizeì—ì„œ TextSurfaceë¥¼ ì¡°ì •í•˜ì§€ ì•ŠëŠ”ë‹¤.
 	if( m_bDynamic )	
 		return;
 	if( m_pStaticBox == NULL )

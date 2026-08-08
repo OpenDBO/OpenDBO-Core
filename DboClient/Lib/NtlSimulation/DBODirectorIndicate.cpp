@@ -9,7 +9,7 @@
 #include "NtlSLVisualDeclear.h"
 #include "NtlSLEventFunc.h"
 
-#define DESTORY_DIST 5.0f                                      ///< ÀÌÆåÆ® ¼Ò¸ê °Å¸®
+#define DESTORY_DIST 5.0f                                      ///< ì´íŽ™íŠ¸ ì†Œë©¸ ê±°ë¦¬
 #define DIRECTOR_FADE_TIME 1.0f
 
 CDBODirectorIndicate::CDBODirectorIndicate(CNtlPLCharacter* pPLCharacter)
@@ -83,7 +83,7 @@ VOID CDBODirectorIndicate::HandleEvents( RWS::CMsg &pMsg )
             SetTargetEffectPos(m_vTargetPos);
             m_bUpdate = TRUE;            
         }
-        else    // ÀÌÆåÆ® »èÁ¦ ÀÌº¥Æ®
+        else    // ì´íŽ™íŠ¸ ì‚­ì œ ì´ë²¤íŠ¸
         {
             Destory();
         }
@@ -106,7 +106,7 @@ VOID CDBODirectorIndicate::HandleEvents( RWS::CMsg &pMsg )
     }
 }
 
-// ¹æÇâ Áö½Ã ÀÌÆåÆ®¸¦ »ý¼ºÇÑ´Ù.
+// ë°©í–¥ ì§€ì‹œ ì´íŽ™íŠ¸ë¥¼ ìƒì„±í•œë‹¤.
 RwBool CDBODirectorIndicate::CreateDirector()
 {
     if(!m_pCharacter)
@@ -130,20 +130,20 @@ RwBool CDBODirectorIndicate::CreateTargetEffect()
     return TRUE;
 }
 
-// Å¸°Ù°úÀÇ °Å¸®°¡ ÁöÁ¤°Å¸®º¸´Ù °¡±î¿öÁö¸é ÀÌÆåÆ®¸¦ »èÁ¦ÇÑ´Ù.
+// íƒ€ê²Ÿê³¼ì˜ ê±°ë¦¬ê°€ ì§€ì •ê±°ë¦¬ë³´ë‹¤ ê°€ê¹Œì›Œì§€ë©´ ì´íŽ™íŠ¸ë¥¼ ì‚­ì œí•œë‹¤.
 RwBool CDBODirectorIndicate::CalcDistance() 
 {
     if(!m_pCharacter)
         return FALSE;
 
-    // NOTE : Å¸°ÙÀÇ À§Ä¡¿¡´Â Y°ªÀÌ ¾ø´Ù. (ÀÌº¥Æ®¿¡¼­ ¾È³¯·ÁÁØ´Ù)
+    // NOTE : íƒ€ê²Ÿì˜ ìœ„ì¹˜ì—ëŠ” Yê°’ì´ ì—†ë‹¤. (ì´ë²¤íŠ¸ì—ì„œ ì•ˆë‚ ë ¤ì¤€ë‹¤)
     RwV3d vCharPos = m_pCharacter->GetPosition();
     vCharPos.y = 0.0f;
     RwV3d vDistance = m_vTargetPos - vCharPos;
     RwReal fDist = CNtlMath::MathRwV3dSquaredLength(&vDistance);
     if(fDist < DESTORY_DIST * DESTORY_DIST)
     {
-        // ¹Ì´Ï¸Ê Ç¥½Ã¸¦ ¾ø¾Ö±â À§ÇØ¼­ »èÁ¦ ÀÌº¥Æ®¸¦ ³¯·ÁÁØ´Ù
+        // ë¯¸ë‹ˆë§µ í‘œì‹œë¥¼ ì—†ì• ê¸° ìœ„í•´ì„œ ì‚­ì œ ì´ë²¤íŠ¸ë¥¼ ë‚ ë ¤ì¤€ë‹¤
         CNtlSLEventGenerator::SLDirection_Nfy(FALSE, m_vTargetPos);
 
 		sNtlSoundPlayParameta tSoundParam;
@@ -185,7 +185,7 @@ VOID CDBODirectorIndicate::SetTargetEffectPos(RwV3d vPos )
     if(!m_pTargetEffect)
         return;
 
-    // ¼­¹ö·ÎºÎÅÍ ³»·Á¿À´Â ÁÂÇ¥´Â YÁÂÇ¥°¡ ¾ø´Ù. Å¬¶óÀÌ¾ðÆ®¿¡¼­ Á÷Á¢ °è»êÇÑ´Ù.
+    // ì„œë²„ë¡œë¶€í„° ë‚´ë ¤ì˜¤ëŠ” ì¢Œí‘œëŠ” Yì¢Œí‘œê°€ ì—†ë‹¤. í´ë¼ì´ì–¸íŠ¸ì—ì„œ ì§ì ‘ ê³„ì‚°í•œë‹¤.
     RwReal fHeight = 0.0f;
     RwV3d  vNormal = ZeroAxis;
     GetSceneManager()->GetWorldHeight(&vPos, fHeight, &vNormal);

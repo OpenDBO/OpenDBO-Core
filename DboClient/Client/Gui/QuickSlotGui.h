@@ -1,9 +1,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File: QuickSlotGui.h
-// Desc: Skill¹× ItemÀÇ ¸µÅ©¸¦ °ü¸®ÇÏ´Â GUI
+// Desc: Skillå ì™ì˜™ Itemå ì™ì˜™ å ì™ì˜™í¬å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ëŒì˜™ GUI
 //
 // 2006.06.12 Peessi@hitel.net
-// 2007.11.30 Kell - RpBonus Skill Ãß°¡
+// 2007.11.30 Kell - RpBonus Skill å ìŒ©ê³¤ì˜™
 //
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -55,7 +55,7 @@ public:
 	stQUICKSLOTOBJ* HasObj( RwUInt32 hSerialID );
 
 	VOID		 SetItem( RwUInt32 hSerialID, CNtlSobIcon* pSetIcon, RwUInt8 byQuickSlotID );
-	RwBool		 UnSetItem( RwUInt32 hSerialID );						// return FALSE : ¾ÆÁ÷ ³²¾ÆÀÖÀ½. TRUE : ¿ÏÀüÈ÷ Áö¿öÁü
+	RwBool		 UnSetItem( RwUInt32 hSerialID );						// return FALSE : å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™. TRUE : å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™
 	VOID		 UnSetItem(VOID);
 	VOID		 SetEnableState( RwInt32 eEnableState ) { m_eEnableState = eEnableState; }
 	VOID		 SetUseableCheckFlag( RwUInt32 flagUseableCheck ) { m_flagUseableCheck = flagUseableCheck; }
@@ -70,7 +70,7 @@ private:
 	RwUInt8						m_byQuickSlotID;
 };
 
-// ÃÊ±â ½ÃÀÛ½Ã, ¾ÆÀÌÅÛ µî·Ï½Ã °°Àº ¾ÆÀÌÅÛÀ» Ã£´Â ·ÎÁ÷ ÇÊ¿ä. 
+// ì´ˆê¸° ì‹œì‘ì‹œ, ì•„ì´í…œ ë“±ë¡ì‹œ ê°™ì€ ì•„ì´í…œì„ ì°¾ëŠ” ë¡œì§ í•„ìš”. 
 
 class CQuickSlotGui : public CNtlPLGui, RWS::CEventHandler
 {
@@ -96,17 +96,17 @@ public:
 	VOID	LinkActionMap();
 	VOID	UnLinkActionMap();
 
-	CPos	GetInitialRowPosOffset(VOID);	// Æ©Åä¸®¾ó¿¡¼­ Ã¹¹øÂ° ½½·ÔÀÇ ¿ÀÇÁ¼ÂÀ» ±¸ÇÒ‹š.
+	CPos	GetInitialRowPosOffset(VOID);	// íŠœå ì°ë¦¬å ì¢ì—ì‡½ì˜™ ì²«å ì™ì˜™ì§¸ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ìŒ€ë—°ì˜™.
 
 //! Event
 	VOID	HandleEvents( RWS::CMsg& msg );
-	RwInt32 ActionMapQuickSlotChange( RwUInt32 uiParam );
-	RwInt32 ActionMapQuickSlotUp( RwUInt32 uiKey );
-	RwInt32 ActionMapQuickSlotDown( RwUInt32 uiKey );
-	RwInt32 ActionMapQuickSlotExUp( RwUInt32 uiKey );
-	RwInt32 ActionMapQuickSlotExDown( RwUInt32 uiKey );
-	RwInt32 ActionMapQuickSlotEx2Up( RwUInt32 uiKey );
-	RwInt32 ActionMapQuickSlotEx2Down( RwUInt32 uiKey );
+	RwInt32 ActionMapQuickSlotChange( uintptr_t uiParam );
+	RwInt32 ActionMapQuickSlotUp( uintptr_t uiKey );
+	RwInt32 ActionMapQuickSlotDown( uintptr_t uiKey );
+	RwInt32 ActionMapQuickSlotExUp( uintptr_t uiKey );
+	RwInt32 ActionMapQuickSlotExDown( uintptr_t uiKey );
+	RwInt32 ActionMapQuickSlotEx2Up( uintptr_t uiKey );
+	RwInt32 ActionMapQuickSlotEx2Down( uintptr_t uiKey );
 
 private:
 //! Implementation
@@ -220,17 +220,17 @@ private:
 	RwInt32		m_nRSelectedSlotIdx;
 	RwInt32		m_nMouseOnIndex;
 	
-	RwInt32		m_nPushDownIndex;							// ¸¶¿ì½º ´Ù¿îµÈ Index
+	RwInt32		m_nPushDownIndex;							// ï¿½ï¿½ï¿½ì½º ï¿½Ù¿ï¿½ï¿½ Index
 	
 	// RpBonus
-	RwInt32		m_abPushDownKey[QUICKSLOT_MAX_VISIBLE_ROW][QUICKSLOT_MAXCOL];			// Å° Á¶ÀÛ Äü½½·Ô »óÅÂ
-	RwReal		m_afPushDownKeyElapsed[QUICKSLOT_MAX_VISIBLE_ROW][QUICKSLOT_MAXCOL];	// Å° Á¶ÀÛ Äü½½·ÔÀÇ TRUE»óÅÂ °æ°ú½Ã°£
-	RwBool		m_abIsProcDownKey[QUICKSLOT_MAX_VISIBLE_ROW][QUICKSLOT_MAXCOL];		// ÇöÀç °Ë»çÁßÀÎ Äü½½·ÔÀÌ Ã³¸®°¡ µÇ¾ú´ø °ÍÀÎ°¡?
-	RwInt32		m_abEnableIgnoreUp[QUICKSLOT_MAX_VISIBLE_ROW][QUICKSLOT_MAXCOL];		// TRUE¸é Key Up¶§ IconProcÀ» Ã³¸® ¾ÈÇÔ
+	RwInt32		m_abPushDownKey[QUICKSLOT_MAX_VISIBLE_ROW][QUICKSLOT_MAXCOL];			// í‚¤ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
+	RwReal		m_afPushDownKeyElapsed[QUICKSLOT_MAX_VISIBLE_ROW][QUICKSLOT_MAXCOL];	// í‚¤ ì¡°ì‘ í€µìŠ¬ë¡¯ì˜ TRUEìƒíƒœ ê²½ê³¼ì‹œê°„
+	RwBool		m_abIsProcDownKey[QUICKSLOT_MAX_VISIBLE_ROW][QUICKSLOT_MAXCOL];		// å ì™ì˜™å ì™ì˜™ å ì‹¯ì‚¼ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ ì²˜å ì™ì˜™å ì™ì˜™ å ì‹¤ì–µì˜™å ì™ì˜™ å ì™ì˜™å ì‹¸ê³¤ì˜™?
+	RwInt32		m_abEnableIgnoreUp[QUICKSLOT_MAX_VISIBLE_ROW][QUICKSLOT_MAXCOL];		// TRUEå ì™ì˜™ Key Upå ì™ì˜™ IconProcå ì™ì˜™ ì²˜å ì™ì˜™ å ì™ì˜™å ì™ì˜™
 
 	RwBool		m_bIsProcMouseSelected;
-	RwInt32		m_nEnableIgnoreIndex;						// ¸¶¿ì½º Up¶§ IconProcÀ» Ã³¸® ¾ÈÇÒ Index
-	RwReal		m_fPushDownMouseElapsed;					// ¸¶¿ì½º Elapsed
+	RwInt32		m_nEnableIgnoreIndex;						// ï¿½ï¿½ï¿½ì½º Upï¿½ï¿½ IconProcï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Index
+	RwReal		m_fPushDownMouseElapsed;					// ï¿½ï¿½ï¿½ì½º Elapsed
 		
 	/*gui::CPanel*	m_ppnlAlt;
 	gui::CPanel*	m_ppnlCtrl;*/
@@ -239,19 +239,19 @@ private:
 	gui::CStaticBox* m_pRowNum;
 	gui::CStaticBox* m_apstbStackNum[QUICKSLOT_MAX_VISIBLE_ROW][QUICKSLOT_MAXCOL];
 
-	// AttckMode°ü·Ã ÇÃ·¡½Ã ÀÌÆåÆ®
+	// AttckModeå ì™ì˜™å ì™ì˜™ å ì‹œë¤„ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™íŠ¸
 	RwBool			 m_bAttackMode;
-	RwUInt32		 m_uiEffectFrame;	// ÇÁ·¹ÀÓµ¿±â¸¦ À§ÇØ ±â¾ï.
+	RwUInt32		 m_uiEffectFrame;	// í”„ë ˆì„ë™ê¸°ë¥¼ ìœ„í•´ ê¸°ì–µ.
 	gui::CFlash*	 m_apflaEffect[QUICKSLOT_MAX_VISIBLE_ROW][QUICKSLOT_MAXCOL];
 	
-	// ´ÜÃàÅ° ÀÌ¸§À» Ãâ·ÂÇØÁÖ´Â Comopnent
+	// ë‹¨ì¶•í‚¤ ì´ë¦„ì„ ì¶œë ¥í•´ì£¼ëŠ” Comopnent
 	gui::CStaticBox* m_apStbShortCutName[QUICKSLOT_MAX_VISIBLE_ROW][QUICKSLOT_MAXCOL];
 	RwInt32			 m_anQuickSlotRow[ROW_NUMS];
 	
 	gui::CRadarEffect m_CoolTimeEffect[QUICKSLOT_MAX_VISIBLE_ROW][QUICKSLOT_MAXCOL];
 
 	RwBool		m_bLock;
-	RwBool		m_bIconMoveLock;							// ¾ÆÀÌÄÜÀÇ ¿òÁ÷ÀÓÀ» ¸ØÃá´Ù. 
+	RwBool		m_bIconMoveLock;							// ì•„ì´ì½˜ì˜ ì›€ì§ì„ì„ ë©ˆì¶˜ë‹¤. 
 };
 
 #endif

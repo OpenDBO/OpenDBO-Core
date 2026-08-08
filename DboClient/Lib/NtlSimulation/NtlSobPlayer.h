@@ -2,7 +2,7 @@
  *
  * File			: NtlSobPlayer.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 9. 01	
  * Abstract		: Simulation player object
  *****************************************************************************
@@ -39,7 +39,7 @@ protected:
 	
 	CNtlBeCharData		*m_pBeData;				/** character behavior data */
 	CNtlInventoryBase	*m_pEquipInventory;		/** equip inventory */
-    sASPECTSTATE        m_sAspsectState;        ///< ∫ØΩ≈ ¡§∫∏ ±∏¡∂√º
+    sASPECTSTATE        m_sAspsectState;        ///< Î≥ÄÏã† Ï†ïÎ≥¥ Íµ¨Ï°∞Ï≤¥
 
 	WCHAR				m_awszGuildName[NTL_MAX_SIZE_GUILD_NAME + 1];
 	sDBO_DOGI_DATA		m_sDogiData;
@@ -76,7 +76,7 @@ public:
 	void						SetDojoDogiColorIndex(RwUInt8 byColorIndex);
 	RwUInt8						GetDojoDogiColorIndex();
 
-	// Ω«¡¶∑Œ æµ ºˆ ¿÷¥¬ µµ∫π¿« ªˆªÛ¿ª π›»Ø«—¥Ÿ
+	// Ïã§Ï†úÎ°ú Ïì∏ Ïàò ÏûàÎäî ÎèÑÎ≥µÏùò ÏÉâÏÉÅÏùÑ Î∞òÌôòÌïúÎã§
 	RwUInt8						GetRealDogiColorIndex();
 
     void                        SetApsectState(const sASPECTSTATE& sAspectState) {m_sAspsectState = sAspectState;}

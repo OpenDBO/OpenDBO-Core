@@ -75,7 +75,7 @@ BOOL CPathEngineExportDlg::OnInitDialog()
 	CDialog::OnInitDialog();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CPathEngineExportDlg::DoDataExchange(CDataExchange* pDX)
@@ -118,7 +118,7 @@ BEGIN_MESSAGE_MAP(CPathEngineExportDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CSaberTestDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CSaberTestDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CPathEngineExportDlg::OnBnClickedBtnWorldPath()
 {

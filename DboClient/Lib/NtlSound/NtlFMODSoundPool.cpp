@@ -6,7 +6,7 @@
 #include "NtlSoundLogic.h"
 
 
-#define dMAX_SOUNDPOOL_SIZE			10485760	// 20M (1024 * 1024 * 20 )
+#define dMAX_SOUNDPOOL_SIZE			31457280	// 30M (1024 * 1024 * 30 )
 
 CNtlFMODSoundPool* CNtlFMODSoundPool::m_pInstance = NULL;
 

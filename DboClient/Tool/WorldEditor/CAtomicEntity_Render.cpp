@@ -368,7 +368,7 @@ RwBool CAtomicEntity::ApplyColorToBounding( RwRGBA * pColor )
 //-----------------------------------------------------------------------------
 
 // RwRenderStateSet( rwRENDERSTATESHADEMODE, (void *)rwSHADEMODEGOURAUD );
-//¿ìµð
+//ìš°ë””
 RwBool CAtomicEntity::RenderSolid( void )
 {
 //	InsertRenderManager();

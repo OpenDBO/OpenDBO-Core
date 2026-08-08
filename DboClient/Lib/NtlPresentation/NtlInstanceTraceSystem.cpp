@@ -41,7 +41,7 @@ void CNtlInstanceTraceSystem::Init()
     m_nControlPointIndex    = 0;
     m_poolTraceEdge         = NULL;    
     m_poolControlPoint      = NULL;
-    m_fEdgeGapTemp          = 10.0f;                ///< Ã¹ ÇÁ·¹ÀÓ¶§ ¹«Á¶°Ç »ı¼ºÇÏ±â À§ÇØ Å«°ªÀ» ¼³Á¤ÇÑ´Ù.    
+    m_fEdgeGapTemp          = 10.0f;                ///< ì²« í”„ë ˆì„ë•Œ ë¬´ì¡°ê±´ ìƒì„±í•˜ê¸° ìœ„í•´ í°ê°’ì„ ì„¤ì •í•œë‹¤.    
     m_bUpdate               = TRUE;
     m_uiMemoryUseSize       = sizeof(CNtlInstanceTraceSystem);
 }
@@ -62,10 +62,10 @@ void CNtlInstanceTraceSystem::Delete()
 }
 
 /**
- * ±ËÀû ÀÌÆåÆ®¸¦ »ı¼ºÇÑ´Ù.
- * \param pEventTrace ±ËÀû ÀÌÆåÆ®¿¡ ´ëÇÑ Á¤º¸¸¦ °¡Áö°í ÀÖ´Â Event °´Ã¼
- * \param pCharacter ±ËÀû ÀÌÆåÆ®¸¦ ºÙÀÏ Ä³¸¯ÅÍÀÇ Æ÷ÀÎÅÍ
- * return ¼º°ø À¯¹«
+ * ê¶¤ì  ì´í™íŠ¸ë¥¼ ìƒì„±í•œë‹¤.
+ * \param pEventTrace ê¶¤ì  ì´í™íŠ¸ì— ëŒ€í•œ ì •ë³´ë¥¼ ê°€ì§€ê³  ìˆëŠ” Event ê°ì²´
+ * \param pCharacter ê¶¤ì  ì´í™íŠ¸ë¥¼ ë¶™ì¼ ìºë¦­í„°ì˜ í¬ì¸í„°
+ * return ì„±ê³µ ìœ ë¬´
  */
 RwBool CNtlInstanceTraceSystem::Create(SEventTrace* pEventTrace, CNtlPLAttach* pAttach)
 {
@@ -83,13 +83,13 @@ RwBool CNtlInstanceTraceSystem::Create(SEventTrace* pEventTrace, CNtlPLAttach* p
         m_pEventTrace->fEdgeGap *= 1.0f / CNtlInstanceEffect::GetLowSpecRatio();
     }
 
-    // Vertex Buffer »ı¼º    
+    // Vertex Buffer ìƒì„±    
     m_pVertices = NTL_NEW RwIm3DVertex[pEventTrace->nMaxEdgeCount * pEventTrace->nSplinePointCount];    
     if(!m_pVertices) NTL_RETURN(FALSE);
     ZeroMemory(m_pVertices, sizeof(RwIm3DVertex) * (pEventTrace->nMaxEdgeCount * pEventTrace->nSplinePointCount));
     m_uiMemoryUseSize += sizeof(RwIm3DVertex) * (pEventTrace->nMaxEdgeCount * pEventTrace->nSplinePointCount);
     
-    // PoolÀ» »ı¼ºÇÑ´Ù.
+    // Poolì„ ìƒì„±í•œë‹¤.
     m_poolTraceEdge = NTL_NEW STraceEdge[pEventTrace->nMaxEdgeCount * pEventTrace->nSplinePointCount];
     ZeroMemory(m_poolTraceEdge, sizeof(STraceEdge) * (pEventTrace->nMaxEdgeCount * pEventTrace->nSplinePointCount));
     m_uiMemoryUseSize += sizeof(STraceEdge) * (pEventTrace->nMaxEdgeCount * pEventTrace->nSplinePointCount);
@@ -98,11 +98,11 @@ RwBool CNtlInstanceTraceSystem::Create(SEventTrace* pEventTrace, CNtlPLAttach* p
     ZeroMemory(m_poolControlPoint, sizeof(STraceEdge) * pEventTrace->nMaxEdgeCount);
     m_uiMemoryUseSize += sizeof(STraceEdge) * pEventTrace->nMaxEdgeCount;
 
-    // ÅØ½ºÃÄ ¼³Á¤
+    // í…ìŠ¤ì³ ì„¤ì •
     std::string strTextureName = pEventTrace->strTexture;
     m_pCurrentTexture = m_pStandardTexture = CreateTexture(strTextureName);
 
-    // BoneÀÇ À§Ä¡ Æ÷ÀÎÅÍ ¼³Á¤
+    // Boneì˜ ìœ„ì¹˜ í¬ì¸í„° ì„¤ì •
     SetEdgePoint(pAttach);
 
     m_pAttach = pAttach;    
@@ -111,8 +111,8 @@ RwBool CNtlInstanceTraceSystem::Create(SEventTrace* pEventTrace, CNtlPLAttach* p
 }
 
 /**
- * µÎ°³ÀÇ BoneÀ¸·ÎºÎÅÍ À§Ä¡¸¦ °¡Á®¿Í¼­ ¼³Á¤ÇÑ´Ù.
- * \param pAttach BoneÀÇ °¡Á®¿Ã Entity °´Ã¼ (Ä³¸¯ÅÍ Or Item)
+ * ë‘ê°œì˜ Boneìœ¼ë¡œë¶€í„° ìœ„ì¹˜ë¥¼ ê°€ì ¸ì™€ì„œ ì„¤ì •í•œë‹¤.
+ * \param pAttach Boneì˜ ê°€ì ¸ì˜¬ Entity ê°ì²´ (ìºë¦­í„° Or Item)
  * return 
  */
 void CNtlInstanceTraceSystem::SetEdgePoint(CNtlPLAttach* pAttach)
@@ -148,11 +148,11 @@ void CNtlInstanceTraceSystem::SetEdgePoint(CNtlPLAttach* pAttach)
     m_vStartPoint = *RwMatrixGetPos(pMatStartBone);
     m_vEndPoint = *RwMatrixGetPos(pMatEndBone);    
 
-    // OffsetÀÌ ¼³Á¤µÇ¾îÀÖÀ¸¸é Àû¿ëÇÑ´Ù.
+    // Offsetì´ ì„¤ì •ë˜ì–´ìˆìœ¼ë©´ ì ìš©í•œë‹¤.
     if(RwV3dLength(&(m_pEventTrace->v3dStartBoneOffset)) > 0.0f ||
        RwV3dLength(&(m_pEventTrace->v3dEndBoneOffset)) > 0.0f)
     {
-        // Matrix¿¡¼­ È¸Àü°ª¸¸ °¡Á®¿Í¼­ Offset¿¡ Àû¿ëÇÑÈÄ Point¿¡ ´õÇÑ´Ù.
+        // Matrixì—ì„œ íšŒì „ê°’ë§Œ ê°€ì ¸ì™€ì„œ Offsetì— ì ìš©í•œí›„ Pointì— ë”í•œë‹¤.
         RwMatrix matStartOffset = *pMatStartBone;
         RwMatrix matEndOffset = *pMatEndBone;   
         matStartOffset.pos.x = matStartOffset.pos.y = matStartOffset.pos.z = 0.0f;
@@ -194,7 +194,7 @@ RwBool CNtlInstanceTraceSystem::Render()
     if(!m_pEventTrace || !m_bVisible || m_listTraceEdge.empty())
         return TRUE;
 
-    // ¸®½ºÆ®¾ÈÀÇ VertexµéÀ» ·»´õ¸µ ÇÑ´Ù.
+    // ë¦¬ìŠ¤íŠ¸ì•ˆì˜ Vertexë“¤ì„ ë Œë”ë§ í•œë‹¤.
     RwD3D9SetTexture(m_pCurrentTexture, 0);
 
     BeginEffectTraceSystem(TRUE, m_pEventTrace->eSrcBlend, m_pEventTrace->eDestBlend);    
@@ -212,7 +212,7 @@ RwBool CNtlInstanceTraceSystem::Render()
 
 RwBool CNtlInstanceTraceSystem::UpdateVertices(RwReal fElapsedTime)
 {
-    // »õ·Î¿î Edge¸¦ Ãß°¡ÇÑ´Ù.
+    // ìƒˆë¡œìš´ Edgeë¥¼ ì¶”ê°€í•œë‹¤.
     if(m_fEdgeGapTemp >= m_pEventTrace->fEdgeGap &&
        m_bUpdate)
     {
@@ -224,13 +224,13 @@ RwBool CNtlInstanceTraceSystem::UpdateVertices(RwReal fElapsedTime)
         m_fEdgeGapTemp += fElapsedTime;
     }
 
-    // UV¸¦ udpateÇÑ´Ù.
+    // UVë¥¼ udpateí•œë‹¤.
     UpdateUV();
 
-    // Color¸¦ UdpateÇÑ´Ù.
+    // Colorë¥¼ Udpateí•œë‹¤.
     UpdateColor();
     
-    // ¸®½ºÆ®¿¡ ÀÖ´Â ¹öÅØ½ºµéÀÇ LifeTimeÀ» UpdateÇÑ´Ù.    
+    // ë¦¬ìŠ¤íŠ¸ì— ìˆëŠ” ë²„í…ìŠ¤ë“¤ì˜ LifeTimeì„ Updateí•œë‹¤.    
     int nCount = 0;
     ListTraceEdge::iterator it = m_listTraceEdge.begin();
     while(it != m_listTraceEdge.end())
@@ -239,7 +239,7 @@ RwBool CNtlInstanceTraceSystem::UpdateVertices(RwReal fElapsedTime)
 
         if((*it)->fLifeTime >= m_pEventTrace->fEdgeLifeTime)
         {
-            // Life Å¸ÀÓÀÌ Á¾·áµÇ¸é ¸®½ºÆ®¿¡¼­ Á¦°ÅÇÑ´Ù.
+            // Life íƒ€ì„ì´ ì¢…ë£Œë˜ë©´ ë¦¬ìŠ¤íŠ¸ì—ì„œ ì œê±°í•œë‹¤.
             it = m_listTraceEdge.erase(it);
         }
         else
@@ -261,18 +261,18 @@ RwBool CNtlInstanceTraceSystem::UpdateVertices(RwReal fElapsedTime)
 
 void CNtlInstanceTraceSystem::CreateEdge() 
 {
-    // »õ·Î¿î Edge¸¦ ¸®½ºÆ®ÀÇ ¸Ç³¡¿¡ Ãß°¡ÇÑ´Ù.    
+    // ìƒˆë¡œìš´ Edgeë¥¼ ë¦¬ìŠ¤íŠ¸ì˜ ë§¨ëì— ì¶”ê°€í•œë‹¤.    
 
-    // ÃÖ´ë Edge °³¼ö¸¦ ÃÊ°úÇß´ÂÁö °è»êÇÑ´Ù.
+    // ìµœëŒ€ Edge ê°œìˆ˜ë¥¼ ì´ˆê³¼í–ˆëŠ”ì§€ ê³„ì‚°í•œë‹¤.
     if(m_nControlPointIndex >= m_pEventTrace->nMaxEdgeCount)
     {
-        // Index°¡ PoolÀÇ ³¡¿¡ ´ŞÇÏ¸é Ã³À½À¸·Î µÇµ¹¸°´Ù.
+        // Indexê°€ Poolì˜ ëì— ë‹¬í•˜ë©´ ì²˜ìŒìœ¼ë¡œ ë˜ëŒë¦°ë‹¤.
         m_nControlPointIndex = 0;        
                 
         m_listControlPoint.erase(m_listControlPoint.begin());
     }
 
-    // ÃÖ´ë ±æÀÌ¸¦ ÃÊ°ú Çß´ÂÁö °è»êÇÑ´Ù.
+    // ìµœëŒ€ ê¸¸ì´ë¥¼ ì´ˆê³¼ í–ˆëŠ”ì§€ ê³„ì‚°í•œë‹¤.
     if(m_listTraceEdge.size() > 2)
     {
         RwReal fLength = 0.0f;               
@@ -296,33 +296,33 @@ void CNtlInstanceTraceSystem::CreateEdge()
         }
     }
 
-    // µÎ°³ÀÇ VertexÀÇ À§Ä¡¸¦ ¼³Á¤ÇÑ´Ù.
+    // ë‘ê°œì˜ Vertexì˜ ìœ„ì¹˜ë¥¼ ì„¤ì •í•œë‹¤.
     SetEdgePoint(m_pAttach);
 
-    // List¿¡ »õ·Î¿î ÄÁÆ®·Ñ Æ÷ÀÎÆ®¸¦ Ãß°¡ÇÑ´Ù.
+    // Listì— ìƒˆë¡œìš´ ì»¨íŠ¸ë¡¤ í¬ì¸íŠ¸ë¥¼ ì¶”ê°€í•œë‹¤.
     m_poolControlPoint[m_nControlPointIndex].vVertices[0].objVertex = m_vStartPoint;
     m_poolControlPoint[m_nControlPointIndex].vVertices[1].objVertex = m_vEndPoint;
     
     m_listControlPoint.push_back(&m_poolControlPoint[m_nControlPointIndex]);
     ++m_nControlPointIndex;
 
-    // Spline Curve Point¸¦ »ı¼ºÇÏ¿© ¸®½ºÆ®¿¡ Ãß°¡ÇÑ´Ù.
+    // Spline Curve Pointë¥¼ ìƒì„±í•˜ì—¬ ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€í•œë‹¤.
     CreateSplinePath();   
 }
 
 /**
- * Spline Path Point¸¦ »ı¼ºÇÏ¿© ¹öÅØ½º ¹öÆÛ¿¡ Ãß°¡ÇÑ´Ù.
- * \param nIndex SplineÀ» »ı¼ºÇÑ ¸®½ºÆ®ÀÇ ÀÎµ¦½º (nIndex, nIndex-1, nIndex-2, nIndex-3ÀÇ 4°³ÀÇ ¹öÅØ½º·Î Spline Path¸¦ »ı¼ºÇÑ´Ù.
+ * Spline Path Pointë¥¼ ìƒì„±í•˜ì—¬ ë²„í…ìŠ¤ ë²„í¼ì— ì¶”ê°€í•œë‹¤.
+ * \param nIndex Splineì„ ìƒì„±í•œ ë¦¬ìŠ¤íŠ¸ì˜ ì¸ë±ìŠ¤ (nIndex, nIndex-1, nIndex-2, nIndex-3ì˜ 4ê°œì˜ ë²„í…ìŠ¤ë¡œ Spline Pathë¥¼ ìƒì„±í•œë‹¤.
  * return 
  */
 void CNtlInstanceTraceSystem::CreateSplinePath()
 {
-    // Catmull-rom SplineÀ» »ı¼ºÇÑ´Ù.
-    // DX¿¡ ÀÖ´Â ÇÔ¼ö¸¦ »ç¿ëÇÑ´Ù.
+    // Catmull-rom Splineì„ ìƒì„±í•œë‹¤.
+    // DXì— ìˆëŠ” í•¨ìˆ˜ë¥¼ ì‚¬ìš©í•œë‹¤.
 
     if(m_listControlPoint.size() < 4 || m_pEventTrace->nSplinePointCount < 2)
     {
-        // SplineÀ» »ı¼ºÇÏ±â À§ÇÑ Á¶°ÇÀº ÃÖ¼ÒÇÑ 4°³ÀÇ ¹öÅØ½º°¡ ÀÖ¾î¾ß¸¸ ÇÑ´Ù.
+        // Splineì„ ìƒì„±í•˜ê¸° ìœ„í•œ ì¡°ê±´ì€ ìµœì†Œí•œ 4ê°œì˜ ë²„í…ìŠ¤ê°€ ìˆì–´ì•¼ë§Œ í•œë‹¤.
 
         ListTraceEdge::reverse_iterator it = m_listControlPoint.rbegin();
         STraceEdge* pEdge = *it;

@@ -33,7 +33,7 @@ bool CERSMWorker::ProcessErrReports()
 
 	cout<<"--- Get Error Report List(Zip Files) Success ---\n";
 
-	// Ã³¸®ÇÒ ÆÄÀÏÀÌ ¾øÀ¸¸é True¸¦ ¹İÈ¯ÇÏ°í ³¡³½´Ù.
+	// ì²˜ë¦¬í•  íŒŒì¼ì´ ì—†ìœ¼ë©´ Trueë¥¼ ë°˜í™˜í•˜ê³  ëë‚¸ë‹¤.
 	if(m_vecErrorReportFiles.empty())
 	{
 		cout<<"--- Error Report Files Empty --- "<<GetTime()<<"\n";
@@ -59,7 +59,7 @@ bool CERSMWorker::GetListZipFiles( const std::string& strFolderName )
 	SYSTEMTIME timeFile;
 	std::vector<std::string> vecFolderName;
 	
-	// 1. ÇÏÀ§ Æú´õ¸¦ °Ë»öÇÑ´Ù (¿¡·¯¸®Æ÷Æ® ÆÄÀÏÀº ·çÆ® Æú´õ¹ØÀÇ 1´Ü°è ÇÏÀ§Æú´õ¿¡ Á¸ÀçÇÑ´Ù)
+	// 1. í•˜ìœ„ í´ë”ë¥¼ ê²€ìƒ‰í•œë‹¤ (ì—ëŸ¬ë¦¬í¬íŠ¸ íŒŒì¼ì€ ë£¨íŠ¸ í´ë”ë°‘ì˜ 1ë‹¨ê³„ í•˜ìœ„í´ë”ì— ì¡´ì¬í•œë‹¤)
 	strFilter = strFolderName + "\\*.*";
 	hSerach = FindFirstFile(strFilter.c_str(), &wfd);
 	if(hSerach == INVALID_HANDLE_VALUE)
@@ -67,7 +67,7 @@ bool CERSMWorker::GetListZipFiles( const std::string& strFolderName )
 
 	while(bResult)
 	{
-		if(wfd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)	// Æú´õÀÎ °æ¿ì
+		if(wfd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)	// í´ë”ì¸ ê²½ìš°
 		{
 			if(strcmp(wfd.cFileName, ".") != 0 &&
 			   strcmp(wfd.cFileName, "..") != 0)
@@ -81,7 +81,7 @@ bool CERSMWorker::GetListZipFiles( const std::string& strFolderName )
 	}
 	FindClose(hSerach);
 
-	// 2. ÇÏÀ§ Æú´õµé¿¡¼­ ZipFileµéÀ» °Ë»öÇÑ´Ù.	
+	// 2. í•˜ìœ„ í´ë”ë“¤ì—ì„œ ZipFileë“¤ì„ ê²€ìƒ‰í•œë‹¤.	
 	for(UINT i = 0; i < vecFolderName.size(); ++i)
 	{		
 		strFolder = NCGetSGT(ERSMConfig)->GetERSFolder() + "\\";
@@ -97,22 +97,22 @@ bool CERSMWorker::GetListZipFiles( const std::string& strFolderName )
 
 		while(bResult)
 		{
-			// ÆÄÀÏÁ¤º¸¸¦ ¸®½ºÆ®¿¡ ´ã´Â´Ù.
+			// íŒŒì¼ì •ë³´ë¥¼ ë¦¬ìŠ¤íŠ¸ì— ë‹´ëŠ”ë‹¤.
 			SErrorReportFile* pERF = new SErrorReportFile();
 			m_vecErrorReportFiles.push_back(pERF);
 
-			// Æú´õ ÀÌ¸§
+			// í´ë” ì´ë¦„
 			pERF->m_strFolderName = strFolder;
 			
-			// ÆÄÀÏ ÀÌ¸§			
+			// íŒŒì¼ ì´ë¦„			
 			pERF->m_strFileName =  wfd.cFileName;
 			
-			// ÆÄÀÏ »ı¼º ³¯Â¥
+			// íŒŒì¼ ìƒì„± ë‚ ì§œ
 			FileTimeToSystemTime(&wfd.ftLastWriteTime, &timeFile);
 			sprintf_s(buf, "%d%02d%02d", timeFile.wYear, timeFile.wMonth, timeFile.wDay);
 			pERF->m_strFileDate = buf;
 
-			// ÆÄÀÏ¾È¿¡ Æ÷ÇÔµÈ À¯Àú ¾ÆÀÌµğ
+			// íŒŒì¼ì•ˆì— í¬í•¨ëœ ìœ ì € ì•„ì´ë””
 			std::string strFullPathName = strFolder + wfd.cFileName;
 			pERF->m_strUserID = GetUserIDFromZipFile(strFullPathName);
 
@@ -129,7 +129,7 @@ std::string CERSMWorker::GetUserIDFromZipFile( const std::string& strZipFileName
 {
 	std::string strUserID;
 
-	// 1. Zip File·ÎºÎÅÍ UserIDÁ¤º¸¸¦ °¡Áö°í ÀÖ´Â ·Î±× ÆÄÀÏÀ» ²¨³½´Ù.
+	// 1. Zip Fileë¡œë¶€í„° UserIDì •ë³´ë¥¼ ê°€ì§€ê³  ìˆëŠ” ë¡œê·¸ íŒŒì¼ì„ êº¼ë‚¸ë‹¤.
 	sUZ_FILEINFO uzFileInfo;
 	ZeroMemory(&uzFileInfo, sizeof(uzFileInfo));
 
@@ -160,7 +160,7 @@ std::string CERSMWorker::GetUserIDFromZipFile( const std::string& strZipFileName
 			continue;
 		}
 
-		// 2. ¾ĞÃàÀ» Ç¬ ÆÄÀÏ(XML)·ÎºÎÅÍ À¯ÀúID¸¦ ÀĞ´Â´Ù.
+		// 2. ì••ì¶•ì„ í‘¼ íŒŒì¼(XML)ë¡œë¶€í„° ìœ ì €IDë¥¼ ì½ëŠ”ë‹¤.
 		CNtlXMLDoc xmlDoc;
 		if(xmlDoc.Create())
 		{
@@ -189,11 +189,11 @@ bool CERSMWorker::RenameZipFiles()
 		if(!pERF)
 			continue;
 
-		// ³¯Â¥º° Æú´õ¸¦ »ı¼ºÇÑ´Ù. (ÀÌ¹Ì Æú´õ°¡ Á¸ÀçÇÏ°í ÀÖÀ¸¸é False¸¦ ¸®ÅÏÇÏ´Âµ¥, »ó°ü¾ø´Ù)
+		// ë‚ ì§œë³„ í´ë”ë¥¼ ìƒì„±í•œë‹¤. (ì´ë¯¸ í´ë”ê°€ ì¡´ì¬í•˜ê³  ìˆìœ¼ë©´ Falseë¥¼ ë¦¬í„´í•˜ëŠ”ë°, ìƒê´€ì—†ë‹¤)
 		std::string strNewFolder = pERF->m_strFolderName + pERF->m_strFileDate;
 		CreateDirectory(strNewFolder.c_str(), NULL);
 
-		// »ı¼ºµÈ Æú´õ¿¡ ÆÄÀÏ ÀÌ¸§À» º¯°æÇÏ¿© ³Ö´Â´Ù.
+		// ìƒì„±ëœ í´ë”ì— íŒŒì¼ ì´ë¦„ì„ ë³€ê²½í•˜ì—¬ ë„£ëŠ”ë‹¤.
 		std::string strOldFileName = pERF->m_strFolderName + pERF->m_strFileName;
 		std::string strNewFileName = strNewFolder;
 		strNewFileName += "\\";

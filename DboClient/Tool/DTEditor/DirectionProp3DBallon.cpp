@@ -1,4 +1,4 @@
-// DirectionProp3DBallon.cpp : ���� �����Դϴ�.
+// DirectionProp3DBallon.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -41,7 +41,7 @@ END_MESSAGE_MAP()
 
 
 
-// CDirectionProp3DBallon �޽��� ó�����Դϴ�.
+// CDirectionProp3DBallon 메시지 처리기입니다.
 
 
 
@@ -50,7 +50,7 @@ int CDirectionProp3DBallon::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// TODO:  ���⿡ Ư��ȭ�� �ۼ� �ڵ带 �߰��մϴ�.
+	// TODO:  여기에 특수화된 작성 코드를 추가합니다.
 	if( m_pGrid.Create(CRect(0, 0, 0, 0), this, IDS_STRING_BALLON) )
 	{
 		CString strTemp;
@@ -99,7 +99,7 @@ void CDirectionProp3DBallon::OnSize(UINT nType, int cx, int cy)
 {
 	CWnd::OnSize(nType, cx, cy);
 
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	CSize sz(0);
 
 	if (m_pGrid.GetSafeHwnd())
@@ -112,7 +112,7 @@ void CDirectionProp3DBallon::OnShowWindow(BOOL bShow, UINT nStatus)
 {
 	CWnd::OnShowWindow(bShow, nStatus);
 
-	// TODO: ���⿡ �޽��� ó���� �ڵ带 �߰��մϴ�.
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	if( bShow )
 		m_bWaitOffsetClick = false;
 }

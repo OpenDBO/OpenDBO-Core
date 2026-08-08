@@ -84,7 +84,7 @@ void CNtlSobElapsedControlManager::Reset(void)
 	ListReserved::iterator reserit;
 	for(reserit = m_listReserved.begin(); reserit != m_listReserved.end(); reserit++)
 	{
-		// ¾Æ·¡ÀÇ delete pController¸¦ NTL_DELETE·Î ¹Ù²ÙÁö ¸»¾Æ ÁÖ¼¼¿ä. Memory PoolÀ» »ç¿ëÇÕ´Ï´Ù.
+		// ì•„ë˜ì˜ delete pControllerë¥¼ NTL_DELETEë¡œ ë°”ê¾¸ì§€ ë§ì•„ ì£¼ì„¸ìš”. Memory Poolì„ ì‚¬ìš©í•©ë‹ˆë‹¤.
 		// by Jang HyungSuk
 
 		delete (*reserit).pController;
@@ -120,7 +120,7 @@ void CNtlSobElapsedControlManager::AddController(CNtlSobElapsedController *pCont
 
 CNtlSobElapsedController* CNtlSobElapsedControlManager::CreateController(CNtlSob *pSobObj, RwReal fLifeTime, RwReal fWeightValue, RwReal fDelayTime)
 {
-	// ¾Æ·¡ÀÇ new CNtlSobElapsedController ¿¡¼­ new¸¦ NTL_NEW·Î ¹Ù²ÙÁö ¸»¾Æ ÁÖ¼¼¿ä. memory pool »ç¿ëÇÕ´Ï´Ù.
+	// ì•„ë˜ì˜ new CNtlSobElapsedController ì—ì„œ newë¥¼ NTL_NEWë¡œ ë°”ê¾¸ì§€ ë§ì•„ ì£¼ì„¸ìš”. memory pool ì‚¬ìš©í•©ë‹ˆë‹¤.
 	// by Jang HyungSuk
 
 	CNtlSobElapsedController *pController = new CNtlSobElapsedController;
@@ -164,7 +164,7 @@ void CNtlSobElapsedControlManager::CreateController(CNtlSob *pSobObj, CNtlSob *p
 	{
 		CNtlSobElapsedController *pController = (*referit).second;
 		
-		// ¾Æ·¡ÀÇ new CNtlSobElapsedController ¿¡¼­ new¸¦ NTL_NEW·Î ¹Ù²ÙÁö ¸»¾Æ ÁÖ¼¼¿ä. memory pool »ç¿ëÇÕ´Ï´Ù.
+		// ì•„ë˜ì˜ new CNtlSobElapsedController ì—ì„œ newë¥¼ NTL_NEWë¡œ ë°”ê¾¸ì§€ ë§ì•„ ì£¼ì„¸ìš”. memory pool ì‚¬ìš©í•©ë‹ˆë‹¤.
 		// by Jang HyungSuk
 
 		CNtlSobElapsedController *pCopyController = new CNtlSobElapsedController;
@@ -196,7 +196,7 @@ void CNtlSobElapsedControlManager::DeleteController(CNtlSobElapsedController *pC
 	{
 		if((*reserit).pController == pController)
 		{
-			// ¾Æ·¡ÀÇ delete pController¸¦ NTL_DELETE·Î ¹Ù²ÙÁö ¸»¾Æ ÁÖ¼¼¿ä. Memory PoolÀ» »ç¿ëÇÕ´Ï´Ù.
+			// ì•„ë˜ì˜ delete pControllerë¥¼ NTL_DELETEë¡œ ë°”ê¾¸ì§€ ë§ì•„ ì£¼ì„¸ìš”. Memory Poolì„ ì‚¬ìš©í•©ë‹ˆë‹¤.
 			// by Jang HyungSuk
 			delete pController;
 			m_listReserved.erase(reserit);
@@ -214,7 +214,7 @@ void CNtlSobElapsedControlManager::DeleteController(CNtlSobElapsedController *pC
 
 	pController->Exit();
 
-	// ¾Æ·¡ÀÇ delete pController¸¦ NTL_DELETE·Î ¹Ù²ÙÁö ¸»¾Æ ÁÖ¼¼¿ä. Memory PoolÀ» »ç¿ëÇÕ´Ï´Ù.
+	// ì•„ë˜ì˜ delete pControllerë¥¼ NTL_DELETEë¡œ ë°”ê¾¸ì§€ ë§ì•„ ì£¼ì„¸ìš”. Memory Poolì„ ì‚¬ìš©í•©ë‹ˆë‹¤.
 	// by Jang HyungSuk
 
 	delete pController;
@@ -271,7 +271,7 @@ void CNtlSobElapsedControlManager::UpdateController(RwReal fElapsed)
 		pSobObj = GetNtlSobManager()->GetSobObject(pController->GetSeiralID());
 		if(pSobObj == NULL)
 		{
-			// ¾Æ·¡ÀÇ delete pController¸¦ NTL_DELETE·Î ¹Ù²ÙÁö ¸»¾Æ ÁÖ¼¼¿ä. Memory PoolÀ» »ç¿ëÇÕ´Ï´Ù.
+			// ì•„ë˜ì˜ delete pControllerë¥¼ NTL_DELETEë¡œ ë°”ê¾¸ì§€ ë§ì•„ ì£¼ì„¸ìš”. Memory Poolì„ ì‚¬ìš©í•©ë‹ˆë‹¤.
 			// by Jang HyungSuk
 
 			delete pController;
@@ -285,7 +285,7 @@ void CNtlSobElapsedControlManager::UpdateController(RwReal fElapsed)
 			{
 				pController->Exit();
 
-				// ¾Æ·¡ÀÇ delete pController¸¦ NTL_DELETE·Î ¹Ù²ÙÁö ¸»¾Æ ÁÖ¼¼¿ä. Memory PoolÀ» »ç¿ëÇÕ´Ï´Ù.
+				// ì•„ë˜ì˜ delete pControllerë¥¼ NTL_DELETEë¡œ ë°”ê¾¸ì§€ ë§ì•„ ì£¼ì„¸ìš”. Memory Poolì„ ì‚¬ìš©í•©ë‹ˆë‹¤.
 				// by Jang HyungSuk
 
 				delete pController;

@@ -133,7 +133,7 @@ RwBool CNtlWorldConceptTutorial::IsStepSkipping()
 
 void CNtlWorldConceptTutorial::SetTMQState(eTIMEQUEST_GAME_STATE eState)
 {
-	// ╪╜╧Ж ╩Себ╦╕ е╛╤Сюл╬Пф╝ ╩Себ╥н да╧Жф╝
+	// Л└°К╡└ Л┐│М┐°К╔╪ М│╢К²╪Л²╢Л√╦М┼╦ Л┐│М┐°К║° Л╩╗К╡└М┼╦
 	switch(eState)
 	{
 	case TIMEQUEST_GAME_STATE_WAIT:				m_byTMQState = WORLD_STATE_TMQ_WAIT;				break;

@@ -18,7 +18,7 @@
 #include "DisplayStringManager.h"
 #include "DboGlobal.h"
 
-#define dDISPLAYED_DICE_GAP			40			///< ÇöÀç È­¸é¿¡ Ç¥½ÃµÇ°í ÀÖ´Â ÁÖ»çÀ§°£ °£°İ
+#define dDISPLAYED_DICE_GAP			40			///< í˜„ì¬ í™”ë©´ì— í‘œì‹œë˜ê³  ìˆëŠ” ì£¼ì‚¬ìœ„ê°„ ê°„ê²©
 
 
 CDiceManager* CDiceManager::m_pInstance = NULL;
@@ -46,9 +46,9 @@ RwBool CDiceManager::CreateInstance()
 	m_pInstance = NTL_NEW CDiceManager("DiceManager");
 	m_pInstance->m_pThis = NTL_NEW gui::CDialog( CNtlPLGuiManager::GetInstance()->GetGuiManager(), GetNtlGuiManager()->GetSurfaceManager() );
 
-	// ÁÖ»çÀ§ Å¸ÀÔÀÌ Á¤ÀÇµÈ ¿ª¼øÀ¸·Î »ı¼ºÇÏ¿© °¡Àå ¸ÕÀú Á¤ÀÇµÈ ÁÖ»çÀ§ GUI°¡ °¡Àå À§¿¡ ±×·ÁÁöµµ·Ï ÇÑ´Ù
+	// ì£¼ì‚¬ìœ„ íƒ€ì…ì´ ì •ì˜ëœ ì—­ìˆœìœ¼ë¡œ ìƒì„±í•˜ì—¬ ê°€ì¥ ë¨¼ì € ì •ì˜ëœ ì£¼ì‚¬ìœ„ GUIê°€ ê°€ì¥ ìœ„ì— ê·¸ë ¤ì§€ë„ë¡ í•œë‹¤
 
-	// ÆÄÆ¼ ÀÎº¥ ÁÖ»çÀ§
+	// íŒŒí‹° ì¸ë²¤ ì£¼ì‚¬ìœ„
 	CDiceGui* pPartyInvenDiceGui = NTL_NEW CItemDiceGui("PartyInvenDiceGui", DICE_WORKD_ID_PARTY_INVEN_DICE);
 	if( !pPartyInvenDiceGui->Create(dDICE_FUNCTION_NONE) )
 	{
@@ -61,7 +61,7 @@ RwBool CDiceManager::CreateInstance()
 	((CItemDiceGui*)pPartyInvenDiceGui)->SetExplain( GetDisplayStringManager()->GetString("DST_PARTY_INVEN_START_DICE") );
 	m_pInstance->m_mapDiceGui[DICE_WORKD_ID_PARTY_INVEN_DICE] = pPartyInvenDiceGui;
 
-	// ¾×¼Ç ÁÖ»çÀ§
+	// ì•¡ì…˜ ì£¼ì‚¬ìœ„
 	CDiceGui* pActionDiceGui = NTL_NEW CActionDiceGui("ActionDiceGui", DICE_WORKD_ID_ACTION);
 	if( !pActionDiceGui->Create(dDICE_FUNCTION_NONE) )
 	{
@@ -75,7 +75,7 @@ RwBool CDiceManager::CreateInstance()
 	((CActionDiceGui*)pActionDiceGui)->SetExplain2( GetDisplayStringManager()->GetString("DST_DICE_EXPLAIN2") );
 	m_pInstance->m_mapDiceGui[DICE_WORKD_ID_ACTION] = pActionDiceGui;
 
-	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ÁøÃâÀÚ °¡·Á³»±â ÁÖ»çÀ§
+	// ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì§„ì¶œì ê°€ë ¤ë‚´ê¸° ì£¼ì‚¬ìœ„
 	CDiceGui* pBudokaiTenkaichiSelectWinnerGui = NTL_NEW CActionDiceGui("BudokaiTenkaichiSelectWinnerGui", DICE_WORKD_ID_BUDOKAI_TENKAICHI_SELECT_WINNER);
 	if( !pBudokaiTenkaichiSelectWinnerGui->Create(dDICE_FUNCTION_DISABLE_CLOSE_BUTTON | dDICE_FUNCTION_DISABLE_CLICK_DICE) )
 	{
@@ -165,7 +165,7 @@ VOID CDiceManager::CancelAll()
 
 VOID CDiceManager::LineUpDice()
 {
-	// °è´ÜÃ³·³ ¿ì»ó´ÜÀ¸·Î Á¤·ÄµÈ´Ù
+	// ê³„ë‹¨ì²˜ëŸ¼ ìš°ìƒë‹¨ìœ¼ë¡œ ì •ë ¬ëœë‹¤
 	CRectangle rtScreen = m_pThis->GetScreenRect();
 	RwBool bFoundFirstDiceHeight = FALSE;
 	CPos curPos(rtScreen.left, rtScreen.top);
@@ -243,7 +243,7 @@ VOID CDiceManager::HandleEvents( RWS::CMsg &msg )
 		{
 		case DICE_WORKD_ID_ACTION:
 			{
-				// g_EventActionMapDice ÀÌº¥Æ®¿¡¼­ ¹Ş¾Æ Ã³¸®ÇÑ´Ù
+				// g_EventActionMapDice ì´ë²¤íŠ¸ì—ì„œ ë°›ì•„ ì²˜ë¦¬í•œë‹¤
 				break;
 			}
 		case DICE_WORKD_ID_BUDOKAI_TENKAICHI_SELECT_WINNER:

@@ -4,7 +4,7 @@
 
 /**
  * \ingroup NtlPresentation
- * \brief Particle¹× Mesh SystemÀÇ ²¿¸® ºÎºĞÀ» Ç¥ÇöÇÏ±â À§ÇÑ ÀÌÆåÆ® Å¬·¡½º. TraceSystem¿¡¼­ »ó¼Ó¹Ş¾Æ¼­ ¸¸µç´Ù.
+ * \brief Particleë° Mesh Systemì˜ ê¼¬ë¦¬ ë¶€ë¶„ì„ í‘œí˜„í•˜ê¸° ìœ„í•œ ì´í™íŠ¸ í´ë˜ìŠ¤. TraceSystemì—ì„œ ìƒì†ë°›ì•„ì„œ ë§Œë“ ë‹¤.
  * \date 2006-12-29
  * \author agebreak
  */
@@ -26,12 +26,12 @@ protected:
     virtual void Init();
     virtual void Reset();
 
-    virtual void   CreateEdge();                                        ///< »õ·Î¿î Edge¸¦ Ãß°¡ÇÑ´Ù.
-    void           SetEdgePoint();                                      ///< Edge À§Ä¡¸¦ ¼³Á¤ÇÑ´Ù.
+    virtual void   CreateEdge();                                        ///< ìƒˆë¡œìš´ Edgeë¥¼ ì¶”ê°€í•œë‹¤.
+    void           SetEdgePoint();                                      ///< Edge ìœ„ì¹˜ë¥¼ ì„¤ì •í•œë‹¤.
 
 protected:
-    SNtlPrtStdEmitterTrail*         m_pEmitterTrail;                    ///< Trail »ı¼º Á¤º¸¸¦ °¡Áö°í ÀÖ´Â ÇÁ·ÎÆÛÆ¼ °´Ã¼
-    CNtlInstanceComponentSystem*    m_pAttachComponent;                 ///< TrailÀÌ ºÎÂøµÉ InstanceComponentSystem °´Ã¼
+    SNtlPrtStdEmitterTrail*         m_pEmitterTrail;                    ///< Trail ìƒì„± ì •ë³´ë¥¼ ê°€ì§€ê³  ìˆëŠ” í”„ë¡œí¼í‹° ê°ì²´
+    CNtlInstanceComponentSystem*    m_pAttachComponent;                 ///< Trailì´ ë¶€ì°©ë  InstanceComponentSystem ê°ì²´
     
-    RwV3d                           m_vPrevTrailPoint;                  ///< ÀÌÀü ÇÁ·¹ÀÓ¿¡ °è»êÇÑ Trail Point;
+    RwV3d                           m_vPrevTrailPoint;                  ///< ì´ì „ í”„ë ˆì„ì— ê³„ì‚°í•œ Trail Point;
 };

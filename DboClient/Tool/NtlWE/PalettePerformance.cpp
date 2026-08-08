@@ -1,4 +1,4 @@
-// PalettePerformance.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PalettePerformance.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -12,7 +12,7 @@
 #include "PalettePerformanceImposter.h"
 
 
-// CPalettePerformance ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPalettePerformance ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPalettePerformance, CDialog)
 
@@ -39,7 +39,7 @@ BEGIN_MESSAGE_MAP(CPalettePerformance, CDialog)
 END_MESSAGE_MAP()
 
 
-// CPalettePerformance ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPalettePerformance ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CPalettePerformance::OnInitDialog()
 {
@@ -48,7 +48,7 @@ BOOL CPalettePerformance::OnInitDialog()
 	m_TabCtrl.SetCurSel(0);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 BOOL CPalettePerformance::PreTranslateMessage(MSG* pMsg)

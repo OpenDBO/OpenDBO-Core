@@ -22,7 +22,7 @@
 #include "TBGui.h"
 
 #define BUDOKAI_MINOR_DICE_START_TIME	3
-#define BUDOKAI_MINOR_DICE_NOTIFY_TIME	5		// °üÀüÀÚÀÇ °æ¿ì, Flash¿¬Ãâ½Ã°£(ÇöÀç1.2ÃÊ)¸¦ °í·ÁÇÑ ½Ã°£.
+#define BUDOKAI_MINOR_DICE_NOTIFY_TIME	5		// ê´€ì „ìì˜ ê²½ìš°, Flashì—°ì¶œì‹œê°„(í˜„ì¬1.2ì´ˆ)ë¥¼ ê³ ë ¤í•œ ì‹œê°„.
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // stENDINFO
@@ -323,12 +323,12 @@ VOID CTBMinorDirectionGui::HandleEvents( RWS::CMsg& msg )
 	{
 		SNtlEventMinorMatchSelection* pData = reinterpret_cast<SNtlEventMinorMatchSelection*>( msg.pData );
 
-		// µ¥ÀÌÅÍ ÁØºñ
+		// ë°ì´í„° ì¤€ë¹„
 		m_WinnerTeam = pData->wWinnerTeam;
 		m_bySelectionCount = pData->byTeamCount;
 		memcpy( m_aSelectionData, pData->aSelection, sizeof( sMINORMATCH_SELECTION_DATA ) * pData->byTeamCount );
 
-		// ¿¬Ãâ ÁØºñ
+		// ì—°ì¶œ ì¤€ë¹„
 		CNtlWorldConceptTB* pTBWorldConcept = reinterpret_cast<CNtlWorldConceptTB*>( GetNtlWorldConcept()->GetWorldConceptController( WORLD_PLAY_T_BUDOKAI ) );
 		NTL_ASSERT( pTBWorldConcept, "CTBMinorDirectionGui::HandleEvents : must World concept is valid" );	
 
@@ -378,7 +378,7 @@ VOID CTBMinorDirectionGui::OnStartDice(VOID)
 	CEventTimer::RemoveTimer( m_hDiceWinnerSelectTimer );
 	CTBGui::GetInstance()->HideCounterTime();
 
-	// ¿¬Ãâ ÁØºñ
+	// ì—°ì¶œ ì¤€ë¹„
 	CNtlWorldConceptTB* pTBWorldConcept = reinterpret_cast<CNtlWorldConceptTB*>( GetNtlWorldConcept()->GetWorldConceptController( WORLD_PLAY_T_BUDOKAI ) );
 	NTL_ASSERT( pTBWorldConcept, "CTBMinorDirectionGui::HandleEvents : must World concept is valid" );	
 	SERIAL_HANDLE hAvatar = Logic_GetAvatarHandle();
@@ -404,7 +404,7 @@ VOID CTBMinorDirectionGui::OnShowDiceResult(VOID)
 {
 	CEventTimer::RemoveTimer( m_hDiceWinnerShowTimer );
 	
-	// °¢ Ä³¸¯ÅÍÀÇ ÁÖ»çÀ§°á°ú¸¦ Ç¥Çö.
+	// ê° ìºë¦­í„°ì˜ ì£¼ì‚¬ìœ„ê²°ê³¼ë¥¼ í‘œí˜„.
 	CNtlWorldConceptTB* pTBWorldConcept = reinterpret_cast<CNtlWorldConceptTB*>( GetNtlWorldConcept()->GetWorldConceptController( WORLD_PLAY_T_BUDOKAI ) );
 	NTL_ASSERT( pTBWorldConcept, "CTBMinorDirectionGui::HandleEvents : must World concept is valid" );	
 

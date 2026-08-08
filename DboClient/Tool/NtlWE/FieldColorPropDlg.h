@@ -1,7 +1,7 @@
 #pragma once
 
 
-// CFieldColorPropDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CFieldColorPropDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 #include "colourpicker.h"
 
@@ -10,14 +10,14 @@ class CFieldColorPropDlg : public CDialog
 	DECLARE_DYNAMIC(CFieldColorPropDlg)
 
 public:
-	CFieldColorPropDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CFieldColorPropDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CFieldColorPropDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_ATTR_FIELDCOLOR };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 

@@ -2,7 +2,7 @@
  *
  * File			: NtlCoreUtil.h
  * Author		: HongHoDong
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 11. 14	
  * Abstract		: NTl CoreUtil Function
  *****************************************************************************
@@ -25,7 +25,7 @@ void  g_SetElapsedTime(float fElapsedTime);
 float g_GetElapsedTime();
 
 //------------------------------------------------------------------------------
-// file attribute ∞¸∑√ util function
+// file attribute Í¥ÄÎ†® util function
 //------------------------------------------------------------------------------
 
 void NtlFileAttrReadOnlyRelease(const RwChar *pFileName);
@@ -39,20 +39,20 @@ RwBool DeleteFolder(const RwChar* strFolder);
 // log file util function
 //------------------------------------------------------------------------------
 
-// log file name¿ª º≥¡§«—¥Ÿ.
+// log file nameÏùÑ ÏÑ§Ï†ïÌïúÎã§.
 void NtlLogFilePath(RwChar *pFilePath);
 
-// logfile print «‘ºˆ.
+// logfile print Ìï®Ïàò.
 void NtlLogFilePrint(RwChar *pLog);
 void NtlLogFilePrintArgs(RwChar *fmt, ... );
 
 void NtlTraceEnable_inRelease(bool bEnable);
 
-// trace file name¿ª º≥¡§«—¥Ÿ.
+// trace file nameÏùÑ ÏÑ§Ï†ïÌïúÎã§.
 void NtlTraceInitFilePath();
 void NtlTraceInitFilePath(RwChar *pFilePath);
 
-// logfile print «‘ºˆ.
+// logfile print Ìï®Ïàò.
 void NtlTraceFilePrint(RwChar *pLog);
 void NtlTraceFilePrintArgs(RwChar *fmt, ... );
 

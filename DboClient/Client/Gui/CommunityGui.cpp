@@ -61,7 +61,7 @@ RwBool CCommunityGui::Create()
 
 	rect = GetPosition();
 
-	// ¹é¶óÀÎ
+	// ë°±ë¼ì¸
 	m_BackLineSurface.SetType(CWindowby3::WT_HORIZONTAL);
 	m_BackLineSurface.SetSurface( 0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", "srfBackLineTop" ) );
 	m_BackLineSurface.SetSurface( 1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", "srfBackLineCenter" ) );
@@ -70,20 +70,20 @@ RwBool CCommunityGui::Create()
 	m_BackLineSurface.SetPositionfromParent(9, 50);
 
 
-	// ±æµå ÆäÀÌÁö
+	// ê¸¸ë“œ í˜ì´ì§€
 	m_pTabPage[PAGETYPE_GUILD] = NTL_NEW CCommunityGuild;
 	m_pTabPage[PAGETYPE_GUILD]->Create(this);
 /*
-	// °ø´ë ÆäÀÌÁö
+	// ê³µëŒ€ í˜ì´ì§€
 	m_pTabPage[PAGETYPE_RAID] = NTL_NEW CCommunityRaid;
 	m_pTabPage[PAGETYPE_RAID]->Create(this);
 */	
 
-	// ´İ±â ¹öÆ°
+	// ë‹«ê¸° ë²„íŠ¼
 	m_pExitButton = (gui::CButton*)GetComponent( "ExitButton" );
 	m_slotCloseButton = m_pExitButton->SigClicked().Connect(this, &CCommunityGui::CloseButtonClicked);		
 
-	// ÅÇ ¹öÆ°
+	// íƒ­ ë²„íŠ¼
 	m_pTabButton = (gui::CTabButton*)GetComponent( "TabButton" );	
 
 	m_pBtnHelp = (gui::CButton*)GetComponent( "btnHelp" );
@@ -99,7 +99,7 @@ RwBool CCommunityGui::Create()
 
 	m_pTabButton->SelectTab(0);
 	
-	// ¾Æ¿ô¶óÀÎ
+	// ì•„ì›ƒë¼ì¸
 	rect = GetPosition();	
 
 	// sig
@@ -112,7 +112,7 @@ RwBool CCommunityGui::Create()
 	m_slotPaint			= m_pThis->SigPaint().Connect( this, &CCommunityGui::OnPaint );	
 	m_slotCaptureMouseDown = GetNtlGuiManager()->GetGuiManager()->SigCaptureMouseDown().Connect( this, &CCommunityGui::OnCaptureMouseDown );
 
-	// OnMove¸¦ ÅëÇØ À§Ä¡°¡ °áÁ¤µÇ´Â ÄÄÆ÷³ÍÆ®¸¦ À§ÇØ¼­
+	// OnMoveë¥¼ í†µí•´ ìœ„ì¹˜ê°€ ê²°ì •ë˜ëŠ” ì»´í¬ë„ŒíŠ¸ë¥¼ ìœ„í•´ì„œ
 	OnMove(100, 100);
 
 	// Link

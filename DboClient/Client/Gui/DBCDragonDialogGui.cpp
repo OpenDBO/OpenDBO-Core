@@ -52,7 +52,7 @@ RwBool CDBCDragonDialogGUI::Create()
 
 	AdjustDialog();
 
-	// GUI Manager¿¡ Ãß°¡ÇÑ´Ù.
+	// GUI Managerì— ì¶”ê°€í•œë‹¤.
 	GetNtlGuiManager()->AddGui(this);	
 	GetNtlGuiManager()->AddUpdateFunc(this);
 
@@ -126,7 +126,7 @@ VOID CDBCDragonDialogGUI::SetText(RwInt32 nTblIdx, EDialogType eDialogType /* = 
 
 VOID CDBCDragonDialogGUI::SetText(std::wstring& strWString, EDialogType eDialogType /* = E_DIALOG_FIRST */)
 {
-	// ½Ã°£À» ¼³Á¤ÇÏÁö¸¸ ½ÇÁ¦·Î´Â °æ°í ´ë»çÃ¢¸¸ ½Ã°£ÀÌ °æ°úÇÑ ÈÄ¿¡ »ç¶óÁø´Ù.
+	// ì‹œê°„ì„ ì„¤ì •í•˜ì§€ë§Œ ì‹¤ì œë¡œëŠ” ê²½ê³  ëŒ€ì‚¬ì°½ë§Œ ì‹œê°„ì´ ê²½ê³¼í•œ í›„ì— ì‚¬ë¼ì§„ë‹¤.
 	m_SDragonDialog[eDialogType].m_fLifeTime = WARNNING_DIALOG_TIME;	
 	m_SDragonDialog[eDialogType].m_pStatic->SetText(strWString.c_str());
 	m_SDragonDialog[eDialogType].Show(TRUE);
@@ -154,7 +154,7 @@ void CDBCDragonDialogGUI::DeleteInstance()
 
 VOID CDBCDragonDialogGUI::HandleEvents( RWS::CMsg &pMsg ) 
 {
-	// World ConceptÀÌ ³¡³¯¶§ »èÁ¦ÇÑ´Ù.
+	// World Conceptì´ ëë‚ ë•Œ ì‚­ì œí•œë‹¤.
 	if(pMsg.Id == g_EventChangeWorldConceptState)
 	{
 		SNtlEventWorldConceptState* pEvent = reinterpret_cast<SNtlEventWorldConceptState*>( pMsg.pData );

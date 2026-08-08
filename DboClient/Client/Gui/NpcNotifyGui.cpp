@@ -18,7 +18,7 @@
 //#include "AlarmManager.h"
 //
 ///**
-//* \brief »ı¼ºÀÚ
+//* \brief ìƒì„±ì
 //*/
 //CNpcNotifyGui::CNpcNotifyGui( VOID ) 
 //{
@@ -26,7 +26,7 @@
 //}
 //
 ///**
-//* \brief »ı¼ºÀÚ
+//* \brief ìƒì„±ì
 //*/
 //CNpcNotifyGui::CNpcNotifyGui( const RwChar* pName ) 
 //: CNtlPLGui( pName )
@@ -35,7 +35,7 @@
 //}
 //
 ///**
-//* \brief ¼Ò¸êÀÚ
+//* \brief ì†Œë©¸ì
 //*/
 //CNpcNotifyGui::~CNpcNotifyGui( VOID ) 
 //{
@@ -84,8 +84,8 @@
 //}
 //
 ///**
-//* \brief ÃÊ±âÈ­
-//* Npc Notify¸¦ °¡Àå Ã³À½ »óÅÂ·Î µ¹·ÁÁØ´Ù.
+//* \brief ì´ˆê¸°í™”
+//* Npc Notifyë¥¼ ê°€ì¥ ì²˜ìŒ ìƒíƒœë¡œ ëŒë ¤ì¤€ë‹¤.
 //*/
 //VOID CNpcNotifyGui::Init( VOID ) 
 //{
@@ -97,24 +97,24 @@
 //}
 //
 ///**
-//* \brief Type¿¡ ¾Ë¸Â°Ô °¢Á¾ °ªµéÀ» ¼¼ÆÃÇØÁØ´Ù.
+//* \brief Typeì— ì•Œë§ê²Œ ê°ì¢… ê°’ë“¤ì„ ì„¸íŒ…í•´ì¤€ë‹¤.
 //* \param eType (eTYPE) NPC_LEFT, NPC_CENTER, NPC_RIGHT
-//* \return ¼º°ø¿©ºÎ
+//* \return ì„±ê³µì—¬ë¶€
 //*/
 //RwBool CNpcNotifyGui::SetNpcNotifyReady( eTYPE eType , eSTATE eState ) 
 //{
-//	// ÇöÀç DialogÀÇ Å©±â
+//	// í˜„ì¬ Dialogì˜ í¬ê¸°
 //	RwInt32 nThisW = m_pThis->GetWidth();
 //	RwInt32 nThisH = m_pThis->GetHeight();
 //
-//	// ½ºÅ©¸°ÀÇ Å©±â
+//	// ìŠ¤í¬ë¦°ì˜ í¬ê¸°
 //	RwInt32 nScreenW = (RwInt32)GetDboGlobal()->GetScreenWidth();
 //	RwInt32 nScreenH = (RwInt32)GetDboGlobal()->GetScreenHeight();
 //
 //	CPos posStart;
 //	CPos posEnd;
 //
-//	// Å¸ÀÔ¿¡ µû¸¥ ½½¶óÀÌµù µÉ ÁÂÇ¥¸¦ °è»ê
+//	// íƒ€ì…ì— ë”°ë¥¸ ìŠ¬ë¼ì´ë”© ë  ì¢Œí‘œë¥¼ ê³„ì‚°
 //	switch( eType )
 //	{
 //	case NPC_LEFT:
@@ -180,11 +180,11 @@
 //}
 //
 ///**
-//* \brief ½½¶óÀÌµù µÉ ÁÂÇ¥¸¦ ÀÔ·ÂÇØÁØ´Ù.
-//* \param nStartX	½ÃÀÛ X
-//* \param nStartY	½ÃÀÛ Y
-//* \param nEndX		½½¶óÀÌµùµÉ X
-//* \param nEndY		½½¶óÀÌµùµÉ Y
+//* \brief ìŠ¬ë¼ì´ë”© ë  ì¢Œí‘œë¥¼ ì…ë ¥í•´ì¤€ë‹¤.
+//* \param nStartX	ì‹œì‘ X
+//* \param nStartY	ì‹œì‘ Y
+//* \param nEndX		ìŠ¬ë¼ì´ë”©ë  X
+//* \param nEndY		ìŠ¬ë¼ì´ë”©ë  Y
 //*/
 //VOID CNpcNotifyGui::SetSlidingPosition( RwInt32 nStartX, RwInt32 nStartY, RwInt32 nEndX, RwInt32 nEndY ) 
 //{
@@ -197,9 +197,9 @@
 //}
 //
 ///**
-//* \brief ÇöÀç Æ÷Áö¼ÇÀ» ¼ÂÆÃÇÑ´Ù.
-//* \param nCurrentX	ÇöÀç X
-//* \param nCurrentY	ÇöÀç Y
+//* \brief í˜„ì¬ í¬ì§€ì…˜ì„ ì…‹íŒ…í•œë‹¤.
+//* \param nCurrentX	í˜„ì¬ X
+//* \param nCurrentY	í˜„ì¬ Y
 //*/
 //VOID CNpcNotifyGui::SetCurrentPosition( RwInt32 nCurrentX, RwInt32 nCurrentY ) 
 //{
@@ -236,7 +236,7 @@
 //
 ///**
 //* \brief Update
-//* \param fElapsed	(RwReal) ÀÌÀü ¾÷µ¥ÀÌÆ®¿¡¼­ °æ°úµÈ ½Ã°£ 
+//* \param fElapsed	(RwReal) ì´ì „ ì—…ë°ì´íŠ¸ì—ì„œ ê²½ê³¼ëœ ì‹œê°„ 
 //*/
 //VOID CNpcNotifyGui::Update( RwReal fElapsed ) 
 //{
@@ -244,8 +244,8 @@
 //}
 //
 ///**
-//* \brief »óÅÂ¸¦ ÁöÁ¤ÇÏ¿© ¾Ë¸ÂÀº ÇÔ¼ö Æ÷ÀÎÅÍ¸¦ ³Ö¾îÁØ´Ù.
-//* \param eState		(eState) »óÅÂÀÇ ENUM
+//* \brief ìƒíƒœë¥¼ ì§€ì •í•˜ì—¬ ì•Œë§ì€ í•¨ìˆ˜ í¬ì¸í„°ë¥¼ ë„£ì–´ì¤€ë‹¤.
+//* \param eState		(eState) ìƒíƒœì˜ ENUM
 //*/
 //VOID CNpcNotifyGui::SetState( eSTATE eState ) 
 //{
@@ -314,8 +314,8 @@
 //
 ///**
 //* \brief OnMove
-//* \param nOldX		(RwInt32) ÀÌÀü À§Ä¡ÀÇ X Position
-//* \param nOldY		(RwInt32) ÀÌÀü À§Ä¡ÀÇ Y Position
+//* \param nOldX		(RwInt32) ì´ì „ ìœ„ì¹˜ì˜ X Position
+//* \param nOldY		(RwInt32) ì´ì „ ìœ„ì¹˜ì˜ Y Position
 //*/
 //VOID CNpcNotifyGui::OnMove( RwInt32 nOldX, RwInt32 nOldY ) 
 //{
@@ -324,8 +324,8 @@
 //
 ///**
 //* \brief Npc Notify Update
-//* Npc Notify¿¡¼­ state¿Í type¿¡ ¸Â´Â ÇÔ¼ö Æ÷ÀÎÅÍ¸¦ È£ÃâÇÑ´Ù.
-//* \param fElapsed	(RwReal)ÀÌÀü ÇÁ·¹ÀÓ¿¡¼­ °æ°úµÈ ½Ã°£
+//* Npc Notifyì—ì„œ stateì™€ typeì— ë§ëŠ” í•¨ìˆ˜ í¬ì¸í„°ë¥¼ í˜¸ì¶œí•œë‹¤.
+//* \param fElapsed	(RwReal)ì´ì „ í”„ë ˆì„ì—ì„œ ê²½ê³¼ëœ ì‹œê°„
 //*/
 //VOID CNpcNotifyGui::NpcUpdateProc( RwReal fElapsed ) 
 //{

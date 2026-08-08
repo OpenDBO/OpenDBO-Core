@@ -16,7 +16,7 @@ class CGuiRenderer
 {
 private:
 
-	// ¹öÆÛ¿¡ Å¸ÀÔÀ» µĞ´Ù.
+	// ë²„í¼ì— íƒ€ì…ì„ ë‘”ë‹¤.
 	typedef struct _tagRenderBuffer
 	{
 		PlaneSnapShot	SnapShot;

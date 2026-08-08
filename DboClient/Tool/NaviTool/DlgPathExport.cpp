@@ -1,4 +1,4 @@
-// DlgPathExport.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// DlgPathExport.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -7,7 +7,7 @@
 #include "PathEngine.h"
 #include "NaviToolUtil.h"
 
-// CDlgPathExport ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CDlgPathExport ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CDlgPathExport, CDialog)
 
@@ -44,7 +44,7 @@ BOOL CDlgPathExport::OnInitDialog()
 
 	if( list.empty() )
 	{
-		// ErrorMessage Ãâ·Â
+		// ErrorMessage ì¶œë ¥
 		::AfxMessageBox( "Imported world data is empty!" );
 		return TRUE;
 	}
@@ -99,7 +99,7 @@ BOOL CDlgPathExport::OnInitDialog()
 	// Init();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 BOOL CDlgPathExport::GetExportList( mapdef_ExportList& list )
@@ -111,13 +111,13 @@ BOOL CDlgPathExport::GetExportList( mapdef_ExportList& list )
 
 void CDlgPathExport::OnBnClickedBtnPathExportAll()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	EndDialog( ID_BTN_PATH_EXPORT_ALL );
 }
 
 void CDlgPathExport::OnBnClickedBtnPathExportSelect()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	
 	int nCount = m_editListCtrlExport.GetItemCount();
 	

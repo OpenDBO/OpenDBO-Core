@@ -1,7 +1,7 @@
 /******************************************************************************
 * File			: ChatDefine.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 7. 2
 * Abstract		: 
 *****************************************************************************
@@ -24,8 +24,8 @@
 
 #define CHAT_DISP_MINIMUM_WIDTH				290
 #define CHAT_DISP_MINIMUM_HEIGHT			95
-#define CHAT_DISP_MAXIMUM_WIDTH				512		// ChatDisplay.frmÀÇ outputDisplayÀÇ ³ĞÀÌº¸´Ù Å©¸é ¾ÈµÈ´Ù
-#define CHAT_DISP_MAXIMUM_HEIGHT			512		// ChatDisplay.frmÀÇ outputDisplayÀÇ ³ôÀÌº¸´Ù Å©¸é ¾ÈµÈ´Ù
+#define CHAT_DISP_MAXIMUM_WIDTH				512		// ChatDisplay.frmì˜ outputDisplayì˜ ë„“ì´ë³´ë‹¤ í¬ë©´ ì•ˆëœë‹¤
+#define CHAT_DISP_MAXIMUM_HEIGHT			512		// ChatDisplay.frmì˜ outputDisplayì˜ ë†’ì´ë³´ë‹¤ í¬ë©´ ì•ˆëœë‹¤
 
 #define CHAT_DISP_LINE_GAP					2
 #define CHAT_DISP_MAX_LINE					50

@@ -57,7 +57,7 @@ void CNtlDownLoader::CreateDirectoryFromFullPath( const CString& strFullPath )
 
     int nIndex = 0;
 
-    // '/','\'µÑ´Ù Æú´õ ±¸ºĞÀÚ·Î ¾²ÀÏ¼ö ÀÖ±â¶§¹®¿¡ µÑ´Ù Ã¼Å©ÇÑ´Ù.
+    // '/','\'ë‘˜ë‹¤ í´ë” êµ¬ë¶„ìë¡œ ì“°ì¼ìˆ˜ ìˆê¸°ë•Œë¬¸ì— ë‘˜ë‹¤ ì²´í¬í•œë‹¤.
     nIndex = strFullPath.ReverseFind('/');    
     if(nIndex == -1) nIndex = strFullPath.ReverseFind('\\');
 

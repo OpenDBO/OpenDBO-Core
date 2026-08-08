@@ -3,17 +3,17 @@
 #include "Control/PropTree.h"
 #include "GUIEditorDoc.h"
 
-// CSurfaceAttributeDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CSurfaceAttributeDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CSurfaceAttributeDlg : public CDialog
 {
 	DECLARE_DYNCREATE(CSurfaceAttributeDlg)
 
 public:
-	CSurfaceAttributeDlg(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CSurfaceAttributeDlg(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CSurfaceAttributeDlg();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_SURFACEATTRIBUTEDLG };
 
 	enum PROPERTY_ID
@@ -60,15 +60,15 @@ protected:
 
 protected:
 	// Internal Function
-	void	InitProperty();		// Ç×¸ñ ¼³Á¤.
+	void	InitProperty();		// í•­ëª© ì„¤ì •.
 	
-	void	AddCaptionToList();	// List Ç¥±â
-	void	AddData();			// Data¸¦ List¿¡ Ãß°¡.
-	BOOL	InputData( SURFACEDATA* pSurfaceData, BOOL bFix = FALSE );	// Data ÀÔ·Â
+	void	AddCaptionToList();	// List í‘œê¸°
+	void	AddData();			// Dataë¥¼ Listì— ì¶”ê°€.
+	BOOL	InputData( SURFACEDATA* pSurfaceData, BOOL bFix = FALSE );	// Data ì…ë ¥
 	BOOL	InputCheck( SURFACEDATA* pSurfaceData, BOOL bFix = FALSE );
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

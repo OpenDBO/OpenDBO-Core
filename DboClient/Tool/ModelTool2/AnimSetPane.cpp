@@ -101,7 +101,7 @@ void CAnimSetPane::SetModel(CNtlPLAttach* pModel)
                 if(m_pCharacter == pModel)
                     return;
 
-                // ±âÁ¸ ¾Ö´Ï¸ŞÀÌ¼ÇÀº Á¤Áö ½ÃÅ²´Ù.
+                // ê¸°ì¡´ ì• ë‹ˆë©”ì´ì…˜ì€ ì •ì§€ ì‹œí‚¨ë‹¤.
                 if(m_pCharacter)
                 {
                     m_pCharacter->SetAnimUpdate(FALSE);
@@ -113,7 +113,7 @@ void CAnimSetPane::SetModel(CNtlPLAttach* pModel)
 
                 m_pAnimTable = m_pCharacter->GetProperty()->GetAnimTable();                
 
-                // Animation SetÀ» ÃÊ±âÈ­ÇÑ´Ù.       
+                // Animation Setì„ ì´ˆê¸°í™”í•œë‹¤.       
                 int nPrevSel = m_cbAnimSet.GetCurSel();
                 if(nPrevSel < 0)
                 {
@@ -124,7 +124,7 @@ void CAnimSetPane::SetModel(CNtlPLAttach* pModel)
 
                 if(CModelToolApplication::GetInstance()->GetAppMode() == MT_MODE_VEHICLE)
                 {
-                    // Å»°Í¿ë Anim Set                    
+                    // íƒˆê²ƒìš© Anim Set                    
                     m_cbAnimSet.AddString("Vehicle Animation Set");
                     m_cbAnimSet.SetCurSel(0);
                     m_eAnimSetMode = ANIMSET_VEHICLE;
@@ -191,7 +191,7 @@ void CAnimSetPane::SetEnable(BOOL bEnable)
 
 void CAnimSetPane::OnCbnSelchangeCbAnimSet()
 {
-    // ÄŞº¸¹Ú½º°¡ º¯°æµÇ¾úÀ»¶§, ¸®½ºÆ®ÀÇ ¾ÆÀÌÅÛ Ç×¸ñÀ» º¯°æÇÑ´Ù.
+    // ì½¤ë³´ë°•ìŠ¤ê°€ ë³€ê²½ë˜ì—ˆì„ë•Œ, ë¦¬ìŠ¤íŠ¸ì˜ ì•„ì´í…œ í•­ëª©ì„ ë³€ê²½í•œë‹¤.
     USES_CONVERSION;
 
     if(!m_pAnimTable)
@@ -312,7 +312,7 @@ void CAnimSetPane::OnCbnSelchangeCbAnimSet()
             m_ltAnimItem.InsertItem(nCount, sAnimID);  
             m_ltAnimItem.SetItem(nCount, 1, LVIF_TEXT, (sAnimName->c_str()), 0, 0, 0, 0);			
 
-            // µ¥ÀÌÅÍ°¡ ÀÖÀ»°æ¿ì¿¡´Â Ç¥½ÃÇÑ´Ù.
+            // ë°ì´í„°ê°€ ìˆì„ê²½ìš°ì—ëŠ” í‘œì‹œí•œë‹¤.
             if(m_pAnimTable)
             {
                 STypeAnimData* pAnimData = m_pAnimTable->Get(i);
@@ -334,7 +334,7 @@ void CAnimSetPane::OnLvnItemchangedLtAnimItem(NMHDR *pNMHDR, LRESULT *pResult)
         return;
 
     USES_CONVERSION;
-    static int nOldIndex = -1;  // Áßº¹ È£ÃâÀ» ¸·±âÀ§ÇÑ º¯¼ö
+    static int nOldIndex = -1;  // ì¤‘ë³µ í˜¸ì¶œì„ ë§‰ê¸°ìœ„í•œ ë³€ìˆ˜
 
     int nIndex = pNMLV->iItem;
     if(nIndex == nOldIndex)
@@ -342,7 +342,7 @@ void CAnimSetPane::OnLvnItemchangedLtAnimItem(NMHDR *pNMHDR, LRESULT *pResult)
 
     nOldIndex = nIndex;
 
-    // ¼³Á¤µÈ ¾Ö´Ï¸ŞÀÌ¼ÇÀÌ ÀÖÀ¸¸é, ±× ¾Ö´Ï¸ŞÀÌ¼ÇÀ¸·Î ¾Ö´Ï¸ŞÀÌ¼ÇÀ» º¯°æÇÑ´Ù.    
+    // ì„¤ì •ëœ ì• ë‹ˆë©”ì´ì…˜ì´ ìˆìœ¼ë©´, ê·¸ ì• ë‹ˆë©”ì´ì…˜ìœ¼ë¡œ ì• ë‹ˆë©”ì´ì…˜ì„ ë³€ê²½í•œë‹¤.    
     
     CString sAnimFileName = m_ltAnimItem.GetItemText(nIndex, 2);
     if(sAnimFileName != "")
@@ -363,7 +363,7 @@ void CAnimSetPane::OnLvnItemchangedLtAnimItem(NMHDR *pNMHDR, LRESULT *pResult)
             m_pItem->SetAnimUpdate(FALSE);
         }
         
-        // ¼³Á¤µÈ ¾Ö´Ï¸ŞÀÌ¼ÇÆÄÀÏÀÌ ¾øÀ¸¸é Edit UI¸¦ Disable ½ÃÅ²´Ù.
+        // ì„¤ì •ëœ ì• ë‹ˆë©”ì´ì…˜íŒŒì¼ì´ ì—†ìœ¼ë©´ Edit UIë¥¼ Disable ì‹œí‚¨ë‹¤.
         GetSafeInstance(CAttackTypePane)->SetAnimEventData(NULL);
         GetSafeInstance(CAnimPlayPane)->SetAnimData(NULL, NULL);
     }
@@ -373,7 +373,7 @@ void CAnimSetPane::OnLvnItemchangedLtAnimItem(NMHDR *pNMHDR, LRESULT *pResult)
 
 void CAnimSetPane::OnNMRclickLtAnimItem(NMHDR *pNMHDR, LRESULT *pResult)
 {
-    // ¿À¸¥ÂÊ Å¬¸¯½Ã ÆË¾÷¸Ş´º¸¦ ¶Ù¿î´Ù.
+    // ì˜¤ë¥¸ìª½ í´ë¦­ì‹œ íŒì—…ë©”ë‰´ë¥¼ ë›°ìš´ë‹¤.
     int nIndex = m_ltAnimItem.GetSelectionMark();
     if(nIndex >= 0)
     {
@@ -383,7 +383,7 @@ void CAnimSetPane::OnNMRclickLtAnimItem(NMHDR *pNMHDR, LRESULT *pResult)
         menuPopup.LoadMenu(IDR_MENU_POPUP);
         CMenu*  subMenu = menuPopup.GetSubMenu(2);
 
-        // ¾Ö´Ï¸ŞÀÌ¼ÇÆÄÀÏ Á¤º¸ÀÇ Á¸Àç¿©ºÎ¿¡ µû¶ó ¸Ş´º¸¦ ¼³Á¤ÇÑ´Ù.
+        // ì• ë‹ˆë©”ì´ì…˜íŒŒì¼ ì •ë³´ì˜ ì¡´ì¬ì—¬ë¶€ì— ë”°ë¼ ë©”ë‰´ë¥¼ ì„¤ì •í•œë‹¤.
         CString sAnimFileName = m_ltAnimItem.GetItemText(nIndex, 2);
         if(sAnimFileName == "")
         {
@@ -406,7 +406,7 @@ void CAnimSetPane::OnMenuAnimSet()
     if(!m_pAnimTable)
         return;
 
-    // Ç×¸ñ¿¡ ¾Ö´Ï¸ŞÀÌ¼Ç ÆÄÀÏÀ» ¼³Á¤ÇÑ´Ù.
+    // í•­ëª©ì— ì• ë‹ˆë©”ì´ì…˜ íŒŒì¼ì„ ì„¤ì •í•œë‹¤.
     USES_CONVERSION;
 
     int nIndex = m_ltAnimItem.GetSelectionMark();
@@ -415,7 +415,7 @@ void CAnimSetPane::OnMenuAnimSet()
     CFileDialog fileDlg(TRUE, NULL, NULL, OFN_HIDEREADONLY, szOpenFilter);
     if(fileDlg.DoModal() == IDOK)
     {
-        // ±âÁ¸¿¡ AnimÀÌ Á¸ÀçÇÏ¸é ¾ø¾ÖÁØ´Ù.
+        // ê¸°ì¡´ì— Animì´ ì¡´ì¬í•˜ë©´ ì—†ì• ì¤€ë‹¤.
         CString strPrevAnimName = m_ltAnimItem.GetItemText(nIndex, 2);
         if(strPrevAnimName != "")
         {
@@ -426,7 +426,7 @@ void CAnimSetPane::OnMenuAnimSet()
         CString sLoadFileName = fileDlg.GetFileName();       
         m_ltAnimItem.SetItem(nIndex, 2, LVIF_TEXT, sLoadFileName, 0, 0, 0, 0);
 
-        // Àı´ë°æ·Î¸¦ »ó´ë°æ·Î·Î ¹Ù²Û´Ù.
+        // ì ˆëŒ€ê²½ë¡œë¥¼ ìƒëŒ€ê²½ë¡œë¡œ ë°”ê¾¼ë‹¤.
         CString strWorkPath = (CModelToolApplication::GetInstance()->GetWorkDir());
         strWorkPath = strWorkPath.MakeUpper();
         sLoadFilePath = sLoadFilePath.MakeUpper();
@@ -435,33 +435,33 @@ void CAnimSetPane::OnMenuAnimSet()
         sLoadFilePath.Replace(sLoadFileName, "");
         std::string sAnimFilePath = (sLoadFilePath);
 
-        // property¿¡ ¾Ö´Ï¸ŞÀÌ¼Ç ÆÄÀÏ Á¤º¸¸¦ Ãß°¡ÇÑ´Ù.
+        // propertyì— ì• ë‹ˆë©”ì´ì…˜ íŒŒì¼ ì •ë³´ë¥¼ ì¶”ê°€í•œë‹¤.
         CString sAnimID = m_ltAnimItem.GetItemText(nIndex, 0);
         RwUInt32 uiAnimKey = (RwUInt32)atof(sAnimID);
 
         std::string sAnimFileName = (sLoadFileName);
 
-        // Property¿¡ Anim Æú´õ °æ·Î¸¦ ÁöÁ¤ÇÑ´Ù. (»ó´ë °æ·Î)                                
+        // Propertyì— Anim í´ë” ê²½ë¡œë¥¼ ì§€ì •í•œë‹¤. (ìƒëŒ€ ê²½ë¡œ)                                
         m_pAnimTable->SetAnimPath(sAnimFilePath);
         STypeAnimData* pAnimData = m_pAnimTable->Add(uiAnimKey, sAnimFileName);
         SetAnimData(uiAnimKey);      
 
         if(m_eAnimSetMode == ANIMSET_CHARACTER || m_eAnimSetMode == ANIMSET_VEHICLE)
         {
-            // Play TimeÀ» ÀúÀåÇÑ´Ù.
+            // Play Timeì„ ì €ì¥í•œë‹¤.
             m_pCharacter->Update(0.1f);
             pAnimData->fPlayTime = m_pCharacter->GetBaseDurationAnimTime();
             
         }
         else if(m_eAnimSetMode == ANIMSET_ITEM)
         {
-            // Play TimeÀ» ÀúÀåÇÑ´Ù.
+            // Play Timeì„ ì €ì¥í•œë‹¤.
             m_pItem->Update(0.1f);            
             pAnimData->fPlayTime = m_pItem->GetBaseDurationAnimTime();            
         }
 		else if(m_eAnimSetMode == ANIMSET_OBJECT)
 		{
-			// PlayTimeÀ» ÀúÀåÇÑ´Ù.
+			// PlayTimeì„ ì €ì¥í•œë‹¤.
 			// m_pObject->Update(0.1f);			
 			pAnimData->fPlayTime = m_pObject->GetBaseDurationAnimTime();
 		}
@@ -472,7 +472,7 @@ void CAnimSetPane::OnMenuAnimSet()
 
 void CAnimSetPane::OnMenuAnimDelete()
 {
-    // Ç×¸ñ¿¡ ÀÖ´Â ¾Ö´Ï¸ŞÀÌ¼ÇÀ» »èÁ¦ÇÑ´Ù.
+    // í•­ëª©ì— ìˆëŠ” ì• ë‹ˆë©”ì´ì…˜ì„ ì‚­ì œí•œë‹¤.
     if(!m_pAnimTable)
         return;
 
@@ -483,10 +483,10 @@ void CAnimSetPane::OnMenuAnimDelete()
     CString sAnimID = m_ltAnimItem.GetItemText(nIndex, 0);
     RwUInt32 uiAnimKey = (RwUInt32)atof(sAnimID);
 
-    // ÇÁ·ÎÆÛÆ¼ÀÇ Å×ÀÌºí¿¡¼­ »èÁ¦ÇÑ´Ù.
+    // í”„ë¡œí¼í‹°ì˜ í…Œì´ë¸”ì—ì„œ ì‚­ì œí•œë‹¤.
     m_pAnimTable->Remove(uiAnimKey);
 
-    // ¸®½ºÆ® ¸ñ·Ï¿¡¼­ Á¦°ÅÇÑ´Ù.
+    // ë¦¬ìŠ¤íŠ¸ ëª©ë¡ì—ì„œ ì œê±°í•œë‹¤.
     m_ltAnimItem.SetItemText(nIndex, 2, "");
 
     if(m_eAnimSetMode == ANIMSET_CHARACTER || m_eAnimSetMode == ANIMSET_VEHICLE)
@@ -517,7 +517,7 @@ void CAnimSetPane::SetAnimData(RwUInt32 uiKey)
 
 	STypeAnimData* pAnimData = m_pAnimTable->Get(uiKey);
 
-    // ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ¸ğµ¨¿¡ Àû¿ëÇÑ´Ù.
+    // ì• ë‹ˆë©”ì´ì…˜ì„ ëª¨ë¸ì— ì ìš©í•œë‹¤.
     if(m_eAnimSetMode == ANIMSET_CHARACTER || m_eAnimSetMode == ANIMSET_VEHICLE)
     {
         if(!m_pCharacter->SetAnim(uiKey))
@@ -529,20 +529,20 @@ void CAnimSetPane::SetAnimData(RwUInt32 uiKey)
         
         if(pAnimData)
         {
-            // µ¥ÀÌÅÍ¸¦ AttackType Pane¿¡ Àû¿ëÇÑ´Ù.
+            // ë°ì´í„°ë¥¼ AttackType Paneì— ì ìš©í•œë‹¤.
             GetSafeInstance(CAttackTypePane)->SetAnimEventData(pAnimData);
 
-            //// ¾Ö´Ï¸ŞÀÌ¼Ç ÇÃ·¹ÀÌ Åøºä¸¦ È°¼ºÈ­ ½ÃÅ²´Ù.
+            //// ì• ë‹ˆë©”ì´ì…˜ í”Œë ˆì´ íˆ´ë·°ë¥¼ í™œì„±í™” ì‹œí‚¨ë‹¤.
             GetSafeInstance(CAnimPlayPane)->SetAnimData(m_pCharacter, pAnimData);    
 
-            // ÇÁ·ÎÆÛÆ¼¸¦ ¼³Á¤ÇÑ´Ù.
+            // í”„ë¡œí¼í‹°ë¥¼ ì„¤ì •í•œë‹¤.
             GetSafeInstance(CPropertyPane)->SetAnimation(pAnimData);
         }
 
-        // ÇÏ´ÜºäÀÇ Bone Edit¸¦ È°¼ºÈ­ ½ÃÅ²´Ù.
+        // í•˜ë‹¨ë·°ì˜ Bone Editë¥¼ í™œì„±í™” ì‹œí‚¨ë‹¤.
         GetSafeInstance(CBoneEditPane)->SetEnable(TRUE);
 
-        // Å»°ÍÀÇ ¾Ö´Ï¸ŞÀÌ¼Ç
+        // íƒˆê²ƒì˜ ì• ë‹ˆë©”ì´ì…˜
         if(CModelToolApplication::GetInstance()->GetAppMode() == MT_MODE_VEHICLE)
         {
             GetSafeInstance(CVehicleViewPane)->SetVehicleAnimation(uiKey);
@@ -567,10 +567,10 @@ void CAnimSetPane::SetAnimData(RwUInt32 uiKey)
 				return;
 			}
 
-			// ¾Ö´Ï¸ŞÀÌ¼Ç ÇÃ·¹ÀÌ Åøºä¸¦ È°¼ºÈ­ ½ÃÅ²´Ù.			
+			// ì• ë‹ˆë©”ì´ì…˜ í”Œë ˆì´ íˆ´ë·°ë¥¼ í™œì„±í™” ì‹œí‚¨ë‹¤.			
 			GetSafeInstance(CAnimPlayPane)->SetTriggerObjectAnimData(m_pObject, pAnimData);
 
-            // ÇÁ·ÎÆÛÆ¼¸¦ ¼³Á¤ÇÑ´Ù.
+            // í”„ë¡œí¼í‹°ë¥¼ ì„¤ì •í•œë‹¤.
             GetSafeInstance(CPropertyPane)->SetAnimation(pAnimData);
 		}
 	}

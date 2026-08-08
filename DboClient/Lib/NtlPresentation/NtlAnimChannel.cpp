@@ -3,9 +3,9 @@
 #include "NtlDebug.h"
 
 /**
- * AnimChannel¸¦ »ı¼º
- * \param pBaseHierarchy ¹Ì¸® »ı¼ºµÈ BaseHierarchy
- * \return ¼º°ø À¯¹«
+ * AnimChannelë¥¼ ìƒì„±
+ * \param pBaseHierarchy ë¯¸ë¦¬ ìƒì„±ëœ BaseHierarchy
+ * \return ì„±ê³µ ìœ ë¬´
  */
 RwBool CNtlAnimChannel::Create(RpHAnimHierarchy *pBaseHierarchy)
 {
@@ -23,7 +23,7 @@ RwBool CNtlAnimChannel::Create(RpHAnimHierarchy *pBaseHierarchy)
 	if(m_pHierarchy == NULL)
 		NTL_RETURN(FALSE);
 
-	//Default AnimÀÌ ¾øÀ¸¸é AddTogether ¿¬»ê½Ã ¿¡·¯°¡ ³­´Ù.
+	//Default Animì´ ì—†ìœ¼ë©´ AddTogether ì—°ì‚°ì‹œ ì—ëŸ¬ê°€ ë‚œë‹¤.
 	RpHAnimHierarchySetCurrentAnim( m_pHierarchy, pBaseHierarchy->currentAnim->pCurrentAnim);
 	
 	NTL_RETURN(TRUE);
@@ -31,7 +31,7 @@ RwBool CNtlAnimChannel::Create(RpHAnimHierarchy *pBaseHierarchy)
 
 /**
  * Animation Update
- * \return ¼º°ø À¯¹«
+ * \return ì„±ê³µ ìœ ë¬´
  */
 RwBool CNtlAnimChannel::Update(RwReal fElapsed)
 {
@@ -56,7 +56,7 @@ void CNtlAnimChannel::Destroy()
 }
 
 /**
- * AnimChannelÀÇ Hierarchy¸¦ ¾ò¾î¿Â´Ù.
+ * AnimChannelì˜ Hierarchyë¥¼ ì–»ì–´ì˜¨ë‹¤.
  * \return RpHAnimHierarchy
  */
 RpHAnimHierarchy *CNtlAnimChannel::GetHierarchy()				
@@ -66,7 +66,7 @@ RpHAnimHierarchy *CNtlAnimChannel::GetHierarchy()
 }
 
 /**
- * Animation Data¸¦ Àû¿ëÀ» ÇÑ´Ù.
+ * Animation Dataë¥¼ ì ìš©ì„ í•œë‹¤.
  * \param 
  * \return RpHAnimHierarchy
  */

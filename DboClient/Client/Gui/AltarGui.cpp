@@ -114,7 +114,7 @@ RwBool CAltarGui::Create()
 
 	m_pWorldConceptDBC = (CNtlWorldConceptDBC*)GetNtlWorldConcept()->GetWorldConceptController(WORLD_PLAY_DRAGONBALL_COLLECT);
 
-	// [ÁÖ¹®]
+	// [ì£¼ë¬¸]
 	WCHAR buf[32] = {0,};
 	swprintf_s(buf, L"[%s]", GetDisplayStringManager()->GetString("DST_DBC_KEYWORD"));
 	m_pStaticKeyword->SetText(buf);
@@ -147,7 +147,7 @@ VOID CAltarGui::Update(RwReal fElapsed)
 
 	BYTE byIncAlpha = (BYTE)(fElapsed * 255.0f);
 
-	// µå·¡°ïº¼ ÀåÂø½Ã ³ªÅ¸³¯ ÆĞ³ÎÀÇ Fade È¿°ú
+	// ë“œë˜ê³¤ë³¼ ì¥ì°©ì‹œ ë‚˜íƒ€ë‚  íŒ¨ë„ì˜ Fade íš¨ê³¼
     RwInt32 nDBKind = (RwInt32)m_pWorldConceptDBC->GetDBKind();
 	for(int i = 0; i < 7; ++i)
 	{
@@ -208,11 +208,11 @@ RwInt32 CAltarGui::SwitchDialog( bool bOpen )
 
 		Logic_PlayGUISound ( GSD_SYSTEM_DRAGOBALL_UI_CLOSE );
 
-		if(!m_bSpawnDragon)	// ¿ë½ÅÀ» ¼ÒÈ¯ÇÏÁö ¾Ê°í Ãë¼ÒÇß´Ù.
+		if(!m_bSpawnDragon)	// ìš©ì‹ ì„ ì†Œí™˜í•˜ì§€ ì•Šê³  ì·¨ì†Œí–ˆë‹¤.
 		{
 			GetNtlWorldConcept()->RemoveWorldPlayConcept(WORLD_PLAY_DRAGONBALL_COLLECT);
 			
-			//ÇöÀç ¼¼ÆÃµÇ¾îÀÖ´Â µå·¡°ïº¼ ¾ÆÀÌÅÛµéÀÇ LockÀ» Ç®¾îÁØ´Ù
+			//í˜„ì¬ ì„¸íŒ…ë˜ì–´ìˆëŠ” ë“œë˜ê³¤ë³¼ ì•„ì´í…œë“¤ì˜ Lockì„ í’€ì–´ì¤€ë‹¤
 			for(int i = 0; i < 7; ++i)
 			{
 				RemoveDragonBallSlot(i);
@@ -237,11 +237,11 @@ VOID CAltarGui::HandleEvents( RWS::CMsg &pMsg )
 				CNtlWorldConceptDBC* pWorldConceptDBC = (CNtlWorldConceptDBC*)GetNtlWorldConcept()->GetWorldConceptController(WORLD_PLAY_DRAGONBALL_COLLECT);
 				pWorldConceptDBC->ResetRemainTime();
 
-                // Ãß°¡ UIµé ÀÎ½ºÅÏ½º »ı¼º
+                // ì¶”ê°€ UIë“¤ ì¸ìŠ¤í„´ìŠ¤ ìƒì„±
                 CDBCNarrationGui::CreateInstance();
                 CDBCRewardGUI::CreateInstance();                
 
-                // ¿ë½Å ¼ÒÈ¯
+                // ìš©ì‹  ì†Œí™˜
 				SpawnDragon();					
 			}
 			else
@@ -254,7 +254,7 @@ VOID CAltarGui::HandleEvents( RWS::CMsg &pMsg )
 
 void CAltarGui::CreateInstance()
 {
-	// ½Ì±ÛÅæ »ı¼º°ú ÇÔ²² ´ÙÀÌ¾ó·Î±× ¸Å´ÏÀú¿¡ µî·ÏÇÑ´Ù.
+	// ì‹±ê¸€í†¤ ìƒì„±ê³¼ í•¨ê»˜ ë‹¤ì´ì–¼ë¡œê·¸ ë§¤ë‹ˆì €ì— ë“±ë¡í•œë‹¤.
 	if(!m_pInstance)
 	{
 		m_pInstance = NTL_NEW CAltarGui("AltarGui");
@@ -264,7 +264,7 @@ void CAltarGui::CreateInstance()
 			NTL_DELETE(m_pInstance);			
 		}
 
-		// Gui Manager¿¡ Ãß°¡ÇÑ´Ù.
+		// Gui Managerì— ì¶”ê°€í•œë‹¤.
 		GetNtlGuiManager()->AddGui(m_pInstance);
 		GetDialogManager()->RegistDialog(DIALOG_DBC_ALTAR, m_pInstance, &CAltarGui::SwitchDialog);
 
@@ -284,7 +284,7 @@ void CAltarGui::DeleteInstance()
 
 RwInt32 CAltarGui::GetChildSlotIdx( RwInt32 nX, RwInt32 nY ) 
 {
-	// Raid¿ë ½½·ÔÀÌ Á»´õ Å©±â ¶§¹®¿¡, ÆíÀÇ»ó ·¹Àüµå¸®¿ë ½½·ÔÅ©±â·Î Ã¼Å©ÇÑ´Ù.
+	// Raidìš© ìŠ¬ë¡¯ì´ ì¢€ë” í¬ê¸° ë•Œë¬¸ì—, í¸ì˜ìƒ ë ˆì „ë“œë¦¬ìš© ìŠ¬ë¡¯í¬ê¸°ë¡œ ì²´í¬í•œë‹¤.
 	for(RwInt32 i = 0; i < 7; ++i)
 	{
         if(m_DBSlot[DRAGON_BALL_TYPE_LEGENDARY][i].m_rt.PtInRect(nX, nY))
@@ -296,13 +296,13 @@ RwInt32 CAltarGui::GetChildSlotIdx( RwInt32 nX, RwInt32 nY )
 
 VOID CAltarGui::OnClickExitBtn( gui::CComponent* pComponent ) 
 {
-	// LockÀÌ °É·ÁÀÖÀ¸¸é Ç®¾îÁØ´Ù.
+	// Lockì´ ê±¸ë ¤ìˆìœ¼ë©´ í’€ì–´ì¤€ë‹¤.
 	if(API_GetSLPacketLockManager()->Lock(GU_DRAGONBALL_CHECK_RES))
 		API_GetSLPacketLockManager()->Unlock(GU_DRAGONBALL_CHECK_RES);
 
 	GetDialogManager()->CloseDialog(DIALOG_DBC_ALTAR);		
 
-	// LockÀ»°Ç µå·¡°ïº¼µéÀ» ¸ğµÎ lockÀ» Ç¬´Ù.
+	// Lockì„ê±´ ë“œë˜ê³¤ë³¼ë“¤ì„ ëª¨ë‘ lockì„ í‘¼ë‹¤.
 	for(int i = 0; i < 7; ++i)
 	{
 		RemoveDragonBallSlot(i);
@@ -311,31 +311,31 @@ VOID CAltarGui::OnClickExitBtn( gui::CComponent* pComponent )
 
 VOID CAltarGui::OnClickOKBtn( gui::CComponent* pComponent ) 
 {
-	// ÇÑ¹ø Å¬¸¯ÇØ¼­ ÆĞÅ¶ÀÇ ÀÀ´äÀ» ±â´Ù¸®´ÂÁßÀÌ¸é Å¬¸¯µÇÁö ¾Ê´Â´Ù.
+	// í•œë²ˆ í´ë¦­í•´ì„œ íŒ¨í‚·ì˜ ì‘ë‹µì„ ê¸°ë‹¤ë¦¬ëŠ”ì¤‘ì´ë©´ í´ë¦­ë˜ì§€ ì•ŠëŠ”ë‹¤.
 	if(API_GetSLPacketLockManager()->IsLock(GU_DRAGONBALL_CHECK_RES))
 		return;
 
 	if(m_nDBCount < 7)
 	{
-		//µå·¡°ïº¼ÀÇ °³¼ö°¡ ºÎÁ·ÇÏ´Ù´Â ¿¡·¯ ¸Ş½ÃÁö Ãâ·Â				
+		//ë“œë˜ê³¤ë³¼ì˜ ê°œìˆ˜ê°€ ë¶€ì¡±í•˜ë‹¤ëŠ” ì—ëŸ¬ ë©”ì‹œì§€ ì¶œë ¥				
 		GetAlarmManager()->AlarmMessage( "DST_DBC_NOT_ENOUGH" );
 		return;
 	}
 
 	if(m_pInKeyword->GetLength() <= 0)
 	{
-		//ÁÖ¹®À» ÀÔ·ÂÇÏ¶ó´Â ¿¡·¯ ¸Ş½ÃÁö Ãâ·Â				
+		//ì£¼ë¬¸ì„ ì…ë ¥í•˜ë¼ëŠ” ì—ëŸ¬ ë©”ì‹œì§€ ì¶œë ¥				
 		GetAlarmManager()->AlarmMessage( "DST_DBC_NOT_KEYWORD" );
 		return;
 	}
 
-	// ¼­¹ö¿¡ °ËÁõ ÆĞÅ¶À» ³¯¸°´Ù.	
+	// ì„œë²„ì— ê²€ì¦ íŒ¨í‚·ì„ ë‚ ë¦°ë‹¤.	
 	sITEM_POSITION_DATA dbItemData[7];
     RwInt32 nDBKind = (RwInt32)m_pWorldConceptDBC->GetDBKind();
 
 	for(int i = 0; i < 7; ++i)
 	{
-        // ¼­¹ö¿Í Å¬¶óÀÌ¾ğÆ®°£ÀÇ °¡¹æ ÀÎµ¦½º¿¡´Â 1ÀÇ Â÷ÀÌ°¡ ³­´Ù.
+        // ì„œë²„ì™€ í´ë¼ì´ì–¸íŠ¸ê°„ì˜ ê°€ë°© ì¸ë±ìŠ¤ì—ëŠ” 1ì˜ ì°¨ì´ê°€ ë‚œë‹¤.
         dbItemData[i].hItem		= m_DBSlot[nDBKind][i].m_pSobItem->GetSerialID();
         dbItemData[i].byPlace	= (BYTE)m_DBSlot[nDBKind][i].m_pSobItem->GetParentItemSlotIdx() + 1;
         dbItemData[i].byPos		= (BYTE)m_DBSlot[nDBKind][i].m_pSobItem->GetItemSlotIdx();
@@ -346,12 +346,12 @@ VOID CAltarGui::OnClickOKBtn( gui::CComponent* pComponent )
 
 VOID CAltarGui::OnMove(RwInt32 iOldX, RwInt32 iOldY)
 {
-	// ½½·ÔÀÇ À§Ä¡¸¦ ÇÏµå ÄÚµùÇÑ´Ù	
+	// ìŠ¬ë¡¯ì˜ ìœ„ì¹˜ë¥¼ í•˜ë“œ ì½”ë”©í•œë‹¤	
     for(int i = 0; i < DRAGON_BALL_TYPE_COUNT; ++i)
     {
         if(i != DRAGON_BALL_TYPE_LEGENDARY)
         {
-            // 34 »çÀÌÁî¿ë
+            // 34 ì‚¬ì´ì¦ˆìš©
             m_DBSlot[i][0].m_rt.SetRectWH(160, 88, DB_NORMAL_ICON_SIZE, DB_NORMAL_ICON_SIZE);
             m_DBSlot[i][1].m_rt.SetRectWH(280, 85, DB_NORMAL_ICON_SIZE, DB_NORMAL_ICON_SIZE);
             m_DBSlot[i][2].m_rt.SetRectWH(351, 182, DB_NORMAL_ICON_SIZE, DB_NORMAL_ICON_SIZE);
@@ -362,7 +362,7 @@ VOID CAltarGui::OnMove(RwInt32 iOldX, RwInt32 iOldY)
         }
         else    
         {
-            // 42 »çÀÌÁî¿ë
+            // 42 ì‚¬ì´ì¦ˆìš©
             m_DBSlot[i][0].m_rt.SetRectWH(156, 84, DB_RAID_ICON_SIZE, DB_RAID_ICON_SIZE);
             m_DBSlot[i][1].m_rt.SetRectWH(275, 81, DB_RAID_ICON_SIZE, DB_RAID_ICON_SIZE);
             m_DBSlot[i][2].m_rt.SetRectWH(347, 176, DB_RAID_ICON_SIZE, DB_RAID_ICON_SIZE);
@@ -392,12 +392,12 @@ VOID CAltarGui::OnMouseUp( const CKey& key )
 	if(nClickIdx == -1)
 		return;
 
-	// ¿ŞÂÊ ¹öÆ°À¸·Î ÀåÂø, ¿À¸¥ÂÊ ºÎÂøÀ¸·Î Å»Âø
+	// ì™¼ìª½ ë²„íŠ¼ìœ¼ë¡œ ì¥ì°©, ì˜¤ë¥¸ìª½ ë¶€ì°©ìœ¼ë¡œ íƒˆì°©
 	if(key.m_nID == UD_LEFT_BUTTON)
 	{
         if(GetIconMoveManager()->IsActive() && GetDialogManager()->IsMode(DIALOGMODE_UNKNOWN))            
 		{
-			// ÀÌ¹Ì ÀåÂøµÇ¾î ÀÖÀ¸¸é °ğ¹Ù·Î ¸®ÅÏ		
+			// ì´ë¯¸ ì¥ì°©ë˜ì–´ ìˆìœ¼ë©´ ê³§ë°”ë¡œ ë¦¬í„´		
             RwInt32 nDBKind = (RwInt32)m_pWorldConceptDBC->GetDBKind();
             if(nDBKind != DRAGON_BALL_TYPE_NONE && m_DBSlot[nDBKind][nClickIdx].m_eDBType != E_DRAGONBALL_NONE)
                 return;
@@ -430,23 +430,23 @@ VOID CAltarGui::OnMouseUp( const CKey& key )
 					return;
                 }
 
-                // ÇöÀç ³õ¿© ÀÖ´Â°Í°ú °°Àº Å¸ÀÔÀÌ ¾Æ´Ò¶§
+                // í˜„ì¬ ë†“ì—¬ ìˆëŠ”ê²ƒê³¼ ê°™ì€ íƒ€ì…ì´ ì•„ë‹ë•Œ
                 if(m_pWorldConceptDBC->GetDBKind() != byType &&
                    m_pWorldConceptDBC->GetDBKind() != DRAGON_BALL_TYPE_NONE)
                 {
-                    // ¿¡·¯¸Ş½ÃÁö (°°Àº Å¸ÀÔÀÇ µå·¡°ïº¼¸¸ ³õÀ»¼ö ÀÖ½À´Ï´Ù)
+                    // ì—ëŸ¬ë©”ì‹œì§€ (ê°™ì€ íƒ€ì…ì˜ ë“œë˜ê³¤ë³¼ë§Œ ë†“ì„ìˆ˜ ìˆìŠµë‹ˆë‹¤)
                     GetAlarmManager()->AlarmMessage( "DST_DBC_NOT_SAME" );
                     return;
                 }
 
-                // ÀÌ¹Ì °°Àº ¹øÈ£ÀÇ µå·¡°ïº¼ÀÌ ³õ¿©ÀÖÀ»¶§
+                // ì´ë¯¸ ê°™ì€ ë²ˆí˜¸ì˜ ë“œë˜ê³¤ë³¼ì´ ë†“ì—¬ìˆì„ë•Œ
                 if(IsExistSameType((EDragonBallType)byNumber))
                 {
                     GetAlarmManager()->AlarmMessage( "DST_DBC_NOT_SAME_NUMBER");
                     return;
                 }       
 
-                // ÇöÀç Àç´Ü Å¸ÀÔÀ» ¼³Á¤
+                // í˜„ì¬ ì¬ë‹¨ íƒ€ì…ì„ ì„¤ì •
                 m_pWorldConceptDBC->SetDBKind((eDRAGON_BALL_TYPE)byType);
                 SetDragonBallSlot(nClickIdx, (EDragonBallType)byNumber);
 
@@ -463,7 +463,7 @@ VOID CAltarGui::OnMouseUp( const CKey& key )
 		}
 		else
 		{
-			// ÀåÂøµÇ¾î ÀÖ´Â µå·¡°ïº¼À» ÇØÁ¦ÇÑ´Ù.
+			// ì¥ì°©ë˜ì–´ ìˆëŠ” ë“œë˜ê³¤ë³¼ì„ í•´ì œí•œë‹¤.
 			RemoveDragonBallSlot(nClickIdx);
 		}		
 	}
@@ -486,11 +486,11 @@ VOID CAltarGui::OnPaint()
 
 VOID CAltarGui::SetDragonBallSlot( RwInt32 nSlotIdx, EDragonBallType eDragonBallType ) 
 {
-	// Á¦´Ü UI ¸ğ¾çÀ» º¯°æÇÑ´Ù
+	// ì œë‹¨ UI ëª¨ì–‘ì„ ë³€ê²½í•œë‹¤
 	m_apPnlLight[nSlotIdx]->Show(TRUE);
 	m_apPnlLight[nSlotIdx]->SetAlpha(0);
 
-	// Item LockÀ» °Ç´Ù.
+	// Item Lockì„ ê±´ë‹¤.
 	CNtlSobItem* pItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( GetIconMoveManager()->GetSrcSerial() ) );
 	CDboEventGenerator::DialogEvent( DIALOGEVENT_BEGIN_UPGRADE_ITEM_IN_BAG, PLACE_ITEMUPGRADE, PLACE_BAG, pItem->GetParentItemSlotIdx(), pItem->GetItemSlotIdx() );
 	m_pWorldConceptDBC->AddDragonBall(pItem);
@@ -528,7 +528,7 @@ VOID CAltarGui::SetDragonBallSlot( RwInt32 nSlotIdx, EDragonBallType eDragonBall
 
 	
 
-	// µå·¡°ïº¼ÀÌ 7°³°¡ ÀåÂøµÇ¸é Default ¼Ò¿øÀ» Ç¥½ÃÇÑ´Ù.
+	// ë“œë˜ê³¤ë³¼ì´ 7ê°œê°€ ì¥ì°©ë˜ë©´ Default ì†Œì›ì„ í‘œì‹œí•œë‹¤.
 	if(m_nDBCount == 7)
 	{
 		m_pPnlInputBack->Show(TRUE);
@@ -575,13 +575,13 @@ VOID CAltarGui::RemoveDragonBallSlot( RwInt32 nSlotIdx )
 		m_nDBCount = 0;
 	}
 
-	// µå·¡°ïº¼ÀÌ ´Ù Á¦°ÅµÇ¸é NONE »óÅÂ·Î µÇµ¹¸°´Ù
+	// ë“œë˜ê³¤ë³¼ì´ ë‹¤ ì œê±°ë˜ë©´ NONE ìƒíƒœë¡œ ë˜ëŒë¦°ë‹¤
 	if(m_nDBCount == 0)
 	{
 		m_pWorldConceptDBC->SetDBKind(DRAGON_BALL_TYPE_NONE);
 	}
 
-	// ÀÔ·ÂÇß´ø ÁÖ¹®À» Ãë¼ÒÇÑ´Ù.
+	// ì…ë ¥í–ˆë˜ ì£¼ë¬¸ì„ ì·¨ì†Œí•œë‹¤.
 	m_pPnlInputBack->Show(FALSE);
 	m_pStaticKeyword->Show(FALSE);
 	m_pInKeyword->Show(FALSE);
@@ -602,19 +602,19 @@ VOID CAltarGui::SpawnDragon()
 {
 	m_bSpawnDragon = TRUE;
 
-	//ÀÏ¹İ Ã¤ÆÃÀ¸·Î ¸Ş½ÃÁö Àü¼Û	
+	//ì¼ë°˜ ì±„íŒ…ìœ¼ë¡œ ë©”ì‹œì§€ ì „ì†¡	
 	std::wstring strFilterText = GetChattingFilter()->Filtering( m_pInKeyword->GetText() );
     GetDboGlobal()->GetChatPacketGenerator()->SendChatMsgShout( strFilterText.c_str() );
     
-	// -> World Concept¿¡¼­ Ã³¸®
+	// -> World Conceptì—ì„œ ì²˜ë¦¬
     CNtlWorldConceptDBC* pWorldConceptDBC = (CNtlWorldConceptDBC*)GetNtlWorldConcept()->GetWorldConceptController(WORLD_PLAY_DRAGONBALL_COLLECT);
     if(pWorldConceptDBC)
     {
         pWorldConceptDBC->ChangeState(WORLD_DBC_NIGHT_ON);        
-        pWorldConceptDBC->SetMyDragon(TRUE);                    // SpawnDragon() ÇÔ¼ö°¡ È£ÃâµÈ°ÍÀº ³»°¡ ¼ÒÈ¯ÇÑ ¿ë½ÅÀÌ¶ó´Â ¶æÀÌ´Ù.
+        pWorldConceptDBC->SetMyDragon(TRUE);                    // SpawnDragon() í•¨ìˆ˜ê°€ í˜¸ì¶œëœê²ƒì€ ë‚´ê°€ ì†Œí™˜í•œ ìš©ì‹ ì´ë¼ëŠ” ëœ»ì´ë‹¤.
     }
 
-	// È­¸é»óÀÇ ¸ğµç UIµéÀ» ´İ´Â´Ù.		
+	// í™”ë©´ìƒì˜ ëª¨ë“  UIë“¤ì„ ë‹«ëŠ”ë‹¤.		
 	GetDialogManager()->CloseNotDefaultDialog();
 }
 

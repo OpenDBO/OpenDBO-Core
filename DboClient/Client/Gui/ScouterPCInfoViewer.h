@@ -1,7 +1,7 @@
 /******************************************************************************
 * File			: ScouterMenuGui.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2006. 10. 30
 * Abstract		: 
 *****************************************************************************
@@ -41,13 +41,13 @@ public:
 	VOID		Update(RwReal fElapsed);
 	VOID		Destroy();
 
-	RwInt32		SwitchDialog(bool bOpen);			///< DialogManagerø°º≠¿« Open/Close
+	RwInt32		SwitchDialog(bool bOpen);			///< DialogManagerÏóêÏÑúÏùò Open/Close
 
 protected:
 	CScouterPCInfoViewerGui() {}
 	virtual VOID	HandleEvents( RWS::CMsg &msg );
 
-	VOID			ShowPCInfo(SERIAL_HANDLE hTarger, RwUInt8 byCount, sITEM_PROFILE* pItemProfile);	///< ªÛ¥Î¿« ¿Â∫Ò∏¶ ∫∏ø©¡ÿ¥Ÿ
+	VOID			ShowPCInfo(SERIAL_HANDLE hTarger, RwUInt8 byCount, sITEM_PROFILE* pItemProfile);	///< ÏÉÅÎåÄÏùò Ïû•ÎπÑÎ•º Î≥¥Ïó¨Ï§ÄÎã§
 	VOID			CheckInfoWindow();
 
 	VOID			OnClicked_CloseButton(gui::CComponent* pComponent);
@@ -87,5 +87,5 @@ protected:
 
 	RwInt8				m_byInfoWindowIndex;
 	RwReal				m_fElapsed;
-	PCEquipItem			m_Item[EQUIP_SLOT_TYPE_COUNT];		///< æ∆¿Ã≈€ ¡§∫∏
+	PCEquipItem			m_Item[EQUIP_SLOT_TYPE_COUNT];		///< ÏïÑÏù¥ÌÖú Ï†ïÎ≥¥
 };

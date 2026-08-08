@@ -4,7 +4,7 @@
 #include "rptoon.h"
 #include "rphanim.h"
 
-///< Bone Data ¿ë
+///< Bone Data ìš©
 typedef	std::map<std::string, RwFrame *>			FRAME_MAP;
 typedef	std::map<std::string, RwFrame *>::iterator	FRAME_MAP_ITER;
 
@@ -37,36 +37,36 @@ struct SEntityMaterialData
 	SEntityMaterialData() : pMaterial(NULL) { }
 };
 
-void Helper_SetToonClump(RpClump *pClump, SToonData *pToonData);					///< Toon Data ¼³Á¤ÇÑ´Ù.
-void Helper_SetToonAtomic(RpAtomic *pAtomic, SToonData *pToonData);					///< Toon Data ¼³Á¤ÇÑ´Ù.
-void Helper_SetToonAtomicRender(RpAtomic *pAtomic, SToonData *pToonData);			///< RenderingÀ» ÇÒ¶§Toon Data(Ink, Paint)¸¦ ¼³Á¤ÇÑ´Ù.
-RwBool Helper_IsToonClump(RpClump* pClump);                                         ///< Å÷ÀÌ Àû¿ëµÈ Å¬·³ÇÁÀÎÁö È®ÀÎÇÑ´Ù.
+void Helper_SetToonClump(RpClump *pClump, SToonData *pToonData);					///< Toon Data ì„¤ì •í•œë‹¤.
+void Helper_SetToonAtomic(RpAtomic *pAtomic, SToonData *pToonData);					///< Toon Data ì„¤ì •í•œë‹¤.
+void Helper_SetToonAtomicRender(RpAtomic *pAtomic, SToonData *pToonData);			///< Renderingì„ í• ë•ŒToon Data(Ink, Paint)ë¥¼ ì„¤ì •í•œë‹¤.
+RwBool Helper_IsToonClump(RpClump* pClump);                                         ///< íˆ°ì´ ì ìš©ëœ í´ëŸ¼í”„ì¸ì§€ í™•ì¸í•œë‹¤.
 
-RpAtomic* Helper_GetEnvMapAtomic(RpClump* pClump);                                  ///< È¯°æ¸ÊÀÌ Àû¿ëµÈ AtomicÀ» ¹ÝÈ¯ÇÑ´Ù.
+RpAtomic* Helper_GetEnvMapAtomic(RpClump* pClump);                                  ///< í™˜ê²½ë§µì´ ì ìš©ëœ Atomicì„ ë°˜í™˜í•œë‹¤.
 
 
-void Helper_RemoveClumpAllAtomics(RpClump *pClump);									///< ClumpÀÇ ¸ðµç AtomicµéÀ» Remove ÇÑ´Ù.
-void Helper_SetAtomicAllMaterialSkinInfo(RpAtomic *pAtomic);						///< Skin MaterialÀÌ Á¸Àç ÇÏ´Â °æ¿ì Material¿¡ Skin Á¤º¸
+void Helper_RemoveClumpAllAtomics(RpClump *pClump);									///< Clumpì˜ ëª¨ë“  Atomicë“¤ì„ Remove í•œë‹¤.
+void Helper_SetAtomicAllMaterialSkinInfo(RpAtomic *pAtomic);						///< Skin Materialì´ ì¡´ìž¬ í•˜ëŠ” ê²½ìš° Materialì— Skin ì •ë³´
 
 
 void Helper_SetClumpAllAtomics( RpClump *pClump, 
 							    ENTITY_ATOMIC_VEC *pVecAtomicList, 
-								bool bClone = false);								///< Atomic List¸¦ ¾ò¾î¿Â´Ù.
-void Helper_DestroyAllAtomics( ENTITY_ATOMIC_VEC *pVecAtomicList);					///< Atomic List¸¦ Destory¸¦ ÇÑ´Ù.
+								bool bClone = false);								///< Atomic Listë¥¼ ì–»ì–´ì˜¨ë‹¤.
+void Helper_DestroyAllAtomics( ENTITY_ATOMIC_VEC *pVecAtomicList);					///< Atomic Listë¥¼ Destoryë¥¼ í•œë‹¤.
 
-void Helper_SetHierarchyClumpSkin(RpClump *pClump, RpHAnimHierarchy *pHierarchy);	///< ClumpÀÇ ¸ðµç AtomicÀÇ Skin¿¡ Hierarchy¸¦ ³Ö¾îÁØ´Ù.
-RpHAnimHierarchy *Helper_GetHierarchyClump(RpClump *pClump);						///< ClumpÀÇ Hierarchy ¾ò´Â´Ù.
+void Helper_SetHierarchyClumpSkin(RpClump *pClump, RpHAnimHierarchy *pHierarchy);	///< Clumpì˜ ëª¨ë“  Atomicì˜ Skinì— Hierarchyë¥¼ ë„£ì–´ì¤€ë‹¤.
+RpHAnimHierarchy *Helper_GetHierarchyClump(RpClump *pClump);						///< Clumpì˜ Hierarchy ì–»ëŠ”ë‹¤.
 
-RwChar *Helper_BoneName(RwFrame *pFrame);											///< BoneÀÇ ÀÌ¸§À» ReturnÀ» ÇÑ´Ù.
-RwChar *Helper_AtomicName(RpAtomic *pAtomic);										///< AtomicÀÇ ÀÌ¸§À» ReturnÀ» ÇÑ´Ù.
-RwChar *Helper_MaterialName(RpMaterial *pMaterial);									///< MaterialÀÇ ÀÌ¸§À» ReturnÀ» ÇÑ´Ù.
+RwChar *Helper_BoneName(RwFrame *pFrame);											///< Boneì˜ ì´ë¦„ì„ Returnì„ í•œë‹¤.
+RwChar *Helper_AtomicName(RpAtomic *pAtomic);										///< Atomicì˜ ì´ë¦„ì„ Returnì„ í•œë‹¤.
+RwChar *Helper_MaterialName(RpMaterial *pMaterial);									///< Materialì˜ ì´ë¦„ì„ Returnì„ í•œë‹¤.
 
-RwBool	Helper_GetBoneList(RpClump *pClump, FRAME_MAP *pFrame);						///< Bone List¸¦ ¾ò¾î ¿Â´Ù.
-RwBool	Helper_AtomicTestAlpha(RpAtomic *pAtomic);									///< Atomic¿¡ Alpha°¡ ÀÖ´ÂÁö ¾Ë¾Æ³»´Â ÇÔ¼ö
+RwBool	Helper_GetBoneList(RpClump *pClump, FRAME_MAP *pFrame);						///< Bone Listë¥¼ ì–»ì–´ ì˜¨ë‹¤.
+RwBool	Helper_AtomicTestAlpha(RpAtomic *pAtomic);									///< Atomicì— Alphaê°€ ìžˆëŠ”ì§€ ì•Œì•„ë‚´ëŠ” í•¨ìˆ˜
 RwBool	Helper_IsArmorType(RpClump *pClump);
 
 
-void Helper_ClumpCalcBoundingSphere(RpClump *pClump, RwSphere *pSphere);			///< ClumpÀÇ Bounding Sphere¸¦ ±¸ÇÑ´Ù.(Object Space)
+void Helper_ClumpCalcBoundingSphere(RpClump *pClump, RwSphere *pSphere);			///< Clumpì˜ Bounding Sphereë¥¼ êµ¬í•œë‹¤.(Object Space)
 void Helper_ClumpBoundingSphereRender(RpClump *pClump, RwSphere *pSphere);
 void Helper_ClumpWorldBoundingSphereRender(RwSphere *pSphere, RwUInt8 byR = 196, RwUInt8 byG = 196, RwUInt8 byB = 0, RwUInt8 byA = 255 );
 

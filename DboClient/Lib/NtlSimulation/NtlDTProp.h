@@ -2,7 +2,7 @@
  *
  * File			: NtlDTProp.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 11. 02	
  * Abstract		: direct property
  *****************************************************************************
@@ -125,12 +125,12 @@ struct SSplineCurvePt
 struct SSplineProp
 {
 	EDTSplineShape	eShape;					/** line, circle, hurricane */
-	RwReal			fTime;					/** spline √— Ω√∞£ */
+	RwReal			fTime;					/** spline Ï¥ù ÏãúÍ∞Ñ */
 	RwInt32			iCtrlNum;				/** control point num */
 	RwInt32			iCurveSubDivision;		/** curve sub division num */
 	RwReal			fRadius;				/** circle radius */
 	RwInt32			iRotNum;				/** circle rotate num */
-	RwReal			fDist;					/** circle ¡¯«‡ πÊ«‚ √÷¡æ ∞≈∏Æ */
+	RwReal			fDist;					/** circle ÏßÑÌñâ Î∞©Ìñ• ÏµúÏ¢Ö Í±∞Î¶¨ */
 };
 
 #define SPLINE_CUSTOM_SOUND_FILNE_LEN				64
@@ -170,7 +170,7 @@ private:
 	SSplineCurvePt		*m_pCurvePt;
 	RwInt32				m_iTotCurveCnt;
 
-	RwBool				m_bUseWorldPos;		/** spline world stand world position ªÁøÎ ¿Øπ´ */
+	RwBool				m_bUseWorldPos;		/** spline world stand world position ÏÇ¨Ïö© Ïú†Î¨¥ */
 	RwBool				m_bUniformLerp;
 	RwReal				m_fUniformSpeed;
 

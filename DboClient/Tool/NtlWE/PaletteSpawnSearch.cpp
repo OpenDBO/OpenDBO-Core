@@ -1,4 +1,4 @@
-// PaletteSpawnSearch.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// PaletteSpawnSearch.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -26,7 +26,7 @@
 
 #include "NtlWEUtil.h"
 
-// CPaletteSpawnSearch ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteSpawnSearch ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CPaletteSpawnSearch, CDialog)
 
@@ -112,7 +112,7 @@ BEGIN_MESSAGE_MAP(CPaletteSpawnSearch, CDialog)
 	ON_BN_CLICKED(IDC_EXPORT_RULE_OUT, &CPaletteSpawnSearch::OnBnClickedExportRuleOut)
 END_MESSAGE_MAP()
 
-// CPaletteSpawnSearch ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CPaletteSpawnSearch ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 BOOL CPaletteSpawnSearch::PreTranslateMessage(MSG* pMsg)
 {
 	switch(pMsg->wParam)
@@ -162,13 +162,13 @@ BOOL CPaletteSpawnSearch::OnInitDialog()
 	UpdateData(FALSE);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CPaletteSpawnSearch::OnLvnItemchangedPathlist(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	*pResult = 0;
 }
 
@@ -179,7 +179,7 @@ void CPaletteSpawnSearch::OnCbnSelchangeListOption()
 void CPaletteSpawnSearch::OnLvnItemchangedSpawnList(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	if(pNMLV && (pNMLV->uNewState == (UINT)(LVIS_FOCUSED | LVIS_SELECTED)))
 	{
@@ -243,7 +243,7 @@ void CPaletteSpawnSearch::OnBnClickedDelete()
 
 void CPaletteSpawnSearch::OnBnClickedCancel()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	OnCancel();
 }
 
@@ -304,13 +304,13 @@ VOID CPaletteSpawnSearch::RefreshSpawnListItem(RwInt32 iItem, CSpawn* pSpawn)
 	RwInt32 Idx;
 	CString Tmp		= pSpawn->m_Name.c_str();
 	RwInt32 IdxF	= static_cast<RwInt32>(Tmp.Find('('));
-	RwInt32 IdxR	= static_cast<RwInt32>(Tmp.Find("·¹"));
+	RwInt32 IdxR	= static_cast<RwInt32>(Tmp.Find("ë ˆ"));
 	RwInt32 IdxDiff	= IdxR - IdxF;
 	CString Level	= Tmp;
 
 	Level.Delete(0, IdxF + 1);
 
-	RwInt32 CntNumber	= static_cast<RwInt32>(Level.Find("·¹"));
+	RwInt32 CntNumber	= static_cast<RwInt32>(Level.Find("ë ˆ"));
 	Level				= Level.Left(CntNumber);
 	Tmp					= pSpawn->m_Name.c_str();
 	Idx					= static_cast<RwInt32>(Tmp.Find('('));
@@ -406,12 +406,12 @@ RwBool CPaletteSpawnSearch::RefreshSpawnList()
 			// get a current level
 			CString Tmp		= pCurSpawn->m_Name.c_str();
 			RwInt32 IdxF	= static_cast<RwInt32>(Tmp.Find('('));
-			RwInt32 IdxR	= static_cast<RwInt32>(Tmp.Find("·¹"));
+			RwInt32 IdxR	= static_cast<RwInt32>(Tmp.Find("ë ˆ"));
 			RwInt32 IdxDiff	= IdxR - IdxF;
 			CString Level	= Tmp;
 
 			Level.Delete(0, IdxF + 1);
-			RwInt32 CntNumber = static_cast<RwInt32>(Level.Find("·¹"));
+			RwInt32 CntNumber = static_cast<RwInt32>(Level.Find("ë ˆ"));
 			Level = Level.Left(CntNumber);
 
 			RwInt32 CurLvl	= static_cast<RwInt32>(atoi(Level.GetBuffer(0)));
@@ -1077,12 +1077,12 @@ void CPaletteSpawnSearch::OnBnClickedExportRuleOut()
 // 				{
 // 					CString Tmp		= pCurSpawn->m_Name.c_str();
 // 					RwInt32 IdxF	= static_cast<RwInt32>(Tmp.Find('('));
-// 					RwInt32 IdxR	= static_cast<RwInt32>(Tmp.Find("·¹"));
+// 					RwInt32 IdxR	= static_cast<RwInt32>(Tmp.Find("ë ˆ"));
 // 					RwInt32 IdxDiff	= IdxR - IdxF;
 // 					CString Level	= Tmp;
 // 
 // 					Level.Delete(0, IdxF + 1);
-// 					RwInt32 CntNumber = static_cast<RwInt32>(Level.Find("·¹"));
+// 					RwInt32 CntNumber = static_cast<RwInt32>(Level.Find("ë ˆ"));
 // 					Level = Level.Left(CntNumber);					
 // 
 // 					RwInt32 CurLvl	= static_cast<RwInt32>(atoi(Level.GetBuffer(0)));
@@ -1137,12 +1137,12 @@ void CPaletteSpawnSearch::OnBnClickedExportRuleOut()
 				{
 					CString Tmp		= pCurSpawn->m_Name.c_str();
 					RwInt32 IdxF	= static_cast<RwInt32>(Tmp.Find('('));
-					RwInt32 IdxR	= static_cast<RwInt32>(Tmp.Find("·¹"));
+					RwInt32 IdxR	= static_cast<RwInt32>(Tmp.Find("ë ˆ"));
 					RwInt32 IdxDiff	= IdxR - IdxF;
 					CString Level	= Tmp;
 
 					Level.Delete(0, IdxF + 1);
-					RwInt32 CntNumber = static_cast<RwInt32>(Level.Find("·¹"));
+					RwInt32 CntNumber = static_cast<RwInt32>(Level.Find("ë ˆ"));
 					Level = Level.Left(CntNumber);					
 
 					RwInt32 CurLvl	= static_cast<RwInt32>(atoi(Level.GetBuffer(0)));

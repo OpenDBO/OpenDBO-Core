@@ -1,10 +1,10 @@
 /******************************************************************************
 * File			: CSlotGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2006. 8. 1
 *****************************************************************************
-* Desc			: SlotÀ» Ç¥ÇöÇÏ±â À§ÇÑ Å¬·¡½º
+* Desc			: Slotì„ í‘œí˜„í•˜ê¸° ìœ„í•œ í´ë˜ìŠ¤
 *****************************************************************************/
 
 #pragma once
@@ -30,7 +30,7 @@ struct sITEM_OPTION_TBLDAT;
 
 
 //////////////////////////////////////////////////////////////////////////
-//	CSlotGui : SlotÀÇ Display¸¦ Á¤ÀÇ
+//	CSlotGui : Slotì˜ Displayë¥¼ ì •ì˜
 //////////////////////////////////////////////////////////////////////////
 
 // Slot display style
@@ -96,8 +96,8 @@ protected:
 	DWORD				m_dwSlotStyle;
 	RwUInt32			m_uiOwnerDialog;
 
-	RwInt32				m_iParentX;			///< ºÎ¸ğ À©µµ¿ìÀÇ X À§Ä¡
-	RwInt32				m_iParentY;			///< ºÎ¸ğ À©µµ¿ìÀÇ Y À§Ä¡
+	RwInt32				m_iParentX;			///< ë¶€ëª¨ ìœˆë„ìš°ì˜ X ìœ„ì¹˜
+	RwInt32				m_iParentY;			///< ë¶€ëª¨ ìœˆë„ìš°ì˜ Y ìœ„ì¹˜
 
 	RwInt32				m_iX_fromParent;
 	RwInt32				m_iY_fromParent;
@@ -109,24 +109,24 @@ protected:
 	RwBool				m_bShowLock;
 	RwBool				m_bShowDisable;
 
-	RwUInt32			m_uiStackCount;		///< °¹¼ö
+	RwUInt32			m_uiStackCount;		///< ê°¯ìˆ˜
 };
 
 
 
 //////////////////////////////////////////////////////////////////////////
-//	CRegularSlotGui : ÀÏ¹İÀûÀÎ Slot µ¥ÀÌÅÍ Á¤ÀÇ
+//	CRegularSlotGui : ì¼ë°˜ì ì¸ Slot ë°ì´í„° ì •ì˜
 //////////////////////////////////////////////////////////////////////////
 
 enum eREGULAR_SLOT_TYPE
 {
-	REGULAR_SLOT_ITEM_NOT_IDENTIFICATION,			///< (Sob ¾ÆÀÌÅÛÀÌ ¾Æ´Ñ)¹ÌÈ®ÀÎ ¾ÆÀÌÅÛ
-	REGULAR_SLOT_ITEM_TABLE,						///< Item Table»óÀÇ ¾ÆÀÌÅÛ
+	REGULAR_SLOT_ITEM_NOT_IDENTIFICATION,			///< (Sob ì•„ì´í…œì´ ì•„ë‹Œ)ë¯¸í™•ì¸ ì•„ì´í…œ
+	REGULAR_SLOT_ITEM_TABLE,						///< Item Tableìƒì˜ ì•„ì´í…œ
 	REGULAR_SLOT_ITEM_SOB,							///< Sob Item
-	REGULAR_SLOT_ITEM_SOB_NOT_IDENTIFICATION,		///< Sob ¹ÌÈ®ÀÎ ¾ÆÀÌÅÛ
-	REGULAR_SLOT_SKILL_TABLE,						///< Skill tableÀÇ ½ºÅ³
-	REGULAR_SLOT_SIMPLE_ICON,						///< ´Ü¼øÇÑ ¾ÆÀÌÄÜ
-	REGULAR_SLOT_HTBSKILL_TABLE,					///< HTB tableÀÇ HTB½ºÅ³
+	REGULAR_SLOT_ITEM_SOB_NOT_IDENTIFICATION,		///< Sob ë¯¸í™•ì¸ ì•„ì´í…œ
+	REGULAR_SLOT_SKILL_TABLE,						///< Skill tableì˜ ìŠ¤í‚¬
+	REGULAR_SLOT_SIMPLE_ICON,						///< ë‹¨ìˆœí•œ ì•„ì´ì½˜
+	REGULAR_SLOT_HTBSKILL_TABLE,					///< HTB tableì˜ HTBìŠ¤í‚¬
 
 	INVALID_REGULAR_SLOT_TYPE
 };
@@ -134,7 +134,7 @@ enum eREGULAR_SLOT_TYPE
 
 // Slot function flag
 #define SFF_NONE							0x00000000
-#define SFF_USE_ITEM_OPTION_TABLE			0x00000001	///< Item option tableÀ» »ç¿ëÇÑ´Ù(REGULAR_SLOT_ITEM_TABLE, REGULAR_SLOT_ITEM_SOBÀÎ °æ¿ì¿¡¸¸ Àû¿ë)
+#define SFF_USE_ITEM_OPTION_TABLE			0x00000001	///< Item option tableì„ ì‚¬ìš©í•œë‹¤(REGULAR_SLOT_ITEM_TABLE, REGULAR_SLOT_ITEM_SOBì¸ ê²½ìš°ì—ë§Œ ì ìš©)
 
 
 class CRegularSlotGui : public CSlotGui
@@ -162,8 +162,8 @@ public:
 	eREGULAR_SLOT_TYPE	GetSerialType();
 
 	RwUInt32				GetSerial();
-	CNtlSobItem*			GetSobItem();						///< SobItem Á¤º¸¸¦ ¹İÈ¯ÇÑ´Ù.(Sob¹øÈ£°¡ ¾Æ´Ï¶ó¸é NULL)
-	CNtlSobItemAttr*		GetSobItemAttr();					///< SobItemAttr Á¤º¸¸¦ ¹İÈ¯ÇÑ´Ù.(Sob¹øÈ£°¡ ¾Æ´Ï¶ó¸é NULL)
+	CNtlSobItem*			GetSobItem();						///< SobItem ì •ë³´ë¥¼ ë°˜í™˜í•œë‹¤.(Sobë²ˆí˜¸ê°€ ì•„ë‹ˆë¼ë©´ NULL)
+	CNtlSobItemAttr*		GetSobItemAttr();					///< SobItemAttr ì •ë³´ë¥¼ ë°˜í™˜í•œë‹¤.(Sobë²ˆí˜¸ê°€ ì•„ë‹ˆë¼ë©´ NULL)
 	sITEM_TBLDAT*			GetItemTable();
 	sSKILL_TBLDAT*			GetSkillTable();
 	sHTB_SET_TBLDAT*		GetHTBSkillTable();
@@ -181,7 +181,7 @@ protected:
 	RwUInt32				m_uiPrice;
 
 	CNtlSobItem*			m_pSobItem;			///< SobItem Information (NULL if not Sob)
-	CNtlSobItemAttr*		m_pSobItemAttr;		///< SobItemAttr Á¤º¸(Sob¹øÈ£°¡ ¾Æ´Ï¶ó¸é NULL)
+	CNtlSobItemAttr*		m_pSobItemAttr;		///< SobItemAttr ì •ë³´(Sobë²ˆí˜¸ê°€ ì•„ë‹ˆë¼ë©´ NULL)
 	sTBLDAT*				m_pTBLDAT;			
 	sITEM_OPTION_TBLDAT*	m_pITEM_OPTION_TBLDAT;
 };

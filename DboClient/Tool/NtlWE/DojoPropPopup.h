@@ -3,21 +3,21 @@
 #include "afxwin.h"
 #include "NtlPLDojo.h"
 
-// CDojoPropPopup ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CDojoPropPopup ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CDojoPropPopup : public CDialog
 {
 	DECLARE_DYNAMIC(CDojoPropPopup)
 
 public:
-	CDojoPropPopup(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CDojoPropPopup(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CDojoPropPopup();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_ORNAMENT_DOJO_POPUP };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

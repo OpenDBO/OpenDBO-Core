@@ -2,7 +2,7 @@
  *
  * File			: NtlFSMVehicleActState.h
  * Author		: JeongHo, Rho
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2006. 2. 13	
  * Abstract		: Finite state machine vehicle action base class
  *****************************************************************************
@@ -39,7 +39,7 @@ public:
 	CNtlFSMVehicleRideOnOff( void );
 
 	/**
-	*  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+	*  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	virtual void Enter( void );
 	virtual void Exit( void );
@@ -62,7 +62,7 @@ public:
 	CNtlFSMVehicleActIdleState( void );
 
 	/**
-	*  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+	*  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	virtual void Enter( void );
 	virtual void Exit( void );
@@ -88,7 +88,7 @@ public:
 	CNtlFSMVehicleMoveState( void );
 
 	/**
-	*  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+	*  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	virtual void Enter( void );
 	virtual void Exit( void );
@@ -111,7 +111,7 @@ public:
 	CNtlFSMVehicleFollowState( void );
 
 	/**
-	*  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+	*  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	virtual void Enter( void );
 	virtual void Exit( void );
@@ -134,7 +134,7 @@ public:
 	CNtlFSMVehicleAdjustMoveState( void );
 
 	/**
-	*  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+	*  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	virtual void Enter( void );
 	virtual void Exit( void );
@@ -157,7 +157,7 @@ public:
 	CNtlFSMVehicleActFallingState( void );
 
 	/**
-	*  stateÀÇ update/event Ã³¸® ÇÔ¼ö.
+	*  stateì˜ update/event ì²˜ë¦¬ í•¨ìˆ˜.
 	*/
 	virtual void Enter( void );
 	virtual void Exit( void );

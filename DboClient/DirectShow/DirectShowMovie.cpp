@@ -244,12 +244,12 @@
 //{
 //	m_bPlay = false;
 //
-//	/*	avooo's comment : µ¿¿µ»ó ·£´õ¸µ¿¡¼­ ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀ¸·Î µ¹¾Æ¿Ã ¶§ WM_ACTIVATEAPP ¸Ş¼¼Áö°¡
-//						  ¹ß»ıÇÑ´Ù. ÀÌ ¶§ m_pGraph->Release()¸¦ È£ÃâÇÏ¸é °æ¿ì¿¡ µû¶ó ´Ù½Ã
-//						  WM_ACTIVATEAPP°¡ ¹ß»ıÇÏ´Â °æ¿ì°¡ ÀÖ´Ù. 
-//						  ¿©±â¼­ ´Ù½Ã Stop()ÀÌ È£ÃâµÇ°í m_pGraph->Release() ÀÌ ºÎºĞ¿¡¼­ »¶ÀÌ³­´Ù.
-//						  ¾Æ¸¶µµ m_pEventEx->SetNotifyWindow((OAHWND)NULL, 0, 0) ¿¡¼­ ºÒÇÊ¿äÇÑ
-//						  ¸Ş¼¼Áö¸¦ º¸³»µí ÇÏ¿© ÁÖ¼® Ã³¸®ÇÑ´Ù.
+//	/*	avooo's comment : ë™ì˜ìƒ ëœë”ë§ì—ì„œ ì• í”Œë¦¬ì¼€ì´ì…˜ìœ¼ë¡œ ëŒì•„ì˜¬ ë•Œ WM_ACTIVATEAPP ë©”ì„¸ì§€ê°€
+//						  ë°œìƒí•œë‹¤. ì´ ë•Œ m_pGraph->Release()ë¥¼ í˜¸ì¶œí•˜ë©´ ê²½ìš°ì— ë”°ë¼ ë‹¤ì‹œ
+//						  WM_ACTIVATEAPPê°€ ë°œìƒí•˜ëŠ” ê²½ìš°ê°€ ìˆë‹¤. 
+//						  ì—¬ê¸°ì„œ ë‹¤ì‹œ Stop()ì´ í˜¸ì¶œë˜ê³  m_pGraph->Release() ì´ ë¶€ë¶„ì—ì„œ ë»‘ì´ë‚œë‹¤.
+//						  ì•„ë§ˆë„ m_pEventEx->SetNotifyWindow((OAHWND)NULL, 0, 0) ì—ì„œ ë¶ˆí•„ìš”í•œ
+//						  ë©”ì„¸ì§€ë¥¼ ë³´ë‚´ë“¯ í•˜ì—¬ ì£¼ì„ ì²˜ë¦¬í•œë‹¤.
 //	if(m_pEventEx != NULL)
 //	{
 //		m_pEventEx->SetNotifyWindow((OAHWND)NULL, 0, 0);
@@ -334,7 +334,7 @@
 //    {
 //        hr = m_pEventEx->FreeEventParams(evCode, evParam1, evParam2);
 //
-//		// Play°¡ ³¡¾ÒÀ» ¶§ ApplicationÂÊÀ¸·Î End Event¸¦ º¸³½´Ù.
+//		// Playê°€ ëì•˜ì„ ë•Œ Applicationìª½ìœ¼ë¡œ End Eventë¥¼ ë³´ë‚¸ë‹¤.
 //        if(EC_COMPLETE == evCode)
 //        {
 //			StopMovie();
@@ -440,8 +440,8 @@
 //		{
 //			float fScaleWidth, fScaleHeight;			
 //
-//			// µ¿¿µ»óÀÇ °¡·Î, ¼¼·ÎÀÇ ±æÀÌ°¡ È­¸éÀÇ ±× ±æÀÌ¿ÍÀÇ ºñÀ²ÀÌ Å« ÂÊÀ»
-//			// ±âÁØÀ¸·Î µ¿¿µ»óÀÇ °¡·Î, ¼¼·Î ±æÀÌ¸¦ ´Ã·Á È­¸é¿¡ ²Ë Â÷µµ·Ï ÇÑ´Ù.
+//			// ë™ì˜ìƒì˜ ê°€ë¡œ, ì„¸ë¡œì˜ ê¸¸ì´ê°€ í™”ë©´ì˜ ê·¸ ê¸¸ì´ì™€ì˜ ë¹„ìœ¨ì´ í° ìª½ì„
+//			// ê¸°ì¤€ìœ¼ë¡œ ë™ì˜ìƒì˜ ê°€ë¡œ, ì„¸ë¡œ ê¸¸ì´ë¥¼ ëŠ˜ë ¤ í™”ë©´ì— ê½‰ ì°¨ë„ë¡ í•œë‹¤.
 //			fScaleWidth		= (float)(rcView.right	- rcView.left) / (float)videoRealWidth;
 //			fScaleHeight	= (float)(rcView.bottom	- rcView.top)  / (float)videoRealHeight;
 //
@@ -457,7 +457,7 @@
 //			}
 //
 //
-//			// È­¸éÀÇ Áß¾Ó¿¡ µ¿¿µ»óÀÌ ¿Àµµ·Ï...
+//			// í™”ë©´ì˜ ì¤‘ì•™ì— ë™ì˜ìƒì´ ì˜¤ë„ë¡...
 //			videoLeft	= ((rcView.right - rcView.left) - videoWidth)  / 2;
 //			videoTop	= ((rcView.bottom - rcView.top) - videoHeight) / 2;
 //		}

@@ -11,7 +11,7 @@ class CAnimAttrView : public CFormView
 {
 public:
 
-    /// Ç×¸ñµéÀÇ ID 
+    /// í•­ëª©ë“¤ì˜ ID 
     enum EControlID
     {
         ID_PROP_ITEM_HITTIME,
@@ -25,7 +25,7 @@ public:
         ID_PROP_ITEM_SOUND_FILE,
     };
 
-    /// ÇÁ·ÎÆÛÆ¼ À©µµ¿ìÀÇ ¸ğµå 
+    /// í”„ë¡œí¼í‹° ìœˆë„ìš°ì˜ ëª¨ë“œ 
     enum EPropertyMode
     {
         MODE_NONE,
@@ -50,48 +50,48 @@ public:
 
 public:
     static CAnimAttrView* GetInstance() {return m_pInstance;};
-    void SetPropertyMode(EPropertyMode ePropertyMode);   ///< ÇÁ·ÎÆÛÆ¼ À©µµ¿ìÀÇ »óÅÂ¸¦ ¼³Á¤ÇÑ´Ù.
-    void SetInit(CMTCharacter* pCharacter, SEventAnim* pEventAnim);   ///< ºäÀÇ µ¥ÀÌÅÍ¸¦ Àû¿ëÇÑ´Ù.
+    void SetPropertyMode(EPropertyMode ePropertyMode);   ///< í”„ë¡œí¼í‹° ìœˆë„ìš°ì˜ ìƒíƒœë¥¼ ì„¤ì •í•œë‹¤.
+    void SetInit(CMTCharacter* pCharacter, SEventAnim* pEventAnim);   ///< ë·°ì˜ ë°ì´í„°ë¥¼ ì ìš©í•œë‹¤.
 
 protected:
-    void InitHitPropertyItem();                          ///< Hit Event Ç×¸ñµéÀ» ¼¼ÆÃÇÑ´Ù.
-    void InitSoundPropertyItem();                        ///< »ç¿îµå ÇÁ·ÎÆÛÆ¼ Ç×¸ñµéÀ» ¼¼ÆÃÇÑ´Ù.
-    void SetBoneList();                                  ///< Bone ¸®½ºÆ® Ç×¸ñÀ» ¼¼ÆÃÇÑ´Ù.
-    void SetLuaIDList();                                 ///< Lua ID ¸®½ºÆ® Ç×¸ñÀ» ¼¼ÆÃÇÑ´Ù.
-    void SetEffectTypeList();                            ///< Effect Type ¸®½ºÆ® Ç×¸ñÀ» ¼¼ÆÃÇÑ´Ù.
-    void SetSoundFileList();                             ///< SoundFile ¸®½ºÆ® Ç×¸ñÀ» ¼¼ÆÃÇÑ´Ù.
+    void InitHitPropertyItem();                          ///< Hit Event í•­ëª©ë“¤ì„ ì„¸íŒ…í•œë‹¤.
+    void InitSoundPropertyItem();                        ///< ì‚¬ìš´ë“œ í”„ë¡œí¼í‹° í•­ëª©ë“¤ì„ ì„¸íŒ…í•œë‹¤.
+    void SetBoneList();                                  ///< Bone ë¦¬ìŠ¤íŠ¸ í•­ëª©ì„ ì„¸íŒ…í•œë‹¤.
+    void SetLuaIDList();                                 ///< Lua ID ë¦¬ìŠ¤íŠ¸ í•­ëª©ì„ ì„¸íŒ…í•œë‹¤.
+    void SetEffectTypeList();                            ///< Effect Type ë¦¬ìŠ¤íŠ¸ í•­ëª©ì„ ì„¸íŒ…í•œë‹¤.
+    void SetSoundFileList();                             ///< SoundFile ë¦¬ìŠ¤íŠ¸ í•­ëª©ì„ ì„¸íŒ…í•œë‹¤.
 
-    // ÀÌº¥Æ® Ã³¸®
-    void OnChangeHitTime();                              ///< Hit Time °ªÀ» º¯°æÇÑ´Ù.
-    void OnChangeBehavior();                             ///< Behavior °ªÀ» º¯°æÇÑ´Ù.
-    void OnChangePowerEffect();                          ///< Power Effect °ªÀ» º¯°æÇÑ´Ù.
-    void OnChangeHandType();                             ///< HandType °ªÀ» º¯°æÇÑ´Ù.
-    void OnChangeBone();                                 ///< Àû¿ë Bone °ªÀ» º¯°æÇÑ´Ù
-    void OnChangeEffectType();                           ///< Effect Type°ªÀ» º¯°æÇÑ´Ù.
-    void OnChangeLuaID();                                ///< Lua ID °ªÀ» º¯°æÇÑ´Ù.
-    void OnChangeSoundTime();                            ///< Sound TimeÀ» º¯°æÇÑ´Ù.
-    void OnChangeSoundFile();                            ///< Sound FileÀ» º¯°æÇÑ´Ù.
+    // ì´ë²¤íŠ¸ ì²˜ë¦¬
+    void OnChangeHitTime();                              ///< Hit Time ê°’ì„ ë³€ê²½í•œë‹¤.
+    void OnChangeBehavior();                             ///< Behavior ê°’ì„ ë³€ê²½í•œë‹¤.
+    void OnChangePowerEffect();                          ///< Power Effect ê°’ì„ ë³€ê²½í•œë‹¤.
+    void OnChangeHandType();                             ///< HandType ê°’ì„ ë³€ê²½í•œë‹¤.
+    void OnChangeBone();                                 ///< ì ìš© Bone ê°’ì„ ë³€ê²½í•œë‹¤
+    void OnChangeEffectType();                           ///< Effect Typeê°’ì„ ë³€ê²½í•œë‹¤.
+    void OnChangeLuaID();                                ///< Lua ID ê°’ì„ ë³€ê²½í•œë‹¤.
+    void OnChangeSoundTime();                            ///< Sound Timeì„ ë³€ê²½í•œë‹¤.
+    void OnChangeSoundFile();                            ///< Sound Fileì„ ë³€ê²½í•œë‹¤.
 
 protected:
     static CAnimAttrView* m_pInstance;
 
-    CMTCharacter*       m_pCharacter;                    ///< ¼Ó¼ºÀ» ÁöÁ¤ÇÒ Ä³¸¯ÅÍ
-    SEventAnim*         m_pEventAnim;                     ///< Event¸¦ Àû¿ëÇÒ µ¥ÀÌÅÍ    
+    CMTCharacter*       m_pCharacter;                    ///< ì†ì„±ì„ ì§€ì •í•  ìºë¦­í„°
+    SEventAnim*         m_pEventAnim;                     ///< Eventë¥¼ ì ìš©í•  ë°ì´í„°    
 
-    CPropTree           m_HitPropertyTree;               ///< Hit Event ÇÁ·ÎÆÛÆ¼ À©µµ¿ì ÄÁÆ®·Ñ    
-    CPropTreeItem*      m_pHitPropRoot;                  ///< ·çÆ® Ç×¸ñ    
-    CPropTreeItemEdit*  m_pPropHitTime;                  ///< HitTime Ç×¸ñ
-    CPropTreeItemCombo* m_pPropTargetBehavior;           ///< TargetBehavior Ç×¸ñ
-    CPropTreeItemCombo* m_pPropAttackPower;              ///< AttackPower Ç×¸ñ
-    CPropTreeItemCombo* m_pPropHandType;                 ///< HandType Ç×¸ñ
-    CPropTreeItemCombo* m_pPropBone;                     ///< Bone Ç×¸ñ
-    CPropTreeItemCombo* m_pPropEffectType;               ///< EffectType Ç×¸ñ
-    CPropTreeItemCombo* m_pPropLuaID;                    ///< LUA ID Ç×¸ñ
+    CPropTree           m_HitPropertyTree;               ///< Hit Event í”„ë¡œí¼í‹° ìœˆë„ìš° ì»¨íŠ¸ë¡¤    
+    CPropTreeItem*      m_pHitPropRoot;                  ///< ë£¨íŠ¸ í•­ëª©    
+    CPropTreeItemEdit*  m_pPropHitTime;                  ///< HitTime í•­ëª©
+    CPropTreeItemCombo* m_pPropTargetBehavior;           ///< TargetBehavior í•­ëª©
+    CPropTreeItemCombo* m_pPropAttackPower;              ///< AttackPower í•­ëª©
+    CPropTreeItemCombo* m_pPropHandType;                 ///< HandType í•­ëª©
+    CPropTreeItemCombo* m_pPropBone;                     ///< Bone í•­ëª©
+    CPropTreeItemCombo* m_pPropEffectType;               ///< EffectType í•­ëª©
+    CPropTreeItemCombo* m_pPropLuaID;                    ///< LUA ID í•­ëª©
     
-    CPropTree           m_SoundProperyTree;              ///< Sound Event ÇÁ·ÎÆÛÆ¼ À©µµ¿ì ÄÁÆ®·Ñ
-    CPropTreeItem*      m_pSoundPropRoot;                ///< Sound ÇÁ·ÎÆÛÆ¼ÀÇ Root Ç×¸ñ
-    CPropTreeItemEdit*  m_pPropSoundTime;                ///< Sound Time Ç×¸ñ 
-    CPropTreeItemCombo* m_pPropSoundFile;                ///< Sound File Ç×¸ñ
+    CPropTree           m_SoundProperyTree;              ///< Sound Event í”„ë¡œí¼í‹° ìœˆë„ìš° ì»¨íŠ¸ë¡¤
+    CPropTreeItem*      m_pSoundPropRoot;                ///< Sound í”„ë¡œí¼í‹°ì˜ Root í•­ëª©
+    CPropTreeItemEdit*  m_pPropSoundTime;                ///< Sound Time í•­ëª© 
+    CPropTreeItemCombo* m_pPropSoundFile;                ///< Sound File í•­ëª©
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support

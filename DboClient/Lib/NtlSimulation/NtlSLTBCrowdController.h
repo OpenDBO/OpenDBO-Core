@@ -2,10 +2,10 @@
 *
 * File			: NtlSLTBCrowdController.h
 * Author		: agebreak
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 7. 14	
 *****************************************************************************
-* Desc          : ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ÀÇ °üÁß ÀÌº¥Æ® ÄÁÆ®·Ñ·¯
+* Desc          : ì²œí•˜ì œì¼ ë¬´ë„íšŒì˜ ê´€ì¤‘ ì´ë²¤íŠ¸ ì»¨íŠ¸ë¡¤ëŸ¬
 *****************************************************************************/
 
 #pragma once
@@ -20,7 +20,7 @@ class CNtlSLCENode;
 
 /**
  * \ingroup NtlSimulation
- * \brief °üÁßÀ» Á¦¾îÇÏ´Â ÄÁÆ®·Ñ·¯ Å¬·¡½º. Å¸ÀÔº°·Î »ı¼ºµÇ¾î »ç¿ëµÈ´Ù.
+ * \brief ê´€ì¤‘ì„ ì œì–´í•˜ëŠ” ì»¨íŠ¸ë¡¤ëŸ¬ í´ë˜ìŠ¤. íƒ€ì…ë³„ë¡œ ìƒì„±ë˜ì–´ ì‚¬ìš©ëœë‹¤.
  *
  * \date 2008-07-21
  * \author agebreak
@@ -64,12 +64,12 @@ public:
 protected:    
 
 protected:        
-    std::string                 m_strKeyName;               ///< ÄÁÆ®·Ñ·¯ÀÇ Å°³×ÀÓ
-    RwBool                      m_bLoop;                    ///< °üÁß ÀÌÆåÆ®°¡ °è¼Ó Àç»ıµÉ °ÍÀÎÁö À¯¹« ÇÃ·¡±×
-    RwReal                      m_fLifeTime;                ///< Àç»ı ½Ã°£
-	RwV3d							m_v3Pos;					///< Entry ÁÂÇ¥
+    std::string                 m_strKeyName;               ///< ì»¨íŠ¸ë¡¤ëŸ¬ì˜ í‚¤ë„¤ì„
+    RwBool                      m_bLoop;                    ///< ê´€ì¤‘ ì´í™íŠ¸ê°€ ê³„ì† ì¬ìƒë  ê²ƒì¸ì§€ ìœ ë¬´ í”Œë˜ê·¸
+    RwReal                      m_fLifeTime;                ///< ì¬ìƒ ì‹œê°„
+	RwV3d							m_v3Pos;					///< Entry ì¢Œí‘œ
 
 
-    LIST_CENODE					    m_listNode;                 ///< ±¸¼º ³ëµåÀÇ ¸®½ºÆ®
-    RwReal                      m_fInstanceTime;            ///< »ı¼ºµÈ ½Ã°£
+    LIST_CENODE					    m_listNode;                 ///< êµ¬ì„± ë…¸ë“œì˜ ë¦¬ìŠ¤íŠ¸
+    RwReal                      m_fInstanceTime;            ///< ìƒì„±ëœ ì‹œê°„
 };

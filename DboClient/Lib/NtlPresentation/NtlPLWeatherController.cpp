@@ -42,7 +42,7 @@ RpCollisionTriangle* CollisionWeatherTriangle(RpIntersection* pInters, RpCollisi
 
 		SWorldIntersect* pWorldIntersect = (SWorldIntersect*)pData;
 
-		// ¿¬»êÀ» ÁÙÀÎ´Ù. Dist ¿¬»êÀ» ÇÏÁö ¾Ê´Â´Ù.
+		// ì—°ì‚°ì„ ì¤„ì¸ë‹¤. Dist ì—°ì‚°ì„ í•˜ì§€ ì•ŠëŠ”ë‹¤.
 		if (fRatio < pWorldIntersect->fMinDist)
 		{
 			RwLine* pLine		= &pInters->t.line;
@@ -70,7 +70,7 @@ RpCollisionTriangle* CollisionWeatherTriangleAttrCheck(RpIntersection* pInters, 
 
 	SWorldIntersect* pWorldIntersect = (SWorldIntersect*)pData;
 	
-	// ¿¬»êÀ» ÁÙÀÎ´Ù. Dist ¿¬»êÀ» ÇÏÁö ¾Ê´Â´Ù.
+	// ì—°ì‚°ì„ ì¤„ì¸ë‹¤. Dist ì—°ì‚°ì„ í•˜ì§€ ì•ŠëŠ”ë‹¤.
 	if (fRatio < pWorldIntersect->fMinDist)
 	{
 		RwLine* pLine		= &pInters->t.line;
@@ -359,7 +359,7 @@ RwBool CNtlPLWeatherController::Create(CNtlPLWeatherProperty* pWeatherProperty, 
 			tSoundParam.iChannelGroup	= CHANNEL_GROUP_WEATHER_MUSIC;
 			tSoundParam.pcFileName		= (char*)m_pWeatherEmitter->strGlobalSound.c_str();
 
-			// SOUNDRESULT_OK CHECK ÇØ¾ß ÇÑ´Ù. eSoundResultType°¡ Ãß°¡ µÇ¸é ±× ¶§ °°ÀÌ ³ÖÀÚ.
+			// SOUNDRESULT_OK CHECK í•´ì•¼ í•œë‹¤. eSoundResultTypeê°€ ì¶”ê°€ ë˜ë©´ ê·¸ ë•Œ ê°™ì´ ë„£ì.
 			if (SOUNDRESULT_OK != GetSoundManager()->Play(&tSoundParam) )
 			{
 			}
@@ -419,7 +419,7 @@ RwBool CNtlPLWeatherController::Update(RwReal fElapsed, RwReal fFade)
 		{
 			SPLWeatherParticle*& pParticle = *it;
 
-			// UpdateParticleFrustom¿¡¼­´Â º¸ÀÌÁö ¾Ê´Â °´Ã¼¿¡ ´ëÇÏ¿© ÀÓÀÇÀûÀ¸·Î °¡ÁßÄ¡¸¦ ÁÖ¾î ¾÷µ¥ÀÌÆ®¸¦ ½ÃÅ²´Ù.
+			// UpdateParticleFrustomì—ì„œëŠ” ë³´ì´ì§€ ì•ŠëŠ” ê°ì²´ì— ëŒ€í•˜ì—¬ ì„ì˜ì ìœ¼ë¡œ ê°€ì¤‘ì¹˜ë¥¼ ì£¼ì–´ ì—…ë°ì´íŠ¸ë¥¼ ì‹œí‚¨ë‹¤.
 			UpdateParticleFrustom(pParticle, fElapsed);
 			UpdateParticleTime(pParticle, fElapsed);
 			UpdateParticlePos(pParticle, fElapsed);
@@ -430,7 +430,7 @@ RwBool CNtlPLWeatherController::Update(RwReal fElapsed, RwReal fFade)
 				{
 				case EPLWEATHER_PARTICLE_MOTION_STATIC:
 					{
-						// StaticÀº ¿òÁ÷ÀÌÁö ¾ÊÀ¸¹Ç·Î XRay ¹æ½ÄÀ¸·Î µü 1¹ø Ãæµ¹ Ã¼Å© ÇÑ´Ù.
+						// Staticì€ ì›€ì§ì´ì§€ ì•Šìœ¼ë¯€ë¡œ XRay ë°©ì‹ìœ¼ë¡œ ë”± 1ë²ˆ ì¶©ëŒ ì²´í¬ í•œë‹¤.
 						if (!(pParticle->eCollisionFlag & EPLWEATHER_PARTICLE_COLLISION_COMPLETE) && iCollisionCalcCount < iCollisionCalcMax)
 						{
 							(this->*m_CBParticleCollisionXRay)(pParticle);
@@ -440,15 +440,15 @@ RwBool CNtlPLWeatherController::Update(RwReal fElapsed, RwReal fFade)
 					break;
 				case EPLWEATHER_PARTICLE_MOTION_TSNAP:
 					{
-						// Terrain SnapÀ¸·Î µ¿ÀÛÇÏ´Â ParticleÀº Ãæµ¹Ã³¸®¸¦ ´Ş¸® ÇØ ÁØ´Ù.
-						// TSNAPÀº °è¼Ó ¿òÁ÷ÀÌ¹Ç·Î EPLWEATHER_PARTICLE_COLLISION_COMPLETE ºñ±³ÇÏÁö ¾Ê´Â´Ù.
+						// Terrain Snapìœ¼ë¡œ ë™ì‘í•˜ëŠ” Particleì€ ì¶©ëŒì²˜ë¦¬ë¥¼ ë‹¬ë¦¬ í•´ ì¤€ë‹¤.
+						// TSNAPì€ ê³„ì† ì›€ì§ì´ë¯€ë¡œ EPLWEATHER_PARTICLE_COLLISION_COMPLETE ë¹„êµí•˜ì§€ ì•ŠëŠ”ë‹¤.
 						(this->*m_CBParticleCollisionXRay)(pParticle);
 					}
 					break;
 				case EPLWEATHER_PARTICLE_MOTION_LINE:
 				case EPLWEATHER_PARTICLE_MOTION_SPLINE:
 					{
-						// Line°ú SplineÀº Collision DeltaTimeÀ» °è»êÇØ ³½´Ù. µü 1¹ø Ãæµ¹ Ã¼Å© ÇÑ´Ù.
+						// Lineê³¼ Splineì€ Collision DeltaTimeì„ ê³„ì‚°í•´ ë‚¸ë‹¤. ë”± 1ë²ˆ ì¶©ëŒ ì²´í¬ í•œë‹¤.
 						if (!(pParticle->eCollisionFlag & EPLWEATHER_PARTICLE_COLLISION_COMPLETE) && iCollisionCalcCount < iCollisionCalcMax)
 						{
 							(this->*m_CBParticleCollisionTime)(pParticle);
@@ -459,13 +459,13 @@ RwBool CNtlPLWeatherController::Update(RwReal fElapsed, RwReal fFade)
 				}
 			}
 
-			// CollisionTimeÀÌ³ª ParticleTimeÀ» ¿¬»êÇÑ ÈÄ Áö¿ö¾ß ÇÏ´Â ParticleÀÏ °æ¿ì Effect³ª Sound Ã³¸®¸¦ °°ÀÌ ÇØ ÁØ´Ù.
+			// CollisionTimeì´ë‚˜ ParticleTimeì„ ì—°ì‚°í•œ í›„ ì§€ì›Œì•¼ í•˜ëŠ” Particleì¼ ê²½ìš° Effectë‚˜ Sound ì²˜ë¦¬ë¥¼ ê°™ì´ í•´ ì¤€ë‹¤.
 			if (UpdateParticleDelete(pParticle, it))
 			{
 				continue;
 			}
 
-			// ParticleÀÇ ±âº»ÀûÀÎ Á¤º¸¸¦À» ¾÷µ¥ÀÌÆ® ÇÑ´Ù.
+			// Particleì˜ ê¸°ë³¸ì ì¸ ì •ë³´ë¥¼ì„ ì—…ë°ì´íŠ¸ í•œë‹¤.
 			if (m_eWeatherUpdateFlag & EPLWEATHER_UPDATE_MATRIX)
 			{
 				UpdateParticleMatrix(pParticle, fElapsed);
@@ -767,7 +767,7 @@ RwBool CNtlPLWeatherController::UpdateParticlePos(SPLWeatherParticle* pParticle,
 
 	if (pParticle->fDist2dSquared >= m_pWeatherEmitter->fParticleFrustumLengthSquared)
 	{
-		// UpdateParticleFrustom ¸ÕÀú À§Ä¡°¡ ÀÌµ¿µÇ¾ú´Ù.
+		// UpdateParticleFrustom ë¨¼ì € ìœ„ì¹˜ê°€ ì´ë™ë˜ì—ˆë‹¤.
 		NTL_RPROFILE(TRUE)
 	}
 

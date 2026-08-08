@@ -1,24 +1,24 @@
 #pragma once
 
 
-// CPaletteRegion ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CPaletteRegion ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CPaletteRegion : public CDialog
 {
 	DECLARE_DYNAMIC(CPaletteRegion)
 
 public:
-	CPaletteRegion(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CPaletteRegion(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CPaletteRegion();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_REGION };
 
 public:
 	void InitializeWorldData();
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 };

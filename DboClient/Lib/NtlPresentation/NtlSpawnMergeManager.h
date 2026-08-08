@@ -11,9 +11,9 @@
 class CNtlSpawnMergeContainer
 {
 public:
-	typedef std::map<DWORD, CMergeSpawnParty*>					SPAWN_PARTY_MAP;
-	typedef std::map<DWORD, CMergeSpawnParty*>::value_type		SPAWN_PARTY_VALUE;
-	typedef std::map<DWORD, CMergeSpawnParty*>::iterator		SPAWN_PARTY_ITER;
+	typedef std::map<uintptr_t, CMergeSpawnParty*>					SPAWN_PARTY_MAP;
+	typedef std::map<uintptr_t, CMergeSpawnParty*>::value_type		SPAWN_PARTY_VALUE;
+	typedef std::map<uintptr_t, CMergeSpawnParty*>::iterator		SPAWN_PARTY_ITER;
 
 	typedef std::vector<CMergeSpawn*>							SPAWN_VEC;						
 	typedef std::vector<CMergeSpawn*>::iterator					SPAWN_VEC_ITER;

@@ -242,7 +242,7 @@ void CNtlDecalManager::RwRender(RpWorld *pWorld, RwCamera *pCamera, RwV3d *pPos,
 	if(!GetSceneManager()->IsWorldReady())
 		return;
 
-	// Ä«¸Ş¶ó ÄÃ¸µ.
+	// ì¹´ë©”ë¼ ì»¬ë§.
 	RwSphere sphere;
 	sphere.center = *pPos;
 	sphere.radius = 1.0f;
@@ -260,7 +260,7 @@ void CNtlDecalManager::RwRender(RpWorld *pWorld, RwCamera *pCamera, RwV3d *pPos,
 			return;
 	}
 	
-	// decal ±¸ÇÏ±â
+	// decal êµ¬í•˜ê¸°
 	m_nIm3DBufferCnt = 0;
 	DecalCallbackParam param;
 
@@ -313,7 +313,7 @@ void CNtlDecalManager::TerrainRender(RpWorld *pWorld, RwCamera *pCamara, const R
 	if(!GetSceneManager()->IsWorldReady())
 		return;
 
-	// Ä«¸Ş¶ó ÄÃ¸µ.
+	// ì¹´ë©”ë¼ ì»¬ë§.
 	RwSphere sphere;
 	sphere.center = pPos;
 	sphere.radius = 1.f;
@@ -354,7 +354,7 @@ void CNtlDecalManager::TerrainRender(RpWorld *pWorld, RwCamera *pCamara, const R
 
 
 
-	//// decal ±¸ÇÏ±â
+	//// decal êµ¬í•˜ê¸°
 	//m_nIm3DBufferCnt = 0;
 	//DecalCallbackParam param;
 

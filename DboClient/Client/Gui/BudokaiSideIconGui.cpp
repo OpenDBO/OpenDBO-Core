@@ -35,7 +35,7 @@
  
 /******************************************************************************
 * Class			: CBudokaiSideViewUnit
-* Desc			: ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ »çÀÌµå ºäÀÇ °øÁö À¯´Ö
+* Desc			: ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì‚¬ì´ë“œ ë·°ì˜ ê³µì§€ ìœ ë‹›
 ******************************************************************************/
 CBudokaiSideViewUnit::CBudokaiSideViewUnit( gui::CComponent *pParentGui, const WCHAR* pwcString, RwReal fLimitTime )
 : m_pStbSideViewUnit(NULL)
@@ -73,7 +73,7 @@ void CBudokaiSideViewUnit::SetPositionFromParent( RwInt32 nPosX, RwInt32 nPosY )
 
 /******************************************************************************
 * Class			: CBudokaiSideIconGui
-* Desc			: ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ »çÀÌµå ¾ÆÀÌÄÜÀÇ Å¬·¡½º
+* Desc			: ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì‚¬ì´ë“œ ì•„ì´ì½˜ì˜ í´ë˜ìŠ¤
 ******************************************************************************/
 
 /**
@@ -95,8 +95,8 @@ CBudokaiSideIconGui::~CBudokaiSideIconGui( VOID )
 }
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ¹«µµÈ¸ ¾ÆÀÌÄÜÀÇ ¸®¼Ò½º¸¦ »ı¼ºÇÏ°í Á¤º¸µéÀ» ÃÊ±âÈ­ÇØÁØ´Ù.
-* \return ¼º°ø¿©ºÎ
+* \brief ì²œí•˜ì œì¼ë¬´ë„íšŒ ì•„ì´ì½˜ì˜ ë¦¬ì†ŒìŠ¤ë¥¼ ìƒì„±í•˜ê³  ì •ë³´ë“¤ì„ ì´ˆê¸°í™”í•´ì¤€ë‹¤.
+* \return ì„±ê³µì—¬ë¶€
 */
 RwBool CBudokaiSideIconGui::Create( VOID )
 {
@@ -133,7 +133,7 @@ RwBool CBudokaiSideIconGui::Create( VOID )
 }
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ¹«µµÈ¸ ¸®¼Ò½º ¹× °ü·ÃµÈ µ¥ÀÌÅÍ¸¦ ÇØÁ¦ÇÑ´Ù.
+* \brief ì²œí•˜ì œì¼ë¬´ë„íšŒ ë¦¬ì†ŒìŠ¤ ë° ê´€ë ¨ëœ ë°ì´í„°ë¥¼ í•´ì œí•œë‹¤.
 */
 VOID CBudokaiSideIconGui::Destroy( VOID )
 {
@@ -150,7 +150,7 @@ VOID CBudokaiSideIconGui::Destroy( VOID )
 
 /**
 * \brief Update
-* \param fElapsedTime	(RwReal) ÀÌÀü ¾÷µ¥ÀÌÆ®¿¡¼­ °æ°úµÈ ½Ã°£
+* \param fElapsedTime	(RwReal) ì´ì „ ì—…ë°ì´íŠ¸ì—ì„œ ê²½ê³¼ëœ ì‹œê°„
 */
 VOID CBudokaiSideIconGui::Update( RwReal fElapsedTime )
 {
@@ -158,7 +158,7 @@ VOID CBudokaiSideIconGui::Update( RwReal fElapsedTime )
 }
 
 /**
-* \brief SideView°¡ ´İÈú ¶§ È£ÃâµÈ´Ù.
+* \brief SideViewê°€ ë‹«í ë•Œ í˜¸ì¶œëœë‹¤.
 */
 VOID CBudokaiSideIconGui::OnSideViewClosed( VOID )
 {
@@ -166,7 +166,7 @@ VOID CBudokaiSideIconGui::OnSideViewClosed( VOID )
 }
 
 /**
-* \brief ¸µÅ©µÈ ÀÌº¥Æ®¸¦ ÇÚµé¸µÇÑ´Ù.
+* \brief ë§í¬ëœ ì´ë²¤íŠ¸ë¥¼ í•¸ë“¤ë§í•œë‹¤.
 */
 VOID CBudokaiSideIconGui::HandleEvents( RWS::CMsg& msg )
 {
@@ -174,7 +174,7 @@ VOID CBudokaiSideIconGui::HandleEvents( RWS::CMsg& msg )
 	{
 		CSideIconGui::GetInstance()->OpenSideView( this, SIDEVIEW_BUDOKAI, msg.pData );
 
-		// ¼Ò½ÄÁö°¡ ¿­·ÁÁ® ÀÖÁö ¾ÊÀº »óÅÂ¶ó¸é ±ôºı °Å¸°´Ù.
+		// ì†Œì‹ì§€ê°€ ì—´ë ¤ì ¸ ìˆì§€ ì•Šì€ ìƒíƒœë¼ë©´ ê¹œë¹¡ ê±°ë¦°ë‹¤.
 		if( !GetDialogManager()->IsOpenDialog( DIALOG_BUDOKAI_NEWS ) )
 		{
 			m_feEffect.StartProc( TRUE );
@@ -189,7 +189,7 @@ VOID CBudokaiSideIconGui::HandleEvents( RWS::CMsg& msg )
 			pNotify->sStateInfo.byState == BUDOKAI_STATE_JUNIOR_OPEN_NOTICE )
 		{
 			WCHAR awcBuffer[256];
-			// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ¼Ò³âºÎ, ¼ºÀÎºÎ ±¸ºĞÇØ¼­ Ãâ·Â
+			// ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì†Œë…„ë¶€, ì„±ì¸ë¶€ êµ¬ë¶„í•´ì„œ ì¶œë ¥
 			swprintf_s( awcBuffer, 256, GetDisplayStringManager()->GetString( "DST_BUDOKAI_NOTICE_OPEN_NOTICE" ), Logic_GetTBTypeString( pNotify->sStateInfo.byState ) );
 
 			CNtlSLEventGenerator::BudokaiNoticeNfy( BUDOKAI_NOTICE_ONLY_CLIENT, 0, 
@@ -201,7 +201,7 @@ VOID CBudokaiSideIconGui::HandleEvents( RWS::CMsg& msg )
 			if( Logic_I_am_GuildLeader() )
 			{
 				WCHAR awcBuffer[256];
-				// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ ¼Ò³âºÎ, ¼ºÀÎºÎ ±¸ºĞ ¸Ş½ÃÁö Ãâ·Â -by Kell
+				// ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì†Œë…„ë¶€, ì„±ì¸ë¶€ êµ¬ë¶„ ë©”ì‹œì§€ ì¶œë ¥ -by Kell
 				swprintf_s( awcBuffer, 256, GetDisplayStringManager()->GetString( "DST_BUDOKAI_NOTICE_DOJO_RECOMMEND" ), Logic_GetTBTypeString( pNotify->sStateInfo.byState ) );
 			
 				CNtlSLEventGenerator::BudokaiNoticeNfy( BUDOKAI_NOTICE_ONLY_CLIENT, 0, 
@@ -307,7 +307,7 @@ VOID CBudokaiSideIconGui::HandleEvents( RWS::CMsg& msg )
 }
 
 /**
-* \brief »çÀÌµå ¾ÆÀÌÄÜÀ» Å¬¸¯ÇÏ¿´À» ¶§ ³ª¿À´Â Çàµ¿
+* \brief ì‚¬ì´ë“œ ì•„ì´ì½˜ì„ í´ë¦­í•˜ì˜€ì„ ë•Œ ë‚˜ì˜¤ëŠ” í–‰ë™
 */
 VOID CBudokaiSideIconGui::OnIconButtonClicked( gui::CComponent* pComponent )
 {
@@ -319,16 +319,16 @@ VOID CBudokaiSideIconGui::OnIconButtonClicked( gui::CComponent* pComponent )
 }
 
 /**
-* \brief »çÀÌµå ¾ÆÀÌÄÜÀÌ PaintµÉ¶§ È£ÃâµÈ´Ù.
+* \brief ì‚¬ì´ë“œ ì•„ì´ì½˜ì´ Paintë ë•Œ í˜¸ì¶œëœë‹¤.
 */
 VOID CBudokaiSideIconGui::OnPaint( VOID )
 {
-	// FlickEffect ¶ÇÇÑ PaintÇØÁØ´Ù.
+	// FlickEffect ë˜í•œ Paintí•´ì¤€ë‹¤.
 	m_feEffect.Render();
 }
 
 /**
-* \brief PLGui°¡ ¸®»çÀÌÁîµÇ°Å³ª ÀÌµ¿ µÉ¶§ È£ÃâµÈ´Ù.
+* \brief PLGuiê°€ ë¦¬ì‚¬ì´ì¦ˆë˜ê±°ë‚˜ ì´ë™ ë ë•Œ í˜¸ì¶œëœë‹¤.
 */
 VOID CBudokaiSideIconGui::OnMove( RwInt32 nOldX, RwInt32 nOldY )
 {
@@ -344,7 +344,7 @@ VOID CBudokaiSideIconGui::OnMove( RwInt32 nOldX, RwInt32 nOldY )
 
 /******************************************************************************
 * Class			: CBudokaiSideViewGui
-* Desc			: ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ »çÀÌµå ºäÀÇ Å¬·¡½º
+* Desc			: ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì‚¬ì´ë“œ ë·°ì˜ í´ë˜ìŠ¤
 ******************************************************************************/
 
 /**
@@ -367,7 +367,7 @@ CBudokaiSideViewGui::~CBudokaiSideViewGui( VOID )
 }
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ »çÀÌµåºäÀÇ ¸®¼Ò½º ¹× Á¤º¸¸¦ ÇÒ´çÇÏ°í ÃÊ±âÈ­ÇÑ´Ù.
+* \brief ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì‚¬ì´ë“œë·°ì˜ ë¦¬ì†ŒìŠ¤ ë° ì •ë³´ë¥¼ í• ë‹¹í•˜ê³  ì´ˆê¸°í™”í•œë‹¤.
 */
 RwBool CBudokaiSideViewGui::Create( VOID )
 {
@@ -405,7 +405,7 @@ RwBool CBudokaiSideViewGui::Create( VOID )
 }
 
 /**
-* \brief ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ »çÀÌµåºäÀÇ ¸®¼Ò½º ¹× Á¤º¸¸¦ ÇØÁ¦ÇÑ´Ù.
+* \brief ì²œí•˜ì œì¼ ë¬´ë„íšŒ ì‚¬ì´ë“œë·°ì˜ ë¦¬ì†ŒìŠ¤ ë° ì •ë³´ë¥¼ í•´ì œí•œë‹¤.
 */
 VOID CBudokaiSideViewGui::Destroy( VOID )
 {
@@ -456,7 +456,7 @@ VOID CBudokaiSideViewGui::Update( RwReal fElapsedTime )
 }
 
 /**
-* \brief ESC KeyÀÇ Çàµ¿
+* \brief ESC Keyì˜ í–‰ë™
 */
 VOID CBudokaiSideViewGui::OnPressESC( VOID )
 {
@@ -464,7 +464,7 @@ VOID CBudokaiSideViewGui::OnPressESC( VOID )
 }
 
 /**
-* \brief CSideIconGui¿¡¼­ ÇöÀçÀÇ Budokai SideView¸¦ Open ÇÏ¶ó°í ¸í·ÉÀ» ³»¸°´Ù.
+* \brief CSideIconGuiì—ì„œ í˜„ì¬ì˜ Budokai SideViewë¥¼ Open í•˜ë¼ê³  ëª…ë ¹ì„ ë‚´ë¦°ë‹¤.
 */
 VOID CBudokaiSideViewGui::OnSideViewOpen( const VOID* pData )
 {
@@ -495,7 +495,7 @@ VOID CBudokaiSideViewGui::OnSideViewOpen( const VOID* pData )
 }
 
 /**
-* \brief Open°ú ¹İ´ë
+* \brief Openê³¼ ë°˜ëŒ€
 */
 VOID CBudokaiSideViewGui::OnSideViewClose(VOID)
 {
@@ -503,8 +503,8 @@ VOID CBudokaiSideViewGui::OnSideViewClose(VOID)
 }
 
 /**
-* \brief ÇöÀçÀÇ SideViewÀÇ À§Ä¡¸¦ Á¶ÀıÇÑ´Ù.
-* \para rtSideIcon		(const CRectangle*) »çÀÌµå ¾ÆÀÌÄÜÀÇ Rect ¿µ¿ª
+* \brief í˜„ì¬ì˜ SideViewì˜ ìœ„ì¹˜ë¥¼ ì¡°ì ˆí•œë‹¤.
+* \para rtSideIcon		(const CRectangle*) ì‚¬ì´ë“œ ì•„ì´ì½˜ì˜ Rect ì˜ì—­
 */
 VOID CBudokaiSideViewGui::OnSideViewLocate( const CRectangle& rtSideIcon )
 {
@@ -529,7 +529,7 @@ VOID CBudokaiSideViewGui::OnSideViewLocate( const CRectangle& rtSideIcon )
 }
 
 /**
-* \brief Dialog°¡ ±×·ÁÁú ¶§ °°ÀÌ ±×·ÁÁØ´Ù.
+* \brief Dialogê°€ ê·¸ë ¤ì§ˆ ë•Œ ê°™ì´ ê·¸ë ¤ì¤€ë‹¤.
 */
 VOID CBudokaiSideViewGui::OnPaint()
 {
@@ -537,7 +537,7 @@ VOID CBudokaiSideViewGui::OnPaint()
 }
 
 /**
-* \brief Dialog°¡ ÀÌµ¿µÉ ¶§ °°ÀÌ ÀÌµ¿ÇÑ´Ù.
+* \brief Dialogê°€ ì´ë™ë  ë•Œ ê°™ì´ ì´ë™í•œë‹¤.
 */
 VOID CBudokaiSideViewGui::OnMove( RwInt32 nOldX, RwInt32 nOldY )
 {
@@ -545,8 +545,8 @@ VOID CBudokaiSideViewGui::OnMove( RwInt32 nOldX, RwInt32 nOldY )
 }
 
 /**
-* \brief Close ¹öÆ°À» Å¬¸¯ÇÏ¿´À» ¶§
-* \param pComponent	(gui::CComponent*) Close ¹öÆ°
+* \brief Close ë²„íŠ¼ì„ í´ë¦­í•˜ì˜€ì„ ë•Œ
+* \param pComponent	(gui::CComponent*) Close ë²„íŠ¼
 */
 VOID CBudokaiSideViewGui::OnClickClose( gui::CComponent* pComponent )
 {
@@ -554,8 +554,8 @@ VOID CBudokaiSideViewGui::OnClickClose( gui::CComponent* pComponent )
 }
 
 /**
-* \brief Å×ÀÌºí ÀÎµ¦½º¿¡¼­ µ¥ÀÌÅÍ¸¦ °¡Á®¿Í¼­ Ãâ·ÂÇÑ´Ù.
-* \param tblidx	(RwUInt32) Å×ÀÌºí ÀÎµ¦½º
+* \brief í…Œì´ë¸” ì¸ë±ìŠ¤ì—ì„œ ë°ì´í„°ë¥¼ ê°€ì ¸ì™€ì„œ ì¶œë ¥í•œë‹¤.
+* \param tblidx	(RwUInt32) í…Œì´ë¸” ì¸ë±ìŠ¤
 */
 VOID CBudokaiSideViewGui::ShowNotice( RwUInt32 tblidx )
 {
@@ -563,8 +563,8 @@ VOID CBudokaiSideViewGui::ShowNotice( RwUInt32 tblidx )
 }
 
 /**
-* \brief ½ºÆ®¸µÀ» Á÷Á¢ Ãâ·ÂÇÑ´Ù.
-* \param pwcString		(const WCHAR*) ½ºÆ®¸µ Ãâ·Â
+* \brief ìŠ¤íŠ¸ë§ì„ ì§ì ‘ ì¶œë ¥í•œë‹¤.
+* \param pwcString		(const WCHAR*) ìŠ¤íŠ¸ë§ ì¶œë ¥
 */
 VOID CBudokaiSideViewGui::ShowNotice( const WCHAR* pwcString )
 {

@@ -1,7 +1,7 @@
 /*****************************************************************************
 * File			: NtlFMODSoundPool.h
 * Author		: Hong SungBock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2009. 1. 16
 * Abstract		: 
 *****************************************************************************
@@ -40,7 +40,7 @@ protected:
 	static CNtlFMODSoundPool* m_pInstance;
 
 	MAP_FMODSOUND		m_mapFMODSoundPool;
-	MAP_RESIDENT		m_mapResidentPool;		///< ¿⁄¡÷ ªÁøÎ«œ¥¬ FMOD::Sound¥¬ ∏ﬁ∏∏Æø° ªÛ¡÷Ω√≈≤¥Ÿ
+	MAP_RESIDENT		m_mapResidentPool;		///< ÏûêÏ£º ÏÇ¨Ïö©ÌïòÎäî FMOD::SoundÎäî Î©îÎ™®Î¶¨Ïóê ÏÉÅÏ£ºÏãúÌÇ®Îã§
 
 	RwUInt32			m_uiFileSize_FMODSound;
 	RwUInt32			m_uiFileSize_ResidentPool;

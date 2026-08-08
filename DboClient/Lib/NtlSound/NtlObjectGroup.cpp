@@ -90,7 +90,7 @@ bool CNtlObjectGroup::ReleaseLowRankChannel()
 	{
 		GetFadeInOut()->StopImmediately(pSound->m_pFMODChannel, dFADE_STOP_FLAG_NOT_NOTIFY);
 
-		// °­Á¦Á¾·áµÇ´Â SoundÀÇ Á¤º¸ÀúÀå
+		// ê°•ì œì¢…ë£Œë˜ëŠ” Soundì˜ ì •ë³´ì €ì¥
 		StoreReleasedSound(pSound);
 
 		pSound->m_pFMODChannel->stop();
@@ -128,7 +128,7 @@ void CNtlObjectGroup::PostUpdate(float fXPos, float fYPos, float fZPos)
 	FMOD_VECTOR vPos;	
 
 
-	// ÀÏÁ¤ ¹İ°æ¾ÈÀÇ ÇÃ·¹ÀÌ µÇÁö ¾ÊÀº ¿ÀºêÁ§Æ® ¹ÂÁ÷ ÇÃ·¹ÀÌ
+	// ì¼ì • ë°˜ê²½ì•ˆì˜ í”Œë ˆì´ ë˜ì§€ ì•Šì€ ì˜¤ë¸Œì íŠ¸ ë®¤ì§ í”Œë ˆì´
 	SOUND_ITER it = m_mapSleepingSound.begin();
 	while( it != m_mapSleepingSound.end() )
 	{
@@ -152,7 +152,7 @@ void CNtlObjectGroup::PostUpdate(float fXPos, float fYPos, float fZPos)
 		++it;
 	}
 
-	// ÀÏÁ¤ ¹İ°æ ¹ÛÀ¸·Î ¹ş¾î³­ ¿ÀºêÁ§Æ® ¹ÂÁ÷ Ã£±â
+	// ì¼ì • ë°˜ê²½ ë°–ìœ¼ë¡œ ë²—ì–´ë‚œ ì˜¤ë¸Œì íŠ¸ ë®¤ì§ ì°¾ê¸°
 	SOUND_MAP mapDelSound;
 	for( it = m_mapGroup.begin() ; it != m_mapGroup.end() ; ++it )
 	{
@@ -215,7 +215,7 @@ void CNtlObjectGroup::DelSleepingSound(SOUND_HANDLE hHandle)
 
 void CNtlObjectGroup::DelReleasedSound(SOUND_HANDLE hHandle)
 {
-	// ¸¸¾à soundHandleÀÌ °­Á¦Á¾·áµÇ¾î ´Ù½Ã ÇÃ·¹ÀÌµÇ±æ ±â´Ù¸®´Â ¿ÀºêÁ§Æ® ¹ÂÁ÷ÀÌ¶ó¸é »èÁ¦ÇÑ´Ù.
+	// ë§Œì•½ soundHandleì´ ê°•ì œì¢…ë£Œë˜ì–´ ë‹¤ì‹œ í”Œë ˆì´ë˜ê¸¸ ê¸°ë‹¤ë¦¬ëŠ” ì˜¤ë¸Œì íŠ¸ ë®¤ì§ì´ë¼ë©´ ì‚­ì œí•œë‹¤.
 	SOUND_ITER it = m_mapReleasedSound.find(hHandle);
 	if( it != m_mapReleasedSound.end() )
 	{

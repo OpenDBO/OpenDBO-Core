@@ -2,7 +2,7 @@
  *
  * File			: DBOTitle.h
  * Author		: Hong Sungbock
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2009. 4. 2
  * Abstract		: 
  *****************************************************************************
@@ -30,7 +30,7 @@ protected:
 	CDBOTitleGui() {}
 	virtual VOID	HandleEvents( RWS::CMsg &msg );
 
-	VOID			SwitchEnableButtons(bool bEnable);	///< Exit πˆ∆∞¿ª ¡¶ø‹«— πˆ∆∞¿« ¿ÃøÎ∞°¥… º≥¡§
+	VOID			SwitchEnableButtons(bool bEnable);	///< Exit Î≤ÑÌäºÏùÑ Ï†úÏô∏Ìïú Î≤ÑÌäºÏùò Ïù¥Ïö©Í∞ÄÎä• ÏÑ§Ï†ï
 
 	VOID			LocateComponent(RwInt32 iWidth, RwInt32 iHeight);
 
@@ -54,14 +54,14 @@ protected:
 	gui::CSlot			m_slotConnectGameServerButton;
 	gui::CSlot			m_slotExitButton;
 
-	gui::CButton*		m_pCinemaButton;			///< µøøµªÛ ¿Áª˝ πˆ∆∞
-	gui::CButton*		m_pContractButton;			///< æ‡∞¸ ∫∏±‚ πˆ∆∞
-	gui::CButton*		m_pConnectGameServerButton;	///< ∞‘¿” º≠πˆ ¡¢º” πˆ∆∞
-	gui::CButton*		m_pExitButton;				///< ≥™∞°±‚ πˆ∆∞
+	gui::CButton*		m_pCinemaButton;			///< ÎèôÏòÅÏÉÅ Ïû¨ÏÉù Î≤ÑÌäº
+	gui::CButton*		m_pContractButton;			///< ÏïΩÍ¥Ä Î≥¥Í∏∞ Î≤ÑÌäº
+	gui::CButton*		m_pConnectGameServerButton;	///< Í≤åÏûÑ ÏÑúÎ≤Ñ Ï†ëÏÜç Î≤ÑÌäº
+	gui::CButton*		m_pExitButton;				///< ÎÇòÍ∞ÄÍ∏∞ Î≤ÑÌäº
 
-	gui::CStaticBox*	m_pVersion;					///< Dbo πˆ¿¸ «•Ω√
+	gui::CStaticBox*	m_pVersion;					///< Dbo Î≤ÑÏ†Ñ ÌëúÏãú
 
 	gui::CFlash*		m_pFlashBackground;
 
-	CSurfaceGui			m_srfTitle;					///< ¡¶∏Ò º≠∆‰¿ÃΩ∫
+	CSurfaceGui			m_srfTitle;					///< Ï†úÎ™© ÏÑúÌéòÏù¥Ïä§
 };

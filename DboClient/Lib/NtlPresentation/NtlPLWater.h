@@ -65,7 +65,7 @@ public:
 	virtual	~CNtlPLWater(void);
 
 public:
-	typedef std::map<DWORD, sWATER*>	WATER_MAP;
+	typedef std::map<uintptr_t, sWATER*>	WATER_MAP;
 	typedef WATER_MAP::iterator			WATER_ITER;
 
 public:

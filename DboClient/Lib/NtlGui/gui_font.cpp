@@ -25,13 +25,13 @@ CGuiFont::~CGuiFont()
 }
 
 /**
-* \brief Gui ÆùÆ® ·Îµå
-* \param hDC			(HDC) DCÀÇ ÇÚµé
-* \param pFontName		(const char*) FontÀÇ ÀÌ¸§
-* \param strKey			(std::string&) FontÀÇ Å°
-* \param nWidth			(int) ÆùÆ®ÀÇ ³ĞÀÌ
-* \param nHeight		(int) ÆùÆ®ÀÇ ³ôÀÌ
-* \param nAttribute		(int) ÆùÆ®ÀÇ Æ¯¼º
+* \brief Gui í°íŠ¸ ë¡œë“œ
+* \param hDC			(HDC) DCì˜ í•¸ë“¤
+* \param pFontName		(const char*) Fontì˜ ì´ë¦„
+* \param strKey			(std::string&) Fontì˜ í‚¤
+* \param nWidth			(int) í°íŠ¸ì˜ ë„“ì´
+* \param nHeight		(int) í°íŠ¸ì˜ ë†’ì´
+* \param nAttribute		(int) í°íŠ¸ì˜ íŠ¹ì„±
 * \param bLogRes		(bool) 
 */
 bool CGuiFont::Load(HDC hDC, const char *pFontName, std::string& strKey, int nWidth, int nHeight, int nAttribute, bool bLogRes)
@@ -62,13 +62,13 @@ bool CGuiFont::Load(HDC hDC, const char *pFontName, std::string& strKey, int nWi
 
 		if (bLogRes)
 		{
-			fDpiCx = (float) GetDeviceCaps (hDC, LOGPIXELSX) ;				// °¡·Î¹æÇâÀ¸·Î ·ÎÁöÄÃ ÀÎÄ¡´ç ÇÈ¼¿¼ö
-			fDpiCy = (float) GetDeviceCaps (hDC, LOGPIXELSY) ;				// ¼¼·Î¹æÇâÀ¸·Î ·ÎÁ÷ÄÃ ÀÎÄ¡´ç ÇÈ¼¿¼ö
+			fDpiCx = (float) GetDeviceCaps (hDC, LOGPIXELSX) ;				// ê°€ë¡œë°©í–¥ìœ¼ë¡œ ë¡œì§€ì»¬ ì¸ì¹˜ë‹¹ í”½ì…€ìˆ˜
+			fDpiCy = (float) GetDeviceCaps (hDC, LOGPIXELSY) ;				// ì„¸ë¡œë°©í–¥ìœ¼ë¡œ ë¡œì§ì»¬ ì¸ì¹˜ë‹¹ í”½ì…€ìˆ˜
 		}
 		else
 		{
-			// HORZRES = ¼öÆòÇÈ¼¿¼ö, HORZSIZE = ¹Ğ¸®¹ÌÅÍÀÇ °¡·ÎÅ©±â
-			// VERTRES = ¼öÁ÷ÇÈ¼¿¼ö, VERTSIZE = ¹Ğ¸®¹ÌÅÍÀÇ ¼¼·ÎÅ©±â
+			// HORZRES = ìˆ˜í‰í”½ì…€ìˆ˜, HORZSIZE = ë°€ë¦¬ë¯¸í„°ì˜ ê°€ë¡œí¬ê¸°
+			// VERTRES = ìˆ˜ì§í”½ì…€ìˆ˜, VERTSIZE = ë°€ë¦¬ë¯¸í„°ì˜ ì„¸ë¡œí¬ê¸°
 			fDpiCx = (float) (25.4 * GetDeviceCaps (hDC, HORZRES) / GetDeviceCaps (hDC, HORZSIZE)) ;
 	    	fDpiCy = (float) (25.4 * GetDeviceCaps (hDC, VERTRES) / GetDeviceCaps (hDC, VERTSIZE)) ;
 		}

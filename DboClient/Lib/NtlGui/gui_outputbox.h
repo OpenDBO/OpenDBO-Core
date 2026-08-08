@@ -1,15 +1,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Name: class gui:COutputBox
-// Desc: Text¸¦ Ç¥ÇöÇÑ´Ù.
+// Desc: Textë¥¼ í‘œí˜„í•œë‹¤.
 //
 // Created by jhssugi@ntl-inc.com	
 // 2006.04.10 Peessi@hitel.net   
-//			  - ScrollBarÀÇ »çÀÌÁî Á¶Àı °¡´É
-//			  - Text¸¶´Ù ´Ù¸¥` »öÀ¸·Î Ãâ·ÂÇÒ ¼ö ÀÖµµ·Ï.
+//			  - ScrollBarì˜ ì‚¬ì´ì¦ˆ ì¡°ì ˆ ê°€ëŠ¥
+//			  - Textë§ˆë‹¤ ë‹¤ë¥¸` ìƒ‰ìœ¼ë¡œ ì¶œë ¥í•  ìˆ˜ ìˆë„ë¡.
 //
 // 2007.05.11 Peessi@hitel.net
-//			  - ÀÓÀÇ·Î ½ºÅ©·Ñ¹Ù¸¦ ¾Èº¸ÀÌ°Ô ÇÏ´Â ÇÔ¼ö¸¦ ³Ö¾úÀ¸³ª ´ÙÀÌ³ª¹Í½ºÅ©·Ñ ¸ğµå
-//			    ¿¡¼­´Â ´Ù½Ã º¸ÀÏ ¼ö ÀÖ´Ù. ( ½Ã°£ °ü°è»ó )
+//			  - ì„ì˜ë¡œ ìŠ¤í¬ë¡¤ë°”ë¥¼ ì•ˆë³´ì´ê²Œ í•˜ëŠ” í•¨ìˆ˜ë¥¼ ë„£ì—ˆìœ¼ë‚˜ ë‹¤ì´ë‚˜ë¯¹ìŠ¤í¬ë¡¤ ëª¨ë“œ
+//			    ì—ì„œëŠ” ë‹¤ì‹œ ë³´ì¼ ìˆ˜ ìˆë‹¤. ( ì‹œê°„ ê´€ê³„ìƒ )
 ////////////////////////////////////////////////////////////////////////////////
 
 #ifndef __GUI_OUTPUTBOX_H__
@@ -58,7 +58,7 @@ public:
 	CScrollBar* GetVerticalScrollBar(VOID) const;
 	
 //! Operations:
-	//: font¸¦ »ı¼ºÇÑ´Ù.
+	//: fontë¥¼ ìƒì„±í•œë‹¤.
 	VOID CreateFontStd( char *pFaceName, INT nHeight, INT nAttributes = 0 );
 
 	//: Sets the line edit text to text, clears the selection and moves the cursor to the end of the line.

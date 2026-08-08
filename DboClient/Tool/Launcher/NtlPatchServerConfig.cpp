@@ -25,31 +25,31 @@ BOOL CNtlPatchServerConfig::LoadServerConfigFile( const char* pszXMLFileName )
 
     if(!doc.Load(const_cast<char*>(pszXMLFileName)))
     {
-        // ÆÄÀÏÀÌ Á¸ÀçÇÏÁö ¾ÊÀ½
+        // íŒŒì¼ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŒ
         return FALSE;
     }
 
     char buf[1024] = {0,};
 
-    // ÆĞÄ¡ °¡´É À¯¹«
+    // íŒ¨ì¹˜ ê°€ëŠ¥ ìœ ë¬´
     if(doc.GetDataWithXPath(NODE_SERVER_PATCH_ENABLE, buf, sizeof(buf)))
     {
         m_bPatchEnable = atoi(buf);
     }
 
-    // ¿¡·¯ ¸Ş½ÃÁö
+    // ì—ëŸ¬ ë©”ì‹œì§€
     if(doc.GetDataWithXPath(NODE_SERVER_ERR_MSG, buf, sizeof(buf)))
     {
         m_strErrorMsg = buf;
     }
 
-    // Ç®¹öÀüÀÌ ÀÖ´Â ¼­¹öÀÇ IP
+    // í’€ë²„ì „ì´ ìˆëŠ” ì„œë²„ì˜ IP
     if(doc.GetDataWithXPath(NODE_SERVER_FULLVER_IP, buf, sizeof(buf)))
     {
         m_strFullVerServerIP = buf;
     }
 
-    // Ç®¹öÀüÀÌ ÀÖ´Â ¼­¹öÀÇ Æú´õ °æ·Î
+    // í’€ë²„ì „ì´ ìˆëŠ” ì„œë²„ì˜ í´ë” ê²½ë¡œ
     if(doc.GetDataWithXPath(NODE_SERVER_FULLVER_FOLDER, buf, sizeof(buf)))
     {
         m_strFullVerServerFolder = buf;

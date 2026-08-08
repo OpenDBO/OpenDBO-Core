@@ -116,7 +116,7 @@ RwBool CDogiGui::Create()
 		iPosY += dCOLOR_GAP_ROW;
 	}
 
-	// µµº¹ ½½·Ô
+	// ë„ë³µ ìŠ¬ë¡¯
 	m_DogiSlot.Create(m_pThis, DIALOG_DOGI, REGULAR_SLOT_ITEM_SOB);
 	m_DogiSlot.SetPosition_fromParent(50, 353);
 
@@ -127,7 +127,7 @@ RwBool CDogiGui::Create()
 	m_tUseColorInfo.bUseAllColor		= FALSE;
 	m_tUseColorInfo.byEnableColorRow	= 0;
 
-	// ÄÄÆ÷³ÍÆ®¸¦ ¹èÄ¡
+	// ì»´í¬ë„ŒíŠ¸ë¥¼ ë°°ì¹˜
 	OnMove(0, 0);
 
 	m_pDialogName		->SetText(GetDisplayStringManager()->GetString("DST_DOGI_SETUP"));
@@ -578,7 +578,7 @@ VOID CDogiGui::OnMouseUp(const CKey& key)
 						{
 							if( ITEM_TYPE_DOGI == pITEM_TBLDAT->byItem_Type )
 							{
-								// °¡¹æ¿¡¼­ µµº¹ ¾ÆÀÌÅÛÀ» µî·ÏÇß´Ù
+								// ê°€ë°©ì—ì„œ ë„ë³µ ì•„ì´í…œì„ ë“±ë¡í–ˆë‹¤
 								if( SetDogi( GetIconMoveManager()->GetSrcSerial() ) )
 								{
 									GetIconMoveManager()->IconMoveEnd();
@@ -600,7 +600,7 @@ VOID CDogiGui::OnMouseUp(const CKey& key)
 			{
 				if( FALSE == GetIconMoveManager()->IsActive() )
 				{
-					// ÆÈ·¹Æ®¸¦ ¼±ÅÃÇß´Ù
+					// íŒ”ë ˆíŠ¸ë¥¼ ì„ íƒí–ˆë‹¤
 					SelectColor(m_byLeftMouseDown);
 				}
 			}
@@ -612,7 +612,7 @@ VOID CDogiGui::OnMouseUp(const CKey& key)
 		{
 			if( m_byRightMouseDown == bySlot )
 			{
-				// µî·ÏµÈ µµº¹À» Áö¿î´Ù
+				// ë“±ë¡ëœ ë„ë³µì„ ì§€ìš´ë‹¤
 				CheckInfoWindow();
 				UnsetDogi();				
 
@@ -779,11 +779,11 @@ VOID CDogiGui::HandleEvents( RWS::CMsg &msg )
 		if( pEvent->eDialog != DIALOG_DOGI )
 			return;
 
-		// °°Àº NPC
+		// ê°™ì€ NPC
 		if( m_hNPCSerial == pEvent->hSerialId )
 			return;
 
-		// ´Ù¸¥ NPC¿Í ´ëÈ­¸¦ ÇÏ´Â °æ¿ìÀÌ´Ù
+		// ë‹¤ë¥¸ NPCì™€ ëŒ€í™”ë¥¼ í•˜ëŠ” ê²½ìš°ì´ë‹¤
 		if( m_hNPCSerial != INVALID_SERIAL_ID )
 		{
 			GetDialogManager()->CloseDialog(DIALOG_DOGI);
@@ -801,13 +801,13 @@ VOID CDogiGui::HandleEvents( RWS::CMsg &msg )
 
 		if( m_hNPCSerial == *pDeleteSerial )
 		{
-			// NPC ¼­¹ö°¡ ´Ù¿îµÇ°Å³ª ÇÏ¿© °©ÀÚ±â NPC°¡ »ç¶óÁö´Â °æ¿ì
+			// NPC ì„œë²„ê°€ ë‹¤ìš´ë˜ê±°ë‚˜ í•˜ì—¬ ê°‘ìžê¸° NPCê°€ ì‚¬ë¼ì§€ëŠ” ê²½ìš°
 			GetDialogManager()->CloseDialog(DIALOG_DOGI);
 		}
 	}
 	else if( msg.Id == g_EventDirectMoveIcon )
 	{
-		// GUI¸¦ ¿­ ¶§¸¶´Ù Á¤º¸¸¦ °»½ÅÇÏ±â¿¡ ´ÝÇôÀÖ´Â »óÅÂ¿¡¼­´Â °»½ÅÇÏÁö ¾Ê´Â´Ù
+		// GUIë¥¼ ì—´ ë•Œë§ˆë‹¤ ì •ë³´ë¥¼ ê°±ì‹ í•˜ê¸°ì— ë‹«í˜€ìžˆëŠ” ìƒíƒœì—ì„œëŠ” ê°±ì‹ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		if( FALSE == GetDialogManager()->IsOpenDialog(DIALOG_DOGI) )
 			return;
 
@@ -862,7 +862,7 @@ VOID CDogiGui::HandleEvents( RWS::CMsg &msg )
 	}
 	else if( msg.Id == g_EventDojoNotify )
 	{
-		// GUI¸¦ ¿­ ¶§¸¶´Ù Á¤º¸¸¦ °»½ÅÇÏ±â¿¡ ´ÝÇôÀÖ´Â »óÅÂ¿¡¼­´Â °»½ÅÇÏÁö ¾Ê´Â´Ù
+		// GUIë¥¼ ì—´ ë•Œë§ˆë‹¤ ì •ë³´ë¥¼ ê°±ì‹ í•˜ê¸°ì— ë‹«í˜€ìžˆëŠ” ìƒíƒœì—ì„œëŠ” ê°±ì‹ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		if( FALSE == GetDialogManager()->IsOpenDialog(DIALOG_DOGI) )
 			return;
 
@@ -878,7 +878,7 @@ VOID CDogiGui::HandleEvents( RWS::CMsg &msg )
 	}
 	else if( msg.Id == g_EventSobInfoUpdate )
 	{
-		// GUI¸¦ ¿­ ¶§¸¶´Ù Á¤º¸¸¦ °»½ÅÇÏ±â¿¡ ´ÝÇôÀÖ´Â »óÅÂ¿¡¼­´Â °»½ÅÇÏÁö ¾Ê´Â´Ù
+		// GUIë¥¼ ì—´ ë•Œë§ˆë‹¤ ì •ë³´ë¥¼ ê°±ì‹ í•˜ê¸°ì— ë‹«í˜€ìžˆëŠ” ìƒíƒœì—ì„œëŠ” ê°±ì‹ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		if( FALSE == GetDialogManager()->IsOpenDialog(DIALOG_DOGI) )
 			return;
 
@@ -897,7 +897,7 @@ VOID CDogiGui::HandleEvents( RWS::CMsg &msg )
 		{
 			if( NULL == GetNtlSobManager()->GetSobObject(m_DogiSlot.GetSerial()) )
 			{
-				// µî·ÏÇß´ø µµº¹ÀÌ »ç¶óÁ³´Ù
+				// ë“±ë¡í–ˆë˜ ë„ë³µì´ ì‚¬ë¼ì¡Œë‹¤
 				CheckInfoWindow();
 				UnsetDogi();
 			}
@@ -911,7 +911,7 @@ VOID CDogiGui::HandleEvents( RWS::CMsg &msg )
 	}
 	else if( msg.Id == g_EventEnableItemIcon )
 	{
-		// GUI¸¦ ¿­ ¶§¸¶´Ù Á¤º¸¸¦ °»½ÅÇÏ±â¿¡ ´ÝÇôÀÖ´Â »óÅÂ¿¡¼­´Â °»½ÅÇÏÁö ¾Ê´Â´Ù
+		// GUIë¥¼ ì—´ ë•Œë§ˆë‹¤ ì •ë³´ë¥¼ ê°±ì‹ í•˜ê¸°ì— ë‹«í˜€ìžˆëŠ” ìƒíƒœì—ì„œëŠ” ê°±ì‹ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		if( false == GetDialogManager()->IsOpenDialog(DIALOG_DOGI) )
 			NTL_RETURNVOID();
 

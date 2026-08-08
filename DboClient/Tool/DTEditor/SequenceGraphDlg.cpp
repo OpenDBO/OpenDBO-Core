@@ -1,4 +1,4 @@
-// SequenceGraphDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// SequenceGraphDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -73,7 +73,7 @@ void CSequenceGraphDlg::CSequenceEditView::CalcSeqCtrl(void)
 		fSumTime += pCtrlPt[i].fTime;
 	}
 
-	// end point´Â ¹«Á¶°Ç Ãß°¡ÇÑ´Ù.
+	// end pointëŠ” ë¬´ì¡°ê±´ ì¶”ê°€í•œë‹¤.
 	pCtrlInfo = new SSeqCtrlInfo;
 	pCtrlInfo->nIdx = nPointNum;
 	pCtrlInfo->pt = GetSeqPosition(pCtrlInfo->nIdx, fSumTime);
@@ -229,7 +229,7 @@ void CSequenceGraphDlg::CSequenceEditView::OnGridPaint(CPaintDC& dc)
 	int nStartX = m_ptScrollOffset.x/GetRulerGrid();
 	int nStartY = abs(m_ptScrollOffset.y)/GetRulerGrid();
 
-	// °¡·Î
+	// ê°€ë¡œ
 	for(int i = 0; i < nGridCy; i++)
 	{
 		if( nStartY % 10)
@@ -243,7 +243,7 @@ void CSequenceGraphDlg::CSequenceEditView::OnGridPaint(CPaintDC& dc)
 		dc.LineTo(rt.right,rt.bottom - nOffsetY - i*GetRulerGrid());
 	}
 
-	// ¼¼·Î.
+	// ì„¸ë¡œ.
 
 	for(int i = 0; i < nGridCx; i++)
 	{
@@ -314,7 +314,7 @@ void CSequenceGraphDlg::CSequenceEditView::OnPaneMove(int nDeltaX, int nDeltaY)
 
 void CSequenceGraphDlg::CSequenceEditView::OnPropPointMove(CPoint point, CNtlDTSpline *pDTSpilne)
 {
-	// position ±¸ÇÏ±â.
+	// position êµ¬í•˜ê¸°.
 	CPoint ptPrev, ptNext;
 
 	if(m_pPrevCtrlSel == NULL)
@@ -365,7 +365,7 @@ void CSequenceGraphDlg::CSequenceEditView::OnPropPointMove(CPoint point, CNtlDTS
 
 		pDTSpilne->ChangeControlPointTime(nSx, nEx, fTime);
 	}
-	else // ¸Ç³¡Á¡ÀÏ °æ¿ì.
+	else // ë§¨ëì ì¼ ê²½ìš°.
 	{
 		if(m_pPrevCtrlSel == NULL)
 		{
@@ -387,7 +387,7 @@ void CSequenceGraphDlg::CSequenceEditView::OnPropPointMove(CPoint point, CNtlDTS
 		pDTSpilne->ChangeControlPointTime(fEndTime);
 	}
 	
-	// graphic À§Ä¡ ´Ù½Ã °è»ê.
+	// graphic ìœ„ì¹˜ ë‹¤ì‹œ ê³„ì‚°.
 	fSumTime = pDTSpilne->GetSumPointTime(0, m_pCurrCtrlSel->nIdx);
 	CPoint ptNewPosition = GetSeqPosition(m_pCurrCtrlSel->nIdx, fSumTime);
 	m_pCurrCtrlSel->pt.y = ptNewPosition.y;
@@ -404,8 +404,8 @@ void CSequenceGraphDlg::CSequenceEditView::OnProPointUpdate(void)
 void CSequenceGraphDlg::CSequenceEditView::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
-	// ±×¸®±â ¸Ş½ÃÁö¿¡ ´ëÇØ¼­´Â CStatic::OnPaint()À»(¸¦) È£ÃâÇÏÁö ¸¶½Ê½Ã¿À.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
+	// ê·¸ë¦¬ê¸° ë©”ì‹œì§€ì— ëŒ€í•´ì„œëŠ” CStatic::OnPaint()ì„(ë¥¼) í˜¸ì¶œí•˜ì§€ ë§ˆì‹­ì‹œì˜¤.
 
 	dc.SaveDC();
 
@@ -426,7 +426,7 @@ void CSequenceGraphDlg::CSequenceEditView::OnSize(UINT nType, int cx, int cy)
 {
 	CStatic::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	OnProPointUpdate();
 }
@@ -436,7 +436,7 @@ int CSequenceGraphDlg::CSequenceEditView::OnCreate(LPCREATESTRUCT lpCreateStruct
 	if (CStatic::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// TODO:  ¿©±â¿¡ Æ¯¼öÈ­µÈ ÀÛ¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì‘ì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	m_pPrevCtrlSel	= NULL;
 	m_pNextCtrlSel	= NULL;
@@ -455,7 +455,7 @@ void CSequenceGraphDlg::CSequenceEditView::OnDestroy()
 {
 	CStatic::OnDestroy();
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	DeleteSeqCtrl();
 
@@ -464,7 +464,7 @@ void CSequenceGraphDlg::CSequenceEditView::OnDestroy()
 	m_penPropPoint.DeleteObject();
 }
 
-// CSequenceGraphDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CSequenceGraphDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNAMIC(CSequenceGraphDlg, CDialog)
 
@@ -657,7 +657,7 @@ BEGIN_MESSAGE_MAP(CSequenceGraphDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CSequenceGraphDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CSequenceGraphDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 void CSequenceGraphDlg::OnLButtonDown(UINT nFlags, CPoint point)
 {
@@ -682,7 +682,7 @@ void CSequenceGraphDlg::OnLButtonDown(UINT nFlags, CPoint point)
 	}
 	
 	
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	CDialog::OnLButtonDown(nFlags, point);
 }
@@ -703,7 +703,7 @@ void CSequenceGraphDlg::OnLButtonUp(UINT nFlags, CPoint point)
 	m_bSelPoint		= FALSE;
 	m_bWndZoomInOut = FALSE;
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	CDialog::OnLButtonUp(nFlags, point);
 }
@@ -717,7 +717,7 @@ void CSequenceGraphDlg::OnRButtonDown(UINT nFlags, CPoint point)
 		SetCapture();
 	}
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	CDialog::OnRButtonDown(nFlags, point);
 }
@@ -729,7 +729,7 @@ void CSequenceGraphDlg::OnRButtonUp(UINT nFlags, CPoint point)
 
 	m_bPanMove = FALSE;
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	CDialog::OnRButtonUp(nFlags, point);
 }
@@ -755,7 +755,7 @@ void CSequenceGraphDlg::OnMouseMove(UINT nFlags, CPoint point)
 		SSeqCtrlInfo *pPrevCtrlSel = m_SeqEditView.GetPrevSeqCtrl();
 		SSeqCtrlInfo *pCurrCtrlSel = m_SeqEditView.GetCurrSeqCtrl();
 		SSeqCtrlInfo *pNextCtrlSel = m_SeqEditView.GetNextSeqCtrl();
-		// position ±¸ÇÏ±â.
+		// position êµ¬í•˜ê¸°.
 		CPoint ptPrev, ptNext;
 
 		if(pPrevCtrlSel == NULL)
@@ -805,7 +805,7 @@ void CSequenceGraphDlg::OnMouseMove(UINT nFlags, CPoint point)
 
 			m_pDTSpilne->ChangeControlPointTime(nSx, nEx, fTime);
 		}
-		else // ¸Ç³¡Á¡ÀÏ °æ¿ì.
+		else // ë§¨ëì ì¼ ê²½ìš°.
 		{
 			if(pPrevCtrlSel == NULL)
 			{
@@ -827,7 +827,7 @@ void CSequenceGraphDlg::OnMouseMove(UINT nFlags, CPoint point)
 
 		CalcRulerTime();
 		
-		// graphic À§Ä¡ ´Ù½Ã °è»ê.
+		// graphic ìœ„ì¹˜ ë‹¤ì‹œ ê³„ì‚°.
 		pCurrCtrlSel->pt.y = point.y;
 		pCurrCtrlSel->rt.SetRect(pCurrCtrlSel->pt.x-SEQ_RECT_OFFSET, pCurrCtrlSel->pt.y-SEQ_RECT_OFFSET, 
 								pCurrCtrlSel->pt.x+SEQ_RECT_OFFSET, pCurrCtrlSel->pt.y+SEQ_RECT_OFFSET);
@@ -879,7 +879,7 @@ void CSequenceGraphDlg::OnMouseMove(UINT nFlags, CPoint point)
 	{
 		if(m_rtSeqEdit.PtInRect(ptViewPoint))
 		{
-			// Á¤º¸ À©µµ¿ì.
+			// ì •ë³´ ìœˆë„ìš°.
 			SSeqCtrlInfo *pSeqCtrl = m_SeqEditView.GetSeqCtrl(ptViewPoint);
 			if(pSeqCtrl)
 			{
@@ -899,7 +899,7 @@ void CSequenceGraphDlg::OnMouseMove(UINT nFlags, CPoint point)
 		}
 	}
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº»°ªÀ» È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ê°’ì„ í˜¸ì¶œí•©ë‹ˆë‹¤.
 
 	CDialog::OnMouseMove(nFlags, point);
 }
@@ -908,7 +908,7 @@ BOOL CSequenceGraphDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	m_bSelPoint		= FALSE;
 	m_bWndZoomInOut = FALSE;
@@ -932,14 +932,14 @@ BOOL CSequenceGraphDlg::OnInitDialog()
 	m_penRuler.CreatePen(PS_SOLID, 0, RGB(100, 100, 255));
 	
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CSequenceGraphDlg::OnSize(UINT nType, int cx, int cy)
 {
 	CDialog::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	if(m_SeqEditView.GetSafeHwnd())
 	{
@@ -954,14 +954,14 @@ void CSequenceGraphDlg::OnShowWindow(BOOL bShow, UINT nStatus)
 {
 	CDialog::OnShowWindow(bShow, nStatus);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 void CSequenceGraphDlg::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
-	// ±×¸®±â ¸Ş½ÃÁö¿¡ ´ëÇØ¼­´Â CDialog::OnPaint()À»(¸¦) È£ÃâÇÏÁö ¸¶½Ê½Ã¿À.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
+	// ê·¸ë¦¬ê¸° ë©”ì‹œì§€ì— ëŒ€í•´ì„œëŠ” CDialog::OnPaint()ì„(ë¥¼) í˜¸ì¶œí•˜ì§€ ë§ˆì‹­ì‹œì˜¤.
 
 	dc.SaveDC();
 
@@ -976,7 +976,7 @@ void CSequenceGraphDlg::OnDestroy()
 {
 	CDialog::OnDestroy();
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	m_penRuler.DeleteObject();
 }

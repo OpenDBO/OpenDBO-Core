@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: LittleQuestContainer.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 2. 20
 * Abstract		: 
 *****************************************************************************
-* Desc			: Æ¯Á¤ Å¸ÀÔÀÇ ÀÎ½ºÅÏ½º Äù½ºÆ® ÄÁÅ×ÀÌ³Ê
+* Desc			: íŠ¹ì • íƒ€ì…ì˜ ì¸ìŠ¤í„´ìŠ¤ í€˜ìŠ¤íŠ¸ ì»¨í…Œì´ë„ˆ
 *****************************************************************************/
 
 #pragma once
@@ -27,16 +27,16 @@
 
 class CLittleQuestContainer : public RWS::CEventHandler
 {
-#define dMAX_QUEST_AIM			4	///< Äù½ºÆ®´ç ÃÖ´ë ¸ñÇ¥ °¹¼ö
+#define dMAX_QUEST_AIM			4	///< í€˜ìŠ¤íŠ¸ë‹¹ ìµœëŒ€ ëª©í‘œ ê°¯ìˆ˜
 
 	struct sQuestData
 	{
 		sTS_KEY					sTSKey;				///< TSÅ°
-		RwUInt32				uiSortType;			///< Äù½ºÆ® Å¸ÀÔ
-		RwUInt32				uiQuestTitle;		///< Äù½ºÆ® Á¦¸ñ
-		eSTOC_EVT_DATA_TYPE		eEvtInfoType;		///< ¼­¹ö ÀÌº¥Æ® Á¤º¸ - µ¥ÀÌÅÍ Å¸ÀÔ
-		uSTOC_EVT_DATA			uEvtInfoData;		///< ¼­¹ö ÀÌº¥Æ® Á¤º¸ - µ¥ÀÌÅÍ
-		RwUInt32				uiTimeLimit;		///< Å¸ÀÓ Á¦ÇÑ Á¤º¸
+		RwUInt32				uiSortType;			///< í€˜ìŠ¤íŠ¸ íƒ€ì…
+		RwUInt32				uiQuestTitle;		///< í€˜ìŠ¤íŠ¸ ì œëª©
+		eSTOC_EVT_DATA_TYPE		eEvtInfoType;		///< ì„œë²„ ì´ë²¤íŠ¸ ì •ë³´ - ë°ì´í„° íƒ€ì…
+		uSTOC_EVT_DATA			uEvtInfoData;		///< ì„œë²„ ì´ë²¤íŠ¸ ì •ë³´ - ë°ì´í„°
+		RwUInt32				uiTimeLimit;		///< íƒ€ì„ ì œí•œ ì •ë³´
 	};
 
 public:
@@ -62,10 +62,10 @@ protected:
 	VOID			DelData(NTL_TS_T_ID& tID);
 
 protected:		
-	gui::CStaticBox*	m_pQuestTitle;				///< Äù½ºÆ® Á¦¸ñ
-	gui::CStaticBox*	m_pQuestAim[dMAX_QUEST_AIM];///< Äù½ºÆ® ¸ñÇ¥
+	gui::CStaticBox*	m_pQuestTitle;				///< í€˜ìŠ¤íŠ¸ ì œëª©
+	gui::CStaticBox*	m_pQuestAim[dMAX_QUEST_AIM];///< í€˜ìŠ¤íŠ¸ ëª©í‘œ
 
 	RwUInt32			m_uiQuestType;
-	NTL_TS_T_ID			m_tID;						///< ÇöÀç º¸¿©Áö°í ÀÖ´Â Äù½ºÆ® ID
+	NTL_TS_T_ID			m_tID;						///< í˜„ì¬ ë³´ì—¬ì§€ê³  ìˆëŠ” í€˜ìŠ¤íŠ¸ ID
 	LIST_QUEST			m_listQuestData;
 };

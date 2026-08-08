@@ -44,7 +44,7 @@ RwBool CNtlBehaviorCharIdlePattern::IsVaildIncrementPattern(void)
 
 void CNtlBehaviorCharIdlePattern::IncrementTablePatternId(void)
 {
-	// move pattern id¸¦ Áõ°¡½ÃÅ²´Ù.
+	// move pattern idë¥¼ ì¦ê°€ì‹œí‚¨ë‹¤.
 	CNtlSobMonsterAttr *pSobMobAttr = reinterpret_cast<CNtlSobMonsterAttr*>( m_pActor->GetSobAttr() );
 	RwUInt8 byPatternId = pSobMobAttr->GetMovePatternId();
 
@@ -71,7 +71,7 @@ RwUInt8	CNtlBehaviorCharIdlePattern::GetTablePatternId(void)
 
 RwUInt8 CNtlBehaviorCharIdlePattern::GetCurrentUnitId(void)
 {
-	// move pattern id¸¦ Áõ°¡½ÃÅ²´Ù.
+	// move pattern idë¥¼ ì¦ê°€ì‹œí‚¨ë‹¤.
 	CNtlSobMonsterAttr *pSobMobAttr = reinterpret_cast<CNtlSobMonsterAttr*>( m_pActor->GetSobAttr() );
 	return pSobMobAttr->GetMovePatternId();
 }

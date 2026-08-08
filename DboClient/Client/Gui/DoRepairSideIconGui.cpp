@@ -85,7 +85,7 @@ VOID CDoRepairSideIconGui::OnSideViewClosed(VOID)
 
 VOID CDoRepairSideIconGui::HandleEvents( RWS::CMsg &msg )
 {
-	// Equip Á¤º¸
+	// Equip ì •ë³´
 	if( msg.Id == g_EventSobInfoUpdate )
 	{
 		SNtlEventSobInfoUpdate* pUpdate = reinterpret_cast<SNtlEventSobInfoUpdate*>( msg.pData );

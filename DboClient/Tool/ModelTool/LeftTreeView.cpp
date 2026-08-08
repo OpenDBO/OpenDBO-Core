@@ -65,7 +65,7 @@ void CLeftTreeView::OnInitialUpdate()
 	// TODO: Add your specialized code here and/or call the base class	
 
 
-	// Property Sheet¸¦ ÃÊ±âÈ­ ÇÑ´Ù.
+	// Property Sheetë¥¼ ì´ˆê¸°í™” í•œë‹¤.
     m_propSheet.AddPage(&m_pageClump);
 	m_propSheet.AddPage(&m_pagePC);
     m_propSheet.AddPage(&m_pageMob);

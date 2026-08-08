@@ -26,10 +26,10 @@ CNtlPLRefractionEffect::~CNtlPLRefractionEffect(void)
 
 void CNtlPLRefractionEffect::Init(RwIm2DVertex* pVertices, RwInt32 nVertexCount)
 {
-    //ÆÄµ¿¿ø¸®½ºÆ®ÀÇÃÊ±âÈ­    
+    //íŒŒë™ì›ë¦¬ìŠ¤íŠ¸ì˜ì´ˆê¸°í™”    
     m_listWaveElement.clear();
 
-    //Àü¿ªº¯¼öÃÊ±âÈ­    
+    //ì „ì—­ë³€ìˆ˜ì´ˆê¸°í™”    
     m_pVertices = pVertices;
     m_nVertexCnt = nVertexCount;    
 
@@ -70,12 +70,12 @@ void CNtlPLRefractionEffect::Update( RwReal fElapsedTime )
             v2PosVertex.x = m_pVertices[i].x;
             v2PosVertex.y = m_pVertices[i].y;            
             fDistance = CNtlMath::GetLength(pWave->v2Pos, v2PosVertex);                                
-            if(fDistance > pWave->fRound) // ÆÄµ¿¿øÀ¸·ÎºÎÅÍÀÇ °Å¸®°¡ ÀÓ°èÁ¡À» ³Ñ´Â´Ù¸é SkipÇÑ´Ù.
+            if(fDistance > pWave->fRound) // íŒŒë™ì›ìœ¼ë¡œë¶€í„°ì˜ ê±°ë¦¬ê°€ ì„ê³„ì ì„ ë„˜ëŠ”ë‹¤ë©´ Skipí•œë‹¤.
                 continue;
 
             fDistance *= 0.01f;
 
-            // °¡¿ì½º ÇÔ¼ö
+            // ê°€ìš°ìŠ¤ í•¨ìˆ˜
             fHeight = max(exp(-(fDistance - pWave->fDelta) * (fDistance - pWave->fDelta)),
                           exp(-(fDistance + pWave->fDelta) * (fDistance + pWave->fDelta)));            
             fHeight *= pWave->fMaxHeight * (pWave->fDelta / pWave->fRound + 1);            
@@ -87,7 +87,7 @@ void CNtlPLRefractionEffect::Update( RwReal fElapsedTime )
             m_pVertices[i].v = v2UV.y;
         }
 
-        // ÀÓ°è½Ã°£ÀÌ Áö³­ ÆÄµ¿Àº »èÁ¦ÇÑ´Ù.
+        // ì„ê³„ì‹œê°„ì´ ì§€ë‚œ íŒŒë™ì€ ì‚­ì œí•œë‹¤.
         if(pWave->fDelta > pWave->fRound)
         {
             it = m_listWaveElement.erase(it);

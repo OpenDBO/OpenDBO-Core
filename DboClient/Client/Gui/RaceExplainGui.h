@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: RaceExplainGui.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2006. 12. 8
 * Abstract		: 
 *****************************************************************************
-* Desc			: ·Îºñ¿¡¼­ Á¾Á·¿¡ ´ëÇÑ ¼³¸íÀ» º¸¿©ÁØ´Ù
+* Desc			: ë¡œë¹„ì—ì„œ ì¢…ì¡±ì— ëŒ€í•œ ì„¤ëª…ì„ ë³´ì—¬ì¤€ë‹¤
 *****************************************************************************/
 
 #pragma once
@@ -47,12 +47,12 @@ protected:
 protected:
 	gui::CSlot			m_slotPaint;
 
-	CWindowby3			m_Background;		///< ¹è°æ
+	CWindowby3			m_Background;		///< ë°°ê²½
 
-	CSurfaceGui			m_srtRaceNameBack;	///< Á¾Á· ÀÌ¸§ ¹è°æ
+	CSurfaceGui			m_srtRaceNameBack;	///< ì¢…ì¡± ì´ë¦„ ë°°ê²½
 
 	gui::CStaticBox*	m_pTitleStatic;
 
-	gui::CStaticBox*	m_pRaceName;		///< Á¾Á· ÀÌ¸§
-	gui::CHtmlBox*		m_pExplainHtml;		///< Á¾Á· ¼³¸í
+	gui::CStaticBox*	m_pRaceName;		///< ì¢…ì¡± ì´ë¦„
+	gui::CHtmlBox*		m_pExplainHtml;		///< ì¢…ì¡± ì„¤ëª…
 };

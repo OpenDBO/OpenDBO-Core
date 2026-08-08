@@ -23,7 +23,7 @@
  */
 
 #define RWMATRIXALIGNMENT(_mat) \
-   (! (((rwMATRIXALIGNMENT)-1) & ((RwUInt32)(_mat))))
+   (! (((rwMATRIXALIGNMENT)-1) & ((uintptr_t)(_mat))))
 
 #if (defined(RWMATRIXMONITOR))
 # if (defined(_MSC_VER))

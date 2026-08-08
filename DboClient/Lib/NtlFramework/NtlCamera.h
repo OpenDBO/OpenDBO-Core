@@ -2,7 +2,7 @@
  *
  * File			: NTLCamera.h
  * Author		: HongHoDong
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2005. 7. 14	
  * Abstract		: NTl Camera
  *****************************************************************************
@@ -20,7 +20,7 @@
 
 /**
  * \ingroup Toolkit
- * Renderware Camera Wrappler Class ¿Ã¥Ÿ.
+ * Renderware Camera Wrappler Class Ïù¥Îã§.
  *
  *
  */
@@ -47,13 +47,13 @@ public:
 						      RwReal fNearClipPlane = 100.f, 
 						      RwReal fFarClipPlane = 50000.f);
 	
-	virtual void SetCameraSize(RwRect* rect);												///< »≠∏È Size∏¶ ∫Ø«ﬂ¿ª ∞ÊøÏ »£√‚µ«¥¬ «‘ºˆ(OnResize)															
+	virtual void SetCameraSize(RwRect* rect);												///< ÌôîÎ©¥ SizeÎ•º Î≥ÄÌñàÏùÑ Í≤ΩÏö∞ Ìò∏Ï∂úÎêòÎäî Ìï®Ïàò(OnResize)															
 	
-	void SetCameraResize(RwCamera* pCamera, RwRect* rect);									///< »≠∏È Size∏¶ ∫Ø«ﬂ¿ª ∞ÊøÏ Ω«¡¶ √≥∏Æ∏¶ «œ¥¬ «‘ºˆ
+	void SetCameraResize(RwCamera* pCamera, RwRect* rect);									///< ÌôîÎ©¥ SizeÎ•º Î≥ÄÌñàÏùÑ Í≤ΩÏö∞ Ïã§Ï†ú Ï≤òÎ¶¨Î•º ÌïòÎäî Ìï®Ïàò
 	
 	virtual void Destroy();
 	void SetCalcFov(RwReal fFov);			
-																							///< Fov ¿˚øÎ¿ª «œ¥¬ «‘ºˆ
+																							///< Fov Ï†ÅÏö©ÏùÑ ÌïòÎäî Ìï®Ïàò
 	virtual RwCamera*	CameraClear(RwRGBA *rgba, RwInt32 uiClearMode);
 	virtual void		CameraShowRaster(HWND hWnd, RwUInt32 uiFlags);
 
@@ -65,9 +65,9 @@ public:
 
 	virtual void UpdatePostEffectFilter(void) {}
 	virtual void UpdateHeatHaze(RwReal fElapsedTime) {}										
-    virtual void UpdateMotionBlur(RwReal fElapsedTime) {}									///< ∏º« ∫Ì∑Ø ≈ÿΩ∫√ƒ∏¶ ∞ªΩ≈«—¥Ÿ.
-    virtual void SetEnableBlur(RwBool bEnable, RwReal fFadeTime = 0.0f) {}					///< ∏º« ∫Ì∑Ø ¿˚øÎ ¿Øπ´∏¶ º≥¡§«—¥Ÿ.
-    virtual RwBool GetEnableBlur() {return FALSE;}											///< ∏º« ∫Ì∑Ø ¿˚øÎ ¿Øπ´∏¶ π›»Ø«—¥Ÿ.
+    virtual void UpdateMotionBlur(RwReal fElapsedTime) {}									///< Î™®ÏÖò Î∏îÎü¨ ÌÖçÏä§Ï≥êÎ•º Í∞±Ïã†ÌïúÎã§.
+    virtual void SetEnableBlur(RwBool bEnable, RwReal fFadeTime = 0.0f) {}					///< Î™®ÏÖò Î∏îÎü¨ Ï†ÅÏö© Ïú†Î¨¥Î•º ÏÑ§Ï†ïÌïúÎã§.
+    virtual RwBool GetEnableBlur() {return FALSE;}											///< Î™®ÏÖò Î∏îÎü¨ Ï†ÅÏö© Ïú†Î¨¥Î•º Î∞òÌôòÌïúÎã§.
 
 	inline RwCamera* GetCamera()									{ return m_pCamera; }
 	inline void SetCamera(RwCamera* pCamera)						{ m_pCamera = pCamera; }
@@ -75,13 +75,13 @@ public:
 	virtual RwCamera* GetMainCamera()								{ return m_pCamera; }
 
 	
-	inline RwReal	GetNearPlane()									{ NTL_ASSERTE(m_pCamera != NULL) return m_pCamera->nearPlane; }				///< Near Plane∏¶ æÚ¥¬¥Ÿ.
-	inline RwReal	GetFarPlane()									{ NTL_ASSERTE(m_pCamera != NULL) return m_pCamera->farPlane; }				///< Far Plane∏¶ æÚ¥¬¥Ÿ.
+	inline RwReal	GetNearPlane()									{ NTL_ASSERTE(m_pCamera != NULL) return m_pCamera->nearPlane; }				///< Near PlaneÎ•º ÏñªÎäîÎã§.
+	inline RwReal	GetFarPlane()									{ NTL_ASSERTE(m_pCamera != NULL) return m_pCamera->farPlane; }				///< Far PlaneÎ•º ÏñªÎäîÎã§.
 
-	inline void		SetFov(RwReal fFov)								{ m_fFov = fFov; m_fViewWindow = RwTan(NTL_DEG2RAD(fFov * 0.5f)); }		///< Camera¿« Fov∏¶ º≥¡§«—¥Ÿ.
+	inline void		SetFov(RwReal fFov)								{ m_fFov = fFov; m_fViewWindow = RwTan(NTL_DEG2RAD(fFov * 0.5f)); }		///< CameraÏùò FovÎ•º ÏÑ§Ï†ïÌïúÎã§.
 	inline RwReal	GetFov()										{ return m_fFov; }				
 
-    void     SetProjection(RwCameraProjection rwCameraProjection);  ///< ƒ´∏ﬁ∂Û¿« «¡∑Œ¡ßº«¿ª º≥¡§«—¥Ÿ.
+    void     SetProjection(RwCameraProjection rwCameraProjection);  ///< Ïπ¥Î©îÎùºÏùò ÌîÑÎ°úÏ†ùÏÖòÏùÑ ÏÑ§Ï†ïÌïúÎã§.
 };
 
 RwFrustumTestResult RpNtlCameraFrustumTestSphere(const RwCamera* pCamera, const RwSphere* pSphere, RwReal* pfUserFarDist);

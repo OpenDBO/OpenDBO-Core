@@ -524,7 +524,7 @@ void CPaletteNMProp::OnBnClickedExportNmp()
 			}
 		}	
 
-		// 09.08.10 ±×·¡ÇÈÆÀ ¿äÃ»À¸·Î È­ÀÏ¸í º¯°æ.
+		// 09.08.10 ê·¸ë˜í”½íŒ€ ìš”ì²­ìœ¼ë¡œ í™”ì¼ëª… ë³€ê²½.
 		sprintf_s(IdxPropName, "Property%.2d_%s.png", IdxProp, strWorldProjNameOnly.GetBuffer());
 		//sprintf_s(IdxPropName, "Property0%d_Exported_%s.png", IdxProp, CurPropName.GetBuffer(0));
 

@@ -12,7 +12,7 @@ typedef std::list<CNtlSobItem*>	ListSobItem;
 
 /**
  * \ingroup NtlSimulation
- * \brief ¿ë½Å ¼ÒÈ¯¹× µå·¡°ïº¼ º¸»ó »óÅÂ¸¦ Á¦¾îÇÏ´Â ÄÁÆ®·Ñ·¯
+ * \brief ìš©ì‹  ì†Œí™˜ë° ë“œë˜ê³¤ë³¼ ë³´ìƒ ìƒíƒœë¥¼ ì œì–´í•˜ëŠ” ì»¨íŠ¸ë¡¤ëŸ¬
  * \date 2007-06-14
  * \author agebreak
  */
@@ -22,36 +22,36 @@ public:
 	CNtlWorldConceptDBC(void);
 	~CNtlWorldConceptDBC(void);
 
-	virtual void		Update(RwReal fElapsedTime);				///< °¢ ÄÁ¼Á¿¡ ¸Â´Â ³»¿ëµéÀÇ UpdateÃ³¸® ÇÔ¼ö
-	virtual RwBool		IsEnableAction(EAvatarAction eAction);		///< AvatarÀÇ ActionÀÌ ÇöÀç Ã³¸® °¡´ÉÇÑÁö¸¦ °¢ ÄÁ¼Á¿¡ µû¶ó ÆÇº°ÇÑ´Ù.
-	virtual void		ChangeState(RwInt32 iState);				///< State »óÅÂ¸¦ º¯°æÇÑ´Ù.	
+	virtual void		Update(RwReal fElapsedTime);				///< ê° ì»¨ì…‰ì— ë§ëŠ” ë‚´ìš©ë“¤ì˜ Updateì²˜ë¦¬ í•¨ìˆ˜
+	virtual RwBool		IsEnableAction(EAvatarAction eAction);		///< Avatarì˜ Actionì´ í˜„ì¬ ì²˜ë¦¬ ê°€ëŠ¥í•œì§€ë¥¼ ê° ì»¨ì…‰ì— ë”°ë¼ íŒë³„í•œë‹¤.
+	virtual void		ChangeState(RwInt32 iState);				///< State ìƒíƒœë¥¼ ë³€ê²½í•œë‹¤.	
 
     // DragonBall List	
-	void				AddDragonBall(CNtlSobItem* pItem);			///< ¸®½ºÆ®¿¡ µå·¡°ïº¼ ¾ÆÀÌÅÛÀ» Ãß°¡ÇÑ´Ù.
-	void				RemoveDragonBall(CNtlSobItem* pItem);		///< ¸®½ºÆ®¿¡¼­ µå·¡°ïº¼ ¾ÆÀÌÅÛÀ» Á¦°ÅÇÑ´Ù.
+	void				AddDragonBall(CNtlSobItem* pItem);			///< ë¦¬ìŠ¤íŠ¸ì— ë“œë˜ê³¤ë³¼ ì•„ì´í…œì„ ì¶”ê°€í•œë‹¤.
+	void				RemoveDragonBall(CNtlSobItem* pItem);		///< ë¦¬ìŠ¤íŠ¸ì—ì„œ ë“œë˜ê³¤ë³¼ ì•„ì´í…œì„ ì œê±°í•œë‹¤.
 	ListSobItem*		GetDBList() {return &m_listDragonBall;}
 
     // Property
-    void				SetDBKind(eDRAGON_BALL_TYPE eDBKind) {m_eDragonBallKind = eDBKind;}	///< ÇöÀç ÁøÇàÁßÀÎ µå·¡°ïº¼ÀÇ Á¾·ù¸¦ ¼³Á¤ÇÑ´Ù.
-    eDRAGON_BALL_TYPE	GetDBKind() {return m_eDragonBallKind;}		                        ///< ÇöÀç ÁøÇàÁßÀÎ µå·¡°ïº¼ÀÇ Á¾·ù¸¦ ¹İÈ¯ÇÑ´Ù.			
+    void				SetDBKind(eDRAGON_BALL_TYPE eDBKind) {m_eDragonBallKind = eDBKind;}	///< í˜„ì¬ ì§„í–‰ì¤‘ì¸ ë“œë˜ê³¤ë³¼ì˜ ì¢…ë¥˜ë¥¼ ì„¤ì •í•œë‹¤.
+    eDRAGON_BALL_TYPE	GetDBKind() {return m_eDragonBallKind;}		                        ///< í˜„ì¬ ì§„í–‰ì¤‘ì¸ ë“œë˜ê³¤ë³¼ì˜ ì¢…ë¥˜ë¥¼ ë°˜í™˜í•œë‹¤.			
 
     void				SetAltarSerialID(RwUInt32 nSerialID) {m_uiAltarID = nSerialID;}
     RwUInt32			GetAltarSerialID() {return m_uiAltarID;}
 
-    void				ResetRemainTime();							///< ³²Àº Á¦ÇÑ½Ã°£À» ¼³Á¤ÇÑ´Ù.
-    RwUInt32			GetReaminTime();	                        ///< ³²Àº Á¦ÇÑ½Ã°£À» °¡Á®¿Â´Ù.
+    void				ResetRemainTime();							///< ë‚¨ì€ ì œí•œì‹œê°„ì„ ì„¤ì •í•œë‹¤.
+    RwUInt32			GetReaminTime();	                        ///< ë‚¨ì€ ì œí•œì‹œê°„ì„ ê°€ì ¸ì˜¨ë‹¤.
 
-    void                SetMyDragon(RwBool bMyDragon) {m_bMyDragon = bMyDragon;}    ///< ÀÚ½ÅÀÌ ¼ÒÈ¯ÇÑ ¿ë½ÅÀÎÁö¸¦ ¼³Á¤ÇÑ´Ù.
-    RwBool              IsMyDragon() {return m_bMyDragon;}                          ///< ÀÚ½Å¿ë ¼ÒÈ¯ÇÑ ¿ë½ÅÀÎÁö ¿©ºÎ¸¦ ¹İÈ¯ÇÑ´Ù.
+    void                SetMyDragon(RwBool bMyDragon) {m_bMyDragon = bMyDragon;}    ///< ìì‹ ì´ ì†Œí™˜í•œ ìš©ì‹ ì¸ì§€ë¥¼ ì„¤ì •í•œë‹¤.
+    RwBool              IsMyDragon() {return m_bMyDragon;}                          ///< ìì‹ ìš© ì†Œí™˜í•œ ìš©ì‹ ì¸ì§€ ì—¬ë¶€ë¥¼ ë°˜í™˜í•œë‹¤.
 
 protected:	
 
 protected:
-	RwUInt32				m_uiAltarID;							///< Á¦´ÜÀÇ Serial ID
-	eDRAGON_BALL_TYPE		m_eDragonBallKind;						///< ÇöÀç ÁøÇàÁßÀÎ µå·¡°ïº¼ ¿¬ÃâÀÇ Á¾·ù
-	RwUInt32				m_uiRemainTime;							///< ³²Àº Á¦ÇÑ½Ã°£
-	ListSobItem				m_listDragonBall;						///< µå·¡°ïº¼ ¾ÆÀÌÅÛµé
-    RwBool                  m_bMyDragon;                            ///< ÀÚ±â°¡ ¼ÒÈ¯ÇÑ ¿ë½ÅÀÎÁö¸¦ È®ÀÎÇÏ±â À§ÇÑ ÇÃ·¡±×
-    RwBool                  m_bUpdateRemainTime;                    ///< Á¦ÇÑ ½Ã°£ ¾÷µ¥ÀÌÆ® À¯¹« ÇÃ·¡±×
-    SOUND_HANDLE            m_hBGMHandle;                           ///< ¿ë½Å ³ª¿À´Â »ç¿îµåÀÇ ÇÚµé
+	RwUInt32				m_uiAltarID;							///< ì œë‹¨ì˜ Serial ID
+	eDRAGON_BALL_TYPE		m_eDragonBallKind;						///< í˜„ì¬ ì§„í–‰ì¤‘ì¸ ë“œë˜ê³¤ë³¼ ì—°ì¶œì˜ ì¢…ë¥˜
+	RwUInt32				m_uiRemainTime;							///< ë‚¨ì€ ì œí•œì‹œê°„
+	ListSobItem				m_listDragonBall;						///< ë“œë˜ê³¤ë³¼ ì•„ì´í…œë“¤
+    RwBool                  m_bMyDragon;                            ///< ìê¸°ê°€ ì†Œí™˜í•œ ìš©ì‹ ì¸ì§€ë¥¼ í™•ì¸í•˜ê¸° ìœ„í•œ í”Œë˜ê·¸
+    RwBool                  m_bUpdateRemainTime;                    ///< ì œí•œ ì‹œê°„ ì—…ë°ì´íŠ¸ ìœ ë¬´ í”Œë˜ê·¸
+    SOUND_HANDLE            m_hBGMHandle;                           ///< ìš©ì‹  ë‚˜ì˜¤ëŠ” ì‚¬ìš´ë“œì˜ í•¸ë“¤
 };

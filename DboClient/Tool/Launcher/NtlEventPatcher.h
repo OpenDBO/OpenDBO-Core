@@ -2,11 +2,11 @@
  *
  * File			: NtlEventPatcher.h
  * Author		: HongHoDong
- * Copyright	: (аж)NTL
+ * Copyright	: (Лё╪)NTL
  * Date			: 2007. 2. 6.
  * Abstract		: 
  *****************************************************************************
- * Desc         : Patch аъ ╧ъ╩Щ го╢б Event
+ * Desc         : Patch Л╓▒ К╟°Л┐² М∙≤К┼■ Event
  *
  *****************************************************************************/
 #pragma once

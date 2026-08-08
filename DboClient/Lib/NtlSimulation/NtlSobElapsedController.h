@@ -2,7 +2,7 @@
  *
  * File			: NtlSobElapsedController.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2006. 8. 23	
  * Abstract		: simulation object elapsed controller
  *****************************************************************************
@@ -22,8 +22,8 @@ class CNtlSobElapsedController
 public:
 
 	SERIAL_HANDLE m_hSerialId;		/** control simulation object serial */
-	RwReal m_fCurrTime;				/** «ˆ¿Á »Â∏• Ω√∞£ */ 
-	RwReal m_fLifeTime;				/** control Ω√∞£ */
+	RwReal m_fCurrTime;				/** ÌòÑÏû¨ ÌùêÎ•∏ ÏãúÍ∞Ñ */ 
+	RwReal m_fLifeTime;				/** control ÏãúÍ∞Ñ */
 	RwReal m_fWeightValue;			/** elapsed weight value */
 	
 	RwBool m_bFinish;

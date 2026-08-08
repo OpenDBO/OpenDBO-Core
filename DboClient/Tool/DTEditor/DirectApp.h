@@ -106,7 +106,7 @@ public:
 
 public:
 
-	int ActionMapKeyboardMove(unsigned int uiMoveFlags);
+	int ActionMapKeyboardMove(uintptr_t uiMoveFlags);
 };
 
 

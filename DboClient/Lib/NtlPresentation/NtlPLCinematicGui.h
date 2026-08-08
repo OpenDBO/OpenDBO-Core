@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // File: NtlPLCinematicGui.h
-// Desc: NtlPLCinematicGui. DTEditor¿¡¼­ÀÇ »ç¿ëÀ» À§ÇØ Client¿¡¼­ ÀÌÁÖÇØ ¿È.
+// Desc: NtlPLCinematicGui. DTEditorì—ì„œì˜ ì‚¬ìš©ì„ ìœ„í•´ Clientì—ì„œ ì´ì£¼í•´ ì˜´.
 //
 // 2007.12.21 Peessi@hitel.net   
 //
@@ -35,8 +35,8 @@ private:
 	//gui::CSlot	m_slotMovieEnd;
 
 	RwBool	m_bUseTime;
-	RwReal	m_fLifeTime;				// m_bUseTime : TrueÀÏ¶§ À¯È¿
-	RwReal	m_fFlashMovieTime;			// m_bUseTime : FalseÀÏ¶§ À¯È¿
+	RwReal	m_fLifeTime;				// m_bUseTime : Trueå ì‹¹ë°ì˜™ å ì™ì˜™íš¨
+	RwReal	m_fFlashMovieTime;			// m_bUseTime : Falseå ì‹¹ë°ì˜™ å ì™ì˜™íš¨
 	
 	RwReal	m_fBeginAlphaTime;
 	RwReal  m_fPlayTime;				
@@ -65,7 +65,7 @@ public:
 	virtual RwBool	Create(VOID);
 	virtual VOID	Destroy(VOID);	
 
-	virtual INT		StateUpdate( RwUInt32 uiElapsedTime );
+	virtual INT		StateUpdate( uintptr_t uiElapsedTime );
 
 	//! Event
 	virtual VOID	HandleEvents( RWS::CMsg& msg );		

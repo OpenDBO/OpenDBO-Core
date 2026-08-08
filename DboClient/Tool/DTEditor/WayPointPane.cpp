@@ -1,4 +1,4 @@
-// WayPoint.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// WayPoint.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -27,6 +27,6 @@ END_MESSAGE_MAP()
 
 
 
-// CWayPointPane ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CWayPointPane ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 

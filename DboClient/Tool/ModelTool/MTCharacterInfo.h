@@ -14,17 +14,17 @@ typedef std::map<RpMaterial*, RpAtomic*>::iterator      MATERIAL_ATOMIC_MAP_ITER
 
 #define MAX_NUM_BONES   128
 
-/// ∫ª¿« ¡§∫∏ ±∏¡∂√º
+/// Î≥∏Ïùò Ï†ïÎ≥¥ Íµ¨Ï°∞Ï≤¥
 typedef	struct _BoneMod
 {
-    RwReal	length;		///< ∫ª¿« ±Ê¿Ã
-    RwReal	width;		///< ∫ª¿« µŒ≤≤
-    RwV3d	angles;		///< ∫ª¿« ∞¢µµ
+    RwReal	length;		///< Î≥∏Ïùò Í∏∏Ïù¥
+    RwReal	width;		///< Î≥∏Ïùò ÎëêÍªò
+    RwV3d	angles;		///< Î≥∏Ïùò Í∞ÅÎèÑ
 }BoneMod;
 
 /**
  * \ingroup ModelTool
- * \brief Clump(ƒ≥∏Ø≈Õ) ∞¸∑√ ¡§∫∏∏¶ ∞¸∏Æ«œ¥¬ ≈¨∑°Ω∫ 
+ * \brief Clump(Ï∫êÎ¶≠ÌÑ∞) Í¥ÄÎ†® Ï†ïÎ≥¥Î•º Í¥ÄÎ¶¨ÌïòÎäî ÌÅ¥ÎûòÏä§ 
  * \date 2006-04-10
  * \author agebreak
  */
@@ -35,45 +35,45 @@ public:
 	virtual ~MTCharacterInfo(void);
 
 public:
-	RwBool		Create(RpClump* pClump);				         ///< ≈◊¿Ã∫Ì ≥ªøÎ¿ª ª˝º∫«—¥Ÿ.
-	void		Destroy();								         ///< ≥ªøÎ¿ª «ÿ¡¶«—¥Ÿ.
+	RwBool		Create(RpClump* pClump);				         ///< ÌÖåÏù¥Î∏î ÎÇ¥Ïö©ÏùÑ ÏÉùÏÑ±ÌïúÎã§.
+	void		Destroy();								         ///< ÎÇ¥Ïö©ÏùÑ Ìï¥Ï†úÌïúÎã§.
 
-	RwFrame*	GetFrameByName(RwChar* chFrameName);	         ///< ∆Ø¡§ Frame¿ª π›»Ø«—¥Ÿ.
-	RpMaterial* GetMaterialByName(RwChar* chMaterialName);       ///< ∆Ø¡§ Material¿ª π›»Ø«—¥Ÿ.
-	RpAtomic*	GetAtomicByName(RwChar* chAtomicName);	         ///< ∆Ø¡§ Atomic¿ª π›»Ø«—¥Ÿ.
-    RpAtomic*   GetAtomicByMaterial(RpMaterial* pMaterial);      ///< «ÿ¥Á Material¿ª ∞°¡ˆ∞Ì¿÷¥¬ Atomic¿ª π›»Ø«—¥Ÿ.
+	RwFrame*	GetFrameByName(RwChar* chFrameName);	         ///< ÌäπÏ†ï FrameÏùÑ Î∞òÌôòÌïúÎã§.
+	RpMaterial* GetMaterialByName(RwChar* chMaterialName);       ///< ÌäπÏ†ï MaterialÏùÑ Î∞òÌôòÌïúÎã§.
+	RpAtomic*	GetAtomicByName(RwChar* chAtomicName);	         ///< ÌäπÏ†ï AtomicÏùÑ Î∞òÌôòÌïúÎã§.
+    RpAtomic*   GetAtomicByMaterial(RpMaterial* pMaterial);      ///< Ìï¥Îãπ MaterialÏùÑ Í∞ÄÏßÄÍ≥†ÏûàÎäî AtomicÏùÑ Î∞òÌôòÌïúÎã§.
 
-    void        UpdateHeightWidth();                             ///< ≥Ù¿ÃøÕ ≥–¿Ã ¡§∫∏∏¶ æ˜µ•¿Ã∆Æ «—¥Ÿ.
+    void        UpdateHeightWidth();                             ///< ÎÜíÏù¥ÏôÄ ÎÑìÏù¥ Ï†ïÎ≥¥Î•º ÏóÖÎç∞Ïù¥Ìä∏ ÌïúÎã§.
 
-    // »≠∏Èø° «•Ω√«“ ¡§∫∏ ∞¸∑√
-    void        DisplayInfo(RtCharset* pCharSet);                ///< Clump ¡§∫∏∏¶ »≠∏ÈªÛø° «•Ω√«—¥Ÿ.
+    // ÌôîÎ©¥Ïóê ÌëúÏãúÌï† Ï†ïÎ≥¥ Í¥ÄÎ†®
+    void        DisplayInfo(RtCharset* pCharSet);                ///< Clump Ï†ïÎ≥¥Î•º ÌôîÎ©¥ÏÉÅÏóê ÌëúÏãúÌïúÎã§.
 
-	// CallBack «‘ºˆµÈ
-	static RpAtomic*	GetClumpAllAtomics(RpAtomic* pAtomic, void* pData);		///< Clumpø°º≠ ∏µÁ Atomic¿ª ∞°¡ÆøÕ º≥¡§«œ¥¬ ƒ›πÈ «‘ºˆ
-	static RwFrame*		GetChildFrame(RwFrame* pFrame, void* pData);			///< ∏µÁ ¿⁄Ωƒ Frame¿ª ∞°¡ÆøÕº≠ ∏ ø° º≥¡§«œ¥¬ ƒ›πÈ «‘ºˆ
-	static RpMaterial*	GetAllMaterials(RpMaterial* material, void* pData);     ///< ∏µÁ Material¿ª ∞°¡ÆøÕº≠ ∏ ø° º≥¡§«œ¥¬ ƒ›πÈ «‘ºˆ
+	// CallBack Ìï®ÏàòÎì§
+	static RpAtomic*	GetClumpAllAtomics(RpAtomic* pAtomic, void* pData);		///< ClumpÏóêÏÑú Î™®Îì† AtomicÏùÑ Í∞ÄÏ†∏ÏôÄ ÏÑ§Ï†ïÌïòÎäî ÏΩúÎ∞± Ìï®Ïàò
+	static RwFrame*		GetChildFrame(RwFrame* pFrame, void* pData);			///< Î™®Îì† ÏûêÏãù FrameÏùÑ Í∞ÄÏ†∏ÏôÄÏÑú ÎßµÏóê ÏÑ§Ï†ïÌïòÎäî ÏΩúÎ∞± Ìï®Ïàò
+	static RpMaterial*	GetAllMaterials(RpMaterial* material, void* pData);     ///< Î™®Îì† MaterialÏùÑ Í∞ÄÏ†∏ÏôÄÏÑú ÎßµÏóê ÏÑ§Ï†ïÌïòÎäî ÏΩúÎ∞± Ìï®Ïàò
 
 protected:
-	void		SetClumpInfo();							///< Clump ∞¸∑√ ¡§∫∏∏¶ Mapø° ºº∆√«—¥Ÿ.
+	void		SetClumpInfo();							///< Clump Í¥ÄÎ†® Ï†ïÎ≥¥Î•º MapÏóê ÏÑ∏ÌåÖÌïúÎã§.
 
 
 public:
-	FRAME_TABLE_MAP		m_mapFrameTable;				///< Frame ≈◊¿Ã∫Ì
-	MATERIAL_TABLE_MAP	m_mapMaterialtable;				///< Material ≈◊¿Ã∫Ì
-	ATOMIC_TABLE_MAP	m_mapAtomicTable;				///< Atomic ≈◊¿Ã∫Ì
-    MATERIAL_ATOMIC_MAP m_mapMaterialAtomicTable;       ///< Material - Atomic ≈◊¿Ã∫Ì
+	FRAME_TABLE_MAP		m_mapFrameTable;				///< Frame ÌÖåÏù¥Î∏î
+	MATERIAL_TABLE_MAP	m_mapMaterialtable;				///< Material ÌÖåÏù¥Î∏î
+	ATOMIC_TABLE_MAP	m_mapAtomicTable;				///< Atomic ÌÖåÏù¥Î∏î
+    MATERIAL_ATOMIC_MAP m_mapMaterialAtomicTable;       ///< Material - Atomic ÌÖåÏù¥Î∏î
 
-    static RpAtomic*    m_pTempAtomic;                  ///< Material - Atomic MAP¿ª ∏∏µÈ±‚ ¿ß«— ¿”Ω√ Atomic ∆˜¿Œ≈Õ
+    static RpAtomic*    m_pTempAtomic;                  ///< Material - Atomic MAPÏùÑ ÎßåÎì§Í∏∞ ÏúÑÌïú ÏûÑÏãú Atomic Ìè¨Ïù∏ÌÑ∞
 
 protected:
-	RpClump*			m_pTargetClump;					///< ¡§∫∏∏¶ ¿–æÓø√ Clump
+	RpClump*			m_pTargetClump;					///< Ï†ïÎ≥¥Î•º ÏùΩÏñ¥Ïò¨ Clump
 
-    // »≠∏Èø° «•Ω√«“ ¡§∫∏µÈ
-    static int          m_nTotalTriangels;              ///< ¿¸√º Triangle ∞≥ºˆ
-    static int          m_nTotalVertices;               ///< ¿¸√º Vertex ∞≥ºˆ
+    // ÌôîÎ©¥Ïóê ÌëúÏãúÌï† Ï†ïÎ≥¥Îì§
+    static int          m_nTotalTriangels;              ///< Ï†ÑÏ≤¥ Triangle Í∞úÏàò
+    static int          m_nTotalVertices;               ///< Ï†ÑÏ≤¥ Vertex Í∞úÏàò
 
-    RwReal              m_fClumpHeight;                 ///< Clump¿« ≥Ù¿Ã
-    RwReal              m_fClumpWidth;                  ///< Clump¿« ≥–¿Ã
+    RwReal              m_fClumpHeight;                 ///< ClumpÏùò ÎÜíÏù¥
+    RwReal              m_fClumpWidth;                  ///< ClumpÏùò ÎÑìÏù¥
 
     
 

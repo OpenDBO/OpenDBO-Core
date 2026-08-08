@@ -1,4 +1,4 @@
-// ResourceAttributeDlg.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// ResourceAttributeDlg.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -11,7 +11,7 @@
 #include "GUIResourceView.h"
 
 
-// CResourceAttributeDlg ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CResourceAttributeDlg ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_DYNCREATE(CResourceAttributeDlg, CDialog)
 CResourceAttributeDlg::CResourceAttributeDlg(CWnd* pParent /*=NULL*/)
@@ -36,13 +36,13 @@ BEGIN_MESSAGE_MAP(CResourceAttributeDlg, CDialog)
 END_MESSAGE_MAP()
 
 
-// CResourceAttributeDlg ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CResourceAttributeDlg ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 BOOL CResourceAttributeDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	// TODO:  ¿©±â¿¡ Ãß°¡ ÃÊ±âÈ­ ÀÛ¾÷À» Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— ì¶”ê°€ ì´ˆê¸°í™” ì‘ì—…ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 	DWORD dwStyle;
 	CRect rc;
 
@@ -71,14 +71,14 @@ BOOL CResourceAttributeDlg::OnInitDialog()
 	InitProperty();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// ¿¹¿Ü: OCX ¼Ó¼º ÆäÀÌÁö´Â FALSE¸¦ ¹İÈ¯ÇØ¾ß ÇÕ´Ï´Ù.
+	// ì˜ˆì™¸: OCX ì†ì„± í˜ì´ì§€ëŠ” FALSEë¥¼ ë°˜í™˜í•´ì•¼ í•©ë‹ˆë‹¤.
 }
 
 void CResourceAttributeDlg::OnSize(UINT nType, int cx, int cy)
 {
 	CDialog::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	if( m_bInitialized )
 	{
 		CWnd* pWindow = GetDlgItem( IDC_PROPERTY_STATIC );
@@ -157,7 +157,7 @@ void CResourceAttributeDlg::SetBlank()
 
 void CResourceAttributeDlg::OnBnClickedAddResourlist()
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	AddData();
 	AddCaptionToList();
 }
@@ -209,12 +209,12 @@ void CResourceAttributeDlg::FillResourceProperty( RESOURCEDATA* pResourceData )
 {
 	if( !pResourceData )
 	{
-		AfxMessageBox( "ÇØ´ç ¸®¼Ò½º°¡ ¾ø½À´Ï´Ù" );
+		AfxMessageBox( "í•´ë‹¹ ë¦¬ì†ŒìŠ¤ê°€ ì—†ìŠµë‹ˆë‹¤" );
 		g_pResourceView->LoadImage( CString( "" ), CString( "" ) );
 		return;
 	}
 
-	// ÇØ´çÇÏ´Â ±×¸² Ç¥½Ã.
+	// í•´ë‹¹í•˜ëŠ” ê·¸ë¦¼ í‘œì‹œ.
 	CString strFullPath = pResourceData->_strFileName;
 	if( !g_pResourceView->LoadImage( strFullPath, pResourceData->_strFileName ) )
 	{
@@ -226,12 +226,12 @@ void CResourceAttributeDlg::FillResourceProperty( RESOURCEDATA* pResourceData )
 
 			if( !g_pResourceView->LoadImage( strFullPath, pResourceData->_strFileName ) )
 			{
-				AfxMessageBox( "ÇØ´ç ÀÌ¹ÌÁö°¡ ¾ø½À´Ï´Ù" );
+				AfxMessageBox( "í•´ë‹¹ ì´ë¯¸ì§€ê°€ ì—†ìŠµë‹ˆë‹¤" );
 			}
 		}
 	}
 	
-	// µ¥ÀÌÅÍ Ç¥½Ã.
+	// ë°ì´í„° í‘œì‹œ.
 	CPropTreeItemEdit* pEdit = (CPropTreeItemEdit*)m_PropertyTree.FindItem( PROPERTY_RESOURCENAME );
 	pEdit->SetItemValue( (LPARAM)( (LPCTSTR)pResourceData->_strName ) );
 
@@ -254,7 +254,7 @@ void CResourceAttributeDlg::OnBnClickedFixResourcelist()
 
 	if( nFocusID < 1 )
 	{
-		AfxMessageBox( "¼öÁ¤ÇÒ ¾ÆÀÌÅÛÀ» Å¬¸¯ÇÏ¼¼¿ä" );
+		AfxMessageBox( "ìˆ˜ì •í•  ì•„ì´í…œì„ í´ë¦­í•˜ì„¸ìš”" );
 		return;
 	}
 
@@ -273,19 +273,19 @@ BOOL CResourceAttributeDlg::InputCheck( RESOURCEDATA* pResourceData, BOOL bFIX /
 {
 	if( pResourceData->_strName == CString( "" ) )
 	{
-		AfxMessageBox( "ÀÌ¸§À» ÀÔ·ÂÇØ¾ß ÇÕ´Ï´Ù" );
+		AfxMessageBox( "ì´ë¦„ì„ ì…ë ¥í•´ì•¼ í•©ë‹ˆë‹¤" );
 		return FALSE;
 	}
 
 	if( g_pDocument->GetDataManager().GetResourceData( pResourceData->_strName )  && !bFIX )
 	{
-		AfxMessageBox( "°°Àº ÀÌ¸§À» ÀÔ·ÂÇÒ ¼ö ¾ø½À´Ï´Ù" );
+		AfxMessageBox( "ê°™ì€ ì´ë¦„ì„ ì…ë ¥í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤" );
 		return FALSE;
 	}
 
 	if( pResourceData->_strFileName == CString( "" ) )
 	{
-		AfxMessageBox( "ÆÄÀÏÀÌ¸§À» ÀÔ·ÂÇØ¾ß ÇÕ´Ï´Ù" );
+		AfxMessageBox( "íŒŒì¼ì´ë¦„ì„ ì…ë ¥í•´ì•¼ í•©ë‹ˆë‹¤" );
 		return FALSE;
 	}
 

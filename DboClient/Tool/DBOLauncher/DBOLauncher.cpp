@@ -2,7 +2,7 @@
 *
 * File			: DBOLauncher.cpp
 * Author		: 
-* Copyright		: (¡÷) NTL
+* Copyright		: (Ï£º) NTL
 * Date			:
 * Abstract		: 
 *****************************************************************************
@@ -91,7 +91,7 @@ int CDBOLauncherApp::ExitInstance( void )
 {
 	int nExitCode = GetExitCode();
 
-	// Exit codeø° µ˚∏• µø¿€
+	// Exit codeÏóê Îî∞Î•∏ ÎèôÏûë
 	if ( eDL_EXIT_CODE_EXECUTE_COPY_LAUNCHER == nExitCode )
 	{
 		CopyFile( DL_LAUNCHER_CUR_EXE_FILE_NAME, DL_LAUNCHER_PATCH_EXE_FILE_NAME, FALSE );

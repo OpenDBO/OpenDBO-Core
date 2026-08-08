@@ -2,7 +2,7 @@
 //	File		:	Manipulator.h
 //	Desc		:	
 //	Begin		:	2005. 1.20
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -18,7 +18,7 @@
 
 /**
  * \ingroup Venus
- * \brief ¼±ÅÃµÈ ÀÌÆåÆ®µéÀÇ ÀÌµ¿,È¸Àü,Å©±âº¯È¯µîÀ» Ã³¸®ÇÏ´Â Å¬·¡½º
+ * \brief ì„ íƒëœ ì´í™íŠ¸ë“¤ì˜ ì´ë™,íšŒì „,í¬ê¸°ë³€í™˜ë“±ì„ ì²˜ë¦¬í•˜ëŠ” í´ë˜ìŠ¤
  * \date 2006-08-09
  * \author agebreak
  */
@@ -43,10 +43,10 @@ enum AXIS_TYPE
 
 	D3DXMATRIX			m_matWorld;
 
-	// Arrow Mesh ÀÇ À§Ä¡ ÁÂÇ¥
+	// Arrow Mesh ì˜ ìœ„ì¹˜ ì¢Œí‘œ
 	D3DXMATRIX			m_ArrowmatWorld[3];
 
-	// Render ÇÒ¶§ÀÇ À§Ä¡ Çà·Ä
+	// Render í• ë•Œì˜ ìœ„ì¹˜ í–‰ë ¬
 	D3DXMATRIX			m_matAxisWorld;
 	D3DXMATRIX			m_matViewWorld[3];
 

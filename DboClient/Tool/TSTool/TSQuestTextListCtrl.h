@@ -4,7 +4,7 @@
 #include "TSToolDefine.h"
 
 
-// CTSQuestTextListCtrl ºäÀÔ´Ï´Ù.
+// CTSQuestTextListCtrl ë·°ì…ë‹ˆë‹¤.
 
 class CTSQuestTextListCtrl : public CListCtrl
 {
@@ -18,7 +18,7 @@ public:
 	};
 
 public:
-	CTSQuestTextListCtrl();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CTSQuestTextListCtrl();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CTSQuestTextListCtrl();
 
 protected:

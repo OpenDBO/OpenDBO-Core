@@ -120,7 +120,7 @@ RwBool CDojoSideViewGui::Create()
 
 	m_pMessage = (gui::CStaticBox*)GetComponent("stbMessage");
 
-	// ¹è°æ
+	// ë°°ê²½
 	m_BackPanel.SetType(CWindowby3::WT_HORIZONTAL);
 	m_BackPanel.SetSurface(0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface("DojoSideIcon.srf", "srfBackgroundTop"));
 	m_BackPanel.SetSurface(1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface("DojoSideIcon.srf", "srfBackgroundCenter"));
@@ -175,12 +175,12 @@ VOID CDojoSideViewGui::Update(RwReal fElapsed)
 	{
 		if( DOJO_TEAM_SCRAMBLE_RESERV_OFFENCE == pGuildDojo->eDojoTeamState )
 		{
-			m_pMessage->SetText("Àá½Ã ÈÄ µµÀå ÀïÅ»ÀüÀÌ ½ÃÀÛµÉ ¿¹Á¤ÀÌ´Ï ÀüÅõ¸¦ ÁØºñÇØ ÁÖ¼¼¿ä");
+			m_pMessage->SetText("ì ì‹œ í›„ ë„ì¥ ìŸíƒˆì „ì´ ì‹œì‘ë  ì˜ˆì •ì´ë‹ˆ ì „íˆ¬ë¥¼ ì¤€ë¹„í•´ ì£¼ì„¸ìš”");
 		}
 		else if( DOJO_TEAM_SCRAMBLE_RESERV_DEFENCE == pGuildDojo->eDojoTeamState )
 		{
-			GetAlarmManager()->AlarmMessage(L"ÀïÅ»Àü ÁØºñ·Î ÀÎÇØ µµÀå ³» À¯ÆÄ¿øÀº Àá½Ã ÈÄ µµÀå ÀÔ±¸·Î °­Á¦ ÀÌµ¿µÇ¿À´Ï ÁØºñÇØ ÁÖ¼¼¿ä");
-			m_pMessage->SetText("ÀïÅ»Àü ÁØºñ¸¦ À§ÇØ Àá½Ã ÈÄ µµÀå ÀÔ±¸·Î °­Á¦ ÀÌµ¿µÇ¿À´Ï ÁØºñÇØ ÁÖ¼¼¿ä");
+			GetAlarmManager()->AlarmMessage(L"ìŸíƒˆì „ ì¤€ë¹„ë¡œ ì¸í•´ ë„ì¥ ë‚´ ìœ íŒŒì›ì€ ì ì‹œ í›„ ë„ì¥ ì…êµ¬ë¡œ ê°•ì œ ì´ë™ë˜ì˜¤ë‹ˆ ì¤€ë¹„í•´ ì£¼ì„¸ìš”");
+			m_pMessage->SetText("ìŸíƒˆì „ ì¤€ë¹„ë¥¼ ìœ„í•´ ì ì‹œ í›„ ë„ì¥ ì…êµ¬ë¡œ ê°•ì œ ì´ë™ë˜ì˜¤ë‹ˆ ì¤€ë¹„í•´ ì£¼ì„¸ìš”");
 		}
 
 		m_bShowTimerMessage[0] = false;
@@ -199,12 +199,12 @@ VOID CDojoSideViewGui::Update(RwReal fElapsed)
 	{
 		if( DOJO_TEAM_SCRAMBLE_RESERV_OFFENCE == pGuildDojo->eDojoTeamState )
 		{
-			m_pMessage->SetText("Àá½Ã ÈÄ µµÀå ÀïÅ»ÀüÀÌ ½ÃÀÛµÉ ¿¹Á¤ÀÌ´Ï ÀüÅõ¸¦ ÁØºñÇØ ÁÖ¼¼¿ä");
+			m_pMessage->SetText("ì ì‹œ í›„ ë„ì¥ ìŸíƒˆì „ì´ ì‹œì‘ë  ì˜ˆì •ì´ë‹ˆ ì „íˆ¬ë¥¼ ì¤€ë¹„í•´ ì£¼ì„¸ìš”");
 		}
 		else if( DOJO_TEAM_SCRAMBLE_RESERV_DEFENCE == pGuildDojo->eDojoTeamState )
 		{
-			GetAlarmManager()->AlarmMessage(L"ÀïÅ»ÀüÀÌ ÀÓ¹ÚÇÏ¿© 5ºĞ ÈÄ µµÀå ³» ¸ğµç À¯ÆÄ¿øÀº µµÀå ÀÔ±¸·Î ÀÌµ¿µË´Ï´Ù");
-			m_pMessage->SetText("ÀïÅ»Àü ÁØºñ¸¦ À§ÇØ Àá½Ã ÈÄ µµÀå ÀÔ±¸·Î °­Á¦ ÀÌµ¿µÇ¿À´Ï ÁØºñÇØ ÁÖ¼¼¿ä");
+			GetAlarmManager()->AlarmMessage(L"ìŸíƒˆì „ì´ ì„ë°•í•˜ì—¬ 5ë¶„ í›„ ë„ì¥ ë‚´ ëª¨ë“  ìœ íŒŒì›ì€ ë„ì¥ ì…êµ¬ë¡œ ì´ë™ë©ë‹ˆë‹¤");
+			m_pMessage->SetText("ìŸíƒˆì „ ì¤€ë¹„ë¥¼ ìœ„í•´ ì ì‹œ í›„ ë„ì¥ ì…êµ¬ë¡œ ê°•ì œ ì´ë™ë˜ì˜¤ë‹ˆ ì¤€ë¹„í•´ ì£¼ì„¸ìš”");
 		}
 
 		m_bShowTimerMessage[1] = false;
@@ -223,12 +223,12 @@ VOID CDojoSideViewGui::Update(RwReal fElapsed)
 	{
 		if( DOJO_TEAM_SCRAMBLE_RESERV_OFFENCE == pGuildDojo->eDojoTeamState )
 		{
-			m_pMessage->SetText("Àá½Ã ÈÄ µµÀå ÀïÅ»ÀüÀÌ ½ÃÀÛµÉ ¿¹Á¤ÀÌ´Ï ÀüÅõ¸¦ ÁØºñÇØ ÁÖ¼¼¿ä");
+			m_pMessage->SetText("ì ì‹œ í›„ ë„ì¥ ìŸíƒˆì „ì´ ì‹œì‘ë  ì˜ˆì •ì´ë‹ˆ ì „íˆ¬ë¥¼ ì¤€ë¹„í•´ ì£¼ì„¸ìš”");
 		}
 		else if( DOJO_TEAM_SCRAMBLE_RESERV_DEFENCE == pGuildDojo->eDojoTeamState )
 		{
-			GetAlarmManager()->AlarmMessage(L"ÀïÅ»ÀüÀÌ ÀÓ¹ÚÇÏ¿© 3ºĞ ÈÄ µµÀå ³» ¸ğµç À¯ÆÄ¿øÀº µµÀå ÀÔ±¸·Î ÀÌµ¿µË´Ï´Ù");
-			m_pMessage->SetText("ÀïÅ»Àü ÁØºñ¸¦ À§ÇØ Àá½Ã ÈÄ µµÀå ÀÔ±¸·Î °­Á¦ ÀÌµ¿µÇ¿À´Ï ÁØºñÇØ ÁÖ¼¼¿ä");
+			GetAlarmManager()->AlarmMessage(L"ìŸíƒˆì „ì´ ì„ë°•í•˜ì—¬ 3ë¶„ í›„ ë„ì¥ ë‚´ ëª¨ë“  ìœ íŒŒì›ì€ ë„ì¥ ì…êµ¬ë¡œ ì´ë™ë©ë‹ˆë‹¤");
+			m_pMessage->SetText("ìŸíƒˆì „ ì¤€ë¹„ë¥¼ ìœ„í•´ ì ì‹œ í›„ ë„ì¥ ì…êµ¬ë¡œ ê°•ì œ ì´ë™ë˜ì˜¤ë‹ˆ ì¤€ë¹„í•´ ì£¼ì„¸ìš”");
 		}
 
 		m_bShowTimerMessage[2] = false;
@@ -247,12 +247,12 @@ VOID CDojoSideViewGui::Update(RwReal fElapsed)
 	{
 		if( DOJO_TEAM_SCRAMBLE_RESERV_OFFENCE == pGuildDojo->eDojoTeamState )
 		{
-			m_pMessage->SetText("Àá½Ã ÈÄ µµÀå ÀïÅ»ÀüÀÌ ½ÃÀÛµÉ ¿¹Á¤ÀÌ´Ï ÀüÅõ¸¦ ÁØºñÇØ ÁÖ¼¼¿ä");
+			m_pMessage->SetText("ì ì‹œ í›„ ë„ì¥ ìŸíƒˆì „ì´ ì‹œì‘ë  ì˜ˆì •ì´ë‹ˆ ì „íˆ¬ë¥¼ ì¤€ë¹„í•´ ì£¼ì„¸ìš”");
 		}
 		else if( DOJO_TEAM_SCRAMBLE_RESERV_DEFENCE == pGuildDojo->eDojoTeamState )
 		{
-			GetAlarmManager()->AlarmMessage(L"ÀïÅ»ÀüÀÌ ÀÓ¹ÚÇÏ¿© 1ºĞ ÈÄ µµÀå ³» ¸ğµç À¯ÆÄ¿øÀº µµÀå ÀÔ±¸·Î ÀÌµ¿µË´Ï´Ù");
-			m_pMessage->SetText("ÀïÅ»Àü ÁØºñ¸¦ À§ÇØ Àá½Ã ÈÄ µµÀå ÀÔ±¸·Î °­Á¦ ÀÌµ¿µÇ¿À´Ï ÁØºñÇØ ÁÖ¼¼¿ä");
+			GetAlarmManager()->AlarmMessage(L"ìŸíƒˆì „ì´ ì„ë°•í•˜ì—¬ 1ë¶„ í›„ ë„ì¥ ë‚´ ëª¨ë“  ìœ íŒŒì›ì€ ë„ì¥ ì…êµ¬ë¡œ ì´ë™ë©ë‹ˆë‹¤");
+			m_pMessage->SetText("ìŸíƒˆì „ ì¤€ë¹„ë¥¼ ìœ„í•´ ì ì‹œ í›„ ë„ì¥ ì…êµ¬ë¡œ ê°•ì œ ì´ë™ë˜ì˜¤ë‹ˆ ì¤€ë¹„í•´ ì£¼ì„¸ìš”");
 		}
 
 		m_bShowTimerMessage[3] = false;
@@ -271,12 +271,12 @@ VOID CDojoSideViewGui::Update(RwReal fElapsed)
 	{
 		if( DOJO_TEAM_SCRAMBLE_RESERV_OFFENCE == pGuildDojo->eDojoTeamState )
 		{
-			m_pMessage->SetText("Àá½Ã ÈÄ µµÀå ÀïÅ»ÀüÀÌ ½ÃÀÛµÉ ¿¹Á¤ÀÌ´Ï ÀüÅõ¸¦ ÁØºñÇØ ÁÖ¼¼¿ä");
+			m_pMessage->SetText("ì ì‹œ í›„ ë„ì¥ ìŸíƒˆì „ì´ ì‹œì‘ë  ì˜ˆì •ì´ë‹ˆ ì „íˆ¬ë¥¼ ì¤€ë¹„í•´ ì£¼ì„¸ìš”");
 		}
 		else if( DOJO_TEAM_SCRAMBLE_RESERV_DEFENCE == pGuildDojo->eDojoTeamState )
 		{
-			GetAlarmManager()->AlarmMessage(L"ÀïÅ»Àü ÁØºñ·Î ÀÎÇØ µµÀå³» À¯ÆÄ¿øÀÌ µµÀå ÀÔ±¸·Î °­Á¦ ÀÌµ¿µÇ¾ú½À´Ï´Ù");
-			m_pMessage->SetText("ÀïÅ»Àü ÁØºñ¸¦ À§ÇØ Àá½Ã ÈÄ µµÀå ÀÔ±¸·Î °­Á¦ ÀÌµ¿µÇ¿À´Ï ÁØºñÇØ ÁÖ¼¼¿ä");
+			GetAlarmManager()->AlarmMessage(L"ìŸíƒˆì „ ì¤€ë¹„ë¡œ ì¸í•´ ë„ì¥ë‚´ ìœ íŒŒì›ì´ ë„ì¥ ì…êµ¬ë¡œ ê°•ì œ ì´ë™ë˜ì—ˆìŠµë‹ˆë‹¤");
+			m_pMessage->SetText("ìŸíƒˆì „ ì¤€ë¹„ë¥¼ ìœ„í•´ ì ì‹œ í›„ ë„ì¥ ì…êµ¬ë¡œ ê°•ì œ ì´ë™ë˜ì˜¤ë‹ˆ ì¤€ë¹„í•´ ì£¼ì„¸ìš”");
 		}
 
 		m_bShowTimerMessage[4] = false;
@@ -293,8 +293,8 @@ VOID CDojoSideViewGui::Update(RwReal fElapsed)
 	}
 	else if( m_bShowTimerMessage[5] && fMinute < dSHOW_TIME_LEFT_5 )
 	{
-		GetAlarmManager()->AlarmMessage(L"µµÀå ÀïÅ»Àü ÁØºñ°¡ ¿Ï·áµÇ¾î µµÀå ÀÔÀåÀÌ °¡´ÉÇÕ´Ï´Ù");
-		m_pMessage->SetText("Áö±İºÎÅÍ µµÀå ÀïÅ»ÀüÀ» ½ÃÀÛÇÒ ¿¹Á¤ÀÌ¿À´Ï µµÀå¿¡ ÀÔÀåÇØ ÁÖ¼¼¿ä");
+		GetAlarmManager()->AlarmMessage(L"ë„ì¥ ìŸíƒˆì „ ì¤€ë¹„ê°€ ì™„ë£Œë˜ì–´ ë„ì¥ ì…ì¥ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤");
+		m_pMessage->SetText("ì§€ê¸ˆë¶€í„° ë„ì¥ ìŸíƒˆì „ì„ ì‹œì‘í•  ì˜ˆì •ì´ì˜¤ë‹ˆ ë„ì¥ì— ì…ì¥í•´ ì£¼ì„¸ìš”");
 
 		m_bShowTimerMessage[5] = false;
 		
@@ -321,7 +321,7 @@ VOID CDojoSideViewGui::SetMessage(RwUInt32 uiDojoTableIndex, RwUInt8 byDojoState
 	{
 	case eDBO_DOJO_STATUS_NORMAL:
 		{
-			// 12½Ã°£ Àü¿¡´Â Ç¥½ÃÇÏÁö ¾Ê´Â´Ù
+			// 12ì‹œê°„ ì „ì—ëŠ” í‘œì‹œí•˜ì§€ ì•ŠëŠ”ë‹¤
 			RwReal	fLeftTime	= (RwReal)(ui64NextStepTime - GetNtlSLGlobal()->GetServerTime());
 			RwReal	fLimitTime	= 60.f * 60.f * 12.f;
 

@@ -209,7 +209,7 @@ void CGameStage::Destroy(void)
 		NTL_DELETE(m_pTeleportScene);
 	}
 	
-	// ¼¼ÀÌºê ¹æ½Ä º¯°æ ( ÀúÀå ÈÄ ¸Þ¸ð¸® »èÁ¦ )
+	// ì„¸ì´ë¸Œ ë°©ì‹ ë³€ê²½ ( ì €ìž¥ í›„ ë©”ëª¨ë¦¬ ì‚­ì œ )
 	Logic_SaveScouterOption();
 	Logic_SaveQuestOption();
 	Logic_SaveCharacterOption();
@@ -254,7 +254,7 @@ void CGameStage::Destroy(void)
 	// unlink keyboard/mouse down
 	CInputHandler::GetInstance()->UnLinkKeyDown(m_hKeyboardDown);
 	
-	// ¼­¹ö·Î ³ª°£´Ù°í ¾Ë¸².
+	// å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ìŒ•ê³¤ì˜™ å ì‹¯ëªŒì˜™.
 	CGamePacketGenerator *pGameNetSender = CDboGlobal::GetInstance()->GetGamePacketGenerator();  
 	pGameNetSender->SendGameLeaveReq(); 
 	
@@ -277,7 +277,7 @@ void CGameStage::Destroy(void)
 	// Destroy TextureCamera
 	CMapItem::DestroyCamera();
 
-	// world¿¡¼­ camera remove
+	// worldå ì™ì˜™å ì™ì˜™ camera remove
 	if(CNtlPLGlobal::m_pRpWorld)
 		RpWorldRemoveCamera(CNtlPLGlobal::m_pRpWorld, CNtlPLGlobal::m_RwCamera);
 
@@ -367,18 +367,18 @@ void CGameStage::UpdateLoadingScene(RwReal fElapsed)
 
 RwBool CGameStage::UpdateLoadingThread(RwReal fElapsed)
 {
-	// Multi-thread°¡ µ¿ÀÛÇÏ°í ÀÖÁö ¾Ê´Â »óÅÂ
+	// Multi-threadå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ê³¤ì˜™ å ì™ì˜™å ì™ì˜™ å ì‹­ëŒì˜™ å ì™ì˜™å ì™ì˜™
 	if(m_pLoadingThread == NULL)
 		return FALSE;
 
-	// Multi-thread loading ¿Ï·á
+	// Multi-thread loading å ì‹¹ë¤„ì˜™
 	if(m_pLoadingThread->GetLoadState() == CGameLoadingThread::eGAME_LOAD_STATE_LOADED)
 	{
 		PostMutiThreadLoading();
 		return TRUE;
 	}
 
-	// Multi-thread loading Áß...
+	// Multi-thread loading å ì™ì˜™...
 
 	GetSoundManager()->Update(fElapsed);
 
@@ -487,11 +487,11 @@ void CGameStage::UpdateGameEnterLoadingSchedulingWorld(RwReal fElapsed)
 		}
 	}
 
-	// avatar°¡ ¾ÆÁ÷ »ý¼ºµÇÁö ¾Ê¾ÒÀ¸¸é?
+	// avatarå ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹­ì–µì˜™å ì™ì˜™å ì™ì˜™?
 	if(!IsAvatarCreate())
 		return;
 
-	// avatar°¡ ready µÇ¾ú´Â°¡?
+	// avatarå ì™ì˜™ ready å ì‹¤ì–µì˜™å ìŠ¹ê³¤ì˜™?
 	if(!m_bAvatarReady)
 	{
 		if(m_pAvatar->IsAvatarReady())
@@ -516,14 +516,14 @@ void CGameStage::UpdateTeleportLoadingReadyScene(RwReal fElapsed)
 {
 	RwV3d vAvatarPos = m_pAvatar->GetPosition();
 		
-	// ¿ùµå »èÁ¦ ÈÄ ´Ù½Ã »ý¼º.(update ÇÑ´Ù.)
+	// å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™ å ìŒ•ì™ì˜™ å ì™ì˜™å ì™ì˜™.(update å ì‹¼ëŒì˜™.)
 	if(m_bWorldChange)
 	{
 		RwFrameListSetAutoUpdate(FALSE);
 		
 		RpWorldRemoveCamera(CNtlPLGlobal::m_pRpWorld, CNtlPLGlobal::m_RwCamera);
 
-        CNtlSLEventGenerator::CreateWorld(FALSE);       // ÀÌº¥Æ® ¹ß»ý
+        CNtlSLEventGenerator::CreateWorld(FALSE);       // å ì‹±ë¸ì˜™íŠ¸ å ìŒ©ì‚¼ì˜™
 
 		DeleteWorld();
 
@@ -553,11 +553,11 @@ void CGameStage::UpdateTeleportLoadingReadyScene(RwReal fElapsed)
 
 		RpWorldAddCamera(CNtlPLGlobal::m_pRpWorld, CNtlPLGlobal::m_RwCamera);
 
-        CNtlSLEventGenerator::CreateWorld(TRUE);        // ÀÌº¥Æ® ¹ß»ý
+        CNtlSLEventGenerator::CreateWorld(TRUE);        // å ì‹±ë¸ì˜™íŠ¸ å ìŒ©ì‚¼ì˜™
 
 		RwFrameListSetAutoUpdate(TRUE);
 
-		// world¸¦ ÇÑ¹ø ¾÷µ¥ÀÌÆ® ÇÑ´Ù.
+		// worldå ì™ì˜™ å ì‹¼ë±„ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™íŠ¸ å ì‹¼ëŒì˜™.
 		if(m_pWorldEntity)
 		{
 			//RwBool bEnable = GetLoadObjectSeamlessScheduling();
@@ -594,11 +594,11 @@ void CGameStage::UpdateTeleportLoadingReadyScene(RwReal fElapsed)
 
 		GetNtlGameCameraManager()->ResetCamera();
 
-		// ¿ùµå ÁöÇü teleport ÇÑ´Ù.
+		// å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ teleport å ì‹¼ëŒì˜™.
 		if(m_pWorldEntity)
 			m_pWorldEntity->SetPortalPosition(vAvatarPos);
 
-		// world¸¦ ÇÑ¹ø ¾÷µ¥ÀÌÆ® ÇÑ´Ù.
+		// worldå ì™ì˜™ å ì‹¼ë±„ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™íŠ¸ å ì‹¼ëŒì˜™.
 		if(m_pWorldEntity)
 		{
 			m_pWorldEntity->SetPlayerPosition(vAvatarPos);
@@ -617,7 +617,7 @@ void CGameStage::UpdateTeleportLoadingTeleportScene(RwReal fElapsed)
 	RwV3d vWorldUpdatePos = GetUpdateWorldPosition();
 	UpdateWorld(vWorldUpdatePos);
 
-	// world°¡ loading µÇ¾ú´Â°¡?
+	// worldå ì™ì˜™ loading å ì‹¤ì–µì˜™å ìŠ¹ê³¤ì˜™?
 	if(!m_bWorldReady)
 	{
 		if(!m_pWorldEntity->GetWorldReady())
@@ -626,7 +626,7 @@ void CGameStage::UpdateTeleportLoadingTeleportScene(RwReal fElapsed)
 		m_bWorldReady = TRUE;
 	}
 
-	// °ÔÀÓ¿¡ Ã³À½ ÁøÀÔÇÏ°Å³ª, teleportÀÏ °æ¿ì¿¡´Â resource¸¦ ´Ù ÀÐÀº ´ÙÀ½¿¡ Ã³¸®ÇÑ´Ù.
+	// ï¿½ï¿½ï¿½Ó¿ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°Å³ï¿½, teleportï¿½ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½ resourceï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ñ´ï¿½.
 	if(m_bCheckResourceScheduling)
 	{
 		if(GetNtlResourceManager()->IsEmptyLoadScheduling())
@@ -637,13 +637,13 @@ void CGameStage::UpdateTeleportLoadingTeleportScene(RwReal fElapsed)
 				AvatarCreate();
 			}
 
-			// avatar¸¦ Àç»ý¼ºÇØ¾ß ÇÏ´Â°¡?
+			// avatarë¥¼ ìž¬ìƒì„±í•´ì•¼ í•˜ëŠ”ê°€?
 			if(IsAvatarReCreate())
 			{
 				AvatarReCreate();
 			}
 
-			// ³×Æ®¿÷ µ¥ÀÌÅÍ¸¦ ¹Þ¾ÆµéÀÎ´Ù.
+			// å ì™ì˜™íŠ¸å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¶ëªŒì˜™ å ìŒ¨ì•„ë“¸ì˜™å ì‹¸ëŒì˜™.
 //			GetSceneManager()->SetThreadLoad( FALSE );
 			m_pTeleportScene->SetState(CHAR_TELEPORT_LOAD_END);
 			CPacketProc::GetInstance()->ActivePop(TRUE);
@@ -677,7 +677,7 @@ void CGameStage::UpdateTeleportLoadingSpawnReadyScene(RwReal fElapsed)
 	RwV3d vWorldUpdatePos = GetUpdateWorldPosition();
 	UpdateWorld(vWorldUpdatePos);
 
-	// avatar°¡ ready µÇ¾ú´Â°¡?
+	// avatarå ì™ì˜™ ready å ì‹¤ì–µì˜™å ìŠ¹ê³¤ì˜™?
 	if(!m_bAvatarReady)
 	{
 		if(m_pAvatar->IsAvatarReady())
@@ -867,10 +867,10 @@ void CGameStage::EventProcUpdateTick(RwReal fElapsed)
 		UpdateGameIdle(fElapsed);
 	}
 
-    // »óÈ²¿¡ µû¸¥ »ç¿îµå ¸®½º³Ê¸¦ ¼³Á¤ÇÑ´Ù.
+    // å ì™ì˜™í™©å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹­ëªŒì˜™ å ì™ì˜™å ì™ì˜™å ì‹¼ëŒì˜™.
     UpdateSoundListener();
 	
-	// avatar°¡ »ý¼ºµÇ¾î ÀÖÁö ¾ÊÀ¸¸é?
+	// avatarå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¤ì–µì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™?
 	if(!IsAvatarCreate())
 		return;
 
@@ -888,7 +888,7 @@ void CGameStage::EventProcUpdateTick(RwReal fElapsed)
 
 void CGameStage::EventProcWorldChange(RwBool bWorldChange)
 {
-	// loadingÀ» ½ÃÀÛÇÑ´Ù.
+	// loadingå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¼ëŒì˜™.
 	
 	m_pTeleportScene = NTL_NEW CGameTeleportScene(bWorldChange);
 
@@ -911,8 +911,8 @@ void CGameStage::EventProcWorldChange(RwBool bWorldChange)
 	m_eUpdageType = EGUT_GAME_TELEPORT_LOADING;
 
 	//---------------------------------------------------
-	// teleport ÇÒ world °¡ ´Ù¸¦ °æ¿ì.
-	// avatar resource¸¦ ¿ùµå¿¡¼­ »«´Ù.
+	// teleport í•  world ê°€ ë‹¤ë¥¼ ê²½ìš°.
+	// avatar resourceï¿½ï¿½ ï¿½ï¿½ï¿½å¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	if(m_bWorldChange)
 	{
 	}
@@ -978,8 +978,8 @@ void CGameStage::MutiThreadLoading( void )
 		NTL_DELETE(m_pGuiGroup);
 	}
 
-	// height field world¸¦ »ý¼ºÇÑ´Ù.
-	// avatar ÁÂÇ¥ ¾ò¾î¿À±â.
+	// height field worldå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¼ëŒì˜™.
+	// avatar å ì™ì˜™í‘œ å ì™ì˜™å ì™ì˜™å ì™ì˜™.
 	SAvatarInfo *pAvatarInfo = GetNtlSLGlobal()->GetAvatarInfo();
 	RwV3d vAvatarPos;
 	CNtlMath::MathRwV3dAssign(&vAvatarPos,	
@@ -1023,7 +1023,7 @@ void CGameStage::MutiThreadLoading( void )
 
 void CGameStage::PostMutiThreadLoading( void )
 {
-	// ·Îµù Thread¸¦ Á¾·áÇÑ´Ù
+	// å ì‹¸ë“¸ì˜™ Threadå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¼ëŒì˜™
 	if ( m_pLoadingThread )
 	{
 		NTL_DELETE(m_pLoadingThread);
@@ -1039,7 +1039,7 @@ void CGameStage::PostMutiThreadLoading( void )
 
 	GetNtlSobManager()->SetActive( TRUE );
 	
-	// Effect º¹±¸
+	// Effect å ì™ì˜™å ì™ì˜™
 	if(GetNtlStorageManager()->GetBoolData( dSTORAGE_GRAPHIC_SHADER_HDR ))
 		CNtlPostEffectCamera::SetPostEffectFilters(POST_EFFECT_FILTER_HDR);
 	else
@@ -1197,7 +1197,7 @@ RwBool CGameStage::IsActiveLoadingScene()
 	return FALSE;
 }
 
-int CGameStage::KeyboardDownHandler(unsigned int uiKeyData)
+int CGameStage::KeyboardDownHandler(uintptr_t uiKeyData)
 {
 	NTL_FUNCTION("CGameStage::KeyboardDownHandler");
 
@@ -1243,7 +1243,7 @@ void CGameStage::UpdateSoundListener()
             return;
         }
 
-        // ½Ã³×¸¶Æ½ÁßÀÌ¸é Ä«¸Þ¶ó·Î ¼¼ÆÃÇÑ´Ù.
+        // ï¿½Ã³×¸ï¿½Æ½ï¿½ï¿½ï¿½Ì¸ï¿½ Ä«ï¿½Þ¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
         if(GetNtlDTCinematicManager()->IsRunning())
         {
             GetSceneManager()->SetSoundListener(NULL);

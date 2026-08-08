@@ -1,4 +1,4 @@
-// ObjectPane.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// ObjectPane.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -49,7 +49,7 @@ END_MESSAGE_MAP()
 void CObjectPane::CObjectTree::OnTvnSelchanged(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMTREEVIEW pNMTreeView = reinterpret_cast<LPNMTREEVIEW>(pNMHDR);
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	HTREEITEM hItem = GetSelectedItem();
 	SObjTreeData *pTreeData = (SObjTreeData*)GetItemData(hItem);
@@ -99,7 +99,7 @@ void CObjectPane::CObjectTree::OnDestroy()
 {
 	CTreeCtrl::OnDestroy();
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 
@@ -302,7 +302,7 @@ HTREEITEM CObjectPane::FindItemMapping(const CHAR *pKey)
 
 CNtlDTProp* CObjectPane::CreateSplineProp(int nShape)
 {
-	// test ¿ë...
+	// test ìš©...
 	SSplineProp sProp;
 	sProp.eShape				= (EDTSplineShape)nShape;
 	sProp.iCtrlNum				= 20;
@@ -393,7 +393,7 @@ void CObjectPane::LoadItem(CNtlSerializer& s)
 
 void CObjectPane::SaveItem(CNtlSerializer& s, HTREEITEM hItem, HTREEITEM hParentItem)
 {
-	// parent nameÀ» ÀúÀåÇÑ´Ù.
+	// parent nameì„ ì €ì¥í•œë‹¤.
 
 	s << (BYTE)OBJECT_PANE_SERIALIZE_PARENTRNAME;
 	if(hParentItem == NULL)
@@ -407,7 +407,7 @@ void CObjectPane::SaveItem(CNtlSerializer& s, HTREEITEM hItem, HTREEITEM hParent
 		s.In(strParent.GetString(), strParent.GetLength());
 	}
 
-	// tree itemÀ» ÀúÀåÇÑ´Ù.
+	// tree itemì„ ì €ì¥í•œë‹¤.
 	SObjTreeData *pData = (SObjTreeData*)m_wndTreeCtrl.GetItemData(hItem);
 	if(pData->byType ==	OBJ_TREE_FOLDER)
 	{
@@ -671,7 +671,7 @@ BEGIN_MESSAGE_MAP(CObjectPane, CWnd)
 END_MESSAGE_MAP()
 
 
-// CObjectPane ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CObjectPane ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 
 
 
@@ -680,7 +680,7 @@ int CObjectPane::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// TODO:  ¿©±â¿¡ Æ¯¼öÈ­µÈ ÀÛ¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì‘ì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	XTPImageManager()->SetMaskColor(RGB(0, 0xFF, 0));
 	VERIFY(m_wndToolBar.CreateToolBar(WS_VISIBLE|WS_CHILD|CBRS_TOOLTIPS, this));
@@ -714,7 +714,7 @@ void CObjectPane::OnSize(UINT nType, int cx, int cy)
 {
 	CWnd::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	CSize sz(0);
 	if (m_wndToolBar.GetSafeHwnd())
@@ -939,6 +939,6 @@ void CObjectPane::OnDestroy()
 
 	CWnd::OnDestroy();
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 

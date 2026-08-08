@@ -18,16 +18,16 @@ CNtlPLAccelController::~CNtlPLAccelController(void)
 
 }
 
-// fStartVal : ½ÃÀÛ°ª
-// fEndVal : ¸ñÇ¥°ª
-// fStartVelocity : ¼Óµµ (Áõ°¡°ª/ÃÊ)
-// fAccel : °¡¼Óµµ (Áõ°¡¼Óµµ/ÃÊ)
+// fStartVal : ì‹œì‘ê°’
+// fEndVal : ëª©í‘œê°’
+// fStartVelocity : ì†ë„ (ì¦ê°€ê°’/ì´ˆ)
+// fAccel : ê°€ì†ë„ (ì¦ê°€ì†ë„/ì´ˆ)
 void CNtlPLAccelController::SetAccel( RwReal fStartVal, RwReal fEndVal, RwReal fStartVelocity, RwReal fAccel ) 
 {
     m_fStartVal = m_fCurrentVal =  fStartVal;
     m_fEndVal = fEndVal;
     m_fStartVelocity = m_fCurrVel = fStartVelocity;
-    m_fAccel = fAccel;                 ///< °¡¼Óµµ´Â Update½Ã¸¶´Ù °è»êÇÏ´Â°ÍÀ» ÁÙÀÌ±â À§ÇØ¼­ ¹Ì¸® Á¦°öÇØµĞ´Ù.
+    m_fAccel = fAccel;                 ///< ê°€ì†ë„ëŠ” Updateì‹œë§ˆë‹¤ ê³„ì‚°í•˜ëŠ”ê²ƒì„ ì¤„ì´ê¸° ìœ„í•´ì„œ ë¯¸ë¦¬ ì œê³±í•´ë‘”ë‹¤.
     m_bUpdate = TRUE;
 }
 
@@ -36,10 +36,10 @@ RwBool CNtlPLAccelController::Update( RwReal fElapsed )
     if(!m_bUpdate)
         return FALSE;
 
-    // ¼Óµµ Áõ°¡
+    // ì†ë„ ì¦ê°€
     m_fCurrVel += m_fAccel * fElapsed;
 
-    // °ª Áõ°¡
+    // ê°’ ì¦ê°€
     if(m_fEndVal >= m_fStartVal)
     {
         m_fCurrentVal += m_fCurrVel * fElapsed;

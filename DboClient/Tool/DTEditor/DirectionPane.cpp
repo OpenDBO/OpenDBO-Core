@@ -1,4 +1,4 @@
-// DirectionPane.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// DirectionPane.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 #include "stdafx.h"
 #include "DirectionPane.h"
@@ -18,7 +18,7 @@
 #define MAX_DIR_PATH	2048
 
 
-// CDirectionPane ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CDirectionPane ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.
 LRESULT CDirectionPane::CDirectionTree::WindowProc(UINT message,WPARAM wParam,LPARAM lParam)
 {
 	switch (message)
@@ -75,7 +75,7 @@ int CDirectionPane::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// TODO:  ¿©±â¿¡ Æ¯¼öÈ­µÈ ÀÛ¼º ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO:  ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì‘ì„± ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	XTPImageManager()->SetMaskColor(RGB(0, 0xFF, 0));
 	VERIFY(m_wndToolBar.CreateToolBar(WS_VISIBLE|WS_CHILD|CBRS_TOOLTIPS, this));
@@ -101,7 +101,7 @@ int CDirectionPane::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndTreeCtrl.SetImageList(&m_ilTreeIcons, TVSIL_NORMAL);
 
 
-	// Åø¸ğµå ÁöÁ¤
+	// íˆ´ëª¨ë“œ ì§€ì •
 	CNtlSLTBCrowdManager::ms_bDirectionToolMode = true;
 
 	return 0;
@@ -111,7 +111,7 @@ void CDirectionPane::OnDestroy()
 {
 	CWnd::OnDestroy();
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	DestroyTreeItem();
 }
 
@@ -119,7 +119,7 @@ void CDirectionPane::OnSize(UINT nType, int cx, int cy)
 {
 	CWnd::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 
 	CSize sz(0);
 	if (m_wndToolBar.GetSafeHwnd())
@@ -230,7 +230,7 @@ void CDirectionPane::OnLoadDirection()
 		CNtlFileSerializer nsl(dDIRECTION_FILE_BUFFER, dDIRECTION_FILE_GLOW);
 		if( nsl.LoadFile((LPSTR)(LPCSTR)strPropFullPath) )
 		{
-			// ±âÁ¸ÀÇ Æ®¸® ¾ÆÀÌÅÛÀ» Áö¿î´Ù
+			// ê¸°ì¡´ì˜ íŠ¸ë¦¬ ì•„ì´í…œì„ ì§€ìš´ë‹¤
 			DestroyTreeItem();
 
 			int iControllerCount;
@@ -240,7 +240,7 @@ void CDirectionPane::OnLoadDirection()
 
 			for( int i = 0 ; i < iControllerCount ; ++i )
 			{
-				// ÄÁÆ®·Ñ·¯
+				// ì»¨íŠ¸ë¡¤ëŸ¬
 				CNtlSLTBCrowdController* pController = NTL_NEW CNtlSLTBCrowdController();
 				pController->Load(nsl);
 
@@ -258,7 +258,7 @@ void CDirectionPane::OnLoadDirection()
 				// crowd manager
 				GetNtlSLCrowdManager()->AddController(pController);
 
-				// °¢ ³ëµå Ãß°¡
+				// ê° ë…¸ë“œ ì¶”ê°€
 				LIST_CENODE& m_listNode = pController->GetNodeList();
 				for each( CNtlSLCENode* pNode in m_listNode )
 				{
@@ -297,7 +297,7 @@ void CDirectionPane::OnAddController()
 		return;
 	}
 
-	// ÄÁÆ®·Ñ·¯
+	// ì»¨íŠ¸ë¡¤ëŸ¬
 	CNtlSLTBCrowdController* pNewDirectionController = NTL_NEW CNtlSLTBCrowdController;
 	pNewDirectionController->Create();
 	pNewDirectionController->SetName((LPSTR)(LPCSTR)strName);
@@ -331,7 +331,7 @@ void CDirectionPane::OnAddNode()
 	HTREEITEM hParent_of_NewItem;	
 	sDirectionItem* pDirectionItem = reinterpret_cast<sDirectionItem*>( m_wndTreeCtrl.GetItemData(hSelectedItem) );
 
-	// ³ëµåÀÇ ºÎ¸ğ¸¦ Ã£´Â´Ù
+	// ë…¸ë“œì˜ ë¶€ëª¨ë¥¼ ì°¾ëŠ”ë‹¤
 	if( pDirectionItem->byItemType != LIST_TYPE_CONTROLLER )
 	{
 		hParent_of_NewItem = m_wndTreeCtrl.GetParentItem(hSelectedItem);
@@ -370,7 +370,7 @@ void CDirectionPane::OnAddNode()
 	default:	NTL_ASSERT(false, "Invalid direction node type");	return;
 	}		
 
-	// ±âº» ÀÌ¸§À» ¼³Á¤ÇÑ´Ù
+	// ê¸°ë³¸ ì´ë¦„ì„ ì„¤ì •í•œë‹¤
 	while( true )
 	{
 		sprintf_s(acBuffer, 128, "%s%d", (LPSTR)(LPCSTR)strNodeName, iCount);
@@ -413,7 +413,7 @@ void CDirectionPane::OnAddNode()
 		}
 	}
 
-	// ³ëµå
+	// ë…¸ë“œ
 	pNewDirectionNode->SetName(acBuffer);	
 
 	// Direction Item
@@ -520,7 +520,7 @@ void CDirectionPane::OnRun()
 		return;
 	}
 
-	// ±âÁ¸¿¡ ¿¬ÃâÁßÀÎ °ÍÀº Á¾·á
+	// ê¸°ì¡´ì— ì—°ì¶œì¤‘ì¸ ê²ƒì€ ì¢…ë£Œ
 	StopDirectoin(m_hDirectingItem);
 	m_hDirectingItem = hSelectedItem;
 
@@ -560,7 +560,7 @@ void CDirectionPane::OnStop()
 
 BOOL CDirectionPane::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 {
-	// TODO: ¿©±â¿¡ Æ¯¼öÈ­µÈ ÄÚµå¸¦ Ãß°¡ ¹×/¶Ç´Â ±âº» Å¬·¡½º¸¦ È£ÃâÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— íŠ¹ìˆ˜í™”ëœ ì½”ë“œë¥¼ ì¶”ê°€ ë°/ë˜ëŠ” ê¸°ë³¸ í´ë˜ìŠ¤ë¥¼ í˜¸ì¶œí•©ë‹ˆë‹¤.
 	NMHDR* pNMHDR = (NMHDR*)lParam;
 
 	if( pNMHDR->idFrom == IDC_DIRECTION_PANE_PROP_TREECTRL )
@@ -575,7 +575,7 @@ BOOL CDirectionPane::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 					sDirectionItem* pDirectionItem = reinterpret_cast<sDirectionItem*>( m_wndTreeCtrl.GetItemData(hSelectedItem) );
 					NTL_ASSERT(pDirectionItem, "CDirectionPane::OnNotify, invalid sDirectionItem pointer");
 
-					// ÀÌ¸§ º¯°æ
+					// ì´ë¦„ ë³€ê²½
 					switch( pDirectionItem->byItemType )
 					{
 					case LIST_TYPE_CONTROLLER:
@@ -636,7 +636,7 @@ BOOL CDirectionPane::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 					sDirectionItem* pDirectionItem = reinterpret_cast<sDirectionItem*>( m_wndTreeCtrl.GetItemData(hSelectedItem) );
 					NTL_ASSERT(pDirectionItem, "CDirectionPane::OnNotify, invalid sDirectionItem pointer");
 
-					// Property Pane º¯°æ
+					// Property Pane ë³€ê²½
 					switch( pDirectionItem->byItemType )
 					{
 					case LIST_TYPE_CONTROLLER:

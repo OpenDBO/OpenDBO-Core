@@ -102,7 +102,7 @@ RwInt32 CBackboardGui::SwitchDialog(bool bOpen)
 	}
 	else
 	{
-		// ���̾�αװ� ���� �� �ʱ�ȭ
+		// 다이얼로그가 닫힐 때 초기화
 		Show(false);
 		SetColor(dDEFAULT_RED, dDEFAULT_GREEN, dDEFAULT_BLUE);
 		SetAlpha(dDEFAULT_ALPHA);

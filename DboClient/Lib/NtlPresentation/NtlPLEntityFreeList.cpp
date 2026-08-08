@@ -182,7 +182,7 @@ void* CNtlPLEntityFreeList::Alloc(const ENtlPLEntityType eType)
 {
 	NTL_FUNCTION("CNtlPLEntityFreeList::Alloc");
 
-	// by agebreak ¿Ö ÀÖ´ÂÁö ÀÌÀ¯¸¦ ¸ğ¸£°Ú´Ù. ÀÓ½Ã·Î ¸·¾ÆµĞ´Ù.
+	// by agebreak ì™œ ìˆëŠ”ì§€ ì´ìœ ë¥¼ ëª¨ë¥´ê² ë‹¤. ì„ì‹œë¡œ ë§‰ì•„ë‘”ë‹¤.
 	//NTL_PRE(m_pObjFreeList);
 
 	switch(eType)

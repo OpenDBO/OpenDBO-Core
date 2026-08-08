@@ -2,7 +2,7 @@
 //	File		:	CVenusPropertyContainer.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -25,11 +25,11 @@
 class CVenusPropertyContainer : public CNtlPLPropertyContainer
 {
 public:
-    enum ECopyPasteFlag             ///< ÀÌÆåÆ®ÀÇ Copy&Paste¿¡ »ç¿ëµÇ´Â ÇÃ·¡±×
+    enum ECopyPasteFlag             ///< ì´íŽ™íŠ¸ì˜ Copy&Pasteì— ì‚¬ìš©ë˜ëŠ” í”Œëž˜ê·¸
     {
-        E_COPY_EFFECT,              ///< ÀÌÆåÆ®¸¦ Ä«ÇÇÇÑ °æ¿ì
-        E_COPY_SYSTEM,              ///< ÀÌÆåÆ® ½Ã½ºÅÛÀ» Ä«ÇÇÇÑ °æ¿ì
-        E_COPY_FOLDER,              ///< Æú´õ¸¦ Ä«ÇÇÇÑ °æ¿ì
+        E_COPY_EFFECT,              ///< ì´íŽ™íŠ¸ë¥¼ ì¹´í”¼í•œ ê²½ìš°
+        E_COPY_SYSTEM,              ///< ì´íŽ™íŠ¸ ì‹œìŠ¤í…œì„ ì¹´í”¼í•œ ê²½ìš°
+        E_COPY_FOLDER,              ///< í´ë”ë¥¼ ì¹´í”¼í•œ ê²½ìš°
     };
 
 public:
@@ -70,11 +70,11 @@ public:
 
 	virtual RwBool	Create(void);
 	virtual void	Destroy(void);
-			void	Clear();			///< Effect¿¡ °ü·ÃµÈ Dataµé¸¸ ClearÇÑ´Ù. (ÁöÇü °ü·Ã ÇÁ·ÎÆÛÆ¼´Â »èÁ¦ÇÏÁö ¾Ê´Â´Ù.)
+			void	Clear();			///< Effectì— ê´€ë ¨ëœ Dataë“¤ë§Œ Clearí•œë‹¤. (ì§€í˜• ê´€ë ¨ í”„ë¡œí¼í‹°ëŠ” ì‚­ì œí•˜ì§€ ì•ŠëŠ”ë‹¤.)
 
 			void	Render(void);
 
-            void    OutputUsedMemory(); ///< ÀÌÆåÆ®µéÀÌ »ç¿ëÇÏ´Â ¸Þ¸ð¸®µéÀ» ÅØ½ºÆ® ÆÄÀÏ·Î Ãâ·ÂÇÑ´Ù.
+            void    OutputUsedMemory(); ///< ì´íŽ™íŠ¸ë“¤ì´ ì‚¬ìš©í•˜ëŠ” ë©”ëª¨ë¦¬ë“¤ì„ í…ìŠ¤íŠ¸ íŒŒì¼ë¡œ ì¶œë ¥í•œë‹¤.
 
 
 	virtual RwBool					AddProp(ENtlPLEntityType eType, CNtlPLProperty *pProp);
@@ -180,7 +180,7 @@ public:
 
 
 	RwBool							Load(const RwChar* strPathName);
-	virtual RwBool					LoadSerialize(RwBool bEncrypt = FALSE, RwChar* szCryptPassword = NULL);				///< ¹ÙÀÌ³Ê¸®·Î ÄÁ¹öÆÃµÈ µ¥ÀÌÅÍµéÀ» ·ÎµåÇÑ´Ù.
+	virtual RwBool					LoadSerialize(RwBool bEncrypt = FALSE, RwChar* szCryptPassword = NULL);				///< ë°”ì´ë„ˆë¦¬ë¡œ ì»¨ë²„íŒ…ëœ ë°ì´í„°ë“¤ì„ ë¡œë“œí•œë‹¤.
 
 	void							Sort(RwBool bSequence);
 	RwInt32							Sort(const RwChar* strSrc, const RwChar* strDest);

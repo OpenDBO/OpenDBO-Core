@@ -560,7 +560,7 @@ VOID CItemUpgradeGui::SetItemSlot( RwUInt32 hSerialID, RwUInt32 eSrcplace, RwUIn
 	// 
 	UpdateSlotIcon();
 
-	// ¾ÆÀÌÄÜ ¹«ºê ¿Ï·á
+	// ì•„ì´ì½˜ ë¬´ë¸Œ ì™„ë£Œ
 	if( bNeedToIconMoveEnd )
 		GetIconMoveManager()->IconMoveEnd();
 }
@@ -674,7 +674,7 @@ VOID CItemUpgradeGui::SetResult(WORD wResultcode, BYTE byGrade, WORD wResultMess
 {
 	NTL_ASSERT(m_pUpgradeItem, "CItemUpgradeGui::HandleEvents : UpgradeItem Must be Present!");
 
-	// execption.. --;; ¿¡·¯¸Þ½ÃÁö´Â ÆÐÅ¶ÇÚµé·¯¿¡¼­ Ã³¸®µÈ´Ù.
+	// execption.. --;; ì—ëŸ¬ë©”ì‹œì§€ëŠ” íŒ¨í‚·í•¸ë“¤ëŸ¬ì—ì„œ ì²˜ë¦¬ëœë‹¤.
 	if (wResultcode != GAME_SUCCESS)
 	{
 		SetState(STATE_UPGRADE_READY);
@@ -809,7 +809,7 @@ VOID CItemUpgradeGui::SetState( STATE eState )
 
 			GetAlarmManager()->AlarmMessage("DST_ITEMUPGRADE_BTNCLICK");
 
-			// UpgradeButton È°¼ºÈ­
+			// UpgradeButton í™œì„±í™”
 			m_pbtnSelect->ClickEnable( TRUE );
 
 		}

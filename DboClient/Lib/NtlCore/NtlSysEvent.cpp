@@ -16,5 +16,5 @@ RWS::CEventId	g_EventDeleteStage;
 
 RWS::CEventId	g_EventQueueProcessFilter;
 
-// ½Ã½ºÅÛÀÌ ÀüÃ¼¸ğµå <-> À©µµ¿ì¸ğµå
+// ì‹œìŠ¤í…œì´ ì „ì²´ëª¨ë“œ <-> ìœˆë„ìš°ëª¨ë“œ
 RWS::CEventId	g_EventToggleFullScreen;

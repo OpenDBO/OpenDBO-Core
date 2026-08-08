@@ -2,7 +2,7 @@
 #include "afxwin.h"
 
 
-// CTextureInfoDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CTextureInfoDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 #include "rwcore.h"
 
 #include "libgfl.h"
@@ -12,7 +12,7 @@ class CTextureInfoDialog : public CDialog
 	DECLARE_DYNCREATE(CTextureInfoDialog)
 
 public:
-	CTextureInfoDialog(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CTextureInfoDialog(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CTextureInfoDialog();
 
 	void	CreateBitmap(const RwChar* strPathName);
@@ -22,11 +22,11 @@ public:
 
 	GFL_BITMAP*				m_pGflBitmap;
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_TEXTURE_INFO };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

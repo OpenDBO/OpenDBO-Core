@@ -77,7 +77,7 @@ eStoreResult CNtlChannelGroup::StoreSound(CNtlSound* pSound, sNtlSoundPlayParame
 {
 	m_mapGroup.insert( SOUND_VALUE(pSound->m_hHandle, pSound) );
 
-	// ChannelGroup¿¡ »õ·Î ¿¬ÁÖµÇ´Â channelÀ» µî·ÏÇÑ´Ù
+	// ChannelGroupì— ìƒˆë¡œ ì—°ì£¼ë˜ëŠ” channelì„ ë“±ë¡í•œë‹¤
 	if( pSound->m_pFMODChannel )
 		pSound->m_pFMODChannel->setChannelGroup(m_pMasterLayer);
 
@@ -159,7 +159,7 @@ void  CNtlChannelGroup::RemoveAllEffect()
 
 bool CNtlChannelGroup::ReleaseLowRankChannel()
 {
-	// ±âº»ÀûÀ¸·Î °¡Àå Ã³À½¿¡ ÇÃ·¹ÀÌµÈ Ã¤³ÎÀÌ ¼øÀ§°¡ ³·´Ù
+	// ê¸°ë³¸ì ìœ¼ë¡œ ê°€ìž¥ ì²˜ìŒì— í”Œë ˆì´ëœ ì±„ë„ì´ ìˆœìœ„ê°€ ë‚®ë‹¤
 	SOUND_ITER it = m_mapGroup.begin();
 
 	CNtlSound* pSound = it->second;
@@ -172,7 +172,7 @@ bool CNtlChannelGroup::ReleaseLowRankChannel()
 
 int CNtlChannelGroup::CanPlay(const char* pcName)
 {
-	// m_uiSoundDuplication ÀÌ 0ÀÌ¸é °°Àº ÆÄÀÏ ÇÃ·¹ÀÌÀÇ °¹¼ö Á¦ÇÑÀÌ ¾ø´Ù
+	// m_uiSoundDuplication ì´ 0ì´ë©´ ê°™ì€ íŒŒì¼ í”Œë ˆì´ì˜ ê°¯ìˆ˜ ì œí•œì´ ì—†ë‹¤
 	if( m_uiSoundDuplication > 0 )
 	{
 		unsigned int uiCount = 0;
@@ -208,7 +208,7 @@ int CNtlChannelGroup::CanPlay(const char* pcName)
 
 		if(m_uiSoundDuplication > 1)
 		{
-			// ÃÖ´ë µ¿½Ã ¿¬ÁÖ È½¼ö¸¦ ÃÊ°úÇß´Ù.
+			// ìµœëŒ€ ë™ì‹œ ì—°ì£¼ íšŸìˆ˜ë¥¼ ì´ˆê³¼í–ˆë‹¤.
 			if( uiCount > m_uiSoundDuplication )
 			{
 #ifdef SOUND_DEBUG_LOG
@@ -217,13 +217,13 @@ int CNtlChannelGroup::CanPlay(const char* pcName)
 				return SOUNDRESULT_FULL_DUPLICATION;
 			}
 
-			// °°Àº ÀÌ¸§ÀÇ ÀÌÆåÆ® ÆÄÀÏÀÌ ¾ÆÁ÷ ÃæºÐÇÑ ½Ã°£µ¿¾È ÇÃ·¹ÀÌ µÇÁö ¾Ê¾Ò´Ù
+			// ê°™ì€ ì´ë¦„ì˜ ì´íŽ™íŠ¸ íŒŒì¼ì´ ì•„ì§ ì¶©ë¶„í•œ ì‹œê°„ë™ì•ˆ í”Œë ˆì´ ë˜ì§€ ì•Šì•˜ë‹¤
 			if( uiMS >= DELAY_EFFECT_SOUND_TIME )
 				return SOUNDRESULT_MORE_WAIT_EFFECT_SOUND;
 		}
 		else
 		{
-			// °°Àº ÀÌ¸§ÀÇ »ç¿îµå°¡ ÇÃ·¹ÀÌ µÇ°í ÀÖ´Ù.
+			// ê°™ì€ ì´ë¦„ì˜ ì‚¬ìš´ë“œê°€ í”Œë ˆì´ ë˜ê³  ìžˆë‹¤.
 			if( uiCount == 1 )
 #ifdef SOUND_DEBUG_LOG
 				Logic_NtlSoundLog("CNtlChannelGroup::CanPlay, Already play same name sound", m_eGroup, pcName);
@@ -378,10 +378,10 @@ void CNtlChannelGroup::ReleaseFinishedSound(float fElapsed)
 			pSound->m_pFMODChannel->getMode(&mode);
 
 			if( mode ^ FMOD_LOOP_NORMAL )
-			{	// ¹«ÇÑ¹Ýº¹ÀÌ ¾Æ´Ò ¶§
+			{	// ë¬´í•œë°˜ë³µì´ ì•„ë‹ ë•Œ
 				bool bPlaying;
 
-				// paused µÈ »ç¿îµåµµ true °ªÀÌ ¸®ÅÏµÈ´Ù
+				// paused ëœ ì‚¬ìš´ë“œë„ true ê°’ì´ ë¦¬í„´ëœë‹¤
 				pSound->m_pFMODChannel->isPlaying(&bPlaying);
 
 				if(!bPlaying)

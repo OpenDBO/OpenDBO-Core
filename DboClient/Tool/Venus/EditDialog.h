@@ -1,7 +1,7 @@
 #pragma once
 
 
-// CEditDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CEditDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 #include "resource.h"
 
@@ -12,7 +12,7 @@ class CEditDialog : public CDialog
 	DECLARE_DYNAMIC(CEditDialog)
 
 public:
-	CEditDialog(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CEditDialog(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CEditDialog();
 
 public:
@@ -37,12 +37,12 @@ public:
 
 	static CEditDialog& GetInstance();
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_EDIT };
 
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

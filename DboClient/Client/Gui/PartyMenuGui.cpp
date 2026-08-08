@@ -75,46 +75,46 @@ RwBool CPartyMenu::Create()
 
 	CRectangle rtScreen = m_pThis->GetPosition();
 
-	// ÆÄÆ¼ ÀÌ¸§
+	// íŒŒí‹° ì´ë¦„
 	m_pPartyName = (gui::CStaticBox*)GetComponent("stbPartyName");
 
-	// ÆÄÆ¼¿ø °ü¸® ¹öÆ°
+	// íŒŒí‹°ì› ê´€ë¦¬ ë²„íŠ¼
 	m_pMemberMenuButton = (gui::CButton*)GetComponent("btnMainMenu");
 	m_pMemberMenuButton->SetToolTip(GetDisplayStringManager()->GetString("DST_PARTYGUI_MEMBER"));
 	m_slotMemberMenuButton = m_pMemberMenuButton->SigClicked().Connect(this, &CPartyMenu::OnClick_MemberMenuButton);
 
-	// ÆÄÆ¼ ¸Þ´º/¸É¹ö Ã¢ÀÇ switch ¹öÆ°
+	// íŒŒí‹° ë©”ë‰´/ë§´ë²„ ì°½ì˜ switch ë²„íŠ¼
 	m_pSwitchButton = (gui::CButton*)GetComponent("btnSwitchMenu");
 	m_pSwitchButton->SetToolTip(GetDisplayStringManager()->GetString("DST_PARTYGUI_SWITCH"));
 	m_slotSwitchButton = m_pSwitchButton->SigClicked().Connect(this, &CPartyMenu::OnClick_SwitchButton);
 
-	// Á¦´Ï ºÐ¹è ¹æ½Ä ¹öÆ°
+	// ì œë‹ˆ ë¶„ë°° ë°©ì‹ ë²„íŠ¼
 	m_pDivideZennyButton = (gui::CButton*)GetComponent("btnDivideZenny");
 	m_pDivideZennyButton->SetToolTip(GetDisplayStringManager()->GetString("DST_PARTYGUI_ZENNY_LOOTING"));
 	m_slotDivideZennyButton = m_pDivideZennyButton->SigClicked().Connect(this, &CPartyMenu::OnClick_DevideZennyButton);
 
-	// ¾ÆÀÌÅÛ ºÐ¹è ¹æ½Ä ¹öÆ°
+	// ì•„ì´í…œ ë¶„ë°° ë°©ì‹ ë²„íŠ¼
 	m_pDivideItemButton = (gui::CButton*)GetComponent("btnDivideItem");
 	m_pDivideItemButton->SetToolTip(GetDisplayStringManager()->GetString("DST_PARTYGUI_ITEM_LOOTING"));
 	m_slotDivideItemButton = m_pDivideItemButton->SigClicked().Connect(this, &CPartyMenu::OnClick_DevideItemButton);
 
-	// ´øÀü ¹öÆ°
+	// ë˜ì „ ë²„íŠ¼
 	m_pDungeonButton = (gui::CButton*)GetComponent("btnDungeon");
 	m_pDungeonButton->SetToolTip(GetDisplayStringManager()->GetString("DST_PARTYGUI_DUNGEON"));
 	m_slotDungeonButton = m_pDungeonButton->SigClicked().Connect(this, &CPartyMenu::OnClick_DungeonButton);
 
-	// ¸Þ´º ÆîÄ¡±â ¹öÆ°
+	// ë©”ë‰´ íŽ¼ì¹˜ê¸° ë²„íŠ¼
 	m_pSpreadMenuButton = (gui::CButton*)GetComponent("btnSpreadMenu");
 	m_pSpreadMenuButton->SetToolTip(GetDisplayStringManager()->GetString("DST_PARTYGUI_SPREAD"));
 	m_slotSpreadMenuButton = m_pSpreadMenuButton->SigClicked().Connect(this, &CPartyMenu::OnClick_SpreadMenuButton);
 	m_pSpreadMenuButton->Show(false);
 
-	// ¸Þ´º Á¢±â ¹öÆ°
+	// ë©”ë‰´ ì ‘ê¸° ë²„íŠ¼
 	m_pFoldMenuButton = (gui::CButton*)GetComponent("btnFoldMenu");
 	m_pFoldMenuButton->SetToolTip(GetDisplayStringManager()->GetString("DST_PARTYGUI_FOLD"));
 	m_slotFoldMenuButton = m_pFoldMenuButton->SigClicked().Connect(this, &CPartyMenu::OnClick_FoldMenuButton);
 
-	// ÆÄÆ¼ ÀÌ¸§ ¹è°æ
+	// íŒŒí‹° ì´ë¦„ ë°°ê²½
 	m_srfPartyNameBackground.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "PartyMenu.srf", "srfPartyNameBackground" ) );
 	m_srfPartyNameBackground.SetPositionfromParent(0, -(m_srfPartyNameBackground.GetHeight() + 2));	
 
@@ -124,7 +124,7 @@ RwBool CPartyMenu::Create()
 
 	SpreadButtons();
 
-	// ÆÄÆ¼¸¦ ¸¸µé±â Àü¿¡´Â º¸¿©ÁÖÁö ¾Ê´Â´Ù
+	// íŒŒí‹°ë¥¼ ë§Œë“¤ê¸° ì „ì—ëŠ” ë³´ì—¬ì£¼ì§€ ì•ŠëŠ”ë‹¤
 	m_pPartyName->Show(false);
 
 	MemberButton_UpdateTooltip();
@@ -208,7 +208,7 @@ VOID CPartyMenu::Update(RwReal fElapsed)
 
 VOID CPartyMenu::AddMember(sPartyMember* pMember)
 {
-	// ÆÄÆ¼¸É¹ö¿Í ÀÚ½Å±îÁö ÇÕÇÑ ¼ö°¡ ÃÖ´ë ÆÄÆ¼¿ø ¼öº¸´Ù Å©¸é ¸®ÅÏ
+	// íŒŒí‹°ë§´ë²„ì™€ ìžì‹ ê¹Œì§€ í•©í•œ ìˆ˜ê°€ ìµœëŒ€ íŒŒí‹°ì› ìˆ˜ë³´ë‹¤ í¬ë©´ ë¦¬í„´
 	if( m_listPartyMember.size() + 1 > NTL_MAX_MEMBER_IN_PARTY )
 		return;
 
@@ -304,7 +304,7 @@ VOID CPartyMenu::SetOtherWorld()
 		return;
 	}	
 
-	// ¾Æ¹ÙÅ¸¿Í´Â ´Ù¸¥ ¼¼»ó¿¡ ÀÖ´Â ¸É¹ö¸¦ Ã£¾Æ³»¾î Ç¥½ÃÇÑ´Ù(TMQ, ·©Å©¹èÆ² µî...)
+	// ì•„ë°”íƒ€ì™€ëŠ” ë‹¤ë¥¸ ì„¸ìƒì— ìžˆëŠ” ë§´ë²„ë¥¼ ì°¾ì•„ë‚´ì–´ í‘œì‹œí•œë‹¤(TMQ, ëž­í¬ë°°í‹€ ë“±...)
 	PARTYMEMBER_ITER it = m_listPartyMember.begin();
 	for( ; it != m_listPartyMember.end() ; ++it )
 	{
@@ -447,7 +447,7 @@ VOID CPartyMenu::SwitchMemberGui(bool bOpen)
 		(*it)->Show(m_MenuShape.bShowMember);
 	}
 
-	// ÆÄÆ¼ ¹öÇÁ
+	// íŒŒí‹° ë²„í”„
 	SwitchMemberBuff(m_MenuShape.bShowMember);
 }
 
@@ -620,7 +620,7 @@ VOID CPartyMenu::HandleEvents( RWS::CMsg &msg )
 			}
 		case PMT_PARTY_MEMBER_ADD:
 			{
-				// ÀÚ±â ÀÚ½ÅÀº Ã³¸®ÇÏÁö ¾Ê´Â´Ù.
+				// ìžê¸° ìžì‹ ì€ ì²˜ë¦¬í•˜ì§€ ì•ŠëŠ”ë‹¤.
 				CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
 				if(pAvatar->GetSerialID() == pPacket->hSerialId)
 					return;
@@ -638,7 +638,7 @@ VOID CPartyMenu::HandleEvents( RWS::CMsg &msg )
 			}
 		case PMT_LP:
 			{
-				// LP ¾Ë¶÷µîÀÌ ÀÛµ¿ÇÏ´Â ¸É¹öÃ¢À» Ã£´Â´Ù
+				// LP ì•ŒëžŒë“±ì´ ìž‘ë™í•˜ëŠ” ë§´ë²„ì°½ì„ ì°¾ëŠ”ë‹¤
 				RwReal fEmergencyPulse = 0.f;
 				RwBool bState = FALSE;
 				PARTYMEMBER_ITER it = m_listPartyMember.begin();
@@ -653,7 +653,7 @@ VOID CPartyMenu::HandleEvents( RWS::CMsg &msg )
 					}
 				}
 
-				// ¸ðµç ¸É¹öÃ¢ÀÇ LP ¾Ë¶÷µîÀ» µ¿±âÈ­
+				// ëª¨ë“  ë§´ë²„ì°½ì˜ LP ì•ŒëžŒë“±ì„ ë™ê¸°í™”
 				it = m_listPartyMember.begin();
 				for( ; it != m_listPartyMember.end() ; ++it )
 				{
@@ -689,7 +689,7 @@ VOID CPartyMenu::HandleEvents( RWS::CMsg &msg )
 					SERIAL_HANDLE hTarget = Logic_GetAvatarTargetHandle();
 					if( hTarget == INVALID_SERIAL_ID )
 					{
-						// Å¸ÄÏÀÌ ¾ø½À´Ï´Ù
+						// íƒ€ì¼“ì´ ì—†ìŠµë‹ˆë‹¤
 						GetAlarmManager()->AlarmMessage("DST_TARGET_NONE");
 						NTL_RETURNVOID();
 					}
@@ -748,7 +748,7 @@ VOID CPartyMenu::HandleEvents( RWS::CMsg &msg )
 				}
 				else if( pEvent->nWorkId == PMW_PARTY_USE_INVEN )
 				{
-					// ±âº» ÆÄÆ¼ ÀÎº¥ ºÐ¹è ¹æ½Ä
+					// ê¸°ë³¸ íŒŒí‹° ì¸ë²¤ ë¶„ë°° ë°©ì‹
 					GetDboGlobal()->GetGamePacketGenerator()->SendPartyItemDivision(NTL_PARTY_ITEM_LOOTING_IN_LEADER);
 				}
 

@@ -46,7 +46,7 @@ public:
     virtual  ~CBitmapDlg();
 
     //  =======================================================================
-    //  desc    Dialog Background¸¦ À§ÇÑ bitmap
+    //  desc    Dialog Backgroundë¥¼ ìœ„í•œ bitmap
     //  arg1    See the definition of LayOutStyle above
     //  =======================================================================
 
@@ -55,18 +55,18 @@ public:
     DWORD SetBitmap(LPCTSTR lpszFileName);
 
     //  =======================================================================
-    //  desc    Bitmap Ãâ·Â.
+    //  desc    Bitmap ì¶œë ¥.
     //  =======================================================================
 
     int AddBitmap(int nBitmap,int nX,int nY,int nWidth,int nHeight);
 
 	//  =======================================================================
-    //  desc    Bitmap Ãâ·ÂÀ» ¾îµğ±îÁö ÇÒ °ÍÀÎ°¡?
+    //  desc    Bitmap ì¶œë ¥ì„ ì–´ë””ê¹Œì§€ í•  ê²ƒì¸ê°€?
     //  =======================================================================
 	void SetBltRateX(int nIdx,int nRate,int nTotal, BOOL bErase = FALSE);
 
 	//  =======================================================================
-    //  desc    Bitmap Ãâ·ÂÀ» ¾îµğ±îÁö ÇÒ °ÍÀÎ°¡?
+    //  desc    Bitmap ì¶œë ¥ì„ ì–´ë””ê¹Œì§€ í•  ê²ƒì¸ê°€?
     //  =======================================================================
 	void SetBltRateY(int nIdx,int nRate);
   

@@ -1,14 +1,14 @@
 /******************************************************************************
 * File			: StringLocalConverter.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 12. 19
 * Abstract		: 
 *****************************************************************************
-* Desc			: ¾ð¾îº°, ±¹°¡º° »óÈ²¿¡ µû¸¥ ´Ü¾î È¤Àº ±ÛÀÚÀÇ º¯°æÀ» ÇÑ´Ù.
-*				  ¿¹) ÇÑ±¹¾îÀÇ À»/¸¦, ÀÌ/°¡ µîµî..
+* Desc			: ì–¸ì–´ë³„, êµ­ê°€ë³„ ìƒí™©ì— ë”°ë¥¸ ë‹¨ì–´ í˜¹ì€ ê¸€ìžì˜ ë³€ê²½ì„ í•œë‹¤.
+*				  ì˜ˆ) í•œêµ­ì–´ì˜ ì„/ë¥¼, ì´/ê°€ ë“±ë“±..
 *
-*				  ÀÏº»¾î´Â Àû¿ë ´ë»óÀÌ ¾ø´Ù.
+*				  ì¼ë³¸ì–´ëŠ” ì ìš© ëŒ€ìƒì´ ì—†ë‹¤.
 *****************************************************************************/
 
 #pragma once
@@ -37,7 +37,7 @@ public:
 	CStringLocalConverter() {}
 	virtual ~CStringLocalConverter() {}
 
-	///< ¾ð¾îº° »óÈ²¿¡ µû¶ó º¯°æµÈ ½ºÆ®¸µÀ» ¹ÝÈ¯ÇÑ´Ù
+	///< ì–¸ì–´ë³„ ìƒí™©ì— ë”°ë¼ ë³€ê²½ëœ ìŠ¤íŠ¸ë§ì„ ë°˜í™˜í•œë‹¤
 	const WCHAR*	LocalStringCovert(const WCHAR* pwcText);
 
 protected:

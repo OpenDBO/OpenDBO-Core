@@ -8,8 +8,8 @@
 #include "NtlPLEmblemMaker.h"
 
 
-// ²À ÁöÄÑ¾ß ÇÏ´Â ±ÔÄ¢.
-// Update Return Value´Â Controller ÀÛ¾÷ÀÌ ¿Ï·áµÇ¸é FALSE, ÀÛ¾÷ ÁßÀÌ¸é TRUE¸¦ retrun ÇÑ´Ù.
+// ê¼­ ì§€ì¼œì•¼ í•˜ëŠ” ê·œì¹™.
+// Update Return ValueëŠ” Controller ì‘ì—…ì´ ì™„ë£Œë˜ë©´ FALSE, ì‘ì—… ì¤‘ì´ë©´ TRUEë¥¼ retrun í•œë‹¤.
 class CNtlPLObjectController
 {
 public:

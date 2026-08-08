@@ -1,4 +1,4 @@
-// Attr_COND_Lvl.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// Attr_COND_Lvl.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,7 +6,7 @@
 #include "Attr_COND_Lvl.h"
 
 
-// CAttr_COND_Lvl ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CAttr_COND_Lvl ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 IMPLEMENT_SERIAL(CAttr_COND_Lvl, CAttr_Page, 1)
 
@@ -58,4 +58,4 @@ BEGIN_MESSAGE_MAP(CAttr_COND_Lvl, CAttr_Page)
 END_MESSAGE_MAP()
 
 
-// CAttr_COND_Lvl ¸Ş½ÃÁö Ã³¸®±âÀÔ´Ï´Ù.
+// CAttr_COND_Lvl ë©”ì‹œì§€ ì²˜ë¦¬ê¸°ì…ë‹ˆë‹¤.

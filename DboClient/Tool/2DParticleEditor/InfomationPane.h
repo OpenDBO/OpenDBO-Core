@@ -3,14 +3,14 @@
 
 #include "resource.h"
 
-// CInfomationPane Æû ºäÀÔ´Ï´Ù.
+// CInfomationPane í¼ ë·°ì…ë‹ˆë‹¤.
 
 class CInfomationPane : public CFormView
 {
 	DECLARE_DYNCREATE(CInfomationPane)
 
 protected:
-	CInfomationPane();           // µ¿Àû ¸¸µé±â¿¡ »ç¿ëµÇ´Â protected »ı¼ºÀÚÀÔ´Ï´Ù.
+	CInfomationPane();           // ë™ì  ë§Œë“¤ê¸°ì— ì‚¬ìš©ë˜ëŠ” protected ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CInfomationPane();
 
 public:
@@ -23,7 +23,7 @@ public:
 #endif
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 
@@ -36,9 +36,9 @@ public:
 	static CInfomationPane* GetInstance() { return m_pInstance; }
 
 public:
-	CString m_szClientMouseX;			///< Å¬¶óÀÌ¾ğÆ® ¿µ¿ª ( 0 ~ View »çÀÌÁî )
+	CString m_szClientMouseX;			///< í´ë¼ì´ì–¸íŠ¸ ì˜ì—­ ( 0 ~ View ì‚¬ì´ì¦ˆ )
 	CString m_szClientMouseY;
-	CString m_szParticleMouseX;			///< ÆÄÆ¼Å¬ ¿µ¿ª ( Offset°ªÀ» Æ÷ÇÔÇÑ )
+	CString m_szParticleMouseX;			///< íŒŒí‹°í´ ì˜ì—­ ( Offsetê°’ì„ í¬í•¨í•œ )
 	CString m_szParticleMouseY;
 	CString m_szResolutionWidth;
 	CString m_szResoultionHeight;

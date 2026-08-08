@@ -265,7 +265,7 @@ VOID CCharSelectGui::OnClickedGameStartButton(gui::CComponent* pComponent)
 	if (FALSE == Logic_IsUsableIndex(byCharIndex, NTL_MAX_COUNT_USER_CHAR_SLOT, INVALID_BYTE) ||
 		pLobby->GetCharacterCount() == 0)
 	{
-		// Ä³¸¯ÅÍ¸¦ ¼±ÅÃÇÏ½Ê½Ã¿ä
+		// ìºë¦­í„°ë¥¼ ì„ íƒí•˜ì‹­ì‹œìš”
 		GetAlarmManager()->AlarmMessage("DST_LOBBY_MUST_CHOICE_CHAR");
 		return;
 	}
@@ -375,17 +375,17 @@ VOID CCharSelectGui::HandleEvents(RWS::CMsg &msg)
 				NTL_RETURNVOID();
 			}
 
-			// Ä³¸¯ÅÍ ¸ðµ¨ ¹Ù²Ù±â			
+			// ìºë¦­í„° ëª¨ë¸ ë°”ê¾¸ê¸°			
 			if (pLobby->GetCharacterCount() > 0)
 			{
 				if (pLobby->GetSelectedCharacterIndex() != INVALID_BYTE)
 				{
-					// ÇöÀç ¼­¹ö¿¡¼­ ¼±ÅÃµÈ Ä³¸¯ÅÍ°¡ ÀÖ´Ù
+					// í˜„ìž¬ ì„œë²„ì—ì„œ ì„ íƒëœ ìºë¦­í„°ê°€ ìžˆë‹¤
 					CDboEventGenerator::LobbyEvent(LMT_SELECT_CHARACTER, (RwReal)pLobby->GetSelectedCharacterIndex());
 				}
 				else if (!pLobby->IsLoadedLastCharacter())
 				{
-					// ¸¶Áö¸·À¸·Î Á¢¼ÓÇß´ø Ä³¸¯ÅÍ Ã£±â
+					// ë§ˆì§€ë§‰ìœ¼ë¡œ ì ‘ì†í–ˆë˜ ìºë¦­í„° ì°¾ê¸°
 					std::string strFinalCharName = GetNtlStorageManager()->GetStringData(dSTORAGE_ACCOUNT_LASTCHAR);
 					WCHAR awcBuffer[NTL_MAX_SIZE_CHAR_NAME + 1];
 					::MultiByteToWideChar(GetACP(), 0, strFinalCharName.c_str(), -1, awcBuffer, NTL_MAX_SIZE_CHAR_NAME + 1);
@@ -407,21 +407,21 @@ VOID CCharSelectGui::HandleEvents(RWS::CMsg &msg)
 
 					if (!pLobby->IsLoadedLastCharacter())
 					{
-						// ¸¶Áö¸·À¸·Î Á¢¼ÓÇß´ø Ä³¸¯ÅÍÀÇ Á¤º¸¸¦ Á¦´ë·Î Ã£Áö ¸øÇß´Ù
+						// ë§ˆì§€ë§‰ìœ¼ë¡œ ì ‘ì†í–ˆë˜ ìºë¦­í„°ì˜ ì •ë³´ë¥¼ ì œëŒ€ë¡œ ì°¾ì§€ ëª»í–ˆë‹¤
 						pLobby->SetSelectedCharacterIndex(0);
 						CDboEventGenerator::LobbyEvent(LMT_SELECT_CHARACTER, 0);
 					}
 				}
 				else
 				{
-					// ¸¶Áö¸·À¸·Î Á¢¼ÓÇß´ø Ä³¸¯ÅÍÀÇ Á¤º¸°¡ ¾ø´Ù
+					// ë§ˆì§€ë§‰ìœ¼ë¡œ ì ‘ì†í–ˆë˜ ìºë¦­í„°ì˜ ì •ë³´ê°€ ì—†ë‹¤
 					pLobby->SetSelectedCharacterIndex(0);
 					CDboEventGenerator::LobbyEvent(LMT_SELECT_CHARACTER, 0);
 				}
 			}
 			else
 			{
-				// Ä³¸¯ÅÍ°¡ ¾ø´Ù
+				// ìºë¦­í„°ê°€ ì—†ë‹¤
 				pLobby->SetSelectedCharacterIndex(INVALID_BYTE);
 				CDboEventGenerator::LobbyEvent(LMT_SELECT_CHARACTER, (RwReal)INVALID_BYTE);
 			}

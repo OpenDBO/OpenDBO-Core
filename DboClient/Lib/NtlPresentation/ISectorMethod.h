@@ -21,9 +21,9 @@ enum eSECTOR_METHOD_EXECUTION_TYPE_INDEX
 class ISectorMethod
 {
 public:
-	typedef std::map<DWORD, VOID*>				tSELF_RET_MAP;
-	typedef std::map<DWORD, VOID*>::iterator	tSELF_RET_MAP_ITER;
-	typedef std::map<DWORD, VOID*>::value_type	tSELF_VALUE_TYPE;
+	typedef std::map<uintptr_t, VOID*>				tSELF_RET_MAP;
+	typedef std::map<uintptr_t, VOID*>::iterator	tSELF_RET_MAP_ITER;
+	typedef std::map<uintptr_t, VOID*>::value_type	tSELF_VALUE_TYPE;
 
 public:
 	ISectorMethod(void);
@@ -67,9 +67,9 @@ enum eSECTOR_METHOD_EXECUTION_TYPE_INDEX
 class ISectorMethod : public CNtlWorldFileMemAccessor
 {
 public:
-	typedef std::map<DWORD, VOID*>				tSELF_RET_MAP;
-	typedef std::map<DWORD, VOID*>::iterator	tSELF_RET_MAP_ITER;
-	typedef std::map<DWORD, VOID*>::value_type	tSELF_VALUE_TYPE;
+	typedef std::map<uintptr_t, VOID*>				tSELF_RET_MAP;
+	typedef std::map<uintptr_t, VOID*>::iterator	tSELF_RET_MAP_ITER;
+	typedef std::map<uintptr_t, VOID*>::value_type	tSELF_VALUE_TYPE;
 
 public:
 	ISectorMethod(void);

@@ -2,7 +2,7 @@
  *
  * File			: NtlSLLogic.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 11. 10	
  * Abstract		: simulation logic.h
  *****************************************************************************
@@ -50,7 +50,7 @@ extern RwUInt8	g_byShadowRed;
 extern RwUInt8	g_byShadowGreen;
 extern RwUInt8	g_byShadowBlue;
 
-extern RwReal   g_fTestVal;             /// ´Ù¾çÇÑ Å×½ºÆ®¿¡ »ç¿ëµÇ´Â Àü¿ª º¯¼ö 
+extern RwReal   g_fTestVal;             /// ë‹¤ì–‘í•œ í…ŒìŠ¤íŠ¸ì— ì‚¬ìš©ë˜ëŠ” ì „ì—­ ë³€ìˆ˜ 
 extern RwReal   g_fTestVal2;
 extern RwReal   g_fTestVal3;
 
@@ -58,7 +58,7 @@ extern RwInt32	g_nTestVal;
 
 extern RwInt32	g_nBroadCastGuiPosX;
 
-extern RwUInt32 g_uiTargetMarkingId;    ///< ÇöÀç Å¸°Ù ¸¶ÄÉÆÃ °´Ã¼ÀÇ ID
+extern RwUInt32 g_uiTargetMarkingId;    ///< í˜„ì¬ íƒ€ê²Ÿ ë§ˆì¼€íŒ… ê°ì²´ì˜ ID
 
 extern RwBool	g_bActiveAnimSync;
 
@@ -69,7 +69,7 @@ extern RwUInt32	g_uiCreateHitEffectRate;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// ÇÔ¼ö Æ÷ÀÎÅÍ µî·Ï
+// í•¨ìˆ˜ í¬ì¸í„° ë“±ë¡
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -105,13 +105,13 @@ RwBool Logic_IsUIDevInfoVisible(void);
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // monster/player logic
-// ÁÖÀÇ : ¼Óµµ´Â table data¿Í »óÅÂ ¹× ¹öÇÁ°¡ °í·ÁµÈ ¼Óµµ°¡ µÉ°ÍÀÌ´Ù.
+// ì£¼ì˜ : ì†ë„ëŠ” table dataì™€ ìƒíƒœ ë° ë²„í”„ê°€ ê³ ë ¤ëœ ì†ë„ê°€ ë ê²ƒì´ë‹¤.
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// actor ¼Ó¼º logic
+// actor ì†ì„± logic
 
 // name
 const WCHAR* Logic_GetName(CNtlSob *pSobObj);
@@ -232,7 +232,7 @@ float		Logic_GetMaxDashDistanceForward(CNtlSobActor *pActor);
 float		Logic_GetMaxDashDistanceBackLeftRight(CNtlSobActor *pActor);
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// player ÀüÁ÷ 
+// player ì „ì§ 
 RwUInt8		Logic_GetPlayerRace(CNtlSobActor *pActor);
 
 RwUInt8		Logic_GetPlayerClass(CNtlSobActor *pActor);
@@ -247,7 +247,7 @@ RwUInt8		Logic_ConverClasstoRace(RwUInt8 byClass);
 
 RwBool		Logic_IsChild(CNtlSobActor *pActor);
 
-RwBool		Logic_IsFirstClass(CNtlSobPlayer* pPlayer);	// 1Â÷Á÷ÀÌ³Ä.
+RwBool		Logic_IsFirstClass(CNtlSobPlayer* pPlayer);	// 1ì°¨ì§ì´ëƒ.
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // attack , npc community , skill use range
@@ -258,7 +258,7 @@ RwReal		Logic_GetCommunityRange(CNtlSobActor *pActor);
 RwReal		Logic_GetCommunityOutRange(CNtlSobActor *pActor);
 void		Logic_BeginActorCommunity(CNtlSobActor *pActor, CNtlSobActor *pTarActor); 
 RwReal		Logic_GetSkillUseRange(sSKILL_TBLDAT *pSkillTblData);
-RwReal      Logic_GetSkillApplyRange(CNtlSobActor* pActor, RwUInt32 uiSkillTblidx);         /// ¹üÀ§ ½ºÅ³ÀÇ ¹üÀ§¸¦ ¹İÈ¯ÇÑ´Ù.
+RwReal      Logic_GetSkillApplyRange(CNtlSobActor* pActor, RwUInt32 uiSkillTblidx);         /// ë²”ìœ„ ìŠ¤í‚¬ì˜ ë²”ìœ„ë¥¼ ë°˜í™˜í•œë‹¤.
 RwBool		Logic_IsMasterSkill(SERIAL_HANDLE hSkillSerial);
 RwReal		Logic_GetCurrentCastingTime(CNtlSobActor *pActor);
 RwReal		Logic_GetMaxCastingTime(CNtlSobActor *pActor);
@@ -280,37 +280,37 @@ RwReal		Logic_GetRequiredEPFactor(CNtlSobActor* pActor);
 //RwReal		Logic_GetCoolingTimeModifier(CNtlSobActor* pActor);
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// actorÀÇ »óÅÂ ¹× mode
+// actorì˜ ìƒíƒœ ë° mode
 
-RwBool		Logic_IsCommunityActor(CNtlSobActor *pActor);           // actor°¡ community actorÀÎ°¡?(npc, trigger object, world item)
+RwBool		Logic_IsCommunityActor(CNtlSobActor *pActor);           // actorê°€ community actorì¸ê°€?(npc, trigger object, world item)
 RwBool		Logic_IsGambleActor(CNtlSobActor *pActor);
-RwBool		Logic_IsOperationTriggerActor(CNtlSobActor *pActor);    // operation trigger actor ÀÎ°¡?
+RwBool		Logic_IsOperationTriggerActor(CNtlSobActor *pActor);    // operation trigger actor ì¸ê°€?
 RwUInt32	Logic_GetDirectIdTriggerActor(CNtlSobActor *pActor);
-RwUInt32	Logic_GetActorStateId(CNtlSobActor *pActor);            // actorÀÇ state id¸¦ ³Ñ°ÜÁØ´Ù.
-RwUInt32    Logic_GetActorStateFlags(CNtlSobActor* pActor);          // ActorÀÇ ÇöÀç State Flag¸¦ ³Ñ°ÜÁØ´Ù.
-SERIAL_HANDLE Logic_GetActorTargetSerialId(CNtlSobActor *pActor);   // actor°¡ target ÇÏ°í ÀÖ´Â serial id
-RwBool		Logic_IsActorBattleMode(CNtlSobActor *pActor);          // actor ÇöÀç ÀüÅõÁßÀÎ°¡?
-RwBool		Logic_CanSkillUse(CNtlSobActor *pActor);                // actor°¡ skill »ç¿ëÀÌ °¡´ÉÇÑ°¡?
+RwUInt32	Logic_GetActorStateId(CNtlSobActor *pActor);            // actorì˜ state idë¥¼ ë„˜ê²¨ì¤€ë‹¤.
+RwUInt32    Logic_GetActorStateFlags(CNtlSobActor* pActor);          // Actorì˜ í˜„ì¬ State Flagë¥¼ ë„˜ê²¨ì¤€ë‹¤.
+SERIAL_HANDLE Logic_GetActorTargetSerialId(CNtlSobActor *pActor);   // actorê°€ target í•˜ê³  ìˆëŠ” serial id
+RwBool		Logic_IsActorBattleMode(CNtlSobActor *pActor);          // actor í˜„ì¬ ì „íˆ¬ì¤‘ì¸ê°€?
+RwBool		Logic_CanSkillUse(CNtlSobActor *pActor);                // actorê°€ skill ì‚¬ìš©ì´ ê°€ëŠ¥í•œê°€?
 RwBool		Logic_IsNotFollowMoveSkill(CNtlSobActor *pActor, RwUInt8 bySlotIdx);
 void		Logic_GetAvatarSkillApplyArea(CNtlSobActor *pActor, SERIAL_HANDLE hTargetSerial, RwUInt8 bySlotIdx, std::list<SERIAL_HANDLE>& listApplyActor);      // area skill
 void		Logic_GetAvatarSkillApplyArea(SERIAL_HANDLE hTargetSerial, RwUInt32 uiSkillId, std::list<SERIAL_HANDLE>& listApplyActor);       // area skill 
-RwBool		Logic_IsEnemyTargetFromActor(CNtlSobActor *pActor, SERIAL_HANDLE hTargetSerial);        // targetÀÌ actor¿¡ ´ëÇÏ¿© ÀûÀÎ°¡?
-RwBool		Logic_IsEnemyTargetFromAvatarActor(SERIAL_HANDLE hTargetSerial);        // targetÀÌ avatar¿¡ ´ëÇÏ¿© ÀûÀÎ°¡?
-RwBool		Logic_IsEnemyTagetFromPetActor(CNtlSobActor *pActor, SERIAL_HANDLE hTargetSerial);      // targetÀÌ pet actor¿¡ ´ëÇÏ¿© ÀûÀÎ°¡?
-RwBool      Logic_isEnemyTargetOcclusion(SERIAL_HANDLE hTargetSerial);  ///< Å¸°ÙÀÌ Â÷Æó¹°¿¡ °¡·ÁÁ® ÀÖ´Â°¡?
-CNtlSobActor* Logic_FindNearEnemyFromAvatarActor(void);             // avatar¿¡ ´ëÇÏ¿© °¡Àå °¡±î¿î ÀûÀ» Ã£´Â´Ù.
-CNtlSobActor* Logic_GetAutoTarget(CNtlSobActor* pActor);            ///< ÀÚµ¿ Å¸°ÙÆÃ »ó´ë¸¦ Ã£´Â´Ù.
-RwBool      Logic_IsBlackList(RwUInt32 uiSerialID);                 // »ó´ë Ä³¸¯ÅÍ°¡ ³ªÀÇ Â÷´Ü¸®½ºÆ®¿¡ ÀÖ´ÂÁö È®ÀÎÇÑ´Ù.
-RwBool      Logic_IsDirectMode(CNtlSobActor* pActor);               ///< Direct Mode(Á¦¾î ºÒ´É)ÀÎÁö È®ÀÎÇÑ´Ù.
-RwBool      Logic_CanTranslateIdleState(CNtlSobActor* pActor);      ///< Idle »óÅÂ·Î ÀüÀÌ°¡ °¡´ÉÇÑ°¡? 
-RwBool      Logic_CanTargetted(CNtlSobActor* pActor);               ///< Å¸°ÙÆÃÀÌ °¡´ÉÇÑ°¡?
+RwBool		Logic_IsEnemyTargetFromActor(CNtlSobActor *pActor, SERIAL_HANDLE hTargetSerial);        // targetì´ actorì— ëŒ€í•˜ì—¬ ì ì¸ê°€?
+RwBool		Logic_IsEnemyTargetFromAvatarActor(SERIAL_HANDLE hTargetSerial);        // targetì´ avatarì— ëŒ€í•˜ì—¬ ì ì¸ê°€?
+RwBool		Logic_IsEnemyTagetFromPetActor(CNtlSobActor *pActor, SERIAL_HANDLE hTargetSerial);      // targetì´ pet actorì— ëŒ€í•˜ì—¬ ì ì¸ê°€?
+RwBool      Logic_isEnemyTargetOcclusion(SERIAL_HANDLE hTargetSerial);  ///< íƒ€ê²Ÿì´ ì°¨íë¬¼ì— ê°€ë ¤ì ¸ ìˆëŠ”ê°€?
+CNtlSobActor* Logic_FindNearEnemyFromAvatarActor(void);             // avatarì— ëŒ€í•˜ì—¬ ê°€ì¥ ê°€ê¹Œìš´ ì ì„ ì°¾ëŠ”ë‹¤.
+CNtlSobActor* Logic_GetAutoTarget(CNtlSobActor* pActor);            ///< ìë™ íƒ€ê²ŸíŒ… ìƒëŒ€ë¥¼ ì°¾ëŠ”ë‹¤.
+RwBool      Logic_IsBlackList(RwUInt32 uiSerialID);                 // ìƒëŒ€ ìºë¦­í„°ê°€ ë‚˜ì˜ ì°¨ë‹¨ë¦¬ìŠ¤íŠ¸ì— ìˆëŠ”ì§€ í™•ì¸í•œë‹¤.
+RwBool      Logic_IsDirectMode(CNtlSobActor* pActor);               ///< Direct Mode(ì œì–´ ë¶ˆëŠ¥)ì¸ì§€ í™•ì¸í•œë‹¤.
+RwBool      Logic_CanTranslateIdleState(CNtlSobActor* pActor);      ///< Idle ìƒíƒœë¡œ ì „ì´ê°€ ê°€ëŠ¥í•œê°€? 
+RwBool      Logic_CanTargetted(CNtlSobActor* pActor);               ///< íƒ€ê²ŸíŒ…ì´ ê°€ëŠ¥í•œê°€?
 RwBool      Logic_CanAttacked(CNtlSobActor* pActor);		//< Check if target can be attacked
-void        Logic_SetTargetMarkingID(RwUInt32 uiSerialId);          ///< Å¸°Ù ¸¶Å·µÈ ID Ã¼Å©
+void        Logic_SetTargetMarkingID(RwUInt32 uiSerialId);          ///< íƒ€ê²Ÿ ë§ˆí‚¹ëœ ID ì²´í¬
 RwUInt32    Logic_GetTargetMarkingID();
 void		Logic_GetSkillFinalLocation(CNtlSobActor *pActor, SERIAL_HANDLE hTargetSerial, RwUInt8 bySlotIdx, RwV3d* vFinalLoc, RwV3d* vFinalSubjectLoc);
 void		Logic_GetSkillFinalLocation2(SERIAL_HANDLE hTargetSerial, sSKILL_TBLDAT *pSkillTblData, RwV3d * vFinalLoc, RwV3d * vFinalSubjectLoc);
 
-void        Logic_SetActorAnimation(RwUInt32 uiSerialID, RwUInt32 uiAnimID, RwBool bLoop);             ///<  ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ¼¼ÆÃÇÑ´Ù.
+void        Logic_SetActorAnimation(RwUInt32 uiSerialID, RwUInt32 uiAnimID, RwBool bLoop);             ///<  ì• ë‹ˆë©”ì´ì…˜ì„ ì„¸íŒ…í•œë‹¤.
 
 RwBool		Logic_IsMovePatternApply(CNtlSobActor* pActor);
 void		Logic_GetMovePatternSync(RwUInt32 uiSerialID, RwUInt8 byPatternId);
@@ -338,12 +338,12 @@ void		Logic_MakeMobSpawnState(sCHARSTATE *pState, RwV3d vLoc, RwV3d vDir);
 
 void		Logic_MakeNPCSpawnState(sCHARSTATE *pState, RwV3d vLoc, RwV3d vDir);
 
-///< NPC Serial ¹øÈ£·Î Å×ÀÌºí µ¥ÀÌÅÍ¸¦ ¹İÈ¯ÇÑ´Ù.
+///< NPC Serial ë²ˆí˜¸ë¡œ í…Œì´ë¸” ë°ì´í„°ë¥¼ ë°˜í™˜í•œë‹¤.
 sNPC_TBLDAT* Logic_GetNPCDataFromSob(SERIAL_HANDLE hSerial);
 
 TBLIDX		Logic_GetNPCTriggerId(CNtlSob *pSobObj);
 
-// ÇöÀç quest npc°¡ ¶³¾îÁ® 
+// í˜„ì¬ quest npcê°€ ë–¨ì–´ì ¸ 
 RwReal		Logic_GetQuestNpcDistanceFromAvatar(CNtlSob *pSobNpc);
 
 RwBool		Logic_IsDragonBallNPC(TBLIDX tblidx);
@@ -353,7 +353,7 @@ RwBool		Logic_IsDragonBallNPCActor(SERIAL_HANDLE hSerialId);
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Trigger object
 
-// quest ¹× trigger agency
+// quest ë° trigger agency
 
 RwBool		Logic_IsTriggerActive(CNtlSob *pSobObj);
 
@@ -373,39 +373,39 @@ TBLIDX		Logic_GetDynamicObjTriggerId(CNtlSob* pSobObj);
 
 void			Logic_SetItemStack(CNtlSobItem* pSobItem, RwUInt8 ucStackNum);
 
-// weapon equip slot¿¡ ÀåÂøµÈ item tableÀ» ±¸ÇÑ´Ù.
+// weapon equip slotì— ì¥ì°©ëœ item tableì„ êµ¬í•œë‹¤.
 sITEM_TBLDAT*	Logic_GetEquipedWeaponItemTableData(CNtlSob *pSobObj);
 
-// ÇØ´çÇÏ´Â equip slot¿¡ ÀåÂøµÈ item serialÀ» ±¸ÇÑ´Ù.
+// í•´ë‹¹í•˜ëŠ” equip slotì— ì¥ì°©ëœ item serialì„ êµ¬í•œë‹¤.
 SERIAL_HANDLE	Logic_GetEquipedItemSerial(CNtlSob *pSobObj, RwUInt8 bySlotIdx);
 
-// item tableÀÌ staff weaponÀÎ°¡?
+// item tableì´ staff weaponì¸ê°€?
 RwBool			Logic_IsEquipedStaffWeapon(sITEM_TBLDAT *pItemTblData);
 
-RwUInt32        Logic_GetIdleAnimationID(CNtlSob* pSobObj);     ///< ¹«±â ÀåÂø »óÅÂ¿¡ ¸Â´Â IDLE ¾Ö´Ï¸ŞÀÌ¼ÇÀ» ¹İÈ¯ÇÑ´Ù.
+RwUInt32        Logic_GetIdleAnimationID(CNtlSob* pSobObj);     ///< ë¬´ê¸° ì¥ì°© ìƒíƒœì— ë§ëŠ” IDLE ì• ë‹ˆë©”ì´ì…˜ì„ ë°˜í™˜í•œë‹¤.
 
-// sub weapon equip slot¿¡ ÀåÂøµÈ item serialÀ» ±¸ÇÑ´Ù.
+// sub weapon equip slotì— ì¥ì°©ëœ item serialì„ êµ¬í•œë‹¤.
 SERIAL_HANDLE	Logic_GetEquipedSubWeaponItemSerial(CNtlSob *pSobObj);
 
-// ¿òÁ÷ÀÏ ¼ö ÀÖ´Â sub weapon ÀÌ³Ä?
+// ì›€ì§ì¼ ìˆ˜ ìˆëŠ” sub weapon ì´ëƒ?
 RwBool			Logic_IsMoveableSubWeapon(sITEM_TBLDAT *pItemTblData); 
 
-// ¿òÁ÷ÀÏ ¼ö ÀÖ´Â sub weapon ÀÌ³Ä?
+// ì›€ì§ì¼ ìˆ˜ ìˆëŠ” sub weapon ì´ëƒ?
 RwBool			Logic_IsMoveableSubWeapon(TBLIDX tblidx);
 
-// sub weaponÀÌ active »óÅÂ¿¡¼­ character¿¡ attach µÇÁö ¾Ê¾Æ¾ß ÇÏ´Â°¡?
+// sub weaponì´ active ìƒíƒœì—ì„œ characterì— attach ë˜ì§€ ì•Šì•„ì•¼ í•˜ëŠ”ê°€?
 RwBool			Logic_IsActiveNotAttachSubWeapon(TBLIDX tblidx);
 
-// main weapon°ú changeÇØ¾ß ÇÏ´Â sub weaponÀÎ°¡?
+// main weaponê³¼ changeí•´ì•¼ í•˜ëŠ” sub weaponì¸ê°€?
 RwBool			Logic_IsWeaponChangeSubWeapon(TBLIDX tblidx);
 
 //Getting item grade -Makoto
 RwUInt8         Logic_GetBootsGrade(CNtlSob* pSobObj);
 
-// costume item ÀÎ°¡?
+// costume item ì¸ê°€?
 RwBool			Logic_IsCostumeItem(sITEM_TBLDAT *pItemTblData);
 
-// ÇöÀçÀÇ ¾ÆÀÌÅÛÀÌ hide µÇ¾î¾ß ÇÏ´Â°¡?
+// í˜„ì¬ì˜ ì•„ì´í…œì´ hide ë˜ì–´ì•¼ í•˜ëŠ”ê°€?
 RwBool			Logic_IsHideCostumeItem(RwUInt16 wHideBigFlags, void *pData);
 
 // With items that can be sold
@@ -418,67 +418,67 @@ RwBool			Logic_IsCanDiscardItem(sITEM_TBLDAT* pITEM_TBLDAT);
 RwBool			Logic_IsCanDiscardItem(CNtlSobItemAttr* pSobItemAttr);
 RwBool			Logic_IsCanDiscardItem(sITEM_PROFILE* pItemProfile);
 
-// À¯Àú°£ °Å·¡ÇÒ ¼ö ÀÖ´Â ¾ÆÀÌÅÛÀÎ°¡
+// ìœ ì €ê°„ ê±°ë˜í•  ìˆ˜ ìˆëŠ” ì•„ì´í…œì¸ê°€
 RwBool			Logic_IsCanUserTradeItem(sITEM_TBLDAT* pITEM_TBLDAT);
 RwBool			Logic_IsCanUserTradeItem( CNtlSobItemAttr* pSobItemAttr );
 RwBool			Logic_IsCanUserTradeItem( sITEM_PROFILE* pItemProfile );
 
 RwBool			Logic_IsCanUserAuctionItem(CNtlSobItemAttr* pSobItemAttr);
 
-// Ã¢°í¿¡ ÀúÀåÇÒ ¼ö ÀÖ´Â ¾ÆÀÌÅÛÀÎ°¡
+// ì°½ê³ ì— ì €ì¥í•  ìˆ˜ ìˆëŠ” ì•„ì´í…œì¸ê°€
 RwBool			Logic_IsCanSaveWarehouse(sITEM_TBLDAT* pITEM_TBLDAT);
 RwBool			Logic_IsCanSaveWarehouse( CNtlSobItemAttr* pSobItemAttr );
 RwBool			Logic_IsCanSaveWarehouse( sITEM_PROFILE* pItemProfile );
 
-// °øÀ¯Ã¢°í¿¡ ÀúÀåÇÒ ¼ö ÀÖ´Â ¾ÆÀÌÅÛÀÎ°¡
+// ê³µìœ ì°½ê³ ì— ì €ì¥í•  ìˆ˜ ìˆëŠ” ì•„ì´í…œì¸ê°€
 RwBool			Logic_IsCanSaveCommonWarehouse(sITEM_TBLDAT* pITEM_TBLDAT);
 RwBool			Logic_IsCanSaveCommonWarehouse( CNtlSobItemAttr* pSobItemAttr );
 RwBool			Logic_IsCanSaveCommonWarehouse( sITEM_PROFILE* pItemProfile );
 
-// »ç¿ë±â°£ ¾ÆÀÌÅÛÀÎ°¡
+// ì‚¬ìš©ê¸°ê°„ ì•„ì´í…œì¸ê°€
 RwBool			Logic_IsTimeLimitItem( CNtlSobItemAttr* pItemAttr );
 RwBool			Logic_IsTimeLimitItem( sITEM_PROFILE* pItemProfile );
 RwBool			Logic_IsTimeLimitItem( sITEM_TBLDAT* pITEM_TBLDAT );
 
 
 
-// ¸ğµç °¡¹æÀÇ ºñ¾îÀÖ´Â ½½·ÔÀÇ °¹¼ö¸¦ ¹İÈ¯ÇÑ´Ù
+// ëª¨ë“  ê°€ë°©ì˜ ë¹„ì–´ìˆëŠ” ìŠ¬ë¡¯ì˜ ê°¯ìˆ˜ë¥¼ ë°˜í™˜í•œë‹¤
 RwInt32			Logic_GetCountEmptySlotofBag();
 
-// Ã¹ ¹øÂ° °¡¹æºÎÅÍ ºñ¾îÀÖ´Â Ã¹ ¹øÂ° ½½·ÔÀ» Ã£¾Æ¼­ ¹İÈ¯ÇÑ´Ù
+// ì²« ë²ˆì§¸ ê°€ë°©ë¶€í„° ë¹„ì–´ìˆëŠ” ì²« ë²ˆì§¸ ìŠ¬ë¡¯ì„ ì°¾ì•„ì„œ ë°˜í™˜í•œë‹¤
 void			Logic_GetFirstEmptySlot_of_Bag(RwUInt32& uiBagIndex, SERIAL_HANDLE& hBagHandle, RwUInt32& uiSlot_of_bag);
 
-// Ã¹ ¹øÂ° Ã¢°íºÎÅÍ ºñ¾îÀÖ´Â Ã¹ ¹øÂ° ½½·ÔÀ» Ã£¾Æ¼­ ¹İÈ¯ÇÑ´Ù
+// ì²« ë²ˆì§¸ ì°½ê³ ë¶€í„° ë¹„ì–´ìˆëŠ” ì²« ë²ˆì§¸ ìŠ¬ë¡¯ì„ ì°¾ì•„ì„œ ë°˜í™˜í•œë‹¤
 void			Logic_GetFirstEmptySlot_of_Warehouse(RwUInt8& byWarehouseIndex, SERIAL_HANDLE& hWarehouseHandle,
 													 RwUInt8& bySlot_of_warehouse);
 
-// ÀÎÀÚ·Î ¹ŞÀº ÇÚµéÀÇ ¾ÆÀÌÅÛÀÌ Ã¢°í¿¡ ÀÖ´Ù¸é ÀÎµ¦½º¿Í ½½·Ô ¹øÈ£¸¦ ¹İÈ¯ÇÑ´Ù
+// ì¸ìë¡œ ë°›ì€ í•¸ë“¤ì˜ ì•„ì´í…œì´ ì°½ê³ ì— ìˆë‹¤ë©´ ì¸ë±ìŠ¤ì™€ ìŠ¬ë¡¯ ë²ˆí˜¸ë¥¼ ë°˜í™˜í•œë‹¤
 RwBool			Logic_FindWarehouseItem(SERIAL_HANDLE hItem, RwUInt8& byWarehouseIndex, RwUInt8& bySlot_of_warehouse);
 
-// Ã¹ ¹øÂ° ±æµå Ã¢°íºÎÅÍ ºñ¾îÀÖ´Â Ã¹ ¹øÂ° ½½·ÔÀ» Ã£¾Æ¼­ ¹İÈ¯ÇÑ´Ù
+// ì²« ë²ˆì§¸ ê¸¸ë“œ ì°½ê³ ë¶€í„° ë¹„ì–´ìˆëŠ” ì²« ë²ˆì§¸ ìŠ¬ë¡¯ì„ ì°¾ì•„ì„œ ë°˜í™˜í•œë‹¤
 void			Logic_GetFirstEmptySlot_of_GuildWarehouse(RwUInt8& byGuildWarehouseIndex, RwUInt8& bySlot_of_GuildWarehouse);
 
-// ºñ¾îÀÖ´Â ½ºÄ«¿ìÅÍÀÇ Ã¹ ¹øÂ° ½½·Ô
+// ë¹„ì–´ìˆëŠ” ìŠ¤ì¹´ìš°í„°ì˜ ì²« ë²ˆì§¸ ìŠ¬ë¡¯
 RwUInt8			Logic_GetFirstEmptyScouterSlot();
 
-// ÀÎÀÚ·Î ¹ŞÀº ¾ÆÀÌÅÛ ÀÎµ¦½º¿Í °°Àº °¡¹æ¾ÈÀÇ Ã¹¹øÂ° ¾ÆÀÌÅÛÀÇ ÇÚµéÀ» ¹İÈ¯ÇÑ´Ù
+// ì¸ìë¡œ ë°›ì€ ì•„ì´í…œ ì¸ë±ìŠ¤ì™€ ê°™ì€ ê°€ë°©ì•ˆì˜ ì²«ë²ˆì§¸ ì•„ì´í…œì˜ í•¸ë“¤ì„ ë°˜í™˜í•œë‹¤
 SERIAL_HANDLE	Logic_FirstItem_in_Bag(TBLIDX index);
 
 
-///< Charm Serial ¹øÈ£·Î Å×ÀÌºí µ¥ÀÌÅÍ¸¦ ¹İÈ¯ÇÑ´Ù.
+///< Charm Serial ë²ˆí˜¸ë¡œ í…Œì´ë¸” ë°ì´í„°ë¥¼ ë°˜í™˜í•œë‹¤.
 sCHARM_TBLDAT*	Logic_GetCharmDataFromTable(TBLIDX index);
 
-///< MERCHANT Serial ¹øÈ£·Î Å×ÀÌºí µ¥ÀÌÅÍ¸¦ ¹İÈ¯ÇÑ´Ù.
+///< MERCHANT Serial ë²ˆí˜¸ë¡œ í…Œì´ë¸” ë°ì´í„°ë¥¼ ë°˜í™˜í•œë‹¤.
 sMERCHANT_TBLDAT* Logic_GetMerchantDataFromTable(TBLIDX index);
 
-///< Item Serial È¤Àº Sob ¹øÈ£·Î Å×ÀÌºí µ¥ÀÌÅÍ¸¦ ¹İÈ¯ÇÑ´Ù.
+///< Item Serial í˜¹ì€ Sob ë²ˆí˜¸ë¡œ í…Œì´ë¸” ë°ì´í„°ë¥¼ ë°˜í™˜í•œë‹¤.
 sITEM_TBLDAT*	Logic_GetItemDataFromTable(TBLIDX index);
 sITEM_TBLDAT*	Logic_GetItemDataFromSob(SERIAL_HANDLE hSerial);
 
-///< Item Serial·Î SobItemAttrÀ» ¹İÈ¯ÇÑ´Ù.
+///< Item Serialë¡œ SobItemAttrì„ ë°˜í™˜í•œë‹¤.
 CNtlSobItemAttr* Logic_GetItemSobAttrFromSobSerial( SERIAL_HANDLE hSerial );
 
-// ÇØ´çÇÏ´Â ½ºÄ«¿ìÅÍ ÆÄÃ÷Å¸ÀÔÀ» ÀåÂøÇß´ÂÁö °Ë»çÇÑ´Ù.
+// í•´ë‹¹í•˜ëŠ” ìŠ¤ì¹´ìš°í„° íŒŒì¸ íƒ€ì…ì„ ì¥ì°©í–ˆëŠ”ì§€ ê²€ì‚¬í•œë‹¤.
 bool			Logic_ExistScouterEffect(int nEffectCode);
 
 bool			Logic_IsValidScouterEquipped(bool bShowByDefault);
@@ -492,13 +492,13 @@ RwReal			Logic_GetItemSystemEffectValue(sITEM_TBLDAT* pITEM_TBLDAT, RwUInt32 uiS
 // Skill
 
 sSKILL_TBLDAT*	Logic_GetSkillDataFromTable(TBLIDX index);
-RwBool          Logic_IsSkillSystemEffectCode(TBLIDX index, RwUInt32 uiSystemEffect);               ///< ½ºÅ³ÀÇ ½Ã½ºÅÛ ÀÌÆåÆ® ÄÚµå°¡ ÀÖ´ÂÁö È®ÀÎÇÑ´Ù.
-RwReal          Logic_GetSkillSystemEffectValue(TBLIDX index, RwUInt32 uiSystemEffect);             ///< ½ºÅ³ÀÇ ½Ã½ºÅÛ ÀÌÆåÆ® °ªÀ» ¹İÈ¯ÇÑ´Ù.
+RwBool          Logic_IsSkillSystemEffectCode(TBLIDX index, RwUInt32 uiSystemEffect);               ///< ìŠ¤í‚¬ì˜ ì‹œìŠ¤í…œ ì´í™íŠ¸ ì½”ë“œê°€ ìˆëŠ”ì§€ í™•ì¸í•œë‹¤.
+RwReal          Logic_GetSkillSystemEffectValue(TBLIDX index, RwUInt32 uiSystemEffect);             ///< ìŠ¤í‚¬ì˜ ì‹œìŠ¤í…œ ì´í™íŠ¸ ê°’ì„ ë°˜í™˜í•œë‹¤.
 void			Logic_SetSkillExp(RwUInt32 uiSkillSlotIdx, RwUInt16 wExp);
 void			Logic_SetActiveRpSkillBonus(RwUInt8 byRpBonusType);
 RwUInt8			Logic_GetActiveRpSkillBonus(void);
-RwBool          Logic_IsCastingTargetSkill(TBLIDX tblidx);                      ///< Ä³½ºÆÃ Å¸°ÙÀ» Ç¥½ÃÇÏ´Â ½ºÅ³ÀÎ°¡ (¸Ş°¡µµµ¿ÆÄ)
-RwBool			Logic_IsStrongCastSkill(TBLIDX tblidx);							///< ½ºÆ®·Õ Ä³½ºÆÃ ½ºÅ³ÀÎ°¡
+RwBool          Logic_IsCastingTargetSkill(TBLIDX tblidx);                      ///< ìºìŠ¤íŒ… íƒ€ê²Ÿì„ í‘œì‹œí•˜ëŠ” ìŠ¤í‚¬ì¸ê°€ (ë©”ê°€ë„ë™íŒŒ)
+RwBool			Logic_IsStrongCastSkill(TBLIDX tblidx);							///< ìŠ¤íŠ¸ë¡± ìºìŠ¤íŒ… ìŠ¤í‚¬ì¸ê°€
 RwBool			Logic_IsSkillUseAfterAttack(SERIAL_HANDLE hSkillSerial);
 
 void			Logic_SkillInfoText(WCHAR* wchMsg, unsigned int uiColor, BYTE byMsgType);
@@ -518,17 +518,17 @@ bool			Logic_SobTarget(RwUInt32 hTargetSerial, BYTE byFollow);
 
 const WCHAR*	Logic_GetAvatarName(void);
 
-// target actor¿ÍÀÇ headingÀ» ±¸ÇÏ´Â ÇÔ¼ö.
+// target actorì™€ì˜ headingì„ êµ¬í•˜ëŠ” í•¨ìˆ˜.
 void			Logic_CharHeading(CNtlSobActor *pActor, SERIAL_HANDLE uiTargetSeriaIId);
 
-// targetÀÌ ÇöÀç Á×¾î ÀÖ´Â°¡?
+// targetì´ í˜„ì¬ ì£½ì–´ ìˆëŠ”ê°€?
 RwBool			Logic_CharIsDie(SERIAL_HANDLE uiTargetSeriaIId);
 
 void			Logic_AvatarTargetStateChange(SERIAL_HANDLE uiTargetSeriaIId);
 
 void			Logic_AvatarStateChange(void);
 
-RwBool          Logic_IsBehind(CNtlSob* pSob, RwV3d& vTargetPos);   /// µÚ¿¡ ÀÖ´Â°¡¸¦ ÆÇº°ÇÑ´Ù.
+RwBool          Logic_IsBehind(CNtlSob* pSob, RwV3d& vTargetPos);   /// ë’¤ì— ìˆëŠ”ê°€ë¥¼ íŒë³„í•œë‹¤.
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -572,8 +572,8 @@ void			Logic_EnableCharacterCollisionSlant(RwBool bSlantCheck);
 void			Logic_EnableCharacterSlipping(RwBool bSlippingCheck);
 RwUInt8			Logic_CharacterCollisionEx(CNtlSobActor *pActor, const RwV3d *pDestPos, RwReal fSpeed, RwV3d& vNewPos, RwBool& bCollMoveImPossible, RwReal fElapsed, RwBool bJump = FALSE);
 RwBool			Logic_CharacterSlipping(CNtlSobActor *pActor, RwV3d& vNewPos, RwReal fElapsed);
-RwBool			Logic_IsMoveWorldArea(CNtlSobActor *pActor, RwV3d vCurrPos, RwV3d vDestPos);                    ///< ÁöÇü¼Ó¼ºÀ» Á¶»çÇØ¼­ ÀÌµ¿ °¡´É ¿µ¿ªÀÎÁö ÆÇ´ÜÇÑ´Ù
-RwBool          Logic_IsCollisionLine(RwV3d& vStartPos, RwV3d& vEndPos, OUT CNtlPLEntity* pColEntity = NULL);                                        ///< µÎ ÁöÁ¡ »çÀÌ¿¡ ¿ÀºêÁ§Æ® Ãæµ¹ ¿©ºÎ¸¦ Ã¼Å©ÇÑ´Ù.
+RwBool			Logic_IsMoveWorldArea(CNtlSobActor *pActor, RwV3d vCurrPos, RwV3d vDestPos);                    ///< ì§€í˜•ì†ì„±ì„ ì¡°ì‚¬í•´ì„œ ì´ë™ ê°€ëŠ¥ ì˜ì—­ì¸ì§€ íŒë‹¨í•œë‹¤
+RwBool          Logic_IsCollisionLine(RwV3d& vStartPos, RwV3d& vEndPos, OUT CNtlPLEntity* pColEntity = NULL);                                        ///< ë‘ ì§€ì  ì‚¬ì´ì— ì˜¤ë¸Œì íŠ¸ ì¶©ëŒ ì—¬ë¶€ë¥¼ ì²´í¬í•œë‹¤.
 
 RwUInt8			Logic_VehicleCollisionEx(CNtlSobVehicle *pActor, const RwV3d *pDestPos, RwReal fSpeed, RwV3d& vNewPos, RwBool& bCollMoveImPossible, RwReal fElapsed, RwBool bJump = FALSE);
 
@@ -586,23 +586,23 @@ CNtlSobPlayer*	Logic_GetPlayer_from_CharID(CHARACTERID charID);
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Commuity
 
-// ÀÚ½ÅÀÌ ÆÄÆ¼ÀÇ ¸®´õÀÎÁö ¿©ºÎ
+// ìì‹ ì´ íŒŒí‹°ì˜ ë¦¬ë”ì¸ì§€ ì—¬ë¶€
 RwBool			Logic_I_am_PartyLeader();
 
-// ÀÚ½Å°ú °°Àº ÆÄÆ¼¿øÀÎÁö ¿©ºÎ
+// ìì‹ ê³¼ ê°™ì€ íŒŒí‹°ì›ì¸ì§€ ì—¬ë¶€
 RwBool			Logic_IsMyPartyMember(SERIAL_HANDLE hSerial);
 
 RwBool			Logic_CanPartyLeave();
 
 RwBool			Logic_CanPartyInvite();
 
-// ÀÚ½ÅÀÌ ±æµåÀåÀÎÁö ¿©ºÎ
+// ìì‹ ì´ ê¸¸ë“œì¥ì¸ì§€ ì—¬ë¶€
 RwBool			Logic_I_am_GuildLeader();
 
-// ÀÚ½ÅÀÌ ºÎ±æµåÀåÀÎÁö ¿©ºÎ
+// ìì‹ ì´ ë¶€ê¸¸ë“œì¥ì¸ì§€ ì—¬ë¶€
 RwBool			Logic_I_am_SecondGuildLeader();
 
-// ÆÄÆ¼ °øÀ¯ Å¸°Ù¿¡ Æ÷ÇÔµÇ¾î ÀÖ´ÂÁö È®ÀÎÇÑ´Ù. Æ÷ÇÔµÇ¾î ÀÖ´Ù¸é slot ¹øÈ£¸¦, Æ÷ÇÔµÇ¾î ÀÖÁö¾Ê´Ù¸é -1À» ¹İÈ¯ÇÑ´Ù.
+// íŒŒí‹° ê³µìœ  íƒ€ê²Ÿì— í¬í•¨ë˜ì–´ ìˆëŠ”ì§€ í™•ì¸í•œë‹¤. í¬í•¨ë˜ì–´ ìˆë‹¤ë©´ slot ë²ˆí˜¸ë¥¼, í¬í•¨ë˜ì–´ ìˆì§€ì•Šë‹¤ë©´ -1ì„ ë°˜í™˜í•œë‹¤.
 RwInt32         Logic_isPartyShareTarget(SERIAL_HANDLE hSerial);
 RwUInt32        Logic_GetShareTargetSerial(RwInt32 nSlot);
 RwInt32         Logic_GetShareTargetBlankSlot();
@@ -628,14 +628,14 @@ RwUInt32		Logic_GetActiveWorldTableId(void);
 
 const RwChar*	Logic_GetActiveWorldName(void);
 
-// Entity »óÅÂ¿¡ µû¶ó ¿ùµå»ó Entity À§ÀÇ ÀÌ¸§ »ö»ó ÁöÁ¤
+// Entity ìƒíƒœì— ë”°ë¼ ì›”ë“œìƒ Entity ìœ„ì˜ ì´ë¦„ ìƒ‰ìƒ ì§€ì •
 void			Logic_SetHeadNameColor(CNtlSob* pSob);
 
 void			Logic_SetNickNameColor(CNtlSob* pSob);
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // privateshop
-// »óÁ¡À» ¿­¼ö ÀÖ´Â°¡?
+// ìƒì ì„ ì—´ìˆ˜ ìˆëŠ”ê°€?
 RwBool			Logic_IsCanCreatePrivateShop();
 
 
@@ -648,13 +648,13 @@ RwBool			Logic_IsTMQBoarding(CNtlSobActor *pActor);
 RwBool			Logic_IsCoolTimeUpdate(CNtlSobActor *pActor);
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// ¿¬Ãâ Ã³¸® ÇÔ¼ö.
+// ì—°ì¶œ ì²˜ë¦¬ í•¨ìˆ˜.
 
 RwBool			Logic_ProcKnockdownMatrixDirection(CNtlSob *pSobObj, RwUInt32 uiMatrixSerialId, const SHitStuff *pHitStuff);
-RwBool          Logic_IsCinematic();            ///< ÇöÀç ½Ã³×¸¶Æ½ ¿¬ÃâÁßÀÎÁö À¯¹«¸¦ ¹İÈ¯ÇÑ´Ù.
+RwBool          Logic_IsCinematic();            ///< í˜„ì¬ ì‹œë„¤ë§ˆí‹± ì—°ì¶œì¤‘ì¸ì§€ ìœ ë¬´ë¥¼ ë°˜í™˜í•œë‹¤.
 
 
-// Å¬¸¯ °¡´É À¯¹« ¼³Á¤
+// í´ë¦­ ê°€ëŠ¥ ìœ ë¬´ ì„¤ì •
 void            Logic_SetClickDisable(CNtlSobActor* pActor, RwBool bDisable);
 RwBool          Logic_IsClickDisable();
 
@@ -662,15 +662,15 @@ RwBool          Logic_IsClickDisable();
 void			Logic_SetAutoRun(RwBool bAutoRun);
 
 //////////////////////////////////////////////////////////////////////////
-// ¹ö½º¹× Å»°Í °ü·Ã ·ÎÁ÷
-RwBool          Logic_IsBus(CNtlSobActor* pSobObj);             /// ÇØ´ç ¿ÀºêÁ§Æ®°¡ ¹ö½ºÀÎÁö È®ÀÎÇÑ´Ù.
+// ë²„ìŠ¤ë° íƒˆê²ƒ ê´€ë ¨ ë¡œì§
+RwBool          Logic_IsBus(CNtlSobActor* pSobObj);             /// í•´ë‹¹ ì˜¤ë¸Œì íŠ¸ê°€ ë²„ìŠ¤ì¸ì§€ í™•ì¸í•œë‹¤.
 RwBool			Logic_IsBus(SERIAL_HANDLE hHandle);
 
-RwBool          Logic_IsVehicleDriver(CNtlSobActor* pSobObj);   /// ÇØ´ç ¾×ÅÍ°¡ Å»°ÍÀÇ ¿îÀüÀÚÀÎÁö È®ÀÎÇÑ´Ù.
+RwBool          Logic_IsVehicleDriver(CNtlSobActor* pSobObj);   /// í•´ë‹¹ ì•¡í„°ê°€ íƒˆê²ƒì˜ ìš´ì „ìì¸ì§€ í™•ì¸í•œë‹¤.
 RwBool			Logic_IsVehicleDriver(SERIAL_HANDLE hHandle);
 
-// TRUE		: Å¾½Â °¡´É ¶Ç´Â ÇØ´ç ¾ÆÀÌÅÛÀÌ Vehicle ¾ÆÀÌÅÛÀÌ ¾Æ´Ô
-// FALSE	: Å¾½Â ºÒ°¡
+// TRUE		: íƒ‘ìŠ¹ ê°€ëŠ¥ ë˜ëŠ” í•´ë‹¹ ì•„ì´í…œì´ Vehicle ì•„ì´í…œì´ ì•„ë‹˜
+// FALSE	: íƒ‘ìŠ¹ ë¶ˆê°€
 RwBool			Logic_CanRideOnVehicle(SERIAL_HANDLE hHandle, CNtlSobItem* pSobItem);
 
 TBLIDX			Logic_GetRegisterFuelItemTableIndex();
@@ -678,21 +678,21 @@ TBLIDX			Logic_GetRegisterFuelItemTableIndex();
 bool			Logic_IsAirMode(CNtlSobActor* pSobObj); //is flying
 
 //////////////////////////////////////////////////////////////////////////
-// ÇÃ·¡±×
+// í”Œë˜ê·¸
 void			Logic_SetFlags(RwChar* pcFlags, RwUInt32 uiIndex, RwUInt32 uiMaxIndex);
 void			Logic_UnsetFlags(RwChar* pcFlags, RwUInt32 uiIndex, RwUInt32 uiMaxIndex);
 RwBool			Logic_IsExistFlag(RwChar* pcFlags, RwUInt32 uiIndex, RwUInt32 uiMaxIndex);
 
 //////////////////////////////////////////////////////////////////////////
-// º¯½Å °ü·Ã ·ÎÁ÷
-RwBool          Logic_IsTransform(CNtlSobActor* pSobActor);         ///< º¯½ÅÀ» Çß´ÂÁö È®ÀÎÇÑ´Ù.
-RwUInt32        Logic_IsTransformSkill(RwUInt32 uiSkillTblId);      ///< ½ºÅ³ÀÌ º¯½Å ½ºÅ³ÀÎÁö È®ÀÎÇÑ´Ù.
-RwBool          Logic_IsTransformGreatNamek(CNtlSobActor* pSobActor);    ///< °Å´ë ³ª¸ßÀÎÁö È®ÀÎÇÑ´Ù.         (ÆÀÀå´Ô ¿äÃ»¿¡ µû¶ó µû·Î ¸¸µë by agebreak)
-RwBool          Logic_IsTransformSpinAttack(CNtlSobActor* pSobActor);   ///< È¸Àü °ø°İ ÁßÀÎÁö È®ÀÎÇÑ´Ù.      (È¸Àü °ø°İÀº ¼­¹ö¿¡¼­ º¯½Å»óÅÂ)
+// ë³€ì‹  ê´€ë ¨ ë¡œì§
+RwBool          Logic_IsTransform(CNtlSobActor* pSobActor);         ///< ë³€ì‹ ì„ í–ˆëŠ”ì§€ í™•ì¸í•œë‹¤.
+RwUInt32        Logic_IsTransformSkill(RwUInt32 uiSkillTblId);      ///< ìŠ¤í‚¬ì´ ë³€ì‹  ìŠ¤í‚¬ì¸ì§€ í™•ì¸í•œë‹¤.
+RwBool          Logic_IsTransformGreatNamek(CNtlSobActor* pSobActor);    ///< ê±°ëŒ€ ë‚˜ë©•ì¸ì§€ í™•ì¸í•œë‹¤.         (íŒ€ì¥ë‹˜ ìš”ì²­ì— ë”°ë¼ ë”°ë¡œ ë§Œë“¬ by agebreak)
+RwBool          Logic_IsTransformSpinAttack(CNtlSobActor* pSobActor);   ///< íšŒì „ ê³µê²© ì¤‘ì¸ì§€ í™•ì¸í•œë‹¤.      (íšŒì „ ê³µê²©ì€ ì„œë²„ì—ì„œ ë³€ì‹ ìƒíƒœ)
 RwBool          Logic_IsTransformRollingAttack(CNtlSobActor* pSobActor);
 
 //////////////////////////////////////////////////////////////////////////
-// Æ©Åä¸®¾ó
+// íŠœí† ë¦¬ì–¼
 RwBool			Logic_CanMouseInput_in_Tutorial(ETL_MOUSE_INPUT_TYPE byType);
 RwBool			Logic_CanKeybaordInput_in_Tutorial(ETL_KEYBOARD_INPUT_TYPE byType);
 RwBool			Logic_CanAttack_in_Tutorial(ETL_ATTACK_TYPE byType);
@@ -703,29 +703,29 @@ void			Logic_SendTutorialCondition(ETL_CONDITION_TYPE byType, RwUInt32 uiParam1 
 BYTE			 Logic_GetServerState(CNtlSobActor* pActor);
 
 //////////////////////////////////////////////////////////////////////////
-// ÄÁµğ¼Ç Ã³¸® °ü·Ã
-RwBool      Logic_IsCondition(CNtlSobActor* pActor, RwUInt64 uiConditon);         ///< ÇØ´ç ÄÁµğ¼ÇÀÌ ÀÖ´ÂÁö È®ÀÎÇÑ´Ù.
-RwBool      Logic_RandomMove(CNtlSobActor* pActor, RwReal fDistance);             ///< ·£´ıÀ¸·Î ¾×ÅÍ¸¦ ÀÌµ¿½ÃÅ²´Ù.
+// ì»¨ë””ì…˜ ì²˜ë¦¬ ê´€ë ¨
+RwBool      Logic_IsCondition(CNtlSobActor* pActor, RwUInt64 uiConditon);         ///< í•´ë‹¹ ì»¨ë””ì…˜ì´ ìˆëŠ”ì§€ í™•ì¸í•œë‹¤.
+RwBool      Logic_RandomMove(CNtlSobActor* pActor, RwReal fDistance);             ///< ëœë¤ìœ¼ë¡œ ì•¡í„°ë¥¼ ì´ë™ì‹œí‚¨ë‹¤.
 
 
 void		Logic_ShowHTBRPSelectGui(CNtlSobActor* pActor, SERIAL_HANDLE hTargetSerial);
 void		Logic_ShowSandBagRPSelectGUI(CNtlSobActor* pActor);
 
 //////////////////////////////////////////////////////////////////////////
-// Apply ÇÔ¼ö
+// Apply í•¨ìˆ˜
 bool		Logic_ApplyNtlStorageUnit( CNtlStorageUnit* pUnit, unsigned int uiFlags );
 
 
 //////////////////////////////////////////////////////////////////////////
-// PC¹æ °ü·Ã ÇÔ¼ö
+// PCë°© ê´€ë ¨ í•¨ìˆ˜
 void        Logic_SetNetPy(DWORD dwNetPy);
 DWORD       Logic_GetNetPy();
 
 //////////////////////////////////////////////////////////////////////////
-// Sob °´Ã¼ ºñÁÖ¾ó °ü·Ã
+// Sob ê°ì²´ ë¹„ì£¼ì–¼ ê´€ë ¨
 
-// Ä³¸¯ÅÍÀÇ ½ÇÁ¦ º¸¿©Áö´Â µµº¹ÀÇ »ö»óÀ» ¹Ù²Ù°Å³ª »ö»óÀ» ¾ò¾î¿Â´Ù.
-// SobPlayer °´Ã¼ÀÇ µµº¹ »ö»óÀº SobPlayerÀÇ ÇÔ¼ö·Î Á÷Á¢ ¹Ù²Ù¾î¾ß ÇÑ´Ù
+// ìºë¦­í„°ì˜ ì‹¤ì œ ë³´ì—¬ì§€ëŠ” ë„ë³µì˜ ìƒ‰ìƒì„ ë°”ê¾¸ê±°ë‚˜ ìƒ‰ìƒì„ ì–»ì–´ì˜¨ë‹¤.
+// SobPlayer ê°ì²´ì˜ ë„ë³µ ìƒ‰ìƒì€ SobPlayerì˜ í•¨ìˆ˜ë¡œ ì§ì ‘ ë°”ê¾¸ì–´ì•¼ í•œë‹¤
 RwUInt8		Logic_GetSobPlayerDogiColor(RwUInt32 hSobPlayerHandle);
 RwUInt8		Logic_GetDogiItemColor(CNtlSobPlayer* pSobPlayer, RwBool bUICharacter = FALSE);
 RwBool		Logic_SetDogiItemColor(CNtlSobPlayer* pSobPlayer, RwUInt8 byColorIndex, RwBool bUICharacter = FALSE, RwBool bForce = FALSE);
@@ -733,15 +733,15 @@ RwBool		Logic_SetDogiItemColor(CNtlSobPlayer* pSobPlayer, RwUInt8 byColorIndex, 
 RwBool		Logic_GetEmblemFactor(sEmblemFactor* pOutEmblemFactor, CNtlSobActor* pSobActor);
 
 //////////////////////////////////////////////////////////////////////////
-// ¼ö·® / ÀÎµ¦½º °ü·Ã
+// ìˆ˜ëŸ‰ / ì¸ë±ìŠ¤ ê´€ë ¨
 
-// ÀúÀåÀ» ÇÒ ¼ö ÀÖ´Â ÀÎµ¦½ºÀÎÁö °Ë»ç
+// ì €ì¥ì„ í•  ìˆ˜ ìˆëŠ” ì¸ë±ìŠ¤ì¸ì§€ ê²€ì‚¬
 RwBool Logic_IsSavableIndex(RwUInt32 uiIndex, RwUInt32 uiMaxIndex);
 
-// Invalid°ªÀ» Æ÷ÇÔÇÏ¿© ÀúÀåÀ» ÇÒ ¼ö ÀÖ´Â ÀÎµ¦½ºÀÎÁö °Ë»ç
+// Invalidê°’ì„ í¬í•¨í•˜ì—¬ ì €ì¥ì„ í•  ìˆ˜ ìˆëŠ” ì¸ë±ìŠ¤ì¸ì§€ ê²€ì‚¬
 RwBool Logic_IsSavableIndex(RwUInt32 uiIndex, RwUInt32 uiMaxIndex, RwUInt32 uiInvalidIndex);
 
-// ½ÇÁ¦·Î ÂüÁ¶¸¦ ÇÏ±âÀ§ÇØ ¾µ ¼ö ÀÖ´Â ÀÎµ¦½ºÀÎÁö °Ë»ç
+// ì‹¤ì œë¡œ ì°¸ì¡°ë¥¼ í•˜ê¸°ìœ„í•´ ì“¸ ìˆ˜ ìˆëŠ” ì¸ë±ìŠ¤ì¸ì§€ ê²€ì‚¬
 RwBool Logic_IsUsableIndex(RwUInt32 uiIndex, RwUInt32 uiMaxIndex);
 RwBool Logic_IsUsableIndex(RwUInt32 uiIndex, RwUInt32 uiMaxIndex, RwUInt32 uiInvalidIndex);
 
@@ -753,11 +753,11 @@ void	Logic_CancelNpcFacing();
 
 
 //////////////////////////////////////////////////////////////////////////
-// »ç¿îµå °ü·Ã
+// ì‚¬ìš´ë“œ ê´€ë ¨
 
 SOUND_HANDLE	Logic_PlayGUISound(char* pcFileName);
 
-// ÀÏ¹İ ½½·Ô¿¡¼­ ¾ÆÀÌÅÛÀ» Áı°Å³ª ³õ¾ÒÀ» ¶§ÀÇ ¼Ò¸®¸¦ ³½´Ù
+// ì¼ë°˜ ìŠ¬ë¡¯ì—ì„œ ì•„ì´í…œì„ ì§‘ê±°ë‚˜ ë†“ì•˜ì„ ë•Œì˜ ì†Œë¦¬ë¥¼ ë‚¸ë‹¤
 void			Logic_PlayItemPickUpSound(sITEM_TBLDAT* pITEM_TBLDAT);
 void			Logic_PlayItemPutDownSound(sITEM_TBLDAT* pITEM_TBLDAT, RwUInt8 byDestPlace = 0);
 

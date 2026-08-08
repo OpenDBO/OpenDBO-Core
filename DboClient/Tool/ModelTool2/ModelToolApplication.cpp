@@ -54,8 +54,8 @@ CModelToolApplication::CModelToolApplication(void)
 	m_pPLEventHandler = NULL;
 
     
-    // Obstacle Mesh°¡ ¹è°æ »ö»ó°ú °°¾Æ¼­ ¾Èº¸ÀÌ´Â °æ¿ì°¡ ÀÖ´Ù.
-    // ¹è°æ »ö»ó ¼³Á¤ ±â´ÉÀ» ³Ö±â ±ÍÂú¾Æ¼­, °Á ·£´ıÀ¸·Î Á¤ÇØ¹ö¸°´Ù. (±×·¡ÇÈÆÀ°ú ÇùÀÇ ³¡)
+    // Obstacle Meshï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ¼ï¿½ ï¿½Èºï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ì°¡ ï¿½Ö´ï¿½.
+    // ë°°ê²½ ìƒ‰ìƒ ì„¤ì • ê¸°ëŠ¥ì„ ë„£ê¸° ê·€ì°®ì•„ì„œ, ê± ëœë¤ìœ¼ë¡œ ì •í•´ë²„ë¦°ë‹¤. (ê·¸ë˜í”½íŒ€ê³¼ í˜‘ì˜ ë)
     srand( (unsigned)time( NULL ) );
     m_BackgroundColor.red	= (RwUInt8)NtlRandomNumber(0, 255);
     m_BackgroundColor.green = (RwUInt8)NtlRandomNumber(0, 255);
@@ -99,7 +99,7 @@ CModelToolApplication::~CModelToolApplication(void)
 
 void CModelToolApplication::SetErrorReport() 
 {
-    // ¹ö±×Æ®·¦¿ë ¼³Á¤
+    // å ì™ì˜™å ì™ì˜™íŠ¸å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
     BT_SetAppName(MT_WINDOW_NAME);     
     BT_SetSupportServer(_T("10.0.0.73"), 9999);
 }
@@ -146,7 +146,7 @@ RwBool CModelToolApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight,
 	}
 
 
-    // Camera »ı¼º
+    // Camera å ì™ì˜™å ì™ì˜™
     m_pCamera = NTL_NEW CNtlGameCamera();
 
     if(!m_pCamera->Create(iWidth, iHeight, zBuffer, 1.0f, 500.0f))
@@ -155,7 +155,7 @@ RwBool CModelToolApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight,
         NTL_RETURN(FALSE);
     }
 
-    // Active Camera·Î ¼¼ÆÃÇÑ´Ù.
+    // Active Cameraå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¼ëŒì˜™.
     CNtlPLGlobal::SetActiveCamera(m_pCamera->GetCamera());
 
     RwRGBA colorTextForeGround = {255, 255, 255, 255};
@@ -168,7 +168,7 @@ RwBool CModelToolApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight,
 		NTL_RETURN(FALSE);
 	}
 
-    // Visual Manager¸¦ »ı¼ºÇÑ´Ù.
+    // Visual Managerå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¼ëŒì˜™.
     m_pVisualManager = NTL_NEW CNtlPLVisualManager();
     if(!m_pVisualManager->Create())
     {
@@ -176,10 +176,10 @@ RwBool CModelToolApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight,
         NTL_RETURN(FALSE);
     }
 
-    // Active Scene Manager¸¦ setting ÇÑ´Ù.
+    // Active Scene Managerå ì™ì˜™ setting å ì‹¼ëŒì˜™.
     CNtlPLSceneManagerFactory::ActiveSceneManager(m_pVisualManager);
 
-    // Property Container¸¦ »ı¼ºÇÏ°í, µ¥ÀÌÅÍ¸¦ Load ÇÑ´Ù.	
+    // Property Containerå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¹ê³¤ì˜™, å ì™ì˜™å ì™ì˜™å ì‹¶ëªŒì˜™ Load å ì‹¼ëŒì˜™.	
    /* if(!m_PropContainer.Load())
     {
         NTL_ASSERTFAIL("Property Container Load Fail!");
@@ -192,7 +192,7 @@ RwBool CModelToolApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight,
     // dummy world.
     //m_pDummyWorld = (CNtlPLDummyWorld*)m_pVisualManager->CreateEntity(PLENTITY_DUMMY_WORLD, "NULL", NULL);
 
-    // RpWorld¿¡ Camea¸¦ AddÇÑ´Ù.
+    // RpWorldå ì™ì˜™ Cameaå ì™ì˜™ Addå ì‹¼ëŒì˜™.
     RpWorldAddCamera(CNtlPLGlobal::m_pRpWorld, CNtlPLGlobal::m_RwCamera);
 
     // Ambient Light Create
@@ -205,7 +205,7 @@ RwBool CModelToolApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight,
     m_pLtDirectional = RpLightCreate(rpLIGHTDIRECTIONAL);
     if(m_pLtDirectional)
     {
-        RwFrame* pFrame = NULL;		// Directional Light¸¦ ºÙÀÏ Frame
+        RwFrame* pFrame = NULL;		// Directional Lightå ì™ì˜™ å ì™ì˜™å ì™ì˜™ Frame
         RpLightSetColor(m_pLtDirectional, &color);
 
         pFrame = RwFrameCreate();
@@ -221,26 +221,26 @@ RwBool CModelToolApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight,
 
     m_ResoureManager.Crate();		
 
-    // ¸Ş¸ğ¸® »ç¿ë³»¿ëÀ» ±¸ÇÏ±â À§ÇØ¼­ DirectX7 °³Ã¼¸¦ »ı¼ºÇÑ´Ù.
+    // ï¿½Ş¸ï¿½ ï¿½ï¿½ë³»ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ DirectX7 ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
     DirectDrawCreateEx(NULL, (void**)&m_lpDD, IID_IDirectDraw7, NULL);
 
-    // Texture Path¸¦ ¼³Á¤ÇÑ´Ù
+    // Texture Pathå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¼ëŒì˜™
     SetTexturePath();
 
-    // Toon Data¸¦ »ı¼ºÇÑ´Ù
+    // Toon Dataå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¼ëŒì˜™
     CMTClump::CreateCartoon();    
 
-    // Sound Manager¸¦ »ı¼ºÇÑ´Ù.
+    // Sound Managerå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¼ëŒì˜™.
     GetSoundManager()->Init(".\\Sound\\");
     GetSoundManager()->SetListenerPosition(0.0f, 0.0f, 0.0f);
 
-    // Face Camera¸¦ »ı¼ºÇÑ´Ù.
+    // Face Cameraå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¼ëŒì˜™.
     m_faceCamera.Create(FACE_CAMERA_SIZE, FACE_CAMERA_SIZE, 128, 128);
     
-    // Item PoolÀ» »ı¼ºÇÑ´Ù.
+    // Item Poolå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¼ëŒì˜™.
     m_pItemPool = new CMTItemPool();
     
-    // ½ºÄÉÁì ·Îµù(¸ÖÆ¼ ½º·¹µå)¸¦ º¯°æÇÑ´Ù.
+    // å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹¸ë“¸ì˜™(å ì™ì˜™í‹° å ì™ì˜™å ì™ì˜™å ì™ì˜™)å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¼ëŒì˜™.
     GetNtlResourceManager()->SetLoadScheduling(FALSE);
 
     NTL_RETURN(TRUE);
@@ -428,7 +428,7 @@ RwBool CModelToolApplication::Resize(RwUInt32 iWidth, RwUInt32 iHeight, RwBool z
 
 void CModelToolApplication::DisplayInfo()
 {
-    // Clump Á¤º¸ Ç¥½Ã
+    // Clump å ì™ì˜™å ì™ì˜™ í‘œå ì™ì˜™
     GetSafeInstance(CClumpPane)->DisplayInfo(m_pCharset);
 
     RwChar caption[256] = {0,};
@@ -444,7 +444,7 @@ void CModelToolApplication::DisplayInfo()
     }
     RsCharsetPrint(m_pCharset, caption, 0, 0, rsPRINTPOSTOPRIGHT); 
 
-    // ºñµğ¿À ¸Ş¸ğ¸®¸¦ ±¸ÇÑ´Ù.    
+    // å ì™ì˜™å ì™ì˜™ å ìŒ¨ëª¨ë¦¬ëªŒì˜™ å ì™ì˜™å ì‹¼ëŒì˜™.    
     DDSCAPS2      ddsCaps2; 
     DWORD         dwTotal; 
     DWORD         dwFree;
@@ -460,20 +460,20 @@ void CModelToolApplication::DisplayInfo()
     float fTotalVideoMem = (float)dwTotal / (1024.0f * 1024.0f);
     float fUseVideoMem = (float)(dwTotal - dwFree) / (1024.0f * 1024.0f);
 
-    // ½Ã½ºÅÛ ¸Ş¸ğ¸®¸¦ ±¸ÇÑ´Ù.
-    MEMORYSTATUS MemStatus;
+    // å ì‹œì™ì˜™å ì™ì˜™ å ìŒ¨ëª¨ë¦¬ëªŒì˜™ å ì™ì˜™å ì‹¼ëŒì˜™.
+    MEMORYSTATUSEX MemStatus;
     MemStatus.dwLength=sizeof(MemStatus);
-    GlobalMemoryStatus(&MemStatus);
+    GlobalMemoryStatusEx(&MemStatus);
 
-    float fTotalLocalMem = (float)MemStatus.dwTotalPhys / (1024.0f * 1024.0f);
-    float fUseLocalMem = (float)MemStatus.dwAvailPhys / (1024.0f * 1024.0f);
+    float fTotalLocalMem = (float)(MemStatus.ullTotalPhys / (1024.0f * 1024.0f));
+    float fUseLocalMem = (float)(MemStatus.ullAvailPhys / (1024.0f * 1024.0f));
 
     RsSprintf(caption, RWSTRING("VIDEO MEM : %.2f/%.0f"), fUseVideoMem, fTotalVideoMem);
     RsCharsetPrint(m_pCharset, caption, 0 , 1, rsPRINTPOSTOPRIGHT);
     RsSprintf(caption, RWSTRING("LOCAL MEM : %.2f/%.0f"), fUseLocalMem, fTotalLocalMem);
     RsCharsetPrint(m_pCharset, caption, 0, 2, rsPRINTPOSTOPRIGHT);
 
-    // Ä«¸Ş¶ó¿Í ÇöÀç ¸ğµ¨ À§Ä¡(0,0,0)°úÀÇ °Å¸®¸¦ Ç¥½ÃÇÑ´Ù.
+    // ì¹´ë©”ë¼ì™€ í˜„ì¬ ëª¨ë¸ ìœ„ì¹˜(0,0,0)ê³¼ì˜ ê±°ë¦¬ë¥¼ í‘œì‹œí•œë‹¤.
     if(m_pCamera)
     {
         RwFrame* pFrame = RwCameraGetFrame(CNtlPLGlobal::m_RwCamera);
@@ -489,7 +489,7 @@ RwBool CModelToolApplication::Update(RwReal fTime, RwReal fElapsedTime)
 {
     NTL_FUNCTION(__FUNCTION__);
 
-    // Frame °íÁ¤À» Àû¿ëÇÑ´Ù.
+    // Frame å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¼ëŒì˜™.
     static RwReal fTimeFrameFix = 0.0f;
 
     if(m_bFrameFix)
@@ -570,7 +570,7 @@ RwBool CModelToolApplication::Update(RwReal fTime, RwReal fElapsedTime)
 
 				if(m_pCharacter)
 				{
-					// SlowTime Effect¸¦ À§ÇØ¼­ TimeÀ» Á¶ÀıÇÑ´Ù.
+					// SlowTime Effectå ì™ì˜™ å ì™ì˜™å ìŒ”ì‡½ì˜™ Timeå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì‹¼ëŒì˜™.
 					RwReal fWeightElapsed = fElapsedTime;
 
 					if(m_pCharacter->GetFlags() & NTL_PLEFLAG_WEIGHT_ELAPSED_TIME)
@@ -581,19 +581,19 @@ RwBool CModelToolApplication::Update(RwReal fTime, RwReal fElapsedTime)
 					m_pCharacter->Update(fWeightElapsed);
 					m_pCharacter->Render();
 
-					// Wireframe Ç¥½Ã
+					// Wireframe í‘œå ì™ì˜™
 					if(m_bViewWire)
 					{
 						m_pCharacter->RenderWireFrame();
 					}
 
-					// Hierarchy Ç¥½Ã
+					// Hierarchy í‘œå ì™ì˜™
 					if(m_bViewHierarchy)
 					{
 						m_pCharacter->RenderHierarchy();            
 					}
 
-					// Ä³¸¯ÅÍ BBox Ç¥½Ã
+					// ìºå ì™ì˜™å ì™ì˜™ BBox í‘œå ì™ì˜™
 					if(m_bViewBBox)
 					{
 						m_pCharacter->RenderAnimBBox();
@@ -604,7 +604,7 @@ RwBool CModelToolApplication::Update(RwReal fTime, RwReal fElapsedTime)
 
 					if(m_eAppMode == MT_MODE_PC)
 					{
-						// Face Camera ·»´õ¸µ
+						// Face Camera å ì™ì˜™å ì™ì˜™å ì™ì˜™
 						m_faceCamera.Render(m_pCamera->GetCamera(), m_v2FaceCameraPos, m_v2FaceCameraSize);
 					}                
 
@@ -622,9 +622,9 @@ RwBool CModelToolApplication::Update(RwReal fTime, RwReal fElapsedTime)
 
 		if(m_pCamera->MainCameraBeginUpdate(fElapsedTime))
 		{
-			// ÇÊÅÍ È¿°ú°¡ ¾È¸Ô´Â °ÍÀº ¿©±â¿¡¼­ ±×¸°´Ù.
+			// å ì™ì˜™å ì™ì˜™ íš¨å ì™ì˜™å ì™ì˜™ å ì‹«ë¨¹ëŒì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì©ì—å ì™ì˜™ å ìŒ“ëªŒì˜™å ì™ì˜™.
 
-			// È­¸é¿¡ Á¤º¸ Ç¥½Ã        
+			// È­ï¿½é¿¡ ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½        
 			DisplayInfo();
 
 			m_pCamera->MainCameraEndUpdate();
@@ -644,7 +644,7 @@ RwBool CModelToolApplication::Update(RwReal fTime, RwReal fElapsedTime)
         }
     }
 
-    // ¾Ö´Ï¸ŞÀÌ¼Ç Åøºä ¾÷µ¥ÀÌÆ®
+    // å ìŒë‹ˆëªŒì˜™å ì‹±ì‡½ì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™íŠ¸
     GetSafeInstance(CAnimPlayPane)->Update();    
 
     NTL_RETURN(TRUE);
@@ -709,7 +709,7 @@ LRESULT CModelToolApplication::WndProc(HWND window, UINT message, WPARAM wParam,
         break;
     }
 
-    // Bone Edit¸¦ À§ÇÑ ºÎºĞ
+    // Bone Editå ì™ì˜™ å ì™ì˜™å ì™ì˜™ å ì‹¸ë¸ì˜™
     MSG msg;
     msg.hwnd = window;
     msg.message = message;
@@ -1260,7 +1260,7 @@ void CModelToolApplication::SetWorldView( RwBool bView )
 {
 	m_bViewWorld = bView;
 
-	// ÁöÇü°ú ½ºÄ«ÀÌ¸¦ °°ÀÌ ¾ø¾Ø´Ù.
+	// å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì™ì˜™ì¹´å ì‹±ëªŒì˜™ å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ìŒ”ëŒì˜™.
 	CNtlPLGlobal::m_bWorldTerrainVisible = bView;
 	CNtlPLGlobal::m_bWorldSkyVisible = bView;
 }

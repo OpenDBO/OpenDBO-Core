@@ -16,7 +16,7 @@ class CComponentManager
 public:
 	
 	CComponentManager();
-	//: component manager ¼Ò¸êÀÚ...	
+	//: component manager ì†Œë©¸ì...	
 	virtual ~CComponentManager();
 
 //! Attributes:
@@ -41,21 +41,21 @@ public:
 //	bool AddPage(const std::string& str);
 
 	//: Component page add
-// Çü¼®
+// í˜•ì„
 	COMPPAGE_HANDLE AddPage(const std::string& str);
 
 	//: Component page remove
 //	VOID RemovePage(const std::string& str);
 
 	//: Component page remove
-// Çü¼®.
+// í˜•ì„.
 	VOID RemovePage(COMPPAGE_HANDLE& h);
 
 	//: Components Create
 //	bool CreateComponents(const std::string& strPage,CComponent *pParent,CSurfaceManager *pSurfaceManager);
 
 	//: Components Create
-// Çü¼®.
+// í˜•ì„.
 	bool CreateComponents(COMPPAGE_HANDLE h,CComponent *pParent,CSurfaceManager *pSurfaceManager);
 
 	//: Components Destroy

@@ -50,7 +50,7 @@ RwBool CNtlSobMonster::Create(void)
 {
 	NTL_FUNCTION("CNtlSobMonster::Create");
 
-	// proxy ¼³Á¤
+	// proxy ì„¤ì •
 	m_pSobProxy = NTL_NEW CNtlSobCharProxy;
 	m_pSobProxy->Create(0);
 	m_pSobProxy->SetSobObj(this);
@@ -63,7 +63,7 @@ RwBool CNtlSobMonster::Create(void)
 		NTL_RETURN(FALSE);
 	}
 
-	// class name ¼³Á¤.
+	// class name ì„¤ì •.
 	SetClassName(SLCLASS_NAME_MONSTER);
 			
 	NTL_RETURN(TRUE);
@@ -110,7 +110,7 @@ void CNtlSobMonster::HandleEvents(RWS::CMsg &pMsg)
 		// proxy setting
 		GetSobProxy()->HandleEvents(pMsg);
 
-		// ÁÂÇ¥¿Í ¹æÇâ ¼¼ÆÃ.
+		// ì¢Œí‘œì™€ ë°©í–¥ ì„¸íŒ….
 		RwV3d vLoc, vDir;
 		RwV3dAssignMacro(&vLoc, &pSobCreate->vLoc); 
 		RwV3dAssignMacro(&vDir, &pSobCreate->vDir); 
@@ -132,7 +132,7 @@ void CNtlSobMonster::HandleEvents(RWS::CMsg &pMsg)
 		RwReal fScale = pSobMobAttr->GetScale();
 		GetSobProxy()->SetScale(fScale);
 	}
-    else if(pMsg.Id == g_EventBotCaution_Nfy)   // ÇÃ·¹ÀÌ¾î¸¦ ¹ß°¢ÇßÀ»¶§
+    else if(pMsg.Id == g_EventBotCaution_Nfy)   // í”Œë ˆì´ì–´ë¥¼ ë°œê°í–ˆì„ë•Œ
     {
         OnEventBotCautionNfy_Handler(pMsg);        
     }
@@ -148,13 +148,13 @@ void CNtlSobMonster::HandleEvents(RWS::CMsg &pMsg)
 
 void CNtlSobMonster::OnEventBotCautionNfy_Handler( RWS::CMsg& pMsg ) 
 {
-    // ÀÌÆåÆ® »ý¼º
+    // ì´íŽ™íŠ¸ ìƒì„±
     RwV3d vOffset;
     vOffset.x = vOffset.z = 0.0f;
     vOffset.y = GetSobProxy()->GetPLEntityHeight() + 1.0f;
     GetSobProxy()->CreatePLChildEffect(NTL_VID_MARK_CAUTION, vOffset);
 
-    // »ç¿îµå ÇÃ·¹ÀÌ
+    // ì‚¬ìš´ë“œ í”Œë ˆì´
     RwV3d vPos = GetPosition();        
 	sNtlSoundPlayParameta tSoundParam;
 	tSoundParam.iChannelGroup	= CHANNEL_GROUP_EFFECT_SOUND;
@@ -170,7 +170,7 @@ void CNtlSobMonster::OnEventBotHelpMeNfy_Handler( RWS::CMsg& pMsg )
 {
     SNtlEventBotHelpMe_Nfy* pData = (SNtlEventBotHelpMe_Nfy*)pMsg.pData;
 
-    // ÀÌÆåÆ® »ý¼º
+    // ì´íŽ™íŠ¸ ìƒì„±
     RwV3d vOffset;
     vOffset.x = vOffset.z = 0.0f;
     vOffset.y = GetSobProxy()->GetPLEntityHeight() + 1.0f;    

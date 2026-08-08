@@ -48,7 +48,7 @@ public:
 	VOID			OpenCart(RwUInt32 uiSerial);		///< Open the cart UI
 	VOID			CloseCart();						///< Close cart
 
-	RwInt32			SwitchDialog(bool bOpen);			///< DialogManager¿¡¼­ÀÇ Open/Close
+	RwInt32			SwitchDialog(bool bOpen);			///< DialogManagerì—ì„œì˜ Open/Close
 
 	RwUInt32		GetTargetSerial();
 
@@ -64,10 +64,10 @@ protected:
 
 	VOID			ResetCartTexture();
 
-	VOID			Clear();									///< Æ®·¹ÀÌµå Ä«Æ®ÀÇ Á¤º¸¸¦ Áö¿î´Ù.
-	VOID			ClearSlot(RwInt32 iSlot);///< ÇØ´ç ½½·ÔÀÇ ³»¿ëÀ» Áö¿î´Ù.
+	VOID			Clear();									///< íŠ¸ë ˆì´ë“œ ì¹´íŠ¸ì˜ ì •ë³´ë¥¼ ì§€ìš´ë‹¤.
+	VOID			ClearSlot(RwInt32 iSlot);///< í•´ë‹¹ ìŠ¬ë¡¯ì˜ ë‚´ìš©ì„ ì§€ìš´ë‹¤.
 
-	VOID			AddItemCount(RwInt32 iSlot, RwInt32 iCount, RwUInt32 itemSerial);	///< ½½·ÔÀÇ ¾ÆÀÌÅÛ °¹¼ö¸¦ ´õÇÏ°Å³ª »«´Ù.
+	VOID			AddItemCount(RwInt32 iSlot, RwInt32 iCount, RwUInt32 itemSerial);	///< ìŠ¬ë¡¯ì˜ ì•„ì´í…œ ê°¯ìˆ˜ë¥¼ ë”í•˜ê±°ë‚˜ ëº€ë‹¤.
 	VOID			UpdateCount(RwUInt8 bySlot, RwUInt8 byCount);
 
 	VOID			CalcTotalSellPrice();						///< Calculate total sale price
@@ -77,20 +77,20 @@ protected:
 	VOID			RegBuyItemByEvent(SDboEventShop& TradeInfo);
 	VOID			RegSellItemByEvent(RwInt32 iSlot, SDboEventShop& TradeInfo);
 
-	RwInt32			FindEmptySlot();			///< Slot Á¾·ùº° ºñ¾îÀÖ´Â °¡Àå ºü¸¥ ¼ø¼­ÀÇ ½½·ÔÀÇ Ã£´Â´Ù.
+	RwInt32			FindEmptySlot();			///< Slot ì¢…ë¥˜ë³„ ë¹„ì–´ìžˆëŠ” ê°€ìž¥ ë¹ ë¥¸ ìˆœì„œì˜ ìŠ¬ë¡¯ì˜ ì°¾ëŠ”ë‹¤.
 	RwUInt8			FindSlot(RwUInt32 uiSerial);
 	RwInt32			PtinSlot(RwInt32 iX, RwInt32 iY);
 
-	VOID			CheckInfoWindow();							///< »óÈ²¿¡ µû¶ó ÀÎÆ÷À©µµ¿ì¸¦ ´Ý´Â´Ù
+	VOID			CheckInfoWindow();							///< ìƒí™©ì— ë”°ë¼ ì¸í¬ìœˆë„ìš°ë¥¼ ë‹«ëŠ”ë‹¤
 
-	VOID			FocusEffect(RwBool bPush, RwInt32 iSlotIdx = -1);		///< ½½·Ô Æ÷Ä¿½º ÀÌÆåÆ®
+	VOID			FocusEffect(RwBool bPush, RwInt32 iSlotIdx = -1);		///< ìŠ¬ë¡¯ í¬ì»¤ìŠ¤ ì´íŽ™íŠ¸
 
 	VOID			OnPaint();
 
-	VOID			ClickedSellButton(gui::CComponent* pComponent);		///< ¼±ÅÃÇÑ ¹°Ç°µéÀ» ÆÇ´Ù.
+	VOID			ClickedSellButton(gui::CComponent* pComponent);		///< ì„ íƒí•œ ë¬¼í’ˆë“¤ì„ íŒë‹¤.
 
-	VOID			ClickUpButton(gui::CComponent* pComponent);	///< ¾ÆÀÌÅÛ °¹¼ö ´õÇÏ±â ¹öÆ°À» ´­·¶´Ù
-	VOID			ClickDownButton(gui::CComponent* pComponent);	///< ¾ÆÀÌÅÛ °¹¼ö »©±â ¹öÆ°À» ´­·¶´Ù
+	VOID			ClickUpButton(gui::CComponent* pComponent);	///< ì•„ì´í…œ ê°¯ìˆ˜ ë”í•˜ê¸° ë²„íŠ¼ì„ ëˆŒë €ë‹¤
+	VOID			ClickDownButton(gui::CComponent* pComponent);	///< ì•„ì´í…œ ê°¯ìˆ˜ ë¹¼ê¸° ë²„íŠ¼ì„ ëˆŒë €ë‹¤
 
 	VOID			OnMouseDown(const CKey& key);
 	VOID			OnMouseUp(const CKey& key);
@@ -122,36 +122,36 @@ protected:
 
 	gui::CTexture*		m_pMoneyIconTexture;
 
-	gui::CButton*		m_pExitButton;				///< Ã¢´Ý±â ¹öÆ°
+	gui::CButton*		m_pExitButton;				///< ì°½ë‹«ê¸° ë²„íŠ¼
 
-	gui::CButton*		m_pSellButton;				///< ÆÇ¸Å ¹öÆ°
+	gui::CButton*		m_pSellButton;				///< íŒë§¤ ë²„íŠ¼
 
 	gui::CButton*		m_pUpButton[MAX_SLOT];		///< Item number plus button
 	gui::CButton*		m_pDownButton[MAX_SLOT];	///< Item number minus button
 
-	gui::CStaticBox*	m_pTotalSellMoney;			///< ÃÑ ÆÇ¸Å ±Ý¾×
+	gui::CStaticBox*	m_pTotalSellMoney;			///< ì´ íŒë§¤ ê¸ˆì•¡
 
-	CSurfaceGui			m_FocusEffect;				///< ½½·Ô Æ÷Ä¿½º ÀÌÆåÆ®
+	CSurfaceGui			m_FocusEffect;				///< ìŠ¬ë¡¯ í¬ì»¤ìŠ¤ ì´íŽ™íŠ¸
 
-	CSurfaceGui			m_SellBar;					///< ÆÈ±â ¼­ÆäÀÌ½º
+	CSurfaceGui			m_SellBar;					///< íŒ”ê¸° ì„œíŽ˜ì´ìŠ¤
 
-	CWindowby3			m_LeftLockSurface;			///< ¿ÞÂÊ Àá±è ¼­ÆäÀÌ½º
-	CWindowby3			m_RightLockSurface;			///< ¿À¸¥ÂÊ Àá±è ¼­ÆäÀÌ½º
+	CWindowby3			m_LeftLockSurface;			///< ì™¼ìª½ ìž ê¹€ ì„œíŽ˜ì´ìŠ¤
+	CWindowby3			m_RightLockSurface;			///< ì˜¤ë¥¸ìª½ ìž ê¹€ ì„œíŽ˜ì´ìŠ¤
 
-	RwBool				m_bFocus;					///< Æ÷Ä¿½º¸¦ ¾ò¾ú´Ù.
-	bool				m_bLeftLock;				///< ¿ÞÂÊ ¹°Ç° µî·Ï Àá±è
-	bool				m_bRightLock;				///< ¿À¸¥ÂÊ ¹°Ç° µî·Ï Àá±è
+	RwBool				m_bFocus;					///< í¬ì»¤ìŠ¤ë¥¼ ì–»ì—ˆë‹¤.
+	bool				m_bLeftLock;				///< ì™¼ìª½ ë¬¼í’ˆ ë“±ë¡ ìž ê¹€
+	bool				m_bRightLock;				///< ì˜¤ë¥¸ìª½ ë¬¼í’ˆ ë“±ë¡ ìž ê¹€
 
 	RwUInt32			m_hNPCSerial;				///<
 
-	RwInt32				m_iCurTabIndex;				///< ÇöÀçÀÇ ÅÇ ÀÎµ¦½º
+	RwInt32				m_iCurTabIndex;				///< í˜„ìž¬ì˜ íƒ­ ì¸ë±ìŠ¤
 
-	SellSlotInfo		m_SellSlotInfo[MAX_SLOT];	///< ¿À¸¥ÂÊ ½½·Ô Á¤º¸
+	SellSlotInfo		m_SellSlotInfo[MAX_SLOT];	///< ì˜¤ë¥¸ìª½ ìŠ¬ë¡¯ ì •ë³´
 
-	RwUInt32			m_uiTotalSellPrice;			///< ÃÑ ÆÇ¸Å ±Ý¾×
+	RwUInt32			m_uiTotalSellPrice;			///< ì´ íŒë§¤ ê¸ˆì•¡
 
-	RwUInt8				m_byOthersEmptySlot;		///< À¯Àú°£ °Å·¡½Ã »ó´ë¹æÀÇ °Å·¡ °¡´ÉÇÑ ºó ½½·Ô¼ö
-	RwUInt32			m_uiUserTradePacketCount;	///< À¯Àú°£ °Å·¡½Ã ¾÷µ¥ÀÌÆ® µÈ »ó´ë¹æÀÇ ÆÐÅ¶ÀÇ °¹¼ö
+	RwUInt8				m_byOthersEmptySlot;		///< ìœ ì €ê°„ ê±°ëž˜ì‹œ ìƒëŒ€ë°©ì˜ ê±°ëž˜ ê°€ëŠ¥í•œ ë¹ˆ ìŠ¬ë¡¯ìˆ˜
+	RwUInt32			m_uiUserTradePacketCount;	///< ìœ ì €ê°„ ê±°ëž˜ì‹œ ì—…ë°ì´íŠ¸ ëœ ìƒëŒ€ë°©ì˜ íŒ¨í‚·ì˜ ê°¯ìˆ˜
 
 	RwInt32				iMouseDownSlotIndex;
 };

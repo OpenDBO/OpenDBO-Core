@@ -2,7 +2,7 @@
  *
  * File			: LobbyGuiGroup.h
  * Author		: Hong Sungbock
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2006. 12. 7	
  * Update		: 2007. 10. 10	
  * Abstract		: DBO lobby stage gui group.

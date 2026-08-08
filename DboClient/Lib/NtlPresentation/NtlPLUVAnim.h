@@ -3,7 +3,7 @@
 
 /**
  * \ingroup NtlPresentation
- * \brief UVAnimÀ» Ã³¸®ÇÏ´Â Å¬·¡½º
+ * \brief UVAnimì„ ì²˜ë¦¬í•˜ëŠ” í´ë˜ìŠ¤
  * \date 2006-07-11
  * \author agebreak
  */
@@ -15,17 +15,17 @@ public:
 
     RwBool Create(const char* szUVFileName);
     RwBool SetClump(RpClump* pClump);
-    RwBool Create(const char* szUVFileName, RpClump* pClump);       ///< UVAnimÀ» »ı¼ºÇÑ´Ù.
-    void   Destory();                                               ///< ÇÒ´çµÈ ¸Ş¸ğ¸®¸¦ ÇØÁ¦ÇÑ´Ù.
-    void   Update(RwReal fElapsedTime);                             ///< UVAimÀ» UpdateÇÑ´Ù.
-    void   SetUVAnimSpeed(RwReal fSpeed) {m_fUVAnimTime = fSpeed;}  ///< UVAnimÀÇ ¼Óµµ¸¦ ÁöÁ¤ÇÑ´Ù
+    RwBool Create(const char* szUVFileName, RpClump* pClump);       ///< UVAnimì„ ìƒì„±í•œë‹¤.
+    void   Destory();                                               ///< í• ë‹¹ëœ ë©”ëª¨ë¦¬ë¥¼ í•´ì œí•œë‹¤.
+    void   Update(RwReal fElapsedTime);                             ///< UVAimì„ Updateí•œë‹¤.
+    void   SetUVAnimSpeed(RwReal fSpeed) {m_fUVAnimTime = fSpeed;}  ///< UVAnimì˜ ì†ë„ë¥¼ ì§€ì •í•œë‹¤
 
 protected:
-    RtDict* UVAnimDictLoad(const RwChar* strFullName);              ///< *.uva ÆÄÀÏÀ» ·ÎµåÇÑ´Ù.
+    RtDict* UVAnimDictLoad(const RwChar* strFullName);              ///< *.uva íŒŒì¼ì„ ë¡œë“œí•œë‹¤.
 
 protected:
-    RtDict*							m_pUvAnimDict;                 ///< UVAnim dict °´Ã¼
-    RwSList*						m_pAnimationMaterialList;      ///< UVAnimÀ» Àû¿ëÇÒ Material list
+    RtDict*							m_pUvAnimDict;                 ///< UVAnim dict ê°ì²´
+    RwSList*						m_pAnimationMaterialList;      ///< UVAnimì„ ì ìš©í•  Material list
     RwReal                          m_fUVAnimTime;                 ///< UVAnim Speed
     
     

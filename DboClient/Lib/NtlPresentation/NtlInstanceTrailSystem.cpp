@@ -50,10 +50,10 @@ void CNtlInstanceTrailSystem::Delete()
 }
 
 /**
- * Trail ÀÌÆåÆ®¸¦ »ı¼ºÇÑ´Ù.
- * \param pComponentSystem TrailÀÌ ºÙÀ» ºÎ¸ğ InstanceComponentSystem °´Ã¼
- * \param pEmitterTrail Trail »ı¼º Á¤º¸¸¦ °¡Áö°í ÀÖ´Â ÇÁ·ÎÆÛÆ¼ °´Ã¼
- * return ¼º°ø À¯¹«
+ * Trail ì´í™íŠ¸ë¥¼ ìƒì„±í•œë‹¤.
+ * \param pComponentSystem Trailì´ ë¶™ì„ ë¶€ëª¨ InstanceComponentSystem ê°ì²´
+ * \param pEmitterTrail Trail ìƒì„± ì •ë³´ë¥¼ ê°€ì§€ê³  ìˆëŠ” í”„ë¡œí¼í‹° ê°ì²´
+ * return ì„±ê³µ ìœ ë¬´
  */
 RwBool CNtlInstanceTrailSystem::Create(CNtlInstanceComponentSystem* pComponentSystem, SNtlPrtStdEmitterTrail* pEmitterTrail)
 {

@@ -15,7 +15,7 @@ void CStringLocalConverter_Korean::LocalStringCovert(WCHAR* pwcOutput, const WCH
 	RwInt32 iCount = 0;
 	RwInt32 iTextLength = wcslen(pwcText);
 
-	// Á¶»ç°¡ ºÙÀ¸·Á¸é ÃÖ¼ÒÇÑ 2±ÛÀÚ ÀÌ»óÀÌ¿©¾ß ÇÑ´Ù
+	// ì¡°ì‚¬ê°€ ë¶™ìœ¼ë ¤ë©´ ìµœì†Œí•œ 2ê¸€ì ì´ìƒì´ì—¬ì•¼ í•œë‹¤
 	if( iTextLength < 2 )
 	{
 		memcpy(pwcOutput, pwcText, sizeof(WCHAR) * wcslen(pwcText) );
@@ -27,66 +27,66 @@ void CStringLocalConverter_Korean::LocalStringCovert(WCHAR* pwcOutput, const WCH
 
 	while( iCount < iTextLength )
 	{
-		if( wcscmp( L"ÀÒ", &(pwcText[iCount]) ) == 0 )
+		if( wcscmp( L"ìƒ", &(pwcText[iCount]) ) == 0 )
 		{
 			int iThirdSound = GetKoreanThirdSound( &(pwcText[iCount - 1]) );
 
-			if( iThirdSound == 0 )	// ¹ŞÄ§ÀÌ ¾ø´Ù
-				memcpy(pwcOutput + iCount, L"°¡", sizeof(WCHAR));
+			if( iThirdSound == 0 )	// ë°›ì¹¨ì´ ì—†ë‹¤
+				memcpy(pwcOutput + iCount, L"ê°€", sizeof(WCHAR));
 			else
-				memcpy(pwcOutput + iCount, L"ÀÌ", sizeof(WCHAR));
+				memcpy(pwcOutput + iCount, L"ì´", sizeof(WCHAR));
 
 			++iCount;
 			continue;
 		}
-		else if( wcscmp( L"ŸÀ", &(pwcText[iCount]) ) == 0 )
+		else if( wcscmp( L"ì‹", &(pwcText[iCount]) ) == 0 )
 		{
 			int iThirdSound = GetKoreanThirdSound( &(pwcText[iCount - 1]) );
 
-			if( iThirdSound == 0 )	// ¹ŞÄ§ÀÌ ¾ø´Ù
-				memcpy(pwcOutput + iCount, L"¸¦", sizeof(WCHAR));
+			if( iThirdSound == 0 )	// ë°›ì¹¨ì´ ì—†ë‹¤
+				memcpy(pwcOutput + iCount, L"ë¥¼", sizeof(WCHAR));
 			else
-				memcpy(pwcOutput + iCount, L"À»", sizeof(WCHAR));
+				memcpy(pwcOutput + iCount, L"ì„", sizeof(WCHAR));
 
 			++iCount;
 			continue;
 		}
-		else if( wcscmp( L"Ÿ¹", &(pwcText[iCount]) ) == 0 )
+		else if( wcscmp( L"ì‚", &(pwcText[iCount]) ) == 0 )
 		{
 			int iThirdSound = GetKoreanThirdSound( &(pwcText[iCount - 1]) );
 
-			if( iThirdSound == 0 )	// ¹ŞÄ§ÀÌ ¾ø´Ù
-				memcpy(pwcOutput + iCount, L"´Â", sizeof(WCHAR));
+			if( iThirdSound == 0 )	// ë°›ì¹¨ì´ ì—†ë‹¤
+				memcpy(pwcOutput + iCount, L"ëŠ”", sizeof(WCHAR));
 			else
-				memcpy(pwcOutput + iCount, L"Àº", sizeof(WCHAR));
+				memcpy(pwcOutput + iCount, L"ì€", sizeof(WCHAR));
 
 			++iCount;
 			continue;
 		}
-		else if( wcscmp( L"¸", &(pwcText[iCount]) ) == 0 )
+		else if( wcscmp( L"ì™†", &(pwcText[iCount]) ) == 0 )
 		{
 			int iThirdSound = GetKoreanThirdSound( &(pwcText[iCount - 1]) );
 
-			if( iThirdSound == 0 )	// ¹ŞÄ§ÀÌ ¾ø´Ù
-				memcpy(pwcOutput + iCount, L"¿Í", sizeof(WCHAR));
+			if( iThirdSound == 0 )	// ë°›ì¹¨ì´ ì—†ë‹¤
+				memcpy(pwcOutput + iCount, L"ì™€", sizeof(WCHAR));
 			else
-				memcpy(pwcOutput + iCount, L"°ú", sizeof(WCHAR));
+				memcpy(pwcOutput + iCount, L"ê³¼", sizeof(WCHAR));
 
 			++iCount;
 			continue;
 		}
-		else if( wcscmp( L"ë", &(pwcText[iCount]) ) == 0 )
+		else if( wcscmp( L"ë¡«", &(pwcText[iCount]) ) == 0 )
 		{
 			int iThirdSound = GetKoreanThirdSound( &(pwcText[iCount - 1]) );
 
-			if( iThirdSound == 0 && iThirdSound == 8 )	// ¹ŞÄ§ÀÌ ¾ø°Å³ª '¤©' ÀÌ´Ù
+			if( iThirdSound == 0 && iThirdSound == 8 )	// ë°›ì¹¨ì´ ì—†ê±°ë‚˜ 'ã„¹' ì´ë‹¤
 			{
-				memcpy(pwcOutput + iCount, L"·Î", sizeof(WCHAR));
+				memcpy(pwcOutput + iCount, L"ë¡œ", sizeof(WCHAR));
 				++iCount;
 			}
 			else
 			{
-				memcpy(pwcOutput + iCount, L"À¸·Î", sizeof(WCHAR) * 2);
+				memcpy(pwcOutput + iCount, L"ìœ¼ë¡œ", sizeof(WCHAR) * 2);
 				iCount += 2;
 			}
 
@@ -107,13 +107,13 @@ RwInt32 CStringLocalConverter_Korean::GetKoreanThirdSound(const WCHAR* pwcText)
 
 	int iIndex_from_HangulFirst = pwcText[0] - dUNICODE_HANGULE_SYLLABLES_FIRST;
 
-	// À¯´ÏÄÚµå»ó ÇÑ±Û À½ÀıÀÇ ¹üÀ§ °Ë»ç
+	// ìœ ë‹ˆì½”ë“œìƒ í•œê¸€ ìŒì ˆì˜ ë²”ìœ„ ê²€ì‚¬
 	if( iIndex_from_HangulFirst < 0 || iIndex_from_HangulFirst >= 11172 )
 		return 0;
 
-	//int iFirstSound	= iIndex_from_HangulFirst / (21*28);				///< ÃÊ¼º ¼ø¼­°ª
-	//int iSecondSound	= iIndex_from_HangulFirst % (21*28) / 28;			///< Áß¼º ¼ø¼­°ª
-	int iThirdSound		= iIndex_from_HangulFirst % (21*28) % 28;			///< Á¾¼º ¼ø¼­°ª
+	//int iFirstSound	= iIndex_from_HangulFirst / (21*28);				///< ì´ˆì„± ìˆœì„œê°’
+	//int iSecondSound	= iIndex_from_HangulFirst % (21*28) / 28;			///< ì¤‘ì„± ìˆœì„œê°’
+	int iThirdSound		= iIndex_from_HangulFirst % (21*28) % 28;			///< ì¢…ì„± ìˆœì„œê°’
 
 	return iThirdSound;
 }

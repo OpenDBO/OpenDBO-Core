@@ -11,12 +11,12 @@ START_GUI
 
 /**
 * \brief Construction
-* \param pSelf				(COutputBox*) ÀÎÅÍÆäÀÌ½º·Î »ç¿ëµÉ COutputBoxÀÇ °´Ã¼
-* \param nMaxLine			(INT) ÇöÀçÀÇ ÄÄÆ÷³ÍÆ®°¡ ÀúÀåÇÏ´Â ÃÖ´ë ÁÙ ¼ö
-* \param nMarginX			(INT) ÄÄÆ÷³ÍÆ®³»¿¡¼­ ½ÃÀÛ X ÁÂÇ¥
-* \param nMarginY			(INT) ÄÄÆ÷³ÍÆ®³»¿¡¼­ ½ÃÀÛ Y ÁÂÇ¥
-* \param bDynamicScrollBar	(bool) ½ºÅ©·Ñ¹Ù°¡ µ¿ÀûÀ¸·Î ÀÛµ¿ÇÏ´ÂÁö ¿©ºÎ
-* \param bScrollBarLeft		(bool) ½ºÅ©·Ñ¹ÙÀÇ ÁÂ/¿ì ¿©ºÎ
+* \param pSelf				(COutputBox*) ì¸í„°í˜ì´ìŠ¤ë¡œ ì‚¬ìš©ë  COutputBoxì˜ ê°ì²´
+* \param nMaxLine			(INT) í˜„ì¬ì˜ ì»´í¬ë„ŒíŠ¸ê°€ ì €ì¥í•˜ëŠ” ìµœëŒ€ ì¤„ ìˆ˜
+* \param nMarginX			(INT) ì»´í¬ë„ŒíŠ¸ë‚´ì—ì„œ ì‹œì‘ X ì¢Œí‘œ
+* \param nMarginY			(INT) ì»´í¬ë„ŒíŠ¸ë‚´ì—ì„œ ì‹œì‘ Y ì¢Œí‘œ
+* \param bDynamicScrollBar	(bool) ìŠ¤í¬ë¡¤ë°”ê°€ ë™ì ìœ¼ë¡œ ì‘ë™í•˜ëŠ”ì§€ ì—¬ë¶€
+* \param bScrollBarLeft		(bool) ìŠ¤í¬ë¡¤ë°”ì˜ ì¢Œ/ìš° ì—¬ë¶€
 * \param dwStyle			(DWORD) 
 */
 COutputBox_Generic::COutputBox_Generic( COutputBox *pSelf, INT nMaxLine, INT nMarginX, INT nMarginY,
@@ -99,7 +99,7 @@ COutputBox_Generic::~COutputBox_Generic()
 }
 
 /**
-* \brief °¡Áö°í ÀÖ´Â ¾ÆÀÌÅÛµéÀ» ¸ğµÎ ÃÊ±âÈ­ÇÑ´Ù.
+* \brief ê°€ì§€ê³  ìˆëŠ” ì•„ì´í…œë“¤ì„ ëª¨ë‘ ì´ˆê¸°í™”í•œë‹¤.
 */
 VOID COutputBox_Generic::Clear(VOID)
 {
@@ -144,10 +144,10 @@ VOID COutputBox_Generic::Clear(VOID)
 }
 
 /**
-* \brief ÇöÀçÀÇ ÄÄÆ÷³ÍÆ®¿¡¼­ »ç¿ëÇÒ ÆùÆ®¸¦ »ı¼ºÇÑ´Ù.
-* \param pFaceName		(CHAR*) ÆùÆ®ÀÇ ÀÌ¸§
-* \param nHeight		(INT) ÆùÆ®ÀÇ Å©±â
-* \param nAttributes	(INT) ÆùÆ®ÀÇ ¼Ó¼º
+* \brief í˜„ì¬ì˜ ì»´í¬ë„ŒíŠ¸ì—ì„œ ì‚¬ìš©í•  í°íŠ¸ë¥¼ ìƒì„±í•œë‹¤.
+* \param pFaceName		(CHAR*) í°íŠ¸ì˜ ì´ë¦„
+* \param nHeight		(INT) í°íŠ¸ì˜ í¬ê¸°
+* \param nAttributes	(INT) í°íŠ¸ì˜ ì†ì„±
 */
 VOID COutputBox_Generic::CreateFont( CHAR* pFaceName, INT nHeight, INT nAttributes /*= 0*/ )
 {
@@ -207,7 +207,7 @@ VOID COutputBox_Generic::CreateFont( CHAR* pFaceName, INT nHeight, INT nAttribut
 }
 
 /**
-* \brief ÇöÀçÀÇ ÄÄÆ÷³ÍÆ®¿¡¼­ »ç¿ëÇÒ ÆùÆ®¸¦ »ı¼ºÇÑ´Ù. ( DEFAULT )
+* \brief í˜„ì¬ì˜ ì»´í¬ë„ŒíŠ¸ì—ì„œ ì‚¬ìš©í•  í°íŠ¸ë¥¼ ìƒì„±í•œë‹¤. ( DEFAULT )
 */
 VOID COutputBox_Generic::CreateFont(VOID)
 {
@@ -215,12 +215,12 @@ VOID COutputBox_Generic::CreateFont(VOID)
 }
 
 /**
-* \brief ÄÄÆ÷³ÍÆ®¿¡¼­ ¹®ÀÚ¿­À» Ãß°¡ÇÑ´Ù.
-* \param text			(const CHAR*)	¹®ÀÚ¿­
-* \param dwTextColor	(DWORD) ¹®ÀÚÀÇ »ö±ò
-* \param nEffectMode	(INT) ¹®ÀÚÀÇ È¿°ú
-* \param dwEffectColor	(DWORD) È¿°úÀÇ »ö±ò
-* \param nEffectValue	(INT) È¿°úÀÇ ¼öÄ¡
+* \brief ì»´í¬ë„ŒíŠ¸ì—ì„œ ë¬¸ìì—´ì„ ì¶”ê°€í•œë‹¤.
+* \param text			(const CHAR*)	ë¬¸ìì—´
+* \param dwTextColor	(DWORD) ë¬¸ìì˜ ìƒ‰ê¹”
+* \param nEffectMode	(INT) ë¬¸ìì˜ íš¨ê³¼
+* \param dwEffectColor	(DWORD) íš¨ê³¼ì˜ ìƒ‰ê¹”
+* \param nEffectValue	(INT) íš¨ê³¼ì˜ ìˆ˜ì¹˜
 */
 VOID COutputBox_Generic::AddText( const CHAR* text, DWORD dwTextColor, INT nEffectMode, DWORD dwEffectColor, INT nEffectValue )
 {
@@ -238,8 +238,8 @@ VOID COutputBox_Generic::AddText( const WCHAR* text, DWORD dwTextColor, INT nEff
 }
 
 /**
-* \brief ÄÄÆ÷³ÍÆ®¿¡ Ãâ·ÂÇÒ Surface¸¦ ÁöÁ¤ÇÑ´Ù.
-* \param surface	(CSurface) Ãâ·ÂÇÒ ¼­ÆäÀÌ½º
+* \brief ì»´í¬ë„ŒíŠ¸ì— ì¶œë ¥í•  Surfaceë¥¼ ì§€ì •í•œë‹¤.
+* \param surface	(CSurface) ì¶œë ¥í•  ì„œí˜ì´ìŠ¤
 */
 VOID COutputBox_Generic::AddSurface( CSurface surface )
 {
@@ -255,7 +255,7 @@ VOID COutputBox_Generic::AddSurface( CSurface surface )
 }
 
 /**
-* \brief ÇöÀç º¸¿©Áö´Â ½ºÆ®¸µÀÇ ÇÑ ÁÙ ÀÌÀüÀ» º¸¿©ÁØ´Ù.
+* \brief í˜„ì¬ ë³´ì—¬ì§€ëŠ” ìŠ¤íŠ¸ë§ì˜ í•œ ì¤„ ì´ì „ì„ ë³´ì—¬ì¤€ë‹¤.
 */
 VOID COutputBox_Generic::PrevLine(VOID)
 {
@@ -264,7 +264,7 @@ VOID COutputBox_Generic::PrevLine(VOID)
 		if( --m_nScrollLine < 0 )
 			m_nScrollLine = 0;
 
-		// ScrollBar Á¶Àı.
+		// ScrollBar ì¡°ì ˆ.
 		if( m_dwStyle & COMP_VER_SCROLL )
 		{
 			gui::CScrollBar* pScrollBar = m_pOutputBox->GetVerticalScrollBar();
@@ -276,7 +276,7 @@ VOID COutputBox_Generic::PrevLine(VOID)
 }
 
 /**
-* \brief ÇöÀç º¸¿©Áö´Â ½ºÆ®¸µÀÇ ´ÙÀ½ ÁÙÀ» º¸¿©ÁØ´Ù.
+* \brief í˜„ì¬ ë³´ì—¬ì§€ëŠ” ìŠ¤íŠ¸ë§ì˜ ë‹¤ìŒ ì¤„ì„ ë³´ì—¬ì¤€ë‹¤.
 */
 VOID COutputBox_Generic::NextLine(VOID)
 {
@@ -285,7 +285,7 @@ VOID COutputBox_Generic::NextLine(VOID)
 		if( ++m_nScrollLine > m_nDrawItemNum - m_nRowLimit )
 			m_nScrollLine = m_nDrawItemNum - m_nRowLimit;
 
-		// ScrollBar Á¶Àı.
+		// ScrollBar ì¡°ì ˆ.
 		if( m_dwStyle & COMP_VER_SCROLL )
 		{
 			gui::CScrollBar* pScrollBar = m_pOutputBox->GetVerticalScrollBar();
@@ -297,7 +297,7 @@ VOID COutputBox_Generic::NextLine(VOID)
 }
 
 /**
-* \brief ÄÄÆ÷³ÍÆ®°¡ °¡Áö°í ÀÖ´Â °¡Àå Ã¹ ÁÙ·Î °£´Ù.
+* \brief ì»´í¬ë„ŒíŠ¸ê°€ ê°€ì§€ê³  ìˆëŠ” ê°€ì¥ ì²« ì¤„ë¡œ ê°„ë‹¤.
 */
 VOID COutputBox_Generic::FirstLine(VOID)
 {
@@ -305,7 +305,7 @@ VOID COutputBox_Generic::FirstLine(VOID)
 	{
 		m_nScrollLine = 0;
 
-		// ScrollBar Á¶Àı.
+		// ScrollBar ì¡°ì ˆ.
 		if( m_dwStyle & COMP_VER_SCROLL )
 		{
 			gui::CScrollBar* pScrollBar = m_pOutputBox->GetVerticalScrollBar();
@@ -317,7 +317,7 @@ VOID COutputBox_Generic::FirstLine(VOID)
 }
 
 /**
-* \brief ÄÄÆ÷³ÍÆ®°¡ Ãâ·ÂÇÏ°í ÀÖ´Â °¡Àå ¸¶Áö¸· ÁÙ·Î °£´Ù.
+* \brief ì»´í¬ë„ŒíŠ¸ê°€ ì¶œë ¥í•˜ê³  ìˆëŠ” ê°€ì¥ ë§ˆì§€ë§‰ ì¤„ë¡œ ê°„ë‹¤.
 */
 VOID COutputBox_Generic::LastLine(VOID)
 {
@@ -325,7 +325,7 @@ VOID COutputBox_Generic::LastLine(VOID)
 	{
 		m_nScrollLine = m_nDrawItemNum - m_nRowLimit;
 
-		// ScrollBar Á¶Àı.
+		// ScrollBar ì¡°ì ˆ.
 		if( m_dwStyle & COMP_VER_SCROLL )
 		{
 			gui::CScrollBar* pScrollBar = m_pOutputBox->GetVerticalScrollBar();
@@ -342,7 +342,7 @@ void COutputBox_Generic::SetLine(int nLine)
 	{
 		m_nScrollLine = nLine;
 
-		// ScrollBar Á¶Àı.
+		// ScrollBar ì¡°ì ˆ.
 		if (m_dwStyle & COMP_VER_SCROLL)
 		{
 			gui::CScrollBar* pScrollBar = m_pOutputBox->GetVerticalScrollBar();
@@ -392,7 +392,7 @@ VOID COutputBox_Generic::SetScrollBarLeft( bool bScrollBarLeft )
 	{
 		m_TextSurface.m_pTexture = g_TextureMgr.CreateTexture( rect.GetWidth(), rect.GetHeight() );
 
-		// »õ·Î¿î ÅØ½ºÃÄ°³ »ı¼ºµÇ¾ú´Ù¸é ´Ù½Ã ±×·ÁÁà¾ß ÇÒ ÇÊ¿ä°¡ ÀÖ´Ù. 
+		// ìƒˆë¡œìš´ í…ìŠ¤ì³ê°œ ìƒì„±ë˜ì—ˆë‹¤ë©´ ë‹¤ì‹œ ê·¸ë ¤ì¤˜ì•¼ í•  í•„ìš”ê°€ ìˆë‹¤. 
 		m_bNeedDrawItem = TRUE;
 	}
 
@@ -423,8 +423,8 @@ VOID COutputBox_Generic::SetScrollBarLeft( bool bScrollBarLeft )
 	m_nScrollLine = 0;
 	pScrollBar->SetValue( 0 );
 
-	// Crude Item¿¡ ÀÌ¹Ì ¾ÆÀÌÅÛµéÀÌ µé¾î°¡ ÀÖ´Ù¸é resize°¡ StringDetect() °¡
-	// ÀÏ¾î³ª±â Àü¿¡ 2¹ø ÀÌ»ó Ãâ·ÂµÇ¾ú´Ù´Â °Í.
+	// Crude Itemì— ì´ë¯¸ ì•„ì´í…œë“¤ì´ ë“¤ì–´ê°€ ìˆë‹¤ë©´ resizeê°€ StringDetect() ê°€
+	// ì¼ì–´ë‚˜ê¸° ì „ì— 2ë²ˆ ì´ìƒ ì¶œë ¥ë˜ì—ˆë‹¤ëŠ” ê²ƒ.
 	if( m_listCrudeItem.empty() )
 	{
 		std::list<COutputBox_Item*>::iterator it = m_listOriginalItem.begin();
@@ -439,7 +439,7 @@ VOID COutputBox_Generic::SetScrollBarLeft( bool bScrollBarLeft )
 // Implementation
 
 /**
-* \brief °¡Áö°í ÀÖ´Â ¿ø·¡ÀÇ ¹®ÀÚ¿­À» °¡Áö°í ÇöÀçÀÇ ÄÄÆ÷³ÍÆ® »çÀÌÁî¿¡ ¸ÂÃç¼­ ÁÙ ¹Ù²Ş °¡°øÀ» ÇÏ°í ·»´õ¸µµÉ ÀÚ·á±¸Á¶¿¡ ³Ö¾îÁØ´Ù.
+* \brief ê°€ì§€ê³  ìˆëŠ” ì›ë˜ì˜ ë¬¸ìì—´ì„ ê°€ì§€ê³  í˜„ì¬ì˜ ì»´í¬ë„ŒíŠ¸ ì‚¬ì´ì¦ˆì— ë§ì¶°ì„œ ì¤„ ë°”ê¿ˆ ê°€ê³µì„ í•˜ê³  ë Œë”ë§ë  ìë£Œêµ¬ì¡°ì— ë„£ì–´ì¤€ë‹¤.
 */
 VOID COutputBox_Generic::StringDetect( VOID )
 {
@@ -467,7 +467,7 @@ VOID COutputBox_Generic::StringDetect( VOID )
 		}
 	}
 
-	// Need DrawItemÀº ScrollÀÇ º¯È­·Î ÀÎÇÑ Texture¸¦ ´Ù½Ã ±×·Á¾ß ÇÏ±â ¶§¹®¿¡ Scrollbar¸¦ Á¶Á¤ÇÏÁö ¾Ê´Â´Ù.
+	// Need DrawItemì€ Scrollì˜ ë³€í™”ë¡œ ì¸í•œ Textureë¥¼ ë‹¤ì‹œ ê·¸ë ¤ì•¼ í•˜ê¸° ë•Œë¬¸ì— Scrollbarë¥¼ ì¡°ì •í•˜ì§€ ì•ŠëŠ”ë‹¤.
 	if( m_bNeedDrawItem )
 		return;
 
@@ -500,7 +500,7 @@ VOID COutputBox_Generic::StringDetect( VOID )
 }
 
 /**
-* \brief ¿ø·¡ÀÇ ¹®ÀÚ¿­À» ÀúÀåÇÑ´Ù.
+* \brief ì›ë˜ì˜ ë¬¸ìì—´ì„ ì €ì¥í•œë‹¤.
 */
 VOID COutputBox_Generic::AddOriginalItem( const WCHAR* text, DWORD dwTextColor, INT nEffectMode, DWORD dwEffectColor, INT nEffectValue )
 {
@@ -520,7 +520,7 @@ VOID COutputBox_Generic::AddOriginalItem( const WCHAR* text, DWORD dwTextColor, 
 }
 
 /**
-* \brief ÁÙ¹Ù²Ş ÀüÀÇ ±×·ÁÁú ¹®ÀÚ¿­À» Ãß°¡ÇÑ´Ù.
+* \brief ì¤„ë°”ê¿ˆ ì „ì˜ ê·¸ë ¤ì§ˆ ë¬¸ìì—´ì„ ì¶”ê°€í•œë‹¤.
 */
 VOID COutputBox_Generic::AddCrudeItem( COutputBox_Item* pItem )
 {
@@ -529,7 +529,7 @@ VOID COutputBox_Generic::AddCrudeItem( COutputBox_Item* pItem )
 }
 
 /**
-* \brief ±×·ÁÁú ¹®ÀÚ¿­À» Ãß°¡ÇÑ´Ù.
+* \brief ê·¸ë ¤ì§ˆ ë¬¸ìì—´ì„ ì¶”ê°€í•œë‹¤.
 */
 VOID COutputBox_Generic::AddDrawItem( COutputBox_Item* pItem )
 {
@@ -560,7 +560,7 @@ VOID COutputBox_Generic::AddDrawItem( COutputBox_Item* pItem )
 		WCHAR wCurrentChar = STATICBOX_NULL_STRING;
 		WCHAR wNextChar = STATICBOX_NULL_STRING;
 
-		// ÇöÀç ±ÛÀÚ°¡ '\\' ÀÌ°í ´ÙÀ½ ±ÛÀÚ°¡ 'n' ÀÏ °æ¿ì ÇöÀç ¹®ÀÚ¸¦ °³Çà ¹®ÀÚ·Î Ã³¸®ÇÑ´Ù. ( bLineFeed = TRUE )
+		// í˜„ì¬ ê¸€ìê°€ '\\' ì´ê³  ë‹¤ìŒ ê¸€ìê°€ 'n' ì¼ ê²½ìš° í˜„ì¬ ë¬¸ìë¥¼ ê°œí–‰ ë¬¸ìë¡œ ì²˜ë¦¬í•œë‹¤. ( bLineFeed = TRUE )
 		if( i < nTextSize - 1 )
 		{
 			wCurrentChar = (*pItem->m_pBuffer)[i];
@@ -570,8 +570,8 @@ VOID COutputBox_Generic::AddDrawItem( COutputBox_Item* pItem )
 				bLineFeed = TRUE;
 		}
 
-		// ´ÙÀ½ X À§Ä¡¿Í ÀÌÀü X À§Ä¡°¡ Á¦ÇÑ LimitW ¸¦ ³Ñ¾î°¡°Å³ª bLineFeed(ÁÙ³Ñ±è) flag°¡ true ÀÏ °æ¿ì Queue¿¡ ¾ÆÀÌÅÛÀ»
-		// ³Ö´Â´Ù.
+		// ë‹¤ìŒ X ìœ„ì¹˜ì™€ ì´ì „ X ìœ„ì¹˜ê°€ ì œí•œ LimitW ë¥¼ ë„˜ì–´ê°€ê±°ë‚˜ bLineFeed(ì¤„ë„˜ê¹€) flagê°€ true ì¼ ê²½ìš° Queueì— ì•„ì´í…œì„
+		// ë„£ëŠ”ë‹¤.
 		if( nNextXPos - nPrevXPos > nLimitW || bLineFeed )
 		{
 			/*if( (INT)m_listDrawItem.size() >= m_nMaxLine )
@@ -597,14 +597,14 @@ VOID COutputBox_Generic::AddDrawItem( COutputBox_Item* pItem )
 			if( m_nDrawItemNum < m_nMaxLine )
 				++m_nDrawItemNum;
 
-			// ÁÙ³Ñ±æ ÀÏ °æ¿ì
+			// ì¤„ë„˜ê¸¸ ì¼ ê²½ìš°
 			if( bLineFeed )
 			{
-				INT nNextPos = i + 2;	// °³Çà ±ÛÀÚ¸¦ °Ç³Ê¶Ú À§Ä¡¸¸Å­ ´ÙÀ½ À§Ä¡¸¦ Àâ¾ÆÁÖ°í
+				INT nNextPos = i + 2;	// ê°œí–‰ ê¸€ìë¥¼ ê±´ë„ˆë›´ ìœ„ì¹˜ë§Œí¼ ë‹¤ìŒ ìœ„ì¹˜ë¥¼ ì¡ì•„ì£¼ê³ 
 				nStartX = nNextPos;
 				if( nNextPos < nTextSize )
 					nPrevXPos = pItem->m_pBuffer->GetItemSizeByFirst( nNextPos );
-				++i; // ÇÊ¿ä¾ø´Â ·çÇÁ¸¦ ÁÙÀÓ.
+				++i; // í•„ìš”ì—†ëŠ” ë£¨í”„ë¥¼ ì¤„ì„.
 			}
 			else
 			{
@@ -664,7 +664,7 @@ VOID COutputBox_Generic::AddDrawItem( COutputBox_Item* pItem )
 }
 
 /**
-* \brief ÇöÀçÀÇ ÄÄÆ÷³ÍÆ® »çÀÌÁî¿¡¼­ º¸¿©Áú ¼ö ÀÖ´Â ¾ÆÀÌÅÛÀÇ °¹¼ö¸¦ ¼¾´Ù.
+* \brief í˜„ì¬ì˜ ì»´í¬ë„ŒíŠ¸ ì‚¬ì´ì¦ˆì—ì„œ ë³´ì—¬ì§ˆ ìˆ˜ ìˆëŠ” ì•„ì´í…œì˜ ê°¯ìˆ˜ë¥¼ ì„¼ë‹¤.
 */
 VOID COutputBox_Generic::VisibleLineCount(VOID)
 {
@@ -973,7 +973,7 @@ VOID COutputBox_Generic::OnResize( INT nOldX, INT nOldY )
 	{
 		m_TextSurface.m_pTexture = g_TextureMgr.CreateTexture( rect.GetWidth(), rect.GetHeight() );
 
-		// »õ·Î¿î ÅØ½ºÃÄ°³ »ı¼ºµÇ¾ú´Ù¸é ´Ù½Ã ±×·ÁÁà¾ß ÇÒ ÇÊ¿ä°¡ ÀÖ´Ù. 
+		// ìƒˆë¡œìš´ í…ìŠ¤ì³ê°œ ìƒì„±ë˜ì—ˆë‹¤ë©´ ë‹¤ì‹œ ê·¸ë ¤ì¤˜ì•¼ í•  í•„ìš”ê°€ ìˆë‹¤. 
 		m_bNeedDrawItem = true;
 	}
 		
@@ -1004,8 +1004,8 @@ VOID COutputBox_Generic::OnResize( INT nOldX, INT nOldY )
 	m_nScrollLine = 0;
 	pScrollBar->SetValue( 0 );
 
-	// Crude Item¿¡ ÀÌ¹Ì ¾ÆÀÌÅÛµéÀÌ µé¾î°¡ ÀÖ´Ù¸é resize°¡ StringDetect() °¡
-	// ÀÏ¾î³ª±â Àü¿¡ 2¹ø ÀÌ»ó Ãâ·ÂµÇ¾ú´Ù´Â °Í.
+	// Crude Itemì— ì´ë¯¸ ì•„ì´í…œë“¤ì´ ë“¤ì–´ê°€ ìˆë‹¤ë©´ resizeê°€ StringDetect() ê°€
+	// ì¼ì–´ë‚˜ê¸° ì „ì— 2ë²ˆ ì´ìƒ ì¶œë ¥ë˜ì—ˆë‹¤ëŠ” ê²ƒ.
 	if( m_listCrudeItem.empty() )
 	{
 		std::list<COutputBox_Item*>::iterator it = m_listOriginalItem.begin();

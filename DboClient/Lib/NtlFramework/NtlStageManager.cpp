@@ -25,9 +25,9 @@ CNtlStageManager::~CNtlStageManager()
 
 /**
 *
-*  \param pStageName´Â stage nameÀÌ´Ù.
+*  \param pStageNameëŠ” stage nameì´ë‹¤.
 *
-*  \return stage name¿¡ ÇØ´çÇÏ´Â stage¸¦ pointer¸¦ ¸®ÅÏÇÑ´Ù. ¾øÀ¸¸é NULL.
+*  \return stage nameì— í•´ë‹¹í•˜ëŠ” stageë¥¼ pointerë¥¼ ë¦¬í„´í•œë‹¤. ì—†ìœ¼ë©´ NULL.
 */
 CNtlStage* CNtlStageManager::FindActiveStage(const char *pStageName)
 {
@@ -81,8 +81,8 @@ CNtlStage* CNtlStageManager::GetActiveStage(void)
 
 
 /**
-*  stage¸¦ destroy ½ÃÅ²´Ù.
-*  \param pStage´Â destroy½ÃÅ³ stage pointerÀÌ´Ù.
+*  stageë¥¼ destroy ì‹œí‚¨ë‹¤.
+*  \param pStageëŠ” destroyì‹œí‚¬ stage pointerì´ë‹¤.
 */
 void CNtlStageManager::DeleteStage(CNtlStage *pStage)
 {
@@ -98,9 +98,9 @@ void CNtlStageManager::DeleteStage(CNtlStage *pStage)
 }
 
 /**
-*  ÀÌ ÇÔ¼ö´Â stage manager¸¦ instance¸¦ »ı¼ºÇÑ ´ÙÀ½ °ğ¹Ù·Î È£ÃâÇÑ´Ù.
-*  ÀÌ ÇÔ¼öÀÇ ±â´ÉÀº stage manager°¡ Ã³¸®ÇÑ event¸¦ µî·ÏÇÑ´Ù.
-*  event¿¡´Â stage create ¿Í stage delete event°¡ Á¸ÀçÇÑ´Ù.
+*  ì´ í•¨ìˆ˜ëŠ” stage managerë¥¼ instanceë¥¼ ìƒì„±í•œ ë‹¤ìŒ ê³§ë°”ë¡œ í˜¸ì¶œí•œë‹¤.
+*  ì´ í•¨ìˆ˜ì˜ ê¸°ëŠ¥ì€ stage managerê°€ ì²˜ë¦¬í•œ eventë¥¼ ë“±ë¡í•œë‹¤.
+*  eventì—ëŠ” stage create ì™€ stage delete eventê°€ ì¡´ì¬í•œë‹¤.
 */
 
 bool CNtlStageManager::Create(void)
@@ -117,9 +117,9 @@ bool CNtlStageManager::Create(void)
 }
 
 /**
-*  ÀÌ ÇÔ¼ö´Â stage manager °´Ã¼¸¦ »èÁ¦ÇÏ±â Àü¿¡ È£ÃâÇÑ´Ù.
-*  ¿©±â¿¡´Â µî·ÏµÈ event¸¦ ¸ğµÎ ÇØÁ¦ÇÑ´Ù.
-*  °ü¸®ÇÏ°í ÀÖ´Â active stage¸¦ ¸ğµÎ »èÁ¦ÇÑ´Ù.
+*  ì´ í•¨ìˆ˜ëŠ” stage manager ê°ì²´ë¥¼ ì‚­ì œí•˜ê¸° ì „ì— í˜¸ì¶œí•œë‹¤.
+*  ì—¬ê¸°ì—ëŠ” ë“±ë¡ëœ eventë¥¼ ëª¨ë‘ í•´ì œí•œë‹¤.
+*  ê´€ë¦¬í•˜ê³  ìˆëŠ” active stageë¥¼ ëª¨ë‘ ì‚­ì œí•œë‹¤.
 */
 
 void CNtlStageManager::Destroy(void)
@@ -161,8 +161,8 @@ void CNtlStageManager::PostRender(void)
 
 
 /**
-*  Event Handler ÇÔ¼ö.
-*  \param pMsg´Â event messageÀÌ¸ç, message¾È¿¡ event id¿Í data Á¤º¸°¡ Æ÷ÇÔµÇ¾î ÀÖ´Ù.
+*  Event Handler í•¨ìˆ˜.
+*  \param pMsgëŠ” event messageì´ë©°, messageì•ˆì— event idì™€ data ì •ë³´ê°€ í¬í•¨ë˜ì–´ ìˆë‹¤.
 */
 
 void CNtlStageManager::HandleEvents(RWS::CMsg &pMsg)

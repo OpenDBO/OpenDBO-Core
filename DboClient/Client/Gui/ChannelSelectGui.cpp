@@ -73,19 +73,19 @@ RwBool CChannelSelectGui::Create()
 	m_pServerName->SetTextColor(RGB(255, 192, 0));
 	m_pServerName->Enable(false);
 
-	// ½ºÅ©·Ñ
+	// ìŠ¤í¬ë¡¤
 	m_pScrollBar = (gui::CScrollBar*)GetComponent("scbScroll");
 	m_slotServerScrollChanged		= m_pScrollBar->SigValueChanged().Connect( this, &CChannelSelectGui::OnScrollChanged );
 	m_slotServerScrollSliderMoved	= m_pScrollBar->SigSliderMoved().Connect( this, &CChannelSelectGui::OnScrollChanged );
 
-	// È®ÀÎ ¹öÆ°
+	// í™•ì¸ ë²„íŠ¼
 	m_pOkButton = (gui::CButton*)GetComponent("btnOk");
 	m_pOkButton->SetTextFocusColor(INFOCOLOR_LOBBY_FOC);
 	m_pOkButton->SetTextDownColor(INFOCOLOR_LOBBY_DOWN);
 	m_pOkButton->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_OK"));
 	m_slotOKButton = m_pOkButton->SigClicked().Connect( this, &CChannelSelectGui::OnClickOKButton );
 
-	// Ãë¼Ò ¹öÆ°
+	// ì·¨ì†Œ ë²„íŠ¼
 	m_pCancelButton = (gui::CButton*)GetComponent("btnCancel");
 	m_pCancelButton->SetTextFocusColor(INFOCOLOR_LOBBY_FOC);
 	m_pCancelButton->SetTextDownColor(INFOCOLOR_LOBBY_DOWN);
@@ -98,9 +98,9 @@ RwBool CChannelSelectGui::Create()
 	m_srfDownBar.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharChannelSelect.srf", "srfDownBar" ));
 
 	// dafault set
-	// avooo's comment : ¸¶Áö¸·¿¡ Á¢¼ÓÇß´ø ¼­¹ö°¡ ¾ø´Â »óÅÂ¿¡¼­ °ÔÀÓ¿¡ µé¾î°¬´Ù°¡ ·Îºñ·Î ³ª¿À¸é ¿©ÀüÈ÷ ¸¶Áö¸·¿¡ Á¢¼ÓÇß´ø ¼­¹öÀÇ ÀÎµ¦½º°¡ ¾ø´Ù.
-	//				     ÀÌ ¶§ GUI»ó¿¡ Ã¤³Î Á¤º¸°¡ Ç¥½ÃµÇÁö ¾Ê´Â´Ù. ±×·¯³ª, ½ÇÁ¦·Î´Â Ã¤³Î Á¤º¸¸¦ °¡Áö°í ÀÖÀ¸¹Ç·Î GUI Ã¤³Î Á¤º¸¸¦
-	//					 ±¸ÃàÇÏÀÚ.(¸¶Áö¸·¿¡ Á¢¼ÓÇß´ø ¼­¹öÀÇ ÀÎµ¦½º´Â ÀÎÁõ ¼­¹ö Á¢¼Ó½Ã, Ä³¸¯ÅÍ ¼­¹ö Á¢¼Ó½Ã ¼­¹ö·Î ºÎÅÍ ¹Ş´Â´Ù.)
+	// avooo's comment : ë§ˆì§€ë§‰ì— ì ‘ì†í–ˆë˜ ì„œë²„ê°€ ì—†ëŠ” ìƒíƒœì—ì„œ ê²Œì„ì— ë“¤ì–´ê°”ë‹¤ê°€ ë¡œë¹„ë¡œ ë‚˜ì˜¤ë©´ ì—¬ì „íˆ ë§ˆì§€ë§‰ì— ì ‘ì†í–ˆë˜ ì„œë²„ì˜ ì¸ë±ìŠ¤ê°€ ì—†ë‹¤.
+	//				     ì´ ë•Œ GUIìƒì— ì±„ë„ ì •ë³´ê°€ í‘œì‹œë˜ì§€ ì•ŠëŠ”ë‹¤. ê·¸ëŸ¬ë‚˜, ì‹¤ì œë¡œëŠ” ì±„ë„ ì •ë³´ë¥¼ ê°€ì§€ê³  ìˆìœ¼ë¯€ë¡œ GUI ì±„ë„ ì •ë³´ë¥¼
+	//					 êµ¬ì¶•í•˜ì.(ë§ˆì§€ë§‰ì— ì ‘ì†í–ˆë˜ ì„œë²„ì˜ ì¸ë±ìŠ¤ëŠ” ì¸ì¦ ì„œë²„ ì ‘ì†ì‹œ, ìºë¦­í„° ì„œë²„ ì ‘ì†ì‹œ ì„œë²„ë¡œ ë¶€í„° ë°›ëŠ”ë‹¤.)
 	SERVER_HANDLE	hServer	= GetLobbyManager()->GetSelectedServerHandle();
 	CLobby*			pLobby	= GetLobbyManager()->GetLobby(hServer);
 
@@ -172,17 +172,17 @@ VOID CChannelSelectGui::CreateChannels()
 			continue;
 		}
 
-		// Ã¤³Î ID
+		// ì±„ë„ ID
 		pChannelGui->byChannelID = pDBO_GAME_SERVER_CHANNEL_INFO->byServerChannelIndex;
 
-		// Ã¤³Î »ç¿ë °ÔÀÌÁö
+		// ì±„ë„ ì‚¬ìš© ê²Œì´ì§€
 		rect.SetRectWH(dCHANNEL_GAUGE_X, iGaugeY, 68, 8);
 		pChannelGui->pUseGauge =  NTL_NEW gui::CProgressBar( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharChannelSelect.srf", "srfGauge" )  );
 		pChannelGui->pUseGauge->Enable(false);
 		pChannelGui->pUseGauge->SetRange(0, pDBO_GAME_SERVER_CHANNEL_INFO->dwMaxLoad);
 		pChannelGui->pUseGauge->SetPos(pDBO_GAME_SERVER_CHANNEL_INFO->dwLoad);
 
-		// Ã¤³Î ¹øÈ£
+		// ì±„ë„ ë²ˆí˜¸
 		rect.SetRectWH(dCHANNEL_TEXT__CHANNEL_NUM_X, iTextY + dCHANNEL_TEXT__CHANNEL_NUM_ADJUST_Y, 100, 25);
 		pChannelGui->pChannelNum = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER );	
 		pChannelGui->pChannelNum->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
@@ -191,14 +191,14 @@ VOID CChannelSelectGui::CreateChannels()
 		pChannelGui->pChannelNum->SetText(awcBuffer);
 		pChannelGui->pChannelNum->Enable(false);
 
-		// Ã¤³Î »óÅÂ
+		// ì±„ë„ ìƒíƒœ
 		rect.SetRectWH(dCHANNEL_TEXT__CHANNEL_STATE_X, iTextY, 68, 14);
 		pChannelGui->pChannelState = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_CENTER );
 		pChannelGui->pChannelState->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 		SetChannelState(pChannelGui, pDBO_GAME_SERVER_CHANNEL_INFO);
 		pChannelGui->pChannelState->Enable(false);
 
-		// Ã¤³Î »ç¿ë °ÔÀÌÁö ¹è°æ
+		// ì±„ë„ ì‚¬ìš© ê²Œì´ì§€ ë°°ê²½
 		pChannelGui->srfGaugeBack.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "CharChannelSelect.srf", "srfGaugeBack" ));
 
 		iButtonY	+= dCHANNEL_HEIGHT_BUTTON_GAP;
@@ -503,15 +503,15 @@ VOID CChannelSelectGui::OnClickOKButton(gui::CComponent* pComponent)
 
 	if( m_bySelectIndex == INVALID_BYTE )
 	{
-		// Ã¤³ÎÀ» ¼±ÅÃÇÏ½Ê½Ã¿ä
+		// ì±„ë„ì„ ì„ íƒí•˜ì‹­ì‹œìš”
 		GetAlarmManager()->AlarmMessage( "DST_LOBBY_MUST_CHOICE_CHANNEL" );
 		return;
 	}
 
-	// Ã¤³Î ´ÙÀÌ¾ó·Î±× ´İ±â
+	// ì±„ë„ ë‹¤ì´ì–¼ë¡œê·¸ ë‹«ê¸°
 	Show(false);
 
-	// °ÔÀÓ ½ÃÀÛ
+	// ê²Œì„ ì‹œì‘
 	if( FALSE == Logic_IsUsableIndex(bySelectedCharIndex, NTL_MAX_COUNT_USER_CHAR_SLOT) )
 	{
 		DBO_FAIL("Invalid index : " << bySelectedCharIndex);
@@ -533,13 +533,13 @@ VOID CChannelSelectGui::OnClickOKButton(gui::CComponent* pComponent)
 
 	if( pLOBBY_CHARACTER->tSummary.bTutorialFlag )
 	{
-		// ¹Ù·Î °ÔÀÓ ÁøÀÔ
+		// ë°”ë¡œ ê²Œì„ ì§„ì…
 		CDboEventGenerator::LobbyEvent(LMT_GAME_SERVER_WAIT_CHECK_REQ);
 		GetDboGlobal()->SetEnterTutorial( FALSE );
 	}
 	else
 	{
-		// Æ©Åä¸®¾óÀ» ÁøÇàÇÒÁö ¹°¾îº»´Ù
+		// íŠœí† ë¦¬ì–¼ì„ ì§„í–‰í• ì§€ ë¬¼ì–´ë³¸ë‹¤
 		GetAlarmManager()->AlarmMessage( "DST_TUTORIAL_ASK_BEGIN" );
 	}
 	
@@ -551,7 +551,7 @@ VOID CChannelSelectGui::OnClickCancleButton(gui::CComponent* pComponent)
 	if( GetCharStageState()->GetCurrentState() != CHAR_STATE_SELECT_IDLE )
 		return;
 
-	// Ã¤³Î ´ÙÀÌ¾ó·Î±× ´İ±â
+	// ì±„ë„ ë‹¤ì´ì–¼ë¡œê·¸ ë‹«ê¸°
 	Show(false);
 	m_pThis->Popup(false);
 }
@@ -762,7 +762,7 @@ VOID CChannelSelectGui::HandleEvents( RWS::CMsg &msg )
 			}
 		case LMT_START_CONNECT_GAME_SERVER:
 			{
-				// Ä³¸¯ÅÍ ¼­¹ö·Î ºÎÅÍ °ÔÀÓ ¼­¹ö·Î ¿¬°áÀ» ÇØµµ ÁÁ´Ù´Â ÆĞÅ¶À» ¹ŞÀº ÀÌÈÄ
+				// ìºë¦­í„° ì„œë²„ë¡œ ë¶€í„° ê²Œì„ ì„œë²„ë¡œ ì—°ê²°ì„ í•´ë„ ì¢‹ë‹¤ëŠ” íŒ¨í‚·ì„ ë°›ì€ ì´í›„
 				SERVER_HANDLE	hServer	= GetLobbyManager()->GetSelectedServerHandle();
 				CLobby*			pLobby	= GetLobbyManager()->GetLobby(hServer);
 				if( !pLobby )

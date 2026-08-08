@@ -55,7 +55,7 @@ VOID CCinematicGui::SetCinematicBalloon( void* pData )
 
 			if( !m_pCinematicObject->SetImageTexture( pNPCData->szILLust, pBalloonData->byEmotionType ) )
 			{
-				// ±×¸²ÀÌ ¾øÀ¸¸é ±âº»°ª Ãâ·Â. ÀÌ·¡µµ ¾øÀ¸¸é Èò»ö ±×¸² Ãâ·Â
+				// ê·¸ë¦¼ì´ ì—†ìœ¼ë©´ ê¸°ë³¸ê°’ ì¶œë ¥. ì´ëž˜ë„ ì—†ìœ¼ë©´ í°ìƒ‰ ê·¸ë¦¼ ì¶œë ¥
 				m_pCinematicObject->SetImageTexture( pNPCData->szILLust, 0 );				
 			}
 			m_pCinematicObject->SetName( pNPCText->GetText( pNPCData->Name ).c_str() );			
@@ -70,7 +70,7 @@ VOID CCinematicGui::SetCinematicBalloon( void* pData )
 
 			if( !m_pCinematicObject->SetImageTexture( pMobData->szILLust, pBalloonData->byEmotionType ) )
 			{
-				// ±×¸²ÀÌ ¾øÀ¸¸é ±âº»°ª Ãâ·Â. ÀÌ·¡µµ ¾øÀ¸¸é Èò»ö ±×¸² Ãâ·Â
+				// ê·¸ë¦¼ì´ ì—†ìœ¼ë©´ ê¸°ë³¸ê°’ ì¶œë ¥. ì´ëž˜ë„ ì—†ìœ¼ë©´ í°ìƒ‰ ê·¸ë¦¼ ì¶œë ¥
 				m_pCinematicObject->SetImageTexture( pMobData->szILLust, 0 );				
 			}
 			m_pCinematicObject->SetName( pMobText->GetText( pMobData->Name ).c_str() );

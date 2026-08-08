@@ -100,10 +100,10 @@ BOOL CNtlFlasher::Create( CONST CHAR* szFileName, int nID)
 	loader->SetRenderConfig( m_pRenderConfig );
 	m_pMovie->SetBackgroundAlpha( 0.0f );
 
-	// ResizeMode ¼³Á¤
+	// ResizeMode ì„¤ì •
 	SetResizeType( m_eScaleModeType );
 
-	// Resolution SizeÀúÀå.
+	// Resolution Sizeì €ì¥.
 	GRectF rect = m_pMovie->GetVisibleFrameRect();
 	m_nResolutionWidth = (INT)rect.Width();
 	m_nResolutionHeight = (INT)rect.Height();
@@ -322,7 +322,7 @@ VOID CNtlFlasher::OnKeyEvent( UINT key, UINT info, BOOL bDown )
 {
 	GFxKey::Code FxKey( (GFxKey::Code)key );
 	
-	// Å°µéÀÌ ¸ÅÄ¡µÇÁö ¾Ê´Â °æ¿ì°¡ ¸¹À¸¹Ç·Î ´Ù½Ã ÇÑ¹ø ¸ÂÃçº»´Ù.
+	// í‚¤ë“¤ì´ ë§¤ì¹˜ë˜ì§€ ì•ŠëŠ” ê²½ìš°ê°€ ë§ìœ¼ë¯€ë¡œ ë‹¤ì‹œ í•œë²ˆ ë§ì¶°ë³¸ë‹¤.
 	if( key >= 'A' && key <= 'Z')
 	{
 		FxKey = (GFxKey::Code)( ( key - 'A' ) + GFxKey::A );
@@ -350,7 +350,7 @@ VOID CNtlFlasher::OnKeyEvent( UINT key, UINT info, BOOL bDown )
 			{ VK_RIGHT,     GFxKey::Right },
 			{ VK_DOWN,      GFxKey::Down },
 
-			// ¾È¸Â´Â Å°´Â À§·Î °è¼Ó Ã¤¿ö ³ÖÀÚ.
+			// ì•ˆë§ëŠ” í‚¤ëŠ” ìœ„ë¡œ ê³„ì† ì±„ì›Œ ë„£ì.
 			{ 0, GFxKey::VoidSymbol }
 		};
 
@@ -368,13 +368,13 @@ VOID CNtlFlasher::OnKeyEvent( UINT key, UINT info, BOOL bDown )
 	{
 		if ( m_pMovie )
 		{
-			// ASCII ÄÚµå¸¦ ¾ò´Â´Ù.
+			// ASCII ì½”ë“œë¥¼ ì–»ëŠ”ë‹¤.
 			UByte asciiCode = 0;
 			UINT uScanCode = (info >> 16) & 0xFF; // fetch the scancode
 			BYTE ks[256];
 			WORD charCode;
 
-			// ÇöÀç Å°º¸µå »óÅÂ
+			// í˜„ì¬ í‚¤ë³´ë“œ ìƒíƒœ
 			::GetKeyboardState(ks);
 
 			if ( ::ToAscii( key, uScanCode, ks, &charCode, 0 ) > 0 ) 

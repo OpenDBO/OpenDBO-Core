@@ -1,4 +1,4 @@
-// MPPLogView.cpp : ���� �����Դϴ�.
+// MPPLogView.cpp : 구현 파일입니다.
 //
 
 #include "stdafx.h"
@@ -25,7 +25,7 @@ BEGIN_MESSAGE_MAP(CMPPLogView, CRichEditView)
 END_MESSAGE_MAP()
 
 
-// CMPPLogView �����Դϴ�.
+// CMPPLogView 진단입니다.
 
 #ifdef _DEBUG
 void CMPPLogView::AssertValid() const
@@ -52,4 +52,4 @@ void CMPPLogView::AddLog( const CString& strLog )
 #endif //_DEBUG
 
 
-// CMPPLogView �޽��� ó�����Դϴ�.
+// CMPPLogView 메시지 처리기입니다.

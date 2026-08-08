@@ -2,7 +2,7 @@
 *
 * File			: CNtlSobDynamicObjectProxy
 * Author		: Haesung, Cho
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2008. 12. 16
 * Abstract		: Simulation Dynamic object proxy
 *****************************************************************************
@@ -46,7 +46,7 @@ public:
 	virtual RwReal			GetPLEntityHeight( void );
 	virtual RwReal			GetPLEntityDepth( void );
 
-	// ¿Ã∏ß
+	// Ïù¥Î¶Ñ
 	void					EnableNameVisible( RwBool bVisible );
 	virtual void			SetNameColor( const WCHAR* pwcName, COLORREF color );
 	
@@ -61,9 +61,9 @@ protected:
 	void					CreatePLTargetMark( void );
 	void					DestroyPLTargetMark( void );
 
-    /// ∞¯¿Ø ≈∏∞Ÿ ∏∂≈©
-    void                    SobShareTargetSelectHandler(RWS::CMsg& pMsg);                   ///< ∞¯¿Ø ≈∏∞Ÿ ∏∂≈© º≥¡§ ¿Ã∫•∆Æ √≥∏Æ
-    void                    SobShareTargetReleaseHandler(RWS::CMsg& pMsg);                  ///< ∞¯¿Ø ≈∏∞Ÿ ∏∂≈© «ÿ¡¶ ¿Ã∫•∆Æ √≥∏Æ        
+    /// Í≥µÏú† ÌÉÄÍ≤ü ÎßàÌÅ¨
+    void                    SobShareTargetSelectHandler(RWS::CMsg& pMsg);                   ///< Í≥µÏú† ÌÉÄÍ≤ü ÎßàÌÅ¨ ÏÑ§Ï†ï Ïù¥Î≤§Ìä∏ Ï≤òÎ¶¨
+    void                    SobShareTargetReleaseHandler(RWS::CMsg& pMsg);                  ///< Í≥µÏú† ÌÉÄÍ≤ü ÎßàÌÅ¨ Ìï¥Ï†ú Ïù¥Î≤§Ìä∏ Ï≤òÎ¶¨        
     void                    CreateShareTargetMark(RwUInt8 bySlot, RwUInt32 type);
     void                    DeleteShareTargetMark();    
 
@@ -74,7 +74,7 @@ protected:
 	CNtlPLObject*			m_pPLDynamicObject;				///< Dynamic object 
 	CNtlPLPlayerName*		m_pPLDynamicObjectName;			///< Dynamic object name
 	CNtlPLEntity*			m_pTargetMark;					///< Dynamic object target mark
-    CNtlShareTargetMark*    m_pShareTargetMark;             ///< ∞¯¿Ø ≈∏∞Ÿ ∏∂≈©
+    CNtlShareTargetMark*    m_pShareTargetMark;             ///< Í≥µÏú† ÌÉÄÍ≤ü ÎßàÌÅ¨
 
 	RwReal					m_fObjectWidth;					///< Object Width
 	RwReal					m_fObjectHeight;				///< Object Height

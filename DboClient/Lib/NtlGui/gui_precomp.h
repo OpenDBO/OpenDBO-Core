@@ -15,12 +15,12 @@
 #ifndef __GUI_PRECOMP_H__
 #define __GUI_PRECOMP_H__
 
-#ifndef WINVER				// Windows 95 ¹× Windows NT 4 ÀÌÈÄ ¹öÀü¿¡¼­¸¸ ±â´ÉÀ» »ç¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù.
-#define WINVER 0x0500		// Windows 98°ú Windows 2000 ÀÌÈÄ ¹öÀü¿¡ ¸Âµµ·Ï ÀûÇÕÇÑ °ªÀ¸·Î º¯°æÇØ ÁÖ½Ê½Ã¿À.
+#ifndef WINVER				// Windows 95 ë° Windows NT 4 ì´í›„ ë²„ì „ì—ì„œë§Œ ê¸°ëŠ¥ì„ ì‚¬ìš©í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
+#define WINVER 0x0500		// Windows 98ê³¼ Windows 2000 ì´í›„ ë²„ì „ì— ë§žë„ë¡ ì í•©í•œ ê°’ìœ¼ë¡œ ë³€ê²½í•´ ì£¼ì‹­ì‹œì˜¤.
 #endif
 
-#ifndef _WIN32_WINNT		// Windows NT 4 ÀÌÈÄ ¹öÀü¿¡¼­¸¸ ±â´ÉÀ» »ç¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù.
-#define _WIN32_WINNT 0x0500	// Windows 98°ú Windows 2000 ÀÌÈÄ ¹öÀü¿¡ ¸Âµµ·Ï ÀûÇÕÇÑ °ªÀ¸·Î º¯°æÇØ ÁÖ½Ê½Ã¿À.
+#ifndef _WIN32_WINNT		// Windows NT 4 ì´í›„ ë²„ì „ì—ì„œë§Œ ê¸°ëŠ¥ì„ ì‚¬ìš©í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
+#define _WIN32_WINNT 0x0500	// Windows 98ê³¼ Windows 2000 ì´í›„ ë²„ì „ì— ë§žë„ë¡ ì í•©í•œ ê°’ìœ¼ë¡œ ë³€ê²½í•´ ì£¼ì‹­ì‹œì˜¤.
 #endif						
 
 // window

@@ -2,7 +2,7 @@
 // Name: class gui:CDialog
 // Desc: Dialog. 
 //
-// 2006.06.8 Peessi@hitel.net   - DynamicOutline ¡¢«’ π◊ ¡§∏Æ.
+// 2006.06.8 Peessi@hitel.net   - DynamicOutline Ï†ëÌï© Î∞è Ï†ïÎ¶¨.
 //
 ////////////////////////////////////////////////////////////////////////////////
 #ifndef __GUI_DIALOG_H__

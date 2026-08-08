@@ -287,7 +287,7 @@ RwBool CNtlPLHeatHaze::Update(RwReal fElapsedTime, RwCamera* _pRenderTargetCam)
 			{
 				if (fLength <= fTargetRad)
 				{
-					// ¹æÇâ * Å©±â * ¼Óµµ
+					// ë°©í–¥ * í¬ê¸° * ì†ë„
 					RwReal tU = ((fTargetRad - fLength) / fTargetRad * 4.0f) * cosf(m_AccumulatedTime * static_cast<RwReal>(y));
 					RwReal tV = ((fTargetRad - fLength) / fTargetRad * 4.0f) * cosf(m_AccumulatedTime * static_cast<RwReal>(x));
 					TmpVert.x += tU;
@@ -580,7 +580,7 @@ RwBool CNtlPLHeatHazeObject::Pick(RwReal* pfDist)
 	RwBool bPicked	= FALSE;
 	RwReal fTemp	= 0.0f;
 
-	// µŞ¸é ¾Õ¸é ¸ğµÎ ÇÈÅ·ÀÌ °¡´ÉÇÏ´Ù.
+	// ë’·ë©´ ì•ë©´ ëª¨ë‘ í”½í‚¹ì´ ê°€ëŠ¥í•˜ë‹¤.
 	if(RtIntersectionLineTriangle(&rayCamera.start, &vRayDeltha, &m_vVertex[0], &m_vVertex[1], &m_vVertex[2], &fTemp))
 	{
 		bPicked = TRUE;

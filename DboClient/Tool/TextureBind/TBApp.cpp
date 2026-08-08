@@ -145,15 +145,15 @@ CTBApp::~CTBApp( void )
 }
 
 /**
-* \brief Application ÀÇ Create ¹× RenderWare ¿£ÁøÀ» ÃÊ±âÈ­ÇÑ´Ù.
-* \param hWnd		ÀåÄ¡°¡ ÃÊ±âÈ­ µÉ Ã¢ÀÇ ÇÚµé
-* \param nWidth		³ĞÀÌ
-* \param nHeight	³ôÀÌ
-* \param bZBuffer	Z ¹öÆÛ À¯¹«
+* \brief Application ì˜ Create ë° RenderWare ì—”ì§„ì„ ì´ˆê¸°í™”í•œë‹¤.
+* \param hWnd		ì¥ì¹˜ê°€ ì´ˆê¸°í™” ë  ì°½ì˜ í•¸ë“¤
+* \param nWidth		ë„“ì´
+* \param nHeight	ë†’ì´
+* \param bZBuffer	Z ë²„í¼ ìœ ë¬´
 */
 RwBool CTBApp::Create( HWND hWnd, RwInt32 nWidth, RwInt32 nHeight, RwBool bZBuffer /* = TRUE */ )
 {
-	// º¯¼ö ÀúÀå
+	// ë³€ìˆ˜ ì €ì¥
 	m_hWnd = hWnd;
 	m_nWidth = nWidth;
 	m_nHeight = nHeight;
@@ -336,11 +336,11 @@ LRESULT CTBApp::PreTranslateMessage( HWND window, UINT message, WPARAM wParam, L
 			INT nX = LOWORD(lParam);
 			INT nY = HIWORD(lParam);
 
-			// »õ ÁÂÇ¥ - ÀÌÀü ÁÂÇ¥
+			// ìƒˆ ì¢Œí‘œ - ì´ì „ ì¢Œí‘œ
 			INT nMovedX = nX - m_nOldX;
 			INT nMovedY = nY - m_nOldY;
 
-			// ÁÂÇ¥ °»½Å
+			// ì¢Œí‘œ ê°±ì‹ 
 			m_nOldX = nX;
 			m_nOldY = nY;
 
@@ -384,7 +384,7 @@ RwBool CTBApp::Update( RwReal fTime, RwReal fElapsedTime )
 		{	
 			m_pBindingTexManager.RenderPerspective( m_pRwCamera );
 
-			// È­¸é¿¡ Á¤º¸ Ç¥½Ã        
+			// í™”ë©´ì— ì •ë³´ í‘œì‹œ        
 			DisplayInfo();
 
 			RwCameraEndUpdate(m_pRwCamera);
@@ -398,7 +398,7 @@ RwBool CTBApp::Update( RwReal fTime, RwReal fElapsedTime )
 
 RwBool CTBApp::LoadTexFromPath( CBindingTexManager::eType type, CBindingTexManager::eSize size, const CString strPath )
 {
-	// Path ÁöÁ¤
+	// Path ì§€ì •
 	RwBool bLoad = m_pBindingTexManager.LoadTexFromPath( type, size, strPath );
 
 	if( bLoad )

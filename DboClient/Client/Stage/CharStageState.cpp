@@ -32,8 +32,8 @@ namespace
 	{		
 		GUI_MIN_ALPHA			= 10,
 		GUI_MAX_ALPHA			= 255,
-		GUI_FADE_IN_TIME		= 1,			// FADE IN ½Ã°£(´ÜÀ§ : ÃÊ)
-		GUI_FADE_OUT_TIME		= 1,			// FADE OUT ½Ã°£(´ÜÀ§ : ÃÊ)
+		GUI_FADE_IN_TIME		= 1,			// FADE IN ì‹œê°„(ë‹¨ìœ„ : ì´ˆ)
+		GUI_FADE_OUT_TIME		= 1,			// FADE OUT ì‹œê°„(ë‹¨ìœ„ : ì´ˆ)
 	};	
 };
 
@@ -136,7 +136,7 @@ void CCharStageState::FuncUpdateInformation(RwReal fElapsed)
 
 		if( m_fElapedTime > CDT_WAITFOR_SERVER_REPLY )
 		{
-			// ¼­¹ö·ÎºÎÅÍ ÀÀ´äÀÌ ¾ø½À´Ï´Ù
+			// ì„œë²„ë¡œë¶€í„° ì‘ë‹µì´ ì—†ìŠµë‹ˆë‹¤
 			GetAlarmManager()->AlarmMessage( "DST_LOBBY_NO_RELPY_SERVER" );
 		}
 
@@ -226,7 +226,7 @@ void CCharStageState::FuncUpdateMakeRequest(RwReal fElapsed)
 
 	if( m_fElapedTime > CDT_WAITFOR_SERVER_REPLY )
 	{
-		// ¼­¹ö·Î ºÎÅÍ ÀÀ´äÀÌ ¾ø½À´Ï´Ù
+		// ì„œë²„ë¡œ ë¶€í„° ì‘ë‹µì´ ì—†ìŠµë‹ˆë‹¤
 		GetAlarmManager()->AlarmMessage( "DST_LOBBY_NO_RELPY_SERVER" );
 	}
 }
@@ -237,7 +237,7 @@ void CCharStageState::FuncUpdateSelectInfomation(RwReal fElapsed)
 
 	if( m_fElapedTime > CDT_WAITFOR_SERVER_REPLY )
 	{
-		// ¼­¹ö·Î ºÎÅÍ ÀÀ´äÀÌ ¾ø½À´Ï´Ù
+		// ì„œë²„ë¡œ ë¶€í„° ì‘ë‹µì´ ì—†ìŠµë‹ˆë‹¤
 		GetAlarmManager()->AlarmMessage( "DST_LOBBY_NO_RELPY_SERVER" );
 	}
 }
@@ -248,7 +248,7 @@ void CCharStageState::FuncUpdateSelectInfomationFromServerList(RwReal fElapsed)
 
 	if( m_fElapedTime > CDT_WAITFOR_SERVER_REPLY )
 	{
-		// ¼­¹ö·Î ºÎÅÍ ÀÀ´äÀÌ ¾ø½À´Ï´Ù
+		// ì„œë²„ë¡œ ë¶€í„° ì‘ë‹µì´ ì—†ìŠµë‹ˆë‹¤
 		GetAlarmManager()->AlarmMessage( "DST_LOBBY_NO_RELPY_SERVER" );
 
 		GetLobbyManager()->SetWaitChannelInfo(FALSE);
@@ -265,7 +265,7 @@ void CCharStageState::FuncUpdateSelectEnter(RwReal fElapsed)
 
 		if( m_fElapedTime > CDT_WAITFOR_SERVER_REPLY )
 		{
-			// ¼­¹ö·Î ºÎÅÍ ÀÀ´äÀÌ ¾ø½À´Ï´Ù
+			// ì„œë²„ë¡œ ë¶€í„° ì‘ë‹µì´ ì—†ìŠµë‹ˆë‹¤
 			GetAlarmManager()->AlarmMessage( "DST_LOBBY_NO_RELPY_SERVER" );
 		}
 
@@ -294,7 +294,7 @@ void CCharStageState::FuncUpdateSelectDelChar(RwReal fElapsed)
 
 	if( m_fElapedTime > CDT_WAITFOR_SERVER_REPLY )
 	{
-		// ¼­¹ö·Î ºÎÅÍ ÀÀ´äÀÌ ¾ø½À´Ï´Ù
+		// ì„œë²„ë¡œ ë¶€í„° ì‘ë‹µì´ ì—†ìŠµë‹ˆë‹¤
 		GetAlarmManager()->AlarmMessage( "DST_LOBBY_NO_RELPY_SERVER" );
 	}
 }
@@ -305,7 +305,7 @@ void CCharStageState::FuncUpdateSelectRecoveryChar(RwReal fElapsed)
 
 	if( m_fElapedTime > CDT_WAITFOR_SERVER_REPLY )
 	{
-		// ¼­¹ö·Î ºÎÅÍ ÀÀ´äÀÌ ¾ø½À´Ï´Ù
+		// ì„œë²„ë¡œ ë¶€í„° ì‘ë‹µì´ ì—†ìŠµë‹ˆë‹¤
 		GetAlarmManager()->AlarmMessage( "DST_LOBBY_NO_RELPY_SERVER" );
 	}
 }
@@ -316,7 +316,7 @@ void CCharStageState::FuncUpdateSelectRenameReq(RwReal fElapsed)
 
 	if( m_fElapedTime > CDT_WAITFOR_SERVER_REPLY )
 	{
-		// ¼­¹ö·Î ºÎÅÍ ÀÀ´äÀÌ ¾ø½À´Ï´Ù
+		// ì„œë²„ë¡œ ë¶€í„° ì‘ë‹µì´ ì—†ìŠµë‹ˆë‹¤
 		GetAlarmManager()->AlarmMessage( "DST_LOBBY_NO_RELPY_SERVER" );
 	}
 }
@@ -379,7 +379,7 @@ void CCharStageState::FuncUpdateCharacterSelectReq(RwReal fElapsed)
 	{
 		m_bShowMessageBox = false;
 
-		// ¼­¹ö·Î ºÎÅÍ ÀÀ´äÀÌ ¾ø½À´Ï´Ù
+		// ì„œë²„ë¡œ ë¶€í„° ì‘ë‹µì´ ì—†ìŠµë‹ˆë‹¤
 		GetAlarmManager()->AlarmMessage( "DST_LOBBY_NO_RELPY_SERVER" );
 	}	
 }
@@ -424,7 +424,7 @@ void CCharStageState::FuncUpdateWaitingGameServerResponse(RwReal fElapsed)
 	{
 		m_bShowMessageBox = false;
 
-		// ¼­¹ö·Î ºÎÅÍ ÀÀ´äÀÌ ¾ø½À´Ï´Ù
+		// ì„œë²„ë¡œ ë¶€í„° ì‘ë‹µì´ ì—†ìŠµë‹ˆë‹¤
 		GetAlarmManager()->AlarmMessage( "DST_LOBBY_NO_RELPY_SERVER" );
 	}
 }
@@ -435,14 +435,14 @@ void CCharStageState::FuncUpdateFailEnter(RwReal fElapsed)
 
 	if( m_fElapedTime > CDT_IMMEDIATLY_RETURN_LOGIN_MESSAGE )
 	{
-		// ¼­¹ö·Î ºÎÅÍ ÀÀ´äÀÌ ¾ø½À´Ï´Ù
+		// ì„œë²„ë¡œ ë¶€í„° ì‘ë‹µì´ ì—†ìŠµë‹ˆë‹¤
 		GetAlarmManager()->AlarmMessage( "DST_LOBBY_NO_RELPY_SERVER" );
 	}
 }
 
 void CCharStageState::FuncUpdateImmediatelyReturnLoginEnter(RwReal fElapsed)
 {
-	// ·Îºñ Á¤º¸ Áö¿ì±â
+	// ë¡œë¹„ ì •ë³´ ì§€ìš°ê¸°
 	GetLobbyManager()->ClearLobby();
 
 	ChangeState(CHAR_STATE_IMMEDIATLY_RETURN_LOGIN_IDLE);
@@ -480,7 +480,7 @@ void CCharStageState::FuncUpdateReadyEnterTutorial(RwReal fElapsed)
 
 	if(byAlpha == GUI_MIN_ALPHA)
 	{
-		// ¼­¹ö·Î Æ©Åä¸®¾ó ÁøÀÔ ÆÐÅ¶À» º¸³½´Ù
+		// ì„œë²„ë¡œ íŠœí† ë¦¬ì–¼ ì§„ìž… íŒ¨í‚·ì„ ë³´ë‚¸ë‹¤
 		if(!m_bSendGameEnterPacket)
 		{
 			SERVER_HANDLE	hServer	= GetLobbyManager()->GetSelectedServerHandle();
@@ -519,7 +519,7 @@ void CCharStageState::FuncUpdateReadyEnterTutorial(RwReal fElapsed)
 	{
 		m_bShowMessageBox = false;
 
-		// ¼­¹ö·Î ºÎÅÍ ÀÀ´äÀÌ ¾ø½À´Ï´Ù
+		// ì„œë²„ë¡œ ë¶€í„° ì‘ë‹µì´ ì—†ìŠµë‹ˆë‹¤
 		GetAlarmManager()->AlarmMessage( "DST_LOBBY_NO_RELPY_SERVER" );
 	}
 }
@@ -543,7 +543,7 @@ void CCharStageState::FuncUpdateWaitCancel(RwReal fElapsed)
 	{
 		m_bShowMessageBox = false;
 
-		// ¼­¹ö·Î ºÎÅÍ ÀÀ´äÀÌ ¾ø½À´Ï´Ù
+		// ì„œë²„ë¡œ ë¶€í„° ì‘ë‹µì´ ì—†ìŠµë‹ˆë‹¤
 		GetAlarmManager()->AlarmMessage( "DST_LOBBY_NO_RELPY_SERVER" );
 	}	
 }
@@ -567,7 +567,7 @@ void CCharStageState::FuncUpdateCancelWaitGameServerConnect(RwReal fElapsed)
 	{
 		m_bShowMessageBox = false;
 
-		// ¼­¹ö·Î ºÎÅÍ ÀÀ´äÀÌ ¾ø½À´Ï´Ù
+		// ì„œë²„ë¡œ ë¶€í„° ì‘ë‹µì´ ì—†ìŠµë‹ˆë‹¤
 		GetAlarmManager()->AlarmMessage( "DST_LOBBY_NO_RELPY_SERVER" );
 	}	
 }
@@ -593,10 +593,10 @@ void CCharStageState::EnterState(ECharacterStageState eState)
 
 	m_bSendGameEnterPacket = FALSE;
 
-	// »õ·Î¿î »óÅÂ ¼³Á¤
+	// ìƒˆë¡œìš´ ìƒíƒœ ì„¤ì •
 	m_eState = eState;	
 
-	// ¾÷µ¥ÀÌÆ® Å¸ÀÓ
+	// ì—…ë°ì´íŠ¸ íƒ€ìž„
 	m_fElapedTime = 0.f;
 
 	switch(m_eState)
@@ -634,7 +634,7 @@ void CCharStageState::EnterState(ECharacterStageState eState)
 		}
 	case CHAR_STATE_SELECT_ENTER:
 		{
-			// Ä³¸¯ÅÍ ³»¿ë UI °»½Å
+			// ìºë¦­í„° ë‚´ìš© UI ê°±ì‹ 
 			CDboEventGenerator::LobbyEvent(LMT_UPDATE_CHARACTER_LIST);	
 
 			m_pTurnOverBackboard->SetAlpha(GUI_MAX_ALPHA);

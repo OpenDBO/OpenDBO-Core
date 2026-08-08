@@ -300,11 +300,11 @@ VOID CRBGui::HandleEvents( RWS::CMsg& msg )
 		{
 			if( pState->uiState == WORLD_STATE_ENTER )
 			{
-				// UI °¨Ãß±â
+				// UI ê°ì¶”ê¸°
 				GetDialogManager()->CloseDialog( DIALOG_WORLDMAP );
 				GetDialogManager()->CloseDialog( DIALOG_MINIMAP );
 
-				// RB UI »ı¼º
+				// RB UI ìƒì„±
 				Create();
 
 				DirectionMode( TRUE );				
@@ -316,7 +316,7 @@ VOID CRBGui::HandleEvents( RWS::CMsg& msg )
 			}
 		}
 	}
-	//else if( msg.Id == g_EventSobCreate ) // DummyÄÚµå, Ä³¸¯ÅÍ ºÎÈ°½Ã ¾ø¾îÁö´Â °ÔÀÌÁö¸¦ »ì¸®±â Âï±â À§ÇÔ.
+	//else if( msg.Id == g_EventSobCreate ) // Dummyì½”ë“œ, ìºë¦­í„° ë¶€í™œì‹œ ì—†ì–´ì§€ëŠ” ê²Œì´ì§€ë¥¼ ì‚´ë¦¬ê¸° ì°ê¸° ìœ„í•¨.
 	//{
 	//	SNtlEventSobPlayerCreate* pData = reinterpret_cast<SNtlEventSobPlayerCreate*>( msg.pData );
 

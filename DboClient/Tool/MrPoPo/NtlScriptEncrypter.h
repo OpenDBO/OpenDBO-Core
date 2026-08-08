@@ -5,8 +5,8 @@
 // config data
 typedef struct _SConfigData
 {
-    CString     strAddr;		// account server ip address(ÇØÅ·ÀÇ ¹®Á¦·Î ÇÏµåÄÚµùÀ» °í·ÁÇÑ´Ù?)
-    DWORD       dwPort;				// account server ip port(ÇØÅ·ÀÇ ¹®Á¦·Î ÇÏµåÄÚµùÀ» °í·ÁÇÑ´Ù?)
+    CString     strAddr;		// account server ip address(í•´í‚¹ì˜ ë¬¸ì œë¡œ í•˜ë“œì½”ë”©ì„ ê³ ë ¤í•œë‹¤?)
+    DWORD       dwPort;				// account server ip port(í•´í‚¹ì˜ ë¬¸ì œë¡œ í•˜ë“œì½”ë”©ì„ ê³ ë ¤í•œë‹¤?)
     CString     strLocalDsp;
     CString     strLocalSyncDsp;
     CString     strBugTrapServerIP;        
@@ -15,8 +15,8 @@ typedef struct _SConfigData
 
 /**
  * \ingroup Util
- * \brief Å¬¶óÀÌ¾ğÆ® ½ºÅ©¸³Æ®¸¦ ¾ÏÈ£È­ÇÏ±â À§ÇÑ Å¬·¡½º
- *  ¾ÏÈ£È­ Åø¿¡¼­µµ »ç¿ëÇÏ±â À§ÇØ¼­ ºÎµæÀÌÇÏ°Ô Util¿¡ ³Ö¾îµĞ´Ù.
+ * \brief í´ë¼ì´ì–¸íŠ¸ ìŠ¤í¬ë¦½íŠ¸ë¥¼ ì•”í˜¸í™”í•˜ê¸° ìœ„í•œ í´ë˜ìŠ¤
+ *  ì•”í˜¸í™” íˆ´ì—ì„œë„ ì‚¬ìš©í•˜ê¸° ìœ„í•´ì„œ ë¶€ë“ì´í•˜ê²Œ Utilì— ë„£ì–´ë‘”ë‹¤.
  * \date 2008-07-31
  * \author agebreak
  */

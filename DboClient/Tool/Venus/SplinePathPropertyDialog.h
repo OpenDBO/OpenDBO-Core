@@ -1,7 +1,7 @@
 #pragma once
 
 
-// CSplinePathPropertyDialog ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CSplinePathPropertyDialog ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 #include "PropTree.h"
 
 #include "rwcore.h"
@@ -11,7 +11,7 @@ class CSplinePathPropertyDialog : public CDialog
 	DECLARE_DYNCREATE(CSplinePathPropertyDialog)
 
 public:
-	CSplinePathPropertyDialog(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CSplinePathPropertyDialog(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CSplinePathPropertyDialog();
 
 	void	ResetProperties(RwUInt32 nCurrentPoint = 0);
@@ -43,11 +43,11 @@ public:
 		_PROPERTY_CONTROL_ID_MAX_COUNT
 	};
 
-// ´ëÈ­ »óÀÚ µ¥ÀÌÅÍÀÔ´Ï´Ù.
+// ëŒ€í™” ìƒì ë°ì´í„°ì…ë‹ˆë‹¤.
 	enum { IDD = IDD_SPLINE_PATH_PROPERTY };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

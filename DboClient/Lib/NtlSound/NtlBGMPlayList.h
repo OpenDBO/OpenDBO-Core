@@ -1,11 +1,11 @@
 /*****************************************************************************
 * File			: NtlBGMPlayList.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2009. 7. 22
 * Abstract		: 
 *****************************************************************************
-* Desc			: Á¶°Ç¿¡ µû¶ó Play µÉ BGMÀÇ List¸¦ º¸°ü ¹× °ü¸®ÇÑ´Ù
+* Desc			: ì¡°ê±´ì— ë”°ë¼ Play ë  BGMì˜ Listë¥¼ ë³´ê´€ ë° ê´€ë¦¬í•œë‹¤
 *****************************************************************************/
 
 #pragma once
@@ -13,7 +13,7 @@
 struct sPLAY_BGM_PARAMETA
 {
 	eBGMType			eType;
-	RwBool				bEnableParameta;		/// TRUE ÀÏ ¶§¸¸ °ªÀÌ À¯È¿ÇÏ´Ù
+	RwBool				bEnableParameta;		/// TRUE ì¼ ë•Œë§Œ ê°’ì´ ìœ íš¨í•˜ë‹¤
 	RwBool				bLoop;
 	RwReal				fReplayRestTime;
 	std::string			strFileName;

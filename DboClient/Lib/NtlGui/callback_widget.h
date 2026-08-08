@@ -1,10 +1,10 @@
 /*=======================================================================================
-//  Copyright  : (¡÷)NTL-INC  , www.ntl-inc.com			                              //
+//  Copyright  : (Ï£º)NTL-INC  , www.ntl-inc.com			                              //
 //  Version    : 0.1                                                                   // 
-//  Author     : ¿Â «¸ ºÆ                                                              //  
+//  Author     : Ïû• Ìòï ÏÑù                                                              //  
 //  E-mail     : jhssugi@hanmail.net                                                   //
 //  -----------------------------------------------------------------------------------// 
-//  Engine Name : «ÿ¥ÁªÁ«◊ æ¯¿Ω.                                                       // 
+//  Engine Name : Ìï¥ÎãπÏÇ¨Ìï≠ ÏóÜÏùå.                                                       // 
 //  Name       : Callback Widget.													                              //
 //  Data       : 2002 . 12. 27                                                          //
 //  File Des.  : callback widget																												//       

@@ -1,4 +1,4 @@
-// AssetObjectTreeCtrl.cpp : ±¸Çö ÆÄÀÏÀÔ´Ï´Ù.
+// AssetObjectTreeCtrl.cpp : êµ¬í˜„ íŒŒì¼ì…ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -292,12 +292,12 @@ void CAssetObjectTreeCtrl::OnSize(UINT nType, int cx, int cy)
 {
 	CTreeCtrl::OnSize(nType, cx, cy);
 
-	// TODO: ¿©±â¿¡ ¸Ş½ÃÁö Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ë©”ì‹œì§€ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 }
 
 void CAssetObjectTreeCtrl::OnNMClick(NMHDR *pNMHDR, LRESULT *pResult)
 {
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	DWORD dwMousePos = GetMessagePos();                   // retrieve mouse cursor position when msg was sent
 	CPoint MousePos(GET_X_LPARAM(dwMousePos), GET_Y_LPARAM(dwMousePos)); // ..and put into point structure
 	ScreenToClient(&MousePos);                    // make coords local to tree client area
@@ -315,6 +315,6 @@ void CAssetObjectTreeCtrl::OnNMClick(NMHDR *pNMHDR, LRESULT *pResult)
 		}
 	}
 
-	// TODO: ¿©±â¿¡ ÄÁÆ®·Ñ ¾Ë¸² Ã³¸®±â ÄÚµå¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	// TODO: ì—¬ê¸°ì— ì»¨íŠ¸ë¡¤ ì•Œë¦¼ ì²˜ë¦¬ê¸° ì½”ë“œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.
 	*pResult = 0;
 }

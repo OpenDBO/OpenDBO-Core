@@ -89,7 +89,7 @@ RwBool CTradeCart::Create()
 	char acSurfaceName[64];
 
 
-	// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ÀÇ »óÁ¡Ä«Æ®ÀÎÁö ¾Æ´ÑÁö¿¡ µû¶ó¼­ ÅØ½ºÃ³°¡ º¯ÇÑ´Ù
+	// ì²œí•˜ì œì¼ ë¬´ë„íšŒì˜ ìƒì ì¹´íŠ¸ì¸ì§€ ì•„ë‹Œì§€ì— ë”°ë¼ì„œ í…ìŠ¤ì²˜ê°€ ë³€í•œë‹¤
 	switch(m_eTextureType)
 	{
 	case TRADECART_TEXTURE_NORMAL:
@@ -125,7 +125,7 @@ RwBool CTradeCart::Create()
 
 	m_pMoneyIconTexture = Logic_CreateTexture( MONEYICON_NAME );
 
-	// ´ÙÀÌ¾ó·Î±× ÀÌ¸§ ½ºÅÂÆ½
+	// ë‹¤ì´ì–¼ë¡œê·¸ ì´ë¦„ ìŠ¤íƒœí‹±
 	rect.SetRectWH(DBOGUI_DIALOG_TITLE_X, DBOGUI_DIALOG_TITLE_Y, 130, 14);
 	m_pDialogName = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_LEFT );
 	m_pDialogName->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
@@ -135,19 +135,19 @@ RwBool CTradeCart::Create()
 	m_pExitButton = (gui::CButton*)GetComponent( "ExitButton" );
 	m_slotCloseButton = m_pExitButton->SigClicked().Connect(this, &CTradeCart::ClickedCloseButton);
 
-	// Á¦´Ï ¹öÆ°(À¯Àú Æ®·¹ÀÌµå¿ë ¿À¸¥ÂÊ Á¦´Ï ¹öÆ°)
+	// ì œë‹ˆ ë²„íŠ¼(ìœ ì € íŠ¸ë ˆì´ë“œìš© ì˜¤ë¥¸ìª½ ì œë‹ˆ ë²„íŠ¼)
 	m_pZennyButton = (gui::CButton*)GetComponent( "BtnZenny" );	
 	m_slotBtnZenny = m_pZennyButton->SigClicked().Connect(this, &CTradeCart::ClickedZennyButton);
 
-	// ±¸ÀÔ ¹öÆ°
+	// êµ¬ì… ë²„íŠ¼
 	m_pBuyButton = (gui::CButton*)GetComponent( "BuyButton" );	
 	m_slotClickedBuy = m_pBuyButton->SigClicked().Connect(this, &CTradeCart::ClickedBuyButton);	
 
-	// ÆÇ¸Å ¹öÆ°
+	// íŒë§¤ ë²„íŠ¼
 	m_pSellButton = (gui::CButton*)GetComponent( "SellButton" );	
 	m_slotClickedSell = m_pSellButton->SigClicked().Connect(this, &CTradeCart::ClickedSellButton);
 
-	// ¾ÆÀÌÅÛ °¹¼ö ´õÇÏ±â/»©±â ¹öÆ°
+	// ì•„ì´í…œ ê°¯ìˆ˜ ë”í•˜ê¸°/ë¹¼ê¸° ë²„íŠ¼
 	RwInt32 iButtonX = 16;
 	for( RwInt32 i = 0 ; i < SLOTKIND_NUM ; ++i )
 	{		
@@ -164,7 +164,7 @@ RwBool CTradeCart::Create()
 				iButtonX += dGUI_BUY_SELL_SLOT_GAP;
 
 
-			// ¾ÆÀÌÅÛ °¹¼ö ´õÇÏ±â ¹öÆ°
+			// ì•„ì´í…œ ê°¯ìˆ˜ ë”í•˜ê¸° ë²„íŠ¼
 			rect.SetRectWH(iButtonX, iButtonY, 18, 15);
 			m_pUpButton[i][j] = NTL_NEW gui::CButton(rect, "",
 								GetNtlGuiManager()->GetSurfaceManager()->GetSurface( acSurfaceName, "srfUpButtonUp" ),
@@ -176,7 +176,7 @@ RwBool CTradeCart::Create()
 			m_slotUpButton[i][j] = m_pUpButton[i][j]->SigClicked().Connect(this, &CTradeCart::ClickUpButton);
 
 
-			// ¾ÆÀÌÅÛ °¹¼ö »©±â ¹öÆ°
+			// ì•„ì´í…œ ê°¯ìˆ˜ ë¹¼ê¸° ë²„íŠ¼
 			rect.SetRectWH(iButtonX + dGUI_BUTTON_HORI_GAP, iButtonY, 18, 15);
 			m_pDownButton[i][j] = NTL_NEW gui::CButton(rect, "",
 								GetNtlGuiManager()->GetSurfaceManager()->GetSurface( acSurfaceName, "srfDownButtonUp" ),
@@ -220,40 +220,40 @@ RwBool CTradeCart::Create()
 			iSlotY += dGUI_SLOT_VERT_GAP;
 	}
 
-	// ÃÑ ±¸ÀÔ ±İ¾×
+	// ì´ êµ¬ì… ê¸ˆì•¡
 	rect.SetRectWH( 16, 406, 61, 16);
 	m_pTotalBuyMoney = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_RIGHT );
 	m_pTotalBuyMoney->CreateFontStd( DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pTotalBuyMoney->SetText( "0");
 	m_pTotalBuyMoney->Enable(false);
 
-	// ÃÑ ÆÇ¸Å ±İ¾×
+	// ì´ íŒë§¤ ê¸ˆì•¡
 	rect.SetRectWH( 114, 406, 61, 16);
 	m_pTotalSellMoney = NTL_NEW gui::CStaticBox( rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), COMP_TEXT_RIGHT );
 	m_pTotalSellMoney->CreateFontStd(DEFAULT_FONT, DEFAULT_FONT_SIZE, DEFAULT_FONT_ATTR);
 	m_pTotalSellMoney->SetText("1,234,567,890");
 	m_pTotalSellMoney->Enable(false);
 
-	// ½½·Ô Æ÷Ä¿½º ÀÌÆåÆ®
+	// ìŠ¬ë¡¯ í¬ì»¤ìŠ¤ ì´í™íŠ¸
 	m_FocusEffect.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", "srfSlotFocusEffect" ) );
 
-	// »ç±â ¼­ÆäÀÌ½º
+	// ì‚¬ê¸° ì„œí˜ì´ìŠ¤
 	m_BuyBar.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( acSurfaceName, "srfBuybar" ) );
 	m_BuyBar.SetPositionfromParent(16, 28);
 
-	// ÆÈ±â ¼­ÆäÀÌ½º
+	// íŒ”ê¸° ì„œí˜ì´ìŠ¤
 	m_SellBar.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( acSurfaceName, "srfSellbar" ) );
 	m_SellBar.SetPositionfromParent(133, 28);
 
-	// ¹Ş±â ¼­ÆäÀÌ½º
+	// ë°›ê¸° ì„œí˜ì´ìŠ¤
 	m_GiveBar.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( acSurfaceName, "srfGivebar" ) );
 	m_GiveBar.SetPositionfromParent(16, 28);
 
-	// ÁÖ±â ¼­ÆäÀÌ½º
+	// ì£¼ê¸° ì„œí˜ì´ìŠ¤
 	m_TakeBar.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( acSurfaceName, "srfTakebar" ) );
 	m_TakeBar.SetPositionfromParent(133, 28);
 
-	// ¿ŞÂÊ Àá±è ¼­ÆäÀÌ½º
+	// ì™¼ìª½ ì ê¹€ ì„œí˜ì´ìŠ¤
 	m_LeftLockSurface.SetType(CWindowby3::WT_HORIZONTAL);
 	m_LeftLockSurface.SetSurface( 0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( acSurfaceName, "LockSurfaceUp" ) );
 	m_LeftLockSurface.SetSurface( 1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( acSurfaceName, "LockSurfaceCenter" ) );
@@ -261,7 +261,7 @@ RwBool CTradeCart::Create()
 	m_LeftLockSurface.SetSize(m_LeftLockSurface.GetWidth(), 415);
 	m_LeftLockSurface.SetPositionfromParent(10, 46);
 	
-	// ¿À¸¥ÂÊ Àá±è ¼­ÆäÀÌ½º
+	// ì˜¤ë¥¸ìª½ ì ê¹€ ì„œí˜ì´ìŠ¤
 	m_RightLockSurface.SetType(CWindowby3::WT_HORIZONTAL);
 	m_RightLockSurface.SetSurface( 0, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( acSurfaceName, "LockSurfaceUp" ) );
 	m_RightLockSurface.SetSurface( 1, GetNtlGuiManager()->GetSurfaceManager()->GetSurface( acSurfaceName, "LockSurfaceCenter" ) );
@@ -269,7 +269,7 @@ RwBool CTradeCart::Create()
 	m_RightLockSurface.SetSize(m_RightLockSurface.GetWidth(), 415);
 	m_RightLockSurface.SetPositionfromParent(108, 46);		
 
-	// Á¦´Ï ½½·Ô Destination ÀÌ¹ÌÁö
+	// ì œë‹ˆ ìŠ¬ë¡¯ Destination ì´ë¯¸ì§€
 	m_srfZennySlotDestination.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "TradeCart.srf", "srfBtnZennyFoc" ) );
 	m_srfZennySlotDestination.SetPositionfromParent(111, 404);
 
@@ -354,7 +354,7 @@ VOID CTradeCart::ClearSlot(RwInt32 iSlotKind, RwInt32 iSlot)
 	}
 	else if( iSlotKind == SELL_SLOT )
 	{
-		// °¡¹æÀ¸·Î ÀÌº¥Æ® º¸³»±â
+		// ê°€ë°©ìœ¼ë¡œ ì´ë²¤íŠ¸ ë³´ë‚´ê¸°
 		if( m_SellSlotInfo[iSlot].NPCShopSellInfo.byPlace >= CONTAINER_TYPE_BAG_FIRST && 
 			m_SellSlotInfo[iSlot].NPCShopSellInfo.byPlace <= CONTAINER_TYPE_BAG_LAST )
 		{
@@ -453,13 +453,13 @@ VOID CTradeCart::ClickedZennyButton(gui::CComponent* pComponent)
 		if( GetIconMoveManager()->GetSrcPlace() != PLACE_SUB_BAG_ZENNY )
 			return;
 
-		// Á¦´Ï µî·Ï
+		// ì œë‹ˆ ë“±ë¡
 		GetIconMoveManager()->IconMovePutDown(PLACE_SUB_TRADECART_ZENNY, m_uiSubjectSerial, INVALID_INDEX);
 		m_uiTotalSellPrice = -1 * GetNtlSLGlobal()->GetAdjustZennyInfo()->GetAdjustZenny(SAdjustZennyInfo::USER_TRADE);
 	}
 	else
 	{
-		// Á¦´Ï°¡ 0 ¿Ã·ÁÁ³À» ¶§¿¡´Â ¾Æ¹«·± µ¿ÀÛµµ ÇÏÁö ¾Ê´Â´Ù
+		// ì œë‹ˆê°€ 0 ì˜¬ë ¤ì¡Œì„ ë•Œì—ëŠ” ì•„ë¬´ëŸ° ë™ì‘ë„ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		if( m_uiTotalSellPrice == 0 )
 			return;
 
@@ -756,24 +756,24 @@ VOID CTradeCart::OnMouseUp(const CKey& key)
 	
 	for(RwInt32 i = 0 ; i < MAX_SLOT ; ++i )
 	{
-		// ±¸ÀÔ ½½·Ô
+		// êµ¬ì… ìŠ¬ë¡¯
 		if( m_BuySlotInfo[i].slot.PtInRect((RwInt32)key.m_fX, (RwInt32)key.m_fY) )
 		{				
 			if( m_eDialogType == DIALOG_SHOPING_CART )
 			{
-				if( key.m_nID == UD_LEFT_BUTTON )	// ÁÂ¹öÆ°
+				if( key.m_nID == UD_LEFT_BUTTON )	// ì¢Œë²„íŠ¼
 				{
 					if( !GetIconMoveManager()->IsActive() )
 						break;
 
-					// NPC »óÁ¡¿¡¼­ ¸Ş¼¼Áö¸¦ º¸³½ °æ¿ì
+					// NPC ìƒì ì—ì„œ ë©”ì„¸ì§€ë¥¼ ë³´ë‚¸ ê²½ìš°
 					if( GetIconMoveManager()->GetSrcPlace() == PLACE_NPCSHOP )
 					{
 						RegBuyItemByDrag(i);
 						GetIconMoveManager()->IconMoveEnd();
 					}					
 				}
-				else if( key.m_nID == UD_RIGHT_BUTTON )	// ¿ì¹öÆ°
+				else if( key.m_nID == UD_RIGHT_BUTTON )	// ìš°ë²„íŠ¼
 				{
 					if( GetIconMoveManager()->IsActive() )
 						break;
@@ -787,13 +787,13 @@ VOID CTradeCart::OnMouseUp(const CKey& key)
 				}	
 			}			
 
-			// ÇØ´ç½½·ÔÀÇ ¾Æ¹«·± Ã³¸®µµ ÇÏÁö ¾Ê¾ÒÀ» ¶§
+			// í•´ë‹¹ìŠ¬ë¡¯ì˜ ì•„ë¬´ëŸ° ì²˜ë¦¬ë„ í•˜ì§€ ì•Šì•˜ì„ ë•Œ
 			break;
 		}
-		// ÆÇ¸Å ½½·Ô
+		// íŒë§¤ ìŠ¬ë¡¯
 		else if( m_SellSlotInfo[i].slot.PtInRect((RwInt32)key.m_fX, (RwInt32)key.m_fY) )
 		{	
-			if( key.m_nID == UD_LEFT_BUTTON )	// ÁÂ¹öÆ°
+			if( key.m_nID == UD_LEFT_BUTTON )	// ì¢Œë²„íŠ¼
 			{
 				if( !GetIconMoveManager()->IsActive() )
 					break;
@@ -802,7 +802,7 @@ VOID CTradeCart::OnMouseUp(const CKey& key)
 				{
 					if( m_eDialogType == DIALOG_SHOPING_CART )
 					{
-						// Ä³¸¯ÅÍ °¡¹æ¿¡¼­ ¸Ş¼¼Áö¸¦ º¸³½ °æ¿ì
+						// ìºë¦­í„° ê°€ë°©ì—ì„œ ë©”ì„¸ì§€ë¥¼ ë³´ë‚¸ ê²½ìš°
 						RegSellItemByDrag(i);
 						GetIconMoveManager()->IconMoveEnd();
 					}
@@ -813,7 +813,7 @@ VOID CTradeCart::OnMouseUp(const CKey& key)
 
 						if( m_SellSlotInfo[i].slot.GetSerial() == INVALID_SERIAL_ID )
 						{
-							// ¾ÆÀÌÅÛÀ» °¡¹æ¿¡¼­ ¿Å°Ü¿Ô´Ù.
+							// ì•„ì´í…œì„ ê°€ë°©ì—ì„œ ì˜®ê²¨ì™”ë‹¤.
 							GetDboGlobal()->GetGamePacketGenerator()->SendTradeAddReq(m_uiSubjectSerial,
 								GetIconMoveManager()->GetSrcSerial(),
 								(RwUInt8)GetIconMoveManager()->GetStackCount() );
@@ -821,7 +821,7 @@ VOID CTradeCart::OnMouseUp(const CKey& key)
 					}
 				}		
 			}
-			else if( key.m_nID == UD_RIGHT_BUTTON ) // ¿ì¹öÆ°
+			else if( key.m_nID == UD_RIGHT_BUTTON ) // ìš°ë²„íŠ¼
 			{
 				if( GetIconMoveManager()->IsActive() )
 					break;
@@ -848,7 +848,7 @@ VOID CTradeCart::OnMouseUp(const CKey& key)
 				}
 			}
 
-			// ÇØ´ç ½½·ÔÀÇ ¾Æ¹«·± Ã³¸®µµ ÇÏÁö ¾Ê¾ÒÀ» ¶§
+			// í•´ë‹¹ ìŠ¬ë¡¯ì˜ ì•„ë¬´ëŸ° ì²˜ë¦¬ë„ í•˜ì§€ ì•Šì•˜ì„ ë•Œ
 			break;
 		}
 	}
@@ -885,12 +885,12 @@ VOID CTradeCart::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 {
 	FocusEffect(FALSE);	
 
-	// ¾ÆÀÌÅÛ Á¤º¸¸¦ Ç¥½ÃÇÏ°í Æ÷Ä¿½º ÀÌÆåÆ®¸¦ º¸¿©ÁØ´Ù
+	// ì•„ì´í…œ ì •ë³´ë¥¼ í‘œì‹œí•˜ê³  í¬ì»¤ìŠ¤ ì´í™íŠ¸ë¥¼ ë³´ì—¬ì¤€ë‹¤
 	for( RwInt8 i = 0 ; i < MAX_SLOT ; ++i )
 	{		
 		if( m_BuySlotInfo[i].slot.PtInRect(nX, nY) )
 		{
-			// ¼¿·ºÆ® Æ÷Ä¿½º
+			// ì…€ë ‰íŠ¸ í¬ì»¤ìŠ¤
 			FocusEffect(TRUE, BUY_SLOT, i);
 
 			if( GetIconMoveManager()->IsActive() )
@@ -900,7 +900,7 @@ VOID CTradeCart::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 			{
 				if( m_byInfoWindowIndex != i )
 				{
-					// ¹ÌÈ®ÀÎ ¾ÆÀÌÅÛ
+					// ë¯¸í™•ì¸ ì•„ì´í…œ
 					CRectangle rtScreen = m_pThis->GetScreenRect();
 					GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_UNIDENTIFIED_ITEM,
 														rtScreen.left + m_BuySlotInfo[i].slot.GetX_fromParent(),
@@ -926,7 +926,7 @@ VOID CTradeCart::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 				{
 					if( m_byInfoWindowIndex != i )
 					{
-						// ¾ÆÀÌÅÛÀÇ ¾÷±×·¹ÀÌµå È¿°ú¸¦ Ç¥½ÃÇÏµµ·Ï ¼öÁ¤
+						// ì•„ì´í…œì˜ ì—…ê·¸ë ˆì´ë“œ íš¨ê³¼ë¥¼ í‘œì‹œí•˜ë„ë¡ ìˆ˜ì •
 						// 2008-01-09 by Kell
 						CRectangle rtScreen = m_pThis->GetScreenRect();
 						GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_ITEM_DATA,
@@ -941,7 +941,7 @@ VOID CTradeCart::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 			{
 				if( m_byInfoWindowIndex != i )
 				{
-					// ´ç½ÅÀÇ °¡¹æ¿¡ ºó °ø°£ÀÌ ¸ğÀÚ¶ø´Ï´Ù
+					// ë‹¹ì‹ ì˜ ê°€ë°©ì— ë¹ˆ ê³µê°„ì´ ëª¨ìëë‹ˆë‹¤
 					CRectangle rtScreen = m_pThis->GetScreenRect();
 					const WCHAR* pwcText = GetDisplayStringManager()->GetString("DST_TRADE_YOUR_BAG_NOT_ENOUGH");
 					GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_JUST_WTEXT,
@@ -956,7 +956,7 @@ VOID CTradeCart::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 		}
 		else if( m_SellSlotInfo[i].slot.PtInRect(nX, nY) )
 		{
-			// ¼¿·ºÆ® Æ÷Ä¿½º
+			// ì…€ë ‰íŠ¸ í¬ì»¤ìŠ¤
 			FocusEffect(TRUE, SELL_SLOT, i);
 
 			if( GetIconMoveManager()->IsActive() )
@@ -984,7 +984,7 @@ VOID CTradeCart::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 				{
 					if( m_byInfoWindowIndex != i )
 					{
-						// »ó´ëÀÇ °¡¹æ¿¡ ºó °ø°£ÀÌ ¸ğÀÚ¶ø´Ï´Ù
+						// ìƒëŒ€ì˜ ê°€ë°©ì— ë¹ˆ ê³µê°„ì´ ëª¨ìëë‹ˆë‹¤
 						CRectangle rtScreen = m_pThis->GetScreenRect();
 						const WCHAR* pwcText = GetDisplayStringManager()->GetString("DST_TRADE_THE_OTHERS_BAG_NOT_ENOUGH");
 						GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_JUST_WTEXT,
@@ -998,7 +998,7 @@ VOID CTradeCart::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 				{
 					if( m_byInfoWindowIndex != i )
 					{
-						// ¹ÌÈ®ÀÎ ¾ÆÀÌÅÛ
+						// ë¯¸í™•ì¸ ì•„ì´í…œ
 						CRectangle rtScreen = m_pThis->GetScreenRect();
 						GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_UNIDENTIFIED_ITEM,
 															rtScreen.left + m_SellSlotInfo[i].slot.GetX_fromParent(),
@@ -1061,7 +1061,7 @@ VOID CTradeCart::FocusEffect( RwBool bPush, RwInt32 iSlotKind /* =0 */, RwInt32 
 
 VOID CTradeCart::OpenCart(eDialogType eType, RwUInt32 uiSerial)
 {
-	// Æ®·¹ÀÌµå Ä«Æ®¸¦ ¿¬ ÁÖÃ¼ÀÇ ½Ã¸®¾ó ¹øÈ£
+	// íŠ¸ë ˆì´ë“œ ì¹´íŠ¸ë¥¼ ì—° ì£¼ì²´ì˜ ì‹œë¦¬ì–¼ ë²ˆí˜¸
 	m_uiSubjectSerial = uiSerial;
 	
 	if( eType == DIALOG_SHOPING_CART )
@@ -1069,7 +1069,7 @@ VOID CTradeCart::OpenCart(eDialogType eType, RwUInt32 uiSerial)
 	else
 		GetDialogManager()->OpenDialog(eType);
 
-	// °¡¹æÀ» ¿¬´Ù
+	// ê°€ë°©ì„ ì—°ë‹¤
 	GetDialogManager()->SwitchBag( TRUE );
 }
 
@@ -1128,7 +1128,7 @@ VOID CTradeCart::AddItem(RwInt32 iSlotKind, RwInt32 iSlotY, RwInt32 iCount, RwUI
 				RwInt32 iNewCount = iCount + m_SellSlotInfo[iSlotY].slot.GetCount();
 				CNtlSobItemAttr* pSobItemAttr = m_SellSlotInfo[iSlotY].slot.GetSobItemAttr();
 
-				// »õ·Î¿î °¹¼ö°¡ ÀÚ½ÅÀÌ °¡Áö°í ÀÖ´Â ½ÇÁ¦ ¾ÆÀÌÅÛ °¹¼öº¸´Ù ¸¹´Ù¸é ¸®ÅÏ
+				// ìƒˆë¡œìš´ ê°¯ìˆ˜ê°€ ìì‹ ì´ ê°€ì§€ê³  ìˆëŠ” ì‹¤ì œ ì•„ì´í…œ ê°¯ìˆ˜ë³´ë‹¤ ë§ë‹¤ë©´ ë¦¬í„´
 				if( iNewCount > pSobItemAttr->GetStackNum() )
 					return;
 
@@ -1143,7 +1143,7 @@ VOID CTradeCart::AddItem(RwInt32 iSlotKind, RwInt32 iSlotY, RwInt32 iCount, RwUI
 				if( !pSobItemAttr )
 					return;
 
-				// »õ·Î¿î °¹¼ö°¡ ÀÚ½ÅÀÌ °¡Áö°í ÀÖ´Â ½ÇÁ¦ ¾ÆÀÌÅÛ °¹¼öº¸´Ù ¸¹´Ù¸é ¸®ÅÏ
+				// ìƒˆë¡œìš´ ê°¯ìˆ˜ê°€ ìì‹ ì´ ê°€ì§€ê³  ìˆëŠ” ì‹¤ì œ ì•„ì´í…œ ê°¯ìˆ˜ë³´ë‹¤ ë§ë‹¤ë©´ ë¦¬í„´
 				if( iNewCount > pSobItemAttr->GetStackNum() )
 					return;
 
@@ -1212,7 +1212,7 @@ VOID CTradeCart::RegBuyItemByDrag(RwInt32 iSlot)
 	RwUInt8 byMerchantTab	= (BYTE)GetIconMoveManager()->GetEXData1();
 	RwUInt8 byItemPos		= (BYTE)GetIconMoveManager()->GetSrcSlotIdx();
 
-	// ±â°£Á¦ ¾ÆÀÌÅÛ
+	// ê¸°ê°„ì œ ì•„ì´í…œ
 	if( eDURATIONTYPE_FLATSUM		== pITEM_DATA->byDurationType ||
 		eDURATIONTYPE_METERRATE		== pITEM_DATA->byDurationType )
 	{
@@ -1229,7 +1229,7 @@ VOID CTradeCart::RegBuyItemByDrag(RwInt32 iSlot)
 
 	if( m_BuySlotInfo[iSlot].slot.GetCount() <= 0 )
 	{
-		// ºó ½½·ÔÀÌ¸é µî·Ï
+		// ë¹ˆ ìŠ¬ë¡¯ì´ë©´ ë“±ë¡
 		RwInt32 iCount = GetIconMoveManager()->GetStackCount();	
 		RwInt32 iPrice = GetIconMoveManager()->GetEXData2();
 
@@ -1258,7 +1258,7 @@ VOID CTradeCart::RegBuyItemByDrag(RwInt32 iSlot)
 
 VOID CTradeCart::RegSellItemByDrag(RwInt32 iSlot)
 {
-	// Å¬¶óÀÌ¾ğÆ®¿Í ¼­¹öÀÇ Bag ÀÎµ¦½º°¡ ´Ù¸£±â¿¡ ÄÁ¹öÆ®ÇÑ´Ù.			
+	// í´ë¼ì´ì–¸íŠ¸ì™€ ì„œë²„ì˜ Bag ì¸ë±ìŠ¤ê°€ ë‹¤ë¥´ê¸°ì— ì»¨ë²„íŠ¸í•œë‹¤.			
 	RwUInt32 uiSerial = GetIconMoveManager()->GetSrcSerial();	
 	CNtlSobItem* pSobItem =  reinterpret_cast<CNtlSobItem*>(GetNtlSobManager()->GetSobObject(uiSerial));
 	NTL_ASSERT(pSobItem, "CTradeCart::RegSellItemByDrag, Can not found sob item of the handle : " << uiSerial );
@@ -1267,7 +1267,7 @@ VOID CTradeCart::RegSellItemByDrag(RwInt32 iSlot)
 
 	if( pSobItemAttr->IsNeedToIdentify() )
 	{
-		// ÆÈ ¼ö ¾ø´Â ¾ÆÀÌÅÛÀÔ´Ï´Ù
+		// íŒ” ìˆ˜ ì—†ëŠ” ì•„ì´í…œì…ë‹ˆë‹¤
 		GetAlarmManager()->AlarmMessage("DST_TRADECART_CANNOT_SELL_ITEM");
 
 		return;
@@ -1290,7 +1290,7 @@ VOID CTradeCart::RegSellItemByDrag(RwInt32 iSlot)
 		return;
 	}
 			
-	// ÀÌ¹Ì ÆÇ¸Å ½½·Ô¿¡ µî·ÏµÈ ¾ÆÀÌÅÛÀº ´Ù¸¥ ½½·Ô¿¡ µî·ÏÇÒ ¼ö ¾ø´Ù.
+	// ì´ë¯¸ íŒë§¤ ìŠ¬ë¡¯ì— ë“±ë¡ëœ ì•„ì´í…œì€ ë‹¤ë¥¸ ìŠ¬ë¡¯ì— ë“±ë¡í•  ìˆ˜ ì—†ë‹¤.
 	for( RwInt32 i = 0 ; i < MAX_SLOT ; ++i )
 	{
 		if( i != iSlot )
@@ -1302,7 +1302,7 @@ VOID CTradeCart::RegSellItemByDrag(RwInt32 iSlot)
 
 	if( m_SellSlotInfo[iSlot].slot.GetCount() <= 0 )
 	{
-		// ºó ½½·ÔÀÌ¸é µî·Ï
+		// ë¹ˆ ìŠ¬ë¡¯ì´ë©´ ë“±ë¡
 		CRectangle rect = m_pThis->GetScreenRect();				
 		RwInt32 iCount = GetIconMoveManager()->GetStackCount();
 		RwUInt32 uiPrice = pITEM_TBLDAT->dwSell_Price;
@@ -1311,19 +1311,19 @@ VOID CTradeCart::RegSellItemByDrag(RwInt32 iSlot)
 		m_SellSlotInfo[iSlot].slot.SetIcon(uiSerial, iCount);
 		m_SellSlotInfo[iSlot].slot.SetPrice(uiPrice);
 
-		// °¡¹æ ¹øÈ£
+		// ê°€ë°© ë²ˆí˜¸
 		m_SellSlotInfo[iSlot].NPCShopSellInfo.byPlace = (BYTE)Logic_WhichBagHasItem(uiSerial);
 
-		// °¡¹æ ¾ÈÀÇ ½½·Ô ÀÎµ¦½º
+		// ê°€ë°© ì•ˆì˜ ìŠ¬ë¡¯ ì¸ë±ìŠ¤
 		m_SellSlotInfo[iSlot].NPCShopSellInfo.byPos = (BYTE)GetIconMoveManager()->GetSrcSlotIdx();		
 
-		// °¹¼ö
+		// ê°¯ìˆ˜
 		AddItemCount(SELL_SLOT, iSlot, iCount, pITEM_TBLDAT->tblidx);
 
-		// °¡°İ
+		// ê°€ê²©
 		CalcTotalSellPrice();
 
-		// °¡¹æÀ¸·Î ÀÌº¥Æ® º¸³»±â
+		// ê°€ë°©ìœ¼ë¡œ ì´ë²¤íŠ¸ ë³´ë‚´ê¸°
 		RwInt8 iBagIndex = Logic_ConvertContainerTypeToBagIdx(m_SellSlotInfo[iSlot].NPCShopSellInfo.byPlace);
 		CDboEventGenerator::DialogEvent(DIALOGEVENT_BEGIN_TRADING_ITEM_IN_BAG, PLACE_TRADECART, PLACE_BAG, 
 			iBagIndex, m_SellSlotInfo[iSlot].NPCShopSellInfo.byPos, uiSerial);
@@ -1344,7 +1344,7 @@ VOID CTradeCart::RegBuyItemByEvent(RwInt32 iSlot, SDboEventShop& TradeInfo)
 	}
 
 
-	// ±â°£Á¦ ¾ÆÀÌÅÛ
+	// ê¸°ê°„ì œ ì•„ì´í…œ
 	if( eDURATIONTYPE_FLATSUM		== pITEM_DATA->byDurationType ||
 		eDURATIONTYPE_METERRATE		== pITEM_DATA->byDurationType )
 	{
@@ -1383,7 +1383,7 @@ VOID CTradeCart::RegSellItemByEvent(RwInt32 iSlot, SDboEventShop& TradeInfo)
 
 	if( pSobItemAttr->IsNeedToIdentify() )
 	{
-		// ÆÈ ¼ö ¾ø´Â ¾ÆÀÌÅÛ
+		// íŒ” ìˆ˜ ì—†ëŠ” ì•„ì´í…œ
 		GetAlarmManager()->AlarmMessage("DST_ITEM_CAN_NOT_SELL");
 		return;
 	}
@@ -1393,7 +1393,7 @@ VOID CTradeCart::RegSellItemByEvent(RwInt32 iSlot, SDboEventShop& TradeInfo)
 
 	if( Logic_IsCanSellItem( pSobItemAttr ) == FALSE )
 	{
-		// ÆÈ ¼ö ¾ø´Â ¾ÆÀÌÅÛ
+		// íŒ” ìˆ˜ ì—†ëŠ” ì•„ì´í…œ
 		GetAlarmManager()->AlarmMessage("DST_ITEM_CAN_NOT_SELL");
 		return;
 	}
@@ -1409,25 +1409,25 @@ VOID CTradeCart::RegSellItemByEvent(RwInt32 iSlot, SDboEventShop& TradeInfo)
 	m_SellSlotInfo[iSlot].slot.SetIcon(TradeInfo.uiSerial, TradeInfo.iOverlapCount);
 	m_SellSlotInfo[iSlot].slot.SetPrice(pITEM_TBLDAT->dwSell_Price);
 
-	// °¡¹æ ¹øÈ£
+	// ê°€ë°© ë²ˆí˜¸
 	m_SellSlotInfo[iSlot].NPCShopSellInfo.byPlace = (BYTE)Logic_WhichBagHasItem(TradeInfo.uiSerial);
 
-	// °¡¹æ ¾ÈÀÇ ½½·Ô ÀÎµ¦½º
+	// ê°€ë°© ì•ˆì˜ ìŠ¬ë¡¯ ì¸ë±ìŠ¤
 	m_SellSlotInfo[iSlot].NPCShopSellInfo.byPos = (BYTE)TradeInfo.iPosition;		
 
-	// °¹¼ö
-	// ÀÌº¥Æ®·Î ÆÇ¸Å ¾ÆÀÌÅÛÀ» µî·ÏÇÑ °æ¿ì´Â AddItemCount(..)ÇÔ¼ö¸¦ ½á¼­ °¹¼ö¸¦ ´õÇÏÁö ¾Ê°í
-	// TradeInfo.iOverlapCount °¹¼ö ±×´ë·Î ¼¼ÆÃÇÑ´Ù.
+	// ê°¯ìˆ˜
+	// ì´ë²¤íŠ¸ë¡œ íŒë§¤ ì•„ì´í…œì„ ë“±ë¡í•œ ê²½ìš°ëŠ” AddItemCount(..)í•¨ìˆ˜ë¥¼ ì¨ì„œ ê°¯ìˆ˜ë¥¼ ë”í•˜ì§€ ì•Šê³ 
+	// TradeInfo.iOverlapCount ê°¯ìˆ˜ ê·¸ëŒ€ë¡œ ì„¸íŒ…í•œë‹¤.
 	if( TradeInfo.iOverlapCount > m_SellSlotInfo[iSlot].slot.GetItemTable()->byMax_Stack)
 		TradeInfo.iOverlapCount = m_SellSlotInfo[iSlot].slot.GetItemTable()->byMax_Stack;
 
 	m_SellSlotInfo[iSlot].NPCShopSellInfo.byStack = (BYTE)TradeInfo.iOverlapCount;
 	m_SellSlotInfo[iSlot].slot.SetCount(TradeInfo.iOverlapCount);
 
-	// °¡°İ
+	// ê°€ê²©
 	CalcTotalSellPrice();
 
-	// °¡¹æÀ¸·Î ÀÌº¥Æ® º¸³»±â
+	// ê°€ë°©ìœ¼ë¡œ ì´ë²¤íŠ¸ ë³´ë‚´ê¸°
 	RwInt8 iBagIndex = Logic_ConvertContainerTypeToBagIdx(m_SellSlotInfo[iSlot].NPCShopSellInfo.byPlace);
 	CDboEventGenerator::DialogEvent(DIALOGEVENT_BEGIN_TRADING_ITEM_IN_BAG, PLACE_TRADECART, PLACE_BAG, 
 									iBagIndex, m_SellSlotInfo[iSlot].NPCShopSellInfo.byPos, m_SellSlotInfo[iSlot].slot.GetSerial() );
@@ -1445,7 +1445,7 @@ VOID CTradeCart::RegTakeItemByPacket(RwInt32 iSlot, SERIAL_HANDLE hGiveHandle, s
 	}
 	else
 	{
-		//¹ÌÈ®ÀÎ ¾ÆÀÌÅÛ
+		//ë¯¸í™•ì¸ ì•„ì´í…œ
 		m_BuySlotInfo[iSlot].slot.SetSerialType(REGULAR_SLOT_ITEM_NOT_IDENTIFICATION);
 		m_BuySlotInfo[iSlot].slot.SetParentPosition(rect.left, rect.top);						
 		m_BuySlotInfo[iSlot].slot.SetIcon(hGiveHandle);
@@ -1470,7 +1470,7 @@ VOID CTradeCart::RegGiveItemByPacket(RwInt32 iSlot, RwUInt32 uiSerial, RwUInt8 b
 	{
 		if( Logic_IsCanUserTradeItem( pSobItemAttr ) == FALSE )
 		{
-			// À¯Àú°£ °Å·¡ÇÒ ¼ö ¾ø´Â ¾ÆÀÌÅÛ
+			// ìœ ì €ê°„ ê±°ë˜í•  ìˆ˜ ì—†ëŠ” ì•„ì´í…œ
 			GetAlarmManager()->AlarmMessage("DST_ITEM_CAN_NOT_TRADE");
 			return;
 		}
@@ -1489,22 +1489,22 @@ VOID CTradeCart::RegGiveItemByPacket(RwInt32 iSlot, RwUInt32 uiSerial, RwUInt8 b
 		if( m_SellSlotInfo[iSlot].slot.GetSerial() != INVALID_SERIAL_ID )
 			return;
 
-		// ¹ÌÈ®ÀÎ ¾ÆÀÌÅÛ
+		// ë¯¸í™•ì¸ ì•„ì´í…œ
 		m_SellSlotInfo[iSlot].slot.SetSerialType(REGULAR_SLOT_ITEM_SOB_NOT_IDENTIFICATION);
 		m_SellSlotInfo[iSlot].slot.SetParentPosition(rect.left, rect.top);
 		m_SellSlotInfo[iSlot].slot.SetIcon(uiSerial);
 	}
 
-	// °¡¹æ ¹øÈ£
+	// ê°€ë°© ë²ˆí˜¸
 	m_SellSlotInfo[iSlot].NPCShopSellInfo.byPlace = (BYTE)Logic_WhichBagHasItem(uiSerial);
 
-	// °¡¹æ ¾ÈÀÇ ½½·Ô ÀÎµ¦½º
+	// ê°€ë°© ì•ˆì˜ ìŠ¬ë¡¯ ì¸ë±ìŠ¤
 	CNtlSobItem* pItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( uiSerial ) );
 	m_SellSlotInfo[iSlot].NPCShopSellInfo.byPos = (BYTE)pItem->GetItemSlotIdx();
 	
 	GetIconMoveManager()->IconMoveEnd();
 
-	// °¡¹æÀ¸·Î ÀÌº¥Æ® º¸³»±â
+	// ê°€ë°©ìœ¼ë¡œ ì´ë²¤íŠ¸ ë³´ë‚´ê¸°
 	RwInt8 iBagIndex = Logic_ConvertContainerTypeToBagIdx(m_SellSlotInfo[iSlot].NPCShopSellInfo.byPlace);
 	CDboEventGenerator::DialogEvent(DIALOGEVENT_BEGIN_TRADING_ITEM_IN_BAG, PLACE_TRADECART, PLACE_BAG, 
 		iBagIndex, m_SellSlotInfo[iSlot].NPCShopSellInfo.byPos, m_SellSlotInfo[iSlot].slot.GetSerial() );
@@ -1672,14 +1672,14 @@ VOID CTradeCart::HandleEvents( RWS::CMsg &msg )
 					NTL_RETURNVOID();
 				}
 
-				// »óÁ¡ÀÇ Á¾·ù¿¡ µû¶ó ÅØ½ºÃ³°¡ ´Ş¶óÁø´Ù
+				// ìƒì ì˜ ì¢…ë¥˜ì— ë”°ë¼ í…ìŠ¤ì²˜ê°€ ë‹¬ë¼ì§„ë‹¤
 				if( pNPC_TBLDAT->byJob == NPC_JOB_BUDOHSI_MERCHANT || pNPC_TBLDAT->byJob == NPC_JOB_BUDOHSI_MERCHANT2 || pNPC_TBLDAT->byJob == NPC_JOB_BUDOHSI_MERCHANT3)
 					ResetCartTexture(TRADECART_TEXTURE_TENKAICHI);
 				else
 					ResetCartTexture(TRADECART_TEXTURE_NORMAL);
 
 
-				//  NPC »óÁ¡À» À§ÇÑ Ä«Æ®
+				//  NPC ìƒì ì„ ìœ„í•œ ì¹´íŠ¸
 				m_eDialogType = DIALOG_SHOPING_CART;
 
 				m_pDialogName->SetText(GetDisplayStringManager()->GetString("DST_NPCSHOP_SHOPINGCART"));
@@ -1739,7 +1739,7 @@ VOID CTradeCart::HandleEvents( RWS::CMsg &msg )
 						RegBuyItemByEvent(iSlot, *pPacket);
 					else
 					{
-						// Ä«Æ®¿¡ ½½·ÔÀÌ ºÎÁ·ÇÕ´Ï´Ù
+						// ì¹´íŠ¸ì— ìŠ¬ë¡¯ì´ ë¶€ì¡±í•©ë‹ˆë‹¤
 						GetAlarmManager()->AlarmMessage("DST_TRADECART_NO_MORE_SLOT");
 					}
 				}				
@@ -1753,7 +1753,7 @@ VOID CTradeCart::HandleEvents( RWS::CMsg &msg )
 				RwInt8 iSlot = (RwInt8)FindEmptySlot(BUY_SLOT);
 				if( iSlot >= 0 )
 				{
-					// ºó ½½·ÔÀ» Ã£¾Æ¼­ 20°³¸¦ µî·ÏÇÑ´Ù
+					// ë¹ˆ ìŠ¬ë¡¯ì„ ì°¾ì•„ì„œ 20ê°œë¥¼ ë“±ë¡í•œë‹¤
 					RegBuyItemByEvent(iSlot, *pPacket);
 					NTL_RETURNVOID();
 				}
@@ -1763,10 +1763,10 @@ VOID CTradeCart::HandleEvents( RWS::CMsg &msg )
 					{
 						if( m_BuySlotInfo[i].slot.GetSerial() == pPacket->uiSerial )
 						{
-							// ÃÖ´ë ½ºÅÃ°¹¼ö¸¦ ÃÊ°úÇÏÁö ¾Ê¾Ò´Ù¸é
+							// ìµœëŒ€ ìŠ¤íƒê°¯ìˆ˜ë¥¼ ì´ˆê³¼í•˜ì§€ ì•Šì•˜ë‹¤ë©´
 							if(m_BuySlotInfo[i].slot.GetItemTable()->byMax_Stack > m_BuySlotInfo[i].slot.GetCount())
 							{
-								// ¸¶Àú ´õÇØ¼­ 20°³¸¦ Ã¤¿î´Ù
+								// ë§ˆì € ë”í•´ì„œ 20ê°œë¥¼ ì±„ìš´ë‹¤
 								AddItem(BUY_SLOT, i, m_BuySlotInfo[i].slot.GetItemTable()->byMax_Stack - m_BuySlotInfo[i].slot.GetCount(), m_BuySlotInfo[i].slot.GetItemTable()->tblidx);
 								NTL_RETURNVOID();
 							}							
@@ -1784,13 +1784,13 @@ VOID CTradeCart::HandleEvents( RWS::CMsg &msg )
 
 				RwInt32 iSlot = INVALID_INDEX;
 
-				// ±âÁ¸¿¡ µî·ÏµÈ ¾ÆÀÌÅÛÀÌ¸é ´Ù½Ã µî·ÏÇÑ´Ù.
+				// ê¸°ì¡´ì— ë“±ë¡ëœ ì•„ì´í…œì´ë©´ ë‹¤ì‹œ ë“±ë¡í•œë‹¤.
 				for( RwInt32 i = 0 ; i < MAX_SLOT ; ++i )
 				{
 					if( m_SellSlotInfo[i].slot.GetSerial() == pPacket->uiSerial )
 					{
-						// °¡¹æ¿¡¼­ ÀÌº¥Æ®·Î ÆÈ ¾ÆÀÌÅÛÀ» ³Ñ°ÜÁÖ¾ú´Ù.
-						// ÀÌ ¶æÀº ±× ½½·Ô¿¡ ÀÖ´Â ¸ğµç ¾ÆÀÌÅÛÀ» ÆÇ´Ù´Â ¶æÀÌ´Ù.
+						// ê°€ë°©ì—ì„œ ì´ë²¤íŠ¸ë¡œ íŒ” ì•„ì´í…œì„ ë„˜ê²¨ì£¼ì—ˆë‹¤.
+						// ì´ ëœ»ì€ ê·¸ ìŠ¬ë¡¯ì— ìˆëŠ” ëª¨ë“  ì•„ì´í…œì„ íŒë‹¤ëŠ” ëœ»ì´ë‹¤.
 						RegSellItemByEvent(i, *pPacket);
 						iSlot = i;
 
@@ -1798,7 +1798,7 @@ VOID CTradeCart::HandleEvents( RWS::CMsg &msg )
 					}
 				}
 
-				// ºó ½½·ÔÀÌ¸é µî·Ï				
+				// ë¹ˆ ìŠ¬ë¡¯ì´ë©´ ë“±ë¡				
 				if( iSlot == INVALID_INDEX )
 				{					
 					iSlot = FindEmptySlot(SELL_SLOT);
@@ -1807,7 +1807,7 @@ VOID CTradeCart::HandleEvents( RWS::CMsg &msg )
 						RegSellItemByEvent(iSlot, *pPacket);
 					else
 					{
-						// Ä«Æ®¿¡ ½½·ÔÀÌ ºÎÁ·ÇÕ´Ï´Ù
+						// ì¹´íŠ¸ì— ìŠ¬ë¡¯ì´ ë¶€ì¡±í•©ë‹ˆë‹¤
 						GetAlarmManager()->AlarmMessage("DST_TRADECART_NO_MORE_SLOT");
 					}
 				}			
@@ -1883,8 +1883,8 @@ VOID CTradeCart::HandleEvents( RWS::CMsg &msg )
 					m_pDownButton[BUY_SLOT][i]->Show(false);
 				}				
 
-				// ³»°¡ »ó´ë¿¡°Ô ¾ÆÀÌÅÛÀ» ÁÙ ¼ö ÀÖ´Â È°¼ºÈ­µÈ ½½·Ô °¹¼ö
-				// »ó´ëÀÇ °¡¹æ¿¡ ºó ½½·Ô °¹¼öÀÌ´Ù
+				// ë‚´ê°€ ìƒëŒ€ì—ê²Œ ì•„ì´í…œì„ ì¤„ ìˆ˜ ìˆëŠ” í™œì„±í™”ëœ ìŠ¬ë¡¯ ê°¯ìˆ˜
+				// ìƒëŒ€ì˜ ê°€ë°©ì— ë¹ˆ ìŠ¬ë¡¯ ê°¯ìˆ˜ì´ë‹¤
 				if(pPacket->byCount < MAX_SLOT)
 				{
 					m_byOthersEmptySlot = pPacket->byCount;
@@ -1897,8 +1897,8 @@ VOID CTradeCart::HandleEvents( RWS::CMsg &msg )
 					}
 				}
 
-				// ³ªÀÇ °¡¹æÀÇ ºó ½½·Ô °¹¼ö
-				// »ó´ë°¡ ³ª¿¡°Ô ÁÙ ¼ö ÀÖ´Â ¾ÆÀÌÅÛÀÇ °¹¼öÀÌ´Ù
+				// ë‚˜ì˜ ê°€ë°©ì˜ ë¹ˆ ìŠ¬ë¡¯ ê°¯ìˆ˜
+				// ìƒëŒ€ê°€ ë‚˜ì—ê²Œ ì¤„ ìˆ˜ ìˆëŠ” ì•„ì´í…œì˜ ê°¯ìˆ˜ì´ë‹¤
 				RwInt32 iEmptySlot = Logic_GetCountEmptySlotofBag();
 
 				if(iEmptySlot < MAX_SLOT)
@@ -1922,7 +1922,7 @@ VOID CTradeCart::HandleEvents( RWS::CMsg &msg )
 			}
 		case USERTRADE_ADD_ITEM:
 			{
-				// ¼­¹ö¶ôÀÌ Ç®·È´Ù
+				// ì„œë²„ë½ì´ í’€ë ¸ë‹¤
 				m_bLeftLock		= FALSE;
 				m_bRightLock	= FALSE;
 
@@ -1934,10 +1934,10 @@ VOID CTradeCart::HandleEvents( RWS::CMsg &msg )
 			}
 		case USERTRADE_ADD_ITEM_NOTIFY:
 			{
-				// ¼­¹ö¿ÍÀÇ µ¿±âÈ­¸¦ À§ÇØ ¾÷µ¥ÀÌÆ® µÈ »ó´ë¹æÀÇ ÆĞÅ¶ÀÇ °¹¼ö¸¦ ¼¾´Ù
+				// ì„œë²„ì™€ì˜ ë™ê¸°í™”ë¥¼ ìœ„í•´ ì—…ë°ì´íŠ¸ ëœ ìƒëŒ€ë°©ì˜ íŒ¨í‚·ì˜ ê°¯ìˆ˜ë¥¼ ì„¼ë‹¤
 				++m_uiUserTradePacketCount;
 
-				// ¼­¹ö¶ôÀÌ Ç®·È´Ù
+				// ì„œë²„ë½ì´ í’€ë ¸ë‹¤
 				m_bLeftLock		= FALSE;
 				m_bRightLock	= FALSE;
 
@@ -1949,7 +1949,7 @@ VOID CTradeCart::HandleEvents( RWS::CMsg &msg )
 			}
 		case USERTRADE_DEL_ITEM:
 			{
-				// ¼­¹ö¶ôÀÌ Ç®·È´Ù
+				// ì„œë²„ë½ì´ í’€ë ¸ë‹¤
 				m_bLeftLock		= FALSE;
 				m_bRightLock	= FALSE;
 
@@ -1962,10 +1962,10 @@ VOID CTradeCart::HandleEvents( RWS::CMsg &msg )
 			}
 		case USERTRADE_DEL_ITEM_NOTIFY:
 			{
-				// ¼­¹ö¿ÍÀÇ µ¿±âÈ­¸¦ À§ÇØ ¾÷µ¥ÀÌÆ® µÈ ÆĞÅ¶ÀÇ °¹¼ö¸¦ ¼¾´Ù
+				// ì„œë²„ì™€ì˜ ë™ê¸°í™”ë¥¼ ìœ„í•´ ì—…ë°ì´íŠ¸ ëœ íŒ¨í‚·ì˜ ê°¯ìˆ˜ë¥¼ ì„¼ë‹¤
 				++m_uiUserTradePacketCount;
 
-				// ¼­¹ö¶ôÀÌ Ç®·È´Ù
+				// ì„œë²„ë½ì´ í’€ë ¸ë‹¤
 				m_bLeftLock		= FALSE;
 				m_bRightLock	= FALSE;
 
@@ -1978,7 +1978,7 @@ VOID CTradeCart::HandleEvents( RWS::CMsg &msg )
 			}
 		case USERTRADE_UPDATE_ITEM:
 			{
-				// ¼­¹ö¶ôÀÌ Ç®·È´Ù
+				// ì„œë²„ë½ì´ í’€ë ¸ë‹¤
 				m_bLeftLock		= FALSE;
 				m_bRightLock	= FALSE;
 
@@ -1990,10 +1990,10 @@ VOID CTradeCart::HandleEvents( RWS::CMsg &msg )
 			}
 		case USERTRADE_UPDATE_ITEM_NOTIFY:
 			{
-				// ¼­¹ö¿ÍÀÇ µ¿±âÈ­¸¦ À§ÇØ ¾÷µ¥ÀÌÆ® µÈ »ó´ë¹æÀÇ ÆĞÅ¶ÀÇ °¹¼ö¸¦ ¼¾´Ù
+				// ì„œë²„ì™€ì˜ ë™ê¸°í™”ë¥¼ ìœ„í•´ ì—…ë°ì´íŠ¸ ëœ ìƒëŒ€ë°©ì˜ íŒ¨í‚·ì˜ ê°¯ìˆ˜ë¥¼ ì„¼ë‹¤
 				++m_uiUserTradePacketCount;
 
-				// ¼­¹ö¶ôÀÌ Ç®·È´Ù
+				// ì„œë²„ë½ì´ í’€ë ¸ë‹¤
 				m_bLeftLock		= FALSE;
 				m_bRightLock	= FALSE;
 
@@ -2005,7 +2005,7 @@ VOID CTradeCart::HandleEvents( RWS::CMsg &msg )
 			}
 		case USERTRADE_UPDATE_ZENNY:
 			{
-				// ¼­¹ö¶ôÀÌ Ç®·È´Ù
+				// ì„œë²„ë½ì´ í’€ë ¸ë‹¤
 				m_bLeftLock		= FALSE;
 				m_bRightLock	= FALSE;
 
@@ -2017,10 +2017,10 @@ VOID CTradeCart::HandleEvents( RWS::CMsg &msg )
 			}
 		case USERTRADE_UPDATE_ZENNY_NOTIFY:
 			{
-				// ¼­¹ö¿ÍÀÇ µ¿±âÈ­¸¦ À§ÇØ ¾÷µ¥ÀÌÆ® µÈ »ó´ë¹æÀÇ ÆĞÅ¶ÀÇ °¹¼ö¸¦ ¼¾´Ù
+				// ì„œë²„ì™€ì˜ ë™ê¸°í™”ë¥¼ ìœ„í•´ ì—…ë°ì´íŠ¸ ëœ ìƒëŒ€ë°©ì˜ íŒ¨í‚·ì˜ ê°¯ìˆ˜ë¥¼ ì„¼ë‹¤
 				++m_uiUserTradePacketCount;
 
-				// ¼­¹ö¶ôÀÌ Ç®·È´Ù
+				// ì„œë²„ë½ì´ í’€ë ¸ë‹¤
 				m_bLeftLock		= FALSE;
 				m_bRightLock	= FALSE;
 
@@ -2038,7 +2038,7 @@ VOID CTradeCart::HandleEvents( RWS::CMsg &msg )
 					m_RightLockSurface.SetPositionbyParent(rect.left, rect.top);
 				}
 
-				// °Å·¡°¡ ¼º¸³µÇ¾î Ä«Æ®¸¦ ´İ´Â´Ù
+				// ê±°ë˜ê°€ ì„±ë¦½ë˜ì–´ ì¹´íŠ¸ë¥¼ ë‹«ëŠ”ë‹¤
 				if( m_bLeftLock && m_bRightLock )
 				{
 					GetNtlWorldConcept()->RemoveWorldPlayConcept(WORLD_PLAY_TRADE);
@@ -2057,7 +2057,7 @@ VOID CTradeCart::HandleEvents( RWS::CMsg &msg )
 					m_LeftLockSurface.SetPositionbyParent(rect.left, rect.top);
 				}
 
-				// °Å·¡°¡ ¼º¸³µÇ¾î Ä«Æ®¸¦ ´İ´Â´Ù
+				// ê±°ë˜ê°€ ì„±ë¦½ë˜ì–´ ì¹´íŠ¸ë¥¼ ë‹«ëŠ”ë‹¤
 				if( m_bLeftLock && m_bRightLock )
 				{
 					GetNtlWorldConcept()->RemoveWorldPlayConcept(WORLD_PLAY_TRADE);
@@ -2091,7 +2091,7 @@ VOID CTradeCart::HandleEvents( RWS::CMsg &msg )
 
 		if( m_uiSubjectSerial == *pDeleteSerial )
 		{
-			// °©ÀÚ±â »ó´ë Ä³¸¯ÅÍ°¡ »ç¶óÁö´Â °æ¿ì
+			// ê°‘ìê¸° ìƒëŒ€ ìºë¦­í„°ê°€ ì‚¬ë¼ì§€ëŠ” ê²½ìš°
 			if( GetDialogManager()->IsOpenDialog(DIALOG_SHOPING_CART) )
 				CloseCart(DIALOG_SHOPING_CART);
 			else

@@ -2,7 +2,7 @@
  *
  * File			: NtlFSMCharController.h
  * Author		: HyungSuk, Jang
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Ï£º)NTL
  * Date			: 2006. 2. 17	
  * Abstract		: FSM character controller class
  *****************************************************************************
@@ -336,7 +336,7 @@ private:
 	RwReal				m_fStateTimer;
 	RwReal				m_fThinkingTimer;
 	RwReal				m_fPathTimer;
-	RwReal				m_fSkillTimer[NTL_MAX_NPC_HAVE_SKILL];			// Skill Timer (AI∑Œ Ω∫≈≥¿ª ∆«¥‹«œ¥¬ Ω√∞£)
+	RwReal				m_fSkillTimer[NTL_MAX_NPC_HAVE_SKILL];			// Skill Timer (AIÎ°ú Ïä§ÌÇ¨ÏùÑ ÌåêÎã®ÌïòÎäî ÏãúÍ∞Ñ)
 
 	RwBool				m_bCompulsoryAttack;
 	SERIAL_HANDLE		m_hBattleSerialId;

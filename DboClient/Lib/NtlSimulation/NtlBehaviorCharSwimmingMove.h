@@ -16,7 +16,7 @@ protected:
     CNtlPLEntity		*m_pPLSwimFront;
     CNtlPLEntity		*m_pPLSwimBack;
 
-    // possible º¯È­ check
+    // possible ë³€í™” check
     RwReal m_fPosChangeTime;
     RwUInt8 m_byPosChangeCnt;
     RwV3d m_vChangeOldPos;
@@ -39,12 +39,12 @@ protected:
     void	DestroySwimFrontEffect(void);
     void	DestroySwimBackEffect(void);
 
-    // position º¯È­ check
+    // position ë³€í™” check
     void	LimitPositionChangeCheck(RwReal fElapsed);
 
     RwBool	UpdateDirectionMove(RwReal fElapsed);
     RwBool	UpdateLocationMove(RwReal fElapsed);
-    RwBool  UpdateTargetMove(RwReal fElapsed);              ///< ¹°¿¡¼­ Å¸°ÙÀ» µû¶ó°¥¶§
+    RwBool  UpdateTargetMove(RwReal fElapsed);              ///< ë¬¼ì—ì„œ íƒ€ê²Ÿì„ ë”°ë¼ê°ˆë•Œ
 
     void	UpdateSwimEffect(void);
 

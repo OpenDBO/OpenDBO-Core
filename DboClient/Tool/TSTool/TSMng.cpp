@@ -30,7 +30,7 @@ CNtlTSTrigger* CTSMng::CreateTrigger( CTSTrigger* pTSTrigger )
 	CNtlTSScrProperty clProperty;
 
 	//////////////////////////////////////////////////////////////////////////
-	// Æ®¸®°Å »ý¼º ¹× Á¤º¸ ¼³Á¤ //////////////////////////////////////////////
+	// íŠ¸ë¦¬ê±° ìƒì„± ë° ì •ë³´ ì„¤ì • //////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////
 	CNtlTSTrigger* pTrigger = (CNtlTSTrigger*)m_pEntityFactory->CreateObj( "CNtlTSTrigger" );
 
@@ -44,14 +44,14 @@ CNtlTSTrigger* CTSMng::CreateTrigger( CTSTrigger* pTSTrigger )
 
 
 	//////////////////////////////////////////////////////////////////////////
-	// ¸ÞÀÎ ±×·ì »ý¼º ¹× Á¤º¸ ¼³Á¤ ///////////////////////////////////////////
+	// ë©”ì¸ ê·¸ë£¹ ìƒì„± ë° ì •ë³´ ì„¤ì • ///////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////
 	CNtlTSGroup* pMainGroup = (CNtlTSGroup*)m_pEntityFactory->CreateObj( "CNtlTSGroup" );
 
-	// ÀÚÃ¼ ¼Ó¼º
+	// ìžì²´ ì†ì„±
 	pMainGroup->SetID( pTSTrigger->GetMainGroup()->tgID );
 
-	// ÀÚ½Ä ¼Ó¼º
+	// ìžì‹ ì†ì„±
 	for ( Pos = pTSTrigger->GetMainGroup()->ContainerLayer.GetTailPosition(); Pos != NULL; )
 	{
 		CShape_GEntityCont* pShape = DYNAMIC_DOWNCAST( CShape_GEntityCont, pTSTrigger->GetMainGroup()->ContainerLayer.GetPrev( Pos ) );
@@ -62,7 +62,7 @@ CNtlTSTrigger* CTSMng::CreateTrigger( CTSTrigger* pTSTrigger )
 		}
 
 		//////////////////////////////////////////////////////////////////////////
-		// ÄÁÅ×ÀÌ³Ê
+		// ì»¨í…Œì´ë„ˆ
 		//////////////////////////////////////////////////////////////////////////
 		clProperty.Clear();
 		pShape->GetProperty( clProperty );
@@ -74,7 +74,7 @@ CNtlTSTrigger* CTSMng::CreateTrigger( CTSTrigger* pTSTrigger )
 		pCont->SetParent( pMainGroup );
 
 		//////////////////////////////////////////////////////////////////////////
-		// ¿£Æ¼Æ¼
+		// ì—”í‹°í‹°
 		//////////////////////////////////////////////////////////////////////////
 		const CArray<CShape_GEntityCont::sENTITY, const CShape_GEntityCont::sENTITY&>& List = pShape->GetEntityList();
 		for ( int i = 0; i < (int)List.GetSize(); ++i )
@@ -127,7 +127,7 @@ CNtlTSTrigger* CTSMng::CreateTrigger( CTSTrigger* pTSTrigger )
 			else
 			{
 				CString strMsg;
-				strMsg.Format( _T("¸µÅ©°¡ Àß¸øµÇ¾ú½À´Ï´Ù. [%d, %d]"), eBType, pTrigger->GetID() );
+				strMsg.Format( _T("ë§í¬ê°€ ìž˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤. [%d, %d]"), eBType, pTrigger->GetID() );
 				AfxMessageBox( strMsg.GetString() );
 			}
 			break;
@@ -143,7 +143,7 @@ CNtlTSTrigger* CTSMng::CreateTrigger( CTSTrigger* pTSTrigger )
 			else
 			{
 				CString strMsg;
-				strMsg.Format( _T("¸µÅ©°¡ Àß¸øµÇ¾ú½À´Ï´Ù. [%d, %d]"), eBType, pTrigger->GetID() );
+				strMsg.Format( _T("ë§í¬ê°€ ìž˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤. [%d, %d]"), eBType, pTrigger->GetID() );
 				AfxMessageBox( strMsg.GetString() );
 			}
 			break;
@@ -159,7 +159,7 @@ CNtlTSTrigger* CTSMng::CreateTrigger( CTSTrigger* pTSTrigger )
 			else
 			{
 				CString strMsg;
-				strMsg.Format( _T("¸µÅ©°¡ Àß¸øµÇ¾ú½À´Ï´Ù. [%d, %d]"), eBType, pTrigger->GetID() );
+				strMsg.Format( _T("ë§í¬ê°€ ìž˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤. [%d, %d]"), eBType, pTrigger->GetID() );
 				AfxMessageBox( strMsg.GetString() );
 			}
 			break;
@@ -175,14 +175,14 @@ CNtlTSTrigger* CTSMng::CreateTrigger( CTSTrigger* pTSTrigger )
 			else
 			{
 				CString strMsg;
-				strMsg.Format( _T("¸µÅ©°¡ Àß¸øµÇ¾ú½À´Ï´Ù. [%d, %d]"), eBType, pTrigger->GetID() );
+				strMsg.Format( _T("ë§í¬ê°€ ìž˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤. [%d, %d]"), eBType, pTrigger->GetID() );
 				AfxMessageBox( strMsg.GetString() );
 			}
 			break;
 		case DBO_CONT_TYPE_ID_CONT_END:
 			{
 				CString strMsg;
-				strMsg.Format( _T("¸µÅ©°¡ Àß¸øµÇ¾ú½À´Ï´Ù. [%d, %d]"), eBType, pTrigger->GetID() );
+				strMsg.Format( _T("ë§í¬ê°€ ìž˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤. [%d, %d]"), eBType, pTrigger->GetID() );
 				AfxMessageBox( strMsg.GetString() );
 			}
 			break;
@@ -202,7 +202,7 @@ CNtlTSTrigger* CTSMng::CreateTrigger( CTSTrigger* pTSTrigger )
 			else
 			{
 				CString strMsg;
-				strMsg.Format( _T("¸µÅ©°¡ Àß¸øµÇ¾ú½À´Ï´Ù. [%d, %d]"), eBType, pTrigger->GetID() );
+				strMsg.Format( _T("ë§í¬ê°€ ìž˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤. [%d, %d]"), eBType, pTrigger->GetID() );
 				AfxMessageBox( strMsg.GetString() );
 			}
 			break;
@@ -222,7 +222,7 @@ CNtlTSTrigger* CTSMng::CreateTrigger( CTSTrigger* pTSTrigger )
 			else
 			{
 				CString strMsg;
-				strMsg.Format( _T("¸µÅ©°¡ Àß¸øµÇ¾ú½À´Ï´Ù. [%d, %d]"), eBType, pTrigger->GetID() );
+				strMsg.Format( _T("ë§í¬ê°€ ìž˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤. [%d, %d]"), eBType, pTrigger->GetID() );
 				AfxMessageBox( strMsg.GetString() );
 			}
 			break;
@@ -238,7 +238,7 @@ CNtlTSTrigger* CTSMng::CreateTrigger( CTSTrigger* pTSTrigger )
 			else
 			{
 				CString strMsg;
-				strMsg.Format( _T("¸µÅ©°¡ Àß¸øµÇ¾ú½À´Ï´Ù. [%d, %d]"), eBType, pTrigger->GetID() );
+				strMsg.Format( _T("ë§í¬ê°€ ìž˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤. [%d, %d]"), eBType, pTrigger->GetID() );
 				AfxMessageBox( strMsg.GetString() );
 			}
 			break;
@@ -250,7 +250,7 @@ CNtlTSTrigger* CTSMng::CreateTrigger( CTSTrigger* pTSTrigger )
 			else
 			{
 				CString strMsg;
-				strMsg.Format( _T("¸µÅ©°¡ Àß¸øµÇ¾ú½À´Ï´Ù. [%d, %d]"), eBType, pTrigger->GetID() );
+				strMsg.Format( _T("ë§í¬ê°€ ìž˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤. [%d, %d]"), eBType, pTrigger->GetID() );
 				AfxMessageBox( strMsg.GetString() );
 			}
 			break;
@@ -270,7 +270,7 @@ CNtlTSTrigger* CTSMng::CreateTrigger( CTSTrigger* pTSTrigger )
 			else
 			{
 				CString strMsg;
-				strMsg.Format( _T("¸µÅ©°¡ Àß¸øµÇ¾ú½À´Ï´Ù. [%d, %d]"), eBType, pTrigger->GetID() );
+				strMsg.Format( _T("ë§í¬ê°€ ìž˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤. [%d, %d]"), eBType, pTrigger->GetID() );
 				AfxMessageBox( strMsg.GetString() );
 			}
 			break;
@@ -280,7 +280,7 @@ CNtlTSTrigger* CTSMng::CreateTrigger( CTSTrigger* pTSTrigger )
 
 
 	//////////////////////////////////////////////////////////////////////////
-	// ¿¹¿Ü ±×·ì »ý¼º ¹× Á¤º¸ ¼³Á¤ ///////////////////////////////////////////
+	// ì˜ˆì™¸ ê·¸ë£¹ ìƒì„± ë° ì •ë³´ ì„¤ì • ///////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////
 	CNtlTSGroup* pExceptionGroup;
 	int nSize = (int)pTSTrigger->GetExceptionGroupCnt();
@@ -288,10 +288,10 @@ CNtlTSTrigger* CTSMng::CreateTrigger( CTSTrigger* pTSTrigger )
 	{
 		pExceptionGroup = (CNtlTSGroup*)m_pEntityFactory->CreateObj( "CNtlTSGroup" );
 
-		// ÀÚÃ¼ ¼Ó¼º
+		// ìžì²´ ì†ì„±
 		pExceptionGroup->SetID( pTSTrigger->GetExceptionGroup( i )->tgID );
 
-		// ÀÚ½Ä ¼Ó¼º
+		// ìžì‹ ì†ì„±
 		for ( Pos = pTSTrigger->GetExceptionGroup( i )->ContainerLayer.GetTailPosition(); Pos != NULL; )
 		{
 			CShape_GEntityCont* pShape = DYNAMIC_DOWNCAST( CShape_GEntityCont, pTSTrigger->GetExceptionGroup( i )->ContainerLayer.GetPrev( Pos ) );
@@ -302,7 +302,7 @@ CNtlTSTrigger* CTSMng::CreateTrigger( CTSTrigger* pTSTrigger )
 			}
 
 			//////////////////////////////////////////////////////////////////////////
-			// ÄÁÅ×ÀÌ³Ê
+			// ì»¨í…Œì´ë„ˆ
 			//////////////////////////////////////////////////////////////////////////
 			clProperty.Clear();
 			pShape->GetProperty( clProperty );
@@ -314,7 +314,7 @@ CNtlTSTrigger* CTSMng::CreateTrigger( CTSTrigger* pTSTrigger )
 			pCont->SetParent( pExceptionGroup );
 
 			//////////////////////////////////////////////////////////////////////////
-			// ¿£Æ¼Æ¼
+			// ì—”í‹°í‹°
 			//////////////////////////////////////////////////////////////////////////
 			const CArray<CShape_GEntityCont::sENTITY, const CShape_GEntityCont::sENTITY&>& List = pShape->GetEntityList();
 			for ( int i = 0; i < (int)List.GetSize(); ++i )
@@ -367,7 +367,7 @@ CNtlTSTrigger* CTSMng::CreateTrigger( CTSTrigger* pTSTrigger )
 				else
 				{
 					CString strMsg;
-					strMsg.Format( _T("¸µÅ©°¡ Àß¸øµÇ¾ú½À´Ï´Ù. [%d, %d]"), eBType, pTrigger->GetID() );
+					strMsg.Format( _T("ë§í¬ê°€ ìž˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤. [%d, %d]"), eBType, pTrigger->GetID() );
 					AfxMessageBox( strMsg.GetString() );
 				}
 				break;
@@ -383,7 +383,7 @@ CNtlTSTrigger* CTSMng::CreateTrigger( CTSTrigger* pTSTrigger )
 				else
 				{
 					CString strMsg;
-					strMsg.Format( _T("¸µÅ©°¡ Àß¸øµÇ¾ú½À´Ï´Ù. [%d, %d]"), eBType, pTrigger->GetID() );
+					strMsg.Format( _T("ë§í¬ê°€ ìž˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤. [%d, %d]"), eBType, pTrigger->GetID() );
 					AfxMessageBox( strMsg.GetString() );
 				}
 				break;
@@ -399,7 +399,7 @@ CNtlTSTrigger* CTSMng::CreateTrigger( CTSTrigger* pTSTrigger )
 				else
 				{
 					CString strMsg;
-					strMsg.Format( _T("¸µÅ©°¡ Àß¸øµÇ¾ú½À´Ï´Ù. [%d, %d]"), eBType, pTrigger->GetID() );
+					strMsg.Format( _T("ë§í¬ê°€ ìž˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤. [%d, %d]"), eBType, pTrigger->GetID() );
 					AfxMessageBox( strMsg.GetString() );
 				}
 				break;
@@ -415,14 +415,14 @@ CNtlTSTrigger* CTSMng::CreateTrigger( CTSTrigger* pTSTrigger )
 				else
 				{
 					CString strMsg;
-					strMsg.Format( _T("¸µÅ©°¡ Àß¸øµÇ¾ú½À´Ï´Ù. [%d, %d]"), eBType, pTrigger->GetID() );
+					strMsg.Format( _T("ë§í¬ê°€ ìž˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤. [%d, %d]"), eBType, pTrigger->GetID() );
 					AfxMessageBox( strMsg.GetString() );
 				}
 				break;
 			case DBO_CONT_TYPE_ID_CONT_END:
 				{
 					CString strMsg;
-					strMsg.Format( _T("¸µÅ©°¡ Àß¸øµÇ¾ú½À´Ï´Ù. [%d, %d]"), eBType, pTrigger->GetID() );
+					strMsg.Format( _T("ë§í¬ê°€ ìž˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤. [%d, %d]"), eBType, pTrigger->GetID() );
 					AfxMessageBox( strMsg.GetString() );
 				}
 				break;
@@ -442,7 +442,7 @@ CNtlTSTrigger* CTSMng::CreateTrigger( CTSTrigger* pTSTrigger )
 				else
 				{
 					CString strMsg;
-					strMsg.Format( _T("¸µÅ©°¡ Àß¸øµÇ¾ú½À´Ï´Ù. [%d, %d]"), eBType, pTrigger->GetID() );
+					strMsg.Format( _T("ë§í¬ê°€ ìž˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤. [%d, %d]"), eBType, pTrigger->GetID() );
 					AfxMessageBox( strMsg.GetString() );
 				}
 				break;
@@ -462,7 +462,7 @@ CNtlTSTrigger* CTSMng::CreateTrigger( CTSTrigger* pTSTrigger )
 				else
 				{
 					CString strMsg;
-					strMsg.Format( _T("¸µÅ©°¡ Àß¸øµÇ¾ú½À´Ï´Ù. [%d, %d]"), eBType, pTrigger->GetID() );
+					strMsg.Format( _T("ë§í¬ê°€ ìž˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤. [%d, %d]"), eBType, pTrigger->GetID() );
 					AfxMessageBox( strMsg.GetString() );
 				}
 				break;
@@ -478,7 +478,7 @@ CNtlTSTrigger* CTSMng::CreateTrigger( CTSTrigger* pTSTrigger )
 				else
 				{
 					CString strMsg;
-					strMsg.Format( _T("¸µÅ©°¡ Àß¸øµÇ¾ú½À´Ï´Ù. [%d, %d]"), eBType, pTrigger->GetID() );
+					strMsg.Format( _T("ë§í¬ê°€ ìž˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤. [%d, %d]"), eBType, pTrigger->GetID() );
 					AfxMessageBox( strMsg.GetString() );
 				}
 				break;
@@ -490,7 +490,7 @@ CNtlTSTrigger* CTSMng::CreateTrigger( CTSTrigger* pTSTrigger )
 				else
 				{
 					CString strMsg;
-					strMsg.Format( _T("¸µÅ©°¡ Àß¸øµÇ¾ú½À´Ï´Ù. [%d, %d]"), eBType, pTrigger->GetID() );
+					strMsg.Format( _T("ë§í¬ê°€ ìž˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤. [%d, %d]"), eBType, pTrigger->GetID() );
 					AfxMessageBox( strMsg.GetString() );
 				}
 				break;
@@ -510,7 +510,7 @@ CNtlTSTrigger* CTSMng::CreateTrigger( CTSTrigger* pTSTrigger )
 				else
 				{
 					CString strMsg;
-					strMsg.Format( _T("¸µÅ©°¡ Àß¸øµÇ¾ú½À´Ï´Ù. [%d, %d]"), eBType, pTrigger->GetID() );
+					strMsg.Format( _T("ë§í¬ê°€ ìž˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤. [%d, %d]"), eBType, pTrigger->GetID() );
 					AfxMessageBox( strMsg.GetString() );
 				}
 				break;
@@ -551,7 +551,7 @@ bool CTSMng::LoadFactories( void )
 {
 	UnloadFactories();
 
-	// Entity factory »ý¼º
+	// Entity factory ìƒì„±
 	m_pEntityFactory = new CDboTSEntityFactory;
 	m_pEntityFactory->RegisterEntityType();
 

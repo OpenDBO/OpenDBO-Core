@@ -1,9 +1,9 @@
 /*****************************************************************************
 * File			: DboPackethandler_GUFreeBattle.cpp
 * Author		: Hong sungbock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 1. 16
-* Abstract		: Free Battle °ü·Ã ÆÐÅ¶ ÇÚµé
+* Abstract		: Free Battle ê´€ë ¨ íŒ¨í‚· í•¸ë“¤
 *****************************************************************************
 * Desc         : 
 *****************************************************************************/
@@ -53,7 +53,7 @@ void PacketHandler_GSFreeBattleAcceptReq(void *pPacket)
 		GetDboGlobal()->SetAskedPCSerial(INVALID_SERIAL_ID);
 		return;
 	}	
-    else if(Logic_IsBlackList(pAcceptReq->hChallenger)) // ºí·¢¸®½ºÆ®¿¡ µî·ÏµÇ¾î ÀÖ´Â °æ¿ì °ÅÀý  
+    else if(Logic_IsBlackList(pAcceptReq->hChallenger)) // ë¸”ëž™ë¦¬ìŠ¤íŠ¸ì— ë“±ë¡ë˜ì–´ ìžˆëŠ” ê²½ìš° ê±°ì ˆ  
     {
         GetDboGlobal()->GetGamePacketGenerator()->SendFreeBattleAcceptRes(ACCEPT_RES_TYPE_DENY);        
         GetDboGlobal()->SetAskedPCSerial(INVALID_SERIAL_ID);

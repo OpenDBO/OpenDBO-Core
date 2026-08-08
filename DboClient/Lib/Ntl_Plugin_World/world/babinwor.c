@@ -1751,7 +1751,7 @@ RpWorldStreamRead(RwStream * stream)
     }
 
     /* Check that our single malloc area hasn't been overrun */
-    RWASSERT(((RwUInt32)worldSize) == ((RwUInt32)binaryWorldMallocAddr - (RwUInt32)world));
+    RWASSERT(((RwUInt32)worldSize) == (RwUInt32)((uintptr_t)binaryWorldMallocAddr - (uintptr_t)world));
 
     world->numClumpsInWorld = 0;
     world->currentClumpLink = rwLinkListGetTerminator(&world->clumpList);

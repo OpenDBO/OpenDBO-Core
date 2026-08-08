@@ -40,9 +40,9 @@ public:
 
 	RwInt32 SwitchDialog( bool bOpen );
 
-	VOID	SetIndividualData( sBUDOKAI_TOURNAMENT_INDIVIDUAL_ENTRY_DATA* pData, RwUInt16 wTeamType );	// pData = NULL ¿Ã∏È ±◊≥… ≈¨∏ÆæÓ.
+	VOID	SetIndividualData( sBUDOKAI_TOURNAMENT_INDIVIDUAL_ENTRY_DATA* pData, RwUInt16 wTeamType );	// pData = NULL Ïù¥Î©¥ Í∑∏ÎÉ• ÌÅ¥Î¶¨Ïñ¥.
 	VOID	SetTeamData( sBUDOKAI_TOURNAMENT_TEAM_ENTRY_DATA* pData, RwUInt16 wTeamType );	
-	VOID	SetMatchData( RwUInt8 byDepth, RwUInt8 byIndex, RwUInt8 byLeftScore, RwUInt8 byRightScore );// Score = INVALID_BYTE æ∆øπ «•Ω√ æ»«‘.
+	VOID	SetMatchData( RwUInt8 byDepth, RwUInt8 byIndex, RwUInt8 byLeftScore, RwUInt8 byRightScore );// Score = INVALID_BYTE ÏïÑÏòà ÌëúÏãú ÏïàÌï®.
 
 	//! Attibutes
 

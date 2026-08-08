@@ -1,9 +1,9 @@
 /*****************************************************************************
 * File			: DboLogic_String.h
 * Author		: Hong sungbock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2007. 1. 12
-* Abstract		: ¾ÆÀÌÅÛ ÀÌµ¿ °ü·Ã ·ÎÁ÷À» ¸ğ¾ÆµĞ´Ù
+* Abstract		: ì•„ì´í…œ ì´ë™ ê´€ë ¨ ë¡œì§ì„ ëª¨ì•„ë‘”ë‹¤
 *****************************************************************************
 * Desc         : 
 *****************************************************************************/
@@ -150,7 +150,7 @@ RwBool Logic_ItemMoveProc( SERIAL_HANDLE hSrcSerial, EPlace eSrcPlace, RwUInt8 u
 		else if( eDestPlace == PLACE_GUILD_WAREHOUSE )
 			uiResult = Logic_ItemMoveSubProcGuildWarehouseToGuildWarehouse( hSrcSerial, ucSrcSlotIdx, hDestParentSerial, ucDestSlotIdx, uiStackCount);
 	}
-	// Zenny ÀÌµ¿ °ü·Ã Ã³¸®.
+	// Zenny ì´ë™ ê´€ë ¨ ì²˜ë¦¬.
 	else if( eSrcPlace == PLACE_SUB_BAG_ZENNY )
 	{
 		if( eDestPlace == PLACE_SUB_WAREHOUSE_ZENNY )
@@ -195,15 +195,15 @@ RwBool Logic_ItemMoveProc( SERIAL_HANDLE hSrcSerial, EPlace eSrcPlace, RwUInt8 u
 std::string Logic_ItemMoveSubProcEquipToEquip( SERIAL_HANDLE hSrcSerial, RwUInt8 ucSrcSlotIdx, RwUInt8 ucDestSlotIdx, RwUInt32 uiStackCount )
 {
 	NTL_FUNCTION( "Logic_ItemMoveSubProcEquipToEquip" );
-	// ºñ±³ Á¶°Ç 
-	// 1. °°Àº ½½·ÔÀÎ°æ¿ì Ãë¼Ò 
+	// ë¹„êµ ì¡°ê±´ 
+	// 1. ê°™ì€ ìŠ¬ë¡¯ì¸ê²½ìš° ì·¨ì†Œ 
 	if( ucSrcSlotIdx == ucDestSlotIdx )
 	{
 		GetIconMoveManager()->IconMoveEnd();
 		NTL_RETURN( "" );
 	}
 
-	// 2. Pair(¹İÁö,±Í°ÉÀÌ)³¢¸®¸¸ ÀÌµ¿ÀÌ °¡´É
+	// 2. Pair(ë°˜ì§€,ê·€ê±¸ì´)ë¼ë¦¬ë§Œ ì´ë™ì´ ê°€ëŠ¥
 	RwInt32 usSrcSlotFlag, usDestSlotFlag;
 	usSrcSlotFlag = Logic_ConvertEquipSlotIdxToFlag( ucSrcSlotIdx );
 	usDestSlotFlag= Logic_ConvertEquipSlotIdxToFlag( ucDestSlotIdx );
@@ -214,7 +214,7 @@ std::string Logic_ItemMoveSubProcEquipToEquip( SERIAL_HANDLE hSrcSerial, RwUInt8
 	srcType = (RwUInt8)Logic_ConvertEquipSlotIdxToType( ucSrcSlotIdx );
 	destType = (RwUInt8)Logic_ConvertEquipSlotIdxToType( ucDestSlotIdx );
 
-	// 3. °¢°¢ »ç¿ë±â°£ Ã¼Å©.
+	// 3. ê°ê° ì‚¬ìš©ê¸°ê°„ ì²´í¬.
 	SERIAL_HANDLE hDestSerial = GetNtlSLGlobal()->GetSobAvatar()->GetInventory()->GetEquipItem( ucDestSlotIdx );
 
 	if( hSrcSerial != INVALID_SERIAL_ID )
@@ -258,26 +258,26 @@ std::string Logic_ItemMoveSubProcEquipToBagSlot( SERIAL_HANDLE hSrcSerial, RwUIn
 	CNtlInventory* pInventory = GetNtlSLGlobal()->GetSobAvatar()->GetInventory();
 	SERIAL_HANDLE hDestBagItem = pInventory->GetBagItem( ucDestSlotIdx ); 
 
-	// ºñ±³ Á¶°Ç 
-	// 1. ½ºÄ«¿ìÅÍÀÇ °æ¿ì »ç¿ëÁßÀÎÁö, ÆÄÃ÷¸¦ ÀåÂøÇß´ÂÁö¸¦ ºñ±³.
+	// ë¹„êµ ì¡°ê±´ 
+	// 1. ìŠ¤ì¹´ìš°í„°ì˜ ê²½ìš° ì‚¬ìš©ì¤‘ì¸ì§€, íŒŒì¸ ë¥¼ ì¥ì°©í–ˆëŠ”ì§€ë¥¼ ë¹„êµ.
 	CNtlSobItem* pSrcItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( hSrcSerial ) );
 	DBO_ASSERT( pSrcItem, "Invalid Src Item" );
 
-	// 2. DestSlotÀÌ ºñ¾îÀÖÀ¸¸é Ãë¼Ò
+	// 2. DestSlotì´ ë¹„ì–´ìˆìœ¼ë©´ ì·¨ì†Œ
 	if( hDestBagItem == INVALID_SERIAL_ID )
 	{
 		NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_TO_BAGSLOT_NOT_BAG" );
 	}
 
 	CNtlSobItem* pDestBagItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( hDestBagItem ) ); 
-	// 3. °¡¹æÀÇ ±â°£Á¦ÇÑÀÌ ¸¸·áµÇ¾úÀ¸¸é Ãë¼Ò
+	// 3. ê°€ë°©ì˜ ê¸°ê°„ì œí•œì´ ë§Œë£Œë˜ì—ˆìœ¼ë©´ ì·¨ì†Œ
 	CNtlSobItemAttr* pDestBagItemAttr = reinterpret_cast<CNtlSobItemAttr*>( pDestBagItem->GetSobAttr() );
 	if( pDestBagItemAttr->IsExpired() )
 	{
 		NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_BAG_EXPIRED_DURATION" );
 	}
 
-	// 4. °¡¹æÀÌ Á¸ÀçÇÏ³ª ºóÄ­ÀÌ ¾øÀ¸¸é Ãë¼Ò.
+	// 4. ê°€ë°©ì´ ì¡´ì¬í•˜ë‚˜ ë¹ˆì¹¸ì´ ì—†ìœ¼ë©´ ì·¨ì†Œ.
 	if( pDestBagItem->FullChild() )
 	{
 		NTL_RETURN( "DST_ITEM_BAG_FULL" );
@@ -292,17 +292,17 @@ std::string Logic_ItemMoveSubProcEquipToBagChild( SERIAL_HANDLE hSrcSerial, RwUI
 {
 	NTL_FUNCTION( "Logic_ItemMoveSubProcEquipToBagChild" );
 
-	// ºñ±³ Á¶°Ç 
-	// 1. ½ºÄ«¿ìÅÍÀÇ °æ¿ì »ç¿ëÁßÀÎÁö, ÆÄÃ÷¸¦ ÀåÂøÇß´ÂÁö¸¦ ºñ±³.
+	// ë¹„êµ ì¡°ê±´ 
+	// 1. ìŠ¤ì¹´ìš°í„°ì˜ ê²½ìš° ì‚¬ìš©ì¤‘ì¸ì§€, íŒŒì¸ ë¥¼ ì¥ì°©í–ˆëŠ”ì§€ë¥¼ ë¹„êµ.
 	CNtlSobItem* pSrcItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( hSrcSerial ) );
 	DBO_ASSERT( pSrcItem, "Invalid Src Item" );
 
-	// 2. ³İÃ¢°íÀÎ °æ¿ì Ã¼Å©.
+	// 2. ë„·ì°½ê³ ì¸ ê²½ìš° ì²´í¬.
 	CNtlInventory* pInventory = GetNtlSLGlobal()->GetSobAvatar()->GetInventory();
 	RwInt32 nBagSlotIdx = pInventory->FindBagSlot( hDestParentSerial );
 	DBO_ASSERT( ( nBagSlotIdx >= 0 ), "Bag is not found in BagSlot" );	
 
-	// 3. °¡¹æÀÇ »ç¿ë±â°£ÀÌ ¸¸·áµÇ¾úÀ¸¸é Ãë¼Ò
+	// 3. ê°€ë°©ì˜ ì‚¬ìš©ê¸°ê°„ì´ ë§Œë£Œë˜ì—ˆìœ¼ë©´ ì·¨ì†Œ
 	CNtlSobItem* pBagItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( hDestParentSerial ) );
 	DBO_ASSERT( pBagItem, "Invalid DestBagItem" );
 	CNtlSobItemAttr* pBagItemAttr = reinterpret_cast<CNtlSobItemAttr*>( pBagItem->GetSobAttr() );
@@ -312,7 +312,7 @@ std::string Logic_ItemMoveSubProcEquipToBagChild( SERIAL_HANDLE hSrcSerial, RwUI
 		NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_BAG_EXPIRED_DURATION" );
 	}	
 
-	// 4. DestSlotÀÌ ºñ¾îÀÖÁö ¾Ê´Ù¸é EquipÀ¸·Î ¿Å±æ¼ö ÀÖ´Â ¾ÆÀÌÅÛÀÎÁö È®ÀÎ
+	// 4. DestSlotì´ ë¹„ì–´ìˆì§€ ì•Šë‹¤ë©´ Equipìœ¼ë¡œ ì˜®ê¸¸ìˆ˜ ìˆëŠ” ì•„ì´í…œì¸ì§€ í™•ì¸
 	if( pBagItem->IsValidChild( ucDestSlotIdx ) )
 	{
 		CNtlSobItem* pDestItem = pBagItem->GetChildItem( ucDestSlotIdx );
@@ -320,7 +320,7 @@ std::string Logic_ItemMoveSubProcEquipToBagChild( SERIAL_HANDLE hSrcSerial, RwUI
 		CNtlSobItemAttr* pDestItemAttr = reinterpret_cast<CNtlSobItemAttr*>( pDestItem->GetSobAttr() );
 		DBO_ASSERT( pDestItemAttr, "Inccorect GetSobAttr" );
 
-		// peessi : ÀåºñÇÒ ¼ö ¾ø´Ù¸é ¸Ş½ÃÁö´Â °¡¹æÀÌ ²ËÂ÷ÀÖ´Â °ÍÀ¸·Î.
+		// peessi : ì¥ë¹„í•  ìˆ˜ ì—†ë‹¤ë©´ ë©”ì‹œì§€ëŠ” ê°€ë°©ì´ ê½‰ì°¨ìˆëŠ” ê²ƒìœ¼ë¡œ.
 		if( !pDestItem->IsEquipItem() )
 			NTL_RETURN( "DST_ITEM_BAG_FULL" );
 
@@ -358,7 +358,7 @@ std::string Logic_ItemMoveSubProcEquipToWarehouse(SERIAL_HANDLE hSrcSerial, RwUI
 {
 	NTL_FUNCTION( "Logic_ItemMoveSubProcEquipToWarehouse" );
 
-	// 1. ½ºÄ«¿ìÅÍÀÇ °æ¿ì »ç¿ëÁßÀÎÁö, ÆÄÃ÷¸¦ ÀåÂøÇß´ÂÁö¸¦ ºñ±³.
+	// 1. ìŠ¤ì¹´ìš°í„°ì˜ ê²½ìš° ì‚¬ìš©ì¤‘ì¸ì§€, íŒŒì¸ ë¥¼ ì¥ì°©í–ˆëŠ”ì§€ë¥¼ ë¹„êµ.
 	CNtlSobItem* pSrcItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( hSrcSerial ) );
 	DBO_ASSERT( pSrcItem, "Invalid Src Item" );
 
@@ -369,7 +369,7 @@ std::string Logic_ItemMoveSubProcEquipToWarehouse(SERIAL_HANDLE hSrcSerial, RwUI
 
 	if( Logic_IsCanSaveWarehouse( pItemAttr ) == FALSE )
 	{
-		// Ã¢°í¿¡ ÀúÀåÇÒ ¼ö ¾ø´Â ¾ÆÀÌÅÛ
+		// ì°½ê³ ì— ì €ì¥í•  ìˆ˜ ì—†ëŠ” ì•„ì´í…œ
 		NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_TO_WAREHOUSE" );
 	}
 
@@ -378,14 +378,14 @@ std::string Logic_ItemMoveSubProcEquipToWarehouse(SERIAL_HANDLE hSrcSerial, RwUI
 	if( hDestParentSerial == hCommonWarehouse &&
 		Logic_IsCanSaveCommonWarehouse( pItemAttr ) == FALSE )
 	{
-		// °øÀ¯ Ã¢°í¿¡ ÀúÀåÇÒ ¼ö ¾ø´Â ¾ÆÀÌÅÛ		
+		// ê³µìœ  ì°½ê³ ì— ì €ì¥í•  ìˆ˜ ì—†ëŠ” ì•„ì´í…œ		
 		NTL_RETURN( "DST_ITEM_CAN_NOT_SAVE_COMMON_WAREHOUSE" );
 	}
 
 	// dest	
 	eCONTAINER_TYPE eDestContainerType = Logic_ConverWarehouseIdxToContainderType(pWarehouse->FindWarehouseSlot(hDestParentSerial));
 
-	// Ã¢°í NPC Serial
+	// ì°½ê³  NPC Serial
 	CWarehouseBarGui* pWarehouseBarGui = reinterpret_cast<CWarehouseBarGui*>(GetDialogManager()->GetDialog(DIALOG_WAREHOUSEBAR));
 	SERIAL_HANDLE hNPCHandle = pWarehouseBarGui->GetNPCSerial();
 
@@ -399,7 +399,7 @@ std::string Logic_ItemMoveSubProcEquipToGuildWarehouse( SERIAL_HANDLE hSrcSerial
 {
 	NTL_FUNCTION( "Logic_ItemMoveSubProcEquipToGuildWarehouse" );
 
-	// 1. ½ºÄ«¿ìÅÍÀÇ °æ¿ì »ç¿ëÁßÀÎÁö, ÆÄÃ÷¸¦ ÀåÂøÇß´ÂÁö¸¦ ºñ±³.
+	// 1. ìŠ¤ì¹´ìš°í„°ì˜ ê²½ìš° ì‚¬ìš©ì¤‘ì¸ì§€, íŒŒì¸ ë¥¼ ì¥ì°©í–ˆëŠ”ì§€ë¥¼ ë¹„êµ.
 	CNtlSobItem* pSrcItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( hSrcSerial ) );
 	DBO_ASSERT( pSrcItem, "Invalid Src Item" );
 
@@ -409,13 +409,13 @@ std::string Logic_ItemMoveSubProcEquipToGuildWarehouse( SERIAL_HANDLE hSrcSerial
 
 	if( Logic_IsCanSaveWarehouse( pItemAttr ) == FALSE )
 	{
-		// Ã¢°í¿¡ ÀúÀåÇÒ ¼ö ¾ø´Â ¾ÆÀÌÅÛ
+		// ì°½ê³ ì— ì €ì¥í•  ìˆ˜ ì—†ëŠ” ì•„ì´í…œ
 		NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_TO_WAREHOUSE" );
 	}
 
 	CNtlGuildWarehouse* pGuildWarehouse = GetNtlSLGlobal()->GetSobAvatar()->GetGuildWarehouse();
 
-	// hDestParentSerial : ÇÚµéÀÌ ¾Æ´Ï¶ó ±æµå Ã¢°íÀÇ ÀÎµ¦½º¸¦ ¹Ş¾Ò´Ù 
+	// hDestParentSerial : í•¸ë“¤ì´ ì•„ë‹ˆë¼ ê¸¸ë“œ ì°½ê³ ì˜ ì¸ë±ìŠ¤ë¥¼ ë°›ì•˜ë‹¤ 
 	eCONTAINER_TYPE eDestContainerType = Logic_ConverGuildWarehouseIdxToContainderType((RwUInt8)hDestParentSerial);
 
 	if( GetDboGlobal()->GetGamePacketGenerator()->SendGuildWarehouseMoveReq(pGuildWarehouse->GetNPCHandle(),
@@ -428,15 +428,15 @@ std::string Logic_ItemMoveSubProcEquipToGuildWarehouse( SERIAL_HANDLE hSrcSerial
 std::string Logic_ItemMoveSubProcBagSlotToBagSlot( SERIAL_HANDLE hSrcSerial, RwUInt8 ucSrcSlotIdx, RwUInt8 ucDestSlotIdx, RwUInt32 uiStackCount )
 {
 	NTL_FUNCTION( "Logic_ItemMoveSubProcBagToBag" );
-	// ºñ±³ Á¶°Ç 
-	// 1. °°Àº ÀÚ¸®ÀÌ¸é Ãë¼Ò
+	// ë¹„êµ ì¡°ê±´ 
+	// 1. ê°™ì€ ìë¦¬ì´ë©´ ì·¨ì†Œ
 	if( ucSrcSlotIdx == ucDestSlotIdx )
 	{
 		GetIconMoveManager()->IconMoveEnd();
 		NTL_RETURN( "" );
 	}
 
-	// 2. ¿Å±â·Á´Â °¡¹æÀÌ ±âº»°¡¹æÀÌ¸é Ãë¼Ò, ¸ñÀûÁö°¡ ±âº»°¡¹æÀÌ¸é Ãë¼Ò.
+	// 2. ì˜®ê¸°ë ¤ëŠ” ê°€ë°©ì´ ê¸°ë³¸ê°€ë°©ì´ë©´ ì·¨ì†Œ, ëª©ì ì§€ê°€ ê¸°ë³¸ê°€ë°©ì´ë©´ ì·¨ì†Œ.
 	if( ucSrcSlotIdx == 0 || ucDestSlotIdx == 0 )
 		NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_BASICBAG" );
 
@@ -445,11 +445,11 @@ std::string Logic_ItemMoveSubProcBagSlotToBagSlot( SERIAL_HANDLE hSrcSerial, RwU
 	CNtlSobItemAttr* pSrcBagItemAttr = reinterpret_cast<CNtlSobItemAttr*>( pSrcBagItem->GetSobAttr() );
 	DBO_ASSERT( pSrcBagItemAttr, "Invalid SrcSerialAttr" );
 
-	// 3. ¿Å±â·Á´Â °¡¹æÀÇ »ç¿ë±â°£ÀÌ ¸¸·áµÇ¾úÀ¸¸é Ãë¼Ò.
+	// 3. ì˜®ê¸°ë ¤ëŠ” ê°€ë°©ì˜ ì‚¬ìš©ê¸°ê°„ì´ ë§Œë£Œë˜ì—ˆìœ¼ë©´ ì·¨ì†Œ.
 	if( pSrcBagItemAttr->IsExpired() )
 		NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_BAG_EXPIRED_DURATION" );
 
-	// 4. ¿Å±â·Á´Â °¡¹æÀÇ °¡¹æÀÌ ºñ¾îÀÖÁö ¾ÊÀ¸¸é Ãë¼Ò.
+	// 4. ì˜®ê¸°ë ¤ëŠ” ê°€ë°©ì˜ ê°€ë°©ì´ ë¹„ì–´ìˆì§€ ì•Šìœ¼ë©´ ì·¨ì†Œ.
 	if( !pSrcBagItem->EmptyChild() )
 		NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_NOT_EMPTY_BAG" );	
 
@@ -463,11 +463,11 @@ std::string Logic_ItemMoveSubProcBagSlotToBagSlot( SERIAL_HANDLE hSrcSerial, RwU
 		CNtlSobItemAttr* pDestBagItemAttr = reinterpret_cast<CNtlSobItemAttr*>( pDestBagItem->GetSobAttr() );
 		DBO_ASSERT( pDestBagItemAttr, "Invalid DestBagAttr" );
 
-		// 5. ¸ñÀûÁöÀÇ °¡¹æÀÇ »ç¿ë±â°£ÀÌ ¸¸·áµÇ¾úÀ¸¸é Ãë¼Ò.
+		// 5. ëª©ì ì§€ì˜ ê°€ë°©ì˜ ì‚¬ìš©ê¸°ê°„ì´ ë§Œë£Œë˜ì—ˆìœ¼ë©´ ì·¨ì†Œ.
 		if( pDestBagItemAttr->IsExpired() )
 			NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_BAG_EXPIRED_DURATION" );		
 
-		// 6. ¸ñÀûÁöÀÇ °¡¹æÀÇ »ç¿ë±â°£ÀÌ ¸¸·áµÇ¾úÀ¸¸é Ãë¼Ò.
+		// 6. ëª©ì ì§€ì˜ ê°€ë°©ì˜ ì‚¬ìš©ê¸°ê°„ì´ ë§Œë£Œë˜ì—ˆìœ¼ë©´ ì·¨ì†Œ.
 		if( pDestBagItem->FullChild() )
 			NTL_RETURN( "DST_ITEM_BAG_FULL" );
 	}
@@ -481,19 +481,19 @@ std::string Logic_ItemMoveSubProcBagSlotToBagSlot( SERIAL_HANDLE hSrcSerial, RwU
 std::string Logic_ItemMoveSubProcBagSlotToBagChild( SERIAL_HANDLE hSrcSerial, RwUInt8 ucSrcSlotIdx, SERIAL_HANDLE hDestParentSerial, RwUInt8 ucDestSlotIdx, RwUInt32 uiStackCount )
 {
 	NTL_FUNCTION( "Logic_ItemMoveSubProcBagToBagChild" );
-	// ºñ±³ Á¶°Ç 
-	// 1. ¿Å±â·Á´Â °¡¹æÀÌ ±âº»°¡¹æÀÌ¸é Ãë¼Ò
+	// ë¹„êµ ì¡°ê±´ 
+	// 1. ì˜®ê¸°ë ¤ëŠ” ê°€ë°©ì´ ê¸°ë³¸ê°€ë°©ì´ë©´ ì·¨ì†Œ
 	if( ucSrcSlotIdx == 0 )
 		NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_BASICBAG" );
 
 	CNtlSobItem* pSrcBagItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( hSrcSerial ) );
 	NTL_ASSERT( pSrcBagItem, "Invalid SrcSerial" );
 
-	// 2. ¿Å±â·Á´Â °¡¹æÀÌ ºñ¾îÀÖÁö ¾Ê´Ù¸é Ãë¼Ò
+	// 2. ì˜®ê¸°ë ¤ëŠ” ê°€ë°©ì´ ë¹„ì–´ìˆì§€ ì•Šë‹¤ë©´ ì·¨ì†Œ
 	if( !pSrcBagItem->EmptyChild() )
 		NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_NOT_EMPTY_BAG" );
 
-	// 3. ÀÚ±â ÀÚ½ÅÀ¸·Î ¿Å±â·Á¸é Ãë¼Ò
+	// 3. ìê¸° ìì‹ ìœ¼ë¡œ ì˜®ê¸°ë ¤ë©´ ì·¨ì†Œ
 	if( hDestParentSerial == hSrcSerial )
 		NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_THERE" );
 
@@ -506,11 +506,11 @@ std::string Logic_ItemMoveSubProcBagSlotToBagChild( SERIAL_HANDLE hSrcSerial, Rw
 	CNtlSobItemAttr* pDestBagItemAttr = reinterpret_cast<CNtlSobItemAttr*>( pDestBagItem->GetSobAttr() );
 	DBO_ASSERT( pDestBagItemAttr, "Invalid DestBag ItemAttr" );
 
-	// 5. ¿Å±â·Á´Â °¡¹æÀÇ »ç¿ë±â°£ÀÌ ¸¸·áµÇ¾ú´Ù¸é Ãë¼Ò.
+	// 5. ì˜®ê¸°ë ¤ëŠ” ê°€ë°©ì˜ ì‚¬ìš©ê¸°ê°„ì´ ë§Œë£Œë˜ì—ˆë‹¤ë©´ ì·¨ì†Œ.
 	if( pDestBagItemAttr->IsExpired() )
 		NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_BAG_EXPIRED_DURATION" );	
 
-	// 6. DestSlotÀÌ ºñ¾îÀÖÁö ¾ÊÀº°æ¿ì, ±×°÷ÀÇ ¾ÆÀÌÅÛÀÌ °¡¹æÀÌ ¾Æ´Ï¶ó¸é Ãë¼Ò.
+	// 6. DestSlotì´ ë¹„ì–´ìˆì§€ ì•Šì€ê²½ìš°, ê·¸ê³³ì˜ ì•„ì´í…œì´ ê°€ë°©ì´ ì•„ë‹ˆë¼ë©´ ì·¨ì†Œ.
 	if( pDestBagItem->IsValidChild( ucDestSlotIdx ) )
 	{
 		CNtlSobItem* pDestItem = reinterpret_cast<CNtlSobItem*>( pDestBagItem->GetChildItem( ucDestSlotIdx ) );
@@ -541,7 +541,7 @@ std::string Logic_ItemMoveSubProcBagSlotToWarehouse( SERIAL_HANDLE hSrcSerial, R
 	CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>( pSrcBagItem->GetSobAttr() );
 	if( Logic_IsCanSaveWarehouse( pItemAttr ) == FALSE )
 	{
-		// Ã¢°í¿¡ ÀúÀåÇÒ ¼ö ¾ø´Â ¾ÆÀÌÅÛ
+		// ì°½ê³ ì— ì €ì¥í•  ìˆ˜ ì—†ëŠ” ì•„ì´í…œ
 		NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_TO_WAREHOUSE" );
 	}
 
@@ -550,18 +550,18 @@ std::string Logic_ItemMoveSubProcBagSlotToWarehouse( SERIAL_HANDLE hSrcSerial, R
 	if( hDestParentSerial == hCommonWarehouse &&
 		Logic_IsCanSaveCommonWarehouse( pItemAttr ) == FALSE )
 	{
-		// °øÀ¯ Ã¢°í¿¡ ÀúÀåÇÒ ¼ö ¾ø´Â ¾ÆÀÌÅÛ
+		// ê³µìœ  ì°½ê³ ì— ì €ì¥í•  ìˆ˜ ì—†ëŠ” ì•„ì´í…œ
 		NTL_RETURN( "DST_ITEM_CAN_NOT_SAVE_COMMON_WAREHOUSE" );
 	}	
 
-	// °¡¹æÀÌ ºñ¾îÀÖÁö ¾ÊÀ¸¸é Ãë¼Ò.
+	// ê°€ë°©ì´ ë¹„ì–´ìˆì§€ ì•Šìœ¼ë©´ ì·¨ì†Œ.
 	if( !pSrcBagItem->EmptyChild() )
 		NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_NOT_EMPTY_BAG" );
 
 	// dest
 	eCONTAINER_TYPE eDestContainerType = Logic_ConverWarehouseIdxToContainderType(pWarehouse->FindWarehouseSlot(hDestParentSerial));
 
-	// Ã¢°í NPC Serial
+	// ì°½ê³  NPC Serial
 	CWarehouseBarGui* pWarehouseBarGui = reinterpret_cast<CWarehouseBarGui*>(GetDialogManager()->GetDialog(DIALOG_WAREHOUSEBAR));
 	SERIAL_HANDLE hNPCHandle = pWarehouseBarGui->GetNPCSerial();
 
@@ -585,17 +585,17 @@ std::string Logic_ItemMoveSubProcBagSlotToGuildWarehouse( SERIAL_HANDLE hSrcSeri
 	CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>( pSrcBagItem->GetSobAttr() );
 	if( Logic_IsCanSaveWarehouse( pItemAttr ) == FALSE )
 	{
-		// Ã¢°í¿¡ ÀúÀåÇÒ ¼ö ¾ø´Â ¾ÆÀÌÅÛ
+		// ì°½ê³ ì— ì €ì¥í•  ìˆ˜ ì—†ëŠ” ì•„ì´í…œ
 		NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_TO_WAREHOUSE" );
 	}
 
-	// °¡¹æÀÌ ºñ¾îÀÖÁö ¾ÊÀ¸¸é Ãë¼Ò.
+	// ê°€ë°©ì´ ë¹„ì–´ìˆì§€ ì•Šìœ¼ë©´ ì·¨ì†Œ.
 	if( !pSrcBagItem->EmptyChild() )
 		NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_NOT_EMPTY_BAG" );
 
 	CNtlGuildWarehouse* pGuildWarehouse = GetNtlSLGlobal()->GetSobAvatar()->GetGuildWarehouse();
 
-	// hDestParentSerial : ÇÚµéÀÌ ¾Æ´Ï¶ó ±æµå Ã¢°íÀÇ ÀÎµ¦½º¸¦ ¹Ş¾Ò´Ù 
+	// hDestParentSerial : í•¸ë“¤ì´ ì•„ë‹ˆë¼ ê¸¸ë“œ ì°½ê³ ì˜ ì¸ë±ìŠ¤ë¥¼ ë°›ì•˜ë‹¤ 
 	eCONTAINER_TYPE eDestContainerType = Logic_ConverGuildWarehouseIdxToContainderType((RwUInt8)hDestParentSerial);
 
 	if( GetDboGlobal()->GetGamePacketGenerator()->SendGuildWarehouseMoveReq(pGuildWarehouse->GetNPCHandle(),
@@ -608,19 +608,19 @@ std::string Logic_ItemMoveSubProcBagSlotToGuildWarehouse( SERIAL_HANDLE hSrcSeri
 std::string Logic_ItemMoveSubProcBagChildToEquip( SERIAL_HANDLE hSrcSerial, RwUInt8 ucSrcSlotIdx, RwUInt8 ucDestSlotIdx, RwUInt32 uiStackCount )
 {
 	NTL_FUNCTION( "Logic_ItemMoveSubProcBagChildToEquip" );
-	// ºñ±³ Á¶°Ç 
-	// 1. DestSlotÀ¸·Î °¥¼ö ÀÖ´Â ¾ÆÀÌÅÛÀÎ°¡ È®ÀÎ
-	// 2. DestSlotÀÌ ºñ¾îÀÖÁö ¾Ê´Ù¸é ±³È¯
-	// 3. »ç¿ë±â°£ÀÌ ¸¸·áµÇ¾î ÀÖ´Â ¾ÆÀÌÅÛÀÌ¸é EquipºÒ°¡. 
-	// 4. DestItem ÀÌ ½ºÄ«¿ìÅÍ ÀÏ¶§, ½ºÄ«¿ìÅÍÀÇ »ç¿ë±âÇÑ È®ÀÎ ¹× Ã¼Å©.
-	// peessi ¿©±â±îÁö¸¸ ÀÛ¾÷ÇÔ. ÀÏ´ÜÀº ¼­¹ö¿¡ ¸Ã±â°í, ½ÇÆĞ½Ã ¸Ş½ÃÁö¿¡ °üÇØ ´Ù½ÃÇÑ¹ø ¾ê±âÇØº»´Ù. ÇöÀç ³»±¸µµ´Â ¼­¹ö¿¡ ¸Ã±â°í ÀÖÀ½.
+	// ë¹„êµ ì¡°ê±´ 
+	// 1. DestSlotìœ¼ë¡œ ê°ˆìˆ˜ ìˆëŠ” ì•„ì´í…œì¸ê°€ í™•ì¸
+	// 2. DestSlotì´ ë¹„ì–´ìˆì§€ ì•Šë‹¤ë©´ êµí™˜
+	// 3. ì‚¬ìš©ê¸°ê°„ì´ ë§Œë£Œë˜ì–´ ìˆëŠ” ì•„ì´í…œì´ë©´ Equipë¶ˆê°€. 
+	// 4. DestItem ì´ ìŠ¤ì¹´ìš°í„° ì¼ë•Œ, ìŠ¤ì¹´ìš°í„°ì˜ ì‚¬ìš©ê¸°í•œ í™•ì¸ ë° ì²´í¬.
+	// peessi ì—¬ê¸°ê¹Œì§€ë§Œ ì‘ì—…í•¨. ì¼ë‹¨ì€ ì„œë²„ì— ë§¡ê¸°ê³ , ì‹¤íŒ¨ì‹œ ë©”ì‹œì§€ì— ê´€í•´ ë‹¤ì‹œí•œë²ˆ ì–˜ê¸°í•´ë³¸ë‹¤. í˜„ì¬ ë‚´êµ¬ë„ëŠ” ì„œë²„ì— ë§¡ê¸°ê³  ìˆìŒ.
 	
 	CNtlSobItem* pSrcItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( hSrcSerial ) );
 	NTL_ASSERT( pSrcItem, "Invalid hSrcSerial" );
 	CNtlSobItemAttr* pSrcItemAttr = reinterpret_cast<CNtlSobItemAttr*>( pSrcItem->GetSobAttr() );
 	NTL_ASSERT( pSrcItemAttr, "Have No Attr" );
 
-	// 1. »ç¿ë±â°£ÀÌ ¸¸·áµÇ¾î ÀÖ´Â ¾ÆÀÌÅÛÀÌ¸é EquipºÒ°¡. 
+	// 1. ì‚¬ìš©ê¸°ê°„ì´ ë§Œë£Œë˜ì–´ ìˆëŠ” ì•„ì´í…œì´ë©´ Equipë¶ˆê°€. 
 	if( pSrcItemAttr->IsExpired() )
 		NTL_RETURN( "DST_ITEM_CAN_NOT_EQUIP_EXPIRED_DURATION" );
 
@@ -631,7 +631,7 @@ std::string Logic_ItemMoveSubProcBagChildToEquip( SERIAL_HANDLE hSrcSerial, RwUI
 	eCONTAINER_TYPE eSrcBagType = Logic_ConvertBagIdxToContainerType( (RwUInt8)pSrcItem->GetParentItemSlotIdx() );
 	SERIAL_HANDLE hDestSerial = GetNtlSLGlobal()->GetSobAvatar()->GetInventory()->GetEquipItem( ucDestSlotIdx );
 
-	// 2. Dest°¡ ½ºÄ«¿ìÅÍÀÌ°í ÀÌ¹Ì ½ºÄ«¿ìÅÍ¸¦ Âø¿ëÁßÀÎ °æ¿ì, 3,4¹ø »çÇ× È®ÀÎ.
+	// 2. Destê°€ ìŠ¤ì¹´ìš°í„°ì´ê³  ì´ë¯¸ ìŠ¤ì¹´ìš°í„°ë¥¼ ì°©ìš©ì¤‘ì¸ ê²½ìš°, 3,4ë²ˆ ì‚¬í•­ í™•ì¸.
 	if( ucDestSlotIdx == EQUIP_SLOT_TYPE_SCOUTER && hDestSerial != INVALID_SERIAL_ID )
 	{
 		CNtlSobItem* pDestItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( hDestSerial ) );
@@ -642,7 +642,7 @@ std::string Logic_ItemMoveSubProcBagChildToEquip( SERIAL_HANDLE hSrcSerial, RwUI
 	}
 	else
 	{
-		// 5. ¾ÆÀÌÅÛ ÀåÂøÅ¸ÀÔ °Ë»ç.
+		// 5. ì•„ì´í…œ ì¥ì°©íƒ€ì… ê²€ì‚¬.
 		if( !Logic_EquipSlotTypeFlagCheck( usDestSlotFlag, pSrcItemTable->dwEquip_Slot_Type_Bit_Flag ) )
 			NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_NOT_EQUIAL_EQUIPTYPE" );
 	}
@@ -690,13 +690,13 @@ std::string Logic_ItemMoveSubProcBagChildToBagSlot( SERIAL_HANDLE hSrcSerial, Rw
 	SERIAL_HANDLE hDestBagSerial = pInventory->GetBagItem( ucDestSlotIdx );
 	RwInt32 nEmptyBagChildSlot = -1;
 
-	// 1. DestSlotÀÇ °¡¹æÀÌ ÀÖÀ»¶§¿Í ¾øÀ»¶§ Ã¼Å©. 
+	// 1. DestSlotì˜ ê°€ë°©ì´ ìˆì„ë•Œì™€ ì—†ì„ë•Œ ì²´í¬. 
 	if( hDestBagSerial == INVALID_SERIAL_ID )
 	{
-		// 2. src¾ÆÀÌÅÛÀÌ °¡¹æÀÌ¶ó¸é.
+		// 2. srcì•„ì´í…œì´ ê°€ë°©ì´ë¼ë©´.
 		if( pSrcItem->IsBagItem() )
 		{
-			// 3. src °¡¹æÀÇ »ç¿ë±â°£ Ã¼Å©.
+			// 3. src ê°€ë°©ì˜ ì‚¬ìš©ê¸°ê°„ ì²´í¬.
 			if( pSrcItemAttr->IsExpired() )
 				NTL_RETURN( "DST_ITEM_CAN_NOT_EQUIP_EXPIRED_DURATION" );
 
@@ -709,7 +709,7 @@ std::string Logic_ItemMoveSubProcBagChildToBagSlot( SERIAL_HANDLE hSrcSerial, Rw
 		}
 		else
 		{
-			// 4. °¡¹æÀÌ ¾Æ´Ï°í, dest¿¡ °¡¹æµµ ¾ø´Ù¸é Ãë¼Ò.
+			// 4. ê°€ë°©ì´ ì•„ë‹ˆê³ , destì— ê°€ë°©ë„ ì—†ë‹¤ë©´ ì·¨ì†Œ.
 			NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_TO_BAGSLOT_NOT_BAG" );
 		}
 	}
@@ -717,20 +717,20 @@ std::string Logic_ItemMoveSubProcBagChildToBagSlot( SERIAL_HANDLE hSrcSerial, Rw
 	{
 		SERIAL_HANDLE hSrcBagSerial = pSrcItem->GetParentItemSerial();
 
-		// 5. srcÀÇ °¡¹æ°ú, dest°¡¹æÀÌ °°Àº °ÍÀÏ¶§. °°Àº ½½·ÔÀ» ¼±ÅÃÇÑ°ÍÃ³·³.
+		// 5. srcì˜ ê°€ë°©ê³¼, destê°€ë°©ì´ ê°™ì€ ê²ƒì¼ë•Œ. ê°™ì€ ìŠ¬ë¡¯ì„ ì„ íƒí•œê²ƒì²˜ëŸ¼.
 		if( hSrcBagSerial == hDestBagSerial )
 			NTL_RETURN( "" );
 
 		CNtlSobItem* pDestBagItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( hDestBagSerial ) );
 		NTL_ASSERT( pDestBagItem, "Invalid hDestBagSerial" );
 
-		// 6. destÀÇ °¡¹æÀÌ ²Ë Ã¡À»¶§ Ãë¼Ò.
+		// 6. destì˜ ê°€ë°©ì´ ê½‰ ì°¼ì„ë•Œ ì·¨ì†Œ.
 		if( pDestBagItem->FullChild() )
 			NTL_RETURN( "DST_ITEM_BAG_FULL" );
 
 		nEmptyBagChildSlot = pDestBagItem->FindEmptyChildSlot();
 
-		// 7. ÀÌ °æ¿ì´Â BagChildToBagChild¼­ºê·ÎÁ÷À¸·Î. 
+		// 7. ì´ ê²½ìš°ëŠ” BagChildToBagChildì„œë¸Œë¡œì§ìœ¼ë¡œ. 
 		NTL_RETURN( Logic_ItemMoveSubProcBagChildToBagChild( hSrcSerial, ucSrcSlotIdx, hDestBagSerial, (RwUInt8)nEmptyBagChildSlot, uiStackCount ) );	
 	}	
 }
@@ -746,7 +746,7 @@ std::string Logic_ItemMoveSubProcBagChildToBagChild( SERIAL_HANDLE hSrcSerial, R
 	RwUInt8 ucSrcBagIdx = (RwUInt8)pSrcItem->GetParentItemSlotIdx();
 	RwUInt8 ucDestBagIdx= (RwUInt8)pInventory->FindBagSlot( hDestParentSerial );
 
-	// 1. °°Àº °¡¹æ, °°Àº ÀÚ¸®ÀÏ °æ¿ì Ãë¼Ò	
+	// 1. ê°™ì€ ê°€ë°©, ê°™ì€ ìë¦¬ì¼ ê²½ìš° ì·¨ì†Œ	
 	if( ucSrcBagIdx == ucDestBagIdx && ucSrcSlotIdx == ucDestSlotIdx )
 	{
 		GetIconMoveManager()->IconMoveEnd();
@@ -762,7 +762,7 @@ std::string Logic_ItemMoveSubProcBagChildToBagChild( SERIAL_HANDLE hSrcSerial, R
 	DBO_ASSERT( pDestBagItemAttr, "Invalid DestBagItemAttr" );
 	SERIAL_HANDLE hDestSerial = pDestBagItem->GetChildSerial( ucDestSlotIdx );
 
-	// 3. dest °¡¹æÀÇ »ç¿ë±â°£ °Ë»ç
+	// 3. dest ê°€ë°©ì˜ ì‚¬ìš©ê¸°ê°„ ê²€ì‚¬
 	if( pDestBagItemAttr->IsExpired() )
 		NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_BAG_EXPIRED_DURATION" );
 
@@ -795,7 +795,7 @@ std::string Logic_ItemMoveSubProcBagChildToWarehouse(SERIAL_HANDLE hSrcSerial, R
 
 	if( Logic_IsCanSaveWarehouse( pSobItemAttr ) == FALSE )
 	{
-		// Ã¢°í¿¡ ÀúÀåÇÒ ¼ö ¾ø´Â ¾ÆÀÌÅÛ
+		// ì°½ê³ ì— ì €ì¥í•  ìˆ˜ ì—†ëŠ” ì•„ì´í…œ
 		NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_TO_WAREHOUSE" );
 	}
 
@@ -804,7 +804,7 @@ std::string Logic_ItemMoveSubProcBagChildToWarehouse(SERIAL_HANDLE hSrcSerial, R
 	if( hDestParentSerial == hCommonWarehouse && 
 		Logic_IsCanSaveCommonWarehouse( pSobItemAttr ) == FALSE )
 	{
-		// °øÀ¯ Ã¢°í¿¡ ÀúÀåÇÒ ¼ö ¾ø´Â ¾ÆÀÌÅÛ
+		// ê³µìœ  ì°½ê³ ì— ì €ì¥í•  ìˆ˜ ì—†ëŠ” ì•„ì´í…œ
 		NTL_RETURN( "DST_ITEM_CAN_NOT_SAVE_COMMON_WAREHOUSE" );
 	}
 
@@ -816,7 +816,7 @@ std::string Logic_ItemMoveSubProcBagChildToWarehouse(SERIAL_HANDLE hSrcSerial, R
 	// dest
 	eCONTAINER_TYPE eDestContainerType = Logic_ConverWarehouseIdxToContainderType(pWarehouse->FindWarehouseSlot(hDestParentSerial));
 
-	// Ã¢°í NPC serial	
+	// ì°½ê³  NPC serial	
 	CWarehouseBarGui* pWarehouseBarGui = reinterpret_cast<CWarehouseBarGui*>(GetDialogManager()->GetDialog(DIALOG_WAREHOUSEBAR));
 	SERIAL_HANDLE hNPCHandle = pWarehouseBarGui->GetNPCSerial();
 
@@ -853,7 +853,7 @@ std::string Logic_ItemMoveSubProcBagChildToGuildWarehouse(SERIAL_HANDLE hSrcSeri
 
 	if( Logic_IsCanSaveWarehouse( pSobItemAttr ) == FALSE )
 	{
-		// Ã¢°í¿¡ ÀúÀåÇÒ ¼ö ¾ø´Â ¾ÆÀÌÅÛ
+		// ì°½ê³ ì— ì €ì¥í•  ìˆ˜ ì—†ëŠ” ì•„ì´í…œ
 		NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_TO_WAREHOUSE" );
 	}
 
@@ -864,7 +864,7 @@ std::string Logic_ItemMoveSubProcBagChildToGuildWarehouse(SERIAL_HANDLE hSrcSeri
 
 	// Dest
 	CNtlGuildWarehouse* pGuildWarehouse = GetNtlSLGlobal()->GetSobAvatar()->GetGuildWarehouse();
-	// hDestParentSerial : ÇÚµéÀÌ ¾Æ´Ï¶ó ±æµå Ã¢°íÀÇ ÀÎµ¦½º¸¦ ¹Ş¾Ò´Ù 
+	// hDestParentSerial : í•¸ë“¤ì´ ì•„ë‹ˆë¼ ê¸¸ë“œ ì°½ê³ ì˜ ì¸ë±ìŠ¤ë¥¼ ë°›ì•˜ë‹¤ 
 	eCONTAINER_TYPE eDestContainerType = Logic_ConverGuildWarehouseIdxToContainderType((RwUInt8)hDestParentSerial);
 	sGuildWarehouseSlot* pGuildWarehouseItem = pGuildWarehouse->GetItem((RwUInt8)hDestParentSerial, ucDestSlotIdx);
 
@@ -889,8 +889,8 @@ std::string Logic_ItemMoveSubProcBagChildToGuildWarehouse(SERIAL_HANDLE hSrcSeri
 std::string Logic_ItemMoveSubProcQuestToQuest( RwUInt8 ucSrcSlotIdx, RwUInt8 ucDestSlotIdx )
 {
 	NTL_FUNCTION( "Logic_ItemMoveSubProcQuestToQuest" );
-	// ºñ±³Á¶°Ç
-	// 1. °°ÀºÀÚ¸®´Â Á¦¿Ü.
+	// ë¹„êµì¡°ê±´
+	// 1. ê°™ì€ìë¦¬ëŠ” ì œì™¸.
 	if( ucSrcSlotIdx == ucDestSlotIdx )
 	{
 		GetIconMoveManager()->IconMoveEnd();
@@ -923,9 +923,9 @@ std::string Logic_ItemMoveSubProcWarehouseToEquip( SERIAL_HANDLE hSrcSerial, RwU
 	SERIAL_HANDLE hDestSerial = GetNtlSLGlobal()->GetSobAvatar()->GetInventory()->GetEquipItem( ucDestSlotIdx );
 	RwUInt32 usDestSlotFlag = Logic_ConvertEquipSlotIdxToFlag( ucDestSlotIdx );
 
-	// 0. ÇöÀç´Â Ã¢°í¿¡ º¸°ü°¡´ÉÇÑ ¾ÆÀÌÅÛÀº »ç¿ë±â°£Á¦ÇÑÀÌ ¾Æ´Ô. °Ë»ç°¡ ÇÊ¿ä¾ø´Ù.
+	// 0. í˜„ì¬ëŠ” ì°½ê³ ì— ë³´ê´€ê°€ëŠ¥í•œ ì•„ì´í…œì€ ì‚¬ìš©ê¸°ê°„ì œí•œì´ ì•„ë‹˜. ê²€ì‚¬ê°€ í•„ìš”ì—†ë‹¤.
 
-	// 1. Dest°¡ ½ºÄ«¿ìÅÍÀÌ°í ÀÌ¹Ì ½ºÄ«¿ìÅÍ¸¦ Âø¿ëÁßÀÎ °æ¿ì, 2,3¹ø »çÇ× È®ÀÎ.
+	// 1. Destê°€ ìŠ¤ì¹´ìš°í„°ì´ê³  ì´ë¯¸ ìŠ¤ì¹´ìš°í„°ë¥¼ ì°©ìš©ì¤‘ì¸ ê²½ìš°, 2,3ë²ˆ ì‚¬í•­ í™•ì¸.
 	if( ucDestSlotIdx == EQUIP_SLOT_TYPE_SCOUTER && hDestSerial != INVALID_SERIAL_ID )
 	{
 		CNtlSobItem* pDestItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( hDestSerial ) );
@@ -936,12 +936,12 @@ std::string Logic_ItemMoveSubProcWarehouseToEquip( SERIAL_HANDLE hSrcSerial, RwU
 	}
 	else
 	{
-		// 5. ¾ÆÀÌÅÛ ÀåÂøÅ¸ÀÔ °Ë»ç.
+		// 5. ì•„ì´í…œ ì¥ì°©íƒ€ì… ê²€ì‚¬.
 		if( !Logic_EquipSlotTypeFlagCheck( usDestSlotFlag, pSrcItemTable->dwEquip_Slot_Type_Bit_Flag ) )
 			NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_NOT_EQUIAL_EQUIPTYPE" );
 	}	
 
-	// Ã¢°í NPC Serial
+	// ì°½ê³  NPC Serial
 	CWarehouseBarGui* pWarehouseBarGui = reinterpret_cast<CWarehouseBarGui*>(GetDialogManager()->GetDialog(DIALOG_WAREHOUSEBAR));
 	SERIAL_HANDLE hNPCHandle = pWarehouseBarGui->GetNPCSerial();
 
@@ -983,7 +983,7 @@ std::string Logic_ItemMoveSubProcWarehouseToBagSlot( SERIAL_HANDLE hSrcSerial, R
 	RwUInt8 bySrcSlot = pWarehouse->FindWarehouseSlot(pSrcItem->GetParentItem()->GetSerialID());
 	eCONTAINER_TYPE eSrcContainerType = Logic_ConverWarehouseIdxToContainderType(bySrcSlot);
 
-	// Ã¢°í NPC Serial
+	// ì°½ê³  NPC Serial
 	CWarehouseBarGui* pWarehouseBarGui = reinterpret_cast<CWarehouseBarGui*>(GetDialogManager()->GetDialog(DIALOG_WAREHOUSEBAR));
 	SERIAL_HANDLE hNPCHandle = pWarehouseBarGui->GetNPCSerial();
 
@@ -991,13 +991,13 @@ std::string Logic_ItemMoveSubProcWarehouseToBagSlot( SERIAL_HANDLE hSrcSerial, R
 	SERIAL_HANDLE hDestBagSerial = pInventory->GetBagItem( ucDestSlotIdx );
 	RwInt32 nEmptyBagChildSlot = -1;
 
-	// 1. DestSlotÀÇ °¡¹æÀÌ ÀÖÀ»¶§¿Í ¾øÀ»¶§ Ã¼Å©. 
+	// 1. DestSlotì˜ ê°€ë°©ì´ ìˆì„ë•Œì™€ ì—†ì„ë•Œ ì²´í¬. 
 	if( hDestBagSerial == INVALID_SERIAL_ID )
 	{
-		// 2. src¾ÆÀÌÅÛÀÌ °¡¹æÀÌ¶ó¸é.
+		// 2. srcì•„ì´í…œì´ ê°€ë°©ì´ë¼ë©´.
 		if( pSrcItem->IsBagItem() )
 		{
-			// 3. src °¡¹æÀÇ »ç¿ë±â°£ Ã¼Å©´Â ÇÏÁö ¾Ê¾Æµµ µÈ´Ù. Ã¢°í¿¡ ÀúÀåÇÏ´Â °ÍµéÀº »ç¿ë±â°£ÀÇ Á¦ÇÑÀÌ ¾ø´Ù.
+			// 3. src ê°€ë°©ì˜ ì‚¬ìš©ê¸°ê°„ ì²´í¬ëŠ” í•˜ì§€ ì•Šì•„ë„ ëœë‹¤. ì°½ê³ ì— ì €ì¥í•˜ëŠ” ê²ƒë“¤ì€ ì‚¬ìš©ê¸°ê°„ì˜ ì œí•œì´ ì—†ë‹¤.
 			if( GetDboGlobal()->GetGamePacketGenerator()->SendBankMove( hNPCHandle, (RwUInt8)eSrcContainerType, ucSrcSlotIdx, CONTAINER_TYPE_BAGSLOT, ucDestSlotIdx ) )
 				NTL_RETURN( "" )	
 			else
@@ -1005,7 +1005,7 @@ std::string Logic_ItemMoveSubProcWarehouseToBagSlot( SERIAL_HANDLE hSrcSerial, R
 		}
 		else
 		{
-			// 4. °¡¹æÀÌ ¾Æ´Ï°í, dest¿¡ °¡¹æµµ ¾ø´Ù¸é Ãë¼Ò.
+			// 4. ê°€ë°©ì´ ì•„ë‹ˆê³ , destì— ê°€ë°©ë„ ì—†ë‹¤ë©´ ì·¨ì†Œ.
 			NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_TO_BAGSLOT_NOT_BAG" );
 		}
 	}
@@ -1014,13 +1014,13 @@ std::string Logic_ItemMoveSubProcWarehouseToBagSlot( SERIAL_HANDLE hSrcSerial, R
 		CNtlSobItem* pDestBagItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( hDestBagSerial ) );
 		NTL_ASSERT( pDestBagItem, "Invalid hDestBagSerial" );
 
-		// 4. destÀÇ °¡¹æÀÌ ²Ë Ã¡À»¶§ Ãë¼Ò.
+		// 4. destì˜ ê°€ë°©ì´ ê½‰ ì°¼ì„ë•Œ ì·¨ì†Œ.
 		if( pDestBagItem->FullChild() )
 			NTL_RETURN( "DST_ITEM_BAG_FULL" );
 
 		nEmptyBagChildSlot = pDestBagItem->FindEmptyChildSlot();
 
-		// 5. ÀÌ °æ¿ì´Â WarehouseToBagChild¼­ºê·ÎÁ÷À¸·Î. 
+		// 5. ì´ ê²½ìš°ëŠ” WarehouseToBagChildì„œë¸Œë¡œì§ìœ¼ë¡œ. 
 		NTL_RETURN( Logic_ItemMoveSubProcWarehouseToBagChild( hSrcSerial, ucSrcSlotIdx, PLACE_BAG, hDestBagSerial, ucDestSlotIdx, uiStackCount ) );
 	}		
 }
@@ -1046,11 +1046,11 @@ std::string Logic_ItemMoveSubProcWarehouseToBagChild( SERIAL_HANDLE hSrcSerial, 
 	DBO_ASSERT( pDestBagItemAttr, "Invalid DestBagItemAttr" );
 	SERIAL_HANDLE hDestSerial = pDestBagItem->GetChildSerial( ucDestSlotIdx );
 
-	// 3. dest °¡¹æÀÇ »ç¿ë±â°£ °Ë»ç
+	// 3. dest ê°€ë°©ì˜ ì‚¬ìš©ê¸°ê°„ ê²€ì‚¬
 	if( pDestBagItemAttr->IsExpired() )
 		NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_BAG_EXPIRED_DURATION" );
 
-	// Ã¢°í NPC Serial
+	// ì°½ê³  NPC Serial
 	CWarehouseBarGui* pWarehouseBarGui = reinterpret_cast<CWarehouseBarGui*>(GetDialogManager()->GetDialog(DIALOG_WAREHOUSEBAR));
 	SERIAL_HANDLE hNPCHandle = pWarehouseBarGui->GetNPCSerial();
 
@@ -1087,7 +1087,7 @@ std::string Logic_ItemMoveSubProcWarehouseToWarehouse( SERIAL_HANDLE hSrcSerial,
 
 	if( Logic_IsCanSaveWarehouse( pSobItemAttr ) == FALSE )
 	{
-		// Ã¢°í¿¡ ÀúÀåÇÒ ¼ö ¾ø´Â ¾ÆÀÌÅÛ
+		// ì°½ê³ ì— ì €ì¥í•  ìˆ˜ ì—†ëŠ” ì•„ì´í…œ
 		NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_TO_WAREHOUSE" );
 	}
 
@@ -1095,7 +1095,7 @@ std::string Logic_ItemMoveSubProcWarehouseToWarehouse( SERIAL_HANDLE hSrcSerial,
 	if( hDestParentSerial == hCommonWarehouse &&
 		Logic_IsCanSaveCommonWarehouse( pSobItemAttr ) == FALSE )
 	{
-		// °øÀ¯ Ã¢°í¿¡ ÀúÀåÇÒ ¼ö ¾ø´Â ¾ÆÀÌÅÛ		
+		// ê³µìœ  ì°½ê³ ì— ì €ì¥í•  ìˆ˜ ì—†ëŠ” ì•„ì´í…œ		
 		NTL_RETURN( "DST_ITEM_CAN_NOT_SAVE_COMMON_WAREHOUSE" );
 	}
 
@@ -1105,12 +1105,12 @@ std::string Logic_ItemMoveSubProcWarehouseToWarehouse( SERIAL_HANDLE hSrcSerial,
 	// dest
 	eCONTAINER_TYPE eDestContainerType = Logic_ConverWarehouseIdxToContainderType(pWarehouse->FindWarehouseSlot(hDestParentSerial));
 
-	// Ã¢°í NPC Serial
+	// ì°½ê³  NPC Serial
 	CWarehouseBarGui* pWarehouseBarGui = reinterpret_cast<CWarehouseBarGui*>(GetDialogManager()->GetDialog(DIALOG_WAREHOUSEBAR));
 	SERIAL_HANDLE hNPCHandle = pWarehouseBarGui->GetNPCSerial();
 
-	// ºñ±³Á¶°Ç
-	// 1. °°ÀºÀÚ¸®´Â Á¦¿Ü.
+	// ë¹„êµì¡°ê±´
+	// 1. ê°™ì€ìë¦¬ëŠ” ì œì™¸.
 	if( ucSrcSlotIdx == ucDestSlotIdx && eSrcContainerType == eDestContainerType)
 	{
 		GetIconMoveManager()->IconMoveEnd();
@@ -1152,7 +1152,7 @@ std::string Logic_ItemMoveSubProcWarehouseToWarehouse( SERIAL_HANDLE hSrcSerial,
 //	RwUInt8 bySrcSlot = pWarehouse->FindWarehouseSlot(pSrcItem->GetParentItem()->GetSerialID());
 //	eCONTAINER_TYPE eSrcContainerType = Logic_ConverWarehouseIdxToContainderType(bySrcSlot);
 //
-//	// Ã¢°í NPC Serial
+//	// ì°½ê³  NPC Serial
 //	CWarehouseBarGui* pWarehouseBarGui = reinterpret_cast<CWarehouseBarGui*>(GetDialogManager()->GetDialog(DIALOG_WAREHOUSEBAR));
 //	SERIAL_HANDLE hNPCHandle = pWarehouseBarGui->GetNPCSerial();
 //
@@ -1173,8 +1173,8 @@ std::string Logic_ItemMoveSubProcGuildWarehouseToEquip(SERIAL_HANDLE hSrcSerial,
 	SERIAL_HANDLE hDestSerial = GetNtlSLGlobal()->GetSobAvatar()->GetInventory()->GetEquipItem( ucDestSlotIdx );
 	RwInt32 usDestSlotFlag = Logic_ConvertEquipSlotIdxToFlag( ucDestSlotIdx );
 
-	// 0. ÇöÀç´Â Ã¢°í¿¡ º¸°ü°¡´ÉÇÑ ¾ÆÀÌÅÛÀº »ç¿ë±â°£Á¦ÇÑÀÌ ¾Æ´Ô. °Ë»ç°¡ ÇÊ¿ä¾ø´Ù.
-	// 1. Dest°¡ ½ºÄ«¿ìÅÍÀÌ°í ÀÌ¹Ì ½ºÄ«¿ìÅÍ¸¦ Âø¿ëÁßÀÎ °æ¿ì, 2,3¹ø »çÇ× È®ÀÎ.
+	// 0. í˜„ì¬ëŠ” ì°½ê³ ì— ë³´ê´€ê°€ëŠ¥í•œ ì•„ì´í…œì€ ì‚¬ìš©ê¸°ê°„ì œí•œì´ ì•„ë‹˜. ê²€ì‚¬ê°€ í•„ìš”ì—†ë‹¤.
+	// 1. Destê°€ ìŠ¤ì¹´ìš°í„°ì´ê³  ì´ë¯¸ ìŠ¤ì¹´ìš°í„°ë¥¼ ì°©ìš©ì¤‘ì¸ ê²½ìš°, 2,3ë²ˆ ì‚¬í•­ í™•ì¸.
 	if( ucDestSlotIdx == EQUIP_SLOT_TYPE_SCOUTER && hDestSerial != INVALID_SERIAL_ID )
 	{
 		CNtlSobItem* pDestItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( hDestSerial ) );
@@ -1185,7 +1185,7 @@ std::string Logic_ItemMoveSubProcGuildWarehouseToEquip(SERIAL_HANDLE hSrcSerial,
 	}
 	else
 	{
-		// 5. ¾ÆÀÌÅÛ ÀåÂøÅ¸ÀÔ °Ë»ç.
+		// 5. ì•„ì´í…œ ì¥ì°©íƒ€ì… ê²€ì‚¬.
 		if( !Logic_EquipSlotTypeFlagCheck( usDestSlotFlag, pSrcItemTable->dwEquip_Slot_Type_Bit_Flag ) )
 			NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_NOT_EQUIAL_EQUIPTYPE" );
 	}
@@ -1228,13 +1228,13 @@ std::string Logic_ItemMoveSubProcGuildWarehouseToBagSlot(SERIAL_HANDLE hSrcSeria
 	SERIAL_HANDLE hDestBagSerial = pInventory->GetBagItem( ucDestSlotIdx );
 	RwInt32 nEmptyBagChildSlot = -1;
 
-	// 1. DestSlotÀÇ °¡¹æÀÌ ÀÖÀ»¶§¿Í ¾øÀ»¶§ Ã¼Å©. 
+	// 1. DestSlotì˜ ê°€ë°©ì´ ìˆì„ë•Œì™€ ì—†ì„ë•Œ ì²´í¬. 
 	if( hDestBagSerial == INVALID_SERIAL_ID )
 	{
-		// 2. src¾ÆÀÌÅÛÀÌ °¡¹æÀÌ¶ó¸é.
+		// 2. srcì•„ì´í…œì´ ê°€ë°©ì´ë¼ë©´.
 		if( pSrcItemTable->byItem_Type == ITEM_TYPE_BAG )
 		{
-			// 3. src °¡¹æÀÇ »ç¿ë±â°£ Ã¼Å©´Â ÇÏÁö ¾Ê¾Æµµ µÈ´Ù. Ã¢°í¿¡ ÀúÀåÇÏ´Â °ÍµéÀº »ç¿ë±â°£ÀÇ Á¦ÇÑÀÌ ¾ø´Ù.
+			// 3. src ê°€ë°©ì˜ ì‚¬ìš©ê¸°ê°„ ì²´í¬ëŠ” í•˜ì§€ ì•Šì•„ë„ ëœë‹¤. ì°½ê³ ì— ì €ì¥í•˜ëŠ” ê²ƒë“¤ì€ ì‚¬ìš©ê¸°ê°„ì˜ ì œí•œì´ ì—†ë‹¤.
 			if( GetDboGlobal()->GetGamePacketGenerator()->SendGuildWarehouseMoveReq(pGuildWarehouse->GetNPCHandle(),
 				pGuildWarehouseItem->byServerPlace, pGuildWarehouseItem->byPos, CONTAINER_TYPE_BAGSLOT, ucDestSlotIdx) )
 				NTL_RETURN( "" )	
@@ -1243,7 +1243,7 @@ std::string Logic_ItemMoveSubProcGuildWarehouseToBagSlot(SERIAL_HANDLE hSrcSeria
 		}
 		else
 		{
-			// 4. °¡¹æÀÌ ¾Æ´Ï°í, dest¿¡ °¡¹æµµ ¾ø´Ù¸é Ãë¼Ò.
+			// 4. ê°€ë°©ì´ ì•„ë‹ˆê³ , destì— ê°€ë°©ë„ ì—†ë‹¤ë©´ ì·¨ì†Œ.
 			NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_TO_BAGSLOT_NOT_BAG" );
 		}
 	}
@@ -1252,13 +1252,13 @@ std::string Logic_ItemMoveSubProcGuildWarehouseToBagSlot(SERIAL_HANDLE hSrcSeria
 		CNtlSobItem* pDestBagItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( hDestBagSerial ) );
 		NTL_ASSERT( pDestBagItem, "Invalid hDestBagSerial" );
 
-		// 4. destÀÇ °¡¹æÀÌ ²Ë Ã¡À»¶§ Ãë¼Ò.
+		// 4. destì˜ ê°€ë°©ì´ ê½‰ ì°¼ì„ë•Œ ì·¨ì†Œ.
 		if( pDestBagItem->FullChild() )
 			NTL_RETURN( "DST_ITEM_BAG_FULL" );
 
 		nEmptyBagChildSlot = pDestBagItem->FindEmptyChildSlot();
 
-		// 5. ÀÌ °æ¿ì´Â BagChildToBagChild¼­ºê·ÎÁ÷À¸·Î. 
+		// 5. ì´ ê²½ìš°ëŠ” BagChildToBagChildì„œë¸Œë¡œì§ìœ¼ë¡œ. 
 		NTL_RETURN( Logic_ItemMoveSubProcGuildWarehouseToBagChild( hSrcSerial, eDestPlace, ucSrcSlotIdx, eDestPlace, hDestParentSerial, ucDestSlotIdx, uiStackCount ) );		
 	}	
 }
@@ -1283,7 +1283,7 @@ std::string Logic_ItemMoveSubProcGuildWarehouseToBagChild(SERIAL_HANDLE hSrcSeri
 	DBO_ASSERT( pDestBagItemAttr, "Invalid DestBagItemAttr" );
 	SERIAL_HANDLE hDestSerial = pDestBagItem->GetChildSerial( ucDestSlotIdx );
 
-	// 3. dest °¡¹æÀÇ »ç¿ë±â°£ °Ë»ç
+	// 3. dest ê°€ë°©ì˜ ì‚¬ìš©ê¸°ê°„ ê²€ì‚¬
 	if( pDestBagItemAttr->IsExpired() )
 		NTL_RETURN( "DST_ITEM_CAN_NOT_MOVE_BAG_EXPIRED_DURATION" );
 
@@ -1313,7 +1313,7 @@ std::string Logic_ItemMoveSubProcGuildWarehouseToGuildWarehouse(SERIAL_HANDLE hS
 	RwUInt8 bySrcIndex = (RwUInt8)(pGuildWarehouseItem->byServerPlace - CONTAINER_TYPE_GUILD_FIRST);
 	NTL_ASSERT(pGuildWarehouseItem, "Logic_ItemMoveSubProcGuildWarehouseToBagSlot, Not exist guild warehouse item of handle << " << hSrcSerial);
 
-	// °°Àº ½½·ÔÀº ÀÌµ¿ÇÏÁö ¾Ê´Â´Ù
+	// ê°™ì€ ìŠ¬ë¡¯ì€ ì´ë™í•˜ì§€ ì•ŠëŠ”ë‹¤
 	if( bySrcIndex == hDestParentSerial )
 	{
 		if( ucSrcSlotIdx == ucDestSlotIdx )
@@ -1324,7 +1324,7 @@ std::string Logic_ItemMoveSubProcGuildWarehouseToGuildWarehouse(SERIAL_HANDLE hS
 	}
 
 	// Dest
-	// hDestParentSerial : ÇÚµéÀÌ ¾Æ´Ï¶ó ±æµå Ã¢°íÀÇ ÀÎµ¦½º¸¦ ¹Ş¾Ò´Ù 
+	// hDestParentSerial : í•¸ë“¤ì´ ì•„ë‹ˆë¼ ê¸¸ë“œ ì°½ê³ ì˜ ì¸ë±ìŠ¤ë¥¼ ë°›ì•˜ë‹¤ 
 	sGuildWarehouseSlot* pGuildWarehouseDestItem = pGuildWarehouse->GetItem((RwUInt8)hDestParentSerial, ucDestSlotIdx);
 	eCONTAINER_TYPE eDestContainerType = Logic_ConverGuildWarehouseIdxToContainderType((RwUInt8)hDestParentSerial);
 
@@ -1347,13 +1347,13 @@ std::string Logic_ItemMoveSubProcGuildWarehouseToGuildWarehouse(SERIAL_HANDLE hS
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Zenny ÀÌµ¿ °ü·Ã
+// Zenny ì´ë™ ê´€ë ¨
 
 std::string Logic_ItemMoveSubProcSubBagZennyToWarehouseZenny(SERIAL_HANDLE hNPCHandle, RwUInt32 uiZenny)
 {
 	NTL_FUNCTION( "Logic_ItemMoveSubProcSubBagMoneyToWarehouse" );
 
-	// Ã¢°í(ÀºÇà)¿¡ µ·À» ³Ö´Ù
+	// ì°½ê³ (ì€í–‰)ì— ëˆì„ ë„£ë‹¤
 	if( GetDboGlobal()->GetGamePacketGenerator()->SendBankZenny(hNPCHandle, uiZenny, true) )
 		NTL_RETURN( "" )
 	else
@@ -1364,7 +1364,7 @@ std::string Logic_ItemMoveSubProcSubBagZennyToGuildWarehouseZenny(SERIAL_HANDLE 
 {
 	NTL_FUNCTION( "Logic_ItemMoveSubProcSubBagMoneyToGuildWarehouse" );
 
-	// ±æµå Ã¢°í(ÀºÇà)¿¡ µ·À» ³Ö´Ù
+	// ê¸¸ë“œ ì°½ê³ (ì€í–‰)ì— ëˆì„ ë„£ë‹¤
 	if( GetDboGlobal()->GetGamePacketGenerator()->SendGuildWarehouseZennyReq(hNPCHandle, uiZenny, true) )
 		NTL_RETURN( "" )
 	else
@@ -1399,7 +1399,7 @@ std::string Logic_ItemMoveSubProcWareHouseZennyToSubBagZenny(RwUInt32 uiZenny)
 
 	CWarehouseCommonGui* pWarehouseCommonGui = reinterpret_cast<CWarehouseCommonGui*>( GetDialogManager()->GetDialog(DIALOG_WAREHOUSE_COMMON) );
 
-	// Ã¢°í(ÀºÇà)¿¡¼­ µ·À» »«´Ù
+	// ì°½ê³ (ì€í–‰)ì—ì„œ ëˆì„ ëº€ë‹¤
 	if( GetDboGlobal()->GetGamePacketGenerator()->SendBankZenny(pWarehouseCommonGui->GetNPCHandle(), uiZenny, false) )
 		NTL_RETURN( "" )
 	else
@@ -1412,7 +1412,7 @@ std::string Logic_ItemMoveSubProcGuildWareHouseZennyToSubBagZenny(RwUInt32 uiZen
 
 	CNtlGuildWarehouse* pGuildWarehouse = GetNtlSLGlobal()->GetSobAvatar()->GetGuildWarehouse();
 
-	// ±æµå Ã¢°í(ÀºÇà)¿¡ µ·À» »«´Ù
+	// ê¸¸ë“œ ì°½ê³ (ì€í–‰)ì— ëˆì„ ëº€ë‹¤
 	if( GetDboGlobal()->GetGamePacketGenerator()->SendGuildWarehouseZennyReq(pGuildWarehouse->GetNPCHandle(), uiZenny, false) )
 		NTL_RETURN( "" )
 	else

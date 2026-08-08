@@ -205,7 +205,7 @@ void CAttackTypePane::ChangeDamage(int nIndex)
     if(!m_vEventAnimHit[nIndex])
         return;
 
-    // ÃÑÇÕÀÌ 100ÀÌ ³ÑÀ¸¸é ¿¡·¯¸¦ Ãâ·ÂÇÏ°í ¿ø·¡°ªÀ¸·Î µÇµ¹¸°´Ù.
+    // ì´í•©ì´ 100ì´ ë„˜ìœ¼ë©´ ì—ëŸ¬ë¥¼ ì¶œë ¥í•˜ê³  ì›ë˜ê°’ìœ¼ë¡œ ë˜ëŒë¦°ë‹¤.
     int nTotalDamage = 0;
     for(int i = 0; i < MAX_HIT_EVENT_COUNT; ++i)
     {
@@ -226,7 +226,7 @@ void CAttackTypePane::ChangeDamage(int nIndex)
             CModelToolApplication::GetInstance()->SetDataChanged();
         }
     }   
-    else    // 100º¸´Ù Å©¸é
+    else    // 100ë³´ë‹¤ í¬ë©´
     {
         //sDamage.Format(L"%d", m_vEventAnimHit[nIndex]->uiDamage);
         //m_edDamage[nIndex].SetWindowText(sDamage);

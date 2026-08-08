@@ -55,6 +55,19 @@ private:
       typedef BOOL (__stdcall * SYMINITIALIZEPROC)( HANDLE, LPSTR, BOOL );
       typedef BOOL (__stdcall *SYMCLEANUPPROC)( HANDLE );
 
+#if defined(_WIN64)
+      typedef BOOL (__stdcall * STACKWALKPROC)
+                   ( DWORD, HANDLE, HANDLE, LPSTACKFRAME64, LPVOID,
+                    PREAD_PROCESS_MEMORY_ROUTINE64,PFUNCTION_TABLE_ACCESS_ROUTINE64,
+                    PGET_MODULE_BASE_ROUTINE64, PTRANSLATE_ADDRESS_ROUTINE64 );
+
+      typedef LPVOID (__stdcall *SYMFUNCTIONTABLEACCESSPROC)( HANDLE, DWORD64 );
+
+      typedef DWORD64 (__stdcall *SYMGETMODULEBASEPROC)( HANDLE, DWORD64 );
+
+      typedef BOOL (__stdcall *SYMGETSYMFROMADDRPROC)
+                                    ( HANDLE, DWORD64, PDWORD64, PIMAGEHLP_SYMBOL64 );
+#else
       typedef BOOL (__stdcall * STACKWALKPROC)
                    ( DWORD, HANDLE, HANDLE, LPSTACKFRAME, LPVOID,
                     PREAD_PROCESS_MEMORY_ROUTINE,PFUNCTION_TABLE_ACCESS_ROUTINE,
@@ -66,6 +79,7 @@ private:
 
       typedef BOOL (__stdcall *SYMGETSYMFROMADDRPROC)
                                     ( HANDLE, DWORD, PDWORD, PIMAGEHLP_SYMBOL );
+#endif
 
       static SYMINITIALIZEPROC _SymInitialize;
       static SYMCLEANUPPROC _SymCleanup;

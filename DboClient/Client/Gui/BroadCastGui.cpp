@@ -95,7 +95,7 @@ RwBool CBroadCastGui::Create()
 	m_aCallUpdateState[STATE_DIRECTION_OUT_END]		= &CBroadCastGui::UpdateDirectionOutEnd;
 	m_aCallUpdateState[STATE_CLOSE]					= &CBroadCastGui::UpdateClose;
 
-	// Init ( È­¸é¿¡ ¾È º¸ÀÌ°Ô ¼³Á¤ )
+	// Init ( í™”ë©´ì— ì•ˆ ë³´ì´ê²Œ ì„¤ì • )
 	m_pThis->SetPosition( GetDboGlobal()->GetScreenWidth(), 0 );
 
 	GetNtlGuiManager()->AddUpdateFunc( this );
@@ -126,7 +126,7 @@ VOID CBroadCastGui::Update( RwReal fElapsed )
 	if( !m_bPlay )
 		return;
 
-	// Flash°¡ ÇÃ·¹ÀÌ ÁßÀÌ¸é ¾÷µ¥ÀÌÆ® ÇØÁØ´Ù.
+	// Flashê°€ í”Œë ˆì´ ì¤‘ì´ë©´ ì—…ë°ì´íŠ¸ í•´ì¤€ë‹¤.
 	for( RwInt32 i=0; i<dBROAD_BALLOON_SHAPE_NUMS; ++i )
 	{
 		if( m_paFlaBalloon[i]->IsPlayMovie() )
@@ -139,19 +139,19 @@ VOID CBroadCastGui::Update( RwReal fElapsed )
 	if( m_pHtmlText->IsVisible() )
 		m_pHtmlText->Update( fElapsed );
 
-	// °¢ ½ºÅ×ÀÌÆ®¿¡ ¸ÂÃç¼­ Update ÇÔ¼ö È£Ãâ
+	// ê° ìŠ¤í…Œì´íŠ¸ì— ë§ì¶°ì„œ Update í•¨ìˆ˜ í˜¸ì¶œ
 	(this->*m_aCallUpdateState[m_byState])( fElapsed );
 }
 
 VOID CBroadCastGui::HandleEvents( RWS::CMsg &msg )
 {
-	// g_EventBroadMsgBegNfy : BroadCast Message¸¦ ½ÃÀÛÇÏ¶ó´Â Event
+	// g_EventBroadMsgBegNfy : BroadCast Messageë¥¼ ì‹œì‘í•˜ë¼ëŠ” Event
 	if( msg.Id == g_EventBroadMsgBegNfy )
 	{
 		SNtlEventBroadMsgBegNfy* pNotify = reinterpret_cast< SNtlEventBroadMsgBegNfy* >( msg.pData );
 
-		// ÇöÀç Ãâ·ÂµÇ°í ÀÖ´Â UnitÀÌ ¾ø´Ù¸é ¹Ù·Î ½ÃÀÛÇÑ´Ù.
-		// ¸¸¾à ÇöÀç Ãâ·ÂµÇ°í ÀÖ´ø UnitÀÌ ÀÖ´Ù¸é ÇöÀç Ãâ·ÂµÇ°í ÀÖ´ø Type¿¡ µû¶ó »õ·Î¿î Data·Î ¼¼ÆÃÇÑ´Ù.
+		// í˜„ì¬ ì¶œë ¥ë˜ê³  ìˆëŠ” Unitì´ ì—†ë‹¤ë©´ ë°”ë¡œ ì‹œì‘í•œë‹¤.
+		// ë§Œì•½ í˜„ì¬ ì¶œë ¥ë˜ê³  ìˆë˜ Unitì´ ìˆë‹¤ë©´ í˜„ì¬ ì¶œë ¥ë˜ê³  ìˆë˜ Typeì— ë”°ë¼ ìƒˆë¡œìš´ Dataë¡œ ì„¸íŒ…í•œë‹¤.
 		if( !m_bCurUnit )
 		{
 			SetCurUnitData( pNotify->byMsgType, pNotify->defMsgDataList );
@@ -170,7 +170,7 @@ VOID CBroadCastGui::HandleEvents( RWS::CMsg &msg )
 			case eBROAD_MSG_TYPE_TS:
 			case eBROAD_MSG_TYPE_EMERGENCY:
 				{
-					// °°Àº Å¸ÀÔÀÌ¶ó°í ÁöÄªÇÏ°í ÇöÀç ÀÖ´Â °ÍÀ» ¿ÏÀüÈ÷ Á¾·áÇÏ°í »õ·Î¿î µ¥ÀÌÅ¸·Î ¼¼ÆÃÇÑ´Ù.
+					// ê°™ì€ íƒ€ì…ì´ë¼ê³  ì§€ì¹­í•˜ê³  í˜„ì¬ ìˆëŠ” ê²ƒì„ ì™„ì „íˆ ì¢…ë£Œí•˜ê³  ìƒˆë¡œìš´ ë°ì´íƒ€ë¡œ ì„¸íŒ…í•œë‹¤.
 					if( pNotify->byMsgType == eBROAD_MSG_TYPE_TS ||
 						pNotify->byMsgType == eBROAD_MSG_TYPE_EMERGENCY )
 					{
@@ -185,7 +185,7 @@ VOID CBroadCastGui::HandleEvents( RWS::CMsg &msg )
 					{
 						DeleteDeqUnit( pNotify->byMsgType );
 
-						// ÇöÀç ÀÖ´Â UnitÀ» º¸°üÇÏ°í »õ·Î¿î UnitÀ¸·Î ¼¼ÆÃÇÏ¿© ÇÃ·¹ÀÌÇÑ´Ù.
+						// í˜„ì¬ ìˆëŠ” Unitì„ ë³´ê´€í•˜ê³  ìƒˆë¡œìš´ Unitìœ¼ë¡œ ì„¸íŒ…í•˜ì—¬ í”Œë ˆì´í•œë‹¤.
 						SaveCurUnitData();
 						SetCurUnitData( pNotify->byMsgType, pNotify->defMsgDataList );
 						SetCurMsgData( m_CurUnit );
@@ -200,14 +200,14 @@ VOID CBroadCastGui::HandleEvents( RWS::CMsg &msg )
 				{
 					if( pNotify->byMsgType != eBROAD_MSG_TYPE_MINI_NARRATION )
 					{
-						// TS¿Í Emergency°¡ ÀÖ´Ù¸é »èÁ¦ÇØÁØ´Ù.
+						// TSì™€ Emergencyê°€ ìˆë‹¤ë©´ ì‚­ì œí•´ì¤€ë‹¤.
 						DeleteDeqUnit( eBROAD_MSG_TYPE_TS );
 						DeleteDeqUnit( eBROAD_MSG_TYPE_EMERGENCY );
 						
-						// ÇöÀç ÀÖ´Â UnitÀ» º¸°üÇÏ°í »õ·Î¿î UnitÀ¸·Î ¼¼ÆÃÇÏ¿© ÇÃ·¹ÀÌÇÑ´Ù.
+						// í˜„ì¬ ìˆëŠ” Unitì„ ë³´ê´€í•˜ê³  ìƒˆë¡œìš´ Unitìœ¼ë¡œ ì„¸íŒ…í•˜ì—¬ í”Œë ˆì´í•œë‹¤.
 						SaveCurUnitData();
 
-						// »õ·Î¿î Unit ¼¼ÆÃ
+						// ìƒˆë¡œìš´ Unit ì„¸íŒ…
 						SetCurUnitData( pNotify->byMsgType, pNotify->defMsgDataList );
 						SetCurMsgData( m_CurUnit );
 
@@ -217,8 +217,8 @@ VOID CBroadCastGui::HandleEvents( RWS::CMsg &msg )
 					}
 					else
 					{
-						// ¹Ì´Ï ³ª·¹ÀÌ¼ÇÀÏ °æ¿ì ÇöÀç ÀÖ´Â ¹Ì´Ï ³ª·¹ÀÌ¼ÇÀº ¹«½ÃÇÏ°í »õ·Î¿î ¹Ì´Ï ³ª·¹ÀÌ¼ÇÀ» ¼¼ÆÃÇÏ¿©
-						// Ãâ·ÂÇÑ´Ù.
+						// ë¯¸ë‹ˆ ë‚˜ë ˆì´ì…˜ì¼ ê²½ìš° í˜„ì¬ ìˆëŠ” ë¯¸ë‹ˆ ë‚˜ë ˆì´ì…˜ì€ ë¬´ì‹œí•˜ê³  ìƒˆë¡œìš´ ë¯¸ë‹ˆ ë‚˜ë ˆì´ì…˜ì„ ì„¸íŒ…í•˜ì—¬
+						// ì¶œë ¥í•œë‹¤.
 						SetCurUnitData( pNotify->byMsgType, pNotify->defMsgDataList );
 						SetCurMsgData( m_CurUnit );
 
@@ -231,13 +231,13 @@ VOID CBroadCastGui::HandleEvents( RWS::CMsg &msg )
 			}
 		}
 	}
-	// g_EventBroadMsgEndNfy : ÇöÀç Ãâ·ÂµÇ°í ÀÖ´Â ¸Ş½ÃÁö¸¦ »èÁ¦ÇÏ¶ó´Â Event
+	// g_EventBroadMsgEndNfy : í˜„ì¬ ì¶œë ¥ë˜ê³  ìˆëŠ” ë©”ì‹œì§€ë¥¼ ì‚­ì œí•˜ë¼ëŠ” Event
 	else if( msg.Id == g_EventBroadMsgEndNfy )
 	{
 		SNtlEventBroadMsgEndNfy* pNotify = reinterpret_cast< SNtlEventBroadMsgEndNfy* >( msg.pData );
 
-		// ÇöÀç Ãâ·Â ÁßÀÎ Unit°¡ »èÁ¦ÇÏ¶ó´Â UnitÀÌ¶ó¸é Á¾·á »óÅÂ·Î °¡°í ¿¹¾àµÇ¾î ÀÖ´Â UnitÀÌ¶ó¸é
-		// ¿¹¾àµÈ Unit µé Áß¿¡ °°Àº TypeµéÀ» ¸ğµÎ ´Ù »èÁ¦ÇÑ´Ù.
+		// í˜„ì¬ ì¶œë ¥ ì¤‘ì¸ Unitê°€ ì‚­ì œí•˜ë¼ëŠ” Unitì´ë¼ë©´ ì¢…ë£Œ ìƒíƒœë¡œ ê°€ê³  ì˜ˆì•½ë˜ì–´ ìˆëŠ” Unitì´ë¼ë©´
+		// ì˜ˆì•½ëœ Unit ë“¤ ì¤‘ì— ê°™ì€ Typeë“¤ì„ ëª¨ë‘ ë‹¤ ì‚­ì œí•œë‹¤.
 		if( m_bCurUnit )
 		{
 			if( pNotify->byMsgType == m_CurUnit.m_byMsgType )
@@ -251,7 +251,7 @@ VOID CBroadCastGui::HandleEvents( RWS::CMsg &msg )
 			}
 		}
 	}
-	// g_EventWorldChange : World°¡ Change µÇ¾ú´Ù´Â Event. ÇöÀç Ãâ·Â ÁßÀÎ °ÍÀ» Á¾·á½ÃÅ°°í ¿¹¾àµÇ¾î ÀÖ´Â ¸ğµç À¯´ÖÀ» »èÁ¦ÇÑ´Ù.
+	// g_EventWorldChange : Worldê°€ Change ë˜ì—ˆë‹¤ëŠ” Event. í˜„ì¬ ì¶œë ¥ ì¤‘ì¸ ê²ƒì„ ì¢…ë£Œì‹œí‚¤ê³  ì˜ˆì•½ë˜ì–´ ìˆëŠ” ëª¨ë“  ìœ ë‹›ì„ ì‚­ì œí•œë‹¤.
 	if( msg.Id == g_EventWorldChange )
 	{
 		SNtlEventWorldChange* pWorldChange = reinterpret_cast<SNtlEventWorldChange*>(msg.pData);
@@ -270,29 +270,29 @@ VOID CBroadCastGui::HandleEvents( RWS::CMsg &msg )
 }
 
 /**
-* \brief ³ªÅ¸³ª´Â ¿¬Ãâ ½ÃÀÛ
+* \brief ë‚˜íƒ€ë‚˜ëŠ” ì—°ì¶œ ì‹œì‘
 */
 VOID CBroadCastGui::UpdateDirectionInStart( RwReal fElapsed )
 {
-	// Illust ¸¦ ¼¼ÆÃÇÑ´Ù.
+	// Illust ë¥¼ ì„¸íŒ…í•œë‹¤.
 	SetIllust( m_sCurData.uiOwnerTblIdx, m_sCurData.eOwnerCondition );
 	SetillustPos( m_pThis->GetScreenRect().left, m_pThis->GetScreenRect().top );
 		
-	// Dialog¸¦ ¿¬´Ù.
+	// Dialogë¥¼ ì—°ë‹¤.
 	GetDialogManager()->OpenDialog( DIALOG_BROADCAST );
 
-	// HtmlBox¿¡ ³»¿ëÀ» ¼¼ÆÃÇÑ´Ù.
+	// HtmlBoxì— ë‚´ìš©ì„ ì„¸íŒ…í•œë‹¤.
 	SetHtmlString( m_sCurData.wstrSpeech.c_str(), m_sCurData.wstrSpeech.length() );
 	m_pHtmlText->Show( false );
 	
-	// ¸ğµç ¸»Ç³¼±À» °¨Ãá´Ù.
+	// ëª¨ë“  ë§í’ì„ ì„ ê°ì¶˜ë‹¤.
 	HideAllBalloon();
 
-	// BroadCast¿Í È­¸é »ó X À§Ä¡¿Í Y À§Ä¡¸¦ °è»êÇÑ´Ù. (UIConfig.xml) ¿¡¼­ ÀĞ¾îµéÀÓ
+	// BroadCastì™€ í™”ë©´ ìƒ X ìœ„ì¹˜ì™€ Y ìœ„ì¹˜ë¥¼ ê³„ì‚°í•œë‹¤. (UIConfig.xml) ì—ì„œ ì½ì–´ë“¤ì„
 	RwInt32 nXPos = (RwInt32)(m_pBroadCastConfig->fPosXRate * GetDboGlobal()->GetScreenWidth());
 	RwInt32 nYPos = (RwInt32)(m_pBroadCastConfig->fPosYRate * GetDboGlobal()->GetScreenHeight());
 
-	// ShowHide Type µû¸¥ ÃÊ±âÈ­¸¦ ÇØÁØ´Ù.
+	// ShowHide Type ë”°ë¥¸ ì´ˆê¸°í™”ë¥¼ í•´ì¤€ë‹¤.
 	switch( m_sCurData.eUIShowHideType )
 	{
 	case eBROAD_MSG_UI_SHOWHIDE_DIR_TYPE_NORMAL:
@@ -356,11 +356,11 @@ VOID CBroadCastGui::UpdateDirectionInStart( RwReal fElapsed )
 }
 
 /**
-* \brief µé¾î¿À´Â ¿¬Ãâ
+* \brief ë“¤ì–´ì˜¤ëŠ” ì—°ì¶œ
 */
 VOID CBroadCastGui::UpdateDirectionIn( RwReal fElapsed )
 {
-	// Show Hide¿¡ µû¶ó¼­ µé¾î¿À´Â ¿¬Ãâ Áß¿¡ ÇØÁà¾ßÇÏ´Â ÀÛ¾÷À» ¼öÇàÇÑ´Ù.
+	// Show Hideì— ë”°ë¼ì„œ ë“¤ì–´ì˜¤ëŠ” ì—°ì¶œ ì¤‘ì— í•´ì¤˜ì•¼í•˜ëŠ” ì‘ì—…ì„ ìˆ˜í–‰í•œë‹¤.
 	RwInt32 nYPos = (RwInt32)(m_pBroadCastConfig->fPosYRate * GetDboGlobal()->GetScreenHeight());
 	switch( m_sCurData.eUIShowHideType )
 	{
@@ -402,11 +402,11 @@ VOID CBroadCastGui::UpdateDirectionIn( RwReal fElapsed )
 }
 
 /**
-* \brief µé¾î¿À´Â ¿¬ÃâÀÌ ³¡³¯ ¶§
+* \brief ë“¤ì–´ì˜¤ëŠ” ì—°ì¶œì´ ëë‚  ë•Œ
 */
 VOID CBroadCastGui::UpdateDirectionInEnd( RwReal fElapsed )
 {
-	// Interval »óÅÂ È¸º¹
+	// Interval ìƒíƒœ íšŒë³µ
 	m_pHtmlText->SetIntervalTextDisable();
 
 	// Show/Hide Direction
@@ -478,11 +478,11 @@ VOID CBroadCastGui::UpdateDirectionInEnd( RwReal fElapsed )
 }
 
 /**
-* \brief ¿ÀÇÂ ÁßÀÇ ¿¬Ãâ
+* \brief ì˜¤í”ˆ ì¤‘ì˜ ì—°ì¶œ
 */
 VOID CBroadCastGui::UpdateOpen( RwReal fElapsed )
 {
-	// Text Direction ( Blending¸¸ µû·Î ¿¬Ãâ )
+	// Text Direction ( Blendingë§Œ ë”°ë¡œ ì—°ì¶œ )
 	switch( m_sCurData.eUISpeechDirType )
 	{
 	case eBROAD_MSG_UI_SPEECH_DIR_TYPE_NORMAL:
@@ -500,7 +500,7 @@ VOID CBroadCastGui::UpdateOpen( RwReal fElapsed )
 		break;
 	}
 
-	// Shake Direction ( Shake´Â °øÅë )
+	// Shake Direction ( ShakeëŠ” ê³µí†µ )
 	switch( m_sCurData.eUIDirType )
 	{
 	case eBROAD_MSG_UI_DIR_TYPE_NORMAL:
@@ -540,10 +540,10 @@ VOID CBroadCastGui::UpdateOpen( RwReal fElapsed )
 
 	m_fElapsed += fElapsed;
 	
-	// ÇöÀç UnitÀÇ Å¸ÀÓÀÌ ³¡³ª¸é ³Ñ¾î°£´Ù.
+	// í˜„ì¬ Unitì˜ íƒ€ì„ì´ ëë‚˜ë©´ ë„˜ì–´ê°„ë‹¤.
 	if( m_sCurData.fDisplayTime < m_fElapsed )
 	{
-		// Æ¯º°ÇÑ °æ¿ì : ¸¸¾à HtmlData°¡ ´ÙÀ½ ÆäÀÌÁö°¡ ÀÖÀ» °æ¿ì ´Ù½Ã Open »óÅÂ·Î µ¹¾Æ°£´Ù. ( Line¿¡ ´ëºñÇÏ¿© )
+		// íŠ¹ë³„í•œ ê²½ìš° : ë§Œì•½ HtmlDataê°€ ë‹¤ìŒ í˜ì´ì§€ê°€ ìˆì„ ê²½ìš° ë‹¤ì‹œ Open ìƒíƒœë¡œ ëŒì•„ê°„ë‹¤. ( Lineì— ëŒ€ë¹„í•˜ì—¬ )
 		if( m_pHtmlText->SetNextPage() )
 		{
 			m_fElapsed = 0.0f;
@@ -558,11 +558,11 @@ VOID CBroadCastGui::UpdateOpen( RwReal fElapsed )
 }
 
 /**
-* \brief ³¡³ª´Â ¿¬ÃâÀÇ ½ÃÀÛ
+* \brief ëë‚˜ëŠ” ì—°ì¶œì˜ ì‹œì‘
 */
 VOID CBroadCastGui::UpdateDirectionOutStart( RwReal fElapsed )
 {
-	// Text Direction È¸º¹ ÇØÁà¾ß ÇÒ °Íµé
+	// Text Direction íšŒë³µ í•´ì¤˜ì•¼ í•  ê²ƒë“¤
 	switch( m_sCurData.eUISpeechDirType )
 	{
 	case eBROAD_MSG_UI_SPEECH_DIR_TYPE_NORMAL:
@@ -574,7 +574,7 @@ VOID CBroadCastGui::UpdateDirectionOutStart( RwReal fElapsed )
 		break;
 	}
 
-	// Shake Direction ( Shake´Â °øÅë )
+	// Shake Direction ( ShakeëŠ” ê³µí†µ )
 	switch( m_sCurData.eUIDirType )
 	{
 	case eBROAD_MSG_UI_DIR_TYPE_NORMAL:
@@ -587,8 +587,8 @@ VOID CBroadCastGui::UpdateDirectionOutStart( RwReal fElapsed )
 		break;
 	}
 
-	// ¸¸¾à ÇöÀç À¯´ÖÀÇ ¸Ş½ÃÁö ¸®½ºÆ®¿¡ ³²¾Æ ÀÖ´Â °ÍÀÌ ÀÖ´Ù¸é ÀÏ·¯½ºÆ®, ÅØ½ºÆ®, Balloon µîÀ» ¼¼ÆÃÇØÁÖ°í
-	// ´Ù½Ã STATE_OPEN »óÅÂ·Î °£´Ù. ( µ¥ÀÌÅÍ°¡ À¯È¿ÇÑ °æ¿ì¸¸ )
+	// ë§Œì•½ í˜„ì¬ ìœ ë‹›ì˜ ë©”ì‹œì§€ ë¦¬ìŠ¤íŠ¸ì— ë‚¨ì•„ ìˆëŠ” ê²ƒì´ ìˆë‹¤ë©´ ì¼ëŸ¬ìŠ¤íŠ¸, í…ìŠ¤íŠ¸, Balloon ë“±ì„ ì„¸íŒ…í•´ì£¼ê³ 
+	// ë‹¤ì‹œ STATE_OPEN ìƒíƒœë¡œ ê°„ë‹¤. ( ë°ì´í„°ê°€ ìœ íš¨í•œ ê²½ìš°ë§Œ )
 	if( !m_CurUnit.m_vecMsgDataList.empty() && m_bCurUnit )
 	{
 		RwBool bChangeIllust = FALSE;
@@ -616,11 +616,11 @@ VOID CBroadCastGui::UpdateDirectionOutStart( RwReal fElapsed )
 			}
 		}
 
-		// Text ¼¼ÆÃ
+		// Text ì„¸íŒ…
 		SetHtmlString( m_sCurData.wstrSpeech.c_str(), m_sCurData.wstrSpeech.length() );
 		m_pHtmlText->Show( true );
 
-		// Balloon ¼¼ÆÃ
+		// Balloon ì„¸íŒ…
 		HideAllBalloon();
 		ShowBalloon((RwUInt8)m_sCurData.eUIBalloonShapeType, m_bSmallText );
 
@@ -659,17 +659,17 @@ VOID CBroadCastGui::UpdateDirectionOutStart( RwReal fElapsed )
 	case eBROAD_MSG_UI_SHOWHIDE_DIR_TYPE_NORMAL:
 	case eBROAD_MSG_UI_SHOWHIDE_DIR_TYPE_FADE:
 		{
-			// ÇöÀç »óÅÂ¿¡¼­ °¡°¨ÇØ¾ß ÇÑ´Ù.
+			// í˜„ì¬ ìƒíƒœì—ì„œ ê°€ê°í•´ì•¼ í•œë‹¤.
 			m_conAlpha.SetAccel( (RwReal)m_surIllust.GetAlpha(), (RwReal)0, m_pBroadCastConfig->fBlendStartVel,
 				m_pBroadCastConfig->fBlendAccelVel );
 		}
 		break;
 	case eBROAD_MSG_UI_SHOWHIDE_DIR_TYPE_SLIDE:
 		{
-			// ¸»Ç³¼± ´İ±â
+			// ë§í’ì„  ë‹«ê¸°
 			HideAllBalloon();
 			m_pHtmlText->Show( false );
-			// °¡¼Óµµ ÄÁÆ®·Ñ·¯¸¦ »ç¿ëÇÏ¿© ½½¶óÀÌµù ÆÑÅÍ¸¦ Àû¿ë
+			// ê°€ì†ë„ ì»¨íŠ¸ë¡¤ëŸ¬ë¥¼ ì‚¬ìš©í•˜ì—¬ ìŠ¬ë¼ì´ë”© íŒ©í„°ë¥¼ ì ìš©
 			m_conAccel.SetAccel( (RwReal)m_pThis->GetScreenRect().left, 
 				(RwReal)GetDboGlobal()->GetScreenWidth(), 
 				m_pBroadCastConfig->fSlideStartVel, 
@@ -679,10 +679,10 @@ VOID CBroadCastGui::UpdateDirectionOutStart( RwReal fElapsed )
 		break;
 	case eBROAD_MSG_UI_SHOWHIDE_DIR_TYPE_FADE_SLIDE:
 		{
-			// ¸»Ç³¼± ´İ±â
+			// ë§í’ì„  ë‹«ê¸°
 			HideAllBalloon();
 			m_pHtmlText->Show( false );
-			// °¡¼Óµµ ÄÁÆ®·Ñ·¯¸¦ »ç¿ëÇÏ¿© ½½¶óÀÌµù ÆÑÅÍ¸¦ Àû¿ë
+			// ê°€ì†ë„ ì»¨íŠ¸ë¡¤ëŸ¬ë¥¼ ì‚¬ìš©í•˜ì—¬ ìŠ¬ë¼ì´ë”© íŒ©í„°ë¥¼ ì ìš©
 			m_conAccel.SetAccel( (RwReal)m_pThis->GetScreenRect().left, 
 				(RwReal)(m_pBroadCastConfig->fPosXRate*GetDboGlobal()->GetScreenWidth())+m_pBroadCastConfig->fFadeSlidePos, 
 				m_pBroadCastConfig->fFadeSlideStartVel, 
@@ -697,7 +697,7 @@ VOID CBroadCastGui::UpdateDirectionOutStart( RwReal fElapsed )
 }
 
 /**
-* \brief ³¡³ª´Â ¿¬Ãâ Áß
+* \brief ëë‚˜ëŠ” ì—°ì¶œ ì¤‘
 */
 VOID CBroadCastGui::UpdateDirectionOut( RwReal fElapsed )
 {
@@ -742,11 +742,11 @@ VOID CBroadCastGui::UpdateDirectionOut( RwReal fElapsed )
 }
 
 /**
-* \brief ³¡³ª´Â ¿¬Ãâ ³¡
+* \brief ëë‚˜ëŠ” ì—°ì¶œ ë
 */
 VOID CBroadCastGui::UpdateDirectionOutEnd( RwReal fElapsed )
 {
-	// ÇöÀç UnitÁß ³²Àº °ÍÀÌ ÀÖ´Ù¸é »õ·Î¿î UnitÀ» ²¨³»¿Â´Ù.
+	// í˜„ì¬ Unitì¤‘ ë‚¨ì€ ê²ƒì´ ìˆë‹¤ë©´ ìƒˆë¡œìš´ Unitì„ êº¼ë‚´ì˜¨ë‹¤.
 	if( !m_deqUnit.empty() )
 	{
 		deqBroadUnit::iterator it = m_deqUnit.begin();
@@ -765,11 +765,11 @@ VOID CBroadCastGui::UpdateDirectionOutEnd( RwReal fElapsed )
 }
 
 /**
-* \brief ³¡³ª´Â Áß
+* \brief ëë‚˜ëŠ” ì¤‘
 */
 VOID CBroadCastGui::UpdateClose( RwReal fElapsed )
 {
-	// ÇöÀç µ¥ÀÌÅ¸ ¹«È¿ÇÔ & ÇÃ·¹ÀÌ ¸ØÃã
+	// í˜„ì¬ ë°ì´íƒ€ ë¬´íš¨í•¨ & í”Œë ˆì´ ë©ˆì¶¤
 	m_bCurUnit = FALSE;
 	m_pStbName->Clear();
 	
@@ -798,14 +798,14 @@ VOID CBroadCastGui::SetState( RwUInt8 byState )
 }
 
 /**
-* \brief ÇöÀç Ãâ·ÂµÇ´Â UnitÀ» ¼¼ÆÃÇÑ´Ù.
+* \brief í˜„ì¬ ì¶œë ¥ë˜ëŠ” Unitì„ ì„¸íŒ…í•œë‹¤.
 */
 VOID CBroadCastGui::SetCurUnitData( RwUInt8 byMsgType, vecdef_BroadMsgDataList& vecList )
 {
 	m_CurUnit.SetData( byMsgType, vecList );
 	m_bCurUnit = TRUE;
 
-	// Dialog ¿ì¼± ¼øÀ§ Àû¿ë
+	// Dialog ìš°ì„  ìˆœìœ„ ì ìš©
 	
 	RwUInt16 wPriority = dDIALOGPRIORITY_BROADCAST_TS;
 	switch( byMsgType )
@@ -826,7 +826,7 @@ VOID CBroadCastGui::SetCurUnitData( RwUInt8 byMsgType, vecdef_BroadMsgDataList& 
 
 
 /**
-* \brief UnitÀÇ °¡Àå Ã¹¹øÂ° VectorÀÇ Data¸¦ ²¨³»¼­ ÇöÀç Data¿¡ ÀúÀåÇÑ´Ù.
+* \brief Unitì˜ ê°€ì¥ ì²«ë²ˆì§¸ Vectorì˜ Dataë¥¼ êº¼ë‚´ì„œ í˜„ì¬ Dataì— ì €ì¥í•œë‹¤.
 */
 VOID CBroadCastGui::SetCurMsgData( CBroadCastUnit& unit )
 {
@@ -846,7 +846,7 @@ VOID CBroadCastGui::SetCurMsgData( CBroadCastUnit& unit )
 
 	m_pStbName->SetText( L"?" );
 
-	// ÀÌ¸§ ÁöÁ¤
+	// ì´ë¦„ ì§€ì •
 	if( m_sCurData.eOwnerType == eBROAD_MSG_OWNER_TYPE_NPC )
 	{
 		sNPC_TBLDAT* pNPCData = reinterpret_cast<sNPC_TBLDAT*>( API_GetTableContainer()->GetNpcTable()->FindData( m_sCurData.uiOwnerTblIdx ) );	
@@ -875,7 +875,7 @@ VOID CBroadCastGui::SetCurMsgData( CBroadCastUnit& unit )
 }
 
 /**
-* \brief Html StringÀ» ÀÔ·ÂÇÑ´Ù. ( Å©±â °è»ê )
+* \brief Html Stringì„ ì…ë ¥í•œë‹¤. ( í¬ê¸° ê³„ì‚° )
 */
 VOID CBroadCastGui::SetHtmlString( const WCHAR* pString, RwInt32 nSize )
 {
@@ -900,7 +900,7 @@ VOID CBroadCastGui::SetHtmlString( const WCHAR* pString, RwInt32 nSize )
 }
 
 /**
-* \brief ÇöÀç ÀÖ´Â UnitÀ» º¸°üÇÒ ¶§´Â UpdateµÈ Å¸ÀÓÀ» ÀúÀåÇØ³õ¾Æ¾ß ÇÑ´Ù.
+* \brief í˜„ì¬ ìˆëŠ” Unitì„ ë³´ê´€í•  ë•ŒëŠ” Updateëœ íƒ€ì„ì„ ì €ì¥í•´ë†“ì•„ì•¼ í•œë‹¤.
 */
 VOID CBroadCastGui::SaveCurUnitData()
 {
@@ -911,11 +911,11 @@ VOID CBroadCastGui::SaveCurUnitData()
 }
 
 /**
-* \brief Deq¿¡ º¸°üµÇ¾î ¸Ş½ÃÁö¸¦ »èÁ¦ÇÑ´Ù.
+* \brief Deqì— ë³´ê´€ë˜ì–´ ë©”ì‹œì§€ë¥¼ ì‚­ì œí•œë‹¤.
 */
 VOID CBroadCastGui::DeleteDeqUnit( RwInt8 byMsgType )
 {
-	// ´Ù¸¦ °æ¿ì¶ó¸é º¸°üÁßÀÎ UnitÁß¿¡¼­ °°Àº Å¸ÀÔÀÌ ÀÖ³ª Ã£¾Æº¸°í ÀÖ´Ù¸é »èÁ¦¸¦ ÇØÁØ´ÙÀ½
+	// ë‹¤ë¥¼ ê²½ìš°ë¼ë©´ ë³´ê´€ì¤‘ì¸ Unitì¤‘ì—ì„œ ê°™ì€ íƒ€ì…ì´ ìˆë‚˜ ì°¾ì•„ë³´ê³  ìˆë‹¤ë©´ ì‚­ì œë¥¼ í•´ì¤€ë‹¤ìŒ
 	deqBroadUnit::iterator it = m_deqUnit.begin();
 	while( it != m_deqUnit.end() )
 	{
@@ -930,7 +930,7 @@ VOID CBroadCastGui::DeleteDeqUnit( RwInt8 byMsgType )
 }
 
 /**
-* \brief ÀúÀåµÇ¾î ÀÖ´ø ¸ğµç UnitÀ» »èÁ¦ÇÑ´Ù.
+* \brief ì €ì¥ë˜ì–´ ìˆë˜ ëª¨ë“  Unitì„ ì‚­ì œí•œë‹¤.
 */
 VOID CBroadCastGui::DeleteDeqUnitAll()
 {
@@ -969,7 +969,7 @@ VOID CBroadCastGui::HideAllBalloon()
 }
 
 /**
-* \brief Illust¸¦ File nameÀ¸·Î ¼¼ÆÃÇÑ´Ù.
+* \brief Illustë¥¼ File nameìœ¼ë¡œ ì„¸íŒ…í•œë‹¤.
 */
 VOID CBroadCastGui::SetIllust( const RwChar* pIllustName )
 {
@@ -992,7 +992,7 @@ VOID CBroadCastGui::SetIllust( const RwChar* pIllustName )
 }
 
 /**
-* \brief Illust¸¦ Index¿Í conditionÀ¸·Î ±¸¼ºÇÑ´Ù.
+* \brief Illustë¥¼ Indexì™€ conditionìœ¼ë¡œ êµ¬ì„±í•œë‹¤.
 */
 VOID CBroadCastGui::SetIllust( RwUInt32 uiOwnerTblIdx, RwUInt32 uiOwnerCondition )
 {
@@ -1021,7 +1021,7 @@ VOID CBroadCastGui::SetIllust( RwUInt32 uiOwnerTblIdx, RwUInt32 uiOwnerCondition
 
 VOID CBroadCastGui::SetillustPos( RwInt32 nX, RwInt32 nY )
 {
-	// ÁÂÇ¥°¡ µé¾î¿À´Â ±âÁØÀº m_pThisÀÇ left, topÀ¸·Î µé¾î¿Â´Ù.
+	// ì¢Œí‘œê°€ ë“¤ì–´ì˜¤ëŠ” ê¸°ì¤€ì€ m_pThisì˜ left, topìœ¼ë¡œ ë“¤ì–´ì˜¨ë‹¤.
 	CRectangle rtDialog = m_pThis->GetScreenRect();
 	RwInt32 nDlgWidth = rtDialog.GetWidth();
 	RwInt32 nDlgHeight = rtDialog.GetHeight();
@@ -1031,7 +1031,7 @@ VOID CBroadCastGui::SetillustPos( RwInt32 nX, RwInt32 nY )
 	RwInt32 nIllWidth = rtIllust.GetWidth();
 	RwInt32 nIllHeight = rtIllust.GetHeight();
 	
-	// ÇöÀç ÄÄÆ÷³ÍÆ®ÀÇ Áß°£¿¡ À§Ä¡ÇÒ ¼ö ÀÖµµ·Ï.
+	// í˜„ì¬ ì»´í¬ë„ŒíŠ¸ì˜ ì¤‘ê°„ì— ìœ„ì¹˜í•  ìˆ˜ ìˆë„ë¡.
 	RwInt32 nXOffset = (nDlgWidth - nIllWidth)/2;
 	RwInt32 nYOffset = (nDlgHeight - nIllHeight);
 	

@@ -2,7 +2,7 @@
  *
  * File			: NtlBehaviorProj.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2006. 2. 27	
  * Abstract		: projectile behavior class
  *****************************************************************************
@@ -50,7 +50,7 @@ public:
 
 /**
  * \ingroup NtlSimulation
- * \brief ÈÖ¾î¼­ »ó´ëÀÇ µÚ¸¦ °ø°İÇÏ´Â Projectile
+ * \brief íœ˜ì–´ì„œ ìƒëŒ€ì˜ ë’¤ë¥¼ ê³µê²©í•˜ëŠ” Projectile
  *
  * \date 2008-10-16
  * \author agebreak
@@ -75,8 +75,8 @@ public:
     virtual void Update(RwReal fElapsed);
 
 protected:
-    EMagareStatus   m_eStatus;                      ///< ÇöÀç »óÅÂ
-    RwReal          m_fTotalAngle;                  ///< È¸ÀüÇÑ ÃÑ °¢µµ
+    EMagareStatus   m_eStatus;                      ///< í˜„ì¬ ìƒíƒœ
+    RwReal          m_fTotalAngle;                  ///< íšŒì „í•œ ì´ ê°ë„
     
 };
 
@@ -200,7 +200,7 @@ public:
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-// ¸¶°ø Æ÷À§Åº¿¡ ¾´´Ù.
+// ë§ˆê³µ í¬ìœ„íƒ„ì— ì“´ë‹¤.
 class CNtlBehaviorProjHelljone : public CNtlBehaviorProjectile
 {
 	DECLEAR_MEMORY_POOL(CNtlBehaviorProjHelljone, NTL_DEFAULT_MEMORY_POOL)
@@ -244,7 +244,7 @@ public:
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-// drain skill¿¡¼­ targetÀÇ energy¸¦ Èí¼öÇÑ´Ù.
+// drain skillì—ì„œ targetì˜ energyë¥¼ í¡ìˆ˜í•œë‹¤.
 class CNtlBehaviorProjSteal : public CNtlBehaviorProjectile
 {
 	DECLEAR_MEMORY_POOL(CNtlBehaviorProjSteal, NTL_DEFAULT_MEMORY_POOL)

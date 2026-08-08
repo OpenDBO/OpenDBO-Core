@@ -1,11 +1,11 @@
 /******************************************************************************
 * File			: ChatSender.h
 * Author		: Hong SungBock
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 7. 2
 * Abstract		: 
 *****************************************************************************
-* Desc			: Ã¤ÆÃ GUI¸¦ ÅëÇØ¼­ ÀÔ·Â¹ÞÀº ¹®ÀÚ¿­ÀÇ ÆÄ½Ì°ú Ã¤ÆÃ ¼­¹ö·Î Àü¼Û
+* Desc			: ì±„íŒ… GUIë¥¼ í†µí•´ì„œ ìž…ë ¥ë°›ì€ ë¬¸ìžì—´ì˜ íŒŒì‹±ê³¼ ì±„íŒ… ì„œë²„ë¡œ ì „ì†¡
 *****************************************************************************/
 
 #pragma once
@@ -34,8 +34,8 @@ public:
 		sCHAT_COMMAND_TBLDAT*		pCHAT_COMMAND_TBLDAT;
 	};
 
-	// ½ÇÁ¦·Î ¸í·É¾î¸¦ ÅëÇØ¼­ ¼Ò¼È ¾×¼ÇÀ» ¾²´Â ÀÏÀº µå¹° °ÍÀÌ¶ó »ý°¢ÀÌ µÇ¾î
-	// ¼Ò¼È ¸í·É¾î¸¦ Å°·Î ÇÏ´Â ¸ÖÆ¼¸ÊÀ» »ç¿ëÇÏ¿© ÀÚ·á±¸Á¶¸¦ Á¤ÀÇÇÏÁö ¾Ê¾Ò´Ù
+	// ì‹¤ì œë¡œ ëª…ë ¹ì–´ë¥¼ í†µí•´ì„œ ì†Œì…œ ì•¡ì…˜ì„ ì“°ëŠ” ì¼ì€ ë“œë¬¼ ê²ƒì´ë¼ ìƒê°ì´ ë˜ì–´
+	// ì†Œì…œ ëª…ë ¹ì–´ë¥¼ í‚¤ë¡œ í•˜ëŠ” ë©€í‹°ë§µì„ ì‚¬ìš©í•˜ì—¬ ìžë£Œêµ¬ì¡°ë¥¼ ì •ì˜í•˜ì§€ ì•Šì•˜ë‹¤
 	typedef std::map<SERIAL_HANDLE, sSOCIAL_ACTION*>		MAP_SOCIAL_ACTION;
 
 public:	
@@ -65,6 +65,6 @@ protected:
 
 protected:
 	CChatGui*			m_pChatGui;
-	std::wstring		m_wstrLastUserName;				// ÃÖ±Ù ±Ó¼Ó¸»À» ¹ÞÀº À¯Àú³×ÀÓ.
+	std::wstring		m_wstrLastUserName;				// ìµœê·¼ ê·“ì†ë§ì„ ë°›ì€ ìœ ì €ë„¤ìž„.
 	MAP_SOCIAL_ACTION	m_mapSocialAction;
 };

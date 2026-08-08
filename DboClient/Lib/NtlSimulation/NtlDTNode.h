@@ -2,7 +2,7 @@
  *
  * File			: NtlDTNode.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 11. 02	
  * Abstract		: direct node
  *****************************************************************************
@@ -21,25 +21,25 @@ enum EDirectLookAtType
 {
 	DIRECT_LOOKAT_NOT_USE,
 
-	// cameraÀÇ look atÀº spline data¿¡ ÀÇÇØ °áÁ¤µÇ°í, ÀüÇô transform ½ÃÅ°Áö ¾Ê´Â´Ù. 
+	// cameraì˜ look atì€ spline dataì— ì˜í•´ ê²°ì •ë˜ê³ , ì „í˜€ transform ì‹œí‚¤ì§€ ì•ŠëŠ”ë‹¤. 
 	DIRECT_LOOKAT_SELF,			
 
-	// cameraÀÇ look atÀº spline data¿¡ ÀÇÇØ °áÁ¤µÇ°í, 
-	// ¿¬ÃâÀÌ ½ÃÀÛÇÒ ¶§ ¿ÜºÎ¿¡¼­ ÀÔ·ÂµÈ ¹æÇâÀ¸·Î spline data¸¦ ¸ğµç ÃàÀ¸·Î rotate ÇÑ´Ù.
+	// cameraì˜ look atì€ spline dataì— ì˜í•´ ê²°ì •ë˜ê³ , 
+	// ì—°ì¶œì´ ì‹œì‘í•  ë•Œ ì™¸ë¶€ì—ì„œ ì…ë ¥ëœ ë°©í–¥ìœ¼ë¡œ spline dataë¥¼ ëª¨ë“  ì¶•ìœ¼ë¡œ rotate í•œë‹¤.
 	DIRECT_LOOKAT_SELF_ALLAXIS,		
 
-	// cameraÀÇ look atÀº spline data¿¡ ÀÇÇØ °áÁ¤µÇ°í, 
-	// ¿¬ÃâÀÌ ½ÃÀÛÇÒ ¶§ ¿ÜºÎ¿¡¼­ ÀÔ·ÂµÈ ¹æÇâÀ¸·Î spline data¸¦ Y ÃàÀ¸·Î¸¸ rotate ÇÑ´Ù.
+	// cameraì˜ look atì€ spline dataì— ì˜í•´ ê²°ì •ë˜ê³ , 
+	// ì—°ì¶œì´ ì‹œì‘í•  ë•Œ ì™¸ë¶€ì—ì„œ ì…ë ¥ëœ ë°©í–¥ìœ¼ë¡œ spline dataë¥¼ Y ì¶•ìœ¼ë¡œë§Œ rotate í•œë‹¤.
 	DIRECT_LOOKAT_SELF_YAXIS,				
 	
-	// cameraÀÇ look atÀº cameraÀÇ ÇöÀç position°ú look at position ¿¡ ÀÇÇØ Ç×»ó º¯°æÀÌ µÈ´Ù.
-	// ¿¬ÃâÀÌ ½ÃÀÛÇÒ ¶§ ¿ÜºÎ¿¡¼­ ÀÔ·ÂµÈ target positionÀ¸·Î spline data¸¦ scale ¹× Y ÃàÀ¸·Î¸¸ rotate ÇÑ´Ù.
+	// cameraì˜ look atì€ cameraì˜ í˜„ì¬ positionê³¼ look at position ì— ì˜í•´ í•­ìƒ ë³€ê²½ì´ ëœë‹¤.
+	// ì—°ì¶œì´ ì‹œì‘í•  ë•Œ ì™¸ë¶€ì—ì„œ ì…ë ¥ëœ target positionìœ¼ë¡œ spline dataë¥¼ scale ë° Y ì¶•ìœ¼ë¡œë§Œ rotate í•œë‹¤.
 	DIRECT_LOOKAT_DYNAMIC,
 
-	// spline positionÀ» ground height check¸¦ ÇÏ¿©, ³ôÀÌ¿¡ Àû¿ëÇÑ´Ù.
+	// spline positionì„ ground height checkë¥¼ í•˜ì—¬, ë†’ì´ì— ì ìš©í•œë‹¤.
 	DIRECT_GROUND_MOVE,
 
-	// spline positionÀ» ground height check¸¦ ÇÏÁö ¾Ê´Â´Ù.
+	// spline positionì„ ground height checkë¥¼ í•˜ì§€ ì•ŠëŠ”ë‹¤.
 	DIRECT_FLY_MOVE,
 
 	DIRECT_LOOKAT_END = DIRECT_FLY_MOVE
@@ -73,9 +73,9 @@ private:
 	CNtlDTSpline	*m_pProp;
 	CNtlSob			*m_pSobObj;
 
-	RwReal			m_fCurrTime;		/** ÇöÀçÀÇ Èå¸¥ ½Ã°£ */
-	RwReal			m_fPtTime;			/** ÇöÀç spline pointÀÇ time */
-	RwInt32			m_iPtIdx;			/** ÇöÀç curve data index */
+	RwReal			m_fCurrTime;		/** í˜„ì¬ì˜ íë¥¸ ì‹œê°„ */
+	RwReal			m_fPtTime;			/** í˜„ì¬ spline pointì˜ time */
+	RwInt32			m_iPtIdx;			/** í˜„ì¬ curve data index */
 	RwV3d			m_vPtPos;
 	
 	EDirectLookAtType	m_eLookAtType;

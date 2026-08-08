@@ -2,7 +2,7 @@
  *
  * File			: NtlCoreLogic.h
  * Author		: HyungSuk, Jang
- * Copyright	: (ÁÖ)NTL
+ * Copyright	: (ì£¼)NTL
  * Date			: 2005. 7. 14	
  * Abstract		: Main Logic.
  *****************************************************************************
@@ -22,8 +22,8 @@
 
 /**
  * \ingroup Client
- * clientÀÇ ¸ğµç simulation object¿¡ system event¸¦ º¸³»´Â °´Ã¼ÀÌ´Ù.
- * ¿©±â¿¡´Â free tick, 10 frame sync tick, 20 frame sync tick, 10 frame sync tickÀÌ Á¸ÀçÇÑ´Ù.
+ * clientì˜ ëª¨ë“  simulation objectì— system eventë¥¼ ë³´ë‚´ëŠ” ê°ì²´ì´ë‹¤.
+ * ì—¬ê¸°ì—ëŠ” free tick, 10 frame sync tick, 20 frame sync tick, 10 frame sync tickì´ ì¡´ì¬í•œë‹¤.
  *
  */
 
@@ -31,12 +31,12 @@ class CNtlCoreLogic
 {
 private:
     
-	bool m_bEnabled;			/**< tickÀÇ enable ¹× disable flag*/
+	bool m_bEnabled;			/**< tickì˜ enable ë° disable flag*/
 
 	float m_fFreeElapsed;		/**< free sync tick*/
-	float m_fSync30Elapsed;		/**< 30 frame sync tick¿¡ »ç¿ëµÇ´Â delta time º¯¼ö*/
-	float m_fSync20Elapsed;		/**< 20 frame sync tick¿¡ »ç¿ëµÇ´Â delta time º¯¼ö*/
-	float m_fSync10Elapsed;		/**< 10 frame sync tick¿¡ »ç¿ëµÇ´Â delta time º¯¼ö*/
+	float m_fSync30Elapsed;		/**< 30 frame sync tickì— ì‚¬ìš©ë˜ëŠ” delta time ë³€ìˆ˜*/
+	float m_fSync20Elapsed;		/**< 20 frame sync tickì— ì‚¬ìš©ë˜ëŠ” delta time ë³€ìˆ˜*/
+	float m_fSync10Elapsed;		/**< 10 frame sync tickì— ì‚¬ìš©ë˜ëŠ” delta time ë³€ìˆ˜*/
 	
 public:
 
@@ -47,13 +47,13 @@ public:
 
 	/**
 	* \ingroup Client
-	* clientÀÇ rendering °´Ã¼¿¡ ¿©·¯°¡Áö syncÀÇ tick event¸¦ º¸³½´Ù.
-	* ¸ğµç simulation object´Â tick event¸¦ ¹Ş¾Æ¼­ update¸¦ ÇÑ´Ù.
+	* clientì˜ rendering ê°ì²´ì— ì—¬ëŸ¬ê°€ì§€ syncì˜ tick eventë¥¼ ë³´ë‚¸ë‹¤.
+	* ëª¨ë“  simulation objectëŠ” tick eventë¥¼ ë°›ì•„ì„œ updateë¥¼ í•œë‹¤.
 	*
 	*/
 	void Update(float fElapsed);
 
-	// simulation object tickÀÇ enable ¹× disable
+	// simulation object tickì˜ enable ë° disable
 	void SetEnabled(bool bEnabled);
 };
 

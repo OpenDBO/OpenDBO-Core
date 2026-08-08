@@ -17,7 +17,7 @@ CNtlCoreLogic::CNtlCoreLogic() : m_bEnabled(true) ,
 
 /**
 *
-*  °¢Á¾ tick¿¡ ´ëÇÑ event¸¦ µî·ÏÇÑ´Ù.
+*  ê°ì¢… tickì— ëŒ€í•œ eventë¥¼ ë“±ë¡í•œë‹¤.
 *
 */
 bool CNtlCoreLogic::Create(void)
@@ -34,7 +34,7 @@ bool CNtlCoreLogic::Create(void)
 
 /**
 *
-*  °¢Á¾ tick¿¡ ´ëÇÑ µî·ÏµÈ event¸¦ ÇØÁ¦ÇÑ´Ù.
+*  ê°ì¢… tickì— ëŒ€í•œ ë“±ë¡ëœ eventë¥¼ í•´ì œí•œë‹¤.
 *
 */
 void CNtlCoreLogic::Destroy(void)
@@ -50,8 +50,8 @@ void CNtlCoreLogic::Destroy(void)
 
 /**
 *
-*  simulation object¿¡ update tick evnet¸¦ º¸³½´Ù.
-*  ¶ÇÇÑ 30, 20, 10 frame¿¡ syncµÈ tickÀ» °è»êÇÏ¿© º¸³½´Ù.
+*  simulation objectì— update tick evnetë¥¼ ë³´ë‚¸ë‹¤.
+*  ë˜í•œ 30, 20, 10 frameì— syncëœ tickì„ ê³„ì‚°í•˜ì—¬ ë³´ë‚¸ë‹¤.
 *
 */
 void CNtlCoreLogic::Update(float fElapsed)
@@ -65,6 +65,6 @@ void CNtlCoreLogic::Update(float fElapsed)
 	g_MsgTick.pData = reinterpret_cast<void*>(&m_fFreeElapsed);
 	SendMsg(g_MsgTick);
 
-	// inputÀ» ¾ò¾î¿Â´Ù.
-	// logicÀ» update ÇÑ´Ù. (·£´õ¸µ °´Ã¼ Æ÷ÇÔ)
+	// inputì„ ì–»ì–´ì˜¨ë‹¤.
+	// logicì„ update í•œë‹¤. (ëœë”ë§ ê°ì²´ í¬í•¨)
 }

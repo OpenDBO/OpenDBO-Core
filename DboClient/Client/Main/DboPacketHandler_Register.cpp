@@ -1,9 +1,9 @@
 /*****************************************************************************
 * File			: DboPackethandler_Register.cpp
 * Author		: Hong sungbock
-* Copyright		: (¡÷)NTL
+* Copyright		: (Ï£º)NTL
 * Date			: 2007. 1. 16
-* Abstract		: ∆–≈∂ «⁄µÈ¿« µÓ∑œ∞˙ «ÿ¡¶
+* Abstract		: Ìå®ÌÇ∑ Ìï∏Îì§Ïùò Îì±Î°ùÍ≥º Ìï¥Ï†ú
 *****************************************************************************
 * Desc         : 
 *****************************************************************************/
@@ -374,7 +374,7 @@ void RegisterPacketHandler(void)
 	CNtlPacketHandler::Register(GU_CHARTITLE_DELETE, PacketHandler_GSAvatarCharTitleDel);
 	CNtlPacketHandler::Register(GU_CHARTITLE_SELECT_NFY, PacketHandler_GSAvatarCharTitleSelectNfy);
 
-	// guild : ∞‘¿”º≠πˆ ∞¸∑√
+	// guild : Í≤åÏûÑÏÑúÎ≤Ñ Í¥ÄÎ†®
 	CNtlPacketHandler::Register(GU_GUILD_CREATE_RES, PacketHandler_GSGuild_Create_Res);
 	CNtlPacketHandler::Register(GU_GUILD_INVITE_RES, PacketHandler_GSGuild_Invite_Res);
 	CNtlPacketHandler::Register(GU_GUILD_CHANGE_NAME_RES, PacketHandler_GSGuild_NameChanged_Res);
@@ -392,7 +392,7 @@ void RegisterPacketHandler(void)
 	CNtlPacketHandler::Register(GU_GUILD_CHANGE_MARK_RES, PacketHandler_GSGuild_Change_Emblem_Res);	
 	CNtlPacketHandler::Register(GU_GUILD_MARK_CHANGED_NFY, PacketHandler_GSGuild_Change_Emblem_Nfy);	
 
-	// µµ¿Â
+	// ÎèÑÏû•
 	CNtlPacketHandler::Register(GU_DOJO_CREATE_RES, PacketHandler_GSDojo_CreateRes);
 	CNtlPacketHandler::Register(GU_DOJO_FUNCTION_ADD_RES, PacketHandler_GSDojo_FunctionAddRes);
 	CNtlPacketHandler::Register(GU_DOJO_LEVEL_CHANGED_NFY, PacketHandler_GSDojo_LevelChangedNfy);
@@ -406,7 +406,7 @@ void RegisterPacketHandler(void)
 	CNtlPacketHandler::Register(GU_DOJO_SCRAMBLE_SHIFT_SEAL_STATE_NFY, PacketHandler_GSDojo_ScrambleShiftStateNfy);
 	
 
-	// µµ∫π
+	// ÎèÑÎ≥µ
 	CNtlPacketHandler::Register(GU_DOGI_CREATE_RES, PacketHandler_GSDogi_CreateRes);
 	CNtlPacketHandler::Register(GU_DOGI_CHANGE_RES, PacketHandler_GSDogi_ChangeRes);
 	CNtlPacketHandler::Register(GU_DOGI_UPDATE_NFY, PacketHandler_GSDogi_UpdateNfy);
@@ -442,7 +442,7 @@ void RegisterPacketHandler(void)
 	CNtlPacketHandler::Register(GU_TIMEQUEST_UPDATE_TMQ_POINT, PacketHandler_GUTimeQuest_TMQPoint);
 	CNtlPacketHandler::Register(GU_TIMEQUEST_UPDATE_GAME_TIME, PacketHandler_GUTimeQuest_GameTime);
 
-	// º≠πˆ∑Œ∫Œ≈Õ¿« ∏ﬁºº¡ˆ
+	// ÏÑúÎ≤ÑÎ°úÎ∂ÄÌÑ∞Ïùò Î©îÏÑ∏ÏßÄ
 	CNtlPacketHandler::Register(GU_TELECAST_MESSAGE_BEG_NFY, PacketHandler_GUTeleCast_Message_Beg_Nfy);
 	CNtlPacketHandler::Register(GU_TELECAST_MESSAGE_END_NFY, PacketHandler_GUTeleCast_Message_End_Nfy);
 
@@ -541,20 +541,20 @@ void RegisterPacketHandler(void)
 	CNtlPacketHandler::Register(GU_BOT_BOTCAUTION_NFY, PacketHandler_GUBotCautionNfy);
 	CNtlPacketHandler::Register(GU_BOT_BOTCAUTION_HELPME_NFY, PacketHandler_GUBotHelpMeNfy);
 
-	// πˆΩ∫ π◊ ≈ª∞Õ
+	// Î≤ÑÏä§ Î∞è ÌÉàÍ≤É
 	CNtlPacketHandler::Register(GU_RIDE_ON_BUS_RES, PacketHandler_GURideOnBusRes);
 	CNtlPacketHandler::Register(GU_RIDE_OFF_BUS_RES, PacketHandler_GURideOffBusRes);
 
-	// ∫ØΩ≈ ∞¸∑√
+	// Î≥ÄÏã† Í¥ÄÎ†®
 	CNtlPacketHandler::Register(GU_SKILL_AFTEREFFECT_REMAINING_TIME_NFY, PacketHandler_GUAfterEffectRemainTimeNfy);
 	CNtlPacketHandler::Register(GU_TRANSFORM_CANCEL_RES, PacketHandler_GUTransformCancelRes);
     CNtlPacketHandler::Register(GU_MONSTER_TRANSFORMED_NFY, PacketHandler_GUMonsterTransformedNfy);
 
-	// ƒ¡µº« ∞¸∑√
+	// Ïª®ÎîîÏÖò Í¥ÄÎ†®
 	CNtlPacketHandler::Register(GU_SKILL_CONFUSE_TARGET_NFY, PacketHandler_GUSkillConfuseTragetNfy);
 	CNtlPacketHandler::Register(GU_SKILL_TERROR_COURSE_CHANGE_NFY, PacketHandler_GUSkillTerrorCourseChangeNfy);
 
-	// √µ«œ¡¶¿œ π´µµ»∏ ∞¸∑√
+	// Ï≤úÌïòÏ†úÏùº Î¨¥ÎèÑÌöå Í¥ÄÎ†®
 	CNtlPacketHandler::Register(GU_MATCH_MINORMATCH_STATE_UPDATE_NFY, PacketHandler_GUMinorMatchStateUpdateNfy );
 	CNtlPacketHandler::Register(GU_MATCH_MINORMATCH_TEAM_INFO_NFY, PacketHandler_GUMinorMatchTeamInfoNfy);
 	CNtlPacketHandler::Register(GU_MATCH_MINORMATCH_PLAYER_STATE_NFY, PacketHandler_GUMinorMatchPlayerStateNfy);
@@ -610,7 +610,7 @@ void RegisterPacketHandler(void)
 	CNtlPacketHandler::Register(GU_TELEPORT_PROPOSAL_NFY, PacketHandler_GUTeleportProposalNfy );
 	CNtlPacketHandler::Register(GU_TELEPORT_CONFIRM_RES, PacketHandler_GUTeleportConfirmRes );
 
-	// HTB RP ±∏ΩΩ ªÁøÎ
+	// HTB RP Íµ¨Ïä¨ ÏÇ¨Ïö©
 	CNtlPacketHandler::Register(GU_HTB_LAST_STEP_CHANGED_NFY, PacketHandler_GUHTBLastStepChangedNfy );
 	CNtlPacketHandler::Register(GU_HTB_RP_BALL_RESULT_DECIDED_NFY, PacketHandler_GSHTBRPBallResultDecidedNfy );
 
@@ -691,7 +691,7 @@ void RegisterPacketHandler(void)
 	CNtlPacketHandler::Register(TU_GUILD_CHANGE_NOTICE_NFY, PacketHandler_TUGuild_changeNotice_Nfy);
 	CNtlPacketHandler::Register(TU_GUILD_GIVE_ZENNY_NFY, PacketHandler_TUGuild_GiveZenny_Nfy);
 
-	// µµ¿Â
+	// ÎèÑÏû•
 	CNtlPacketHandler::Register(TU_DOJO_CREATED_NFY, PacketHandler_TUDojo_CreateNfy);
 	CNtlPacketHandler::Register(TU_DOJO_DESTROYED_NFY, PacketHandler_TUDojo_DestoryNfy);
 	CNtlPacketHandler::Register(TU_DOJO_BRIEF_NFY, PacketHandler_TUDojo_BriefNfy);
@@ -772,7 +772,7 @@ void RegisterPacketHandler(void)
 	// Char RankPoint Reset
 	CNtlPacketHandler::Register(GU_CHAR_RANKPOINT_RESET_NFY, PacketHandler_GUCharRankPointResetNfy );
 
-    // ªÛøÎ»≠ ∞¸∑√
+    // ÏÉÅÏö©Ìôî Í¥ÄÎ†®
     CNtlPacketHandler::Register(GU_NETMARBLEMEMBERIP_NFY, PacketHandler_GUNetMarbleMemberShipNfy);
     CNtlPacketHandler::Register(CU_NETMARBLEMEMBERIP_NFY, PacketHandler_GUNetMarbleMemberShipNfy);
 
@@ -1126,7 +1126,7 @@ void UnRegisterPacketHandler(void)
 	CNtlPacketHandler::UnRegister(GU_GUILD_CHANGE_MARK_RES);
 	CNtlPacketHandler::UnRegister(GU_GUILD_MARK_CHANGED_NFY);
 
-	// µµ¿Â
+	// ÎèÑÏû•
 	CNtlPacketHandler::UnRegister(GU_DOJO_CREATE_RES);
 	CNtlPacketHandler::UnRegister(GU_DOJO_FUNCTION_ADD_RES);
 	CNtlPacketHandler::UnRegister(GU_DOJO_LEVEL_CHANGED_NFY);
@@ -1139,7 +1139,7 @@ void UnRegisterPacketHandler(void)
 	CNtlPacketHandler::UnRegister(GU_DOJO_SEAL_ATTACK_END_NFY);
 	CNtlPacketHandler::UnRegister(GU_DOJO_SCRAMBLE_SHIFT_SEAL_STATE_NFY);
 
-	// µµ∫π
+	// ÎèÑÎ≥µ
 	CNtlPacketHandler::UnRegister(GU_DOGI_CREATE_RES);
 	CNtlPacketHandler::UnRegister(GU_DOGI_CHANGE_RES);
 	CNtlPacketHandler::UnRegister(GU_DOGI_UPDATE_NFY);
@@ -1271,16 +1271,16 @@ void UnRegisterPacketHandler(void)
 	CNtlPacketHandler::UnRegister(GU_BOT_BOTCAUTION_NFY);
 	CNtlPacketHandler::UnRegister(GU_BOT_BOTCAUTION_HELPME_NFY);
 
-	// πˆΩ∫ π◊ ≈ª∞Õ
+	// Î≤ÑÏä§ Î∞è ÌÉàÍ≤É
 	CNtlPacketHandler::UnRegister(GU_RIDE_ON_BUS_RES);
 	CNtlPacketHandler::UnRegister(GU_RIDE_OFF_BUS_RES);
 
-	// ∫ØΩ≈ ∞¸∑√
+	// Î≥ÄÏã† Í¥ÄÎ†®
 	CNtlPacketHandler::UnRegister(GU_SKILL_AFTEREFFECT_REMAINING_TIME_NFY);
 	CNtlPacketHandler::UnRegister(GU_TRANSFORM_CANCEL_RES);
     CNtlPacketHandler::UnRegister(GU_MONSTER_TRANSFORMED_NFY);
 
-	// ƒ¡µº« ∞¸∑√
+	// Ïª®ÎîîÏÖò Í¥ÄÎ†®
 	CNtlPacketHandler::UnRegister(GU_SKILL_CONFUSE_TARGET_NFY);
 	CNtlPacketHandler::UnRegister(GU_SKILL_TERROR_COURSE_CHANGE_NFY);
 
@@ -1292,7 +1292,7 @@ void UnRegisterPacketHandler(void)
 	CNtlPacketHandler::UnRegister(GU_CHAR_DIRECT_PLAY);		
 	CNtlPacketHandler::UnRegister(GU_CHAR_DIRECT_PLAY_END);		
 
-	// √µ«œ¡¶¿œ π´µµ»∏.
+	// Ï≤úÌïòÏ†úÏùº Î¨¥ÎèÑÌöå.
 	CNtlPacketHandler::UnRegister(GU_MATCH_MINORMATCH_STATE_UPDATE_NFY);
 	CNtlPacketHandler::UnRegister(GU_MATCH_MINORMATCH_TEAM_INFO_NFY);
 	CNtlPacketHandler::UnRegister(GU_MATCH_MINORMATCH_PLAYER_STATE_NFY);
@@ -1348,7 +1348,7 @@ void UnRegisterPacketHandler(void)
 	CNtlPacketHandler::UnRegister(GU_TELEPORT_PROPOSAL_NFY);
 	CNtlPacketHandler::UnRegister(GU_TELEPORT_CONFIRM_RES);
 
-	// HTB RP ±∏ΩΩ ªÁøÎ
+	// HTB RP Íµ¨Ïä¨ ÏÇ¨Ïö©
 	CNtlPacketHandler::UnRegister(GU_HTB_RP_BALL_RESULT_DECIDED_NFY);
 
 	CNtlPacketHandler::UnRegister(GU_AVATAR_RP_INCREASE_START_NFY);
@@ -1492,7 +1492,7 @@ void UnRegisterPacketHandler(void)
 
 	CNtlPacketHandler::UnRegister(GU_CHAR_RANKPOINT_RESET_NFY);
 
-    // ªÛøÎ»≠ ∞¸∑√
+    // ÏÉÅÏö©Ìôî Í¥ÄÎ†®
     CNtlPacketHandler::UnRegister(GU_NETMARBLEMEMBERIP_NFY);
     CNtlPacketHandler::UnRegister(CU_NETMARBLEMEMBERIP_NFY);
 
@@ -1507,7 +1507,7 @@ void UnRegisterPacketHandler(void)
 	CNtlPacketHandler::UnRegister(GU_DURATION_ITEM_BUY_RES);
 	CNtlPacketHandler::UnRegister(GU_DURATION_RENEW_RES);
 
-	// ƒ¸ΩΩ∑‘
+	// ÌÄµÏä¨Î°Ø
 	CNtlPacketHandler::UnRegister( GU_QUICK_SLOT_DEL_NFY );
 
 	// GMt

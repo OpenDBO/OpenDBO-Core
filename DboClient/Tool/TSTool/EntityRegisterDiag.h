@@ -7,7 +7,7 @@
 class CAttr_Page;
 
 
-// CEntityRegisterDiag ´ëÈ­ »óÀÚÀÔ´Ï´Ù.
+// CEntityRegisterDiag ëŒ€í™” ìƒìì…ë‹ˆë‹¤.
 
 class CEntityRegisterDiag : public COptionSheet
 {
@@ -17,7 +17,7 @@ protected:
 	CAttr_Page*		m_pEditedPage;
 
 public:
-	CEntityRegisterDiag(CWnd* pParent = NULL);   // Ç¥ÁØ »ı¼ºÀÚÀÔ´Ï´Ù.
+	CEntityRegisterDiag(CWnd* pParent = NULL);   // í‘œì¤€ ìƒì„±ìì…ë‹ˆë‹¤.
 	virtual ~CEntityRegisterDiag();
 
 	CAttr_Page*		GetEditedAttrPage( void );
@@ -27,7 +27,7 @@ public:
 	virtual INT_PTR DoModal();
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Áö¿øÀÔ´Ï´Ù.
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV ì§€ì›ì…ë‹ˆë‹¤.
 
 	DECLARE_MESSAGE_MAP()
 public:

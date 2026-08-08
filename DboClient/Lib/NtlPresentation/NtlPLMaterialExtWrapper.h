@@ -2,7 +2,7 @@
  *
  * File			: NtlMatExt
  * Author		: HongHoDong
- * Copyright	: (¡÷)NTL
+ * Copyright	: (Âç†ÏèôÏòô)NTL
  * Date			: 2005. 11. 27	
  * Abstract		: NTl Mat Extension
  *****************************************************************************
@@ -18,12 +18,13 @@
 
 RwBool		NtlMatExtPluginAttach(void);
 
-RwBool		NtlMatExtSetMultiTexture(RpMaterial *pMaterial, RwTexture *pTexture);	/**<Set MultiTexture «ˆ¿Á 1¿Â∏∏ ¡ˆø¯ */
-RwTexture  *NtlMatExtGetMultiTexture(RpMaterial *pMaterial);						/**<Get MultiTexture «ˆ¿Á 1¿Â∏∏ ¡ˆø¯ */
+RwBool		NtlMatExtSetMultiTexture(RpMaterial *pMaterial, RwTexture *pTexture);	/**<Set MultiTexture ÔøΩÔøΩÔøΩÔøΩ 1ÔøΩÂ∏∏ ÔøΩÔøΩÔøΩÔøΩ */
+RwTexture  *NtlMatExtGetMultiTexture(RpMaterial *pMaterial);						/**<Get MultiTexture ÔøΩÔøΩÔøΩÔøΩ 1ÔøΩÂ∏∏ ÔøΩÔøΩÔøΩÔøΩ */
 
-void		NtlMatExtSetFlag(RpMaterial *pMaterial, RwUInt32 bFlag);				/**<Set Material º”º∫ Flag Ntl_PluginToon¿« NtlMaterialExt.h ¬¸¡∂ */
-RwUInt32	NtlMatExtGetFlag(RpMaterial *pMaterial);								/**<Get Material º”º∫ Flag Ntl_PluginToon¿« NtlMaterialExt.h ¬¸¡∂ */
+void		NtlMatExtSetFlag(RpMaterial *pMaterial, RwUInt32 bFlag);				/**<Set Material Âç†ÏåàÏáΩÏòô Flag Ntl_PluginToonÂç†ÏèôÏòô NtlMaterialExt.h Âç†ÏèôÏòôÂç†ÏèôÏòô */
+RwUInt32	NtlMatExtGetFlag(RpMaterial *pMaterial);								/**<Get Material Âç†ÏåàÏáΩÏòô Flag Ntl_PluginToonÂç†ÏèôÏòô NtlMaterialExt.h Âç†ÏèôÏòôÂç†ÏèôÏòô */
 
 void		NtlMatExtSetPipeline(RpAtomic *pAtomic);
+void		NtlMatExtSetToonSkinPipelineRenderCB(RpAtomic *pAtomic);
 
 #endif

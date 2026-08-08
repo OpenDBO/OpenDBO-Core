@@ -1,11 +1,11 @@
 /*****************************************************************************
 * File			: gui_particlepath.h
 * Author		: HaeSung, Cho
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 10. 6
 * Abstract		: 
 *****************************************************************************
-* Desc          : DBO particle emitterÀÇ path ( Catmullrom splineÀ» ÀÌ¿ë )
+* Desc          : DBO particle emitterì˜ path ( Catmullrom splineì„ ì´ìš© )
 *****************************************************************************/
 
 #ifndef _GUI_PARTICLE_PATH_H_
@@ -60,7 +60,7 @@ struct SCurvePoint
 };
 
 /**
-* \brief ÆÄÆ¼Å¬ÀÇ ÆĞ½º
+* \brief íŒŒí‹°í´ì˜ íŒ¨ìŠ¤
 */
 class CParticlePath
 {

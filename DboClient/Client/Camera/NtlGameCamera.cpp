@@ -89,7 +89,7 @@ void CNtlGameCamera::HandleMouse(RwReal fDeltaZ)
 	m_fPrefDistance = m_fDistance + fDeltaZ;
 }
 
-int	CNtlGameCamera::MouseWheelHandler(unsigned int uiMouseData)
+int	CNtlGameCamera::MouseWheelHandler(uintptr_t uiMouseData)
 {
 	SMouseData *pData = (SMouseData *)uiMouseData;
 	HandleMouse(-pData->zDelta * 0.05f);
@@ -97,7 +97,7 @@ int	CNtlGameCamera::MouseWheelHandler(unsigned int uiMouseData)
 	return TRUE;
 }
 
-int	CNtlGameCamera::MouseMoveHandler(unsigned int uiMouseData)
+int	CNtlGameCamera::MouseMoveHandler(uintptr_t uiMouseData)
 {
     SMouseData *pData = (SMouseData *)uiMouseData;
 	if( !(pData->uiFlags & MK_LBUTTON) )
@@ -121,7 +121,7 @@ int	CNtlGameCamera::MouseMoveHandler(unsigned int uiMouseData)
 	return TRUE;
 }
 
-int CNtlGameCamera::MouseDownHandler(unsigned int uiMouseData)
+int CNtlGameCamera::MouseDownHandler(uintptr_t uiMouseData)
 {
 	SMouseData *pData = (SMouseData *)uiMouseData;
 	if( pData->uiFlags & MK_LBUTTON)
@@ -133,7 +133,7 @@ int CNtlGameCamera::MouseDownHandler(unsigned int uiMouseData)
 	return TRUE;
 }
 
-int CNtlGameCamera::KeyboardDownHandler(unsigned int uiKeyData)
+int CNtlGameCamera::KeyboardDownHandler(uintptr_t uiKeyData)
 {
 	return TRUE;
 }
@@ -215,7 +215,7 @@ void CNtlGameCamera::HandleEvents(RWS::CMsg &pMsg)
 	{	
 		m_bTargetMoveFlag = FALSE;
 
-		//ÇöÀç ÀÌµ¿µÈ Angle¿¡ °íÁ¤À» ÇÑ´Ù.
+		//å ì™ì˜™å ì™ì˜™ å ì‹±ë“¸ì˜™å ì™ì˜™ Angleå ì™ì˜™ å ì™ì˜™å ì™ì˜™å ì™ì˜™ å ì‹¼ëŒì˜™.
 		m_fPrefYAngle = m_fYAngle;
 		m_fSmoothYAngle = m_fOldSmoothYAngle;
 	}

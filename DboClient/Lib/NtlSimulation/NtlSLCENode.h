@@ -2,10 +2,10 @@
 *
 * File			: NtlSLCENode.h
 * Author		: agebreak
-* Copyright		: (ÁÖ)NTL
+* Copyright		: (ì£¼)NTL
 * Date			: 2008. 7. 16	
 *****************************************************************************
-* Desc          : ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ÀÇ °üÁß ¿¬ÃâÀ» À§ÇÑ ³ëµå 
+* Desc          : ì²œí•˜ì œì¼ ë¬´ë„íšŒì˜ ê´€ì¤‘ ì—°ì¶œì„ ìœ„í•œ ë…¸ë“œ 
 *****************************************************************************/
 
 #pragma once
@@ -18,19 +18,19 @@
 #define     CENODE_VER_1			(RwReal)1
 #define     CENODE_VER_1_1			(RwReal)1.1
 #define     CENODE_VER_1_2			(RwReal)1.2
-#define     CENODE_VER_1_2_1		(RwReal)1.21				///< °üÁß ÀÌÆåÆ® ¿¬ÃâÀ» À§ÇÑ µ¥ÀÌÅÍÀÇ ¹öÀü
-#define     CENODE_VER_LASTEST		(RwReal)1.3					///< ½ÉÆÇ ³ª·¹ÀÌ¼Ç Ãß°¡
+#define     CENODE_VER_1_2_1		(RwReal)1.21				///< ê´€ì¤‘ ì´í™íŠ¸ ì—°ì¶œì„ ìœ„í•œ ë°ì´í„°ì˜ ë²„ì „
+#define     CENODE_VER_LASTEST		(RwReal)1.3					///< ì‹¬íŒ ë‚˜ë ˆì´ì…˜ ì¶”ê°€
 
 class CNtlSerializer;
 class CNtlInstanceEffect;
 class CNtlPLCharacter;
 
 
-/// ÃµÇÏÁ¦ÀÏ ¹«µµÈ¸ÀÇ °üÁß ¿¬ÃâÀ» À§ÇÑ ³ëµå º£ÀÌ½º Å¬·¡½º
+/// ì²œí•˜ì œì¼ ë¬´ë„íšŒì˜ ê´€ì¤‘ ì—°ì¶œì„ ìœ„í•œ ë…¸ë“œ ë² ì´ìŠ¤ í´ë˜ìŠ¤
 class CNtlSLCENode
 {
 public:
-    enum ECENodeType            /// ³ëµå Å¸ÀÔ
+    enum ECENodeType            /// ë…¸ë“œ íƒ€ì…
     {
         E_CE_EFFECT,        
         E_CE_SOUND,
@@ -42,7 +42,7 @@ public:
 		 INVALID_E_CE
     };
 
-    static sVERSTION      m_Version;                     ///< ÇÏÀ§ È£È¯¼ºÀ» À§ÇÑ ¹öÀü Á¤º¸
+    static sVERSTION      m_Version;                     ///< í•˜ìœ„ í˜¸í™˜ì„±ì„ ìœ„í•œ ë²„ì „ ì •ë³´
 
 public:
     CNtlSLCENode(void);
@@ -63,14 +63,14 @@ public:
 	virtual void		HandleEvents(RWS::CMsg &pMsg) {}
 
 protected:
-    RwInt32                     m_eType;                    ///< ³ëµå Å¸ÀÔ    
-    std::string                 m_strName;                  ///< ³ëµå ÀÌ¸§
+    RwInt32                     m_eType;                    ///< ë…¸ë“œ íƒ€ì…    
+    std::string                 m_strName;                  ///< ë…¸ë“œ ì´ë¦„
     
-    RwReal                      m_fTotalElapsedTime;        ///< ¾÷µ¥ÀÌÆ® Å¸ÀÓ ºñ±³ º¯¼ö
-    RwV3d                       m_vPos;                     ///< ÇØ´ç ³ëµå°¡ »ı¼ºµÇ´Â À§Ä¡
+    RwReal                      m_fTotalElapsedTime;        ///< ì—…ë°ì´íŠ¸ íƒ€ì„ ë¹„êµ ë³€ìˆ˜
+    RwV3d                       m_vPos;                     ///< í•´ë‹¹ ë…¸ë“œê°€ ìƒì„±ë˜ëŠ” ìœ„ì¹˜
 };
 
-/// °üÁß ÀÌÆåÆ® ³ëµå
+/// ê´€ì¤‘ ì´í™íŠ¸ ë…¸ë“œ
 class CNtlSLCENodeEffect : public CNtlSLCENode
 {
 public:
@@ -90,12 +90,12 @@ public:
 protected:
 
 protected:    
-    std::string             m_strEffectName;                        ///< »ç¿ëÇÏ´Â ÀÌÆåÆ®ÀÇ ÀÌ¸§
+    std::string             m_strEffectName;                        ///< ì‚¬ìš©í•˜ëŠ” ì´í™íŠ¸ì˜ ì´ë¦„
 
-    CNtlInstanceEffect*     m_pEffect;                              ///< »ı¼ºµÈ ÀÌÆåÆ® °´Ã¼
+    CNtlInstanceEffect*     m_pEffect;                              ///< ìƒì„±ëœ ì´í™íŠ¸ ê°ì²´
 };
 
-/// »ç¿îµå Àç»ı ³ëµå
+/// ì‚¬ìš´ë“œ ì¬ìƒ ë…¸ë“œ
 class CNtlSLCENodeSound : public CNtlSLCENode
 {
 public:
@@ -122,13 +122,13 @@ protected:
 protected:
     std::string         m_strSoundFileName;
 	RwUInt8				  m_byChannelGroup;
-    RwBool              m_bLoop;                                ///< »ç¿îµå ·çÇÁ ¿©ºÎ
-	RwV3d           m_vOffsetPos;                                     ///< ÄÁÆ®·Ñ·¯¿¡¼­ »ó´ëÀûÀÎ ¿ÀÇÁ¼Â À§Ä¡
+    RwBool              m_bLoop;                                ///< ì‚¬ìš´ë“œ ë£¨í”„ ì—¬ë¶€
+	RwV3d           m_vOffsetPos;                                     ///< ì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ ìƒëŒ€ì ì¸ ì˜¤í”„ì…‹ ìœ„ì¹˜
 
     RwUInt32            m_hSoundHandle;
 };
 /*
-/// ¸»Ç³¼± ³ëµå
+/// ë§í’ì„  ë…¸ë“œ
 class CNtlSLCENodeBalloon  : public CNtlSLCENode
 {
 public:
@@ -144,7 +144,7 @@ public:
     virtual RwBool  Save(CNtlSerializer& s);   
     virtual void    SetPosition(const RwV3d& vPos);
 
-    void            SetBallonRect(RwV3d& vStart, RwV3d& vEnd);                      ///< ¸»Ç³¼±ÀÇ ¿µ¿ªÀ» ¼³Á¤ÇÑ´Ù.
+    void            SetBallonRect(RwV3d& vStart, RwV3d& vEnd);                      ///< ë§í’ì„ ì˜ ì˜ì—­ì„ ì„¤ì •í•œë‹¤.
     RwV3d           GetBallonRectStart() {return m_vStartRect;}
     RwV3d           GetBallonRectEnd()   {return m_vEndRect;}
 
@@ -161,10 +161,10 @@ protected:
     void            CreateBalloon();
 
 protected:        
-    RwV3d               m_vStartRect;                   ///< ¸»Ç³¼± ½ÃÀÛ¿µ¿ª
-    RwV3d               m_vEndRect;                     ///< ¸»Ç³¼± ³¡ ¿µ¿ª
-    RwReal              m_fInstanceTime;                ///< ¸»Ç³¼± »ı¼º ºóµµ (ÃÊ´ÜÀ§)
-    RwReal              m_fLifeTime;                    ///< »ı¼º ½Ã°£
+    RwV3d               m_vStartRect;                   ///< ë§í’ì„  ì‹œì‘ì˜ì—­
+    RwV3d               m_vEndRect;                     ///< ë§í’ì„  ë ì˜ì—­
+    RwReal              m_fInstanceTime;                ///< ë§í’ì„  ìƒì„± ë¹ˆë„ (ì´ˆë‹¨ìœ„)
+    RwReal              m_fLifeTime;                    ///< ìƒì„± ì‹œê°„
     RwUInt32            m_uiTableIdx;
 
 };
@@ -174,7 +174,7 @@ class CNtlSobNpc;
 
 /**
  * \ingroup NtlSimulation
- * \brief   ½ÉÆÇ ¿¬Ãâ ³ëµå
+ * \brief   ì‹¬íŒ ì—°ì¶œ ë…¸ë“œ
  *
  * \date 2008-07-28
  * \author agebreak
@@ -222,7 +222,7 @@ public:
 		EAnimPlayType					eAnimPlayType;		
 		RwBool							bAnimStart;
 		RwV3d							v3RefreePos;	
-		RwV3d							vTargetPos;                            ///< ÀÌµ¿ÇÒ Å¸°Ù À§Ä¡
+		RwV3d							vTargetPos;                            ///< ì´ë™í•  íƒ€ê²Ÿ ìœ„ì¹˜
 		RwV3d							vOrisinalPos;
 		RwReal							fDelayTime;
 		RwReal							fMoveSpeed;
@@ -291,5 +291,5 @@ protected:
 	sMoveInfo			m_MoveInfo;
 
 protected:    
-	CNtlSobNpc*         m_pRefreeActor;                                      ///< ½ÉÆÇ Actor °´Ã¼ Æ÷ÀÎÅÍ
+	CNtlSobNpc*         m_pRefreeActor;                                      ///< ì‹¬íŒ Actor ê°ì²´ í¬ì¸í„°
 };

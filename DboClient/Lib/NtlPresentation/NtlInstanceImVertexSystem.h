@@ -2,7 +2,7 @@
 //	File		:	NtlInstanceImVertexSystem.h
 //	Desc		:	
 //	Begin		:	2005. 7.28
-//	Copyright	:	¨Ï 2005 by agebreak CO., Ltd
+//	Copyright	:	â“’ 2005 by agebreak CO., Ltd
 //	Author		:	agebreak
 //	Update		:	
 //***********************************************************************************
@@ -35,7 +35,7 @@ public:
     virtual RwBool	Update(RwReal fElapsedTime);
 
 	virtual void	SetVertexColor(RwRGBA& color);
-    virtual void    SetAlpha(RwUInt8 byValue);                                         ///< EfffectÀÇ Alpha°ªÀ» ¼³Á¤ÇÑ´Ù.
+    virtual void    SetAlpha(RwUInt8 byValue);                                         ///< Efffectì˜ Alphaê°’ì„ ì„¤ì •í•œë‹¤.
 
 	virtual void	SetWorldMatrix(const RwMatrix& matWorld);
 
@@ -45,5 +45,5 @@ public:
 protected:
     virtual	void	UpdateColor(RwReal fDeltaTime);
     virtual void	UpdateSize(RwReal fDeltaTime);
-    virtual RwUInt8 UpdateFinishAlpha(RwUInt8 uiOriginAlpha, RwReal fElapsedTime, RwReal fFinishTime);  ///< Finish½ÃÀÇ Alpha°ª Ã³¸®¸¦ ÇÑ´Ù.
+    virtual RwUInt8 UpdateFinishAlpha(RwUInt8 uiOriginAlpha, RwReal fElapsedTime, RwReal fFinishTime);  ///< Finishì‹œì˜ Alphaê°’ ì²˜ë¦¬ë¥¼ í•œë‹¤.
 };

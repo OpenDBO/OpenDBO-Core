@@ -34,13 +34,13 @@ public:
 //! Variables
 	CDynamicOutline*	m_pOutline;
 
-	INT					m_nMarginX;		// ÅØ½ºÆ®°¡ ÂïÈ÷´Â ¿©¹é.
+	INT					m_nMarginX;		// í…ìŠ¤íŠ¸ê°€ ì°íˆëŠ” ì—¬ë°±.
 	INT					m_nMarginY;
 
-	INT					m_nMouseMarginX;// ¸¶¿ì½º Æ÷ÀÎÅÍ·ÎºÎÅÍÀÇ ¿©¹é. 
-	INT					m_nMouseMarginY;// Right, Bottom¹æÇâÀ¸·Î. ¹İ´ë´Â 
+	INT					m_nMouseMarginX;// ë§ˆìš°ìŠ¤ í¬ì¸í„°ë¡œë¶€í„°ì˜ ì—¬ë°±. 
+	INT					m_nMouseMarginY;// Right, Bottomë°©í–¥ìœ¼ë¡œ. ë°˜ëŒ€ëŠ” 
 
-	CComponent*			m_pOwner;		// ¼ÒÀ¯ÀÚÀÇ Æ÷ÀÎÅÍ. 
+	CComponent*			m_pOwner;		// ì†Œìœ ìì˜ í¬ì¸í„°. 
 
 private:
 	CToolTip*			m_pToolTip;		// Reference Pointer.

@@ -4,7 +4,7 @@
 // WINDOW NAME
 #define MT_WINDOW_NAME              L"DBO Model Tool v1.3.1"
 
-// ¾Ö´Ï¸ŞÀÌ¼Ç Æú´õ Á¤ÀÇ
+// ì• ë‹ˆë©”ì´ì…˜ í´ë” ì •ì˜
 #define PATH_ANIM_HUMAN_FEMALE      L"\\character\\animation_humanfemale\\"
 #define PATH_ANIM_HUMAN_MALE        L"\\character\\animation_humanmale\\"
 #define PATH_ANIM_MAJIN_FEMALE      L"\\character\\animation_majinfemale\\"
@@ -13,7 +13,7 @@
 #define PATH_ANIM_MOB               L"\\character\\animation_mob\\"
 #define PATH_ANIM_NPC               L"\\character\\animation_npc\\"
 
-// ÇÑ ¾Ö´Ï¸ŞÀÌ¼ÇÀÇ ÃÖ´ë HitEvent °³¼ö
+// í•œ ì• ë‹ˆë©”ì´ì…˜ì˜ ìµœëŒ€ HitEvent ê°œìˆ˜
 #define MAX_HIT_EVENT_COUNT         16
 
 #endif
