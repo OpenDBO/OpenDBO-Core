@@ -115,6 +115,8 @@
 #include "ScrambleStatusGui.h"
 #include "NetPyShopGui.h"
 #include "NetPyShopCartGui.h"
+#include "GiftShopGui.h"
+#include "GiftShopCartGui.h"
 #include "DeliberationRankGui.h"
 #include "DeliberationRankGui.h"
 #include "CommercialExtendGui.h"
@@ -738,11 +740,16 @@ RwBool CGameGuiGroup::Create(void)
 
 	// NetPyShop
 	AddDialog(m_pNetPyShopGui, CNetPyShopGui, "NetPyShopGui", DIALOG_NETPYSHOP);
-	AddDialog(m_pNetPyShopCartGui, CNetPyShopCartGui, "NetPyShopCartGui", DIALOG_NETPYSHOP_TRADE);	
+	AddDialog(m_pNetPyShopCartGui, CNetPyShopCartGui, "NetPyShopCartGui", DIALOG_NETPYSHOP_TRADE);
+
+	// Gift Shop (Wagu Point Shop)
+	AddDialog(m_pGiftShopGui, CGiftShopGui, "GiftShopGui", DIALOG_GIFTSHOP);
+	AddDialog(m_pGiftShopCartGui, CGiftShopCartGui, "GiftShopCartGui", DIALOG_GIFTSHOP_TRADE);
 
     // Link Move
 	m_pNPCShop->Link( m_pTradeCart->GetDialog() );
 	m_pNetPyShopGui->Link( m_pNetPyShopCartGui->GetDialog() );
+	m_pGiftShopGui->Link( m_pGiftShopCartGui->GetDialog() );
 	m_pWarehouseBar->Link( m_pWarehouse_1->GetDialog() );
 	m_pWarehouseBar->Link( m_pWarehouse_2->GetDialog() );
 	m_pWarehouseBar->Link( m_pWarehouse_3->GetDialog() );
@@ -964,7 +971,9 @@ void CGameGuiGroup::Destroy(void)
 	RemoveDialog(m_pScrambleStatusGui);
 	RemoveDialog(m_pScrambleNotify);
 	RemoveDialog(m_pNetPyShopGui);
-	RemoveDialog(m_pNetPyShopCartGui);	
+	RemoveDialog(m_pNetPyShopCartGui);
+	RemoveDialog(m_pGiftShopGui);
+	RemoveDialog(m_pGiftShopCartGui);
 	RemoveDialog(m_pCommercialExtendGui);
 	RemoveDialog(m_pItemBindSealingGui);
 	RemoveDialog(m_pHoiPoiMixRecipeGui);

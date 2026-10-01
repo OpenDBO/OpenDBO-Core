@@ -293,6 +293,10 @@ CNtlPacketLockManager::CNtlPacketLockManager(VOID)
 	m_mapLockPacket[GU_SHOP_NETPYITEM_BUY_RES]							= LT_ITEM | LT_WORLDCONCEPT;
 	m_mapLockPacket[GU_SHOP_NETPYITEM_END_RES]							= LT_ITEM | LT_WORLDCONCEPT;
 
+	// GiftShop (Wagu Point Shop)
+	m_mapLockPacket[GU_GIFT_SHOP_START_RES]							= LT_ITEM | LT_WORLDCONCEPT;
+	m_mapLockPacket[GU_GIFT_SHOP_BUY_RES]								= LT_ITEM | LT_WORLDCONCEPT;
+
 	// CommercialExtend
 	m_mapLockPacket[GU_DURATION_ITEM_BUY_RES]							= LT_ITEM;
 	m_mapLockPacket[GU_DURATION_RENEW_RES]								= LT_ITEM;

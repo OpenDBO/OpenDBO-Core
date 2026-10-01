@@ -88,6 +88,7 @@ enum eOPCODE_GQ
 
 	GQ_UPDATE_CHAR_ZENNY_REQ,
 	GQ_UPDATE_CHAR_NETPY_REQ,
+	GQ_UPDATE_CHAR_WAGUPOINT_REQ,
 
 	GQ_QUEST_ITEM_CREATE_REQ,					// 퀘스트 아이템 생성
 	GQ_QUEST_ITEM_DELETE_REQ,					// 퀘스트 아이템 삭제
@@ -856,6 +857,12 @@ BYTE					byZennyChangeType;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GQ_UPDATE_CHAR_NETPY_REQ)
+HOBJECT					handle;
+CHARACTERID				charId;
+DWORD					dwPoints;
+END_PROTOCOL()
+//------------------------------------------------------------------
+BEGIN_PROTOCOL(GQ_UPDATE_CHAR_WAGUPOINT_REQ)
 HOBJECT					handle;
 CHARACTERID				charId;
 DWORD					dwPoints;

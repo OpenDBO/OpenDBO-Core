@@ -307,6 +307,8 @@
     <ClCompile Include="Gui\MsgBoxManager.cpp" />
     <ClCompile Include="Gui\MultiDialogGui.cpp" />
     <ClCompile Include="Gui\NameNotifyGui.cpp" />
+    <ClCompile Include="Gui\GiftShopCartGui.cpp" />
+    <ClCompile Include="Gui\GiftShopGui.cpp" />
     <ClCompile Include="Gui\NetPyShopCartGui.cpp" />
     <ClCompile Include="Gui\NetPyShopGui.cpp" />
     <ClCompile Include="Gui\NpcNotifyGui.cpp" />
@@ -484,6 +486,8 @@
     <ClCompile Include="MascotSkillReMake.cpp" />
     <ClCompile Include="MascotStatusBarGui.cpp" />
     <ClCompile Include="MrPoPoHandler.cpp" />
+    <ClCompile Include="GiftSideIconGui.cpp" />
+    <ClCompile Include="GiftSideView.cpp" />
     <ClCompile Include="NetPySideIconGui.cpp" />
     <ClCompile Include="NetPySideView.cpp" />
     <ClCompile Include="Parser\DBOCheatCommand.cpp" />
@@ -659,6 +663,8 @@
     <ClInclude Include="Gui\MsgBoxManager.h" />
     <ClInclude Include="Gui\MultiDialogGui.h" />
     <ClInclude Include="Gui\NameNotifyGui.h" />
+    <ClInclude Include="Gui\GiftShopCartGui.h" />
+    <ClInclude Include="Gui\GiftShopGui.h" />
     <ClInclude Include="Gui\NetPyShopCartGui.h" />
     <ClInclude Include="Gui\NetPyShopGui.h" />
     <ClInclude Include="Gui\NpcNotifyGui.h" />
@@ -812,6 +818,8 @@
     <ClInclude Include="Main\PacketProc.h" />
     <ClInclude Include="Main\PetitionManager.h" />
     <ClInclude Include="MrPoPoHandler.h" />
+    <ClInclude Include="GiftSideIconGui.h" />
+    <ClInclude Include="GiftSideView.h" />
     <ClInclude Include="NetPySideIconGui.h" />
     <ClInclude Include="NetPySideView.h" />
     <ClInclude Include="Parser\DBOCheatCommand.h" />

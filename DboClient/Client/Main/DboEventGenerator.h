@@ -243,6 +243,10 @@ public:
 	static void NetPyShopEvent(RwUInt8 byType, RwUInt32 uiSerial, unsigned long ulPrice = 0,
 		wchar_t* pcName = NULL, int iPlace = 0, int iPosition= 0 ,
 		int iOverlapCount = 0);
+
+	static void GiftShopEvent(RwUInt8 byType, RwUInt32 uiSerial, unsigned long ulPrice = 0,
+		wchar_t* pcName = NULL, int iPlace = 0, int iPosition= 0 ,
+		int iOverlapCount = 0);
 	// CommercialExtend command Event
 	static void StartProcessBuyDurItemNPC( RwUInt32 uiItemIdx,  RwUInt32 uiNPCSerial, sSHOP_BUY_CART& ShopBuyCart );
 	static void StartProcessBuyDurItemNetpy( RwUInt32 uiItemIdx, RwUInt32 uiMerchantTblidx, BYTE byMerchanSlotPos );

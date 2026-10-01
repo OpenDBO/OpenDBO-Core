@@ -595,6 +595,7 @@ enum eMERCHANT_SELL_TYPE
 	//new
 	MERCHANT_SELL_TYPE_GAMBLE_ZENNY,
 	MERCHANT_SELL_TYPE_ITEM_EXCHANGE,
+	MERCHANT_SELL_TYPE_WP,					// sold for Gift Shop (Wagu Point) currency
 
 	MERCHANT_SELL_TYPE_COUNT,
 	MERCHANT_SELL_TYPE_FIRST = MERCHANT_SELL_TYPE_ITEM,
@@ -674,6 +675,8 @@ const int			NTL_MAX_NEWBIE_QUICKSLOT_COUNT		= 5;  // »ý¼º½Ã ºÎ¿©°¡´É Äü½½·Ô
 const DWORD			NTL_DELETE_CHAR_CHECK_TICK			= 1000; //Check Delete waiting time
 
 const DWORD			NTL_MAX_WAGU_WAGU_SHOPPOINTS		= 2000; //maximal wagu shop points
+
+const int			NTL_GIFT_SHOP_VERSION				= 200; //protocol version stamped on gift shop buy requests
 
 const DWORD			NTL_INVINCIBLE_EVENT_TIME			= 5000;
 

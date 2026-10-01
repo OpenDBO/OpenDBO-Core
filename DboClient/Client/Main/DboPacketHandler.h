@@ -908,6 +908,9 @@ void PacketHandler_GUShopNetPyItemStartRes(void* pPacket);
 void PacketHandler_GUShopNetPyItemBuyRes(void* pPacket);
 void PacketHandler_GUShopNetPyItemEndRes(void* pPacket);
 
+void PacketHandler_GUGiftShopStartRes(void* pPacket);
+void PacketHandler_GUGiftShopBuyRes(void* pPacket);
+
 // CommercialExtend (Duration Item)
 void PacketHandler_GUDurationItemBuyRes( void* pPacket );
 void PacketHandler_GUDurationRenewRes( void* pPacket );

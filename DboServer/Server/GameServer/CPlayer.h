@@ -293,7 +293,7 @@ public:
 
 	inline 	DWORD		GetWaguPoints()  { return player_data.dwWaguWaguPoints; }
 	inline void			SetWaguPoints(DWORD dwPoints) { player_data.dwWaguWaguPoints = dwPoints; }
-	void				UpdateWaguPoints(DWORD dwPoints);
+	void				UpdateWaguPoints(DWORD dwPoints, bool bQuery = true);
 
 	inline DWORD		GetSkillPoints()  { return player_data.dwSpPoint; }
 	inline void			SetSkillPoints(DWORD sp) { player_data.dwSpPoint = sp; }

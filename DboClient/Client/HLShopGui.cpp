@@ -1751,6 +1751,7 @@ void CHLShopGui::OnWaguFlashEnd(gui::CComponent* pComponent)
 	{
 		int OldWaguPoints = m_WaguInfo.wNewWaguWaguPoints - Logic_GetWaguPoint();
 		Logic_SetWaguPoint(m_WaguInfo.wNewWaguWaguPoints);
+		CDboEventGenerator::GiftShopEvent(eGIFTSHOP_EVENT_WP_UPDATED, INVALID_SERIAL_ID);
 
 		WCHAR Buff[256];
 		swprintf_s(Buff, 256, GetDisplayStringManager()->GetString("DST_WP_ADD_POINT"), OldWaguPoints);

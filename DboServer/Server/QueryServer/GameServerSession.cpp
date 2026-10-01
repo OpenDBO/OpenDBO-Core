@@ -110,6 +110,7 @@ int CGameServerSession::OnDispatch(CNtlPacket * pPacket)
 		case GQ_CHAR_CONVERT_GENDER_NFY: RecvCharConvertGenderNfy(pPacket, app); break;
 		case GQ_UPDATE_CHAR_ZENNY_REQ: RecvUpdateCharZennyReq(pPacket, app); break;
 		case GQ_UPDATE_CHAR_NETPY_REQ: RecvUpdateCharNetpyReq(pPacket, app); break;
+		case GQ_UPDATE_CHAR_WAGUPOINT_REQ: RecvUpdateCharWaguPointReq(pPacket, app); break;
 		case GQ_QUEST_ITEM_CREATE_REQ: RecvQuestItemCreateReq(pPacket, app); break;
 		case GQ_QUEST_ITEM_DELETE_REQ: RecvQuestItemDeleteReq(pPacket, app); break;
 		case GQ_QUEST_ITEM_MOVE_REQ: RecvQuestItemMoveReq(pPacket, app); break;

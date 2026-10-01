@@ -2186,12 +2186,26 @@ void CPlayer::UpdateNetPy(DWORD dwNetPy, DWORD SessionPoint, bool bQuery/* = tru
 //--------------------------------------------------------------------------------------//
 //		UPDATE WAGU WAGO POINTS
 //--------------------------------------------------------------------------------------//
-void CPlayer::UpdateWaguPoints(DWORD dwPoints)
+void CPlayer::UpdateWaguPoints(DWORD dwPoints, bool bQuery/* = true*/)
 {
 	SetWaguPoints(dwPoints);
 
 	if(GetWaguPoints() > NTL_MAX_WAGU_WAGU_SHOPPOINTS)
 		SetWaguPoints(NTL_MAX_WAGU_WAGU_SHOPPOINTS);
+
+	if (bQuery)
+	{
+		CGameServer* app = (CGameServer*)g_pApp;
+
+		CNtlPacket pQry(sizeof(sGQ_UPDATE_CHAR_WAGUPOINT_REQ));
+		sGQ_UPDATE_CHAR_WAGUPOINT_REQ* qRes = (sGQ_UPDATE_CHAR_WAGUPOINT_REQ*)pQry.GetPacketData();
+		qRes->wOpCode = GQ_UPDATE_CHAR_WAGUPOINT_REQ;
+		qRes->handle = GetID();
+		qRes->charId = GetCharID();
+		qRes->dwPoints = GetWaguPoints();
+		pQry.SetPacketLen(sizeof(sGQ_UPDATE_CHAR_WAGUPOINT_REQ));
+		app->SendTo(app->GetQueryServerSession(), &pQry);
+	}
 }
 
 //--------------------------------------------------------------------------------------//
