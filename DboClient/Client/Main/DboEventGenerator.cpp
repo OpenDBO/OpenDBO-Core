@@ -1570,6 +1570,23 @@ void CDboEventGenerator::NetPyShopEvent( RwUInt8 byType, RwUInt32 uiSerial,
 	SEND_MSG( g_EventNetPyShopEvent, &sData );
 }
 
+void CDboEventGenerator::GiftShopEvent( RwUInt8 byType, RwUInt32 uiSerial,
+										unsigned long ulPrice /*= 0*/, wchar_t* pcName /*= NULL*/,
+										int iPlace /*= 0*/, int iPosition/*= 0 */,
+										int iOverlapCount /*= 0*/ )
+{
+	SDboEventGiftShopEvent sData;
+	sData.byEventType = byType;
+	sData.uiSerial = uiSerial;
+	sData.ulPrice = ulPrice;
+	sData.pcItemName = pcName;
+	sData.nPlace = iPlace;
+	sData.nPosition = iPosition;
+	sData.nOverlapCount = iOverlapCount;
+
+	SEND_MSG( g_EventGiftShopEvent, &sData );
+}
+
 // CommercialExtend command Event
 void CDboEventGenerator::StartProcessBuyDurItemNPC( RwUInt32 uiItemIdx, RwUInt32 uiNPCSerial, sSHOP_BUY_CART& ShopBuyCart )
 {

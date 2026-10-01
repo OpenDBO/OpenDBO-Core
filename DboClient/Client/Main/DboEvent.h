@@ -282,6 +282,9 @@ extern RWS::CEventId g_EventLoading;
 // NetPyShop
 extern RWS::CEventId g_EventNetPyShopEvent;
 
+// GiftShop (Wagu Point Shop)
+extern RWS::CEventId g_EventGiftShopEvent;
+
 // CommercialExtend
 extern RWS::CEventId g_EventCommercialExtendCommand;
 
@@ -1319,6 +1322,31 @@ struct SDboEventNetPyShopEvent
 
 	RwInt32			nPlace;			///< 상점의 탭, 혹은 가방의 번호
 	RwInt32			nPosition;		///< 탭안 등록된 아이템의 위치, 가방 안의 슬롯 번호
+	RwInt32			nOverlapCount;	///< 갯수
+};
+
+enum eGiftShopEventType
+{
+	eGIFTSHOP_EVENT_REG_ITEM,
+	eGIFTSHOP_EVENT_REG_ITEM_MAX,
+	eGIFTSHOP_EVENT_BUY_SUCCESS,
+	eGIFTSHOP_EVENT_WP_UPDATED,		///< WP balance changed by something other than a gift shop purchase (e.g. Wagu Machine) - display refresh only, no cart side effects
+
+	eGIFTSHOP_NUMS,
+	eGIFTSHOP_INVALID = 0xFF
+};
+
+// GiftShop (Wagu Point Shop) Event
+struct SDboEventGiftShopEvent
+{
+	RwUInt8 byEventType;
+
+	RwUInt32		uiSerial;		///< Item
+	unsigned long	ulPrice;		///< 아이템 가격
+	wchar_t*		pcItemName;		///< 아이템 이름
+
+	RwInt32			nPlace;			///< 상점의 탭
+	RwInt32			nPosition;		///< 탭안 등록된 아이템의 위치
 	RwInt32			nOverlapCount;	///< 갯수
 };
 

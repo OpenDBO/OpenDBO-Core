@@ -1101,6 +1101,8 @@ void InitResultCodeString()
 	arGamePacketResilt[954] = "AIR_CANNOT_FLY_ACCEL";
 	arGamePacketResilt[955] = "GAME_SKILL_CANT_USE_SKILL_WHEN_ROLLING_ATTACK";
 	arGamePacketResilt[956] = "GAME_SKILL_CANT_USE_SKILL_WHEN_RABIES";
+	arGamePacketResilt[958] = "GIFTSHOP_NOT_OPEN";
+	arGamePacketResilt[959] = "GIFTSHOP_WP_NOT_ENOUGH";
 }
 
 

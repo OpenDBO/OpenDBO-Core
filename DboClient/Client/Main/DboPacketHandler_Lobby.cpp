@@ -28,6 +28,7 @@
 #include "NtlNetSender.h"
 #include "NtlSLEventFunc.h"
 #include "NtlSLPacketGenerator.h"
+#include "NtlSLLogic.h"
 #include "NtlWorldConceptTMQ.h"
 #include "NtlWorldConceptTutorial.h"
 #include "NtlWorldConceptTB.h"
@@ -43,6 +44,8 @@
 #include "ChannelChangeGui.h"
 #include "DialogManager.h"
 #include "PetitionManager.h"
+#include "DboEvent.h"
+#include "DboEventGenerator.h"
 #include "LobbyManager.h"
 
 
@@ -848,10 +851,12 @@ void PacketHandler_GSAvatarCharInfo(void *pPacket)
 {
 	sGU_AVATAR_CHAR_INFO *pCharInfo = (sGU_AVATAR_CHAR_INFO*)pPacket;
 
-	SAvatarInfo *pAvatarInfo = GetNtlSLGlobal()->GetAvatarInfo(); 
+	SAvatarInfo *pAvatarInfo = GetNtlSLGlobal()->GetAvatarInfo();
 	pAvatarInfo->uiSerialId = pCharInfo->handle;
-	memcpy(&pAvatarInfo->sCharPf, &pCharInfo->sPcProfile, sizeof(sPC_PROFILE)); 
-	memcpy(&pAvatarInfo->sCharState.sCharStateBase, &pCharInfo->sCharState.sCharStateBase, sizeof(sCHARSTATE_BASE)); 
+	memcpy(&pAvatarInfo->sCharPf, &pCharInfo->sPcProfile, sizeof(sPC_PROFILE));
+	Logic_SetWaguPoint(pAvatarInfo->sCharPf.dwWaguWaguPoints);
+	CDboEventGenerator::GiftShopEvent(eGIFTSHOP_EVENT_WP_UPDATED, INVALID_SERIAL_ID);
+	memcpy(&pAvatarInfo->sCharState.sCharStateBase, &pCharInfo->sCharState.sCharStateBase, sizeof(sCHARSTATE_BASE));
 	RwInt32 iDataLen = pCharInfo->wCharStateSize - sizeof(sCHARSTATE_BASE);
 	if(iDataLen > 0)
 		memcpy(&pAvatarInfo->sCharState.sCharStateDetail, &pCharInfo->sCharState.sCharStateDetail, iDataLen);

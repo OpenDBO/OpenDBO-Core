@@ -199,6 +199,7 @@ RwBool CDboEventHandler::Create(void)
     RegisterMsg(g_EventUpdateNetPy, "g_EventUpdateNetPy", "SDboEventUpdateNetPy");
     RegisterMsg(g_EventNetMarbleMemberShipNfy, "g_EventNetMarbleMemberShipNfy", NULL);
 	RegisterMsg(g_EventNetPyShopEvent, "g_EventNetPyShopEvent", "SDboNetPyShopEvent" );
+	RegisterMsg(g_EventGiftShopEvent, "g_EventGiftShopEvent", "SDboEventGiftShopEvent" );
 
 	// CommercialExtend
 	RegisterMsg(g_EventCommercialExtendCommand, "g_EventCommercialExtendCommand", "SDboEventCommercialExtendCommand" );
@@ -413,6 +414,7 @@ void CDboEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventUpdateNetPy);
 	UnRegisterMsg(g_EventNetMarbleMemberShipNfy);
 	UnRegisterMsg(g_EventNetPyShopEvent);
+	UnRegisterMsg(g_EventGiftShopEvent);
 
 	// CommercialExtend
 	UnRegisterMsg(g_EventCommercialExtendCommand);

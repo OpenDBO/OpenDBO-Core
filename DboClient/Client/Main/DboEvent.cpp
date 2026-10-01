@@ -247,6 +247,7 @@ RWS::CEventId g_EventHintViewClosed;			///< 사이드뷰를 하나 삭제한다.
 RWS::CEventId g_EventLoading;
 
 RWS::CEventId g_EventNetPyShopEvent;			///< NetPyShop Event
+RWS::CEventId g_EventGiftShopEvent;			///< GiftShop (Wagu Point Shop) Event
 
 RWS::CEventId g_EventCommercialExtendCommand;	///< CommercialExtend command Event
 

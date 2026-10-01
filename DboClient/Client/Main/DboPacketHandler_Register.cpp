@@ -790,6 +790,8 @@ void RegisterPacketHandler(void)
 
 	CNtlPacketHandler::Register(GU_SHOP_NETPYITEM_START_RES, PacketHandler_GUShopNetPyItemStartRes );
 	CNtlPacketHandler::Register(GU_SHOP_NETPYITEM_BUY_RES, PacketHandler_GUShopNetPyItemBuyRes );
+	CNtlPacketHandler::Register(GU_GIFT_SHOP_START_RES, PacketHandler_GUGiftShopStartRes );
+	CNtlPacketHandler::Register(GU_GIFT_SHOP_BUY_RES, PacketHandler_GUGiftShopBuyRes );
 	CNtlPacketHandler::Register(GU_SHOP_NETPYITEM_END_RES, PacketHandler_GUShopNetPyItemEndRes );
 
 	// CommercialExtend (Duration Item)
@@ -1519,6 +1521,8 @@ void UnRegisterPacketHandler(void)
 
 	CNtlPacketHandler::UnRegister(GU_SHOP_NETPYITEM_START_RES);
 	CNtlPacketHandler::UnRegister(GU_SHOP_NETPYITEM_BUY_RES);
+	CNtlPacketHandler::UnRegister(GU_GIFT_SHOP_START_RES);
+	CNtlPacketHandler::UnRegister(GU_GIFT_SHOP_BUY_RES);
 	CNtlPacketHandler::UnRegister(GU_SHOP_NETPYITEM_END_RES);
 
 	// CommercialExtend

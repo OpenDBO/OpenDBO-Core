@@ -341,6 +341,9 @@ public:
 	bool SendShopNetPyItemStartReq();
 	bool SendShopNetPyItemBuyReq( RwUInt8 byBuyCount, sSHOP_BUY_CART* pBuyData );
 	bool SendShopNetPyItemEndReq();
+
+	bool SendGiftShopStartReq();
+	bool SendShopGiftItemBuyReq( RwUInt8 byBuyCount, sSHOP_BUY_CART* pBuyData );
 	bool SendNetPyAddPointsByTime();
 
 	// CommercialExtend (Duration Item)

@@ -4592,6 +4592,42 @@ void PacketHandler_GUShopNetPyItemBuyRes( void* pPacket )
 	CDboEventGenerator::NetPyShopEvent( eNETPYSHOP_EVENT_BUY_SUCCESS, INVALID_SERIAL_ID );
 }
 
+void PacketHandler_GUGiftShopStartRes( void* pPacket )
+{
+	API_GetSLPacketLockManager()->Unlock(GU_GIFT_SHOP_START_RES);
+
+	sGU_GIFT_SHOP_START_RES* pResult = (sGU_GIFT_SHOP_START_RES*)pPacket;
+
+	if( pResult->wResultCode != GAME_SUCCESS )
+	{
+		GetAlarmManager()->AlarmMessage(Logic_GetResultCodeString(pResult->wResultCode, "GU_GIFT_SHOP_START_RES"), TRUE );
+		return;
+	}
+
+	Logic_SetWaguPoint(pResult->dwGiftPoint);
+
+	// Event
+	CDboEventGenerator::GiftShopEvent( eGIFTSHOP_EVENT_WP_UPDATED, INVALID_SERIAL_ID );
+}
+
+void PacketHandler_GUGiftShopBuyRes( void* pPacket )
+{
+	API_GetSLPacketLockManager()->Unlock(GU_GIFT_SHOP_BUY_RES);
+
+	sGU_GIFT_SHOP_BUY_RES* pResult = (sGU_GIFT_SHOP_BUY_RES*)pPacket;
+
+	if( pResult->wResultCode != GAME_SUCCESS )
+	{
+		GetAlarmManager()->AlarmMessage(Logic_GetResultCodeString(pResult->wResultCode, "GU_GIFT_SHOP_BUY_RES"), TRUE );
+		return;
+	}
+
+	Logic_SetWaguPoint(pResult->dwGiftPoint);
+
+	// Event
+	CDboEventGenerator::GiftShopEvent( eGIFTSHOP_EVENT_BUY_SUCCESS, INVALID_SERIAL_ID );
+}
+
 void PacketHandler_GUShopNetPyItemEndRes( void* pPacket )
 {
 	API_GetSLPacketLockManager()->Unlock(GU_SHOP_NETPYITEM_END_RES);
