@@ -1661,6 +1661,20 @@ void CGameServerSession::RecvUpdateCharNetpyReq(CNtlPacket * pPacket, CQueryServ
 	}
 }
 
+void CGameServerSession::RecvUpdateCharWaguPointReq(CNtlPacket * pPacket, CQueryServer * app)
+{
+	UNREFERENCED_PARAMETER(app);
+
+	sGQ_UPDATE_CHAR_WAGUPOINT_REQ* req = (sGQ_UPDATE_CHAR_WAGUPOINT_REQ*)pPacket->GetPacketData();
+
+	CPlayerCache* pPlayerCache = g_pPlayerCache->GetCharacter(req->charId);
+	if (pPlayerCache)
+	{
+		pPlayerCache->SetWaguPoints(req->dwPoints);
+		g_pCharacterRepository->UpdateWaguPoint(req->charId, req->dwPoints);
+	}
+}
+
 void CGameServerSession::RecvQuestItemCreateReq(CNtlPacket * pPacket, CQueryServer * app)
 {
 	UNREFERENCED_PARAMETER(app);
