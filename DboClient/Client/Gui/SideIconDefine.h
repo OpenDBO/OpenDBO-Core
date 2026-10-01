@@ -16,6 +16,7 @@ enum eSideIconType
 	SIDEICON_HLS,
 	SIDEICON_WAGU,
 	SIDEICON_EVENT_WAGU,
+	SIDEICON_GIFT,						///< Gift Shop(Wagu Point) 사이드 아이콘
 
 	SIDEICON_NUMS,
 	INVALID_SIDEICON
@@ -39,6 +40,7 @@ enum eSideViewType
 	SIDEVIEW_HLS,
 	SIDEVIEW_WAGU,
 	SIDEVIEW_EVENT_WAGU,
+	SIDEVIEW_GIFT,						///< Gift Shop(Wagu Point) 뷰
 
 	SIDEVIEW_NUMS,
 	INVALID_SIDEVIEW

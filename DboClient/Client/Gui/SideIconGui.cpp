@@ -49,6 +49,9 @@
 #include "NetPySideIconGui.h"
 #include "NetPySideView.h"
 
+#include "GiftSideIconGui.h"
+#include "GiftSideView.h"
+
 // SideIcon�� �����ϰ� SideIconGui�� ����ϴ� ��ũ��
 #define RegisterSideIcon( pSideIcon, ClassName, szName, id ) \
 	{ \
@@ -138,6 +141,8 @@ CSideIconGui::CSideIconGui(const RwChar* pName) : CNtlPLGui(pName), m_pPresentIc
 , m_pWaguMachineSideViewGui(NULL)
 , m_pEventMachineSideIconGui(NULL)
 , m_pEventMachineSideViewGui(NULL)
+, m_pGiftSideIconGui(NULL)
+, m_pGiftSideViewGui(NULL)
 {
 	m_nPresentViewType = INVALID_SIDEVIEW;
 	s_pSideIconGui = this;
@@ -219,6 +224,10 @@ RwBool CSideIconGui::Create()
 	RegisterSideIcon(m_pEventMachineSideIconGui, CEventMachineSideIconGui, "CEventMachineSideIconGui", SIDEICON_EVENT_WAGU);
 	RegisterSideView(m_pEventMachineSideViewGui, CEventMachineSideViewGui, "CEventMachineSideViewGui", SIDEVIEW_EVENT_WAGU);
 
+	// Gift Shop (Wagu Point Shop)
+	RegisterSideIcon(m_pGiftSideIconGui, CGiftSideIconGui, "CGiftSideIconGui", SIDEICON_GIFT);
+	RegisterSideView(m_pGiftSideViewGui, CGiftSideViewGui, "CGiftSideViewGui", SIDEVIEW_GIFT);
+
 	SAvatarInfo* pAvatarInfo = GetNtlSLGlobal()->GetAvatarInfo();
 	if( pAvatarInfo->sCharPf.bIsGameMaster )
 		m_pGMSideIconGui->Show(true);
@@ -278,6 +287,8 @@ void CSideIconGui::Destroy()
 	UnRegisterSideView( m_pWaguMachineSideViewGui, SIDEVIEW_WAGU);
 	UnRegisterSideIcon( m_pEventMachineSideIconGui, SIDEICON_EVENT_WAGU);
 	UnRegisterSideView( m_pEventMachineSideViewGui, SIDEVIEW_EVENT_WAGU);
+	UnRegisterSideIcon( m_pGiftSideIconGui, SIDEICON_GIFT);
+	UnRegisterSideView( m_pGiftSideViewGui, SIDEVIEW_GIFT);
 
 	if (m_pThis)
 	{

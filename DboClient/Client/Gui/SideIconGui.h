@@ -15,7 +15,7 @@
 // SideIcon들의 간격
 #define dSIDEICON_MARGIN_WIDTH	5
 #define dSIDEICON_MARGIN_HEIGHT	5
-#define dSIDEICON_LIMIT_NUM 6
+#define dSIDEICON_LIMIT_NUM 5
 
 // Class 전방 선언
 class CSideIconGui;
@@ -68,6 +68,9 @@ class CEventMachineSideViewGui;
 
 class CNetPySideIconGui;
 class CNetPySideViewGui;
+
+class CGiftSideIconGui;
+class CGiftSideViewGui;
 
 /**
 * \ingroup client
@@ -181,6 +184,9 @@ protected:
 
 	CNetPySideIconGui*			m_pNetPySideIconGui;
 	CNetPySideViewGui*			m_pNetPySideViewGui;
+
+	CGiftSideIconGui*			m_pGiftSideIconGui;
+	CGiftSideViewGui*			m_pGiftSideViewGui;
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

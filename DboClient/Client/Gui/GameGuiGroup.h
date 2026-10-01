@@ -100,6 +100,8 @@ class CScrambleNotifyGui;
 class CNetMarblePCBangGui;
 class CNetPyShopGui;
 class CNetPyShopCartGui;
+class CGiftShopGui;
+class CGiftShopCartGui;
 class CDeliberationRankContainer;
 class CCommercialExtendGui;
 class CItemBindSealingGui;
@@ -221,6 +223,8 @@ private:
     CNetMarblePCBangGui*        m_pNetMablePCBangGui;
 	CNetPyShopGui*				m_pNetPyShopGui;
 	CNetPyShopCartGui*			m_pNetPyShopCartGui;
+	CGiftShopGui*				m_pGiftShopGui;
+	CGiftShopCartGui*			m_pGiftShopCartGui;
 	CDeliberationRankContainer*		m_pDeliverationRankContainer;
 	CCommercialExtendGui*		m_pCommercialExtendGui;
 

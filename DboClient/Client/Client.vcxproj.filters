@@ -179,6 +179,9 @@
     <Filter Include="Gui\Component\Game\Commercial\NetPyShop">
       <UniqueIdentifier>{d697482b-8765-4a89-98b4-c218d65c71f5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Gui\Component\Game\Commercial\GiftShop">
+      <UniqueIdentifier>{7c8f3a1e-2b4d-4e6f-9a8c-1d5e6f7a8b9c}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Gui\Component\Game\SCS">
       <UniqueIdentifier>{2746ee28-a3d5-4976-95b2-6e3b8bbe4c18}</UniqueIdentifier>
     </Filter>
@@ -821,11 +824,23 @@
     <ClCompile Include="NetPySideView.cpp">
       <Filter>Gui\Component\Game\Commercial\SideIcon</Filter>
     </ClCompile>
+    <ClCompile Include="GiftSideIconGui.cpp">
+      <Filter>Gui\Component\Game\Commercial\SideIcon</Filter>
+    </ClCompile>
+    <ClCompile Include="GiftSideView.cpp">
+      <Filter>Gui\Component\Game\Commercial\SideIcon</Filter>
+    </ClCompile>
     <ClCompile Include="Gui\NetPyShopCartGui.cpp">
       <Filter>Gui\Component\Game\Commercial\NetPyShop</Filter>
     </ClCompile>
     <ClCompile Include="Gui\NetPyShopGui.cpp">
       <Filter>Gui\Component\Game\Commercial\NetPyShop</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\GiftShopCartGui.cpp">
+      <Filter>Gui\Component\Game\Commercial\GiftShop</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\GiftShopGui.cpp">
+      <Filter>Gui\Component\Game\Commercial\GiftShop</Filter>
     </ClCompile>
     <ClCompile Include="Gui\SCSActive.cpp">
       <Filter>Gui\Component\Game\SCS</Filter>
@@ -1783,11 +1798,23 @@
     <ClInclude Include="NetPySideView.h">
       <Filter>Gui\Component\Game\Commercial\SideIcon</Filter>
     </ClInclude>
+    <ClInclude Include="GiftSideIconGui.h">
+      <Filter>Gui\Component\Game\Commercial\SideIcon</Filter>
+    </ClInclude>
+    <ClInclude Include="GiftSideView.h">
+      <Filter>Gui\Component\Game\Commercial\SideIcon</Filter>
+    </ClInclude>
     <ClInclude Include="Gui\NetPyShopCartGui.h">
       <Filter>Gui\Component\Game\Commercial\NetPyShop</Filter>
     </ClInclude>
     <ClInclude Include="Gui\NetPyShopGui.h">
       <Filter>Gui\Component\Game\Commercial\NetPyShop</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\GiftShopCartGui.h">
+      <Filter>Gui\Component\Game\Commercial\GiftShop</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\GiftShopGui.h">
+      <Filter>Gui\Component\Game\Commercial\GiftShop</Filter>
     </ClInclude>
     <ClInclude Include="Gui\SCSActive.h">
       <Filter>Gui\Component\Game\SCS</Filter>
