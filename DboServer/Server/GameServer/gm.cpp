@@ -24,6 +24,8 @@
 #include "DragonballScramble.h"
 #include "HoneyBeeEvent.h"
 #include "ItemDrop.h"
+#include "DynamicFieldSystemEvent.h"
+#include "NtlStringW.h"
 
 
 void gm_read_command(sUG_SERVER_COMMAND* sPacket, CPlayer* pPlayer)
@@ -120,6 +122,7 @@ ACMD(do_addmudosa);
 ACMD(do_start);
 ACMD(do_createloot);
 ACMD(do_removeskillscd);
+ACMD(do_dynamicfield);
 ACMD(do_test);
 
 struct command_info cmd_info[] =
@@ -175,6 +178,7 @@ struct command_info cmd_info[] =
 	{ L"@startgm", do_start, ADMIN_LEVEL_GAME_MASTER },
 	{ L"@createloot", do_createloot, ADMIN_LEVEL_ADMIN },
 	{ L"@removeskillscd", do_removeskillscd, ADMIN_LEVEL_ADMIN },
+	{ L"@dynamicfield", do_dynamicfield, ADMIN_LEVEL_ADMIN },
 	{ L"@test", do_test, ADMIN_LEVEL_ADMIN },
 
 	{ L"@qwasawedsadas", NULL, ADMIN_LEVEL_ADMIN }
@@ -1863,6 +1867,73 @@ ACMD(do_removeskillscd)
 		DWORD dwSkillCoolTimeRemaining = pCurrSkill->GetCoolTimeRemaining();
 		if (dwSkillCoolTimeRemaining > 0)pCurrSkill->SetCoolTimeRemaining(0);
 	}
+}
+
+static void SendGmFeedback(CPlayer* pPlayer, const WCHAR* pwszMessage)
+{
+	CNtlPacket packet(sizeof(sGU_SYSTEM_DISPLAY_TEXT));
+	sGU_SYSTEM_DISPLAY_TEXT* res = (sGU_SYSTEM_DISPLAY_TEXT*)packet.GetPacketData();
+	res->wOpCode = GU_SYSTEM_DISPLAY_TEXT;
+	res->byDisplayType = SERVER_TEXT_SYSTEM;
+	NTL_SAFE_WCSCPY(res->awchMessage, pwszMessage);
+	res->wMessageLengthInUnicode = (WORD)wcslen(res->awchMessage);
+	packet.SetPacketLen(sizeof(sGU_SYSTEM_DISPLAY_TEXT));
+	pPlayer->SendPacket(&packet);
+}
+
+ACMD(do_dynamicfield)
+{
+	/*
+		@dynamicfield				show status
+		@dynamicfield add COUNT		add COUNT kills to the world boss counter (all channels)
+		@dynamicfield start			spawn the world bosses now (this channel)
+		@dynamicfield stop			end the world boss event (this channel)
+	*/
+
+	pToken->PopToPeek();
+	std::wstring strAction = pToken->PeekNextToken(NULL, &iLine);
+
+	CNtlStringW msg;
+
+	if (strAction == L"add")
+	{
+		pToken->PopToPeek();
+		std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+		DWORD dwCount = (DWORD)atof(ws2s(strToken).c_str());
+
+		if (g_pDynamicFieldSystemEvent->AddCount(dwCount))
+			msg.Format(L"Dynamic field: added %u kills.", dwCount);
+		else
+			msg.Format(L"Dynamic field: nothing added (count must be > 0 and no event may be running).");
+	}
+	else if (strAction == L"start")
+	{
+		if (g_pDynamicFieldSystemEvent->ForceStartEvent())
+			msg.Format(L"Dynamic field: event started.");
+		else
+			msg.Format(L"Dynamic field: event could not be started (already running or wps missing).");
+	}
+	else if (strAction == L"stop")
+	{
+		if (g_pDynamicFieldSystemEvent->ForceEndEvent())
+			msg.Format(L"Dynamic field: event stopped.");
+		else
+			msg.Format(L"Dynamic field: no event running.");
+	}
+	else if (g_pDynamicFieldSystemEvent->IsEventActive())
+	{
+		msg.Format(L"Dynamic field: event running, %u bosses alive, %I64d sec left. Usage: @dynamicfield [add COUNT|start|stop]",
+			g_pDynamicFieldSystemEvent->GetBossCount(), (__int64)g_pDynamicFieldSystemEvent->GetRemainingEventTime());
+	}
+	else
+	{
+		msg.Format(L"Dynamic field: %u / %u kills. Usage: @dynamicfield [add COUNT|start|stop]",
+			g_pDynamicFieldSystemEvent->GetCurCount(), g_pDynamicFieldSystemEvent->GetMaxCount());
+	}
+
+	ERR_LOG(LOG_USER, "Player: %u used @dynamicfield %S", pPlayer->GetCharID(), strAction.c_str());
+
+	SendGmFeedback(pPlayer, msg.c_str());
 }
 
 ACMD(do_test)
