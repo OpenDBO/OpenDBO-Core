@@ -10,10 +10,11 @@ smart_ptr<QueryResult> CDynamicFieldRepository::GetCount()
 
 void CDynamicFieldRepository::ResetCount(DWORD serverFarmId)
 {
-	GetLogDB.Execute("UPDATE dynamic_field_count SET count=0 WHERE server_index=%u", serverFarmId);
+	UpdateCount(0, serverFarmId);
 }
 
 void CDynamicFieldRepository::UpdateCount(DWORD totalCount, DWORD serverFarmId)
 {
-	GetLogDB.Execute("UPDATE dynamic_field_count SET count=%u WHERE server_index=%u", totalCount, serverFarmId);
+	// upsert: the row does not exist on a fresh database
+	GetLogDB.Execute("INSERT INTO dynamic_field_count (server_index,count) VALUES (%u,%u) ON DUPLICATE KEY UPDATE count=VALUES(count)", serverFarmId, totalCount);
 }
