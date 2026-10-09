@@ -4628,6 +4628,20 @@ void PacketHandler_GUGiftShopBuyRes( void* pPacket )
 	CDboEventGenerator::GiftShopEvent( eGIFTSHOP_EVENT_BUY_SUCCESS, INVALID_SERIAL_ID );
 }
 
+void PacketHandler_GUDynamicFieldCountNfy( void* pPacket )
+{
+	sGU_DYNAMIC_FIELD_COUNT_NFY* pResult = (sGU_DYNAMIC_FIELD_COUNT_NFY*)pPacket;
+
+	CDboEventGenerator::DynamicFieldCount(pResult->dwCurCount, pResult->dwMaxCount, pResult->nEventTime, pResult->byBossCount);
+}
+
+void PacketHandler_GUDynamicFieldSystemBossPositionRes( void* pPacket )
+{
+	sGU_DYNAMIC_FIELD_SYSTEM_BOSS_POSITION_RES* pResult = (sGU_DYNAMIC_FIELD_SYSTEM_BOSS_POSITION_RES*)pPacket;
+
+	CDboEventGenerator::DynamicFieldBossPosition(pResult->byBossCount, pResult->aDynamicFieldBossInfo);
+}
+
 void PacketHandler_GUShopNetPyItemEndRes( void* pPacket )
 {
 	API_GetSLPacketLockManager()->Unlock(GU_SHOP_NETPYITEM_END_RES);

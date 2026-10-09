@@ -285,6 +285,10 @@ extern RWS::CEventId g_EventNetPyShopEvent;
 // GiftShop (Wagu Point Shop)
 extern RWS::CEventId g_EventGiftShopEvent;
 
+// Dynamic Field (World Boss event)
+extern RWS::CEventId g_EventDynamicFieldCount;
+extern RWS::CEventId g_EventDynamicFieldBossPosition;
+
 // CommercialExtend
 extern RWS::CEventId g_EventCommercialExtendCommand;
 
@@ -1348,6 +1352,31 @@ struct SDboEventGiftShopEvent
 	RwInt32			nPlace;			///< 상점의 탭
 	RwInt32			nPosition;		///< 탭안 등록된 아이템의 위치
 	RwInt32			nOverlapCount;	///< 갯수
+};
+
+// Dynamic Field (World Boss event) progress
+struct SDboEventDynamicFieldCount
+{
+	RwUInt32		dwCurCount;		///< current kill count. Event starts when it reaches dwMaxCount
+	RwUInt32		dwMaxCount;
+	DBOTIME			nEventTime;		///< remaining event time in seconds. 0 = no boss event in progress
+	RwUInt8			byBossCount;	///< alive bosses while the event is in progress
+
+	bool			IsEventActive() const { return nEventTime > 0; }
+	RwReal			GetProgressPercent() const
+	{
+		if (dwMaxCount == 0 || dwCurCount >= dwMaxCount)
+			return dwMaxCount == 0 ? 0.0f : 100.0f;
+
+		return (RwReal)dwCurCount * 100.0f / (RwReal)dwMaxCount;
+	}
+};
+
+// Dynamic Field (World Boss event) boss locations
+struct SDboEventDynamicFieldBossPosition
+{
+	RwUInt8							byBossCount;
+	const sDYNAMIC_FIELD_BOSS_INFO*	paBossInfo;		///< array of byBossCount entries. Only valid while the event is dispatched
 };
 
 enum eHLShopEventType

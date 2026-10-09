@@ -249,6 +249,9 @@ RWS::CEventId g_EventLoading;
 RWS::CEventId g_EventNetPyShopEvent;			///< NetPyShop Event
 RWS::CEventId g_EventGiftShopEvent;			///< GiftShop (Wagu Point Shop) Event
 
+RWS::CEventId g_EventDynamicFieldCount;			///< Dynamic Field (World Boss) progress update
+RWS::CEventId g_EventDynamicFieldBossPosition;	///< Dynamic Field (World Boss) boss locations
+
 RWS::CEventId g_EventCommercialExtendCommand;	///< CommercialExtend command Event
 
 RWS::CEventId g_EventHLShopEvent;				///< HLShop Event

@@ -343,6 +343,9 @@ public:
 	bool SendShopNetPyItemEndReq();
 
 	bool SendGiftShopStartReq();
+
+	// Dynamic Field (World Boss event)
+	bool SendDynamicFieldBossPositionReq();
 	bool SendShopGiftItemBuyReq( RwUInt8 byBuyCount, sSHOP_BUY_CART* pBuyData );
 	bool SendNetPyAddPointsByTime();
 
