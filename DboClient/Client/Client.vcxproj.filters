@@ -86,6 +86,9 @@
     <Filter Include="Gui\Component\Game\SideIcon\Petition">
       <UniqueIdentifier>{82020760-e0d0-4612-86eb-f521fca3c457}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Gui\Component\Game\SideIcon\DynamicField">
+      <UniqueIdentifier>{3c17775e-0dd2-4d20-8aa6-83e2309dc9f6}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Gui\Component\Game\SideIcon\GM">
       <UniqueIdentifier>{ed2c7859-bb35-4ad0-857c-8258db9831ed}</UniqueIdentifier>
     </Filter>
@@ -829,6 +832,12 @@
     </ClCompile>
     <ClCompile Include="GiftSideView.cpp">
       <Filter>Gui\Component\Game\Commercial\SideIcon</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicFieldSideIconGui.cpp">
+      <Filter>Gui\Component\Game\SideIcon\DynamicField</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicFieldSideViewGui.cpp">
+      <Filter>Gui\Component\Game\SideIcon\DynamicField</Filter>
     </ClCompile>
     <ClCompile Include="Gui\NetPyShopCartGui.cpp">
       <Filter>Gui\Component\Game\Commercial\NetPyShop</Filter>
@@ -1803,6 +1812,12 @@
     </ClInclude>
     <ClInclude Include="GiftSideView.h">
       <Filter>Gui\Component\Game\Commercial\SideIcon</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicFieldSideIconGui.h">
+      <Filter>Gui\Component\Game\SideIcon\DynamicField</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicFieldSideViewGui.h">
+      <Filter>Gui\Component\Game\SideIcon\DynamicField</Filter>
     </ClInclude>
     <ClInclude Include="Gui\NetPyShopCartGui.h">
       <Filter>Gui\Component\Game\Commercial\NetPyShop</Filter>

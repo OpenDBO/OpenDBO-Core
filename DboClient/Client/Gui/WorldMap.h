@@ -30,6 +30,9 @@
 #include "NtlSlDef.h"
 #include "NtlOtherParam.h"
 
+// shared
+#include "NtlObject.h"
+
 // dbo
 #include "SurfaceGui.h"
 #include "Windowby3.h"
@@ -261,7 +264,10 @@ protected:
 	VOID			UpdatePartyMemberMark(CNtlSobAvatar* pAvatar);
 	VOID			UpdateCampPeople(CNtlSobAvatar* pAvatar);
 	VOID			UpdateBusPosition();
-	VOID			UpdateNextQuestMark();	
+	VOID			UpdateNextQuestMark();
+	VOID			UpdateFieldBoss(RwReal fElapsed);
+	VOID			RequestFieldBossPosition();
+	RwBool			CanShowFieldBoss();
 	VOID			UpdateBindInfo();	
 	VOID			UpdateWarFog();
 
@@ -448,4 +454,10 @@ protected:
 	sWarFog				m_WarFog[DBO_WORLD_MAP_TABLE_COUNT_WORLD_WARFOG];///< 워 포그 정보
 	CQuestSearchGui*	m_pQuestSearch;			///< 퀘스트 서치 gui
 	MAP_SCRAMBLE_SEAL_MARK	m_mapScrambleSealMark;
+
+	// Dynamic Field (World Boss event)
+	gui::CFlickerEffect						m_srfMarkFieldBoss;			///< blinking boss mark
+	std::vector<sDYNAMIC_FIELD_BOSS_INFO>	m_vecFieldBoss;				///< boss world positions (x,z)
+	RwBool									m_bFieldBossEvent;			///< boss event in progress
+	RwReal									m_fFieldBossRefreshTime;	///< time until boss positions are requested again
 };

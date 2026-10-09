@@ -58,6 +58,7 @@
 #define dMAINWORLD_INDEX		1
 
 #define WORLDMAP_UPDATETIME		0.1f
+#define dFIELDBOSS_REFRESH_TIME	10.f	///< seconds between boss position requests while the map is open
 #define dUPDATE_TIME_TEST_CHANGE_ZONE		(3.f)
 
 #define dMAPADJUST_INMAP		10
@@ -113,6 +114,8 @@ CWorldMapGui::CWorldMapGui(const RwChar* pName)
 ,m_iMapStartX(57)
 ,m_iMapStartY(143)
 ,m_pQuestSearch(NULL)
+,m_bFieldBossEvent(FALSE)
+,m_fFieldBossRefreshTime(0.f)
 {
 	m_tScrambleVisible.bScramble					= FALSE;
 	m_tScrambleVisible.bShowOurTeam					= TRUE;
@@ -388,7 +391,10 @@ RwBool CWorldMapGui::Create()
 	m_surMarkPartryMember.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", "srfMarkPartyMember" ) );
 
 
-	// to do mark srfMarkFieldBoss
+	// field boss mark (Dynamic Field event)
+	m_srfMarkFieldBoss.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfMarkFieldBoss"));
+	m_srfMarkFieldBoss.SetTime(0.0f, 0.5f);
+	m_srfMarkFieldBoss.SetAlpha(0, 255);
 
 
 	// land mark
@@ -496,7 +502,9 @@ RwBool CWorldMapGui::Create()
 	LinkMsg(g_EventBindNotify);
 	LinkMsg(g_EventMap);
 	LinkMsg(g_EventChangeWorldConceptState);
-	LinkMsg(g_EventDojoNotify);	
+	LinkMsg(g_EventDojoNotify);
+	LinkMsg(g_EventDynamicFieldCount);
+	LinkMsg(g_EventDynamicFieldBossPosition);
 
 	Show(false);
 
@@ -525,6 +533,8 @@ VOID CWorldMapGui::Destroy()
 	UnLinkMsg(g_EventMap);
 	UnLinkMsg(g_EventChangeWorldConceptState);
 	UnLinkMsg(g_EventDojoNotify);
+	UnLinkMsg(g_EventDynamicFieldCount);
+	UnLinkMsg(g_EventDynamicFieldBossPosition);
 
 	NTL_DELETE(m_pDialogName);
 	for (int i = 0; i < MAX_LANDMARK_NAME; ++i)
@@ -672,6 +682,8 @@ VOID CWorldMapGui::Update(RwReal fElapsed)
 
 	// by daneos: remove the if from UpdateChangeZoneMap, to fix avatar mark, quest marks, etc.
 	UpdateChangeZoneMap(fElapsed);
+
+	UpdateFieldBoss(fElapsed);
 
 	// 연산량을 줄이기 위해 일정시간마다 Update
 	if( m_fElapsedTime < WORLDMAP_UPDATETIME )
@@ -1196,6 +1208,7 @@ RwBool CWorldMapGui::AnalysisAreaInfo()
 	UpdatePartyMemberMark(pAvatar);
 	UpdateBusPosition();
 	UpdateNextQuestMark();
+	RequestFieldBossPosition();
 	UpdateBindInfo();
 	UpdateWarFog();
 	UpdateAvatarMark(pAvatar);
@@ -2174,6 +2187,36 @@ VOID CWorldMapGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 	if( !bFocusLandMark )
 		m_uiFocusLandMarkIndex = INVALID_INDEX;
 
+	// Field boss (Dynamic Field event)
+	if( CanShowFieldBoss() )
+	{
+		RwInt32 iWidth = m_srfMarkFieldBoss.GetSurface().m_Original.rtRect.GetWidth();
+		RwInt32 iHeight = m_srfMarkFieldBoss.GetSurface().m_Original.rtRect.GetHeight();
+
+		for( std::vector<sDYNAMIC_FIELD_BOSS_INFO>::const_iterator it = m_vecFieldBoss.begin() ; it != m_vecFieldBoss.end() ; ++it )
+		{
+			RwInt32 iX, iY;
+			GetMapPos_from_RealPos(it->vBossPos.x, it->vBossPos.z, iX, iY);
+
+			if( FALSE == IsinMap(iX, iY) )
+				continue;
+
+			RwInt32 iPosX = iX - iWidth/2;
+			RwInt32 iPosY = iY - iHeight/2;
+
+			if( iPosX <= nX && nX <= (iPosX + iWidth) &&
+				iPosY <= nY && nY <= (iPosY + iHeight) )
+			{
+				sMINIMAPINFO info;
+
+				info.iType = MMIT_MOB;
+				info.wcsString = GetDisplayStringManager()->GetString("DST_WORLDMAP_BOSSMARK");
+
+				listMarkInfo.push_back(info);
+			}
+		}
+	}
+
 	// 다음 진행 퀘스트
 	NEXTQUEST_ITER it_nextQuest = m_listNextQuest.begin();
 	for( ; it_nextQuest != m_listNextQuest.end() ; ++it_nextQuest )
@@ -2512,7 +2555,23 @@ VOID CWorldMapGui::OnPaint()
 	{
 		if( m_WarFog[i].bShow )
 			m_WarFog[i].srfWarFog.Render();
-	}	
+	}
+
+	// Field boss (Dynamic Field event)
+	if( CanShowFieldBoss() )
+	{
+		for( std::vector<sDYNAMIC_FIELD_BOSS_INFO>::const_iterator it = m_vecFieldBoss.begin() ; it != m_vecFieldBoss.end() ; ++it )
+		{
+			RwInt32 iX, iY;
+			GetMapPos_from_RealPos(it->vBossPos.x, it->vBossPos.z, iX, iY);
+
+			if( FALSE == IsinMap(iX, iY) )
+				continue;
+
+			m_srfMarkFieldBoss.SetCenterPos(iX, iY);
+			m_srfMarkFieldBoss.Render();
+		}
+	}
 
 	// 지도틀
 	m_MapFrameUp.Render();
@@ -2756,6 +2815,42 @@ VOID CWorldMapGui::ClearSeal()
 	m_mapScrambleSealMark.clear();
 }
 
+RwBool CWorldMapGui::CanShowFieldBoss()
+{
+	// bosses are spawned in the main world only and are not shown on the world overview
+	return m_bFieldBossEvent &&
+		   m_uiRenderingWorldID == dMAINWORLD_INDEX &&
+		   m_byMapMode != WORLDMAP_TYPE_WORLD &&
+		   m_byMapMode != WORLDMAP_TYPE_INSTANCE_MAP;
+}
+
+VOID CWorldMapGui::RequestFieldBossPosition()
+{
+	// called while the map is opening/changing area or open. The server only answers while the event runs.
+	m_fFieldBossRefreshTime = dFIELDBOSS_REFRESH_TIME;
+
+	if( !CanShowFieldBoss() )
+	{
+		m_vecFieldBoss.clear();
+		return;
+	}
+
+	GetDboGlobal()->GetGamePacketGenerator()->SendDynamicFieldBossPositionReq();
+}
+
+VOID CWorldMapGui::UpdateFieldBoss(RwReal fElapsed)
+{
+	if( !m_bFieldBossEvent )
+		return;
+
+	m_srfMarkFieldBoss.Update(fElapsed);
+
+	// bosses move around, keep their positions fresh while the map is open
+	m_fFieldBossRefreshTime -= fElapsed;
+	if( m_fFieldBossRefreshTime <= 0.f )
+		RequestFieldBossPosition();
+}
+
 RwBool CWorldMapGui::IsinMap(RwInt32 iPosX, RwInt32 iPosY)
 {
 	// Check if it is in the map area of the screen
@@ -2954,6 +3049,7 @@ RwInt32 CWorldMapGui::SwitchDialog(bool bOpen)
 	}
 	else
 	{
+		m_vecFieldBoss.clear();
 		CheckInfoWindow();
 		ShowScrambleCampComponent(false);
 
@@ -2989,6 +3085,35 @@ VOID CWorldMapGui::HandleEvents( RWS::CMsg &msg )
 	if( msg.Id == g_EventEndterWorld )
 	{
 		GetDialogManager()->CloseDialog(DIALOG_WORLDMAP);
+	}
+	else if( msg.Id == g_EventDynamicFieldCount )
+	{
+		const SDboEventDynamicFieldCount* pData = reinterpret_cast<const SDboEventDynamicFieldCount*>(msg.pData);
+
+		RwBool bEvent = pData->IsEventActive();
+		if( bEvent == m_bFieldBossEvent )
+			NTL_RETURNVOID();
+
+		m_bFieldBossEvent = bEvent;
+
+		if( m_bFieldBossEvent )
+		{
+			m_srfMarkFieldBoss.StartProc(TRUE);
+
+			if( IsShow() )
+				RequestFieldBossPosition();
+		}
+		else
+		{
+			m_srfMarkFieldBoss.EndProc();
+			m_vecFieldBoss.clear();
+		}
+	}
+	else if( msg.Id == g_EventDynamicFieldBossPosition )
+	{
+		const SDboEventDynamicFieldBossPosition* pData = reinterpret_cast<const SDboEventDynamicFieldBossPosition*>(msg.pData);
+
+		m_vecFieldBoss.assign(pData->paBossInfo, pData->paBossInfo + pData->byBossCount);
 	}
 	else if( msg.Id == g_EventBindNotify )
 	{

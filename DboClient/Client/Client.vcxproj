@@ -488,6 +488,8 @@
     <ClCompile Include="MrPoPoHandler.cpp" />
     <ClCompile Include="GiftSideIconGui.cpp" />
     <ClCompile Include="GiftSideView.cpp" />
+    <ClCompile Include="DynamicFieldSideIconGui.cpp" />
+    <ClCompile Include="DynamicFieldSideViewGui.cpp" />
     <ClCompile Include="NetPySideIconGui.cpp" />
     <ClCompile Include="NetPySideView.cpp" />
     <ClCompile Include="Parser\DBOCheatCommand.cpp" />
@@ -820,6 +822,8 @@
     <ClInclude Include="MrPoPoHandler.h" />
     <ClInclude Include="GiftSideIconGui.h" />
     <ClInclude Include="GiftSideView.h" />
+    <ClInclude Include="DynamicFieldSideIconGui.h" />
+    <ClInclude Include="DynamicFieldSideViewGui.h" />
     <ClInclude Include="NetPySideIconGui.h" />
     <ClInclude Include="NetPySideView.h" />
     <ClInclude Include="Parser\DBOCheatCommand.h" />

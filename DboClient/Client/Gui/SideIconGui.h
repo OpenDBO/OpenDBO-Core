@@ -72,6 +72,9 @@ class CNetPySideViewGui;
 class CGiftSideIconGui;
 class CGiftSideViewGui;
 
+class CDynamicFieldSideIconGui;
+class CDynamicFieldSideViewGui;
+
 /**
 * \ingroup client
 * \brief DBO상의 사이드 아이콘들을 생성 및 관리한다. (싱글톤)
@@ -187,6 +190,9 @@ protected:
 
 	CGiftSideIconGui*			m_pGiftSideIconGui;
 	CGiftSideViewGui*			m_pGiftSideViewGui;
+
+	CDynamicFieldSideIconGui*	m_pDynamicFieldSideIconGui;
+	CDynamicFieldSideViewGui*	m_pDynamicFieldSideViewGui;
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
