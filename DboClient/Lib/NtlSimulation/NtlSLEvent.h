@@ -3285,6 +3285,7 @@ struct SNtlEventTSParty
 
 struct SNtlEventTSClickSideIcon
 {
+	RwUInt8		bySideIconType;		// CDboTSClickSideIcon side icon type (sitype)
 };
 
 struct SNtlEventTSLevelCheck

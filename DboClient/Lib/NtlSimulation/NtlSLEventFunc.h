@@ -885,7 +885,7 @@ public:
 
 	static void TSParty( void );
 
-	static void TSClickSideIcon();
+	static void TSClickSideIcon(RwUInt8 bySideIconType);
 	static void TSLevelCheck();
 	static void TSQuest();
 	static void TSDialogOpen();

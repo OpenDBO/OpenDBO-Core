@@ -96,6 +96,7 @@ CDboTSCQAgency::CDboTSCQAgency( void )
 	LinkMsg( g_EventTSItemIdentity );
 	LinkMsg( g_EventTSUseMail );
 	LinkMsg( g_EventTSParty );
+	LinkMsg( g_EventTSClickSideIcon );
 }
 
 CDboTSCQAgency::~CDboTSCQAgency( void )
@@ -153,6 +154,7 @@ CDboTSCQAgency::~CDboTSCQAgency( void )
 	UnLinkMsg( g_EventTSItemIdentity );
 	UnLinkMsg( g_EventTSUseMail );
 	UnLinkMsg( g_EventTSParty );
+	UnLinkMsg( g_EventTSClickSideIcon );
 
 }
 
@@ -1098,12 +1100,14 @@ void CDboTSCQAgency::HandleEvents( RWS::CMsg& Msg )
 
 	else if (Msg.Id == g_EventTSClickSideIcon)
 	{
-		SGET_QUEST_INFO* pQuestInfo = GetQuestInfoList(eEVENT_GEN_TYPE_CLICK_SIDEICON, 0);
+		SNtlEventTSClickSideIcon* pData = reinterpret_cast<SNtlEventTSClickSideIcon*>(Msg.pData);
+
+		SGET_QUEST_INFO* pQuestInfo = GetQuestInfoList(eEVENT_GEN_TYPE_CLICK_SIDEICON, pData->bySideIconType);
 
 		if (!pQuestInfo->QuestInfoList.empty())
 		{
 			sQUEST_INFO& sQuestInfo = pQuestInfo->QuestInfoList[0];
-			UT_EventDoQuest(sQuestInfo, eEVENT_GEN_TYPE_CLICK_SIDEICON, 0);
+			UT_EventDoQuest(sQuestInfo, eEVENT_GEN_TYPE_CLICK_SIDEICON, pData->bySideIconType);
 		}
 	}
 	else if (Msg.Id == g_EventTSLevelCheck)
