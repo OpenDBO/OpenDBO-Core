@@ -18,6 +18,10 @@ CDynamicFieldSystem::~CDynamicFieldSystem()
 
 void CDynamicFieldSystem::Init()
 {
+	// defaults when no progress is stored yet (fresh database)
+	m_dwCurCount = 0;
+	m_dwMaxCount = 0;
+
 	smart_ptr<QueryResult> item = g_pDynamicFieldRepository->GetCount();
 	if (item)
 	{

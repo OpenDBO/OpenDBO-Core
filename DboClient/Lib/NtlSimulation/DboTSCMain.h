@@ -146,6 +146,7 @@ protected:
 	bool								HasEventMapperFromFile( void );
 	bool								LoadEventMapperFromFile( void );
 	bool								LoadEventMapperFromRunTime( void );
+	bool								BuildSideIconEventMapper( void );
 };
 
 static CDboTSCMain* GetTSCMain(void)

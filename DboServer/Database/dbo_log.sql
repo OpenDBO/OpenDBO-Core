@@ -103,6 +103,11 @@ CREATE TABLE `dynamic_field_count` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='When the server restarts it will save & load the progress from this table.\r\nSince it takes many days to reach max count it is very important.';
 
 -- ----------------------------
+-- Records of dynamic_field_count
+-- ----------------------------
+INSERT INTO `dynamic_field_count` (`server_index`, `count`) VALUES (0, 0);
+
+-- ----------------------------
 -- Table structure for founder_log
 -- ----------------------------
 DROP TABLE IF EXISTS `founder_log`;

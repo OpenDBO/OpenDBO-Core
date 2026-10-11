@@ -201,6 +201,10 @@ RwBool CDboEventHandler::Create(void)
 	RegisterMsg(g_EventNetPyShopEvent, "g_EventNetPyShopEvent", "SDboNetPyShopEvent" );
 	RegisterMsg(g_EventGiftShopEvent, "g_EventGiftShopEvent", "SDboEventGiftShopEvent" );
 
+	// Dynamic Field (World Boss event)
+	RegisterMsg(g_EventDynamicFieldCount, "g_EventDynamicFieldCount", "SDboEventDynamicFieldCount");
+	RegisterMsg(g_EventDynamicFieldBossPosition, "g_EventDynamicFieldBossPosition", "SDboEventDynamicFieldBossPosition");
+
 	// CommercialExtend
 	RegisterMsg(g_EventCommercialExtendCommand, "g_EventCommercialExtendCommand", "SDboEventCommercialExtendCommand" );
 
@@ -415,6 +419,10 @@ void CDboEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventNetMarbleMemberShipNfy);
 	UnRegisterMsg(g_EventNetPyShopEvent);
 	UnRegisterMsg(g_EventGiftShopEvent);
+
+	// Dynamic Field (World Boss event)
+	UnRegisterMsg(g_EventDynamicFieldCount);
+	UnRegisterMsg(g_EventDynamicFieldBossPosition);
 
 	// CommercialExtend
 	UnRegisterMsg(g_EventCommercialExtendCommand);

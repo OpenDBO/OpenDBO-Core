@@ -4150,9 +4150,10 @@ void CNtlSLEventGenerator::TSParty( void )
 	_SendMsg( msg );
 }
 
-void CNtlSLEventGenerator::TSClickSideIcon()
+void CNtlSLEventGenerator::TSClickSideIcon(RwUInt8 bySideIconType)
 {
 	SNtlEventTSClickSideIcon sData;
+	sData.bySideIconType = bySideIconType;
 
 	RWS::CMsg msg;
 	msg.Id = g_EventTSClickSideIcon;

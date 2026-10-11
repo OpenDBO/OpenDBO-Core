@@ -572,10 +572,45 @@ bool CDboTSCMain::LoadEventMappers( void )
 {
 	if ( !LoadEventMapperFromFile() )
 	{
-		if ( !LoadEventMapperFromRunTime() )
+		return LoadEventMapperFromRunTime();
+	}
+
+	// ts\evt.e was generated before the side icon event existed. Build that mapper from the loaded triggers
+	// so quests started by clicking a side icon (e.g. the world boss quests) can be found.
+	if ( NULL == FindEventMapper( "CDboTSEMSideIcon" ) )
+	{
+		return BuildSideIconEventMapper();
+	}
+
+	return true;
+}
+
+bool CDboTSCMain::BuildSideIconEventMapper( void )
+{
+	CNtlTSControlObject* pObj = m_pCtrlFactory->CreateObj("CDboTSEMSideIcon");
+	if (NULL == pObj || !pObj->IsDerivedClass("CNtlTSEvtMapper") || !pObj->IsDerivedClass("CDboTSEMSideIcon"))
+	{
+		CNtlTSLog::Log("Can not do type cast from CNtlTSControlObject to CDboTSEMSideIcon. Info[%s]. [%s]", pObj ? pObj->GetClassName() : "NULL", TS_CODE_TRACE());
+		if (pObj)
 		{
-			return false;
+			m_pCtrlFactory->DeleteObj(pObj);
 		}
+		return false;
+	}
+
+	CDboTSEMSideIcon* pMapper = (CDboTSEMSideIcon*)pObj;
+	m_defEvtMapper[pMapper->GetClassName()] = pMapper;
+
+	if (!pMapper->AddBuildData("quest", m_defQuest, NULL, NULL))
+	{
+		CNtlTSLog::Log("Building side icon event mapper (quest) is failed. [%s].", TS_CODE_TRACE());
+		return false;
+	}
+
+	if (!pMapper->AddBuildData("pctrigger", m_defTrigger, NULL, NULL))
+	{
+		CNtlTSLog::Log("Building side icon event mapper (pctrigger) is failed. [%s].", TS_CODE_TRACE());
+		return false;
 	}
 
 	return true;
@@ -1297,26 +1332,8 @@ bool CDboTSCMain::LoadEventMapperFromRunTime( void )
 		return false;
 	}
 
-	pObj = m_pCtrlFactory->CreateObj("CDboTSEMSideIcon");
-	if (pObj && pObj->IsDerivedClass("CNtlTSEvtMapper") && pObj->IsDerivedClass("CDboTSEMSideIcon"))
+	if (!BuildSideIconEventMapper())
 	{
-		m_defEvtMapper[pObj->GetClassName()] = (CNtlTSEvtMapper*)pObj;
-
-		if (!((CDboTSEMSideIcon*)pObj)->AddBuildData("quest", m_defQuest, NULL, NULL))
-		{
-			CNtlTSLog::Log("Building party event mapper is failed. [%s].", TS_CODE_TRACE());
-			return false;
-		}
-
-		if (!((CDboTSEMSideIcon*)pObj)->AddBuildData("pctrigger", m_defTrigger, NULL, NULL))
-		{
-			CNtlTSLog::Log("Building flink event mapper is failed. [%s].", TS_CODE_TRACE());
-			return false;
-		}
-	}
-	else
-	{
-		CNtlTSLog::Log("Can not do type cast from CNtlTSControlObject to CDboTSEMSideIcon. Info[%s]. [%s]", pObj ? pObj->GetClassName() : "NULL", TS_CODE_TRACE());
 		return false;
 	}
 

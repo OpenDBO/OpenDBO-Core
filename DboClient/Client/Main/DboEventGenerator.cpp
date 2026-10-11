@@ -1587,6 +1587,28 @@ void CDboEventGenerator::GiftShopEvent( RwUInt8 byType, RwUInt32 uiSerial,
 	SEND_MSG( g_EventGiftShopEvent, &sData );
 }
 
+void CDboEventGenerator::DynamicFieldCount(RwUInt32 dwCurCount, RwUInt32 dwMaxCount, DBOTIME nEventTime, RwUInt8 byBossCount)
+{
+	SDboEventDynamicFieldCount sData;
+	sData.dwCurCount = dwCurCount;
+	sData.dwMaxCount = dwMaxCount;
+	sData.nEventTime = nEventTime;
+	sData.byBossCount = byBossCount;
+
+	SEND_MSG( g_EventDynamicFieldCount, &sData );
+}
+
+void CDboEventGenerator::DynamicFieldBossPosition(RwUInt8 byBossCount, const sDYNAMIC_FIELD_BOSS_INFO* paBossInfo)
+{
+	SDboEventDynamicFieldBossPosition sData;
+	sData.byBossCount = (paBossInfo == NULL) ? 0 : byBossCount;
+	if (sData.byBossCount > NTL_MAX_DYNAMIC_BOSS)
+		sData.byBossCount = (RwUInt8)NTL_MAX_DYNAMIC_BOSS;
+	sData.paBossInfo = paBossInfo;
+
+	SEND_MSG( g_EventDynamicFieldBossPosition, &sData );
+}
+
 // CommercialExtend command Event
 void CDboEventGenerator::StartProcessBuyDurItemNPC( RwUInt32 uiItemIdx, RwUInt32 uiNPCSerial, sSHOP_BUY_CART& ShopBuyCart )
 {

@@ -911,6 +911,10 @@ void PacketHandler_GUShopNetPyItemEndRes(void* pPacket);
 void PacketHandler_GUGiftShopStartRes(void* pPacket);
 void PacketHandler_GUGiftShopBuyRes(void* pPacket);
 
+// Dynamic Field (World Boss event)
+void PacketHandler_GUDynamicFieldCountNfy(void* pPacket);
+void PacketHandler_GUDynamicFieldSystemBossPositionRes(void* pPacket);
+
 // CommercialExtend (Duration Item)
 void PacketHandler_GUDurationItemBuyRes( void* pPacket );
 void PacketHandler_GUDurationRenewRes( void* pPacket );

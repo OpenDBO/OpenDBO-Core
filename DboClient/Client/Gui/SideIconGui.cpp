@@ -52,6 +52,9 @@
 #include "GiftSideIconGui.h"
 #include "GiftSideView.h"
 
+#include "DynamicFieldSideIconGui.h"
+#include "DynamicFieldSideViewGui.h"
+
 // SideIcon�� �����ϰ� SideIconGui�� ����ϴ� ��ũ��
 #define RegisterSideIcon( pSideIcon, ClassName, szName, id ) \
 	{ \
@@ -143,6 +146,8 @@ CSideIconGui::CSideIconGui(const RwChar* pName) : CNtlPLGui(pName), m_pPresentIc
 , m_pEventMachineSideViewGui(NULL)
 , m_pGiftSideIconGui(NULL)
 , m_pGiftSideViewGui(NULL)
+, m_pDynamicFieldSideIconGui(NULL)
+, m_pDynamicFieldSideViewGui(NULL)
 {
 	m_nPresentViewType = INVALID_SIDEVIEW;
 	s_pSideIconGui = this;
@@ -228,6 +233,10 @@ RwBool CSideIconGui::Create()
 	RegisterSideIcon(m_pGiftSideIconGui, CGiftSideIconGui, "CGiftSideIconGui", SIDEICON_GIFT);
 	RegisterSideView(m_pGiftSideViewGui, CGiftSideViewGui, "CGiftSideViewGui", SIDEVIEW_GIFT);
 
+	// Dynamic Field (World Boss event)
+	RegisterSideIcon(m_pDynamicFieldSideIconGui, CDynamicFieldSideIconGui, "CDynamicFieldSideIconGui", SIDEICON_DYNAMIC_FIELD);
+	RegisterSideView(m_pDynamicFieldSideViewGui, CDynamicFieldSideViewGui, "CDynamicFieldSideViewGui", SIDEVIEW_DYNAMIC_FIELD);
+
 	SAvatarInfo* pAvatarInfo = GetNtlSLGlobal()->GetAvatarInfo();
 	if( pAvatarInfo->sCharPf.bIsGameMaster )
 		m_pGMSideIconGui->Show(true);
@@ -289,6 +298,8 @@ void CSideIconGui::Destroy()
 	UnRegisterSideView( m_pEventMachineSideViewGui, SIDEVIEW_EVENT_WAGU);
 	UnRegisterSideIcon( m_pGiftSideIconGui, SIDEICON_GIFT);
 	UnRegisterSideView( m_pGiftSideViewGui, SIDEVIEW_GIFT);
+	UnRegisterSideIcon( m_pDynamicFieldSideIconGui, SIDEICON_DYNAMIC_FIELD);
+	UnRegisterSideView( m_pDynamicFieldSideViewGui, SIDEVIEW_DYNAMIC_FIELD);
 
 	if (m_pThis)
 	{
