@@ -377,6 +377,9 @@ bool CItem::ChangeOption(WORD wOptionIndex, sITEM_TBLDAT* pTbldat, BYTE byRank, 
 		{
 			g_pTableContainer->GetItemEnchantTable()->ProcessRandomOption(pTbldat, byRank, i == 0, i == NTL_MAX_SYSTEM_EFFECT_COUNT - 1, &flag, &fRemainingWorth, sOptionSet->aRandomOption[i]);
 		}
+
+		if (sOptionSet->aRandomOption[0].optionValue == 0) //selected option is not valid for this item
+			return false;
 	}
 
 	return true;

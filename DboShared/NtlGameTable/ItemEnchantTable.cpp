@@ -4,6 +4,7 @@
 #include "NtlSerializer.h"
 #include "NtlBitFlagManager.h"
 #include "NtlRandom.h"
+#include <algorithm>
 
 WCHAR* CItemEnchantTable::m_pwszSheetList[] =
 {
@@ -332,7 +333,7 @@ bool CItemEnchantTable::ProcessRandomOption(sITEM_TBLDAT* itemtbl, BYTE byItemRa
 		else
 			randomOption.optionValue = RandomRange(1, maxOptionValue);
 	}
-	else
+	else // pre-selected option (silver box). Keep the option but roll its value
 	{
 		pFinalEnchantTableData = (sITEM_ENCHANT_TBLDAT*)FindData(randomOption.wOptionIndex);
 		if (pFinalEnchantTableData == NULL)
@@ -347,12 +348,19 @@ bool CItemEnchantTable::ProcessRandomOption(sITEM_TBLDAT* itemtbl, BYTE byItemRa
 			return false;
 		}
 
+		// the selected option must be one this item could roll by itself
+		if (std::find(m_vecByRank[byItemRank].begin(), m_vecByRank[byItemRank].end(), pFinalEnchantTableData) == m_vecByRank[byItemRank].end())
+			return false;
+
+		if (!IsProperItemOption(pFinalEnchantTableData, -1, dwItemCategoryFlag, itemtbl->byNeed_Min_Level, *pfRemainingWorth, flagmgr))
+			return false;
+
 		int maxOptionValue = (int)floor(*pfRemainingWorth) / (int)pFinalEnchantTableData->wEnchant_Value;
 
-		randomOption.optionValue = maxOptionValue; // RandomRange(1, maxOptionValue);
-
-		//if (!IsProperItemOption(pFinalEnchantTableData, randomOption.optionValue, dwItemCategoryFlag, itemtbl->byNeed_Min_Level, *pfRemainingWorth, flagmgr))
-		//	return false;
+		if (bLast)
+			randomOption.optionValue = maxOptionValue;
+		else
+			randomOption.optionValue = RandomRange(1, maxOptionValue);
 	}
 
 	*pfRemainingWorth -= (float)((int)pFinalEnchantTableData->wEnchant_Value * randomOption.optionValue);
