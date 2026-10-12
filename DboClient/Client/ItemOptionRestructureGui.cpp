@@ -1,4 +1,5 @@
 #include "precomp_dboclient.h"
+#include <math.h>
 
 // core
 #include "ItemOptionRestructureGui.h"
@@ -30,6 +31,13 @@
 #include "ItemOptionTable.h"
 #include "ItemEnchantTable.h"
 
+
+#define OPTION_RESTRUCTURE_PROCESS_TIME		3.0f	// middle effect plays this long before the request is sent
+#define OPTION_RESTRUCTURE_FADE_PERIOD		0.6f	// item and old options fade out and back in once per period
+#define OPTION_RESTRUCTURE_FADE_MIN_ALPHA	40.0f
+#define OPTION_RESTRUCTURE_ARROW_SLOW		0.25f	// arrow colour switch interval when the process starts
+#define OPTION_RESTRUCTURE_ARROW_FAST		0.05f	// arrow colour switch interval right before the request
+#define OPTION_RESTRUCTURE_NAME_COLOR		RGB(255, 255, 255)
 
 
 CItemOptionRestructureGui::CItemOptionRestructureGui(const RwChar *pName)
@@ -64,6 +72,12 @@ void CItemOptionRestructureGui::Init()
 	m_eState = STATE_NONE;
 
 	m_wOptionIndex = INVALID_WORD;
+	m_bAfterIsPreview = false;
+
+	m_fEffectTime = 0.0f;
+	m_fArrowTime = 0.0f;
+	m_fPulsePhase = 0.0f;
+	m_nArrow = ARROW_BLUE;
 }
 
 RwBool CItemOptionRestructureGui::Create()
@@ -93,10 +107,10 @@ RwBool CItemOptionRestructureGui::Create()
 	m_ppnlTargetItemSlot = (gui::CPanel*)GetComponent("pnlTargetItemSlot");
 
 
-	//m_ppnlArrowBlue = (gui::CPanel*)GetComponent("pnlArrowBlue");
-	//m_ppnlArrowYellow = (gui::CPanel*)GetComponent("pnlArrowYellow");
-	//m_ppnlArrowRed = (gui::CPanel*)GetComponent("pnlArrowRed");
-	//m_ppnlStarCircle = (gui::CPanel*)GetComponent("pnlStarCircle");
+	m_ppnlArrow[ARROW_BLUE] = (gui::CPanel*)GetComponent("pnlArrowBlue");
+	m_ppnlArrow[ARROW_YELLOW] = (gui::CPanel*)GetComponent("pnlArrowYellow");
+	m_ppnlArrow[ARROW_RED] = (gui::CPanel*)GetComponent("pnlArrowRed");
+	m_ppnlStarCircle = (gui::CPanel*)GetComponent("pnlStarCircle");
 
 	RwChar buf[64];
 	RwChar buf2[64];
@@ -159,7 +173,11 @@ RwBool CItemOptionRestructureGui::Create()
 
 	SetSlotRectHardCode();
 
+	ShowMiddleEffect(ARROW_NONE, false);
+
 	Show(false);
+
+	GetNtlGuiManager()->AddUpdateFunc(this);
 
 	// event register.
 	LinkMsg(g_EventRegOptionReconstructItem);
@@ -174,6 +192,8 @@ RwBool CItemOptionRestructureGui::Create()
 void CItemOptionRestructureGui::Destroy()
 {
 	NTL_FUNCTION("CItemOptionRestructureGui::Destroy");
+
+	GetNtlGuiManager()->RemoveUpdateFunc(this);
 
 	UnLinkMsg(g_EventRegOptionReconstructItem);
 	UnLinkMsg(g_EventIconMoveClick);
@@ -191,6 +211,8 @@ RwInt32 CItemOptionRestructureGui::SwitchDialog(bool bOpen)
 {
 	if (bOpen)
 	{
+		CenterAlign(GetDboGlobal()->GetScreenWidth(), GetDboGlobal()->GetScreenHeight());
+
 		DeleteItem();
 		DeleteBoxItem();
 
@@ -200,7 +222,7 @@ RwInt32 CItemOptionRestructureGui::SwitchDialog(bool bOpen)
 	}
 	else
 	{
-		if (m_eState == STATE_PACKETWAIT)
+		if (m_eState == STATE_PROCESS || m_eState == STATE_PACKETWAIT)
 			return -1;
 
 		if (GetIconMoveManager()->GetSrcPlace() == PLACE_ITEM_OPTIONRECONSTRUCTION)
@@ -213,6 +235,14 @@ RwInt32 CItemOptionRestructureGui::SwitchDialog(bool bOpen)
 	}
 
 	return 1;
+}
+
+void CItemOptionRestructureGui::Update(RwReal fElapsed)
+{
+	if (!IsShow())
+		return;
+
+	UpdateMiddleEffect(fElapsed);
 }
 
 void CItemOptionRestructureGui::HandleEvents(RWS::CMsg &pMsg)
@@ -249,16 +279,23 @@ void CItemOptionRestructureGui::HandleEvents(RWS::CMsg &pMsg)
 	}
 	else if (pMsg.Id == g_EventItemChangeOptionConfirmation)
 	{
-		SetState(STATE_PROCESS);
+		if (m_eState == STATE_READY)
+			SetState(STATE_PROCESS);
 	}
 	else if (pMsg.Id == g_EventItemChangeOptionResult)
 	{
+		if (!GetDialogManager()->IsOpenDialog(DIALOG_ITEM_OPTIONRESTRUCTURE))
+			NTL_RETURNVOID();
+
 		SDboItemChangeOptionResult* pData = reinterpret_cast<SDboItemChangeOptionResult*>(pMsg.pData);
 
 		SetResult(pData->pItemOptionSet, pData->byBoxCount);
 	}
 	else if (pMsg.Id == g_EventGameServerChangeOut)
 	{
+		if (m_eState == STATE_PROCESS) // request was not sent yet, drop it
+			SetState(STATE_NONE);
+
 		GetDialogManager()->CloseDialog(DIALOG_ITEM_OPTIONRESTRUCTURE);
 	}
 
@@ -294,51 +331,75 @@ void CItemOptionRestructureGui::SetItemCurrentStats()
 	{
 		CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>(m_pItem->GetSobAttr());
 
-		sITEM_TBLDAT* pItemTbl = pItemAttr->GetItemTbl();
-		sITEM_OPTION_SET* pItemOptionSet = pItemAttr->GetOptionSet();
+		SetOptionRows(m_pstbBeforeOptionName, m_pstbBeforeOptionValue, pItemAttr->GetOptionSet());
+	}
+}
 
-		CItemEnchantTable* pItemEnchantTable = API_GetTableContainer()->GetItemEnchantTable();
-		CSystemEffectTable* pSystemEffectTable = API_GetTableContainer()->GetSystemEffectTable();
-		CItemOptionTable* pItemOptionTable = API_GetTableContainer()->GetItemOptionTable();
+void CItemOptionRestructureGui::SetOptionRows(gui::CStaticBox** ppstbName, gui::CStaticBox** ppstbValue, sITEM_OPTION_SET* pOptionSet)
+{
+	ClearOptionRows(ppstbName, ppstbValue);
 
-		for (int i = 0; i < ITEM_OPTION_MAX_COUNT; i++)
+	if (pOptionSet == NULL)
+		return;
+
+	CItemEnchantTable* pItemEnchantTable = API_GetTableContainer()->GetItemEnchantTable();
+	CItemOptionTable* pItemOptionTable = API_GetTableContainer()->GetItemOptionTable();
+	CTextTable* pSystemEffectText = API_GetTableContainer()->GetTextAllTable()->GetSystemEffectTbl();
+
+	int nRow = 0;
+
+	// fixed options
+	for (int i = 0; i < NTL_MAX_OPTION_IN_ITEM && nRow < ITEM_OPTION_MAX_COUNT; i++)
+	{
+		if (pOptionSet->aOptionTblidx[i] == INVALID_TBLIDX)
+			continue;
+
+		sITEM_OPTION_TBLDAT* pItemOptionData = reinterpret_cast<sITEM_OPTION_TBLDAT*>(pItemOptionTable->FindData(pOptionSet->aOptionTblidx[i]));
+		if (pItemOptionData == NULL)
+			continue;
+
+		for (int ii = 0; ii < NTL_MAX_SYSTEM_EFFECT_COUNT && nRow < ITEM_OPTION_MAX_COUNT; ii++)
 		{
-			if(i < NTL_MAX_OPTION_IN_ITEM)
-			{
-				if (pItemOptionSet->aOptionTblidx[i] != INVALID_TBLIDX)
-				{
-					sITEM_OPTION_TBLDAT* pItemOptionData = reinterpret_cast<sITEM_OPTION_TBLDAT*>(pItemOptionTable->FindData(pItemOptionSet->aOptionTblidx[i]));
-					if (pItemOptionData)
-					{
-						for (int ii = 0; ii < NTL_MAX_SYSTEM_EFFECT_COUNT; ii++)
-						{
-							if (pItemOptionData->system_Effect[ii] == INVALID_TBLIDX)
-								break;
+			if (pItemOptionData->system_Effect[ii] == INVALID_TBLIDX)
+				break;
 
-							std::wstring wstrName = API_GetTableContainer()->GetTextAllTable()->GetSystemEffectTbl()->GetText((pItemOptionData->system_Effect[ii] * 100) + 1);
+			std::wstring wstrName = pSystemEffectText->GetText((pItemOptionData->system_Effect[ii] * 100) + 1);
 
-							m_pstbBeforeOptionName[ii]->SetText(wstrName.c_str());
-							m_pstbBeforeOptionValue[ii]->SetText(pItemOptionData->nValue[ii]);
-						}
-					}
-
-					break;
-				}
-			}
-
-			if (pItemOptionSet->GetRandomOptionIndex(i) != INVALID_WORD)
-			{
-				sITEM_ENCHANT_TBLDAT* pItemEnchantData = reinterpret_cast<sITEM_ENCHANT_TBLDAT*>(pItemEnchantTable->FindData(pItemOptionSet->GetRandomOptionIndex(i)));
-				if (pItemEnchantData)
-				{
-					std::wstring wstrName = API_GetTableContainer()->GetTextAllTable()->GetSystemEffectTbl()->GetText((pItemEnchantData->seTblidx * 100) + 1);
-
-					m_pstbBeforeOptionName[i]->SetText(wstrName.c_str());
-					m_pstbBeforeOptionValue[i]->SetText(pItemOptionSet->GetRandomOptionValue(i));
-				}
-			}
+			ppstbName[nRow]->SetText(wstrName.c_str());
+			ppstbValue[nRow]->SetText(pItemOptionData->nValue[ii]);
+			++nRow;
 		}
 	}
+
+	// random options
+	for (int i = 0; i < NTL_MAX_SYSTEM_EFFECT_COUNT && nRow < ITEM_OPTION_MAX_COUNT; i++)
+	{
+		if (pOptionSet->GetRandomOptionIndex(i) == INVALID_WORD)
+			break;
+
+		sITEM_ENCHANT_TBLDAT* pItemEnchantData = reinterpret_cast<sITEM_ENCHANT_TBLDAT*>(pItemEnchantTable->FindData(pOptionSet->GetRandomOptionIndex(i)));
+		if (pItemEnchantData == NULL)
+			continue;
+
+		std::wstring wstrName = pSystemEffectText->GetText((pItemEnchantData->seTblidx * 100) + 1);
+
+		ppstbName[nRow]->SetText(wstrName.c_str());
+		ppstbValue[nRow]->SetText(pOptionSet->GetRandomOptionValue(i));
+		++nRow;
+	}
+}
+
+void CItemOptionRestructureGui::ClearOptionRows(gui::CStaticBox** ppstbName, gui::CStaticBox** ppstbValue)
+{
+	for (int i = 0; i < ITEM_OPTION_MAX_COUNT; i++)
+	{
+		ppstbName[i]->SetTextColor(OPTION_RESTRUCTURE_NAME_COLOR);
+		ppstbName[i]->SetText(L"");
+		ppstbValue[i]->SetText(L"");
+	}
+
+	if (ppstbName == m_pstbAfterOptionName)
+		m_bAfterIsPreview = false;
 }
 
 void CItemOptionRestructureGui::EnableSelectOption(bool bFlag)
@@ -348,7 +409,10 @@ void CItemOptionRestructureGui::EnableSelectOption(bool bFlag)
 	m_pcbbSelectOption->SetText(L"");
 
 	m_wOptionIndex = INVALID_WORD;
-	
+
+	if (m_bAfterIsPreview)
+		ClearOptionRows(m_pstbAfterOptionName, m_pstbAfterOptionValue);
+
 	if (bFlag && m_pItem)
 	{
 		m_pcbbSelectOption->Enable(true);
@@ -417,10 +481,20 @@ void CItemOptionRestructureGui::DeleteStackNumber()
 
 void CItemOptionRestructureGui::SetResult(void * pOptionSet, BYTE byBoxCount)
 {
-	NTL_ASSERT(pOptionSet, "CItemOptionRestructureGui::SetResult : pOptionSet Must be Present!");
-
+	// failed. error message is shown by the packet handler and the kit is not consumed
+	if (pOptionSet == NULL)
+	{
+		CheckReady();
+		return;
+	}
 
 	GetAlarmManager()->AlarmMessage("DST_ITEM_OPTION_RESTRUCTURE_COMPLETE");
+
+	// set before item bonus. the item still holds its old options here, the inventory is updated after this event
+	SetItemCurrentStats();
+
+	// set after item bonus
+	SetOptionRows(m_pstbAfterOptionName, m_pstbAfterOptionValue, (sITEM_OPTION_SET*)pOptionSet);
 
 	// remove the kit item
 	if (byBoxCount == 0)
@@ -428,51 +502,69 @@ void CItemOptionRestructureGui::SetResult(void * pOptionSet, BYTE byBoxCount)
 	else
 		CreateStackNumber(byBoxCount);
 
+	CheckReady();
+}
 
-	CItemEnchantTable* pItemEnchantTable = API_GetTableContainer()->GetItemEnchantTable();
-	sITEM_OPTION_SET* pItemOptionSet = (sITEM_OPTION_SET*)pOptionSet;
+void CItemOptionRestructureGui::ShowMiddleEffect(ARROW eArrow, bool bStarCircle)
+{
+	for (int i = 0; i < NUM_ARROW; i++)
+		m_ppnlArrow[i]->Show(i == eArrow);
 
+	m_ppnlStarCircle->Show(bStarCircle);
+	m_ppnlStarCircle->SetAlpha(255);
+}
 
-	// set before item bonus
-	if (m_pstbAfterOptionName[0]->GetText().size() > 1) // check if we have new stats
+void CItemOptionRestructureGui::UpdateMiddleEffect(RwReal fElapsed)
+{
+	switch (m_eState)
 	{
-		for (int i = 0; i < ITEM_OPTION_MAX_COUNT; i++)
+		case STATE_PROCESS:
+		case STATE_PACKETWAIT:
 		{
-			if (m_pstbAfterOptionName[i]->GetText().size() > 1) // check if we have new stats
-			{
-				m_pstbBeforeOptionName[i]->SetText(m_pstbAfterOptionName[i]->GetText().c_str());
-				m_pstbBeforeOptionValue[i]->SetText(m_pstbAfterOptionValue[i]->GetText().c_str());
-			}
-			else
-			{
-				m_pstbBeforeOptionName[i]->SetText(L"");
-				m_pstbBeforeOptionValue[i]->SetText(L"");
-			}
-		}
-	}
+			m_fEffectTime += fElapsed;
 
-	// set after item bonus
+			RwReal fRatio = m_fEffectTime / OPTION_RESTRUCTURE_PROCESS_TIME;
+			if (fRatio > 1.0f)
+				fRatio = 1.0f;
+
+			// arrow cycles blue -> yellow -> red, faster and faster
+			RwReal fInterval = OPTION_RESTRUCTURE_ARROW_SLOW + (OPTION_RESTRUCTURE_ARROW_FAST - OPTION_RESTRUCTURE_ARROW_SLOW) * fRatio;
+
+			m_fArrowTime += fElapsed;
+			if (m_fArrowTime >= fInterval)
+			{
+				m_fArrowTime = 0.0f;
+				m_nArrow = (m_nArrow + 1) % NUM_ARROW;
+
+				ShowMiddleEffect((ARROW)m_nArrow, true);
+			}
+
+			// star circle pulses along with it
+			m_fPulsePhase += fElapsed * (4.0f + 20.0f * fRatio);
+			m_ppnlStarCircle->SetAlpha((RwUInt8)(155.0f + 100.0f * sinf(m_fPulsePhase)));
+
+			// item and its current options fade out and back in
+			RwReal fFade = 0.5f + 0.5f * cosf(m_fEffectTime * 6.2831853f / OPTION_RESTRUCTURE_FADE_PERIOD);
+			SetBeforeAlpha((RwUInt8)(OPTION_RESTRUCTURE_FADE_MIN_ALPHA + (255.0f - OPTION_RESTRUCTURE_FADE_MIN_ALPHA) * fFade));
+
+			if (m_eState == STATE_PROCESS && m_fEffectTime >= OPTION_RESTRUCTURE_PROCESS_TIME)
+				SendPacket();
+		}
+		break;
+
+		default: break;
+	}
+}
+
+void CItemOptionRestructureGui::SetBeforeAlpha(RwUInt8 byAlpha)
+{
+	m_surSlot[SLOT_ITEM].SetAlpha(byAlpha);
+
 	for (int i = 0; i < ITEM_OPTION_MAX_COUNT; i++)
 	{
-		if (pItemOptionSet->GetRandomOptionIndex(i) != INVALID_WORD)
-		{
-			sITEM_ENCHANT_TBLDAT* pItemEnchantData = reinterpret_cast<sITEM_ENCHANT_TBLDAT*>(pItemEnchantTable->FindData(pItemOptionSet->GetRandomOptionIndex(i)));
-			if (pItemEnchantData)
-			{
-				std::wstring wstrName = API_GetTableContainer()->GetTextAllTable()->GetSystemEffectTbl()->GetText((pItemEnchantData->seTblidx * 100) + 1);
-
-				m_pstbAfterOptionName[i]->SetText(wstrName.c_str());
-				m_pstbAfterOptionValue[i]->SetText(pItemOptionSet->GetRandomOptionValue(i));
-			}
-		}
-		else
-		{
-			m_pstbAfterOptionName[i]->SetText(L"");
-			m_pstbAfterOptionValue[i]->SetText(L"");
-		}
+		m_pstbBeforeOptionName[i]->SetAlpha(byAlpha);
+		m_pstbBeforeOptionValue[i]->SetAlpha(byAlpha);
 	}
-
-	CheckReady();
 }
 
 bool CItemOptionRestructureGui::SetItemSlot(RwUInt32 hSerialID, RwUInt32 eSrcplace, RwUInt32 uiSrcSlotIdx, RwUInt32 uiDestSlotIdx, RwBool bNeedToIconMoveEnd)
@@ -606,14 +698,8 @@ void CItemOptionRestructureGui::DeleteItem(bool bReplace)
 {
 	if (m_pItem)
 	{
-		for (int i = 0; i < ITEM_OPTION_MAX_COUNT; i++)
-		{
-			m_pstbBeforeOptionName[i]->SetText(L"");
-			m_pstbBeforeOptionValue[i]->SetText(L"");
-
-			m_pstbAfterOptionName[i]->SetText(L"");
-			m_pstbAfterOptionValue[i]->SetText(L"");
-		}
+		ClearOptionRows(m_pstbBeforeOptionName, m_pstbBeforeOptionValue);
+		ClearOptionRows(m_pstbAfterOptionName, m_pstbAfterOptionValue);
 
 		CDboEventGenerator::DialogEvent(DIALOGEVENT_END_ITEM_IN_OPTIONRECONSTRUCTION, PLACE_ITEM_OPTIONRECONSTRUCTION, PLACE_BAG,
 			m_pItem->GetParentItemSlotIdx(), m_pItem->GetItemSlotIdx());
@@ -668,8 +754,12 @@ void CItemOptionRestructureGui::SetState(STATE eState)
 	m_pbtnClose->ClickEnable(TRUE);
 	m_pbtnCloseWide->ClickEnable(TRUE);
 	m_pbtnRestructure->ClickEnable(FALSE);
+	m_pcbbSelectOption->Enable(m_bCanSelectOption && m_pItem);
 
 	DisableSlot(FALSE);
+
+	if (eState != STATE_PROCESS && eState != STATE_PACKETWAIT)
+		SetBeforeAlpha(255);
 
 	switch (eState)
 	{
@@ -677,6 +767,8 @@ void CItemOptionRestructureGui::SetState(STATE eState)
 		{
 			if (GetIconMoveManager()->IsActive())
 				ShowIconDestination(TRUE);
+
+			ShowMiddleEffect(ARROW_NONE, m_pItem && m_pBoxItem);
 		}
 		break;
 		case STATE_READY:
@@ -688,22 +780,37 @@ void CItemOptionRestructureGui::SetState(STATE eState)
 			}
 
 			m_pbtnRestructure->ClickEnable(TRUE);
+
+			ShowMiddleEffect(ARROW_BLUE, true);
 		}
 		break;
-		case STATE_PROCESS:
+		case STATE_PROCESS: // play the middle effect, request is sent once it is done (see UpdateMiddleEffect)
 		{
 			DisableSlot(TRUE);
+			m_asurDisableSlot[SLOT_ITEM].Show(FALSE); // item fades in and out instead, input is still blocked by state
+			m_pcbbSelectOption->Enable(false);
 
 			// Exit button disabled !!!
 			m_pbtnClose->ClickEnable(FALSE);
 			m_pbtnCloseWide->ClickEnable(FALSE);
 
-			SendPacket();
+			m_fEffectTime = 0.0f;
+			m_fArrowTime = 0.0f;
+			m_fPulsePhase = 0.0f;
+			m_nArrow = ARROW_BLUE;
+
+			ShowMiddleEffect(ARROW_BLUE, true);
+
+			// new roll: current list shows what the item has now (last result) and the new list is emptied
+			SetItemCurrentStats();
+			ClearOptionRows(m_pstbAfterOptionName, m_pstbAfterOptionValue);
 		}
 		break;
-		case STATE_PACKETWAIT:
+		case STATE_PACKETWAIT: // keep the middle effect running until the result arrives
 		{
 			DisableSlot(TRUE);
+			m_asurDisableSlot[SLOT_ITEM].Show(FALSE);
+			m_pcbbSelectOption->Enable(false);
 
 			// Exit button disabled !!!
 			m_pbtnClose->ClickEnable(FALSE);
@@ -863,6 +970,12 @@ bool CItemOptionRestructureGui::IsValidRightBtnProc(RwInt32 nClickIdx)
 
 void CItemOptionRestructureGui::SendPacket()
 {
+	if (m_pItem == NULL || m_pBoxItem == NULL)
+	{
+		CheckReady();
+		return;
+	}
+
 	RwUInt8 byItemPlace = m_pItem->GetParentItemSlotIdx() + CONTAINER_TYPE_BAG1;
 	RwUInt8 byItemPos = m_pItem->GetItemSlotIdx();
 
@@ -1121,6 +1234,9 @@ void CItemOptionRestructureGui::OnClickedBtnCloseWide(gui::CComponent * pCompone
 
 void CItemOptionRestructureGui::OnSelectedOption(INT nSelectIndex)
 {
+	if (m_eState != STATE_NONE && m_eState != STATE_READY)
+		return;
+
 	CItemEnchantTable* pItemEnchantTable = API_GetTableContainer()->GetItemEnchantTable();
 
 	TBLIDX enchantIdx = (TBLIDX)m_pcbbSelectOption->GetItemData(nSelectIndex);
@@ -1132,8 +1248,12 @@ void CItemOptionRestructureGui::OnSelectedOption(INT nSelectIndex)
 
 		std::wstring wstrName = API_GetTableContainer()->GetTextAllTable()->GetSystemEffectTbl()->GetText((pItemEnchantData->seTblidx * 100) + 1);
 
+		// preview the selected option in the after column
+		ClearOptionRows(m_pstbAfterOptionName, m_pstbAfterOptionValue);
+
 		m_pstbAfterOptionName[0]->SetTextColor(INFOCOLOR_9);
 		m_pstbAfterOptionName[0]->SetText(wstrName.c_str());
+		m_bAfterIsPreview = true;
 
 		if (m_wOptionIndex != INVALID_WORD)
 			CheckReady();
