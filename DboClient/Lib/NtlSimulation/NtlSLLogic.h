@@ -601,6 +601,15 @@ RwBool			Logic_I_am_PartyLeader();
 // 자신과 같은 파티원인지 여부
 RwBool			Logic_IsMyPartyMember(SERIAL_HANDLE hSerial);
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Dragonball scramble
+
+// towns, water, pvp-forbidden areas... where scramble players can not fight and can not carry balls
+RwBool			Logic_IsDBScrambleSafeZone(RwV3d vPos);
+
+// TRUE if the avatar can attack this player (or pet of a player) in the dragonball scramble
+RwBool			Logic_IsDBScrambleEnemy(CNtlSob* pSobObj);
+
 RwBool			Logic_CanPartyLeave();
 
 RwBool			Logic_CanPartyInvite();

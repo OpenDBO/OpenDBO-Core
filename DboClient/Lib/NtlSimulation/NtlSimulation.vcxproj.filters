@@ -801,6 +801,9 @@
     <ClCompile Include="NtlWorldConceptFreePvpZone.cpp">
       <Filter>WorldConcept\Controller</Filter>
     </ClCompile>
+    <ClCompile Include="NtlWorldConceptDBScramble.cpp">
+      <Filter>WorldConcept\Controller</Filter>
+    </ClCompile>
     <ClCompile Include="NtlWorldConceptCCBD.cpp">
       <Filter>WorldConcept\Controller</Filter>
     </ClCompile>
@@ -1452,6 +1455,9 @@
       <Filter>Behavior\CharBehavior\Move</Filter>
     </ClInclude>
     <ClInclude Include="NtlWorldConceptFreePvpZone.h">
+      <Filter>WorldConcept\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="NtlWorldConceptDBScramble.h">
       <Filter>WorldConcept\Controller</Filter>
     </ClInclude>
     <ClInclude Include="NtlWorldConceptCCBD.h">

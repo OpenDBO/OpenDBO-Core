@@ -5857,6 +5857,59 @@ RwBool Logic_IsMyPartyMember(SERIAL_HANDLE hSerial)
 	return FALSE;
 }
 
+RwBool Logic_IsDBScrambleSafeZone(RwV3d vPos)
+{
+	// terrain groups which have DBO_WORLD_ATTR_BASIC_DRAGONBALL_SCRAMBLE_SAFE_ZONE set (see CDboNavi::Create)
+	static const DWORD dwSafeZoneGroupFlag =	(0x00000001 << DBO_WORLD_ATTR_GROUP_TOWN) |
+												(0x00000001 << DBO_WORLD_ATTR_GROUP_SWIM) |
+												(0x00000001 << DBO_WORLD_ATTR_GROUP_FORBID_PC_BATTLE) |
+												(0x00000001 << DBO_WORLD_ATTR_GROUP_LAVA_SWIM) |
+												(0x00000001 << DBO_WORLD_ATTR_GROUP_DRAGONBALL_SCRAMBLE_SAFE_ZONE) |
+												(0x00000001 << DBO_WORLD_ATTR_GROUP_FREE_PVP_ZONE);
+
+	return (GetSceneManager()->GetWorldAttribute(vPos) & dwSafeZoneGroupFlag) ? TRUE : FALSE;
+}
+
+RwBool Logic_IsDBScrambleEnemy(CNtlSob* pSobObj)
+{
+	if( !pSobObj )
+		return FALSE;
+
+	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
+	if( !pAvatar )
+		return FALSE;
+
+	CNtlSobPlayerAttr* pAvatarAttr = reinterpret_cast<CNtlSobPlayerAttr*>( pAvatar->GetSobAttr() );
+	if( !pAvatarAttr->GetIsInDBSBattle() )
+		return FALSE;
+
+	// a pet is attackable when its owner is
+	CNtlSob* pTargetPlayer = pSobObj;
+	if( pSobObj->GetClassID() == SLCLASS_PET )
+		pTargetPlayer = GetNtlSobManager()->GetSobObject( pSobObj->GetOwnerID() );
+
+	if( !pTargetPlayer || pTargetPlayer->GetClassID() != SLCLASS_PLAYER )
+		return FALSE;
+
+	CNtlSobPlayerAttr* pTargetAttr = reinterpret_cast<CNtlSobPlayerAttr*>( pTargetPlayer->GetSobAttr() );
+	if( !pTargetAttr->GetIsInDBSBattle() )
+		return FALSE;
+
+	// party members can not hurt each other
+	if( Logic_IsMyPartyMember( pTargetPlayer->GetSerialID() ) )
+		return FALSE;
+
+	RwUInt32 uiStateId = Logic_GetActorStateId( reinterpret_cast<CNtlSobActor*>(pTargetPlayer) );
+	if( uiStateId == NTL_FSMSID_FAINTING || uiStateId == NTL_FSMSID_DIE )
+		return FALSE;
+
+	// nobody can fight inside towns
+	if( Logic_IsDBScrambleSafeZone( pAvatar->GetPosition() ) || Logic_IsDBScrambleSafeZone( pSobObj->GetPosition() ) )
+		return FALSE;
+
+	return TRUE;
+}
+
 RwBool Logic_CanPartyLeave()
 {
 	// ���ο���� ������ ���ǵǾ� ���� �ʾ� NULL�� ��ȯ�ȴ�
@@ -6024,6 +6077,11 @@ void Logic_SetHeadNameColor(CNtlSob* pSob)
 			else if (pPlayerAttr->GetIsInFreePvpZone() /*&& pAvatarPlayer->GetIsInFreePvpZone()*/)
 			{
 				playerNameColor = NTL_PVP_NAME_COLOR;
+			}
+			else if (pPlayerAttr->GetIsInDBSBattle() &&
+					 reinterpret_cast<CNtlSobPlayerAttr*>(GetNtlSLGlobal()->GetSobAvatar()->GetSobAttr())->GetIsInDBSBattle())
+			{
+				playerNameColor = NTL_PVP_NAME_COLOR;	// dragonball scramble rival
 			}
 
 			pPlayerProxy->SetNameColor(pPlayerAttr->GetName(), playerNameColor,
