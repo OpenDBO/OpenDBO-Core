@@ -15,6 +15,9 @@ timeout /t 1 /nobreak > nul
 start GameServer.exe .\\config\\GameServer.ini
 timeout /t 1 /nobreak > nul
 
+start GameServer.exe .\\config\\GameServer9.ini
+timeout /t 1 /nobreak > nul
+
 start ChatServer.exe
 timeout /t 1 /nobreak > nul
 
