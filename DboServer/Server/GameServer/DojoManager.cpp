@@ -76,8 +76,10 @@ void CDojo::TickProcess(DWORD dwTickDiff)
 			ERR_LOG(LOG_GENERAL, "eDBO_DOJO_STATUS_NORMAL");
 			m_matchStateInfo.eState = eDBO_DOJO_STATUS_RECEIVE;
 
-			m_dwNextUpdate = 1000 * 3600 * 2; // 2 hours time to receive war request
-			m_matchStateInfo.tmNextStepTime = curTime + 7200; // 7200 sekunden = 2 stunden
+			DOJOTIME tmReceive = GetPhaseDuration(&sDOJO_TBLDAT::byReceiveDuration, 1800); // time to receive war requests
+
+			m_dwNextUpdate = (DWORD)tmReceive * 1000;
+			m_matchStateInfo.tmNextStepTime = curTime + tmReceive;
 			
 			CNtlPacket packet(sizeof(sGT_DOJO_SCRAMBLE_STATE_CHANGE));
 			sGT_DOJO_SCRAMBLE_STATE_CHANGE * res = (sGT_DOJO_SCRAMBLE_STATE_CHANGE *)packet.GetPacketData();
@@ -119,7 +121,7 @@ void CDojo::TickProcess(DWORD dwTickDiff)
 			ERR_LOG(LOG_GENERAL, "eDBO_DOJO_STATUS_STANDBY");
 			m_matchStateInfo.eState = eDBO_DOJO_STATUS_READY;
 
-			m_matchStateInfo.tmNextStepTime = curTime + 300; // 300 sekunden = 5 minuten
+			m_matchStateInfo.tmNextStepTime = curTime + GetPhaseDuration(&sDOJO_TBLDAT::byReadyDuration, 180); // time to enter the dojo before the battle
 
 			//this is called when preparation timer end
 			if (GetAttGuildID() != INVALID_GUILDID)
@@ -174,7 +176,7 @@ void CDojo::TickProcess(DWORD dwTickDiff)
 		{
 			ERR_LOG(LOG_GENERAL, "eDBO_DOJO_STATUS_READY");
 			m_matchStateInfo.eState = eDBO_DOJO_STATUS_START;
-			m_matchStateInfo.tmNextStepTime = curTime + 3600; // 3600 sekunden = 60 minuten
+			m_matchStateInfo.tmNextStepTime = curTime + GetPhaseDuration(&sDOJO_TBLDAT::byBattleDuration, 3600); // battle time
 
 			CNtlPacket packet(sizeof(sGT_DOJO_SCRAMBLE_STATE_CHANGE));
 			sGT_DOJO_SCRAMBLE_STATE_CHANGE * res = (sGT_DOJO_SCRAMBLE_STATE_CHANGE *)packet.GetPacketData();
@@ -299,6 +301,9 @@ bool CDojo::UpdateSeal(WCHAR* wchName, GUILDID guildId, TBLIDX sealIdx, BYTE & r
 	{
 		CGameServer	* app = (CGameServer*)g_pApp;
 
+		sDOJO_TBLDAT* pDojoTbl = GetDojoTbldat();
+		DWORD dwCapturePoint = pDojoTbl ? pDojoTbl->dwBattlePointGet : 2; // points for taking the seal
+
 		if (m_brief.guildId == guildId)
 		{
 			if(rbyMainState == TOBJECT_STATE_TYPE_C_ATTACK_TEAM)
@@ -307,6 +312,7 @@ bool CDojo::UpdateSeal(WCHAR* wchName, GUILDID guildId, TBLIDX sealIdx, BYTE & r
 			rbyMainState = TOBJECT_STATE_TYPE_C_DEFENCE_TEAM;
 
 			m_warPoint.byDefSealCount += 1;
+			m_warPoint.dwDefPoint += dwCapturePoint;
 		}
 		else
 		{
@@ -316,6 +322,7 @@ bool CDojo::UpdateSeal(WCHAR* wchName, GUILDID guildId, TBLIDX sealIdx, BYTE & r
 			rbyMainState = TOBJECT_STATE_TYPE_C_ATTACK_TEAM;
 
 			m_warPoint.byAttSealCount += 1;
+			m_warPoint.dwAttPoint += dwCapturePoint;
 		}
 
 		CNtlPacket packet(sizeof(sGT_DOJO_SCRAMBLE_SHIEFT_SEAL_STATE_NFY));
@@ -486,29 +493,38 @@ void CDojo::SendWarPointNfy()
 void CDojo::UpdatePoints()
 {
 	CGameServer* app = (CGameServer*)g_pApp;
-	m_dwNextUpdate = 5000; //update in 5 seconds again
 
-	m_warPoint.dwDefCharge += m_warPoint.byDefSealCount * 10;
-	if (m_warPoint.dwDefCharge >= 300)
+	sDOJO_TBLDAT* pDojoTbl = GetDojoTbldat();
+
+	// retail rules from the dojo table: every charge tick each owned seal adds charge,
+	// a full charge bar converts into battle points, first team to the point goal wins
+	DWORD dwChargeTime		= (pDojoTbl && pDojoTbl->dwChargeTime > 0) ? pDojoTbl->dwChargeTime : 1;
+	DWORD dwChargePerSeal	= pDojoTbl ? pDojoTbl->dwChageTimePoint : 2;
+	DWORD dwChargeGoal		= (pDojoTbl && pDojoTbl->dwChargePointGoal > 0) ? pDojoTbl->dwChargePointGoal : 300;
+	DWORD dwPointPerCharge	= pDojoTbl ? pDojoTbl->dwBattlePointCharge : 8;
+	DWORD dwPointGoal		= (pDojoTbl && pDojoTbl->dwBattlePointGoal > 0) ? pDojoTbl->dwBattlePointGoal : 500;
+
+	m_dwNextUpdate = dwChargeTime * 1000;
+
+	m_warPoint.dwDefCharge += m_warPoint.byDefSealCount * dwChargePerSeal;
+	while (m_warPoint.dwDefCharge >= dwChargeGoal)
 	{
-		m_warPoint.dwDefPoint += 8;
-
-		m_warPoint.dwDefCharge = m_warPoint.dwDefCharge - 300;
+		m_warPoint.dwDefPoint += dwPointPerCharge;
+		m_warPoint.dwDefCharge -= dwChargeGoal;
 	}
 
-	m_warPoint.dwAttCharge += m_warPoint.byAttSealCount * 10;
-	if (m_warPoint.dwAttCharge >= 300)
+	m_warPoint.dwAttCharge += m_warPoint.byAttSealCount * dwChargePerSeal;
+	while (m_warPoint.dwAttCharge >= dwChargeGoal)
 	{
-		m_warPoint.dwAttPoint += 8;
-
-		m_warPoint.dwAttCharge = m_warPoint.dwAttCharge - 300;
+		m_warPoint.dwAttPoint += dwPointPerCharge;
+		m_warPoint.dwAttCharge -= dwChargeGoal;
 	}
 
 	//send point nfy to chat server
 	SendWarPointNfy();
 
 	//check if someone won
-	if (m_warPoint.dwDefPoint >= 500 || m_warPoint.dwAttPoint >= 500) //should be 500
+	if (m_warPoint.dwDefPoint >= dwPointGoal || m_warPoint.dwAttPoint >= dwPointGoal)
 	{
 		CGameServer	* app = (CGameServer*)g_pApp;
 
