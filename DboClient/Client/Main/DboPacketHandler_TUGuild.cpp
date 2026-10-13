@@ -1173,7 +1173,7 @@ void PacketHandler_TUDojo_ScrambleNfy(void* pPacket)
 	// 쟁탈전을 신청받은 길드 마스터에게 쟁탈전 수락 여부를 물어본다
 	sTU_DOJO_SCRAMBLE_NFY* pResult = (sTU_DOJO_SCRAMBLE_NFY*)pPacket;
 
-	GetAlarmManager()->FormattedAlarmMessage("DST_DOJO_SCRAMBLE_ACCEPT_CHALLENGE", FALSE, NULL, pResult->wszName, DBO_DOJO_SCRAMBLE_REJECT_FARE);
+	GetAlarmManager()->FormattedAlarmMessage("DST_DOJO_SCRAMBLE_ACCEPT_CHALLENGE", FALSE, NULL, pResult->wszName, Logic_FormatZeni(DBO_DOJO_SCRAMBLE_REJECT_FARE));
 }
 
 void PacketHandler_TUDojo_ScrambleReceiveNfy(void* pPacket)
@@ -1218,7 +1218,7 @@ void PacketHandler_GSDojo_ScrambleResponseRes(void* pPacket)
 
 	if( pResult->bIsRetry )
 	{
-		GetAlarmManager()->FormattedAlarmMessage("DST_DOJO_SCRAMBLE_ACCEPT_CHALLENGE", FALSE, NULL, pResult->wszGuildName, DBO_DOJO_SCRAMBLE_REJECT_FARE);
+		GetAlarmManager()->FormattedAlarmMessage("DST_DOJO_SCRAMBLE_ACCEPT_CHALLENGE", FALSE, NULL, pResult->wszGuildName, Logic_FormatZeni(DBO_DOJO_SCRAMBLE_REJECT_FARE));
 	}
 
 	if( pResult->wResultCode != GAME_SUCCESS )
