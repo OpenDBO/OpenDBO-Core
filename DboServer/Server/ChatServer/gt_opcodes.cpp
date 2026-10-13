@@ -82,7 +82,7 @@ void CGT_Opcodes::BuildOpcodeList()
 	StoreOpcode(GT_DOJO_SCRAMBLE_REWARD_REQ, "GT_DOJO_SCRAMBLE_REWARD_REQ", PROCESS_INPLACE, &CServerPassiveSession::RecvDojoScrambleRewardReq);
 	StoreOpcode(GT_DOJO_NPC_INFO_REQ, "GT_DOJO_NPC_INFO_REQ", PROCESS_INPLACE, &CServerPassiveSession::RecvDojoNpcInfoReq);
 	StoreOpcode(GT_DOJO_SEND_TELEPORT_PROPOSAL, "GT_DOJO_SEND_TELEPORT_PROPOSAL", PROCESS_THREADUNSAFE, &CServerPassiveSession::RecvDojoSendTeleportProposal);
-	StoreOpcode(GT_DOJO_COMMAND, "GT_DOJO_COMMAND", PROCESS_INPLACE, &CServerPassiveSession::OnInvalid);
+	StoreOpcode(GT_DOJO_COMMAND, "GT_DOJO_COMMAND", PROCESS_THREADUNSAFE, &CServerPassiveSession::RecvDojoCommand);
 	StoreOpcode(GT_CHAR_READY_FOR_COMMUNITY_SERVER_NFY, "GT_CHAR_READY_FOR_COMMUNITY_SERVER_NFY", PROCESS_INPLACE, &CServerPassiveSession::RecvCharReadyForCommunityServerNfy);
 	StoreOpcode(GT_DOJO_USERCOUNT_CHANGE, "GT_DOJO_USERCOUNT_CHANGE", PROCESS_INPLACE, &CServerPassiveSession::OnInvalid);
 	StoreOpcode(GT_TENKAICHIDAISIJYOU_SELL_REQ, "GT_TENKAICHIDAISIJYOU_SELL_REQ", PROCESS_THREADUNSAFE, &CServerPassiveSession::RecAuctionHouseSellReq);

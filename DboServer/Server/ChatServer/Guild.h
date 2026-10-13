@@ -110,7 +110,6 @@ public:
 
 	void				FillOnlineMember(CHARACTERID* pCharID, BYTE& rbyCount);
 
-	bool				CheckGuildReadyForDojo();
 };
 
 

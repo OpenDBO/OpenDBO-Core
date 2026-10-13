@@ -824,6 +824,12 @@ VOID CScrambleStatusGui::HandleEvents( RWS::CMsg &msg )
 
 		switch(pEvent->byDojoEvent)
 		{
+		case DOJO_EVENT_SCRAMBLE_TELEPORT_PROPOSAL:
+			{
+				// the proposal can arrive after the window was created (login or leaving the dojo during the war)
+				CheckTeleportButton();
+				break;
+			}
 		case DOJO_EVENT_SCRAMBLE_SCORE:
 			{
 				WCHAR awcBuffer[64];

@@ -27,7 +27,7 @@ const DWORD DBO_MAX_COUNT_DOJO_BANK_HISTORY = 40;
 const DWORD DBO_DOJO_SCRAMBLE_REQUEST_FARE = 1000000;		// The amount of the application for the painting contest (when it is done without rain)
 const DWORD DBO_DOJO_SCRAMBLE_REJECT_FARE = 150000000;		// Refusal of dojo contest (when it is done without rain)
 const DWORD DBO_DOJO_SCRAMBLE_REQUIRED_REPUTATION = 100000;
-const DWORD DBO_DOJO_SCRAMBLE_MAX_REJECT_COUNT = 1;		// How many times allowed to reject a war?
+const DWORD DBO_DOJO_SCRAMBLE_MAX_REJECT_COUNT = 2;		// How many challenges the dojo owner can refuse per challenge period
 
 const DWORD DBO_DOJO_SCRAMBLE_MAX_WAIT_TICK = 10 * 60 * 1000; // Notify Leader Notification Wait 10 minutes
 const DWORD DBO_DOJO_SCRAMBLE_INIT_WAIT_SEC = 30; // 30 seconds after returning to normal //old 10

@@ -1714,12 +1714,10 @@ void CServerPassiveSession::RecvDojoScrambleReq(CNtlPacket * pPacket)
 		resulcode = GAME_GUILD_DOJO_SCRAMBLE_CHALLENGE_HAVE_DOJO;
 	else if(pPlayer->GetGuild()->GetDojoTblidxWarRequest() != INVALID_TBLIDX)
 		resulcode = GAME_GUILD_DOJO_SCRAMBLE_CHALLENGE_ONLY_ONETIME;
-	else if (pPlayer->GetGuild()->CheckGuildReadyForDojo() == false)
-		resulcode = COMMUNITY_FAIL;
 	else
 	{
 		CDojo* pDojo = g_pDojoManager->GetDojoByDojoTblidx(req->dojoTblidx);
-		
+
 		if (pDojo == NULL)
 			resulcode = GAME_GUILD_DOJO_NOT_FOUND;
 		else if (pDojo->GetDojoData()->guildId == pPlayer->GetGuildID())
@@ -1736,8 +1734,9 @@ void CServerPassiveSession::RecvDojoScrambleReq(CNtlPacket * pPacket)
 			pPlayer->GetGuild()->SetDojoTblidxWarRequest(req->dojoTblidx);
 			//get dojo owner. If owner not online, then war will begin
 
+			// the owner is only asked while they can still refuse (DBO_DOJO_SCRAMBLE_MAX_REJECT_COUNT per challenge period)
 			CPlayer* pDojoOwner = g_pPlayerManager->FindPlayerWithCharID(pDojo->GetGuild()->GetInfo()->guildMaster);
-			if (pDojoOwner && pDojoOwner->GetPcInitState())
+			if (pDojoOwner && pDojoOwner->GetPcInitState() && pDojo->CanRejectWar())
 			{
 				pDojo->SetWarRequest(true); //only do this if the owner is online.. otherwise we wont be able to receive another request if the first one has been rejected
 				g_pEventMgr->AddEvent(pDojo, &CDojo::OnEvent_WarRequestTimer, EVENT_DOJO_WAR_REQUEST, DBO_DOJO_SCRAMBLE_MAX_WAIT_TICK, 1, 0); //start timer
@@ -1934,6 +1933,21 @@ void CServerPassiveSession::RecvDojoSendTeleportProposal(CNtlPacket * pPacket)
 {
 	sGT_DOJO_SEND_TELEPORT_PROPOSAL * req = (sGT_DOJO_SEND_TELEPORT_PROPOSAL *)pPacket->GetPacketData();
 
+	// remember it for members that come online or leave the dojo during the war
+	if (CDojo* pDojo = g_pDojoManager->GetDojo(req->defGuildId))
+	{
+		sDBO_DOJO_TELEPORT_DATA teleportData;
+		teleportData.byTeleportType = req->byTeleportType;
+		teleportData.wWaitTime = req->wWaitTime;
+		teleportData.destWorldId = req->destWorldId;
+		teleportData.destWorldTblidx = req->destWorldTblidx;
+		teleportData.vDestDefLoc = req->vDestDefLoc;
+		teleportData.vDestAttLoc = req->vDestAttLoc;
+		teleportData.destServerChannelId = DOJO_CHANNEL_INDEX;
+		teleportData.destServerIndex = 0;
+		pDojo->SetTeleportData(teleportData);
+	}
+
 	CGuild* pDefGuild = g_pGuildManager->GetGuild(req->defGuildId);
 
 	CNtlPacket gPacket(sizeof(sTG_DOJO_SEND_TELEPORT_PROPOSAL_NFY));
@@ -1966,6 +1980,29 @@ void CServerPassiveSession::RecvDojoSendTeleportProposal(CNtlPacket * pPacket)
 	pAttGuild->FillOnlineMember(res2->aMemberId, res2->byCount);
 	gPacket2.SetPacketLen(sizeof(sTG_DOJO_SEND_TELEPORT_PROPOSAL_NFY));
 	g_pServerInfoManager->Broadcast(&gPacket2, DOJO_CHANNEL_INDEX);
+}
+
+//--------------------------------------------------------------------------------------//
+//		DOJO GM COMMAND (start / next / stop), the war itself runs on the dojo channel
+//--------------------------------------------------------------------------------------//
+void CServerPassiveSession::RecvDojoCommand(CNtlPacket * pPacket)
+{
+	sGT_DOJO_COMMAND * req = (sGT_DOJO_COMMAND *)pPacket->GetPacketData();
+
+	HSESSION hDojoChannel = g_pServerInfoManager->GetGsSession(DOJO_CHANNEL_INDEX);
+	if (hDojoChannel == INVALID_HSESSION)
+	{
+		ERR_LOG(LOG_GENERAL, "Dojo command %u ignored, dojo channel %u is not connected", req->byCommand, DOJO_CHANNEL_INDEX);
+		return;
+	}
+
+	CNtlPacket packet(sizeof(sTG_DOJO_COMMAND));
+	sTG_DOJO_COMMAND * res = (sTG_DOJO_COMMAND *)packet.GetPacketData();
+	res->wOpCode = TG_DOJO_COMMAND;
+	res->byCommand = req->byCommand;
+	res->dojoTblidx = req->dojoTblidx;
+	packet.SetPacketLen(sizeof(sTG_DOJO_COMMAND));
+	g_pApp->Send(hDojoChannel, &packet);
 }
 
 

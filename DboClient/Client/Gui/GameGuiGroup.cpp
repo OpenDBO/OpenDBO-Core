@@ -1398,10 +1398,17 @@ void CGameGuiGroup::HandleEvents(RWS::CMsg &pMsg)
 				GetSideDialogManager()->OpenDialog(SDIALOG_SCRAMBLE_STATUS);
 			}
 		}
-		else if( eDBO_DOJO_STATUS_NORMAL == pEvent->byDojoState )
+		else if( eDBO_DOJO_STATUS_NORMAL == pEvent->byDojoState && m_pScrambleStatusGui )
 		{
-			GetSideDialogManager()->UnRegistDialog(SDIALOG_SCRAMBLE_STATUS);
-			RemoveDialog(m_pScrambleStatusGui);
+			// every player hears when a dojo goes back to normal, only close the war we take part in
+			CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
+			bool bOurWar = !pAvatar || pAvatar->GetDojo()->GetScramble()->uiScrambleDojoTableIndex == pEvent->uiDojoTableIndex;
+
+			if( bOurWar )
+			{
+				GetSideDialogManager()->UnRegistDialog(SDIALOG_SCRAMBLE_STATUS);
+				RemoveDialog(m_pScrambleStatusGui);
+			}
 		}
 	}
 

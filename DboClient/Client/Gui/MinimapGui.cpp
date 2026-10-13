@@ -1498,29 +1498,33 @@ VOID CMinimapGui::Update( RwReal fElapsed )
 	{
 		sSCRAMBLE_SEAL_NOTIFY* pSCRAMBLE_SEAL_NOTIFY = it_SealNotify->second;
 
-		if( IsV2MoreLength(&pSCRAMBLE_SEAL_NOTIFY->v2Pos, &v2Avatar, fLimitedDistance) )
+		if( !pSCRAMBLE_SEAL_NOTIFY->pFlash )
 			continue;
 
+		// only ping while an enemy is taking the seal and it is in range of the minimap
+		if( !pSCRAMBLE_SEAL_NOTIFY->bEnable || IsV2MoreLength(&pSCRAMBLE_SEAL_NOTIFY->v2Pos, &v2Avatar, fLimitedDistance) )
+		{
+			pSCRAMBLE_SEAL_NOTIFY->pFlash->Show(false);
+			continue;
+		}
+
+		// blink: show for a while, then rest, then show again until the attack ends
 		if( pSCRAMBLE_SEAL_NOTIFY->fRemainTime > 0.f )
 		{
 			pSCRAMBLE_SEAL_NOTIFY->fRemainTime -= fElapsed;
-			if( pSCRAMBLE_SEAL_NOTIFY->fRemainTime < 0.f )
-				pSCRAMBLE_SEAL_NOTIFY->fRemainTime = 0.f;
 		}
 		else
 		{
-			if( pSCRAMBLE_SEAL_NOTIFY->fRestTime > 0.f )
+			pSCRAMBLE_SEAL_NOTIFY->fRestTime -= fElapsed;
+			if( pSCRAMBLE_SEAL_NOTIFY->fRestTime <= 0.f )
 			{
-				pSCRAMBLE_SEAL_NOTIFY->fRestTime -= fElapsed;
-				if( pSCRAMBLE_SEAL_NOTIFY->fRestTime < 0.f )
-					pSCRAMBLE_SEAL_NOTIFY->fRestTime = 0.f;
-
-				continue;
+				pSCRAMBLE_SEAL_NOTIFY->fRemainTime	= dSEAL_REMAIN_TIME;
+				pSCRAMBLE_SEAL_NOTIFY->fRestTime	= dSEAL_REST_TIME;
 			}
-		}
 
-		if( !pSCRAMBLE_SEAL_NOTIFY->pFlash )
+			pSCRAMBLE_SEAL_NOTIFY->pFlash->Show(false);
 			continue;
+		}
 
 		RwV2d v2Icon;
 		TransWorldToMapAxis( v2Avatar, pSCRAMBLE_SEAL_NOTIFY->v2Pos, fRealRate, v2Icon );
@@ -1530,6 +1534,7 @@ VOID CMinimapGui::Update( RwReal fElapsed )
 			rtFlash.GetWidth(), rtFlash.GetHeight());
 
 		pSCRAMBLE_SEAL_NOTIFY->pFlash->SetPosition(rtFlash);
+		pSCRAMBLE_SEAL_NOTIFY->pFlash->Show(true);
 
 		if( false == pSCRAMBLE_SEAL_NOTIFY->pFlash->IsPlayMovie() )
 			pSCRAMBLE_SEAL_NOTIFY->pFlash->PlayMovie(TRUE);
@@ -2968,6 +2973,10 @@ VOID CMinimapGui::HandleEvents( RWS::CMsg& msg )
 			bool			bOffence		= *(bool*)pEvent->pExData;
 			sVECTOR2*		pV2Loc			= (sVECTOR2*)pEvent->pExData2;
 
+			// the minimap only warns when an enemy is taking one of our seals
+			if( !bOffence )
+				NTL_RETURNVOID();
+
 			std::map<RwUInt32, sSCRAMBLE_SEAL_NOTIFY*>::iterator it_SealNotify = m_mapScrambleSealNotify.find(idxSealObject);
 
 
@@ -3000,7 +3009,7 @@ VOID CMinimapGui::HandleEvents( RWS::CMsg& msg )
 			{
 				pSCRAMBLE_SEAL_NOTIFY = it_SealNotify->second;
 
-				if( B2b(pSCRAMBLE_SEAL_NOTIFY->bOffence) == bOffence )
+				if( pSCRAMBLE_SEAL_NOTIFY->bEnable && B2b(pSCRAMBLE_SEAL_NOTIFY->bOffence) == bOffence )
 				{
 					if( pSCRAMBLE_SEAL_NOTIFY->fRemainTime	> 0.f || 
 						pSCRAMBLE_SEAL_NOTIFY->fRestTime > 0.f )

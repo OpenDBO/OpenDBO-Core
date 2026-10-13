@@ -191,6 +191,7 @@ void CPlayer::LoadFromDBProc(QueryResultVector & results)
 		if (pDojo)
 		{
 			pDojo->SendDojoState(GetClientSessionID());
+			pDojo->SendTeleportProposal(this); // late comers can still join the battle
 		}
 		else
 		{

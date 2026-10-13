@@ -294,6 +294,10 @@ void CMasterServerSession::RecvCharServerTeleportRes(CNtlPacket * pPacket)
 			res->wResultCode = req->wResultCode;
 			packet.SetPacketLen(sizeof(sGU_CHAR_SERVER_CHANGE_RES));
 			player->SendPacket(&packet);
+
+			ERR_LOG(LOG_USER, "Player %u could not move to channel %u. Result %u", player->GetCharID(), player->GetServerTeleportInfo().serverChannelId, req->wResultCode);
+
+			player->CancelServerTeleport();
 		}
 	}
 }

@@ -596,24 +596,4 @@ void CGuild::FillOnlineMember(CHARACTERID * pCharID, BYTE & rbyCount)
 	}
 }
 
-bool CGuild::CheckGuildReadyForDojo()
-{
-	int nMemberOnlineCount = 0;
-	int nMemberOverLv70Count = 0;
-
-	for (MEMBER_MAP::iterator it = mapMembers.begin(); it != mapMembers.end(); it++)
-	{
-		CPlayer* pPlayer = it->second;
-		if (pPlayer && pPlayer->GetPcInitState() && pPlayer->GetClientSession() && pPlayer->GetClientSessionID() != INVALID_HSESSION)
-		{
-			++nMemberOnlineCount;
-
-			if (pPlayer->GetLevel() >= 40)
-				++nMemberOverLv70Count;
-		}
-	}
-
-	return nMemberOnlineCount >= 20 && nMemberOverLv70Count >= 10;
-}
-
 

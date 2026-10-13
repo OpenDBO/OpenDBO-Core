@@ -27,6 +27,30 @@
 #include "MsgBoxManager.h"
 #include "InfoWndManager.h"
 
+
+namespace
+{
+	// dojo war boxes whose custom buttons are plain ok / cancel buttons
+	bool IsDojoScrambleMsgBox(const std::string& strStringID)
+	{
+		return strStringID == "DST_DOJO_SCRAMBLE_ASK_CHALLENGE" ||
+			strStringID == "DST_DOJO_SCRAMBLE_ACCEPT_CHALLENGE" ||
+			strStringID == "DST_DOJO_SCRAMBLE_ASK_TELEPORT";
+	}
+
+	// custom cancel buttons are DST_MSG_BTN_CANCEL or named ..._CANCEL_BTN
+	bool IsCancelButton(const std::string& strButton)
+	{
+		static const std::string strCancelSuffix = "_CANCEL_BTN";
+
+		if (strButton == "DST_MSG_BTN_CANCEL")
+			return true;
+
+		return strButton.size() > strCancelSuffix.size() &&
+			strButton.compare(strButton.size() - strCancelSuffix.size(), strCancelSuffix.size(), strCancelSuffix) == 0;
+	}
+}
+
 #define MSGBOX_DISPLAYTEXT_YOFFSET	5
 #define MSGBOX_HEIGHT_OFFSET	( 80 + 2 * MSGBOX_DISPLAYTEXT_YOFFSET )
 #define MSGBOX_HEIGHT_OFFSET_FOR_INPUT		30
@@ -634,7 +658,18 @@ void CMsgBoxGui::OnClickedCustomBtn( gui::CComponent* pComponent )
 
 				m_Data.pwcText = Ntl_MB2WC(pData->strMessage.c_str());
 			//	DBO_WARNING_MESSAGE("pData->strMessage: " << pData->strMessage.c_str());
-				if (m_strStringID == "DST_COMMERCIAL_MB_USE_TERM_LIMETED_ITEM_MSG")
+
+				EMsgBoxResult eResult = MBR_OK;
+
+				if (IsDojoScrambleMsgBox(m_strStringID))
+				{
+					// dojo war boxes only use their custom buttons as ok / cancel
+					m_bHide = TRUE;
+
+					if (IsCancelButton(pData->strMessage))
+						eResult = MBR_CANCEL;
+				}
+				else if (m_strStringID == "DST_COMMERCIAL_MB_USE_TERM_LIMETED_ITEM_MSG")
 					m_bHide = TRUE;
 				else if (m_strStringID == "DST_TELEPORT_COMMON_CONFIRM_MSG")
 					m_bHide = TRUE;
@@ -645,7 +680,7 @@ void CMsgBoxGui::OnClickedCustomBtn( gui::CComponent* pComponent )
 				else if (m_strStringID == "DST_COMMERCIAL_MB_UPDATE_TERM_LIMETED_ITEM_MSG")
 					m_bHide = TRUE;
 
-				CDboEventGenerator::MsgBoxResult(MBR_OK, m_strStringID.c_str(), &m_Data );
+				CDboEventGenerator::MsgBoxResult(eResult, m_strStringID.c_str(), &m_Data );
 
 				Ntl_CleanUpHeapStringW(m_Data.pwcText); // clean memory
 

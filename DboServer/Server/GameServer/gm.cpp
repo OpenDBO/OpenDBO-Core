@@ -25,6 +25,7 @@
 #include "HoneyBeeEvent.h"
 #include "ItemDrop.h"
 #include "DynamicFieldSystemEvent.h"
+#include "DojoManager.h"
 #include "NtlStringW.h"
 
 
@@ -124,6 +125,7 @@ ACMD(do_createloot);
 ACMD(do_removeskillscd);
 ACMD(do_dynamicfield);
 ACMD(do_dbscramble);
+ACMD(do_dojowar);
 ACMD(do_test);
 
 struct command_info cmd_info[] =
@@ -181,6 +183,7 @@ struct command_info cmd_info[] =
 	{ L"@removeskillscd", do_removeskillscd, ADMIN_LEVEL_ADMIN },
 	{ L"@dynamicfield", do_dynamicfield, ADMIN_LEVEL_ADMIN },
 	{ L"@dbscramble", do_dbscramble, ADMIN_LEVEL_ADMIN },
+	{ L"@dojowar", do_dojowar, ADMIN_LEVEL_ADMIN },
 	{ L"@test", do_test, ADMIN_LEVEL_ADMIN },
 
 	{ L"@qwasawedsadas", NULL, ADMIN_LEVEL_ADMIN }
@@ -1120,7 +1123,7 @@ ACMD(do_unstuck)
 
 	CGameServer* app = (CGameServer*)g_pApp;
 
-	if (app->GetGsServerId() == DOJO_CHANNEL_INDEX)
+	if (app->GetGsChannel() == DOJO_CHANNEL_INDEX)
 		return;
 
 	if (CSkill* pSkill = pPlayer->GetSkillManager()->FindSkillWithSystemEffectCode(ACTIVE_TELEPORT_BIND)) //dont allow to use unstuck while call back skill is on cooldown
@@ -1988,6 +1991,110 @@ ACMD(do_dbscramble)
 	}
 
 	ERR_LOG(LOG_USER, "Player: %u used @dbscramble %S", pPlayer->GetCharID(), strAction.c_str());
+
+	SendGmFeedback(pPlayer, msg.c_str());
+}
+
+ACMD(do_dojowar)
+{
+	/*
+		@dojowar				show the dojo war event state
+		@dojowar start			start the dojo war event now: every owned dojo opens for challenges (ignores the weekly schedule)
+		@dojowar next			move every war to its next step (standby > ready > battle > end)
+		@dojowar stop			end the event: challenges close, running battles are decided by score, wars before the battle are cancelled
+		The event itself runs on the dojo channel.
+	*/
+
+	CGameServer* app = (CGameServer*)g_pApp;
+
+	pToken->PopToPeek();
+	std::wstring strAction = pToken->PeekNextToken(NULL, &iLine);
+
+	// count what the event is doing (every channel keeps the dojo states in sync)
+	BYTE byOpen = 0, byWars = 0;
+	for (auto it = g_pDojoManager->GetDojoSetBegin(); it != g_pDojoManager->GetDojoSetEnd(); it++)
+	{
+		BYTE byState = it->second->GetWarState();
+		if (byState == eDBO_DOJO_STATUS_RECEIVE)
+			++byOpen;
+		else if (byState != eDBO_DOJO_STATUS_NORMAL)
+			++byWars;
+	}
+
+	bool bRunning = byOpen > 0 || byWars > 0;
+
+	CNtlStringW msg;
+
+	BYTE byCommand = INVALID_BYTE;
+	if (strAction == L"start")
+	{
+		if (bRunning)
+			msg.Format(L"Dojo war: the event is already running.");
+		else if (g_pDojoManager->GetDojoCount() == 0)
+			msg.Format(L"Dojo war: no dojo has an owner, create one first.");
+		else
+		{
+			byCommand = eDBO_DOJO_COMMAND_TYPE_START;
+			msg.Format(L"Dojo war: event started, %u dojos open for challenges.", g_pDojoManager->GetDojoCount());
+		}
+	}
+	else if (strAction == L"next")
+	{
+		if (byWars == 0)
+			msg.Format(L"Dojo war: no war to move on (a challenge must be accepted first).");
+		else
+		{
+			byCommand = eDBO_DOJO_COMMAND_TYPE_NEXT;
+			msg.Format(L"Dojo war: %u wars moved to their next step.", byWars);
+		}
+	}
+	else if (strAction == L"stop")
+	{
+		if (bRunning == false)
+			msg.Format(L"Dojo war: the event is not running.");
+		else
+		{
+			byCommand = eDBO_DOJO_COMMAND_TYPE_CLEAR;
+			msg.Format(L"Dojo war: event stopped.");
+		}
+	}
+	else
+	{
+		static const WCHAR* s_awszState[] = { L"normal", L"open for challenges", L"reject end", L"standby", L"initial", L"ready", L"battle", L"end" };
+
+		for (auto it = g_pDojoManager->GetDojoSetBegin(); it != g_pDojoManager->GetDojoSetEnd(); it++)
+		{
+			CDojo* pDojo = it->second;
+			BYTE byState = pDojo->GetWarState();
+			if (byState == eDBO_DOJO_STATUS_NORMAL)
+				continue;
+
+			CNtlStringW line;
+			if (pDojo->GetAttGuildID() == INVALID_GUILDID)
+				line.Format(L"Dojo %u (guild %u): %s", pDojo->GetDojoTblidx(), pDojo->GetGuildID(), byState < _countof(s_awszState) ? s_awszState[byState] : L"?");
+			else
+				line.Format(L"Dojo %u (guild %u vs guild %u): %s", pDojo->GetDojoTblidx(), pDojo->GetGuildID(), pDojo->GetAttGuildID(), byState < _countof(s_awszState) ? s_awszState[byState] : L"?");
+			SendGmFeedback(pPlayer, line.c_str());
+		}
+
+		if (bRunning)
+			msg.Format(L"Dojo war: event running, %u dojos open for challenges, %u wars. Usage: @dojowar [start|next|stop]", byOpen, byWars);
+		else
+			msg.Format(L"Dojo war: event not running, %u owned dojos. Usage: @dojowar [start|next|stop]", g_pDojoManager->GetDojoCount());
+	}
+
+	if (byCommand != INVALID_BYTE)
+	{
+		CNtlPacket packet(sizeof(sGT_DOJO_COMMAND));
+		sGT_DOJO_COMMAND * res = (sGT_DOJO_COMMAND *)packet.GetPacketData();
+		res->wOpCode = GT_DOJO_COMMAND;
+		res->byCommand = byCommand;
+		res->dojoTblidx = INVALID_TBLIDX;
+		packet.SetPacketLen(sizeof(sGT_DOJO_COMMAND));
+		app->SendTo(app->GetChatServerSession(), &packet);
+	}
+
+	ERR_LOG(LOG_USER, "Player: %u used @dojowar %S", pPlayer->GetCharID(), strAction.c_str());
 
 	SendGmFeedback(pPlayer, msg.c_str());
 }

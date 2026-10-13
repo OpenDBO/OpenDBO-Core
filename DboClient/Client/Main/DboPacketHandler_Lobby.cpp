@@ -1302,6 +1302,13 @@ void PacketHandler_GSGameServerChangeRes(void *pPacket)
 {
 	sGU_CHAR_SERVER_CHANGE_RES *pCharServerChangeRes = (sGU_CHAR_SERVER_CHANGE_RES*)pPacket;
 
+	// the server teleports the avatar back in place after a failed change, so only tell the player why
+	if(pCharServerChangeRes->wResultCode != GAME_SUCCESS)
+	{
+		GetAlarmManager()->AlarmMessage(Logic_GetResultCodeString(pCharServerChangeRes->wResultCode, "GU_CHAR_SERVER_CHANGE_RES"), TRUE );
+		return;
+	}
+
 	if(pCharServerChangeRes->wResultCode == GAME_SUCCESS)
 	{
 		SConnectData *pConnectData = GetDboGlobal()->GetConnectData();

@@ -30,6 +30,8 @@ CDojo::CDojo(sDBO_DOJO_DATA & dojoData, sDBO_GUILD_MARK * pMark)
 	m_attGuildId = INVALID_GUILDID;
 
 	m_pWorld = NULL;
+
+	m_bGmWar = false;
 }
 
 CDojo::~CDojo()
@@ -74,8 +76,10 @@ void CDojo::TickProcess(DWORD dwTickDiff)
 			ERR_LOG(LOG_GENERAL, "eDBO_DOJO_STATUS_NORMAL");
 			m_matchStateInfo.eState = eDBO_DOJO_STATUS_RECEIVE;
 
-			m_dwNextUpdate = 1000 * 3600 * 2; // 2 hours time to receive war request
-			m_matchStateInfo.tmNextStepTime = curTime + 7200; // 7200 sekunden = 2 stunden
+			DOJOTIME tmReceive = GetPhaseDuration(&sDOJO_TBLDAT::byReceiveDuration, 1800); // time to receive war requests
+
+			m_dwNextUpdate = (DWORD)tmReceive * 1000;
+			m_matchStateInfo.tmNextStepTime = curTime + tmReceive;
 			
 			CNtlPacket packet(sizeof(sGT_DOJO_SCRAMBLE_STATE_CHANGE));
 			sGT_DOJO_SCRAMBLE_STATE_CHANGE * res = (sGT_DOJO_SCRAMBLE_STATE_CHANGE *)packet.GetPacketData();
@@ -117,7 +121,7 @@ void CDojo::TickProcess(DWORD dwTickDiff)
 			ERR_LOG(LOG_GENERAL, "eDBO_DOJO_STATUS_STANDBY");
 			m_matchStateInfo.eState = eDBO_DOJO_STATUS_READY;
 
-			m_matchStateInfo.tmNextStepTime = curTime + 300; // 300 sekunden = 5 minuten
+			m_matchStateInfo.tmNextStepTime = curTime + GetPhaseDuration(&sDOJO_TBLDAT::byReadyDuration, 180); // time to enter the dojo before the battle
 
 			//this is called when preparation timer end
 			if (GetAttGuildID() != INVALID_GUILDID)
@@ -172,7 +176,7 @@ void CDojo::TickProcess(DWORD dwTickDiff)
 		{
 			ERR_LOG(LOG_GENERAL, "eDBO_DOJO_STATUS_READY");
 			m_matchStateInfo.eState = eDBO_DOJO_STATUS_START;
-			m_matchStateInfo.tmNextStepTime = curTime + 3600; // 3600 sekunden = 60 minuten
+			m_matchStateInfo.tmNextStepTime = curTime + GetPhaseDuration(&sDOJO_TBLDAT::byBattleDuration, 3600); // battle time
 
 			CNtlPacket packet(sizeof(sGT_DOJO_SCRAMBLE_STATE_CHANGE));
 			sGT_DOJO_SCRAMBLE_STATE_CHANGE * res = (sGT_DOJO_SCRAMBLE_STATE_CHANGE *)packet.GetPacketData();
@@ -297,6 +301,9 @@ bool CDojo::UpdateSeal(WCHAR* wchName, GUILDID guildId, TBLIDX sealIdx, BYTE & r
 	{
 		CGameServer	* app = (CGameServer*)g_pApp;
 
+		sDOJO_TBLDAT* pDojoTbl = GetDojoTbldat();
+		DWORD dwCapturePoint = pDojoTbl ? pDojoTbl->dwBattlePointGet : 2; // points for taking the seal
+
 		if (m_brief.guildId == guildId)
 		{
 			if(rbyMainState == TOBJECT_STATE_TYPE_C_ATTACK_TEAM)
@@ -305,6 +312,7 @@ bool CDojo::UpdateSeal(WCHAR* wchName, GUILDID guildId, TBLIDX sealIdx, BYTE & r
 			rbyMainState = TOBJECT_STATE_TYPE_C_DEFENCE_TEAM;
 
 			m_warPoint.byDefSealCount += 1;
+			m_warPoint.dwDefPoint += dwCapturePoint;
 		}
 		else
 		{
@@ -314,6 +322,7 @@ bool CDojo::UpdateSeal(WCHAR* wchName, GUILDID guildId, TBLIDX sealIdx, BYTE & r
 			rbyMainState = TOBJECT_STATE_TYPE_C_ATTACK_TEAM;
 
 			m_warPoint.byAttSealCount += 1;
+			m_warPoint.dwAttPoint += dwCapturePoint;
 		}
 
 		CNtlPacket packet(sizeof(sGT_DOJO_SCRAMBLE_SHIEFT_SEAL_STATE_NFY));
@@ -360,7 +369,7 @@ void CDojo::SendSealState(HOBJECT hSession)
 	}
 }
 
-void CDojo::SendSealUnderAttack(HOBJECT hSeal)
+void CDojo::SendSealUnderAttack(HOBJECT hSeal, GUILDID attackerGuildId)
 {
 	for (std::vector<CTriggerObject*>::iterator it = m_setSeals.begin(); it != m_setSeals.end(); it++)
 	{
@@ -370,14 +379,33 @@ void CDojo::SendSealUnderAttack(HOBJECT hSeal)
 			if (pObj->GetMainState() == TOBJECT_STATE_TYPE_C_NO_TEAM)
 				return;
 
-			CNtlPacket packet(sizeof(sGU_DOJO_SEAL_ATTACK_BEGIN_NFY));
-			sGU_DOJO_SEAL_ATTACK_BEGIN_NFY * res = (sGU_DOJO_SEAL_ATTACK_BEGIN_NFY *)packet.GetPacketData();
-			res->wOpCode = GU_DOJO_SEAL_ATTACK_BEGIN_NFY;
-			res->sealObjectTblidx = pObj->GetTblidx();
-			res->bIsBeingStolen = (pObj->GetMainState() == TOBJECT_STATE_TYPE_C_NO_TEAM) ? false : true;
-			pObj->GetCurLoc().CopyTo(res->vLoc);
-			packet.SetPacketLen(sizeof(sGU_DOJO_SEAL_ATTACK_BEGIN_NFY));
-			m_pWorld->Broadcast(&packet);
+			// only the team owning the seal is warned, and only when the other team is taking it
+			GUILDID ownerGuildId = (pObj->GetMainState() == TOBJECT_STATE_TYPE_C_ATTACK_TEAM) ? m_attGuildId : GetGuildID();
+			if (attackerGuildId == ownerGuildId)
+				return;
+
+			int nObjCount = m_pWorld->GetObjectList()->GetObjCount(OBJTYPE_PC);
+			CPlayer* pPlayer = (CPlayer*)m_pWorld->GetObjectList()->GetFirst(OBJTYPE_PC);
+
+			for (int i = 0; i < nObjCount && pPlayer; i++)
+			{
+				if (pPlayer->GetGuildID() != ownerGuildId)
+				{
+					pPlayer = (CPlayer*)m_pWorld->GetObjectList()->GetNext(pPlayer->GetWorldObjectLinker());
+					continue;
+				}
+
+				CNtlPacket packet(sizeof(sGU_DOJO_SEAL_ATTACK_BEGIN_NFY));
+				sGU_DOJO_SEAL_ATTACK_BEGIN_NFY * res = (sGU_DOJO_SEAL_ATTACK_BEGIN_NFY *)packet.GetPacketData();
+				res->wOpCode = GU_DOJO_SEAL_ATTACK_BEGIN_NFY;
+				res->sealObjectTblidx = pObj->GetTblidx();
+				res->bIsBeingStolen = true;
+				pObj->GetCurLoc().CopyTo(res->vLoc);
+				packet.SetPacketLen(sizeof(sGU_DOJO_SEAL_ATTACK_BEGIN_NFY));
+				pPlayer->SendPacket(&packet);
+
+				pPlayer = (CPlayer*)m_pWorld->GetObjectList()->GetNext(pPlayer->GetWorldObjectLinker());
+			}
 
 			return;
 		}
@@ -465,29 +493,38 @@ void CDojo::SendWarPointNfy()
 void CDojo::UpdatePoints()
 {
 	CGameServer* app = (CGameServer*)g_pApp;
-	m_dwNextUpdate = 5000; //update in 5 seconds again
 
-	m_warPoint.dwDefCharge += m_warPoint.byDefSealCount * 10;
-	if (m_warPoint.dwDefCharge >= 300)
+	sDOJO_TBLDAT* pDojoTbl = GetDojoTbldat();
+
+	// retail rules from the dojo table: every charge tick each owned seal adds charge,
+	// a full charge bar converts into battle points, first team to the point goal wins
+	DWORD dwChargeTime		= (pDojoTbl && pDojoTbl->dwChargeTime > 0) ? pDojoTbl->dwChargeTime : 1;
+	DWORD dwChargePerSeal	= pDojoTbl ? pDojoTbl->dwChageTimePoint : 2;
+	DWORD dwChargeGoal		= (pDojoTbl && pDojoTbl->dwChargePointGoal > 0) ? pDojoTbl->dwChargePointGoal : 300;
+	DWORD dwPointPerCharge	= pDojoTbl ? pDojoTbl->dwBattlePointCharge : 8;
+	DWORD dwPointGoal		= (pDojoTbl && pDojoTbl->dwBattlePointGoal > 0) ? pDojoTbl->dwBattlePointGoal : 500;
+
+	m_dwNextUpdate = dwChargeTime * 1000;
+
+	m_warPoint.dwDefCharge += m_warPoint.byDefSealCount * dwChargePerSeal;
+	while (m_warPoint.dwDefCharge >= dwChargeGoal)
 	{
-		m_warPoint.dwDefPoint += 8;
-
-		m_warPoint.dwDefCharge = m_warPoint.dwDefCharge - 300;
+		m_warPoint.dwDefPoint += dwPointPerCharge;
+		m_warPoint.dwDefCharge -= dwChargeGoal;
 	}
 
-	m_warPoint.dwAttCharge += m_warPoint.byAttSealCount * 10;
-	if (m_warPoint.dwAttCharge >= 300)
+	m_warPoint.dwAttCharge += m_warPoint.byAttSealCount * dwChargePerSeal;
+	while (m_warPoint.dwAttCharge >= dwChargeGoal)
 	{
-		m_warPoint.dwAttPoint += 8;
-
-		m_warPoint.dwAttCharge = m_warPoint.dwAttCharge - 300;
+		m_warPoint.dwAttPoint += dwPointPerCharge;
+		m_warPoint.dwAttCharge -= dwChargeGoal;
 	}
 
 	//send point nfy to chat server
 	SendWarPointNfy();
 
 	//check if someone won
-	if (m_warPoint.dwDefPoint >= 500 || m_warPoint.dwAttPoint >= 500) //should be 500
+	if (m_warPoint.dwDefPoint >= dwPointGoal || m_warPoint.dwAttPoint >= dwPointGoal)
 	{
 		CGameServer	* app = (CGameServer*)g_pApp;
 
@@ -570,8 +607,107 @@ void CDojo::EndWar()
 	memset(&m_warPoint, NULL, sizeof(m_warPoint));
 	m_warPoint.dojoTblidx = GetDojoTblidx();
 	m_attGuildId = INVALID_GUILDID;
+	m_bGmWar = false;
 
 	g_pDojoWarManager->RemoveDojo(GetDojoTblidx());
+}
+
+sDOJO_TBLDAT* CDojo::GetDojoTbldat()
+{
+	return (sDOJO_TBLDAT*)g_pTableContainer->GetDojoTable()->FindData(GetDojoTblidx());
+}
+
+// phase length from the dojo table (minutes), or the fallback (seconds) when the table has none
+DOJOTIME CDojo::GetPhaseDuration(BYTE sDOJO_TBLDAT::* pDurationMinutes, DOJOTIME tmFallback)
+{
+	sDOJO_TBLDAT* pDojoTbl = GetDojoTbldat();
+	if (pDojoTbl == NULL || pDojoTbl->*pDurationMinutes == 0)
+		return tmFallback;
+
+	return (DOJOTIME)(pDojoTbl->*pDurationMinutes) * 60;
+}
+
+// end the current step on the next tick, also outside of the weekly schedule
+void CDojo::SkipCurrentStep()
+{
+	m_bGmWar = true;
+	m_matchStateInfo.tmNextStepTime = 0;
+	m_dwNextUpdate = 0;
+}
+
+void CDojo::SendStateChange(BYTE byState, DOJOTIME tmNextStepTime)
+{
+	CGameServer* app = (CGameServer*)g_pApp;
+
+	CNtlPacket packet(sizeof(sGT_DOJO_SCRAMBLE_STATE_CHANGE));
+	sGT_DOJO_SCRAMBLE_STATE_CHANGE * res = (sGT_DOJO_SCRAMBLE_STATE_CHANGE *)packet.GetPacketData();
+	res->wOpCode = GT_DOJO_SCRAMBLE_STATE_CHANGE;
+	res->byState = byState;
+	res->dojoTblidx = m_brief.dojoTblidx;
+	res->tmNextStepTime = tmNextStepTime;
+	packet.SetPacketLen(sizeof(sGT_DOJO_SCRAMBLE_STATE_CHANGE));
+	app->SendTo(app->GetChatServerSession(), &packet);
+}
+
+// open the dojo for challenges right now, ignoring the weekly schedule
+void CDojo::GmStart()
+{
+	if (m_matchStateInfo.eState == eDBO_DOJO_STATUS_NORMAL)
+		SkipCurrentStep();
+}
+
+// skip the timer of the current war step
+void CDojo::GmNext()
+{
+	switch (m_matchStateInfo.eState)
+	{
+		case eDBO_DOJO_STATUS_STANDBY:
+		case eDBO_DOJO_STATUS_READY:
+		case eDBO_DOJO_STATUS_START:
+		case eDBO_DOJO_STATUS_END:
+			SkipCurrentStep();
+		break;
+
+		default: break;
+	}
+}
+
+// end the event for this dojo: close the challenge period, decide a running battle by score
+// and cancel a war that did not reach the battle yet
+void CDojo::GmStop()
+{
+	CGameServer* app = (CGameServer*)g_pApp;
+
+	switch (m_matchStateInfo.eState)
+	{
+		// the tick closes the challenge period, or ends the battle and sends everyone out
+		case eDBO_DOJO_STATUS_RECEIVE:
+		case eDBO_DOJO_STATUS_START:
+		case eDBO_DOJO_STATUS_END:
+			SkipCurrentStep();
+		break;
+
+		case eDBO_DOJO_STATUS_STANDBY:
+		case eDBO_DOJO_STATUS_READY:
+		{
+			if (m_pWorld)
+			{
+				DespawnSeals();
+				TeleportAllOut();
+			}
+
+			m_matchStateInfo.eState = eDBO_DOJO_STATUS_NORMAL;
+
+			// END releases the guilds war request, NORMAL resets the dojo on every server
+			SendStateChange(eDBO_DOJO_STATUS_END, app->GetTime());
+			SendStateChange(eDBO_DOJO_STATUS_NORMAL, 0);
+
+			EndWar();
+		}
+		break;
+
+		default: break;
+	}
 }
 
 
@@ -720,13 +856,30 @@ void CDojoManager::TickProcess(DWORD dwTickDiff)
 	tm timeStruct = {};
 	localtime_s(&timeStruct, &curTime);
 
-	if (timeStruct.tm_wday == 0 && (timeStruct.tm_hour >= 16 && timeStruct.tm_hour <= 20)) //check if its sunday
+	bool bWarTime = timeStruct.tm_wday == 0 && (timeStruct.tm_hour >= 16 && timeStruct.tm_hour <= 20); //check if its sunday
+
+	for (std::map<GUILDID, CDojo*>::const_iterator it = GetDojoSetBegin(); it != GetDojoSetEnd(); it++)
 	{
-		for (std::map<GUILDID, CDojo*>::const_iterator it = GetDojoSetBegin(); it != GetDojoSetEnd(); it++)
+		CDojo* pDojo = it->second;
+		if (pDojo && (bWarTime || pDojo->IsGmWar()))
+			pDojo->TickProcess(dwTickDiff);
+	}
+}
+
+void CDojoManager::OnGmCommand(BYTE byCommand, TBLIDX dojoTblidx)
+{
+	for (std::map<GUILDID, CDojo*>::const_iterator it = GetDojoSetBegin(); it != GetDojoSetEnd(); it++)
+	{
+		CDojo* pDojo = it->second;
+		if (pDojo == NULL || (dojoTblidx != INVALID_TBLIDX && pDojo->GetDojoTblidx() != dojoTblidx))
+			continue;
+
+		switch (byCommand)
 		{
-			CDojo* pDojo = it->second;
-			if (pDojo)
-				pDojo->TickProcess(dwTickDiff);
+			case eDBO_DOJO_COMMAND_TYPE_START: pDojo->GmStart(); break;
+			case eDBO_DOJO_COMMAND_TYPE_NEXT: pDojo->GmNext(); break;
+			case eDBO_DOJO_COMMAND_TYPE_CLEAR: pDojo->GmStop(); break;
+			default: break;
 		}
 	}
 }

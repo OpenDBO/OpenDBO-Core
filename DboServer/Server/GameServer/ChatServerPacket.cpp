@@ -1072,10 +1072,12 @@ void CChatServerSession::RecvDojoSendTeleportProposalNfy(CNtlPacket * pPacket)
 		CPlayer* pPlayer = g_pObjectManager->FindByChar(req->aMemberId[i]);
 		if (pPlayer && pPlayer->IsInitialized())
 		{
-			req->vDestLoc.x = req->vDestLoc.x + RandomRangeF(-10.0f, 10.0f);
-			req->vDestLoc.z = req->vDestLoc.z + RandomRangeF(-10.0f, 10.0f);
+			// spread each member around the team start point
+			CNtlVector vDestLoc(req->vDestLoc);
+			vDestLoc.x += RandomRangeF(-10.0f, 10.0f);
+			vDestLoc.z += RandomRangeF(-10.0f, 10.0f);
 
-			pPlayer->TeleportAnotherServer(req->vDestLoc, pPlayer->GetCurDir(), req->destWorldTblidx, req->destWorldId, req->byTeleportType, DOJO_CHANNEL_INDEX, req->wWaitTime);
+			pPlayer->TeleportAnotherServer(vDestLoc, pPlayer->GetCurDir(), req->destWorldTblidx, req->destWorldId, req->byTeleportType, DOJO_CHANNEL_INDEX, req->wWaitTime);
 		}
 	}
 }
@@ -1087,6 +1089,19 @@ void CChatServerSession::RecvDojoUserCountChange(CNtlPacket * pPacket)
 	CDojo* pDojo = g_pDojoManager->GetDojoWithTblidx(req->dojoTblidx);
 	if (pDojo)
 		pDojo->SetUserCount(req->byDefCount, req->byAttCount);
+}
+
+void CChatServerSession::RecvDojoCommand(CNtlPacket * pPacket)
+{
+	CGameServer* app = (CGameServer*)g_pApp;
+
+	sTG_DOJO_COMMAND * req = (sTG_DOJO_COMMAND *)pPacket->GetPacketData();
+
+	// the dojo war runs on the dojo channel only
+	if (app->IsDojoChannel() == false)
+		return;
+
+	g_pDojoManager->OnGmCommand(req->byCommand, req->dojoTblidx);
 }
 
 //--------------------------------------------------------------------------------------//
@@ -1123,7 +1138,7 @@ void CChatServerSession::RecvDojoScrambleRes(CNtlPacket * pPacket)
 		}
 	}
 	else if (req->wResultCode == GAME_SUCCESS)
-		ERR_LOG(LOG_USER, "ERROR: User %u is not online anymore. Hacker..", pPlayer->GetCharID());
+		ERR_LOG(LOG_USER, "ERROR: User %u is not online anymore. Hacker..", req->charId);
 }
 
 
@@ -1152,7 +1167,7 @@ void CChatServerSession::RecvDojoScrambleResponse(CNtlPacket * pPacket)
 		}
 	}
 	else if (req->wResultCode != GAME_SUCCESS && req->bIsAccept == false)
-		ERR_LOG(LOG_USER, "ERROR: User %u is not online anymore. Hacker..", pPlayer->GetCharID());
+		ERR_LOG(LOG_USER, "ERROR: User %u is not online anymore. Hacker..", req->charId);
 }
 
 void CChatServerSession::RecvDojoScrambleStateChange(CNtlPacket * pPacket)
