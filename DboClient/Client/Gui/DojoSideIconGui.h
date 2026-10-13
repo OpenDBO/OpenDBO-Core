@@ -33,7 +33,9 @@ public:
 	virtual VOID	OnSideViewClosed();
 	virtual VOID	OnIconButtonClicked(gui::CComponent* pComponent);
 
-protected:		
+	VOID			SetToolTip(const WCHAR* pwcText);
+
+protected:
 	gui::CSlot			m_slotIconButton;
 
 	gui::CButton*		m_pIconButton;
@@ -42,7 +44,13 @@ protected:
 
 class CDojoSideViewGui : public CSideViewBase, public RWS::CEventHandler
 {
-#define dNUM_TIMER_MESSAGE			(6)
+	struct sDOJO_STATE
+	{
+		RwUInt8			byState;
+		RwUInt64		tmNextStepTime;
+	};
+
+	typedef std::map<RwUInt32, sDOJO_STATE>		MAP_DOJO_STATE;
 
 public:
 	CDojoSideViewGui(const RwChar* pName);
@@ -60,7 +68,7 @@ public:
 	virtual VOID	HandleEvents( RWS::CMsg &msg );	
 
 protected:
-	VOID			SetMessage(RwUInt32 uiDojoTableIndex, RwUInt8 byDojoState, RwUInt64 ui64NextStepTime);
+	VOID			Refresh(RwBool bNotify);
 
 	VOID			OnClicked_ExitButton(gui::CComponent* pComponent);
 	VOID			OnPaint();
@@ -77,7 +85,9 @@ protected:
 
 	RwInt32				m_iViewHeight;
 	RwReal				m_fElapsed;
-	RwBool				m_bShowTimeMessage;
 
-	RwBool				m_bShowTimerMessage[dNUM_TIMER_MESSAGE];
+	MAP_DOJO_STATE		m_mapDojoState;			///< every dojo taking part in the dojo war event
+
+	RwUInt32			m_uiShownDojo;			///< dojo shown by the side icon
+	RwUInt8				m_byShownState;
 };
