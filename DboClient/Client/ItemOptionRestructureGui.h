@@ -20,6 +20,7 @@
 
 class CNtlSobItem;
 class CNtlSobItemAttr;
+struct sITEM_OPTION_SET;
 
 class CItemOptionRestructureGui : public CNtlPLGui, public RWS::CEventHandler
 {
@@ -29,6 +30,7 @@ class CItemOptionRestructureGui : public CNtlPLGui, public RWS::CEventHandler
 enum SLOT { SLOT_ITEM, SLOT_BOX, NUM_SLOT };
 enum eFOCUSEFFECT { SLOT_FOCUS_NONE, SLOT_FOCUS_CAN_MOVE, SLOT_FOCUS };
 enum STATE { STATE_NONE, STATE_READY, STATE_PROCESS, STATE_PACKETWAIT, STATE_RESULT };
+enum ARROW { ARROW_BLUE, ARROW_YELLOW, ARROW_RED, NUM_ARROW, ARROW_NONE = NUM_ARROW };
 
 public:
 	CItemOptionRestructureGui(const RwChar *pName);
@@ -40,6 +42,8 @@ public:
 
 	RwInt32			SwitchDialog(bool bOpen);
 
+	void			Update(RwReal fElapsed);
+
 protected:
 
 	virtual void	HandleEvents(RWS::CMsg &pMsg);
@@ -50,12 +54,18 @@ protected:
 	void				SetSlotRectHardCode();
 
 	void				SetItemCurrentStats();
+	void				SetOptionRows(gui::CStaticBox** ppstbName, gui::CStaticBox** ppstbValue, sITEM_OPTION_SET* pOptionSet);
+	void				ClearOptionRows(gui::CStaticBox** ppstbName, gui::CStaticBox** ppstbValue);
 	void				EnableSelectOption(bool bFlag);
 
 	bool				CreateStackNumber(RwInt32 nValue);
 	void				DeleteStackNumber();
 
 	void				SetResult(void* pOptionSet, BYTE byBoxCount);
+
+	void				ShowMiddleEffect(ARROW eArrow, bool bStarCircle);
+	void				UpdateMiddleEffect(RwReal fElapsed);
+	void				SetBeforeAlpha(RwUInt8 byAlpha);
 
 	bool				SetItemSlot(RwUInt32 hSerialID, RwUInt32 eSrcplace, RwUInt32 uiSrcSlotIdx, RwUInt32 uiDestSlotIdx, RwBool bNeedToIconMoveEnd);
 	void				UpdateSlotIcon();
@@ -126,6 +136,11 @@ protected:
 	STATE				m_eState;
 
 	WORD				m_wOptionIndex;
+	bool				m_bAfterIsPreview; // after column only shows the selected option name
+	RwReal				m_fEffectTime; // time spent in the current process state
+	RwReal				m_fArrowTime; // time since the arrow last changed colour
+	RwReal				m_fPulsePhase; // star circle pulse
+	RwInt32				m_nArrow;
 
 
 	gui::CButton*		m_pbtnClose;
@@ -144,9 +159,7 @@ protected:
 	gui::CPanel*		m_ppnlOptionKitItemSlot;
 	gui::CPanel*		m_ppnlTargetItemSlot;
 
-	gui::CPanel*		m_ppnlArrowBlue;
-	gui::CPanel*		m_ppnlArrowYellow;
-	gui::CPanel*		m_ppnlArrowRed;
+	gui::CPanel*		m_ppnlArrow[NUM_ARROW];
 	gui::CPanel*		m_ppnlStarCircle;
 
 	gui::CStaticBox*	m_pstbBeforeOptionName[ITEM_OPTION_MAX_COUNT];

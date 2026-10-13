@@ -17322,7 +17322,9 @@ void CClientSession::RecvItemChangeOptionReq(CNtlPacket * pPacket)
 
 			if (kit->GetTblidx() == 11120093) //11120093 = silver box id. Generate random value for selected option
 			{
-				if (CItem::ChangeOption(req->wOptionIndex, item->GetTbldat(), item->GetRank(), &res->sItemOptionSet) == false)
+				if (req->wOptionIndex == INVALID_WORD) //silver box requires a selected option
+					resultcode = GAME_FAIL;
+				else if (CItem::ChangeOption(req->wOptionIndex, item->GetTbldat(), item->GetRank(), &res->sItemOptionSet) == false)
 					resultcode = GAME_FAIL;
 			}
 			else //brown box. Generate random value for all options
