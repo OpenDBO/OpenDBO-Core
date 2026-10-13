@@ -168,6 +168,16 @@ typedef struct _SGameData
 
 }SGameData;
 
+// Dragonball scramble state of the current game server
+struct sDBSCRAMBLE_INFO
+{
+	RwBool			bSeason;								///< scramble is running on this channel
+	RwBool			bBallLocation;							///< avBallLoc is valid
+	RwV3d			avBallLoc[NTL_ITEM_MAX_DRAGONBALL];		///< ball on the ground or its carrier. index 0 = 1 star ball
+
+	void Reset() { ZeroMemory(this, sizeof(sDBSCRAMBLE_INFO)); }
+};
+
 struct sContractInfo
 {
 	char*			pcContract;
@@ -212,6 +222,8 @@ private:
 
 	// 드래곤볼 컬렉션 기간 정보 구조체
 	SNtlEventDBCSchedule_Info m_sDBCSheduleInfo;
+
+	sDBSCRAMBLE_INFO	m_sDBScrambleInfo;
 	    
 	/**
 	* network lib 변수.
@@ -273,6 +285,8 @@ public:
 	// 드래곤볼 컬렉션 정보 처리 함수
 	void			SetDBCScheduleInfo(SNtlEventDBCSchedule_Info sDBCScheduleInfo) {m_sDBCSheduleInfo = sDBCScheduleInfo;}
 	SNtlEventDBCSchedule_Info* GetDBCScheduleInfo() {return &m_sDBCSheduleInfo;}
+
+	sDBSCRAMBLE_INFO*	GetDBScrambleInfo() { return &m_sDBScrambleInfo; }
 	
 	/**
 	* packet 처리 함수.

@@ -55,6 +55,13 @@ public:
 	void						SetIsInFreePvpZone(bool bFlag);
 	bool						GetIsInFreePvpZone();
 
+	// Dragonball scramble
+	void						SetIsInDBSBattle(bool bFlag) { m_bIsInDBSBattle = bFlag; }
+	bool						GetIsInDBSBattle() { return m_bIsInDBSBattle; }
+
+	void						SetDBSBallFlag(RwUInt8 byFlag) { m_byDBSBallFlag = byFlag; }	///< bit flag of the battle dragonballs carried (bit 0 = 1 star)
+	RwUInt8						GetDBSBallFlag() { return m_byDBSBallFlag; }
+
 public:
 
 	sPC_TBLDAT* m_pPcTbl;	/** pc table data pointer */
@@ -68,6 +75,9 @@ public:
 	std::wstring	m_wszTitleName;
 
 	bool			m_bIsInFreePvpZone;
+
+	bool			m_bIsInDBSBattle;		///< joined the dragonball scramble
+	RwUInt8			m_byDBSBallFlag;
 };
 
 inline void CNtlSobPlayerAttr::SetPcTbl(const sPC_TBLDAT* pPcTbl)

@@ -72,7 +72,8 @@ private:
     CNtlPLEntity*               m_pRpGuardGroundEffect;
 
     bool bCreatePlayTitle{ false };
-    bool bCreatePlayDBSInfo{ true };
+    CNtlPLEntity*               m_pDBSMark;                 ///< dragonball scramble mark under the feet
+    RwUInt8                     m_byDBSMarkType;            ///< eDBS_MARK_TYPE of m_pDBSMark
     char pchBone[255];
     char pchEffect[255];
 
@@ -126,6 +127,10 @@ protected:
     // 타겟 마킹 이벤트 (메가 도동파)
     void CreateTargetMarkingMark();
     void DeleteTargetMarkingMark();
+
+    // dragonball scramble participant mark
+    void UpdateDBSMark();
+    void DeleteDBSMark();
     
 public:
 

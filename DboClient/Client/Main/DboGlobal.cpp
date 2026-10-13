@@ -132,6 +132,7 @@ CDboGlobal::CDboGlobal()
 	m_sUser.Init();
 	memset(&m_sConfig, 0, sizeof(SConfigData));
 	ZeroMemory(&m_sDBCSheduleInfo, sizeof(SNtlEventDBCSchedule_Info));
+	m_sDBScrambleInfo.Reset();
 	m_sConnect.Init();
 	m_sGame.Init();		
 }
@@ -269,6 +270,7 @@ void CDboGlobal::Destroy(void)
 void CDboGlobal::Reset(void)
 {
 	m_sGame.Init();
+	m_sDBScrambleInfo.Reset();
 }
 
 

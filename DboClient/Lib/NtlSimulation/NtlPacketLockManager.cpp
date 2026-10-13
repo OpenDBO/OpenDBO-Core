@@ -297,6 +297,9 @@ CNtlPacketLockManager::CNtlPacketLockManager(VOID)
 	m_mapLockPacket[GU_GIFT_SHOP_START_RES]							= LT_ITEM | LT_WORLDCONCEPT;
 	m_mapLockPacket[GU_GIFT_SHOP_BUY_RES]								= LT_ITEM | LT_WORLDCONCEPT;
 
+	// Dragonball scramble
+	m_mapLockPacket[GU_DRAGONBALL_SCRAMBLE_JOIN_RES]					= LT_WORLDCONCEPT;
+
 	// CommercialExtend
 	m_mapLockPacket[GU_DURATION_ITEM_BUY_RES]							= LT_ITEM;
 	m_mapLockPacket[GU_DURATION_RENEW_RES]								= LT_ITEM;

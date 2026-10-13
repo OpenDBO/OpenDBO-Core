@@ -289,6 +289,9 @@ extern RWS::CEventId g_EventGiftShopEvent;
 extern RWS::CEventId g_EventDynamicFieldCount;
 extern RWS::CEventId g_EventDynamicFieldBossPosition;
 
+// Dragonball scramble
+extern RWS::CEventId g_EventDBScramble;
+
 // CommercialExtend
 extern RWS::CEventId g_EventCommercialExtendCommand;
 
@@ -1377,6 +1380,22 @@ struct SDboEventDynamicFieldBossPosition
 {
 	RwUInt8							byBossCount;
 	const sDYNAMIC_FIELD_BOSS_INFO*	paBossInfo;		///< array of byBossCount entries. Only valid while the event is dispatched
+};
+
+enum eDBSCRAMBLE_EVENT_TYPE
+{
+	DBSCRAMBLE_EVENT_SEASON_START,		///< the scramble runs on this channel
+	DBSCRAMBLE_EVENT_SEASON_END,
+	DBSCRAMBLE_EVENT_JOIN,				///< the avatar took part (or stopped taking part) in the scramble
+	DBSCRAMBLE_EVENT_BALL_LOCATION,		///< ball positions updated
+
+	NUM_DBSCRAMBLE_EVENT
+};
+
+// Dragonball scramble. The current state is in CDboGlobal::GetDBScrambleInfo()
+struct SDboEventDBScramble
+{
+	RwUInt8			byEventType;		///< eDBSCRAMBLE_EVENT_TYPE
 };
 
 enum eHLShopEventType

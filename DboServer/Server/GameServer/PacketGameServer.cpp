@@ -5018,7 +5018,13 @@ void CClientSession::RecvCharSkillReq(CNtlPacket * pPacket)
 	{
 		ERR_LOG(LOG_HACK, "Player: %u seems to be speed hacking. Distance: %f CurLoc: %f, %f, %f NewLoc: %f %f %f", cPlayer->GetCharID(), fMovedDistance, cPlayer->GetCurLoc().x, cPlayer->GetCurLoc().y, cPlayer->GetCurLoc().z, vLoc.x, vLoc.y, vLoc.z);
 
-		this->Disconnect(false);
+		// refuse the skill instead of disconnecting (as dbo-tw): client and server positions can drift apart after a rejected jump or dash
+		CNtlPacket packet(sizeof(sGU_CHAR_SKILL_RES));
+		sGU_CHAR_SKILL_RES* res = (sGU_CHAR_SKILL_RES*)packet.GetPacketData();
+		res->wOpCode = GU_CHAR_SKILL_RES;
+		res->wResultCode = GAME_SKILL_CANT_USE_FOR_SOME_REASON;
+		packet.SetPacketLen(sizeof(sGU_CHAR_SKILL_RES));
+		g_pApp->Send(GetHandle(), &packet);
 		return;
 	}
 
@@ -5508,6 +5514,17 @@ void CClientSession::RecvItemDeleteReq(CNtlPacket * pPacket)
 		CItem* pItem = cPlayer->GetPlayerItemContainer()->GetItem(req->bySrcPlace, req->bySrcPos);
 		if (pItem == NULL)
 			resultcode = GAME_ITEM_NOT_FOUND;
+		else if (pItem->GetTblidx() >= DBO_BATTLE_DRAGONBALL_FIRST_TBLIDX && pItem->GetTblidx() <= DBO_BATTLE_DRAGONBALL_LAST_TBLIDX)
+		{
+			// dragonball scramble: a discarded ball goes back to the ground. Balls left over from a finished scramble are simply deleted.
+			if (g_pDragonballScramble->ThrowBall(cPlayer, pItem) == false)
+			{
+				if (pItem->IsLocked())
+					resultcode = GAME_ITEM_CANNOT_DELETE;
+				else
+					pItem->SetCount(0, false, true);
+			}
+		}
 		else if (!pItem->CanDelete())
 			resultcode = GAME_ITEM_CANNOT_DELETE;
 		else if (IsBagContainer(req->bySrcPlace) && cPlayer->GetPlayerItemContainer()->IsBagEmpty(req->bySrcPos) == false)

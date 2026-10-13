@@ -56,6 +56,8 @@ RwBool CNtlSobCharDecorationProxy::m_bShadowRender = TRUE;
 CNtlSobCharDecorationProxy::CNtlSobCharDecorationProxy()
 {
 	/*m_bNameVisible		= TRUE;	*/
+	m_pSobObj			= NULL;
+	m_pPLCharacter		= NULL;
 	m_bResLoaded		= FALSE;
 	m_bResLoadComplete	= FALSE;
 	m_pShadowDecal		= NULL;	
@@ -75,6 +77,8 @@ CNtlSobCharDecorationProxy::CNtlSobCharDecorationProxy()
 	m_pEmblemFactor = NTL_NEW sEmblemFactor;
 
 	m_pTitleEffect = NULL;
+	m_pDBSMark = NULL;
+	m_byDBSMarkType = 0;
 	m_pGuardEffect = NULL;
 	m_pRpChargeEffect = NULL;
 	m_pRpChargeGroundEffect = NULL;
@@ -95,6 +99,7 @@ CNtlSobCharDecorationProxy::~CNtlSobCharDecorationProxy()
     DeleteTenkaichiMark();
     DeleteTargetMarkingMark();
 	DeletePLPlayerTitle();
+	DeleteDBSMark();
 	DeleteRpChargeEffect(); //FIX: RP Charge bug, player leave game.
 	DeleteGuardEffect();
 
@@ -106,6 +111,11 @@ CNtlSobCharDecorationProxy::~CNtlSobCharDecorationProxy()
 void CNtlSobCharDecorationProxy::SetData(CNtlSob *pSobObj, CNtlPLCharacter *pPLCharacter)
 {
 	m_pSobObj = pSobObj;
+
+	// the mark is attached to the previous character resource, it is recreated by Update
+	if (m_pPLCharacter != pPLCharacter)
+		DeleteDBSMark();
+
 	m_pPLCharacter = pPLCharacter;
 
 	CreatePLShadowDecal();
@@ -143,6 +153,9 @@ void CNtlSobCharDecorationProxy::Update(RwReal fElapsed)
 
 		if (m_pTitleEffect)
 			m_pTitleEffect->SetVisible(FALSE);
+
+		if (m_pDBSMark)
+			m_pDBSMark->SetVisible(FALSE);
         
         return;
     }
@@ -158,6 +171,9 @@ void CNtlSobCharDecorationProxy::Update(RwReal fElapsed)
 
 		if (m_pTitleEffect)
 			m_pTitleEffect->SetVisible(TRUE);
+
+		if (m_pDBSMark)
+			m_pDBSMark->SetVisible(TRUE);
     }
 
 	RwV3d vPos = m_pSobObj->GetPosition();
@@ -191,6 +207,68 @@ void CNtlSobCharDecorationProxy::Update(RwReal fElapsed)
 		bCreatePlayTitle = false;
 		CreatePLPlayerTitle(pchEffect, pchBone);
 	}
+
+	UpdateDBSMark();
+}
+
+namespace
+{
+	enum eDBS_MARK_TYPE
+	{
+		DBS_MARK_NONE,
+		DBS_MARK_ALLY,		///< avatar and party members
+		DBS_MARK_ENEMY,
+	};
+}
+
+void CNtlSobCharDecorationProxy::UpdateDBSMark(void)
+{
+	RwUInt8 byType = DBS_MARK_NONE;
+
+	RwUInt32 uiClassId = m_pSobObj->GetClassID();
+	if ((uiClassId == SLCLASS_AVATAR || uiClassId == SLCLASS_PLAYER) && m_pPLCharacter->GetCharScheduleResInfo()->bLoadComplete)
+	{
+		CNtlSobPlayerAttr* pPlayerAttr = reinterpret_cast<CNtlSobPlayerAttr*>(m_pSobObj->GetSobAttr());
+		if (pPlayerAttr && pPlayerAttr->GetIsInDBSBattle())
+		{
+			if (uiClassId == SLCLASS_AVATAR || Logic_IsMyPartyMember(m_pSobObj->GetSerialID()))
+				byType = DBS_MARK_ALLY;
+			else
+				byType = DBS_MARK_ENEMY;
+		}
+	}
+
+	if (byType == m_byDBSMarkType)
+		return;
+
+	DeleteDBSMark();
+
+	if (byType != DBS_MARK_NONE)
+	{
+		m_pDBSMark = GetSceneManager()->CreateEntity(PLENTITY_EFFECT, byType == DBS_MARK_ALLY ? "GME_Scramble_ourside_01" : "GME_Scramble_enemy_01");
+		if (m_pDBSMark)
+		{
+			RwV3d vOffset;
+			CNtlMath::MathRwV3dAssign(&vOffset, 0.0f, 0.0f, 0.0f);
+
+			Helper_AttachWorldPos(m_pPLCharacter, m_pDBSMark, vOffset);
+			m_pDBSMark->SetVisible(m_pPLCharacter->IsVisible());
+		}
+	}
+
+	m_byDBSMarkType = byType;
+}
+
+void CNtlSobCharDecorationProxy::DeleteDBSMark(void)
+{
+	if (m_pDBSMark)
+	{
+		Helper_DetachPLEntity(m_pPLCharacter, m_pDBSMark);
+		GetSceneManager()->DeleteEntity(m_pDBSMark);
+		m_pDBSMark = NULL;
+	}
+
+	m_byDBSMarkType = DBS_MARK_NONE;
 }
 
 void CNtlSobCharDecorationProxy::HandleEvents(RWS::CMsg &pMsg)

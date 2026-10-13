@@ -33,6 +33,9 @@ CNtlSobPlayerAttr::CNtlSobPlayerAttr()
 	m_wszTitleName.clear();
 
 	m_bIsInFreePvpZone = false;
+
+	m_bIsInDBSBattle = false;
+	m_byDBSBallFlag = 0;
 }
 
 
@@ -53,6 +56,9 @@ void CNtlSobPlayerAttr::HandleEvents(RWS::CMsg &pMsg)
 		SetRadius(m_pPcTbl->fRadius);
 
 		SetIsInFreePvpZone(pSobPlayerCreate->pPcBrief->bIsInFreePvpZone);
+
+		SetIsInDBSBattle(pSobPlayerCreate->pPcBrief->bIsScrambleJoinFlag);
+		SetDBSBallFlag(pSobPlayerCreate->pPcBrief->byHasBattleDragonBallBitFlag);
 
         SetAdult(pSobPlayerCreate->pPcBrief->bIsAdult);
         SetModelName(pSobPlayerCreate->pPcBrief->bIsAdult ? m_pPcTbl->szModel_Adult : m_pPcTbl->szModel_Child);

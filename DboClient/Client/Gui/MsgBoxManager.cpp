@@ -1251,6 +1251,11 @@ VOID CMsgBoxManager::HandleEvents( RWS::CMsg &msg )
 				CDboEventGenerator::EnableItemIcon(TRUE, PLACE_DOJO_UPRAGE, 0);
 			}
 		}
+		else if(pMsgBoxResult->strID == "DST_DRAGONBALL_SCRAMBLE_JOIN_CONFIRM_MSGBOX")
+		{
+			if( MBR_OK == pMsgBoxResult->eResult )
+				GetDboGlobal()->GetGamePacketGenerator()->SendDragonballScrambleJoinReq();
+		}
 		else if(pMsgBoxResult->strID == "DST_DOJO_ADD_TENKAI_SEED")
 		{
 			if( MBR_OK == pMsgBoxResult->eResult )

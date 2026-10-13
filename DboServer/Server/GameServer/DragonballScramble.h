@@ -6,6 +6,7 @@
 
 
 class CPlayer;
+class CItem;
 class CNtlPacket;
 
 class CDragonballScramble : public CNtlSingleton<CDragonballScramble>
@@ -60,6 +61,8 @@ public:
 	void				SpawnBall(CPlayer* pPlayer, bool bFaint = false, bool bLogout = false);
 
 	void				PickUpBall(CPlayer* pPlayer, HOBJECT hHandle, TBLIDX tblidx);
+
+	bool				ThrowBall(CPlayer* pPlayer, CItem* pItem);	// player discarded a ball from the inventory: put it on the ground
 			
 private:
 
@@ -71,6 +74,12 @@ private:
 public:
 
 	bool				IsOn() { return m_bOnOff; }
+
+	DBOTIME				GetRemainingTime();
+
+	size_t				GetJoinedCount() { return m_mapPlayers.size(); }
+
+	BYTE				GetBallsOnGroundCount();
 
 	void				LoadEvent(CPlayer* pChar);
 

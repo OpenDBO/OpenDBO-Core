@@ -1609,6 +1609,14 @@ void CDboEventGenerator::DynamicFieldBossPosition(RwUInt8 byBossCount, const sDY
 	SEND_MSG( g_EventDynamicFieldBossPosition, &sData );
 }
 
+void CDboEventGenerator::DBScramble(RwUInt8 byEventType)
+{
+	SDboEventDBScramble sData;
+	sData.byEventType = byEventType;
+
+	SEND_MSG( g_EventDBScramble, &sData );
+}
+
 // CommercialExtend command Event
 void CDboEventGenerator::StartProcessBuyDurItemNPC( RwUInt32 uiItemIdx, RwUInt32 uiNPCSerial, sSHOP_BUY_CART& ShopBuyCart )
 {

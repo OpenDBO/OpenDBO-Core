@@ -382,10 +382,8 @@ RwBool CWorldMapGui::Create()
 	m_surMarkBus[BUS_SHAPE_MAJIN][BUS_MARK_GET_ON][BUS_DIRECTION_NORTH_WEST]	.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfBusMajin_GetOn_NorthWest" ) );
 
 
-	// to do loop 7
-	{
-		// set surface srfBattleDragonBallIconWorld
-	}
+	// battle dragonballs (dragonball scramble)
+	m_surMarkDBScrambleBall.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfBattleDragonBallIconWorld" ) );
 
 	// party member mark
 	m_surMarkPartryMember.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", "srfMarkPartyMember" ) );
@@ -2217,6 +2215,37 @@ VOID CWorldMapGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 		}
 	}
 
+	// Battle dragonballs (dragonball scramble)
+	if( CanShowDBScrambleBalls() )
+	{
+		sDBSCRAMBLE_INFO* pDBScrambleInfo = GetDboGlobal()->GetDBScrambleInfo();
+		RwInt32 iHalfWidth = m_surMarkDBScrambleBall.GetWidth() / 2;
+		RwInt32 iHalfHeight = m_surMarkDBScrambleBall.GetHeight() / 2;
+
+		for( RwInt32 i = 0 ; i < NTL_ITEM_MAX_DRAGONBALL ; ++i )
+		{
+			RwInt32 iX, iY;
+			GetMapPos_from_RealPos(pDBScrambleInfo->avBallLoc[i].x, pDBScrambleInfo->avBallLoc[i].z, iX, iY);
+
+			if( FALSE == IsinMap(iX, iY) )
+				continue;
+
+			if( iX - iHalfWidth <= nX && nX <= iX + iHalfWidth &&
+				iY - iHalfHeight <= nY && nY <= iY + iHalfHeight )
+			{
+				WCHAR awcBuffer[128];
+				swprintf_s(awcBuffer, 128, GetDisplayStringManager()->GetString("DST_DRAGONBALL_SCRAMBLE_TOOLTIP"), i + 1);
+
+				sMINIMAPINFO info;
+
+				info.iType = MMIT_MOB;
+				info.wcsString = awcBuffer;
+
+				listMarkInfo.push_back(info);
+			}
+		}
+	}
+
 	// 다음 진행 퀘스트
 	NEXTQUEST_ITER it_nextQuest = m_listNextQuest.begin();
 	for( ; it_nextQuest != m_listNextQuest.end() ; ++it_nextQuest )
@@ -2573,6 +2602,24 @@ VOID CWorldMapGui::OnPaint()
 		}
 	}
 
+	// Battle dragonballs (dragonball scramble)
+	if( CanShowDBScrambleBalls() )
+	{
+		sDBSCRAMBLE_INFO* pDBScrambleInfo = GetDboGlobal()->GetDBScrambleInfo();
+
+		for( RwInt32 i = 0 ; i < NTL_ITEM_MAX_DRAGONBALL ; ++i )
+		{
+			RwInt32 iX, iY;
+			GetMapPos_from_RealPos(pDBScrambleInfo->avBallLoc[i].x, pDBScrambleInfo->avBallLoc[i].z, iX, iY);
+
+			if( FALSE == IsinMap(iX, iY) )
+				continue;
+
+			m_surMarkDBScrambleBall.SetCenterPosition(iX, iY);
+			m_surMarkDBScrambleBall.Render();
+		}
+	}
+
 	// 지도틀
 	m_MapFrameUp.Render();
 	m_MapFrameLC.Render();
@@ -2819,6 +2866,18 @@ RwBool CWorldMapGui::CanShowFieldBoss()
 {
 	// bosses are spawned in the main world only and are not shown on the world overview
 	return m_bFieldBossEvent &&
+		   m_uiRenderingWorldID == dMAINWORLD_INDEX &&
+		   m_byMapMode != WORLDMAP_TYPE_WORLD &&
+		   m_byMapMode != WORLDMAP_TYPE_INSTANCE_MAP;
+}
+
+RwBool CWorldMapGui::CanShowDBScrambleBalls()
+{
+	// the server sends the ball positions to scramble participants only. The balls are spread over the main world.
+	sDBSCRAMBLE_INFO* pDBScrambleInfo = GetDboGlobal()->GetDBScrambleInfo();
+
+	return pDBScrambleInfo->bSeason &&
+		   pDBScrambleInfo->bBallLocation &&
 		   m_uiRenderingWorldID == dMAINWORLD_INDEX &&
 		   m_byMapMode != WORLDMAP_TYPE_WORLD &&
 		   m_byMapMode != WORLDMAP_TYPE_INSTANCE_MAP;

@@ -75,6 +75,8 @@ class CGiftSideViewGui;
 class CDynamicFieldSideIconGui;
 class CDynamicFieldSideViewGui;
 
+class CDBScrambleSideIconGui;
+
 /**
 * \ingroup client
 * \brief DBO상의 사이드 아이콘들을 생성 및 관리한다. (싱글톤)
@@ -193,6 +195,8 @@ protected:
 
 	CDynamicFieldSideIconGui*	m_pDynamicFieldSideIconGui;
 	CDynamicFieldSideViewGui*	m_pDynamicFieldSideViewGui;
+
+	CDBScrambleSideIconGui*	m_pDBScrambleSideIconGui;
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -47,6 +47,7 @@
 #include "NtlWorldConceptTLQ.h"
 #include "NtlWorldConceptScramble.h"
 #include "NtlWorldConceptFreePvpZone.h"
+#include "NtlWorldConceptDBScramble.h"
 #include "NtlWorldConceptCCBD.h"
 
 
@@ -203,6 +204,9 @@ void CNtlWorldConcept::AddWorldPlayConcept( EWorldPlayConcept ePlayConcept )
 			break;
 		case WORLD_PLAY_FREEPVP_ZONE:
 			pController = NTL_NEW CNtlWorldConceptFreePvpZone();
+			break;
+		case WORLD_PLAY_DRAGONBALL_SCRAMBLE:
+			pController = NTL_NEW CNtlWorldConceptDBScramble();
 			break;
 		case WORLD_PLAY_CCBD:
 			pController = NTL_NEW CNtlWorldConceptCCBD();
@@ -506,6 +510,14 @@ RwBool CNtlWorldConcept::IsEnemyTargetFromAvatarActor(CNtlSobActor* pActor, CNtl
 
 	if (uiTargetClassId == SLCLASS_MONSTER)					// 타겟이 몹이라면 무조건 TRUE
 		return TRUE;
+
+	// dragonball scramble participants (and their pets) outside of towns
+	if ((uiTargetClassId == SLCLASS_PLAYER || uiTargetClassId == SLCLASS_PET) && IsActivePlayConcept(WORLD_PLAY_DRAGONBALL_SCRAMBLE))
+	{
+		CNtlWorldConceptDBScramble* pWorldConceptDBS = (CNtlWorldConceptDBScramble*)GetWorldConceptController(WORLD_PLAY_DRAGONBALL_SCRAMBLE);
+		if (pWorldConceptDBS && pWorldConceptDBS->IsAttackableEnemy(pSobObj))
+			return TRUE;
+	}
 	else if (uiTargetClassId == SLCLASS_PLAYER)				// 타겟이 Player라면 PVP상태의 타겟만이 적이된다.
 	{
 		if (IsActivePlayConcept(WORLD_PLAY_FREEPVP_ZONE))

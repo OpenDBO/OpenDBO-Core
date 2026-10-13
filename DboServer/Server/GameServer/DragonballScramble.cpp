@@ -324,7 +324,11 @@ void CDragonballScramble::RequestJoin(CPlayer * pPlayer)
 			wResultCode = SCRAMBLE_CANNOT_JOIN_WHILE_FREEBATTLE;
 		else if(pPlayer->GetAirState() == AIR_STATE_ON)
 			wResultCode = GAME_COMMON_CANT_DO_THAT_IN_AIR_MODE_STATE;
-		else if(m_mapPlayers.find(pPlayer->GetCharID()) != m_mapPlayers.end())
+		else if (pPlayer->GetBusID() != INVALID_HOBJECT)
+			wResultCode = SCRAMBLE_CANNOT_RIDE_BUS_WHILE_JOINED;
+		else if (pPlayer->GetAspectStateId() == ASPECTSTATE_VEHICLE)
+			wResultCode = GAME_CHAR_IS_WRONG_STATE;
+		else if(m_mapPlayers.find(pPlayer->GetCharID()) != m_mapPlayers.end() || pPlayer->GetDragonballScramble())
 			wResultCode = GAME_GAMERULE_REG_ALREADY_JOINED_DOJO_SCRAMBLE;
 		else
 		{
@@ -340,12 +344,16 @@ void CDragonballScramble::RequestJoin(CPlayer * pPlayer)
 
 	if (wResultCode == GAME_SUCCESS)
 	{
-		//NFY EVERYONE
+		pPlayer->SetDragonballScramble(true);
+
+		m_mapPlayers.insert({ pPlayer->GetCharID(), pPlayer->GetID() });
+
+		//NFY everyone around (including the player). Players who are in range already will not receive the flag through the pc brief.
 		CNtlPacket packetNfy(sizeof(sGU_DRAGONBALL_SCRAMBLE_JOIN_NFY));
 		sGU_DRAGONBALL_SCRAMBLE_JOIN_NFY * res2 = (sGU_DRAGONBALL_SCRAMBLE_JOIN_NFY *)packetNfy.GetPacketData();
 		res2->wOpCode = GU_DRAGONBALL_SCRAMBLE_JOIN_NFY;
 		res2->handle = pPlayer->GetID();
-		BroadCast(&packetNfy);
+		pPlayer->Broadcast(&packetNfy);
 
 		CNtlPacket packet3(sizeof(sGU_DRAGONBALL_SCRAMBLE_SEASON_STATE_NFY));
 		sGU_DRAGONBALL_SCRAMBLE_SEASON_STATE_NFY * res3 = (sGU_DRAGONBALL_SCRAMBLE_SEASON_STATE_NFY *)packet3.GetPacketData();
@@ -354,9 +362,7 @@ void CDragonballScramble::RequestJoin(CPlayer * pPlayer)
 		res3->wSeasonState = eREFRESH;
 		pPlayer->SendPacket(&packet3);
 
-		pPlayer->SetDragonballScramble(true);
-
-		m_mapPlayers.insert({ pPlayer->GetCharID(), pPlayer->GetID() });
+		SendDragonballLocation(pPlayer);
 
 		pPlayer->GetCharAtt()->CalculateAll();
 	}
@@ -473,6 +479,55 @@ void CDragonballScramble::PickUpBall(CPlayer * pPlayer, HOBJECT hHandle, TBLIDX 
 }
 
 
+bool CDragonballScramble::ThrowBall(CPlayer* pPlayer, CItem* pItem)
+{
+	if (m_bOnOff == false || pItem->IsLocked())
+		return false;
+
+	for (int i = 0; i < NTL_ITEM_MAX_DRAGONBALL; i++)
+	{
+		sBALLS& ball = m_arrBalls[i];
+
+		if (ball.bOnGround || ball.hOwner != pPlayer->GetID() || ball.hHandle != pItem->GetID())
+			continue;
+
+		pItem->SetCount(0, false, true);
+
+		ball.hOwner = INVALID_HOBJECT;
+
+		pPlayer->GetCurLoc().CopyTo(ball.vLoc);
+		ball.vLoc.x += 1.f;
+
+		CItemDrop * pBall = g_pItemManager->CreateSingleDrop(100.f, DBO_BATTLE_DRAGONBALL_FIRST_TBLIDX + i);
+		if (pBall)
+		{
+			ball.bOnGround = true;
+
+			pBall->AddToGround(1, ball.vLoc);
+
+			ball.hHandle = pBall->GetID();
+		}
+		else
+		{
+			ERR_LOG(LOG_GENERAL, "FAILED TO CREATE DRAGONBALL SCRAMBLE DROP. TBLIDX %u", DBO_BATTLE_DRAGONBALL_FIRST_TBLIDX + i);
+		}
+
+		pPlayer->SetDragonballScrambleBallFlag((BYTE)(pPlayer->GetDragonballScrambleBallFlag() & ~MAKE_BIT_FLAG(i)));
+
+		CNtlPacket packetNfy(sizeof(sGU_DRAGONBALL_SCRAMBLE_HAS_BALL_NFY));
+		sGU_DRAGONBALL_SCRAMBLE_HAS_BALL_NFY * res = (sGU_DRAGONBALL_SCRAMBLE_HAS_BALL_NFY *)packetNfy.GetPacketData();
+		res->wOpCode = GU_DRAGONBALL_SCRAMBLE_HAS_BALL_NFY;
+		res->handle = pPlayer->GetID();
+		res->byHasDragonBallFlag = pPlayer->GetDragonballScrambleBallFlag();
+		BroadCast(&packetNfy);
+
+		return true;
+	}
+
+	return false;
+}
+
+
 void CDragonballScramble::BroadCast(CNtlPacket * pPacket)
 {
 	for (std::map<CHARACTERID, HOBJECT>::iterator it = m_mapPlayers.begin(); it != m_mapPlayers.end(); it++)
@@ -529,6 +584,14 @@ void CDragonballScramble::LoadEvent(CPlayer * pChar)
 
 void CDragonballScramble::RefreshEvent(CPlayer * pChar)
 {
+	if (m_bOnOff == false) //joined on another channel or the event ended while we were away
+	{
+		pChar->SetDragonballScramble(false);
+		pChar->SetDragonballScrambleBallFlag(0);
+		pChar->GetCharAtt()->CalculateAll();
+		return;
+	}
+
 	CNtlPacket packet(sizeof(sGU_DRAGONBALL_SCRAMBLE_SEASON_STATE_NFY));
 	sGU_DRAGONBALL_SCRAMBLE_SEASON_STATE_NFY * res = (sGU_DRAGONBALL_SCRAMBLE_SEASON_STATE_NFY *)packet.GetPacketData();
 	res->wOpCode = GU_DRAGONBALL_SCRAMBLE_SEASON_STATE_NFY;
@@ -543,7 +606,31 @@ void CDragonballScramble::RefreshEvent(CPlayer * pChar)
 	res2->wSeasonState = eREFRESH;
 	pChar->SendPacket(&packet2);
 
-	if(pChar->GetDragonballScramble())
-		m_mapPlayers.insert({pChar->GetCharID(), pChar->GetID()});
+	m_mapPlayers[pChar->GetCharID()] = pChar->GetID(); //handle changes after relog
+
+	SendDragonballLocation(pChar);
+}
+
+DBOTIME CDragonballScramble::GetRemainingTime()
+{
+	if (m_bOnOff == false)
+		return 0;
+
+	DBOTIME curTime = ((CGameServer*)g_pApp)->GetTime();
+
+	return (m_timeEnd > curTime) ? m_timeEnd - curTime : 0;
+}
+
+BYTE CDragonballScramble::GetBallsOnGroundCount()
+{
+	BYTE byCount = 0;
+
+	for (int i = 0; i < NTL_ITEM_MAX_DRAGONBALL; i++)
+	{
+		if (m_arrBalls[i].bOnGround)
+			++byCount;
+	}
+
+	return byCount;
 }
 

@@ -92,6 +92,9 @@ void CNtlSobAvatarAttr::HandleEvents(RWS::CMsg &pMsg)
 		m_dwWaguPoint = pAvatarInfo->sCharPf.dwWaguWaguPoints;
 
 		m_bCanChangeClass = pAvatarInfo->sCharPf.bChangeClass;
+
+		SetIsInDBSBattle(pAvatarInfo->sCharPf.bIsScrambleJoinFlag);
+		SetDBSBallFlag(pAvatarInfo->sCharPf.byHasBattleDragonBallBitFlag);
 				
 		m_uiExp			= pAvatarInfo->sCharPf.dwCurExp; 
 		m_uiMaxExp		= pAvatarInfo->sCharPf.dwMaxExpInThisLevel;

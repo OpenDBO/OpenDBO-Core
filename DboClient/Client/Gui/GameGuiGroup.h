@@ -102,6 +102,7 @@ class CNetPyShopGui;
 class CNetPyShopCartGui;
 class CGiftShopGui;
 class CGiftShopCartGui;
+class CDBScrambleConfirmGui;
 class CDeliberationRankContainer;
 class CCommercialExtendGui;
 class CItemBindSealingGui;
@@ -225,6 +226,7 @@ private:
 	CNetPyShopCartGui*			m_pNetPyShopCartGui;
 	CGiftShopGui*				m_pGiftShopGui;
 	CGiftShopCartGui*			m_pGiftShopCartGui;
+	CDBScrambleConfirmGui*		m_pDBScrambleConfirmGui;
 	CDeliberationRankContainer*		m_pDeliverationRankContainer;
 	CCommercialExtendGui*		m_pCommercialExtendGui;
 

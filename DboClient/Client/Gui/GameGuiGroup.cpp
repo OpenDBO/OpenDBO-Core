@@ -117,6 +117,7 @@
 #include "NetPyShopCartGui.h"
 #include "GiftShopGui.h"
 #include "GiftShopCartGui.h"
+#include "DBScrambleConfirmGui.h"
 #include "DeliberationRankGui.h"
 #include "DeliberationRankGui.h"
 #include "CommercialExtendGui.h"
@@ -310,6 +311,7 @@ CGameGuiGroup::CGameGuiGroup()
 , m_pScrambleNotify(NULL)
 , m_pNetMablePCBangGui(NULL)
 , m_pNetPyShopGui(NULL)
+, m_pDBScrambleConfirmGui(NULL)
 , m_pNetPyShopCartGui(NULL)
 , m_pDeliverationRankContainer(NULL)
 , m_pCommercialExtendGui(NULL)
@@ -746,6 +748,9 @@ RwBool CGameGuiGroup::Create(void)
 	AddDialog(m_pGiftShopGui, CGiftShopGui, "GiftShopGui", DIALOG_GIFTSHOP);
 	AddDialog(m_pGiftShopCartGui, CGiftShopCartGui, "GiftShopCartGui", DIALOG_GIFTSHOP_TRADE);
 
+	// Dragonball scramble
+	AddDialog(m_pDBScrambleConfirmGui, CDBScrambleConfirmGui, "DBScrambleConfirmGui", DIALOG_DBSCRAMBLE_CONFIRM);
+
     // Link Move
 	m_pNPCShop->Link( m_pTradeCart->GetDialog() );
 	m_pNetPyShopGui->Link( m_pNetPyShopCartGui->GetDialog() );
@@ -974,6 +979,7 @@ void CGameGuiGroup::Destroy(void)
 	RemoveDialog(m_pNetPyShopCartGui);
 	RemoveDialog(m_pGiftShopGui);
 	RemoveDialog(m_pGiftShopCartGui);
+	RemoveDialog(m_pDBScrambleConfirmGui);
 	RemoveDialog(m_pCommercialExtendGui);
 	RemoveDialog(m_pItemBindSealingGui);
 	RemoveDialog(m_pHoiPoiMixRecipeGui);

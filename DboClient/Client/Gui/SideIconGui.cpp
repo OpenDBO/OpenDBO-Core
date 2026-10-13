@@ -55,6 +55,8 @@
 #include "DynamicFieldSideIconGui.h"
 #include "DynamicFieldSideViewGui.h"
 
+#include "DBScrambleSideIconGui.h"
+
 // SideIcon�� �����ϰ� SideIconGui�� ����ϴ� ��ũ��
 #define RegisterSideIcon( pSideIcon, ClassName, szName, id ) \
 	{ \
@@ -148,6 +150,7 @@ CSideIconGui::CSideIconGui(const RwChar* pName) : CNtlPLGui(pName), m_pPresentIc
 , m_pGiftSideViewGui(NULL)
 , m_pDynamicFieldSideIconGui(NULL)
 , m_pDynamicFieldSideViewGui(NULL)
+, m_pDBScrambleSideIconGui(NULL)
 {
 	m_nPresentViewType = INVALID_SIDEVIEW;
 	s_pSideIconGui = this;
@@ -237,6 +240,9 @@ RwBool CSideIconGui::Create()
 	RegisterSideIcon(m_pDynamicFieldSideIconGui, CDynamicFieldSideIconGui, "CDynamicFieldSideIconGui", SIDEICON_DYNAMIC_FIELD);
 	RegisterSideView(m_pDynamicFieldSideViewGui, CDynamicFieldSideViewGui, "CDynamicFieldSideViewGui", SIDEVIEW_DYNAMIC_FIELD);
 
+	// Dragonball scramble
+	RegisterSideIcon(m_pDBScrambleSideIconGui, CDBScrambleSideIconGui, "CDBScrambleSideIconGui", SIDEICON_DBSCRAMBLE);
+
 	SAvatarInfo* pAvatarInfo = GetNtlSLGlobal()->GetAvatarInfo();
 	if( pAvatarInfo->sCharPf.bIsGameMaster )
 		m_pGMSideIconGui->Show(true);
@@ -300,6 +306,7 @@ void CSideIconGui::Destroy()
 	UnRegisterSideView( m_pGiftSideViewGui, SIDEVIEW_GIFT);
 	UnRegisterSideIcon( m_pDynamicFieldSideIconGui, SIDEICON_DYNAMIC_FIELD);
 	UnRegisterSideView( m_pDynamicFieldSideViewGui, SIDEVIEW_DYNAMIC_FIELD);
+	UnRegisterSideIcon( m_pDBScrambleSideIconGui, SIDEICON_DBSCRAMBLE);
 
 	if (m_pThis)
 	{
