@@ -1120,7 +1120,7 @@ ACMD(do_unstuck)
 
 	CGameServer* app = (CGameServer*)g_pApp;
 
-	if (app->GetGsServerId() == DOJO_CHANNEL_INDEX)
+	if (app->GetGsChannel() == DOJO_CHANNEL_INDEX)
 		return;
 
 	if (CSkill* pSkill = pPlayer->GetSkillManager()->FindSkillWithSystemEffectCode(ACTIVE_TELEPORT_BIND)) //dont allow to use unstuck while call back skill is on cooldown
