@@ -796,6 +796,14 @@ void RegisterPacketHandler(void)
 	// Dynamic Field (World Boss event)
 	CNtlPacketHandler::Register(GU_DYNAMIC_FIELD_COUNT_NFY, PacketHandler_GUDynamicFieldCountNfy );
 	CNtlPacketHandler::Register(GU_DYNAMIC_FIELD_SYSTEM_BOSS_POSITION_RES, PacketHandler_GUDynamicFieldSystemBossPositionRes );
+
+	// Dragonball scramble
+	CNtlPacketHandler::Register(GU_DRAGONBALL_SCRAMBLE_JOIN_RES, PacketHandler_GUDragonballScrambleJoinRes );
+	CNtlPacketHandler::Register(GU_DRAGONBALL_SCRAMBLE_JOIN_NFY, PacketHandler_GUDragonballScrambleJoinNfy );
+	CNtlPacketHandler::Register(GU_DRAGONBALL_SCRAMBLE_BALL_LOC_UPDATE_NFY, PacketHandler_GUDragonballScrambleBallLocUpdateNfy );
+	CNtlPacketHandler::Register(GU_DRAGONBALL_SCRAMBLE_SEASON_STATE_NFY, PacketHandler_GUDragonballScrambleSeasonStateNfy );
+	CNtlPacketHandler::Register(GU_DRAGONBALL_SCRAMBLE_HAS_BALL_NFY, PacketHandler_GUDragonballScrambleHasBallNfy );
+	CNtlPacketHandler::Register(GU_DRAGONBALL_SCRAMBLE_MESSAGE_NFY, PacketHandler_GUDragonballScrambleMessageNfy );
 	CNtlPacketHandler::Register(GU_SHOP_NETPYITEM_END_RES, PacketHandler_GUShopNetPyItemEndRes );
 
 	// CommercialExtend (Duration Item)
@@ -1531,6 +1539,14 @@ void UnRegisterPacketHandler(void)
 	// Dynamic Field (World Boss event)
 	CNtlPacketHandler::UnRegister(GU_DYNAMIC_FIELD_COUNT_NFY);
 	CNtlPacketHandler::UnRegister(GU_DYNAMIC_FIELD_SYSTEM_BOSS_POSITION_RES);
+
+	// Dragonball scramble
+	CNtlPacketHandler::UnRegister(GU_DRAGONBALL_SCRAMBLE_JOIN_RES);
+	CNtlPacketHandler::UnRegister(GU_DRAGONBALL_SCRAMBLE_JOIN_NFY);
+	CNtlPacketHandler::UnRegister(GU_DRAGONBALL_SCRAMBLE_BALL_LOC_UPDATE_NFY);
+	CNtlPacketHandler::UnRegister(GU_DRAGONBALL_SCRAMBLE_SEASON_STATE_NFY);
+	CNtlPacketHandler::UnRegister(GU_DRAGONBALL_SCRAMBLE_HAS_BALL_NFY);
+	CNtlPacketHandler::UnRegister(GU_DRAGONBALL_SCRAMBLE_MESSAGE_NFY);
 	CNtlPacketHandler::UnRegister(GU_SHOP_NETPYITEM_END_RES);
 
 	// CommercialExtend

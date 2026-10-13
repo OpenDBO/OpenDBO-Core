@@ -915,6 +915,17 @@ void PacketHandler_GUGiftShopBuyRes(void* pPacket);
 void PacketHandler_GUDynamicFieldCountNfy(void* pPacket);
 void PacketHandler_GUDynamicFieldSystemBossPositionRes(void* pPacket);
 
+// Dragonball scramble
+void PacketHandler_GUDragonballScrambleJoinRes(void* pPacket);
+void PacketHandler_GUDragonballScrambleJoinNfy(void* pPacket);
+void PacketHandler_GUDragonballScrambleBallLocUpdateNfy(void* pPacket);
+void PacketHandler_GUDragonballScrambleSeasonStateNfy(void* pPacket);
+void PacketHandler_GUDragonballScrambleHasBallNfy(void* pPacket);
+void PacketHandler_GUDragonballScrambleMessageNfy(void* pPacket);
+
+// clears the scramble state of the previous game server
+void DBScramble_ResetState();
+
 // CommercialExtend (Duration Item)
 void PacketHandler_GUDurationItemBuyRes( void* pPacket );
 void PacketHandler_GUDurationRenewRes( void* pPacket );

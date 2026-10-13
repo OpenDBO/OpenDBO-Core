@@ -251,6 +251,10 @@ public:
 	// Dynamic Field (World Boss event)
 	static void DynamicFieldCount(RwUInt32 dwCurCount, RwUInt32 dwMaxCount, DBOTIME nEventTime, RwUInt8 byBossCount);
 	static void DynamicFieldBossPosition(RwUInt8 byBossCount, const sDYNAMIC_FIELD_BOSS_INFO* paBossInfo);
+
+	// Dragonball scramble
+	static void DBScramble(RwUInt8 byEventType);
+
 	// CommercialExtend command Event
 	static void StartProcessBuyDurItemNPC( RwUInt32 uiItemIdx,  RwUInt32 uiNPCSerial, sSHOP_BUY_CART& ShopBuyCart );
 	static void StartProcessBuyDurItemNetpy( RwUInt32 uiItemIdx, RwUInt32 uiMerchantTblidx, BYTE byMerchanSlotPos );

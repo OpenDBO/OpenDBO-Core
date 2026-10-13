@@ -205,6 +205,9 @@ RwBool CDboEventHandler::Create(void)
 	RegisterMsg(g_EventDynamicFieldCount, "g_EventDynamicFieldCount", "SDboEventDynamicFieldCount");
 	RegisterMsg(g_EventDynamicFieldBossPosition, "g_EventDynamicFieldBossPosition", "SDboEventDynamicFieldBossPosition");
 
+	// Dragonball scramble
+	RegisterMsg(g_EventDBScramble, "g_EventDBScramble", "SDboEventDBScramble");
+
 	// CommercialExtend
 	RegisterMsg(g_EventCommercialExtendCommand, "g_EventCommercialExtendCommand", "SDboEventCommercialExtendCommand" );
 
@@ -423,6 +426,9 @@ void CDboEventHandler::Destroy(void)
 	// Dynamic Field (World Boss event)
 	UnRegisterMsg(g_EventDynamicFieldCount);
 	UnRegisterMsg(g_EventDynamicFieldBossPosition);
+
+	// Dragonball scramble
+	UnRegisterMsg(g_EventDBScramble);
 
 	// CommercialExtend
 	UnRegisterMsg(g_EventCommercialExtendCommand);

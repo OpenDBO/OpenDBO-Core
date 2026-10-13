@@ -851,6 +851,9 @@ void PacketHandler_GSAvatarCharInfo(void *pPacket)
 {
 	sGU_AVATAR_CHAR_INFO *pCharInfo = (sGU_AVATAR_CHAR_INFO*)pPacket;
 
+	// the new game server sends its own dragonball scramble state once the avatar is ready to spawn
+	DBScramble_ResetState();
+
 	SAvatarInfo *pAvatarInfo = GetNtlSLGlobal()->GetAvatarInfo();
 	pAvatarInfo->uiSerialId = pCharInfo->handle;
 	memcpy(&pAvatarInfo->sCharPf, &pCharInfo->sPcProfile, sizeof(sPC_PROFILE));

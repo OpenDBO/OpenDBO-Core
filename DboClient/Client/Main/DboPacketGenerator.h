@@ -346,6 +346,9 @@ public:
 
 	// Dynamic Field (World Boss event)
 	bool SendDynamicFieldBossPositionReq();
+
+	// Dragonball scramble
+	bool SendDragonballScrambleJoinReq();
 	bool SendShopGiftItemBuyReq( RwUInt8 byBuyCount, sSHOP_BUY_CART* pBuyData );
 	bool SendNetPyAddPointsByTime();
 

@@ -649,7 +649,11 @@ RwBool Logic_ItemDeleteProc( sMsgDboItemInfo* pInfo, RwBool* pPacketLock )
 		NTL_RETURN( FALSE );
 	}
 
-	if (Logic_IsCanDiscardItem(pItemAttr) == FALSE)
+	// dragonball scramble: a discarded battle dragonball is dropped back on the ground by the server
+	RwUInt32 uiItemTblidx = pItemAttr->GetTblIdx();
+	RwBool bBattleDragonBall = (uiItemTblidx >= DBO_BATTLE_DRAGONBALL_FIRST_TBLIDX && uiItemTblidx <= DBO_BATTLE_DRAGONBALL_LAST_TBLIDX);
+
+	if (!bBattleDragonBall && Logic_IsCanDiscardItem(pItemAttr) == FALSE)
 	{
 		CNtlSLEventGenerator::SysMsg(INVALID_SERIAL_ID, "DST_ITEM_CAN_NOT_DELETE");
 		NTL_RETURN(FALSE);
@@ -2244,8 +2248,12 @@ bool Logic_IsPassiveAirPossible()
 		|| Logic_IsCondition(pSobAvatar, CHARCOND_FLAG_DRUNK))
 		return false;
 
-	// to do:
-	// - check if world-scramble - DST_WORLD_CONCEPT_DRAGONBALL_SCRAMBLE
+	// dragonball scramble participants can not fly
+	if (GetNtlWorldConcept()->IsActivePlayConcept(WORLD_PLAY_DRAGONBALL_SCRAMBLE))
+	{
+		GetAlarmManager()->AlarmMessage("SCRAMBLE_CANNOT_DO_WHILE_JOINED", TRUE);
+		return false;
+	}
 
 	return true;
 }
@@ -2289,8 +2297,9 @@ bool Logic_IsPassiveAirPossibleUi()
 		|| Logic_IsCondition(pSobAvatar, CHARCOND_FLAG_DRUNK))
 		return false;
 
-	// to do:
-	// - check if world-scramble - DST_WORLD_CONCEPT_DRAGONBALL_SCRAMBLE
+	// dragonball scramble participants can not fly
+	if (GetNtlWorldConcept()->IsActivePlayConcept(WORLD_PLAY_DRAGONBALL_SCRAMBLE))
+		return false;
 
 	return true;
 }

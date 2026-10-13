@@ -86,6 +86,7 @@
 #define dINVALID_FLASH_NOTIFY_FILE_CLASS_CHANGE "ClassChange_Success.swf"
 #define dINVALID_FLASH_NOTIFY_FILE_LEVEL_UP     "Level_Up.swf"
 #define dINVALID_FLASH_NOTIFY_FILE_HOIPOIMIX_LEVEL_UP	"Mix_Level_Up.swf"
+#define dINVALID_FLASH_NOTIFY_FILE_DBS_JOIN		"DragonBallScramble.swf"
 
 //-----------------------------------------------------------------------------
 // Flash Notify Invalid index && file name
