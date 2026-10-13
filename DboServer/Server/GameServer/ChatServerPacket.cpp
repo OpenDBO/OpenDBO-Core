@@ -1125,7 +1125,7 @@ void CChatServerSession::RecvDojoScrambleRes(CNtlPacket * pPacket)
 		}
 	}
 	else if (req->wResultCode == GAME_SUCCESS)
-		ERR_LOG(LOG_USER, "ERROR: User %u is not online anymore. Hacker..", pPlayer->GetCharID());
+		ERR_LOG(LOG_USER, "ERROR: User %u is not online anymore. Hacker..", req->charId);
 }
 
 
@@ -1154,7 +1154,7 @@ void CChatServerSession::RecvDojoScrambleResponse(CNtlPacket * pPacket)
 		}
 	}
 	else if (req->wResultCode != GAME_SUCCESS && req->bIsAccept == false)
-		ERR_LOG(LOG_USER, "ERROR: User %u is not online anymore. Hacker..", pPlayer->GetCharID());
+		ERR_LOG(LOG_USER, "ERROR: User %u is not online anymore. Hacker..", req->charId);
 }
 
 void CChatServerSession::RecvDojoScrambleStateChange(CNtlPacket * pPacket)
