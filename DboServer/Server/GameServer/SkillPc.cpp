@@ -147,7 +147,8 @@ void CSkillPc::CastSkill(HOBJECT hAppointTargetHandle, BYTE byApplyTargetCount, 
 
 						if (app->GetGsChannel() == 0) // only in scramble channel
 						{
-							if (m_pPlayerRef->GetDragonballScramble() && pTargetPc->GetDragonballScramble())
+							if (m_pPlayerRef->GetDragonballScramble() && pTargetPc->GetDragonballScramble()
+								&& (m_pPlayerRef->GetPartyID() == INVALID_PARTYID || m_pPlayerRef->GetPartyID() != pTargetPc->GetPartyID())) //party members can not hurt each other
 							{
 								if (GetNaviEngine()->IsBasicAttributeSet(m_pPlayerRef->GetCurWorld()->GetNaviInstanceHandle(), m_pPlayerRef->GetCurLoc().x, m_pPlayerRef->GetCurLoc().z, DBO_WORLD_ATTR_BASIC_DRAGONBALL_SCRAMBLE_SAFE_ZONE) == false
 									&& GetNaviEngine()->IsBasicAttributeSet(pTargetPc->GetCurWorld()->GetNaviInstanceHandle(), pTargetPc->GetCurLoc().x, pTargetPc->GetCurLoc().z, DBO_WORLD_ATTR_BASIC_DRAGONBALL_SCRAMBLE_SAFE_ZONE) == false)
