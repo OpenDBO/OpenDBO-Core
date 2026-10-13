@@ -19,10 +19,14 @@ namespace RWS
 		#ifdef NDEBUG
 			#define RWS_DEBUGBREAK
 		#else
+			// the libraries are built without NDEBUG even in release, so only stop when a debugger
+			// can catch it; otherwise the assert is logged and the game keeps running
+			extern "C" __declspec(dllimport) int __stdcall IsDebuggerPresent(void);
+
 			#if defined(_M_X64) || defined(_WIN64)
-				#define RWS_DEBUGBREAK __debugbreak()
+				#define RWS_DEBUGBREAK { if (IsDebuggerPresent()) __debugbreak(); }
 			#else
-				#define RWS_DEBUGBREAK __asm { int 3 }
+				#define RWS_DEBUGBREAK { if (IsDebuggerPresent()) { __asm { int 3 } } }
 			#endif
 		#endif
 	#elif
