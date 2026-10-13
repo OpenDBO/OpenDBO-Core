@@ -377,6 +377,7 @@ public:
 
 	virtual void		StartTeleport(CNtlVector& destLoc, CNtlVector& destDir, WORLDID worldid, BYTE byTeleType, TBLIDX directPlayIdx = INVALID_TBLIDX, bool bSyncDirectPlay = false, bool bTeleportAnotherServer = false);
 	void				TeleportAnotherServer(CNtlVector& destLoc, CNtlVector& destDir, TBLIDX worldIdx, WORLDID worldid, BYTE byTeleType, BYTE byChannel, WORD wTime, bool bProposal = true);
+	void				CancelServerTeleport();
 
 	void				CancelTeleportProposal(BYTE byTeleportIndex);
 

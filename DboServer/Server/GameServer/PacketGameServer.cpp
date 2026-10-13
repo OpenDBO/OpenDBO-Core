@@ -1898,6 +1898,8 @@ void CClientSession::RecvCharServerChangeReq(CNtlPacket * pPacket)
 	else
 	{
 		ERR_LOG(LOG_USER, "Player %u tried to teleport to another server with invalid dest world id..", cPlayer->GetCharID());
+
+		cPlayer->CancelServerTeleport();
 	}
 }
 

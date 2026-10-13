@@ -4073,7 +4073,14 @@ void CPlayer::StartTeleport(CNtlVector& destLoc, CNtlVector& destDir, WORLDID wo
 
 void CPlayer::TeleportAnotherServer(CNtlVector & destLoc, CNtlVector & destDir, TBLIDX worldIdx, WORLDID worldid, BYTE byTeleType, BYTE byChannel, WORD wTime, bool bProposal/* = true*/)
 {
-	m_bTeleportAnotherServer = true;
+	CGameServer* app = (CGameServer*)g_pApp;
+
+	// players that logged in directly (for example inside a dojo) have no previous channel to go back to
+	if (byChannel == INVALID_SERVERCHANNELID)
+		byChannel = 0;
+
+	// the destination is on this server, so a normal teleport is enough
+	m_bTeleportAnotherServer = byChannel != app->GetGsChannel();
 
 	if (GetAspectStateId() == ASPECTSTATE_VEHICLE)
 		EndVehicle(GAME_VEHICLE_END_BY_TELEPORT);
@@ -4094,13 +4101,17 @@ void CPlayer::TeleportAnotherServer(CNtlVector & destLoc, CNtlVector & destDir, 
 
 	m_hTeleportProposalRequestor = INVALID_HOBJECT;
 
-	m_sServerTeleportInfo.byTeleportType = byTeleType;
-	destDir.CopyTo(m_sServerTeleportInfo.vDir);
-	destLoc.CopyTo(m_sServerTeleportInfo.vLoc);
-	m_sServerTeleportInfo.worldId = worldid;
-	m_sServerTeleportInfo.worldTblidx = worldIdx;
-	m_sServerTeleportInfo.serverChannelId = byChannel;
-	m_sServerTeleportInfo.serverIndex = 0;
+	if (m_bTeleportAnotherServer)
+	{
+		m_sServerTeleportInfo.byTeleportType = byTeleType;
+		destDir.CopyTo(m_sServerTeleportInfo.vDir);
+		destLoc.CopyTo(m_sServerTeleportInfo.vLoc);
+		m_sServerTeleportInfo.worldId = worldid;
+		m_sServerTeleportInfo.worldTblidx = worldIdx;
+		m_sServerTeleportInfo.serverChannelId = byChannel;
+		m_sServerTeleportInfo.serverIndex = 0;
+	}
+	else m_sServerTeleportInfo.Init();
 
 	m_vTeleportProposalLoc = destLoc;
 	m_vTeleportProposalDir = destDir;
@@ -4130,6 +4141,40 @@ void CPlayer::TeleportAnotherServer(CNtlVector & destLoc, CNtlVector & destDir, 
 	{
 		CCharacter::StartTeleport(destLoc, destDir, worldid, byTeleType);
 	}
+}
+
+// the destination channel refused the player (offline, full or locked), so teleport them back in place
+// instead of leaving the client waiting on a server change that never comes
+void CPlayer::CancelServerTeleport()
+{
+	CGameServer* app = (CGameServer*)g_pApp;
+
+	m_bTeleportAnotherServer = false;
+	m_sServerTeleportInfo.Init();
+
+	if (IsTeleporting() == false)
+		return;
+
+	CWorld* pWorld = app->GetGameMain()->GetWorldManager()->FindWorld(GetWorldID());
+	if (pWorld == NULL)
+		return;
+
+	SetTeleportLoc(GetCurLoc());
+	SetTeleportDir(GetCurDir());
+	SetTeleportWorldID(GetWorldID());
+
+	CNtlPacket packet(sizeof(sGU_CHAR_TELEPORT_RES));
+	sGU_CHAR_TELEPORT_RES * res = (sGU_CHAR_TELEPORT_RES *)packet.GetPacketData();
+	res->wOpCode = GU_CHAR_TELEPORT_RES;
+	res->wResultCode = GAME_SUCCESS;
+	res->bIsToMoveAnotherServer = false;
+	res->bSyncDirectPlay = false;
+	res->spawnDirectPlay = INVALID_TBLIDX;
+	GetCurLoc().CopyTo(res->vNewLoc);
+	GetCurDir().CopyTo(res->vNewDir);
+	pWorld->CopyToInfo(&res->sWorldInfo);
+	packet.SetPacketLen(sizeof(sGU_CHAR_TELEPORT_RES));
+	SendPacket(&packet);
 }
 
 void CPlayer::CancelTeleportProposal(BYTE byTeleportIndex)
