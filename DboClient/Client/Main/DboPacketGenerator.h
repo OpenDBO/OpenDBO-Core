@@ -382,6 +382,7 @@ public:
 	CChatPacketGenerator(CNtlNetSender *pNetSender);
 
 	bool SendChatEnterReq(void);
+	bool SendChatUserChannelUpdateReq(DWORD dwFlag);
 	bool SendChatMsgSay(const WCHAR *pMsg);
 	bool SendChatMsgShout(const WCHAR *pMsg);
 	bool SendChatMsgWhisper(const WCHAR *pMsg, const WCHAR *pReceiverName);
