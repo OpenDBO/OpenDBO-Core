@@ -692,20 +692,11 @@ VOID CScrambleNotifyGui::HandleEvents( RWS::CMsg &msg )
 
 				CNtlGuild* pGuild = pAvatar->GetGuild();
 
-				FinishFlash();				
+				FinishFlash();
 
-				if( pGuild->GetGuildID() == winnerGuildID )
-				{
-					LoadFlash(pFlash_Notify, dFLASH_SCRAMBLE_RESULT);
-					pFlash_Notify->Invoke("Conclusion", "%d", 1);
-				}
-				else
-				{
-					// 졌다면 임시로 서버에서 연출 상태가 추가될 때까지 막는다
-					NTL_RETURNVOID();
-
-					pFlash_Notify->Invoke("Conclusion", "%d", 0);
-				}			
+				// the result flash shows the win or the loss
+				LoadFlash(pFlash_Notify, dFLASH_SCRAMBLE_RESULT);
+				pFlash_Notify->Invoke("Conclusion", "%d", pGuild->GetGuildID() == winnerGuildID ? 1 : 0);
 
 				GetDialogManager()->OpenDialog(DIALOG_SCRAMBLE_NOTIFY);
 				break;
