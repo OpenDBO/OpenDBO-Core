@@ -1072,10 +1072,12 @@ void CChatServerSession::RecvDojoSendTeleportProposalNfy(CNtlPacket * pPacket)
 		CPlayer* pPlayer = g_pObjectManager->FindByChar(req->aMemberId[i]);
 		if (pPlayer && pPlayer->IsInitialized())
 		{
-			req->vDestLoc.x = req->vDestLoc.x + RandomRangeF(-10.0f, 10.0f);
-			req->vDestLoc.z = req->vDestLoc.z + RandomRangeF(-10.0f, 10.0f);
+			// spread each member around the team start point
+			CNtlVector vDestLoc(req->vDestLoc);
+			vDestLoc.x += RandomRangeF(-10.0f, 10.0f);
+			vDestLoc.z += RandomRangeF(-10.0f, 10.0f);
 
-			pPlayer->TeleportAnotherServer(req->vDestLoc, pPlayer->GetCurDir(), req->destWorldTblidx, req->destWorldId, req->byTeleportType, DOJO_CHANNEL_INDEX, req->wWaitTime);
+			pPlayer->TeleportAnotherServer(vDestLoc, pPlayer->GetCurDir(), req->destWorldTblidx, req->destWorldId, req->byTeleportType, DOJO_CHANNEL_INDEX, req->wWaitTime);
 		}
 	}
 }
