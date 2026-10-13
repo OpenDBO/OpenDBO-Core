@@ -797,6 +797,14 @@ void Dbo_GetChangeItemBattleAttributeEachRate(BYTE byAdditionalAttribute, int *p
 	}
 }
 
+// main weapons, sub weapons and jackets carry a battle attribute that can be changed at the item upgrade npc
+bool Dbo_CanChangeItemBattleAttribute(BYTE byEquipType, BYTE byItemType)
+{
+	return byEquipType == EQUIP_TYPE_MAIN_WEAPON
+		|| byEquipType == EQUIP_TYPE_SUB_WEAPON
+		|| (byEquipType == EQUIP_TYPE_ARMOR && byItemType == ITEM_TYPE_JACKET);
+}
+
 bool IsSealItem(BYTE byRestrictState)
 {
 	return byRestrictState == ITEM_RESTRICT_STATE_TYPE_SEAL;

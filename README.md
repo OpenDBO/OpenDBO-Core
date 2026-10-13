@@ -121,6 +121,7 @@ All required third party tools can be obtained from [our 3rd party repository](h
     - Within "dbo_acc," find "accounts," click "insert," and fill in a username and password.
     - Generate a SHA3-256 Hash for the password using [SHA3-256 Hash Generator](https://emn178.github.io/online-tools/sha3_256.html), paste it next to "Password_hash," and click "Start" at the bottom.
     - If you want GM permissions make sure to set `admin` and `isgm` to `10` in the `accounts` table and `gamemaster` to `10` in the `characters` tabel from the `dbo_char` database.
+    - Alternatively, import the seed script to get 12 ready-to-play GM accounts (see **Seeding test accounts** below).
 
 8. **Change the server .ini files:**
     - Navigate to "OpenDBO-Core/DboServer/ExecutionEnv/Config."
@@ -144,6 +145,45 @@ All required third party tools can be obtained from [our 3rd party repository](h
 
 </details>
 Alternatively there's a video showcasing this process: https://www.youtube.com/watch?v=lWDffP81ACw
+
+<details>
+ <summary>Seeding test accounts</summary>
+
+`DboServer/Database/scripts/seeds.sql` creates 12 GM accounts for local testing, each with one level 70 character of a different master class. **Only run it on local/dev databases.**
+
+1. **Import it** after `dbo_acc` and `dbo_char` exist, either from phpMyAdmin (Import → `seeds.sql`) or from the command line:
+    ```
+    mysql -u root -p < DboServer/Database/scripts/seeds.sql
+    ```
+2. **Restart QueryServer and ChatServer** so they pick up the new characters, items and guilds.
+3. **Log in** with `admin1` … `admin12`, password `password`.
+
+| Account | Character | Account | Character |
+|---|---|---|---|
+| admin1 | Fighter | admin7 | DendePriest |
+| admin2 | Swordsman | admin8 | PokoPriest |
+| admin3 | CraneHermit | admin9 | UltimateMajin |
+| admin4 | TurtleHermit | admin10 | GrandChefMajin |
+| admin5 | DarkWarrior | admin11 | PlasmaMajin |
+| admin6 | ShadowKnight | admin12 | KarmaMajin |
+
+**Every account** has full GM access (`admin` and `is_gm` = 10, character `game_master` = 1).
+
+**Every character** has:
+- **Gear:** Dark Soul armor set +15 (physical variant for fighter classes, energy variant for mystic classes), Flame weapon and sub weapon +15, Corona necklace and 2 Corona earrings, Octopus Alpha Defense and Alpha Attack rings, Perfect Scouter.
+- **Bags:** the Basic Capsule Kit plus an HL Capsule Box Z32 in the other 4 bag slots.
+- **Skills:** starting class skills, TLQ passives (Power Up, Guard, Dash, Counter Attack), Flight, master class mastery, race transformation and all 6 Dragon King's buffs. 69 SP left to train the rest.
+- **Currency:** 1,000,000,000 Zeni, 10,000 Tokens and 10,000 WP.
+- **Unlocks:** every teleport point, the whole warfog and every title.
+- **Position:** spawn and bind point in Kokkara Village.
+
+**Guilds:** two guilds with every guild and dojo function unlocked, 1,000,000 guild points and 1,000,000,000 Zeni in the guild bank:
+- `OpenDBO`: admin1 … admin6, master admin1
+- `OpenDBO2`: admin7 … admin12, master admin7
+
+The script is safe to re-run: accounts are updated in place, and the seeded characters (ids `900001`–`900012`), their items (ids from `900000000`) and the two guilds (ids `900001`–`900002`) are wiped and recreated. Anything those characters did in game is lost on re-run.
+
+</details>
 
 <details>
  <summary>Using the DBOLauncher tool</summary>

@@ -10677,7 +10677,7 @@ void CClientSession::RecvItemChangeBattleAttributeReq(CNtlPacket* pPacket)
 					if (IsInvenContainer(req->byItemPlace))
 					{
 						CItem* pItem = cPlayer->GetPlayerItemContainer()->GetItem(req->byItemPlace, req->byItemPos);
-						if (pItem)
+						if (pItem && Dbo_CanChangeItemBattleAttribute(pItem->GetTbldat()->byEquip_Type, pItem->GetTbldat()->byItem_Type))
 						{
 							if (pItem->IsLocked() == false)
 							{

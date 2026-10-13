@@ -32,6 +32,7 @@ void CCharacterAtt::Init()
 	memset(&m_pAttribute, 0, sizeof(sAVATAR_ATTRIBUTE));
 	m_byBattle_Attribute_Ofence = BATTLE_ATTRIBUTE_NONE;
 	m_byBattle_Attribute_Defence = BATTLE_ATTRIBUTE_NONE;
+	m_bySubWeaponBattle_Attribute_Ofence = BATTLE_ATTRIBUTE_NONE;
 
 	m_wSubWeaponPhysicalOffence = 0;
 	m_wSubWeaponEnergyOffence = 0;

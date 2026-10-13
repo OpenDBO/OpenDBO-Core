@@ -802,6 +802,9 @@ void CPlayerItemContainer::CopyItemAttributesTo(CCharacterAtt* pCharAtt)
 	sITEM_TBLDAT* setRingIdx[NTL_SET_ITEM_SEMI_COUNT]; //semi because we can only have max 2
 	memset(setRingIdx, NULL, sizeof(setRingIdx));
 
+	// set again below if a usable sub weapon is equipped
+	m_pOwner->GetCharAtt()->SetSubWeaponBattleAttributeOffence(BATTLE_ATTRIBUTE_NONE);
+
 //	for (auto it = m_map_CharItems.begin(); it != m_map_CharItems.end(); it++)
 	for(BYTE a = 0; a < EQUIP_SLOT_TYPE_COUNT; a++)
 	{
@@ -820,6 +823,8 @@ void CPlayerItemContainer::CopyItemAttributesTo(CCharacterAtt* pCharAtt)
 				}
 				else if (item->GetPos() == EQUIP_SLOT_TYPE_SUB_WEAPON)
 				{
+					m_pOwner->GetCharAtt()->SetSubWeaponBattleAttributeOffence(item->GetBattleAttribute());
+
 					if (pinvitemdata->set_Item_Tblidx != INVALID_TBLIDX)
 						vecSetWeapon.push_back(pinvitemdata->set_Item_Tblidx);
 				}

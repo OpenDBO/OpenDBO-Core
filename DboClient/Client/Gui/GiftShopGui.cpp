@@ -208,6 +208,7 @@ RwBool CGiftShopGui::Create()
 
 	LinkMsg( g_EventPickedUpHide );
 	LinkMsg( g_EventGiftShopEvent );
+	LinkMsg( g_EventDialog );
 
 	ClearShop();
 	OnMove(100, 100);
@@ -223,6 +224,7 @@ VOID CGiftShopGui::Destroy()
 
 	UnLinkMsg( g_EventPickedUpHide );
 	UnLinkMsg( g_EventGiftShopEvent );
+	UnLinkMsg( g_EventDialog );
 
 	CheckInfoWindow();
 
@@ -273,6 +275,14 @@ VOID CGiftShopGui::HandleEvents( RWS::CMsg &msg )
 
 		if( pData->byEventType == eGIFTSHOP_EVENT_BUY_SUCCESS || pData->byEventType == eGIFTSHOP_EVENT_WP_UPDATED )
 			SetZenny();
+	}
+	else if( msg.Id == g_EventDialog )
+	{
+		SDboEventDialog* pEvent = reinterpret_cast<SDboEventDialog*>( msg.pData );
+
+		// ESC on an npc dialog sends a bye-bye event to the top dialog
+		if( pEvent->iType == DIALOGEVENT_NPC_BYEBYE && pEvent->iDestDialog == DIALOG_GIFTSHOP )
+			ClickedCloseButton(NULL);
 	}
 }
 

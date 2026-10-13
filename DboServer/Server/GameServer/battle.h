@@ -35,7 +35,7 @@ extern float GetSkillReflectDamage(float fDmg, BYTE bySkillType, CCharacterAtt* 
 
 extern float GetAttributeBonusRate(bool bIsPc, bool bSubWeapon, BYTE byOffence, BYTE byDefence, BYTE bySubOffence, sAVATAR_ATTRIBUTE& sOffenceAttribute, sAVATAR_ATTRIBUTE& sDefenceAttribute);
 
-extern float CalcPropBonus(CCharacterObject* pCaster, CCharacterObject* pVictim, float fAttackerPower);
+extern float CalcPropBonus(CCharacterObject* pCaster, CCharacterObject* pVictim, float fAttackerPower, bool bSubWeapon = false);
 
 extern float CalcDefensePower(float fDefence, float fArmorPenRate);
 

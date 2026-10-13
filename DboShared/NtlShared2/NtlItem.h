@@ -1625,6 +1625,7 @@ BYTE	GetRequiredSealItemNum(BYTE byRank, BYTE byGrade);
 DWORD	Dbo_GetChargeItemBattleAttributeChange(BYTE byRank, BYTE byItemLv);
 float	Dbo_GetChangeItemBattleAttributeSuccessRate(BYTE byAttributePosNum);
 void	Dbo_GetChangeItemBattleAttributeEachRate(BYTE byAdditionalAttribute, int *panEachRate);
+bool	Dbo_CanChangeItemBattleAttribute(BYTE byEquipType, BYTE byItemType);
 
 bool	IsSealItem(BYTE byRestrictState);
 bool	IsSealing(BYTE byRestrictType, BYTE byRestrictState, BYTE byEquipType);
