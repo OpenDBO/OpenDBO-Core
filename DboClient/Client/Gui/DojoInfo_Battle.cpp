@@ -304,28 +304,20 @@ VOID CDojoInfo_Battle::HandleEvents( RWS::CMsg &msg )
 		if( pEvent->uiDojoTableIndex != m_uiDojoTableIndex )
 			return;
 
+		m_pScrambleOffenceGuild_Name->SetText( pEvent->pwcOffenceGuildName );
+
 		CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
 		if( !pAvatar )
 			return;
 
-		CNtlGuild*	pGuild		= pAvatar->GetGuild();
-		CNtlDojo*	pDojo		= pAvatar->GetDojo();
-		sDOJO_INFO* pDOJO_INFO	= pDojo->GetDojoInfo(m_uiDojoTableIndex );
-
-		// 보고 있는 도장의 정보가 우리 도장이라면
-		if( pGuild->GetGuildID() != pDOJO_INFO->guildID )
+		// the challenger master is only known here when we are the challenger, otherwise the npc info has it
+		CNtlGuild* pGuild = pAvatar->GetGuild();
+		if( pGuild->GetGuildID() != pEvent->uiOffenceGuildID )
 			return;
 
 		sGuildMember* pMember = reinterpret_cast<sGuildMember*>( pGuild->GetMemberbyKey( pGuild->GetMasterID() ) );
-		if( !pMember )
-		{
-			DBO_FAIL("Not exist guild member of charID : " << pGuild->GetMasterID());
-			return;
-		}
-
-
-		m_pScrambleOffenceGuild_Name	->SetText( pGuild->GetGuildName() );
-		m_pScrambleOffenceGuild_Master	->SetText( pMember->wszMemberName );
+		if( pMember )
+			m_pScrambleOffenceGuild_Master->SetText( pMember->wszMemberName );
 	}
 	else if( msg.Id == g_EventNotifyGuild )
 	{
@@ -340,22 +332,17 @@ VOID CDojoInfo_Battle::HandleEvents( RWS::CMsg &msg )
 		if( SLGE_APPOINT_MASTER		== pEvent->iMessage ||
 			SLGE_CHANGE_GUILD_NAME	== pEvent->iMessage )
 		{
-			SERIAL_HANDLE hTarget	= Logic_GetAvatarTargetHandle();
-			sDOJO_INFO* pDOJO_INFO	= Logic_GetDojoInfo(hTarget);
-
-			if( !pDOJO_INFO )
-			{
-				DBO_FAIL("Invalid dojo info pointer");
-				return;
-			}
-
 			CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
 			if( !pAvatar )
 				return;
 
-			CNtlGuild* pGuild = pAvatar->GetGuild();
-			if( pGuild->GetGuildID() != pDOJO_INFO->guildID )
+			// only our own guild changed, which matters when we are challenging the dojo we are looking at
+			sSCRAMBLE_INFO* pSCRAMBLE_INFO = pAvatar->GetDojo()->GetScramble();
+			if( pSCRAMBLE_INFO->uiScrambleDojoTableIndex != m_uiDojoTableIndex ||
+				pSCRAMBLE_INFO->eAvatarTeam != SCRAMBLE_TEAM_OFFENCE )
 				return;
+
+			CNtlGuild* pGuild = pAvatar->GetGuild();
 
 			sGuildMember* pMember = reinterpret_cast<sGuildMember*>( pGuild->GetMemberbyKey( pGuild->GetMasterID() ) );
 			if( !pMember )
