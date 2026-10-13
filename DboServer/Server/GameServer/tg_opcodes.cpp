@@ -57,6 +57,7 @@ void CTG_Opcodes::BuildOpcodeList()
 	StoreOpcode(TG_DOJO_NPC_INFO_RES, "TG_DOJO_NPC_INFO_RES", PROCESS_THREADUNSAFE, &CChatServerSession::RecvDojoNpcInfoRes); 
 	StoreOpcode(TG_DOJO_SEND_TELEPORT_PROPOSAL_NFY, "TG_DOJO_SEND_TELEPORT_PROPOSAL_NFY", PROCESS_THREADUNSAFE, &CChatServerSession::RecvDojoSendTeleportProposalNfy);
 	StoreOpcode(TG_DOJO_USERCOUNT_CHANGE, "TG_DOJO_USERCOUNT_CHANGE", PROCESS_INPLACE, &CChatServerSession::RecvDojoUserCountChange); //INPLACE !!! To make sure its updated asap
+	StoreOpcode(TG_DOJO_COMMAND, "TG_DOJO_COMMAND", PROCESS_THREADUNSAFE, &CChatServerSession::RecvDojoCommand);
 	StoreOpcode(TG_DOJO_DESTROYED_NFY, "TG_DOJO_DESTROYED_NFY", PROCESS_THREADUNSAFE, &CChatServerSession::RecvDojoDestroyedNfy);
 	StoreOpcode(TG_DOJO_SCRAMBLE_RES, "TG_DOJO_SCRAMBLE_RES", PROCESS_THREADUNSAFE, &CChatServerSession::RecvDojoScrambleRes);
 	StoreOpcode(TG_DOJO_SCRAMBLE_RESPONSE, "TG_DOJO_SCRAMBLE_RESPONSE", PROCESS_THREADUNSAFE, &CChatServerSession::RecvDojoScrambleResponse);

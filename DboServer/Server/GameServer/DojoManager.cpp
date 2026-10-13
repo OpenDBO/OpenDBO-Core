@@ -30,6 +30,8 @@ CDojo::CDojo(sDBO_DOJO_DATA & dojoData, sDBO_GUILD_MARK * pMark)
 	m_attGuildId = INVALID_GUILDID;
 
 	m_pWorld = NULL;
+
+	m_bGmWar = false;
 }
 
 CDojo::~CDojo()
@@ -589,8 +591,107 @@ void CDojo::EndWar()
 	memset(&m_warPoint, NULL, sizeof(m_warPoint));
 	m_warPoint.dojoTblidx = GetDojoTblidx();
 	m_attGuildId = INVALID_GUILDID;
+	m_bGmWar = false;
 
 	g_pDojoWarManager->RemoveDojo(GetDojoTblidx());
+}
+
+sDOJO_TBLDAT* CDojo::GetDojoTbldat()
+{
+	return (sDOJO_TBLDAT*)g_pTableContainer->GetDojoTable()->FindData(GetDojoTblidx());
+}
+
+// phase length from the dojo table (minutes), or the fallback (seconds) when the table has none
+DOJOTIME CDojo::GetPhaseDuration(BYTE sDOJO_TBLDAT::* pDurationMinutes, DOJOTIME tmFallback)
+{
+	sDOJO_TBLDAT* pDojoTbl = GetDojoTbldat();
+	if (pDojoTbl == NULL || pDojoTbl->*pDurationMinutes == 0)
+		return tmFallback;
+
+	return (DOJOTIME)(pDojoTbl->*pDurationMinutes) * 60;
+}
+
+// end the current step on the next tick, also outside of the weekly schedule
+void CDojo::SkipCurrentStep()
+{
+	m_bGmWar = true;
+	m_matchStateInfo.tmNextStepTime = 0;
+	m_dwNextUpdate = 0;
+}
+
+void CDojo::SendStateChange(BYTE byState, DOJOTIME tmNextStepTime)
+{
+	CGameServer* app = (CGameServer*)g_pApp;
+
+	CNtlPacket packet(sizeof(sGT_DOJO_SCRAMBLE_STATE_CHANGE));
+	sGT_DOJO_SCRAMBLE_STATE_CHANGE * res = (sGT_DOJO_SCRAMBLE_STATE_CHANGE *)packet.GetPacketData();
+	res->wOpCode = GT_DOJO_SCRAMBLE_STATE_CHANGE;
+	res->byState = byState;
+	res->dojoTblidx = m_brief.dojoTblidx;
+	res->tmNextStepTime = tmNextStepTime;
+	packet.SetPacketLen(sizeof(sGT_DOJO_SCRAMBLE_STATE_CHANGE));
+	app->SendTo(app->GetChatServerSession(), &packet);
+}
+
+// open the dojo for challenges right now, ignoring the weekly schedule
+void CDojo::GmStart()
+{
+	if (m_matchStateInfo.eState == eDBO_DOJO_STATUS_NORMAL)
+		SkipCurrentStep();
+}
+
+// skip the timer of the current war step
+void CDojo::GmNext()
+{
+	switch (m_matchStateInfo.eState)
+	{
+		case eDBO_DOJO_STATUS_STANDBY:
+		case eDBO_DOJO_STATUS_READY:
+		case eDBO_DOJO_STATUS_START:
+		case eDBO_DOJO_STATUS_END:
+			SkipCurrentStep();
+		break;
+
+		default: break;
+	}
+}
+
+// end the event for this dojo: close the challenge period, decide a running battle by score
+// and cancel a war that did not reach the battle yet
+void CDojo::GmStop()
+{
+	CGameServer* app = (CGameServer*)g_pApp;
+
+	switch (m_matchStateInfo.eState)
+	{
+		// the tick closes the challenge period, or ends the battle and sends everyone out
+		case eDBO_DOJO_STATUS_RECEIVE:
+		case eDBO_DOJO_STATUS_START:
+		case eDBO_DOJO_STATUS_END:
+			SkipCurrentStep();
+		break;
+
+		case eDBO_DOJO_STATUS_STANDBY:
+		case eDBO_DOJO_STATUS_READY:
+		{
+			if (m_pWorld)
+			{
+				DespawnSeals();
+				TeleportAllOut();
+			}
+
+			m_matchStateInfo.eState = eDBO_DOJO_STATUS_NORMAL;
+
+			// END releases the guilds war request, NORMAL resets the dojo on every server
+			SendStateChange(eDBO_DOJO_STATUS_END, app->GetTime());
+			SendStateChange(eDBO_DOJO_STATUS_NORMAL, 0);
+
+			EndWar();
+		}
+		break;
+
+		default: break;
+	}
 }
 
 
@@ -739,13 +840,30 @@ void CDojoManager::TickProcess(DWORD dwTickDiff)
 	tm timeStruct = {};
 	localtime_s(&timeStruct, &curTime);
 
-	if (timeStruct.tm_wday == 0 && (timeStruct.tm_hour >= 16 && timeStruct.tm_hour <= 20)) //check if its sunday
+	bool bWarTime = timeStruct.tm_wday == 0 && (timeStruct.tm_hour >= 16 && timeStruct.tm_hour <= 20); //check if its sunday
+
+	for (std::map<GUILDID, CDojo*>::const_iterator it = GetDojoSetBegin(); it != GetDojoSetEnd(); it++)
 	{
-		for (std::map<GUILDID, CDojo*>::const_iterator it = GetDojoSetBegin(); it != GetDojoSetEnd(); it++)
+		CDojo* pDojo = it->second;
+		if (pDojo && (bWarTime || pDojo->IsGmWar()))
+			pDojo->TickProcess(dwTickDiff);
+	}
+}
+
+void CDojoManager::OnGmCommand(BYTE byCommand, TBLIDX dojoTblidx)
+{
+	for (std::map<GUILDID, CDojo*>::const_iterator it = GetDojoSetBegin(); it != GetDojoSetEnd(); it++)
+	{
+		CDojo* pDojo = it->second;
+		if (pDojo == NULL || (dojoTblidx != INVALID_TBLIDX && pDojo->GetDojoTblidx() != dojoTblidx))
+			continue;
+
+		switch (byCommand)
 		{
-			CDojo* pDojo = it->second;
-			if (pDojo)
-				pDojo->TickProcess(dwTickDiff);
+			case eDBO_DOJO_COMMAND_TYPE_START: pDojo->GmStart(); break;
+			case eDBO_DOJO_COMMAND_TYPE_NEXT: pDojo->GmNext(); break;
+			case eDBO_DOJO_COMMAND_TYPE_CLEAR: pDojo->GmStop(); break;
+			default: break;
 		}
 	}
 }

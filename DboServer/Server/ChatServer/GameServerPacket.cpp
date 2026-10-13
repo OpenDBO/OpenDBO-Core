@@ -1982,6 +1982,29 @@ void CServerPassiveSession::RecvDojoSendTeleportProposal(CNtlPacket * pPacket)
 	g_pServerInfoManager->Broadcast(&gPacket2, DOJO_CHANNEL_INDEX);
 }
 
+//--------------------------------------------------------------------------------------//
+//		DOJO GM COMMAND (start / next / stop), the war itself runs on the dojo channel
+//--------------------------------------------------------------------------------------//
+void CServerPassiveSession::RecvDojoCommand(CNtlPacket * pPacket)
+{
+	sGT_DOJO_COMMAND * req = (sGT_DOJO_COMMAND *)pPacket->GetPacketData();
+
+	HSESSION hDojoChannel = g_pServerInfoManager->GetGsSession(DOJO_CHANNEL_INDEX);
+	if (hDojoChannel == INVALID_HSESSION)
+	{
+		ERR_LOG(LOG_GENERAL, "Dojo command %u ignored, dojo channel %u is not connected", req->byCommand, DOJO_CHANNEL_INDEX);
+		return;
+	}
+
+	CNtlPacket packet(sizeof(sTG_DOJO_COMMAND));
+	sTG_DOJO_COMMAND * res = (sTG_DOJO_COMMAND *)packet.GetPacketData();
+	res->wOpCode = TG_DOJO_COMMAND;
+	res->byCommand = req->byCommand;
+	res->dojoTblidx = req->dojoTblidx;
+	packet.SetPacketLen(sizeof(sTG_DOJO_COMMAND));
+	g_pApp->Send(hDojoChannel, &packet);
+}
+
 
 //--------------------------------------------------------------------------------------//
 //		BROADCAST MESSAGE

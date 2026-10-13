@@ -83,6 +83,7 @@ public:
 	void						RecvDojoNpcInfoRes(CNtlPacket * pPacket);
 	void						RecvDojoSendTeleportProposalNfy(CNtlPacket * pPacket);
 	void						RecvDojoUserCountChange(CNtlPacket * pPacket);
+	void						RecvDojoCommand(CNtlPacket * pPacket);
 	void						RecvDojoDestroyedNfy(CNtlPacket * pPacket);
 
 	void						RecvDojoScrambleRes(CNtlPacket * pPacket);

@@ -1091,6 +1091,19 @@ void CChatServerSession::RecvDojoUserCountChange(CNtlPacket * pPacket)
 		pDojo->SetUserCount(req->byDefCount, req->byAttCount);
 }
 
+void CChatServerSession::RecvDojoCommand(CNtlPacket * pPacket)
+{
+	CGameServer* app = (CGameServer*)g_pApp;
+
+	sTG_DOJO_COMMAND * req = (sTG_DOJO_COMMAND *)pPacket->GetPacketData();
+
+	// the dojo war runs on the dojo channel only
+	if (app->IsDojoChannel() == false)
+		return;
+
+	g_pDojoManager->OnGmCommand(req->byCommand, req->dojoTblidx);
+}
+
 //--------------------------------------------------------------------------------------//
 //		DOJO NPC INFO RESULT
 //--------------------------------------------------------------------------------------//

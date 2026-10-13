@@ -34,9 +34,15 @@ public:
 
 	BYTE										GetWarState() { return m_matchStateInfo.eState; }
 
+	inline bool									IsGmWar() { return m_bGmWar; }
+
 public:
 
 	void										TickProcess(DWORD dwTickDiff);
+
+	void										GmStart();
+	void										GmNext();
+	void										GmStop();
 
 	void										SetState(BYTE byState, DOJOTIME tmNextStepTime);
 
@@ -66,6 +72,13 @@ private:
 
 	void										EndWar();
 
+	void										SendStateChange(BYTE byState, DOJOTIME tmNextStepTime);
+
+	sDOJO_TBLDAT*								GetDojoTbldat();
+	DOJOTIME									GetPhaseDuration(BYTE sDOJO_TBLDAT::* pDurationMinutes, DOJOTIME tmFallback);
+
+	void										SkipCurrentStep();
+
 private:
 
 	sDBO_DOJO_BRIEF								m_brief;
@@ -81,6 +94,8 @@ private:
 	CWorld*										m_pWorld;
 
 	std::vector<CTriggerObject*>				m_setSeals;
+
+	bool										m_bGmWar; // started by a gm, runs outside of the weekly schedule
 };
 
 
@@ -124,6 +139,8 @@ public:
 
 	void										RemoveDojo(GUILDID guildId);
 	void										AddDojo(GUILDID guildId, CDojo* pDojo);
+
+	void										OnGmCommand(BYTE byCommand, TBLIDX dojoTblidx);
 
 private:
 
