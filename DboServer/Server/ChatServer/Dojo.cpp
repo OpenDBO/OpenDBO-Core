@@ -8,8 +8,8 @@
 #include "GuildManager.h"
 #include "DojoWar.h"
 #include "NtlPacketTQ.h"
-
-#define DBO_ENABLE_DECLINE_DOJO_SCRAMBLE 0
+#include "TableContainerManager.h"
+#include "DojoTable.h"
 
 
 CDojo::CDojo(sDBO_DOJO_DATA* dojo)
@@ -17,11 +17,12 @@ CDojo::CDojo(sDBO_DOJO_DATA* dojo)
 	memcpy(&dojoData, dojo, sizeof(sDBO_DOJO_DATA));
 	m_pkGuild = NULL;
 	m_lastDojoWar = INVALID_DOJOTIME;
-	m_lastChallengerRequest = INVALID_GUILDID;
 	m_lastChallengerCharID = INVALID_CHARACTERID;
 	m_byRejectCount = 0;
 	m_bHasWarRequest = false;
 	m_bWarInProgress = false;
+	m_bHasTeleportData = false;
+	m_tmTeleportEnd = 0;
 
 	m_eDojoState = eDBO_DOJO_STATUS_NORMAL;
 	m_tmNextStepTime = 0;
@@ -69,7 +70,7 @@ void CDojo::RequestWar(GUILDID guildChallengerID, CHARACTERID requestorCharID, W
 	}
 
 	//check if this guild already has been rejected
-	if(m_lastChallengerRequest == guildChallengerID)
+	if (m_setRejectedGuilds.find(guildChallengerID) != m_setRejectedGuilds.end())
 	{
 		rwResultcode = GAME_GUILD_DOJO_YOU_ARE_ARLREADY_REJECT;
 		return;
@@ -115,53 +116,42 @@ void CDojo::WarRequestReponse(bool& rbIsAccept, WORD& rwResultcode, bool& rbIsRe
 		return;
 	}
 
-#if DBO_ENABLE_DECLINE_DOJO_SCRAMBLE
-	if (bIsAccept == false)
+	if (rbIsAccept == false)
 	{
-		if (m_byRejectCount < DBO_DOJO_SCRAMBLE_MAX_REJECT_COUNT) //check if reject limit not reached
+		// the owner can only refuse a limited number of challenges, after that the challenge is not even asked
+		if (CanRejectWar() == false)
 		{
-			m_bHasWarRequest = false;
-			m_lastChallengerRequest = GetDojoData()->challengeGuildId;
-
-			//cancel request time
-			g_pEventMgr->RemoveEvents(this, EVENT_DOJO_WAR_REQUEST);
-
-			CPlayer* pRequestor = g_pPlayerManager->FindPlayerWithCharID(GetChallengerCharID());
-			if (pRequestor && pRequestor->GetPcInitState() && pRequestor->GetGuild())
-			{
-				pRequestor->GetGuild()->SetDojoTblidxWarRequest(INVALID_TBLIDX);
-
-				//send nfy to the requestor that war declined
-				CNtlPacket packet2(sizeof(sTU_DOJO_SCRAMBLE_REJECT_NFY));
-				sTU_DOJO_SCRAMBLE_REJECT_NFY * res2 = (sTU_DOJO_SCRAMBLE_REJECT_NFY *)packet2.GetPacketData();
-				res2->wOpCode = TU_DOJO_SCRAMBLE_REJECT_NFY;
-				packet2.SetPacketLen(sizeof(sTU_DOJO_SCRAMBLE_REJECT_NFY));
-				pRequestor->SendPacket(&packet2);
-			}
-			else
-			{
-				CGuild* pGuild = g_pGuildManager->GetGuild(GetDojoData()->challengeGuildId);
-				if (pGuild)
-				{
-					pGuild->SetDojoTblidxWarRequest(INVALID_TBLIDX);
-				}
-			}
-
-			dojoData.challengeGuildId = INVALID_GUILDID;
-			m_byRejectCount = DBO_DOJO_SCRAMBLE_MAX_REJECT_COUNT;
+			rwResultcode = GAME_GUILD_DOJO_SCRAMBLE_CHALLENGER_CANT_DO;
 			return;
 		}
-		else if(m_byRejectCount == DBO_DOJO_SCRAMBLE_MAX_REJECT_COUNT)
+
+		++m_byRejectCount;
+
+		m_bHasWarRequest = false;
+		m_setRejectedGuilds.insert(GetDojoData()->challengeGuildId);
+
+		//cancel request time
+		g_pEventMgr->RemoveEvents(this, EVENT_DOJO_WAR_REQUEST);
+
+		CGuild* pChallenger = g_pGuildManager->GetGuild(GetDojoData()->challengeGuildId);
+		if (pChallenger)
+			pChallenger->SetDojoTblidxWarRequest(INVALID_TBLIDX);
+
+		//send nfy to the requestor that war declined
+		CPlayer* pRequestor = g_pPlayerManager->FindPlayerWithCharID(GetChallengerCharID());
+		if (pRequestor && pRequestor->GetPcInitState())
 		{
-			rwResultcode = GAME_GUILD_DOJO_YOU_ARE_ARLREADY_REJECT_ONE_TIME; //begin war here 
-			rbIsRetry = true;
-			++m_byRejectCount;
-			return;
+			CNtlPacket packet2(sizeof(sTU_DOJO_SCRAMBLE_REJECT_NFY));
+			sTU_DOJO_SCRAMBLE_REJECT_NFY * res2 = (sTU_DOJO_SCRAMBLE_REJECT_NFY *)packet2.GetPacketData();
+			res2->wOpCode = TU_DOJO_SCRAMBLE_REJECT_NFY;
+			packet2.SetPacketLen(sizeof(sTU_DOJO_SCRAMBLE_REJECT_NFY));
+			pRequestor->SendPacket(&packet2);
 		}
+
+		dojoData.challengeGuildId = INVALID_GUILDID;
+		m_lastChallengerCharID = INVALID_CHARACTERID;
+		return;
 	}
-#else
-	rbIsAccept = true;
-#endif
 
 	g_pEventMgr->RemoveEvents(this, EVENT_DOJO_WAR_REQUEST);
 	BeginWarPreparation();
@@ -178,7 +168,10 @@ void CDojo::BeginWarPreparation()
 
 	m_eDojoState = eDBO_DOJO_STATUS_STANDBY;
 
-	m_tmNextStepTime = m_lastDojoWar + 10; // 1800 seconds, 30 minutes preparation
+	sDOJO_TBLDAT* pDojoTbl = (sDOJO_TBLDAT*)g_pTableContainer->GetDojoTable()->FindData(dojoData.dojoTblidx);
+	DOJOTIME tmStandby = (pDojoTbl && pDojoTbl->byStandbyDuration > 0) ? pDojoTbl->byStandbyDuration * 60 : 600;
+
+	m_tmNextStepTime = m_lastDojoWar + tmStandby; // preparation before the dojo opens for the battle
 
 	NTL_PRINT(PRINT_APP, "Guild %u has now war with guild %u and fight for the dojo id %u", dojoData.guildId, dojoData.challengeGuildId, dojoData.dojoTblidx);
 
@@ -265,10 +258,16 @@ void CDojo::UpdateState(BYTE byState, DOJOTIME tmNextStepTime)
 
 	switch (m_eDojoState)
 	{
-		case eDBO_DOJO_STATUS_RECEIVE: 
+		case eDBO_DOJO_STATUS_RECEIVE:
 		{
 			g_pDojoWarManager->AddDojo(this);
 			g_pPlayerManager->SendMsgToAll(&packet); //send to all to inform that dojo can receive war request
+		}
+		break;
+
+		case eDBO_DOJO_STATUS_NORMAL:
+		{
+			g_pPlayerManager->SendMsgToAll(&packet); //everyone saw the challenge period start, so everyone hears the dojo is back to normal
 		}
 		break;
 
@@ -294,6 +293,7 @@ void CDojo::UpdateState(BYTE byState, DOJOTIME tmNextStepTime)
 
 		m_bHasWarRequest = false;
 		m_bWarInProgress = false;
+		m_bHasTeleportData = false;
 
 		m_setDefender.clear();
 		m_setAttacker.clear();
@@ -303,11 +303,12 @@ void CDojo::UpdateState(BYTE byState, DOJOTIME tmNextStepTime)
 		SetGuild(g_pGuildManager->GetGuild(GetDojoData()->guildId));
 
 		dojoData.challengeGuildId = INVALID_GUILDID;
-		m_lastChallengerRequest = INVALID_GUILDID;
+		m_setRejectedGuilds.clear();
 		m_lastChallengerCharID = INVALID_CHARACTERID;
 		m_byRejectCount = 0;
 		m_bHasWarRequest = false;
 		m_bWarInProgress = false;
+		m_bHasTeleportData = false;
 		memset(&m_warPoint, NULL, sizeof(m_warPoint));
 		m_warPoint.dojoTblidx = dojoData.dojoTblidx;
 
@@ -337,7 +338,7 @@ void CDojo::Reset(BYTE byState, DOJOTIME tmNextStepTime)
 	res->byState = byState;
 	res->tmNextStepTime = tmNextStepTime;
 	packet.SetPacketLen(sizeof(sTU_DOJO_SCRAMBLE_INFORM_NFY));
-	GetGuild()->Broadcast(&packet);
+	g_pPlayerManager->SendMsgToAll(&packet); //the challenge period was announced to everyone
 
 	CNtlPacket packetSrv(sizeof(sTG_DOJO_SCRAMBLE_STATE_CHANGE));
 	sTG_DOJO_SCRAMBLE_STATE_CHANGE * resSrv = (sTG_DOJO_SCRAMBLE_STATE_CHANGE *)packetSrv.GetPacketData();
@@ -361,11 +362,12 @@ void CDojo::Reset(BYTE byState, DOJOTIME tmNextStepTime)
 	m_setAttacker.clear();
 
 	dojoData.challengeGuildId = INVALID_GUILDID;
-	m_lastChallengerRequest = INVALID_GUILDID;
+	m_setRejectedGuilds.clear();
 	m_lastChallengerCharID = INVALID_CHARACTERID;
 	m_byRejectCount = 0;
 	m_bHasWarRequest = false;
 	m_bWarInProgress = false;
+	m_bHasTeleportData = false;
 	memset(&m_warPoint, NULL, sizeof(m_warPoint));
 	m_warPoint.dojoTblidx = dojoData.dojoTblidx;
 
@@ -508,7 +510,49 @@ bool CDojo::CanEnterDojo(GUILDID guildId)
 		return true;
 	}
 
-	return false;
+	// no battle running (challenge period or preparation): the dojo stays open to its own guild
+	return dojoData.guildId == guildId;
 }
 
+void CDojo::SetTeleportData(const sDBO_DOJO_TELEPORT_DATA & rData)
+{
+	m_teleportData = rData;
+	m_tmTeleportEnd = std::time(nullptr) + rData.wWaitTime;
+	m_bHasTeleportData = true;
+}
 
+void CDojo::SendTeleportProposal(CPlayer * pPlayer)
+{
+	if (m_bHasTeleportData == false || pPlayer == NULL)
+		return;
+
+	if (m_eDojoState != eDBO_DOJO_STATUS_READY && m_eDojoState != eDBO_DOJO_STATUS_START)
+		return;
+
+	// already inside the dojo
+	if (pPlayer->GetChannel() == DOJO_CHANNEL_INDEX)
+		return;
+
+	DOJOTIME tmNow = std::time(nullptr);
+	if (m_tmTeleportEnd <= tmNow)
+		return;
+
+	HSESSION hGameServer = g_pServerInfoManager->GetGsSession(pPlayer->GetChannel());
+	if (hGameServer == INVALID_HSESSION)
+		return;
+
+	CNtlPacket packet(sizeof(sTG_DOJO_SEND_TELEPORT_PROPOSAL_NFY));
+	sTG_DOJO_SEND_TELEPORT_PROPOSAL_NFY * res = (sTG_DOJO_SEND_TELEPORT_PROPOSAL_NFY *)packet.GetPacketData();
+	res->wOpCode = TG_DOJO_SEND_TELEPORT_PROPOSAL_NFY;
+	res->byTeleportType = m_teleportData.byTeleportType;
+	res->wWaitTime = (WORD)(m_tmTeleportEnd - tmNow);
+	res->destWorldId = m_teleportData.destWorldId;
+	res->destWorldTblidx = m_teleportData.destWorldTblidx;
+	res->vDestLoc = (pPlayer->GetGuildID() == dojoData.guildId) ? m_teleportData.vDestDefLoc : m_teleportData.vDestAttLoc;
+	res->destServerChannelId = DOJO_CHANNEL_INDEX;
+	res->destServerIndex = 0;
+	res->byCount = 1;
+	res->aMemberId[0] = pPlayer->GetCharID();
+	packet.SetPacketLen(sizeof(sTG_DOJO_SEND_TELEPORT_PROPOSAL_NFY));
+	g_pApp->Send(hGameServer, &packet);
+}

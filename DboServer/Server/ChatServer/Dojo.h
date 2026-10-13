@@ -42,6 +42,8 @@ public:
 
 	inline bool							CanReceiveWarRequest() { return m_eDojoState == eDBO_DOJO_STATUS_RECEIVE; }
 
+	inline bool							CanRejectWar() { return m_byRejectCount < DBO_DOJO_SCRAMBLE_MAX_REJECT_COUNT; }
+
 	inline eDBO_DOJO_STATUS				GetDojoWarStatus() { return m_eDojoState; }
 
 	void								BeginWarPreparation();
@@ -60,6 +62,10 @@ public:
 
 	bool								CanEnterDojo(GUILDID guildId);
 
+	// teleport into the battle, kept so members coming online during the war can still join
+	void								SetTeleportData(const sDBO_DOJO_TELEPORT_DATA& rData);
+	void								SendTeleportProposal(CPlayer* pPlayer);
+
 public:
 
 	bool								GetWarRequest() { return m_bHasWarRequest; }
@@ -71,8 +77,12 @@ public:
 
 private:
 
+	bool								m_bHasTeleportData;
+	sDBO_DOJO_TELEPORT_DATA				m_teleportData;
+	DOJOTIME							m_tmTeleportEnd;
+
 	DOJOTIME							m_lastDojoWar;
-	GUILDID								m_lastChallengerRequest;
+	std::set<GUILDID>					m_setRejectedGuilds;	// guilds refused during this challenge period
 
 	CHARACTERID							m_lastChallengerCharID;
 

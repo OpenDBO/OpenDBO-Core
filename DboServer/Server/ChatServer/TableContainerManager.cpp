@@ -40,6 +40,9 @@ bool CTableContainerManager::CreateTableContainer(BYTE LoadTableFormat, char* ps
 	flagManager.Set(CTableContainer::TABLE_HLS_ITEM); //WORK
 	fileNameList.SetFileName(CTableContainer::TABLE_HLS_ITEM, "Table_HLS_Item_Data");
 
+	flagManager.Set(CTableContainer::TABLE_DOJO); //dojo war phase durations
+	fileNameList.SetFileName(CTableContainer::TABLE_DOJO, "Table_Dojo_Data");
+
 
 	//set load table method/format
 	CTable::eLOADING_METHOD eLoadMethod = (CTable::eLOADING_METHOD)LoadTableFormat;

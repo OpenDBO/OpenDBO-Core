@@ -1714,12 +1714,10 @@ void CServerPassiveSession::RecvDojoScrambleReq(CNtlPacket * pPacket)
 		resulcode = GAME_GUILD_DOJO_SCRAMBLE_CHALLENGE_HAVE_DOJO;
 	else if(pPlayer->GetGuild()->GetDojoTblidxWarRequest() != INVALID_TBLIDX)
 		resulcode = GAME_GUILD_DOJO_SCRAMBLE_CHALLENGE_ONLY_ONETIME;
-	else if (pPlayer->GetGuild()->CheckGuildReadyForDojo() == false)
-		resulcode = COMMUNITY_FAIL;
 	else
 	{
 		CDojo* pDojo = g_pDojoManager->GetDojoByDojoTblidx(req->dojoTblidx);
-		
+
 		if (pDojo == NULL)
 			resulcode = GAME_GUILD_DOJO_NOT_FOUND;
 		else if (pDojo->GetDojoData()->guildId == pPlayer->GetGuildID())
@@ -1736,8 +1734,9 @@ void CServerPassiveSession::RecvDojoScrambleReq(CNtlPacket * pPacket)
 			pPlayer->GetGuild()->SetDojoTblidxWarRequest(req->dojoTblidx);
 			//get dojo owner. If owner not online, then war will begin
 
+			// the owner is only asked while they can still refuse (DBO_DOJO_SCRAMBLE_MAX_REJECT_COUNT per challenge period)
 			CPlayer* pDojoOwner = g_pPlayerManager->FindPlayerWithCharID(pDojo->GetGuild()->GetInfo()->guildMaster);
-			if (pDojoOwner && pDojoOwner->GetPcInitState())
+			if (pDojoOwner && pDojoOwner->GetPcInitState() && pDojo->CanRejectWar())
 			{
 				pDojo->SetWarRequest(true); //only do this if the owner is online.. otherwise we wont be able to receive another request if the first one has been rejected
 				g_pEventMgr->AddEvent(pDojo, &CDojo::OnEvent_WarRequestTimer, EVENT_DOJO_WAR_REQUEST, DBO_DOJO_SCRAMBLE_MAX_WAIT_TICK, 1, 0); //start timer
@@ -1933,6 +1932,21 @@ void	CServerPassiveSession::RecvDojoNpcInfoReq(CNtlPacket * pPacket)
 void CServerPassiveSession::RecvDojoSendTeleportProposal(CNtlPacket * pPacket)
 {
 	sGT_DOJO_SEND_TELEPORT_PROPOSAL * req = (sGT_DOJO_SEND_TELEPORT_PROPOSAL *)pPacket->GetPacketData();
+
+	// remember it for members that come online or leave the dojo during the war
+	if (CDojo* pDojo = g_pDojoManager->GetDojo(req->defGuildId))
+	{
+		sDBO_DOJO_TELEPORT_DATA teleportData;
+		teleportData.byTeleportType = req->byTeleportType;
+		teleportData.wWaitTime = req->wWaitTime;
+		teleportData.destWorldId = req->destWorldId;
+		teleportData.destWorldTblidx = req->destWorldTblidx;
+		teleportData.vDestDefLoc = req->vDestDefLoc;
+		teleportData.vDestAttLoc = req->vDestAttLoc;
+		teleportData.destServerChannelId = DOJO_CHANNEL_INDEX;
+		teleportData.destServerIndex = 0;
+		pDojo->SetTeleportData(teleportData);
+	}
 
 	CGuild* pDefGuild = g_pGuildManager->GetGuild(req->defGuildId);
 
