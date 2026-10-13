@@ -972,7 +972,7 @@ void PacketHandler_TUDojo_CreateNfy(void* pPacket)
 		return;
 
 	CNtlGuild* pGuild = pAvatar->GetGuild();
-	GetAlarmManager()->FormattedAlarmMessage("DST_DOJO_SUCCESS_ESTABLISHMENT", FALSE, NULL, pGuild->GetGuildName() );
+	GetAlarmManager()->FormattedAlarmMessage("DST_DOJO_SUCCESS_ESTABLISHMENT_TO_MEMBER", FALSE, NULL, pGuild->GetGuildName() );
 
 
 	// 기존에 설정된 도장 도복 색상이 있다면 적용한다
