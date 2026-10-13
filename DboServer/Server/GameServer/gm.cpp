@@ -123,6 +123,7 @@ ACMD(do_start);
 ACMD(do_createloot);
 ACMD(do_removeskillscd);
 ACMD(do_dynamicfield);
+ACMD(do_dbscramble);
 ACMD(do_test);
 
 struct command_info cmd_info[] =
@@ -179,6 +180,7 @@ struct command_info cmd_info[] =
 	{ L"@createloot", do_createloot, ADMIN_LEVEL_ADMIN },
 	{ L"@removeskillscd", do_removeskillscd, ADMIN_LEVEL_ADMIN },
 	{ L"@dynamicfield", do_dynamicfield, ADMIN_LEVEL_ADMIN },
+	{ L"@dbscramble", do_dbscramble, ADMIN_LEVEL_ADMIN },
 	{ L"@test", do_test, ADMIN_LEVEL_ADMIN },
 
 	{ L"@qwasawedsadas", NULL, ADMIN_LEVEL_ADMIN }
@@ -1932,6 +1934,60 @@ ACMD(do_dynamicfield)
 	}
 
 	ERR_LOG(LOG_USER, "Player: %u used @dynamicfield %S", pPlayer->GetCharID(), strAction.c_str());
+
+	SendGmFeedback(pPlayer, msg.c_str());
+}
+
+ACMD(do_dbscramble)
+{
+	/*
+		@dbscramble				show status
+		@dbscramble start		start the dragonball scramble (2 hours, scramble channel only)
+		@dbscramble stop		end the dragonball scramble
+	*/
+
+	CGameServer* app = (CGameServer*)g_pApp;
+
+	pToken->PopToPeek();
+	std::wstring strAction = pToken->PeekNextToken(NULL, &iLine);
+
+	CNtlStringW msg;
+
+	if (app->GetGsChannel() != 0)
+	{
+		msg.Format(L"Dragonball scramble: only available on channel 0.");
+	}
+	else if (strAction == L"start")
+	{
+		if (g_pDragonballScramble->IsOn())
+			msg.Format(L"Dragonball scramble: already running.");
+		else
+		{
+			g_pDragonballScramble->StartEvent();
+			msg.Format(L"Dragonball scramble: event started.");
+		}
+	}
+	else if (strAction == L"stop")
+	{
+		if (g_pDragonballScramble->IsOn())
+		{
+			g_pDragonballScramble->EndEvent();
+			msg.Format(L"Dragonball scramble: event stopped.");
+		}
+		else
+			msg.Format(L"Dragonball scramble: no event running.");
+	}
+	else if (g_pDragonballScramble->IsOn())
+	{
+		msg.Format(L"Dragonball scramble: running, %u players joined, %u/%u balls on the ground, %I64d sec left. Usage: @dbscramble [start|stop]",
+			(DWORD)g_pDragonballScramble->GetJoinedCount(), g_pDragonballScramble->GetBallsOnGroundCount(), NTL_ITEM_MAX_DRAGONBALL, (__int64)g_pDragonballScramble->GetRemainingTime());
+	}
+	else
+	{
+		msg.Format(L"Dragonball scramble: not running. Usage: @dbscramble [start|stop]");
+	}
+
+	ERR_LOG(LOG_USER, "Player: %u used @dbscramble %S", pPlayer->GetCharID(), strAction.c_str());
 
 	SendGmFeedback(pPlayer, msg.c_str());
 }
