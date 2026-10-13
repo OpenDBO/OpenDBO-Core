@@ -47,7 +47,7 @@ public:
 	bool										UpdateSeal(WCHAR* wchName, GUILDID guildId, TBLIDX sealIdx, BYTE & rbyMainState);
 
 	void										SendSealState(HOBJECT hSession);
-	void										SendSealUnderAttack(HOBJECT hSeal);
+	void										SendSealUnderAttack(HOBJECT hSeal, GUILDID attackerGuildId);
 	void										SendStopSealUnderAttack(HOBJECT hSeal);
 
 private:

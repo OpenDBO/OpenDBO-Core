@@ -25,7 +25,7 @@ void CBotState_CastingItem::OnEnter()
 	{
 		if (CDojo * pDojo = g_pDojoWarManager->GetDojo(((CPlayer*)m_pParent)->GetGuildID()))
 		{
-			pDojo->SendSealUnderAttack(m_hTarget);
+			pDojo->SendSealUnderAttack(m_hTarget, ((CPlayer*)m_pParent)->GetGuildID());
 		}
 	}
 
@@ -42,14 +42,15 @@ void CBotState_CastingItem::OnExit()
 		{
 			pItem->CancelCasting();
 		}
+	}
 
-		CGameServer* app = (CGameServer*)g_pApp;
-		if (m_itemTblidx == 19451 && app->IsDojoChannel())
+	// the seal warning stops whether the capture finished or got interrupted
+	CGameServer* app = (CGameServer*)g_pApp;
+	if (m_itemTblidx == 19451 && app->IsDojoChannel())
+	{
+		if (CDojo * pDojo = g_pDojoWarManager->GetDojo(((CPlayer*)m_pParent)->GetGuildID()))
 		{
-			if (CDojo * pDojo = g_pDojoWarManager->GetDojo(((CPlayer*)m_pParent)->GetGuildID()))
-			{
-				pDojo->SendStopSealUnderAttack(m_hTarget);
-			}
+			pDojo->SendStopSealUnderAttack(m_hTarget);
 		}
 	}
 

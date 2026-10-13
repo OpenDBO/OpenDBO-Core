@@ -360,7 +360,7 @@ void CDojo::SendSealState(HOBJECT hSession)
 	}
 }
 
-void CDojo::SendSealUnderAttack(HOBJECT hSeal)
+void CDojo::SendSealUnderAttack(HOBJECT hSeal, GUILDID attackerGuildId)
 {
 	for (std::vector<CTriggerObject*>::iterator it = m_setSeals.begin(); it != m_setSeals.end(); it++)
 	{
@@ -370,14 +370,33 @@ void CDojo::SendSealUnderAttack(HOBJECT hSeal)
 			if (pObj->GetMainState() == TOBJECT_STATE_TYPE_C_NO_TEAM)
 				return;
 
-			CNtlPacket packet(sizeof(sGU_DOJO_SEAL_ATTACK_BEGIN_NFY));
-			sGU_DOJO_SEAL_ATTACK_BEGIN_NFY * res = (sGU_DOJO_SEAL_ATTACK_BEGIN_NFY *)packet.GetPacketData();
-			res->wOpCode = GU_DOJO_SEAL_ATTACK_BEGIN_NFY;
-			res->sealObjectTblidx = pObj->GetTblidx();
-			res->bIsBeingStolen = (pObj->GetMainState() == TOBJECT_STATE_TYPE_C_NO_TEAM) ? false : true;
-			pObj->GetCurLoc().CopyTo(res->vLoc);
-			packet.SetPacketLen(sizeof(sGU_DOJO_SEAL_ATTACK_BEGIN_NFY));
-			m_pWorld->Broadcast(&packet);
+			// only the team owning the seal is warned, and only when the other team is taking it
+			GUILDID ownerGuildId = (pObj->GetMainState() == TOBJECT_STATE_TYPE_C_ATTACK_TEAM) ? m_attGuildId : GetGuildID();
+			if (attackerGuildId == ownerGuildId)
+				return;
+
+			int nObjCount = m_pWorld->GetObjectList()->GetObjCount(OBJTYPE_PC);
+			CPlayer* pPlayer = (CPlayer*)m_pWorld->GetObjectList()->GetFirst(OBJTYPE_PC);
+
+			for (int i = 0; i < nObjCount && pPlayer; i++)
+			{
+				if (pPlayer->GetGuildID() != ownerGuildId)
+				{
+					pPlayer = (CPlayer*)m_pWorld->GetObjectList()->GetNext(pPlayer->GetWorldObjectLinker());
+					continue;
+				}
+
+				CNtlPacket packet(sizeof(sGU_DOJO_SEAL_ATTACK_BEGIN_NFY));
+				sGU_DOJO_SEAL_ATTACK_BEGIN_NFY * res = (sGU_DOJO_SEAL_ATTACK_BEGIN_NFY *)packet.GetPacketData();
+				res->wOpCode = GU_DOJO_SEAL_ATTACK_BEGIN_NFY;
+				res->sealObjectTblidx = pObj->GetTblidx();
+				res->bIsBeingStolen = true;
+				pObj->GetCurLoc().CopyTo(res->vLoc);
+				packet.SetPacketLen(sizeof(sGU_DOJO_SEAL_ATTACK_BEGIN_NFY));
+				pPlayer->SendPacket(&packet);
+
+				pPlayer = (CPlayer*)m_pWorld->GetObjectList()->GetNext(pPlayer->GetWorldObjectLinker());
+			}
 
 			return;
 		}
