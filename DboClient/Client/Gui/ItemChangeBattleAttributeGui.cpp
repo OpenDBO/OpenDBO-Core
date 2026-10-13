@@ -1048,14 +1048,7 @@ RwBool CItemChangeBattleAttributeGui::IsUpgradableItem(CNtlSobItemAttr* pItemAtt
 	if (!pData)
 		return FALSE;
 
-	if (EQUIP_TYPE_MAIN_WEAPON == pData->byEquip_Type ||
-		/*EQUIP_TYPE_SUB_WEAPON == pData->byEquip_Type ||*/
-		(EQUIP_TYPE_ARMOR == pData->byEquip_Type && pData->byItem_Type == ITEM_TYPE_JACKET))
-	{
-		return TRUE;
-	}
-
-	return FALSE;
+	return Dbo_CanChangeItemBattleAttribute(pData->byEquip_Type, pData->byItem_Type) ? TRUE : FALSE;
 }
 
 // 占싻띰옙占써묩占쏙옙陋占쏙옙占실뤄옙占쏙옙槻

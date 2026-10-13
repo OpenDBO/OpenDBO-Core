@@ -252,6 +252,7 @@ public:
 	float	GetDotValueChangePercent() { return m_pAttribute.fDotValueChangePercent; }
 	BYTE	GetBattleAttributeOffence() { return m_byBattle_Attribute_Ofence; }
 	BYTE	GetBattleAttributeDefence() { return m_byBattle_Attribute_Defence; }
+	BYTE	GetSubWeaponBattleAttributeOffence() { return m_bySubWeaponBattle_Attribute_Ofence; }
 	float	GetPhysicalCriticalDefenceRate() { return m_pAttribute.fPhysicalCriticalDefenceRate; }
 	float	GetEnergyCriticalDefenceRate() { return m_pAttribute.fEnergyCriticalDefenceRate; }
 
@@ -284,6 +285,7 @@ public:
 
 	void	SetBattleAttributeOffence(BYTE byAttribute) { m_byBattle_Attribute_Ofence = byAttribute; }
 	void	SetBattleAttributeDefence(BYTE byAttribute) { m_byBattle_Attribute_Defence = byAttribute; }
+	void	SetSubWeaponBattleAttributeOffence(BYTE byAttribute) { m_bySubWeaponBattle_Attribute_Ofence = byAttribute; }
 
 	void	SetPhysicalOffence(WORD wAttack) { m_pAttribute.wPhysicalOffence = wAttack; }
 	void	SetEnergyOffence(WORD wAttack) { m_pAttribute.wEnergyOffence = wAttack; }
@@ -298,6 +300,7 @@ protected:
 	sAVATAR_ATTRIBUTE		m_pAttribute;
 	BYTE					m_byBattle_Attribute_Ofence;
 	BYTE					m_byBattle_Attribute_Defence;
+	BYTE					m_bySubWeaponBattle_Attribute_Ofence;
 
 	float					m_fRunSpeedBackup;
 	WORD					m_wAttackSpeedBackup;

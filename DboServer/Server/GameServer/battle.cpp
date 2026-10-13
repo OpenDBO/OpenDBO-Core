@@ -162,7 +162,7 @@ void CalcSkillDamage(CCharacterObject* pCaster, CCharacterObject* victim, sSKILL
 		}
 	}
 
-	fAttackerPower = CalcPropBonus(pCaster, victim, fAttackerPower);
+	fAttackerPower = CalcPropBonus(pCaster, victim, fAttackerPower, bIsSubWeapon);
 
 	float fDmg0 = fAttackerPower * (1.f - (fTargetDefensePower / (fTargetDefensePower + (float)pCaster->GetLevel() * CFormulaTable::m_afRate[3100][1])));
 	min_damage = CalcMinDamage(fDmg0, pCaster->GetLevel());
@@ -529,13 +529,14 @@ float GetSkillReflectDamage(float fDmg, BYTE bySkillType, CCharacterAtt* pVictim
 float GetAttributeBonusRate(bool bIsPc, bool bSubWeapon, BYTE byOffence, BYTE byDefence, BYTE bySubOffence, sAVATAR_ATTRIBUTE& sOffenceAttribute, sAVATAR_ATTRIBUTE& sDefenceAttribute)
 {
 	float fAttributeBonusRate = 0.0f;
-	BYTE byAttrOffence = byOffence;
+	// sub weapon skills use the sub weapon battle attribute instead of the main weapon one
+	BYTE byAttrOffence = bSubWeapon ? bySubOffence : byOffence;
 
-	fAttributeBonusRate = NtlGetBattleAttributeBonusRate(byOffence, byDefence);
+	fAttributeBonusRate = NtlGetBattleAttributeBonusRate(byAttrOffence, byDefence);
 
-	if (IsValidAttribute(byOffence))
+	if (IsValidAttribute(byAttrOffence))
 	{
-		fAttributeBonusRate += GetOffenceAttribute(byOffence, sOffenceAttribute) - GetDefenceAttribute(byOffence, sDefenceAttribute);
+		fAttributeBonusRate += GetOffenceAttribute(byAttrOffence, sOffenceAttribute) - GetDefenceAttribute(byAttrOffence, sDefenceAttribute);
 	}
 	else if (IsValidAttribute(byDefence))
 	{
@@ -554,13 +555,13 @@ float GetAttributeBonusRate(bool bIsPc, bool bSubWeapon, BYTE byOffence, BYTE by
 //  Helper Methods
 /////////////////////////////////////////////////
 
-float CalcPropBonus(CCharacterObject* pCaster, CCharacterObject* pVictim, float fAttackerPower)
+float CalcPropBonus(CCharacterObject* pCaster, CCharacterObject* pVictim, float fAttackerPower, bool bSubWeapon/* = false*/)
 {
 	CCharacterAtt* cCasterAtt = pCaster->GetCharAtt();
 	CCharacterAtt* cVictimAtt = pVictim->GetCharAtt();
 
-	float fFinalProp = GetAttributeBonusRate(pCaster->IsPC(), 0, cCasterAtt->GetBattleAttributeOffence(),
-		cVictimAtt->GetBattleAttributeDefence(), 0,
+	float fFinalProp = GetAttributeBonusRate(pCaster->IsPC(), bSubWeapon, cCasterAtt->GetBattleAttributeOffence(),
+		cVictimAtt->GetBattleAttributeDefence(), cCasterAtt->GetSubWeaponBattleAttributeOffence(),
 		cCasterAtt->GetAvatarAttribute(), cVictimAtt->GetAvatarAttribute());
 	float fPropsValue = 0;
 
