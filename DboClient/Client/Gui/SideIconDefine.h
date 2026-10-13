@@ -18,6 +18,7 @@ enum eSideIconType
 	SIDEICON_EVENT_WAGU,
 	SIDEICON_GIFT,						///< Gift Shop(Wagu Point) 사이드 아이콘
 	SIDEICON_DYNAMIC_FIELD,				///< Dynamic Field (World Boss event) side icon
+	SIDEICON_DBSCRAMBLE,				///< Dragonball scramble side icon
 
 	SIDEICON_NUMS,
 	INVALID_SIDEICON

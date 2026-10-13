@@ -268,6 +268,7 @@ protected:
 	VOID			UpdateFieldBoss(RwReal fElapsed);
 	VOID			RequestFieldBossPosition();
 	RwBool			CanShowFieldBoss();
+	RwBool			CanShowDBScrambleBalls();
 	VOID			UpdateBindInfo();	
 	VOID			UpdateWarFog();
 
@@ -460,4 +461,7 @@ protected:
 	std::vector<sDYNAMIC_FIELD_BOSS_INFO>	m_vecFieldBoss;				///< boss world positions (x,z)
 	RwBool									m_bFieldBossEvent;			///< boss event in progress
 	RwReal									m_fFieldBossRefreshTime;	///< time until boss positions are requested again
+
+	// Dragonball scramble. The ball positions are in CDboGlobal::GetDBScrambleInfo()
+	CSurfaceGui								m_surMarkDBScrambleBall;	///< battle dragonball mark
 };

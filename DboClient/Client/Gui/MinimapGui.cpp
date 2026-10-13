@@ -62,6 +62,7 @@
 #include "DialogManager.h"
 #include "DboLogic.h"
 #include "DisplayStringManager.h"
+#include "DboGlobal.h"
 
 
 CSurfaceCamera* CMapItem::m_pRealMapCamera = NULL;
@@ -76,6 +77,8 @@ CSurfaceCamera* CMapItem::m_pRealMapCamera2 = NULL;
 #define MINIMAP_CENTER_Y	109
 
 #define MINIMAP_UPDATETIME		0.1f
+
+#define dMINIMAP_MAINWORLD_TBLIDX	1		///< the battle dragonballs are spread over the main world
 
 #define dLENGTH_VISIBLE_PARTY_ARROW			100.f	///< 일정 거리 이상 떨어진 파티원의 화살표는 보여주지 않는다
 
@@ -634,6 +637,9 @@ RwBool CMinimapGui::Create(VOID)
 	m_surMarkPartyMember[MMP_INSIGHT]			.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", "srfMarkPartyMember" ) );
 	m_surMarkPartyMember[MMP_OUTSIGHT]			.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", "srfMarkPartyMemberArrow" ) );
 
+	// Battle dragonball mark (dragonball scramble)
+	m_surMarkDBScrambleBall.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "WorldMap.srf", "srfBattleDragonBallIconWorld" ) );
+
 	//Hidden Objects
 	m_surHiddenObject.SetSurface( GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "Minimap.srf", "srfHiddenObject" ) );
 
@@ -787,6 +793,7 @@ VOID CMinimapGui::Update( RwReal fElapsed )
 	m_vecQuest.clear();
 	m_vectNextQuest.clear();
 	m_vecPartyMember.clear();
+	m_vecDBScrambleBall.clear();
 	m_listCampPeople.clear();
 
 	for( RwUInt8 i = 0 ; i < NTL_MAX_SHARETARGET_COUNT ; ++i )
@@ -957,6 +964,27 @@ VOID CMinimapGui::Update( RwReal fElapsed )
 			}
 
 			m_vecPartyMember.push_back(partyMember);
+		}
+	}
+
+	// Battle dragonballs (dragonball scramble). They are spread over the main world.
+	sDBSCRAMBLE_INFO* pDBScrambleInfo = GetDboGlobal()->GetDBScrambleInfo();
+	if( pDBScrambleInfo->bSeason && pDBScrambleInfo->bBallLocation && Logic_GetActiveWorldTableId() == dMINIMAP_MAINWORLD_TBLIDX )
+	{
+		for( RwUInt8 byBall = 0 ; byBall < NTL_ITEM_MAX_DRAGONBALL ; ++byBall )
+		{
+			sDBSCRAMBLE_BALL ball;
+
+			ball.v2Pos.x	= pDBScrambleInfo->avBallLoc[byBall].x;
+			ball.v2Pos.y	= pDBScrambleInfo->avBallLoc[byBall].z;
+			ball.byStar		= byBall + 1;
+
+			if( IsV2MoreLength(&ball.v2Pos, &v2Avatar, fLimitedDistance) )
+				continue;
+
+			TransWorldToMapAxis( v2Avatar, ball.v2Pos, fRealRate, ball.v2Icon );
+
+			m_vecDBScrambleBall.push_back(ball);
 		}
 	}
 
@@ -1753,6 +1781,16 @@ VOID CMinimapGui::UpdateBeforeCamera(RwReal fElapsed)
 				}
 			}
 
+			// Battle dragonballs (dragonball scramble)
+			for( i = 0 ; i < m_vecDBScrambleBall.size() ; ++i )
+			{
+				sDBSCRAMBLE_BALL* pBall = &m_vecDBScrambleBall[i];
+
+				m_surMarkDBScrambleBall.SetCenterPosition((RwInt32)((RwReal)(rtArea.left - pBall->v2Pos.x)/fRate),
+					(RwInt32)((RwReal)(rtArea.top - pBall->v2Pos.y)/fRate));
+				m_surMarkDBScrambleBall.Render();
+			}
+
 			// (Pia Division) People who fight in separate teams
 			LIST_CAMP_PEOPLE::iterator it_CampPeople = m_listCampPeople.begin();
 			for( ; it_CampPeople != m_listCampPeople.end() ; ++it_CampPeople )
@@ -2008,6 +2046,11 @@ VOID CMinimapGui::AdjustIconSize()
 	pSurface = m_surMarkPartyMember[MMP_INSIGHT].GetSurface();
 	m_surMarkPartyMember[MMP_INSIGHT].SetWidth((RwInt32)((RwReal)(pSurface->m_Original.rtRect.right - pSurface->m_Original.rtRect.left) * fRate));
 	m_surMarkPartyMember[MMP_INSIGHT].SetHeight((RwInt32)((RwReal)(pSurface->m_Original.rtRect.bottom - pSurface->m_Original.rtRect.top) * fRate));
+
+	// the world map icon is a bit large for the minimap
+	pSurface = m_surMarkDBScrambleBall.GetSurface();
+	m_surMarkDBScrambleBall.SetWidth((RwInt32)((RwReal)(pSurface->m_Original.rtRect.right - pSurface->m_Original.rtRect.left) * fRate * 0.8f));
+	m_surMarkDBScrambleBall.SetHeight((RwInt32)((RwReal)(pSurface->m_Original.rtRect.bottom - pSurface->m_Original.rtRect.top) * fRate * 0.8f));
 
 	pSurface = m_surMarkCommonTarget[0].GetSurface();
 	for( RwUInt8 i = 0 ; i < NTL_MAX_SHARETARGET_COUNT ; ++i )
@@ -2598,6 +2641,29 @@ VOID CMinimapGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 			}
 		}
 	}	
+
+	// Battle dragonballs (dragonball scramble)
+	for( i = 0 ; i < m_vecDBScrambleBall.size() ; ++i )
+	{
+		sDBSCRAMBLE_BALL& ball = m_vecDBScrambleBall[i];
+
+		iHalfWidth = ((RwInt32)((RwReal)m_surMarkDBScrambleBall.GetWidth() / 2.f / fRate));
+		iHalfHeight = ((RwInt32)((RwReal)m_surMarkDBScrambleBall.GetHeight() / 2.f / fRate));
+
+		if( ball.v2Icon.x - iHalfWidth  <= nX && nX <= ball.v2Icon.x + iHalfWidth &&
+			ball.v2Icon.y - iHalfHeight <= nY && nY <= ball.v2Icon.y + iHalfHeight )
+		{
+			WCHAR awcBuffer[128];
+			swprintf_s(awcBuffer, 128, GetDisplayStringManager()->GetString("DST_DRAGONBALL_SCRAMBLE_TOOLTIP"), ball.byStar);
+
+			sMINIMAPINFO info;
+
+			info.iType = MMIT_MOB;
+			info.wcsString = awcBuffer;
+
+			listMarkInfo.push_back(info);
+		}
+	}
 
 	// 랜드마크
 	/*for each( sLANKMARK* pLandMark in m_listLandMark )

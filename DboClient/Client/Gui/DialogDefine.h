@@ -200,6 +200,8 @@ enum eDialogType
 	DIALOG_GIFTSHOP,
 	DIALOG_GIFTSHOP_TRADE,					///< Gift Shop Cart
 
+	DIALOG_DBSCRAMBLE_CONFIRM,				///< Dragonball scramble join confirm
+
 	DIALOG_HLSHOP,
 	DIALOG_HLSHOP_WAREHOUSE,
 	DIALOG_HLSHOP_BUY,

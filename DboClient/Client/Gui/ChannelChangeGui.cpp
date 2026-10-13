@@ -22,7 +22,7 @@
 
 #define dCHANNEL_SLOT_X					21
 #define dCHANNEL_SLOT_START_Y			109
-#define dCHANNEL_TEXT__CHANNEL_NUM_X	32
+#define dCHANNEL_TEXT__CHANNEL_NUM_X	40
 #define dCHANNEL_TEXT__CHANNEL_NUM_ADJUST_Y		(-4)
 #define dCHANNEL_TEXT__CHANNEL_STATE_X	120
 #define dCHANNEL_TEXT_START_Y			112
@@ -30,6 +30,8 @@
 #define dCHANNEL_GAUGE_START_Y			117
 #define dCHANNEL_GAUGE_BACK_X			108
 #define dCHANNEL_GAUGE_BACK_START_Y		117
+#define dCHANNEL_EVENT_ICON_X			25
+#define dCHANNEL_EVENT_ICON_Y			108
 
 #define dMAX_VISIBLE_COUNT		9
 
@@ -199,6 +201,9 @@ VOID CChannelChangeGui::CreateChannels()
 		SetChannelState(pChannelGui, pDBO_GAME_SERVER_CHANNEL_INFO);
 		pChannelGui->pChannelState->Enable(false);
 
+		// dragonball scramble channel mark
+		pChannelGui->srfEventIcon.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "ChannelChange.srf", "srfDBSSmallIcon" ));
+
 		// Channel usage gauge background
 		pChannelGui->srfGaugeBack.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "ChannelChange.srf", "srfGaugeBack" ));
 
@@ -264,6 +269,8 @@ RwUInt8 CChannelChangeGui::GetSelectedChannelIndex()
 
 VOID CChannelChangeGui::SetChannelState(sChannelGui* pChannelGui, sDBO_GAME_SERVER_CHANNEL_INFO* pChannelInfo)
 {
+	pChannelGui->bScrambleChannel = pChannelInfo->bIsScrambleChannel;
+
 	if( pChannelInfo->byServerStatus == DBO_SERVER_STATUS_UP )
 	{
 		if( pChannelInfo->dwLoad < 50 )
@@ -325,6 +332,7 @@ VOID CChannelChangeGui::UpdateList(RwInt32 iOffset)
 	RwInt32 iTextY = dCHANNEL_TEXT_START_Y;
 	RwInt32 iGaugeY = dCHANNEL_GAUGE_START_Y;
 	RwInt32 iGaugeBackY = rtScreen.top + dCHANNEL_GAUGE_BACK_START_Y;
+	RwInt32 iEventIconY = rtScreen.top + dCHANNEL_EVENT_ICON_Y;
 	CHANNEL_ITER it = m_listChannel.begin();
 
 	for( RwInt32 iCount = 0 ; it != m_listChannel.end() ; ++it, ++iCount)
@@ -341,11 +349,13 @@ VOID CChannelChangeGui::UpdateList(RwInt32 iOffset)
 			pChannelGui->pChannelNum->SetPosition(dCHANNEL_TEXT__CHANNEL_NUM_X, iTextY + dCHANNEL_TEXT__CHANNEL_NUM_ADJUST_Y);
 			pChannelGui->pChannelState->SetPosition(dCHANNEL_TEXT__CHANNEL_STATE_X, iTextY);
 			pChannelGui->srfGaugeBack.SetPosition(rtScreen.left + dCHANNEL_GAUGE_BACK_X, iGaugeBackY);
+			pChannelGui->srfEventIcon.SetPosition(rtScreen.left + dCHANNEL_EVENT_ICON_X, iEventIconY);
 
 			iButtonY	+= dCHANNEL_HEIGHT_BUTTON_GAP;
 			iTextY		+= dCHANNEL_HEIGHT_GAP;
 			iGaugeY		+= dCHANNEL_HEIGHT_GAP;
 			iGaugeBackY	+= dCHANNEL_HEIGHT_GAP;
+			iEventIconY	+= dCHANNEL_HEIGHT_GAP;
 		}
 		else
 		{
@@ -604,7 +614,12 @@ VOID CChannelChangeGui::OnPaint()
 	for( ; it != m_listChannel.end() ; ++it )
 	{
 		if( (*it)->pChannelNum->IsVisible() )
+		{
 			(*it)->srfGaugeBack.Render();
+
+			if( (*it)->bScrambleChannel )
+				(*it)->srfEventIcon.Render();
+		}
 	}
 }
 

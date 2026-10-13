@@ -36,6 +36,8 @@ public:
 		gui::CStaticBox*	pChannelState;
 		gui::CProgressBar*	pUseGauge;
 		CSurfaceGui			srfGaugeBack;	
+		CSurfaceGui			srfEventIcon;			///< dragonball scramble channel mark
+		bool				bScrambleChannel;
 
 		RwUInt8				byChannelID;
 	};

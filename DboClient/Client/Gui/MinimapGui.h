@@ -280,6 +280,13 @@ public:
 		RwReal				fAngle;
 	};
 
+	struct sDBSCRAMBLE_BALL
+	{
+		RwV2d				v2Pos;
+		RwV2d				v2Icon;
+		RwUInt8				byStar;
+	};
+
 	struct sLANKMARK
 	{
 		RwV2d				v2Pos;
@@ -428,6 +435,7 @@ private:
 	CSurfaceGui		m_surPopoStone;
 	CSurfaceGui		m_surPopoStoneActive;
 	CSurfaceGui		m_surMarkPartyMember[NUM_MMP];
+	CSurfaceGui		m_surMarkDBScrambleBall;					///< battle dragonball (dragonball scramble)
 	CSurfaceGui		m_surMarkCommonTarget[NTL_MAX_SHARETARGET_COUNT];
 	CSurfaceGui		m_surMarkDojoSeal[MAX_TOBJECT_STATE_TYPE_C];
 	CSurfaceGui		m_surCamp[NUM_CAMP_PEOPLE];					///< (피아구분)팀을 나누어서 싸우는 경우의 사람들
@@ -452,6 +460,7 @@ private:
 	std::vector<sNEXT_QUEST>	m_vectNextQuest;
 	std::vector<sCHECK_POINT>	m_vecCheckPoint;
 	std::vector<sPARTYMEMBER>	m_vecPartyMember;
+	std::vector<sDBSCRAMBLE_BALL>	m_vecDBScrambleBall;
 	sCOMMON_TARGET				m_aCommonTarget[NTL_MAX_SHARETARGET_COUNT];	///< 배열의 인덱스와 공유 타겟 번호를 맞춘다
 	std::map<RwUInt32, sSCRAMBLE_SEAL*>			m_mapScrambleSeal;
 	std::map<RwUInt32, sSCRAMBLE_SEAL_NOTIFY*>	m_mapScrambleSealNotify;

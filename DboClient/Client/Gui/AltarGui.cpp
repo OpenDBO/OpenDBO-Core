@@ -512,6 +512,9 @@ VOID CAltarGui::SetDragonBallSlot( RwInt32 nSlotIdx, EDragonBallType eDragonBall
     case DRAGON_BALL_TYPE_EVENT:
         sprintf_s(buf, "icon\\BIG_DBL_E_%02d.png", eDragonBallType);        
         break;
+    case DRAGON_BALL_TYPE_BATTLE:	// dragonball scramble
+        sprintf_s(buf, "icon\\big_db_b_%02d.png", eDragonBallType);
+        break;
     default:
         NTL_ASSERTFAIL(__FUNCTION__ << "Not DragonBall Type");
         return;
