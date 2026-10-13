@@ -186,6 +186,13 @@ void	CDojoManager::SendDojoInfo(TBLIDX dojoTblidx, sDBO_DOJO_NPC_INFO* pNpcInfo,
 	NTL_SAFE_WCSCPY(pNpcInfo->wchLeaderName, data->wchLeaderName);
 	NTL_SAFE_WCSCPY(pNpcInfo->wchNotice, data->wchNotice);
 
+	// the leader name is cleared when the dojo changes owner, show the guild master instead
+	if (pNpcInfo->wchLeaderName[0] == L'\0')
+	{
+		if (sDBO_GUILD_MEMBER_INFO* pOwnerLeader = pDojo->GetGuild()->GetMemberInfo(info->guildMaster))
+			NTL_SAFE_WCSCPY(pNpcInfo->wchLeaderName, pOwnerLeader->wszMemberName);
+	}
+
 	CGuild* dojoChallenger = g_pGuildManager->GetGuild(data->challengeGuildId);
 	if (dojoChallenger)
 	{
