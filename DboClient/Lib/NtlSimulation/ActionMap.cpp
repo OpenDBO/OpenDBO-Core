@@ -500,8 +500,8 @@ VOID CActionMapManager::InitDefaultActionMap()
 	SetSingleKey('H', ACTION_WINDOW_HELP);
 	SetCombineKey(NTL_CTRL_BIT | 'M', ACTION_WINDOW_MAIN);
 	SetSingleKey('B', ACTION_WINDOW_RANKBOARD);
-	SetSingleKey('.', ACTION_WINDOW_HOIPOIMIX);
-	SetSingleKey(',', ACTION_WINDOW_MASCOT);
+	SetSingleKey(NTL_KEY_PERIOD, ACTION_WINDOW_HOIPOIMIX);		// keys arrive as virtual key codes, '.' is not VK_OEM_PERIOD
+	SetSingleKey(NTL_KEY_COMMA, ACTION_WINDOW_MASCOT);			// ',' (0x2C) is not VK_OEM_COMMA, the key never matched
 
 	// Fixed (unchangeable)
 	SetSingleKey(NTL_KEY_SUBTRACT, ACTION_MINIMAP_ZOOMOUT);
