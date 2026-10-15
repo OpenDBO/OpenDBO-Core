@@ -44,6 +44,12 @@ protected:
 	WCHAR				m_awszGuildName[NTL_MAX_SIZE_GUILD_NAME + 1];
 	sDBO_DOGI_DATA		m_sDogiData;
 
+	// summoned mascot. The mascot object is created in Update and removes itself once
+	// m_hMascot no longer points at it, so it is never deleted while the sob manager iterates
+	TBLIDX				m_mascotTblidx;
+	SERIAL_HANDLE		m_hMascot;
+	RwBool				m_bMascotAppear;
+
 
 public:
 
@@ -88,6 +94,16 @@ public:
 
 
 	void						SetCharTitle(bool bInvisibleTitle, TBLIDX titleIdx);
+
+	// mascot
+	void						SetMascotTblidx(TBLIDX mascotTblidx, RwBool bAppear);	///< INVALID_TBLIDX unsummons
+	TBLIDX						GetMascotTblidx(void) const		{ return m_mascotTblidx; }
+	SERIAL_HANDLE				GetMascotSerial(void) const		{ return m_hMascot; }
+	void						PlayMascotAction(RwUInt32 uiAnimKey);
+
+protected:
+
+	void						UpdateMascot(void);
 };
 
 inline CHARACTERID CNtlSobPlayer::GetCharID()

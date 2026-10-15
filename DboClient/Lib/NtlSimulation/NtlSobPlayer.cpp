@@ -36,6 +36,7 @@
 #include "NtlSLLogic.h"
 #include "NtlSobCharProxyDecoration.h"
 #include "NtlSLApi.h"
+#include "NtlSobMascot.h"
 
 
 
@@ -135,6 +136,10 @@ CNtlSobPlayer::CNtlSobPlayer()
 	m_sDogiData.guildId			= INVALID_GUILDID;
 	m_sDogiData.byGuildColor	= INVALID_BYTE;
 	m_sDogiData.byDojoColor		= INVALID_BYTE;
+
+	m_mascotTblidx		= INVALID_TBLIDX;
+	m_hMascot			= INVALID_SERIAL_ID;
+	m_bMascotAppear		= FALSE;
 }
 
 CNtlSobPlayer::~CNtlSobPlayer()
@@ -206,6 +211,8 @@ void CNtlSobPlayer::Destroy(void)
 void CNtlSobPlayer::Update(RwReal fElapsed)
 {
 	CNtlSobFeelingActor::Update(fElapsed);
+
+	UpdateMascot();
 }
 
 void CNtlSobPlayer::SetGuildName(WCHAR* pwcGuildName)
@@ -260,6 +267,9 @@ void CNtlSobPlayer::HandleEvents(RWS::CMsg &pMsg)
 
 		// character title
 		SetCharTitle(pSobPlayerCreate->pPcBrief->bInvisibleTitle, pSobPlayerCreate->pPcBrief->charTitle);
+
+		// mascot that was summoned before we saw this player
+		SetMascotTblidx(pSobPlayerCreate->pPcBrief->mascotTblidx, FALSE);
 	}
 	else if(pMsg.Id == g_EventSobConvertClass ||
             pMsg.Id == g_EventSobChangeAdult)
@@ -365,4 +375,49 @@ void CNtlSobPlayer::SetCharTitle(bool bInvisibleTitle, TBLIDX titleIdx)
 	{
 		CNtlSLEventGenerator::SobEventTitleEffect(GetSerialID(), false, NULL, NULL); // delete title
 	}
+}
+
+void CNtlSobPlayer::SetMascotTblidx(TBLIDX mascotTblidx, RwBool bAppear)
+{
+	if (m_mascotTblidx == mascotTblidx)
+		return;
+
+	m_mascotTblidx = mascotTblidx;
+	m_bMascotAppear = bAppear;
+
+	// the current mascot no longer matches our handle and removes itself
+	m_hMascot = INVALID_SERIAL_ID;
+}
+
+void CNtlSobPlayer::PlayMascotAction(RwUInt32 uiAnimKey)
+{
+	CNtlSobMascot* pMascot = reinterpret_cast<CNtlSobMascot*>(GetNtlSobManager()->GetSobObject(m_hMascot));
+	if (pMascot)
+		pMascot->PlayAction(uiAnimKey);
+}
+
+void CNtlSobPlayer::UpdateMascot(void)
+{
+	if (m_mascotTblidx == INVALID_TBLIDX)
+		return;
+
+	// also recreates the mascot after the sob manager dropped every object (world change)
+	if (m_hMascot != INVALID_SERIAL_ID && GetNtlSobManager()->GetSobObject(m_hMascot))
+		return;
+
+	CNtlSobMascot* pMascot = reinterpret_cast<CNtlSobMascot*>(GetNtlSobManager()->CreateObject(SLCLASS_MASCOT));
+	m_hMascot = pMascot->GetSerialID();
+	pMascot->SetOwner(GetSerialID());
+
+	if (!pMascot->Create() || !pMascot->SetMascotTblidx(m_mascotTblidx))
+	{
+		// unknown mascot, do not retry every frame
+		pMascot->Finish();
+		m_mascotTblidx = INVALID_TBLIDX;
+		m_hMascot = INVALID_SERIAL_ID;
+		return;
+	}
+
+	pMascot->Spawn(m_bMascotAppear);
+	m_bMascotAppear = FALSE;
 }
