@@ -129,7 +129,7 @@ public:
 	virtual void	CalculateBodyCurseImmunity(float fValue, BYTE byApplyType, bool bIsPlus);
 	virtual void	CalculateChangeCurseImmunity(float fValue, BYTE byApplyType, bool bIsPlus);
 	virtual void	CalculateSkillAnimationSpeedModifier(float fValue, BYTE byApplyType, bool bIsPlus);
-	virtual void	CalculateWeightLimit(float fValue, BYTE byApplyType, bool bIsPlus) {}
+	virtual void	CalculateWeightLimit(float fValue, BYTE byApplyType, bool bIsPlus);
 	virtual void	CalculateSkillAggroBonus(float fValue, BYTE byApplyType, bool bIsPlus);
 	virtual void	CalculateSkillAggroBonusInPercent(float fValue, BYTE byApplyType, bool bIsPlus);
 	virtual void	CalculateDirectHealPowerBonus(float fValue, BYTE byApplyType, bool bIsPlus);

@@ -80,6 +80,7 @@ public:
 
 	void						CopyBaseItemAttributesTo(sAVATAR_ATTRIBUTE & avt);
 	void						CopyItemAttributesTo(CCharacterAtt* pCharAtt);
+	DWORD						GetEquippedWeight();
 
 	bool						WearGenderRequiredItem(BYTE byNewGender);
 

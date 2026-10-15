@@ -18,11 +18,13 @@
 #include "ItemRecipeTable.h"
 #include "TableContainer.h"
 #include "NtlBattle.h"
+#include "NtlCharacter.h"
 #include "ScriptLinkTable.h"
 #include "DojoTable.h"
 #include "SystemEffectTable.h"
 #include "MascotStatusTable.h"
 #include "MascotGradeTable.h"
+#include "CommonConfigTable.h"
 
 // core
 #include "NtlDebug.h"
@@ -2016,6 +2018,91 @@ gui::CSurface& Logic_GetBattleAttributeIconSurface( RwUInt8 byAttribute, RwBool 
 		filename += "Small";
 
 	surface = GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "GameCommon.srf", filename );
+
+	return surface;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Weight
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// level 0 = within the limit, 1.. = common config "OverweightEffectN"
+static const char* s_aszOverweightLevelName[] =
+{
+	"DST_LIMIT_LIGHT", "DST_LIMIT_BREAK", "DST_LIMIT_HEAVY", "DST_LIMIT_MANYHEAVY",
+	"DST_LIMIT_PROXIMITY", "DST_LIMIT_SOMEHEAVY", "DST_LIMIT_VERYHEAVY"
+};
+
+static const RwUInt8 s_byOverweightDisplayLevelCount = (RwUInt8)_countof( s_aszOverweightLevelName );
+
+RwUInt32 Logic_GetAvatarTotalWeight(VOID)
+{
+	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
+	if( !pAvatar )
+		return 0;
+
+	CNtlInventory* pInventory = pAvatar->GetInventory();
+	RwUInt32 uiWeight = 0;
+
+	// only equipment has a weight, broken items are still worn so they count too
+	for( RwInt32 i = 0; i < NTL_MAX_EQUIP_ITEM_SLOT; ++i )
+	{
+		SERIAL_HANDLE hItem = pInventory->GetEquipItem( i );
+		if( hItem == INVALID_SERIAL_ID )
+			continue;
+
+		CNtlSobItem* pItem = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( hItem ) );
+		if( !pItem )
+			continue;
+
+		sITEM_TBLDAT* pItemTbl = reinterpret_cast<CNtlSobItemAttr*>( pItem->GetSobAttr() )->GetItemTbl();
+		if( pItemTbl )
+			uiWeight += pItemTbl->dwWeight;
+	}
+
+	return uiWeight;
+}
+
+RwUInt32 Logic_GetAvatarWeightLimit(VOID)
+{
+	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
+	if( !pAvatar )
+		return 0;
+
+	return reinterpret_cast<CNtlSobAvatarAttr*>( pAvatar->GetSobAttr() )->m_dwWeightLimit;
+}
+
+RwReal Logic_GetAvatarWeightRate(VOID)
+{
+	return Dbo_GetWeightRateInPercent( Logic_GetAvatarTotalWeight(), Logic_GetAvatarWeightLimit() );
+}
+
+RwUInt8 Logic_GetAvatarOverweightLevel(VOID)
+{
+	return API_GetTableContainer()->GetCommonConfigTable()->GetOverweightLevel( Logic_GetAvatarWeightRate() );
+}
+
+const WCHAR* Logic_GetOverweightLevelName(RwUInt8 byLevel)
+{
+	if( byLevel >= s_byOverweightDisplayLevelCount )
+		byLevel = s_byOverweightDisplayLevelCount - 1;
+
+	return GetDisplayStringManager()->GetString( s_aszOverweightLevelName[byLevel] );
+}
+
+gui::CSurface& Logic_GetOverweightIconSurface(RwUInt8 byLevel)
+{
+	static gui::CSurface surface;
+
+	// srfLimitBuff10 (green, light) .. srfLimitBuff70 (purple, heaviest)
+	if( byLevel >= s_byOverweightDisplayLevelCount )
+		byLevel = s_byOverweightDisplayLevelCount - 1;
+
+	char acName[32];
+	sprintf_s( acName, 32, "srfLimitBuff%d", (byLevel + 1) * 10 );
+
+	surface = GetNtlGuiManager()->GetSurfaceManager()->GetSurface( "StatusBar.srf", acName );
 
 	return surface;
 }

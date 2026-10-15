@@ -142,6 +142,7 @@ public:
 		INFOWND_HLS_ITEM,
 		INFOWND_BATTLEATTRIBUTE_ARMOR,
 		INFOWND_CHARTITLE_EFFECT,				///< Character title stat effect list
+		INFOWND_WEIGHT,							///< Avatar weight / overweight level info
 
 		// Mascot
 		INFOWND_MASCOT_INFO,

@@ -42,6 +42,10 @@ void CCommonConfigTable::Destroy()
 void CCommonConfigTable::Init()
 {
 	m_mapCommonConfigValueList.clear();
+
+	m_byOverweightEffectCount = 0;
+	for (int i = 0; i < COMMONCONFIG_MAX_TBLDAT_VALUE_COUNT; i++)
+		m_aOverweightEffectTblidx[i] = INVALID_TBLIDX;
 }
 
 void* CCommonConfigTable::AllocNewTable(WCHAR* pwszSheetName, DWORD dwCodePage)
@@ -103,6 +107,25 @@ bool CCommonConfigTable::AddTable(void * pvTable, bool bReload, bool bUpdate)
 	COMMONCONFIG_TBLDAT_SET_DWORD(8, data->adwValue[8], INVALID_DWORD)
 	COMMONCONFIG_TBLDAT_SET_DWORD(9, data->adwValue[9], INVALID_DWORD)
 	m_mapCommonConfigValueList[pTbldat->tblidx] = data;
+
+	// remember the overweight rows by name, their tblidx isn't fixed
+	static const WCHAR s_wszOverweightEffect[] = L"OverweightEffect";
+	static const size_t s_nOverweightEffectLength = _countof(s_wszOverweightEffect) - 1;
+
+	if (pTbldat->wstrName == L"OverweightEffectCount")
+	{
+		DWORD dwCount = data->adwValue[0];
+		if (dwCount > COMMONCONFIG_MAX_TBLDAT_VALUE_COUNT)
+			dwCount = COMMONCONFIG_MAX_TBLDAT_VALUE_COUNT;
+
+		m_byOverweightEffectCount = (BYTE)dwCount;
+	}
+	else if (0 == pTbldat->wstrName.compare(0, s_nOverweightEffectLength, s_wszOverweightEffect))
+	{
+		int nLevel = _wtoi(pTbldat->wstrName.c_str() + s_nOverweightEffectLength);
+		if (nLevel >= 1 && nLevel <= COMMONCONFIG_MAX_TBLDAT_VALUE_COUNT)
+			m_aOverweightEffectTblidx[nLevel - 1] = pTbldat->tblidx;
+	}
 
 	if ( false == m_mapTableList.insert(std::pair<TBLIDX, sTBLDAT*>(pTbldat->tblidx, pTbldat)).second )
 	{
@@ -166,6 +189,34 @@ sCOMMONCONFIG_VALUE_DATA* CCommonConfigTable::FindCommonConfig(TBLIDX tblidx)
 		return NULL;
 	
 	return (sCOMMONCONFIG_VALUE_DATA*)(iter->second); 
+}
+
+BYTE CCommonConfigTable::GetOverweightLevel(float fWeightRate)
+{
+	BYTE byLevel = 0;
+
+	for (BYTE i = 1; i <= m_byOverweightEffectCount; i++)
+	{
+		sCOMMONCONFIG_VALUE_DATA* pData = GetOverweightEffect(i);
+		if (pData == NULL || pData->adwValue[0] == INVALID_DWORD)
+			continue;
+
+		if (fWeightRate >= (float)pData->adwValue[0])
+			byLevel = i;
+	}
+
+	return byLevel;
+}
+
+sCOMMONCONFIG_VALUE_DATA* CCommonConfigTable::GetOverweightEffect(BYTE byLevel)
+{
+	if (byLevel == 0 || byLevel > m_byOverweightEffectCount)
+		return NULL;
+
+	if (m_aOverweightEffectTblidx[byLevel - 1] == INVALID_TBLIDX)
+		return NULL;
+
+	return FindCommonConfig(m_aOverweightEffectTblidx[byLevel - 1]);
 }
 
 #include <iostream>

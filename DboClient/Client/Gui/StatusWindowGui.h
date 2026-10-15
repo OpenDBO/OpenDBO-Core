@@ -79,6 +79,7 @@ public:
 
 	VOID	UpdateEquipData(VOID);
 	VOID	UpdateStatData(VOID);
+	VOID	UpdateWeightData(VOID);
 
 	VOID	ShowIconDestination(VOID);
 	VOID	SetSlotRectHardCode(VOID);
@@ -127,6 +128,9 @@ protected:
 
 	VOID	OnMouseBattleAttrDefenseEnter(gui::CComponent* pComponent);
 	VOID	OnMouseBattleAttrDefenseLeave(gui::CComponent* pComponent);
+
+	VOID	OnMouseWeightEnter(gui::CComponent* pComponent);
+	VOID	OnMouseWeightLeave(gui::CComponent* pComponent);
 
 	VOID	SetSourceAttr(RwUInt8 bySourceWeaponAttr);
 	VOID	SetSourceAttrArmor(RwUInt8 bySourceArmorAttr);
@@ -228,6 +232,20 @@ protected:
 	gui::CSlot			m_slotWeaponMouseLeave;
 	gui::CSlot			m_slotArmorMouseEnter;
 	gui::CSlot			m_slotArmorMouseLeave;
+
+	// weight bar ("stdbLimitShame" in StatusWnd.frm). Its surfaces aren't in StatusWnd.srf
+	// so they're cut out of the status window texture in code
+	gui::CPanel*		m_pnlWeight;
+	gui::CStaticBox*	m_pstbWeightTitle;
+	gui::CStaticBox*	m_pstbWeightCurrent;
+	gui::CStaticBox*	m_pstbWeightSlash;
+	gui::CStaticBox*	m_pstbWeightMax;
+	gui::CStaticBox*	m_pstbWeightRate;
+	gui::CSurface		m_surWeightBack;
+	gui::CSurface		m_surWeightGreen;
+	gui::CSurface		m_surWeightRed;
+	gui::CSlot			m_slotWeightMouseEnter;
+	gui::CSlot			m_slotWeightMouseLeave;
 
 
 public:

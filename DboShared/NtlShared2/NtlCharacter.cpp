@@ -520,6 +520,9 @@ int Dbo_DecreaseDboAp(int oldAp, int diff, int maxAP)
 //-----------------------------------------------------------------------------------
 float Dbo_GetWeightRateInPercent(DWORD dwTotalWeight, DWORD dwWeightLimit)
 {
+	if (dwWeightLimit == 0 || dwWeightLimit == INVALID_DWORD)
+		return 0.0f;
+
 	return (float)dwTotalWeight / (float)dwWeightLimit * 100.0f;
 }
 

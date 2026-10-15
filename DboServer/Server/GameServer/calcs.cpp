@@ -124,6 +124,7 @@ void Dbo_SetAvatarAttributeValue(CCharacterAtt * pCharAtt, eSYSTEM_EFFECT_CODE e
 		case ACTIVE_BURN_DEFENCE:				pCharAtt->CalculateBurnDefence(effectvalue, byApplyType, true);	break;
 
 		case ACTIVE_VIABILITY:					pCharAtt->CalculateBlockRate(effectvalue, byApplyType, true);	break;
+		case ACTIVE_WEIGHT_LIMIT_UP:			pCharAtt->CalculateWeightLimit(effectvalue, byApplyType, true);	break;
 
 			//curse
 		case ACTIVE_SKILL_AGGRO_DOWN: {	pCharAtt->CalculateSkillAggroBonus(effectvalue, byApplyType, false);	}break;
@@ -149,6 +150,7 @@ void Dbo_SetAvatarAttributeValue(CCharacterAtt * pCharAtt, eSYSTEM_EFFECT_CODE e
 		case ACTIVE_SKILL_CASTING_TIME_UP: {	pCharAtt->CalculateCastingTimeChangePercent(effectvalue, byApplyType, true);	}break;
 		case ACTIVE_SKILL_COOL_TIME_UP: {	pCharAtt->CalculateCoolTimeChangePercent(effectvalue * 0.7f, byApplyType, true);	}break;
 		case ACTIVE_ATTACK_RANGE_DOWN: {		pCharAtt->CalculateAttackRange(effectvalue, byApplyType, false);	}break;
+		case ACTIVE_WEIGHT_LIMIT_DOWN:			pCharAtt->CalculateWeightLimit(effectvalue, byApplyType, false);	break;
 
 		case ACTIVE_ALL_OFFENCE_DOWN:		pCharAtt->CalculatePhysicalOffence(effectvalue, byApplyType, false); pCharAtt->CalculateEnergyOffence(effectvalue, byApplyType, false);		break;
 		case ACTIVE_ALL_DEFENCE_DOWN:		pCharAtt->CalculatePhysicalDefence(effectvalue, byApplyType, false); pCharAtt->CalculateEnergyDefence(effectvalue, byApplyType, false);		break;

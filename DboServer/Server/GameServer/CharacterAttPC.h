@@ -36,15 +36,22 @@ public:
 
 	virtual void		CalculateBattleAttribute(float fValue, BYTE byApplyType, bool bIsPlus);
 
+	DWORD				GetTotalWeight() { return m_dwTotalWeight; }
+	BYTE				GetOverweightLevel() { return m_byOverweightLevel; }
+
 
 private:
 
 	void				CalcSecondWeaponOffence();
+	void				ApplyOverweightEffects();
 
 
 private:
 
 	CPlayer*			m_pPlayerRef;
+
+	DWORD				m_dwTotalWeight;
+	BYTE				m_byOverweightLevel;
 
 };
 

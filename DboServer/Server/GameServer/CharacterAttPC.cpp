@@ -9,12 +9,16 @@
 #include "calcs.h"
 #include "StatusTransformTable.h"
 #include "CommonConfigTable.h"
+#include "SkillTable.h"
+#include "SystemEffectTable.h"
 #include "FormulaTable.h"
 #include "GameServer.h"
 
 
 CCharacterAttPC::CCharacterAttPC()
 {
+	m_dwTotalWeight = 0;
+	m_byOverweightLevel = 0;
 }
 
 CCharacterAttPC::~CCharacterAttPC()
@@ -143,6 +147,9 @@ void CCharacterAttPC::CalculateAtt()
 	//buff attributes
 	m_pPlayerRef->GetBuffManager()->CopyBuffAttributesTo(this);
 
+	//overweight effects - after items, passives and buffs since those can change the weight limit
+	ApplyOverweightEffects();
+
 	//transformation attributes
 	if (m_pPlayerRef->GetTransformationTbldat())
 	{
@@ -261,6 +268,43 @@ void CCharacterAttPC::CalculateAtt()
 float CCharacterAttPC::GetWalkSpeed()
 {
 	return GetRunSpeed();	//player walk and run speed is the same..
+}
+
+
+//-----------------------------------------------------------------------------------
+//		Purpose	: Apply the skills of the common config "OverweightEffectN" row matching
+//				  the equipped weight rate (light overweight boosts offence, heavier ones
+//				  cut offence/defence/speed but add exp)
+//-----------------------------------------------------------------------------------
+void CCharacterAttPC::ApplyOverweightEffects()
+{
+	CCommonConfigTable* pConfigTable = g_pTableContainer->GetCommonConfigTable();
+
+	m_dwTotalWeight = m_pPlayerRef->GetPlayerItemContainer()->GetEquippedWeight();
+	m_byOverweightLevel = pConfigTable->GetOverweightLevel(Dbo_GetWeightRateInPercent(m_dwTotalWeight, m_pAttribute.dwWeightLimit));
+
+	sCOMMONCONFIG_VALUE_DATA* pEffectData = pConfigTable->GetOverweightEffect(m_byOverweightLevel);
+	if (pEffectData == NULL)
+		return;
+
+	for (int i = 1; i < COMMONCONFIG_MAX_TBLDAT_VALUE_COUNT; i++)
+	{
+		if (pEffectData->adwValue[i] == INVALID_DWORD)
+			continue;
+
+		sSKILL_TBLDAT* pSkillTbldat = (sSKILL_TBLDAT*)g_pTableContainer->GetSkillTable()->FindData(pEffectData->adwValue[i]);
+		if (pSkillTbldat == NULL)
+			continue;
+
+		for (int k = 0; k < NTL_MAX_EFFECT_IN_SKILL; k++)
+		{
+			eSYSTEM_EFFECT_CODE effectcode = g_pTableContainer->GetSystemEffectTable()->GetEffectCodeWithTblidx(pSkillTbldat->skill_Effect[k]);
+			if (effectcode == INVALID_SYSTEM_EFFECT_CODE)
+				continue;
+
+			Dbo_SetAvatarAttributeValue(this, effectcode, (float)pSkillTbldat->aSkill_Effect_Value[k], pSkillTbldat->bySkill_Effect_Type[k]);
+		}
+	}
 }
 
 
