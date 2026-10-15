@@ -71,6 +71,7 @@ protected:
 	VOID		GambleEffectProcEnd( RwInt32 nSlotIdx );*/
 	VOID		BoomEffectProc( RwUInt32 hCreateSerial, RwChar* pcEffectFile );
 	VOID		OnMovieEnd(gui::CComponent* pComponent);
+	VOID		EndBoomEffect( RwInt32 nSlotIdx );			///< ends the effect of a slot and frees it for input
 
 	VOID MouseDown( const CKey& key );
 	VOID MouseUp( const CKey& key );
@@ -120,6 +121,7 @@ protected:
 	gui::CFlash**			m_ppGambleBoomEffect;		///< 플래쉬 이펙트 ( Boom! )
 	gui::CSlot*				m_pSlotBoomEffectEnd;		///< 플래쉬 이펙트가 종료되었을 경우
 	RwBool*					m_pbIsGambleEffect;			///< 플래쉬 이펙트가 사용되고 있는지의 여부(아이템이 처리되어선 안된다)
+	RwReal*					m_pfGambleEffectTime;		///< how long the effect of each slot has played
 
 	// Item Identify Effect
 	gui::CParticleBox*		m_pPBox;					///< 파티클 박스

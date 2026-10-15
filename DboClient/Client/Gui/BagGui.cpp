@@ -56,6 +56,7 @@
 
 #define dFLASH_BOOM_EFFECT	"Tenkaichi_Boom.swf"
 #define dFLASH_BOOM_WIDTH	64
+#define dFLASH_BOOM_MAX_TIME	5.0f	// a boom effect that never reports its end stops blocking its slot after this
 #define dFLASH_BOOM_HEIGHT	64
 #define BAG_CALC_OFFSET_X 104
 
@@ -105,6 +106,7 @@ VOID CBagBaseGui::Init(VOID)
 	// Gamble
 	m_ppGambleBoomEffect = NULL;
 	m_pbIsGambleEffect = NULL;
+	m_pfGambleEffectTime = NULL;
 
 	m_pPBox = NULL;
 
@@ -133,6 +135,7 @@ RwBool CBagBaseGui::Create(VOID)
 	m_ppGambleBoomEffect = NTL_NEW gui::CFlash*[m_nNumSlot];	///< 겜블 붐 효과
 	m_pSlotBoomEffectEnd = NTL_NEW gui::CSlot[m_nNumSlot];
 	m_pbIsGambleEffect = NTL_NEW RwBool[m_nNumSlot];
+	m_pfGambleEffectTime = NTL_NEW RwReal[m_nNumSlot];
 	for( RwInt32 i = 0; i < m_nNumSlot; ++i )
 	{
 		m_ppGambleBoomEffect[i] = NTL_NEW gui::CFlash(m_pThis, GetNtlGuiManager()->GetSurfaceManager() );
@@ -146,6 +149,7 @@ RwBool CBagBaseGui::Create(VOID)
 
 		// 플레이 안되고 있다고 초기화
 		m_pbIsGambleEffect[i] = FALSE;
+		m_pfGambleEffectTime[i] = 0.0f;
 	}
 
 	// Item Identify Particle
@@ -223,6 +227,7 @@ VOID CBagBaseGui::Destroy(VOID)
 
 	NTL_ARRAY_DELETE( m_pSlotBoomEffectEnd );
 	NTL_ARRAY_DELETE( m_pbIsGambleEffect );
+	NTL_ARRAY_DELETE( m_pfGambleEffectTime );
 	
 	if( m_ppstbStackNum )
 	{
@@ -265,6 +270,15 @@ VOID CBagBaseGui::Update( RwReal fElapsed )
 		if( m_ppGambleBoomEffect[i]->IsPlayMovie() )
 		{
 			m_ppGambleBoomEffect[i]->Update( fElapsed );
+		}
+
+		// the slot ignores input while its effect plays, never leave it blocked if the end is missed
+		if( m_pbIsGambleEffect[i] )
+		{
+			m_pfGambleEffectTime[i] += fElapsed;
+
+			if( !m_ppGambleBoomEffect[i]->IsPlayMovie() || m_pfGambleEffectTime[i] >= dFLASH_BOOM_MAX_TIME )
+				EndBoomEffect( i );
 		}
 	}
 }
@@ -870,9 +884,8 @@ VOID CBagBaseGui::RightButtonProc( RwInt32 nSlotIdx )
 	if( !pItem )
 		return;
 
-	// Do not process if the Gamble effect is in production.
-	if( m_pbIsGambleEffect[nSlotIdx] )
-		return;
+	// a click during the capsule open effect finishes it, the item is already in the slot
+	EndBoomEffect( nSlotIdx );
 	
 	SERIAL_HANDLE hItemHandle = pItem->GetSerialID();
 	CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>( pItem->GetSobAttr() );
@@ -895,7 +908,7 @@ VOID CBagBaseGui::RightButtonProc( RwInt32 nSlotIdx )
 		
 		CDboEventGenerator::EnableItemIcon( FALSE, data.sItemInfo.ePlace, data.sItemInfo.nSlotIdx, data.sItemInfo.nPlaceIdx );
 		GetAlarmManager()->FormattedAlarmMessage( "DST_COMMERCIAL_MB_USE_TERM_LIMETED_ITEM_MSG", FALSE, &data, pItemTextTable->GetText( pItemAttr->GetItemTbl()->Name ).c_str() );
-	}		
+	}
 	// If the warehouse is open,
 	else if( GetDialogManager()->IsOpenDialog(DIALOG_WAREHOUSEBAR) )
 	{
@@ -1109,7 +1122,8 @@ VOID CBagBaseGui::BoomEffectProc( RwUInt32 hCreateSerial, RwChar* pcEffectFile )
 			m_ppGambleBoomEffect[i]->RestartMovie();
 			m_ppGambleBoomEffect[i]->Show(true);
 			m_pbIsGambleEffect[i] = TRUE;
-			
+			m_pfGambleEffectTime[i] = 0.0f;
+
 			return;
 		}
 	}
@@ -1121,24 +1135,34 @@ VOID CBagBaseGui::OnMovieEnd( gui::CComponent* pComponent )
 
 	for( RwInt32 i = 0; i < m_nNumSlot; ++i )
 	{
-		// 일치한다.
-		if( m_ppGambleBoomEffect[i]->GetScreenRect() == pFlash->GetScreenRect() )
+		// the flash itself, the rectangle only as before when the signal carries another component
+		if( m_ppGambleBoomEffect[i] == pFlash || m_ppGambleBoomEffect[i]->GetScreenRect() == pFlash->GetScreenRect() )
 		{
-			// Item Create Effect
-			CNtlSobItem* pBag = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( m_hBagSerial ) );
-			CDboEventGenerator::ItemCreatedEffect( pBag->GetChildSerial(i), GetBagPos(), i);
-
-			// Flash Unload and Hide
-			pFlash->Show(false);
-			m_pbIsGambleEffect[i] = FALSE;
-			m_ppGambleBoomEffect[i]->Unload();	
-
+			EndBoomEffect( i );
 			return;
 		}
 	}
 
 	// 여기까지 알고리즘이 온다면 잘못된 정보의 플래쉬 객체가 있다는 뜻.
 	NTL_ASSERTFAIL( "CBagBaseGui::OnMovieEnd - Invalid flash component" );
+}
+
+VOID CBagBaseGui::EndBoomEffect( RwInt32 nSlotIdx )
+{
+	if( nSlotIdx < 0 || nSlotIdx >= m_nNumSlot || !m_pbIsGambleEffect[nSlotIdx] )
+		return;
+
+	m_pbIsGambleEffect[nSlotIdx] = FALSE;
+	m_pfGambleEffectTime[nSlotIdx] = 0.0f;
+
+	// Item Create Effect
+	CNtlSobItem* pBag = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( m_hBagSerial ) );
+	if( pBag )
+		CDboEventGenerator::ItemCreatedEffect( pBag->GetChildSerial( nSlotIdx ), GetBagPos(), nSlotIdx );
+
+	// Flash Unload and Hide
+	m_ppGambleBoomEffect[nSlotIdx]->Show( false );
+	m_ppGambleBoomEffect[nSlotIdx]->Unload();
 }
 
 VOID CBagBaseGui::MouseDown( const CKey& key )
@@ -1223,13 +1247,8 @@ VOID CBagBaseGui::MouseUp( const CKey& key )
 		return;
 	}
 
-	// 겜블 효과가 사용중이라면 입력을 막는다.
-	if( m_pbIsGambleEffect[nSlotIdx] )
-	{
-		m_nLSelectedSlotIdx = -1;
-		m_nRSelectedSlotIdx = -1;
-		return;
-	}
+	// a click during the capsule open effect finishes it instead of being swallowed
+	EndBoomEffect( nSlotIdx );
 
 	if( key.m_nID == UD_LEFT_BUTTON )
 	{
