@@ -2,6 +2,7 @@
 
 // shared
 #include "NtlItem.h"
+#include "NtlCharacter.h"
 #include "NtlResultCode.h"
 #include "MobTable.h"
 
@@ -14,6 +15,7 @@
 #include "NtlPLGui.h"
 #include "NtlPLGuiManager.h"
 #include "gui_renderer.h"
+#include "gui_texture.h"
 #include "NtlPLCharacter.h"
 #include "NtlPLEvent.h"
 
@@ -65,6 +67,36 @@
 #define YELLOW_TEXT_COLOR	RGB( 0xFF, 0xD1, 0x44 )
 #define BLUE_TEXT_COLOR		RGB( 0x9B, 0xE2, 0xFF )
 
+// weight bar fill area inside the 180x18 frame
+#define WEIGHT_BAR_FILL_X		2
+#define WEIGHT_BAR_FILL_Y		3
+#define WEIGHT_BAR_FILL_WIDTH	176
+#define WEIGHT_BAR_FILL_HEIGHT	12
+
+// cut a surface out of the texture of surTexture, rect is relative to the owning panel
+static gui::CSurface MakeTextureSurface(const gui::CSurface& surTexture, RwInt32 nX, RwInt32 nY, RwInt32 nWidth, RwInt32 nHeight,
+										RwInt32 nUVLeft, RwInt32 nUVTop, RwInt32 nUVRight, RwInt32 nUVBottom)
+{
+	gui::CSurface surface = surTexture;
+
+	surface.m_SnapShot.rtRect.SetRectWH(nX, nY, nWidth, nHeight);
+
+	if (surface.m_pTexture && surface.m_pTexture->GetWidth() > 0 && surface.m_pTexture->GetHeight() > 0)
+	{
+		RwReal fWidth = (RwReal)surface.m_pTexture->GetWidth();
+		RwReal fHeight = (RwReal)surface.m_pTexture->GetHeight();
+
+		surface.m_SnapShot.UVs[0] = (RwReal)nUVLeft / fWidth;
+		surface.m_SnapShot.UVs[1] = (RwReal)nUVTop / fHeight;
+		surface.m_SnapShot.UVs[2] = (RwReal)nUVRight / fWidth;
+		surface.m_SnapShot.UVs[3] = (RwReal)nUVBottom / fHeight;
+	}
+
+	surface.m_Original = surface.m_SnapShot;
+
+	return surface;
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ! AvatarTab
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -89,6 +121,13 @@ CStatusAvatarTab::CStatusAvatarTab(VOID)
 	m_sBattleAttr.eBattleAttrInfoType = stINFOWND_BATTLEATTR::TYPE_ATTR_INVALID;
 	m_sBattleAttr.bySourceWeaponAttr = INVALID_BYTE;
 	m_sBattleAttr.byTargetWeaponAttr = INVALID_BYTE;
+
+	m_pnlWeight = NULL;
+	m_pstbWeightTitle = NULL;
+	m_pstbWeightCurrent = NULL;
+	m_pstbWeightSlash = NULL;
+	m_pstbWeightMax = NULL;
+	m_pstbWeightRate = NULL;
 }
 
 
@@ -224,6 +263,41 @@ RwBool CStatusAvatarTab::Create(CNtlPLGui* pParent)
 
 	m_slotArmorMouseEnter = m_pnlBattleAttributeDefense->SigMouseEnter().Connect(this, &CStatusAvatarTab::OnMouseBattleAttrDefenseEnter);
 	m_slotArmorMouseLeave = m_pnlBattleAttributeDefense->SigMouseLeave().Connect(this, &CStatusAvatarTab::OnMouseBattleAttrDefenseLeave);
+
+	// weight bar
+	m_pnlWeight = reinterpret_cast<gui::CPanel*>(pParent->GetComponent("stdbLimitShame"));
+	m_pstbWeightTitle = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent("sttLimitShameText"));
+	m_pstbWeightCurrent = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent("sttLimitShameCurrentText"));
+	m_pstbWeightSlash = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent("sttLimitShametaste"));
+	m_pstbWeightMax = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent("sttLimitShameMaxText"));
+	m_pstbWeightRate = reinterpret_cast<gui::CStaticBox*>(pParent->GetComponent("sttLimitShameRate"));
+
+	if (m_pnlWeight)
+	{
+		// any StatusWnd.srf surface on rsrStatus1 (wnd_status.png) works as texture source
+		gui::CSurface surTexture = GetNtlGuiManager()->GetSurfaceManager()->GetSurface("StatusWnd.srf", "srfLeftSpinUp");
+
+		m_surWeightBack = MakeTextureSurface(surTexture, 0, 0, m_pnlWeight->GetWidth(), m_pnlWeight->GetHeight(), 239, 464, 461, 478);
+		m_surWeightGreen = MakeTextureSurface(surTexture, WEIGHT_BAR_FILL_X, WEIGHT_BAR_FILL_Y, WEIGHT_BAR_FILL_WIDTH, WEIGHT_BAR_FILL_HEIGHT, 239, 442, 457, 452);
+		m_surWeightRed = MakeTextureSurface(surTexture, WEIGHT_BAR_FILL_X, WEIGHT_BAR_FILL_Y, WEIGHT_BAR_FILL_WIDTH, WEIGHT_BAR_FILL_HEIGHT, 239, 453, 457, 463);
+
+		m_slotWeightMouseEnter = m_pnlWeight->SigMouseEnter().Connect(this, &CStatusAvatarTab::OnMouseWeightEnter);
+		m_slotWeightMouseLeave = m_pnlWeight->SigMouseLeave().Connect(this, &CStatusAvatarTab::OnMouseWeightLeave);
+	}
+
+	if (m_pstbWeightTitle)
+	{
+		// the frm box is sized for the 2-glyph TW label
+		m_pstbWeightTitle->SetPosition(4, 1);
+		m_pstbWeightTitle->SetSize(46, 17);
+		m_pstbWeightTitle->SetText(GetDisplayStringManager()->GetString("DST_LIMTI_WEIGHT"));
+	}
+
+	if (m_pstbWeightSlash)
+		m_pstbWeightSlash->SetText(L"/");
+
+	// replaces the frm's srfLimitShameEmptyBg, which StatusWnd.srf doesn't define
+	UpdateWeightData();
 
 
 	// Equip Slot CoordSet
@@ -419,6 +493,8 @@ VOID CStatusAvatarTab::UpdateEquipData(VOID)
 			GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_ITEM, m_rtEquipSlot[m_nMouseOnIndex].left + rtScreen.left, m_rtEquipSlot[m_nMouseOnIndex].top + rtScreen.top, pItem, DIALOG_STATUS);
 		}
 	}
+
+	UpdateWeightData();
 }
 
 VOID CStatusAvatarTab::UpdateStatData(VOID)
@@ -501,6 +577,58 @@ VOID CStatusAvatarTab::UpdateStatData(VOID)
 	{
 		m_pstbStat[EXP_CUR]->SetText("MAX EXP");
 		m_pstbStat[EXP_MAX]->Clear();
+	}
+
+	UpdateWeightData();
+}
+
+VOID CStatusAvatarTab::UpdateWeightData(VOID)
+{
+	if (!m_pnlWeight)
+		return;
+
+	RwUInt32 uiWeight = Logic_GetAvatarTotalWeight();
+	RwUInt32 uiWeightLimit = Logic_GetAvatarWeightLimit();
+	RwReal fRate = Dbo_GetWeightRateInPercent(uiWeight, uiWeightLimit);
+	RwBool bOverweight = fRate > 100.0f;
+
+	// green bar filling up to the limit, a full red bar once over it
+	gui::CSurface surFill = bOverweight ? m_surWeightRed : m_surWeightGreen;
+	RwReal fFill = bOverweight ? 1.0f : fRate / 100.0f;
+	RwInt32 nFillWidth = (RwInt32)((RwReal)WEIGHT_BAR_FILL_WIDTH * fFill);
+
+	surFill.m_SnapShot.rtRect.SetRectWH(WEIGHT_BAR_FILL_X, WEIGHT_BAR_FILL_Y, nFillWidth, WEIGHT_BAR_FILL_HEIGHT);
+	surFill.m_SnapShot.UVs[2] = surFill.m_SnapShot.UVs[0] + (surFill.m_SnapShot.UVs[2] - surFill.m_SnapShot.UVs[0]) * fFill;
+	surFill.m_Original = surFill.m_SnapShot;
+
+	m_pnlWeight->GetSurface()->clear();
+	m_pnlWeight->AddSurface(m_surWeightBack);
+
+	if (nFillWidth > 0)
+		m_pnlWeight->AddSurface(surFill);
+
+	RwUInt32 uiColor = bOverweight ? INFOCOLOR_5 : INFOCOLOR_0;
+
+	if (m_pstbWeightCurrent)
+	{
+		m_pstbWeightCurrent->SetTextColor(uiColor);
+		m_pstbWeightCurrent->Format("%u", uiWeight);
+	}
+
+	if (m_pstbWeightMax)
+		m_pstbWeightMax->Format("%u", uiWeightLimit);
+
+	if (m_pstbWeightRate)
+	{
+		m_pstbWeightRate->SetTextColor(uiColor);
+		m_pstbWeightRate->Format(L"(%d%%)", (RwInt32)fRate);
+	}
+
+	// keep an open tooltip in sync
+	if (DIALOG_STATUS == GetInfoWndManager()->GetRequestGui() && CInfoWndManager::INFOWND_WEIGHT == GetInfoWndManager()->GetInfoWndState())
+	{
+		CRectangle rtScreen = m_pnlWeight->GetScreenRect();
+		GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_WEIGHT, rtScreen.left, rtScreen.top, NULL, DIALOG_STATUS);
 	}
 }
 
@@ -1259,6 +1387,19 @@ VOID CStatusAvatarTab::OnMouseBattleAttrDefenseEnter(gui::CComponent* pComponent
 VOID CStatusAvatarTab::OnMouseBattleAttrDefenseLeave(gui::CComponent* pComponent)
 {
 	if (DIALOG_STATUS == GetInfoWndManager()->GetRequestGui() && CInfoWndManager::INFOWND_BATTLEATTRIBUTE_ARMOR == GetInfoWndManager()->GetInfoWndState())
+		GetInfoWndManager()->ShowInfoWindow(FALSE);
+}
+
+VOID CStatusAvatarTab::OnMouseWeightEnter(gui::CComponent* pComponent)
+{
+	CRectangle rtScreen = pComponent->GetScreenRect();
+
+	GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_WEIGHT, rtScreen.left, rtScreen.top, NULL, DIALOG_STATUS);
+}
+
+VOID CStatusAvatarTab::OnMouseWeightLeave(gui::CComponent* pComponent)
+{
+	if (DIALOG_STATUS == GetInfoWndManager()->GetRequestGui() && CInfoWndManager::INFOWND_WEIGHT == GetInfoWndManager()->GetInfoWndState())
 		GetInfoWndManager()->ShowInfoWindow(FALSE);
 }
 

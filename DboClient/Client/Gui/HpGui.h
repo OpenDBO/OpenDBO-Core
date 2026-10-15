@@ -82,6 +82,10 @@ private:
 	gui::CPanel* m_pnlBattleAttributeWeapon;
 	gui::CPanel* m_pnlBattleAttributeArmor;
 
+	// weight level icon (srfLimitBuff10..70), created in code since HP.frm has no slot for it
+	gui::CPanel* m_pnlWeight;
+	RwUInt8		 m_byWeightLevel;
+
 	stINFOWND_BATTLEATTR	m_sBattleAttr;
 	// RP Gauge
 	RwReal	m_fCurrentRPChargingTime;
@@ -116,6 +120,7 @@ public:
 	VOID	CalcBattleAttribute(VOID);
 	VOID	SetBattleAttribute(RwUInt8 byBattleAttribute);
 	VOID	SetBattleAttribute2(RwUInt8 byBattleAttribute);
+	VOID	UpdateWeight(VOID);
 	void Update( RwReal fElapsed );
 	void UpdateBeforeCamera(RwReal fElapsed);
 
@@ -159,7 +164,10 @@ private:
 
 	gui::CSlot m_slotArmorMouseEnter;
 	gui::CSlot m_slotArmorMouseLeave;
-			
+
+	gui::CSlot m_slotWeightMouseEnter;
+	gui::CSlot m_slotWeightMouseLeave;
+
 	VOID	OnPaint(VOID);
 	VOID	OnPaintLast(VOID);
 	VOID	OnMove(RwInt32 nX, RwInt32 nY);	
@@ -176,6 +184,9 @@ private:
 	VOID	OnMouseBattleAttrAttackLeave(gui::CComponent* pComponent);
 	VOID	OnMouseBattleAttrDefenseEnter(gui::CComponent* pComponent);
 	VOID	OnMouseBattleAttrDefenseLeave(gui::CComponent* pComponent);
+
+	VOID	OnMouseWeightEnter(gui::CComponent* pComponent);
+	VOID	OnMouseWeightLeave(gui::CComponent* pComponent);
 
 };
 

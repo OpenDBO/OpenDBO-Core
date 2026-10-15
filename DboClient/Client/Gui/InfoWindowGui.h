@@ -83,6 +83,7 @@ public:
 	VOID	SetUpgradeInfo(stINFOWND_UPGRADE* pUpgrade);
 	VOID	SetBattleAttributeDisplay(stINFOWND_BATTLEATTR* pBattleAttr);
 	VOID	SetCharTitleEffectInfo(const std::wstring* pEffectText);
+	VOID	SetWeightInfo(VOID);
 	VOID	SetQuestSearch(QUEST_SEARCH_LIST* pQuestInfo);
 	VOID	SetQuestIndicateInfo(RwUInt32 uiQuestTitle, RwUInt32 uiQuestGoal);
 	VOID	SetSkillUpgradeInfo(stSkillUpgradeInfo* pUpgradeInfo);
@@ -115,6 +116,7 @@ private:
 	RwBool	SetItemInfo_RandomOption(gui::CMDStaticBox* pmdBox, sITEM_TBLDAT* pData, sITEM_OPTION_SET* pItemOptionSet, RwBool bShowTitle, RwBool bBlankLine, RwInt32 nOrder = 0, RwUInt32 uiColor = INFOCOLOR_7);
 
 	VOID	SetItemInfo_Durablity(gui::CMDStaticBox* pmdBox, RwUInt8 ucCurDur, RwUInt8 ucMaxDur, RwBool bJustMaxDurablity = false);
+	VOID	SetItemInfo_Weight(gui::CMDStaticBox* pmdBox, const sITEM_TBLDAT* pData);
 	VOID	SetItemInfo_SetItem(gui::CMDStaticBox* pmdBox, sITEM_TBLDAT* pData, CNtlSobAvatar* pAvatar);
 	BOOL	SetItemInfo_LimitState(gui::CMDStaticBox* pmdBox, sITEM_TBLDAT* pData, CNtlSobItemAttr* pSobItemAttr = NULL, sITEM_PROFILE* pItemProfile = NULL);
 	VOID	SetItemInfo_SellPrice(gui::CMDStaticBox* pmdBox, sITEM_TBLDAT* pData, RwUInt8 byStackCount);

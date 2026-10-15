@@ -192,6 +192,9 @@ VOID CInfoWndManager::ShowInfoWindow( RwBool bShow, RwInt32 eState /* = INFOWND_
 		case INFOWND_CHARTITLE_EFFECT:
 			m_pInfoWnd->SetCharTitleEffectInfo(reinterpret_cast<const std::wstring*>(pInstance));
 			break;
+		case INFOWND_WEIGHT:
+			m_pInfoWnd->SetWeightInfo();
+			break;
 		case INFOWND_QUEST_SEARCH:
 			m_pInfoWnd->SetQuestSearch( reinterpret_cast<QUEST_SEARCH_LIST*>( pInstance ) );
 			break;

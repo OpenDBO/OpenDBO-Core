@@ -450,6 +450,7 @@ VOID CInfoWindowGui::SetItemInfo( gui::CMDStaticBox* pmdBox, CNtlSobItem* pItem,
 	bBlankLine = SetItemInfo_RandomOption(pmdBox, pData, pItemAttr->GetOptionSet(), bBlankLine, bBlankLine);
 	
 	SetItemInfo_Durablity( pmdBox, pItemAttr->GetDur(), pItemAttr->GetMaxDur() );
+	SetItemInfo_Weight( pmdBox, pData );
 
 	SetItemInfo_SetItem( pmdBox, pData, pAvatar );
 
@@ -531,6 +532,7 @@ VOID CInfoWindowGui::SetProfileItemInfo( gui::CMDStaticBox* pmdBox, sITEM_TBLDAT
 	bBlankLine = SetItemInfo_RandomOption(pmdBox, pData, &pItemProfile->sOptionSet, bBlankLine, bBlankLine);
 
 	SetItemInfo_Durablity( pmdBox, pItemProfile->byCurDur, pData->byDurability );
+	SetItemInfo_Weight( pmdBox, pData );
 
 	SetItemInfo_SetItem( pmdBox, pData, pAvatar );
 
@@ -615,6 +617,7 @@ VOID CInfoWindowGui::SetTableItemInfo( gui::CMDStaticBox* pmdBox, sITEM_TBLDAT* 
 	SetItemInfo_Option( pmdBox, pData, pData->Item_Option_Tblidx, TRUE, bBlankLine );
 
 	SetItemInfo_Durablity( pmdBox, pData->byDurability, pData->byDurability, TRUE );
+	SetItemInfo_Weight( pmdBox, pData );
 
 	SetItemInfo_SetItem( pmdBox, pData, pAvatar );
 
@@ -867,6 +870,7 @@ void CInfoWindowGui::SetHlsItemInfo(sCASHITEM * pData)
 	SetItemInfo_Option(m_pmdBox, pItemTbldat, pItemTbldat->Item_Option_Tblidx, TRUE, bBlankLine);
 
 	SetItemInfo_Durablity(m_pmdBox, pItemTbldat->byDurability, pItemTbldat->byDurability, TRUE);
+	SetItemInfo_Weight(m_pmdBox, pItemTbldat);
 
 	SetItemInfo_SetItem(m_pmdBox, pItemTbldat, pAvatar);
 
@@ -1322,6 +1326,63 @@ VOID CInfoWindowGui::SetCharTitleEffectInfo( const std::wstring* pEffectText )
 			m_pmdBox->SetItem( wstrLine.c_str(), szName, FONT_TEXT, COMP_TEXT_CENTER, RANKBATTLE_COLOR_GREEN );
 
 			nStart = nEnd + 1;
+		}
+	}
+
+	m_pmdBox->DrawItem();
+}
+
+VOID CInfoWindowGui::SetWeightInfo(VOID)
+{
+	// same colors as the srfLimitBuff10..70 icons
+	static const RwUInt32 s_auiLevelColor[] = { INFOCOLOR_14, INFOCOLOR_7, INFOCOLOR_6, INFOCOLOR_5, INFOCOLOR_5, INFOCOLOR_5, INFOCOLOR_8 };
+	static const RwUInt8 s_byLevelColorCount = (RwUInt8)_countof( s_auiLevelColor );
+
+	m_pmdBox->Clear();
+
+	RwUInt32 uiWeight = Logic_GetAvatarTotalWeight();
+	RwUInt32 uiWeightLimit = Logic_GetAvatarWeightLimit();
+	RwUInt8 byLevel = Logic_GetAvatarOverweightLevel();
+	RwUInt8 byColorIdx = byLevel < s_byLevelColorCount ? byLevel : (RwUInt8)( s_byLevelColorCount - 1 );
+
+	m_pmdBox->SetItem( GetDisplayStringManager()->GetString( "DST_LIMIT_WEIGHTINFO" ), "weightTitle", FONT_TITLE, COMP_TEXT_CENTER, INFOCOLOR_7 );
+	m_pmdBox->SetItem( Logic_GetOverweightLevelName( byLevel ), "weightLevel", FONT_TEXT, COMP_TEXT_CENTER, s_auiLevelColor[byColorIdx] );
+
+	m_pmdBox->Format( "weightCurrent", FONT_TEXT, COMP_TEXT_LEFT, INFOCOLOR_0, 0, FALSE, GetDisplayStringManager()->GetString( "DST_LIMIT_CURRENTWEIGHT" ), uiWeight );
+	m_pmdBox->Format( "weightMax", FONT_TEXT, COMP_TEXT_LEFT, INFOCOLOR_0, 0, FALSE, GetDisplayStringManager()->GetString( "DST_LIMIT_MAXWEIGHT" ), uiWeightLimit );
+	m_pmdBox->Format( "weightRate", FONT_TEXT, COMP_TEXT_LEFT, s_auiLevelColor[byColorIdx], 0, FALSE, L"%.1f%%", Dbo_GetWeightRateInPercent( uiWeight, uiWeightLimit ) );
+
+	// effects of the current overweight level
+	sCOMMONCONFIG_VALUE_DATA* pEffectData = API_GetTableContainer()->GetCommonConfigTable()->GetOverweightEffect( byLevel );
+	if( pEffectData )
+	{
+		CSkillTable* pSkillTable = API_GetTableContainer()->GetSkillTable();
+		CSystemEffectTable* pSystemEffectTable = API_GetTableContainer()->GetSystemEffectTable();
+		char szName[32];
+		INT nLine = 0;
+
+		for( RwInt32 i = 1; i < COMMONCONFIG_MAX_TBLDAT_VALUE_COUNT; ++i )
+		{
+			if( pEffectData->adwValue[i] == INVALID_DWORD )
+				continue;
+
+			sSKILL_TBLDAT* pSkillData = reinterpret_cast<sSKILL_TBLDAT*>( pSkillTable->FindData( pEffectData->adwValue[i] ) );
+			if( !pSkillData )
+				continue;
+
+			for( RwInt32 j = 0; j < NTL_MAX_EFFECT_IN_SKILL; ++j )
+			{
+				std::wstring wstrText;
+				if( !Logic_GetSystemEffectText( pSkillData->skill_Effect[j], (RwReal)pSkillData->aSkill_Effect_Value[j], wstrText, pSkillData->bySkill_Effect_Type[j] ) )
+					continue;
+
+				// penalties are the curse / *_DOWN effects
+				sSYSTEM_EFFECT_TBLDAT* pEffect = reinterpret_cast<sSYSTEM_EFFECT_TBLDAT*>( pSystemEffectTable->FindData( pSkillData->skill_Effect[j] ) );
+				RwBool bPenalty = pEffect && ( Dbo_IsCurseType( pEffect->byActive_Effect_Type ) || wcsstr( pEffect->wszName, L"_DOWN" ) != NULL );
+
+				sprintf_s( szName, "weightEffect%d", nLine++ );
+				m_pmdBox->SetItem( wstrText.c_str(), szName, FONT_TEXT, COMP_TEXT_LEFT, bPenalty ? INFOCOLOR_5 : RANKBATTLE_COLOR_GREEN );
+			}
 		}
 	}
 
@@ -2387,7 +2448,16 @@ VOID CInfoWindowGui::SetItemInfo_Durablity( gui::CMDStaticBox* pmdBox, RwUInt8 u
 	{
 		pString = const_cast<WCHAR*>( GetDisplayStringManager()->GetString( "DST_ITEM_DURABILITY" ) );
 		pmdBox->Format( "Durability", FONT_TEXT, COMP_TEXT_LEFT, uiColor, 0, FALSE, pString, ucCurDur, ucMaxDur );
-	}	
+	}
+}
+
+VOID CInfoWindowGui::SetItemInfo_Weight( gui::CMDStaticBox* pmdBox, const sITEM_TBLDAT* pData )
+{
+	// only equipment has a weight
+	if( !pData || pData->dwWeight == 0 )
+		return;
+
+	pmdBox->Format( "Weight", FONT_TEXT, COMP_TEXT_LEFT, INFOCOLOR_0, 0, FALSE, GetDisplayStringManager()->GetString( "DST_LIMIT_WEIGHTCURRENTDATA" ), pData->dwWeight );
 }
 
 VOID CInfoWindowGui::SetItemInfo_SetItem( gui::CMDStaticBox* pmdBox, sITEM_TBLDAT* pData, CNtlSobAvatar* pAvatar )

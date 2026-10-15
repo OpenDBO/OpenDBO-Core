@@ -73,6 +73,9 @@ VOID CHpGui::Init(VOID)
 	m_hSound = INVALID_SOUND_HANDLE;
 	m_pBuff = NULL;
 
+	m_pnlWeight = NULL;
+	m_byWeightLevel = INVALID_BYTE;
+
 	m_eAirColor = TYPE_DISABLE;
 }
 
@@ -141,6 +144,14 @@ RwBool CHpGui::Create(void)
 	m_slotWeaponMouseLeave = m_pnlBattleAttributeWeapon->SigMouseLeave().Connect(this, &CHpGui::OnMouseBattleAttrAttackLeave);
 	m_slotArmorMouseEnter = m_pnlBattleAttributeArmor->SigMouseEnter().Connect(this, &CHpGui::OnMouseBattleAttrDefenseEnter);
 	m_slotArmorMouseLeave = m_pnlBattleAttributeArmor->SigMouseLeave().Connect(this, &CHpGui::OnMouseBattleAttrDefenseLeave);
+
+	// weight level icon, top-right of the bar like TW (it draws the 32x32 srfLimitBuff at screen 239,4 with the dialog at 5,2)
+	CRectangle rtWeight;
+	rtWeight.SetRectWH(234, 2, 32, 32);
+	m_pnlWeight = NTL_NEW gui::CPanel(rtWeight, m_pThis, GetNtlGuiManager()->GetSurfaceManager());
+	m_slotWeightMouseEnter = m_pnlWeight->SigMouseEnter().Connect(this, &CHpGui::OnMouseWeightEnter);
+	m_slotWeightMouseLeave = m_pnlWeight->SigMouseLeave().Connect(this, &CHpGui::OnMouseWeightLeave);
+	UpdateWeight();
 
 	m_slotMove = m_pThis->SigMove().Connect(this, &CHpGui::OnMove);
 	m_sloTracking = m_pThis->SigResize().Connect(this, &CHpGui::OnResize);
@@ -292,6 +303,9 @@ void CHpGui::Destroy(void)
 	GetNtlGuiManager()->RemoveUpdateFunc( this );
 
 	m_surMidAir.UnsetTexture();
+
+	NTL_DELETE( m_pnlWeight );
+
 	CNtlPLGui::DestroyComponents();
 	CNtlPLGui::Destroy(); 
 
@@ -399,6 +413,12 @@ void CHpGui::HandleEvents(RWS::CMsg &pMsg)
 			m_sttMp->Format("%u / %u",uiEp,uiMaxEp);
 
 			CalcBattleAttribute();
+		}
+
+		// weight changes with the equipment and the weight limit attribute
+		if( pUpdate->uiUpdateType & (EVENT_AIUT_ATTR | EVENT_AIUT_ITEM) )
+		{
+			UpdateWeight();
 		}
 
 		if( pUpdate->uiUpdateType & EVENT_AIUT_BUFF )			
@@ -1063,6 +1083,42 @@ VOID CHpGui::OnMouseBattleAttrDefenseLeave(gui::CComponent* pComponent)
 {
 	if (DIALOG_STATUS == GetInfoWndManager()->GetRequestGui() && CInfoWndManager::INFOWND_BATTLEATTRIBUTE_ARMOR == GetInfoWndManager()->GetInfoWndState())
 		GetInfoWndManager()->ShowInfoWindow(FALSE);
+}
+
+VOID CHpGui::UpdateWeight(VOID)
+{
+	if( !m_pnlWeight )
+		return;
+
+	RwUInt8 byLevel = Logic_GetAvatarOverweightLevel();
+
+	if( byLevel != m_byWeightLevel )
+	{
+		m_pnlWeight->GetSurface()->clear();
+		m_pnlWeight->AddSurface( Logic_GetOverweightIconSurface( byLevel ) );
+
+		m_byWeightLevel = byLevel;
+	}
+
+	// keep an open tooltip in sync
+	if( DIALOG_HP == GetInfoWndManager()->GetRequestGui() && CInfoWndManager::INFOWND_WEIGHT == GetInfoWndManager()->GetInfoWndState() )
+	{
+		CRectangle rtScreen = m_pnlWeight->GetScreenRect();
+		GetInfoWndManager()->ShowInfoWindow( TRUE, CInfoWndManager::INFOWND_WEIGHT, rtScreen.left, rtScreen.top, NULL, DIALOG_HP );
+	}
+}
+
+VOID CHpGui::OnMouseWeightEnter(gui::CComponent* pComponent)
+{
+	CRectangle rtScreen = pComponent->GetScreenRect();
+
+	GetInfoWndManager()->ShowInfoWindow( TRUE, CInfoWndManager::INFOWND_WEIGHT, rtScreen.left, rtScreen.top, NULL, DIALOG_HP );
+}
+
+VOID CHpGui::OnMouseWeightLeave(gui::CComponent* pComponent)
+{
+	if( DIALOG_HP == GetInfoWndManager()->GetRequestGui() && CInfoWndManager::INFOWND_WEIGHT == GetInfoWndManager()->GetInfoWndState() )
+		GetInfoWndManager()->ShowInfoWindow( FALSE );
 }
 
 VOID CHpGui::CalcBattleAttribute(VOID)
