@@ -1814,6 +1814,11 @@ void CCharacterAtt::CalculateHtbBlockModeSuccessRate(float fValue, BYTE byApplyT
 	CalcAttributeF(m_pAttribute.fHtbBlockModeSuccessRate, fValue, byApplyType, bIsPlus);
 }
 
+void CCharacterAtt::CalculateWeightLimit(float fValue, BYTE byApplyType, bool bIsPlus)
+{
+	CalcAttributeDW(m_pAttribute.dwWeightLimit, fValue, byApplyType, bIsPlus);
+}
+
 void CCharacterAtt::CalculateExpBooster(float fValue, BYTE byApplyType, bool bIsPlus)
 {
 	CalcAttributeBYTE(m_pAttribute.byExpBooster, fValue, byApplyType, bIsPlus);

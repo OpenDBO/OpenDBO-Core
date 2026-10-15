@@ -789,6 +789,21 @@ void CPlayerItemContainer::CopyBaseItemAttributesTo(sAVATAR_ATTRIBUTE & avt)
 	}
 }
 
+// only equipment has a weight in the item table, broken items are still worn so they count too
+DWORD CPlayerItemContainer::GetEquippedWeight()
+{
+	DWORD dwWeight = 0;
+
+	for (BYTE a = 0; a < EQUIP_SLOT_TYPE_COUNT; a++)
+	{
+		CItem* item = GetItem(CONTAINER_TYPE_EQUIP, a);
+		if (item && item->GetTbldat())
+			dwWeight += item->GetTbldat()->dwWeight;
+	}
+
+	return dwWeight;
+}
+
 void CPlayerItemContainer::CopyItemAttributesTo(CCharacterAtt* pCharAtt)
 {
 	std::vector<TBLIDX> vecSetWeapon; //gloves, sub weapon & necklace
