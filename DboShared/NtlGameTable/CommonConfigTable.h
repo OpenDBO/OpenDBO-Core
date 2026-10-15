@@ -53,6 +53,11 @@ public:
 	sTBLDAT *					FindData(TBLIDX tblidx); 
 	sCOMMONCONFIG_VALUE_DATA*	FindCommonConfig(TBLIDX tblidx);
 
+	// "OverweightEffect1..N" rows: adwValue[0] = weight rate base in percent, adwValue[1..] = skill tblidx
+	BYTE						GetOverweightEffectCount() { return m_byOverweightEffectCount; }
+	BYTE						GetOverweightLevel(float fWeightRate); // 0 = not overweight
+	sCOMMONCONFIG_VALUE_DATA*	GetOverweightEffect(BYTE byLevel);
+
 protected:
 	WCHAR** GetSheetListInWChar() { return &(CCommonConfigTable::m_pwszSheetList[0]); }
 	void* AllocNewTable(WCHAR* pwszSheetName, DWORD dwCodePage);
@@ -103,5 +108,8 @@ private:
 	*/
 
 	std::map<TBLIDX, sCOMMONCONFIG_VALUE_DATA*> m_mapCommonConfigValueList;
+
+	BYTE	m_byOverweightEffectCount;
+	TBLIDX	m_aOverweightEffectTblidx[COMMONCONFIG_MAX_TBLDAT_VALUE_COUNT];
 
 };
