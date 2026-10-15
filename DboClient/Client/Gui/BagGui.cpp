@@ -50,6 +50,8 @@
 #include "AlarmManager.h"
 #include "DisplayStringManager.h"
 #include "SideDialogManager.h"
+#include "MascotSkillReMake.h"
+#include "MascotFusion.h"
 
 // Self
 #include "BagGui.h"
@@ -1063,6 +1065,20 @@ VOID CBagBaseGui::RightButtonProc( RwInt32 nSlotIdx )
 	else if (GetDialogManager()->IsOpenDialog(DIALOG_QUICK_TELEPORT) == FALSE && (pITEM_TBLDAT && pITEM_TBLDAT->byItem_Type == ITEM_TYPE_QUICK_TELEPORT))
 	{	
 		CDboEventGenerator::EventOpenQuickTeleport(pItem->GetSerialID(), PLACE_BAG, m_cBagPos, nSlotIdx);
+	}
+	// mascot skill change item goes straight into the skill change window (after the trade, shop and storage windows, which take the item first)
+	else if( pITEM_TBLDAT && pITEM_TBLDAT->byItem_Type == ITEM_TYPE_EVENT_MASCOT_CHANGE_SKILL )
+	{
+		CMascotSkillReMake* pReMake = reinterpret_cast<CMascotSkillReMake*>( GetDialogManager()->GetDialog( DIALOG_MASCOT_SKILL_REMAKE ) );
+		if( pReMake )
+			pReMake->OpenWithItem( hItemHandle );
+	}
+	// mascot fusion item goes straight into the fusion window
+	else if( pITEM_TBLDAT && pITEM_TBLDAT->byItem_Type == ITEM_TYPE_EVENT_MASCOT_LEVELUP && GetDialogManager()->IsOpenDialog( DIALOG_MASCOT_FUSION ) )
+	{
+		CMascotFusion* pFusion = reinterpret_cast<CMascotFusion*>( GetDialogManager()->GetDialog( DIALOG_MASCOT_FUSION ) );
+		if( pFusion )
+			pFusion->SetItem( hItemHandle );
 	}
 	// If the item is attached, the bag item is placed in the bag slot, and the item attached to the scout is attached to the scout.
 	else if( pItemAttr->IsEquipItem() || pItemAttr->IsBagItem() )

@@ -954,5 +954,15 @@ void PacketHandler_GSMascotExDeleteRes(void* pPacket);
 void PacketHandler_GSMascotExSummonRes(void* pPacket);
 void PacketHandler_GSUpdateMascotSummon(void* pPacket);
 void PacketHandler_GSMascotExUnSummonRes(void* pPacket);
+void PacketHandler_GSMascotChangeVP(void* pPacket);
+void PacketHandler_GSMascotChangeExp(void* pPacket);
+void PacketHandler_GSMascotSkillRes(void* pPacket);
+void PacketHandler_GSMascotSkillAddRes(void* pPacket);
+void PacketHandler_GSMascotSkillUpdateRes(void* pPacket);
+void PacketHandler_GSMascotSkillUpgradeRes(void* pPacket);
+void PacketHandler_GSMascotFusionRes(void* pPacket);
+void PacketHandler_GSMascotAutoLootingRes(void* pPacket);
+void PacketHandler_GSMascotRemoteShopSellRes(void* pPacket);
+void PacketHandler_GSMascotSealSetRes(void* pPacket);
 
 #endif

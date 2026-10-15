@@ -1051,3 +1051,15 @@ VOID CAlarmManager::ErrorMessage( const WCHAR* wszID, const RwChar* szErrText )
 	::WideCharToMultiByte( GetACP(), 0, wszID, -1, acBuffer, 1024, NULL, NULL );
 	NTL_ASSERTFAIL( "[" << acBuffer << " ] " << szErrText );
 }
+
+VOID CAlarmManager::CloneClientAlarm(const std::string& strNewKey, const std::string& strTemplateKey)
+{
+	if (m_mapClientAlarm.find(strNewKey) != m_mapClientAlarm.end())
+		return;
+
+	std::map<std::string, sALARMITEM>::iterator it = m_mapClientAlarm.find(strTemplateKey);
+	if (it == m_mapClientAlarm.end())
+		return;
+
+	m_mapClientAlarm[strNewKey] = it->second;
+}

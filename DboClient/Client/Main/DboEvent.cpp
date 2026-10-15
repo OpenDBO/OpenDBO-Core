@@ -292,4 +292,5 @@ RWS::CEventId g_EventSCS;
 RWS::CEventId g_EventMascotRegister;
 RWS::CEventId g_EventMascotDelete;
 RWS::CEventId g_EventMascotSummon;
-RWS::CEventId g_EventMascotUnSummon;
+RWS::CEventId g_EventMascotUnSummon;
+RWS::CEventId g_EventMascotUpdate;

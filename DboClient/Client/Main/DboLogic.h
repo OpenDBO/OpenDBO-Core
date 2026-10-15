@@ -33,6 +33,7 @@ struct sSKILL_TBLDAT;
 struct sHTB_SET_TBLDAT;
 struct sITEM_TBLDAT;
 struct sITEM_OPTION_TBLDAT;
+struct sMASCOT_DATA_EX;
 struct sGuildWarehouseSlot;
 
 class CNtlPLGui;
@@ -221,6 +222,7 @@ public:
 VOID	Logic_CaculDayHourMinSecond( RwUInt32 uiInSecond, CRetCaculDayHourMinSecond* pOut);
 
 VOID	Logic_EnableIcon( RwBool bEnable, RwUInt8 byPlace, RwUInt8 byPos ); // 패킷핸들러에서 주로 사용할 아이콘락.
+VOID	Logic_EnableBagItemIcon( SERIAL_HANDLE hItem, RwBool bEnable );		///< greys out or restores the bag icon of an item, by handle
 
 RwBool IsV2LessLength(const RwV2d* vPos, const RwV2d* vPos2, RwReal fLength);
 RwBool IsV2LessorEqualLength(const RwV2d* vPos, const RwV2d* vPos2, RwReal fLength);
@@ -417,5 +419,30 @@ const WCHAR* Logic_GetItemRankName(RwUInt8 byRank);
 
 // Mascot
 const WCHAR* Logic_GetMascotRankName(RwUInt8 byRank);
+const RwChar*	Logic_GetMascotIconName(TBLIDX mascotTblidx);					///< icon of the mascot item, or the model icon when the item table has no row
+const WCHAR*	Logic_GetMascotName(TBLIDX mascotTblidx);
+sSKILL_TBLDAT*	Logic_GetMascotSkillTbl(RwUInt8 bySlot);							///< skill in bySlot of the summoned mascot
+RwUInt32		Logic_GetMascotSkillEffectCode(sSKILL_TBLDAT* pSkillTbl);
+RwBool			Logic_IsMascotSkillGradeUpItem(sITEM_TBLDAT* pItemTbl);
+DWORD			Logic_GetMascotNeedExp(sMASCOT_DATA_EX* pData);						///< EXP for the next rank, 0 when the mascot cannot rank up
+RwBool			Logic_CheckMascotFusion(sMASCOT_DATA_EX* pData);						///< rank and EXP check before a fusion, shows why it cannot fuse
+
+/// outcome of a fusion, applied to the mascot list once the fusion window has shown its animation
+struct SMascotFusionResult
+{
+	BYTE		byMascotIndex;
+	BYTE		byOfferingIndex;
+	RwBool		bSuccess;
+	TBLIDX		nextMascotTblidx;
+	BYTE		byNewRank;
+	DWORD		dwMaxVP;
+};
+
+void			Logic_ApplyMascotFusion(const SMascotFusionResult& sResult);
+void			Logic_UseMascotSkill(RwUInt8 bySlot);							///< checks VP and cooldown, asks for confirmation where retail did
+void			Logic_SendMascotSkill(RwUInt8 bySlot, TBLIDX targetTblidx = INVALID_TBLIDX);
+void			Logic_MascotSkillSuccess(RwUInt8 bySlot);						///< client side part of a used skill
+void			Logic_OfferMascotRescue(void);									///< asks a fainted avatar whether to use the self rescue skill
+RwBool			Logic_ConsumeMascotRemoteBank(void);							///< TRUE once after the remote bank skill waited for the bank data
 
 #endif

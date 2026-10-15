@@ -334,6 +334,12 @@ CNtlPacketLockManager::CNtlPacketLockManager(VOID)
 	m_mapLockPacket[GU_MASCOT_DELETE_EX_RES] = LT_COMMUNITY;
 	m_mapLockPacket[GU_MASCOT_SUMMON_EX_RES] = LT_COMMUNITY;
 	m_mapLockPacket[GU_MASCOT_UNSUMMON_EX_RES] = LT_COMMUNITY;
+	m_mapLockPacket[GU_MASCOT_SKILL_RES] = LT_COMMUNITY;
+	m_mapLockPacket[GU_MASCOT_SKILL_ADD_RES] = LT_ITEM;
+	m_mapLockPacket[GU_MASCOT_SKILL_UPDATE_RES] = LT_ITEM;
+	m_mapLockPacket[GU_MASCOT_SKILL_UPGRADE_RES] = LT_ITEM;
+	m_mapLockPacket[GU_MASCOT_FUSION_RES] = LT_ITEM;
+	m_mapLockPacket[GU_MASCOT_SEAL_SET_RES] = LT_ITEM;
 
 	m_listLockedTime.push_back( sLockedPacket(LT_ITEM) );
 	m_listLockedTime.push_back( sLockedPacket(LT_ZENNY) );

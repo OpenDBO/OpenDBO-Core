@@ -58,6 +58,7 @@ protected:
 	gui::CProgressBar* m_pgbSP;
 
 	CSurfaceGui			m_surMascot;
+	std::string			m_strIconName;
 
 };
 

@@ -965,6 +965,9 @@
     <ClCompile Include="Gui\MascotGui.cpp">
       <Filter>Gui\Component\Game\Mascot</Filter>
     </ClCompile>
+    <ClCompile Include="Gui\MascotRemoteSellGui.cpp">
+      <Filter>Gui\Component\Game\Mascot</Filter>
+    </ClCompile>
     <ClCompile Include="Main\DboApplication.cpp">
       <Filter>Main</Filter>
     </ClCompile>
@@ -1955,6 +1958,9 @@
       <Filter>Gui\Etc</Filter>
     </ClInclude>
     <ClInclude Include="Gui\MascotGui.h">
+      <Filter>Gui\Component\Game\Mascot</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\MascotRemoteSellGui.h">
       <Filter>Gui\Component\Game\Mascot</Filter>
     </ClInclude>
     <ClInclude Include="Main\DboApplication.h">

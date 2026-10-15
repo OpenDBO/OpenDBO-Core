@@ -373,6 +373,14 @@ public:
 	bool SendSummonMascot(BYTE index);
 	bool SendUnSummonMascot(BYTE index);
 	bool SendDeleteMascot(BYTE index);
+	bool SendMascotSkillReq(BYTE bySkillSlot, TBLIDX worldTblidx = INVALID_TBLIDX, TBLIDX targetTblidx = INVALID_TBLIDX);
+	bool SendMascotSkillAddReq(BYTE bySkillSlot);
+	bool SendMascotSkillUpdateReq(BYTE bySkillSlot, BYTE byItemPlace, BYTE byItemPos);
+	bool SendMascotSkillUpgradeReq(BYTE bySkillSlot, BYTE byItemPlace, BYTE byItemPos);
+	bool SendMascotFusionReq(BYTE byItemPlace, BYTE byItemPos, BYTE byLevelUpIndex, BYTE byOfferingIndex);
+	bool SendMascotAutoLootingReq(BYTE byItemCount, const HOBJECT* pahHandle);
+	bool SendMascotSealSetReq(BYTE byMascotIndex, BYTE bySealPlace, BYTE bySealPos);
+	bool SendMascotRemoteShopSellReq(BYTE bySellCount, const sSHOP_SELL_CART* pSellCart);
 };
 
 class CChatPacketGenerator : public CNtlPacketGenerator

@@ -63,6 +63,7 @@
 #include "NtlSobStatusAnimSyncManager.h"
 #include "NtlSobMascot.h"
 #include "NtlSobMascotAttr.h"
+#include "GraphicDataTable.h"
 #include "NtlCameraController.h"
 #include "NtlCameraManager.h"
 #include "InputActionMap.h"
@@ -89,6 +90,7 @@
 #include "DboTSCTAgency.h"
 #include "DboTSCQAgency.h"
 #include "DialogManager.h"
+#include "MascotFusion.h"
 #include "ChatBalloonManager.h"
 #include "AlarmManager.h"
 #include "DiceManager.h"
@@ -2226,6 +2228,10 @@ void PacketHandler_GSCharUpdateLevel(void *pPacket)
 		RwV3d vOffset;
 		CNtlMath::MathRwV3dAssign(&vOffset, 0.0f, 0.0f, 0.0f);
 		pSobProxy->CreatePLChildEffect(NTL_VID_LEVEL_UP, vOffset);		
+
+		// the mascot cheers for its owner
+		if (pActor->GetClassID() == SLCLASS_PLAYER || pActor->GetClassID() == SLCLASS_AVATAR)
+			reinterpret_cast<CNtlSobPlayer*>(pActor)->PlayMascotAction(SOC_HAPPY);
 
 		// discord
 #ifdef USE_DISCORD
@@ -4992,191 +4998,293 @@ void PacketHandler_GSAvatarCharTitleSelectNfy(void * pPacket)
 }
 
 // Mascot
-// Handles the notification of a newly registered mascot
+namespace
+{
+	void MascotFailMessage(WORD wResultCode, const char* pcDefault)
+	{
+		GetAlarmManager()->AlarmMessage(Logic_GetResultCodeString(wResultCode, pcDefault), TRUE);
+	}
+
+	void PlayAvatarMascotAction(RwUInt32 uiAnimKey)
+	{
+		CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
+		if (pAvatar)
+			pAvatar->PlayMascotAction(uiAnimKey);
+	}
+
+	void MascotSkillChanged(WORD wResultCode, BYTE byMascotIndex, BYTE bySlot, TBLIDX skillTblidx, const char* pcSuccessMsg)
+	{
+		if (wResultCode != GAME_SUCCESS)
+		{
+			MascotFailMessage(wResultCode, "DST_MASCOTEX_SKILL_FAIL");
+			CDboEventGenerator::MascotUpdate(byMascotIndex, MASCOT_UPDATE_SKILL, bySlot, FALSE);
+			return;
+		}
+
+		sMASCOT_DATA_EX* pData = GetNtlSLGlobal()->GetAvatarMascotInfo()->Find(byMascotIndex);
+		if (pData == NULL || bySlot >= DBO_MASCOT_MAX_SKILL_COUNT)
+			return;
+
+		pData->skillTblidx[bySlot] = skillTblidx;
+
+		if (pcSuccessMsg)
+			GetAlarmManager()->AlarmMessage(pcSuccessMsg);
+
+		PlayAvatarMascotAction(SOC_HAPPY);
+
+		CDboEventGenerator::MascotUpdate(byMascotIndex, MASCOT_UPDATE_SKILL, bySlot);
+	}
+}
+
 void PacketHandler_GSMascotExRegisterNfy(void* pPacket)
 {
-	// Cast the packet to the mascot registration structure
 	sGU_MASCOT_REGISTER_EX_NFY* pResult = (sGU_MASCOT_REGISTER_EX_NFY*)pPacket;
 
-	// Add the new mascot data to the avatar's mascot info
-	GetNtlSLGlobal()->GetAvatarMascotInfo()->asMascotData[GetNtlSLGlobal()->GetAvatarMascotInfo()->wCount] = pResult->mascotdata;
+	GetNtlSLGlobal()->GetAvatarMascotInfo()->Add(pResult->mascotdata);
 
-	// Increment the mascot count
-	GetNtlSLGlobal()->GetAvatarMascotInfo()->wCount += 1;
-
-	// Trigger an event to notify the system of the mascot registration
 	CDboEventGenerator::MascotRegister(pResult->mascotdata);
 }
 
-// Handles the response from the server when a mascot is summoned
 void PacketHandler_GSMascotExSummonRes(void* pPacket)
 {
-	OutputDebugStringA("[MASCOT_SUMMON_DEBUG] PacketHandler_GSMascotExSummonRes - Entry\n");
-	
-	// Unlock the packet lock for mascot summon responses
 	API_GetSLPacketLockManager()->Unlock(GU_MASCOT_SUMMON_EX_RES);
 
-	// Cast the packet to the mascot summon response structure
 	sGU_MASCOT_SUMMON_EX_RES* pResult = (sGU_MASCOT_SUMMON_EX_RES*)pPacket;
 
-	char debugBuffer[256];
-	sprintf_s(debugBuffer, "[MASCOT_SUMMON_DEBUG] Summon response - index: %u, result: %u\n", 
-		pResult->byIndex, pResult->wResultCode);
-	OutputDebugStringA(debugBuffer);
+	if (pResult->wResultCode != GAME_SUCCESS)
+	{
+		MascotFailMessage(pResult->wResultCode, "GU_MASCOT_SUMMON_EX_RES");
+		return;
+	}
 
-	// Check if the summon was successful
-	if (pResult->wResultCode == GAME_SUCCESS)
-	{
-		OutputDebugStringA("[MASCOT_SUMMON_DEBUG] Summon successful - triggering GUI update event\n");
-		
-		// Trigger an event to notify that the mascot was successfully summoned
-		CDboEventGenerator::MascotSummonRes(pResult->byIndex);
-	}
-	else
-	{
-		OutputDebugStringA("[MASCOT_SUMMON_DEBUG] Summon failed - showing error message\n");
-		
-		// Display an error message if the summon failed
-		GetAlarmManager()->AlarmMessage(Logic_GetResultCodeString(pResult->wResultCode, "GAME_FAIL"), TRUE);
-	}
-	
-	OutputDebugStringA("[MASCOT_SUMMON_DEBUG] PacketHandler_GSMascotExSummonRes - Exit\n");
+	// the world model is created by GU_UPDATE_MASCOT_SUMMON, which every player in range receives
+	GetNtlSLGlobal()->GetAvatarMascotInfo()->bySummonIndex = pResult->byIndex;
+
+	CDboEventGenerator::MascotSummonRes(pResult->byIndex);
 }
 
-// Handles the response from the server when a mascot is unsummoned
 void PacketHandler_GSMascotExUnSummonRes(void* pPacket)
 {
-	// Unlock the packet lock for mascot unsummon responses
 	API_GetSLPacketLockManager()->Unlock(GU_MASCOT_UNSUMMON_EX_RES);
 
-	// Cast the packet to the mascot unsummon response structure
 	sGU_MASCOT_UNSUMMON_EX_RES* pResult = (sGU_MASCOT_UNSUMMON_EX_RES*)pPacket;
 
-	// Check if the unsummon was successful
-	if (pResult->wResultCode == GAME_SUCCESS)
+	if (pResult->wResultCode != GAME_SUCCESS)
 	{
-		// Trigger an event to notify that the mascot was successfully unsummoned
-		CDboEventGenerator::MascotUnSummonRes(pResult->byIndex);
+		MascotFailMessage(pResult->wResultCode, "GU_MASCOT_UNSUMMON_EX_RES");
+		return;
 	}
-	else
-	{
-		// Display an error message if the unsummon failed
-		GetAlarmManager()->AlarmMessage(Logic_GetResultCodeString(pResult->wResultCode, "GAME_FAIL"), TRUE);
-	}
+
+	GetNtlSLGlobal()->GetAvatarMascotInfo()->bySummonIndex = INVALID_BYTE;
+
+	CDboEventGenerator::MascotUnSummonRes(pResult->byIndex);
 }
 
-// Updates the mascot summon status, creates mascot SOB object when summoned
 void PacketHandler_GSUpdateMascotSummon(void* pPacket)
 {
-	OutputDebugStringA("[MASCOT_WORLD_CREATE] PacketHandler_GSUpdateMascotSummon - Entry\n");
-	
-	// Cast the packet to the mascot summon update structure
 	sGU_UPDATE_MASCOT_SUMMON* pResult = (sGU_UPDATE_MASCOT_SUMMON*)pPacket;
 
-	char debugBuffer[256];
-	sprintf_s(debugBuffer, "[MASCOT_WORLD_CREATE] Update packet - handle: %u, tblidx: %u\n", 
-		pResult->handle, pResult->tblidx);
-	OutputDebugStringA(debugBuffer);
+	CNtlSob* pSobObj = GetNtlSobManager()->GetSobObject(pResult->handle);
+	if (pSobObj == NULL)
+		return;
 
-	// Check if this is our avatar being updated
-	CNtlSobAvatar* pSobAvatar = GetNtlSLGlobal()->GetSobAvatar();
-	if (pSobAvatar->GetSerialID() == pResult->handle)
+	if (pSobObj->GetClassID() != SLCLASS_PLAYER && pSobObj->GetClassID() != SLCLASS_AVATAR)
+		return;
+
+	// INVALID_TBLIDX unsummons
+	reinterpret_cast<CNtlSobPlayer*>(pSobObj)->SetMascotTblidx(pResult->tblidx, TRUE);
+}
+
+void PacketHandler_GSMascotExDeleteRes(void* pPacket)
+{
+	API_GetSLPacketLockManager()->Unlock(GU_MASCOT_DELETE_EX_RES);
+
+	sGU_MASCOT_DELETE_EX_RES* pResult = (sGU_MASCOT_DELETE_EX_RES*)pPacket;
+
+	if (pResult->wResultCode != GAME_SUCCESS)
 	{
-		OutputDebugStringA("[MASCOT_WORLD_CREATE] This is our avatar's mascot\n");
-		
-		if (pResult->tblidx != INVALID_TBLIDX)
+		MascotFailMessage(pResult->wResultCode, "GU_MASCOT_DELETE_EX_RES");
+		return;
+	}
+
+	GetNtlSLGlobal()->GetAvatarMascotInfo()->Remove(pResult->byIndex);
+
+	CDboEventGenerator::DeleteMascotRes(pResult->byIndex);
+}
+
+void PacketHandler_GSMascotChangeVP(void* pPacket)
+{
+	sGU_MASCOT_CHANGE_VP* pResult = (sGU_MASCOT_CHANGE_VP*)pPacket;
+
+	sMASCOT_DATA_EX* pData = GetNtlSLGlobal()->GetAvatarMascotInfo()->GetSummoned();
+	if (pData == NULL)
+		return;
+
+	pData->dwCurVP = pResult->dwCurVP;
+
+	CDboEventGenerator::MascotUpdate(pData->byIndex, MASCOT_UPDATE_VP);
+}
+
+void PacketHandler_GSMascotChangeExp(void* pPacket)
+{
+	sGU_MASCOT_CHANGE_EXP* pResult = (sGU_MASCOT_CHANGE_EXP*)pPacket;
+
+	sMASCOT_DATA_EX* pData = GetNtlSLGlobal()->GetAvatarMascotInfo()->GetSummoned();
+	if (pData == NULL)
+		return;
+
+	pData->dwCurExp = pResult->dwCurExp;
+
+	CDboEventGenerator::MascotUpdate(pData->byIndex, MASCOT_UPDATE_EXP);
+}
+
+void PacketHandler_GSMascotSkillRes(void* pPacket)
+{
+	API_GetSLPacketLockManager()->Unlock(GU_MASCOT_SKILL_RES);
+
+	sGU_MASCOT_SKILL_RES* pResult = (sGU_MASCOT_SKILL_RES*)pPacket;
+
+	SMascotInfo* pInfo = GetNtlSLGlobal()->GetAvatarMascotInfo();
+	sMASCOT_DATA_EX* pData = pInfo->GetSummoned();
+
+	if (pResult->wResultCode != GAME_SUCCESS)
+	{
+		if (pResult->wResultCode == MASCOT_NOT_ENOUGH_SP)
 		{
-			OutputDebugStringA("[MASCOT_WORLD_CREATE] Mascot summoned successfully\n");
-			
-			// No manual creation needed - the temp mascot system handles creation
-			// and the GUI converts temp mascots to persistent world mascots
+			GetAlarmManager()->AlarmMessage("DST_MASCOTEX_SKILL_VPLACK");
+			PlayAvatarMascotAction(SOC_SAD);
 		}
 		else
 		{
-			OutputDebugStringA("[MASCOT_WORLD_CREATE] Mascot is being unsummoned\n");
+			MascotFailMessage(pResult->wResultCode, "DST_MASCOTEX_SKILL_FAIL");
+			PlayAvatarMascotAction(SOC_CONFUSION);
 		}
+		return;
 	}
-	else
+
+	if (pData == NULL)
+		return;
+
+	pData->dwCurVP = pResult->dwNewCurVP;
+
+	sSKILL_TBLDAT* pSkillTbl = Logic_GetMascotSkillTbl(pResult->bySkillSlot);
+	if (pSkillTbl)
 	{
-		OutputDebugStringA("[MASCOT_WORLD_CREATE] This is another player's mascot - ignoring\n");
+		pInfo->StartSkillCoolTime(pData->byIndex, pResult->bySkillSlot, pSkillTbl->dwCoolTimeInMilliSecs);
+
+		// mascot skills cast with the SKILL_ animations of the mascot model
+		RwUInt32 uiAnimKey = pSkillTbl->wAction_Animation_Index;
+		if (uiAnimKey < SKILL_ANIMATION_START || uiAnimKey >= SKILL_ANIMATION_END)
+			uiAnimKey = SKILL_ANIMATION_START;
+
+		PlayAvatarMascotAction(uiAnimKey);
 	}
-	
-	OutputDebugStringA("[MASCOT_WORLD_CREATE] PacketHandler_GSUpdateMascotSummon - Exit\n");
+
+	CDboEventGenerator::MascotUpdate(pData->byIndex, MASCOT_UPDATE_SKILL_USE, pResult->bySkillSlot);
+	CDboEventGenerator::MascotUpdate(pData->byIndex, MASCOT_UPDATE_VP);
+
+	Logic_MascotSkillSuccess(pResult->bySkillSlot);
 }
 
-// Handles the response from the server when a mascot is deleted
-void PacketHandler_GSMascotExDeleteRes(void* pPacket)
+void PacketHandler_GSMascotSkillAddRes(void* pPacket)
 {
-	// Unlock the packet lock for mascot delete responses
-	API_GetSLPacketLockManager()->Unlock(GU_MASCOT_DELETE_EX_RES);
+	API_GetSLPacketLockManager()->Unlock(GU_MASCOT_SKILL_ADD_RES);
 
-	// Cast the packet to the mascot delete response structure
-	sGU_MASCOT_DELETE_EX_RES* pResult = (sGU_MASCOT_DELETE_EX_RES*)pPacket;
-
-	// Check if the deletion was successful
-	if (pResult->wResultCode == GAME_SUCCESS)
-	{
-		// Get the mascot data array from the avatar's mascot information
-		sMASCOT_DATA_EX* info = GetNtlSLGlobal()->GetAvatarMascotInfo()->asMascotData;
-
-		// Iterate over the mascot data to find the mascot to delete
-		for (int i = 0; i < 40; i++)
-		{
-			// If the current mascot's index matches the index of the mascot to be deleted
-			if (info[i].byIndex == pResult->byIndex)
-			{
-				// Shift all mascot data entries after the deleted mascot's entry up by one
-				for (i; i < 39; i++)
-				{
-					// If the next mascot data entry is valid, copy its data to the current position
-					if (info[i + 1].byIndex != INVALID_BYTE)
-					{
-						info[i].byIndex = info[i + 1].byIndex;
-						info[i].byItemRank = info[i + 1].byItemRank;
-						info[i].byUnknown = info[i + 1].byUnknown;
-						info[i].dwCurExp = info[i + 1].dwCurExp;
-						info[i].dwCurVP = info[i + 1].dwCurVP;
-						info[i].dwMaxVP = info[i + 1].dwMaxVP;
-						info[i].itemTblidx = info[i + 1].itemTblidx;
-						info[i].tblidx = info[i + 1].tblidx;
-						info[i].wunknown = info[i + 1].wunknown;
-						info[i].wunknown2 = info[i + 1].wunknown2;
-						// Copy the mascot's skill table indices
-						memcpy(info[i].skillTblidx, info[i + 1].skillTblidx, sizeof(TBLIDX) * 4);
-					}
-					else {
-						// Stop if there are no more valid entries
-						break;
-					}
-				}
-				// Exit the outer loop once the mascot is deleted and the data is shifted
-				break;
-			}
-		}
-
-		// Clear the last mascot entry (slot 39) after shifting data
-		info[39].byIndex = INVALID_BYTE;
-		info[39].byItemRank = INVALID_BYTE;
-		info[39].byUnknown = INVALID_BYTE;
-		info[39].dwCurExp = INVALID_DWORD;
-		info[39].dwCurVP = INVALID_DWORD;
-		info[39].dwMaxVP = INVALID_DWORD;
-		info[39].itemTblidx = INVALID_TBLIDX;
-		info[39].tblidx = INVALID_TBLIDX;
-		info[39].wunknown = INVALID_WORD;
-		info[39].wunknown2 = INVALID_WORD;
-		memset(info[39].skillTblidx, 0, sizeof(TBLIDX) * 4);
-
-		// Decrease the mascot count in the avatar's mascot info
-		GetNtlSLGlobal()->GetAvatarMascotInfo()->wCount -= 1;
-
-		// Trigger an event to notify that the mascot has been deleted
-		CDboEventGenerator::DeleteMascotRes(pResult->byIndex);
-	}
-	else {
-		// If the deletion failed, display an error message
-		GetAlarmManager()->AlarmMessage(Logic_GetResultCodeString(pResult->wResultCode, "GAME_FAIL"), TRUE);
-	}
+	sGU_MASCOT_SKILL_ADD_RES* pResult = (sGU_MASCOT_SKILL_ADD_RES*)pPacket;
+	MascotSkillChanged(pResult->wResultCode, pResult->byMascotIndex, pResult->bySlot, pResult->skillTblidx, NULL);
 }
 
+void PacketHandler_GSMascotSkillUpdateRes(void* pPacket)
+{
+	API_GetSLPacketLockManager()->Unlock(GU_MASCOT_SKILL_UPDATE_RES);
 
+	sGU_MASCOT_SKILL_UPDATE_RES* pResult = (sGU_MASCOT_SKILL_UPDATE_RES*)pPacket;
+	MascotSkillChanged(pResult->wResultCode, pResult->byMascotIndex, pResult->bySlot, pResult->skillTblidx, NULL);
+}
+
+void PacketHandler_GSMascotSkillUpgradeRes(void* pPacket)
+{
+	API_GetSLPacketLockManager()->Unlock(GU_MASCOT_SKILL_UPGRADE_RES);
+
+	sGU_MASCOT_SKILL_UPGRADE_RES* pResult = (sGU_MASCOT_SKILL_UPGRADE_RES*)pPacket;
+
+	if (pResult->wResultCode == GAME_SKILL_TOO_HIGH_LEVEL_TO_TRAIN)
+	{
+		GetAlarmManager()->AlarmMessage("DST_MASCOTEX_SKILLGRADEUP_MAX");
+		return;
+	}
+
+	MascotSkillChanged(pResult->wResultCode, pResult->byMascotIndex, pResult->bySlot, pResult->skillTblidx, "DST_MASCOTEX_SKILLGRADEUP_SUCESS");
+}
+
+void PacketHandler_GSMascotFusionRes(void* pPacket)
+{
+	API_GetSLPacketLockManager()->Unlock(GU_MASCOT_FUSION_RES);
+
+	sGU_MASCOT_FUSION_RES* pResult = (sGU_MASCOT_FUSION_RES*)pPacket;
+
+	if (pResult->wResultCode != GAME_SUCCESS)
+	{
+		MascotFailMessage(pResult->wResultCode, "GU_MASCOT_FUSION_RES");
+
+		// stops the fusion animation, nothing was consumed
+		CDboEventGenerator::MascotUpdate(INVALID_BYTE, MASCOT_UPDATE_FUSION, INVALID_BYTE, FALSE);
+		return;
+	}
+
+	SMascotFusionResult sResult;
+	sResult.byMascotIndex = pResult->byMascotIndex;
+	sResult.byOfferingIndex = pResult->byOfferingMascotIndex;
+	sResult.bSuccess = pResult->bIsSuccess;
+	sResult.nextMascotTblidx = pResult->nextMascotTblidx;
+	sResult.byNewRank = pResult->byNewRank;
+	sResult.dwMaxVP = pResult->dwMaxVP;
+
+	// the mascot list changes only once the fusion window has played its animation
+	CMascotFusion* pFusion = reinterpret_cast<CMascotFusion*>(GetDialogManager()->GetDialog(DIALOG_MASCOT_FUSION));
+	if (pFusion && pFusion->IsFusing())
+		pFusion->SetFusionResult(sResult);
+	else
+		Logic_ApplyMascotFusion(sResult);
+}
+
+void PacketHandler_GSMascotAutoLootingRes(void* pPacket)
+{
+	sGU_MASCOT_AUTO_LOOTING_RES* pResult = (sGU_MASCOT_AUTO_LOOTING_RES*)pPacket;
+
+	if (pResult->wResultCode != GAME_SUCCESS)
+		MascotFailMessage(pResult->wResultCode, "GU_MASCOT_AUTO_LOOTING_RES");
+}
+
+void PacketHandler_GSMascotRemoteShopSellRes(void* pPacket)
+{
+	sGU_MASCOT_REMOTE_SHOP_SELL_RES* pResult = (sGU_MASCOT_REMOTE_SHOP_SELL_RES*)pPacket;
+
+	if (pResult->wResultCode != GAME_SUCCESS)
+	{
+		MascotFailMessage(pResult->wResultCode, "GU_MASCOT_REMOTE_SHOP_SELL_RES");
+		return;
+	}
+
+	GetAlarmManager()->AlarmMessage("DST_MASCOTEX_SKILL_REMOTE_SELL_FINISH");
+	GetDialogManager()->CloseDialog(DIALOG_MASCOT_REMOTE_SELL);
+}
+
+void PacketHandler_GSMascotSealSetRes(void* pPacket)
+{
+	API_GetSLPacketLockManager()->Unlock(GU_MASCOT_SEAL_SET_RES);
+
+	sGU_MASCOT_SEAL_SET_RES* pResult = (sGU_MASCOT_SEAL_SET_RES*)pPacket;
+
+	if (pResult->wResultCode != GAME_SUCCESS)
+	{
+		MascotFailMessage(pResult->wResultCode, "GU_MASCOT_SEAL_SET_RES");
+		return;
+	}
+
+	// the sealed mascot item and the seal kit stack arrive as regular item packets
+	GetNtlSLGlobal()->GetAvatarMascotInfo()->Remove(pResult->byMascotPos);
+
+	CDboEventGenerator::DeleteMascotRes(pResult->byMascotPos);
+	CDboEventGenerator::MascotUpdate(pResult->byMascotPos, MASCOT_UPDATE_SEAL);
+}

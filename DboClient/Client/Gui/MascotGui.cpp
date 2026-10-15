@@ -1,31 +1,34 @@
-﻿#include "precomp_dboclient.h"
+#include "precomp_dboclient.h"
 #include "MascotGui.h"
+
 // core
 #include "NtlDebug.h"
 
-// gui
-#include "NtlPLGuiManager.h"
+// shared
+#include "TableContainer.h"
+#include "MascotStatusTable.h"
+#include "ItemTable.h"
+#include "SkillTable.h"
+#include "GraphicDataTable.h"
 
 // presentation
-#include "NtlPLEvent.h"
 #include "NtlPLGuiManager.h"
+#include "NtlPLSceneManager.h"
+#include "NtlPLCharacter.h"
+#include "NtlPLCameraRenderTexture.h"
+#include "NtlPLPropertyContainer.h"
+
+// renderware
+#include "rpskin.h"
+#include "rphanim.h"
 
 // simulation
-#include "NtlSLEvent.h"
-#include "NtlSLLogic.h"
 #include "NtlSLGlobal.h"
 #include "NtlSLApi.h"
-#include "NtlSLEventFunc.h"
-#include "NtlCameraController.h"
+#include "NtlSLLogic.h"
 #include "NtlSobManager.h"
-#include "NtlSobGroup.h"
-#include "NtlSobFactory.h"
-#include "NtlSLDef.h"
-
-// table
-#include "MascotGradeTable.h"
-
-
+#include "NtlSobItem.h"
+#include "NtlSobItemAttr.h"
 
 // dbo
 #include "DboGlobal.h"
@@ -34,1849 +37,1430 @@
 #include "DboEventGenerator.h"
 #include "DialogManager.h"
 #include "DisplayStringManager.h"
-#include <InfoWndManager.h>
+#include "InfoWndManager.h"
 #include "IconMoveManager.h"
-#include "NtlSobCharProxy.h"
+#include "AlarmManager.h"
+#include "MascotFusion.h"
+#include "MascotSkillReMake.h"
 
-// mascot
-#include "NtlSobMascot.h"
-#include "NtlSobMascotAttr.h"
-#include "NtlSobMascotProxy.h"
+namespace
+{
+	// layout of MascotEx.frm
+	const RwInt32 MASCOT_SLOT_X			= 25;
+	const RwInt32 MASCOT_SLOT_Y			= 343;
+	const RwInt32 MASCOT_SLOT_GAP_X		= 75;
+	const RwInt32 MASCOT_SLOT_GAP_Y		= 41;
 
-#include <Windows.h> // Include Windows header for OutputDebugString
-#include <string>
-#include <sstream> // Required for std::ostringstream
-#include <locale>  // Required for std::wstring_convert
-#include <codecvt> // Required for std::wstring_convert
-#include <regex>   // Required for regex to match patterns
+	const RwInt32 SKILL_SLOT_X			= 236;
+	const RwInt32 SKILL_SLOT_Y			= 54;
+	const RwInt32 SKILL_SLOT_GAP_Y		= 62;
+	const RwInt32 SKILL_BTN_OFFSET_X	= 40;
+	const RwInt32 SKILL_BTN_OFFSET_Y	= 15;
 
-#define dMASCOTEX_CON_START_X 25
-#define dMASCOTEX_CON_START_Y 343
+	const RwInt32 PREVIEW_X				= 50;
+	const RwInt32 PREVIEW_Y				= 51;
+	const RwInt32 PREVIEW_WIDTH			= 132;
+	const RwInt32 PREVIEW_HEIGHT		= 176;
 
-#define dMASCOTEX_SLOT_GAP_HORI_X 75
-#define dMASCOTEX_SLOT_GAP_HORI_Y 41
+	// render target of the preview, the same proportions as the status window avatar
+	const RwInt32 PREVIEW_TEX_SIZE		= 512;
+	const RwInt32 PREVIEW_REAL_WIDTH	= 386;
+	const RwInt32 PREVIEW_REAL_HEIGHT	= 512;
 
-#define dMASCOTEX_SKILL_X 236
-#define dMASCOTEX_SKILL_Y 54
+	// the first frames skin with an unposed skeleton, the next ones measure the idle animation
+	const RwInt32 PREVIEW_SKIP_FRAMES		= 2;
+	const RwInt32 PREVIEW_MEASURE_FRAMES	= 10;
+	// camera distance in model heights, child (rank 1) mascots stand further back on the pedestal art
+	const RwReal PREVIEW_DISTANCE		= 1.2f;
+	const RwReal PREVIEW_DISTANCE_CHILD	= 2.2f;
+	// aims a little above the model so it sits slightly lower in the frame, in model extents
+	const RwReal PREVIEW_LOOK_UP		= 0.1f;
 
-#define dMASCOTEX_SLOT_SKILL_Y 62
+	struct SMeshBounds
+	{
+		RwBBox	bbox;
+		RwBool	bValid;
+	};
+
+	void AddBoundsPoint(SMeshBounds* pBounds, const RwV3d* pPos)
+	{
+		if (!pBounds->bValid)
+		{
+			pBounds->bbox.inf = *pPos;
+			pBounds->bbox.sup = *pPos;
+			pBounds->bValid = TRUE;
+		}
+		else
+		{
+			RwBBoxAddPoint(&pBounds->bbox, pPos);
+		}
+	}
+
+	// the vertices of a rendered atomic where they are drawn: skinned by the current pose of the
+	// animation (the bind pose can be far bigger than the animated mesh), then placed in the world
+	RpAtomic* AddAtomicBounds(RpAtomic* pAtomic, void* pData)
+	{
+		SMeshBounds* pBounds = reinterpret_cast<SMeshBounds*>(pData);
+
+		if (!(RpAtomicGetFlags(pAtomic) & rpATOMICRENDER))
+			return pAtomic;
+
+		RpGeometry* pGeometry = RpAtomicGetGeometry(pAtomic);
+		if (pGeometry == NULL || RpGeometryGetNumMorphTargets(pGeometry) <= 0)
+			return pAtomic;
+
+		RwInt32 iNumVerts = RpGeometryGetNumVertices(pGeometry);
+		RwV3d* pVerts = RpMorphTargetGetVertices(RpGeometryGetMorphTarget(pGeometry, 0));
+		RwFrame* pFrame = RpAtomicGetFrame(pAtomic);
+		if (pVerts == NULL || iNumVerts <= 0 || pFrame == NULL)
+			return pAtomic;
+
+		RwMatrix* pLtm = RwFrameGetLTM(pFrame);
+
+		RpSkin* pSkin = RpSkinGeometryGetSkin(pGeometry);
+		RpHAnimHierarchy* pHierarchy = RpSkinAtomicGetHAnimHierarchy(pAtomic);
+		RwMatrix* pBoneMatrices = pHierarchy ? RpHAnimHierarchyGetMatrixArray(pHierarchy) : NULL;
+
+		if (pSkin == NULL || pBoneMatrices == NULL)
+		{
+			for (RwInt32 i = 0; i < iNumVerts; ++i)
+			{
+				RwV3d vPos;
+				RwV3dTransformPoint(&vPos, &pVerts[i], pLtm);
+				AddBoundsPoint(pBounds, &vPos);
+			}
+
+			return pAtomic;
+		}
+
+		// skin space to the current bone pose, as the skinning pipeline does
+		RwUInt32 uiNumBones = min(RpSkinGetNumBones(pSkin), (RwUInt32)pHierarchy->numNodes);
+		const RwMatrix* pSkinToBone = RpSkinGetSkinToBoneMatrices(pSkin);
+		const RwMatrixWeights* pWeights = RpSkinGetVertexBoneWeights(pSkin);
+		const RwUInt32* pIndices = RpSkinGetVertexBoneIndices(pSkin);
+		if (uiNumBones == 0 || pSkinToBone == NULL || pWeights == NULL || pIndices == NULL)
+			return pAtomic;
+
+		std::vector<RwMatrix> vecSkinMatrix(uiNumBones);
+		for (RwUInt32 b = 0; b < uiNumBones; ++b)
+			RwMatrixMultiply(&vecSkinMatrix[b], &pSkinToBone[b], &pBoneMatrices[b]);
+
+		// hierarchies in local space still need the atomic frame to reach the world
+		RwBool bLocalSpace = (RpHAnimHierarchyGetFlags(pHierarchy) & rpHANIMHIERARCHYLOCALSPACEMATRICES) != 0;
+
+		for (RwInt32 i = 0; i < iNumVerts; ++i)
+		{
+			const RwReal afWeight[4] = { pWeights[i].w0, pWeights[i].w1, pWeights[i].w2, pWeights[i].w3 };
+
+			RwV3d vPos = { 0.0f, 0.0f, 0.0f };
+			RwReal fTotal = 0.0f;
+
+			for (RwInt32 k = 0; k < 4; ++k)
+			{
+				RwUInt32 uiBone = (pIndices[i] >> (8 * k)) & 0xFF;
+				if (afWeight[k] <= 0.0f || uiBone >= uiNumBones)
+					continue;
+
+				RwV3d vBone;
+				RwV3dTransformPoint(&vBone, &pVerts[i], &vecSkinMatrix[uiBone]);
+				RwV3dIncrementScaled(&vPos, &vBone, afWeight[k]);
+				fTotal += afWeight[k];
+			}
+
+			if (fTotal <= 0.0f)
+				continue;
+
+			RwV3dScale(&vPos, &vPos, 1.0f / fTotal);
+
+			if (bLocalSpace)
+			{
+				RwV3d vWorld;
+				RwV3dTransformPoint(&vWorld, &vPos, pLtm);
+				vPos = vWorld;
+			}
+
+			AddBoundsPoint(pBounds, &vPos);
+		}
+
+		return pAtomic;
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////
+// CMascotPreview
+
+CMascotPreview::CMascotPreview()
+: m_pCharacter(NULL)
+, m_pCamera(NULL)
+, m_bCameraReady(FALSE)
+, m_iMeasuredFrames(0)
+, m_bMeshValid(FALSE)
+, m_fDistance(PREVIEW_DISTANCE)
+{
+}
+
+CMascotPreview::~CMascotPreview()
+{
+	Destroy();
+}
+
+void CMascotPreview::SetModel(const RwChar* pModelKey)
+{
+	if (pModelKey && m_pCharacter && m_strModel == pModelKey)
+		return;
+
+	Destroy();
+
+	if (pModelKey == NULL || pModelKey[0] == '\0')
+		return;
+
+	// creating a character without its property crashes the scene manager
+	if (CNtlPLPropertyContainer::GetInstance()->GetProperty(PLENTITY_CHARACTER, pModelKey) == NULL)
+		return;
+
+	RwV3d vPos;
+	CNtlMath::MathRwV3dAssign(&vPos, 0.0f, 0.0f, 0.0f);
+
+	SPLCharacterCreateParam sParam;
+	sParam.pPos = &vPos;
+	sParam.uiSerialId = INVALID_SERIAL_ID;
+	sParam.bPcFlag = FALSE;
+	sParam.uiClass = 0;
+	sParam.uiRace = 0;
+	sParam.uiGender = 0;
+	sParam.uiFaceType = 0;
+	sParam.uiHeadType = 0;
+	sParam.uiHeadColorType = 0;
+	sParam.uiSkinColorType = 0;
+	sParam.bNotShadingFlag = FALSE;
+	sParam.bIsAdult = FALSE;
+
+	m_pCharacter = static_cast<CNtlPLCharacter*>(GetSceneManager()->CreateEntity(PLENTITY_CHARACTER, pModelKey, &sParam));
+	if (m_pCharacter == NULL)
+		return;
+
+	// only rendered into the texture, like the status window avatar
+	m_pCharacter->SetFlags(m_pCharacter->GetFlags() | NTL_PLEFLAG_DUMMY);
+	m_pCharacter->SetVisible(FALSE);
+	m_pCharacter->SetPicking(FALSE);
+	m_pCharacter->SetPosition(&vPos);
+	m_pCharacter->SetBaseAnimation(NML_IDLE_LOOP, 0.0f, TRUE);
+
+	m_pCamera = NTL_NEW CNtlPLCameraRenderTexture;
+	m_pCamera->Create(PREVIEW_TEX_SIZE, PREVIEW_TEX_SIZE, PREVIEW_REAL_WIDTH, PREVIEW_REAL_HEIGHT);
+
+	m_strModel = pModelKey;
+	m_bCameraReady = FALSE;
+	m_iMeasuredFrames = 0;
+	m_bMeshValid = FALSE;
+}
+
+void CMascotPreview::Destroy(void)
+{
+	if (m_pCharacter)
+	{
+		GetSceneManager()->DeleteEntity(m_pCharacter);
+		m_pCharacter = NULL;
+	}
+
+	if (m_pCamera)
+	{
+		m_pCamera->Destroy();
+		NTL_DELETE(m_pCamera);
+		m_pCamera = NULL;
+	}
+
+	m_strModel.clear();
+	m_bCameraReady = FALSE;
+	m_iMeasuredFrames = 0;
+	m_bMeshValid = FALSE;
+}
+
+void CMascotPreview::SetupCamera(void)
+{
+	// frame the mesh as it is drawn, the property box is only a rough hit box and the bind pose of
+	// some mascots is far bigger than their animated mesh (the higher grade dragons came out tiny)
+	if (m_iMeasuredFrames >= PREVIEW_SKIP_FRAMES)
+	{
+		SMeshBounds sBounds;
+		sBounds.bValid = FALSE;
+
+		RpClump* pClump = m_pCharacter->GetClump();
+		if (pClump)
+			RpClumpForAllAtomics(pClump, AddAtomicBounds, &sBounds);
+
+		// the idle animation moves a little, keep all of it in view
+		if (sBounds.bValid)
+		{
+			if (m_bMeshValid)
+			{
+				RwBBoxAddPoint(&m_bboxMesh, &sBounds.bbox.inf);
+				RwBBoxAddPoint(&m_bboxMesh, &sBounds.bbox.sup);
+			}
+			else
+			{
+				m_bboxMesh = sBounds.bbox;
+				m_bMeshValid = TRUE;
+			}
+		}
+	}
+
+	RwV3d vCenter;
+	RwReal fHeight, fWidth;
+
+	if (m_bMeshValid)
+	{
+		// the camera looks down the z axis, the depth does not change the framed size
+		fHeight = m_bboxMesh.sup.y - m_bboxMesh.inf.y;
+		fWidth = m_bboxMesh.sup.x - m_bboxMesh.inf.x;
+		CNtlMath::MathRwV3dAssign(&vCenter,
+			(m_bboxMesh.sup.x + m_bboxMesh.inf.x) * 0.5f,
+			(m_bboxMesh.sup.y + m_bboxMesh.inf.y) * 0.5f,
+			(m_bboxMesh.sup.z + m_bboxMesh.inf.z) * 0.5f);
+	}
+	else
+	{
+		RwReal fScale = m_pCharacter->GetBaseScale() * m_pCharacter->GetScale();
+		fHeight = m_pCharacter->GetHeight() * fScale;
+		fWidth = m_pCharacter->GetWidth() * fScale;
+		CNtlMath::MathRwV3dAssign(&vCenter, 0.0f, fHeight * 0.5f, 0.0f);
+	}
+
+	fHeight = max(fHeight, 0.1f);
+	RwReal fExtent = max(fHeight, fWidth * (RwReal)PREVIEW_REAL_HEIGHT / (RwReal)PREVIEW_REAL_WIDTH);
+
+	RwV3d vLookAt, vCamPos;
+	vCenter.y += fExtent * PREVIEW_LOOK_UP;
+	vLookAt = vCenter;
+	// the camera stands far enough back for the model to sit on the pedestal art with room around it
+	CNtlMath::MathRwV3dAssign(&vCamPos, vCenter.x, vCenter.y, vCenter.z + fExtent * m_fDistance);
+
+	m_pCamera->SetCameraPosition(&vCamPos, &vLookAt);
+}
+
+void CMascotPreview::SetDistance(RwReal fDistance)
+{
+	if (m_fDistance == fDistance)
+		return;
+
+	m_fDistance = fDistance;
+
+	// the same model is used by several ranks, move the camera without measuring again
+	if (m_pCharacter && m_bCameraReady)
+		SetupCamera();
+}
+
+RwTexture* CMascotPreview::Render(void)
+{
+	if (m_pCharacter == NULL || m_pCamera == NULL)
+		return NULL;
+
+	if (!m_pCharacter->GetCharScheduleResInfo()->bLoadComplete)
+		return NULL;
+
+	// measured over the first frames of the animation, then the camera stays put
+	if (!m_bCameraReady)
+	{
+		SetupCamera();
+
+		if (++m_iMeasuredFrames >= PREVIEW_MEASURE_FRAMES)
+			m_bCameraReady = TRUE;
+	}
+
+	m_pCamera->RenderTexture(m_pCharacter);
+
+	return m_pCamera->GetTexture();
+}
+
+//////////////////////////////////////////////////////////////////////////
+// CMascotGui
 
 CMascotGui::CMascotGui(const RwChar* pName)
-    :CNtlPLGui(pName)
+: CNtlPLGui(pName)
 {
-    Init();
+	Init();
 }
 
 CMascotGui::~CMascotGui()
 {
-    // Clean up temporary UI mascot in destructor
-    if (m_pTempUIMascot)
-    {
-        OutputDebugString("[MASCOT_CLEANUP] Cleaning up temporary UI mascot in destructor\n");
-        CNtlSobMascotProxy* pProxy = reinterpret_cast<CNtlSobMascotProxy*>(m_pTempUIMascot->GetSobProxy());
-        if (pProxy)
-        {
-            pProxy->DeleteUIMascotStatusWndCamera();
-            pProxy->DeleteUIMascotStatusWndCharacter();
-        }
-        m_pTempUIMascot->Destroy();
-        NTL_DELETE(m_pTempUIMascot);
-        m_pTempUIMascot = NULL;
-    }
 }
 
-void CMascotGui::Init()
+VOID CMascotGui::Init()
 {
-    // Bool
-    m_bShowItemInfo = false;
-    m_bShowSkillInfo = false;
-    m_bFocus = false;
-    m_bFocus_Skill = false;
-    m_bCurMaxExp = false;
+	m_psttbTitle = NULL;
+	m_psttbInfo = NULL;
+	m_psttbSkillInfo = NULL;
+	m_psttbSummoned = NULL;
+	m_psttbName = NULL;
+	m_psttbGrade = NULL;
+	m_psttbVp = NULL;
+	m_psttbExp = NULL;
+	m_pbtnSummon = NULL;
+	m_pbtnSummonEnd = NULL;
+	m_pbtnDelete = NULL;
+	m_pbtnFusion = NULL;
+	m_pbtnClose = NULL;
+	m_ppgbVp = NULL;
+	m_ppgbExp = NULL;
+	m_pscbMascot = NULL;
+	m_pflaSummoned = NULL;
 
-    // Int
-    m_CurLine = 0;
-    m_uiEffectFrame = 0;
-    m_iSelectedIndex = dMASCOT_INVALID_INDEX;
-    m_SummonMascotIndex = dMASCOT_INVALID_INDEX;
-    m_iClickEffectedSlot = dMASCOT_INVALID_INDEX;
-    m_iClidkEffectedSlotSkill = dMASCOT_INVALID_INDEX;
-    m_iSelectedSlot = dMASCOT_INVALID_INDEX;
-    m_iSelectedSlotSkill = dMASCOT_INVALID_INDEX;
-    m_iMouseDownSlot = dMASCOT_INVALID_INDEX;
-    m_iMouseDownSlotSkill = dMASCOT_INVALID_INDEX;
+	for (RwInt32 i = 0; i < dMAX_MASCOT_SLOT; ++i)
+	{
+		m_ppnlMascot[i] = NULL;
+		m_abySlotIndex[i] = INVALID_BYTE;
+	}
 
-    // Pointer
-    m_apflaEffect = NULL;
-    m_pTempUIMascot = NULL; // Initialize temporary UI mascot pointer
-    m_pWorldMascot = NULL; // Initialize world mascot pointer
+	for (RwInt32 i = 0; i < dMAX_MASCOT_SKILL; ++i)
+	{
+		m_ppnlSkill[i] = NULL;
+		m_pbtnSkill[i] = NULL;
+	}
+
+	m_iCurLine = 0;
+	m_bySelectedIndex = INVALID_BYTE;
+	m_iFocusSlot = -1;
+	m_iMouseDownMascot = -1;
+	m_iMouseDownSkill = -1;
+	m_iFocusSkill = -1;
+	m_iInfoWndSlot = -1;
+	m_fPreviewWait = 0.0f;
+
+	m_byGradeUpItemPlace = INVALID_BYTE;
+	m_byGradeUpItemPos = INVALID_BYTE;
 }
 
 RwBool CMascotGui::Create()
 {
-    NTL_FUNCTION("CMascotGui::Create");
-    if (!CNtlPLGui::Create("gui\\MascotEx.rsr", "gui\\MascotEx.srf", "gui\\MascotEx.frm"))
-        return FALSE;
+	NTL_FUNCTION("CMascotGui::Create");
 
-    CNtlPLGui::CreateComponents(CNtlPLGuiManager::GetInstance()->GetGuiManager());
-    m_pThis = (gui::CDialog*)GetComponent("dlgMain");
-    m_pThis->SetPriority(dDIALOGPRIORITY_DEFAULT);
+	if (!CNtlPLGui::Create("gui\\MascotEx.rsr", "gui\\MascotEx.srf", "gui\\MascotEx.frm"))
+		NTL_RETURN(FALSE);
 
-    // StaticBox
-    m_sttbTitle = (gui::CStaticBox*)GetComponent("Stb_Title");
-    m_psttb_Info = (gui::CStaticBox*)GetComponent("Stb_Info");
-    m_psttb_SkillInfo = (gui::CStaticBox*)GetComponent("Stb_SkillInfo");
-    m_psttb_Summoned = (gui::CStaticBox*)GetComponent("Stb_Summoned");
-    m_psttb_Name = (gui::CStaticBox*)GetComponent("Stb_Name");
-    m_psttb_ClassType = (gui::CStaticBox*)GetComponent("Stb_ClassType");
-    m_psttb_Vp = (gui::CStaticBox*)GetComponent("Stb_Vp");
-    m_psttb_Cp = (gui::CStaticBox*)GetComponent("Stb_Cp");
+	CNtlPLGui::CreateComponents(CNtlPLGuiManager::GetInstance()->GetGuiManager());
 
-    // Btn
-    m_pbtn_Summon = (gui::CButton*)GetComponent("Btn_Summon");
-    m_pbtn_SummonEnd = (gui::CButton*)GetComponent("Btn_SummonEnd");
-    m_pbtn_MascotDel = (gui::CButton*)GetComponent("Btn_MascotDel");
-    m_pbtn_MascotFusion = (gui::CButton*)GetComponent("Btn_MascotFusion");
-    m_pbtn_MascotRename = (gui::CButton*)GetComponent("Btn_MascotRename");
-    m_pbtn_Close = (gui::CButton*)GetComponent("Btn_Close");
+	m_pThis = (gui::CDialog*)GetComponent("dlgMain");
+	m_pThis->SetPriority(dDIALOGPRIORITY_DEFAULT);
 
-    // ProgressBar
-    m_ppgb_Vp = (gui::CProgressBar*)GetComponent("Pgb_Vp");
-    m_ppgb_Xp = (gui::CProgressBar*)GetComponent("Pgb_Xp");
-    m_ppgb_Vp->SetPos(0);
-    m_ppgb_Xp->SetPos(0);
+	m_psttbTitle = (gui::CStaticBox*)GetComponent("Stb_Title");
+	m_psttbInfo = (gui::CStaticBox*)GetComponent("Stb_Info");
+	m_psttbSkillInfo = (gui::CStaticBox*)GetComponent("Stb_SkillInfo");
+	m_psttbSummoned = (gui::CStaticBox*)GetComponent("Stb_Summoned");
+	m_psttbName = (gui::CStaticBox*)GetComponent("Stb_Name");
+	m_psttbGrade = (gui::CStaticBox*)GetComponent("Stb_ClassType");
+	m_psttbVp = (gui::CStaticBox*)GetComponent("Stb_Vp");
+	m_psttbExp = (gui::CStaticBox*)GetComponent("Stb_Cp");
 
-    // Panel
-    m_pPn_IvnBack = (gui::CPanel*)GetComponent("Pn_IvnBack");
-    m_pPn_IvnBack->SetToolTip(GetDisplayStringManager()->GetString("DST_MASCOTEX_BAG"));
-    m_pPn_Buff0 = (gui::CPanel*)GetComponent("Pn_Buff0");
-    m_pPn_Buff1 = (gui::CPanel*)GetComponent("Pn_Buff1");
-    m_pPn_Buff2 = (gui::CPanel*)GetComponent("Pn_Buff2");
-    m_pPn_Buff3 = (gui::CPanel*)GetComponent("Pn_Buff3");
+	m_pbtnSummon = (gui::CButton*)GetComponent("Btn_Summon");
+	m_pbtnSummonEnd = (gui::CButton*)GetComponent("Btn_SummonEnd");
+	m_pbtnDelete = (gui::CButton*)GetComponent("Btn_MascotDel");
+	m_pbtnFusion = (gui::CButton*)GetComponent("Btn_MascotFusion");
+	m_pbtnClose = (gui::CButton*)GetComponent("Btn_Close");
 
-    // ScrollBar
-    m_pscb_MascotScroll = (gui::CScrollBar*)GetComponent("Scb_MascotScroll");
-    m_pscb_MascotScroll->SetMaxValue(8);
+	// some layouts carry a rename button, mascots cannot be renamed
+	gui::CButton* pRenameBtn = (gui::CButton*)GetComponent("Btn_MascotRename");
+	if (pRenameBtn)
+		pRenameBtn->Show(false);
 
-    // From local_data.dat
-    m_pbtn_Summon->SetToolTip(GetDisplayStringManager()->GetString("DST_RECALL"));
-    m_pbtn_SummonEnd->SetToolTip(GetDisplayStringManager()->GetString("DST_RELEASE"));
-    m_pbtn_MascotDel->SetToolTip(GetDisplayStringManager()->GetString("DST_DELETE"));
-    m_pbtn_MascotFusion->SetToolTip(GetDisplayStringManager()->GetString("DST_MASCOTEX_FUSIONBUTTON"));
-    m_pbtn_MascotRename->SetToolTip(stringToWString("Raname your mascot. -NOT IMPLEMENTED-"));
+	m_ppgbVp = (gui::CProgressBar*)GetComponent("Pgb_Vp");
+	m_ppgbExp = (gui::CProgressBar*)GetComponent("Pgb_Xp");
 
-    // Effects
-    m_FocusEffect.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfSlotFocusEffect")); // The mouse is over the icon effect
-    m_SelectEffect.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfSlotPitchEffect")); // Selected item effect
-    m_FocusEffect_Skill.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfSlotFocusEffect")); // The mouse is over the skill effect
-    m_LiftEffect.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfSlotGrayedEffect")); // Effect when the mouse lifts up the icon (hover effect)
+	m_pscbMascot = (gui::CScrollBar*)GetComponent("Scb_MascotScroll");
 
-    // Events - Btn
-    m_slotBtnClose = m_pbtn_Close->SigClicked().Connect(this, &CMascotGui::OnCloseBtnClicked);
-    m_slotBtnSummon = m_pbtn_Summon->SigClicked().Connect(this, &CMascotGui::OnSummonBtnClicked);
-    m_slotBtnSummonEnd = m_pbtn_SummonEnd->SigClicked().Connect(this, &CMascotGui::OnSummonEndBtnClicked);
-    m_slotBtnMascotDel = m_pbtn_MascotDel->SigClicked().Connect(this, &CMascotGui::OnMascotDelBtnClicked);
-    m_slotBtnMascotFusion = m_pbtn_MascotFusion->SigClicked().Connect(this, &CMascotGui::OnMascotFusionBtnClicked);
-    m_slotBtnMascotRename = m_pbtn_MascotRename->SigClicked().Connect(this, &CMascotGui::OnMascotRenameBtnClicked);
+	gui::CPanel* pBagBack = (gui::CPanel*)GetComponent("Pn_IvnBack");
+	if (pBagBack)
+		pBagBack->SetToolTip(GetDisplayStringManager()->GetString("DST_MASCOTEX_BAG"));
 
-    // Events - Scroll
-    m_slotMascotScrollChanged = m_pscb_MascotScroll->SigValueChanged().Connect(this, &CMascotGui::OnScrollChanged);
-    m_slotMascotScrollSliderMoved = m_pscb_MascotScroll->SigSliderMoved().Connect(this, &CMascotGui::OnScrollChanged);
-    m_slotMouseWheel = GetNtlGuiManager()->GetGuiManager()->SigCaptureWheelMove().Connect(this, &CMascotGui::OnMouseWheel);
+	// texts
+	m_psttbTitle->SetPosition(DBOGUI_DIALOG_TITLE_X, DBOGUI_DIALOG_TITLE_Y);
+	m_psttbTitle->SetText(GetDisplayStringManager()->GetString("DST_MASCOT"));
+	m_psttbInfo->SetText(GetDisplayStringManager()->GetString("DST_MASCOTEX_STATUS_SUBTITLE"));
+	m_psttbSkillInfo->SetText(GetDisplayStringManager()->GetString("DST_MASCOTEX_SKILL"));
 
-    // Window Name
-    m_sttbTitle->SetPosition(DBOGUI_DIALOG_TITLE_X, DBOGUI_DIALOG_TITLE_Y);
-    m_sttbTitle->SetText(GetDisplayStringManager()->GetString("DST_MASCOT"));
+	m_pbtnSummon->SetText(GetDisplayStringManager()->GetString("DST_RECALL"));
+	m_pbtnSummonEnd->SetText(GetDisplayStringManager()->GetString("DST_RELEASE"));
+	m_pbtnDelete->SetText(GetDisplayStringManager()->GetString("DST_DELETE"));
+	m_pbtnFusion->SetText(GetDisplayStringManager()->GetString("DST_MASCOTEX_FUSIONBUTTON"));
+	m_pbtnFusion->SetToolTip(GetDisplayStringManager()->GetString("DST_MASCOTEX_FUSION_TOOLTIP"));
 
-    // Set Name of the Buttons
-    m_pbtn_Summon->SetText(GetDisplayStringManager()->GetString("DST_RECALL"));
-    m_pbtn_SummonEnd->SetText(GetDisplayStringManager()->GetString("DST_RELEASE"));
-    m_pbtn_MascotDel->SetText(GetDisplayStringManager()->GetString("DST_DELETE"));
-    m_pbtn_MascotFusion->SetText(GetDisplayStringManager()->GetString("DST_MASCOTEX_FUSIONBUTTON"));
-    m_pbtn_MascotRename->SetText(stringToWString("C.Name"));
+	m_ppgbVp->SetToolTip(GetDisplayStringManager()->GetString("DST_MASCOTEX_VP_REGEN"));
 
-    // Set the name of the info
-    m_psttb_Info->SetText(stringToWChar("Mascot Information"));
-    m_psttb_SkillInfo->SetText(stringToWChar("Skills"));
+	// mascot slots
+	for (RwInt32 i = 0; i < dMAX_MASCOT_SLOT; ++i)
+	{
+		char acName[32];
+		sprintf_s(acName, "Pn_IvnIcon%d", i);
+		m_ppnlMascot[i] = (gui::CPanel*)GetComponent(acName);
 
-    // Icons and Skills
-    InitializeMascotIconsAndSkills();
+		m_slotMascotEnter[i] = m_ppnlMascot[i]->SigMouseEnter().Connect(this, &CMascotGui::OnMouseEnterMascot);
+		m_slotMascotLeave[i] = m_ppnlMascot[i]->SigMouseLeave().Connect(this, &CMascotGui::OnMouseLeaveMascot);
+		m_slotMascotDown[i] = m_ppnlMascot[i]->SigMouseDown().Connect(this, &CMascotGui::OnMouseDownMascot);
+		m_slotMascotUp[i] = m_ppnlMascot[i]->SigMouseUp().Connect(this, &CMascotGui::OnMouseUpMascot);
 
-    // Gui Manager
-    GetNtlGuiManager()->AddUpdateFunc(this);
+		m_MascotSlot[i].Create(m_pThis, DIALOG_MASCOT, REGULAR_SLOT_ITEM_TABLE);
+		m_MascotSlot[i].SetPosition_fromParent(MASCOT_SLOT_X + (i % dMASCOT_SLOT_ROW) * MASCOT_SLOT_GAP_X,
+											   MASCOT_SLOT_Y + (i / dMASCOT_SLOT_ROW) * MASCOT_SLOT_GAP_Y);
+	}
 
-    // Link Events
-    LinkMsg(g_EventMascotRegister);
-    LinkMsg(g_EventPickedUpHide);
-    LinkMsg(g_EventMascotDelete);
-    LinkMsg(g_EventMascotSummon);
-    LinkMsg(g_EventMascotUnSummon);
+	// skill slots
+	CRectangle rect;
+	for (RwInt32 i = 0; i < dMAX_MASCOT_SKILL; ++i)
+	{
+		char acName[32];
+		sprintf_s(acName, "Pn_SkillIcon%d", i);
+		m_ppnlSkill[i] = (gui::CPanel*)GetComponent(acName);
 
-    Show(false);
+		m_slotSkillEnter[i] = m_ppnlSkill[i]->SigMouseEnter().Connect(this, &CMascotGui::OnMouseEnterSkill);
+		m_slotSkillLeave[i] = m_ppnlSkill[i]->SigMouseLeave().Connect(this, &CMascotGui::OnMouseLeaveSkill);
+		m_slotSkillDown[i] = m_ppnlSkill[i]->SigMouseDown().Connect(this, &CMascotGui::OnMouseDownSkill);
+		m_slotSkillUp[i] = m_ppnlSkill[i]->SigMouseUp().Connect(this, &CMascotGui::OnMouseUpSkill);
 
-    NTL_RETURN(TRUE);
+		RwInt32 iY = SKILL_SLOT_Y + i * SKILL_SLOT_GAP_Y;
+
+		m_SkillSlot[i].Create(m_pThis, DIALOG_MASCOT, REGULAR_SLOT_SKILL_TABLE);
+		m_SkillSlot[i].SetPosition_fromParent(SKILL_SLOT_X, iY);
+
+		m_surSkillLock[i].SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfSlotDisableEffect"));
+		m_surSkillLock[i].SetPositionfromParent(SKILL_SLOT_X, iY);
+
+		m_SkillCoolTime[i].SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfSlotGrayedEffect"));
+
+		rect.SetRectWH(SKILL_SLOT_X + SKILL_BTN_OFFSET_X, iY + SKILL_BTN_OFFSET_Y, 19, 19);
+		m_pbtnSkill[i] = NTL_NEW gui::CButton(rect, "",
+			GetNtlGuiManager()->GetSurfaceManager()->GetSurface("MascotEx.srf", "srfSkillChangeOpenUp"),
+			GetNtlGuiManager()->GetSurfaceManager()->GetSurface("MascotEx.srf", "srfSkillChangeOpenDown"),
+			GetNtlGuiManager()->GetSurfaceManager()->GetSurface("MascotEx.srf", "srfSkillChangeOpenDown"),
+			GetNtlGuiManager()->GetSurfaceManager()->GetSurface("MascotEx.srf", "srfSkillChangeOpenFocus"),
+			NTL_BUTTON_UP_COLOR, NTL_BUTTON_DOWN_COLOR, NTL_BUTTON_FOCUS_COLOR, NTL_BUTTON_UP_COLOR,
+			GUI_BUTTON_DOWN_COORD_X, GUI_BUTTON_DOWN_COORD_Y, m_pThis, GetNtlGuiManager()->GetSurfaceManager());
+		m_pbtnSkill[i]->Enable(false);
+		m_pbtnSkill[i]->Raise();
+
+		m_slotSkillBtn[i] = m_pbtnSkill[i]->SigClicked().Connect(this, &CMascotGui::OnSkillBtnClicked);
+	}
+
+	m_surFocus.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfSlotFocusEffect"));
+	// srfSlotPitchEffect does not exist and drew a white box, the yellow slot frame marks the selection
+	m_surSelect.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfSlotFocusEffect"));
+	m_surFocus.Show(FALSE);
+	m_surSelect.Show(FALSE);
+
+	m_surPreview.SetPositionfromParent(PREVIEW_X, PREVIEW_Y);
+	m_surPreview.Show(FALSE);
+
+	// marks the summoned mascot in the list
+	rect.SetRectWH(0, 0, 32, 32);
+	m_pflaSummoned = NTL_NEW gui::CFlash(rect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), "Skill_action.swf");
+	m_pflaSummoned->Show(false);
+	m_pflaSummoned->Enable(false);
+
+	// signals
+	m_slotClose = m_pbtnClose->SigClicked().Connect(this, &CMascotGui::OnCloseBtnClicked);
+	m_slotSummon = m_pbtnSummon->SigClicked().Connect(this, &CMascotGui::OnSummonBtnClicked);
+	m_slotSummonEnd = m_pbtnSummonEnd->SigClicked().Connect(this, &CMascotGui::OnSummonEndBtnClicked);
+	m_slotDelete = m_pbtnDelete->SigClicked().Connect(this, &CMascotGui::OnDeleteBtnClicked);
+	m_slotFusion = m_pbtnFusion->SigClicked().Connect(this, &CMascotGui::OnFusionBtnClicked);
+	m_slotScrollChanged = m_pscbMascot->SigValueChanged().Connect(this, &CMascotGui::OnScrollChanged);
+	m_slotScrollMoved = m_pscbMascot->SigSliderMoved().Connect(this, &CMascotGui::OnScrollChanged);
+	m_slotWheel = GetNtlGuiManager()->GetGuiManager()->SigCaptureWheelMove().Connect(this, &CMascotGui::OnMouseWheel);
+	m_slotPaint = m_pThis->SigPaint().Connect(this, &CMascotGui::OnPaint);
+	m_slotMove = m_pThis->SigMove().Connect(this, &CMascotGui::OnMove);
+
+	// the seal kit confirmation has no entry in the message table, use the summon box layout
+	GetAlarmManager()->CloneClientAlarm("DST_MASCOTEX_MASCOTSEAL_CONFIRM_BOX", "DST_RECALL_START_MASCOT_MB_CONFIRM");
+
+	GetNtlGuiManager()->AddUpdateFunc(this);
+	GetNtlGuiManager()->AddUpdateBeforeFunc(this);
+
+	LinkMsg(g_EventMascotRegister);
+	LinkMsg(g_EventMascotDelete);
+	LinkMsg(g_EventMascotSummon);
+	LinkMsg(g_EventMascotUnSummon);
+	LinkMsg(g_EventMascotUpdate);
+	LinkMsg(g_EventMsgBoxResult);
+
+	Show(false);
+
+	NTL_RETURN(TRUE);
 }
 
-// Function to convert std::string to std::wstring
-std::wstring CMascotGui::stringToWString(const std::string& str)
+VOID CMascotGui::Destroy()
 {
-    std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-    return converter.from_bytes(str);
-}
+	NTL_FUNCTION("CMascotGui::Destroy");
 
-// Function to convert std::string to WCHAR array
-WCHAR* CMascotGui::stringToWChar(const std::string& str)
-{
-    // Convert to std::wstring first
-    std::wstring wstr = std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>>().from_bytes(str);
+	m_Preview.Destroy();
 
-    // Allocate a new WCHAR array (including null terminator)
-    WCHAR* wCharArray = new WCHAR[wstr.length() + 1];
-    std::copy(wstr.begin(), wstr.end(), wCharArray);
-    wCharArray[wstr.length()] = L'\0'; // Add null terminator
+	for (RwInt32 i = 0; i < dMAX_MASCOT_SLOT; ++i)
+		m_MascotSlot[i].Destroy();
 
-    return wCharArray;
-}
+	for (RwInt32 i = 0; i < dMAX_MASCOT_SKILL; ++i)
+		m_SkillSlot[i].Destroy();
 
+	UnLinkMsg(g_EventMascotRegister);
+	UnLinkMsg(g_EventMascotDelete);
+	UnLinkMsg(g_EventMascotSummon);
+	UnLinkMsg(g_EventMascotUnSummon);
+	UnLinkMsg(g_EventMascotUpdate);
+	UnLinkMsg(g_EventMsgBoxResult);
 
-void CMascotGui::InitializeMascotIconsAndSkills()
-{
-    // Set the current indexes to dMASCOT_INVALID_INDEX
-    m_CurrentMascotParamters.m_CurrentMascotSlotIndex = dMASCOT_INVALID_INDEX;
-    m_CurrentMascotParamters.m_CurrentMascotSerialId = dMASCOT_INVALID_INDEX;
-    m_CurrentSkillSlotIndex = dMASCOT_INVALID_INDEX;
+	GetNtlGuiManager()->RemoveUpdateFunc(this);
+	GetNtlGuiManager()->RemoveUpdateBeforeFunc(this);
 
-    // Initialize mascot icon slots
-    RwInt32 iIconX = dMASCOTEX_CON_START_X;
-    RwInt32 iIconY = dMASCOTEX_CON_START_Y;
+	CNtlPLGui::DestroyComponents();
+	CNtlPLGui::Destroy();
 
-    for (RwInt32 i = 0; i < dMAX_MASCOT_SLOT; ++i)
-    {
-        // Generate the dynamic component name with index
-        char componentName[256];
-        sprintf(componentName, "Pn_IvnIcon%d", i);  // Create component name dynamically
-
-        // Retrieve the panel using the dynamic name
-        m_pPn_IvnIcons[i] = (gui::CPanel*)GetComponent(componentName);
-
-        // Connect mouse events for each panel dynamically
-        m_slotMascotMouseEnter[i] = m_pPn_IvnIcons[i]->SigMouseEnter().Connect(this, &CMascotGui::OnMouseEnterSlot);
-        m_slotMascotMouseLeave[i] = m_pPn_IvnIcons[i]->SigMouseLeave().Connect(this, &CMascotGui::OnMouseLeaveSlot);
-        m_slotMascotMouseDown[i] = m_pPn_IvnIcons[i]->SigMouseDown().Connect(this, &CMascotGui::OnMouseDownMascot);
-        m_slotMascotMove[i] = m_pPn_IvnIcons[i]->SigMove().Connect(this, &CMascotGui::OnMove);
-        m_slotMascotPaint[i] = m_pPn_IvnIcons[i]->SigPaint().Connect(this, &CMascotGui::OnPaint);
-
-        // Set up mascot icon slots and positions
-        m_MascotIcon[i].slot.Create(m_pThis, DIALOG_MASCOT, REGULAR_SLOT_ITEM_TABLE);
-
-        // Correctly set the position of the slot relative to its parent
-        m_MascotIcon[i].slot.SetPosition_fromParent(iIconX, iIconY);
-
-        // Debugging output to verify slot position
-        char positionMessage[256];
-        sprintf(positionMessage, "Slot %d: Position (%d, %d)\n", i, iIconX, iIconY);
-        OutputDebugString(positionMessage);
-
-        // Update the icon X position for the next slot
-        // Ensure proper positioning for the next row
-        if ((i + 1) % 4 == 0)
-        {
-            iIconX = dMASCOTEX_CON_START_X; // Reset X position
-            iIconY += dMASCOTEX_SLOT_GAP_HORI_Y; // Move down for the next row
-        }
-        else
-        {
-            iIconX += dMASCOTEX_SLOT_GAP_HORI_X; // Move right for the next slot
-        }
-    }
-
-    // Initialize skill icons and buttons
-    RwInt32 iSkillIconY = dMASCOTEX_SKILL_Y;
-    RwInt32 iButtonY = dMASCOTEX_SKILL_Y + 15;
-    CRectangle rect;
-
-    for (RwInt32 i = 0; i < dMAX_MASCOT_SKILL; ++i)
-    {
-        // Generate the dynamic component name with index
-        char componentName[256];
-        sprintf(componentName, "Pn_SkillIcon%d", i);  // Create component name dynamically
-
-        // Retrieve the panel using the dynamic name
-        m_pPn_SkillIcons[i] = (gui::CPanel*)GetComponent(componentName);
-
-        // Connect mouse events for each panel dynamically
-        m_slotSkillMouseEnter[i] = m_pPn_SkillIcons[i]->SigMouseEnter().Connect(this, &CMascotGui::OnMouseEnterSlot);
-        m_slotSkillMouseLeave[i] = m_pPn_SkillIcons[i]->SigMouseLeave().Connect(this, &CMascotGui::OnMouseLeaveSlot);
-        m_slotSkillMouseDown[i] = m_pPn_SkillIcons[i]->SigMouseDown().Connect(this, &CMascotGui::OnMouseDownSkill);
-        m_slotSkillMove[i] = m_pPn_SkillIcons[i]->SigMove().Connect(this, &CMascotGui::OnMove);
-        m_slotSkillPaint[i] = m_pPn_SkillIcons[i]->SigPaint().Connect(this, &CMascotGui::OnPaint);
-
-        m_MascotSkill[i].slot.Create(m_pThis, DIALOG_MASCOT, REGULAR_SLOT_SKILL_TABLE);
-        m_MascotSkill[i].slot.SetPosition_fromParent(dMASCOTEX_SKILL_X, iSkillIconY);
-
-        m_NotMascotSkill[i].SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfSlotDisableEffect"));
-        m_NotMascotSkill[i].SetPositionfromParent(dMASCOTEX_SKILL_X, iSkillIconY);
-
-        rect.SetRectWH(dMASCOTEX_SKILL_X + 40, iButtonY, 19, 19);
-        m_pbtn_MascotSkill[i] = NTL_NEW gui::CButton(rect, "",
-            GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfPlusBtnUp"),
-            GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfPlusBtnDown"),
-            GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfPlusBtnDown"),
-            GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfPlusBtnFocus"),
-            NTL_BUTTON_UP_COLOR, NTL_BUTTON_DOWN_COLOR, NTL_BUTTON_FOCUS_COLOR, NTL_BUTTON_UP_COLOR,
-            GUI_BUTTON_DOWN_COORD_X, GUI_BUTTON_DOWN_COORD_Y, m_pThis, GetNtlGuiManager()->GetSurfaceManager());
-
-        m_pbtn_MascotSkill[i]->Enable(false);
-        m_pbtn_MascotSkill[i]->SetToolTip(GetDisplayStringManager()->GetString("DST_MASCOTEX_SKILL_CREATE_TITLE"));
-
-        iButtonY += dMASCOTEX_SLOT_SKILL_Y;
-        iSkillIconY += dMASCOTEX_SLOT_SKILL_Y;
-
-        m_slotReMakeSkill[i] = m_pbtn_MascotSkill[i]->SigClicked().Connect(this, &CMascotGui::OnReMakeSkillBtnClicked);
-    }
-
-    // Initialize flash effect
-    CRectangle flashEffectRect;
-    flashEffectRect.SetRectWH(0, 0, 32, 32);
-    m_apflaEffect = NTL_NEW gui::CFlash(flashEffectRect, m_pThis, GetNtlGuiManager()->GetSurfaceManager(), "Skill_action.swf");
-
-    m_apflaEffect->Show(false);
-    m_apflaEffect->Enable(false);
-}
-
-
-void CMascotGui::Destroy()
-{
-    // Clean up temporary UI mascot if it exists
-    if (m_pTempUIMascot)
-    {
-        OutputDebugString("[MASCOT_CLEANUP] Cleaning up temporary UI mascot on GUI destroy\n");
-        CNtlSobMascotProxy* pProxy = reinterpret_cast<CNtlSobMascotProxy*>(m_pTempUIMascot->GetSobProxy());
-        if (pProxy)
-        {
-            pProxy->DeleteUIMascotStatusWndCamera();
-            pProxy->DeleteUIMascotStatusWndCharacter();
-        }
-        m_pTempUIMascot->Destroy();
-        NTL_DELETE(m_pTempUIMascot);
-        m_pTempUIMascot = NULL;
-    }
-
-    // NOTE: Do NOT clean up world mascot here! 
-    // Destroy() is called when GUI closes, not when mascot is unsummoned.
-    // World mascot should remain alive even when GUI is closed.
-
-    // Remove Mascot icons
-    for (RwInt32 i = 0; i < dMAX_MASCOT_SLOT; ++i)
-        m_MascotIcon[i].slot.Destroy();
-
-    // Unlink Events
-    UnLinkMsg(g_EventMascotRegister);
-    UnLinkMsg(g_EventPickedUpHide);
-    UnLinkMsg(g_EventMascotDelete);
-    UnLinkMsg(g_EventMascotSummon);
-    UnLinkMsg(g_EventMascotUnSummon);
-
-    NTL_FUNCTION("CMascotGui::Destroy");
-    CNtlPLGui::DestroyComponents();
-    CNtlPLGui::Destroy();
-    gui::CResourceManager* pResMgr = CNtlPLGuiManager::GetInstance()->GetReourceManager();
-    GetNtlGuiManager()->GetReourceManager()->RemovePage("gui\\mascotex.rsr");
+	NTL_RETURNVOID();
 }
 
 RwInt32 CMascotGui::SwitchDialog(bool bOpen)
 {
-    // Check if the dialog is being opened
-    if (bOpen)
-    {
-        // Refresh the list based on the current line
-        RefreshList(m_CurLine);
+	if (bOpen)
+	{
+		SMascotInfo* pInfo = GetNtlSLGlobal()->GetAvatarMascotInfo();
 
-        // Check if there's already a summoned mascot and create UI texture for it
-        if (m_SummonMascotIndex != dMASCOT_INVALID_INDEX)
-        {
-            // Create UI texture for the currently summoned mascot
-            CreateUITextureForSummonedMascot(m_SummonMascotIndex);
-        }
+		// show the summoned mascot first, or the first one registered
+		if (pInfo->Find(m_bySelectedIndex) == NULL)
+		{
+			if (pInfo->GetSummoned())
+				m_bySelectedIndex = pInfo->bySummonIndex;
+			else if (pInfo->wCount > 0)
+				m_bySelectedIndex = pInfo->asMascotData[0].byIndex;
+			else
+				m_bySelectedIndex = INVALID_BYTE;
+		}
 
-        // Show the dialog
-        Show(bOpen);
-    }
-    else
-    {
-        // Close the mascot fusion dialog if it is currently open
-        if (GetDialogManager()->IsOpenDialog(DIALOG_MASCOT_FUSION))
-            GetDialogManager()->CloseDialog(DIALOG_MASCOT_FUSION);
+		Show(true);
 
-        // Close the mascot skill remake dialog if it is currently open
-        if (GetDialogManager()->IsOpenDialog(DIALOG_MASCOT_SKILL_REMAKE))
-            GetDialogManager()->CloseDialog(DIALOG_MASCOT_SKILL_REMAKE);
+		// places the slots and the preview even if the dialog never moved
+		CRectangle rtScreen = m_pThis->GetScreenRect();
+		OnMove(rtScreen.left, rtScreen.top);
 
-        // Hide item info window
-        ShowItemInfoWindow(false);
+		RefreshList();
+		RefreshInfo();
+	}
+	else
+	{
+		if (GetDialogManager()->IsOpenDialog(DIALOG_MASCOT_FUSION))
+			GetDialogManager()->CloseDialog(DIALOG_MASCOT_FUSION);
 
-        // Hide skill info window
-        ShowSkillInfoWindow(false);
+		if (GetDialogManager()->IsOpenDialog(DIALOG_MASCOT_SKILL_REMAKE))
+			GetDialogManager()->CloseDialog(DIALOG_MASCOT_SKILL_REMAKE);
 
-        // Clean up temporary UI mascot when window closes
-        if (m_pTempUIMascot)
-        {
-            OutputDebugString("[MASCOT_CLEANUP] Cleaning up temporary UI mascot on window close\n");
-            CNtlSobMascotProxy* pProxy = reinterpret_cast<CNtlSobMascotProxy*>(m_pTempUIMascot->GetSobProxy());
-            if (pProxy)
-            {
-                pProxy->DeleteUIMascotStatusWndCamera();
-                pProxy->DeleteUIMascotStatusWndCharacter();
-            }
-            m_pTempUIMascot->Destroy();
-            NTL_DELETE(m_pTempUIMascot);
-            m_pTempUIMascot = NULL;
-        }
+		HideInfoWnd();
 
-        // Show the dialog (which will actually hide it in this case since bOpen is false)
-        Show(bOpen);
-    }
+		m_byGradeUpItemPlace = INVALID_BYTE;
+		m_byGradeUpItemPos = INVALID_BYTE;
 
-    // Return 1 indicating the method completed successfully
-    return 1;
+		// the preview model only lives while the window is open
+		m_Preview.Destroy();
+		m_surPreview.Show(FALSE);
+
+		Show(false);
+	}
+
+	return 1;
 }
 
-void CMascotGui::HandleEvents(RWS::CMsg& msg)
+VOID CMascotGui::StartSkillGradeUp(BYTE byItemPlace, BYTE byItemPos)
 {
-    NTL_FUNCTION("CMascotGui::HandleEvents"); // Start of the function for handling events
+	SMascotInfo* pInfo = GetNtlSLGlobal()->GetAvatarMascotInfo();
+	if (pInfo->GetSummoned() == NULL)
+	{
+		GetAlarmManager()->AlarmMessage("DST_MASCOTEX_SKILLGRADEUP_DONT_SUMMON");
+		return;
+	}
 
-    // Check if the event is a mascot registration
-    if (msg.Id == g_EventMascotRegister)
-    {
-        SDboEventMascotRegister* pData = reinterpret_cast<SDboEventMascotRegister*>(msg.pData);
+	m_byGradeUpItemPlace = byItemPlace;
+	m_byGradeUpItemPos = byItemPos;
+	m_bySelectedIndex = pInfo->bySummonIndex;
 
-        // If the mascot dialog is open, refresh the list of mascots
-        if (GetDialogManager()->IsOpenDialog(DIALOG_MASCOT))
-        {
-            RefreshList(m_CurLine);
-        }
-        else
-        {
-            // If the dialog is not open, open the mascot dialog
-            GetDialogManager()->OpenDialog(DIALOG_MASCOT);
-        }
-    }
-    // Check if the event is for picking up and hiding an item
-    else if (msg.Id == g_EventPickedUpHide)
-    {
-        RwInt32 nSlotIdx = (RwInt32)msg.pData;
+	if (!GetDialogManager()->IsOpenDialog(DIALOG_MASCOT))
+		GetDialogManager()->OpenDialog(DIALOG_MASCOT);
+	else
+	{
+		RefreshList();
+		RefreshInfo();
+	}
 
-        // If the slot index is not for a skill, exit the function
-        if (nSlotIdx != PLACE_SKILL)
-            return;
-
-        // Hide the skill selection effect
-        SelectEffectSkill(false);
-    }
-    // Check if the event is for deleting a mascot
-    else if (msg.Id == g_EventMascotDelete)
-    {
-        // Refresh the list of mascots
-        RefreshList(m_CurLine);
-    }
-    // Check if the event is for summoning a mascot
-    else if (msg.Id == g_EventMascotSummon)
-    {
-        SDboEventMascotOperate* pData = reinterpret_cast<SDboEventMascotOperate*>(msg.pData);
-        m_SummonMascotIndex = pData->index; // Store the index of the summoned mascot
-        RefreshSkillSlot(); // Refresh the skill slot UI
-        // Set the summoned status text
-        m_psttb_Summoned->SetText(GetDisplayStringManager()->GetString("DST_MASCOTEX_STATUS_SUBTITLE_SUMMON"));  // The mascot has been successfully summoned.
-        // Create the flash effect for the summoned mascot
-        CreateFlashEffect(pData->index);
-
-        // Convert temporary UI mascot to real world mascot (don't delete it!)
-        if (m_pTempUIMascot)
-        {
-            // Clean up only the UI-specific components, but keep the world mascot
-            CNtlSobMascotProxy* pProxy = reinterpret_cast<CNtlSobMascotProxy*>(m_pTempUIMascot->GetSobProxy());
-            if (pProxy)
-            {
-                // Only delete UI camera, keep the world mascot alive
-                pProxy->DeleteUIMascotStatusWndCamera();
-                // DON'T delete the character - that's the world mascot we want to keep
-            }
-            
-            // CRITICAL: Assign a valid serial ID BEFORE creating world mascot
-            // This ensures both GUI and proxy references use the same valid serial ID
-            SERIAL_HANDLE hNewSerial = (SERIAL_HANDLE)GetTickCount64();
-            if (hNewSerial == INVALID_SERIAL_ID)
-                hNewSerial = 1000000; // Fallback to avoid invalid ID
-            
-            m_pTempUIMascot->SetSerialID(hNewSerial);
-            
-            // NOW create the world mascot (this was moved from global events to here)
-            m_pTempUIMascot->CreateWorldMascot();
-            
-            // Track the world mascot for proper cleanup on unsummon
-            m_pWorldMascot = m_pTempUIMascot;
-            
-            // Clear the temp mascot pointer but DON'T delete the object - it's now the real world mascot
-            m_pTempUIMascot = NULL;
-        }
-        GetDialogManager()->CloseDialog(DIALOG_MASCOT);
-    }
-    // Check if the event is for unsummoning a mascot
-    else if (msg.Id == g_EventMascotUnSummon)
-    {
-        OutputDebugString("[MASCOT_UNSUMMON] Handling mascot unsummon event\n");
-
-        // CRITICAL: Remove the world mascot from the world and delete it
-        if (m_pWorldMascot)
-        {
-            OutputDebugString("[MASCOT_UNSUMMON] Found world mascot, removing from world\n");
-
-            // Get the serial ID before destroying
-            SERIAL_HANDLE hSerialId = m_pWorldMascot->GetSerialID();
-            char debugBuffer[256];
-            sprintf_s(debugBuffer, "[MASCOT_UNSUMMON] Attempting to remove mascot with serial ID: %u\n", hSerialId);
-            OutputDebugString(debugBuffer);
-
-            // Check if mascot is registered in SOB manager before trying to delete through manager
-            CNtlSob* pSobCheck = GetNtlSobManager()->GetSobObject(hSerialId);
-            if (pSobCheck && pSobCheck == m_pWorldMascot)
-            {
-                OutputDebugString("[MASCOT_UNSUMMON] Mascot found in SOB manager, deleting through manager\n");
-                
-                // CRITICAL: First manually remove the visual entity from world before SOB deletion
-                CNtlSobMascotProxy* pProxy = reinterpret_cast<CNtlSobMascotProxy*>(m_pWorldMascot->GetSobProxy());
-                if (pProxy)
-                {
-                    // Explicitly remove the 3D model from the world
-                    pProxy->RemoveWorld();
-                    
-                    // Also delete the mascot entity to ensure visual cleanup
-                    pProxy->DeleteMascotEntity();
-                    
-                    char debugBuffer2[256];
-                    sprintf_s(debugBuffer2, "[MASCOT_UNSUMMON] Visual entity removed from world for serial ID: %u\n", hSerialId);
-                    OutputDebugString(debugBuffer2);
-                }
-                
-                // Now delete from SOB manager
-                GetNtlSobManager()->DeleteObject(m_pWorldMascot);
-            }
-            else
-            {
-                sprintf_s(debugBuffer, "[MASCOT_UNSUMMON] Mascot not in SOB manager (found: %s, same: %s), destroying directly\n", 
-                    pSobCheck ? "YES" : "NO", (pSobCheck == m_pWorldMascot) ? "YES" : "NO");
-                OutputDebugString(debugBuffer);
-                
-                // Manually destroy since it's not in the SOB manager
-                CNtlSobMascotProxy* pProxy = reinterpret_cast<CNtlSobMascotProxy*>(m_pWorldMascot->GetSobProxy());
-                if (pProxy)
-                {
-                    pProxy->RemoveWorld(); // Remove from world first
-                }
-                m_pWorldMascot->Destroy(); // Destroy the object
-                NTL_DELETE(m_pWorldMascot); // Delete the memory
-            }
-            
-            m_pWorldMascot = NULL;
-            OutputDebugString("[MASCOT_UNSUMMON] World mascot cleanup completed\n");
-        }
-        else
-        {
-            OutputDebugString("[MASCOT_UNSUMMON] No world mascot found to remove\n");
-            
-            // Try to find any mascot in the SOB manager and remove it
-            CNtlSobGroup* pMascotGroup = GetNtlSobManager()->GetSobGroup(SLCLASS_MASCOT);
-            if (pMascotGroup && pMascotGroup->GetCount() > 0)
-            {
-                OutputDebugString("[MASCOT_UNSUMMON] Found mascots in SOB manager, attempting to remove them\n");
-                
-                // Get the first mascot from the group
-                CNtlSobGroup::MapObject& mapObjects = pMascotGroup->GetObjects();
-                CNtlSobGroup::MapObject::iterator it = mapObjects.begin();
-                if (it != mapObjects.end())
-                {
-                    CNtlSob* pMascot = it->second;
-                    if (pMascot)
-                    {
-                        char debugBuffer[256];
-                        sprintf_s(debugBuffer, "[MASCOT_UNSUMMON] Removing mascot from SOB manager: %u\n", pMascot->GetSerialID());
-                        OutputDebugString(debugBuffer);
-                        GetNtlSobManager()->DeleteObject(pMascot);
-                    }
-                }
-            }
-        }
-
-        m_SummonMascotIndex = dMASCOT_INVALID_INDEX; // Reset the summoned mascot index
-        
-        // Deselect any currently selected slot since no mascot is summoned
-        if (m_iSelectedSlot != dMASCOT_INVALID_INDEX)
-        {
-            OutputDebugString("[MASCOT_UNSUMMON] Deselecting current slot\n");
-            SelectEffect(false, m_iSelectedSlot); // Remove selection visual effect
-            m_iSelectedSlot = dMASCOT_INVALID_INDEX;
-            m_iSelectedIndex = dMASCOT_INVALID_INDEX;
-            OpenMascotInfo(false, dMASCOT_INVALID_INDEX); // Clear mascot info display
-        }
-        
-        RefreshSkillSlot(); // Refresh the skill slot UI
-        m_psttb_Summoned->Clear(); // Clear the summoned status text
-
-        // Hide and disable the flash effect for the unsummoned mascot
-        m_apflaEffect->Show(false);
-        m_apflaEffect->Enable(false);
-
-        OutputDebugString("[MASCOT_UNSUMMON] Mascot unsummon handling complete\n");
-    }
-
-    NTL_RETURNVOID(); // End of function, returning void
+	GetAlarmManager()->AlarmMessage("DST_MASCOTEX_SKILLGRADEUP_USING");
 }
 
-// Method to handle the event when the "ReMake Skill" button is clicked
-VOID CMascotGui::OnReMakeSkillBtnClicked(gui::CComponent* pComponent)
+VOID CMascotGui::HandleEvents(RWS::CMsg& msg)
 {
-    // Prepare to switch to the skill remake GUI
+	NTL_FUNCTION("CMascotGui::HandleEvents");
 
-    // Get the current position of the dialog
-    CRectangle rect = GetPosition();
+	if (msg.Id == g_EventMascotRegister)
+	{
+		SDboEventMascotRegister* pData = reinterpret_cast<SDboEventMascotRegister*>(msg.pData);
+		m_bySelectedIndex = pData->mascotdata.byIndex;
 
-    // Retrieve the dialog for skill remake and set its position relative to the current dialog
-    CNtlPLGui* pPLGui = GetDialogManager()->GetDialog(DIALOG_MASCOT_SKILL_REMAKE);
-    pPLGui->SetPosition(rect.left + rect.GetWidth() + NTL_LINKED_DIALOG_GAP, rect.top);
+		if (GetDialogManager()->IsOpenDialog(DIALOG_MASCOT))
+		{
+			RefreshList();
+			RefreshInfo();
+		}
+		else
+			GetDialogManager()->OpenDialog(DIALOG_MASCOT);
+	}
+	else if (msg.Id == g_EventMascotDelete || msg.Id == g_EventMascotSummon || msg.Id == g_EventMascotUnSummon)
+	{
+		if (msg.Id == g_EventMascotSummon)
+			m_bySelectedIndex = reinterpret_cast<SDboEventMascotOperate*>(msg.pData)->index;
 
-    // Switch to the skill remake dialog
-    GetDialogManager()->SwitchDialog(DIALOG_MASCOT_SKILL_REMAKE);
+		if (IsShow())
+		{
+			if (GetNtlSLGlobal()->GetAvatarMascotInfo()->Find(m_bySelectedIndex) == NULL)
+				m_bySelectedIndex = INVALID_BYTE;
+
+			RefreshList();
+			RefreshInfo();
+		}
+	}
+	else if (msg.Id == g_EventMascotUpdate)
+	{
+		SDboEventMascotUpdate* pData = reinterpret_cast<SDboEventMascotUpdate*>(msg.pData);
+
+		if (pData->byType == MASCOT_UPDATE_SKILL)
+		{
+			m_byGradeUpItemPlace = INVALID_BYTE;
+			m_byGradeUpItemPos = INVALID_BYTE;
+
+			// the skill window reveals a learned or re-rolled skill after its gauges fill
+			CMascotSkillReMake* pReMake = reinterpret_cast<CMascotSkillReMake*>(GetDialogManager()->GetDialog(DIALOG_MASCOT_SKILL_REMAKE));
+			if (pData->bSuccess && pReMake && pReMake->IsRevealPending(pData->byIndex, pData->bySlot))
+				NTL_RETURNVOID();
+		}
+
+		if (IsShow())
+		{
+			RefreshList();
+			if (pData->byIndex == m_bySelectedIndex)
+				RefreshInfo();
+		}
+	}
+	else if (msg.Id == g_EventMsgBoxResult)
+	{
+		SDboEventMsgBoxResult* pEvent = reinterpret_cast<SDboEventMsgBoxResult*>(msg.pData);
+		if (pEvent->eResult != MBR_OK || pEvent->pData == NULL)
+			NTL_RETURNVOID();
+
+		RwUInt64 uiParam = pEvent->pData->uiParam;
+
+		if (pEvent->strID == "DST_MASCOTEX_SKILL_RESCUE")
+		{
+			Logic_SendMascotSkill((RwUInt8)(uiParam & 0xFF));
+		}
+		else if (pEvent->strID == "DST_MASCOTEX_SKILL_NPC_TELEPORT")
+		{
+			Logic_SendMascotSkill((RwUInt8)(uiParam & 0xFF), (TBLIDX)(uiParam >> 32));
+		}
+		else if (pEvent->strID == "DST_MASCOTEX_SKILL_GRADEUP")
+		{
+			GetDboGlobal()->GetGamePacketGenerator()->SendMascotSkillUpgradeReq((BYTE)(uiParam & 0xFF), (BYTE)((uiParam >> 8) & 0xFF), (BYTE)((uiParam >> 16) & 0xFF));
+		}
+		else if (pEvent->strID == "DST_MASCOTEX_MASCOTSEAL_CONFIRM_BOX")
+		{
+			GetDboGlobal()->GetGamePacketGenerator()->SendMascotSealSetReq((BYTE)(uiParam & 0xFF), (BYTE)((uiParam >> 8) & 0xFF), (BYTE)((uiParam >> 16) & 0xFF));
+		}
+	}
+
+	NTL_RETURNVOID();
+}
+
+VOID CMascotGui::Update(RwReal fElapsed)
+{
+	if (!IsShow())
+		return;
+
+	if (m_pflaSummoned->IsVisible())
+		m_pflaSummoned->Update(fElapsed);
+
+	// cooldowns of the summoned mascot
+	SMascotInfo* pInfo = GetNtlSLGlobal()->GetAvatarMascotInfo();
+	RwBool bSummonedShown = pInfo->bySummonIndex != INVALID_BYTE && pInfo->bySummonIndex == m_bySelectedIndex;
+
+	for (RwInt32 i = 0; i < dMAX_MASCOT_SKILL; ++i)
+	{
+		RwUInt32 dwLeft = bSummonedShown ? pInfo->GetSkillCoolTimeLeft(m_bySelectedIndex, (RwUInt8)i) : 0;
+		if (dwLeft == 0)
+		{
+			if (m_SkillCoolTime[i].IsWork())
+				m_SkillCoolTime[i].EndProc();
+			continue;
+		}
+
+		sSKILL_TBLDAT* pSkillTbl = m_SkillSlot[i].GetSkillTable();
+		if (pSkillTbl == NULL || pSkillTbl->dwCoolTimeInMilliSecs == 0)
+			continue;
+
+		RwReal fMax = (RwReal)pSkillTbl->dwCoolTimeInMilliSecs / 1000.0f;
+		if (!m_SkillCoolTime[i].IsWork())
+			m_SkillCoolTime[i].StartProc(fMax);
+
+		m_SkillCoolTime[i].Update(max(0.0f, fMax - (RwReal)dwLeft / 1000.0f));
+	}
+}
+
+VOID CMascotGui::UpdateBeforeCamera(RwReal fElapsed)
+{
+	if (!IsShow())
+		return;
+
+	RwTexture* pTexture = m_Preview.Render();
+	if (pTexture == NULL)
+		return;
+
+	m_texPreview.Load(pTexture);
+	m_surPreview.SetTexture(&m_texPreview);
+
+	// give the model textures a moment to stream in, a fresh model renders black
+	if (!m_surPreview.IsShow())
+	{
+		m_fPreviewWait += fElapsed;
+		if (m_fPreviewWait < 0.3f)
+			return;
+	}
+
+	m_surPreview.Show(TRUE);
 }
 
 VOID CMascotGui::OnPaint()
 {
-    // Paint each mascot slot
-    for (RwInt32 i = 0; i < dMAX_MASCOT_SLOT; ++i)
-    {
-        m_MascotIcon[i].slot.Paint();
-    }
-    // Paint each mascot skill slot and render non-mascot skills
-    for (RwInt32 i = 0; i < dMAX_MASCOT_SKILL; ++i)
-    {
-        m_MascotSkill[i].slot.Paint();
-        m_NotMascotSkill[i].Render();
-    }
-    // Render the selection effects if a slot or skill is selected
-    if (m_iSelectedSlot != dMASCOT_INVALID_INDEX)
-        m_SelectEffect.Render();
+	for (RwInt32 i = 0; i < dMAX_MASCOT_SLOT; ++i)
+		m_MascotSlot[i].Paint();
 
-    if (m_iSelectedSlotSkill != dMASCOT_INVALID_INDEX)
-        m_LiftEffect.Render();
+	for (RwInt32 i = 0; i < dMAX_MASCOT_SKILL; ++i)
+	{
+		m_SkillSlot[i].Paint();
+		m_surSkillLock[i].Render();
 
-    // Render focus effects based on whether the GUI has focus
-    if (m_bFocus)
-        m_FocusEffect.Render();
+		if (m_SkillCoolTime[i].IsWork())
+			m_SkillCoolTime[i].Render();
+	}
 
-    if (m_bFocus_Skill)
-        m_FocusEffect_Skill.Render();
+	m_surSelect.Render();
+	m_surFocus.Render();
 
-    // Render the mascot surface only if texture is valid
-    if (m_surMascot.GetTexture() && m_surMascot.GetTexture()->GetTexture())
-    {
-        m_surMascot.Render(true); // Render on top
-    }
-}
-
-VOID CMascotGui::OnMouseEnterSlot(gui::CComponent* pComponent)
-{
-    int tabID = pComponent->GetTabID();
-    std::string componentName = pComponent->GetID();
-    std::wstring toolTipText = pComponent->GetToolTip();
-    std::string descriptionText = pComponent->GetDescription();
-    std::string pageName = pComponent->GetPage();
-
-    // Extract index from component name
-    int index = ExtractIndex(componentName);
-
-    // Process based on component type
-    if (index != dMASCOT_INVALID_INDEX)
-    {
-        if (componentName.find("Pn_IvnIcon") != std::string::npos)
-        {
-            // Set the current index 
-            m_CurrentMascotParamters.m_CurrentMascotSlotIndex = index;
-            m_CurrentMascotParamters.m_CurrentMascotSerialId = m_MascotIcon[index].slot.GetSerial();
-
-            // Highlight the mascot if within a slot and show item info
-            FocusEffect(true, index);
-            if (m_MascotIcon[index].slot.GetItemTable())
-                ShowItemInfoWindow(true, index);
-        }
-        else if (componentName.find("Pn_SkillIcon") != std::string::npos)
-        {
-            // Set the current index 
-            m_CurrentSkillSlotIndex = index;
-
-            // Highlight the skill if within the slot and show skill info
-            FocusEffectSkill(true, index);
-            if (m_MascotSkill[index].slot.GetSkillTable())
-                ShowSkillInfoWindow(true, index);
-        }
-    }
-
-    // Output debug information
-    OutputDebugInfo(tabID, componentName, index, toolTipText, descriptionText, pageName);
-}
-
-VOID CMascotGui::OnMouseLeaveSlot(gui::CComponent* pComponent)
-{
-    std::string componentName = pComponent->GetID();
-
-    // Extract index from component name
-    int index = ExtractIndex(componentName);
-
-    // Process based on component type
-    if (componentName.find("Pn_IvnIcon") != std::string::npos)
-    {
-        // Set the current index 
-        m_CurrentMascotParamters.m_CurrentMascotSlotIndex = dMASCOT_INVALID_INDEX;
-        m_CurrentMascotParamters.m_CurrentMascotSerialId = dMASCOT_INVALID_INDEX;
-
-        // Remove highlight and hide item info if outside the mascot slot
-        FocusEffect(false, index);
-        ShowItemInfoWindow(false, index);
-    }
-    else if (componentName.find("Pn_SkillIcon") != std::string::npos)
-    {
-        // Set the current index 
-        m_CurrentSkillSlotIndex = dMASCOT_INVALID_INDEX;
-
-        // Remove highlight and hide skill info if outside the skill slot
-        FocusEffectSkill(false, index);
-        ShowSkillInfoWindow(false, index);
-    }
-}
-
-
-// Helper function to extract index from component name
-int CMascotGui::ExtractIndex(const std::string& componentName)
-{
-    std::regex indexRegex("Pn_(Ivn|Skill)Icon(\\d+)$");
-    std::smatch matches;
-
-    if (std::regex_search(componentName, matches, indexRegex))
-    {
-        return std::stoi(matches[2]); // Get the captured index as an integer
-    }
-
-    return dMASCOT_INVALID_INDEX; // Return dMASCOT_INVALID_INDEX if no match found
-}
-
-// Helper function to output debug information
-void CMascotGui::OutputDebugInfo(int tabID, const std::string& componentName, int index,
-    const std::wstring& toolTipText, const std::string& descriptionText,
-    const std::string& pageName)
-{
-    std::ostringstream oss;
-    oss << "Component: tabID = " << tabID
-        << ", componentName = " << componentName
-        << ", index = " << index
-        << ", toolTip = " << std::wstring_convert<std::codecvt_utf8<wchar_t>>().to_bytes(toolTipText)
-        << ", description = " << descriptionText
-        << ", pageName = " << pageName;
-
-    // Output the final string
-    OutputDebugString(oss.str().c_str());
-}
-
-// Method to check if a point is within a mascot OR skill slot
-RwInt32 CMascotGui::PtinSlot(RwInt32 iSlotKind, RwInt32 iX, RwInt32 iY)
-{
-    // Debugging output for the parameters
-    char debugMessage[256];
-    sprintf(debugMessage, "Parameters: isSlotKind = %d, iX = %d, iY = %d\n", iSlotKind, iX, iY);
-    OutputDebugString(debugMessage);
-
-    // Offsets required as the mouse coordinates do not match the slot coordinates
-    const int xOffsetAdjustment = 496;
-    const int yOffsetAdjustment = 97;
-
-    // Adjust the mouse coordinates for comparison
-    RwInt32 adjustedX = iX + xOffsetAdjustment;
-    RwInt32 adjustedY = iY + yOffsetAdjustment;
-
-    switch (iSlotKind)
-    {
-    case MASCOT_SLOT:
-        for (RwInt32 i = 0; i < dMAX_MASCOT_SLOT; ++i)
-        {
-            // Calculate the actual slot rectangle
-            RwInt32 left = m_MascotIcon[i].slot.GetParentX() + m_MascotIcon[i].slot.GetX_fromParent();
-            RwInt32 right = left + m_MascotIcon[i].slot.GetWidth();
-            RwInt32 top = m_MascotIcon[i].slot.GetParentY() + m_MascotIcon[i].slot.GetY_fromParent();
-            RwInt32 bottom = top + m_MascotIcon[i].slot.GetHeight();
-
-            // Debugging output to verify slot rectangle
-            sprintf(debugMessage, "Checking slot %d: Rect (%d, %d, %d, %d)\n", i, left, top, right, bottom);
-            OutputDebugString(debugMessage);
-
-            // Check if the adjusted mouse coordinates are within the rectangle of a mascot slot
-            if (adjustedX >= left && adjustedX <= right && adjustedY >= top && adjustedY <= bottom) {
-                sprintf(debugMessage, "Slot %d found at adjusted coordinates (%d, %d)\n", i, adjustedX, adjustedY);
-                OutputDebugString(debugMessage);
-                return i; // Return the index of the slot if found
-            }
-
-            // Check if the mouse coordinates are within the rectangle of a mascot slot
-            if (m_MascotIcon[i].slot.PtInRect(iX, iY))
-                return i; // Return the index of the mascot slot if found
-        }
-        break;
-    case SKILL_SLOT:
-        for (RwInt32 i = 0; i < dMAX_MASCOT_SKILL; ++i) {
-            // Check if the mouse coordinates are within the rectangle of a skill slot
-            if (m_MascotSkill[i].slot.PtInRect(iX, iY))
-                return i; // Return the index of the skill slot if found
-        }
-        break;
-    default:
-        break;
-    }
-
-    return dMASCOT_INVALID_INDEX; // Return invalid index if not found
-}
-
-// Handles mouse button down events.
-// Captures the mouse if the focus is on this GUI and checks if any mascot slots or skill slots are clicked.
-// Sets the clicked slot and initiates visual effects.
-VOID CMascotGui::OnMouseDownMascot(const CKey& key)
-{
-    if (m_CurrentMascotParamters.m_CurrentMascotSlotIndex != dMASCOT_INVALID_INDEX
-        && m_MascotIcon[m_CurrentMascotParamters.m_CurrentMascotSlotIndex].Tblidx != INVALID_TBLIDX) {
-
-        m_iMouseDownSlot = m_CurrentMascotParamters.m_CurrentMascotSlotIndex;
-        m_pThis->CaptureMouse();
-
-        // Set the clicked effect for the mascot icon.
-        m_iClickEffectedSlot = m_CurrentMascotParamters.m_CurrentMascotSlotIndex;
-        m_MascotIcon[m_iClickEffectedSlot].slot.ClickEffect(true);
-
-
-        // Mouse Up Event:
-        m_pThis->ReleaseMouse();
-
-        // Clear the click effect for the mascot icon if it was clicked.
-        if (m_iClickEffectedSlot != dMASCOT_INVALID_INDEX)
-        {
-            m_MascotIcon[m_iClickEffectedSlot].slot.ClickEffect(false);
-            m_iClickEffectedSlot = dMASCOT_INVALID_INDEX;
-        }
-
-        if (!IsShow())
-        {
-            m_iMouseDownSlot = dMASCOT_INVALID_INDEX;
-            return;
-        }
-
-        if (key.m_nID == UD_LEFT_BUTTON) // Left button click
-        {
-            // Select and open the mascot info window.
-            SelectEffect(true, m_iMouseDownSlot);
-            OpenMascotInfo(true, m_iMouseDownSlot);
-            OnMascotClicked(m_iMouseDownSlot);
-        }
-        else if (key.m_nID == UD_RIGHT_BUTTON) // Right button click
-        {
-            SelectEffect(true, m_iMouseDownSlot);
-            OnSummonBtnClicked(NULL);
-            OpenMascotInfo(true, m_iMouseDownSlot);
-            OnMascotClicked(m_iMouseDownSlot);
-
-            // The following lines of code are responsible for handling item selection in the gift shop interface.
-            // The item index is calculated based on the current page and the selected mouse-down slot.
-            // This functionality appears to be related to registering an item for an event, either for a maximum item action
-            // (e.g., gifting the entire stack) or for a regular item action (e.g., gifting a single item).
-            //
-            // The code is commented out possibly because the item registration logic was not fully implemented,
-            // may have caused unintended behavior, or was deemed unnecessary for the current functionality.
-            //
-            // RwInt32 iItemIndex = (m_iCurPage * dMAX_ITEM_PANEL) + m_iMouseDownSlot;
-
-            // if (key.m_dwVKey == UD_MK_CONTROL)
-            // {
-            //     // If the Control key is pressed, register a gift shop event for the maximum item action.
-            //     CDboEventGenerator::GiftShopEvent(eGIFTSHOP_EVENT_REG_ITEM_MAX,
-            //         m_aShopItem[m_iCurTab][iItemIndex].hItem,
-            //         m_aShopItem[m_iCurTab][iItemIndex].uiPrice,
-            //         (wchar_t*)m_aShopItem[m_iCurTab][iItemIndex].wstrItemName.c_str(),
-            //         m_iCurTab, iItemIndex, m_aShopItem[m_iCurTab][iItemIndex].pITEM_DATA->byMax_Stack);
-            // }
-            // else
-            // {
-            //     // Otherwise, register a gift shop event for a regular item action.
-            //     CDboEventGenerator::GiftShopEvent(eGIFTSHOP_EVENT_REG_ITEM,
-            //         m_aShopItem[m_iCurTab][iItemIndex].hItem,
-            //         m_aShopItem[m_iCurTab][iItemIndex].uiPrice,
-            //         (wchar_t*)m_aShopItem[m_iCurTab][iItemIndex].wstrItemName.c_str(),
-            //         m_iCurTab, iItemIndex, 1);
-            // }
-        }
-
-        // Reset mouse down slots after processing.
-        m_iMouseDownSlot = dMASCOT_INVALID_INDEX;
-
-        return;
-    }
-}
-
-VOID CMascotGui::OnMouseDownSkill(const CKey& key)
-{
-    if (m_CurrentSkillSlotIndex != dMASCOT_INVALID_INDEX &&
-        m_MascotSkill[m_CurrentSkillSlotIndex].skillTblidx != INVALID_TBLIDX &&
-        m_SummonMascotIndex == m_MascotIcon[m_iSelectedSlot].byIndex) {
-
-        m_iMouseDownSlotSkill = m_CurrentSkillSlotIndex;
-        m_pThis->CaptureMouse();
-
-        // Set the clicked effect for the skill icon.
-        m_iClidkEffectedSlotSkill = m_CurrentSkillSlotIndex;
-        m_MascotSkill[m_iClidkEffectedSlotSkill].slot.ClickEffect(true);
-
-        // Clear the click effect for the skill icon if it was clicked.
-        if (m_iClidkEffectedSlotSkill != dMASCOT_INVALID_INDEX)
-        {
-            m_MascotSkill[m_iClidkEffectedSlotSkill].slot.ClickEffect(false);
-            m_iClidkEffectedSlotSkill = dMASCOT_INVALID_INDEX;
-        }
-
-        if (!IsShow())
-        {
-            m_iMouseDownSlotSkill = dMASCOT_INVALID_INDEX;
-            return;
-        }
-
-        if (m_SummonMascotIndex == m_MascotIcon[m_iSelectedSlot].byIndex)
-        {
-            if (key.m_nID == UD_LEFT_BUTTON) // Left button click
-            {
-                if (GetIconMoveManager()->IsActive())
-                {
-                    if (GetIconMoveManager()->GetSrcSerial() == m_MascotSkill[m_iMouseDownSlotSkill].slot.GetSerial())
-                        GetIconMoveManager()->IconMoveEnd();
-                }
-                else if (GetIconMoveManager()->IconMovePickUp(m_MascotSkill[m_iMouseDownSlotSkill].slot.GetSerial(), PLACE_SKILL, 0, 0, m_MascotSkill[m_iMouseDownSlotSkill].slot.GetTexture()))
-                {
-                    SelectEffectSkill(true, m_iMouseDownSlotSkill);
-                }
-            }
-            else if (key.m_nID == UD_RIGHT_BUTTON) { // Right button click
-                // Logic for using the skill (not implemented in the provided code).
-                // Logic_UseProc(m_MascotSkill[m_iMouseDownSlotSkill].slot.GetSerial());
-            }
-        }
-
-        // Reset mouse down slots after processing.
-        m_iMouseDownSlotSkill = dMASCOT_INVALID_INDEX;
-    }
-}
-
-// Handles mouse wheel events to scroll through the mascot GUI
-VOID CMascotGui::OnMouseWheel(RwInt32 nFlag, RwInt16 sDelta, CPos& pos)
-{
-    // Check if the mascot scroll bar is visible; if not, exit the function
-    if (m_pscb_MascotScroll->IsVisible() == false)
-        return;
-
-    // Initialize the mouse down slot to an invalid index
-    m_iMouseDownSlot = dMASCOT_INVALID_INDEX;
-
-    // Calculate the scroll offset based on the scroll bar's maximum value and the delta from the mouse wheel
-    int nOffset = (int)((float)m_pscb_MascotScroll->GetMaxValue() * 0.5f) * sDelta;
-
-    // Capture the mouse wheel movement and update the scroll bar position accordingly
-    CAPTURE_MOUSEWHEELMOVE_SCROLLBAR(IsShow(), m_pThis, m_pThis, m_pscb_MascotScroll, nOffset, pos);
-}
-
-VOID CMascotGui::OnScrollChanged(RwInt32 iOffset)
-{
-    RefreshList(iOffset);
+	// drawn in the dialog's own layer so message boxes stay on top of it
+	m_surPreview.Render();
 }
 
 VOID CMascotGui::OnMove(RwInt32 iOldX, RwInt32 iOldY)
 {
-    // Get the current screen rectangle for the GUI
-    CRectangle rtScreen = m_pThis->GetScreenRect();
+	CRectangle rtScreen = m_pThis->GetScreenRect();
 
-    // Update the parent position for each mascot slot
-    for (int i = 0; i < dMAX_MASCOT_SLOT; ++i) {
-        m_MascotIcon[i].slot.SetParentPosition(rtScreen.left, rtScreen.top);
-    }
+	for (RwInt32 i = 0; i < dMAX_MASCOT_SLOT; ++i)
+		m_MascotSlot[i].SetParentPosition(rtScreen.left, rtScreen.top);
 
-    // Update the parent position for each mascot skill slot and adjust non-mascot skill position
-    for (int i = 0; i < dMAX_MASCOT_SKILL; ++i) {
-        m_MascotSkill[i].slot.SetParentPosition(rtScreen.left, rtScreen.top);
-        m_NotMascotSkill[i].SetRectWH(rtScreen.left + m_MascotSkill[i].slot.GetX_fromParent(), rtScreen.top + m_MascotSkill[i].slot.GetY_fromParent(), 32, 32);
-    }
+	for (RwInt32 i = 0; i < dMAX_MASCOT_SKILL; ++i)
+	{
+		m_SkillSlot[i].SetParentPosition(rtScreen.left, rtScreen.top);
+		m_surSkillLock[i].SetPositionbyParent(rtScreen.left, rtScreen.top);
+		m_SkillCoolTime[i].SetPosition(rtScreen.left + m_SkillSlot[i].GetX_fromParent(), rtScreen.top + m_SkillSlot[i].GetY_fromParent());
+	}
 
-    // Adjust selection effect rectangle for the selected mascot slot
-    if (m_iSelectedSlot != dMASCOT_INVALID_INDEX)
-        m_SelectEffect.SetRectWH(rtScreen.left + m_MascotIcon[m_iSelectedSlot].slot.GetX_fromParent(), rtScreen.top + m_MascotIcon[m_iSelectedSlot].slot.GetY_fromParent(), 32, 32);
+	m_surPreview.SetRectWH(rtScreen.left + PREVIEW_X, rtScreen.top + PREVIEW_Y, PREVIEW_WIDTH, PREVIEW_HEIGHT);
 
-    // Adjust lift effect rectangle for the selected skill slot
-    if (m_iSelectedSlotSkill != dMASCOT_INVALID_INDEX)
-        m_LiftEffect.SetRectWH(rtScreen.left + m_MascotSkill[m_iSelectedSlotSkill].slot.GetX_fromParent(), rtScreen.top + m_MascotSkill[m_iSelectedSlotSkill].slot.GetY_fromParent(), 32, 32);
+	RefreshList();
 
-    // Set the position of the mascot surface
-    m_surMascot.SetPosition(rtScreen.left + 50, rtScreen.top + 51);
-
-    // Move linked GUI elements based on the change in position
-    MoveLinkedPLGui(rtScreen.left - iOldX, rtScreen.top - iOldY);
+	MoveLinkedPLGui(rtScreen.left - iOldX, rtScreen.top - iOldY);
 }
 
-// Method to show or hide the item information window
-VOID CMascotGui::ShowItemInfoWindow(bool bIsShow, int slot)
+VOID CMascotGui::OnScrollChanged(RwInt32 iOffset)
 {
-    if (bIsShow)
-    {
-        // If already showing item info, do nothing
-        if (m_bShowItemInfo)
-            return;
-
-        // Get the current screen rectangle for positioning the info window
-        CRectangle rtScreen = m_pThis->GetScreenRect();
-
-        // Prepare mascot info structure
-        stMACOT_INFO stMascot;
-        stMascot.byItemRank = m_MascotIcon[slot].byItemRank;
-        stMascot.dwCurExp = m_MascotIcon[slot].dwCurExp;
-        stMascot.dwCurVP = m_MascotIcon[slot].dwCurVP;
-        stMascot.dwMaxVP = m_MascotIcon[slot].dwMaxVP;
-        stMascot.tblidx = m_MascotIcon[slot].MascotTblidx;
-        stMascot.dwMaxExp = m_MascotIcon[slot].dwNeedExp;
-
-        // Show the item info window with mascot information
-        GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_MASCOT_INFO,
-            rtScreen.left + m_MascotIcon[slot].slot.GetX_fromParent(),
-            rtScreen.top + m_MascotIcon[slot].slot.GetY_fromParent() - 20,
-            &stMascot, DIALOG_MASCOT);
-    }
-    else
-    {
-        // If not showing item info, do nothing
-        if (m_bShowItemInfo == false)
-            return;
-
-        // Hide the item info window if it is currently open
-        if (GetInfoWndManager()->GetRequestGui() == DIALOG_MASCOT)
-            GetInfoWndManager()->ShowInfoWindow(FALSE);
-    }
-
-    // Update the state of item info visibility
-    m_bShowItemInfo = bIsShow;
+	m_iCurLine = iOffset;
+	RefreshList();
 }
 
-// Displays the skill information window for the specified slot if bIsShow is true.
-// If the skill information is already shown, it returns immediately.
-// Otherwise, it retrieves the screen rectangle and displays the skill info window.
-VOID CMascotGui::ShowSkillInfoWindow(bool bIsShow, int slot)
+VOID CMascotGui::OnMouseWheel(RwInt32 nFlag, RwInt16 sDelta, CPos& pos)
 {
-    if (bIsShow)
-    {
-        if (m_bShowSkillInfo)
-            return;
+	if (!m_pscbMascot->IsVisible())
+		return;
 
-        CRectangle rtScreen = m_pThis->GetScreenRect();
-
-        GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_MASCOT_SKILL_INFO,
-            rtScreen.left + m_MascotSkill[slot].slot.GetX_fromParent(),
-            rtScreen.top + m_MascotSkill[slot].slot.GetY_fromParent() - 20,
-            (void*)m_MascotSkill[slot].slot.GetSkillTable(), DIALOG_MASCOT);
-    }
-    else
-    {
-        if (m_bShowSkillInfo == false)
-            return;
-
-        if (GetInfoWndManager()->GetRequestGui() == DIALOG_MASCOT)
-            GetInfoWndManager()->ShowInfoWindow(FALSE);
-    }
-    m_bShowSkillInfo = bIsShow;
+	CAPTURE_MOUSEWHEELMOVE_SCROLLBAR(IsShow(), m_pThis, m_pThis, m_pscbMascot, sDelta, pos);
 }
 
-// Handles the focus effect for a specified slot.
-// If bPush is true, sets the focus effect rectangle based on the slot's position.
-// If bPush is false, simply clears the focus state.
-VOID CMascotGui::FocusEffect(RwBool bPush, RwInt32 iSlotIdx /* = -1 */)
+RwInt32 CMascotGui::FindComponent(gui::CComponent* pComponent, gui::CPanel** apPanel, RwInt32 iCount)
 {
-    if (bPush)
-    {
-        CRectangle rect = m_pThis->GetScreenRect();
+	for (RwInt32 i = 0; i < iCount; ++i)
+	{
+		if (apPanel[i] == pComponent)
+			return i;
+	}
 
-        m_FocusEffect.SetRectWH(rect.left + m_MascotIcon[iSlotIdx].slot.GetX_fromParent(), rect.top + m_MascotIcon[iSlotIdx].slot.GetY_fromParent(), 32, 32);
-        m_bFocus = true;
-    }
-    else
-    {
-        m_bFocus = false;
-    }
+	return -1;
 }
 
-// Handles the focus effect for a specified skill slot.
-// If bPush is true, sets the focus effect rectangle based on the skill slot's position.
-// If bPush is false, clears the focus state for skills.
-VOID CMascotGui::FocusEffectSkill(RwBool bPush, RwInt32 iSlotIdx)
+VOID CMascotGui::OnMouseEnterMascot(gui::CComponent* pComponent)
 {
-    if (bPush)
-    {
-        CRectangle rect = m_pThis->GetScreenRect();
+	m_iFocusSlot = FindComponent(pComponent, m_ppnlMascot, dMAX_MASCOT_SLOT);
+	if (m_iFocusSlot < 0 || GetSlotData(m_iFocusSlot) == NULL)
+		return;
 
-        m_FocusEffect_Skill.SetRectWH(rect.left + m_MascotSkill[iSlotIdx].slot.GetX_fromParent(), rect.top + m_MascotSkill[iSlotIdx].slot.GetY_fromParent(), 32, 32);
-        m_bFocus_Skill = true;
-    }
-    else
-    {
-        m_bFocus_Skill = false;
-    }
+	CRectangle rtScreen = m_pThis->GetScreenRect();
+	m_surFocus.SetRectWH(rtScreen.left + m_MascotSlot[m_iFocusSlot].GetX_fromParent(), rtScreen.top + m_MascotSlot[m_iFocusSlot].GetY_fromParent(), 32, 32);
+	m_surFocus.Show(TRUE);
+
+	ShowMascotInfoWnd(m_iFocusSlot);
 }
 
-// Method to select a skill effect based on the skill slot index
-VOID CMascotGui::SelectEffectSkill(RwBool bPush, RwInt32 iSlotIdx)
+VOID CMascotGui::OnMouseLeaveMascot(gui::CComponent* pComponent)
 {
-    if (bPush)
-    {
-        // Get the current screen rectangle for positioning the lift effect
-        CRectangle rect = m_pThis->GetScreenRect();
-
-        // Set the position of the lift effect based on the selected skill slot
-        m_LiftEffect.SetRectWH(rect.left + m_MascotSkill[iSlotIdx].slot.GetX_fromParent(), rect.top + m_MascotSkill[iSlotIdx].slot.GetY_fromParent(), 32, 32);
-        m_iSelectedSlotSkill = iSlotIdx; // Update the selected slot index
-    }
-    else
-    {
-        // Reset the selected slot index if the effect is not pushed
-        m_iSelectedSlotSkill = dMASCOT_INVALID_INDEX;
-    }
+	m_iFocusSlot = -1;
+	m_surFocus.Show(FALSE);
+	HideInfoWnd();
 }
 
-// Method to select an effect based on the mascot icon slot index
-VOID CMascotGui::SelectEffect(RwBool bPush, RwInt32 iSlotIdx /* = -1 */)
+VOID CMascotGui::OnMouseDownMascot(const CKey& key)
 {
-    if (bPush)
-    {
-        // Get the current screen rectangle for positioning the selection effect
-        CRectangle rect = m_pThis->GetScreenRect();
-
-        // Set the position of the selection effect based on the selected mascot slot
-        m_SelectEffect.SetRectWH(rect.left + m_MascotIcon[iSlotIdx].slot.GetX_fromParent(), rect.top + m_MascotIcon[iSlotIdx].slot.GetY_fromParent(), 32, 32);
-        m_iSelectedSlot = iSlotIdx; // Update the selected slot index
-        m_iSelectedIndex = m_MascotIcon[iSlotIdx].byIndex; // Update the selected index
-    }
-    else
-    {
-        // Reset the selected slot index if the effect is not pushed
-        m_iSelectedSlot = dMASCOT_INVALID_INDEX;
-    }
+	m_iMouseDownMascot = m_iFocusSlot;
 }
 
-// Creates a flash effect for the mascot in the specified slot
-RwBool CMascotGui::CreateFlashEffect(RwInt32 nSlotIdx)
+VOID CMascotGui::OnMouseUpMascot(const CKey& key)
 {
-    // Log the function call for debugging purposes
-    NTL_FUNCTION("CMascotGui::CreateFlashEffect");
+	RwInt32 iSlot = m_iMouseDownMascot;
+	m_iMouseDownMascot = -1;
 
-    // Check if the flash effect is already visible; if so, return TRUE
-    if (m_apflaEffect->IsVisible())
-        NTL_RETURN(TRUE);
+	if (iSlot < 0 || iSlot != m_iFocusSlot)
+		return;
 
-    // Iterate through all mascot slots to find the summoned mascot
-    for (int i = 0; i < dMAX_MASCOT_SLOT; ++i)
-    {
-        // Check if the current mascot icon's index matches the summoned mascot index
-        if (m_MascotIcon[i].byIndex == m_SummonMascotIndex)
-        {
-            // Create a rectangle for positioning the flash effect
-            CRectangle rect;
-            // Set the rectangle's position to be slightly offset from the mascot's position
-            rect.SetRectWH(m_MascotIcon[i].slot.GetX_fromParent() - 1,
-                m_MascotIcon[i].slot.GetY_fromParent() - 1,
-                32, 32);
+	// an item carried over a mascot (seal kit)
+	if (GetIconMoveManager()->IsActive())
+	{
+		DropOnMascot(iSlot);
+		return;
+	}
 
-            // Set the flash effect's position based on the rectangle
-            m_apflaEffect->SetPosition(rect);
-            // Set the effect to start from the specified frame
-            m_apflaEffect->GotoFrame(m_uiEffectFrame);
-            // Play the effect as a movie
-            m_apflaEffect->PlayMovie(TRUE);
-            // Make the effect visible
-            m_apflaEffect->Show(true);
-            break; // Exit the loop after finding the summoned mascot
-        }
-    }
+	sMASCOT_DATA_EX* pData = GetSlotData(iSlot);
+	if (pData == NULL)
+		return;
 
-    // Return TRUE to indicate the flash effect creation was successful
-    NTL_RETURN(TRUE);
+	// while fusing, right clicking another mascot offers it as the sacrifice instead of summoning it
+	if (key.m_nID == UD_RIGHT_BUTTON && GetDialogManager()->IsOpenDialog(DIALOG_MASCOT_FUSION))
+	{
+		CMascotFusion* pFusion = reinterpret_cast<CMascotFusion*>(GetDialogManager()->GetDialog(DIALOG_MASCOT_FUSION));
+		if (pFusion)
+			pFusion->SetOfferingMascot(pData->byIndex);
+		return;
+	}
+
+	Select(pData->byIndex);
+
+	if (key.m_nID == UD_RIGHT_BUTTON)
+	{
+		// right click summons or dismisses
+		SMascotInfo* pInfo = GetNtlSLGlobal()->GetAvatarMascotInfo();
+		if (pInfo->bySummonIndex == pData->byIndex)
+			OnSummonEndBtnClicked(NULL);
+		else
+			OnSummonBtnClicked(NULL);
+	}
 }
 
+VOID CMascotGui::OnMouseEnterSkill(gui::CComponent* pComponent)
+{
+	RwInt32 iSkillSlot = FindComponent(pComponent, m_ppnlSkill, dMAX_MASCOT_SKILL);
+	if (iSkillSlot < 0)
+		return;
+
+	m_iFocusSkill = iSkillSlot;
+
+	if (m_SkillSlot[iSkillSlot].GetSkillTable() == NULL)
+		return;
+
+	CRectangle rtScreen = m_pThis->GetScreenRect();
+	m_surFocus.SetRectWH(rtScreen.left + m_SkillSlot[iSkillSlot].GetX_fromParent(), rtScreen.top + m_SkillSlot[iSkillSlot].GetY_fromParent(), 32, 32);
+	m_surFocus.Show(TRUE);
+
+	ShowSkillInfoWnd(iSkillSlot);
+}
+
+VOID CMascotGui::OnMouseLeaveSkill(gui::CComponent* pComponent)
+{
+	m_iFocusSkill = -1;
+	m_surFocus.Show(FALSE);
+	HideInfoWnd();
+}
+
+VOID CMascotGui::OnMouseDownSkill(const CKey& key)
+{
+	m_iMouseDownSkill = m_iFocusSkill;
+}
+
+VOID CMascotGui::OnMouseUpSkill(const CKey& key)
+{
+	RwInt32 iSkillSlot = m_iMouseDownSkill;
+	m_iMouseDownSkill = -1;
+
+	if (iSkillSlot < 0 || iSkillSlot != m_iFocusSkill)
+		return;
+
+	// an empty open slot works like its + button
+	sMASCOT_DATA_EX* pData = GetSelectedData();
+	if (key.m_nID == UD_LEFT_BUTTON && pData && IsSkillSlotOpen(pData, iSkillSlot) && pData->skillTblidx[iSkillSlot] == INVALID_TBLIDX)
+	{
+		OnSkillBtnClicked(m_pbtnSkill[iSkillSlot]);
+		return;
+	}
+
+	ClickSkill(iSkillSlot, key.m_nID == UD_RIGHT_BUTTON);
+}
+
+VOID CMascotGui::ClickSkill(RwInt32 iSkillSlot, RwBool bRightButton)
+{
+	SMascotInfo* pInfo = GetNtlSLGlobal()->GetAvatarMascotInfo();
+	sMASCOT_DATA_EX* pData = GetSelectedData();
+	if (pData == NULL || pData->skillTblidx[iSkillSlot] == INVALID_TBLIDX)
+		return;
+
+	// skills only work through the summoned mascot
+	if (pInfo->bySummonIndex != pData->byIndex)
+	{
+		GetAlarmManager()->AlarmMessage("DST_MASCOTEX_SKILLGRADEUP_DONT_SUMMON");
+		return;
+	}
+
+	if (m_byGradeUpItemPlace != INVALID_BYTE)
+	{
+		// the item picks one skill, the confirm box carries its place, so skills work normally
+		// again whether the player confirms, cancels or picked a maxed skill
+		BYTE byItemPlace = m_byGradeUpItemPlace;
+		BYTE byItemPos = m_byGradeUpItemPos;
+		m_byGradeUpItemPlace = INVALID_BYTE;
+		m_byGradeUpItemPos = INVALID_BYTE;
+
+		sSKILL_TBLDAT* pSkillTbl = m_SkillSlot[iSkillSlot].GetSkillTable();
+		if (pSkillTbl == NULL || pSkillTbl->dwNextSkillTblidx == INVALID_TBLIDX)
+		{
+			GetAlarmManager()->AlarmMessage("DST_MASCOTEX_SKILLGRADEUP_MAX");
+			return;
+		}
+
+		sMsgBoxData sData;
+		sData.uiParam = (RwUInt64)iSkillSlot | ((RwUInt64)byItemPlace << 8) | ((RwUInt64)byItemPos << 16);
+		GetAlarmManager()->FormattedAlarmMessage("DST_MASCOTEX_SKILL_GRADEUP", FALSE, &sData);
+		return;
+	}
+
+	if (bRightButton)
+		Logic_UseMascotSkill((RwUInt8)iSkillSlot);
+}
+
+VOID CMascotGui::DropOnMascot(RwInt32 iSlot)
+{
+	sMASCOT_DATA_EX* pData = GetSlotData(iSlot);
+
+	if (GetIconMoveManager()->GetSrcPlace() != PLACE_BAG || pData == NULL)
+	{
+		GetIconMoveManager()->IconMoveEnd();
+		return;
+	}
+
+	CNtlSobItem* pItem = reinterpret_cast<CNtlSobItem*>(GetNtlSobManager()->GetSobObject(GetIconMoveManager()->GetSrcSerial()));
+	GetIconMoveManager()->IconMoveEnd();
+
+	if (pItem == NULL)
+		return;
+
+	CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>(pItem->GetSobAttr());
+	sITEM_TBLDAT* pItemTbl = pItemAttr->GetItemTbl();
+	if (pItemTbl == NULL || pItemTbl->byItem_Type != ITEM_TYPE_EVENT_SEAL)
+	{
+		GetAlarmManager()->AlarmMessage("DST_MASCOTEX_MASCOTSEAL_NOT_SEALITEM");
+		return;
+	}
+
+	if (GetNtlSLGlobal()->GetAvatarMascotInfo()->bySummonIndex == pData->byIndex)
+	{
+		GetAlarmManager()->AlarmMessage("DST_MASCOTEX_MASCOTSEAL_SUMMON");
+		return;
+	}
+
+	// one seal kit per mascot rank
+	if (pItemAttr->GetStackNum() < pData->byItemRank)
+	{
+		GetAlarmManager()->AlarmMessage("DST_MASCOTEX_MASCOTSEAL_NEED_MORE_KIT");
+		return;
+	}
+
+	RwUInt8 byPlace, byPos;
+	if (!Logic_GetItemContainerPosFromHandle(pItem->GetSerialID(), byPlace, byPos))
+		return;
+
+	sMsgBoxData sData;
+	sData.uiParam = (RwUInt64)pData->byIndex | ((RwUInt64)byPlace << 8) | ((RwUInt64)byPos << 16);
+	GetAlarmManager()->FormattedAlarmMessage("DST_MASCOTEX_MASCOTSEAL_CONFIRM_BOX", FALSE, &sData);
+}
 
 VOID CMascotGui::OnCloseBtnClicked(gui::CComponent* pComponent)
 {
-    if (!Logic_CanMouseInput_in_Tutorial(ETL_MOUSE_INPUT_TYPE_MAINMENU_MASCOT_CLOSE))
-        return;
+	if (!Logic_CanMouseInput_in_Tutorial(ETL_MOUSE_INPUT_TYPE_MAINMENU_MASCOT_CLOSE))
+		return;
 
-    GetDialogManager()->CloseDialog(DIALOG_MASCOT);
+	GetDialogManager()->CloseDialog(DIALOG_MASCOT);
 }
 
-// Handles actions when a mascot is clicked based on the specified slot.
-// Loads the character's texture and updates the mascot's display rectangle.
-VOID CMascotGui::OnMascotClicked(RwInt32 Slot)
-{
-    // PREVIEW LOGS - Creating Temporary UI Mascot for Preview
-
-    
-    char logBuffer[512];
-    sprintf_s(logBuffer, "[PREVIEW_VERIFY] Clicked Slot: %d\n", Slot);
-    OutputDebugString(logBuffer);
-    
-    CNtlSobCharProxy* pCharProxy = reinterpret_cast<CNtlSobCharProxy*>(GetNtlSLGlobal()->GetSobAvatar()->GetSobProxy());
-    sprintf_s(logBuffer, "[PREVIEW_VERIFY] Character proxy (fallback): %s\n", pCharProxy ? "AVAILABLE" : "NULL");
-    OutputDebugString(logBuffer);
-
-    // Handle selection effect
-    if (m_iSelectedSlot != Slot && m_iSelectedSlot != dMASCOT_INVALID_INDEX)
-    {
-        SelectEffect(FALSE, m_iSelectedSlot);
-    }
-    SelectEffect(TRUE, Slot);
-
-    // Check if we have valid mascot data for preview
-    if (Slot >= 0 && Slot < dMAX_MASCOT_SLOT && m_MascotIcon[Slot].byIndex != INVALID_BYTE)
-    {
-
-        
-        sprintf_s(logBuffer, "[PREVIEW_VERIFY] Mascot data - Index: %d, TblIdx: %u\n", 
-            m_MascotIcon[Slot].byIndex, m_MascotIcon[Slot].MascotTblidx);
-        OutputDebugString(logBuffer);
-        
-        // Create temporary mascot for UI preview (following character UI pattern)
-        CNtlSobMascot* pTempUIMascot = NTL_NEW CNtlSobMascot;
-        if (pTempUIMascot && pTempUIMascot->Create())
-        {
-
-            
-            // Set mascot data for preview rendering
-            pTempUIMascot->SetMascotIndex(m_MascotIcon[Slot].byIndex);
-            pTempUIMascot->SetMascotTblidx(m_MascotIcon[Slot].MascotTblidx);
-            pTempUIMascot->SetItemTblidx(m_MascotIcon[Slot].MascotTblidx);
-            
-            // Get mascot proxy for UI rendering (like character status bar)
-            CNtlSobMascotProxy* pMascotProxy = reinterpret_cast<CNtlSobMascotProxy*>(pTempUIMascot->GetSobProxy());
-            if (pMascotProxy)
-            {
-
-                
-                // FOLLOWING CHARACTER PROXY PATTERN: Initialize UI infrastructure manually
-                // Character proxy does this in SobCreateEventHandler conditionally
-                pMascotProxy->CreateUIMascotStatusWndCharacter();
-                pMascotProxy->CreateUIMascotStatusWndCamera();
-                
-                // Try to get mascot texture after UI infrastructure is set up
-                RwTexture* pMascotTexture = pMascotProxy->UIPcStatusBarRender();
-                if (pMascotTexture)
-                {
-
-                    
-                    // Follow exact character rendering pattern for UI preview
-                    m_texMascot.Load(pMascotTexture);
-                    m_surMascot.SetTexture(&m_texMascot);
-
-                    CRectangle rtScreen = m_pThis->GetScreenRect();
-                    m_surMascot.SetRectWH(rtScreen.left + 50, rtScreen.top + 51, 132, 176);
-                    
-                    
-                }
-                else
-                {
-
-                    
-                    // Fallback to character if mascot texture generation fails
-                    RwTexture* pCharTexture = pCharProxy->UIPcStatusBarRender();
-                    if (pCharTexture)
-                    {
-                        m_texMascot.Load(pCharTexture);
-                        m_surMascot.SetTexture(&m_texMascot);
-
-                        CRectangle rtScreen = m_pThis->GetScreenRect();
-                        m_surMascot.SetRectWH(rtScreen.left + 50, rtScreen.top + 51, 132, 176);
-                        
-
-                    }
-                    else
-                    {
-
-                    }
-                }
-            }
-            else
-            {
-
-                
-                // Fallback to character if mascot proxy fails
-                RwTexture* pCharTexture = pCharProxy->UIPcStatusBarRender();
-                if (pCharTexture)
-                {
-                    m_texMascot.Load(pCharTexture);
-                    m_surMascot.SetTexture(&m_texMascot);
-
-                    CRectangle rtScreen = m_pThis->GetScreenRect();
-                    m_surMascot.SetRectWH(rtScreen.left + 50, rtScreen.top + 51, 132, 176);
-                    
-
-                }
-                else
-                {
-
-                }
-            }
-            
-            // Clean up temporary UI mascot after rendering
-
-            
-            // Store temporary mascot for later cleanup - DON'T delete immediately
-            // The texture needs to stay alive for GUI display
-            // Will be cleaned up when window closes, mascot summoned, or different mascot selected
-            if (m_pTempUIMascot)
-            {
-                // Clean up previous temp mascot if it exists
-                CNtlSobMascotProxy* pOldProxy = reinterpret_cast<CNtlSobMascotProxy*>(m_pTempUIMascot->GetSobProxy());
-                if (pOldProxy)
-                {
-                    pOldProxy->DeleteUIMascotStatusWndCamera();
-                    pOldProxy->DeleteUIMascotStatusWndCharacter();
-                }
-                m_pTempUIMascot->Destroy();
-                NTL_DELETE(m_pTempUIMascot);
-            }
-            
-            // Store the new temporary mascot for later cleanup
-            m_pTempUIMascot = pTempUIMascot;
-        }
-        else
-        {
-
-            
-            // Fallback to character if temp mascot creation fails
-            RwTexture* pCharTexture = pCharProxy->UIPcStatusBarRender();
-            if (pCharTexture)
-            {
-                m_texMascot.Load(pCharTexture);
-                m_surMascot.SetTexture(&m_texMascot);
-
-                CRectangle rtScreen = m_pThis->GetScreenRect();
-                m_surMascot.SetRectWH(rtScreen.left + 50, rtScreen.top + 51, 132, 176);
-                
-
-            }
-            else
-            {
-
-            }
-            
-            if (pTempUIMascot)
-            {
-                NTL_DELETE(pTempUIMascot);
-            }
-        }
-    }
-    else
-    {
-
-        
-        // Empty slot - use character fallback
-        RwTexture* pCharTexture = pCharProxy->UIPcStatusBarRender();
-        if (pCharTexture)
-        {
-            m_texMascot.Load(pCharTexture);
-            m_surMascot.SetTexture(&m_texMascot);
-
-            CRectangle rtScreen = m_pThis->GetScreenRect();
-            m_surMascot.SetRectWH(rtScreen.left + 50, rtScreen.top + 51, 132, 176);
-            
-
-        }
-        else
-        {
-
-        }
-    }
-    
-
-}
 VOID CMascotGui::OnSummonBtnClicked(gui::CComponent* pComponent)
 {
-    // Check if a mascot slot is selected
-    if (m_iSelectedSlot != dMASCOT_INVALID_INDEX)
-    {
-        // Summon the mascot associated with the selected slot
-        CDboEventGenerator::SummonMascot(m_MascotIcon[m_iSelectedSlot].byIndex);
-    }
-    else {
-        // Show an alarm message if no mascot is selected
-        GetAlarmManager()->AlarmMessage("DST_MASCOTEX_NOT_SELECT");
-    }
+	sMASCOT_DATA_EX* pData = GetSelectedData();
+	if (pData == NULL)
+	{
+		GetAlarmManager()->AlarmMessage("DST_MASCOTEX_NOT_SELECT");
+		return;
+	}
+
+	if (GetNtlSLGlobal()->GetAvatarMascotInfo()->bySummonIndex != INVALID_BYTE)
+	{
+		GetAlarmManager()->AlarmMessage("DST_WARN_ALREADY_RECALL_MASCOT");
+		return;
+	}
+
+	CDboEventGenerator::SummonMascot(pData->byIndex);
 }
 
 VOID CMascotGui::OnSummonEndBtnClicked(gui::CComponent* pComponent)
 {
-    // Check if there is a currently summoned mascot
-    if (dMASCOT_INVALID_INDEX != m_SummonMascotIndex)
-    {
-        // Unsummon the currently summoned mascot
-        CDboEventGenerator::UnSummonMascot(m_SummonMascotIndex);
-    }
-    else
-    {
-        // Show an alarm message if no mascot is summoned
-        GetAlarmManager()->AlarmMessage("DST_WARN_NO_EXIST_RECALLED_MASCOT");
-    }
+	BYTE bySummonIndex = GetNtlSLGlobal()->GetAvatarMascotInfo()->bySummonIndex;
+	if (bySummonIndex == INVALID_BYTE)
+	{
+		GetAlarmManager()->AlarmMessage("DST_WARN_NO_EXIST_RECALLED_MASCOT");
+		return;
+	}
+
+	CDboEventGenerator::UnSummonMascot(bySummonIndex);
 }
 
-VOID CMascotGui::OnMascotDelBtnClicked(gui::CComponent* pComponent)
+VOID CMascotGui::OnDeleteBtnClicked(gui::CComponent* pComponent)
 {
-    // Check if a mascot slot is selected
-    if (m_iSelectedSlot != dMASCOT_INVALID_INDEX)
-    {
-        // Delete the mascot associated with the selected slot
-        CDboEventGenerator::DeleteMascot(m_MascotIcon[m_iSelectedSlot].byIndex);
-    }
-    else {
-        // Show an alarm message if no mascot is selected
-        GetAlarmManager()->AlarmMessage("DST_MASCOTEX_NOT_SELECT");
-    }
+	sMASCOT_DATA_EX* pData = GetSelectedData();
+	if (pData == NULL)
+	{
+		GetAlarmManager()->AlarmMessage("DST_MASCOTEX_NOT_SELECT");
+		return;
+	}
+
+	if (GetNtlSLGlobal()->GetAvatarMascotInfo()->bySummonIndex == pData->byIndex)
+	{
+		GetAlarmManager()->AlarmMessage("DST_WARN_CANT_DEL_RECALLED_MASCOT");
+		return;
+	}
+
+	CDboEventGenerator::DeleteMascot(pData->byIndex);
 }
 
-VOID CMascotGui::OnMascotFusionBtnClicked(gui::CComponent* pComponent)
+VOID CMascotGui::OnFusionBtnClicked(gui::CComponent* pComponent)
 {
-    // Check if a mascot slot is selected
-    if (m_iSelectedSlot != dMASCOT_INVALID_INDEX)
-    {
-        // Check if the current mascot is at max experience and not a max rank
-        if (m_bCurMaxExp && m_MascotIcon[m_iSelectedSlot].byItemRank < 4)
-        {
-            // Ensure the current summoned mascot is not the mascot selected for fusion
-            if (m_SummonMascotIndex != m_MascotIcon[m_iSelectedSlot].byIndex)
-            {
-                // Get the current position of the dialog
-                CRectangle rect = GetPosition();
+	sMASCOT_DATA_EX* pData = GetSelectedData();
+	if (pData == NULL)
+	{
+		GetAlarmManager()->AlarmMessage("DST_MASCOTEX_NOT_SELECT");
+		return;
+	}
 
-                // Retrieve the fusion dialog and set its position relative to the current dialog
-                CNtlPLGui* pPLGui = GetDialogManager()->GetDialog(DIALOG_MASCOT_FUSION);
-                pPLGui->SetPosition(rect.left + rect.GetWidth() + NTL_LINKED_DIALOG_GAP, rect.top);
+	// the server refuses fusions while any mascot is summoned
+	if (GetNtlSLGlobal()->GetAvatarMascotInfo()->bySummonIndex != INVALID_BYTE)
+	{
+		GetAlarmManager()->AlarmMessage("DST_MASCOTEX_FUSION_MAINMASCOT_SUMMONING");
+		return;
+	}
 
-                // Switch to the fusion dialog
-                GetDialogManager()->SwitchDialog(DIALOG_MASCOT_FUSION);
-            }
-            else {
-                // Show an alarm message if the selected mascot is currently summoned
-                GetAlarmManager()->AlarmMessage("DST_MASCOTEX_FUSION_MAINMASCOT_SUMMONING");
-            }
-        }
-        else {
-            // Show an alarm message if the conditions for fusion are not met
-            GetAlarmManager()->AlarmMessage("DST_MASCOTEX_FUSION_EXPLACK");
-        }
-    }
-    else {
-        // Show an alarm message if no mascot is selected
-        GetAlarmManager()->AlarmMessage("DST_MASCOTEX_NOT_SELECT");
-    }
+	// only a mascot with full EXP that can still rank up is fused
+	if (!Logic_CheckMascotFusion(pData))
+		return;
+
+	CMascotFusion* pFusion = reinterpret_cast<CMascotFusion*>(GetDialogManager()->GetDialog(DIALOG_MASCOT_FUSION));
+	if (pFusion == NULL)
+		return;
+
+	CRectangle rect = GetPosition();
+	pFusion->SetPosition(rect.left + rect.GetWidth() + NTL_LINKED_DIALOG_GAP, rect.top);
+	pFusion->SetMainMascot(pData->byIndex);
+
+	if (!GetDialogManager()->IsOpenDialog(DIALOG_MASCOT_FUSION))
+		GetDialogManager()->OpenDialog(DIALOG_MASCOT_FUSION);
 }
 
-// Method to refresh the list of mascots displayed in the GUI
-VOID CMascotGui::RefreshList(RwInt32 iOffSet)
+VOID CMascotGui::OnSkillBtnClicked(gui::CComponent* pComponent)
 {
-    // Retrieve the current avatar's mascot information
-    SMascotInfo* MascotInfo = GetNtlSLGlobal()->GetAvatarMascotInfo();
+	RwInt32 iSkillSlot = -1;
+	for (RwInt32 i = 0; i < dMAX_MASCOT_SKILL; ++i)
+	{
+		if (m_pbtnSkill[i] == pComponent)
+			iSkillSlot = i;
+	}
 
-    // Get the current screen rectangle for layout calculations
-    CRectangle rtScreen = m_pThis->GetScreenRect();
+	sMASCOT_DATA_EX* pData = GetSelectedData();
+	if (iSkillSlot < 0 || pData == NULL)
+		return;
 
-    // Set the current line offset for displaying mascots
-    m_CurLine = iOffSet;
+	if (GetNtlSLGlobal()->GetAvatarMascotInfo()->bySummonIndex != pData->byIndex)
+	{
+		GetAlarmManager()->AlarmMessage("DST_MASCOTEX_SKILLGRADEUP_DONT_SUMMON");
+		return;
+	}
 
-    // Calculate the starting index for the mascot data based on the offset
-    int Index = (iOffSet * 4);
+	CMascotSkillReMake* pReMake = reinterpret_cast<CMascotSkillReMake*>(GetDialogManager()->GetDialog(DIALOG_MASCOT_SKILL_REMAKE));
+	if (pReMake == NULL)
+		return;
 
-    // Pointer to hold the mascot grade table data
-    sMASCOT_GRADE_TBLDAT* pMascotTableData;
+	// the arrow toggles the window of its slot
+	if (GetDialogManager()->IsOpenDialog(DIALOG_MASCOT_SKILL_REMAKE) && pReMake->GetSkillSlot() == (BYTE)iSkillSlot)
+	{
+		GetDialogManager()->CloseDialog(DIALOG_MASCOT_SKILL_REMAKE);
+		return;
+	}
 
-    // Loop through the maximum number of mascot slots
-    for (RwInt32 i = 0; i < dMAX_MASCOT_SLOT; ++i)
-    {
-        // Check if the current index is within the available mascot count
-        if (i + Index < MascotInfo->wCount) {
-            // Retrieve the mascot grade data for the current index
-            pMascotTableData = (sMASCOT_GRADE_TBLDAT*)API_GetTableContainer()->GetMascotGradeTable()->FindData(MascotInfo->asMascotData[Index + i].byItemRank);
+	CRectangle rect = GetPosition();
+	pReMake->SetPosition(rect.left + rect.GetWidth() + NTL_LINKED_DIALOG_GAP, rect.top);
 
-            // Set the mascot icon and its associated data
-            m_MascotIcon[i].slot.SetIcon(MascotInfo->asMascotData[Index + i].itemTblidx);
-            m_MascotIcon[i].byIndex = MascotInfo->asMascotData[Index + i].byIndex;
-            m_MascotIcon[i].byItemRank = MascotInfo->asMascotData[Index + i].byItemRank;
-            m_MascotIcon[i].dwCurExp = MascotInfo->asMascotData[Index + i].dwCurExp;
-            m_MascotIcon[i].dwCurVP = MascotInfo->asMascotData[Index + i].dwCurVP;
-            m_MascotIcon[i].dwMaxVP = MascotInfo->asMascotData[Index + i].dwMaxVP;
-            m_MascotIcon[i].MascotTblidx = MascotInfo->asMascotData[Index + i].itemTblidx;
-            m_MascotIcon[i].Tblidx = MascotInfo->asMascotData[i + Index].tblidx;
-            m_MascotIcon[i].byUnknown = MascotInfo->asMascotData[i + Index].byUnknown;
-            m_MascotIcon[i].wunknown = MascotInfo->asMascotData[i + Index].wunknown;
-            m_MascotIcon[i].wunknown2 = MascotInfo->asMascotData[i + Index].wunknown2;
-            m_MascotIcon[i].dwNeedExp = pMascotTableData->dwNeedExp;
-
-            // Copy skill table indices for the current mascot
-            memcpy(m_MascotIcon[i].skillTblidx, MascotInfo->asMascotData[Index + i].skillTblidx, DBO_MASCOT_MAX_SKILL_COUNT * sizeof(TBLIDX));
-        }
-        else {
-            // Clear the slot if there is no corresponding mascot data
-            m_MascotIcon[i].slot.Clear();
-            m_MascotIcon[i].byIndex = INVALID_BYTE;
-            m_MascotIcon[i].byItemRank = INVALID_BYTE;
-            m_MascotIcon[i].dwCurExp = INVALID_DWORD;
-            m_MascotIcon[i].dwCurVP = INVALID_DWORD;
-            m_MascotIcon[i].dwMaxVP = INVALID_DWORD;
-            m_MascotIcon[i].MascotTblidx = INVALID_DWORD;
-            m_MascotIcon[i].Tblidx = INVALID_DWORD;
-            m_MascotIcon[i].byUnknown = INVALID_DWORD;
-            m_MascotIcon[i].wunknown = INVALID_DWORD;
-            m_MascotIcon[i].wunknown2 = INVALID_DWORD;
-            m_MascotIcon[i].dwNeedExp = INVALID_DWORD;
-            memset(m_MascotIcon[i].skillTblidx, 0, DBO_MASCOT_MAX_SKILL_COUNT * sizeof(TBLIDX));
-        }
-    }
-
-    bool isSelect = false;
-    // Check for the currently selected mascot
-    for (RwInt32 i = 0; i < dMAX_MASCOT_SLOT; ++i)
-    {
-        if (i + Index < MascotInfo->wCount) {
-            // If the mascot matches the selected index, highlight it
-            if (m_MascotIcon[i].byIndex == m_iSelectedIndex)
-            {
-                m_iSelectedSlot = m_iSelectedIndex; // Set the selected slot
-                SelectEffect(true, m_iSelectedIndex); // Trigger the selection effect
-                isSelect = true; // Indicate a selection was found
-                break;
-            }
-            else {
-                isSelect = false; // No selection found
-            }
-        }
-    }
-    // If no selection was found, reset the selected slot
-    if (!isSelect)
-    {
-        m_iSelectedSlot = dMASCOT_INVALID_INDEX;
-        SelectEffect(false, dMASCOT_INVALID_INDEX);
-    }
-
-    bool isSummon = false;
-    // Check for the summoned mascot
-    for (RwInt32 i = 0; i < dMAX_MASCOT_SLOT; ++i)
-    {
-        if (i + Index < MascotInfo->wCount) {
-            // If the mascot matches the summoned index, display its effect
-            if (m_MascotIcon[i].byIndex == m_SummonMascotIndex)
-            {
-                CRectangle rect;
-                rect.SetRectWH(m_MascotIcon[i].slot.GetX_fromParent() - 1, m_MascotIcon[i].slot.GetY_fromParent() - 1, 32, 32);
-                m_apflaEffect->SetPosition(rect); // Set the position of the summon effect
-                m_apflaEffect->Show(true); // Show the summon effect
-                isSummon = true; // Indicate a summon was found
-                break;
-            }
-            else {
-                isSummon = false; // No summon found
-            }
-        }
-    }
-    // If no summon was found, hide the summon effect
-    if (!isSummon)
-    {
-        m_apflaEffect->Show(false);
-    }
+	// an empty slot learns a random skill, a learned one can be re-rolled with an item
+	pReMake->OpenSlot(pData->byIndex, (BYTE)iSkillSlot);
 }
 
-// Refreshes the display of the skill slots for the selected mascot
-VOID CMascotGui::RefreshSkillSlot()
+VOID CMascotGui::Select(BYTE byIndex)
 {
-    // Check if a valid slot is selected
-    if (m_iSelectedSlot != dMASCOT_INVALID_INDEX)
-    {
-        // Loop through each skill slot to update the UI
-        for (RwInt32 i = 0; i < dMAX_MASCOT_SKILL; ++i)
-        {
-            // If the skill index is valid, update the skill display
-            if (m_MascotIcon[m_iSelectedSlot].skillTblidx[i] != INVALID_TBLIDX)
-            {
-                // Check if the currently summoned mascot matches the selected mascot
-                if (m_SummonMascotIndex == m_MascotIcon[m_iSelectedSlot].byIndex)
-                {
-                    m_NotMascotSkill[i].Show(false); // Hide the not-mascot skill indicator
-                    m_pbtn_MascotSkill[i]->Enable(true); // Enable the skill button
-                    SelectEffectSkill(false, i); // Deselect the skill effect
-                }
-                else
-                {
-                    m_NotMascotSkill[i].Show(false); // Hide the not-mascot skill indicator
-                    m_pbtn_MascotSkill[i]->Enable(false); // Disable the skill button
-                    SelectEffectSkill(true, i); // Select the skill effect
-                }
+	if (m_bySelectedIndex == byIndex)
+		return;
 
-                // Set the icon for the skill slot
-                m_MascotSkill[i].slot.SetIcon(m_MascotIcon[m_iSelectedSlot].skillTblidx[i]);
-            }
-            else
-            {
-                // If the skill index is invalid, check if the mascot item rank allows skill display
-                if (m_MascotIcon[m_iSelectedSlot].byItemRank >= i + 1)
-                {
-                    // Check if the currently summoned mascot matches the selected mascot
-                    if (m_SummonMascotIndex == m_MascotIcon[m_iSelectedSlot].byIndex)
-                    {
-                        m_NotMascotSkill[i].Show(false); // Hide the not-mascot skill indicator
-                        m_pbtn_MascotSkill[i]->Enable(true); // Enable the skill button
-                        SelectEffectSkill(false, i); // Deselect the skill effect
-                    }
-                    else
-                    {
-                        m_NotMascotSkill[i].Show(false); // Hide the not-mascot skill indicator
-                        m_pbtn_MascotSkill[i]->Enable(false); // Disable the skill button
-                        SelectEffectSkill(false, i); // Deselect the skill effect
-                    }
-                }
-                else
-                {
-                    // If the item rank is too low, show the not-mascot skill indicator
-                    m_NotMascotSkill[i].Show(true);
-                    m_pbtn_MascotSkill[i]->Enable(false); // Disable the skill button
-                }
+	m_bySelectedIndex = byIndex;
 
-                // Clear the skill slot if no skill is assigned
-                m_MascotSkill[i].slot.Clear();
-            }
-        }
-    }
+	RefreshList();
+	RefreshInfo();
 }
 
-// Opens the mascot information UI and updates it based on the selected mascot
-VOID CMascotGui::OpenMascotInfo(RwBool isShow, RwInt32 iSlotIdx)
+sMASCOT_DATA_EX* CMascotGui::GetSelectedData(VOID)
 {
-    // Check if the slot index is valid and if the UI should be shown
-    if (iSlotIdx != dMASCOT_INVALID_INDEX && isShow)
-    {
-        // Iterate over the maximum number of mascot skills to update the UI
-        for (RwInt32 i = 0; i < dMAX_MASCOT_SKILL; ++i) // Update skill UI
-        {
-            // Check if the skill index is valid
-            if (m_MascotIcon[iSlotIdx].skillTblidx[i] != INVALID_TBLIDX)
-            {
-                // If the current mascot is summoned
-                if (m_SummonMascotIndex == m_MascotIcon[iSlotIdx].byIndex)
-                {
-                    m_NotMascotSkill[i].Show(false); // Hide non-mascot skills
-                    m_pbtn_MascotSkill[i]->Enable(true); // Enable skill button
-                    SelectEffectSkill(false, i); // Deselect skill effect
-                }
-                else // If the mascot is not summoned
-                {
-                    m_NotMascotSkill[i].Show(false); // Hide non-mascot skills
-                    m_pbtn_MascotSkill[i]->Enable(false); // Disable skill button
-                    SelectEffectSkill(true, i); // Select skill effect
-                }
-                // Set the skill icon for the mascot
-                m_MascotSkill[i].slot.SetIcon(m_MascotIcon[iSlotIdx].skillTblidx[i]);
-            }
-            else // If the skill index is invalid
-            {
-                // Check if the mascot's item rank is sufficient
-                if (m_MascotIcon[iSlotIdx].byItemRank >= i + 1)
-                {
-                    // If the current mascot is summoned
-                    if (m_SummonMascotIndex == m_MascotIcon[iSlotIdx].byIndex)
-                    {
-                        m_NotMascotSkill[i].Show(false); // Hide non-mascot skills
-                        m_pbtn_MascotSkill[i]->Enable(true); // Enable skill button
-                        SelectEffectSkill(false, i); // Deselect skill effect
-                    }
-                    else // If the mascot is not summoned
-                    {
-                        m_NotMascotSkill[i].Show(false); // Hide non-mascot skills
-                        m_pbtn_MascotSkill[i]->Enable(false); // Disable skill button
-                        SelectEffectSkill(false, i); // Deselect skill effect
-                    }
-                }
-                else // If the mascot's item rank is insufficient
-                {
-                    m_NotMascotSkill[i].Show(true); // Show non-mascot skills
-                    m_pbtn_MascotSkill[i]->Enable(false); // Disable skill button
-                }
-                // Clear the skill slot
-                m_MascotSkill[i].slot.Clear();
-            }
-        }
-
-        // Show the mascot info surface
-        m_surMascot.Show(true);
-
-        // Format and update the current VP and maximum VP display
-        m_psttb_Vp->Format(L"%u / %u", m_MascotIcon[iSlotIdx].dwCurVP, m_MascotIcon[iSlotIdx].dwMaxVP);
-        m_ppgb_Vp->SetRange(0, m_MascotIcon[iSlotIdx].dwMaxVP);
-        m_ppgb_Vp->SetPos(m_MascotIcon[iSlotIdx].dwCurVP);
-
-        // Get the mascot's name from the table and set it in the UI
-        std::wstring MascotName = API_GetTableContainer()->GetTextAllTable()->GetItemTbl()->GetText(m_MascotIcon[iSlotIdx].slot.GetItemTable()->Name);
-        m_psttb_Name->SetText(MascotName.c_str());
-
-        // Set the class type text for the mascot
-        std::string text = "DST_MASCOTEX_GRADE_" + std::to_string(m_MascotIcon[iSlotIdx].byItemRank);
-        m_psttb_ClassType->SetText(GetDisplayStringManager()->GetString(text));
-
-        // Handle special case for mascot rank 4
-        if (m_MascotIcon[iSlotIdx].byItemRank == 4)
-        {
-            m_psttb_Cp->SetText("Currently Max Level"); // Set the CP display for rank 4
-            m_ppgb_Xp->SetRange(1, 1); // Set XP progress range
-            m_ppgb_Xp->SetPos(1); // Set XP progress position
-        }
-        else // For other ranks
-        {
-            m_psttb_Cp->Format(L"%u / %u", m_MascotIcon[iSlotIdx].dwCurExp, m_MascotIcon[iSlotIdx].dwNeedExp);
-            m_ppgb_Xp->SetRange(0, m_MascotIcon[iSlotIdx].dwNeedExp);
-            m_ppgb_Xp->SetPos(m_MascotIcon[iSlotIdx].dwCurExp);
-
-            // Check if the current XP has reached the required XP
-            if (m_MascotIcon[iSlotIdx].dwCurExp == m_MascotIcon[iSlotIdx].dwNeedExp)
-                m_bCurMaxExp = true; // Mark current XP as max
-            else
-                m_bCurMaxExp = false; // Mark current XP as not max
-        }
-
-        // Update the summoned status display based on the current mascot
-        if (m_SummonMascotIndex == m_MascotIcon[iSlotIdx].byIndex)
-        {
-            m_psttb_Summoned->SetText(GetDisplayStringManager()->GetString("DST_MASCOTEX_STATUS_SUBTITLE_SUMMON")); // Set summoned text
-        }
-        else // If not summoned
-        {
-            m_psttb_Summoned->Clear(); // Clear summoned status
-        }
-    }
-    else // If the slot index is invalid or UI should not be shown
-    {
-        // Iterate over the maximum number of mascot skills to clear the UI
-        for (RwInt32 i = 0; i < dMAX_MASCOT_SKILL; ++i) // Clear skill UI
-        {
-            m_MascotSkill[i].slot.Clear(); // Clear the skill slot
-            m_NotMascotSkill[i].Show(true); // Show non-mascot skills
-            m_pbtn_MascotSkill[i]->Enable(false); // Disable skill button
-        }
-
-        // Hide the mascot info surface
-        m_surMascot.Show(false);
-
-        // Clear the VP display
-        m_psttb_Vp->Clear();
-        m_ppgb_Vp->SetPos(0); // Reset VP progress
-
-        // Set default texts for mascot name and class type
-        m_psttb_Name->SetText(GetDisplayStringManager()->GetString("DST_MASCOTEX_MASCOTNAME"));
-        m_psttb_ClassType->SetText(GetDisplayStringManager()->GetString("DST_MASCOTEX_MASCOT_GRADE"));
-
-        // Clear other displays
-        m_psttb_Cp->Clear(); // Clear CP display
-        m_ppgb_Xp->SetPos(0); // Reset XP progress
-        m_psttb_Summoned->Clear(); // Clear summoned status
-    }
+	return GetNtlSLGlobal()->GetAvatarMascotInfo()->Find(m_bySelectedIndex);
 }
 
-// Updates the flash effect's state based on the elapsed time
-VOID CMascotGui::Update(RwReal fElapsed)
+sMASCOT_DATA_EX* CMascotGui::GetSlotData(RwInt32 iSlot)
 {
-    // Check if the flash effect is currently visible
-    if (m_apflaEffect->IsVisible())
-    {
-        // Update the flash effect with the elapsed time since the last frame
-        m_apflaEffect->Update(fElapsed);
-        // Retrieve the current frame of the effect and store it for later use
-        m_uiEffectFrame = m_apflaEffect->GetCurrentFrame();
-    }
+	if (iSlot < 0 || iSlot >= dMAX_MASCOT_SLOT || m_abySlotIndex[iSlot] == INVALID_BYTE)
+		return NULL;
+
+	return GetNtlSLGlobal()->GetAvatarMascotInfo()->Find(m_abySlotIndex[iSlot]);
 }
 
-
-VOID CMascotGui::OnMascotRenameBtnClicked(gui::CComponent* pComponent)
+RwInt32 CMascotGui::GetMaxLine(VOID)
 {
-    return VOID();
+	RwInt32 iCount = GetNtlSLGlobal()->GetAvatarMascotInfo()->wCount;
+	RwInt32 iLines = (iCount + dMASCOT_SLOT_ROW - 1) / dMASCOT_SLOT_ROW;
+
+	return max(0, iLines - dMAX_MASCOT_SLOT / dMASCOT_SLOT_ROW);
 }
 
-VOID CMascotGui::CreateUITextureForSummonedMascot(RwInt32 summonedIndex)
+RwBool CMascotGui::IsSkillSlotOpen(sMASCOT_DATA_EX* pData, RwInt32 iSkillSlot)
 {
-    // Clean up any existing temp mascot first
-    if (m_pTempUIMascot)
-    {
-        CNtlSobMascotProxy* pProxy = reinterpret_cast<CNtlSobMascotProxy*>(m_pTempUIMascot->GetSobProxy());
-        if (pProxy)
-        {
-            pProxy->DeleteUIMascotStatusWndCamera();
-            pProxy->DeleteUIMascotStatusWndCharacter();
-        }
-        m_pTempUIMascot->Destroy();
-        NTL_DELETE(m_pTempUIMascot);
-        m_pTempUIMascot = NULL;
-    }
-
-    // Find the summoned mascot data
-    SMascotInfo* pMascotInfo = GetNtlSLGlobal()->GetAvatarMascotInfo();
-    if (!pMascotInfo) return;
-
-    sMASCOT_DATA_EX* pMascotData = NULL;
-    for (int i = 0; i < pMascotInfo->wCount; i++)
-    {
-        if (pMascotInfo->asMascotData[i].byIndex == summonedIndex)
-        {
-            pMascotData = &pMascotInfo->asMascotData[i];
-            break;
-        }
-    }
-
-    if (!pMascotData) return;
-
-    // Create temporary UI mascot for the summoned mascot (same as preview logic)
-    m_pTempUIMascot = NTL_NEW CNtlSobMascot;
-    if (m_pTempUIMascot && m_pTempUIMascot->Create())
-    {
-        // Set mascot data
-        CNtlSobMascotAttr* pMascotAttr = reinterpret_cast<CNtlSobMascotAttr*>(m_pTempUIMascot->GetSobAttr());
-        if (pMascotAttr)
-        {
-            pMascotAttr->SetItemTblidx(pMascotData->itemTblidx);
-        }
-
-        // Get mascot proxy for UI rendering
-        CNtlSobMascotProxy* pMascotProxy = reinterpret_cast<CNtlSobMascotProxy*>(m_pTempUIMascot->GetSobProxy());
-        if (pMascotProxy)
-        {
-            // Initialize UI infrastructure for texture rendering (CORRECTED: no parameters)
-            pMascotProxy->CreateUIMascotStatusWndCharacter();
-            pMascotProxy->CreateUIMascotStatusWndCamera();
-
-            // Generate UI texture (CORRECTED: no parameters, returns RwTexture*)
-            RwTexture* pMascotTexture = pMascotProxy->UIPcStatusBarRender();
-            if (pMascotTexture)
-            {
-                // CORRECTED: Follow the same pattern as OnMascotClicked
-                m_texMascot.Load(pMascotTexture);
-                m_surMascot.SetTexture(&m_texMascot);
-
-                CRectangle rtScreen = m_pThis->GetScreenRect();
-                m_surMascot.SetRectWH(rtScreen.left + 50, rtScreen.top + 51, 132, 176);
-                
-                // Show the texture
-                m_surMascot.Show(true);
-            }
-        }
-    }
+	// a mascot opens one skill slot per rank
+	return iSkillSlot < pData->byItemRank;
 }
-                    
+
+VOID CMascotGui::RefreshList(VOID)
+{
+	SMascotInfo* pInfo = GetNtlSLGlobal()->GetAvatarMascotInfo();
+	CRectangle rtScreen = m_pThis->GetScreenRect();
+
+	RwInt32 iMaxLine = GetMaxLine();
+	if (m_iCurLine > iMaxLine)
+		m_iCurLine = iMaxLine;
+
+	m_pscbMascot->SetMaxValue(iMaxLine);
+	m_pscbMascot->SetValue(m_iCurLine, FALSE);
+
+	m_surSelect.Show(FALSE);
+	m_pflaSummoned->Show(false);
+
+	RwInt32 iStart = m_iCurLine * dMASCOT_SLOT_ROW;
+	for (RwInt32 i = 0; i < dMAX_MASCOT_SLOT; ++i)
+	{
+		RwInt32 iDataIdx = iStart + i;
+		if (iDataIdx >= pInfo->wCount)
+		{
+			m_MascotSlot[i].Clear();
+			m_abySlotIndex[i] = INVALID_BYTE;
+			continue;
+		}
+
+		sMASCOT_DATA_EX& sData = pInfo->asMascotData[iDataIdx];
+		const RwChar* pcIconName = Logic_GetMascotIconName(sData.tblidx);
+		if (pcIconName)
+			m_MascotSlot[i].SetIcon(pcIconName);
+		else
+			m_MascotSlot[i].Clear();
+		m_abySlotIndex[i] = sData.byIndex;
+
+		RwInt32 iX = rtScreen.left + m_MascotSlot[i].GetX_fromParent();
+		RwInt32 iY = rtScreen.top + m_MascotSlot[i].GetY_fromParent();
+
+		if (sData.byIndex == m_bySelectedIndex)
+		{
+			m_surSelect.SetRectWH(iX, iY, 32, 32);
+			m_surSelect.Show(TRUE);
+		}
+
+		if (sData.byIndex == pInfo->bySummonIndex)
+		{
+			// same frame around the slot as the quick slot skill effect
+			CRectangle rect;
+			rect.SetRectWH(m_MascotSlot[i].GetX_fromParent() - 5, m_MascotSlot[i].GetY_fromParent() - 5, 42, 42);
+			m_pflaSummoned->SetPosition(rect);
+			if (!m_pflaSummoned->IsVisible())
+			{
+				m_pflaSummoned->GotoFrame(0);
+				m_pflaSummoned->PlayMovie(TRUE);
+			}
+			m_pflaSummoned->Show(true);
+		}
+	}
+}
+
+VOID CMascotGui::RefreshInfo(VOID)
+{
+	SMascotInfo* pInfo = GetNtlSLGlobal()->GetAvatarMascotInfo();
+	sMASCOT_DATA_EX* pData = GetSelectedData();
+
+	if (pData == NULL)
+	{
+		m_Preview.Destroy();
+		m_surPreview.Show(FALSE);
+
+		m_psttbName->SetText(GetDisplayStringManager()->GetString("DST_MASCOTEX_MASCOTNAME"));
+		m_psttbGrade->SetText(GetDisplayStringManager()->GetString("DST_MASCOTEX_MASCOT_GRADE"));
+		m_psttbSummoned->Clear();
+		m_psttbVp->Clear();
+		m_psttbExp->Clear();
+		m_ppgbVp->SetPos(0);
+		m_ppgbExp->SetPos(0);
+
+		RefreshSkills();
+		return;
+	}
+
+	// model
+	sMASCOT_STATUS_TBLDAT* pStatusTbl = (sMASCOT_STATUS_TBLDAT*)API_GetTableContainer()->GetMascotStatusTable()->FindData(pData->tblidx);
+	const RwChar* pcModel = pStatusTbl ? pStatusTbl->szModel : NULL;
+	m_Preview.SetDistance(pStatusTbl && pStatusTbl->byRank <= 1 ? PREVIEW_DISTANCE_CHILD : PREVIEW_DISTANCE);
+	if (pcModel == NULL || m_Preview.GetModel() != pcModel)
+	{
+		m_Preview.SetModel(pcModel);
+
+		// shown once the first frame is rendered, an untextured surface draws a white block
+		m_surPreview.Show(FALSE);
+		m_fPreviewWait = 0.0f;
+	}
+
+	// name and grade
+	m_psttbName->SetText(Logic_GetMascotName(pData->tblidx));
+
+	m_psttbGrade->SetText(Logic_GetMascotRankName(pData->byItemRank));
+
+	if (pInfo->bySummonIndex == pData->byIndex)
+		m_psttbSummoned->SetText(GetDisplayStringManager()->GetString("DST_MASCOTEX_STATUS_SUBTITLE_SUMMON"));
+	else
+		m_psttbSummoned->Clear();
+
+	// vp
+	m_psttbVp->Format(L"%u / %u", pData->dwCurVP, pData->dwMaxVP);
+	m_ppgbVp->SetRange(0, max((RwInt32)pData->dwMaxVP, 1));
+	m_ppgbVp->SetPos(pData->dwCurVP);
+
+	// exp, a mascot that cannot grow further has none to gain
+	DWORD dwNeedExp = Logic_GetMascotNeedExp(pData);
+	if (dwNeedExp == 0)
+	{
+		m_psttbExp->SetText(GetDisplayStringManager()->GetString("DST_MASCOTEX_MAX_GRADE_LIMITED"));
+		m_ppgbExp->SetRange(0, 1);
+		m_ppgbExp->SetPos(1);
+	}
+	else
+	{
+		m_psttbExp->Format(L"%u / %u", pData->dwCurExp, dwNeedExp);
+		m_ppgbExp->SetRange(0, (RwInt32)dwNeedExp);
+		m_ppgbExp->SetPos(pData->dwCurExp);
+	}
+
+	RefreshSkills();
+}
+
+VOID CMascotGui::RefreshSkills(VOID)
+{
+	SMascotInfo* pInfo = GetNtlSLGlobal()->GetAvatarMascotInfo();
+	sMASCOT_DATA_EX* pData = GetSelectedData();
+	RwBool bSummoned = pData && pInfo->bySummonIndex == pData->byIndex;
+
+	for (RwInt32 i = 0; i < dMAX_MASCOT_SKILL; ++i)
+	{
+		if (m_SkillCoolTime[i].IsWork())
+			m_SkillCoolTime[i].EndProc();
+
+		if (pData == NULL || !IsSkillSlotOpen(pData, i))
+		{
+			m_SkillSlot[i].Clear();
+			m_surSkillLock[i].Show(TRUE);
+			m_pbtnSkill[i]->Enable(false);
+			m_pbtnSkill[i]->SetToolTip(L"");
+			continue;
+		}
+
+		m_surSkillLock[i].Show(FALSE);
+
+		if (pData->skillTblidx[i] != INVALID_TBLIDX)
+		{
+			m_SkillSlot[i].SetIcon(pData->skillTblidx[i]);
+			m_pbtnSkill[i]->SetToolTip(GetDisplayStringManager()->GetString("DST_MASCOTEX_SKILLROLL_BUTTON"));
+		}
+		else
+		{
+			m_SkillSlot[i].Clear();
+			m_pbtnSkill[i]->SetToolTip(GetDisplayStringManager()->GetString("DST_MASCOTEX_SKILL_CREATE_TITLE"));
+		}
+
+		// learning and re-rolling go through the summoned mascot, the click explains it otherwise
+		m_pbtnSkill[i]->Enable(true);
+		m_SkillSlot[i].ShowDisable(!bSummoned);
+	}
+}
+
+VOID CMascotGui::ShowMascotInfoWnd(RwInt32 iSlot)
+{
+	sMASCOT_DATA_EX* pData = GetSlotData(iSlot);
+	if (pData == NULL)
+		return;
+
+	stMACOT_INFO stMascot;
+	stMascot.tblidx = pData->itemTblidx;
+	stMascot.byItemRank = pData->byItemRank;
+	stMascot.dwCurExp = pData->dwCurExp;
+	stMascot.dwCurVP = pData->dwCurVP;
+	stMascot.dwMaxVP = pData->dwMaxVP;
+	stMascot.dwMaxExp = Logic_GetMascotNeedExp(pData);	// 0 shows a full bar for a mascot at its last rank
+
+	CRectangle rtScreen = m_pThis->GetScreenRect();
+	GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_MASCOT_INFO,
+		rtScreen.left + m_MascotSlot[iSlot].GetX_fromParent(),
+		rtScreen.top + m_MascotSlot[iSlot].GetY_fromParent(),
+		&stMascot, DIALOG_MASCOT);
+
+	m_iInfoWndSlot = iSlot;
+}
+
+VOID CMascotGui::ShowSkillInfoWnd(RwInt32 iSkillSlot)
+{
+	sSKILL_TBLDAT* pSkillTbl = m_SkillSlot[iSkillSlot].GetSkillTable();
+	if (pSkillTbl == NULL)
+		return;
+
+	CRectangle rtScreen = m_pThis->GetScreenRect();
+	GetInfoWndManager()->ShowInfoWindow(TRUE, CInfoWndManager::INFOWND_MASCOT_SKILL_INFO,
+		rtScreen.left + m_SkillSlot[iSkillSlot].GetX_fromParent(),
+		rtScreen.top + m_SkillSlot[iSkillSlot].GetY_fromParent(),
+		pSkillTbl, DIALOG_MASCOT);
+
+	m_iInfoWndSlot = dMAX_MASCOT_SLOT + iSkillSlot;
+}
+
+VOID CMascotGui::HideInfoWnd(VOID)
+{
+	if (GetInfoWndManager()->GetRequestGui() == DIALOG_MASCOT)
+		GetInfoWndManager()->ShowInfoWindow(FALSE);
+}
