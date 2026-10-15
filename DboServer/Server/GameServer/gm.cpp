@@ -2,6 +2,7 @@
 #include "gm.h"
 #include "GameServer.h"
 #include "CPlayer.h"
+#include "ItemPet.h"
 #include "Monster.h"
 #include "ItemManager.h"
 #include "NtlPacketUG.h"
@@ -126,6 +127,7 @@ ACMD(do_removeskillscd);
 ACMD(do_dynamicfield);
 ACMD(do_dbscramble);
 ACMD(do_dojowar);
+ACMD(do_petexp);
 ACMD(do_test);
 
 struct command_info cmd_info[] =
@@ -184,6 +186,7 @@ struct command_info cmd_info[] =
 	{ L"@dynamicfield", do_dynamicfield, ADMIN_LEVEL_ADMIN },
 	{ L"@dbscramble", do_dbscramble, ADMIN_LEVEL_ADMIN },
 	{ L"@dojowar", do_dojowar, ADMIN_LEVEL_ADMIN },
+	{ L"@petexp", do_petexp, ADMIN_LEVEL_ADMIN },
 	{ L"@test", do_test, ADMIN_LEVEL_ADMIN },
 
 	{ L"@qwasawedsadas", NULL, ADMIN_LEVEL_ADMIN }
@@ -2098,6 +2101,62 @@ ACMD(do_dojowar)
 
 	SendGmFeedback(pPlayer, msg.c_str());
 }
+
+ACMD(do_petexp)
+{
+	/*
+		@petexp					fill the summoned pet's exp up to what its rank needs, so it can be fused
+		@petexp <amount>		add exp to the summoned pet, capped at what its rank needs
+	*/
+
+	pToken->PopToPeek();
+	std::wstring strAmount = pToken->PeekNextToken(NULL, &iLine);
+
+	CNtlStringW msg;
+
+	CItemPet* pMascot = pPlayer->GetCurrentMascot();
+	if (pMascot == NULL)
+	{
+		msg.Format(L"Pet exp: summon a pet first. Usage: @petexp [amount|max]");
+		SendGmFeedback(pPlayer, msg.c_str());
+		return;
+	}
+
+	DWORD dwNeedExp = pMascot->GetNeedExp();
+	DWORD dwCurExp = pMascot->GetExp();
+
+	// never more than the rank still needs, a bigger amount would wrap the exp counter
+	DWORD dwMissingExp = dwNeedExp > dwCurExp ? dwNeedExp - dwCurExp : 0;
+
+	DWORD dwAddExp = dwMissingExp;
+	if (!strAmount.empty() && strAmount != L"max")
+	{
+		int nAmount = _wtoi(strAmount.c_str());
+		if (nAmount <= 0)
+		{
+			msg.Format(L"Pet exp: the amount must be a positive number. Usage: @petexp [amount|max]");
+			SendGmFeedback(pPlayer, msg.c_str());
+			return;
+		}
+
+		dwAddExp = (DWORD)nAmount < dwMissingExp ? (DWORD)nAmount : dwMissingExp;
+	}
+
+	if (dwAddExp > 0)
+		pMascot->UpdateExp(dwAddExp);
+
+	if (pMascot->CanLevelUp() == false)
+		msg.Format(L"Pet exp: %u / %u (max rank, it cannot be fused further).", pMascot->GetExp(), dwNeedExp);
+	else if (pMascot->GetExp() >= dwNeedExp)
+		msg.Format(L"Pet exp: %u / %u, ready to fuse (dismiss it first).", pMascot->GetExp(), dwNeedExp);
+	else
+		msg.Format(L"Pet exp: %u / %u.", pMascot->GetExp(), dwNeedExp);
+
+	ERR_LOG(LOG_USER, "Player: %u used @petexp %S", pPlayer->GetCharID(), strAmount.c_str());
+
+	SendGmFeedback(pPlayer, msg.c_str());
+}
+
 
 ACMD(do_test)
 {
