@@ -38,7 +38,6 @@
 #include "NtlSobElapsedController.h"
 #include "NtlSoundMoodManager.h"
 #include "NtlSLLogic.h"
-#include "NtlSobMascotProxy.h"
 
 
 MEMORYSTATUSEX				g_memStaus;
@@ -457,7 +456,6 @@ RwBool API_SLInit(RwBool bVirtualNet, CNtlCamera *pCamera, RwUInt8 byLoadMethod,
 
 	// event handler 등록.
 	CNtlSobCharProxy::RegisterEventHandler();
-	CNtlSobMascotProxy::RegisterEventHandler();
 
 	g_pSLGlobal = NTL_NEW CNtlSLGlobal;
 	if(!g_pSLGlobal->Create(TRUE))

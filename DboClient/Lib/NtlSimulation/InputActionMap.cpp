@@ -245,6 +245,33 @@ void CInputActionMap::HandleEvents(RWS::CMsg &pMsg)
 }
 
 /**
+* \brief Older clients bound ',' and '.' by character code, which are VK_SNAPSHOT and VK_DELETE.
+* The print screen action took ',' away, so the server stored the pet window as unbound.
+*/
+static WORD MigrateLegacyKey( sSHORTCUT_DATA* pasData, BYTE byCount, int iIndex )
+{
+	WORD wAction = pasData[iIndex].wActionID;
+	WORD wKey = pasData[iIndex].wKey;
+	WORD wNewKey;
+
+	if( wAction == ACTION_WINDOW_MASCOT && ( wKey == dNTL_KEY_EMPTY || wKey == ',' ) )
+		wNewKey = NTL_KEY_COMMA;
+	else if( wAction == ACTION_WINDOW_HOIPOIMIX && ( wKey == dNTL_KEY_EMPTY || wKey == '.' ) )
+		wNewKey = NTL_KEY_PERIOD;
+	else
+		return wKey;
+
+	// keep the stored key if the player gave the new one to another action
+	for( int i = 0; i < byCount; ++i )
+	{
+		if( i != iIndex && pasData[i].wKey == wNewKey )
+			return wKey;
+	}
+
+	return wNewKey;
+}
+
+/**
 * \brief 占쏙옙占쌈울옙 占쏙옙占쏙옙占쏙옙 占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쌍댐옙 占쏙옙占쏙옙키 占쏙옙占쏙옙占쏙옙 占쌨는댐옙.
 */
 void CInputActionMap::HandleEventActionmapLoadInfo( RWS::CMsg& msg ) 
@@ -287,7 +314,7 @@ void CInputActionMap::HandleEventActionmapLoadInfo( RWS::CMsg& msg )
 
 		// 占쏙옙占쏙옙트 占십깍옙화 占쏙옙 占싶울옙 占쌕쏙옙 占싼뱄옙 Setting
 		for( int i=0; i<pPacket->byCount; ++i )
-			m_ActionMapManager.SetCombineKey( pPacket->asData[i].wKey, pPacket->asData[i].wActionID );
+			m_ActionMapManager.SetCombineKey( MigrateLegacyKey( pPacket->asData, pPacket->byCount, i ), pPacket->asData[i].wActionID );
 
 		// ��� Release Action�� ���õ� �����̳� ����� Ŭ����
 		m_ActionMapManager.ClearResult();

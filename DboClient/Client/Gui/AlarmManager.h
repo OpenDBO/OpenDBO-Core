@@ -91,6 +91,9 @@ public:
 	VOID	FormattedAlarmMessage(std::string string, RwBool bServerSync, RwReal fShowTime, sMsgBoxData* pExData, ... );
 	VOID	vFormattedAlarmMessage(std::string& string, RwBool bServerSync, RwReal fShowTime, sMsgBoxData* pExData, va_list ArgList );
 	VOID	FormattedAlarmMessage( WCHAR* szText, ... ); 
+
+	/// registers strNewKey with the alarm type and buttons of strTemplateKey, for strings the message table has no entry for
+	VOID	CloneClientAlarm(const std::string& strNewKey, const std::string& strTemplateKey);
 	VOID	vFormattedAlarmMessage( WCHAR* szText, va_list ArgList );
 
 	/// MsgBox인 경우 Msg 및 Data의 교체만 이루어짐. 시간속성 사용 불가. 

@@ -237,6 +237,7 @@ RwBool CDboEventHandler::Create(void)
 	RegisterMsg(g_EventMascotDelete, "g_EventMascotDelete", "SDboEventMascotOperate");
 	RegisterMsg(g_EventMascotSummon, "g_EventMascotSummon", "SDboEventMascotOperate");
 	RegisterMsg(g_EventMascotUnSummon, "g_EventMascotUnSummon", "SDboEventMascotOperate");
+	RegisterMsg(g_EventMascotUpdate, "g_EventMascotUpdate", "SDboEventMascotUpdate");
 	
 	//test		
 	RegisterMsg(g_EventSCS, "g_EventSCS", "" );
@@ -459,6 +460,7 @@ void CDboEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventMascotDelete);
 	UnRegisterMsg(g_EventMascotSummon);
 	UnRegisterMsg(g_EventMascotUnSummon);
+	UnRegisterMsg(g_EventMascotUpdate);
 
 	//test		
 	UnRegisterMsg(g_EventSCS);

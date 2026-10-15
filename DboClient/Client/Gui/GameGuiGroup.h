@@ -131,6 +131,7 @@ class CMascotGui;
 class CMascotFusion;
 class CMascotSkillReMake;
 class CMascotStatusBarGui;
+class CMascotRemoteSellGui;
 
 class CGMGuiGroup;
 
@@ -258,6 +259,7 @@ private:
 	CMascotFusion* m_pMascotFusion;
 	CMascotSkillReMake* m_pMascotSkillReMake;
 	CMascotStatusBarGui* m_pMascotStatusBarGui;
+	CMascotRemoteSellGui* m_pMascotRemoteSellGui;
 
 	gui::CSlot m_slotPaint;
 		

@@ -4289,24 +4289,28 @@ VOID CInfoWindowGui::SetMascotInfo(stMACOT_INFO* pData)
 	// Retrieve item data based on the provided table index of the mascot
 	sITEM_TBLDAT* itemData = Logic_GetItemDataFromTable(pData->tblidx);
 
-	// Set the mascot's name in the info window, using the item's data and rank
-	SetItemInfo_Name(m_pmdBox, itemData, 0, pData->byItemRank, true);
-
-	// Set the battle attribute information for the item in the info window
-	SetItemInfo_Attr_Info(m_pmdBox, itemData, itemData->byBattle_Attribute);
+	// some mascots have no item row, show their name only
+	if (itemData)
+	{
+		SetItemInfo_Name(m_pmdBox, itemData, 0, pData->byItemRank, true);
+		SetItemInfo_Attr_Info(m_pmdBox, itemData, itemData->byBattle_Attribute);
+	}
+	else
+		m_pmdBox->Format("Name", FONT_TEXT, COMP_TEXT_LEFT, INFOCOLOR_0, 0, FALSE, L"%s", Logic_GetMascotName(pData->tblidx));
 
 	// Add a blank line for visual separation in the info window
 	m_pmdBox->SetBlankLine(INFOWND_BLANKLINE_HEIGHT);
 
 	// Construct and set the current VP (Vital Points) information in the info window
-	std::string VP = "Vp  : " + std::to_string(pData->dwCurVP);
+	std::string VP = "VP  : " + std::to_string(pData->dwCurVP) + " / " + std::to_string(pData->dwMaxVP);
 	m_pmdBox->SetItem(VP.c_str(), "VP", FONT_TEXT, COMP_TEXT_LEFT, INFOCOLOR_0);
 
 	// Add another blank line for visual separation
 	m_pmdBox->SetBlankLine(INFOWND_BLANKLINE_HEIGHT);
 
 	// Calculate the experience percentage and construct the display string
-	int ExpPercent = ((float)pData->dwCurExp / (float)pData->dwMaxExp) * 100.0f;
+	// a max rank mascot has no exp to gain
+	int ExpPercent = pData->dwMaxExp > 0 ? (int)min(100.0f, ((float)pData->dwCurExp / (float)pData->dwMaxExp) * 100.0f) : 100;
 	std::string EXP = "Exp : " + std::to_string(ExpPercent) + "%";
 
 	// Set the experience information in the info window

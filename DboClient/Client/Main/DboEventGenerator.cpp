@@ -1903,12 +1903,6 @@ void CDboEventGenerator::DeleteMascotRes(BYTE index)
 
 void CDboEventGenerator::SummonMascot(BYTE index)
 {
-	OutputDebugStringA("[MASCOT_EVENT_DEBUG] CDboEventGenerator::SummonMascot - Entry\n");
-	
-	char debugBuffer[128];
-	sprintf_s(debugBuffer, "[MASCOT_EVENT_DEBUG] Summoning mascot index: %u\n", index);
-	OutputDebugStringA(debugBuffer);
-	
 	SDboEventCommercialExtendCommand sData;
 	SDboEventMascotOperate sMascotData;
 	sData.eCommandType = eSUMMON_MASCOT;
@@ -1916,8 +1910,6 @@ void CDboEventGenerator::SummonMascot(BYTE index)
 	sMascotData.index = index;
 
 	SEND_MSG(g_EventCommercialExtendCommand, &sData);
-	
-	OutputDebugStringA("[MASCOT_EVENT_DEBUG] Event sent successfully\n");
 }
 
 void CDboEventGenerator::MascotSummonRes(BYTE index)
@@ -1943,4 +1935,14 @@ void CDboEventGenerator::MascotUnSummonRes(BYTE index)
 	SDboEventMascotOperate sData;
 	sData.index = index;
 	SEND_MSG(g_EventMascotUnSummon, &sData);
+}
+void CDboEventGenerator::MascotUpdate(BYTE byIndex, BYTE byType, BYTE bySlot, RwBool bSuccess)
+{
+	SDboEventMascotUpdate sData;
+	sData.byIndex = byIndex;
+	sData.byType = byType;
+	sData.bySlot = bySlot;
+	sData.bSuccess = bSuccess;
+
+	SEND_MSG(g_EventMascotUpdate, &sData);
 }

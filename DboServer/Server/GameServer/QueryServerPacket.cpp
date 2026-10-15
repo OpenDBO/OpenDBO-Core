@@ -3370,7 +3370,7 @@ void CQueryServerSession::RecvMascotSealSetRes(CNtlPacket * pPacket)
 			}
 		}
 
-		res->hNewItemHandle = g_pItemManager->CreateItem(pOwner, &req->sNewItemData, false)->GetID();
+		res->hNewItemHandle = g_pItemManager->CreateItem(pOwner, &req->sNewItemData)->GetID(); // GU_ITEM_CREATE puts the sealed mascot in the client inventory
 	}
 
 

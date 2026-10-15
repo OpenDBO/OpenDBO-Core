@@ -595,6 +595,11 @@ void CNtlSobAvatar::HandleEvents(RWS::CMsg &pMsg)
 
 		// Character Title
 		SetCharTitle(pAvatarInfo->sCharPf.bInvisibleTitle, pAvatarInfo->sCharPf.charTitle);
+
+		// the avatar is recreated on world changes while its mascot stays summoned
+		sMASCOT_DATA_EX* pSummonedMascot = GetNtlSLGlobal()->GetAvatarMascotInfo()->GetSummoned();
+		if (pSummonedMascot)
+			SetMascotTblidx(pSummonedMascot->tblidx, FALSE);
 	}
 	else if(pMsg.Id == g_EventSobItemAdd || pMsg.Id == g_EventSobItemDelete || pMsg.Id == g_EventSobEquipItemDurDown ||			 
 			pMsg.Id == g_EventSobItemMove || pMsg.Id == g_EventSobItemStackMove || pMsg.Id == g_EventSobItemUpdate ||

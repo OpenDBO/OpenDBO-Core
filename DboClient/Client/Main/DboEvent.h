@@ -331,6 +331,7 @@ extern RWS::CEventId g_EventMascotRegister;
 extern RWS::CEventId g_EventMascotDelete;
 extern RWS::CEventId g_EventMascotSummon;
 extern RWS::CEventId g_EventMascotUnSummon;
+extern RWS::CEventId g_EventMascotUpdate;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1638,6 +1639,25 @@ struct SDboEventMascotRegister
 struct SDboEventMascotOperate
 {
 	BYTE	index;
+};
+
+enum eMASCOT_UPDATE_TYPE
+{
+	MASCOT_UPDATE_VP,
+	MASCOT_UPDATE_EXP,
+	MASCOT_UPDATE_SKILL,		///< bySlot changed (learn, re-roll, upgrade)
+	MASCOT_UPDATE_SKILL_SHOWN,	///< the skill window finished revealing the new skill in bySlot
+	MASCOT_UPDATE_SKILL_USE,	///< bySlot was used, cooldown starts
+	MASCOT_UPDATE_FUSION,		///< bSuccess tells whether the rank went up
+	MASCOT_UPDATE_SEAL,			///< the mascot was sealed into an item and removed
+};
+
+struct SDboEventMascotUpdate
+{
+	BYTE	byIndex;
+	BYTE	byType;			///< eMASCOT_UPDATE_TYPE
+	BYTE	bySlot;
+	RwBool	bSuccess;
 };
 
 #endif

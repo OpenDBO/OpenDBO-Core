@@ -834,6 +834,16 @@ void RegisterPacketHandler(void)
 	CNtlPacketHandler::Register(GU_MASCOT_SUMMON_EX_RES, PacketHandler_GSMascotExSummonRes);
 	CNtlPacketHandler::Register(GU_UPDATE_MASCOT_SUMMON, PacketHandler_GSUpdateMascotSummon);
 	CNtlPacketHandler::Register(GU_MASCOT_UNSUMMON_EX_RES, PacketHandler_GSMascotExUnSummonRes);
+	CNtlPacketHandler::Register(GU_MASCOT_CHANGE_VP, PacketHandler_GSMascotChangeVP);
+	CNtlPacketHandler::Register(GU_MASCOT_CHANGE_EXP, PacketHandler_GSMascotChangeExp);
+	CNtlPacketHandler::Register(GU_MASCOT_SKILL_RES, PacketHandler_GSMascotSkillRes);
+	CNtlPacketHandler::Register(GU_MASCOT_SKILL_ADD_RES, PacketHandler_GSMascotSkillAddRes);
+	CNtlPacketHandler::Register(GU_MASCOT_SKILL_UPDATE_RES, PacketHandler_GSMascotSkillUpdateRes);
+	CNtlPacketHandler::Register(GU_MASCOT_SKILL_UPGRADE_RES, PacketHandler_GSMascotSkillUpgradeRes);
+	CNtlPacketHandler::Register(GU_MASCOT_FUSION_RES, PacketHandler_GSMascotFusionRes);
+	CNtlPacketHandler::Register(GU_MASCOT_AUTO_LOOTING_RES, PacketHandler_GSMascotAutoLootingRes);
+	CNtlPacketHandler::Register(GU_MASCOT_REMOTE_SHOP_SELL_RES, PacketHandler_GSMascotRemoteShopSellRes);
+	CNtlPacketHandler::Register(GU_MASCOT_SEAL_SET_RES, PacketHandler_GSMascotSealSetRes);
 }
 
 void UnRegisterPacketHandler(void)
@@ -1568,4 +1578,14 @@ void UnRegisterPacketHandler(void)
 	CNtlPacketHandler::UnRegister(GU_MASCOT_SUMMON_EX_RES);
 	CNtlPacketHandler::UnRegister(GU_UPDATE_MASCOT_SUMMON);
 	CNtlPacketHandler::UnRegister(GU_MASCOT_UNSUMMON_EX_RES);
+	CNtlPacketHandler::UnRegister(GU_MASCOT_CHANGE_VP);
+	CNtlPacketHandler::UnRegister(GU_MASCOT_CHANGE_EXP);
+	CNtlPacketHandler::UnRegister(GU_MASCOT_SKILL_RES);
+	CNtlPacketHandler::UnRegister(GU_MASCOT_SKILL_ADD_RES);
+	CNtlPacketHandler::UnRegister(GU_MASCOT_SKILL_UPDATE_RES);
+	CNtlPacketHandler::UnRegister(GU_MASCOT_SKILL_UPGRADE_RES);
+	CNtlPacketHandler::UnRegister(GU_MASCOT_FUSION_RES);
+	CNtlPacketHandler::UnRegister(GU_MASCOT_AUTO_LOOTING_RES);
+	CNtlPacketHandler::UnRegister(GU_MASCOT_REMOTE_SHOP_SELL_RES);
+	CNtlPacketHandler::UnRegister(GU_MASCOT_SEAL_SET_RES);
 }

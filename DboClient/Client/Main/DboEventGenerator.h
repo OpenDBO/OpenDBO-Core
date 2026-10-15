@@ -305,6 +305,7 @@ public:
 	static void DeleteMascotRes(BYTE index);
 	static void MascotSummonRes(BYTE index);
 	static void MascotUnSummonRes(BYTE index);
+	static void MascotUpdate(BYTE byIndex, BYTE byType, BYTE bySlot = INVALID_BYTE, RwBool bSuccess = TRUE);
 };
 
 #endif

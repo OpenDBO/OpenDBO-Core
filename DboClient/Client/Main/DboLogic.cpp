@@ -1,6 +1,8 @@
 #include "precomp_dboclient.h"
 #include "DboLogic.h"
 
+#include <algorithm>
+
 // shared
 #include "NtlResultCode.h"
 #include "ObjectTable.h"
@@ -19,6 +21,8 @@
 #include "ScriptLinkTable.h"
 #include "DojoTable.h"
 #include "SystemEffectTable.h"
+#include "MascotStatusTable.h"
+#include "MascotGradeTable.h"
 
 // core
 #include "NtlDebug.h"
@@ -53,6 +57,7 @@
 #include "NtlSobPetAttr.h"
 #include "NtlSobMonsterAttr.h"
 #include "IconMoveManager.h"
+#include "NtlSobWorldItem.h"
 #include "NtlSobWorldItemAttr.h"
 #include "NtlSLLogic.h"
 #include "NtlSLApi.h"
@@ -63,6 +68,8 @@
 #include "NtlSobStatusAnimSyncManager.h"
 #include "NtlSobBuff.h"
 #include "NtlSobBuffAttr.h"
+#include "NtlSobGroup.h"
+#include "NtlWareHouse.h"
 
 // Simulation Storage
 #include "NtlStorageDefine.h"
@@ -81,6 +88,8 @@
 #include "CursorManager.h"
 #include "LobbyManager.h"
 #include "CommercialExtendGui.h"
+#include "MascotGui.h"
+#include "MascotSkillReMake.h"
 
 
 RwReal		g_fElapsedWeightValue	= 1.0f;
@@ -838,6 +847,27 @@ RwBool Logic_UseProc( SERIAL_HANDLE hSrcSerial, RwUInt32 param1/* = 0xFF*/, RwUI
 
 		CNtlSobItemAttr* pSobItemAttr = dynamic_cast<CNtlSobItemAttr*>(pSobItem->GetSobAttr());
 		NTL_ASSERT(pSobItem, "Can not dynamic cast to sob item attr pointer");
+
+		// mascot skill items are spent through the mascot windows, not used directly
+		sITEM_TBLDAT* pItemTbl = pSobItemAttr ? pSobItemAttr->GetItemTbl() : NULL;
+		if (pItemTbl && pItemTbl->byItem_Type == ITEM_TYPE_EVENT_MASCOT_CHANGE_SKILL)
+		{
+			CMascotSkillReMake* pReMake = reinterpret_cast<CMascotSkillReMake*>(GetDialogManager()->GetDialog(DIALOG_MASCOT_SKILL_REMAKE));
+			if (pReMake)
+				pReMake->OpenWithItem(hSrcSerial);
+
+			return TRUE;
+		}
+
+		if (Logic_IsMascotSkillGradeUpItem(pItemTbl))
+		{
+			CMascotGui* pMascotGui = reinterpret_cast<CMascotGui*>(GetDialogManager()->GetDialog(DIALOG_MASCOT));
+			RwUInt8 byPlace, byPos;
+			if (pMascotGui && Logic_GetItemContainerPosFromHandle(hSrcSerial, byPlace, byPos))
+				pMascotGui->StartSkillGradeUp(byPlace, byPos);
+
+			return TRUE;
+		}
 
 		/*if (sub_4D0B60(v21))
 		{
@@ -1687,6 +1717,13 @@ VOID Logic_EnableIcon( RwBool bEnable, RwUInt8 byPlace, RwUInt8 uiSlotIdx )
 	}
 
 	// QuestIcon은 다른 패킷에서 이벤트 호출.
+}
+
+VOID Logic_EnableBagItemIcon( SERIAL_HANDLE hItem, RwBool bEnable )
+{
+	RwUInt8 byPlace, byPos;
+	if( Logic_GetItemContainerPosFromHandle( hItem, byPlace, byPos ) )
+		Logic_EnableIcon( bEnable, byPlace, byPos );
 }
 
 RwBool Logic_IsUpdateType(RwInt32 iType, void* pData)
@@ -3590,6 +3627,16 @@ void Logic_ShowRegenBox(void)
 		GetAlarmManager()->AlarmMessage("DST_REGEN_PLAYER_MAINWORLD_WITH_POPO");
 		//GetAlarmManager()->AlarmMessage( "DST_REGEN_PLAYER_MAINWORLD" );
 	}
+
+	// a summoned mascot with the rescue skill revives on the spot, except where the server forbids it
+	if( pWorldConcept )
+	{
+		EWorldPlayConcept eWorldConceptType = pWorldConcept->GetConceptType();
+		if( eWorldConceptType == WORLD_PLAY_RANK_BATTLE || eWorldConceptType == WORLD_PLAY_T_BUDOKAI || eWorldConceptType == WORLD_PLAY_CCBD )
+			return;
+	}
+
+	Logic_OfferMascotRescue();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3680,4 +3727,362 @@ const WCHAR* Logic_GetMascotRankName(RwUInt8 byRank)
 	}
 
 	return L"";
+}
+
+const RwChar* Logic_GetMascotIconName(TBLIDX mascotTblidx)
+{
+	sITEM_TBLDAT* pItemTbl = (sITEM_TBLDAT*)API_GetTableContainer()->GetItemTable()->FindData(mascotTblidx);
+	if (pItemTbl && pItemTbl->szIcon_Name[0] != 0)
+		return pItemTbl->szIcon_Name;
+
+	// some mascots have no item row, their icons are named after the model
+	sMASCOT_STATUS_TBLDAT* pStatusTbl = (sMASCOT_STATUS_TBLDAT*)API_GetTableContainer()->GetMascotStatusTable()->FindData(mascotTblidx);
+	if (pStatusTbl == NULL)
+		return NULL;
+
+	static std::string s_strIconName;
+	s_strIconName = pStatusTbl->szModel;
+	s_strIconName += ".png";
+	return s_strIconName.c_str();
+}
+
+const WCHAR* Logic_GetMascotName(TBLIDX mascotTblidx)
+{
+	static std::wstring s_wstrName;
+
+	sITEM_TBLDAT* pItemTbl = (sITEM_TBLDAT*)API_GetTableContainer()->GetItemTable()->FindData(mascotTblidx);
+	if (pItemTbl)
+	{
+		s_wstrName = API_GetTableContainer()->GetTextAllTable()->GetItemTbl()->GetText(pItemTbl->Name);
+		return s_wstrName.c_str();
+	}
+
+	sMASCOT_STATUS_TBLDAT* pStatusTbl = (sMASCOT_STATUS_TBLDAT*)API_GetTableContainer()->GetMascotStatusTable()->FindData(mascotTblidx);
+	if (pStatusTbl)
+		return pStatusTbl->wszNameText;
+
+	return GetDisplayStringManager()->GetString("DST_MASCOTEX_MASCOTNAME");
+}
+
+DWORD Logic_GetMascotNeedExp(sMASCOT_DATA_EX* pData)
+{
+	if (pData == NULL)
+		return 0;
+
+	sMASCOT_STATUS_TBLDAT* pStatusTbl = (sMASCOT_STATUS_TBLDAT*)API_GetTableContainer()->GetMascotStatusTable()->FindData(pData->tblidx);
+	if (pStatusTbl == NULL || pStatusTbl->nextMascotTblidx == INVALID_TBLIDX)
+		return 0;
+
+	// the server reads the needed EXP from the rank in the status table
+	sMASCOT_GRADE_TBLDAT* pGradeTbl = (sMASCOT_GRADE_TBLDAT*)API_GetTableContainer()->GetMascotGradeTable()->FindData(pStatusTbl->byRank);
+	if (pGradeTbl == NULL)
+		pGradeTbl = (sMASCOT_GRADE_TBLDAT*)API_GetTableContainer()->GetMascotGradeTable()->FindData(pData->byItemRank);
+
+	return pGradeTbl ? pGradeTbl->dwNeedExp : 0;
+}
+
+RwBool Logic_CheckMascotFusion(sMASCOT_DATA_EX* pData)
+{
+	if (pData == NULL)
+	{
+		GetAlarmManager()->AlarmMessage("DST_MASCOTEX_NOT_SELECT");
+		return FALSE;
+	}
+
+	sMASCOT_STATUS_TBLDAT* pStatusTbl = (sMASCOT_STATUS_TBLDAT*)API_GetTableContainer()->GetMascotStatusTable()->FindData(pData->tblidx);
+	if (pStatusTbl == NULL || pStatusTbl->nextMascotTblidx == INVALID_TBLIDX)
+	{
+		GetAlarmManager()->AlarmMessage("DST_MASCOTEX_FUSION_OVERGRADE");
+		return FALSE;
+	}
+
+	DWORD dwNeedExp = Logic_GetMascotNeedExp(pData);
+	if (dwNeedExp == 0 || pData->dwCurExp < dwNeedExp)
+	{
+		GetAlarmManager()->AlarmMessage("DST_MASCOTEX_FUSION_EXPLACK");
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+void Logic_ApplyMascotFusion(const SMascotFusionResult& sResult)
+{
+	SMascotInfo* pInfo = GetNtlSLGlobal()->GetAvatarMascotInfo();
+
+	// the offered mascot is consumed whatever the outcome
+	RwBool bOffered = sResult.byOfferingIndex != INVALID_BYTE && pInfo->Find(sResult.byOfferingIndex) != NULL;
+	if (bOffered)
+		pInfo->Remove(sResult.byOfferingIndex);
+
+	if (sResult.bSuccess)
+	{
+		sMASCOT_DATA_EX* pData = pInfo->Find(sResult.byMascotIndex);
+		if (pData)
+		{
+			pData->tblidx = sResult.nextMascotTblidx;
+			pData->itemTblidx = sResult.nextMascotTblidx;
+			pData->byItemRank = sResult.byNewRank;
+			pData->dwMaxVP = sResult.dwMaxVP;
+			pData->dwCurExp = 0;
+		}
+	}
+
+	if (bOffered)
+		CDboEventGenerator::DeleteMascotRes(sResult.byOfferingIndex);
+
+	CDboEventGenerator::MascotUpdate(sResult.byMascotIndex, MASCOT_UPDATE_FUSION, INVALID_BYTE, sResult.bSuccess);
+}
+
+// remote bank skill used before the bank data was loaded, opened once the load result arrives.
+// Stored as the time of the request so a load that never answers (or a logout) cannot leave it
+// armed for a later bank visit at an npc.
+static const DWORD MASCOT_REMOTE_BANK_WAIT_TIME = 10000;
+static DWORD s_dwMascotRemoteBankRequestTime = 0;
+
+RwBool Logic_ConsumeMascotRemoteBank(void)
+{
+	RwBool bPending = s_dwMascotRemoteBankRequestTime != 0 && GetTickCount() - s_dwMascotRemoteBankRequestTime < MASCOT_REMOTE_BANK_WAIT_TIME;
+	s_dwMascotRemoteBankRequestTime = 0;
+	return bPending;
+}
+
+sSKILL_TBLDAT* Logic_GetMascotSkillTbl(RwUInt8 bySlot)
+{
+	if (bySlot >= DBO_MASCOT_MAX_SKILL_COUNT)
+		return NULL;
+
+	sMASCOT_DATA_EX* pData = GetNtlSLGlobal()->GetAvatarMascotInfo()->GetSummoned();
+	if (pData == NULL || pData->skillTblidx[bySlot] == INVALID_TBLIDX)
+		return NULL;
+
+	return (sSKILL_TBLDAT*)API_GetTableContainer()->GetSkillTable()->FindData(pData->skillTblidx[bySlot]);
+}
+
+RwBool Logic_IsMascotSkillGradeUpItem(sITEM_TBLDAT* pItemTbl)
+{
+	if (pItemTbl == NULL || pItemTbl->Use_Item_Tblidx == INVALID_TBLIDX)
+		return FALSE;
+
+	sUSE_ITEM_TBLDAT* pUseItemTbl = (sUSE_ITEM_TBLDAT*)API_GetTableContainer()->GetUseItemTable()->FindData(pItemTbl->Use_Item_Tblidx);
+	if (pUseItemTbl == NULL)
+		return FALSE;
+
+	for (RwInt32 i = 0; i < NTL_MAX_EFFECT_IN_ITEM; ++i)
+	{
+		sSYSTEM_EFFECT_TBLDAT* pEffectTbl = (sSYSTEM_EFFECT_TBLDAT*)API_GetTableContainer()->GetSystemEffectTable()->FindData(pUseItemTbl->aSystem_Effect[i]);
+		if (pEffectTbl && pEffectTbl->effectCode == ACTIVE_MASCOT_SKILL_GRADEUP)
+			return TRUE;
+	}
+
+	return FALSE;
+}
+
+RwUInt32 Logic_GetMascotSkillEffectCode(sSKILL_TBLDAT* pSkillTbl)
+{
+	if (pSkillTbl == NULL)
+		return INVALID_SYSTEM_EFFECT_CODE;
+
+	sSYSTEM_EFFECT_TBLDAT* pEffectTbl = (sSYSTEM_EFFECT_TBLDAT*)API_GetTableContainer()->GetSystemEffectTable()->FindData(pSkillTbl->skill_Effect[0]);
+	if (pEffectTbl == NULL)
+		return INVALID_SYSTEM_EFFECT_CODE;
+
+	return pEffectTbl->effectCode;
+}
+
+void Logic_UseMascotSkill(RwUInt8 bySlot)
+{
+	SMascotInfo* pInfo = GetNtlSLGlobal()->GetAvatarMascotInfo();
+	sMASCOT_DATA_EX* pData = pInfo->GetSummoned();
+	if (pData == NULL)
+	{
+		GetAlarmManager()->AlarmMessage("DST_MASCOTEX_SKILLGRADEUP_DONT_SUMMON");
+		return;
+	}
+
+	sSKILL_TBLDAT* pSkillTbl = Logic_GetMascotSkillTbl(bySlot);
+	if (pSkillTbl == NULL)
+		return;
+
+	if (pInfo->GetSkillCoolTimeLeft(pData->byIndex, bySlot) > 0)
+	{
+		GetAlarmManager()->AlarmMessage("DST_MASCOTEX_SKILL_COOLTIME");
+		return;
+	}
+
+	if (pData->dwCurVP < pSkillTbl->dwRequire_VP)
+	{
+		GetAlarmManager()->AlarmMessage("DST_MASCOTEX_SKILL_VPLACK");
+		return;
+	}
+
+	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
+
+	switch (Logic_GetMascotSkillEffectCode(pSkillTbl))
+	{
+	case PASSIVE_INFINITE_DASH:
+		{
+			// works by being learned, nothing to cast
+			GetAlarmManager()->AlarmMessage("DST_MASCOTEX_SKILL_DASH_INFINITE");
+			return;
+		}
+	case PASSIVE_SELF_RESCUE:
+		{
+			if (Logic_GetActorStateId(pAvatar) != NTL_FSMSID_FAINTING)
+			{
+				GetAlarmManager()->AlarmMessage("DST_MASCOTEX_SKILL_FAIL");
+				return;
+			}
+
+			sMsgBoxData sData;
+			sData.uiParam = bySlot;
+			GetAlarmManager()->FormattedAlarmMessage("DST_MASCOTEX_SKILL_RESCUE", FALSE, &sData);
+			return;
+		}
+	case ACTIVE_NPC_TELEPORT:
+		{
+			if (Logic_IsActorBattleMode(pAvatar))
+			{
+				GetAlarmManager()->AlarmMessage("DST_MASCOTEX_SKILL_NPC_TELEPORT_FAIL");
+				return;
+			}
+
+			// the teleport destination is the targeted npc
+			CNtlSob* pTarget = GetNtlSobManager()->GetSobObject(pAvatar->GetTargetID());
+			if (pTarget == NULL || pTarget->GetClassID() != SLCLASS_NPC)
+			{
+				GetAlarmManager()->AlarmMessage("DST_MASCOTEX_SKILL_NPC_TELEPORT_USE");
+				return;
+			}
+
+			sNPC_TBLDAT* pNpcTbl = reinterpret_cast<CNtlSobNpcAttr*>(pTarget->GetSobAttr())->GetNpcTbl();
+			if (pNpcTbl == NULL)
+				return;
+
+			sMsgBoxData sData;
+			sData.uiParam = (RwUInt64)bySlot | ((RwUInt64)pNpcTbl->tblidx << 32);
+			GetAlarmManager()->FormattedAlarmMessage("DST_MASCOTEX_SKILL_NPC_TELEPORT", FALSE, &sData, Logic_GetName(pTarget));
+			return;
+		}
+	default:
+		break;
+	}
+
+	Logic_SendMascotSkill(bySlot);
+}
+
+void Logic_SendMascotSkill(RwUInt8 bySlot, TBLIDX targetTblidx)
+{
+	TBLIDX worldTblidx = INVALID_TBLIDX;
+	if (targetTblidx != INVALID_TBLIDX)
+		worldTblidx = Logic_GetActiveWorldTableId();
+
+	GetDboGlobal()->GetGamePacketGenerator()->SendMascotSkillReq(bySlot, worldTblidx, targetTblidx);
+}
+
+void Logic_MascotSkillSuccess(RwUInt8 bySlot)
+{
+	sSKILL_TBLDAT* pSkillTbl = Logic_GetMascotSkillTbl(bySlot);
+	if (pSkillTbl == NULL)
+		return;
+
+	switch (Logic_GetMascotSkillEffectCode(pSkillTbl))
+	{
+	case ACTIVE_AUTO_LOOTING:
+		{
+			// the server now accepts one looting request with the drops around us
+			CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
+			RwV3d vAvatarPos = pAvatar->GetPosition();
+
+			// the request holds a few drops and the server skips the ones we do not own, so send the
+			// closest landed drops first (ownership is only known to the server)
+			std::vector<std::pair<RwReal, HOBJECT> > vecDrop;
+
+			CNtlSobGroup* pGroup = GetNtlSobManager()->GetSobGroup(SLCLASS_WORLD_ITEM);
+			if (pGroup)
+			{
+				for (CNtlSobGroup::MapObject::iterator it = pGroup->Begin(); it != pGroup->End(); ++it)
+				{
+					CNtlSobWorldItem* pItem = reinterpret_cast<CNtlSobWorldItem*>(it->second);
+					if (!pItem->IsEnableLoot())
+						continue;
+
+					RwV3d vItemPos = pItem->GetPosition();
+					RwV3d vDist;
+					RwV3dSubMacro(&vDist, &vAvatarPos, &vItemPos);
+
+					RwReal fDist = RwV3dLength(&vDist);
+					if (fDist <= NTL_MAX_LOOTING_DISTANCE * 2.0f)
+						vecDrop.push_back(std::make_pair(fDist, pItem->GetSerialID()));
+				}
+			}
+
+			std::sort(vecDrop.begin(), vecDrop.end());
+
+			HOBJECT ahHandle[DBO_MASCOT_MAX_LOOT];
+			BYTE byCount = 0;
+			for (size_t i = 0; i < vecDrop.size() && byCount < DBO_MASCOT_MAX_LOOT; ++i)
+				ahHandle[byCount++] = vecDrop[i].second;
+
+			if (byCount > 0)
+				GetDboGlobal()->GetGamePacketGenerator()->SendMascotAutoLootingReq(byCount, ahHandle);
+			else
+				GetAlarmManager()->AlarmMessage(Logic_GetResultCodeString(GAME_LOOTING_FAIL, "GU_MASCOT_AUTO_LOOTING_RES"), TRUE);
+
+			break;
+		}
+	case ACTIVE_PARTY_SUMMON:
+		GetAlarmManager()->AlarmMessage("DST_MASCOTEX_SKILL_PARTY_SUMMON_USE");
+		break;
+	case ACTIVE_GUILD_SUMMON:
+		GetAlarmManager()->AlarmMessage("DST_MASCOTEX_SKILL_GUILD_SUMMON_USE");
+		break;
+	case ACTIVE_REMOTE_WAREHOUSE:
+		{
+			GetAlarmManager()->AlarmMessage("DST_MASCOTEX_SKILL_REMOTE_WAREHOUSE_USE");
+
+			// opens without a banker; if the bank was not loaded yet the load result opens it
+			CNtlWarehouse* pWarehouse = GetNtlSLGlobal()->GetSobAvatar()->GetWarehouse();
+			if (pWarehouse->IsRecieveData_from_Server())
+			{
+				RwBool bPacketLock = FALSE;
+				GetDboGlobal()->GetGamePacketGenerator()->SendBankStart(INVALID_SERIAL_ID, &bPacketLock);
+			}
+			else
+				s_dwMascotRemoteBankRequestTime = max(GetTickCount(), (DWORD)1);
+
+			break;
+		}
+	case ACTIVE_REMOTE_SELL:
+		{
+			GetAlarmManager()->AlarmMessage("DST_MASCOTEX_SKILL_REMOTE_SELL_USE");
+			GetDialogManager()->OpenDialog(DIALOG_MASCOT_REMOTE_SELL);
+			break;
+		}
+	default:
+		break;
+	}
+}
+
+void Logic_OfferMascotRescue(void)
+{
+	SMascotInfo* pInfo = GetNtlSLGlobal()->GetAvatarMascotInfo();
+	sMASCOT_DATA_EX* pData = pInfo->GetSummoned();
+	if (pData == NULL)
+		return;
+
+	for (RwUInt8 i = 0; i < DBO_MASCOT_MAX_SKILL_COUNT; ++i)
+	{
+		sSKILL_TBLDAT* pSkillTbl = Logic_GetMascotSkillTbl(i);
+		if (pSkillTbl == NULL || Logic_GetMascotSkillEffectCode(pSkillTbl) != PASSIVE_SELF_RESCUE)
+			continue;
+
+		if (pData->dwCurVP < pSkillTbl->dwRequire_VP || pInfo->GetSkillCoolTimeLeft(pData->byIndex, i) > 0)
+			return;
+
+		sMsgBoxData sData;
+		sData.uiParam = i;
+		GetAlarmManager()->FormattedAlarmMessage("DST_MASCOTEX_SKILL_RESCUE", FALSE, &sData);
+		return;
+	}
 }

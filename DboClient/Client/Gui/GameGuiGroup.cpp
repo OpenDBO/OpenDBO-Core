@@ -156,6 +156,7 @@
 #include "MascotFusion.h"
 #include "MascotSkillReMake.h"
 #include "MascotStatusBarGui.h"
+#include "MascotRemoteSellGui.h"
 
 
 // 2007.11.17 by agebreak
@@ -339,6 +340,7 @@ CGameGuiGroup::CGameGuiGroup()
 , m_pMascotFusion(NULL)
 , m_pMascotSkillReMake(NULL)
 , m_pMascotStatusBarGui(NULL)
+, m_pMascotRemoteSellGui(NULL)
 {	
 }
 
@@ -711,6 +713,7 @@ RwBool CGameGuiGroup::Create(void)
 	AddDialog(m_pMascotSkillReMake, CMascotSkillReMake, "CMascotSkillReMake", DIALOG_MASCOT_SKILL_REMAKE);
 	m_pMascotGui->Link(m_pMascotFusion->GetDialog());
 	m_pMascotGui->Link(m_pMascotSkillReMake->GetDialog());
+	AddDialog(m_pMascotRemoteSellGui, CMascotRemoteSellGui, "MascotRemoteSellGui", DIALOG_MASCOT_REMOTE_SELL);
 
 	// party
 	AddDialog(m_pPartyMenu, CPartyMenu, "PartyMenuGui", DIALOG_PARTYMENU );	
@@ -1002,6 +1005,7 @@ void CGameGuiGroup::Destroy(void)
 	RemoveDialog(m_pMascotGui);
 	RemoveDialog(m_pMascotFusion);
 	RemoveDialog(m_pMascotSkillReMake);
+	RemoveDialog(m_pMascotRemoteSellGui);
 			
 	if( m_pCinematicGui )
 	{
@@ -1417,7 +1421,8 @@ void CGameGuiGroup::HandleEvents(RWS::CMsg &pMsg)
 	{
 		GetDialogManager()->CloseDialog(DIALOG_MASCOT_STATUS_BAR);
 
-		GetDialogManager()->LocationDialogs(GetDboGlobal()->GetScreenWidth(), GetDboGlobal()->GetScreenHeight());
+		// only the status bars move, a full relayout would recentre every open window
+		GetDialogManager()->LocationMascotStatusBar();
 	}
 	else if (pMsg.Id == g_EventMascotSummon)
 	{
@@ -1425,8 +1430,8 @@ void CGameGuiGroup::HandleEvents(RWS::CMsg &pMsg)
 
 		GetDialogManager()->RegistDialog(DIALOG_MASCOT_STATUS_BAR, CMascotStatusBarGui::GetInstance(), &CMascotStatusBarGui::SwitchDialog);
 		CMascotStatusBarGui::GetInstance()->SetMascotID(pData->index);
-		GetDialogManager()->LocationDialogs(GetDboGlobal()->GetScreenWidth(), GetDboGlobal()->GetScreenHeight());
 		GetDialogManager()->OpenDialog(DIALOG_MASCOT_STATUS_BAR);
+		GetDialogManager()->LocationMascotStatusBar();
 	}
 
 	NTL_RETURNVOID();

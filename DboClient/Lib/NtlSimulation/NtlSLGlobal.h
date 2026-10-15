@@ -116,6 +116,81 @@ typedef struct _SMascotInfo
 {
     RwUInt16            wCount;
     sMASCOT_DATA_EX     asMascotData[GMT_MAX_PC_HAVE_MASCOT];
+    RwUInt8             bySummonIndex;      ///< byIndex of the summoned mascot, INVALID_BYTE when none
+    RwUInt32            adwSkillCoolEnd[GMT_MAX_PC_HAVE_MASCOT][DBO_MASCOT_MAX_SKILL_COUNT];   ///< GetTickCount() at which each skill is ready, by mascot byIndex
+
+    void Reset(void)
+    {
+        wCount = 0;
+        bySummonIndex = INVALID_BYTE;
+        memset(asMascotData, 0xFF, sizeof(asMascotData));
+        memset(adwSkillCoolEnd, 0, sizeof(adwSkillCoolEnd));
+    }
+
+    sMASCOT_DATA_EX* Find(RwUInt8 byIndex)
+    {
+        for (RwUInt16 i = 0; i < wCount; ++i)
+        {
+            if (asMascotData[i].byIndex == byIndex)
+                return &asMascotData[i];
+        }
+
+        return NULL;
+    }
+
+    sMASCOT_DATA_EX* GetSummoned(void)
+    {
+        if (bySummonIndex == INVALID_BYTE)
+            return NULL;
+
+        return Find(bySummonIndex);
+    }
+
+    void StartSkillCoolTime(RwUInt8 byIndex, RwUInt8 bySlot, RwUInt32 dwCoolTime)
+    {
+        if (byIndex < GMT_MAX_PC_HAVE_MASCOT && bySlot < DBO_MASCOT_MAX_SKILL_COUNT)
+            adwSkillCoolEnd[byIndex][bySlot] = GetTickCount() + dwCoolTime;
+    }
+
+    RwUInt32 GetSkillCoolTimeLeft(RwUInt8 byIndex, RwUInt8 bySlot) const
+    {
+        if (byIndex >= GMT_MAX_PC_HAVE_MASCOT || bySlot >= DBO_MASCOT_MAX_SKILL_COUNT)
+            return 0;
+
+        RwUInt32 dwNow = GetTickCount();
+        return adwSkillCoolEnd[byIndex][bySlot] > dwNow ? adwSkillCoolEnd[byIndex][bySlot] - dwNow : 0;
+    }
+
+    void Add(const sMASCOT_DATA_EX& sData)
+    {
+        if (wCount >= GMT_MAX_PC_HAVE_MASCOT)
+            return;
+
+        asMascotData[wCount++] = sData;
+    }
+
+    void Remove(RwUInt8 byIndex)
+    {
+        for (RwUInt16 i = 0; i < wCount; ++i)
+        {
+            if (asMascotData[i].byIndex != byIndex)
+                continue;
+
+            for (RwUInt16 j = i; j + 1 < wCount; ++j)
+                asMascotData[j] = asMascotData[j + 1];
+
+            --wCount;
+            memset(&asMascotData[wCount], 0xFF, sizeof(sMASCOT_DATA_EX));
+
+            if (bySummonIndex == byIndex)
+                bySummonIndex = INVALID_BYTE;
+
+            if (byIndex < GMT_MAX_PC_HAVE_MASCOT)
+                memset(adwSkillCoolEnd[byIndex], 0, sizeof(adwSkillCoolEnd[byIndex]));
+
+            return;
+        }
+    }
 } SMascotInfo;
 
 /**

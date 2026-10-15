@@ -66,6 +66,8 @@ RwBool CMascotStatusBarGui::Create()
 	m_slotMove = m_pThis->SigMove().Connect(this, &CMascotStatusBarGui::OnMove);
 	m_slotPaint = m_pThis->SigPaint().Connect(this, &CMascotStatusBarGui::OnPaint);
 
+	LinkMsg(g_EventMascotUpdate);
+
 	Show(false);
 
 	NTL_RETURN(TRUE);
@@ -73,6 +75,7 @@ RwBool CMascotStatusBarGui::Create()
 
 VOID CMascotStatusBarGui::Destroy()
 {
+	UnLinkMsg(g_EventMascotUpdate);
 
 	CNtlPLGui::DestroyComponents();
 	CNtlPLGui::Destroy();
@@ -80,6 +83,12 @@ VOID CMascotStatusBarGui::Destroy()
 
 VOID CMascotStatusBarGui::HandleEvents(RWS::CMsg& msg)
 {
+	if (msg.Id == g_EventMascotUpdate)
+	{
+		SDboEventMascotUpdate* pData = reinterpret_cast<SDboEventMascotUpdate*>(msg.pData);
+		if (pData->byIndex == GetNtlSLGlobal()->GetAvatarMascotInfo()->bySummonIndex)
+			SetMascotID(pData->byIndex);
+	}
 
 }
 
@@ -96,33 +105,29 @@ void CMascotStatusBarGui::DeleteInstance()
 
 void CMascotStatusBarGui::SetMascotID(BYTE index)
 {
-	SMascotInfo* MascotList = GetNtlSLGlobal()->GetAvatarMascotInfo();
+	sMASCOT_DATA_EX* pData = GetNtlSLGlobal()->GetAvatarMascotInfo()->Find(index);
+	if (pData == NULL)
+		return;
 
-	for (int i = 0; i < MascotList->wCount; ++i)
+	m_pgbSP->SetRange(0, max((RwInt32)pData->dwMaxVP, 1));
+	m_pgbSP->SetPos(pData->dwCurVP);
+	m_pgbSP->SetToolTip(GetDisplayStringManager()->GetString("DST_MASCOTEX_VP_REGEN")); // VP regenerates 1 point every 10 seconds
+	m_sttNickName->SetText(Logic_GetMascotName(pData->tblidx));
+	m_sttSP->Format(L"%u / %u", pData->dwCurVP, pData->dwMaxVP);
+
+	// mascots without an item row use the icon named after their model
+	const RwChar* pcIconName = Logic_GetMascotIconName(pData->tblidx);
+	if (pcIconName == NULL || m_strIconName == pcIconName)
+		return;
+
+	if (m_surMascot.GetTexture())
 	{
-		if (MascotList->asMascotData[i].byIndex == index)
-		{
-			sITEM_TBLDAT* pItemTbldat = (sITEM_TBLDAT*)API_GetTableContainer()->GetItemTable()->FindData(MascotList->asMascotData[i].itemTblidx);
-			std::wstring MascotName = API_GetTableContainer()->GetTextAllTable()->GetItemTbl()->GetText(pItemTbldat->Name);
-
-			m_pgbSP->SetRange(0, MascotList->asMascotData[i].dwMaxVP);
-			m_pgbSP->SetPos(MascotList->asMascotData[i].dwCurVP);
-			m_pgbSP->SetToolTip(GetDisplayStringManager()->GetString("DST_MASCOTEX_VP_REGEN")); // VP regenerates 1 point every 10 seconds
-			m_sttNickName->SetText(MascotName.c_str());
-			m_sttSP->Format(L"%u / %u", MascotList->asMascotData[i].dwCurVP, MascotList->asMascotData[i].dwMaxVP);
-
-			if (m_surMascot.GetTexture())
-			{
-				Logic_DeleteTexture(m_surMascot.GetTexture());
-				m_surMascot.UnsetTexture();
-			}
-
-			// Create Textrue
-			m_surMascot.SetTexture(Logic_CreateTexture(pItemTbldat->szIcon_Name, TEXTYPE_ICON));
-
-			break;
-		}
+		Logic_DeleteTexture(m_surMascot.GetTexture());
+		m_surMascot.UnsetTexture();
 	}
+
+	m_surMascot.SetTexture(Logic_CreateTexture((RwChar*)pcIconName, TEXTYPE_ICON));
+	m_strIconName = pcIconName;
 }
 
 CMascotStatusBarGui* CMascotStatusBarGui::GetInstance()

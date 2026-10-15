@@ -104,9 +104,10 @@ VOID CDialogManager::RegisteRegularDialog()
 	m_mapRegular[DIALOG_CCBD_BOARD] = dRDA_NORMAL | dRDA_EXCLUSIVE | dRDA_NOT_ESC;
 
 	// Mascot
-	m_mapEntireFocuing[DIALOG_MASCOT] = dRDA_NORMAL;
+	m_mapRegular[DIALOG_MASCOT] = dRDA_NORMAL;		// a regular window like the status window, retail does not dim the screen behind it
 	m_mapRegular[DIALOG_MASCOT_FUSION] = dRDA_NORMAL | dRDA_EXCLUSIVE;
 	m_mapRegular[DIALOG_MASCOT_SKILL_REMAKE] = dRDA_NORMAL | dRDA_EXCLUSIVE;
+	m_mapRegular[DIALOG_MASCOT_REMOTE_SELL] = dRDA_NORMAL;
 }
 
 VOID CDialogManager::RegisteEntireFocusingDialog()

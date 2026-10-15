@@ -32,11 +32,21 @@ void PacketHandler_GSBankLoadReq(void *pPacket)
 
 	if( pResult->wResultCode != GAME_SUCCESS )
 	{
+		// a remote bank request waiting for this load is dropped with it
+		Logic_ConsumeMascotRemoteBank();
+
 		GetAlarmManager()->AlarmMessage(Logic_GetResultCodeString(pResult->wResultCode, "GU_BANK_LOAD_RES"), TRUE);
 		return;
 	}
 
 	CNtlSLEventGenerator::SobWarehouseUpdate(NESWUT_RECIEVE_DATA, pResult->handle);
+
+	// the mascot remote bank skill was used before the bank data arrived
+	if (Logic_ConsumeMascotRemoteBank())
+	{
+		RwBool bPacketLock = FALSE;
+		GetDboGlobal()->GetGamePacketGenerator()->SendBankStart(INVALID_SERIAL_ID, &bPacketLock);
+	}
 }
 
 void PacketHandler_GSBankStartRes(void *pPacket)
@@ -54,7 +64,10 @@ void PacketHandler_GSBankStartRes(void *pPacket)
 	}
 	
 	CNtlWorldConceptNPCCOMMU* pWorldConceptController = reinterpret_cast<CNtlWorldConceptNPCCOMMU*>( GetNtlWorldConcept()->GetWorldConceptController(WORLD_PLAY_NPC_COMMU) );
-	pWorldConceptController->ChangeState(WORLD_NPC_WAREHOUSE);
+
+	// a bank opened by the mascot remote bank skill has no npc conversation
+	if (pWorldConceptController)
+		pWorldConceptController->ChangeState(WORLD_NPC_WAREHOUSE);
 
 	CNtlSLEventGenerator::SobWarehouseUpdate(NESWUT_WAREHOUSE_START, pResult->handle);
 }

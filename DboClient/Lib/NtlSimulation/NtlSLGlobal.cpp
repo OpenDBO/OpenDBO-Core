@@ -76,6 +76,8 @@ void CNtlSLGlobal::Reset(void)
 	memset( &m_sAvatarRecipeInfo, 0xFF, sizeof( sRECIPE_DATA ) * NTL_ITEM_RECIPE_MAX_COUNT );
 	m_sAvatarRecipeInfo.wCount = 0;
 
+	m_sMascotInfo.Reset();
+
 	// Gmt Reset
 	memset( &m_sGameManiaTimeInfo, 0xFF, sizeof( SGameManiaTimeInfo ) );
 

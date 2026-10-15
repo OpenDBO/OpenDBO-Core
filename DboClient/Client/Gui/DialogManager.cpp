@@ -950,38 +950,7 @@ VOID CDialogManager::LocationDialogs(RwInt32 iWidth, RwInt32 iHeight)
 	if( pGui )
 		m_iRegularStrartY = (iHeight - pGui->GetHeight() )/2;
 
-	// Mascot
-	pGui = GetDialog(DIALOG_PET_STATUSBAR);
-	if (pGui)
-	{
-		if (IsOpenDialog(DIALOG_MASCOT_STATUS_BAR) && !IsOpenDialog(DIALOG_PET_STATUSBAR))
-		{
-			pGui->SetPosition(180, 126);
-		}
-		else if (IsOpenDialog(DIALOG_MASCOT_STATUS_BAR) && IsOpenDialog(DIALOG_PET_STATUSBAR))
-		{
-			pGui->SetPosition(180, 126);
-		}
-		else {
-			pGui->SetPosition(0, 126);
-		}
-	}
-
-	pGui = GetDialog(DIALOG_MASCOT_STATUS_BAR);
-	if (pGui)
-	{
-		if (IsOpenDialog(DIALOG_PET_STATUSBAR) && !IsOpenDialog(DIALOG_MASCOT_STATUS_BAR))
-		{
-			pGui->SetPosition(180, 126);
-		}
-		else if (IsOpenDialog(DIALOG_MASCOT_STATUS_BAR) && IsOpenDialog(DIALOG_PET_STATUSBAR))
-		{
-			pGui->SetPosition(0, 126);
-		}
-		else {
-			pGui->SetPosition(0, 126);
-		}
-	}
+	LocationMascotStatusBar();
 
 
 	///// Movable or not //////////////////////////////////////////////////////////////////////////
@@ -1552,4 +1521,18 @@ VOID CDialogManager::ShowAllDialogTEST(bool bOpen)	///< DialogManager, SideDialo
 			}
 		}
 	}
+}
+
+VOID CDialogManager::LocationMascotStatusBar(VOID)
+{
+	// the mascot bar takes the slot under the hp bar, a summon pet bar moves next to it
+	RwBool bMascotBar = IsOpenDialog(DIALOG_MASCOT_STATUS_BAR);
+
+	CNtlPLGui* pGui = GetDialog(DIALOG_PET_STATUSBAR);
+	if (pGui)
+		pGui->SetPosition(bMascotBar ? 180 : 0, 126);
+
+	pGui = GetDialog(DIALOG_MASCOT_STATUS_BAR);
+	if (pGui)
+		pGui->SetPosition(0, 126);
 }

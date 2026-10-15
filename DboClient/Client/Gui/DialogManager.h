@@ -138,6 +138,7 @@ public:
 
 	VOID		LocateBag(RwInt32 iWidth, RwInt32 iHeight, RwBool bForce = FALSE);///< 占쏙옙占쏙옙占쏙옙 占싯몌옙占쏙옙 占쏙옙치占쏙옙 占쏙옙占쏙옙占싼댐옙
 	VOID		LocationDialogs(RwInt32 iWidth, RwInt32 iHeight);
+	VOID		LocationMascotStatusBar(VOID);			///< places the mascot and summon pet bars without moving other dialogs
 	VOID		Locate_MovableDefaultPosition();	///< 다이얼로그가 움직일 수 있을 때의 기본 위치를 지정
 
 	RwBool		IsExistDialog(RwInt32 iDialog);		///< 다이얼로그가 존재하는지 여부
