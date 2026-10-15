@@ -13512,7 +13512,7 @@ void CClientSession::RecvMascotSealSetReq(CNtlPacket * pPacket)
 						app->SendTo(app->GetQueryServerSession(), &packet2);
 
 
-						pSealItem->SetCount(bySealStack, false, false, false); // might delete pSealItem here
+						pSealItem->SetCount(bySealStack, false, false); // might delete pSealItem here, the client is told like any stack change
 
 						return;
 					}
