@@ -27,10 +27,13 @@
 #define PLAYERNAME_BOX_BASIS_CX			0.00390625f
 #define PLAYERNAME_BOX_BASIS_CY			0.00625f
 
-#define PLAYERNAME_EMBLEM_BASIS_CX		0.0025f
-#define PLAYERNAME_EMBLEM_BASIS_CY		0.003f
+// emblem quad, same as the TW client: fixed size regardless of the emblem texture size,
+// its bottom sits PLAYERNAME_EMBLEM_OFFSET_Y above the bottom of the name line
+#define PLAYERNAME_EMBLEM_WIDTH			0.18f
+#define PLAYERNAME_EMBLEM_HEIGHT		0.234f
+#define PLAYERNAME_EMBLEM_OFFSET_Y		0.03f
 
-#define PLAYERNAME_BOX_OFFSET			0.02f;
+#define PLAYERNAME_BOX_OFFSET			0.002f
 #define PLAYERNAME_NICK_OFFSET			0.08f;
 
 #define PLAYERNAME_VERTEX_COUNT			4

@@ -444,11 +444,12 @@ void CNtlPLPlayerName::EmblemVertexAssign(void)
 	/*RwReal fEmblemWidth = GetAdjustPolygonWidth( m_pEmblemTexture->raster->width );
 	RwReal fEmblemHeight = GetAdjustPolygonHeight( m_pEmblemTexture->raster->height );*/
 
-	RwReal fEmblemWidth = (RwReal)m_pEmblemTexture->raster->width * PLAYERNAME_EMBLEM_BASIS_CX;
-	RwReal fEmblemHeight =(RwReal)m_pEmblemTexture->raster->height * PLAYERNAME_EMBLEM_BASIS_CY;
+	RwReal fEmblemWidth = PLAYERNAME_EMBLEM_WIDTH;
+	RwReal fEmblemHeight = PLAYERNAME_EMBLEM_HEIGHT;
 	
 	// Actual texture size of name
-	RwInt32 nNameHeight = m_posGuildNameSize.y + PLAYERNAME_LINE_INTERVAL_Y;
+	RwInt32 nNameLineHeight = m_posNameSize.y > m_posTitleNameSize.y ? m_posNameSize.y : m_posTitleNameSize.y;
+	RwInt32 nNameHeight = nNameLineHeight + m_posGuildNameSize.y + PLAYERNAME_LINE_INTERVAL_Y * 2;
 	RwInt32 nNameWidth = m_posNameSize.x + m_posTitleNameSize.x > m_posGuildNameSize.x ? m_posNameSize.x + m_posTitleNameSize.x : m_posGuildNameSize.x;
 
 	// Actual polygon size of name
@@ -489,21 +490,23 @@ void CNtlPLPlayerName::EmblemVertexAssign(void)
 	m_v3Pos[3].y = (fNameHeight/2.f) + fOffsetNameHeight;	
 	m_v3Pos[3].z = 0.f;
 
-	// Emblem Texture Local Position
+	// Emblem Texture Local Position, bottom anchored to the bottom of the name line
+	RwReal fEmblemBottom = m_v3Pos[0].y + PLAYERNAME_EMBLEM_OFFSET_Y;
+
 	m_v3EmblemPos[0].x = (fEmblemWidth/2.f) + (fOffsetEmblemWidth) - (fOffsetExtraWidth) + PLAYERNAME_BOX_OFFSET;
-	m_v3EmblemPos[0].y = (-fEmblemHeight/2.f);
-	m_v3EmblemPos[0].z = 0.f;	
+	m_v3EmblemPos[0].y = fEmblemBottom;
+	m_v3EmblemPos[0].z = 0.f;
 
 	m_v3EmblemPos[1].x = (fEmblemWidth/2.f) + (fOffsetEmblemWidth) - (fOffsetExtraWidth) + PLAYERNAME_BOX_OFFSET;
-	m_v3EmblemPos[1].y = (fEmblemHeight/2.f);
+	m_v3EmblemPos[1].y = fEmblemBottom + fEmblemHeight;
 	m_v3EmblemPos[1].z = 0.f;
 
 	m_v3EmblemPos[2].x = (-fEmblemWidth/2.f) + (fOffsetEmblemWidth) - (fOffsetExtraWidth) + PLAYERNAME_BOX_OFFSET;
-	m_v3EmblemPos[2].y = (-fEmblemHeight/2.f);
+	m_v3EmblemPos[2].y = fEmblemBottom;
 	m_v3EmblemPos[2].z = 0.f;
 
 	m_v3EmblemPos[3].x = (-fEmblemWidth/2.f) + (fOffsetEmblemWidth) - (fOffsetExtraWidth) + PLAYERNAME_BOX_OFFSET;
-	m_v3EmblemPos[3].y = (fEmblemHeight/2.f);
+	m_v3EmblemPos[3].y = fEmblemBottom + fEmblemHeight;
 	m_v3EmblemPos[3].z = 0.f;
 }
 
@@ -688,7 +691,11 @@ RwBool CNtlPLPlayerName::CreateGuildNameTexture(const WCHAR* pGuildName)
 
 	RwInt32 nMaxWidth = (m_posNameSize.x + m_posTitleNameSize.x + dPLAYER_NAME_CREATE_TEXTURE_OFFSET > m_posGuildNameSize.x) ? m_posNameSize.x + m_posTitleNameSize.x + dPLAYER_NAME_CREATE_TEXTURE_OFFSET : m_posGuildNameSize.x + dPLAYER_NAME_CREATE_TEXTURE_OFFSET;
 
-	m_pTexture = g_TextureMgr.CreateTexture( nMaxWidth, m_posNameSize.y + m_posGuildNameSize.y + PLAYERNAME_LINE_INTERVAL_Y );
+	// like the TW client: a line interval above the guild line, between the lines and below the name line,
+	// otherwise the outlined text touches the texture edges and gets cut off
+	RwInt32 nNameLineHeight = m_posNameSize.y > m_posTitleNameSize.y ? m_posNameSize.y : m_posTitleNameSize.y;
+
+	m_pTexture = g_TextureMgr.CreateTexture( nMaxWidth, nNameLineHeight + m_posGuildNameSize.y + PLAYERNAME_LINE_INTERVAL_Y * 3 );
 	if( m_pTexture == NULL )
 		NTL_RETURN(FALSE);
 
@@ -962,14 +969,14 @@ void CNtlPLPlayerName::SetNameColor( const WCHAR* pwcName, COLORREF color, const
 
 			CPos size2 = m_pGuildFont->GetTextWSize(wchGuildName, (int)wcslen(wchGuildName));
 
-			rect.left = 1;
-			rect.top = 0;
+			rect.left = PLAYERNAME_LINE_INTERVAL_Y;
+			rect.top = PLAYERNAME_LINE_INTERVAL_Y;
 			rect.right = rect.left + size2.x;
 			rect.bottom = rect.top + size2.y;
 
 			g_FontMgr.BitmapToTexture(m_pTexture, rect, guildcolor, TE_OUTLINE, 0, 2);
 
-			LONG lLeft = 1;
+			LONG lLeft = PLAYERNAME_LINE_INTERVAL_Y;
 
 			if (m_byFlag & dNTL_PL_FLAG_TITLE)
 			{
@@ -978,8 +985,8 @@ void CNtlPLPlayerName::SetNameColor( const WCHAR* pwcName, COLORREF color, const
 
 				CPos size3 = m_pTitleFont->GetTextWSize(pwcTitleName, (int)wcslen(pwcTitleName));
 
-				rect.left = 1;
-				rect.top = size2.y + PLAYERNAME_LINE_INTERVAL_Y;
+				rect.left = PLAYERNAME_LINE_INTERVAL_Y;
+				rect.top = size2.y + PLAYERNAME_LINE_INTERVAL_Y * 2;
 				rect.right = rect.left + size3.x;
 				rect.bottom = rect.top + size3.y;
 
@@ -994,7 +1001,7 @@ void CNtlPLPlayerName::SetNameColor( const WCHAR* pwcName, COLORREF color, const
 			CPos size = m_pFont->GetTextWSize(pwcName, (int)wcslen(pwcName));
 
 			rect.left = lLeft;
-			rect.top = size2.y + PLAYERNAME_LINE_INTERVAL_Y;
+			rect.top = size2.y + PLAYERNAME_LINE_INTERVAL_Y * 2;
 			rect.right = rect.left + size.x;
 			rect.bottom = rect.top + size.y;
 
@@ -1009,7 +1016,7 @@ void CNtlPLPlayerName::SetNameColor( const WCHAR* pwcName, COLORREF color, const
 			CPos size2 = m_pGuildFont->GetTextWSize(wchGuildName, (int)wcslen(wchGuildName));
 
 			rect.left = (m_pTexture->GetWidth() - size2.x) / 2;
-			rect.top = 0;
+			rect.top = PLAYERNAME_LINE_INTERVAL_Y;
 			rect.right = rect.left + size2.x;
 			rect.bottom = rect.top + size2.y;
 
@@ -1027,7 +1034,7 @@ void CNtlPLPlayerName::SetNameColor( const WCHAR* pwcName, COLORREF color, const
 				CPos size3 = m_pTitleFont->GetTextWSize(pwcTitleName, (int)wcslen(pwcTitleName));
 
 				rect.left = (m_pTexture->GetWidth() - (size.x+size3.x)) / 2;
-				rect.top = size2.y + PLAYERNAME_LINE_INTERVAL_Y;
+				rect.top = size2.y + PLAYERNAME_LINE_INTERVAL_Y * 2;
 				rect.right = rect.left + size3.x;
 				rect.bottom = rect.top + size3.y;
 
@@ -1040,7 +1047,7 @@ void CNtlPLPlayerName::SetNameColor( const WCHAR* pwcName, COLORREF color, const
 			m_pFont->TextOutW(pwcName);
 
 			rect.left = lLeft;
-			rect.top = size2.y + PLAYERNAME_LINE_INTERVAL_Y;
+			rect.top = size2.y + PLAYERNAME_LINE_INTERVAL_Y * 2;
 			rect.right	= rect.left + size.x;
 			rect.bottom = rect.top + size.y;
 
