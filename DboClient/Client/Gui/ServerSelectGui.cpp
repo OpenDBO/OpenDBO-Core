@@ -280,22 +280,22 @@ VOID CServerSelectGui::SetState(CServerItem* pServerItem, CLobby* pLobby)
 		{
 			if( uiUseRate < 50 )
 			{
-				pServerItem->pState->SetTextColor(RGB(94, 255, 89), TRUE);
+				pServerItem->pState->SetTextColor(RGB(38, 158, 255), TRUE);
 				pServerItem->pState->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_SERVER_NOT_BUSY"));
 			}
 			else if( uiUseRate < 80 )
 			{
-				pServerItem->pState->SetTextColor(RGB(94, 255, 89), TRUE);
+				pServerItem->pState->SetTextColor(RGB(172, 251, 80), TRUE);
 				pServerItem->pState->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_SERVER_NORMAL"));
 			}
 			else if( uiUseRate < 100 )
 			{
-				pServerItem->pState->SetTextColor(RGB(94, 255, 89), TRUE);
+				pServerItem->pState->SetTextColor(RGB(243, 106, 124), TRUE);
 				pServerItem->pState->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_SERVER_BUSY"));
 			}
 			else
 			{
-				pServerItem->pState->SetTextColor(RGB(94, 255, 89), TRUE);
+				pServerItem->pState->SetTextColor(RGB(244, 215, 98), TRUE);
 				pServerItem->pState->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_SERVER_EXCESS"));
 			}
 

@@ -146,22 +146,22 @@ VOID CAccountGui::SetServerState(RwUInt8 byState, RwUInt8 byRate)
 	{
 		if (byRate < 50)
 		{
-			m_pServerState->SetTextColor(RGB(94, 255, 89), TRUE);
+			m_pServerState->SetTextColor(RGB(38, 158, 255), TRUE);
 			m_pServerState->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_SERVER_NOT_BUSY"));
 		}
 		else if (byRate < 80)
 		{
-			m_pServerState->SetTextColor(RGB(94, 255, 89), TRUE);
+			m_pServerState->SetTextColor(RGB(172, 251, 80), TRUE);
 			m_pServerState->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_SERVER_NORMAL"));
 		}
 		else if (byRate < 100)
 		{
-			m_pServerState->SetTextColor(RGB(94, 255, 89), TRUE);
+			m_pServerState->SetTextColor(RGB(243, 106, 124), TRUE);
 			m_pServerState->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_SERVER_BUSY"));
 		}
 		else if (byRate >= 100)
 		{
-			m_pServerState->SetTextColor(RGB(94, 255, 89), TRUE);
+			m_pServerState->SetTextColor(RGB(244, 215, 98), TRUE);
 			m_pServerState->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_SERVER_EXCESS"));
 		}
 

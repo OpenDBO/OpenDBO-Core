@@ -275,22 +275,22 @@ VOID CChannelChangeGui::SetChannelState(sChannelGui* pChannelGui, sDBO_GAME_SERV
 	{
 		if( pChannelInfo->dwLoad < 50 )
 		{
-			pChannelGui->pChannelState->SetTextColor(RGB(94, 255, 89), TRUE);
+			pChannelGui->pChannelState->SetTextColor(RGB(38, 158, 255), TRUE);
 			pChannelGui->pChannelState->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_SERVER_NOT_BUSY"));
 		}
 		else if( pChannelInfo->dwLoad < 80 )
 		{
-			pChannelGui->pChannelState->SetTextColor(RGB(94, 255, 89), TRUE);
+			pChannelGui->pChannelState->SetTextColor(RGB(172, 251, 80), TRUE);
 			pChannelGui->pChannelState->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_SERVER_NORMAL"));
 		}
 		else if( pChannelInfo->dwLoad < 100 )
 		{
-			pChannelGui->pChannelState->SetTextColor(RGB(94, 255, 89), TRUE);
+			pChannelGui->pChannelState->SetTextColor(RGB(243, 106, 124), TRUE);
 			pChannelGui->pChannelState->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_SERVER_BUSY"));
 		}
 		else if( pChannelInfo->dwLoad >= 100 )
 		{
-			pChannelGui->pChannelState->SetTextColor(RGB(94, 255, 89), TRUE);
+			pChannelGui->pChannelState->SetTextColor(RGB(244, 215, 98), TRUE);
 			pChannelGui->pChannelState->SetText(GetDisplayStringManager()->GetString("DST_LOBBY_SERVER_EXCESS"));
 		}
 		else
