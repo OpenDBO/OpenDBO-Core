@@ -1993,7 +1993,7 @@ void CNtlSobCharProxy::CreateGuardEffect()
 
 void CNtlSobCharProxy::DeleteGuardEffect()
 {
-	m_pDecorationProxy->DeleteGuardEffect();
+	m_pDecorationProxy->DeleteGuardEffect(TRUE);
 }
 
 void CNtlSobCharProxy::CreateRpChargeEffect()
@@ -2090,7 +2090,7 @@ void CNtlSobCharProxy::CreateRpChargeEffect()
 
 void CNtlSobCharProxy::DeleteRpChargeEffect()
 {
-	m_pDecorationProxy->DeleteRpChargeEffect();
+	m_pDecorationProxy->DeleteRpChargeEffect(TRUE);
 }
 
 void CNtlSobCharProxy::SobPostEffectEventHandler( RWS::CMsg& pMsg ) 

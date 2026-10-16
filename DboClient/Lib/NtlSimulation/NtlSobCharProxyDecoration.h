@@ -70,6 +70,8 @@ private:
 	CNtlPLEntity*				m_pRpChargeEffect;
     CNtlPLEntity*               m_pRpChargeGroundEffect;
     CNtlPLEntity*               m_pRpGuardGroundEffect;
+    const RwChar*               m_pRpChargePostGroundKey;   ///< tw: floor effect left where the charge ended
+    const RwChar*               m_pRpGuardPostGroundKey;    ///< tw: floor effect left where the guard ended
 
     bool bCreatePlayTitle{ false };
     CNtlPLEntity*               m_pDBSMark;                 ///< dragonball scramble mark under the feet
@@ -202,13 +204,14 @@ public:
 
 	 // Guard Skill
 	void CreateGuardEffect(RwChar *pKey);
-	void DeleteGuardEffect();
+	void DeleteGuardEffect(RwBool bPostEffect = FALSE);		// bPostEffect: the guard ended, leave its floor effect (tw)
 
 	// rp charging Skill
 	void CreateRpChargeEffect(RwChar *pKey);
-	void DeleteRpChargeEffect();
+	void DeleteRpChargeEffect(RwBool bPostEffect = FALSE);	// bPostEffect: the charge ended, leave its floor effect (tw)
 
-    CNtlPLEntity* CreateAttachedGroundEffect(const RwChar* pKey, const RwChar* pPurpleKey, const RwChar* pRedKey);
+    CNtlPLEntity* CreateAttachedGroundEffect(const RwChar* pKey, const RwChar* pPurpleKey, const RwChar* pRedKey, const RwChar** ppPostKey);
+    void CreatePostGroundEffect(const RwChar* pKey);
 
     // Transform
     void						SobChangeAdult(CNtlPLCharacter* pPLCharacter);                    ///< UI Model이 체인지 되었을때

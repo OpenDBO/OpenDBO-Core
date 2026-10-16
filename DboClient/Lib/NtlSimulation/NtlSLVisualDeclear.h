@@ -147,6 +147,9 @@
 
 #define NTL_VID_GROUND_EFFECT_SMALL			"GME_Decal_07" // small ground effect when guarding/charging
 #define NTL_VID_GROUND_EFFECT_BIG			"GME_Decal_08" // big ground effect when guarding/charging
+#define NTL_VID_GROUND_EFFECT_SMALL_POST	"GME_Decal_07_02" // tw: stays on the floor after guarding/charging with the small ground effect
+#define NTL_VID_GROUND_EFFECT_BIG_POST		"GME_Decal_08_02" // tw: stays on the floor after guarding/charging with the big ground effect
+#define NTL_VID_RP_CHARGE_POST_SPARK		"COM_SKL_AVE_002_spark" // tw: spark when the purple rp charge ends
 
 #define NTL_VID_BLOCKING_DEFENCE			"GME_Guard_Attack"
 #define NTL_VID_BLOCKING_DAMAGE				"TXT_Guard_Normal"
