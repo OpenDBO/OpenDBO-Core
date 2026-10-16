@@ -473,6 +473,15 @@ INT CFlash_Generic::OnFSCallBack( VOID* szCommand, VOID* szArgs)
 		GetSoundManager()->Play( &tSoundParam );
 		m_hSound = tSoundParam.hHandle;
 	}
+	else if( !strcmp( pCommand, "Sound_Endless" ) )
+	{
+		// plays to the end, not stopped when the flash is hidden
+		sNtlSoundPlayParameta tSoundParam;
+		tSoundParam.iChannelGroup	= CHANNEL_GROUP_UI_SOUND;
+		tSoundParam.pcFileName		= reinterpret_cast<char*>( szArgs );
+
+		GetSoundManager()->Play( &tSoundParam );
+	}
 	else if( !strcmp( pCommand, "Sound_Loop" ) )
 	{
 		sNtlSoundPlayParameta tSoundParam;
