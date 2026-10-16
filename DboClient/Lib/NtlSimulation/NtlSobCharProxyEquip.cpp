@@ -138,6 +138,14 @@ void CNtlSubWeaponController::UpdateIdle(RwReal fElapsed)
 	RwV3dTransformPoints(&vTransOffset, &vOffset, 1, &m_matWorld);
 
 	RwV3dAdd(&vPos, &vPos, &vTransOffset);
+
+	// the item follows the character heading and is sized like the character model (kid and adult models have their own base scale)
+	RwReal fScale = m_pPLCharacter->GetBaseScale();
+	RwV3d vScale = { fScale, fScale, fScale };
+
+	RwMatrixSetIdentity(&m_matWorld);
+	RwMatrixRotate(&m_matWorld, &CNtlPLGlobal::m_vYAxisV3, m_pPLCharacter->GetAngleY(), rwCOMBINEREPLACE);
+	RwMatrixScale(&m_matWorld, &vScale, rwCOMBINEPOSTCONCAT);
 	RwV3dAssignMacro(&m_matWorld.pos, &vPos);
 
 	m_pPLItem->SetMatrix(m_matWorld);
