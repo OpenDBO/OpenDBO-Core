@@ -289,7 +289,7 @@ VOID CSubGaugeGui::HandleEvents( RWS::CMsg& msg )
 			sNtlSoundPlayParameta tSoundParam;
 			tSoundParam.iChannelGroup	= CHANNEL_GROUP_UI_SOUND;
 			tSoundParam.pcFileName		= GSD_SYSTEM_GUARD_GAGE;
-			tSoundParam.bLoop			= true;
+			tSoundParam.bLoop			= false;	// tw plays it once, it must not loop during the whole cool time
 
 			GetSoundManager()->Play(&tSoundParam);
 
@@ -434,13 +434,9 @@ VOID CSubGaugeGui::GuardGaugeUpdate( RwReal fElapsed )
 
 					// 기존 음악 끄고
 					GetSoundManager()->Stop(m_hSound);
+					m_hSound = INVALID_SOUND_HANDLE;
 
-					// 새로운 음악
-					sNtlSoundPlayParameta tSoundParam;
-					tSoundParam.iChannelGroup	= CHANNEL_GROUP_UI_SOUND;
-					tSoundParam.pcFileName		= GSD_SYSTEM_GUARD_GAGE_END;
-
-					GetSoundManager()->Play(&tSoundParam);
+					// tw does not play an end sound when the guard gauge is full again
 				}
 			}						
 		}				
