@@ -138,6 +138,10 @@ VOID CContractGui::OnClicked_AgreementButton(gui::CComponent* pComponent)
 
 	if (m_bContinueLogin == true) // check if contract shown because player tried to login
 	{
+		// remember it for this account so it is only asked on its first login
+		Logic_SaveAccountContractAccepted();
+
+		m_bContinueLogin = false;
 		GetLogInStageState()->ChangeState(LOGIN_STATE_IDLE);
 	}
 
@@ -247,7 +251,9 @@ VOID CContractGui::HandleEvents( RWS::CMsg &msg )
 
 		if(LOGIN_STATE_CONTRACT == (ELogInStageState)pStageEnter->byState )
 		{
-			m_pAgreementButton->ClickEnable(false);
+			// read from the top, a contract that fits without scrolling never reaches OnScrollChanged
+			m_pContractHtml->GetScrollBar()->SetValue(0);
+			m_pAgreementButton->ClickEnable(m_pContractHtml->GetScrollBar()->GetMaxValue() == 0);
 			m_pAgreementButton->Show(true);
 			m_pCancelButton->Show(true);
 			m_pPleaseRead->Show(true);

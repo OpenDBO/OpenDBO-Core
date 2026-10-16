@@ -258,6 +258,10 @@ RwBool Logic_MakeSaveGameOptFileName(std::string& strFileName, const WCHAR *pCha
 void Logic_LoadAccountOption(void);
 void Logic_SaveAccountOption(void);
 
+// contract (terms) accepted by the account typed in the login screen, asked on its first login like retail
+RwBool Logic_IsAccountContractAccepted(void);
+void Logic_SaveAccountContractAccepted(void);
+
 void Logic_LoadSystemOption(void);
 void Logic_SaveSystemOption(void);
 
