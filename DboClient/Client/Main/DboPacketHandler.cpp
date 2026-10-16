@@ -978,7 +978,7 @@ void PacketHandler_GSItemUpgradeRes(void *pPacket)
 											  pUpgrade->byStonePos, pUpgrade->byStoneStack, pUpgrade->byCorePlace, pUpgrade->byCorePos, pUpgrade->byCoreStack, bDestroyItem );
 
 		// When Item upgrade succeeds, it sends event to TS
-		if (pUpgrade->wResultCode == ITEM_UPGRADE_RESULT_SUCCESS)
+		if (pUpgrade->wResultMessageCode == ITEM_UPGRADE_RESULT_SUCCESS)
 		{
 			CNtlSLEventGenerator::TSItemUpgrade();
 		}
