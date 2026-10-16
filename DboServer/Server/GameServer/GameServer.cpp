@@ -37,6 +37,7 @@
 #include "BusSystem.h"
 #include "scsManager.h"
 #include "HoneyBeeEvent.h"
+#include "FairyEvent.h"
 
 
 
@@ -176,6 +177,10 @@ int CGameServer::OnInitApp()
 	NTL_PRINT(PRINT_APP, "HoneyBee System");
 	CHoneyBeeEvent* pHoneyBee = new CHoneyBeeEvent;
 	UNREFERENCED_PARAMETER(pScs);
+
+	NTL_PRINT(PRINT_APP, "Fairy System");
+	CFairyEvent* pFairy = new CFairyEvent;
+	UNREFERENCED_PARAMETER(pFairy);
 
 	if (!m_pGameMain->PrepareWorldAndObject())
 	{
@@ -545,6 +550,16 @@ BOOL CGameServer::OnCommandInput(std::string& sCmd)
 	{
 		g_pHoneyBeeEvent->EndEvent();
 		NTL_PRINT(PRINT_APP, "HoneybeeEvent Stopped");
+	}
+	else if (sCmd == "startfairy")
+	{
+		g_pFairyEvent->StartEvent();
+		NTL_PRINT(PRINT_APP, "Fairy Event Started");
+	}
+	else if (sCmd == "stopfairy")
+	{
+		g_pFairyEvent->EndEvent();
+		NTL_PRINT(PRINT_APP, "Fairy Event Stopped");
 	}
 
 	return TRUE;

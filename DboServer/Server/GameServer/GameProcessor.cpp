@@ -18,6 +18,7 @@
 #include "ExpEvent.h"
 #include "BusSystem.h"
 #include "HoneyBeeEvent.h"
+#include "FairyEvent.h"
 
 
 
@@ -124,6 +125,7 @@ void CGameProcessor::Run(DWORD dwTickCount)
 
 			g_pExpEvent->TickProcess(dwTickDiff);
 			g_pHoneyBeeEvent->TickProcess(m_dwTickCount);
+			g_pFairyEvent->TickProcess(m_dwTickCount);
 		}
 
 		g_pPartyManager->TickProcess(dwTickDiff);

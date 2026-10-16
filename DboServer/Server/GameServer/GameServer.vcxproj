@@ -328,6 +328,7 @@
     <ClCompile Include="DragonballScramble.cpp" />
     <ClCompile Include="DynamicFieldSystemEvent.cpp" />
     <ClCompile Include="ExpEvent.cpp" />
+    <ClCompile Include="FairyEvent.cpp" />
     <ClCompile Include="Guild.cpp" />
     <ClCompile Include="HoneyBeeEvent.cpp" />
     <ClCompile Include="HtbSkill.cpp" />
@@ -993,6 +994,7 @@
     <ClInclude Include="DragonballScramble.h" />
     <ClInclude Include="DynamicFieldSystemEvent.h" />
     <ClInclude Include="ExpEvent.h" />
+    <ClInclude Include="FairyEvent.h" />
     <ClInclude Include="Guild.h" />
     <ClInclude Include="HoneyBeeEvent.h" />
     <ClInclude Include="HtbSkill.h" />

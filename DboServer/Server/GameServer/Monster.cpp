@@ -17,6 +17,7 @@
 #include "SystemEffectTable.h"
 #include "SummonPet.h"
 #include "HoneyBeeEvent.h"
+#include "FairyEvent.h"
 
 #include <queue>
 
@@ -492,6 +493,7 @@ bool CMonster::Faint(CCharacterObject* pkKiller, eFAINT_REASON byReason)
 			CreateKillReward(GetCurWorld()->GetRuleType() != GAMERULE_CCBATTLEDUNGEON);
 			g_pDynamicFieldSystemEvent->Update(this, pKiller);
 			g_pHoneyBeeEvent->Update(this, pKiller);
+			g_pFairyEvent->Update(this, pKiller);
 
 			FaintBuffReward(pKiller);
 

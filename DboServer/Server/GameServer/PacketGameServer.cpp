@@ -52,6 +52,7 @@
 #include "DragonballScramble.h"
 #include "ExpEvent.h"
 #include "HoneyBeeEvent.h"
+#include "FairyEvent.h"
 
 #include "NtlNavi.h"
 #include "battle.h"
@@ -441,6 +442,7 @@ void CClientSession::RecvCharReadyToSpawn(CNtlPacket * pPacket)
 		g_pExpEvent->LoadEvent(cPlayer);
 		g_pBudokaiManager->LoadBudokaiStateInfo(cPlayer);
 		g_pHoneyBeeEvent->LoadEvent(GetHandle());
+		g_pFairyEvent->LoadEvent(GetHandle());
 		
 		if (cPlayer->GetCurWorld())
 		{
