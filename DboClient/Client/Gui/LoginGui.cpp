@@ -413,8 +413,12 @@ VOID CLogInGui::ClickedLoginButton(gui::CComponent* pComponent)
 	if (pMacAddress)
 	{
 
-		if (GetDboGlobal()->GetContractVersion() == (RwUInt32)GetNtlStorageManager()->GetIntData(dSTORAGE_SYSTEM_ETC_CONTRACT)) //检查版本
+		// like retail, an account logging in for the first time must accept the contract first,
+		// agreeing goes back to LOGIN_STATE_IDLE which sends the login (CLogInStage)
+		if (Logic_IsAccountContractAccepted())
 			GetDboGlobal()->GetLoginPacketGenerator()->SendLonInReq(pID, pPW, CLIENT_LVER, CLIENT_RVER, pMacAddress);
+		else
+			GetLogInStageState()->ChangeState(LOGIN_STATE_CONTRACT);
 	}
 	else
 	{

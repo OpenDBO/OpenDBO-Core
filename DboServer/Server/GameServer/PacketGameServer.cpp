@@ -10150,12 +10150,17 @@ void CClientSession::RecvItemUpgradeReq(CNtlPacket * pPacket)
 						}
 						else if (Dbo_CheckProbabilityF(pItemUpgrade->fUpgrade_Destroy_Rate)) //check if destroy
 						{
-							res->wResultMessageCode = ITEM_UPGRADE_RESULT_RESET;
-							
+							// like retail, the white stone saves the item from breaking, without it the item is lost
 							if (whiteStone)
+							{
+								res->wResultMessageCode = ITEM_UPGRADE_RESULT_RESET;
 								res->byItemGrade = UnsignedSafeDecrease<BYTE>(equipdata->GetGrade(), 2);
+							}
 							else
+							{
+								res->wResultMessageCode = ITEM_UPGRADE_RESULT_DESTROY;
 								res->byItemGrade = 0;
+							}
 						}
 						else //item upgrade fail
 						{
@@ -10202,7 +10207,7 @@ void CClientSession::RecvItemUpgradeReq(CNtlPacket * pPacket)
 					rQry->handle = cPlayer->GetID();
 					rQry->charId = cPlayer->GetCharID();
 					rQry->bIsSuccessful = true;
-					rQry->bNeedToDestroyItem = false;
+					rQry->bNeedToDestroyItem = (res->wResultMessageCode == ITEM_UPGRADE_RESULT_DESTROY);
 					rQry->bCoreItemUse = (whiteStone == NULL) ? false : true;
 					rQry->itemId = equipdata->GetItemID();
 					rQry->byItemPlace = equipdata->GetPlace();
@@ -10229,6 +10234,13 @@ void CClientSession::RecvItemUpgradeReq(CNtlPacket * pPacket)
 					if (whiteStone)
 					{
 						whiteStone->SetCount(res->byCoreStack, false, false, false);
+					}
+
+					//destroyed item: the query server deletes it, the client removes it when handling GU_ITEM_UPGRADE_RES
+					if (rQry->bNeedToDestroyItem)
+					{
+						equipdata->SetCount(0, false, false, false);
+						equipdata = NULL;
 					}
 				}
 

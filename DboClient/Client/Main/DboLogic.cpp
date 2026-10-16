@@ -2678,6 +2678,69 @@ void Logic_SaveAccountOption( void )
 }
 
 /**
+* \brief user\<account> folder of the account typed in the login screen.
+*        The name is typed before the server checked it, so anything that could leave the user folder is refused.
+*/
+static RwBool Logic_GetAccountFolderName( std::string& strFolder )
+{
+	const WCHAR* pwcUserID = GetDboGlobal()->GetUserData()->wchUserID;
+	if( pwcUserID[0] == L'\0' || wcspbrk(pwcUserID, L"\\/:*?\"<>|") || wcsstr(pwcUserID, L"..") )
+		return FALSE;
+
+	RwChar chBuffer[128];
+	if( ::WideCharToMultiByte(GetACP(), 0, pwcUserID, -1, chBuffer, sizeof(chBuffer), NULL, NULL) == 0 )
+		return FALSE;
+
+	strFolder = USEROPT_SERIALIZE_FOLDERNAME;
+	strFolder += "\\";
+	strFolder += chBuffer;
+	return TRUE;
+}
+
+/**
+* \brief The account typed in the login screen already accepted the current contract version
+*/
+RwBool Logic_IsAccountContractAccepted( void )
+{
+	std::string strFileName;
+	if( !Logic_GetAccountFolderName(strFileName) )
+		return FALSE;
+
+	strFileName += "\\";
+	strFileName += ACCOUNTCONTRACT_SERIALIZE_FILENAME;
+
+	FILE* fp = NULL;
+	if( fopen_s(&fp, strFileName.c_str(), "rt") != 0 )
+		return FALSE;
+
+	RwUInt32 uiVersion = 0;
+	RwInt32 iRead = fscanf_s(fp, "%u", &uiVersion);
+	fclose(fp);
+
+	return iRead == 1 && uiVersion == GetDboGlobal()->GetContractVersion();
+}
+
+void Logic_SaveAccountContractAccepted( void )
+{
+	std::string strFolder;
+	if( !Logic_GetAccountFolderName(strFolder) )
+		return;
+
+	// make sure user\<account> exists
+	::CreateDirectory(USEROPT_SERIALIZE_FOLDERNAME, NULL);
+	::CreateDirectory(strFolder.c_str(), NULL);
+
+	std::string strFileName = strFolder + "\\" + ACCOUNTCONTRACT_SERIALIZE_FILENAME;
+
+	FILE* fp = NULL;
+	if( fopen_s(&fp, strFileName.c_str(), "wt") != 0 )
+		return;
+
+	fprintf(fp, "%u", GetDboGlobal()->GetContractVersion());
+	fclose(fp);
+}
+
+/**
 * \brief eNTL_STORAGE_GROUP_SYSTEM 관련 옵션들을 로드한다.
 */
 void Logic_LoadSystemOption( void )

@@ -281,6 +281,7 @@ RwBool CreateTableContainer(RwUInt8 byLoadMethod)
 	flagManager.Set(CTableContainer::TABLE_COMMON_CONFIG);
 	flagManager.Set(CTableContainer::TABLE_DWC);
 	flagManager.Set(CTableContainer::TABLE_ITEM_ENCHANT);
+	flagManager.Set(CTableContainer::TABLE_ITEM_UPGRADE_RATE_NEW);
 	flagManager.Set(CTableContainer::TABLE_NPC_SERVER);
 
 	// Mascot
@@ -344,6 +345,7 @@ RwBool CreateTableContainer(RwUInt8 byLoadMethod)
 	fileNameList.SetFileName(CTableContainer::TABLE_COMMON_CONFIG, "table_common_config_data");
 	fileNameList.SetFileName(CTableContainer::TABLE_DWC,					"table_dwc_data");
 	fileNameList.SetFileName(CTableContainer::TABLE_ITEM_ENCHANT, "table_item_enchant_data");
+	fileNameList.SetFileName(CTableContainer::TABLE_ITEM_UPGRADE_RATE_NEW, "Table_Item_Upgrade_NewRate_Data");
 	fileNameList.SetFileName(CTableContainer::TABLE_NPC_SERVER,				"table_npc_data_server"); // required for mini map so we dont show npcs that are not spawned
 
 	// Mascot

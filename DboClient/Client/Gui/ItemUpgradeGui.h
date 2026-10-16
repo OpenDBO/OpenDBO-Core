@@ -17,6 +17,7 @@
 class CNtlSobItemAttr;
 class CNtlSobItem;
 class CNtlSobNpc;
+class CItemUpgradeCardGui;
 struct sITEM_TBLDAT;
 
 class CItemUpgradeGui : public CNtlPLGui, public RWS::CEventHandler
@@ -25,7 +26,7 @@ public:
 	//! Enum
 	enum SLOT { SLOT_STONE, SLOT_PROTECTION, SLOT_ITEM, NUM_SLOT };
 	enum STATE { STATE_NONE, STATE_UPGRADE_READYFAIL_NOMOREUPGRADE, STATE_UPGRADE_READYFAIL_NOMORESTONES,
-				 STATE_UPGRADE_READY, STATE_UPGRADE_PROCESS, STATE_PACKETWAIT, STATE_RESULT };
+				 STATE_UPGRADE_READY, STATE_CARD_SELECT, STATE_UPGRADE_PROCESS, STATE_PACKETWAIT, STATE_RESULT };
 	enum eFOCUSEFFECT { SLOT_FOCUS_NONE = 0x00, SLOT_FOCUS_CAN_MOVE = 0x01, SLOT_FOCUS = 0x02 };	
 
 	//! Constructor & Desturctor
@@ -44,8 +45,17 @@ public:
 	
 	RwInt32	SwitchDialog( bool bOpen );
 
+	VOID	PositionAlign( RwInt32 nScreenWidth, RwInt32 nScreenHeight );
+
 	//! Event
 	VOID	HandleEvents( RWS::CMsg& msg );
+
+	//! Card selection (CItemUpgradeCardGui)
+	VOID	OnCardSelected(VOID);
+	VOID	OnCardGuiClose(VOID);
+	VOID	OnCardGuiReSelect(VOID);
+	RwBool	CanRetryUpgrade(VOID);
+	RwBool	HasGuardStone(VOID) const { return m_pGuardItem != NULL; }
 
 private:
 	//! Implementation
@@ -69,6 +79,9 @@ private:
 	VOID	SetState( STATE eState );
 	
 	VOID	SendUpgradePacket(VOID);
+	VOID	OpenCardSelect(VOID);
+	VOID	SetReadyStateFromSlots(VOID);
+	RwBool	IsGuaranteedSuccess(VOID);
 
 	VOID	ShowIconDestination( RwBool isPick );
 	VOID	DisableSlot(RwBool bDisable);
@@ -179,6 +192,8 @@ private:
 	RwReal				m_fCurrentTime;
 
 	RwUInt32			m_hNPCSerial;
+
+	CItemUpgradeCardGui*	m_pCardGui;
 };
 
 #endif//__ITEM_UPGRADE_GUI_H__

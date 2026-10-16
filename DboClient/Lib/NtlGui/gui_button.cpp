@@ -487,6 +487,12 @@ VOID CButton::ClickEnable( BOOL bEnable /* = TRUE  */ )
 	m_pImpl->SetRenderSurface();
 }
 
+VOID CButton::ClearMouseFocus(VOID)
+{
+	m_pImpl->SetMouseEnter( FALSE );
+	m_pImpl->SetRenderSurface();
+}
+
 VOID CButton::SetFocusSound( const CHAR* szFocusSoundFIlename )
 {
 	if( szFocusSoundFIlename )

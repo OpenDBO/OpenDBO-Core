@@ -56,7 +56,9 @@ public:
 	VOID	Destroy(VOID);
 	
 	RwInt32	SwitchDialog( bool bOpen );
-	
+
+	VOID	PositionAlign( RwInt32 nScreenWidth, RwInt32 nScreenHeight );
+
 	VOID		SetDialogType( DLGTYPE eType ) { m_eDlgType = eType; }
 	DLGTYPE		GetDialogType(VOID) { return m_eDlgType; }
 	VOID		SetTargetSerial( RwUInt32 uiSerial ) { m_hTargetSerialID = uiSerial; }

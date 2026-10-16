@@ -141,6 +141,10 @@ public:
 
 	VOID ClickEnable( BOOL bEnable = TRUE );
 
+	//: Drops the focus look of a button that was hidden or moved away from the cursor,
+	//: it never gets the mouse leave in that case.
+	VOID ClearMouseFocus(VOID);
+
 	VOID SetClickSound( const CHAR* szClickSoundFilename );
 	VOID SetFocusSound( const CHAR* szFocusSoundFIlename );
 	VOID SetDisableSound( const CHAR* szDisableSoundFilename );

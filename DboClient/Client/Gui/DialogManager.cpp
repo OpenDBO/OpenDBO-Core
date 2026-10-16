@@ -41,6 +41,7 @@
 #include "MinimapGui.h"
 #include "WorldMap.h"
 #include "MultiDialogGui.h"
+#include "ItemUpgradeGui.h"
 #include "PetStatusBarGui.h"
 #include "PetSkillWindowGui.h"
 #include "AltarGui.h"
@@ -367,7 +368,7 @@ VOID CDialogManager::RaiseDialogbyUser(RwInt32 iDialog)
 
 		if( iDialog >= DIALOG_NPCDIALOG_FIRST )
 		{
-			if( iDialog != DIALOG_MULTIDIALOG && iDialog != DIALOG_ITEM_OPTIONRESTRUCTURE && iDialog != DIALOG_QUICK_TELEPORT)
+			if( iDialog != DIALOG_MULTIDIALOG && iDialog != DIALOG_ITEMUPGRADE && iDialog != DIALOG_ITEM_OPTIONRESTRUCTURE && iDialog != DIALOG_QUICK_TELEPORT)
 				return;
 		}			
 	}
@@ -935,6 +936,15 @@ VOID CDialogManager::LocationDialogs(RwInt32 iWidth, RwInt32 iHeight)
 	pGui = GetDialog(DIALOG_PLAYER_TITLE);
 	if (pGui)
 		pGui->SetPosition((iWidth - pGui->GetWidth()) / 2, (iHeight - pGui->GetHeight()) / 2);
+
+	// not regular dialogs, they place themselves like the retail client does
+	pGui = GetDialog(DIALOG_MULTIDIALOG);
+	if (pGui)
+		static_cast<CMultiDialogGui*>(pGui)->PositionAlign(iWidth, iHeight);
+
+	pGui = GetDialog(DIALOG_ITEMUPGRADE);
+	if (pGui)
+		static_cast<CItemUpgradeGui*>(pGui)->PositionAlign(iWidth, iHeight);
 
 
 	///// GM gui //////////////////////////////////////////////////////////////////////////

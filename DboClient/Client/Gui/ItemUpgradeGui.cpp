@@ -15,6 +15,7 @@
 #include "TextAllTable.h"
 #include "TableContainer.h"
 #include "GraphicDataTable.h"
+#include "ItemUpgradeRateNewTable.h"
 
 // presentation
 #include "NtlPLGuiManager.h"
@@ -50,6 +51,7 @@
 #include "DisplayStringManager.h"
 #include "GUISoundDefine.h"
 #include "AlarmManager.h"
+#include "ItemUpgradeCardGui.h"
 
 #define ITEMUPGRADEGUI_SUCCESS_FLASHFILE		"ItemUpgrade_Success.swf"
 #define ITEMUPGRADEGUI_FAIL_FLASHFILE			"ItemUpgrade_Fail.swf"
@@ -94,6 +96,8 @@ VOID CItemUpgradeGui::Init(VOID)
 	m_fCurrentTime = 0.0f;
 
 	m_hNPCSerial = INVALID_SERIAL_ID;
+
+	m_pCardGui = NULL;
 }
 
 RwBool CItemUpgradeGui::Create(VOID)
@@ -154,6 +158,14 @@ RwBool CItemUpgradeGui::Create(VOID)
 	Show( false );
 	m_pdlgResult->Show(false);
 
+	// Card selection window. Without it the upgrade falls back to the result dialog above.
+	m_pCardGui = NTL_NEW CItemUpgradeCardGui( "ItemUpgradeCard" );
+	if( !m_pCardGui->Create( this ) )
+	{
+		m_pCardGui->Destroy();
+		NTL_DELETE( m_pCardGui );
+	}
+
 	LinkMsg( g_EventItemUpgradeResult, 0 );
 	LinkMsg( g_EventNPCDialogOpen, 0 );
 	LinkMsg( g_EventDialog, 0 );
@@ -177,6 +189,12 @@ VOID CItemUpgradeGui::Destroy(VOID)
 	UnLinkMsg( g_EventRegisterItemUpgrade );
 	UnLinkMsg( g_EventGameServerChangeOut );
 
+	if( m_pCardGui )
+	{
+		m_pCardGui->Destroy();
+		NTL_DELETE( m_pCardGui );
+	}
+
 	CNtlPLGui::DestroyComponents();
 	CNtlPLGui::Destroy();
 }
@@ -189,10 +207,19 @@ VOID CItemUpgradeGui::DestroyResultDialog(VOID)
 
 VOID CItemUpgradeGui::Update( RwReal fElapsed )
 {
-	if( m_eState == STATE_RESULT )
+	if( m_pCardGui && m_pCardGui->IsOpen() )
+	{
+		m_pCardGui->Update( fElapsed );
+	}
+	else if( m_eState == STATE_RESULT )
 	{
 		m_pflsResult->Update(fElapsed);
 	}
+}
+
+VOID CItemUpgradeGui::PositionAlign( RwInt32 nScreenWidth, RwInt32 nScreenHeight )
+{
+	m_pThis->SetPosition( ( nScreenWidth - m_pThis->GetWidth() ) / 2, ( nScreenHeight - m_pThis->GetHeight() ) / 2 );
 }
 
 RwInt32 CItemUpgradeGui::SwitchDialog( bool bOpen )
@@ -202,8 +229,9 @@ RwInt32 CItemUpgradeGui::SwitchDialog( bool bOpen )
 		CNtlWorldConceptNPCCOMMU* pWorldConceptController = reinterpret_cast<CNtlWorldConceptNPCCOMMU*>( GetNtlWorldConcept()->GetWorldConceptController(WORLD_PLAY_NPC_COMMU) );
 		pWorldConceptController->ChangeState(WORLD_NPC_ITEM_UPGRADE);
 
-		RaiseTop();			
+		RaiseTop();
 
+		PositionAlign( GetDboGlobal()->GetScreenWidth(), GetDboGlobal()->GetScreenHeight() );
 		Show( true );
 		DeleteHoipoiStone();
 		DeleteUpgradeItem();
@@ -224,6 +252,9 @@ RwInt32 CItemUpgradeGui::SwitchDialog( bool bOpen )
 
 		if (m_pdlgResult->IsVisible())
 			DestroyResultDialog();
+
+		if( m_pCardGui )
+			m_pCardGui->Close();
 
 		Show( false );
 		DeleteHoipoiStone();
@@ -431,7 +462,8 @@ VOID CItemUpgradeGui::DeleteStackNumber(RwInt32 nSlotIdx)
 // Error Notify is handled here.
 VOID CItemUpgradeGui::SetItemSlot( RwUInt32 hSerialID, RwUInt32 eSrcplace, RwUInt32 uiSrcSlotIdx, RwUInt32 uiDestSlotIdx, RwBool bNeedToIconMoveEnd )
 {
-	if( m_eState == STATE_UPGRADE_PROCESS ||
+	if( m_eState == STATE_CARD_SELECT ||
+		m_eState == STATE_UPGRADE_PROCESS ||
 		m_eState == STATE_PACKETWAIT ||
 		m_eState == STATE_RESULT )
 	{
@@ -677,62 +709,79 @@ VOID CItemUpgradeGui::SetResult(WORD wResultcode, BYTE byGrade, WORD wResultMess
 	// execption.. --;; 에러메시지는 패킷핸들러에서 처리된다.
 	if (wResultcode != GAME_SUCCESS)
 	{
+		if (m_pCardGui && m_pCardGui->IsOpen())
+		{
+			m_pCardGui->Close();
+			Show(true);
+		}
+
 		SetState(STATE_UPGRADE_READY);
 		return;
-	}
-
-	switch (wResultMessageCode)
-	{
-		case ITEM_UPGRADE_RESULT_SUCCESS:
-		{
-			m_pflsResult->Load(ITEMUPGRADEGUI_SUCCESS_FLASHFILE);
-			m_pflsResult->PlayMovie(TRUE);
-
-			// alarm message item upgrade success
-			GetAlarmManager()->AlarmMessage("DST_ITEMUPGRADE_SUCCESS");
-		}
-		break;
-		case ITEM_UPGRADE_RESULT_FAIL:
-		{
-			m_pflsResult->Load(ITEMUPGRADEGUI_FAIL_FLASHFILE);
-			m_pflsResult->PlayMovie(TRUE);
-
-			// alarm message item upgrade success
-			GetAlarmManager()->AlarmMessage("DST_ITEMUPGRADE_FAIL");
-		}
-		break;
-		case ITEM_UPGRADE_RESULT_RESET:
-		{
-			m_pflsResult->Load(ITEMUPGRADEGUI_FAIL_FLASHFILE);
-			m_pflsResult->PlayMovie(TRUE);
-
-			// alarm message item upgrade success
-			if(m_pGuardItem)
-				GetAlarmManager()->AlarmMessage("GAME_ITEM_UPGRADE_FAIL_AND_NODEL_BY_CORE");
-			else
-				GetAlarmManager()->AlarmMessage("DST_ITEMUPGRADE_FAIL");//GetAlarmManager()->AlarmMessage("GAME_ITEM_UPGRADE_FAIL_AND_DEL");
-		}
-		break;
-		case ITEM_UPGRADE_RESULT_DESTROY:
-		{
-			m_pflsResult->Load(ITEMUPGRADEGUI_FAIL_FLASHFILE);
-			m_pflsResult->PlayMovie(TRUE);
-
-			// alarm message item upgrade success
-			if (m_pGuardItem)
-				GetAlarmManager()->AlarmMessage("GAME_ITEM_UPGRADE_FAIL_AND_NODEL_BY_CORE");
-			else
-				GetAlarmManager()->AlarmMessage("GAME_ITEM_UPGRADE_FAIL_AND_DEL");
-		}
-		break;
-
-		default: break;
 	}
 
 	CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>(m_pUpgradeItem->GetSobAttr());
 	std::wstring wstrItemName = API_GetTableContainer()->GetTextAllTable()->GetItemTbl()->GetText(pItemAttr->GetItemTbl()->Name);
 
-	GetAlarmManager()->FormattedAlarmMessage("DST_ITEMUPGRADE_TEXTDATA", FALSE, NULL, wstrItemName.c_str(), byGrade);
+	const bool bCardResult = m_pCardGui && m_pCardGui->IsOpen();
+
+	if (bCardResult)
+	{
+		// the item still has its old grade here, it is updated after this event
+		m_pCardGui->SetResult(wResultMessageCode, pItemAttr->GetGrade(), byGrade, wstrItemName.c_str(), m_pGuardItem != NULL);
+	}
+	else
+	{
+		// fallback when the card window is not available
+		switch (wResultMessageCode)
+		{
+			case ITEM_UPGRADE_RESULT_SUCCESS:
+			{
+				m_pflsResult->Load(ITEMUPGRADEGUI_SUCCESS_FLASHFILE);
+				m_pflsResult->PlayMovie(TRUE);
+	
+				// alarm message item upgrade success
+				GetAlarmManager()->AlarmMessage("DST_ITEMUPGRADE_SUCCESS");
+			}
+			break;
+			case ITEM_UPGRADE_RESULT_FAIL:
+			{
+				m_pflsResult->Load(ITEMUPGRADEGUI_FAIL_FLASHFILE);
+				m_pflsResult->PlayMovie(TRUE);
+	
+				// alarm message item upgrade success
+				GetAlarmManager()->AlarmMessage("DST_ITEMUPGRADE_FAIL");
+			}
+			break;
+			case ITEM_UPGRADE_RESULT_RESET:
+			{
+				m_pflsResult->Load(ITEMUPGRADEGUI_FAIL_FLASHFILE);
+				m_pflsResult->PlayMovie(TRUE);
+	
+				// alarm message item upgrade success
+				if(m_pGuardItem)
+					GetAlarmManager()->AlarmMessage("GAME_ITEM_UPGRADE_FAIL_AND_NODEL_BY_CORE");
+				else
+					GetAlarmManager()->AlarmMessage("DST_ITEMUPGRADE_FAIL");//GetAlarmManager()->AlarmMessage("GAME_ITEM_UPGRADE_FAIL_AND_DEL");
+			}
+			break;
+			case ITEM_UPGRADE_RESULT_DESTROY:
+			{
+				m_pflsResult->Load(ITEMUPGRADEGUI_FAIL_FLASHFILE);
+				m_pflsResult->PlayMovie(TRUE);
+	
+				// alarm message item upgrade success
+				if (m_pGuardItem)
+					GetAlarmManager()->AlarmMessage("GAME_ITEM_UPGRADE_FAIL_AND_NODEL_BY_CORE");
+				else
+					GetAlarmManager()->AlarmMessage("GAME_ITEM_UPGRADE_FAIL_AND_DEL");
+			}
+			break;
+	
+			default: break;
+		}
+
+		GetAlarmManager()->FormattedAlarmMessage("DST_ITEMUPGRADE_TEXTDATA", FALSE, NULL, wstrItemName.c_str(), byGrade);
+	}
 
 	// remove the stone item
 	if (byStoneCount == 0)
@@ -814,6 +863,14 @@ VOID CItemUpgradeGui::SetState( STATE eState )
 
 		}
 		break;
+		case STATE_CARD_SELECT:
+		{
+			DisableSlot( TRUE );
+
+			// Exit button disabled !!!
+			m_pbtnExit->ClickEnable( FALSE );
+		}
+		break;
 		case STATE_UPGRADE_PROCESS:
 		{
 			DisableSlot( TRUE );
@@ -836,7 +893,9 @@ VOID CItemUpgradeGui::SetState( STATE eState )
 		{
 
 			DisableSlot( TRUE );
-			m_pdlgResult->Show( true );			
+
+			if( !m_pCardGui || !m_pCardGui->IsOpen() )
+				m_pdlgResult->Show( true );
 		}
 		break;
 	}
@@ -871,7 +930,7 @@ VOID CItemUpgradeGui::ShowIconDestination( RwBool isPick )
 	{
 		if( GetIconMoveManager()->GetSrcPlace() == PLACE_BAG )
 		{
-			if( m_eState == STATE_UPGRADE_PROCESS || m_eState == STATE_PACKETWAIT || m_eState == STATE_RESULT )
+			if( m_eState == STATE_CARD_SELECT || m_eState == STATE_UPGRADE_PROCESS || m_eState == STATE_PACKETWAIT || m_eState == STATE_RESULT )
 				return;
 			else
 			{
@@ -900,7 +959,7 @@ VOID CItemUpgradeGui::ShowIconDestination( RwBool isPick )
 		}
 		else if( GetIconMoveManager()->GetSrcPlace() == PLACE_ITEMUPGRADE )
 		{
-			if( m_eState == STATE_UPGRADE_PROCESS || m_eState == STATE_PACKETWAIT || m_eState == STATE_RESULT )
+			if( m_eState == STATE_CARD_SELECT || m_eState == STATE_UPGRADE_PROCESS || m_eState == STATE_PACKETWAIT || m_eState == STATE_RESULT )
 				return;
 			else
 			{
@@ -1097,7 +1156,8 @@ RwBool CItemUpgradeGui::IsValidProtectionStone(CNtlSobItemAttr * pItemAttr, bool
 
 RwBool CItemUpgradeGui::IsValidIconPickup( RwInt32 nClickIdx )
 {
-	if( m_eState == STATE_UPGRADE_PROCESS || 
+	if( m_eState == STATE_CARD_SELECT ||
+		m_eState == STATE_UPGRADE_PROCESS || 
 		m_eState == STATE_PACKETWAIT ||
 		m_eState == STATE_RESULT )
 	{
@@ -1120,7 +1180,8 @@ RwBool CItemUpgradeGui::IsValidIconPickup( RwInt32 nClickIdx )
 
 RwBool CItemUpgradeGui::IsValidRightBtnProc( RwInt32 nClickIdx )
 {
-	if( m_eState == STATE_UPGRADE_PROCESS || 
+	if( m_eState == STATE_CARD_SELECT ||
+		m_eState == STATE_UPGRADE_PROCESS || 
 		m_eState == STATE_PACKETWAIT ||
 		m_eState == STATE_RESULT )
 	{
@@ -1302,40 +1363,133 @@ VOID CItemUpgradeGui::OnClickCompoundBtn( gui::CComponent* pComponent )
 	if( m_eState != STATE_UPGRADE_READY )
 		return;
 
-	SetState( STATE_UPGRADE_PROCESS );
+	if( m_pCardGui )
+		OpenCardSelect();
+	else
+		SetState( STATE_UPGRADE_PROCESS );
 
 	if( GetIconMoveManager()->GetSrcPlace() == PLACE_ITEMUPGRADE )
-		GetIconMoveManager()->IconMoveEnd();	
+		GetIconMoveManager()->IconMoveEnd();
 }
 
 VOID CItemUpgradeGui::OnClickCloseResult( gui::CComponent* pComponent )
 {
-	if (m_pStoneItem == NULL)
+	SetReadyStateFromSlots();
+
+	DestroyResultDialog();
+}
+
+VOID CItemUpgradeGui::OpenCardSelect(VOID)
+{
+	if( GetInfoWndManager()->GetRequestGui() == DIALOG_ITEMUPGRADE )
+		GetInfoWndManager()->ShowInfoWindow( FALSE );
+
+	// set before opening, a single card without its flash is drawn right away
+	SetState( STATE_CARD_SELECT );
+
+	// the card window takes the place of the upgrade window until it is closed
+	Show( false );
+	m_pCardGui->Open( !IsGuaranteedSuccess() );
+}
+
+VOID CItemUpgradeGui::SetReadyStateFromSlots(VOID)
+{
+	if( m_pUpgradeItem == NULL )
 	{
-		SetState(STATE_UPGRADE_READYFAIL_NOMORESTONES);
+		SetState( STATE_NONE );
 		return;
 	}
 
-	if( m_pUpgradeItem )
+	if( m_pStoneItem == NULL )
 	{
-		CNtlSobItemAttr* pHoipoiAttr = reinterpret_cast<CNtlSobItemAttr*>( m_pStoneItem->GetSobAttr() );
-		CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>( m_pUpgradeItem->GetSobAttr() );
+		SetState( STATE_UPGRADE_READYFAIL_NOMORESTONES );
+		return;
+	}
 
-		if( !IsValidUpgradeItem( pItemAttr ) )
-		{
-			SetState( STATE_UPGRADE_READYFAIL_NOMOREUPGRADE );
-		}
-		else if( IsValidHoipoiStone( pHoipoiAttr ) )
-		{
-			SetState( STATE_UPGRADE_READY );
-		}					
+	CNtlSobItemAttr* pHoipoiAttr = reinterpret_cast<CNtlSobItemAttr*>( m_pStoneItem->GetSobAttr() );
+	CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>( m_pUpgradeItem->GetSobAttr() );
+
+	if( !IsValidUpgradeItem( pItemAttr ) )
+	{
+		SetState( STATE_UPGRADE_READYFAIL_NOMOREUPGRADE );
+	}
+	else if( IsValidHoipoiStone( pHoipoiAttr ) )
+	{
+		SetState( STATE_UPGRADE_READY );
 	}
 	else
 	{
-		SetState(STATE_NONE);
+		// never leave the window in a busy state with its slots disabled
+		SetState( STATE_UPGRADE_READYFAIL_NOMORESTONES );
+	}
+}
+
+// Mirrors the roll in CClientSession::RecvItemUpgradeReq, the server always succeeds at 100%.
+RwBool CItemUpgradeGui::IsGuaranteedSuccess(VOID)
+{
+	if( m_pUpgradeItem == NULL )
+		return FALSE;
+
+	CItemUpgradeRateNewTable* pRateTable = API_GetTableContainer()->GetItemUpgradeRateNewTable();
+	if( pRateTable == NULL )
+		return FALSE;
+
+	CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>( m_pUpgradeItem->GetSobAttr() );
+	sITEM_TBLDAT* pItemTbl = pItemAttr->GetItemTbl();
+	if( pItemTbl == NULL )
+		return FALSE;
+
+	sITEM_UPGRADE_RATE_NEW_TBLDAT* pRate = reinterpret_cast<sITEM_UPGRADE_RATE_NEW_TBLDAT*>(
+		pRateTable->GetUpgradeRateNewTbldat( GetItemTypeGroup( pItemTbl->byItem_Type ), pItemAttr->GetGrade() ) );
+
+	return pRate && pRate->fUpgrade_Success_Basic_Value >= 100.0f;
+}
+
+VOID CItemUpgradeGui::OnCardSelected(VOID)
+{
+	if( m_eState != STATE_CARD_SELECT || m_pUpgradeItem == NULL || m_pStoneItem == NULL )
+	{
+		OnCardGuiClose();
+		return;
 	}
 
-	DestroyResultDialog();
+	SetState( STATE_UPGRADE_PROCESS );
+}
+
+VOID CItemUpgradeGui::OnCardGuiClose(VOID)
+{
+	if( m_eState == STATE_UPGRADE_PROCESS || m_eState == STATE_PACKETWAIT )
+		return;
+
+	m_pCardGui->Close();
+
+	Show( true );
+	RaiseTop();
+
+	SetReadyStateFromSlots();
+}
+
+VOID CItemUpgradeGui::OnCardGuiReSelect(VOID)
+{
+	if( !CanRetryUpgrade() )
+	{
+		OnCardGuiClose();
+		return;
+	}
+
+	SetState( STATE_CARD_SELECT );
+	m_pCardGui->Open( !IsGuaranteedSuccess() );
+}
+
+RwBool CItemUpgradeGui::CanRetryUpgrade(VOID)
+{
+	if( m_pUpgradeItem == NULL || m_pStoneItem == NULL )
+		return FALSE;
+
+	CNtlSobItemAttr* pHoipoiAttr = reinterpret_cast<CNtlSobItemAttr*>( m_pStoneItem->GetSobAttr() );
+	CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>( m_pUpgradeItem->GetSobAttr() );
+
+	return IsValidUpgradeItem( pItemAttr ) && IsValidHoipoiStone( pHoipoiAttr );
 }
 
 VOID CItemUpgradeGui::OnCaptureMouseDown( const CKey& key )

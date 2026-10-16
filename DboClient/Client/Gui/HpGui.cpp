@@ -720,6 +720,11 @@ void CHpGui::HandleEvents(RWS::CMsg &pMsg)
 
 					GetNtlStorageManager()->SetData(dSTORAGE_CHARACTER_SCOUTER_ON, bStatusOn);
 					pSobAvatar->GetOtherParam()->SetScouterOn(bStatusOn);
+
+					// like retail, turning the scouter back on measures the current target again
+					SERIAL_HANDLE hTarget = Logic_GetAvatarTargetHandle();
+					if (bStatusOn && hTarget != INVALID_SERIAL_ID)
+						CNtlSLEventGenerator::ScouterEvent(SCOUTER_EVENT_MEASURE_POWER_START, hTarget);
 				}
 				else
 				{

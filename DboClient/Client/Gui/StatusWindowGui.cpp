@@ -1576,6 +1576,9 @@ void CStatusAvatarTab::UpdateCharTitle(TBLIDX uiIndex, bool bDelete)
 		//add title
 		pOtherParam->SetCharTitleValue(uiIndex - 1);
 	}
+
+	// entries are named from the title flags when the list is built, rebuild it so the title shows its name
+	LoadCharTitleCombo();
 }
 
 VOID CStatusAvatarTab::SetAttributeToolTip(VOID)

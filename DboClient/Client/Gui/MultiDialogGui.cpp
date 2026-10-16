@@ -203,6 +203,12 @@ VOID CMultiDialogGui::Destroy(VOID)
 	CNtlPLGui::Destroy();
 }
 
+// Retail (TW CMultiDialogGui) places the window around a third of the screen width and two thirds of its height.
+VOID CMultiDialogGui::PositionAlign( RwInt32 nScreenWidth, RwInt32 nScreenHeight )
+{
+	m_pThis->SetPosition( nScreenWidth / 3 - m_pThis->GetWidth() / 2, nScreenHeight * 2 / 3 - m_pThis->GetHeight() / 2 );
+}
+
 RwInt32 CMultiDialogGui::SwitchDialog( bool bOpen )
 {
 	// 무조건 닫는다.
@@ -279,10 +285,11 @@ RwInt32 CMultiDialogGui::SwitchDialog( bool bOpen )
 				SetMsgBox( m_stMultiDialogData.wstrText );					
 				m_MsgBackImage.Show( true );
 			}
-		}	
+		}
 
 		m_stMultiDialogData.Clear();
 		RaiseTop();
+		PositionAlign( GetDboGlobal()->GetScreenWidth(), GetDboGlobal()->GetScreenHeight() );
 	}
 	else
 	{

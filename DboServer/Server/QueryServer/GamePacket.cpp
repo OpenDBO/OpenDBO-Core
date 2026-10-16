@@ -4851,6 +4851,13 @@ void CGameServerSession::RecvItemUpgradeWorkReq(CNtlPacket * pPacket, CQueryServ
 				{
 					g_pAuditLogRepository->InsertItemUpgradeLog(req->charId, req->bIsSuccessful, req->itemId, pItem->itemNo, byCurGrade, req->byItemGrade, req->stoneId, pStoneItem->itemNo, req->bCoreItemUse, req->coreId, coreItemIdx);
 				}
+
+				// broke without a white stone
+				if (req->bNeedToDestroyItem)
+				{
+					pCache->RemoveItem(req->itemId);
+					g_pItemRepository->DeleteById(req->itemId);
+				}
 			}
 		}
 	}
