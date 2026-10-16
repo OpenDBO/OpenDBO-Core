@@ -970,6 +970,7 @@ public:
     static void SobMobTransform(SERIAL_HANDLE hSerialId, TBLIDX tblTransformMobId);                                     ///< Mob占쏙옙 占쏙옙占쏙옙 占싱븝옙트
     static void SobTransformCandy(SERIAL_HANDLE hSerialId, RwBool bTransform);                                          ///< 占쏙옙占쏙옙 占쏙옙占쏙옙 占싱븝옙트
     static void SobTransformSequela(SERIAL_HANDLE hSerialId);                                                           ///< 占십삼옙占싱억옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占싱븝옙트 (占싣뱄옙타 占쏙옙占쏙옙)
+    static void SobTransformRollingAttack(SERIAL_HANDLE hSerialId, RwBool bTransform);                                  ///< rolling attack ball transformation
 
 	static void SobCinematicScale(SERIAL_HANDLE hSerialId, float fScale, float fTime);
 

@@ -308,6 +308,7 @@ void CNtlSobCharDecorationProxy::HandleEvents(RWS::CMsg &pMsg)
             pMsg.Id == g_EventTransformCandy ||
             pMsg.Id == g_EventSobChangeAdult ||
 		pMsg.Id == g_EventCinematicScale)
+            pMsg.Id == g_EventTransformRollingAttack ||
     {
         if(!m_pProxyTransform)
         {

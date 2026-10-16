@@ -173,6 +173,7 @@ RwBool CNtlSLEventHandler::Create(void)
     RegisterMsg (g_EventMobTransform, "g_EventMobTransform", "SNtlEventMobTransform");
     RegisterMsg (g_EventTransformCandy, "g_EventTransformCandy", "SNtlEventTransformCandy");
     RegisterMsg (g_EventSobTransformSequela, "g_EventSobTransformSequela", "SNtlEventSobTransfromSequela");
+    RegisterMsg (g_EventTransformRollingAttack, "g_EventTransformRollingAttack", "SNtlEventTransformRollingAttack");
 
 	RegisterMsg(g_EventCinematicScale, "g_EventCinematicScale", "SNtlEventSobCinematicScale");
 
@@ -788,6 +789,7 @@ void CNtlSLEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventTransformCandy);
 	UnRegisterMsg(g_EventSobTransformSequela);
 
+	UnRegisterMsg(g_EventTransformRollingAttack);
 	UnRegisterMsg(g_EventCinematicScale);
 
 	// 컨디션 관련 이벤트

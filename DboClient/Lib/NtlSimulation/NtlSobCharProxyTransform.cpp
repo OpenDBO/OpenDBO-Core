@@ -44,6 +44,8 @@
 #define CANDY_SCALE_BIG                 3.0f
 #define CANDY_SCALE_MIDDLE              2.0f
 
+#define ROLLING_ATTACK_MODEL            "N_MBB_A1"
+
 
 
 CNtlSobCharProxyTransform::CNtlSobCharProxyTransform(CNtlSobActor* pActor, CNtlPLCharacter* pPLCharacter)
@@ -67,6 +69,7 @@ CNtlSobCharProxyTransform::CNtlSobCharProxyTransform(CNtlSobActor* pActor, CNtlP
     m_pMajinPureModel = NULL;
     m_pMajinPureModelUI = NULL;    
     m_pCandyOrgModel = m_pCandyOrgModelUI = m_pCandyModel = m_pCandyModelUI = NULL;
+    m_pRollingOrgModel = m_pRollingModel = NULL;
     m_fOrgAttackRange = 3.0f;
     m_uiTransformId = ASPECTSTATE_INVALID;    
     m_pMajinPureModelUI_Dogi = NULL;
@@ -197,6 +200,19 @@ void CNtlSobCharProxyTransform::Destory()
 
         }
     }
+
+    // the SobProxy deletes the model in use, delete the other one
+    if(m_pRollingOrgModel)
+    {
+        GetSceneManager()->DeleteEntity(m_pRollingOrgModel);
+        m_pRollingOrgModel = NULL;
+        m_pRollingModel = NULL;
+    }
+    else if(m_pRollingModel)
+    {
+        GetSceneManager()->DeleteEntity(m_pRollingModel);
+        m_pRollingModel = NULL;
+    }
 }
 
 void CNtlSobCharProxyTransform::Update( RwReal fElapsed ) 
@@ -287,6 +303,11 @@ void CNtlSobCharProxyTransform::HandleEvents( RWS::CMsg &pMsg )
     {
         SNtlEventTransformCandy* pData = (SNtlEventTransformCandy*)pMsg.pData;
         OnTransform_Candy(pData->bTransform);
+    }
+    else if(pMsg.Id == g_EventTransformRollingAttack)
+    {
+        SNtlEventTransformRollingAttack* pData = (SNtlEventTransformRollingAttack*)pMsg.pData;
+        OnTransform_RollingAttack(pData->bTransform);
     }
     else if(pMsg.Id == g_EventSobChangeAdult)
     {
@@ -782,6 +803,12 @@ void CNtlSobCharProxyTransform::AddWorld()
         m_pCandyModel->AddWorld();
     if(m_pCandyModelUI)
         m_pCandyModelUI->AddWorld();
+
+    // rolling attack
+    if(m_pRollingOrgModel)
+        m_pRollingOrgModel->AddWorld();
+    if(m_pRollingModel)
+        m_pRollingModel->AddWorld();
 }
 
 void CNtlSobCharProxyTransform::RemoveWorld() 
@@ -822,6 +849,12 @@ void CNtlSobCharProxyTransform::RemoveWorld()
         m_pCandyModel->RemoveWorld();
     if(m_pCandyModelUI)
         m_pCandyModelUI->RemoveWorld();
+
+    // rolling attack
+    if(m_pRollingOrgModel)
+        m_pRollingOrgModel->RemoveWorld();
+    if(m_pRollingModel)
+        m_pRollingModel->RemoveWorld();
 }
 
 // 마진은 컨버트 클래스처럼 모델을 직접 변경한다
@@ -1095,7 +1128,94 @@ void CNtlSobCharProxyTransform::OnTransform_Candy( RwBool bTransform )
         {
             pEffect->SetScale(CANDY_SCALE_MIDDLE);
         }
-    }    
+    }
+}
+
+CNtlPLCharacter* CNtlSobCharProxyTransform::CreateRollingAttackModel()
+{
+    if(m_pRollingModel)
+        return m_pRollingModel;
+
+    RwBool bLoadScheduling = GetNtlResourceManager()->IsLoadScheduling();
+    GetNtlResourceManager()->SetLoadScheduling(FALSE);
+
+    RwV3d vPos = m_pActor->GetPosition();
+
+    SPLCharacterCreateParam sParam;
+    ZeroMemory(&sParam, sizeof(sParam));
+    sParam.pPos         = &vPos;
+    sParam.uiSerialId   = m_pActor->GetSerialID();
+    sParam.bPcFlag      = FALSE;
+    sParam.bNotShadingFlag = FALSE;
+
+    m_pRollingModel = (CNtlPLCharacter*)GetSceneManager()->CreateEntity(PLENTITY_CHARACTER, ROLLING_ATTACK_MODEL, &sParam);
+    NTL_ASSERT(m_pRollingModel, "Can't Create Rolling Attack Model : " << ROLLING_ATTACK_MODEL);
+
+    if(m_pRollingModel)
+    {
+        m_pRollingModel->SetSerialID(m_pActor->GetSerialID());
+
+        // the ball keeps the skin color of the character
+        SCharScheduleResInfo* pInfo = m_pPLCharacter->GetCharScheduleResInfo();
+        if(pInfo)
+        {
+            EClassGenderType eClassGenderType = CNtlDefaultItemTable::GetClassGenderType(pInfo->uiRace, pInfo->uiGender, pInfo->bIsAdult);
+            RwRGBA *pSkinColor = CNtlDefaultItemTable::GetInstance().GetSkinColor(eClassGenderType, pInfo->uiSkinColorType);
+            m_pRollingModel->UpdateMaterialSkinInfo();
+            if(pSkinColor)
+                m_pRollingModel->SetSkinColor(pSkinColor->red, pSkinColor->green, pSkinColor->blue);
+        }
+    }
+
+    GetNtlResourceManager()->SetLoadScheduling(bLoadScheduling);
+
+    return m_pRollingModel;
+}
+
+void CNtlSobCharProxyTransform::OnTransform_RollingAttack( RwBool bTransform )
+{
+    if(!m_pPLCharacter)
+        return;
+
+    CNtlSobCharProxy* pSobProxy = (CNtlSobCharProxy*)m_pActor->GetSobProxy();
+
+    if(bTransform)
+    {
+        if(m_pRollingOrgModel)   // already a ball
+            return;
+
+        m_pRollingOrgModel = m_pPLCharacter;
+
+        m_pPLCharacter = CreateRollingAttackModel();
+        if(!m_pPLCharacter)
+        {
+            m_pPLCharacter = m_pRollingOrgModel;
+            m_pRollingOrgModel = NULL;
+            return;
+        }
+
+        m_pRollingOrgModel->SetVisible(FALSE);
+        m_pPLCharacter->SetVisible(TRUE);
+
+        pSobProxy->ChangeModel(m_pPLCharacter, FALSE);
+        pSobProxy->GetDecorationProxy()->SetVisible(TRUE);
+
+        m_pPLCharacter->SetBlend(BLEND_TWEEN, 0.0f, 0.0f);
+        m_pPLCharacter->SetBaseAnimation(TRANS_IDLE, 0.0f, FALSE);
+        m_pPLCharacter->Update(0.0f);
+    }
+    else
+    {
+        if(!m_pRollingOrgModel)
+            return;
+
+        m_pPLCharacter->SetVisible(FALSE);
+        m_pRollingOrgModel->SetVisible(TRUE);
+        m_pPLCharacter = m_pRollingOrgModel;
+        m_pRollingOrgModel = NULL;
+
+        pSobProxy->ChangeModel(m_pPLCharacter, FALSE);
+    }
 }
 
 void CNtlSobCharProxyTransform::OnTransform_Mob( RwUInt32 tblIdx ) 

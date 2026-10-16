@@ -201,6 +201,7 @@ void CNtlSobCharProxy::RegisterEventHandler(void)
     m_mapEventFunc[g_EventTransform.Get_pEventId()] =               &CNtlSobCharProxy::SobDecorationNotify;
     m_mapEventFunc[g_EventMobTransform.Get_pEventId()] =            &CNtlSobCharProxy::SobDecorationNotify;
     m_mapEventFunc[g_EventTransformCandy.Get_pEventId()] =          &CNtlSobCharProxy::SobDecorationNotify;
+    m_mapEventFunc[g_EventTransformRollingAttack.Get_pEventId()] =  &CNtlSobCharProxy::SobDecorationNotify;
     m_mapEventFunc[g_EventSobSkillAction.Get_pEventId()] =          &CNtlSobCharProxy::SobDecorationNotify;
     m_mapEventFunc[g_EventAnimHit.Get_pEventId()] =                 &CNtlSobCharProxy::SobDecorationNotify;
 

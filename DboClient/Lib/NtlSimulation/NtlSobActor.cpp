@@ -109,6 +109,7 @@ RwBool CNtlSobActor::Create(void)
     m_mapEventFunc[g_EventTransform.Get_pEventId()]                 = &CNtlSobActor::SobProxyEventHandler;    
     m_mapEventFunc[g_EventMobTransform.Get_pEventId()]              = &CNtlSobActor::SobProxyEventHandler;
     m_mapEventFunc[g_EventTransformCandy.Get_pEventId()]            = &CNtlSobActor::SobProxyEventHandler;
+    m_mapEventFunc[g_EventTransformRollingAttack.Get_pEventId()]    = &CNtlSobActor::SobProxyEventHandler;
     m_mapEventFunc[g_EventSobSkillAction.Get_pEventId()]            = &CNtlSobActor::SobProxyEventHandler;
     m_mapEventFunc[g_EventSobSkillActioned.Get_pEventId()]            = &CNtlSobActor::SobProxyEventHandler;
     m_mapEventFunc[g_EventAnimHit.Get_pEventId()]                   = &CNtlSobActor::SobProxyEventHandler;

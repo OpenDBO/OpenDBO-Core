@@ -6459,6 +6459,15 @@ void CNtlSLEventGenerator::CharRefreshBattleAttributeModifier( SERIAL_HANDLE hSe
 	data.fHonestDefenceModifier = fHonestDefenceModifier;
 	data.fStrangeOffenceModifier = fStrangeOffenceModifier;
 	data.fStrangeDefenceModifier = fStrangeDefenceModifier;
+void CNtlSLEventGenerator::SobTransformRollingAttack( SERIAL_HANDLE hSerialId, RwBool bTransform ) 
+{
+    SNtlEventTransformRollingAttack data;
+    data.hSerialId = hSerialId;
+    data.bTransform = bTransform;
+
+    SEND_MSG(g_EventTransformRollingAttack, &data);
+}
+
 	data.fWildOffenceModifier = fWildOffenceModifier;
 	data.fWildDefenceModifier = fWildDefenceModifier;
 	data.fEleganceOffenceModifier = fEleganceOffenceModifier;

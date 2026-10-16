@@ -288,6 +288,7 @@ RWS::CEventId g_EventTransform;
 RWS::CEventId g_EventMobTransform;
 RWS::CEventId g_EventTransformCandy;
 RWS::CEventId g_EventSobTransformSequela;
+RWS::CEventId g_EventTransformRollingAttack;
 RWS::CEventId g_EventAfterEffectRemainTimeNfy;
 RWS::CEventId g_EventSobCondTerror;
 RWS::CEventId g_EventSobCondConfused;
