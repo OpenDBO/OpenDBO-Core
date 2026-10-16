@@ -31,6 +31,7 @@ void CItemUpgradeRateNewTable::Destroy()
 
 void CItemUpgradeRateNewTable::Init()
 {
+	memset(m_aUpgradeRateNewTbldat, 0, sizeof(m_aUpgradeRateNewTbldat));
 }
 
 void* CItemUpgradeRateNewTable::AllocNewTable(WCHAR* pwszSheetName, DWORD dwCodePage)
@@ -85,7 +86,8 @@ bool CItemUpgradeRateNewTable::AddTable(void * pvTable, bool bReload, bool bUpda
 		return false;
 	}
 
-	if (pTbldat->byGrade < NTL_ITEM_MAX_GRADE)
+	// the client now loads this table too, keep a bad row from writing past the lookup array
+	if (pTbldat->byItem_Type < _countof(m_aUpgradeRateNewTbldat) && pTbldat->byGrade < NTL_ITEM_MAX_GRADE)
 	{
 		if (false == SetUpgradeRateNewTbldat(pTbldat->byItem_Type, pTbldat->byGrade, pTbldat))
 		{
