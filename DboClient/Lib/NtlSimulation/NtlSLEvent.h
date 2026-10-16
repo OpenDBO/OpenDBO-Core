@@ -155,6 +155,7 @@ extern RWS::CEventId g_EventKeyboardDashMove;
 
 extern RWS::CEventId g_EventAirDashMove;
 extern RWS::CEventId g_EventAirAccelMove;
+extern RWS::CEventId g_EventAvatarAirUpDown;		///< tw: fly up/down key held or released
 
 // avatar를 heading을 바꿀때 발생하는 event.
 extern RWS::CEventId g_EventInputChangeHeading;
@@ -317,8 +318,8 @@ extern RWS::CEventId g_EventHoipoiMixInfoUpdate;			///< 호이포이믹스 인�
 extern RWS::CEventId g_EventTransform;
 extern RWS::CEventId g_EventMobTransform;               ///< 몹이 변신할때의 이벤트
 extern RWS::CEventId g_EventTransformCandy;             ///< 사탕으로 변신하는 이벤트
-extern RWS::CEventId g_EventSobTransformSequela;        ///< 변신 휴유증
 extern RWS::CEventId g_EventTransformRollingAttack;     ///< rolling attack ball transformation
+extern RWS::CEventId g_EventSobTransformSequela;        ///< 변신 휴유증
 
 // 컨디션 이벤트
 extern RWS::CEventId g_EventAfterEffectRemainTimeNfy;
@@ -1337,6 +1338,19 @@ struct SNtlEventAirAccelMove
 {
 	BYTE			byMoveDirection;
 	RwBool			bUpdateMove;
+};
+
+// tw: fly up/down key
+enum eAVATAR_AIR_UPDOWN
+{
+	AVATAR_AIR_UPDOWN_NONE,		// key released
+	AVATAR_AIR_UPDOWN_UP,
+	AVATAR_AIR_UPDOWN_DOWN,
+};
+
+struct SNtlEventAvatarAirUpDown
+{
+	RwUInt8			byUpDown;		// eAVATAR_AIR_UPDOWN
 };
 
 struct SNtlEventInputChangeHading			// avater heading hading
@@ -3922,6 +3936,12 @@ struct SNtlEventTransformCandy : public SNtlEventSob
     RwBool  bTransform;                 ///< º¯½Å À¯¹«
 };
 
+/// rolling attack ball transformation
+struct SNtlEventTransformRollingAttack : public SNtlEventSob
+{
+    RwBool  bTransform;
+};
+
 struct SNtlEventBotCaution_Nfy : public SNtlEventSob
 {
 };
@@ -3936,12 +3956,6 @@ struct SNtlEventCameraFPS
 {
 	RwV3d   vCurrLookAt;                    ///< Direction you are looking at
 	RwV3d   vTargetLookAt;                  ///< Direction to look when changed to first person camera
-/// rolling attack ball transformation
-struct SNtlEventTransformRollingAttack : public SNtlEventSob
-{
-    RwBool  bTransform;
-};
-
 };
 
 enum eScouterEventType

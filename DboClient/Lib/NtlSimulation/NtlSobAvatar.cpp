@@ -198,6 +198,7 @@ void CNtlSobAvatar::CreateEvent(void)
 	LinkMsg(g_EventMouseDashMove, 0);
 	LinkMsg(g_EventAirDashMove);
 	LinkMsg(g_EventAirAccelMove);
+	LinkMsg(g_EventAvatarAirUpDown);
 	LinkMsg(g_EventSobTargetSelect, 0);
     LinkMsg(g_EventSobTargetSelectRelease, NULL);
 	LinkMsg(g_EventSobAttackSelect, 0);
@@ -334,6 +335,7 @@ void CNtlSobAvatar::DestroyEvent(void)
 	UnLinkMsg(g_EventMouseDashMove);
 	UnLinkMsg(g_EventAirDashMove);
 	UnLinkMsg(g_EventAirAccelMove);
+	UnLinkMsg(g_EventAvatarAirUpDown);
 	UnLinkMsg(g_EventSobTargetSelect);
     UnLinkMsg(g_EventSobTargetSelectRelease);
 	UnLinkMsg(g_EventSobAttackSelect);

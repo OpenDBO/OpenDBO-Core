@@ -141,6 +141,9 @@ protected:
 	// keyboard move
 	RwUInt8 m_byKeyboardMoveFlags;
 
+	// the server echoes the falling we send, it must not start the falling again
+	RwBool m_bFallingEchoPending;
+
 	typedef RwUInt32 (CNtlFSMPlayerController::*FuncEventHander)(RWS::CMsg &pMsg);
 	typedef std::map<const RWS::CRegisteredMsgs*, FuncEventHander> MapFuncEventHandler;
 	MapFuncEventHandler m_mapEventFunc;
@@ -238,6 +241,7 @@ private:
 	virtual void NotifyKeyboardDashMoveEventHandler(RWS::CMsg &pMsg, RwUInt32 uiEventResult, RwUInt32 uiParam1, RwUInt32 uiParam2);
 	virtual void NotifyAirDashMoveEventHandler(RWS::CMsg &pMsg, RwUInt32 uiEventResult, RwUInt32 uiParam1, RwUInt32 uiParam2);
 	virtual void NotifyAirAccelMoveEventHandler(RWS::CMsg& pMsg, RwUInt32 uiEventResult, RwUInt32 uiParam1, RwUInt32 uiParam2);
+	virtual void NotifyAvatarAirUpDownEventHandler(RWS::CMsg& pMsg, RwUInt32 uiEventResult, RwUInt32 uiParam1, RwUInt32 uiParam2);
 	virtual void NotifySobTargetSelectEventHandler(RWS::CMsg &pMsg, RwUInt32 uiEventResult, RwUInt32 uiParam1, RwUInt32 uiParam2);
 	virtual void NotifySobAttackSelectEventHandler(RWS::CMsg &pMsg, RwUInt32 uiEventResult, RwUInt32 uiParam1, RwUInt32 uiParam2);
 	virtual void NotifySobFollowMoveEventHandler(RWS::CMsg &pMsg, RwUInt32 uiEventResult, RwUInt32 uiParam1, RwUInt32 uiParam2);

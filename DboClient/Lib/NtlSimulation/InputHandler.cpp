@@ -4,6 +4,17 @@
 SKeyData CInputHandler::g_LastKeyData;
 SMouseData CInputHandler::g_LastMouseData;
 
+#define MOUSE_CAPTURE_MAX_DELTA		50		// tw clamps every mouse move to this many pixels
+
+CInputHandler::CInputHandler()
+{
+	m_bActive = TRUE;
+
+	m_bMouseCaptureEnable = FALSE;
+	m_hMouseCaptureWnd = NULL;
+	memset(&m_sMouseCapture, 0, sizeof(m_sMouseCapture));
+}
+
 CInputHandler::~CInputHandler()
 {
 }
@@ -191,6 +202,9 @@ void CInputHandler::MouseDownHandler(unsigned int uiFlags, int nPosX, int nPosY,
 
 	if ( !m_bActive ) return;
 
+	if (m_bMouseCaptureEnable)
+		BeginMouseCapture(chBtnType, nPosX, nPosY, bDblClick);
+
 	SMouseData Mouse = { uiFlags, nPosX, nPosY, 0, chBtnType, bDblClick };
 
 	std::list<CNtlCallbackParam1*>::iterator it;
@@ -207,6 +221,9 @@ void CInputHandler::MouseUpHandler(unsigned int uiFlags, int nPosX, int nPosY, c
 	NTL_FUNCTION("CInputHandler::MouseUpHandler");
 
 	if ( !m_bActive ) return;
+
+	if (m_bMouseCaptureEnable)
+		EndMouseCapture(chBtnType, nPosX, nPosY);
 
 	SMouseData Mouse = { uiFlags, nPosX, nPosY, 0, chBtnType, 0, uiDeltaTime };
 
@@ -225,6 +242,24 @@ void CInputHandler::MouseMoveHandler(unsigned int uiFlags, int nPosX, int nPosY)
 
 	if ( !m_bActive ) return;
 
+	// while captured the cursor stays in the middle of the window, the listeners get the virtual position
+	if (m_bMouseCaptureEnable && IsMouseCaptured())
+	{
+		POINT ptCur;
+		if (GetCursorPos(&ptCur))
+		{
+			int iDeltaX = max(-MOUSE_CAPTURE_MAX_DELTA, min(MOUSE_CAPTURE_MAX_DELTA, (int)(ptCur.x - m_sMouseCapture.ptLast.x)));
+			int iDeltaY = max(-MOUSE_CAPTURE_MAX_DELTA, min(MOUSE_CAPTURE_MAX_DELTA, (int)(ptCur.y - m_sMouseCapture.ptLast.y)));
+
+			m_sMouseCapture.ptVirtual.x += iDeltaX;
+			m_sMouseCapture.ptVirtual.y += iDeltaY;
+			m_sMouseCapture.ptLast = ptCur;
+		}
+
+		nPosX = m_sMouseCapture.ptVirtual.x;
+		nPosY = m_sMouseCapture.ptVirtual.y;
+	}
+
 	SMouseData Mouse = { uiFlags, nPosX, nPosY, 0, 0 };
 
 	std::list<CNtlCallbackParam1*>::iterator it;
@@ -242,6 +277,12 @@ void CInputHandler::MouseWheelHandler(unsigned int uiFlags, short shDelta, int n
 
 	if ( !m_bActive ) return;
 
+	if (m_bMouseCaptureEnable && IsMouseCaptured())
+	{
+		nPosX = m_sMouseCapture.ptVirtual.x;
+		nPosY = m_sMouseCapture.ptVirtual.y;
+	}
+
 	SMouseData Mouse = { uiFlags, nPosX, nPosY, shDelta, MOUSE_LBTN, 0 };
 
 	std::list<CNtlCallbackParam1*>::iterator it;
@@ -251,4 +292,130 @@ void CInputHandler::MouseWheelHandler(unsigned int uiFlags, short shDelta, int n
 	}
 
 	NTL_RETURNVOID();
+}
+
+void CInputHandler::EnableMouseCapture(HWND hWnd, RwBool bEnable)
+{
+	if (!bEnable)
+		ReleaseMouseCapture();
+
+	m_hMouseCaptureWnd = hWnd;
+	m_bMouseCaptureEnable = bEnable;
+}
+
+bool CInputHandler::GetMouseCaptureCenter(POINT& ptCenter)
+{
+	if (m_hMouseCaptureWnd == NULL || ::IsIconic(m_hMouseCaptureWnd))
+		return false;
+
+	RECT rtClient;
+	if (!::GetClientRect(m_hMouseCaptureWnd, &rtClient))
+		return false;
+
+	ptCenter.x = rtClient.left + (rtClient.right - rtClient.left) / 2;
+	ptCenter.y = rtClient.top + (rtClient.bottom - rtClient.top) / 2;
+
+	return ::ClientToScreen(m_hMouseCaptureWnd, &ptCenter) != FALSE;
+}
+
+void CInputHandler::BeginMouseCapture(char chBtnType, int& nPosX, int& nPosY, bool bDblClick)
+{
+	unsigned int uiButtonBit = 1 << chBtnType;
+
+	// tw: a double click ends the capture of that button
+	if (bDblClick)
+	{
+		if (m_sMouseCapture.uiButtonMask & uiButtonBit)
+		{
+			m_sMouseCapture.uiButtonMask &= ~uiButtonBit;
+
+			nPosX = m_sMouseCapture.ptVirtual.x;
+			nPosY = m_sMouseCapture.ptVirtual.y;
+
+			if (m_sMouseCapture.uiButtonMask == 0)
+				RestoreMouseCursor();
+		}
+
+		return;
+	}
+
+	// another button already holds the capture, keep its restore point and virtual position
+	if (m_sMouseCapture.uiButtonMask != 0)
+	{
+		m_sMouseCapture.uiButtonMask |= uiButtonBit;
+
+		nPosX = m_sMouseCapture.ptVirtual.x;
+		nPosY = m_sMouseCapture.ptVirtual.y;
+		return;
+	}
+
+	POINT ptCenter;
+	if (!GetMouseCaptureCenter(ptCenter))
+		return;
+
+	if (!::GetCursorPos(&m_sMouseCapture.ptRestore))
+		return;
+
+	m_sMouseCapture.uiButtonMask = uiButtonBit;
+	m_sMouseCapture.ptPress.x = m_sMouseCapture.ptVirtual.x = nPosX;
+	m_sMouseCapture.ptPress.y = m_sMouseCapture.ptVirtual.y = nPosY;
+
+	::SetCursorPos(ptCenter.x, ptCenter.y);
+	m_sMouseCapture.ptLast = ptCenter;
+
+	if (!m_sMouseCapture.bCursorHidden)
+	{
+		::ShowCursor(FALSE);
+		m_sMouseCapture.bCursorHidden = true;
+	}
+}
+
+void CInputHandler::EndMouseCapture(char chBtnType, int& nPosX, int& nPosY)
+{
+	unsigned int uiButtonBit = 1 << chBtnType;
+
+	if ((m_sMouseCapture.uiButtonMask & uiButtonBit) == 0)
+		return;
+
+	m_sMouseCapture.uiButtonMask &= ~uiButtonBit;
+
+	// tw reports the position where the button was pressed (the cursor itself is in the middle of the window)
+	nPosX = m_sMouseCapture.ptPress.x;
+	nPosY = m_sMouseCapture.ptPress.y;
+
+	if (m_sMouseCapture.uiButtonMask == 0)
+		RestoreMouseCursor();
+}
+
+void CInputHandler::RestoreMouseCursor(void)
+{
+	::SetCursorPos(m_sMouseCapture.ptRestore.x, m_sMouseCapture.ptRestore.y);
+
+	if (m_sMouseCapture.bCursorHidden)
+	{
+		::ShowCursor(TRUE);
+		m_sMouseCapture.bCursorHidden = false;
+	}
+}
+
+void CInputHandler::UpdateMouseCapture(void)
+{
+	if (!m_bMouseCaptureEnable || !IsMouseCaptured())
+		return;
+
+	POINT ptCenter;
+	if (!GetMouseCaptureCenter(ptCenter))
+		return;
+
+	::SetCursorPos(ptCenter.x, ptCenter.y);
+	m_sMouseCapture.ptLast = ptCenter;
+}
+
+void CInputHandler::ReleaseMouseCapture(void)
+{
+	if (!IsMouseCaptured())
+		return;
+
+	m_sMouseCapture.uiButtonMask = 0;
+	RestoreMouseCursor();
 }

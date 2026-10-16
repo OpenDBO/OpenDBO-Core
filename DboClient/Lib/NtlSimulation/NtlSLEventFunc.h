@@ -134,6 +134,7 @@ public:
 	static void KeyboardDashMove(RwUInt32 uiMoveFlags);
 	static void AirDashMove(RwBool bMouse, RwV3d* pvPickPos, RwUInt32 uiMoveFlags, RwBool bUpdateMove = TRUE);
 	static void AirAccelMove(BYTE byMoveDirection, RwBool bUpdateMove = TRUE);
+	static void AvatarAirUpDown(RwUInt8 byUpDown);												// tw: fly up/down key (eAVATAR_AIR_UPDOWN)
 	static void InputChagneHeading(RwBool bSmoothing, RwReal fDeltaAngleY, bool bSetAngleX, RwReal fDeltaAngleX, RwBool& bSuccess);
 	static RwBool SobTargetSelect(SERIAL_HANDLE hSerialId, RwBool bFollow = FALSE);
 	static void SobTargetSelectRelease(SERIAL_HANDLE hSerialId);
@@ -969,8 +970,8 @@ public:
 	static void SobTransform(SERIAL_HANDLE hSerialId, const sASPECTSTATE& aspectState);                                 ///< PC占쏙옙 占쏙옙占쏙옙 占싱븝옙트
     static void SobMobTransform(SERIAL_HANDLE hSerialId, TBLIDX tblTransformMobId);                                     ///< Mob占쏙옙 占쏙옙占쏙옙 占싱븝옙트
     static void SobTransformCandy(SERIAL_HANDLE hSerialId, RwBool bTransform);                                          ///< 占쏙옙占쏙옙 占쏙옙占쏙옙 占싱븝옙트
-    static void SobTransformSequela(SERIAL_HANDLE hSerialId);                                                           ///< 占십삼옙占싱억옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占싱븝옙트 (占싣뱄옙타 占쏙옙占쏙옙)
     static void SobTransformRollingAttack(SERIAL_HANDLE hSerialId, RwBool bTransform);                                  ///< rolling attack ball transformation
+    static void SobTransformSequela(SERIAL_HANDLE hSerialId);                                                           ///< 占십삼옙占싱억옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占싱븝옙트 (占싣뱄옙타 占쏙옙占쏙옙)
 
 	static void SobCinematicScale(SERIAL_HANDLE hSerialId, float fScale, float fTime);
 

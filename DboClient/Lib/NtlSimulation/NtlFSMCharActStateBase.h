@@ -45,6 +45,7 @@ protected:
 	virtual RwUInt32 EventProcInputMouseDashMove(RWS::CMsg &pMsg);
 	virtual RwUInt32 EventProcInputAirDashMove(RWS::CMsg &pMsg);
 	virtual RwUInt32 EventProcInputAirAccelMove(RWS::CMsg& pMsg);
+	virtual RwUInt32 EventProcAvatarAirUpDown(RWS::CMsg& pMsg);		// tw: fly up/down key
 	virtual RwUInt32 EventProcInputChangeHeading(RWS::CMsg &pMsg);
 
 	virtual RwUInt32 EventProcSobTargetSelect(RWS::CMsg &pMsg);

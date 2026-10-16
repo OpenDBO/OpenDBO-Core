@@ -242,6 +242,9 @@ RwBool CDboApplication::CreateSubSystem(RwUInt32 iWidth, RwUInt32 iHeight, RwBoo
 		NTL_RETURN(FALSE);
 	}
 
+	// tw: dragging with a mouse button keeps the cursor in the middle of the window
+	CInputHandler::GetInstance()->EnableMouseCapture(GetHWnd(), TRUE);
+
     // Bug Trap
     SetErrorReport();    
 
@@ -844,6 +847,8 @@ LRESULT CDboApplication::PreTranslateMessage(HWND window, UINT message, WPARAM w
 			if(GetInputActionMap())
 				GetInputActionMap()->Reset();
 
+			CInputHandler::GetInstance()->ReleaseMouseCapture();
+
 			if( m_pGamma )
 				m_pGamma->RestoreBackGroundGamma();
 		}
@@ -981,10 +986,10 @@ LRESULT CDboApplication::PreTranslateMessage(HWND window, UINT message, WPARAM w
 			CInputHandler::GetInstance()->MouseWheelHandler(LOWORD(wParam), HIWORD(wParam), GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
 			break;
 		case WM_MOUSEMOVE:
-			/*if (m_bMouseBackgroundCapture)
+			if (m_bMouseBackgroundCapture)
 			{
 				CInputHandler::GetInstance()->MouseMoveHandler((unsigned int)wParam, GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
-			}*/
+			}
 			break;
 		default:
 			break;
@@ -1118,6 +1123,8 @@ RwBool CDboApplication::Update(RwReal fTime, RwReal fElapsedTime)
 #endif
 
 //	EventQueueCurrentProcessFilterMsg(
+
+	CInputHandler::GetInstance()->UpdateMouseCapture();
 
 	API_CoreUpdate(fElapsedTime);
 

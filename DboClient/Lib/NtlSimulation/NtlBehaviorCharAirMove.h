@@ -32,6 +32,11 @@ protected:
 	CNtlPLEntity		*m_pPLAirEffect;
 	RwV3d				m_vEffectOffset;
 
+	// tw: tilting the flight with the up/down key, the avatar sends the heading every few degrees
+	RwBool				m_bAirTiltSync;
+	RwReal				m_fAirTiltStartY;
+	RwReal				m_fAirTiltTime;
+
 protected:
 
 	void	SetAnim(RwUInt8 byMoveFlags);
@@ -41,6 +46,9 @@ protected:
 
 
 	void	UpdateAirEffect(RwV3d& vDir);
+
+	void	UpdateAirTilt(SMoveStuff *pMoveStuff, RwReal fElapsed);
+	void	BeginAirTiltSync(RwReal fDirY);
 
 private:
 

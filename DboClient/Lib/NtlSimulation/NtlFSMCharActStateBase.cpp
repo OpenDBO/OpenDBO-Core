@@ -56,6 +56,7 @@ CNtlFSMCharActStateBase::CNtlFSMCharActStateBase()
 	m_mapEventFunc[g_EventKeyboardDashMove.Get_pEventId()]		= &CNtlFSMCharActStateBase::EventProcInputKeyboardDashMove;
 	m_mapEventFunc[g_EventAirDashMove.Get_pEventId()]	= &CNtlFSMCharActStateBase::EventProcInputAirDashMove;
 	m_mapEventFunc[g_EventAirAccelMove.Get_pEventId()] = &CNtlFSMCharActStateBase::EventProcInputAirAccelMove;
+	m_mapEventFunc[g_EventAvatarAirUpDown.Get_pEventId()] = &CNtlFSMCharActStateBase::EventProcAvatarAirUpDown;
 	m_mapEventFunc[g_EventInputChangeHeading.Get_pEventId()]	= &CNtlFSMCharActStateBase::EventProcInputChangeHeading;
 
 	m_mapEventFunc[g_EventSobMove.Get_pEventId()]				= &CNtlFSMCharActStateBase::EventProcSobMove;
@@ -684,6 +685,72 @@ RwUInt32 CNtlFSMCharActStateBase::EventProcInputAirAccelMove(RWS::CMsg& pMsg)
 	SetNextStateId(NTL_FSMSID_AIR_ACCEL);
 
 	NTL_RETURN(NTL_FSM_EVENTRES_CHANGE_STATE);
+}
+
+RwUInt32 CNtlFSMCharActStateBase::EventProcAvatarAirUpDown(RWS::CMsg& pMsg)
+{
+	NTL_FUNCTION("CNtlFSMCharActStateBase::EventProcAvatarAirUpDown");
+
+	// tw: the key is kept in the behavior data, the air move tilts the flight with it while moving.
+	// Standing in the air it flies straight up/down, releasing the key stops it.
+	SNtlEventAvatarAirUpDown* pAirUpDown = reinterpret_cast<SNtlEventAvatarAirUpDown*>(pMsg.pData);
+	CNtlBeCharData* pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData());
+	if (pAirUpDown == NULL || pBeData == NULL)
+	{
+		NTL_RETURN(NTL_FSM_EVENTRES_BLOCK);
+	}
+
+	pBeData->SetAirUpDown(pAirUpDown->byUpDown);
+
+	SMoveStuff* pMoveStuff = pBeData->GetMoveStuff();
+
+	switch (GetStateId())
+	{
+		case NTL_FSMSID_IDLE:
+		{
+			if (m_pActor->IsAirMode() && pAirUpDown->byUpDown != AVATAR_AIR_UPDOWN_NONE)
+			{
+				SNtlEventKeyboardMove sKeyboardMove;
+				memset(&sKeyboardMove, 0, sizeof(sKeyboardMove));
+				sKeyboardMove.byMoveFlags = (pAirUpDown->byUpDown == AVATAR_AIR_UPDOWN_UP) ? NTL_MOVE_HEIGHT_UP : NTL_MOVE_HEIGHT_DOWN;
+
+				FSMEvent_CharActKeyboardMove(m_pActor, &sKeyboardMove);
+
+				Finish();
+				SetNextStateId(NTL_FSMSID_MOVE);
+				NTL_RETURN(NTL_FSM_EVENTRES_CHANGE_STATE);
+			}
+		}
+		break;
+
+		case NTL_FSMSID_AIR_JUMP:
+		{
+			if (pAirUpDown->byUpDown == AVATAR_AIR_UPDOWN_NONE)
+			{
+				pMoveStuff->byType = NTL_MOVETARGET_NONE;
+
+				Finish();
+				SetNextStateId(NTL_FSMSID_IDLE);
+				NTL_RETURN(NTL_FSM_EVENTRES_CHANGE_STATE);
+			}
+		}
+		break;
+
+		case NTL_FSMSID_MOVE:
+		{
+			if (pAirUpDown->byUpDown == AVATAR_AIR_UPDOWN_NONE && (pMoveStuff->byMoveFlags == NTL_MOVE_HEIGHT_UP || pMoveStuff->byMoveFlags == NTL_MOVE_HEIGHT_DOWN))
+			{
+				pMoveStuff->byMoveFlags = NTL_MOVE_NONE;
+
+				Finish();
+				SetNextStateId(NTL_FSMSID_IDLE);
+				NTL_RETURN(NTL_FSM_EVENTRES_CHANGE_STATE);
+			}
+		}
+		break;
+	}
+
+	NTL_RETURN(NTL_FSM_EVENTRES_BLOCK);
 }
 
 RwUInt32 CNtlFSMCharActStateBase::EventProcInputChangeHeading(RWS::CMsg &pMsg)

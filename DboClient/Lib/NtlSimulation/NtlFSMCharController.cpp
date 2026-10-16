@@ -49,6 +49,7 @@ CNtlFSMPlayerController::CNtlFSMPlayerController()
 
 	m_bAttackRangeCheck = FALSE;
 	m_byKeyboardMoveFlags = NTL_MOVE_NONE;
+	m_bFallingEchoPending = FALSE;
 
 	// event handler function link
 	m_mapEventFunc[g_EventSobCreate.Get_pEventId()]						= &CNtlFSMPlayerController::SobCreateEventHandler;
@@ -102,6 +103,7 @@ CNtlFSMPlayerController::CNtlFSMPlayerController()
 	m_mapNotifyEventFunc[g_EventKeyboardDashMove.Get_pEventId()]		= &CNtlFSMPlayerController::NotifyKeyboardDashMoveEventHandler;
 	m_mapNotifyEventFunc[g_EventAirDashMove.Get_pEventId()] = &CNtlFSMPlayerController::NotifyAirDashMoveEventHandler;
 	m_mapNotifyEventFunc[g_EventAirAccelMove.Get_pEventId()] = &CNtlFSMPlayerController::NotifyAirAccelMoveEventHandler;
+	m_mapNotifyEventFunc[g_EventAvatarAirUpDown.Get_pEventId()] = &CNtlFSMPlayerController::NotifyAvatarAirUpDownEventHandler;
 	m_mapNotifyEventFunc[g_EventSobTargetSelect.Get_pEventId()]			= &CNtlFSMPlayerController::NotifySobTargetSelectEventHandler;
 	m_mapNotifyEventFunc[g_EventSobAttackSelect.Get_pEventId()]			= &CNtlFSMPlayerController::NotifySobAttackSelectEventHandler;
 	m_mapNotifyEventFunc[g_EventSobFollowMove.Get_pEventId()]			= &CNtlFSMPlayerController::NotifySobFollowMoveEventHandler;
@@ -249,6 +251,10 @@ RwUInt32 CNtlFSMPlayerController::ServerStateUpdateAnalysis(SNtlEventSobServerUp
 		}
 	}
 
+	// any other state means our falling is over, a later falling comes from the server
+	if (byServerState != CHARSTATE_FALLING)
+		m_bFallingEchoPending = FALSE;
+
 	switch(byServerState)
 	{
 		case CHARSTATE_SPAWNING:
@@ -331,8 +337,14 @@ RwUInt32 CNtlFSMPlayerController::ServerStateUpdateAnalysis(SNtlEventSobServerUp
 		return NTL_FSM_EVENTRES_BLOCK;
 		break;
 	case CHARSTATE_FALLING:
-		//return NTL_FSM_EVENTRES_BLOCK;
-		return NTL_FSM_EVENTRES_PASS; // pass, so it will apply on ourself too 
+		// the falling we started ourself was already played, its echo would play the landing again (tw blocks it)
+		if (m_bFallingEchoPending)
+		{
+			m_bFallingEchoPending = FALSE;
+			return NTL_FSM_EVENTRES_BLOCK;
+		}
+
+		return NTL_FSM_EVENTRES_PASS; // pass, the server makes us fall (flight canceled, no AP left, ...)
 		break;
 	case CHARSTATE_TELEPORTING:
 		return NTL_FSM_EVENTRES_PASS;
@@ -1399,6 +1411,8 @@ void CNtlFSMPlayerController::NotifyNextUpdateStateFallingProc(RwUInt32 uiOldSta
 
 	RwUInt8 byMoveDirection = pCtrlStuff->uExtra.sFalling.byMoveDirection;
 
+	m_bFallingEchoPending = TRUE;
+
 	if (m_pActor->IsAirMode())
 	{
 		API_GetSLPacketGenerator()->SendAirFalling(vPos, vDir, NTL_MOVE_NONE);
@@ -2099,6 +2113,32 @@ void CNtlFSMPlayerController::NotifyAirAccelMoveEventHandler(RWS::CMsg& pMsg, Rw
 
 	SNtlEventAirDashMove * pAirDashMove = reinterpret_cast<SNtlEventAirDashMove*>(pMsg.pData);
 	API_GetSLPacketGenerator()->SendAirAccelMove(m_pActor->GetPosition(), m_pActor->GetDirection(), (RwUInt8)pAirDashMove->uiMoveFlags);
+}
+
+// tw: the server gets the move when flying straight up/down starts (from idle) or stops
+void CNtlFSMPlayerController::NotifyAvatarAirUpDownEventHandler(RWS::CMsg& pMsg, RwUInt32 uiEventResult, RwUInt32 uiParam1, RwUInt32 uiParam2)
+{
+	if (!(uiEventResult == NTL_FSM_EVENTRES_PASS || uiEventResult == NTL_FSM_EVENTRES_CHANGE_STATE))
+		return;
+
+	SNtlEventAvatarAirUpDown* pAirUpDown = reinterpret_cast<SNtlEventAvatarAirUpDown*>(pMsg.pData);
+	CNtlBeCharData* pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData());
+	if (pAirUpDown == NULL || pBeData == NULL)
+		return;
+
+	RwUInt8 byMoveFlags = pBeData->GetMoveStuff()->byMoveFlags;
+	RwUInt32 uiPrevState = uiParam1;
+
+	RwBool bSend = FALSE;
+	if (uiPrevState == NTL_FSMSID_IDLE)
+		bSend = TRUE;
+	else if (uiPrevState == NTL_FSMSID_AIR_JUMP)
+		bSend = (pAirUpDown->byUpDown == AVATAR_AIR_UPDOWN_NONE);
+	else if (uiPrevState == NTL_FSMSID_MOVE)
+		bSend = (byMoveFlags == NTL_MOVE_NONE);
+
+	if (bSend)
+		API_GetSLPacketGenerator()->SendKeyboardAirMove(m_pActor->GetPosition(), m_pActor->GetDirection(), byMoveFlags);
 }
 
 

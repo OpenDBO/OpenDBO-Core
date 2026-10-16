@@ -78,11 +78,12 @@ const char* SOUND_SL_GROUND_PICKING[4] = {"Effect\\GENERAL_Picking_Ground.wav",
 
 
 #define NTL_ZOOM_INOUT_SENSITIVITY		0.03f
-#define NTL_MOUSE_SENSITIVITY_SCALE		0.5f
+#define NTL_MOUSE_YAW_SENSITIVITY		0.4f		// tw
+#define NTL_MOUSE_PITCH_SENSITIVITY		0.2f		// tw
 #define NTL_HEADING_UPDATE_TIME			5.0f
 #define NTL_HEADING_DELTA_TIME			0.3f
 #define NTL_HEADING_DELTA_ANGLE			10.0f
-#define NTL_MAX_HEADING_ANGLE_X			60.0f
+#define NTL_MAX_HEADING_ANGLE_X			45.0f		// tw
 
 #define KEY_LOOTING_TIME				0.1f
 
@@ -121,8 +122,6 @@ CAvatarController::CAvatarController()
 
 	m_fKeyLootingTime				= 0.0f;
 
-	m_bChangeAngleX = false;
-	m_bChangeAngleXUp = false;
 
 	m_bLButtonDownFlag = false;
 	m_bRButtonDownFlag = false;
@@ -140,6 +139,7 @@ RwBool CAvatarController::Create()
 	m_handleMouseWheel = CInputHandler::GetInstance()->LinkMouseWheel(this, &CAvatarController::MouseWheelHandler);
 	m_handleMouseDown  = CInputHandler::GetInstance()->LinkMouseDown(this, &CAvatarController::MouseDownHandler);
 	m_handleMouseUp    = CInputHandler::GetInstance()->LinkMouseUp(this, &CAvatarController::MouseUpHandler);
+	m_handleMouseMove  = CInputHandler::GetInstance()->LinkMouseMove(this, &CAvatarController::MouseMoveHandler);
 	m_handleKeyDown    = CInputHandler::GetInstance()->LinkKeyDown(this, &CAvatarController::KeyboardDownHandler);
 	m_handleKeyUp      = CInputHandler::GetInstance()->LinkKeyUp(this, &CAvatarController::KeyboardUpHandler);
 	m_handleRestoreHandler = CNtlDeviceRestoreHandler::GetInstance()->LinkDeviceRestore(this, &CAvatarController::RestoreHandler);
@@ -149,6 +149,8 @@ RwBool CAvatarController::Create()
     GetInputActionMap()->LinkAutoRun(this, &CAvatarController::ActionAutoRun);
 	GetInputActionMap()->LinkAvatarSelect(this, &CAvatarController::ActionAvatarSelect);
 	GetInputActionMap()->LinkJump(this, &CAvatarController::ActionJump);
+	GetInputActionMap()->LinkAirUp(this, &CAvatarController::ActionMapAirUp);
+	GetInputActionMap()->LinkAirDown(this, &CAvatarController::ActionMapAirDown);
 	GetInputActionMap()->LinkCharging(this, &CAvatarController::ActionCharging);
 	GetInputActionMap()->LinkBlocking(this, &CAvatarController::ActionBlocking);
 	GetInputActionMap()->LinkSitAndStand(this, &CAvatarController::ActionSitAndStand);
@@ -200,6 +202,7 @@ void CAvatarController::Destroy()
 	CInputHandler::GetInstance()->UnLinkMouseWheel(m_handleMouseWheel);
 	CInputHandler::GetInstance()->UnLinkMouseDown(m_handleMouseDown);
 	CInputHandler::GetInstance()->UnLinkMouseUp(m_handleMouseUp);
+	CInputHandler::GetInstance()->UnLinkMouseMove(m_handleMouseMove);
 
 	CInputHandler::GetInstance()->UnLinkKeyDown(m_handleKeyDown);
 	CInputHandler::GetInstance()->UnLinkKeyUp(m_handleKeyUp);
@@ -208,6 +211,8 @@ void CAvatarController::Destroy()
 	GetInputActionMap()->UnLinkKeyboardDashMove();
 	GetInputActionMap()->UnLinkAvatarSelect();
 	GetInputActionMap()->UnLinkJump();
+	GetInputActionMap()->UnLinkAirUp();
+	GetInputActionMap()->UnLinkAirDown();
 	GetInputActionMap()->UnLinkCharging();
 	GetInputActionMap()->UnLinkBlocking();
 	GetInputActionMap()->UnLinkSitAndStand();
@@ -250,9 +255,6 @@ void CAvatarController::Update(RwReal fElapsed)
 
 	// update change heading
 	UpdateChangeHeading(fElapsed);
-
-	// update flight
-	UpdateFlightAngle(fElapsed);
 
 	CalcCameraRotateToCharBack(); // decide wether to move cam to char-back or not
 
@@ -396,8 +398,8 @@ RwReal CAvatarController::CalcAvatarStraightRotate(RwUInt32 uiMoveFlags)
 
 void CAvatarController::CalcCameraRotateSensitivity(int iPosX, int iPosY, int iMouseDeltaX, int iMouseDeltaY)
 {
-	RwReal fDeltaYaw = ((RwReal)iMouseDeltaX * NTL_MOUSE_SENSITIVITY_SCALE);
-	RwReal fDeltaPitch = ((RwReal)iMouseDeltaY * NTL_MOUSE_SENSITIVITY_SCALE);
+	RwReal fDeltaYaw = ((RwReal)iMouseDeltaX * NTL_MOUSE_YAW_SENSITIVITY);
+	RwReal fDeltaPitch = ((RwReal)iMouseDeltaY * NTL_MOUSE_PITCH_SENSITIVITY);
 	
 	GetNtlGameCameraManager()->AddYaw(fDeltaYaw);
 	GetNtlGameCameraManager()->AddPitch(-fDeltaPitch);
@@ -429,8 +431,6 @@ void CAvatarController::TeleportReset(void)
 
 	m_fKeyLootingTime				= 0.0f;
 
-	m_bChangeAngleX = false;
-	m_bChangeAngleXUp = false;
 }
 
 void CAvatarController::PickPLWorld(SWorldPickInfo& sPickInfo)
@@ -809,11 +809,6 @@ void CAvatarController::MouseMoveLBtnHandler(int iPosX, int iPosY)
 
 	m_iOldLButtonMouseX = iPosX;
 	m_iOldLButtonMouseY = iPosY;
-
-	if (iDeltaX == 0 && iDeltaY == 0)
-	{
-		ResetMousePosition();
-	}
 }
 
 void CAvatarController::MouseMoveRBtnHandler(int iPosX, int iPosY)
@@ -878,7 +873,7 @@ void CAvatarController::MouseMoveRBtnHandler(int iPosX, int iPosY)
 	m_iDeltaRButtonMouseX += abs(iDeltaX);
 	m_iDeltaRButtonMouseY += abs(iDeltaY);
 
-	if(bChangeHeadingEnable && iDeltaX != 0 && iDeltaX != 0)
+	if(bChangeHeadingEnable && (iDeltaX != 0 || iDeltaY != 0)) // vertical only movement must still change the flight pitch
 	{
 		if(!m_bChangeHeadingFlag)
 		{
@@ -894,48 +889,45 @@ void CAvatarController::MouseMoveRBtnHandler(int iPosX, int iPosY)
 
 			if (pSobAvatar->IsAirMode())
 			{
+				// tw clamps the camera pitch instead of ignoring it
 				RwReal fPitch = GetNtlGameCameraManager()->GetPitch();
-				if (fabsf(fPitch) < NTL_MAX_HEADING_ANGLE_X)
-					pSobAvatar->SetAngleX(fPitch);
+				fPitch = max(-NTL_MAX_HEADING_ANGLE_X, min(NTL_MAX_HEADING_ANGLE_X, fPitch));
+				pSobAvatar->SetAngleX(fPitch);
 
-				m_fChangeHeadingDeltaAngleX += (float)iDeltaY * NTL_MOUSE_SENSITIVITY_SCALE;
+				m_fChangeHeadingDeltaAngleX += (float)iDeltaY * NTL_MOUSE_PITCH_SENSITIVITY;
 			}
 
 			RwV3d vDir = pSobAvatar->GetDirection();
 			API_GetSLPacketGenerator()->SendChangeHeading(vDir);
 		}
 
-		m_fChangeHeadingDeltaAngleY += (float)iDeltaX * NTL_MOUSE_SENSITIVITY_SCALE;
+		m_fChangeHeadingDeltaAngleY += (float)iDeltaX * NTL_MOUSE_YAW_SENSITIVITY;
 
 		RwBool bSuccess = true;
-		CNtlSLEventGenerator::InputChagneHeading(false, (float)iDeltaX * NTL_MOUSE_SENSITIVITY_SCALE, pSobAvatar->IsAirMode() == TRUE, (float)iDeltaY * NTL_MOUSE_SENSITIVITY_SCALE, bSuccess);
+		CNtlSLEventGenerator::InputChagneHeading(false, (float)iDeltaX * NTL_MOUSE_YAW_SENSITIVITY, pSobAvatar->IsAirMode() == TRUE, (float)iDeltaY * NTL_MOUSE_PITCH_SENSITIVITY, bSuccess);
 	}
 
 	CalcCameraRotateSensitivity(iPosX, iPosY, iDeltaX, iDeltaY);
 
 	m_iOldRButtonMouseX = iPosX;
 	m_iOldRButtonMouseY = iPosY;
-
-	if (iDeltaX == 0 && iDeltaY == 0)
-	{
-		ResetMousePosition();
-	}
 }
 
-void CAvatarController::ResetMousePosition()
+int CAvatarController::MouseMoveHandler(uintptr_t uiMouseData)
 {
-	int x = GetCursorManager()->GetOldPosX();
-	int y = GetCursorManager()->GetOldPosY();
+	// the input handler captures the mouse while a button is held (tw), the position is virtual and never stops at the screen edge
+	SMouseData *pData = (SMouseData *)uiMouseData;
 
-	m_bRButtonMoveFlag = FALSE;
-	m_bLButtonMoveFlag = FALSE;
+	if (m_bRButtonDownFlag)
+	{
+		MouseMoveRBtnHandler(pData->iPosX, pData->iPosY);
+	}
+	else if (m_bLButtonDownFlag)
+	{
+		MouseMoveLBtnHandler(pData->iPosX, pData->iPosY);
+	}
 
-	m_iOldLButtonMouseX = x;
-	m_iOldLButtonMouseY = y;
-	m_iOldRButtonMouseX = x;
-	m_iOldRButtonMouseY = y;
-
-	GetCursorManager()->SetMouseCursorPosition(x, y);
+	return TRUE;
 }
 
 void CAvatarController::CalcCameraRotateToCharBack(void)
@@ -1332,8 +1324,7 @@ int	CAvatarController::MouseDownHandler(uintptr_t uiMouseData)
 		if (m_bHideMouse == false)
 		{
 			m_bHideMouse = true;
-			GetCursorManager()->ShowMouseCursor(FALSE);
-			GetCursorManager()->SaveCurrentPosition();
+			GetCursorManager()->ShowMouseCursor(FALSE); // the input handler puts the cursor back where it was pressed
 		}
 	}
 	
@@ -1409,7 +1400,6 @@ int	CAvatarController::MouseUpHandler(uintptr_t uiMouseData)
 		{			
 			m_bHideMouse = false;
 			GetCursorManager()->ShowMouseCursor(TRUE);
-			GetCursorManager()->RestorePosition();
 		}
 	}
 
@@ -1561,24 +1551,14 @@ void CAvatarController::UpdateMoveMark(RwReal fElapsed)
 
 void CAvatarController::UpdateMouse(RwReal fElapsed)
 {
-	POINT pos;
-	GetCursorPos(&pos);
-
 	if (!m_bMouseAutoRun && m_bLButtonDownFlag && m_bRButtonDownFlag) {
 		m_bMouseAutoRun = true;
 		ActionAutoRun();
 	}
-	
-	if (m_bRButtonDownFlag)
-	{
-		MouseMoveRBtnHandler(pos.x, pos.y);
-	}
-	else if (m_bLButtonDownFlag)
-	{
-		MouseMoveLBtnHandler(pos.x, pos.y);
 
+	// the camera and heading follow the mouse move events (MouseMoveHandler)
+	if (!m_bRButtonDownFlag && m_bLButtonDownFlag)
 		sm_cameraMoveCount += 1;
-	}
 }
 
 void CAvatarController::UpdateChangeHeading(RwReal fElapsed)
@@ -1638,23 +1618,40 @@ void CAvatarController::UpdateChangeHeading(RwReal fElapsed)
 	}
 }
 
-void CAvatarController::UpdateFlightAngle(float fElapsed)
+int CAvatarController::ActionMapAirUp(uintptr_t bKeyDown)
 {
-	if (m_bChangeAngleX)
+	return ActionMapAirUpDown(bKeyDown ? AVATAR_AIR_UPDOWN_UP : AVATAR_AIR_UPDOWN_NONE);
+}
+
+int CAvatarController::ActionMapAirDown(uintptr_t bKeyDown)
+{
+	return ActionMapAirUpDown(bKeyDown ? AVATAR_AIR_UPDOWN_DOWN : AVATAR_AIR_UPDOWN_NONE);
+}
+
+// tw: the jump/sit keys fly up/down while held. Standing in the air it flies straight up/down,
+// while moving it tilts the flight (CNtlBehaviorCharAirMove::UpdateAirTilt).
+int CAvatarController::ActionMapAirUpDown(RwUInt8 byUpDown)
+{
+	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
+	if (pAvatar == NULL)
+		return TRUE;
+
+	// the release always goes through, the key may be released after landing
+	if (byUpDown != AVATAR_AIR_UPDOWN_NONE)
 	{
-		CNtlSobAvatar* pSobAvatar = GetNtlSLGlobal()->GetSobAvatar();
-		if (pSobAvatar && pSobAvatar->IsAirMode())
-		{
-			if (m_bChangeAngleXUp) // fly up
-			{
-				pSobAvatar->SetDeltaAngleX(-0.8);
-			}
-			else // fly down
-			{
-				pSobAvatar->SetDeltaAngleX(0.8);
-			}
-		}
+		if (!pAvatar->IsAirMode() || Logic_IsDirectMode(pAvatar))
+			return TRUE;
+
+		if (!GetNtlWorldConcept()->IsEnableAction(E_ACTION_MOVE))
+			return TRUE;
+
+		if (!Logic_CanKeybaordInput_in_Tutorial(ETL_KEYBOARD_INPUT_TYPE_MOVE))
+			return TRUE;
 	}
+
+	CNtlSLEventGenerator::AvatarAirUpDown(byUpDown);
+
+	return TRUE;
 }
 
 void CAvatarController::UpdatePickFocus(RwReal fElapsed)
@@ -2067,17 +2064,9 @@ int CAvatarController::ActionJump(uintptr_t uiMoveFlags)
 
 	if (uiMoveFlags == NTL_MOVE_UNKNOWN) // check if we release the space
 	{
-		m_bChangeAngleX = false;
-
-		if (pAvatar->IsAirMode())
-		{
-			if (m_uiCurMoveFlags == NTL_MOVE_HEIGHT_UP)
-			{
-				m_uiCurMoveFlags = NTL_MOVE_NONE;
-
-				CNtlSLEventGenerator::KeyboardMoveStop(); // stop air_jump / moving up
-			}
-		}
+		// the air jump moves up until the key is released, the air up/down key stops it (ActionMapAirUp)
+		if (m_uiCurMoveFlags >= NTL_MOVE_HEIGHT_UP && m_uiCurMoveFlags <= NTL_MOVE_HEIGHT_UP_R)
+			m_uiCurMoveFlags = NTL_MOVE_NONE;
 	}
 	else
 	{
@@ -2115,29 +2104,9 @@ int CAvatarController::ActionJump(uintptr_t uiMoveFlags)
 
 			CNtlSLEventGenerator::ActionMapAirJump(m_uiCurMoveFlags);
 		}
-		else if (pAvatar->IsAirMode()) // if we press space while flying.. then we fly up
+		else if (pAvatar->IsAirMode())
 		{
-			m_bChangeAngleXUp = true;
-
-			if (byStateID == NTL_FSMSID_DASH || byStateID == NTL_FSMSID_AIR_ACCEL) // if we press space during air-dash or air-accel, then we change direction
-			{
-				m_bChangeAngleX = true;
-			}
-			else
-			{
-				if (m_uiCurMoveFlags == NTL_MOVE_NONE)
-				{
-					uiMoveFlags = NTL_MOVE_HEIGHT_UP;
-
-					m_uiCurMoveFlags = uiMoveFlags;
-
-					CNtlSLEventGenerator::KeyboardMove(uiMoveFlags, FALSE, 0.f);
-				}
-				else
-				{
-					m_bChangeAngleX = true;
-				}
-			}
+			// flying up is the air up/down key (ActionMapAirUp), no jump in the air
 		}
 		else
 		{
@@ -2240,38 +2209,7 @@ int CAvatarController::ActionSitAndStand(uintptr_t bKeyDown)
 
 	if (pSobAvatar->IsAirMode())
 	{
-		if (bKeyDown)
-		{
-			if (byStateID == NTL_FSMSID_DASH || byStateID == NTL_FSMSID_AIR_ACCEL) // if we press sit-down during air-dash or air-accel, then we change direction
-			{
-				m_bChangeAngleX = true;
-			}
-			else
-			{
-				if (m_uiCurMoveFlags == NTL_MOVE_NONE) // only fly down if we are not moving
-				{
-					m_uiCurMoveFlags = NTL_MOVE_HEIGHT_DOWN;
-
-					CNtlSLEventGenerator::KeyboardMove(NTL_MOVE_HEIGHT_DOWN, FALSE, 0.f);
-				}
-				else
-				{
-					m_bChangeAngleX = true;
-				}
-			}
-		}
-		else
-		{
-			if (m_uiCurMoveFlags == NTL_MOVE_HEIGHT_DOWN)
-			{
-				m_uiCurMoveFlags = NTL_MOVE_NONE;
-
-				if (byStateID != NTL_FSMSID_FALLING)
-				{
-					CNtlSLEventGenerator::KeyboardMoveStop();
-				}
-			}
-		}
+		// flying down is the air up/down key (ActionMapAirDown), no sitting in the air
 	}
 	else
 	{
@@ -2287,15 +2225,9 @@ int CAvatarController::ActionSitAndStand(uintptr_t bKeyDown)
 
 	if (bKeyDown)
 	{
-		m_bChangeAngleXUp = false;
-
 		SERIAL_HANDLE hTargetSerialId = Logic_GetAvatarTargetHandle();
 		if (hTargetSerialId != INVALID_SERIAL_ID)
 			Logic_SobTarget(hTargetSerialId, INVALID_BYTE);
-	}
-	else
-	{
-		m_bChangeAngleX = false;
 	}
 
 	return TRUE;

@@ -32,6 +32,8 @@ CInputActionMap::CInputActionMap()
 ,m_pCallKeyboardDashMove(0)
 ,m_pCallAvatarSelect(0)
 ,m_pCallJump(0)
+,m_pCallAirUp(0)
+,m_pCallAirDown(0)
 ,m_pCallCharging(0)
 ,m_pCallBlocking(0)
 ,m_pCallSitAndStand(0)
@@ -158,6 +160,8 @@ void CInputActionMap::Destroy(void)
 	UnLinkKeyboardDashMove();
 	UnLinkAvatarSelect();
 	UnLinkJump();
+	UnLinkAirUp();
+	UnLinkAirDown();
 	UnLinkCharging();
 	UnLinkBlocking();
 	UnLinkSitAndStand();
@@ -359,6 +363,13 @@ void CInputActionMap::HandleEventsActionMapUpdateRes( RWS::CMsg& msg )
 */
 void CInputActionMap::Reset(void)
 {
+	// stop flying up/down when the keys are lost
+	if (IsDownAction(ACTION_AVATAR_JUMP) && m_pCallAirUp)
+		m_pCallAirUp->Call(FALSE);
+
+	if (IsDownAction(ACTION_AVATAR_SITDOWN) && m_pCallAirDown)
+		m_pCallAirDown->Call(FALSE);
+
 	if( m_uiServerMoveFlags != NTL_MOVE_NONE )
 	{
 		if(m_pCallKeyboardMove)
@@ -1079,6 +1090,9 @@ void CInputActionMap::ActionDownBehaviorHandler( RwUInt32 uiAction )
 		{
 			SetFlagAction(ACTION_AVATAR_SITDOWN, TRUE);
 			m_pCallSitAndStand->Call(TRUE);
+
+			if (m_pCallAirDown)
+				m_pCallAirDown->Call(TRUE);
 		}
 		break;
 	}
@@ -1087,6 +1101,11 @@ void CInputActionMap::ActionDownBehaviorHandler( RwUInt32 uiAction )
 			if( m_pCallJump && IsDownAction( ACTION_AVATAR_JUMP ) == FALSE )
 			{
 				SetFlagAction( ACTION_AVATAR_JUMP, TRUE );
+
+				// tw: the jump key also flies up
+				if (m_pCallAirUp)
+					m_pCallAirUp->Call(TRUE);
+
 				m_pCallJump->Call(m_uiServerMoveFlags);
 			}
 			break;
@@ -1653,6 +1672,9 @@ void CInputActionMap::ActionUpBehaviorHandler( RwUInt32 uiAction )
 				SetFlagAction(ACTION_AVATAR_SITDOWN, FALSE);
 				m_pCallSitAndStand->Call(FALSE);
 			}
+
+			if (m_pCallAirDown)
+				m_pCallAirDown->Call(FALSE);
 		}
 		break;
 	case ACTION_AVATAR_AUTORUN:
@@ -1696,6 +1718,9 @@ void CInputActionMap::ActionUpBehaviorHandler( RwUInt32 uiAction )
 				SetFlagAction( ACTION_AVATAR_JUMP, FALSE );
 				m_pCallJump->Call(NTL_MOVE_UNKNOWN);
 			}
+
+			if (m_pCallAirUp)
+				m_pCallAirUp->Call(FALSE);
 			
 		}
 		break;
@@ -2291,6 +2316,18 @@ void CInputActionMap::UnLinkJump(void)
 {
 	if(m_pCallJump)
 		NTL_DELETE(m_pCallJump);
+}
+
+void CInputActionMap::UnLinkAirUp(void)
+{
+	if(m_pCallAirUp)
+		NTL_DELETE(m_pCallAirUp);
+}
+
+void CInputActionMap::UnLinkAirDown(void)
+{
+	if(m_pCallAirDown)
+		NTL_DELETE(m_pCallAirDown);
 }
 
 void CInputActionMap::UnLinkCharging(void)

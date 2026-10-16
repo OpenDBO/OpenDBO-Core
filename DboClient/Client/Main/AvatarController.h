@@ -59,6 +59,7 @@ public:
 	*/
 
 	int	MouseWheelHandler(uintptr_t uiMouseData);
+	int	MouseMoveHandler(uintptr_t uiMouseData);
 
 	int	MouseDownHandler(uintptr_t uiMouseData);
 	int	MouseUpHandler(uintptr_t uiMouseData);
@@ -75,6 +76,9 @@ public:
 	int ActionMapKeyboardDashMove(uintptr_t uiMoveFlags);
 	int ActionAvatarSelect(void);
 	int ActionJump(uintptr_t uiMoveFlags);
+	int ActionMapAirUp(uintptr_t bKeyDown);
+	int ActionMapAirDown(uintptr_t bKeyDown);
+	int ActionMapAirUpDown(RwUInt8 byUpDown);
 	int ActionCharging(uintptr_t uiCharging);
 	int	ActionBlocking(uintptr_t uiBlocking);
 	int ActionSitAndStand(uintptr_t bKeyDown);
@@ -163,7 +167,6 @@ private:
 	/*
 		* change x angle while flying
 	*/
-	void UpdateFlightAngle(float fElapsed);
 
 	/**
 	* picking focus update 占쌉쇽옙.
@@ -194,7 +197,6 @@ private:
 	/*
 	/ put mouse cursor to the middle
 	*/
-	void			ResetMousePosition();
 
 private:
 
@@ -245,14 +247,13 @@ private:
 	RwReal			m_fChangeHeadingDeltaAngleX;
 
 	// changle angleX with keyboard
-	bool			m_bChangeAngleX;
-	bool			m_bChangeAngleXUp;
 
 	SERIAL_HANDLE   m_hFocusSerialId;
 
 	INPUT_HANDLE	m_handleMouseWheel;
 	INPUT_HANDLE	m_handleMouseDown;
 	INPUT_HANDLE	m_handleMouseUp;
+	INPUT_HANDLE	m_handleMouseMove;
 	INPUT_HANDLE	m_handleKeyDown;
 	INPUT_HANDLE	m_handleKeyUp;
 

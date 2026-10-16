@@ -78,6 +78,7 @@ RwBool CNtlSLEventHandler::Create(void)
 	RegisterMsg (g_EventMouseDashMove, "g_EventMouseDashMoveStr", "SNtlEventMouseDashMove");
 	RegisterMsg(g_EventAirDashMove, "g_EventAirDashMoveStr", "SNtlEventAirDashMove");
 	RegisterMsg(g_EventAirAccelMove, "g_EventAirAccelMoveStr", "SNtlEventAirAccelMove");
+	RegisterMsg(g_EventAvatarAirUpDown, "g_EventAvatarAirUpDownStr", "SNtlEventAvatarAirUpDown");
 	RegisterMsg (g_EventInputChangeHeading, "g_EventInputChangeHeadingStr", "SNtlEventInputChangeHeading");
 	RegisterMsg (g_EventSobTargetSelect, "g_EventSobTargetSelectStr", "SNtlEventSobTargetSelect");
 	RegisterMsg (g_EventSobTargetSelectRelease, "g_EventSobTargetSelectReleaseStr", "SNtlEventSobTargetSelectRelease");
@@ -172,8 +173,8 @@ RwBool CNtlSLEventHandler::Create(void)
     RegisterMsg (g_EventTransform, "g_EventTransform", "SNtlEventTransform");
     RegisterMsg (g_EventMobTransform, "g_EventMobTransform", "SNtlEventMobTransform");
     RegisterMsg (g_EventTransformCandy, "g_EventTransformCandy", "SNtlEventTransformCandy");
-    RegisterMsg (g_EventSobTransformSequela, "g_EventSobTransformSequela", "SNtlEventSobTransfromSequela");
     RegisterMsg (g_EventTransformRollingAttack, "g_EventTransformRollingAttack", "SNtlEventTransformRollingAttack");
+    RegisterMsg (g_EventSobTransformSequela, "g_EventSobTransformSequela", "SNtlEventSobTransfromSequela");
 
 	RegisterMsg(g_EventCinematicScale, "g_EventCinematicScale", "SNtlEventSobCinematicScale");
 
@@ -693,6 +694,7 @@ void CNtlSLEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventMouseDashMove);
 	UnRegisterMsg(g_EventAirDashMove);
 	UnRegisterMsg(g_EventAirAccelMove);
+	UnRegisterMsg(g_EventAvatarAirUpDown);
 	UnRegisterMsg(g_EventInputChangeHeading);
 	UnRegisterMsg(g_EventSobTargetSelect);
 	UnRegisterMsg(g_EventSobTargetSelectRelease);
@@ -787,9 +789,9 @@ void CNtlSLEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventTransform);
 	UnRegisterMsg(g_EventMobTransform);
 	UnRegisterMsg(g_EventTransformCandy);
+	UnRegisterMsg(g_EventTransformRollingAttack);
 	UnRegisterMsg(g_EventSobTransformSequela);
 
-	UnRegisterMsg(g_EventTransformRollingAttack);
 	UnRegisterMsg(g_EventCinematicScale);
 
 	// 컨디션 관련 이벤트
