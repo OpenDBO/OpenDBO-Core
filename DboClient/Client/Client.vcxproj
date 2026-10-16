@@ -293,6 +293,7 @@
     <ClCompile Include="Gui\InfoWndManager.cpp" />
     <ClCompile Include="Gui\InterfaceShakeGui.cpp" />
     <ClCompile Include="Gui\ItemChangeBattleAttributeGui.cpp" />
+    <ClCompile Include="Gui\ItemUpgradeCardGui.cpp" />
     <ClCompile Include="Gui\ItemUpgradeGui.cpp" />
     <ClCompile Include="Gui\LittleQuestContainer.cpp" />
     <ClCompile Include="Gui\LoadingGui.cpp" />
@@ -544,6 +545,7 @@
     <ClInclude Include="Gui\AltarGui.h" />
     <ClInclude Include="Gui\AuctionHouseGui.h" />
     <ClInclude Include="Gui\BackboardGui.h" />
+    <ClInclude Include="Gui\ItemUpgradeCardGui.h" />
     <ClInclude Include="Gui\ItemUpgradeGui.h" />
     <ClInclude Include="HLShopBuyConfirmGui.h" />
     <ClInclude Include="HLShopBuyGui.h" />

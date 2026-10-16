@@ -1223,6 +1223,9 @@
     <ClCompile Include="Gui\ItemChangeBattleAttributeGui.cpp">
       <Filter>Gui\Component\Game</Filter>
     </ClCompile>
+    <ClCompile Include="Gui\ItemUpgradeCardGui.cpp">
+      <Filter>Gui\Component\Game</Filter>
+    </ClCompile>
     <ClCompile Include="Gui\ItemUpgradeGui.cpp">
       <Filter>Gui\Component\Game</Filter>
     </ClCompile>
@@ -2198,6 +2201,9 @@
       <Filter>Gui\Component\Game\NPC-SHOP</Filter>
     </ClInclude>
     <ClInclude Include="Gui\ItemChangeBattleAttributeGui.h">
+      <Filter>Gui\Component\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\ItemUpgradeCardGui.h">
       <Filter>Gui\Component\Game</Filter>
     </ClInclude>
     <ClInclude Include="Gui\ItemUpgradeGui.h">
