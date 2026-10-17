@@ -676,6 +676,14 @@ void CNtlSLEventGenerator::AirAccelMove(BYTE byMoveDirection, RwBool bUpdateMove
 	SEND_MSG(g_EventAirAccelMove, &sMove);
 }
 
+void CNtlSLEventGenerator::AvatarAirUpDown(RwUInt8 byUpDown)
+{
+	SNtlEventAvatarAirUpDown sData;
+	sData.byUpDown = byUpDown;
+
+	SEND_MSG(g_EventAvatarAirUpDown, &sData);
+}
+
 void CNtlSLEventGenerator::InputChagneHeading(RwBool bSmoothing, RwReal fDeltaAngleY, bool bSetAngleX, RwReal fDeltaAngleX, RwBool& bSuccess)
 {
 	SNtlEventInputChangeHading sChangeHeading;
@@ -6449,6 +6457,15 @@ void CNtlSLEventGenerator::SobTransformCandy( SERIAL_HANDLE hSerialId, RwBool bT
 
     SEND_MSG(g_EventTransformCandy, &data);
 
+}
+
+void CNtlSLEventGenerator::SobTransformRollingAttack( SERIAL_HANDLE hSerialId, RwBool bTransform ) 
+{
+    SNtlEventTransformRollingAttack data;
+    data.hSerialId = hSerialId;
+    data.bTransform = bTransform;
+
+    SEND_MSG(g_EventTransformRollingAttack, &data);
 }
 
 void CNtlSLEventGenerator::CharRefreshBattleAttributeModifier( SERIAL_HANDLE hSerial, RwReal fHonestOffenceModifier, RwReal fHonestDefenceModifier, RwReal fStrangeOffenceModifier, RwReal fStrangeDefenceModifier, RwReal fWildOffenceModifier, RwReal fWildDefenceModifier, RwReal fEleganceOffenceModifier, RwReal fEleganceDefenceModifier, RwReal fFunnyOffenceModifier, RwReal fFunnyDefenceModifier )

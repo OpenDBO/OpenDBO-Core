@@ -6626,82 +6626,114 @@ void CNtlFSMCharTransformSequela::ChangeIdleState( RwUInt8 byState )
 }
 //////////////////////////////////////////////////////////////////////////
 DEFINITION_MEMORY_POOL(CNtlFSMCharSpinAttack)
-CNtlFSMCharSpinAttack::CNtlFSMCharSpinAttack() 
+CNtlFSMCharSpinAttack::CNtlFSMCharSpinAttack()
 {
     SetStateId(NTL_FSMSID_SPIN_ATTACK);
-    SetStateName(NTL_FSMSN_SPIN_ATTACK);        
+    SetStateName(NTL_FSMSN_SPIN_ATTACK);
     SetFlags(NTL_FSMSF_NOT_ALL & ~NTL_FSMSF_NOT_HURT_CAN & ~NTL_FSMSF_NOT_MOVE);
+
+    m_pMoveBehavior = NULL;
 }
 
-CNtlFSMCharSpinAttack::~CNtlFSMCharSpinAttack() 
+CNtlFSMCharSpinAttack::~CNtlFSMCharSpinAttack()
 {
-    
+
 }
 
-void CNtlFSMCharSpinAttack::Enter() 
+void CNtlFSMCharSpinAttack::Enter()
 {
     CNtlFSMCharActStateBase::Enter();
 
-    CNtlBeCharData *pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData()); 
+    CNtlBeCharData *pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData());
     SMoveStuff *pMoveStuff = pBeData->GetMoveStuff();
-    pMoveStuff->Reset();    // Reset to remove existing movement information.   
+    pMoveStuff->Reset();    // Reset to remove existing movement information.
 
-	m_pActor->GetSobProxy()->SetDisableAniChange(true);
+    m_pMoveBehavior = NULL;
 
-    m_pMoveBehavior = NTL_NEW CNtlBehaviorCharGroundMove();
-	AddBehavior(m_pMoveBehavior);    
-
-    m_pActor->GetSobProxy()->SetBaseAnimation(TRANS_IDLE);
+    // The skill action animation is the start animation, the loop starts when it ends (g_EventAnimEnd).
+    // Start right away when it is not playing (ex: a player that appears while already spinning).
+    CNtlSobProxy *pSobProxy = m_pActor->GetSobProxy();
+    sSKILL_TBLDAT *pSkillTblData = GetSkillTblData();
+    if(pSkillTblData == NULL || pSobProxy->GetBaseAnimationKey() != pSkillTblData->wAction_Animation_Index || pSobProxy->IsBaseAnimationEnd())
+        StartLoop();
 }
 
-void CNtlFSMCharSpinAttack::Exit() 
+void CNtlFSMCharSpinAttack::Exit()
 {
-    RemoveAllBehavior();    
+    RemoveAllBehavior();
 	m_pMoveBehavior = NULL;
 
-    API_GetSLPacketGenerator()->SendKeyboardMove(m_pActor->GetPosition(), m_pActor->GetDirection(), NTL_MOVE_NONE, m_pActor->GetServerSyncAvatarType());
+    m_pActor->GetSobProxy()->SetDisableAniChange(false);
+
+    if(m_pActor->GetClassID() == SLCLASS_AVATAR)
+        API_GetSLPacketGenerator()->SendKeyboardMove(m_pActor->GetPosition(), m_pActor->GetDirection(), NTL_MOVE_NONE, m_pActor->GetServerSyncAvatarType());
 }
 
-void CNtlFSMCharSpinAttack::Update( RwReal fElapsed ) 
+void CNtlFSMCharSpinAttack::Update( RwReal fElapsed )
 {
-    m_pMoveBehavior->Update(fElapsed);
+    if(m_pMoveBehavior)
+        m_pMoveBehavior->Update(fElapsed);
 }
 
-RwUInt32 CNtlFSMCharSpinAttack::HandleEvents( RWS::CMsg &pMsg ) 
+RwUInt32 CNtlFSMCharSpinAttack::HandleEvents( RWS::CMsg &pMsg )
 {
     // Because the MOVE processing is prevented, the processing according to MOVE is separately performed here.
+    // The avatar can only move once the start animation is over.
     if(pMsg.Id == g_EventKeyboardMove)
     {
-        SNtlEventKeyboardMove *pKeyboardMove = reinterpret_cast<SNtlEventKeyboardMove*>(pMsg.pData);
-		//maybe needs to be updated.. by daneos
-        if(pKeyboardMove->byMoveFlags == NTL_MOVE_TURN_L)
+        if(m_pMoveBehavior)
         {
-            pKeyboardMove->byMoveFlags = NTL_MOVE_F_TURN_L;
-        }
-        else if(pKeyboardMove->byMoveFlags == NTL_MOVE_TURN_R)
-        {
-            pKeyboardMove->byMoveFlags = NTL_MOVE_F_TURN_R;
-        }
+            SNtlEventKeyboardMove *pKeyboardMove = reinterpret_cast<SNtlEventKeyboardMove*>(pMsg.pData);
+            if(pKeyboardMove->byMoveFlags == NTL_MOVE_TURN_L)
+            {
+                pKeyboardMove->byMoveFlags = NTL_MOVE_F_TURN_L;
+            }
+            else if(pKeyboardMove->byMoveFlags == NTL_MOVE_TURN_R)
+            {
+                pKeyboardMove->byMoveFlags = NTL_MOVE_F_TURN_R;
+            }
 
-        FSMEvent_CharActKeyboardMove(m_pActor, pKeyboardMove); 
+            FSMEvent_CharActKeyboardMove(m_pActor, pKeyboardMove);
+            UpdateBehavior();
+
+            API_GetSLPacketGenerator()->SendKeyboardMove(m_pActor->GetPosition(), m_pActor->GetDirection(), pKeyboardMove->byMoveFlags, m_pActor->GetServerSyncAvatarType());
+        }
+    }
+    else if(pMsg.Id == g_EventKeyboardMoveStop)
+    {
+        // stop moving but keep spinning
+        FSMEvent_CharActKeyboardMoveStop(m_pActor);
         UpdateBehavior();
 
-        API_GetSLPacketGenerator()->SendKeyboardMove(m_pActor->GetPosition(), m_pActor->GetDirection(), pKeyboardMove->byMoveFlags, m_pActor->GetServerSyncAvatarType());
-    }  
+        API_GetSLPacketGenerator()->SendKeyboardMove(m_pActor->GetPosition(), m_pActor->GetDirection(), NTL_MOVE_NONE, m_pActor->GetServerSyncAvatarType());
+        NTL_RETURN(NTL_FSM_EVENTRES_BLOCK);
+    }
     else if(pMsg.Id == g_EventTerrainClick)
     {
-        SNtlEventTerrainClick* pEvent = (SNtlEventTerrainClick*)pMsg.pData;
-		FSMEvent_CharActTerrainClick(m_pActor, pEvent);
-        UpdateBehavior();
-        
-        API_GetSLPacketGenerator()->SendMouseMove(m_pActor->GetPosition(), pEvent->vPickPos, m_pActor->GetServerSyncAvatarType());
+        if(m_pMoveBehavior)
+        {
+            SNtlEventTerrainClick* pEvent = (SNtlEventTerrainClick*)pMsg.pData;
+            FSMEvent_CharActTerrainClick(m_pActor, pEvent);
+            UpdateBehavior();
+
+            API_GetSLPacketGenerator()->SendMouseMove(m_pActor->GetPosition(), pEvent->vPickPos, m_pActor->GetServerSyncAvatarType());
+        }
     }
     else if(pMsg.Id == g_EventSobMove)
     {
+        // other players move while spinning, it must not switch to the move state
         SNtlEventSobMove* pEvent = (SNtlEventSobMove*)pMsg.pData;
         FSMEvent_CharActSobMove(m_pActor, pEvent);
         UpdateBehavior();
-    }    
+        NTL_RETURN(NTL_FSM_EVENTRES_BLOCK);
+    }
+    else if(pMsg.Id == g_EventSobMoveStop)
+    {
+        SNtlEventSobMoveStop* pEvent = (SNtlEventSobMoveStop*)pMsg.pData;
+        FSMEvent_CharActSobMoveStop(m_pActor, pEvent);
+        UpdateBehavior();
+        NTL_RETURN(NTL_FSM_EVENTRES_BLOCK);
+    }
     else if(pMsg.Id == g_EventSobHit)
     {
         SNtlEventSobHit *pHit = reinterpret_cast<SNtlEventSobHit*>(pMsg.pData);
@@ -6713,8 +6745,44 @@ RwUInt32 CNtlFSMCharSpinAttack::HandleEvents( RWS::CMsg &pMsg )
             NTL_RETURN(NTL_FSM_EVENTRES_BLOCK);
         }
     }
+    else if(pMsg.Id == g_EventAnimEnd)
+    {
+        StartLoop();
+    }
 
     return CNtlFSMCharActStateBase::HandleEvents(pMsg);
+}
+
+void CNtlFSMCharSpinAttack::StartLoop()
+{
+    if(m_pMoveBehavior)
+        return;
+
+    CNtlBeCharData *pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData());
+    pBeData->GetMoveStuff()->Reset();
+
+    // the movement must not replace the loop animation
+    CNtlSobProxy *pSobProxy = m_pActor->GetSobProxy();
+    pSobProxy->SetDisableAniChange(true);
+
+    m_pMoveBehavior = NTL_NEW CNtlBehaviorCharGroundMove();
+    AddBehavior(m_pMoveBehavior);
+
+    // every skill has its own loop (spinning attack, spinning flame breath, ...), TRANS_IDLE when it has none
+    pSobProxy->SetBaseAnimation(TRANS_IDLE);
+
+    sSKILL_TBLDAT *pSkillTblData = GetSkillTblData();
+    if(pSkillTblData && pSkillTblData->wAction_Loop_Animation_Index != INVALID_ANIMATIONID)
+        pSobProxy->SetBaseAnimation(pSkillTblData->wAction_Loop_Animation_Index);
+}
+
+sSKILL_TBLDAT* CNtlFSMCharSpinAttack::GetSkillTblData()
+{
+    CNtlBeCharData *pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData());
+    SSkillStuff *pSkillStuff = pBeData->GetSkillStuff();
+    CSkillTable *pSkillTbl = API_GetTableContainer()->GetSkillTable();
+
+    return reinterpret_cast<sSKILL_TBLDAT*>(pSkillTbl->FindData(pSkillStuff->uiSkillTblId));
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -6723,7 +6791,6 @@ CNtlFSMCharRollingAttack::CNtlFSMCharRollingAttack()
 {
 	SetStateId(NTL_FSMSID_ROLLING_ATTACK);
 	SetStateName(NTL_FSMSN_ROLLING_ATTACK);
-	SetFlags(NTL_FSMSF_NOT_ALL & ~NTL_FSMSF_NOT_HURT_CAN & ~NTL_FSMSF_NOT_MOVE);
 }
 
 CNtlFSMCharRollingAttack::~CNtlFSMCharRollingAttack()
@@ -6731,83 +6798,22 @@ CNtlFSMCharRollingAttack::~CNtlFSMCharRollingAttack()
 
 }
 
-void CNtlFSMCharRollingAttack::Enter()
-{
-	CNtlFSMCharActStateBase::Enter();
-
-	CNtlBeCharData *pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData());
-	SMoveStuff *pMoveStuff = pBeData->GetMoveStuff();
-	pMoveStuff->Reset();    // Reset to remove existing movement information.
-
-	m_pActor->GetSobProxy()->SetDisableAniChange(true);
-
-	m_pMoveBehavior = NTL_NEW CNtlBehaviorCharGroundMove();
-	AddBehavior(m_pMoveBehavior);
-
-	m_pActor->GetSobProxy()->SetBaseAnimation(TRANS_IDLE);
-}
-
 void CNtlFSMCharRollingAttack::Exit()
 {
-	RemoveAllBehavior();
-	m_pMoveBehavior = NULL;
+	CNtlSLEventGenerator::SobTransformRollingAttack(m_pActor->GetSerialID(), FALSE);
 
-	API_GetSLPacketGenerator()->SendKeyboardMove(m_pActor->GetPosition(), m_pActor->GetDirection(), NTL_MOVE_NONE, m_pActor->GetServerSyncAvatarType());
+	CNtlFSMCharSpinAttack::Exit();
 }
 
-void CNtlFSMCharRollingAttack::Update(RwReal fElapsed)
+void CNtlFSMCharRollingAttack::StartLoop()
 {
-	m_pMoveBehavior->Update(fElapsed);
-}
+	if (m_pMoveBehavior)
+		return;
 
-RwUInt32 CNtlFSMCharRollingAttack::HandleEvents(RWS::CMsg &pMsg)
-{
-	// Because the MOVE processing is prevented, the processing according to MOVE is separately performed here.
-	if (pMsg.Id == g_EventKeyboardMove)
-	{
-		SNtlEventKeyboardMove *pKeyboardMove = reinterpret_cast<SNtlEventKeyboardMove*>(pMsg.pData);
-		//maybe needs to be updated.. by daneos
-		if (pKeyboardMove->byMoveFlags == NTL_MOVE_TURN_L)
-		{
-			pKeyboardMove->byMoveFlags = NTL_MOVE_F_TURN_L;
-		}
-		else if (pKeyboardMove->byMoveFlags == NTL_MOVE_TURN_R)
-		{
-			pKeyboardMove->byMoveFlags = NTL_MOVE_F_TURN_R;
-		}
+	// change into the ball before the loop animation is set
+	CNtlSLEventGenerator::SobTransformRollingAttack(m_pActor->GetSerialID(), TRUE);
 
-		FSMEvent_CharActKeyboardMove(m_pActor, pKeyboardMove);
-		UpdateBehavior();
-
-		API_GetSLPacketGenerator()->SendKeyboardMove(m_pActor->GetPosition(), m_pActor->GetDirection(), pKeyboardMove->byMoveFlags, m_pActor->GetServerSyncAvatarType());
-	}
-	else if (pMsg.Id == g_EventTerrainClick)
-	{
-		SNtlEventTerrainClick* pEvent = (SNtlEventTerrainClick*)pMsg.pData;
-		FSMEvent_CharActTerrainClick(m_pActor, pEvent);
-		UpdateBehavior();
-
-		API_GetSLPacketGenerator()->SendMouseMove(m_pActor->GetPosition(), pEvent->vPickPos, m_pActor->GetServerSyncAvatarType());
-	}
-	else if (pMsg.Id == g_EventSobMove)
-	{
-		SNtlEventSobMove* pEvent = (SNtlEventSobMove*)pMsg.pData;
-		FSMEvent_CharActSobMove(m_pActor, pEvent);
-		UpdateBehavior();
-	}
-	else if (pMsg.Id == g_EventSobHit)
-	{
-		SNtlEventSobHit *pHit = reinterpret_cast<SNtlEventSobHit*>(pMsg.pData);
-		RwUInt8 byBehavior = pHit->sHitStuff.uiAttr.bitBehavior;
-		if (byBehavior == NTL_ATTACK_KNOCKDOWN || byBehavior == NTL_ATTACK_SLIDING)
-		{
-			Finish();
-			SetNextStateId(NTL_FSMSID_KNOCKDOWN);
-			NTL_RETURN(NTL_FSM_EVENTRES_BLOCK);
-		}
-	}
-
-	return CNtlFSMCharActStateBase::HandleEvents(pMsg);
+	CNtlFSMCharSpinAttack::StartLoop();
 }
 
 //////////////////////////////////////////////////////////////////////////

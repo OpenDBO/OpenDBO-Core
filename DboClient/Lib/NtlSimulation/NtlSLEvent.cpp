@@ -123,6 +123,7 @@ RWS::CEventId g_EventKeyboardDashMove;
 RWS::CEventId g_EventMouseDashMove;
 RWS::CEventId g_EventAirDashMove;
 RWS::CEventId g_EventAirAccelMove;
+RWS::CEventId g_EventAvatarAirUpDown;
 RWS::CEventId g_EventInputChangeHeading;
 RWS::CEventId g_EventSobTargetSelect;
 RWS::CEventId g_EventSobTargetSelectRelease;     
@@ -287,6 +288,7 @@ RWS::CEventId g_EventHoipoiMixInfoUpdate;			///< 호이포이믹스 인포 업�
 RWS::CEventId g_EventTransform;
 RWS::CEventId g_EventMobTransform;
 RWS::CEventId g_EventTransformCandy;
+RWS::CEventId g_EventTransformRollingAttack;
 RWS::CEventId g_EventSobTransformSequela;
 RWS::CEventId g_EventAfterEffectRemainTimeNfy;
 RWS::CEventId g_EventSobCondTerror;

@@ -734,13 +734,15 @@ private:
 	SSkillStuff m_sSkillStuff;    
 	SHTBStuff	m_sHTBStuff;
 	CNtlAttackData m_AttData;
-		
+	RwUInt8		m_byAirUpDown;		// tw: fly up/down key held (eAVATAR_AIR_UPDOWN), the air move tilts the flight with it
+
 public:
 
 	CNtlBeCharData()
 	{
 		m_sCtrlStuff.Reset();
 		m_sMoveStuff.Reset();
+		m_byAirUpDown = 0;
 	}
 	
 	SCtrlStuff* GetCtrlStuff(void) { return &m_sCtrlStuff; }
@@ -752,6 +754,9 @@ public:
 	SHTBStuff* GetHTBStuff(void) { return &m_sHTBStuff; }
     
 	CNtlAttackData* GetAttackData(void) { return &m_AttData; }
+
+	RwUInt8		GetAirUpDown(void) { return m_byAirUpDown; }
+	void		SetAirUpDown(RwUInt8 byAirUpDown) { m_byAirUpDown = byAirUpDown; }
 
 };
 

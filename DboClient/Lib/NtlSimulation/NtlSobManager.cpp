@@ -240,6 +240,7 @@ RwBool CNtlSobManager::Create(void)
 	LinkMsg(g_EventTransform);
     LinkMsg(g_EventMobTransform);
     LinkMsg(g_EventTransformCandy);
+    LinkMsg(g_EventTransformRollingAttack);
 	LinkMsg(g_EventSobVehicleStart);
 	LinkMsg(g_EventSobVehicleEngine);
 	LinkMsg(g_EventSobVehicleStunt);
@@ -358,6 +359,7 @@ RwBool CNtlSobManager::Create(void)
     m_mapEventFunc[g_EventTransform.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
     m_mapEventFunc[g_EventMobTransform.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
     m_mapEventFunc[g_EventTransformCandy.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
+    m_mapEventFunc[g_EventTransformRollingAttack.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
 	m_mapEventFunc[g_EventSobVehicleStart.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
 	m_mapEventFunc[g_EventSobVehicleEngine.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
 	m_mapEventFunc[g_EventSobVehicleStunt.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
@@ -410,6 +412,7 @@ void CNtlSobManager::Destroy(void)
 	UnLinkMsg(g_EventCinematicScale);
     UnLinkMsg(g_EventTransform);
     UnLinkMsg(g_EventTransformCandy);
+    UnLinkMsg(g_EventTransformRollingAttack);
     UnLinkMsg(g_EventSobTransformSequela);
 	UnLinkMsg(g_EventUpdateTick);
 	UnLinkMsg(g_EventActionMapSkillUse);

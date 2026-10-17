@@ -201,6 +201,7 @@ void CNtlSobCharProxy::RegisterEventHandler(void)
     m_mapEventFunc[g_EventTransform.Get_pEventId()] =               &CNtlSobCharProxy::SobDecorationNotify;
     m_mapEventFunc[g_EventMobTransform.Get_pEventId()] =            &CNtlSobCharProxy::SobDecorationNotify;
     m_mapEventFunc[g_EventTransformCandy.Get_pEventId()] =          &CNtlSobCharProxy::SobDecorationNotify;
+    m_mapEventFunc[g_EventTransformRollingAttack.Get_pEventId()] =  &CNtlSobCharProxy::SobDecorationNotify;
     m_mapEventFunc[g_EventSobSkillAction.Get_pEventId()] =          &CNtlSobCharProxy::SobDecorationNotify;
     m_mapEventFunc[g_EventAnimHit.Get_pEventId()] =                 &CNtlSobCharProxy::SobDecorationNotify;
 
@@ -1992,7 +1993,7 @@ void CNtlSobCharProxy::CreateGuardEffect()
 
 void CNtlSobCharProxy::DeleteGuardEffect()
 {
-	m_pDecorationProxy->DeleteGuardEffect();
+	m_pDecorationProxy->DeleteGuardEffect(TRUE);
 }
 
 void CNtlSobCharProxy::CreateRpChargeEffect()
@@ -2089,7 +2090,7 @@ void CNtlSobCharProxy::CreateRpChargeEffect()
 
 void CNtlSobCharProxy::DeleteRpChargeEffect()
 {
-	m_pDecorationProxy->DeleteRpChargeEffect();
+	m_pDecorationProxy->DeleteRpChargeEffect(TRUE);
 }
 
 void CNtlSobCharProxy::SobPostEffectEventHandler( RWS::CMsg& pMsg ) 

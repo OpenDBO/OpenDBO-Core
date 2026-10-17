@@ -20,6 +20,7 @@
 #include "NtlFrameSkipScheduler.h"
 
 struct SHitStuff;
+struct sSKILL_TBLDAT;
 
 class CNtlSobElapsedController;
 class CNtlSobProxySystemEffect;
@@ -1463,30 +1464,31 @@ public:
     virtual RwUInt32 HandleEvents(RWS::CMsg &pMsg);
 
 protected:
+    virtual void StartLoop();                       ///< The start animation is over: loop the skill animation and allow moving.
+    sSKILL_TBLDAT* GetSkillTblData();
 
 protected:
-    CNtlBehaviorCharGroundMove *m_pMoveBehavior;
+    CNtlBehaviorCharGroundMove *m_pMoveBehavior;    ///< NULL while the start animation is playing
 };
 
 
-class CNtlFSMCharRollingAttack : public CNtlFSMCharActStateBase
+/**
+ * \ingroup NtlSimulation
+ * \brief Rolling attack (ball transformation): a spin attack that turns the character into the ball model once the start animation is over
+ */
+class CNtlFSMCharRollingAttack : public CNtlFSMCharSpinAttack
 {
 	DECLEAR_MEMORY_POOL(CNtlFSMCharRollingAttack, NTL_SMALL_MEMORY_POOL)
-		DECLEAR_FSMSTATE_FACTROY(CNtlFSMCharRollingAttack)
+	DECLEAR_FSMSTATE_FACTROY(CNtlFSMCharRollingAttack)
 
 public:
 	CNtlFSMCharRollingAttack();
 	~CNtlFSMCharRollingAttack();
 
-	virtual void Enter();
 	virtual void Exit();
-	virtual void Update(RwReal fElapsed);
-	virtual RwUInt32 HandleEvents(RWS::CMsg &pMsg);
 
 protected:
-
-protected:
-	CNtlBehaviorCharGroundMove *m_pMoveBehavior;
+	virtual void StartLoop();
 };
 
 

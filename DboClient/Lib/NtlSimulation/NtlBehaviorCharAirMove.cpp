@@ -18,6 +18,13 @@
 #include "NtlSLVisualDeclear.h"
 #include "NtlSLLogic.h"
 #include "NtlSobManager.h"
+#include "NtlSLEvent.h"
+#include "NtlSLPacketGenerator.h"
+
+#define AIR_TILT_MAX_DIR_Y			0.785398f	// tw: highest climb/dive of the flight direction
+#define AIR_TILT_LEVEL_SPEED		2.0f		// tw: flying straight up/down levels the flight this fast
+#define AIR_TILT_SYNC_DIR_Y			0.087266f	// tw: 5 degrees
+#define AIR_TILT_SYNC_TIME			3.0f
 
 DEFINITION_MEMORY_POOL(CNtlBehaviorCharAirMove)
 
@@ -27,6 +34,10 @@ CNtlBehaviorCharAirMove::CNtlBehaviorCharAirMove()
 	SetBehaviorName(NTL_BENAME_CHAR_AIR_MOVE);
 
 	m_pPLAirEffect = NULL;
+
+	m_bAirTiltSync = FALSE;
+	m_fAirTiltStartY = 0.0f;
+	m_fAirTiltTime = 0.0f;
 }
 
 CNtlBehaviorCharAirMove::~CNtlBehaviorCharAirMove()
@@ -40,9 +51,11 @@ void CNtlBehaviorCharAirMove::Enter(void)
 	SMoveStuff* pMoveStuff = pBeData->GetMoveStuff();
 	memcpy(&m_MoveStuff, pMoveStuff, sizeof(SMoveStuff));
 
+	m_bAirTiltSync = FALSE;
+
 	SetAnim(pMoveStuff->byMoveFlags);
 
-	// 나중에 base class enter를 호출한다.
+	// base class enter
 	CNtlBehaviorBase::Enter();
 }
 
@@ -66,6 +79,8 @@ void CNtlBehaviorCharAirMove::Update(RwReal fElapsed)
 
 	CNtlBeCharData* pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData());
 	SMoveStuff* pMoveStuff = pBeData->GetMoveStuff();
+
+	UpdateAirTilt(pMoveStuff, fElapsed);
 
 	RwBool bFinish = FALSE;
 
@@ -127,6 +142,76 @@ void CNtlBehaviorCharAirMove::UpdateAirEffect(RwV3d& vDir)
 
 	if (m_pPLAirEffect)
 		m_pPLAirEffect->SetMatrix(mat);
+}
+
+void CNtlBehaviorCharAirMove::BeginAirTiltSync(RwReal fDirY)
+{
+	if (m_pActor->GetClassID() != SLCLASS_AVATAR || m_bAirTiltSync)
+		return;
+
+	m_bAirTiltSync = TRUE;
+	m_fAirTiltStartY = fDirY;
+	m_fAirTiltTime = 0.0f;
+}
+
+// tw: holding the up/down key while moving tilts the flight (1 per second, up to 45 degrees),
+// flying straight up/down levels it. The avatar sends the heading every 5 degrees or 3 seconds.
+void CNtlBehaviorCharAirMove::UpdateAirTilt(SMoveStuff* pMoveStuff, RwReal fElapsed)
+{
+	RwV3d vDir = m_pActor->GetDirection();
+	RwBool bChange = FALSE;
+
+	if (pMoveStuff->byMoveFlags == NTL_MOVE_HEIGHT_UP || pMoveStuff->byMoveFlags == NTL_MOVE_HEIGHT_DOWN)
+	{
+		BeginAirTiltSync(vDir.y);
+
+		if (vDir.y != 0.0f)
+		{
+			RwReal fStep = fElapsed * AIR_TILT_LEVEL_SPEED;
+			if (vDir.y > 0.0f)
+				vDir.y = max(0.0f, vDir.y - fStep);
+			else
+				vDir.y = min(0.0f, vDir.y + fStep);
+
+			bChange = TRUE;
+		}
+	}
+
+	if (pMoveStuff->byMoveFlags != NTL_MOVE_NONE)
+	{
+		CNtlBeCharData* pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData());
+		RwUInt8 byAirUpDown = pBeData->GetAirUpDown();
+
+		if (byAirUpDown == AVATAR_AIR_UPDOWN_UP)
+		{
+			BeginAirTiltSync(vDir.y);
+			vDir.y = min(vDir.y + fElapsed, AIR_TILT_MAX_DIR_Y);
+			bChange = TRUE;
+		}
+		else if (byAirUpDown == AVATAR_AIR_UPDOWN_DOWN)
+		{
+			BeginAirTiltSync(vDir.y);
+			vDir.y = max(vDir.y - fElapsed, -AIR_TILT_MAX_DIR_Y);
+			bChange = TRUE;
+		}
+	}
+
+	if (bChange)
+	{
+		RwV3dNormalize(&vDir, &vDir);
+		m_pActor->SetDirection(&vDir);
+	}
+
+	if (m_bAirTiltSync)
+	{
+		m_fAirTiltTime += fElapsed;
+
+		if (fabsf(vDir.y - m_fAirTiltStartY) > AIR_TILT_SYNC_DIR_Y || m_fAirTiltTime > AIR_TILT_SYNC_TIME)
+		{
+			m_bAirTiltSync = FALSE;
+			API_GetSLPacketGenerator()->SendChangeHeading(vDir);
+		}
+	}
 }
 
 RwUInt32 CNtlBehaviorCharAirMove::HandleEvents(RWS::CMsg& pMsg)

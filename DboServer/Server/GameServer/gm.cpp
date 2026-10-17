@@ -24,6 +24,7 @@
 #include "GameMain.h"
 #include "DragonballScramble.h"
 #include "HoneyBeeEvent.h"
+#include "FairyEvent.h"
 #include "ItemDrop.h"
 #include "DynamicFieldSystemEvent.h"
 #include "DojoManager.h"
@@ -128,6 +129,7 @@ ACMD(do_dynamicfield);
 ACMD(do_dbscramble);
 ACMD(do_dojowar);
 ACMD(do_petexp);
+ACMD(do_fairyevent);
 ACMD(do_test);
 
 struct command_info cmd_info[] =
@@ -187,6 +189,7 @@ struct command_info cmd_info[] =
 	{ L"@dbscramble", do_dbscramble, ADMIN_LEVEL_ADMIN },
 	{ L"@dojowar", do_dojowar, ADMIN_LEVEL_ADMIN },
 	{ L"@petexp", do_petexp, ADMIN_LEVEL_ADMIN },
+	{ L"@fairyevent", do_fairyevent, ADMIN_LEVEL_ADMIN },
 	{ L"@test", do_test, ADMIN_LEVEL_ADMIN },
 
 	{ L"@qwasawedsadas", NULL, ADMIN_LEVEL_ADMIN }
@@ -2153,6 +2156,63 @@ ACMD(do_petexp)
 		msg.Format(L"Pet exp: %u / %u.", pMascot->GetExp(), dwNeedExp);
 
 	ERR_LOG(LOG_USER, "Player: %u used @petexp %S", pPlayer->GetCharID(), strAmount.c_str());
+
+	SendGmFeedback(pPlayer, msg.c_str());
+}
+
+ACMD(do_fairyevent)
+{
+	/*
+		@fairyevent					show status
+		@fairyevent start [HOURS]	start the fairy event (default 3 hours, max 12)
+		@fairyevent stop			end the fairy event
+	*/
+
+	pToken->PopToPeek();
+	std::wstring strAction = pToken->PeekNextToken(NULL, &iLine);
+
+	CNtlStringW msg;
+
+	if (strAction == L"start")
+	{
+		pToken->PopToPeek();
+		std::wstring strToken = pToken->PeekNextToken(NULL, &iLine);
+		BYTE byHours = (BYTE)atof(ws2s(strToken).c_str());
+
+		if (byHours == 0)
+			byHours = 3;
+		else if (byHours > 12)
+			byHours = 12;
+
+		if (g_pFairyEvent->IsOn())
+			msg.Format(L"Fairy event: already running.");
+		else
+		{
+			g_pFairyEvent->StartEvent(byHours);
+			msg.Format(L"Fairy event: event started for %u hours.", byHours);
+		}
+	}
+	else if (strAction == L"stop")
+	{
+		if (g_pFairyEvent->IsOn())
+		{
+			g_pFairyEvent->EndEvent();
+			msg.Format(L"Fairy event: event stopped.");
+		}
+		else
+			msg.Format(L"Fairy event: no event running.");
+	}
+	else if (g_pFairyEvent->IsOn())
+	{
+		msg.Format(L"Fairy event: running, carp in %d summons, %I64d sec left. Usage: @fairyevent [start HOURS|stop]",
+			g_pFairyEvent->GetSummonsUntilCarp(), (__int64)g_pFairyEvent->GetRemainingTime());
+	}
+	else
+	{
+		msg.Format(L"Fairy event: not running. Usage: @fairyevent [start HOURS|stop]");
+	}
+
+	ERR_LOG(LOG_USER, "Player: %u used @fairyevent %S", pPlayer->GetCharID(), strAction.c_str());
 
 	SendGmFeedback(pPlayer, msg.c_str());
 }

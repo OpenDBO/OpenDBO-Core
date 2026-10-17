@@ -50,6 +50,7 @@ protected:
     void            OnTransform_PureMajin(RwBool bTransform);       ///< 순수 마인 변신 처리
     void            OnTransform_Mob(RwUInt32 tblIdx);               ///< 몹 변신 처리
     void            OnTransform_Candy(RwBool bTransform);           ///< 캔디 스킬 변신 처리
+    void            OnTransform_RollingAttack(RwBool bTransform);   ///< rolling attack ball transformation
     void            DetachEffect();                                 ///< 변신시의 부착 이펙트 해제
 
 	void            OnTransform_CinematicScale(float fScale, float fTime);
@@ -71,6 +72,9 @@ protected:
 
     // 캔디 변신
     CNtlPLCharacter* CreateCandyModel();                    ///< 캔디 모델을 생성하고 반환한다.
+
+    // rolling attack
+    CNtlPLCharacter* CreateRollingAttackModel();            ///< creates the ball model (kept until the actor is deleted)
 
 protected:
     CNtlSobActor*       m_pActor;                           ///< Actor 객체
@@ -115,4 +119,8 @@ protected:
     CNtlPLCharacter*    m_pCandyModel;                      ///< 캔디 변신 모델
 	CNtlPLCharacter*    m_pCandyModelUI;                    ///< UI용 캔디 모델
 	CNtlPLCharacter*    m_pCandyModelUI_Dogi;               ///< Dogi UI용 캔디 모델
+
+    // rolling attack
+    CNtlPLCharacter*    m_pRollingOrgModel;                 ///< model before turning into the ball, NULL when not a ball
+    CNtlPLCharacter*    m_pRollingModel;                    ///< ball model
 };

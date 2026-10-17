@@ -123,6 +123,8 @@ private:
 	CNtlCallbackParam1 *m_pCallKeyboardDashMove;	///< Ű���� �뽬 �̵�
 	CNtlCallbackParam0 *m_pCallAvatarSelect;		///< 占싣뱄옙타 占쏙옙占쏙옙
 	CNtlCallbackParam1 *m_pCallJump;				///< 占쏙옙占쏙옙
+	CNtlCallbackParam1 *m_pCallAirUp;				///< tw: fly up while the key is held (1 down, 0 up)
+	CNtlCallbackParam1 *m_pCallAirDown;			///< tw: fly down while the key is held (1 down, 0 up)
 	CNtlCallbackParam1 *m_pCallCharging;			///< 占쏙옙 占쏙옙占쏙옙占쏙옙
 	CNtlCallbackParam1 *m_pCallBlocking;			///< 블록 모드
 	CNtlCallbackParam1 *m_pCallSitAndStand;			///< 占심억옙 占싹어서
@@ -194,6 +196,14 @@ public:
 	template <class Callbackclass>
 	void LinkJump(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiMoveFalgs));
 	void UnLinkJump(void);
+
+	template <class Callbackclass>
+	void LinkAirUp(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t bKeyDown));
+	void UnLinkAirUp(void);
+
+	template <class Callbackclass>
+	void LinkAirDown(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t bKeyDown));
+	void UnLinkAirDown(void);
 
 	template <class Callbackclass>
 	void LinkCharging(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t uiCharging));
@@ -329,6 +339,20 @@ void CInputActionMap::LinkJump(Callbackclass *cbclass,int (Callbackclass::*callb
 {
 	NTL_PRE(m_pCallJump == 0);
 	m_pCallJump = NTL_NEW CNtlCallbackWidget1<Callbackclass> (cbclass,callback);
+}
+
+template <class Callbackclass>
+void CInputActionMap::LinkAirUp(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t bKeyDown))
+{
+	NTL_PRE(m_pCallAirUp == 0);
+	m_pCallAirUp = NTL_NEW CNtlCallbackWidget1<Callbackclass> (cbclass,callback);
+}
+
+template <class Callbackclass>
+void CInputActionMap::LinkAirDown(Callbackclass *cbclass,int (Callbackclass::*callback)(uintptr_t bKeyDown))
+{
+	NTL_PRE(m_pCallAirDown == 0);
+	m_pCallAirDown = NTL_NEW CNtlCallbackWidget1<Callbackclass> (cbclass,callback);
 }
 
 template <class Callbackclass>

@@ -52,6 +52,21 @@ struct SMouseData
 	unsigned int uiDownDeltaTime;
 };
 
+/**
+* \brief Mouse capture (as tw): while a mouse button is held over the world the cursor is hidden and kept in the
+* middle of the window, the listeners get a virtual position built from the (clamped) mouse deltas, so dragging the
+* camera never stops at the screen edge. The cursor goes back to where the button was pressed on release.
+*/
+struct SMouseCapture
+{
+	unsigned int	uiButtonMask;	// buttons holding the capture
+	POINT			ptRestore;		// screen position of the cursor when the capture started
+	POINT			ptLast;			// last real cursor position (screen), the middle of the window
+	POINT			ptPress;		// virtual position (client) where the capture started
+	POINT			ptVirtual;		// virtual position (client) given to the listeners
+	bool			bCursorHidden;
+};
+
 class CInputHandler
 {
 private:
@@ -65,12 +80,21 @@ private:
 
 	RwBool m_bActive;
 
+	RwBool			m_bMouseCaptureEnable;
+	HWND			m_hMouseCaptureWnd;
+	SMouseCapture	m_sMouseCapture;
+
 	static SKeyData g_LastKeyData;
 	static SMouseData g_LastMouseData;
 
+	bool GetMouseCaptureCenter(POINT& ptCenter);
+	void BeginMouseCapture(char chBtnType, int& nPosX, int& nPosY, bool bDblClick);
+	void EndMouseCapture(char chBtnType, int& nPosX, int& nPosY);
+	void RestoreMouseCursor(void);
+
 public:
 
-	CInputHandler() { m_bActive = TRUE; }
+	CInputHandler();
 	~CInputHandler();
 
 	static CInputHandler* GetInstance(void);
@@ -149,6 +173,12 @@ public:
 	void MouseUpHandler(unsigned int uiFlags, int nPosX, int nPosY, char chBtnType, unsigned int uiDeltaTime);
 	void MouseMoveHandler(unsigned int uiFlags, int nPosX, int nPosY);
 	void MouseWheelHandler(unsigned int uiFlags, short shDelta, int nPosX, int nPosY);
+
+	// mouse capture
+	void	EnableMouseCapture(HWND hWnd, RwBool bEnable);
+	void	UpdateMouseCapture(void);					///< keeps the cursor in the middle of the window (every frame)
+	void	ReleaseMouseCapture(void);					///< ends the capture (window lost the focus, ...)
+	RwBool	IsMouseCaptured(void) { return m_sMouseCapture.uiButtonMask != 0; }
 };
 
 #endif

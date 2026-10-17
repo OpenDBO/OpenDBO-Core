@@ -83,6 +83,8 @@ CNtlSobCharDecorationProxy::CNtlSobCharDecorationProxy()
 	m_pRpChargeEffect = NULL;
 	m_pRpChargeGroundEffect = NULL;
 	m_pRpGuardGroundEffect = NULL;
+	m_pRpChargePostGroundKey = NULL;
+	m_pRpGuardPostGroundKey = NULL;
 }
 
 CNtlSobCharDecorationProxy::~CNtlSobCharDecorationProxy()
@@ -306,6 +308,7 @@ void CNtlSobCharDecorationProxy::HandleEvents(RWS::CMsg &pMsg)
             pMsg.Id == g_EventSobSkillAction ||
             pMsg.Id == g_EventAnimHit ||
             pMsg.Id == g_EventTransformCandy ||
+            pMsg.Id == g_EventTransformRollingAttack ||
             pMsg.Id == g_EventSobChangeAdult ||
 		pMsg.Id == g_EventCinematicScale)
     {
@@ -1357,11 +1360,11 @@ void CNtlSobCharDecorationProxy::CreateGuardEffect(RwChar* pKey)
 		m_pGuardEffect->SetScale(m_pPLCharacter->GetScale());
 		m_pPLCharacter->AttachBone((CNtlPLAttach*)m_pGuardEffect, "nullroot");
 
-		m_pRpGuardGroundEffect = CreateAttachedGroundEffect(pKey, NTL_VID_GUARD_PURPLE, NTL_VID_GUARD_REDT);
+		m_pRpGuardGroundEffect = CreateAttachedGroundEffect(pKey, NTL_VID_GUARD_PURPLE, NTL_VID_GUARD_REDT, &m_pRpGuardPostGroundKey);
 	}
 }
 
-void CNtlSobCharDecorationProxy::DeleteGuardEffect()
+void CNtlSobCharDecorationProxy::DeleteGuardEffect(RwBool bPostEffect /* = FALSE */)
 {
 	if (m_pGuardEffect)
 	{
@@ -1372,6 +1375,9 @@ void CNtlSobCharDecorationProxy::DeleteGuardEffect()
 	{
 		GetSceneManager()->DeleteEntity(m_pRpGuardGroundEffect);
 		m_pRpGuardGroundEffect = NULL;
+
+		if (bPostEffect)
+			CreatePostGroundEffect(m_pRpGuardPostGroundKey);
 	}
 }
 
@@ -1387,11 +1393,11 @@ void CNtlSobCharDecorationProxy::CreateRpChargeEffect(RwChar* pKey)
 		m_pRpChargeEffect->SetScale(m_pPLCharacter->GetScale());
 		m_pPLCharacter->AttachBone((CNtlPLAttach*)m_pRpChargeEffect, "nullroot");
 
-		m_pRpChargeGroundEffect = CreateAttachedGroundEffect(pKey, NTL_VID_RP_CHARGE_PURPLE, NTL_VID_RP_CHARGE_REDT);
+		m_pRpChargeGroundEffect = CreateAttachedGroundEffect(pKey, NTL_VID_RP_CHARGE_PURPLE, NTL_VID_RP_CHARGE_REDT, &m_pRpChargePostGroundKey);
 	}
 }
 
-void CNtlSobCharDecorationProxy::DeleteRpChargeEffect()
+void CNtlSobCharDecorationProxy::DeleteRpChargeEffect(RwBool bPostEffect /* = FALSE */)
 {
 	if (m_pRpChargeEffect)
 	{
@@ -1402,6 +1408,15 @@ void CNtlSobCharDecorationProxy::DeleteRpChargeEffect()
 	{
 		GetSceneManager()->DeleteEntity(m_pRpChargeGroundEffect);
 		m_pRpChargeGroundEffect = NULL;
+
+		if (bPostEffect)
+		{
+			CreatePostGroundEffect(m_pRpChargePostGroundKey);
+
+			// tw: the purple charge also ends with a spark (ATTACH_BONE nullroot, attach scale 1 so the sparks spread around the model instead of collapsing at the feet)
+			if (m_pRpChargePostGroundKey && strcmp(m_pRpChargePostGroundKey, NTL_VID_GROUND_EFFECT_BIG_POST) == 0)
+				((CNtlSobCharProxy*)m_pSobObj->GetSobProxy())->CreatePLChildEffect(NTL_VID_RP_CHARGE_POST_SPARK, "nullroot", ZeroAxis, FALSE, 1.0f);
+		}
 	}
 }
 
@@ -1559,17 +1574,20 @@ void CNtlSobCharDecorationProxy::SobChangeAdult( CNtlPLCharacter* pPLCharacter )
     }
 }
 
-CNtlPLEntity* CNtlSobCharDecorationProxy::CreateAttachedGroundEffect(const RwChar* pKey, const RwChar* pPurpleKey, const RwChar* pRedKey)
+CNtlPLEntity* CNtlSobCharDecorationProxy::CreateAttachedGroundEffect(const RwChar* pKey, const RwChar* pPurpleKey, const RwChar* pRedKey, const RwChar** ppPostKey)
 {
 	const RwChar* pGroundKey = NULL;
+	*ppPostKey = NULL;
 
 	if (strcmp(pKey, pPurpleKey) == 0)
 	{
 		pGroundKey = NTL_VID_GROUND_EFFECT_BIG;
+		*ppPostKey = NTL_VID_GROUND_EFFECT_BIG_POST;
 	}
 	else if (strcmp(pKey, pRedKey) == 0)
 	{
 		pGroundKey = NTL_VID_GROUND_EFFECT_SMALL;
+		*ppPostKey = NTL_VID_GROUND_EFFECT_SMALL_POST;
 	}
 	else
 	{
@@ -1585,6 +1603,25 @@ CNtlPLEntity* CNtlSobCharDecorationProxy::CreateAttachedGroundEffect(const RwCha
 	}
 
 	return pGroundEffect;
+}
+
+// tw (post_guard_effect / post_charging_effect): the floor effect stays where the guard/charge ended, even when moving away, and fades out by itself
+void CNtlSobCharDecorationProxy::CreatePostGroundEffect(const RwChar* pKey)
+{
+	if (pKey == NULL)
+		return;
+
+	CNtlPLEntity* pEffect = GetSceneManager()->CreateEntity(PLENTITY_EFFECT, pKey);
+	if (pEffect)
+	{
+		// tw (NOT_ATTACH_WORLD_POS): scale, rotate like the character, then place at the character's world position.
+		// CNtlSobCharProxy does not override GetPosition (the base returns zero), so take it from the PL character.
+		RwV3d vPos = m_pPLCharacter->GetPosition();
+
+		pEffect->SetScale(m_pPLCharacter->GetScale());
+		pEffect->SetRotate(m_pPLCharacter->GetAngleX(), m_pPLCharacter->GetAngleY(), 0.0f);
+		pEffect->SetPosition(&vPos);
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
