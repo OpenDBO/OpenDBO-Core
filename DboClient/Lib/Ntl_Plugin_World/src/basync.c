@@ -25,6 +25,7 @@
 /* */
 
 #include "basync.h"
+#include "bafrmlock.h"
 
 #if defined (__MWERKS__)
 #if (defined(RWVERBOSE))
@@ -277,6 +278,9 @@ _rwFrameSyncDirty(void)
 
     RWFUNCTION(RWSTRING("_rwFrameSyncDirty"));
 
+    /* other threads (world loading) add frames meanwhile, see bafrmlock.c */
+    _rwFrameDirtyListLock();
+
     lpFrameCur = rwLinkListGetFirstLLLink(&RWSRCGLOBAL(dirtyFrameList));
     lpFrameEnd = rwLinkListGetTerminator(&RWSRCGLOBAL(dirtyFrameList));
 
@@ -294,6 +298,8 @@ _rwFrameSyncDirty(void)
 
     /* We have dealt with them all -> everybody's happy ! */
     rwLinkListInitialize(&RWSRCGLOBAL(dirtyFrameList));
+
+    _rwFrameDirtyListUnlock();
 
     /* All done */
     RWRETURN(TRUE);
@@ -366,6 +372,8 @@ _rwFrameSyncHierarchyLTM(RwFrame * frame)
     RWASSERTISTYPE(frame, rwFRAME);
     RWASSERT(frame->root == frame);
 
+    _rwFrameDirtyListLock();
+
     oldFlags = rwObjectGetPrivateFlags(frame);
 
     if (oldFlags & rwFRAMEPRIVATESUBTREESYNCLTM)
@@ -381,6 +389,8 @@ _rwFrameSyncHierarchyLTM(RwFrame * frame)
     rwObjectSetPrivateFlags(frame, oldFlags &
                                     ~(rwFRAMEPRIVATEHIERARCHYSYNCLTM |
                                       rwFRAMEPRIVATESUBTREESYNCLTM));
+
+    _rwFrameDirtyListUnlock();
 
     /* All done */
     RWRETURNVOID();

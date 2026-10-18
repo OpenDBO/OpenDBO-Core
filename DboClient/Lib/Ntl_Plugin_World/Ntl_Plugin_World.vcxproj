@@ -224,6 +224,7 @@
     <ClCompile Include="src\bacamval.c" />
     <ClCompile Include="src\badevice.c" />
     <ClCompile Include="src\baframe.c" />
+    <ClCompile Include="src\bafrmlock.c" />
     <ClCompile Include="src\baim3doc.c" />
     <ClCompile Include="src\baimage.c" />
     <ClCompile Include="src\baimras.c" />
