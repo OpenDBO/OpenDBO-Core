@@ -79,6 +79,9 @@ VOID CBroadCastSystem::Destroy()
 	UnLinkMsg(g_EventBroadCastNfy);
 	UnLinkMsg(g_EventResize);
 
+	// added in Create, the gui manager would keep updating the deleted ticker (logout froze the client)
+	GetNtlGuiManager()->RemoveUpdateFunc(this);
+
 	CNtlPLGui::DestroyComponents();
 	CNtlPLGui::Destroy();
 }
