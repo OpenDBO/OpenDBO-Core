@@ -404,6 +404,7 @@ void PacketHandler_TUBudokaiTournamentIndividualListRes(void* pPacket)
 	if( pList->wResultCode != CHAT_SUCCESS )
 	{
 		GetAlarmManager()->AlarmMessage(Logic_GetResultCodeString(pList->wResultCode, "TU_BUDOKAI_TOURNAMENT_INDIVIDUAL_LIST_RES"), TRUE );
+		return;
 	}
 
 	CDboEventGenerator::BudokaiTournamentIndividualList( pList->wEntryTeam, pList->byMatchDataCount, pList->wMatchData, &pList->sData );
