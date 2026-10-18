@@ -26,8 +26,17 @@ public:
 
 private:
 
+	// a wrapper holds one RenderWare reference, the gui owners are counted here (not with the RW refCount,
+	// a reload on a cache hit could swap the RW texture and the last owner freed the wrapper too early)
+	struct sTEXTURE_OWNER
+	{
+		std::string		strKey;
+		int				nRefCount;
+	};
+
 	int m_nImtexNum;
 	std::map<std::string, CTexture*> m_mapTexture;
+	std::map<CTexture*, sTEXTURE_OWNER> m_mapOwner;
 };
 
 END_GUI
