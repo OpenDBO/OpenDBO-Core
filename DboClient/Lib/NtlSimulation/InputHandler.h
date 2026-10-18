@@ -88,6 +88,7 @@ private:
 	static SMouseData g_LastMouseData;
 
 	bool GetMouseCaptureCenter(POINT& ptCenter);
+	bool IsMouseCaptureWndForeground(void);
 	void BeginMouseCapture(char chBtnType, int& nPosX, int& nPosY, bool bDblClick);
 	void EndMouseCapture(char chBtnType, int& nPosX, int& nPosY);
 	void RestoreMouseCursor(void);
