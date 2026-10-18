@@ -854,6 +854,8 @@ public:
 
 	static void TSSkillUse_Dash( SERIAL_HANDLE hSource );
 
+	static void TSSkillUse_Type( SERIAL_HANDLE hSource, RwUInt32 uiSkillType );
+
 	static void TSSkillUse_Skill( SERIAL_HANDLE hSource, SSkillStuff* pSkillStuff, CNtlAttackData* pAttackData );
 
 	static void TSSkillUse_HTB( SERIAL_HANDLE hSource, SERIAL_HANDLE hTarget, RwUInt32 uiSkillTblId );

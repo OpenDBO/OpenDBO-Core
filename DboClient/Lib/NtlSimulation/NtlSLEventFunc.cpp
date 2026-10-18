@@ -3959,6 +3959,27 @@ void CNtlSLEventGenerator::TSSkillUse_Charging( SERIAL_HANDLE hSource )
 	_SendMsg( msg );
 }
 
+void CNtlSLEventGenerator::TSSkillUse_Type( SERIAL_HANDLE hSource, RwUInt32 uiSkillType )
+{
+	// tw: the air jump / air dash / air accel states raise the TS skill use with only the type
+	if ( GetNtlSLGlobal()->GetSobAvatar()->GetSerialID() != hSource )
+	{
+		return;
+	}
+
+	SNtlEventTSSkillUse sSkillUse;
+
+	sSkillUse.uiSkillType = uiSkillType;
+	sSkillUse.uiSkillIdx = 0xffffffff;
+	sSkillUse.byRpBonusType = DBO_RP_BONUS_TYPE_INVALID;
+	memset( sSkillUse.arhTargetHandle, 0xffffffff, sizeof( sSkillUse.arhTargetHandle ) );
+
+	RWS::CMsg msg;
+	msg.Id = g_EventTSSkillUse;
+	msg.pData = reinterpret_cast<void*>( &sSkillUse );
+	_SendMsg( msg );
+}
+
 void CNtlSLEventGenerator::TSSkillUse_Skill( SERIAL_HANDLE hSource, SSkillStuff* pSkillStuff, CNtlAttackData* pAttackData )
 {
 	// TS skill use �̺�Ʈ�� �ƹ�Ÿ�� ��ü�� ��츸 �����Ѵ�

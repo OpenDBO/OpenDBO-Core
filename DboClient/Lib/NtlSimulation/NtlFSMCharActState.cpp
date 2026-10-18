@@ -1695,6 +1695,9 @@ void CNtlFSMCharActAirJumpState::Enter(void)
 
 	CNtlBehaviorBase *pBehavior = NTL_NEW CNtlBehaviorCharAirMove;
 	AddBehavior(pBehavior);
+
+	// tw: taking off is a TS skill use (the flight practice quests wait for it)
+	CNtlSLEventGenerator::TSSkillUse_Type(m_pActor->GetSerialID(), eEVENT_SKILL_TYPE_AIR_JUMP);
 }
 
 void CNtlFSMCharActAirJumpState::Exit(void)
@@ -7059,6 +7062,11 @@ void CNtlFSMCharActAirAccelState::Enter(void)
 
 	CNtlBehaviorCharAirMove *pBehavior = NTL_NEW CNtlBehaviorCharAirMove;
 	AddBehavior(pBehavior);
+
+	// tw: the air dash and the air accel are TS skill uses too (tw raises them from its dash / dash accel states)
+	CNtlBeCharData *pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData());
+	RwBool bAirDash = pBeData && pBeData->GetMoveStuff()->byFormFlag == NTL_MOVE_FLAG_FLY_DASH;
+	CNtlSLEventGenerator::TSSkillUse_Type(m_pActor->GetSerialID(), bAirDash ? eEVENT_SKILL_TYPE_AIR_DASH : eEVENT_SKILL_TYPE_AIR_ACCEL);
 }
 
 void CNtlFSMCharActAirAccelState::Exit(void)
