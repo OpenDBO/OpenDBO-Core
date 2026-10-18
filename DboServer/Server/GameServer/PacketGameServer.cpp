@@ -16944,6 +16944,13 @@ void	CClientSession::RecvItemUseReq(CNtlPacket * pPacket)
 						{
 							if (NtlGetDistance(cPlayer->GetCurLoc(), pTrigObj->GetCurLoc()) > 15.f)
 								resultcode = GAME_TARGET_TOO_FAR;
+							else if (CDojo* pDojo = g_pDojoWarManager->GetDojo(cPlayer->GetGuildID()))
+							{
+								// a seal our side already holds cannot be taken again
+								BYTE byOurSealState = (pDojo->GetGuildID() == cPlayer->GetGuildID()) ? TOBJECT_STATE_TYPE_C_DEFENCE_TEAM : TOBJECT_STATE_TYPE_C_ATTACK_TEAM;
+								if (pTrigObj->GetMainState() == byOurSealState)
+									resultcode = GAME_GUILD_DOJO_YOU_CANT_ATTACK_YOUR_TEAM_SEAL;
+							}
 						}
 						else
 						{
