@@ -148,6 +148,10 @@ CDboApplication::CDboApplication() : m_pCharset(NULL)
 
 	m_bMouseBackgroundCapture = FALSE;
 
+	m_bPendingResize			= FALSE;
+	m_bPendingResizeRestore		= FALSE;
+	m_bPendingToggleFullMode	= FALSE;
+
 	CNtlTimer::ActiveInterpolation(true);
 
 	m_fLastClientInfoUpdate = 0.0f;
@@ -665,8 +669,21 @@ RwBool CDboApplication::Resize(RwInt32 iWidth, RwInt32 iHeight, RwBool zBuffer, 
 {
 	NTL_FUNCTION("CDboApplication::Resize" );
 
-	CNtlApplication::Resize(iWidth, iHeight, zBuffer, bRestore_from_Minimize);	
-	
+	CNtlApplication::Resize(iWidth, iHeight, zBuffer, bRestore_from_Minimize);
+
+	// the game loading thread builds the gui and the world, resizing the cameras (d3d) and the gui now
+	// races it and hangs the client, so resize once the thread is gone (ApplyPendingWindowChange)
+	if( g_clWorkThreadMgr.GetThreadCnt() > 0 )
+	{
+		m_bPendingResize = TRUE;
+		if( bRestore_from_Minimize )
+			m_bPendingResizeRestore = TRUE;
+
+		NTL_RETURN(TRUE);
+	}
+
+	m_bPendingResize		= FALSE;
+	m_bPendingResizeRestore	= FALSE;
 
 	if(m_pCamera != NULL)
 	{
@@ -694,6 +711,26 @@ RwBool CDboApplication::Resize(RwInt32 iWidth, RwInt32 iHeight, RwBool zBuffer, 
 	}
 
 	NTL_RETURN(TRUE);
+}
+
+void CDboApplication::ApplyPendingWindowChange(void)
+{
+	if( g_clWorkThreadMgr.GetThreadCnt() > 0 )
+		return;
+
+	if( m_bPendingToggleFullMode )
+	{
+		m_bPendingToggleFullMode = FALSE;
+		ToggleFullMode();
+	}
+
+	// the window may have changed again since, use its current size
+	if( m_bPendingResize )
+	{
+		RECT rtClient;
+		GetClientRect( GetHWnd(), &rtClient );
+		Resize( rtClient.right - rtClient.left, rtClient.bottom - rtClient.top, TRUE, m_bPendingResizeRestore );
+	}
 }
 
 void CDboApplication::SetApplicationMinMax(LPMINMAXINFO lpmmi)
@@ -788,8 +825,14 @@ LRESULT CDboApplication::PreTranslateMessage(HWND window, UINT message, WPARAM w
 				switch( LOWORD(wParam) )
 				{
 				case ID_TOGGLE_FULLSCREEN:
-					if(Logic_IsDevUser()) 
-							ToggleFullMode();						
+					if(Logic_IsDevUser())
+					{
+						// resets the device, not while the game loading thread runs (see Resize)
+						if( g_clWorkThreadMgr.GetThreadCnt() > 0 )
+							m_bPendingToggleFullMode = !m_bPendingToggleFullMode;
+						else
+							ToggleFullMode();
+					}
 					return 0;
 				}
 			}
@@ -1124,6 +1167,8 @@ RwBool CDboApplication::Update(RwReal fTime, RwReal fElapsedTime)
 
 //	EventQueueCurrentProcessFilterMsg(
 
+	ApplyPendingWindowChange();
+
 	CInputHandler::GetInstance()->UpdateMouseCapture();
 
 	API_CoreUpdate(fElapsedTime);
@@ -1248,7 +1293,7 @@ RwBool CDboApplication::Update(RwReal fTime, RwReal fElapsedTime)
 
 void CDboApplication::Destroy()
 {
-	NTL_FUNCTION("CDboApplication::Destroy" );	
+	NTL_FUNCTION("CDboApplication::Destroy" );
 
 	// lleo52 - 추후 제거 필요
 	CNtlMovieManager::DeleteInstance();

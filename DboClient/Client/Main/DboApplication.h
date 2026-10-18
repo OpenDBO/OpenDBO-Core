@@ -49,6 +49,11 @@ protected:
 	HANDLE						m_hInstance;
 	RwBool						m_bMouseBackgroundCapture;
 
+	// window changes made while the game loading thread runs, applied once it is gone
+	RwBool						m_bPendingResize;
+	RwBool						m_bPendingResizeRestore;
+	RwBool						m_bPendingToggleFullMode;
+
 	float			m_fLastClientInfoUpdate;
 	DBOTIME			m_lastClientInfoSent;
 
@@ -62,6 +67,7 @@ protected:
 	RwBool	Update(RwReal fTime, RwReal fElapsedTime);
 	
 	RwBool	Resize(RwInt32 iWidth, RwInt32 iHeight, RwBool zBuffer, RwBool bRestore_from_Minimize);
+	void	ApplyPendingWindowChange(void);
 	void	SetApplicationMinMax(LPMINMAXINFO lpmmi);
 
 	void	DisplayInfo();
