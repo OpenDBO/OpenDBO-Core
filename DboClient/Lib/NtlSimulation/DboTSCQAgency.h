@@ -8,6 +8,7 @@
 
 class CDboTSCQCtrl;
 class CDboUnifiedQuestNarration;
+struct sMOB_TBLDAT;
 
 
 /** 
@@ -73,6 +74,8 @@ public:
 	SGET_QUEST_INFO*					GetQuestInfoList_ForQuestSerarch( unsigned int uiWorldTblIdx, RwReal fX, RwReal fZ, RwReal fRadius );
 
 	bool								HasEventNPCInProgressQuest( unsigned int uiNPCIdx );
+
+	bool								IsQuestMob( const sMOB_TBLDAT* pMobTbl );
 
 	virtual void						HandleEvents( RWS::CMsg& Msg );
 

@@ -245,6 +245,7 @@ RwBool CreateTableContainer(RwUInt8 byLoadMethod)
 	flagManager.Set(CTableContainer::TABLE_AIR_COSTUME);
 	flagManager.Set(CTableContainer::TABLE_CHAT_COMMAND);		
 	flagManager.Set(CTableContainer::TABLE_QUEST_ITEM);
+	flagManager.Set(CTableContainer::TABLE_QUEST_DROP);			// tw: the minimap marks the mobs that drop needed quest items
 	flagManager.Set(CTableContainer::TABLE_QUEST_TEXT_DATA);
 	flagManager.Set(CTableContainer::TABLE_TEXT_ALL);
 	flagManager.Set(CTableContainer::TABLE_OBJECT);
@@ -309,6 +310,7 @@ RwBool CreateTableContainer(RwUInt8 byLoadMethod)
 	fileNameList.SetFileName(CTableContainer::TABLE_AIR_COSTUME,			"Table_Aircostume_Data");
 	fileNameList.SetFileName(CTableContainer::TABLE_CHAT_COMMAND,			"Table_Chat_Command_Data");
 	fileNameList.SetFileName(CTableContainer::TABLE_QUEST_ITEM,				"Table_Quest_Item_Data");
+	fileNameList.SetFileName(CTableContainer::TABLE_QUEST_DROP,				"Table_Quest_Drop_Data");
 	fileNameList.SetFileName(CTableContainer::TABLE_QUEST_TEXT_DATA,		"Table_Quest_Text_Data");
 	fileNameList.SetFileName(CTableContainer::TABLE_TEXT_ALL,				"Table_Text_All_Data");
 	fileNameList.SetFileName(CTableContainer::TABLE_WORLD_MAP,				"Table_Worldmap_Data");

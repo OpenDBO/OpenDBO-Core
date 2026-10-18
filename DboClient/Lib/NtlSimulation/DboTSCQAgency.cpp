@@ -22,6 +22,7 @@
 #include "NtlSobMonster.h"
 #include "NtlSobMonsterAttr.h"
 #include "MobTable.h"
+#include "QuestDropTable.h"
 #include "NtlSobNpc.h"
 #include "NtlSobNpcAttr.h"
 #include "NPCTable.h"
@@ -595,6 +596,73 @@ bool CDboTSCQAgency::HasEventNPCInProgressQuest( unsigned int uiNPCIdx )
 		if ( pQuest->HasEventNPCInProgressQuest( uiNPCIdx ) )
 		{
 			return true;
+		}
+	}
+
+	return false;
+}
+
+// tw (CQuestProgressInfo): a mob is a quest mob while a progressing quest still has to kill its mob group,
+// or still has to loot a quest item its quest drop table can drop
+bool CDboTSCQAgency::IsQuestMob( const sMOB_TBLDAT* pMobTbl )
+{
+	if ( NULL == pMobTbl ) return false;
+
+	// the client only has the quest drop table when it is in its table load list (NtlSLApi.cpp)
+	sQUEST_DROP_TBLDAT* pQuestDrop = NULL;
+	CQuestDropTable* pQuestDropTable = API_GetTableContainer()->GetQuestDropTable();
+	if ( pQuestDropTable && INVALID_TBLIDX != pMobTbl->dropQuestTblidx )
+	{
+		pQuestDrop = reinterpret_cast<sQUEST_DROP_TBLDAT*>( pQuestDropTable->FindData( pMobTbl->dropQuestTblidx ) );
+	}
+
+	mapdef_TRIGGER_LIST::iterator it = m_defCurTList.begin();
+	for ( ; it != m_defCurTList.end(); ++it )
+	{
+		CDboTSCQCtrl* pQuest = (CDboTSCQCtrl*) it->second;
+
+		if ( pQuest->IsFailed() || pQuest->IsError() ) continue;
+
+		uSTOC_EVT_DATA& uEvtData = pQuest->GetServerEvtData();
+
+		switch ( pQuest->GetServerEvtDataType() )
+		{
+		case eSTOC_EVT_DATA_TYPE_MOB_KILL_CNT:
+			{
+				for ( int i = 0; i < uSTOC_EVT_DATA::MAX_MOB_KILL; ++i )
+				{
+					sSTOC_EVT_DATA_MOB_KILL_CNT& sKill = uEvtData.sMobKillCnt[i];
+
+					if ( 0xffffffff == sKill.uiMobIdx ) continue;
+
+					if ( sKill.uiMobIdx == pMobTbl->dwMobGroup && sKill.nCurMobCnt < sKill.nMobCnt )
+					{
+						return true;
+					}
+				}
+			}
+			break;
+
+		case eSTOC_EVT_DATA_TYPE_MOB_KILL_ITEM_CNT:
+			{
+				if ( NULL == pQuestDrop ) break;
+
+				for ( int i = 0; i < uSTOC_EVT_DATA::MAX_MOB_KILL_ITEM; ++i )
+				{
+					sSTOC_EVT_DATA_MOB_KILL_ITEM_CNT& sKillItem = uEvtData.sMobKillItemCnt[i];
+
+					if ( 0xffffffff == sKillItem.uiMobLIIdx || sKillItem.nCurMobLICnt >= sKillItem.nMobLICnt ) continue;
+
+					for ( int j = 0; j < QUEST_ITEM_DROP_MAX_COUNT; ++j )
+					{
+						if ( pQuestDrop->aQuestItemTblidx[j] == sKillItem.uiMobLIIdx )
+						{
+							return true;
+						}
+					}
+				}
+			}
+			break;
 		}
 	}
 
