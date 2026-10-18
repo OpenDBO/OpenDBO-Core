@@ -974,6 +974,20 @@ CPos CQuickSlotGui::GetInitialRowPosOffset(VOID)
 	return pos;
 }
 
+RwBool CQuickSlotGui::HasAvatarSkillInFirstSlot(VOID)
+{
+	CQuickSlotItem& sItem = m_aQuickSlotItem[0][0];
+	if( sItem.GetSLClassID() != SLCLASS_SKILL_ICON )
+		return FALSE;
+
+	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
+	CNtlSob* pSkill = GetNtlSobManager()->GetSobObject( sItem.GetFirstSerialID() );
+	if( !pAvatar || !pSkill || pSkill->GetClassID() != SLCLASS_SKILL )
+		return FALSE;
+
+	return pSkill->GetOwnerID() == pAvatar->GetSerialID();
+}
+
 RwInt32 CQuickSlotGui::ActionMapQuickSlotChange( uintptr_t uiParam )
 {
 	if( !Logic_CanKeybaordInput_in_Tutorial( ETL_KEYBOARD_INPUT_TYPE_QUICK_SLOT_CHANGE ) )

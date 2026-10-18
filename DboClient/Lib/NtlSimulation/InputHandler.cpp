@@ -220,10 +220,12 @@ void CInputHandler::MouseUpHandler(unsigned int uiFlags, int nPosX, int nPosY, c
 {
 	NTL_FUNCTION("CInputHandler::MouseUpHandler");
 
-	if ( !m_bActive ) return;
-
+	// the capture ends even when the input went inactive while the button was held (loading, movie),
+	// otherwise the cursor stays hidden and pinned to the middle of the window
 	if (m_bMouseCaptureEnable)
 		EndMouseCapture(chBtnType, nPosX, nPosY);
+
+	if ( !m_bActive ) return;
 
 	SMouseData Mouse = { uiFlags, nPosX, nPosY, 0, chBtnType, 0, uiDeltaTime };
 
@@ -349,6 +351,9 @@ void CInputHandler::BeginMouseCapture(char chBtnType, int& nPosX, int& nPosY, bo
 		return;
 	}
 
+	if (!IsMouseCaptureWndForeground())
+		return;
+
 	POINT ptCenter;
 	if (!GetMouseCaptureCenter(ptCenter))
 		return;
@@ -403,12 +408,28 @@ void CInputHandler::UpdateMouseCapture(void)
 	if (!m_bMouseCaptureEnable || !IsMouseCaptured())
 		return;
 
+	// the capture only lives while the game window is in front: a focus loss the WM_ACTIVATE handling missed
+	// (alt+tab, minimize) would keep pulling the cursor of the other application into the game window
+	if (!IsMouseCaptureWndForeground())
+	{
+		ReleaseMouseCapture();
+		return;
+	}
+
 	POINT ptCenter;
 	if (!GetMouseCaptureCenter(ptCenter))
 		return;
 
 	::SetCursorPos(ptCenter.x, ptCenter.y);
 	m_sMouseCapture.ptLast = ptCenter;
+}
+
+bool CInputHandler::IsMouseCaptureWndForeground(void)
+{
+	if (m_hMouseCaptureWnd == NULL || ::IsIconic(m_hMouseCaptureWnd))
+		return false;
+
+	return ::GetForegroundWindow() == ::GetAncestor(m_hMouseCaptureWnd, GA_ROOT);
 }
 
 void CInputHandler::ReleaseMouseCapture(void)

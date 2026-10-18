@@ -509,6 +509,9 @@
     <ClCompile Include="Gui\HelpWindowGui.cpp">
       <Filter>Gui\Component\Game\Help</Filter>
     </ClCompile>
+    <ClCompile Include="Gui\HelpWindowGuiByEvent.cpp">
+      <Filter>Gui\Component\Game\Help</Filter>
+    </ClCompile>
     <ClCompile Include="Gui\DropItemInfoGui.cpp">
       <Filter>Gui\Component\Game\InfoWnd</Filter>
     </ClCompile>
@@ -1496,6 +1499,9 @@
       <Filter>Gui\Component\Game\Help</Filter>
     </ClInclude>
     <ClInclude Include="Gui\HelpWindowGui.h">
+      <Filter>Gui\Component\Game\Help</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\HelpWindowGuiByEvent.h">
       <Filter>Gui\Component\Game\Help</Filter>
     </ClInclude>
     <ClInclude Include="Gui\InfoWindowGui.h">

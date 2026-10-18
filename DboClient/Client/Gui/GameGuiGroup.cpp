@@ -58,6 +58,7 @@
 #include "WorldMap.h"
 #include "OptionWindowGui.h"
 #include "HelpWindowGui.h"
+#include "HelpWindowGuiByEvent.h"
 #include "DropItemInfoGuiList.h"
 #include "DropItemInfoGui.h"
 #include "SideIconGui.h"
@@ -262,6 +263,7 @@ CGameGuiGroup::CGameGuiGroup()
 , m_pWorldMap(NULL)
 , m_pOptionWindowGui(NULL)
 , m_pHelpWindowGui(NULL)
+, m_pHelpWindowGuiByEvent(NULL)
 , m_pDropItemInfoGuiList(NULL)
 , m_pDropItemInfoGui(NULL)
 , m_pSideIconGui(NULL)
@@ -309,6 +311,7 @@ CGameGuiGroup::CGameGuiGroup()
 , m_pDogiGui(NULL)
 , m_pDojoUpgrade(NULL)
 , m_pScrambleStatusGui(NULL)
+, m_uiScrambleStatusDojoIdx(INVALID_TBLIDX)
 , m_pScrambleNotify(NULL)
 , m_pNetMablePCBangGui(NULL)
 , m_pNetPyShopGui(NULL)
@@ -653,6 +656,16 @@ RwBool CGameGuiGroup::Create(void)
 
 	AddDialog( m_pHelpWindowGui, CHelpWindowGui, "HelpWndGui", DIALOG_HELPWND );
 
+	// tw: flight practice tutorial flashes
+	m_pHelpWindowGuiByEvent = NTL_NEW CHelpWindowGuiByEvent( "HelpWndGuiByEvent" );
+	if( !m_pHelpWindowGuiByEvent->Create() )
+	{
+		m_pHelpWindowGuiByEvent->Destroy();
+		NTL_DELETE( m_pHelpWindowGuiByEvent );
+		NTL_RETURN( FALSE );
+	}
+	CNtlPLGuiManager::GetInstance()->AddGui( m_pHelpWindowGuiByEvent );
+
 	AddDialog( m_pSideIconGui, CSideIconGui, "SideIconGui", DIALOG_SIDEICON );
 
 	// Private Shop
@@ -935,6 +948,7 @@ void CGameGuiGroup::Destroy(void)
 	RemoveDialog(m_pOptionWindowGui);
 	RemoveDialog(m_pSideIconGui);
 	RemoveDialog(m_pHelpWindowGui);
+	RemoveDialog(m_pHelpWindowGuiByEvent);
 	RemoveDialog(m_pPrivateShopGui);
 	RemoveDialog(m_pPrivateShopCartGui);
     RemoveDialog(m_pRBBoardGui);
@@ -1400,18 +1414,20 @@ void CGameGuiGroup::HandleEvents(RWS::CMsg &pMsg)
 
 				AddSideDialog_no_return(m_pScrambleStatusGui, CScrambleStatusGui, "CScrambleStatusGui", SDIALOG_SCRAMBLE_STATUS);
 				GetSideDialogManager()->OpenDialog(SDIALOG_SCRAMBLE_STATUS);
+
+				m_uiScrambleStatusDojoIdx = pEvent->uiDojoTableIndex;
 			}
 		}
 		else if( eDBO_DOJO_STATUS_NORMAL == pEvent->byDojoState && m_pScrambleStatusGui )
 		{
-			// every player hears when a dojo goes back to normal, only close the war we take part in
-			CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
-			bool bOurWar = !pAvatar || pAvatar->GetDojo()->GetScramble()->uiScrambleDojoTableIndex == pEvent->uiDojoTableIndex;
-
-			if( bOurWar )
+			// every player hears when a dojo goes back to normal, only close the war we take part in.
+			// Compared with the dojo the panel was opened for: the avatar's scramble info is already gone
+			// when the war ends, it is recreated by the teleport back to the normal channel.
+			if( m_uiScrambleStatusDojoIdx == pEvent->uiDojoTableIndex )
 			{
 				GetSideDialogManager()->UnRegistDialog(SDIALOG_SCRAMBLE_STATUS);
 				RemoveDialog(m_pScrambleStatusGui);
+				m_uiScrambleStatusDojoIdx = INVALID_TBLIDX;
 			}
 		}
 	}

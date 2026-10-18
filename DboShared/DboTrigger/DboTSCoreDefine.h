@@ -470,6 +470,9 @@ enum eEVENT_SKILL_TYPE
 	eEVENT_SKILL_TYPE_DASH,
 	eEVENT_SKILL_TYPE_GUARD,
 	eEVENT_SKILL_TYPE_CHARGING,
+	eEVENT_SKILL_TYPE_AIR_JUMP,			// tw: raised when the air jump (take off) starts
+	eEVENT_SKILL_TYPE_AIR_DASH,			// tw: air dash
+	eEVENT_SKILL_TYPE_AIR_ACCEL,		// tw: air accel (fast flight)
 	eEVENT_SKILL_TYPE_SKILLIDX,
 	eEVENT_SKILL_TYPE_INVALID
 };

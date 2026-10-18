@@ -1041,6 +1041,8 @@ VOID CMinimapGui::Update( RwReal fElapsed )
 	pSobGroup = GetNtlSobManager()->GetSobGroup( SLCLASS_MONSTER );
 	if( pSobGroup )
 	{
+		CDboTSCQAgency* pQuestAgency = API_GetQuestAgency();
+
 		CNtlSobGroup::MapObject::iterator it;
 		for( it = pSobGroup->GetObjects().begin() ; it != pSobGroup->GetObjects().end() ; ++it )
 		{
@@ -1059,15 +1061,15 @@ VOID CMinimapGui::Update( RwReal fElapsed )
 			monster.bShow			= true;
 			monster.bInfoWindow		= true;
 
-			if(pMonsterAttr->IsHaveDragonBall())
+			// tw: dragon ball first, then mobs a progressing quest still needs, then the strength grade
+			if(pMonsterAttr->IsHaveDragonBall() && Logic_ExistScouterEffect(ACTIVE_SCOUTER_CHECK_DRAGONBALL))
 			{
-				if(Logic_ExistScouterEffect(ACTIVE_SCOUTER_CHECK_DRAGONBALL))
-					monster.eMobMarkType = MMT_HAVE_DRAGONBALL;
+				monster.eMobMarkType = MMT_HAVE_DRAGONBALL;
 			}
-
-			// to do: check if required for quest
-			//monster.eMobMarkType = MMT_HAVE_QUEST;
-
+			else if(pQuestAgency && pQuestAgency->IsQuestMob(pMonsterAttr->GetMobTbl()))
+			{
+				monster.eMobMarkType = MMT_HAVE_QUEST;
+			}
 			else
 			{
 				RwUInt8 byCGType = Logic_GetCounterpartGradeType(pAvatarAttr, pMonsterAttr);
@@ -2013,9 +2015,12 @@ VOID CMinimapGui::AdjustIconSize()
 	{
 		float fNewRate = (i == MMT_HAVE_DRAGONBALL) ? fRate * 2.f : fRate;
 
-		m_surMarkMob[i].SetWidth((RwInt32)((RwReal)(pSurface->m_Original.rtRect.right - pSurface->m_Original.rtRect.left) * fNewRate));
-		m_surMarkMob[i].SetHeight((RwInt32)((RwReal)(pSurface->m_Original.rtRect.bottom - pSurface->m_Original.rtRect.top) * fNewRate));
-	}	
+		// tw: the quest mark keeps its own (16x16) size, shrunk to the 6x6 mob dot it can not be seen
+		gui::CSurface* pMarkSurface = (i == MMT_HAVE_QUEST) ? m_surMarkMob[i].GetSurface() : pSurface;
+
+		m_surMarkMob[i].SetWidth((RwInt32)((RwReal)(pMarkSurface->m_Original.rtRect.right - pMarkSurface->m_Original.rtRect.left) * fNewRate));
+		m_surMarkMob[i].SetHeight((RwInt32)((RwReal)(pMarkSurface->m_Original.rtRect.bottom - pMarkSurface->m_Original.rtRect.top) * fNewRate));
+	}
 
 	pSurface = m_surMarkQuest[0].GetSurface();
 	for( RwUInt8 i = 0 ; i < NUM_QMT ; ++i )

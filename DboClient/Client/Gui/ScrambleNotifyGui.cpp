@@ -30,8 +30,6 @@
 
 #define dFLASH_SCRAMBLE_TITLE			"Dojo_Scramble_Title.swf"
 #define dFLASH_SCRAMBLE_START			"Dojo_Scramble_Start.swf"
-#define dFLASH_SCRAMBLE_DEFENCE_FAIL	"Dojo_Seal_Defence_Fail.swf"
-#define dFLASH_SCRAMBLE_OFFENCE_SUCCESS	"Dojo_Seal_Offence_Success.swf"
 #define dFLASH_SCRAMBLE_WARNING			"Dojo_Screamble_Warnning.swf"
 #define dFLASH_SCRAMBLE_RESULT			"Dojo_Scramble_Conclusion.swf"
 #define dFLASH_SCRAMBLE_REWARD			"Dojo_Scramble_Result.swf"
@@ -659,30 +657,7 @@ VOID CScrambleNotifyGui::HandleEvents( RWS::CMsg &msg )
 
 				break;
 			}
-		case DOJO_EVENT_SCRAMBLE_CHANGE_SEAL_OWNER:
-			{
-				CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
-				if( !pAvatar )
-					break;
-
-				GUILDID		guildID	= *(GUILDID*)pEvent->pExData2;
-				CNtlGuild*	pGuild	= pAvatar->GetGuild();
-
-				if( guildID == pGuild->GetGuildID() )
-				{			
-					FinishFlash();
-					LoadFlash(pFlash_Notify, dFLASH_SCRAMBLE_OFFENCE_SUCCESS);
-					GetDialogManager()->OpenDialog(DIALOG_SCRAMBLE_NOTIFY);
-				}
-				else
-				{
-					FinishFlash();
-					LoadFlash(pFlash_Notify, dFLASH_SCRAMBLE_DEFENCE_FAIL);
-					GetDialogManager()->OpenDialog(DIALOG_SCRAMBLE_NOTIFY);
-				}
-
-				break;
-			}
+		// a seal changing owner only shows the yellow message (latest retail), no flash
 		case DOJO_EVENT_SCRAMBLE_RESULT:
 			{
 				GUILDID			winnerGuildID	= pEvent->uiParam;

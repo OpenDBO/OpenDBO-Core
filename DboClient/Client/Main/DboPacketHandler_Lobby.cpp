@@ -1172,7 +1172,9 @@ void PacketHandler_GSAVatarQuickSlotInfo(void *pPacket)
 	memcpy( &pAvatarInfo->sQuickSlotInfo, &pData->asQuickSlotData, sizeof( sQUICK_SLOT_PROFILE ) * pData->byQuickSlotCount );
 
 	// Valid only if a packet is received after the Avatar is created.
-	if( GetNtlSLGlobal()->GetSobAvatar() )
+	// Not while changing game server: the avatar is still the old server's, the items of the new server do not
+	// exist yet and every item slot would be unset (deleted on the server). AvatarReCreate loads the slots.
+	if( GetNtlSLGlobal()->GetSobAvatar() && !GetDboGlobal()->GetGameData()->bAvatarReCreate )
 		CDboEventGenerator::QuickSlotInfo();
 }
 

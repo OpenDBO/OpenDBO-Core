@@ -50,6 +50,7 @@ class CGroupNotifyGui;
 class CWorldMapGui;
 class COptionWindowGui;
 class CHelpWindowGui;
+class CHelpWindowGuiByEvent;
 class CDropItemInfoGuiList;
 class CDropItemInfoGui;
 class CSideIconGui;
@@ -175,6 +176,7 @@ private:
 	CWorldMapGui*				m_pWorldMap;
 	COptionWindowGui*			m_pOptionWindowGui;
 	CHelpWindowGui*				m_pHelpWindowGui;
+	CHelpWindowGuiByEvent*		m_pHelpWindowGuiByEvent;
 	CDropItemInfoGuiList*		m_pDropItemInfoGuiList;
 	CDropItemInfoGui*			m_pDropItemInfoGui;
 	CSideIconGui*				m_pSideIconGui;
@@ -221,6 +223,7 @@ private:
 	CDogiGui*					m_pDogiGui;
 	CDojoUpradeGui*				m_pDojoUpgrade;
 	CScrambleStatusGui*			m_pScrambleStatusGui;
+	RwUInt32					m_uiScrambleStatusDojoIdx;	///< dojo the scramble status panel was opened for
 	CScrambleNotifyGui*			m_pScrambleNotify;
     CNetMarblePCBangGui*        m_pNetMablePCBangGui;
 	CNetPyShopGui*				m_pNetPyShopGui;

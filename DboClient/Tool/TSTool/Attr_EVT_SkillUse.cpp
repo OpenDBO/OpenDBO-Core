@@ -158,6 +158,9 @@ BOOL CAttr_EVT_SkillUse::OnInitDialog()
 	m_ctrSkillTypeCombo.SetItemData( m_ctrSkillTypeCombo.AddString( _T("Dash") ), eEVENT_SKILL_TYPE_DASH );
 	m_ctrSkillTypeCombo.SetItemData( m_ctrSkillTypeCombo.AddString( _T("Guard") ), eEVENT_SKILL_TYPE_GUARD );
 	m_ctrSkillTypeCombo.SetItemData( m_ctrSkillTypeCombo.AddString( _T("Charging") ), eEVENT_SKILL_TYPE_CHARGING );
+	m_ctrSkillTypeCombo.SetItemData( m_ctrSkillTypeCombo.AddString( _T("Air Jump") ), eEVENT_SKILL_TYPE_AIR_JUMP );
+	m_ctrSkillTypeCombo.SetItemData( m_ctrSkillTypeCombo.AddString( _T("Air Dash") ), eEVENT_SKILL_TYPE_AIR_DASH );
+	m_ctrSkillTypeCombo.SetItemData( m_ctrSkillTypeCombo.AddString( _T("Air Accel") ), eEVENT_SKILL_TYPE_AIR_ACCEL );
 	int nIdx = m_ctrSkillTypeCombo.AddString( _T("Skill Index") );
 	m_ctrSkillTypeCombo.SetItemData(  nIdx, eEVENT_SKILL_TYPE_SKILLIDX );
 	m_ctrSkillTypeCombo.SetCurSel( nIdx );

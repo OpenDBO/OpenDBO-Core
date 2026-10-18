@@ -393,9 +393,11 @@ ToonShadeClose(void)
 	RwD3D9SetTransform(D3DTS_TEXTURE6, &D3D9IdentyMatrix);
 
 	RwD3D9SetRenderState(D3DRS_TEXTUREFACTOR, 0xFFFFFFFF);
-	RwD3D9SetRenderState(D3DRS_ALPHATESTENABLE, FALSE);
-	RwD3D9SetRenderState(D3DRS_ALPHAREF, 0);
-	RwD3D9SetRenderState(D3DRS_ALPHAFUNC, D3DCMP_ALWAYS);
+
+	/* the alpha test states belong to RenderWare's state cache (it enables the test with the blending of
+	 * alpha textures and keeps the function/ref it was given), writing them here left the device on
+	 * D3DCMP_ALWAYS while RW still believed rwALPHATESTFUNCTIONGREATER, so the fully transparent texels of
+	 * every later draw wrote depth */
 
 	RwRenderStateSet(rwRENDERSTATEVERTEXALPHAENABLE, (void *)FALSE);
 

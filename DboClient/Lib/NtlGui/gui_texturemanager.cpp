@@ -42,16 +42,17 @@ bool CTextureManager::Initialize(VOID)
 
 VOID CTextureManager::Terminate(VOID)
 {
-	std::map<std::string, CTexture*>::iterator the;
-	for(the = m_mapTexture.begin(); the != m_mapTexture.end(); the++)
+	// every wrapper releases its one RW reference once, other RW owners keep theirs
+	std::map<CTexture*, sTEXTURE_OWNER>::iterator it;
+	for(it = m_mapOwner.begin(); it != m_mapOwner.end(); ++it)
 	{
-		while((*the).second && (*the).second->IsValid())
-		{
-			// std::string strName = (*the).first;
-			(*the).second->Unload(); 
-		}
+		CTexture* pTexture = (*it).first;
+
+		pTexture->Unload();
+		NTL_DELETE( pTexture );
 	}
 
+	m_mapOwner.clear();
 	m_mapTexture.clear();
 }
 
@@ -85,34 +86,31 @@ CTexture* CTextureManager::CreateTexture(const char *pFileName)
 	strlwr(acBuffer);
 	
 	RwImageSetPath(GUI_TEXTURE_PATH);
-	CTexture *pTexture = NULL;
 
-	//lets remove the file format so we fix crash with files having a little long name.
-	std::string strFileName = acBuffer;
-	//std::string mystr = strFileName.substr(0, strFileName.find(".", 0));
-	if (strFileName.length() >= rwTEXTUREBASENAMELENGTH)
+	// the full lowercase name is the key (cut to the RW name length two files could share a wrapper)
+	std::string strKey = acBuffer;
+
+	std::map<std::string, CTexture*>::iterator itTexture = m_mapTexture.find(strKey);
+	if(itTexture != m_mapTexture.end())
 	{
-		strFileName.resize(rwTEXTUREBASENAMELENGTH - 1);
-	//	DBO_WARNING_MESSAGE("strFileName: " << strFileName.c_str() << " length: " << strFileName.length());
+		// cache hit: one more gui owner of the same wrapper, no second RW load
+		CTexture* pTexture = (*itTexture).second;
+		m_mapOwner[pTexture].nRefCount++;
+		return pTexture;
 	}
 
-	pTexture = m_mapTexture[strFileName.c_str()];
-
-	if(pTexture == NULL)
+	CTexture *pTexture = NTL_NEW CTexture;
+	if(!pTexture->Load(pFileName))
 	{
-		pTexture = NTL_NEW CTexture;
-		if(!pTexture->Load(pFileName))
-		{
-			NTL_DELETE( pTexture );
-			return NULL;
-		}
+		NTL_DELETE( pTexture );
+		return NULL;
+	}
 
-		m_mapTexture[strFileName.c_str()] = pTexture;
-	}
-	else
-	{
-		pTexture->Load(pFileName);
-	}
+	m_mapTexture[strKey] = pTexture;
+
+	sTEXTURE_OWNER& sOwner = m_mapOwner[pTexture];
+	sOwner.strKey		= strKey;
+	sOwner.nRefCount	= 1;
 
 	return pTexture;
 }
@@ -130,12 +128,16 @@ CTexture* CTextureManager::CreateTexture(int nWidth, int nHeight)
 	RwRaster *pRaster = RwRasterCreate(nWidth, nHeight, 16, rwRASTERTYPETEXTURE | rwRASTERFORMAT4444);
 #endif
 	if(pRaster == NULL)
+	{
+		CNtlLoadingController::GetInstance()->Unlock();
 		return NULL;
+	}
 
-	RwTexture *pRwTexture = RwTextureCreate(pRaster); 
+	RwTexture *pRwTexture = RwTextureCreate(pRaster);
 	if(pRwTexture == NULL)
 	{
 		RwRasterDestroy(pRaster);
+		CNtlLoadingController::GetInstance()->Unlock();
 		return NULL;
 	}
 
@@ -163,48 +165,39 @@ CTexture* CTextureManager::CreateTexture(int nWidth, int nHeight)
 
 	m_mapTexture[strName] = pTexture;
 
+	sTEXTURE_OWNER& sOwner = m_mapOwner[pTexture];
+	sOwner.strKey		= strName;
+	sOwner.nRefCount	= 1;
+
 	return pTexture;
 }
 
 VOID CTextureManager::DeleteTexture(CTexture *pTexture)
 {
-	static char buf[256];
+	if(!pTexture)
+		return;
 
-	if(pTexture)
-	{	
-		char* pcName = (char*)pTexture->GetName();
-		if (pcName)
-		{
-			strcpy(buf, pcName);
-			strlwr(buf);
-		}
-		else
-		{
-			memset(buf, NULL, sizeof(buf));
-		}
-
-		pTexture->Unload();
-
-		if(!pTexture->IsValid())
-		{
-			if (pcName)
-			{
-				//lets remove the file format so we fix crash with files having a little long name.
-				std::string strFileName = buf;
-				/*std::string mystr = strFileName.substr(0, strFileName.find(".", 0));*/
-				if (strFileName.length() >= rwTEXTUREBASENAMELENGTH)
-					strFileName.resize(rwTEXTUREBASENAMELENGTH - 1);
-
-				std::map<std::string, CTexture*>::iterator the = m_mapTexture.find(strFileName.c_str());
-				if (the != m_mapTexture.end())
-				{
-					m_mapTexture.erase(the);
-				}
-			}
-
-			NTL_DELETE( pTexture );
-		}
+	std::map<CTexture*, sTEXTURE_OWNER>::iterator itOwner = m_mapOwner.find(pTexture);
+	if(itOwner == m_mapOwner.end())
+	{
+		// not a wrapper of this manager (or already freed), releasing it again would corrupt the heap
+		DBO_WARNING_MESSAGE("CTextureManager::DeleteTexture - unknown texture " << (void*)pTexture);
+		return;
 	}
+
+	sTEXTURE_OWNER& sOwner = (*itOwner).second;
+	if(--sOwner.nRefCount > 0)
+		return;
+
+	// last gui owner: the wrapper's one RW reference goes, the entry is removed by wrapper identity
+	std::map<std::string, CTexture*>::iterator itTexture = m_mapTexture.find(sOwner.strKey);
+	if(itTexture != m_mapTexture.end() && (*itTexture).second == pTexture)
+		m_mapTexture.erase(itTexture);
+
+	m_mapOwner.erase(itOwner);
+
+	pTexture->Unload();
+	NTL_DELETE( pTexture );
 }
 
 END_GUI

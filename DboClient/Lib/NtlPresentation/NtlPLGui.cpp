@@ -85,6 +85,10 @@ void CNtlPLGui::Destroy(void)
 		RemoveResPage(m_strResPage);
 	if( !m_strCompPage.empty() )
 		RemoveCompPage(m_strCompPage);
+
+	// a gui that missed (or unbalanced) its RemoveUpdateFunc would be updated after it is deleted
+	CNtlPLGuiManager::GetInstance()->RemoveUpdateFuncWithoutRefCheck(this);
+	CNtlPLGuiManager::GetInstance()->RemoveUpdateBeforeFuncWithoutRefCheck(this);
 }
 
 void CNtlPLGui::Update(RwReal fElapsed)

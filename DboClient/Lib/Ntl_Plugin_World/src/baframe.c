@@ -47,6 +47,7 @@
 #include "rwstring.h"
 
 #include "baframe.h"
+#include "bafrmlock.h"
 
 #if defined (__MWERKS__)
 #if (defined(RWVERBOSE))
@@ -157,6 +158,7 @@ _rwFrameOpen(void *instance, RwInt32 offset, RwInt32 __RWUNUSED__ size)
     }
 
     /* Empty the dirty matrices */
+    _rwFrameDirtyListLockOpen();
     rwLinkListInitialize(&RWSRCGLOBAL(dirtyFrameList));
 
     /* One more module instance */
@@ -188,6 +190,11 @@ _rwFrameClose(void *instance,
 
     /* One less module instance */
     frameModule.numInstances--;
+
+    if (frameModule.numInstances == 0)
+    {
+        _rwFrameDirtyListLockClose();
+    }
 
     /* Success */
     RWRETURN(instance);
@@ -652,12 +659,14 @@ _rwFrameInternalDeInit(RwFrame *frame)
         RwFrameRemoveChild(frame);
     }
 
+    _rwFrameDirtyListLock();
     if (rwObjectTestPrivateFlags(frame,
                                  (rwFRAMEPRIVATEHIERARCHYSYNCLTM |
                                   rwFRAMEPRIVATEHIERARCHYSYNCOBJ)))
     {
         rwLinkListRemoveLLLink(&frame->inDirtyListLink);
     }
+    _rwFrameDirtyListUnlock();
 
     /* Remove children's references to this frame and make them all roots */
     child = frame->child;
@@ -750,12 +759,14 @@ FrameDestroyRecurseDeInitLeaf(RwFrame *frame)
     _rwPluginRegistryDeInitObject(&frameTKList, frame);
 
     /* Its the root -> handle removing from the list */
+    _rwFrameDirtyListLock();
     if (rwObjectTestPrivateFlags(frame,
                                  (rwFRAMEPRIVATEHIERARCHYSYNCLTM |
                                   rwFRAMEPRIVATEHIERARCHYSYNCOBJ)))
     {
         rwLinkListRemoveLLLink(&frame->inDirtyListLink);
     }
+    _rwFrameDirtyListUnlock();
 
     /* We know there are no children at the Leaf */
     RWRETURNVOID();
@@ -891,13 +902,20 @@ RwFrameUpdateObjects(RwFrame *frame)
     RWASSERT(RWFRAMEALIGNMENT(frame));
     RWASSERTISTYPE(frame, rwFRAME);
 
+    _rwFrameDirtyListLock();
+
     oldFlags = rwObjectGetPrivateFlags(frame->root);
     if (!(oldFlags & (rwFRAMEPRIVATEHIERARCHYSYNCLTM |
                       rwFRAMEPRIVATEHIERARCHYSYNCOBJ)))
     {
-        /* Not in the dirty list - add it */
-        rwLinkListAddLLLink(&RWSRCGLOBAL(dirtyFrameList),
-                                &frame->root->inDirtyListLink);
+        /* Not in the dirty list - add it. If it already heads the list (flags lost) adding it
+         * again would link it to itself and the next sync would never end */
+        if (rwLinkListGetFirstLLLink(&RWSRCGLOBAL(dirtyFrameList)) !=
+            &frame->root->inDirtyListLink)
+        {
+            rwLinkListAddLLLink(&RWSRCGLOBAL(dirtyFrameList),
+                                    &frame->root->inDirtyListLink);
+        }
     }
 
     /* whole hierarchy needs resync */
@@ -910,6 +928,8 @@ RwFrameUpdateObjects(RwFrame *frame)
     rwObjectSetPrivateFlags(frame,  rwObjectGetPrivateFlags(frame) |
                             (rwFRAMEPRIVATESUBTREESYNCLTM |
                             rwFRAMEPRIVATESUBTREESYNCOBJ));
+
+    _rwFrameDirtyListUnlock();
 
     RWRETURN(frame);
 }
@@ -1167,6 +1187,7 @@ RwFrameAddChild(RwFrame *parent, RwFrame *child)
     rwSetHierarchyRoot(child, parent->root);
 
     /* Handle if its dirty */
+    _rwFrameDirtyListLock();
     if (rwObjectTestPrivateFlags(child,
                                  rwFRAMEPRIVATEHIERARCHYSYNCLTM |
                                  rwFRAMEPRIVATEHIERARCHYSYNCOBJ))
@@ -1177,6 +1198,7 @@ RwFrameAddChild(RwFrame *parent, RwFrame *child)
                                         ~(rwFRAMEPRIVATEHIERARCHYSYNCLTM |
                                           rwFRAMEPRIVATEHIERARCHYSYNCOBJ));
     }
+    _rwFrameDirtyListUnlock();
 
     /* The child's local transformation matrix is definitely dirty */
     RwFrameUpdateObjects(child);

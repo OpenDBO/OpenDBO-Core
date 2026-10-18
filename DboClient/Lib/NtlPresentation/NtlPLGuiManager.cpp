@@ -113,7 +113,8 @@ void CNtlPLGuiManager::Update(RwReal fElapsed)
 		for( it = m_mapRemoveUpdateGui.begin() ; it != m_mapRemoveUpdateGui.end() ; ++it )
 		{
 			deleteit = m_mapUpdateGui.find( (*it).first );
-			m_mapUpdateGui.erase( deleteit );
+			if( deleteit != m_mapUpdateGui.end() )
+				m_mapUpdateGui.erase( deleteit );
 		}
 
 		m_mapRemoveUpdateGui.clear();
@@ -121,6 +122,10 @@ void CNtlPLGuiManager::Update(RwReal fElapsed)
 
 	for( it = m_mapUpdateGui.begin() ; it != m_mapUpdateGui.end() ; ++it )
 	{
+		// removed during this frame (maybe deleted already), dropped on the next one
+		if( (*it).second <= 0 )
+			continue;
+
 		(*it).first->Update( fElapsed );
 	}
 
@@ -138,14 +143,19 @@ void CNtlPLGuiManager::UpdateBeforeCamera(RwReal fElapsed)
 		for( it = m_mapRemoveUpdateBeforeGui.begin() ; it != m_mapRemoveUpdateBeforeGui.end() ; ++it )
 		{
 			deleteit = m_mapUpdateBeforeGui.find( (*it).first );
-			m_mapUpdateBeforeGui.erase( deleteit );
+			if( deleteit != m_mapUpdateBeforeGui.end() )
+				m_mapUpdateBeforeGui.erase( deleteit );
 		}
 
 		m_mapRemoveUpdateBeforeGui.clear();
 	}
-	
+
 	for( it = m_mapUpdateBeforeGui.begin() ; it != m_mapUpdateBeforeGui.end() ; ++it )
 	{
+		// removed during this frame (maybe deleted already), dropped on the next one
+		if( (*it).second <= 0 )
+			continue;
+
 		(*it).first->UpdateBeforeCamera( fElapsed );
 	}
 }
@@ -344,11 +354,11 @@ void CNtlPLGuiManager::AddUpdateBeforeFunc( CNtlPLGui* pUpdateGui )
 {
 	RwInt32 nCount = 1;
 
-	MapUpdateGui::iterator it = m_mapRemoveUpdateGui.find( pUpdateGui );
-	if( it != m_mapRemoveUpdateGui.end() )
+	MapUpdateGui::iterator it = m_mapRemoveUpdateBeforeGui.find( pUpdateGui );
+	if( it != m_mapRemoveUpdateBeforeGui.end() )
 	{
-		m_mapRemoveUpdateGui.erase( it );
-		m_mapUpdateGui[pUpdateGui] = 1;
+		m_mapRemoveUpdateBeforeGui.erase( it );
+		m_mapUpdateBeforeGui[pUpdateGui] = 1;
 	}
 	else
 	{

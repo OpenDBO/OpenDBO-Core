@@ -138,6 +138,9 @@
     <ClCompile Include="src\baframe.c">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\bafrmlock.c">
+      <Filter>src</Filter>
+    </ClCompile>
     <ClCompile Include="src\baim3doc.c">
       <Filter>src</Filter>
     </ClCompile>
