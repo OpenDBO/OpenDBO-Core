@@ -46,6 +46,8 @@ protected:
 
 	VOID			OnResize(RwInt32 iOldW, RwInt32 iOldH );
 
+	VOID			ReconcileCondition();
+
 protected:
 	gui::CSlot			m_slotResize;
 
@@ -53,4 +55,5 @@ protected:
 
 	RwUInt32			m_uiFocusDialog;
 	RwV2d				m_v2FocusOffset;
+	RwReal				m_fReconcileTime;
 };

@@ -769,7 +769,7 @@ void CDboTLCondition::HandleEvents( RWS::CMsg &pMsg )
 			}
 		}
 	}
-	else if ( g_EventDirectionNfy )
+	else if ( pMsg.Id == g_EventDirectionNfy )
 	{
 		SNtlEventDirectionNfy* pData = (SNtlEventDirectionNfy*)pMsg.pData;
 

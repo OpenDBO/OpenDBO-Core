@@ -9,6 +9,7 @@
 
 // simulation
 #include "NtlSLEventFunc.h"
+#include "NtlSLLogic.h"
 
 // dbo
 #include "DboGlobal.h"
@@ -22,6 +23,7 @@
 CTutorialDialogFocus::CTutorialDialogFocus(const RwChar* pName)
 :CNtlPLGui(pName)
 ,m_uiFocusDialog(DIALOG_UNKNOWN)
+,m_fReconcileTime(0.f)
 {
 
 }
@@ -78,6 +80,37 @@ VOID CTutorialDialogFocus::Update(RwReal fElapsed)
 		return;
 
 	m_pflashFocus->Update(fElapsed);
+
+	m_fReconcileTime += fElapsed;
+	if( m_fReconcileTime >= 0.5f )
+	{
+		m_fReconcileTime = 0.f;
+		ReconcileCondition();
+	}
+}
+
+VOID CTutorialDialogFocus::ReconcileCondition()
+{
+	// a step only finishes on its condition event, the player could already have done what the indicator
+	// asks before the step listened (skill window closed early, the skill already in quick slot 1, and
+	// dropping the same icon again sends nothing), so the current state is sent while the indicator is up
+	switch( m_uiFocusDialog )
+	{
+		case ETL_UI_INDICATOR_TYPE_SKILL_CLOSE_BTN:
+		{
+			if( !GetDialogManager()->IsOpenDialog(DIALOG_SKILL) )
+				Logic_SendTutorialCondition(ETL_CONDITION_TYPE_SKILL_CLOSE);
+		}
+		break;
+		case ETL_UI_INDICATOR_TYPE_QUICK_SLOT_1:
+		{
+			CQuickSlotGui* pQuickSlotGui = reinterpret_cast<CQuickSlotGui*>( GetDialogManager()->GetDialog(DIALOG_QUICKSLOT) );
+			if( pQuickSlotGui && pQuickSlotGui->HasAvatarSkillInFirstSlot() &&
+				Logic_CanMouseInput_in_Tutorial(ETL_MOUSE_INPUT_TYPE_QUICK_SLOT_1_REG) )
+				Logic_SendTutorialCondition(ETL_CONDITION_TYPE_QUICK_SLOT_1_REG_SKILL);
+		}
+		break;
+	}
 }
 RwBool CTutorialDialogFocus::LoadFlash(const char* acFileName, gui::CFlash* pFlash)
 {

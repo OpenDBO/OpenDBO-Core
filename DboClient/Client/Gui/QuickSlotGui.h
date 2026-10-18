@@ -96,7 +96,9 @@ public:
 	VOID	LinkActionMap();
 	VOID	UnLinkActionMap();
 
-	CPos	GetInitialRowPosOffset(VOID);	// 튜占썰리占쏢에쇽옙 첫占쏙옙째 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쌀뗰옙.
+	RwBool	HasAvatarSkillInFirstSlot(VOID);	// tutorial: an avatar skill is already registered in quick slot 1
+
+	CPos	GetInitialRowPosOffset(VOID);	//튜占썰리占쏢에쇽옙 첫占쏙옙째 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쌀뗰옙.
 
 //! Event
 	VOID	HandleEvents( RWS::CMsg& msg );
