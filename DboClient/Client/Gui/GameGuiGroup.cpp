@@ -309,6 +309,7 @@ CGameGuiGroup::CGameGuiGroup()
 , m_pDogiGui(NULL)
 , m_pDojoUpgrade(NULL)
 , m_pScrambleStatusGui(NULL)
+, m_uiScrambleStatusDojoIdx(INVALID_TBLIDX)
 , m_pScrambleNotify(NULL)
 , m_pNetMablePCBangGui(NULL)
 , m_pNetPyShopGui(NULL)
@@ -1400,18 +1401,20 @@ void CGameGuiGroup::HandleEvents(RWS::CMsg &pMsg)
 
 				AddSideDialog_no_return(m_pScrambleStatusGui, CScrambleStatusGui, "CScrambleStatusGui", SDIALOG_SCRAMBLE_STATUS);
 				GetSideDialogManager()->OpenDialog(SDIALOG_SCRAMBLE_STATUS);
+
+				m_uiScrambleStatusDojoIdx = pEvent->uiDojoTableIndex;
 			}
 		}
 		else if( eDBO_DOJO_STATUS_NORMAL == pEvent->byDojoState && m_pScrambleStatusGui )
 		{
-			// every player hears when a dojo goes back to normal, only close the war we take part in
-			CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
-			bool bOurWar = !pAvatar || pAvatar->GetDojo()->GetScramble()->uiScrambleDojoTableIndex == pEvent->uiDojoTableIndex;
-
-			if( bOurWar )
+			// every player hears when a dojo goes back to normal, only close the war we take part in.
+			// Compared with the dojo the panel was opened for: the avatar's scramble info is already gone
+			// when the war ends, it is recreated by the teleport back to the normal channel.
+			if( m_uiScrambleStatusDojoIdx == pEvent->uiDojoTableIndex )
 			{
 				GetSideDialogManager()->UnRegistDialog(SDIALOG_SCRAMBLE_STATUS);
 				RemoveDialog(m_pScrambleStatusGui);
+				m_uiScrambleStatusDojoIdx = INVALID_TBLIDX;
 			}
 		}
 	}

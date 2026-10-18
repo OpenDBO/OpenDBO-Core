@@ -221,6 +221,7 @@ private:
 	CDogiGui*					m_pDogiGui;
 	CDojoUpradeGui*				m_pDojoUpgrade;
 	CScrambleStatusGui*			m_pScrambleStatusGui;
+	RwUInt32					m_uiScrambleStatusDojoIdx;	///< dojo the scramble status panel was opened for
 	CScrambleNotifyGui*			m_pScrambleNotify;
     CNetMarblePCBangGui*        m_pNetMablePCBangGui;
 	CNetPyShopGui*				m_pNetPyShopGui;
