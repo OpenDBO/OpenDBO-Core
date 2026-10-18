@@ -285,6 +285,7 @@
     <ClCompile Include="Gui\GuiLineTree.cpp" />
     <ClCompile Include="Gui\GUI_TEST.cpp" />
     <ClCompile Include="Gui\HelpWindowGui.cpp" />
+    <ClCompile Include="Gui\HelpWindowGuiByEvent.cpp" />
     <ClCompile Include="Gui\HintCommon.cpp" />
     <ClCompile Include="Gui\HintSideIconGui.cpp" />
     <ClCompile Include="Gui\HpGui.cpp" />
@@ -650,6 +651,7 @@
     <ClInclude Include="Gui\GuiLineTree.h" />
     <ClInclude Include="Gui\GUI_TEST.h" />
     <ClInclude Include="Gui\HelpWindowGui.h" />
+    <ClInclude Include="Gui\HelpWindowGuiByEvent.h" />
     <ClInclude Include="Gui\HintCommon.h" />
     <ClInclude Include="Gui\HintSideIconGui.h" />
     <ClInclude Include="Gui\HpGui.h" />

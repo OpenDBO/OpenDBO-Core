@@ -58,6 +58,7 @@
 #include "WorldMap.h"
 #include "OptionWindowGui.h"
 #include "HelpWindowGui.h"
+#include "HelpWindowGuiByEvent.h"
 #include "DropItemInfoGuiList.h"
 #include "DropItemInfoGui.h"
 #include "SideIconGui.h"
@@ -262,6 +263,7 @@ CGameGuiGroup::CGameGuiGroup()
 , m_pWorldMap(NULL)
 , m_pOptionWindowGui(NULL)
 , m_pHelpWindowGui(NULL)
+, m_pHelpWindowGuiByEvent(NULL)
 , m_pDropItemInfoGuiList(NULL)
 , m_pDropItemInfoGui(NULL)
 , m_pSideIconGui(NULL)
@@ -654,6 +656,16 @@ RwBool CGameGuiGroup::Create(void)
 
 	AddDialog( m_pHelpWindowGui, CHelpWindowGui, "HelpWndGui", DIALOG_HELPWND );
 
+	// tw: flight practice tutorial flashes
+	m_pHelpWindowGuiByEvent = NTL_NEW CHelpWindowGuiByEvent( "HelpWndGuiByEvent" );
+	if( !m_pHelpWindowGuiByEvent->Create() )
+	{
+		m_pHelpWindowGuiByEvent->Destroy();
+		NTL_DELETE( m_pHelpWindowGuiByEvent );
+		NTL_RETURN( FALSE );
+	}
+	CNtlPLGuiManager::GetInstance()->AddGui( m_pHelpWindowGuiByEvent );
+
 	AddDialog( m_pSideIconGui, CSideIconGui, "SideIconGui", DIALOG_SIDEICON );
 
 	// Private Shop
@@ -936,6 +948,7 @@ void CGameGuiGroup::Destroy(void)
 	RemoveDialog(m_pOptionWindowGui);
 	RemoveDialog(m_pSideIconGui);
 	RemoveDialog(m_pHelpWindowGui);
+	RemoveDialog(m_pHelpWindowGuiByEvent);
 	RemoveDialog(m_pPrivateShopGui);
 	RemoveDialog(m_pPrivateShopCartGui);
     RemoveDialog(m_pRBBoardGui);
