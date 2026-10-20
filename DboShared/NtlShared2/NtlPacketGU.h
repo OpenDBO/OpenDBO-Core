@@ -883,10 +883,12 @@ END_PROTOCOL()
 
 
 //------------------------------------------------------------------
-BEGIN_PROTOCOL(GU_CHAR_MOVE_COLLISION) 
+BEGIN_PROTOCOL(GU_CHAR_MOVE_COLLISION)
 HOBJECT					handle;
 _compressedLocation		vCurLoc;
 _compressedDirection	vCurDir;
+_compressedDirection	vDirForced;		// tw: direction the others keep moving the character in
+FLOAT					fForcedSpeed;	// tw: rate of the move speed while it is blocked (0 ~ 1)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_CHAR_MOVE_COLLISION_END)

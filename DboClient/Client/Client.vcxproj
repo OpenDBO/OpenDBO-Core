@@ -527,8 +527,8 @@
     <ClCompile Include="YardratWarehouseGui.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\BVL\BandiVideo.h" />
     <ClInclude Include="..\BVL\MoviePlayer.h" />
+    <ClInclude Include="..\BVL\pl_mpeg.h" />
     <ClInclude Include="..\DirectShow\DirectShowMovie.h" />
     <ClInclude Include="Addin\DboAddinManager.h" />
     <ClInclude Include="Addin\Devil\devil_internal_exports.h" />

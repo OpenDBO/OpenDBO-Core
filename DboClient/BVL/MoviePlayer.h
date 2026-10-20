@@ -17,8 +17,8 @@
 #include "NtlDeviceRestoreHandler.h"
 #include "NtlCallbackWidget.h"
 
-// client
-#include "BandiVideo.h"
+struct IDirect3DTexture9;
+struct sMovieDecoder;
 
 enum eMovieSizeType
 {
@@ -65,10 +65,13 @@ protected:
 	RwInt32			ReleaseHandler();
 	VOID			Release();
 
+	VOID			FeedAudio();
+	double			GetClock();
+
 protected:
 	static CMoviePlayer* m_pInstance;
 
-	CBandiVideoLibrary		m_BVL;
+	sMovieDecoder*			m_pDecoder;	///< pl_mpeg decoders for the avi streams (BandiVideo has no x64 dll)
 	LPDIRECT3DVERTEXBUFFER9 m_pVertexBuffer;
 	CNtlCallbackParam0*		m_pCallback;
 
@@ -77,7 +80,7 @@ protected:
 	std::string				m_strMovieFileName;
 
 	eMovieSizeType			m_eSize;
-	RwBool					m_bPlay;		///< BVL에서 제공하는 IsPlay 함수는 BVL 라이브러리를 불러오기 전까지 쓸 수가 없다	
+	RwBool					m_bPlay;
 	RwBool					m_bRelease;
 	RwReal					m_fVolume;
 };

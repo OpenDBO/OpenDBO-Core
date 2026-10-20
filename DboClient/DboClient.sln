@@ -216,6 +216,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rtworld", "Renderware\Inclu
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DBOLauncher", "Tool\DBOLauncher\DBOLauncher.vcxproj", "{923EA46A-C519-4DC1-B2B5-F4B6A7A0E07B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DBOLauncherTW", "Tool\DBOLauncherTW\DBOLauncherTW.vcxproj", "{AA2261E3-C883-4EC5-9F94-5450DB6FDC99}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Release|Win32 = Release|Win32
@@ -1015,6 +1017,13 @@ Global
 		{923EA46A-C519-4DC1-B2B5-F4B6A7A0E07B}.Release4Tools|Win32.Build.0 = Release4Tools|Win32
 		{923EA46A-C519-4DC1-B2B5-F4B6A7A0E07B}.Release4Tools|x64.ActiveCfg = Release4Tools|Win32
 		{923EA46A-C519-4DC1-B2B5-F4B6A7A0E07B}.Release4Tools|x64.Build.0 = Release4Tools|Win32
+		{AA2261E3-C883-4EC5-9F94-5450DB6FDC99}.Release|Win32.ActiveCfg = Release4Tools|Win32
+		{AA2261E3-C883-4EC5-9F94-5450DB6FDC99}.Release|x64.ActiveCfg = Release4Tools|Win32
+		{AA2261E3-C883-4EC5-9F94-5450DB6FDC99}.Release|x64.Build.0 = Release4Tools|Win32
+		{AA2261E3-C883-4EC5-9F94-5450DB6FDC99}.Release4Tools|Win32.ActiveCfg = Release4Tools|Win32
+		{AA2261E3-C883-4EC5-9F94-5450DB6FDC99}.Release4Tools|Win32.Build.0 = Release4Tools|Win32
+		{AA2261E3-C883-4EC5-9F94-5450DB6FDC99}.Release4Tools|x64.ActiveCfg = Release4Tools|Win32
+		{AA2261E3-C883-4EC5-9F94-5450DB6FDC99}.Release4Tools|x64.Build.0 = Release4Tools|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1120,6 +1129,7 @@ Global
 		{2FE8B8B4-BF90-49CC-9F20-6EBFCB53E880} = {0F57A354-CF62-4264-8358-F59F4EC974D2}
 		{E014CDD3-DA5B-4ECF-8076-6A0CD476678D} = {0F57A354-CF62-4264-8358-F59F4EC974D2}
 		{923EA46A-C519-4DC1-B2B5-F4B6A7A0E07B} = {80D46013-0A0B-4129-890D-2B99E8B8D1FC}
+		{AA2261E3-C883-4EC5-9F94-5450DB6FDC99} = {80D46013-0A0B-4129-890D-2B99E8B8D1FC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8B7002E8-47F5-4485-AE58-4F3A0E699663}

@@ -2095,7 +2095,7 @@
     <ClInclude Include="LoadingScene\GameLoadingScene.h">
       <Filter>Loading Scene</Filter>
     </ClInclude>
-    <ClInclude Include="..\BVL\BandiVideo.h">
+    <ClInclude Include="..\BVL\pl_mpeg.h">
       <Filter>MoviePlay</Filter>
     </ClInclude>
     <ClInclude Include="..\DirectShow\DirectShowMovie.h">

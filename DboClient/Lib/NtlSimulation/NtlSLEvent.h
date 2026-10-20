@@ -229,6 +229,9 @@ extern RWS::CEventId g_EventSobPetSkillInfo;	// 펫 스킬에 대한 정보
 //-----------------------------
 extern RWS::CEventId g_EventSobMove;				// simulation object move event
 extern RWS::CEventId g_EventSobMoveSync;            // 움직임 동기화 이벤트
+extern RWS::CEventId g_EventSobMoveCollision;       // tw: another player's move is blocked by an object
+extern RWS::CEventId g_EventSobMoveCollisionEnd;    // tw: another player's move is no longer blocked
+extern RWS::CEventId g_EventSobChangeHeading;       // tw: another player turned (GU_CHAR_CHANGE_HEADING)
 extern RWS::CEventId g_EventSobSecondDestMove;		// simulation object second dest move event
 extern RWS::CEventId g_EventSobSplineMove;			// simulation object spline move event
 extern RWS::CEventId g_EventSobAdjustMovePosition;  // simulation object adjust move position event
@@ -469,6 +472,7 @@ extern RWS::CEventId g_EventSobSkillAction;
 
 // simulation object skill acted event    g_EventSobSkillActiondÀÇ ¹Ý´ë
 extern RWS::CEventId g_EventSobSkillActioned;
+extern RWS::CEventId g_EventSobSkillResult;				// tw: the skill results of a skill action, sent to its user
 
 // simulation object skill add
 extern RWS::CEventId g_EventSobSkillAdd;
@@ -1663,6 +1667,24 @@ struct SNtlEventSobMoveSync : public SNtlEventSob
     RwUInt8 byMoveFlag;
 };
 
+struct SNtlEventSobMoveCollision : public SNtlEventSob
+{
+    RwV3d vLoc;
+    RwV3d vDir;
+    RwV3d vDirForced;       ///< direction the blocked character keeps moving in
+    RwReal fForcedSpeed;    ///< rate of its move speed while blocked
+};
+
+struct SNtlEventSobMoveCollisionEnd : public SNtlEventSob
+{
+    RwV3d vLoc;
+};
+
+struct SNtlEventSobChangeHeading : public SNtlEventSob
+{
+    RwV3d vDir;
+};
+
 struct SNtlEventSobSecondDestMove : public SNtlEventSob
 {
 	RwUInt8			byFormFlag;		// °È±â, ¶Ù±â, ¼ö¿µ.
@@ -2200,6 +2222,12 @@ struct SNtlEventSobSkillAction : public SNtlEventSob
 struct SNtlEventSobSkillActioned : public SNtlEventSob
 {
 	SERIAL_HANDLE	hAttackerSerialId;
+};
+
+struct SNtlEventSobSkillResult : public SNtlEventSob
+{
+	RwUInt8			byResultCount;
+	sSKILL_RESULT	*pSkillResult;
 };
 
 struct SNtlEventSobSkillAdd : public SNtlEventSob

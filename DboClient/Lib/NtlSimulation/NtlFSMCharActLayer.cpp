@@ -13,6 +13,7 @@
 #include "NtlFSMCharController.h"
 #include "NtlFSMLookAtManager.h"
 #include "NtlBehaviorChar.h"
+#include "NtlBehaviorCharAdjustMove.h"
 #include "NtlFSMCharActEventProc.h"
 
 DEFINITION_MEMORY_POOL(CNtlFSMCharActLayer)
@@ -22,6 +23,7 @@ CNtlFSMCharActLayer::CNtlFSMCharActLayer()
 	m_pBePush = NULL;
 	m_pBeShock = NULL;
 	m_pKnownDown = NULL;
+	m_pBeBattleAdjustMove = NULL;
 }
 
 CNtlFSMCharActLayer::~CNtlFSMCharActLayer()
@@ -44,6 +46,13 @@ RwBool CNtlFSMCharActLayer::Create(RwUInt32 uiController)
 	m_pAgent->SetActor(m_pActor);
 
 	CreateController(uiController);
+
+	// tw: players (and the avatar) slide back to the server position when a standing state starts
+	if(uiController == SLCONTROLLER_PLYAER || uiController == SLCONTROLLER_PLAYER_SYNC)
+	{
+		m_pBeBattleAdjustMove = NTL_NEW CNtlBehaviorCharBattleAdjustMove;
+		m_pBeBattleAdjustMove->SetActor(m_pActor);
+	}
 	
 	NTL_RETURN(TRUE);
 }
@@ -54,6 +63,7 @@ void CNtlFSMCharActLayer::Destroy(void)
 	NTL_DELETE( m_pBeShock );
 	NTL_DELETE( m_pBePush );
 	NTL_DELETE( m_pKnownDown );
+	NTL_DELETE( m_pBeBattleAdjustMove );
 
 	CNtlFSMLayer::Destroy();
 }
@@ -94,6 +104,9 @@ void CNtlFSMCharActLayer::Update(RwReal fElapsed)
 			NTL_DELETE( m_pKnownDown );
 		}
 	}
+
+	if(m_pBeBattleAdjustMove)
+		m_pBeBattleAdjustMove->Update(fElapsed);
 
 }
 
@@ -146,6 +159,11 @@ RwUInt32 CNtlFSMCharActLayer::HandleEvents(RWS::CMsg &pMsg)
 	}
 
 	return CNtlFSMLayer::HandleEvents(pMsg); 
+}
+
+CNtlBehaviorBase* CNtlFSMCharActLayer::GetBattleAdjustMove(void) const
+{
+	return m_pBeBattleAdjustMove;
 }
 
 

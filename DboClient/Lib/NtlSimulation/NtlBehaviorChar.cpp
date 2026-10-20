@@ -3399,9 +3399,21 @@ void CNtlBehaviorCharJumpingUp::UpdateData(void)
 }
 
 //////////////////////////////////////////////////////////////////////////
-DEFINITION_MEMORY_POOL(CNtlBehaviorCharStretchAttack)
-CNtlBehaviorCharStretchAttack::CNtlBehaviorCharStretchAttack() 
+// tw: the pull moves the target itself, the target must not slide back to its server position meanwhile
+static void StretchAttack_StopTargetAdjustMove(CNtlSobActor* pTargetActor)
 {
+    CNtlFSMLayer* pFSMLayer = pTargetActor ? pTargetActor->GetFSMLayer() : NULL;
+    CNtlBehaviorBase* pBattleAdjustMove = pFSMLayer ? pFSMLayer->GetBattleAdjustMove() : NULL;
+    if(pBattleAdjustMove && !pBattleAdjustMove->IsFinish())
+        pBattleAdjustMove->Exit();
+}
+
+DEFINITION_MEMORY_POOL(CNtlBehaviorCharStretchAttack)
+CNtlBehaviorCharStretchAttack::CNtlBehaviorCharStretchAttack()
+{
+    SetBehaviorId(NTL_BEID_CHAR_STRETCH_ATTACK);
+    SetBehaviorName(NTL_BENAME_STRETCH_ATTACK);
+
     m_pCharacter    = NULL;
     m_uiTargetId    = INVALID_SERIAL_ID;
     m_pStretchEvent  = NULL;
@@ -3409,6 +3421,10 @@ CNtlBehaviorCharStretchAttack::CNtlBehaviorCharStretchAttack()
     m_bOrgBoneScale = FALSE;
     m_fStretchPullingSpeed = 0.0f;
     m_vTargetPos = ZeroAxis;
+    m_bMoveTarget = TRUE;
+    m_bPullPos = FALSE;
+    m_vPullPos = ZeroAxis;
+    m_bOrgAnimLOD = FALSE;
 
     for(int i = 0; i < 3; ++i)
     {
@@ -3417,59 +3433,79 @@ CNtlBehaviorCharStretchAttack::CNtlBehaviorCharStretchAttack()
     }
 }
 
-CNtlBehaviorCharStretchAttack::~CNtlBehaviorCharStretchAttack() 
+CNtlBehaviorCharStretchAttack::~CNtlBehaviorCharStretchAttack()
 {
 
 }
 
-void CNtlBehaviorCharStretchAttack::Enter( void ) 
+void CNtlBehaviorCharStretchAttack::Enter( void )
 {
-    m_uiTargetId = Logic_GetActorTargetSerialId(m_pActor);
-    if(m_uiTargetId == INVALID_SERIAL_ID)
+    // tw: a dodged, resisted or immune pull leaves the target where it is
+    CNtlBeCharData* pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData());
+    CNtlAttackData* pAttData = pBeData->GetAttackData();
+    if(pAttData->GetAttackStuffCount() > 0)
+    {
+        RwUInt32 uiResult = pAttData->GetAttackStuff(0)->uiType.bitResult;
+        if(uiResult == NTL_ATTACK_RESULT_IMMUNE || uiResult == NTL_ATTACK_RESULT_DODGE || uiResult == NTL_ATTACK_RESULT_RESIST)
+            m_bMoveTarget = FALSE;
+    }
+
+    m_uiTargetId = Logic_GetSkillActionTargetSerialId(m_pActor);
+    if(m_uiTargetId == INVALID_SERIAL_ID || !GetNtlSobManager()->GetSobObject(m_uiTargetId))
     {
         Finish();
         return;
     }
 
-    m_pCharacter = (CNtlPLCharacter*)m_pActor->GetSobProxy()->GetPLMainEntity();    
+    StretchAttack_StopTargetAdjustMove((CNtlSobActor*)GetNtlSobManager()->GetSobObject(m_uiTargetId));
 
-    // 애니메이션을 멈춘다.    
-    m_pCharacter->GetBoneData()->bBoneScale = TRUE;
-    m_pCharacter->SetAnimUpdate(FALSE);
-
-    CNtlBehaviorBase::Enter(); 
+    CNtlBehaviorBase::Enter();
 }
 
-void CNtlBehaviorCharStretchAttack::Exit( void ) 
+void CNtlBehaviorCharStretchAttack::Exit( void )
 {
-    if(m_pCharacter)
-    {
-        RwUInt32 uiScaleBoneIndex = m_pCharacter->GetBoneIndex(m_pStretchEvent->szScaleBone);
-        RwUInt32 uiBone1 = m_pCharacter->GetBoneIndex(m_pStretchEvent->szBoneName[0]);
-        RwUInt32 uiBone2 = m_pCharacter->GetBoneIndex(m_pStretchEvent->szBoneName[1]);
-
-        m_pCharacter->GetBoneData()->bBoneScale = m_bOrgBoneScale;        
-        m_pCharacter->GetBoneData()->BoneScale[uiBone1].fLength = m_fOrgBoneLength[0];
-        m_pCharacter->GetBoneData()->BoneScale[uiBone1].fWidth = m_fOrgBoneWidth[0];
-        m_pCharacter->GetBoneData()->BoneScale[uiBone2].fLength = m_fOrgBoneLength[1];
-        m_pCharacter->GetBoneData()->BoneScale[uiBone2].fWidth = m_fOrgBoneWidth[1];
-        m_pCharacter->GetBoneData()->BoneScale[uiScaleBoneIndex].fLength = m_fOrgBoneLength[2];
-        m_pCharacter->GetBoneData()->BoneScale[uiScaleBoneIndex].fWidth = m_fOrgBoneWidth[2];
-        m_bPulling = FALSE;
-        m_pCharacter->SetAnimUpdate(TRUE);
-        m_pCharacter->GetBoneData()->bBoneScale = m_bOrgBoneScale;
-        m_pCharacter->SetSBoneStretchTargetPos(ZeroAxis, "");
-        Finish();            
-    }    
-}
-
-void CNtlBehaviorCharStretchAttack::Update( RwReal fElapsed ) 
-{
-    if(!m_pStretchEvent || !m_pCharacter)
+    if(!m_pCharacter || !m_pStretchEvent)
         return;
 
+    RwUInt32 uiScaleBoneIndex = m_pCharacter->GetBoneIndex(m_pStretchEvent->szScaleBone);
+    RwUInt32 uiBone1 = m_pCharacter->GetBoneIndex(m_pStretchEvent->szBoneName[0]);
+    RwUInt32 uiBone2 = m_pCharacter->GetBoneIndex(m_pStretchEvent->szBoneName[1]);
+
+    m_pCharacter->GetBoneData()->bBoneScale = m_bOrgBoneScale;
+    m_pCharacter->GetBoneData()->BoneScale[uiBone1].fLength = m_fOrgBoneLength[0];
+    m_pCharacter->GetBoneData()->BoneScale[uiBone1].fWidth = m_fOrgBoneWidth[0];
+    m_pCharacter->GetBoneData()->BoneScale[uiBone2].fLength = m_fOrgBoneLength[1];
+    m_pCharacter->GetBoneData()->BoneScale[uiBone2].fWidth = m_fOrgBoneWidth[1];
+    m_pCharacter->GetBoneData()->BoneScale[uiScaleBoneIndex].fLength = m_fOrgBoneLength[2];
+    m_pCharacter->GetBoneData()->BoneScale[uiScaleBoneIndex].fWidth = m_fOrgBoneWidth[2];
+    m_bPulling = FALSE;
+    m_pCharacter->SetAnimUpdate(TRUE);
+    m_pCharacter->GetBoneData()->bBoneScale = m_bOrgBoneScale;
+    m_pCharacter->SetSBoneStretchTargetPos(ZeroAxis, "");
+
+    // tw turns the anim lod on here for a character of another client, it is put back as it was
+    // (on, a later pull off screen would skip a second of animation and miss the stretch again)
+    m_pCharacter->SetAnimLOD(m_bOrgAnimLOD);
+
+    // tw: however the stretch ended, the target stands where the server put it
+    CNtlSobActor* pTargetActor = (CNtlSobActor*)GetNtlSobManager()->GetSobObject(m_uiTargetId);
+    if(pTargetActor)
+        PlaceTarget(pTargetActor);
+}
+
+void CNtlBehaviorCharStretchAttack::Update( RwReal fElapsed )
+{
     CNtlSobActor* pTargetActor = (CNtlSobActor*)GetNtlSobManager()->GetSobObject(m_uiTargetId);
     if(!pTargetActor)
+    {
+        // the target died or left, the arm would stay stretched (its animation is stopped)
+        Finish();
+        return;
+    }
+
+    StretchAttack_StopTargetAdjustMove(pTargetActor);
+
+    if(!m_pStretchEvent || !m_pCharacter)
         return;
 
     RwMatrix* pMatHand = m_pCharacter->GetBoneMatrix(m_pStretchEvent->szScaleBone);
@@ -3493,12 +3529,12 @@ void CNtlBehaviorCharStretchAttack::Update( RwReal fElapsed )
         if(strlen(m_pStretchEvent->szTargetEffect) > 0)
         {
             CNtlInstanceEffect* pEffect =(CNtlInstanceEffect*)GetSceneManager()->CreateEntity(PLENTITY_EFFECT, m_pStretchEvent->szTargetEffect);
-            m_pCharacter->AttachBone(pEffect, m_pStretchEvent->szScaleBone);            
-        }        
+            m_pCharacter->AttachBone(pEffect, m_pStretchEvent->szScaleBone);
+        }
     }
 
 
-    m_fStretchPullingSpeed += m_fStretchPullingSpeed * m_pStretchEvent->fAccel * fElapsed;      // 가속도 
+    m_fStretchPullingSpeed += m_fStretchPullingSpeed * m_pStretchEvent->fAccel * fElapsed;      // 가속도
     if(m_bPulling)              // 당겨오는 상태
     {
         // NOTE : 어린애는 이미 Bone이 조절되어 있기 때문에, 아마 겹치는 문제가 생길지도 모른다.
@@ -3507,51 +3543,93 @@ void CNtlBehaviorCharStretchAttack::Update( RwReal fElapsed )
             fTargetDist > 30.0f || m_pCharacter->GetBoneData()->BoneScale[uiBone2].fLength <= 0.0f)
         {
             // 마지막 위치는 이동 싱크를 위해서 강제로 맞춘다.
-            RwV3d vTargetDir = posTarget - posActor;
-            RwV3dNormalize(&vTargetDir, &vTargetDir);
-            RwReal fActorRadius = max(m_pActor->GetSobProxy()->GetPLEntityWidth(), m_pActor->GetSobProxy()->GetPLEntityDepth());
-            RwV3d vDestPos = posActor + vTargetDir * (fActorRadius + DBO_SYSTEM_EFFECT_PULL_DISTANCE);
-            SWorldHeightStuff hStuff;
-            Logic_GetWorldHeight(&vDestPos, hStuff);
-
-         //   vDestPos.y = hStuff.fWorldHeight;
-			vDestPos.y = posActor.y;
-
-            pTargetActor->SetPosition(&vDestPos);
-
-            Finish();            
+            PlaceTarget(pTargetActor);
+            Finish();
             return;
-        }   
-               
+        }
+
         if(m_pStretchEvent->eType == E_STRETCH_PULLING) // If hit, the target is not pulled.
         {
             // 타겟의 위치
             SWorldHeightStuff hStuff;
             RwV3d vHandPos = pMatHand->pos;
-            Logic_GetWorldHeight(&vHandPos, hStuff);
-            vHandPos.y = hStuff.fWorldHeight;
-            pTargetActor->SetPosition(&vHandPos);            
+            Logic_GetWorldHeight(m_pActor, &vHandPos, hStuff);
+            vHandPos.y = hStuff.fFinialHeight;
+
+            if(!GetSceneManager()->GetAvailablePos(vHandPos))
+            {
+                DBO_WARNING_MESSAGE("[StretchAttack] Not AvailablePos! " << vHandPos.x << ", " << vHandPos.y << ", " << vHandPos.z);
+                Finish();
+                return;
+            }
+
+            if(m_bMoveTarget)
+                pTargetActor->SetPosition(&vHandPos);
         }
 
-        m_pCharacter->GetBoneData()->BoneScale[uiBone1].fLength -= m_fStretchPullingSpeed * fElapsed;            
+        m_pCharacter->GetBoneData()->BoneScale[uiBone1].fLength -= m_fStretchPullingSpeed * fElapsed;
         m_pCharacter->GetBoneData()->BoneScale[uiBone2].fLength -= m_fStretchPullingSpeed * fElapsed;
-        
+
+        // tw: the arm is back to its length
+        if(m_pCharacter->GetBoneData()->BoneScale[uiBone1].fLength <= m_fOrgBoneLength[0] ||
+            m_pCharacter->GetBoneData()->BoneScale[uiBone2].fLength <= m_fOrgBoneLength[1])
+        {
+            m_pCharacter->GetBoneData()->BoneScale[uiBone1].fLength = m_fOrgBoneLength[0];
+            m_pCharacter->GetBoneData()->BoneScale[uiBone2].fLength = m_fOrgBoneLength[1];
+            Finish();
+        }
     }
-    else    // 뻗어나가는 상태                        
+    else    // 뻗어나가는 상태
     {
         m_pCharacter->GetBoneData()->BoneScale[uiBone1].fLength += m_fStretchPullingSpeed * fElapsed;
         m_pCharacter->GetBoneData()->BoneScale[uiBone1].fWidth = m_pStretchEvent->fWidth;
         m_pCharacter->GetBoneData()->BoneScale[uiBone2].fLength += m_fStretchPullingSpeed * fElapsed;
         m_pCharacter->GetBoneData()->BoneScale[uiBone2].fWidth = m_pStretchEvent->fWidth;
         m_pCharacter->GetBoneData()->BoneScale[uiScaleBoneIndex].fLength = m_pStretchEvent->fScaleSize;
-        m_pCharacter->GetBoneData()->BoneScale[uiScaleBoneIndex].fWidth = m_pStretchEvent->fScaleSize;        
-    }             
+        m_pCharacter->GetBoneData()->BoneScale[uiScaleBoneIndex].fWidth = m_pStretchEvent->fScaleSize;
+    }
 }
 
-RwUInt32 CNtlBehaviorCharStretchAttack::HandleEvents( RWS::CMsg &pMsg ) 
+RwUInt32 CNtlBehaviorCharStretchAttack::HandleEvents( RWS::CMsg &pMsg )
 {
-    if(pMsg.Id == g_EventAnimStretch)
+    if(pMsg.Id == g_EventSobSkillResult)
     {
+        // tw: the server already put the target at the end of the pull, remember that position
+        SNtlEventSobSkillResult* pResult = reinterpret_cast<SNtlEventSobSkillResult*>(pMsg.pData);
+        if(m_uiTargetId != INVALID_SERIAL_ID)
+        {
+            for(RwInt32 i = 0; i < pResult->byResultCount; ++i)
+            {
+                if(pResult->pSkillResult[i].hTarget == m_uiTargetId)
+                {
+                    m_vPullPos.x = pResult->pSkillResult[i].vFinalSubjectLoc.x;
+                    m_vPullPos.y = pResult->pSkillResult[i].vFinalSubjectLoc.y;
+                    m_vPullPos.z = pResult->pSkillResult[i].vFinalSubjectLoc.z;
+                    m_bPullPos = TRUE;
+
+                    NTL_RETURN(NTL_FSM_EVENTRES_PASS);
+                }
+            }
+        }
+
+        // the skill did not reach the target
+        Finish();
+    }
+    else if(pMsg.Id == g_EventAnimStretch)
+    {
+        m_pCharacter = (CNtlPLCharacter*)m_pActor->GetSobProxy()->GetPLMainEntity();
+        if(!m_pCharacter)
+            NTL_RETURN(NTL_FSM_EVENTRES_PASS);
+
+        // 애니메이션을 멈춘다.
+        m_pCharacter->GetBoneData()->bBoneScale = TRUE;
+        m_pCharacter->SetAnimUpdate(FALSE);
+
+        // tw: the hand is read from the bones every frame, they must be updated even when the
+        // character is far away or off screen
+        m_bOrgAnimLOD = m_pCharacter->GetAnimLOD();
+        m_pCharacter->SetAnimLOD(FALSE);
+
         SNtlEventStretch* pEvent = (SNtlEventStretch*)pMsg.pData;
         m_pStretchEvent = (SEventStretch*)pEvent->pData;
         m_fStretchPullingSpeed = m_pStretchEvent->fStretchSpeed;
@@ -3563,7 +3641,7 @@ RwUInt32 CNtlBehaviorCharStretchAttack::HandleEvents( RWS::CMsg &pMsg )
             m_vTargetPos.y += pTargetActor->GetSobProxy()->GetPLEntityHeight() * 0.8f;
             m_pCharacter->SetSBoneStretchTargetPos(m_vTargetPos, m_pStretchEvent->szAxisBone);
 
-            // 기존 Bone 정보 저장            
+            // 기존 Bone 정보 저장
             RwUInt32 uiScaleBoneIndex = m_pCharacter->GetBoneIndex(m_pStretchEvent->szScaleBone);
             RwUInt32 uiBone1 = m_pCharacter->GetBoneIndex(m_pStretchEvent->szBoneName[0]);
             RwUInt32 uiBone2 = m_pCharacter->GetBoneIndex(m_pStretchEvent->szBoneName[1]);
@@ -3576,12 +3654,12 @@ RwUInt32 CNtlBehaviorCharStretchAttack::HandleEvents( RWS::CMsg &pMsg )
             m_fOrgBoneWidth[1] = m_pCharacter->GetBoneData()->BoneScale[uiBone2].fWidth;
             m_fOrgBoneWidth[2] = m_pCharacter->GetBoneData()->BoneScale[uiScaleBoneIndex].fWidth;
         }
-    }    
+    }
 
     NTL_RETURN(NTL_FSM_EVENTRES_PASS);
 }
 
-void CNtlBehaviorCharStretchAttack::UpdateData( void ) 
+void CNtlBehaviorCharStretchAttack::UpdateData( void )
 {
 
 }
@@ -3598,6 +3676,22 @@ RwReal CNtlBehaviorCharStretchAttack::GetTargetDistance(CNtlSobActor* pTargetAct
 
     return fDistance;
 }
+
+void CNtlBehaviorCharStretchAttack::PlaceTarget(CNtlSobActor* pTargetActor)
+{
+    // tw: only a pull moves the target, to the position the server gave in the skill result
+    if(!m_pStretchEvent || m_pStretchEvent->eType != E_STRETCH_PULLING || !m_bPullPos)
+        return;
+
+    if(!GetSceneManager()->GetAvailablePos(m_vPullPos))
+    {
+        DBO_WARNING_MESSAGE("[StretchAttack] Not AvailablePos! " << m_vPullPos.x << ", " << m_vPullPos.y << ", " << m_vPullPos.z);
+        return;
+    }
+
+    if(m_bMoveTarget)
+        pTargetActor->SetPosition(&m_vPullPos);
+}
 //////////////////////////////////////////////////////////////////////////
 DEFINITION_MEMORY_POOL(CNtlBehaviorCharActiveWarpBackAttack)
 CNtlBehaviorCharActiveWarpBackAttack::CNtlBehaviorCharActiveWarpBackAttack() 
@@ -3612,6 +3706,10 @@ CNtlBehaviorCharActiveWarpBackAttack::~CNtlBehaviorCharActiveWarpBackAttack()
 
 void CNtlBehaviorCharActiveWarpBackAttack::Enter( void ) 
 {
+    // tw: the animation is updated every frame, even off screen
+    CNtlPLCharacter* pPLCharacter = (CNtlPLCharacter*)m_pActor->GetSobProxy()->GetPLMainEntity();
+    if(pPLCharacter)
+        pPLCharacter->SetAnimLOD(FALSE);
 }
 
 void CNtlBehaviorCharActiveWarpBackAttack::Exit( void ) 
@@ -3670,6 +3768,16 @@ CNtlBehaviorCharActiveWarp::CNtlBehaviorCharActiveWarp()
 CNtlBehaviorCharActiveWarp::~CNtlBehaviorCharActiveWarp() 
 {
 
+}
+
+void CNtlBehaviorCharActiveWarp::Enter( void )
+{
+    // tw: the animation is updated every frame, even off screen
+    CNtlPLCharacter* pPLCharacter = (CNtlPLCharacter*)m_pActor->GetSobProxy()->GetPLMainEntity();
+    if(pPLCharacter)
+        pPLCharacter->SetAnimLOD(FALSE);
+
+    CNtlBehaviorBase::Enter();
 }
 
 RwUInt32 CNtlBehaviorCharActiveWarp::HandleEvents( RWS::CMsg &pMsg ) 
@@ -3741,6 +3849,10 @@ CNtlBehaviorCharActiveThroughAttack::~CNtlBehaviorCharActiveThroughAttack()
 
 void CNtlBehaviorCharActiveThroughAttack::Enter( void ) 
 {
+    // tw: the animation is updated every frame, even off screen
+    CNtlPLCharacter* pPLCharacter = (CNtlPLCharacter*)m_pActor->GetSobProxy()->GetPLMainEntity();
+    if(pPLCharacter)
+        pPLCharacter->SetAnimLOD(FALSE);
 }
 
 RwUInt32 CNtlBehaviorCharActiveThroughAttack::HandleEvents( RWS::CMsg &pMsg ) 

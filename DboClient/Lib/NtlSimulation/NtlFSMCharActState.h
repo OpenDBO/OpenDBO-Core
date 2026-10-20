@@ -1018,6 +1018,7 @@ private:
 	RwUInt8		m_byHTBSetType;
 	CNtlSobElapsedController *m_pHTBElapController;
 	CNtlSobElapsedController *m_pSandbagElapController;
+	RwBool		m_bOrgAnimLOD;		// tw: anim lod of the character before the htb
 
 private:
 

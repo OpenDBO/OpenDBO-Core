@@ -232,6 +232,9 @@ void RegisterPacketHandler(void)
 	CNtlPacketHandler::Register(GU_CHAR_DEST_MOVE, PacketHandler_GSCharDestMove);
 	CNtlPacketHandler::Register(GU_CHAR_MOVE, PacketHandler_GSCharMove);
 //    CNtlPacketHandler::Register(GU_CHAR_MOVE_SYNC, PacketHandler_GSCharMoveSync);
+	CNtlPacketHandler::Register(GU_CHAR_AIR_MOVE_SYNC, PacketHandler_GSCharAirMoveSync);
+	CNtlPacketHandler::Register(GU_CHAR_MOVE_COLLISION, PacketHandler_GSCharMoveCollision);
+	CNtlPacketHandler::Register(GU_CHAR_MOVE_COLLISION_END, PacketHandler_GSCharMoveCollisionEnd);
 	CNtlPacketHandler::Register(GU_CHAR_FOLLOW_MOVE, PacketHandler_GSCharFollowMove);
 	CNtlPacketHandler::Register(GU_CHAR_CHANGE_HEADING, PacketHandler_GSCharChangeHeading);
 	CNtlPacketHandler::Register(GU_CHAR_CHANGE_DIRECTION_ON_FLOATING, PacketHandler_GSCharDirectionFloat);
@@ -1025,6 +1028,9 @@ void UnRegisterPacketHandler(void)
 
 	CNtlPacketHandler::UnRegister(GU_CHAR_DEST_MOVE);
 	CNtlPacketHandler::UnRegister(GU_CHAR_MOVE);
+	CNtlPacketHandler::UnRegister(GU_CHAR_AIR_MOVE_SYNC);
+	CNtlPacketHandler::UnRegister(GU_CHAR_MOVE_COLLISION);
+	CNtlPacketHandler::UnRegister(GU_CHAR_MOVE_COLLISION_END);
 	CNtlPacketHandler::UnRegister(GU_CHAR_FOLLOW_MOVE);
 	CNtlPacketHandler::UnRegister(GU_CHAR_CHANGE_HEADING);
 	CNtlPacketHandler::UnRegister(GU_CHAR_CHANGE_DIRECTION_ON_FLOATING);

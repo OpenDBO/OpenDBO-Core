@@ -56,4 +56,7 @@ RwBool FSMUtil_IsStandingAdjustMoveClass(CNtlSobActor *pActor);
 
 RwBool FSMUtil_StandingAdjustMove(CNtlFSMStateBase* pStateBase, CNtlSobActor *pActor);
 
+// tw: a standing state started, slide the character to the position of its last server state
+void FSMUtil_BattleAdjustMove(CNtlSobActor *pActor, RwBool bAvatar = FALSE);
+
 #endif

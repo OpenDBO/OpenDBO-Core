@@ -109,6 +109,7 @@ protected:
 	RwV3d					m_vAngle;								///< Angle					
 
 	RwBool					m_bAnimUpdate;							///< Animation를 Update를 하는지
+	RwBool					m_bAnimLOD;								///< tw: far or off screen, the animation is updated less often
 	RwReal					m_fAnimSpeed;							///< Anim Speed
 	RwReal					m_fFastMaxExtent;						///< fast max extent
 
@@ -272,6 +273,8 @@ public:
 	void	SetAnimSpeed(RwReal fSpeed);														///< Animation의 Speed Default(1.f)
 	RwReal  GetAnimSpeed();                                                                     ///< Animation의 Speed를 반환한다.
 	void	SetAnimUpdate(RwBool bAnimUpdate);													///< Animation를 Update를 할지 말지
+	void	SetAnimLOD(RwBool bAnimLOD) { m_bAnimLOD = bAnimLOD; }							///< tw: update the animation less often when far or off screen
+	RwBool	GetAnimLOD(void) const { return m_bAnimLOD; }
 	RwBool	GetAnimUpdate();																	///< Animation를 Update를 하는지 검사하는 함수
 	RwReal	GetBaseCurrentAnimTime();															///< 현재 Base Layer Animation의 시간을 얻는 함수
 	RwReal	GetBaseDurationAnimTime();															///< 현재 Base Layer Animation의 전체 시간을 얻는 함수

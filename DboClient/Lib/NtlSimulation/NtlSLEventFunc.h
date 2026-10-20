@@ -226,6 +226,9 @@ public:
 	// move占쏙옙 占쏙옙占쏙옙 占쌉쇽옙.
 	static void SobMove(SERIAL_HANDLE hSerialId, RwUInt8 byMoveFlags, RwUInt8 byFormFlag, RwV3d vCurrLoc, RwV3d vDir, RwUInt32 uiTimeStamp);
     static void SobMoveSync(SERIAL_HANDLE hSerialId, RwV3d& vCurLoc, RwV3d& vCurDir, DWORD dwTimeStamp);
+    static void SobMoveCollision(SERIAL_HANDLE hSerialId, const RwV3d& vCurLoc, const RwV3d& vCurDir, const RwV3d& vDirForced, RwReal fForcedSpeed);
+    static void SobMoveCollisionEnd(SERIAL_HANDLE hSerialId, const RwV3d& vCurLoc);
+    static void SobChangeHeading(SERIAL_HANDLE hSerialId, const RwV3d& vDir);
 	static void SobSplineMove(SERIAL_HANDLE hSerialId, RwBool bGroundCheck, RwBool bRunCheck, RwChar *pSplineName, RwV3d vStartPos);
 	static void SobMoveStop(SERIAL_HANDLE hSerialId, RwV3d vCurrLoc, RwV3d vDir, RwUInt32 uiTimeStamp);
 	static void SobDestMove(SERIAL_HANDLE hSerialId, RwUInt8 byFormFlag, RwV3d vCurrLoc, RwV3d vDest, RwUInt32 uiTimeStamp, RwUInt8 byPathNodeNum = 0, RwV3d *pPathNode = NULL);
@@ -400,6 +403,7 @@ public:
 		RwUInt8 byRpBonusType, RwUInt8 byResultCount, sSKILL_RESULT *pSkillAct, RwUInt32 uiSyncEventId, RwV3d& vFinalLoc);
 
 	static void SobSkillActioned(SERIAL_HANDLE hSerialId, RwUInt32 uiAttackerSerialI);
+	static void SobSkillResult(SERIAL_HANDLE hSerialId, RwUInt8 byResultCount, sSKILL_RESULT* pSkillResult);
 
 	static void SobSkillAdd(SERIAL_HANDLE hSerialId, RwUInt8 bySkillSlotIdx, RwUInt32 uiSkillTblId);
 

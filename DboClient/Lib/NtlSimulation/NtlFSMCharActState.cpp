@@ -1156,6 +1156,9 @@ void CNtlFSMCharActSitDownState::Enter(void)
 		pSobProxy->SetBaseAnimation(NML_STAFF_SIT_DOWN, FALSE);
 	else
 		pSobProxy->SetBaseAnimation(SIT_DOWN, FALSE);
+
+	// tw: slide a character moved by another client to the position of its server state
+	FSMUtil_BattleAdjustMove(m_pActor);
 }
 
 void CNtlFSMCharActSitDownState::Exit(void)
@@ -1216,6 +1219,9 @@ void CNtlFSMCharActSitState::Enter(void)
 		pSobProxy->SetBaseAnimation(NML_STAFF_SIT_IDLE, TRUE);
 	else
 		pSobProxy->SetBaseAnimation(SIT_IDLE, TRUE);
+
+	// tw: slide a character moved by another client to the position of its server state
+	FSMUtil_BattleAdjustMove(m_pActor);
 }
 
 void CNtlFSMCharActSitState::Exit(void)
@@ -1262,6 +1268,9 @@ void CNtlFSMCharActStandUpState::Enter(void)
 		pSobProxy->SetBaseAnimation(NML_STAFF_SIT_UP, FALSE);
 	else
 		pSobProxy->SetBaseAnimation(SIT_UP, FALSE);
+
+	// tw: slide a character moved by another client to the position of its server state
+	FSMUtil_BattleAdjustMove(m_pActor);
 }
 
 void CNtlFSMCharActStandUpState::Exit(void)
@@ -1409,6 +1418,9 @@ void CNtlFSMCharActTriggerOperateState::Enter(void)
 
 	// animation
 	SetAnim();
+
+	// tw: slide a character moved by another client to the position of its server state
+	FSMUtil_BattleAdjustMove(m_pActor);
 }
 
 void CNtlFSMCharActTriggerOperateState::Exit(void)
@@ -1859,6 +1871,9 @@ void CNtlFSMCharActChargingState::Enter(void)
 	}
 
 	pSobProxy->CreateRpChargeEffect();
+
+	// tw: slide a character moved by another client to the position of its server state
+	FSMUtil_BattleAdjustMove(m_pActor);
 }
 
 void CNtlFSMCharActChargingState::Exit(void)
@@ -1970,6 +1985,9 @@ void CNtlFSMCharActBlockingState::Enter(void)
 		pSobProxy->SetBaseAnimation(BTL_DEF_BLOCK_START, FALSE);
 
 	pSobProxy->CreateGuardEffect();
+
+	// tw: slide a character moved by another client to the position of its server state
+	FSMUtil_BattleAdjustMove(m_pActor);
 }
 
 void CNtlFSMCharActBlockingState::Exit(void)
@@ -2610,6 +2628,9 @@ void CNtlFSMCharActFightingState::Enter(void)
     // Turn on attack mode.
     CNtlSLEventGenerator::SobAutoAttackMode(m_pActor->GetSerialID(), TRUE);
 
+	// tw: slide a character moved by another client to the position of its server state
+	FSMUtil_BattleAdjustMove(m_pActor);
+
 	NTL_RETURNVOID();
 }
 
@@ -3057,6 +3078,9 @@ void CNtlFSMCharActStunState::Enter(void)
         // Candy does not handle Enter because it shoots the event.      
         break;
     }        
+
+	// tw: slide to the position of the server state (the avatar too)
+	FSMUtil_BattleAdjustMove(m_pActor, TRUE);
 }
 
 void CNtlFSMCharActStunState::Exit(void)
@@ -3204,6 +3228,9 @@ void CNtlFSMCharActSleepState::Enter(void)
 	vEffectPos.y += fCharHeight;
 	CNtlPLEntity *pPLEntity = pSobProxy->CreatePLEffect(NTL_VID_STATE_SLEEP, &vEffectPos);
 	AddPLEntity(pPLEntity);
+
+	// tw: slide to the position of the server state (the avatar too)
+	FSMUtil_BattleAdjustMove(m_pActor, TRUE);
 }
 
 void CNtlFSMCharActSleepState::Exit(void)
@@ -3271,6 +3298,9 @@ void CNtlFSMCharActParalyzeState::Enter(void)
     vEffectPos.y += pSobProxy->GetPLEntityHeight();
 	CNtlPLEntity *pPLEffect = pSobProxy->CreatePLEffect(NTL_VID_STATE_PARALYZE, &vEffectPos);
 	AddPLEntity(pPLEffect);
+
+	// tw: slide to the position of the server state (the avatar too)
+	FSMUtil_BattleAdjustMove(m_pActor, TRUE);
 }
 
 void CNtlFSMCharActParalyzeState::Exit(void)
@@ -3432,6 +3462,9 @@ void CNtlFSMCharActSkillFocusState::Enter(void)
 	CNtlSobCharProxy* pSobProxy = (CNtlSobCharProxy*)m_pActor->GetSobProxy();
 	pSobProxy->SetBaseAnimation(NML_SKILL_ABILITY);    
     pSobProxy->AttachRPBonusEffect();
+
+	// tw: slide a character moved by another client to the position of its server state
+	FSMUtil_BattleAdjustMove(m_pActor);
 }
 
 void CNtlFSMCharActSkillFocusState::Exit(void)
@@ -3664,6 +3697,9 @@ void CNtlFSMCharActSkillCastingState::Enter(void)
     }
 
 	CNtlFSMCharActStateBase::Enter();
+
+	// tw: slide a character moved by another client to the position of its server state
+	FSMUtil_BattleAdjustMove(m_pActor);
 }
 
 void CNtlFSMCharActSkillCastingState::Exit(void)
@@ -3854,8 +3890,8 @@ void CNtlFSMCharActSkillActionState::Enter(void)
 		}
 		else if (pEffectData->effectCode == ACTIVE_PULL)
 		{
-			CNtlBehaviorCharActivePull* pSkill = NTL_NEW CNtlBehaviorCharActivePull();
-			pSkill->SetFinalLoc(pSkillStuff->vFinalSubjectLoc);
+			// tw: the arm stretch drags the target and puts it where the server placed it
+			CNtlBehaviorCharStretchAttack* pSkill = NTL_NEW CNtlBehaviorCharStretchAttack();
 			AddBehavior(pSkill);
 
 			break;
@@ -3920,6 +3956,9 @@ void CNtlFSMCharActSkillActionState::Enter(void)
 
 	if(m_pActor->GetFlags() & SLFLAG_LUA_INTERLOCKING  && m_pActor->GetClassID() == SLCLASS_AVATAR)
 		LuaExec_SkillActionEnter(m_pActor->GetSerialID(), m_uiSkillTblId);
+
+	// tw: slide a character moved by another client to the position of its server state
+	FSMUtil_BattleAdjustMove(m_pActor);
 }
 
 void CNtlFSMCharActSkillActionState::Exit(void)
@@ -4041,9 +4080,8 @@ RwUInt32 CNtlFSMCharActSkillActionState::HandleEvents(RWS::CMsg &pMsg)
         SNtlEventStretch* pEvent = (SNtlEventStretch*)pMsg.pData;
         if(pEvent->uiSerialID == m_pActor->GetSerialID())
         {
-            CNtlBehaviorCharStretchAttack* pBehavior = NTL_NEW CNtlBehaviorCharStretchAttack();            
-            AddBehavior(pBehavior);
-            pBehavior->HandleEvents(pMsg);
+            // tw: the stretch behavior was added in Enter, it gets the event from the base handler
+            SetFlags(GetFlags() | NTL_FSMSF_NOT_STATECHANGE | NTL_FSMSF_NOT_HURT_CAN);
         }
 
         NTL_RETURN(CNtlFSMCharActStateBase::HandleEvents(pMsg));
@@ -4099,6 +4137,9 @@ void CNtlFSMCharKeepingEffect::Enter( void )
 
 		m_uiAnimLoopId = pSkillTblData->wAction_Loop_Animation_Index;
 		m_uiAnimEndId = pSkillTblData->wAction_End_Animation_Index;
+
+		// tw: slide a character moved by another client to the position of its server state
+		FSMUtil_BattleAdjustMove(m_pActor);
     }
     else
     {
@@ -4178,6 +4219,9 @@ void CNtlFSMCharActSocialActionState::Enter(void)
     sITEM_TBLDAT *pItemTblData = Logic_GetEquipedWeaponItemTableData(m_pActor);
     if(pItemTblData && Logic_IsEquipedStaffWeapon(pItemTblData))
         pSobProxy->SetVisibleEquipItem(FALSE, EQUIP_SLOT_TYPE_HAND);            
+
+	// tw: slide a character moved by another client to the position of its server state
+	FSMUtil_BattleAdjustMove(m_pActor);
 }
 
 void CNtlFSMCharActSocialActionState::Exit(void)
@@ -4340,6 +4384,7 @@ CNtlFSMCharActHTBState::CNtlFSMCharActHTBState()
 	m_byFirstActiveStep = 0;
 	m_bHTBSuccess		= TRUE;
 	m_uiSkillTblId		= INVALID_TBLIDX;
+	m_bOrgAnimLOD		= FALSE;
 	m_byHTBSetType		= HTB_SKILL_NONE;
 
 	m_pHTBElapController = NULL;
@@ -4639,10 +4684,23 @@ void CNtlFSMCharActHTBState::Enter(void)
 
 	// RP Stock Image 띄우기.
 	Logic_ShowHTBRPSelectGui(m_pActor, pHTBStuff->hTargetSerialId);
+
+	// tw: the htb animation is updated every frame, even off screen
+	CNtlPLCharacter *pPLCharacter = reinterpret_cast<CNtlPLCharacter*>(m_pActor->GetSobProxy()->GetPLMainEntity());
+	if(pPLCharacter)
+	{
+		m_bOrgAnimLOD = pPLCharacter->GetAnimLOD();
+		pPLCharacter->SetAnimLOD(FALSE);
+	}
 }
 
 void CNtlFSMCharActHTBState::Exit(void)
 {
+	// tw turns the anim lod on here for a character of another client, it is put back as it was
+	CNtlPLCharacter *pPLCharacter = reinterpret_cast<CNtlPLCharacter*>(m_pActor->GetSobProxy()->GetPLMainEntity());
+	if(pPLCharacter)
+		pPLCharacter->SetAnimLOD(m_bOrgAnimLOD);
+
     CNtlCameraShakeController::ResetShakeFactor();
 
 	// sub weapon이 장착되어 있으면, 장착 해제...
@@ -5074,6 +5132,9 @@ void CNtlFSMCharActItemCastingState::Enter(void)
     m_pActor->GetSobProxy()->SetBaseAnimation(pUseItemTblData->wCasting_Animation_Start, FALSE);
 
 	CNtlFSMCharActStateBase::Enter();
+
+	// tw: slide a character moved by another client to the position of its server state
+	FSMUtil_BattleAdjustMove(m_pActor);
 }
 
 void CNtlFSMCharActItemCastingState::Exit(void)
@@ -5172,6 +5233,9 @@ void CNtlFSMCharActFaintingState::Enter(void)
 	// animation setting
 	CNtlSobCharProxy *pSobProxy = reinterpret_cast<CNtlSobCharProxy*>(m_pActor->GetSobProxy());
 	pSobProxy->SetBaseAnimation(FAINTING, FALSE);
+
+	// tw: slide to the position of the server state (the avatar too)
+	FSMUtil_BattleAdjustMove(m_pActor, TRUE);
 }
 
 void CNtlFSMCharActFaintingState::Exit(void)
@@ -5276,6 +5340,9 @@ void CNtlFSMCharActDieState::Enter(void)
 
 		pSobProxy->SetBaseAnimation(FAINTING, FALSE, 1.0f);
 	}
+
+	// tw: slide to the position of the server state (the avatar too)
+	FSMUtil_BattleAdjustMove(m_pActor, TRUE);
 }
 
 void CNtlFSMCharActDieState::Update(RwReal fElapsed)
@@ -6588,6 +6655,9 @@ void CNtlFSMCharTransformSequela::Enter()
         //    }                
         //}        
     }
+
+	// tw: slide to the position of the server state (the avatar too)
+	FSMUtil_BattleAdjustMove(m_pActor, TRUE);
 }
 
 void CNtlFSMCharTransformSequela::Exit() 

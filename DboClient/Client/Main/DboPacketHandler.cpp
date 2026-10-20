@@ -1515,6 +1515,45 @@ void PacketHandler_GSCharMoveSync( void* pPacket )
     CNtlSLEventGenerator::SobMoveSync(pMoveSync->handle, vLoc, vDir, pMoveSync->dwTimeStamp);*/
 }
 
+// tw: the server relays the flying player's periodic UG_CHAR_AIR_MOVE_SYNC, the air move behavior
+// of the other clients puts the player back on that position
+void PacketHandler_GSCharAirMoveSync(void* pPacket)
+{
+	sGU_CHAR_AIR_MOVE_SYNC* pMoveSync = (sGU_CHAR_AIR_MOVE_SYNC*)pPacket;
+
+	RwV3d vLoc, vDir;
+	NtlLocationDecompress(&pMoveSync->vCurLoc, &vLoc.x, &vLoc.y, &vLoc.z);
+	NtlDirectionDecompress(&pMoveSync->vCurDir, &vDir.x, &vDir.y, &vDir.z);
+
+	CNtlSLEventGenerator::SobMoveSync(pMoveSync->handle, vLoc, vDir, 0);
+}
+
+// tw: another player reported that an object blocks its move, the ground move of the other
+// clients holds the character there and keeps it moving at the reported rate
+void PacketHandler_GSCharMoveCollision(void* pPacket)
+{
+	sGU_CHAR_MOVE_COLLISION* pCollision = (sGU_CHAR_MOVE_COLLISION*)pPacket;
+
+	RwV3d vLoc, vDir;
+	NtlLocationDecompress(&pCollision->vCurLoc, &vLoc.x, &vLoc.y, &vLoc.z);
+	NtlDirectionDecompress(&pCollision->vCurDir, &vDir.x, &vDir.y, &vDir.z);
+
+	// the tw client takes the forced direction from the heading as well
+	RwV3d vDirForced = vDir;
+
+	CNtlSLEventGenerator::SobMoveCollision(pCollision->handle, vLoc, vDir, vDirForced, pCollision->fForcedSpeed);
+}
+
+void PacketHandler_GSCharMoveCollisionEnd(void* pPacket)
+{
+	sGU_CHAR_MOVE_COLLISION_END* pCollisionEnd = (sGU_CHAR_MOVE_COLLISION_END*)pPacket;
+
+	RwV3d vLoc;
+	NtlLocationDecompress(&pCollisionEnd->vCurLoc, &vLoc.x, &vLoc.y, &vLoc.z);
+
+	CNtlSLEventGenerator::SobMoveCollisionEnd(pCollisionEnd->handle, vLoc);
+}
+
 void PacketHandler_GSCharFollowMove(void *pPacket)
 {
 	sGU_CHAR_FOLLOW_MOVE *pFollowMove = (sGU_CHAR_FOLLOW_MOVE*)pPacket;
@@ -1548,7 +1587,8 @@ void PacketHandler_GSCharChangeHeading(void *pPacket)
 	
 	pSobObj->SetDirection(&vDir);
 
-	//CNtlSLEventGenerator::SobAdjustMovePosition(pChangeHeading->handle, vPos);  // by daneos
+	// tw: a moving character turns its own prediction as well, else the next frame turns it back
+	CNtlSLEventGenerator::SobChangeHeading(pChangeHeading->handle, vDir);
 }
 
 void PacketHandler_GSCharDirectionFloat(void *pPacket)
@@ -1742,7 +1782,8 @@ void PacketHandler_GSCharSkillAction(void *pPacket)
 
 		CNtlSLEventGenerator::SobSkillActioned(pSkillAction->hAppointedTarget, pSkillAction->handle);
 
-		//CNtlSLEventGenerator::SobSkillResult(); // to do
+		// tw: the results again for the user, the arm stretch reads where the server put the pulled target
+		CNtlSLEventGenerator::SobSkillResult(pSkillAction->handle, pSkillAction->bySkillResultCount, pSkillAction->aSkillResult);
 
 		CSkillTable *pSkillTbl = API_GetTableContainer()->GetSkillTable();
 		sSKILL_TBLDAT *pSkillTblData = reinterpret_cast<sSKILL_TBLDAT*>(pSkillTbl->FindData(pSkillAction->skillId));

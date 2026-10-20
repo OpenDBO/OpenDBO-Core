@@ -25,6 +25,7 @@
 #define AIR_TILT_LEVEL_SPEED		2.0f		// tw: flying straight up/down levels the flight this fast
 #define AIR_TILT_SYNC_DIR_Y			0.087266f	// tw: 5 degrees
 #define AIR_TILT_SYNC_TIME			3.0f
+#define AIR_MOVE_SYNC_SEND_TIME		0.5f		// tw: interval of UG_CHAR_AIR_MOVE_SYNC
 
 DEFINITION_MEMORY_POOL(CNtlBehaviorCharAirMove)
 
@@ -38,6 +39,8 @@ CNtlBehaviorCharAirMove::CNtlBehaviorCharAirMove()
 	m_bAirTiltSync = FALSE;
 	m_fAirTiltStartY = 0.0f;
 	m_fAirTiltTime = 0.0f;
+
+	m_fSyncSendTime = 0.0f;
 }
 
 CNtlBehaviorCharAirMove::~CNtlBehaviorCharAirMove()
@@ -112,10 +115,36 @@ void CNtlBehaviorCharAirMove::Update(RwReal fElapsed)
 		UpdateAirEffect(vDir);
 	}
 
+	UpdateSendSync(fElapsed);
+
 	if (bFinish)
 	{
 		Finish();
 	}
+}
+
+void CNtlBehaviorCharAirMove::UpdateSendSync(RwReal fElapsed)
+{
+	if (m_pActor->GetClassID() != SLCLASS_AVATAR)
+		return;
+
+	m_fSyncSendTime += fElapsed;
+	if (m_fSyncSendTime < AIR_MOVE_SYNC_SEND_TIME)
+		return;
+
+	RwV3d vPos = m_pActor->GetPosition();
+	RwV3d vDir = m_pActor->GetDirection();
+	API_GetSLPacketGenerator()->SendAirMoveSync(vPos, vDir, m_pActor->GetServerSyncAvatarType());
+
+	m_fSyncSendTime = 0.0f;
+}
+
+// tw: a relayed GU_CHAR_AIR_MOVE_SYNC puts the flying player back where it really is, the
+// keyboard move then carries on from there
+void CNtlBehaviorCharAirMove::ApplyMoveSync(const RwV3d& vLoc, const RwV3d& vDir)
+{
+	m_pActor->SetPosition(&vLoc);
+	m_pActor->SetDirection(&vDir);
 }
 
 
@@ -218,7 +247,15 @@ RwUInt32 CNtlBehaviorCharAirMove::HandleEvents(RWS::CMsg& pMsg)
 {
 	NTL_FUNCTION("CNtlBehaviorCharAirMove::HandleEvents");
 
-
+	if (pMsg.Id == g_EventSobMoveSync)
+	{
+		// the avatar is the one sending the sync
+		if (m_pActor->GetClassID() != SLCLASS_AVATAR)
+		{
+			SNtlEventSobMoveSync* pMoveSync = reinterpret_cast<SNtlEventSobMoveSync*>(pMsg.pData);
+			ApplyMoveSync(pMoveSync->vLoc, pMoveSync->vDir);
+		}
+	}
 
 	NTL_RETURN(NTL_FSM_EVENTRES_PASS);
 }

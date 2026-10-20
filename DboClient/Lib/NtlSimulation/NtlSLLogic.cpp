@@ -2130,10 +2130,32 @@ SERIAL_HANDLE Logic_GetActorTargetSerialId(CNtlSobActor *pActor)
 		SCtrlStuff *pCtrlStuff = pBeData->GetCtrlStuff();
 		return pCtrlStuff->hTargetSerialId;
 	}
-	else 
+	else
 	{
 		return INVALID_SERIAL_ID;
 	}
+}
+
+SERIAL_HANDLE Logic_GetSkillActionTargetSerialId(CNtlSobActor *pActor)
+{
+	if( !pActor )
+		return INVALID_SERIAL_ID;
+
+	// The skill action packet carries the target, the control target of another client's
+	// player is only set when the skill has a casting time and monsters have none at all.
+	RwUInt32 uiClassId = pActor->GetClassID();
+	if( uiClassId < SLCLASS_AVATAR || uiClassId > SLCLASS_PET )
+		return Logic_GetActorTargetSerialId(pActor);
+
+	CNtlBeCharData *pBeData = reinterpret_cast<CNtlBeCharData*>( pActor->GetBehaviorData() );
+	if( pBeData )
+	{
+		SSkillStuff *pSkillStuff = pBeData->GetSkillStuff();
+		if( pSkillStuff->hTargetSerialId != INVALID_SERIAL_ID && pSkillStuff->hTargetSerialId != pActor->GetSerialID() )
+			return pSkillStuff->hTargetSerialId;
+	}
+
+	return Logic_GetActorTargetSerialId(pActor);
 }
 
 
@@ -7389,19 +7411,29 @@ void Logic_GetSkillFinalLocation2(SERIAL_HANDLE hTargetSerial, sSKILL_TBLDAT *pS
 			if (!pTargetActor)
 				return;
 
-			// Move opponent 1m in front of caster (calculate thickness)
-			RwV3d vPos = pActor->GetPosition();
-			vPos += pActor->GetDirection() * (pTargetActor->GetSobProxy()->GetPLEntityDepth() + 1.0f);
+			// Move opponent 1m in front of caster (calculate thickness).
+			// The caster turns to the target when the skill starts, so use the direction to the
+			// target instead of the current heading or the target lands beside the caster.
+			RwV3d vActorPos = pActor->GetPosition();
+			RwV3d vDir = pTargetActor->GetPosition() - vActorPos;
+			vDir.y = 0.0f;
 
+			if (RwV3dLength(&vDir) < 0.001f)
+				vDir = pActor->GetDirection();
+
+			RwV3dNormalize(&vDir, &vDir);
+
+			RwV3d vPos = vActorPos;
+			vPos += vDir * (pTargetActor->GetSobProxy()->GetPLEntityDepth() + 1.0f);
+
+			// stand it on the ground at that spot, the caster's height floats or buries it on slopes
 			SWorldHeightStuff sHStuff;
-			Logic_GetWorldHeight(&vPos, sHStuff);
+			Logic_GetWorldHeight(pTargetActor, &vPos, sHStuff);
 			vPos.y = sHStuff.fFinialHeight;
 
 			vFinalSubjectLoc->x = vPos.x;
-		//	vFinalSubjectLoc->y = vPos.y;
+			vFinalSubjectLoc->y = vPos.y;
 			vFinalSubjectLoc->z = vPos.z;
-
-			vFinalSubjectLoc->y = pActor->GetPosition().y;
 
 
 			break;

@@ -33,6 +33,27 @@
 
 #define FRAME_2 (2.0f / 30.0f)
 
+// tw dead reckoning / collision report values
+#define MOVE_COLLISION_CHECK_TIME		0.5f	// the avatar repeats its collision report at most this often
+#define MOVE_GHOST_SNAP_TIME			1.0f	// held back by object collision this long, the prediction takes the free move
+#define MOVE_PREDICT_SEED_RANGE			30.0f	// a server position further away than this is not trusted to seed the prediction
+#define MOVE_SMOOTH_MIN_DIST			0.1f	// the shown position is pulled to the prediction above this distance
+#define MOVE_SMOOTH_RATE				0.8f
+#define MOVE_SMOOTH_RATE_BACK			0.4f	// pulling against the move direction
+#define MOVE_SMOOTH_COLLISION_DIST		0.3f
+#define MOVE_SMOOTH_COLLISION_MIN_RATE	0.2f
+#define MOVE_LOCATION_SYNC_TIME			0.5f	// the moving avatar sends its position this often (not in tw)
+#define MOVE_LOCATION_SYNC_TURN_TIME	0.1f	// sooner while it turns
+#define MOVE_LOCATION_SYNC_TURN_COS		0.9986f	// cos(3 degrees)
+#define MOVE_LOCATION_SYNC_STOPTURN_TIME	0.05f	// not turned this long after a turn, where the turn ended is sent
+#define MOVE_TURNING_COS				0.99999f	// turned less than this in a frame, the avatar is not turning
+#define MOVE_YAW_SAMPLE_MIN_TIME		0.08f	// headings closer than this do not measure the turn speed
+#define MOVE_YAW_SAMPLE_MAX_TIME		1.0f	// further apart, the character was not turning
+#define MOVE_YAW_MIN_DELTA				0.035f	// (2 degrees) a smaller change between headings is no turn
+#define MOVE_YAW_EXTRAPOLATE_TIME		0.2f	// the turn goes on at the measured speed this long after a heading
+#define MOVE_YAW_MAX_EXTRAPOLATE		0.7f	// (40 degrees) but never more than this
+#define MOVE_TURN_SMOOTH_RATE			15.0f	// the shown facing follows the moving one (per second)
+
 
 DEFINITION_MEMORY_POOL(CNtlBehaviorCharGroundMove)
 
@@ -53,11 +74,31 @@ CNtlBehaviorCharGroundMove::CNtlBehaviorCharGroundMove()
     m_byPosChangeCnt		= 0;
     m_byCollMoveImpossCnt	= 0;
 
-    m_bServerSyncPos		= FALSE;
-    m_bSyncSendCheck		= TRUE;
-    m_fSyncSendTime         = MOVE_SYNC_SEND_TIME;
+    m_vPredictPos			= ZeroAxis;
+    m_vPredictDir			= ZeroAxis;
+    m_vGhostPos				= ZeroAxis;
+    m_fGhostTime			= 0.0f;
+    m_bMoveCollision		= FALSE;
+    m_fForcedSpeed			= 1.0f;
+    m_vForcedDir			= ZeroAxis;
 
-    m_fInterAnimTime        = 0.0f;    
+    m_bCollisionSent		= FALSE;
+    m_fLastCollisionRate	= RwRealMAXVAL;
+    m_fCollisionCheckTime	= MOVE_COLLISION_CHECK_TIME;
+
+    m_fLocationSyncTime		= 0.0f;
+    m_vLocationSyncDir		= ZeroAxis;
+    m_vLastFrameDir			= ZeroAxis;
+    m_fNoTurnTime			= 0.0f;
+    m_bTurnSyncPending		= FALSE;
+
+    m_fYawRate				= 0.0f;
+    m_fYawBudget			= 0.0f;
+    m_fYawExtrapolateTime	= 0.0f;
+    m_vYawSampleDir			= ZeroAxis;
+    m_fYawSampleTime		= 0.0f;
+
+    m_fInterAnimTime        = 0.0f;
 }
 
 CNtlBehaviorCharGroundMove::~CNtlBehaviorCharGroundMove()
@@ -85,25 +126,14 @@ void CNtlBehaviorCharGroundMove::Enter(void)
 
     m_fDefaultWalkSpeed = Logic_GetDefaultFrontWalkSpeed(m_pActor);
     m_fDefaultRunSpeed	= Logic_GetDefaultFrontRunSpeed(m_pActor);
-    m_fDefaultBackSpeed = Logic_GetDefaultBackSpeed(m_pActor);	
+    m_fDefaultBackSpeed = Logic_GetDefaultBackSpeed(m_pActor);
 
-    SetServerSyncPosition(m_MoveStuff.vCurrLoc);
+    ResetDeadReckoning(TRUE);
 
-	// disabled by daneos
-	//if(!IsMoveSyncState())
-    //{
-        SetAnim(m_MoveStuff.byMoveFlags);
+    SetAnim(m_MoveStuff.byMoveFlags);
 
-        // Idle -> Run 占쏙옙占쏙옙 占쌍니몌옙占싱쇽옙
-        SetIdle2RunAnim();
-
-        //m_fSyncSendTime = MOVE_SYNC_SEND_TIME;
-  //  }
-    //else
- //   {
-        //m_fSyncSendTime = MOVE_SYNC_SEND_TIME;
- //   }
-
+    // Idle -> Run 보간 애니메이션
+    SetIdle2RunAnim();
 
     // Later, call base class enter.
     CNtlBehaviorBase::Enter(); 
@@ -148,7 +178,9 @@ void CNtlBehaviorCharGroundMove::Exit(void)
     DestroyDashEffect();
     DestroyDashEffectSmoke();
 
-    if(m_pActor->GetClassID() == SLCLASS_PLAYER)
+    EndCollisionReport();
+
+    if(m_pActor->GetClassID() != SLCLASS_AVATAR)
     {
         CNtlBeCharData *pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData()); 
         if(pBeData)
@@ -185,8 +217,6 @@ void CNtlBehaviorCharGroundMove::Update(RwReal fElapsed)
         }
     }
 
-    UpdateServerSyncPosition(fElapsed);
-
     RwBool bFinish = FALSE;
     switch(m_MoveStuff.byType)
     {
@@ -210,11 +240,10 @@ void CNtlBehaviorCharGroundMove::Update(RwReal fElapsed)
         break;
     default:
         bFinish = TRUE;
-    }	
+    }
 
-    // Send a Move Sync.
-	// disabled by daneos
-    //UpdateSendSyncCheck(fElapsed);
+    if(!bFinish)
+        UpdateLocationSync(fElapsed);
 
     UpdateAnimSpeed();
 
@@ -271,11 +300,26 @@ RwUInt32 CNtlBehaviorCharGroundMove::HandleEvents(RWS::CMsg &pMsg)
             }
         }
     }
-    else if(pMsg.Id == g_EventSobAdjustMovePosition)
+    else if(pMsg.Id == g_EventSobMoveCollision)
     {
-        SNtlEventSobAdjustMovePosition *pAdjustMovePos = reinterpret_cast<SNtlEventSobAdjustMovePosition*>( pMsg.pData );
-        SetServerSyncPosition(pAdjustMovePos->vAdjustPos);
-    }    
+        OnMoveCollision(reinterpret_cast<SNtlEventSobMoveCollision*>( pMsg.pData ));
+    }
+    else if(pMsg.Id == g_EventSobMoveCollisionEnd)
+    {
+        OnMoveCollisionEnd(reinterpret_cast<SNtlEventSobMoveCollisionEnd*>( pMsg.pData ));
+    }
+    else if(pMsg.Id == g_EventSobChangeHeading)
+    {
+        OnChangeHeading(reinterpret_cast<SNtlEventSobChangeHeading*>( pMsg.pData )->vDir);
+    }
+    else if(pMsg.Id == g_EventSobMoveSync)
+    {
+        SNtlEventSobMoveSync* pMoveSync = reinterpret_cast<SNtlEventSobMoveSync*>( pMsg.pData );
+        OnMoveSync(pMoveSync->vLoc, pMoveSync->vDir);
+
+        // applied right away, the old move sync queue of the base class is not used by the ground move
+        NTL_RETURN(NTL_FSM_EVENTRES_PASS);
+    }
     else if(pMsg.Id == g_EventTransform)
     {
         SNtlEventTransform* pEvent = (SNtlEventTransform*)pMsg.pData;
@@ -296,9 +340,12 @@ void CNtlBehaviorCharGroundMove::UpdateData(void)
 
     SetAnim(m_MoveStuff.byMoveFlags);
 
-    m_fSyncSendTime = MOVE_SYNC_SEND_TIME;    
-    UpdateSendSyncCheck(m_fSyncSendTime);
-    m_fSyncSendTime = MOVE_SYNC_SEND_TIME;  // After calling the above function, set it again because it is 0.0 again.
+    // tw: every move packet of another client restarts the prediction from the server position
+    ResetDeadReckoning();
+
+    // the move packet just sent the avatar position
+    m_fLocationSyncTime = 0.0f;
+    m_vLocationSyncDir = m_pActor->GetDirection();
 }
 
 void CNtlBehaviorCharGroundMove::FootStepMaterialProc(RWS::CMsg &pMsg)
@@ -920,182 +967,581 @@ void CNtlBehaviorCharGroundMove::SetDashAnimEnd(void)
     }
 }
 
-void CNtlBehaviorCharGroundMove::SetServerSyncPosition(RwV3d vSyncPos)
+//////////////////////////////////////////////////////////////////////////
+// tw dead reckoning
+//
+// A character moved by another client is not simulated from where it is shown. The behavior
+// keeps its own prediction that every server move restarts from the server position, and the
+// shown position follows the prediction and is pulled onto it, so a correction slides instead
+// of teleporting. When an object stops the prediction on this client but its owner reported
+// nothing, the same move without object collision (the ghost) takes over after a second.
+//////////////////////////////////////////////////////////////////////////
+
+RwBool CNtlBehaviorCharGroundMove::IsDeadReckoning(void)
 {
-    if( m_pActor->GetFlags() & SLFLAG_SERVER_SENDER )
+    // the avatar moves itself, everything else follows the server
+    return m_pActor->GetClassID() != SLCLASS_AVATAR;
+}
+
+void CNtlBehaviorCharGroundMove::ResetDeadReckoning(RwBool bSnapDir)
+{
+    if(!IsDeadReckoning())
         return;
 
-    RwV3d vSub;
-    RwV3d vPos = m_pActor->GetPosition();
-    RwV3dSubMacro(&vSub, &vSyncPos, &vPos);
+    RwV3d vActorPos = m_pActor->GetPosition();
+    RwV3d vSeedPos = m_MoveStuff.vCurrLoc;
 
-    vSub.y = 0;
+    // some move events leave the current location empty
+    RwV3d vSub = vSeedPos - vActorPos;
+    if((vSeedPos.x == 0.0f && vSeedPos.z == 0.0f) || RwV3dLength(&vSub) > MOVE_PREDICT_SEED_RANGE)
+        vSeedPos = vActorPos;
 
-    m_bServerSyncPos		= TRUE;
-    m_fCurrServerSyncDist	= 0.0f;
-    m_fDeltaServerSyncDist	= 0.0f;
-    m_fServerSyncDist		= RwV3dLength(&vSub);
+    m_vPredictPos	= vSeedPos;
+    m_vGhostPos		= vSeedPos;
+    m_fGhostTime	= 0.0f;
 
-    if(m_fServerSyncDist >= 100.0f)
+    RwV3d vDir = m_MoveStuff.vDir;
+    vDir.y = 0.0f;
+    if(RwV3dLength(&vDir) > 0.001f)
+        RwV3dNormalize(&m_vPredictDir, &vDir);
+    else
+        m_vPredictDir = m_pActor->GetDirection();
+
+    // a new move measures the turn from its heading again
+    m_fYawRate				= 0.0f;
+    m_fYawBudget			= 0.0f;
+    m_fYawExtrapolateTime	= 0.0f;
+    m_vYawSampleDir			= m_vPredictDir;
+    m_fYawSampleTime		= 0.0f;
+
+    // a move that starts faces its way at once, a changed move key turns the shown facing smoothly
+    if(bSnapDir && m_MoveStuff.byType == NTL_MOVETARGET_DIR)
+        m_pActor->SetDirection(&m_vPredictDir);
+}
+
+RwBool CNtlBehaviorCharGroundMove::BeginDeadReckoning(OUT RwV3d& vPos, OUT RwV3d& vDir)
+{
+    RwBool bMoveGhost = FALSE;
+
+    if(m_fGhostTime > MOVE_GHOST_SNAP_TIME)
     {
-        //		NTL_ASSERTFAIL("CNtlBehaviorCharGroundMove::SetServerSyncPosition");
-        m_fServerSyncDist = 0.0f;
+        // an object held the prediction back for a while, its owner went on without it
+        if(!m_bMoveCollision)
+            m_vPredictPos = m_vGhostPos;
+
+        m_fGhostTime = 0.0f;
+    }
+    else if(m_fGhostTime >= 0.0001f)
+    {
+        bMoveGhost = TRUE;
     }
 
-    if(m_fServerSyncDist > 0.001f)
-        RwV3dNormalize(&m_vServerSyncDir, &vSub);
+    // the prediction lost track (far from where the character is shown), start over from there
+    RwV3d vShown = m_pActor->GetPosition();
+    RwV3d vSub = m_vPredictPos - vShown;
+    if(RwV3dLength(&vSub) > MOVE_PREDICT_SEED_RANGE)
+    {
+        m_vPredictPos = vShown;
+        m_vGhostPos = vShown;
+        bMoveGhost = FALSE;
+    }
+
+    vPos = m_vPredictPos;
+    vDir = m_vPredictDir;
+
+    return bMoveGhost;
+}
+
+void CNtlBehaviorCharGroundMove::MoveGhost(const RwV3d& vDir, RwReal fSpeed, RwReal fElapsed)
+{
+    CNtlVector vHeading, vDest;
+    NtlGetDestination_Keyboard(vDir.x, vDir.y, vDir.z, fSpeed, m_vGhostPos.x, m_vGhostPos.y, m_vGhostPos.z, m_MoveStuff.byMoveFlags, fElapsed * 1000.f, 1.0f, &vHeading, &vDest);
+
+    m_vGhostPos.x = vDest.x;
+    m_vGhostPos.z = vDest.z;
+
+    SWorldHeightStuff sHStuff;
+    Logic_GetWorldHeight(m_pActor, &m_vGhostPos, sHStuff);
+    m_vGhostPos.y = sHStuff.fFinialHeight;
+}
+
+void CNtlBehaviorCharGroundMove::EndDeadReckoning(const RwV3d& vOldPos, const RwV3d& vNewPos, const RwV3d& vNewDir, RwReal fSpeed, RwReal fElapsed, RwBool bBlocked, RwBool bMoveGhost)
+{
+    // count how long an object holds the prediction back (not while its owner reports the same)
+    if(bBlocked)
+        m_fGhostTime = m_bMoveCollision ? 0.0f : m_fGhostTime + fElapsed;
+
+    // the shown position makes the same step as the prediction, towards it
+    RwV3d vShown = m_pActor->GetPosition();
+    RwV3d vStep = vNewPos - vOldPos;
+    RwReal fStep = RwV3dLength(&vStep);
+
+    RwV3d vFollowDir = vNewPos - vShown;
+    RwV3d vDisplay = vShown;
+    if(RwV3dLength(&vFollowDir) > 0.0001f)
+    {
+        RwV3dNormalize(&vFollowDir, &vFollowDir);
+        vDisplay = vShown + vFollowDir * fStep;
+    }
     else
     {
-        m_vServerSyncDir.x = 0.f;
-        m_vServerSyncDir.y = 0.f;
-        m_vServerSyncDir.z = 0.f;
-        m_fServerSyncDist = 0.f;
-        m_bServerSyncPos = FALSE;
+        vFollowDir = ZeroAxis;
+    }
+
+    // and is pulled onto it
+    RwV3d vRemainDir = vNewPos - vDisplay;
+    RwReal fRemain = RwV3dLength(&vRemainDir);
+    if(fRemain > MOVE_SMOOTH_MIN_DIST)
+    {
+        RwV3dNormalize(&vRemainDir, &vRemainDir);
+
+        RwReal fRate = RwV3dDotProduct(&vFollowDir, &vRemainDir) < 0.0f ? MOVE_SMOOTH_RATE_BACK : MOVE_SMOOTH_RATE;
+
+        RwReal fPullSpeed = fSpeed;
+        if(m_MoveStuff.byType == NTL_MOVETARGET_DIR && m_bMoveCollision && fRemain < MOVE_SMOOTH_COLLISION_DIST)
+            fPullSpeed = fSpeed * max(m_fForcedSpeed, MOVE_SMOOTH_COLLISION_MIN_RATE);
+
+        RwReal fPull = fPullSpeed * fRate * fElapsed * fRemain;
+        if(fPull > fRemain)
+            fPull = fRemain;
+
+        vDisplay = vDisplay + vRemainDir * fPull;
+    }
+
+    SWorldHeightStuff sHStuff;
+    Logic_GetWorldHeight(m_pActor, &vDisplay, sHStuff);
+    if(sHStuff.fFinialHeight > -500.f)
+        vDisplay.y = sHStuff.fFinialHeight;
+
+    m_pActor->SetPosition(&vDisplay);
+    SetShownDirection(vNewDir, fElapsed);
+
+    m_vPredictPos = vNewPos;
+    m_vPredictDir = vNewDir;
+
+    if(!bMoveGhost)
+        m_vGhostPos = vNewPos;
+}
+
+void CNtlBehaviorCharGroundMove::OnMoveCollision(const SNtlEventSobMoveCollision* pCollision)
+{
+    // the avatar is the one reporting it
+    if(!IsDeadReckoning())
+        return;
+
+    RwV3d vDir = pCollision->vDir;
+    vDir.y = 0.0f;
+    if(RwV3dLength(&vDir) > 0.001f)
+        RwV3dNormalize(&vDir, &vDir);
+    else
+        vDir = m_vPredictDir;
+
+    RwV3d vDirForced = pCollision->vDirForced;
+    vDirForced.y = 0.0f;
+    if(RwV3dLength(&vDirForced) > 0.001f)
+        RwV3dNormalize(&vDirForced, &vDirForced);
+    else
+        vDirForced = vDir;
+
+    m_MoveStuff.vDir	= vDir;
+    m_vPredictDir		= vDir;
+    m_vPredictPos		= pCollision->vLoc;
+    m_vGhostPos			= pCollision->vLoc;
+    m_pActor->SetDirection(&m_vPredictDir);
+
+    m_bMoveCollision	= TRUE;
+    m_fForcedSpeed		= pCollision->fForcedSpeed;
+    m_vForcedDir		= vDirForced;
+}
+
+void CNtlBehaviorCharGroundMove::OnMoveCollisionEnd(const SNtlEventSobMoveCollisionEnd* pCollisionEnd)
+{
+    if(!IsDeadReckoning())
+        return;
+
+    m_vPredictPos		= pCollisionEnd->vLoc;
+    m_vGhostPos			= pCollisionEnd->vLoc;
+    m_bMoveCollision	= FALSE;
+    m_fForcedSpeed		= 1.0f;
+}
+
+// tw (0x60AF20): GU_CHAR_CHANGE_HEADING turns the move as well as the actor
+void CNtlBehaviorCharGroundMove::OnChangeHeading(const RwV3d& vDir)
+{
+    RwV3d vHeading = vDir;
+    vHeading.y = 0.0f;
+    if(RwV3dLength(&vHeading) <= 0.001f)
+        return;
+
+    RwV3dNormalize(&vHeading, &vHeading);
+
+    m_MoveStuff.vDir = vHeading;
+
+    if(IsDeadReckoning())
+    {
+        // the shown facing eases after the prediction
+        m_vPredictDir = vHeading;
+        OnHeadingSample(vHeading);
+        return;
+    }
+
+    m_pActor->SetDirection(&vHeading);
+}
+
+// Position the moving player sent a moment ago (relayed by the server). Not in tw: without it
+// a player steering with the mouse drifts away from where the others see it, every turn reaches
+// them a little late and nothing corrects it until the next move key changes. The prediction is
+// moved there, the shown position slides after it.
+void CNtlBehaviorCharGroundMove::OnMoveSync(const RwV3d& vLoc, const RwV3d& vDir)
+{
+    if(!IsDeadReckoning())
+        return;
+
+    m_vPredictPos	= vLoc;
+    m_vGhostPos		= vLoc;
+    m_fGhostTime	= 0.0f;
+
+    if(m_MoveStuff.byType == NTL_MOVETARGET_DIR)
+    {
+        RwV3d vHeading = vDir;
+        vHeading.y = 0.0f;
+        if(RwV3dLength(&vHeading) > 0.001f)
+        {
+            RwV3dNormalize(&vHeading, &vHeading);
+            m_MoveStuff.vDir	= vHeading;
+            m_vPredictDir		= vHeading;
+            OnHeadingSample(vHeading);
+        }
     }
 }
 
-void CNtlBehaviorCharGroundMove::UpdateSendSyncCheck(RwReal fElapsed)
+static RwReal Move_GetYaw(const RwV3d& vDir)
 {
-    if(!(m_bSyncSendCheck || IsMoveSyncSend()))
-        return;
+    return atan2f(vDir.x, vDir.z);
+}
 
-    if( !(m_pActor->GetFlags() & SLFLAG_SERVER_SENDER) )
-        return;
+static RwReal Move_WrapAngle(RwReal fAngle)
+{
+    while(fAngle > rwPI)
+        fAngle -= 2.0f * rwPI;
+    while(fAngle < -rwPI)
+        fAngle += 2.0f * rwPI;
 
-    m_fSyncSendTime += fElapsed;
+    return fAngle;
+}
 
-    if(m_fSyncSendTime >= MOVE_SYNC_SEND_TIME)
+static RwV3d Move_GetYawDir(RwReal fYaw)
+{
+    RwV3d vDir;
+    vDir.x = sinf(fYaw);
+    vDir.y = 0.0f;
+    vDir.z = cosf(fYaw);
+
+    return vDir;
+}
+
+static RwBool Move_IsKeyboardTurn(RwUInt8 byMoveFlags)
+{
+    return byMoveFlags >= NTL_MOVE_TURN_L && byMoveFlags <= NTL_MOVE_B_TURN_R_JUMP;
+}
+
+// A heading of another client's character arrived (change heading or position sync). The turn
+// speed is measured between headings far enough apart, the prediction then keeps turning at it
+// for a moment: the headings come every 0.1 - 0.3 seconds while the mouse turns the character,
+// followed one by one the character ran a polygon and was pulled back onto the curve each time.
+void CNtlBehaviorCharGroundMove::OnHeadingSample(const RwV3d& vDir)
+{
+    if(m_fYawSampleTime >= MOVE_YAW_SAMPLE_MIN_TIME)
     {
-        if(m_MoveStuff.byType == NTL_MOVETARGET_DIR)
+        RwReal fRate = 0.0f;
+        if(m_fYawSampleTime <= MOVE_YAW_SAMPLE_MAX_TIME && RwV3dLength(&m_vYawSampleDir) > 0.001f)
         {
-            RwV3d vPos				= m_pActor->GetPosition();
-            RwV3d vDir				= m_pActor->GetDirection();
-
-			//API_GetSLPacketGenerator()->SendChangePosition(vPos, vDir);
-        }
-        else if(m_MoveStuff.byType == NTL_MOVETARGET_LOC)
-        {
-			// DISABLED BY DANEOS ! DO NOT SEND MOVEMENT PACKET EVERY X MS TO SERVER (LIKE TW)
-			/*
-            RwV3d vPos				= m_pActor->GetPosition();
-            RwUInt8 byAvatarType	= m_pActor->GetServerSyncAvatarType();
-            API_GetSLPacketGenerator()->SendMouseMove(vPos, m_MoveStuff.vDest, byAvatarType);
-			*/
+            RwReal fDelta = Move_WrapAngle(Move_GetYaw(vDir) - Move_GetYaw(m_vYawSampleDir));
+            if(fabs(fDelta) > MOVE_YAW_MIN_DELTA)
+                fRate = fDelta / m_fYawSampleTime;
         }
 
-        m_fSyncSendTime -= MOVE_SYNC_SEND_TIME;
+        m_fYawRate			= fRate;
+        m_vYawSampleDir		= vDir;
+        m_fYawSampleTime	= 0.0f;
+    }
+
+    m_fYawExtrapolateTime	= 0.0f;
+    m_fYawBudget			= min((RwReal)fabs(m_fYawRate) * MOVE_YAW_EXTRAPOLATE_TIME, MOVE_YAW_MAX_EXTRAPOLATE);
+}
+
+void CNtlBehaviorCharGroundMove::ExtrapolateHeading(RwV3d& vDir, RwReal fElapsed)
+{
+    m_fYawSampleTime += fElapsed;
+
+    // a keyboard turn is in the move flags already, an object in the way sets the way itself
+    if(Move_IsKeyboardTurn(m_MoveStuff.byMoveFlags) || m_bMoveCollision)
+        return;
+
+    if(m_fYawRate == 0.0f || m_fYawBudget <= 0.0f || m_fYawExtrapolateTime >= MOVE_YAW_EXTRAPOLATE_TIME)
+        return;
+
+    RwReal fStep = m_fYawRate * fElapsed;
+    if(fabs(fStep) > m_fYawBudget)
+        fStep = fStep > 0.0f ? m_fYawBudget : -m_fYawBudget;
+
+    m_fYawBudget			-= (RwReal)fabs(fStep);
+    m_fYawExtrapolateTime	+= fElapsed;
+
+    vDir = Move_GetYawDir(Move_GetYaw(vDir) + fStep);
+    m_vPredictDir = vDir;
+}
+
+// the shown facing turns after the predicted one instead of jumping to every heading
+void CNtlBehaviorCharGroundMove::SetShownDirection(const RwV3d& vDir, RwReal fElapsed)
+{
+    RwV3d vTarget = vDir;
+    vTarget.y = 0.0f;
+    RwV3d vCurr = m_pActor->GetDirection();
+    vCurr.y = 0.0f;
+
+    if(RwV3dLength(&vTarget) <= 0.001f)
+        return;
+
+    if(RwV3dLength(&vCurr) <= 0.001f)
+    {
+        m_pActor->SetDirection(&vTarget);
+        return;
+    }
+
+    RwReal fCurrYaw = Move_GetYaw(vCurr);
+    RwReal fDelta = Move_WrapAngle(Move_GetYaw(vTarget) - fCurrYaw);
+    if(fabs(fDelta) < 0.01f)
+    {
+        RwV3dNormalize(&vTarget, &vTarget);
+        m_pActor->SetDirection(&vTarget);
+        return;
+    }
+
+    RwReal fRate = 1.0f - expf(-MOVE_TURN_SMOOTH_RATE * fElapsed);
+    RwV3d vShown = Move_GetYawDir(fCurrYaw + fDelta * fRate);
+    m_pActor->SetDirection(&vShown);
+}
+
+void CNtlBehaviorCharGroundMove::UpdateLocationSync(RwReal fElapsed)
+{
+    if(m_pActor->GetClassID() != SLCLASS_AVATAR)
+        return;
+
+    if(m_MoveStuff.byType != NTL_MOVETARGET_DIR && m_MoveStuff.byType != NTL_MOVETARGET_LOC)
+        return;
+
+    m_fLocationSyncTime += fElapsed;
+
+    RwV3d vDir = m_pActor->GetDirection();
+
+    // a curve run with the mouse sends its heading only every 10 degrees, the others fall behind
+    // on the inside of it; follow it closer
+    RwV3d vFlatDir = vDir;
+    RwV3d vFlatSent = m_vLocationSyncDir;
+    vFlatDir.y = 0.0f;
+    vFlatSent.y = 0.0f;
+    RwBool bTurned = FALSE;
+    RwBool bSentDir = FALSE;
+    RwBool bTurning = FALSE;
+    if(RwV3dLength(&vFlatDir) > 0.001f)
+    {
+        RwV3dNormalize(&vFlatDir, &vFlatDir);
+
+        if(RwV3dLength(&vFlatSent) > 0.001f)
+        {
+            RwV3dNormalize(&vFlatSent, &vFlatSent);
+            RwReal fSentDot = RwV3dDotProduct(&vFlatDir, &vFlatSent);
+            bTurned = fSentDot < MOVE_LOCATION_SYNC_TURN_COS;
+            bSentDir = fSentDot >= MOVE_TURNING_COS;
+        }
+
+        // still turning this frame?
+        if(RwV3dLength(&m_vLastFrameDir) > 0.001f)
+            bTurning = RwV3dDotProduct(&vFlatDir, &m_vLastFrameDir) < MOVE_TURNING_COS;
+
+        m_vLastFrameDir = vFlatDir;
+    }
+
+    m_fNoTurnTime = bTurning ? 0.0f : m_fNoTurnTime + fElapsed;
+
+    // the turn stopped: where it ended is sent at once, the others stop turning the character
+    RwBool bTurnEnd = FALSE;
+    if(m_bTurnSyncPending && m_fNoTurnTime >= MOVE_LOCATION_SYNC_STOPTURN_TIME)
+    {
+        if(bSentDir)
+            m_bTurnSyncPending = FALSE;
+        else
+            bTurnEnd = TRUE;
+    }
+
+    if(m_fLocationSyncTime < MOVE_LOCATION_SYNC_TIME && !(bTurned && m_fLocationSyncTime >= MOVE_LOCATION_SYNC_TURN_TIME) && !bTurnEnd)
+        return;
+
+    m_fLocationSyncTime = 0.0f;
+    m_vLocationSyncDir = vDir;
+    m_bTurnSyncPending = bTurning || (bTurned && !bTurnEnd);
+
+    API_GetSLPacketGenerator()->SendChangePosition(m_pActor->GetPosition(), vDir);
+}
+
+//////////////////////////////////////////////////////////////////////////
+// tw collision report: the avatar compares the step it should make with the step the object
+// collision left it. While they differ it reports the position and how much of the step is
+// left (immediately when it stops completely, else every MOVE_COLLISION_CHECK_TIME), the
+// other clients move it the same way. When the steps match again the collision ends.
+//////////////////////////////////////////////////////////////////////////
+
+void CNtlBehaviorCharGroundMove::UpdateCollisionReport(const RwV3d& vOldPos, const RwV3d& vMovePos, const RwV3d& vFinalPos, const RwV3d& vDir, RwReal fElapsed)
+{
+    if(m_pActor->GetClassID() != SLCLASS_AVATAR)
+        return;
+
+    m_fCollisionCheckTime += fElapsed;
+    if(m_fCollisionCheckTime > MOVE_COLLISION_CHECK_TIME)
+        m_fCollisionCheckTime = MOVE_COLLISION_CHECK_TIME;
+
+    // compare on the ground plane, walking onto an object changes the height of the step only
+    RwV3d vMove = vMovePos - vOldPos;
+    RwV3d vMoved = vFinalPos - vOldPos;
+    vMove.y = 0.0f;
+    vMoved.y = 0.0f;
+    RwReal fMove = RwV3dLength(&vMove);
+    RwReal fMoved = RwV3dLength(&vMoved);
+
+    if(fabs(fMove - fMoved) <= 0.001f)
+    {
+        EndCollisionReport();
+        return;
+    }
+
+    RwReal fRate = fMove >= 0.0001f ? fMoved / fMove : 0.0f;
+
+    if((fRate < 0.0001f && m_fLastCollisionRate >= 0.0001f) || m_fCollisionCheckTime >= MOVE_COLLISION_CHECK_TIME)
+    {
+        API_GetSLPacketGenerator()->SendCharMoveCollision(vFinalPos, vDir, fRate);
+
+        m_fLastCollisionRate	= fRate;
+        m_bCollisionSent		= TRUE;
+        m_fCollisionCheckTime	= 0.0f;
     }
 }
 
-
-
-void CNtlBehaviorCharGroundMove::UpdateServerSyncPosition(RwReal fElapsed)
+void CNtlBehaviorCharGroundMove::EndCollisionReport(void)
 {
-    if(!m_bServerSyncPos)
+    if(!m_bCollisionSent)
         return;
 
-    if(m_fServerSyncDist == m_fCurrServerSyncDist)
-    {
-        m_bServerSyncPos = FALSE;
-        return;
-    }
+    API_GetSLPacketGenerator()->SendCharMoveCollisionEnd(m_pActor->GetPosition(), m_pActor->GetDirection());
 
-    m_fDeltaServerSyncDist = m_fServerSyncDist * fElapsed;
-
-    if(m_fCurrServerSyncDist + m_fDeltaServerSyncDist > m_fServerSyncDist)
-    {
-        m_fDeltaServerSyncDist = m_fServerSyncDist - m_fCurrServerSyncDist;
-        m_fCurrServerSyncDist = m_fServerSyncDist;
-    }
-    else
-        m_fCurrServerSyncDist += m_fDeltaServerSyncDist;
+    m_bCollisionSent		= FALSE;
+    m_fCollisionCheckTime	= MOVE_COLLISION_CHECK_TIME;
+    m_fLastCollisionRate	= RwRealMAXVAL;
 }
 
 RwBool CNtlBehaviorCharGroundMove::UpdateDirectionMove(RwReal fElapsed)
 {
-    RwV3d vPos = m_pActor->GetPosition();
-    RwV3d vDir = m_pActor->GetDirection();
+    RwBool bDeadReckoning = IsDeadReckoning();
+    RwBool bMoveGhost = FALSE;
+
+    RwV3d vPos, vDir;
+    if(bDeadReckoning)
+    {
+        bMoveGhost = BeginDeadReckoning(vPos, vDir);
+        ExtrapolateHeading(vDir, fElapsed);
+    }
+    else
+    {
+        vPos = m_pActor->GetPosition();
+        vDir = m_pActor->GetDirection();
+    }
+
+    RwV3d vOldPos = vPos;
     RwReal fOldActorHeight = vPos.y;
     RwV3d vNewPos, vNewDir;
 
     RwReal fSpeed	= Logic_GetFrontRunSpeed(m_pActor);
-    m_fAnimSpeed	= 1.0f;    
-    RwBool bMoveSync = FALSE;
+    m_fAnimSpeed	= 1.0f;
 
 	RwBool bTurn = FALSE;
-	
+
     if(m_MoveStuff.byMoveFlags == NTL_MOVE_TURN_L ||  m_MoveStuff.byMoveFlags == NTL_MOVE_TURN_R)
     {
         bTurn = TRUE;
     }
-    else 
+    else
     {
-        m_fAnimSpeed	= fSpeed / m_fDefaultRunSpeed;        
-
-		// disabled by daneos
-        /*if(m_pActor->GetClassID() == SLCLASS_PLAYER)
-        {
-            bMoveSync = TRUE;
-            if(!UpdateMoveSync(fElapsed, &vNewPos, &vNewDir))
-                return FALSE;
-        }*/
+        m_fAnimSpeed	= fSpeed / m_fDefaultRunSpeed;
     }
 
-	if(!bMoveSync)
-	{
-        CNtlVector vHeading, vDest;        
+    // tw: while its client reports an object in the way, the character moves the reported way, slower
+    RwV3d vMoveDir = vDir;
+    RwReal fMoveSpeed = fSpeed;
+    if(bDeadReckoning && m_bMoveCollision)
+    {
+        vMoveDir = m_vForcedDir;
+        fMoveSpeed = fSpeed * m_fForcedSpeed;
+    }
 
-        //Handles keyboard movement
-        NtlGetDestination_Keyboard(vDir.x, vDir.y, vDir.z, fSpeed, vPos.x, vPos.y, vPos.z, m_MoveStuff.byMoveFlags, fElapsed * 1000.f, 1.0f, &vHeading, &vDest);
+    //Handles keyboard movement
+    CNtlVector vHeading, vDest;
+    NtlGetDestination_Keyboard(vMoveDir.x, vMoveDir.y, vMoveDir.z, fMoveSpeed, vPos.x, vPos.y, vPos.z, m_MoveStuff.byMoveFlags, fElapsed * 1000.f, 1.0f, &vHeading, &vDest);
 
-        CNtlMath::MathRwV3dAssign(&vNewPos, vDest.x, vPos.y, vDest.z); 
-        CNtlMath::MathRwV3dAssign(&vNewDir, vHeading.x, 0.0f, vHeading.z); 
+    CNtlMath::MathRwV3dAssign(&vNewPos, vDest.x, vPos.y, vDest.z);
+    CNtlMath::MathRwV3dAssign(&vNewDir, vHeading.x, 0.0f, vHeading.z);
 
-        if(m_bServerSyncPos && !bTurn)
-        {
-            vNewPos.x += m_vServerSyncDir.x * m_fDeltaServerSyncDist;
-            vNewPos.z += m_vServerSyncDir.z * m_fDeltaServerSyncDist;
-        }        
+    if(bMoveGhost)
+        MoveGhost(vMoveDir, fMoveSpeed, fElapsed);
 
-        Logic_GetWorldHeight(m_pActor, &vNewPos, m_sHStuff);
-        vNewPos.y = m_sHStuff.fFinialHeight;
-	}
-    
+    Logic_GetWorldHeight(m_pActor, &vNewPos, m_sHStuff);
+    vNewPos.y = m_sHStuff.fFinialHeight;
+
+    RwV3d vMovePos = vNewPos;
     RwUInt8 byColliResult = NTL_CHARACTER_COLLI_NONE;
+    RwBool bBlocked = FALSE;
     if(!bTurn)
     {
 		if (ObjectCollision(vNewPos, fOldActorHeight, fSpeed, fElapsed, &byColliResult))
 		{
-			if (byColliResult != NTL_CHARACTER_COLLI_NONE)
+			CNtlBeCharData *pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData());
+			SMoveStuff *pMoveStuff = pBeData->GetMoveStuff();
+
+			// falling ends the move, so does an object stopping the avatar
+			if(!bDeadReckoning || (pMoveStuff->byMoveResult & NTL_MOVE_RESULT_FALLING))
 			{
-				CNtlBeCharData *pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData());
+				if (byColliResult != NTL_CHARACTER_COLLI_NONE)
+					pMoveStuff->byMoveResult |= NTL_MOVE_RESULT_COLLISION;
 
-				SMoveStuff *pMoveStuff = pBeData->GetMoveStuff();
-				pMoveStuff->byMoveResult |= NTL_MOVE_RESULT_COLLISION;// NTL_MOVE_RESULT_FALLING; // BY DANEOS
-
-			//	API_GetSLPacketGenerator()->SendCharMoveCollision(m_pActor);
-
-				// by daneos
-				/*SCtrlStuff *pCtrlStuff = pBeData->GetCtrlStuff();
-
-				pCtrlStuff->uExtra.sFalling.vFallingDir = m_pActor->GetDirection();
-
-				pCtrlStuff->uExtra.sFalling.byMoveDirection = m_MoveStuff.byMoveFlags;
-				pCtrlStuff->uExtra.sFalling.fSpeed = (m_MoveStuff.byMoveFlags == NTL_MOVE_B) ? fSpeed * NTL_BACKWARD_MOVEMENT_SPEED_RATE : fSpeed;
-				pCtrlStuff->uExtra.sFalling.fSearchHeight = m_sHStuff.fFinialHeight;*/
+				return TRUE;
 			}
 
-			return TRUE;
+			// an object stops the character on this client only, its server move goes on
+			pMoveStuff->byMoveResult &= ~NTL_MOVE_RESULT_COLLISION;
+			vNewPos = vOldPos;
+			bBlocked = TRUE;
 		}
+		else if(byColliResult != NTL_CHARACTER_COLLI_NONE)
+		{
+			bBlocked = TRUE;
+		}
+    }
+
+    if(bDeadReckoning)
+    {
+        EndDeadReckoning(vOldPos, vNewPos, vNewDir, fSpeed, fElapsed, bBlocked, bMoveGhost);
+        return FALSE;
     }
 
     m_pActor->SetPosition(&vNewPos);
     m_pActor->SetDirection(&vNewDir);
 
-    // ���� �ð� ���� �̵��� �Ÿ��� limit �Ÿ� �ȿ� ������? �����.
+    if(!bTurn)
+        UpdateCollisionReport(vOldPos, vMovePos, vNewPos, vNewDir, fElapsed);
+
+    // 일정 시간 동안 이동한 거리가 limit 거리 안에 있으면? 멈춘다.
     if( !bTurn && byColliResult != NTL_CHARACTER_COLLI_WORLD_ATTR_TERRAIN_SLANT)
     {
-        LimitPositionChangeCheck(fElapsed);        
+        LimitPositionChangeCheck(fElapsed);
     }
 
     return FALSE;
@@ -1121,10 +1567,23 @@ RwBool CNtlBehaviorCharGroundMove::UpdateLocationMove(RwReal fElapsed)
     //-------------------------------------
     // Obtain the current distance.
 
-    RwV3d vPos = m_pActor->GetPosition();
+    RwBool bDeadReckoning = IsDeadReckoning();
+
+    RwV3d vPos;
+    if(bDeadReckoning)
+    {
+        RwV3d vPredictDir;
+        BeginDeadReckoning(vPos, vPredictDir);
+    }
+    else
+    {
+        vPos = m_pActor->GetPosition();
+    }
+
+    RwV3d vOldPos = vPos;
     RwReal fOldActorHeight = vPos.y;
-    RwV3d vDestPos = m_MoveStuff.vDest;    
-    RwV3d vDir = vDestPos - vPos;    
+    RwV3d vDestPos = m_MoveStuff.vDest;
+    RwV3d vDir = vDestPos - vPos;
     vDir.y = 0.0f;
     RwReal fCurrLen = RwV3dLength(&vDir);
     if(fCurrLen > 0.001f)
@@ -1132,12 +1591,6 @@ RwBool CNtlBehaviorCharGroundMove::UpdateLocationMove(RwReal fElapsed)
     else
         RwV3dAssignMacro(&vDir, &m_pActor->GetDirection()); // Keep current direction if at destination
     RwV3d vDelta = vDir * fElapsed * fSpeed;
-
-    if(m_bServerSyncPos)
-    {
-        vDelta.x += m_vServerSyncDir.x * m_fDeltaServerSyncDist;
-        vDelta.z += m_vServerSyncDir.z * m_fDeltaServerSyncDist;
-    }
 
     //-------------------------------------
     // The current remaining distance is less than the next distance to travel.
@@ -1167,7 +1620,10 @@ RwBool CNtlBehaviorCharGroundMove::UpdateLocationMove(RwReal fElapsed)
         if(m_sHStuff.fFinialHeight > -500.f)
             vPos.y = m_sHStuff.fFinialHeight;
 
-        m_pActor->SetPosition(&vPos);
+        if(bDeadReckoning)
+            EndDeadReckoning(vOldPos, vPos, vDir, fSpeed, fElapsed, FALSE, FALSE);
+        else
+            m_pActor->SetPosition(&vPos);
 
         if(bColliResult == NTL_CHARACTER_COLLI_OBJECT)
         {
@@ -1177,7 +1633,6 @@ RwBool CNtlBehaviorCharGroundMove::UpdateLocationMove(RwReal fElapsed)
                 CNtlBeCharData *pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData()); 
                 pBeData->GetMoveStuff()->byMoveResult |= NTL_MOVE_RESULT_COLLISION;                
 
-			//	API_GetSLPacketGenerator()->SendCharMoveCollision(m_pActor);
 
                 return TRUE;
             }
@@ -1190,6 +1645,10 @@ RwBool CNtlBehaviorCharGroundMove::UpdateLocationMove(RwReal fElapsed)
         if(PopPathNode(m_MoveStuff.vDest))
             return FALSE;
 
+        // the move ends, the shown position stops where the server put the character
+        if(bDeadReckoning)
+            m_pActor->SetPosition(&vPos);
+
         return TRUE;
     }
     else // The current remaining distance is not less than the next travel distance.
@@ -1201,7 +1660,9 @@ RwBool CNtlBehaviorCharGroundMove::UpdateLocationMove(RwReal fElapsed)
         if(m_sHStuff.fFinialHeight > -500.f)
             vPos.y = m_sHStuff.fFinialHeight;
 
-        // object �浹 ó��.
+        RwV3d vMovePos = vPos;
+
+        // object 충돌 처리.
         RwUInt8 byColliResult = NTL_CHARACTER_COLLI_NONE;
         if (ObjectCollision(vPos, fOldActorHeight, fSpeed, fElapsed, &byColliResult))
 		{
@@ -1211,8 +1672,6 @@ RwBool CNtlBehaviorCharGroundMove::UpdateLocationMove(RwReal fElapsed)
 
 				SMoveStuff *pMoveStuff = pBeData->GetMoveStuff();
 				pMoveStuff->byMoveResult |= NTL_MOVE_RESULT_COLLISION;// NTL_MOVE_RESULT_FALLING; // BY DANEOS
-
-			//	API_GetSLPacketGenerator()->SendCharMoveCollision(m_pActor);
 
 				// by daneos
 				/*SCtrlStuff *pCtrlStuff = pBeData->GetCtrlStuff();
@@ -1227,8 +1686,17 @@ RwBool CNtlBehaviorCharGroundMove::UpdateLocationMove(RwReal fElapsed)
 			return TRUE;
 		}
 
-        m_pActor->SetDirection(&vDir);
-        m_pActor->SetPosition(&vPos);
+        if(bDeadReckoning)
+        {
+            EndDeadReckoning(vOldPos, vPos, vDir, fSpeed, fElapsed, FALSE, FALSE);
+        }
+        else
+        {
+            m_pActor->SetDirection(&vDir);
+            m_pActor->SetPosition(&vPos);
+
+            UpdateCollisionReport(vOldPos, vMovePos, vPos, vDir, fElapsed);
+        }
 
         if(byColliResult == NTL_CHARACTER_COLLI_NONE)
             return FALSE;
@@ -1373,8 +1841,6 @@ RwBool CNtlBehaviorCharGroundMove::UpdateTargetMove(RwReal fElapsed)
             SMoveStuff *pMoveStuff = pBeData->GetMoveStuff();
             pMoveStuff->byMoveResult |= NTL_MOVE_RESULT_COLLISION;
 
-		//	API_GetSLPacketGenerator()->SendCharMoveCollision(m_pActor);
-
             return TRUE;
         }
     }
@@ -1475,8 +1941,6 @@ RwBool CNtlBehaviorCharGroundMove::UpdateDashMove(RwReal fElapsed)
                 CNtlBeCharData *pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData()); 
                 SMoveStuff *pMoveStuff = pBeData->GetMoveStuff();
                 pMoveStuff->byMoveResult |= NTL_MOVE_RESULT_COLLISION;
-
-			//	API_GetSLPacketGenerator()->SendCharMoveCollision(m_pActor);
 
                 bSuccess = TRUE;
             }
@@ -1590,8 +2054,6 @@ RwBool CNtlBehaviorCharGroundMove::UpdateDashMove(RwReal fElapsed)
             CNtlBeCharData *pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData()); 
             SMoveStuff *pMoveStuff = pBeData->GetMoveStuff();
             pMoveStuff->byMoveResult |= NTL_MOVE_RESULT_COLLISION;
-
-		//	API_GetSLPacketGenerator()->SendCharMoveCollision(m_pActor);
 
             if(m_byDashState == DASH_STATE_MOVE)
                 SetDashAnimEnd();
@@ -1727,8 +2189,6 @@ RwBool CNtlBehaviorCharGroundMove::UpdateDashTargetMove(RwReal fElapsed)
             SMoveStuff *pMoveStuff = pBeData->GetMoveStuff();
             pMoveStuff->byMoveResult |= NTL_MOVE_RESULT_COLLISION;
 
-		//	API_GetSLPacketGenerator()->SendCharMoveCollision(m_pActor);
-
             return TRUE;
         }
     }
@@ -1851,60 +2311,6 @@ void CNtlBehaviorCharGroundMove::UpdateDashLineEffect(RwV3d& vPos, RwV3d& vDir)
             m_pDashLine->SetAlpha(255);
     }
 
-}
-
-RwBool CNtlBehaviorCharGroundMove::UpdateMoveSync(RwReal fElapsedTime, OUT RwV3d* pDestPos, OUT RwV3d* pNewDir)
-{
-    CNtlBeCharData *pBeData = reinterpret_cast<CNtlBeCharData*>(m_pActor->GetBehaviorData()); 
-    SMoveSyncStuff* pMoveSyncStuff = pBeData->GetMoveSyncStuff();
-
-    if(pMoveSyncStuff->m_pMoveSyncCurr == NULL)
-    {
-        if(pMoveSyncStuff->Next() == NULL)         // I have not received the packet yet.
-            return FALSE;
-    }
-    else
-    {
-        if(!pMoveSyncStuff->m_MoveSyncQ.empty())        // Receive and process the next packet.
-        {
-            pMoveSyncStuff->Next();
-        }
-    }   
-    
-    RwUInt8 byMoveFlags = pBeData->GetMoveStuff()->byMoveFlags;
-    RwV3d vPos = m_pActor->GetPosition();      
-    RwV3d vDestPos, vDestDir, vMoveDir;    
-    RwV3dNormalize(&vMoveDir, &m_pActor->GetDirection());
-
-    RwReal fSpeed = GetMoveSpeed(pMoveSyncStuff->m_pMoveSyncCurr->byMoveFlag);                
-
-    //keyboard 占싱듸옙占쏙옙 처占쏙옙占싼댐옙	
-    CNtlVector vHeading, vDest;
-    NtlGetDestination_Keyboard(vMoveDir.x, vMoveDir.y, vMoveDir.z, fSpeed, vPos.x, vPos.y, vPos.z, byMoveFlags, fElapsedTime * 1000.f, 1.0f, &vHeading, &vDest);
-    CNtlMath::MathRwV3dAssign(&vDestPos, vDest.x, vDest.y, vDest.z);      
-    CNtlMath::MathRwV3dAssign(&vDestDir, vHeading.x, 0.0f, vHeading.z);
-
-    // 원래 MoveSync에 맞춰 있어야할 위치를 계산한 후, 그 위치로 가기위한 포스를 결정한다.    
-    RwV3d vSyncDir = pMoveSyncStuff->m_pMoveSyncCurr->vLoc - vDestPos;
-    vSyncDir.y = 0.0f;
-    RwV3dNormalize(&vSyncDir, &vSyncDir);
-    RwReal fSyncDistance = CNtlMath::GetLength(pMoveSyncStuff->m_pMoveSyncCurr->vLoc, vDestPos);        
-    RwV3d vMoveDest = vSyncDir * (fSyncDistance / MOVE_SYNC_SPEED) * fElapsedTime;    
-    vDestPos += vMoveDest;
-
-    // 占쏙옙占쏙옙 占쏙옙占쏙옙
-    *pNewDir = pMoveSyncStuff->m_pMoveSyncCurr->vDir;
-    //*pNewDir = vSyncDir;  // If you set the direction to go, you will have problems when you go back, and there will be collisions in other parts.
-    
-    
-    // 占쏙옙占쏙옙 占쏙옙치    
-    Logic_GetWorldHeight(m_pActor, &vDestPos, m_sHStuff);
-    vDestPos.y = m_sHStuff.fFinialHeight;
-    *pDestPos = vDestPos;    
-
-    SetAnim(pMoveSyncStuff->m_pMoveSyncCurr->byMoveFlag);
-
-    return TRUE;
 }
 
 RwBool CNtlBehaviorCharGroundMove::CheckFalling(RwReal fOldActorHeight, RwReal fFinalHeight, RwReal fSpeed, RwUInt8 byMoveFlag, RwV3d* pNewPos /* = NULL */)

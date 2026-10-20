@@ -105,6 +105,9 @@ RwBool CNtlSLEventHandler::Create(void)
 	RegisterMsg (g_EventSobPetSkillInfo, "g_EventSobPetSkillInfo", "SNtlEventSobPetSkillInfo");
 	RegisterMsg (g_EventSobMove, "g_EventSobMoveStr", "SNtlEventSobMove");
     RegisterMsg (g_EventSobMoveSync, "g_EventSobMoveSync", "SNtlEventSobMoveSync");
+    RegisterMsg (g_EventSobMoveCollision, "g_EventSobMoveCollision", "SNtlEventSobMoveCollision");
+    RegisterMsg (g_EventSobMoveCollisionEnd, "g_EventSobMoveCollisionEnd", "SNtlEventSobMoveCollisionEnd");
+    RegisterMsg (g_EventSobChangeHeading, "g_EventSobChangeHeading", "SNtlEventSobChangeHeading");
 	RegisterMsg (g_EventSobSecondDestMove, "g_EventSobSecondDestMove", "SNtlEventSobSecondDestMove");
 	RegisterMsg (g_EventSobDirectionFloat, "g_EventSobDirectionFloatStr", "SNtlEventSobDirectionFloat");
 	RegisterMsg (g_EventSobSplineMove, "g_EventSobSplineMoveStr", "SNtlEventSobSplineMove");
@@ -221,6 +224,7 @@ RwBool CNtlSLEventHandler::Create(void)
 	RegisterMsg (g_EventSobSkillCasting, "g_EventSobSkillCastingStr", "SNtlEventSobSkillCasting");
 	RegisterMsg (g_EventSobSkillAction, "g_EventSobSkillActionStr", "SNtlEventSobSkillAction");
 	RegisterMsg (g_EventSobSkillActioned, "g_EventSobSkillActioned", "SNtlEventSobSkillActioned");
+	RegisterMsg (g_EventSobSkillResult, "g_EventSobSkillResult", "SNtlEventSobSkillResult");
 	RegisterMsg (g_EventSobSkillAdd, "g_EventSobSkillAddStr", "SNtlEventSobSkillAdd");
 	RegisterMsg (g_EventSobSkillUpgrade, "g_EventSobSkillupgradeStr", "SNtlEventSobSkillUpgrade");
 	RegisterMsg (g_EventSobSkillResetOne, "g_EventSobSkillResetOne", "SNtlEventSobSkillResetOne");
@@ -721,6 +725,9 @@ void CNtlSLEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventSobPetSkillInfo);
 	UnRegisterMsg(g_EventSobMove);
 	UnRegisterMsg(g_EventSobMoveSync);
+	UnRegisterMsg(g_EventSobMoveCollision);
+	UnRegisterMsg(g_EventSobMoveCollisionEnd);
+	UnRegisterMsg(g_EventSobChangeHeading);
 	UnRegisterMsg(g_EventSobSecondDestMove);
 	UnRegisterMsg(g_EventSobDirectionFloat);
 	UnRegisterMsg(g_EventSobSplineMove);
@@ -837,6 +844,7 @@ void CNtlSLEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventSobSkillCasting);
 	UnRegisterMsg(g_EventSobSkillAction);
 	UnRegisterMsg(g_EventSobSkillActioned);
+	UnRegisterMsg(g_EventSobSkillResult);
 	UnRegisterMsg(g_EventSobSkillAdd);
 	UnRegisterMsg(g_EventSobSkillUpgrade);
 	UnRegisterMsg(g_EventSobSkillResetOne);

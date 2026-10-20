@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release4Tools|Win32">
+      <Configuration>Release4Tools</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{AA2261E3-C883-4EC5-9F94-5450DB6FDC99}</ProjectGuid>
+    <RootNamespace>DBOLauncherTW</RootNamespace>
+    <ProjectName>DBOLauncherTW</ProjectName>
+    <Keyword>MFCProj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release4Tools|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release4Tools|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>14.0.25431.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release4Tools|Win32'">
+    <OutDir>$(SolutionDir)DragonBall\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <TargetName>DBOLauncherTW</TargetName>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release4Tools|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>false</ValidateAllParameters>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\NtlLib\Shared\NtlXMLLoader;$(SolutionDir)..\DboShared\NtlShared2;$(SolutionDir)Lib\NtlCore;$(SolutionDir)..\NtlLib\Shared\Zip\zlib123;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0412</Culture>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>patchw32.lib;comsuppw.lib;wininet.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="BitmapDlg.h" />
+    <ClInclude Include="BitmapSlider.h" />
+    <ClInclude Include="DBOLauncher.h" />
+    <ClInclude Include="DBOLauncherDef.h" />
+    <ClInclude Include="Dib.h" />
+    <ClInclude Include="DLAutoIntegrity.h" />
+    <ClInclude Include="DLCmdLine.h" />
+    <ClInclude Include="DLDBOSettingDlg.h" />
+    <ClInclude Include="DLDownLoadSys.h" />
+    <ClInclude Include="DLEventDef.h" />
+    <ClInclude Include="DLEventSys.h" />
+    <ClInclude Include="DLIntegritySys.h" />
+    <ClInclude Include="DLLauncherDevMaster.h" />
+    <ClInclude Include="DLLocalConfig.h" />
+    <ClInclude Include="DLMessageDef.h" />
+    <ClInclude Include="DLMessageImp.h" />
+    <ClInclude Include="DLMessageSys.h" />
+    <ClInclude Include="DLPatcherSys.h" />
+    <ClInclude Include="DLPatchInfo.h" />
+    <ClInclude Include="DLPatchServerConfig.h" />
+    <ClInclude Include="DLProcessSys.h" />
+    <ClInclude Include="DLSkinBaseDlg.h" />
+    <ClInclude Include="DLSkinDlg_CJIKor.h" />
+    <ClInclude Include="DLSkinDlg_CT.h" />
+    <ClInclude Include="DLSkinDlg_Dev.h" />
+    <ClInclude Include="DLSkinSys.h" />
+    <ClInclude Include="DLState.h" />
+    <ClInclude Include="DLStateSys.h" />
+    <ClInclude Include="DLSystemEnv.h" />
+    <ClInclude Include="DLUtility.h" />
+    <ClInclude Include="explorer_information.h" />
+    <ClInclude Include="ImageTextButton.h" />
+    <ClInclude Include="md5.h" />
+    <ClInclude Include="MD5ChekSumErrCode.h" />
+    <ClInclude Include="NtlClientService.h" />
+    <ClInclude Include="NtlMD5CheckSum.h" />
+    <ClInclude Include="OutputBox.h" />
+    <ClInclude Include="patchwin.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="TransparentHelper.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BitmapDlg.cpp" />
+    <ClCompile Include="BitmapSlider.cpp" />
+    <ClCompile Include="DBOLauncher.cpp" />
+    <ClCompile Include="Dib.cpp" />
+    <ClCompile Include="DLAutoIntegrity.cpp" />
+    <ClCompile Include="DLCmdLine.cpp" />
+    <ClCompile Include="DLDBOSettingDlg.cpp" />
+    <ClCompile Include="DLDownLoadSys.cpp" />
+    <ClCompile Include="DLEventSys.cpp" />
+    <ClCompile Include="DLIntegritySys.cpp" />
+    <ClCompile Include="DLLauncherDevMaster.cpp" />
+    <ClCompile Include="DLLocalConfig.cpp" />
+    <ClCompile Include="DLMessageImp.cpp" />
+    <ClCompile Include="DLMessageSys.cpp" />
+    <ClCompile Include="DLPatcherSys.cpp" />
+    <ClCompile Include="DLPatchInfo.cpp" />
+    <ClCompile Include="DLPatchServerConfig.cpp" />
+    <ClCompile Include="DLProcessSys.cpp" />
+    <ClCompile Include="DLSkinBaseDlg.cpp" />
+    <ClCompile Include="DLSkinDlg_CJIKor.cpp" />
+    <ClCompile Include="DLSkinDlg_CT.cpp" />
+    <ClCompile Include="DLSkinDlg_Dev.cpp" />
+    <ClCompile Include="DLSkinSys.cpp" />
+    <ClCompile Include="DLState.cpp" />
+    <ClCompile Include="DLStateSys.cpp" />
+    <ClCompile Include="DLSystemEnv.cpp" />
+    <ClCompile Include="DLUtility.cpp" />
+    <ClCompile Include="explorer_information.cpp" />
+    <ClCompile Include="ImageTextButton.cpp" />
+    <ClCompile Include="md5.c">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release4Tools|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="NtlClientService.cpp" />
+    <ClCompile Include="NtlMD5CheckSum.cpp" />
+    <ClCompile Include="OutputBox.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release4Tools|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="TransparentHelper.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\*.bmp" />
+    <Image Include="res\DBOLauncherTW.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DBOLauncherTW.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\DBOLauncherTW.rc2" />
+    <None Include="Test\LauncherConfig.xml" />
+    <None Include="Test\launcherdevmaster.xml" />
+  </ItemGroup>
+  <!--
+    The launcher is a Win32 tool while the shared libraries are built as x64 by the solution, so the
+    few shared sources it needs (XML loader, unzip + zlib inflate) are compiled into it directly.
+  -->
+  <ItemGroup>
+    <ClCompile Include="..\..\..\NtlLib\Shared\NtlXMLLoader\NtlXMLDoc.cpp" />
+    <ClCompile Include="..\..\..\NtlLib\Shared\Zip\zlib123\NtlUnzip.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <UndefinePreprocessorDefinitions>UNICODE;_UNICODE</UndefinePreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\NtlLib\Shared\Zip\zlib123\unzip.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <UndefinePreprocessorDefinitions>UNICODE;_UNICODE</UndefinePreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\NtlLib\Shared\Zip\zlib123\ioapi.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <UndefinePreprocessorDefinitions>UNICODE;_UNICODE</UndefinePreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\NtlLib\Shared\Zip\zlib123\iowin32.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <UndefinePreprocessorDefinitions>UNICODE;_UNICODE</UndefinePreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\NtlLib\Shared\Zip\zlib123\inflate.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <UndefinePreprocessorDefinitions>UNICODE;_UNICODE</UndefinePreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\NtlLib\Shared\Zip\zlib123\inffast.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <UndefinePreprocessorDefinitions>UNICODE;_UNICODE</UndefinePreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\NtlLib\Shared\Zip\zlib123\inftrees.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <UndefinePreprocessorDefinitions>UNICODE;_UNICODE</UndefinePreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\NtlLib\Shared\Zip\zlib123\crc32.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <UndefinePreprocessorDefinitions>UNICODE;_UNICODE</UndefinePreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\NtlLib\Shared\Zip\zlib123\adler32.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <UndefinePreprocessorDefinitions>UNICODE;_UNICODE</UndefinePreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <ClCompile Include="..\..\..\NtlLib\Shared\Zip\zlib123\zutil.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <UndefinePreprocessorDefinitions>UNICODE;_UNICODE</UndefinePreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets"></ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="DBOLauncherTW.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

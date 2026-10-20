@@ -306,6 +306,21 @@ bool CNtlSLPacketGenerator::SendKeyboardAirMove(RwV3d vCurr, RwV3d vDir, RwUInt8
 	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
 }
 
+bool CNtlSLPacketGenerator::SendAirMoveSync(RwV3d vCurr, RwV3d vDir, RwUInt8 byAvatarType)
+{
+	sUG_CHAR_AIR_MOVE_SYNC sPacket;
+	memset(&sPacket, 0, sizeof(sUG_CHAR_AIR_MOVE_SYNC));
+
+	sPacket.wOpCode = UG_CHAR_AIR_MOVE_SYNC;
+	sPacket.byAvatarType = byAvatarType;
+
+	// tw keeps the height of the direction, the flight can climb or dive
+	NtlLocationCompress(&sPacket.vCurLoc, vCurr.x, vCurr.y, vCurr.z);
+	NtlDirectionCompress(&sPacket.vCurDir, vDir.x, vDir.y, vDir.z);
+
+	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
+}
+
 
 bool CNtlSLPacketGenerator::SendMouseDashMove(RwV3d vDest)
 {
@@ -437,15 +452,13 @@ bool CNtlSLPacketGenerator::SendChangeHeading(RwV3d vDir)
 	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
 }
 
-bool CNtlSLPacketGenerator::SendCharMoveCollision(CNtlSobActor* pActor)
+bool CNtlSLPacketGenerator::SendCharMoveCollision(RwV3d vLoc, RwV3d vDir, RwReal fMoveRate)
 {
 	sUG_CHAR_MOVE_COLLISION sPacket;
 	memset(&sPacket, 0, sizeof(sUG_CHAR_MOVE_COLLISION));
 
 	sPacket.wOpCode = UG_CHAR_MOVE_COLLISION;
-
-	RwV3d vLoc = pActor->GetPosition();
-	RwV3d vDir = pActor->GetDirection();
+	sPacket.fMoveRate = fMoveRate;
 
 	NtlLocationCompress(&sPacket.vCurLoc, vLoc.x, vLoc.y, vLoc.z);
 	NtlDirectionCompress(&sPacket.vCurDir, vDir.x, vDir.y, vDir.z);
@@ -453,15 +466,12 @@ bool CNtlSLPacketGenerator::SendCharMoveCollision(CNtlSobActor* pActor)
 	return m_pNetSender->SendPacket(sizeof(sPacket), &sPacket);
 }
 
-bool CNtlSLPacketGenerator::SendCharMoveCollisionEnd(CNtlSobActor* pActor)
+bool CNtlSLPacketGenerator::SendCharMoveCollisionEnd(RwV3d vLoc, RwV3d vDir)
 {
 	sUG_CHAR_MOVE_COLLISION_END sPacket;
 	memset(&sPacket, 0, sizeof(sUG_CHAR_MOVE_COLLISION_END));
 
 	sPacket.wOpCode = UG_CHAR_MOVE_COLLISION_END;
-
-	RwV3d vLoc = pActor->GetPosition();
-	RwV3d vDir = pActor->GetDirection();
 
 	NtlLocationCompress(&sPacket.vCurLoc, vLoc.x, vLoc.y, vLoc.z);
 	NtlDirectionCompress(&sPacket.vCurDir, vDir.x, vDir.y, vDir.z);

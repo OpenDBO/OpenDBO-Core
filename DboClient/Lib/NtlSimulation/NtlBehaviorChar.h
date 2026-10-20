@@ -767,6 +767,7 @@ public:
 
 protected:
     RwReal  GetTargetDistance(CNtlSobActor* pTargetActor);              ///< 당겨오는 타겟과의 거리를 계산한다 (Radius로 비교)
+    void    PlaceTarget(CNtlSobActor* pTargetActor);                    ///< tw: put a pulled target where the server placed it
 
 protected:
     CNtlPLCharacter*    m_pCharacter;           ///< 사용자의 엔티티 객체    
@@ -780,6 +781,11 @@ protected:
     RwBool              m_bOrgBoneScale;        ///< 원래의 본 스케일 플래그
     RwReal              m_fOrgBoneLength[3];    ///< 원래의 본 길이
     RwReal              m_fOrgBoneWidth[3];     ///< 원래의 본 두께
+
+    RwBool              m_bMoveTarget;          ///< tw: FALSE when the pull was dodged, resisted or immune
+    RwBool              m_bPullPos;             ///< the skill result gave the pull position
+    RwV3d               m_vPullPos;             ///< tw: where the server put the pulled target
+    RwBool              m_bOrgAnimLOD;          ///< anim lod of the caster before the stretch
 };
 //////////////////////////////////////////////////////////////////////////
 /**
@@ -832,6 +838,7 @@ public:
     CNtlBehaviorCharActiveWarp();
     ~CNtlBehaviorCharActiveWarp();
     
+    virtual void Enter(void);
     virtual RwUInt32 HandleEvents(RWS::CMsg &pMsg);    
 
 	void	SetFinalLoc(RwV3d& loc);

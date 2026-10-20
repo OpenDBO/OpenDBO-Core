@@ -37,6 +37,9 @@ protected:
 	RwReal				m_fAirTiltStartY;
 	RwReal				m_fAirTiltTime;
 
+	// tw: the flying avatar sends its position to the server every AIR_MOVE_SYNC_SEND_TIME
+	RwReal				m_fSyncSendTime;
+
 protected:
 
 	void	SetAnim(RwUInt8 byMoveFlags);
@@ -49,6 +52,9 @@ protected:
 
 	void	UpdateAirTilt(SMoveStuff *pMoveStuff, RwReal fElapsed);
 	void	BeginAirTiltSync(RwReal fDirY);
+
+	void	UpdateSendSync(RwReal fElapsed);
+	void	ApplyMoveSync(const RwV3d& vLoc, const RwV3d& vDir);
 
 private:
 
