@@ -8,6 +8,8 @@
 #include "NtlSobActor.h"
 #include "NtlSLLogic.h"
 #include "NtlSobCharProxy.h"
+#include "NtlFSMLayer.h"
+#include "NtlFSMCharActAgent.h"
 
 
 DEFINITION_MEMORY_POOL(CNtlBehaviorCharGroundAdjustMove)
@@ -259,4 +261,115 @@ RwBool CNtlBehaviorCharGroundAdjustMove::IsNotAdjustMove()
     }
 
     return FALSE;
+}
+
+//////////////////////////////////////////////////////////////////////////
+DEFINITION_MEMORY_POOL(CNtlBehaviorCharBattleAdjustMove)
+
+CNtlBehaviorCharBattleAdjustMove::CNtlBehaviorCharBattleAdjustMove()
+{
+    SetBehaviorId(NTL_BEID_CHAR_BATTLE_ADJUST_MOVE);
+    SetBehaviorName(NTL_BENAME_BATTLE_ADJUST_MOVE);
+
+    m_vDest = ZeroAxis;
+    m_byAdjustState = ADJUST_STATE_SLIDE;
+
+    // idle until a state starts it
+    Finish();
+}
+
+CNtlBehaviorCharBattleAdjustMove::~CNtlBehaviorCharBattleAdjustMove()
+{
+}
+
+void CNtlBehaviorCharBattleAdjustMove::Enter(void)
+{
+    if(!m_pActor)
+    {
+        Finish();
+        return;
+    }
+
+    RwUInt32 uiClassId = m_pActor->GetClassID();
+    if(uiClassId != SLCLASS_PLAYER && uiClassId != SLCLASS_AVATAR && uiClassId != SLCLASS_PET)
+    {
+        Finish();
+        return;
+    }
+
+    CNtlFSMLayer* pFSMLayer = m_pActor->GetFSMLayer();
+    CNtlFSMCharActAgent* pCharActAgent = pFSMLayer ? reinterpret_cast<CNtlFSMCharActAgent*>(pFSMLayer->GetFSMAgent()) : NULL;
+    if(!pCharActAgent)
+    {
+        Finish();
+        return;
+    }
+
+    m_vDest = pCharActAgent->GetServerPosition();
+
+    RwV3d vSub = m_vDest - m_pActor->GetPosition();
+    RwReal fLen = RwV3dLength(&vSub);
+
+    // slide when it is less than two seconds of running away, otherwise jump there
+    if(Logic_GetFrontRunSpeed(m_pActor) * 2.0f >= fLen)
+        m_byAdjustState = ADJUST_STATE_SLIDE;
+    else
+        m_byAdjustState = ADJUST_STATE_WAIT;
+
+    m_bFinish = FALSE;
+}
+
+void CNtlBehaviorCharBattleAdjustMove::Exit(void)
+{
+    CNtlBehaviorBase::Exit();
+
+    Finish();
+}
+
+void CNtlBehaviorCharBattleAdjustMove::Update(RwReal fElapsed)
+{
+    if(IsFinish())
+        return;
+
+    if(m_byAdjustState == ADJUST_STATE_WAIT)
+    {
+        m_byAdjustState = ADJUST_STATE_JUMP;
+        return;
+    }
+
+    if(m_byAdjustState == ADJUST_STATE_JUMP)
+    {
+        SetAdjustPosition(m_vDest);
+        Finish();
+        return;
+    }
+
+    RwV3d vPos = m_pActor->GetPosition();
+    RwV3d vDir = m_vDest - vPos;
+    vDir.y = 0.0f;
+    RwReal fLen = RwV3dLength(&vDir);
+    if(fLen > 0.0f)
+        RwV3dScale(&vDir, &vDir, 1.0f / fLen);
+
+    RwV3d vDelta = vDir * (Logic_GetFrontRunSpeed(m_pActor) * fElapsed);
+    RwReal fDeltaLen = RwV3dLength(&vDelta);
+
+    if(fLen <= 0.01f || fDeltaLen >= fLen)
+    {
+        Finish();
+        SetAdjustPosition(m_vDest);
+        return;
+    }
+
+    vPos += vDelta;
+    SetAdjustPosition(vPos);
+}
+
+void CNtlBehaviorCharBattleAdjustMove::SetAdjustPosition(RwV3d vPos)
+{
+    SWorldHeightStuff sHStuff;
+    Logic_GetWorldHeight(m_pActor, &vPos, sHStuff);
+    vPos.y = sHStuff.fFinialHeight;
+
+    m_pActor->SetPosition(&vPos);
 }

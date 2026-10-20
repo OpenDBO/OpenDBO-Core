@@ -298,6 +298,7 @@ RwUInt32	Logic_GetDirectIdTriggerActor(CNtlSobActor *pActor);
 RwUInt32	Logic_GetActorStateId(CNtlSobActor *pActor);            // actor의 state id를 넘겨준다.
 RwUInt32    Logic_GetActorStateFlags(CNtlSobActor* pActor);          // Actor의 현재 State Flag를 넘겨준다.
 SERIAL_HANDLE Logic_GetActorTargetSerialId(CNtlSobActor *pActor);   // actor가 target 하고 있는 serial id
+SERIAL_HANDLE Logic_GetSkillActionTargetSerialId(CNtlSobActor *pActor);   // target of the skill the actor is using (server skill action), else its target
 RwBool		Logic_IsActorBattleMode(CNtlSobActor *pActor);          // actor 현재 전투중인가?
 RwBool		Logic_CanSkillUse(CNtlSobActor *pActor);                // actor가 skill 사용이 가능한가?
 RwBool		Logic_IsNotFollowMoveSkill(CNtlSobActor *pActor, RwUInt8 bySlotIdx);

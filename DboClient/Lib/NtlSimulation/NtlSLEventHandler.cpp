@@ -224,6 +224,7 @@ RwBool CNtlSLEventHandler::Create(void)
 	RegisterMsg (g_EventSobSkillCasting, "g_EventSobSkillCastingStr", "SNtlEventSobSkillCasting");
 	RegisterMsg (g_EventSobSkillAction, "g_EventSobSkillActionStr", "SNtlEventSobSkillAction");
 	RegisterMsg (g_EventSobSkillActioned, "g_EventSobSkillActioned", "SNtlEventSobSkillActioned");
+	RegisterMsg (g_EventSobSkillResult, "g_EventSobSkillResult", "SNtlEventSobSkillResult");
 	RegisterMsg (g_EventSobSkillAdd, "g_EventSobSkillAddStr", "SNtlEventSobSkillAdd");
 	RegisterMsg (g_EventSobSkillUpgrade, "g_EventSobSkillupgradeStr", "SNtlEventSobSkillUpgrade");
 	RegisterMsg (g_EventSobSkillResetOne, "g_EventSobSkillResetOne", "SNtlEventSobSkillResetOne");
@@ -843,6 +844,7 @@ void CNtlSLEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventSobSkillCasting);
 	UnRegisterMsg(g_EventSobSkillAction);
 	UnRegisterMsg(g_EventSobSkillActioned);
+	UnRegisterMsg(g_EventSobSkillResult);
 	UnRegisterMsg(g_EventSobSkillAdd);
 	UnRegisterMsg(g_EventSobSkillUpgrade);
 	UnRegisterMsg(g_EventSobSkillResetOne);

@@ -403,6 +403,7 @@ public:
 		RwUInt8 byRpBonusType, RwUInt8 byResultCount, sSKILL_RESULT *pSkillAct, RwUInt32 uiSyncEventId, RwV3d& vFinalLoc);
 
 	static void SobSkillActioned(SERIAL_HANDLE hSerialId, RwUInt32 uiAttackerSerialI);
+	static void SobSkillResult(SERIAL_HANDLE hSerialId, RwUInt8 byResultCount, sSKILL_RESULT* pSkillResult);
 
 	static void SobSkillAdd(SERIAL_HANDLE hSerialId, RwUInt8 bySkillSlotIdx, RwUInt32 uiSkillTblId);
 

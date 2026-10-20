@@ -2244,6 +2244,20 @@ void CNtlSLEventGenerator::SobSkillActioned(SERIAL_HANDLE hSerialId, RwUInt32 ui
 	_SendMsg(msg);
 }
 
+void CNtlSLEventGenerator::SobSkillResult(SERIAL_HANDLE hSerialId, RwUInt8 byResultCount, sSKILL_RESULT* pSkillResult)
+{
+	SNtlEventSobSkillResult sSobSkillResult;
+
+	sSobSkillResult.hSerialId		= hSerialId;
+	sSobSkillResult.byResultCount	= byResultCount;
+	sSobSkillResult.pSkillResult	= pSkillResult;
+
+	RWS::CMsg msg;
+	msg.Id = g_EventSobSkillResult;
+	msg.pData = reinterpret_cast<void*>(&sSobSkillResult);
+	_SendMsg(msg);
+}
+
 void CNtlSLEventGenerator::SobSkillAdd(SERIAL_HANDLE hSerialId, RwUInt8 bySkillSlotIdx, RwUInt32 uiSkillTblId)
 {
 	SNtlEventSobSkillAdd sSobSkillAdd;

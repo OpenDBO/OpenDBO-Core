@@ -18,6 +18,7 @@
 class CNtlBehaviorCharPush;
 class CNtlBehaviorCharShock;
 class CNtlBehaviorCharKnockDown;
+class CNtlBehaviorCharBattleAdjustMove;
 
 class CNtlFSMCharActLayer : public CNtlFSMLayer
 {
@@ -28,6 +29,7 @@ private:
 	CNtlBehaviorCharPush *m_pBePush;
 	CNtlBehaviorCharShock *m_pBeShock;
 	CNtlBehaviorCharKnockDown *m_pKnownDown;
+	CNtlBehaviorCharBattleAdjustMove *m_pBeBattleAdjustMove;	// tw: slides to the server position when a standing state starts
 
 private:
 
@@ -61,6 +63,8 @@ public:
     *
     */
 	virtual RwUInt32 HandleEvents(RWS::CMsg &pMsg);
+
+	virtual CNtlBehaviorBase* GetBattleAdjustMove(void) const;
 };
 
 #endif

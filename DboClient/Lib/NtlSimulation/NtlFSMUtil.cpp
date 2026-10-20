@@ -8,6 +8,8 @@
 #include "NtlFSMDef.h"
 #include "NtlFSMStateBase.h"
 #include "NtlFSMCharActAgent.h"
+#include "NtlFSMLayer.h"
+#include "NtlBehaviorBase.h"
 #include "NtlSLEventFunc.h"
 
 // 이동이 가능한 상태인가?
@@ -126,6 +128,18 @@ RwBool FSMUtil_IsStandingAdjustMoveClass(CNtlSobActor *pActor)
 		return TRUE;
 
 	return FALSE;
+}
+
+void FSMUtil_BattleAdjustMove(CNtlSobActor *pActor, RwBool bAvatar)
+{
+	// most states only adjust the characters moved by other clients
+	if(!pActor || (!bAvatar && pActor->GetClassID() == SLCLASS_AVATAR))
+		return;
+
+	CNtlFSMLayer *pFSMLayer = pActor->GetFSMLayer();
+	CNtlBehaviorBase *pBattleAdjustMove = pFSMLayer ? pFSMLayer->GetBattleAdjustMove() : NULL;
+	if(pBattleAdjustMove)
+		pBattleAdjustMove->Enter();
 }
 
 RwBool FSMUtil_StandingAdjustMove(CNtlFSMStateBase* pStateBase, CNtlSobActor *pActor)

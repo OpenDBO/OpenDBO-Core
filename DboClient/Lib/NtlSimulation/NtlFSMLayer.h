@@ -22,6 +22,7 @@ class CNtlFSMBase;
 class CNtlFSMAgent;
 class CNtlFSMStateBase;
 class CNtlSobActor;
+class CNtlBehaviorBase;
 
 class CNtlFSMLayer
 {
@@ -45,6 +46,8 @@ public:
 
 	virtual void NotifyUpdateChangeState(RwUInt32 uiOldStateId, RwUInt32 uiNextStateId);    ///< update notify function(state change)
 	virtual void NotifyEvents(RWS::CMsg &pMsg, RwUInt32 uiEventResult, RwUInt32 uiParam1, RwUInt32 uiParam2);   ///< event notify function(state change)
+
+	virtual CNtlBehaviorBase* GetBattleAdjustMove(void) const { return NULL; }	// tw: char act layer only
 
     CNtlFSMAgent*       GetFSMAgent(void) const;      ///< agent instance를 얻어오는 함수.
 	CNtlFSMBase*        GetFSM(void) const;            ///< instance를 얻어오는 함수.

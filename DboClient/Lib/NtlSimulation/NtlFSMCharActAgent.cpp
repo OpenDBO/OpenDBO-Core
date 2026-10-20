@@ -137,6 +137,10 @@ void CNtlFSMCharActAgent::ServerStateCreateAnalysis(sCHARSTATE *pCharState)
 	RwUInt8 byServerState = pCharState->sCharStateBase.byStateID;
 	m_uActMode.bitSitDown = FALSE;
 
+	// tw: stored before the first state starts
+	CNtlMath::MathRwV3dAssign(&m_vServerPos, pCharState->sCharStateBase.vCurLoc.x, pCharState->sCharStateBase.vCurLoc.y, pCharState->sCharStateBase.vCurLoc.z);
+	CNtlMath::MathRwV3dAssign(&m_vServerDir, pCharState->sCharStateBase.vCurDir.x, pCharState->sCharStateBase.vCurDir.y, pCharState->sCharStateBase.vCurDir.z);
+
 	SetAirMode(pCharState->sCharStateBase.eAirState); // has to be above SetNextStateId(NTL_FSMSID_CREATE);, so flying players wont be on the ground
 
 	switch(byServerState)
@@ -250,9 +254,6 @@ void CNtlFSMCharActAgent::ServerStateCreateAnalysis(sCHARSTATE *pCharState)
 	}
 
 	m_byServerState = byServerState;
-
-	CNtlMath::MathRwV3dAssign(&m_vServerPos, pCharState->sCharStateBase.vCurLoc.x, pCharState->sCharStateBase.vCurLoc.y, pCharState->sCharStateBase.vCurLoc.z);
-	CNtlMath::MathRwV3dAssign(&m_vServerDir, pCharState->sCharStateBase.vCurDir.x, pCharState->sCharStateBase.vCurDir.y, pCharState->sCharStateBase.vCurDir.z);
 
 	ServerConditionUpdateAnalysis(m_byServerState, pCharState->sCharStateBase.dwConditionFlag);
     ServerAspectUpdateAnalysis(pCharState->sCharStateBase.aspectState, TRUE);
@@ -1075,6 +1076,10 @@ void CNtlFSMCharActAgent::ServerStateUpdateAnalysis(SNtlEventSobServerUpdateStat
 	m_uActMode.bitSitDown = FALSE;
 	m_bActiveAdjustPosition = FALSE;
 
+	// tw: before the new state starts, its enter slides the character to this position
+	CNtlMath::MathRwV3dAssign(&m_vServerPos, pCharState->sCharStateBase.vCurLoc.x, pCharState->sCharStateBase.vCurLoc.y, pCharState->sCharStateBase.vCurLoc.z);
+	CNtlMath::MathRwV3dAssign(&m_vServerDir, pCharState->sCharStateBase.vCurDir.x, pCharState->sCharStateBase.vCurDir.y, pCharState->sCharStateBase.vCurDir.z);
+
 	switch(byServerState)
 	{
 	case CHARSTATE_SPAWNING:
@@ -1181,9 +1186,6 @@ void CNtlFSMCharActAgent::ServerStateUpdateAnalysis(SNtlEventSobServerUpdateStat
 
 	m_byServerState = byServerState;
 
-	CNtlMath::MathRwV3dAssign(&m_vServerPos, pCharState->sCharStateBase.vCurLoc.x, pCharState->sCharStateBase.vCurLoc.y, pCharState->sCharStateBase.vCurLoc.z);
-	CNtlMath::MathRwV3dAssign(&m_vServerDir, pCharState->sCharStateBase.vCurDir.x, pCharState->sCharStateBase.vCurDir.y, pCharState->sCharStateBase.vCurDir.z);
-	
 	ServerConditionUpdateAnalysis(m_byServerState, pCharState->sCharStateBase.dwConditionFlag);
 
 	SetFightingMode(pCharState->sCharStateBase.bFightMode);

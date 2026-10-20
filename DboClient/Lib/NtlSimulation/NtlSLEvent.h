@@ -472,6 +472,7 @@ extern RWS::CEventId g_EventSobSkillAction;
 
 // simulation object skill acted event    g_EventSobSkillActiondÀÇ ¹Ý´ë
 extern RWS::CEventId g_EventSobSkillActioned;
+extern RWS::CEventId g_EventSobSkillResult;				// tw: the skill results of a skill action, sent to its user
 
 // simulation object skill add
 extern RWS::CEventId g_EventSobSkillAdd;
@@ -2221,6 +2222,12 @@ struct SNtlEventSobSkillAction : public SNtlEventSob
 struct SNtlEventSobSkillActioned : public SNtlEventSob
 {
 	SERIAL_HANDLE	hAttackerSerialId;
+};
+
+struct SNtlEventSobSkillResult : public SNtlEventSob
+{
+	RwUInt8			byResultCount;
+	sSKILL_RESULT	*pSkillResult;
 };
 
 struct SNtlEventSobSkillAdd : public SNtlEventSob

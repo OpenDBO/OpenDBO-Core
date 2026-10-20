@@ -1782,7 +1782,8 @@ void PacketHandler_GSCharSkillAction(void *pPacket)
 
 		CNtlSLEventGenerator::SobSkillActioned(pSkillAction->hAppointedTarget, pSkillAction->handle);
 
-		//CNtlSLEventGenerator::SobSkillResult(); // to do
+		// tw: the results again for the user, the arm stretch reads where the server put the pulled target
+		CNtlSLEventGenerator::SobSkillResult(pSkillAction->handle, pSkillAction->bySkillResultCount, pSkillAction->aSkillResult);
 
 		CSkillTable *pSkillTbl = API_GetTableContainer()->GetSkillTable();
 		sSKILL_TBLDAT *pSkillTblData = reinterpret_cast<sSKILL_TBLDAT*>(pSkillTbl->FindData(pSkillAction->skillId));

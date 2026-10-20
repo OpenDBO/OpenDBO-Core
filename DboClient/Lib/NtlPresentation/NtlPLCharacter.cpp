@@ -50,6 +50,7 @@ void CNtlPLCharacter::operator delete(void *pObj)
 CNtlPLCharacter::CNtlPLCharacter() : m_pProperty(NULL),
 m_pResourceClump(NULL),
 m_bAnimUpdate(FALSE),
+m_bAnimLOD(FALSE),
 m_pBaseHierarchy(NULL),
 m_fAnimSpeed(1.f),
 m_pEquipItem(NULL),
@@ -464,7 +465,10 @@ RwBool CNtlPLCharacter::Update(float fElapsed)
 			SetSimpleMaterial(FALSE);
 		}
 
-		if(m_SkipAnimUpdate)
+		// tw: only a character with the anim lod on skips updates. TW never sets it at creation (it
+		// stays off), an off screen character skipping a second of animation jumped over its events
+		// (the arm pull ended before it started).
+		if(m_SkipAnimUpdate && m_bAnimLOD)
 		{
 			// Guard band clip test
 			/*
@@ -1496,7 +1500,7 @@ RwMatrix* CNtlPLCharacter::GetBoneMatrix(const RwChar *pBoneName)
 
 	RwFrame *pFrame = GetBoneByName(pBoneName);
 	if(pFrame != NULL)
-		return &pFrame->ltm;
+		return RwFrameGetLTM(pFrame);	// tw: synced, the bones may have moved since the last render
 
 	return NULL;
 }
