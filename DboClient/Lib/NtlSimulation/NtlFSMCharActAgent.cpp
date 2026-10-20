@@ -359,6 +359,11 @@ void CNtlFSMCharActAgent::ServerStateCreateMoving(sCHARSTATE *pServerState)
 	pMoveStuff->vCurrLoc.x = pServerState->sCharStateBase.vCurLoc.x;
 	pMoveStuff->vCurrLoc.y = pServerState->sCharStateBase.vCurLoc.y;
 	pMoveStuff->vCurrLoc.z = pServerState->sCharStateBase.vCurLoc.z;
+
+	// the ground move dead reckons from this heading
+	pMoveStuff->vDir.x = pServerState->sCharStateBase.vCurDir.x;
+	pMoveStuff->vDir.y = pServerState->sCharStateBase.vCurDir.y;
+	pMoveStuff->vDir.z = pServerState->sCharStateBase.vCurDir.z;
 }
 
 ////////////////////////////////////////////////////////////////////////////

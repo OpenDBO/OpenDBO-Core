@@ -42,6 +42,7 @@ public:
 
 	bool SendKeyboardMove(RwV3d vCurr, RwV3d vDir, RwUInt8 byMoveFlag, RwUInt8 byAvatarType);
 	bool SendKeyboardAirMove(RwV3d vCurr, RwV3d vDir, RwUInt8 byMoveFlag);
+	bool SendAirMoveSync(RwV3d vCurr, RwV3d vDir, RwUInt8 byAvatarType);
 
 	bool SendMouseDashMove(RwV3d vDest);
 
@@ -54,8 +55,8 @@ public:
 
 	bool SendChangeHeading(RwV3d vDir);
 
-	bool SendCharMoveCollision(CNtlSobActor* pActor);
-	bool SendCharMoveCollisionEnd(CNtlSobActor* pActor);
+	bool SendCharMoveCollision(RwV3d vLoc, RwV3d vDir, RwReal fMoveRate);
+	bool SendCharMoveCollisionEnd(RwV3d vLoc, RwV3d vDir);
 
 	bool SendCharTargetSelect(SERIAL_HANDLE hSerialId);
 

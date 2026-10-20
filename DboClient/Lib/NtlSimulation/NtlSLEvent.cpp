@@ -166,6 +166,9 @@ RWS::CEventId g_EventSobPetSkillInfo;	// 펫 스킬에 대한 정보
 //-----------------------------
 RWS::CEventId g_EventSobMove;
 RWS::CEventId g_EventSobMoveSync;
+RWS::CEventId g_EventSobMoveCollision;
+RWS::CEventId g_EventSobMoveCollisionEnd;
+RWS::CEventId g_EventSobChangeHeading;
 RWS::CEventId g_EventSobSecondDestMove;
 RWS::CEventId g_EventSobSplineMove;
 RWS::CEventId g_EventSobAdjustMovePosition;

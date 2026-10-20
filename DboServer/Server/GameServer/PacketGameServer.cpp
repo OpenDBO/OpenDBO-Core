@@ -1092,12 +1092,19 @@ void CClientSession::RecvCharLocationSync(CNtlPacket * pPacket)
 	CNtlVector vLoc;
 	NtlLocationDecompress(&req->vCurLoc, &vLoc.x, &vLoc.y, &vLoc.z);
 
+	// The client sends this every half second while it runs. One still on its way when the server
+	// stopped the player (pulled, stunned, knocked down, ...) must not move it back.
+	BYTE byState = cPlayer->GetCharStateID();
+	if (cPlayer->GetAirState() != AIR_STATE_OFF ||
+		(byState != CHARSTATE_MOVING && byState != CHARSTATE_DESTMOVE && byState != CHARSTATE_FOLLOWING))
+		return;
+
+	// A server side move can still be on its way to the client, so like tw a far position is only
+	// logged and dropped.
 	float fMovedDistance = NtlGetDistance(cPlayer->GetCurLoc(), vLoc); // get distance from server and client
 	if (fMovedDistance > DBO_DISTANCE_CHECK_TOLERANCE * 2.f)
 	{
 		ERR_LOG(LOG_HACK, "Player: %u seems to be speed hacking. Distance: %f CurLoc: %f, %f, %f NewLoc: %f %f %f", cPlayer->GetCharID(), fMovedDistance, cPlayer->GetCurLoc().x, cPlayer->GetCurLoc().y, cPlayer->GetCurLoc().z, vLoc.x, vLoc.y, vLoc.z);
-
-		this->Disconnect(false);
 		return;
 	}
 
@@ -1108,6 +1115,19 @@ void CClientSession::RecvCharLocationSync(CNtlPacket * pPacket)
 
 		if (sDir.IsInvalid() == false)
 			cPlayer->SetCurDir(sDir);
+
+		// let the others correct their copy of the moving player (the client handles this packet as
+		// a move sync, on the ground as well as in the air)
+		{
+			CNtlPacket packet(sizeof(sGU_CHAR_AIR_MOVE_SYNC));
+			sGU_CHAR_AIR_MOVE_SYNC * res = (sGU_CHAR_AIR_MOVE_SYNC *)packet.GetPacketData();
+			res->wOpCode = GU_CHAR_AIR_MOVE_SYNC;
+			res->handle = cPlayer->GetID();
+			res->vCurLoc = req->vCurLoc;
+			res->vCurDir = req->vCurDir;
+			packet.SetPacketLen(sizeof(sGU_CHAR_AIR_MOVE_SYNC));
+			cPlayer->Broadcast(&packet, cPlayer);
+		}
 	}
 	else
 	{
@@ -1158,37 +1178,52 @@ void CClientSession::RecvCharMoveCollision(CNtlPacket * pPacket)
 
 	if (!cPlayer || !cPlayer->IsInitialized())
 		return;
-	
-	if (cPlayer->GetCollision() == false)
+
+	// The tw client reports the collision again every half second while it stays blocked, every
+	// report moves the others' copy of the character (and stops the server move prediction).
+	CNtlVector vLoc;
+	NtlLocationDecompress(&req->vCurLoc, &vLoc.x, &vLoc.y, &vLoc.z);
+
+	// same tolerance as the location sync, a collision report must not move the player far away
+	float fMovedDistance = NtlGetDistance(cPlayer->GetCurLoc(), vLoc);
+	if (fMovedDistance > DBO_DISTANCE_CHECK_TOLERANCE * 2.f)
 	{
-		CNtlVector vLoc;
-		NtlLocationDecompress(&req->vCurLoc, &vLoc.x, &vLoc.y, &vLoc.z);
+		ERR_LOG(LOG_HACK, "Player: %u move collision too far. Distance: %f CurLoc: %f, %f, %f NewLoc: %f %f %f", cPlayer->GetCharID(), fMovedDistance, cPlayer->GetCurLoc().x, cPlayer->GetCurLoc().y, cPlayer->GetCurLoc().z, vLoc.x, vLoc.y, vLoc.z);
+		return;
+	}
 
-		if (cPlayer->SetCurLoc(vLoc, cPlayer->GetCurWorld()))
-		{
-			cPlayer->SetCollision(true);
+	if (cPlayer->SetCurLoc(vLoc, cPlayer->GetCurWorld()))
+	{
+		cPlayer->SetCollision(true);
 
-			CNtlVector vDir;
-			NtlDirectionDecompress(&req->vCurDir, &vDir.x, &vDir.y, &vDir.z);
-		
-			if (vDir.IsInvalid())
-				return;
+		CNtlVector vDir;
+		NtlDirectionDecompress(&req->vCurDir, &vDir.x, &vDir.y, &vDir.z);
 
-			cPlayer->SetCurDir(vDir);
+		if (vDir.IsInvalid())
+			return;
 
-			CNtlPacket packet(sizeof(sGU_CHAR_MOVE_COLLISION));
-			sGU_CHAR_MOVE_COLLISION * res = (sGU_CHAR_MOVE_COLLISION *)packet.GetPacketData();
-			res->wOpCode = GU_CHAR_MOVE_COLLISION;
-			res->handle = cPlayer->GetID();
-			res->vCurLoc = req->vCurLoc;
-			res->vCurDir = req->vCurDir;
-			packet.SetPacketLen(sizeof(sGU_CHAR_MOVE_COLLISION));
-			cPlayer->Broadcast(&packet);
-		}
-		else
-		{
-			ERR_LOG(LOG_HACK, "Player: %u seems to be location hacking. CurLoc: %f, %f, %f NewLoc: %f %f %f", cPlayer->GetCharID(), cPlayer->GetCurLoc().x, cPlayer->GetCurLoc().y, cPlayer->GetCurLoc().z, vLoc.x, vLoc.y, vLoc.z);
-		}
+		cPlayer->SetCurDir(vDir);
+
+		float fForcedSpeed = req->fMoveRate;
+		if (!(fForcedSpeed >= 0.0f))	// negative or NaN
+			fForcedSpeed = 0.0f;
+		else if (fForcedSpeed > 1.0f)
+			fForcedSpeed = 1.0f;
+
+		CNtlPacket packet(sizeof(sGU_CHAR_MOVE_COLLISION));
+		sGU_CHAR_MOVE_COLLISION * res = (sGU_CHAR_MOVE_COLLISION *)packet.GetPacketData();
+		res->wOpCode = GU_CHAR_MOVE_COLLISION;
+		res->handle = cPlayer->GetID();
+		res->vCurLoc = req->vCurLoc;
+		res->vCurDir = req->vCurDir;
+		res->vDirForced = req->vCurDir;	// the tw client keeps moving the character along its heading
+		res->fForcedSpeed = fForcedSpeed;
+		packet.SetPacketLen(sizeof(sGU_CHAR_MOVE_COLLISION));
+		cPlayer->Broadcast(&packet, cPlayer);	// the reporting client moved itself already
+	}
+	else
+	{
+		ERR_LOG(LOG_HACK, "Player: %u seems to be location hacking. CurLoc: %f, %f, %f NewLoc: %f %f %f", cPlayer->GetCharID(), cPlayer->GetCurLoc().x, cPlayer->GetCurLoc().y, cPlayer->GetCurLoc().z, vLoc.x, vLoc.y, vLoc.z);
 	}
 }
 

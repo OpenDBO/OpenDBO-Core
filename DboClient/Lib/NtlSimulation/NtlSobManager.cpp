@@ -119,6 +119,9 @@ RwBool CNtlSobManager::Create(void)
 	LinkMsg(g_EventSobSummonPetSpawnSync);
 	LinkMsg(g_EventSobMove);
     LinkMsg(g_EventSobMoveSync);
+    LinkMsg(g_EventSobMoveCollision);
+    LinkMsg(g_EventSobMoveCollisionEnd);
+    LinkMsg(g_EventSobChangeHeading);
 	LinkMsg(g_EventSobSecondDestMove);
 	LinkMsg(g_EventSobSplineMove);
 	LinkMsg(g_EventSobAdjustMovePosition);
@@ -266,6 +269,9 @@ RwBool CNtlSobManager::Create(void)
     m_mapEventFunc[g_EventSobSummonPetSpawnSync.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
     m_mapEventFunc[g_EventSobMove.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
     m_mapEventFunc[g_EventSobMoveSync.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
+    m_mapEventFunc[g_EventSobMoveCollision.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
+    m_mapEventFunc[g_EventSobMoveCollisionEnd.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
+    m_mapEventFunc[g_EventSobChangeHeading.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
     m_mapEventFunc[g_EventSobSecondDestMove.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
     m_mapEventFunc[g_EventSobDirectionFloat.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
     m_mapEventFunc[g_EventSobSplineMove.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
@@ -429,6 +435,9 @@ void CNtlSobManager::Destroy(void)
 	UnLinkMsg(g_EventSobSummonPetSpawnSync);
 	UnLinkMsg(g_EventSobMove);
     UnLinkMsg(g_EventSobMoveSync);
+    UnLinkMsg(g_EventSobMoveCollision);
+    UnLinkMsg(g_EventSobMoveCollisionEnd);
+    UnLinkMsg(g_EventSobChangeHeading);
 	UnLinkMsg(g_EventSobSecondDestMove);
 	UnLinkMsg(g_EventSobSplineMove);
 	UnLinkMsg(g_EventSobAdjustMovePosition);

@@ -423,6 +423,7 @@ END_PROTOCOL()
 BEGIN_PROTOCOL(UG_CHAR_MOVE_COLLISION)
 _compressedLocation		vCurLoc;
 _compressedDirection	vCurDir;
+FLOAT					fMoveRate;		// tw: part of the step the blocked avatar still made (0 ~ 1)
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_CHAR_MOVE_COLLISION_END)

@@ -1183,6 +1183,36 @@ void CNtlSLEventGenerator::SobMoveSync(SERIAL_HANDLE hSerialId, RwV3d& vCurLoc, 
     SEND_MSG(g_EventSobMoveSync, &sMoveSync);
 }
 
+void CNtlSLEventGenerator::SobMoveCollision(SERIAL_HANDLE hSerialId, const RwV3d& vCurLoc, const RwV3d& vCurDir, const RwV3d& vDirForced, RwReal fForcedSpeed)
+{
+    SNtlEventSobMoveCollision sMoveCollision;
+    sMoveCollision.hSerialId = hSerialId;
+    sMoveCollision.vLoc = vCurLoc;
+    sMoveCollision.vDir = vCurDir;
+    sMoveCollision.vDirForced = vDirForced;
+    sMoveCollision.fForcedSpeed = fForcedSpeed;
+
+    SEND_MSG(g_EventSobMoveCollision, &sMoveCollision);
+}
+
+void CNtlSLEventGenerator::SobMoveCollisionEnd(SERIAL_HANDLE hSerialId, const RwV3d& vCurLoc)
+{
+    SNtlEventSobMoveCollisionEnd sMoveCollisionEnd;
+    sMoveCollisionEnd.hSerialId = hSerialId;
+    sMoveCollisionEnd.vLoc = vCurLoc;
+
+    SEND_MSG(g_EventSobMoveCollisionEnd, &sMoveCollisionEnd);
+}
+
+void CNtlSLEventGenerator::SobChangeHeading(SERIAL_HANDLE hSerialId, const RwV3d& vDir)
+{
+    SNtlEventSobChangeHeading sChangeHeading;
+    sChangeHeading.hSerialId = hSerialId;
+    sChangeHeading.vDir = vDir;
+
+    SEND_MSG(g_EventSobChangeHeading, &sChangeHeading);
+}
+
 void CNtlSLEventGenerator::SobSplineMove(SERIAL_HANDLE hSerialId, RwBool bGroundCheck, RwBool bRunMove, RwChar *pSplineName, RwV3d vStartPos)
 {
 	SNtlEventSobSplineMove sSobSplineMove;

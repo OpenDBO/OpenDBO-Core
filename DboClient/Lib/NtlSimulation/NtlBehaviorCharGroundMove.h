@@ -2,6 +2,9 @@
 
 #include "NtlBehaviorCharMove.h"
 
+struct SNtlEventSobMoveCollision;
+struct SNtlEventSobMoveCollisionEnd;
+
 /**
  * \ingroup NtlSimulation
  * \brief 일반적인 지형 이동을 처리하는 행동 클래스
@@ -45,8 +48,31 @@ protected:
     void	SetAnim(RwUInt8 byMoveFlags);
     void	SetDashAnimEnd(void);
     void    SetIdle2RunAnim(void);                 ///< Idle -> Run 보간 애니메이션을 설정한다.
-    void	SetServerSyncPosition(RwV3d vSyncPos);    
     RwBool  IsIdleAnimationPlaying();              ///< Idle 애니메이션 플레이중인지 확인한다.
+
+    // tw: characters moved by other clients are dead reckoned from the server position
+    RwBool  IsDeadReckoning(void);
+    void    ResetDeadReckoning(RwBool bSnapDir = FALSE);
+    RwBool  BeginDeadReckoning(OUT RwV3d& vPos, OUT RwV3d& vDir);
+    void    MoveGhost(const RwV3d& vDir, RwReal fSpeed, RwReal fElapsed);
+    void    EndDeadReckoning(const RwV3d& vOldPos, const RwV3d& vNewPos, const RwV3d& vNewDir, RwReal fSpeed, RwReal fElapsed, RwBool bBlocked, RwBool bMoveGhost);
+    void    OnMoveCollision(const SNtlEventSobMoveCollision* pCollision);
+    void    OnMoveCollisionEnd(const SNtlEventSobMoveCollisionEnd* pCollisionEnd);
+    void    OnChangeHeading(const RwV3d& vDir);
+    void    OnMoveSync(const RwV3d& vLoc, const RwV3d& vDir);
+
+    // a character of another client turned with the mouse: its heading reaches this client in steps,
+    // the turn is measured and continued between them, the shown facing eases after it
+    void    OnHeadingSample(const RwV3d& vDir);
+    void    ExtrapolateHeading(RwV3d& vDir, RwReal fElapsed);
+    void    SetShownDirection(const RwV3d& vDir, RwReal fElapsed);
+
+    // the moving avatar sends its position now and then, the others correct their prediction with it
+    void    UpdateLocationSync(RwReal fElapsed);
+
+    // tw: the avatar tells the server when an object blocks its move
+    void    UpdateCollisionReport(const RwV3d& vOldPos, const RwV3d& vMovePos, const RwV3d& vFinalPos, const RwV3d& vDir, RwReal fElapsed);
+    void    EndCollisionReport(void);
 
 
     RwBool	UpdateDirectionMove(RwReal fElapsed);
@@ -55,11 +81,7 @@ protected:
     RwBool  ObjectCollision(OUT RwV3d &vPos, RwReal fOldActorHeight, RwReal fSpeed, RwReal fElapsed, OUT RwUInt8* pColliResult);
     RwBool	UpdateTargetMove(RwReal fElapsed);
     RwBool	UpdateDashMove(RwReal fElapsed);
-    RwBool	UpdateDashTargetMove(RwReal fElapsed);    
-
-    RwBool  UpdateMoveSync(RwReal fElapsedTime, OUT RwV3d* pDestPos, OUT RwV3d* pNewDir);       ///< 현재의 MoveSync 값을 계산하는 Udpate 함수
-    void	UpdateServerSyncPosition(RwReal fElapsed);
-    void	UpdateSendSyncCheck(RwReal fElapsed);
+    RwBool	UpdateDashTargetMove(RwReal fElapsed);
 
     void	CreateStartDashCamera(void);
     void	DestroyEndDashCamera(void);
@@ -113,16 +135,33 @@ protected:
     // collision
     RwUInt8				m_byCollMoveImpossCnt;		// collision move impossible count
 
-    // server 동기 위치 보정.
-    RwBool				m_bServerSyncPos;
-    RwV3d				m_vServerSyncDir;
-    RwReal				m_fServerSyncDist;
-    RwReal				m_fCurrServerSyncDist;
-    RwReal				m_fDeltaServerSyncDist;
+    // tw dead reckoning of a character moved by another client. The prediction runs from the
+    // position the server gave, the actor is only shown sliding towards it.
+    RwV3d				m_vPredictPos;
+    RwV3d				m_vPredictDir;
+    RwV3d				m_vGhostPos;			///< the same move without object collision
+    RwReal				m_fGhostTime;			///< time the prediction is held back by object collision
+    RwBool				m_bMoveCollision;		///< its client reported an object blocking the move
+    RwReal				m_fForcedSpeed;			///< rate of the move speed while blocked
+    RwV3d				m_vForcedDir;
 
-    // move sync
-    RwBool				m_bSyncSendCheck;
-    RwReal				m_fSyncSendTime;
+    // tw collision report of the avatar
+    RwBool				m_bCollisionSent;
+    RwReal				m_fLastCollisionRate;
+    RwReal				m_fCollisionCheckTime;
+
+    RwReal				m_fLocationSyncTime;
+    RwV3d				m_vLocationSyncDir;		///< heading sent with the last position
+    RwV3d				m_vLastFrameDir;		///< heading of the avatar the frame before
+    RwReal				m_fNoTurnTime;			///< time the avatar has not turned
+    RwBool				m_bTurnSyncPending;		///< a position was sent during a turn, send where it ends
+
+    // turn of another client's character
+    RwReal				m_fYawRate;				///< measured turn speed (radians per second)
+    RwReal				m_fYawBudget;			///< how much more it may turn without a new heading
+    RwReal				m_fYawExtrapolateTime;	///< time turned since the last heading
+    RwV3d				m_vYawSampleDir;		///< heading the turn speed is measured from
+    RwReal				m_fYawSampleTime;
 
     // 보간 애니메이션을 위한 변수들
     RwBool              m_bInterAnimEnd;
