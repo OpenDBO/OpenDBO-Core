@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="App">
+      <UniqueIdentifier>{5a000001-1d7f-4b2a-9c00-000000000001}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{5a000002-1d7f-4b2a-9c00-000000000002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Data">
+      <UniqueIdentifier>{5a000003-1d7f-4b2a-9c00-000000000003}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Utility">
+      <UniqueIdentifier>{5a000004-1d7f-4b2a-9c00-000000000004}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controls">
+      <UniqueIdentifier>{5a000005-1d7f-4b2a-9c00-000000000005}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{5a000006-1d7f-4b2a-9c00-000000000006}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Download">
+      <UniqueIdentifier>{5a000007-1d7f-4b2a-9c00-000000000007}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Event">
+      <UniqueIdentifier>{5a000008-1d7f-4b2a-9c00-000000000008}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Integrity">
+      <UniqueIdentifier>{5a000009-1d7f-4b2a-9c00-000000000009}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Message">
+      <UniqueIdentifier>{5a00000a-1d7f-4b2a-9c00-00000000000a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Patch">
+      <UniqueIdentifier>{5a00000b-1d7f-4b2a-9c00-00000000000b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Process">
+      <UniqueIdentifier>{5a00000c-1d7f-4b2a-9c00-00000000000c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Skin">
+      <UniqueIdentifier>{5a00000d-1d7f-4b2a-9c00-00000000000d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\State">
+      <UniqueIdentifier>{5a00000e-1d7f-4b2a-9c00-00000000000e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{5a0000ff-1d7f-4b2a-9c00-0000000000ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared">
+      <UniqueIdentifier>{5a0000fe-1d7f-4b2a-9c00-0000000000fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Zip">
+      <UniqueIdentifier>{5a0000fd-1d7f-4b2a-9c00-0000000000fd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DBOLauncher.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="DLCmdLine.h">
+      <Filter>Common\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="DLLauncherDevMaster.h">
+      <Filter>Common\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="DLLocalConfig.h">
+      <Filter>Common\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="DLPatchInfo.h">
+      <Filter>Common\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="DLPatchServerConfig.h">
+      <Filter>Common\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="DLSystemEnv.h">
+      <Filter>Common\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="NtlClientService.h">
+      <Filter>Common\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="DLUtility.h">
+      <Filter>Common\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="DBOLauncherDef.h">
+      <Filter>Common\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="BitmapDlg.h">
+      <Filter>Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="BitmapSlider.h">
+      <Filter>Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="TransparentHelper.h">
+      <Filter>Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="Dib.h">
+      <Filter>Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageTextButton.h">
+      <Filter>Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputBox.h">
+      <Filter>Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="explorer_information.h">
+      <Filter>Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="DLDownLoadSys.h">
+      <Filter>System\Download</Filter>
+    </ClInclude>
+    <ClInclude Include="DLEventDef.h">
+      <Filter>System\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="DLEventSys.h">
+      <Filter>System\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="DLIntegritySys.h">
+      <Filter>System\Integrity</Filter>
+    </ClInclude>
+    <ClInclude Include="DLAutoIntegrity.h">
+      <Filter>System\Integrity</Filter>
+    </ClInclude>
+    <ClInclude Include="NtlMD5CheckSum.h">
+      <Filter>System\Integrity</Filter>
+    </ClInclude>
+    <ClInclude Include="MD5ChekSumErrCode.h">
+      <Filter>System\Integrity</Filter>
+    </ClInclude>
+    <ClInclude Include="md5.h">
+      <Filter>System\Integrity</Filter>
+    </ClInclude>
+    <ClInclude Include="DLMessageDef.h">
+      <Filter>System\Message</Filter>
+    </ClInclude>
+    <ClInclude Include="DLMessageImp.h">
+      <Filter>System\Message</Filter>
+    </ClInclude>
+    <ClInclude Include="DLMessageSys.h">
+      <Filter>System\Message</Filter>
+    </ClInclude>
+    <ClInclude Include="DLPatcherSys.h">
+      <Filter>System\Patch</Filter>
+    </ClInclude>
+    <ClInclude Include="patchwin.h">
+      <Filter>System\Patch</Filter>
+    </ClInclude>
+    <ClInclude Include="DLProcessSys.h">
+      <Filter>System\Process</Filter>
+    </ClInclude>
+    <ClInclude Include="DLSkinSys.h">
+      <Filter>System\Skin</Filter>
+    </ClInclude>
+    <ClInclude Include="DLSkinBaseDlg.h">
+      <Filter>System\Skin</Filter>
+    </ClInclude>
+    <ClInclude Include="DLSkinDlg_Dev.h">
+      <Filter>System\Skin</Filter>
+    </ClInclude>
+    <ClInclude Include="DLSkinDlg_CJIKor.h">
+      <Filter>System\Skin</Filter>
+    </ClInclude>
+    <ClInclude Include="DLSkinDlg_CT.h">
+      <Filter>System\Skin</Filter>
+    </ClInclude>
+    <ClInclude Include="DLDBOSettingDlg.h">
+      <Filter>System\Skin</Filter>
+    </ClInclude>
+    <ClInclude Include="DLState.h">
+      <Filter>System\State</Filter>
+    </ClInclude>
+    <ClInclude Include="DLStateSys.h">
+      <Filter>System\State</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\NtlLib\Shared\NtlXMLLoader\NtlXMLDoc.cpp">
+      <Filter>Shared</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\NtlLib\Shared\Zip\zlib123\NtlUnzip.cpp">
+      <Filter>Shared\Zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\NtlLib\Shared\Zip\zlib123\unzip.c">
+      <Filter>Shared\Zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\NtlLib\Shared\Zip\zlib123\ioapi.c">
+      <Filter>Shared\Zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\NtlLib\Shared\Zip\zlib123\iowin32.c">
+      <Filter>Shared\Zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\NtlLib\Shared\Zip\zlib123\inflate.c">
+      <Filter>Shared\Zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\NtlLib\Shared\Zip\zlib123\inffast.c">
+      <Filter>Shared\Zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\NtlLib\Shared\Zip\zlib123\inftrees.c">
+      <Filter>Shared\Zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\NtlLib\Shared\Zip\zlib123\crc32.c">
+      <Filter>Shared\Zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\NtlLib\Shared\Zip\zlib123\adler32.c">
+      <Filter>Shared\Zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\NtlLib\Shared\Zip\zlib123\zutil.c">
+      <Filter>Shared\Zip</Filter>
+    </ClCompile>
+    <ClCompile Include="DBOLauncher.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="DLCmdLine.cpp">
+      <Filter>Common\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="DLLauncherDevMaster.cpp">
+      <Filter>Common\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="DLLocalConfig.cpp">
+      <Filter>Common\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="DLPatchInfo.cpp">
+      <Filter>Common\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="DLPatchServerConfig.cpp">
+      <Filter>Common\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="DLSystemEnv.cpp">
+      <Filter>Common\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="NtlClientService.cpp">
+      <Filter>Common\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="DLUtility.cpp">
+      <Filter>Common\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="BitmapDlg.cpp">
+      <Filter>Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="BitmapSlider.cpp">
+      <Filter>Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="TransparentHelper.cpp">
+      <Filter>Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="Dib.cpp">
+      <Filter>Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageTextButton.cpp">
+      <Filter>Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="OutputBox.cpp">
+      <Filter>Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="explorer_information.cpp">
+      <Filter>Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="DLDownLoadSys.cpp">
+      <Filter>System\Download</Filter>
+    </ClCompile>
+    <ClCompile Include="DLEventSys.cpp">
+      <Filter>System\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="DLIntegritySys.cpp">
+      <Filter>System\Integrity</Filter>
+    </ClCompile>
+    <ClCompile Include="DLAutoIntegrity.cpp">
+      <Filter>System\Integrity</Filter>
+    </ClCompile>
+    <ClCompile Include="NtlMD5CheckSum.cpp">
+      <Filter>System\Integrity</Filter>
+    </ClCompile>
+    <ClCompile Include="md5.c">
+      <Filter>System\Integrity</Filter>
+    </ClCompile>
+    <ClCompile Include="DLMessageImp.cpp">
+      <Filter>System\Message</Filter>
+    </ClCompile>
+    <ClCompile Include="DLMessageSys.cpp">
+      <Filter>System\Message</Filter>
+    </ClCompile>
+    <ClCompile Include="DLPatcherSys.cpp">
+      <Filter>System\Patch</Filter>
+    </ClCompile>
+    <ClCompile Include="DLProcessSys.cpp">
+      <Filter>System\Process</Filter>
+    </ClCompile>
+    <ClCompile Include="DLSkinSys.cpp">
+      <Filter>System\Skin</Filter>
+    </ClCompile>
+    <ClCompile Include="DLSkinBaseDlg.cpp">
+      <Filter>System\Skin</Filter>
+    </ClCompile>
+    <ClCompile Include="DLSkinDlg_Dev.cpp">
+      <Filter>System\Skin</Filter>
+    </ClCompile>
+    <ClCompile Include="DLSkinDlg_CJIKor.cpp">
+      <Filter>System\Skin</Filter>
+    </ClCompile>
+    <ClCompile Include="DLSkinDlg_CT.cpp">
+      <Filter>System\Skin</Filter>
+    </ClCompile>
+    <ClCompile Include="DLDBOSettingDlg.cpp">
+      <Filter>System\Skin</Filter>
+    </ClCompile>
+    <ClCompile Include="DLState.cpp">
+      <Filter>System\State</Filter>
+    </ClCompile>
+    <ClCompile Include="DLStateSys.cpp">
+      <Filter>System\State</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\*.bmp">
+      <Filter>Resource</Filter>
+    </Image>
+    <Image Include="res\DBOLauncherTW.ico">
+      <Filter>Resource</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DBOLauncherTW.rc">
+      <Filter>Resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\DBOLauncherTW.rc2">
+      <Filter>Resource</Filter>
+    </None>
+    <None Include="Test\LauncherConfig.xml" />
+    <None Include="Test\launcherdevmaster.xml" />
+  </ItemGroup>
+</Project>
