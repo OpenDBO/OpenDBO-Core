@@ -32,12 +32,27 @@
 #include "ItemEnchantTable.h"
 
 
-#define OPTION_RESTRUCTURE_PROCESS_TIME		3.0f	// middle effect plays this long before the request is sent
-#define OPTION_RESTRUCTURE_FADE_PERIOD		0.6f	// item and old options fade out and back in once per period
-#define OPTION_RESTRUCTURE_FADE_MIN_ALPHA	40.0f
-#define OPTION_RESTRUCTURE_ARROW_SLOW		0.25f	// arrow colour switch interval when the process starts
-#define OPTION_RESTRUCTURE_ARROW_FAST		0.05f	// arrow colour switch interval right before the request
+// process effect of the tw client: everything blinks for 3s, then the request is sent
+#define OPTION_RESTRUCTURE_PROCESS_TIME		3.0f
+#define OPTION_RESTRUCTURE_SLOT_BLINK		1.0f	// item icon fades out and back in, 3 times
+#define OPTION_RESTRUCTURE_OPTION_BLINK		0.5f	// current options fade out and back in, 6 times
+#define OPTION_RESTRUCTURE_ARROW_BLINK		1.0f	// each arrow fades in and back out, red -> yellow -> blue
 #define OPTION_RESTRUCTURE_NAME_COLOR		RGB(255, 255, 255)
+
+// alpha of one fade out and back in, fTime is the time since the blink started
+static RwUInt8 GetBlinkAlpha(RwReal fTime, RwReal fPeriod)
+{
+	RwReal fRatio = fmodf(fTime, fPeriod) / (fPeriod * 0.5f);
+
+	if (fRatio < 1.0f)
+		return (RwUInt8)(255.0f * (1.0f - fRatio));
+
+	fRatio -= 1.0f;
+	if (fRatio > 1.0f)
+		fRatio = 1.0f;
+
+	return (RwUInt8)(255.0f * fRatio);
+}
 
 
 CItemOptionRestructureGui::CItemOptionRestructureGui(const RwChar *pName)
@@ -75,9 +90,6 @@ void CItemOptionRestructureGui::Init()
 	m_bAfterIsPreview = false;
 
 	m_fEffectTime = 0.0f;
-	m_fArrowTime = 0.0f;
-	m_fPulsePhase = 0.0f;
-	m_nArrow = ARROW_BLUE;
 }
 
 RwBool CItemOptionRestructureGui::Create()
@@ -173,7 +185,7 @@ RwBool CItemOptionRestructureGui::Create()
 
 	SetSlotRectHardCode();
 
-	ShowMiddleEffect(ARROW_NONE, false);
+	ShowArrows(false);
 
 	Show(false);
 
@@ -242,7 +254,7 @@ void CItemOptionRestructureGui::Update(RwReal fElapsed)
 	if (!IsShow())
 		return;
 
-	UpdateMiddleEffect(fElapsed);
+	UpdateProcessEffect(fElapsed);
 }
 
 void CItemOptionRestructureGui::HandleEvents(RWS::CMsg &pMsg)
@@ -505,65 +517,47 @@ void CItemOptionRestructureGui::SetResult(void * pOptionSet, BYTE byBoxCount)
 	CheckReady();
 }
 
-void CItemOptionRestructureGui::ShowMiddleEffect(ARROW eArrow, bool bStarCircle)
+void CItemOptionRestructureGui::ShowArrows(bool bShow)
 {
+	// the arrows are only seen during the process, they start invisible and blink one after another
 	for (int i = 0; i < NUM_ARROW; i++)
-		m_ppnlArrow[i]->Show(i == eArrow);
-
-	m_ppnlStarCircle->Show(bStarCircle);
-	m_ppnlStarCircle->SetAlpha(255);
-}
-
-void CItemOptionRestructureGui::UpdateMiddleEffect(RwReal fElapsed)
-{
-	switch (m_eState)
 	{
-		case STATE_PROCESS:
-		case STATE_PACKETWAIT:
-		{
-			m_fEffectTime += fElapsed;
-
-			RwReal fRatio = m_fEffectTime / OPTION_RESTRUCTURE_PROCESS_TIME;
-			if (fRatio > 1.0f)
-				fRatio = 1.0f;
-
-			// arrow cycles blue -> yellow -> red, faster and faster
-			RwReal fInterval = OPTION_RESTRUCTURE_ARROW_SLOW + (OPTION_RESTRUCTURE_ARROW_FAST - OPTION_RESTRUCTURE_ARROW_SLOW) * fRatio;
-
-			m_fArrowTime += fElapsed;
-			if (m_fArrowTime >= fInterval)
-			{
-				m_fArrowTime = 0.0f;
-				m_nArrow = (m_nArrow + 1) % NUM_ARROW;
-
-				ShowMiddleEffect((ARROW)m_nArrow, true);
-			}
-
-			// star circle pulses along with it
-			m_fPulsePhase += fElapsed * (4.0f + 20.0f * fRatio);
-			m_ppnlStarCircle->SetAlpha((RwUInt8)(155.0f + 100.0f * sinf(m_fPulsePhase)));
-
-			// item and its current options fade out and back in
-			RwReal fFade = 0.5f + 0.5f * cosf(m_fEffectTime * 6.2831853f / OPTION_RESTRUCTURE_FADE_PERIOD);
-			SetBeforeAlpha((RwUInt8)(OPTION_RESTRUCTURE_FADE_MIN_ALPHA + (255.0f - OPTION_RESTRUCTURE_FADE_MIN_ALPHA) * fFade));
-
-			if (m_eState == STATE_PROCESS && m_fEffectTime >= OPTION_RESTRUCTURE_PROCESS_TIME)
-				SendPacket();
-		}
-		break;
-
-		default: break;
+		m_ppnlArrow[i]->SetAlpha(0);
+		m_ppnlArrow[i]->Show(bShow);
 	}
 }
 
-void CItemOptionRestructureGui::SetBeforeAlpha(RwUInt8 byAlpha)
+void CItemOptionRestructureGui::UpdateProcessEffect(RwReal fElapsed)
 {
-	m_surSlot[SLOT_ITEM].SetAlpha(byAlpha);
+	if (m_eState != STATE_PROCESS)
+		return;
+
+	m_fEffectTime += fElapsed;
+
+	// the next state puts the item, its options and the arrows back at rest
+	if (m_fEffectTime >= OPTION_RESTRUCTURE_PROCESS_TIME)
+	{
+		SendPacket();
+		return;
+	}
+
+	SetBeforeAlpha(GetBlinkAlpha(m_fEffectTime, OPTION_RESTRUCTURE_SLOT_BLINK), GetBlinkAlpha(m_fEffectTime, OPTION_RESTRUCTURE_OPTION_BLINK));
+
+	// arrows fade in and back out instead
+	RwInt32 nArrow = (RwInt32)(m_fEffectTime / OPTION_RESTRUCTURE_ARROW_BLINK);
+
+	for (RwInt32 i = 0; i < NUM_ARROW; i++)
+		m_ppnlArrow[i]->SetAlpha(i == nArrow ? (RwUInt8)(255 - GetBlinkAlpha(m_fEffectTime, OPTION_RESTRUCTURE_ARROW_BLINK)) : 0);
+}
+
+void CItemOptionRestructureGui::SetBeforeAlpha(RwUInt8 bySlotAlpha, RwUInt8 byOptionAlpha)
+{
+	m_surSlot[SLOT_ITEM].SetAlpha(bySlotAlpha);
 
 	for (int i = 0; i < ITEM_OPTION_MAX_COUNT; i++)
 	{
-		m_pstbBeforeOptionName[i]->SetAlpha(byAlpha);
-		m_pstbBeforeOptionValue[i]->SetAlpha(byAlpha);
+		m_pstbBeforeOptionName[i]->SetAlpha(byOptionAlpha);
+		m_pstbBeforeOptionValue[i]->SetAlpha(byOptionAlpha);
 	}
 }
 
@@ -758,8 +752,11 @@ void CItemOptionRestructureGui::SetState(STATE eState)
 
 	DisableSlot(FALSE);
 
-	if (eState != STATE_PROCESS && eState != STATE_PACKETWAIT)
-		SetBeforeAlpha(255);
+	if (eState != STATE_PROCESS)
+	{
+		SetBeforeAlpha(255, 255);
+		ShowArrows(false);
+	}
 
 	switch (eState)
 	{
@@ -767,8 +764,6 @@ void CItemOptionRestructureGui::SetState(STATE eState)
 		{
 			if (GetIconMoveManager()->IsActive())
 				ShowIconDestination(TRUE);
-
-			ShowMiddleEffect(ARROW_NONE, m_pItem && m_pBoxItem);
 		}
 		break;
 		case STATE_READY:
@@ -780,14 +775,11 @@ void CItemOptionRestructureGui::SetState(STATE eState)
 			}
 
 			m_pbtnRestructure->ClickEnable(TRUE);
-
-			ShowMiddleEffect(ARROW_BLUE, true);
 		}
 		break;
-		case STATE_PROCESS: // play the middle effect, request is sent once it is done (see UpdateMiddleEffect)
+		case STATE_PROCESS: // play the process effect, request is sent once it is done (see UpdateProcessEffect)
 		{
-			DisableSlot(TRUE);
-			m_asurDisableSlot[SLOT_ITEM].Show(FALSE); // item fades in and out instead, input is still blocked by state
+			// slots are not greyed out, input is blocked by the state
 			m_pcbbSelectOption->Enable(false);
 
 			// Exit button disabled !!!
@@ -795,21 +787,16 @@ void CItemOptionRestructureGui::SetState(STATE eState)
 			m_pbtnCloseWide->ClickEnable(FALSE);
 
 			m_fEffectTime = 0.0f;
-			m_fArrowTime = 0.0f;
-			m_fPulsePhase = 0.0f;
-			m_nArrow = ARROW_BLUE;
 
-			ShowMiddleEffect(ARROW_BLUE, true);
+			ShowArrows(true);
 
 			// new roll: current list shows what the item has now (last result) and the new list is emptied
 			SetItemCurrentStats();
 			ClearOptionRows(m_pstbAfterOptionName, m_pstbAfterOptionValue);
 		}
 		break;
-		case STATE_PACKETWAIT: // keep the middle effect running until the result arrives
+		case STATE_PACKETWAIT: // effect is done, wait for the result
 		{
-			DisableSlot(TRUE);
-			m_asurDisableSlot[SLOT_ITEM].Show(FALSE);
 			m_pcbbSelectOption->Enable(false);
 
 			// Exit button disabled !!!

@@ -30,7 +30,7 @@ class CItemOptionRestructureGui : public CNtlPLGui, public RWS::CEventHandler
 enum SLOT { SLOT_ITEM, SLOT_BOX, NUM_SLOT };
 enum eFOCUSEFFECT { SLOT_FOCUS_NONE, SLOT_FOCUS_CAN_MOVE, SLOT_FOCUS };
 enum STATE { STATE_NONE, STATE_READY, STATE_PROCESS, STATE_PACKETWAIT, STATE_RESULT };
-enum ARROW { ARROW_BLUE, ARROW_YELLOW, ARROW_RED, NUM_ARROW, ARROW_NONE = NUM_ARROW };
+enum ARROW { ARROW_RED, ARROW_YELLOW, ARROW_BLUE, NUM_ARROW }; // order the arrows blink in
 
 public:
 	CItemOptionRestructureGui(const RwChar *pName);
@@ -63,9 +63,9 @@ protected:
 
 	void				SetResult(void* pOptionSet, BYTE byBoxCount);
 
-	void				ShowMiddleEffect(ARROW eArrow, bool bStarCircle);
-	void				UpdateMiddleEffect(RwReal fElapsed);
-	void				SetBeforeAlpha(RwUInt8 byAlpha);
+	void				ShowArrows(bool bShow);
+	void				UpdateProcessEffect(RwReal fElapsed);
+	void				SetBeforeAlpha(RwUInt8 bySlotAlpha, RwUInt8 byOptionAlpha);
 
 	bool				SetItemSlot(RwUInt32 hSerialID, RwUInt32 eSrcplace, RwUInt32 uiSrcSlotIdx, RwUInt32 uiDestSlotIdx, RwBool bNeedToIconMoveEnd);
 	void				UpdateSlotIcon();
@@ -137,10 +137,7 @@ protected:
 
 	WORD				m_wOptionIndex;
 	bool				m_bAfterIsPreview; // after column only shows the selected option name
-	RwReal				m_fEffectTime; // time spent in the current process state
-	RwReal				m_fArrowTime; // time since the arrow last changed colour
-	RwReal				m_fPulsePhase; // star circle pulse
-	RwInt32				m_nArrow;
+	RwReal				m_fEffectTime; // time spent in the process state
 
 
 	gui::CButton*		m_pbtnClose;
