@@ -46,6 +46,9 @@ void CNtlSobBuffAttr::HandleEvents(RWS::CMsg &pMsg)
 
 				m_SkillTbl.aSkill_Effect_Value[i] = (double)pBuffCreate->aBuffParameter[i].buffParameter.fParameter;				
 			}	
+
+			// bless buffs can be dropped, sub buff system skills can not
+			m_bCanDrop = m_bBlessType && !BIT_FLAG_TEST(GetSkillTbl()->dwFunction_Bit_Flag, SKILL_FUNCTION_FLAG_SUB_BUFF_SYSTEM);
 		}
 		else if(pBuffCreate->byBuffType == DBO_OBJECT_SOURCE_ITEM)
 		{
@@ -65,6 +68,13 @@ void CNtlSobBuffAttr::HandleEvents(RWS::CMsg &pMsg)
 				m_bBlessType = Dbo_IsForBlessBuff( pSystemEffectTable->byActive_Effect_Type );				
 				break;
 			}	
+
+			if (pUseItemTable)
+			{
+				// sub buff items (auto pots) ask first, the server switches them on/off instead of removing them
+				m_bDropConfirm = BIT_FLAG_TEST(pUseItemTable->wFunction_Bit_Flag, MAKE_BIT_FLAG(USE_ITEM_FUNCTION_SUB_BUFF_SYSTEM));
+				m_bCanDrop = m_bBlessType && !BIT_FLAG_TEST(pUseItemTable->wFunction_Bit_Flag, MAKE_BIT_FLAG(USE_ITEM_FUNCTION_IRREMOVABLE_BUFF));
+			}
 		}
 	}
 }

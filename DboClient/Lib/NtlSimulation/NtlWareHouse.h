@@ -45,6 +45,7 @@ protected:
 	void AddEventHandler(RWS::CMsg &pMsg);
 	void DeleteEventHandler(RWS::CMsg &pMsg);
 	void ItemMoveEventHandler(RWS::CMsg &pMsg);
+	void ItemSortEventHandler(RWS::CMsg &pMsg);
 	void ItemStackMoveEventHandler(RWS::CMsg &msg);
 
 protected:

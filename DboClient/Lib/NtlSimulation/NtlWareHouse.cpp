@@ -127,6 +127,10 @@ VOID CNtlWarehouse::HandleEvents(RWS::CMsg &pMsg)
 	{
 		ItemMoveEventHandler(pMsg);
 	}
+	else if(pMsg.Id == g_EventSobItemSort)
+	{
+		ItemSortEventHandler(pMsg);
+	}
 	else if(pMsg.Id == g_EventSobWarehouseItemStackMove)
 	{
 		ItemStackMoveEventHandler(pMsg);
@@ -638,4 +642,33 @@ void CNtlWarehouse::ItemStackMoveEventHandler(RWS::CMsg &msg)
 	}
 
 	NTL_RETURNVOID();
+}
+
+// tw: the item takes its new position in its bank page, its old slot is cleared only if it still holds the item
+// (another item may already have been moved there by this sort)
+void CNtlWarehouse::ItemSortEventHandler(RWS::CMsg &pMsg)
+{
+	SNtlEventSobItemSort* pItemSort = reinterpret_cast<SNtlEventSobItemSort*>(pMsg.pData);
+
+	if (pItemSort->byPlace < CONTAINER_TYPE_BANK1 || pItemSort->byPlace > CONTAINER_TYPE_BANK4)
+		return;
+
+	CNtlSobItem* pSobItem = reinterpret_cast<CNtlSobItem*>(GetNtlSobManager()->GetSobObject(pItemSort->hItemSerialId));
+	CNtlSobItem* pBagSobItem = reinterpret_cast<CNtlSobItem*>(GetNtlSobManager()->GetSobObject(m_hWareHouseSlot[pItemSort->byPlace - CONTAINER_TYPE_BANK1]));
+	if (pSobItem == NULL || pBagSobItem == NULL)
+	{
+		DBO_FAIL("CNtlWarehouse::ItemSortEventHandler : item or bank page instance is null");
+		return;
+	}
+
+	RwInt32 iOldSlotIdx = pSobItem->GetItemSlotIdx();
+	if (iOldSlotIdx != pItemSort->bySlotIdx)
+	{
+		pBagSobItem->SetChildSerial(pItemSort->bySlotIdx, pItemSort->hItemSerialId);
+
+		if (pBagSobItem->GetChildSerial(iOldSlotIdx) == pItemSort->hItemSerialId)
+			pBagSobItem->SetChildSerial(iOldSlotIdx, INVALID_SERIAL_ID);
+	}
+
+	pSobItem->HandleEvents(pMsg);
 }

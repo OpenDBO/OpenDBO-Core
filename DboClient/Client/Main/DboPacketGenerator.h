@@ -74,6 +74,8 @@ public:
 	bool SendItemStackMoveReq(RwUInt8 bySrcPlace, RwUInt8 bySrcPos, RwUInt8 byDestPlace, RwUInt8 byDestPos, RwUInt8 byStackCount);
 	bool SendItemDeleteReq(RwUInt8 bySrcPlace, RwUInt8 bySrcPos, RwBool* pPacketLock );
 	bool SendItemUpgradeReq(RwUInt32 hNPCSerialId, RwUInt8 byItemPlace, RwUInt8 byItemPos, RwUInt8 byStonePlace, RwUInt8 byStonePos, RwUInt8 byCorePlace, RwUInt8 byCorePos);
+	bool SendItemUpgradeByCouponReq(RwUInt32 hNPCSerialId, RwUInt8 byItemPlace, RwUInt8 byItemPos, RwUInt8 byCouponPlace, RwUInt8 byCouponPos);
+	bool SendInventorySortReq(RwUInt8 byInventoryType, RwUInt32 hNpcHandle);
 
 	bool SendItemChangeOptionReq(RwUInt8 byItemPlace, RwUInt8 byItemPos, RwUInt8 byKitPlace, RwUInt8 byKitPos, WORD wOptionIndex);
 

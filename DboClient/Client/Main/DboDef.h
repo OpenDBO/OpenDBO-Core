@@ -276,6 +276,8 @@ enum EPlace
 
 	PLACE_GIFTSHOP,
 
+	PLACE_SUB_WAREHOUSE_MENU,		// the private bank popup menu (sort)
+
 	PLACE_ZENNY_LAST = PLACE_CCBD_DIALOG,
 };
 
@@ -423,6 +425,13 @@ struct sMsgBoxData
 			SERIAL_HANDLE		hHandle;
 			RwUInt8				byIndex;
 		};
+
+		struct
+		{
+			RwUInt8				byBuffIndex;
+			RwUInt8				byBuffSourceType;
+			TBLIDX				buffSourceTblidx;
+		} sBuffInfo;
 
 		struct
 		{

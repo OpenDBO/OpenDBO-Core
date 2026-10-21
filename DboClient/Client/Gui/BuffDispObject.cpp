@@ -32,6 +32,9 @@
 #include "DboPacketGenerator.h"
 #include "DialogManager.h"
 #include "InfoWndManager.h"
+#include "AlarmManager.h"
+#include "DisplayStringManager.h"
+#include "DboLogic.h"
 
 
 
@@ -106,22 +109,37 @@ VOID CSobBuff::DropBuff(VOID)
 	if( m_eType != TYPE_NONE )
 	{
 		CNtlSobBuffAttr* pBuffAttr = reinterpret_cast<CNtlSobBuffAttr*>( m_pBuff->GetSobAttr() );
-		
-		if (pBuffAttr->IsBlessType())
-		{
-			// check if item
-			if (pBuffAttr->GetBuffType() == DBO_OBJECT_SOURCE_ITEM)
-			{
-				sDBO_BUFF_PARAMETER* pBuffParam = pBuffAttr->GetBuffParameter(0);
 
-				if (pBuffParam->byBuffParameterType == DBO_BUFF_PARAMETER_TYPE_ACTIVE_LP_EP_AUTO_RECOVER && m_KeepTimeEffect.GetUpdateElapsedTime() > 0.0f) // check if auto-pot and dont allow to drop while in cooldown
-				{
-					return;
-				}
+		if (pBuffAttr->CanDrop() == FALSE)
+		{
+			GetAlarmManager()->AlarmMessage(const_cast<WCHAR*>(GetDisplayStringManager()->GetString("DST_BUFF_CAN_NOT_DELETE_SUB_BUFF_MSG")), CAlarmManager::ALARM_ACTION_NOTIFY | CAlarmManager::ALARM_TYPE_CHAT_WARN);
+			return;
+		}
+
+		if (pBuffAttr->GetBuffType() == DBO_OBJECT_SOURCE_ITEM)
+		{
+			sDBO_BUFF_PARAMETER* pBuffParam = pBuffAttr->GetBuffParameter(0);
+
+			if (pBuffParam->byBuffParameterType == DBO_BUFF_PARAMETER_TYPE_ACTIVE_LP_EP_AUTO_RECOVER && m_KeepTimeEffect.GetUpdateElapsedTime() > 0.0f) // check if auto-pot and dont allow to drop while in cooldown
+			{
+				return;
 			}
 
-			GetDboGlobal()->GetGamePacketGenerator()->SendBuffDropReq(pBuffAttr->GetBuffIndex(), pBuffAttr->GetBuffType(), pBuffAttr->GetTblIdx());
+			// sub buff items (auto pots): confirm first, the server then switches an auto pot on/off
+			if (pBuffAttr->NeedDropConfirm())
+			{
+				sMsgBoxData sData;
+				sData.sBuffInfo.byBuffIndex = pBuffAttr->GetBuffIndex();
+				sData.sBuffInfo.byBuffSourceType = pBuffAttr->GetBuffType();
+				sData.sBuffInfo.buffSourceTblidx = pBuffAttr->GetTblIdx();
+
+				GetAlarmManager()->FormattedAlarmMessage("DST_BUFF_MB_DELETE_SUB_BUFF_MSG", FALSE, &sData, Logic_GetItemName(pBuffAttr->GetTblIdx()));
+				return;
+			}
 		}
+
+		if (pBuffAttr->IsBlessType())
+			GetDboGlobal()->GetGamePacketGenerator()->SendBuffDropReq(pBuffAttr->GetBuffIndex(), pBuffAttr->GetBuffType(), pBuffAttr->GetTblIdx());
 	}
 }
 

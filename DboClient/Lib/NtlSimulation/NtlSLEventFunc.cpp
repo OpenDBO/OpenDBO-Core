@@ -1422,6 +1422,23 @@ void CNtlSLEventGenerator::SobItemDelete(SERIAL_HANDLE hSerialId, SERIAL_HANDLE 
 	_SendMsg(msg);
 }
 
+void CNtlSLEventGenerator::SobItemSort(SERIAL_HANDLE hSerialId, SERIAL_HANDLE hItemSerialId, RwUInt8 byPlace, RwUInt8 bySlotIdx, RwUInt8 byStackCount, RwBool bLast)
+{
+	SNtlEventSobItemSort sSobItemSort;
+
+	sSobItemSort.hSerialId = hSerialId;
+	sSobItemSort.hItemSerialId = hItemSerialId;
+	sSobItemSort.byPlace = byPlace;
+	sSobItemSort.bySlotIdx = bySlotIdx;
+	sSobItemSort.byStackCount = byStackCount;
+	sSobItemSort.bLast = bLast;
+
+	RWS::CMsg msg;
+	msg.Id = g_EventSobItemSort;
+	msg.pData = reinterpret_cast<void*>(&sSobItemSort);
+	_SendMsg(msg);
+}
+
 void CNtlSLEventGenerator::ItemSocketInsertBead(SERIAL_HANDLE hSerialId, RwBool bSuccess, RwUInt8 byItemPlace, RwUInt8 byItemPos, RwUInt8 byRestrictState, RwUInt8 byDurationType,
 	DBOTIME nUseStartTime, DBOTIME nUseEndTime, sITEM_RANDOM_OPTION* pRandomOption, RwUInt8 byBeadPlace, RwUInt8 byBeadPos, RwUInt8 byBeadRemainStack)
 {
@@ -4254,9 +4271,10 @@ void CNtlSLEventGenerator::TSQuest()
 	_SendMsg(msg);
 }
 
-void CNtlSLEventGenerator::TSDialogOpen()
+void CNtlSLEventGenerator::TSDialogOpen(RwUInt8 byDialogOpenType)
 {
 	SNtlEventTSDialogOpen sData;
+	sData.byDialogOpenType = byDialogOpenType;
 
 	RWS::CMsg msg;
 	msg.Id = g_EventTSDialogOpen;

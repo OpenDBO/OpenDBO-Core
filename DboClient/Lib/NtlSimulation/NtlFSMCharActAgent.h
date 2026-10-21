@@ -196,6 +196,7 @@ public:
 	RwBool					IsFightingMode(void);
 
 	void					SetAirMode(BYTE byAirState);
+	void					ServerAirModeUpdate(BYTE byAirState);
 	RwBool					IsAirMode(void);
 
 	void					SetSitDown(RwBool bSitDown);

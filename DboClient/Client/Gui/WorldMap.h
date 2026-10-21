@@ -235,6 +235,37 @@ public:
 
 	typedef std::map<RwUInt32, sSCRAMBLE_SEAL_MARK*>			MAP_SCRAMBLE_SEAL_MARK;
 
+	// tw: world, zone and city combo boxes list the world map table, picking one shows that map
+	struct sSEARCH_MAP
+	{
+		TBLIDX				worldTblidx;
+		TBLIDX				zoneTblidx;
+		RwUInt8				byMapType;
+	};
+
+	// tw: script\WorldMapSearchData.xml, the npc combo box marks every npc/object of the picked category
+	enum eSearchType { SEARCH_TYPE_NONE = -1, SEARCH_TYPE_NPC = 0, SEARCH_TYPE_OBJECT = 1 };
+
+	struct sSEARCH_CHILD
+	{
+		RwUInt32			uiJobType;		///< npc job (255 for objects)
+		RwUInt32			uiJobBitFlag;	///< npc function flag / object function flag
+	};
+
+	struct sSEARCH_CATEGORY
+	{
+		std::string					strName;
+		RwInt32						iSearchType;	///< eSearchType
+		std::vector<sSEARCH_CHILD>	vecChild;
+	};
+
+	struct sSEARCH_MARK
+	{
+		RwBool				bNpc;
+		TBLIDX				tblidx;			///< npc or object table index
+		RwReal				fX, fZ;			///< world position
+	};
+
 
 	CWorldMapGui(const RwChar* pName);
 	virtual ~CWorldMapGui();
@@ -300,6 +331,20 @@ protected:
 
 	BOOL			IsWarfogActive(WORD wWarfogIndex);
 
+	VOID			LoadSearchData();
+	VOID			FillSearchComboBoxes();
+	RwBool			HasSearchCategoryData(const sSEARCH_CATEGORY& category);
+	VOID			SelectSearchMap(const sSEARCH_MAP& searchMap);
+	VOID			UpdateSearchMark();
+	RwBool			IsSearchMarkInWarfog(RwUInt32 uiWarfogIndex);
+	RwBool			GetSearchMarkRect(const sSEARCH_MARK& mark, CRectangle& rtMark);
+	VOID			RenderSearchMark();
+
+	VOID			OnSelected_SearchWorld(INT nIndex);
+	VOID			OnSelected_SearchZone(INT nIndex);
+	VOID			OnSelected_SearchCity(INT nIndex);
+	VOID			OnSelected_SearchNpc(INT nIndex);
+
 
 	VOID			OnClicked_CloseButton(gui::CComponent* pComponent);
 
@@ -360,6 +405,18 @@ protected:
 	gui::CComboBox*		m_pcbbSearchCity;
 
 	gui::CComboBox*		m_pcbbSearchNpc;
+
+	gui::CSlot			m_slotSearchWorld;
+	gui::CSlot			m_slotSearchZone;
+	gui::CSlot			m_slotSearchCity;
+	gui::CSlot			m_slotSearchNpc;
+
+	std::vector<sSEARCH_MAP>		m_vecSearchWorld;
+	std::vector<sSEARCH_MAP>		m_vecSearchZone;
+	std::vector<sSEARCH_MAP>		m_vecSearchCity;
+	std::vector<sSEARCH_CATEGORY>	m_vecSearchCategory;	///< npc combo box entries, 0 is "none"
+	std::vector<sSEARCH_MARK>		m_vecSearchMark;		///< marks of the picked category on the shown map
+	RwInt32							m_iSearchCategory;
 
 	gui::CStaticBox*	m_pBusRoute;			/// "버스 노선도"
 	gui::CStaticBox*	m_pOurGuild;			/// "우리 유파"

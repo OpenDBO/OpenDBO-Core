@@ -1154,6 +1154,9 @@ void CMailSystemGui::HandleEvents(RWS::CMsg& msg)
 			}
 			UpdateUserInterface();
 			GetDialogManager()->OpenDialog(DIALOG_MAILSYSTEM);
+
+			// quests ask to open the mailbox
+			CNtlSLEventGenerator::TSDialogOpen(TS_DIALOG_OPEN_TYPE_MAILBOX);
 		}
 		else
 		{

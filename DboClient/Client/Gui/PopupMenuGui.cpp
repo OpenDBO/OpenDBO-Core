@@ -30,6 +30,7 @@
 #include "DboLogic.h"
 #include "GUISoundDefine.h"
 #include "DisplayStringManager.h"
+#include "AlarmManager.h"
 #include "IconMoveManager.h"
 #include "CursorManager.h"
 
@@ -127,7 +128,15 @@ VOID CIconPopupItem::OnClick( gui::CComponent* pComponent )
 	}
 	else if (m_eWork == PMW_ITEM_SORT)
 	{
-		//GetDboGlobal()->GetGamePacketGenerator()->SendSortItemReq();
+		// tw: confirm first, the bank menu passes the bank npc as serial
+		sMsgBoxData sData;
+		RwBool bBank = m_pIconPopup->GetPlace() == PLACE_SUB_WAREHOUSE_MENU;
+
+		sData.hHandle = bBank ? m_pIconPopup->GetSerial() : INVALID_SERIAL_ID;
+		sData.byIndex = bBank ? 2 : 0;
+
+		GetAlarmManager()->FormattedAlarmMessage("DST_INVENTORY_SORT_MSGBOX", FALSE, &sData,
+			GetDisplayStringManager()->GetString(bBank ? "DST_WAREHOUSE_NAME" : "DST_MAINMENU_INVEN"));
 	}
 	else if (m_eWork == PMW_HELP)
 	{
@@ -617,6 +626,10 @@ VOID CIconPopupGui::ShowEvent( RWS::CMsg& msg )
 		SelectItem(m_apMenu[PMW_ITEM_SORT]);
 		SelectItem(m_apMenu[PMW_ITEM_DISASSEMBLE]);
 	 }
+	else if (pData->nSrcPlace == PLACE_SUB_WAREHOUSE_MENU)
+	{
+		SelectItem(m_apMenu[PMW_ITEM_SORT]);
+	}
 	else if (pData->nSrcPlace == PLACE_WAGU_ITEM_BUNCH)
 	{
 		SelectItem(m_apMenu[PMW_WAGU_ITEM_BUNCH]);

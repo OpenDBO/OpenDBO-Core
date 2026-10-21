@@ -706,7 +706,8 @@ NTL_TSRESULT CDboTSCQRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 			if (pQParam->IsQuestShare()) break;
 
-			if (!(pQParam->GetCtrl()->GetEventGenType() == eEVENT_GEN_TYPE_DIALOGOPEN))
+			if (!(pQParam->GetCtrl()->GetEventGenType() == eEVENT_GEN_TYPE_DIALOGOPEN &&
+				  ( 0xff == ((CDboTSDialogOpen*)pEntity)->GetDialogOpenType() || ((CDboTSDialogOpen*)pEntity)->GetDialogOpenType() == pQParam->GetCtrl()->GetEventGenId() )))
 			{
 				tsResult |= NTL_TSRESULT_TYPE_COND_CAN_PROGRESS;
 			}

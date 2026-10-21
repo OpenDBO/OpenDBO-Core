@@ -12,6 +12,7 @@
 #include "NtlSLEventFunc.h"
 #include "NtlSLApi.h"
 #include "NtlSLGlobal.h"
+#include "NtlSobAvatar.h"
 #include "NtlSLPacketGenerator.h"
 #include "NtlCameraManager.h"
 
@@ -68,15 +69,19 @@ CInputActionMap::CInputActionMap()
 	m_pInstance = this;	
 
 	m_sFrontDashMap.byDown = 0;
+	m_sFrontDashMap.bConsumed = FALSE;
 	m_sFrontDashMap.fTime = 0.0f;
 	m_sFrontDashMap.uiMoveFlags = NTL_MOVE_F;
 	m_sLeftDashMap.byDown = 0;
+	m_sLeftDashMap.bConsumed = FALSE;
 	m_sLeftDashMap.fTime = 0.0f;
 	m_sLeftDashMap.uiMoveFlags = NTL_MOVE_L;
 	m_sRightDashMap.byDown = 0;
+	m_sRightDashMap.bConsumed = FALSE;
 	m_sRightDashMap.fTime = 0.0f;
 	m_sRightDashMap.uiMoveFlags = NTL_MOVE_R;
 	m_sBackDashMap.byDown = 0;
+	m_sBackDashMap.bConsumed = FALSE;
 	m_sBackDashMap.fTime = 0.0f;
 	m_sBackDashMap.uiMoveFlags = NTL_MOVE_B;
 
@@ -427,15 +432,19 @@ void CInputActionMap::Reset(void)
 	m_uiServerMoveFlags		= NTL_MOVE_NONE;
 
 	m_sFrontDashMap.byDown = 0;
+	m_sFrontDashMap.bConsumed = FALSE;
 	m_sFrontDashMap.fTime = 0.0f;
 	m_sFrontDashMap.uiMoveFlags = NTL_MOVE_F;
 	m_sLeftDashMap.byDown = 0;
+	m_sLeftDashMap.bConsumed = FALSE;
 	m_sLeftDashMap.fTime = 0.0f;
 	m_sLeftDashMap.uiMoveFlags = NTL_MOVE_L;
 	m_sRightDashMap.byDown = 0;
+	m_sRightDashMap.bConsumed = FALSE;
 	m_sRightDashMap.fTime = 0.0f;
 	m_sRightDashMap.uiMoveFlags = NTL_MOVE_R;
 	m_sBackDashMap.byDown = 0;
+	m_sBackDashMap.bConsumed = FALSE;
 	m_sBackDashMap.fTime = 0.0f;
 	m_sBackDashMap.uiMoveFlags = NTL_MOVE_B;
 
@@ -465,15 +474,19 @@ void CInputActionMap::ResetMoveFlags( void )
 	m_uiServerMoveFlags		= NTL_MOVE_NONE;
 
 	m_sFrontDashMap.byDown = 0;
+	m_sFrontDashMap.bConsumed = FALSE;
 	m_sFrontDashMap.fTime = 0.0f;
 	m_sFrontDashMap.uiMoveFlags = NTL_MOVE_F;
 	m_sLeftDashMap.byDown = 0;
+	m_sLeftDashMap.bConsumed = FALSE;
 	m_sLeftDashMap.fTime = 0.0f;
 	m_sLeftDashMap.uiMoveFlags = NTL_MOVE_L;
 	m_sRightDashMap.byDown = 0;
+	m_sRightDashMap.bConsumed = FALSE;
 	m_sRightDashMap.fTime = 0.0f;
 	m_sRightDashMap.uiMoveFlags = NTL_MOVE_R;
 	m_sBackDashMap.byDown = 0;
+	m_sBackDashMap.bConsumed = FALSE;
 	m_sBackDashMap.fTime = 0.0f;
 	m_sBackDashMap.uiMoveFlags = NTL_MOVE_B;
 
@@ -933,8 +946,12 @@ RwUInt32 CInputActionMap::ConvertServerFlags(RwUInt32 uiFlags)
 	return m_uiServerMoveFlags;
 }
 
-void CInputActionMap::HitTestDownDbClickDashMap(SInputDashMap& sDashMap)
+void CInputActionMap::HitTestDownDbClickDashMap(SInputDashMap& sDashMap, RwBool bFireOnDown /* = FALSE */)
 {
+	// already fired on this press, wait for the key up
+	if(sDashMap.bConsumed)
+		return;
+
 	if(sDashMap.byDown % 2 != 0)
 		return;
 
@@ -949,11 +966,28 @@ void CInputActionMap::HitTestDownDbClickDashMap(SInputDashMap& sDashMap)
 	}
 
 	sDashMap.fTime = 0.0f;
+
+	// air forward starts on the second press, so holding the key keeps flying accelerated
+	if(bFireOnDown && sDashMap.byDown == 3)
+	{
+		sDashMap.byDown = 0;
+		sDashMap.bConsumed = TRUE;
+
+		CallDashMove(sDashMap.uiMoveFlags);
+	}
 }
 
 
 void CInputActionMap::HitTestUpDbClickDashMap(SInputDashMap& sDashMap)
 {
+	if(sDashMap.bConsumed)
+	{
+		sDashMap.bConsumed = FALSE;
+		sDashMap.byDown = 0;
+		sDashMap.fTime = 0.0f;
+		return;
+	}
+
 	if(sDashMap.fTime <= NTL_KEYBOARD_DBCLICK_TIME)
 		sDashMap.byDown++;
 	else
@@ -1059,8 +1093,11 @@ void CInputActionMap::ActionDownDashMoveHandler( RwUInt32 uiAction )
 	switch( uiAction )
 	{
 	case ACTION_AVATAR_FORWARD:
-		HitTestDownDbClickDashMap(m_sFrontDashMap);
-		break;
+	{
+		CNtlSobAvatar* pSobAvatar = GetNtlSLGlobal()->GetSobAvatar();
+		HitTestDownDbClickDashMap(m_sFrontDashMap, pSobAvatar && pSobAvatar->IsAirMode());
+	}
+	break;
 	case ACTION_AVATAR_LEFTTURN:
 	case ACTION_AVATAR_LEFTSIDE:
 		HitTestDownDbClickDashMap(m_sLeftDashMap);

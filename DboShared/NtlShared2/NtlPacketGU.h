@@ -4453,11 +4453,8 @@ END_PROTOCOL()
 BEGIN_PROTOCOL(GU_INVENTORY_SORT_RES)
 WORD					wResultCode;
 BYTE					byInventoryType;
-WORD					wTotalCount;
-BYTE					byMoveCount;
-BYTE					byDelCount; //not sure if BYTE
-sITEM_SORT_DATA_MOVE	moveItem[NTL_MAX_BAG_ITEM_SLOT]; //byte size = 192
-sITEM_SORT_DATA_DEL		delItem[NTL_MAX_BAG_ITEM_SLOT];
+BYTE					byContainerCount;
+sITEM_SORT_CONTAINER	aContainer[NTL_MAX_SORT_CONTAINER]; // tw: 355 bytes each
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_ITEM_CHANGE_OPTION_RES)

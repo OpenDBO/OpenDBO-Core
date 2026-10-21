@@ -334,6 +334,8 @@ enum eOPCODE_QG
 	QG_MASCOT_SEAL_SET_RES,
 	QG_MASCOT_SEAL_CLEAR_RES,
 
+	QG_INVENTORY_SORT_RES,
+
 	QG_OPCCODE_END_DUMMY,
 	QG_OPCODE_END = QG_OPCCODE_END_DUMMY - 1
 };
@@ -2534,6 +2536,15 @@ sITEM_DATA				sNewItemData;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(QG_MASCOT_SEAL_CLEAR_RES)
+END_PROTOCOL()
+//------------------------------------------------------------------
+BEGIN_PROTOCOL(QG_INVENTORY_SORT_RES)
+WORD					wResultCode;
+HOBJECT					handle;
+CHARACTERID				charId;
+BYTE					byInventoryType;
+BYTE					byCount;
+sITEM_SORT_DATA			aItem[NTL_MAX_SORT_ITEM];
 END_PROTOCOL()
 //------------------------------------------------------------------
 

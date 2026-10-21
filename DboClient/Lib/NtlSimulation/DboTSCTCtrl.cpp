@@ -1146,7 +1146,7 @@ void CDboTSCTCtrl::UT_Quest()
 	ClearAllEventGenInfo();
 }
 
-void CDboTSCTCtrl::UT_DialogOpen()
+void CDboTSCTCtrl::UT_DialogOpen(unsigned int uiDialogOpenType)
 {
 	if (IsError()) return;
 	if (IsFailed()) return;
@@ -1156,7 +1156,9 @@ void CDboTSCTCtrl::UT_DialogOpen()
 
 	SetEventGenType(eEVENT_GEN_TYPE_DIALOGOPEN);
 
-	SetEventData(eEVENT_GEN_TYPE_DIALOGOPEN, 0xffffffff);
+	SetEventGenId(uiDialogOpenType);
+
+	SetEventData(eEVENT_GEN_TYPE_DIALOGOPEN, uiDialogOpenType);
 
 	UpdateTSStep();
 

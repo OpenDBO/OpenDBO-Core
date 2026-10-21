@@ -256,6 +256,9 @@ extern RWS::CEventId g_EventSobItemAdd;
 // simulation item delete event
 extern RWS::CEventId g_EventSobItemDelete;
 
+// tw: inventory/bank sort, the item takes its new position and stack in its container
+extern RWS::CEventId g_EventSobItemSort;
+
 // simulation avater item move event
 extern RWS::CEventId g_EventSobItemMove;
 
@@ -1769,6 +1772,15 @@ struct SNtlEventSobItemDelete : public SNtlEventSob
 	SERIAL_HANDLE	hItemSerialId;
 	RwUInt8			byPlace;
 	RwUInt8			bySlotIdx;
+};
+
+struct SNtlEventSobItemSort : public SNtlEventSob
+{
+	SERIAL_HANDLE	hItemSerialId;
+	RwUInt8			byPlace;
+	RwUInt8			bySlotIdx;		// new position in the container
+	RwUInt8			byStackCount;
+	RwBool			bLast;			// last item of the container
 };
 
 struct SNtlEventItemSocketInsertBead : public SNtlEventSob
@@ -3339,8 +3351,17 @@ struct SNtlEventTSQuest
 {
 };
 
+// ts dialog open type (dotype in the quest scripts), raised by the tw client once the dialog is open
+enum eTS_DIALOG_OPEN_TYPE
+{
+	TS_DIALOG_OPEN_TYPE_MAILBOX,
+	TS_DIALOG_OPEN_TYPE_PET_MACHINE,
+	TS_DIALOG_OPEN_TYPE_PRIVATE_SHOP,
+};
+
 struct SNtlEventTSDialogOpen
 {
+	RwUInt8			byDialogOpenType;		// eTS_DIALOG_OPEN_TYPE
 };
 
 //////////////////////////////////////////////

@@ -786,6 +786,9 @@ void CPrivateShopGui::HandlePrivateShopState( void* pData )
 				GetDialogManager()->CloseDialog(DIALOG_PRIVATESHOP);
 			}
 			GetDialogManager()->OpenDialog(DIALOG_PRIVATESHOP);
+
+			// quests ask to open the own shop (not to sell anything)
+			CNtlSLEventGenerator::TSDialogOpen(TS_DIALOG_OPEN_TYPE_PRIVATE_SHOP);
 		}
 		break;
 	case PRIVATESHOP_EVENT_EXIT:	// 상점 끝

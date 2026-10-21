@@ -258,6 +258,7 @@ public:
 		RwUInt8	byRestrictState, const WCHAR* wszMaker, RwUInt8 byDurationType, DBOTIME StartTime, DBOTIME EndTime);
 
 	static void SobItemDelete(SERIAL_HANDLE hSerialId, SERIAL_HANDLE hItemSerialId, RwUInt8 byPlace, RwUInt8 bySlotIdx );
+	static void SobItemSort(SERIAL_HANDLE hSerialId, SERIAL_HANDLE hItemSerialId, RwUInt8 byPlace, RwUInt8 bySlotIdx, RwUInt8 byStackCount, RwBool bLast);
 
 	static void ItemSocketInsertBead(SERIAL_HANDLE hSerialId, RwBool bSuccess, RwUInt8 byItemPlace, RwUInt8 byItemPos, RwUInt8 byRestrictState, RwUInt8 byDurationType,
 		DBOTIME nUseStartTime, DBOTIME nUseEndTime, sITEM_RANDOM_OPTION* pRandomOption, RwUInt8 byBeadPlace, RwUInt8 byBeadPos, RwUInt8 byBeadRemainStack);
@@ -895,7 +896,7 @@ public:
 	static void TSClickSideIcon(RwUInt8 bySideIconType);
 	static void TSLevelCheck();
 	static void TSQuest();
-	static void TSDialogOpen();
+	static void TSDialogOpen(RwUInt8 byDialogOpenType);
 
 	//---------------------------------------------------------
 	// trigger direct event

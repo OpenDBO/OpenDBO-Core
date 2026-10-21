@@ -177,6 +177,8 @@ void PacketHandler_GSItemDurDown(void *pPacket);
 void PacketHandler_GSItemDurUpdate(void *pPacket);
 void PacketHandler_GSItemStackUpdate(void *pPacket);
 void PacketHandler_GSItemUpgradeRes(void *pPacket);
+void PacketHandler_GSItemUpgradeByCouponRes(void *pPacket);
+void PacketHandler_GSInventorySortRes(void *pPacket);
 void Packethandler_GSItemUpgradeAllNfy(void *pPacket);
 void PacketHandler_GSItemChangeOptionRes(void *pPacket);
 void Packethandler_GSItemChangeBattleAttributeRes(void *pPacket);

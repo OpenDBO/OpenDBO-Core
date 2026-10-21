@@ -179,6 +179,10 @@ void CNtlInventory::HandleEvents(RWS::CMsg &pMsg)
 	{
 		ItemMoveEventHandler(pMsg);
 	}
+	else if(pMsg.Id == g_EventSobItemSort)
+	{
+		ItemSortEventHandler(pMsg);
+	}
 	else if(pMsg.Id == g_EventSobItemStackMove)
 	{
 		ItemStackMoveEventHandler(pMsg);
@@ -821,20 +825,24 @@ void CNtlInventory::ItemUpgradeEventHandler(RWS::CMsg &msg)
 	if( pItemUpgrade->byStonePlace >= CONTAINER_TYPE_BAG_FIRST && pItemUpgrade->byStonePlace <= CONTAINER_TYPE_BAG_LAST )
 	{
 		CNtlSobItem* pBag = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( m_hBagItem[pItemUpgrade->byStonePlace-CONTAINER_TYPE_BAG1] ) );
-		NTL_ASSERT(pBag, "Bag not found");
-		CNtlSobItem* pStoneItem = pBag->GetChildItem( pItemUpgrade->byStonePos );
-		CNtlSobItemAttr* pStoneItemAttr = reinterpret_cast<CNtlSobItemAttr*>( pStoneItem->GetSobAttr() );
+		CNtlSobItem* pStoneItem = pBag ? pBag->GetChildItem( pItemUpgrade->byStonePos ) : NULL;
 
-		RwUInt8 nStackCount = pItemUpgrade->byStoneStack;
-		
-		if( nStackCount <= 0 )
+		// a used up coupon is already deleted by the server (GU_ITEM_DELETE) before its upgrade result
+		if( pStoneItem )
 		{
-			CNtlSLEventGenerator::SobItemDelete( GetNtlSLGlobal()->GetSobAvatar()->GetSerialID(), pStoneItem->GetSerialID(),
-												 pItemUpgrade->byStonePlace, pItemUpgrade->byStonePos );
-		}
-		else
-		{
-			pStoneItemAttr->SetStackNum( nStackCount );
+			CNtlSobItemAttr* pStoneItemAttr = reinterpret_cast<CNtlSobItemAttr*>( pStoneItem->GetSobAttr() );
+
+			RwUInt8 nStackCount = pItemUpgrade->byStoneStack;
+			
+			if( nStackCount <= 0 )
+			{
+				CNtlSLEventGenerator::SobItemDelete( GetNtlSLGlobal()->GetSobAvatar()->GetSerialID(), pStoneItem->GetSerialID(),
+													 pItemUpgrade->byStonePlace, pItemUpgrade->byStonePos );
+			}
+			else
+			{
+				pStoneItemAttr->SetStackNum( nStackCount );
+			}
 		}
 	}
 	else
@@ -845,18 +853,20 @@ void CNtlInventory::ItemUpgradeEventHandler(RWS::CMsg &msg)
 		if (pItemUpgrade->byCorePlace >= CONTAINER_TYPE_BAG_FIRST && pItemUpgrade->byCorePlace <= CONTAINER_TYPE_BAG_LAST)
 		{
 			CNtlSobItem* pBag = reinterpret_cast<CNtlSobItem*>(GetNtlSobManager()->GetSobObject(m_hBagItem[pItemUpgrade->byCorePlace - CONTAINER_TYPE_BAG1]));
-			NTL_ASSERT(pBag, "Bag not found");
-			CNtlSobItem* pStoneItem = pBag->GetChildItem(pItemUpgrade->byCorePos);
-			CNtlSobItemAttr* pStoneItemAttr = reinterpret_cast<CNtlSobItemAttr*>(pStoneItem->GetSobAttr());
+			CNtlSobItem* pStoneItem = pBag ? pBag->GetChildItem(pItemUpgrade->byCorePos) : NULL;
+			if (pStoneItem)
+			{
+				CNtlSobItemAttr* pStoneItemAttr = reinterpret_cast<CNtlSobItemAttr*>(pStoneItem->GetSobAttr());
 
-			if (pItemUpgrade->byCoreStack <= 0)
-			{
-				CNtlSLEventGenerator::SobItemDelete(GetNtlSLGlobal()->GetSobAvatar()->GetSerialID(), pStoneItem->GetSerialID(),
-					pItemUpgrade->byCorePlace, pItemUpgrade->byCorePos);
-			}
-			else
-			{
-				pStoneItemAttr->SetStackNum(pItemUpgrade->byCoreStack);
+				if (pItemUpgrade->byCoreStack <= 0)
+				{
+					CNtlSLEventGenerator::SobItemDelete(GetNtlSLGlobal()->GetSobAvatar()->GetSerialID(), pStoneItem->GetSerialID(),
+						pItemUpgrade->byCorePlace, pItemUpgrade->byCorePos);
+				}
+				else
+				{
+					pStoneItemAttr->SetStackNum(pItemUpgrade->byCoreStack);
+				}
 			}
 		}
 		else
@@ -866,19 +876,21 @@ void CNtlInventory::ItemUpgradeEventHandler(RWS::CMsg &msg)
 	if( pItemUpgrade->byItemPlace >= CONTAINER_TYPE_BAG_FIRST && pItemUpgrade->byItemPlace <= CONTAINER_TYPE_BAG_LAST )
 	{
 		CNtlSobItem* pBag = reinterpret_cast<CNtlSobItem*>( GetNtlSobManager()->GetSobObject( m_hBagItem[pItemUpgrade->byItemPlace-CONTAINER_TYPE_BAG1] ) );
-		NTL_ASSERT(pBag, "Bag not found");
-		CNtlSobItem* pItem = pBag->GetChildItem( pItemUpgrade->byItemPos );
-		CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>( pItem->GetSobAttr() );
+		CNtlSobItem* pItem = pBag ? pBag->GetChildItem( pItemUpgrade->byItemPos ) : NULL;
+		if( pItem )
+		{
+			CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>( pItem->GetSobAttr() );
 
-		if( pItemUpgrade->bItemDestroy )
-		{
-			CNtlSLEventGenerator::SobItemDelete( GetNtlSLGlobal()->GetSobAvatar()->GetSerialID(), pItem->GetSerialID(),
-												 pItemUpgrade->byItemPlace, pItemUpgrade->byItemPos );
+			if( pItemUpgrade->bItemDestroy )
+			{
+				CNtlSLEventGenerator::SobItemDelete( GetNtlSLGlobal()->GetSobAvatar()->GetSerialID(), pItem->GetSerialID(),
+													 pItemUpgrade->byItemPlace, pItemUpgrade->byItemPos );
+			}
+			else
+			{
+				pItemAttr->SetGrade( pItemUpgrade->byItemGrade );	
+			}		
 		}
-		else
-		{
-			pItemAttr->SetGrade( pItemUpgrade->byItemGrade );	
-		}		
 	}
 	else
 		NTL_ASSERTFAIL( "CNtlInventory::ItemUpgradeEventHandler : Upgrade item place is Wrong" );
@@ -1342,4 +1354,33 @@ CNtlSobQuestItem* CNtlQuestInventory::GetQuestItemFromTable(RwUInt32 uiQuestItem
 	}
 
 	return NULL;
+}
+
+// tw: the item takes its new position in its bag, its old slot is cleared only if it still holds the item
+// (another item may already have been moved there by this sort)
+void CNtlInventory::ItemSortEventHandler(RWS::CMsg &pMsg)
+{
+	SNtlEventSobItemSort* pItemSort = reinterpret_cast<SNtlEventSobItemSort*>(pMsg.pData);
+
+	if (pItemSort->byPlace < CONTAINER_TYPE_BAG_FIRST || pItemSort->byPlace > CONTAINER_TYPE_BAG_LAST)
+		return;
+
+	CNtlSobItem* pSobItem = reinterpret_cast<CNtlSobItem*>(GetNtlSobManager()->GetSobObject(pItemSort->hItemSerialId));
+	CNtlSobItem* pBagSobItem = reinterpret_cast<CNtlSobItem*>(GetNtlSobManager()->GetSobObject(GetBagItem(pItemSort->byPlace - CONTAINER_TYPE_BAG1)));
+	if (pSobItem == NULL || pBagSobItem == NULL)
+	{
+		DBO_FAIL("CNtlInventory::ItemSortEventHandler : item or bag instance is null");
+		return;
+	}
+
+	RwInt32 iOldSlotIdx = pSobItem->GetItemSlotIdx();
+	if (iOldSlotIdx != pItemSort->bySlotIdx)
+	{
+		pBagSobItem->SetChildSerial(pItemSort->bySlotIdx, pItemSort->hItemSerialId);
+
+		if (pBagSobItem->GetChildSerial(iOldSlotIdx) == pItemSort->hItemSerialId)
+			pBagSobItem->SetChildSerial(iOldSlotIdx, INVALID_SERIAL_ID);
+	}
+
+	pSobItem->HandleEvents(pMsg);
 }

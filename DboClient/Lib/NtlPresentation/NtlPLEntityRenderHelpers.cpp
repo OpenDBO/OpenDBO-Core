@@ -200,8 +200,7 @@ void Helper_SetAtomicAllMaterialSkinInfo(RpAtomic *pAtomic)
 
 
 				// temporary; for human, namek skin_jacket are different from majin's one
-				// DISABLED BY DANEOS
-                /*RwBool	MajinCheck	= FALSE;
+                RwBool	MajinCheck	= FALSE;
                 if(pMaterial->texture)
                 {
 				    std::string strTmp(const_cast<RwChar*>(pMaterial->texture->name), 3);
@@ -209,11 +208,12 @@ void Helper_SetAtomicAllMaterialSkinInfo(RpAtomic *pAtomic)
 				    {
 					    MajinCheck = TRUE;
 				    }
-                }*/
+                }
 				
 				if(_stricmp(chBuffer, "skin") == 0)
 				{
-					if(!_stricmp(chMatName, "skin_jacket") /*&& MajinCheck*/) // BY DANEOS
+					// only majin skin_jacket is part of the armor, elsewhere it is real skin (no upgrade emuv on it)
+					if(!_stricmp(chMatName, "skin_jacket") && MajinCheck)
 					{
 						// there would be armors here
 						NtlMatExtSetFlag(pMaterial, NtlMatExtGetFlag(pMaterial) | rpNTL_MATERIAL_MIXED);

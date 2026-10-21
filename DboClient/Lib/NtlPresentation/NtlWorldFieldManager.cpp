@@ -3542,6 +3542,9 @@ RwBool CNtlWorldFieldManager::SetAFieldProp(RwV3d& Pos, sNTL_FIELD_PROP& NtlFiel
 		}
 		else
 		{
+			if (!m_pFields[Idx].GetProp())
+				return FALSE;
+
 			switch (NtlFieldPropID)
 			{
 			case eNFP_NAME:
@@ -3781,7 +3784,12 @@ RwBool CNtlWorldFieldManager::GetAFieldProp(RwV3d& Pos, sNTL_FIELD_PROP& NtlFiel
 		}
 		else
 		{
-			NtlFieldProp = *m_pFields[Idx].GetProp();
+			// a loaded sector does not mean its field property was created yet
+			sNTL_FIELD_PROP* pFieldProp = m_pFields[Idx].GetProp();
+			if (!pFieldProp)
+				return FALSE;
+
+			NtlFieldProp = *pFieldProp;
 
 			return TRUE;
 		}
@@ -9937,7 +9945,12 @@ RwBool CNtlWorldFieldManager::GetAFieldProp(RwV3d& Pos, sNTL_FIELD_PROP& NtlFiel
 		}
 		else
 		{
-			NtlFieldProp = *m_pFields[Idx].GetProp();
+			// a loaded sector does not mean its field property was created yet
+			sNTL_FIELD_PROP* pFieldProp = m_pFields[Idx].GetProp();
+			if (!pFieldProp)
+				return FALSE;
+
+			NtlFieldProp = *pFieldProp;
 
 			return TRUE;
 		}

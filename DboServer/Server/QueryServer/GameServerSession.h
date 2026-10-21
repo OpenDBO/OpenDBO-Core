@@ -213,6 +213,7 @@ public:
 
 	void						RecvMascotSealSetReq(CNtlPacket* pPacket, CQueryServer* app);
 	void						RecvMascotSealClearReq(CNtlPacket* pPacket, CQueryServer* app);
+	void						RecvInventorySortReq(CNtlPacket* pPacket, CQueryServer* app);
 
 	void						RecvGmLog(CNtlPacket* pPacket, CQueryServer* app);
 };

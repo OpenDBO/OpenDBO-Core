@@ -136,7 +136,7 @@ public:
 	bool								CanProgressClickSideIcon(void);
 	bool								CanProgressLevelCheck(void);
 	bool								CanProgressQuest(void);
-	bool								CanProgressDialogOpen(void);
+	bool								CanProgressDialogOpen(unsigned int uiDialogOpenType = 0xffffffff);
 
 
 	// Parents ( Agency )

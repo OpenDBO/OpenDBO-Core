@@ -3381,3 +3381,17 @@ void CQueryServerSession::RecvMascotSealSetRes(CNtlPacket * pPacket)
 void CQueryServerSession::RecvMascotSealClearRes(CNtlPacket * pPacket)
 {
 }
+
+void CQueryServerSession::RecvInventorySortRes(CNtlPacket * pPacket)
+{
+	sQG_INVENTORY_SORT_RES * req = (sQG_INVENTORY_SORT_RES*)pPacket->GetPacketData();
+
+	CPlayer* pOwner = g_pObjectManager->GetPC(req->handle);
+	if (!pOwner || !pOwner->IsInitialized())
+		return;
+
+	if (pOwner->GetCharID() != req->charId)
+		return;
+
+	pOwner->GetPlayerItemContainer()->OnSortInventoryRes(req);
+}

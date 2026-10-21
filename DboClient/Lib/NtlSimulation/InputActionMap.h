@@ -30,6 +30,7 @@ typedef struct _SInputDashMap
 	RwUInt8 byDown;
 	RwReal fTime;
 	RwUInt32 uiMoveFlags;
+	RwBool bConsumed;		// fired on the key down (air forward), the next key up must not count
 }SInputDashMap;
 
 #define NTL_KEYBOARD_DBCLICK_TIME		0.15f
@@ -90,7 +91,7 @@ protected:
 	RwInt32 GetKeyDownCount(RwUInt32 uiFlags);
 	RwUInt32 ConvertServerFlags(RwUInt32 uiFlags);
 
-	void HitTestDownDbClickDashMap(SInputDashMap& sDashMap);
+	void HitTestDownDbClickDashMap(SInputDashMap& sDashMap, RwBool bFireOnDown = FALSE);
 	void HitTestUpDbClickDashMap(SInputDashMap& sDashMap);
 	void CallDashMove(RwUInt32 uiServerDashMoveFlags);
 

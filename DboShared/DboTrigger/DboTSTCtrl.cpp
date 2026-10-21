@@ -878,7 +878,7 @@ bool CDboTSTCtrl::CanProgressQuest(void)
 	return NTL_TSRESULT_TYPE_SUCCESS == tsResult ? true : false;
 }
 
-bool CDboTSTCtrl::CanProgressDialogOpen(void)
+bool CDboTSTCtrl::CanProgressDialogOpen(unsigned int uiDialogOpenType)
 {
 	if (IsCSComunication()) return false;
 	if (IsClientWait()) return false;
@@ -899,6 +899,7 @@ bool CDboTSTCtrl::CanProgressDialogOpen(void)
 	sTParam.SetAgency(GetParent());
 
 	SetEventGenType(eEVENT_GEN_TYPE_DIALOGOPEN);
+	SetEventGenId(uiDialogOpenType); // the receiver checks it against the dialog open type of the event
 
 	NTL_TSRESULT tsResult = GetTrigger()->RunTarget(NTL_TS_MAIN_GROUP_ID, m_pCurTSP->GetID(), GetParent()->GetRecv(), &sTParam);
 

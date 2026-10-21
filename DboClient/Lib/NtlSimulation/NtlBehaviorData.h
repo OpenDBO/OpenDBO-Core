@@ -742,6 +742,10 @@ public:
 	{
 		m_sCtrlStuff.Reset();
 		m_sMoveStuff.Reset();
+		m_sJumpStuff.Reset(); // an uninitialized jump state refused item use (vehicle)
+		m_sHitStuff.Reset();
+		m_sSkillStuff.Reset();
+		m_sHTBStuff.Reset();
 		m_byAirUpDown = 0;
 	}
 	

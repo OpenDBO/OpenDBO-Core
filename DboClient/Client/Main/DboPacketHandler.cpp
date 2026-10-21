@@ -990,6 +990,84 @@ void PacketHandler_GSItemUpgradeRes(void *pPacket)
 	}
 }
 
+// tw: every container is sorted on its own, merged stacks are deleted first and then every item takes its new slot
+void PacketHandler_GSInventorySortRes(void *pPacket)
+{
+	API_GetSLPacketLockManager()->Unlock( GU_INVENTORY_SORT_RES );
+
+	sGU_INVENTORY_SORT_RES* pRes = (sGU_INVENTORY_SORT_RES*)pPacket;
+
+	if( pRes->wResultCode != GAME_SUCCESS )
+	{
+		GetAlarmManager()->AlarmMessage(Logic_GetResultCodeString(pRes->wResultCode, "GU_INVENTORY_SORT_RES"), TRUE );
+		return;
+	}
+
+	SERIAL_HANDLE hAvatar = Logic_GetAvatarHandle();
+	RwBool bBank = pRes->byInventoryType == 2;
+
+	for( RwUInt8 i = 0; i < pRes->byContainerCount && i < NTL_MAX_SORT_CONTAINER; ++i )
+	{
+		sITEM_SORT_CONTAINER& rContainer = pRes->aContainer[i];
+
+		for( RwUInt8 j = 0; j < rContainer.byDelCount && j < NTL_MAX_BAG_ITEM_SLOT; ++j )
+		{
+			if( bBank )
+				CNtlSLEventGenerator::SobWarehouseItemDelete(hAvatar, rContainer.delItem[j].hItem, rContainer.byPlace, rContainer.delItem[j].byPos);
+			else
+				CNtlSLEventGenerator::SobItemDelete(hAvatar, rContainer.delItem[j].hItem, rContainer.byPlace, rContainer.delItem[j].byPos);
+		}
+
+		for( RwUInt8 j = 0; j < rContainer.byMoveCount && j < NTL_MAX_BAG_ITEM_SLOT; ++j )
+		{
+			CNtlSLEventGenerator::SobItemSort(hAvatar, rContainer.moveItem[j].hItem, rContainer.byPlace, rContainer.moveItem[j].byPos,
+											  rContainer.moveItem[j].byStack, j + 1 == rContainer.byMoveCount);
+		}
+	}
+
+	WCHAR awcBuffer[256];
+	swprintf_s(awcBuffer, 256, GetDisplayStringManager()->GetString("DST_INVENTORY_SORT_SUCCESS"),
+			   GetDisplayStringManager()->GetString(bBank ? "DST_WAREHOUSE_NAME" : "DST_MAINMENU_INVEN"));
+
+	GetAlarmManager()->AlarmMessage(awcBuffer, CAlarmManager::ALARM_ACTION_NOTIFY | CAlarmManager::ALARM_TYPE_CHAT_WARN);
+}
+
+// tw: a coupon always succeeds, the item gets the coupon grade for a limited time and is bound
+void PacketHandler_GSItemUpgradeByCouponRes(void *pPacket)
+{
+	API_GetSLPacketLockManager()->Unlock( GU_ITEM_UPGRADE_BY_COUPON_RES );
+
+	sGU_ITEM_UPGRADE_BY_COUPON_RES* pRes = (sGU_ITEM_UPGRADE_BY_COUPON_RES*)pPacket;
+
+	if( pRes->wResultCode != GAME_SUCCESS )
+	{
+		CDboEventGenerator::ItemUpgradeResult(pRes->wResultCode, 0, ITEM_UPGRADE_RESULT_FAIL, 0, 0);
+		GetAlarmManager()->AlarmMessage(Logic_GetResultCodeString(pRes->wResultCode, "GU_ITEM_UPGRADE_BY_COUPON_RES"), TRUE );
+		return;
+	}
+
+	if( pRes->byItemPlace >= CONTAINER_TYPE_BAG_FIRST && pRes->byItemPlace <= CONTAINER_TYPE_BAG_LAST )
+	{
+		CNtlInventory* pInventory = GetNtlSLGlobal()->GetSobAvatar()->GetInventory();
+		CNtlSobItem* pBagItem = reinterpret_cast<CNtlSobItem*>(GetNtlSobManager()->GetSobObject(pInventory->GetBagItem(pRes->byItemPlace - CONTAINER_TYPE_BAG1)));
+		CNtlSobItem* pItem = pBagItem ? pBagItem->GetChildItem(pRes->byItemPos) : NULL;
+
+		if( pItem )
+		{
+			CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>(pItem->GetSobAttr());
+			pItemAttr->SetDurationType(pRes->byDurationType);
+			pItemAttr->SetStartTime(pRes->nUseStartTime);
+			pItemAttr->SetEndTime(pRes->nUseEndTime);
+		}
+	}
+
+	CNtlSLEventGenerator::SobItemRestrictUpdate(pRes->byItemPlace, pRes->byItemPos, pRes->byRestrictState);
+
+	CDboEventGenerator::ItemUpgradeResult(pRes->wResultCode, pRes->byGrade, ITEM_UPGRADE_RESULT_SUCCESS, pRes->byCouponStack, 0);
+	CNtlSLEventGenerator::SobItemUpgrade(pRes->byGrade, pRes->byItemPlace, pRes->byItemPos, pRes->byCouponPlace, pRes->byCouponPos, pRes->byCouponStack,
+										 CONTAINER_TYPE_NONE, INVALID_BYTE, 0, false);
+}
+
 void Packethandler_GSItemUpgradeAllNfy(void *pPacket)
 {
 	sGU_ITEM_UPGRADE_ALL_NFY* pUpgrade = (sGU_ITEM_UPGRADE_ALL_NFY*)pPacket;
@@ -2083,7 +2161,23 @@ void PacketHandler_GSBuffActivate(void * pPacket)
 	CNtlSLEventGenerator::SobBuffActivate(pRes->handle, &pRes->sBuffInfo);
 
 	if (pRes->handle != Logic_GetAvatarHandle())
+	{
 		CNtlSLEventGenerator::SobFakeBuffActivate(pRes->handle, &pRes->sBuffInfo);
+		return;
+	}
+
+	// tell the avatar an item buff (auto pot) was switched on/off
+	if (pRes->sBuffInfo.bySourceType != DBO_OBJECT_SOURCE_ITEM)
+		return;
+
+	const WCHAR* pwcItemName = Logic_GetItemName(pRes->sBuffInfo.sourceTblidx);
+	if (pwcItemName == NULL || pwcItemName[0] == L'\0')
+		return;
+
+	WCHAR awcBuffer[256];
+	swprintf_s(awcBuffer, 256, GetDisplayStringManager()->GetString(pRes->sBuffInfo.bActive ? "DST_BUFF_ACTIVATE_BUFF_MSG" : "DST_BUFF_DEACTIVATE_BUFF_MSG"), pwcItemName);
+
+	GetAlarmManager()->AlarmMessage(awcBuffer, CAlarmManager::ALARM_ACTION_NOTIFY | CAlarmManager::ALARM_TYPE_CHAT_WARN);
 }
 
 void PacketHandler_GSCharUpdateLp(void *pPacket)

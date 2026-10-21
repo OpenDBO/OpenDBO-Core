@@ -592,7 +592,8 @@ NTL_TSRESULT CDboTSCTRecv::Run( CNtlTSEntity* pEntity, void* pParam )
 
 		case DBO_EVENT_TYPE_ID_DIALOGOPEN:
 		{
-			if (!(pTParam->GetCtrl()->GetEventGenType() == eEVENT_GEN_TYPE_DIALOGOPEN))
+			if (!(pTParam->GetCtrl()->GetEventGenType() == eEVENT_GEN_TYPE_DIALOGOPEN &&
+				  ( 0xff == ((CDboTSDialogOpen*)pEntity)->GetDialogOpenType() || ((CDboTSDialogOpen*)pEntity)->GetDialogOpenType() == pTParam->GetCtrl()->GetEventGenId() )))
 			{
 				tsResult |= NTL_TSRESULT_TYPE_COND_CAN_PROGRESS;
 			}

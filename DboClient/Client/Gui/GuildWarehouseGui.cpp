@@ -658,7 +658,7 @@ RwBool CGuildWarehouseAddonGui::Create()
 	m_pZenny->Enable(false);	
 
 	CNtlGuildWarehouse* pGuildWarehouse = GetNtlSLGlobal()->GetSobAvatar()->GetGuildWarehouse();
-	m_pZenny->SetText( pGuildWarehouse->GetZenny() );
+	m_pZenny->SetText( Logic_FormatZeni(pGuildWarehouse->GetZenny()) );
 
 	m_pMoneyIconTexture = Logic_CreateTexture( MONEYICON_NAME );
 
@@ -691,7 +691,7 @@ VOID CGuildWarehouseAddonGui::Destroy()
 }
 VOID CGuildWarehouseAddonGui::SetZenny(RwUInt32 uiZenny)
 {
-	m_pZenny->SetText(uiZenny);
+	m_pZenny->SetText(Logic_FormatZeni(uiZenny));
 }
 
 VOID CGuildWarehouseAddonGui::ClickedZennyButton(gui::CComponent* pComponent)

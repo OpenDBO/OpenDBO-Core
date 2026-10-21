@@ -4,6 +4,7 @@
 
 class CPlayer;
 struct sAVATAR_ATTRIBUTE;
+struct sQG_INVENTORY_SORT_RES;
 
 
 class CPlayerItemContainer
@@ -63,7 +64,9 @@ public:
 	void						AddReservedInventory(BYTE byPlace, BYTE byPos);
 	void						RemoveReservedInventory(BYTE byPlace, BYTE byPos);
 
-	void						SortInventory(BYTE byInventoryType, HOBJECT hNpcHandle); //not wortking yet
+	void						SortInventory(BYTE byInventoryType, HOBJECT hNpcHandle);
+	void						OnSortInventoryRes(sQG_INVENTORY_SORT_RES* pRes);	// query server saved the sort
+	void						SendSortInventoryRes(WORD wResultCode, BYTE byInventoryType);
 
 	void						ProcessItemWithDuration(DWORD dwTickDiff);
 	void						AddItemDuration(HOBJECT hHandle, CItem* pItem);
@@ -114,6 +117,8 @@ private:
 	CItem*										m_arr_ActiveBags[NTL_MAX_BAGSLOT_COUNT];	//store only bags which are on bag-slot <POS,OBJECT> (POS + 1 = Place inside Bag)
 
 	std::vector<std::pair<BYTE, BYTE>>			m_vecReservedInventory;
+
+	bool										m_bIsSorting;								// a sort waits for the query server
 
 	sITEM_BRIEF									m_sItemBrief[EQUIP_SLOT_TYPE_COUNT];
 

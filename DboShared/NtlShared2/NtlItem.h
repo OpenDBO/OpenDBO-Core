@@ -1372,18 +1372,43 @@ struct sITEM_POSITION_DATA
 	BYTE			byPos;		// À§Ä¡
 };
 
+// tw: GU_INVENTORY_SORT_RES, every container is sorted on its own (moves and deletes stay in its place)
 struct sITEM_SORT_DATA_MOVE
 {
 	HOBJECT			hItem;
-	BYTE			byPlace;
-	BYTE			byPos;
+	BYTE			byStack;		// stack count after merging stacks
+	BYTE			byPos;			// new position in the container
 };
 
 struct sITEM_SORT_DATA_DEL
 {
-	HOBJECT			hItem;
-	BYTE			byUnknown; //seems like pos from bag slot?? idk..
+	HOBJECT			hItem;			// stack merged into another one
+	BYTE			byPos;			// its position in the container
 };
+
+struct sITEM_SORT_CONTAINER
+{
+	BYTE					byPlace;
+	BYTE					byMoveCount;
+	BYTE					byDelCount;
+	sITEM_SORT_DATA_MOVE	moveItem[NTL_MAX_BAG_ITEM_SLOT];
+	sITEM_SORT_DATA_DEL		delItem[NTL_MAX_BAG_ITEM_SLOT];
+};
+
+// GQ_INVENTORY_SORT_REQ: the new place, position and stack of every sorted item, or its deletion
+struct sITEM_SORT_DATA
+{
+	ITEMID			itemId;
+	HOBJECT			hItem;
+	BYTE			byPlace;
+	BYTE			byOldPos;
+	BYTE			byPos;
+	BYTE			byStack;
+	bool			bDelete;
+};
+
+const int			NTL_MAX_SORT_CONTAINER = NTL_MAX_BAGSLOT_COUNT;	// 5 bags, 4 bank pages
+const int			NTL_MAX_SORT_ITEM = NTL_MAX_SORT_CONTAINER * NTL_MAX_BAG_ITEM_SLOT;
 
 //-----------------------------------------------------------------------------
 // ¾ÆÀÌÅÛ ÀÚµ¿ ÀåÂø

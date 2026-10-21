@@ -2111,8 +2111,8 @@ void CNtlFSMPlayerController::NotifyAirAccelMoveEventHandler(RWS::CMsg& pMsg, Rw
 	if (!(uiEventResult == NTL_FSM_EVENTRES_PASS || uiEventResult == NTL_FSM_EVENTRES_CHANGE_STATE))
 		return;
 
-	SNtlEventAirDashMove * pAirDashMove = reinterpret_cast<SNtlEventAirDashMove*>(pMsg.pData);
-	API_GetSLPacketGenerator()->SendAirAccelMove(m_pActor->GetPosition(), m_pActor->GetDirection(), (RwUInt8)pAirDashMove->uiMoveFlags);
+	SNtlEventAirAccelMove* pAirAccelMove = reinterpret_cast<SNtlEventAirAccelMove*>(pMsg.pData);
+	API_GetSLPacketGenerator()->SendAirAccelMove(m_pActor->GetPosition(), m_pActor->GetDirection(), pAirAccelMove->byMoveDirection);
 }
 
 // tw: the server gets the move when flying straight up/down starts (from idle) or stops
