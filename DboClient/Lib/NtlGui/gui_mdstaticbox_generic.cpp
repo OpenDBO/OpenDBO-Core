@@ -501,6 +501,9 @@ VOID CMDStaticBox_Generic::DrawXYItem( CMDStaticBox_Item* pItem, CMDStaticBox_It
 
 VOID CMDStaticBox_Generic::SetTextTexturePos( CRectangle& rect )
 {
+	if( !m_TextSurface.m_pTexture )
+		return;
+
 	m_TextSurface.m_SnapShot.rtRect.left = rect.left + m_nMarginX - MDSTATICBOX_TEXTURE_EFFECT_MARGIN;
 	m_TextSurface.m_SnapShot.rtRect.right = m_TextSurface.m_SnapShot.rtRect.left + m_TextSurface.m_pTexture->GetWidth();
 	m_TextSurface.m_SnapShot.rtRect.top = rect.top + m_nMarginY - MDSTATICBOX_TEXTURE_EFFECT_MARGIN;
@@ -533,6 +536,14 @@ VOID CMDStaticBox_Generic::CreateTexture(VOID)
 	}
 
 	m_TextSurface.m_pTexture = g_TextureMgr.CreateTexture( nTextureWidth, nTextureHeight );
+	if( !m_TextSurface.m_pTexture )
+	{
+		// forget the size so the next text update tries again
+		m_nTextureWidth = 0;
+		m_nTextureHeight = 0;
+		return;
+	}
+
 	m_TextSurface.m_SnapShot.uRed = 255;
 	m_TextSurface.m_SnapShot.uGreen = 255;
 	m_TextSurface.m_SnapShot.uBlue = 255;
@@ -719,7 +730,8 @@ VOID CMDStaticBox_Generic::OnPaint(VOID)
 		g_GuiRenderer.RenderQueue( &(*it).m_SnapShot, (*it).m_pTexture, m_pMDStaticBox->GetRenderTop() );
 	}
 
-	g_GuiRenderer.RenderQueue( &m_TextSurface.m_SnapShot, m_TextSurface.m_pTexture, m_pMDStaticBox->GetRenderTop() );
+	if( m_TextSurface.m_pTexture )
+		g_GuiRenderer.RenderQueue( &m_TextSurface.m_SnapShot, m_TextSurface.m_pTexture, m_pMDStaticBox->GetRenderTop() );
 }
 
 VOID CMDStaticBox_Generic::OnSetAlpha( RwUInt8 ucAlpha )

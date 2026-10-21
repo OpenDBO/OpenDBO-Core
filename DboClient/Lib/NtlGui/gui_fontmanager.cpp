@@ -151,6 +151,9 @@ VOID CFontManager::BitmapToTexture( CTexture *pTexture, const CRectangle& rect, 
 	QueryPerformanceCounter( &begin_tick );
 	// TEST BLOCK END
 
+	if( !pTexture )
+		return;
+
 	INT nTWidth = pTexture->GetWidth();
 	INT nTHeight = pTexture->GetHeight();
 
@@ -367,6 +370,9 @@ VOID CFontManager::BitmapToTexture( CTexture *pTexture, const CRectangle& rtSrc,
 								    INT nEffectMode /* = TE_NONE */, COLORREF effectcolor /* = 0 */, INT nEffectValue /* = 0 */,
 									BOOL bUseBgColor /* = FALSE */, COLORREF bgcolor /* = 0  */ )
 {
+	if( !pTexture )
+		return;
+
 	INT nTWidth = pTexture->GetWidth();
 	INT nTHeight = pTexture->GetHeight();
 
