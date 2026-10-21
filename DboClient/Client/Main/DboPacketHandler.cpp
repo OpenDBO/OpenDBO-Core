@@ -990,6 +990,42 @@ void PacketHandler_GSItemUpgradeRes(void *pPacket)
 	}
 }
 
+// tw: a coupon always succeeds, the item gets the coupon grade for a limited time and is bound
+void PacketHandler_GSItemUpgradeByCouponRes(void *pPacket)
+{
+	API_GetSLPacketLockManager()->Unlock( GU_ITEM_UPGRADE_BY_COUPON_RES );
+
+	sGU_ITEM_UPGRADE_BY_COUPON_RES* pRes = (sGU_ITEM_UPGRADE_BY_COUPON_RES*)pPacket;
+
+	if( pRes->wResultCode != GAME_SUCCESS )
+	{
+		CDboEventGenerator::ItemUpgradeResult(pRes->wResultCode, 0, ITEM_UPGRADE_RESULT_FAIL, 0, 0);
+		GetAlarmManager()->AlarmMessage(Logic_GetResultCodeString(pRes->wResultCode, "GU_ITEM_UPGRADE_BY_COUPON_RES"), TRUE );
+		return;
+	}
+
+	if( pRes->byItemPlace >= CONTAINER_TYPE_BAG_FIRST && pRes->byItemPlace <= CONTAINER_TYPE_BAG_LAST )
+	{
+		CNtlInventory* pInventory = GetNtlSLGlobal()->GetSobAvatar()->GetInventory();
+		CNtlSobItem* pBagItem = reinterpret_cast<CNtlSobItem*>(GetNtlSobManager()->GetSobObject(pInventory->GetBagItem(pRes->byItemPlace - CONTAINER_TYPE_BAG1)));
+		CNtlSobItem* pItem = pBagItem ? pBagItem->GetChildItem(pRes->byItemPos) : NULL;
+
+		if( pItem )
+		{
+			CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>(pItem->GetSobAttr());
+			pItemAttr->SetDurationType(pRes->byDurationType);
+			pItemAttr->SetStartTime(pRes->nUseStartTime);
+			pItemAttr->SetEndTime(pRes->nUseEndTime);
+		}
+	}
+
+	CNtlSLEventGenerator::SobItemRestrictUpdate(pRes->byItemPlace, pRes->byItemPos, pRes->byRestrictState);
+
+	CDboEventGenerator::ItemUpgradeResult(pRes->wResultCode, pRes->byGrade, ITEM_UPGRADE_RESULT_SUCCESS, pRes->byCouponStack, 0);
+	CNtlSLEventGenerator::SobItemUpgrade(pRes->byGrade, pRes->byItemPlace, pRes->byItemPos, pRes->byCouponPlace, pRes->byCouponPos, pRes->byCouponStack,
+										 CONTAINER_TYPE_NONE, INVALID_BYTE, 0, false);
+}
+
 void Packethandler_GSItemUpgradeAllNfy(void *pPacket)
 {
 	sGU_ITEM_UPGRADE_ALL_NFY* pUpgrade = (sGU_ITEM_UPGRADE_ALL_NFY*)pPacket;

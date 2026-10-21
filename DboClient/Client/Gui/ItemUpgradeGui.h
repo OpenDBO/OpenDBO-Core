@@ -88,6 +88,9 @@ private:
 	
 	RwBool	IsUpgradableItem( CNtlSobItemAttr* pItemAttr );
 	RwBool	IsHoipoiStone( CNtlSobItemAttr* pItemAttr );
+	RwBool	IsCoupon( CNtlSobItemAttr* pItemAttr );
+	RwBool	IsCouponInSlot(VOID);
+	RwBool	IsValidCouponForItem( CNtlSobItemAttr* pItemAttr, sITEM_TBLDAT* pCouponTbl, bool bSendError );
 	RwBool	IsGuardStone(CNtlSobItemAttr* pItemAttr);
 	RwBool	IsValidUpgradeItem(CNtlSobItemAttr* pItemAttr, bool bSendError = false);
 	RwBool	IsValidHoipoiStone(CNtlSobItemAttr* pItemAttr, bool bSendError = false);

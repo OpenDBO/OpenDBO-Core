@@ -399,7 +399,32 @@ VOID CItemUpgradeGui::SetBasicUISetting(VOID)
 {
 	m_pstbInfoTitle->SetText( GetDisplayStringManager()->GetString( "DST_ITEMUPGRADE_DLGTITLE" ) );
 
-	
+	// tw: a coupon explains itself instead of the stone guide
+	if( IsCouponInSlot() )
+	{
+		sITEM_TBLDAT* pCouponTbl = reinterpret_cast<CNtlSobItemAttr*>( m_pStoneItem->GetSobAttr() )->GetItemTbl();
+
+		const char* pcCouponInfo = "DST_ITEMUPGRADE_COUPON_FULL";
+		if( pCouponTbl->byItem_Type == ITEM_TYPE_UPGRADE_COUPON_WEAPON )
+			pcCouponInfo = "DST_ITEMUPGRADE_COUPON_WEAPON";
+		else if( pCouponTbl->byItem_Type == ITEM_TYPE_UPGRADE_COUPON_ARMOR )
+			pcCouponInfo = "DST_ITEMUPGRADE_COUPON_ARMOR";
+
+		// the coupon grade, the server upgrades with it
+		WCHAR awcCouponInfo[512];
+		swprintf_s( awcCouponInfo, 512, GetDisplayStringManager()->GetString( pcCouponInfo ), (RwInt32)pCouponTbl->Charm_Tblidx );
+
+		std::wstring strCoupon = awcCouponInfo;
+		strCoupon += L"[br][br]";
+		strCoupon += GetDisplayStringManager()->GetString( "DST_ITEMUPGRADE_COUPON_COMMENT" );
+		strCoupon += L"[br]";
+		strCoupon += GetDisplayStringManager()->GetString( "DST_ITEMUPGRADE_COUPON_LAST_COMMENT" );
+
+		m_phtmlInfoText->SetHtmlFromMemory( strCoupon.c_str(), strCoupon.size() );
+		return;
+	}
+
+
 	std::wstring strPrice = GetDisplayStringManager()->GetString("DST_ITEMUPGRADE_MAINTITLE");
 	strPrice += L"[br]";
 	strPrice += GetDisplayStringManager()->GetString("DST_ITEMUPGRADE_INFO");
@@ -636,6 +661,9 @@ VOID CItemUpgradeGui::SetHoipoiStone(RwInt32 nStackCount, CNtlSobItem* pHoipoiSt
 	m_nStoneStackNum = nStackCount;
 	m_surSlot[SLOT_STONE].SetTexture( (gui::CTexture*)pHoipoiStone->GetIcon()->GetImage() );
 	CreateStackNumber(SLOT_STONE, nStackCount );
+
+	if( IsCouponInSlot() )
+		SetBasicUISetting();
 }
 
 VOID CItemUpgradeGui::SetGuardStone(RwInt32 nStackCount, CNtlSobItem * pGuardStone)
@@ -911,6 +939,13 @@ VOID CItemUpgradeGui::SendUpgradePacket(VOID)
 	RwUInt8 byStonePlace = m_pStoneItem->GetParentItemSlotIdx() + CONTAINER_TYPE_BAG1;
 	RwUInt8 byStonePos = m_pStoneItem->GetItemSlotIdx();
 
+	if( IsCouponInSlot() )
+	{
+		GetDboGlobal()->GetGamePacketGenerator()->SendItemUpgradeByCouponReq( m_hNPCSerial, byItemPlace, byItemPos, byStonePlace, byStonePos );
+		SetState( STATE_PACKETWAIT );
+		return;
+	}
+
 	RwUInt8 byCorePlace = INVALID_BYTE;
 	RwUInt8 byCorePos = INVALID_BYTE;
 
@@ -1016,11 +1051,74 @@ RwBool CItemUpgradeGui::IsHoipoiStone( CNtlSobItemAttr* pItemAttr )
 
 	if( pData->byItem_Type == ITEM_TYPE_UPGRADE_STONE_WEAPON ||
 		pData->byItem_Type == ITEM_TYPE_UPGRADE_STONE_ARMOR ||
-		pData->byItem_Type == ITEM_TYPE_GREATER_UPGRADE_STONE_WEAPON || 
+		pData->byItem_Type == ITEM_TYPE_GREATER_UPGRADE_STONE_WEAPON ||
 		pData->byItem_Type == ITEM_TYPE_GREATER_UPGRADE_STONE_ARMOR)
 		return TRUE;
 
+	// tw: upgrade coupons go into the stone slot too
+	if( IsCoupon( pItemAttr ) )
+		return TRUE;
+
 	return FALSE;
+}
+
+RwBool CItemUpgradeGui::IsCoupon( CNtlSobItemAttr* pItemAttr )
+{
+	sITEM_TBLDAT* pData = pItemAttr->GetItemTbl();
+	if( !pData )
+		return FALSE;
+
+	return pData->byItem_Type == ITEM_TYPE_UPGRADE_COUPON_WEAPON ||
+		   pData->byItem_Type == ITEM_TYPE_UPGRADE_COUPON_ARMOR ||
+		   pData->byItem_Type == ITEM_TYPE_UPGRADE_COUPON_FULL;
+}
+
+RwBool CItemUpgradeGui::IsCouponInSlot(VOID)
+{
+	if( m_pStoneItem == NULL )
+		return FALSE;
+
+	return IsCoupon( reinterpret_cast<CNtlSobItemAttr*>( m_pStoneItem->GetSobAttr() ) );
+}
+
+// tw: a coupon only works on a not upgraded item of its kind (weapon, armor or both) within its level range
+RwBool CItemUpgradeGui::IsValidCouponForItem( CNtlSobItemAttr* pItemAttr, sITEM_TBLDAT* pCouponTbl, bool bSendError )
+{
+	sITEM_TBLDAT* pItemTbl = pItemAttr->GetItemTbl();
+	if( !pItemTbl || !pCouponTbl )
+		return FALSE;
+
+	if( pItemAttr->GetGrade() > 0 )
+	{
+		if( bSendError )
+			GetAlarmManager()->AlarmMessage( "DST_ITEMUPGRADE_COUPON_USE_ITEM_ERR" );
+
+		return FALSE;
+	}
+
+	BYTE byItemTypeGroup = GetItemTypeGroup( pItemTbl->byItem_Type );
+
+	bool bTypeOk = pCouponTbl->byItem_Type == ITEM_TYPE_UPGRADE_COUPON_FULL ||
+				   ( byItemTypeGroup == ITEM_TYPE_GROUP_WEAPON && pCouponTbl->byItem_Type == ITEM_TYPE_UPGRADE_COUPON_WEAPON ) ||
+				   ( byItemTypeGroup == ITEM_TYPE_GROUP_ARMOR && pCouponTbl->byItem_Type == ITEM_TYPE_UPGRADE_COUPON_ARMOR );
+
+	if( !bTypeOk )
+	{
+		if( bSendError )
+			GetAlarmManager()->AlarmMessage( "DST_ITEMUPGRADE_COUPON_TYPE_ERR" );
+
+		return FALSE;
+	}
+
+	if( pItemTbl->byNeed_Min_Level < pCouponTbl->byNeed_Min_Level || pItemTbl->byNeed_Min_Level > pCouponTbl->byNeed_Max_Level )
+	{
+		if( bSendError )
+			GetAlarmManager()->AlarmMessage( "DST_ITEMUPGRADE_COUPON_LEVEL_ERR" );
+
+		return FALSE;
+	}
+
+	return TRUE;
 }
 
 RwBool CItemUpgradeGui::IsGuardStone(CNtlSobItemAttr * pItemAttr)
@@ -1068,6 +1166,9 @@ RwBool CItemUpgradeGui::IsValidUpgradeItem(CNtlSobItemAttr * pItemAttr, bool bSe
 		sITEM_TBLDAT* pItemData = pStoneItemAttr->GetItemTbl();
 		NTL_ASSERT(pItemData, "CItemUpgradeGui::IsValidUpgradeItem : Item Must have ItemTable");
 
+		if (IsCoupon(pStoneItemAttr))
+			return IsValidCouponForItem(pItemAttr, pItemData, bSendError);
+
 		if (pData->byNeed_Min_Level > pItemData->byNeed_Max_Level)
 		{
 			if (bSendError)
@@ -1096,6 +1197,9 @@ RwBool CItemUpgradeGui::IsValidHoipoiStone(CNtlSobItemAttr* pItemAttr, bool bSen
 		CNtlSobItemAttr* pUpgradeItemAttr = reinterpret_cast<CNtlSobItemAttr*>(m_pUpgradeItem->GetSobAttr());
 		sITEM_TBLDAT* pItemData = pUpgradeItemAttr->GetItemTbl();
 		NTL_ASSERT(pItemData, "CItemUpgradeGui::IsValidHoipoiStone : Item Must have ItemTable");
+
+		if (IsCoupon(pItemAttr))
+			return IsValidCouponForItem(pUpgradeItemAttr, pData, bSendError);
 
 		if (pData->byNeed_Max_Level < pItemData->byNeed_Min_Level)
 		{
@@ -1363,7 +1467,8 @@ VOID CItemUpgradeGui::OnClickCompoundBtn( gui::CComponent* pComponent )
 	if( m_eState != STATE_UPGRADE_READY )
 		return;
 
-	if( m_pCardGui )
+	// a coupon always succeeds, there is nothing to roll
+	if( m_pCardGui && !IsCouponInSlot() )
 		OpenCardSelect();
 	else
 		SetState( STATE_UPGRADE_PROCESS );
