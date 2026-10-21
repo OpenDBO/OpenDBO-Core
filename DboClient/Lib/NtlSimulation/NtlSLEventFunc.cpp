@@ -4254,9 +4254,10 @@ void CNtlSLEventGenerator::TSQuest()
 	_SendMsg(msg);
 }
 
-void CNtlSLEventGenerator::TSDialogOpen()
+void CNtlSLEventGenerator::TSDialogOpen(RwUInt8 byDialogOpenType)
 {
 	SNtlEventTSDialogOpen sData;
+	sData.byDialogOpenType = byDialogOpenType;
 
 	RWS::CMsg msg;
 	msg.Id = g_EventTSDialogOpen;

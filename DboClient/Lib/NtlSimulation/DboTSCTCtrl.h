@@ -101,7 +101,7 @@ public:
 	void								UT_ClickSideIcon();
 	void								UT_LevelCheck();
 	void								UT_Quest();
-	void								UT_DialogOpen();
+	void								UT_DialogOpen(unsigned int uiDialogOpenType);
 
 		//////////////////////////////////////////////////////////////////////////
 		//

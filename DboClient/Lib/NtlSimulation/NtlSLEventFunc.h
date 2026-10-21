@@ -895,7 +895,7 @@ public:
 	static void TSClickSideIcon(RwUInt8 bySideIconType);
 	static void TSLevelCheck();
 	static void TSQuest();
-	static void TSDialogOpen();
+	static void TSDialogOpen(RwUInt8 byDialogOpenType);
 
 	//---------------------------------------------------------
 	// trigger direct event

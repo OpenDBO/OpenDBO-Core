@@ -630,6 +630,9 @@ VOID CMultiDialogGui::HandleEvents( RWS::CMsg& msg )
 				else if (pMerchantTblDat->bySell_Type == MERCHANT_SELL_TYPE_GAMBLE_ZENNY)
 				{
 					swprintf_s(awcBuffer, 256, GetDisplayStringManager()->GetString("DST_GAMBLE_GUIDE_ZENNY"), Logic_FormatZeni(pMerchantTblDat->dwNeedMileage));
+
+					// the pet machine, quests ask to open it
+					CNtlSLEventGenerator::TSDialogOpen(TS_DIALOG_OPEN_TYPE_PET_MACHINE);
 				}
 
 				ReserveDialog( std::wstring(awcBuffer), sMultiDialogData::TYPE_JUST_MSG, FALSE );

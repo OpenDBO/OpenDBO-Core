@@ -98,6 +98,7 @@ CDboTSCQAgency::CDboTSCQAgency( void )
 	LinkMsg( g_EventTSUseMail );
 	LinkMsg( g_EventTSParty );
 	LinkMsg( g_EventTSClickSideIcon );
+	LinkMsg( g_EventTSDialogOpen );
 }
 
 CDboTSCQAgency::~CDboTSCQAgency( void )
@@ -156,6 +157,7 @@ CDboTSCQAgency::~CDboTSCQAgency( void )
 	UnLinkMsg( g_EventTSUseMail );
 	UnLinkMsg( g_EventTSParty );
 	UnLinkMsg( g_EventTSClickSideIcon );
+	UnLinkMsg( g_EventTSDialogOpen );
 
 }
 
@@ -292,7 +294,7 @@ SGET_QUEST_INFO* CDboTSCQAgency::GetQuestInfoList( eEVENT_GEN_TYPE eEvtGenType, 
 			else if (eEVENT_GEN_TYPE_CLICK_SIDEICON == eEvtGenType)		bCan = pQCtrl->CanProgressClickSideIcon();
 			else if (eEVENT_GEN_TYPE_LEVELCHECK == eEvtGenType)		bCan = pQCtrl->CanProgressLevelCheck();
 			else if (eEVENT_GEN_TYPE_QUEST == eEvtGenType)		bCan = pQCtrl->CanProgressQuest();
-			else if (eEVENT_GEN_TYPE_DIALOGOPEN == eEvtGenType)		bCan = pQCtrl->CanProgressDialogOpen();
+			else if (eEVENT_GEN_TYPE_DIALOGOPEN == eEvtGenType)		bCan = pQCtrl->CanProgressDialogOpen(uiOwnerId);
 
 			else return &m_QuestInfo;
 		}
@@ -1200,12 +1202,15 @@ void CDboTSCQAgency::HandleEvents( RWS::CMsg& Msg )
 	}
 	else if (Msg.Id == g_EventTSDialogOpen)
 	{
-		SGET_QUEST_INFO* pQuestInfo = GetQuestInfoList(eEVENT_GEN_TYPE_DIALOGOPEN, 0);
+		SNtlEventTSDialogOpen* pData = reinterpret_cast<SNtlEventTSDialogOpen*>(Msg.pData);
+
+		// the dialog open type is passed as the owner id, quests only progress for their own type
+		SGET_QUEST_INFO* pQuestInfo = GetQuestInfoList(eEVENT_GEN_TYPE_DIALOGOPEN, pData->byDialogOpenType);
 
 		if (!pQuestInfo->QuestInfoList.empty())
 		{
 			sQUEST_INFO& sQuestInfo = pQuestInfo->QuestInfoList[0];
-			UT_EventDoQuest(sQuestInfo, eEVENT_GEN_TYPE_DIALOGOPEN, 0);
+			UT_EventDoQuest(sQuestInfo, eEVENT_GEN_TYPE_DIALOGOPEN, pData->byDialogOpenType);
 		}
 	}
 }
@@ -2295,7 +2300,7 @@ void CDboTSCQAgency::UT_EventDoQuest( sQUEST_INFO& sQuestInfo, eEVENT_GEN_TYPE e
 			else if (eEVENT_GEN_TYPE_CLICK_SIDEICON == eEvtGenType)	pQCtrl->UT_ClickSideIcon();
 			else if (eEVENT_GEN_TYPE_LEVELCHECK == eEvtGenType)		pQCtrl->UT_LevelCheck();
 			else if (eEVENT_GEN_TYPE_QUEST == eEvtGenType)			pQCtrl->UT_Quest();
-			else if (eEVENT_GEN_TYPE_DIALOGOPEN == eEvtGenType)		pQCtrl->UT_DialogOpen();
+			else if (eEVENT_GEN_TYPE_DIALOGOPEN == eEvtGenType)		pQCtrl->UT_DialogOpen(uiOwnerId);
 
 			else
 			{
@@ -2350,7 +2355,7 @@ void CDboTSCQAgency::UT_EventDoQuest( sQUEST_INFO& sQuestInfo, eEVENT_GEN_TYPE e
 			else if (eEVENT_GEN_TYPE_CLICK_SIDEICON == eEvtGenType)	pQCtrl->UT_ClickSideIcon();
 			else if (eEVENT_GEN_TYPE_LEVELCHECK == eEvtGenType)		pQCtrl->UT_LevelCheck();
 			else if (eEVENT_GEN_TYPE_QUEST == eEvtGenType)			pQCtrl->UT_Quest();
-			else if (eEVENT_GEN_TYPE_DIALOGOPEN == eEvtGenType)		pQCtrl->UT_DialogOpen();
+			else if (eEVENT_GEN_TYPE_DIALOGOPEN == eEvtGenType)		pQCtrl->UT_DialogOpen(uiOwnerId);
 
 			else
 			{

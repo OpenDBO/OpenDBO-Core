@@ -3339,8 +3339,17 @@ struct SNtlEventTSQuest
 {
 };
 
+// ts dialog open type (dotype in the quest scripts), raised by the tw client once the dialog is open
+enum eTS_DIALOG_OPEN_TYPE
+{
+	TS_DIALOG_OPEN_TYPE_MAILBOX,
+	TS_DIALOG_OPEN_TYPE_PET_MACHINE,
+	TS_DIALOG_OPEN_TYPE_PRIVATE_SHOP,
+};
+
 struct SNtlEventTSDialogOpen
 {
+	RwUInt8			byDialogOpenType;		// eTS_DIALOG_OPEN_TYPE
 };
 
 //////////////////////////////////////////////
