@@ -1952,7 +1952,7 @@ WCHAR * Logic_FormatZeni(DWORD dwZeni)
 
 	memset(awcFinal, 0, sizeof(awcFinal)); // set null otherwise old zeni is mixed with new value
 
-	_itow_s(dwZeni, awcZeni, 128, 10); // convert zeni dword to wchar
+	_ultow_s(dwZeni, awcZeni, 128, 10); // convert zeni dword to wchar (unsigned, a signed conversion shows big amounts negative)
 
 	int Length = wcslen(awcZeni); // zeni length
 	int CommaOffset = Length % 3; // Get the comma offset
