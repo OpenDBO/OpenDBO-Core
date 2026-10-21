@@ -990,6 +990,48 @@ void PacketHandler_GSItemUpgradeRes(void *pPacket)
 	}
 }
 
+// tw: every container is sorted on its own, merged stacks are deleted first and then every item takes its new slot
+void PacketHandler_GSInventorySortRes(void *pPacket)
+{
+	API_GetSLPacketLockManager()->Unlock( GU_INVENTORY_SORT_RES );
+
+	sGU_INVENTORY_SORT_RES* pRes = (sGU_INVENTORY_SORT_RES*)pPacket;
+
+	if( pRes->wResultCode != GAME_SUCCESS )
+	{
+		GetAlarmManager()->AlarmMessage(Logic_GetResultCodeString(pRes->wResultCode, "GU_INVENTORY_SORT_RES"), TRUE );
+		return;
+	}
+
+	SERIAL_HANDLE hAvatar = Logic_GetAvatarHandle();
+	RwBool bBank = pRes->byInventoryType == 2;
+
+	for( RwUInt8 i = 0; i < pRes->byContainerCount && i < NTL_MAX_SORT_CONTAINER; ++i )
+	{
+		sITEM_SORT_CONTAINER& rContainer = pRes->aContainer[i];
+
+		for( RwUInt8 j = 0; j < rContainer.byDelCount && j < NTL_MAX_BAG_ITEM_SLOT; ++j )
+		{
+			if( bBank )
+				CNtlSLEventGenerator::SobWarehouseItemDelete(hAvatar, rContainer.delItem[j].hItem, rContainer.byPlace, rContainer.delItem[j].byPos);
+			else
+				CNtlSLEventGenerator::SobItemDelete(hAvatar, rContainer.delItem[j].hItem, rContainer.byPlace, rContainer.delItem[j].byPos);
+		}
+
+		for( RwUInt8 j = 0; j < rContainer.byMoveCount && j < NTL_MAX_BAG_ITEM_SLOT; ++j )
+		{
+			CNtlSLEventGenerator::SobItemSort(hAvatar, rContainer.moveItem[j].hItem, rContainer.byPlace, rContainer.moveItem[j].byPos,
+											  rContainer.moveItem[j].byStack, j + 1 == rContainer.byMoveCount);
+		}
+	}
+
+	WCHAR awcBuffer[256];
+	swprintf_s(awcBuffer, 256, GetDisplayStringManager()->GetString("DST_INVENTORY_SORT_SUCCESS"),
+			   GetDisplayStringManager()->GetString(bBank ? "DST_WAREHOUSE_NAME" : "DST_MAINMENU_INVEN"));
+
+	GetAlarmManager()->AlarmMessage(awcBuffer, CAlarmManager::ALARM_ACTION_NOTIFY | CAlarmManager::ALARM_TYPE_CHAT_WARN);
+}
+
 // tw: a coupon always succeeds, the item gets the coupon grade for a limited time and is bound
 void PacketHandler_GSItemUpgradeByCouponRes(void *pPacket)
 {

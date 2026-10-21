@@ -319,6 +319,20 @@ void CNtlSobItem::HandleEvents(RWS::CMsg &pMsg)
 
 		m_pIcon->HandleEvents(pMsg);
 	}
+	else if(pMsg.Id == g_EventSobItemSort)
+	{
+		// tw: the container already points to the item at its new slot, merged stacks keep the new count
+		SNtlEventSobItemSort* pItemSort = reinterpret_cast<SNtlEventSobItemSort*>(pMsg.pData);
+		if(pItemSort->hItemSerialId == GetSerialID())
+		{
+			SetItemSlotIdx(pItemSort->bySlotIdx);
+
+			CNtlSobItemAttr* pSobItemAttr = reinterpret_cast<CNtlSobItemAttr*>(GetSobAttr());
+			pSobItemAttr->SetStackNum(pItemSort->byStackCount);
+		}
+
+		m_pIcon->HandleEvents(pMsg);
+	}
 	else if(pMsg.Id == g_EventSobItemStackMove || pMsg.Id == g_EventSobWarehouseItemStackMove)
 	{
 		ItemStackMoveEventHandler(pMsg);

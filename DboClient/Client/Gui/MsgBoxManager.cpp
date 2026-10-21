@@ -35,6 +35,7 @@
 #include "ChannelChangeGui.h"
 #include "DisplayStringManager.h"
 #include "AlarmManager.h"
+#include "IconMoveManager.h"
 #include "CharStageState.h"
 #include "LobbyManager.h"
 
@@ -1468,6 +1469,20 @@ VOID CMsgBoxManager::HandleEvents( RWS::CMsg &msg )
 					}
 				}
 			}
+		}
+		else if (pMsgBoxResult->strID == "DST_INVENTORY_SORT_MSGBOX")
+		{
+			if (pMsgBoxResult->eResult != MBR_OK)
+				return;
+
+			sMsgBoxData* pMsgBoxData = reinterpret_cast<sMsgBoxData*>(pMsgBoxResult->pData);
+
+			// a picked icon would point at a slot the sort moves
+			if (GetIconMoveManager()->IsActive())
+				GetIconMoveManager()->IconMoveEnd();
+
+			// byIndex: inventory type (0 bag, 2 private bank), hHandle: bank npc
+			GetDboGlobal()->GetGamePacketGenerator()->SendInventorySortReq(pMsgBoxData->byIndex, pMsgBoxData->hHandle);
 		}
 		else if (pMsgBoxResult->strID == "DST_BUFF_MB_DELETE_SUB_BUFF_MSG")
 		{

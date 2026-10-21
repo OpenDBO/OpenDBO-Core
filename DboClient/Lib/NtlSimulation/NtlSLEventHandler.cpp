@@ -156,6 +156,7 @@ RwBool CNtlSLEventHandler::Create(void)
 	RegisterMsg (g_EventSobItemStackMove, "g_EventSobItemStackMove", "SNtlEventSobItemStackMove");
 	RegisterMsg (g_EventSobItemUpdate, "g_EventSobItemUpdate", "SNtlEventSobItemUpdate" );
 	RegisterMsg (g_EventSobItemDelete, "g_EventSobItemDelete", "SNtlEventSobItemDelete" );
+	RegisterMsg (g_EventSobItemSort, "g_EventSobItemSort", "SNtlEventSobItemSort" );
 	RegisterMsg (g_EventSobItemDurUpdate, "g_EventSobItemDurUpdate", " " );
 	RegisterMsg (g_EventSobEquipChange, "g_EventSobEquipChange", "SNtlEventSobEquipChange" );
 	RegisterMsg (g_EventSobEquipItemDurDown, "g_EventSobEquipItemDurDown", " " );	
@@ -776,6 +777,7 @@ void CNtlSLEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventSobItemStackMove);
 	UnRegisterMsg(g_EventSobItemUpdate);
 	UnRegisterMsg(g_EventSobItemDelete);
+	UnRegisterMsg(g_EventSobItemSort);
 	UnRegisterMsg(g_EventSobItemDurUpdate);
 	UnRegisterMsg(g_EventSobEquipChange);
 	UnRegisterMsg(g_EventSobEquipItemDurDown);

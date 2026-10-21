@@ -190,6 +190,7 @@ RWS::CEventId g_EventSobAirAccel;
 RWS::CEventId g_EventSobItemAdd;
 
 RWS::CEventId g_EventSobItemDelete;
+RWS::CEventId g_EventSobItemSort;
 
 RWS::CEventId g_EventSobItemMove;
 

@@ -139,6 +139,14 @@ VOID CWarehouseGui::Init()
 	m_pExitButton= (gui::CButton*)GetComponent("btnExit");
 	m_slotCloseButton = m_pExitButton->SigClicked().Connect(this, &CWarehouseGui::ClickedCloseButton);
 
+	// tw: the menu sorts the private bank
+	gui::CButton* pPopupMenuButton = (gui::CButton*)GetComponent("btnPopupMenu");
+	if( pPopupMenuButton )
+	{
+		m_slotPopupMenuButton = pPopupMenuButton->SigClicked().Connect(this, &CWarehouseGui::ClickedPopupMenuButton);
+		pPopupMenuButton->SetToolTip(GetDisplayStringManager()->GetString("DST_POPUPMENU_BUTTON_TOOLTIP"));
+	}
+
 	// 아이템 슬롯
 	for(RwInt32 i = 0 ; i < NTL_MAX_BANK_ITEM_SLOT ; ++i )
 	{
@@ -221,6 +229,18 @@ VOID CWarehouseGui::UpdateItems()
 VOID CWarehouseGui::ClickedCloseButton(gui::CComponent* pComponent)
 {
 	GetDialogManager()->CloseDialog(DIALOG_WAREHOUSE_1 + m_byWarehouseIndex);
+}
+
+VOID CWarehouseGui::ClickedPopupMenuButton(gui::CComponent* pComponent)
+{
+	CWarehouseBarGui* pWarehouseBarGui = reinterpret_cast<CWarehouseBarGui*>( GetDialogManager()->GetDialog(DIALOG_WAREHOUSEBAR) );
+	if( !pWarehouseBarGui )
+		return;
+
+	// the bank npc rides on the popup serial, the sort request needs it
+	CRectangle rtRect = m_pThis->GetScreenRect();
+	CDboEventGenerator::IconPopupShow(TRUE, pWarehouseBarGui->GetNPCSerial(), PLACE_SUB_WAREHOUSE_MENU, 0,
+		rtRect.left - 35, rtRect.top - 145);
 }
 
 RwInt8 CWarehouseGui::PtinSlot(RwInt32 iX, RwInt32 iY)

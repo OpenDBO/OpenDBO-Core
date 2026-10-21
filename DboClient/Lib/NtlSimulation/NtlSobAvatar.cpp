@@ -611,6 +611,19 @@ void CNtlSobAvatar::HandleEvents(RWS::CMsg &pMsg)
 		m_Inventory.HandleEvents(pMsg);		
 		CNtlSLEventGenerator::SobUpdate(GetSerialID(), EVENT_AIUT_ITEM, 0);
 	}
+	else if (pMsg.Id == g_EventSobItemSort)
+	{
+		SNtlEventSobItemSort* pItemSort = reinterpret_cast<SNtlEventSobItemSort*>(pMsg.pData);
+
+		if (IsBankContainer(pItemSort->byPlace))
+			m_WareHouse.HandleEvents(pMsg);
+		else
+			m_Inventory.HandleEvents(pMsg);
+
+		// the guis are refreshed once the whole container is sorted
+		if (pItemSort->bLast)
+			CNtlSLEventGenerator::SobUpdate(GetSerialID(), EVENT_AIUT_ITEM, 0);
+	}
 	else if (pMsg.Id == g_EventSobItemChangeOptionSet)
 	{
 		m_Inventory.HandleEvents(pMsg);

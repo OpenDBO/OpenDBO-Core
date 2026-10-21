@@ -162,6 +162,7 @@ RwBool CNtlSobManager::Create(void)
 	
 	LinkMsg(g_EventSobItemAdd);
 	LinkMsg(g_EventSobItemDelete);
+	LinkMsg(g_EventSobItemSort);
 	LinkMsg(g_EventSobItemMove);
 	LinkMsg(g_EventSobItemStackMove);
 	LinkMsg(g_EventSobEquipChange);
@@ -283,6 +284,7 @@ RwBool CNtlSobManager::Create(void)
     m_mapEventFunc[g_EventSobAdjustMove.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
     m_mapEventFunc[g_EventSobItemAdd.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
     m_mapEventFunc[g_EventSobItemDelete.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
+    m_mapEventFunc[g_EventSobItemSort.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
     m_mapEventFunc[g_EventSobItemUpdate.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
     m_mapEventFunc[g_EventSobItemMove.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
     m_mapEventFunc[g_EventSobItemStackMove.Get_pEventId()] = &CNtlSobManager::SobEventHandler;
@@ -482,6 +484,7 @@ void CNtlSobManager::Destroy(void)
 	
 	UnLinkMsg(g_EventSobItemAdd);
 	UnLinkMsg(g_EventSobItemDelete);
+	UnLinkMsg(g_EventSobItemSort);
 	UnLinkMsg(g_EventSobItemMove);
 	UnLinkMsg(g_EventSobItemStackMove);
 	UnLinkMsg(g_EventSobEquipChange);

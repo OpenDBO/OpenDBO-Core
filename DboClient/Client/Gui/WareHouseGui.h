@@ -62,6 +62,7 @@ protected:
 	VOID			CheckInfoWindow();
 
 	VOID			ClickedCloseButton(gui::CComponent* pComponent);
+	VOID			ClickedPopupMenuButton(gui::CComponent* pComponent);
 
 	VOID			OnMouseDown(const CKey& key);
 	VOID			OnMouseUp(const CKey& key);
@@ -80,6 +81,7 @@ protected:
 	gui::CSlot			m_slotMouseLeave;
 	gui::CSlot			m_slotPaint;
 	gui::CSlot			m_slotCloseButton;
+	gui::CSlot			m_slotPopupMenuButton;
 	gui::CSlot			m_slotCaptureMouseDown;
 
 	gui::CButton*		m_pExitButton;		///< 창닫기 버튼

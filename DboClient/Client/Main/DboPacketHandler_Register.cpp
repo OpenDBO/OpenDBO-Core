@@ -115,6 +115,7 @@ void RegisterPacketHandler(void)
 	CNtlPacketHandler::Register(GU_ITEM_STACK_UPDATE, PacketHandler_GSItemStackUpdate);
 	CNtlPacketHandler::Register(GU_ITEM_UPGRADE_RES, PacketHandler_GSItemUpgradeRes);
 	CNtlPacketHandler::Register(GU_ITEM_UPGRADE_BY_COUPON_RES, PacketHandler_GSItemUpgradeByCouponRes);
+	CNtlPacketHandler::Register(GU_INVENTORY_SORT_RES, PacketHandler_GSInventorySortRes);
 	CNtlPacketHandler::Register(GU_ITEM_UPGRADE_ALL_NFY, Packethandler_GSItemUpgradeAllNfy);
 	CNtlPacketHandler::Register(GU_ITEM_CHANGE_OPTION_RES, PacketHandler_GSItemChangeOptionRes);
 	CNtlPacketHandler::Register(GU_ITEM_CHANGE_BATTLE_ATTRIBUTE_RES, Packethandler_GSItemChangeBattleAttributeRes);
@@ -948,6 +949,7 @@ void UnRegisterPacketHandler(void)
 	CNtlPacketHandler::UnRegister(GU_ITEM_STACK_UPDATE);
 	CNtlPacketHandler::UnRegister(GU_ITEM_UPGRADE_RES);
 	CNtlPacketHandler::UnRegister(GU_ITEM_UPGRADE_BY_COUPON_RES);
+	CNtlPacketHandler::UnRegister(GU_INVENTORY_SORT_RES);
 	CNtlPacketHandler::UnRegister(GU_ITEM_UPGRADE_ALL_NFY);
 	CNtlPacketHandler::UnRegister(GU_ITEM_CHANGE_BATTLE_ATTRIBUTE_RES);
 	CNtlPacketHandler::UnRegister(GU_MOB_LUCKY_DROP_NFY);
