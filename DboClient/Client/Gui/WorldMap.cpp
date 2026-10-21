@@ -13,6 +13,7 @@
 #include "ObjectTable.h"
 #include "NtlTeleport.h"
 #include "NPCTable.h"
+#include "SpawnTable.h"
 #include "TableContainer.h"
 
 // sound
@@ -53,6 +54,8 @@
 #include "QuestSearchGui.h"
 #include "DboGlobal.h"
 #include "DboPacketGenerator.h"
+#include "NtlXMLDoc.h"
+#include "NtlPLResourcePack.h"
 
 
 #define dMAINWORLD_INDEX		1
@@ -70,6 +73,36 @@
 #define dMINIMAM_ALPHA			70.f
 
 #define dCHECK_BUTTON_VERT_GAP	(10)
+
+// tw: the search combo box lists get a background, top and bottom keep their size and the middle fills the list
+static VOID SetSearchComboListBackground(gui::CComboBox* pComboBox, const char* pcTop, const char* pcMid, const char* pcBottom)
+{
+	gui::CSurfaceManager* pSurfaceManager = GetNtlGuiManager()->GetSurfaceManager();
+
+	gui::CSurface srfTop = pSurfaceManager->GetSurface("WorldMap.srf", pcTop);
+	gui::CSurface srfMid = pSurfaceManager->GetSurface("WorldMap.srf", pcMid);
+	gui::CSurface srfBottom = pSurfaceManager->GetSurface("WorldMap.srf", pcBottom);
+
+	RwInt32 iListHeight = pComboBox->GetListBox()->GetHeight();
+	RwInt32 iTopHeight = srfTop.m_SnapShot.rtRect.GetHeight();
+	RwInt32 iBottomHeight = srfBottom.m_SnapShot.rtRect.GetHeight();
+	RwInt32 iMidHeight = iListHeight - iTopHeight - iBottomHeight;
+	if (iMidHeight < 0)
+		iMidHeight = 0;
+
+	srfTop.m_SnapShot.rtRect.SetRectWH(0, 0, srfTop.m_SnapShot.rtRect.GetWidth(), iTopHeight);
+	srfMid.m_SnapShot.rtRect.SetRectWH(0, iTopHeight, srfMid.m_SnapShot.rtRect.GetWidth(), iMidHeight);
+	srfBottom.m_SnapShot.rtRect.SetRectWH(0, iTopHeight + iMidHeight, srfBottom.m_SnapShot.rtRect.GetWidth(), iBottomHeight);
+
+	// the list box moves its surfaces from the original rect
+	srfTop.m_Original.rtRect = srfTop.m_SnapShot.rtRect;
+	srfMid.m_Original.rtRect = srfMid.m_SnapShot.rtRect;
+	srfBottom.m_Original.rtRect = srfBottom.m_SnapShot.rtRect;
+
+	pComboBox->AddLIstBoxSurface(srfTop);
+	pComboBox->AddLIstBoxSurface(srfMid);
+	pComboBox->AddLIstBoxSurface(srfBottom);
+}
 
 // Landmark
 #define dLANDMARK_SIZE_1		0
@@ -116,6 +149,7 @@ CWorldMapGui::CWorldMapGui(const RwChar* pName)
 ,m_pQuestSearch(NULL)
 ,m_bFieldBossEvent(FALSE)
 ,m_fFieldBossRefreshTime(0.f)
+,m_iSearchCategory(0)
 {
 	m_tScrambleVisible.bScramble					= FALSE;
 	m_tScrambleVisible.bShowOurTeam					= TRUE;
@@ -214,12 +248,24 @@ RwBool CWorldMapGui::Create()
 	//m_srfcbbListboxTop.SetSurface(GetNtlGuiManager()->GetSurfaceManager()->GetSurface("WorldMap.srf", "srfcbbListboxButtom"));
 
 	m_pcbbSearchNpc = (gui::CComboBox*)GetComponent("cbbSearchNpc");
-	m_pcbbSearchNpc->AddItem(GetDisplayStringManager()->GetString("DST_WORLDMAP_SEARCH_NPC_TITLE"), 0);
 	m_pcbbSearchNpc->SetPriority(dDIALOGPRIORITY_WORLDMAP_QUEST_SEARCH + 1);
-	// TO DO: while loop.. I think to add npc search entry
-	{
 
-	}
+	SetSearchComboListBackground(m_pcbbSearchWorld, "srfcbbListboxTop", "srfcbbListboxMid", "srfcbbListboxBottom");
+	SetSearchComboListBackground(m_pcbbSearchZone, "srfcbbListboxTop", "srfcbbListboxMid", "srfcbbListboxBottom");
+	SetSearchComboListBackground(m_pcbbSearchCity, "srfcbbListboxTop", "srfcbbListboxMid", "srfcbbListboxBottom");
+	SetSearchComboListBackground(m_pcbbSearchNpc, "srfcbbListboxTop", "srfcbbNPCListboxMid", "srfcbbNPCListboxButtom");
+
+	// tw: the combo boxes list the world map table and the npc search categories
+	LoadSearchData();
+	FillSearchComboBoxes();
+
+	m_slotSearchWorld = m_pcbbSearchWorld->SigSelected().Connect(this, &CWorldMapGui::OnSelected_SearchWorld);
+	m_slotSearchZone = m_pcbbSearchZone->SigSelected().Connect(this, &CWorldMapGui::OnSelected_SearchZone);
+	m_slotSearchCity = m_pcbbSearchCity->SigSelected().Connect(this, &CWorldMapGui::OnSelected_SearchCity);
+	m_slotSearchNpc = m_pcbbSearchNpc->SigSelected().Connect(this, &CWorldMapGui::OnSelected_SearchNpc);
+
+	// the npc combo box shows its title until a category is picked
+	m_pcbbSearchNpc->SetText(GetDisplayStringManager()->GetString("DST_WORLDMAP_SEARCH_NPC_TITLE"));
 
 
 
@@ -1209,6 +1255,7 @@ RwBool CWorldMapGui::AnalysisAreaInfo()
 	RequestFieldBossPosition();
 	UpdateBindInfo();
 	UpdateWarFog();
+	UpdateSearchMark(); // after the warfog, fogged npcs are not marked
 	UpdateAvatarMark(pAvatar);
 
 	// Resync bus location zone with server when zone changes while map is open
@@ -2360,9 +2407,47 @@ VOID CWorldMapGui::OnMouseMove(RwInt32 nFlags, RwInt32 nX, RwInt32 nY)
 				info.wcsString = pSCRAMBLE_SEAL_MARK->wstrName;
 
 				listMarkInfo.push_back(info);
-			}	
+			}
 		}
-	}	
+	}
+
+	// npc search marks (tw: "job : name")
+	for( std::vector<sSEARCH_MARK>::const_iterator it_SearchMark = m_vecSearchMark.begin() ; it_SearchMark != m_vecSearchMark.end() ; ++it_SearchMark )
+	{
+		CRectangle rtMark;
+		if( !GetSearchMarkRect(*it_SearchMark, rtMark) || !rtMark.PtInRect(nX, nY) )
+			continue;
+
+		sMINIMAPINFO info;
+		info.iType = MMIT_NPC;
+
+		if( it_SearchMark->bNpc )
+		{
+			sNPC_TBLDAT* pNPC_TBLDAT = reinterpret_cast<sNPC_TBLDAT*>( API_GetTableContainer()->GetNpcTable()->FindData(it_SearchMark->tblidx) );
+			if( !pNPC_TBLDAT )
+				continue;
+
+			const WCHAR* pwcJobName = Logic_GetNPCJobName(pNPC_TBLDAT->byJob);
+			if( pwcJobName )
+			{
+				info.wcsString = pwcJobName;
+				info.wcsString += L" : ";
+			}
+
+			info.wcsString += API_GetTableContainer()->GetTextAllTable()->GetNPCTbl()->GetText(pNPC_TBLDAT->Name);
+		}
+		else
+		{
+			CObjectTable* pObjectTable = API_GetTableContainer()->GetObjectTable(m_uiRenderingWorldID);
+			sOBJECT_TBLDAT* pOBJECT_TBLDAT = pObjectTable ? reinterpret_cast<sOBJECT_TBLDAT*>( pObjectTable->FindData(it_SearchMark->tblidx) ) : NULL;
+			if( !pOBJECT_TBLDAT )
+				continue;
+
+			info.wcsString = API_GetTableContainer()->GetTextAllTable()->GetObjectTbl()->GetText(pOBJECT_TBLDAT->dwName);
+		}
+
+		listMarkInfo.push_back(info);
+	}
 
 	if( listMarkInfo.size() > 0 )
 	{
@@ -2710,6 +2795,9 @@ VOID CWorldMapGui::OnPostPaint()
 		}
 	}
 
+	// npc search marks
+	RenderSearchMark();
+
 	// 아바타
 	if( INVALID_SERIAL_ID == hBus_with_Avatar ||
 		FALSE == CanRenderBusRoute() )
@@ -3001,6 +3089,383 @@ BOOL CWorldMapGui::IsWarfogActive(WORD wWarfogIndex)
 {
 	CNtlOtherParam* pOther = GetNtlSLGlobal()->GetSobAvatar()->GetOtherParam();
 	return pOther->IsExistWarFog_of_Index(wWarfogIndex);
+}
+
+// tw: script\WorldMapSearchData.xml lists the npc search categories, the first one is "no npc"
+VOID CWorldMapGui::LoadSearchData()
+{
+	m_vecSearchCategory.clear();
+
+	CNtlXMLDoc XMLDoc;
+	if (!XMLDoc.Create())
+		return;
+
+	RwBool bLoaded = FALSE;
+
+	if (GetNtlResourcePackManager()->GetActiveFlags() & NTL_PACK_TYPE_FLAG_SCRIPT)
+	{
+		BYTE* pPackBuffer = NULL;
+		RwInt32	iPackSize = 0;
+
+		GetNtlResourcePackManager()->LoadScript(".\\script\\worldmapsearchdata.xml", (void**)&pPackBuffer, &iPackSize);
+		if (pPackBuffer)
+		{
+			BYTE* pTempBuffer = NTL_NEW BYTE[iPackSize + 1];
+			memcpy(pTempBuffer, pPackBuffer, iPackSize);
+			pTempBuffer[iPackSize] = '\0';
+
+			bLoaded = XMLDoc.LoadXML((char*)pTempBuffer);
+
+			NTL_ARRAY_DELETE(pTempBuffer);
+			NTL_ARRAY_DELETE(pPackBuffer);
+		}
+	}
+
+	if (!bLoaded)
+		bLoaded = XMLDoc.Load(".\\script\\worldmapsearchdata.xml");
+
+	if (!bLoaded)
+	{
+		DBO_WARNING_MESSAGE("CWorldMapGui::LoadSearchData: can not load script\\worldmapsearchdata.xml, the npc search is empty");
+		XMLDoc.Destroy();
+		return;
+	}
+
+	IXMLDOMNodeList* pCategoryList = XMLDoc.SelectNodeList((char*)"WorldmapSearchData/SearchCategory");
+	if (pCategoryList)
+	{
+		long lCategoryCount = 0;
+		pCategoryList->get_length(&lCategoryCount);
+
+		for (long i = 0; i < lCategoryCount; ++i)
+		{
+			IXMLDOMNode* pCategoryNode = NULL;
+			pCategoryList->get_item(i, &pCategoryNode);
+			if (!pCategoryNode)
+				continue;
+
+			char acBuffer[128] = "";
+			sSEARCH_CATEGORY category;
+
+			if (XMLDoc.GetTextWithAttributeName(pCategoryNode, "SearchName", acBuffer, sizeof(acBuffer)))
+				category.strName = acBuffer;
+
+			category.iSearchType = SEARCH_TYPE_NONE;
+			if (XMLDoc.GetTextWithAttributeName(pCategoryNode, "bySearchType", acBuffer, sizeof(acBuffer)))
+				category.iSearchType = atoi(acBuffer);
+
+			IXMLDOMNodeList* pChildList = NULL;
+			pCategoryNode->selectNodes(L"ChildData", &pChildList);
+			if (pChildList)
+			{
+				long lChildCount = 0;
+				pChildList->get_length(&lChildCount);
+
+				for (long j = 0; j < lChildCount; ++j)
+				{
+					IXMLDOMNode* pChildNode = NULL;
+					pChildList->get_item(j, &pChildNode);
+					if (!pChildNode)
+						continue;
+
+					sSEARCH_CHILD child;
+					child.uiJobType = 0xffffffff;
+					child.uiJobBitFlag = 0;
+
+					if (XMLDoc.GetTextWithAttributeName(pChildNode, "JobType", acBuffer, sizeof(acBuffer)))
+						child.uiJobType = (RwUInt32)strtoul(acBuffer, NULL, 10);
+
+					if (XMLDoc.GetTextWithAttributeName(pChildNode, "JobBitFlag", acBuffer, sizeof(acBuffer)))
+						child.uiJobBitFlag = (RwUInt32)strtoul(acBuffer, NULL, 10);
+
+					category.vecChild.push_back(child);
+					pChildNode->Release();
+				}
+
+				pChildList->Release();
+			}
+
+			// tw: a npc/object category without anything to find is not listed
+			if (category.iSearchType == SEARCH_TYPE_NONE || HasSearchCategoryData(category))
+				m_vecSearchCategory.push_back(category);
+
+			pCategoryNode->Release();
+		}
+
+		pCategoryList->Release();
+	}
+
+	XMLDoc.Destroy();
+}
+
+RwBool CWorldMapGui::HasSearchCategoryData(const sSEARCH_CATEGORY& category)
+{
+	if (category.vecChild.empty())
+		return FALSE;
+
+	// objects are searched per world, they are always listed
+	if (category.iSearchType != SEARCH_TYPE_NPC)
+		return TRUE;
+
+	CNPCTable* pNpcTable = API_GetTableContainer()->GetNpcTable();
+
+	for (CTable::TABLEIT it = pNpcTable->Begin(); it != pNpcTable->End(); ++it)
+	{
+		sNPC_TBLDAT* pNPC_TBLDAT = reinterpret_cast<sNPC_TBLDAT*>(it->second);
+
+		for (std::vector<sSEARCH_CHILD>::const_iterator it_Child = category.vecChild.begin(); it_Child != category.vecChild.end(); ++it_Child)
+		{
+			if (pNPC_TBLDAT->byJob == it_Child->uiJobType && (pNPC_TBLDAT->dwFunc_Bit_Flag & it_Child->uiJobBitFlag))
+				return TRUE;
+		}
+	}
+
+	return FALSE;
+}
+
+VOID CWorldMapGui::FillSearchComboBoxes()
+{
+	m_vecSearchWorld.clear();
+	m_vecSearchZone.clear();
+	m_vecSearchCity.clear();
+
+	m_pcbbSearchWorld->ClearAllItems();
+	m_pcbbSearchZone->ClearAllItems();
+	m_pcbbSearchCity->ClearAllItems();
+	m_pcbbSearchNpc->ClearAllItems();
+
+	CWorldMapTable* pWorldMapTable = API_GetTableContainer()->GetWorldMapTable();
+	CMapNameTextTable* pMapNameTable = API_GetTableContainer()->GetTextAllTable()->GetMapNameTbl();
+
+	// tw: dwComboBoxType 1 world, 2 zone, 3 city
+	for (CTable::TABLEIT it = pWorldMapTable->Begin(); it != pWorldMapTable->End(); ++it)
+	{
+		sWORLD_MAP_TBLDAT* pWORLD_MAP_TBLDAT = reinterpret_cast<sWORLD_MAP_TBLDAT*>(it->second);
+		if (!pWORLD_MAP_TBLDAT->bValidityAble)
+			continue;
+
+		sSEARCH_MAP searchMap;
+		searchMap.worldTblidx = pWORLD_MAP_TBLDAT->World_Tblidx;
+		searchMap.zoneTblidx = pWORLD_MAP_TBLDAT->Zone_Tblidx;
+		searchMap.byMapType = pWORLD_MAP_TBLDAT->byMapType;
+
+		switch (pWORLD_MAP_TBLDAT->dwComboBoxType)
+		{
+			case 1:
+			{
+				m_pcbbSearchWorld->AddItem(pMapNameTable->GetZoneName(pWORLD_MAP_TBLDAT->Worldmap_Name).c_str());
+				m_vecSearchWorld.push_back(searchMap);
+			}
+			break;
+			case 2:
+			{
+				m_pcbbSearchZone->AddItem(pMapNameTable->GetZoneName(pWORLD_MAP_TBLDAT->Worldmap_Name).c_str());
+				m_vecSearchZone.push_back(searchMap);
+			}
+			break;
+			case 3:
+			{
+				m_pcbbSearchCity->AddItem(pMapNameTable->GetSectorName(pWORLD_MAP_TBLDAT->Worldmap_Name).c_str());
+				m_vecSearchCity.push_back(searchMap);
+			}
+			break;
+
+			default: break;
+		}
+	}
+
+	for (std::vector<sSEARCH_CATEGORY>::const_iterator it = m_vecSearchCategory.begin(); it != m_vecSearchCategory.end(); ++it)
+		m_pcbbSearchNpc->AddItem(GetDisplayStringManager()->GetString(it->strName));
+}
+
+VOID CWorldMapGui::SelectSearchMap(const sSEARCH_MAP& searchMap)
+{
+	if (m_byMapMode == WORLDMAP_TYPE_INSTANCE_MAP)
+		return;
+
+	m_byMapMode = searchMap.byMapType;
+	m_uiRenderingWorldID = searchMap.worldTblidx;
+	m_uiRenderingZoneID = searchMap.zoneTblidx;
+	m_bChangedMap_by_User = TRUE;
+
+	AnalysisAreaInfo();
+}
+
+VOID CWorldMapGui::OnSelected_SearchWorld(INT nIndex)
+{
+	if (nIndex < 0 || nIndex >= (INT)m_vecSearchWorld.size())
+		return;
+
+	SelectSearchMap(m_vecSearchWorld[nIndex]);
+}
+
+VOID CWorldMapGui::OnSelected_SearchZone(INT nIndex)
+{
+	if (nIndex < 0 || nIndex >= (INT)m_vecSearchZone.size())
+	{
+		GetAlarmManager()->AlarmMessage("DST_WORLDMAP_ZONE_INDEX_ERROR");
+		return;
+	}
+
+	SelectSearchMap(m_vecSearchZone[nIndex]);
+}
+
+VOID CWorldMapGui::OnSelected_SearchCity(INT nIndex)
+{
+	if (nIndex < 0 || nIndex >= (INT)m_vecSearchCity.size())
+	{
+		GetAlarmManager()->AlarmMessage("DST_WORLDMAP_CITY_INDEX_ERROR");
+		return;
+	}
+
+	SelectSearchMap(m_vecSearchCity[nIndex]);
+}
+
+VOID CWorldMapGui::OnSelected_SearchNpc(INT nIndex)
+{
+	m_iSearchCategory = nIndex;
+
+	UpdateSearchMark();
+}
+
+// tw: a npc/object in an area the avatar has not discovered is not marked
+RwBool CWorldMapGui::IsSearchMarkInWarfog(RwUInt32 uiWarfogIndex)
+{
+	for (RwUInt8 i = 0; i < DBO_WORLD_MAP_TABLE_COUNT_WORLD_WARFOG; ++i)
+	{
+		if (m_WarFog[i].bShow && m_WarFog[i].uiWarfogIndex == uiWarfogIndex)
+			return TRUE;
+	}
+
+	return FALSE;
+}
+
+// tw: the npcs (spawn table) or objects of the picked category in the shown world and zone
+VOID CWorldMapGui::UpdateSearchMark()
+{
+	m_vecSearchMark.clear();
+
+	if (m_iSearchCategory < 0 || m_iSearchCategory >= (RwInt32)m_vecSearchCategory.size())
+		return;
+
+	if (m_byMapMode == WORLDMAP_TYPE_WORLD || m_byMapMode == WORLDMAP_TYPE_INSTANCE_MAP)
+		return;
+
+	const sSEARCH_CATEGORY& category = m_vecSearchCategory[m_iSearchCategory];
+
+	if (category.iSearchType == SEARCH_TYPE_NPC)
+	{
+		CSpawnTable* pSpawnTable = API_GetTableContainer()->GetNpcSpawnTable(m_uiRenderingWorldID);
+		CNPCTable* pNpcTable = API_GetTableContainer()->GetNpcTable();
+		if (!pSpawnTable || !pNpcTable)
+			return;
+
+		for (CTable::TABLEIT it = pSpawnTable->Begin(); it != pSpawnTable->End(); ++it)
+		{
+			sSPAWN_TBLDAT* pSPAWN_TBLDAT = reinterpret_cast<sSPAWN_TBLDAT*>(it->second);
+
+			sNPC_TBLDAT* pNPC_TBLDAT = reinterpret_cast<sNPC_TBLDAT*>(pNpcTable->FindData(pSPAWN_TBLDAT->mob_Tblidx));
+			if (!pNPC_TBLDAT)
+				continue;
+
+			// the npc table knows the world map (world, zone, warfog) the npc is shown on
+			if (pNPC_TBLDAT->dwUnknown3 != m_uiRenderingWorldID || pNPC_TBLDAT->dwUnknown2 != m_uiRenderingZoneID)
+				continue;
+
+			if (IsSearchMarkInWarfog(pNPC_TBLDAT->wUnknown))
+				continue;
+
+			for (std::vector<sSEARCH_CHILD>::const_iterator it_Child = category.vecChild.begin(); it_Child != category.vecChild.end(); ++it_Child)
+			{
+				if (pNPC_TBLDAT->byJob != it_Child->uiJobType || (pNPC_TBLDAT->dwFunc_Bit_Flag & it_Child->uiJobBitFlag) == 0)
+					continue;
+
+				sSEARCH_MARK mark;
+				mark.bNpc = TRUE;
+				mark.tblidx = pNPC_TBLDAT->tblidx;
+				mark.fX = pSPAWN_TBLDAT->vSpawn_Loc.x;
+				mark.fZ = pSPAWN_TBLDAT->vSpawn_Loc.z;
+				m_vecSearchMark.push_back(mark);
+				break;
+			}
+		}
+	}
+	else if (category.iSearchType == SEARCH_TYPE_OBJECT)
+	{
+		CObjectTable* pObjectTable = API_GetTableContainer()->GetObjectTable(m_uiRenderingWorldID);
+		if (!pObjectTable)
+			return;
+
+		for (CTable::TABLEIT it = pObjectTable->Begin(); it != pObjectTable->End(); ++it)
+		{
+			sOBJECT_TBLDAT* pOBJECT_TBLDAT = reinterpret_cast<sOBJECT_TBLDAT*>(it->second);
+
+			if (pOBJECT_TBLDAT->WorldId != m_uiRenderingWorldID || pOBJECT_TBLDAT->ZoneId != m_uiRenderingZoneID)
+				continue;
+
+			if (IsSearchMarkInWarfog(pOBJECT_TBLDAT->byWarfog))
+				continue;
+
+			for (std::vector<sSEARCH_CHILD>::const_iterator it_Child = category.vecChild.begin(); it_Child != category.vecChild.end(); ++it_Child)
+			{
+				if ((pOBJECT_TBLDAT->dwFunction & it_Child->uiJobBitFlag) == 0)
+					continue;
+
+				sSEARCH_MARK mark;
+				mark.bNpc = FALSE;
+				mark.tblidx = pOBJECT_TBLDAT->tblidx;
+				mark.fX = pOBJECT_TBLDAT->vLoc.x;
+				mark.fZ = pOBJECT_TBLDAT->vLoc.z;
+				m_vecSearchMark.push_back(mark);
+				break;
+			}
+		}
+	}
+}
+
+// the mark is the scan point flash centered on the npc, marks outside the map are not shown
+RwBool CWorldMapGui::GetSearchMarkRect(const sSEARCH_MARK& mark, CRectangle& rtMark)
+{
+	RwInt32 iX, iY;
+	GetMapPos_from_RealPos(mark.fX, mark.fZ, iX, iY);
+
+	if (!IsinMap(iX, iY))
+		return FALSE;
+
+	CRectangle rtFlash = m_pflaScanNpc->GetFrameResolution();
+	RwInt32 iWidth = rtFlash.GetWidth();
+	RwInt32 iHeight = rtFlash.GetHeight();
+
+	rtMark.SetRectWH(iX - iWidth / 2, iY - iHeight / 2, iWidth, iHeight);
+	return TRUE;
+}
+
+// tw: the same scan point flash is moved and drawn for every mark
+VOID CWorldMapGui::RenderSearchMark()
+{
+	if (m_vecSearchMark.empty())
+	{
+		if (m_pflaScanNpc->IsVisible())
+			m_pflaScanNpc->Show(false);
+
+		return;
+	}
+
+	if (!m_pflaScanNpc->IsVisible())
+	{
+		m_pflaScanNpc->PlayMovie(TRUE);
+		m_pflaScanNpc->Show(true);
+	}
+
+	for (std::vector<sSEARCH_MARK>::const_iterator it = m_vecSearchMark.begin(); it != m_vecSearchMark.end(); ++it)
+	{
+		CRectangle rtMark;
+		if (!GetSearchMarkRect(*it, rtMark))
+			continue;
+
+		m_pflaScanNpc->SetPosition(rtMark);
+		m_pflaScanNpc->Paint();
+	}
 }
 
 RwInt32 CWorldMapGui::SwitchDialog(bool bOpen)

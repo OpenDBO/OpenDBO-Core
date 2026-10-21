@@ -87,9 +87,9 @@ public:
 	TBLIDX			statusTransformTblidx;
 	TBLIDX			contentsTblidx;
 
-	WORD			wUnknown;
-	DWORD			dwUnknown2;
-	DWORD			dwUnknown3;
+	WORD			wUnknown;		// tw: warfog index of the world map area the npc is in
+	DWORD			dwUnknown2;		// tw: world map zone the npc is shown on
+	DWORD			dwUnknown3;		// tw: world map world the npc is shown on
 
 public:
 
