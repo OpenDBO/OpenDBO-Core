@@ -2083,7 +2083,23 @@ void PacketHandler_GSBuffActivate(void * pPacket)
 	CNtlSLEventGenerator::SobBuffActivate(pRes->handle, &pRes->sBuffInfo);
 
 	if (pRes->handle != Logic_GetAvatarHandle())
+	{
 		CNtlSLEventGenerator::SobFakeBuffActivate(pRes->handle, &pRes->sBuffInfo);
+		return;
+	}
+
+	// tell the avatar an item buff (auto pot) was switched on/off
+	if (pRes->sBuffInfo.bySourceType != DBO_OBJECT_SOURCE_ITEM)
+		return;
+
+	const WCHAR* pwcItemName = Logic_GetItemName(pRes->sBuffInfo.sourceTblidx);
+	if (pwcItemName == NULL || pwcItemName[0] == L'\0')
+		return;
+
+	WCHAR awcBuffer[256];
+	swprintf_s(awcBuffer, 256, GetDisplayStringManager()->GetString(pRes->sBuffInfo.bActive ? "DST_BUFF_ACTIVATE_BUFF_MSG" : "DST_BUFF_DEACTIVATE_BUFF_MSG"), pwcItemName);
+
+	GetAlarmManager()->AlarmMessage(awcBuffer, CAlarmManager::ALARM_ACTION_NOTIFY | CAlarmManager::ALARM_TYPE_CHAT_WARN);
 }
 
 void PacketHandler_GSCharUpdateLp(void *pPacket)

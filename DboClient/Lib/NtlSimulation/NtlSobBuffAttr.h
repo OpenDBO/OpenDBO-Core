@@ -29,6 +29,8 @@ public:
 	sSKILL_TBLDAT			m_SkillTbl;	/** skill table data effected by passive skill*/
 	sITEM_TBLDAT*			m_pItemTbl;	/** skill table data pointer */
 	RwBool					m_bBlessType;		/** bless or curse */
+	RwBool					m_bCanDrop;			// can be dropped (or switched on/off) by clicking the icon
+	RwBool					m_bDropConfirm;		// ask before dropping (sub buff items like auto pots)
 
 	bool					m_bActive;			// is buff active?
 	sDBO_BUFF_PARAMETER		m_aBuffParameter[NTL_MAX_EFFECT_IN_SKILL];
@@ -40,6 +42,8 @@ public:
 		m_pBaseSkillTbl = NULL;
 		m_pItemTbl = NULL;
 		m_bBlessType = FALSE;
+		m_bCanDrop = FALSE;
+		m_bDropConfirm = FALSE;
 		m_bActive = true;
 	}
 
@@ -75,6 +79,8 @@ public:
 	sITEM_TBLDAT* GetItemTbl(void) const;
 
 	RwBool IsBlessType(void) const;
+	RwBool CanDrop(void) const { return m_bCanDrop; }
+	RwBool NeedDropConfirm(void) const { return m_bDropConfirm; }
 };
 
 inline void CNtlSobBuffAttr::SetBuffIndex(BYTE byIndex)

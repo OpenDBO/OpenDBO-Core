@@ -426,6 +426,13 @@ struct sMsgBoxData
 
 		struct
 		{
+			RwUInt8				byBuffIndex;
+			RwUInt8				byBuffSourceType;
+			TBLIDX				buffSourceTblidx;
+		} sBuffInfo;
+
+		struct
+		{
 			sTS_KEY				sTSKey;	
 			RwUInt32			uiQuestTitle;
 		};

@@ -1469,6 +1469,16 @@ VOID CMsgBoxManager::HandleEvents( RWS::CMsg &msg )
 				}
 			}
 		}
+		else if (pMsgBoxResult->strID == "DST_BUFF_MB_DELETE_SUB_BUFF_MSG")
+		{
+			if (pMsgBoxResult->eResult != MBR_OK)
+				return;
+
+			sMsgBoxData* pMsgBoxData = reinterpret_cast<sMsgBoxData*>(pMsgBoxResult->pData);
+
+			// the server switches auto pots on/off and removes other sub buffs
+			GetDboGlobal()->GetGamePacketGenerator()->SendBuffDropReq(pMsgBoxData->sBuffInfo.byBuffIndex, pMsgBoxData->sBuffInfo.byBuffSourceType, pMsgBoxData->sBuffInfo.buffSourceTblidx);
+		}
 		else if (pMsgBoxResult->strID == "DST_NPC_SKILL_POINT_RESET_MSG")
 		{
 			if (pMsgBoxResult->eResult != MBR_OK)
