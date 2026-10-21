@@ -60,7 +60,12 @@ RwBool CSlotGui::Create(gui::CComponent *pParent, RwUInt32 uiOwnerDialog, DWORD 
 	m_dwSlotStyle = dwSlotStyle;
 
 	// 갯수를 표시한다면
-	if( BIT_FLAG_TEST(m_dwSlotStyle, SDS_COUNT) )
+	// a slot created again (e.g. warehouse refresh) keeps its counter, the parent owns it
+	if( BIT_FLAG_TEST(m_dwSlotStyle, SDS_COUNT) && m_pCount )
+	{
+		m_pCount->Clear();
+	}
+	else if( BIT_FLAG_TEST(m_dwSlotStyle, SDS_COUNT) )
 	{
 		CRectangle rect;
 		rect.SetRectWH(0, 0, DBOGUI_STACKNUM_WIDTH, DBOGUI_STACKNUM_HEIGHT);
