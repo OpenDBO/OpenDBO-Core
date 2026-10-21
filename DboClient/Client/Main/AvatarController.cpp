@@ -1276,7 +1276,11 @@ int	CAvatarController::MouseDownHandler(uintptr_t uiMouseData)
 								SetAutoRun(FALSE);
 								DeleteMoveMark();
 
-								CNtlSLEventGenerator::AirDashMove(TRUE, &m_sPickInfo.vPickPos, NTL_MOVE_F);
+								// a missed pick (sky) keeps the old pick position, dash straight ahead instead
+								if (bPick)
+									CNtlSLEventGenerator::AirDashMove(TRUE, &m_sPickInfo.vPickPos, NTL_MOVE_F);
+								else
+									CNtlSLEventGenerator::AirDashMove(FALSE, NULL, NTL_MOVE_F);
 
 								SERIAL_HANDLE hTargetSerialId = Logic_GetAvatarTargetHandle();
 								if (hTargetSerialId != INVALID_SERIAL_ID)
@@ -1811,13 +1815,15 @@ int CAvatarController::ActionMapKeyboardMove(uintptr_t uiMoveFlags)
 
 	if (pSobAvatar->IsAirMode() && actorStateId == NTL_FSMSID_AIR_ACCEL) // change air dash/accel direction
 	{
-		if (uiMoveFlags == NTL_MOVE_NONE || uiMoveFlags == NTL_MOVE_TURN_L || uiMoveFlags == NTL_MOVE_TURN_R)
+		// holding forward (with or without turning) keeps accelerating too, only other moves leave the accel
+		if (uiMoveFlags == NTL_MOVE_NONE || uiMoveFlags == NTL_MOVE_TURN_L || uiMoveFlags == NTL_MOVE_TURN_R ||
+			uiMoveFlags == NTL_MOVE_F || uiMoveFlags == NTL_MOVE_F_TURN_L || uiMoveFlags == NTL_MOVE_F_TURN_R)
 		{
-			if (uiMoveFlags == NTL_MOVE_TURN_L)
+			if (uiMoveFlags == NTL_MOVE_TURN_L || uiMoveFlags == NTL_MOVE_F_TURN_L)
 				uiMoveFlags = NTL_MOVE_F_TURN_L;
-			else if (uiMoveFlags == NTL_MOVE_TURN_R)
+			else if (uiMoveFlags == NTL_MOVE_TURN_R || uiMoveFlags == NTL_MOVE_F_TURN_R)
 				uiMoveFlags = NTL_MOVE_F_TURN_R;
-			else 
+			else
 				uiMoveFlags = NTL_MOVE_F;
 
 			m_uiCurMoveFlags = (RwUInt8)uiMoveFlags;

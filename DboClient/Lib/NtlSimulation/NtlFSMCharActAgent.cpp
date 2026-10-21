@@ -1189,7 +1189,19 @@ void CNtlFSMCharActAgent::ServerStateUpdateAnalysis(SNtlEventSobServerUpdateStat
 	ServerConditionUpdateAnalysis(m_byServerState, pCharState->sCharStateBase.dwConditionFlag);
 
 	SetFightingMode(pCharState->sCharStateBase.bFightMode);
-	SetAirMode(pCharState->sCharStateBase.eAirState);
+	ServerAirModeUpdate(pCharState->sCharStateBase.eAirState);
+}
+
+// the air jump ack can arrive after the avatar already went idle (ascent released early): idle was
+// entered with the air mode off, so enter it again to take the air idle
+void CNtlFSMCharActAgent::ServerAirModeUpdate(BYTE byAirState)
+{
+	RwBool bWasAirMode = IsAirMode();
+
+	SetAirMode(byAirState);
+
+	if (!bWasAirMode && IsAirMode() && m_pActor->GetClassID() == SLCLASS_AVATAR && Logic_GetActorStateId(m_pActor) == NTL_FSMSID_IDLE)
+		CNtlSLEventGenerator::SobStateTransition(m_pActor->GetSerialID(), NTL_FSMSID_IDLE);
 }
 
 
@@ -2108,7 +2120,7 @@ RwUInt32 CNtlFSMCharActAgent::HandleEvents(RWS::CMsg &pMsg)
 			sCHARSTATE_BASE *pBaseState = &pSobServerState->pState->sCharStateBase;
 
 			SetFightingMode(pBaseState->bFightMode);
-			SetAirMode(pBaseState->eAirState);
+			ServerAirModeUpdate(pBaseState->eAirState);
 
 			m_byServerState = pBaseState->byStateID;
 		}
