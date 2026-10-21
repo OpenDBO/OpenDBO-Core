@@ -5226,3 +5226,75 @@ void CGameServerSession::RecvGmLog(CNtlPacket * pPacket, CQueryServer * app)
 
 	g_pAuditLogRepository->InsertGmLog(req->charId, req->byLogType, ws2s(req->wchBuffer).c_str());
 }
+
+//--------------------------------------------------------------------------------------//
+//		inventory/bank sort (tw): every item gets its new position and stack, merged stacks are deleted
+//--------------------------------------------------------------------------------------//
+void CGameServerSession::RecvInventorySortReq(CNtlPacket * pPacket, CQueryServer * app)
+{
+	sGQ_INVENTORY_SORT_REQ * req = (sGQ_INVENTORY_SORT_REQ*)pPacket->GetPacketData();
+
+	CNtlPacket packet(sizeof(sQG_INVENTORY_SORT_RES));
+	sQG_INVENTORY_SORT_RES * res = (sQG_INVENTORY_SORT_RES *)packet.GetPacketData();
+	res->wOpCode = QG_INVENTORY_SORT_RES;
+	res->wResultCode = GAME_SUCCESS;
+	res->handle = req->handle;
+	res->charId = req->charId;
+	res->byInventoryType = req->byInventoryType;
+	res->byCount = req->byCount;
+	memcpy(res->aItem, req->aItem, sizeof(res->aItem));
+
+	CPlayerCache* pCache = g_pPlayerCache->GetCharacter(req->charId);
+	if (pCache == NULL || req->byCount > NTL_MAX_SORT_ITEM)
+		res->wResultCode = QUERY_FAIL;
+
+	// check everything first, nothing is written when one item does not match the cache
+	for (BYTE i = 0; res->wResultCode == GAME_SUCCESS && i < req->byCount; i++)
+	{
+		sITEM_SORT_DATA& rData = req->aItem[i];
+		sITEM_DATA* pItem = IsBankContainer(rData.byPlace) ? pCache->GetBankItem(rData.itemId, rData.byPlace, rData.byOldPos) : pCache->GetItemData(rData.itemId);
+
+		if (pItem == NULL || pItem->byPlace != rData.byPlace || pItem->byPosition != rData.byOldPos)
+			res->wResultCode = QUERY_FAIL;
+	}
+
+	if (res->wResultCode == GAME_SUCCESS)
+	{
+		for (BYTE i = 0; i < req->byCount; i++)
+		{
+			sITEM_SORT_DATA& rData = req->aItem[i];
+			bool bBank = IsBankContainer(rData.byPlace);
+			sITEM_DATA* pItem = bBank ? pCache->GetBankItem(rData.itemId, rData.byPlace, rData.byOldPos) : pCache->GetItemData(rData.itemId);
+
+			if (rData.bDelete)
+			{
+				g_pItemRepository->DeleteById(rData.itemId);
+
+				if (bBank)
+				{
+					pCache->EraseBankItem(rData.itemId);
+					delete pItem;
+				}
+				else
+					pCache->RemoveItem(rData.itemId);
+
+				continue;
+			}
+
+			if (pItem->byPosition != rData.byPos)
+			{
+				g_pItemRepository->UpdatePlace(rData.itemId, rData.byPlace, rData.byPos);
+				pItem->byPosition = rData.byPos;
+			}
+
+			if (pItem->byStackcount != rData.byStack)
+			{
+				g_pItemRepository->UpdateCount(rData.itemId, rData.byStack);
+				pItem->byStackcount = rData.byStack;
+			}
+		}
+	}
+
+	packet.SetPacketLen(sizeof(sQG_INVENTORY_SORT_RES));
+	app->Send(GetHandle(), &packet);
+}

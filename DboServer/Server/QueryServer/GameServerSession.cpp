@@ -246,6 +246,8 @@ int CGameServerSession::OnDispatch(CNtlPacket * pPacket)
 
 		case GQ_GM_LOG: RecvGmLog(pPacket, app); break;
 
+		case GQ_INVENTORY_SORT_REQ: RecvInventorySortReq(pPacket, app); break;
+
 		default: ERR_LOG(LOG_NETWORK, "Received unknown GQ packet. opcode %d", pHeader->wOpCode);
 	}
 

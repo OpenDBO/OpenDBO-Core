@@ -145,6 +145,7 @@ void CQG_Opcodes::BuildOpcodeList()
 
 	StoreOpcode(QG_MASCOT_SEAL_SET_RES, "QG_MASCOT_SEAL_SET_RES", PROCESS_THREADUNSAFE, &CQueryServerSession::RecvMascotSealSetRes);
 	StoreOpcode(QG_MASCOT_SEAL_CLEAR_RES, "QG_MASCOT_SEAL_CLEAR_RES", PROCESS_THREADUNSAFE, &CQueryServerSession::RecvMascotSealClearRes);
+	StoreOpcode(QG_INVENTORY_SORT_RES, "QG_INVENTORY_SORT_RES", PROCESS_THREADUNSAFE, &CQueryServerSession::RecvInventorySortRes);
 	
 }
 

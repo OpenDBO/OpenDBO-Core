@@ -170,4 +170,5 @@ public:
 
 	void						RecvMascotSealSetRes(CNtlPacket* pPacket);
 	void						RecvMascotSealClearRes(CNtlPacket* pPacket);
+	void						RecvInventorySortRes(CNtlPacket* pPacket);
 };

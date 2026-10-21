@@ -340,6 +340,8 @@ enum eOPCODE_GQ
 
 	GQ_GM_LOG,
 
+	GQ_INVENTORY_SORT_REQ,
+
 	GQ_OPCCODE_END_DUMMY,
 	GQ_OPCODE_END = GQ_OPCCODE_END_DUMMY - 1
 };
@@ -2380,6 +2382,14 @@ BEGIN_PROTOCOL(GQ_GM_LOG)
 BYTE			byLogType;
 CHARACTERID		charId;
 WCHAR			wchBuffer[1024];
+END_PROTOCOL()
+//------------------------------------------------------------------
+BEGIN_PROTOCOL(GQ_INVENTORY_SORT_REQ)
+HOBJECT					handle;
+CHARACTERID				charId;
+BYTE					byInventoryType;
+BYTE					byCount;
+sITEM_SORT_DATA			aItem[NTL_MAX_SORT_ITEM];
 END_PROTOCOL()
 
 #pragma pack(pop)

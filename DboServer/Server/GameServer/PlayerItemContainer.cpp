@@ -10,6 +10,8 @@
 #include "calcs.h"
 #include "NtlRandom.h"
 #include "NtlPacketGQ.h"
+#include "NtlPacketQG.h"
+#include "NtlResultCode.h"
 
 
 CPlayerItemContainer::CPlayerItemContainer()
@@ -25,6 +27,8 @@ CPlayerItemContainer::CPlayerItemContainer()
 	m_bIsUsingGuildBank = false;
 	m_dwGuildZeni = 0;
 	m_map_GuildBankItems.clear();
+
+	m_bIsSorting = false;
 
 	m_dwDurationUpdateTick = 1000;
 }
@@ -581,56 +585,266 @@ void CPlayerItemContainer::RemoveReservedInventory(BYTE byPlace, BYTE byPos)
 //--------------------------------------------------------------------------------------//
 //		SORT INVENTORY
 //--------------------------------------------------------------------------------------//
+// tw: byInventoryType 0/1 = bags, 2 = private bank, 3 = guild bank (not supported). Every container is sorted on its own:
+// stacks of the same item are merged first, then the items are ordered and packed to the front of the container.
+static bool SortItemLess(CItem* pA, CItem* pB)
+{
+	sITEM_TBLDAT* pTblA = pA->GetTbldat();
+	sITEM_TBLDAT* pTblB = pB->GetTbldat();
+
+	if (pTblA->byItem_Type != pTblB->byItem_Type)
+		return pTblA->byItem_Type < pTblB->byItem_Type;
+
+	if (pA->GetTblidx() != pB->GetTblidx())
+		return pA->GetTblidx() < pB->GetTblidx();
+
+	if (pA->GetRank() != pB->GetRank())
+		return pA->GetRank() > pB->GetRank();
+
+	if (pA->GetGrade() != pB->GetGrade())
+		return pA->GetGrade() > pB->GetGrade();
+
+	if (pA->GetCount() != pB->GetCount())
+		return pA->GetCount() > pB->GetCount();
+
+	return pA->GetPos() < pB->GetPos();
+}
+
+// only identical stacks are merged: same item, rank, restriction and duration
+static bool CanMergeStack(CItem* pA, CItem* pB)
+{
+	if (pA->GetTblidx() != pB->GetTblidx() || pA->GetTbldat()->byMax_Stack <= 1)
+		return false;
+
+	if (pA->NeedToIdentify() || pB->NeedToIdentify())
+		return false;
+
+	return pA->GetRank() == pB->GetRank() && pA->GetRestrictState() == pB->GetRestrictState() &&
+		pA->GetDurationtype() == pB->GetDurationtype() && pA->GetUseEndTime() == pB->GetUseEndTime();
+}
+
 void CPlayerItemContainer::SortInventory(BYTE byInventoryType, HOBJECT hNpcHandle)
 {
+	CGameServer* app = (CGameServer*)g_pApp;
+
+	if (m_bIsSorting)
+	{
+		SendSortInventoryRes(GAME_FAIL, byInventoryType);
+		return;
+	}
+
+	std::vector<BYTE> vecPlace;
+
+	if (byInventoryType == 0 || byInventoryType == 1)
+	{
+		for (BYTE i = 0; i < NTL_MAX_BAGSLOT_COUNT; i++)
+		{
+			if (GetActiveBag(i))
+				vecPlace.push_back(CONTAINER_TYPE_BAG1 + i);
+		}
+	}
+	else if (byInventoryType == 2)
+	{
+		if (!m_pOwner->IsUsingBank() || !m_pOwner->IsBankLoaded())
+		{
+			SendSortInventoryRes(GAME_FAIL, byInventoryType);
+			return;
+		}
+
+		// the shared (account) bank page is not sorted
+		vecPlace.push_back(CONTAINER_TYPE_BANK1);
+		vecPlace.push_back(CONTAINER_TYPE_BANK2);
+		vecPlace.push_back(CONTAINER_TYPE_BANK3);
+	}
+	else
+	{
+		SendSortInventoryRes(GAME_FAIL, byInventoryType);
+		return;
+	}
+
+	CNtlPacket pQry(sizeof(sGQ_INVENTORY_SORT_REQ));
+	sGQ_INVENTORY_SORT_REQ* rQry = (sGQ_INVENTORY_SORT_REQ*)pQry.GetPacketData();
+	rQry->wOpCode = GQ_INVENTORY_SORT_REQ;
+	rQry->handle = m_pOwner->GetID();
+	rQry->charId = m_pOwner->GetCharID();
+	rQry->byInventoryType = byInventoryType;
+	rQry->byCount = 0;
+
+	std::vector<CItem*> vecLock;
+
+	for (std::vector<BYTE>::iterator it_Place = vecPlace.begin(); it_Place != vecPlace.end(); ++it_Place)
+	{
+		BYTE byPlace = *it_Place;
+
+		// items waiting to be created there would land on a moved item
+		for (std::vector<std::pair<BYTE, BYTE>>::iterator it_Reserved = m_vecReservedInventory.begin(); it_Reserved != m_vecReservedInventory.end(); ++it_Reserved)
+		{
+			if (it_Reserved->first == byPlace)
+			{
+				SendSortInventoryRes(GAME_ITEM_IS_LOCK, byInventoryType);
+				return;
+			}
+		}
+
+		std::unordered_map<HOBJECT, CItem*>& rMap = IsBankContainer(byPlace) ? m_map_BankItems : m_map_CharItems;
+
+		std::vector<CItem*> vecItem;
+		for (std::unordered_map<HOBJECT, CItem*>::iterator it = rMap.begin(); it != rMap.end(); ++it)
+		{
+			CItem* pItem = it->second;
+			if (pItem->GetPlace() != byPlace)
+				continue;
+
+			if (pItem->IsLocked(false) || pItem->IsTrading())
+			{
+				SendSortInventoryRes(GAME_ITEM_IS_LOCK, byInventoryType);
+				return;
+			}
+
+			vecItem.push_back(pItem);
+		}
+
+		if (vecItem.empty())
+			continue;
+
+		std::sort(vecItem.begin(), vecItem.end(), SortItemLess);
+
+		// merge stacks into the first ones, emptied stacks are deleted
+		std::vector<int> vecCount;
+		for (size_t i = 0; i < vecItem.size(); i++)
+			vecCount.push_back(vecItem[i]->GetCount());
+
+		for (size_t i = 0; i < vecItem.size(); i++)
+		{
+			int nMaxStack = vecItem[i]->GetTbldat()->byMax_Stack;
+
+			for (size_t j = i + 1; j < vecItem.size() && vecCount[i] > 0 && vecCount[i] < nMaxStack; j++)
+			{
+				if (vecCount[j] == 0 || !CanMergeStack(vecItem[i], vecItem[j]))
+					continue;
+
+				int nMove = min(nMaxStack - vecCount[i], vecCount[j]);
+				vecCount[i] += nMove;
+				vecCount[j] -= nMove;
+			}
+		}
+
+		BYTE byNewPos = 0;
+		for (size_t i = 0; i < vecItem.size(); i++)
+		{
+			if (rQry->byCount >= NTL_MAX_SORT_ITEM)
+			{
+				SendSortInventoryRes(GAME_FAIL, byInventoryType);
+				return;
+			}
+
+			CItem* pItem = vecItem[i];
+
+			sITEM_SORT_DATA& rData = rQry->aItem[rQry->byCount++];
+			rData.itemId = pItem->GetItemID();
+			rData.hItem = pItem->GetID();
+			rData.byPlace = byPlace;
+			rData.byOldPos = pItem->GetPos();
+			rData.byStack = (BYTE)vecCount[i];
+			rData.bDelete = vecCount[i] == 0;
+			rData.byPos = rData.bDelete ? pItem->GetPos() : byNewPos++;
+
+			vecLock.push_back(pItem);
+		}
+	}
+
+	// nothing can move or change until the query server saved the sort
+	for (std::vector<CItem*>::iterator it = vecLock.begin(); it != vecLock.end(); ++it)
+		(*it)->SetLocked(true);
+
+	m_bIsSorting = true;
+
+	pQry.SetPacketLen(sizeof(sGQ_INVENTORY_SORT_REQ));
+	app->SendTo(app->GetQueryServerSession(), &pQry);
+}
+
+void CPlayerItemContainer::OnSortInventoryRes(sQG_INVENTORY_SORT_RES* pRes)
+{
+	m_bIsSorting = false;
+
 	CNtlPacket packet(sizeof(sGU_INVENTORY_SORT_RES));
-	sGU_INVENTORY_SORT_RES * res = (sGU_INVENTORY_SORT_RES *)packet.GetPacketData();
+	sGU_INVENTORY_SORT_RES* res = (sGU_INVENTORY_SORT_RES*)packet.GetPacketData();
 	res->wOpCode = GU_INVENTORY_SORT_RES;
-	res->wResultCode = 500;
+	res->wResultCode = pRes->wResultCode == GAME_SUCCESS ? GAME_SUCCESS : GAME_FAIL;
+	res->byInventoryType = pRes->byInventoryType;
+	res->byContainerCount = 0;
+
+	for (BYTE i = 0; i < pRes->byCount; i++)
+	{
+		sITEM_SORT_DATA& rData = pRes->aItem[i];
+		bool bBank = IsBankContainer(rData.byPlace);
+
+		CItem* pItem = bBank ? GetBankItem(rData.hItem) : GetItem(rData.hItem);
+		if (pItem == NULL)
+			continue;
+
+		pItem->SetLocked(false);
+
+		if (pRes->wResultCode != GAME_SUCCESS)
+			continue;
+
+		// the container the item belongs to in the client packet
+		sITEM_SORT_CONTAINER* pContainer = NULL;
+		for (BYTE c = 0; c < res->byContainerCount; c++)
+		{
+			if (res->aContainer[c].byPlace == rData.byPlace)
+				pContainer = &res->aContainer[c];
+		}
+
+		if (pContainer == NULL)
+		{
+			if (res->byContainerCount >= NTL_MAX_SORT_CONTAINER)
+				continue;
+
+			pContainer = &res->aContainer[res->byContainerCount++];
+			pContainer->byPlace = rData.byPlace;
+			pContainer->byMoveCount = 0;
+			pContainer->byDelCount = 0;
+		}
+
+		if (rData.bDelete)
+		{
+			if (pContainer->byDelCount < NTL_MAX_BAG_ITEM_SLOT)
+			{
+				pContainer->delItem[pContainer->byDelCount].hItem = rData.hItem;
+				pContainer->delItem[pContainer->byDelCount].byPos = rData.byOldPos;
+				pContainer->byDelCount++;
+			}
+
+			RemoveItem(rData.byPlace, rData.hItem);
+			g_pItemManager->DestroyItem(pItem);
+			continue;
+		}
+
+		pItem->SetPos(rData.byPos);
+		pItem->SetStackCount(rData.byStack);
+
+		if (pContainer->byMoveCount < NTL_MAX_BAG_ITEM_SLOT)
+		{
+			pContainer->moveItem[pContainer->byMoveCount].hItem = rData.hItem;
+			pContainer->moveItem[pContainer->byMoveCount].byStack = rData.byStack;
+			pContainer->moveItem[pContainer->byMoveCount].byPos = rData.byPos;
+			pContainer->byMoveCount++;
+		}
+	}
+
+	packet.SetPacketLen(sizeof(sGU_INVENTORY_SORT_RES));
+	m_pOwner->SendPacket(&packet);
+}
+
+void CPlayerItemContainer::SendSortInventoryRes(WORD wResultCode, BYTE byInventoryType)
+{
+	CNtlPacket packet(sizeof(sGU_INVENTORY_SORT_RES));
+	sGU_INVENTORY_SORT_RES* res = (sGU_INVENTORY_SORT_RES*)packet.GetPacketData();
+	res->wOpCode = GU_INVENTORY_SORT_RES;
+	res->wResultCode = wResultCode;
 	res->byInventoryType = byInventoryType;
-	//res->byMoveCount = 0;
-	//res->byDelCount = 0;
-	//res->wTotalCount = 1;
-
-	//memset(res->moveItem, 1, sizeof(res->moveItem));
-	//memset(res->delItem, 1, sizeof(res->delItem));
-
-	//printf("sGU_INVENTORY_SORT_RES size = %I64u, %I64u, %I64u \n", sizeof(sGU_INVENTORY_SORT_RES), sizeof(res->moveItem), sizeof(res->delItem));
-	//if (byInventoryType == 0)
-	//{
-	//	for (auto it = m_map_CharItems.begin(); it != m_map_CharItems.end(); it++)
-	//	{
-	//		CItem* item = it->second;
-	//		if (item->GetPlace() == CONTAINER_TYPE_BAG1)
-	//		{
-	//			res->moveItem[res->byMoveCount].hItem = item->GetID();
-	//			res->moveItem[res->byMoveCount].byPlace = item->GetPlace();
-	//			res->moveItem[res->byMoveCount].byPos = item->GetPos();
-
-	//			res->byMoveCount++;
-	//		}
-
-	//		//if (item->GetPlace() == 0 && item->GetPos() == 1)
-	//		//{
-	//		//	res->delItem[res->byDelCount].hItem = item->GetID(); //should never be handle of inventory bag
-	//		//	res->delItem[res->byDelCount].byUnknown = 2;
-
-	//		//	res->byDelCount++;
-	//		//}
-	//	}
-
-	//}
-	//else if (byInventoryType == 2)
-	//{
-	//	for (auto it = m_map_BankItems.begin(); it != m_map_BankItems.end(); it++)
-	//	{
-	//		CItem* item = it->second;
-
-	//	}
-	//}
-	//else
-		res->wResultCode = 501;
-
+	res->byContainerCount = 0;
 	packet.SetPacketLen(sizeof(sGU_INVENTORY_SORT_RES));
 	m_pOwner->SendPacket(&packet);
 }
