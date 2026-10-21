@@ -1106,7 +1106,7 @@ void InitResultCodeString()
 }
 
 
-std::string& Logic_GetResultCodeString(WORD wResultCode, std::string strDefaultMessage)
+std::string Logic_GetResultCodeString(WORD wResultCode, const std::string& strDefaultMessage)
 {
 	static bool bInitResultCodeString = false;
 
