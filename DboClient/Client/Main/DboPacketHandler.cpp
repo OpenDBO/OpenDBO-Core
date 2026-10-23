@@ -3221,6 +3221,9 @@ void PacketHandler_GSItemDisassembleRes(void * pPacket)
 	CNtlSobAvatar* pSobAvatar = GetNtlSLGlobal()->GetSobAvatar();
 
 	CNtlSLEventGenerator::SobItemDelete(pSobAvatar->GetSerialID(), pResult->hDeleteItem, pResult->byDeleteItemPlace, pResult->byDeleteItemPos);
+
+	// tw: the smithy disassemble tab shows the received materials
+	CDboEventGenerator::ItemDisassembleResult(pResult->ahResultItem);
 }
 
 void PacketHandler_GSItemSocketInsertBeadRes(void * pPacket)

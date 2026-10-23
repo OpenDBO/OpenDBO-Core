@@ -132,6 +132,7 @@ VOID CDialogManager::PlayOpenSound(RwInt32 iDialog)
 		case DIALOG_CHAT_LOG:
 		case DIALOG_MULTIDIALOG:
 		case DIALOG_ITEMUPGRADE:
+		case DIALOG_SMITHY:
 		case DIALOG_CAPSULE_1:
 		case DIALOG_CAPSULE_2:
 		case DIALOG_CAPSULE_3:
@@ -168,6 +169,7 @@ VOID CDialogManager::PlayCloseSound(RwInt32 iDialog)
 			case DIALOG_CHAT_LOG:
 			case DIALOG_MULTIDIALOG:
 			case DIALOG_ITEMUPGRADE:
+			case DIALOG_SMITHY:
 			case DIALOG_CAPSULE_1:
 			case DIALOG_CAPSULE_2:
 			case DIALOG_CAPSULE_3:

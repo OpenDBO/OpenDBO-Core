@@ -106,6 +106,7 @@ RwBool CDboEventHandler::Create(void)
 	RegisterMsg(g_EventItemChangeBattleAttributeResult, "g_EventItemChangeBattleAttributeResult", "SDboItemChangeBattleAttributeResult");
 	RegisterMsg(g_EventRegisterItemUpgrade, "g_EventRegisterItemUpgrade", "SDboRegisterItemUpgrade" );
 	RegisterMsg(g_EventRegisterItemChangeBattleAttribute, "g_EventRegisterItemChangeBattleAttribute", "SDboRegisterItemUpgrade");
+	RegisterMsg(g_EventItemDisassembleResult, "g_EventItemDisassembleResult", "SDboItemDisassembleResult");
 
 	RegisterMsg(g_EventCharTitleSelectRes, "g_EventCharTitleSelectRes", "SDboEventCharTitleSelectRes");
 	RegisterMsg(g_EventCharTitleUpdate, "g_EventCharTitleUpdate", "SDboEventCharTitleUpdate");
@@ -329,6 +330,7 @@ void CDboEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventItemChangeBattleAttributeResult);
 	UnRegisterMsg(g_EventRegisterItemUpgrade);
 	UnRegisterMsg(g_EventRegisterItemChangeBattleAttribute);
+	UnRegisterMsg(g_EventItemDisassembleResult);
 
 	UnRegisterMsg(g_EventCharTitleSelectRes);
 	UnRegisterMsg(g_EventCharTitleUpdate);

@@ -48,6 +48,7 @@
 #include "QuestGui.h"
 #include "ItemChangeBattleAttributeGui.h"
 #include "ItemUpgradeGui.h"
+#include "SmithyGui.h"
 #include "WareHouseGui.h"
 #include "CautionNotifyGui.h"
 #include "TerritoryNotifyGui.h"
@@ -249,6 +250,7 @@ CGameGuiGroup::CGameGuiGroup()
 , m_pQuest(NULL)
 , m_pItemChangeBattleAttribute(NULL)
 , m_pItemUpgrade(NULL)
+, m_pSmithy(NULL)
 , m_pWarehouseBar(NULL)
 , m_pWarehouse_1(NULL)
 , m_pWarehouse_2(NULL)
@@ -515,6 +517,9 @@ RwBool CGameGuiGroup::Create(void)
 
 	// Upgrade item
 	AddDialog(m_pItemUpgrade, CItemUpgradeGui, "ItemUpgrade", DIALOG_ITEMUPGRADE);
+
+	// Smithy of the upgrade npc (item disassemble)
+	AddDialog(m_pSmithy, CSmithyGui, "Smithy", DIALOG_SMITHY);
 
 	// Quest Group
 	m_pQuest = NTL_NEW CQuestGui();
@@ -925,6 +930,7 @@ void CGameGuiGroup::Destroy(void)
 	RemoveDialog(m_pPlayerTitle);
     RemoveDialog(m_pItemChangeBattleAttribute);
 	RemoveDialog(m_pItemUpgrade);
+	RemoveDialog(m_pSmithy);
 
 	if( m_pQuest )
 	{

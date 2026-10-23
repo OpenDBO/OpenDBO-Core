@@ -135,6 +135,8 @@ extern RWS::CEventId g_EventItemChangeOptionResult;
 
 extern RWS::CEventId g_EventItemChangeBattleAttributeResult;
 
+extern RWS::CEventId g_EventItemDisassembleResult;
+
 extern RWS::CEventId g_EventRegisterItemUpgrade;	// 아이템 업그레이드 슬롯에 등록. (마우스 오른쪽 버튼)
 
 extern RWS::CEventId g_EventRegisterItemChangeBattleAttribute;
@@ -761,6 +763,11 @@ struct SDboItemChangeBattleAttributeResult
 {
 	WORD		wResultcode;
 	RwUInt8		byBattleAttribute;
+};
+
+struct SDboItemDisassembleResult
+{
+	SERIAL_HANDLE	ahResultItem[ITEM_DISASSEMBLE_MAX_RESULT];	// materials received, INVALID_SERIAL_ID if none
 };
 
 struct SDboNpcDialogOpen

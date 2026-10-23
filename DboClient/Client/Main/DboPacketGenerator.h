@@ -141,7 +141,7 @@ public:
 	bool SendItemRepair(RwInt32 uiNPCSerial, RwUInt8 iPlace, RwUInt8 iPos);
 	bool SendItemAllRepair(RwInt32 uiNPCSerial);
 	bool SendItemIdentifyReq(RwInt32 uiNPCSerial, RwUInt8 iPlace, RwUInt8 iPos);
-	bool SendItemDisassembleReq(RwUInt8 iPlace, RwUInt8 iPos);
+	bool SendItemDisassembleReq(RwUInt32 hNpcSerial, RwUInt8 iPlace, RwUInt8 iPos);
 
 	bool SendItemSocketInsertBeadReq(RwUInt8 iPlace, RwUInt8 iPos, RwUInt8 iBeadPlace, RwUInt8 iBeadPos);
 	bool SendItemSocketDestroyBeadReq(RwUInt8 iPlace, RwUInt8 iPos);

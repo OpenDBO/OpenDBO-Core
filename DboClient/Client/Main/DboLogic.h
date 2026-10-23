@@ -110,6 +110,7 @@ RwBool Logic_ItemIdentification_in_NPCShop_Proc( RwUInt8 byBagIndex, RwUInt8 ucS
 
 RwBool Logic_ItemBeadProc(RwUInt8 byBagIndex, RwUInt8 ucSrcSlotIdx);
 RwBool Logic_ItemBeadDestroyProc(RwUInt8 byBagIndex, RwUInt8 ucSrcSlotIdx);
+RwBool Logic_ItemDisassembleProc(RwUInt8 byBagIndex, RwUInt8 ucSrcSlotIdx);
 
 RwBool Logic_ItemDeleteProc(sMsgDboItemInfo* pInfo, RwBool* pPacketLock );
 RwBool Logic_ItemDirectEquipProc( SERIAL_HANDLE hSrcSerial, EPlace eSrcPlace, RwUInt8 ucSrcSlotIdx );

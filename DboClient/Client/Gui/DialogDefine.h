@@ -215,7 +215,9 @@ enum eDialogType
 
 	DIALOG_MASCOT_REMOTE_SELL,				///< sell cart of the mascot remote shop skill
 
-	DIALOG_NPCDIALOG_LAST = DIALOG_MASCOT_REMOTE_SELL,
+	DIALOG_SMITHY,							///< item upgrade npc smithy (disassemble tab)
+
+	DIALOG_NPCDIALOG_LAST = DIALOG_SMITHY,
 
 	DIALOG_NUM,
 

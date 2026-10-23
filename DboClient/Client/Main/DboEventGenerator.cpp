@@ -672,6 +672,14 @@ void CDboEventGenerator::ItemChangeBattleAttributeResult(WORD wResultCode, RwUIn
 	SEND_MSG(g_EventItemChangeBattleAttributeResult, &sData);
 }
 
+void CDboEventGenerator::ItemDisassembleResult(const SERIAL_HANDLE (&ahResultItem)[ITEM_DISASSEMBLE_MAX_RESULT])
+{
+	SDboItemDisassembleResult sData;
+	memcpy(sData.ahResultItem, ahResultItem, sizeof(ahResultItem));
+
+	SEND_MSG(g_EventItemDisassembleResult, &sData);
+}
+
 void CDboEventGenerator::RegisterItemChangeBattleAttribute(RwUInt32 hSerialID, RwUInt32 eSrcPlace, RwUInt32 uiSlotIdx)
 {
 	SDboRegisterItemUpgrade sData;

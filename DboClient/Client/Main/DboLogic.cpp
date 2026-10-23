@@ -16,6 +16,7 @@
 #include "NPCTable.h"
 #include "TextAllTable.h"
 #include "ItemRecipeTable.h"
+#include "ItemDisassembleTable.h"
 #include "TableContainer.h"
 #include "NtlBattle.h"
 #include "NtlCharacter.h"
@@ -81,6 +82,7 @@
 #include "DialogManager.h"
 #include "DboGlobal.h"
 #include "NPCShop.h"
+#include "SmithyGui.h"
 #include "ChatGui.h"
 #include "CharStageState.h"
 #include "DboEventGenerator.h"
@@ -200,6 +202,52 @@ RwBool Logic_ItemBeadProc(RwUInt8 byBagIndex, RwUInt8 ucSrcSlotIdx)
 		NTL_RETURN(GetDboGlobal()->GetGamePacketGenerator()->SendItemSocketInsertBeadReq((RwUInt8)eSrcBagType, ucSrcSlotIdx, eBeadPlace, pBeadItem->GetItemSlotIdx()));
 	}
 
+	NTL_RETURN(FALSE);
+}
+
+RwBool Logic_ItemDisassembleProc(RwUInt8 byBagIndex, RwUInt8 ucSrcSlotIdx)
+{
+	NTL_FUNCTION("Logic_ItemDisassembleProc");
+
+	// tw: disassembling is done through the smithy of the item upgrade npc
+	CSmithyGui* pSmithyGui = static_cast<CSmithyGui*>(GetDialogManager()->GetDialog(DIALOG_SMITHY));
+	SERIAL_HANDLE hNpcSerial = pSmithyGui ? pSmithyGui->GetNPCSerial() : INVALID_SERIAL_ID;
+	if (hNpcSerial == INVALID_SERIAL_ID)
+	{
+		DBO_FAIL("Not exist target NPC");
+		NTL_RETURN(FALSE);
+	}
+
+	CNtlInventory* pInventory = GetNtlSLGlobal()->GetSobAvatar()->GetInventory();
+	SERIAL_HANDLE hBag = pInventory->GetBagItem(byBagIndex);
+	CNtlSobItem* pBag = reinterpret_cast<CNtlSobItem*>(GetNtlSobManager()->GetSobObject(hBag));
+	NTL_ASSERT(pBag, "Logic_ItemDisassembleProc, Not exist bag of handle : " << hBag << " of bag index : " << byBagIndex);
+	CNtlSobItem* pChildItem = pBag->GetChildItem(ucSrcSlotIdx);
+	NTL_ASSERT(pChildItem, "Logic_ItemDisassembleProc, Not exist child item of slot : " << ucSrcSlotIdx << " of bag index : " << byBagIndex);
+	CNtlSobItemAttr* pChildItemAttr = reinterpret_cast<CNtlSobItemAttr*>(pChildItem->GetSobAttr());
+	NTL_ASSERT(pChildItemAttr, "Logic_ItemDisassembleProc, Not exist child item attribute of slot : " << ucSrcSlotIdx << " of bag index : " << byBagIndex);
+
+	if (pChildItemAttr->IsNeedToIdentify() == FALSE && IsSealItem(pChildItemAttr->GetRestrictState()) == false &&
+		API_GetTableContainer()->GetItemDisassembleTable()->FindData(pChildItemAttr->GetTblIdx()))
+	{
+		eCONTAINER_TYPE eSrcBagType = Logic_ConvertBagIdxToContainerType(byBagIndex);
+
+		// the grade is lost, ask first
+		if (pChildItemAttr->GetGrade() > 0)
+		{
+			sMsgBoxData sData;
+			sData.sItemInfo.hSerial = hNpcSerial;
+			sData.sItemInfo.nPlaceIdx = eSrcBagType;
+			sData.sItemInfo.nSlotIdx = ucSrcSlotIdx;
+
+			GetAlarmManager()->AlarmMessage("DST_DISASSEMBLE_GRADE_ALRAM", FALSE, &sData);
+			NTL_RETURN(TRUE);
+		}
+
+		NTL_RETURN(GetDboGlobal()->GetGamePacketGenerator()->SendItemDisassembleReq(hNpcSerial, static_cast<RwUInt8>(eSrcBagType), ucSrcSlotIdx));
+	}
+
+	GetAlarmManager()->AlarmMessage("DST_ITEM_CAN_NOT_DISASSEMBLE");
 	NTL_RETURN(FALSE);
 }
 
