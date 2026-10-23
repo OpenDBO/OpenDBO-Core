@@ -142,11 +142,6 @@ VOID CIconPopupItem::OnClick( gui::CComponent* pComponent )
 	{
 		CDboEventGenerator::OpenHelpContent(DIALOG_BAGSLOT);
 	}
-	else if (m_eWork == PMW_ITEM_DISASSEMBLE)
-	{
-		GetDialogManager()->OffMode();
-		GetDialogManager()->OnMode(DIALOGMODE_ITEM_DISASSEMBLE);
-	}
 	else if (m_eWork == PMW_SCOUTER_CHECK_MENU_EQUIPMENT)
 	{
 		GetDboGlobal()->GetGamePacketGenerator()->SendPCInfoView(Logic_GetAvatarTargetHandle());
@@ -624,7 +619,6 @@ VOID CIconPopupGui::ShowEvent( RWS::CMsg& msg )
 	{
 		SelectItem(m_apMenu[PMW_HELP]);
 		SelectItem(m_apMenu[PMW_ITEM_SORT]);
-		SelectItem(m_apMenu[PMW_ITEM_DISASSEMBLE]);
 	 }
 	else if (pData->nSrcPlace == PLACE_SUB_WAREHOUSE_MENU)
 	{
@@ -756,7 +750,6 @@ const WCHAR * CIconPopupGui::GetPopupMenuName(RwInt32 num)
 			swprintf_s(Buff, 256, GetDisplayStringManager()->GetString("DST_WAGU_ITEM_BUNCH"), 10);
 			return Buff;
 		}
-		case PMW_ITEM_DISASSEMBLE: return GetDisplayStringManager()->GetString("DST_MULTIDIALOG_MENU_SMITH_DISASSEMBLE");
 
 		default: break;
 	}
