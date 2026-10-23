@@ -1971,6 +1971,7 @@ HOBJECT					hSubject;
 END_PROTOCOL()
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(UG_ITEM_DISASSEMBLE_REQ)
+HOBJECT				hNpcHandle;
 BYTE				byPlace;
 BYTE				byPos;
 END_PROTOCOL()

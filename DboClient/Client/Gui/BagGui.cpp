@@ -1292,14 +1292,8 @@ VOID CBagBaseGui::MouseUp( const CKey& key )
 				else if (GetDialogManager()->IsMode(DIALOGMODE_ITEM_DISASSEMBLE))
 				{
 					CNtlSobItem* pBagItem = reinterpret_cast<CNtlSobItem*>(GetNtlSobManager()->GetSobObject(m_hBagSerial));
-					CNtlSobItem* pItem = pBagItem->GetChildItem(nSlotIdx);
-					if (pItem)
-					{
-						CNtlSobItemAttr* pItemAttr = reinterpret_cast<CNtlSobItemAttr*>(pItem->GetSobAttr());
-
-						if (pItemAttr->IsNeedToIdentify() == FALSE && IsSealItem(pItemAttr->GetRestrictState()) == false)
-							GetDboGlobal()->GetGamePacketGenerator()->SendItemDisassembleReq(Logic_ConvertBagIdxToContainerType(GetBagPos()), nSlotIdx);
-					}
+					if (pBagItem->GetChildItem(nSlotIdx))
+						Logic_ItemDisassembleProc(GetBagPos(), nSlotIdx);
 				}
 				else if (GetDialogManager()->IsMode(DIALOGMODE_ITEM_BEAD))
 				{

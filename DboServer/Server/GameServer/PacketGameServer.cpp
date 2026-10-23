@@ -12184,15 +12184,25 @@ void CClientSession::RecvItemDisassembleReq(CNtlPacket * pPacket)
 	BYTE reward = 0;
 	WORD resultcode = GAME_SUCCESS;
 
-
-	if (cPlayer->GetPlayerItemContainer()->CountEmptyInventory() > 0)
+	// tw: disassembling is done at the item upgrade npc
+	CNpc* pNpc = g_pObjectManager->GetNpc(req->hNpcHandle);
+	if (pNpc == NULL)
+		resultcode = GAME_FAIL;
+	else if (cPlayer->IsInRange(pNpc, DBO_DISTANCE_CHECK_TOLERANCE) == false)
+		resultcode = GAME_TARGET_TOO_FAR;
+	else if (pNpc->GetTbldat()->byJob != NPC_JOB_ITEM_UPGRADE)
+		resultcode = GAME_TARGET_HAS_DIFFERENT_JOB;
+	else if (BIT_FLAG_TEST(pNpc->GetTbldat()->dwFunc_Bit_Flag, NPC_FUNC_FLAG_ITEM_UPGRADE) == false)
+		resultcode = GAME_TARGET_HAS_NOT_FUNCTION;
+	else if (cPlayer->GetPlayerItemContainer()->CountEmptyInventory() > 0)
 	{
 		if (IsInvenContainer(req->byPlace))
 		{
 			CItem* itemdata = cPlayer->GetPlayerItemContainer()->GetItem(req->byPlace, req->byPos);
 			if (itemdata && itemdata->NeedToIdentify() == false && IsSealItem(itemdata->GetRestrictState()) == false)
 			{
-				if (itemdata->IsLocked() == false && itemdata->GetGrade() == 0)
+				// tw: upgraded items can be disassembled too, the client asks for confirmation
+				if (itemdata->IsLocked() == false)
 				{
 					sITEM_DISASSEMBLE_TBLDAT* pItemDisTblData = (sITEM_DISASSEMBLE_TBLDAT*)g_pTableContainer->GetItemDisassembleTable()->FindData(itemdata->GetTblidx());
 					if (pItemDisTblData)
@@ -12210,6 +12220,8 @@ void CClientSession::RecvItemDisassembleReq(CNtlPacket * pPacket)
 							{
 								BYTE quantity = RandomRange(1, pItemDisTblData->ByMat3Rate);
 								sITEM_TBLDAT* pItemTbldat = (sITEM_TBLDAT*)g_pTableContainer->GetItemTable()->FindData(pItemDisTblData->ItemTblidxResult[i]);
+								if (pItemTbldat == NULL)
+									continue;
 
 								CItem* itemcheck = cPlayer->GetPlayerItemContainer()->CheckStackItem(pItemTbldat->tblidx, quantity, pItemTbldat->byMax_Stack, GetDefaultRestrictState(pItemTbldat->byRestrictType, pItemTbldat->byItem_Type, true));
 								if (itemcheck)
@@ -12240,6 +12252,7 @@ void CClientSession::RecvItemDisassembleReq(CNtlPacket * pPacket)
 										resQry->asCreateItem[resQry->byCount].byDurationType = pItemTbldat->byDurationType;
 										resQry->asCreateItem[resQry->byCount].sOptionSet.Init();
 									}
+									else continue; // no free slot left for this material
 								}
 
 								resQry->byCount++;
@@ -12277,6 +12290,8 @@ void CClientSession::RecvItemDisassembleReq(CNtlPacket * pPacket)
 	sGU_ITEM_DISASSEMBLE_RES* res = (sGU_ITEM_DISASSEMBLE_RES*)packet.GetPacketData();
 	res->wOpCode = GU_ITEM_DISASSEMBLE_RES;
 	res->wResultCode = resultcode;
+	for (int i = 0; i < ITEM_DISASSEMBLE_MAX_RESULT; i++)
+		res->ahResultItem[i] = INVALID_HOBJECT;
 	packet.SetPacketLen(sizeof(sGU_ITEM_DISASSEMBLE_RES));
 	app->Send(GetHandle(), &packet);
 }

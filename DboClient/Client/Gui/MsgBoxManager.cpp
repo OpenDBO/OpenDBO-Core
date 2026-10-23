@@ -1484,6 +1484,15 @@ VOID CMsgBoxManager::HandleEvents( RWS::CMsg &msg )
 			// byIndex: inventory type (0 bag, 2 private bank), hHandle: bank npc
 			GetDboGlobal()->GetGamePacketGenerator()->SendInventorySortReq(pMsgBoxData->byIndex, pMsgBoxData->hHandle);
 		}
+		else if (pMsgBoxResult->strID == "DST_DISASSEMBLE_GRADE_ALRAM")
+		{
+			if (pMsgBoxResult->eResult != MBR_OK)
+				return;
+
+			// hSerial: smithy npc, nPlaceIdx/nSlotIdx: upgraded item (see Logic_ItemDisassembleProc)
+			sMsgDboItemInfo* pInfo = &reinterpret_cast<sMsgBoxData*>(pMsgBoxResult->pData)->sItemInfo;
+			GetDboGlobal()->GetGamePacketGenerator()->SendItemDisassembleReq(pInfo->hSerial, static_cast<RwUInt8>(pInfo->nPlaceIdx), static_cast<RwUInt8>(pInfo->nSlotIdx));
+		}
 		else if (pMsgBoxResult->strID == "DST_BUFF_MB_DELETE_SUB_BUFF_MSG")
 		{
 			if (pMsgBoxResult->eResult != MBR_OK)

@@ -2609,8 +2609,8 @@ void CQueryServerSession::RecvMaterialDisassembleRes(CNtlPacket* pPacket)
 	res->byDeleteItemPlace = req->sDeleteItem.byPlace;
 	res->byDeleteItemPos = req->sDeleteItem.byPos;
 	res->hDeleteItem = req->sDeleteItem.hItem;
-	packet.SetPacketLen(sizeof(sGU_ITEM_DISASSEMBLE_RES));
-	pOwner->SendPacket(&packet);
+	for (int i = 0; i < ITEM_DISASSEMBLE_MAX_RESULT; i++)
+		res->ahResultItem[i] = INVALID_HOBJECT;
 
 	if (req->wResultCode == GAME_SUCCESS)
 	{
@@ -2640,16 +2640,12 @@ void CQueryServerSession::RecvMaterialDisassembleRes(CNtlPacket* pPacket)
 				packet2.SetPacketLen(sizeof(sGU_ITEM_CREATE));
 				pOwner->SendPacket(&packet2);
 
-		//		res->ItemResultId[i] = item->GetID();
+				res->ahResultItem[i] = item->GetID();
 			}
-			//else
-			//{
-			//	if (CItem* pItem = pOwner->GetPlayerItemContainer()->GetItem(req->asCreateItem[i].itemId))
-			//	{
-			//		res->ItemResultId[i] = pItem->GetID();
-			//	}
-			//	else res->ItemResultId[i] = INVALID_HOBJECT;
-			//}
+			else if (CItem* pItem = pOwner->GetPlayerItemContainer()->GetItem(req->asCreateItem[i].itemId)) // stacked on an existing item
+			{
+				res->ahResultItem[i] = pItem->GetID();
+			}
 		}
 	}
 	else
@@ -2659,6 +2655,10 @@ void CQueryServerSession::RecvMaterialDisassembleRes(CNtlPacket* pPacket)
 			pOwner->GetPlayerItemContainer()->RemoveReservedInventory(req->asCreateItem[i].byPlace, req->asCreateItem[i].byPosition);
 		}
 	}
+
+	// sent after the materials exist so the client can show them
+	packet.SetPacketLen(sizeof(sGU_ITEM_DISASSEMBLE_RES));
+	pOwner->SendPacket(&packet);
 }
 
 

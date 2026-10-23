@@ -469,6 +469,7 @@ VOID CMultiDialogGui::HandleEvents( RWS::CMsg& msg )
 			if (pTableData->byJob == NPC_JOB_ITEM_UPGRADE) // is upgrade npc?
 			{
 				m_pCommandList->RegistCommand(CCommandList::UPGRADE_COMMAND);
+				m_pCommandList->RegistCommand(CCommandList::SMITH_DISASSEMBLE_COMMAND);
 				m_pCommandList->RegistCommand(CCommandList::SMITH_CHANGE_BATTLE_ATTRIBUTE_COMMAND);
 			//	m_pCommandList->RegistCommand(CCommandList::SMITH_TRANSFER_ITEM_GRADE);
 			}
@@ -1518,6 +1519,16 @@ VOID CCommandList::RegistCommand( RwInt32 nID, RwUInt8 ucJob /* = 0xFF  */)
 		}
 		break;
 
+		case SMITH_DISASSEMBLE_COMMAND:
+		{
+			// tw: "Item Upgrade / Disassemble", the upgrade half is turned off by the server contents flags
+			surface = GetNtlGuiManager()->GetSurfaceManager()->GetSurface("GameCommon.srf", "srfWeapon_Merchant");
+			wstrText = GetDisplayStringManager()->GetString("DST_ITEM");
+			wstrText += L" ";
+			wstrText += GetDisplayStringManager()->GetString("DST_MULTIDIALOG_MENU_SMITH_DISASSEMBLE");
+		}
+		break;
+
 		default:
 			return;
 	}
@@ -2282,6 +2293,12 @@ VOID CCommandNode::OnClickCommand( gui::CComponent* pComponent )
 				{
 					GetDialogManager()->CloseDialog(DIALOG_MULTIDIALOG, FALSE);
 					CDboEventGenerator::NPCDialogOpen(hSerialID, DIALOG_ITEM_CHANGE_BATTLE_ATTRIBUTE);
+				}
+				break;
+				case CCommandList::SMITH_DISASSEMBLE_COMMAND:
+				{
+					GetDialogManager()->CloseDialog(DIALOG_MULTIDIALOG, FALSE);
+					CDboEventGenerator::NPCDialogOpen(hSerialID, DIALOG_SMITHY);
 				}
 				break;
 				default:

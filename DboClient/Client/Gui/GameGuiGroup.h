@@ -118,6 +118,7 @@ class CItemSwapGui;
 class CItemSwapCartGui;
 class CAuctionHouseGui;
 class CItemUpgradeGui;
+class CSmithyGui;
 class CItemOptionRestructureGui;
 class CQuickTeleportGui;
 class CPlayerTitleGui;
@@ -163,6 +164,7 @@ private:
 	CQuestGui*					m_pQuest;
 	CItemChangeBattleAttributeGui*			m_pItemChangeBattleAttribute;
 	CItemUpgradeGui*			m_pItemUpgrade;
+	CSmithyGui*					m_pSmithy;
 	CWarehouseBarGui*			m_pWarehouseBar;
 	CWarehouseGui*				m_pWarehouse_1;
 	CWarehouseGui*				m_pWarehouse_2;

@@ -4597,6 +4597,7 @@ WORD				wResultCode;
 BYTE				byDeleteItemPlace;
 BYTE				byDeleteItemPos;
 HOBJECT				hDeleteItem;
+HOBJECT				ahResultItem[ITEM_DISASSEMBLE_MAX_RESULT];	// INVALID_HOBJECT if not created
 END_PROTOCOL()
 
 #pragma pack(pop)

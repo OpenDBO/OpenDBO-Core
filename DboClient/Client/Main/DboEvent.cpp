@@ -105,6 +105,8 @@ RWS::CEventId g_EventItemChangeOptionResult;
 
 RWS::CEventId g_EventItemChangeBattleAttributeResult;		// 아이템 업그레이드 결과
 
+RWS::CEventId g_EventItemDisassembleResult;
+
 RWS::CEventId g_EventRegisterItemUpgrade;	// 아이템 업그레이드슬롯에 등록( 마우스 오른쪽버튼 )
 
 RWS::CEventId g_EventRegisterItemChangeBattleAttribute;

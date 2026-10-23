@@ -294,6 +294,7 @@
     <ClCompile Include="Gui\InfoWndManager.cpp" />
     <ClCompile Include="Gui\InterfaceShakeGui.cpp" />
     <ClCompile Include="Gui\ItemChangeBattleAttributeGui.cpp" />
+    <ClCompile Include="Gui\SmithyGui.cpp" />
     <ClCompile Include="Gui\ItemUpgradeCardGui.cpp" />
     <ClCompile Include="Gui\ItemUpgradeGui.cpp" />
     <ClCompile Include="Gui\LittleQuestContainer.cpp" />
@@ -660,6 +661,7 @@
     <ClInclude Include="Gui\InfoWndManager.h" />
     <ClInclude Include="Gui\InterfaceShakeGui.h" />
     <ClInclude Include="Gui\ItemChangeBattleAttributeGui.h" />
+    <ClInclude Include="Gui\SmithyGui.h" />
     <ClInclude Include="Gui\LittleQuestContainer.h" />
     <ClInclude Include="Gui\LoadingGui.h" />
     <ClInclude Include="Gui\LoginGui.h" />

@@ -93,6 +93,8 @@ public:
 	static void ItemChangeBattleAttributeResult(WORD wResultCode, RwUInt8 byBattleAttribute = 0);
 	static void RegisterItemChangeBattleAttribute(RwUInt32 hSerialID, RwUInt32 eSrcPlace, RwUInt32 uiSlotIdx);
 
+	static void ItemDisassembleResult(const SERIAL_HANDLE (&ahResultItem)[ITEM_DISASSEMBLE_MAX_RESULT]);
+
 	static void CharTitleSelectRes(TBLIDX uiTitle);
 	static void CharTitleUpdate(TBLIDX uiTitle, bool bDelete);
 
