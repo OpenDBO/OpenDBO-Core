@@ -6,7 +6,7 @@
 // client version
 
 #define	CLIENT_LVER		1
-#define CLIENT_RVER		20
+#define CLIENT_RVER		69
 
 
 // Entire Server Connection Structure
