@@ -313,6 +313,7 @@ void RegisterPacketHandler(void)
 	CNtlPacketHandler::Register(GU_UPDATE_CHAR_MAX_EP, PacketHandler_GUCharUpdateMaxEP );
 	CNtlPacketHandler::Register(GU_UPDATE_CHAR_MAX_RP, PacketHandler_GUCharUpdateMaxRP );
 	CNtlPacketHandler::Register(GU_UPDATE_CHAR_AP, PacketHandler_GUCharUpdateAP);
+	CNtlPacketHandler::Register(GU_CHAR_SKY_DUNGEON_LIMIT_COUNT_NFY, PacketHandler_GUCharSkyDungeonLimitCountNfy);
 
 	CNtlPacketHandler::Register(GU_CHAR_STATE_WRONG, PacketHandler_GSCharStateWrong);
 

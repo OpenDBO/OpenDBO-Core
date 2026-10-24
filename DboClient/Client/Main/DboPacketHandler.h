@@ -322,6 +322,7 @@ void PacketHandler_GUCharUpdateMaxLP(void* pPacket);
 void PacketHandler_GUCharUpdateMaxEP(void* pPacket);
 void PacketHandler_GUCharUpdateMaxRP(void* pPacket);
 void PacketHandler_GUCharUpdateAP(void* pPacket);
+void PacketHandler_GUCharSkyDungeonLimitCountNfy(void* pPacket);
 
 void PacketHandler_GSAvatarAttrUpdate(void *pPacket);
 

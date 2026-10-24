@@ -5088,6 +5088,16 @@ void PacketHandler_GUCharUpdateAP(void * pPacket)
 	Logic_SetAp(pSobAvatar, pRes->curAP, pRes->maxAP);
 }
 
+void PacketHandler_GUCharSkyDungeonLimitCountNfy(void * pPacket)
+{
+	sGU_CHAR_SKY_DUNGEON_LIMIT_COUNT_NFY *pNfy = (sGU_CHAR_SKY_DUNGEON_LIMIT_COUNT_NFY*)pPacket;
+
+	if (GetNtlSLGlobal()->GetSobAvatar() == NULL)
+		return;
+
+	GetAlarmManager()->FormattedAlarmMessage("DST_SKY_DUNGEON_ENTER_LIMIT", FALSE, NULL, pNfy->byRemainCount);
+}
+
 void PacketHandler_GSAvatarCharTitleInfo(void * pPacket)
 {
 	// Receive chartitle information when loading avatar
