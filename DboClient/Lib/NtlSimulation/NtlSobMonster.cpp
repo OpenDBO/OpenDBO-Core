@@ -3,6 +3,7 @@
 
 //shared
 #include "MobTable.h"
+#include "CommonConfigTable.h"
 
 // core
 #include "NtlDebug.h"
@@ -28,6 +29,7 @@
 #include "NtlBehaviorData.h"
 #include "NtlSobCharProxy.h"
 #include "NtlSLLogic.h"
+#include "NtlSLApi.h"
 #include "NtlSLVisualDeclear.h"
 #include "NtlSoundManager.h"
 
@@ -40,6 +42,8 @@ CNtlSobMonster::CNtlSobMonster()
 			SLFLAG_LUA_TRANSFORM_ENABLE | SLFLAG_TARGET_SELECT_GUI_UPDATE);
 
 	SetActorFlags(SLFLAG_ACTOR_HAVE_LIFE | SLFLAG_ACTOR_HAVE_MOVEABLE | SLFLAG_ACTOR_HAVE_BATTLE);
+
+	m_pScanRangeEffect = NULL;
 }
 
 CNtlSobMonster::~CNtlSobMonster()
@@ -131,10 +135,16 @@ void CNtlSobMonster::HandleEvents(RWS::CMsg &pMsg)
 
 		RwReal fScale = pSobMobAttr->GetScale();
 		GetSobProxy()->SetScale(fScale);
+
+		CreateScanRangeEffect(FALSE);
+	}
+	else if(pMsg.Id == g_EventSobFainting)
+	{
+		DeleteScanRangeEffect();
 	}
     else if(pMsg.Id == g_EventBotCaution_Nfy)   // 플레이어를 발각했을때
     {
-        OnEventBotCautionNfy_Handler(pMsg);        
+        OnEventBotCautionNfy_Handler(pMsg);
     }
     else if(pMsg.Id == g_EventBotHelpMe_Nfy)
     {
@@ -164,6 +174,49 @@ void CNtlSobMonster::OnEventBotCautionNfy_Handler( RWS::CMsg& pMsg )
 	tSoundParam.fZPos			= vPos.z;
 
 	GetSoundManager()->Play(&tSoundParam);
+
+	// the scan range turns into its alert look
+	if (m_pScanRangeEffect)
+		CreateScanRangeEffect(TRUE);
+}
+
+// tw 0x525B40: a mob whose table row names a MOB_SCAN_RANGE_SHOW_EFFECT common config row
+// shows value 0 as a ring around it (value 8 once it has spotted someone). The ring covers
+// value 9 meters, or the mob scan range when empty, scaled as 2.2 * range + 2.
+void CNtlSobMonster::CreateScanRangeEffect(RwBool bAlert)
+{
+	DeleteScanRangeEffect();
+
+	CNtlSobMonsterAttr* pSobMobAttr = reinterpret_cast<CNtlSobMonsterAttr*>(GetSobAttr());
+	sMOB_TBLDAT* pMobTbl = pSobMobAttr->GetMobTbl();
+	if (pMobTbl == NULL || pMobTbl->scanRangeConfigTblidx == INVALID_TBLIDX)
+		return;
+
+	sCOMMONCONFIG_TBLDAT* pConfig = reinterpret_cast<sCOMMONCONFIG_TBLDAT*>(API_GetTableContainer()->GetCommonConfigTable()->FindData(pMobTbl->scanRangeConfigTblidx));
+	if (pConfig == NULL || pConfig->wstrName != L"MOB_SCAN_RANGE_SHOW_EFFECT")
+		return;
+
+	const std::wstring& wstrEffect = (bAlert && !pConfig->wstrValue[8].empty()) ? pConfig->wstrValue[8] : pConfig->wstrValue[0];
+	if (wstrEffect.empty())
+		return;
+
+	RwReal fRange = pConfig->wstrValue[9].empty() ? (RwReal)pMobTbl->wScan_Range : (RwReal)_wtoi(pConfig->wstrValue[9].c_str());
+
+	std::string strEffect = ws2s(wstrEffect);
+
+	RwV3d vOffset = { 0.0f, 0.0f, 0.0f };
+	m_pScanRangeEffect = GetSobProxy()->CreatePLChildEffect(strEffect.c_str(), vOffset, TRUE);
+	if (m_pScanRangeEffect)
+		m_pScanRangeEffect->SetScale(fRange * 2.2f + 2.0f);
+}
+
+void CNtlSobMonster::DeleteScanRangeEffect(void)
+{
+	if (m_pScanRangeEffect)
+	{
+		GetSobProxy()->DeletePLChildEffect(m_pScanRangeEffect);
+		m_pScanRangeEffect = NULL;
+	}
 }
 
 void CNtlSobMonster::OnEventBotHelpMeNfy_Handler( RWS::CMsg& pMsg ) 

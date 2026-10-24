@@ -1103,6 +1103,9 @@ void InitResultCodeString()
 	arGamePacketResilt[956] = "GAME_SKILL_CANT_USE_SKILL_WHEN_RABIES";
 	arGamePacketResilt[958] = "GIFTSHOP_NOT_OPEN";
 	arGamePacketResilt[959] = "GIFTSHOP_WP_NOT_ENOUGH";
+	arGamePacketResilt[960] = "GAME_SKY_DUNGEON_CAN_NOT_EXIST_PARTY";
+	arGamePacketResilt[961] = "GAME_SKY_DUNGEON_WORLD_CAN_NOT_CREATE_DYNAMIC_WOLRD";
+	arGamePacketResilt[962] = "GAME_SKY_DUNGEON_PLAYER_LIMIT_COUNT_IS_OVER";
 }
 
 

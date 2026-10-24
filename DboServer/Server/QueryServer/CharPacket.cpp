@@ -165,6 +165,7 @@ void CCharServerSession::RecvCharacterDelReq(CNtlPacket * pPacket, CQueryServer 
 	g_pItemRepository->DeleteItemsCdByChar(req->charID);
 	g_pQuickSlotRepository->DeleteQuickTeleports(req->charID);
 	g_pCharacterRepository->DeleteRankBattle(req->charID);
+	g_pCharacterRepository->DeleteSkyDungeonLimit(req->charID);
 }
 
 void CCharServerSession::RecvCharacterLoadReq(CNtlPacket * pPacket, CQueryServer * app)

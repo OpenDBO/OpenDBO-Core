@@ -474,6 +474,9 @@ void CPlayer::Initialize()
 	m_pUltimateDungeon = NULL;
 	m_pBattleDungeon = NULL;
 
+	m_bySkyDungeonEnterCount = 0;
+	m_dwSkyDungeonEnterDay = 0;
+
 	m_bIsLoggedOut = false;
 
 	this->pQuest = new CQuest;
@@ -1093,6 +1096,9 @@ void CPlayer::RecvLoadPcDataRes(sPC_DATA * pPcData, sDBO_SERVER_CHANGE_INFO * ps
 	}
 
 	SetIsMailAway(pPcData->bIsMailAway);
+
+	m_bySkyDungeonEnterCount = pPcData->bySkyDungeonEnterCount;
+	m_dwSkyDungeonEnterDay = pPcData->dwSkyDungeonEnterDay;
 
 	res->sPcProfile.bIsInFreePvpZone = false;
 
@@ -4718,4 +4724,62 @@ void CPlayer::CheckAirAccel()
 			}
 		}
 	}
+}
+
+//--------------------------------------------------------------------------------------//
+//	Sky dungeon daily entry limit
+//--------------------------------------------------------------------------------------//
+static DWORD GetSkyDungeonCurrentDay()
+{
+	CGameServer* app = (CGameServer*)g_pApp;
+
+	time_t curTime = app->GetTime() - SKY_DUNGEON_DAILY_RESET_HOUR * 60 * 60; // the daily period begins at the reset hour
+	tm timeStruct = {};
+	localtime_s(&timeStruct, &curTime);
+
+	return (timeStruct.tm_year + 1900) * 10000 + (timeStruct.tm_mon + 1) * 100 + timeStruct.tm_mday;
+}
+
+BYTE CPlayer::GetSkyDungeonRemainCount()
+{
+	if (m_dwSkyDungeonEnterDay != GetSkyDungeonCurrentDay())
+		return SKY_DUNGEON_DAILY_ENTER_LIMIT;
+
+	if (m_bySkyDungeonEnterCount >= SKY_DUNGEON_DAILY_ENTER_LIMIT)
+		return 0;
+
+	return SKY_DUNGEON_DAILY_ENTER_LIMIT - m_bySkyDungeonEnterCount;
+}
+
+void CPlayer::AddSkyDungeonEnterCount()
+{
+	DWORD dwCurDay = GetSkyDungeonCurrentDay();
+	if (m_dwSkyDungeonEnterDay != dwCurDay)
+	{
+		m_dwSkyDungeonEnterDay = dwCurDay;
+		m_bySkyDungeonEnterCount = 0;
+	}
+
+	m_bySkyDungeonEnterCount++;
+
+	CGameServer* app = (CGameServer*)g_pApp;
+
+	CNtlPacket packet(sizeof(sGQ_SKY_DUNGEON_LIMITED_UPDATE_REQ));
+	sGQ_SKY_DUNGEON_LIMITED_UPDATE_REQ* req = (sGQ_SKY_DUNGEON_LIMITED_UPDATE_REQ*)packet.GetPacketData();
+	req->wOpCode = GQ_SKY_DUNGEON_LIMITED_UPDATE_REQ;
+	req->charId = GetCharID();
+	req->byEnterCount = m_bySkyDungeonEnterCount;
+	req->dwEnterDay = m_dwSkyDungeonEnterDay;
+	packet.SetPacketLen(sizeof(sGQ_SKY_DUNGEON_LIMITED_UPDATE_REQ));
+	app->SendTo(app->GetQueryServerSession(), &packet);
+}
+
+void CPlayer::SendSkyDungeonLimitCountNfy()
+{
+	CNtlPacket packet(sizeof(sGU_CHAR_SKY_DUNGEON_LIMIT_COUNT_NFY));
+	sGU_CHAR_SKY_DUNGEON_LIMIT_COUNT_NFY* res = (sGU_CHAR_SKY_DUNGEON_LIMIT_COUNT_NFY*)packet.GetPacketData();
+	res->wOpCode = GU_CHAR_SKY_DUNGEON_LIMIT_COUNT_NFY;
+	res->byRemainCount = GetSkyDungeonRemainCount();
+	packet.SetPacketLen(sizeof(sGU_CHAR_SKY_DUNGEON_LIMIT_COUNT_NFY));
+	SendPacket(&packet);
 }

@@ -17,6 +17,7 @@
 #include "NtlBuffContainer.h"
 
 class CNtlBeCharData;
+class CNtlPLEntity;
 
 class CNtlSobMonster : public CNtlSobFeelingActor
 {
@@ -40,8 +41,13 @@ protected:
     void    OnEventBotCautionNfy_Handler(RWS::CMsg& pMsg);          ///< 선공몹이 캐릭터를 발견했을때
     void    OnEventBotHelpMeNfy_Handler(RWS::CMsg& pMsg);           ///< 몹이 주위몹에게 도움을 요청할때
 
+	// scan range shown around the mob (patrol robots), configured in the common config table
+	void	CreateScanRangeEffect(RwBool bAlert);
+	void	DeleteScanRangeEffect(void);
+
 protected:
     CNtlBeCharData*         m_pBeData;				/** character behavior data */
+	CNtlPLEntity*			m_pScanRangeEffect;
 };
 
 

@@ -509,6 +509,17 @@ CREATE TABLE `skills` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
+-- Table structure for sky_dungeon_limit
+-- ----------------------------
+DROP TABLE IF EXISTS `sky_dungeon_limit`;
+CREATE TABLE `sky_dungeon_limit` (
+  `char_id` int(10) unsigned NOT NULL,
+  `enter_count` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `enter_day` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'YYYYMMDD of the daily period (resets at 04:00) enter_count belongs to',
+  PRIMARY KEY (`char_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
 -- Table structure for titles
 -- ----------------------------
 DROP TABLE IF EXISTS `titles`;

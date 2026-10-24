@@ -901,10 +901,17 @@ private:
 	CUltimateDungeon*				m_pUltimateDungeon;
 	CBattleDungeon*					m_pBattleDungeon;
 
+	BYTE							m_bySkyDungeonEnterCount;
+	DWORD							m_dwSkyDungeonEnterDay;
+
 public:
 
 	inline void						SetTLQ(CTimeLeapDungeon* pDungeon) { m_pTimeLeapDungeon = pDungeon; }
 	inline CTimeLeapDungeon*		GetTLQ() { return m_pTimeLeapDungeon; }
+
+	BYTE							GetSkyDungeonRemainCount();
+	void							AddSkyDungeonEnterCount();
+	void							SendSkyDungeonLimitCountNfy();
 
 	inline void						SetUD(CUltimateDungeon* pDungeon) { m_pUltimateDungeon = pDungeon; }
 	inline CUltimateDungeon*		GetUD() { return m_pUltimateDungeon; }

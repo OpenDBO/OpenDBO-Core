@@ -1,210 +1,352 @@
 -- Sky Dungeon #3
 
 -- References:
---    - https://www.youtube.com/watch?v=ehyNk4c6zu0
-
--- TODO: Guard Robot Alerty mobs should spawn other mobs if engaged
---       in combat and not killed every X seconds. Currently they
---       don't do this (check videos for more references). At this moment
---       those mobs are being spawned when reaching certain areas
---       ("area enter"), this logic should be removed and added to
---       the guard robots instead.
+--     - https://www.youtube.com/watch?v=ehyNk4c6zu0
+-- 
+-- One Guard Robot Alerty squad per area (306/307, 331/332, 316/317) is called in every
+-- 15 seconds of combat while an Alerty of that area lives.
+-- 
+-- Built on the retail spawn groups of spawn_mob_skdungeon_001_0X (identical to the
+-- tw client copy). Patrol robots and Guard Robot Alerty walk their retail path ids,
+-- see world_data/Path/DBO_SKDungeon_001_PATH.pth.
+-- 
 -- TODO: Missing text notifications on some events and mobs speaking
 --       when pulled and so on.
-
--- Author(s): Tuo, Grender (OpenDBO)
+-- 
+-- Author(s): Tuo, Grender, Zebiru (OpenDBO)
 
 
 GameStage( 0 )
---[	
-	-- Spawn mobs and Robots in the first area
+--[
+	-- First area: mobs (301), patrol robots (302) and Guard Robot Alerty (303-305)
 	Action( "add mobgroup" )
 	--[
 		Param( "group", 301 )
 		Param( "no spawn wait", "true" )
 	--]
 	End()
-    
-	Action( "add mob" )
+	Action( "add mobgroup" )
 	--[
-		Param( "index", 53661104 )
-		Param( "group", 1 )
-		Param( "loc x", 759.74 )
-		Param( "loc y", 28.90 )
-		Param( "loc z", -1348.37 )
-		Param( "dir x", 0.32 )
-		Param( "dir z", 0.94 )
-		Param( "play script", 53661104 )
-		Param( "play scene", 1 )
-		Param( "no spawn wait", "true" )
-	--]
-	End()	
-	Action( "add mob" )
-	--[
-		Param( "index", 53661104 )
-		Param( "group", 1 )
-		Param( "loc x", 736.65 )
-		Param( "loc y", 28.90 )
-		Param( "loc z", -1321.57 )
-		Param( "dir x", 0.17 )
-		Param( "dir z", -0.98 )
-		Param( "play script", 53661104 )
-		Param( "play scene", 2 )
+		Param( "group", 302 )
 		Param( "no spawn wait", "true" )
 	--]
 	End()
 	Action( "add mobgroup" )
 	--[
 		Param( "group", 303 )
-		Param( "play script", 53661104 )
-		Param( "play scene", 3 )
 		Param( "no spawn wait", "true" )
 	--]
-	End()	
+	End()
 	Action( "add mobgroup" )
 	--[
 		Param( "group", 304 )
-		Param( "play script", 53661104 )
-		Param( "play scene", 4 )
 		Param( "no spawn wait", "true" )
 	--]
-	End()	
+	End()
 	Action( "add mobgroup" )
 	--[
 		Param( "group", 305 )
-		Param( "play script", 53661104 )
-		Param( "play scene", 5 )
 		Param( "no spawn wait", "true" )
 	--]
 	End()
-------------------------------------------------------------------------
-	-- Wait until we are near the lever / first mini boss
-	Action("wait") 
+	-- Wait until the first area is clear.
+	-- Guard Robot Alerty (303, 304, 305) call the squad (306 + 307) while fighting.
+	Action( "function" )
 	--[
-		Condition( "area enter" )
-		--[   
-			Param( "origin x", 735.920 )
-			Param( "origin z", -1283.474 )
-			Param( "radius", 5 )
-			Param( "all member", "false" )
-		--]
-	  	End()
-    	--]
-	End()
-    Action( "wait" )
-	--[
-		Condition( "check time" )
+		Condition( "child" )
 		--[
-			Param( "time", 2 )
+			Action( "function" )
+			--[
+				Condition( "child" )
+				--[
+					Action( "while" )
+					--[
+						Action( "loop" )
+						--[
+							Action( "wait" )
+							--[
+								Condition( "check battle" )
+								--[
+									Param( "type", "mob" )
+									Param( "group", 303 )
+									Param( "is battle", "true" )
+								--]
+								End()
+							--]
+							End()
+							Action( "wait" )
+							--[
+								Condition( "check time" )
+								--[
+									Param( "time", 15 )
+								--]
+								End()
+							--]
+							End()
+							Action( "if" )
+							--[
+								Condition( "check mobgroup" )
+								--[
+									Param( "group", 307 )
+									Param( "count", 0 )
+								--]
+								End()
+								Action( "then" )
+								--[
+									Action( "add mobgroup" )
+									--[
+										Param( "group", 306 )
+										Param( "no spawn wait", "true" )
+									--]
+									End()
+									Action( "add mobgroup" )
+									--[
+										Param( "group", 307 )
+										Param( "no spawn wait", "true" )
+									--]
+									End()
+								--]
+								End()
+							--]
+							End()
+						--]
+						End()
+					--]
+					End()
+				--]
+				End()
+				-- no more calls once this Alerty is dead
+				Action( "wait" )
+				--[
+					Condition( "check mobgroup" )
+					--[
+						Param( "group", 303 )
+						Param( "count", 0 )
+					--]
+					End()
+				--]
+				End()
+			--]
+			End()
+		--]
+		End()
+		Action( "function" )
+		--[
+			Condition( "child" )
+			--[
+				Action( "function" )
+				--[
+					Condition( "child" )
+					--[
+						Action( "while" )
+						--[
+							Action( "loop" )
+							--[
+								Action( "wait" )
+								--[
+									Condition( "check battle" )
+									--[
+										Param( "type", "mob" )
+										Param( "group", 304 )
+										Param( "is battle", "true" )
+									--]
+									End()
+								--]
+								End()
+								Action( "wait" )
+								--[
+									Condition( "check time" )
+									--[
+										Param( "time", 15 )
+									--]
+									End()
+								--]
+								End()
+								Action( "if" )
+								--[
+									Condition( "check mobgroup" )
+									--[
+										Param( "group", 307 )
+										Param( "count", 0 )
+									--]
+									End()
+									Action( "then" )
+									--[
+										Action( "add mobgroup" )
+										--[
+											Param( "group", 306 )
+											Param( "no spawn wait", "true" )
+										--]
+										End()
+										Action( "add mobgroup" )
+										--[
+											Param( "group", 307 )
+											Param( "no spawn wait", "true" )
+										--]
+										End()
+									--]
+									End()
+								--]
+								End()
+							--]
+							End()
+						--]
+						End()
+					--]
+					End()
+					-- no more calls once this Alerty is dead
+					Action( "wait" )
+					--[
+						Condition( "check mobgroup" )
+						--[
+							Param( "group", 304 )
+							Param( "count", 0 )
+						--]
+						End()
+					--]
+					End()
+				--]
+				End()
+			--]
+			End()
+			Action( "function" )
+			--[
+				Condition( "child" )
+				--[
+					Action( "function" )
+					--[
+						Condition( "child" )
+						--[
+							Action( "while" )
+							--[
+								Action( "loop" )
+								--[
+									Action( "wait" )
+									--[
+										Condition( "check battle" )
+										--[
+											Param( "type", "mob" )
+											Param( "group", 305 )
+											Param( "is battle", "true" )
+										--]
+										End()
+									--]
+									End()
+									Action( "wait" )
+									--[
+										Condition( "check time" )
+										--[
+											Param( "time", 15 )
+										--]
+										End()
+									--]
+									End()
+									Action( "if" )
+									--[
+										Condition( "check mobgroup" )
+										--[
+											Param( "group", 307 )
+											Param( "count", 0 )
+										--]
+										End()
+										Action( "then" )
+										--[
+											Action( "add mobgroup" )
+											--[
+												Param( "group", 306 )
+												Param( "no spawn wait", "true" )
+											--]
+											End()
+											Action( "add mobgroup" )
+											--[
+												Param( "group", 307 )
+												Param( "no spawn wait", "true" )
+											--]
+											End()
+										--]
+										End()
+									--]
+									End()
+								--]
+								End()
+							--]
+							End()
+						--]
+						End()
+						-- no more calls once this Alerty is dead
+						Action( "wait" )
+						--[
+							Condition( "check mobgroup" )
+							--[
+								Param( "group", 305 )
+								Param( "count", 0 )
+							--]
+							End()
+						--]
+						End()
+					--]
+					End()
+				--]
+				End()
+				Action( "wait" )
+				--[
+					Condition( "check mobgroup" )
+					--[
+						Param( "group", 301 )
+						Param( "count", 0 )
+					--]
+					End()
+					Condition( "check mobgroup" )
+					--[
+						Param( "group", 303 )
+						Param( "count", 0 )
+					--]
+					End()
+					Condition( "check mobgroup" )
+					--[
+						Param( "group", 304 )
+						Param( "count", 0 )
+					--]
+					End()
+					Condition( "check mobgroup" )
+					--[
+						Param( "group", 305 )
+						Param( "count", 0 )
+					--]
+					End()
+				--]
+				End()
+				-- every Alerty is dead now, only the last squad is left
+				Action( "wait" )
+				--[
+					Condition( "check mobgroup" )
+					--[
+						Param( "group", 306 )
+						Param( "count", 0 )
+					--]
+					End()
+					Condition( "check mobgroup" )
+					--[
+						Param( "group", 307 )
+						Param( "count", 0 )
+					--]
+					End()
+				--]
+				End()
+			--]
+			End()
 		--]
 		End()
 	--]
 	End()
-------------------------------------------------------------------------
-    -- Spawn scouts next to the door
-	Action( "add mobgroup" )
+	Action( "remove mobgroup" )
 	--[
-		Param( "group", 306 )
-		Param( "no spawn wait", "true" )
-	--]
-	End()
-    Action( "wait" )
-	--[
-		Condition( "check time" )
-		--[
-			Param( "time", 8 )
-		--]
-		End()
-	--]
-	End()
-    Action( "add mobgroup" )
-	--[
-		Param( "group", 306 )
-		Param( "no spawn wait", "true" )
-	--]
-	End()
-    Action( "wait" )
-	--[
-		Condition( "check time" )
-		--[
-			Param( "time", 2 )
-		--]
-		End()
-	--]
-	End()
-    Action( "add mobgroup" )
-	--[
-		Param( "group", 307 )
-		Param( "no spawn wait", "true" )
-	--]
-	End()
-    Action( "wait" )
-	--[
-		Condition( "check time" )
-		--[
-			Param( "time", 8 )
-		--]
-		End()
-	--]
-	End()
-    Action( "add mobgroup" )
-	--[
-		Param( "group", 307 )
-		Param( "no spawn wait", "true" )
-	--]
-	End()
-------------------------------------------------------------------------
-	-- Wait until all mobs in the first area are dead
-	Action("wait") 
-	--[
-		Condition( "check mobgroup" )
-		--[
-			Param( "group", 301 )
-			Param( "count", 0 )
-		--]
-		End()
-		Condition( "check mobgroup" )
-		--[
-			Param( "group", 303 )
-			Param( "count", 0 )
-		--]
-		End()
-		Condition( "check mobgroup" )
-		--[
-			Param( "group", 304 )
-			Param( "count", 0 )
-		--]
-		End()
-		Condition( "check mobgroup" )
-		--[
-			Param( "group", 305 )
-			Param( "count", 0 )
-		--]
-		End()	
-		Condition( "check mobgroup" )
-		--[
-			Param( "group", 306 )
-			Param( "count", 0 )
-		--]
-		End()    
-		Condition( "check mobgroup" )
-		--[
-			Param( "group", 307 )
-			Param( "count", 0 )
-		--]
-		End()         
-    --]
-	End()	
-------------------------------------------------------------------------
-	-- Remove Patrol Bots
-	Action("remove mobgroup")
-	--[
-		Param( "group", 1 )
+		Param( "group", 302 )
 		Param( "type", "clear" )
 	--]
-	End()	
+	End()
 ------------------------------------------------------------------------
-	-- Enable first lever
+	-- Enable the lever
 	Action( "change object state" )
 	--[
 		Param( "index", 18 )
@@ -222,7 +364,6 @@ GameStage( 0 )
 		End()
 	--]
 	End()
-------------------------------------------------------------------------
 	-- Open the first door
 	Action( "change object state" )
 	--[
@@ -231,36 +372,29 @@ GameStage( 0 )
 		Param( "substate show", 1 )
 	--]
 	End()
-------------------------------------------------------------------------	
-	-- Spawn mobs in the second area
+------------------------------------------------------------------------
+	-- Second area: mobs (308, 312), patrol robots (309, 313) and Guard Robot Alerty (310, 311)
 	Action( "add mobgroup" )
 	--[
 		Param( "group", 308 )
 		Param( "no spawn wait", "true" )
 	--]
 	End()
-
 	Action( "add mobgroup" )
 	--[
 		Param( "group", 309 )
-		Param( "play script", 53661104 )
-		Param( "play scene", 6 )
 		Param( "no spawn wait", "true" )
 	--]
 	End()
 	Action( "add mobgroup" )
 	--[
 		Param( "group", 310 )
-		Param( "play script", 53661104 )
-		Param( "play scene", 7 )
 		Param( "no spawn wait", "true" )
 	--]
 	End()
 	Action( "add mobgroup" )
 	--[
 		Param( "group", 311 )
-		Param( "play script", 53661104 )
-		Param( "play scene", 8 )
 		Param( "no spawn wait", "true" )
 	--]
 	End()
@@ -276,105 +410,229 @@ GameStage( 0 )
 		Param( "no spawn wait", "true" )
 	--]
 	End()
-------------------------------------------------------------------------
-	-- Wait until we are near the first part of the second area
-	Action("wait") 
+	-- Wait until the second area is clear.
+	-- Guard Robot Alerty (310, 311) call the squad (331 + 332) while fighting.
+	Action( "function" )
 	--[
-		Condition( "area enter" )
-		--[   
-			Param( "origin x", 719.054 )
-			Param( "origin z", -1252.341 )
-			Param( "radius", 8 )
-			Param( "all member", "false" )
-		--]
-	  	End()
-    	--]
-	End()
-    Action( "wait" )
-	--[
-		Condition( "check time" )
+		Condition( "child" )
 		--[
-			Param( "time", 2 )
+			Action( "function" )
+			--[
+				Condition( "child" )
+				--[
+					Action( "while" )
+					--[
+						Action( "loop" )
+						--[
+							Action( "wait" )
+							--[
+								Condition( "check battle" )
+								--[
+									Param( "type", "mob" )
+									Param( "group", 310 )
+									Param( "is battle", "true" )
+								--]
+								End()
+							--]
+							End()
+							Action( "wait" )
+							--[
+								Condition( "check time" )
+								--[
+									Param( "time", 15 )
+								--]
+								End()
+							--]
+							End()
+							Action( "if" )
+							--[
+								Condition( "check mobgroup" )
+								--[
+									Param( "group", 332 )
+									Param( "count", 0 )
+								--]
+								End()
+								Action( "then" )
+								--[
+									Action( "add mobgroup" )
+									--[
+										Param( "group", 331 )
+										Param( "no spawn wait", "true" )
+									--]
+									End()
+									Action( "add mobgroup" )
+									--[
+										Param( "group", 332 )
+										Param( "no spawn wait", "true" )
+									--]
+									End()
+								--]
+								End()
+							--]
+							End()
+						--]
+						End()
+					--]
+					End()
+				--]
+				End()
+				-- no more calls once this Alerty is dead
+				Action( "wait" )
+				--[
+					Condition( "check mobgroup" )
+					--[
+						Param( "group", 310 )
+						Param( "count", 0 )
+					--]
+					End()
+				--]
+				End()
+			--]
+			End()
+		--]
+		End()
+		Action( "function" )
+		--[
+			Condition( "child" )
+			--[
+				Action( "function" )
+				--[
+					Condition( "child" )
+					--[
+						Action( "while" )
+						--[
+							Action( "loop" )
+							--[
+								Action( "wait" )
+								--[
+									Condition( "check battle" )
+									--[
+										Param( "type", "mob" )
+										Param( "group", 311 )
+										Param( "is battle", "true" )
+									--]
+									End()
+								--]
+								End()
+								Action( "wait" )
+								--[
+									Condition( "check time" )
+									--[
+										Param( "time", 15 )
+									--]
+									End()
+								--]
+								End()
+								Action( "if" )
+								--[
+									Condition( "check mobgroup" )
+									--[
+										Param( "group", 332 )
+										Param( "count", 0 )
+									--]
+									End()
+									Action( "then" )
+									--[
+										Action( "add mobgroup" )
+										--[
+											Param( "group", 331 )
+											Param( "no spawn wait", "true" )
+										--]
+										End()
+										Action( "add mobgroup" )
+										--[
+											Param( "group", 332 )
+											Param( "no spawn wait", "true" )
+										--]
+										End()
+									--]
+									End()
+								--]
+								End()
+							--]
+							End()
+						--]
+						End()
+					--]
+					End()
+					-- no more calls once this Alerty is dead
+					Action( "wait" )
+					--[
+						Condition( "check mobgroup" )
+						--[
+							Param( "group", 311 )
+							Param( "count", 0 )
+						--]
+						End()
+					--]
+					End()
+				--]
+				End()
+			--]
+			End()
+			Action( "wait" )
+			--[
+				Condition( "check mobgroup" )
+				--[
+					Param( "group", 308 )
+					Param( "count", 0 )
+				--]
+				End()
+				Condition( "check mobgroup" )
+				--[
+					Param( "group", 310 )
+					Param( "count", 0 )
+				--]
+				End()
+				Condition( "check mobgroup" )
+				--[
+					Param( "group", 311 )
+					Param( "count", 0 )
+				--]
+				End()
+				Condition( "check mobgroup" )
+				--[
+					Param( "group", 312 )
+					Param( "count", 0 )
+				--]
+				End()
+			--]
+			End()
+			-- every Alerty is dead now, only the last squad is left
+			Action( "wait" )
+			--[
+				Condition( "check mobgroup" )
+				--[
+					Param( "group", 331 )
+					Param( "count", 0 )
+				--]
+				End()
+				Condition( "check mobgroup" )
+				--[
+					Param( "group", 332 )
+					Param( "count", 0 )
+				--]
+				End()
+			--]
+			End()
 		--]
 		End()
 	--]
 	End()
-------------------------------------------------------------------------
-    -- Spawn waves of Scouts
-	Action( "add mobgroup" )
-	--[
-		Param( "group", 316 )		
-		Param( "no spawn wait", "true" )
-	--]
-	End()
-    Action( "wait" )
-	--[
-		Condition( "check time" )
-		--[
-			Param( "time", 8 )
-		--]
-		End()
-	--]
-	End()
-    Action( "add mobgroup" )
-	--[
-		Param( "group", 316 )		
-		Param( "no spawn wait", "true" )
-	--]
-	End()
-------------------------------------------------------------------------
-	-- Wait until mobs in the second area die
-	Action("wait") 
-	--[
-		Condition( "check mobgroup" )
-		--[
-			Param( "group", 308 )
-			Param( "count", 0 )
-		--]
-		End()
-		
-		Condition( "check mobgroup" )
-		--[
-			Param( "group", 310 )
-			Param( "count", 0 )
-		--]
-		End()
-		Condition( "check mobgroup" )
-		--[
-			Param( "group", 311 )
-			Param( "count", 0 )
-		--]
-		End()	
-		Condition( "check mobgroup" )
-		--[
-			Param( "group", 312 )
-			Param( "count", 0 )
-		--]
-		End()
-        Condition( "check mobgroup" )
-		--[
-			Param( "group", 316 )
-			Param( "count", 0 )
-		--]
-		End()
-    --]
-	End()	
-------------------------------------------------------------------------
-	-- Remove Patrol Bots
-	Action("remove mobgroup")
+	Action( "remove mobgroup" )
 	--[
 		Param( "group", 309 )
 		Param( "type", "clear" )
 	--]
-	End()	
-	Action("remove mobgroup")
+	End()
+	Action( "remove mobgroup" )
 	--[
 		Param( "group", 313 )
 		Param( "type", "clear" )
 	--]
 	End()
 ------------------------------------------------------------------------
-    -- Spawn mobs in the next corridor of the second area
+	-- Corridor: mobs (314), patrol robot (330) and Guard Robot Alerty (315)
 	Action( "add mobgroup" )
 	--[
 		Param( "group", 314 )
@@ -384,51 +642,139 @@ GameStage( 0 )
 	Action( "add mobgroup" )
 	--[
 		Param( "group", 315 )
-		Param( "play script", 53661104 )
-		Param( "play scene", 9 )
 		Param( "no spawn wait", "true" )
 	--]
 	End()
-	Action( "add mob" )
+	Action( "add mobgroup" )
 	--[
-		Param( "index", 53661101 )
-		Param( "group", 1 )
-		Param( "loc x", 668.66 )
-		Param( "loc y", 28.90 )
-		Param( "loc z", -1268.98 )
-		Param( "dir x", 0.19 )
-		Param( "dir z", 0.98 )
-		Param( "play script", 53661104 )
-		Param( "play scene", 10 )
+		Param( "group", 330 )
 		Param( "no spawn wait", "true" )
 	--]
 	End()
-------------------------------------------------------------------------
-    -- Wait until mobs in the second corridor of the second area die
-	Action("wait") 
+	-- Wait until the corridor is clear.
+	-- Guard Robot Alerty (315) call the squad (316 + 317) while fighting.
+	Action( "function" )
 	--[
-		Condition( "check mobgroup" )
+		Condition( "child" )
 		--[
-			Param( "group", 314 )
-			Param( "count", 0 )
-		--]
-		End()	
-		Condition( "check mobgroup" )
-		--[
-			Param( "group", 315 )
-			Param( "count", 0 )
+			Action( "function" )
+			--[
+				Condition( "child" )
+				--[
+					Action( "while" )
+					--[
+						Action( "loop" )
+						--[
+							Action( "wait" )
+							--[
+								Condition( "check battle" )
+								--[
+									Param( "type", "mob" )
+									Param( "group", 315 )
+									Param( "is battle", "true" )
+								--]
+								End()
+							--]
+							End()
+							Action( "wait" )
+							--[
+								Condition( "check time" )
+								--[
+									Param( "time", 15 )
+								--]
+								End()
+							--]
+							End()
+							Action( "if" )
+							--[
+								Condition( "check mobgroup" )
+								--[
+									Param( "group", 317 )
+									Param( "count", 0 )
+								--]
+								End()
+								Action( "then" )
+								--[
+									Action( "add mobgroup" )
+									--[
+										Param( "group", 316 )
+										Param( "no spawn wait", "true" )
+									--]
+									End()
+									Action( "add mobgroup" )
+									--[
+										Param( "group", 317 )
+										Param( "no spawn wait", "true" )
+									--]
+									End()
+								--]
+								End()
+							--]
+							End()
+						--]
+						End()
+					--]
+					End()
+				--]
+				End()
+				-- no more calls once this Alerty is dead
+				Action( "wait" )
+				--[
+					Condition( "check mobgroup" )
+					--[
+						Param( "group", 315 )
+						Param( "count", 0 )
+					--]
+					End()
+				--]
+				End()
+			--]
+			End()
 		--]
 		End()
-    --]
+		Action( "wait" )
+		--[
+			Condition( "check mobgroup" )
+			--[
+				Param( "group", 314 )
+				Param( "count", 0 )
+			--]
+			End()
+			Condition( "check mobgroup" )
+			--[
+				Param( "group", 315 )
+				Param( "count", 0 )
+			--]
+			End()
+		--]
+		End()
+		-- every Alerty is dead now, only the last squad is left
+		Action( "wait" )
+		--[
+			Condition( "check mobgroup" )
+			--[
+				Param( "group", 316 )
+				Param( "count", 0 )
+			--]
+			End()
+			Condition( "check mobgroup" )
+			--[
+				Param( "group", 317 )
+				Param( "count", 0 )
+			--]
+			End()
+		--]
+		End()
+	--]
 	End()
-	Action("remove mobgroup")
+	Action( "remove mobgroup" )
 	--[
-		Param( "group", 1 )
+		Param( "group", 330 )
 		Param( "type", "clear" )
 	--]
 	End()
 ------------------------------------------------------------------------
-	-- Enable second lever
+	-- Enable the lever
 	Action( "change object state" )
 	--[
 		Param( "index", 19 )
@@ -446,8 +792,7 @@ GameStage( 0 )
 		End()
 	--]
 	End()
-------------------------------------------------------------------------
-	-- Open final door
+	-- Open the final door
 	Action( "change object state" )
 	--[
 		Param( "index", 20 )
@@ -456,64 +801,56 @@ GameStage( 0 )
 	--]
 	End()
 ------------------------------------------------------------------------
-	-- Spawn final room
+	-- Final room: Guard Robot Alerty (318-320), mobs (321, 323), robots (322, 333) and the boss (324)
 	Action( "add mobgroup" )
 	--[
 		Param( "group", 318 )
-		Param( "play script", 53661104 )
-		Param( "play scene", 11 )
 		Param( "no spawn wait", "true" )
 	--]
 	End()
-	
 	Action( "add mobgroup" )
 	--[
 		Param( "group", 319 )
-		Param( "play script", 53661104 )
-		Param( "play scene", 12 )
 		Param( "no spawn wait", "true" )
 	--]
 	End()
-	
 	Action( "add mobgroup" )
 	--[
 		Param( "group", 320 )
-		Param( "play script", 53661104 )
-		Param( "play scene", 13 )
 		Param( "no spawn wait", "true" )
 	--]
 	End()
-	
 	Action( "add mobgroup" )
 	--[
-		Param( "group", 321 )		
+		Param( "group", 321 )
 		Param( "no spawn wait", "true" )
 	--]
 	End()
-	
 	Action( "add mobgroup" )
 	--[
-		Param( "group", 322 )		
+		Param( "group", 322 )
 		Param( "no spawn wait", "true" )
 	--]
 	End()
-	
 	Action( "add mobgroup" )
 	--[
-		Param( "group", 323 )		
+		Param( "group", 333 )
 		Param( "no spawn wait", "true" )
 	--]
 	End()
-	
 	Action( "add mobgroup" )
 	--[
-		Param( "group", 324 )		
+		Param( "group", 323 )
 		Param( "no spawn wait", "true" )
 	--]
-	End()	
-------------------------------------------------------------------------
-    -- Wait until all mobs in the final area die
-	Action("wait") 
+	End()
+	Action( "add mobgroup" )
+	--[
+		Param( "group", 324 )
+		Param( "no spawn wait", "true" )
+	--]
+	End()
+	Action( "wait" )
 	--[
 		Condition( "check mobgroup" )
 		--[
@@ -550,12 +887,11 @@ GameStage( 0 )
 			Param( "group", 324 )
 			Param( "count", 0 )
 		--]
-		End()		
-    --]
-	End()	
+		End()
+	--]
+	End()
 ------------------------------------------------------------------------
-
-	-- Make Exit Portal visible
+	-- Exit portal
 	Action( "change object state" )
 	--[
 		Param( "index", 21 )
@@ -563,6 +899,5 @@ GameStage( 0 )
 		Param( "substate show", 1 )
 	--]
 	End()
-	
 --]
 End()

@@ -175,6 +175,8 @@ public:
 	void						SetJoinID(JOINID joinid) { m_sPcData.wJoinID = joinid; }
 	JOINID						GetJoinID() { return m_sPcData.wJoinID; }
 
+	void						SetSkyDungeonLimit(BYTE byEnterCount, DWORD dwEnterDay) { m_sPcData.bySkyDungeonEnterCount = byEnterCount; m_sPcData.dwSkyDungeonEnterDay = dwEnterDay; }
+
 	void						StoreRunTimeData(DWORD dwExp, TBLIDX worldIdx, WORLDID worldId, sVECTOR3& rLoc, sVECTOR3& rDir);
 	void						SavePcData(const sPC_DATA& rPcData);
 	void						SaveServerChangeInfo(const sDBO_SERVER_CHANGE_INFO& rInfo);

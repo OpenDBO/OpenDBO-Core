@@ -137,6 +137,15 @@ CTimeLeapDungeon* CDungeonManager::CreateTimeLeapDungeon(CPlayer* pOwner, TBLIDX
 
 	//TODO: Checks if player has valid loc and can enter dungeon... etc..
 
+	// a leftover instance would stay alive forever once the map entry is overwritten
+	if (CTimeLeapDungeon* pOld = FindTimeLeapDungeon(pOwner->GetCharID()))
+	{
+		if (pOwner->GetTLQ() == pOld)
+			pOwner->SetTLQ(NULL);
+
+		DestroyTimeLeapDungeon(pOwner->GetCharID(), pOld);
+	}
+
 	CTimeLeapDungeon* pTLD = new CTimeLeapDungeon(pOwner, pDungeon);
 
 	if (pTLD->Create())

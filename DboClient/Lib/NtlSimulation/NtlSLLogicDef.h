@@ -106,13 +106,21 @@ struct SSkillAreaSortStuff
 #define NTL_PARTY_NAME_COLOR				RGB(81,  231, 190)
 #define NTL_GUILD_NAME_COLOR				RGB(255, 244, 122)
 #define NTL_MONSTER_NAME_COLOR				RGB(255, 255, 0)
-#define NTL_MONSTER_NAME_COLOR_STRONG		RGB(255, 0, 0)
-#define NTL_MONSTER_NAME_COLOR_WEAKNESS		RGB(0, 255, 0)
-#define NTL_NPC_NAME_COLOR					RGB(255, 255, 255)	
-#define NTL_PET_NAME_COLOR					RGB(255, 255, 255)	
+// tw: script\SLConfig.xml monster colors (COMBAT_POWER by level gap, TYPE by mob grade)
+#define NTL_MONSTER_NAME_COLOR_EVEN				RGB(255, 238, 47)	// level gap below 2, hardcoded in tw
+#define NTL_MONSTER_NAME_COLOR_STRONG			RGB(255, 150, 37)	// mob 2-4 levels above
+#define NTL_MONSTER_NAME_COLOR_VERY_STRONG		RGB(255, 24, 0)		// mob 5+ levels above
+#define NTL_MONSTER_NAME_COLOR_WEAKNESS			RGB(136, 243, 32)	// mob 2-4 levels below
+#define NTL_MONSTER_NAME_COLOR_VERY_WEAKNESS	RGB(160, 160, 160)	// mob 5+ levels below
+#define NTL_MONSTER_NAME_COLOR_SUPER			RGB(94, 219, 255)
+#define NTL_MONSTER_NAME_COLOR_ULTRA			RGB(29, 157, 255)
+#define NTL_MONSTER_NAME_COLOR_BOSS				RGB(162, 41, 255)
+#define NTL_MONSTER_NAME_COLOR_HERO				RGB(253, 80, 255)
+#define NTL_NPC_NAME_COLOR					RGB(255, 255, 255)
+#define NTL_PET_NAME_COLOR					RGB(255, 255, 255)
 #define NTL_OBJ_NAME_COLOR					RGB(255, 255, 255)
 #define NTL_TITLE_NAME_COLOR				RGB(157,  255, 5)
-#define NTL_PVP_NAME_COLOR					NTL_MONSTER_NAME_COLOR_STRONG
+#define NTL_PVP_NAME_COLOR					RGB(255, 0, 0)
 
 
 ////////////////////////////////////////////////////////////////////////

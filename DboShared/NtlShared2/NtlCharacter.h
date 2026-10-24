@@ -884,6 +884,8 @@ struct sPC_DATA
 	BYTE			byDWCLimitPlusCount;
 	bool			bIsScrambleJoinFlag;
 	bool			bIsScrambleRewardedFlag;
+	BYTE			bySkyDungeonEnterCount;
+	DWORD			dwSkyDungeonEnterDay;	// YYYYMMDD of the daily period the count belongs to
 	TBLIDX			mascotTblidx;
 	TBLIDX			revivalAftereffectToGet;
 	BYTE			eAirState;
