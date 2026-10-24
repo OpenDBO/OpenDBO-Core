@@ -257,7 +257,10 @@ VOID CItemSwapGui::Destroy()
 	CheckInfoWindow();
 
 	for (RwInt32 i = 0; i < dMAX_ITEM_PANEL; ++i)
+	{
 		m_ItemPanel[i].slot.Destroy();
+		m_ItemPanel[i].slotNeedItem.Destroy();
+	}
 
 	UnLinkMsg(g_EventShop);
 	UnLinkMsg(g_EventDialog);

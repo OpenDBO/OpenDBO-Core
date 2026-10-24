@@ -60,7 +60,7 @@ RwBool CSlotGui::Create(gui::CComponent *pParent, RwUInt32 uiOwnerDialog, DWORD 
 	m_dwSlotStyle = dwSlotStyle;
 
 	// 갯수를 표시한다면
-	// a slot created again (e.g. warehouse refresh) keeps its counter, the parent owns it
+	// a slot created again without Destroy keeps its counter, the parent owns it
 	if( BIT_FLAG_TEST(m_dwSlotStyle, SDS_COUNT) && m_pCount )
 	{
 		m_pCount->Clear();
@@ -105,6 +105,9 @@ VOID CSlotGui::Destroy()
 {
 	Logic_DeleteTexture( m_srfIcon.GetTexture() );
 	m_srfIcon.UnsetTexture();
+
+	// the parent component deletes the counter, a later Create must not reuse it
+	m_pCount = NULL;
 }
 
 RwBool CSlotGui::SetIcon(const RwChar* pcIconName)
