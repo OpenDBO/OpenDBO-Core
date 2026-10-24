@@ -2258,7 +2258,7 @@ void CPropertiesWnd::LoadTableData(int nTableType, sTBLDAT* pTbldat)
 			ADD_SUB_ITEM("idxBigBag3",					pTableData->idxBigBag3,				"Mob Table (reader bug: overwrites idxBigBag1 instead)");
 			ADD_SUB_ITEM("byDropRate3",					(int)pTableData->byDropRate3,		"Mob Table (reader bug: overwrites byDropRate1 instead)");
 			ADD_SUB_ITEM("byTryCount3",					(int)pTableData->byTryCount3,		"Mob Table (reader bug: overwrites byTryCount1 instead)");
-			ADD_SUB_ITEM("dwUnknown",					pTableData->dwUnknown,				"Mob Table (no XML column)");
+			ADD_SUB_ITEM("scanRangeConfigTblidx",		pTableData->scanRangeConfigTblidx,	"Mob Table (no XML column)");
 			ADD_SUB_ITEM("byUnknown",					(int)pTableData->byUnknown,			"Mob Table (no XML column)");
 			ADD_SUB_ITEM("byUnknown2",					(int)pTableData->byUnknown2,			"Mob Table (no XML column)");
 			ADD_SUB_ITEM("bShow_Name",					pTableData->bShow_Name,				"Mob Table (XML column recognized but assignment is commented out -- dead)");

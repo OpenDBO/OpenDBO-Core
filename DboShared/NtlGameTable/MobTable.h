@@ -33,7 +33,7 @@ public:
 	BYTE			byTryCount3;
 
 
-	DWORD			dwUnknown;
+	TBLIDX			scanRangeConfigTblidx;	// common config row MOB_SCAN_RANGE_SHOW_EFFECT / _DECAL (tw 0x525BDA)
 	BYTE			byUnknown;
 	BYTE			byUnknown2;
 	bool			bShow_Name; 
