@@ -5298,3 +5298,15 @@ void CGameServerSession::RecvInventorySortReq(CNtlPacket * pPacket, CQueryServer
 	packet.SetPacketLen(sizeof(sQG_INVENTORY_SORT_RES));
 	app->Send(GetHandle(), &packet);
 }
+
+void CGameServerSession::RecvSkyDungeonLimitedUpdateReq(CNtlPacket * pPacket, CQueryServer * app)
+{
+	UNREFERENCED_PARAMETER(app);
+
+	sGQ_SKY_DUNGEON_LIMITED_UPDATE_REQ * req = (sGQ_SKY_DUNGEON_LIMITED_UPDATE_REQ*)pPacket->GetPacketData();
+
+	if (CPlayerCache* pCache = g_pPlayerCache->GetCharacter(req->charId))
+		pCache->SetSkyDungeonLimit(req->byEnterCount, req->dwEnterDay);
+
+	g_pCharacterRepository->UpsertSkyDungeonLimit(req->charId, req->byEnterCount, req->dwEnterDay);
+}

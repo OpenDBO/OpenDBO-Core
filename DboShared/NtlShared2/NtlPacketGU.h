@@ -4505,6 +4505,10 @@ END_PROTOCOL()
 BEGIN_PROTOCOL(GU_AIR_FAIL_INFO)
 	WORD			wResultCode;
 END_PROTOCOL()
+//------------------------------------------------------------------
+BEGIN_PROTOCOL(GU_CHAR_SKY_DUNGEON_LIMIT_COUNT_NFY)
+	BYTE			byRemainCount; // daily entries left
+END_PROTOCOL()
 
 //------------------------------------------------------------------
 BEGIN_PROTOCOL(GU_CHAR_AIR_MOVE_SYNC)

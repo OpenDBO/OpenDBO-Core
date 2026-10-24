@@ -950,6 +950,8 @@ void CPlayerCache::OnLoadPcData(QueryResultVector & results)
 		m_sPcData.byDWCLimitPlusCount = 0;
 		m_sPcData.bIsScrambleJoinFlag = false;
 		m_sPcData.bIsScrambleRewardedFlag = false;
+		m_sPcData.bySkyDungeonEnterCount = 0;
+		m_sPcData.dwSkyDungeonEnterDay = 0;
 
 		m_sPcData.mascotTblidx = f[47].GetUInt32();
 		m_sPcData.revivalAftereffectToGet = INVALID_TBLIDX;
@@ -1060,6 +1062,16 @@ void CPlayerCache::OnLoadPcData(QueryResultVector & results)
 			uiArrayPos |= 0x01 << byCurBit;
 		}
 		while (qrWarFogInfo->NextRow());
+	}
+
+	//SKY DUNGEON DAILY LIMIT
+	QueryResult* qrSkyDungeonLimit = results[6].result;
+	if (qrSkyDungeonLimit)
+	{
+		Field* f = qrSkyDungeonLimit->Fetch();
+
+		m_sPcData.bySkyDungeonEnterCount = f[0].GetBYTE();
+		m_sPcData.dwSkyDungeonEnterDay = f[1].GetDWORD();
 	}
 
 

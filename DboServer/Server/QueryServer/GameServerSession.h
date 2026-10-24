@@ -216,4 +216,6 @@ public:
 	void						RecvInventorySortReq(CNtlPacket* pPacket, CQueryServer* app);
 
 	void						RecvGmLog(CNtlPacket* pPacket, CQueryServer* app);
+
+	void						RecvSkyDungeonLimitedUpdateReq(CNtlPacket* pPacket, CQueryServer* app);
 };

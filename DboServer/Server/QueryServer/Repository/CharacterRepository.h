@@ -36,6 +36,9 @@ public:
 	void						DeleteWarfog(CHARACTERID charId);
 	void						DeleteRankBattle(CHARACTERID charId);
 
+	void						UpsertSkyDungeonLimit(CHARACTERID charId, BYTE byEnterCount, DWORD dwEnterDay);
+	void						DeleteSkyDungeonLimit(CHARACTERID charId);
+
 	void						UpdateMoney(CHARACTERID charId, DWORD money);
 	void						UpdateSpPoint(DWORD sp, CHARACTERID charId);
 	void						UpdateLevelExpSp(BYTE byLevel, DWORD dwExp, DWORD dwSp, CHARACTERID charId);

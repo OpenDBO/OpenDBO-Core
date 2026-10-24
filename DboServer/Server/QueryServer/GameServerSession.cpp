@@ -248,6 +248,8 @@ int CGameServerSession::OnDispatch(CNtlPacket * pPacket)
 
 		case GQ_INVENTORY_SORT_REQ: RecvInventorySortReq(pPacket, app); break;
 
+		case GQ_SKY_DUNGEON_LIMITED_UPDATE_REQ: RecvSkyDungeonLimitedUpdateReq(pPacket, app); break;
+
 		default: ERR_LOG(LOG_NETWORK, "Received unknown GQ packet. opcode %d", pHeader->wOpCode);
 	}
 

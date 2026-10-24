@@ -641,6 +641,11 @@ void CClientSession::RecvCharReady(CNtlPacket * pPacket)
 				cPlayer->StartTeleport(pWorld->GetTbldat()->outWorldLoc, pWorld->GetTbldat()->outWorldDir, pWorld->GetTbldat()->outWorldTblidx, TELEPORT_TYPE_DUNGEON);
 			}
 		}
+		else if (cPlayer->GetCurWorld()->GetRuleType() == GAMERULE_SKD) //tell how many sky dungeon entries are left today
+		{
+			if (cPlayer->IsReviving() == false)
+				cPlayer->SendSkyDungeonLimitCountNfy();
+		}
 		else if (cPlayer->GetCurWorld()->GetRuleType() == GAMERULE_DOJO) //when spawn in dojo map, then fill lp and ep
 		{
 			cPlayer->UpdateCurLP(cPlayer->GetMaxLP(), true, false);
@@ -4887,7 +4892,7 @@ void CClientSession::RecvCharTeleportReq(CNtlPacket * pPacket)
 		if (cPlayer->GetCurWorld())
 		{
 			//if teleport out of TLQ (or SKD) then destroy.
-			if (cPlayer->GetTeleportWorldID() != cPlayer->GetWorldID() && cPlayer->GetCurWorld()->GetRuleType() == GAMERULE_TLQ || cPlayer->GetCurWorld()->GetRuleType() == GAMERULE_SKD)
+			if (cPlayer->GetTeleportWorldID() != cPlayer->GetWorldID() && (cPlayer->GetCurWorld()->GetRuleType() == GAMERULE_TLQ || cPlayer->GetCurWorld()->GetRuleType() == GAMERULE_SKD))
 			{
 				cPlayer->GetQuests()->GetEventMap()->Clear();
 

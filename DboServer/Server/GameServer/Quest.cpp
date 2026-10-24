@@ -2731,26 +2731,29 @@ WORD CQuest::ProgressTsEntity(CNtlTSEntity* pEntity, NTL_TS_T_ID tId, CQuestProg
 			{
 				if (pSkyUD->GetSkyDungeonType() == eTLQ_DUNGEON_TYPE_ENTER)
 				{
+					// Retail rules: solo only and 4 entries per day (reset at 04:00).
+					// The world table caps the open instances (nCreateCount), CreateWorld fails past it.
+					// Reference: https://www.dbocom.com/forum/showthread.php?t=19682 (patch notes).
 					if (m_pkOwner->GetRankBattleRoomTblidx() != INVALID_TBLIDX)
 						return GAME_RANKBATTLE_MEMBER_ALREADY_JOINED_RANKBATTLE;
-					else if (m_pkOwner->GetDragonballScrambleBallFlag() > 0)
+					else if (m_pkOwner->GetDragonballScrambleBallFlag() > 0 || m_pkOwner->GetTLQ())
 						return GAME_CAN_NOT_TELEPORT;
-					else if (m_pkOwner->GetLevel() < 40)
+					else if (m_pkOwner->GetLevel() < SKY_DUNGEON_ENTER_MIN_LEVEL)
 						return GAME_WORLD_ENTER_NEED_HIGH_LEVEL;
-					else if (m_pkOwner->GetParty() && m_pkOwner->GetParty()->GetPartyMemberCount() > 1)
-						return GAME_CAN_NOT_TELEPORT;
-					// TODO: Originally, players were limited to 4 entries per day for Sky Dungeons. 
-					// Additionally, a maximum of 300 Sky Dungeons could be challenged per channel.
-					// Reference: https://www.dbocom.com/forum/showthread.php?t=19682 (patch notes).
+					else if (m_pkOwner->GetParty())
+						return GAME_SKY_DUNGEON_CAN_NOT_EXIST_PARTY;
+					else if (m_pkOwner->GetSkyDungeonRemainCount() == 0)
+						return GAME_SKY_DUNGEON_PLAYER_LIMIT_COUNT_IS_OVER;
 
 					if (CTimeLeapDungeon* pDungeon = g_pDungeonManager->CreateTimeLeapDungeon(m_pkOwner, pSkyUD->GetSkyDungeonTblIdx()))
 					{
 						CWorld* pWorld = pDungeon->GetWorld();
 						m_pkOwner->StartTeleport(pWorld->GetTbldat()->vStart1Loc, pWorld->GetTbldat()->vStart1Dir, pWorld->GetID(), TELEPORT_TYPE_TIMEQUEST);
 						m_pkOwner->SetTLQ(pDungeon);
+						m_pkOwner->AddSkyDungeonEnterCount();
 					}
 					else
-						return RESULT_FAIL;
+						return GAME_SKY_DUNGEON_WORLD_CAN_NOT_CREATE_DYNAMIC_WOLRD;
 				}
 				else if (pSkyUD->GetSkyDungeonType() == eTLQ_DUNGEON_TYPE_LEAVE)
 				{
