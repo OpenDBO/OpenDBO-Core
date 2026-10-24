@@ -6056,6 +6056,40 @@ const RwChar* Logic_GetActiveWorldName(void)
 	return pWorldTblData->szName;
 }
 
+// tw 0x453E5D: the grade colors win, super mobs only outside tmq, party dungeons and tlq,
+// everything else is colored by the level gap to the avatar
+static COLORREF Logic_GetMonsterNameColor(CNtlSobAvatar* pAvatar, CNtlSobMonsterAttr* pMonsterAttr)
+{
+	switch (pMonsterAttr->GetMobTbl()->byGrade)
+	{
+		case MOB_GRADE_ULTRA:	return NTL_MONSTER_NAME_COLOR_ULTRA;
+		case MOB_GRADE_HERO:	return NTL_MONSTER_NAME_COLOR_HERO;
+		case MOB_GRADE_BOSS:	return NTL_MONSTER_NAME_COLOR_BOSS;
+		case MOB_GRADE_SUPER:
+		{
+			CNtlWorldConceptController* pWorldConcept = GetNtlWorldConcept()->FindGradeExtController(WORLD_CONCEPT_FIRST_GRADE);
+			EWorldPlayConcept eWorldConcept = pWorldConcept ? pWorldConcept->GetConceptType() : WORLD_PLAY_NONE;
+
+			if (eWorldConcept != WORLD_PLAY_TIME_MACHINE && eWorldConcept != WORLD_PLAY_PARTY_DUNGEON && eWorldConcept != WORLD_PLAY_TLQ)
+				return NTL_MONSTER_NAME_COLOR_SUPER;
+		}
+		break;
+	}
+
+	CNtlSobAvatarAttr* pAvatarAttr = reinterpret_cast<CNtlSobAvatarAttr*>(pAvatar->GetSobAttr());
+	RwInt32 iAvatarLevel = pAvatarAttr->GetLevel();
+	RwInt32 iMonsterLevel = pMonsterAttr->GetLevel();
+	RwInt32 iLevelGap = abs(iAvatarLevel - iMonsterLevel);
+
+	if (iLevelGap >= 5)
+		return iAvatarLevel > iMonsterLevel ? NTL_MONSTER_NAME_COLOR_VERY_WEAKNESS : NTL_MONSTER_NAME_COLOR_VERY_STRONG;
+
+	if (iLevelGap >= 2)
+		return iAvatarLevel > iMonsterLevel ? NTL_MONSTER_NAME_COLOR_WEAKNESS : NTL_MONSTER_NAME_COLOR_STRONG;
+
+	return NTL_MONSTER_NAME_COLOR_EVEN;
+}
+
 void Logic_SetHeadNameColor(CNtlSob* pSob)
 {
 	if( !pSob )
@@ -6136,17 +6170,8 @@ void Logic_SetHeadNameColor(CNtlSob* pSob)
 
 				if (bShowName)
 				{
-					CNtlSobAvatarAttr* pAvatarAttr = reinterpret_cast<CNtlSobAvatarAttr*>(pAvatar->GetSobAttr());
+					monsterNameColor = Logic_GetMonsterNameColor(pAvatar, pMonsterAttr);
 
-					if (pAvatarAttr->GetLevel() + 3 < pMonsterAttr->GetLevel())
-					{
-						monsterNameColor = NTL_MONSTER_NAME_COLOR_STRONG;
-					}
-					else if (pAvatarAttr->GetLevel() - 3 > pMonsterAttr->GetLevel())
-					{
-						monsterNameColor = NTL_MONSTER_NAME_COLOR_WEAKNESS;
-					}
-					
 					pMonsterProxy->SetNameColor(pMonsterAttr->GetName(), monsterNameColor,
 						NULL, NTL_GUILD_NAME_COLOR, NULL, NTL_TITLE_NAME_COLOR);
 				}
