@@ -3,197 +3,144 @@
 -- References:
 --     - https://www.youtube.com/watch?v=PwcayIRE44I
 --     - https://www.youtube.com/watch?v=eNXMkp3E4EQ
-
+-- 
+-- Built on the retail spawn groups of spawn_mob_skdungeon_001_0X (identical to the
+-- tw client copy). Patrol robots and Guard Robot Alerty walk their retail path ids,
+-- see world_data/Path/DBO_SKDungeon_001_PATH.pth.
+-- 
 -- TODO: Missing text notifications on some events and mobs speaking
 --       when pulled and so on.
-
--- Author(s): Tuo, Grender (OpenDBO)
+-- 
+-- Author(s): Tuo, Grender, Zebiru (OpenDBO)
 
 
 GameStage( 0 )
 --[
-	-- Open the Door
+	-- Open the door
 	Action( "change object state" )
 	--[
 		Param( "index", 1 )
 		Param( "state", 1 )
 	--]
 	End()
-
 ------------------------------------------------------------------------
-	-- Spawn mob groups (mini boss with 2 adds + 2 mobs in the middle of the area)
+	-- Patrol robots (101), two scouts (102) and the door guard (111 + 103)
 	Action( "add mobgroup" )
 	--[
-		Param( "group", 100 )
+		Param( "group", 101 )
 		Param( "no spawn wait", "true" )
 	--]
-	End()	
+	End()
 	Action( "add mobgroup" )
 	--[
 		Param( "group", 102 )
 		Param( "no spawn wait", "true" )
 	--]
 	End()
-    
-    -- Spawn Patrol Bots
-	Action( "add mob" )
+	Action( "add mobgroup" )
 	--[
-		Param( "index", 53661101 )
-		Param( "group", 1 )
-		Param( "loc x", -946.25 )
-		Param( "loc y", -72.07 )
-		Param( "loc z", -82.80 )
-		Param( "dir x", -0.48 )
-		Param( "dir z", -0.87 )
-		Param( "play script", 53661101 )
-		Param( "play scene", 1 )
+		Param( "group", 103 )
 		Param( "no spawn wait", "true" )
 	--]
 	End()
-	Action( "add mob" )
+	Action( "add mobgroup" )
 	--[
-		Param( "index", 53661101 )
-		Param( "group", 1 )
-		Param( "loc x", -955.87 )
-		Param( "loc y", -72.07 )
-		Param( "loc z", -110.49 )
-		Param( "dir x", -0.56 )
-		Param( "dir z", -0.82 )
-		Param( "play script", 53661101 )
-		Param( "play scene", 2 )
-		Param( "no spawn wait", "true" )
-	--]
-	End()
-	Action( "add mob" )
-	--[
-		Param( "index", 53661101 )
-		Param( "group", 1 )
-		Param( "loc x", -981.73 )
-		Param( "loc y", -72.07 )
-		Param( "loc z", -104.36 )
-		Param( "dir x", -0.99 )
-		Param( "dir z", -0.07 )
-		Param( "play script", 53661101 )
-		Param( "play scene", 3 )
-		Param( "no spawn wait", "true" )
-	--]
-	End()
-	Action( "add mob" )
-	--[
-		Param( "index", 53661101 )
-		Param( "group", 1 )
-		Param( "loc x", -929.53 )
-		Param( "loc y", -72.07 )
-		Param( "loc z", -96.72 )
-		Param( "dir x", -0.81 )
-		Param( "dir z", -0.57 )
-		Param( "play script", 53661101 )
-		Param( "play scene", 4 )
-		Param( "no spawn wait", "true" )
-	--]
-	End()
-	Action( "add mob" )
-	--[
-		Param( "index", 53661101 )
-		Param( "group", 1 )
-		Param( "loc x", -991.08 )
-		Param( "loc y", -72.07 )
-		Param( "loc z", -114.89 )
-		Param( "dir x", -0.97 )
-		Param( "dir z", -0.24 )
-		Param( "play script", 53661101 )
-		Param( "play scene", 5 )
+		Param( "group", 111 )
 		Param( "no spawn wait", "true" )
 	--]
 	End()
 ------------------------------------------------------------------------
-	-- Wait until we engage in combat with the mini boss 
+	-- Wait until the door guard is engaged
 	Action( "wait" )
 	--[
+		Param( "operation", "or" )
 		Condition( "check battle" )
 		--[
 			Param( "type", "mob" )
-			Param( "group", 102 )
+			Param( "group", 111 )
+			Param( "is battle", "true" )
+		--]
+		End()
+		Condition( "check battle" )
+		--[
+			Param( "type", "mob" )
+			Param( "group", 103 )
 			Param( "is battle", "true" )
 		--]
 		End()
 	--]
-	End()	
-------------------------------------------------------------------------
-	-- Close the Door 				
+	End()
+	-- Close the door and remove the patrol robots
 	Action( "change object state" )
 	--[
 		Param( "index", 1 )
 		Param( "state", 0 )
 	--]
 	End()
-------------------------------------------------------------------------	
-	-- Remove Patrol Bots
-	Action("remove mobgroup")
+	Action( "remove mobgroup" )
 	--[
-		Param( "group", 1 )
+		Param( "group", 101 )
 		Param( "type", "clear" )
 	--]
 	End()
-------------------------------------------------------------------------	
-	-- Wait until the mini-boss and adds have died
-	Action("wait") 
+------------------------------------------------------------------------
+	-- Wait until the scouts and the door guard are dead
+	Action( "wait" )
 	--[
-		Condition( "check mobgroup" )
-		--[
-			Param( "group", 100 )
-			Param( "count", 0 )
-		--]
-		End()
 		Condition( "check mobgroup" )
 		--[
 			Param( "group", 102 )
 			Param( "count", 0 )
 		--]
-		End()		
-    --]
-	End()	
+		End()
+		Condition( "check mobgroup" )
+		--[
+			Param( "group", 103 )
+			Param( "count", 0 )
+		--]
+		End()
+		Condition( "check mobgroup" )
+		--[
+			Param( "group", 111 )
+			Param( "count", 0 )
+		--]
+		End()
+	--]
+	End()
 ------------------------------------------------------------------------
-	-- Spawn second wave of mobs in 1st area
+	-- Second wave in the first area
 	Action( "add mobgroup" )
 	--[
 		Param( "group", 104 )
 		Param( "no spawn wait", "true" )
 	--]
-	End()	
-------------------------------------------------------------------------
-	-- Add Check Point to lever
+	End()
 	Action( "direction indicate" )
 	--[
 		Param( "apply", "true" )
 		Param( "indicate type", "point" )
-		Param( "loc x", -924.970 )
-		Param( "loc z", -123.600 )
+		Param( "loc x", -924.97 )
+		Param( "loc z", -123.6 )
 	--]
 	End()
-
-------------------------------------------------------------------------
-	-- Wait until all second wave mobs die
-	Action("wait") 
+	Action( "wait" )
 	--[
 		Condition( "check mobgroup" )
 		--[
 			Param( "group", 104 )
 			Param( "count", 0 )
 		--]
-		End()		
-    --]
+		End()
+	--]
 	End()
 ------------------------------------------------------------------------
-	-- Enable lever
+	-- Enable the lever
 	Action( "change object state" )
 	--[
 		Param( "index", 4 )
 		Param( "state", 1 )
 	--]
 	End()
-------------------------------------------------------------------------
-    -- Execute script to open door and wait 3 seconds
 	Action( "wait" )
 	--[
 		Condition( "recv event from ts" )
@@ -214,87 +161,14 @@ GameStage( 0 )
 	--]
 	End()
 ------------------------------------------------------------------------
-	-- Spawn second wave of Patrol Bots
-	Action( "add mob" )
-	--[
-		Param( "index", 53661101 )
-		Param( "group", 2 )
-		Param( "loc x", -946.25 )
-		Param( "loc y", -72.07 )
-		Param( "loc z", -82.80 )
-		Param( "dir x", -0.48 )
-		Param( "dir z", -0.87 )
-		Param( "play script", 53661101 )
-		Param( "play scene", 1 )
-		Param( "no spawn wait", "true" )
-	--]
-	End()
-	Action( "add mob" )
-	--[
-		Param( "index", 53661101 )
-		Param( "group", 2 )
-		Param( "loc x", -955.87 )
-		Param( "loc y", -72.07 )
-		Param( "loc z", -110.49 )
-		Param( "dir x", -0.56 )
-		Param( "dir z", -0.82 )
-		Param( "play script", 53661101 )
-		Param( "play scene", 2 )
-		Param( "no spawn wait", "true" )
-	--]
-	End()
-	Action( "add mob" )
-	--[
-		Param( "index", 53661101 )
-		Param( "group", 2 )
-		Param( "loc x", -981.73 )
-		Param( "loc y", -72.07 )
-		Param( "loc z", -104.36 )
-		Param( "dir x", -0.99 )
-		Param( "dir z", -0.07 )
-		Param( "play script", 53661101 )
-		Param( "play scene", 3 )
-		Param( "no spawn wait", "true" )
-	--]
-	End()
-	Action( "add mob" )
-	--[
-		Param( "index", 53661101 )
-		Param( "group", 2 )
-		Param( "loc x", -929.53 )
-		Param( "loc y", -72.07 )
-		Param( "loc z", -96.72 )
-		Param( "dir x", -0.81 )
-		Param( "dir z", -0.57 )
-		Param( "play script", 53661101 )
-		Param( "play scene", 4 )
-		Param( "no spawn wait", "true" )
-	--]
-	End()
-	Action( "add mob" )
-	--[
-		Param( "index", 53661101 )
-		Param( "group", 2 )
-		Param( "loc x", -991.08 )
-		Param( "loc y", -72.07 )
-		Param( "loc z", -114.89 )
-		Param( "dir x", -0.97 )
-		Param( "dir z", -0.24 )
-		Param( "play script", 53661101 )
-		Param( "play scene", 5 )
-		Param( "no spawn wait", "true" )
-	--]
-	End()	
-------------------------------------------------------------------------
-	-- Spawn mini boss and adds next to door again
+	-- Patrol robots, scouts and a new door guard (105)
 	Action( "add mobgroup" )
 	--[
-		Param( "group", 102 )
+		Param( "group", 105 )
 		Param( "no spawn wait", "true" )
 	--]
-	End()	
-------------------------------------------------------------------------	
-	-- Open the Door
+	End()
+	-- Open the door
 	Action( "change object state" )
 	--[
 		Param( "index", 1 )
@@ -302,7 +176,6 @@ GameStage( 0 )
 		Param( "substate show", 1 )
 	--]
 	End()
-	-- Open the Door
 	Action( "change object state" )
 	--[
 		Param( "index", 22 )
@@ -310,73 +183,58 @@ GameStage( 0 )
 		Param( "substate show", 0 )
 	--]
 	End()
-------------------------------------------------------------------------
-	-- Add Check Point on Door
 	Action( "direction indicate" )
 	--[
 		Param( "apply", "true" )
 		Param( "indicate type", "point" )
-		Param( "loc x", -1015.80 )
+		Param( "loc x", -1015.8 )
 		Param( "loc z", -84.12 )
 	--]
 	End()
 ------------------------------------------------------------------------
-	-- Spawn mobs in the second area
+	-- Second area
 	Action( "add mobgroup" )
 	--[
 		Param( "group", 106 )
 		Param( "no spawn wait", "true" )
 	--]
-	End()	
-------------------------------------------------------------------------
-	-- Wait until the Check Point is reached
-	Action("wait") 
+	End()
+	Action( "wait" )
 	--[
 		Condition( "area enter" )
-		--[   
-			Param( "origin x", -1015.80 )
+		--[
+			Param( "origin x", -1015.8 )
 			Param( "origin z", -84.12 )
 			Param( "radius", 5 )
 			Param( "all member", "false" )
 		--]
-	  	End()
-    	--]
+		End()
+	--]
 	End()
-------------------------------------------------------------------------
-	-- Wait until second area mobs have died
-	Action("wait") 
+	Action( "wait" )
 	--[
 		Condition( "check mobgroup" )
 		--[
 			Param( "group", 106 )
 			Param( "count", 0 )
 		--]
-		End()		
-    --]
-	End()		
-------------------------------------------------------------------------	
-	-- Remove mobs from the first step
-	Action("remove mobgroup")
-	--[
-		Param( "group", 2 )
-		Param( "type", "clear" )
+		End()
 	--]
-	End()	
-	Action("remove mobgroup")
+	End()
+	Action( "remove mobgroup" )
 	--[
-		Param( "group", 102 )
+		Param( "group", 105 )
 		Param( "type", "clear" )
 	--]
 	End()
 ------------------------------------------------------------------------
-	-- Enable lever
+	-- Enable the lever
 	Action( "change object state" )
 	--[
 		Param( "index", 5 )
 		Param( "state", 1 )
 	--]
 	End()
-------------------------------------------------------------------------
 	Action( "wait" )
 	--[
 		Condition( "recv event from ts" )
@@ -396,83 +254,53 @@ GameStage( 0 )
 		End()
 	--]
 	End()
-------------------------------------------------------------------------	
-	-- Open the second Door
+	-- Open the second door
 	Action( "change object state" )
 	--[
 		Param( "index", 2 )
 		Param( "state", 1 )
 	--]
 	End()
-------------------------------------------------------------------------
-	-- Add Check Point to third area
 	Action( "direction indicate" )
 	--[
 		Param( "apply", "true" )
 		Param( "indicate type", "point" )
 		Param( "loc x", -1024.743 )
-		Param( "loc z", -102.330 )
+		Param( "loc z", -102.33 )
 	--]
 	End()
 ------------------------------------------------------------------------
-	-- Spawn Patrol Bots in the third area
-	Action( "add mob" )
+	-- Third area: patrol robots (107) and the lever guard (108)
+	Action( "add mobgroup" )
 	--[
-		Param( "index", 53661101 )
-		Param( "group", 3 )
-		Param( "loc x", -1030.52 )
-		Param( "loc y", -72.07 )
-		Param( "loc z", -117.63 )
-		Param( "dir x", -0.59 )
-		Param( "dir z", -0.80 )
-		Param( "play script", 53661101 )
-		Param( "play scene", 6 )
+		Param( "group", 107 )
 		Param( "no spawn wait", "true" )
 	--]
 	End()
-	Action( "add mob" )
-	--[
-		Param( "index", 53661101 )
-		Param( "group", 3 )
-		Param( "loc x", -1045.98 )
-		Param( "loc y", -72.07 )
-		Param( "loc z", -140.86 )
-		Param( "dir x", -0.15 )
-		Param( "dir z", -0.98 )
-		Param( "play script", 53661101 )
-		Param( "play scene", 7 )
-		Param( "no spawn wait", "true" )
-	--]
-	End()	
-------------------------------------------------------------------------
-	-- Spawn mobs for the third step
 	Action( "add mobgroup" )
 	--[
 		Param( "group", 108 )
 		Param( "no spawn wait", "true" )
 	--]
 	End()
-------------------------------------------------------------------------
-	-- Wait until all third step mobs have died
-	Action("wait") 
+	Action( "wait" )
 	--[
 		Condition( "check mobgroup" )
 		--[
 			Param( "group", 108 )
 			Param( "count", 0 )
 		--]
-		End()		
-    --]
+		End()
+	--]
 	End()
 ------------------------------------------------------------------------
-	-- Enable lever
+	-- Enable the lever
 	Action( "change object state" )
 	--[
 		Param( "index", 6 )
 		Param( "state", 1 )
 	--]
 	End()
-------------------------------------------------------------------------
 	Action( "wait" )
 	--[
 		Condition( "recv event from ts" )
@@ -492,7 +320,6 @@ GameStage( 0 )
 		End()
 	--]
 	End()
-------------------------------------------------------------------------	
 	-- Open the third door
 	Action( "change object state" )
 	--[
@@ -500,8 +327,6 @@ GameStage( 0 )
 		Param( "state", 1 )
 	--]
 	End()
-------------------------------------------------------------------------
-	-- Add Check Point to last area
 	Action( "direction indicate" )
 	--[
 		Param( "apply", "true" )
@@ -510,49 +335,44 @@ GameStage( 0 )
 		Param( "loc z", -195.205 )
 	--]
 	End()
-------------------------------------------------------------------------	
-	-- Remove Patrol Bots in the third area
-	Action("remove mobgroup")
+	Action( "remove mobgroup" )
 	--[
-		Param( "group", 3 )
+		Param( "group", 107 )
 		Param( "type", "clear" )
 	--]
 	End()
 ------------------------------------------------------------------------
-	-- Spawn mobs in the final area, including last boss
+	-- Final area with the boss (110)
 	Action( "add mobgroup" )
 	--[
 		Param( "group", 109 )
 		Param( "no spawn wait", "true" )
 	--]
 	End()
-	--Spaw Mobs in the final step
 	Action( "add mobgroup" )
 	--[
 		Param( "group", 110 )
 		Param( "no spawn wait", "true" )
 	--]
 	End()
-------------------------------------------------------------------------
-	-- Check if all mobs in the final area have died
-	Action("wait") 
+	Action( "wait" )
 	--[
 		Condition( "check mobgroup" )
 		--[
 			Param( "group", 109 )
 			Param( "count", 0 )
 		--]
-		End()	
+		End()
 		Condition( "check mobgroup" )
 		--[
 			Param( "group", 110 )
 			Param( "count", 0 )
 		--]
-		End()		
-    --]
+		End()
+	--]
 	End()
 ------------------------------------------------------------------------
-	-- Add Check Point to Exit Portal
+	-- Exit portal
 	Action( "direction indicate" )
 	--[
 		Param( "apply", "true" )
@@ -561,9 +381,6 @@ GameStage( 0 )
 		Param( "loc z", -151.637 )
 	--]
 	End()
-------------------------------------------------------------------------
-
-	-- Make Exit Portal visible
 	Action( "change object state" )
 	--[
 		Param( "index", 7 )
@@ -571,6 +388,5 @@ GameStage( 0 )
 		Param( "substate show", 1 )
 	--]
 	End()
-	--6902 quest
 --]
 End()
