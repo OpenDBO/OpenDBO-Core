@@ -37,7 +37,7 @@ bool CWPSNodeAction_DirectPlay::AddParam(CControlScriptNodeParam_Number* pNode)
 		return CControlScriptNode::AddParam(pNode);
 	}
 
-	printf("CWPSNodeAction_ChangeCharAttribute: [%s] not exist \n", name);
+	printf("CWPSNodeAction_DirectPlay: [%s] not exist \n", name);
 	return false;
 }
 
@@ -50,6 +50,11 @@ bool CWPSNodeAction_DirectPlay::AddParam(CControlScriptNodeParam_String* pNode)
 		if (_stricmp(pNode->GetValue(), "true") == 0)
 		{
 			m_bSynchronize = true;
+			return CControlScriptNode::AddParam(pNode);
+		}
+		else if (_stricmp(pNode->GetValue(), "false") == 0)
+		{
+			m_bSynchronize = false;
 			return CControlScriptNode::AddParam(pNode);
 		}
 		printf("value '%s' dont exist \n", pNode->GetValue());
@@ -65,7 +70,7 @@ bool CWPSNodeAction_DirectPlay::AddParam(CControlScriptNodeParam_String* pNode)
 		printf("value '%s' dont exist \n", pNode->GetValue());
 	}
 
-	printf("CWPSNodeAction_ChangeCharAttribute: [%s] not exist \n", name);
+	printf("CWPSNodeAction_DirectPlay: [%s] not exist \n", name);
 	return false;
 }
 
