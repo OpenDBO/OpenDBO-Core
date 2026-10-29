@@ -32,6 +32,7 @@ class CNtlTriggerSyncManager;
 #include "NtlTeleport.h"
 #include "NtlDojo.h"
 #include "NtlMascot.h"
+#include "NtlDWC.h"
 
  /**
  * \brief Avatar Info
@@ -193,6 +194,82 @@ typedef struct _SMascotInfo
     }
 } SMascotInfo;
 
+// Dragon World Challenge
+typedef struct _SDwcInfo
+{
+    RwUInt8             byRemainCount;          ///< dwc entries left today, from the last world count info or proposal
+    RwUInt8             byScenarioCount;
+    sDWC_SCENARIO_INFO  asScenario[MAX_DWC_COUNT];  ///< card grade and clear count of the played dwcs
+    RwUInt8             abyAchievementComplete[DWC_ACHIEVEMENT_INFO_BYTE_COUNT];   ///< completed achievements, the admission conditions of the dwcs
+
+    void Reset(void)
+    {
+        byRemainCount = 0;
+        byScenarioCount = 0;
+        memset(asScenario, 0xFF, sizeof(asScenario));
+        memset(abyAchievementComplete, 0, sizeof(abyAchievementComplete));
+    }
+
+    sDWC_SCENARIO_INFO* FindScenario(RwUInt32 dwcTblidx)
+    {
+        for (RwUInt8 i = 0; i < byScenarioCount; ++i)
+        {
+            if (asScenario[i].dwcTblidx == dwcTblidx)
+                return &asScenario[i];
+        }
+
+        return NULL;
+    }
+
+    sDWC_SCENARIO_INFO* AddScenario(RwUInt32 dwcTblidx)
+    {
+        if (sDWC_SCENARIO_INFO* pScenario = FindScenario(dwcTblidx))
+            return pScenario;
+
+        if (byScenarioCount >= MAX_DWC_COUNT)
+            return NULL;
+
+        sDWC_SCENARIO_INFO* pScenario = &asScenario[byScenarioCount++];
+        pScenario->dwcTblidx = dwcTblidx;
+
+        for (RwInt32 i = 0; i < MAX_DWC_MISSION_COUNT_PER_SCENARIO; ++i)
+        {
+            pScenario->asMission[i].byRewardGrade = INVALID_DWC_REWARD_GRADE;
+            pScenario->asMission[i].wClearCount = 0;
+        }
+
+        return pScenario;
+    }
+
+    bool IsAchievementComplete(RwUInt32 uiIdx) const
+    {
+        if (uiIdx >= DWC_ACHIEVEMENT_INFO_BIT_COUNT)
+            return false;
+
+        return (abyAchievementComplete[uiIdx / 8] & (0x01 << (uiIdx % 8))) != 0;
+    }
+
+    void SetAchievementComplete(RwUInt32 uiIdx)
+    {
+        if (uiIdx < DWC_ACHIEVEMENT_INFO_BIT_COUNT)
+            abyAchievementComplete[uiIdx / 8] |= 0x01 << (uiIdx % 8);
+    }
+} SDwcInfo;
+
+// objectives a server script shows to the avatar (GU_SERVERSCRIPT_EVENTSTATUS_*)
+struct SServerScriptEventStatus
+{
+    RwUInt8             byGroup;
+    RwUInt8             byIndex;
+    RwUInt32            textTblidx;             ///< cs text table
+    RwUInt8             byType;                 ///< eSERVERSCRIPT_EVENTSTATUS_TYPE
+    RwUInt16            wCount;
+    RwUInt16            wMaxCount;
+    RwBool              bSelected;              ///< done
+};
+
+typedef std::list<SServerScriptEventStatus> LIST_SERVERSCRIPT_EVENTSTATUS;
+
 /**
 * \brief    !! AdjustMoney !!
 *           Saving type to manage adjustments in money between server and client. (Party, Mail, etc.)
@@ -267,6 +344,10 @@ private:
     // Mascot
     SMascotInfo             m_sMascotInfo;
 
+    // Dragon World Challenge
+    SDwcInfo                m_sDwcInfo;
+    LIST_SERVERSCRIPT_EVENTSTATUS m_listServerScriptEventStatus;
+
 public:
 
     static bool             m_bSelectSkillMode;
@@ -312,6 +393,10 @@ public:
 
     // Mascot
     SMascotInfo* GetAvatarMascotInfo(void);
+
+    // Dragon World Challenge
+    SDwcInfo* GetDwcInfo(void) { return &m_sDwcInfo; }
+    LIST_SERVERSCRIPT_EVENTSTATUS* GetServerScriptEventStatus(void) { return &m_listServerScriptEventStatus; }
 };
 
 static CNtlSLGlobal* GetNtlSLGlobal(void)
