@@ -106,6 +106,11 @@ VOID CDialogManager::RegisteRegularDialog()
 	m_mapRegular[DIALOG_MASCOT_FUSION] = dRDA_NORMAL | dRDA_EXCLUSIVE;
 	m_mapRegular[DIALOG_MASCOT_SKILL_REMAKE] = dRDA_NORMAL | dRDA_EXCLUSIVE;
 	m_mapRegular[DIALOG_MASCOT_REMOTE_SELL] = dRDA_NORMAL;
+
+	// Dragon World Challenge
+	m_mapRegular[DIALOG_DWC_CHALLENGE] = dRDA_NORMAL;
+	m_mapRegular[DIALOG_DWC_SCENARIO_MAIN] = dRDA_NORMAL;
+	m_mapRegular[DIALOG_DWC_PROLOG] = dRDA_NORMAL;
 }
 
 VOID CDialogManager::RegisteEntireFocusingDialog()
@@ -117,6 +122,7 @@ VOID CDialogManager::RegisteEntireFocusingDialog()
 	m_mapEntireFocuing[DIALOG_DURATION_EXTEND_CONFIRM]	= dEFDA_BACKBOARD;
 
 	m_mapEntireFocuing[DIALOG_HLSHOP]					= dEFDA_BACKBOARD;
+	m_mapEntireFocuing[DIALOG_DWC_REWARD]				= dEFDA_BACKBOARD;
 }
 
 VOID CDialogManager::PlayOpenSound(RwInt32 iDialog)
@@ -885,6 +891,15 @@ int CDialogManager::HandleDialogAction(uintptr_t iAction)
 			if (!Logic_CanKeybaordInput_in_Tutorial(ETL_KEYBOARD_INPUT_TYPE_MASCOT))
 				NTL_RETURN(1);
 			SwitchDialog(DIALOG_MASCOT);
+			break;
+		}
+	case ACTION_WINDOW_DWC:
+		{
+			if( IsOpenDialog(DIALOG_WORLDMAP))
+				NTL_RETURN(1);
+
+			// the challenge asks the server for the card progress when it opens
+			SwitchDialog(DIALOG_DWC_CHALLENGE);
 			break;
 		}
 	case ACTION_WINDOW_HELP:	// 占쏙옙占쏙옙

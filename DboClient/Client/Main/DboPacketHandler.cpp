@@ -3895,6 +3895,21 @@ void PacketHandler_GSCharDirectPlay(void* pPacket)
 		if (pDirectPlay->bCanSkip)
 			GetNtlDTCinematicManager()->SetCanSkip(true);
 	}
+	else if (pDirectPlay->byPlayMode == DIRECTION_FLASH)
+	{
+		// tw: the direction link names the flash, e.g. the dwc start, clear and fail notify
+		CDirectionLinkTable *pLinkTbl = API_GetTableContainer()->GetDirectionLinkTable();
+		if (pLinkTbl == NULL)
+			return;
+
+		sDIRECTION_LINK_TBLDAT *pLinkTblData = reinterpret_cast<sDIRECTION_LINK_TBLDAT*>(pLinkTbl->FindData(pDirectPlay->directTblidx));
+		if (pLinkTblData == NULL || pLinkTblData->byType != DIRECTION_LINK_TYPE_FLASH)
+			return;
+
+		std::string strFile = pLinkTblData->szFunctionName;
+		strFile += ".swf";
+		CDboEventGenerator::FlashNotifyString(strFile.c_str(), NULL, FALSE);
+	}
 }
 
 void PacketHandler_GSCharDirectPlayCancelNfy(void * pPacket)

@@ -971,4 +971,27 @@ void PacketHandler_GSMascotAutoLootingRes(void* pPacket);
 void PacketHandler_GSMascotRemoteShopSellRes(void* pPacket);
 void PacketHandler_GSMascotSealSetRes(void* pPacket);
 
+// Dragon World Challenge
+void PacketHandler_GUDwcWorldCountInfoRes(void* pPacket);
+void PacketHandler_GUDwcEnterRes(void* pPacket);
+void PacketHandler_GUDwcEnterProposalNfy(void* pPacket);
+void PacketHandler_GUDwcEnterConfirmRes(void* pPacket);
+void PacketHandler_GUDwcEnterCanceledNfy(void* pPacket);
+void PacketHandler_GUDwcEnterDirectionNfy(void* pPacket);
+void PacketHandler_GUDwcMissionRewardNfy(void* pPacket);
+void PacketHandler_GUDwcScenarioInfoRes(void* pPacket);
+void PacketHandler_GUDwcScenarioUpdateNfy(void* pPacket);
+void PacketHandler_GUDwcLimitCountNfy(void* pPacket);
+void PacketHandler_GUDwcRewardList(void* pPacket);
+void PacketHandler_GUDwcGetRewardRes(void* pPacket);
+void PacketHandler_GUAchievementsCompleteInfo(void* pPacket);
+void PacketHandler_GUAchievementCompleteNfy(void* pPacket);
+
+// Server script
+void PacketHandler_GUServerScriptCountdownNfy(void* pPacket);
+void PacketHandler_GUServerScriptEventStatusRegisterNfy(void* pPacket);
+void PacketHandler_GUServerScriptEventStatusUpdateNfy(void* pPacket);
+void PacketHandler_GUServerScriptEventStatusSelectNfy(void* pPacket);
+void PacketHandler_GUServerScriptEventStatusClearNfy(void* pPacket);
+
 #endif

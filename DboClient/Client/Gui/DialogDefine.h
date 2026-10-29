@@ -95,8 +95,10 @@ enum eDialogType
 	DIALOG_SCRAMBLE_NOTIFY,					///< 도장 쟁탈전 진행 알림창
 	DIALOG_CCBD_NOTIFY,
 	DIALOG_CCBD_REWARD,
+	DIALOG_DWC_REWARD,						///< dwc mission result (tw 0x49)
+	DIALOG_DWC_BACKGROUND,					///< dwc curtain on entering the dwc world (tw 0x4A)
 
-	DIALOG_EVENT_LAST = DIALOG_CCBD_REWARD,
+	DIALOG_EVENT_LAST = DIALOG_DWC_BACKGROUND,
 
 	
 	// A dialog drawn on the screen by the user's operation
@@ -162,8 +164,13 @@ enum eDialogType
 	DIALOG_ITEM_OPTIONRESTRUCTURE,
 	DIALOG_QUICK_TELEPORT,
 	DIALOG_PLAYER_TITLE,
+	DIALOG_DWC_CHALLENGE,					///< dwc card collection (tw 0x92)
+	DIALOG_DWC_HEROINFO,					///< dwc card details (tw 0x93)
+	DIALOG_DWC_SCENARIO_INFO,				///< dwc scenario details and admission conditions (tw 0x94)
+	DIALOG_DWC_SCENARIO_MAIN,				///< objectives of the dwc the avatar plays (tw 0x95)
+	DIALOG_DWC_PROLOG,						///< prologue of the dwc the avatar plays (tw 0x96)
 
-	DIALOG_NORMAL_LAST = DIALOG_PLAYER_TITLE,
+	DIALOG_NORMAL_LAST = DIALOG_DWC_PROLOG,
 
 
 	//NPC-related dialog (Basically, it is not affected by ESC key)
@@ -216,8 +223,9 @@ enum eDialogType
 	DIALOG_MASCOT_REMOTE_SELL,				///< sell cart of the mascot remote shop skill
 
 	DIALOG_SMITHY,							///< item upgrade npc smithy (disassemble tab)
+	DIALOG_DWC_FIELDLIST,					///< dwc entry list of the dwc npc (tw 0x97)
 
-	DIALOG_NPCDIALOG_LAST = DIALOG_SMITHY,
+	DIALOG_NPCDIALOG_LAST = DIALOG_DWC_FIELDLIST,
 
 	DIALOG_NUM,
 

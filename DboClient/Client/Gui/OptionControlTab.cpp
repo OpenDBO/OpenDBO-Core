@@ -439,6 +439,11 @@ void COptionControlList::CreateTree()
 		ACTION_WINDOW_MASCOT );
 	CGuiLineTree::AddNode( pNode, dOPTIONCONTROL_CATEGORY_WINDOW );
 
+	pNode = NTL_NEW COptionControlActionNode(this,
+		GetActionDisplayStringNum( ACTION_WINDOW_DWC ),
+		ACTION_WINDOW_DWC );
+	CGuiLineTree::AddNode( pNode, dOPTIONCONTROL_CATEGORY_WINDOW );
+
 	//////////////////////////////////////////////////////////////////////////////
 	// 고정 카테고리
 	pNode = NTL_NEW COptionControlCategoryNode(this, 

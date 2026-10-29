@@ -1058,6 +1058,10 @@ void PacketHandler_GSAvatarWorldInfo(void *pPacket)
 		{
 			GetNtlWorldConcept()->AddWorldPlayConcept(WORLD_PLAY_CCBD);
 		}
+		else if (byRuleType == GAMERULE_DWC)
+		{
+			GetNtlWorldConcept()->AddWorldPlayConcept(WORLD_PLAY_DWC);
+		}
 		else if(byRuleType == GAMERULE_DOJO)
 		{
 			CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();

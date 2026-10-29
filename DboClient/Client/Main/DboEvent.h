@@ -335,6 +335,9 @@ extern RWS::CEventId g_EventMascotSummon;
 extern RWS::CEventId g_EventMascotUnSummon;
 extern RWS::CEventId g_EventMascotUpdate;
 
+// Dragon World Challenge
+extern RWS::CEventId g_EventDwcNotify;
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1665,6 +1668,31 @@ struct SDboEventMascotUpdate
 	BYTE	byType;			///< eMASCOT_UPDATE_TYPE
 	BYTE	bySlot;
 	RwBool	bSuccess;
+};
+
+// Dragon World Challenge
+enum eDWC_EVENT_TYPE
+{
+	DWC_EVENT_WORLDCOUNT_INFO,		///< pData: sGU_DWC_WORLDCOUNT_INFO_RES, opens the entry list of hNpc
+	DWC_EVENT_ENTER_CONFIRM,		///< the entry was answered, closes the entry list
+	DWC_EVENT_ENTER_DIRECTION,		///< hNpc, dwcTblidx: the entry direction starts
+	DWC_EVENT_MISSION_REWARD,		///< pData: sGU_DWC_MISSION_REWARD_NFY
+	DWC_EVENT_SCENARIO_INFO,		///< the card progress in the sl global changed, bValue: answer of UG_DWC_SCENARIO_INFO_REQ
+	DWC_EVENT_ACHIEVEMENT,			///< the completed admission conditions changed
+	DWC_EVENT_LIMIT_COUNT,			///< uiValue: entries left today
+	DWC_EVENT_SCRIPT_STATUS,		///< the objectives of the server script changed
+	DWC_EVENT_COUNTDOWN,			///< bValue: start, uiValue: seconds
+	DWC_EVENT_CHALLENGE_OPEN,		///< the card collection opened
+};
+
+struct SDboEventDwcNotify
+{
+	RwUInt8			byType;			///< eDWC_EVENT_TYPE
+	SERIAL_HANDLE	hNpc;
+	RwUInt32		dwcTblidx;
+	RwUInt32		uiValue;
+	RwBool			bValue;
+	void*			pData;
 };
 
 #endif

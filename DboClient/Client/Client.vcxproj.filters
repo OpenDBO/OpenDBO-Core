@@ -300,6 +300,9 @@
     <Filter Include="Gui\Component\Game\CCBD">
       <UniqueIdentifier>{a564b8a9-6cb4-4e21-b232-c79a183d2ae8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Gui\Component\Game\DWC">
+      <UniqueIdentifier>{6a2f4c1e-9d3b-4e8a-b5c7-2d1e0f9a8b64}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Gui\Component\Game\UltimateDungeon %28UD%29">
       <UniqueIdentifier>{bb7816fb-b492-4312-8345-5b5bd1a65dc0}</UniqueIdentifier>
     </Filter>
@@ -1228,6 +1231,39 @@
     </ClCompile>
     <ClCompile Include="Gui\SmithyGui.cpp">
       <Filter>Gui\Component\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\DwcFieldListGui.cpp">
+      <Filter>Gui\Component\Game\DWC</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\DwcChallengeGui.cpp">
+      <Filter>Gui\Component\Game\DWC</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\DwcRewardGui.cpp">
+      <Filter>Gui\Component\Game\DWC</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\DwcStatusGui.cpp">
+      <Filter>Gui\Component\Game\DWC</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\DwcHeroInfoGui.cpp">
+      <Filter>Gui\Component\Game\DWC</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\DwcScenarioInfoGui.cpp">
+      <Filter>Gui\Component\Game\DWC</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\DwcScenarioMainGui.cpp">
+      <Filter>Gui\Component\Game\DWC</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\DwcPrologGui.cpp">
+      <Filter>Gui\Component\Game\DWC</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\DwcBackGroundGui.cpp">
+      <Filter>Gui\Component\Game\DWC</Filter>
+    </ClCompile>
+    <ClCompile Include="DwcSideIconGui.cpp">
+      <Filter>Gui\Component\Game\DWC</Filter>
+    </ClCompile>
+    <ClCompile Include="Main\DboPacketHandler_GUDwc.cpp">
+      <Filter>Main\PacketHandler</Filter>
     </ClCompile>
     <ClCompile Include="Gui\ItemUpgradeCardGui.cpp">
       <Filter>Gui\Component\Game</Filter>
@@ -2214,6 +2250,36 @@
     </ClInclude>
     <ClInclude Include="Gui\SmithyGui.h">
       <Filter>Gui\Component\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\DwcFieldListGui.h">
+      <Filter>Gui\Component\Game\DWC</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\DwcChallengeGui.h">
+      <Filter>Gui\Component\Game\DWC</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\DwcRewardGui.h">
+      <Filter>Gui\Component\Game\DWC</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\DwcStatusGui.h">
+      <Filter>Gui\Component\Game\DWC</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\DwcHeroInfoGui.h">
+      <Filter>Gui\Component\Game\DWC</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\DwcScenarioInfoGui.h">
+      <Filter>Gui\Component\Game\DWC</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\DwcScenarioMainGui.h">
+      <Filter>Gui\Component\Game\DWC</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\DwcPrologGui.h">
+      <Filter>Gui\Component\Game\DWC</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\DwcBackGroundGui.h">
+      <Filter>Gui\Component\Game\DWC</Filter>
+    </ClInclude>
+    <ClInclude Include="DwcSideIconGui.h">
+      <Filter>Gui\Component\Game\DWC</Filter>
     </ClInclude>
     <ClInclude Include="Gui\ItemUpgradeCardGui.h">
       <Filter>Gui\Component\Game</Filter>

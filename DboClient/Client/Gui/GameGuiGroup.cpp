@@ -148,6 +148,15 @@
 #include "CCBDStatusGui.h"
 #include "CCBDNotifyGui.h"
 #include "CCBDRewardGui.h"
+#include "DwcFieldListGui.h"
+#include "DwcChallengeGui.h"
+#include "DwcRewardGui.h"
+#include "DwcStatusGui.h"
+#include "DwcHeroInfoGui.h"
+#include "DwcScenarioInfoGui.h"
+#include "DwcScenarioMainGui.h"
+#include "DwcPrologGui.h"
+#include "DwcBackGroundGui.h"
 #include "UltimateDungeonGui.h"
 #include "HoiPoiMixCraftGui.h"
 #include "HoiPoiMixRecipeGui.h"
@@ -339,6 +348,14 @@ CGameGuiGroup::CGameGuiGroup()
 , m_pCCBDBoardGui(NULL)
 , m_pCCBDNotifyGui(NULL)
 , m_pCCBDRewardGui(NULL)
+, m_pDwcFieldListGui(NULL)
+, m_pDwcChallengeGui(NULL)
+, m_pDwcRewardGui(NULL)
+, m_pDwcHeroInfoGui(NULL)
+, m_pDwcScenarioInfoGui(NULL)
+, m_pDwcScenarioMainGui(NULL)
+, m_pDwcPrologGui(NULL)
+, m_pDwcBackGroundGui(NULL)
 
 // Mascot
 , m_pMascotGui(NULL)
@@ -828,6 +845,16 @@ RwBool CGameGuiGroup::Create(void)
 
 	AddDialog(m_pCCBDBoardGui, CCCBDBoardGui, "CCBDBoardGui", DIALOG_CCBD_BOARD);
 
+	// Dragon World Challenge, the reward stays when the dwc world is left right after it
+	AddDialog(m_pDwcFieldListGui, CDwcFieldListGui, "DwcFieldListGui", DIALOG_DWC_FIELDLIST);
+	AddDialog(m_pDwcChallengeGui, CDwcChallengeGui, "DwcChallengeGui", DIALOG_DWC_CHALLENGE);
+	AddDialog(m_pDwcRewardGui, CDwcRewardGui, "DwcRewardGui", DIALOG_DWC_REWARD);
+	AddDialog(m_pDwcHeroInfoGui, CDwcHeroInfoGui, "DwcHeroInfoGui", DIALOG_DWC_HEROINFO);
+	AddDialog(m_pDwcScenarioInfoGui, CDwcScenarioInfoGui, "DwcScenarioInfoGui", DIALOG_DWC_SCENARIO_INFO);
+	AddDialog(m_pDwcScenarioMainGui, CDwcScenarioMainGui, "DwcScenarioMainGui", DIALOG_DWC_SCENARIO_MAIN);
+	AddDialog(m_pDwcPrologGui, CDwcPrologGui, "DwcPrologGui", DIALOG_DWC_PROLOG);
+	AddDialog(m_pDwcBackGroundGui, CDwcBackGroundGui, "DwcBackGroundGui", DIALOG_DWC_BACKGROUND);
+
 
 
 	// gui manager signal
@@ -899,6 +926,7 @@ void CGameGuiGroup::Destroy(void)
 	CTMQStatusGui::DestroyInstance();
 
 	CCCBDStatusGui::DestroyInstance();
+	CDwcStatusGui::DestroyInstance();
 
 	CGuildWarehouseBar::DestroyInstance();
 
@@ -1020,6 +1048,14 @@ void CGameGuiGroup::Destroy(void)
 	RemoveDialog(m_pCCBDBoardGui);
 	RemoveDialog(m_pCCBDNotifyGui);
 	RemoveDialog(m_pCCBDRewardGui);
+	RemoveDialog(m_pDwcFieldListGui);
+	RemoveDialog(m_pDwcChallengeGui);
+	RemoveDialog(m_pDwcRewardGui);
+	RemoveDialog(m_pDwcHeroInfoGui);
+	RemoveDialog(m_pDwcScenarioInfoGui);
+	RemoveDialog(m_pDwcScenarioMainGui);
+	RemoveDialog(m_pDwcPrologGui);
+	RemoveDialog(m_pDwcBackGroundGui);
 
 	// Mascot
 	RemoveDialog(m_pMascotGui);
@@ -1181,6 +1217,25 @@ void CGameGuiGroup::HandleEvents(RWS::CMsg &pMsg)
 				RemoveDialog(m_pCCBDRewardGui);
 
 				CCCBDStatusGui::DestroyInstance();
+			}
+		}
+		else if (pEvent->eWorldConcept == WORLD_PLAY_DWC)
+		{
+			if (pEvent->uiState == WORLD_STATE_ENTER)
+			{
+				CDwcStatusGui::CreateInstance();
+
+				GetDialogManager()->LocationDialogs(GetDboGlobal()->GetScreenWidth(), GetDboGlobal()->GetScreenHeight());
+			}
+			else if (pEvent->uiState == WORLD_STATE_EXIT)
+			{
+				CDwcStatusGui::DestroyInstance();
+
+				// the windows about the dwc played close with it (tw: also the reward of the last mission)
+				GetDialogManager()->CloseDialog(DIALOG_DWC_REWARD);
+				GetDialogManager()->CloseDialog(DIALOG_DWC_BACKGROUND);
+				GetDialogManager()->CloseDialog(DIALOG_DWC_SCENARIO_MAIN);
+				GetDialogManager()->CloseDialog(DIALOG_DWC_PROLOG);
 			}
 		}
 	}

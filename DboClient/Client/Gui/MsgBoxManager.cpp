@@ -1484,6 +1484,19 @@ VOID CMsgBoxManager::HandleEvents( RWS::CMsg &msg )
 			// byIndex: inventory type (0 bag, 2 private bank), hHandle: bank npc
 			GetDboGlobal()->GetGamePacketGenerator()->SendInventorySortReq(pMsgBoxData->byIndex, pMsgBoxData->hHandle);
 		}
+		else if (pMsgBoxResult->strID == "DST_DWC_ENTER_QUESTION")
+		{
+			if (pMsgBoxResult->eResult != MBR_OK)
+				return;
+
+			sMsgBoxData* pMsgBoxData = reinterpret_cast<sMsgBoxData*>(pMsgBoxResult->pData);
+			GetDboGlobal()->GetGamePacketGenerator()->SendDwcEnterReq(pMsgBoxData->sDwcEnter.hNpc, pMsgBoxData->sDwcEnter.dwcTblidx);
+		}
+		else if (pMsgBoxResult->strID == "DST_DWC_ENTER_CONFIRM")
+		{
+			// the timeout answers no as well
+			GetDboGlobal()->GetGamePacketGenerator()->SendDwcEnterConfirmReq(pMsgBoxResult->eResult == MBR_OK);
+		}
 		else if (pMsgBoxResult->strID == "DST_DISASSEMBLE_GRADE_ALRAM")
 		{
 			if (pMsgBoxResult->eResult != MBR_OK)
@@ -1619,6 +1632,12 @@ VOID CMsgBoxManager::HandleEvents( RWS::CMsg &msg )
 				case WORLD_PLAY_CCBD:
 				{
 					DeleteMsgBox("DST_CCBD_LEAVE_CCBD");
+				}
+				break;
+
+				case WORLD_PLAY_DWC:
+				{
+					DeleteMsgBox("DST_REGEN_PLAYER_PARTY_DUNGEON");
 				}
 				break;
 			}

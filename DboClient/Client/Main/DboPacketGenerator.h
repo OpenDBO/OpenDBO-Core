@@ -383,6 +383,12 @@ public:
 	bool SendMascotAutoLootingReq(BYTE byItemCount, const HOBJECT* pahHandle);
 	bool SendMascotSealSetReq(BYTE byMascotIndex, BYTE bySealPlace, BYTE bySealPos);
 	bool SendMascotRemoteShopSellReq(BYTE bySellCount, const sSHOP_SELL_CART* pSellCart);
+
+	// Dragon World Challenge
+	bool SendDwcWorldCountInfoReq(HOBJECT hNpc);
+	bool SendDwcEnterReq(HOBJECT hNpc, TBLIDX dwcTblidx);
+	bool SendDwcEnterConfirmReq(bool bEnter);
+	bool SendDwcScenarioInfoReq();
 };
 
 class CChatPacketGenerator : public CNtlPacketGenerator

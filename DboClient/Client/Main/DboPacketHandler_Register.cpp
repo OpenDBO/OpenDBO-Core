@@ -850,6 +850,27 @@ void RegisterPacketHandler(void)
 	CNtlPacketHandler::Register(GU_MASCOT_AUTO_LOOTING_RES, PacketHandler_GSMascotAutoLootingRes);
 	CNtlPacketHandler::Register(GU_MASCOT_REMOTE_SHOP_SELL_RES, PacketHandler_GSMascotRemoteShopSellRes);
 	CNtlPacketHandler::Register(GU_MASCOT_SEAL_SET_RES, PacketHandler_GSMascotSealSetRes);
+
+	// Dragon World Challenge
+	CNtlPacketHandler::Register(GU_DWC_WORLDCOUNT_INFO_RES, PacketHandler_GUDwcWorldCountInfoRes);
+	CNtlPacketHandler::Register(GU_DWC_ENTER_RES, PacketHandler_GUDwcEnterRes);
+	CNtlPacketHandler::Register(GU_DWC_ENTER_PROPOSAL_NFY, PacketHandler_GUDwcEnterProposalNfy);
+	CNtlPacketHandler::Register(GU_DWC_ENTER_CONFIRM_RES, PacketHandler_GUDwcEnterConfirmRes);
+	CNtlPacketHandler::Register(GU_DWC_ENTER_CANCELED_NFY, PacketHandler_GUDwcEnterCanceledNfy);
+	CNtlPacketHandler::Register(GU_DWC_ENTER_DIRECTION_NFY, PacketHandler_GUDwcEnterDirectionNfy);
+	CNtlPacketHandler::Register(GU_DWC_MISSION_REWARD_NFY, PacketHandler_GUDwcMissionRewardNfy);
+	CNtlPacketHandler::Register(GU_DWC_SCENARIO_INFO_RES, PacketHandler_GUDwcScenarioInfoRes);
+	CNtlPacketHandler::Register(GU_DWC_SCENARIO_UPDATE_NFY, PacketHandler_GUDwcScenarioUpdateNfy);
+	CNtlPacketHandler::Register(GU_DWC_LIMIT_COUNT_NFY, PacketHandler_GUDwcLimitCountNfy);
+	CNtlPacketHandler::Register(GU_DWC_REWARD_LIST, PacketHandler_GUDwcRewardList);
+	CNtlPacketHandler::Register(GU_DWC_GET_REWARD_RES, PacketHandler_GUDwcGetRewardRes);
+	CNtlPacketHandler::Register(GU_ACHIEVEMENTS_COMPLETE_INFO, PacketHandler_GUAchievementsCompleteInfo);
+	CNtlPacketHandler::Register(GU_ACHIEVEMENT_COMPLETE_NFY, PacketHandler_GUAchievementCompleteNfy);
+	CNtlPacketHandler::Register(GU_SERVERSCRIPT_COUNTDOWN_NFY, PacketHandler_GUServerScriptCountdownNfy);
+	CNtlPacketHandler::Register(GU_SERVERSCRIPT_EVENTSTATUS_REGISTER_NFY, PacketHandler_GUServerScriptEventStatusRegisterNfy);
+	CNtlPacketHandler::Register(GU_SERVERSCRIPT_EVENTSTATUS_UPDATE_NFY, PacketHandler_GUServerScriptEventStatusUpdateNfy);
+	CNtlPacketHandler::Register(GU_SERVERSCRIPT_EVENTSTATUS_SELECT_NFY, PacketHandler_GUServerScriptEventStatusSelectNfy);
+	CNtlPacketHandler::Register(GU_SERVERSCRIPT_EVENTSTATUS_CLEAR_NFY, PacketHandler_GUServerScriptEventStatusClearNfy);
 }
 
 void UnRegisterPacketHandler(void)
@@ -1599,4 +1620,25 @@ void UnRegisterPacketHandler(void)
 	CNtlPacketHandler::UnRegister(GU_MASCOT_AUTO_LOOTING_RES);
 	CNtlPacketHandler::UnRegister(GU_MASCOT_REMOTE_SHOP_SELL_RES);
 	CNtlPacketHandler::UnRegister(GU_MASCOT_SEAL_SET_RES);
+
+	// Dragon World Challenge
+	CNtlPacketHandler::UnRegister(GU_DWC_WORLDCOUNT_INFO_RES);
+	CNtlPacketHandler::UnRegister(GU_DWC_ENTER_RES);
+	CNtlPacketHandler::UnRegister(GU_DWC_ENTER_PROPOSAL_NFY);
+	CNtlPacketHandler::UnRegister(GU_DWC_ENTER_CONFIRM_RES);
+	CNtlPacketHandler::UnRegister(GU_DWC_ENTER_CANCELED_NFY);
+	CNtlPacketHandler::UnRegister(GU_DWC_ENTER_DIRECTION_NFY);
+	CNtlPacketHandler::UnRegister(GU_DWC_MISSION_REWARD_NFY);
+	CNtlPacketHandler::UnRegister(GU_DWC_SCENARIO_INFO_RES);
+	CNtlPacketHandler::UnRegister(GU_DWC_SCENARIO_UPDATE_NFY);
+	CNtlPacketHandler::UnRegister(GU_DWC_LIMIT_COUNT_NFY);
+	CNtlPacketHandler::UnRegister(GU_DWC_REWARD_LIST);
+	CNtlPacketHandler::UnRegister(GU_DWC_GET_REWARD_RES);
+	CNtlPacketHandler::UnRegister(GU_ACHIEVEMENTS_COMPLETE_INFO);
+	CNtlPacketHandler::UnRegister(GU_ACHIEVEMENT_COMPLETE_NFY);
+	CNtlPacketHandler::UnRegister(GU_SERVERSCRIPT_COUNTDOWN_NFY);
+	CNtlPacketHandler::UnRegister(GU_SERVERSCRIPT_EVENTSTATUS_REGISTER_NFY);
+	CNtlPacketHandler::UnRegister(GU_SERVERSCRIPT_EVENTSTATUS_UPDATE_NFY);
+	CNtlPacketHandler::UnRegister(GU_SERVERSCRIPT_EVENTSTATUS_SELECT_NFY);
+	CNtlPacketHandler::UnRegister(GU_SERVERSCRIPT_EVENTSTATUS_CLEAR_NFY);
 }
