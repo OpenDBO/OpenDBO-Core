@@ -285,6 +285,7 @@ RwBool CreateTableContainer(RwUInt8 byLoadMethod)
 	flagManager.Set(CTableContainer::TABLE_ITEM_ENCHANT);
 	flagManager.Set(CTableContainer::TABLE_ITEM_UPGRADE_RATE_NEW);
 	flagManager.Set(CTableContainer::TABLE_NPC_SERVER);
+	flagManager.Set(CTableContainer::TABLE_EVENT_SYSTEM);		// names and receivers of the event manager npc rewards
 
 	// Mascot
 	flagManager.Set(CTableContainer::TABLE_MASCOT);
@@ -351,6 +352,7 @@ RwBool CreateTableContainer(RwUInt8 byLoadMethod)
 	fileNameList.SetFileName(CTableContainer::TABLE_ITEM_ENCHANT, "table_item_enchant_data");
 	fileNameList.SetFileName(CTableContainer::TABLE_ITEM_UPGRADE_RATE_NEW, "Table_Item_Upgrade_NewRate_Data");
 	fileNameList.SetFileName(CTableContainer::TABLE_NPC_SERVER,				"table_npc_data_server"); // required for mini map so we dont show npcs that are not spawned
+	fileNameList.SetFileName(CTableContainer::TABLE_EVENT_SYSTEM,			"table_event_system_data");
 
 	// Mascot
 	fileNameList.SetFileName(CTableContainer::TABLE_MASCOT, "table_mascot_data");

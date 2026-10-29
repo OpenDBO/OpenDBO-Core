@@ -156,6 +156,8 @@
 #include "DwcScenarioInfoGui.h"
 #include "DwcScenarioMainGui.h"
 #include "DwcPrologGui.h"
+#include "EventRewardMainGui.h"
+#include "EventRewardSubGui.h"
 #include "DwcBackGroundGui.h"
 #include "UltimateDungeonGui.h"
 #include "HoiPoiMixCraftGui.h"
@@ -356,6 +358,8 @@ CGameGuiGroup::CGameGuiGroup()
 , m_pDwcScenarioMainGui(NULL)
 , m_pDwcPrologGui(NULL)
 , m_pDwcBackGroundGui(NULL)
+, m_pEventRewardMainGui(NULL)
+, m_pEventRewardSubGui(NULL)
 
 // Mascot
 , m_pMascotGui(NULL)
@@ -855,6 +859,10 @@ RwBool CGameGuiGroup::Create(void)
 	AddDialog(m_pDwcPrologGui, CDwcPrologGui, "DwcPrologGui", DIALOG_DWC_PROLOG);
 	AddDialog(m_pDwcBackGroundGui, CDwcBackGroundGui, "DwcBackGroundGui", DIALOG_DWC_BACKGROUND);
 
+	// Event reward of the event manager npc
+	AddDialog(m_pEventRewardMainGui, CEventRewardMainGui, "EventRewardMainGui", DIALOG_EVENTREWARD_MAIN);
+	AddDialog(m_pEventRewardSubGui, CEventRewardSubGui, "EventRewardSubGui", DIALOG_EVENTREWARD_SUB);
+
 
 
 	// gui manager signal
@@ -1056,6 +1064,8 @@ void CGameGuiGroup::Destroy(void)
 	RemoveDialog(m_pDwcScenarioMainGui);
 	RemoveDialog(m_pDwcPrologGui);
 	RemoveDialog(m_pDwcBackGroundGui);
+	RemoveDialog(m_pEventRewardMainGui);
+	RemoveDialog(m_pEventRewardSubGui);
 
 	// Mascot
 	RemoveDialog(m_pMascotGui);

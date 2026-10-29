@@ -338,6 +338,9 @@ extern RWS::CEventId g_EventMascotUpdate;
 // Dragon World Challenge
 extern RWS::CEventId g_EventDwcNotify;
 
+// Event reward of the event manager npc
+extern RWS::CEventId g_EventNpcReward;
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1693,6 +1696,24 @@ struct SDboEventDwcNotify
 	RwUInt32		uiValue;
 	RwBool			bValue;
 	void*			pData;
+};
+
+// Event reward of the event manager npc
+enum eNPC_REWARD_EVENT_TYPE
+{
+	NPC_REWARD_EVENT_LOAD_INFO,		///< pData: sGU_EVENT_REWARD_LOAD_INFO, the rewards of the account
+	NPC_REWARD_EVENT_LOAD,			///< pData: sGU_EVENT_REWARD_LOAD_RES, the names of the receivers, the list is complete
+	NPC_REWARD_EVENT_SELECT,		///< pData: sGU_EVENT_REWARD_SELECT_RES, the reward was received
+	NPC_REWARD_EVENT_DATA,			///< the list picked eventTblidx for charId (INVALID_CHARACTERID: the whole account) named pwcName
+};
+
+struct SDboEventNpcReward
+{
+	RwUInt8			byType;			///< eNPC_REWARD_EVENT_TYPE
+	void*			pData;
+	RwUInt32		eventTblidx;
+	RwUInt32		charId;
+	const WCHAR*	pwcName;
 };
 
 #endif

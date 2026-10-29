@@ -299,3 +299,6 @@ RWS::CEventId g_EventMascotUpdate;
 
 // Dragon World Challenge
 RWS::CEventId g_EventDwcNotify;
+
+// Event reward of the event manager npc
+RWS::CEventId g_EventNpcReward;

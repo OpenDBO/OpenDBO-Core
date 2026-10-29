@@ -303,6 +303,9 @@
     <Filter Include="Gui\Component\Game\DWC">
       <UniqueIdentifier>{6a2f4c1e-9d3b-4e8a-b5c7-2d1e0f9a8b64}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Gui\Component\Game\EventReward">
+      <UniqueIdentifier>{3c8e5b2a-7f41-4d9c-a6e0-1b9d4f2c7e53}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Gui\Component\Game\UltimateDungeon %28UD%29">
       <UniqueIdentifier>{bb7816fb-b492-4312-8345-5b5bd1a65dc0}</UniqueIdentifier>
     </Filter>
@@ -1235,6 +1238,12 @@
     <ClCompile Include="Gui\DwcFieldListGui.cpp">
       <Filter>Gui\Component\Game\DWC</Filter>
     </ClCompile>
+    <ClCompile Include="Gui\EventRewardMainGui.cpp">
+      <Filter>Gui\Component\Game\EventReward</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui\EventRewardSubGui.cpp">
+      <Filter>Gui\Component\Game\EventReward</Filter>
+    </ClCompile>
     <ClCompile Include="Gui\DwcChallengeGui.cpp">
       <Filter>Gui\Component\Game\DWC</Filter>
     </ClCompile>
@@ -1263,6 +1272,9 @@
       <Filter>Gui\Component\Game\DWC</Filter>
     </ClCompile>
     <ClCompile Include="Main\DboPacketHandler_GUDwc.cpp">
+      <Filter>Main\PacketHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="Main\DboPacketHandler_GUEventReward.cpp">
       <Filter>Main\PacketHandler</Filter>
     </ClCompile>
     <ClCompile Include="Gui\ItemUpgradeCardGui.cpp">
@@ -2253,6 +2265,12 @@
     </ClInclude>
     <ClInclude Include="Gui\DwcFieldListGui.h">
       <Filter>Gui\Component\Game\DWC</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\EventRewardMainGui.h">
+      <Filter>Gui\Component\Game\EventReward</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui\EventRewardSubGui.h">
+      <Filter>Gui\Component\Game\EventReward</Filter>
     </ClInclude>
     <ClInclude Include="Gui\DwcChallengeGui.h">
       <Filter>Gui\Component\Game\DWC</Filter>

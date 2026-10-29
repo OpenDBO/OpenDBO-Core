@@ -111,6 +111,10 @@ VOID CDialogManager::RegisteRegularDialog()
 	m_mapRegular[DIALOG_DWC_CHALLENGE] = dRDA_NORMAL;
 	m_mapRegular[DIALOG_DWC_SCENARIO_MAIN] = dRDA_NORMAL;
 	m_mapRegular[DIALOG_DWC_PROLOG] = dRDA_NORMAL;
+
+	// Event reward
+	m_mapRegular[DIALOG_EVENTREWARD_MAIN] = dRDA_NORMAL | dRDA_EXCLUSIVE;
+	m_mapRegular[DIALOG_EVENTREWARD_SUB] = dRDA_NORMAL;
 }
 
 VOID CDialogManager::RegisteEntireFocusingDialog()

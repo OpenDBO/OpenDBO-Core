@@ -1492,6 +1492,15 @@ VOID CMsgBoxManager::HandleEvents( RWS::CMsg &msg )
 			sMsgBoxData* pMsgBoxData = reinterpret_cast<sMsgBoxData*>(pMsgBoxResult->pData);
 			GetDboGlobal()->GetGamePacketGenerator()->SendDwcEnterReq(pMsgBoxData->sDwcEnter.hNpc, pMsgBoxData->sDwcEnter.dwcTblidx);
 		}
+		else if (pMsgBoxResult->strID == "DST_REWARD_SENT_CHARACTER")
+		{
+			if (pMsgBoxResult->eResult != MBR_OK)
+				return;
+
+			// tw: an account reward goes to the character that takes it
+			sMsgBoxData* pMsgBoxData = reinterpret_cast<sMsgBoxData*>(pMsgBoxResult->pData);
+			GetDboGlobal()->GetGamePacketGenerator()->SendEventRewardSelectReq(pMsgBoxData->sEventReward.hNpc, pMsgBoxData->sEventReward.eventTblidx);
+		}
 		else if (pMsgBoxResult->strID == "DST_DWC_ENTER_CONFIRM")
 		{
 			// the timeout answers no as well

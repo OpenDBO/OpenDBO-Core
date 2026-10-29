@@ -242,6 +242,9 @@ RwBool CDboEventHandler::Create(void)
 
 	// Dragon World Challenge
 	RegisterMsg(g_EventDwcNotify, "g_EventDwcNotify", "SDboEventDwcNotify");
+
+	// Event reward
+	RegisterMsg(g_EventNpcReward, "g_EventNpcReward", "SDboEventNpcReward");
 	
 	//test		
 	RegisterMsg(g_EventSCS, "g_EventSCS", "" );
@@ -468,6 +471,8 @@ void CDboEventHandler::Destroy(void)
 	UnRegisterMsg(g_EventMascotUpdate);
 
 	UnRegisterMsg(g_EventDwcNotify);
+
+	UnRegisterMsg(g_EventNpcReward);
 
 	//test		
 	UnRegisterMsg(g_EventSCS);

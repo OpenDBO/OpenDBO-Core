@@ -416,7 +416,7 @@ VOID CMultiDialogGui::HandleEvents( RWS::CMsg& msg )
 			NPC_FUNC_FLAG_GUILD_MANAGER | NPC_FUNC_FLAG_SUMMON_PET | NPC_FUNC_FLAG_TIME_QUEST | NPC_FUNC_FLAG_PORTAL |
 			NPC_FUNC_FLAG_BUDOHSI_MERCHANT | NPC_FUNC_FLAG_GAMBLE_MERCHANT |
 			NPC_FUNC_FLAG_DOJO_MANAGER | NPC_FUNC_FLAG_DOJO_MERCHANT | NPC_FUNC_FLAG_BATTLE_DUNGEON_MANAGER | NPC_FUNC_FLAG_ITEM_UPGRADE | NPC_FUNC_FLAG_ITEM_EXCHANGE |
-			NPC_FUNC_FLAG_DWC_TELEPORT;
+			NPC_FUNC_FLAG_DWC_TELEPORT | NPC_FUNC_FLAG_EVENT_NPC;
 		RwBool		bEnableQuest = FALSE;	
 
 		if ( GetNtlSLGlobal()->GetSobAvatar()->GetQuestAgency() == NULL || GetNtlSLGlobal()->GetSobAvatar()->GetPCTriggerAgency() == NULL)
@@ -2320,6 +2320,13 @@ VOID CCommandNode::OnClickCommand( gui::CComponent* pComponent )
 					GetDialogManager()->CloseDialog(DIALOG_MULTIDIALOG, FALSE);
 					Logic_CancelNpcFacing();
 					GetDialogManager()->OpenDialog(DIALOG_DWC_CHALLENGE);
+				}
+				break;
+				case CCommandList::EVENT_REWARD_COMMAND:
+				{
+					// tw: the list opens at once and asks the server for the rewards
+					GetDialogManager()->CloseDialog(DIALOG_MULTIDIALOG, FALSE);
+					CDboEventGenerator::NPCDialogOpen(hSerialID, DIALOG_EVENTREWARD_MAIN);
 				}
 				break;
 				default:

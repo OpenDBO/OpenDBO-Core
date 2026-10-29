@@ -1967,3 +1967,15 @@ void CDboEventGenerator::DwcNotify(RwUInt8 byType, SERIAL_HANDLE hNpc, RwUInt32 
 
 	SEND_MSG(g_EventDwcNotify, &sData);
 }
+
+void CDboEventGenerator::NpcReward(RwUInt8 byType, void* pData, RwUInt32 eventTblidx, RwUInt32 charId, const WCHAR* pwcName)
+{
+	SDboEventNpcReward sData;
+	sData.byType = byType;
+	sData.pData = pData;
+	sData.eventTblidx = eventTblidx;
+	sData.charId = charId;
+	sData.pwcName = pwcName;
+
+	SEND_MSG(g_EventNpcReward, &sData);
+}

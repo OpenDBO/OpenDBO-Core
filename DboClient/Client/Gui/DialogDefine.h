@@ -169,8 +169,9 @@ enum eDialogType
 	DIALOG_DWC_SCENARIO_INFO,				///< dwc scenario details and admission conditions (tw 0x94)
 	DIALOG_DWC_SCENARIO_MAIN,				///< objectives of the dwc the avatar plays (tw 0x95)
 	DIALOG_DWC_PROLOG,						///< prologue of the dwc the avatar plays (tw 0x96)
+	DIALOG_EVENTREWARD_SUB,					///< details of the event reward picked in the list (tw 0x8E)
 
-	DIALOG_NORMAL_LAST = DIALOG_DWC_PROLOG,
+	DIALOG_NORMAL_LAST = DIALOG_EVENTREWARD_SUB,
 
 
 	//NPC-related dialog (Basically, it is not affected by ESC key)
@@ -224,8 +225,9 @@ enum eDialogType
 
 	DIALOG_SMITHY,							///< item upgrade npc smithy (disassemble tab)
 	DIALOG_DWC_FIELDLIST,					///< dwc entry list of the dwc npc (tw 0x97)
+	DIALOG_EVENTREWARD_MAIN,				///< reward list of the event manager npc (tw 0x8D)
 
-	DIALOG_NPCDIALOG_LAST = DIALOG_DWC_FIELDLIST,
+	DIALOG_NPCDIALOG_LAST = DIALOG_EVENTREWARD_MAIN,
 
 	DIALOG_NUM,
 

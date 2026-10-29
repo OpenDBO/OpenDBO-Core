@@ -871,6 +871,11 @@ void RegisterPacketHandler(void)
 	CNtlPacketHandler::Register(GU_SERVERSCRIPT_EVENTSTATUS_UPDATE_NFY, PacketHandler_GUServerScriptEventStatusUpdateNfy);
 	CNtlPacketHandler::Register(GU_SERVERSCRIPT_EVENTSTATUS_SELECT_NFY, PacketHandler_GUServerScriptEventStatusSelectNfy);
 	CNtlPacketHandler::Register(GU_SERVERSCRIPT_EVENTSTATUS_CLEAR_NFY, PacketHandler_GUServerScriptEventStatusClearNfy);
+
+	// Event reward
+	CNtlPacketHandler::Register(GU_EVENT_REWARD_LOAD_INFO, PacketHandler_GUEventRewardLoadInfo);
+	CNtlPacketHandler::Register(GU_EVENT_REWARD_LOAD_RES, PacketHandler_GUEventRewardLoadRes);
+	CNtlPacketHandler::Register(GU_EVENT_REWARD_SELECT_RES, PacketHandler_GUEventRewardSelectRes);
 }
 
 void UnRegisterPacketHandler(void)
@@ -1641,4 +1646,8 @@ void UnRegisterPacketHandler(void)
 	CNtlPacketHandler::UnRegister(GU_SERVERSCRIPT_EVENTSTATUS_UPDATE_NFY);
 	CNtlPacketHandler::UnRegister(GU_SERVERSCRIPT_EVENTSTATUS_SELECT_NFY);
 	CNtlPacketHandler::UnRegister(GU_SERVERSCRIPT_EVENTSTATUS_CLEAR_NFY);
+
+	CNtlPacketHandler::UnRegister(GU_EVENT_REWARD_LOAD_INFO);
+	CNtlPacketHandler::UnRegister(GU_EVENT_REWARD_LOAD_RES);
+	CNtlPacketHandler::UnRegister(GU_EVENT_REWARD_SELECT_RES);
 }

@@ -679,6 +679,8 @@ void CMsgBoxGui::OnClickedCustomBtn( gui::CComponent* pComponent )
 					m_bHide = TRUE;
 				else if (m_strStringID == "DST_COMMERCIAL_MB_UPDATE_TERM_LIMETED_ITEM_MSG")
 					m_bHide = TRUE;
+				else if (m_strStringID == "DST_REWARD_SENT_CHARACTER")
+					m_bHide = TRUE;		// event reward, the "Receive" button is its ok
 
 				CDboEventGenerator::MsgBoxResult(eResult, m_strStringID.c_str(), &m_Data );
 

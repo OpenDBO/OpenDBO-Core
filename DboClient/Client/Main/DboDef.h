@@ -444,6 +444,12 @@ struct sMsgBoxData
 			TBLIDX				dwcTblidx;
 		} sDwcEnter;									// DST_DWC_ENTER_QUESTION
 
+		struct
+		{
+			SERIAL_HANDLE		hNpc;
+			TBLIDX				eventTblidx;
+		} sEventReward;									// DST_REWARD_SENT_CHARACTER
+
 		VOID*					pData;
 
 		RwUInt8					ucData[256];			// Reserved;
