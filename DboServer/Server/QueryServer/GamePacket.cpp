@@ -2028,8 +2028,6 @@ void CGameServerSession::RecvTutorialDataUpdateReq(CNtlPacket * pPacket, CQueryS
 
 void CGameServerSession::RecvMailStartReq(CNtlPacket * pPacket, CQueryServer * app)
 {
-	UNREFERENCED_PARAMETER(app);
-
 	sGQ_MAIL_START_REQ * req = (sGQ_MAIL_START_REQ*)pPacket->GetPacketData();
 
 	CPlayerCache* pCache = g_pPlayerCache->GetCharacter(req->charID);
@@ -2038,6 +2036,20 @@ void CGameServerSession::RecvMailStartReq(CNtlPacket * pPacket, CQueryServer * a
 		pCache->SetSession(GetHandle());
 
 		g_pMailRepository->LoadMailboxAsync(pCache, req->charID, req->handle, req->hObject);
+	}
+	else
+	{
+		// always answer, the client keeps its mail start request locked until it gets one
+		CNtlPacket packet(sizeof(sQG_MAIL_START_RES));
+		sQG_MAIL_START_RES * res = (sQG_MAIL_START_RES *)packet.GetPacketData();
+		res->wOpCode = QG_MAIL_START_RES;
+		res->handle = req->handle;
+		res->hObject = req->hObject;
+		res->charID = req->charID;
+		res->wResultCode = GAME_FAIL;
+		res->bIsAway = false;
+		packet.SetPacketLen(sizeof(sQG_MAIL_START_RES));
+		app->Send(GetHandle(), &packet);
 	}
 }
 
