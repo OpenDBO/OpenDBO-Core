@@ -651,6 +651,7 @@ void CPlayer::Initialize()
 	m_bReceiveExpDisabled = false;
 
 	m_dwLastEventRewardLoad = 0;
+	m_bEventRewardLoaded = false;
 
 	m_hFacingHandle = INVALID_HOBJECT;
 

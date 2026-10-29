@@ -959,13 +959,16 @@ public:
 private:
 	
 	DWORD								m_dwLastEventRewardLoad;
+	bool								m_bEventRewardLoaded;
 
 	std::map<TBLIDX, sEVENT_PC_NAME>	m_mapEventReward;
 
 public:
 
-	DWORD							GetLastEventRewardLoad() { return m_dwLastEventRewardLoad; }
-	void							SetLastEventRewardLoad(DWORD dwTick) { m_dwLastEventRewardLoad = dwTick; }
+	// the rewards are read from the db again once 10 minutes passed or a gm gave new ones
+	bool							NeedEventRewardLoad(DWORD dwCurTick) { return !m_bEventRewardLoaded || m_dwLastEventRewardLoad + 600000 < dwCurTick; }
+	void							SetLastEventRewardLoad(DWORD dwTick) { m_dwLastEventRewardLoad = dwTick; m_bEventRewardLoaded = true; }
+	void							InvalidateEventReward() { m_bEventRewardLoaded = false; }
 
 	inline void						ClearEventRewardMap() { m_mapEventReward.clear(); }
 	inline void						InsertEventReward(TBLIDX rewardTblidx, sEVENT_PC_NAME& info) { m_mapEventReward.insert({ rewardTblidx, info }); }

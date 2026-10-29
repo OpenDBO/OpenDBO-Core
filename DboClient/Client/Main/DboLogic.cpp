@@ -412,6 +412,10 @@ SERIAL_HANDLE Logic_GetItemHandleFromContainerPos( RwUInt8 ucContainerType, RwUI
 
 bool Logic_GetItemContainerPosFromHandle(SERIAL_HANDLE hHandle, RwUInt8& rbyPlace, RwUInt8& rbyPos)
 {
+	// an empty bag slot holds INVALID_SERIAL_ID as well, it must not match "no item"
+	if (hHandle == INVALID_SERIAL_ID)
+		return false;
+
 	CNtlSobAvatar* pAvatar = GetNtlSLGlobal()->GetSobAvatar();
 	NTL_ASSERT(pAvatar, "Avatar instance is null");
 

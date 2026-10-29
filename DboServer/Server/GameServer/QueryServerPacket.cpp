@@ -16,6 +16,8 @@
 #include "UseItemTable.h"
 #include "DynamicFieldSystemEvent.h"
 #include "DragonballScramble.h"
+#include "gm.h"
+#include "NtlStringW.h"
 
 
 void CQueryServerSession::RecvCreateItemRes(CNtlPacket* pPacket)
@@ -3305,7 +3307,8 @@ void CQueryServerSession::RecvEventRewardLoadRes(CNtlPacket * pPacket)
 
 		for (BYTE i = 0; i < req->byCount; i++)
 		{
-			resInfo->aInfo[i].charId = (req->asInfo[i].charId == 0) ? pOwner->GetCharID() : req->asInfo[i].charId;
+			// char_id 0 is a reward of the whole account, the client shows those for every character
+			resInfo->aInfo[i].charId = (req->asInfo[i].charId == 0) ? INVALID_CHARACTERID : req->asInfo[i].charId;
 			resInfo->aInfo[i].eventTblidx = req->asInfo[i].eventTblidx;
 
 			// insert into players map
@@ -3345,6 +3348,30 @@ void CQueryServerSession::RecvEventRewardSelectRes(CNtlPacket * pPacket)
 	res->wResultCode = req->wResultCode;
 	res->eventTblidx = req->eventTblidx;
 	g_pApp->Send(pOwner->GetClientSessionID(), &packet);
+}
+
+// answer of the gm commands giving an event reward
+void CQueryServerSession::RecvEventRewardAddRes(CNtlPacket * pPacket)
+{
+	sQG_EVENT_REWARD_ADD_RES * req = (sQG_EVENT_REWARD_ADD_RES*)pPacket->GetPacketData();
+
+	CPlayer* pGm = g_pObjectManager->GetPC(req->hGm);
+	if (!pGm || !pGm->IsInitialized() || pGm->GetCharID() != req->gmCharId)
+		return;
+
+	WCHAR awchName[NTL_MAX_SIZE_CHAR_NAME + 1];
+	NTL_SAFE_WCSCPY(awchName, req->awchCharName);
+
+	CNtlStringW msg;
+
+	if (req->wResultCode != GAME_SUCCESS)
+		msg.Format(L"Event reward: character %s not found.", awchName);
+	else if (req->byTarget == EVENT_REWARD_ADD_TARGET_ALL)
+		msg.Format(L"Event reward: %u given to every account (%u).", req->eventTblidx, req->dwCount);
+	else
+		msg.Format(L"Event reward: %u given to the account of %s.", req->eventTblidx, awchName);
+
+	SendGmFeedback(pGm, msg.c_str());
 }
 
 void CQueryServerSession::RecvMascotSealSetRes(CNtlPacket * pPacket)

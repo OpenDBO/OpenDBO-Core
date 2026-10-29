@@ -168,6 +168,7 @@ public:
 	void						RecvEventRewardLoadInfo(CNtlPacket* pPacket);
 	void						RecvEventRewardLoadRes(CNtlPacket* pPacket);
 	void						RecvEventRewardSelectRes(CNtlPacket* pPacket);
+	void						RecvEventRewardAddRes(CNtlPacket* pPacket);
 
 	void						RecvMascotSealSetRes(CNtlPacket* pPacket);
 	void						RecvMascotSealClearRes(CNtlPacket* pPacket);

@@ -133,6 +133,8 @@ class CDwcScenarioInfoGui;
 class CDwcScenarioMainGui;
 class CDwcPrologGui;
 class CDwcBackGroundGui;
+class CEventRewardMainGui;
+class CEventRewardSubGui;
 class CHoiPoiMixRecipeGui;
 class CHoiPoiMixCraftGui;
 
@@ -276,6 +278,10 @@ private:
 	CDwcScenarioMainGui*		m_pDwcScenarioMainGui;
 	CDwcPrologGui*				m_pDwcPrologGui;
 	CDwcBackGroundGui*			m_pDwcBackGroundGui;
+
+	// Event reward
+	CEventRewardMainGui*		m_pEventRewardMainGui;
+	CEventRewardSubGui*			m_pEventRewardSubGui;
 
 	// Mascot
 	CMascotGui* m_pMascotGui;

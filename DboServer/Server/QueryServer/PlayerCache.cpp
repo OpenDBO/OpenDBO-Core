@@ -130,12 +130,10 @@ void CAccountCache::OnLoadEventReward(QueryResultVector & results, HOBJECT hHand
 			res->asInfo[res->byCount].charId = f[1].GetUInt32();
 			res->asInfo[res->byCount].eventTblidx = f[0].GetUInt32();
 
-			const WCHAR* wchName = s2ws(f[2].GetString()).c_str();
-
 			res->asNameInfo[res->byCount].charId = res->asInfo[res->byCount].charId;
-			NTL_SAFE_WCSCPY(res->asNameInfo[res->byCount].awchName, wchName);
+			wcscpy_s(res->asNameInfo[res->byCount].awchName, NTL_MAX_SIZE_CHAR_NAME + 1, s2ws(f[2].GetString()).c_str());
 
-			m_mapEventReward.insert({ res->asInfo[res->byCount].eventTblidx, sEVENT_PC_NAME(res->asInfo[res->byCount].charId, wchName) });
+			m_mapEventReward.insert({ res->asInfo[res->byCount].eventTblidx, res->asNameInfo[res->byCount] });
 
 			res->byCount += 1;
 

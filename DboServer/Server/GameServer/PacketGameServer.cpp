@@ -17735,7 +17735,7 @@ void CClientSession::RecvEventRewardLoadReq(CNtlPacket * pPacket)
 
 	if (wResultCode == GAME_SUCCESS)
 	{
-		if (cPlayer->GetLastEventRewardLoad() + 600000 < app->GetCurTickCount()) // 10 Minutes
+		if (cPlayer->NeedEventRewardLoad(app->GetCurTickCount()))
 		{
 			cPlayer->SetLastEventRewardLoad(app->GetCurTickCount());
 
@@ -17820,7 +17820,7 @@ void CClientSession::RecvEventRewardSelectReq(CNtlPacket * pPacket)
 
 		res->sItem.charId = cPlayer->GetCharID();
 		res->sItem.itemNo = pItemTbldat->tblidx;
-		res->sItem.byStackcount = (BYTE)pEventTbldat->adwSetting[0];
+		res->sItem.byStackcount = 1; // adwSetting[0] is the receiver type (1 character, 2 account), not a count
 		res->sItem.byPlace = inv.first;
 		res->sItem.byPosition = inv.second;
 		res->sItem.byCurrentDurability = pItemTbldat->byDurability;

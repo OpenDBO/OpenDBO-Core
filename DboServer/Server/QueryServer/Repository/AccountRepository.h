@@ -34,6 +34,8 @@ public:
 	void						UpdateWaguCoins(ACCOUNTID accountId, DWORD waguCoins);
 	void						LoadEventRewardAsync(CAccountCache* pAccount, ACCOUNTID accountId, HOBJECT handle, CHARACTERID charId);
 	void						DeleteEventReward(ACCOUNTID accountId, TBLIDX eventTblidx);
+	void						InsertAccountEventReward(ACCOUNTID accountId, TBLIDX eventTblidx);
+	DWORD						InsertAccountEventRewardAll(TBLIDX eventTblidx);
 	void						CheckAccountStatusAsync(CGameServerSession* pSession, CHARACTERID charId, ACCOUNTID accountId);
 
 };

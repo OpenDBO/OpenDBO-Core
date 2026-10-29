@@ -84,6 +84,25 @@ void CAccountRepository::DeleteEventReward(ACCOUNTID accountId, TBLIDX eventTbli
 	GetAccDB.Execute("DELETE FROM event_reward WHERE account_id=%u AND reward_tblidx=%u", accountId, eventTblidx);
 }
 
+// a reward any character of the account takes once (char_id 0), an account that already has it keeps its row
+void CAccountRepository::InsertAccountEventReward(ACCOUNTID accountId, TBLIDX eventTblidx)
+{
+	GetAccDB.Execute("INSERT IGNORE INTO event_reward (account_id,reward_tblidx,char_id,char_name) VALUES (%u,%u,0,\"\")", accountId, eventTblidx);
+}
+
+DWORD CAccountRepository::InsertAccountEventRewardAll(TBLIDX eventTblidx)
+{
+	DWORD dwCount = 0;
+
+	smart_ptr<QueryResult> result = GetAccDB.Query("SELECT COUNT(*) FROM accounts");
+	if (result)
+		dwCount = result->Fetch()[0].GetUInt32();
+
+	GetAccDB.Execute("INSERT IGNORE INTO event_reward (account_id,reward_tblidx,char_id,char_name) SELECT id,%u,0,\"\" FROM accounts", eventTblidx);
+
+	return dwCount;
+}
+
 void CAccountRepository::CheckAccountStatusAsync(CGameServerSession* pSession, CHARACTERID charId, ACCOUNTID accountId)
 {
 	SQLCallbackBase* pCallBack3 = new SQLClassCallbackP2<CGameServerSession, CHARACTERID, ACCOUNTID>(pSession, &CGameServerSession::OnAccountCheck, charId, accountId);

@@ -51,6 +51,13 @@ struct sEVENT_DATA
 	unsigned int	keyEventStatus;
 };
 
+// who GQ_EVENT_REWARD_ADD_REQ gives the reward to. A reward is per account: any character of it takes it once
+enum eEVENT_REWARD_ADD_TARGET
+{
+	EVENT_REWARD_ADD_TARGET_CHAR,		// the account of one character
+	EVENT_REWARD_ADD_TARGET_ALL,		// every account
+};
+
 struct sEVENT_REWARD_INFO
 {
 	TBLIDX		eventTblidx;

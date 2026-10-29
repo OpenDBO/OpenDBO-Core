@@ -1,0 +1,507 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--
+    The RenderWare libraries as build dependencies: a project that imports this builds the libraries
+    that are missing or out of date (Lib\Release_x64, Lib\Release) before itself. Up to date ones are skipped.
+    Build order only, the importing project still links them through its own AdditionalDependencies.
+    They only have a Release configuration, so a Release4Tools project gets them as Release as well.
+
+    Left out:
+    - rwcore: it has no sources and builds nothing.
+    - rpworld, rpcollis, rptoon: the NTL versions in Lib\Ntl_Plugin_World, Ntl_Plugin_Collis and
+      Ntl_Plugin_Toon replace them (same library names). Building the stock ones would put a second
+      rpworld.lib / rpcollis.lib / rptoon.lib first on the library path.
+  -->
+  <ItemGroup>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rpadc\rpadc.vcxproj">
+      <Project>{2bd8e1b8-56bd-45a1-bfb6-8c94283460d2}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rpanisot\rpanisot.vcxproj">
+      <Project>{922b3916-a23c-4197-b390-aeeddfc66cf4}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rpcrowd\rpcrowd.vcxproj">
+      <Project>{e3805e00-e016-477a-9230-728f15ae3cc8}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rpdmorph\rpdmorph.vcxproj">
+      <Project>{f765a9c4-8b85-47ff-8498-7e4de2f37075}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rpenv\rpenv.vcxproj">
+      <Project>{b2d0b9bf-06dc-4ef3-897c-538d1e71ad1a}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rphanim\rphanim.vcxproj">
+      <Project>{afd522ec-fcdf-4d1b-87a1-2d9708b283a1}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rpid\rpid.vcxproj">
+      <Project>{bcb1eb0e-6966-4b54-87b7-fd84168b31f0}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rplodatm\rplodatm.vcxproj">
+      <Project>{598c65cd-65aa-493a-af8b-f0a0e949b998}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rplogo\rplogo.vcxproj">
+      <Project>{46a064d7-3551-44bc-a5d8-4b24a9fd5ba6}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rpltmap\rpltmap.vcxproj">
+      <Project>{e0e9e259-a110-4219-98d5-8738b744d138}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rpmatfx\rpmatfx.vcxproj">
+      <Project>{4ccb747f-afe7-4a2c-a455-051a916946cd}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rpmipkl\rpmipkl.vcxproj">
+      <Project>{8444e7ea-ccb2-4c68-b7ab-dd6a11c01df3}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rpmorph\rpmorph.vcxproj">
+      <Project>{7becdb31-3682-469b-9f78-ecbe1e2755f4}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rpnormmap\rpnormmap.vcxproj">
+      <Project>{b0bdc256-4832-40c3-958f-29a16ea73201}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rpnormmapskin\rpnormmapskin.vcxproj">
+      <Project>{be183786-311c-460e-8f05-2186400c3874}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rppatch\rppatch.vcxproj">
+      <Project>{367e90df-3873-43f7-819c-ee476e07ebaa}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rppatchmatfx\rppatchmatfx.vcxproj">
+      <Project>{82f61cae-bbec-4036-b711-87d64ccde19c}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rppatchskin\rppatchskin.vcxproj">
+      <Project>{d8f39367-5beb-40a5-b526-5dda7ab2229b}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rppatchskinmatfx\rppatchskinmatfx.vcxproj">
+      <Project>{7237d67c-6495-4989-83f5-112b9b77dc3c}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rpprtadv\rpprtadv.vcxproj">
+      <Project>{1658e4c7-7d42-4ff9-af1c-7ba323a73fd9}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rpprtstd\rpprtstd.vcxproj">
+      <Project>{ba3c8156-b36e-46f0-aea0-dc988d17300d}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rpptank\rpptank.vcxproj">
+      <Project>{21d75c8f-7e76-407e-89e0-6a24da974580}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rppvs\rppvs.vcxproj">
+      <Project>{476640c6-9aee-471f-8d58-bb398fd7975c}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rprandom\rprandom.vcxproj">
+      <Project>{c476ec84-6ab1-4a5b-8deb-fab41688d345}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rpskin2\rpskin2.vcxproj">
+      <Project>{a930572a-e96a-4744-a1d1-85fd85361050}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rpskinmatfx\rpskinmatfx.vcxproj">
+      <Project>{6b5b0ccf-a7d4-4b76-a2a7-2c2a1d04ba56}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rpskinmatfxtoon\rpskinmatfxtoon.vcxproj">
+      <Project>{e97da30a-6597-4cc2-87a4-f2e38ea8bf43}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rpskintoon\rpskintoon.vcxproj">
+      <Project>{2255b772-2619-4afb-a8f8-42f79f011c88}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rpspline\rpspline.vcxproj">
+      <Project>{cbe074a7-0cd8-4e0a-b24c-6c903b07cb28}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rpteam\rpteam.vcxproj">
+      <Project>{fccbc98e-c1e8-4454-a612-dc193e745fe9}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rpuserdat\rpuserdat.vcxproj">
+      <Project>{c818c2d3-5a67-4f3b-b516-55636cc71c5b}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rpuvanim\rpuvanim.vcxproj">
+      <Project>{a29f3fc1-5756-400d-8e23-67b593cc47d9}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rt2d\rt2d.vcxproj">
+      <Project>{401be724-205b-488b-b520-ba1d4e8fc0e5}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rt2danim\rt2danim.vcxproj">
+      <Project>{5c5f8a26-28fe-47d4-9c47-3f2a57485b0f}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtanim\rtanim.vcxproj">
+      <Project>{86570cc2-2883-4998-80ef-0d6c091a2207}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtbary\rtbary.vcxproj">
+      <Project>{ba7fb9ca-d56c-4378-90dd-7678b75afd4d}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtbezpat\rtbezpat.vcxproj">
+      <Project>{132f579a-679c-4706-9748-d4745d942e36}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtbmp\rtbmp.vcxproj">
+      <Project>{ba93790a-24df-4ed0-993f-fcc970b88e5f}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtcharse\rtcharse.vcxproj">
+      <Project>{ad1cfff2-c695-415a-a7f9-8e308d05070c}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtcmpkey\rtcmpkey.vcxproj">
+      <Project>{d41d138c-b7b3-4083-abd7-dfaa5503f1d0}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtdict\rtdict.vcxproj">
+      <Project>{cc131ab7-643a-4596-bf51-fb6828b14a17}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtfsyst\rtfsyst.vcxproj">
+      <Project>{bd30f2da-b4fc-4ba5-b931-d4f59f413ab4}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtgcond\rtgcond.vcxproj">
+      <Project>{d9475800-7917-4530-aedc-c08208292532}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtgncpip\rtgncpip.vcxproj">
+      <Project>{921559a8-7839-44b0-8f70-ad52500ea4a7}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtimport\rtimport.vcxproj">
+      <Project>{dabdc305-442c-414d-92bc-40e03b2d00aa}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtintsec\rtintsec.vcxproj">
+      <Project>{60049d8f-b397-477b-8e74-1081b81feca8}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtltmap\rtltmap.vcxproj">
+      <Project>{7e7c5cc7-ea3c-4fdc-a138-dfe9578d8ea0}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtltmapcnv\rtltmapcnv.vcxproj">
+      <Project>{880fdba7-d468-4f2b-a2e0-93b36e676e7d}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtmipk\rtmipk.vcxproj">
+      <Project>{0b8b4ba7-3881-42fc-bcb6-c3d21c0f0eed}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtmipkmatfx\rtmipkmatfx.vcxproj">
+      <Project>{735f1b94-ed71-417b-9f51-6b696786e463}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtmipkpatch\rtmipkpatch.vcxproj">
+      <Project>{b5402c32-30e2-40f7-8fdd-e82799e41057}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtmipkpatchmatfx\rtmipkpatchmatfx.vcxproj">
+      <Project>{57d1e8a0-1d7e-4240-a898-17d004ce5372}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtnormmap\rtnormmap.vcxproj">
+      <Project>{699be3b6-1d2a-4d8d-ada8-da6e2358b001}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtpick\rtpick.vcxproj">
+      <Project>{669523d3-0bd4-42ff-b630-3bbec4e04c2c}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtpitexd\rtpitexd.vcxproj">
+      <Project>{1c1bdafe-5d69-4d1f-9e12-4a580e82ec44}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtpng\rtpng.vcxproj">
+      <Project>{988232bd-5b63-4653-9f66-c7c321d641f6}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtquat\rtquat.vcxproj">
+      <Project>{041d679d-c9a0-4004-b43e-586270223989}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtras\rtras.vcxproj">
+      <Project>{347e3815-8cd6-411c-8ef9-ddeae7b6057a}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtray\rtray.vcxproj">
+      <Project>{258dc4ff-69c0-4e1e-94ff-278e012cd88f}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtskinsp\rtskinsp.vcxproj">
+      <Project>{51e2c00e-ce29-4bed-86df-91ab41ca4de1}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtslerp\rtslerp.vcxproj">
+      <Project>{b51f37a6-088f-4ccc-ad7a-c68e9f0cf190}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtsplpvs\rtsplpvs.vcxproj">
+      <Project>{702a04be-a640-47fa-a17a-a634d3103ac3}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rttiff\rttiff.vcxproj">
+      <Project>{15b4ef1d-8b98-4df4-a9f7-880010a14975}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rttilerd\rttilerd.vcxproj">
+      <Project>{5ef84e36-ef9c-4ced-85b0-0d8f3ff1e43e}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rttoc\rttoc.vcxproj">
+      <Project>{c6647368-067f-4773-85e2-2bcd231f1952}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rttoon\rttoon.vcxproj">
+      <Project>{30b44128-7e2b-4b44-80be-aa04d6eb4577}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtvcat\rtvcat.vcxproj">
+      <Project>{af56bf51-7782-4534-b417-9db12f90a493}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtwing\rtwing.vcxproj">
+      <Project>{2fe8b8b4-bf90-49cc-9f20-6ebfcb53e880}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rtworld\rtworld.vcxproj">
+      <Project>{e014cdd3-da5b-4ecf-8076-6a0cd476678d}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Include\rwplcore.vcxproj">
+      <Project>{f4fb1fd6-c092-49f1-a85b-04cb819e9db1}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+      <SetConfiguration>Configuration=Release</SetConfiguration>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

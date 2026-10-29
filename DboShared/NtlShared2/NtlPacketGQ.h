@@ -347,6 +347,8 @@ enum eOPCODE_GQ
 	GQ_DWC_LIMITED_UPDATE_REQ,
 	GQ_DWC_SCENARIO_UPDATE_REQ,
 
+	GQ_EVENT_REWARD_ADD_REQ,
+
 	GQ_OPCCODE_END_DUMMY,
 	GQ_OPCODE_END = GQ_OPCCODE_END_DUMMY - 1
 };
@@ -2416,6 +2418,15 @@ TBLIDX					dwcTblidx;
 BYTE					byMissionIndex;
 BYTE					byRewardGrade;
 WORD					wClearCount;
+END_PROTOCOL()
+//------------------------------------------------------------------
+BEGIN_PROTOCOL(GQ_EVENT_REWARD_ADD_REQ)
+HOBJECT					hGm;				// the gm that gets the answer, INVALID_HOBJECT: no answer
+CHARACTERID				gmCharId;
+BYTE					byTarget;			// eEVENT_REWARD_ADD_TARGET
+TBLIDX					eventTblidx;
+ACCOUNTID				accountId;			// EVENT_REWARD_ADD_TARGET_CHAR: INVALID_ACCOUNTID looks awchCharName up
+WCHAR					awchCharName[NTL_MAX_SIZE_CHAR_NAME + 1];
 END_PROTOCOL()
 
 #pragma pack(pop)

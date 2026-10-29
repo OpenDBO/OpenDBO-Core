@@ -994,4 +994,9 @@ void PacketHandler_GUServerScriptEventStatusUpdateNfy(void* pPacket);
 void PacketHandler_GUServerScriptEventStatusSelectNfy(void* pPacket);
 void PacketHandler_GUServerScriptEventStatusClearNfy(void* pPacket);
 
+// Event reward
+void PacketHandler_GUEventRewardLoadInfo(void* pPacket);
+void PacketHandler_GUEventRewardLoadRes(void* pPacket);
+void PacketHandler_GUEventRewardSelectRes(void* pPacket);
+
 #endif

@@ -296,6 +296,8 @@
     <ClCompile Include="Gui\ItemChangeBattleAttributeGui.cpp" />
     <ClCompile Include="Gui\SmithyGui.cpp" />
     <ClCompile Include="Gui\DwcFieldListGui.cpp" />
+    <ClCompile Include="Gui\EventRewardMainGui.cpp" />
+    <ClCompile Include="Gui\EventRewardSubGui.cpp" />
     <ClCompile Include="Gui\DwcChallengeGui.cpp" />
     <ClCompile Include="Gui\DwcRewardGui.cpp" />
     <ClCompile Include="Gui\DwcStatusGui.cpp" />
@@ -306,6 +308,7 @@
     <ClCompile Include="Gui\DwcBackGroundGui.cpp" />
     <ClCompile Include="DwcSideIconGui.cpp" />
     <ClCompile Include="Main\DboPacketHandler_GUDwc.cpp" />
+    <ClCompile Include="Main\DboPacketHandler_GUEventReward.cpp" />
     <ClCompile Include="Gui\ItemUpgradeCardGui.cpp" />
     <ClCompile Include="Gui\ItemUpgradeGui.cpp" />
     <ClCompile Include="Gui\LittleQuestContainer.cpp" />
@@ -674,6 +677,8 @@
     <ClInclude Include="Gui\ItemChangeBattleAttributeGui.h" />
     <ClInclude Include="Gui\SmithyGui.h" />
     <ClInclude Include="Gui\DwcFieldListGui.h" />
+    <ClInclude Include="Gui\EventRewardMainGui.h" />
+    <ClInclude Include="Gui\EventRewardSubGui.h" />
     <ClInclude Include="Gui\DwcChallengeGui.h" />
     <ClInclude Include="Gui\DwcRewardGui.h" />
     <ClInclude Include="Gui\DwcStatusGui.h" />
@@ -1003,6 +1008,8 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
   </ItemGroup>
+  <!-- builds the RenderWare libraries the client links when they are missing or out of date -->
+  <Import Project="..\Renderware\Renderware.References.props" />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

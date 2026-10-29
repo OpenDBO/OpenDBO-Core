@@ -175,6 +175,11 @@ smart_ptr<QueryResult> CCharacterRepository::GetCharIdByNameUtf8(const char* nam
 	return GetCharDB.Query("SELECT id FROM characters WHERE char_name=\"%s\" LIMIT 1", nameUtf8);
 }
 
+smart_ptr<QueryResult> CCharacterRepository::GetAccountIdByCharNameUtf8(const std::string& strNameUtf8)
+{
+	return GetCharDB.Query("SELECT account_id FROM characters WHERE char_name=\"%s\" LIMIT 1", GetCharDB.EscapeString(strNameUtf8).c_str());
+}
+
 void CCharacterRepository::UpdateIsMailAway(BOOL bIsAway, CHARACTERID charId)
 {
 	GetCharDB.Execute("UPDATE characters SET mail_is_away=%i WHERE id=%u", bIsAway, charId);

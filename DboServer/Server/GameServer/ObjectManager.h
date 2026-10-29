@@ -69,6 +69,7 @@ public:
 	void								ProcessDelayDeleteMap();
 
 	size_t								GetPlayerCount() { return m_map_pkChrByPID.size(); }
+	const std::unordered_map<CHARACTERID, CPlayer*>&	GetPlayerMap() { return m_map_pkChrByPID; }
 
 	void								SendPacketToAll(CNtlPacket * pPacket);
 	bool								DisconnectAll();

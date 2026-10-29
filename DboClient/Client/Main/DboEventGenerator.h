@@ -311,6 +311,9 @@ public:
 
 	// Dragon World Challenge
 	static void DwcNotify(RwUInt8 byType, SERIAL_HANDLE hNpc = INVALID_SERIAL_ID, RwUInt32 dwcTblidx = INVALID_TBLIDX, RwUInt32 uiValue = 0, RwBool bValue = FALSE, void* pData = NULL);
+
+	// Event reward
+	static void NpcReward(RwUInt8 byType, void* pData = NULL, RwUInt32 eventTblidx = INVALID_TBLIDX, RwUInt32 charId = INVALID_CHARACTERID, const WCHAR* pwcName = NULL);
 };
 
 #endif

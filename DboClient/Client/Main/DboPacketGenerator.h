@@ -389,6 +389,10 @@ public:
 	bool SendDwcEnterReq(HOBJECT hNpc, TBLIDX dwcTblidx);
 	bool SendDwcEnterConfirmReq(bool bEnter);
 	bool SendDwcScenarioInfoReq();
+
+	// Event reward
+	bool SendEventRewardLoadReq(HOBJECT hNpc);
+	bool SendEventRewardSelectReq(HOBJECT hNpc, TBLIDX eventTblidx);
 };
 
 class CChatPacketGenerator : public CNtlPacketGenerator
