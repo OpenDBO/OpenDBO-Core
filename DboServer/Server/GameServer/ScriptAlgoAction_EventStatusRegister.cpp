@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "ScriptAlgoAction_EventStatusRegister.h"
 #include "WPSNodeAction_EventStatusRegister.h"
+#include "WpsAlgoObject.h"
+#include "NtlPacket.h"
+#include "NtlPacketGU.h"
 
 
 CWpsAlgoAction_EventStatusRegister::CWpsAlgoAction_EventStatusRegister(CWpsAlgoObject* pObject) :
@@ -34,5 +37,30 @@ bool CWpsAlgoAction_EventStatusRegister::AttachControlScriptNode(CControlScriptN
 
 int CWpsAlgoAction_EventStatusRegister::OnUpdate(DWORD dwTickDiff, float fMultiple)
 {
+	CNtlPacket packet(sizeof(sGU_SERVERSCRIPT_EVENTSTATUS_REGISTER_NFY));
+	sGU_SERVERSCRIPT_EVENTSTATUS_REGISTER_NFY* res = (sGU_SERVERSCRIPT_EVENTSTATUS_REGISTER_NFY*)packet.GetPacketData();
+	res->wOpCode = GU_SERVERSCRIPT_EVENTSTATUS_REGISTER_NFY;
+	res->sEventStatusInfo.byGroup = m_sEventStatusData.byGroup;
+	res->sEventStatusInfo.byIndex = m_sEventStatusData.byIndex;
+	res->sEventStatusInfo.textTblidx = m_sEventStatusData.textTblidx;
+	res->sEventStatusInfo.byType = (BYTE)m_eType;
+
+	if (m_eType == SERVERSCRIPT_EVENTSTATUS_MOBKILL_COUNT)
+	{
+		res->sEventStatusInfo.sMobKillCount.spawnGroupId = m_mobSpawnGroupId;
+		res->sEventStatusInfo.sMobKillCount.wMaxKillCount = m_wMaxCount;
+
+		GetOwner()->RegisterEventStatusMobCount(m_sEventStatusData.byGroup, m_sEventStatusData.byIndex, m_mobSpawnGroupId, m_wMaxCount);
+	}
+	else if (m_eType == SERVERSCRIPT_EVENTSTATUS_SCRIPTEVENT_COUNT)
+	{
+		res->sEventStatusInfo.sScriptEventCount.eventId = m_eventId;
+		res->sEventStatusInfo.sScriptEventCount.wMaxCount = m_wMaxCount;
+	}
+
+	packet.SetPacketLen(sizeof(sGU_SERVERSCRIPT_EVENTSTATUS_REGISTER_NFY));
+	GetOwner()->SendToPlayers(&packet);
+
+	m_status = COMPLETED;
 	return m_status;
 }

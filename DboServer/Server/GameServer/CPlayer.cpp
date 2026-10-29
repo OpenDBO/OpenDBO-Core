@@ -30,6 +30,9 @@
 #include "BudokaiManager.h"
 #include "DragonballScramble.h"
 #include "BusSystem.h" // #include "NtlPacketGU.h"
+#include "DwcMissionTable.h"
+#include "ServerConfigTable.h"
+#include "NtlDirection.h"
 
 
 bool DeleteItemUponLogin(TBLIDX itemIdx)
@@ -316,6 +319,28 @@ void CPlayer::LeaveGame()
 
 		SetCCBD(NULL);
 	}
+	else if (GetDWC())
+	{
+		CDwcDungeon* pDwc = GetDWC();
+		if (pDwc->GetWorld() && GetWorldID() == pDwc->GetWorld()->GetID()) //dwc worlds have no out world, put the player back where the dwc was entered
+		{
+			WORLDID returnWorldId = INVALID_WORLDID;
+			CNtlVector vReturnLoc, vReturnDir;
+			if (pDwc->GetReturnLocation(GetID(), returnWorldId, vReturnLoc, vReturnDir))
+			{
+				SetCurLoc(vReturnLoc);
+				SetWorldID(returnWorldId);
+
+				CGameServer* app = (CGameServer*)g_pApp;
+				if (CWorld* pReturnWorld = app->GetGameMain()->GetWorldManager()->FindWorld(returnWorldId))
+					SetMapNameTblidx(GetNaviEngine()->GetTextAllIndex(pReturnWorld->GetNaviInstanceHandle(), GetCurLoc().x, GetCurLoc().z));
+			}
+		}
+
+		pDwc->LeaveDungeon(this);
+
+		SetDWC(NULL);
+	}
 	else if (GetTMQ())
 	{
 		CWorld* pWorld = GetTMQ()->GetWorld();
@@ -473,9 +498,14 @@ void CPlayer::Initialize()
 	m_pTimeLeapDungeon = NULL;
 	m_pUltimateDungeon = NULL;
 	m_pBattleDungeon = NULL;
+	m_pDwcDungeon = NULL;
 
 	m_bySkyDungeonEnterCount = 0;
 	m_dwSkyDungeonEnterDay = 0;
+
+	m_byDwcEnterCount = 0;
+	m_dwDwcEnterDay = 0;
+	memset(m_abyDwcConditionFlag, 0, sizeof(m_abyDwcConditionFlag));
 
 	m_bIsLoggedOut = false;
 
@@ -1099,6 +1129,9 @@ void CPlayer::RecvLoadPcDataRes(sPC_DATA * pPcData, sDBO_SERVER_CHANGE_INFO * ps
 
 	m_bySkyDungeonEnterCount = pPcData->bySkyDungeonEnterCount;
 	m_dwSkyDungeonEnterDay = pPcData->dwSkyDungeonEnterDay;
+
+	m_byDwcEnterCount = pPcData->byDWCLimitCount;
+	m_dwDwcEnterDay = pPcData->dwDWCEnterDay;
 
 	res->sPcProfile.bIsInFreePvpZone = false;
 
@@ -4781,5 +4814,390 @@ void CPlayer::SendSkyDungeonLimitCountNfy()
 	res->wOpCode = GU_CHAR_SKY_DUNGEON_LIMIT_COUNT_NFY;
 	res->byRemainCount = GetSkyDungeonRemainCount();
 	packet.SetPacketLen(sizeof(sGU_CHAR_SKY_DUNGEON_LIMIT_COUNT_NFY));
+	SendPacket(&packet);
+}
+
+//--------------------------------------------------------------------------------------//
+//	Dragon World Challenge
+//--------------------------------------------------------------------------------------//
+static DWORD GetDwcCurrentDay()
+{
+	CGameServer* app = (CGameServer*)g_pApp;
+
+	int nResetHour = g_pTableContainer->GetServerConfigTable()->GetServerConfigData()->byDailyLimitInitialTime;
+	if (nResetHour > 23)
+		nResetHour = 4;
+
+	time_t curTime = app->GetTime() - nResetHour * 60 * 60; // the daily period begins at the reset hour
+	tm timeStruct = {};
+	localtime_s(&timeStruct, &curTime);
+
+	return (timeStruct.tm_year + 1900) * 10000 + (timeStruct.tm_mon + 1) * 100 + timeStruct.tm_mday;
+}
+
+static BYTE GetDwcDailyLimit()
+{
+	BYTE byLimit = g_pTableContainer->GetServerConfigTable()->GetServerConfigData()->byDailyLimitDWC;
+
+	return byLimit == INVALID_BYTE ? 25 : byLimit;
+}
+
+BYTE CPlayer::GetDwcRemainCount()
+{
+	BYTE byLimit = GetDwcDailyLimit();
+
+	if (m_dwDwcEnterDay != GetDwcCurrentDay())
+		return byLimit;
+
+	if (m_byDwcEnterCount >= byLimit)
+		return 0;
+
+	return byLimit - m_byDwcEnterCount;
+}
+
+void CPlayer::AddDwcEnterCount()
+{
+	DWORD dwCurDay = GetDwcCurrentDay();
+	if (m_dwDwcEnterDay != dwCurDay)
+	{
+		m_dwDwcEnterDay = dwCurDay;
+		m_byDwcEnterCount = 0;
+	}
+
+	if (m_byDwcEnterCount < INVALID_BYTE - 1)
+		m_byDwcEnterCount++;
+
+	CGameServer* app = (CGameServer*)g_pApp;
+
+	CNtlPacket packet(sizeof(sGQ_DWC_LIMITED_UPDATE_REQ));
+	sGQ_DWC_LIMITED_UPDATE_REQ* req = (sGQ_DWC_LIMITED_UPDATE_REQ*)packet.GetPacketData();
+	req->wOpCode = GQ_DWC_LIMITED_UPDATE_REQ;
+	req->charId = GetCharID();
+	req->byEnterCount = m_byDwcEnterCount;
+	req->dwEnterDay = m_dwDwcEnterDay;
+	packet.SetPacketLen(sizeof(sGQ_DWC_LIMITED_UPDATE_REQ));
+	app->SendTo(app->GetQueryServerSession(), &packet);
+}
+
+void CPlayer::RecvPcDwcLoadRes(sDWC_SCENARIO_DATA* pData, BYTE byCount)
+{
+	m_mapDwcScenario.clear();
+
+	for (BYTE i = 0; i < byCount && i < MAX_DWC_COUNT; i++)
+		m_mapDwcScenario[pData[i].dwcTblidx] = pData[i];
+
+	// quests are loaded before, so every condition can be checked now
+	RefreshDwcConditions(false);
+
+	CNtlPacket packet(sizeof(sGU_ACHIEVEMENTS_COMPLETE_INFO));
+	sGU_ACHIEVEMENTS_COMPLETE_INFO* res = (sGU_ACHIEVEMENTS_COMPLETE_INFO*)packet.GetPacketData();
+	res->wOpCode = GU_ACHIEVEMENTS_COMPLETE_INFO;
+	res->byIdx = 0;
+	memcpy(res->abyAchievementsCompleteInfo, m_abyDwcConditionFlag, sizeof(res->abyAchievementsCompleteInfo));
+	packet.SetPacketLen(sizeof(sGU_ACHIEVEMENTS_COMPLETE_INFO));
+	SendPacket(&packet);
+}
+
+sDWC_SCENARIO_DATA* CPlayer::GetDwcScenario(TBLIDX dwcTblidx, bool bCreate/* = false*/)
+{
+	std::map<TBLIDX, sDWC_SCENARIO_DATA>::iterator it = m_mapDwcScenario.find(dwcTblidx);
+	if (it != m_mapDwcScenario.end())
+		return &it->second;
+
+	if (bCreate == false || m_mapDwcScenario.size() >= MAX_DWC_COUNT)
+		return NULL;
+
+	sDWC_SCENARIO_DATA sData;
+	sData.dwcTblidx = dwcTblidx;
+
+	for (int i = 0; i < MAX_DWC_MISSION_COUNT_PER_SCENARIO; i++)
+	{
+		sData.asMission[i].byRewardGrade = INVALID_DWC_REWARD_GRADE;
+		sData.asMission[i].wClearCount = 0;
+	}
+
+	return &m_mapDwcScenario.insert({ dwcTblidx, sData }).first->second;
+}
+
+void CPlayer::SendDwcScenarioInfo()
+{
+	CNtlPacket packet(sizeof(sGU_DWC_SCENARIO_INFO_RES));
+	sGU_DWC_SCENARIO_INFO_RES* res = (sGU_DWC_SCENARIO_INFO_RES*)packet.GetPacketData();
+	res->wOpCode = GU_DWC_SCENARIO_INFO_RES;
+	res->byScenarioCount = 0;
+
+	for (std::map<TBLIDX, sDWC_SCENARIO_DATA>::iterator it = m_mapDwcScenario.begin(); it != m_mapDwcScenario.end(); it++)
+	{
+		sDWC_SCENARIO_INFO& rInfo = res->asScenarioInfo[res->byScenarioCount++];
+		rInfo.dwcTblidx = it->second.dwcTblidx;
+		memcpy(rInfo.asMission, it->second.asMission, sizeof(rInfo.asMission));
+
+		if (res->byScenarioCount == MAX_DWC_COUNT)
+			break;
+	}
+
+	packet.SetPacketLen(sizeof(sGU_DWC_SCENARIO_INFO_RES));
+	SendPacket(&packet);
+}
+
+void CPlayer::RewardDwcMission(TBLIDX dwcTblidx, BYTE byMissionIndex)
+{
+	if (byMissionIndex >= MAX_DWC_MISSION_COUNT_PER_SCENARIO)
+		return;
+
+	sDWC_TBLDAT* pDwcTbldat = (sDWC_TBLDAT*)g_pTableContainer->GetDwcTable()->FindData(dwcTblidx);
+	if (pDwcTbldat == NULL)
+		return;
+
+	TBLIDX missionTblidx = pDwcTbldat->aMissionTblidx[byMissionIndex];
+
+	sDWCMISSION_TBLDAT* pMissionTbldat = (sDWCMISSION_TBLDAT*)g_pTableContainer->GetDwcMissionTable()->FindData(missionTblidx);
+	if (pMissionTbldat == NULL)
+	{
+		ERR_LOG(LOG_SCRIPT, "DWC %u mission index %u: mission %u not found", dwcTblidx, byMissionIndex, missionTblidx);
+		return;
+	}
+
+	sDWC_SCENARIO_DATA* pScenario = GetDwcScenario(dwcTblidx, true);
+	if (pScenario == NULL)
+		return;
+
+	sDWC_MISSION_DATA& rMission = pScenario->asMission[byMissionIndex];
+
+	if (rMission.wClearCount < 0xFFFF)
+		rMission.wClearCount++;
+
+	// the next card is won once the mission was cleared often enough and the acquire roll passes
+	bool bIsBasicReward = false;
+	BYTE byNextGrade = rMission.byRewardGrade == INVALID_DWC_REWARD_GRADE ? 0 : rMission.byRewardGrade + 1;
+
+	if (byNextGrade < MAX_DWC_REWARD_GRADE_COUNT)
+	{
+		sDWCMISSION_REWARD& rNext = pMissionTbldat->asReward[byNextGrade];
+
+		if (rNext.cardNameTblidx != INVALID_TBLIDX && rNext.byRequireCount != INVALID_BYTE && rMission.wClearCount >= rNext.byRequireCount
+			&& Dbo_CheckProbabilityF(rNext.fAcquireRate * 100.0f))
+		{
+			rMission.byRewardGrade = byNextGrade;
+			bIsBasicReward = true;
+		}
+	}
+
+	if (rMission.byRewardGrade < MAX_DWC_REWARD_GRADE_COUNT) // the held grade comes from the database
+	{
+		sDWCMISSION_REWARD& rReward = pMissionTbldat->asReward[rMission.byRewardGrade];
+		GiveDwcReward(bIsBasicReward ? rReward.asBasicReward : rReward.asRepeatReward);
+	}
+
+	CGameServer* app = (CGameServer*)g_pApp;
+
+	CNtlPacket packetQry(sizeof(sGQ_DWC_SCENARIO_UPDATE_REQ));
+	sGQ_DWC_SCENARIO_UPDATE_REQ* req = (sGQ_DWC_SCENARIO_UPDATE_REQ*)packetQry.GetPacketData();
+	req->wOpCode = GQ_DWC_SCENARIO_UPDATE_REQ;
+	req->charId = GetCharID();
+	req->dwcTblidx = dwcTblidx;
+	req->byMissionIndex = byMissionIndex;
+	req->byRewardGrade = rMission.byRewardGrade;
+	req->wClearCount = rMission.wClearCount;
+	packetQry.SetPacketLen(sizeof(sGQ_DWC_SCENARIO_UPDATE_REQ));
+	app->SendTo(app->GetQueryServerSession(), &packetQry);
+
+	CNtlPacket packet(sizeof(sGU_DWC_MISSION_REWARD_NFY));
+	sGU_DWC_MISSION_REWARD_NFY* res = (sGU_DWC_MISSION_REWARD_NFY*)packet.GetPacketData();
+	res->wOpCode = GU_DWC_MISSION_REWARD_NFY;
+	res->dwcTblidx = dwcTblidx;
+	res->dwcMissionTblidx = missionTblidx;
+	res->bIsBasicReward = bIsBasicReward;
+	res->byRewardGrade = rMission.byRewardGrade;
+	res->wClearCount = rMission.wClearCount;
+	packet.SetPacketLen(sizeof(sGU_DWC_MISSION_REWARD_NFY));
+	SendPacket(&packet);
+
+	RefreshDwcConditions(true); // clearing a dwc is an admission condition of the next ones
+}
+
+void CPlayer::GiveDwcReward(sDWCMISSION_REWARD_ENTITY* pRewards)
+{
+	bool bDeliveredByMail = false;
+
+	for (int i = 0; i < MAX_DWC_REWARD_COUNT; i++)
+	{
+		sDWCMISSION_REWARD_ENTITY& rEntity = pRewards[i];
+		if (rEntity.tblidx == INVALID_TBLIDX || rEntity.tblidx == 0)
+			continue;
+
+		switch (rEntity.byType)
+		{
+			case DWC_REWARD_TITLE:
+			{
+				if (CheckCharTitle(rEntity.tblidx - 1) == false)
+					AddCharTitle(rEntity.tblidx - 1);
+			}
+			break;
+
+			case DWC_REWARD_ITEM:
+			{
+				if (g_pTableContainer->GetItemTable()->FindData(rEntity.tblidx) == NULL)
+				{
+					ERR_LOG(LOG_GENERAL, "DWC reward item %u does not exist", rEntity.tblidx);
+					break;
+				}
+
+				BYTE byCount = (rEntity.byValue == 0 || rEntity.byValue == INVALID_BYTE) ? 1 : rEntity.byValue;
+
+				if (g_pItemManager->CreateQuestRewardItem(this, rEntity.tblidx, byCount) == false)
+				{
+					SendDwcRewardMail(rEntity.tblidx, byCount);
+					bDeliveredByMail = true;
+				}
+			}
+			break;
+
+			default: break;
+		}
+	}
+
+	if (bDeliveredByMail)
+	{
+		CNtlPacket packet(sizeof(sGU_SYSTEM_DISPLAY_RESULTCODE));
+		sGU_SYSTEM_DISPLAY_RESULTCODE* res = (sGU_SYSTEM_DISPLAY_RESULTCODE*)packet.GetPacketData();
+		res->wOpCode = GU_SYSTEM_DISPLAY_RESULTCODE;
+		res->byDisplayType = 0;
+		res->wResultCode = GAME_COMMON_LACK_OF_SPACE_REWARD_HAS_BEEN_DELIVERED_BY_MAIL;
+		packet.SetPacketLen(sizeof(sGU_SYSTEM_DISPLAY_RESULTCODE));
+		SendPacket(&packet);
+	}
+}
+
+void CPlayer::SendDwcRewardMail(TBLIDX itemTblidx, BYTE byCount)
+{
+	sITEM_TBLDAT* pItemTbldat = (sITEM_TBLDAT*)g_pTableContainer->GetItemTable()->FindData(itemTblidx);
+	if (pItemTbldat == NULL)
+		return;
+
+	CGameServer* app = (CGameServer*)g_pApp;
+
+	CNtlPacket packet(sizeof(sGQ_MAIL_EVENT_SEND_REQ));
+	sGQ_MAIL_EVENT_SEND_REQ* req = (sGQ_MAIL_EVENT_SEND_REQ*)packet.GetPacketData();
+	req->wOpCode = GQ_MAIL_EVENT_SEND_REQ;
+	req->charID = GetCharID();
+	req->targetCharID = GetCharID();
+	req->byMailType = eMAIL_TYPE_ITEM;
+	req->bySenderType = eMAIL_SENDER_TYPE_SYSTEM;
+
+	req->sItemData.Init();
+	req->sItemData.itemNo = itemTblidx;
+	req->sItemData.charId = GetCharID();
+	req->sItemData.byStackcount = byCount;
+	req->sItemData.byRank = pItemTbldat->byRank;
+	req->sItemData.byCurrentDurability = pItemTbldat->byDurability;
+	req->sItemData.byRestrictState = GetDefaultRestrictState(pItemTbldat->byRestrictType, pItemTbldat->byItem_Type, true);
+	CItem::GenerateOptionSet(false, pItemTbldat, &req->sItemData);
+
+	if (pItemTbldat->byDurationType == eDURATIONTYPE_FLATSUM)
+	{
+		req->sItemData.byDurationType = eDURATIONTYPE_FLATSUM;
+		req->sItemData.nUseStartTime = time(0);
+		req->sItemData.nUseEndTime = req->sItemData.nUseStartTime + pItemTbldat->dwUseDurationMax;
+	}
+
+	req->dwZenny = 0;
+	req->byDay = 10;
+	wcscpy_s(req->wszSenderName, NTL_MAX_SIZE_CHAR_NAME + 1, L"DWC");
+	wcscpy_s(req->wszText, NTL_MAX_LENGTH_OF_MAIL_MESSAGE + 1, L"Dragon World Challenge reward");
+	req->byTextSize = (BYTE)wcslen(req->wszText);
+
+	packet.SetPacketLen(sizeof(sGQ_MAIL_EVENT_SEND_REQ));
+	app->SendTo(app->GetQueryServerSession(), &packet);
+}
+
+bool CPlayer::IsDwcConditionMet(TBLIDX conditionTblidx)
+{
+	switch (conditionTblidx)
+	{
+		case DWC_CONDITION_COMPLETE_10_QUESTS:
+			return GetQuests()->GetClearQuestCount() >= DWC_CONDITION_QUEST_COUNT;
+
+		case DWC_CONDITION_CLEAR_DWC_SCENARIO_1:
+		case DWC_CONDITION_CLEAR_DWC_SCENARIO_2:
+		{
+			sDWC_SCENARIO_DATA* pScenario = GetDwcScenario(conditionTblidx == DWC_CONDITION_CLEAR_DWC_SCENARIO_1 ? 1 : 2);
+			if (pScenario == NULL)
+				return false;
+
+			for (int i = 0; i < MAX_DWC_MISSION_COUNT_PER_SCENARIO; i++)
+			{
+				if (pScenario->asMission[i].wClearCount > 0)
+					return true;
+			}
+
+			return false;
+		}
+
+		default: break; // ki skill, tmq and ud boss counts are not tracked, treat them as met
+	}
+
+	return true;
+}
+
+bool CPlayer::HasDwcConditions(sDWC_TBLDAT* pDwcTbldat)
+{
+	for (int i = 0; i < MAX_DWC_ADMISSION_CONDITION_COUNT; i++)
+	{
+		if (pDwcTbldat->aConditionTblidx[i] != INVALID_TBLIDX && IsDwcConditionMet(pDwcTbldat->aConditionTblidx[i]) == false)
+			return false;
+	}
+
+	return true;
+}
+
+void CPlayer::RefreshDwcConditions(bool bNotify)
+{
+	CDwcTable* pDwcTable = g_pTableContainer->GetDwcTable();
+	if (pDwcTable == NULL || GetQuests() == NULL)
+		return;
+
+	for (CTable::TABLEIT it = pDwcTable->Begin(); it != pDwcTable->End(); it++)
+	{
+		sDWC_TBLDAT* pDwcTbldat = (sDWC_TBLDAT*)it->second;
+
+		for (int i = 0; i < MAX_DWC_ADMISSION_CONDITION_COUNT; i++)
+		{
+			TBLIDX conditionTblidx = pDwcTbldat->aConditionTblidx[i];
+			if (conditionTblidx == INVALID_TBLIDX || conditionTblidx >= DWC_ACHIEVEMENT_INFO_BIT_COUNT)
+				continue;
+
+			BYTE byMask = 0x01 << (conditionTblidx % 8);
+			BYTE& rFlag = m_abyDwcConditionFlag[conditionTblidx / 8];
+
+			if ((rFlag & byMask) || IsDwcConditionMet(conditionTblidx) == false)
+				continue;
+
+			rFlag |= byMask;
+
+			if (bNotify)
+			{
+				CNtlPacket packet(sizeof(sGU_ACHIEVEMENT_COMPLETE_NFY));
+				sGU_ACHIEVEMENT_COMPLETE_NFY* res = (sGU_ACHIEVEMENT_COMPLETE_NFY*)packet.GetPacketData();
+				res->wOpCode = GU_ACHIEVEMENT_COMPLETE_NFY;
+				res->nIdxAchievement = conditionTblidx;
+				packet.SetPacketLen(sizeof(sGU_ACHIEVEMENT_COMPLETE_NFY));
+				SendPacket(&packet);
+			}
+		}
+	}
+}
+
+void CPlayer::SendDirectionFlash(TBLIDX directionTblidx)
+{
+	CNtlPacket packet(sizeof(sGU_CHAR_DIRECT_PLAY));
+	sGU_CHAR_DIRECT_PLAY* res = (sGU_CHAR_DIRECT_PLAY*)packet.GetPacketData();
+	res->wOpCode = GU_CHAR_DIRECT_PLAY;
+	res->hSubject = GetID();
+	res->byPlayMode = DIRECTION_FLASH;
+	res->directTblidx = directionTblidx;
+	res->bSynchronize = false;
+	res->bCanSkip = false;
+	packet.SetPacketLen(sizeof(sGU_CHAR_DIRECT_PLAY));
 	SendPacket(&packet);
 }

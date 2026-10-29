@@ -12,6 +12,7 @@
 #include "HtbSkillManager.h"
 #include "PlayerItemContainer.h"
 #include "NtlEventDef.h"
+#include "NtlDWC.h"
 
 
 
@@ -22,6 +23,8 @@ class CItem;
 class CTimeLeapDungeon;
 class CUltimateDungeon;
 class CTimeQuest;
+class CDwcDungeon;
+struct sDWC_TBLDAT;
 class QueryBuffer;
 class CItemPet;
 struct sSTATUS_TRANSFORM_TBLDAT;
@@ -900,9 +903,15 @@ private:
 	CTimeLeapDungeon*				m_pTimeLeapDungeon;
 	CUltimateDungeon*				m_pUltimateDungeon;
 	CBattleDungeon*					m_pBattleDungeon;
+	CDwcDungeon*					m_pDwcDungeon;
 
 	BYTE							m_bySkyDungeonEnterCount;
 	DWORD							m_dwSkyDungeonEnterDay;
+
+	BYTE							m_byDwcEnterCount;
+	DWORD							m_dwDwcEnterDay;
+	std::map<TBLIDX, sDWC_SCENARIO_DATA>	m_mapDwcScenario; //first = dwcTblidx
+	BYTE							m_abyDwcConditionFlag[DWC_ACHIEVEMENT_INFO_BYTE_COUNT]; //met dwc admission conditions, sent to the client as completed achievements
 
 public:
 
@@ -918,6 +927,30 @@ public:
 
 	inline void						SetCCBD(CBattleDungeon* pDungeon) { m_pBattleDungeon = pDungeon; }
 	inline CBattleDungeon*			GetCCBD() { return m_pBattleDungeon; }
+
+	inline void						SetDWC(CDwcDungeon* pDungeon) { m_pDwcDungeon = pDungeon; }
+	inline CDwcDungeon*				GetDWC() { return m_pDwcDungeon; }
+
+	BYTE							GetDwcRemainCount();
+	void							AddDwcEnterCount();
+
+	void							RecvPcDwcLoadRes(sDWC_SCENARIO_DATA* pData, BYTE byCount);
+	sDWC_SCENARIO_DATA*				GetDwcScenario(TBLIDX dwcTblidx, bool bCreate = false);
+	void							SendDwcScenarioInfo();
+	void							RewardDwcMission(TBLIDX dwcTblidx, BYTE byMissionIndex);
+
+	bool							IsDwcConditionMet(TBLIDX conditionTblidx);
+	bool							HasDwcConditions(sDWC_TBLDAT* pDwcTbldat);
+	void							RefreshDwcConditions(bool bNotify);
+
+	void							SendDirectionFlash(TBLIDX directionTblidx);
+
+private:
+
+	void							GiveDwcReward(sDWCMISSION_REWARD_ENTITY* pRewards);
+	void							SendDwcRewardMail(TBLIDX itemTblidx, BYTE byCount);
+
+public:
 
 
 /////////////////////////////////////////////////////////////////

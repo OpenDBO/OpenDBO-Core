@@ -2138,6 +2138,19 @@ void CQueryServerSession::RecvPcQuestCompleteLoadRes(CNtlPacket * pPacket)
 	pOwner->RecvPcQuestCompleteLoadRes(req->sQuestCompleteData);
 }
 
+void CQueryServerSession::RecvPcDwcLoadRes(CNtlPacket * pPacket)
+{
+	sQG_PC_DWC_LOAD_RES * req = (sQG_PC_DWC_LOAD_RES*)pPacket->GetPacketData();
+
+	CPlayer* pOwner = g_pObjectManager->FindByChar(req->charID);
+	if (pOwner == NULL)
+	{
+		return;
+	}
+
+	pOwner->RecvPcDwcLoadRes(req->asScenario, req->byScenarioCount);
+}
+
 void CQueryServerSession::RecvPcQuestProgressLoadRes(CNtlPacket * pPacket)
 {
 	sQG_PC_QUEST_PROGRESS_LOAD_RES * req = (sQG_PC_QUEST_PROGRESS_LOAD_RES*)pPacket->GetPacketData();

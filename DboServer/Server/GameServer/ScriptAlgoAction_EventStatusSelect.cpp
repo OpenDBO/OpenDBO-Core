@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "ScriptAlgoAction_EventStatusSelect.h"
 #include "WPSNodeAction_EventStatusSelect.h"
+#include "WpsAlgoObject.h"
+#include "NtlPacket.h"
+#include "NtlPacketGU.h"
 
 
 CWpsAlgoAction_EventStatusSelect::CWpsAlgoAction_EventStatusSelect(CWpsAlgoObject* pObject) :
@@ -31,5 +34,16 @@ bool CWpsAlgoAction_EventStatusSelect::AttachControlScriptNode(CControlScriptNod
 
 int CWpsAlgoAction_EventStatusSelect::OnUpdate(DWORD dwTickDiff, float fMultiple)
 {
+	GetOwner()->UnregisterEventStatus(m_byGroup, m_byIndex);
+
+	CNtlPacket packet(sizeof(sGU_SERVERSCRIPT_EVENTSTATUS_SELECT_NFY));
+	sGU_SERVERSCRIPT_EVENTSTATUS_SELECT_NFY* res = (sGU_SERVERSCRIPT_EVENTSTATUS_SELECT_NFY*)packet.GetPacketData();
+	res->wOpCode = GU_SERVERSCRIPT_EVENTSTATUS_SELECT_NFY;
+	res->byGroup = m_byGroup;
+	res->byIndex = m_byIndex;
+	packet.SetPacketLen(sizeof(sGU_SERVERSCRIPT_EVENTSTATUS_SELECT_NFY));
+	GetOwner()->SendToPlayers(&packet);
+
+	m_status = COMPLETED;
 	return m_status;
 }

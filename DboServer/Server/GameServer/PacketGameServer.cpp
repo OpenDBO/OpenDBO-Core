@@ -740,6 +740,12 @@ void CClientSession::RecvCharRevivalReq(CNtlPacket * pPacket)
 				}
 				else wResultcode = GAME_FAIL;
 			}
+			else if (cPlayer->GetCurWorld()->GetRuleType() == GAMERULE_DWC) //the dwc goes on, get up where the player fell
+			{
+				if (cPlayer->GetDWC())
+					cPlayer->Revival(cPlayer->GetCurLoc(), cPlayer->GetWorldID(), REVIVAL_TYPE_CURRENT_POSITION, TELEPORT_TYPE_DUNGEON);
+				else wResultcode = GAME_FAIL;
+			}
 			else if (cPlayer->GetCurWorld()->GetRuleType() == GAMERULE_HUNT)
 			{
 				if (cPlayer->GetUD())
@@ -4931,6 +4937,20 @@ void CClientSession::RecvCharTeleportReq(CNtlPacket * pPacket)
 
 				if (cPlayer->GetParty())
 					cPlayer->LeaveParty(); //when we leave ccbd then we will be removed from party. ALWAYS.
+			}
+
+			//if teleport out of dragon world challenge
+			else if (cPlayer->GetTeleportWorldID() != cPlayer->GetWorldID() && cPlayer->GetCurWorld()->GetRuleType() == GAMERULE_DWC)
+			{
+				cPlayer->GetQuests()->GetEventMap()->Clear();
+
+				cPlayer->RemAllScript();
+				cPlayer->GetQuests()->ResetQuestRange(DWC_SYSTEM_QUEST_MIN, DWC_SYSTEM_QUEST_MAX);
+
+				if (cPlayer->GetDWC())
+					cPlayer->GetDWC()->LeaveDungeon(cPlayer);
+
+				cPlayer->SetDWC(NULL);
 			}
 
 			//if teleport out of rank battle
@@ -12303,6 +12323,49 @@ void CClientSession::RecvItemDisassembleReq(CNtlPacket * pPacket)
 
 
 //--------------------------------------------------------------------------------------//
+//		DWC: check the teleport npc the player talks to
+//--------------------------------------------------------------------------------------//
+static WORD CheckDwcNpc(CPlayer* pPlayer, HOBJECT hNpc)
+{
+	CNpc* pNpc = g_pObjectManager->GetNpc(hNpc);
+	if (pNpc == NULL)
+		return GAME_TARGET_NOT_FOUND;
+	if (pPlayer->IsInRange(pNpc, DBO_DISTANCE_CHECK_TOLERANCE) == false)
+		return GAME_TARGET_TOO_FAR;
+	if (pNpc->GetTbldat()->byJob != NPC_JOB_DWC_TELEPORT)
+		return GAME_TARGET_HAS_DIFFERENT_JOB;
+	if (BIT_FLAG_TEST(pNpc->GetTbldat()->dwFunc_Bit_Flag, NPC_FUNC_FLAG_DWC_TELEPORT) == false)
+		return GAME_TARGET_HAS_NOT_FUNCTION;
+
+	return GAME_SUCCESS;
+}
+
+//--------------------------------------------------------------------------------------//
+//		DWC: check if a member is allowed to enter
+//--------------------------------------------------------------------------------------//
+static WORD CanEnterDwc(CPlayer* pPlayer, sDWC_TBLDAT* pDwcTbldat)
+{
+	if (pPlayer->GetDWC() || pPlayer->GetTMQ() || pPlayer->GetTLQ() || pPlayer->GetUD() || pPlayer->GetCCBD())
+		return GAME_CHAR_IS_WRONG_STATE;
+	if (pPlayer->GetCurWorld() == NULL || pPlayer->GetCurWorld()->GetRuleType() != GAMERULE_NORMAL)
+		return GAME_COMMON_CAN_NOT_DO_HERE;
+	if (pPlayer->GetRankBattleRoomTblidx() != INVALID_TBLIDX || pPlayer->GetDragonballScramble() || pPlayer->GetPcIsFreeBattle())
+		return GAME_CHAR_IS_WRONG_STATE;
+	if (pPlayer->IsTrading() || pPlayer->HasPrivateShop() || pPlayer->IsFainting())
+		return GAME_CHAR_IS_WRONG_STATE;
+	if (pPlayer->GetLevel() < pDwcTbldat->byLevel_Min)
+		return GAME_TOO_LOW_MEMBER_LEVEL;
+	if (pPlayer->GetLevel() > pDwcTbldat->byLevel_Max)
+		return GAME_TOO_HIGHT_MEMBER_LEVEL;
+	if (pPlayer->GetDwcRemainCount() == 0)
+		return GAME_COMMON_EXIST_USER_WHO_OVER_LIMIT_COUNT;
+	if (pPlayer->HasDwcConditions(pDwcTbldat) == false)
+		return GAME_COMMON_HAVE_NOT_THE_REQUIRED_ACHIEVEMENT;
+
+	return GAME_SUCCESS;
+}
+
+//--------------------------------------------------------------------------------------//
 //		DWC WORLDCOUNT INFO
 //--------------------------------------------------------------------------------------//
 void	CClientSession::RecvDwcWorldCountInfoReq(CNtlPacket * pPacket)
@@ -12314,17 +12377,34 @@ void	CClientSession::RecvDwcWorldCountInfoReq(CNtlPacket * pPacket)
 
 	CNtlPacket packet(sizeof(sGU_DWC_WORLDCOUNT_INFO_RES));
 	sGU_DWC_WORLDCOUNT_INFO_RES* res = (sGU_DWC_WORLDCOUNT_INFO_RES*)packet.GetPacketData();
-		res->wOpCode = GU_DWC_WORLDCOUNT_INFO_RES;
-		res->wResultCode = GAME_SUCCESS;
-		res->hNpc = req->hNpc;
-		res->byWorldCount = 1;
-		res->byLimitCount = 1;
-		res->asWorldCountInfo[0].tblidx = 1;
-		res->asWorldCountInfo[0].wUseCount = 1;
-	packet.SetPacketLen( sizeof(sGU_DWC_WORLDCOUNT_INFO_RES) );
-	g_pApp->Send(GetHandle(), &packet );
+	res->wOpCode = GU_DWC_WORLDCOUNT_INFO_RES;
+	res->wResultCode = CheckDwcNpc(cPlayer, req->hNpc);
+	res->hNpc = req->hNpc;
+	res->byLimitCount = cPlayer->GetDwcRemainCount();
+	res->byWorldCount = 0;
 
+	if (res->wResultCode == GAME_SUCCESS)
+	{
+		CDwcTable* pDwcTable = g_pTableContainer->GetDwcTable();
+		for (CTable::TABLEIT it = pDwcTable->Begin(); it != pDwcTable->End(); it++)
+		{
+			sDWC_TBLDAT* pDwcTbldat = (sDWC_TBLDAT*)it->second;
+
+			if (g_pDungeonManager->IsDwcPlayable(pDwcTbldat) == false) // only list dwcs which have a world and script
+				continue;
+
+			res->asWorldCountInfo[res->byWorldCount].tblidx = pDwcTbldat->tblidx;
+			res->asWorldCountInfo[res->byWorldCount].wUseCount = g_pDungeonManager->GetDwcUseCount(pDwcTbldat->tblidx);
+
+			if (++res->byWorldCount == MAX_DWC_COUNT)
+				break;
+		}
+	}
+
+	packet.SetPacketLen(sizeof(sGU_DWC_WORLDCOUNT_INFO_RES));
+	g_pApp->Send(GetHandle(), &packet);
 }
+
 //--------------------------------------------------------------------------------------//
 //		DWC WORLD ENTER
 //--------------------------------------------------------------------------------------//
@@ -12333,28 +12413,67 @@ void	CClientSession::RecvDwcWorldEnterReq(CNtlPacket * pPacket)
 	if (!cPlayer || !cPlayer->IsInitialized())
 		return;
 
-	CGameServer* app = (CGameServer*)g_pApp;
-
 	sUG_DWC_ENTER_REQ *req = (sUG_DWC_ENTER_REQ*)pPacket->GetPacketData();
+
+	WORD wResultCode = CheckDwcNpc(cPlayer, req->hNpc);
+
+	sDWC_TBLDAT* pDwcTbldat = (sDWC_TBLDAT*)g_pTableContainer->GetDwcTable()->FindData(req->dwcTblidx);
+	std::vector<CPlayer*> vecMembers;
+
+	if (wResultCode == GAME_SUCCESS && (pDwcTbldat == NULL || g_pDungeonManager->IsDwcPlayable(pDwcTbldat) == false))
+		wResultCode = DWC_FAIL;
+
+	if (wResultCode == GAME_SUCCESS)
+	{
+		CParty* pParty = cPlayer->GetParty();
+		if (pParty == NULL)
+			vecMembers.push_back(cPlayer);
+		else if (pParty->GetPartyLeaderID() != cPlayer->GetID())
+			wResultCode = GAME_COMMON_YOU_ARE_NOT_A_PARTY_LEADER;
+		else
+		{
+			for (int i = 0; i < pParty->GetPartyMemberCount(); i++)
+			{
+				CPlayer* pMember = g_pObjectManager->GetPC(pParty->GetMemberInfo(i).hHandle);
+				if (pMember == NULL || pMember->IsInitialized() == false || cPlayer->IsInRange(pMember, NTL_MAX_RADIUS_OF_VISIBLE_AREA) == false)
+				{
+					wResultCode = GAME_PARTY_MEMBER_IS_TOO_FAR;
+					break;
+				}
+
+				vecMembers.push_back(pMember);
+			}
+		}
+	}
+
+	if (wResultCode == GAME_SUCCESS)
+	{
+		if (vecMembers.size() < pDwcTbldat->byAdmission_Num_Min)
+			wResultCode = GAME_COMMON_TOO_FEW_PLAYER;
+		else if (vecMembers.size() > pDwcTbldat->byAdmission_Num_Max)
+			wResultCode = GAME_COMMON_TOO_MANY_PLAYER;
+		else
+		{
+			for (std::vector<CPlayer*>::iterator it = vecMembers.begin(); it != vecMembers.end(); it++)
+			{
+				wResultCode = CanEnterDwc(*it, pDwcTbldat);
+				if (wResultCode != GAME_SUCCESS)
+					break;
+			}
+		}
+	}
+
+	if (wResultCode == GAME_SUCCESS && g_pDungeonManager->CreateDwcDungeon(vecMembers, pDwcTbldat, req->hNpc) == NULL)
+		wResultCode = DWC_FAIL;
 
 	CNtlPacket packet(sizeof(sGU_DWC_ENTER_RES));
 	sGU_DWC_ENTER_RES* res = (sGU_DWC_ENTER_RES*)packet.GetPacketData();
-		res->wOpCode = GU_DWC_ENTER_RES;
-		res->wResultCode = GAME_SUCCESS;
-		res->hNpc = req->hNpc;
-		res->dwcTblidx = req->dwcTblidx;
-	packet.SetPacketLen( sizeof(sGU_DWC_ENTER_RES) );
-	app->Send(GetHandle(), &packet );
-
-	//send proposal
-	CNtlPacket packet2(sizeof(sGU_DWC_ENTER_PROPOSAL_NFY));
-	sGU_DWC_ENTER_PROPOSAL_NFY* res2 = (sGU_DWC_ENTER_PROPOSAL_NFY*)packet2.GetPacketData();
-		res2->wOpCode = GU_DWC_ENTER_PROPOSAL_NFY;
-		res2->byDWCLimitCount = 1;
-		res2->dwcTblidx = req->dwcTblidx;
-		res2->dwWaitTime = 60;
-	packet2.SetPacketLen( sizeof(sGU_DWC_ENTER_PROPOSAL_NFY) );
-	app->Send(GetHandle(), &packet2 );
+	res->wOpCode = GU_DWC_ENTER_RES;
+	res->wResultCode = wResultCode;
+	res->hNpc = req->hNpc;
+	res->dwcTblidx = req->dwcTblidx;
+	packet.SetPacketLen(sizeof(sGU_DWC_ENTER_RES));
+	g_pApp->Send(GetHandle(), &packet);
 }
 
 //--------------------------------------------------------------------------------------//
@@ -12366,26 +12485,20 @@ void	CClientSession::RecvDwcWorldEnterConfirmReq(CNtlPacket * pPacket)
 		return;
 
 	sUG_DWC_ENTER_CONFIRM_REQ *req = (sUG_DWC_ENTER_CONFIRM_REQ*)pPacket->GetPacketData();
-	
-	CGameServer* app = (CGameServer*)g_pApp;
+
+	if (CDwcDungeon* pDwc = cPlayer->GetDWC())
+	{
+		pDwc->Confirm(cPlayer, req->bEnter);
+		return;
+	}
 
 	CNtlPacket packet(sizeof(sGU_DWC_ENTER_CONFIRM_RES));
 	sGU_DWC_ENTER_CONFIRM_RES* res = (sGU_DWC_ENTER_CONFIRM_RES*)packet.GetPacketData();
-		res->wOpCode = GU_DWC_ENTER_CONFIRM_RES;
-		res->wResultCode = GAME_SUCCESS;
-		res->bEnter = req->bEnter;
-	packet.SetPacketLen( sizeof(sGU_DWC_ENTER_CONFIRM_RES) );
-	app->Send(GetHandle(), &packet );
-
-	if(req->bEnter == false)
-	{
-		CNtlPacket packet2(sizeof(sGU_DWC_ENTER_CANCELED_NFY));
-		sGU_DWC_ENTER_CANCELED_NFY* res2 = (sGU_DWC_ENTER_CANCELED_NFY*)packet2.GetPacketData();
-			res2->wOpCode = GU_DWC_ENTER_CANCELED_NFY;
-			res2->wResultCode = GAME_SUCCESS;
-		packet2.SetPacketLen( sizeof(sGU_DWC_ENTER_CANCELED_NFY) );
-		app->Send(GetHandle(), &packet2 );
-	}
+	res->wOpCode = GU_DWC_ENTER_CONFIRM_RES;
+	res->wResultCode = DWC_FAIL;
+	res->bEnter = req->bEnter;
+	packet.SetPacketLen(sizeof(sGU_DWC_ENTER_CONFIRM_RES));
+	g_pApp->Send(GetHandle(), &packet);
 }
 
 //--------------------------------------------------------------------------------------//
@@ -12393,14 +12506,12 @@ void	CClientSession::RecvDwcWorldEnterConfirmReq(CNtlPacket * pPacket)
 //--------------------------------------------------------------------------------------//
 void	CClientSession::RecvDwcScenarioInfoReq(CNtlPacket * pPacket)
 {
-	sUG_DWC_SCENARIO_INFO_REQ *req = (sUG_DWC_SCENARIO_INFO_REQ*)pPacket->GetPacketData();
+	UNREFERENCED_PARAMETER(pPacket);
 
-	CNtlPacket packet(sizeof(sGU_DWC_SCENARIO_INFO_RES));
-	sGU_DWC_SCENARIO_INFO_RES* res = (sGU_DWC_SCENARIO_INFO_RES*)packet.GetPacketData();
-	res->wOpCode = GU_DWC_SCENARIO_INFO_RES;
-	res->byScenarioCount = 0;
-	packet.SetPacketLen( sizeof(sGU_DWC_SCENARIO_INFO_RES) );
-	g_pApp->Send(GetHandle(), &packet );
+	if (!cPlayer || !cPlayer->IsInitialized())
+		return;
+
+	cPlayer->SendDwcScenarioInfo();
 }
 
 //--------------------------------------------------------------------------------------//
@@ -12408,13 +12519,17 @@ void	CClientSession::RecvDwcScenarioInfoReq(CNtlPacket * pPacket)
 //--------------------------------------------------------------------------------------//
 void	CClientSession::RecvDwcGetRewardReq(CNtlPacket * pPacket)
 {
-	sUG_DWC_GET_REWARD_REQ *req = (sUG_DWC_GET_REWARD_REQ*)pPacket->GetPacketData();
+	UNREFERENCED_PARAMETER(pPacket);
 
-	CNtlPacket packet(sizeof(sGU_DWC_MISSION_REWARD_NFY));
-	sGU_DWC_MISSION_REWARD_NFY* res = (sGU_DWC_MISSION_REWARD_NFY*)packet.GetPacketData();
-	res->wOpCode = GU_DWC_MISSION_REWARD_NFY;
-	res->dwcMissionTblidx = 1;
-	packet.SetPacketLen( sizeof(sGU_DWC_MISSION_REWARD_NFY) );
+	if (!cPlayer || !cPlayer->IsInitialized())
+		return;
+
+	// rewards are given when a mission is cleared, there is nothing to collect
+	CNtlPacket packet(sizeof(sGU_DWC_GET_REWARD_RES));
+	sGU_DWC_GET_REWARD_RES* res = (sGU_DWC_GET_REWARD_RES*)packet.GetPacketData();
+	res->wOpCode = GU_DWC_GET_REWARD_RES;
+	res->wResultCode = DWC_FAIL;
+	packet.SetPacketLen(sizeof(sGU_DWC_GET_REWARD_RES));
 	g_pApp->Send(GetHandle(), &packet);
 }
 
@@ -16343,6 +16458,7 @@ void CClientSession::RecvTsConfirmReq(CNtlPacket * pPacket)
 	}
 
 	//ERR_LOG(LOG_USER,"req->byEventType %d, req->byTsType %d, req->dwEventData %d, req->dwParam %d %d %d %d, req->tcCurId %d, req->tcNextId %d, req->tId %d", req->byEventType, req->byTsType, req->dwEventData, req->adwParam[0], req->adwParam[1], req->adwParam[2], req->adwParam[3], req->tcCurId, req->tcNextId, req->tId);
+
 
 	CNtlPacket packet(sizeof(sGU_TS_CONFIRM_STEP_RES));
 	sGU_TS_CONFIRM_STEP_RES * res = (sGU_TS_CONFIRM_STEP_RES *)packet.GetPacketData();
