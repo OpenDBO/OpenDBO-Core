@@ -33,7 +33,7 @@ int CWpsAlgoCondition_CheckMobGroup::OnUpdate(DWORD dwTickDiff, float fMultiple)
 {
 	if (m_nCheckCount == 0) //if 0 then check if whole spawned mob group has been killed
 	{
-		if (GetOwner()->GetSpawnGroupCount(m_spawnGroupId) == 0)
+		if (GetOwner()->GetSharedSpawnGroupCount(m_spawnGroupId) == 0)
 		{
 		//	NTL_PRINT(PRINT_APP, "m_spawnGroupId %u dwCount %u m_nCheckCount %u nCount %u \n", m_spawnGroupId, dwCount, m_nCheckCount, nCount);
 			m_status = COMPLETED;
@@ -41,7 +41,7 @@ int CWpsAlgoCondition_CheckMobGroup::OnUpdate(DWORD dwTickDiff, float fMultiple)
 	}
 	else
 	{
-		if (GetOwner()->GetRemovedSpawnGroupCount(m_spawnGroupId) >= (DWORD)m_nCheckCount)
+		if (GetOwner()->GetSharedRemovedSpawnGroupCount(m_spawnGroupId) >= (DWORD)m_nCheckCount)
 		{
 		//	NTL_PRINT(PRINT_APP, "m_spawnGroupId %u dwCount %u m_nCheckCount %u nCount %u \n", m_spawnGroupId, dwCount, m_nCheckCount, nCount);
 			m_status = COMPLETED;
