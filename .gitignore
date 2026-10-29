@@ -40,7 +40,13 @@ DboClient/Tool/TSTool/Release4Tools
 DboClient/Tool/TableEditor/Release4Tools
 DboServer/.vs
 DboServer/x64
-DboServer/ExecutionEnv
+DboServer/ExecutionEnv/*
+# the world play scripts are tracked
+!DboServer/ExecutionEnv/resource/
+DboServer/ExecutionEnv/resource/*
+!DboServer/ExecutionEnv/resource/server_data/
+DboServer/ExecutionEnv/resource/server_data/*
+!DboServer/ExecutionEnv/resource/server_data/wps/
 DboServer/Server/AuthServer/ExecutionEnv
 DboServer/Server/CharServer/ExecutionEnv
 DboServer/Server/ChatServer/ExecutionEnv
