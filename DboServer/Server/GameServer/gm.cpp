@@ -1067,14 +1067,13 @@ ACMD(do_dbann)
 }
 
 
-ACMD(do_purge) //despawn all monster around player
+ACMD(do_purge) //kill all monsters around player
 {
 	CWorldCell* pWorldCell = pPlayer->GetCurWorldCell();
 	if (!pWorldCell)
 		return;
 
 	CMonster* pNextMob = NULL;
-	CNpc* pNextNpc = NULL;
 
 	CWorldCell::QUADPAGE page = pWorldCell->GetCellQuadPage(pPlayer->GetCurLoc());
 	for (int dir = CWorldCell::QUADPAGE_FIRST; dir < CWorldCell::QUADPAGE_COUNT; dir++)
@@ -1093,16 +1092,7 @@ ACMD(do_purge) //despawn all monster around player
 				pMobTarget = pNextMob;
 			}
 
-			CNpc* pNpcTarget = (CMonster*)pWorldCellSibling->GetObjectList()->GetFirst(OBJTYPE_NPC);
-			while (pNpcTarget)
-			{
-				pNextNpc = (CMonster*)pWorldCellSibling->GetObjectList()->GetNext(pNpcTarget->GetWorldCellObjectLinker());
-
-				if (pNpcTarget->GetCurWorld() && !pNpcTarget->IsFainting() && !pNpcTarget->GetStandAlone())
-					pNpcTarget->Faint(pPlayer);
-
-				pNpcTarget = pNextNpc;
-			}
+			// script npcs are left alone: they are allies the scripts protect (an escorted npc fainting fails e.g. dwc 2)
 		}
 	}
 }
