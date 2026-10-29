@@ -202,6 +202,56 @@ DWORD CScriptAlgoObject::GetRemovedSpawnGroupCount(SPAWNGROUPID spawnGroupId)
 }
 
 
+// the world play scripts of a dungeon share their mob groups, one script spawns a group and another waits for it
+// (dwc 2: 70130 spawns group 4, 70100 and 70110 check it). They are the scripts of the same players in the same dynamic world.
+void CScriptAlgoObject::GetDungeonScripts(std::set<CScriptAlgoObject*>& rScripts)
+{
+	rScripts.insert(this);
+
+	if (m_eScriptType != SSD_SCRIPT_TYPE_WPS || m_pWorld == NULL || m_pWorld->GetTbldat()->bDynamic == false)
+		return;
+
+	for (PLAYERSET_IT it = m_setPlayers.begin(); it != m_setPlayers.end(); it++)
+	{
+		CPlayer* pPlayer = g_pObjectManager->GetPC(*it);
+		if (pPlayer == NULL)
+			continue;
+
+		const std::map<DWORD, CScriptAlgoObject*>& rScriptMap = pPlayer->GetScriptMap();
+		for (std::map<DWORD, CScriptAlgoObject*>::const_iterator itScript = rScriptMap.begin(); itScript != rScriptMap.end(); itScript++)
+		{
+			CScriptAlgoObject* pScript = itScript->second;
+			if (pScript && pScript->GetScriptType() == m_eScriptType && pScript->GetWorld() == m_pWorld)
+				rScripts.insert(pScript);
+		}
+	}
+}
+
+DWORD CScriptAlgoObject::GetSharedSpawnGroupCount(SPAWNGROUPID spawnGroupId)
+{
+	std::set<CScriptAlgoObject*> setScripts;
+	GetDungeonScripts(setScripts);
+
+	DWORD dwCount = 0;
+	for (std::set<CScriptAlgoObject*>::iterator it = setScripts.begin(); it != setScripts.end(); it++)
+		dwCount += (*it)->GetSpawnGroupCount(spawnGroupId);
+
+	return dwCount;
+}
+
+DWORD CScriptAlgoObject::GetSharedRemovedSpawnGroupCount(SPAWNGROUPID spawnGroupId)
+{
+	std::set<CScriptAlgoObject*> setScripts;
+	GetDungeonScripts(setScripts);
+
+	DWORD dwCount = 0;
+	for (std::set<CScriptAlgoObject*>::iterator it = setScripts.begin(); it != setScripts.end(); it++)
+		dwCount += (*it)->GetRemovedSpawnGroupCount(spawnGroupId);
+
+	return dwCount;
+}
+
+
 void CScriptAlgoObject::RemoveMob(CMonster* pMob)
 {
 	SPAWNGROUP_IT beg = m_spawnGroup.lower_bound(pMob->GetSpawnGroupID());

@@ -381,6 +381,7 @@
     <ClCompile Include="NtlWareHouse.cpp" />
     <ClCompile Include="NtlWorldConcept.cpp" />
     <ClCompile Include="NtlWorldConceptCCBD.cpp" />
+    <ClCompile Include="NtlWorldConceptDWC.cpp" />
     <ClCompile Include="NtlWorldConceptController.cpp" />
     <ClCompile Include="NtlWorldConceptDBC.cpp" />
     <ClCompile Include="NtlWorldConceptDirect.cpp" />
@@ -437,6 +438,7 @@
     <ClInclude Include="NtlSLCCBD.h" />
     <ClInclude Include="NtlSobMascotAttr.h" />
     <ClInclude Include="NtlWorldConceptCCBD.h" />
+    <ClInclude Include="NtlWorldConceptDWC.h" />
     <ClInclude Include="NtlWorldConceptFreePvpZone.h" />
     <ClInclude Include="NtlWorldConceptDBScramble.h" />
     <ClInclude Include="ResultCodeString.h" />

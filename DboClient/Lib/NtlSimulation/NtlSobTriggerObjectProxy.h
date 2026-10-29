@@ -119,6 +119,9 @@ public:
 	void SobUpdateState(RWS::CMsg &pMsg);
 	void SobAnimEnd(RWS::CMsg &pMsg);
 
+	// plays a chain the object table does not hold, the last animation loops (tw: the dwc statue when a party goes in)
+	void PlayAnimChain(RwUInt8 byMainState, const ANIMATION_CHAIN& listAnim);
+
 public:
 
 	//---------------------------------------------------

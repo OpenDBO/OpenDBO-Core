@@ -8,6 +8,7 @@
 
 class CObjectMsg;
 class CQuestProgress;
+class CDwcDungeon;
 
 class CWpsAlgoObject : public CScriptAlgoObject
 {
@@ -50,6 +51,31 @@ public:
 public:
 
 	virtual bool			NotifyPlayerLeave(HOBJECT hPlayer, bool bRemoveScriptFromPlayer = true);
+
+public:
+
+	void					SendToPlayers(CNtlPacket* pPacket); // players of the script which are inside the script world
+
+	CDwcDungeon*			GetDwcDungeon(); // dragon world challenge the players of the script are in
+
+	void					RegisterEventStatusMobCount(BYTE byGroup, BYTE byIndex, SPAWNGROUPID spawnGroupId, WORD wMaxCount);
+	void					UnregisterEventStatus(BYTE byGroup, BYTE byIndex);
+	void					UnregisterEventStatusGroup(BYTE byGroup);
+
+private:
+
+	void					UpdateEventStatusMobCount();
+
+	struct sEVENTSTATUS_MOB_COUNT
+	{
+		BYTE				byGroup;
+		BYTE				byIndex;
+		SPAWNGROUPID		spawnGroupId;
+		WORD				wMaxCount;
+		WORD				wCount;
+	};
+
+	std::vector<sEVENTSTATUS_MOB_COUNT>	m_vecEventStatusMobCount;
 
 private:
 

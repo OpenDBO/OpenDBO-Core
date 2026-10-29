@@ -308,6 +308,9 @@ public:
 	static void MascotSummonRes(BYTE index);
 	static void MascotUnSummonRes(BYTE index);
 	static void MascotUpdate(BYTE byIndex, BYTE byType, BYTE bySlot = INVALID_BYTE, RwBool bSuccess = TRUE);
+
+	// Dragon World Challenge
+	static void DwcNotify(RwUInt8 byType, SERIAL_HANDLE hNpc = INVALID_SERIAL_ID, RwUInt32 dwcTblidx = INVALID_TBLIDX, RwUInt32 uiValue = 0, RwBool bValue = FALSE, void* pData = NULL);
 };
 
 #endif

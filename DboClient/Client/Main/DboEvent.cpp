@@ -296,3 +296,6 @@ RWS::CEventId g_EventMascotDelete;
 RWS::CEventId g_EventMascotSummon;
 RWS::CEventId g_EventMascotUnSummon;
 RWS::CEventId g_EventMascotUpdate;
+
+// Dragon World Challenge
+RWS::CEventId g_EventDwcNotify;

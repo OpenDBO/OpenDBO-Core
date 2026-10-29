@@ -1954,3 +1954,16 @@ void CDboEventGenerator::MascotUpdate(BYTE byIndex, BYTE byType, BYTE bySlot, Rw
 
 	SEND_MSG(g_EventMascotUpdate, &sData);
 }
+
+void CDboEventGenerator::DwcNotify(RwUInt8 byType, SERIAL_HANDLE hNpc, RwUInt32 dwcTblidx, RwUInt32 uiValue, RwBool bValue, void* pData)
+{
+	SDboEventDwcNotify sData;
+	sData.byType = byType;
+	sData.hNpc = hNpc;
+	sData.dwcTblidx = dwcTblidx;
+	sData.uiValue = uiValue;
+	sData.bValue = bValue;
+	sData.pData = pData;
+
+	SEND_MSG(g_EventDwcNotify, &sData);
+}

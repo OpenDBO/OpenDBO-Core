@@ -822,6 +822,52 @@ void CPlayerCache::SendPortalLoadRes()
 	app->Send(GetSession(), &packet);
 }
 
+void CPlayerCache::SendDwcLoadRes()
+{
+	CQueryServer* app = (CQueryServer*)g_pApp;
+
+	CNtlPacket packet(sizeof(sQG_PC_DWC_LOAD_RES));
+	sQG_PC_DWC_LOAD_RES * res = (sQG_PC_DWC_LOAD_RES *)packet.GetPacketData();
+	res->wOpCode = QG_PC_DWC_LOAD_RES;
+	res->charID = m_sPcData.charId;
+	res->byScenarioCount = 0;
+
+	for (std::map<TBLIDX, sDWC_SCENARIO_DATA>::iterator it = m_mapDwcScenario.begin(); it != m_mapDwcScenario.end(); it++)
+	{
+		res->asScenario[res->byScenarioCount++] = it->second;
+
+		if (res->byScenarioCount == MAX_DWC_COUNT)
+			break;
+	}
+
+	packet.SetPacketLen(sizeof(sQG_PC_DWC_LOAD_RES));
+	app->Send(GetSession(), &packet);
+}
+
+void CPlayerCache::SetDwcMission(TBLIDX dwcTblidx, BYTE byMissionIndex, BYTE byRewardGrade, WORD wClearCount)
+{
+	if (byMissionIndex >= MAX_DWC_MISSION_COUNT_PER_SCENARIO)
+		return;
+
+	std::map<TBLIDX, sDWC_SCENARIO_DATA>::iterator it = m_mapDwcScenario.find(dwcTblidx);
+	if (it == m_mapDwcScenario.end())
+	{
+		sDWC_SCENARIO_DATA sData;
+		sData.dwcTblidx = dwcTblidx;
+
+		for (int i = 0; i < MAX_DWC_MISSION_COUNT_PER_SCENARIO; i++)
+		{
+			sData.asMission[i].byRewardGrade = INVALID_DWC_REWARD_GRADE;
+			sData.asMission[i].wClearCount = 0;
+		}
+
+		it = m_mapDwcScenario.insert({ dwcTblidx, sData }).first;
+	}
+
+	it->second.asMission[byMissionIndex].byRewardGrade = byRewardGrade;
+	it->second.asMission[byMissionIndex].wClearCount = wClearCount;
+}
+
 void CPlayerCache::SendBankItemLoad()
 {
 	CQueryServer* app = (CQueryServer*)g_pApp;
@@ -948,6 +994,7 @@ void CPlayerCache::OnLoadPcData(QueryResultVector & results)
 		m_sPcData.byTmqLimitPlusCount = 0;
 		m_sPcData.byDWCLimitCount = 0;
 		m_sPcData.byDWCLimitPlusCount = 0;
+		m_sPcData.dwDWCEnterDay = 0;
 		m_sPcData.bIsScrambleJoinFlag = false;
 		m_sPcData.bIsScrambleRewardedFlag = false;
 		m_sPcData.bySkyDungeonEnterCount = 0;
@@ -1072,6 +1119,31 @@ void CPlayerCache::OnLoadPcData(QueryResultVector & results)
 
 		m_sPcData.bySkyDungeonEnterCount = f[0].GetBYTE();
 		m_sPcData.dwSkyDungeonEnterDay = f[1].GetDWORD();
+	}
+
+	//DWC DAILY LIMIT
+	QueryResult* qrDwcLimit = results[7].result;
+	if (qrDwcLimit)
+	{
+		Field* f = qrDwcLimit->Fetch();
+
+		m_sPcData.byDWCLimitCount = f[0].GetBYTE();
+		m_sPcData.dwDWCEnterDay = f[1].GetDWORD();
+	}
+
+	//DWC SCENARIO PROGRESS
+	m_mapDwcScenario.clear();
+
+	QueryResult* qrDwcScenario = results[8].result;
+	if (qrDwcScenario)
+	{
+		do
+		{
+			Field* f = qrDwcScenario->Fetch();
+
+			SetDwcMission(f[0].GetUInt32(), f[1].GetBYTE(), f[2].GetBYTE(), f[3].GetWORD());
+		}
+		while (qrDwcScenario->NextRow());
 	}
 
 
@@ -1345,6 +1417,7 @@ void CPlayerCache::OnLoadPcData2(QueryResultVector & results)
 	SendItemLoadRes();
 	SendQuestItemLoadRes();
 	SendQuestCompleteLoadRes();
+	SendDwcLoadRes();
 	SendQuestProgressLoadRes();
 	SendQuickSlotLoadRes();
 	SendItemRecipeLoadRes();

@@ -18,9 +18,16 @@ public:
 
 	virtual int OnUpdate(DWORD dwTickDiff, float fMultiple);
 
+private:
+
+	bool		MoveTowards(CCharacter* pTarget);
+	void		Stop();
 
 private:
 
+	bool		m_bMoving;
+	bool		m_bIsPathFindingUsed;
+	DWORD		m_dwFollowTime;
 	DWORD		m_dwArriveWaitTime;
 	DWORD		m_dwStopTime;
 	HOBJECT		m_hTarget;

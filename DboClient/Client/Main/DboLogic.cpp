@@ -94,6 +94,8 @@
 #include "CommercialExtendGui.h"
 #include "MascotGui.h"
 #include "MascotSkillReMake.h"
+#include "DwcMissionTable.h"
+#include "DwcTable.h"
 
 
 RwReal		g_fElapsedWeightValue	= 1.0f;
@@ -3808,6 +3810,9 @@ void Logic_ShowRegenBox(void)
 			case WORLD_PLAY_CCBD:
 				GetAlarmManager()->AlarmMessage("DST_REGEN_PLAYER_CCBD");
 			break;
+			case WORLD_PLAY_DWC:			// the server revives in the dwc world, the box waits for retry
+				GetAlarmManager()->AlarmMessage("DST_REGEN_PLAYER_PARTY_DUNGEON");
+			break;
 
 			case WORLD_PLAY_RANK_BATTLE:
 			case WORLD_PLAY_T_BUDOKAI:
@@ -4283,4 +4288,79 @@ void Logic_OfferMascotRescue(void)
 		GetAlarmManager()->FormattedAlarmMessage("DST_MASCOTEX_SKILL_RESCUE", FALSE, &sData);
 		return;
 	}
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Dragon World Challenge
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+RwBool Logic_IsDwcEnterable(sDWC_TBLDAT* pDwcTbldat)
+{
+	// tw: the level and every admission condition, the server sends the completed ones as achievements
+	if (pDwcTbldat == NULL)
+		return FALSE;
+
+	if (Logic_GetLevel(GetNtlSLGlobal()->GetSobAvatar()) < pDwcTbldat->byLevel_Min)
+		return FALSE;
+
+	SDwcInfo* pDwcInfo = GetNtlSLGlobal()->GetDwcInfo();
+
+	for (RwInt32 i = 0; i < MAX_DWC_ADMISSION_CONDITION_COUNT; ++i)
+	{
+		if (pDwcTbldat->aConditionTblidx[i] == INVALID_TBLIDX)
+			break;
+
+		if (!pDwcInfo->IsAchievementComplete(pDwcTbldat->aConditionTblidx[i]))
+			return FALSE;
+	}
+
+	return TRUE;
+}
+
+sDWC_TBLDAT* Logic_GetAvatarDwc(void)
+{
+	RwUInt32 worldTblidx = GetNtlSLGlobal()->GetAvatarInfo()->sWorldInfo.tblidx;
+
+	CDwcTable* pDwcTable = API_GetTableContainer()->GetDwcTable();
+	for (CTable::TABLEIT it = pDwcTable->Begin(); it != pDwcTable->End(); ++it)
+	{
+		sDWC_TBLDAT* pDwcTbldat = reinterpret_cast<sDWC_TBLDAT*>(it->second);
+		if (pDwcTbldat->worldTblidx == worldTblidx)
+			return pDwcTbldat;
+	}
+
+	return NULL;
+}
+
+std::wstring Logic_GetDwcText(RwUInt32 uiTextTblidx)
+{
+	CTextTable* pTextTable = API_GetTableContainer()->GetTextAllTable()->GetDWCTbl();
+	if (pTextTable == NULL || uiTextTblidx == INVALID_TBLIDX)
+		return std::wstring();
+
+	return pTextTable->GetText(uiTextTblidx);
+}
+
+std::string Logic_GetDwcCardTexture(sDWCMISSION_TBLDAT* pMissionTbldat, RwUInt8 byGrade)
+{
+	// tw: dwc_card\dwc_crd_001_{n,s,e,r,l}.png, the table stores the image name as a wide string
+	static const char s_acGrade[MAX_DWC_REWARD_GRADE_COUNT] = { 'n', 's', 'e', 'r', 'l' };
+
+	if (pMissionTbldat == NULL)
+		return std::string();
+
+	if (byGrade >= MAX_DWC_REWARD_GRADE_COUNT)
+		byGrade = DWC_REWARD_GRADE_NORMAL;
+
+	const WCHAR* pwcImage = reinterpret_cast<const WCHAR*>(pMissionTbldat->szImageName);
+	RwInt32 iMaxChar = sizeof(pMissionTbldat->szImageName) / sizeof(WCHAR);
+
+	std::string strTexture = "DWC_card\\";
+	for (RwInt32 i = 0; i < iMaxChar && pwcImage[i] != L'\0'; ++i)
+		strTexture += (char)tolower((char)pwcImage[i]);
+
+	strTexture += '_';
+	strTexture += s_acGrade[byGrade];
+	strTexture += ".png";
+	return strTexture;
 }

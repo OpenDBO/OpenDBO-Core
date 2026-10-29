@@ -22,9 +22,13 @@ public:
 
 	virtual int OnObjectMsg(CObjectMsg* pObjMsg);
 
+private:
+
+	int StartEscort();
 
 private:
 
+	bool m_bStartPending;
 	eESCORT_TYPE m_eEscortType;
 	CNtlVector m_vDestLoc;
 	float m_fRadius;

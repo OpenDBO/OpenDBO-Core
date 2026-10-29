@@ -22,6 +22,8 @@ private:
 
 	DWORD						m_dwWaitTime;
 
+	bool						m_bStarted; // countdown sent to the players
+
 };
 
 #endif

@@ -63,6 +63,11 @@
 #include "WpsScriptAlgoAction_CCBD_stage.h"
 #include "WpsScriptAlgoAction_CCBD_stage_clear.h"
 #include "WpsScriptAlgoAction_CCBD_wait_user.h"
+#include "WpsScriptAlgoAction_DWC.h"
+#include "WpsScriptAlgoAction_DWC_wait_user.h"
+#include "WpsScriptAlgoAction_DWC_reward.h"
+#include "WpsScriptAlgoAction_DWC_fail.h"
+#include "WpsScriptAlgoAction_DWC_leave.h"
 
 
 #include "ScriptAlgoCondition_CheckTime.h"
@@ -332,6 +337,26 @@ CControlState* ControlStateCreator_ScriptAlgoAction_CCBD_Leave(CWpsAlgoObject *p
 {
 	return new CWpsScriptAlgoAction_CCBD_Leave(pOwner);
 }
+CControlState* ControlStateCreator_ScriptAlgoAction_DWC(CWpsAlgoObject *pOwner)
+{
+	return new CWpsScriptAlgoAction_DWC(pOwner);
+}
+CControlState* ControlStateCreator_ScriptAlgoAction_DWC_wait_user(CWpsAlgoObject *pOwner)
+{
+	return new CWpsScriptAlgoAction_DWC_wait_user(pOwner);
+}
+CControlState* ControlStateCreator_ScriptAlgoAction_DWC_reward(CWpsAlgoObject *pOwner)
+{
+	return new CWpsScriptAlgoAction_DWC_reward(pOwner);
+}
+CControlState* ControlStateCreator_ScriptAlgoAction_DWC_fail(CWpsAlgoObject *pOwner)
+{
+	return new CWpsScriptAlgoAction_DWC_fail(pOwner);
+}
+CControlState* ControlStateCreator_ScriptAlgoAction_DWC_leave(CWpsAlgoObject *pOwner)
+{
+	return new CWpsScriptAlgoAction_DWC_leave(pOwner);
+}
 
 
 CControlState* ControlStateCreator_ScriptAlgoCondition_CheckTime(CWpsAlgoObject *pOwner)
@@ -500,12 +525,11 @@ inline void WPSInitialize()
 	s_controlStateMap_wps[WPS_NODE_ACTION_CCBD_STAGE_CLEAR] = ControlStateCreator_ScriptAlgoAction_CCBD_stage_clear;
 	s_controlStateMap_wps[WPS_NODE_ACTION_CCBD_LEAVE] = ControlStateCreator_ScriptAlgoAction_CCBD_Leave;
 
-	//TODO
-	//	WPS_NODE_ACTION_DWC,
-	//	WPS_NODE_ACTION_DWC_WAIT_USER,
-	//	WPS_NODE_ACTION_DWC_REWARD,
-	//	WPS_NODE_ACTION_DWC_FAIL,
-	//	WPS_NODE_ACTION_DWC_LEAVE,
+	s_controlStateMap_wps[WPS_NODE_ACTION_DWC] = ControlStateCreator_ScriptAlgoAction_DWC;
+	s_controlStateMap_wps[WPS_NODE_ACTION_DWC_WAIT_USER] = ControlStateCreator_ScriptAlgoAction_DWC_wait_user;
+	s_controlStateMap_wps[WPS_NODE_ACTION_DWC_REWARD] = ControlStateCreator_ScriptAlgoAction_DWC_reward;
+	s_controlStateMap_wps[WPS_NODE_ACTION_DWC_FAIL] = ControlStateCreator_ScriptAlgoAction_DWC_fail;
+	s_controlStateMap_wps[WPS_NODE_ACTION_DWC_LEAVE] = ControlStateCreator_ScriptAlgoAction_DWC_leave;
 
 	s_controlStateMap_wps[WPS_NODE_CONDITION_CHECK_TIME] = ControlStateCreator_ScriptAlgoCondition_CheckTime;
 	s_controlStateMap_wps[WPS_NODE_CONDITION_NPC_FAINT] = ControlStateCreator_ScriptAlgoCondition_NpcFaint;

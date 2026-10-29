@@ -6,10 +6,13 @@
 #include "CPlayer.h"
 #include "TableContainerManager.h"
 #include "NtlResultCode.h"
+#include "WorldPlayScriptManager.h"
+#include "WorldPlayTable.h"
 
 
 CDungeonManager::CDungeonManager()
 {
+	m_dwLastDwcDungeonID = 0;
 }
 
 CDungeonManager::~CDungeonManager()
@@ -27,6 +30,21 @@ void CDungeonManager::TickProcess(DWORD dwTickDiff)
 		if (pDungeon->TickProcess(dwTickDiff))
 		{
 			it = m_mapTimeQuest.erase(it);
+			SAFE_DELETE(pDungeon);
+		}
+		else
+		{
+			++it;
+		}
+	}
+
+	for (std::map<DWORD, CDwcDungeon*>::iterator it = m_mapDwcDungeon.begin(); it != m_mapDwcDungeon.end(); )
+	{
+		CDwcDungeon* pDungeon = it->second;
+
+		if (pDungeon->TickProcess(dwTickDiff))
+		{
+			it = m_mapDwcDungeon.erase(it);
 			SAFE_DELETE(pDungeon);
 		}
 		else
@@ -267,6 +285,87 @@ void CDungeonManager::DestroyBattleDungeon(CBattleDungeon * pDungeon)
 {
 	m_mapBattleDungeon.erase(pDungeon->GetPartyID());
 	SAFE_DELETE(pDungeon);
+}
+
+CDwcDungeon * CDungeonManager::CreateDwcDungeon(const std::vector<CPlayer*>& rMembers, sDWC_TBLDAT * pDwcTbldat, HOBJECT hNpc, bool bProposal/* = true*/)
+{
+	CDwcDungeon* pDwc = new CDwcDungeon(++m_dwLastDwcDungeonID, pDwcTbldat, hNpc);
+
+	if (pDwc->Create(rMembers, bProposal))
+	{
+		m_mapDwcDungeon.insert({ pDwc->GetID(), pDwc });
+
+		return pDwc;
+	}
+
+	SAFE_DELETE(pDwc);
+
+	return NULL;
+}
+
+WORD CDungeonManager::StartQuestDwc(CPlayer * pPlayer, TBLIDX dwcTblidx)
+{
+	sDWC_TBLDAT* pDwcTbldat = (sDWC_TBLDAT*)g_pTableContainer->GetDwcTable()->FindData(dwcTblidx);
+	if (pDwcTbldat == NULL || IsDwcPlayable(pDwcTbldat) == false)
+		return DWC_FAIL;
+
+	// the npc invites the avatar, only the admission conditions are left out
+	if (pPlayer->GetDWC() || pPlayer->GetTMQ() || pPlayer->GetTLQ() || pPlayer->GetUD() || pPlayer->GetCCBD())
+		return GAME_CHAR_IS_WRONG_STATE;
+	if (pPlayer->GetCurWorld() == NULL || pPlayer->GetCurWorld()->GetRuleType() != GAMERULE_NORMAL)
+		return GAME_COMMON_CAN_NOT_DO_HERE;
+	if (pPlayer->GetLevel() < pDwcTbldat->byLevel_Min)
+		return GAME_TOO_LOW_MEMBER_LEVEL;
+	if (pPlayer->GetLevel() > pDwcTbldat->byLevel_Max)
+		return GAME_TOO_HIGHT_MEMBER_LEVEL;
+	if (pPlayer->GetDwcRemainCount() == 0)
+		return GAME_COMMON_EXIST_USER_WHO_OVER_LIMIT_COUNT;
+
+	std::vector<CPlayer*> vecMembers;
+	vecMembers.push_back(pPlayer);
+
+	// the quest sends the avatar in straight away, without the entry question and the enter direction
+	if (CreateDwcDungeon(vecMembers, pDwcTbldat, INVALID_HOBJECT, false) == NULL)
+		return DWC_FAIL;
+
+	return GAME_SUCCESS;
+}
+
+WORD CDungeonManager::GetDwcUseCount(TBLIDX dwcTblidx)
+{
+	sDWC_TBLDAT* pDwcTbldat = (sDWC_TBLDAT*)g_pTableContainer->GetDwcTable()->FindData(dwcTblidx);
+	if (pDwcTbldat == NULL)
+		return 0;
+
+	sWORLD_TBLDAT* pWorldTbldat = (sWORLD_TBLDAT*)g_pTableContainer->GetWorldTable()->FindData(pDwcTbldat->worldTblidx);
+	if (pWorldTbldat == NULL || pWorldTbldat->nCreateCount <= 0)
+		return 0;
+
+	int nRunning = 0;
+	for (std::map<DWORD, CDwcDungeon*>::iterator it = m_mapDwcDungeon.begin(); it != m_mapDwcDungeon.end(); it++)
+	{
+		if (it->second->GetTbldat()->tblidx == dwcTblidx && it->second->GetWorld())
+			nRunning++;
+	}
+
+	int nPercent = nRunning * 100 / pWorldTbldat->nCreateCount;
+
+	return (WORD)(nPercent > 100 ? 100 : nPercent);
+}
+
+bool CDungeonManager::IsDwcPlayable(sDWC_TBLDAT * pDwcTbldat)
+{
+	sWORLD_TBLDAT* pWorldTbldat = (sWORLD_TBLDAT*)g_pTableContainer->GetWorldTable()->FindData(pDwcTbldat->worldTblidx);
+	if (pWorldTbldat == NULL || pWorldTbldat->wpsLinkIndex == INVALID_TBLIDX)
+		return false;
+
+	if (g_pTableContainer->GetWorldPlayTable()->FindData(pWorldTbldat->wpsLinkIndex) == NULL)
+		return false;
+
+	// dwc 3 (70200) and dwc 4 (70300) are empty placeholders in the tw data, the retail scripts never surfaced:
+	// a script with nothing but its stage node is not offered
+	CControlScript* pScript = g_pWorldPlayScriptManager->FindScript(pWorldTbldat->wpsLinkIndex);
+	return pScript != NULL && pScript->GetScriptNodeCount() > 1;
 }
 
 

@@ -250,6 +250,10 @@ int CGameServerSession::OnDispatch(CNtlPacket * pPacket)
 
 		case GQ_SKY_DUNGEON_LIMITED_UPDATE_REQ: RecvSkyDungeonLimitedUpdateReq(pPacket, app); break;
 
+		case GQ_DWC_LIMITED_UPDATE_REQ: RecvDwcLimitedUpdateReq(pPacket, app); break;
+		case GQ_DWC_SCENARIO_UPDATE_REQ: RecvDwcScenarioUpdateReq(pPacket, app); break;
+		case GQ_MAIL_EVENT_SEND_REQ: RecvMailEventSendReq(pPacket, app); break;
+
 		default: ERR_LOG(LOG_NETWORK, "Received unknown GQ packet. opcode %d", pHeader->wOpCode);
 	}
 

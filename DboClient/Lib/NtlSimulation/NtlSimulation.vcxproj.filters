@@ -807,6 +807,9 @@
     <ClCompile Include="NtlWorldConceptCCBD.cpp">
       <Filter>WorldConcept\Controller</Filter>
     </ClCompile>
+    <ClCompile Include="NtlWorldConceptDWC.cpp">
+      <Filter>WorldConcept\Controller</Filter>
+    </ClCompile>
     <ClCompile Include="NtlSLCCBD.cpp">
       <Filter>Object\Etc</Filter>
     </ClCompile>
@@ -1461,6 +1464,9 @@
       <Filter>WorldConcept\Controller</Filter>
     </ClInclude>
     <ClInclude Include="NtlWorldConceptCCBD.h">
+      <Filter>WorldConcept\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="NtlWorldConceptDWC.h">
       <Filter>WorldConcept\Controller</Filter>
     </ClInclude>
     <ClInclude Include="NtlSLCCBD.h">

@@ -461,4 +461,12 @@ void			Logic_MascotSkillSuccess(RwUInt8 bySlot);						///< client side part of a
 void			Logic_OfferMascotRescue(void);									///< asks a fainted avatar whether to use the self rescue skill
 RwBool			Logic_ConsumeMascotRemoteBank(void);							///< TRUE once after the remote bank skill waited for the bank data
 
+// Dragon World Challenge
+struct sDWC_TBLDAT;
+struct sDWCMISSION_TBLDAT;
+RwBool			Logic_IsDwcEnterable(sDWC_TBLDAT* pDwcTbldat);											///< tw: level and every admission condition of the dwc
+sDWC_TBLDAT*	Logic_GetAvatarDwc(void);														///< the dwc of the world the avatar is in, NULL outside
+std::wstring	Logic_GetDwcText(RwUInt32 uiTextTblidx);										///< DWC_DATA text table
+std::string		Logic_GetDwcCardTexture(sDWCMISSION_TBLDAT* pMissionTbldat, RwUInt8 byGrade);					///< "DWC_card\dwc_crd_001_n.png"
+
 #endif

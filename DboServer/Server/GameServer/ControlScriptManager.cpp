@@ -179,6 +179,38 @@ bool CControlScriptManager::LoadFile(const char* lpszScriptPath, const char* lps
 
 	FindClose(hFind);
 
+	// scripts in sub folders (e.g. wps/dwc) are loaded with the same file pattern
+	std::string strSearchFileName = lpszSearchFileName;
+	std::string strPattern = strSearchFileName.substr(strSearchFileName.find_last_of("/\\") + 1);
+	std::string strFolderSearch = lpszScriptPath;
+	strFolderSearch += "/*";
+
+	hFind = FindFirstFile(strFolderSearch.c_str(), &FindFileData);
+	if (INVALID_HANDLE_VALUE != hFind)
+	{
+		do
+		{
+			if ((FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) && '.' != FindFileData.cFileName[0])
+			{
+				std::string strSubPath = lpszScriptPath;
+				strSubPath += "/";
+				strSubPath += FindFileData.cFileName;
+
+				std::string strSubSearch = strSubPath + "/" + strPattern;
+
+				WIN32_FIND_DATA SubFileData;
+				HANDLE hSubFind = FindFirstFile(strSubSearch.c_str(), &SubFileData);
+				if (INVALID_HANDLE_VALUE != hSubFind)
+				{
+					FindClose(hSubFind);
+					LoadFile(strSubPath.c_str(), strSubSearch.c_str(), lpszSSEPath);
+				}
+			}
+		} while (FindNextFile(hFind, &FindFileData) != 0);
+
+		FindClose(hFind);
+	}
+
 	return true;
 }
 

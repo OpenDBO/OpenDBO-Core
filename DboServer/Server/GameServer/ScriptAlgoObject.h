@@ -66,6 +66,11 @@ public:
 
 	DWORD					GetRemovedSpawnGroupCount(SPAWNGROUPID spawnGroupId);
 
+	// the same counts summed over the scripts of the dungeon this script runs in
+	DWORD					GetSharedSpawnGroupCount(SPAWNGROUPID spawnGroupId);
+	DWORD					GetSharedRemovedSpawnGroupCount(SPAWNGROUPID spawnGroupId);
+	void					GetDungeonScripts(std::set<CScriptAlgoObject*>& rScripts);
+
 	void					RemoveMob(CMonster* pMob);
 
 

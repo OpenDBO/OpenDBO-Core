@@ -76,6 +76,8 @@ class CDynamicFieldSideIconGui;
 class CDynamicFieldSideViewGui;
 
 class CDBScrambleSideIconGui;
+class CDwcSideIconGui;
+class CDwcSideViewGui;
 
 /**
 * \ingroup client
@@ -197,6 +199,9 @@ protected:
 	CDynamicFieldSideViewGui*	m_pDynamicFieldSideViewGui;
 
 	CDBScrambleSideIconGui*	m_pDBScrambleSideIconGui;
+
+	CDwcSideIconGui*			m_pDwcSideIconGui;
+	CDwcSideViewGui*			m_pDwcSideViewGui;
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

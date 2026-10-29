@@ -128,6 +128,7 @@ public:
 	void						RecvPcHtbSkillLoadRes(CNtlPacket* pPacket);
 	void						RecvPcQuestItemLoadRes(CNtlPacket* pPacket);
 	void						RecvPcQuestCompleteLoadRes(CNtlPacket* pPacket);
+	void						RecvPcDwcLoadRes(CNtlPacket* pPacket);
 	void						RecvPcQuestProgressLoadRes(CNtlPacket* pPacket);
 	void						RecvPcQuickSlotLoadRes(CNtlPacket* pPacket);
 	void						RecvPcShortCutLoadRes(CNtlPacket* pPacket);

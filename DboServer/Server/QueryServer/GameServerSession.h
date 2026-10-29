@@ -218,4 +218,8 @@ public:
 	void						RecvGmLog(CNtlPacket* pPacket, CQueryServer* app);
 
 	void						RecvSkyDungeonLimitedUpdateReq(CNtlPacket* pPacket, CQueryServer* app);
+
+	void						RecvDwcLimitedUpdateReq(CNtlPacket* pPacket, CQueryServer* app);
+	void						RecvDwcScenarioUpdateReq(CNtlPacket* pPacket, CQueryServer* app);
+	void						RecvMailEventSendReq(CNtlPacket* pPacket, CQueryServer* app);
 };

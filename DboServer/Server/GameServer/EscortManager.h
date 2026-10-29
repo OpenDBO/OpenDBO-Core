@@ -31,6 +31,7 @@ public:
 
 	CCharacter*			GetCurrentTarget();
 	BYTE				GetTargetCount();
+	eESCORT_TYPE		GetEscortType() { return m_eEscortType; }
 	HOBJECT				GetTargetWithSlot(BYTE byPos);
 	CHARACTERID			GetTargetIdWithSlot(BYTE byPos);
 

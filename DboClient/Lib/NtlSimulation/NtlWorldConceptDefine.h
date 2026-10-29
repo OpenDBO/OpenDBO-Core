@@ -35,7 +35,7 @@ enum EWorldPlayConcept
 	WORLD_PLAY_DOJO_SCRAMBLE		= 0x00010007,		///< 도장 쟁탈전
 	WORLD_PLAY_DOJO_DUEL			= 0x00010008,		///< 도장 비무전
 	WORLD_PLAY_CCBD					= 0x00010009,
-	WORLD_PLAY_DWC					= 0x00010010,
+	WORLD_PLAY_DWC					= 0x0001000A,		///< tw value, the grade test (type >> 4) only covers 0x00010000-0x0001000F
 
 	//-- 2단계 컨셉 --//
 	WORLD_PLAY_FREEPVP				= 0x00020000,		///< PVP(Battle) state

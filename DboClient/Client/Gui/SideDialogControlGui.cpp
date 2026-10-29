@@ -76,6 +76,7 @@ RwBool CSideDialogControlGui::Create()
 	dADD_BUTTON(BUTTONTYPE_BUDOKAI_FINAL,	"btnDojoScramble",	GetDisplayStringManager()->GetString("DST_DOJO_SCRAMBLE_TITLE"),			SDIALOG_SCRAMBLE_STATUS);
 
 	dADD_BUTTON(BUTTONTYPE_CCBD, "btnCCBD", GetDisplayStringManager()->GetString("DST_CCBD"), SDIALOG_CCBD_STATUS);
+	dADD_BUTTON(BUTTONTYPE_DWC, "btnDWC", GetDisplayStringManager()->GetString("DST_DWC_TITLE"), SDIALOG_DWC_STATUS);
 
 
 	m_pSideDialogMiniGui = NTL_NEW CSideDialogMiniGui("SideDialogMini");

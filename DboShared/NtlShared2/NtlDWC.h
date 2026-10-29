@@ -76,3 +76,23 @@ struct sDWC_WORLD_COUNT_INFO
 	WORD			wUseCount;
 };
 
+// GU_ACHIEVEMENTS_COMPLETE_INFO carries the completed achievements as bit chunks
+const int		DWC_ACHIEVEMENT_INFO_BYTE_COUNT = 200;
+const int		DWC_ACHIEVEMENT_INFO_BIT_COUNT = DWC_ACHIEVEMENT_INFO_BYTE_COUNT * 8;
+
+// Achievements used as DWC admission conditions (sDWC_TBLDAT::aConditionTblidx)
+enum eDWC_CONDITION
+{
+	DWC_CONDITION_COMPLETE_10_QUESTS = 1,
+	DWC_CONDITION_CLEAR_DWC_SCENARIO_1 = 50,
+	DWC_CONDITION_LEARN_KI_GATHERING = 100,
+	DWC_CONDITION_CLEAR_DWC_SCENARIO_2 = 150,
+	DWC_CONDITION_COMPLETE_3_TMQ = 200,
+	DWC_CONDITION_DEFEAT_UD_BOSS_3_TIMES = 250,
+};
+
+const unsigned int	DWC_CONDITION_QUEST_COUNT = 10;
+
+// The dwc npcs give a quest of this category that sends the avatar into the first dwc
+const int		DWC_QUEST_CATEGORY = 20;
+const unsigned int	DWC_QUEST_FIRST_DWC = 1;

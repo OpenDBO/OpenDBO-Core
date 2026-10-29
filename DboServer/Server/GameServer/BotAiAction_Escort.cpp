@@ -8,6 +8,7 @@
 CBotAiAction_Escort::CBotAiAction_Escort(CNpc* pBot)
 	: CBotAiAction(pBot, BOTCONTROL_ACTION_DIRECT_PLAY, "BOTCONTROL_ACTION_DIRECT_PLAY")
 {
+	m_bStartPending = false;
 	m_eEscortType = INVALID_ESCORT_TYPE;
 	m_fRadius = 5.0f;
 	m_bRunMode = false;
@@ -39,7 +40,14 @@ bool CBotAiAction_Escort::AttachControlScriptNode(CControlScriptNode* pControlSc
 
 void CBotAiAction_Escort::OnEnter()
 {
-	GetBot()->GetEscortManager()->Clear();
+	// the quest that sends the event this scene waited for starts the escort right after it (e.g. dwc 2 turtle, quest 13105),
+	// so the start can come before this action runs: keep those targets and start on the first update
+	CEscortManager* pEscortManager = GetBot()->GetEscortManager();
+
+	if (pEscortManager->GetTargetCount() > 0 && pEscortManager->GetEscortType() == m_eEscortType)
+		m_bStartPending = true;
+	else
+		pEscortManager->Clear();
 }
 
 void CBotAiAction_Escort::OnExit()
@@ -49,6 +57,12 @@ void CBotAiAction_Escort::OnExit()
 
 int CBotAiAction_Escort::OnUpdate(DWORD dwTickDiff, float fMultiple)
 {
+	if (m_bStartPending)
+	{
+		m_bStartPending = false;
+		return StartEscort();
+	}
+
 	return m_status;
 }
 
@@ -60,16 +74,24 @@ int CBotAiAction_Escort::OnObjectMsg(CObjectMsg* pObjMsg) //on retail npc-server
 	CObjMsg_StartEscort* pMsg = check_cast<CObjMsg_StartEscort *>(pObjMsg);
 	if (!pMsg)
 		return m_status;
-	
+
 	if (pMsg->m_byEscortType != m_eEscortType)
 		return m_status;
-	
+
+	m_bStartPending = false;
+
+	return StartEscort();
+}
+
+int CBotAiAction_Escort::StartEscort()
+{
 	if (m_eEscortType == ESCORT_TYPE_TARGET_FOLLOW)
 	{
 		CBotAiState* pCurState = GetBot()->GetBotController()->GetCurrentState();
+
 		if (pCurState == NULL)
 			return m_status;
-		
+
 		CBotAiAction_EscortFollow* pEscortFollow = new CBotAiAction_EscortFollow(GetBot(), m_vDestLoc, m_fRadius, m_bRunMode, m_eventID);
 		if (pCurState->AddSubControlQueue(pEscortFollow, true))
 		{

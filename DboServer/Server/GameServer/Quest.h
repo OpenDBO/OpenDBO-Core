@@ -66,6 +66,8 @@ public:
 
 	void									LeaveWorld(bool bLogout = false, bool bLeaveTMQ = false);
 
+	void									ResetQuestRange(QUESTID tMin, QUESTID tMax); // drop and forget the quests tMin <= id < tMax, e.g. the system quests of a repeatable dungeon
+
 	bool									CheckQuestCounter(QUESTID tId);
 
 	void									UpdateQuestCounter(bool bIncrease, QUESTID tId);
@@ -96,6 +98,7 @@ public:
 	bool									HasBeenClearQuest( QUESTID tId );
 	void									SetClearQuest( QUESTID tId );
 	void									UnsetClearQuest(QUESTID tId);
+	DWORD									GetClearQuestCount();
 
 
 //QUEST INVENTORY

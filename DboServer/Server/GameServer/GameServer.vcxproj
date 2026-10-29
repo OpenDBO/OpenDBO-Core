@@ -111,6 +111,7 @@
     <ClCompile Include="AISNodeState_Wander.cpp" />
     <ClCompile Include="battle.cpp" />
     <ClCompile Include="BattleDungeon.cpp" />
+    <ClCompile Include="DwcDungeon.cpp" />
     <ClCompile Include="BotAiAction.cpp" />
     <ClCompile Include="BotAiAction_AddMob.cpp" />
     <ClCompile Include="BotAiAction_AIS_SendEventToTqs.cpp" />
@@ -650,6 +651,11 @@
     <ClCompile Include="WpsNodeCondition_CCBD_check_run_state.cpp" />
     <ClCompile Include="WpsNodeAction_CCBD_exec_pattern.cpp" />
     <ClCompile Include="WpsNodeAction_CCBD_Leave.cpp" />
+    <ClCompile Include="WpsNodeAction_DWC.cpp" />
+    <ClCompile Include="WpsNodeAction_DWC_wait_user.cpp" />
+    <ClCompile Include="WpsNodeAction_DWC_reward.cpp" />
+    <ClCompile Include="WpsNodeAction_DWC_fail.cpp" />
+    <ClCompile Include="WpsNodeAction_DWC_leave.cpp" />
     <ClCompile Include="WpsNodeCondition_CCBD_pattern.cpp" />
     <ClCompile Include="WpsNodeAction_CCBD_register_direct_play.cpp" />
     <ClCompile Include="WpsNodeAction_CCBD_reward.cpp" />
@@ -730,6 +736,11 @@
     <ClCompile Include="WpsScriptAlgoAction_CCBD.cpp" />
     <ClCompile Include="WpsScriptAlgoAction_CCBD_exec_pattern.cpp" />
     <ClCompile Include="WpsScriptAlgoAction_CCBD_Leave.cpp" />
+    <ClCompile Include="WpsScriptAlgoAction_DWC.cpp" />
+    <ClCompile Include="WpsScriptAlgoAction_DWC_wait_user.cpp" />
+    <ClCompile Include="WpsScriptAlgoAction_DWC_reward.cpp" />
+    <ClCompile Include="WpsScriptAlgoAction_DWC_fail.cpp" />
+    <ClCompile Include="WpsScriptAlgoAction_DWC_leave.cpp" />
     <ClCompile Include="WpsScriptAlgoAction_CCBD_register_direct_play.cpp" />
     <ClCompile Include="WpsScriptAlgoAction_CCBD_reward.cpp" />
     <ClCompile Include="WpsScriptAlgoAction_CCBD_stage.cpp" />
@@ -779,6 +790,7 @@
     <ClInclude Include="ApplyAiFunc.h" />
     <ClInclude Include="battle.h" />
     <ClInclude Include="BattleDungeon.h" />
+    <ClInclude Include="DwcDungeon.h" />
     <ClInclude Include="BotAiAction.h" />
     <ClInclude Include="BotAiAction_AddMob.h" />
     <ClInclude Include="BotAiAction_AIS_SendEventToTqs.h" />
@@ -1329,6 +1341,11 @@
     <ClInclude Include="WpsNodeCondition_CCBD_check_run_state.h" />
     <ClInclude Include="WpsNodeAction_CCBD_exec_pattern.h" />
     <ClInclude Include="WpsNodeAction_CCBD_Leave.h" />
+    <ClInclude Include="WpsNodeAction_DWC.h" />
+    <ClInclude Include="WpsNodeAction_DWC_wait_user.h" />
+    <ClInclude Include="WpsNodeAction_DWC_reward.h" />
+    <ClInclude Include="WpsNodeAction_DWC_fail.h" />
+    <ClInclude Include="WpsNodeAction_DWC_leave.h" />
     <ClInclude Include="WpsNodeCondition_CCBD_pattern.h" />
     <ClInclude Include="WpsNodeAction_CCBD_register_direct_play.h" />
     <ClInclude Include="WpsNodeAction_CCBD_reward.h" />
@@ -1409,6 +1426,11 @@
     <ClInclude Include="WpsScriptAlgoAction_CCBD.h" />
     <ClInclude Include="WpsScriptAlgoAction_CCBD_exec_pattern.h" />
     <ClInclude Include="WpsScriptAlgoAction_CCBD_Leave.h" />
+    <ClInclude Include="WpsScriptAlgoAction_DWC.h" />
+    <ClInclude Include="WpsScriptAlgoAction_DWC_wait_user.h" />
+    <ClInclude Include="WpsScriptAlgoAction_DWC_reward.h" />
+    <ClInclude Include="WpsScriptAlgoAction_DWC_fail.h" />
+    <ClInclude Include="WpsScriptAlgoAction_DWC_leave.h" />
     <ClInclude Include="WpsScriptAlgoAction_CCBD_register_direct_play.h" />
     <ClInclude Include="WpsScriptAlgoAction_CCBD_reward.h" />
     <ClInclude Include="WpsScriptAlgoAction_CCBD_stage.h" />

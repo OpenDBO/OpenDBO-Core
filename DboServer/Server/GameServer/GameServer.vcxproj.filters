@@ -331,6 +331,9 @@
     <Filter Include="Dungeon\CCBD">
       <UniqueIdentifier>{a0cc2793-33e2-4f68-bc9c-e245a4b52788}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Dungeon\DWC">
+      <UniqueIdentifier>{a5461de3-f17a-49c2-a594-098b25d4de0f}</UniqueIdentifier>
+    </Filter>
     <Filter Include="SCRIPT\WPS">
       <UniqueIdentifier>{451a4cd9-6aa2-4991-96bd-5eda437e0cd2}</UniqueIdentifier>
     </Filter>
@@ -484,11 +487,17 @@
     <Filter Include="SCRIPT\WPS\Node\Action\CCBD">
       <UniqueIdentifier>{18ed46b2-5010-4c51-9465-b716453f4dc7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SCRIPT\WPS\Node\Action\DWC">
+      <UniqueIdentifier>{4dbbbe9a-bc14-4f55-82fd-06d3cde3a6ce}</UniqueIdentifier>
+    </Filter>
     <Filter Include="SCRIPT\WPS\Node\Condition\CCBD">
       <UniqueIdentifier>{1ce9ec3f-e219-48ef-8a46-28ba0177b0b6}</UniqueIdentifier>
     </Filter>
     <Filter Include="SCRIPT\WPS\ALGO\Action\CCBD">
       <UniqueIdentifier>{6e257afd-cbe1-4780-9fa9-0989e1ab190a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SCRIPT\WPS\ALGO\Action\DWC">
+      <UniqueIdentifier>{6759baf6-03eb-4944-927b-f79c3e05ff2c}</UniqueIdentifier>
     </Filter>
     <Filter Include="SCRIPT\WPS\ALGO\Condition\CCBD">
       <UniqueIdentifier>{a8ef58f1-8f51-4764-b887-e9d0be4e581f}</UniqueIdentifier>
@@ -2423,6 +2432,39 @@
     </ClCompile>
     <ClCompile Include="BattleDungeon.cpp">
       <Filter>Dungeon\CCBD</Filter>
+    </ClCompile>
+    <ClCompile Include="DwcDungeon.cpp">
+      <Filter>Dungeon\DWC</Filter>
+    </ClCompile>
+    <ClCompile Include="WpsNodeAction_DWC.cpp">
+      <Filter>SCRIPT\WPS\Node\Action\DWC</Filter>
+    </ClCompile>
+    <ClCompile Include="WpsNodeAction_DWC_wait_user.cpp">
+      <Filter>SCRIPT\WPS\Node\Action\DWC</Filter>
+    </ClCompile>
+    <ClCompile Include="WpsNodeAction_DWC_reward.cpp">
+      <Filter>SCRIPT\WPS\Node\Action\DWC</Filter>
+    </ClCompile>
+    <ClCompile Include="WpsNodeAction_DWC_fail.cpp">
+      <Filter>SCRIPT\WPS\Node\Action\DWC</Filter>
+    </ClCompile>
+    <ClCompile Include="WpsNodeAction_DWC_leave.cpp">
+      <Filter>SCRIPT\WPS\Node\Action\DWC</Filter>
+    </ClCompile>
+    <ClCompile Include="WpsScriptAlgoAction_DWC.cpp">
+      <Filter>SCRIPT\WPS\ALGO\Action\DWC</Filter>
+    </ClCompile>
+    <ClCompile Include="WpsScriptAlgoAction_DWC_wait_user.cpp">
+      <Filter>SCRIPT\WPS\ALGO\Action\DWC</Filter>
+    </ClCompile>
+    <ClCompile Include="WpsScriptAlgoAction_DWC_reward.cpp">
+      <Filter>SCRIPT\WPS\ALGO\Action\DWC</Filter>
+    </ClCompile>
+    <ClCompile Include="WpsScriptAlgoAction_DWC_fail.cpp">
+      <Filter>SCRIPT\WPS\ALGO\Action\DWC</Filter>
+    </ClCompile>
+    <ClCompile Include="WpsScriptAlgoAction_DWC_leave.cpp">
+      <Filter>SCRIPT\WPS\ALGO\Action\DWC</Filter>
     </ClCompile>
     <ClCompile Include="WpsAlgoStageFailed.cpp">
       <Filter>SCRIPT\WPS\ALGO\Stage\Parent</Filter>
@@ -4435,6 +4477,39 @@
     </ClInclude>
     <ClInclude Include="BattleDungeon.h">
       <Filter>Dungeon\CCBD</Filter>
+    </ClInclude>
+    <ClInclude Include="DwcDungeon.h">
+      <Filter>Dungeon\DWC</Filter>
+    </ClInclude>
+    <ClInclude Include="WpsNodeAction_DWC.h">
+      <Filter>SCRIPT\WPS\Node\Action\DWC</Filter>
+    </ClInclude>
+    <ClInclude Include="WpsNodeAction_DWC_wait_user.h">
+      <Filter>SCRIPT\WPS\Node\Action\DWC</Filter>
+    </ClInclude>
+    <ClInclude Include="WpsNodeAction_DWC_reward.h">
+      <Filter>SCRIPT\WPS\Node\Action\DWC</Filter>
+    </ClInclude>
+    <ClInclude Include="WpsNodeAction_DWC_fail.h">
+      <Filter>SCRIPT\WPS\Node\Action\DWC</Filter>
+    </ClInclude>
+    <ClInclude Include="WpsNodeAction_DWC_leave.h">
+      <Filter>SCRIPT\WPS\Node\Action\DWC</Filter>
+    </ClInclude>
+    <ClInclude Include="WpsScriptAlgoAction_DWC.h">
+      <Filter>SCRIPT\WPS\ALGO\Action\DWC</Filter>
+    </ClInclude>
+    <ClInclude Include="WpsScriptAlgoAction_DWC_wait_user.h">
+      <Filter>SCRIPT\WPS\ALGO\Action\DWC</Filter>
+    </ClInclude>
+    <ClInclude Include="WpsScriptAlgoAction_DWC_reward.h">
+      <Filter>SCRIPT\WPS\ALGO\Action\DWC</Filter>
+    </ClInclude>
+    <ClInclude Include="WpsScriptAlgoAction_DWC_fail.h">
+      <Filter>SCRIPT\WPS\ALGO\Action\DWC</Filter>
+    </ClInclude>
+    <ClInclude Include="WpsScriptAlgoAction_DWC_leave.h">
+      <Filter>SCRIPT\WPS\ALGO\Action\DWC</Filter>
     </ClInclude>
     <ClInclude Include="WpsAlgoStageFailed.h">
       <Filter>SCRIPT\WPS\ALGO\Stage\Parent</Filter>

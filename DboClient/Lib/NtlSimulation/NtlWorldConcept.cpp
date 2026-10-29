@@ -49,6 +49,7 @@
 #include "NtlWorldConceptFreePvpZone.h"
 #include "NtlWorldConceptDBScramble.h"
 #include "NtlWorldConceptCCBD.h"
+#include "NtlWorldConceptDWC.h"
 
 
 
@@ -210,6 +211,9 @@ void CNtlWorldConcept::AddWorldPlayConcept( EWorldPlayConcept ePlayConcept )
 			break;
 		case WORLD_PLAY_CCBD:
 			pController = NTL_NEW CNtlWorldConceptCCBD();
+			break;
+		case WORLD_PLAY_DWC:
+			pController = NTL_NEW CNtlWorldConceptDWC();
 			break;
 		default:
 			NTL_ASSERTFAIL("CNtlWorldConcept::AddWorldPlayConcept : find not id !!!");

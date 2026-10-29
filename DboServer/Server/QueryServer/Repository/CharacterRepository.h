@@ -39,6 +39,10 @@ public:
 	void						UpsertSkyDungeonLimit(CHARACTERID charId, BYTE byEnterCount, DWORD dwEnterDay);
 	void						DeleteSkyDungeonLimit(CHARACTERID charId);
 
+	void						UpsertDwcLimit(CHARACTERID charId, BYTE byEnterCount, DWORD dwEnterDay);
+	void						UpsertDwcScenario(CHARACTERID charId, TBLIDX dwcTblidx, BYTE byMissionIndex, BYTE byRewardGrade, WORD wClearCount);
+	void						DeleteDwcData(CHARACTERID charId);
+
 	void						UpdateMoney(CHARACTERID charId, DWORD money);
 	void						UpdateSpPoint(DWORD sp, CHARACTERID charId);
 	void						UpdateLevelExpSp(BYTE byLevel, DWORD dwExp, DWORD dwSp, CHARACTERID charId);

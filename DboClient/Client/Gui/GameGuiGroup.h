@@ -125,6 +125,14 @@ class CPlayerTitleGui;
 class CCCBDBoardGui;
 class CCCBDNotifyGui;
 class CCCBDRewardGui;
+class CDwcFieldListGui;
+class CDwcChallengeGui;
+class CDwcRewardGui;
+class CDwcHeroInfoGui;
+class CDwcScenarioInfoGui;
+class CDwcScenarioMainGui;
+class CDwcPrologGui;
+class CDwcBackGroundGui;
 class CHoiPoiMixRecipeGui;
 class CHoiPoiMixCraftGui;
 
@@ -258,6 +266,16 @@ private:
 	CCCBDBoardGui*				m_pCCBDBoardGui;
 	CCCBDNotifyGui*				m_pCCBDNotifyGui;
 	CCCBDRewardGui*				m_pCCBDRewardGui;
+
+	// Dragon World Challenge
+	CDwcFieldListGui*			m_pDwcFieldListGui;
+	CDwcChallengeGui*			m_pDwcChallengeGui;
+	CDwcRewardGui*				m_pDwcRewardGui;
+	CDwcHeroInfoGui*			m_pDwcHeroInfoGui;
+	CDwcScenarioInfoGui*		m_pDwcScenarioInfoGui;
+	CDwcScenarioMainGui*		m_pDwcScenarioMainGui;
+	CDwcPrologGui*				m_pDwcPrologGui;
+	CDwcBackGroundGui*			m_pDwcBackGroundGui;
 
 	// Mascot
 	CMascotGui* m_pMascotGui;

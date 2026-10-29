@@ -373,6 +373,8 @@ public:
 
 	CScriptAlgoObject*		GetFirstScript(eSSD_SCRIPT_TYPE scripType);
 
+	const std::map<DWORD, CScriptAlgoObject*>&	GetScriptMap() { return m_ScriptMap; }
+
 
 private:
 

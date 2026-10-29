@@ -723,15 +723,21 @@ VOID CMDStaticBox_Generic::OnMove(int nX,int nY)
 
 VOID CMDStaticBox_Generic::OnPaint(VOID)
 {
+	CRectangle* pClippingRect = NULL;
+	if( m_pMDStaticBox->IsClipped() )
+	{
+		pClippingRect = m_pMDStaticBox->GetClippingRect();
+	}
+
 	std::list<CSurface>::iterator it;
 
 	for( it = m_listSurface.begin() ; it != m_listSurface.end() ; ++it )
 	{
-		g_GuiRenderer.RenderQueue( &(*it).m_SnapShot, (*it).m_pTexture, m_pMDStaticBox->GetRenderTop() );
+		g_GuiRenderer.RenderQueue( &(*it).m_SnapShot, (*it).m_pTexture, m_pMDStaticBox->GetRenderTop(), 0.0f, pClippingRect );
 	}
 
 	if( m_TextSurface.m_pTexture )
-		g_GuiRenderer.RenderQueue( &m_TextSurface.m_SnapShot, m_TextSurface.m_pTexture, m_pMDStaticBox->GetRenderTop() );
+		g_GuiRenderer.RenderQueue( &m_TextSurface.m_SnapShot, m_TextSurface.m_pTexture, m_pMDStaticBox->GetRenderTop(), 0.0f, pClippingRect );
 }
 
 VOID CMDStaticBox_Generic::OnSetAlpha( RwUInt8 ucAlpha )

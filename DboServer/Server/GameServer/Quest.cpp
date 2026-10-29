@@ -1020,6 +1020,9 @@ void CQuest::SetClearQuest( QUESTID tId )
 	int nShift = (tId % eCOMPLETE_QUEST_QUEST_PER_BYTE) * eCOMPLETE_QUEST_STATE_MAX;
 
 	BIT_FLAG_SET(m_stCQInfo.abyQCInfo[tId / eCOMPLETE_QUEST_QUEST_PER_BYTE], eCOMPLETE_QUEST_STATE_CLEAR << nShift);
+
+	if (m_pkOwner)
+		m_pkOwner->RefreshDwcConditions(true); // completed quests are a dwc admission condition
 }
 
 void CQuest::UnsetClearQuest(QUESTID tId)
@@ -1027,6 +1030,19 @@ void CQuest::UnsetClearQuest(QUESTID tId)
 	int nShift = (tId % eCOMPLETE_QUEST_QUEST_PER_BYTE) * eCOMPLETE_QUEST_STATE_MAX;
 
 	BIT_FLAG_UNSET(m_stCQInfo.abyQCInfo[tId / eCOMPLETE_QUEST_QUEST_PER_BYTE], eCOMPLETE_QUEST_STATE_CLEAR << nShift);
+}
+
+DWORD CQuest::GetClearQuestCount()
+{
+	DWORD dwCount = 0;
+
+	for (int i = 0; i < _countof(m_stCQInfo.abyQCInfo); i++)
+	{
+		for (BYTE byBits = m_stCQInfo.abyQCInfo[i]; byBits; byBits &= byBits - 1)
+			dwCount++;
+	}
+
+	return dwCount;
 }
 
 
@@ -2033,6 +2049,24 @@ WORD CQuest::ProgressTsEntity(CNtlTSEntity* pEntity, NTL_TS_T_ID tId, CQuestProg
 			qinfo->uData.sQInfoV0.tgExcCGroup = ((CNtlTSGroup*)pRegQInfo->GetParent()->GetParent())->GetID();
 			qinfo->uData.sQInfoV0.tcQuestInfo = ((CNtlTSCont*)pRegQInfo->GetParent())->GetID();
 
+			// the dwc npc quest ("I will only guide you to the first entrance") sends the avatar into the first dwc,
+			// the quest clears on the event 660 of the dwc script
+			CNtlTSTrigger* pTrig = (CNtlTSTrigger*)g_pTriggerManager->FindQuestFromTS(qinfo->tId);
+			if (pTrig && pTrig->GetQC() == DWC_QUEST_CATEGORY)
+			{
+				WORD wResultCode = g_pDungeonManager->StartQuestDwc(m_pkOwner, DWC_QUEST_FIRST_DWC);
+				if (wResultCode != GAME_SUCCESS)
+				{
+					CNtlPacket packet(sizeof(sGU_DWC_ENTER_RES));
+					sGU_DWC_ENTER_RES* res = (sGU_DWC_ENTER_RES*)packet.GetPacketData();
+					res->wOpCode = GU_DWC_ENTER_RES;
+					res->wResultCode = wResultCode;
+					res->hNpc = INVALID_HOBJECT;
+					res->dwcTblidx = DWC_QUEST_FIRST_DWC;
+					packet.SetPacketLen(sizeof(sGU_DWC_ENTER_RES));
+					m_pkOwner->SendPacket(&packet);
+				}
+			}
 		}
 		break;
 		case DBO_ACT_TYPE_ID_ACT_DIR:
@@ -2399,6 +2433,8 @@ WORD CQuest::ProgressTsEntity(CNtlTSEntity* pEntity, NTL_TS_T_ID tId, CQuestProg
 			CDboTSActEscort* pAct = (CDboTSActEscort*)pEntity;
 
 			CNpc* pNpc = m_pkOwner->GetCurWorld()->FindNpc(pAct->GetNPCTableIndex());
+
+
 			if (pNpc == NULL || !pNpc->IsInitialized())
 			{
 				return RESULT_FAIL;
@@ -2408,6 +2444,7 @@ WORD CQuest::ProgressTsEntity(CNtlTSEntity* pEntity, NTL_TS_T_ID tId, CQuestProg
 			{
 				WORD wTemp = RESULT_SUCCESS;
 				pNpc->GetEscortManager()->AddTarget(pAct->IsTSShare(), pAct->GetEscortType(), m_pkOwner->GetID(), m_pkOwner->GetCharID(), m_pkOwner->GetPartyID(), TS_TYPE_QUEST_CS, tId, &wTemp);
+
 
 				if (wTemp != RESULT_SUCCESS)
 				{
@@ -2905,6 +2942,51 @@ void CQuest::LeaveWorld(bool bLogout/* = false*/, bool bLeaveTMQ/* = false*/)
 	}
 
 	m_vErasedDungeonQuestIDs.clear();
+}
+
+void CQuest::ResetQuestRange(QUESTID tMin, QUESTID tMax)
+{
+	for (std::map<QUESTID, CQuestProgress*>::iterator it = m_pMapQuestInProgress.begin(); it != m_pMapQuestInProgress.end(); )
+	{
+		CQuestProgress* pQuest = it->second;
+		if (pQuest == NULL || it->first < tMin || it->first >= tMax)
+		{
+			++it;
+			continue;
+		}
+
+		CNtlPacket packet(sizeof(sGU_QUEST_GIVEUP_RES));
+		sGU_QUEST_GIVEUP_RES * res = (sGU_QUEST_GIVEUP_RES *)packet.GetPacketData();
+		res->wOpCode = GU_QUEST_GIVEUP_RES;
+		res->tId = it->first;
+		res->wResultCode = GAME_SUCCESS;
+		m_pkOwner->SendPacket(&packet);
+
+		pQuest->RunGroup(NTL_TS_EXCEPT_GIVEUP_ID);	//run give up group
+
+		UpdateQuestCounter(false, it->first);
+
+		it = m_pMapQuestInProgress.erase(it);
+
+		RemoveSlotID(pQuest->GetProgressInfo()->bySlotId);
+
+		SAFE_DELETE(pQuest);
+	}
+
+	for (QUESTID qId = tMin; qId < tMax; qId++)
+	{
+		if (HasBeenClearQuest(qId))
+			UnsetClearQuest(qId);
+	}
+
+	// the client drops its quests tMin <= id < tMax and forgets they were completed
+	CNtlPacket packet(sizeof(sGU_QUEST_RESET_NFY));
+	sGU_QUEST_RESET_NFY * res = (sGU_QUEST_RESET_NFY *)packet.GetPacketData();
+	res->wOpCode = GU_QUEST_RESET_NFY;
+	res->startResetQID = tMin;
+	res->endResetQID = tMax;
+	packet.SetPacketLen(sizeof(sGU_QUEST_RESET_NFY));
+	m_pkOwner->SendPacket(&packet);
 }
 
 bool CQuest::CheckQuestCounter(QUESTID tId)

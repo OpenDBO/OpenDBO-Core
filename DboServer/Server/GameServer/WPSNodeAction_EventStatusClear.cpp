@@ -6,6 +6,7 @@
 CWPSNodeAction_EventStatusClear::CWPSNodeAction_EventStatusClear(const char* lpszName)
 :CControlScriptNodeAction(WPS_NODE_ACTION_EVENTSTATUS_CLEAR, lpszName)
 {
+	m_byGroup = INVALID_BYTE;
 }
 
 CWPSNodeAction_EventStatusClear::~CWPSNodeAction_EventStatusClear()
@@ -23,6 +24,11 @@ bool CWPSNodeAction_EventStatusClear::AddParam(CControlScriptNodeParam_Number* p
 {
 	const char* name = pNode->GetName();
 
+	if (_stricmp(name, "group") == 0)
+	{
+		m_byGroup = (BYTE)pNode->GetValue();
+		return CControlScriptNode::AddParam(pNode);
+	}
 
 	printf("CWPSNodeAction_EventStatusClear: [%s] not exist \n", name);
 	return false;

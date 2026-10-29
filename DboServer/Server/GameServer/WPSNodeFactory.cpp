@@ -59,6 +59,11 @@
 #include "WpsNodeAction_CCBD_stage_clear.h"
 #include "WpsNodeAction_CCBD_reward.h"
 #include "WpsNodeAction_CCBD_Leave.h"
+#include "WpsNodeAction_DWC.h"
+#include "WpsNodeAction_DWC_wait_user.h"
+#include "WpsNodeAction_DWC_reward.h"
+#include "WpsNodeAction_DWC_fail.h"
+#include "WpsNodeAction_DWC_leave.h"
 
 #include "WPSNodeCondition_AllPlayerFaint.h"
 #include "WPSNodeCondition_AreaEnter.h"
@@ -333,6 +338,26 @@ CControlScriptNodeAction* ActionNodeCreator_CWPSNodeAction_CCBD_Leave(const char
 {
 	return new CWpsNodeAction_CCBD_Leave(lpszNodeName);
 }
+CControlScriptNodeAction* ActionNodeCreator_CWPSNodeAction_DWC(const char* lpszNodeName)
+{
+	return new CWpsNodeAction_DWC(lpszNodeName);
+}
+CControlScriptNodeAction* ActionNodeCreator_CWPSNodeAction_DWC_wait_user(const char* lpszNodeName)
+{
+	return new CWpsNodeAction_DWC_wait_user(lpszNodeName);
+}
+CControlScriptNodeAction* ActionNodeCreator_CWPSNodeAction_DWC_reward(const char* lpszNodeName)
+{
+	return new CWpsNodeAction_DWC_reward(lpszNodeName);
+}
+CControlScriptNodeAction* ActionNodeCreator_CWPSNodeAction_DWC_fail(const char* lpszNodeName)
+{
+	return new CWpsNodeAction_DWC_fail(lpszNodeName);
+}
+CControlScriptNodeAction* ActionNodeCreator_CWPSNodeAction_DWC_leave(const char* lpszNodeName)
+{
+	return new CWpsNodeAction_DWC_leave(lpszNodeName);
+}
 
 
 
@@ -508,6 +533,12 @@ inline void Initialize_2()
 	s_actionMap_2["CCBD stage clear"] = ActionNodeCreator_CWPSNodeAction_CCBD_stage_clear;
 	s_actionMap_2["CCBD reward"] = ActionNodeCreator_CWPSNodeAction_CCBD_reward;
 	s_actionMap_2["CCBD leave"] = ActionNodeCreator_CWPSNodeAction_CCBD_Leave;
+
+	s_actionMap_2["DWC"] = ActionNodeCreator_CWPSNodeAction_DWC;
+	s_actionMap_2["DWC wait user"] = ActionNodeCreator_CWPSNodeAction_DWC_wait_user;
+	s_actionMap_2["DWC reward"] = ActionNodeCreator_CWPSNodeAction_DWC_reward;
+	s_actionMap_2["DWC fail"] = ActionNodeCreator_CWPSNodeAction_DWC_fail;
+	s_actionMap_2["DWC leave"] = ActionNodeCreator_CWPSNodeAction_DWC_leave;
 
 	s_conditionMap_2["all player faint"] = ConditionNodeCreator_CWPSNodeCondition_AllPlayerFaint;
 	s_conditionMap_2["area enter"] = ConditionNodeCreator_CWPSNodeCondition_AreaEnter;

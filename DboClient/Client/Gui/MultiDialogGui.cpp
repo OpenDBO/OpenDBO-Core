@@ -415,7 +415,8 @@ VOID CMultiDialogGui::HandleEvents( RWS::CMsg& msg )
 		RwUInt64	dwMultiDialogJobFlag = NPC_FUNC_FLAG_MERCHANT | NPC_FUNC_FLAG_GUARD | NPC_FUNC_FLAG_SKILL_TRAINER | NPC_FUNC_FLAG_BANKER |
 			NPC_FUNC_FLAG_GUILD_MANAGER | NPC_FUNC_FLAG_SUMMON_PET | NPC_FUNC_FLAG_TIME_QUEST | NPC_FUNC_FLAG_PORTAL |
 			NPC_FUNC_FLAG_BUDOHSI_MERCHANT | NPC_FUNC_FLAG_GAMBLE_MERCHANT |
-			NPC_FUNC_FLAG_DOJO_MANAGER | NPC_FUNC_FLAG_DOJO_MERCHANT | NPC_FUNC_FLAG_BATTLE_DUNGEON_MANAGER | NPC_FUNC_FLAG_ITEM_UPGRADE | NPC_FUNC_FLAG_ITEM_EXCHANGE;
+			NPC_FUNC_FLAG_DOJO_MANAGER | NPC_FUNC_FLAG_DOJO_MERCHANT | NPC_FUNC_FLAG_BATTLE_DUNGEON_MANAGER | NPC_FUNC_FLAG_ITEM_UPGRADE | NPC_FUNC_FLAG_ITEM_EXCHANGE |
+			NPC_FUNC_FLAG_DWC_TELEPORT;
 		RwBool		bEnableQuest = FALSE;	
 
 		if ( GetNtlSLGlobal()->GetSobAvatar()->GetQuestAgency() == NULL || GetNtlSLGlobal()->GetSobAvatar()->GetPCTriggerAgency() == NULL)
@@ -480,6 +481,7 @@ VOID CMultiDialogGui::HandleEvents( RWS::CMsg& msg )
 			else if (pTableData->byJob == NPC_JOB_DWC_TELEPORT) // is dwc porter?
 			{
 				m_pCommandList->RegistCommand(CCommandList::DWC_COMMAND);
+				m_pCommandList->RegistCommand(CCommandList::DWC_INFO_COMMAND);
 			}
 			else if (pTableData->byJob == NPC_JOB_BATTLE_DUNGEON_MANAGER)
 			{
@@ -1504,6 +1506,11 @@ VOID CCommandList::RegistCommand( RwInt32 nID, RwUInt8 ucJob /* = 0xFF  */)
 			wstrText = GetDisplayStringManager()->GetString("DST_DWC_FIELD_ENTER_COMMAND");
 		break;
 
+		case DWC_INFO_COMMAND:
+			surface = GetNtlGuiManager()->GetSurfaceManager()->GetSurface("MultiDialog.srf", "srfHoipoiMixJobReset");
+			wstrText = GetDisplayStringManager()->GetString("DST_DWC_INFO_COMMAND");
+		break;
+
 
 		case SMITH_CHANGE_BATTLE_ATTRIBUTE_COMMAND:
 		{
@@ -2299,6 +2306,20 @@ VOID CCommandNode::OnClickCommand( gui::CComponent* pComponent )
 				{
 					GetDialogManager()->CloseDialog(DIALOG_MULTIDIALOG, FALSE);
 					CDboEventGenerator::NPCDialogOpen(hSerialID, DIALOG_SMITHY);
+				}
+				break;
+				case CCommandList::DWC_COMMAND:
+				{
+					// tw: asks the server for the dwc list, the answer opens it
+					GetDialogManager()->CloseDialog(DIALOG_MULTIDIALOG, FALSE);
+					CDboEventGenerator::NPCDialogOpen(hSerialID, DIALOG_DWC_FIELDLIST);
+				}
+				break;
+				case CCommandList::DWC_INFO_COMMAND:
+				{
+					GetDialogManager()->CloseDialog(DIALOG_MULTIDIALOG, FALSE);
+					Logic_CancelNpcFacing();
+					GetDialogManager()->OpenDialog(DIALOG_DWC_CHALLENGE);
 				}
 				break;
 				default:

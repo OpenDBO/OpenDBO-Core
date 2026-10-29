@@ -14,6 +14,7 @@
 #include "NtlRankBattle.h"
 #include "NtlMascot.h"
 #include "NtlEventDef.h"
+#include "NtlDWC.h"
 
 
 class CAccountCache
@@ -135,6 +136,7 @@ public:
 	void						SendMascotLoadRes();
 	void						SendItemCoolTimeLoadRes();
 	void						SendPortalLoadRes();
+	void						SendDwcLoadRes();
 
 	void						SendBankItemLoad();
 
@@ -176,6 +178,9 @@ public:
 	JOINID						GetJoinID() { return m_sPcData.wJoinID; }
 
 	void						SetSkyDungeonLimit(BYTE byEnterCount, DWORD dwEnterDay) { m_sPcData.bySkyDungeonEnterCount = byEnterCount; m_sPcData.dwSkyDungeonEnterDay = dwEnterDay; }
+
+	void						SetDwcLimit(BYTE byEnterCount, DWORD dwEnterDay) { m_sPcData.byDWCLimitCount = byEnterCount; m_sPcData.dwDWCEnterDay = dwEnterDay; }
+	void						SetDwcMission(TBLIDX dwcTblidx, BYTE byMissionIndex, BYTE byRewardGrade, WORD wClearCount);
 
 	void						StoreRunTimeData(DWORD dwExp, TBLIDX worldIdx, WORLDID worldId, sVECTOR3& rLoc, sVECTOR3& rDir);
 	void						SavePcData(const sPC_DATA& rPcData);
@@ -342,7 +347,9 @@ private:
 
 	std::set<PORTALID>						m_setPortalPoints;
 
-	std::map<MAILID, sMAIL_DATA*>			m_mapMail; 
+	std::map<MAILID, sMAIL_DATA*>			m_mapMail;
+
+	std::map<TBLIDX, sDWC_SCENARIO_DATA>	m_mapDwcScenario; //first = dwcTblidx
 
 	DBOTIME									m_tNextSkillReset;
 

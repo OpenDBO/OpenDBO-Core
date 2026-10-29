@@ -438,6 +438,12 @@ struct sMsgBoxData
 			RwUInt32			uiQuestTitle;
 		};
 
+		struct
+		{
+			SERIAL_HANDLE		hNpc;
+			TBLIDX				dwcTblidx;
+		} sDwcEnter;									// DST_DWC_ENTER_QUESTION
+
 		VOID*					pData;
 
 		RwUInt8					ucData[256];			// Reserved;

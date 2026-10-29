@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "ScriptAlgoAction_FlashPlay.h"
 #include "WPSNodeAction_FlashPlay.h"
+#include "CPlayer.h"
 
 
 CWpsAlgoAction_FlashPlay::CWpsAlgoAction_FlashPlay(CWpsAlgoObject* pObject) :
@@ -34,5 +35,18 @@ bool CWpsAlgoAction_FlashPlay::AttachControlScriptNode(CControlScriptNode* pCont
 
 int CWpsAlgoAction_FlashPlay::OnUpdate(DWORD dwTickDiff, float fMultiple)
 {
+	if (m_directTblidx != INVALID_TBLIDX)
+	{
+		CPlayer* pPlayer = GetOwner()->GetPlayersFirst();
+		while (pPlayer)
+		{
+			if (GetOwner()->GetWorld() && pPlayer->GetWorldID() == GetOwner()->GetWorld()->GetID())
+				pPlayer->SendDirectionFlash(m_directTblidx);
+
+			pPlayer = GetOwner()->GetPlayersNext();
+		}
+	}
+
+	m_status = COMPLETED;
 	return m_status;
 }

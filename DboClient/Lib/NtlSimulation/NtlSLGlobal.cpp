@@ -78,6 +78,9 @@ void CNtlSLGlobal::Reset(void)
 
 	m_sMascotInfo.Reset();
 
+	m_sDwcInfo.Reset();
+	m_listServerScriptEventStatus.clear();
+
 	// Gmt Reset
 	memset( &m_sGameManiaTimeInfo, 0xFF, sizeof( SGameManiaTimeInfo ) );
 

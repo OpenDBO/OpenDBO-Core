@@ -82,6 +82,7 @@ void CGameServerSession::OnLoadPcCheck(QueryResultVector & results, CHARACTERID 
 				pPlayerCache->SendItemLoadRes();
 				pPlayerCache->SendQuestItemLoadRes();
 				pPlayerCache->SendQuestCompleteLoadRes();
+				pPlayerCache->SendDwcLoadRes();
 				pPlayerCache->SendQuestProgressLoadRes();
 				pPlayerCache->SendQuickSlotLoadRes();
 				pPlayerCache->SendItemRecipeLoadRes();
@@ -5309,4 +5310,56 @@ void CGameServerSession::RecvSkyDungeonLimitedUpdateReq(CNtlPacket * pPacket, CQ
 		pCache->SetSkyDungeonLimit(req->byEnterCount, req->dwEnterDay);
 
 	g_pCharacterRepository->UpsertSkyDungeonLimit(req->charId, req->byEnterCount, req->dwEnterDay);
+}
+
+void CGameServerSession::RecvDwcLimitedUpdateReq(CNtlPacket * pPacket, CQueryServer * app)
+{
+	UNREFERENCED_PARAMETER(app);
+
+	sGQ_DWC_LIMITED_UPDATE_REQ * req = (sGQ_DWC_LIMITED_UPDATE_REQ*)pPacket->GetPacketData();
+
+	if (CPlayerCache* pCache = g_pPlayerCache->GetCharacter(req->charId))
+		pCache->SetDwcLimit(req->byEnterCount, req->dwEnterDay);
+
+	g_pCharacterRepository->UpsertDwcLimit(req->charId, req->byEnterCount, req->dwEnterDay);
+}
+
+void CGameServerSession::RecvDwcScenarioUpdateReq(CNtlPacket * pPacket, CQueryServer * app)
+{
+	UNREFERENCED_PARAMETER(app);
+
+	sGQ_DWC_SCENARIO_UPDATE_REQ * req = (sGQ_DWC_SCENARIO_UPDATE_REQ*)pPacket->GetPacketData();
+
+	if (CPlayerCache* pCache = g_pPlayerCache->GetCharacter(req->charId))
+		pCache->SetDwcMission(req->dwcTblidx, req->byMissionIndex, req->byRewardGrade, req->wClearCount);
+
+	g_pCharacterRepository->UpsertDwcScenario(req->charId, req->dwcTblidx, req->byMissionIndex, req->byRewardGrade, req->wClearCount);
+}
+
+// system mail from the game server. The attached item is created here, it does not exist yet.
+void CGameServerSession::RecvMailEventSendReq(CNtlPacket * pPacket, CQueryServer * app)
+{
+	UNREFERENCED_PARAMETER(app);
+
+	sGQ_MAIL_EVENT_SEND_REQ * req = (sGQ_MAIL_EVENT_SEND_REQ*)pPacket->GetPacketData();
+
+	DBOTIME createtime = time(NULL);
+	DBOTIME endtime = createtime + (req->byDay * 86400);
+	SYSTEMTIME ti;
+	GetLocalTime(&ti);
+
+	req->wszText[NTL_MAX_LENGTH_OF_MAIL_MESSAGE] = L'\0';
+
+	if (req->sItemData.itemNo != INVALID_TBLIDX)
+	{
+		req->sItemData.charId = req->targetCharID;
+		ITEMID itemId = g_pItemManager->CreateItem(req->sItemData);
+		g_pItemRepository->ClearOwner(itemId);
+
+		g_pMailRepository->InsertItemMail(req->targetCharID, req->bySenderType, eMAIL_TYPE_ITEM, (int)wcslen(req->wszText), req->wszText, itemId, createtime, endtime, req->byDay, ti.wYear, (BYTE)ti.wMonth, (BYTE)ti.wDay, (BYTE)ti.wHour, (BYTE)ti.wMinute, (BYTE)ti.wSecond);
+	}
+	else if (req->dwZenny > 0)
+	{
+		g_pMailRepository->InsertZennyMail(req->targetCharID, req->bySenderType, eMAIL_TYPE_ZENNY, (int)wcslen(req->wszText), req->wszText, req->dwZenny, createtime, endtime, req->byDay, ti.wYear, (BYTE)ti.wMonth, (BYTE)ti.wDay, (BYTE)ti.wHour, (BYTE)ti.wMinute, (BYTE)ti.wSecond);
+	}
 }

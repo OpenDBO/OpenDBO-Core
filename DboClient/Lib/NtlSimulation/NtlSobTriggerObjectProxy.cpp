@@ -395,6 +395,18 @@ void CNtlSobTriggerObjectProxy::SobAnimEnd(RWS::CMsg &pMsg)
 	m_fPlayTime = 0.f;
 }
 
+void CNtlSobTriggerObjectProxy::PlayAnimChain(RwUInt8 byMainState, const ANIMATION_CHAIN& listAnim)
+{
+	if (listAnim.empty())
+		return;
+
+	m_byMainState = byMainState;
+	m_AnimChain = listAnim;
+
+	m_bPlay = TRUE;
+	m_fPlayTime = 0.f;
+}
+
 void CNtlSobTriggerObjectProxy::SetPosition(const RwV3d *pPos)
 {
 	if(m_pPLObject)
