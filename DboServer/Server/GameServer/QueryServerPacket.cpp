@@ -3305,7 +3305,8 @@ void CQueryServerSession::RecvEventRewardLoadRes(CNtlPacket * pPacket)
 
 		for (BYTE i = 0; i < req->byCount; i++)
 		{
-			resInfo->aInfo[i].charId = (req->asInfo[i].charId == 0) ? pOwner->GetCharID() : req->asInfo[i].charId;
+			// char_id 0 is a reward of the whole account, the client shows those for every character
+			resInfo->aInfo[i].charId = (req->asInfo[i].charId == 0) ? INVALID_CHARACTERID : req->asInfo[i].charId;
 			resInfo->aInfo[i].eventTblidx = req->asInfo[i].eventTblidx;
 
 			// insert into players map
