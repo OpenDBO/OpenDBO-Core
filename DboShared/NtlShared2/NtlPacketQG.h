@@ -339,6 +339,8 @@ enum eOPCODE_QG
 
 	QG_PC_DWC_LOAD_RES,
 
+	QG_EVENT_REWARD_ADD_RES,
+
 	QG_OPCCODE_END_DUMMY,
 	QG_OPCODE_END = QG_OPCCODE_END_DUMMY - 1
 };
@@ -2555,6 +2557,17 @@ BEGIN_PROTOCOL(QG_PC_DWC_LOAD_RES)
 CHARACTERID				charID;
 BYTE					byScenarioCount;
 sDWC_SCENARIO_DATA		asScenario[MAX_DWC_COUNT];
+END_PROTOCOL()
+//------------------------------------------------------------------
+BEGIN_PROTOCOL(QG_EVENT_REWARD_ADD_RES)
+WORD					wResultCode;
+HOBJECT					hGm;
+CHARACTERID				gmCharId;
+BYTE					byTarget;			// eEVENT_REWARD_ADD_TARGET
+TBLIDX					eventTblidx;
+DWORD					dwCount;			// accounts given the reward
+ACCOUNTID				accountId;			// EVENT_REWARD_ADD_TARGET_CHAR: the account of the character
+WCHAR					awchCharName[NTL_MAX_SIZE_CHAR_NAME + 1];
 END_PROTOCOL()
 //------------------------------------------------------------------
 

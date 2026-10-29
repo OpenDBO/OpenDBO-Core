@@ -72,6 +72,7 @@ public:
 
 	smart_ptr<QueryResult>		GetCharIdAndAwayByName(char* nameUtf8);
 	smart_ptr<QueryResult>		GetCharIdByNameUtf8(const char* nameUtf8);
+	smart_ptr<QueryResult>		GetAccountIdByCharNameUtf8(const std::string& strNameUtf8);
 	void						UpdateIsMailAway(BOOL bIsAway, CHARACTERID charId);
 	void						InsertWarFog(CHARACTERID charId, DWORD contentsTblidx);
 

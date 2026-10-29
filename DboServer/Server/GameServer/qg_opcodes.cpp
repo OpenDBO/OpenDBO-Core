@@ -147,6 +147,7 @@ void CQG_Opcodes::BuildOpcodeList()
 	StoreOpcode(QG_MASCOT_SEAL_CLEAR_RES, "QG_MASCOT_SEAL_CLEAR_RES", PROCESS_THREADUNSAFE, &CQueryServerSession::RecvMascotSealClearRes);
 	StoreOpcode(QG_INVENTORY_SORT_RES, "QG_INVENTORY_SORT_RES", PROCESS_THREADUNSAFE, &CQueryServerSession::RecvInventorySortRes);
 	StoreOpcode(QG_PC_DWC_LOAD_RES, "QG_PC_DWC_LOAD_RES", PROCESS_THREADUNSAFE, &CQueryServerSession::RecvPcDwcLoadRes);
+	StoreOpcode(QG_EVENT_REWARD_ADD_RES, "QG_EVENT_REWARD_ADD_RES", PROCESS_THREADUNSAFE, &CQueryServerSession::RecvEventRewardAddRes);
 	
 }
 

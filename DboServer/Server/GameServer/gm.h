@@ -24,5 +24,8 @@ extern struct command_info cmd_info[];
 
 extern void gm_read_command(sUG_SERVER_COMMAND* sPacket, CPlayer* pPlayer);
 
+// system chat line to the gm that used a command
+extern void SendGmFeedback(CPlayer* pPlayer, const WCHAR* pwszMessage);
+
 
 #endif

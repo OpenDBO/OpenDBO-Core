@@ -16,6 +16,7 @@
 #include "NtlTokenizer.h"
 #include "TableContainerManager.h"
 #include "ItemTable.h"
+#include "EventSystemTable.h"
 #include "ExpTable.h"
 #include "GameProcessor.h"
 #include "HLSItemTable.h"
@@ -130,6 +131,9 @@ ACMD(do_dbscramble);
 ACMD(do_dojowar);
 ACMD(do_petexp);
 ACMD(do_fairyevent);
+ACMD(do_eventreward);
+ACMD(do_eventrewardonline);
+ACMD(do_eventrewardall);
 ACMD(do_test);
 
 struct command_info cmd_info[] =
@@ -190,6 +194,9 @@ struct command_info cmd_info[] =
 	{ L"@dojowar", do_dojowar, ADMIN_LEVEL_ADMIN },
 	{ L"@petexp", do_petexp, ADMIN_LEVEL_ADMIN },
 	{ L"@fairyevent", do_fairyevent, ADMIN_LEVEL_ADMIN },
+	{ L"@eventreward", do_eventreward, ADMIN_LEVEL_ADMIN },
+	{ L"@eventrewardonline", do_eventrewardonline, ADMIN_LEVEL_ADMIN },
+	{ L"@eventrewardall", do_eventrewardall, ADMIN_LEVEL_ADMIN },
 	{ L"@test", do_test, ADMIN_LEVEL_ADMIN },
 
 	{ L"@qwasawedsadas", NULL, ADMIN_LEVEL_ADMIN }
@@ -1870,7 +1877,7 @@ ACMD(do_removeskillscd)
 	}
 }
 
-static void SendGmFeedback(CPlayer* pPlayer, const WCHAR* pwszMessage)
+void SendGmFeedback(CPlayer* pPlayer, const WCHAR* pwszMessage)
 {
 	CNtlPacket packet(sizeof(sGU_SYSTEM_DISPLAY_TEXT));
 	sGU_SYSTEM_DISPLAY_TEXT* res = (sGU_SYSTEM_DISPLAY_TEXT*)packet.GetPacketData();
@@ -2207,6 +2214,138 @@ ACMD(do_fairyevent)
 	SendGmFeedback(pPlayer, msg.c_str());
 }
 
+
+//--------------------------------------------------------------------------------------//
+//		EVENT REWARDS OF THE EVENT MANAGER NPC
+//--------------------------------------------------------------------------------------//
+
+// a reward is per account: any character of the account takes it once
+// false (and the gm is told) if eventTblidx is no event manager reward
+static bool IsEventRewardEvent(CPlayer* pPlayer, TBLIDX eventTblidx)
+{
+	sEVENT_SYSTEM_TBLDAT* pEventTbldat = (sEVENT_SYSTEM_TBLDAT*)g_pTableContainer->GetEventSystemTable()->FindData(eventTblidx);
+	if (pEventTbldat == NULL || pEventTbldat->byType != EVENT_SYSTEM_TYPE_NPC_REWARD)
+	{
+		CNtlStringW msg;
+		msg.Format(L"Event reward: %u is no event manager reward.", eventTblidx);
+		SendGmFeedback(pPlayer, msg.c_str());
+		return false;
+	}
+
+	return true;
+}
+
+// pGm NULL: the query server does not answer. pTarget NULL: the account of pwszCharName is looked up
+static void SendEventRewardAddReq(CPlayer* pGm, BYTE byTarget, TBLIDX eventTblidx, CPlayer* pTarget, const WCHAR* pwszCharName)
+{
+	CGameServer* app = (CGameServer*)g_pApp;
+
+	CNtlPacket packet(sizeof(sGQ_EVENT_REWARD_ADD_REQ));
+	sGQ_EVENT_REWARD_ADD_REQ* res = (sGQ_EVENT_REWARD_ADD_REQ*)packet.GetPacketData();
+	res->wOpCode = GQ_EVENT_REWARD_ADD_REQ;
+	res->hGm = pGm ? pGm->GetID() : INVALID_HOBJECT;
+	res->gmCharId = pGm ? pGm->GetCharID() : INVALID_CHARACTERID;
+	res->byTarget = byTarget;
+	res->eventTblidx = eventTblidx;
+	res->accountId = pTarget ? pTarget->GetAccountID() : INVALID_ACCOUNTID;
+	NTL_SAFE_WCSCPY(res->awchCharName, pTarget ? pTarget->GetCharName() : pwszCharName);
+	packet.SetPacketLen(sizeof(sGQ_EVENT_REWARD_ADD_REQ));
+	app->SendTo(app->GetQueryServerSession(), &packet);
+}
+
+// the next visit of the event manager reads the rewards from the db again
+static void NotifyEventReward(CPlayer* pTarget)
+{
+	pTarget->InvalidateEventReward();
+	SendGmFeedback(pTarget, L"You received an event reward. Talk to the event manager to get it.");
+}
+
+ACMD(do_eventreward)
+{
+	/*
+		@eventreward TBLIDX NAME	give the reward to the account of a character, online or not
+	*/
+	pToken->PopToPeek();
+	TBLIDX eventTblidx = (TBLIDX)_wtoi(pToken->PeekNextToken(NULL, &iLine).c_str());
+
+	pToken->PopToPeek();
+	std::wstring strName = pToken->PeekNextToken(NULL, &iLine);
+
+	if (strName.empty() || strName.length() > NTL_MAX_SIZE_CHAR_NAME)
+	{
+		SendGmFeedback(pPlayer, L"Usage: @eventreward TBLIDX NAME");
+		return;
+	}
+
+	if (!IsEventRewardEvent(pPlayer, eventTblidx))
+		return;
+
+	// a character online on this channel gives its account directly, any other one is looked up in the db
+	CPlayer* pTarget = g_pObjectManager->FindByName(strName.c_str());
+	if (pTarget && !pTarget->IsInitialized())
+		pTarget = NULL;
+
+	SendEventRewardAddReq(pPlayer, EVENT_REWARD_ADD_TARGET_CHAR, eventTblidx, pTarget, strName.c_str());
+
+	if (pTarget)
+		NotifyEventReward(pTarget);
+
+	ERR_LOG(LOG_USER, "Player: %u used @eventreward %u %S", pPlayer->GetCharID(), eventTblidx, strName.c_str());
+}
+
+ACMD(do_eventrewardonline)
+{
+	/*
+		@eventrewardonline TBLIDX	give the reward to the account of every character online on this channel
+	*/
+	pToken->PopToPeek();
+	TBLIDX eventTblidx = (TBLIDX)_wtoi(pToken->PeekNextToken(NULL, &iLine).c_str());
+
+	if (!IsEventRewardEvent(pPlayer, eventTblidx))
+		return;
+
+	DWORD dwCount = 0;
+
+	for (auto& it : g_pObjectManager->GetPlayerMap())
+	{
+		CPlayer* pTarget = it.second;
+		if (pTarget == NULL || !pTarget->IsInitialized())
+			continue;
+
+		SendEventRewardAddReq(NULL, EVENT_REWARD_ADD_TARGET_CHAR, eventTblidx, pTarget, NULL);
+		NotifyEventReward(pTarget);
+		++dwCount;
+	}
+
+	CNtlStringW msg;
+	msg.Format(L"Event reward: %u given to the accounts of %u online characters.", eventTblidx, dwCount);
+	SendGmFeedback(pPlayer, msg.c_str());
+
+	ERR_LOG(LOG_USER, "Player: %u used @eventrewardonline %u", pPlayer->GetCharID(), eventTblidx);
+}
+
+ACMD(do_eventrewardall)
+{
+	/*
+		@eventrewardall TBLIDX		give the reward to every account
+	*/
+	pToken->PopToPeek();
+	TBLIDX eventTblidx = (TBLIDX)_wtoi(pToken->PeekNextToken(NULL, &iLine).c_str());
+
+	if (!IsEventRewardEvent(pPlayer, eventTblidx))
+		return;
+
+	SendEventRewardAddReq(pPlayer, EVENT_REWARD_ADD_TARGET_ALL, eventTblidx, NULL, L"");
+
+	for (auto& it : g_pObjectManager->GetPlayerMap())
+	{
+		CPlayer* pTarget = it.second;
+		if (pTarget && pTarget->IsInitialized())
+			NotifyEventReward(pTarget);
+	}
+
+	ERR_LOG(LOG_USER, "Player: %u used @eventrewardall %u", pPlayer->GetCharID(), eventTblidx);
+}
 
 ACMD(do_test)
 {

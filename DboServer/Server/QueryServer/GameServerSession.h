@@ -221,5 +221,6 @@ public:
 
 	void						RecvDwcLimitedUpdateReq(CNtlPacket* pPacket, CQueryServer* app);
 	void						RecvDwcScenarioUpdateReq(CNtlPacket* pPacket, CQueryServer* app);
+	void						RecvEventRewardAddReq(CNtlPacket* pPacket, CQueryServer* app);
 	void						RecvMailEventSendReq(CNtlPacket* pPacket, CQueryServer* app);
 };

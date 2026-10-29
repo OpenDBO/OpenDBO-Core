@@ -5348,6 +5348,53 @@ void CGameServerSession::RecvDwcScenarioUpdateReq(CNtlPacket * pPacket, CQuerySe
 	g_pCharacterRepository->UpsertDwcScenario(req->charId, req->dwcTblidx, req->byMissionIndex, req->byRewardGrade, req->wClearCount);
 }
 
+// gm commands giving an event reward of the event manager npc
+void CGameServerSession::RecvEventRewardAddReq(CNtlPacket * pPacket, CQueryServer * app)
+{
+	sGQ_EVENT_REWARD_ADD_REQ * req = (sGQ_EVENT_REWARD_ADD_REQ*)pPacket->GetPacketData();
+
+	CNtlPacket packet(sizeof(sQG_EVENT_REWARD_ADD_RES));
+	sQG_EVENT_REWARD_ADD_RES * res = (sQG_EVENT_REWARD_ADD_RES *)packet.GetPacketData();
+	res->wOpCode = QG_EVENT_REWARD_ADD_RES;
+	res->wResultCode = GAME_SUCCESS;
+	res->hGm = req->hGm;
+	res->gmCharId = req->gmCharId;
+	res->byTarget = req->byTarget;
+	res->eventTblidx = req->eventTblidx;
+	res->dwCount = 0;
+	res->accountId = INVALID_ACCOUNTID;
+	NTL_SAFE_WCSCPY(res->awchCharName, req->awchCharName);
+
+	if (req->byTarget == EVENT_REWARD_ADD_TARGET_ALL)
+	{
+		res->dwCount = g_pAccountRepository->InsertAccountEventRewardAll(req->eventTblidx);
+	}
+	else
+	{
+		ACCOUNTID accountId = req->accountId;
+
+		// an offline character is looked up by its name
+		if (accountId == INVALID_ACCOUNTID)
+		{
+			smart_ptr<QueryResult> result = g_pCharacterRepository->GetAccountIdByCharNameUtf8(ws2s(req->awchCharName));
+			if (result)
+				accountId = result->Fetch()[0].GetUInt32();
+		}
+
+		if (accountId != INVALID_ACCOUNTID)
+		{
+			g_pAccountRepository->InsertAccountEventReward(accountId, req->eventTblidx);
+
+			res->dwCount = 1;
+			res->accountId = accountId;
+		}
+		else res->wResultCode = QUERY_FAIL;
+	}
+
+	if (req->hGm != INVALID_HOBJECT)
+		app->Send(GetHandle(), &packet);
+}
+
 // system mail from the game server. The attached item is created here, it does not exist yet.
 void CGameServerSession::RecvMailEventSendReq(CNtlPacket * pPacket, CQueryServer * app)
 {
