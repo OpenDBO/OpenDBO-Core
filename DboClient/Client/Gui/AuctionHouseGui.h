@@ -286,6 +286,7 @@ private:
 
 	void		LoadItemTypeButtons();
 	void		SetItemTypeButtonText();
+	void		UpdateItemTypeButtonEnable();
 
 	BYTE		GetItemTypeByButton(const WCHAR* wchText);
 	void		SetItemTypeButtonActive();

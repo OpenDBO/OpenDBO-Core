@@ -2835,6 +2835,18 @@ void CAuctionHouseGui::LoadItemTypeButtons()
 
 		default: DBO_ASSERT(FALSE, "Tab type: " << m_byTabType << " does not exist."); break;
 	}
+
+	UpdateItemTypeButtonEnable();
+}
+
+// tw: a type button past the item types of the tab is disabled, it can not be clicked
+void CAuctionHouseGui::UpdateItemTypeButtonEnable()
+{
+	gui::CButton* apButton[AH_VISIBLE_ITEM_TYPE_BUTTONS] = { m_pBtnItemType1, m_pBtnItemType2, m_pBtnItemType3, m_pBtnItemType4,
+															m_pBtnItemType5, m_pBtnItemType6, m_pBtnItemType7, m_pBtnItemType8 };
+
+	for (int i = 0; i < AH_VISIBLE_ITEM_TYPE_BUTTONS; ++i)
+		apButton[i]->Enable(!apButton[i]->GetTextComponent()->GetText().empty());
 }
 
 void CAuctionHouseGui::SetItemTypeButtonText()
@@ -2870,6 +2882,8 @@ void CAuctionHouseGui::SetItemTypeButtonText()
 	m_pBtnItemType7->SetText(it->second);
 	++it;
 	m_pBtnItemType8->SetText(it->second);
+
+	UpdateItemTypeButtonEnable();
 }
 
 BYTE CAuctionHouseGui::GetItemTypeByButton(const WCHAR* wchText)
