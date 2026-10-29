@@ -1008,6 +1008,8 @@
       <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
   </ItemGroup>
+  <!-- builds the RenderWare libraries the client links when they are missing or out of date -->
+  <Import Project="..\Renderware\Renderware.References.props" />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
