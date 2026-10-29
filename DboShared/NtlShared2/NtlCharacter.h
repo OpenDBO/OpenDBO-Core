@@ -882,6 +882,7 @@ struct sPC_DATA
 	BYTE			byTmqLimitPlusCount;
 	BYTE			byDWCLimitCount;
 	BYTE			byDWCLimitPlusCount;
+	DWORD			dwDWCEnterDay;		// YYYYMMDD of the daily period byDWCLimitCount belongs to
 	bool			bIsScrambleJoinFlag;
 	bool			bIsScrambleRewardedFlag;
 	BYTE			bySkyDungeonEnterCount;

@@ -17,6 +17,7 @@
 #include "NtlHlsMachine.h"
 #include "NtlMascot.h"
 #include "NtlEventDef.h"
+#include "NtlDWC.h"
 
 
 enum eOPCODE_QG
@@ -335,6 +336,8 @@ enum eOPCODE_QG
 	QG_MASCOT_SEAL_CLEAR_RES,
 
 	QG_INVENTORY_SORT_RES,
+
+	QG_PC_DWC_LOAD_RES,
 
 	QG_OPCCODE_END_DUMMY,
 	QG_OPCODE_END = QG_OPCCODE_END_DUMMY - 1
@@ -2545,6 +2548,13 @@ CHARACTERID				charId;
 BYTE					byInventoryType;
 BYTE					byCount;
 sITEM_SORT_DATA			aItem[NTL_MAX_SORT_ITEM];
+END_PROTOCOL()
+//------------------------------------------------------------------
+
+BEGIN_PROTOCOL(QG_PC_DWC_LOAD_RES)
+CHARACTERID				charID;
+BYTE					byScenarioCount;
+sDWC_SCENARIO_DATA		asScenario[MAX_DWC_COUNT];
 END_PROTOCOL()
 //------------------------------------------------------------------
 

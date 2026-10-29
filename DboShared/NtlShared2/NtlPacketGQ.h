@@ -344,6 +344,9 @@ enum eOPCODE_GQ
 
 	GQ_SKY_DUNGEON_LIMITED_UPDATE_REQ,
 
+	GQ_DWC_LIMITED_UPDATE_REQ,
+	GQ_DWC_SCENARIO_UPDATE_REQ,
+
 	GQ_OPCCODE_END_DUMMY,
 	GQ_OPCODE_END = GQ_OPCCODE_END_DUMMY - 1
 };
@@ -2398,6 +2401,21 @@ BEGIN_PROTOCOL(GQ_SKY_DUNGEON_LIMITED_UPDATE_REQ)
 CHARACTERID				charId;
 BYTE					byEnterCount;
 DWORD					dwEnterDay;		// YYYYMMDD of the daily period (resets at 04:00)
+END_PROTOCOL()
+
+//------------------------------------------------------------------
+BEGIN_PROTOCOL(GQ_DWC_LIMITED_UPDATE_REQ)
+CHARACTERID				charId;
+BYTE					byEnterCount;
+DWORD					dwEnterDay;		// YYYYMMDD of the daily period
+END_PROTOCOL()
+//------------------------------------------------------------------
+BEGIN_PROTOCOL(GQ_DWC_SCENARIO_UPDATE_REQ)
+CHARACTERID				charId;
+TBLIDX					dwcTblidx;
+BYTE					byMissionIndex;
+BYTE					byRewardGrade;
+WORD					wClearCount;
 END_PROTOCOL()
 
 #pragma pack(pop)
