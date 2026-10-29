@@ -76,6 +76,22 @@ void CCharacterRepository::DeleteSkyDungeonLimit(CHARACTERID charId)
 	GetCharDB.Execute("DELETE FROM sky_dungeon_limit WHERE char_id=%u", charId);
 }
 
+void CCharacterRepository::UpsertDwcLimit(CHARACTERID charId, BYTE byEnterCount, DWORD dwEnterDay)
+{
+	GetCharDB.Execute("INSERT INTO dwc_limit (char_id,enter_count,enter_day) VALUES (%u,%u,%u) ON DUPLICATE KEY UPDATE enter_count=VALUES(enter_count),enter_day=VALUES(enter_day)", charId, byEnterCount, dwEnterDay);
+}
+
+void CCharacterRepository::UpsertDwcScenario(CHARACTERID charId, TBLIDX dwcTblidx, BYTE byMissionIndex, BYTE byRewardGrade, WORD wClearCount)
+{
+	GetCharDB.Execute("INSERT INTO dwc_scenario (char_id,dwc_tblidx,mission_index,reward_grade,clear_count) VALUES (%u,%u,%u,%u,%u) ON DUPLICATE KEY UPDATE reward_grade=VALUES(reward_grade),clear_count=VALUES(clear_count)", charId, dwcTblidx, byMissionIndex, byRewardGrade, wClearCount);
+}
+
+void CCharacterRepository::DeleteDwcData(CHARACTERID charId)
+{
+	GetCharDB.Execute("DELETE FROM dwc_limit WHERE char_id=%u", charId);
+	GetCharDB.Execute("DELETE FROM dwc_scenario WHERE char_id=%u", charId);
+}
+
 void CCharacterRepository::UpdateMoney(CHARACTERID charId, DWORD money)
 {
 	GetCharDB.Execute("UPDATE characters SET money=%u WHERE id=%u", money, charId);
@@ -249,6 +265,8 @@ void CCharacterRepository::LoadCharacterCoreDataAsync(CPlayerCache* pPlayerCache
 	q->AddQuery("SELECT title_tblidx FROM titles WHERE char_id=%u LIMIT 64", charId); // LIMIT NTL_MAX_CHAR_TITLE_COUNT_IN_FLAG
 	q->AddQuery("SELECT war_fog FROM warfog WHERE char_id=%u", charId);
 	q->AddQuery("SELECT enter_count, enter_day FROM sky_dungeon_limit WHERE char_id=%u", charId);
+	q->AddQuery("SELECT enter_count, enter_day FROM dwc_limit WHERE char_id=%u", charId);
+	q->AddQuery("SELECT dwc_tblidx, mission_index, reward_grade, clear_count FROM dwc_scenario WHERE char_id=%u", charId);
 	GetCharDB.QueueAsyncQuery(q);
 }
 

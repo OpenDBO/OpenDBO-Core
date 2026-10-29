@@ -182,6 +182,30 @@ CREATE TABLE `dojos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
+-- Table structure for dwc_limit
+-- ----------------------------
+DROP TABLE IF EXISTS `dwc_limit`;
+CREATE TABLE `dwc_limit` (
+  `char_id` int(10) unsigned NOT NULL,
+  `enter_count` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `enter_day` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'YYYYMMDD of the daily period (resets at 04:00) enter_count belongs to',
+  PRIMARY KEY (`char_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Table structure for dwc_scenario
+-- ----------------------------
+DROP TABLE IF EXISTS `dwc_scenario`;
+CREATE TABLE `dwc_scenario` (
+  `char_id` int(10) unsigned NOT NULL,
+  `dwc_tblidx` int(10) unsigned NOT NULL,
+  `mission_index` tinyint(3) unsigned NOT NULL COMMENT 'index into sDWC_TBLDAT::aMissionTblidx',
+  `reward_grade` tinyint(3) unsigned NOT NULL DEFAULT '255' COMMENT 'highest card grade obtained, 255 = none',
+  `clear_count` smallint(5) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`char_id`,`dwc_tblidx`,`mission_index`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
 -- Table structure for friendlist
 -- ----------------------------
 DROP TABLE IF EXISTS `friendlist`;
