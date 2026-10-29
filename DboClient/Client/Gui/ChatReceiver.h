@@ -10,6 +10,8 @@
 
 #pragma once
 
+#include <string>
+
 // core
 #include "ceventhandler.h"
 
@@ -20,6 +22,8 @@
 #include "NtlSLDef.h"
 
 class CChatGui;
+class CNtlSobActor;
+struct SAttackStuff;
 
 struct sChatLog
 {
@@ -59,6 +63,8 @@ protected:
 private:
 
 	void			BattleNotification(RWS::CMsg& msg);
+	void			BattleNotificationTarget(CNtlSobActor* pActor, SAttackStuff* pAttStuff);
+	std::wstring	GetSkillName(RwUInt32 uiSkillTblidx);
 
 protected:
 	CChatGui*			m_pChatGui;

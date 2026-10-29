@@ -4,6 +4,10 @@
 // core
 
 // simulation
+#include "SkillTable.h"
+#include "TableContainer.h"
+#include "TextAllTable.h"
+#include "NtlSLApi.h"
 #include "NtlSobManager.h"
 #include "NtlSobPlayerAttr.h"
 #include "NtlSLLogic.h"
@@ -206,17 +210,41 @@ void CChatReceiver::BattleNotification(RWS::CMsg& msg)
 
 	CNtlBeCharData* pBeData = reinterpret_cast<CNtlBeCharData*>(pActor->GetBehaviorData());
 	CNtlAttackData* pAttData = pBeData->GetAttackData();
-	SCtrlStuff* pCtrlStuff = pBeData->GetCtrlStuff();
-	SAttackStuff* pAttStuff = pAttData->GetAttackStuff(0);
+	if (pAttData->GetAttackStuffCount() <= 0)
+		return;
 
-	bool bIsViewer = (pData->hSerialId != Logic_GetAvatarHandle()) && (pAttStuff->hDefenderSerialId != Logic_GetAvatarHandle()); // somone who is viewing the fight
+	// tw: a skill writes a line per target with the damage the skill did to it
+	RwInt32 iCount = 1;
+	if (pAttData->GetAttackStuff(0)->uiType.bitLogic == NTL_ATTACK_LOGIC_SKILL)
+		iCount = pAttData->GetAttackStuffCount();
+
+	for (RwInt32 i = 0; i < iCount; ++i)
+		BattleNotificationTarget(pActor, pAttData->GetAttackStuff(i));
+}
+
+std::wstring CChatReceiver::GetSkillName(RwUInt32 uiSkillTblidx)
+{
+	std::wstring wstrName;
+
+	sSKILL_TBLDAT* pSkillTbldat = static_cast<sSKILL_TBLDAT*>(API_GetTableContainer()->GetSkillTable()->FindData(uiSkillTblidx));
+	if (pSkillTbldat)
+		API_GetTableContainer()->GetTextAllTable()->GetSkillTbl()->GetText(pSkillTbldat->Skill_Name, &wstrName);
+
+	return wstrName;
+}
+
+void CChatReceiver::BattleNotificationTarget(CNtlSobActor* pActor, SAttackStuff* pAttStuff)
+{
+	SERIAL_HANDLE hAttacker = pActor->GetSerialID();
+
+	bool bIsViewer = (hAttacker != Logic_GetAvatarHandle()) && (pAttStuff->hDefenderSerialId != Logic_GetAvatarHandle()); // somone who is viewing the fight
 	/*
-		Only show message if 
+		Only show message if
 		- We are attacker or defender
 		- We have attacker or defender as target
 	*/
 
-	if (bIsViewer && (pData->hSerialId != Logic_GetAvatarTargetHandle() && pAttStuff->hDefenderSerialId != Logic_GetAvatarTargetHandle())) // check if viewer & check if viewer has someone as target
+	if (bIsViewer && (hAttacker != Logic_GetAvatarTargetHandle() && pAttStuff->hDefenderSerialId != Logic_GetAvatarTargetHandle())) // check if viewer & check if viewer has someone as target
 		return;
 
 	bool bIsAvatarAttacker = pAttStuff->hAttackerSerialId == Logic_GetAvatarHandle();
@@ -246,33 +274,45 @@ void CChatReceiver::BattleNotification(RWS::CMsg& msg)
 			else
 				uiColor = INFOCOLOR_5;
 
-			if (pAttStuff->uiType.bitCritical == NTL_ATTACK_ATTR_CRITICAL)
+			if (pAttStuff->uiType.bitLogic == NTL_ATTACK_LOGIC_SKILL)
 			{
-				if (pAttStuff->uiType.bitLogic == NTL_ATTACK_LOGIC_SKILL)
-				{
-					
-				}
+				// tw: "<skill> - <target>  does N damage." for the own attack, "<target> received <skill> from <attacker>,  does N damage." else
+				if (pAttStuff->sDamage.iDamage <= 0 || pwchTargetName == NULL)
+					return;
+
+				// the pieces are combined, so they truncate instead of failing on a long name
+				std::wstring wstrSkill = GetSkillName(pAttStuff->uiAttrLogicTblId);
+
+				WCHAR awcDamage[128];
+				_snwprintf_s(awcDamage, _TRUNCATE, GetDisplayStringManager()->GetString("DST_SYSTEMMSG_ATTACKDAMAGE"), pAttStuff->sDamage.iDamage);
+
+				WCHAR awcLine[256];
+				if (bIsAvatarAttacker || bViewAttacker)
+					_snwprintf_s(awcLine, _TRUNCATE, GetDisplayStringManager()->GetString("DST_SYSTEMMSG_AVATAR"), wstrSkill.c_str(), pwchTargetName, awcDamage);
 				else
 				{
-					if (bIsAvatarAttacker || bViewAttacker)
-						swprintf_s(buf, GetDisplayStringManager()->GetString("DST_SYSTEMMSG_CRITICAL_ATTACK_ATTACKER"), pwchTargetName, pAttStuff->sDamage.iDamage);
-					else
-						swprintf_s(buf, GetDisplayStringManager()->GetString("DST_SYSTEMMSG_CRITICAL_ATTACK_DEFENDER"), pwchAttackerName, pAttStuff->sDamage.iDamage);
+					_snwprintf_s(awcLine, _TRUNCATE, GetDisplayStringManager()->GetString("DST_SYSTEMMSG_ENEMY"), pwchTargetName, wstrSkill.c_str(), pwchAttackerName);
+					wcsncat_s(awcLine, awcDamage, _TRUNCATE);
 				}
+
+				if (pAttStuff->uiType.bitCritical == NTL_ATTACK_ATTR_CRITICAL)
+					_snwprintf_s(buf, _TRUNCATE, GetDisplayStringManager()->GetString("DST_SYSTEMMSG_CRITICAL_SKILLATTACK"), awcLine);
+				else
+					wcsncpy_s(buf, awcLine, _TRUNCATE);
+			}
+			else if (pAttStuff->uiType.bitCritical == NTL_ATTACK_ATTR_CRITICAL)
+			{
+				if (bIsAvatarAttacker || bViewAttacker)
+					swprintf_s(buf, GetDisplayStringManager()->GetString("DST_SYSTEMMSG_CRITICAL_ATTACK_ATTACKER"), pwchTargetName, pAttStuff->sDamage.iDamage);
+				else
+					swprintf_s(buf, GetDisplayStringManager()->GetString("DST_SYSTEMMSG_CRITICAL_ATTACK_DEFENDER"), pwchAttackerName, pAttStuff->sDamage.iDamage);
 			}
 			else
 			{
-				if (pAttStuff->uiType.bitLogic == NTL_ATTACK_LOGIC_SKILL)
-				{
-					
-				}
+				if (bIsAvatarAttacker || bViewAttacker)
+					swprintf_s(buf, GetDisplayStringManager()->GetString("DST_SYSTEMMSG_NORMAL_ATTACK_ATTACKER"), pwchTargetName, pAttStuff->sDamage.iDamage);
 				else
-				{
-					if (bIsAvatarAttacker || bViewAttacker)
-						swprintf_s(buf, GetDisplayStringManager()->GetString("DST_SYSTEMMSG_NORMAL_ATTACK_ATTACKER"), pwchTargetName, pAttStuff->sDamage.iDamage);
-					else
-						swprintf_s(buf, GetDisplayStringManager()->GetString("DST_SYSTEMMSG_NORMAL_ATTACK_DEFENDER"), pwchAttackerName, pAttStuff->sDamage.iDamage);
-				}
+					swprintf_s(buf, GetDisplayStringManager()->GetString("DST_SYSTEMMSG_NORMAL_ATTACK_DEFENDER"), pwchAttackerName, pAttStuff->sDamage.iDamage);
 			}
 
 			Chatlog_Save(CHAT_TYPE_SYSTEM, buf);
