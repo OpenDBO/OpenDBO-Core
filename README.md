@@ -12,6 +12,7 @@ All copyrighted material belongs to its owners. This is a non-profit fan project
   - [Setting up the server](#setting-up-the-server)
   - [Seeding test accounts](#seeding-test-accounts)
   - [Using the DBOLauncher tool](#using-the-dbolauncher-tool)
+  - [Using the MrPoPo tool](#using-the-mrpopo-tool)
 - [GM commands](#gm-commands)
 - [Acknowledgements](#acknowledgements)
 
@@ -19,7 +20,7 @@ All copyrighted material belongs to its owners. This is a non-profit fan project
 
 | Folder | Contents |
 |---|---|
-| `DboClient/` | The game client (`Client`), its libraries (presentation, simulation, GUI, sound) and the content tools (`Tool/`: world, model, GUI and quest editors, PackEditor, DBOLauncher). `DboClient.sln` builds them. |
+| `DboClient/` | The game client (`Client`), its libraries (presentation, simulation, GUI, sound) and the content tools (`Tool/`: world, model, GUI and quest editors, PackEditor, DBOLauncher, MrPoPo). `DboClient.sln` builds them. |
 | `DboClient/DragonBall/` | Where the client's game files go (not tracked). The built `Client.exe` runs from here. |
 | `DboServer/Server/` | The servers: `AuthServer`, `CharServer`, `ChatServer`, `GameServer` (one process per channel), `MasterServer` and `QueryServer` (the only one that talks to the database). `DboServer.sln` builds them. |
 | `DboServer/Database/` | `dbo_acc.sql`, `dbo_char.sql` and `dbo_log.sql` create the three databases. `scripts/` holds update scripts and test data. |
@@ -194,6 +195,31 @@ The script is safe to re-run: accounts are updated in place, and the seeded char
 2. **Offline mode (default):** `Test/launcherdevmaster.xml` ships with `OFFLINE_MODE_ENABLE` set to `1`, so the launcher skips the patch server and goes straight to its idle screen, where **Start** launches `Client.exe`. No server setup needed; this is the quickest way to launch the client.
 
 3. **Online mode (testing the real patch flow):** set `OFFLINE_MODE_ENABLE` to `0` in `Test/launcherdevmaster.xml` and rebuild. This needs a reachable HTTP patch server on **port 80** (hardcoded in the launcher). The server has to serve `Test/LauncherConfig.xml` (which points at it) and `Test/patch/` (`PatchServerConfig.XML` + `PatchList.xml`). These ship declaring "nothing to patch", so the launcher reports the client as up to date and goes to the idle screen. How you host them is up to you.
+
+</details>
+
+### Using the MrPoPo tool
+
+<details>
+ <summary>Building and using the GM and debug tool</summary>
+
+`MrPoPo` (`DboClient/Tool/MrPoPo`) is a small window that drives a running client: it sends GM commands to the game server through the client, and toggles client-side debug and graphics options. It's part of `DboClient.sln` (`Release4Tools|Win32` and `Release4Tools|x64`) and only needs MFC, no third party libraries.
+
+1. **Build it:** in `DboClient.sln`, right-click `MrPoPo` under the `Tool` solution folder and build it as `Release4Tools|Win32`. `MrPoPo.exe` goes to `DragonBall/` (the x64 build goes to `x64/Release4Tools/`).
+
+2. **Start the client and enter the game,** then start `MrPoPo.exe`. It finds the client window by itself.
+
+3. **The client must be a dev user:** `DragonBall/devmaster.xml` with the key `Dbo_20190413` (the one in the repository already has it). Without it, the client ignores the tool. GM commands also need a character with the command's GM level (see [who can use them](#who-can-use-them)).
+
+The tool's log, at the bottom, shows every command it sends, or why the client refused it.
+
+| Tab | What it does |
+|---|---|
+| ConfigOption Setting | Loads, edits and saves a `ConfigOptions.xml`: server IP and port, BugTrap server and folder, language folder. |
+| GM Commands | Buttons for the [GM commands](#gm-commands), filled from the fields next to them: level, class, speed, zeni, god mode, invincibility, hide, items, equipment grade and rank, skills, titles, mudosa, teleports, monster and NPC spawns, notices. **Command** sends anything typed, as in the chat. **Collect Dragon Balls** gives the seven balls of a set and **Learn All Skills** learns every skill your class can train at your level. |
+| Test Property | Client-side tests: free camera, observer camera, crowd steps of the budokai, state, transform and stun changes (**NONE** ends a stun), target marking. |
+| Client Cheat | Game speed, dumps of your character or your target to the console, an in-game window or a file, and low-spec character and effect switches. |
+| Graphic Setting | Terrain and character view distance, terrain shadow, water specular, character edges, effect quality and particle ratio. |
 
 </details>
 
