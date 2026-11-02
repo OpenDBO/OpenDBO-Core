@@ -1,76 +1,98 @@
-// MPPSetItemPane.cpp : 구현 파일입니다.
+// MPPSetItemPane.cpp : the GM command pane
 //
 
 #include "stdafx.h"
 #include "MrPoPo.h"
 #include "MPPSetItemPane.h"
-#include "MPPDef.h"
 #include "MPPClientEvent.h"
+
+namespace
+{
+    // the client sends less than NTL_MAX_LENGTH_OF_CHAT_MESSAGE (256) characters
+    const int MAX_COMMAND_LENGTH = 255;
+
+    /// a button and the fields whose values follow its command, in order
+    struct SGMButton
+    {
+        UINT    nButtonID;
+        LPCWSTR szCommand;
+        UINT    anFieldID[3];       ///< 0 when unused
+        UINT    nOptionalMask;      ///< bit i: anFieldID[i] may stay empty
+    };
+
+    const SGMButton s_aGMButton[] =
+    {
+        // character
+        { IDC_GM_BTN_LEVEL,             L"@setlevel",       { IDC_GM_LEVEL } },
+        { IDC_GM_BTN_CLASS,             L"@setclass",       { IDC_GM_CLASS } },
+        { IDC_GM_BTN_SPEED,             L"@setspeed",       { IDC_GM_SPEED } },
+        { IDC_GM_BTN_ZENI,              L"@setzenny",       { IDC_GM_ZENI } },
+        { IDC_GM_BTN_INVINCIBLE,        L"@invincible",     { IDC_GM_INVINCIBLE }, 0x1 },
+        { IDC_GM_BTN_GOD,               L"@god" },
+        { IDC_GM_BTN_HIDE,              L"@hide" },
+        { IDC_GM_BTN_RESTORE,           L"@r" },
+        { IDC_GM_BTN_COOLDOWN,          L"@removeskillscd" },
+        { IDC_GM_BTN_EXP_ON,            L"@exp on" },
+        { IDC_GM_BTN_EXP_OFF,           L"@exp off" },
+        { IDC_GM_BTN_PETEXP,            L"@petexp" },
+        { IDC_GM_BTN_PURGE,             L"@purge" },
+
+        // items and skills
+        { IDC_GM_BTN_ITEM,              L"@additem",        { IDC_GM_ITEM, IDC_GM_ITEM_COUNT }, 0x2 },
+        { IDC_GM_BTN_GRADE,             L"@upgrade",        { IDC_GM_GRADE } },
+        { IDC_GM_BTN_RANK,              L"@setitemrank",    { IDC_GM_RANK } },
+        { IDC_GM_BTN_SKILL,             L"@addskill",       { IDC_GM_SKILL } },
+        { IDC_GM_BTN_HTB,               L"@addhtb",         { IDC_GM_HTB } },
+        { IDC_GM_BTN_MASTER_PASSIVE,    L"@addskill2" },
+        { IDC_GM_BTN_TITLE,             L"@addtitle",       { IDC_GM_TITLE } },
+        { IDC_GM_BTN_MUDOSA,            L"@addmudosa",      { IDC_GM_MUDOSA } },
+
+        // movement
+        { IDC_GM_BTN_PLACE,             L"@teleport",       { IDC_GM_PLACE } },
+        { IDC_GM_BTN_GO,                L"@go",             { IDC_GM_X, IDC_GM_Y, IDC_GM_Z } },
+        { IDC_GM_BTN_WORLD,             L"@world",          { IDC_GM_WORLD } },
+        { IDC_GM_BTN_WARP,              L"@warp",           { IDC_GM_NAME } },
+        { IDC_GM_BTN_CALL,              L"@call",           { IDC_GM_NAME } },
+        { IDC_GM_BTN_BIND,              L"@bind" },
+        { IDC_GM_BTN_WARFOG,            L"@warfog" },
+
+        // spawn
+        { IDC_GM_BTN_MOB,               L"@addmob",         { IDC_GM_MOB } },
+        { IDC_GM_BTN_NPC,               L"@addnpc",         { IDC_GM_NPC } },
+
+        // server
+        { IDC_GM_BTN_NOTICE,            L"@notice",         { IDC_GM_NOTICE_TYPE, IDC_GM_NOTICE } },
+    };
+}
 
 // CMPPSetItemPane
 
-IMPLEMENT_DYNCREATE(CMPPSetItemPane, CXTResizeFormView)
+IMPLEMENT_DYNCREATE(CMPPSetItemPane, CFormView)
 
 CMPPSetItemPane::CMPPSetItemPane()
-: CXTResizeFormView(CMPPSetItemPane::IDD)    
-, m_nTeleIndex(0)
+: CFormView(CMPPSetItemPane::IDD)
 {
-
 }
 
 CMPPSetItemPane::~CMPPSetItemPane()
 {
 }
 
-void CMPPSetItemPane::DoDataExchange(CDataExchange* pDX)
-{
-    CXTResizeFormView::DoDataExchange(pDX);
-    DDX_Control(pDX, IDC_EDIT_CREATEITEM, m_edCreateItem);    
-    DDX_Control(pDX, IDC_EDIT_SETZENNY, m_edSetZenny);
-    DDX_Control(pDX, IDC_EDIT_ADDEXP, m_edAddExp);
-    DDX_Control(pDX, IDC_EDIT_SETLEVEL, m_edSetLevel);
-    DDX_Control(pDX, IDC_EDIT_SETSPEED, m_edSetSpeed);
-    DDX_Control(pDX, IDC_EDIT_OFFENCE, m_edSetOffence);
-    DDX_Control(pDX, IDC_EDIT_DEFENCE, m_edSetDefence);
-    DDX_Control(pDX, IDC_CB_TELE_SELECT, m_cbTeleSelect);
-    DDX_Control(pDX, IDC_ED_TELE_X, m_edTeleX);
-    DDX_Control(pDX, IDC_ED_TELE_Z, m_edTeleZ);
-    DDX_Control(pDX, IDC_ED_TELE_VISIT, m_edTeleVisit);    
-}
-
-BEGIN_MESSAGE_MAP(CMPPSetItemPane, CXTResizeFormView)
-    ON_BN_CLICKED(IDC_BTN_CREATEITEM, &CMPPSetItemPane::OnBnClickedBtnCreateitem)
-    ON_BN_CLICKED(IDC_BTN_UPGRADEITEM, &CMPPSetItemPane::OnBnClickedBtnUpgradeitem)
-    ON_BN_CLICKED(IDC_BTN_SETZENNY, &CMPPSetItemPane::OnBnClickedBtnSetzenny)
-    ON_BN_CLICKED(IDC_BTN_ADDEXP, &CMPPSetItemPane::OnBnClickedBtnAddexp)
-    ON_BN_CLICKED(IDC_BTN_SETLEVEL, &CMPPSetItemPane::OnBnClickedBtnSetlevel)
-    ON_BN_CLICKED(IDC_BTN_COLLECTDRAGONBALL, &CMPPSetItemPane::OnBnClickedBtnCollectdragonball)
-    ON_BN_CLICKED(IDC_BTN_SETSPEED, &CMPPSetItemPane::OnBnClickedBtnSetspeed)
-    ON_BN_CLICKED(IDC_BTN_OFFENCE, &CMPPSetItemPane::OnBnClickedBtnOffence)
-    ON_BN_CLICKED(IDC_BTN_DEFENCE, &CMPPSetItemPane::OnBnClickedBtnDefence)
-    ON_BN_CLICKED(IDC_BUTTON1, &CMPPSetItemPane::OnBnClickedButton1)    
-    ON_BN_CLICKED(IDC_RD_SELECT, &CMPPSetItemPane::OnBnClickedRdSelect)
-    ON_BN_CLICKED(IDC_RD_DIRECT, &CMPPSetItemPane::OnBnClickedRdDirect)
-    ON_BN_CLICKED(IDC_RD_VISIT, &CMPPSetItemPane::OnBnClickedRdVisit)
-    ON_BN_CLICKED(IDC_BTN_LEARN_ALL_SKILL, &CMPPSetItemPane::OnBnClickedBtnLearnAllSkill)
-    ON_BN_CLICKED(IDC_BTN_UPGRADE_ALL_SKILL, &CMPPSetItemPane::OnBnClickedBtnUpgradeAllSkill)
-    ON_BN_CLICKED(IDC_BTN_CREATE_LEVEL_ITEMS, &CMPPSetItemPane::OnBnClickedBtnCreateLevelItems)
-    ON_BN_CLICKED(IDC_BTN_SUPER_MODE, &CMPPSetItemPane::OnBnClickedBtnSuperMode)
+BEGIN_MESSAGE_MAP(CMPPSetItemPane, CFormView)
+    ON_COMMAND_RANGE(IDC_GM_BTN_FIRST, IDC_GM_BTN_LAST, &CMPPSetItemPane::OnGMButton)
 END_MESSAGE_MAP()
 
-
-// CMPPSetItemPane 진단입니다.
 
 #ifdef _DEBUG
 void CMPPSetItemPane::AssertValid() const
 {
-    CXTResizeFormView::AssertValid();
+    CFormView::AssertValid();
 }
 
 #ifndef _WIN32_WCE
 void CMPPSetItemPane::Dump(CDumpContext& dc) const
 {
-    CXTResizeFormView::Dump(dc);
+    CFormView::Dump(dc);
 }
 #endif
 #endif //_DEBUG
@@ -78,181 +100,185 @@ void CMPPSetItemPane::Dump(CDumpContext& dc) const
 
 void CMPPSetItemPane::OnInitialUpdate()
 {
-    CXTResizeFormView::OnInitialUpdate();
+    CFormView::OnInitialUpdate();
 
-    m_cbTeleSelect.InsertString(MPP_TELE_YAHOI, L"야호이 마을");
-    m_cbTeleSelect.InsertString(MPP_TELE_YUREKA, L"유레카 공원");
-    m_cbTeleSelect.InsertString(MPP_TELE_DALPANG, L"달팽이 마을");
-    m_cbTeleSelect.InsertString(MPP_TELE_DRAGON, L"용의 코골이");
-    m_cbTeleSelect.InsertString(MPP_TELE_BAEE, L"배에 빌리지");
-    m_cbTeleSelect.InsertString(MPP_TELE_AJIRANG, L"아지랑이 샘");
-    m_cbTeleSelect.InsertString(MPP_TELE_KARINGA_1, L"카린가의 마을1");
-    m_cbTeleSelect.InsertString(MPP_TELE_KARINGA_2, L"카린가의 마을2");
-    m_cbTeleSelect.InsertString(MPP_TELE_GREAT_TREE, L"그레이트 트리");
-    m_cbTeleSelect.InsertString(MPP_TELE_KARINGA_3, L"카린가의 어촌");
-    m_cbTeleSelect.InsertString(MPP_TELE_MERMAID, L"인어상");
-    m_cbTeleSelect.InsertString(MPP_TELE_GANNET, L"가넷 천문대");
-    m_cbTeleSelect.InsertString(MPP_TELE_EMERALD, L"에메랑드 비치");
-    m_cbTeleSelect.InsertString(MPP_TELE_TEMBARIN, L"템버린 캠프");
-    m_cbTeleSelect.InsertString(MPP_TELE_CELL, L"셀 링");
-    m_cbTeleSelect.InsertString(MPP_TELE_BUU, L"부우 기념관");
-    m_cbTeleSelect.InsertString(MPP_TELE_CC, L"CC 역사 박물관");
-    m_cbTeleSelect.InsertString(MPP_TELE_MUSHROOM, L"버섯촌");
+    // class ids of the server (ePC_CLASS)
+    static const LPCWSTR s_aszClass[] =
+    {
+        L"Human Fighter", L"Human Mystic", L"Human Engineer", L"Namekian Warrior", L"Namekian Dragon Clan",
+        L"Mighty Majin", L"Wonder Majin", L"Street Fighter", L"Swordsman", L"Crane Hermit", L"Turtle Hermit",
+        L"Gun Mania", L"Mech Mania", L"Dark Warrior", L"Shadow Knight", L"Dende Priest", L"Poko Priest",
+        L"Ultimate Majin", L"Grand Chef Majin", L"Plasma Majin", L"Karma Majin",
+    };
+    for(int i = 0; i < _countof(s_aszClass); ++i)
+        AddComboItem(IDC_GM_CLASS, s_aszClass[i], i);
+
+    AddComboItem(IDC_GM_RANK, L"Normal", 1);
+    AddComboItem(IDC_GM_RANK, L"Superior", 2);
+    AddComboItem(IDC_GM_RANK, L"Excellent", 3);
+    AddComboItem(IDC_GM_RANK, L"Rare", 4);
+    AddComboItem(IDC_GM_RANK, L"Legendary", 5);
+
+    // eDRAGON_BALL_TYPE, the client finds the balls in its dragon ball table
+    AddComboItem(IDC_GM_DRAGONBALL, L"Basic", 1);
+    AddComboItem(IDC_GM_DRAGONBALL, L"Normal", 2);
+    AddComboItem(IDC_GM_DRAGONBALL, L"Scramble", 5);
+
+    // the places of @teleport (EMPPTeleport)
+    AddComboItem(IDC_GM_PLACE, L"Yahoi Village", MPP_TELE_YAHOI);
+    AddComboItem(IDC_GM_PLACE, L"Yureka Park", MPP_TELE_YUREKA);
+    AddComboItem(IDC_GM_PLACE, L"Dalpang Village", MPP_TELE_DALPANG);
+    AddComboItem(IDC_GM_PLACE, L"Dragon's Snore", MPP_TELE_DRAGON);
+    AddComboItem(IDC_GM_PLACE, L"Baee Village", MPP_TELE_BAEE);
+    AddComboItem(IDC_GM_PLACE, L"Ajirang Spring", MPP_TELE_AJIRANG);
+    AddComboItem(IDC_GM_PLACE, L"Karinga Village 1", MPP_TELE_KARINGA_1);
+    AddComboItem(IDC_GM_PLACE, L"Karinga Village 2", MPP_TELE_KARINGA_2);
+    AddComboItem(IDC_GM_PLACE, L"Great Tree", MPP_TELE_GREAT_TREE);
+    AddComboItem(IDC_GM_PLACE, L"Karinga Fishing Village", MPP_TELE_KARINGA_3);
+    AddComboItem(IDC_GM_PLACE, L"Mermaid Statue", MPP_TELE_MERMAID);
+    AddComboItem(IDC_GM_PLACE, L"Gannet Observatory", MPP_TELE_GANNET);
+    AddComboItem(IDC_GM_PLACE, L"Emerald Beach", MPP_TELE_EMERALD);
+    AddComboItem(IDC_GM_PLACE, L"Tembarin Camp", MPP_TELE_TEMBARIN);
+    AddComboItem(IDC_GM_PLACE, L"Cell Ring", MPP_TELE_CELL);
+    AddComboItem(IDC_GM_PLACE, L"Buu Memorial", MPP_TELE_BUU);
+    AddComboItem(IDC_GM_PLACE, L"CC History Museum", MPP_TELE_CC);
+    AddComboItem(IDC_GM_PLACE, L"Mushroom Village", MPP_TELE_MUSHROOM);
+    AddComboItem(IDC_GM_PLACE, L"Papaya Island", MPP_TELE_PAPAYA);
+
+    AddComboItem(IDC_GM_NOTICE_TYPE, L"Chat", 0);
+    AddComboItem(IDC_GM_NOTICE_TYPE, L"Screen", 1);
+    AddComboItem(IDC_GM_NOTICE_TYPE, L"Chat and screen", 2);
+    AddComboItem(IDC_GM_NOTICE_TYPE, L"Tori NPC", 3);
+    AddComboItem(IDC_GM_NOTICE_TYPE, L"Caution", 4);
+    AddComboItem(IDC_GM_NOTICE_TYPE, L"Territory", 5);
+
+    static const UINT s_anComboID[] = { IDC_GM_CLASS, IDC_GM_RANK, IDC_GM_DRAGONBALL, IDC_GM_PLACE, IDC_GM_NOTICE_TYPE };
+    for(int i = 0; i < _countof(s_anComboID); ++i)
+    {
+        CComboBox* pCombo = (CComboBox*)GetDlgItem(s_anComboID[i]);
+        pCombo->SetCurSel(0);
+
+        // the list opens as wide as its longest name
+        CClientDC dc(pCombo);
+        CFont* pOldFont = dc.SelectObject(pCombo->GetFont());
+        int nWidth = 0;
+        for(int nItem = 0; nItem < pCombo->GetCount(); ++nItem)
+        {
+            CString strItem;
+            pCombo->GetLBText(nItem, strItem);
+            nWidth = max(nWidth, (int)dc.GetTextExtent(strItem).cx);
+        }
+        dc.SelectObject(pOldFont);
+        pCombo->SetDroppedWidth(nWidth + ::GetSystemMetrics(SM_CXVSCROLL) + 8);
+    }
+
+    ((CEdit*)GetDlgItem(IDC_GM_COMMAND))->SetLimitText(MAX_COMMAND_LENGTH);
+    ((CEdit*)GetDlgItem(IDC_GM_NOTICE))->SetLimitText(MAX_COMMAND_LENGTH - 16);
 }
 
-// CMPPSetItemPane 메시지 처리기입니다.
-
-void CMPPSetItemPane::OnBnClickedBtnCreateitem()
+void CMPPSetItemPane::AddComboItem( UINT nComboID, LPCWSTR szName, DWORD dwData )
 {
-    CString strItemId;
-    m_edCreateItem.GetWindowText(strItemId);
+    CComboBox* pCombo = (CComboBox*)GetDlgItem(nComboID);
+    int nIndex = pCombo->AddString(szName);
+    pCombo->SetItemData(nIndex, dwData);
+}
 
-    if(strItemId.GetLength() > 0)
+BOOL CMPPSetItemPane::GetFieldValue( UINT nFieldID, CString& strValue )
+{
+    CWnd* pField = GetDlgItem(nFieldID);
+    if(pField == NULL)
+        return FALSE;
+
+    WCHAR szClass[32] = {0,};
+    ::GetClassName(pField->GetSafeHwnd(), szClass, _countof(szClass));
+    if(_wcsicmp(szClass, L"ComboBox") == 0)
     {
-        GetMPPClientEvent()->SendEvent(MSG_MRPOPO_CREATE_ITEM, _wtoi(strItemId));
-    }    
-    else
+        CComboBox* pCombo = (CComboBox*)pField;
+        int nSel = pCombo->GetCurSel();
+        if(nSel == CB_ERR)
+            return FALSE;
+
+        strValue.Format(L"%u", (DWORD)pCombo->GetItemData(nSel));
+        return TRUE;
+    }
+
+    pField->GetWindowText(strValue);
+    strValue.Trim();
+    return !strValue.IsEmpty();
+}
+
+void CMPPSetItemPane::OnGMButton( UINT nID )
+{
+    switch(nID)
     {
-        MessageBox(L"Input Item Table Id");
+    case IDC_GM_BTN_DRAGONBALL:
+        CollectDragonBalls();
+        break;
+    case IDC_GM_BTN_LEARN_ALL:
+        // the client knows the skills of the class
+        GetMPPClientEvent()->SendEvent(MSG_MRPOPO_LEARN_ALL_SKILL, 0);
+        break;
+    case IDC_GM_BTN_COMMAND:
+        SendTypedCommand();
+        break;
+    default:
+        SendCommandOfButton(nID);
+        break;
     }
 }
 
-void CMPPSetItemPane::OnBnClickedBtnUpgradeitem()
+void CMPPSetItemPane::SendCommandOfButton( UINT nButtonID )
 {
-    GetMPPClientEvent()->SendEvent(MSG_MRPOPO_UPGRADE_ITEM, NULL);    
-}
-
-void CMPPSetItemPane::OnBnClickedBtnSetzenny()
-{
-    CString strZenny;    
-    m_edSetZenny.GetWindowText(strZenny);
-
-    if(strZenny.GetLength() > 0)
+    for(int i = 0; i < _countof(s_aGMButton); ++i)
     {
-        GetMPPClientEvent()->SendEvent(MSG_MRPOPO_SET_ZENNY, _wtoi(strZenny));
-    }            
-    else
-    {
-        MessageBox(L"Input Zenny Amount");
+        const SGMButton& button = s_aGMButton[i];
+        if(button.nButtonID != nButtonID)
+            continue;
+
+        CString strCommand = button.szCommand;
+        for(int nField = 0; nField < _countof(button.anFieldID) && button.anFieldID[nField]; ++nField)
+        {
+            CString strValue;
+            if(GetFieldValue(button.anFieldID[nField], strValue))
+            {
+                strCommand += L" ";
+                strCommand += strValue;
+            }
+            else if(!(button.nOptionalMask & (1 << nField)))
+            {
+                MessageBox(L"Fill in the fields of this command first.", NULL, MB_ICONWARNING);
+                GetDlgItem(button.anFieldID[nField])->SetFocus();
+                return;
+            }
+            else
+            {
+                // the later fields would shift into the place of the empty one
+                break;
+            }
+        }
+
+        GetMPPClientEvent()->SendServerCommand(strCommand);
+        return;
     }
 }
 
-void CMPPSetItemPane::OnBnClickedBtnAddexp()
+void CMPPSetItemPane::SendTypedCommand()
 {
-    CString strExp;
-    m_edAddExp.GetWindowText(strExp);
-
-    if(strExp.GetLength() > 0)
-    {
-        GetMPPClientEvent()->SendEvent(MSG_MRPOPO_ADD_EXP, _wtoi(strExp));
-    }
-    else
-    {
-        MessageBox(L"Input Add Exp");
-    }
-}
-
-void CMPPSetItemPane::OnBnClickedBtnSetlevel()
-{
-    CString str;
-    m_edSetLevel.GetWindowText(str);
-
-    if(str.GetLength() > 0)
-    {
-        GetMPPClientEvent()->SendEvent(MSG_MRPOPO_SET_LEVEL, _wtoi(str));
-    }
-    else
-    {
-        MessageBox(L"Input Set Level");
-    }
-}
-
-void CMPPSetItemPane::OnBnClickedBtnCollectdragonball()
-{
-    GetMPPClientEvent()->SendEvent(MSG_MRPOPO_COLLECT_DRAGONBALL, NULL);
-}
-
-void CMPPSetItemPane::OnBnClickedBtnSetspeed()
-{
-    CString str;
-    m_edSetSpeed.GetWindowText(str);
-
-    if(str.GetLength() > 0)
-    {
-        GetMPPClientEvent()->SendEvent(MSG_MRPOPO_SETSPEED, _wtoi(str));
-    }
-    else
-    {
-        MessageBox(L"Input Set Speed");
-    }
-}
-
-void CMPPSetItemPane::OnBnClickedBtnOffence()
-{
-
-}
-
-void CMPPSetItemPane::OnBnClickedBtnDefence()
-{
-
-}
-
-
-void CMPPSetItemPane::OnBnClickedRdSelect()
-{
-    m_nTeleIndex = 1;
-}
-
-void CMPPSetItemPane::OnBnClickedRdDirect()
-{
-    m_nTeleIndex = 2;
-}
-
-void CMPPSetItemPane::OnBnClickedRdVisit()
-{
-    m_nTeleIndex = 3;
-}
-
-void CMPPSetItemPane::OnBnClickedButton1()
-{
-    if(m_nTeleIndex <= 0)
+    CString strCommand;
+    GetDlgItem(IDC_GM_COMMAND)->GetWindowText(strCommand);
+    strCommand.Trim();
+    if(strCommand.IsEmpty())
         return;
 
-    if(m_nTeleIndex == 1)
-    {
-        int nIndex = m_cbTeleSelect.GetCurSel();
-        GetMPPClientEvent()->SendEvent(MSG_MRPOPO_TELEPORT, nIndex);
-    }
-    else if(m_nTeleIndex == 2)
-    {
-        CString strX, strZ;
-        m_edTeleX.GetWindowText(strX);
-        m_edTeleZ.GetWindowText(strZ);
-        GetMPPClientEvent()->SendEvent(MSG_MRPOPO_TELE_DIRECT_X, _wtoi(strX));
-        GetMPPClientEvent()->SendEvent(MSG_MRPOPO_TELE_DIRECT_Z, _wtoi(strZ));
-    }
-    else if(m_nTeleIndex == 3)
-    {
+    if(strCommand[0] != L'@')
+        strCommand.Insert(0, L'@');
 
-    }
+    GetMPPClientEvent()->SendServerCommand(strCommand);
 }
 
-void CMPPSetItemPane::OnBnClickedBtnLearnAllSkill()
+void CMPPSetItemPane::CollectDragonBalls()
 {
-    GetMPPClientEvent()->SendEvent(MSG_MRPOPO_LEARN_ALL_SKILL, NULL);   
-}
-
-void CMPPSetItemPane::OnBnClickedBtnUpgradeAllSkill()
-{
-    GetMPPClientEvent()->SendEvent(MSG_MRPOPO_UPGRADE_ALL_SKILL, NULL);   
-}
-
-void CMPPSetItemPane::OnBnClickedBtnCreateLevelItems()
-{
-    GetMPPClientEvent()->SendEvent(MSG_MRPOPO_CREATE_LEVEL_ITEMS, NULL);   
-}
-
-void CMPPSetItemPane::OnBnClickedBtnSuperMode()
-{
-    GetMPPClientEvent()->SendEvent(MSG_MRPOPO_SUPER_MODE, NULL);
+    CString strType;
+    if(GetFieldValue(IDC_GM_DRAGONBALL, strType))
+        GetMPPClientEvent()->SendEvent(MSG_MRPOPO_COLLECT_DRAGONBALL, (DWORD)_wtoi(strType));
 }

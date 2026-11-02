@@ -8,7 +8,7 @@
  * \date 2008-09-04
  * \author agebreak
  */
-class CMPPClientCheat : public CXTResizeFormView
+class CMPPClientCheat : public CFormView
 {
 	DECLARE_DYNCREATE(CMPPClientCheat)
 

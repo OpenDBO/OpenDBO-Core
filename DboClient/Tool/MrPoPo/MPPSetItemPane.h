@@ -1,16 +1,19 @@
 #pragma once
 #include "afxwin.h"
 
-
-
-// CMPPSetItemPane 폼 뷰입니다.
-
-class CMPPSetItemPane : public CXTResizeFormView
+/**
+ * \ingroup MrPoPo
+ * \brief Buttons for the game server's GM commands (DboServer/Server/GameServer/gm.cpp)
+ *
+ * Every button sends its command with the values of its fields, as typed in the chat.
+ * The character needs the GM level of the command on the server.
+ */
+class CMPPSetItemPane : public CFormView
 {
 	DECLARE_DYNCREATE(CMPPSetItemPane)
 
 protected:
-	CMPPSetItemPane();           // 동적 만들기에 사용되는 protected 생성자입니다.
+	CMPPSetItemPane();
 	virtual ~CMPPSetItemPane();
 
 public:
@@ -22,52 +25,16 @@ public:
 #endif
 #endif
 
-protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 지원입니다.
+	virtual void OnInitialUpdate();
 
+protected:
 	DECLARE_MESSAGE_MAP()
 
-public:
-    afx_msg void OnBnClickedBtnCreateitem();
-    afx_msg void OnBnClickedBtnUpgradeitem();
-    afx_msg void OnBnClickedBtnSetzenny();
-    afx_msg void OnBnClickedBtnAddexp();
-    afx_msg void OnBnClickedBtnSetlevel();
-    afx_msg void OnBnClickedBtnCollectdragonball();
-    afx_msg void OnBnClickedBtnSetspeed();
-    afx_msg void OnBnClickedBtnOffence();
-    afx_msg void OnBnClickedBtnDefence();
-    afx_msg void OnBnClickedButton1();
+	afx_msg void OnGMButton(UINT nID);
 
-protected:
-    CEdit m_edCreateItem;    
-    CEdit m_edSetZenny;
-    CEdit m_edAddExp;
-    CEdit m_edSetLevel;
-    CEdit m_edSetSpeed;
-    CEdit m_edSetOffence;
-    CEdit m_edSetDefence;
-    CComboBox m_cbTeleSelect;
-    CEdit m_edTeleX;
-    CEdit m_edTeleZ;
-    CEdit m_edTeleVisit;    
-    int m_nTeleIndex;
-public:
-    virtual void OnInitialUpdate();
-public:
-    afx_msg void OnBnClickedRdSelect();
-public:
-    afx_msg void OnBnClickedRdDirect();
-public:
-    afx_msg void OnBnClickedRdVisit();
-public:
-    afx_msg void OnBnClickedBtnLearnAllSkill();
-public:
-    afx_msg void OnBnClickedBtnUpgradeAllSkill();
-public:
-    afx_msg void OnBnClickedBtnCreateLevelItems();
-public:
-    afx_msg void OnBnClickedBtnSuperMode();
+	void    AddComboItem(UINT nComboID, LPCWSTR szName, DWORD dwData);
+	BOOL    GetFieldValue(UINT nFieldID, CString& strValue);     ///< the text of an edit, the item data of a combo box
+	void    SendCommandOfButton(UINT nButtonID);
+	void    SendTypedCommand();
+	void    CollectDragonBalls();
 };
-
-

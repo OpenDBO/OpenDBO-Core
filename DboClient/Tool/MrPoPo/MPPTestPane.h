@@ -3,7 +3,7 @@
 
 // CMPPTestPane 폼 뷰입니다.
 
-class CMPPTestPane : public CXTResizeFormView
+class CMPPTestPane : public CFormView
 {
 	DECLARE_DYNCREATE(CMPPTestPane)
 
@@ -42,11 +42,11 @@ public:
 
 protected:
     CComboBox m_cbCrowdTest;
-    CXTEdit m_edObserverIndex;    
-    CXTEdit m_edObserverLua;
-    CXTEdit m_edTest1;
-    CXTEdit m_edTest2;
-    CXTEdit m_edTest3;           
+    CEdit m_edObserverIndex;    
+    CEdit m_edObserverLua;
+    CEdit m_edTest1;
+    CEdit m_edTest2;
+    CEdit m_edTest3;           
     CComboBox m_cmbTenkaichi;
     CComboBox m_cbColorChange;
     CComboBox m_cbStateChange;

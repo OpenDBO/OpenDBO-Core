@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "MrPoPo.h"
 #include "MPPTestPane.h"
-#include "CNtlMrPoPoMsg.h"
+#include "NtlMrPoPoMsg.h"
 #include "MPPClientEvent.h"
 
 /// 관중의상태
@@ -28,10 +28,10 @@ enum ETBCrowdStepType
 
 // CMPPTestPane
 
-IMPLEMENT_DYNCREATE(CMPPTestPane, CXTResizeFormView)
+IMPLEMENT_DYNCREATE(CMPPTestPane, CFormView)
 
 CMPPTestPane::CMPPTestPane()
-	: CXTResizeFormView(CMPPTestPane::IDD)
+	: CFormView(CMPPTestPane::IDD)
 {
 
 }
@@ -42,7 +42,7 @@ CMPPTestPane::~CMPPTestPane()
 
 void CMPPTestPane::DoDataExchange(CDataExchange* pDX)
 {
-    CXTResizeFormView::DoDataExchange(pDX);
+    CFormView::DoDataExchange(pDX);
     DDX_Control(pDX, IDC_CB_CROWD, m_cbCrowdTest);
     DDX_Control(pDX, IDC_ED_OBSERVER_INDEX, m_edObserverIndex);
     DDX_Control(pDX, IDC_ED_OBSERVER_LUA, m_edObserverLua);
@@ -56,7 +56,7 @@ void CMPPTestPane::DoDataExchange(CDataExchange* pDX)
     DDX_Control(pDX, IDC_STUNTYPE, m_cbStunType);
 }
 
-BEGIN_MESSAGE_MAP(CMPPTestPane, CXTResizeFormView)
+BEGIN_MESSAGE_MAP(CMPPTestPane, CFormView)
     ON_BN_CLICKED(IDC_BTN_CROWD_CHANGE, &CMPPTestPane::OnBnClickedBtnCrowdChange)    
     ON_BN_CLICKED(IDC_BT_OBSERVER_INDEX, &CMPPTestPane::OnBnClickedBtObserverIndex)
     ON_BN_CLICKED(IDC_BT_OBSERVER_LUA, &CMPPTestPane::OnBnClickedBtObserverLua)
@@ -80,13 +80,13 @@ END_MESSAGE_MAP()
 #ifdef _DEBUG
 void CMPPTestPane::AssertValid() const
 {
-	CXTResizeFormView::AssertValid();
+	CFormView::AssertValid();
 }
 
 #ifndef _WIN32_WCE
 void CMPPTestPane::Dump(CDumpContext& dc) const
 {
-	CXTResizeFormView::Dump(dc);
+	CFormView::Dump(dc);
 }
 #endif
 #endif //_DEBUG
@@ -95,7 +95,7 @@ void CMPPTestPane::Dump(CDumpContext& dc) const
 // CMPPTestPane 메시지 처리기입니다.
 void CMPPTestPane::OnInitialUpdate()
 {
-    CXTResizeFormView::OnInitialUpdate();
+    CFormView::OnInitialUpdate();
 
     m_cbCrowdTest.InsertString(E_STEP_BASIC, L"BASIC");
     m_cbCrowdTest.InsertString(E_STEP_MATCH_READY, L"MATCH READY");
@@ -135,9 +135,17 @@ void CMPPTestPane::OnInitialUpdate()
     m_cbTransform.AddString(L"NONE");
 
     // 스턴 타입
-    m_cbStunType.AddString(L"GENERAL");
-    m_cbStunType.AddString(L"FROZEN");
-    m_cbStunType.AddString(L"TIED");
+    // item data is the eDBO_STUN_TYPE, NONE (DBO_STUN_TYPE_INVALID) ends the stun
+    static const struct { LPCWSTR szName; DWORD dwStunType; } s_aStunType[] =
+    {
+        { L"NONE", 0xFF }, { L"GENERAL", 0 }, { L"FROZEN", 1 }, { L"TIED", 2 }, { L"STONE", 3 }, { L"CANDY", 4 },
+    };
+    for(int i = 0; i < _countof(s_aStunType); ++i)
+    {
+        int nIndex = m_cbStunType.AddString(s_aStunType[i].szName);
+        m_cbStunType.SetItemData(nIndex, s_aStunType[i].dwStunType);
+    }
+    m_cbStunType.SetCurSel(0);
 }
 
 
@@ -235,7 +243,9 @@ void CMPPTestPane::OnCbnSelchangeTransform()
 
 void CMPPTestPane::OnCbnSelchangeStuntype()
 {
-    GetMPPClientEvent()->SendEvent(MSG_MRPOPO_STUN, m_cbStunType.GetCurSel());
+    int nSel = m_cbStunType.GetCurSel();
+    if(nSel != CB_ERR)
+        GetMPPClientEvent()->SendEvent(MSG_MRPOPO_STUN, (DWORD)m_cbStunType.GetItemData(nSel));
 }
 
 void CMPPTestPane::OnBnClickedBtTargetMarking()

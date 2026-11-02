@@ -4,15 +4,15 @@
 #include "stdafx.h"
 #include "MrPoPo.h"
 #include "MPPGraphicPane.h"
-#include "MppClientEvent.h"
+#include "MPPClientEvent.h"
 
 
 // CMPPGraphicPane
 
-IMPLEMENT_DYNCREATE(CMPPGraphicPane, CXTResizeFormView)
+IMPLEMENT_DYNCREATE(CMPPGraphicPane, CFormView)
 
 CMPPGraphicPane::CMPPGraphicPane()
-	: CXTResizeFormView(CMPPGraphicPane::IDD)
+	: CFormView(CMPPGraphicPane::IDD)
 {
 
 }
@@ -23,7 +23,7 @@ CMPPGraphicPane::~CMPPGraphicPane()
 
 void CMPPGraphicPane::DoDataExchange(CDataExchange* pDX)
 {
-	CXTResizeFormView::DoDataExchange(pDX);
+	CFormView::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_TERRAIN_DIST, m_sdTerrainDist);
 	DDX_Control(pDX, IDC_TERRAIN_SHADOW, m_btnTerrainShadow);
 	DDX_Control(pDX, IDC_WATER_SPECULAR, m_btnWaterSpecular);
@@ -36,7 +36,7 @@ void CMPPGraphicPane::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_CHAR_DIST, m_sldCharDist);
 }
 
-BEGIN_MESSAGE_MAP(CMPPGraphicPane, CXTResizeFormView)
+BEGIN_MESSAGE_MAP(CMPPGraphicPane, CFormView)
 	ON_NOTIFY(NM_RELEASEDCAPTURE, IDC_TERRAIN_DIST, &CMPPGraphicPane::OnNMReleasedcaptureTerrainDist)
 	ON_BN_CLICKED(IDC_TERRAIN_SHADOW, &CMPPGraphicPane::OnBnClickedTerrainShadow)
 	ON_BN_CLICKED(IDC_WATER_SPECULAR, &CMPPGraphicPane::OnBnClickedWaterSpecular)
@@ -55,20 +55,20 @@ END_MESSAGE_MAP()
 #ifdef _DEBUG
 void CMPPGraphicPane::AssertValid() const
 {
-	CXTResizeFormView::AssertValid();
+	CFormView::AssertValid();
 }
 
 #ifndef _WIN32_WCE
 void CMPPGraphicPane::Dump(CDumpContext& dc) const
 {
-	CXTResizeFormView::Dump(dc);
+	CFormView::Dump(dc);
 }
 #endif
 #endif //_DEBUG
 
 void CMPPGraphicPane::OnInitialUpdate()
 {
-    CXTResizeFormView::OnInitialUpdate();
+    CFormView::OnInitialUpdate();
 
     m_sdTerrainDist.SetRange(200, 512);  
 	m_sdTerrainDist.SetTicFreq(10);

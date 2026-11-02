@@ -2,8 +2,9 @@
 
 
 // CMPPLogView 뷰입니다.
+// read only log under the pane tabs
 
-class CMPPLogView : public CRichEditView
+class CMPPLogView : public CEditView
 {
 	DECLARE_DYNCREATE(CMPPLogView)
 
@@ -24,17 +25,16 @@ public:
 public:
     static CMPPLogView* GetInstance() {return m_pInstance;}
 
-    void AddLog(const CString& strLog);    
-    void SetOwnerPane(CXTPDockingPane* pOwnerPane) {m_pOwnerPane = pOwnerPane;}
+    void AddLog(const CString& strLog);
 
 protected:
+	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+
 	DECLARE_MESSAGE_MAP()
-
-protected:
-    CXTPDockingPane*        m_pOwnerPane;
 };
 
-static void AddLogView(const CString& strLog)
+inline void AddLogView(const CString& strLog)
 {
-    CMPPLogView::GetInstance()->AddLog(strLog);    
+    if(CMPPLogView::GetInstance())
+        CMPPLogView::GetInstance()->AddLog(strLog);
 }

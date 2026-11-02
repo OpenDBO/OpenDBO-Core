@@ -4,15 +4,15 @@
 #include "stdafx.h"
 #include "MrPoPo.h"
 #include "MPPClientCheat.h"
-#include "CNtlMrPoPoMsg.h"
+#include "NtlMrPoPoMsg.h"
 #include "MPPClientEvent.h"
 
 // CMPPClientCheat
 
-IMPLEMENT_DYNCREATE(CMPPClientCheat, CXTResizeFormView)
+IMPLEMENT_DYNCREATE(CMPPClientCheat, CFormView)
 
 CMPPClientCheat::CMPPClientCheat()
-	: CXTResizeFormView(CMPPClientCheat::IDD)
+	: CFormView(CMPPClientCheat::IDD)
 {
 
 }
@@ -23,12 +23,12 @@ CMPPClientCheat::~CMPPClientCheat()
 
 void CMPPClientCheat::DoDataExchange(CDataExchange* pDX)
 {
-    CXTResizeFormView::DoDataExchange(pDX);
+    CFormView::DoDataExchange(pDX);
     DDX_Control(pDX, IDC_ED_ELAPSED, m_edElapsed);
     DDX_Control(pDX, IDC_CB_DUMP, m_cbDump);
 }
 
-BEGIN_MESSAGE_MAP(CMPPClientCheat, CXTResizeFormView)
+BEGIN_MESSAGE_MAP(CMPPClientCheat, CFormView)
     ON_BN_CLICKED(IDC_BT_ELAPSED, &CMPPClientCheat::OnBnClickedBtElapsed)
     ON_BN_CLICKED(IDC_BT_DUMP_CONSOLE, &CMPPClientCheat::OnBnClickedBtDumpConsole)
     ON_BN_CLICKED(IDC_BT_DUMP_GUI, &CMPPClientCheat::OnBnClickedBtDumpGui)
@@ -48,20 +48,20 @@ END_MESSAGE_MAP()
 #ifdef _DEBUG
 void CMPPClientCheat::AssertValid() const
 {
-	CXTResizeFormView::AssertValid();
+	CFormView::AssertValid();
 }
 
 #ifndef _WIN32_WCE
 void CMPPClientCheat::Dump(CDumpContext& dc) const
 {
-	CXTResizeFormView::Dump(dc);
+	CFormView::Dump(dc);
 }
 #endif
 #endif //_DEBUG
 
 void CMPPClientCheat::OnInitialUpdate()
 {
-    CXTResizeFormView::OnInitialUpdate();
+    CFormView::OnInitialUpdate();
 
     m_cbDump.AddString(L"SELF");
     m_cbDump.AddString(L"TARGET");
