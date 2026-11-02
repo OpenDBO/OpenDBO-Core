@@ -1,29 +1,26 @@
 #pragma once
 #include "afxwin.h"
-
-#include "CustomItems.h"
 #include "NtlScriptEncrypter.h"
 
 enum EItemID
 {
-    ID_FILE_LOAD,
+    ID_FILE_LOAD = 1,
     ID_OP_IP,
     ID_OP_PORT,
-    ID_LOCAL_DSP,
-    ID_LOCAL_SYNC_DSP,
     ID_BUGTRAP_IP,
     ID_BUGTRAP_PORT,
+    ID_BUGTRAP_FOLDER,
+    ID_LOCALIZE,
 };
-
 
 /**
  * \ingroup MrPoPo
- * \brief   Config 파일 설정및 암호화 뷰 클래스
+ * \brief   Config 파일 설정 뷰 클래스 (edits the client ConfigOptions.xml)
  *
  * \date 2008-07-31
  * \author agebreak
  */
-class CMPPConfigSetting : public CXTResizeFormView
+class CMPPConfigSetting : public CFormView
 {
 	DECLARE_DYNCREATE(CMPPConfigSetting)
 
@@ -40,41 +37,33 @@ public:
 #endif
 #endif
 
-
 public:
     virtual void OnInitialUpdate();
     afx_msg void OnBnClickedBtnSavexml();
-    afx_msg void OnBnClickedBtnSaveenc();
 
 protected:
     DECLARE_MESSAGE_MAP()
     virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 지원입니다.
 
-    afx_msg LRESULT OnGridNotify(WPARAM, LPARAM);
-        afx_msg void OnBnClickedBtnLuaCompile();
+    afx_msg LRESULT OnPropertyChanged(WPARAM wParam, LPARAM lParam);
+    afx_msg void OnSize(UINT nType, int cx, int cy);
 
     void    UpdateConfigData();                         ///< 컨피그 데이터를 업데이트합니다.
-    void    LoadLuaFiles();
+    void    LayoutControls();
+
+    CMFCPropertyGridProperty*   AddTextItem(CMFCPropertyGridProperty* pGroup, LPCTSTR szName, EItemID eID);
 
 protected:
     CButton m_btnSaveXML;
-    CButton m_btnSaveEnc;
-    CXTBrowseEdit   m_edLuaDir;
-    CXTBrowseEdit   m_edOutDir;
 
-    CXTPPropertyGrid        m_property;
-    CXTPPropertyGridItem*   m_pCatConfig;
-    CCustomItemFileBox*     m_pFileLoad;
-    CXTPPropertyGridItem*   m_pOpIp;
-    CXTPPropertyGridItem*   m_pOpPort;
-    CCustomItemFileBox*     m_pLocalDsp;
-    CCustomItemFileBox*     m_pLocalSyncDsp;
-    CXTPPropertyGridItem*   m_pBugTrapIp;
-    CXTPPropertyGridItem*   m_pBugTrapPort;
+    CMFCPropertyGridCtrl            m_property;
+    CMFCPropertyGridFileProperty*   m_pFileLoad;
+    CMFCPropertyGridProperty*       m_pOpIp;
+    CMFCPropertyGridProperty*       m_pOpPort;
+    CMFCPropertyGridProperty*       m_pBugTrapIp;
+    CMFCPropertyGridProperty*       m_pBugTrapPort;
+    CMFCPropertyGridProperty*       m_pBugTrapFolder;
+    CMFCPropertyGridProperty*       m_pLocalize;
 
     SConfigData             m_configData;               ///< 컨피그 정보 데이터
-public:
-    afx_msg void OnEnChangeEdLua();
 };
-
-

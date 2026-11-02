@@ -4,7 +4,7 @@
 
 #pragma once
 
-class CMainFrame : public CXTPFrameWnd
+class CMainFrame : public CFrameWnd
 {
 
 protected: // create from serialization only
@@ -21,6 +21,9 @@ public:
 public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 
+protected:
+	virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
+
 // Implementation
 public:
 	virtual ~CMainFrame();
@@ -30,16 +33,11 @@ public:
 #endif
 
 protected:  // control bar embedded members
-	CXTPStatusBar  m_wndStatusBar;
-	CReBar      m_wndReBar;
-	CDialogBar      m_wndDlgBar;
-	CXTPDockingPaneManager m_paneManager;	
+	CStatusBar		m_wndStatusBar;
+	CSplitterWnd	m_wndSplitter;		///< the pane tabs on top, the log view below
 
 // Generated message map functions
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	afx_msg void OnClose();
-	afx_msg void OnCustomize();
-	afx_msg LRESULT OnDockingPaneNotify(WPARAM wParam, LPARAM lParam);
 	DECLARE_MESSAGE_MAP()
 };

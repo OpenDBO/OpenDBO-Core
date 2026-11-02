@@ -8,21 +8,44 @@
 
 // CMPPLogView
 
-IMPLEMENT_DYNCREATE(CMPPLogView, CRichEditView)
+IMPLEMENT_DYNCREATE(CMPPLogView, CEditView)
 
 CMPPLogView* CMPPLogView::m_pInstance = NULL;
 
 CMPPLogView::CMPPLogView()
 {
-    m_pInstance = this;    
+    m_pInstance = this;
 }
 
 CMPPLogView::~CMPPLogView()
 {
+    if(m_pInstance == this)
+        m_pInstance = NULL;
 }
 
-BEGIN_MESSAGE_MAP(CMPPLogView, CRichEditView)
+BEGIN_MESSAGE_MAP(CMPPLogView, CEditView)
 END_MESSAGE_MAP()
+
+BOOL CMPPLogView::PreCreateWindow(CREATESTRUCT& cs)
+{
+    if(!CEditView::PreCreateWindow(cs))
+        return FALSE;
+
+    cs.style |= ES_READONLY;
+    return TRUE;
+}
+
+void CMPPLogView::AddLog( const CString& strLog )
+{
+    CString strText = strLog;
+    strText += L"\r\n";
+
+    // append at the end, the edit control scrolls to it
+    CEdit& edit = GetEditCtrl();
+    int nLength = edit.GetWindowTextLength();
+    edit.SetSel(nLength, nLength);
+    edit.ReplaceSel(strText);
+}
 
 
 // CMPPLogView 진단입니다.
@@ -30,24 +53,14 @@ END_MESSAGE_MAP()
 #ifdef _DEBUG
 void CMPPLogView::AssertValid() const
 {
-	CRichEditView::AssertValid();
+	CEditView::AssertValid();
 }
 
 #ifndef _WIN32_WCE
 void CMPPLogView::Dump(CDumpContext& dc) const
 {
-	CRichEditView::Dump(dc);
+	CEditView::Dump(dc);
 }
-
-void CMPPLogView::AddLog( const CString& strLog ) 
-{
-    CString strText = strLog;
-    strText += L"\n";
-    GetRichEditCtrl().ReplaceSel(strText);    
-
-    m_pOwnerPane->Select();
-}
-
 #endif
 #endif //_DEBUG
 

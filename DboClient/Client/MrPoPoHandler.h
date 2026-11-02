@@ -17,14 +17,13 @@ public:
 
     void HandleEvent(RwInt32 nMsg, DWORD param);
 
+    /// sends a gm command typed in the tool (WM_COPYDATA), only while in the game
+    RwBool SendServerCommand(const WCHAR* pwszCommand);
+
 protected:
-    DWORD           OnSetLevel(RwInt32 nLevel);
-    void            OnCollectDragonBall();
+    void            OnCollectDragonBall(RwUInt8 byBallType);
+    void            OnLearnAllSkill();
     void            OnTestCrowd(RwInt32 nCrowdType);
-    std::wstring    OnTeleport(RwInt32 nIndex);
-    std::wstring    OnTeleport(RwInt32 nMsg, RwInt32 nVal);        
-    void            OnUpgradeAllSkill();    
-    void            OnSuperMode();
     void            OnNamekTest();
     void            OnTenkaichiMark(RwInt32 nType);
     void            OnChangeColor(RwInt32 nType);
@@ -45,10 +44,6 @@ protected:
 	void            OnParticleRatio(RwUInt32 uiRatio);
 	void            OnMeshEffect(RwBool bEnable);
 	void            OnDecalEffect(RwBool bEnable);
-
-protected:
-    RwInt32         m_nTemp;
-
 };
 
 static CMrPoPoHandler* GetMrPoPoHandler()

@@ -6,7 +6,7 @@
 
 // CMPPGraphicPane 폼 뷰입니다.
 
-class CMPPGraphicPane : public CXTResizeFormView
+class CMPPGraphicPane : public CFormView
 {
 	DECLARE_DYNCREATE(CMPPGraphicPane)
 

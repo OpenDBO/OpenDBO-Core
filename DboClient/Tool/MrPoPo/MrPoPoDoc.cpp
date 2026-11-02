@@ -5,7 +5,6 @@
 #include "MrPoPo.h"
 
 #include "MrPoPoDoc.h"
-#include "MPPDef.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -75,11 +74,3 @@ void CMrPoPoDoc::Dump(CDumpContext& dc) const
 }
 #endif //_DEBUG
 
-
-// CMrPoPoDoc commands
-
-void CMrPoPoDoc::SetTitle(LPCTSTR lpszTitle)
-{
-
-    CDocument::SetTitle(MPP_TITLE_VER);
-}

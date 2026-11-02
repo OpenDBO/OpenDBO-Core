@@ -4,6 +4,9 @@
 
 #define MSG_FROM_MRPOPO                 (WM_USER + 2374)                  ///< 서포트 툴로부터의 메시지
 
+// WM_COPYDATA from MrPoPo: lpData is a server command, UTF-16 and null terminated
+#define MPP_COPYDATA_SERVER_COMMAND     0x4D505043
+
 enum EMrPoPoMsg
 {
     MSG_MRPOPO_CREATE_ITEM = (WM_USER + 101),

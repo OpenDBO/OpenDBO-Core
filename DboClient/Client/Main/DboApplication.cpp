@@ -805,19 +805,15 @@ LRESULT CDboApplication::PreTranslateMessage(HWND window, UINT message, WPARAM w
 
 		case WM_COPYDATA:
 		{
-			/*if( Logic_IsDevUser() )
+			// server commands of the MrPoPo tool, dev users only
+			const COPYDATASTRUCT* pCDS = (const COPYDATASTRUCT*)lParam;
+			if( pCDS && pCDS->dwData == MPP_COPYDATA_SERVER_COMMAND && pCDS->lpData && Logic_IsDevUser() )
 			{
-				char acBuffer[256] = "";
-				COPYDATASTRUCT* pCDS = (COPYDATASTRUCT*)lParam;
+				// TRUE tells the tool the command went out
+				std::wstring wstrCommand((const WCHAR*)pCDS->lpData, pCDS->cbData / sizeof(WCHAR));
+				return GetMrPoPoHandler()->SendServerCommand(wstrCommand.c_str()) ? TRUE : FALSE;
+			}
 
-				memset(acBuffer, 0, sizeof(acBuffer));
-
-				if( pCDS->lpData )
-					memcpy(acBuffer, (const char*)pCDS->lpData, pCDS->cbData);
-
-				GetDumpCmdManager()->CleintConsoleCommand(acBuffer);
-			}*/
-			
 			break;
 		}
 		case WM_COMMAND:
@@ -837,9 +833,11 @@ LRESULT CDboApplication::PreTranslateMessage(HWND window, UINT message, WPARAM w
 				}
 			}
 		break;      
-		//case MSG_FROM_MRPOPO:
-		//     GetMrPoPoHandler()->HandleEvent(wParam, lParam);
-		//break;
+		case MSG_FROM_MRPOPO:
+			// commands of the MrPoPo tool (DboClient/Tool/MrPoPo), dev users only
+			if( Logic_IsDevUser() )
+				GetMrPoPoHandler()->HandleEvent((RwInt32)wParam, (DWORD)lParam);
+			return 0;
 		case WM_CLOSE:
 			{
 				if ( !CanExitApp() )
